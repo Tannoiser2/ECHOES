@@ -13,6 +13,7 @@ const DataSet := preload("res://scripts/core/data_set.gd")
 const GameSession := preload("res://scripts/chronicle/game_session.gd")
 const SaveSerializer := preload("res://scripts/core/save_serializer.gd")
 const ScriptedDecider := preload("res://cli/scripted_decider.gd")
+const PolicyDecider := preload("res://cli/policy_decider.gd")
 
 const EXIT_OK: int = 0
 const EXIT_USAGE: int = 2
@@ -52,11 +53,21 @@ func _initialize() -> void:
 		session.log.echo_to_stdout = true
 	print("ECHOES - sim '%s' (%s), seed %d" % [str(plan["id"]), str(plan["title"]), seed_value])
 
-	var decider: RefCounted = ScriptedDecider.new(plan, session.log)
+	# --policy replaces the plan's scripted choices with players that actually
+	# pursue their own Destiny. The plan still supplies the Chronicle and the
+	# seed; everything else is decided at the table.
+	var decider: RefCounted = null
+	if bool(options.get("policy", false)):
+		decider = PolicyDecider.new(session.log)
+		print("Giocatori: policy (ognuno persegue il proprio Destiny)")
+	else:
+		decider = ScriptedDecider.new(plan, session.log)
 	var report: Dictionary = session.run(decider)
 	session.sync_rng_state()
 
-	var failures: PackedStringArray = _check_expectations(plan, report, session)
+	var failures: PackedStringArray = PackedStringArray()
+	if not bool(options.get("policy", false)):
+		failures = _check_expectations(plan, report, session)
 	_print_summary(plan, report, session, failures)
 
 	if options.has("out"):
@@ -84,6 +95,9 @@ func _usage() -> void:
   --out=<path>              write the final save here
   --log=<path>              write the public log here
   --data=<res://data>       data root
+  --policy                  ignore the plan's choices; let the Destiny-driven
+                            players decide instead (a livelier game than a
+                            scripted regression fixture)
   --seed=<int>              override the plan's seed
   --quiet                   do not echo the log to stdout
   --lenient                 do not fail on illegal scripted choices

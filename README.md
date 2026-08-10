@@ -61,6 +61,23 @@ Opzioni: `--out=<file>` salva il save finale · `--log=<file>` salva il log ·
 `--seed=<int>` sovrascrive il seed del piano · `--quiet` non stampa il log ·
 `--lenient` non fallisce sulle scelte scriptate illegali · `--help`.
 
+**Attenzione a cosa stai guardando.** I tre piani qui sotto sono *fixture di
+regressione*: verificano che una sequenza di mosse decisa a mano produca sempre
+lo stesso esito. I turni che il piano non copre li riempie una routine passiva
+che di proposito non tocca le Tensioni, quindi in un piano scriptato quasi meta
+dei turni sono "passa". Non e il gioco: e il manichino.
+
+Per vedere una partita vera, con quattro giocatori che perseguono davvero il
+proprio Destiny:
+
+```bash
+godot --headless --path godot --script res://cli/run_chronicle_sim.gd -- \
+    --plan=res://data/chronicle_01/sim_plans/plan_a_grain_accord.json --policy
+```
+
+Il piano fornisce solo la Chronicle e il seed; ogni scelta la prendono i
+giocatori. Nessun "passa", e 3-4 Confluence per partita.
+
 Tutti e tre i piani in un colpo solo:
 
 ```bash

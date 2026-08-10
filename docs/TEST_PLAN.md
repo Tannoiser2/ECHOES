@@ -65,6 +65,12 @@ godot --headless --path godot --script res://cli/run_balance_probe.gd -- \
 Ogni piano porta un blocco `expected` che l'harness verifica a fine corsa: sono
 test di regressione, non solo tre log.
 
+Sono **fixture, non partite rappresentative**: i turni non scriptati li riempie
+una routine passiva (che di proposito non steer le Tensioni, vedi D-021), quindi
+circa meta dei turni di un piano risultano "passa". Per una partita giocata da
+avversari veri si usa `--policy`, che sostituisce le scelte del piano con il
+policy decider e non lascia nessun turno vuoto.
+
 | piano | Confluence | esiti | cosa esercita |
 |---|---|---|---|
 | `plan_a_grain_accord` | 1 | Decisive Success | trigger da soglia, conquista del seggio di proponente con la presenza, Condition qualificata, Echo, Aldric a Triumph |
