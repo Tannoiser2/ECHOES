@@ -10,18 +10,33 @@
       "effects": [
         {
           "type": "SET_REGION_TAG",
-          "target": { "kind": "region", "id": "REG_EREDAN" },
-          "payload": { "tag": "structure:granary" }
+          "target": {
+            "kind": "region",
+            "id": "REG_EREDAN"
+          },
+          "payload": {
+            "tag": "structure:granary"
+          }
         },
         {
           "type": "SET_CONTROL",
-          "target": { "kind": "region", "id": "REG_VALLE_VERDE" },
-          "payload": { "entity_id": "$proponent" }
+          "target": {
+            "kind": "region",
+            "id": "REG_VALLE_VERDE"
+          },
+          "payload": {
+            "entity_id": "$proponent"
+          }
         },
         {
           "type": "SET_GLOBAL_TAG",
-          "target": { "kind": "world", "id": "WORLD" },
-          "payload": { "tag": "grain_requisitioned" }
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "grain_requisitioned"
+          }
         }
       ]
     },
@@ -33,18 +48,33 @@
       "effects": [
         {
           "type": "SET_REGION_TAG",
-          "target": { "kind": "region", "id": "REG_VALLE_VERDE" },
-          "payload": { "tag": "settlement:nahr" }
+          "target": {
+            "kind": "region",
+            "id": "REG_VALLE_VERDE"
+          },
+          "payload": {
+            "tag": "settlement:nahr"
+          }
         },
         {
           "type": "SET_GLOBAL_TAG",
-          "target": { "kind": "world", "id": "WORLD" },
-          "payload": { "tag": "nahr_settled" }
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "nahr_settled"
+          }
         },
         {
           "type": "SET_RELATION",
-          "target": { "kind": "relation", "id": "ENT_ALDRIC|ENT_NAHR" },
-          "payload": { "add_tag": "PACT" }
+          "target": {
+            "kind": "relation",
+            "id": "ENT_ALDRIC|ENT_NAHR"
+          },
+          "payload": {
+            "add_tag": "PACT"
+          }
         }
       ]
     },
@@ -56,23 +86,43 @@
       "effects": [
         {
           "type": "SET_CONTROL",
-          "target": { "kind": "region", "id": "REG_VALLE_VERDE" },
-          "payload": { "entity_id": "$proponent" }
+          "target": {
+            "kind": "region",
+            "id": "REG_VALLE_VERDE"
+          },
+          "payload": {
+            "entity_id": "$proponent"
+          }
         },
         {
           "type": "SET_GLOBAL_TAG",
-          "target": { "kind": "world", "id": "WORLD" },
-          "payload": { "tag": "valley_sealed" }
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "valley_sealed"
+          }
         },
         {
           "type": "SET_REGION_TAG",
-          "target": { "kind": "region", "id": "REG_TERRE_NAHR" },
-          "payload": { "tag": "condition:starving" }
+          "target": {
+            "kind": "region",
+            "id": "REG_TERRE_NAHR"
+          },
+          "payload": {
+            "tag": "condition:starving"
+          }
         },
         {
           "type": "SET_RELATION",
-          "target": { "kind": "relation", "id": "ENT_ALDRIC|ENT_NAHR" },
-          "payload": { "level": "ENEMY" }
+          "target": {
+            "kind": "relation",
+            "id": "ENT_ALDRIC|ENT_NAHR"
+          },
+          "payload": {
+            "level": "ENEMY"
+          }
         }
       ]
     },
@@ -84,23 +134,43 @@
       "effects": [
         {
           "type": "SET_REGION_TAG",
-          "target": { "kind": "region", "id": "REG_MINIERE_ANTICHE" },
-          "payload": { "tag": "condition:exploited" }
+          "target": {
+            "kind": "region",
+            "id": "REG_MINIERE_ANTICHE"
+          },
+          "payload": {
+            "tag": "condition:exploited"
+          }
         },
         {
           "type": "SET_GLOBAL_TAG",
-          "target": { "kind": "world", "id": "WORLD" },
-          "payload": { "tag": "crystal_exploited" }
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "crystal_exploited"
+          }
         },
         {
           "type": "SET_TENSION_VISIBILITY",
-          "target": { "kind": "tension", "id": "TEN_AWAKENING" },
-          "payload": { "visibility": "OPEN" }
+          "target": {
+            "kind": "tension",
+            "id": "TEN_AWAKENING"
+          },
+          "payload": {
+            "visibility": "OPEN"
+          }
         },
         {
           "type": "SET_ENTITY_TAG",
-          "target": { "kind": "entity", "id": "$proponent" },
-          "payload": { "tag": "discovery:crystal" }
+          "target": {
+            "kind": "entity",
+            "id": "$proponent"
+          },
+          "payload": {
+            "tag": "discovery:crystal"
+          }
         }
       ]
     },
@@ -112,18 +182,33 @@
       "effects": [
         {
           "type": "SET_REGION_TAG",
-          "target": { "kind": "region", "id": "REG_MINIERE_ANTICHE" },
-          "payload": { "tag": "structure:sealed" }
+          "target": {
+            "kind": "region",
+            "id": "REG_MINIERE_ANTICHE"
+          },
+          "payload": {
+            "tag": "structure:sealed"
+          }
         },
         {
           "type": "SET_GLOBAL_TAG",
-          "target": { "kind": "world", "id": "WORLD" },
-          "payload": { "tag": "mine_sealed" }
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "mine_sealed"
+          }
         },
         {
           "type": "SET_ENTITY_TAG",
-          "target": { "kind": "entity", "id": "$proponent" },
-          "payload": { "tag": "discovery:crystal" }
+          "target": {
+            "kind": "entity",
+            "id": "$proponent"
+          },
+          "payload": {
+            "tag": "discovery:crystal"
+          }
         }
       ]
     },
@@ -135,13 +220,23 @@
       "effects": [
         {
           "type": "SET_REGION_TAG",
-          "target": { "kind": "region", "id": "REG_EREDAN" },
-          "payload": { "tag": "condition:unrest" }
+          "target": {
+            "kind": "region",
+            "id": "REG_EREDAN"
+          },
+          "payload": {
+            "tag": "condition:unrest"
+          }
         },
         {
           "type": "ADJUST_TENSION",
-          "target": { "kind": "tension", "id": "$tension" },
-          "payload": { "delta": 1 }
+          "target": {
+            "kind": "tension",
+            "id": "$tension"
+          },
+          "payload": {
+            "delta": 1
+          }
         }
       ]
     },
@@ -153,13 +248,23 @@
       "effects": [
         {
           "type": "SET_GLOBAL_TAG",
-          "target": { "kind": "world", "id": "WORLD" },
-          "payload": { "tag": "question_unresolved" }
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "question_unresolved"
+          }
         },
         {
           "type": "SET_ENTITY_TAG",
-          "target": { "kind": "entity", "id": "$proponent" },
-          "payload": { "tag": "failed_proposal" }
+          "target": {
+            "kind": "entity",
+            "id": "$proponent"
+          },
+          "payload": {
+            "tag": "failed_proposal"
+          }
         }
       ]
     },
@@ -171,13 +276,137 @@
       "effects": [
         {
           "type": "SET_ENTITY_TAG",
-          "target": { "kind": "entity", "id": "$proponent" },
-          "payload": { "tag": "renowned" }
+          "target": {
+            "kind": "entity",
+            "id": "$proponent"
+          },
+          "payload": {
+            "tag": "renowned"
+          }
         },
         {
           "type": "SET_GLOBAL_TAG",
-          "target": { "kind": "world", "id": "WORLD" },
-          "payload": { "tag": "order_restored" }
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "order_restored"
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_VALLEY_CLEARED",
+      "title": "La Valle Sgomberata",
+      "category": "MIGRATION",
+      "description": "Requisire il grano vuol dire decidere chi sta sulla terra che lo produce. I carri che erano fermi nella Valle vengono rimessi in strada.",
+      "effects": [
+        {
+          "type": "REMOVE_PRESENCE",
+          "target": {
+            "kind": "entity",
+            "id": "ENT_NAHR"
+          },
+          "payload": {
+            "region_id": "REG_VALLE_VERDE",
+            "optional": true
+          },
+          "note": "optional: la Valle puo essere gia sgombera."
+        },
+        {
+          "type": "SET_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "REG_VALLE_VERDE"
+          },
+          "payload": {
+            "tag": "condition:requisitioned"
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_CROWN_DISPOSSESSED",
+      "title": "Il Titolo che non Vale piu",
+      "category": "CONTROL",
+      "description": "Se la terra e di chi la lavora, il sigillo di Eredan sulla Valle diventa una riga su una pergamena e nient'altro.",
+      "effects": [
+        {
+          "type": "SET_CONTROL",
+          "target": {
+            "kind": "region",
+            "id": "REG_VALLE_VERDE"
+          },
+          "payload": {
+            "entity_id": null
+          }
+        },
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "crown_dispossessed"
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_MINE_TAKEN",
+      "title": "La Miniera di Stato",
+      "category": "EXPLOITATION",
+      "description": "Aprire le gallerie significa metterci qualcuno a contare quello che esce. Chi conta, comanda.",
+      "effects": [
+        {
+          "type": "SET_CONTROL",
+          "target": {
+            "kind": "region",
+            "id": "REG_MINIERE_ANTICHE"
+          },
+          "payload": {
+            "entity_id": "$proponent"
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_STUDY_UNDER_GUARD",
+      "title": "Studio sotto Custodia",
+      "category": "DISCOVERY",
+      "description": "Il Cristallo si puo misurare, ma davanti a un custode e con un limite scritto. Nessuno lo porta fuori, e nessuno smette di guardarlo.",
+      "effects": [
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "study_supervised"
+          }
+        },
+        {
+          "type": "SET_ENTITY_TAG",
+          "target": {
+            "kind": "entity",
+            "id": "ENT_LYRA"
+          },
+          "payload": {
+            "tag": "discovery:supervised_record"
+          }
+        },
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "TEN_AWAKENING"
+          },
+          "payload": {
+            "delta": -1
+          }
         }
       ]
     }

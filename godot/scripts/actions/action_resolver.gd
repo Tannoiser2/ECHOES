@@ -160,6 +160,12 @@ func _check_influence(entity_id: String, params: Dictionary) -> String:
 		var cap: int = int(rules["max_per_entity_per_round"])
 		if int(world.get("influence_used", {}).get(entity_id, 0)) >= cap:
 			return "%s ha gia usato INFLUENCE %d volta/e in questo round" % [entity_id, cap]
+	# A second bound, on the question rather than the person: the world only
+	# moves so fast, whatever the table wants (D-023).
+	if rules.has("max_per_tension_per_round"):
+		var tension_cap: int = int(rules["max_per_tension_per_round"])
+		if int(world.get("influence_used_by_tension", {}).get(tension_id, 0)) >= tension_cap:
+			return "questa Tensione e gia stata mossa %d volte in questo round" % tension_cap
 
 	var domain: String = service.tension_domain(tension_id)
 	var by_presence: bool = service.has_presence_in_domain(entity_id, domain)
@@ -426,7 +432,12 @@ func _influence(entity_id: String, params: Dictionary, source: Dictionary) -> Di
 	effects.append(applied)
 	if not world.has("influence_used"):
 		world["influence_used"] = {}
+	if not world.has("influence_used_by_tension"):
+		world["influence_used_by_tension"] = {}
 	world["influence_used"][entity_id] = int(world["influence_used"].get(entity_id, 0)) + 1
+	world["influence_used_by_tension"][tension_id] = (
+		int(world["influence_used_by_tension"].get(tension_id, 0)) + 1
+	)
 	log.bullet(
 		"%s influenza %s (%+d, via %s)."
 		% [_name(entity_id), str(data.tensions[tension_id]["title"]), delta, via]

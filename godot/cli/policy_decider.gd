@@ -333,7 +333,7 @@ func choose_proposition(context: Dictionary, options: Array, session: RefCounted
 	var best: String = str(options[0]["id"])
 	var best_score: int = -999
 	for option in options:
-		var score: int = _score_proposition(option, proponent, session)
+		var score: int = _score_proposition(option, proponent, proponent, session)
 		if score > best_score:
 			best_score = score
 			best = str(option["id"])
@@ -341,7 +341,14 @@ func choose_proposition(context: Dictionary, options: Array, session: RefCounted
 
 
 ## How much a proposition's consequences help (+) or hurt (-) `entity_id`.
-func _score_proposition(proposition: Dictionary, entity_id: String, session: RefCounted) -> int:
+##
+## Reads the Consequence Effects against that Entity's own Destiny conditions:
+## a tag it needs, a Region it must stand in, a Region it must control. This is
+## what turns "the throne requisitions the grain" into "and it clears my people
+## out of the Valley, which is half my Victory" - and therefore into a fight.
+func _score_proposition(
+	proposition: Dictionary, entity_id: String, proponent_id: String, session: RefCounted
+) -> int:
 	var goals: Dictionary = _tag_goals(entity_id, session)
 	var score: int = 0
 	for consequence_id in proposition["success_consequences"]:
@@ -349,18 +356,64 @@ func _score_proposition(proposition: Dictionary, entity_id: String, session: Ref
 		if consequence == null:
 			continue
 		for effect in consequence["effects"]:
-			var payload: Dictionary = effect.get("payload", {})
-			var tag: String = str(payload.get("tag", ""))
-			if tag != "" and goals.has(tag):
-				# Setting a tag you want is good; setting one you want absent is bad.
-				var wanted: int = int(goals[tag])
-				var sets_it: bool = str(effect["type"]).begins_with("SET_")
-				score += wanted * (1 if sets_it else -1) * 2
-			# Taking control of a Region is worth having if your Destiny counts control.
-			if str(effect["type"]) == "SET_CONTROL":
-				if str(payload.get("entity_id", "")) == "$proponent" and _counts_control(entity_id, session):
-					score += 2
+			score += _score_effect(effect, entity_id, proponent_id, goals, session)
 	return score
+
+
+func _score_effect(
+	effect: Dictionary,
+	entity_id: String,
+	proponent_id: String,
+	goals: Dictionary,
+	session: RefCounted
+) -> int:
+	var payload: Dictionary = effect.get("payload", {})
+	var effect_type: String = str(effect["type"])
+	var target_id: String = str(effect["target"]["id"])
+	var score: int = 0
+
+	# A tag your Destiny wants present, or wants gone.
+	var tag: String = str(payload.get("tag", ""))
+	if tag != "" and goals.has(tag):
+		var sets_it: bool = effect_type.begins_with("SET_")
+		score += int(goals[tag]) * (1 if sets_it else -1) * 2
+
+	# Being pushed out of - or planted in - a Region your Destiny names.
+	if effect_type == "REMOVE_PRESENCE" and target_id == entity_id:
+		if _needs_presence(entity_id, str(payload.get("region_id", "")), session):
+			score -= 3
+	if effect_type == "ADD_PRESENCE" and target_id == entity_id:
+		if _needs_presence(entity_id, str(payload.get("region_id", "")), session):
+			score += 3
+
+	# Control changing hands, for whoever counts Regions.
+	if effect_type == "SET_CONTROL" and _counts_control(entity_id, session):
+		var new_owner: Variant = payload.get("entity_id", null)
+		var holds_it_now: bool = (
+			str(session.world["regions"][target_id].get("control", "")) == entity_id
+		)
+		if new_owner == null:
+			if holds_it_now:
+				score -= 3  # the title is being taken off you
+		elif str(new_owner) == "$proponent":
+			if entity_id == proponent_id:
+				score += 2
+			elif holds_it_now:
+				score -= 3  # handed to someone else, out of your hands
+	return score
+
+
+func _needs_presence(entity_id: String, region_id: String, session: RefCounted) -> bool:
+	if region_id == "":
+		return false
+	for condition in _conditions(entity_id, session):
+		if str(condition.get("type", "")) != "region_presence":
+			continue
+		if str(condition.get("entity_id", "")) != entity_id:
+			continue
+		if str(condition.get("region_id", "")) == region_id:
+			return true
+	return false
 
 
 func _counts_control(entity_id: String, session: RefCounted) -> bool:
@@ -375,14 +428,16 @@ func choose_stance(entity_id: String, context: Dictionary, session: RefCounted) 
 	var proposition: Dictionary = _current_proposition(context, session)
 	if proposition.is_empty():
 		return {"stance": "ABSTAIN", "clause_id": ""}
-	var score: int = _score_proposition(proposition, entity_id, session)
+	var score: int = _score_proposition(proposition, entity_id, str(context["proponent"]), session)
 	if score > 0:
 		return {"stance": "SUPPORT", "clause_id": ""}
+	# Something that really costs you is worth blocking. A clause is the answer
+	# to a mild dislike, not to losing half your Destiny.
+	if score <= -2:
+		return {"stance": "OPPOSE", "clause_id": ""}
 	if score < 0:
-		# A clause is worth more than a straight no when one is on offer and the
-		# opposition would be lonely anyway.
 		var clause: String = _first_clause(context, session)
-		if score == -2 and clause != "":
+		if clause != "":
 			return {"stance": "CONDITION", "clause_id": clause}
 		return {"stance": "OPPOSE", "clause_id": ""}
 	return {"stance": "ABSTAIN", "clause_id": ""}
@@ -394,7 +449,7 @@ func choose_commit(entity_id: String, context: Dictionary, limit: int, session: 
 	var proposition: Dictionary = _current_proposition(context, session)
 	var stake: int = 1
 	if not proposition.is_empty():
-		stake = absi(_score_proposition(proposition, entity_id, session))
+		stake = absi(_score_proposition(proposition, entity_id, str(context["proponent"]), session))
 	if entity_id == str(context["proponent"]):
 		stake = maxi(stake, 2)
 	var wanted: int = clampi(stake, 0, limit)

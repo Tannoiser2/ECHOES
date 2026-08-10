@@ -24,6 +24,7 @@ codice.
 | Asset impegnabili da una Condition | 0–2 | `chronicle.max_condition_commit_assets` |
 | Soglia di qualificazione della Condition | 2 | `chronicle.condition_qualified_threshold` |
 | INFLUENCE per Entità per round | 1 | `chronicle.influence_rules.max_per_entity_per_round` |
+| INFLUENCE per Tensione per round | 1 | `chronicle.influence_rules.max_per_tension_per_round` |
 
 Ordine di un round:
 
@@ -79,6 +80,14 @@ valore (SCHEME). Conoscerlo è personale: scoprirlo non lo rivela agli altri.
 con otto AO annullano il Drift +1 e la Chronicle non produce mai una Confluence:
 misurato, non ipotizzato — vedi [D-021](DECISIONS.md#d-021). Il limite si toglie
 da configurazione e si torna al comportamento v0.2 originale.
+
+**Limite: 1 INFLUENCE per Tensione per round**
+(`chronicle.influence_rules.max_per_tension_per_round`). Il primo limite dice
+quanto in fretta può muoversi una *persona*; questo dice quanto in fretta può
+muoversi una *domanda*, qualunque cosa voglia il tavolo. Quattro giocatori a cui
+interessa la stessa Tensione potrebbero comunque portarla a soglia in un round
+solo — vedi [D-023](DECISIONS.md#d-023). Anche questo si toglie da
+configurazione.
 
 Il knob `presence_directions` esiste ed è implementato (limita a quali direzioni
 si applica la via gratuita per presenza), ma in Chronicle I copre entrambe: da

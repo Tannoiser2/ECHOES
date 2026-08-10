@@ -174,6 +174,10 @@ func _legal_subset(entity_id: String, wanted: Array, limit: int, session: RefCou
 		if index >= 0:
 			available.remove_at(index)
 			out.append(str(asset_id))
+		elif not session.data.assets.has(str(asset_id)):
+			# Absent from hand is a stale plan and degrades quietly; an id that
+			# is not an Asset at all is a typo, and silence would hide it.
+			log.bullet("PIANO SOSPETTO - '%s' non e un Asset esistente." % str(asset_id))
 	return out
 
 

@@ -43,6 +43,7 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 		"effect_sequence": 0,
 		"turn_order": seats.duplicate(),
 		"influence_used": {},
+		"influence_used_by_tension": {},
 	}
 
 	for entity_id in chronicle["entities"]:

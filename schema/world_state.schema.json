@@ -180,6 +180,14 @@
             "type": "integer",
             "minimum": 0
           }
+        },
+        "influence_used_by_tension": {
+          "type": "object",
+          "description": "tension id -> INFLUENCE actions aimed at it this round. Reset every round.",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
         }
       }
     },

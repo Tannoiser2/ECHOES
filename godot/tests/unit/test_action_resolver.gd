@@ -277,11 +277,12 @@ func test_influence_is_capped_per_round() -> void:
 	)
 	assert_false(bool(refused["ok"]), "oltre il limite l'azione e rifiutata")
 
-	# The cap is per Entity, not per table.
-	var other: Dictionary = _do(
+	# D-023: a second limit sits on the question itself, so another Entity cannot
+	# simply undo the first one's push in the same round.
+	var same_tension: Dictionary = _do(
 		"ENT_NAHR", "INFLUENCE", {"tension_id": "TEN_FAMINE", "delta": -1, "via": "PRESENCE"}
 	)
-	assert_true(bool(other["ok"]), "un'altra Entita ha la sua quota: %s" % str(other["error"]))
+	assert_false(bool(same_tension["ok"]), "la Tensione e gia stata mossa in questo round")
 
 	# And it covers every Tension, not one each.
 	_do("ENT_LYRA", "SCHEME", {"mode": "TENSION", "tension_id": "TEN_AWAKENING"})
@@ -303,6 +304,7 @@ func test_influence_allowance_returns_next_round() -> void:
 		"quota esaurita in questo round"
 	)
 	session.world["influence_used"] = {}
+	session.world["influence_used_by_tension"] = {}
 	assert_true(
 		session.actions.can_execute(
 			"ENT_ALDRIC", "INFLUENCE", {"tension_id": "TEN_FAMINE", "delta": 1}

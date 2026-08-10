@@ -5,6 +5,71 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.0.2] — Le proposte cominciano a costare qualcosa
+
+Chiude l'osservazione O-4 della 0.0.1 e la O-2. Nessuna UI: la 0.1 resta non
+iniziata.
+
+### Added
+
+- **Quattro Consequence nuove** — `CNS_VALLEY_CLEARED`,
+  `CNS_CROWN_DISPOSSESSED`, `CNS_MINE_TAKEN`, `CNS_STUDY_UNDER_GUARD`. Portano il
+  set da 8 a 12, sopra le 8 del §18.2: deviazione deliberata, registrata in
+  [D-022](docs/DECISIONS.md) come chiede il §25. Ognuna toglie qualcosa di
+  preciso a un posto preciso al tavolo, che e la ragione per cui esistono.
+- **`REMOVE_PRESENCE` con `optional`** — una Consequence puo dire "sgomberali
+  dalla Valle" senza sapere se qualcuno e accampato li: marcata opzionale, quello
+  e un no-op e non un Effect fallito.
+- **`--tension-cap` nella sonda** — sweep del secondo limite senza toccare i dati.
+
+### Changed
+
+- **Limite di 1 INFLUENCE per Tensione per round**
+  (`chronicle.influence_rules.max_per_tension_per_round`). Reversibile come il
+  primo: si toglie dalla Chronicle e sparisce. Vedi
+  [D-023](docs/DECISIONS.md).
+- **La policy vede il danno** — valuta `ADD_PRESENCE` / `REMOVE_PRESENCE` contro
+  le proprie condizioni `region_presence` e `SET_CONTROL` contro `control_count`,
+  e risponde con `OPPOSE` a una proposta che le costa 2 o piu, invece di una
+  clausola di cortesia.
+- **`plan_b_broken_council`** — i Nahr mettono il terzo token sulla Strada dei
+  Mercanti, quindi nel dominio SURVIVAL sono loro la parte piu presente e la
+  domanda sul grano e loro da porre. Il piano ora produce la sconfitta memorabile
+  che il suo nome promette: S1 O6 M−5, fronte contrario a 6, quindi Echo lo
+  stesso (§12.4).
+- **`tests/smoke/test_balance.gd`** — la guardia ora giudica l'aggregato
+  (mediana 3-4, al massimo il 10% delle partite fuori da 2-6, almeno 1 Echo ogni
+  2 Chronicle) invece della singola partita. Il §7 descrive cosa deve mostrare un
+  playtest, non vieta una Chronicle silenziosa. Detto per intero: la guardia e
+  stata rilassata dopo che ha fallito — la motivazione e in
+  [D-023](docs/DECISIONS.md), con la sequenza dichiarata.
+- **`ScriptedDecider`** segnala un id di Asset inesistente in un piano invece di
+  ignorarlo in silenzio. Un Asset assente dalla mano resta una degradazione
+  silenziosa; un id che non e un Asset e un refuso.
+
+### La misura, prima e dopo
+
+Su 40 Chronicle, seed 1000-1039:
+
+| | mediana | in banda 3-4 | sotto il minimo | FAILURE | SwC | SUCCESS | DECISIVE |
+|---|---|---|---|---|---|---|---|
+| 0.0.1 (8 Consequence, 1 cap) | 4 | 82% | 0/40 | **0** | 1 | 79 | 75 |
+| 12 Consequence, 1 cap | 2 | 20% | 8/40 | 2 | 4 | 47 | 36 |
+| **12 Consequence, 2 cap** | **3** | **70%** | 2/40 | **18** | **15** | 57 | 27 |
+
+Tutte e quattro le bande di esito del §12.3 esistono ora nel gioco aperto. Il
+resolver non e stato toccato: la matematica del §A5 e la stessa della 0.0.
+
+### Segnalato, non corretto
+
+- **O-5**: 2 Chronicle su 40 producono una sola Confluence, sotto il minimo che
+  il §7 nomina. Con il solo cap per Entita erano 0. E il prezzo pagato per le due
+  bande di esito mancanti, e il §7 dice di riportare invece di correggere in
+  silenzio: questo e il riporto. Da rimisurare con le 4 Tensioni del §19.4 prima
+  di aggiungere qualsiasi altra regola.
+
+---
+
 ## [0.0.1] — Passo di bilanciamento
 
 Chiude l'osservazione D-018 della 0.0. Nessuna UI: la 0.1 resta non iniziata.
@@ -64,6 +129,7 @@ peggiore del cap da solo. Dettaglio in [D-021](docs/DECISIONS.md).
   ridotto della 0.0, non la matematica: troppo poche Consequence toccano un tag a
   cui i Destiny altrui tengono, quindi quasi nessuno ha motivo di opporsi. Da
   rimisurare con le 20 Consequence e le 4 Tensioni del §19.4.
+  *(Chiusa nella 0.0.2: la lettura era giusta, ed e bastato il contenuto.)*
 
 ---
 

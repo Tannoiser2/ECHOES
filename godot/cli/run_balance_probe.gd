@@ -37,10 +37,12 @@ func _initialize() -> void:
 	# Sweep the balance knobs without editing the data: --influence-cap=1
 	# --presence-directions=UP tries a candidate rule set for this run only.
 	var chronicle: Dictionary = data.chronicles[chronicle_id]
-	if options.has("influence-cap") or options.has("presence-directions"):
+	if options.has("influence-cap") or options.has("presence-directions") or options.has("tension-cap"):
 		var rules: Dictionary = (chronicle.get("influence_rules", {}) as Dictionary).duplicate(true)
 		if options.has("influence-cap"):
 			rules["max_per_entity_per_round"] = int(options["influence-cap"])
+		if options.has("tension-cap"):
+			rules["max_per_tension_per_round"] = int(options["tension-cap"])
 		if options.has("presence-directions"):
 			rules["presence_directions"] = Array(str(options["presence-directions"]).split(","))
 		chronicle["influence_rules"] = rules

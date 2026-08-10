@@ -21,7 +21,7 @@ func test_reduced_content_matches_the_milestone() -> void:
 	assert_eq(loaded.tensions.size(), 2, "2 Tensioni")
 	assert_eq(loaded.confluence_templates.size(), 2, "2 template di Confluence")
 	assert_eq(loaded.echo_cards.size(), 8, "8 carte Echo")
-	assert_eq(loaded.consequences.size(), 8, "8 Conseguenze")
+	assert_eq(loaded.consequences.size(), 12, "12 Conseguenze (§18.2 ne chiedeva 8; vedi D-022)")
 	assert_eq(loaded.entities.size(), 4, "4 Entita")
 	assert_eq(loaded.destinies.size(), 4, "4 Destiny")
 	assert_eq(loaded.actions.size(), 6, "i sei template di azione")

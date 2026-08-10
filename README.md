@@ -87,7 +87,7 @@ GODOT=/path/to/godot tools/run_sims.sh     # scrive log e save in out/
 | piano | esiti | cosa mostra |
 |---|---|---|
 | `plan_a_grain_accord` | Decisive Success | il trono conquista il seggio di proponente e requisisce il grano senza opposizione |
-| `plan_b_broken_council` | Failure, Success with Cost ×2 | i Nahr chiedono la terra e il tavolo intero dice no: una sconfitta memorabile diventa comunque storia |
+| `plan_b_broken_council` | Failure ×2, Success with Cost | i Nahr chiedono la terra e il tavolo intero dice no: una sconfitta memorabile diventa comunque storia. Chiedono ancora, e cadono di misura sul Fattore Mondo. Alla terza il consiglio cede a caro prezzo |
 | `plan_c_opened_mine` | Failure, Success | un Claim forza una Confluence fuori soglia sulle Miniere, e Vaerax la fa cadere |
 
 ---

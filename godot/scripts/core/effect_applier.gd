@@ -207,6 +207,11 @@ func _remove_presence(target: Dictionary, payload: Dictionary) -> Variant:
 	var region_id: String = str(payload.get("region_id", ""))
 	var index: int = entity["presence"].find(region_id)
 	if index < 0:
+		# A Consequence may say "clear them out of the Valley" without knowing
+		# whether anyone is camped there. Marked optional, that is a no-op rather
+		# than a failure - same shape as tagging something already tagged.
+		if bool(payload.get("optional", false)):
+			return {"region_id": region_id, "noop": true}
 		return _fail("'%s' has no presence token in '%s'" % [target.get("id"), region_id])
 	entity["presence"].remove_at(index)
 	return {"region_id": region_id}

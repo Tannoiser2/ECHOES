@@ -70,13 +70,14 @@ Milestone 0.0 ships the reduced content of §18.2. The full §19.4 list (48 Asse
 | TEN_AWAKENING | Il Risveglio | ANCIENT | 2 | 7 | VEILED | 2 |
 | TEN_FAMINE | La Carestia | SURVIVAL | 3 | 6 | OPEN | 1 |
 
-## Map overlays (16)
+## Map overlays (17)
 Ogni tag di Regione che il gioco puo mostrare sulla mappa. `domain:` marca il dominio di Tensione usato da INFLUENCE; `structure:`, `condition:` e `scar:` sono livelli grafici distinti (spec §19.5).
 
 | tag | layer |
 |---|---|
 | `capital` | base |
 | `condition:exploited` | condition |
+| `condition:requisitioned` | condition |
 | `condition:starving` | condition |
 | `condition:unrest` | condition |
 | `crystal_site` | base |

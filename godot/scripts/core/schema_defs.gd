@@ -1199,6 +1199,9 @@ const DEFS := {
 			"influence_used": {
 				"type": "Dictionary",
 			},
+			"influence_used_by_tension": {
+				"type": "Dictionary",
+			},
 		},
 	},
 }

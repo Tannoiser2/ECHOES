@@ -17,7 +17,12 @@
           "id": "Q_FAMINE_LAND",
           "text": "A chi appartiene la terra che ancora produce?",
           "eligibility": [
-            { "type": "tension_limit", "tension_id": "TEN_FAMINE", "min": 6, "label": "La Carestia e al limite" }
+            {
+              "type": "tension_limit",
+              "tension_id": "TEN_FAMINE",
+              "min": 6,
+              "label": "La Carestia e al limite"
+            }
           ]
         }
       ],
@@ -27,9 +32,18 @@
           "question_id": "Q_FAMINE_GRAIN",
           "text": "Il grano e requisito e distribuito dal trono, razione per razione.",
           "eligibility": [
-            { "type": "state_tag_present", "scope": "ENTITY", "entity_id": "$proponent", "tag": "crowned", "label": "Solo chi porta la corona puo requisire" }
+            {
+              "type": "state_tag_present",
+              "scope": "ENTITY",
+              "entity_id": "$proponent",
+              "tag": "crowned",
+              "label": "Solo chi porta la corona puo requisire"
+            }
           ],
-          "success_consequences": ["CNS_ROYAL_GRANARY"],
+          "success_consequences": [
+            "CNS_ROYAL_GRANARY",
+            "CNS_VALLEY_CLEARED"
+          ],
           "echo_summary": "Il grano della Valle passo sotto il sigillo del trono."
         },
         {
@@ -37,7 +51,10 @@
           "question_id": "Q_FAMINE_GRAIN",
           "text": "La Valle e aperta a chi arriva da est: chi lavora la terra ne mangia.",
           "eligibility": [],
-          "success_consequences": ["CNS_NAHR_SETTLEMENT"],
+          "success_consequences": [
+            "CNS_NAHR_SETTLEMENT",
+            "CNS_CROWN_DISPOSSESSED"
+          ],
           "echo_summary": "La Valle Verde accolse i Nahr e smise di essere solo di Eredan."
         },
         {
@@ -45,9 +62,17 @@
           "question_id": "Q_FAMINE_LAND",
           "text": "I confini si chiudono. La Valle nutre Eredan, e nessun altro.",
           "eligibility": [
-            { "type": "state_tag_present", "scope": "ENTITY", "entity_id": "$proponent", "tag": "crowned", "label": "Solo il trono puo chiudere i confini del regno" }
+            {
+              "type": "state_tag_present",
+              "scope": "ENTITY",
+              "entity_id": "$proponent",
+              "tag": "crowned",
+              "label": "Solo il trono puo chiudere i confini del regno"
+            }
           ],
-          "success_consequences": ["CNS_SEALED_VALLEY"],
+          "success_consequences": [
+            "CNS_SEALED_VALLEY"
+          ],
           "echo_summary": "I confini della Valle furono chiusi, e l'inverno resto fuori con i Nahr."
         },
         {
@@ -55,7 +80,10 @@
           "question_id": "Q_FAMINE_LAND",
           "text": "La terra appartiene a chi la lavora, e quest'anno la lavora chi e arrivato.",
           "eligibility": [],
-          "success_consequences": ["CNS_NAHR_SETTLEMENT"],
+          "success_consequences": [
+            "CNS_NAHR_SETTLEMENT",
+            "CNS_CROWN_DISPOSSESSED"
+          ],
           "echo_summary": "La Valle fu assegnata a chi la lavorava, e il titolo di Eredan resto scritto solo sulla carta."
         }
       ],
@@ -66,13 +94,23 @@
           "effects": [
             {
               "type": "REMOVE_REGION_TAG",
-              "target": { "kind": "region", "id": "REG_TERRE_NAHR" },
-              "payload": { "tag": "condition:starving" }
+              "target": {
+                "kind": "region",
+                "id": "REG_TERRE_NAHR"
+              },
+              "payload": {
+                "tag": "condition:starving"
+              }
             },
             {
               "type": "SET_GLOBAL_TAG",
-              "target": { "kind": "world", "id": "WORLD" },
-              "payload": { "tag": "quota_guaranteed" }
+              "target": {
+                "kind": "world",
+                "id": "WORLD"
+              },
+              "payload": {
+                "tag": "quota_guaranteed"
+              }
             }
           ]
         },
@@ -82,23 +120,44 @@
           "effects": [
             {
               "type": "SET_GLOBAL_TAG",
-              "target": { "kind": "world", "id": "WORLD" },
-              "payload": { "tag": "distribution_audited" }
+              "target": {
+                "kind": "world",
+                "id": "WORLD"
+              },
+              "payload": {
+                "tag": "distribution_audited"
+              }
             },
             {
               "type": "ADJUST_TENSION",
-              "target": { "kind": "tension", "id": "TEN_FAMINE" },
-              "payload": { "delta": -1 }
+              "target": {
+                "kind": "tension",
+                "id": "TEN_FAMINE"
+              },
+              "payload": {
+                "delta": -1
+              }
             }
           ]
         }
       ],
       "consequence_pools": {
-        "cost": ["CNS_COST_UNREST"],
-        "failure": ["CNS_FAILURE_SPIRAL"],
-        "decisive_bonus": ["CNS_DECISIVE_RENOWN"]
+        "cost": [
+          "CNS_COST_UNREST"
+        ],
+        "failure": [
+          "CNS_FAILURE_SPIRAL"
+        ],
+        "decisive_bonus": [
+          "CNS_DECISIVE_RENOWN"
+        ]
       },
-      "ripple": { "targets": ["TEN_AWAKENING"], "delta": 1 },
+      "ripple": {
+        "targets": [
+          "TEN_AWAKENING"
+        ],
+        "delta": 1
+      },
       "echo_title_template": "Il Consiglio del Grano"
     },
     {
@@ -116,7 +175,12 @@
           "id": "Q_AWAKENING_MOUNTAIN",
           "text": "A chi appartiene cio che dorme sotto le Montagne?",
           "eligibility": [
-            { "type": "tension_limit", "tension_id": "TEN_AWAKENING", "min": 6, "label": "Il Risveglio e vicino" }
+            {
+              "type": "tension_limit",
+              "tension_id": "TEN_AWAKENING",
+              "min": 6,
+              "label": "Il Risveglio e vicino"
+            }
           ]
         }
       ],
@@ -126,7 +190,10 @@
           "question_id": "Q_AWAKENING_CRYSTAL",
           "text": "Le Miniere si aprono. Il Cristallo diventa ricchezza, e la ricchezza diventa grano.",
           "eligibility": [],
-          "success_consequences": ["CNS_CRYSTAL_EXPLOITED"],
+          "success_consequences": [
+            "CNS_CRYSTAL_EXPLOITED",
+            "CNS_MINE_TAKEN"
+          ],
           "echo_summary": "Le Miniere Antiche furono aperte e il Cristallo Rosso usci alla luce a peso."
         },
         {
@@ -134,7 +201,9 @@
           "question_id": "Q_AWAKENING_CRYSTAL",
           "text": "Le gallerie si sigillano. Cio che dorme resta addormentato.",
           "eligibility": [],
-          "success_consequences": ["CNS_MINE_SEALED"],
+          "success_consequences": [
+            "CNS_MINE_SEALED"
+          ],
           "echo_summary": "Le Miniere Antiche furono sigillate, e la domanda con loro."
         },
         {
@@ -142,7 +211,9 @@
           "question_id": "Q_AWAKENING_MOUNTAIN",
           "text": "Il Cristallo si studia sotto vincolo, con un custode che risponde del limite.",
           "eligibility": [],
-          "success_consequences": ["CNS_MINE_SEALED"],
+          "success_consequences": [
+            "CNS_STUDY_UNDER_GUARD"
+          ],
           "echo_summary": "Il Cristallo Rosso fu affidato a una custodia, e lo studio ebbe un limite scritto."
         }
       ],
@@ -153,13 +224,23 @@
           "effects": [
             {
               "type": "SET_GLOBAL_TAG",
-              "target": { "kind": "world", "id": "WORLD" },
-              "payload": { "tag": "descent_witnessed" }
+              "target": {
+                "kind": "world",
+                "id": "WORLD"
+              },
+              "payload": {
+                "tag": "descent_witnessed"
+              }
             },
             {
               "type": "ADJUST_TENSION",
-              "target": { "kind": "tension", "id": "TEN_AWAKENING" },
-              "payload": { "delta": -1 }
+              "target": {
+                "kind": "tension",
+                "id": "TEN_AWAKENING"
+              },
+              "payload": {
+                "delta": -1
+              }
             }
           ]
         },
@@ -169,23 +250,44 @@
           "effects": [
             {
               "type": "SET_GLOBAL_TAG",
-              "target": { "kind": "world", "id": "WORLD" },
-              "payload": { "tag": "knowledge_shared" }
+              "target": {
+                "kind": "world",
+                "id": "WORLD"
+              },
+              "payload": {
+                "tag": "knowledge_shared"
+              }
             },
             {
               "type": "SET_ENTITY_TAG",
-              "target": { "kind": "entity", "id": "ENT_LYRA" },
-              "payload": { "tag": "discovery:shared_record" }
+              "target": {
+                "kind": "entity",
+                "id": "ENT_LYRA"
+              },
+              "payload": {
+                "tag": "discovery:shared_record"
+              }
             }
           ]
         }
       ],
       "consequence_pools": {
-        "cost": ["CNS_COST_UNREST"],
-        "failure": ["CNS_FAILURE_SPIRAL"],
-        "decisive_bonus": ["CNS_DECISIVE_RENOWN"]
+        "cost": [
+          "CNS_COST_UNREST"
+        ],
+        "failure": [
+          "CNS_FAILURE_SPIRAL"
+        ],
+        "decisive_bonus": [
+          "CNS_DECISIVE_RENOWN"
+        ]
       },
-      "ripple": { "targets": ["TEN_FAMINE"], "delta": 1 },
+      "ripple": {
+        "targets": [
+          "TEN_FAMINE"
+        ],
+        "delta": 1
+      },
       "echo_title_template": "Cio che Dorme sotto la Pietra"
     }
   ]
