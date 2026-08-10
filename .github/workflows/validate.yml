@@ -69,6 +69,13 @@ jobs:
       - name: Play every sim plan
         run: GODOT=~/godot/godot tools/run_sims.sh
 
+      # Not a pass/fail gate on its own - test_balance.gd is - but the numbers
+      # belong in the log so a rules change shows its effect on the record.
+      - name: Balance probe
+        run: |
+          ~/godot/godot --headless --path godot \
+            --script res://cli/run_balance_probe.gd -- --runs=40 --seed=1000
+
       # §18.3: same seed + same plan must produce a byte-identical save.
       - name: Determinism
         run: |

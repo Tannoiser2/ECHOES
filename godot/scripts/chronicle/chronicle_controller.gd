@@ -76,6 +76,8 @@ func play_act(act: int, decider: Object) -> void:
 
 func play_round(act: int, round_number: int, decider: Object) -> void:
 	_set_phase(act, round_number, "ACTIONS")
+	# The INFLUENCE allowance is per round and does not carry over (D-021).
+	world["influence_used"] = {}
 	log.section("Atto %d - Round %d" % [act, round_number])
 
 	var opportunities: int = int(_chronicle["action_opportunities_per_round"])

@@ -23,6 +23,7 @@ codice.
 | Asset impegnabili in Confluence | 0–3 | `chronicle.max_commit_assets` |
 | Asset impegnabili da una Condition | 0–2 | `chronicle.max_condition_commit_assets` |
 | Soglia di qualificazione della Condition | 2 | `chronicle.condition_qualified_threshold` |
+| INFLUENCE per Entità per round | 1 | `chronicle.influence_rules.max_per_entity_per_round` |
 
 Ordine di un round:
 
@@ -73,8 +74,15 @@ Modifica di ±1 una Tensione. Serve **una** delle due:
 Una Tensione velata non è influenzabile finché *quella* Entità non ne conosce il
 valore (SCHEME). Conoscerlo è personale: scoprirlo non lo rivela agli altri.
 
-> La via per presenza è gratuita e ripetibile. Vedi [D-018](DECISIONS.md#d-018) —
-> è la prima cosa da guardare nel bilanciamento 0.2.
+**Limite: 1 INFLUENCE per Entità per round**, su tutte le Tensioni insieme
+(`chronicle.influence_rules.max_per_entity_per_round`). Senza, quattro giocatori
+con otto AO annullano il Drift +1 e la Chronicle non produce mai una Confluence:
+misurato, non ipotizzato — vedi [D-021](DECISIONS.md#d-021). Il limite si toglie
+da configurazione e si torna al comportamento v0.2 originale.
+
+Il knob `presence_directions` esiste ed è implementato (limita a quali direzioni
+si applica la via gratuita per presenza), ma in Chronicle I copre entrambe: da
+solo peggiorava i numeri.
 
 ### FORGE
 Sposta di 1 passo una relazione sulla scala

@@ -5,6 +5,68 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.0.1] — Passo di bilanciamento
+
+Chiude l'osservazione D-018 della 0.0. Nessuna UI: la 0.1 resta non iniziata.
+
+### Added
+
+- **`cli/policy_decider.gd`** — un giocatore che gioca davvero per il proprio
+  Destiny. Deriva gli obiettivi dai dati: il livello piu basso non ancora
+  raggiunto, le Tensioni che quel livello vuole basse e — decisivo — quelle che
+  ha bisogno di portare a maturazione, perche l'unica cosa che puo soddisfare una
+  sua condizione e una Consequence che sta dietro a una Confluence. Nessuna IA
+  scritta a mano per singola Entita.
+- **`cli/run_balance_probe.gd`** — gioca N Chronicle su N seed e riporta la
+  distribuzione: Confluence per partita, esiti, Echo, livelli Destiny, valore
+  finale delle Tensioni. Con `--influence-cap` e `--presence-directions` fa lo
+  sweep di un knob senza toccare i dati.
+- **`ActionResolver.check()` / `can_execute()`** — perche un'azione verrebbe
+  rifiutata, senza toccare nulla. `execute()` la chiama per prima, quindi ogni
+  precondizione e scritta una volta sola. La Action Dialog della 0.1 la usera per
+  disabilitare i bersagli illegali (§19.3).
+- **`tests/smoke/test_balance.gd`** — 24 Chronicle giocate dalla policy: fallisce
+  se la mediana esce dalla banda 3-4 del §7, se una singola partita esce da 2-6,
+  se i Destiny smettono di essere contesi o se il cap non regge.
+
+### Changed
+
+- **Limite di 1 INFLUENCE per Entita per round** su tutte le Tensioni
+  (`chronicle.influence_rules.max_per_entity_per_round`). Data-driven e
+  reversibile: togliendo `influence_rules` torna il comportamento v0.2.
+  Implementato anche `presence_directions`, che in Chronicle I resta su entrambe
+  le direzioni.
+
+### La misura, prima e dopo
+
+| | mediana Confluence | in banda 3-4 (§7) | fuori da 2-6 | INFLUENCE per partita |
+|---|---|---|---|---|
+| policy ingenua, regole v0.2 | 0 | 0/30 | 30/30 | 7.5 |
+| policy corretta, regole v0.2 | 3 | 24/40 | 10/40 | 45.7 |
+| **policy corretta, cap 1** | **4** | **33/40** | **0/40** | **20.1** |
+
+La riga di mezzo e la piu importante: gran parte del problema apparente era lo
+strumento di misura, non le regole. Aldric ha bisogno di `control_count >= 2`, e
+il controllo cambia mano solo dentro una Confluence — un Aldric competente spinge
+la Carestia *verso l'alto*. Insegnarlo alla policy ha portato la mediana da 0 a 3
+senza cambiare una sola regola. Il cap ha fatto il resto, e ha riportato INFLUENCE
+dal 63% al 28% di tutte le azioni giocate.
+
+Le alternative sono state misurate e scartate: la via per presenza limitata al
+solo +1 peggiora i numeri da sola (mediana 2), e insieme al cap da un risultato
+peggiore del cap da solo. Dettaglio in [D-021](docs/DECISIONS.md).
+
+### Segnalato, non corretto
+
+- **O-4**: su 154 Confluence misurate, 0 Failure e 1 Success with Cost. Due delle
+  quattro bande di esito del §12.3 non compaiono nel gioco aperto, anche se i
+  piani scriptati dimostrano che sono raggiungibili. La causa sembra il contenuto
+  ridotto della 0.0, non la matematica: troppo poche Consequence toccano un tag a
+  cui i Destiny altrui tengono, quindi quasi nessuno ha motivo di opporsi. Da
+  rimisurare con le 20 Consequence e le 4 Tensioni del §19.4.
+
+---
+
 ## [0.0.0] — Milestone 0.0, Core Headless
 
 Prima release. Motore di gioco completo e giocabile senza UI: modello dati, Effect

@@ -296,6 +296,9 @@ const DEFS := {
 				"type": "String",
 				"min_length": 1,
 			},
+			"influence_rules": {
+				"type": "Dictionary",
+			},
 		},
 	},
 	"confluence_template": {
@@ -1192,6 +1195,9 @@ const DEFS := {
 				"element": {
 					"type": "String",
 				},
+			},
+			"influence_used": {
+				"type": "Dictionary",
 			},
 		},
 	},

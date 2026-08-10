@@ -43,16 +43,26 @@ Da chiudere in 0.1 e già noto:
 
 ---
 
+## 0.0.1 — Passo di bilanciamento ✅ completato
+
+Chiusa l'osservazione D-018 con misure, non con intuizioni: un policy decider che
+gioca per il proprio Destiny, una sonda su 40 Chronicle, quattro varianti di
+regole confrontate, e un cap di 1 INFLUENCE per Entità per round che porta la
+mediana a 4 Confluence con nessuna partita fuori dai limiti del §7. Storia
+completa in [DECISIONS D-021](DECISIONS.md#d-021).
+
+---
+
 ## 0.2 — Bilanciamento
 
-Prima voce in agenda, con i dati già raccolti in
-[DECISIONS.md](DECISIONS.md#d-018): **INFLUENCE per presenza è gratuito e
-ripetibile**, e quattro giocatori con otto AO possono annullare il Drift. Da
-valutare: un cap per round e per Tensione, oppure un costo sulla via per presenza.
+Prima voce in agenda, di nuovo con i dati già raccolti: **Failure e Success with
+Cost non compaiono** nel gioco aperto (0 e 1 su 154 Confluence misurate). Due
+delle quattro bande di esito sono morte, e la causa sembra il contenuto — troppo
+poche Consequence toccano qualcosa a cui i Destiny altrui tengono, quindi
+nessuno ha motivo di opporsi. Da rimisurare **dopo** il contenuto completo della
+0.1, prima di toccare la matematica del resolver che il §A5 fissa apposta.
 
-Insieme a: 3–5 template di Confluence aggiuntivi, Asset economy e UX, e la
-verifica dell'attesa §7 di 3–4 Confluence per Chronicle (i tre piani attuali danno
-1, 3 e 2 — vedi O-1).
+Insieme a: 3–5 template di Confluence aggiuntivi, Asset economy e UX.
 
 ---
 

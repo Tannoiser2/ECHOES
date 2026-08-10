@@ -257,3 +257,84 @@ func test_a_refused_action_changes_nothing() -> void:
 	var result: Dictionary = _do("ENT_ALDRIC", "MOVE", {"region_id": "REG_MONTAGNE_ROSSE"})
 	assert_false(bool(result["ok"]), "azione illegale")
 	assert_eq(canonical(session.world), before, "nessun Effect e stato applicato")
+
+
+## D-021: one INFLUENCE per Entity per round, across all Tensions.
+func test_influence_is_capped_per_round() -> void:
+	var cap: int = int(
+		session.chronicle_def().get("influence_rules", {}).get("max_per_entity_per_round", 0)
+	)
+	assert_true(cap > 0, "la Chronicle I dichiara un cap")
+
+	for i in range(cap):
+		var allowed: Dictionary = _do(
+			"ENT_ALDRIC", "INFLUENCE", {"tension_id": "TEN_FAMINE", "delta": 1, "via": "PRESENCE"}
+		)
+		assert_true(bool(allowed["ok"]), "l'uso %d rientra nel limite: %s" % [i + 1, str(allowed["error"])])
+
+	var refused: Dictionary = _do(
+		"ENT_ALDRIC", "INFLUENCE", {"tension_id": "TEN_FAMINE", "delta": 1, "via": "PRESENCE"}
+	)
+	assert_false(bool(refused["ok"]), "oltre il limite l'azione e rifiutata")
+
+	# The cap is per Entity, not per table.
+	var other: Dictionary = _do(
+		"ENT_NAHR", "INFLUENCE", {"tension_id": "TEN_FAMINE", "delta": -1, "via": "PRESENCE"}
+	)
+	assert_true(bool(other["ok"]), "un'altra Entita ha la sua quota: %s" % str(other["error"]))
+
+	# And it covers every Tension, not one each.
+	_do("ENT_LYRA", "SCHEME", {"mode": "TENSION", "tension_id": "TEN_AWAKENING"})
+	assert_false(
+		session.actions.can_execute(
+			"ENT_ALDRIC", "INFLUENCE", {"tension_id": "TEN_AWAKENING", "delta": 1}
+		),
+		"il limite vale su tutte le Tensioni insieme"
+	)
+
+
+## The allowance is per round: a new round hands it back.
+func test_influence_allowance_returns_next_round() -> void:
+	_do("ENT_ALDRIC", "INFLUENCE", {"tension_id": "TEN_FAMINE", "delta": 1, "via": "PRESENCE"})
+	assert_false(
+		session.actions.can_execute(
+			"ENT_ALDRIC", "INFLUENCE", {"tension_id": "TEN_FAMINE", "delta": 1}
+		),
+		"quota esaurita in questo round"
+	)
+	session.world["influence_used"] = {}
+	assert_true(
+		session.actions.can_execute(
+			"ENT_ALDRIC", "INFLUENCE", {"tension_id": "TEN_FAMINE", "delta": 1}
+		),
+		"nel round successivo si ricomincia"
+	)
+
+
+## check() must agree with execute(): a legality check that says yes to something
+## execute refuses would make the 0.1 Action Dialog lie to the player.
+func test_check_agrees_with_execute() -> void:
+	var cases: Array = [
+		["ACQUIRE", {"family": "AUTHORITY"}],
+		["ACQUIRE", {"family": "GLORIA"}],
+		["MOVE", {"region_id": "REG_STRADA_MERCANTI"}],
+		["MOVE", {"region_id": "REG_MONTAGNE_ROSSE"}],
+		["INFLUENCE", {"tension_id": "TEN_FAMINE", "delta": 1, "via": "PRESENCE"}],
+		["INFLUENCE", {"tension_id": "TEN_AWAKENING", "delta": 1}],
+		["FORGE", {"target_entity_id": "ENT_NAHR", "direction": "DOWN"}],
+		["FORGE", {"target_entity_id": "ENT_NAHR", "direction": "UP"}],
+		["SCHEME", {"mode": "REGION", "region_id": "REG_EREDAN"}],
+		["SCHEME", {"mode": "TENSION", "tension_id": "TEN_AWAKENING"}],
+		["CLAIM", {"mode": "CREATE", "domain": "ANCIENT"}],
+		["CLAIM", {"mode": "FORCE", "tension_id": "TEN_AWAKENING"}],
+	]
+	for case in cases:
+		var template: String = str(case[0])
+		var params: Dictionary = case[1]
+		var predicted: bool = session.actions.can_execute("ENT_ALDRIC", template, params)
+		var actual: Dictionary = _do("ENT_ALDRIC", template, params)
+		assert_eq(
+			bool(actual["ok"]),
+			predicted,
+			"check() e execute() concordano su %s %s (%s)" % [template, params, str(actual["error"])]
+		)

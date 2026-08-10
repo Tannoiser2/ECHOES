@@ -6,9 +6,10 @@ diversa — un sovrano, un popolo, una creatura antica, un individuo — prepara
 propria posizione mentre le Tensioni del mondo salgono, e si scontrano nelle
 **Confluence**, gli eventi storici in cui il tavolo decide cosa succede davvero.
 
-**Stato: Milestone 0.0 — Core Headless, completata.**
-Il motore è completo e giocabile senza UI: una Chronicle intera gira da riga di
-comando in meno di un secondo. La 0.1 (vertical slice hotseat) non è iniziata.
+**Stato: Milestone 0.0 — Core Headless, completata, più un passo di
+bilanciamento (0.0.1).** Il motore è completo e giocabile senza UI: una Chronicle
+intera gira da riga di comando in meno di un secondo. La 0.1 (vertical slice
+hotseat) non è iniziata.
 
 - [Game Design](docs/GAME_DESIGN.md) — perché il gioco è fatto così
 - [Regole v0.2](docs/RULES_V0_2.md) — cosa fa il codice, numeri compresi
@@ -77,7 +78,7 @@ GODOT=/path/to/godot tools/run_sims.sh     # scrive log e save in out/
 ## Test e validazione
 
 ```bash
-# 64 test unit + smoke, headless
+# 72 test unit + smoke, headless
 godot --headless --path godot --script res://tests/run_tests.gd
 godot --headless --path godot --script res://tests/run_tests.gd -- --filter=confluence
 
@@ -89,8 +90,24 @@ python3 tools/gen_gd_schema.py --check
 python3 tools/build_manifest.py --check
 ```
 
-Determinismo (criterio §18.3): stesso seed e stesso piano devono produrre un save
-byte-identico.
+### Sonda di bilanciamento
+
+I piani scriptati verificano che le regole facciano quello che l'autore ha
+scritto. La sonda misura l'altra cosa: cosa succede quando quattro giocatori
+perseguono davvero il proprio Destiny.
+
+```bash
+godot --headless --path godot --script res://cli/run_balance_probe.gd -- --runs=40
+```
+
+Riporta la distribuzione delle Confluence per Chronicle contro l'attesa del §7,
+gli esiti, gli Echo e i livelli Destiny raggiunti. `--influence-cap=N` e
+`--presence-directions=UP` provano una variante di regole senza toccare i dati.
+La storia della misura è in [DECISIONS D-021](docs/DECISIONS.md).
+
+### Determinismo
+
+Criterio §18.3: stesso seed e stesso piano devono produrre un save byte-identico.
 
 ```bash
 OUT=/tmp/run1 tools/run_sims.sh && OUT=/tmp/run2 tools/run_sims.sh
@@ -113,7 +130,8 @@ godot/
     confluence/  ConfluenceController, confluence_resolution (Strategy baseline_v0)
     actions/     ActionResolver — i sei template
   data/          contenuto della Chronicle I (ridotto §18.2)
-  cli/           run_chronicle_sim.gd, scripted_decider.gd
+  cli/           run_chronicle_sim.gd, scripted_decider.gd,
+                 run_balance_probe.gd, policy_decider.gd
   tests/         unit/ e smoke/, con il runner
 docs/            design, regole, decisioni, piano di test, art bible
 ```

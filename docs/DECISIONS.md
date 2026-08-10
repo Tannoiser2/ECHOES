@@ -254,21 +254,80 @@ Chronicle End screen can show the whole ladder.
 
 ---
 
-## D-018 — Presence-based INFLUENCE can cancel the Drift outright
-**flagged for 0.2 — deliberately not changed**
+## D-018 — Presence-based INFLUENCE could cancel the Drift outright
+**resolved in 0.0.1 by D-021** · was: flagged
 
 §10 makes INFLUENCE free and repeatable when you have presence in a Region tagged
 with the Tension's domain. Four players have eight AO per round; the Drift is +1
-per round. A table that agrees to suppress a Tension can hold it flat forever.
+per round. A table that wants a Tension held flat can hold it flat forever.
 
-Measured, not theorised: the first version of the harness's filler policy used
-INFLUENCE whenever a Tension exceeded a Destiny's limit, and the Chronicle ended
-with **zero** Confluences. The filler now never touches the Tensions, and the
-scripted plans steer them.
+The 0.0 report flagged this without numbers. The balance pass measured it, and it
+was worse than suspected — see D-021 for the instrument and the fix.
 
-This is a real balance question for 0.2 — a per-round cap on INFLUENCE per
-Tension, or a cost on the presence route, are the obvious candidates. §7 says to
-report this rather than adjust it, so the rule is implemented exactly as written.
+---
+
+## D-021 — One INFLUENCE per Entity per round
+**implemented in 0.0.1** · `chronicle.influence_rules.max_per_entity_per_round`
+
+### How it was measured
+
+Two new pieces, both under `godot/cli`:
+
+- **`policy_decider.gd`** — a player that actually plays to win. It derives its
+  goals from its own Destiny: the lowest level it has not yet reached, the
+  Tensions that level wants held down, and — crucially — the Tensions it needs to
+  *bring to a head*, because the only thing that can satisfy one of its
+  conditions is a Consequence sitting behind a Confluence. All derived from the
+  data, no per-Entity AI.
+- **`run_balance_probe.gd`** — plays N Chronicles across N seeds and reports the
+  distribution.
+
+### What the measurement found
+
+The first probe run, with a naive policy that only ever suppressed:
+
+| | Confluence per Chronicle |
+|---|---|
+| mediana | **0** |
+| media | 0.37 |
+| dentro la banda 3-4 del §7 | 0/30 |
+| sotto il minimo di 2 | **30/30** |
+
+The payoff of the entire design never fired. But the naive policy was itself
+wrong: Aldric's Victory needs `control_count >= 2`, and control only ever changes
+hands through a Confluence Consequence. A competent Aldric *drives the Famine up*
+to force the Confluence he can win. Teaching the policy that — still from the
+data, not by hand — moved the median from 0 to 3 with **no rule change at all**.
+
+So most of the apparent problem was the measuring instrument. That is the reason
+this pass measured before it changed anything.
+
+### Choosing the rule
+
+Four candidates, 40 Chronicles each, same seeds:
+
+| variante | mediana | in banda 3-4 | fuori dai limiti §7 | INFLUENCE/partita |
+|---|---|---|---|---|
+| A — regole v0.2 invariate | 3 | 60% | **10/40 sotto il minimo** | 45.7 |
+| **B — cap di 1 per Entita per round** | **4** | **82%** | **0/40** | **20.1** |
+| C — la presenza copre solo il +1 | 2 | 0% | 1/40 sotto | 47.1 |
+| D — B e C insieme | 4 | 72% | 0/40 | 27.3 |
+
+B wins outright and is the smallest change. C on its own makes things *worse*,
+and D adds a second rule for a worse result than B alone, so neither ships.
+
+Under B, INFLUENCE drops from 63% of every action taken in a Chronicle to 28%,
+which is the real point: the other five templates get their table time back.
+
+### The rule
+
+One INFLUENCE per Entity per round, across all Tensions. Data-driven and
+reversible: omit `influence_rules` entirely and the original v0.2 behaviour
+returns. `presence_directions` is implemented too, defaulting to both directions,
+so candidate C stays one config line away for the 0.2 pass.
+
+Guarded by `tests/smoke/test_balance.gd`, which replays 24 Chronicles and fails
+if the median leaves 3-4 or any single run falls outside §7's 2-6 bounds.
 
 ---
 
@@ -301,14 +360,28 @@ stable.
 ## Open observations
 
 ### O-1 — Confluence count per Chronicle
-§7 expects 3–4 Confluences per Chronicle and asks for a report if fewer than 2 or
-more than 6 emerge. The three sample plans produce **1, 3 and 2**. Plan A is
-below the floor *by design* (Vaerax spends his whole Chronicle holding the
-Awakening down, and the plan exists to show a clean Decisive Success), but it
-does show that a single determined player can suppress a Tension for nine rounds
-— the same underlying issue as D-018.
+**closed by D-021.** Measured over 40 Chronicles: median 4, range 2-5, 82% inside
+§7's 3-4 band, nothing outside 2-6. The three scripted plans still produce 1, 3
+and 2, which is expected — a plan is an authored story, not a typical table, and
+plan A exists specifically to show a clean Decisive Success.
 
-No numbers were changed. The 0.2 balance pass should look at D-018 first.
+### O-4 — Failure and Success with Cost almost never happen in open play
+**flagged for 0.1/0.2 — deliberately not changed**
+
+Across 40 measured Chronicles: 79 Success, 75 Decisive, 1 Success with Cost,
+**0 Failure**. Two of the four outcome bands the §12.3 maths defines are dead in
+competent play, even though the scripted plans prove all four are reachable.
+
+The cause looks like content, not maths. In the reduced 0.0 set only a handful of
+Consequences write a tag any other Destiny cares about, so a proposition usually
+threatens nobody: the non-proponents score it at zero and abstain, O comes out at
+0, and the proponent — who pushed the Tension up precisely because they were
+ready for it — wins comfortably. Structurally "preparation wins" is correct; a
+Confluence nobody contests is not.
+
+This wants the 20 Consequences and 4 Tensions of §19.4 before anyone touches the
+resolver, whose maths §A5 fixes deliberately. Worth re-measuring first thing in
+0.2.
 
 ### O-2 — Content breadth of the Confluence templates
 `P_GUARDED_STUDY` and `P_SEAL_MINE` share `CNS_MINE_SEALED`: within the 8

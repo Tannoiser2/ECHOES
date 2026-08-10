@@ -10,8 +10,18 @@ python3 tools/gen_gd_schema.py --check
 GODOT=/path/to/godot tools/run_sims.sh
 ```
 
-Stato 0.0: **64 test in 8 suite, 425 asserzioni, tutto verde**, più i 3 piani di
+Stato 0.0.1: **72 test in 9 suite, 545 asserzioni, tutto verde**, più i 3 piani di
 simulazione che passano le proprie asserzioni.
+
+La sonda di bilanciamento gioca N Chronicle con giocatori che perseguono davvero
+il proprio Destiny e riporta la distribuzione dei risultati:
+
+```bash
+godot --headless --path godot --script res://cli/run_balance_probe.gd -- --runs=40
+# sweep di un knob senza toccare i dati:
+godot --headless --path godot --script res://cli/run_balance_probe.gd -- \
+    --runs=40 --influence-cap=1 --presence-directions=UP
+```
 
 ---
 
@@ -45,6 +55,7 @@ simulazione che passano le proprie asserzioni.
 | `unit/test_destiny_evaluator.gd` | 5 | la scala completa Minimum → Victory → Triumph, la cumulatività (perdere il Minimum azzera il livello), il conteggio delle Scoperte, un risultato per ogni posto, e l'evidenza che registra condizioni ed Echo |
 | `unit/test_snapshot_and_save.gd` | 5 | lo snapshot che riporta indietro oltre un Echo, l'undo che si ferma esattamente sull'irreversibile, il round-trip save/load, la stabilità byte-per-byte del testo, la posizione dell'RNG che sopravvive al salvataggio |
 | `smoke/test_data_boot.gd` | 7 | il caricamento e la validazione dei dati, il contenuto ridotto §18.2 esatto, un Asset da 1 e uno da 2 per famiglia, i numeri di baseline della Chronicle, la raggiungibilità di ogni soglia, la scena di boot, la copertura dello schema generato |
+| `smoke/test_balance.gd` | 5 | il numero di Confluence su 24 partite giocate dal policy decider resta nella banda del §7 (mediana 3-4, mai fuori da 2-6), i Destiny restano contesi, il cap su INFLUENCE regge per una Chronicle intera ricostruito dall'effect_log, la sonda e deterministica e la policy non propone mai un'azione illegale |
 | `smoke/test_chronicle_run.gd` | 6 | i tre piani giocati per intero, le loro asserzioni `expected`, il fatto che finiscano diversamente, Echo e Truth automatici, il determinismo per seed, e che il log pubblico non riveli mai il valore velato |
 
 ---
@@ -74,7 +85,11 @@ cmp /tmp/run1/plan_a_grain_accord.save.json /tmp/run2/plan_a_grain_accord.save.j
 - **Nessuna scena oltre quella di boot.** Non esiste UI in 0.0; gli smoke test
   sulle scene arrivano con la 0.1 (§19.6).
 - **Nessun test di performance.** Una Chronicle completa applica ~130 Effect: non
-  c'è niente da misurare ancora.
+  c'è niente da misurare ancora. Per riferimento, 8 Chronicle complete girano in
+  circa 0,6 secondi.
+- **Failure e Success with Cost non compaiono** nelle partite del policy decider
+  (0 e 1 su 154 Confluence misurate). E' una lacuna di contenuto, non di
+  matematica: vedi [O-4](DECISIONS.md).
 - **`promise_kept` / `promise_broken`** sono implementati e usati dal
   `ConditionEvaluator`, ma nessun Destiny di 0.0 li richiede, quindi non hanno un
   test dedicato. Arriveranno con i Destiny completi della 0.1.
