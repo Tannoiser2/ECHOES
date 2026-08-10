@@ -40,6 +40,7 @@ var snapshots: Array = []
 var last_error: String = ""
 
 var _chronicle_def: Dictionary = {}
+var _inherited: Dictionary = {}
 
 
 func _init(p_data: RefCounted) -> void:
@@ -103,6 +104,22 @@ func _wire_systems() -> void:
 
 func factory_setup_effects() -> Array:
 	return WorldStateFactory.setup_effects(_chronicle_def, data)
+
+
+## Continue a campaign: what the previous Chronicle left behind is applied on
+## top of a fresh setup. Call before run(); the truth and echo registers are
+## copied straight across because they are the world's memory, not its state.
+func inherit_from(previous: Dictionary) -> void:
+	_inherited = previous
+	if previous.is_empty():
+		return
+	world["year"] = int(previous.get("year", world["year"])) + 1
+	world["echo_log"] = (previous.get("echo_log", []) as Array).duplicate(true)
+	world["truth_log"] = (previous.get("truth_log", []) as Array).duplicate(true)
+
+
+func inheritance_effects() -> Array:
+	return WorldStateFactory.inheritance_effects(_inherited, _chronicle_def, data)
 
 
 func chronicle_def() -> Dictionary:

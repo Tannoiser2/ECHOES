@@ -232,6 +232,45 @@ def check_references(
     unused_echoes = known_echoes  # referenced only through Act pools by family
     del unused_echoes
 
+    check_bindings(documents, origins, report)
+
+
+#: Variables the engine can bind at Confluence time. A Consequence that uses
+#: anything else compiles to nothing at all, and the only sign is a push_error
+#: buried in a log nobody reads - which is exactly how CNS_HARVEST_RETURNS
+#: silently did nothing on an Echo card.
+KNOWN_BINDINGS = {"proponent", "tension", "confluence", "region_focus", "actor"}
+
+
+def check_bindings(
+    documents: Dict[str, List[Dict[str, Any]]],
+    origins: Dict[str, str],
+    report: Report,
+) -> None:
+    """Every $variable in an authored Effect spec must be one the engine supplies."""
+
+    def walk(value: Any, where: str) -> None:
+        if isinstance(value, str):
+            if value.startswith("$") and value[1:] not in KNOWN_BINDINGS:
+                report.fail(
+                    where,
+                    f"'{value}' is not a binding the engine can resolve "
+                    f"(known: {', '.join(sorted(KNOWN_BINDINGS))})",
+                )
+        elif isinstance(value, dict):
+            for item in value.values():
+                walk(item, where)
+        elif isinstance(value, list):
+            for item in value:
+                walk(item, where)
+
+    for consequence in documents.get("consequence", []):
+        walk(consequence.get("effects", []), f"{origins['consequence']} [{consequence['id']}]")
+    for template in documents.get("confluence_template", []):
+        where = f"{origins['confluence_template']} [{template['id']}]"
+        for clause in template.get("condition_clauses", []):
+            walk(clause.get("effects", []), where)
+
 
 def _check_condition(
     condition: Dict[str, Any],

@@ -51,7 +51,7 @@
       "title": "Il Risveglio",
       "domain": "ANCIENT",
       "current_value": 2,
-      "threshold": 7,
+      "threshold": 6,
       "visibility": "VEILED",
       "relevant_asset_families": [
         "KNOWLEDGE",
@@ -92,6 +92,103 @@
         "structure:sealed",
         "crystal_site"
       ]
+    },
+    {
+      "id": "TEN_SUCCESSION",
+      "title": "La Successione",
+      "domain": "TERRITORY",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "AUTHORITY",
+        "BONDS",
+        "FORCE"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 4,
+          "message": "A Eredan il sigillo del trono viene cambiato due volte nello stesso mese.",
+          "reveals_value": false
+        },
+        {
+          "at": 5,
+          "message": "I capitani smettono di giurare sul nome del re e giurano sul proprio.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_SUCCESSION_HEIR",
+        "Q_SUCCESSION_LAW"
+      ],
+      "triggers": [
+        "Ogni titolo concesso senza che il trono lo confermi.",
+        "Ogni confine ridisegnato senza chiedere."
+      ],
+      "decrease_rules": [
+        "Un erede riconosciuto davanti a testimoni.",
+        "Un patto che leghi una casa al trono."
+      ],
+      "linked_tensions": [
+        "TEN_FAMINE"
+      ],
+      "confluence_template_id": "CNF_SUCCESSION_01",
+      "focus_region_tags": [
+        "condition:contested",
+        "condition:unrest",
+        "scar:burned",
+        "capital"
+      ],
+      "description": "Aperta: tutti sanno che Aldric non ha erede. Nessuno sa ancora chi lo dira per primo."
+    },
+    {
+      "id": "TEN_ROADS",
+      "title": "Le Vie Interrotte",
+      "domain": "RESOURCE",
+      "current_value": 1,
+      "threshold": 5,
+      "visibility": "VEILED",
+      "relevant_asset_families": [
+        "WEALTH",
+        "KNOWLEDGE",
+        "PEOPLE"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 2,
+          "message": "Sulla Strada dei Mercanti le carovane cominciano a viaggiare in gruppi di tre.",
+          "reveals_value": false
+        },
+        {
+          "at": 4,
+          "message": "Il prezzo del sale a Eredan raddoppia in nove giorni e nessuno sa dire perche.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ROADS_TOLL",
+        "Q_ROADS_ESCORT"
+      ],
+      "triggers": [
+        "Ogni carico che sparisce fra due regioni.",
+        "Ogni pedaggio riscosso da chi non ne ha titolo."
+      ],
+      "decrease_rules": [
+        "Una scorta pagata da chi ci guadagna.",
+        "Un pedaggio scritto e uguale per tutti."
+      ],
+      "linked_tensions": [
+        "TEN_FAMINE",
+        "TEN_SUCCESSION"
+      ],
+      "confluence_template_id": "CNF_ROADS_01",
+      "focus_region_tags": [
+        "condition:cut_off",
+        "condition:plundered",
+        "trade",
+        "crystal_site"
+      ],
+      "description": "Velata: si vede il prezzo del sale, non chi lo fa salire."
     }
   ]
 }

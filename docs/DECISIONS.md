@@ -331,6 +331,105 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-024 — 4 Tensions, 26 Consequences, 16 Echo cards
+**implemented in 0.0.3** · further deliberate deviation from §18.2, recorded per §25
+
+### Why the content grew
+
+Measured first, with `cli/run_world_probe.gd`. Over 40 independent Chronicles on
+the 2-Tension set, the world ended in **2 distinct control maps, 2 distinct
+relation maps and 0 Scars**. Over 10 Chronicles played in sequence, control never
+changed hands once and the map gained 2 tags in ten years.
+
+Three of seven authored Region tags never fired at all. The Chronicle could not
+move, so nothing built on top of it could either - which is why the `$slot`
+sentences of the previous commit resolved to the same Region 116 times out of
+116. Slots do not create variety, they transmit it.
+
+### What was added
+
+| | prima | dopo |
+|---|---|---|
+| Tensioni | 2 | 4 (`TEN_SUCCESSION` TERRITORY, `TEN_ROADS` RESOURCE) |
+| template di Confluence | 2 | 4 |
+| Consequence | 12 | 26 |
+| carte Echo | 8 | 16 |
+| Scar autorate | 0 | 8 |
+
+Three shapes of Consequence that did not exist before:
+
+- **che guariscono** — `CNS_HARVEST_RETURNS`, `CNS_ORDER_RESTORED`,
+  `CNS_ROADS_REOPENED` *remove* condition tags. Without them the world only ever
+  saturated: every tag was one-way, so ten Chronicles produced a map covered in
+  scars and nothing else.
+- **che cambiano il controllo** — `CNS_CAPITAL_TAKEN`, `CNS_CROWN_DIVIDED`,
+  `CNS_MARCH_GRANTED`, `CNS_TOLL_ESTABLISHED`, `CNS_MARKET_MOVED`.
+- **che lasciano una Scar** — 8 Consequences now carry `creates_scar`. The
+  mechanism was implemented in 0.0 and used by nothing.
+
+Two baseline numbers moved and are recorded here rather than changed quietly:
+the drift bag is now 2/3/2/2 across four Tensions instead of 5/4, and
+`TEN_AWAKENING`'s threshold went **7 → 6**, because nine drift chips spread over
+four Tensions can no longer carry one to 7 without help.
+
+### The measurement, after
+
+Same probe, same seeds:
+
+| | 2 Tensioni | 4 Tensioni |
+|---|---|---|
+| mappe di controllo distinte (40 partite) | 2 | **6** |
+| set di tag distinti | 14 | **26** |
+| stato finale distinto | 14 | **28** |
+| Scar per Chronicle | 0.00 | **0.45** |
+
+And over ten Chronicles in sequence, which is the question that started this:
+
+```
+#   anno  controllo                 tag  Scar  Truth
+1   812   Re  -  Vae Re  Pop -       1    0     2
+5   816   Re  -  Vae Re  Re  Re     10    3     6
+10  821   Re  -  Vae Re  Re  Re     11    9    13
+```
+
+Il controllo cambia (Chronicle 4 e 5), i tag vanno da 1 a 11, le Scar da 0 a 9.
+La Regione a fuoco si sposta su **sei** combinazioni Tensione/Regione invece di
+due, quindi le frasi a slot cominciano davvero a nominare posti diversi.
+
+### What it cost, stated plainly
+
+The balance of D-021/D-023 regressed and is **not** restored:
+
+| | 12 Consequence, 2 Tensioni | 26 Consequence, 4 Tensioni |
+|---|---|---|
+| mediana Confluence | 3 | 4 |
+| nella banda 3-4 del §7 | **70%** | **42%** |
+| fuori da 2-6 | 3/40 | 3/40 |
+| FAILURE | **18** | 9 |
+| SUCCESS_WITH_COST | **15** | 5 |
+
+`tests/smoke/test_balance.gd` still passes - the median is in band and outliers
+are under the 10% ceiling - but two of the four outcome bands have thinned out
+again. See O-6.
+
+---
+
+## D-025 — Sim plan directives address a Tension, not a running index
+**implemented in 0.0.3**
+
+`scripted_confluence.index` said "steer the first Confluence of the run". Adding
+two Tensions changed which question comes to a head first, so plan A's grain
+directive landed on the Roads council: wrong proposition, and a clause that does
+not exist in that template.
+
+Directives may now carry `tension_id`, which reads as "when the grain council
+happens, do this" and survives new content. `index` still works for directives
+that do not name a Tension. The directive is resolved once per Confluence and
+cached, because the controller asks for it a dozen times per council and
+consuming it on the first call handed the second call the *next* directive.
+
+---
+
 ## D-022 — 12 Consequences instead of the 8 of §18.2
 **implemented in 0.0.2** · deliberate deviation from §18.2, recorded per §25
 
@@ -480,6 +579,46 @@ prerequisite for the outcome table to be alive.
 **closed by D-022.** `P_GUARDED_STUDY` now has `CNS_STUDY_UNDER_GUARD` and no
 longer shares `CNS_MINE_SEALED` with `P_SEAL_MINE`. Every proposition in the set
 lands on its own world change.
+
+### O-6 — The wider content thinned the outcome bands again
+**flagged, open**
+
+D-024 grew the content and the balance of D-021/D-023 regressed: 42% of runs in
+§7's 3-4 band against 70%, and Failure/Success with Cost back down to 9 and 5
+from 18 and 15. Four Tensions mean more Confluences, and attention spread over
+four questions means each individual council is less contested - the same
+mechanism as O-4, in a bigger world.
+
+Not acted on, on purpose. §7's 3-4 band was written for the reduced content of
+§18.2; whether it still describes a 4-Tension Chronicle is a design question for
+the author, not something to tune away quietly. The knobs from D-021/D-023 are
+both still there and still measured.
+
+### O-7 — The campaign has a runaway leader
+**flagged, open**
+
+Ten Chronicles in sequence, each inheriting the last: Aldric holds one Region at
+the start and five by Chronicle 5, and never loses one again. Inheritance
+compounds an advantage and nothing reverses it - the healing Consequences of
+D-024 clear *conditions*, not *control*.
+
+This wants a real answer before the campaign of 1.0, and the honest options are
+design decisions, not tuning: control that lapses without presence, a Destiny
+that gets harder as you hold more, or a Chronicle-start step that puts something
+back on the table. Recorded rather than picked.
+
+### O-8 — Six of the 26 Consequences never fire in open play
+**flagged, open**
+
+`structure:granary`, `structure:tollgate`, `settlement:market`,
+`condition:exploited`, `condition:requisitioned` and `condition:indebted` were
+not written to the map once in 40 measured Chronicles. Their propositions exist
+and are legal; the policy simply never scores them highest.
+
+Content that cannot be reached is content that does not exist. Worth checking
+against real players before deciding whether the propositions are weak or the
+policy is narrow - tuning the policy until its own content fires would be fitting
+the measurement to the answer.
 
 ### O-5 — Two Chronicles in forty fall below §7's floor
 **flagged, deliberately accepted — see the cost section of D-023**

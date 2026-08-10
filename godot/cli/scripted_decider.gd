@@ -14,6 +14,8 @@ var log: RefCounted
 
 var _turn_cursor: int = 0
 var _confluence_index: int = 0
+## Confluence id -> the directive that steers it, resolved once.
+var _resolved: Dictionary = {}
 
 
 func _init(p_plan: Dictionary, p_log: RefCounted) -> void:
@@ -185,11 +187,42 @@ func choose_recovery(context: Dictionary, _session: RefCounted) -> Dictionary:
 	return _directive(context).get("failure_recovery", {})
 
 
-## Directives are addressed by the running index of the Confluence, so a plan
-## can steer the second Confluence without knowing which Tension triggers it.
+## Which directive steers this Confluence.
 func _directive(context: Dictionary) -> Dictionary:
+	# Resolved once per Confluence and cached: the controller asks for the same
+	# directive a dozen times (question, proposition, one stance per seat, one
+	# commit per seat), and consuming it on the first call would hand the second
+	# call the *next* directive.
+	var confluence_id: String = str(context.get("confluence_id", ""))
+	if _resolved.has(confluence_id):
+		return _resolved[confluence_id]
+
+	var directive: Dictionary = _match_directive(context)
+	_resolved[confluence_id] = directive
+	return directive
+
+
+## By Tension first: "when the grain council happens, do this" survives new
+## content changing which question comes to a head first. Addressing by running
+## index does not, which is how this was found. Several directives may name the
+## same Tension; they are consumed in the order they are written.
+func _match_directive(context: Dictionary) -> Dictionary:
+	var tension_id: String = str(context.get("tension_id", ""))
+	for entry in plan.get("confluences", []):
+		if not entry.has("tension_id") or str(entry["tension_id"]) != tension_id:
+			continue
+		if entry.get("_used", false):
+			continue
+		entry["_used"] = true
+		return entry
+	# Index addressing is the legacy form and only applies to directives that do
+	# not name a Tension: otherwise a directive written for the grain council
+	# would steer whatever question happened to come to a head first.
 	var index: int = int(context.get("index", 0))
 	for entry in plan.get("confluences", []):
-		if int(entry["index"]) == index:
+		if entry.has("tension_id"):
+			continue
+		if entry.has("index") and int(entry["index"]) == index and not entry.get("_used", false):
+			entry["_used"] = true
 			return entry
 	return {}

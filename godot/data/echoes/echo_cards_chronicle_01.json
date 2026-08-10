@@ -14,16 +14,26 @@
           "kind": "EFFECT",
           "effect": {
             "type": "ADJUST_TENSION",
-            "target": { "kind": "tension", "id": "TEN_FAMINE" },
-            "payload": { "delta": 1 }
+            "target": {
+              "kind": "tension",
+              "id": "TEN_FAMINE"
+            },
+            "payload": {
+              "delta": 1
+            }
           }
         },
         {
           "kind": "EFFECT",
           "effect": {
             "type": "SET_REGION_TAG",
-            "target": { "kind": "region", "id": "REG_VALLE_VERDE" },
-            "payload": { "tag": "condition:lean" }
+            "target": {
+              "kind": "region",
+              "id": "REG_VALLE_VERDE"
+            },
+            "payload": {
+              "tag": "condition:lean"
+            }
           }
         }
       ],
@@ -42,8 +52,13 @@
           "kind": "EFFECT",
           "effect": {
             "type": "ADJUST_TENSION",
-            "target": { "kind": "tension", "id": "TEN_AWAKENING" },
-            "payload": { "delta": 1 }
+            "target": {
+              "kind": "tension",
+              "id": "TEN_AWAKENING"
+            },
+            "payload": {
+              "delta": 1
+            }
           }
         }
       ],
@@ -62,16 +77,26 @@
           "kind": "EFFECT",
           "effect": {
             "type": "SET_GLOBAL_TAG",
-            "target": { "kind": "world", "id": "WORLD" },
-            "payload": { "tag": "betrayal_spoken" }
+            "target": {
+              "kind": "world",
+              "id": "WORLD"
+            },
+            "payload": {
+              "tag": "betrayal_spoken"
+            }
           }
         },
         {
           "kind": "EFFECT",
           "effect": {
             "type": "ADJUST_TENSION",
-            "target": { "kind": "tension", "id": "TEN_FAMINE" },
-            "payload": { "delta": 1 }
+            "target": {
+              "kind": "tension",
+              "id": "TEN_FAMINE"
+            },
+            "payload": {
+              "delta": 1
+            }
           }
         }
       ],
@@ -90,16 +115,26 @@
           "kind": "EFFECT",
           "effect": {
             "type": "ADJUST_TENSION",
-            "target": { "kind": "tension", "id": "TEN_FAMINE" },
-            "payload": { "delta": 1 }
+            "target": {
+              "kind": "tension",
+              "id": "TEN_FAMINE"
+            },
+            "payload": {
+              "delta": 1
+            }
           }
         },
         {
           "kind": "EFFECT",
           "effect": {
             "type": "SET_REGION_TAG",
-            "target": { "kind": "region", "id": "REG_TERRE_NAHR" },
-            "payload": { "tag": "condition:mourning" }
+            "target": {
+              "kind": "region",
+              "id": "REG_TERRE_NAHR"
+            },
+            "payload": {
+              "tag": "condition:mourning"
+            }
           }
         }
       ],
@@ -118,16 +153,26 @@
           "kind": "EFFECT",
           "effect": {
             "type": "SET_TENSION_VISIBILITY",
-            "target": { "kind": "tension", "id": "TEN_AWAKENING" },
-            "payload": { "visibility": "OPEN" }
+            "target": {
+              "kind": "tension",
+              "id": "TEN_AWAKENING"
+            },
+            "payload": {
+              "visibility": "OPEN"
+            }
           }
         },
         {
           "kind": "EFFECT",
           "effect": {
             "type": "SET_GLOBAL_TAG",
-            "target": { "kind": "world", "id": "WORLD" },
-            "payload": { "tag": "crystal_measured" }
+            "target": {
+              "kind": "world",
+              "id": "WORLD"
+            },
+            "payload": {
+              "tag": "crystal_measured"
+            }
           }
         }
       ],
@@ -141,23 +186,38 @@
       "function_id": "REVELATION",
       "description": "Cio che era privato diventa pubblico davanti a tutti. Non si puo piu decidere come se non si sapesse.",
       "eligibility": [
-        { "type": "tension_limit", "tension_id": "TEN_AWAKENING", "min": 3, "label": "Il Risveglio e gia in movimento" }
+        {
+          "type": "tension_limit",
+          "tension_id": "TEN_AWAKENING",
+          "min": 3,
+          "label": "Il Risveglio e gia in movimento"
+        }
       ],
       "effect_hooks": [
         {
           "kind": "EFFECT",
           "effect": {
             "type": "SET_TENSION_VISIBILITY",
-            "target": { "kind": "tension", "id": "TEN_AWAKENING" },
-            "payload": { "visibility": "OPEN" }
+            "target": {
+              "kind": "tension",
+              "id": "TEN_AWAKENING"
+            },
+            "payload": {
+              "visibility": "OPEN"
+            }
           }
         },
         {
           "kind": "EFFECT",
           "effect": {
             "type": "ADJUST_TENSION",
-            "target": { "kind": "tension", "id": "TEN_AWAKENING" },
-            "payload": { "delta": 1 }
+            "target": {
+              "kind": "tension",
+              "id": "TEN_AWAKENING"
+            },
+            "payload": {
+              "delta": 1
+            }
           }
         }
       ],
@@ -176,16 +236,26 @@
           "kind": "EFFECT",
           "effect": {
             "type": "ADJUST_TENSION",
-            "target": { "kind": "tension", "id": "TEN_FAMINE" },
-            "payload": { "delta": -2 }
+            "target": {
+              "kind": "tension",
+              "id": "TEN_FAMINE"
+            },
+            "payload": {
+              "delta": -2
+            }
           }
         },
         {
           "kind": "EFFECT",
           "effect": {
             "type": "SET_GLOBAL_TAG",
-            "target": { "kind": "world", "id": "WORLD" },
-            "payload": { "tag": "someone_paid" }
+            "target": {
+              "kind": "world",
+              "id": "WORLD"
+            },
+            "payload": {
+              "tag": "someone_paid"
+            }
           }
         }
       ],
@@ -204,21 +274,239 @@
           "kind": "EFFECT",
           "effect": {
             "type": "ADJUST_TENSION",
-            "target": { "kind": "tension", "id": "TEN_FAMINE" },
-            "payload": { "delta": -1 }
+            "target": {
+              "kind": "tension",
+              "id": "TEN_FAMINE"
+            },
+            "payload": {
+              "delta": -1
+            }
           }
         },
         {
           "kind": "EFFECT",
           "effect": {
             "type": "ADJUST_TENSION",
-            "target": { "kind": "tension", "id": "TEN_AWAKENING" },
-            "payload": { "delta": -1 }
+            "target": {
+              "kind": "tension",
+              "id": "TEN_AWAKENING"
+            },
+            "payload": {
+              "delta": -1
+            }
           }
         }
       ],
       "forces_confluence_on": null,
       "art_prompt_key": "echo.resolution.reconciliation"
+    },
+    {
+      "id": "ECH_ROAD_CLOSED",
+      "title": "Strada Chiusa",
+      "dramatic_family": "PRESSURE",
+      "function_id": "PROHIBITION",
+      "description": "Una frana, o qualcuno che l'ha fatta sembrare una frana. Il risultato non cambia: da est non arriva piu niente.",
+      "eligibility": [],
+      "effect_hooks": [
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "ADJUST_TENSION",
+            "target": {
+              "kind": "tension",
+              "id": "TEN_ROADS"
+            },
+            "payload": {
+              "delta": 2
+            }
+          }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "SET_REGION_TAG",
+            "target": {
+              "kind": "region",
+              "id": "REG_STRADA_MERCANTI"
+            },
+            "payload": {
+              "tag": "condition:cut_off"
+            }
+          }
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.pressure.prohibition"
+    },
+    {
+      "id": "ECH_EMPTY_THRONE",
+      "title": "Sedia Vuota",
+      "dramatic_family": "PRESSURE",
+      "function_id": "THREAT",
+      "description": "Il re manca a un consiglio. Poi a un secondo. Alla terza volta la stanza ha smesso di aspettarlo.",
+      "eligibility": [],
+      "effect_hooks": [
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "ADJUST_TENSION",
+            "target": {
+              "kind": "tension",
+              "id": "TEN_SUCCESSION"
+            },
+            "payload": {
+              "delta": 2
+            }
+          }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "SET_REGION_TAG",
+            "target": {
+              "kind": "region",
+              "id": "REG_EREDAN"
+            },
+            "payload": {
+              "tag": "condition:contested"
+            }
+          }
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.pressure.threat"
+    },
+    {
+      "id": "ECH_USURPATION",
+      "title": "Usurpazione",
+      "dramatic_family": "RUPTURE",
+      "function_id": "USURPATION",
+      "description": "Qualcuno si siede dove non gli spetta, e scopre che nessuno si alza per protestare.",
+      "eligibility": [],
+      "effect_hooks": [
+        {
+          "kind": "CONSEQUENCE",
+          "consequence_id": "CNS_CROWN_DIVIDED",
+          "bindings": {}
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "ADJUST_TENSION",
+            "target": {
+              "kind": "tension",
+              "id": "TEN_SUCCESSION"
+            },
+            "payload": {
+              "delta": 1
+            }
+          }
+        }
+      ],
+      "forces_confluence_on": "TEN_SUCCESSION",
+      "art_prompt_key": "echo.rupture.usurpation"
+    },
+    {
+      "id": "ECH_CARAVAN_LOST",
+      "title": "Carovana Perduta",
+      "dramatic_family": "RUPTURE",
+      "function_id": "ATTACK",
+      "description": "Undici carri partiti, nessuno arrivato, e nessun corpo trovato. E la parte senza corpi che spaventa.",
+      "eligibility": [],
+      "effect_hooks": [
+        {
+          "kind": "CONSEQUENCE",
+          "consequence_id": "CNS_ROADS_PLUNDERED",
+          "bindings": {}
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.rupture.attack"
+    },
+    {
+      "id": "ECH_GOOD_YEAR",
+      "title": "Annata Buona",
+      "dramatic_family": "TURN",
+      "function_id": "GIFT",
+      "description": "Piove quando serve e smette quando serve. Non risolve niente, ma sposta la domanda di un anno.",
+      "eligibility": [],
+      "effect_hooks": [
+        {
+          "kind": "CONSEQUENCE",
+          "consequence_id": "CNS_HARVEST_RETURNS",
+          "bindings": {
+            "focus_tension": "TEN_FAMINE"
+          }
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.turn.gift"
+    },
+    {
+      "id": "ECH_OATH_SWORN",
+      "title": "Giuramento Prestato",
+      "dramatic_family": "TURN",
+      "function_id": "TRANSFORMATION",
+      "description": "Due che si contavano come nemici mettono per iscritto una cosa sola, e quella regge.",
+      "eligibility": [],
+      "effect_hooks": [
+        {
+          "kind": "CONSEQUENCE",
+          "consequence_id": "CNS_ESCORT_SWORN",
+          "bindings": {}
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.turn.transformation"
+    },
+    {
+      "id": "ECH_AMNESTY",
+      "title": "Amnistia",
+      "dramatic_family": "RESOLUTION",
+      "function_id": "LIBERATION",
+      "description": "Si decide di non contare piu chi aveva giurato a chi. Non tutti sono d'accordo, e nessuno lo dice.",
+      "eligibility": [],
+      "effect_hooks": [
+        {
+          "kind": "CONSEQUENCE",
+          "consequence_id": "CNS_ORDER_RESTORED",
+          "bindings": {
+            "focus_tension": "TEN_SUCCESSION"
+          }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "SET_GLOBAL_TAG",
+            "target": {
+              "kind": "world",
+              "id": "WORLD"
+            },
+            "payload": {
+              "tag": "amnesty_granted"
+            }
+          }
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.resolution.liberation"
+    },
+    {
+      "id": "ECH_ROADS_OPEN",
+      "title": "Vie Riaperte",
+      "dramatic_family": "RESOLUTION",
+      "function_id": "RETURN",
+      "description": "Il primo carro che passa senza scorta non fa notizia. E per questo che si capisce che e finita.",
+      "eligibility": [],
+      "effect_hooks": [
+        {
+          "kind": "CONSEQUENCE",
+          "consequence_id": "CNS_ROADS_REOPENED",
+          "bindings": {}
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.resolution.return"
     }
   ]
 }

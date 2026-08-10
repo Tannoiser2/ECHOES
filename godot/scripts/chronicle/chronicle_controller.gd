@@ -53,6 +53,13 @@ func setup() -> void:
 	log.line("")
 	for effect in session.factory_setup_effects():
 		session.applier.apply(effect)
+	var inherited: Array = session.inheritance_effects()
+	if not inherited.is_empty():
+		log.section("EREDITA DELLA CHRONICLE PRECEDENTE")
+		for effect in inherited:
+			session.applier.apply(effect)
+		for scar in world["scars"]:
+			log.bullet(str(scar["description"]))
 	log.section("SITUAZIONE INIZIALE")
 	for entity_id in world["turn_order"]:
 		log.bullet(
@@ -212,14 +219,15 @@ func end_of_act(act: int, decider: Object) -> void:
 		"echo_card", str(card["id"]), "", act, int(world["round"]), int(world["effect_sequence"])
 	)
 	for hook in card["effect_hooks"]:
+		var bindings: Dictionary = card_bindings(hook)
 		if str(hook["kind"]) == "CONSEQUENCE":
 			for effect in session.compiler.compile(
-				str(hook["consequence_id"]), hook.get("bindings", {}), source
+				str(hook["consequence_id"]), bindings, source
 			):
 				session.applier.apply(effect)
 		else:
 			session.applier.apply(
-				session.compiler.compile_spec(hook["effect"], hook.get("bindings", {}), source)
+				session.compiler.compile_spec(hook["effect"], bindings, source)
 			)
 	session.tensions.fire_omens(source)
 
@@ -230,6 +238,26 @@ func end_of_act(act: int, decider: Object) -> void:
 	if forced != null and world["tensions"].has(str(forced)):
 		log.bullet("La carta prescrive una Confluence su %s." % str(forced))
 		run_confluence(str(forced), {"kind": "ECHO_CARD", "entity_id": ""}, decider)
+
+
+## An Echo card has no Confluence behind it, so `$region_focus` has nothing to
+## resolve against unless the card says which question it is about. `bindings`
+## may name a `focus_tension`; without one the Chronicle's first Tension is used,
+## which keeps every card written before this still working.
+func card_bindings(hook: Dictionary) -> Dictionary:
+	var bindings: Dictionary = (hook.get("bindings", {}) as Dictionary).duplicate(true)
+	var tension_id: String = str(bindings.get("focus_tension", ""))
+	if tension_id == "" or not world["tensions"].has(tension_id):
+		tension_id = str((_chronicle["tensions"] as Array)[0])
+	bindings["region_focus"] = session.confluence.narrative.focus_region(tension_id)
+	bindings["tension"] = tension_id
+	# A card has no proponent, but the Consequences it fires were written for a
+	# Confluence and expect one. Whoever would carry that question if it opened
+	# now is the honest answer - and it is the same rule the Confluence uses, so
+	# a card and a council name the same person in the same world.
+	if not bindings.has("proponent"):
+		bindings["proponent"] = session.service.determine_proponent(tension_id)
+	return bindings
 
 
 func _draw_act_echo(act: int) -> Dictionary:

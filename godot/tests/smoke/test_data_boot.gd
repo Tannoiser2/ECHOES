@@ -18,10 +18,12 @@ func test_reduced_content_matches_the_milestone() -> void:
 	var loaded: RefCounted = data()
 	assert_eq(loaded.assets.size(), 12, "12 Asset (2 per famiglia)")
 	assert_eq(loaded.regions.size(), 6, "6 Regioni: le 5 principali piu un raccordo")
-	assert_eq(loaded.tensions.size(), 2, "2 Tensioni")
-	assert_eq(loaded.confluence_templates.size(), 2, "2 template di Confluence")
-	assert_eq(loaded.echo_cards.size(), 8, "8 carte Echo")
-	assert_eq(loaded.consequences.size(), 12, "12 Conseguenze (§18.2 ne chiedeva 8; vedi D-022)")
+	# Grown past §18.2's reduced set on purpose, and measured: D-024 records why
+	# 2 Tensions and 8 Consequences could not move the world enough to matter.
+	assert_eq(loaded.tensions.size(), 4, "4 Tensioni (§18.2 ne chiedeva 2; vedi D-024)")
+	assert_eq(loaded.confluence_templates.size(), 4, "4 template di Confluence")
+	assert_eq(loaded.echo_cards.size(), 16, "16 carte Echo (§18.2 ne chiedeva 8; vedi D-024)")
+	assert_eq(loaded.consequences.size(), 26, "26 Conseguenze (§18.2 ne chiedeva 8; vedi D-022, D-024)")
 	assert_eq(loaded.entities.size(), 4, "4 Entita")
 	assert_eq(loaded.destinies.size(), 4, "4 Destiny")
 	assert_eq(loaded.actions.size(), 6, "i sei template di azione")
@@ -98,3 +100,28 @@ func test_generated_schema_covers_every_collection() -> void:
 			"schema_defs.gd definisce '%s'" % schema_id
 		)
 	assert_eq(SchemaDefs.EFFECT_TYPES.size(), 22, "l'enum EffectType chiuso ha 22 voci")
+
+
+## Every Echo-card hook has to compile to at least one Effect. A card whose
+## Consequence uses a $variable the card cannot supply compiles to nothing and
+## says so only in a push_error, so the card silently does nothing at the table -
+## which is exactly what CNS_HARVEST_RETURNS and CNS_CROWN_DIVIDED did.
+func test_every_echo_card_hook_compiles_to_something() -> void:
+	new_session()
+	var source: Dictionary = load("res://scripts/core/effect.gd").source(
+		"echo_card", "TEST", "", 1, 1, 0
+	)
+	for card in data().echo_cards.values():
+		for hook in card["effect_hooks"]:
+			var bindings: Dictionary = session.chronicle.card_bindings(hook)
+			if str(hook["kind"]) == "CONSEQUENCE":
+				assert_false(
+					session.compiler.compile(str(hook["consequence_id"]), bindings, source).is_empty(),
+					"%s: la Consequence '%s' non compila in nessun Effect"
+					% [str(card["id"]), str(hook["consequence_id"])]
+				)
+			else:
+				assert_false(
+					session.compiler.compile_spec(hook["effect"], bindings, source).is_empty(),
+					"%s: un hook EFFECT non compila" % str(card["id"])
+				)

@@ -18,7 +18,8 @@
       "tags": [
         "domain:SURVIVAL",
         "domain:TERRITORY",
-        "capital"
+        "capital",
+        "domain:RESOURCE"
       ],
       "presence_slots": 4,
       "control": "ENT_ALDRIC",
@@ -47,7 +48,9 @@
       ],
       "tags": [
         "domain:SURVIVAL",
-        "granary"
+        "granary",
+        "domain:TERRITORY",
+        "domain:RESOURCE"
       ],
       "presence_slots": 4,
       "control": null,
@@ -76,7 +79,8 @@
       ],
       "tags": [
         "domain:SURVIVAL",
-        "nomad_range"
+        "nomad_range",
+        "domain:TERRITORY"
       ],
       "presence_slots": 4,
       "control": "ENT_NAHR",
@@ -165,7 +169,9 @@
       ],
       "tags": [
         "domain:SURVIVAL",
-        "trade"
+        "trade",
+        "domain:TERRITORY",
+        "domain:RESOURCE"
       ],
       "presence_slots": 4,
       "control": null,

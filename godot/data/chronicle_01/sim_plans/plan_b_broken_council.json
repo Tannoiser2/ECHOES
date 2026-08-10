@@ -231,6 +231,7 @@
       "confluences": [
         {
           "index": 0,
+          "tension_id": "TEN_FAMINE",
           "note": "I Nahr propongono, e impegnano poco perche non hanno altro. Aldric ribalta il fronte con il Diritto di Corona (AUTHORITY e rilevante: 2+1) e due Editti.",
           "question_id": "Q_FAMINE_LAND",
           "proposition_id": "P_LAND_TO_WORKERS",
@@ -269,6 +270,7 @@
         },
         {
           "index": 1,
+          "tension_id": "TEN_FAMINE",
           "note": "Il consiglio si riunisce di nuovo sulla stessa domanda. Lyra non dice no: dice si, a condizione che la distribuzione sia contata davanti a testimoni. La clausola vale la Confluence.",
           "question_id": "Q_FAMINE_LAND",
           "proposition_id": "P_LAND_TO_WORKERS",
@@ -305,11 +307,11 @@
         "confluence_count": 3,
         "outcomes": [
           "FAILURE",
-          "FAILURE",
-          "SUCCESS_WITH_COST"
+          "SUCCESS",
+          "DECISIVE_SUCCESS"
         ],
-        "min_echoes": 2,
-        "min_truths": 2
+        "min_echoes": 3,
+        "min_truths": 3
       }
     }
   ]

@@ -5,6 +5,98 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.0.3] — Un mondo che si puo muovere
+
+Misura prima, contenuto dopo. La domanda era: dopo dieci Chronicle, quanto e
+cambiato il mondo? Con il contenuto della 0.0.2 la risposta era **quasi niente**.
+
+### Added
+
+- **`cli/run_world_probe.gd`** — due misure. `--runs` gioca N Chronicle
+  indipendenti e conta quante configurazioni finali *distinte* escono: e il
+  soffitto della varieta dentro una partita. `--campaign` ne gioca K di seguito,
+  ognuna che eredita la precedente, e dice quanto il mondo si e spostato da dove
+  era partito.
+- **`GameSession.inherit_from()`** — il minimo di propagazione che una misura
+  richiede: controllo, tag persistenti, relazioni, Scar, Echo e Truth passano
+  alla Chronicle successiva; mano, mazzi, presenza, Tensioni e Claim si
+  ridistribuiscono. L'eredita passa dall'applier come Effect, quindi ha lo stesso
+  log e la stessa inversa di tutto il resto. Il motore di propagazione vero
+  resta la 0.3.
+- **Due Tensioni nuove** — `TEN_SUCCESSION` (TERRITORY, aperta) e `TEN_ROADS`
+  (RESOURCE, velata), con i loro due Consigli, quattro domande e sette proposte.
+- **14 Consequence nuove** (12 → 26) di tre forme che non esistevano: che
+  **guariscono** (tolgono i tag condition, senza le quali il mondo poteva solo
+  saturare), che **cambiano il controllo**, che **lasciano una Scar** — il
+  meccanismo era implementato dalla 0.0 e non lo usava nessuno.
+- **8 carte Echo nuove** (8 → 16). Sono l'unico contenuto che si applica senza
+  che nessuno lo scelga, quindi muovono il mondo a prescindere dal tavolo.
+- **`$region_focus` nel contesto degli Effect** — una Consequence puo dire "la
+  Regione di cui stiamo discutendo" invece di nominarne una per sempre.
+- **Controllo statico dei binding** in `validate_data.py`: un `$variabile` che il
+  motore non sa risolvere compila a niente e lo dice solo in un push_error. E
+  esattamente quello che `CNS_HARVEST_RETURNS` faceva su una carta Echo.
+- **`test_every_echo_card_hook_compiles_to_something`** — la stessa guardia a
+  runtime.
+
+### Changed
+
+- **`scripted_confluence.tension_id`** — un piano indirizza una Confluence per
+  Tensione invece che per indice di corsa (D-025). Con l'indice, aggiungere
+  contenuto faceva atterrare la direttiva del grano sul consiglio delle strade.
+- **Baseline spostate e dichiarate** (§25): il sacchetto del Drift e 2/3/2/2 su
+  quattro Tensioni invece di 5/4, e la soglia di `TEN_AWAKENING` scende da 7 a 6.
+
+### Fixed
+
+- **L'inversa di `REMOVE_REGION_TAG` rimetteva il tag in fondo alla lista** invece
+  che al suo posto, quindi l'undo non tornava byte per byte. Stessa classe del bug
+  sull'ordine della mano della 0.0. Trovato perche un tag nuovo nei dati ha
+  spostato `capital` dall'ultima posizione.
+- **Le carte Echo non sapevano risolvere `$proponent` e `$region_focus`**: gli
+  hook di due carte nuove applicavano zero Effect in silenzio.
+
+### La misura, prima e dopo
+
+Su 40 Chronicle indipendenti, stessi seed:
+
+| | 2 Tensioni, 12 Consequence | 4 Tensioni, 26 Consequence |
+|---|---|---|
+| mappe di controllo distinte | 2 | **6** |
+| set di tag distinti | 14 | **26** |
+| stato finale distinto | 14 | **28** |
+| Scar per Chronicle | 0.00 | **0.45** |
+| relazioni distinte | 2 | 2 |
+
+E dieci Chronicle di seguito, che era la domanda:
+
+| | prima | dopo |
+|---|---|---|
+| il controllo e cambiato | **mai** | si, due volte |
+| tag sulla mappa | 3 → 5 | 1 → **11** |
+| Scar accumulate | 0 | **9** |
+| coppie Tensione/Regione a fuoco | 3 | **6** |
+| frasi distinte lette | 17 | 12 |
+
+L'ultima riga e la piu onesta: **le frasi distinte sono calate.** Il mondo si
+muove molto di piu, ma con quattro Tensioni ogni Confluence e meno contesa,
+quindi ne restano meno che meritino un Echo. La varieta e passata dallo stato,
+non dal testo.
+
+### Segnalato, non corretto
+
+- **O-6**: il bilanciamento di D-021/D-023 e regredito — 42% nella banda del §7
+  contro il 70%, FAILURE da 18 a 9. La banda 3-4 era scritta per il contenuto
+  ridotto del §18.2; se descriva ancora una Chronicle a 4 Tensioni e una domanda
+  di design, non una da tarare in silenzio.
+- **O-7**: la campagna ha un leader che scappa. Aldric parte con una Regione e
+  alla quinta Chronicle ne ha cinque, e non ne perde piu nessuna. L'eredita
+  compone il vantaggio e niente lo inverte.
+- **O-8**: sei Consequence su 26 non scattano mai. Contenuto irraggiungibile e
+  contenuto che non esiste.
+
+---
+
 ## [0.0.2] — Le proposte cominciano a costare qualcosa
 
 Chiude l'osservazione O-4 della 0.0.1 e la O-2. Nessuna UI: la 0.1 resta non

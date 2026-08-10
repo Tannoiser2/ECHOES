@@ -578,6 +578,10 @@ func _context() -> Dictionary:
 		"proponent": str(current["proponent"]),
 		"tension": str(current["tension_id"]),
 		"confluence": str(current["confluence_id"]),
+		# The Region this Tension is about right now, so a Consequence can say
+		# "the place we are arguing over" instead of naming one for ever. Same
+		# rule that picks $the_region for the narrative text.
+		"region_focus": narrative.focus_region(str(current["tension_id"])),
 	}
 
 

@@ -35,16 +35,26 @@
       ],
       "tensions": [
         "TEN_FAMINE",
-        "TEN_AWAKENING"
+        "TEN_AWAKENING",
+        "TEN_SUCCESSION",
+        "TEN_ROADS"
       ],
       "drift_distribution": [
         {
           "tension_id": "TEN_FAMINE",
-          "count": 5
+          "count": 2
         },
         {
           "tension_id": "TEN_AWAKENING",
-          "count": 4
+          "count": 3
+        },
+        {
+          "tension_id": "TEN_SUCCESSION",
+          "count": 2
+        },
+        {
+          "tension_id": "TEN_ROADS",
+          "count": 2
         }
       ],
       "act_echo_pools": [
@@ -73,7 +83,9 @@
       ],
       "confluence_templates": [
         "CNF_FAMINE_01",
-        "CNF_AWAKENING_01"
+        "CNF_AWAKENING_01",
+        "CNF_SUCCESSION_01",
+        "CNF_ROADS_01"
       ],
       "starting_relations": [],
       "global_tags": [],

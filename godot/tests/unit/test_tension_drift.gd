@@ -26,8 +26,10 @@ func test_drift_track_matches_the_declared_distribution() -> void:
 	var counts: Dictionary = {}
 	for tension_id in session.world["drift_track"]:
 		counts[tension_id] = int(counts.get(tension_id, 0)) + 1
-	assert_eq(counts.get("TEN_FAMINE", 0), 5, "5 voci per la Carestia")
-	assert_eq(counts.get("TEN_AWAKENING", 0), 4, "4 voci per il Risveglio")
+	assert_eq(counts.get("TEN_FAMINE", 0), 2, "2 voci per la Carestia")
+	assert_eq(counts.get("TEN_AWAKENING", 0), 3, "3 voci per il Risveglio")
+	assert_eq(counts.get("TEN_SUCCESSION", 0), 2, "2 voci per la Successione")
+	assert_eq(counts.get("TEN_ROADS", 0), 2, "2 voci per le Vie Interrotte")
 	assert_eq(
 		(session.world["drift_track"] as Array).size(),
 		9,
@@ -102,7 +104,7 @@ func test_public_status_hides_a_veiled_value() -> void:
 		)
 	)
 	assert_true(
-		session.tensions.public_status("TEN_AWAKENING").contains("/7"),
+		session.tensions.public_status("TEN_AWAKENING").contains("/6"),
 		"una volta aperta, il valore e pubblico"
 	)
 

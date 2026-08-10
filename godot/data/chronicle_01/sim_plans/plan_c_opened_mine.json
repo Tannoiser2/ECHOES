@@ -5,7 +5,7 @@
     {
       "id": "SIM_PLAN_C",
       "title": "La miniera aperta",
-      "description": "Aldric usa un Claim per forzare la Confluence sulle Miniere invece di aspettare la soglia 7, e Vaerax la fa cadere. Esercita CLAIM/CREATE, CLAIM/FORCE e il trigger (c) del §12.1; la Carestia arriva comunque a soglia piu tardi.",
+      "description": "Aldric usa un Claim per forzare la Confluence sulle Miniere invece di aspettare la soglia, e il tavolo intero la fa cadere: fronte contrario a 7, quindi anche questa sconfitta lascia un Echo (§12.4). Esercita CLAIM/CREATE, CLAIM/FORCE e il trigger (c) del §12.1. La seconda meta del piano dimostra l'altra faccia del cap per Tensione: i Nahr tengono occupato lo slot della Carestia in ogni round degli Atti 2 e 3, e la Carestia non arriva mai a soglia.",
       "chronicle_id": "CHR_01",
       "seed": 20260812,
       "seats": [
@@ -179,16 +179,29 @@
             "delta": -1,
             "via": "PRESENCE"
           }
+        },
+        {
+          "act": 1,
+          "round": 2,
+          "actor": "ENT_ALDRIC",
+          "template": "INFLUENCE",
+          "params": {
+            "tension_id": "TEN_FAMINE",
+            "delta": 1,
+            "via": "PRESENCE"
+          },
+          "note": "L'unica AO libera del trono in cui la Carestia non e occupata: dall'Atto 2 i Nahr tengono lo slot in ogni round (D-023)."
         }
       ],
       "confluences": [
         {
           "index": 0,
-          "note": "Confluence forzata: il proponente e chi ha forzato, non chi ha piu presenza. Vaerax si oppone con quello che ha, Lyra pone una condizione che non qualifica.",
+          "tension_id": "TEN_AWAKENING",
+          "note": "Confluence forzata: il proponente e chi ha forzato, non chi ha piu presenza. Tutti e tre gli altri si oppongono, Lyra con una condizione che non qualifica, e il fronte contrario supera 6.",
           "proposition_id": "P_EXPLOIT",
           "stances": {
             "ENT_NAHR": {
-              "stance": "ABSTAIN"
+              "stance": "OPPOSE"
             },
             "ENT_LYRA": {
               "stance": "CONDITION",
@@ -209,15 +222,18 @@
             "ENT_VAERAX": [
               "AST_BONDS_OATH",
               "AST_KNOWLEDGE_RUMOR"
+            ],
+            "ENT_NAHR": [
+              "AST_PEOPLE_CROWD",
+              "AST_PEOPLE_MOBILIZATION"
             ]
           }
         }
       ],
       "expected": {
-        "confluence_count": 2,
+        "confluence_count": 1,
         "outcomes": [
-          "FAILURE",
-          "SUCCESS"
+          "FAILURE"
         ],
         "min_echoes": 1,
         "min_truths": 1

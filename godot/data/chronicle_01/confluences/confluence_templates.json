@@ -154,7 +154,8 @@
       },
       "ripple": {
         "targets": [
-          "TEN_AWAKENING"
+          "TEN_AWAKENING",
+          "TEN_SUCCESSION"
         ],
         "delta": 1
       },
@@ -284,11 +285,304 @@
       },
       "ripple": {
         "targets": [
-          "TEN_FAMINE"
+          "TEN_FAMINE",
+          "TEN_ROADS"
         ],
         "delta": 1
       },
       "echo_title_template": "Cio che Dorme sotto la Pietra"
+    },
+    {
+      "id": "CNF_SUCCESSION_01",
+      "tension_id": "TEN_SUCCESSION",
+      "title": "Chi Siede Dopo",
+      "description": "Aldric non ha erede e tutti lo sanno da anni. La differenza e che adesso qualcuno lo dice a voce alta, in una stanza dove ci sono testimoni.",
+      "questions": [
+        {
+          "id": "Q_SUCCESSION_HEIR",
+          "text": "Chi siede sul trono quando questo si alza?",
+          "eligibility": []
+        },
+        {
+          "id": "Q_SUCCESSION_LAW",
+          "text": "$in_region, che cosa vale piu di un nome: la legge o le spade?",
+          "eligibility": [
+            {
+              "type": "tension_limit",
+              "tension_id": "TEN_SUCCESSION",
+              "min": 5,
+              "label": "La Successione e al limite"
+            }
+          ]
+        }
+      ],
+      "propositions": [
+        {
+          "id": "P_NAME_HEIR",
+          "question_id": "Q_SUCCESSION_HEIR",
+          "text": "Un erede si nomina adesso, davanti a tutti, e chi c'e ne risponde.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_HEIR_NAMED",
+            "CNS_ORDER_RESTORED"
+          ],
+          "echo_summary": "$proponent fece dire un nome ad alta voce, e da quel giorno contestarlo costo qualcosa."
+        },
+        {
+          "id": "P_DIVIDE_CROWN",
+          "question_id": "Q_SUCCESSION_HEIR",
+          "text": "Non uno solo: il titolo si divide, e $the_region risponde a chi la tiene davvero.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_CROWN_DIVIDED",
+            "CNS_MARCH_GRANTED"
+          ],
+          "echo_summary": "La corona fu divisa in due, e $of_region nessuno seppe piu dire a chi rispondesse."
+        },
+        {
+          "id": "P_WRITE_THE_LAW",
+          "question_id": "Q_SUCCESSION_LAW",
+          "text": "Si scrive una legge invece di scegliere una persona. Vale anche per chi la scrive.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_LAW_OF_SUCCESSION"
+          ],
+          "echo_summary": "La successione fu affidata a una legge scritta, e il trono smise di essere una questione di famiglia."
+        },
+        {
+          "id": "P_TAKE_THE_SEAT",
+          "question_id": "Q_SUCCESSION_LAW",
+          "text": "$proponent prende il posto adesso, e a chi non ci sta risponde $rival.",
+          "eligibility": [
+            {
+              "type": "tension_limit",
+              "tension_id": "TEN_SUCCESSION",
+              "min": 6,
+              "label": "Solo un trono al limite si prende cosi"
+            }
+          ],
+          "success_consequences": [
+            "CNS_CAPITAL_TAKEN"
+          ],
+          "echo_summary": "$proponent prese il posto senza aspettare che si liberasse, e $rival non arrivo in tempo."
+        }
+      ],
+      "condition_clauses": [
+        {
+          "id": "C_SUCCESSION_WITNESS",
+          "text": "...purche $rival sia fra i testimoni, e la sua firma valga come le altre.",
+          "effects": [
+            {
+              "type": "SET_GLOBAL_TAG",
+              "target": {
+                "kind": "world",
+                "id": "WORLD"
+              },
+              "payload": {
+                "tag": "succession_witnessed"
+              }
+            },
+            {
+              "type": "ADJUST_TENSION",
+              "target": {
+                "kind": "tension",
+                "id": "TEN_SUCCESSION"
+              },
+              "payload": {
+                "delta": -1
+              }
+            }
+          ]
+        },
+        {
+          "id": "C_SUCCESSION_AMNESTY",
+          "text": "...purche chi ha giurato all'altro non ne paghi il prezzo.",
+          "effects": [
+            {
+              "type": "REMOVE_REGION_TAG",
+              "target": {
+                "kind": "region",
+                "id": "$region_focus"
+              },
+              "payload": {
+                "tag": "condition:unrest",
+                "optional": true
+              }
+            },
+            {
+              "type": "SET_GLOBAL_TAG",
+              "target": {
+                "kind": "world",
+                "id": "WORLD"
+              },
+              "payload": {
+                "tag": "amnesty_granted"
+              }
+            }
+          ]
+        }
+      ],
+      "consequence_pools": {
+        "cost": [
+          "CNS_COST_UNREST"
+        ],
+        "failure": [
+          "CNS_FAILURE_SPIRAL"
+        ],
+        "decisive_bonus": [
+          "CNS_DECISIVE_RENOWN"
+        ]
+      },
+      "ripple": {
+        "targets": [
+          "TEN_ROADS",
+          "TEN_FAMINE"
+        ],
+        "delta": 1
+      },
+      "echo_title_template": "Chi Siede Dopo"
+    },
+    {
+      "id": "CNF_ROADS_01",
+      "tension_id": "TEN_ROADS",
+      "title": "Il Prezzo del Sale",
+      "description": "Non e una guerra e non e una carestia: e che da qualche mese le cose non arrivano piu, e nessuno vuole essere il primo a dire di chi e la colpa.",
+      "questions": [
+        {
+          "id": "Q_ROADS_TOLL",
+          "text": "Chi riscuote su quello che passa $in_region?",
+          "eligibility": []
+        },
+        {
+          "id": "Q_ROADS_ESCORT",
+          "text": "Chi risponde di un carico che non arriva?",
+          "eligibility": [
+            {
+              "type": "tension_limit",
+              "tension_id": "TEN_ROADS",
+              "min": 4,
+              "label": "Le Vie Interrotte sono al limite"
+            }
+          ]
+        }
+      ],
+      "propositions": [
+        {
+          "id": "P_SET_TOLL",
+          "question_id": "Q_ROADS_TOLL",
+          "text": "Un pedaggio scritto, uguale per tutti, riscosso da $proponent.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_TOLL_ESTABLISHED"
+          ],
+          "echo_summary": "Il pedaggio $of_region fu scritto e riscosso da $proponent, e la strada torno sicura e cara."
+        },
+        {
+          "id": "P_MOVE_MARKET",
+          "question_id": "Q_ROADS_TOLL",
+          "text": "Il mercato si sposta dove si puo difenderlo, e chi ci vive intorno ne campa.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_MARKET_MOVED"
+          ],
+          "echo_summary": "Il mercato lascio la strada e si fermo $in_region, e con lui si sposto chi comandava."
+        },
+        {
+          "id": "P_SWEAR_ESCORT",
+          "question_id": "Q_ROADS_ESCORT",
+          "text": "Una scorta giurata: dodici nomi che rispondono di ogni carico.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_ESCORT_SWORN",
+            "CNS_ROADS_REOPENED"
+          ],
+          "echo_summary": "Dodici nomi risposero di ogni carico, e le carovane tornarono a partire da sole."
+        },
+        {
+          "id": "P_LET_IT_ROT",
+          "question_id": "Q_ROADS_ESCORT",
+          "text": "Nessuno risponde di niente. Chi vuole passare $in_region si paghi le guardie da se.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_ROADS_PLUNDERED",
+            "CNS_MINE_ROAD_CUT"
+          ],
+          "echo_summary": "Si decise che nessuno rispondesse, e $in_region si smise di viaggiare da soli."
+        }
+      ],
+      "condition_clauses": [
+        {
+          "id": "C_ROADS_SHARE",
+          "text": "...purche una quota resti a chi la strada la percorre e non la possiede.",
+          "effects": [
+            {
+              "type": "SET_GLOBAL_TAG",
+              "target": {
+                "kind": "world",
+                "id": "WORLD"
+              },
+              "payload": {
+                "tag": "toll_shared"
+              }
+            },
+            {
+              "type": "ADJUST_TENSION",
+              "target": {
+                "kind": "tension",
+                "id": "TEN_FAMINE"
+              },
+              "payload": {
+                "delta": -1
+              }
+            }
+          ]
+        },
+        {
+          "id": "C_ROADS_LEDGER",
+          "text": "...purche ogni carico sia scritto su un registro che chiunque puo leggere.",
+          "effects": [
+            {
+              "type": "SET_ENTITY_TAG",
+              "target": {
+                "kind": "entity",
+                "id": "ENT_LYRA"
+              },
+              "payload": {
+                "tag": "discovery:trade_ledger"
+              }
+            },
+            {
+              "type": "SET_GLOBAL_TAG",
+              "target": {
+                "kind": "world",
+                "id": "WORLD"
+              },
+              "payload": {
+                "tag": "ledger_public"
+              }
+            }
+          ]
+        }
+      ],
+      "consequence_pools": {
+        "cost": [
+          "CNS_COST_DEBT"
+        ],
+        "failure": [
+          "CNS_FAILURE_SPIRAL"
+        ],
+        "decisive_bonus": [
+          "CNS_DECISIVE_RENOWN"
+        ]
+      },
+      "ripple": {
+        "targets": [
+          "TEN_FAMINE",
+          "TEN_SUCCESSION"
+        ],
+        "delta": 1
+      },
+      "echo_title_template": "Il Prezzo del Sale"
     }
   ]
 }

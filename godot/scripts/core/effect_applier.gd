@@ -479,7 +479,14 @@ func _set_tag(tags: Variant, payload: Dictionary, label: String) -> Variant:
 		return _fail("%s: empty tag" % label)
 	if (tags as Array).has(tag):
 		return {"tag": tag, "noop": true}
-	(tags as Array).append(tag)
+	# `tag_index` only ever arrives on an inverse: putting the tag back where it
+	# was is what makes undo byte-identical. Appending instead reorders the list
+	# and the save stops matching, which is how this was found.
+	var at: int = int(payload.get("tag_index", -1))
+	if at >= 0 and at <= (tags as Array).size():
+		(tags as Array).insert(at, tag)
+	else:
+		(tags as Array).append(tag)
 	return {"tag": tag}
 
 
@@ -489,9 +496,11 @@ func _remove_tag(tags: Variant, payload: Dictionary, label: String) -> Variant:
 	var tag: String = str(payload.get("tag", ""))
 	var index: int = (tags as Array).find(tag)
 	if index < 0:
+		# A Consequence may clear a condition that was never set. Marked
+		# optional, that is a no-op rather than a failure.
 		return {"tag": tag, "noop": true}
 	(tags as Array).remove_at(index)
-	return {"tag": tag}
+	return {"tag": tag, "tag_index": index}
 
 
 func _region_tags(target: Dictionary) -> Variant:

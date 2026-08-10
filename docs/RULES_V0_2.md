@@ -25,6 +25,8 @@ codice.
 | Soglia di qualificazione della Condition | 2 | `chronicle.condition_qualified_threshold` |
 | INFLUENCE per Entità per round | 1 | `chronicle.influence_rules.max_per_entity_per_round` |
 | INFLUENCE per Tensione per round | 1 | `chronicle.influence_rules.max_per_tension_per_round` |
+| Tensioni in gioco | 4 | `chronicle.tensions` |
+| Soglie | 6 / 6 / 6 / 5 | `tension.threshold` |
 
 Ordine di un round:
 
@@ -133,10 +135,23 @@ Chronicle I in 0.0:
 | Tensione | dominio | iniziale | soglia | visibilità | famiglie rilevanti |
 |---|---|---|---|---|---|
 | TEN_FAMINE — La Carestia | SURVIVAL | 3 | 6 | aperta | WEALTH, PEOPLE, AUTHORITY |
-| TEN_AWAKENING — Il Risveglio | ANCIENT | 2 | 7 | **velata** | KNOWLEDGE, FORCE, BONDS |
+| TEN_AWAKENING — Il Risveglio | ANCIENT | 2 | 6 | **velata** | KNOWLEDGE, FORCE, BONDS |
+| TEN_SUCCESSION — La Successione | TERRITORY | 2 | 6 | aperta | AUTHORITY, BONDS, FORCE |
+| TEN_ROADS — Le Vie Interrotte | RESOURCE | 1 | 5 | **velata** | WEALTH, KNOWLEDGE, PEOPLE |
 
-**Drift**: una traccia di 9 voci (5× FAMINE, 4× AWAKENING) mescolata una volta a
-inizio partita con l'RNG seeded, consumata una per round. Il Drift è un Effect con
+La soglia del Risveglio è scesa da 7 a 6 quando le Tensioni sono passate da 2 a
+4: nove gettoni di Drift divisi in quattro non ne portano più una a 7 da soli
+([D-024](DECISIONS.md#d-024)).
+
+**Regione a fuoco**: ogni Tensione dichiara `focus_region_tags`, e il motore le
+associa la Regione del suo dominio che porta il primo tag della lista (a parità,
+quella con più presenza). È la Regione che riempie `$the_region` nel testo e
+`$region_focus` negli Effect: una domanda autorata una volta sola segue la crisi
+sulla mappa invece di nominare per sempre lo stesso posto.
+
+**Drift**: una traccia di 9 voci (2× FAMINE, 3× AWAKENING, 2× SUCCESSION,
+2× ROADS) mescolata una volta a inizio partita con l'RNG seeded, consumata una
+per round. Il Drift è un Effect con
 `source.kind = "system"`.
 
 **Presagi**: quando una Tensione raggiunge un `omen_thresholds.at` per la prima
