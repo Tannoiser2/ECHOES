@@ -19,6 +19,9 @@ var world: Dictionary
 var data: RefCounted
 var applier: RefCounted
 var log: RefCounted
+## Set by ConfluenceController: the Truth register keeps the *filled* sentence,
+## because a $slot left in the permanent record would be a bug nobody can undo.
+var narrative: RefCounted = null
 
 
 func _init(p_world: Dictionary, p_data: RefCounted, p_applier: RefCounted, p_log: RefCounted) -> void:
@@ -93,6 +96,8 @@ func _summary(template: Dictionary, context: Dictionary, result: Dictionary) -> 
 			break
 	if proposition_summary == "":
 		proposition_summary = str(template["title"])
+	if narrative != null:
+		proposition_summary = narrative.fill(proposition_summary, context.get("text_bindings", {}))
 	if str(result["outcome"]) == ConfluenceResolution.FAILURE:
 		return "%s La proposta cadde (S%d O%d M%d)." % [
 			proposition_summary,

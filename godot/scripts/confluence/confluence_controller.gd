@@ -25,6 +25,7 @@ const ConsequenceCompiler := preload("res://scripts/chronicle/consequence_compil
 const ConditionEvaluator := preload("res://scripts/world/condition_evaluator.gd")
 const EchoRecorder := preload("res://scripts/chronicle/echo_recorder.gd")
 const WorldStateService := preload("res://scripts/world/world_state_service.gd")
+const NarrativeText := preload("res://scripts/chronicle/narrative_text.gd")
 
 const STANCES: Array = ["SUPPORT", "OPPOSE", "CONDITION", "ABSTAIN"]
 
@@ -41,6 +42,7 @@ var service: RefCounted
 var conditions: RefCounted
 var compiler: RefCounted
 var recorder: RefCounted
+var narrative: RefCounted
 
 var current: Dictionary = {}
 var last_error: String = ""
@@ -65,7 +67,9 @@ func _init(
 	service = WorldStateService.new(p_world, p_data)
 	conditions = ConditionEvaluator.new(p_world, p_data)
 	compiler = ConsequenceCompiler.new(p_data)
+	narrative = NarrativeText.new(p_world, p_data, service)
 	recorder = EchoRecorder.new(p_world, p_data, p_applier, p_log)
+	recorder.narrative = narrative
 	_chronicle = data.chronicles[world["chronicle_id"]]
 
 
@@ -102,6 +106,9 @@ func open(tension_id: String, trigger: Dictionary) -> Dictionary:
 		"trigger": trigger.duplicate(true),
 		"question_id": question_id,
 		"proponent": proponent,
+		# Resolved once, at A, so every sentence in this Confluence names the same
+		# Region and the same rival even if the world moves underneath it (H).
+		"text_bindings": narrative.bindings_for(tension_id, proponent),
 		"proposition_id": "",
 		"stances": {},
 		"commits": {},
@@ -115,7 +122,7 @@ func open(tension_id: String, trigger: Dictionary) -> Dictionary:
 
 	log.section("CONFLUENCE %s - %s" % [current["confluence_id"], str(template["title"])])
 	log.bullet("A. Trigger: %s su %s" % [str(trigger.get("kind", "THRESHOLD")), _tension_name(tension_id)])
-	log.bullet("B. Domanda: %s" % _question_text(template, question_id))
+	log.bullet("B. Domanda: %s" % say(_question_text(template, question_id)))
 	log.bullet("C. Proponente: %s" % _name(proponent))
 	step_changed.emit("QUESTION", current)
 	return current
@@ -140,7 +147,7 @@ func set_question(question_id: String) -> bool:
 		if str(question["id"]) == question_id:
 			current["question_id"] = question_id
 			current["proposition_id"] = ""
-			log.bullet("B. Domanda scelta: %s" % str(question["text"]))
+			log.bullet("B. Domanda scelta: %s" % say(str(question["text"])))
 			return true
 	last_error = "domanda '%s' non disponibile" % question_id
 	return false
@@ -191,7 +198,7 @@ func set_proposition(proposition_id: String) -> bool:
 		if str(proposition["id"]) == proposition_id:
 			current["proposition_id"] = proposition_id
 			current["step"] = "STANCE"
-			log.bullet("C. Proposta: %s" % str(proposition["text"]))
+			log.bullet("C. Proposta: %s" % say(str(proposition["text"])))
 			step_changed.emit("PROPOSITION", current)
 			return true
 	last_error = "proposta '%s' non disponibile" % proposition_id
@@ -224,7 +231,7 @@ func declare_stance(entity_id: String, stance: String, clause_id: String = "") -
 			last_error = "clausola '%s' non presente nel template" % clause_id
 			return false
 		record["clause_id"] = clause_id
-		log.bullet("D. %s: Condition - %s" % [_name(entity_id), str(clause["text"])])
+		log.bullet("D. %s: Condition - %s" % [_name(entity_id), say(str(clause["text"]))])
 	else:
 		log.bullet("D. %s: %s" % [_name(entity_id), stance])
 
@@ -381,7 +388,7 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 			var clause: Dictionary = _find_clause(str(stance.get("clause_id", "")))
 			if clause.is_empty():
 				continue
-			log.bullet("H. Clausola qualificata: %s" % str(clause["text"]))
+			log.bullet("H. Clausola qualificata: %s" % say(str(clause["text"])))
 			for spec in clause["effects"]:
 				_apply(applied, compiler.compile_spec(spec, context, source))
 
@@ -572,6 +579,13 @@ func _context() -> Dictionary:
 		"tension": str(current["tension_id"]),
 		"confluence": str(current["confluence_id"]),
 	}
+
+
+## Fill the $slots of an authored sentence from the running Confluence. The
+## 0.1 Confluence Board calls this too: what the table reads and what the log
+## records have to be the same string.
+func say(text: String) -> String:
+	return narrative.fill(text, current.get("text_bindings", {}))
 
 
 func _question_text(template: Dictionary, question_id: String) -> String:

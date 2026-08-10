@@ -10,12 +10,12 @@
       "questions": [
         {
           "id": "Q_FAMINE_GRAIN",
-          "text": "Chi nutre la Valle quando i granai si svuotano?",
+          "text": "Chi nutre $the_region quando i granai si svuotano?",
           "eligibility": []
         },
         {
           "id": "Q_FAMINE_LAND",
-          "text": "A chi appartiene la terra che ancora produce?",
+          "text": "$in_region, a chi appartiene la terra che ancora produce?",
           "eligibility": [
             {
               "type": "tension_limit",
@@ -30,7 +30,7 @@
         {
           "id": "P_REQUISITION",
           "question_id": "Q_FAMINE_GRAIN",
-          "text": "Il grano e requisito e distribuito dal trono, razione per razione.",
+          "text": "Il grano $of_region e requisito e distribuito dal trono, razione per razione.",
           "eligibility": [
             {
               "type": "state_tag_present",
@@ -44,23 +44,23 @@
             "CNS_ROYAL_GRANARY",
             "CNS_VALLEY_CLEARED"
           ],
-          "echo_summary": "Il grano della Valle passo sotto il sigillo del trono."
+          "echo_summary": "Il grano $of_region passo sotto il sigillo di $proponent."
         },
         {
           "id": "P_OPEN_VALLEY",
           "question_id": "Q_FAMINE_GRAIN",
-          "text": "La Valle e aperta a chi arriva da est: chi lavora la terra ne mangia.",
+          "text": "$proponent apre $the_region a chi arriva da est: chi lavora la terra ne mangia.",
           "eligibility": [],
           "success_consequences": [
             "CNS_NAHR_SETTLEMENT",
             "CNS_CROWN_DISPOSSESSED"
           ],
-          "echo_summary": "La Valle Verde accolse i Nahr e smise di essere solo di Eredan."
+          "echo_summary": "$proponent entro $in_region, e quella terra smise di essere solo di $controller."
         },
         {
           "id": "P_SEAL_BORDERS",
           "question_id": "Q_FAMINE_LAND",
-          "text": "I confini si chiudono. La Valle nutre Eredan, e nessun altro.",
+          "text": "I confini si chiudono: quello che cresce $in_region resta a $proponent, e a nessun altro.",
           "eligibility": [
             {
               "type": "state_tag_present",
@@ -73,24 +73,24 @@
           "success_consequences": [
             "CNS_SEALED_VALLEY"
           ],
-          "echo_summary": "I confini della Valle furono chiusi, e l'inverno resto fuori con i Nahr."
+          "echo_summary": "I confini $of_region furono chiusi, e l'inverno resto fuori con $rival."
         },
         {
           "id": "P_LAND_TO_WORKERS",
           "question_id": "Q_FAMINE_LAND",
-          "text": "La terra appartiene a chi la lavora, e quest'anno la lavora chi e arrivato.",
+          "text": "La terra $of_region appartiene a chi la lavora, e quest'anno la lavora chi e arrivato.",
           "eligibility": [],
           "success_consequences": [
             "CNS_NAHR_SETTLEMENT",
             "CNS_CROWN_DISPOSSESSED"
           ],
-          "echo_summary": "La Valle fu assegnata a chi la lavorava, e il titolo di Eredan resto scritto solo sulla carta."
+          "echo_summary": "La terra $of_region fu assegnata a chi la lavorava, e il titolo di chi la teneva resto scritto solo sulla carta."
         }
       ],
       "condition_clauses": [
         {
           "id": "C_FAMINE_SHARE",
-          "text": "...purche una quota fissa resti alle Terre Nahr.",
+          "text": "...purche una quota fissa resti a $rival.",
           "effects": [
             {
               "type": "REMOVE_REGION_TAG",
@@ -116,7 +116,7 @@
         },
         {
           "id": "C_FAMINE_AUDIT",
-          "text": "...purche la distribuzione sia contata davanti a testimoni.",
+          "text": "...purche la distribuzione $in_region sia contata davanti a testimoni.",
           "effects": [
             {
               "type": "SET_GLOBAL_TAG",
@@ -168,12 +168,12 @@
       "questions": [
         {
           "id": "Q_AWAKENING_CRYSTAL",
-          "text": "Che cosa si fa del Cristallo Rosso?",
+          "text": "Che cosa si fa del Cristallo Rosso che esce $in_region?",
           "eligibility": []
         },
         {
           "id": "Q_AWAKENING_MOUNTAIN",
-          "text": "A chi appartiene cio che dorme sotto le Montagne?",
+          "text": "A chi appartiene cio che dorme sotto $the_region?",
           "eligibility": [
             {
               "type": "tension_limit",
@@ -188,39 +188,39 @@
         {
           "id": "P_EXPLOIT",
           "question_id": "Q_AWAKENING_CRYSTAL",
-          "text": "Le Miniere si aprono. Il Cristallo diventa ricchezza, e la ricchezza diventa grano.",
+          "text": "Si scava $in_region. Il Cristallo diventa ricchezza, e la ricchezza diventa grano.",
           "eligibility": [],
           "success_consequences": [
             "CNS_CRYSTAL_EXPLOITED",
             "CNS_MINE_TAKEN"
           ],
-          "echo_summary": "Le Miniere Antiche furono aperte e il Cristallo Rosso usci alla luce a peso."
+          "echo_summary": "Si scavo $in_region, e il Cristallo Rosso usci alla luce a peso."
         },
         {
           "id": "P_SEAL_MINE",
           "question_id": "Q_AWAKENING_CRYSTAL",
-          "text": "Le gallerie si sigillano. Cio che dorme resta addormentato.",
+          "text": "Le gallerie $in_region si sigillano. Cio che dorme resta addormentato.",
           "eligibility": [],
           "success_consequences": [
             "CNS_MINE_SEALED"
           ],
-          "echo_summary": "Le Miniere Antiche furono sigillate, e la domanda con loro."
+          "echo_summary": "Le gallerie $in_region furono sigillate, e la domanda con loro."
         },
         {
           "id": "P_GUARDED_STUDY",
           "question_id": "Q_AWAKENING_MOUNTAIN",
-          "text": "Il Cristallo si studia sotto vincolo, con un custode che risponde del limite.",
+          "text": "Il Cristallo si studia sotto vincolo, e a rispondere del limite e $rival.",
           "eligibility": [],
           "success_consequences": [
             "CNS_STUDY_UNDER_GUARD"
           ],
-          "echo_summary": "Il Cristallo Rosso fu affidato a una custodia, e lo studio ebbe un limite scritto."
+          "echo_summary": "Il Cristallo Rosso fu affidato a $rival, e lo studio ebbe un limite scritto."
         }
       ],
       "condition_clauses": [
         {
           "id": "C_AWAKENING_WITNESS",
-          "text": "...purche un custode delle Montagne assista a ogni discesa.",
+          "text": "...purche $rival assista a ogni discesa.",
           "effects": [
             {
               "type": "SET_GLOBAL_TAG",

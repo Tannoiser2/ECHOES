@@ -840,6 +840,9 @@ const DEFS := {
 			"marker_id": {
 				"type": "String",
 			},
+			"name_forms": {
+				"type": "Dictionary",
+			},
 		},
 	},
 	"save": {
@@ -1046,6 +1049,12 @@ const DEFS := {
 			},
 			"description": {
 				"type": "String",
+			},
+			"focus_region_tags": {
+				"type": "Array",
+				"element": {
+					"type": "String",
+				},
 			},
 		},
 	},

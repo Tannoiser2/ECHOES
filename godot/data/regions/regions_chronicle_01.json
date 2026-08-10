@@ -7,72 +7,146 @@
       "name": "Eredan",
       "biome": "CITY",
       "role": "PRIMARY",
-      "adjacency": ["REG_VALLE_VERDE", "REG_STRADA_MERCANTI"],
-      "asset_sources": ["AUTHORITY", "WEALTH"],
-      "tags": ["domain:SURVIVAL", "domain:TERRITORY", "capital"],
+      "adjacency": [
+        "REG_VALLE_VERDE",
+        "REG_STRADA_MERCANTI"
+      ],
+      "asset_sources": [
+        "AUTHORITY",
+        "WEALTH"
+      ],
+      "tags": [
+        "domain:SURVIVAL",
+        "domain:TERRITORY",
+        "capital"
+      ],
       "presence_slots": 4,
       "control": "ENT_ALDRIC",
       "description": "La citta del trono. Vive di leggi, di titoli e del grano che sale dalla Valle.",
       "art_prompt_key": "region.eredan",
-      "marker_id": "MK_REG_EREDAN"
+      "marker_id": "MK_REG_EREDAN",
+      "name_forms": {
+        "definite": "Eredan",
+        "locative": "a Eredan",
+        "genitive": "di Eredan"
+      }
     },
     {
       "id": "REG_VALLE_VERDE",
       "name": "Valle Verde",
       "biome": "VALLEY",
       "role": "PRIMARY",
-      "adjacency": ["REG_EREDAN", "REG_TERRE_NAHR", "REG_STRADA_MERCANTI"],
-      "asset_sources": ["PEOPLE", "WEALTH"],
-      "tags": ["domain:SURVIVAL", "granary"],
+      "adjacency": [
+        "REG_EREDAN",
+        "REG_TERRE_NAHR",
+        "REG_STRADA_MERCANTI"
+      ],
+      "asset_sources": [
+        "PEOPLE",
+        "WEALTH"
+      ],
+      "tags": [
+        "domain:SURVIVAL",
+        "granary"
+      ],
       "presence_slots": 4,
       "control": null,
       "description": "Il ventre del regno. Quest'anno la terra restituisce meno di quanto riceve.",
       "art_prompt_key": "region.valle_verde",
-      "marker_id": "MK_REG_VALLE_VERDE"
+      "marker_id": "MK_REG_VALLE_VERDE",
+      "name_forms": {
+        "definite": "la Valle Verde",
+        "locative": "nella Valle Verde",
+        "genitive": "della Valle Verde"
+      }
     },
     {
       "id": "REG_TERRE_NAHR",
       "name": "Terre Nahr",
       "biome": "STEPPE",
       "role": "PRIMARY",
-      "adjacency": ["REG_VALLE_VERDE", "REG_MONTAGNE_ROSSE", "REG_STRADA_MERCANTI"],
-      "asset_sources": ["PEOPLE", "BONDS"],
-      "tags": ["domain:SURVIVAL", "nomad_range"],
+      "adjacency": [
+        "REG_VALLE_VERDE",
+        "REG_MONTAGNE_ROSSE",
+        "REG_STRADA_MERCANTI"
+      ],
+      "asset_sources": [
+        "PEOPLE",
+        "BONDS"
+      ],
+      "tags": [
+        "domain:SURVIVAL",
+        "nomad_range"
+      ],
       "presence_slots": 4,
       "control": "ENT_NAHR",
       "description": "Pascoli larghi e magri. I Nahr li percorrono da sempre; quest'anno li stanno lasciando.",
       "art_prompt_key": "region.terre_nahr",
-      "marker_id": "MK_REG_TERRE_NAHR"
+      "marker_id": "MK_REG_TERRE_NAHR",
+      "name_forms": {
+        "definite": "le Terre Nahr",
+        "locative": "nelle Terre Nahr",
+        "genitive": "delle Terre Nahr"
+      }
     },
     {
       "id": "REG_MONTAGNE_ROSSE",
       "name": "Montagne Rosse",
       "biome": "MOUNTAIN",
       "role": "PRIMARY",
-      "adjacency": ["REG_TERRE_NAHR", "REG_MINIERE_ANTICHE"],
-      "asset_sources": ["FORCE", "BONDS"],
-      "tags": ["domain:ANCIENT", "wild"],
+      "adjacency": [
+        "REG_TERRE_NAHR",
+        "REG_MINIERE_ANTICHE"
+      ],
+      "asset_sources": [
+        "FORCE",
+        "BONDS"
+      ],
+      "tags": [
+        "domain:ANCIENT",
+        "wild"
+      ],
       "presence_slots": 3,
       "control": "ENT_VAERAX",
       "private_information": "Sotto la cresta orientale il respiro della montagna e caldo anche d'inverno.",
       "description": "Pietra rossa e vento. Qualcosa di molto vecchio dorme qui, e il suo sonno si sta assottigliando.",
       "art_prompt_key": "region.montagne_rosse",
-      "marker_id": "MK_REG_MONTAGNE_ROSSE"
+      "marker_id": "MK_REG_MONTAGNE_ROSSE",
+      "name_forms": {
+        "definite": "le Montagne Rosse",
+        "locative": "sulle Montagne Rosse",
+        "genitive": "delle Montagne Rosse"
+      }
     },
     {
       "id": "REG_MINIERE_ANTICHE",
       "name": "Miniere Antiche",
       "biome": "UNDERGROUND",
       "role": "PRIMARY",
-      "adjacency": ["REG_MONTAGNE_ROSSE", "REG_STRADA_MERCANTI"],
-      "asset_sources": ["KNOWLEDGE", "WEALTH"],
-      "tags": ["domain:ANCIENT", "domain:RESOURCE", "crystal_site"],
+      "adjacency": [
+        "REG_MONTAGNE_ROSSE",
+        "REG_STRADA_MERCANTI"
+      ],
+      "asset_sources": [
+        "KNOWLEDGE",
+        "WEALTH"
+      ],
+      "tags": [
+        "domain:ANCIENT",
+        "domain:RESOURCE",
+        "crystal_site"
+      ],
       "presence_slots": 4,
       "control": null,
       "private_information": "Il Cristallo Rosso non riflette la luce delle torce: la restituisce piu tardi.",
       "description": "Gallerie scavate da mani che nessuno ricorda. In fondo, il Cristallo Rosso.",
       "art_prompt_key": "region.miniere_antiche",
-      "marker_id": "MK_REG_MINIERE_ANTICHE"
+      "marker_id": "MK_REG_MINIERE_ANTICHE",
+      "name_forms": {
+        "definite": "le Miniere Antiche",
+        "locative": "nelle Miniere Antiche",
+        "genitive": "delle Miniere Antiche"
+      }
     },
     {
       "id": "REG_STRADA_MERCANTI",
@@ -85,13 +159,24 @@
         "REG_TERRE_NAHR",
         "REG_MINIERE_ANTICHE"
       ],
-      "asset_sources": ["WEALTH", "BONDS"],
-      "tags": ["domain:SURVIVAL", "trade"],
+      "asset_sources": [
+        "WEALTH",
+        "BONDS"
+      ],
+      "tags": [
+        "domain:SURVIVAL",
+        "trade"
+      ],
       "presence_slots": 4,
       "control": null,
       "description": "Il raccordo. Non produce nulla e tocca tutto: chi la tiene sa prima degli altri.",
       "art_prompt_key": "region.strada_mercanti",
-      "marker_id": "MK_REG_STRADA_MERCANTI"
+      "marker_id": "MK_REG_STRADA_MERCANTI",
+      "name_forms": {
+        "definite": "la Strada dei Mercanti",
+        "locative": "sulla Strada dei Mercanti",
+        "genitive": "della Strada dei Mercanti"
+      }
     }
   ]
 }
