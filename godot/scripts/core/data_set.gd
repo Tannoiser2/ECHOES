@@ -1,0 +1,187 @@
+extends RefCounted
+## Loads and validates every static data document under res://data (§5, §17).
+##
+## Deliberately free of autoload dependencies: the CLI harness and the test
+## runner build their own DataSet, and the DataRegistry autoload wraps one.
+
+const SchemaValidator := preload("res://scripts/core/schema_validator.gd")
+
+var assets: Dictionary = {}
+var regions: Dictionary = {}
+var entities: Dictionary = {}
+var tensions: Dictionary = {}
+var actions: Dictionary = {}
+var echo_cards: Dictionary = {}
+var consequences: Dictionary = {}
+var destinies: Dictionary = {}
+var confluence_templates: Dictionary = {}
+var chronicles: Dictionary = {}
+var sim_plans: Dictionary = {}
+
+var errors: PackedStringArray = PackedStringArray()
+var data_version: String = ""
+var loaded_documents: int = 0
+
+const _TARGETS: Dictionary = {
+	"asset": "assets",
+	"region": "regions",
+	"entity": "entities",
+	"tension": "tensions",
+	"echo_card": "echo_cards",
+	"consequence": "consequences",
+	"destiny": "destinies",
+	"confluence_template": "confluence_templates",
+	"chronicle": "chronicles",
+	"sim_plan": "sim_plans",
+}
+
+
+func load_from(root: String = "res://data") -> bool:
+	errors = PackedStringArray()
+	loaded_documents = 0
+	var paths: PackedStringArray = _collect_json(root)
+	if paths.is_empty():
+		errors.append("no data documents found under %s" % root)
+		return false
+	# Sorted so boot validation reports the same order every run.
+	var sorted: Array = Array(paths)
+	sorted.sort()
+	for path in sorted:
+		_load_document(str(path))
+	if errors.is_empty():
+		_check_references()
+	return errors.is_empty()
+
+
+func _load_document(path: String) -> void:
+	var text: String = FileAccess.get_file_as_string(path)
+	if text == "":
+		errors.append("%s: unreadable or empty" % path)
+		return
+	var parsed: Variant = JSON.parse_string(text)
+	if typeof(parsed) != TYPE_DICTIONARY:
+		errors.append("%s: not a JSON object" % path)
+		return
+	var document: Dictionary = parsed
+
+	var document_errors: PackedStringArray = SchemaValidator.validate_document(document, path)
+	if not document_errors.is_empty():
+		errors.append_array(document_errors)
+		return
+
+	loaded_documents += 1
+	var schema_id: String = str(document["schema_id"])
+	if data_version == "":
+		data_version = str(document.get("version", ""))
+
+	if schema_id == "action":
+		for item in document["items"]:
+			actions[str(item["template"])] = item
+		return
+	if not _TARGETS.has(schema_id):
+		errors.append("%s: no runtime store for schema_id '%s'" % [path, schema_id])
+		return
+	var store: Dictionary = get(_TARGETS[schema_id])
+	for item in document["items"]:
+		var id: String = str(item["id"])
+		if store.has(id):
+			errors.append("%s: duplicate id '%s'" % [path, id])
+			continue
+		store[id] = item
+
+
+func _collect_json(root: String) -> PackedStringArray:
+	var found: PackedStringArray = PackedStringArray()
+	var dir := DirAccess.open(root)
+	if dir == null:
+		errors.append("cannot open data directory %s" % root)
+		return found
+	dir.list_dir_begin()
+	var name: String = dir.get_next()
+	while name != "":
+		if name.begins_with("."):
+			name = dir.get_next()
+			continue
+		var path: String = root.path_join(name)
+		if dir.current_is_dir():
+			found.append_array(_collect_json(path))
+		elif name.ends_with(".json"):
+			found.append(path)
+		name = dir.get_next()
+	dir.list_dir_end()
+	return found
+
+
+## Cross-document integrity. tools/validate_data.py runs the exhaustive version;
+## this catches the references the engine will actually dereference at runtime,
+## so a bad data drop fails at boot instead of mid-Chronicle.
+func _check_references() -> void:
+	for entity in entities.values():
+		for asset_id in entity["starting_assets"]:
+			if not assets.has(asset_id):
+				errors.append("%s: unknown starting asset '%s'" % [entity["id"], asset_id])
+		for region_id in entity["presence"]:
+			if not regions.has(region_id):
+				errors.append("%s: unknown starting region '%s'" % [entity["id"], region_id])
+		if not destinies.has(entity["destiny_id"]):
+			errors.append("%s: unknown destiny '%s'" % [entity["id"], entity["destiny_id"]])
+	for region in regions.values():
+		for neighbour in region["adjacency"]:
+			if not regions.has(neighbour):
+				errors.append("%s: unknown adjacent region '%s'" % [region["id"], neighbour])
+	for template in confluence_templates.values():
+		if not tensions.has(template["tension_id"]):
+			errors.append("%s: unknown tension '%s'" % [template["id"], template["tension_id"]])
+		for proposition in template["propositions"]:
+			for consequence_id in proposition["success_consequences"]:
+				if not consequences.has(consequence_id):
+					errors.append(
+						"%s: unknown consequence '%s'" % [template["id"], consequence_id]
+					)
+		for pool_name in template["consequence_pools"]:
+			for consequence_id in template["consequence_pools"][pool_name]:
+				if not consequences.has(consequence_id):
+					errors.append(
+						"%s: unknown consequence '%s'" % [template["id"], consequence_id]
+					)
+	for chronicle in chronicles.values():
+		for entity_id in chronicle["entities"]:
+			if not entities.has(entity_id):
+				errors.append("%s: unknown entity '%s'" % [chronicle["id"], entity_id])
+		for tension_id in chronicle["tensions"]:
+			if not tensions.has(tension_id):
+				errors.append("%s: unknown tension '%s'" % [chronicle["id"], tension_id])
+	for template in ["ACQUIRE", "MOVE", "INFLUENCE", "FORGE", "SCHEME", "CLAIM"]:
+		if not actions.has(template):
+			errors.append("missing action template '%s'" % template)
+
+
+# --- convenience lookups ---------------------------------------------------
+
+func confluence_template_for(tension_id: String) -> Dictionary:
+	for template in confluence_templates.values():
+		if str(template["tension_id"]) == tension_id:
+			return template
+	return {}
+
+
+func assets_of_family(family: String) -> Array:
+	var out: Array = []
+	for asset in assets.values():
+		if str(asset["family"]) == family:
+			out.append(asset)
+	out.sort_custom(func(a, b): return str(a["id"]) < str(b["id"]))
+	return out
+
+
+func echo_cards_of_families(families: Array) -> Array:
+	var out: Array = []
+	for card in echo_cards.values():
+		if families.has(str(card["dramatic_family"])):
+			out.append(card)
+	out.sort_custom(func(a, b): return str(a["id"]) < str(b["id"]))
+	return out
+
+
+func describe_errors() -> String:
+	return "\n".join(Array(errors))

@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://echoes.local/schema/chronicle.schema.json",
+  "title": "Chronicle definition collection",
+  "x-echoes-def": "chronicle",
+  "x-echoes-kind": "collection",
+  "type": "object",
+  "required": ["schema_id", "version", "items"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_id": { "const": "chronicle" },
+    "version": { "type": "string" },
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/chronicle" }
+    }
+  },
+  "$defs": {
+    "chronicle": {
+      "type": "object",
+      "required": [
+        "id",
+        "title",
+        "world_id",
+        "start_year",
+        "acts",
+        "rounds_per_act",
+        "action_opportunities_per_round",
+        "hand_limit",
+        "presence_tokens",
+        "entities",
+        "regions",
+        "tensions",
+        "drift_distribution",
+        "act_echo_pools",
+        "confluence_templates",
+        "opening_text"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^CHR_[A-Z0-9_]+$" },
+        "title": { "type": "string", "minLength": 1 },
+        "world_id": { "type": "string", "minLength": 1 },
+        "start_year": { "type": "integer" },
+        "acts": { "type": "integer", "minimum": 1 },
+        "rounds_per_act": { "type": "integer", "minimum": 1 },
+        "action_opportunities_per_round": { "type": "integer", "minimum": 1 },
+        "hand_limit": { "type": "integer", "minimum": 1 },
+        "presence_tokens": { "type": "integer", "minimum": 1 },
+        "max_commit_assets": { "type": "integer", "minimum": 1, "default": 3 },
+        "max_condition_commit_assets": { "type": "integer", "minimum": 1, "default": 2 },
+        "condition_qualified_threshold": { "type": "integer", "minimum": 1, "default": 2 },
+        "entities": {
+          "type": "array",
+          "minItems": 2,
+          "items": { "type": "string", "pattern": "^ENT_[A-Z0-9_]+$" }
+        },
+        "regions": {
+          "type": "array",
+          "minItems": 2,
+          "items": { "type": "string", "pattern": "^REG_[A-Z0-9_]+$" }
+        },
+        "tensions": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "pattern": "^TEN_[A-Z0-9_]+$" }
+        },
+        "drift_distribution": {
+          "type": "array",
+          "minItems": 1,
+          "description": "Bag of drift entries shuffled with the seeded RNG at setup (§11.2).",
+          "items": {
+            "type": "object",
+            "required": ["tension_id", "count"],
+            "additionalProperties": false,
+            "properties": {
+              "tension_id": { "type": "string", "pattern": "^TEN_[A-Z0-9_]+$" },
+              "count": { "type": "integer", "minimum": 1 }
+            }
+          }
+        },
+        "act_echo_pools": {
+          "type": "array",
+          "minItems": 1,
+          "description": "Dramatic families the Act-end Echo card is drawn from, indexed by act (1-based order).",
+          "items": {
+            "type": "object",
+            "required": ["act", "families"],
+            "additionalProperties": false,
+            "properties": {
+              "act": { "type": "integer", "minimum": 1 },
+              "families": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string",
+                  "enum": ["PRESSURE", "RUPTURE", "TURN", "RESOLUTION"]
+                }
+              }
+            }
+          }
+        },
+        "confluence_templates": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "pattern": "^CNF_[A-Z0-9_]+$" }
+        },
+        "starting_relations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["a", "b", "level"],
+            "additionalProperties": false,
+            "properties": {
+              "a": { "type": "string" },
+              "b": { "type": "string" },
+              "level": {
+                "type": "string",
+                "enum": ["ENEMY", "HOSTILE", "NEUTRAL", "ALLY", "BOUND"]
+              },
+              "tags": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        },
+        "global_tags": { "type": "array", "items": { "type": "string" } },
+        "opening_text": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}

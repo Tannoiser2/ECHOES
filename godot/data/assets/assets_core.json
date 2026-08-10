@@ -1,0 +1,262 @@
+{
+  "schema_id": "asset",
+  "version": "0.2.0",
+  "items": [
+    {
+      "id": "AST_FORCE_LEVY",
+      "title": "Leva Contadina",
+      "family": "FORCE",
+      "strength": 1,
+      "tags": [
+        "army",
+        "common"
+      ],
+      "acquisition_rule": "ACQUIRE su FORCE. Fonte: Montagne Rosse.",
+      "confluence_modifier": {
+        "kind": "NONE",
+        "value": 0
+      },
+      "discard_or_retain_rule": "DISCARD",
+      "rarity": "COMMON",
+      "deck_copies": 6,
+      "art_prompt_key": "asset.force.levy",
+      "rules_text": "Uomini con attrezzi da lavoro tenuti come lance. Bastano finche nessuno li conta."
+    },
+    {
+      "id": "AST_FORCE_WARBAND",
+      "title": "Banda Armata",
+      "family": "FORCE",
+      "strength": 2,
+      "tags": [
+        "army",
+        "terror",
+        "risky"
+      ],
+      "acquisition_rule": "ACQUIRE su FORCE. Fonte: Montagne Rosse.",
+      "confluence_modifier": {
+        "kind": "NONE",
+        "value": 0
+      },
+      "discard_or_retain_rule": "ALWAYS_DISCARD",
+      "rarity": "UNCOMMON",
+      "deck_copies": 4,
+      "art_prompt_key": "asset.force.warband",
+      "rules_text": "Si scarta sempre dopo l'uso. Impegnandola, la Tensione in gioco sale di 1: la paura non si spegne con la questione.",
+      "on_commit_effects": [
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "$tension"
+          },
+          "payload": {
+            "delta": 1
+          },
+          "note": "Il costo della Banda Armata: la violenza mostrata alza la posta."
+        }
+      ]
+    },
+    {
+      "id": "AST_AUTHORITY_EDICT",
+      "title": "Editto",
+      "family": "AUTHORITY",
+      "strength": 1,
+      "tags": [
+        "law",
+        "common"
+      ],
+      "acquisition_rule": "ACQUIRE su AUTHORITY. Fonte: Eredan.",
+      "confluence_modifier": {
+        "kind": "NONE",
+        "value": 0
+      },
+      "discard_or_retain_rule": "DISCARD",
+      "rarity": "COMMON",
+      "deck_copies": 6,
+      "art_prompt_key": "asset.authority.edict",
+      "rules_text": "Una riga scritta bene vale quanto chi la fa rispettare."
+    },
+    {
+      "id": "AST_AUTHORITY_CROWN_RIGHT",
+      "title": "Diritto di Corona",
+      "family": "AUTHORITY",
+      "strength": 2,
+      "tags": [
+        "title",
+        "tradition",
+        "risky"
+      ],
+      "acquisition_rule": "ACQUIRE su AUTHORITY. Fonte: Eredan.",
+      "confluence_modifier": {
+        "kind": "RELEVANT_BONUS",
+        "value": 1
+      },
+      "discard_or_retain_rule": "ALWAYS_DISCARD",
+      "rarity": "UNCOMMON",
+      "deck_copies": 4,
+      "art_prompt_key": "asset.authority.crown_right",
+      "rules_text": "+1 quando AUTHORITY e rilevante per la Tensione. Si scarta sempre: un diritto invocato due volte non e piu un diritto."
+    },
+    {
+      "id": "AST_PEOPLE_CROWD",
+      "title": "Folla",
+      "family": "PEOPLE",
+      "strength": 1,
+      "tags": [
+        "population",
+        "common"
+      ],
+      "acquisition_rule": "ACQUIRE su PEOPLE. Fonti: Valle Verde, Terre Nahr.",
+      "confluence_modifier": {
+        "kind": "NONE",
+        "value": 0
+      },
+      "discard_or_retain_rule": "DISCARD",
+      "rarity": "COMMON",
+      "deck_copies": 6,
+      "art_prompt_key": "asset.people.crowd",
+      "rules_text": "Nessuno l'ha convocata. E' arrivata lo stesso."
+    },
+    {
+      "id": "AST_PEOPLE_MOBILIZATION",
+      "title": "Mobilitazione",
+      "family": "PEOPLE",
+      "strength": 2,
+      "tags": [
+        "consensus",
+        "mobilisation",
+        "risky"
+      ],
+      "acquisition_rule": "ACQUIRE su PEOPLE. Fonti: Valle Verde, Terre Nahr.",
+      "confluence_modifier": {
+        "kind": "OPPOSE_BONUS",
+        "value": 1
+      },
+      "discard_or_retain_rule": "ALWAYS_DISCARD",
+      "rarity": "UNCOMMON",
+      "deck_copies": 4,
+      "art_prompt_key": "asset.people.mobilization",
+      "rules_text": "+1 sul fronte Oppose: e piu facile fermare qualcosa in molti che costruirla. Si scarta sempre."
+    },
+    {
+      "id": "AST_KNOWLEDGE_RUMOR",
+      "title": "Voce di Corridoio",
+      "family": "KNOWLEDGE",
+      "strength": 1,
+      "tags": [
+        "secret",
+        "common"
+      ],
+      "acquisition_rule": "ACQUIRE su KNOWLEDGE. Fonte: Miniere Antiche.",
+      "confluence_modifier": {
+        "kind": "NONE",
+        "value": 0
+      },
+      "discard_or_retain_rule": "DISCARD",
+      "rarity": "COMMON",
+      "deck_copies": 6,
+      "art_prompt_key": "asset.knowledge.rumor",
+      "rules_text": "Non e vera. Non e ancora falsa."
+    },
+    {
+      "id": "AST_KNOWLEDGE_PROOF",
+      "title": "Prova",
+      "family": "KNOWLEDGE",
+      "strength": 2,
+      "tags": [
+        "proof",
+        "discovery"
+      ],
+      "acquisition_rule": "ACQUIRE su KNOWLEDGE. Fonte: Miniere Antiche.",
+      "confluence_modifier": {
+        "kind": "RELEVANT_BONUS",
+        "value": 1
+      },
+      "discard_or_retain_rule": "RETAIN_ON_SUCCESS",
+      "rarity": "RARE",
+      "deck_copies": 4,
+      "art_prompt_key": "asset.knowledge.proof",
+      "rules_text": "+1 quando KNOWLEDGE e rilevante. Se la proposta passa, resta in mano: una prova dimostrata non si consuma."
+    },
+    {
+      "id": "AST_WEALTH_GRAIN",
+      "title": "Riserva di Grano",
+      "family": "WEALTH",
+      "strength": 1,
+      "tags": [
+        "food",
+        "common"
+      ],
+      "acquisition_rule": "ACQUIRE su WEALTH. Fonti: Eredan, Valle Verde, Miniere Antiche, Strada dei Mercanti.",
+      "confluence_modifier": {
+        "kind": "NONE",
+        "value": 0
+      },
+      "discard_or_retain_rule": "DISCARD",
+      "rarity": "COMMON",
+      "deck_copies": 6,
+      "art_prompt_key": "asset.wealth.grain",
+      "rules_text": "Conta piu di un titolo, per il tempo in cui dura."
+    },
+    {
+      "id": "AST_WEALTH_CARAVAN",
+      "title": "Carovana",
+      "family": "WEALTH",
+      "strength": 2,
+      "tags": [
+        "trade",
+        "risky"
+      ],
+      "acquisition_rule": "ACQUIRE su WEALTH. Fonti: Eredan, Valle Verde, Miniere Antiche, Strada dei Mercanti.",
+      "confluence_modifier": {
+        "kind": "NONE",
+        "value": 0
+      },
+      "discard_or_retain_rule": "ALWAYS_DISCARD",
+      "rarity": "UNCOMMON",
+      "deck_copies": 4,
+      "art_prompt_key": "asset.wealth.caravan",
+      "rules_text": "Si scarta sempre. Una carovana spesa e una carovana partita."
+    },
+    {
+      "id": "AST_BONDS_FAVOR",
+      "title": "Favore",
+      "family": "BONDS",
+      "strength": 1,
+      "tags": [
+        "debt",
+        "common"
+      ],
+      "acquisition_rule": "ACQUIRE su BONDS. Fonti: Terre Nahr, Montagne Rosse, Strada dei Mercanti.",
+      "confluence_modifier": {
+        "kind": "NONE",
+        "value": 0
+      },
+      "discard_or_retain_rule": "DISCARD",
+      "rarity": "COMMON",
+      "deck_copies": 6,
+      "art_prompt_key": "asset.bonds.favor",
+      "rules_text": "Piccolo, ricordato con precisione."
+    },
+    {
+      "id": "AST_BONDS_OATH",
+      "title": "Giuramento",
+      "family": "BONDS",
+      "strength": 2,
+      "tags": [
+        "pact",
+        "kinship"
+      ],
+      "acquisition_rule": "ACQUIRE su BONDS. Fonti: Terre Nahr, Montagne Rosse, Strada dei Mercanti.",
+      "confluence_modifier": {
+        "kind": "NONE",
+        "value": 0
+      },
+      "discard_or_retain_rule": "RETAIN",
+      "rarity": "RARE",
+      "deck_copies": 4,
+      "art_prompt_key": "asset.bonds.oath",
+      "rules_text": "Non si scarta mai. Un giuramento impegnato resta impegnato anche dopo."
+    }
+  ]
+}

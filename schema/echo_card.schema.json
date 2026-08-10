@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://echoes.local/schema/echo_card.schema.json",
+  "title": "Echo card collection",
+  "x-echoes-def": "echo_card",
+  "x-echoes-kind": "collection",
+  "type": "object",
+  "required": ["schema_id", "version", "items"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_id": { "const": "echo_card" },
+    "version": { "type": "string" },
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/echo_card" }
+    }
+  },
+  "$defs": {
+    "echo_card": {
+      "type": "object",
+      "required": [
+        "id",
+        "title",
+        "dramatic_family",
+        "function_id",
+        "description",
+        "eligibility",
+        "effect_hooks",
+        "art_prompt_key"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^ECH_[A-Z0-9_]+$" },
+        "title": { "type": "string", "minLength": 1 },
+        "dramatic_family": {
+          "type": "string",
+          "enum": ["PRESSURE", "RUPTURE", "TURN", "RESOLUTION"]
+        },
+        "function_id": {
+          "type": "string",
+          "enum": [
+            "LACK",
+            "THREAT",
+            "PROHIBITION",
+            "REQUEST",
+            "TEMPTATION",
+            "OMEN",
+            "VIOLATION",
+            "BETRAYAL",
+            "LOSS",
+            "ATTACK",
+            "SEPARATION",
+            "USURPATION",
+            "DISCOVERY",
+            "REVELATION",
+            "GIFT",
+            "ENCOUNTER",
+            "TRANSFORMATION",
+            "RETURN",
+            "SACRIFICE",
+            "CONQUEST",
+            "RECONCILIATION",
+            "PUNISHMENT",
+            "LIBERATION",
+            "SUCCESSION"
+          ]
+        },
+        "description": { "type": "string", "minLength": 1 },
+        "eligibility": {
+          "type": "array",
+          "items": { "$ref": "destiny.schema.json#/$defs/condition" },
+          "description": "All conditions must hold for the card to be legally drawn. Empty array = always eligible."
+        },
+        "effect_hooks": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/effect_hook" }
+        },
+        "forces_confluence_on": {
+          "type": ["string", "null"],
+          "description": "Tension id whose Confluence this card prescribes (§12.1b), or null."
+        },
+        "art_prompt_key": { "type": "string", "minLength": 1 },
+        "marker_id": { "type": "string" }
+      }
+    },
+    "effect_hook": {
+      "type": "object",
+      "required": ["kind"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": { "type": "string", "enum": ["CONSEQUENCE", "EFFECT"] },
+        "consequence_id": { "type": "string", "pattern": "^CNS_[A-Z0-9_]+$" },
+        "effect": { "$ref": "effect.schema.json#/$defs/effect_spec" },
+        "bindings": {
+          "type": "object",
+          "additionalProperties": { "type": "string" },
+          "description": "Static $variable bindings supplied to the ConsequenceCompiler."
+        }
+      }
+    }
+  }
+}

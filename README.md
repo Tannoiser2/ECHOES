@@ -1,0 +1,137 @@
+# ECHOES
+
+Boardgame/GDR narrativo-strategico a Chronicle. Ogni Chronicle è una storia
+completa nello stesso mondo persistente: i giocatori controllano Entità di scala
+diversa — un sovrano, un popolo, una creatura antica, un individuo — preparano la
+propria posizione mentre le Tensioni del mondo salgono, e si scontrano nelle
+**Confluence**, gli eventi storici in cui il tavolo decide cosa succede davvero.
+
+**Stato: Milestone 0.0 — Core Headless, completata.**
+Il motore è completo e giocabile senza UI: una Chronicle intera gira da riga di
+comando in meno di un secondo. La 0.1 (vertical slice hotseat) non è iniziata.
+
+- [Game Design](docs/GAME_DESIGN.md) — perché il gioco è fatto così
+- [Regole v0.2](docs/RULES_V0_2.md) — cosa fa il codice, numeri compresi
+- [Modello dati](docs/DATA_SCHEMA.md) · [Decisioni](docs/DECISIONS.md) ·
+  [Piano di test](docs/TEST_PLAN.md) · [Roadmap](docs/ROADMAP.md) ·
+  [Art Bible](docs/ART_BIBLE.md) · [Asset Manifest](docs/ASSET_MANIFEST.md)
+
+---
+
+## Requisiti
+
+- **Godot 4.7.1 stable** — per la 0.0 basta il build headless
+- **Python 3.10+** con `jsonschema>=4.18` per gli strumenti di validazione
+
+```bash
+pip install 'jsonschema>=4.18'
+```
+
+Nessun backend, nessuna API key, nessun servizio esterno. Tutto offline.
+
+---
+
+## Aprire il progetto
+
+La cartella `godot/` è il progetto Godot: aprila direttamente dall'editor, oppure
+
+```bash
+godot --path godot                    # esegue la scena di boot (validazione dati)
+godot --headless --path godot         # stessa cosa, senza finestra
+```
+
+In 0.0 la scena di boot esiste solo per validare i dati e dare qualcosa da
+caricare agli smoke test. Non c'è UI di gioco: è previsto.
+
+---
+
+## Giocare una Chronicle da riga di comando
+
+```bash
+godot --headless --path godot --script res://cli/run_chronicle_sim.gd -- \
+    --plan=res://data/chronicle_01/sim_plans/plan_a_grain_accord.json
+```
+
+Stampa il log pubblico dell'intera partita — azioni, Drift, presagi, la sequenza
+A–K di ogni Confluence con la matematica in chiaro, i Destiny finali e il registro
+delle Verità.
+
+Opzioni: `--out=<file>` salva il save finale · `--log=<file>` salva il log ·
+`--seed=<int>` sovrascrive il seed del piano · `--quiet` non stampa il log ·
+`--lenient` non fallisce sulle scelte scriptate illegali · `--help`.
+
+Tutti e tre i piani in un colpo solo:
+
+```bash
+GODOT=/path/to/godot tools/run_sims.sh     # scrive log e save in out/
+```
+
+| piano | esiti | cosa mostra |
+|---|---|---|
+| `plan_a_grain_accord` | Decisive Success | il trono conquista il seggio di proponente e requisisce il grano senza opposizione |
+| `plan_b_broken_council` | Failure, Success with Cost ×2 | i Nahr chiedono la terra e il tavolo intero dice no: una sconfitta memorabile diventa comunque storia |
+| `plan_c_opened_mine` | Failure, Success | un Claim forza una Confluence fuori soglia sulle Miniere, e Vaerax la fa cadere |
+
+---
+
+## Test e validazione
+
+```bash
+# 64 test unit + smoke, headless
+godot --headless --path godot --script res://tests/run_tests.gd
+godot --headless --path godot --script res://tests/run_tests.gd -- --filter=confluence
+
+# dati contro /schema, più integrità referenziale
+python3 tools/validate_data.py
+
+# il GDScript generato è ancora allineato agli schemi?
+python3 tools/gen_gd_schema.py --check
+python3 tools/build_manifest.py --check
+```
+
+Determinismo (criterio §18.3): stesso seed e stesso piano devono produrre un save
+byte-identico.
+
+```bash
+OUT=/tmp/run1 tools/run_sims.sh && OUT=/tmp/run2 tools/run_sims.sh
+cmp /tmp/run1/plan_a_grain_accord.save.json /tmp/run2/plan_a_grain_accord.save.json
+```
+
+---
+
+## Struttura
+
+```
+schema/          JSON Schema 2020-12 — la fonte unica del modello dati
+tools/           validate_data.py, gen_gd_schema.py, build_manifest.py, run_sims.sh
+godot/
+  autoload/      EventBus, DataRegistry, GameState, SaveManager
+  scripts/
+    core/        Effect, EffectApplier, RngService, SaveSerializer, schema_defs (generato)
+    world/       WorldStateFactory, WorldStateService, ConditionEvaluator
+    chronicle/   GameSession, ChronicleController, TensionSystem, EchoRecorder, DestinyEvaluator
+    confluence/  ConfluenceController, confluence_resolution (Strategy baseline_v0)
+    actions/     ActionResolver — i sei template
+  data/          contenuto della Chronicle I (ridotto §18.2)
+  cli/           run_chronicle_sim.gd, scripted_decider.gd
+  tests/         unit/ e smoke/, con il runner
+docs/            design, regole, decisioni, piano di test, art bible
+```
+
+Due principi tengono insieme l'architettura:
+
+**Ogni mutazione del mondo è un Effect.** Nessun sistema scrive sul WorldState:
+costruisce Effect e li passa a `EffectApplier`, che ne calcola l'inverso, li
+applica e li registra. Da lì arrivano gratis l'undo del Developer Mode, la
+riproducibilità e un log che spiega ogni singola cosa successa al tavolo.
+
+**Il motore non decide niente.** `ChronicleController` chiede ogni scelta a un
+oggetto `decider`. Oggi è lo `ScriptedDecider` della CLI; in 0.1 sarà la UI
+hotseat. Le regole non cambiano di una riga.
+
+---
+
+## Licenza
+
+Codice: MIT. Contenuto di gioco e documentazione: CC BY-NC-SA 4.0.
+Vedi [LICENSE.md](LICENSE.md).

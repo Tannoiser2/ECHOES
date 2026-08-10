@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://echoes.local/schema/consequence.schema.json",
+  "title": "Consequence collection",
+  "x-echoes-def": "consequence",
+  "x-echoes-kind": "collection",
+  "type": "object",
+  "required": ["schema_id", "version", "items"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_id": { "const": "consequence" },
+    "version": { "type": "string" },
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/consequence" }
+    }
+  },
+  "$defs": {
+    "consequence_category": {
+      "type": "string",
+      "enum": [
+        "CONTROL",
+        "PRESENCE",
+        "ALLIANCE",
+        "HOSTILITY",
+        "PACT",
+        "DEBT",
+        "WAR",
+        "MIGRATION",
+        "FAMINE",
+        "PROSPERITY",
+        "DEVASTATION",
+        "CORRUPTION",
+        "DISCOVERY",
+        "SECRET",
+        "INFLUENCE",
+        "REVOLT",
+        "FORTIFICATION",
+        "SETTLEMENT",
+        "EXPLOITATION",
+        "THREAT"
+      ]
+    },
+    "consequence": {
+      "type": "object",
+      "required": ["id", "title", "category", "description", "effects"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^CNS_[A-Z0-9_]+$" },
+        "title": { "type": "string", "minLength": 1 },
+        "category": { "$ref": "#/$defs/consequence_category" },
+        "description": { "type": "string", "minLength": 1 },
+        "creates_scar": { "type": "boolean", "default": false },
+        "scar": {
+          "type": "object",
+          "description": "Required when creates_scar is true: the persistent mark this Consequence leaves on the map (§16).",
+          "required": ["region_id", "tag", "description"],
+          "additionalProperties": false,
+          "properties": {
+            "region_id": { "type": "string" },
+            "tag": { "type": "string" },
+            "description": { "type": "string" }
+          }
+        },
+        "effects": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "effect.schema.json#/$defs/effect_spec" }
+        }
+      }
+    }
+  }
+}

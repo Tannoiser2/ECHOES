@@ -1,0 +1,224 @@
+{
+  "schema_id": "echo_card",
+  "version": "0.2.0",
+  "items": [
+    {
+      "id": "ECH_LACK",
+      "title": "Mancanza",
+      "dramatic_family": "PRESSURE",
+      "function_id": "LACK",
+      "description": "Qualcosa che c'era non c'e piu, e la sua assenza comincia a organizzare le giornate di tutti.",
+      "eligibility": [],
+      "effect_hooks": [
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "ADJUST_TENSION",
+            "target": { "kind": "tension", "id": "TEN_FAMINE" },
+            "payload": { "delta": 1 }
+          }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "SET_REGION_TAG",
+            "target": { "kind": "region", "id": "REG_VALLE_VERDE" },
+            "payload": { "tag": "condition:lean" }
+          }
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.pressure.lack"
+    },
+    {
+      "id": "ECH_OMEN",
+      "title": "Presagio",
+      "dramatic_family": "PRESSURE",
+      "function_id": "OMEN",
+      "description": "Un segno che nessuno sa leggere del tutto e che nessuno riesce a ignorare del tutto.",
+      "eligibility": [],
+      "effect_hooks": [
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "ADJUST_TENSION",
+            "target": { "kind": "tension", "id": "TEN_AWAKENING" },
+            "payload": { "delta": 1 }
+          }
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.pressure.omen"
+    },
+    {
+      "id": "ECH_BETRAYAL",
+      "title": "Tradimento",
+      "dramatic_family": "RUPTURE",
+      "function_id": "BETRAYAL",
+      "description": "Un accordo viene rotto da chi lo aveva proposto. Il danno non e la rottura: e che ora tutti ricalcolano.",
+      "eligibility": [],
+      "effect_hooks": [
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "SET_GLOBAL_TAG",
+            "target": { "kind": "world", "id": "WORLD" },
+            "payload": { "tag": "betrayal_spoken" }
+          }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "ADJUST_TENSION",
+            "target": { "kind": "tension", "id": "TEN_FAMINE" },
+            "payload": { "delta": 1 }
+          }
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.rupture.betrayal"
+    },
+    {
+      "id": "ECH_LOSS",
+      "title": "Perdita",
+      "dramatic_family": "RUPTURE",
+      "function_id": "LOSS",
+      "description": "Qualcuno non c'e piu, e la sua parte di lavoro resta scoperta.",
+      "eligibility": [],
+      "effect_hooks": [
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "ADJUST_TENSION",
+            "target": { "kind": "tension", "id": "TEN_FAMINE" },
+            "payload": { "delta": 1 }
+          }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "SET_REGION_TAG",
+            "target": { "kind": "region", "id": "REG_TERRE_NAHR" },
+            "payload": { "tag": "condition:mourning" }
+          }
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.rupture.loss"
+    },
+    {
+      "id": "ECH_DISCOVERY",
+      "title": "Scoperta",
+      "dramatic_family": "TURN",
+      "function_id": "DISCOVERY",
+      "description": "Qualcosa di nascosto viene misurato. Da questo momento la questione ha dei numeri, e i numeri si discutono.",
+      "eligibility": [],
+      "effect_hooks": [
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "SET_TENSION_VISIBILITY",
+            "target": { "kind": "tension", "id": "TEN_AWAKENING" },
+            "payload": { "visibility": "OPEN" }
+          }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "SET_GLOBAL_TAG",
+            "target": { "kind": "world", "id": "WORLD" },
+            "payload": { "tag": "crystal_measured" }
+          }
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.turn.discovery"
+    },
+    {
+      "id": "ECH_REVELATION",
+      "title": "Rivelazione",
+      "dramatic_family": "TURN",
+      "function_id": "REVELATION",
+      "description": "Cio che era privato diventa pubblico davanti a tutti. Non si puo piu decidere come se non si sapesse.",
+      "eligibility": [
+        { "type": "tension_limit", "tension_id": "TEN_AWAKENING", "min": 3, "label": "Il Risveglio e gia in movimento" }
+      ],
+      "effect_hooks": [
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "SET_TENSION_VISIBILITY",
+            "target": { "kind": "tension", "id": "TEN_AWAKENING" },
+            "payload": { "visibility": "OPEN" }
+          }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "ADJUST_TENSION",
+            "target": { "kind": "tension", "id": "TEN_AWAKENING" },
+            "payload": { "delta": 1 }
+          }
+        }
+      ],
+      "forces_confluence_on": "TEN_AWAKENING",
+      "art_prompt_key": "echo.turn.revelation"
+    },
+    {
+      "id": "ECH_SACRIFICE",
+      "title": "Sacrificio",
+      "dramatic_family": "RESOLUTION",
+      "function_id": "SACRIFICE",
+      "description": "Qualcuno paga di persona per chiudere una questione. Funziona, e non viene dimenticato.",
+      "eligibility": [],
+      "effect_hooks": [
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "ADJUST_TENSION",
+            "target": { "kind": "tension", "id": "TEN_FAMINE" },
+            "payload": { "delta": -2 }
+          }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "SET_GLOBAL_TAG",
+            "target": { "kind": "world", "id": "WORLD" },
+            "payload": { "tag": "someone_paid" }
+          }
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.resolution.sacrifice"
+    },
+    {
+      "id": "ECH_RECONCILIATION",
+      "title": "Riconciliazione",
+      "dramatic_family": "RESOLUTION",
+      "function_id": "RECONCILIATION",
+      "description": "Due parti che si erano contate come nemiche trovano un motivo pratico per smettere.",
+      "eligibility": [],
+      "effect_hooks": [
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "ADJUST_TENSION",
+            "target": { "kind": "tension", "id": "TEN_FAMINE" },
+            "payload": { "delta": -1 }
+          }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "ADJUST_TENSION",
+            "target": { "kind": "tension", "id": "TEN_AWAKENING" },
+            "payload": { "delta": -1 }
+          }
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.resolution.reconciliation"
+    }
+  ]
+}

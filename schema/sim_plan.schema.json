@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://echoes.local/schema/sim_plan.schema.json",
+  "title": "Simulation plan collection",
+  "x-echoes-def": "sim_plan",
+  "x-echoes-kind": "collection",
+  "type": "object",
+  "required": ["schema_id", "version", "items"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_id": { "const": "sim_plan" },
+    "version": { "type": "string" },
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 1,
+      "items": { "$ref": "#/$defs/sim_plan" }
+    }
+  },
+  "$defs": {
+    "sim_plan": {
+      "type": "object",
+      "description": "Scripted Chronicle playthrough consumed by godot/cli/run_chronicle_sim.gd (§18.1).",
+      "required": ["id", "title", "chronicle_id", "seed", "seats", "turns", "confluences"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^SIM_[A-Z0-9_]+$" },
+        "title": { "type": "string", "minLength": 1 },
+        "description": { "type": "string" },
+        "chronicle_id": { "type": "string", "pattern": "^CHR_[A-Z0-9_]+$" },
+        "seed": { "type": "integer", "minimum": 0 },
+        "seats": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 4,
+          "items": { "type": "string", "pattern": "^ENT_[A-Z0-9_]+$" }
+        },
+        "fallback_action": {
+          "$ref": "#/$defs/turn_action",
+          "description": "Used when a seat has no scripted action left for the current AO."
+        },
+        "turns": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/scripted_turn" }
+        },
+        "confluences": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/scripted_confluence" }
+        },
+        "expected": {
+          "type": "object",
+          "description": "Optional assertions checked by the harness at the end of the run.",
+          "additionalProperties": false,
+          "properties": {
+            "confluence_count": { "type": "integer", "minimum": 0 },
+            "outcomes": { "type": "array", "items": { "type": "string" } },
+            "min_echoes": { "type": "integer", "minimum": 0 },
+            "min_truths": { "type": "integer", "minimum": 0 }
+          }
+        }
+      }
+    },
+    "turn_action": {
+      "type": "object",
+      "required": ["template"],
+      "additionalProperties": false,
+      "properties": {
+        "template": {
+          "type": "string",
+          "enum": ["ACQUIRE", "MOVE", "INFLUENCE", "FORGE", "SCHEME", "CLAIM", "PASS"]
+        },
+        "params": { "type": "object" }
+      }
+    },
+    "scripted_turn": {
+      "type": "object",
+      "required": ["act", "round", "actor", "template"],
+      "additionalProperties": false,
+      "properties": {
+        "act": { "type": "integer", "minimum": 1 },
+        "round": { "type": "integer", "minimum": 1 },
+        "actor": { "type": "string", "pattern": "^ENT_[A-Z0-9_]+$" },
+        "template": {
+          "type": "string",
+          "enum": ["ACQUIRE", "MOVE", "INFLUENCE", "FORGE", "SCHEME", "CLAIM", "PASS"]
+        },
+        "params": { "type": "object" },
+        "note": { "type": "string" }
+      }
+    },
+    "scripted_confluence": {
+      "type": "object",
+      "description": "Directives applied to the Nth Confluence of the run (index is 0-based).",
+      "required": ["index"],
+      "additionalProperties": false,
+      "properties": {
+        "index": { "type": "integer", "minimum": 0 },
+        "note": { "type": "string" },
+        "question_id": { "type": "string" },
+        "proposition_id": { "type": "string" },
+        "stances": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": ["stance"],
+            "additionalProperties": false,
+            "properties": {
+              "stance": {
+                "type": "string",
+                "enum": ["SUPPORT", "OPPOSE", "CONDITION", "ABSTAIN"]
+              },
+              "clause_id": { "type": "string" }
+            }
+          }
+        },
+        "commits": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "maxItems": 3,
+            "items": { "type": "string", "pattern": "^AST_[A-Z0-9_]+$" }
+          }
+        },
+        "failure_recovery": {
+          "type": "object",
+          "description": "opposer entity id -> asset id recovered on Failure (§12.3).",
+          "additionalProperties": { "type": "string", "pattern": "^AST_[A-Z0-9_]+$" }
+        }
+      }
+    }
+  }
+}

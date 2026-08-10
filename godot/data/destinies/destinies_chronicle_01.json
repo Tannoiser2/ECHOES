@@ -1,0 +1,118 @@
+{
+  "schema_id": "destiny",
+  "version": "0.2.0",
+  "items": [
+    {
+      "id": "DST_ALDRIC",
+      "entity_id": "ENT_ALDRIC",
+      "title": "Il Regno che Resta",
+      "description": "Tenere Eredan indipendente e raggiungere un controllo politico sufficiente, senza lasciare il regno in collasso.",
+      "minimum": {
+        "label": "Il trono regge",
+        "conditions": [
+          { "type": "entity_alive", "entity_id": "ENT_ALDRIC", "label": "Aldric e ancora sul trono" },
+          { "type": "region_presence", "entity_id": "ENT_ALDRIC", "region_id": "REG_EREDAN", "min": 1, "label": "Presenza a Eredan" }
+        ]
+      },
+      "victory": {
+        "label": "Il regno decide",
+        "conditions": [
+          { "type": "control_count", "entity_id": "ENT_ALDRIC", "min": 2, "label": "Controllo di almeno 2 Regioni" },
+          { "type": "tension_limit", "tension_id": "TEN_FAMINE", "max": 4, "label": "La Carestia non supera 4" }
+        ]
+      },
+      "triumph": {
+        "label": "Un regno che non ha pagato il pane con il sangue",
+        "conditions": [
+          { "type": "state_tag_absent", "scope": "REGION", "region_id": "REG_EREDAN", "tag": "condition:unrest", "label": "Eredan non e in rivolta" },
+          { "type": "state_tag_absent", "scope": "GLOBAL", "tag": "question_unresolved", "label": "Nessuna questione lasciata aperta" }
+        ]
+      },
+      "art_prompt_key": "destiny.aldric"
+    },
+    {
+      "id": "DST_NAHR",
+      "entity_id": "ENT_NAHR",
+      "title": "Una Terra dove Fermarsi",
+      "description": "Ottenere una patria stabile conservando autonomia e cultura del popolo.",
+      "minimum": {
+        "label": "Il popolo sopravvive",
+        "conditions": [
+          { "type": "entity_alive", "entity_id": "ENT_NAHR", "label": "I Nahr esistono ancora come popolo" },
+          { "type": "region_presence", "entity_id": "ENT_NAHR", "region_id": "REG_TERRE_NAHR", "min": 1, "label": "Presenza nelle Terre Nahr" }
+        ]
+      },
+      "victory": {
+        "label": "Il popolo si ferma",
+        "conditions": [
+          { "type": "state_tag_present", "scope": "GLOBAL", "tag": "nahr_settled", "label": "L'insediamento e riconosciuto" },
+          { "type": "region_presence", "entity_id": "ENT_NAHR", "region_id": "REG_VALLE_VERDE", "min": 1, "label": "Presenza nella Valle Verde" }
+        ]
+      },
+      "triumph": {
+        "label": "Fermarsi senza smettere di essere Nahr",
+        "conditions": [
+          { "type": "state_tag_absent", "scope": "GLOBAL", "tag": "valley_sealed", "label": "La Valle non e stata chiusa" },
+          { "type": "tension_limit", "tension_id": "TEN_FAMINE", "max": 3, "label": "La Carestia e sotto controllo" }
+        ]
+      },
+      "art_prompt_key": "destiny.nahr"
+    },
+    {
+      "id": "DST_LYRA",
+      "entity_id": "ENT_LYRA",
+      "title": "Sapere e Poter Tornare a Guardare",
+      "description": "Scoprire le proprieta del Cristallo Rosso e conservare l'accesso a cio che lo produce.",
+      "minimum": {
+        "label": "Ha capito qualcosa",
+        "conditions": [
+          { "type": "entity_alive", "entity_id": "ENT_LYRA", "label": "Lyra e viva" },
+          { "type": "discovery_count", "entity_id": "ENT_LYRA", "min": 1, "label": "Almeno una Scoperta" }
+        ]
+      },
+      "victory": {
+        "label": "Sa, ed e ancora nelle gallerie",
+        "conditions": [
+          { "type": "region_presence", "entity_id": "ENT_LYRA", "region_id": "REG_MINIERE_ANTICHE", "min": 1, "label": "Presenza nelle Miniere Antiche" },
+          { "type": "state_tag_absent", "scope": "GLOBAL", "tag": "mine_sealed", "label": "Le Miniere non sono sigillate" }
+        ]
+      },
+      "triumph": {
+        "label": "Il sapere e diventato pubblico e verificabile",
+        "conditions": [
+          { "type": "discovery_count", "entity_id": "ENT_LYRA", "min": 2, "label": "Due Scoperte" },
+          { "type": "tension_limit", "tension_id": "TEN_AWAKENING", "min": 0, "max": 6, "label": "Il Risveglio non e esploso" }
+        ]
+      },
+      "art_prompt_key": "destiny.lyra"
+    },
+    {
+      "id": "DST_VAERAX",
+      "entity_id": "ENT_VAERAX",
+      "title": "Cio che Dorme Resti Addormentato",
+      "description": "Impedire lo sfruttamento incontrollato del Cristallo e preservare le Montagne Rosse.",
+      "minimum": {
+        "label": "La montagna e ancora sua",
+        "conditions": [
+          { "type": "entity_alive", "entity_id": "ENT_VAERAX", "label": "Vaerax e ancora presente nel mondo" },
+          { "type": "region_presence", "entity_id": "ENT_VAERAX", "region_id": "REG_MONTAGNE_ROSSE", "min": 1, "label": "Presenza sulle Montagne Rosse" }
+        ]
+      },
+      "victory": {
+        "label": "Nessuno ha portato via il Cristallo",
+        "conditions": [
+          { "type": "state_tag_absent", "scope": "GLOBAL", "tag": "crystal_exploited", "label": "Il Cristallo non e stato sfruttato" },
+          { "type": "state_tag_absent", "scope": "REGION", "region_id": "REG_MINIERE_ANTICHE", "tag": "condition:exploited", "label": "Le Miniere non sono state svuotate" }
+        ]
+      },
+      "triumph": {
+        "label": "Il sonno e stato reso sicuro",
+        "conditions": [
+          { "type": "state_tag_present", "scope": "GLOBAL", "tag": "mine_sealed", "label": "Le Miniere sono sigillate" },
+          { "type": "tension_limit", "tension_id": "TEN_AWAKENING", "max": 4, "label": "Il Risveglio e stato riportato indietro" }
+        ]
+      },
+      "art_prompt_key": "destiny.vaerax"
+    }
+  ]
+}

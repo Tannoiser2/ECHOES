@@ -1,0 +1,185 @@
+{
+  "schema_id": "consequence",
+  "version": "0.2.0",
+  "items": [
+    {
+      "id": "CNS_ROYAL_GRANARY",
+      "title": "Il Granaio del Trono",
+      "category": "PROSPERITY",
+      "description": "Il grano della Valle passa dalle mani del trono prima di arrivare a una tavola. Chi lo distribuisce decide chi mangia.",
+      "effects": [
+        {
+          "type": "SET_REGION_TAG",
+          "target": { "kind": "region", "id": "REG_EREDAN" },
+          "payload": { "tag": "structure:granary" }
+        },
+        {
+          "type": "SET_CONTROL",
+          "target": { "kind": "region", "id": "REG_VALLE_VERDE" },
+          "payload": { "entity_id": "$proponent" }
+        },
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": { "kind": "world", "id": "WORLD" },
+          "payload": { "tag": "grain_requisitioned" }
+        }
+      ]
+    },
+    {
+      "id": "CNS_NAHR_SETTLEMENT",
+      "title": "Chi Lavora Mangia",
+      "category": "SETTLEMENT",
+      "description": "La Valle si apre a chi arriva da est. Il confine non viene abolito: viene spostato dentro le persone.",
+      "effects": [
+        {
+          "type": "SET_REGION_TAG",
+          "target": { "kind": "region", "id": "REG_VALLE_VERDE" },
+          "payload": { "tag": "settlement:nahr" }
+        },
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": { "kind": "world", "id": "WORLD" },
+          "payload": { "tag": "nahr_settled" }
+        },
+        {
+          "type": "SET_RELATION",
+          "target": { "kind": "relation", "id": "ENT_ALDRIC|ENT_NAHR" },
+          "payload": { "add_tag": "PACT" }
+        }
+      ]
+    },
+    {
+      "id": "CNS_SEALED_VALLEY",
+      "title": "La Valle Chiusa",
+      "category": "CONTROL",
+      "description": "I confini si chiudono. La Valle nutre Eredan e nessun altro, e le Terre Nahr imparano cosa significa un inverno senza uscita.",
+      "effects": [
+        {
+          "type": "SET_CONTROL",
+          "target": { "kind": "region", "id": "REG_VALLE_VERDE" },
+          "payload": { "entity_id": "$proponent" }
+        },
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": { "kind": "world", "id": "WORLD" },
+          "payload": { "tag": "valley_sealed" }
+        },
+        {
+          "type": "SET_REGION_TAG",
+          "target": { "kind": "region", "id": "REG_TERRE_NAHR" },
+          "payload": { "tag": "condition:starving" }
+        },
+        {
+          "type": "SET_RELATION",
+          "target": { "kind": "relation", "id": "ENT_ALDRIC|ENT_NAHR" },
+          "payload": { "level": "ENEMY" }
+        }
+      ]
+    },
+    {
+      "id": "CNS_CRYSTAL_EXPLOITED",
+      "title": "La Miniera Aperta",
+      "category": "EXPLOITATION",
+      "description": "Il Cristallo Rosso esce dalle gallerie a peso. Quello che era una domanda diventa una voce di bilancio.",
+      "effects": [
+        {
+          "type": "SET_REGION_TAG",
+          "target": { "kind": "region", "id": "REG_MINIERE_ANTICHE" },
+          "payload": { "tag": "condition:exploited" }
+        },
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": { "kind": "world", "id": "WORLD" },
+          "payload": { "tag": "crystal_exploited" }
+        },
+        {
+          "type": "SET_TENSION_VISIBILITY",
+          "target": { "kind": "tension", "id": "TEN_AWAKENING" },
+          "payload": { "visibility": "OPEN" }
+        },
+        {
+          "type": "SET_ENTITY_TAG",
+          "target": { "kind": "entity", "id": "$proponent" },
+          "payload": { "tag": "discovery:crystal" }
+        }
+      ]
+    },
+    {
+      "id": "CNS_MINE_SEALED",
+      "title": "Le Miniere Sigillate",
+      "category": "SECRET",
+      "description": "Le gallerie vengono chiuse. Chi ha visto il Cristallo Rosso continuera a saperlo; nessun altro potra verificarlo.",
+      "effects": [
+        {
+          "type": "SET_REGION_TAG",
+          "target": { "kind": "region", "id": "REG_MINIERE_ANTICHE" },
+          "payload": { "tag": "structure:sealed" }
+        },
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": { "kind": "world", "id": "WORLD" },
+          "payload": { "tag": "mine_sealed" }
+        },
+        {
+          "type": "SET_ENTITY_TAG",
+          "target": { "kind": "entity", "id": "$proponent" },
+          "payload": { "tag": "discovery:crystal" }
+        }
+      ]
+    },
+    {
+      "id": "CNS_COST_UNREST",
+      "title": "Il Prezzo del Consenso",
+      "category": "REVOLT",
+      "description": "La proposta passa, ma qualcuno la paga senza averla votata. Le strade di Eredan si riempiono di gente che aspetta.",
+      "effects": [
+        {
+          "type": "SET_REGION_TAG",
+          "target": { "kind": "region", "id": "REG_EREDAN" },
+          "payload": { "tag": "condition:unrest" }
+        },
+        {
+          "type": "ADJUST_TENSION",
+          "target": { "kind": "tension", "id": "$tension" },
+          "payload": { "delta": 1 }
+        }
+      ]
+    },
+    {
+      "id": "CNS_FAILURE_SPIRAL",
+      "title": "Nessuno Decide",
+      "category": "DEVASTATION",
+      "description": "La proposta cade. La questione resta esattamente dov'era, con meno tempo davanti e piu rancore intorno.",
+      "effects": [
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": { "kind": "world", "id": "WORLD" },
+          "payload": { "tag": "question_unresolved" }
+        },
+        {
+          "type": "SET_ENTITY_TAG",
+          "target": { "kind": "entity", "id": "$proponent" },
+          "payload": { "tag": "failed_proposal" }
+        }
+      ]
+    },
+    {
+      "id": "CNS_DECISIVE_RENOWN",
+      "title": "Ordine Ristabilito",
+      "category": "INFLUENCE",
+      "description": "La proposta non passa soltanto: convince. Per un tempo, il tavolo smette di discutere chi ha ragione.",
+      "effects": [
+        {
+          "type": "SET_ENTITY_TAG",
+          "target": { "kind": "entity", "id": "$proponent" },
+          "payload": { "tag": "renowned" }
+        },
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": { "kind": "world", "id": "WORLD" },
+          "payload": { "tag": "order_restored" }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "schema_id": "tension",
+  "version": "0.2.0",
+  "items": [
+    {
+      "id": "TEN_FAMINE",
+      "title": "La Carestia",
+      "domain": "SURVIVAL",
+      "current_value": 3,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": ["WEALTH", "PEOPLE", "AUTHORITY"],
+      "omen_thresholds": [
+        { "at": 5, "message": "I granai di Eredan si aprono un giorno su tre. Nessuno lo ha annunciato: si vede dalle code.", "reveals_value": false }
+      ],
+      "possible_questions": ["Q_FAMINE_GRAIN", "Q_FAMINE_LAND"],
+      "triggers": [
+        "Ogni raccolto mancato nella Valle Verde.",
+        "Ogni bocca in piu che arriva da est.",
+        "Ogni riserva spesa per qualcosa che non e cibo."
+      ],
+      "decrease_rules": [
+        "Una Confluence risolta sulla distribuzione del grano.",
+        "Carte Echo di RISOLUZIONE che spendono qualcosa di reale."
+      ],
+      "linked_tensions": ["TEN_AWAKENING"],
+      "confluence_template_id": "CNF_FAMINE_01",
+      "description": "Non e ancora fame. E' il calcolo, fatto a voce bassa, di quanto manchi alla fame."
+    },
+    {
+      "id": "TEN_AWAKENING",
+      "title": "Il Risveglio",
+      "domain": "ANCIENT",
+      "current_value": 2,
+      "threshold": 7,
+      "visibility": "VEILED",
+      "relevant_asset_families": ["KNOWLEDGE", "FORCE", "BONDS"],
+      "omen_thresholds": [
+        { "at": 3, "message": "Nelle Miniere Antiche le lampade si spengono tutte insieme, e si riaccendono da sole.", "reveals_value": false },
+        { "at": 5, "message": "Sulle Montagne Rosse la neve non attecchisce piu sul versante orientale.", "reveals_value": false }
+      ],
+      "possible_questions": ["Q_AWAKENING_CRYSTAL", "Q_AWAKENING_MOUNTAIN"],
+      "triggers": [
+        "Ogni frammento di Cristallo Rosso portato fuori dalle gallerie.",
+        "Ogni misura presa su cio che dorme senza chiedere il permesso."
+      ],
+      "decrease_rules": [
+        "Sigillare le Miniere.",
+        "Un patto che vincoli chi studia il Cristallo."
+      ],
+      "linked_tensions": ["TEN_FAMINE"],
+      "confluence_template_id": "CNF_AWAKENING_01",
+      "description": "Velata: i giocatori vedono i presagi, non il numero. Solo SCHEME apre il valore."
+    }
+  ]
+}

@@ -1,0 +1,254 @@
+{
+  "schema_id": "sim_plan",
+  "version": "0.2.0",
+  "items": [
+    {
+      "id": "SIM_PLAN_B",
+      "title": "Il consiglio spezzato",
+      "description": "I Nahr chiedono la terra che ancora produce e il tavolo intero risponde di no. La proposta cade: il fronte contrario supera 6, quindi anche una sconfitta diventa storia (§12.4).",
+      "chronicle_id": "CHR_01",
+      "seed": 20260811,
+      "seats": [
+        "ENT_ALDRIC",
+        "ENT_NAHR",
+        "ENT_LYRA",
+        "ENT_VAERAX"
+      ],
+      "turns": [
+        {
+          "act": 1,
+          "round": 1,
+          "actor": "ENT_ALDRIC",
+          "template": "ACQUIRE",
+          "params": {
+            "family": "AUTHORITY"
+          }
+        },
+        {
+          "act": 1,
+          "round": 1,
+          "actor": "ENT_ALDRIC",
+          "template": "ACQUIRE",
+          "params": {
+            "family": "AUTHORITY"
+          }
+        },
+        {
+          "act": 1,
+          "round": 1,
+          "actor": "ENT_NAHR",
+          "template": "ACQUIRE",
+          "params": {
+            "family": "PEOPLE"
+          }
+        },
+        {
+          "act": 1,
+          "round": 1,
+          "actor": "ENT_LYRA",
+          "template": "ACQUIRE",
+          "params": {
+            "family": "KNOWLEDGE"
+          }
+        },
+        {
+          "act": 1,
+          "round": 1,
+          "actor": "ENT_VAERAX",
+          "template": "SCHEME",
+          "params": {
+            "mode": "TENSION",
+            "tension_id": "TEN_AWAKENING"
+          },
+          "note": "Senza questa Scoperta, Vaerax non puo toccare il Risveglio."
+        },
+        {
+          "act": 1,
+          "round": 2,
+          "actor": "ENT_ALDRIC",
+          "template": "ACQUIRE",
+          "params": {
+            "family": "AUTHORITY"
+          }
+        },
+        {
+          "act": 1,
+          "round": 2,
+          "actor": "ENT_ALDRIC",
+          "template": "FORGE",
+          "params": {
+            "target_entity_id": "ENT_NAHR",
+            "direction": "DOWN"
+          },
+          "note": "Il trono rompe in pubblico con i Nahr: da HOSTILE a ENEMY."
+        },
+        {
+          "act": 1,
+          "round": 2,
+          "actor": "ENT_NAHR",
+          "template": "ACQUIRE",
+          "params": {
+            "family": "PEOPLE"
+          }
+        },
+        {
+          "act": 1,
+          "round": 2,
+          "actor": "ENT_LYRA",
+          "template": "ACQUIRE",
+          "params": {
+            "family": "KNOWLEDGE"
+          }
+        },
+        {
+          "act": 1,
+          "round": 3,
+          "actor": "ENT_ALDRIC",
+          "template": "INFLUENCE",
+          "params": {
+            "tension_id": "TEN_FAMINE",
+            "delta": 1,
+            "via": "PRESENCE"
+          }
+        },
+        {
+          "act": 1,
+          "round": 3,
+          "actor": "ENT_NAHR",
+          "template": "INFLUENCE",
+          "params": {
+            "tension_id": "TEN_FAMINE",
+            "delta": 1,
+            "via": "PRESENCE"
+          },
+          "note": "Entrambi vogliono la questione sul tavolo. Per ragioni opposte."
+        },
+        {
+          "act": 2,
+          "round": 1,
+          "actor": "ENT_ALDRIC",
+          "template": "INFLUENCE",
+          "params": {
+            "tension_id": "TEN_FAMINE",
+            "delta": 1,
+            "via": "PRESENCE"
+          }
+        },
+        {
+          "act": 2,
+          "round": 1,
+          "actor": "ENT_VAERAX",
+          "template": "ACQUIRE",
+          "params": {
+            "family": "BONDS"
+          }
+        },
+        {
+          "act": 2,
+          "round": 2,
+          "actor": "ENT_VAERAX",
+          "template": "INFLUENCE",
+          "params": {
+            "tension_id": "TEN_AWAKENING",
+            "delta": -1,
+            "via": "PRESENCE"
+          }
+        },
+        {
+          "act": 2,
+          "round": 3,
+          "actor": "ENT_VAERAX",
+          "template": "INFLUENCE",
+          "params": {
+            "tension_id": "TEN_AWAKENING",
+            "delta": -1,
+            "via": "PRESENCE"
+          }
+        },
+        {
+          "act": 3,
+          "round": 1,
+          "actor": "ENT_VAERAX",
+          "template": "INFLUENCE",
+          "params": {
+            "tension_id": "TEN_AWAKENING",
+            "delta": -1,
+            "via": "PRESENCE"
+          }
+        },
+        {
+          "act": 3,
+          "round": 2,
+          "actor": "ENT_VAERAX",
+          "template": "INFLUENCE",
+          "params": {
+            "tension_id": "TEN_AWAKENING",
+            "delta": -1,
+            "via": "PRESENCE"
+          }
+        },
+        {
+          "act": 3,
+          "round": 3,
+          "actor": "ENT_VAERAX",
+          "template": "INFLUENCE",
+          "params": {
+            "tension_id": "TEN_AWAKENING",
+            "delta": -1,
+            "via": "PRESENCE"
+          }
+        }
+      ],
+      "confluences": [
+        {
+          "index": 0,
+          "note": "I Nahr propongono, e impegnano poco perche non hanno altro. Aldric ribalta il fronte con il Diritto di Corona (AUTHORITY e rilevante: 2+1) e due Editti.",
+          "question_id": "Q_FAMINE_LAND",
+          "proposition_id": "P_LAND_TO_WORKERS",
+          "stances": {
+            "ENT_ALDRIC": {
+              "stance": "OPPOSE"
+            },
+            "ENT_LYRA": {
+              "stance": "OPPOSE"
+            },
+            "ENT_VAERAX": {
+              "stance": "OPPOSE"
+            }
+          },
+          "commits": {
+            "ENT_NAHR": [
+              "AST_PEOPLE_CROWD"
+            ],
+            "ENT_ALDRIC": [
+              "AST_AUTHORITY_CROWN_RIGHT",
+              "AST_AUTHORITY_EDICT",
+              "AST_AUTHORITY_EDICT"
+            ],
+            "ENT_LYRA": [
+              "AST_KNOWLEDGE_PROOF"
+            ],
+            "ENT_VAERAX": [
+              "AST_BONDS_OATH"
+            ]
+          },
+          "failure_recovery": {
+            "ENT_ALDRIC": "AST_AUTHORITY_EDICT",
+            "ENT_LYRA": "AST_KNOWLEDGE_PROOF",
+            "ENT_VAERAX": "AST_BONDS_OATH"
+          }
+        }
+      ],
+      "expected": {
+        "confluence_count": 3,
+        "outcomes": [
+          "FAILURE",
+          "SUCCESS_WITH_COST",
+          "SUCCESS_WITH_COST"
+        ],
+        "min_echoes": 3,
+        "min_truths": 3
+      }
+    }
+  ]
+}
