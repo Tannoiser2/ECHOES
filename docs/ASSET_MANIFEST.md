@@ -114,9 +114,9 @@ Ogni tag di Regione che il gioco puo mostrare sulla mappa. `domain:` marca il do
 | `domain:TERRITORY` | domain |
 | `granary` | base |
 | `nomad_range` | base |
+| `settlement:$proponent` | settlement |
 | `settlement:march` | settlement |
 | `settlement:market` | settlement |
-| `settlement:nahr` | settlement |
 | `structure:granary` | structure |
 | `structure:sealed` | structure |
 | `structure:tollgate` | structure |

@@ -273,7 +273,7 @@ def check_references(
 #: anything else compiles to nothing at all, and the only sign is a push_error
 #: buried in a log nobody reads - which is exactly how CNS_HARVEST_RETURNS
 #: silently did nothing on an Echo card.
-KNOWN_BINDINGS = {"proponent", "tension", "confluence", "region_focus", "actor"}
+KNOWN_BINDINGS = {"proponent", "tension", "confluence", "region_focus", "rival", "rival_seat", "capital", "actor"}
 
 
 def check_bindings(
@@ -285,13 +285,17 @@ def check_bindings(
 
     def walk(value: Any, where: str) -> None:
         if isinstance(value, str):
-            if value.startswith("$") and value[1:] not in KNOWN_BINDINGS:
-                report.fail(
-                    where,
-                    f"'{value}' is not a binding the engine can resolve "
-                    f"(known: {', '.join(sorted(KNOWN_BINDINGS))})",
-                )
-        elif isinstance(value, dict):
+            # A relation target is a pair joined by "|", so each half is checked
+            # on its own; anything else is a single binding.
+            for token in value.split("|") if "|" in value else [value]:
+                if token.startswith("$") and token[1:] not in KNOWN_BINDINGS:
+                    report.fail(
+                        where,
+                        f"'{token}' is not a binding the engine can resolve "
+                        f"(known: {', '.join(sorted(KNOWN_BINDINGS))})",
+                    )
+            return
+        if isinstance(value, dict):
             for item in value.values():
                 walk(item, where)
         elif isinstance(value, list):

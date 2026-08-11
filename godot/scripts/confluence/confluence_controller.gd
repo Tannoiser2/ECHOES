@@ -584,6 +584,18 @@ func _context() -> Dictionary:
 		# "the place we are arguing over" instead of naming one for ever. Same
 		# rule that picks $the_region for the narrative text.
 		"region_focus": narrative.focus_region(str(current["tension_id"])),
+		# And the seat it is being asked against, and the seat of power - the two
+		# other things a Consequence usually means when it names a proper noun.
+		"rival": narrative.rival_id(
+			narrative.focus_region(str(current["tension_id"])), str(current["proponent"])
+		),
+		"capital": narrative.capital_region(),
+		"rival_seat": narrative.seat_of(
+			narrative.rival_id(
+				narrative.focus_region(str(current["tension_id"])), str(current["proponent"])
+			),
+			narrative.focus_region(str(current["tension_id"]))
+		),
 	}
 
 

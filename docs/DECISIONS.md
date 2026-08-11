@@ -331,6 +331,77 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-032 — Consequences written in slots, and a Truth register that varies
+**implemented in 0.0.8** · completes the content half of D-028
+
+D-028 built the engine for library content and said plainly what was still
+missing: 26 of the Consequences named a specific Region, so they were Chronicle
+content, not library content. This finishes that, and adds the per-outcome
+variants of `echo_summary` promised two rounds earlier.
+
+### Four bindings instead of one
+
+`$region_focus` alone could not carry it: a Consequence usually means one of four
+things when it names a proper noun.
+
+| slot | cosa vuol dire |
+|---|---|
+| `$region_focus` | il posto di cui stiamo discutendo |
+| `$capital` | il seggio del potere - la Regione taggata `capital` |
+| `$rival` | il posto al tavolo contro cui la domanda e posta |
+| `$rival_seat` | dove quel posto al tavolo sta davvero |
+
+21 of the 23 place-named Consequences were rewritten against those. Relation
+targets became `$proponent|$rival`, and the compiler now normalises a relation
+key after substitution, because the pair has to be in ascending order and the
+data cannot know which order the table is sitting in.
+
+### Two bugs the change surfaced
+
+- **`$rival` is a prefix of `$rival_seat`.** `ConsequenceCompiler` substituted in
+  dictionary order, so the slot became `ENT_NAHR_seat` - a target that does not
+  exist, reported only as a `push_error` deep inside the applier. Keys are now
+  sorted longest-first, the same fix `NarrativeText.fill` already carried.
+- The static binding check in `validate_data.py` did not split a relation target
+  on `|`, so half a pair went unchecked. It caught `$rival_seat` before it existed
+  and then missed `$proponent|$rival`; both are checked now.
+
+### `echo_summaries`: the register stops repeating itself
+
+A proposition may now carry a sentence per outcome band. How a proposal falls
+reads nothing like how it triumphs, and the Truth register is where a Chronicle
+gets reread. Any band without a variant falls back to the single `echo_summary`,
+so nothing had to be rewritten. 13 of the 18 propositions carry variants.
+
+| | prima | dopo |
+|---|---|---|
+| frasi Truth distinte su 40 Chronicle | 22 su 63 | **56 su 94** |
+
+That is the single biggest jump in narrative variety the project has measured,
+and it cost about 40 authored sentences.
+
+### The cost, and it is real
+
+Generalising the Consequences **reduced** world-state variety:
+
+| | D-028/D-031 | dopo D-032 |
+|---|---|---|
+| mappe di controllo distinte (40 partite) | 6 | **3** |
+| Scar per Chronicle | 0.75 | **0.17** |
+| il controllo cambia in 10 Chronicle | si | **no** |
+
+The cause is structural and was not obvious in advance: `$region_focus` is
+*stable* for a given Tension, so every Consequence of that Tension now lands on
+the same place, where six hard-coded Regions used to spread the damage across the
+map. Three Consequences were re-aimed at `$rival_seat` and `$capital`, which
+recovered part of it, not all.
+
+This is a trade, and it is recorded as one rather than presented as a win: the
+Consequences are now reusable across Chronicles, and the map moves less inside
+one. O-11 tracks it.
+
+---
+
 ## D-031 — Propp's set completed: 24 cards, 24 functions, and an `any_of`
 **implemented in 0.0.7** · §15, §18.2
 
@@ -973,6 +1044,16 @@ Content that cannot be reached is content that does not exist. Worth checking
 against real players before deciding whether the propositions are weak or the
 policy is narrow - tuning the policy until its own content fires would be fitting
 the measurement to the answer.
+
+### O-11 — Slot-written Consequences concentrate the damage
+**flagged, open** - the cost side of D-032.
+
+Control maps distinct over 40 Chronicles went 6 -> 3 and Scars per Chronicle
+0.75 -> 0.17, because `$region_focus` is stable for a Tension and six hard-coded
+Regions used to spread the damage. `$rival_seat` and `$capital` recovered part of
+it. The real answer is probably a fifth binding - "a Region adjacent to the one
+under discussion" - or Consequences that name a *kind* of place rather than a
+place, but both are design work and neither should be guessed at.
 
 ### O-10 — `function_id` was metadata the engine never read
 **closed by D-030.** 19 orphan functions in 40 Chronicles, now 0.

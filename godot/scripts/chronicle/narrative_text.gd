@@ -99,10 +99,37 @@ func _total_presence(region_id: String) -> int:
 	return total
 
 
+func _rival_name(region_id: String, proponent_id: String) -> String:
+	return _entity_name(rival_id(region_id, proponent_id))
+
+
+## Where the rival actually is: the first Region in Chronicle order they stand
+## in, else one they hold, else the Region under discussion. A Consequence that
+## wants to hurt *them* rather than the contested place needs somewhere to aim.
+func seat_of(entity_id: String, fallback_region: String) -> String:
+	for region_id in world["regions"]:
+		if service.presence_count(entity_id, str(region_id)) > 0:
+			return str(region_id)
+	for region_id in world["regions"]:
+		var control: Variant = world["regions"][str(region_id)].get("control", null)
+		if control != null and str(control) == entity_id:
+			return str(region_id)
+	return fallback_region
+
+
+## The Region the Chronicle calls its seat of power. Authored as a tag, so a
+## Chronicle with a different capital needs no code change.
+func capital_region() -> String:
+	for region_id in world["regions"]:
+		if service.region_has_tag(str(region_id), "capital"):
+			return str(region_id)
+	return ""
+
+
 ## The seat this question is being asked *against*: whoever has the most people
 ## standing in the Region, the proponent aside. Falls back to whoever holds the
-## Region, then to turn order, so a sentence never comes out with a hole in it.
-func _rival_name(region_id: String, proponent_id: String) -> String:
+## Region, then to turn order, so an Effect never comes out with a hole in it.
+func rival_id(region_id: String, proponent_id: String) -> String:
 	var best: String = ""
 	var best_presence: int = 0
 	for entity_id in world["turn_order"]:
@@ -121,7 +148,7 @@ func _rival_name(region_id: String, proponent_id: String) -> String:
 			if str(entity_id) != proponent_id:
 				best = str(entity_id)
 				break
-	return _entity_name(best)
+	return best
 
 
 func _region_name(region_id: String) -> String:

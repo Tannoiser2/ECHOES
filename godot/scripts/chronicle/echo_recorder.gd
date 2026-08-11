@@ -89,16 +89,24 @@ func record(context: Dictionary, result: Dictionary, effect_ids: Array, source: 
 
 
 func _summary(template: Dictionary, context: Dictionary, result: Dictionary) -> String:
+	var outcome: String = str(result["outcome"])
 	var proposition_summary: String = ""
 	for proposition in template["propositions"]:
-		if str(proposition["id"]) == str(context.get("proposition_id", "")):
-			proposition_summary = str(proposition.get("echo_summary", proposition["text"]))
-			break
+		if str(proposition["id"]) != str(context.get("proposition_id", "")):
+			continue
+		# How a proposal falls reads nothing like how it triumphs, and the Truth
+		# register is where a Chronicle gets reread. A band with no variant of its
+		# own falls back to the single summary (D-032).
+		var variants: Dictionary = proposition.get("echo_summaries", {})
+		proposition_summary = str(
+			variants.get(outcome, proposition.get("echo_summary", proposition["text"]))
+		)
+		break
 	if proposition_summary == "":
 		proposition_summary = str(template["title"])
 	if narrative != null:
 		proposition_summary = narrative.fill(proposition_summary, context.get("text_bindings", {}))
-	if str(result["outcome"]) == ConfluenceResolution.FAILURE:
+	if outcome == ConfluenceResolution.FAILURE:
 		return "%s La proposta cadde (S%d O%d M%d)." % [
 			proposition_summary,
 			int(result["support_total"]),

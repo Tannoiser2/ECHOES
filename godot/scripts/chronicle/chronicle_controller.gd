@@ -326,6 +326,13 @@ func card_bindings(hook: Dictionary) -> Dictionary:
 	# a card and a council name the same person in the same world.
 	if not bindings.has("proponent"):
 		bindings["proponent"] = session.service.determine_proponent(tension_id)
+	bindings["rival"] = session.confluence.narrative.rival_id(
+		str(bindings["region_focus"]), str(bindings["proponent"])
+	)
+	bindings["capital"] = session.confluence.narrative.capital_region()
+	bindings["rival_seat"] = session.confluence.narrative.seat_of(
+		str(bindings["rival"]), str(bindings["region_focus"])
+	)
 	return bindings
 
 

@@ -44,7 +44,12 @@
             "CNS_ROYAL_GRANARY",
             "CNS_VALLEY_CLEARED"
           ],
-          "echo_summary": "Il grano $of_region passo sotto il sigillo di $proponent."
+          "echo_summary": "Il grano $of_region passo sotto il sigillo di $proponent.",
+          "echo_summaries": {
+            "DECISIVE_SUCCESS": "Il grano $of_region passo sotto il sigillo di $proponent, e nessuno alzo la voce: contarlo era diventato piu urgente che possederlo.",
+            "FAILURE": "$proponent volle il grano $of_region sotto il proprio sigillo, e i granai restarono chiusi a chiave da qualcun altro.",
+            "SUCCESS_WITH_COST": "Il grano $of_region passo sotto il sigillo di $proponent, e la prima razione arrivo con nove giorni di ritardo."
+          }
         },
         {
           "id": "P_OPEN_VALLEY",
@@ -55,7 +60,12 @@
             "CNS_NAHR_SETTLEMENT",
             "CNS_CROWN_DISPOSSESSED"
           ],
-          "echo_summary": "$proponent entro $in_region, e quella terra smise di essere solo di $controller."
+          "echo_summary": "$proponent entro $in_region, e quella terra smise di essere solo di $controller.",
+          "echo_summaries": {
+            "DECISIVE_SUCCESS": "$proponent entro $in_region senza che nessuno contasse i carri, e quella terra smise di essere di qualcuno in particolare.",
+            "FAILURE": "$proponent chiese di entrare $in_region e la porta resto dov'era, con la stessa gente davanti.",
+            "SUCCESS_WITH_COST": "$proponent entro $in_region, e quella terra smise di essere solo di $controller: ci vollero due inverni perche qualcuno lo chiamasse un accordo."
+          }
         },
         {
           "id": "P_SEAL_BORDERS",
@@ -73,7 +83,12 @@
           "success_consequences": [
             "CNS_SEALED_VALLEY"
           ],
-          "echo_summary": "I confini $of_region furono chiusi, e l'inverno resto fuori con $rival."
+          "echo_summary": "I confini $of_region furono chiusi, e l'inverno resto fuori con $rival.",
+          "echo_summaries": {
+            "DECISIVE_SUCCESS": "I confini $of_region furono chiusi in una notte, e per un anno intero nessuno provo a discuterne.",
+            "FAILURE": "Si provo a chiudere i confini $of_region, e il primo a passare fu chi li aveva proposti.",
+            "SUCCESS_WITH_COST": "I confini $of_region furono chiusi, e l'inverno resto fuori con $rival: dentro si conto due volte tutto quello che c'era."
+          }
         },
         {
           "id": "P_LAND_TO_WORKERS",
@@ -84,7 +99,12 @@
             "CNS_NAHR_SETTLEMENT",
             "CNS_CROWN_DISPOSSESSED"
           ],
-          "echo_summary": "La terra $of_region fu assegnata a chi la lavorava, e il titolo di chi la teneva resto scritto solo sulla carta."
+          "echo_summary": "La terra $of_region fu assegnata a chi la lavorava, e il titolo di chi la teneva resto scritto solo sulla carta.",
+          "echo_summaries": {
+            "DECISIVE_SUCCESS": "La terra $of_region passo a chi la lavorava, e il vecchio titolo non fu nemmeno riletto ad alta voce.",
+            "FAILURE": "Si chiese che la terra $of_region andasse a chi la lavorava, e la carta rimase quella di prima.",
+            "SUCCESS_WITH_COST": "La terra $of_region fu assegnata a chi la lavorava, e il titolo di chi la teneva resto scritto solo sulla carta - insieme al conto di chi ci aveva rimesso."
+          }
         }
       ],
       "condition_clauses": [
@@ -195,7 +215,12 @@
             "CNS_CRYSTAL_EXPLOITED",
             "CNS_MINE_TAKEN"
           ],
-          "echo_summary": "Si scavo $in_region, e il Cristallo Rosso usci alla luce a peso."
+          "echo_summary": "Si scavo $in_region, e il Cristallo Rosso usci alla luce a peso.",
+          "echo_summaries": {
+            "DECISIVE_SUCCESS": "Si scavo $in_region senza che nessuno chiedesse a che prezzo, e il Cristallo Rosso usci alla luce a peso.",
+            "FAILURE": "Si volle scavare $in_region, e le gallerie restarono buie come le si era trovate.",
+            "SUCCESS_WITH_COST": "Si scavo $in_region, e il Cristallo Rosso usci alla luce a peso: con lui uscirono due squadre su tre."
+          }
         },
         {
           "id": "P_SEAL_MINE",
@@ -205,7 +230,11 @@
           "success_consequences": [
             "CNS_MINE_SEALED"
           ],
-          "echo_summary": "Le gallerie $in_region furono sigillate, e la domanda con loro."
+          "echo_summary": "Le gallerie $in_region furono sigillate, e la domanda con loro.",
+          "echo_summaries": {
+            "DECISIVE_SUCCESS": "Le gallerie $in_region furono sigillate e la domanda con loro, e per una generazione nessuno seppe piu formularla.",
+            "FAILURE": "Si volle sigillare le gallerie $in_region, e la pietra resto dov'era, con la porta aperta."
+          }
         },
         {
           "id": "P_GUARDED_STUDY",
@@ -215,7 +244,11 @@
           "success_consequences": [
             "CNS_STUDY_UNDER_GUARD"
           ],
-          "echo_summary": "Il Cristallo Rosso fu affidato a $rival, e lo studio ebbe un limite scritto."
+          "echo_summary": "Il Cristallo Rosso fu affidato a $rival, e lo studio ebbe un limite scritto.",
+          "echo_summaries": {
+            "DECISIVE_SUCCESS": "Il Cristallo Rosso fu affidato a $rival, e il limite scritto fu piu lungo di quanto chiunque si aspettasse.",
+            "FAILURE": "Si propose di affidare il Cristallo Rosso a una custodia, e resto in mano a chi lo aveva gia."
+          }
         }
       ],
       "condition_clauses": [
@@ -326,7 +359,11 @@
             "CNS_HEIR_NAMED",
             "CNS_ORDER_RESTORED"
           ],
-          "echo_summary": "$proponent fece dire un nome ad alta voce, e da quel giorno contestarlo costo qualcosa."
+          "echo_summary": "$proponent fece dire un nome ad alta voce, e da quel giorno contestarlo costo qualcosa.",
+          "echo_summaries": {
+            "DECISIVE_SUCCESS": "$proponent fece dire un nome ad alta voce, e nessuno chiese chi lo avesse scelto.",
+            "FAILURE": "$proponent fece dire un nome ad alta voce, e nella stanza nessuno lo ripete."
+          }
         },
         {
           "id": "P_DIVIDE_CROWN",
@@ -364,7 +401,11 @@
           "success_consequences": [
             "CNS_CAPITAL_TAKEN"
           ],
-          "echo_summary": "$proponent prese il posto senza aspettare che si liberasse, e $rival non arrivo in tempo."
+          "echo_summary": "$proponent prese il posto senza aspettare che si liberasse, e $rival non arrivo in tempo.",
+          "echo_summaries": {
+            "FAILURE": "$proponent si mosse per prendere il posto e trovo $rival gia seduto, e sveglio.",
+            "SUCCESS_WITH_COST": "$proponent prese il posto senza aspettare che si liberasse, e $rival non arrivo in tempo - ma arrivo."
+          }
         }
       ],
       "condition_clauses": [
@@ -475,7 +516,11 @@
           "success_consequences": [
             "CNS_TOLL_ESTABLISHED"
           ],
-          "echo_summary": "Il pedaggio $of_region fu scritto e riscosso da $proponent, e la strada torno sicura e cara."
+          "echo_summary": "Il pedaggio $of_region fu scritto e riscosso da $proponent, e la strada torno sicura e cara.",
+          "echo_summaries": {
+            "DECISIVE_SUCCESS": "Il pedaggio $of_region fu scritto, uguale per tutti, e nessuno provo a scontarlo.",
+            "FAILURE": "Si propose un pedaggio scritto $in_region, e ognuno continuo a riscuotere il proprio."
+          }
         },
         {
           "id": "P_MOVE_MARKET",
@@ -507,7 +552,11 @@
             "CNS_ROADS_PLUNDERED",
             "CNS_MINE_ROAD_CUT"
           ],
-          "echo_summary": "Si decise che nessuno rispondesse, e $in_region si smise di viaggiare da soli."
+          "echo_summary": "Si decise che nessuno rispondesse, e $in_region si smise di viaggiare da soli.",
+          "echo_summaries": {
+            "DECISIVE_SUCCESS": "Si decise che nessuno rispondesse, e $in_region si smise di viaggiare del tutto.",
+            "FAILURE": "Si volle che nessuno rispondesse di niente, e qualcuno rispose lo stesso."
+          }
         }
       ],
       "condition_clauses": [
@@ -617,7 +666,11 @@
           "success_consequences": [
             "CNS_RATIONED"
           ],
-          "echo_summary": "$proponent fece la lista di chi aveva diritto $in_region, e nessuno la dimentico."
+          "echo_summary": "$proponent fece la lista di chi aveva diritto $in_region, e nessuno la dimentico.",
+          "echo_summaries": {
+            "DECISIVE_SUCCESS": "$proponent fece la lista di chi aveva diritto $in_region, e nessuno chiese di vederla due volte.",
+            "FAILURE": "$proponent volle fare la lista di chi aveva diritto $in_region, e la lista non fu mai letta."
+          }
         },
         {
           "id": "P_ANY_SHARE",
@@ -637,7 +690,11 @@
           "success_consequences": [
             "CNS_ABANDONED"
           ],
-          "echo_summary": "$proponent lascio $the_region a chi voleva restare, e restarono in pochi."
+          "echo_summary": "$proponent lascio $the_region a chi voleva restare, e restarono in pochi.",
+          "echo_summaries": {
+            "FAILURE": "$proponent volle andarsene da $the_region, e non parti nessuno.",
+            "SUCCESS_WITH_COST": "$proponent lascio $the_region a chi voleva restare, e restarono in pochi - e nessuno dei due gruppi perdono l'altro."
+          }
         }
       ],
       "condition_clauses": [

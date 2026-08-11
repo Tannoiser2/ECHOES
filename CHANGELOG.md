@@ -5,6 +5,67 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.0.8] — Conseguenze a slot, e un registro che non si ripete
+
+Chiude la meta di contenuto di D-028, che era rimasta dichiarata e non fatta.
+
+### Added
+
+- **Quattro slot invece di uno** negli Effect: `$region_focus` (il posto di cui
+  discutiamo), `$capital` (il seggio del potere), `$rival` (il posto al tavolo
+  contro cui la domanda e posta), `$rival_seat` (dove quel posto sta davvero).
+  Sono le quattro cose che una Conseguenza intende quando nomina un nome proprio.
+- **`echo_summaries`**: una proposta puo portare una frase per ogni banda di
+  esito. Come cade una proposta non si legge come quando trionfa, e il registro
+  delle Truth e il posto dove una Chronicle si rilegge. Una banda senza variante
+  ricade sulla frase unica, quindi non si e dovuto riscrivere niente.
+- **`docs/COMPONENTS.md`**: quale testo sta su quale pezzo fisico, cosa e sullo
+  schermo, cosa e segreto e dietro quale paravento. Non era in nessuna specifica.
+
+### Changed
+
+- **21 Conseguenze su 23** riscritte a slot: sono contenuto di biblioteca, non
+  piu di Chronicle. I bersagli relazione diventano `$proponent|$rival`, e il
+  compilatore normalizza la chiave dopo la sostituzione — la coppia va in ordine
+  crescente e i dati non possono sapere come e seduto il tavolo.
+- 13 proposte su 18 portano varianti di esito.
+
+### Fixed
+
+- **`$rival` e prefisso di `$rival_seat`**, e il compilatore sostituiva in ordine
+  di dizionario: lo slot diventava `ENT_NAHR_seat`, un bersaglio inesistente,
+  segnalato solo da un push_error dentro l'applier. Chiavi ordinate per lunghezza
+  decrescente, la stessa correzione che `NarrativeText.fill` aveva gia.
+- Il controllo statico dei binding non spezzava un bersaglio relazione sul `|`,
+  quindi meta coppia non veniva verificata.
+
+### La misura
+
+| | prima | dopo |
+|---|---|---|
+| frasi Truth distinte su 40 Chronicle | 22 su 63 | **56 su 94** |
+
+E il salto piu grosso di varieta narrativa mai misurato nel progetto, ed e
+costato una quarantina di frasi scritte.
+
+### Il prezzo, ed e reale
+
+| | prima | dopo |
+|---|---|---|
+| mappe di controllo distinte | 6 | **3** |
+| Scar per Chronicle | 0.75 | **0.17** |
+| il controllo cambia in 10 Chronicle | si | **no** |
+
+`$region_focus` e **stabile** per una Tensione, quindi ogni Conseguenza di quella
+Tensione finisce sullo stesso posto, dove sei Regioni scritte a mano spargevano
+il danno sulla mappa. Tre Conseguenze sono state ripuntate su `$rival_seat` e
+`$capital` e ne hanno recuperato una parte, non tutta.
+
+E uno scambio, ed e registrato come tale: le Conseguenze ora si riusano fra
+Chronicle, e la mappa si muove meno dentro una sola. Vedi O-11.
+
+---
+
 ## [0.0.7] — Le 24 funzioni
 
 D-030 aveva cablato la grammatica, ma solo 16 delle 24 funzioni dichiarate nello

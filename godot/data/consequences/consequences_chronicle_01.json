@@ -12,7 +12,7 @@
           "type": "SET_REGION_TAG",
           "target": {
             "kind": "region",
-            "id": "REG_EREDAN"
+            "id": "$capital"
           },
           "payload": {
             "tag": "structure:granary"
@@ -22,7 +22,7 @@
           "type": "SET_CONTROL",
           "target": {
             "kind": "region",
-            "id": "REG_VALLE_VERDE"
+            "id": "$region_focus"
           },
           "payload": {
             "entity_id": "$proponent"
@@ -50,10 +50,10 @@
           "type": "SET_REGION_TAG",
           "target": {
             "kind": "region",
-            "id": "REG_VALLE_VERDE"
+            "id": "$region_focus"
           },
           "payload": {
-            "tag": "settlement:nahr"
+            "tag": "settlement:$proponent"
           }
         },
         {
@@ -70,7 +70,7 @@
           "type": "SET_RELATION",
           "target": {
             "kind": "relation",
-            "id": "ENT_ALDRIC|ENT_NAHR"
+            "id": "$proponent|$rival"
           },
           "payload": {
             "add_tag": "PACT"
@@ -85,7 +85,7 @@
       "description": "I confini si chiudono. La Valle nutre Eredan e nessun altro, e le Terre Nahr imparano cosa significa un inverno senza uscita.",
       "creates_scar": true,
       "scar": {
-        "region_id": "REG_VALLE_VERDE",
+        "region_id": "$region_focus",
         "tag": "scar:sealed_border",
         "description": "Il vallo di pietra a secco tirato su in un inverno: nessuno lo ha piu smontato."
       },
@@ -94,7 +94,7 @@
           "type": "SET_CONTROL",
           "target": {
             "kind": "region",
-            "id": "REG_VALLE_VERDE"
+            "id": "$region_focus"
           },
           "payload": {
             "entity_id": "$proponent"
@@ -114,7 +114,7 @@
           "type": "SET_REGION_TAG",
           "target": {
             "kind": "region",
-            "id": "REG_TERRE_NAHR"
+            "id": "$rival_seat"
           },
           "payload": {
             "tag": "condition:starving"
@@ -124,7 +124,7 @@
           "type": "SET_RELATION",
           "target": {
             "kind": "relation",
-            "id": "ENT_ALDRIC|ENT_NAHR"
+            "id": "$proponent|$rival"
           },
           "payload": {
             "level": "ENEMY"
@@ -139,7 +139,7 @@
       "description": "Il Cristallo Rosso esce dalle gallerie a peso. Quello che era una domanda diventa una voce di bilancio.",
       "creates_scar": true,
       "scar": {
-        "region_id": "REG_MINIERE_ANTICHE",
+        "region_id": "$region_focus",
         "tag": "scar:open_wound",
         "description": "La galleria maestra non si richiude piu: la roccia intorno resta tiepida."
       },
@@ -148,7 +148,7 @@
           "type": "SET_REGION_TAG",
           "target": {
             "kind": "region",
-            "id": "REG_MINIERE_ANTICHE"
+            "id": "$region_focus"
           },
           "payload": {
             "tag": "condition:exploited"
@@ -196,7 +196,7 @@
           "type": "SET_REGION_TAG",
           "target": {
             "kind": "region",
-            "id": "REG_MINIERE_ANTICHE"
+            "id": "$region_focus"
           },
           "payload": {
             "tag": "structure:sealed"
@@ -234,7 +234,7 @@
           "type": "SET_REGION_TAG",
           "target": {
             "kind": "region",
-            "id": "REG_EREDAN"
+            "id": "$region_focus"
           },
           "payload": {
             "tag": "condition:unrest"
@@ -259,7 +259,7 @@
       "description": "La proposta cade. La questione resta esattamente dov'era, con meno tempo davanti e piu rancore intorno.",
       "creates_scar": true,
       "scar": {
-        "region_id": "REG_VALLE_VERDE",
+        "region_id": "$region_focus",
         "tag": "scar:unanswered",
         "description": "La domanda a cui il consiglio non ha risposto e rimasta scritta sul muro del granaio."
       },
@@ -321,7 +321,7 @@
       "description": "Requisire il grano vuol dire decidere chi sta sulla terra che lo produce. I carri che erano fermi nella Valle vengono rimessi in strada.",
       "creates_scar": true,
       "scar": {
-        "region_id": "REG_VALLE_VERDE",
+        "region_id": "$region_focus",
         "tag": "scar:emptied",
         "description": "I pascoli bassi restano segnati dalle piste dei carri, e nessuno li ripercorre."
       },
@@ -330,10 +330,10 @@
           "type": "REMOVE_PRESENCE",
           "target": {
             "kind": "entity",
-            "id": "ENT_NAHR"
+            "id": "$rival"
           },
           "payload": {
-            "region_id": "REG_VALLE_VERDE",
+            "region_id": "$region_focus",
             "optional": true
           },
           "note": "optional: la Valle puo essere gia sgombera."
@@ -342,7 +342,7 @@
           "type": "SET_REGION_TAG",
           "target": {
             "kind": "region",
-            "id": "REG_VALLE_VERDE"
+            "id": "$region_focus"
           },
           "payload": {
             "tag": "condition:requisitioned"
@@ -360,7 +360,7 @@
           "type": "SET_CONTROL",
           "target": {
             "kind": "region",
-            "id": "REG_VALLE_VERDE"
+            "id": "$region_focus"
           },
           "payload": {
             "entity_id": null
@@ -388,7 +388,7 @@
           "type": "SET_CONTROL",
           "target": {
             "kind": "region",
-            "id": "REG_MINIERE_ANTICHE"
+            "id": "$region_focus"
           },
           "payload": {
             "entity_id": "$proponent"
@@ -416,7 +416,7 @@
           "type": "SET_ENTITY_TAG",
           "target": {
             "kind": "entity",
-            "id": "ENT_LYRA"
+            "id": "$rival"
           },
           "payload": {
             "tag": "discovery:supervised_record"
@@ -524,7 +524,7 @@
           "type": "REMOVE_REGION_TAG",
           "target": {
             "kind": "region",
-            "id": "REG_STRADA_MERCANTI"
+            "id": "$region_focus"
           },
           "payload": {
             "tag": "condition:cut_off",
@@ -535,7 +535,7 @@
           "type": "REMOVE_REGION_TAG",
           "target": {
             "kind": "region",
-            "id": "REG_STRADA_MERCANTI"
+            "id": "$region_focus"
           },
           "payload": {
             "tag": "condition:plundered",
@@ -599,7 +599,7 @@
       "description": "Due titoli dove ce n'era uno. Funziona finche i due non si guardano.",
       "creates_scar": true,
       "scar": {
-        "region_id": "REG_EREDAN",
+        "region_id": "$capital",
         "tag": "scar:divided_seal",
         "description": "Il sigillo spezzato in due meta, e nessuna delle due restituita."
       },
@@ -608,7 +608,7 @@
           "type": "SET_CONTROL",
           "target": {
             "kind": "region",
-            "id": "REG_STRADA_MERCANTI"
+            "id": "$rival_seat"
           },
           "payload": {
             "entity_id": "$proponent"
@@ -618,7 +618,7 @@
           "type": "SET_REGION_TAG",
           "target": {
             "kind": "region",
-            "id": "REG_EREDAN"
+            "id": "$capital"
           },
           "payload": {
             "tag": "condition:contested"
@@ -643,7 +643,7 @@
       "description": "Eredan cambia mano in una notte. La citta non brucia: cambia solo chi firma.",
       "creates_scar": true,
       "scar": {
-        "region_id": "REG_EREDAN",
+        "region_id": "$capital",
         "tag": "scar:changed_hands",
         "description": "Sulla porta nord il nome vecchio si legge ancora sotto quello nuovo."
       },
@@ -652,7 +652,7 @@
           "type": "SET_CONTROL",
           "target": {
             "kind": "region",
-            "id": "REG_EREDAN"
+            "id": "$capital"
           },
           "payload": {
             "entity_id": "$proponent"
@@ -662,7 +662,7 @@
           "type": "SET_REGION_TAG",
           "target": {
             "kind": "region",
-            "id": "REG_EREDAN"
+            "id": "$capital"
           },
           "payload": {
             "tag": "condition:unrest"
@@ -672,7 +672,7 @@
           "type": "REMOVE_ENTITY_TAG",
           "target": {
             "kind": "entity",
-            "id": "ENT_ALDRIC"
+            "id": "$rival"
           },
           "payload": {
             "tag": "crowned",
@@ -701,7 +701,7 @@
           "type": "SET_ENTITY_TAG",
           "target": {
             "kind": "entity",
-            "id": "ENT_LYRA"
+            "id": "$rival"
           },
           "payload": {
             "tag": "discovery:written_law"
@@ -729,7 +729,7 @@
           "type": "SET_CONTROL",
           "target": {
             "kind": "region",
-            "id": "REG_TERRE_NAHR"
+            "id": "$rival_seat"
           },
           "payload": {
             "entity_id": "$proponent"
@@ -739,7 +739,7 @@
           "type": "SET_REGION_TAG",
           "target": {
             "kind": "region",
-            "id": "REG_TERRE_NAHR"
+            "id": "$rival_seat"
           },
           "payload": {
             "tag": "settlement:march"
@@ -757,7 +757,7 @@
           "type": "SET_CONTROL",
           "target": {
             "kind": "region",
-            "id": "REG_STRADA_MERCANTI"
+            "id": "$region_focus"
           },
           "payload": {
             "entity_id": "$proponent"
@@ -767,7 +767,7 @@
           "type": "SET_REGION_TAG",
           "target": {
             "kind": "region",
-            "id": "REG_STRADA_MERCANTI"
+            "id": "$region_focus"
           },
           "payload": {
             "tag": "structure:tollgate"
@@ -792,7 +792,7 @@
       "description": "Chi non ha scorta smette di partire. Chi parte non torna con quello che aveva.",
       "creates_scar": true,
       "scar": {
-        "region_id": "REG_STRADA_MERCANTI",
+        "region_id": "$region_focus",
         "tag": "scar:plundered",
         "description": "I carri bruciati al terzo miglio, lasciati dove sono per ricordarlo."
       },
@@ -801,7 +801,7 @@
           "type": "SET_REGION_TAG",
           "target": {
             "kind": "region",
-            "id": "REG_STRADA_MERCANTI"
+            "id": "$region_focus"
           },
           "payload": {
             "tag": "condition:plundered"
@@ -811,7 +811,7 @@
           "type": "SET_REGION_TAG",
           "target": {
             "kind": "region",
-            "id": "REG_MINIERE_ANTICHE"
+            "id": "$rival_seat"
           },
           "payload": {
             "tag": "condition:cut_off"
@@ -849,7 +849,7 @@
           "type": "REMOVE_REGION_TAG",
           "target": {
             "kind": "region",
-            "id": "REG_STRADA_MERCANTI"
+            "id": "$region_focus"
           },
           "payload": {
             "tag": "condition:cut_off",
@@ -875,7 +875,7 @@
       "description": "Un ponte in meno, e le Miniere diventano un posto da cui e piu facile entrare che uscire.",
       "creates_scar": true,
       "scar": {
-        "region_id": "REG_MINIERE_ANTICHE",
+        "region_id": "$region_focus",
         "tag": "scar:broken_bridge",
         "description": "Le due teste del ponte, ancora in piedi, con niente in mezzo."
       },
@@ -884,7 +884,7 @@
           "type": "SET_REGION_TAG",
           "target": {
             "kind": "region",
-            "id": "REG_MINIERE_ANTICHE"
+            "id": "$region_focus"
           },
           "payload": {
             "tag": "condition:cut_off"
@@ -912,7 +912,7 @@
           "type": "SET_CONTROL",
           "target": {
             "kind": "region",
-            "id": "REG_VALLE_VERDE"
+            "id": "$region_focus"
           },
           "payload": {
             "entity_id": "$proponent"
@@ -922,7 +922,7 @@
           "type": "SET_REGION_TAG",
           "target": {
             "kind": "region",
-            "id": "REG_VALLE_VERDE"
+            "id": "$region_focus"
           },
           "payload": {
             "tag": "settlement:market"
@@ -932,7 +932,7 @@
           "type": "SET_REGION_TAG",
           "target": {
             "kind": "region",
-            "id": "REG_STRADA_MERCANTI"
+            "id": "$capital"
           },
           "payload": {
             "tag": "condition:cut_off"

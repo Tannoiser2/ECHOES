@@ -44,6 +44,13 @@ func compile_spec(spec: Dictionary, context: Dictionary, source: Dictionary) -> 
 	if target_id.begins_with("$"):
 		push_error("ConsequenceCompiler: unresolved variable '%s'" % target_id)
 		return {}
+	# A relation is keyed by its two ids in ascending order. Authored data may say
+	# "$proponent|$rival", which substitutes to whichever order the table happens
+	# to be sitting in, so the key is normalised here rather than in the data.
+	if str(target["kind"]) == "relation" and target_id.contains("|"):
+		var pair: PackedStringArray = target_id.split("|")
+		if pair.size() == 2:
+			target_id = Ids.relation_key(str(pair[0]), str(pair[1]))
 	var payload: Dictionary = _substitute(spec.get("payload", {}), context)
 	return Effect.make(str(spec["type"]), str(target["kind"]), target_id, payload, source)
 
@@ -80,7 +87,12 @@ func substitute_string(value: String, context: Dictionary) -> String:
 func _substitute_string(value: String, context: Dictionary) -> String:
 	if not value.contains("$"):
 		return value
+	# Longest key first: `$rival` is a prefix of `$rival_seat`, and substituting
+	# the short one first turns the slot into "ENT_NAHR_seat" - a target that
+	# does not exist, reported only as a push_error deep inside the applier.
+	var keys: Array = context.keys()
+	keys.sort_custom(func(a: Variant, b: Variant) -> bool: return str(a).length() > str(b).length())
 	var out: String = value
-	for key in context:
+	for key in keys:
 		out = out.replace("$%s" % key, str(context[key]))
 	return out
