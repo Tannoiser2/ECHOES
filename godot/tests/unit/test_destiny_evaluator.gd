@@ -32,11 +32,15 @@ func test_three_levels_for_vaerax() -> void:
 	assert_eq(str(result["level"]), "MINIMUM", "Cristallo sfruttato: resta solo il Minimum")
 	_apply("REMOVE_GLOBAL_TAG", "world", "WORLD", {"tag": "crystal_exploited"})
 
-	# The mine is sealed and the Awakening pushed back down: Triumph.
+	# The mine is sealed, the Awakening pushed back down, and the road that would
+	# carry anyone up there is cut: Triumph. The road is the O-12 clause - his
+	# Destiny is that the sleep stays safe, and a safe sleep is one nobody can
+	# easily reach.
 	_apply("SET_GLOBAL_TAG", "world", "WORLD", {"tag": "mine_sealed"})
 	_apply("ADJUST_TENSION", "tension", "TEN_AWAKENING", {"delta": -1})
+	_apply("SET_REGION_TAG", "region", "REG_STRADA_MERCANTI", {"tag": "condition:cut_off"})
 	result = session.destinies.evaluate("DST_VAERAX")
-	assert_eq(str(result["level"]), "TRIUMPH", "Miniere sigillate e Risveglio sotto 4: Triumph")
+	assert_eq(str(result["level"]), "TRIUMPH", "Miniere sigillate, Risveglio sotto 4, strada interrotta: Triumph")
 
 	# Losing the mountain drops him to nothing at all, whatever else is true.
 	_apply("REMOVE_PRESENCE", "entity", "ENT_VAERAX", {"region_id": "REG_MONTAGNE_ROSSE"})
@@ -52,10 +56,17 @@ func test_victory_needs_the_consequence_that_grants_it() -> void:
 	assert_false(bool(result["levels"]["VICTORY"]), "l'insediamento non e ancora riconosciuto")
 
 	# nahr_settled is written by CNS_NAHR_SETTLEMENT, and the Nahr already hold
-	# the Valley; the Triumph conditions happen to hold too at this point.
+	# the Valley: that is the Victory. The Triumph now also asks that the crown
+	# be divided (O-12) - a people can only stop somewhere while the throne is
+	# busy with itself - so settling alone no longer reaches it.
 	_apply("SET_GLOBAL_TAG", "world", "WORLD", {"tag": "nahr_settled"})
 	result = session.destinies.evaluate("DST_NAHR")
-	assert_eq(str(result["level"]), "TRIUMPH", "insediamento riconosciuto e Valle aperta: Triumph")
+	assert_eq(str(result["level"]), "VICTORY", "insediamento riconosciuto: Victory")
+	assert_false(bool(result["levels"]["TRIUMPH"]), "ma la corona e ancora una sola")
+
+	_apply("SET_GLOBAL_TAG", "world", "WORLD", {"tag": "crown_divided"})
+	result = session.destinies.evaluate("DST_NAHR")
+	assert_eq(str(result["level"]), "TRIUMPH", "corona spezzata e Valle aperta: Triumph")
 
 	# Sealing the Valley denies the Triumph without touching the Victory.
 	_apply("SET_GLOBAL_TAG", "world", "WORLD", {"tag": "valley_sealed"})

@@ -108,7 +108,8 @@
       ],
       "tags": [
         "domain:ANCIENT",
-        "wild"
+        "wild",
+        "crystal_site"
       ],
       "presence_slots": 3,
       "control": "ENT_VAERAX",

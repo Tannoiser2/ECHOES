@@ -10,22 +10,59 @@
       "minimum": {
         "label": "Il trono regge",
         "conditions": [
-          { "type": "entity_alive", "entity_id": "ENT_ALDRIC", "label": "Aldric e ancora sul trono" },
-          { "type": "region_presence", "entity_id": "ENT_ALDRIC", "region_id": "REG_EREDAN", "min": 1, "label": "Presenza a Eredan" }
+          {
+            "type": "entity_alive",
+            "entity_id": "ENT_ALDRIC",
+            "label": "Aldric e ancora sul trono"
+          },
+          {
+            "type": "region_presence",
+            "entity_id": "ENT_ALDRIC",
+            "region_id": "REG_EREDAN",
+            "min": 1,
+            "label": "Presenza a Eredan"
+          }
         ]
       },
       "victory": {
         "label": "Il regno decide",
         "conditions": [
-          { "type": "control_count", "entity_id": "ENT_ALDRIC", "min": 2, "label": "Controllo di almeno 2 Regioni" },
-          { "type": "tension_limit", "tension_id": "TEN_FAMINE", "max": 4, "label": "La Carestia non supera 4" }
+          {
+            "type": "control_count",
+            "entity_id": "ENT_ALDRIC",
+            "min": 2,
+            "label": "Controllo di almeno 2 Regioni"
+          },
+          {
+            "type": "tension_limit",
+            "tension_id": "TEN_FAMINE",
+            "max": 4,
+            "label": "La Carestia non supera 4"
+          }
         ]
       },
       "triumph": {
         "label": "Un regno che non ha pagato il pane con il sangue",
         "conditions": [
-          { "type": "state_tag_absent", "scope": "REGION", "region_id": "REG_EREDAN", "tag": "condition:unrest", "label": "Eredan non e in rivolta" },
-          { "type": "state_tag_absent", "scope": "GLOBAL", "tag": "question_unresolved", "label": "Nessuna questione lasciata aperta" }
+          {
+            "type": "state_tag_absent",
+            "scope": "REGION",
+            "region_id": "REG_EREDAN",
+            "tag": "condition:unrest",
+            "label": "Eredan non e in rivolta"
+          },
+          {
+            "type": "state_tag_absent",
+            "scope": "GLOBAL",
+            "tag": "question_unresolved",
+            "label": "Nessuna questione lasciata aperta"
+          },
+          {
+            "type": "state_tag_absent",
+            "scope": "GLOBAL",
+            "tag": "crown_divided",
+            "label": "La corona non e stata spezzata"
+          }
         ]
       },
       "art_prompt_key": "destiny.aldric"
@@ -38,22 +75,59 @@
       "minimum": {
         "label": "Il popolo sopravvive",
         "conditions": [
-          { "type": "entity_alive", "entity_id": "ENT_NAHR", "label": "I Nahr esistono ancora come popolo" },
-          { "type": "region_presence", "entity_id": "ENT_NAHR", "region_id": "REG_TERRE_NAHR", "min": 1, "label": "Presenza nelle Terre Nahr" }
+          {
+            "type": "entity_alive",
+            "entity_id": "ENT_NAHR",
+            "label": "I Nahr esistono ancora come popolo"
+          },
+          {
+            "type": "region_presence",
+            "entity_id": "ENT_NAHR",
+            "region_id": "REG_TERRE_NAHR",
+            "min": 1,
+            "label": "Presenza nelle Terre Nahr"
+          }
         ]
       },
       "victory": {
         "label": "Il popolo si ferma",
         "conditions": [
-          { "type": "state_tag_present", "scope": "GLOBAL", "tag": "nahr_settled", "label": "L'insediamento e riconosciuto" },
-          { "type": "region_presence", "entity_id": "ENT_NAHR", "region_id": "REG_VALLE_VERDE", "min": 1, "label": "Presenza nella Valle Verde" }
+          {
+            "type": "state_tag_present",
+            "scope": "GLOBAL",
+            "tag": "nahr_settled",
+            "label": "L'insediamento e riconosciuto"
+          },
+          {
+            "type": "region_presence",
+            "entity_id": "ENT_NAHR",
+            "region_id": "REG_VALLE_VERDE",
+            "min": 1,
+            "label": "Presenza nella Valle Verde"
+          }
         ]
       },
       "triumph": {
         "label": "Fermarsi senza smettere di essere Nahr",
         "conditions": [
-          { "type": "state_tag_absent", "scope": "GLOBAL", "tag": "valley_sealed", "label": "La Valle non e stata chiusa" },
-          { "type": "tension_limit", "tension_id": "TEN_FAMINE", "max": 3, "label": "La Carestia e sotto controllo" }
+          {
+            "type": "state_tag_absent",
+            "scope": "GLOBAL",
+            "tag": "valley_sealed",
+            "label": "La Valle non e stata chiusa"
+          },
+          {
+            "type": "tension_limit",
+            "tension_id": "TEN_FAMINE",
+            "max": 3,
+            "label": "La Carestia e sotto controllo"
+          },
+          {
+            "type": "state_tag_present",
+            "scope": "GLOBAL",
+            "tag": "crown_divided",
+            "label": "La corona ha smesso di essere una sola"
+          }
         ]
       },
       "art_prompt_key": "destiny.nahr"
@@ -66,22 +140,60 @@
       "minimum": {
         "label": "Ha capito qualcosa",
         "conditions": [
-          { "type": "entity_alive", "entity_id": "ENT_LYRA", "label": "Lyra e viva" },
-          { "type": "discovery_count", "entity_id": "ENT_LYRA", "min": 1, "label": "Almeno una Scoperta" }
+          {
+            "type": "entity_alive",
+            "entity_id": "ENT_LYRA",
+            "label": "Lyra e viva"
+          },
+          {
+            "type": "discovery_count",
+            "entity_id": "ENT_LYRA",
+            "min": 1,
+            "label": "Almeno una Scoperta"
+          }
         ]
       },
       "victory": {
         "label": "Sa, ed e ancora nelle gallerie",
         "conditions": [
-          { "type": "region_presence", "entity_id": "ENT_LYRA", "region_id": "REG_MINIERE_ANTICHE", "min": 1, "label": "Presenza nelle Miniere Antiche" },
-          { "type": "state_tag_absent", "scope": "GLOBAL", "tag": "mine_sealed", "label": "Le Miniere non sono sigillate" }
+          {
+            "type": "region_presence",
+            "entity_id": "ENT_LYRA",
+            "region_id": "REG_MINIERE_ANTICHE",
+            "min": 1,
+            "label": "Presenza nelle Miniere Antiche"
+          },
+          {
+            "type": "state_tag_absent",
+            "scope": "GLOBAL",
+            "tag": "mine_sealed",
+            "label": "Le Miniere non sono sigillate"
+          }
         ]
       },
       "triumph": {
         "label": "Il sapere e diventato pubblico e verificabile",
         "conditions": [
-          { "type": "discovery_count", "entity_id": "ENT_LYRA", "min": 2, "label": "Due Scoperte" },
-          { "type": "tension_limit", "tension_id": "TEN_AWAKENING", "min": 0, "max": 6, "label": "Il Risveglio non e esploso" }
+          {
+            "type": "discovery_count",
+            "entity_id": "ENT_LYRA",
+            "min": 2,
+            "label": "Due Scoperte"
+          },
+          {
+            "type": "tension_limit",
+            "tension_id": "TEN_AWAKENING",
+            "min": 0,
+            "max": 6,
+            "label": "Il Risveglio non e esploso"
+          },
+          {
+            "type": "state_tag_absent",
+            "scope": "REGION",
+            "region_id": "REG_STRADA_MERCANTI",
+            "tag": "condition:cut_off",
+            "label": "La strada per le gallerie e ancora aperta"
+          }
         ]
       },
       "art_prompt_key": "destiny.lyra"
@@ -94,22 +206,60 @@
       "minimum": {
         "label": "La montagna e ancora sua",
         "conditions": [
-          { "type": "entity_alive", "entity_id": "ENT_VAERAX", "label": "Vaerax e ancora presente nel mondo" },
-          { "type": "region_presence", "entity_id": "ENT_VAERAX", "region_id": "REG_MONTAGNE_ROSSE", "min": 1, "label": "Presenza sulle Montagne Rosse" }
+          {
+            "type": "entity_alive",
+            "entity_id": "ENT_VAERAX",
+            "label": "Vaerax e ancora presente nel mondo"
+          },
+          {
+            "type": "region_presence",
+            "entity_id": "ENT_VAERAX",
+            "region_id": "REG_MONTAGNE_ROSSE",
+            "min": 1,
+            "label": "Presenza sulle Montagne Rosse"
+          }
         ]
       },
       "victory": {
         "label": "Nessuno ha portato via il Cristallo",
         "conditions": [
-          { "type": "state_tag_absent", "scope": "GLOBAL", "tag": "crystal_exploited", "label": "Il Cristallo non e stato sfruttato" },
-          { "type": "state_tag_absent", "scope": "REGION", "region_id": "REG_MINIERE_ANTICHE", "tag": "condition:exploited", "label": "Le Miniere non sono state svuotate" }
+          {
+            "type": "state_tag_absent",
+            "scope": "GLOBAL",
+            "tag": "crystal_exploited",
+            "label": "Il Cristallo non e stato sfruttato"
+          },
+          {
+            "type": "state_tag_absent",
+            "scope": "REGION",
+            "region_id": "REG_MINIERE_ANTICHE",
+            "tag": "condition:exploited",
+            "label": "Le Miniere non sono state svuotate"
+          }
         ]
       },
       "triumph": {
         "label": "Il sonno e stato reso sicuro",
         "conditions": [
-          { "type": "state_tag_present", "scope": "GLOBAL", "tag": "mine_sealed", "label": "Le Miniere sono sigillate" },
-          { "type": "tension_limit", "tension_id": "TEN_AWAKENING", "max": 4, "label": "Il Risveglio e stato riportato indietro" }
+          {
+            "type": "state_tag_present",
+            "scope": "GLOBAL",
+            "tag": "mine_sealed",
+            "label": "Le Miniere sono sigillate"
+          },
+          {
+            "type": "tension_limit",
+            "tension_id": "TEN_AWAKENING",
+            "max": 4,
+            "label": "Il Risveglio e stato riportato indietro"
+          },
+          {
+            "type": "state_tag_present",
+            "scope": "REGION",
+            "region_id": "REG_STRADA_MERCANTI",
+            "tag": "condition:cut_off",
+            "label": "Nessuno arriva facilmente fin lassu"
+          }
         ]
       },
       "art_prompt_key": "destiny.vaerax"

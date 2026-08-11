@@ -5,7 +5,7 @@
     {
       "id": "SIM_PLAN_B",
       "title": "Il consiglio spezzato",
-      "description": "I Nahr chiedono la terra che ancora produce e il tavolo intero risponde di no: il fronte contrario arriva a 6, quindi anche una sconfitta diventa storia (§12.4). Chiedono una seconda volta, con Lyra che pone una clausola invece di opporsi, e cadono di misura sul Fattore Mondo. Alla terza il consiglio cede a caro prezzo.",
+      "description": "I Nahr chiedono la terra che ancora produce e il tavolo intero risponde di no: il fronte contrario arriva a 7 e la proposta cade di quattro, quindi anche una sconfitta diventa storia (§12.4). La corona ne approfitta per mettere in ordine la successione, i Nahr tornano a chiedere e stavolta il consiglio cede a caro prezzo, e l'anno si chiude con il trono piu saldo di come era cominciato.",
       "chronicle_id": "CHR_01",
       "seed": 20260811,
       "seats": [
@@ -48,9 +48,9 @@
           "actor": "ENT_NAHR",
           "template": "MOVE",
           "params": {
-            "region_id": "REG_STRADA_MERCANTI"
+            "region_id": "REG_VALLE_VERDE"
           },
-          "note": "Il terzo token scende sulla Strada dei Mercanti: nel dominio SURVIVAL i Nahr diventano la parte piu presente, quindi la domanda sul grano e loro da porre."
+          "note": "Il terzo token scende nella Valle Verde. Il proponente e chi ha piu presenza nella Regione di cui si discute (D-036), non nel dominio: la Valle e il posto, quindi la domanda sul grano e loro da porre."
         },
         {
           "act": 1,
@@ -304,13 +304,12 @@
         }
       ],
       "expected": {
-        "confluence_count": 5,
+        "confluence_count": 4,
         "outcomes": [
           "FAILURE",
+          "SUCCESS",
           "SUCCESS_WITH_COST",
-          "SUCCESS_WITH_COST",
-          "DECISIVE_SUCCESS",
-          "SUCCESS_WITH_COST"
+          "DECISIVE_SUCCESS"
         ],
         "min_echoes": 3,
         "min_truths": 3

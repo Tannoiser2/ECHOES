@@ -91,7 +91,7 @@ func open(tension_id: String, trigger: Dictionary) -> Dictionary:
 	var index: int = int(world["confluence_count"])
 	var proponent: String = str(trigger.get("entity_id", ""))
 	if proponent == "" or not world["entities"].has(proponent):
-		proponent = service.determine_proponent(tension_id)
+		proponent = service.determine_proponent(tension_id, narrative.focus_region(tension_id))
 
 	var question_id: String = _select_question(template, proponent, tension_id)
 	if question_id == "":

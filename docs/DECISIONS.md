@@ -331,6 +331,115 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-036 — Who raises a question is decided by the place, not the domain
+**implemented in 0.0.12** · closes O-12, closes O-13, closes the Vaerax lock
+
+Three open findings, fixed together because they turned out to be one problem
+seen from three sides: **nobody had a reason to be in the room.**
+
+### The rule change
+
+`determine_proponent` read §12.2 C's "most presence in the Tension's Regions" as
+the whole **domain**. It now reads it as the Region the question is actually
+about — the same focus the narrative and the Consequences already use.
+
+Counting the domain let one Entity own a question for ever. `domain:ANCIENT` is
+two Regions and Vaerax's Destiny plants him in both, so all 40 Councils on the
+Awakening were his and he was never a voter on the only Tension he cares about.
+D-034 called that a content shape; it is not. Two candidate widenings of the
+domain were tried and measured, and **neither breaks the lock** — one makes it
+worse, raising 107 Councils that are also all his. Counting the focus asks a
+narrower and truer question: who is standing in the place we are arguing over?
+
+| domanda | proponenti prima | proponenti dopo |
+|---|---|---|
+| Le Vie Interrotte | 2 | **4** |
+| La Successione | 1 | 2 |
+| La Carestia | 2 | 2 |
+| Il Risveglio | 1 (Vaerax 40/40) | 2 |
+
+### O-12: two Tensions nobody had sworn anything about
+
+Every `tension_limit` in CHR_01 named the Famine or the Awakening. The Succession
+and the Roads were in nobody's Destiny, so those Councils could not produce a
+fight over the quantity itself.
+
+The first attempt added `tension_limit` clauses and **made it worse**: a ceiling
+makes the policy spend actions holding the Tension down, and holding it down
+makes the question stop being asked. The Roads went from 36 Councils to 6.
+
+The fix is that a stake does not have to be a `tension_limit`. A **tag** weighs on
+propositions and drives no actions at all:
+
+| | posta | dove |
+|---|---|---|
+| Aldric | `crown_divided` assente | Triumph |
+| Nahr | `crown_divided` presente | Triumph |
+| Lyra | `condition:cut_off` assente sulla Strada | Triumph |
+| Vaerax | `condition:cut_off` presente sulla Strada | Triumph |
+
+Two pairs of directly opposed stakes on the same tag — the same crown and the
+same road, wanted two incompatible ways. And they sit at **Triumph**, not
+Victory, for a mechanical reason worth writing down: `_live_conditions` drives
+*actions* from the lowest unreached level, while scoring a proposition reads
+*all* levels. A clause at Triumph therefore gives an opinion in the room from
+turn one without making anyone spend actions to smother the question.
+
+### O-13: a proposition nobody would ever make
+
+`P_ANY_LEAVE`'s success Consequence took presence and control from the
+**proponent**. First attempt: give it a payoff, `ADJUST_TENSION $tension -2` —
+the question goes quiet because nobody is left to ask it. Not enough, and the
+measurement said why: `P_ANY_RATION` offers the same relief *plus* the Region,
+so leaving stayed strictly dominated.
+
+The right payoff was in the Consequence's own category, which is **MIGRATION,
+not LOSS**: whoever leaves arrives somewhere. `ADD_PRESENCE $proponent` in
+`$adjacent`. `P_ANY_LEAVE` now reaches a vote 7 times in 40 Chronicles and
+`condition:abandoned` is written for the first time.
+
+### The band moves from 4-5 to 5-6
+
+Measured, isolated, and declared rather than quietly adjusted. Different
+proponents ask different questions, whose Consequences move the Tensions
+differently; reverting D-036 alone puts the median back at 5.
+
+The justification is not "the test failed". §7's 3-4 over the two Tensions of
+§18.2 is 1.5-2.0 Confluence **per Tension**; D-026's 4-5 over four Tensions is
+1.0-1.25 — it was stricter than §7 ever asked for. Measured over four blocks of
+forty Chronicles the rate is now 1.3 per Tension, still below §7's own, with a
+median of 5 in three blocks and 6 in the fourth.
+
+### After
+
+| | D-035 | D-036 |
+|---|---|---|
+| consigli con almeno un no | 28% | **50%** |
+| seggi che si oppongono almeno una volta | 3 | **4** |
+| opposizioni di Vaerax | 0 | **26** |
+| mappe di controllo distinte | 8 | **16** |
+| stato finale distinto (su 40) | 38 | **40** |
+| Scar per Chronicle | 1.60 | **2.00** |
+| tag mai scritti (CHR_01 / CHR_02) | 3 / 1 | 3 / **0** |
+| FAILURE / SWC / SUCCESS / DECISIVE | 25/23/62/80 | 45/24/60/79 |
+
+Every one of forty Chronicles now ends in a different world state.
+
+### The three sim plans had to be re-authored, and one of them explains itself
+
+Plan B's Nahr moved a token to the Merchant Road to win the SURVIVAL domain.
+Under D-036 that is the wrong place: the Council is about the Valley. Moving it
+to the Valley restores the plan's story exactly — the Nahr ask for the land and
+the whole table says no, **S1 O7 M−4**.
+
+Plan A dropped from three Councils to two, and the reason is the game working:
+the decisive requisition fires `CNS_VALLEY_CLEARED`, which clears the Nahr out of
+the Valley, and without that presence nobody can touch the Roads for the rest of
+the year. The plan now says so in its own description rather than asserting a
+number that used to come out.
+
+---
+
 ## D-035 — The first question of every Council was never asked
 **implemented in 0.0.11** · closes O-8, closes O-6
 
@@ -1295,8 +1404,41 @@ prerequisite for the outcome table to be alive.
 longer shares `CNS_MINE_SEALED` with `P_SEAL_MINE`. Every proposition in the set
 lands on its own world change.
 
+### O-14 — The Destiny spread tilted, and this time in Lyra's favour
+**flagged, open — recorded, not tuned**
+
+D-036 opened the rooms and the standings moved with them:
+
+| | D-035 | D-036 |
+|---|---|---|
+| Aldric | MIN 18 / VIC 10 / TRI 12 | **MIN 32** / VIC 5 / TRI 2 |
+| Nahr | MIN 4 / VIC 27 / TRI 9 | MIN 6 / VIC 29 / TRI 5 |
+| Lyra | MIN 15 / TRI 25 | MIN 8 / **TRI 32** |
+| Vaerax | MIN 1 / VIC 36 / TRI 3 | MIN 1 / **VIC 38** / TRI 1 |
+
+The crown now spends most Chronicles at Minimum, and Lyra reaches Triumph in four
+out of five. Nobody is frozen the way they were before D-035 - every seat still
+reaches more than one level - but the spread is lopsided, and two of the causes
+are visible: Aldric's Victory needs two Regions in a world where control changes
+hands far more often, and Vaerax's Triumph now asks for a cut road, which is a
+tag somebody else has to write for him.
+
+Left alone on purpose. Three rounds of measurement in a row found the instrument
+at fault rather than the rules, and the lesson is not to reach for the knobs
+first. This wants a table of real players before anybody decides which of these
+numbers is wrong.
+
+Relations also collapsed to a single distinct end state across forty Chronicles,
+down from two. Small, but it says the relation graph is scenery right now.
+
 ### O-13 — `P_ANY_LEAVE` is a proposition nobody would ever make
-**flagged, open — an author's call**
+**closed by D-036.** Not with the first fix: giving it `ADJUST_TENSION -2` was
+not enough, because `P_ANY_RATION` offered the same relief plus the Region and so
+strictly dominated it. The payoff that worked was the one already written in the
+Consequence's own category - MIGRATION, not LOSS - so whoever leaves now arrives
+somewhere. It reaches a vote 7 times in 40 Chronicles.
+
+**original note:**
 
 Its success Consequence, `CNS_ABANDONED`, sets the Region's control to nobody
 and removes the **proponent's own** presence. Nobody playing to win proposes
@@ -1314,7 +1456,14 @@ or leave it as content only a human would ever reach for, and accept that the
 policy will never measure it.
 
 ### O-12 — Two of the four Tensions are in nobody's Destiny
-**flagged, open — content, and the first real one**
+**closed by D-036** — with a detour worth recording. The obvious fix, a
+`tension_limit` on each, made it *worse*: a ceiling makes the policy spend
+actions holding the Tension down, and holding it down makes the question stop
+being asked. The Roads fell from 36 Councils to 6. A stake does not have to be a
+limit on a number - a tag weighs on propositions and drives no actions - and two
+pairs of directly opposed tag stakes gave the fight without the silence.
+
+**original note:**
 
 Every `tension_limit` clause in CHR_01 names either the Famine or the Awakening.
 **No Destiny puts a ceiling or a floor on the Succession or on the Roads.**

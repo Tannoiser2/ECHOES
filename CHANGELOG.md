@@ -5,6 +5,78 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.0.12] — Nessuno aveva un motivo per essere nella stanza
+
+Chiude O-12, O-13 e la serratura di Vaerax. Tre cose aperte, sistemate insieme
+perche erano la stessa cosa vista da tre lati.
+
+### Changed
+
+- **Il proponente lo decide il posto, non il dominio.** §12.2 C dice "piu
+  presenza nelle Regioni della Tensione"; era letto come l'intero dominio, ora e
+  la Regione di cui si sta discutendo. `domain:ANCIENT` sono due Regioni e il
+  Destino di Vaerax lo pianta in entrambe: tutti e 40 i Consigli sul Risveglio
+  erano suoi, e non era mai in aula a votare l'unica Tensione che gli importa.
+  Misurate due estensioni del dominio: **nessuna rompe la serratura**, una la
+  peggiora. Le Vie passano da 2 proponenti a 4, la Successione da 1 a 2.
+
+- **O-12: la Successione e le Vie hanno una posta in gioco.** Il primo tentativo
+  — un `tension_limit` a testa — ha peggiorato le cose: un tetto fa spendere
+  azioni a tenere giu la Tensione, e tenerla giu fa smettere di porre la domanda.
+  Le Vie erano passate da 36 Consigli a 6. Una posta non deve essere un limite su
+  un numero: un **tag** pesa sulle proposte e non guida nessuna azione. Due
+  coppie di poste direttamente opposte — `crown_divided` fra Aldric e i Nahr,
+  `condition:cut_off` fra Lyra e Vaerax — danno la lite senza il silenzio.
+
+- **O-13: `P_ANY_LEAVE` ha un motivo per essere proposta.** Dare solo
+  `ADJUST_TENSION -2` non bastava: `P_ANY_RATION` offriva lo stesso sollievo piu
+  la Regione, quindi andarsene restava dominato. Il premio giusto era scritto
+  nella categoria stessa della Conseguenza — **MIGRATION, non LOSS**: chi se ne
+  va arriva da qualche parte. Ora arriva al voto 7 volte su 40 Chronicle, e
+  `condition:abandoned` viene scritto per la prima volta.
+
+- **La banda dichiarata passa da 4-5 a 5-6.** Misurata, isolata e dichiarata, non
+  aggiustata in silenzio. E la giustificazione non e "il test falliva": il 3-4 di
+  §7 sulle due Tensioni di §18.2 e 1,5-2,0 Confluence **per Tensione**, mentre il
+  4-5 di D-026 su quattro Tensioni e 1,0-1,25 — era piu severo di quanto §7 abbia
+  mai chiesto. Il tasso misurato ora e 1,3 per Tensione, ancora sotto quello di
+  §7.
+
+### Measured
+
+| | prima | dopo |
+|---|---|---|
+| consigli con almeno un no | 28% | **50%** |
+| seggi che si oppongono almeno una volta | 3 | **4** |
+| opposizioni di Vaerax | 0 | **26** |
+| mappe di controllo distinte | 8 | **16** |
+| stato finale distinto (su 40 partite) | 38 | **40** |
+| Scar per Chronicle | 1,60 | **2,00** |
+| tag mai scritti (CHR_01 / CHR_02) | 3 / 1 | 3 / **0** |
+
+Ogni singola Chronicle su quaranta finisce ora in uno stato del mondo diverso.
+
+### Fixed
+
+- **I tre piani di simulazione, riautorati.** Plan B spostava un token sulla
+  Strada dei Mercanti per vincere il dominio SURVIVAL: sotto la regola nuova e il
+  posto sbagliato, perche il Consiglio parla della Valle. Spostato nella Valle, la
+  sua storia torna esatta — i Nahr chiedono la terra e il tavolo intero risponde
+  di no, **S1 O7 M−4**. Plan A e sceso da tre Consigli a due, e il motivo e il
+  gioco che funziona: la requisizione decisiva sgombera i Nahr dalla Valle, e
+  senza quella presenza nessuno puo piu toccare le Vie per il resto dell'anno. Ora
+  il piano lo dice nella propria descrizione invece di pretendere un numero.
+
+### Open
+
+- **O-14** — la classifica dei Destini si e inclinata: Aldric resta al Minimum in
+  32 Chronicle su 40, Lyra arriva al Triumph in 32. Nessuno e piu congelato come
+  prima di D-035, ma lo spread e sbilanciato. Registrato e non tarato: tre giri di
+  misura di fila hanno trovato lo strumento in torto e non le regole, e la lezione
+  e non correre alle manopole.
+
+---
+
 ## [0.0.11] — La prima domanda di ogni Consiglio non veniva mai posta
 
 Chiude O-6 e O-8. Cercavo contenuto da scrivere e ho trovato di nuovo lo

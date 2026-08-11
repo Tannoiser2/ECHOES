@@ -5,7 +5,7 @@
     {
       "id": "SIM_PLAN_A",
       "title": "L'accordo del grano",
-      "description": "Aldric si assicura il seggio di proponente (presenza in tre Regioni del dominio SURVIVAL), accumula Asset rilevanti e requisisce il grano senza opposizione. Esito atteso: Decisive Success con Echo.",
+      "description": "Aldric si assicura il seggio di proponente mettendo il terzo token nella Valle Verde - il proponente e chi ha piu presenza nella Regione di cui si discute (D-036), e la Valle e il posto in cui si discute di grano - accumula Asset rilevanti e requisisce il grano senza una voce contraria. La requisizione decisiva sgombera i Nahr dalla Valle, e senza quella presenza nessuno puo piu toccare le Vie: la Chronicle si chiude su due sole domande, e la seconda le ha chiuse tutte. Esito atteso: un Decisive Success senza opposizione.",
       "chronicle_id": "CHR_01",
       "seed": 20260810,
       "seats": [
@@ -21,9 +21,9 @@
           "actor": "ENT_ALDRIC",
           "template": "MOVE",
           "params": {
-            "region_id": "REG_STRADA_MERCANTI"
+            "region_id": "REG_VALLE_VERDE"
           },
-          "note": "Terzo token in una Regione SURVIVAL: e cosi che si vince il seggio di proponente (§12.2 C)."
+          "note": "Nella Valle, non sulla Strada: e la Valle la Regione di cui il Consiglio del Grano discute."
         },
         {
           "act": 1,
@@ -229,14 +229,13 @@
         }
       ],
       "expected": {
-        "confluence_count": 3,
+        "confluence_count": 2,
         "outcomes": [
           "SUCCESS",
-          "DECISIVE_SUCCESS",
           "DECISIVE_SUCCESS"
         ],
-        "min_echoes": 3,
-        "min_truths": 3
+        "min_echoes": 2,
+        "min_truths": 2
       }
     }
   ]

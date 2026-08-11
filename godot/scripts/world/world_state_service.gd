@@ -258,7 +258,16 @@ func active_entities() -> Array:
 
 ## §12.2 C: proponent is whoever forced the Claim; otherwise most presence in the
 ## Tension's Regions, tie-broken by relevant Assets in hand, then turn order.
-func determine_proponent(tension_id: String) -> String:
+##
+## "The Tension's Regions" used to mean its whole domain. It now means the Region
+## the question is actually *about* - the same focus the narrative and the
+## Consequences use - when the caller can name one (D-036). Counting the domain
+## let one Entity own a question for ever: `domain:ANCIENT` is two Regions and
+## Vaerax's Destiny plants him in both, so all 40 Councils on the Awakening were
+## his, and he was never in the room as a voter on the only Tension he cares
+## about. Counting the focus asks a narrower and truer question: who is standing
+## in the place we are arguing over?
+func determine_proponent(tension_id: String, focus_region: String = "") -> String:
 	var domain: String = tension_domain(tension_id)
 	var families: Array = relevant_families(tension_id)
 	var best: String = ""
@@ -266,7 +275,10 @@ func determine_proponent(tension_id: String) -> String:
 	var best_assets: int = -1
 	var best_order: int = 999
 	for entity_id in active_entities():
-		var presence: int = presence_in_domain(str(entity_id), domain)
+		var presence: int = (
+			presence_count(str(entity_id), focus_region) if focus_region != ""
+			else presence_in_domain(str(entity_id), domain)
+		)
 		var assets: int = 0
 		for family in families:
 			assets += count_family_in_hand(str(entity_id), str(family))

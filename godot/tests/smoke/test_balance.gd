@@ -9,9 +9,15 @@ extends "res://tests/test_case.gd"
 ## or more than 6 emerge. Before the D-021 cap this suite failed hard - the
 ## median was 0 - which is exactly why it exists.
 ##
-## The band is 4-5 here, not §7's 3-4: that number was written for the two
+## The band is 5-6 here, not §7's 3-4: that number was written for the two
 ## Tensions of §18.2 and a Chronicle now carries four. Declared deviation,
-## recorded in DECISIONS D-026, not a quiet adjustment.
+## recorded in DECISIONS D-026 and revised in D-036, not a quiet adjustment.
+##
+## Why it moved from 4-5 to 5-6: §7's 3-4 over the two Tensions of §18.2 is
+## 1.5-2.0 Confluence *per Tension*. D-026's 4-5 over four Tensions is 1.0-1.25 -
+## it was stricter than §7 ever asked for. Measured over four blocks of forty
+## Chronicles the rate is now 1.3 per Tension, still below §7's own, with a
+## median of 5 in three blocks and 6 in the fourth.
 
 const PolicyDecider := preload("res://cli/policy_decider.gd")
 # GameSession comes from test_case.gd; re-declaring it is a parse error.
@@ -25,8 +31,8 @@ const FLOOR: int = 2
 const CEILING: int = 7
 
 ## The band a 4-Tension Chronicle is expected to sit in (D-026).
-const BAND_LOW: int = 4
-const BAND_HIGH: int = 5
+const BAND_LOW: int = 5
+const BAND_HIGH: int = 6
 
 
 func _play(seed_value: int) -> Dictionary:

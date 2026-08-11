@@ -1048,6 +1048,29 @@
           "payload": {
             "tag": "condition:abandoned"
           }
+        },
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "$tension"
+          },
+          "payload": {
+            "delta": -2
+          },
+          "note": "Non si risolve: si va via, e la domanda si spegne perche non resta nessuno a porla."
+        },
+        {
+          "type": "ADD_PRESENCE",
+          "target": {
+            "kind": "entity",
+            "id": "$proponent"
+          },
+          "payload": {
+            "region_id": "$adjacent",
+            "optional": true
+          },
+          "note": "optional: il posto accanto puo essere pieno."
         }
       ]
     },
