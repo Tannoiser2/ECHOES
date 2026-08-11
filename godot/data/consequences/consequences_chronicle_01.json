@@ -141,7 +141,7 @@
       "scar": {
         "region_id": "$region_with:crystal_site",
         "tag": "scar:open_wound",
-        "description": "La galleria maestra non si richiude piu: la roccia intorno resta tiepida."
+        "description": "La galleria maestra non si richiude piu, e la roccia intorno resta tiepida."
       },
       "effects": [
         {
@@ -261,7 +261,7 @@
       "scar": {
         "region_id": "$region_focus",
         "tag": "scar:unanswered",
-        "description": "La domanda a cui il consiglio non ha risposto e rimasta scritta sul muro del granaio."
+        "description": "La domanda a cui il consiglio non ha risposto, rimasta scritta su un muro."
       },
       "effects": [
         {
@@ -323,7 +323,7 @@
       "scar": {
         "region_id": "$region_focus",
         "tag": "scar:emptied",
-        "description": "I pascoli bassi restano segnati dalle piste dei carri, e nessuno li ripercorre."
+        "description": "Le piste dei carri incise nel terreno basso, e nessuno che le ripercorra."
       },
       "effects": [
         {
@@ -794,7 +794,7 @@
       "scar": {
         "region_id": "$region_focus",
         "tag": "scar:plundered",
-        "description": "I carri bruciati al terzo miglio, lasciati dove sono per ricordarlo."
+        "description": "Quello che restava dei carri, lasciato dov'era perche si vedesse."
       },
       "effects": [
         {
