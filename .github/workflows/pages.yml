@@ -7,9 +7,14 @@ name: pages
 # headers, which Pages cannot send. A turn-based game that waits on a click has
 # nothing to gain from threads and everything to lose from not loading at all.
 
+# Build su ogni branch, pubblica solo da main. Cosi l'export viene verificato
+# *prima* del merge: `workflow_dispatch` compare nella UI solo quando il file e
+# gia sul branch di default, quindi senza questo l'unico modo di scoprire un
+# export rotto sarebbe fonderlo su main e guardarlo fallire li.
 on:
   push:
-    branches: ["main"]
+    branches: ["**"]
+  pull_request:
   workflow_dispatch:
 
 # One deploy at a time; let a running one finish rather than publishing a
@@ -59,13 +64,26 @@ jobs:
           test -f build/web/index.wasm
 
       - uses: actions/configure-pages@v5
+        if: github.ref == 'refs/heads/main'
       - uses: actions/upload-pages-artifact@v3
+        if: github.ref == 'refs/heads/main'
         with:
           path: build/web
+
+      # Sugli altri branch resta comunque scaricabile, per poterlo aprire in
+      # locale e vedere cosa fara la pagina dopo il merge.
+      - uses: actions/upload-artifact@v4
+        if: github.ref != 'refs/heads/main'
+        with:
+          name: web-build
+          path: build/web
+          retention-days: 7
 
   deploy:
     name: Pubblica
     needs: build
+    # Solo da main: gli altri branch verificano che l'export funzioni e basta.
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
