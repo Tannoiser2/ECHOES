@@ -49,6 +49,15 @@ caricare agli smoke test. Non c'è UI di gioco: è previsto.
 ## Sedersi al tavolo
 
 ```bash
+tools/play.sh                      # un seggio (i Nahr) contro tre policy
+tools/play.sh --seats=all          # tutti e quattro alla tastiera
+tools/play.sh --seats=ENT_ALDRIC   # scegli il tuo
+```
+
+Lo script trova Godot da solo (`$GODOT`, poi il PATH, poi un binario lasciato
+accanto al progetto). Sotto sta solo questo:
+
+```bash
 godot --headless --path godot --script res://cli/run_hotseat.gd -- \
     --seats=ENT_NAHR --seed=812
 ```

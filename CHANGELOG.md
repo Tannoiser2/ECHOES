@@ -23,6 +23,13 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
   sempre fatto. La cucitura scelta nella 0.0.1 ha retto senza toccare una riga
   del controller.
 
+- **`tools/play.sh`** — `tools/play.sh --seats=all` e via. Trova Godot da solo
+  (`$GODOT`, poi il PATH, poi un binario lasciato accanto al progetto) e se non
+  lo trova spiega dove prenderlo invece di fallire con un comando non trovato.
+  Avverte anche quando stdin non e un terminale, perche in quel caso ogni scelta
+  senza risposta la prende la policy — legittimo per pipare un file di risposte,
+  sorprendente se ci sei arrivato per sbaglio.
+
 - **`tests/smoke/test_hotseat.gd`** — un tavolo di quattro "umani" che non
   rispondono niente deve produrre una Chronicle **identica riga per riga** a una
   giocata da quattro policy, e ogni azione che il menu offre dev'essere una che
