@@ -331,6 +331,107 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-034 — The table abstained on 96% of propositions, and it was the policy again
+**implemented in 0.0.10** · addresses O-6
+
+O-6 has been open since D-024: Failure and Success with Cost stay thin however
+the content grows. The saga of ten Chronicles put a number on the mechanism -
+**40 of 42 councils passed with zero opposition** - without explaining it.
+Opposition is the only term that can push a margin down (M = S − O + W), so a
+table that never opposes cannot produce anything but Success. This is the
+measurement, and what it found.
+
+### The measurement
+
+`cli/run_stance_probe.gd` plays the same 40 Chronicles the balance probe plays
+and records, for every non-proponent at every council, the score the policy
+computed and the stance that score produced - plus, for every Effect in the
+proposition's Consequences, whether that Effect moved the score **at all**.
+
+The second tally is the one that matters. An Effect type read hundreds of times
+and never worth a single point is not a quiet Effect; it is an axis of conflict
+the policy cannot see, no matter what the content says.
+
+| | letto | pesato | |
+|---|---|---|---|
+| `ADJUST_TENSION` | 489 | **0** | ← mai |
+| `SET_CONTROL` | 210 | **0** | ← mai |
+| `SET_ENTITY_TAG` | 300 | **0** | ← mai |
+| `SET_RELATION` | 171 | **0** | ← mai |
+| `SET_GLOBAL_TAG` | 579 | 11 | |
+| `SET_REGION_TAG` | 408 | 11 | |
+
+96.0% ABSTAIN, and the score took exactly three values in 573 stances: −2, 0,
++2. Only the tag branch of `_score_effect` ever fired. The presence branch (±3)
+and the control branch (+2/−3) never fired once.
+
+### Why each axis was dead
+
+- **`ADJUST_TENSION`** — the commonest Effect in the Consequence set, and
+  `tension_limit` is a clause in every one of the four Destinies. The two never
+  met: a proposition that shoved the Famine up by two scored **zero** against a
+  Destiny whose Victory says the Famine must stay under three.
+- **`SET_CONTROL`** — every authored target is a slot (`$region_focus`,
+  `$rival_seat`, `$capital`, `$region_with:trade`) since D-032, and
+  `_score_effect` returned early on anything it could not find in
+  `world["regions"]`. The comment said a policy reading a proposition in advance
+  "cannot know which Region that is". **That was simply wrong.** The Council
+  fixes its bindings at step A, before a single stance is declared.
+- **`SET_ENTITY_TAG`** — Lyra's whole Destiny counts Discoveries, and Discoveries
+  arrive as `SET_ENTITY_TAG discovery:*`. Nothing scored them.
+- **`SET_RELATION`** — legitimately silent: no Destiny reads relations.
+
+### The fix, and where it belongs
+
+In the policy, not the content. The conflicts were **already authored** - a
+proposition that raises the Famine against a people whose Destiny caps it is a
+fight the data had written and the instrument could not read.
+
+`ConfluenceController._context()` became public as **`effect_context()`**, and
+the policy resolves slots through the Council's own binding table rather than a
+copy, so the policy's idea of a proposition and the Effects the Council applies
+at K cannot drift. Three branches were added:
+
+- `ADJUST_TENSION` vs `tension_limit`: **−2** for the push that breaks a clause
+  currently holding, **+2** for the one that repairs a broken one, ±1 for merely
+  moving the wrong or right way inside the band. Breaking a clause is worth a no;
+  disliking a direction is worth a clause.
+- `SET_ENTITY_TAG discovery:*` vs `discovery_count`: **+2**, and only to the
+  Entity receiving it — someone else learning something costs you nothing.
+- Slot resolution, which is what brought `SET_CONTROL` and `REMOVE_PRESENCE`
+  alive without touching their scoring at all.
+
+### After
+
+| | prima | dopo |
+|---|---|---|
+| ABSTAIN | 96.0% | **84.1%** |
+| OPPOSE | 2.8% | **5.4%** |
+| SUPPORT | 1.2% | **10.5%** |
+| consigli con almeno un no | 16 (8%) | **30 (16%)** |
+| valori distinti del punteggio | 3 | **7** |
+| FAILURE (su ~180 Confluence) | 7 | **23** |
+| SUCCESS_WITH_COST | 7 | 6 |
+
+Failure roughly tripled, from 4% of councils to 12.5%. Success with Cost did not
+move, and that is expected rather than disappointing: it is band 0–1, two values
+wide, and a wider spread of margins does not preferentially land there.
+
+### What it did not fix, stated plainly
+
+`DECISIVE_SUCCESS` is still 105 of 184 (57%). O-6 is **narrowed, not closed**.
+
+And one seat still never opposes: Vaerax abstained 144 times out of 144. The
+room tally says why, and it is not the policy - **all 40 councils on the
+Awakening were opened by Vaerax himself**. He owns his question outright, so he
+is never in the room as a voter on the only Tension his Destiny names. That is a
+content shape, not a blind spot, and it wants a content answer.
+
+Third time the same lesson, after D-021 and D-033: when the balance looks wrong,
+suspect the instrument before the rules.
+
+---
+
 ## D-033 — Two more ways to aim: the neighbour, and a kind of place
 **implemented in 0.0.9** · closes O-11
 
@@ -1077,9 +1178,17 @@ longer shares `CNS_MINE_SEALED` with `P_SEAL_MINE`. Every proposition in the set
 lands on its own world change.
 
 ### O-6 — The wider content thinned the outcome bands again
-**partly closed by D-026** — the band question is answered (4-5, declared). The
-thinning of Failure and Success with Cost is not: 9 and 5 against 18 and 15.
-Still open, still the same mechanism as O-4 in a bigger world.
+**narrowed by D-034, still open.** The cause turned out to be the measuring
+instrument: the policy was blind to three of the four axes the Destinies are
+actually about, so 96% of stances were ABSTAIN and O was 0 in almost every
+council. With the policy able to read them, Failure went 7 -> 23 out of ~180.
+What remains is `DECISIVE_SUCCESS` at 57%, and one seat (Vaerax) that owns its
+own question and is therefore never in the room to vote on it - a content
+question, not a policy one.
+
+**previously: partly closed by D-026** — the band question is answered (4-5,
+declared). The thinning of Failure and Success with Cost is not: 9 and 5 against
+18 and 15. Still open, still the same mechanism as O-4 in a bigger world.
 
 **original note:**
 

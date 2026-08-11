@@ -223,3 +223,64 @@ func test_pushing_up_displaces_nothing() -> void:
 		assert_eq(
 			session.tensions.value(id), int(before[id]), "%s non deve muoversi" % id
 		)
+
+
+## D-034: the policy has to be able to *see* the axes the Destinies are about.
+##
+## Not a threshold on how often the table opposes - that is a tuning number and
+## it belongs in the probe. This guards the failure that hid behind it for four
+## versions: an Effect type that is read hundreds of times and never worth a
+## single point, because the policy had no branch for it. Four such axes were
+## dead at once, and the table abstained on 96% of propositions as a result.
+func test_the_policy_scores_every_axis_the_destinies_name() -> void:
+	var decider: RefCounted = PolicyDecider.new(null)
+	# Effect types that at least one Destiny clause can care about. SET_RELATION
+	# is left out on purpose: no Destiny in CHR_01 reads relations, so a policy
+	# with no opinion about it is right rather than blind.
+	var watched: Array = [
+		"ADJUST_TENSION", "SET_CONTROL", "SET_ENTITY_TAG", "SET_GLOBAL_TAG", "SET_REGION_TAG"
+	]
+	var scored: Dictionary = {}
+	var seen: Dictionary = {}
+
+	for i in range(RUNS):
+		new_session(FIRST_SEED + i, false)
+		session.confluence.step_changed.connect(
+			func(step: String, context: Dictionary) -> void:
+				if step != "PROPOSITION":
+					return
+				var bindings: Dictionary = session.confluence.effect_context()
+				assert_true(
+					not bindings.is_empty(),
+					"un Consiglio aperto deve saper risolvere i propri slot"
+				)
+				var template: Dictionary = data().confluence_templates[str(context["template_id"])]
+				for proposition in template["propositions"]:
+					if str(proposition["id"]) != str(context.get("proposition_id", "")):
+						continue
+					for entity_id in SEATS:
+						var goals: Dictionary = decider._tag_goals(str(entity_id), session)
+						for consequence_id in proposition["success_consequences"]:
+							var consequence: Variant = data().consequences.get(str(consequence_id))
+							if consequence == null:
+								continue
+							for effect in consequence["effects"]:
+								var type: String = str(effect["type"])
+								seen[type] = int(seen.get(type, 0)) + 1
+								var value: int = decider._score_effect(
+									effect, str(entity_id), str(context["proponent"]),
+									goals, session, bindings
+								)
+								if value != 0:
+									scored[type] = int(scored.get(type, 0)) + 1
+		)
+		session.run(PolicyDecider.new(session.log))
+
+	for type in watched:
+		if int(seen.get(str(type), 0)) == 0:
+			continue  # never came up in these seeds; nothing to say about it
+		assert_true(
+			int(scored.get(str(type), 0)) > 0,
+			"%s letto %d volte e mai pesato: la policy e cieca su un asse che un Destiny nomina"
+			% [str(type), int(seen[str(type)])]
+		)

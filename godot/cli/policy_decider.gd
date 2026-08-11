@@ -375,14 +375,34 @@ func _score_proposition(
 	proposition: Dictionary, entity_id: String, proponent_id: String, session: RefCounted
 ) -> int:
 	var goals: Dictionary = _tag_goals(entity_id, session)
+	var bindings: Dictionary = session.confluence.effect_context()
 	var score: int = 0
 	for consequence_id in proposition["success_consequences"]:
 		var consequence: Variant = session.data.consequences.get(str(consequence_id))
 		if consequence == null:
 			continue
 		for effect in consequence["effects"]:
-			score += _score_effect(effect, entity_id, proponent_id, goals, session)
+			score += _score_effect(effect, entity_id, proponent_id, goals, session, bindings)
 	return score
+
+
+## Resolve an authored `$slot` to the id it will actually carry at K.
+##
+## The Council fixes its bindings at A, before a single stance is declared, so a
+## decider voting at D can resolve $region_focus to exactly the Region the
+## Consequence will hit. It uses the Council's own table rather than a copy, so
+## the two cannot drift.
+func _resolve(value: Variant, bindings: Dictionary, session: RefCounted) -> String:
+	var text: String = str(value)
+	if not text.begins_with("$"):
+		return text
+	var key: String = text.substr(1)
+	if bindings.has(key):
+		return str(bindings[key])
+	# `$region_with:<tag>` names a kind of place; only the compiler can answer it.
+	if bindings.is_empty():
+		return text
+	return str(session.confluence.compiler.substitute_string(text, bindings))
 
 
 func _score_effect(
@@ -390,11 +410,12 @@ func _score_effect(
 	entity_id: String,
 	proponent_id: String,
 	goals: Dictionary,
-	session: RefCounted
+	session: RefCounted,
+	bindings: Dictionary
 ) -> int:
 	var payload: Dictionary = effect.get("payload", {})
 	var effect_type: String = str(effect["type"])
-	var target_id: String = str(effect["target"]["id"])
+	var target_id: String = _resolve(effect["target"]["id"], bindings, session)
 	var score: int = 0
 
 	# A tag your Destiny wants present, or wants gone.
@@ -403,18 +424,33 @@ func _score_effect(
 		var sets_it: bool = effect_type.begins_with("SET_")
 		score += int(goals[tag]) * (1 if sets_it else -1) * 2
 
-	# Being pushed out of - or planted in - a Region your Destiny names.
+	# Being pushed out of - or planted in - a Region your Destiny names. The
+	# target is always a $slot in the authored data ($rival, $proponent), so this
+	# only ever fires once the slot is resolved.
 	if effect_type == "REMOVE_PRESENCE" and target_id == entity_id:
-		if _needs_presence(entity_id, str(payload.get("region_id", "")), session):
+		if _needs_presence(entity_id, _resolve(payload.get("region_id", ""), bindings, session), session):
 			score -= 3
 	if effect_type == "ADD_PRESENCE" and target_id == entity_id:
-		if _needs_presence(entity_id, str(payload.get("region_id", "")), session):
+		if _needs_presence(entity_id, _resolve(payload.get("region_id", ""), bindings, session), session):
 			score += 3
 
-	# Control changing hands, for whoever counts Regions. The target may be a
-	# $slot that only resolves when the Council opens (D-028); a policy reading
-	# the proposition in advance cannot know which Region that is, so it does not
-	# guess - it scores what it can name.
+	# A Tension your Destiny puts a ceiling or a floor on. This is the commonest
+	# Effect in the whole Consequence set and the commonest clause in the whole
+	# Destiny set, and until D-034 the two never met: a proposition that shoved
+	# the Famine up by two scored exactly zero against a Destiny whose Victory
+	# says the Famine must stay under three.
+	if effect_type == "ADJUST_TENSION":
+		score += _score_tension_move(
+			target_id, int(payload.get("delta", 0)), entity_id, session
+		)
+
+	# A Discovery, for a Destiny that counts Discoveries. They are granted to the
+	# proponent; someone else learning something costs you nothing.
+	if effect_type == "SET_ENTITY_TAG" and str(payload.get("tag", "")).begins_with("discovery:"):
+		if target_id == entity_id and _wants_discoveries(entity_id, session):
+			score += 2
+
+	# Control changing hands, for whoever counts Regions.
 	if effect_type == "SET_CONTROL" and _counts_control(entity_id, session):
 		if not session.world["regions"].has(target_id):
 			return score
@@ -431,6 +467,50 @@ func _score_effect(
 			elif holds_it_now:
 				score -= 3  # handed to someone else, out of your hands
 	return score
+
+
+## What a push on a Tension is worth to this Entity's `tension_limit` clauses.
+##
+## Breaking a clause that currently holds is worth blocking outright; merely
+## moving in the wrong direction inside the band is worth a clause, not a no.
+## Symmetrically for a move that repairs a limit already broken.
+func _score_tension_move(
+	tension_id: String, delta: int, entity_id: String, session: RefCounted
+) -> int:
+	if delta == 0 or not session.world["tensions"].has(tension_id):
+		return 0
+	var score: int = 0
+	for condition in _conditions(entity_id, session):
+		if str(condition.get("type", "")) != "tension_limit":
+			continue
+		if str(condition.get("tension_id", "")) != tension_id:
+			continue
+		var value: int = session.tensions.value(tension_id)
+		var after: int = value + delta
+		if condition.has("max"):
+			var ceiling: int = int(condition["max"])
+			if value <= ceiling and after > ceiling:
+				score -= 2  # this is what breaks the clause
+			elif value > ceiling and after <= ceiling:
+				score += 2  # this is what repairs it
+			elif delta > 0:
+				score -= 1
+			else:
+				score += 1
+		if condition.has("min"):
+			var floor_value: int = int(condition["min"])
+			if value >= floor_value and after < floor_value:
+				score -= 2
+			elif value < floor_value and after >= floor_value:
+				score += 2
+	return score
+
+
+func _wants_discoveries(entity_id: String, session: RefCounted) -> bool:
+	for condition in _conditions(entity_id, session):
+		if str(condition.get("type", "")) == "discovery_count":
+			return true
+	return false
 
 
 func _needs_presence(entity_id: String, region_id: String, session: RefCounted) -> bool:

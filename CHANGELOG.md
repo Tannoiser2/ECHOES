@@ -5,6 +5,62 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.0.10] — Perche nessuno diceva di no
+
+Restringe O-6. La domanda era: se le crisi arrivano al voto, perche il tavolo le
+approva quasi sempre? La risposta e la stessa delle ultime due volte — non le
+regole, lo strumento che le misura.
+
+### Added
+
+- **`cli/run_stance_probe.gd`** — la sonda che ha risposto. Per ogni consiglio e
+  ogni seggio che non propone registra il punteggio calcolato dalla policy e la
+  posizione che ne e uscita, e per ogni Effect se quell'Effect ha spostato il
+  punteggio **anche una sola volta**. Il secondo conteggio e quello che conta: un
+  Effect letto centinaia di volte e mai pesato non e un Effect silenzioso, e un
+  motivo di lite che la policy non sa vedere.
+
+  Ha trovato **96% di ABSTAIN** e un punteggio con soli tre valori possibili
+  (−2, 0, +2): `ADJUST_TENSION` (letto 489 volte), `SET_CONTROL` (210),
+  `SET_ENTITY_TAG` (300) e `SET_RELATION` (171) non pesavano **mai**.
+
+### Changed
+
+- **`ConfluenceController.effect_context()` e ora pubblico** (era `_context()`).
+  Un decisore deve poter valutare una proposta *prima* di votarla, e puo farlo
+  solo se risolve `$region_focus` come lo risolvera il passo K. La policy usa la
+  tabella del Consiglio, non una copia, cosi le due non possono divergere.
+- **`PolicyDecider._score_effect` legge tre assi che prima non vedeva.**
+  - `ADJUST_TENSION` contro le clausole `tension_limit`: −2 la spinta che rompe
+    una clausola che regge, +2 quella che ne ripara una rotta, ±1 il semplice
+    muoversi nella direzione sbagliata o giusta dentro la banda. Rompere una
+    clausola vale un no; una direzione che non piace vale una clausola.
+  - `SET_ENTITY_TAG discovery:*` contro `discovery_count`, +2 e solo a chi la
+    riceve: che un altro impari qualcosa non ti costa niente.
+  - Gli `$slot` vengono risolti, e questo da solo ha riportato in vita
+    `SET_CONTROL` e `REMOVE_PRESENCE` senza toccarne il punteggio.
+
+  I conflitti erano **gia scritti nei dati**: una proposta che alza la Carestia
+  contro un popolo il cui Destino la tiene sotto tre e una lite che il contenuto
+  aveva scritto e lo strumento non sapeva leggere.
+
+### Measured
+
+| | prima | dopo |
+|---|---|---|
+| ABSTAIN | 96.0% | **84.1%** |
+| OPPOSE | 2.8% | **5.4%** |
+| SUPPORT | 1.2% | **10.5%** |
+| consigli con almeno un no | 8% | **16%** |
+| FAILURE (su ~180 Confluence) | 7 | **23** |
+
+Non chiude O-6: `DECISIVE_SUCCESS` resta al 57%, e Vaerax si astiene ancora
+144 volte su 144 — ma non per cecita della policy: **tutti e 40 i consigli sul
+Risveglio li apre lui**, quindi non e mai nella stanza a votare l'unica Tensione
+che il suo Destino nomina. Quella e una questione di contenuto.
+
+---
+
 ## [0.0.9] — Il vicino, il tipo di luogo, e uno strumento che mentiva
 
 Chiude O-11, il prezzo pagato nella 0.0.8.

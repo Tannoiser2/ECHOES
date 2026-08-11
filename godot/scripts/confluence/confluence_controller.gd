@@ -177,7 +177,7 @@ func available_propositions() -> Array:
 	if current.is_empty():
 		return []
 	var template: Dictionary = data.confluence_templates[str(current["template_id"])]
-	var context: Dictionary = _context()
+	var context: Dictionary = effect_context()
 	var out: Array = []
 	for proposition in template["propositions"]:
 		if str(proposition["question_id"]) != str(current["question_id"]):
@@ -344,7 +344,7 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 
 	var applied: Array = []
 	var outcome: String = str(result["outcome"])
-	var context: Dictionary = _context()
+	var context: Dictionary = effect_context()
 
 	# H.1 The Tension itself. Failure drops it by 2 and leaves the question
 	# alive (appendix A6); any success settles it to 1.
@@ -522,7 +522,7 @@ func _apply_scar(applied: Array, consequence_id: String, source: Dictionary) -> 
 				"scar_id": scar_id,
 				# The scar block is authored data like any other, so it may name
 				# $region_focus rather than a Region that has to exist for ever.
-				"region_id": compiler.substitute_string(str(scar["region_id"]), _context()),
+				"region_id": compiler.substitute_string(str(scar["region_id"]), effect_context()),
 				"tag": str(scar["tag"]),
 				"description": say(str(scar["description"])),
 			},
@@ -575,7 +575,17 @@ func _proposition() -> Dictionary:
 	return {}
 
 
-func _context() -> Dictionary:
+## The slots an authored Effect may name, resolved to *ids* against the world as
+## it stands right now.
+##
+## Public, because a decider has to be able to score a proposition before voting
+## on it, and it can only do that if it resolves $region_focus the same way K
+## will. Reading these bindings off a second table would let the policy's idea of
+## the proposition drift from the Effects the Council actually applies - which is
+## how the table ended up abstaining on 96% of propositions (D-034).
+func effect_context() -> Dictionary:
+	if current.is_empty():
+		return {}
 	return {
 		"proponent": str(current["proponent"]),
 		"tension": str(current["tension_id"]),
