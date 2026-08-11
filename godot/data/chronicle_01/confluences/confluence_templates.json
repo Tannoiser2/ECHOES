@@ -583,6 +583,136 @@
         "delta": 1
       },
       "echo_title_template": "Il Prezzo del Sale"
+    },
+    {
+      "id": "CNF_ANY_SURVIVAL",
+      "applies_to_domain": "SURVIVAL",
+      "title": "Il Consiglio di Chi Resta",
+      "description": "Non importa quale sia la cosa che manca. Prima o poi qualcuno chiede, ad alta voce, chi decide a chi non ne tocca. Questo Consiglio serve qualunque crisi di sopravvivenza: e contenuto di biblioteca, non di questa Chronicle.",
+      "questions": [
+        {
+          "id": "Q_ANY_WHO_DECIDES",
+          "text": "$in_region, chi decide a chi non ne tocca?",
+          "eligibility": []
+        },
+        {
+          "id": "Q_ANY_WHO_STAYS",
+          "text": "Chi ha ancora motivo di restare $in_region?",
+          "eligibility": [
+            {
+              "type": "tension_limit",
+              "tension_id": "$tension",
+              "min": 4,
+              "label": "La questione e al limite"
+            }
+          ]
+        }
+      ],
+      "propositions": [
+        {
+          "id": "P_ANY_RATION",
+          "question_id": "Q_ANY_WHO_DECIDES",
+          "text": "Si conta quello che c'e e $proponent decide chi ne ha diritto.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_RATIONED"
+          ],
+          "echo_summary": "$proponent fece la lista di chi aveva diritto $in_region, e nessuno la dimentico."
+        },
+        {
+          "id": "P_ANY_SHARE",
+          "question_id": "Q_ANY_WHO_DECIDES",
+          "text": "Si divide in parti uguali e si accetta che nessuno ne esca bene.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_SHARED_BURDEN"
+          ],
+          "echo_summary": "Il peso $of_region fu diviso in parti uguali, e fu il massimo che quel consiglio riusci a fare."
+        },
+        {
+          "id": "P_ANY_LEAVE",
+          "question_id": "Q_ANY_WHO_STAYS",
+          "text": "Non si risolve: si va via. $rival resti pure, se ci tiene.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_ABANDONED"
+          ],
+          "echo_summary": "$proponent lascio $the_region a chi voleva restare, e restarono in pochi."
+        }
+      ],
+      "condition_clauses": [
+        {
+          "id": "C_ANY_WITNESS",
+          "text": "...purche $rival veda la lista con i propri occhi.",
+          "effects": [
+            {
+              "type": "SET_GLOBAL_TAG",
+              "target": {
+                "kind": "world",
+                "id": "WORLD"
+              },
+              "payload": {
+                "tag": "list_witnessed"
+              }
+            },
+            {
+              "type": "ADJUST_TENSION",
+              "target": {
+                "kind": "tension",
+                "id": "$tension"
+              },
+              "payload": {
+                "delta": -1
+              }
+            }
+          ]
+        },
+        {
+          "id": "C_ANY_RETURN",
+          "text": "...purche chi se ne va possa tornare quando torna l'acqua.",
+          "effects": [
+            {
+              "type": "REMOVE_REGION_TAG",
+              "target": {
+                "kind": "region",
+                "id": "$region_focus"
+              },
+              "payload": {
+                "tag": "condition:abandoned",
+                "optional": true
+              }
+            },
+            {
+              "type": "SET_GLOBAL_TAG",
+              "target": {
+                "kind": "world",
+                "id": "WORLD"
+              },
+              "payload": {
+                "tag": "return_promised"
+              }
+            }
+          ]
+        }
+      ],
+      "consequence_pools": {
+        "cost": [
+          "CNS_COST_UNREST"
+        ],
+        "failure": [
+          "CNS_FAILURE_SPIRAL"
+        ],
+        "decisive_bonus": [
+          "CNS_DECISIVE_RENOWN"
+        ]
+      },
+      "ripple": {
+        "targets": [
+          "TEN_FAMINE"
+        ],
+        "delta": 1
+      },
+      "echo_title_template": "Il Consiglio di Chi Resta"
     }
   ]
 }

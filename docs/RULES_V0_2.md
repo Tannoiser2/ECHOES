@@ -27,6 +27,13 @@ codice.
 | INFLUENCE per Tensione per round | 1 | `chronicle.influence_rules.max_per_tension_per_round` |
 | Tensioni in gioco | 4 | `chronicle.tensions` |
 | Soglie | 6 / 6 / 6 / 5 | `tension.threshold` |
+| Regioni tenibili senza sforzo | 2 | `chronicle.control_rules.max_stable_control` |
+
+**Sovraestensione** (D-027): ogni Regione tenuta oltre `max_stable_control` alza
+di 1, ogni round, la Tensione del **dominio di quella Regione**. Non è una
+penalità a chi sta vincendo: è la situazione che risponde. E a inizio di una
+Chronicle di campagna, una Regione tenuta senza nessuno dentro torna a nessuno —
+non si governa dove non si è.
 
 Ordine di un round:
 

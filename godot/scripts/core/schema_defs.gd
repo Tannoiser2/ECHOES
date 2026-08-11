@@ -176,8 +176,6 @@ const DEFS := {
 			"presence_tokens",
 			"entities",
 			"regions",
-			"tensions",
-			"drift_distribution",
 			"act_echo_pools",
 			"confluence_templates",
 			"opening_text",
@@ -299,13 +297,18 @@ const DEFS := {
 			"influence_rules": {
 				"type": "Dictionary",
 			},
+			"control_rules": {
+				"type": "Dictionary",
+			},
+			"tension_pool": {
+				"type": "Dictionary",
+			},
 		},
 	},
 	"confluence_template": {
 		"kind": "collection",
 		"required": [
 			"id",
-			"tension_id",
 			"title",
 			"questions",
 			"propositions",
@@ -358,6 +361,9 @@ const DEFS := {
 				"type": "Dictionary",
 			},
 			"echo_title_template": {
+				"type": "String",
+			},
+			"applies_to_domain": {
 				"type": "String",
 			},
 		},

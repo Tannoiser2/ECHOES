@@ -130,7 +130,7 @@ func _check_references() -> void:
 			if not regions.has(neighbour):
 				errors.append("%s: unknown adjacent region '%s'" % [region["id"], neighbour])
 	for template in confluence_templates.values():
-		if not tensions.has(template["tension_id"]):
+		if template.has("tension_id") and not tensions.has(template["tension_id"]):
 			errors.append("%s: unknown tension '%s'" % [template["id"], template["tension_id"]])
 		for proposition in template["propositions"]:
 			for consequence_id in proposition["success_consequences"]:
@@ -148,7 +148,12 @@ func _check_references() -> void:
 		for entity_id in chronicle["entities"]:
 			if not entities.has(entity_id):
 				errors.append("%s: unknown entity '%s'" % [chronicle["id"], entity_id])
-		for tension_id in chronicle["tensions"]:
+		var declared: Array = chronicle.get("tensions", [])
+		if chronicle.has("tension_pool"):
+			declared = (chronicle["tension_pool"]["candidates"] as Array) + (
+				chronicle["tension_pool"].get("always", []) as Array
+			)
+		for tension_id in declared:
 			if not tensions.has(tension_id):
 				errors.append("%s: unknown tension '%s'" % [chronicle["id"], tension_id])
 	for template in ["ACQUIRE", "MOVE", "INFLUENCE", "FORGE", "SCHEME", "CLAIM"]:
@@ -158,9 +163,24 @@ func _check_references() -> void:
 
 # --- convenience lookups ---------------------------------------------------
 
+## A Council bound to this exact Tension wins; otherwise one bound to its whole
+## domain serves it. The second form is what makes a Council library content: the
+## structure of a survival crisis is not specific to one famine, so a Chronicle
+## that draws a new SURVIVAL Tension gets a Council without anyone writing one
+## (D-028). Ids are sorted so the fallback is deterministic.
 func confluence_template_for(tension_id: String) -> Dictionary:
+	var tension: Variant = tensions.get(tension_id)
 	for template in confluence_templates.values():
-		if str(template["tension_id"]) == tension_id:
+		if str(template.get("tension_id", "")) == tension_id:
+			return template
+	if tension == null:
+		return {}
+	var domain: String = str(tension["domain"])
+	var ids: Array = confluence_templates.keys()
+	ids.sort()
+	for template_id in ids:
+		var template: Dictionary = confluence_templates[template_id]
+		if str(template.get("applies_to_domain", "")) == domain:
 			return template
 	return {}
 

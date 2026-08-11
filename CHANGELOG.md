@@ -5,6 +5,82 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.0.4] — Le decisioni prese
+
+Tre scelte dell'autore, implementate e misurate: la banda del §7, il leader che
+scappa, e il modello di campagna.
+
+### Changed
+
+- **Banda 4-5 invece di 3-4** (D-026). Il numero del §7 era scritto per due
+  Tensioni; una Chronicle ne porta quattro e la mediana misurata e 4. Deviazione
+  dichiarata, non taratura silenziosa: `test_balance.gd` e la sonda portano
+  entrambi la banda nuova e citano l'entry.
+
+### Added
+
+- **`chronicle.control_rules`** (D-027) — tenere non e gratis, e la risposta e
+  dell'autore: non una penalita a chi sta vincendo, ma una pressione che nasce
+  dalla situazione. Un impero cade per la propria dimensione.
+  - `max_stable_control`: ogni Regione tenuta oltre il limite alza la Tensione
+    **del dominio di quella Regione**, una volta per round. Al tavolo si legge
+    come "tieni anche la strada? allora la domanda sulla strada e tua".
+  - `lapse_without_presence`: a inizio Chronicle una Regione tenuta senza
+    nessuno dentro torna a nessuno. Non si governa dove non si e.
+- **Contenuto di biblioteca** (D-028) — l'autore ha scelto il modello **B**:
+  niente Chronicle pre-scritte, si assemblano.
+  - `confluence_template.applies_to_domain` — un Consiglio puo servire un intero
+    dominio invece di una sola Tensione. E il risparmio piu grosso del progetto:
+    i Consigli erano circa un terzo del costo di scrittura di una Chronicle, ed
+    erano la parte da riscrivere ogni volta. `CNF_ANY_SURVIVAL` e il primo,
+    scritto interamente a slot.
+  - `chronicle.tension_pool` — una Chronicle **pesca** le proprie Tensioni invece
+    di elencarle. Il sorteggio usa lo stesso RNG seeded dei mazzi: stesso seed,
+    stesso anno. `CHR_02` e la prima in forma biblioteca e pesca 4 domande su 6.
+  - `TEN_PLAGUE` e `TEN_THIRST`: le prime Tensioni **senza un Consiglio proprio**,
+    che ne ricevono uno completo gratis.
+  - Tre Conseguenze scritte solo a slot (`CNS_RATIONED`, `CNS_ABANDONED`,
+    `CNS_SHARED_BURDEN`): il modello per generalizzare le altre 26.
+- **`tests/unit/test_library_content.gd`** — 6 test sul meccanismo nuovo.
+
+### Fixed
+
+- **`ADJUST_TENSION` / `SET_TENSION_VISIBILITY` su una Tensione non in gioco**
+  ora sono un no-op invece di un fallimento: il contenuto di biblioteca nomina
+  domande che una data Chronicle puo non aver pescato. Un id che **non e** una
+  Tensione resta un errore — la distinzione e quello che tiene un refuso rumoroso.
+- **`$tension` nelle condizioni `tension_limit`** e **`$region_focus` nel blocco
+  Scar** ora si risolvono: un Consiglio di dominio non sa quale domanda serve
+  finche non si apre.
+- **La policy** non presume piu che il bersaglio di un `SET_CONTROL` sia una
+  Regione nominata: puo essere uno slot che si risolve solo all'apertura.
+
+### La misura
+
+Il leader che scappa, dieci Chronicle ereditate, stessi seed:
+
+```
+prima   Re - Vae Re  Re  Re     (dalla quinta in poi, immobile)
+dopo    Re - Vae Re  Pop -  ->  Re - Vae - - -  ->  Re - Vae Re - -
+```
+
+Il controllo si espande e si ritira invece di congelarsi. Truth 13 → 16, frasi
+distinte 12 → 15, Scar per Chronicle 0.45 → 0.75.
+
+E la Chronicle di biblioteca gira per dieci anni pescando ogni volta una mano
+diversa di domande, senza un solo errore e senza che nessuno l'abbia scritta.
+
+### Segnalato, non corretto
+
+- **O-6** resta aperta per meta: la banda e decisa (D-026), ma Failure e Success
+  with Cost restano assottigliate (9 e 5 contro 18 e 15).
+- **O-8**: sei Conseguenze su 29 non scattano mai.
+- Le 26 Conseguenze piu vecchie nominano ancora una Regione precisa: sono
+  contenuto di Chronicle, non di biblioteca. Generalizzarle e il prossimo pezzo
+  di B, ed e lavoro di scrittura, non di motore.
+
+---
+
 ## [0.0.3] — Un mondo che si puo muovere
 
 Misura prima, contenuto dopo. La domanda era: dopo dieci Chronicle, quanto e

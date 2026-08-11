@@ -16,10 +16,15 @@ signal effect_applied(effect: Dictionary)
 
 var world: Dictionary
 var last_error: String = ""
+## Optional: lets the applier tell "this Tension was not drawn for this
+## Chronicle" (a no-op) from "this Tension does not exist" (a typo). Without it
+## every unknown id is a failure, which is the old, stricter behaviour.
+var data: RefCounted = null
 
 
-func _init(p_world: Dictionary) -> void:
+func _init(p_world: Dictionary, p_data: RefCounted = null) -> void:
 	world = p_world
+	data = p_data
 
 
 ## Apply one Effect. Returns the stored Effect (with effect_id and inverse
@@ -166,9 +171,15 @@ func _mutate(effect_type: String, target: Dictionary, payload: Dictionary) -> Va
 
 
 func _adjust_tension(target: Dictionary, payload: Dictionary) -> Variant:
-	var tension: Variant = world["tensions"].get(str(target.get("id", "")))
+	var tension_id: String = str(target.get("id", ""))
+	var tension: Variant = world["tensions"].get(tension_id)
 	if tension == null:
-		return _fail("unknown tension '%s'" % target.get("id", ""))
+		# Library content references Tensions that a given Chronicle may not have
+		# drawn (D-028). A Ripple onto a question nobody is asking this year is a
+		# no-op; an id that is not a Tension at all is still a failure.
+		if data != null and data.tensions.has(tension_id):
+			return {"delta": 0, "noop": true}
+		return _fail("unknown tension '%s'" % tension_id)
 	var before: int = int(tension["current_value"])
 	# Tensions never go below zero; the inverse records the delta that was
 	# actually applied so a clamped adjustment still round-trips exactly.
@@ -178,9 +189,14 @@ func _adjust_tension(target: Dictionary, payload: Dictionary) -> Variant:
 
 
 func _set_tension_visibility(target: Dictionary, payload: Dictionary) -> Variant:
-	var tension: Variant = world["tensions"].get(str(target.get("id", "")))
+	var tension_id: String = str(target.get("id", ""))
+	var tension: Variant = world["tensions"].get(tension_id)
 	if tension == null:
-		return _fail("unknown tension '%s'" % target.get("id", ""))
+		# Same rule as _adjust_tension: not drawn this Chronicle is a no-op,
+		# not a Tension at all is a failure (D-028).
+		if data != null and data.tensions.has(tension_id):
+			return {"noop": true}
+		return _fail("unknown tension '%s'" % tension_id)
 	var visibility: String = str(payload.get("visibility", ""))
 	if not ["OPEN", "VEILED", "SECRET"].has(visibility):
 		return _fail("invalid visibility '%s'" % visibility)

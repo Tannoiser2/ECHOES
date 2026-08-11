@@ -71,6 +71,12 @@ func _substitute(value: Variant, context: Dictionary) -> Variant:
 	return value
 
 
+## Public: the Confluence controller resolves the authored Scar block with it,
+## because a Scar may name $region_focus like any other authored target.
+func substitute_string(value: String, context: Dictionary) -> String:
+	return _substitute_string(value, context)
+
+
 func _substitute_string(value: String, context: Dictionary) -> String:
 	if not value.contains("$"):
 		return value

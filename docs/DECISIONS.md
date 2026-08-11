@@ -331,6 +331,121 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-026 — The Confluence band is 4-5, not §7's 3-4
+**implemented in 0.0.4** · declared deviation from §7, recorded per §25
+
+§7 asks for 3-4 Confluence per Chronicle. That number was written for the two
+Tensions of §18.2; a Chronicle now carries four, and the measured median is 4
+with only 42% of runs inside 3-4. Widening the band to **4-5** (and the hard
+bounds from 2-6 to 2-7) describes the game that exists rather than the one the
+reduced content described.
+
+Chosen by the author over the alternative - tuning the content back down until
+it fits 3-4 - because the wider world is the point of D-024. `test_balance.gd`
+and `run_balance_probe.gd` both carry the new band, and both name this entry.
+
+---
+
+## D-027 — Holding is not free: overextension and lapse
+**implemented in 0.0.4** · `chronicle.control_rules`
+
+O-7 measured a runaway: across ten inherited Chronicles Aldric went from one
+Region to five and never lost one again, because inheritance compounds an
+advantage and nothing reversed it.
+
+The answer is the author's, and it is better than the three options offered: not
+a penalty aimed at whoever is winning, but a pressure that comes from the
+situation. An empire falls from its own size.
+
+Two coupled rules, both data-driven and both removable by deleting
+`control_rules`:
+
+- **`max_stable_control`** — every Region an Entity holds beyond this raises the
+  Tension of *that Region's own domain*, once per round. It reads at the table as
+  "you hold the road as well? then the road question is yours to answer".
+- **`lapse_without_presence`** — at the start of a continuing Chronicle, a Region
+  held with nobody standing in it reverts to no one. You cannot govern where you
+  are not, so a power that spread too thin loses the edges first, without anyone
+  having to take them.
+
+Chronicle I uses `{max_stable_control: 2, overextension_delta: 1,
+lapse_without_presence: true}`.
+
+Measured over ten inherited Chronicles, same seeds:
+
+```
+prima   Re - Vae Re  Re  Re     (dalla Chronicle 5 in poi, immobile)
+dopo    Re - Vae Re  Pop -   ->  Re - Vae - - -  ->  Re - Vae Re - -
+```
+
+Control now expands and contracts instead of freezing. Truths over the campaign
+went 13 -> 16 and distinct sentences 12 -> 15, because a world that moves gives
+the slots of D-028 something to say.
+
+---
+
+## D-028 — Library content: Councils bound to a domain, Chronicles that draw
+**implemented in 0.0.4** · the author chose model **B** (combinatorial library)
+
+The question was how Chronicle N+1 exists at all. Three models were on the table:
+pre-written Legacy (A), a combinatorial library (B), hybrid (C). The author chose
+**B**: nothing about the next Chronicle is written in advance, it is assembled.
+
+Two structural changes make that possible.
+
+### A Council may bind to a domain instead of a Tension
+
+`confluence_template.tension_id` is now optional, and `applies_to_domain` is the
+alternative. A Tension with no Council of its own is served by the Council of its
+domain. The structure of a survival crisis is not specific to one famine, so
+*"$in_region, chi decide a chi non ne tocca?"* serves any of them.
+
+This is the single biggest cost saving in the project: Councils were about a
+third of the authoring cost of a Chronicle, and they were the part that had to be
+rewritten every time.
+
+`CNF_ANY_SURVIVAL` is the first one, written entirely in slots. `TEN_PLAGUE` and
+`TEN_THIRST` are the first Tensions with no Council of their own, and they get a
+complete one for free.
+
+### A Chronicle may draw its Tensions instead of listing them
+
+`chronicle.tension_pool` (`candidates`, `count`, `always`) replaces a written-out
+`tensions` list. The draw uses the same seeded RNG as the decks and the drift
+bag, so a library Chronicle is exactly as reproducible as an authored one - same
+seed, same year. `drift_distribution` may be omitted too, and is then dealt
+round-robin over whatever was drawn.
+
+`CHR_01` stays authored and unchanged. `CHR_02` is the library form and draws 4
+of 6 candidates. Ten years of it, same seeds:
+
+```
+1  813  FAMI PLAG ROAD THIR      6  814  FAMI PLAG SUCC THIR
+2  814  AWAK FAMI ROAD SUCC      7  819  PLAG ROAD SUCC THIR
+3  815  AWAK ROAD SUCC THIR      8  820  FAMI PLAG ROAD SUCC
+...
+```
+
+### What had to give way
+
+Library content names Tensions a Chronicle may not have drawn, so `ADJUST_TENSION`
+and `SET_TENSION_VISIBILITY` on a Tension **that exists in the data but is not in
+play** are now a no-op instead of a failure. An id that is not a Tension at all is
+still an error - the distinction is what keeps a typo loud.
+
+`tension_limit` conditions resolve `$tension`, and the authored Scar block
+resolves `$region_focus`, for the same reason: a domain-bound Council does not
+know which question it is serving until it opens.
+
+### What is still A, not B
+
+The 29 Consequences are mostly *not* library content yet: most still name a
+specific Region. Three (`CNS_RATIONED`, `CNS_ABANDONED`, `CNS_SHARED_BURDEN`) are
+written purely in slots and are the pattern for the rest. Generalising the other
+26 is the next chunk of B, and it is authoring work, not engine work.
+
+---
+
 ## D-024 — 4 Tensions, 26 Consequences, 16 Echo cards
 **implemented in 0.0.3** · further deliberate deviation from §18.2, recorded per §25
 
@@ -581,7 +696,11 @@ longer shares `CNS_MINE_SEALED` with `P_SEAL_MINE`. Every proposition in the set
 lands on its own world change.
 
 ### O-6 — The wider content thinned the outcome bands again
-**flagged, open**
+**partly closed by D-026** — the band question is answered (4-5, declared). The
+thinning of Failure and Success with Cost is not: 9 and 5 against 18 and 15.
+Still open, still the same mechanism as O-4 in a bigger world.
+
+**original note:**
 
 D-024 grew the content and the balance of D-021/D-023 regressed: 42% of runs in
 §7's 3-4 band against 70%, and Failure/Success with Cost back down to 9 and 5
@@ -595,7 +714,9 @@ the author, not something to tune away quietly. The knobs from D-021/D-023 are
 both still there and still measured.
 
 ### O-7 — The campaign has a runaway leader
-**flagged, open**
+**closed by D-027.**
+
+**original note:**
 
 Ten Chronicles in sequence, each inheriting the last: Aldric holds one Region at
 the start and five by Chronicle 5, and never loses one again. Inheritance

@@ -108,12 +108,67 @@ func play_round(act: int, round_number: int, decider: Object) -> void:
 
 	_set_phase(act, round_number, "DRIFT")
 	session.tensions.apply_drift()
+	_apply_overextension(act, round_number)
 
 	_set_phase(act, round_number, "THRESHOLD_CHECK")
 	_end_of_round_confluence(decider)
 
 	for tension_id in world["tensions"]:
 		log.bullet(session.tensions.public_status(str(tension_id)))
+
+
+## D-027: holding is not free. Every Region an Entity controls beyond
+## `max_stable_control` raises the Tension of that Region's own domain, once per
+## round - the empire generates its own crises rather than being punished for
+## existing. Nothing here targets a player: it targets the situation, and it
+## reads at the table as "you hold the road as well? then the road question is
+## yours to answer".
+##
+## Deterministic: Regions are taken in the Chronicle's own order, so the same
+## board always strains in the same place.
+func _apply_overextension(act: int, round_number: int) -> void:
+	var rules: Dictionary = _chronicle.get("control_rules", {})
+	if not rules.has("max_stable_control"):
+		return
+	var limit: int = int(rules["max_stable_control"])
+	var delta: int = int(rules.get("overextension_delta", 1))
+	if delta <= 0:
+		return
+
+	for entity_id in world["turn_order"]:
+		var held: Array = []
+		for region_id in _chronicle["regions"]:
+			var control: Variant = world["regions"][str(region_id)].get("control", null)
+			if control != null and str(control) == str(entity_id):
+				held.append(str(region_id))
+		if held.size() <= limit:
+			continue
+
+		for index in range(limit, held.size()):
+			var tension_id: String = _tension_for_region(held[index])
+			if tension_id == "":
+				continue
+			var source: Dictionary = Effect.source(
+				"system", "OVEREXTENSION", str(entity_id), act, round_number,
+				int(world["effect_sequence"])
+			)
+			session.applier.apply(
+				Effect.make("ADJUST_TENSION", "tension", tension_id, {"delta": delta}, source)
+			)
+			log.bullet(
+				"%s tiene piu di quanto puo reggere: %s sale di %d."
+				% [_name(str(entity_id)), str(data.tensions[tension_id]["title"]), delta]
+			)
+
+
+## The Tension whose domain this Region belongs to. A Region may sit in more than
+## one domain; the Chronicle's Tension order decides, so the result is stable.
+func _tension_for_region(region_id: String) -> String:
+	for tension_id in world["tensions"]:
+		var domain: String = str(data.tensions[str(tension_id)]["domain"])
+		if session.service.region_has_tag(region_id, "domain:%s" % domain):
+			return str(tension_id)
+	return ""
 
 
 ## §7 and §12.1: a forced Claim takes precedence over threshold triggers, and
@@ -248,7 +303,7 @@ func card_bindings(hook: Dictionary) -> Dictionary:
 	var bindings: Dictionary = (hook.get("bindings", {}) as Dictionary).duplicate(true)
 	var tension_id: String = str(bindings.get("focus_tension", ""))
 	if tension_id == "" or not world["tensions"].has(tension_id):
-		tension_id = str((_chronicle["tensions"] as Array)[0])
+		tension_id = str((world["tensions"] as Dictionary).keys()[0])
 	bindings["region_focus"] = session.confluence.narrative.focus_region(tension_id)
 	bindings["tension"] = tension_id
 	# A card has no proponent, but the Consequences it fires were written for a

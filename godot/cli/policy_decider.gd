@@ -144,8 +144,18 @@ func _tensions_offering(consequence_id: String, session: RefCounted) -> Array:
 		for proposition in template["propositions"]:
 			if (proposition["success_consequences"] as Array).has(consequence_id):
 				offers = true
-		if offers and session.world["tensions"].has(str(template["tension_id"])):
-			out.append(str(template["tension_id"]))
+		if not offers:
+			continue
+		# A Council bound to a whole domain serves every Tension of that domain
+		# in play, not one named Tension (D-028).
+		if template.has("tension_id"):
+			if session.world["tensions"].has(str(template["tension_id"])):
+				out.append(str(template["tension_id"]))
+			continue
+		for tension_id in session.world["tensions"]:
+			if str(session.data.tensions[str(tension_id)]["domain"]) == str(template["applies_to_domain"]):
+				if not out.has(str(tension_id)):
+					out.append(str(tension_id))
 	return out
 
 
@@ -386,8 +396,13 @@ func _score_effect(
 		if _needs_presence(entity_id, str(payload.get("region_id", "")), session):
 			score += 3
 
-	# Control changing hands, for whoever counts Regions.
+	# Control changing hands, for whoever counts Regions. The target may be a
+	# $slot that only resolves when the Council opens (D-028); a policy reading
+	# the proposition in advance cannot know which Region that is, so it does not
+	# guess - it scores what it can name.
 	if effect_type == "SET_CONTROL" and _counts_control(entity_id, session):
+		if not session.world["regions"].has(target_id):
+			return score
 		var new_owner: Variant = payload.get("entity_id", null)
 		var holds_it_now: bool = (
 			str(session.world["regions"][target_id].get("control", "")) == entity_id

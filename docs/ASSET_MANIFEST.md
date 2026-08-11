@@ -72,25 +72,29 @@ Milestone 0.0 ships the reduced content of §18.2. The full §19.4 list (48 Asse
 | DST_NAHR | Una Terra dove Fermarsi | ENT_NAHR | Il popolo sopravvive | Il popolo si ferma | Fermarsi senza smettere di essere Nahr |
 | DST_VAERAX | Cio che Dorme Resti Addormentato | ENT_VAERAX | La montagna e ancora sua | Nessuno ha portato via il Cristallo | Il sonno e stato reso sicuro |
 
-## Tension tracks (4)
+## Tension tracks (6)
 | id | titolo | dominio | iniziale | soglia | visibilita | presagi |
 |---|---|---|---|---|---|---|
 | TEN_AWAKENING | Il Risveglio | ANCIENT | 2 | 6 | VEILED | 2 |
 | TEN_FAMINE | La Carestia | SURVIVAL | 3 | 6 | OPEN | 1 |
+| TEN_PLAGUE | La Febbre Bassa | SURVIVAL | 2 | 5 | OPEN | 2 |
 | TEN_ROADS | Le Vie Interrotte | RESOURCE | 1 | 5 | VEILED | 2 |
 | TEN_SUCCESSION | La Successione | TERRITORY | 2 | 6 | OPEN | 2 |
+| TEN_THIRST | I Pozzi Bassi | SURVIVAL | 1 | 5 | VEILED | 2 |
 
-## Map overlays (24)
+## Map overlays (26)
 Ogni tag di Regione che il gioco puo mostrare sulla mappa. `domain:` marca il dominio di Tensione usato da INFLUENCE; `structure:`, `condition:` e `scar:` sono livelli grafici distinti (spec §19.5).
 
 | tag | layer |
 |---|---|
 | `capital` | base |
+| `condition:abandoned` | condition |
 | `condition:contested` | condition |
 | `condition:cut_off` | condition |
 | `condition:exploited` | condition |
 | `condition:indebted` | condition |
 | `condition:plundered` | condition |
+| `condition:rationed` | condition |
 | `condition:requisitioned` | condition |
 | `condition:starving` | condition |
 | `condition:unrest` | condition |

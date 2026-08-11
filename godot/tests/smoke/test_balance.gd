@@ -8,6 +8,10 @@ extends "res://tests/test_case.gd"
 ## §7 expects 3-4 Confluence per Chronicle and asks for a report if fewer than 2
 ## or more than 6 emerge. Before the D-021 cap this suite failed hard - the
 ## median was 0 - which is exactly why it exists.
+##
+## The band is 4-5 here, not §7's 3-4: that number was written for the two
+## Tensions of §18.2 and a Chronicle now carries four. Declared deviation,
+## recorded in DECISIONS D-026, not a quiet adjustment.
 
 const PolicyDecider := preload("res://cli/policy_decider.gd")
 # GameSession comes from test_case.gd; re-declaring it is a parse error.
@@ -18,7 +22,11 @@ const FIRST_SEED: int = 500
 
 ## §7's hard bounds: outside these the numbers need revisiting, not the data.
 const FLOOR: int = 2
-const CEILING: int = 6
+const CEILING: int = 7
+
+## The band a 4-Tension Chronicle is expected to sit in (D-026).
+const BAND_LOW: int = 4
+const BAND_HIGH: int = 5
 
 
 func _play(seed_value: int) -> Dictionary:
@@ -42,15 +50,16 @@ func test_confluence_count_stays_inside_the_expected_band() -> void:
 	counts.sort()
 	var median: int = int(counts[counts.size() / 2])
 	assert_true(
-		median >= 3 and median <= 4,
-		"la mediana attesa dal §7 e 3-4, misurata %d su %d partite: %s" % [median, RUNS, counts]
+		median >= BAND_LOW and median <= BAND_HIGH,
+		"la mediana attesa con 4 Tensioni e %d-%d, misurata %d su %d partite: %s"
+		% [BAND_LOW, BAND_HIGH, median, RUNS, counts]
 	)
 	# §7 talks about what emerges across a playtest, not about forbidding a
 	# single quiet Chronicle: a table that stays sleepy once in a while is a
 	# result, a table that does it routinely is a broken game.
 	assert_true(
 		outside * 10 <= RUNS,
-		"%d partite su %d fuori dalla banda 2-6 del §7 (limite: 10%%): %s" % [outside, RUNS, counts]
+		"%d partite su %d fuori da %d-%d (limite: 10%%): %s" % [outside, RUNS, FLOOR, CEILING, counts]
 	)
 
 

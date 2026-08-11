@@ -128,21 +128,21 @@ func _report(
 		var count: int = int(histogram[key])
 		print("    %d: %s (%d)" % [int(key), "#".repeat(count), count])
 
-	# §7 asks for 3-4, and says to report rather than silently adjust if fewer
-	# than 2 or more than 6 emerge.
+	# D-026 widens §7's 3-4 to 4-5 for a 4-Tension Chronicle, and still says to
+	# report rather than silently adjust outside 2-7.
 	var in_band: int = 0
 	var below_floor: int = 0
 	var above_ceiling: int = 0
 	for value in confluences:
-		if int(value) >= 3 and int(value) <= 4:
+		if int(value) >= 4 and int(value) <= 5:
 			in_band += 1
 		if int(value) < 2:
 			below_floor += 1
-		if int(value) > 6:
+		if int(value) > 7:
 			above_ceiling += 1
 	print("")
-	print("Atteso dal §7: 3-4 per Chronicle, mai sotto 2 o sopra 6")
-	print("  nella banda 3-4   %d/%d (%.0f%%)" % [in_band, runs, 100.0 * in_band / maxi(1, runs)])
+	print("Atteso con 4 Tensioni (D-026): 4-5 per Chronicle, mai sotto 2 o sopra 7")
+	print("  nella banda 4-5   %d/%d (%.0f%%)" % [in_band, runs, 100.0 * in_band / maxi(1, runs)])
 	print("  sotto il minimo   %d/%d" % [below_floor, runs])
 	print("  sopra il massimo  %d/%d" % [above_ceiling, runs])
 

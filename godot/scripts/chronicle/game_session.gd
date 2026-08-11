@@ -91,7 +91,7 @@ func restore(save: Dictionary) -> bool:
 
 
 func _wire_systems() -> void:
-	applier = EffectApplier.new(world)
+	applier = EffectApplier.new(world, data)
 	applier.effect_applied.connect(func(effect: Dictionary) -> void: effect_applied.emit(effect))
 	service = WorldStateService.new(world, data)
 	compiler = ConsequenceCompiler.new(data)

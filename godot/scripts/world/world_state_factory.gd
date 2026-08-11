@@ -65,7 +65,7 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 			"tags": (definition["tags"] as Array).duplicate(),
 		}
 
-	for tension_id in chronicle["tensions"]:
+	for tension_id in resolve_tensions(chronicle, rng):
 		var definition: Dictionary = data.tensions[tension_id]
 		world["tensions"][tension_id] = {
 			"id": tension_id,
@@ -80,6 +80,33 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 	_build_echo_deck(world, data, rng)
 	_build_drift_track(world, chronicle, rng)
 	return world
+
+
+## Which Tensions this Chronicle actually runs.
+##
+## `tensions` written out is the authored form. `tension_pool` is the library
+## form: the Chronicle names what it *could* be about and the seeded RNG deals
+## the year. That is what lets Chronicle N+1 exist without anyone writing it -
+## the questions are library content, and the Chronicle is the hand (D-028).
+##
+## Deterministic by construction: the draw uses the same seeded RNG as the decks
+## and the drift bag, so the same seed always deals the same year.
+static func resolve_tensions(chronicle: Dictionary, rng: RefCounted) -> Array:
+	if not chronicle.has("tension_pool"):
+		return (chronicle["tensions"] as Array).duplicate()
+
+	var pool: Dictionary = chronicle["tension_pool"]
+	var drawn: Array = (pool.get("always", []) as Array).duplicate()
+	var candidates: Array = []
+	for tension_id in pool["candidates"]:
+		if not drawn.has(str(tension_id)):
+			candidates.append(str(tension_id))
+	candidates.sort()
+	for tension_id in rng.shuffle(candidates):
+		if drawn.size() >= int(pool["count"]):
+			break
+		drawn.append(str(tension_id))
+	return drawn
 
 
 ## Every unordered pair of Entities starts at NEUTRAL so SET_RELATION always has
@@ -149,9 +176,18 @@ static func _build_echo_deck(world: Dictionary, data: RefCounted, rng: RefCounte
 ## The drift bag (§11.2): a fixed distribution shuffled once with the seeded RNG.
 static func _build_drift_track(world: Dictionary, chronicle: Dictionary, rng: RefCounted) -> void:
 	var bag: Array = []
-	for entry in chronicle["drift_distribution"]:
-		for _i in range(int(entry["count"])):
-			bag.append(str(entry["tension_id"]))
+	if chronicle.has("drift_distribution"):
+		for entry in chronicle["drift_distribution"]:
+			for _i in range(int(entry["count"])):
+				bag.append(str(entry["tension_id"]))
+	else:
+		# Library form: one chip per round, dealt round-robin over whatever was
+		# drawn, so every question in play gets pushed by the world at least once.
+		var ids: Array = (world["tensions"] as Dictionary).keys()
+		ids.sort()
+		var rounds: int = int(chronicle["acts"]) * int(chronicle["rounds_per_act"])
+		for i in range(rounds):
+			bag.append(str(ids[i % ids.size()]))
 	world["drift_track"] = rng.shuffle(bag)
 	world["drift_index"] = 0
 
@@ -173,12 +209,22 @@ static func inheritance_effects(previous: Dictionary, chronicle: Dictionary, dat
 	if previous.is_empty():
 		return effects
 
+	var lapse: bool = bool(
+		(chronicle.get("control_rules", {}) as Dictionary).get("lapse_without_presence", false)
+	)
+
 	for region_id in chronicle["regions"]:
 		var before: Variant = (previous["regions"] as Dictionary).get(str(region_id))
 		if before == null:
 			continue
 		var base: Dictionary = data.regions[str(region_id)]
 		var control: Variant = before.get("control", null)
+		# D-027: you cannot govern where you are not. A Region held at the end of
+		# a Chronicle with nobody standing in it reverts before the next one
+		# opens - which is how a dynasty that spread too thin loses the edges
+		# first, without anyone having to take them.
+		if lapse and control != null and not _had_presence(previous, str(control), str(region_id)):
+			control = null
 		if str(control if control != null else "") != str(base.get("control", "") if base.get("control", null) != null else ""):
 			effects.append(
 				Effect.make("SET_CONTROL", "region", str(region_id), {"entity_id": control}, source)
@@ -217,6 +263,13 @@ static func inheritance_effects(previous: Dictionary, chronicle: Dictionary, dat
 		)
 
 	return effects
+
+
+static func _had_presence(previous: Dictionary, entity_id: String, region_id: String) -> bool:
+	var entity: Variant = (previous.get("entities", {}) as Dictionary).get(entity_id)
+	if entity == null:
+		return false
+	return (entity.get("presence", []) as Array).has(region_id)
 
 
 ## Setup Effects: presence tokens and opening hands (§13).

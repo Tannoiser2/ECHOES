@@ -149,7 +149,16 @@ def check_references(
 
     for template in documents.get("confluence_template", []):
         where = f"{origins['confluence_template']} [{template['id']}]"
-        require(known_tensions, template["tension_id"], "tension", where)
+        # A Council may bind to one Tension or to a whole domain (D-028).
+        if "tension_id" in template:
+            require(known_tensions, template["tension_id"], "tension", where)
+        else:
+            domains = {t["domain"] for t in documents.get("tension", [])}
+            if template["applies_to_domain"] not in domains:
+                report.fail(
+                    where,
+                    f"applies_to_domain '{template['applies_to_domain']}' matches no Tension",
+                )
         question_ids = {q["id"] for q in template["questions"]}
         for question in template["questions"]:
             for condition in question["eligibility"]:
@@ -177,29 +186,54 @@ def check_references(
             require(known_entities, entity_id, "entity", where)
         for region_id in chronicle["regions"]:
             require(known_regions, region_id, "region", where)
-        for tension_id in chronicle["tensions"]:
+        # A Chronicle either writes its Tensions out or draws them from the
+        # library (D-028). Everything downstream checks whichever it declared.
+        pool = chronicle.get("tension_pool")
+        chronicle_tensions = (
+            list(pool["candidates"]) + list(pool.get("always", []))
+            if pool
+            else list(chronicle["tensions"])
+        )
+        for tension_id in chronicle_tensions:
             require(known_tensions, tension_id, "tension", where)
-        for template_id in chronicle["confluence_templates"]:
-            require(known_templates, template_id, "confluence_template", where)
-        for bag in chronicle["drift_distribution"]:
-            if bag["tension_id"] not in chronicle["tensions"]:
-                report.fail(where, f"drift entry '{bag['tension_id']}' is not in this Chronicle")
-        drift_total = sum(bag["count"] for bag in chronicle["drift_distribution"])
-        expected = chronicle["acts"] * chronicle["rounds_per_act"]
-        if drift_total != expected:
+        if pool and pool["count"] > len(set(chronicle_tensions)):
             report.fail(
                 where,
-                f"drift_distribution totals {drift_total}, expected {expected} (acts x rounds_per_act)",
+                f"tension_pool draws {pool['count']} but offers only {len(set(chronicle_tensions))}",
             )
+        for template_id in chronicle["confluence_templates"]:
+            require(known_templates, template_id, "confluence_template", where)
+        if "drift_distribution" in chronicle:
+            for bag in chronicle["drift_distribution"]:
+                if bag["tension_id"] not in chronicle_tensions:
+                    report.fail(where, f"drift entry '{bag['tension_id']}' is not in this Chronicle")
+            drift_total = sum(bag["count"] for bag in chronicle["drift_distribution"])
+            expected = chronicle["acts"] * chronicle["rounds_per_act"]
+            if drift_total != expected:
+                report.fail(
+                    where,
+                    f"drift_distribution totals {drift_total}, expected {expected} (acts x rounds_per_act)",
+                )
         acts_covered = {pool["act"] for pool in chronicle["act_echo_pools"]}
         if acts_covered != set(range(1, chronicle["acts"] + 1)):
             report.fail(where, "act_echo_pools must cover every act exactly once")
         # Every Tension in play needs a Confluence template, or a threshold hit
         # would open a Confluence with nothing to ask.
-        templates_by_tension = {t["tension_id"] for t in documents.get("confluence_template", [])}
-        for tension_id in chronicle["tensions"]:
-            if tension_id not in templates_by_tension:
-                report.fail(where, f"tension '{tension_id}' has no Confluence template")
+        templates_by_tension = {
+            t["tension_id"] for t in documents.get("confluence_template", []) if "tension_id" in t
+        }
+        templates_by_domain = {
+            t["applies_to_domain"]
+            for t in documents.get("confluence_template", [])
+            if "applies_to_domain" in t
+        }
+        domain_of = {t["id"]: t["domain"] for t in documents.get("tension", [])}
+        for tension_id in chronicle_tensions:
+            if tension_id in templates_by_tension:
+                continue
+            if domain_of.get(tension_id) in templates_by_domain:
+                continue
+            report.fail(where, f"tension '{tension_id}' has no Confluence template")
         # Every Act pool must have at least one card available.
         cards_by_family: Dict[str, int] = defaultdict(int)
         for card in documents.get("echo_card", []):

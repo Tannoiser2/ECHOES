@@ -53,7 +53,9 @@ func holds(condition: Dictionary, context: Dictionary = {}) -> bool:
 		"relation_state":
 			return _relation_holds(condition, context)
 		"tension_limit":
-			var tension_id: String = str(condition.get("tension_id", ""))
+			# A domain-bound Council does not know which Tension it serves until
+			# it opens, so its conditions say $tension (D-028).
+			var tension_id: String = _resolve(str(condition.get("tension_id", "")), context)
 			if not world["tensions"].has(tension_id):
 				return false
 			return _within(service.tension_value(tension_id), condition)

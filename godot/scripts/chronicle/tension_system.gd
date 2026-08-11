@@ -73,7 +73,9 @@ func tensions_at_threshold() -> Array:
 		var value: int = int(world["tensions"][tension_id]["current_value"])
 		if value >= int(data.tensions[tension_id]["threshold"]):
 			ready.append(str(tension_id))
-	var order: Array = data.chronicles[world["chronicle_id"]]["tensions"]
+	# Draw order for a library Chronicle, written order for an authored one:
+	# world["tensions"] holds whichever applies (D-028).
+	var order: Array = (world["tensions"] as Dictionary).keys()
 	ready.sort_custom(func(a: String, b: String) -> bool:
 		var value_a: int = int(world["tensions"][a]["current_value"])
 		var value_b: int = int(world["tensions"][b]["current_value"])

@@ -10,7 +10,7 @@ python3 tools/gen_gd_schema.py --check
 GODOT=/path/to/godot tools/run_sims.sh
 ```
 
-Stato 0.0.3: **79 test in 10 suite, 542 asserzioni, tutto verde**, più i 3 piani di
+Stato 0.0.4: **85 test in 11 suite, 566 asserzioni, tutto verde**, più i 3 piani di
 simulazione che passano le proprie asserzioni.
 
 La sonda di bilanciamento gioca N Chronicle con giocatori che perseguono davvero
@@ -20,6 +20,8 @@ il proprio Destiny e riporta la distribuzione dei risultati:
 godot --headless --path godot --script res://cli/run_balance_probe.gd -- --runs=40
 # quanto puo muoversi il mondo, e quanto si muove in dieci Chronicle di fila:
 godot --headless --path godot --script res://cli/run_world_probe.gd -- --runs=40 --campaign=10
+# la stessa cosa sulla Chronicle assemblata dalla biblioteca:
+godot --headless --path godot --script res://cli/run_world_probe.gd -- --campaign=10 --chronicle=CHR_02
 # ogni frase distinta che il motore ha davvero prodotto, slot riempiti:
 godot --headless --path godot --script res://cli/run_text_probe.gd -- --runs=40
 # sweep di un knob senza toccare i dati:
@@ -60,6 +62,7 @@ godot --headless --path godot --script res://cli/run_balance_probe.gd -- \
 | `unit/test_snapshot_and_save.gd` | 5 | lo snapshot che riporta indietro oltre un Echo, l'undo che si ferma esattamente sull'irreversibile, il round-trip save/load, la stabilità byte-per-byte del testo, la posizione dell'RNG che sopravvive al salvataggio |
 | `smoke/test_data_boot.gd` | 8 | il caricamento e la validazione dei dati, il contenuto (§18.2 piu le deviazioni dichiarate D-022/D-024), un Asset da 1 e uno da 2 per famiglia, i numeri di baseline della Chronicle, la raggiungibilità di ogni soglia, la scena di boot, la copertura dello schema generato, e che ogni hook di carta Echo compili in almeno un Effect |
 | `smoke/test_balance.gd` | 5 | il numero di Confluence su 24 partite giocate dal policy decider resta nella banda del §7 giudicata sull'aggregato (mediana 3-4, al massimo il 10% delle partite fuori da 2-6, almeno 1 Echo ogni 2 Chronicle), i Destiny restano contesi, i due cap su INFLUENCE reggono per una Chronicle intera ricostruita dall'effect_log, la sonda e deterministica e la policy non propone mai un'azione illegale |
+| `unit/test_library_content.gd` | 6 | una Tensione senza Consiglio proprio prende quello del suo dominio, ogni Tensione della biblioteca ne trova uno, il sorteggio delle Tensioni e deterministico per seed e varia fra seed, una Chronicle scritta a mano resta invariata, un Effect su una Tensione non in gioco e un no-op mentre un id inesistente resta un errore, e una Chronicle assemblata gioca fino in fondo |
 | `unit/test_narrative_text.gd` | 6 | la Regione a fuoco segue il tag condition e resta nel dominio, la stessa frase autorata nomina un posto diverso in due mondi diversi, le forme italiane (articolo, locativo, genitivo) e la maiuscola di uno slot in testa, l'ordine di sostituzione per lunghezza, e che nessuno slot irrisolto finisca nel registro Truth |
 | `smoke/test_chronicle_run.gd` | 6 | i tre piani giocati per intero, le loro asserzioni `expected`, il fatto che finiscano diversamente, Echo e Truth automatici, il determinismo per seed, e che il log pubblico non riveli mai il valore velato |
 

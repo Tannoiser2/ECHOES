@@ -20,10 +20,11 @@ func test_reduced_content_matches_the_milestone() -> void:
 	assert_eq(loaded.regions.size(), 6, "6 Regioni: le 5 principali piu un raccordo")
 	# Grown past §18.2's reduced set on purpose, and measured: D-024 records why
 	# 2 Tensions and 8 Consequences could not move the world enough to matter.
-	assert_eq(loaded.tensions.size(), 4, "4 Tensioni (§18.2 ne chiedeva 2; vedi D-024)")
-	assert_eq(loaded.confluence_templates.size(), 4, "4 template di Confluence")
+	assert_eq(loaded.tensions.size(), 6, "6 Tensioni in biblioteca (§18.2 ne chiedeva 2; vedi D-024, D-028)")
+	assert_eq(loaded.confluence_templates.size(), 5, "5 Consigli, uno dei quali legato a un dominio")
 	assert_eq(loaded.echo_cards.size(), 16, "16 carte Echo (§18.2 ne chiedeva 8; vedi D-024)")
-	assert_eq(loaded.consequences.size(), 26, "26 Conseguenze (§18.2 ne chiedeva 8; vedi D-022, D-024)")
+	assert_eq(loaded.consequences.size(), 29, "29 Conseguenze (§18.2 ne chiedeva 8; vedi D-022, D-024)")
+	assert_eq(loaded.chronicles.size(), 2, "CHR_01 scritta a mano, CHR_02 assemblata dalla biblioteca")
 	assert_eq(loaded.entities.size(), 4, "4 Entita")
 	assert_eq(loaded.destinies.size(), 4, "4 Destiny")
 	assert_eq(loaded.actions.size(), 6, "i sei template di azione")
@@ -63,10 +64,10 @@ func test_every_tension_can_reach_its_threshold() -> void:
 	var loaded: RefCounted = data()
 	var chronicle: Dictionary = loaded.chronicles["CHR_01"]
 	var drift_by_tension: Dictionary = {}
-	for entry in chronicle["drift_distribution"]:
+	for entry in chronicle.get("drift_distribution", []):
 		drift_by_tension[str(entry["tension_id"])] = int(entry["count"])
 
-	for tension_id in chronicle["tensions"]:
+	for tension_id in chronicle.get("tensions", []):
 		var tension: Dictionary = loaded.tensions[str(tension_id)]
 		var reachable: int = int(tension["current_value"]) + int(drift_by_tension.get(tension_id, 0))
 		# One Ripple per Confluence opened on a template that points here.

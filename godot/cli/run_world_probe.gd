@@ -30,6 +30,7 @@ func _initialize() -> void:
 	var runs: int = int(options.get("runs", 40))
 	var first_seed: int = int(options.get("seed", 3000))
 	var campaign: int = int(options.get("campaign", 10))
+	var chronicle_id: String = str(options.get("chronicle", "CHR_01"))
 
 	var data: RefCounted = DataSet.new()
 	if not data.load_from("res://data"):
@@ -39,15 +40,15 @@ func _initialize() -> void:
 		return
 
 	if runs > 0:
-		_single_chronicle_ceiling(data, runs, first_seed)
+		_single_chronicle_ceiling(data, runs, first_seed, chronicle_id)
 	if campaign > 0:
-		_campaign(data, campaign, first_seed)
+		_campaign(data, campaign, first_seed, chronicle_id)
 	quit(0)
 
 
 # --- one Chronicle, many times ---------------------------------------------
 
-func _single_chronicle_ceiling(data: RefCounted, runs: int, first_seed: int) -> void:
+func _single_chronicle_ceiling(data: RefCounted, runs: int, first_seed: int, chronicle_id: String) -> void:
 	var control_maps: Dictionary = {}
 	var tag_sets: Dictionary = {}
 	var relation_maps: Dictionary = {}
@@ -57,7 +58,7 @@ func _single_chronicle_ceiling(data: RefCounted, runs: int, first_seed: int) -> 
 
 	for i in range(runs):
 		var session: RefCounted = GameSession.new(data)
-		session.setup("CHR_01", SEATS, first_seed + i)
+		session.setup(chronicle_id, SEATS, first_seed + i)
 		session.run(PolicyDecider.new(session.log))
 		var world: Dictionary = session.world
 
@@ -73,7 +74,7 @@ func _single_chronicle_ceiling(data: RefCounted, runs: int, first_seed: int) -> 
 		session.dispose()
 
 	print("")
-	print("== QUANTO PUO MUOVERSI IL MONDO - %d Chronicle indipendenti ==" % runs)
+	print("== QUANTO PUO MUOVERSI IL MONDO - %d Chronicle indipendenti (%s) ==" % [runs, chronicle_id])
 	print("")
 	print("Configurazioni finali distinte, su %d partite" % runs)
 	print("  controllo delle Regioni   %d" % control_maps.size())
@@ -105,9 +106,9 @@ func _tag_coverage(data: RefCounted, seen: Dictionary) -> void:
 
 # --- ten Chronicles in a row ------------------------------------------------
 
-func _campaign(data: RefCounted, chronicles: int, first_seed: int) -> void:
+func _campaign(data: RefCounted, chronicles: int, first_seed: int, chronicle_id: String) -> void:
 	print("")
-	print("== CAMPAGNA - %d Chronicle di seguito, ognuna eredita la precedente ==" % chronicles)
+	print("== CAMPAGNA - %d Chronicle di seguito (%s), ognuna eredita la precedente ==" % [chronicles, chronicle_id])
 	print("")
 
 	var previous: Dictionary = {}
@@ -120,7 +121,7 @@ func _campaign(data: RefCounted, chronicles: int, first_seed: int) -> void:
 
 	for index in range(chronicles):
 		var session: RefCounted = GameSession.new(data)
-		session.setup("CHR_01", SEATS, first_seed + index * 97)
+		session.setup(chronicle_id, SEATS, first_seed + index * 97)
 		session.inherit_from(previous)
 		session.confluence.step_changed.connect(
 			func(step: String, context: Dictionary) -> void:
@@ -142,7 +143,13 @@ func _campaign(data: RefCounted, chronicles: int, first_seed: int) -> void:
 		for truth in world["truth_log"]:
 			sentences[str(truth["text"]).split(": ", true, 1)[-1]] = true
 
+		var drawn: Array = (world["tensions"] as Dictionary).keys()
+		drawn.sort()
+		var short: Array = []
+		for tension_id in drawn:
+			short.append(str(tension_id).replace("TEN_", "").substr(0, 4))
 		rows.append({
+			"drawn": " ".join(PackedStringArray(short)),
 			"year": int(world["year"]),
 			"control": _control_pretty(world, data),
 			"new_tags": _region_tags(world).size(),
@@ -154,11 +161,12 @@ func _campaign(data: RefCounted, chronicles: int, first_seed: int) -> void:
 		previous = world.duplicate(true)
 		session.dispose()
 
-	print("%-6s %-10s %-42s %-6s %-6s %s" % ["#", "anno", "controllo delle Regioni", "tag", "Scar", "Truth"])
+	print("%-4s %-6s %-24s %-26s %-5s %-5s %s"
+		% ["#", "anno", "Tensioni pescate", "controllo", "tag", "Scar", "Truth"])
 	for i in range(rows.size()):
 		var row: Dictionary = rows[i]
-		print("%-6d %-10d %-42s %-6d %-6d %d" % [
-			i + 1, int(row["year"]), str(row["control"]),
+		print("%-4d %-6d %-24s %-26s %-5d %-5d %d" % [
+			i + 1, int(row["year"]), str(row["drawn"]), str(row["control"]),
 			int(row["new_tags"]), int(row["scars"]), int(row["truths"]),
 		])
 

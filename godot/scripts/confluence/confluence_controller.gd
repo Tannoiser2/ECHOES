@@ -520,9 +520,11 @@ func _apply_scar(applied: Array, consequence_id: String, source: Dictionary) -> 
 			scar_id,
 			{
 				"scar_id": scar_id,
-				"region_id": str(scar["region_id"]),
+				# The scar block is authored data like any other, so it may name
+				# $region_focus rather than a Region that has to exist for ever.
+				"region_id": compiler.substitute_string(str(scar["region_id"]), _context()),
 				"tag": str(scar["tag"]),
-				"description": str(scar["description"]),
+				"description": say(str(scar["description"])),
 			},
 			source
 		)

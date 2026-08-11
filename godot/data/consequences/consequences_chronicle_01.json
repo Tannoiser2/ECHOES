@@ -967,6 +967,139 @@
           }
         }
       ]
+    },
+    {
+      "id": "CNS_RATIONED",
+      "title": "La Razione Imposta",
+      "category": "CONTROL",
+      "description": "Si conta quanto c'e e si decide chi ne ha diritto. Funziona, e nessuno perdona chi ha fatto la lista.",
+      "effects": [
+        {
+          "type": "SET_CONTROL",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "entity_id": "$proponent"
+          }
+        },
+        {
+          "type": "SET_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "tag": "condition:rationed"
+          }
+        },
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "$tension"
+          },
+          "payload": {
+            "delta": -2
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_ABANDONED",
+      "title": "Il Luogo Abbandonato",
+      "category": "MIGRATION",
+      "description": "Non si risolve: si va via. Quello che resta indietro smette di essere di qualcuno.",
+      "creates_scar": true,
+      "scar": {
+        "region_id": "$region_focus",
+        "tag": "scar:abandoned",
+        "description": "Le case in piedi e le porte aperte, e dentro niente che valga la pena portare via."
+      },
+      "effects": [
+        {
+          "type": "SET_CONTROL",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "entity_id": null
+          }
+        },
+        {
+          "type": "REMOVE_PRESENCE",
+          "target": {
+            "kind": "entity",
+            "id": "$proponent"
+          },
+          "payload": {
+            "region_id": "$region_focus",
+            "optional": true
+          }
+        },
+        {
+          "type": "SET_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "tag": "condition:abandoned"
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_SHARED_BURDEN",
+      "title": "Il Peso Diviso",
+      "category": "INFLUENCE",
+      "description": "Nessuno ne esce bene e nessuno ne esce solo. E il massimo che un consiglio riesce a fare, certe volte.",
+      "effects": [
+        {
+          "type": "REMOVE_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "tag": "condition:starving",
+            "optional": true
+          }
+        },
+        {
+          "type": "REMOVE_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "tag": "condition:rationed",
+            "optional": true
+          }
+        },
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "burden_shared"
+          }
+        },
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "$tension"
+          },
+          "payload": {
+            "delta": -1
+          }
+        }
+      ]
     }
   ]
 }

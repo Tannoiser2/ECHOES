@@ -189,6 +189,97 @@
         "crystal_site"
       ],
       "description": "Velata: si vede il prezzo del sale, non chi lo fa salire."
+    },
+    {
+      "id": "TEN_PLAGUE",
+      "title": "La Febbre Bassa",
+      "domain": "SURVIVAL",
+      "current_value": 2,
+      "threshold": 5,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "PEOPLE",
+        "KNOWLEDGE",
+        "BONDS"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 3,
+          "message": "Nei villaggi si smette di stringere la mano e nessuno lo ha deciso.",
+          "reveals_value": false
+        },
+        {
+          "at": 4,
+          "message": "I pozzi vengono coperti di notte, e di giorno nessuno ammette di averlo fatto.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_WHO_DECIDES",
+        "Q_ANY_WHO_STAYS"
+      ],
+      "triggers": [
+        "Ogni giorno in cui la cosa che manca non torna."
+      ],
+      "decrease_rules": [
+        "Una divisione che tutti riescono a dire ad alta voce."
+      ],
+      "linked_tensions": [
+        "TEN_FAMINE"
+      ],
+      "focus_region_tags": [
+        "condition:starving",
+        "condition:unrest",
+        "condition:abandoned",
+        "nomad_range"
+      ],
+      "description": "Nessun Consiglio proprio: se ne occupa quello di dominio SURVIVAL (D-028)."
+    },
+    {
+      "id": "TEN_THIRST",
+      "title": "I Pozzi Bassi",
+      "domain": "SURVIVAL",
+      "current_value": 1,
+      "threshold": 5,
+      "visibility": "VEILED",
+      "relevant_asset_families": [
+        "WEALTH",
+        "PEOPLE",
+        "FORCE"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 2,
+          "message": "Il secchio tocca il fondo prima di riempirsi, e si dice che sia la stagione.",
+          "reveals_value": false
+        },
+        {
+          "at": 4,
+          "message": "Due villaggi si accordano per attingere a ore diverse, e non lo scrivono da nessuna parte.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_WHO_DECIDES",
+        "Q_ANY_WHO_STAYS"
+      ],
+      "triggers": [
+        "Ogni giorno in cui la cosa che manca non torna."
+      ],
+      "decrease_rules": [
+        "Una divisione che tutti riescono a dire ad alta voce."
+      ],
+      "linked_tensions": [
+        "TEN_FAMINE",
+        "TEN_ROADS"
+      ],
+      "focus_region_tags": [
+        "condition:rationed",
+        "condition:starving",
+        "granary",
+        "trade"
+      ],
+      "description": "Nessun Consiglio proprio: se ne occupa quello di dominio SURVIVAL (D-028)."
     }
   ]
 }
