@@ -336,8 +336,53 @@ func _deck_has_cards(family: String, session: RefCounted) -> bool:
 
 # --- Confluence ------------------------------------------------------------
 
-func choose_question(_context: Dictionary, _options: Array, _session: RefCounted) -> String:
-	return ""
+## Pick the question that opens the door you actually want to walk through.
+##
+## This returned "" until D-035, which meant the policy declined to choose and
+## `_select_question`'s default - the *last* eligible question - won every time.
+## A Council only opens when its Tension is at threshold, and every second
+## question is gated on a Tension at threshold, so the second question was always
+## eligible and **the first question of every template was never asked once in
+## forty Chronicles**. Its propositions could not be voted, and their Consequences
+## could not fire: that is the whole of O-8.
+##
+## A question is worth what the best proposition behind it is worth. Ties break
+## on the session RNG, for the same reason they do in `choose_proposition`.
+func choose_question(context: Dictionary, options: Array, session: RefCounted) -> String:
+	var proponent: String = str(context["proponent"])
+	var best_score: int = -999
+	var tied: Array = []
+	for question in options:
+		var score: int = _best_proposition_score(str(question["id"]), context, session)
+		if score > best_score:
+			best_score = score
+			tied = [str(question["id"])]
+		elif score == best_score:
+			tied.append(str(question["id"]))
+	if tied.is_empty():
+		return ""
+	if tied.size() == 1:
+		return str(tied[0])
+	return str(tied[session.rng.range_int(0, tied.size() - 1)])
+
+
+## The best a proponent can do with a question: the highest-scoring proposition
+## that is actually legal behind it. Eligibility is checked the same way the
+## Council checks it, so the policy never picks a question it cannot use.
+func _best_proposition_score(question_id: String, context: Dictionary, session: RefCounted) -> int:
+	var template: Variant = session.data.confluence_templates.get(str(context["template_id"]))
+	if template == null:
+		return -999
+	var proponent: String = str(context["proponent"])
+	var bindings: Dictionary = session.confluence.effect_context()
+	var best: int = -999
+	for proposition in template["propositions"]:
+		if str(proposition["question_id"]) != question_id:
+			continue
+		if not session.confluence.conditions.all_hold(proposition["eligibility"], bindings):
+			continue
+		best = maxi(best, _score_proposition(proposition, proponent, proponent, session))
+	return best
 
 
 ## Pick the proposition whose world changes serve this Destiny best.

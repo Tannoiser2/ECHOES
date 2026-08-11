@@ -225,62 +225,117 @@ func test_pushing_up_displaces_nothing() -> void:
 		)
 
 
-## D-034: the policy has to be able to *see* the axes the Destinies are about.
+## D-034: the policy has to be able to *see* the axes the Destinies name.
 ##
-## Not a threshold on how often the table opposes - that is a tuning number and
-## it belongs in the probe. This guards the failure that hid behind it for four
-## versions: an Effect type that is read hundreds of times and never worth a
-## single point, because the policy had no branch for it. Four such axes were
-## dead at once, and the table abstained on 96% of propositions as a result.
+## Four axes were dead at once - `ADJUST_TENSION`, `SET_CONTROL`,
+## `SET_ENTITY_TAG`, and presence - because `_score_effect` had no branch for
+## them, and the table abstained on 96% of propositions as a result.
+##
+## Written as four constructed cases rather than a tally over a played
+## Chronicle, and that is the point. The first version of this guard counted
+## how often each Effect type moved the score during real games, and it failed
+## the moment D-035 changed which propositions come forward - not because the
+## policy had gone blind, but because the content had moved somewhere its
+## clauses do not reach. A guard that cannot tell those two apart is worse than
+## none: it cries wolf at a content change and would be silenced by tuning.
+##
+## So: build the case the Destiny describes, and assert the policy has an
+## opinion about it.
 func test_the_policy_scores_every_axis_the_destinies_name() -> void:
+	new_session()
 	var decider: RefCounted = PolicyDecider.new(null)
-	# Effect types that at least one Destiny clause can care about. SET_RELATION
-	# is left out on purpose: no Destiny in CHR_01 reads relations, so a policy
-	# with no opinion about it is right rather than blind.
-	var watched: Array = [
-		"ADJUST_TENSION", "SET_CONTROL", "SET_ENTITY_TAG", "SET_GLOBAL_TAG", "SET_REGION_TAG"
-	]
-	var scored: Dictionary = {}
-	var seen: Dictionary = {}
 
-	for i in range(RUNS):
+	# 1. A Tension somebody puts a ceiling on. Pushing it up has to cost them.
+	var capped: Dictionary = _a_capped_tension_in_play()
+	assert_true(
+		not capped.is_empty(),
+		"la Chronicle deve avere in gioco almeno una Tensione che un Destiny limita"
+	)
+	var tension_id: String = str(capped["tension_id"])
+	var bindings: Dictionary = {
+		"proponent": "ENT_ALDRIC",
+		"tension": tension_id,
+		"region_focus": "REG_VALLE_VERDE",
+	}
+	var goals: Dictionary = decider._tag_goals(str(capped["entity_id"]), session)
+	assert_true(
+		decider._score_effect(
+			_effect("ADJUST_TENSION", "tension", "$tension", {"delta": 2}),
+			str(capped["entity_id"]), "ENT_ALDRIC", goals, session, bindings
+		) < 0,
+		"alzare %s deve costare a chi ha giurato di tenerla bassa" % tension_id
+	)
+
+	# 2. A Discovery, for the Destiny that counts Discoveries.
+	assert_true(
+		decider._score_effect(
+			_effect("SET_ENTITY_TAG", "entity", "$proponent", {"tag": "discovery:crystal"}),
+			"ENT_LYRA", "ENT_LYRA", decider._tag_goals("ENT_LYRA", session), session,
+			{"proponent": "ENT_LYRA", "tension": tension_id, "region_focus": "REG_MINIERE_ANTICHE"}
+		) > 0,
+		"una Scoperta deve valere qualcosa per chi le conta"
+	)
+
+	# 3. Control of a Region, for the Destiny that counts Regions - and the
+	#    target is a $slot, which is exactly what used to make this score zero.
+	assert_true(
+		decider._score_effect(
+			_effect("SET_CONTROL", "region", "$region_focus", {"entity_id": "$proponent"}),
+			"ENT_ALDRIC", "ENT_ALDRIC", decider._tag_goals("ENT_ALDRIC", session), session,
+			{"proponent": "ENT_ALDRIC", "tension": tension_id, "region_focus": "REG_VALLE_VERDE"}
+		) > 0,
+		"prendere una Regione deve valere qualcosa per chi le conta"
+	)
+
+	# 4. A global tag a Destiny wants gone.
+	assert_true(
+		decider._score_effect(
+			_effect("SET_GLOBAL_TAG", "world", "WORLD", {"tag": "crystal_exploited"}),
+			"ENT_VAERAX", "ENT_ALDRIC", decider._tag_goals("ENT_VAERAX", session), session,
+			bindings
+		) < 0,
+		"sfruttare il Cristallo deve costare a chi ha giurato di impedirlo"
+	)
+
+
+## And the bindings a decider scores against must exist whenever a Council is
+## open: an empty table silently sends every slot back unresolved.
+func test_an_open_council_can_always_resolve_its_slots() -> void:
+	var seen: Dictionary = {"councils": 0}
+	for i in range(4):
 		new_session(FIRST_SEED + i, false)
 		session.confluence.step_changed.connect(
-			func(step: String, context: Dictionary) -> void:
+			func(step: String, _context: Dictionary) -> void:
 				if step != "PROPOSITION":
 					return
+				seen["councils"] = int(seen["councils"]) + 1
 				var bindings: Dictionary = session.confluence.effect_context()
-				assert_true(
-					not bindings.is_empty(),
-					"un Consiglio aperto deve saper risolvere i propri slot"
-				)
-				var template: Dictionary = data().confluence_templates[str(context["template_id"])]
-				for proposition in template["propositions"]:
-					if str(proposition["id"]) != str(context.get("proposition_id", "")):
-						continue
-					for entity_id in SEATS:
-						var goals: Dictionary = decider._tag_goals(str(entity_id), session)
-						for consequence_id in proposition["success_consequences"]:
-							var consequence: Variant = data().consequences.get(str(consequence_id))
-							if consequence == null:
-								continue
-							for effect in consequence["effects"]:
-								var type: String = str(effect["type"])
-								seen[type] = int(seen.get(type, 0)) + 1
-								var value: int = decider._score_effect(
-									effect, str(entity_id), str(context["proponent"]),
-									goals, session, bindings
-								)
-								if value != 0:
-									scored[type] = int(scored.get(type, 0)) + 1
+				assert_true(not bindings.is_empty(), "un Consiglio aperto risolve i propri slot")
+				for key in ["proponent", "tension", "region_focus", "rival", "capital"]:
+					assert_true(
+						str(bindings.get(key, "")) != "",
+						"lo slot $%s deve risolversi in qualcosa" % key
+					)
 		)
 		session.run(PolicyDecider.new(session.log))
+	assert_true(int(seen["councils"]) > 0, "almeno un Consiglio si e aperto")
 
-	for type in watched:
-		if int(seen.get(str(type), 0)) == 0:
-			continue  # never came up in these seeds; nothing to say about it
-		assert_true(
-			int(scored.get(str(type), 0)) > 0,
-			"%s letto %d volte e mai pesato: la policy e cieca su un asse che un Destiny nomina"
-			% [str(type), int(seen[str(type)])]
-		)
+
+func _effect(type: String, kind: String, target_id: String, payload: Dictionary) -> Dictionary:
+	return {"type": type, "target": {"kind": kind, "id": target_id}, "payload": payload}
+
+
+## A Tension that is both in play and named by some Destiny's `tension_limit`,
+## with the Entity that swore to keep it down.
+func _a_capped_tension_in_play() -> Dictionary:
+	for destiny in data().destinies.values():
+		for level in ["minimum", "victory", "triumph"]:
+			for condition in destiny[level]["conditions"]:
+				if str(condition.get("type", "")) != "tension_limit":
+					continue
+				if not condition.has("max"):
+					continue
+				var tension_id: String = str(condition.get("tension_id", ""))
+				if session.world["tensions"].has(tension_id):
+					return {"tension_id": tension_id, "entity_id": str(destiny["entity_id"])}
+	return {}

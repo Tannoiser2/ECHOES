@@ -331,6 +331,124 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-035 — The first question of every Council was never asked
+**implemented in 0.0.11** · closes O-8, closes O-6
+
+Went looking for content to write and found the instrument again — but this
+time the finding was worth more than the fix.
+
+### The measurement
+
+The stance probe was extended to tally which question/proposition pairs actually
+reach a vote. In forty Chronicles, **seven pairs out of eighteen propositions**:
+
+```
+Q_AWAKENING_MOUNTAIN / P_GUARDED_STUDY   40      <- every single Awakening Council
+Q_FAMINE_LAND        / P_LAND_TO_WORKERS 43
+Q_ROADS_ESCORT       / P_SWEAR_ESCORT    36
+...
+```
+
+Every template's **first** question was missing. `Q_FAMINE_GRAIN`,
+`Q_AWAKENING_CRYSTAL`, `Q_ROADS_TOLL` — never asked once.
+
+### Why
+
+Two things met, and neither is a rule:
+
+1. `_select_question` defaults to the **last** eligible question, on the reasoning
+   that later questions are the sharper ones (D-016).
+2. Every second question is gated on its Tension being at threshold — and a
+   Council only *opens* when its Tension is at threshold. So the second question
+   is essentially always eligible.
+3. `PolicyDecider.choose_question` returned `""`. It declined to choose, so the
+   default won every time.
+
+The default is fine; a human at the table is offered both questions by
+`available_questions()`. **The policy simply never reached for the other one.**
+So O-8's "content that cannot be reached" was never unreachable — it was content
+the measuring player never reached for.
+
+### The fix
+
+`choose_question` now scores a question by the best proposition behind it, with
+the eligibility check the Council itself uses, and breaks ties on the session
+RNG. Twenty lines, the same shape as D-033.
+
+### After
+
+| | prima | dopo |
+|---|---|---|
+| coppie domanda/proposta votate | 7 | **12** |
+| tag di Regione mai scritti | 9 | **3** |
+| consigli con almeno un no | 16% | **28%** |
+| FAILURE | 23 | **25** |
+| SUCCESS_WITH_COST | 6 | **27** |
+| DECISIVE_SUCCESS | 105 (57%) | **76 (39%)** |
+| mappe di controllo distinte | 3 | **8** |
+| stato finale distinto | 32 | **38** |
+| Scar per Chronicle | 1.15 | **1.60** |
+
+And the Destinies unfroze. The saga of ten Chronicles had Lyra at TRIUMPH ten
+times out of ten and Vaerax at VICTORY ten out of ten, every year, identically:
+
+| | prima | dopo |
+|---|---|---|
+| Aldric | MIN 35 / VIC 4 / TRI 1 | MIN 18 / VIC 10 / **TRI 12** |
+| Lyra | **TRIUMPH 40 / 40** | MIN 23 / TRI 17 |
+| Vaerax | **VICTORY 40 / 40** | VIC 22 / TRI 18 |
+
+That is O-6 closed: all four outcome bands are populated, and no seat has a
+predetermined ending any more.
+
+### What stayed shut: Vaerax owns his own question
+
+D-034 found that Vaerax abstained 144 times out of 144, because **all 40 Councils
+on the Awakening are opened by Vaerax himself**. That was called a content shape
+and left for the content pass. It is not fixable by content, and this was
+measured rather than argued.
+
+`determine_proponent` is "most presence in the Tension's domain" (§12.2 C).
+`domain:ANCIENT` exists on exactly two Regions, and Vaerax's Destiny plants him
+in both. Two candidate widenings were tried and measured:
+
+| | Consigli sul Risveglio aperti da Vaerax |
+|---|---|
+| oggi | 40 / 40 |
+| `domain:ANCIENT` anche a Eredan | 107 / 107 |
+| `domain:ANCIENT` anche alla Strada dei Mercanti | 40 / 40 |
+| entrambe | 107 / 107 |
+
+Widening the domain does not break the lock — it just raises more Councils that
+Vaerax also owns. The lock is structural.
+
+A rules change would break it: reading §12.2 C as presence in the Tension's
+**focus Region** rather than its whole domain. Measured, it opens the Roads to
+three proponents and the Succession to two — and still leaves the Awakening at
+Vaerax 42/42. Recorded, not taken: it is a design decision about what a Council
+*is*, and it belongs to the author, not to a balance pass.
+
+The visible cost is that `P_EXPLOIT` is never proposed, so `condition:exploited`
+is never written. The guardian of the mountain never puts "let us dig" to the
+vote, which is either exactly right or exactly the problem, depending on whether
+the Awakening is supposed to be a question the table argues about or a question
+one seat owns.
+
+### The guard, and why the first version of it was wrong
+
+D-034's guard counted how often each Effect type moved the score during real
+games. It failed the moment this change landed — not because the policy had gone
+blind, but because the propositions that now come forward adjust the Succession
+and the Roads, **which no Destiny in CHR_01 names** (O-12).
+
+A guard that cannot tell "the policy is blind" from "the content moved" is worse
+than none: it cries wolf at a content change, and it would be silenced by tuning
+the content until it stopped firing. Rewritten as four constructed cases — build
+the situation a Destiny describes, assert the policy has an opinion about it —
+and verified by removing each branch in turn.
+
+---
+
 ## D-034 — The table abstained on 96% of propositions, and it was the policy again
 **implemented in 0.0.10** · addresses O-6
 
@@ -1177,8 +1295,49 @@ prerequisite for the outcome table to be alive.
 longer shares `CNS_MINE_SEALED` with `P_SEAL_MINE`. Every proposition in the set
 lands on its own world change.
 
+### O-13 — `P_ANY_LEAVE` is a proposition nobody would ever make
+**flagged, open — an author's call**
+
+Its success Consequence, `CNS_ABANDONED`, sets the Region's control to nobody
+and removes the **proponent's own** presence. Nobody playing to win proposes
+that, so `condition:abandoned` has never been written in any measured Chronicle.
+
+The text is good — *"Non si risolve: si va via. $rival resti pure, se ci tiene."*
+It reads as an act of spite or exhaustion, and both are real things a table does.
+But the rules give it no reason to be attractive: walking out denies the place to
+the rival, and nothing scores that.
+
+Three honest ways out, and picking one is design, not tuning: give it a payoff
+that makes leaving worth something; move `CNS_ABANDONED` to a failure or cost
+path, where "nobody resolved anything and the place emptied" is exactly right;
+or leave it as content only a human would ever reach for, and accept that the
+policy will never measure it.
+
+### O-12 — Two of the four Tensions are in nobody's Destiny
+**flagged, open — content, and the first real one**
+
+Every `tension_limit` clause in CHR_01 names either the Famine or the Awakening.
+**No Destiny puts a ceiling or a floor on the Succession or on the Roads.**
+
+It went unnoticed while D-035 was hidden, because the Councils that came forward
+were the ones about the Famine and the Awakening. With the first questions now
+asked, propositions that move the Succession and the Roads reach the table
+routinely — and the whole table is indifferent to them by construction. Those
+Councils cannot produce a fight over the quantity itself; only over who ends up
+holding what.
+
+Not a bug, and not obviously wrong: a Chronicle may legitimately carry a question
+nobody has sworn anything about. But four Tensions and two stakes is a thinner
+board than it looks, and one clause added to one Destiny would change it.
+
 ### O-6 — The wider content thinned the outcome bands again
-**narrowed by D-034, still open.** The cause turned out to be the measuring
+**closed by D-035.** All four bands are populated (FAILURE 25, SUCCESS_WITH_COST
+27, SUCCESS 65, DECISIVE_SUCCESS 76 out of 193) and no seat has a predetermined
+ending: Lyra was TRIUMPH in 40 Chronicles out of 40, and is now MINIMUM in 23 of
+them. The cause was never the resolver or the bands - it was the measuring player
+never asking the first question of any Council.
+
+**previously: narrowed by D-034, still open.** The cause turned out to be the measuring
 instrument: the policy was blind to three of the four axes the Destinies are
 actually about, so 96% of stances were ABSTAIN and O was 0 in almost every
 council. With the policy able to read them, Failure went 7 -> 23 out of ~180.
@@ -1219,7 +1378,18 @@ that gets harder as you hold more, or a Chronicle-start step that puts something
 back on the table. Recorded rather than picked.
 
 ### O-8 — Six of the 26 Consequences never fire in open play
-**flagged, open**
+**closed by D-035.** The content was never unreachable: the policy declined to
+choose a question, so the default handed it the last one every time and the first
+question of every template was never asked. Tags never written in 40 Chronicles
+went from 9 to 3, and the three that remain each have their own named cause -
+O-12, O-13, and the proponency lock in D-035's Vaerax note.
+
+The original note warned that "tuning the policy until its own content fires
+would be fitting the measurement to the answer". That was the right worry and it
+pointed at the wrong culprit: the policy was not scoring the content too
+narrowly, it was never being offered it.
+
+**original note:**
 
 `structure:granary`, `structure:tollgate`, `settlement:market`,
 `condition:exploited`, `condition:requisitioned` and `condition:indebted` were

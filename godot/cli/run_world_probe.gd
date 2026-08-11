@@ -100,7 +100,16 @@ func _tag_coverage(data: RefCounted, seen: Dictionary) -> void:
 	var keys: Array = declared.keys()
 	keys.sort()
 	for tag in keys:
+		# A tag written through a $slot (`settlement:$proponent`) is authored in one
+		# form and lands in another, so comparing the two spellings reports "MAI"
+		# for a tag that fires every game. Count every resolved form instead.
 		var count: int = int(seen.get(str(tag), 0))
+		if str(tag).contains("$"):
+			var prefix: String = str(tag).split("$")[0]
+			count = 0
+			for written in seen:
+				if str(written).begins_with(prefix):
+					count += int(seen[written])
 		print("  %-28s %s   (%s)" % [str(tag), ("%dx" % count) if count > 0 else "MAI", str(declared[tag])])
 
 

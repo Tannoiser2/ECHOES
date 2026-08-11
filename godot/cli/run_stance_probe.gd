@@ -45,6 +45,7 @@ func _initialize() -> void:
 	var by_effect: Dictionary = {}
 	var by_entity: Dictionary = {}
 	var rooms: Dictionary = {}
+	var voted: Dictionary = {}
 	# In a Dictionary, not two ints: a lambda captures a local by value, so
 	# counters incremented inside the callback would read zero out here.
 	var counters: Dictionary = {"confluences": 0, "opposed": 0}
@@ -67,6 +68,10 @@ func _initialize() -> void:
 					str(proponent).replace("ENT_", ""),
 				]
 				rooms[room] = int(rooms.get(room, 0)) + 1
+				var put: String = "%s / %s" % [
+					str(context["question_id"]), str(context["proposition_id"])
+				]
+				voted[put] = int(voted.get(put, 0)) + 1
 				var any_opposition: bool = false
 				for entity_id in SEATS:
 					if str(entity_id) == proponent:
@@ -92,7 +97,7 @@ func _initialize() -> void:
 
 	_report(
 		runs, int(counters["confluences"]), int(counters["opposed"]),
-		stances, scores, by_entity, by_effect, rooms
+		stances, scores, by_entity, by_effect, rooms, voted
 	)
 	quit(0)
 
@@ -141,7 +146,8 @@ func _report(
 	scores: Dictionary,
 	by_entity: Dictionary,
 	by_effect: Dictionary,
-	rooms: Dictionary
+	rooms: Dictionary,
+	voted: Dictionary
 ) -> void:
 	print("")
 	print("== PERCHE NESSUNO SI OPPONE - %d Chronicle ==" % runs)
@@ -200,6 +206,14 @@ func _report(
 	room_keys.sort()
 	for key in room_keys:
 		print("  %-28s %5d" % [str(key), int(rooms[key])])
+
+
+	print("")
+	print("Domande poste e proposte messe ai voti")
+	var voted_keys: Array = voted.keys()
+	voted_keys.sort()
+	for key in voted_keys:
+		print("  %-58s %4d" % [str(key), int(voted[key])])
 
 
 func _parse_args(args: PackedStringArray) -> Dictionary:

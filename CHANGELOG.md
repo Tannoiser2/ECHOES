@@ -5,6 +5,65 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.0.11] — La prima domanda di ogni Consiglio non veniva mai posta
+
+Chiude O-6 e O-8. Cercavo contenuto da scrivere e ho trovato di nuovo lo
+strumento — ma stavolta quello che c'era sotto valeva piu della correzione.
+
+### Changed
+
+- **`PolicyDecider.choose_question` sceglie davvero.** Restituiva `""`, cioe
+  rinunciava a scegliere, e vinceva sempre il default: *l'ultima* domanda
+  ammissibile. Ogni seconda domanda e vincolata a una Tensione al limite, e un
+  Consiglio si apre solo quando la sua Tensione e al limite — quindi la seconda
+  domanda era sempre ammissibile e **la prima domanda di ogni template non e
+  mai stata posta in quaranta Chronicle**. Le sue proposte non potevano essere
+  votate e le loro Conseguenze non potevano scattare: era tutto O-8.
+
+  Un essere umano al tavolo se le vedeva offrire entrambe. Il contenuto non era
+  irraggiungibile: era il giocatore che misura a non allungare mai la mano.
+
+### Measured
+
+| | prima | dopo |
+|---|---|---|
+| coppie domanda/proposta votate | 7 su 18 | **12** |
+| tag di Regione mai scritti | 9 | **3** |
+| consigli con almeno un no | 16% | **28%** |
+| SUCCESS_WITH_COST | 6 | **27** |
+| DECISIVE_SUCCESS | 105 (57%) | **76 (39%)** |
+| mappe di controllo distinte | 3 | **8** |
+| Scar per Chronicle | 1.15 | **1.60** |
+
+E i Destini si sono scongelati. Nella saga di dieci Chronicle Lyra faceva
+TRIUMPH dieci volte su dieci e Vaerax VICTORY dieci su dieci, ogni anno,
+identici. Ora Aldric fa MIN 18 / VIC 10 / TRI 12, Lyra MIN 23 / TRI 17, Vaerax
+VIC 22 / TRI 18. Nessun seggio ha piu un finale gia scritto.
+
+### Fixed
+
+- **La guardia di D-034 era scritta male.** Contava quante volte ogni Effect
+  spostava il punteggio durante partite vere, ed e fallita appena il contenuto
+  si e mosso — non perche la policy fosse cieca, ma perche le proposte che ora
+  vengono avanti toccano la Successione e le Vie, che **nessun Destino di
+  CHR_01 nomina** (O-12). Una guardia che non sa distinguere "la policy e
+  cieca" da "il contenuto si e spostato" e peggio di niente: grida al lupo a
+  ogni cambio di contenuto e si zittisce tarando. Riscritta come quattro casi
+  costruiti, e verificata togliendo un ramo alla volta.
+- **`run_world_probe` mentiva su un tag.** Un tag scritto attraverso uno slot
+  (`settlement:$proponent`) e autorato in una forma e atterra in un'altra:
+  confrontare le due grafie lo dava per "MAI" mentre scattava ogni partita.
+
+### Open
+
+- **O-12** — nessun Destino mette un limite sulla Successione o sulle Vie.
+  Quattro Tensioni, due poste in gioco.
+- **O-13** — `P_ANY_LEAVE` toglie presenza e controllo *al proponente stesso*:
+  nessuno che gioca per vincere la proporrebbe mai.
+- **Vaerax possiede la sua domanda.** Misurato: non e sistemabile dal contenuto.
+
+---
+
 ## [0.0.10] — Perche nessuno diceva di no
 
 Restringe O-6. La domanda era: se le crisi arrivano al voto, perche il tavolo le
