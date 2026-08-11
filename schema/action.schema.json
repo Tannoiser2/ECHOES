@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://echoes.local/schema/action.schema.json",
+  "title": "Action template collection",
+  "x-echoes-def": "action",
+  "x-echoes-kind": "collection",
+  "type": "object",
+  "required": ["schema_id", "version", "items"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_id": { "const": "action" },
+    "version": { "type": "string" },
+    "items": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": { "$ref": "#/$defs/action" }
+    }
+  },
+  "$defs": {
+    "action": {
+      "type": "object",
+      "required": ["id", "template", "title", "ao_cost", "description", "narrative_verbs", "params"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^ACT_[A-Z0-9_]+$" },
+        "template": {
+          "type": "string",
+          "enum": ["ACQUIRE", "MOVE", "INFLUENCE", "FORGE", "SCHEME", "CLAIM"]
+        },
+        "title": { "type": "string", "minLength": 1 },
+        "ao_cost": { "type": "integer", "minimum": 1, "maximum": 2 },
+        "description": { "type": "string", "minLength": 1 },
+        "narrative_verbs": {
+          "type": "array",
+          "description": "Presentation-layer verbs (§8) mapped onto this mechanical template.",
+          "items": { "type": "string" }
+        },
+        "params": {
+          "type": "array",
+          "description": "Declared parameter names the ActionResolver expects.",
+          "items": {
+            "type": "object",
+            "required": ["name", "type", "required"],
+            "additionalProperties": false,
+            "properties": {
+              "name": { "type": "string" },
+              "type": {
+                "type": "string",
+                "enum": ["string", "int", "bool", "asset_id", "region_id", "entity_id", "tension_id", "enum"]
+              },
+              "required": { "type": "boolean" },
+              "values": { "type": "array", "items": { "type": "string" } },
+              "note": { "type": "string" }
+            }
+          }
+        },
+        "rules_text": { "type": "string" }
+      }
+    }
+  }
+}

@@ -1,0 +1,267 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://echoes.local/schema/confluence_template.schema.json",
+  "title": "Confluence template collection",
+  "x-echoes-def": "confluence_template",
+  "x-echoes-kind": "collection",
+  "type": "object",
+  "required": [
+    "schema_id",
+    "version",
+    "items"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_id": {
+      "const": "confluence_template"
+    },
+    "version": {
+      "type": "string"
+    },
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/confluence_template"
+      }
+    }
+  },
+  "$defs": {
+    "confluence_template": {
+      "type": "object",
+      "required": [
+        "id",
+        "title",
+        "questions",
+        "propositions",
+        "condition_clauses",
+        "consequence_pools",
+        "ripple"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^CNF_[A-Z0-9_]+$"
+        },
+        "tension_id": {
+          "type": "string",
+          "pattern": "^TEN_[A-Z0-9_]+$",
+          "description": "Bind this Council to one specific Tension. Prefer applies_to_domain: a Council bound to a Tension has to be rewritten for every new Chronicle, while one bound to a domain is reusable library content (D-028)."
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string"
+        },
+        "questions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "text",
+              "eligibility"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "text": {
+                "type": "string",
+                "minLength": 1
+              },
+              "eligibility": {
+                "type": "array",
+                "items": {
+                  "$ref": "destiny.schema.json#/$defs/condition"
+                }
+              }
+            }
+          }
+        },
+        "propositions": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "$ref": "#/$defs/proposition"
+          }
+        },
+        "condition_clauses": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "text",
+              "effects"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "text": {
+                "type": "string",
+                "minLength": 1
+              },
+              "effects": {
+                "type": "array",
+                "items": {
+                  "$ref": "effect.schema.json#/$defs/effect_spec"
+                }
+              }
+            }
+          }
+        },
+        "consequence_pools": {
+          "type": "object",
+          "required": [
+            "cost",
+            "failure",
+            "decisive_bonus"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "cost": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "pattern": "^CNS_[A-Z0-9_]+$"
+              }
+            },
+            "failure": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "pattern": "^CNS_[A-Z0-9_]+$"
+              }
+            },
+            "decisive_bonus": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "pattern": "^CNS_[A-Z0-9_]+$"
+              }
+            }
+          }
+        },
+        "ripple": {
+          "type": "object",
+          "required": [
+            "targets",
+            "delta"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "targets": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 2,
+              "items": {
+                "type": "string",
+                "pattern": "^TEN_[A-Z0-9_]+$"
+              }
+            },
+            "delta": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 2
+            }
+          }
+        },
+        "echo_title_template": {
+          "type": "string"
+        },
+        "applies_to_domain": {
+          "type": "string",
+          "description": "Bind this Council to a whole domain instead of one Tension: any Tension of this domain with no Council of its own uses it. This is what makes a Council reusable across Chronicles - the structure of a survival crisis is not specific to one famine."
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "tension_id"
+          ]
+        },
+        {
+          "required": [
+            "applies_to_domain"
+          ]
+        }
+      ]
+    },
+    "proposition": {
+      "type": "object",
+      "required": [
+        "id",
+        "question_id",
+        "text",
+        "eligibility",
+        "success_consequences"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "question_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "eligibility": {
+          "type": "array",
+          "items": {
+            "$ref": "destiny.schema.json#/$defs/condition"
+          }
+        },
+        "success_consequences": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "pattern": "^CNS_[A-Z0-9_]+$"
+          }
+        },
+        "echo_summary": {
+          "type": "string",
+          "description": "The sentence the Truth register keeps when this proposition carries. Used for every outcome unless echo_summaries names a different one."
+        },
+        "echo_summaries": {
+          "type": "object",
+          "description": "Per-outcome variants of echo_summary. How a proposal falls reads nothing like how it triumphs, and the register is where a Chronicle is reread: any band left out falls back to echo_summary (D-032).",
+          "additionalProperties": false,
+          "properties": {
+            "FAILURE": {
+              "type": "string"
+            },
+            "SUCCESS_WITH_COST": {
+              "type": "string"
+            },
+            "SUCCESS": {
+              "type": "string"
+            },
+            "DECISIVE_SUCCESS": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

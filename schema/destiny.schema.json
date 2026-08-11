@@ -1,0 +1,188 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://echoes.local/schema/destiny.schema.json",
+  "title": "Destiny collection",
+  "x-echoes-def": "destiny",
+  "x-echoes-kind": "collection",
+  "type": "object",
+  "required": [
+    "schema_id",
+    "version",
+    "items"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_id": {
+      "const": "destiny"
+    },
+    "version": {
+      "type": "string"
+    },
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/destiny"
+      }
+    }
+  },
+  "$defs": {
+    "condition": {
+      "type": "object",
+      "description": "Reusable WorldState predicate (§14). Evaluated by DestinyEvaluator / ConditionEvaluator.",
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "control_count",
+            "state_tag_present",
+            "state_tag_absent",
+            "asset_threshold",
+            "entity_alive",
+            "relation_state",
+            "tension_limit",
+            "discovery_count",
+            "region_presence",
+            "promise_kept",
+            "promise_broken",
+            "any_of"
+          ]
+        },
+        "entity_id": {
+          "type": "string"
+        },
+        "other_entity_id": {
+          "type": "string"
+        },
+        "region_id": {
+          "type": "string"
+        },
+        "tension_id": {
+          "type": "string"
+        },
+        "family": {
+          "type": "string",
+          "enum": [
+            "FORCE",
+            "AUTHORITY",
+            "PEOPLE",
+            "KNOWLEDGE",
+            "WEALTH",
+            "BONDS"
+          ]
+        },
+        "tag": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "string",
+          "enum": [
+            "GLOBAL",
+            "REGION",
+            "ENTITY"
+          ]
+        },
+        "min": {
+          "type": "integer"
+        },
+        "max": {
+          "type": "integer"
+        },
+        "level": {
+          "type": "string",
+          "enum": [
+            "ENEMY",
+            "HOSTILE",
+            "NEUTRAL",
+            "ALLY",
+            "BOUND"
+          ]
+        },
+        "at_least": {
+          "type": "boolean",
+          "default": true,
+          "description": "relation_state: true = level or better; false = exactly this level."
+        },
+        "label": {
+          "type": "string"
+        },
+        "conditions": {
+          "type": "array",
+          "minItems": 1,
+          "description": "Only for type 'any_of': holds when at least one of these does. Propp's grammar needs it - a Return follows a Separation OR a Loss - and every other condition list in the schema is an AND.",
+          "items": {
+            "$ref": "#/$defs/condition"
+          }
+        }
+      }
+    },
+    "destiny": {
+      "type": "object",
+      "required": [
+        "id",
+        "entity_id",
+        "title",
+        "description",
+        "minimum",
+        "victory",
+        "triumph"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^DST_[A-Z0-9_]+$"
+        },
+        "entity_id": {
+          "type": "string",
+          "pattern": "^ENT_[A-Z0-9_]+$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "minimum": {
+          "$ref": "#/$defs/level"
+        },
+        "victory": {
+          "$ref": "#/$defs/level"
+        },
+        "triumph": {
+          "$ref": "#/$defs/level"
+        },
+        "art_prompt_key": {
+          "type": "string"
+        }
+      }
+    },
+    "level": {
+      "type": "object",
+      "required": [
+        "label",
+        "conditions"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "conditions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/condition"
+          }
+        }
+      }
+    }
+  }
+}

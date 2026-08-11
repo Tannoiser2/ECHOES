@@ -1,0 +1,193 @@
+{
+  "schema_id": "chronicle",
+  "version": "0.2.0",
+  "items": [
+    {
+      "id": "CHR_01",
+      "title": "La Carestia Rossa",
+      "world_id": "WORLD_ECHOES",
+      "start_year": 812,
+      "acts": 3,
+      "rounds_per_act": 3,
+      "action_opportunities_per_round": 2,
+      "hand_limit": 7,
+      "presence_tokens": 3,
+      "max_commit_assets": 3,
+      "max_condition_commit_assets": 2,
+      "condition_qualified_threshold": 2,
+      "influence_rules": {
+        "max_per_entity_per_round": 1,
+        "max_per_tension_per_round": 1,
+        "displacement_on_decrease": 1
+      },
+      "control_rules": {
+        "max_stable_control": 2,
+        "overextension_delta": 1,
+        "lapse_without_presence": true
+      },
+      "entities": [
+        "ENT_ALDRIC",
+        "ENT_NAHR",
+        "ENT_LYRA",
+        "ENT_VAERAX"
+      ],
+      "regions": [
+        "REG_EREDAN",
+        "REG_VALLE_VERDE",
+        "REG_TERRE_NAHR",
+        "REG_MONTAGNE_ROSSE",
+        "REG_MINIERE_ANTICHE",
+        "REG_STRADA_MERCANTI"
+      ],
+      "tensions": [
+        "TEN_FAMINE",
+        "TEN_AWAKENING",
+        "TEN_SUCCESSION",
+        "TEN_ROADS"
+      ],
+      "drift_distribution": [
+        {
+          "tension_id": "TEN_FAMINE",
+          "count": 2
+        },
+        {
+          "tension_id": "TEN_AWAKENING",
+          "count": 3
+        },
+        {
+          "tension_id": "TEN_SUCCESSION",
+          "count": 2
+        },
+        {
+          "tension_id": "TEN_ROADS",
+          "count": 2
+        }
+      ],
+      "act_echo_pools": [
+        {
+          "act": 1,
+          "families": [
+            "PRESSURE"
+          ]
+        },
+        {
+          "act": 2,
+          "families": [
+            "RUPTURE",
+            "RUPTURE",
+            "TURN",
+            "TURN",
+            "PRESSURE"
+          ]
+        },
+        {
+          "act": 3,
+          "families": [
+            "RESOLUTION",
+            "RESOLUTION",
+            "RESOLUTION",
+            "TURN",
+            "RUPTURE"
+          ]
+        }
+      ],
+      "confluence_templates": [
+        "CNF_FAMINE_01",
+        "CNF_AWAKENING_01",
+        "CNF_SUCCESSION_01",
+        "CNF_ROADS_01"
+      ],
+      "starting_relations": [],
+      "global_tags": [],
+      "opening_text": "Ottocentododici. La Valle Verde ha reso un terzo meno dell'anno scorso e i Nahr hanno cominciato a spostarsi verso ovest. A Eredan il trono conta le riserve due volte al giorno e ottiene lo stesso numero. Nelle Miniere Antiche qualcuno ha trovato una pietra rossa che non si comporta come una pietra. Sulle Montagne Rosse, qualcosa che dormiva da molto tempo si e girato nel sonno."
+    },
+    {
+      "id": "CHR_02",
+      "title": "Gli anni che vengono",
+      "world_id": "WORLD_ECHOES",
+      "start_year": 813,
+      "acts": 3,
+      "rounds_per_act": 3,
+      "action_opportunities_per_round": 2,
+      "hand_limit": 7,
+      "presence_tokens": 3,
+      "max_commit_assets": 3,
+      "max_condition_commit_assets": 2,
+      "condition_qualified_threshold": 2,
+      "influence_rules": {
+        "max_per_entity_per_round": 1,
+        "max_per_tension_per_round": 1,
+        "displacement_on_decrease": 1
+      },
+      "control_rules": {
+        "max_stable_control": 2,
+        "overextension_delta": 1,
+        "lapse_without_presence": true
+      },
+      "entities": [
+        "ENT_ALDRIC",
+        "ENT_NAHR",
+        "ENT_LYRA",
+        "ENT_VAERAX"
+      ],
+      "regions": [
+        "REG_EREDAN",
+        "REG_VALLE_VERDE",
+        "REG_TERRE_NAHR",
+        "REG_MONTAGNE_ROSSE",
+        "REG_MINIERE_ANTICHE",
+        "REG_STRADA_MERCANTI"
+      ],
+      "act_echo_pools": [
+        {
+          "act": 1,
+          "families": [
+            "PRESSURE"
+          ]
+        },
+        {
+          "act": 2,
+          "families": [
+            "RUPTURE",
+            "RUPTURE",
+            "TURN",
+            "TURN",
+            "PRESSURE"
+          ]
+        },
+        {
+          "act": 3,
+          "families": [
+            "RESOLUTION",
+            "RESOLUTION",
+            "RESOLUTION",
+            "TURN",
+            "RUPTURE"
+          ]
+        }
+      ],
+      "confluence_templates": [
+        "CNF_FAMINE_01",
+        "CNF_AWAKENING_01",
+        "CNF_SUCCESSION_01",
+        "CNF_ROADS_01",
+        "CNF_ANY_SURVIVAL"
+      ],
+      "starting_relations": [],
+      "global_tags": [],
+      "opening_text": "Ogni anno il mondo sceglie da solo di cosa si parlera. Questa Chronicle non elenca le proprie domande: le pesca dalla biblioteca, in base a com'e finita quella prima. Stesso seed, stesso anno.",
+      "tension_pool": {
+        "candidates": [
+          "TEN_FAMINE",
+          "TEN_AWAKENING",
+          "TEN_SUCCESSION",
+          "TEN_ROADS",
+          "TEN_PLAGUE",
+          "TEN_THIRST"
+        ],
+        "count": 4,
+        "always": []
+      }
+    }
+  ]
+}

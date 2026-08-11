@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://echoes.local/schema/save.schema.json",
+  "title": "Save file",
+  "x-echoes-def": "save",
+  "x-echoes-kind": "runtime",
+  "$ref": "#/$defs/save",
+  "$defs": {
+    "save": {
+      "type": "object",
+      "required": ["save_version", "data_version", "chronicle_id", "world_state", "assignments"],
+      "additionalProperties": false,
+      "properties": {
+        "save_version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+        "data_version": { "type": "string" },
+        "chronicle_id": { "type": "string" },
+        "world_state": { "$ref": "world_state.schema.json#/$defs/world_state" },
+        "assignments": {
+          "type": "object",
+          "description": "player seat index -> entity id",
+          "additionalProperties": { "type": "string" }
+        },
+        "pending_confluence": {
+          "type": ["object", "null"],
+          "description": "Serialized ConfluenceContext when a save is taken mid-Confluence."
+        },
+        "destiny_results": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/$defs/destiny_result" }
+        },
+        "label": { "type": "string" }
+      }
+    },
+    "destiny_result": {
+      "type": "object",
+      "required": ["destiny_id", "entity_id", "level", "levels"],
+      "additionalProperties": false,
+      "properties": {
+        "destiny_id": { "type": "string" },
+        "entity_id": { "type": "string" },
+        "level": { "type": "string", "enum": ["NONE", "MINIMUM", "VICTORY", "TRIUMPH"] },
+        "levels": {
+          "type": "object",
+          "additionalProperties": { "type": "boolean" }
+        },
+        "evidence": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

@@ -1,0 +1,500 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://echoes.local/schema/world_state.schema.json",
+  "title": "WorldState",
+  "x-echoes-def": "world_state",
+  "x-echoes-kind": "runtime",
+  "$ref": "#/$defs/world_state",
+  "$defs": {
+    "world_state": {
+      "type": "object",
+      "required": [
+        "world_id",
+        "year",
+        "chronicle_id",
+        "act",
+        "round",
+        "phase",
+        "entities",
+        "regions",
+        "tensions",
+        "relations",
+        "global_tags",
+        "claims",
+        "echo_log",
+        "truth_log",
+        "scars",
+        "effect_log",
+        "rng_seed",
+        "rng_state"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "world_id": {
+          "type": "string"
+        },
+        "year": {
+          "type": "integer"
+        },
+        "chronicle_id": {
+          "type": "string"
+        },
+        "act": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "round": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "phase": {
+          "type": "string",
+          "enum": [
+            "SETUP",
+            "ACTIONS",
+            "DRIFT",
+            "THRESHOLD_CHECK",
+            "CONFLUENCE",
+            "ACT_ECHO",
+            "CHRONICLE_END"
+          ]
+        },
+        "entities": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/entity_state"
+          }
+        },
+        "regions": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/region_state"
+          }
+        },
+        "tensions": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/tension_state"
+          }
+        },
+        "relations": {
+          "type": "object",
+          "description": "Keyed by the two entity ids joined by '|' in ascending order.",
+          "additionalProperties": {
+            "$ref": "#/$defs/relation_state"
+          }
+        },
+        "global_tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "claims": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/claim"
+          }
+        },
+        "echo_log": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/echo_record"
+          }
+        },
+        "truth_log": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/truth_record"
+          }
+        },
+        "scars": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/scar"
+          }
+        },
+        "effect_log": {
+          "type": "array",
+          "items": {
+            "$ref": "effect.schema.json#/$defs/effect"
+          }
+        },
+        "rng_seed": {
+          "type": "integer"
+        },
+        "rng_state": {
+          "type": "integer"
+        },
+        "decks": {
+          "type": "object",
+          "description": "Per-family Asset draw/discard piles (\u00a79, \u00a722).",
+          "additionalProperties": {
+            "$ref": "#/$defs/deck_state"
+          }
+        },
+        "echo_deck": {
+          "$ref": "#/$defs/echo_deck_state"
+        },
+        "drift_track": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "drift_index": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "confluence_queue": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "forced_confluence": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "description": "Set by CLAIM/FORCE or an Echo card: overrides the threshold queue at the next end-of-round check (\u00a710, \u00a712.1)."
+        },
+        "confluence_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "effect_sequence": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "turn_order": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "influence_used": {
+          "type": "object",
+          "description": "entity id -> INFLUENCE actions taken this round. Reset every round.",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "influence_used_by_tension": {
+          "type": "object",
+          "description": "tension id -> INFLUENCE actions aimed at it this round. Reset every round.",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      }
+    },
+    "entity_state": {
+      "type": "object",
+      "required": [
+        "id",
+        "presence",
+        "hand",
+        "tags",
+        "active",
+        "ao_remaining"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "presence": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "hand": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "active": {
+          "type": "boolean"
+        },
+        "ao_remaining": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "region_state": {
+      "type": "object",
+      "required": [
+        "id",
+        "control",
+        "tags"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "control": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "tension_state": {
+      "type": "object",
+      "required": [
+        "id",
+        "current_value",
+        "visibility",
+        "fired_omens"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "current_value": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "visibility": {
+          "type": "string",
+          "enum": [
+            "OPEN",
+            "VEILED",
+            "SECRET"
+          ]
+        },
+        "fired_omens": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "resolved_count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "relation_state": {
+      "type": "object",
+      "required": [
+        "level",
+        "tags"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "level": {
+          "type": "string",
+          "enum": [
+            "ENEMY",
+            "HOSTILE",
+            "NEUTRAL",
+            "ALLY",
+            "BOUND"
+          ]
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "claim": {
+      "type": "object",
+      "required": [
+        "claim_id",
+        "entity_id",
+        "domain",
+        "act",
+        "round"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "claim_id": {
+          "type": "string"
+        },
+        "entity_id": {
+          "type": "string"
+        },
+        "domain": {
+          "type": "string"
+        },
+        "act": {
+          "type": "integer"
+        },
+        "round": {
+          "type": "integer"
+        }
+      }
+    },
+    "echo_record": {
+      "type": "object",
+      "required": [
+        "echo_id",
+        "title",
+        "summary",
+        "act",
+        "round",
+        "participants",
+        "effect_ids"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "echo_id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "act": {
+          "type": "integer"
+        },
+        "round": {
+          "type": "integer"
+        },
+        "participants": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "effect_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tension_id": {
+          "type": "string"
+        },
+        "outcome": {
+          "type": "string"
+        }
+      }
+    },
+    "truth_record": {
+      "type": "object",
+      "required": [
+        "truth_id",
+        "text",
+        "act",
+        "round"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "truth_id": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "act": {
+          "type": "integer"
+        },
+        "round": {
+          "type": "integer"
+        },
+        "echo_id": {
+          "type": "string"
+        }
+      }
+    },
+    "scar": {
+      "type": "object",
+      "required": [
+        "scar_id",
+        "region_id",
+        "tag",
+        "description"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "scar_id": {
+          "type": "string"
+        },
+        "region_id": {
+          "type": "string"
+        },
+        "tag": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "echo_id": {
+          "type": "string"
+        }
+      }
+    },
+    "deck_state": {
+      "type": "object",
+      "required": [
+        "draw",
+        "discard"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "draw": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "discard": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "echo_deck_state": {
+      "type": "object",
+      "required": [
+        "draw",
+        "drawn"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "draw": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "drawn": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

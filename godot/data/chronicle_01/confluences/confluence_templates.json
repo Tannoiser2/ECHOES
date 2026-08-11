@@ -1,0 +1,775 @@
+{
+  "schema_id": "confluence_template",
+  "version": "0.2.0",
+  "items": [
+    {
+      "id": "CNF_FAMINE_01",
+      "tension_id": "TEN_FAMINE",
+      "title": "Il Consiglio del Grano",
+      "description": "Quando la Carestia raggiunge la soglia, la questione non e piu se ci sia abbastanza: e chi decide a chi non ne tocca.",
+      "questions": [
+        {
+          "id": "Q_FAMINE_GRAIN",
+          "text": "Chi nutre $the_region quando i granai si svuotano?",
+          "eligibility": []
+        },
+        {
+          "id": "Q_FAMINE_LAND",
+          "text": "$in_region, a chi appartiene la terra che ancora produce?",
+          "eligibility": [
+            {
+              "type": "tension_limit",
+              "tension_id": "TEN_FAMINE",
+              "min": 6,
+              "label": "La Carestia e al limite"
+            }
+          ]
+        }
+      ],
+      "propositions": [
+        {
+          "id": "P_REQUISITION",
+          "question_id": "Q_FAMINE_GRAIN",
+          "text": "Il grano $of_region e requisito e distribuito dal trono, razione per razione.",
+          "eligibility": [
+            {
+              "type": "state_tag_present",
+              "scope": "ENTITY",
+              "entity_id": "$proponent",
+              "tag": "crowned",
+              "label": "Solo chi porta la corona puo requisire"
+            }
+          ],
+          "success_consequences": [
+            "CNS_ROYAL_GRANARY",
+            "CNS_VALLEY_CLEARED"
+          ],
+          "echo_summary": "Il grano $of_region passo sotto il sigillo di $proponent.",
+          "echo_summaries": {
+            "DECISIVE_SUCCESS": "Il grano $of_region passo sotto il sigillo di $proponent, e nessuno alzo la voce: contarlo era diventato piu urgente che possederlo.",
+            "FAILURE": "$proponent volle il grano $of_region sotto il proprio sigillo, e i granai restarono chiusi a chiave da qualcun altro.",
+            "SUCCESS_WITH_COST": "Il grano $of_region passo sotto il sigillo di $proponent, e la prima razione arrivo con nove giorni di ritardo."
+          }
+        },
+        {
+          "id": "P_OPEN_VALLEY",
+          "question_id": "Q_FAMINE_GRAIN",
+          "text": "$proponent apre $the_region a chi arriva da est: chi lavora la terra ne mangia.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_NAHR_SETTLEMENT",
+            "CNS_CROWN_DISPOSSESSED"
+          ],
+          "echo_summary": "$proponent entro $in_region, e quella terra smise di essere solo di $controller.",
+          "echo_summaries": {
+            "DECISIVE_SUCCESS": "$proponent entro $in_region senza che nessuno contasse i carri, e quella terra smise di essere di qualcuno in particolare.",
+            "FAILURE": "$proponent chiese di entrare $in_region e la porta resto dov'era, con la stessa gente davanti.",
+            "SUCCESS_WITH_COST": "$proponent entro $in_region, e quella terra smise di essere solo di $controller: ci vollero due inverni perche qualcuno lo chiamasse un accordo."
+          }
+        },
+        {
+          "id": "P_SEAL_BORDERS",
+          "question_id": "Q_FAMINE_LAND",
+          "text": "I confini si chiudono: quello che cresce $in_region resta a $proponent, e a nessun altro.",
+          "eligibility": [
+            {
+              "type": "state_tag_present",
+              "scope": "ENTITY",
+              "entity_id": "$proponent",
+              "tag": "crowned",
+              "label": "Solo il trono puo chiudere i confini del regno"
+            }
+          ],
+          "success_consequences": [
+            "CNS_SEALED_VALLEY"
+          ],
+          "echo_summary": "I confini $of_region furono chiusi, e l'inverno resto fuori con $rival.",
+          "echo_summaries": {
+            "DECISIVE_SUCCESS": "I confini $of_region furono chiusi in una notte, e per un anno intero nessuno provo a discuterne.",
+            "FAILURE": "Si provo a chiudere i confini $of_region, e il primo a passare fu chi li aveva proposti.",
+            "SUCCESS_WITH_COST": "I confini $of_region furono chiusi, e l'inverno resto fuori con $rival: dentro si conto due volte tutto quello che c'era."
+          }
+        },
+        {
+          "id": "P_LAND_TO_WORKERS",
+          "question_id": "Q_FAMINE_LAND",
+          "text": "La terra $of_region appartiene a chi la lavora, e quest'anno la lavora chi e arrivato.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_NAHR_SETTLEMENT",
+            "CNS_CROWN_DISPOSSESSED"
+          ],
+          "echo_summary": "La terra $of_region fu assegnata a chi la lavorava, e il titolo di chi la teneva resto scritto solo sulla carta.",
+          "echo_summaries": {
+            "DECISIVE_SUCCESS": "La terra $of_region passo a chi la lavorava, e il vecchio titolo non fu nemmeno riletto ad alta voce.",
+            "FAILURE": "Si chiese che la terra $of_region andasse a chi la lavorava, e la carta rimase quella di prima.",
+            "SUCCESS_WITH_COST": "La terra $of_region fu assegnata a chi la lavorava, e il titolo di chi la teneva resto scritto solo sulla carta - insieme al conto di chi ci aveva rimesso."
+          }
+        }
+      ],
+      "condition_clauses": [
+        {
+          "id": "C_FAMINE_SHARE",
+          "text": "...purche una quota fissa resti a $rival.",
+          "effects": [
+            {
+              "type": "REMOVE_REGION_TAG",
+              "target": {
+                "kind": "region",
+                "id": "REG_TERRE_NAHR"
+              },
+              "payload": {
+                "tag": "condition:starving"
+              }
+            },
+            {
+              "type": "SET_GLOBAL_TAG",
+              "target": {
+                "kind": "world",
+                "id": "WORLD"
+              },
+              "payload": {
+                "tag": "quota_guaranteed"
+              }
+            }
+          ]
+        },
+        {
+          "id": "C_FAMINE_AUDIT",
+          "text": "...purche la distribuzione $in_region sia contata davanti a testimoni.",
+          "effects": [
+            {
+              "type": "SET_GLOBAL_TAG",
+              "target": {
+                "kind": "world",
+                "id": "WORLD"
+              },
+              "payload": {
+                "tag": "distribution_audited"
+              }
+            },
+            {
+              "type": "ADJUST_TENSION",
+              "target": {
+                "kind": "tension",
+                "id": "TEN_FAMINE"
+              },
+              "payload": {
+                "delta": -1
+              }
+            }
+          ]
+        }
+      ],
+      "consequence_pools": {
+        "cost": [
+          "CNS_COST_UNREST"
+        ],
+        "failure": [
+          "CNS_FAILURE_SPIRAL"
+        ],
+        "decisive_bonus": [
+          "CNS_DECISIVE_RENOWN"
+        ]
+      },
+      "ripple": {
+        "targets": [
+          "TEN_AWAKENING",
+          "TEN_SUCCESSION"
+        ],
+        "delta": 1
+      },
+      "echo_title_template": "Il Consiglio del Grano"
+    },
+    {
+      "id": "CNF_AWAKENING_01",
+      "tension_id": "TEN_AWAKENING",
+      "title": "Cio che Dorme sotto la Pietra",
+      "description": "Il Cristallo Rosso non e piu una curiosita. Qualcuno deve dire, ad alta voce, cosa se ne fa.",
+      "questions": [
+        {
+          "id": "Q_AWAKENING_CRYSTAL",
+          "text": "Che cosa si fa del Cristallo Rosso che esce $in_region?",
+          "eligibility": []
+        },
+        {
+          "id": "Q_AWAKENING_MOUNTAIN",
+          "text": "A chi appartiene cio che dorme sotto $the_region?",
+          "eligibility": [
+            {
+              "type": "tension_limit",
+              "tension_id": "TEN_AWAKENING",
+              "min": 6,
+              "label": "Il Risveglio e vicino"
+            }
+          ]
+        }
+      ],
+      "propositions": [
+        {
+          "id": "P_EXPLOIT",
+          "question_id": "Q_AWAKENING_CRYSTAL",
+          "text": "Si scava $in_region. Il Cristallo diventa ricchezza, e la ricchezza diventa grano.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_CRYSTAL_EXPLOITED",
+            "CNS_MINE_TAKEN"
+          ],
+          "echo_summary": "Si scavo $in_region, e il Cristallo Rosso usci alla luce a peso.",
+          "echo_summaries": {
+            "DECISIVE_SUCCESS": "Si scavo $in_region senza che nessuno chiedesse a che prezzo, e il Cristallo Rosso usci alla luce a peso.",
+            "FAILURE": "Si volle scavare $in_region, e le gallerie restarono buie come le si era trovate.",
+            "SUCCESS_WITH_COST": "Si scavo $in_region, e il Cristallo Rosso usci alla luce a peso: con lui uscirono due squadre su tre."
+          }
+        },
+        {
+          "id": "P_SEAL_MINE",
+          "question_id": "Q_AWAKENING_CRYSTAL",
+          "text": "Le gallerie $in_region si sigillano. Cio che dorme resta addormentato.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_MINE_SEALED"
+          ],
+          "echo_summary": "Le gallerie $in_region furono sigillate, e la domanda con loro.",
+          "echo_summaries": {
+            "DECISIVE_SUCCESS": "Le gallerie $in_region furono sigillate e la domanda con loro, e per una generazione nessuno seppe piu formularla.",
+            "FAILURE": "Si volle sigillare le gallerie $in_region, e la pietra resto dov'era, con la porta aperta."
+          }
+        },
+        {
+          "id": "P_GUARDED_STUDY",
+          "question_id": "Q_AWAKENING_MOUNTAIN",
+          "text": "Il Cristallo si studia sotto vincolo, e a rispondere del limite e $rival.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_STUDY_UNDER_GUARD"
+          ],
+          "echo_summary": "Il Cristallo Rosso fu affidato a $rival, e lo studio ebbe un limite scritto.",
+          "echo_summaries": {
+            "DECISIVE_SUCCESS": "Il Cristallo Rosso fu affidato a $rival, e il limite scritto fu piu lungo di quanto chiunque si aspettasse.",
+            "FAILURE": "Si propose di affidare il Cristallo Rosso a una custodia, e resto in mano a chi lo aveva gia."
+          }
+        }
+      ],
+      "condition_clauses": [
+        {
+          "id": "C_AWAKENING_WITNESS",
+          "text": "...purche $rival assista a ogni discesa.",
+          "effects": [
+            {
+              "type": "SET_GLOBAL_TAG",
+              "target": {
+                "kind": "world",
+                "id": "WORLD"
+              },
+              "payload": {
+                "tag": "descent_witnessed"
+              }
+            },
+            {
+              "type": "ADJUST_TENSION",
+              "target": {
+                "kind": "tension",
+                "id": "TEN_AWAKENING"
+              },
+              "payload": {
+                "delta": -1
+              }
+            }
+          ]
+        },
+        {
+          "id": "C_AWAKENING_SHARE",
+          "text": "...purche cio che si scopre sia detto a tutti, non a chi paga.",
+          "effects": [
+            {
+              "type": "SET_GLOBAL_TAG",
+              "target": {
+                "kind": "world",
+                "id": "WORLD"
+              },
+              "payload": {
+                "tag": "knowledge_shared"
+              }
+            },
+            {
+              "type": "SET_ENTITY_TAG",
+              "target": {
+                "kind": "entity",
+                "id": "ENT_LYRA"
+              },
+              "payload": {
+                "tag": "discovery:shared_record"
+              }
+            }
+          ]
+        }
+      ],
+      "consequence_pools": {
+        "cost": [
+          "CNS_COST_UNREST"
+        ],
+        "failure": [
+          "CNS_FAILURE_SPIRAL"
+        ],
+        "decisive_bonus": [
+          "CNS_DECISIVE_RENOWN"
+        ]
+      },
+      "ripple": {
+        "targets": [
+          "TEN_FAMINE",
+          "TEN_ROADS"
+        ],
+        "delta": 1
+      },
+      "echo_title_template": "Cio che Dorme sotto la Pietra"
+    },
+    {
+      "id": "CNF_SUCCESSION_01",
+      "tension_id": "TEN_SUCCESSION",
+      "title": "Chi Siede Dopo",
+      "description": "Aldric non ha erede e tutti lo sanno da anni. La differenza e che adesso qualcuno lo dice a voce alta, in una stanza dove ci sono testimoni.",
+      "questions": [
+        {
+          "id": "Q_SUCCESSION_HEIR",
+          "text": "Chi siede sul trono quando questo si alza?",
+          "eligibility": []
+        },
+        {
+          "id": "Q_SUCCESSION_LAW",
+          "text": "$in_region, che cosa vale piu di un nome: la legge o le spade?",
+          "eligibility": [
+            {
+              "type": "tension_limit",
+              "tension_id": "TEN_SUCCESSION",
+              "min": 5,
+              "label": "La Successione e al limite"
+            }
+          ]
+        }
+      ],
+      "propositions": [
+        {
+          "id": "P_NAME_HEIR",
+          "question_id": "Q_SUCCESSION_HEIR",
+          "text": "Un erede si nomina adesso, davanti a tutti, e chi c'e ne risponde.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_HEIR_NAMED",
+            "CNS_ORDER_RESTORED"
+          ],
+          "echo_summary": "$proponent fece dire un nome ad alta voce, e da quel giorno contestarlo costo qualcosa.",
+          "echo_summaries": {
+            "DECISIVE_SUCCESS": "$proponent fece dire un nome ad alta voce, e nessuno chiese chi lo avesse scelto.",
+            "FAILURE": "$proponent fece dire un nome ad alta voce, e nella stanza nessuno lo ripete."
+          }
+        },
+        {
+          "id": "P_DIVIDE_CROWN",
+          "question_id": "Q_SUCCESSION_HEIR",
+          "text": "Non uno solo: il titolo si divide, e $the_region risponde a chi la tiene davvero.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_CROWN_DIVIDED",
+            "CNS_MARCH_GRANTED"
+          ],
+          "echo_summary": "La corona fu divisa in due, e $of_region nessuno seppe piu dire a chi rispondesse."
+        },
+        {
+          "id": "P_WRITE_THE_LAW",
+          "question_id": "Q_SUCCESSION_LAW",
+          "text": "Si scrive una legge invece di scegliere una persona. Vale anche per chi la scrive.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_LAW_OF_SUCCESSION"
+          ],
+          "echo_summary": "La successione fu affidata a una legge scritta, e il trono smise di essere una questione di famiglia."
+        },
+        {
+          "id": "P_TAKE_THE_SEAT",
+          "question_id": "Q_SUCCESSION_LAW",
+          "text": "$proponent prende il posto adesso, e a chi non ci sta risponde $rival.",
+          "eligibility": [
+            {
+              "type": "tension_limit",
+              "tension_id": "TEN_SUCCESSION",
+              "min": 6,
+              "label": "Solo un trono al limite si prende cosi"
+            }
+          ],
+          "success_consequences": [
+            "CNS_CAPITAL_TAKEN"
+          ],
+          "echo_summary": "$proponent prese il posto senza aspettare che si liberasse, e $rival non arrivo in tempo.",
+          "echo_summaries": {
+            "FAILURE": "$proponent si mosse per prendere il posto e trovo $rival gia seduto, e sveglio.",
+            "SUCCESS_WITH_COST": "$proponent prese il posto senza aspettare che si liberasse, e $rival non arrivo in tempo - ma arrivo."
+          }
+        }
+      ],
+      "condition_clauses": [
+        {
+          "id": "C_SUCCESSION_WITNESS",
+          "text": "...purche $rival sia fra i testimoni, e la sua firma valga come le altre.",
+          "effects": [
+            {
+              "type": "SET_GLOBAL_TAG",
+              "target": {
+                "kind": "world",
+                "id": "WORLD"
+              },
+              "payload": {
+                "tag": "succession_witnessed"
+              }
+            },
+            {
+              "type": "ADJUST_TENSION",
+              "target": {
+                "kind": "tension",
+                "id": "TEN_SUCCESSION"
+              },
+              "payload": {
+                "delta": -1
+              }
+            }
+          ]
+        },
+        {
+          "id": "C_SUCCESSION_AMNESTY",
+          "text": "...purche chi ha giurato all'altro non ne paghi il prezzo.",
+          "effects": [
+            {
+              "type": "REMOVE_REGION_TAG",
+              "target": {
+                "kind": "region",
+                "id": "$region_focus"
+              },
+              "payload": {
+                "tag": "condition:unrest",
+                "optional": true
+              }
+            },
+            {
+              "type": "SET_GLOBAL_TAG",
+              "target": {
+                "kind": "world",
+                "id": "WORLD"
+              },
+              "payload": {
+                "tag": "amnesty_granted"
+              }
+            }
+          ]
+        }
+      ],
+      "consequence_pools": {
+        "cost": [
+          "CNS_COST_UNREST"
+        ],
+        "failure": [
+          "CNS_FAILURE_SPIRAL"
+        ],
+        "decisive_bonus": [
+          "CNS_DECISIVE_RENOWN"
+        ]
+      },
+      "ripple": {
+        "targets": [
+          "TEN_ROADS",
+          "TEN_FAMINE"
+        ],
+        "delta": 1
+      },
+      "echo_title_template": "Chi Siede Dopo"
+    },
+    {
+      "id": "CNF_ROADS_01",
+      "tension_id": "TEN_ROADS",
+      "title": "Il Prezzo del Sale",
+      "description": "Non e una guerra e non e una carestia: e che da qualche mese le cose non arrivano piu, e nessuno vuole essere il primo a dire di chi e la colpa.",
+      "questions": [
+        {
+          "id": "Q_ROADS_TOLL",
+          "text": "Chi riscuote su quello che passa $in_region?",
+          "eligibility": []
+        },
+        {
+          "id": "Q_ROADS_ESCORT",
+          "text": "Chi risponde di un carico che non arriva?",
+          "eligibility": [
+            {
+              "type": "tension_limit",
+              "tension_id": "TEN_ROADS",
+              "min": 4,
+              "label": "Le Vie Interrotte sono al limite"
+            }
+          ]
+        }
+      ],
+      "propositions": [
+        {
+          "id": "P_SET_TOLL",
+          "question_id": "Q_ROADS_TOLL",
+          "text": "Un pedaggio scritto, uguale per tutti, riscosso da $proponent.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_TOLL_ESTABLISHED"
+          ],
+          "echo_summary": "Il pedaggio $of_region fu scritto e riscosso da $proponent, e la strada torno sicura e cara.",
+          "echo_summaries": {
+            "DECISIVE_SUCCESS": "Il pedaggio $of_region fu scritto, uguale per tutti, e nessuno provo a scontarlo.",
+            "FAILURE": "Si propose un pedaggio scritto $in_region, e ognuno continuo a riscuotere il proprio."
+          }
+        },
+        {
+          "id": "P_MOVE_MARKET",
+          "question_id": "Q_ROADS_TOLL",
+          "text": "Il mercato si sposta dove si puo difenderlo, e chi ci vive intorno ne campa.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_MARKET_MOVED"
+          ],
+          "echo_summary": "Il mercato lascio la strada e si fermo $in_region, e con lui si sposto chi comandava."
+        },
+        {
+          "id": "P_SWEAR_ESCORT",
+          "question_id": "Q_ROADS_ESCORT",
+          "text": "Una scorta giurata: dodici nomi che rispondono di ogni carico.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_ESCORT_SWORN",
+            "CNS_ROADS_REOPENED"
+          ],
+          "echo_summary": "Dodici nomi risposero di ogni carico, e le carovane tornarono a partire da sole."
+        },
+        {
+          "id": "P_LET_IT_ROT",
+          "question_id": "Q_ROADS_ESCORT",
+          "text": "Nessuno risponde di niente. Chi vuole passare $in_region si paghi le guardie da se.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_ROADS_PLUNDERED",
+            "CNS_MINE_ROAD_CUT"
+          ],
+          "echo_summary": "Si decise che nessuno rispondesse, e $in_region si smise di viaggiare da soli.",
+          "echo_summaries": {
+            "DECISIVE_SUCCESS": "Si decise che nessuno rispondesse, e $in_region si smise di viaggiare del tutto.",
+            "FAILURE": "Si volle che nessuno rispondesse di niente, e qualcuno rispose lo stesso."
+          }
+        }
+      ],
+      "condition_clauses": [
+        {
+          "id": "C_ROADS_SHARE",
+          "text": "...purche una quota resti a chi la strada la percorre e non la possiede.",
+          "effects": [
+            {
+              "type": "SET_GLOBAL_TAG",
+              "target": {
+                "kind": "world",
+                "id": "WORLD"
+              },
+              "payload": {
+                "tag": "toll_shared"
+              }
+            },
+            {
+              "type": "ADJUST_TENSION",
+              "target": {
+                "kind": "tension",
+                "id": "TEN_FAMINE"
+              },
+              "payload": {
+                "delta": -1
+              }
+            }
+          ]
+        },
+        {
+          "id": "C_ROADS_LEDGER",
+          "text": "...purche ogni carico sia scritto su un registro che chiunque puo leggere.",
+          "effects": [
+            {
+              "type": "SET_ENTITY_TAG",
+              "target": {
+                "kind": "entity",
+                "id": "ENT_LYRA"
+              },
+              "payload": {
+                "tag": "discovery:trade_ledger"
+              }
+            },
+            {
+              "type": "SET_GLOBAL_TAG",
+              "target": {
+                "kind": "world",
+                "id": "WORLD"
+              },
+              "payload": {
+                "tag": "ledger_public"
+              }
+            }
+          ]
+        }
+      ],
+      "consequence_pools": {
+        "cost": [
+          "CNS_COST_DEBT"
+        ],
+        "failure": [
+          "CNS_FAILURE_SPIRAL"
+        ],
+        "decisive_bonus": [
+          "CNS_DECISIVE_RENOWN"
+        ]
+      },
+      "ripple": {
+        "targets": [
+          "TEN_FAMINE",
+          "TEN_SUCCESSION"
+        ],
+        "delta": 1
+      },
+      "echo_title_template": "Il Prezzo del Sale"
+    },
+    {
+      "id": "CNF_ANY_SURVIVAL",
+      "applies_to_domain": "SURVIVAL",
+      "title": "Il Consiglio di Chi Resta",
+      "description": "Non importa quale sia la cosa che manca. Prima o poi qualcuno chiede, ad alta voce, chi decide a chi non ne tocca. Questo Consiglio serve qualunque crisi di sopravvivenza: e contenuto di biblioteca, non di questa Chronicle.",
+      "questions": [
+        {
+          "id": "Q_ANY_WHO_DECIDES",
+          "text": "$in_region, chi decide a chi non ne tocca?",
+          "eligibility": []
+        },
+        {
+          "id": "Q_ANY_WHO_STAYS",
+          "text": "Chi ha ancora motivo di restare $in_region?",
+          "eligibility": [
+            {
+              "type": "tension_limit",
+              "tension_id": "$tension",
+              "min": 4,
+              "label": "La questione e al limite"
+            }
+          ]
+        }
+      ],
+      "propositions": [
+        {
+          "id": "P_ANY_RATION",
+          "question_id": "Q_ANY_WHO_DECIDES",
+          "text": "Si conta quello che c'e e $proponent decide chi ne ha diritto.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_RATIONED"
+          ],
+          "echo_summary": "$proponent fece la lista di chi aveva diritto $in_region, e nessuno la dimentico.",
+          "echo_summaries": {
+            "DECISIVE_SUCCESS": "$proponent fece la lista di chi aveva diritto $in_region, e nessuno chiese di vederla due volte.",
+            "FAILURE": "$proponent volle fare la lista di chi aveva diritto $in_region, e la lista non fu mai letta."
+          }
+        },
+        {
+          "id": "P_ANY_SHARE",
+          "question_id": "Q_ANY_WHO_DECIDES",
+          "text": "Si divide in parti uguali e si accetta che nessuno ne esca bene.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_SHARED_BURDEN"
+          ],
+          "echo_summary": "Il peso $of_region fu diviso in parti uguali, e fu il massimo che quel consiglio riusci a fare."
+        },
+        {
+          "id": "P_ANY_LEAVE",
+          "question_id": "Q_ANY_WHO_STAYS",
+          "text": "Non si risolve: si va via. $rival resti pure, se ci tiene.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_ABANDONED"
+          ],
+          "echo_summary": "$proponent lascio $the_region a chi voleva restare, e restarono in pochi.",
+          "echo_summaries": {
+            "FAILURE": "$proponent volle andarsene da $the_region, e non parti nessuno.",
+            "SUCCESS_WITH_COST": "$proponent lascio $the_region a chi voleva restare, e restarono in pochi - e nessuno dei due gruppi perdono l'altro."
+          }
+        }
+      ],
+      "condition_clauses": [
+        {
+          "id": "C_ANY_WITNESS",
+          "text": "...purche $rival veda la lista con i propri occhi.",
+          "effects": [
+            {
+              "type": "SET_GLOBAL_TAG",
+              "target": {
+                "kind": "world",
+                "id": "WORLD"
+              },
+              "payload": {
+                "tag": "list_witnessed"
+              }
+            },
+            {
+              "type": "ADJUST_TENSION",
+              "target": {
+                "kind": "tension",
+                "id": "$tension"
+              },
+              "payload": {
+                "delta": -1
+              }
+            }
+          ]
+        },
+        {
+          "id": "C_ANY_RETURN",
+          "text": "...purche chi se ne va possa tornare quando torna l'acqua.",
+          "effects": [
+            {
+              "type": "REMOVE_REGION_TAG",
+              "target": {
+                "kind": "region",
+                "id": "$region_focus"
+              },
+              "payload": {
+                "tag": "condition:abandoned",
+                "optional": true
+              }
+            },
+            {
+              "type": "SET_GLOBAL_TAG",
+              "target": {
+                "kind": "world",
+                "id": "WORLD"
+              },
+              "payload": {
+                "tag": "return_promised"
+              }
+            }
+          ]
+        }
+      ],
+      "consequence_pools": {
+        "cost": [
+          "CNS_COST_UNREST"
+        ],
+        "failure": [
+          "CNS_FAILURE_SPIRAL"
+        ],
+        "decisive_bonus": [
+          "CNS_DECISIVE_RENOWN"
+        ]
+      },
+      "ripple": {
+        "targets": [
+          "TEN_FAMINE"
+        ],
+        "delta": 1
+      },
+      "echo_title_template": "Il Consiglio di Chi Resta"
+    }
+  ]
+}

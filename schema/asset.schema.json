@@ -1,0 +1,153 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://echoes.local/schema/asset.schema.json",
+  "title": "Asset collection",
+  "x-echoes-def": "asset",
+  "x-echoes-kind": "collection",
+  "type": "object",
+  "required": [
+    "schema_id",
+    "version",
+    "items"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_id": {
+      "const": "asset"
+    },
+    "version": {
+      "type": "string"
+    },
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/asset"
+      }
+    }
+  },
+  "$defs": {
+    "asset": {
+      "type": "object",
+      "required": [
+        "id",
+        "title",
+        "family",
+        "strength",
+        "tags",
+        "acquisition_rule",
+        "confluence_modifier",
+        "discard_or_retain_rule",
+        "rarity",
+        "art_prompt_key"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^AST_(FORCE|AUTHORITY|PEOPLE|KNOWLEDGE|WEALTH|BONDS)_[A-Z0-9_]+$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "family": {
+          "type": "string",
+          "enum": [
+            "FORCE",
+            "AUTHORITY",
+            "PEOPLE",
+            "KNOWLEDGE",
+            "WEALTH",
+            "BONDS"
+          ]
+        },
+        "strength": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 3
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "acquisition_rule": {
+          "type": "string",
+          "description": "Human-readable acquisition note. Mechanically every Asset is drawn via ACQUIRE."
+        },
+        "confluence_modifier": {
+          "$ref": "#/$defs/confluence_modifier"
+        },
+        "discard_or_retain_rule": {
+          "type": "string",
+          "enum": [
+            "DISCARD",
+            "RETAIN",
+            "RETAIN_ON_SUCCESS",
+            "ALWAYS_DISCARD"
+          ],
+          "description": "ALWAYS_DISCARD also discards on Failure for the committing side; DISCARD is the baseline."
+        },
+        "rarity": {
+          "type": "string",
+          "enum": [
+            "COMMON",
+            "UNCOMMON",
+            "RARE"
+          ]
+        },
+        "deck_copies": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 12,
+          "default": 3,
+          "description": "Number of physical copies of this card in its family draw deck."
+        },
+        "art_prompt_key": {
+          "type": "string",
+          "minLength": 1
+        },
+        "marker_id": {
+          "type": "string"
+        },
+        "rules_text": {
+          "type": "string"
+        },
+        "on_commit_effects": {
+          "type": "array",
+          "items": {
+            "$ref": "effect.schema.json#/$defs/effect_spec"
+          },
+          "description": "Effect specs compiled when this Asset is committed to a Confluence."
+        }
+      }
+    },
+    "confluence_modifier": {
+      "type": "object",
+      "required": [
+        "kind",
+        "value"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "NONE",
+            "FLAT_BONUS",
+            "RELEVANT_BONUS",
+            "OPPOSE_BONUS"
+          ],
+          "description": "NONE: no change. FLAT_BONUS: +value always. RELEVANT_BONUS: +value only when the family is relevant for the Tension. OPPOSE_BONUS: +value only on the Oppose front."
+        },
+        "value": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 3
+        }
+      }
+    }
+  }
+}

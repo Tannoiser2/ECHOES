@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://echoes.local/schema/entity.schema.json",
+  "title": "Entity collection",
+  "x-echoes-def": "entity",
+  "x-echoes-kind": "collection",
+  "type": "object",
+  "required": ["schema_id", "version", "items"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_id": { "const": "entity" },
+    "version": { "type": "string" },
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/entity" }
+    }
+  },
+  "$defs": {
+    "entity": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "archetype",
+        "need",
+        "description",
+        "action_values",
+        "starting_assets",
+        "relations",
+        "presence",
+        "destiny_id",
+        "private_information",
+        "tags",
+        "active"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^ENT_[A-Z0-9_]+$" },
+        "name": { "type": "string", "minLength": 1 },
+        "archetype": {
+          "type": "string",
+          "enum": ["INDIVIDUAL", "SOVEREIGN", "PEOPLE", "FACTION", "CREATURE", "CULT"]
+        },
+        "need": {
+          "type": "string",
+          "enum": [
+            "POWER",
+            "SURVIVAL",
+            "FREEDOM",
+            "KNOWLEDGE",
+            "WEALTH",
+            "REVENGE",
+            "PROTECTION",
+            "FAITH"
+          ]
+        },
+        "description": { "type": "string", "minLength": 1 },
+        "action_values": {
+          "type": "object",
+          "description": "Per-template flavour weighting used by the CLI default policy. Not a modifier on resolution math in v0.2.",
+          "additionalProperties": { "type": "integer", "minimum": 0, "maximum": 5 },
+          "propertyNames": {
+            "enum": ["ACQUIRE", "MOVE", "INFLUENCE", "FORGE", "SCHEME", "CLAIM"]
+          }
+        },
+        "starting_assets": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^AST_[A-Z0-9_]+$" }
+        },
+        "relations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["with", "level"],
+            "additionalProperties": false,
+            "properties": {
+              "with": { "type": "string", "pattern": "^ENT_[A-Z0-9_]+$" },
+              "level": {
+                "type": "string",
+                "enum": ["ENEMY", "HOSTILE", "NEUTRAL", "ALLY", "BOUND"]
+              },
+              "tags": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": ["PACT", "DEBT", "PROMISE", "VENDETTA", "KINSHIP"]
+                }
+              }
+            }
+          }
+        },
+        "presence": {
+          "type": "array",
+          "maxItems": 3,
+          "items": { "type": "string", "pattern": "^REG_[A-Z0-9_]+$" }
+        },
+        "destiny_id": { "type": "string", "pattern": "^DST_[A-Z0-9_]+$" },
+        "private_information": { "type": "string" },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "active": { "type": "boolean" },
+        "art_prompt_key": { "type": "string" },
+        "marker_id": { "type": "string" }
+      }
+    }
+  }
+}

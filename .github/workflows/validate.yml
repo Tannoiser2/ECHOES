@@ -1,0 +1,97 @@
+name: validate
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+  workflow_dispatch:
+
+env:
+  GODOT_VERSION: "4.7.1"
+
+jobs:
+  data:
+    name: Dati e schemi
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install 'jsonschema>=4.18' 'referencing>=0.30'
+
+      # The single source of truth is /schema (spec v0.2 §17).
+      - name: Validate godot/data against /schema
+        run: python3 tools/validate_data.py
+
+      # schema_defs.gd is generated. If it no longer matches the schemas, the
+      # Godot-side validation and the Python-side validation have diverged.
+      - name: Drift check - generated GDScript schema
+        run: python3 tools/gen_gd_schema.py --check
+
+      - name: Drift check - asset manifest
+        run: python3 tools/build_manifest.py --check
+
+  godot:
+    name: Test headless
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cache Godot
+        id: godot-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/godot
+          key: godot-${{ env.GODOT_VERSION }}-linux
+
+      - name: Download Godot ${{ env.GODOT_VERSION }}
+        if: steps.godot-cache.outputs.cache-hit != 'true'
+        run: |
+          set -euo pipefail
+          mkdir -p ~/godot && cd ~/godot
+          name="Godot_v${GODOT_VERSION}-stable_linux.x86_64"
+          curl -sSLf -o godot.zip \
+            "https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}-stable/${name}.zip"
+          unzip -q godot.zip
+          mv "$name" godot
+          chmod +x godot
+
+      - name: Version
+        run: ~/godot/godot --headless --version
+
+      - name: Unit and smoke tests
+        run: ~/godot/godot --headless --path godot --script res://tests/run_tests.gd
+
+      - name: Play every sim plan
+        run: GODOT=~/godot/godot tools/run_sims.sh
+
+      # Not a pass/fail gate on its own - test_balance.gd is - but the numbers
+      # belong in the log so a rules change shows its effect on the record.
+      - name: Balance probe
+        run: |
+          ~/godot/godot --headless --path godot \
+            --script res://cli/run_balance_probe.gd -- --runs=40 --seed=1000
+
+      # §18.3: same seed + same plan must produce a byte-identical save.
+      - name: Determinism
+        run: |
+          set -euo pipefail
+          OUT="$PWD/out-a" GODOT=~/godot/godot tools/run_sims.sh > /dev/null
+          OUT="$PWD/out-b" GODOT=~/godot/godot tools/run_sims.sh > /dev/null
+          for save in out-a/*.save.json; do
+            name="$(basename "$save")"
+            cmp "out-a/$name" "out-b/$name"
+            echo "identico: $name"
+          done
+
+      - name: Upload sim logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sim-output
+          path: out/
+          if-no-files-found: ignore

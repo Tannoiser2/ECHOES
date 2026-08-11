@@ -1,0 +1,148 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://echoes.local/schema/region.schema.json",
+  "title": "Region collection",
+  "x-echoes-def": "region",
+  "x-echoes-kind": "collection",
+  "type": "object",
+  "required": [
+    "schema_id",
+    "version",
+    "items"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_id": {
+      "const": "region"
+    },
+    "version": {
+      "type": "string"
+    },
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/region"
+      }
+    }
+  },
+  "$defs": {
+    "region": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "biome",
+        "role",
+        "adjacency",
+        "asset_sources",
+        "tags",
+        "presence_slots",
+        "art_prompt_key"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^REG_[A-Z0-9_]+$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "biome": {
+          "type": "string",
+          "enum": [
+            "CITY",
+            "VALLEY",
+            "STEPPE",
+            "MOUNTAIN",
+            "UNDERGROUND",
+            "ROAD",
+            "FOREST",
+            "COAST"
+          ]
+        },
+        "role": {
+          "type": "string",
+          "enum": [
+            "PRIMARY",
+            "SECONDARY"
+          ]
+        },
+        "adjacency": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^REG_[A-Z0-9_]+$"
+          }
+        },
+        "asset_sources": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "FORCE",
+              "AUTHORITY",
+              "PEOPLE",
+              "KNOWLEDGE",
+              "WEALTH",
+              "BONDS"
+            ]
+          }
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Includes domain tags in the form 'domain:SURVIVAL' used by INFLUENCE."
+        },
+        "presence_slots": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 6
+        },
+        "control": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Starting controller entity id, or null."
+        },
+        "private_information": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "art_prompt_key": {
+          "type": "string",
+          "minLength": 1
+        },
+        "marker_id": {
+          "type": "string"
+        },
+        "name_forms": {
+          "type": "object",
+          "description": "Grammatical forms of the Region name for narrative slots. A bare name is not enough in Italian: $the_region needs the article that agrees with it, $in_region the preposition. Omit and the engine falls back to the bare name.",
+          "additionalProperties": false,
+          "properties": {
+            "definite": {
+              "type": "string",
+              "description": "With its definite article: 'la Valle Verde', 'Eredan'."
+            },
+            "locative": {
+              "type": "string",
+              "description": "With the preposition of place: 'nella Valle Verde', 'a Eredan'."
+            },
+            "genitive": {
+              "type": "string",
+              "description": "With the articulated preposition 'di': 'della Valle Verde', 'di Eredan'."
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://echoes.local/schema/effect.schema.json",
+  "title": "Effect",
+  "x-echoes-def": "effect",
+  "x-echoes-kind": "runtime",
+  "$ref": "#/$defs/effect",
+  "$defs": {
+    "effect_type": {
+      "type": "string",
+      "enum": [
+        "ADJUST_TENSION",
+        "SET_TENSION_VISIBILITY",
+        "ADD_PRESENCE",
+        "REMOVE_PRESENCE",
+        "SET_CONTROL",
+        "SET_REGION_TAG",
+        "REMOVE_REGION_TAG",
+        "SET_GLOBAL_TAG",
+        "REMOVE_GLOBAL_TAG",
+        "SET_RELATION",
+        "GRANT_ASSET",
+        "REMOVE_ASSET",
+        "TRANSFER_ASSET",
+        "CREATE_CLAIM",
+        "CONSUME_CLAIM",
+        "ADD_SCAR",
+        "REMOVE_SCAR",
+        "SET_ENTITY_TAG",
+        "REMOVE_ENTITY_TAG",
+        "SET_ENTITY_ACTIVE",
+        "CREATE_ECHO",
+        "APPEND_TRUTH"
+      ]
+    },
+    "target": {
+      "type": "object",
+      "required": ["kind", "id"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": ["tension", "entity", "region", "relation", "world", "claim", "scar", "echo", "truth"]
+        },
+        "id": { "type": "string" }
+      }
+    },
+    "source": {
+      "type": "object",
+      "required": ["kind", "id", "act", "round", "sequence"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": ["action", "system", "confluence", "consequence", "echo_card", "developer"]
+        },
+        "id": { "type": "string" },
+        "actor": { "type": "string" },
+        "act": { "type": "integer", "minimum": 0 },
+        "round": { "type": "integer", "minimum": 0 },
+        "sequence": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "effect": {
+      "type": "object",
+      "required": ["effect_id", "type", "target", "payload", "source", "reversible"],
+      "additionalProperties": false,
+      "properties": {
+        "effect_id": { "type": "string", "pattern": "^EFF_[0-9]{6}$" },
+        "type": { "$ref": "#/$defs/effect_type" },
+        "target": { "$ref": "#/$defs/target" },
+        "payload": { "type": "object" },
+        "source": { "$ref": "#/$defs/source" },
+        "reversible": { "type": "boolean" },
+        "inverse_type": {
+          "$ref": "#/$defs/effect_type",
+          "description": "Type applied when undoing this Effect. See DECISIONS D-002."
+        },
+        "inverse_payload": { "type": "object" }
+      }
+    },
+    "effect_spec": {
+      "type": "object",
+      "description": "Authoring-time Effect template. Strings may contain $variables resolved by ConsequenceCompiler against the Confluence/Action context.",
+      "required": ["type", "target", "payload"],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "$ref": "#/$defs/effect_type" },
+        "target": {
+          "type": "object",
+          "required": ["kind", "id"],
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "type": "string",
+              "enum": ["tension", "entity", "region", "relation", "world", "claim", "scar", "echo", "truth"]
+            },
+            "id": { "type": "string" }
+          }
+        },
+        "payload": { "type": "object" },
+        "note": { "type": "string" }
+      }
+    }
+  }
+}

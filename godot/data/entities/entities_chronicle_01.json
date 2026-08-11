@@ -1,0 +1,90 @@
+{
+  "schema_id": "entity",
+  "version": "0.2.0",
+  "items": [
+    {
+      "id": "ENT_ALDRIC",
+      "name": "Re Aldric",
+      "archetype": "SOVEREIGN",
+      "need": "POWER",
+      "description": "Terzo della sua casa, primo a regnare su un raccolto che non basta. Sa che il trono e una promessa di pane con un altro nome.",
+      "action_values": { "ACQUIRE": 3, "MOVE": 2, "INFLUENCE": 4, "FORGE": 2, "SCHEME": 1, "CLAIM": 4 },
+      "starting_assets": ["AST_AUTHORITY_CROWN_RIGHT", "AST_FORCE_LEVY"],
+      "relations": [
+        { "with": "ENT_NAHR", "level": "HOSTILE", "tags": [] },
+        { "with": "ENT_LYRA", "level": "NEUTRAL", "tags": [] },
+        { "with": "ENT_VAERAX", "level": "NEUTRAL", "tags": [] }
+      ],
+      "presence": ["REG_EREDAN", "REG_VALLE_VERDE"],
+      "destiny_id": "DST_ALDRIC",
+      "private_information": "Le riserve del palazzo bastano per un inverno. Non per due.",
+      "tags": ["crowned"],
+      "active": true,
+      "art_prompt_key": "entity.aldric",
+      "marker_id": "MK_ENT_ALDRIC"
+    },
+    {
+      "id": "ENT_NAHR",
+      "name": "Popolo Nahr",
+      "archetype": "PEOPLE",
+      "need": "SURVIVAL",
+      "description": "Non un esercito e non una folla: una lingua, un calendario e undicimila persone che si spostano quando la terra smette di rispondere.",
+      "action_values": { "ACQUIRE": 3, "MOVE": 4, "INFLUENCE": 3, "FORGE": 3, "SCHEME": 1, "CLAIM": 1 },
+      "starting_assets": ["AST_PEOPLE_MOBILIZATION", "AST_BONDS_FAVOR"],
+      "relations": [
+        { "with": "ENT_ALDRIC", "level": "HOSTILE", "tags": [] },
+        { "with": "ENT_LYRA", "level": "NEUTRAL", "tags": [] },
+        { "with": "ENT_VAERAX", "level": "NEUTRAL", "tags": [] }
+      ],
+      "presence": ["REG_TERRE_NAHR", "REG_VALLE_VERDE"],
+      "destiny_id": "DST_NAHR",
+      "private_information": "I pascoli orientali sono gia perduti. Nessuno fuori dal popolo lo sa ancora.",
+      "tags": ["migrating"],
+      "active": true,
+      "art_prompt_key": "entity.nahr",
+      "marker_id": "MK_ENT_NAHR"
+    },
+    {
+      "id": "ENT_LYRA",
+      "name": "Lyra",
+      "archetype": "INDIVIDUAL",
+      "need": "KNOWLEDGE",
+      "description": "Studiosa senza patrono. E' scesa nelle Miniere Antiche per misurare una pietra e ne e risalita con una domanda.",
+      "action_values": { "ACQUIRE": 3, "MOVE": 2, "INFLUENCE": 2, "FORGE": 2, "SCHEME": 5, "CLAIM": 1 },
+      "starting_assets": ["AST_KNOWLEDGE_PROOF", "AST_WEALTH_GRAIN"],
+      "relations": [
+        { "with": "ENT_ALDRIC", "level": "NEUTRAL", "tags": [] },
+        { "with": "ENT_NAHR", "level": "NEUTRAL", "tags": [] },
+        { "with": "ENT_VAERAX", "level": "HOSTILE", "tags": [] }
+      ],
+      "presence": ["REG_MINIERE_ANTICHE", "REG_EREDAN"],
+      "destiny_id": "DST_LYRA",
+      "private_information": "Il Cristallo Rosso pesa meno di quanto dovrebbe. Ogni giorno un poco meno.",
+      "tags": ["scholar"],
+      "active": true,
+      "art_prompt_key": "entity.lyra",
+      "marker_id": "MK_ENT_LYRA"
+    },
+    {
+      "id": "ENT_VAERAX",
+      "name": "Vaerax",
+      "archetype": "CREATURE",
+      "need": "PROTECTION",
+      "description": "Dorme sotto le Montagne Rosse da prima che Eredan avesse un nome. Si sveglia raramente, e mai per una ragione piccola.",
+      "action_values": { "ACQUIRE": 2, "MOVE": 2, "INFLUENCE": 4, "FORGE": 1, "SCHEME": 4, "CLAIM": 1 },
+      "starting_assets": ["AST_BONDS_OATH", "AST_KNOWLEDGE_RUMOR"],
+      "relations": [
+        { "with": "ENT_ALDRIC", "level": "NEUTRAL", "tags": [] },
+        { "with": "ENT_NAHR", "level": "NEUTRAL", "tags": [] },
+        { "with": "ENT_LYRA", "level": "HOSTILE", "tags": [] }
+      ],
+      "presence": ["REG_MONTAGNE_ROSSE", "REG_MINIERE_ANTICHE"],
+      "destiny_id": "DST_VAERAX",
+      "private_information": "Il Cristallo Rosso e legato alla stirpe dei draghi: estrarlo e estrarre qualcosa di vivo.",
+      "tags": ["ancient", "sleeping"],
+      "active": true,
+      "art_prompt_key": "entity.vaerax",
+      "marker_id": "MK_ENT_VAERAX"
+    }
+  ]
+}

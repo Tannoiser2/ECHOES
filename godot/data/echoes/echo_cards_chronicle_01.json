@@ -1,0 +1,935 @@
+{
+  "schema_id": "echo_card",
+  "version": "0.2.0",
+  "items": [
+    {
+      "id": "ECH_LACK",
+      "title": "Mancanza",
+      "dramatic_family": "PRESSURE",
+      "function_id": "LACK",
+      "description": "Qualcosa che c'era non c'e piu, e la sua assenza comincia a organizzare le giornate di tutti.",
+      "eligibility": [],
+      "effect_hooks": [
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "ADJUST_TENSION",
+            "target": {
+              "kind": "tension",
+              "id": "TEN_FAMINE"
+            },
+            "payload": {
+              "delta": 1
+            }
+          }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "SET_REGION_TAG",
+            "target": {
+              "kind": "region",
+              "id": "REG_VALLE_VERDE"
+            },
+            "payload": {
+              "tag": "condition:lean"
+            }
+          }
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.pressure.lack"
+    },
+    {
+      "id": "ECH_OMEN",
+      "title": "Presagio",
+      "dramatic_family": "PRESSURE",
+      "function_id": "OMEN",
+      "description": "Un segno che nessuno sa leggere del tutto e che nessuno riesce a ignorare del tutto.",
+      "eligibility": [],
+      "effect_hooks": [
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "ADJUST_TENSION",
+            "target": {
+              "kind": "tension",
+              "id": "TEN_AWAKENING"
+            },
+            "payload": {
+              "delta": 1
+            }
+          }
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.pressure.omen"
+    },
+    {
+      "id": "ECH_BETRAYAL",
+      "title": "Tradimento",
+      "dramatic_family": "RUPTURE",
+      "function_id": "BETRAYAL",
+      "description": "Un accordo viene rotto da chi lo aveva proposto. Il danno non e la rottura: e che ora tutti ricalcolano.",
+      "eligibility": [],
+      "effect_hooks": [
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "SET_GLOBAL_TAG",
+            "target": {
+              "kind": "world",
+              "id": "WORLD"
+            },
+            "payload": {
+              "tag": "betrayal_spoken"
+            }
+          }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "ADJUST_TENSION",
+            "target": {
+              "kind": "tension",
+              "id": "TEN_FAMINE"
+            },
+            "payload": {
+              "delta": 1
+            }
+          }
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.rupture.betrayal"
+    },
+    {
+      "id": "ECH_LOSS",
+      "title": "Perdita",
+      "dramatic_family": "RUPTURE",
+      "function_id": "LOSS",
+      "description": "Qualcuno non c'e piu, e la sua parte di lavoro resta scoperta.",
+      "eligibility": [],
+      "effect_hooks": [
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "ADJUST_TENSION",
+            "target": {
+              "kind": "tension",
+              "id": "TEN_FAMINE"
+            },
+            "payload": {
+              "delta": 1
+            }
+          }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "SET_REGION_TAG",
+            "target": {
+              "kind": "region",
+              "id": "REG_TERRE_NAHR"
+            },
+            "payload": {
+              "tag": "condition:mourning"
+            }
+          }
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.rupture.loss"
+    },
+    {
+      "id": "ECH_DISCOVERY",
+      "title": "Scoperta",
+      "dramatic_family": "TURN",
+      "function_id": "DISCOVERY",
+      "description": "Qualcosa di nascosto viene misurato. Da questo momento la questione ha dei numeri, e i numeri si discutono.",
+      "eligibility": [],
+      "effect_hooks": [
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "SET_TENSION_VISIBILITY",
+            "target": {
+              "kind": "tension",
+              "id": "TEN_AWAKENING"
+            },
+            "payload": {
+              "visibility": "OPEN"
+            }
+          }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "SET_GLOBAL_TAG",
+            "target": {
+              "kind": "world",
+              "id": "WORLD"
+            },
+            "payload": {
+              "tag": "crystal_measured"
+            }
+          }
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.turn.discovery"
+    },
+    {
+      "id": "ECH_REVELATION",
+      "title": "Rivelazione",
+      "dramatic_family": "TURN",
+      "function_id": "REVELATION",
+      "description": "Cio che era privato diventa pubblico davanti a tutti. Non si puo piu decidere come se non si sapesse.",
+      "eligibility": [
+        {
+          "type": "tension_limit",
+          "tension_id": "TEN_AWAKENING",
+          "min": 3,
+          "label": "Il Risveglio e gia in movimento"
+        },
+        {
+          "type": "state_tag_present",
+          "scope": "GLOBAL",
+          "tag": "function:DISCOVERY",
+          "label": "Si rivela quello che qualcuno aveva gia scoperto"
+        }
+      ],
+      "effect_hooks": [
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "SET_TENSION_VISIBILITY",
+            "target": {
+              "kind": "tension",
+              "id": "TEN_AWAKENING"
+            },
+            "payload": {
+              "visibility": "OPEN"
+            }
+          }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "ADJUST_TENSION",
+            "target": {
+              "kind": "tension",
+              "id": "TEN_AWAKENING"
+            },
+            "payload": {
+              "delta": 1
+            }
+          }
+        }
+      ],
+      "forces_confluence_on": "TEN_AWAKENING",
+      "art_prompt_key": "echo.turn.revelation"
+    },
+    {
+      "id": "ECH_SACRIFICE",
+      "title": "Sacrificio",
+      "dramatic_family": "RESOLUTION",
+      "function_id": "SACRIFICE",
+      "description": "Qualcuno paga di persona per chiudere una questione. Funziona, e non viene dimenticato.",
+      "eligibility": [],
+      "effect_hooks": [
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "ADJUST_TENSION",
+            "target": {
+              "kind": "tension",
+              "id": "TEN_FAMINE"
+            },
+            "payload": {
+              "delta": -2
+            }
+          }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "SET_GLOBAL_TAG",
+            "target": {
+              "kind": "world",
+              "id": "WORLD"
+            },
+            "payload": {
+              "tag": "someone_paid"
+            }
+          }
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.resolution.sacrifice"
+    },
+    {
+      "id": "ECH_RECONCILIATION",
+      "title": "Riconciliazione",
+      "dramatic_family": "RESOLUTION",
+      "function_id": "RECONCILIATION",
+      "description": "Due parti che si erano contate come nemiche trovano un motivo pratico per smettere.",
+      "eligibility": [
+        {
+          "type": "any_of",
+          "label": "Ci si riconcilia dopo qualunque rottura",
+          "conditions": [
+            {
+              "type": "state_tag_present",
+              "scope": "GLOBAL",
+              "tag": "function:BETRAYAL",
+              "label": ""
+            },
+            {
+              "type": "state_tag_present",
+              "scope": "GLOBAL",
+              "tag": "function:VIOLATION",
+              "label": ""
+            },
+            {
+              "type": "state_tag_present",
+              "scope": "GLOBAL",
+              "tag": "function:ATTACK",
+              "label": ""
+            },
+            {
+              "type": "state_tag_present",
+              "scope": "GLOBAL",
+              "tag": "function:SEPARATION",
+              "label": ""
+            }
+          ]
+        }
+      ],
+      "effect_hooks": [
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "ADJUST_TENSION",
+            "target": {
+              "kind": "tension",
+              "id": "TEN_FAMINE"
+            },
+            "payload": {
+              "delta": -1
+            }
+          }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "ADJUST_TENSION",
+            "target": {
+              "kind": "tension",
+              "id": "TEN_AWAKENING"
+            },
+            "payload": {
+              "delta": -1
+            }
+          }
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.resolution.reconciliation"
+    },
+    {
+      "id": "ECH_ROAD_CLOSED",
+      "title": "Strada Chiusa",
+      "dramatic_family": "PRESSURE",
+      "function_id": "PROHIBITION",
+      "description": "Una frana, o qualcuno che l'ha fatta sembrare una frana. Il risultato non cambia: da est non arriva piu niente.",
+      "eligibility": [],
+      "effect_hooks": [
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "ADJUST_TENSION",
+            "target": {
+              "kind": "tension",
+              "id": "TEN_ROADS"
+            },
+            "payload": {
+              "delta": 2
+            }
+          }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "SET_REGION_TAG",
+            "target": {
+              "kind": "region",
+              "id": "REG_STRADA_MERCANTI"
+            },
+            "payload": {
+              "tag": "condition:cut_off"
+            }
+          }
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.pressure.prohibition"
+    },
+    {
+      "id": "ECH_EMPTY_THRONE",
+      "title": "Sedia Vuota",
+      "dramatic_family": "PRESSURE",
+      "function_id": "THREAT",
+      "description": "Il re manca a un consiglio. Poi a un secondo. Alla terza volta la stanza ha smesso di aspettarlo.",
+      "eligibility": [],
+      "effect_hooks": [
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "ADJUST_TENSION",
+            "target": {
+              "kind": "tension",
+              "id": "TEN_SUCCESSION"
+            },
+            "payload": {
+              "delta": 2
+            }
+          }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "SET_REGION_TAG",
+            "target": {
+              "kind": "region",
+              "id": "REG_EREDAN"
+            },
+            "payload": {
+              "tag": "condition:contested"
+            }
+          }
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.pressure.threat"
+    },
+    {
+      "id": "ECH_USURPATION",
+      "title": "Usurpazione",
+      "dramatic_family": "RUPTURE",
+      "function_id": "USURPATION",
+      "description": "Qualcuno si siede dove non gli spetta, e scopre che nessuno si alza per protestare.",
+      "eligibility": [],
+      "effect_hooks": [
+        {
+          "kind": "CONSEQUENCE",
+          "consequence_id": "CNS_CROWN_DIVIDED",
+          "bindings": {}
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "ADJUST_TENSION",
+            "target": {
+              "kind": "tension",
+              "id": "TEN_SUCCESSION"
+            },
+            "payload": {
+              "delta": 1
+            }
+          }
+        }
+      ],
+      "forces_confluence_on": "TEN_SUCCESSION",
+      "art_prompt_key": "echo.rupture.usurpation"
+    },
+    {
+      "id": "ECH_CARAVAN_LOST",
+      "title": "Carovana Perduta",
+      "dramatic_family": "RUPTURE",
+      "function_id": "ATTACK",
+      "description": "Undici carri partiti, nessuno arrivato, e nessun corpo trovato. E la parte senza corpi che spaventa.",
+      "eligibility": [],
+      "effect_hooks": [
+        {
+          "kind": "CONSEQUENCE",
+          "consequence_id": "CNS_ROADS_PLUNDERED",
+          "bindings": {}
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.rupture.attack"
+    },
+    {
+      "id": "ECH_GOOD_YEAR",
+      "title": "Annata Buona",
+      "dramatic_family": "TURN",
+      "function_id": "GIFT",
+      "description": "Piove quando serve e smette quando serve. Non risolve niente, ma sposta la domanda di un anno.",
+      "eligibility": [
+        {
+          "type": "state_tag_present",
+          "scope": "GLOBAL",
+          "tag": "function:LACK",
+          "label": "Un'annata buona si nota solo dopo una che non lo era"
+        }
+      ],
+      "effect_hooks": [
+        {
+          "kind": "CONSEQUENCE",
+          "consequence_id": "CNS_HARVEST_RETURNS",
+          "bindings": {
+            "focus_tension": "TEN_FAMINE"
+          }
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.turn.gift"
+    },
+    {
+      "id": "ECH_OATH_SWORN",
+      "title": "Giuramento Prestato",
+      "dramatic_family": "TURN",
+      "function_id": "TRANSFORMATION",
+      "description": "Due che si contavano come nemici mettono per iscritto una cosa sola, e quella regge.",
+      "eligibility": [
+        {
+          "type": "state_tag_present",
+          "scope": "GLOBAL",
+          "tag": "function:THREAT",
+          "label": "Ci si lega quando qualcosa minaccia entrambi"
+        }
+      ],
+      "effect_hooks": [
+        {
+          "kind": "CONSEQUENCE",
+          "consequence_id": "CNS_ESCORT_SWORN",
+          "bindings": {}
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.turn.transformation"
+    },
+    {
+      "id": "ECH_AMNESTY",
+      "title": "Amnistia",
+      "dramatic_family": "RESOLUTION",
+      "function_id": "LIBERATION",
+      "description": "Si decide di non contare piu chi aveva giurato a chi. Non tutti sono d'accordo, e nessuno lo dice.",
+      "eligibility": [
+        {
+          "type": "any_of",
+          "label": "Si perdona dopo che qualcuno si e preso o ha vietato qualcosa",
+          "conditions": [
+            {
+              "type": "state_tag_present",
+              "scope": "GLOBAL",
+              "tag": "function:USURPATION",
+              "label": ""
+            },
+            {
+              "type": "state_tag_present",
+              "scope": "GLOBAL",
+              "tag": "function:PROHIBITION",
+              "label": ""
+            },
+            {
+              "type": "state_tag_present",
+              "scope": "GLOBAL",
+              "tag": "function:CONQUEST",
+              "label": ""
+            }
+          ]
+        }
+      ],
+      "effect_hooks": [
+        {
+          "kind": "CONSEQUENCE",
+          "consequence_id": "CNS_ORDER_RESTORED",
+          "bindings": {
+            "focus_tension": "TEN_SUCCESSION"
+          }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "SET_GLOBAL_TAG",
+            "target": {
+              "kind": "world",
+              "id": "WORLD"
+            },
+            "payload": {
+              "tag": "amnesty_granted"
+            }
+          }
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.resolution.liberation"
+    },
+    {
+      "id": "ECH_ROADS_OPEN",
+      "title": "Vie Riaperte",
+      "dramatic_family": "RESOLUTION",
+      "function_id": "RETURN",
+      "description": "Il primo carro che passa senza scorta non fa notizia. E per questo che si capisce che e finita.",
+      "eligibility": [
+        {
+          "type": "any_of",
+          "label": "Si torna da una chiusura o da una partenza",
+          "conditions": [
+            {
+              "type": "state_tag_present",
+              "scope": "GLOBAL",
+              "tag": "function:PROHIBITION",
+              "label": ""
+            },
+            {
+              "type": "state_tag_present",
+              "scope": "GLOBAL",
+              "tag": "function:SEPARATION",
+              "label": ""
+            }
+          ]
+        }
+      ],
+      "effect_hooks": [
+        {
+          "kind": "CONSEQUENCE",
+          "consequence_id": "CNS_ROADS_REOPENED",
+          "bindings": {}
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.resolution.return"
+    },
+    {
+      "id": "ECH_PETITION",
+      "title": "La Supplica",
+      "dramatic_family": "PRESSURE",
+      "function_id": "REQUEST",
+      "description": "Arrivano a chiedere, e lo fanno in pubblico. Dire di no adesso costa piu di quanto costava ieri.",
+      "eligibility": [],
+      "effect_hooks": [
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "ADJUST_TENSION",
+            "target": {
+              "kind": "tension",
+              "id": "$tension"
+            },
+            "payload": {
+              "delta": 1
+            }
+          }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "SET_GLOBAL_TAG",
+            "target": {
+              "kind": "world",
+              "id": "WORLD"
+            },
+            "payload": {
+              "tag": "petition_heard"
+            }
+          }
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.pressure.request"
+    },
+    {
+      "id": "ECH_OFFER",
+      "title": "L'Offerta",
+      "dramatic_family": "PRESSURE",
+      "function_id": "TEMPTATION",
+      "description": "Qualcuno propone una scorciatoia che funziona davvero. E il fatto che funzioni il problema.",
+      "eligibility": [],
+      "effect_hooks": [
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "ADJUST_TENSION",
+            "target": {
+              "kind": "tension",
+              "id": "$tension"
+            },
+            "payload": {
+              "delta": 1
+            }
+          }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "SET_REGION_TAG",
+            "target": {
+              "kind": "region",
+              "id": "$region_focus"
+            },
+            "payload": {
+              "tag": "condition:indebted"
+            }
+          }
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.pressure.temptation"
+    },
+    {
+      "id": "ECH_OATH_BROKEN",
+      "title": "La Parola Data",
+      "dramatic_family": "RUPTURE",
+      "function_id": "VIOLATION",
+      "description": "La cosa che era stata proibita viene fatta, e viene fatta da chi l'aveva proibita.",
+      "eligibility": [
+        {
+          "type": "any_of",
+          "label": "Si viola qualcosa che era stato proibito o promesso",
+          "conditions": [
+            {
+              "type": "state_tag_present",
+              "scope": "GLOBAL",
+              "tag": "function:PROHIBITION",
+              "label": ""
+            },
+            {
+              "type": "state_tag_present",
+              "scope": "GLOBAL",
+              "tag": "function:REQUEST",
+              "label": ""
+            }
+          ]
+        }
+      ],
+      "effect_hooks": [
+        {
+          "kind": "CONSEQUENCE",
+          "consequence_id": "CNS_OATH_BROKEN",
+          "bindings": {
+            "focus_tension": "TEN_SUCCESSION"
+          }
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.rupture.violation"
+    },
+    {
+      "id": "ECH_EXODUS",
+      "title": "La Partenza",
+      "dramatic_family": "RUPTURE",
+      "function_id": "SEPARATION",
+      "description": "Le carriole partono di notte per non dover salutare nessuno. Al mattino mancano tre famiglie su dieci.",
+      "eligibility": [],
+      "effect_hooks": [
+        {
+          "kind": "CONSEQUENCE",
+          "consequence_id": "CNS_EXODUS",
+          "bindings": {
+            "focus_tension": "TEN_FAMINE"
+          }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "ADJUST_TENSION",
+            "target": {
+              "kind": "tension",
+              "id": "TEN_FAMINE"
+            },
+            "payload": {
+              "delta": 1
+            }
+          }
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.rupture.separation"
+    },
+    {
+      "id": "ECH_PARLEY",
+      "title": "L'Incontro",
+      "dramatic_family": "TURN",
+      "function_id": "ENCOUNTER",
+      "description": "Due che non si parlavano si trovano nello stesso posto senza averlo deciso, e devono dirsi qualcosa.",
+      "eligibility": [],
+      "effect_hooks": [
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "SET_GLOBAL_TAG",
+            "target": {
+              "kind": "world",
+              "id": "WORLD"
+            },
+            "payload": {
+              "tag": "parley_held"
+            }
+          }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "ADJUST_TENSION",
+            "target": {
+              "kind": "tension",
+              "id": "$tension"
+            },
+            "payload": {
+              "delta": -1
+            }
+          }
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.turn.encounter"
+    },
+    {
+      "id": "ECH_SEIZURE",
+      "title": "La Presa",
+      "dramatic_family": "TURN",
+      "function_id": "CONQUEST",
+      "description": "Non una battaglia: una mattina in cui le guardie alla porta rispondono a un altro nome.",
+      "eligibility": [
+        {
+          "type": "any_of",
+          "label": "Si prende qualcosa solo dopo un attacco o una minaccia",
+          "conditions": [
+            {
+              "type": "state_tag_present",
+              "scope": "GLOBAL",
+              "tag": "function:ATTACK",
+              "label": ""
+            },
+            {
+              "type": "state_tag_present",
+              "scope": "GLOBAL",
+              "tag": "function:THREAT",
+              "label": ""
+            },
+            {
+              "type": "state_tag_present",
+              "scope": "GLOBAL",
+              "tag": "function:USURPATION",
+              "label": ""
+            }
+          ]
+        }
+      ],
+      "effect_hooks": [
+        {
+          "kind": "CONSEQUENCE",
+          "consequence_id": "CNS_CAPITAL_TAKEN",
+          "bindings": {
+            "focus_tension": "TEN_SUCCESSION"
+          }
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.turn.conquest"
+    },
+    {
+      "id": "ECH_RECKONING",
+      "title": "Il Conto",
+      "dramatic_family": "RESOLUTION",
+      "function_id": "PUNISHMENT",
+      "description": "Si paga per quello che si e fatto, davanti a chi lo ha subito. Non ripara niente, ma chiude.",
+      "eligibility": [
+        {
+          "type": "any_of",
+          "label": "Non si punisce nessuno prima che qualcuno abbia fatto qualcosa",
+          "conditions": [
+            {
+              "type": "state_tag_present",
+              "scope": "GLOBAL",
+              "tag": "function:VIOLATION",
+              "label": ""
+            },
+            {
+              "type": "state_tag_present",
+              "scope": "GLOBAL",
+              "tag": "function:BETRAYAL",
+              "label": ""
+            },
+            {
+              "type": "state_tag_present",
+              "scope": "GLOBAL",
+              "tag": "function:USURPATION",
+              "label": ""
+            },
+            {
+              "type": "state_tag_present",
+              "scope": "GLOBAL",
+              "tag": "function:CONQUEST",
+              "label": ""
+            }
+          ]
+        }
+      ],
+      "effect_hooks": [
+        {
+          "kind": "CONSEQUENCE",
+          "consequence_id": "CNS_ACCOUNT_SETTLED",
+          "bindings": {
+            "focus_tension": "TEN_SUCCESSION"
+          }
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.resolution.punishment"
+    },
+    {
+      "id": "ECH_CROWNING",
+      "title": "Chi Siede",
+      "dramatic_family": "RESOLUTION",
+      "function_id": "SUCCESSION",
+      "description": "Un nome viene detto e non viene contestato. Non e giustizia: e che tutti sono stanchi.",
+      "eligibility": [
+        {
+          "type": "any_of",
+          "label": "Si succede a qualcuno solo dopo che il posto si e liberato o e stato preso",
+          "conditions": [
+            {
+              "type": "state_tag_present",
+              "scope": "GLOBAL",
+              "tag": "function:THREAT",
+              "label": ""
+            },
+            {
+              "type": "state_tag_present",
+              "scope": "GLOBAL",
+              "tag": "function:USURPATION",
+              "label": ""
+            },
+            {
+              "type": "state_tag_present",
+              "scope": "GLOBAL",
+              "tag": "function:CONQUEST",
+              "label": ""
+            },
+            {
+              "type": "state_tag_present",
+              "scope": "GLOBAL",
+              "tag": "function:SEPARATION",
+              "label": ""
+            }
+          ]
+        }
+      ],
+      "effect_hooks": [
+        {
+          "kind": "CONSEQUENCE",
+          "consequence_id": "CNS_HEIR_NAMED",
+          "bindings": {
+            "focus_tension": "TEN_SUCCESSION"
+          }
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.resolution.succession"
+    }
+  ]
+}

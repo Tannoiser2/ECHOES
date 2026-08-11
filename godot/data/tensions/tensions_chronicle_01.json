@@ -1,0 +1,289 @@
+{
+  "schema_id": "tension",
+  "version": "0.2.0",
+  "items": [
+    {
+      "id": "TEN_FAMINE",
+      "title": "La Carestia",
+      "domain": "SURVIVAL",
+      "current_value": 3,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "WEALTH",
+        "PEOPLE",
+        "AUTHORITY"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "I granai di Eredan si aprono un giorno su tre. Nessuno lo ha annunciato: si vede dalle code.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_FAMINE_GRAIN",
+        "Q_FAMINE_LAND"
+      ],
+      "triggers": [
+        "Ogni raccolto mancato nella Valle Verde.",
+        "Ogni bocca in piu che arriva da est.",
+        "Ogni riserva spesa per qualcosa che non e cibo."
+      ],
+      "decrease_rules": [
+        "Una Confluence risolta sulla distribuzione del grano.",
+        "Carte Echo di RISOLUZIONE che spendono qualcosa di reale."
+      ],
+      "linked_tensions": [
+        "TEN_AWAKENING",
+        "TEN_ROADS"
+      ],
+      "confluence_template_id": "CNF_FAMINE_01",
+      "description": "Non e ancora fame. E' il calcolo, fatto a voce bassa, di quanto manchi alla fame.",
+      "focus_region_tags": [
+        "condition:starving",
+        "condition:requisitioned",
+        "condition:unrest",
+        "granary"
+      ]
+    },
+    {
+      "id": "TEN_AWAKENING",
+      "title": "Il Risveglio",
+      "domain": "ANCIENT",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "VEILED",
+      "relevant_asset_families": [
+        "KNOWLEDGE",
+        "FORCE",
+        "BONDS"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 3,
+          "message": "Nelle Miniere Antiche le lampade si spengono tutte insieme, e si riaccendono da sole.",
+          "reveals_value": false
+        },
+        {
+          "at": 5,
+          "message": "Sulle Montagne Rosse la neve non attecchisce piu sul versante orientale.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_AWAKENING_CRYSTAL",
+        "Q_AWAKENING_MOUNTAIN"
+      ],
+      "triggers": [
+        "Ogni frammento di Cristallo Rosso portato fuori dalle gallerie.",
+        "Ogni misura presa su cio che dorme senza chiedere il permesso."
+      ],
+      "decrease_rules": [
+        "Sigillare le Miniere.",
+        "Un patto che vincoli chi studia il Cristallo."
+      ],
+      "linked_tensions": [
+        "TEN_SUCCESSION",
+        "TEN_THIRST"
+      ],
+      "confluence_template_id": "CNF_AWAKENING_01",
+      "description": "Velata: i giocatori vedono i presagi, non il numero. Solo SCHEME apre il valore.",
+      "focus_region_tags": [
+        "condition:exploited",
+        "structure:sealed",
+        "crystal_site"
+      ]
+    },
+    {
+      "id": "TEN_SUCCESSION",
+      "title": "La Successione",
+      "domain": "TERRITORY",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "AUTHORITY",
+        "BONDS",
+        "FORCE"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 4,
+          "message": "A Eredan il sigillo del trono viene cambiato due volte nello stesso mese.",
+          "reveals_value": false
+        },
+        {
+          "at": 5,
+          "message": "I capitani smettono di giurare sul nome del re e giurano sul proprio.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_SUCCESSION_HEIR",
+        "Q_SUCCESSION_LAW"
+      ],
+      "triggers": [
+        "Ogni titolo concesso senza che il trono lo confermi.",
+        "Ogni confine ridisegnato senza chiedere."
+      ],
+      "decrease_rules": [
+        "Un erede riconosciuto davanti a testimoni.",
+        "Un patto che leghi una casa al trono."
+      ],
+      "linked_tensions": [
+        "TEN_ROADS",
+        "TEN_FAMINE"
+      ],
+      "confluence_template_id": "CNF_SUCCESSION_01",
+      "focus_region_tags": [
+        "condition:contested",
+        "condition:unrest",
+        "scar:burned",
+        "capital"
+      ],
+      "description": "Aperta: tutti sanno che Aldric non ha erede. Nessuno sa ancora chi lo dira per primo."
+    },
+    {
+      "id": "TEN_ROADS",
+      "title": "Le Vie Interrotte",
+      "domain": "RESOURCE",
+      "current_value": 1,
+      "threshold": 5,
+      "visibility": "VEILED",
+      "relevant_asset_families": [
+        "WEALTH",
+        "KNOWLEDGE",
+        "PEOPLE"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 2,
+          "message": "Sulla Strada dei Mercanti le carovane cominciano a viaggiare in gruppi di tre.",
+          "reveals_value": false
+        },
+        {
+          "at": 4,
+          "message": "Il prezzo del sale a Eredan raddoppia in nove giorni e nessuno sa dire perche.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ROADS_TOLL",
+        "Q_ROADS_ESCORT"
+      ],
+      "triggers": [
+        "Ogni carico che sparisce fra due regioni.",
+        "Ogni pedaggio riscosso da chi non ne ha titolo."
+      ],
+      "decrease_rules": [
+        "Una scorta pagata da chi ci guadagna.",
+        "Un pedaggio scritto e uguale per tutti."
+      ],
+      "linked_tensions": [
+        "TEN_THIRST",
+        "TEN_FAMINE"
+      ],
+      "confluence_template_id": "CNF_ROADS_01",
+      "focus_region_tags": [
+        "condition:cut_off",
+        "condition:plundered",
+        "trade",
+        "crystal_site"
+      ],
+      "description": "Velata: si vede il prezzo del sale, non chi lo fa salire."
+    },
+    {
+      "id": "TEN_PLAGUE",
+      "title": "La Febbre Bassa",
+      "domain": "SURVIVAL",
+      "current_value": 2,
+      "threshold": 5,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "PEOPLE",
+        "KNOWLEDGE",
+        "BONDS"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 3,
+          "message": "Nei villaggi si smette di stringere la mano e nessuno lo ha deciso.",
+          "reveals_value": false
+        },
+        {
+          "at": 4,
+          "message": "I pozzi vengono coperti di notte, e di giorno nessuno ammette di averlo fatto.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_WHO_DECIDES",
+        "Q_ANY_WHO_STAYS"
+      ],
+      "triggers": [
+        "Ogni giorno in cui la cosa che manca non torna."
+      ],
+      "decrease_rules": [
+        "Una divisione che tutti riescono a dire ad alta voce."
+      ],
+      "linked_tensions": [
+        "TEN_FAMINE",
+        "TEN_SUCCESSION"
+      ],
+      "focus_region_tags": [
+        "condition:starving",
+        "condition:unrest",
+        "condition:abandoned",
+        "nomad_range"
+      ],
+      "description": "Nessun Consiglio proprio: se ne occupa quello di dominio SURVIVAL (D-028)."
+    },
+    {
+      "id": "TEN_THIRST",
+      "title": "I Pozzi Bassi",
+      "domain": "SURVIVAL",
+      "current_value": 1,
+      "threshold": 5,
+      "visibility": "VEILED",
+      "relevant_asset_families": [
+        "WEALTH",
+        "PEOPLE",
+        "FORCE"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 2,
+          "message": "Il secchio tocca il fondo prima di riempirsi, e si dice che sia la stagione.",
+          "reveals_value": false
+        },
+        {
+          "at": 4,
+          "message": "Due villaggi si accordano per attingere a ore diverse, e non lo scrivono da nessuna parte.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_WHO_DECIDES",
+        "Q_ANY_WHO_STAYS"
+      ],
+      "triggers": [
+        "Ogni giorno in cui la cosa che manca non torna."
+      ],
+      "decrease_rules": [
+        "Una divisione che tutti riescono a dire ad alta voce."
+      ],
+      "linked_tensions": [
+        "TEN_PLAGUE",
+        "TEN_AWAKENING"
+      ],
+      "focus_region_tags": [
+        "condition:rationed",
+        "condition:starving",
+        "granary",
+        "trade"
+      ],
+      "description": "Nessun Consiglio proprio: se ne occupa quello di dominio SURVIVAL (D-028)."
+    }
+  ]
+}

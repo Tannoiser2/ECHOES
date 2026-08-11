@@ -1,0 +1,1230 @@
+{
+  "schema_id": "consequence",
+  "version": "0.2.0",
+  "items": [
+    {
+      "id": "CNS_ROYAL_GRANARY",
+      "title": "Il Granaio del Trono",
+      "category": "PROSPERITY",
+      "description": "Il grano della Valle passa dalle mani del trono prima di arrivare a una tavola. Chi lo distribuisce decide chi mangia.",
+      "effects": [
+        {
+          "type": "SET_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_with:granary"
+          },
+          "payload": {
+            "tag": "structure:granary"
+          }
+        },
+        {
+          "type": "SET_CONTROL",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "entity_id": "$proponent"
+          }
+        },
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "grain_requisitioned"
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_NAHR_SETTLEMENT",
+      "title": "Chi Lavora Mangia",
+      "category": "SETTLEMENT",
+      "description": "La Valle si apre a chi arriva da est. Il confine non viene abolito: viene spostato dentro le persone.",
+      "effects": [
+        {
+          "type": "SET_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "tag": "settlement:$proponent"
+          }
+        },
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "nahr_settled"
+          }
+        },
+        {
+          "type": "SET_RELATION",
+          "target": {
+            "kind": "relation",
+            "id": "$proponent|$rival"
+          },
+          "payload": {
+            "add_tag": "PACT"
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_SEALED_VALLEY",
+      "title": "La Valle Chiusa",
+      "category": "CONTROL",
+      "description": "I confini si chiudono. La Valle nutre Eredan e nessun altro, e le Terre Nahr imparano cosa significa un inverno senza uscita.",
+      "creates_scar": true,
+      "scar": {
+        "region_id": "$region_focus",
+        "tag": "scar:sealed_border",
+        "description": "Il vallo di pietra a secco tirato su in un inverno: nessuno lo ha piu smontato."
+      },
+      "effects": [
+        {
+          "type": "SET_CONTROL",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "entity_id": "$proponent"
+          }
+        },
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "$adjacent"
+          },
+          "payload": {
+            "tag": "valley_sealed"
+          }
+        },
+        {
+          "type": "SET_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$rival_seat"
+          },
+          "payload": {
+            "tag": "condition:starving"
+          }
+        },
+        {
+          "type": "SET_RELATION",
+          "target": {
+            "kind": "relation",
+            "id": "$proponent|$rival"
+          },
+          "payload": {
+            "level": "ENEMY"
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_CRYSTAL_EXPLOITED",
+      "title": "La Miniera Aperta",
+      "category": "EXPLOITATION",
+      "description": "Il Cristallo Rosso esce dalle gallerie a peso. Quello che era una domanda diventa una voce di bilancio.",
+      "creates_scar": true,
+      "scar": {
+        "region_id": "$region_with:crystal_site",
+        "tag": "scar:open_wound",
+        "description": "La galleria maestra non si richiude piu, e la roccia intorno resta tiepida."
+      },
+      "effects": [
+        {
+          "type": "SET_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_with:crystal_site"
+          },
+          "payload": {
+            "tag": "condition:exploited"
+          }
+        },
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "crystal_exploited"
+          }
+        },
+        {
+          "type": "SET_TENSION_VISIBILITY",
+          "target": {
+            "kind": "tension",
+            "id": "TEN_AWAKENING"
+          },
+          "payload": {
+            "visibility": "OPEN"
+          }
+        },
+        {
+          "type": "SET_ENTITY_TAG",
+          "target": {
+            "kind": "entity",
+            "id": "$proponent"
+          },
+          "payload": {
+            "tag": "discovery:crystal"
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_MINE_SEALED",
+      "title": "Le Miniere Sigillate",
+      "category": "SECRET",
+      "description": "Le gallerie vengono chiuse. Chi ha visto il Cristallo Rosso continuera a saperlo; nessun altro potra verificarlo.",
+      "effects": [
+        {
+          "type": "SET_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_with:crystal_site"
+          },
+          "payload": {
+            "tag": "structure:sealed"
+          }
+        },
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "mine_sealed"
+          }
+        },
+        {
+          "type": "SET_ENTITY_TAG",
+          "target": {
+            "kind": "entity",
+            "id": "$proponent"
+          },
+          "payload": {
+            "tag": "discovery:crystal"
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_COST_UNREST",
+      "title": "Il Prezzo del Consenso",
+      "category": "REVOLT",
+      "description": "La proposta passa, ma qualcuno la paga senza averla votata. Le strade di Eredan si riempiono di gente che aspetta.",
+      "effects": [
+        {
+          "type": "SET_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$adjacent"
+          },
+          "payload": {
+            "tag": "condition:unrest"
+          }
+        },
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "$tension"
+          },
+          "payload": {
+            "delta": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_FAILURE_SPIRAL",
+      "title": "Nessuno Decide",
+      "category": "DEVASTATION",
+      "description": "La proposta cade. La questione resta esattamente dov'era, con meno tempo davanti e piu rancore intorno.",
+      "creates_scar": true,
+      "scar": {
+        "region_id": "$region_focus",
+        "tag": "scar:unanswered",
+        "description": "La domanda a cui il consiglio non ha risposto, rimasta scritta su un muro."
+      },
+      "effects": [
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "question_unresolved"
+          }
+        },
+        {
+          "type": "SET_ENTITY_TAG",
+          "target": {
+            "kind": "entity",
+            "id": "$proponent"
+          },
+          "payload": {
+            "tag": "failed_proposal"
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_DECISIVE_RENOWN",
+      "title": "Ordine Ristabilito",
+      "category": "INFLUENCE",
+      "description": "La proposta non passa soltanto: convince. Per un tempo, il tavolo smette di discutere chi ha ragione.",
+      "effects": [
+        {
+          "type": "SET_ENTITY_TAG",
+          "target": {
+            "kind": "entity",
+            "id": "$proponent"
+          },
+          "payload": {
+            "tag": "renowned"
+          }
+        },
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "order_restored"
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_VALLEY_CLEARED",
+      "title": "La Valle Sgomberata",
+      "category": "MIGRATION",
+      "description": "Requisire il grano vuol dire decidere chi sta sulla terra che lo produce. I carri che erano fermi nella Valle vengono rimessi in strada.",
+      "creates_scar": true,
+      "scar": {
+        "region_id": "$region_focus",
+        "tag": "scar:emptied",
+        "description": "Le piste dei carri incise nel terreno basso, e nessuno che le ripercorra."
+      },
+      "effects": [
+        {
+          "type": "REMOVE_PRESENCE",
+          "target": {
+            "kind": "entity",
+            "id": "$rival"
+          },
+          "payload": {
+            "region_id": "$region_focus",
+            "optional": true
+          },
+          "note": "optional: la Valle puo essere gia sgombera."
+        },
+        {
+          "type": "SET_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "tag": "condition:requisitioned"
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_CROWN_DISPOSSESSED",
+      "title": "Il Titolo che non Vale piu",
+      "category": "CONTROL",
+      "description": "Se la terra e di chi la lavora, il sigillo di Eredan sulla Valle diventa una riga su una pergamena e nient'altro.",
+      "effects": [
+        {
+          "type": "SET_CONTROL",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "entity_id": null
+          }
+        },
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "crown_dispossessed"
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_MINE_TAKEN",
+      "title": "La Miniera di Stato",
+      "category": "EXPLOITATION",
+      "description": "Aprire le gallerie significa metterci qualcuno a contare quello che esce. Chi conta, comanda.",
+      "effects": [
+        {
+          "type": "SET_CONTROL",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "entity_id": "$proponent"
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_STUDY_UNDER_GUARD",
+      "title": "Studio sotto Custodia",
+      "category": "DISCOVERY",
+      "description": "Il Cristallo si puo misurare, ma davanti a un custode e con un limite scritto. Nessuno lo porta fuori, e nessuno smette di guardarlo.",
+      "effects": [
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "study_supervised"
+          }
+        },
+        {
+          "type": "SET_ENTITY_TAG",
+          "target": {
+            "kind": "entity",
+            "id": "$rival"
+          },
+          "payload": {
+            "tag": "discovery:supervised_record"
+          }
+        },
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "TEN_AWAKENING"
+          },
+          "payload": {
+            "delta": -1
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_HARVEST_RETURNS",
+      "title": "Il Raccolto Torna",
+      "category": "PROSPERITY",
+      "description": "Una stagione onesta. Non ripaga niente, ma toglie la fame dal tavolo per un anno.",
+      "effects": [
+        {
+          "type": "REMOVE_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "tag": "condition:starving",
+            "optional": true
+          }
+        },
+        {
+          "type": "REMOVE_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "tag": "condition:lean",
+            "optional": true
+          }
+        },
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "TEN_FAMINE"
+          },
+          "payload": {
+            "delta": -2
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_ORDER_RESTORED",
+      "title": "L'Ordine Rimesso in Piedi",
+      "category": "INFLUENCE",
+      "description": "Le guardie tornano a girare in due invece che in sei, e la gente smette di contarle.",
+      "effects": [
+        {
+          "type": "REMOVE_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "tag": "condition:unrest",
+            "optional": true
+          }
+        },
+        {
+          "type": "REMOVE_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "tag": "condition:contested",
+            "optional": true
+          }
+        },
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "TEN_SUCCESSION"
+          },
+          "payload": {
+            "delta": -1
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_ROADS_REOPENED",
+      "title": "Le Vie Riaperte",
+      "category": "PROSPERITY",
+      "description": "Le carovane tornano a partire da sole. E il segno piu chiaro che qualcosa e finito.",
+      "effects": [
+        {
+          "type": "REMOVE_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "tag": "condition:cut_off",
+            "optional": true
+          }
+        },
+        {
+          "type": "REMOVE_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "tag": "condition:plundered",
+            "optional": true
+          }
+        },
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "TEN_ROADS"
+          },
+          "payload": {
+            "delta": -2
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_HEIR_NAMED",
+      "title": "L'Erede Nominato",
+      "category": "INFLUENCE",
+      "description": "Un nome detto ad alta voce davanti a chi conta. Da quel momento contestarlo costa qualcosa.",
+      "effects": [
+        {
+          "type": "SET_ENTITY_TAG",
+          "target": {
+            "kind": "entity",
+            "id": "$proponent"
+          },
+          "payload": {
+            "tag": "heir_named"
+          }
+        },
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "succession_settled"
+          }
+        },
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "TEN_SUCCESSION"
+          },
+          "payload": {
+            "delta": -2
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_CROWN_DIVIDED",
+      "title": "La Corona Divisa",
+      "category": "CONTROL",
+      "description": "Due titoli dove ce n'era uno. Funziona finche i due non si guardano.",
+      "creates_scar": true,
+      "scar": {
+        "region_id": "$capital",
+        "tag": "scar:divided_seal",
+        "description": "Il sigillo spezzato in due meta, e nessuna delle due restituita."
+      },
+      "effects": [
+        {
+          "type": "SET_CONTROL",
+          "target": {
+            "kind": "region",
+            "id": "$rival_seat"
+          },
+          "payload": {
+            "entity_id": "$proponent"
+          }
+        },
+        {
+          "type": "SET_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$capital"
+          },
+          "payload": {
+            "tag": "condition:contested"
+          }
+        },
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "crown_divided"
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_CAPITAL_TAKEN",
+      "title": "La Capitale Presa",
+      "category": "CONTROL",
+      "description": "Eredan cambia mano in una notte. La citta non brucia: cambia solo chi firma.",
+      "creates_scar": true,
+      "scar": {
+        "region_id": "$capital",
+        "tag": "scar:changed_hands",
+        "description": "Sulla porta nord il nome vecchio si legge ancora sotto quello nuovo."
+      },
+      "effects": [
+        {
+          "type": "SET_CONTROL",
+          "target": {
+            "kind": "region",
+            "id": "$capital"
+          },
+          "payload": {
+            "entity_id": "$proponent"
+          }
+        },
+        {
+          "type": "SET_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$capital"
+          },
+          "payload": {
+            "tag": "condition:unrest"
+          }
+        },
+        {
+          "type": "REMOVE_ENTITY_TAG",
+          "target": {
+            "kind": "entity",
+            "id": "$rival"
+          },
+          "payload": {
+            "tag": "crowned",
+            "optional": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_LAW_OF_SUCCESSION",
+      "title": "La Legge Scritta",
+      "category": "INFLUENCE",
+      "description": "Non un erede: una regola. Chi verra dopo lo decidera la carta, non le spade.",
+      "effects": [
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "succession_by_law"
+          }
+        },
+        {
+          "type": "SET_ENTITY_TAG",
+          "target": {
+            "kind": "entity",
+            "id": "$rival"
+          },
+          "payload": {
+            "tag": "discovery:written_law"
+          }
+        },
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "TEN_SUCCESSION"
+          },
+          "payload": {
+            "delta": -1
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_MARCH_GRANTED",
+      "title": "La Marca Concessa",
+      "category": "CONTROL",
+      "description": "Una terra di confine data a chi la tiene gia. Il trono ci guadagna un alleato e ci perde un pezzo.",
+      "effects": [
+        {
+          "type": "SET_CONTROL",
+          "target": {
+            "kind": "region",
+            "id": "$rival_seat"
+          },
+          "payload": {
+            "entity_id": "$proponent"
+          }
+        },
+        {
+          "type": "SET_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$rival_seat"
+          },
+          "payload": {
+            "tag": "settlement:march"
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_TOLL_ESTABLISHED",
+      "title": "Il Pedaggio Scritto",
+      "category": "PROSPERITY",
+      "description": "Un prezzo uguale per tutti, riscosso da uno solo. La strada torna sicura e cara.",
+      "effects": [
+        {
+          "type": "SET_CONTROL",
+          "target": {
+            "kind": "region",
+            "id": "$region_with:trade"
+          },
+          "payload": {
+            "entity_id": "$proponent"
+          }
+        },
+        {
+          "type": "SET_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_with:trade"
+          },
+          "payload": {
+            "tag": "structure:tollgate"
+          }
+        },
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "TEN_ROADS"
+          },
+          "payload": {
+            "delta": -1
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_ROADS_PLUNDERED",
+      "title": "La Strada Spogliata",
+      "category": "DEVASTATION",
+      "description": "Chi non ha scorta smette di partire. Chi parte non torna con quello che aveva.",
+      "creates_scar": true,
+      "scar": {
+        "region_id": "$region_focus",
+        "tag": "scar:plundered",
+        "description": "Quello che restava dei carri, lasciato dov'era perche si vedesse."
+      },
+      "effects": [
+        {
+          "type": "SET_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "tag": "condition:plundered"
+          }
+        },
+        {
+          "type": "SET_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$adjacent"
+          },
+          "payload": {
+            "tag": "condition:cut_off"
+          }
+        },
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "TEN_FAMINE"
+          },
+          "payload": {
+            "delta": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_ESCORT_SWORN",
+      "title": "La Scorta Giurata",
+      "category": "INFLUENCE",
+      "description": "Non un esercito: dodici persone che rispondono di ogni carico con il proprio nome.",
+      "effects": [
+        {
+          "type": "SET_ENTITY_TAG",
+          "target": {
+            "kind": "entity",
+            "id": "$proponent"
+          },
+          "payload": {
+            "tag": "escort_sworn"
+          }
+        },
+        {
+          "type": "REMOVE_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "tag": "condition:cut_off",
+            "optional": true
+          }
+        },
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "TEN_ROADS"
+          },
+          "payload": {
+            "delta": -2
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_MINE_ROAD_CUT",
+      "title": "La Via delle Miniere Tagliata",
+      "category": "DEVASTATION",
+      "description": "Un ponte in meno, e le Miniere diventano un posto da cui e piu facile entrare che uscire.",
+      "creates_scar": true,
+      "scar": {
+        "region_id": "$adjacent",
+        "tag": "scar:broken_bridge",
+        "description": "Le due teste del ponte, ancora in piedi, con niente in mezzo."
+      },
+      "effects": [
+        {
+          "type": "SET_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$adjacent"
+          },
+          "payload": {
+            "tag": "condition:cut_off"
+          }
+        },
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "TEN_AWAKENING"
+          },
+          "payload": {
+            "delta": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_MARKET_MOVED",
+      "title": "Il Mercato Spostato",
+      "category": "MIGRATION",
+      "description": "Il mercato non chiude: si sposta. E dove arriva, cambia chi comanda davvero.",
+      "effects": [
+        {
+          "type": "SET_CONTROL",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "entity_id": "$proponent"
+          }
+        },
+        {
+          "type": "SET_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "tag": "settlement:market"
+          }
+        },
+        {
+          "type": "SET_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$adjacent"
+          },
+          "payload": {
+            "tag": "condition:cut_off"
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_COST_DEBT",
+      "title": "Il Debito Contratto",
+      "category": "REVOLT",
+      "description": "Si e pagato, ma con soldi di qualcun altro, e quel qualcuno se lo ricorda.",
+      "effects": [
+        {
+          "type": "SET_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "tag": "condition:indebted"
+          }
+        },
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "TEN_ROADS"
+          },
+          "payload": {
+            "delta": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_RATIONED",
+      "title": "La Razione Imposta",
+      "category": "CONTROL",
+      "description": "Si conta quanto c'e e si decide chi ne ha diritto. Funziona, e nessuno perdona chi ha fatto la lista.",
+      "effects": [
+        {
+          "type": "SET_CONTROL",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "entity_id": "$proponent"
+          }
+        },
+        {
+          "type": "SET_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "tag": "condition:rationed"
+          }
+        },
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "$tension"
+          },
+          "payload": {
+            "delta": -2
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_ABANDONED",
+      "title": "Il Luogo Abbandonato",
+      "category": "MIGRATION",
+      "description": "Non si risolve: si va via. Quello che resta indietro smette di essere di qualcuno.",
+      "creates_scar": true,
+      "scar": {
+        "region_id": "$region_focus",
+        "tag": "scar:abandoned",
+        "description": "Le case in piedi e le porte aperte, e dentro niente che valga la pena portare via."
+      },
+      "effects": [
+        {
+          "type": "SET_CONTROL",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "entity_id": null
+          }
+        },
+        {
+          "type": "REMOVE_PRESENCE",
+          "target": {
+            "kind": "entity",
+            "id": "$proponent"
+          },
+          "payload": {
+            "region_id": "$region_focus",
+            "optional": true
+          }
+        },
+        {
+          "type": "SET_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "tag": "condition:abandoned"
+          }
+        },
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "$tension"
+          },
+          "payload": {
+            "delta": -2
+          },
+          "note": "Non si risolve: si va via, e la domanda si spegne perche non resta nessuno a porla."
+        },
+        {
+          "type": "ADD_PRESENCE",
+          "target": {
+            "kind": "entity",
+            "id": "$proponent"
+          },
+          "payload": {
+            "region_id": "$adjacent",
+            "optional": true
+          },
+          "note": "optional: il posto accanto puo essere pieno."
+        }
+      ]
+    },
+    {
+      "id": "CNS_SHARED_BURDEN",
+      "title": "Il Peso Diviso",
+      "category": "INFLUENCE",
+      "description": "Nessuno ne esce bene e nessuno ne esce solo. E il massimo che un consiglio riesce a fare, certe volte.",
+      "effects": [
+        {
+          "type": "REMOVE_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "tag": "condition:starving",
+            "optional": true
+          }
+        },
+        {
+          "type": "REMOVE_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "tag": "condition:rationed",
+            "optional": true
+          }
+        },
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "burden_shared"
+          }
+        },
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "$tension"
+          },
+          "payload": {
+            "delta": -1
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_OATH_BROKEN",
+      "title": "Il Patto Rotto",
+      "category": "REVOLT",
+      "description": "Qualcuno fa esattamente la cosa che aveva promesso di non fare, e lo fa dove si vede.",
+      "creates_scar": true,
+      "scar": {
+        "region_id": "$region_focus",
+        "tag": "scar:broken_word",
+        "description": "La pietra del patto, spaccata a meta e lasciata dov'era."
+      },
+      "effects": [
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "oath_broken"
+          }
+        },
+        {
+          "type": "SET_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "tag": "condition:unrest"
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_EXODUS",
+      "title": "La Partenza",
+      "category": "MIGRATION",
+      "description": "Non se ne vanno tutti, e non se ne va nessuno del tutto. Ma qualcosa parte e non torna quell'anno.",
+      "effects": [
+        {
+          "type": "REMOVE_PRESENCE",
+          "target": {
+            "kind": "entity",
+            "id": "$proponent"
+          },
+          "payload": {
+            "region_id": "$region_focus",
+            "optional": true
+          }
+        },
+        {
+          "type": "SET_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_with:nomad_range"
+          },
+          "payload": {
+            "tag": "condition:emptied"
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_ACCOUNT_SETTLED",
+      "title": "Il Conto Saldato",
+      "category": "INFLUENCE",
+      "description": "Si paga per quello che si e fatto, davanti a chi lo ha subito. Non ripara niente, ma chiude.",
+      "effects": [
+        {
+          "type": "REMOVE_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "oath_broken",
+            "optional": true
+          }
+        },
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "account_settled"
+          }
+        },
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "$tension"
+          },
+          "payload": {
+            "delta": -2
+          }
+        }
+      ]
+    }
+  ]
+}
