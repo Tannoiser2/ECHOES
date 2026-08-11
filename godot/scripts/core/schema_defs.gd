@@ -849,6 +849,9 @@ const DEFS := {
 			"name_forms": {
 				"type": "Dictionary",
 			},
+			"map_position": {
+				"type": "Dictionary",
+			},
 		},
 	},
 	"save": {

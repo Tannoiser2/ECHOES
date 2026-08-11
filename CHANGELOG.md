@@ -5,6 +5,47 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.0] — Un tabellone, non un resoconto
+
+La milestone 0.1 comincia da dove serviva: chi apre la pagina vede una **mappa**,
+non un muro di log.
+
+### Added
+
+- **`ui/map_view.gd`** — le sei Regioni, le strade fra loro, e chi sta dove. I
+  token di presenza sono punti colorati per Entita, l'anello attorno alla Regione
+  e chi la controlla (niente anello = nessuno, che e un fatto da vedere, non un
+  vuoto), e sotto il nome compaiono condizioni, strutture e **Scar in rosso** —
+  l'unico segno che non viene mai via.
+- **`ui/status_panel.gd`** — le domande dell'anno come tracciati con soglia, che
+  virano all'ambra a un passo dal limite e al rosso quando lo superano. Una
+  Tensione velata mostra una barra vuota e la parola *velata*: presente,
+  illeggibile, e chiaramente li. E la scala del Destino, con le caselle gia
+  spuntate.
+- **`ui/hand_view.gd`** — la mano come carte, con il colore della famiglia. Quando
+  un Consiglio e aperto, una carta rilevante scrive il numero che entra davvero
+  nella somma (`authority · 2 ×2 = 4`) invece di quello stampato con una nota.
+- **`map_position`** nello schema delle Regioni: coordinate normalizzate 0..1,
+  autorate e non calcolate. Un algoritmo di layout disegna un'immagine corretta
+  dell'adiacenza e sbagliata del mondo, perche non sa che le montagne stanno a
+  ovest e che la valle nutre la citta.
+
+### La cucitura ha retto
+
+Nessuno dei tre nodi conosce una regola o puo raggiungere un decisore: prendono
+`(session, viewer_id)` e disegnano quello che **quel seggio** ha diritto di
+vedere — la stessa regola di §11.1 che segue il terminale, applicata ai pixel.
+Il motore non e stato toccato: i tre piani di simulazione escono byte per byte
+identici a prima della UI.
+
+### Fixed
+
+- Le spunte del Destino uscivano come quadratini: il font di fallback di una
+  build Web non ha il segno di spunta, e un glifo mancante si legge come un bug
+  del gioco invece che come un buco nel font. Ora e ASCII.
+
+---
+
 ## [0.0.14] — La Chronicle sa aspettare un click
 
 ECHOES gira in un browser, su GitHub Pages, da `godot/ui/`.

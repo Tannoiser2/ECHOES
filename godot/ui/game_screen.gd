@@ -1,11 +1,12 @@
 extends Control
-## The whole interface, for now: a transcript and a column of buttons.
+## The board: a map, the year's questions, the seat's hand, and the choices it
+## is being asked to make.
 ##
-## Milestone 0.1 replaces this with a map and a Confluence Board. What it will
-## not replace is the seam: the screen never decides anything and never reads
-## the rules. It shows what the log says and asks what the decider asks, so the
-## game in the browser is the same game the terminal plays - the smoke tests
-## prove it by running the same Chronicle through both.
+## The seam is the point and it has not moved: the screen never decides anything
+## and never reads a rule. `MapView`, `StatusPanel` and `HandView` each take a
+## session and a viewer and draw what that seat is entitled to see; the choices
+## come from SeatDecider, the same one the terminal drives. Swapping the drawing
+## for real art in 0.2 touches none of it.
 ##
 ## Built in code rather than in a .tscn so the layout lives next to the reasons
 ## for it, and so a scene file cannot drift from the script that drives it.
@@ -18,6 +19,9 @@ extends Control
 const DataSet := preload("res://scripts/core/data_set.gd")
 const GameSession := preload("res://scripts/chronicle/game_session.gd")
 const SeatDecider := preload("res://scripts/seat/seat_decider.gd")
+const MapView := preload("res://ui/map_view.gd")
+const StatusPanel := preload("res://ui/status_panel.gd")
+const HandView := preload("res://ui/hand_view.gd")
 
 const SEATS: Array = ["ENT_ALDRIC", "ENT_NAHR", "ENT_LYRA", "ENT_VAERAX"]
 
@@ -30,6 +34,13 @@ var _buttons: VBoxContainer
 var _scroll: ScrollContainer
 var _session: RefCounted
 var _busy: bool = false
+
+var _map: Control
+var _status: VBoxContainer
+var _hand: HBoxContainer
+## The seat the board is drawn for, and the Tension under discussion if any.
+var _viewer: String = ""
+var _focus_tension: String = ""
 
 
 func _ready() -> void:
@@ -49,30 +60,45 @@ func _build() -> void:
 	var margin := MarginContainer.new()
 	margin.set_anchors_preset(Control.PRESET_FULL_RECT)
 	for side in ["margin_left", "margin_right", "margin_top", "margin_bottom"]:
-		margin.add_theme_constant_override(side, 24)
+		margin.add_theme_constant_override(side, 16)
 	add_child(margin)
 
-	var columns := HSplitContainer.new()
-	columns.split_offset = 640
-	margin.add_child(columns)
+	var rows := VBoxContainer.new()
+	rows.add_theme_constant_override("separation", 12)
+	margin.add_child(rows)
 
+	var columns := HBoxContainer.new()
+	columns.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	columns.add_theme_constant_override("separation", 16)
+	rows.add_child(columns)
+
+	# The transcript is still the record, and still the same strings the log
+	# holds - but it is no longer the game. It sits where a rulebook sits.
 	_transcript = RichTextLabel.new()
 	_transcript.bbcode_enabled = true
 	_transcript.scroll_following = true
 	_transcript.selection_enabled = true
-	_transcript.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_transcript.add_theme_font_size_override("normal_font_size", 15)
-	_transcript.add_theme_color_override("default_color", Color("#d9d2c5"))
+	_transcript.custom_minimum_size = Vector2(300, 0)
+	_transcript.add_theme_font_size_override("normal_font_size", 12)
+	_transcript.add_theme_color_override("default_color", Color("#8a8172"))
 	columns.add_child(_transcript)
 
+	_map = MapView.new()
+	_map.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_map.size_flags_stretch_ratio = 2.2
+	columns.add_child(_map)
+
 	var right := VBoxContainer.new()
-	right.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	right.add_theme_constant_override("separation", 10)
+	right.custom_minimum_size = Vector2(280, 0)
+	right.add_theme_constant_override("separation", 12)
 	columns.add_child(right)
+
+	_status = StatusPanel.new()
+	right.add_child(_status)
 
 	_prompt = Label.new()
 	_prompt.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	_prompt.add_theme_font_size_override("font_size", 17)
+	_prompt.add_theme_font_size_override("font_size", 15)
 	_prompt.add_theme_color_override("font_color", Color("#e8b563"))
 	right.add_child(_prompt)
 
@@ -83,8 +109,23 @@ func _build() -> void:
 
 	_buttons = VBoxContainer.new()
 	_buttons.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_buttons.add_theme_constant_override("separation", 6)
+	_buttons.add_theme_constant_override("separation", 5)
 	_scroll.add_child(_buttons)
+
+	_hand = HandView.new()
+	_hand.custom_minimum_size = Vector2(0, 80)
+	rows.add_child(_hand)
+
+
+## Redraw the board from the world. Called after every phase and before every
+## question, because a player choosing an action must be looking at the state
+## the action will apply to - not the state of the last screenshot.
+func _refresh() -> void:
+	if _session == null:
+		return
+	_map.render(_session, _viewer)
+	_status.render(_session, _viewer)
+	_hand.render(_session, _viewer, _focus_tension)
 
 
 # --- the screen's whole API -------------------------------------------------
@@ -110,6 +151,7 @@ func choose(prompt: String, labels: Array) -> int:
 
 ## Put the choices on screen and suspend until one is pressed.
 func ask(prompt: String, labels: Array) -> int:
+	_refresh()
 	_prompt.text = prompt
 	_clear_buttons()
 	for i in range(labels.size()):
@@ -184,7 +226,9 @@ func _play(humans: Array) -> void:
 
 	var shown: Dictionary = {"lines": 0}
 	_session.chronicle.phase_changed.connect(
-		func(_a: int, _r: int, _p: String) -> void: _flush(shown)
+		func(_a: int, _r: int, _p: String) -> void:
+			_flush(shown)
+			_refresh()
 	)
 
 	say("[b]%s[/b] — anno %d, seme %d" % [
@@ -192,10 +236,22 @@ func _play(humans: Array) -> void:
 	])
 	say("")
 
+	_viewer = "" if humans.is_empty() else str(humans[0])
+	_focus_tension = ""
+	# Which question the table is on: it decides what the hand is worth, and the
+	# board has no other way to know - the decider never tells it anything.
+	_session.confluence.step_changed.connect(
+		func(step: String, context: Dictionary) -> void:
+			_focus_tension = "" if step == "RESOLVED" else str(context["tension_id"])
+	)
+	_refresh()
+
 	var seat: RefCounted = SeatDecider.new(humans, _session.log)
 	seat.io = self
 	var report: Dictionary = await _session.run(seat)
+	_focus_tension = ""
 	_flush(shown)
+	_refresh()
 	_ending(data, report)
 	_session.dispose()
 	_session = null
