@@ -67,8 +67,15 @@ jobs:
             --export-release "Web" ../build/web/index.html
           test -f build/web/index.wasm
 
+      # `enablement: true` mette Pages in modalita "GitHub Actions" via API invece
+      # di dipendere da un interruttore nelle impostazioni. Senza, il primo
+      # deploy fallisce in due secondi senza log e senza runner - il job non
+      # parte proprio - perche il build type e ancora "Deploy from a branch",
+      # e non c'e niente nell'output che lo dica.
       - uses: actions/configure-pages@v5
         if: github.ref == 'refs/heads/main'
+        with:
+          enablement: true
       - uses: actions/upload-pages-artifact@v3
         if: github.ref == 'refs/heads/main'
         with:
