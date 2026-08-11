@@ -67,15 +67,43 @@ jobs:
             --export-release "Web" ../build/web/index.html
           test -f build/web/index.wasm
 
-      # `enablement: true` mette Pages in modalita "GitHub Actions" via API invece
-      # di dipendere da un interruttore nelle impostazioni. Senza, il primo
-      # deploy fallisce in due secondi senza log e senza runner - il job non
-      # parte proprio - perche il build type e ancora "Deploy from a branch",
-      # e non c'e niente nell'output che lo dica.
+      # Mettere Pages in modalita "GitHub Actions" via API, che e l'unico modo
+      # da qui: `configure-pages` fa POST /pages, che *crea* la configurazione
+      # se manca e non tocca quella che c'e gia - infatti su questo repo dura
+      # zero secondi e non cambia niente. PUT /pages invece aggiorna una
+      # configurazione esistente, ed e li che vive `build_type`.
+      #
+      # Finche il build_type resta "legacy" (Deploy from a branch), l'ambiente
+      # github-pages consente il deploy solo dal branch scelto nelle
+      # impostazioni, e il job Pubblica viene rifiutato PRIMA di ricevere un
+      # runner: un secondo, nessun log, nessuna annotazione sul check. Non c'e
+      # niente da leggere, ed e per questo che questo passo stampa comunque la
+      # risposta di GitHub invece di ingoiarla.
+      - name: Pages in modalita "GitHub Actions"
+        if: github.ref == 'refs/heads/main'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          api="https://api.github.com/repos/${{ github.repository }}/pages"
+          auth=(-H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json")
+          echo "--- stato attuale"
+          curl -sS "${auth[@]}" "$api" || true
+          echo "--- PUT build_type=workflow"
+          code=$(curl -sS -o /tmp/put.txt -w '%{http_code}' -X PUT "${auth[@]}" \
+            "$api" -d '{"build_type":"workflow"}')
+          echo "HTTP $code"; cat /tmp/put.txt 2>/dev/null || true
+          if [ "$code" = "404" ]; then
+            echo "--- Pages non esiste: POST"
+            curl -sS -X POST "${auth[@]}" "$api" \
+              -d '{"build_type":"workflow"}' || true
+          fi
+          echo "--- stato dopo"
+          curl -sS "${auth[@]}" "$api" || true
+
       - uses: actions/configure-pages@v5
         if: github.ref == 'refs/heads/main'
-        with:
-          enablement: true
+
       - uses: actions/upload-pages-artifact@v3
         if: github.ref == 'refs/heads/main'
         with:
