@@ -7,7 +7,7 @@ extends "res://tests/test_case.gd"
 
 const WorldStateFactory := preload("res://scripts/world/world_state_factory.gd")
 const RngService := preload("res://scripts/core/rng_service.gd")
-const PolicyDecider := preload("res://cli/policy_decider.gd")
+const PolicyDecider := preload("res://scripts/seat/policy_decider.gd")
 
 ## GameSession and DataSet come from test_case.gd; re-declaring them is a parse
 ## error, so the seats live here instead.
@@ -117,7 +117,7 @@ func test_a_library_chronicle_plays_to_the_end() -> void:
 	var session_two: RefCounted = GameSession.new(data())
 	assert_true(session_two.setup("CHR_02", LIBRARY_SEATS, 7777), "CHR_02 si prepara")
 	assert_eq((session_two.world["tensions"] as Dictionary).size(), 4, "quattro domande pescate")
-	var report: Dictionary = session_two.run(PolicyDecider.new(session_two.log))
+	var report: Dictionary = await session_two.run(PolicyDecider.new(session_two.log))
 	assert_eq(int(report["illegal_actions"]), 0, "nessuna scelta illegale")
 	assert_true(int(session_two.world["confluence_count"]) > 0, "almeno una Confluence si apre")
 	session_two.dispose()

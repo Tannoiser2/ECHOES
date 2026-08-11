@@ -19,7 +19,7 @@ extends "res://tests/test_case.gd"
 ## Chronicles the rate is now 1.3 per Tension, still below §7's own, with a
 ## median of 5 in three blocks and 6 in the fourth.
 
-const PolicyDecider := preload("res://cli/policy_decider.gd")
+const PolicyDecider := preload("res://scripts/seat/policy_decider.gd")
 # GameSession comes from test_case.gd; re-declaring it is a parse error.
 
 const SEATS: Array = ["ENT_ALDRIC", "ENT_NAHR", "ENT_LYRA", "ENT_VAERAX"]
@@ -37,7 +37,7 @@ const BAND_HIGH: int = 6
 
 func _play(seed_value: int) -> Dictionary:
 	new_session(seed_value, false)
-	var report: Dictionary = session.run(PolicyDecider.new(session.log))
+	var report: Dictionary = await session.run(PolicyDecider.new(session.log))
 	return report
 
 
@@ -75,7 +75,7 @@ func test_destinies_are_contested() -> void:
 	var levels: Dictionary = {}
 	var echoes: int = 0
 	for i in range(RUNS):
-		var report: Dictionary = _play(FIRST_SEED + i)
+		var report: Dictionary = await _play(FIRST_SEED + i)
 		echoes += int(report["echoes"])
 		for entity_id in SEATS:
 			var level: String = str(report["destiny_results"][str(entity_id)]["level"])
@@ -132,11 +132,11 @@ func test_influence_cap_holds_over_a_whole_chronicle() -> void:
 ## The measuring instrument itself has to be reproducible, or none of the numbers
 ## above mean anything.
 func test_the_probe_is_deterministic() -> void:
-	var first: Dictionary = _play(FIRST_SEED)
+	var first: Dictionary = await _play(FIRST_SEED)
 	var first_count: int = int(session.world["confluence_count"])
 	var first_log: String = session.log.text()
 
-	var second: Dictionary = _play(FIRST_SEED)
+	var second: Dictionary = await _play(FIRST_SEED)
 	assert_eq(int(session.world["confluence_count"]), first_count, "stesso seed, stesso numero di Confluence")
 	assert_eq(session.log.text(), first_log, "stesso seed, stessa partita riga per riga")
 	assert_eq(int(second["echoes"]), int(first["echoes"]), "stesso seed, stessi Echo")
@@ -146,7 +146,7 @@ func test_the_probe_is_deterministic() -> void:
 ## illegal actions: if it does, the numbers above are measuring the wrong thing.
 func test_the_policy_never_proposes_an_illegal_action() -> void:
 	for i in range(RUNS):
-		var report: Dictionary = _play(FIRST_SEED + i)
+		var report: Dictionary = await _play(FIRST_SEED + i)
 		assert_eq(
 			int(report["illegal_actions"]),
 			0,
@@ -323,7 +323,7 @@ func test_an_open_council_can_always_resolve_its_slots() -> void:
 						"lo slot $%s deve risolversi in qualcosa" % key
 					)
 		)
-		session.run(PolicyDecider.new(session.log))
+		await session.run(PolicyDecider.new(session.log))
 	assert_true(int(seen["councils"]) > 0, "almeno un Consiglio si e aperto")
 
 

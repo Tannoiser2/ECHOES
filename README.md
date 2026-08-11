@@ -46,6 +46,25 @@ caricare agli smoke test. Non c'è UI di gioco: è previsto.
 
 ---
 
+## Giocare nel browser
+
+Il progetto esporta come applicazione web ed e pubblicato su GitHub Pages dal
+workflow `.github/workflows/pages.yml` a ogni push su `main`. Non c'e niente da
+installare: si apre una pagina.
+
+L'export e **single-thread** di proposito. La build Web con i thread richiede
+`SharedArrayBuffer`, che richiede gli header `COOP`/`COEP`, che GitHub Pages non
+puo mandare. Un gioco a turni che aspetta un click non ha niente da guadagnare
+dai thread e tutto da perdere dal non caricare.
+
+Per costruirlo in locale servono Godot 4.7.1 e i suoi export template:
+
+```bash
+godot --headless --path godot --import
+godot --headless --path godot --export-release "Web" ../build/web/index.html
+python3 -m http.server -d build/web 8099     # e poi apri localhost:8099
+```
+
 ## Sedersi al tavolo
 
 ```bash
@@ -178,9 +197,12 @@ godot/
     confluence/  ConfluenceController, confluence_resolution (Strategy baseline_v0)
     actions/     ActionResolver — i sei template
   data/          contenuto della Chronicle I (ridotto §18.2)
-  cli/           run_hotseat.gd, human_decider.gd — il tavolo umano
+    seat/        seat_decider.gd — cosa un seggio vede e puo fare
+                 policy_decider.gd — l'avversario
+  ui/            game_screen.gd, main.tscn — il tavolo nel browser
+  cli/           run_hotseat.gd, terminal_io.gd — il tavolo nel terminale
                  run_chronicle_sim.gd, scripted_decider.gd
-                 run_balance_probe.gd, policy_decider.gd, e le altre sonde
+                 run_balance_probe.gd e le altre sonde
   tests/         unit/ e smoke/, con il runner
 docs/            design, regole, decisioni, piano di test, art bible
 ```

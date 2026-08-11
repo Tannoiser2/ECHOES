@@ -20,7 +20,7 @@ extends SceneTree
 
 const DataSet := preload("res://scripts/core/data_set.gd")
 const GameSession := preload("res://scripts/chronicle/game_session.gd")
-const PolicyDecider := preload("res://cli/policy_decider.gd")
+const PolicyDecider := preload("res://scripts/seat/policy_decider.gd")
 
 const SEATS: Array = ["ENT_ALDRIC", "ENT_NAHR", "ENT_LYRA", "ENT_VAERAX"]
 
@@ -59,7 +59,7 @@ func _single_chronicle_ceiling(data: RefCounted, runs: int, first_seed: int, chr
 	for i in range(runs):
 		var session: RefCounted = GameSession.new(data)
 		session.setup(chronicle_id, SEATS, first_seed + i)
-		session.run(PolicyDecider.new(session.log))
+		await session.run(PolicyDecider.new(session.log))
 		var world: Dictionary = session.world
 
 		var control: String = _control_signature(world)
@@ -147,7 +147,7 @@ func _campaign(data: RefCounted, chronicles: int, first_seed: int, chronicle_id:
 				]
 				focus_regions[key] = int(focus_regions.get(key, 0)) + 1
 		)
-		var report: Dictionary = session.run(PolicyDecider.new(session.log))
+		var report: Dictionary = await session.run(PolicyDecider.new(session.log))
 		var world: Dictionary = session.world
 
 		if index == 0:

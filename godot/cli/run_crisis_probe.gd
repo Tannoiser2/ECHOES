@@ -17,7 +17,7 @@ extends SceneTree
 
 const DataSet := preload("res://scripts/core/data_set.gd")
 const GameSession := preload("res://scripts/chronicle/game_session.gd")
-const PolicyDecider := preload("res://cli/policy_decider.gd")
+const PolicyDecider := preload("res://scripts/seat/policy_decider.gd")
 const SuppressorDecider := preload("res://cli/suppressor_decider.gd")
 
 const SEATS: Array = ["ENT_ALDRIC", "ENT_NAHR", "ENT_LYRA", "ENT_VAERAX"]
@@ -81,7 +81,7 @@ func _measure(data: RefCounted, runs: int, first_seed: int, chronicle_id: String
 		var decider: Object = (
 			SuppressorDecider.new() if mode == "suppress" else PolicyDecider.new(session.log)
 		)
-		var report: Dictionary = session.run(decider)
+		var report: Dictionary = await session.run(decider)
 
 		var opened: Dictionary = {}
 		for result in report["confluences"]:

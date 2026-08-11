@@ -331,6 +331,80 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-038 — The Chronicle can wait for a click
+**implemented in 0.0.14**
+
+ECHOES runs in a browser, on GitHub Pages, from `godot/ui/`. Getting there
+needed one engine change, one refactor, and three bugs that only a real browser
+could find.
+
+### `run()` is a coroutine now
+
+The controller drove the whole Chronicle in one synchronous call. A terminal can
+block on `read_string_from_stdin` inside that call; a browser cannot block on a
+click without freezing the page and never receiving it.
+
+So the six decider calls are `await`ed, and `run()`, `play_act()`, `play_round()`
+and `run_confluence()` became coroutines. **Nothing else changed.** A decider
+that answers immediately never suspends - `await` on a synchronous call returns
+straight away - and the proof is that the three sim plans come out **byte for
+byte identical** before and after, as do all six probes.
+
+The cost was 22 call sites needing `await`, which the compiler found one
+transitive layer at a time. That is the right kind of cost: mechanical, and
+impossible to get half-right silently.
+
+### `SeatDecider`, and why injection beat inheritance
+
+The terminal seat and the browser seat differ in exactly two things: how a line
+is shown and how a choice is collected. Everything else - which actions the
+rules allow, what the board looks like from one seat, which Tension shows a
+number to whom - must be the same code, or it is two implementations to keep in
+agreement.
+
+The first attempt had the browser decider `extend` the terminal one. **The
+exported build could not resolve it**: `extends "res://path.gd"` does not survive
+export, while `preload` does. That is exactly why this codebase uses
+`const X := preload(...)` and no `class_name`, and the rule held here too.
+
+So the shared logic moved to `scripts/seat/seat_decider.gd` with an injected
+`io` - any object with `say(text)` and `choose(prompt, labels) -> int`.
+`cli/terminal_io.gd` implements it with stdout and stdin; `ui/game_screen.gd`
+*is* the implementation for the browser. A null `io` means nobody is watching,
+and every choice defers to the policy - which is what the smoke test uses, and
+why it can assert that an unwatched table plays exactly like four policies.
+
+### Three bugs only the browser found
+
+Playwright loaded the exported page and clicked through a Chronicle. Each of
+these passed every headless check first:
+
+1. `ui_decider.gd` extended `cli/human_decider.gd`, and `cli/*` is excluded from
+   the export. Unresolvable script, blank page.
+2. `scripts/seat/` was missing from the pack entirely: the export ran before the
+   import cache had seen the new folder. The workflow now imports first.
+3. `policy_decider.gd` lived in `cli/`. It is the opponent - the browser needs
+   it. Moved to `scripts/seat/`, where a seat played by a machine belongs.
+
+None of the three is exotic, and none would have been caught by anything short
+of opening the page. A build that compiles and exports is not a build that runs.
+
+### Single-threaded on purpose
+
+The threaded Web export needs `SharedArrayBuffer`, which needs COOP/COEP
+response headers, which GitHub Pages cannot send. `web_nothreads_release` is the
+template used. A turn-based game that spends its life awaiting a click has
+nothing to gain from threads and everything to lose from not loading at all.
+
+### What this is not
+
+A map, a Confluence Board, art. It is a transcript and a column of buttons -
+0.1's work, unstarted. What it is, is the seam holding: the screen decides
+nothing and reads no rules, so the game in the browser is the game the terminal
+plays and the tests measure.
+
+---
+
 ## D-037 — The fifth decider is a person
 **implemented in 0.0.13**
 

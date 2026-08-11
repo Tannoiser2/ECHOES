@@ -161,7 +161,7 @@ func undo(count: int = 1) -> bool:
 
 
 func run(decider: Object) -> Dictionary:
-	return chronicle.run(decider)
+	return await chronicle.run(decider)
 
 
 ## Break the session <-> log/applier signal cycles so the objects can be freed.

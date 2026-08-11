@@ -5,6 +5,56 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.0.14] — La Chronicle sa aspettare un click
+
+ECHOES gira in un browser, su GitHub Pages, da `godot/ui/`.
+
+### Changed
+
+- **`ChronicleController.run()` e una coroutine.** Un terminale puo bloccarsi su
+  stdin dentro una chiamata sincrona; un browser non puo bloccarsi su un click
+  senza congelare la pagina e non riceverlo mai. Le sei chiamate al decider sono
+  `await`, e `run()` / `play_act()` / `play_round()` / `run_confluence()` sono
+  coroutine. **Nient'altro e cambiato**: un decider che risponde subito non
+  sospende mai, e la prova e che i tre piani di simulazione escono **byte per
+  byte identici** a prima, e cosi tutte e sei le sonde.
+
+- **`scripts/seat/seat_decider.gd`** — quello che un seggio vede e puo fare, con
+  l'I/O **iniettato** invece che ereditato: un oggetto qualsiasi con `say(text)` e
+  `choose(prompt, labels) -> int`. `cli/terminal_io.gd` lo implementa su stdin e
+  stdout, `ui/game_screen.gd` lo *e* per il browser. Cosi le due interfacce non
+  possono litigare su quali azioni siano legali: e lo stesso decider.
+  `policy_decider.gd` si sposta da `cli/` a `scripts/seat/` — e l'avversario, e
+  nel browser serve.
+
+### Added
+
+- **`godot/ui/`** — un resoconto e una colonna di bottoni. Non e la mappa, non e
+  la plancia della Confluence: quello e il lavoro della 0.1. E la cucitura che
+  regge — lo schermo non decide niente e non legge le regole.
+- **`.github/workflows/pages.yml`** — export Web e pubblicazione su Pages a ogni
+  push su `main`. Single-thread di proposito: la build con i thread richiede
+  `SharedArrayBuffer`, che richiede header COOP/COEP, che Pages non puo mandare.
+
+### Fixed
+
+Tre bug che **solo il browser** ha trovato. Playwright ha caricato la pagina
+esportata e ha giocato una Chronicle a click. Ognuno di questi era passato prima
+attraverso tutti i controlli headless:
+
+- Il decider del browser ereditava da `cli/human_decider.gd`, e `cli/*` e escluso
+  dall'export: script irrisolvibile, pagina bianca. `extends "res://path.gd"` non
+  sopravvive all'export, `preload` si — che e esattamente il motivo per cui
+  questo progetto usa `const X := preload(...)` e niente `class_name`.
+- `scripts/seat/` mancava del tutto dal pacchetto: l'export era girato prima che
+  la cache di import vedesse la cartella nuova. Il workflow ora importa prima.
+- `policy_decider.gd` stava in `cli/`.
+
+Nessuno dei tre e esotico, e nessuno sarebbe stato preso da qualcosa di meno che
+aprire la pagina. **Una build che compila ed esporta non e una build che gira.**
+
+---
+
 ## [0.0.13] — Il quinto decisore e una persona
 
 ### Added

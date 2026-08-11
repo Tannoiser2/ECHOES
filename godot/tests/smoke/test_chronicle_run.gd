@@ -34,7 +34,7 @@ func _run(file_name: String) -> Dictionary:
 	if plan.is_empty():
 		return {}
 	new_session(int(plan["seed"]), false)
-	var report: Dictionary = session.run(ScriptedDecider.new(plan, session.log))
+	var report: Dictionary = await session.run(ScriptedDecider.new(plan, session.log))
 	report["plan"] = plan
 	return report
 
@@ -44,7 +44,7 @@ func test_every_plan_runs_to_the_end() -> void:
 	var files: Array = _plan_files()
 	assert_true(files.size() >= 3, "almeno tre piani d'esempio (§18.1)")
 	for file_name in files:
-		var report: Dictionary = _run(str(file_name))
+		var report: Dictionary = await _run(str(file_name))
 		if report.is_empty():
 			continue
 		assert_eq(
@@ -65,7 +65,7 @@ func test_every_plan_runs_to_the_end() -> void:
 func test_plans_meet_their_expectations_and_differ() -> void:
 	var signatures: Array = []
 	for file_name in _plan_files():
-		var report: Dictionary = _run(str(file_name))
+		var report: Dictionary = await _run(str(file_name))
 		if report.is_empty():
 			continue
 		var plan: Dictionary = report["plan"]
@@ -104,7 +104,7 @@ func test_at_least_one_plan_writes_history() -> void:
 	var echoes: int = 0
 	var truths: int = 0
 	for file_name in _plan_files():
-		var report: Dictionary = _run(str(file_name))
+		var report: Dictionary = await _run(str(file_name))
 		if report.is_empty():
 			continue
 		echoes += int(report["echoes"])
@@ -130,18 +130,18 @@ func test_same_seed_and_plan_give_an_identical_save() -> void:
 func test_a_different_seed_changes_the_run() -> void:
 	var plan: Dictionary = _plan(str(_plan_files()[0]))
 	new_session(int(plan["seed"]), false)
-	session.run(ScriptedDecider.new(plan.duplicate(true), session.log))
+	await session.run(ScriptedDecider.new(plan.duplicate(true), session.log))
 	var first: String = SaveSerializer.to_json(session.to_save("det"))
 
 	new_session(int(plan["seed"]) + 7, false)
-	session.run(ScriptedDecider.new(plan.duplicate(true), session.log))
+	await session.run(ScriptedDecider.new(plan.duplicate(true), session.log))
 	var second: String = SaveSerializer.to_json(session.to_save("det"))
 	assert_ne(first, second, "un seed diverso produce una Chronicle diversa")
 
 
 ## The public log must never print a veiled Tension's number (§11.1, §19.2).
 func test_the_public_log_keeps_veiled_values_private() -> void:
-	var report: Dictionary = _run(str(_plan_files()[0]))
+	var report: Dictionary = await _run(str(_plan_files()[0]))
 	if report.is_empty():
 		return
 	var text: String = session.log.text()

@@ -119,7 +119,7 @@ func test_longer_slots_are_substituted_first() -> void:
 ## The Truth register is permanent and cannot be undone: a $slot surviving into
 ## it would be a bug nobody can take back.
 func test_no_slot_survives_into_the_truth_register() -> void:
-	session.run(load("res://cli/policy_decider.gd").new(session.log))
+	await session.run(load("res://scripts/seat/policy_decider.gd").new(session.log))
 	var checked: int = 0
 	for truth in session.world["truth_log"]:
 		assert_false(

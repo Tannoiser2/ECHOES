@@ -39,10 +39,17 @@ func _init(p_session: RefCounted) -> void:
 
 
 ## Play the whole Chronicle. Returns a run report.
+##
+## A coroutine, and only because of one thing: a decider may need to *wait*.
+## A CLI decider answers immediately and this never suspends - `await` on a
+## synchronous call returns straight away, so the headless runs are unchanged
+## down to the byte. A decider driven by a mouse cannot answer immediately, and
+## without this the browser would have to freeze the whole Chronicle to ask a
+## question (D-038).
 func run(decider: Object) -> Dictionary:
 	setup()
 	for act in range(1, int(_chronicle["acts"]) + 1):
-		play_act(act, decider)
+		await play_act(act, decider)
 	return chronicle_end()
 
 
@@ -77,8 +84,8 @@ func setup() -> void:
 func play_act(act: int, decider: Object) -> void:
 	log.section("ATTO %d" % act)
 	for round_number in range(1, int(_chronicle["rounds_per_act"]) + 1):
-		play_round(act, round_number, decider)
-	end_of_act(act, decider)
+		await play_round(act, round_number, decider)
+	await end_of_act(act, decider)
 
 
 func play_round(act: int, round_number: int, decider: Object) -> void:
@@ -92,7 +99,7 @@ func play_round(act: int, round_number: int, decider: Object) -> void:
 	for entity_id in session.service.active_entities():
 		world["entities"][entity_id]["ao_remaining"] = opportunities
 		for ao_index in range(opportunities):
-			var request: Variant = decider.choose_action(str(entity_id), ao_index, session)
+			var request: Variant = await decider.choose_action(str(entity_id), ao_index, session)
 			if request == null:
 				request = {"template": "PASS", "params": {}}
 			var outcome: Dictionary = session.actions.execute(str(entity_id), request)
@@ -111,7 +118,7 @@ func play_round(act: int, round_number: int, decider: Object) -> void:
 	_apply_overextension(act, round_number)
 
 	_set_phase(act, round_number, "THRESHOLD_CHECK")
-	_end_of_round_confluence(decider)
+	await _end_of_round_confluence(decider)
 
 	for tension_id in world["tensions"]:
 		log.bullet(session.tensions.public_status(str(tension_id)))
@@ -197,7 +204,7 @@ func _end_of_round_confluence(decider: Object) -> void:
 			% ", ".join(PackedStringArray(world["confluence_queue"]))
 		)
 	_set_phase(int(world["act"]), int(world["round"]), "CONFLUENCE")
-	run_confluence(tension_id, trigger, decider)
+	await run_confluence(tension_id, trigger, decider)
 
 
 ## Drive one Confluence through A-K with the decider answering C, D, E.
@@ -214,7 +221,7 @@ func run_confluence(tension_id: String, trigger: Dictionary, decider: Object) ->
 
 	var questions: Array = controller.available_questions()
 	if questions.size() > 1:
-		var question_id: String = str(decider.choose_question(context, questions, session))
+		var question_id: String = str(await decider.choose_question(context, questions, session))
 		if question_id != "" and question_id != str(context["question_id"]):
 			if not controller.set_question(question_id):
 				log.bullet("Domanda non valida (%s): si mantiene quella di default." % controller.last_error)
@@ -225,7 +232,7 @@ func run_confluence(tension_id: String, trigger: Dictionary, decider: Object) ->
 		log.bullet("Confluence senza proposte disponibili: annullata.")
 		controller.current = {}
 		return {}
-	var proposition_id: String = str(decider.choose_proposition(context, options, session))
+	var proposition_id: String = str(await decider.choose_proposition(context, options, session))
 	if not controller.set_proposition(proposition_id):
 		# A scripted plan that names an unavailable proposition must not stall
 		# the Chronicle: fall back to the first legal option and say so.
@@ -234,7 +241,7 @@ func run_confluence(tension_id: String, trigger: Dictionary, decider: Object) ->
 		controller.set_proposition(str(options[0]["id"]))
 
 	for entity_id in controller.stance_order():
-		var declaration: Dictionary = decider.choose_stance(str(entity_id), context, session)
+		var declaration: Dictionary = await decider.choose_stance(str(entity_id), context, session)
 		if not controller.declare_stance(
 			str(entity_id), str(declaration.get("stance", "ABSTAIN")), str(declaration.get("clause_id", ""))
 		):
@@ -246,13 +253,13 @@ func run_confluence(tension_id: String, trigger: Dictionary, decider: Object) ->
 		var limit: int = controller.max_commit_for(str(entity_id))
 		if limit <= 0:
 			continue
-		var committed: Array = decider.choose_commit(str(entity_id), context, limit, session)
+		var committed: Array = await decider.choose_commit(str(entity_id), context, limit, session)
 		if not controller.commit(str(entity_id), committed):
 			log.bullet("Impegno rifiutato (%s): %s impegna 0 Asset." % [controller.last_error, _name(str(entity_id))])
 			illegal_actions += 1
 			controller.commit(str(entity_id), [])
 
-	var recovery: Dictionary = decider.choose_recovery(context, session)
+	var recovery: Dictionary = await decider.choose_recovery(context, session)
 	var result: Dictionary = controller.resolve(recovery)
 	if not result.is_empty():
 		confluence_results.append(result)
@@ -306,7 +313,7 @@ func end_of_act(act: int, decider: Object) -> void:
 	var forced: Variant = card.get("forces_confluence_on", null)
 	if forced != null and world["tensions"].has(str(forced)):
 		log.bullet("La carta prescrive una Confluence su %s." % str(forced))
-		run_confluence(str(forced), {"kind": "ECHO_CARD", "entity_id": ""}, decider)
+		await run_confluence(str(forced), {"kind": "ECHO_CARD", "entity_id": ""}, decider)
 
 
 ## An Echo card has no Confluence behind it, so `$region_focus` has nothing to

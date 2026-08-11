@@ -99,7 +99,7 @@ func data() -> RefCounted:
 ##
 ## `apply_setup` puts the table in its opening position (presence tokens, hands)
 ## so a unit test can act immediately. Pass false when the test is going to call
-## session.run(), which performs its own setup - applying it twice would deal
+## await session.run(), which performs its own setup - applying it twice would deal
 ## every opening hand a second time.
 func new_session(seed_value: int = 4242, apply_setup: bool = true) -> RefCounted:
 	if session != null:

@@ -1,38 +1,39 @@
 extends RefCounted
-## A seat played by a person, at the keyboard.
+## What a seat can see and what it may do - without saying how it is shown.
 ##
 ## The ChronicleController has never known who its players are - it asks a
 ## duck-typed `decider` and applies whatever comes back. Four of those exist for
 ## machines: ScriptedDecider replays authored plans, PolicyDecider plays to win,
 ## SuppressorDecider only ever calms things down, and the stance probe borrows
-## PolicyDecider to read its mind. This is the fifth, and the first one that
-## does not decide anything itself.
+## PolicyDecider to read its mind. This is the base of the ones a person drives,
+## and the first that decides nothing itself.
 ##
-## It exists because the measurements have run out of things to say. Three
-## rounds in a row found the *instrument* at fault rather than the rules, and
-## what is left open (O-14: the crown sits at Minimum in 32 Chronicles out of 40)
-## is a question about whether a game feels right, which no probe can answer.
+## It holds the two things both front-ends need and neither should own twice:
+## the board as one seat sees it, and the list of actions the rules will
+## actually accept. `cli/human_decider.gd` renders those to a terminal,
+## `ui/ui_decider.gd` to buttons in a browser. Two implementations of "what may
+## I do right now" would be two implementations to keep in agreement (D-038).
 ##
 ## Seats not listed as human fall through to `fallback`, so one person can sit
 ## down against three policies.
 ##
-## An empty answer always means "you decide" and hands that one choice back to
-## the policy. That is also what makes a piped script work: Godot returns the
-## same empty string for a bare Enter and for end-of-input, so there is no way to
-## tell them apart - and no need to. Once the answers run out every remaining
-## prompt reads empty, takes the default, and the policy finishes the Chronicle.
-## An earlier version tried to detect EOF and latch itself off, which meant a
-## player who accepted a single default was locked out of their own game.
+## How a choice is *shown* is injected, not inherited: `io` is any object with
+## `say(text)` and `choose(prompt, labels) -> int`. A terminal implements it with
+## stdout and stdin, the browser screen with a panel and buttons, and a test
+## leaves it null - which makes every choice defer to the policy, exactly what a
+## seat nobody is watching should do.
+##
+## Injected rather than subclassed for a concrete reason, found by loading the
+## exported build in a real browser: `extends "res://path.gd"` does not resolve
+## in an exported project, while `preload` does. That is why this whole codebase
+## uses `const X := preload(...)` and no `class_name`, and the rule holds here.
 
-const PolicyDecider := preload("res://cli/policy_decider.gd")
+const PolicyDecider := preload("res://scripts/seat/policy_decider.gd")
 
 ## Entity ids a person is playing.
 var humans: Dictionary = {}
 var fallback: RefCounted
 var log: RefCounted
-## Tests drive this decider to prove an unanswered table plays like the policy;
-## the prompts are the point in a terminal and noise in a test run.
-var quiet: bool = false
 
 
 func _init(p_humans: Array, p_log: RefCounted = null) -> void:
@@ -48,42 +49,33 @@ func _is_human(entity_id: String) -> bool:
 
 # --- reading a person -------------------------------------------------------
 
+## Anything with `say(text)` and `choose(prompt, labels) -> int`. Null means
+## nobody is watching this seat.
+var io: Object = null
+
+
 func _say(text: String) -> void:
-	if not quiet:
-		print(text)
+	if io != null:
+		io.say(text)
 
 
-## One line from the keyboard. Empty means "you decide" - and Godot returns the
-## same empty string at end-of-input, which is why that is the right meaning.
-func _ask(prompt: String) -> String:
-	if quiet:
-		return ""
-	printraw("%s " % prompt)
-	return OS.read_string_from_stdin(1024).strip_edges()
-
-
-## A numbered menu. Returns the chosen index, or -1 for "you decide" - which is
-## always an option, so a player can hand any single choice back to the policy
-## without leaving the game.
+## Offer the choices and wait for one. Returns the chosen index, or -1 for
+## "you decide", which hands this single choice back to the policy without
+## taking the player out of their game.
+##
+## A coroutine: a mouse cannot answer on the same frame it was asked, and
+## `ChronicleController.run()` is awaitable precisely so this can suspend the
+## Chronicle in place instead of freezing it (D-038).
 func _choose(prompt: String, entries: Array, default_index: int = -1) -> int:
-	if entries.is_empty():
-		return -1
-	for i in range(entries.size()):
-		_say("   %2d) %s" % [i + 1, str(entries[i])])
-	var suffix: String = " [invio = lascia decidere alla policy]"
-	if default_index >= 0:
-		suffix = " [invio = %d]" % (default_index + 1)
-	var answer: String = _ask("%s%s" % [prompt, suffix])
-	if answer == "":
+	if entries.is_empty() or io == null:
 		return default_index
-	if not answer.is_valid_int():
-		_say("   (non e un numero: decide la policy)")
+	var labels: Array = []
+	for entry in entries:
+		labels.append(str(entry))
+	var picked: int = await io.choose(prompt, labels)
+	if picked < 0 or picked >= entries.size():
 		return default_index
-	var index: int = answer.to_int() - 1
-	if index < 0 or index >= entries.size():
-		_say("   (fuori elenco: decide la policy)")
-		return default_index
-	return index
+	return picked
 
 
 # --- the turn ---------------------------------------------------------------
@@ -99,7 +91,7 @@ func choose_action(entity_id: String, ao_index: int, session: RefCounted) -> Dic
 	for option in options:
 		labels.append(str(option["label"]))
 	labels.append("Passa")
-	var choice: int = _choose(
+	var choice: int = await _choose(
 		"%s, azione %d:" % [_name(entity_id, session), ao_index + 1], labels
 	)
 	if choice < 0:
@@ -198,7 +190,7 @@ func choose_question(context: Dictionary, options: Array, session: RefCounted) -
 	var labels: Array = []
 	for question in options:
 		labels.append(session.confluence.say(str(question["text"])))
-	var choice: int = _choose("  Quale domanda poni?", labels)
+	var choice: int = await _choose("  Quale domanda poni?", labels)
 	if choice < 0:
 		return fallback.choose_question(context, options, session)
 	return str(options[choice]["id"])
@@ -211,7 +203,7 @@ func choose_proposition(context: Dictionary, options: Array, session: RefCounted
 	var labels: Array = []
 	for proposition in options:
 		labels.append(session.confluence.say(str(proposition["text"])))
-	var choice: int = _choose("  Cosa proponi?", labels)
+	var choice: int = await _choose("  Cosa proponi?", labels)
 	if choice < 0:
 		return fallback.choose_proposition(context, options, session)
 	return str(options[choice]["id"])
@@ -228,7 +220,7 @@ func choose_stance(entity_id: String, context: Dictionary, session: RefCounted) 
 	for clause in clauses:
 		clause_ids.append(str(clause["id"]))
 		labels.append("Sostieni a condizione che: %s" % session.confluence.say(str(clause["text"])))
-	var choice: int = _choose("  %s, cosa dici?" % _name(entity_id, session), labels)
+	var choice: int = await _choose("  %s, cosa dici?" % _name(entity_id, session), labels)
 	if choice < 0:
 		return fallback.choose_stance(entity_id, context, session)
 	match choice:
@@ -238,6 +230,10 @@ func choose_stance(entity_id: String, context: Dictionary, session: RefCounted) 
 	return {"stance": "CONDITION", "clause_id": str(clause_ids[choice - 3])}
 
 
+## Commit one card at a time until the limit or "basta". The terminal could take
+## a whole line of numbers and the browser cannot, so this is the shape both can
+## drive - and it reads closer to what committing is: you put one thing down,
+## then decide whether to put another.
 func choose_commit(entity_id: String, context: Dictionary, limit: int, session: RefCounted) -> Array:
 	if not _is_human(entity_id):
 		return fallback.choose_commit(entity_id, context, limit, session)
@@ -246,27 +242,33 @@ func choose_commit(entity_id: String, context: Dictionary, limit: int, session: 
 	)
 	if ranked.is_empty():
 		return []
-	_say("  %s puo impegnare fino a %d carte, in ordine di peso su questa domanda:"
-		% [_name(entity_id, session), limit])
-	for i in range(ranked.size()):
-		var asset: Dictionary = session.data.assets[str(ranked[i])]
-		_say("   %2d) %s (%s, forza %d)" % [
-			i + 1, str(asset["title"]), str(asset["family"]), int(asset["strength"]),
-		])
-	var answer: String = _ask("  Quali impegni? (numeri separati da spazio, invio = decide la policy)")
-	if answer == "":
-		return fallback.choose_commit(entity_id, context, limit, session)
+
 	var chosen: Array = []
-	for token in answer.split(" ", false):
-		if not str(token).is_valid_int():
-			continue
-		var index: int = str(token).to_int() - 1
-		if index < 0 or index >= ranked.size():
-			continue
-		if chosen.has(ranked[index]):
-			continue
-		chosen.append(ranked[index])
-	return chosen.slice(0, limit)
+	while chosen.size() < limit:
+		var remaining: Array = []
+		var labels: Array = []
+		for asset_id in ranked:
+			if chosen.has(asset_id):
+				continue
+			var asset: Dictionary = session.data.assets[str(asset_id)]
+			remaining.append(asset_id)
+			labels.append("%s (%s, forza %d)" % [
+				str(asset["title"]), str(asset["family"]), int(asset["strength"]),
+			])
+		if remaining.is_empty():
+			break
+		labels.append("Non impegno altro")
+		var picked: int = await _choose(
+			"  %s impegna (%d di %d):" % [_name(entity_id, session), chosen.size(), limit],
+			labels
+		)
+		if picked < 0:
+			# "You decide" on an empty hand-so-far means the whole commit.
+			return fallback.choose_commit(entity_id, context, limit, session) if chosen.is_empty() else chosen
+		if picked >= remaining.size():
+			break
+		chosen.append(remaining[picked])
+	return chosen
 
 
 func choose_recovery(context: Dictionary, session: RefCounted) -> Dictionary:

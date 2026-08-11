@@ -20,7 +20,8 @@ extends SceneTree
 
 const DataSet := preload("res://scripts/core/data_set.gd")
 const GameSession := preload("res://scripts/chronicle/game_session.gd")
-const HumanDecider := preload("res://cli/human_decider.gd")
+const SeatDecider := preload("res://scripts/seat/seat_decider.gd")
+const TerminalIo := preload("res://cli/terminal_io.gd")
 
 const SEATS: Array = ["ENT_ALDRIC", "ENT_NAHR", "ENT_LYRA", "ENT_VAERAX"]
 
@@ -52,7 +53,9 @@ func _initialize() -> void:
 		func(_act: int, _round: int, _phase: String) -> void: _flush(session, state, quiet)
 	)
 
-	var report: Dictionary = session.run(HumanDecider.new(humans, session.log))
+	var seat: RefCounted = SeatDecider.new(humans, session.log)
+	seat.io = TerminalIo.new()
+	var report: Dictionary = await session.run(seat)
 	_flush(session, state, quiet)
 	_closing(session, data, report)
 	session.dispose()

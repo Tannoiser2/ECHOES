@@ -21,7 +21,7 @@ extends SceneTree
 
 const DataSet := preload("res://scripts/core/data_set.gd")
 const GameSession := preload("res://scripts/chronicle/game_session.gd")
-const PolicyDecider := preload("res://cli/policy_decider.gd")
+const PolicyDecider := preload("res://scripts/seat/policy_decider.gd")
 
 const SEATS: Array = ["ENT_ALDRIC", "ENT_NAHR", "ENT_LYRA", "ENT_VAERAX"]
 
@@ -92,7 +92,7 @@ func _initialize() -> void:
 				if any_opposition:
 					counters["opposed"] = int(counters["opposed"]) + 1
 		)
-		session.run(PolicyDecider.new(session.log))
+		await session.run(PolicyDecider.new(session.log))
 		session.dispose()
 
 	_report(

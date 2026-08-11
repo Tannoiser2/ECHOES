@@ -17,7 +17,7 @@ extends SceneTree
 
 const DataSet := preload("res://scripts/core/data_set.gd")
 const GameSession := preload("res://scripts/chronicle/game_session.gd")
-const PolicyDecider := preload("res://cli/policy_decider.gd")
+const PolicyDecider := preload("res://scripts/seat/policy_decider.gd")
 
 const SEATS: Array = ["ENT_ALDRIC", "ENT_NAHR", "ENT_LYRA", "ENT_VAERAX"]
 
@@ -62,7 +62,7 @@ func _initialize() -> void:
 	for i in range(runs):
 		var session: RefCounted = GameSession.new(data)
 		session.setup(chronicle_id, SEATS, first_seed + i)
-		session.run(PolicyDecider.new(session.log))
+		await session.run(PolicyDecider.new(session.log))
 
 		var drawn: Array = []
 		for card_id in session.world["echo_deck"]["drawn"]:

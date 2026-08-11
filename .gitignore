@@ -5,8 +5,12 @@
 # makes every fresh clone mint new ones.
 godot/.godot/
 godot/android/
-godot/export_presets.cfg
 *.translation
+
+# NOT ignored, on purpose: godot/export_presets.cfg. Godot ignores it by default
+# because it can carry signing secrets; this one carries none, and it is the
+# build configuration the Pages workflow needs to produce the same web build
+# locally and in CI.
 
 # Build output
 build/

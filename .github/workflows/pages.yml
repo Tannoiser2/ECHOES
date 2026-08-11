@@ -1,0 +1,75 @@
+name: pages
+
+# Build the Web export and publish it to GitHub Pages.
+#
+# The export is single-threaded on purpose (see godot/export_presets.cfg): the
+# threaded Web build needs SharedArrayBuffer, which needs COOP/COEP response
+# headers, which Pages cannot send. A turn-based game that waits on a click has
+# nothing to gain from threads and everything to lose from not loading at all.
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+# One deploy at a time; let a running one finish rather than publishing a
+# half-built page.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+env:
+  GODOT_VERSION: "4.7.1"
+
+jobs:
+  build:
+    name: Esporta per il web
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Scarica Godot e i template di export
+        run: |
+          set -euo pipefail
+          base="https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}-stable"
+          curl -fsSL -o godot.zip "$base/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip"
+          curl -fsSL -o templates.tpz "$base/Godot_v${GODOT_VERSION}-stable_export_templates.tpz"
+          unzip -q godot.zip && chmod +x "Godot_v${GODOT_VERSION}-stable_linux.x86_64"
+          mkdir -p ~/.local/share/godot/export_templates
+          unzip -q templates.tpz -d /tmp/tpl
+          mv /tmp/tpl/templates "$HOME/.local/share/godot/export_templates/${GODOT_VERSION}.stable"
+
+      # A first pass populates the import cache. Exporting without it silently
+      # leaves freshly added folders out of the pack, and the page then fails at
+      # runtime with a script that cannot resolve - which is invisible to any
+      # check that does not actually open the page.
+      - name: Importa le risorse
+        run: ./Godot_v${GODOT_VERSION}-stable_linux.x86_64 --headless --path godot --import
+
+      - name: Esporta
+        run: |
+          mkdir -p build/web
+          ./Godot_v${GODOT_VERSION}-stable_linux.x86_64 --headless --path godot \
+            --export-release "Web" ../build/web/index.html
+          test -f build/web/index.wasm
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: build/web
+
+  deploy:
+    name: Pubblica
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

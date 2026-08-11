@@ -13,7 +13,7 @@ const DataSet := preload("res://scripts/core/data_set.gd")
 const GameSession := preload("res://scripts/chronicle/game_session.gd")
 const SaveSerializer := preload("res://scripts/core/save_serializer.gd")
 const ScriptedDecider := preload("res://cli/scripted_decider.gd")
-const PolicyDecider := preload("res://cli/policy_decider.gd")
+const PolicyDecider := preload("res://scripts/seat/policy_decider.gd")
 
 const EXIT_OK: int = 0
 const EXIT_USAGE: int = 2
@@ -62,7 +62,7 @@ func _initialize() -> void:
 		print("Giocatori: policy (ognuno persegue il proprio Destiny)")
 	else:
 		decider = ScriptedDecider.new(plan, session.log)
-	var report: Dictionary = session.run(decider)
+	var report: Dictionary = await session.run(decider)
 	session.sync_rng_state()
 
 	var failures: PackedStringArray = PackedStringArray()

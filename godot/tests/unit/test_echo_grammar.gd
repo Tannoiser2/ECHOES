@@ -3,7 +3,7 @@ extends "res://tests/test_case.gd"
 ## functions order the story.
 
 const Effect := preload("res://scripts/core/effect.gd")
-const PolicyDecider := preload("res://cli/policy_decider.gd")
+const PolicyDecider := preload("res://scripts/seat/policy_decider.gd")
 const SchemaDefs := preload("res://scripts/core/schema_defs.gd")
 
 
@@ -80,7 +80,7 @@ func test_the_act_pool_is_weighted_and_seeded() -> void:
 	var arcs: Dictionary = {}
 	for seed_value in range(9100, 9120):
 		new_session(seed_value, true)
-		session.run(PolicyDecider.new(session.log))
+		await session.run(PolicyDecider.new(session.log))
 		var arc: Array = []
 		for card_id in session.world["echo_deck"]["drawn"]:
 			arc.append(str(data().echo_cards[str(card_id)]["dramatic_family"]))
