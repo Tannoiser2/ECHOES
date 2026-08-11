@@ -5,7 +5,7 @@
     {
       "id": "SIM_PLAN_C",
       "title": "La miniera aperta",
-      "description": "Aldric usa un Claim per forzare la Confluence sulle Miniere invece di aspettare la soglia, e il tavolo intero la fa cadere: fronte contrario a 7, quindi anche questa sconfitta lascia un Echo (§12.4). Esercita CLAIM/CREATE, CLAIM/FORCE e il trigger (c) del §12.1. La seconda meta del piano dimostra l'altra faccia del cap per Tensione: i Nahr tengono occupato lo slot della Carestia in ogni round degli Atti 2 e 3, e la Carestia non arriva mai a soglia.",
+      "description": "Aldric usa un Claim per forzare la Confluence sulle Miniere invece di aspettare la soglia, e il tavolo intero la fa cadere: fronte contrario a 6, quindi anche questa sconfitta lascia un Echo (§12.4). Esercita CLAIM/CREATE, CLAIM/FORCE e il trigger (c) del §12.1. La seconda meta del piano mostra D-029 al lavoro: i Nahr tengono la Carestia sotto soglia in ogni round degli Atti 2 e 3 e ci riescono, ma il peso che tolgono di li si scarica altrove, e a scoppiare sono il Risveglio e le Vie Interrotte. Non si spegne una crisi: si sceglie quale avere.",
       "chronicle_id": "CHR_01",
       "seed": 20260812,
       "seats": [
@@ -231,9 +231,11 @@
         }
       ],
       "expected": {
-        "confluence_count": 1,
+        "confluence_count": 3,
         "outcomes": [
-          "FAILURE"
+          "FAILURE",
+          "FAILURE",
+          "SUCCESS_WITH_COST"
         ],
         "min_echoes": 1,
         "min_truths": 1

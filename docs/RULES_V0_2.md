@@ -98,6 +98,17 @@ interessa la stessa Tensione potrebbero comunque portarla a soglia in un round
 solo — vedi [D-023](DECISIONS.md#d-023). Anche questo si toglie da
 configurazione.
 
+**La pressione si sposta, non sparisce** (D-029). Spingere **giù** una Tensione
+alza di 1 una delle sue `linked_tensions` — quella al valore più basso fra
+quelle in gioco. Non si spegne una crisi: si sceglie quale avere.
+
+Senza questa regola un tavolo che spinge solo verso il basso tiene l'intera
+Chronicle in silenzio: misurato, 33 partite su 40 senza una sola Confluence.
+Con quattro giocatori a una INFLUENCE per round il conto è 4 in giù, 4 spostate
+in su e il +1 del Drift — la soppressione totale lavora per il mondo. Spingere
+**verso l'alto** non sposta niente: alimentare direttamente un incendio non è
+uno scambio.
+
 Il knob `presence_directions` esiste ed è implementato (limita a quali direzioni
 si applica la via gratuita per presenza), ma in Chronicle I copre entrambe: da
 solo peggiorava i numeri.

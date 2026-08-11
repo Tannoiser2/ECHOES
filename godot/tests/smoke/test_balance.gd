@@ -146,3 +146,80 @@ func test_the_policy_never_proposes_an_illegal_action() -> void:
 			0,
 			"seed %d: la policy ha proposto %d azioni illegali" % [FIRST_SEED + i, int(report["illegal_actions"])]
 		)
+
+
+## D-029: pressure is displaced, not removed. Pushing a Tension down has to
+## raise one of the questions it is linked to, or a table that only ever pushes
+## down keeps the whole Chronicle silent - which is what O-9 measured.
+func test_pushing_a_tension_down_raises_a_linked_one() -> void:
+	new_session()
+	# The weight lands on the *lowest* linked Tension in play, so suppression
+	# spreads pressure instead of piling it in one place. Computed here the same
+	# way the rule computes it, rather than assumed to be the first in the list.
+	var target: String = ""
+	var lowest: int = -1
+	for tension_id in data().tensions["TEN_FAMINE"]["linked_tensions"]:
+		var id: String = str(tension_id)
+		if not session.world["tensions"].has(id):
+			continue
+		var value: int = session.tensions.value(id)
+		if lowest < 0 or value < lowest:
+			target = id
+			lowest = value
+	assert_ne(target, "", "la Carestia deve avere almeno un collegamento in gioco")
+
+	var before: int = session.tensions.value(target)
+	var outcome: Dictionary = session.actions.execute(
+		"ENT_NAHR",
+		{"template": "INFLUENCE", "params": {"tension_id": "TEN_FAMINE", "delta": -1, "via": "PRESENCE"}}
+	)
+	assert_true(outcome["ok"], "la spinta in giu e legale: %s" % str(outcome.get("error", "")))
+	assert_true(
+		session.tensions.value(target) > before,
+		"spingere giu la Carestia deve alzare '%s'" % target
+	)
+	assert_eq(str(outcome["info"]["displaced_to"]), target, "e il risultato dice dove e finito il peso")
+
+
+## Displacement is not a second INFLUENCE action: the cap counts actions, and
+## anything reading the log has to be able to tell the two apart.
+func test_displacement_is_not_a_second_influence_action() -> void:
+	new_session()
+	session.actions.execute(
+		"ENT_NAHR",
+		{"template": "INFLUENCE", "params": {"tension_id": "TEN_FAMINE", "delta": -1, "via": "PRESENCE"}}
+	)
+	var actions: int = 0
+	var displaced: int = 0
+	for effect in session.world["effect_log"]:
+		var id: String = str(effect["source"].get("id", ""))
+		if id == "ACT_INFLUENCE":
+			actions += 1
+		elif id == "ACT_INFLUENCE_DISPLACED":
+			displaced += 1
+	assert_eq(actions, 1, "una sola azione INFLUENCE nel log")
+	assert_eq(displaced, 1, "e uno spostamento, distinguibile")
+	assert_eq(
+		int(session.world["influence_used"].get("ENT_NAHR", 0)),
+		1,
+		"lo spostamento non consuma una seconda INFLUENCE"
+	)
+
+
+## Raising a Tension is feeding the fire directly: nothing is displaced.
+func test_pushing_up_displaces_nothing() -> void:
+	new_session()
+	var before: Dictionary = {}
+	for tension_id in session.world["tensions"]:
+		before[str(tension_id)] = session.tensions.value(str(tension_id))
+	session.actions.execute(
+		"ENT_ALDRIC",
+		{"template": "INFLUENCE", "params": {"tension_id": "TEN_FAMINE", "delta": 1, "via": "PRESENCE"}}
+	)
+	for tension_id in session.world["tensions"]:
+		var id: String = str(tension_id)
+		if id == "TEN_FAMINE":
+			continue
+		assert_eq(
+			session.tensions.value(id), int(before[id]), "%s non deve muoversi" % id
+		)

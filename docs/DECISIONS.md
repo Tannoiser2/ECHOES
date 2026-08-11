@@ -331,6 +331,95 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-029 — Pressure is displaced, not removed
+**implemented in 0.0.5** · `chronicle.influence_rules.displacement_on_decrease`
+
+### The question, and the measurement that answered it
+
+Do crises always break in the end, or can a table hold them shut? Asked by the
+author, and answerable only by playing a table that tries.
+
+`cli/suppressor_decider.gd` is that table: four Entities that spend every Action
+Opportunity pushing the loudest Tension they can legally touch back down, buying
+a SCHEME first when a veiled one needs unlocking, moving only to stand where a
+push becomes legal. Nobody would play like this; that is the point.
+
+Over 40 Chronicles, against the same four playing their own Destiny:
+
+| | quattro Destiny | solo soppressione |
+|---|---|---|
+| Confluence per Chronicle | 3.60 | **0.17** |
+| Chronicle senza nessuna | 0/40 | **33/40** |
+| La Carestia e scoppiata | 35/40 | **0/40** |
+| Il Risveglio | 38/40 | **0/40** |
+| Le Vie Interrotte | 21/40 | **0/40** |
+| picco raggiunto (soglia 5-6) | 7-8 | **2-3** |
+
+1400 pushes down against 452 of the world's own pressure. Three to one. The
+answer was **no**: a table could keep the whole Chronicle silent, and the payoff
+of the entire design would never fire. That is O-9.
+
+### The rule
+
+Pushing a Tension **down** with INFLUENCE raises one of its `linked_tensions` by
+`displacement_on_decrease` (1 in Chronicle I). You do not make a question go
+away; you choose which one to have instead.
+
+The weight lands on the linked Tension currently **lowest**, so suppression
+spreads pressure across the board rather than piling it in one place. Ties go to
+the Chronicle's Tension order, so the same board always displaces the same way. A
+linked Tension the Chronicle never drew is skipped rather than conjured into play
+(D-028).
+
+The displaced Effect keeps the acting Entity as its actor - this is your doing -
+but carries its own source id, `ACT_INFLUENCE_DISPLACED`. Without that the per
+round INFLUENCE cap, which is reconstructed from the log, counted it as a second
+action.
+
+Raising a Tension displaces nothing: feeding a fire directly is not a trade.
+
+### The arithmetic, and why total suppression is now self-defeating
+
+Four players, one INFLUENCE each per round (D-021): 4 down, 4 displaced up, plus
+the world's own +1 Drift. Net **+1 per round** in favour of the world. A table
+that suppresses everything is doing the world's work for it.
+
+### The content that had to change with it
+
+The link graph pooled: everything fed `TEN_FAMINE` and nothing fed
+`TEN_ROADS`, so displacement filled one question and starved another. Re-authored
+as a ring with chords, checked so that every Tension both feeds and is fed - both
+across the six of the library and inside the four of Chronicle I:
+
+```
+Carestia    -> Risveglio, Vie Interrotte      la fame spinge a scavare, e a fermare le carovane
+Risveglio   -> Successione, Pozzi Bassi       chi tiene il Cristallo pretende il trono
+Successione -> Vie Interrotte, Carestia       senza un re nessuno garantisce le strade
+Vie Interr. -> Pozzi Bassi, Carestia          niente sale, niente da conservare
+Pozzi Bassi -> Febbre Bassa, Risveglio        acqua cattiva, e si scava per trovarne
+Febbre      -> Carestia, Successione          nessuno raccoglie, e il trono non protegge
+```
+
+### After
+
+| | prima | dopo |
+|---|---|---|
+| soppressori: Chronicle silenziose | 33/40 | **1/40** |
+| soppressori: Confluence per Chronicle | 0.17 | **2.73** |
+| tavolo normale: Confluence per Chronicle | 3.60 | 4.58 |
+| ogni Tensione e scoppiata almeno una volta | no | **si, tutte e quattro** |
+
+Suppression still *buys* something - 2.73 Confluences against 4.58 - so holding a
+question down is a real move with a real effect. It just cannot buy silence.
+
+### An unplanned improvement
+
+The balance of D-026 got better on its own: **75% of runs inside the 4-5 band**
+against 42%, with nothing below 2 or above 7. That closes O-5 as well: the two
+Chronicles in forty that fell under §7's floor are now zero.
+
+---
+
 ## D-026 — The Confluence band is 4-5, not §7's 3-4
 **implemented in 0.0.4** · declared deviation from §7, recorded per §25
 
@@ -741,7 +830,14 @@ against real players before deciding whether the propositions are weak or the
 policy is narrow - tuning the policy until its own content fires would be fitting
 the measurement to the answer.
 
+### O-9 — A table that only suppresses can keep a Chronicle silent
+**closed by D-029.** Measured at 33 silent Chronicles out of 40; now 1.
+
 ### O-5 — Two Chronicles in forty fall below §7's floor
+**closed by D-029** — 0/40 below the floor after displacement landed, without
+anything being tuned for it.
+
+**original note:**
 **flagged, deliberately accepted — see the cost section of D-023**
 
 1 Confluence in 2 runs out of 40. Those are Chronicles where the two Tensions are

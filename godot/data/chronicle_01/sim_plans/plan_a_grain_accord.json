@@ -229,14 +229,15 @@
         }
       ],
       "expected": {
-        "confluence_count": 3,
+        "confluence_count": 4,
         "outcomes": [
           "SUCCESS",
           "DECISIVE_SUCCESS",
-          "SUCCESS"
+          "SUCCESS",
+          "DECISIVE_SUCCESS"
         ],
-        "min_echoes": 3,
-        "min_truths": 3
+        "min_echoes": 4,
+        "min_truths": 4
       }
     }
   ]

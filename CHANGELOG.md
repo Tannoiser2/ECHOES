@@ -5,6 +5,81 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.0.5] — Le crisi non si spengono, si spostano
+
+Una verifica chiesta dall'autore: le crisi scoppiano sempre, o un tavolo puo
+tenerle chiuse? La risposta misurata era **si, puo tenerle chiuse** — e questo
+lo corregge.
+
+### Added
+
+- **`cli/suppressor_decider.gd`** — un tavolo che fa solo soppressione: quattro
+  Entita che spendono ogni AO per ricacciare giu la Tensione piu alta che possono
+  toccare, comprando una SCHEME quando serve a sbloccarne una velata. Nessuno
+  gioca cosi: e uno stress test.
+- **`cli/run_crisis_probe.gd`** — fa giocare le stesse Chronicle ai due tavoli e
+  riporta, per ogni Tensione, quante volte e scoppiata, il **picco** raggiunto
+  (il valore finale nasconde una Tensione portata sull'orlo e ricacciata giu) e
+  quanta pressione del mondo e stata annullata.
+- **`influence_rules.displacement_on_decrease`** (D-029) — spingere giu una
+  Tensione ne alza una delle sue `linked_tensions`. Non si spegne una crisi: si
+  sceglie quale avere. Reversibile: si toglie e sparisce.
+- Tre test nella suite di bilanciamento sulla regola nuova, incluso che lo
+  spostamento **non** consumi una seconda INFLUENCE.
+
+### Changed
+
+- **Il grafo dei collegamenti fra Tensioni riscritto.** Prima tutto alimentava la
+  Carestia e niente alimentava le Vie Interrotte, quindi lo spostamento riempiva
+  una domanda e ne affamava un'altra. Ora e un anello con corde, verificato in
+  modo che ogni Tensione alimenti e sia alimentata — sia fra le sei della
+  biblioteca sia fra le quattro di Chronicle I.
+- **`plan_c_opened_mine`** dimostra ora D-029: i Nahr tengono la Carestia sotto
+  soglia in ogni round degli Atti 2 e 3 e ci **riescono**, ma il peso che tolgono
+  di li si scarica altrove, e a scoppiare sono il Risveglio e le Vie Interrotte.
+
+### Fixed
+
+- Lo spostamento ha un proprio `source.id` (`ACT_INFLUENCE_DISPLACED`) pur
+  restando attribuito a chi ha agito: senza, il cap per round su INFLUENCE —
+  che si ricostruisce dal log — lo contava come una seconda azione.
+- La sonda contava zero spinte: una lambda GDScript cattura una variabile locale
+  **per valore**, quindi i contatori incrementati dentro il gestore del segnale
+  non tornavano indietro. Ora sono in un Dictionary.
+
+### La misura
+
+Prima della regola, 40 Chronicle:
+
+| | quattro Destiny | solo soppressione |
+|---|---|---|
+| Confluence per Chronicle | 3.60 | **0.17** |
+| Chronicle senza nessuna | 0/40 | **33/40** |
+| La Carestia e scoppiata | 35/40 | **0/40** |
+| Il Risveglio | 38/40 | **0/40** |
+| Le Vie Interrotte | 21/40 | **0/40** |
+
+1400 spinte in giu contro 452 del mondo. Tre a uno.
+
+Dopo:
+
+| | prima | dopo |
+|---|---|---|
+| soppressori: Chronicle silenziose | 33/40 | **1/40** |
+| soppressori: Confluence per Chronicle | 0.17 | **2.73** |
+| tavolo normale | 3.60 | 4.58 |
+
+La soppressione **compra** ancora qualcosa (2.73 contro 4.58): tenere giu una
+domanda resta una mossa vera con un effetto vero. Non puo piu comprare il
+silenzio.
+
+### Effetto non previsto
+
+Il bilanciamento e migliorato da solo: **75% delle partite nella banda 4-5**
+contro il 42%, e niente sotto 2 o sopra 7. Chiude anche O-5.
+
+---
+
 ## [0.0.4] — Le decisioni prese
 
 Tre scelte dell'autore, implementate e misurate: la banda del §7, il leader che

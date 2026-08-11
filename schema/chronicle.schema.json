@@ -260,6 +260,12 @@
               "type": "integer",
               "minimum": 1,
               "description": "How many INFLUENCE actions may touch one Tension per round, by anyone. Bounds how fast the table can move a question against the Drift. Omit for no limit."
+            },
+            "displacement_on_decrease": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0,
+              "description": "Pushing a Tension down with INFLUENCE raises one of its linked_tensions by this much. Pressure is displaced, not removed: you do not solve a question, you choose which one to have instead. 0 or absent turns it off (D-029)."
             }
           }
         },

@@ -35,7 +35,8 @@
         "Carte Echo di RISOLUZIONE che spendono qualcosa di reale."
       ],
       "linked_tensions": [
-        "TEN_AWAKENING"
+        "TEN_AWAKENING",
+        "TEN_ROADS"
       ],
       "confluence_template_id": "CNF_FAMINE_01",
       "description": "Non e ancora fame. E' il calcolo, fatto a voce bassa, di quanto manchi alla fame.",
@@ -83,7 +84,8 @@
         "Un patto che vincoli chi studia il Cristallo."
       ],
       "linked_tensions": [
-        "TEN_FAMINE"
+        "TEN_SUCCESSION",
+        "TEN_THIRST"
       ],
       "confluence_template_id": "CNF_AWAKENING_01",
       "description": "Velata: i giocatori vedono i presagi, non il numero. Solo SCHEME apre il valore.",
@@ -130,6 +132,7 @@
         "Un patto che leghi una casa al trono."
       ],
       "linked_tensions": [
+        "TEN_ROADS",
         "TEN_FAMINE"
       ],
       "confluence_template_id": "CNF_SUCCESSION_01",
@@ -178,8 +181,8 @@
         "Un pedaggio scritto e uguale per tutti."
       ],
       "linked_tensions": [
-        "TEN_FAMINE",
-        "TEN_SUCCESSION"
+        "TEN_THIRST",
+        "TEN_FAMINE"
       ],
       "confluence_template_id": "CNF_ROADS_01",
       "focus_region_tags": [
@@ -225,7 +228,8 @@
         "Una divisione che tutti riescono a dire ad alta voce."
       ],
       "linked_tensions": [
-        "TEN_FAMINE"
+        "TEN_FAMINE",
+        "TEN_SUCCESSION"
       ],
       "focus_region_tags": [
         "condition:starving",
@@ -270,8 +274,8 @@
         "Una divisione che tutti riescono a dire ad alta voce."
       ],
       "linked_tensions": [
-        "TEN_FAMINE",
-        "TEN_ROADS"
+        "TEN_PLAGUE",
+        "TEN_AWAKENING"
       ],
       "focus_region_tags": [
         "condition:rationed",

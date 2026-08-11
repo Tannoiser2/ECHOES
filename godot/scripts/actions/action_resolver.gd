@@ -442,8 +442,76 @@ func _influence(entity_id: String, params: Dictionary, source: Dictionary) -> Di
 		"%s influenza %s (%+d, via %s)."
 		% [_name(entity_id), str(data.tensions[tension_id]["title"]), delta, via]
 	)
+
+	var displaced: String = ""
+	if delta < 0:
+		displaced = _displace_pressure(entity_id, tension_id, effects, source)
+
 	tensions.fire_omens(source)
-	return _ok("INFLUENCE", effects, {"tension_id": tension_id, "delta": delta, "via": via})
+	return _ok(
+		"INFLUENCE",
+		effects,
+		{"tension_id": tension_id, "delta": delta, "via": via, "displaced_to": displaced}
+	)
+
+
+## §11 / D-029: pressure is displaced, not removed.
+##
+## Pushing a question down raises one of the questions it is linked to. You do
+## not make a crisis go away, you choose which one to have instead - and without
+## this a table that only ever pushes down keeps the whole Chronicle silent,
+## which is measured, not supposed (O-9).
+##
+## The weight lands on the linked Tension currently *lowest*, so suppression
+## spreads pressure across the board rather than piling it in one place. Ties go
+## to the Chronicle's own Tension order, so the same board always displaces the
+## same way. The Effect keeps the acting Entity as its source: this is your doing.
+func _displace_pressure(
+	entity_id: String, tension_id: String, effects: Array, source: Dictionary
+) -> String:
+	var amount: int = int(
+		(_chronicle.get("influence_rules", {}) as Dictionary).get("displacement_on_decrease", 0)
+	)
+	if amount <= 0:
+		return ""
+
+	var target: String = ""
+	var lowest: int = -1
+	for linked_id in data.tensions[tension_id].get("linked_tensions", []):
+		var id: String = str(linked_id)
+		# A linked Tension the Chronicle never drew has nowhere to take the
+		# weight, so it is skipped rather than conjured into play (D-028).
+		if not world["tensions"].has(id):
+			continue
+		var value: int = tensions.value(id)
+		if lowest < 0 or value < lowest:
+			target = id
+			lowest = value
+	if target == "":
+		return ""
+
+	# Its own source id, still carrying the acting Entity: this is your doing and
+	# the log has to say so, but it is not a second INFLUENCE action and anything
+	# counting actions from the log must be able to tell them apart.
+	var displaced_source: Dictionary = Effect.source(
+		"action",
+		"ACT_INFLUENCE_DISPLACED",
+		entity_id,
+		int(source.get("act", 0)),
+		int(source.get("round", 0)),
+		int(world["effect_sequence"])
+	)
+	var applied: Dictionary = applier.apply(
+		Effect.make("ADJUST_TENSION", "tension", target, {"delta": amount}, displaced_source)
+	)
+	if applied.is_empty():
+		return ""
+	effects.append(applied)
+	log.bullet(
+		"  ...ma il peso si sposta: %s sale di %d."
+		% [str(data.tensions[target]["title"]), amount]
+	)
+	return target
 
 
 # --- FORGE -----------------------------------------------------------------

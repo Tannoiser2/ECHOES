@@ -17,7 +17,8 @@
       "condition_qualified_threshold": 2,
       "influence_rules": {
         "max_per_entity_per_round": 1,
-        "max_per_tension_per_round": 1
+        "max_per_tension_per_round": 1,
+        "displacement_on_decrease": 1
       },
       "control_rules": {
         "max_stable_control": 2,
@@ -111,7 +112,8 @@
       "condition_qualified_threshold": 2,
       "influence_rules": {
         "max_per_entity_per_round": 1,
-        "max_per_tension_per_round": 1
+        "max_per_tension_per_round": 1,
+        "displacement_on_decrease": 1
       },
       "control_rules": {
         "max_stable_control": 2,
