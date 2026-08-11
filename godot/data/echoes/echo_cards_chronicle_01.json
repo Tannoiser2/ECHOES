@@ -191,6 +191,12 @@
           "tension_id": "TEN_AWAKENING",
           "min": 3,
           "label": "Il Risveglio e gia in movimento"
+        },
+        {
+          "type": "state_tag_present",
+          "scope": "GLOBAL",
+          "tag": "function:DISCOVERY",
+          "label": "Si rivela quello che qualcuno aveva gia scoperto"
         }
       ],
       "effect_hooks": [
@@ -268,7 +274,14 @@
       "dramatic_family": "RESOLUTION",
       "function_id": "RECONCILIATION",
       "description": "Due parti che si erano contate come nemiche trovano un motivo pratico per smettere.",
-      "eligibility": [],
+      "eligibility": [
+        {
+          "type": "state_tag_present",
+          "scope": "GLOBAL",
+          "tag": "function:BETRAYAL",
+          "label": "Non c'e riconciliazione senza un tradimento"
+        }
+      ],
       "effect_hooks": [
         {
           "kind": "EFFECT",
@@ -429,7 +442,14 @@
       "dramatic_family": "TURN",
       "function_id": "GIFT",
       "description": "Piove quando serve e smette quando serve. Non risolve niente, ma sposta la domanda di un anno.",
-      "eligibility": [],
+      "eligibility": [
+        {
+          "type": "state_tag_present",
+          "scope": "GLOBAL",
+          "tag": "function:LACK",
+          "label": "Un'annata buona si nota solo dopo una che non lo era"
+        }
+      ],
       "effect_hooks": [
         {
           "kind": "CONSEQUENCE",
@@ -448,7 +468,14 @@
       "dramatic_family": "TURN",
       "function_id": "TRANSFORMATION",
       "description": "Due che si contavano come nemici mettono per iscritto una cosa sola, e quella regge.",
-      "eligibility": [],
+      "eligibility": [
+        {
+          "type": "state_tag_present",
+          "scope": "GLOBAL",
+          "tag": "function:THREAT",
+          "label": "Ci si lega quando qualcosa minaccia entrambi"
+        }
+      ],
       "effect_hooks": [
         {
           "kind": "CONSEQUENCE",
@@ -465,7 +492,14 @@
       "dramatic_family": "RESOLUTION",
       "function_id": "LIBERATION",
       "description": "Si decide di non contare piu chi aveva giurato a chi. Non tutti sono d'accordo, e nessuno lo dice.",
-      "eligibility": [],
+      "eligibility": [
+        {
+          "type": "state_tag_present",
+          "scope": "GLOBAL",
+          "tag": "function:USURPATION",
+          "label": "Non si perdona finche nessuno si e preso niente"
+        }
+      ],
       "effect_hooks": [
         {
           "kind": "CONSEQUENCE",
@@ -497,7 +531,14 @@
       "dramatic_family": "RESOLUTION",
       "function_id": "RETURN",
       "description": "Il primo carro che passa senza scorta non fa notizia. E per questo che si capisce che e finita.",
-      "eligibility": [],
+      "eligibility": [
+        {
+          "type": "state_tag_present",
+          "scope": "GLOBAL",
+          "tag": "function:PROHIBITION",
+          "label": "Non si riapre una strada che nessuno ha chiuso"
+        }
+      ],
       "effect_hooks": [
         {
           "kind": "CONSEQUENCE",

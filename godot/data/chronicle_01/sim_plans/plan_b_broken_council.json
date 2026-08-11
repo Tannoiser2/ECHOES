@@ -304,11 +304,12 @@
         }
       ],
       "expected": {
-        "confluence_count": 3,
+        "confluence_count": 4,
         "outcomes": [
           "FAILURE",
           "SUCCESS",
-          "DECISIVE_SUCCESS"
+          "DECISIVE_SUCCESS",
+          "FAILURE"
         ],
         "min_echoes": 3,
         "min_truths": 3

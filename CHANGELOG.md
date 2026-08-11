@@ -5,6 +5,73 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.0.6] — Propp entra davvero nel gioco
+
+Le carte Echo portavano due metadati narrativi. Uno lavorava, l'altro era
+un'etichetta che il motore non leggeva mai.
+
+### La verifica
+
+`cli/run_echo_probe.gd` su 40 Chronicle:
+
+- **`dramatic_family` era portante**: decide quali carte un Atto puo pescare,
+  quindi la forma in tre atti era gia imposta (Atto 1 PRESSURE 40/40).
+- **`function_id` non era letto da nessuna riga di codice.** Un grep lo trovava
+  in un posto solo: la colonna che lo stampa nel manifest.
+
+Il prezzo: **19 funzioni in 18 partite su 40 arrivavano senza il loro
+antecedente** — un Ritorno da cui non si era partiti, una Riconciliazione senza
+tradimento, una Liberazione senza niente di proibito. Il punto di Propp e che le
+funzioni hanno un **ordine**, e niente lo faceva rispettare.
+
+### Added
+
+- **`function:<ID>` come tag globale** quando una carta viene pescata, applicato
+  come un normale Effect. E l'unica modifica al motore, che continua a non
+  conoscere il nome di nessuna funzione.
+- **La grammatica sulle carte**, nel blocco `eligibility` che avevano gia: la
+  Riconciliazione aspetta un tradimento, l'Amnistia un'usurpazione, le Vie
+  Riaperte una chiusura, il Giuramento una minaccia, l'Annata Buona una carestia,
+  la Rivelazione una scoperta.
+- **`cli/run_echo_probe.gd`** e **`tests/unit/test_echo_grammar.gd`**.
+
+### Changed
+
+- **`act_echo_pools[].families` e un sacchetto pesato**, non un insieme:
+  ripetere una famiglia la rende piu probabile, e l'RNG seeded decide l'ordine in
+  cui le famiglie vengono provate. Nessuna modifica allo schema — le ripetizioni
+  erano gia legali, semplicemente non significavano niente.
+
+### Due cose che si sono rotte, e cosa hanno insegnato
+
+**Stringere troppo impedisce all'arco di chiudersi.** Con tutte e quattro le
+carte RESOLUTION vincolate, l'Atto 3 e passato da risolvere 18/40 a 11/40: la
+pesca saltava le carte vincolate e ripiegava su una rottura. Risolto lasciando
+`ECH_SACRIFICE` senza condizioni — un sacrificio non presuppone niente, e una
+scelta — e protetto da un test: **ogni famiglia drammatica deve mantenere almeno
+una carta sempre giocabile**.
+
+**Una preferenza stretta non e una forma, e un binario.** Leggendo il pool come
+preferenza ordinata usciva **un solo arco in tutte e quaranta le partite**: PRE
+RUP RES, 40/40. Forma perfetta, zero storia. Da li il sacchetto pesato.
+
+### La misura
+
+| | prima | dopo |
+|---|---|---|
+| funzioni senza antecedente | 19 (18/40) | **0** |
+| Atto 1 apre in PRESSURE | 40/40 | 40/40 |
+| Atto 3 risolve | 18/40 | **23/40** |
+| archi drammatici distinti | 9 | 9 |
+
+Un Atto 3 che finisce a meta crisi il 40% delle volte non e un difetto: la
+domanda rimasta aperta e quello che la Chronicle successiva eredita.
+
+Non previsto, di nuovo: la banda delle Confluence e salita all'**85%** dentro
+4-5, dal 75%.
+
+---
+
 ## [0.0.5] — Le crisi non si spengono, si spostano
 
 Una verifica chiesta dall'autore: le crisi scoppiano sempre, o un tavolo puo

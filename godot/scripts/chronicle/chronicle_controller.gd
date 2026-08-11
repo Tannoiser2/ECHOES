@@ -273,6 +273,20 @@ func end_of_act(act: int, decider: Object) -> void:
 	var source: Dictionary = Effect.source(
 		"echo_card", str(card["id"]), "", act, int(world["round"]), int(world["effect_sequence"])
 	)
+	# §15: the narrative function this card just performed becomes a fact about
+	# the world, so a later card can require it. Propp's whole point is that the
+	# functions come in an order - a Return needs a Separation to return from -
+	# and this is what lets a card say so in its own eligibility, without the
+	# engine knowing a single function name (D-030).
+	session.applier.apply(
+		Effect.make(
+			"SET_GLOBAL_TAG",
+			"world",
+			"WORLD",
+			{"tag": "function:%s" % str(card["function_id"])},
+			source
+		)
+	)
 	for hook in card["effect_hooks"]:
 		var bindings: Dictionary = card_bindings(hook)
 		if str(hook["kind"]) == "CONSEQUENCE":
@@ -315,22 +329,36 @@ func card_bindings(hook: Dictionary) -> Dictionary:
 	return bindings
 
 
+## §15: the Act's pool is a *weighted bag*, not a set. Repeating a family makes
+## it likelier; the seeded RNG picks the order the families are tried in, and the
+## first one with an eligible card wins. An Act 3 weighted towards RESOLUTION
+## usually resolves and can still end mid-crisis, which is the three-act shape
+## with room to breathe - a pool read as a strict preference produced the same
+## arc in all forty measured Chronicles (D-030).
+##
+## Within a family the shuffled deck order decides, so the draw stays seeded.
 func _draw_act_echo(act: int) -> Dictionary:
-	var families: Array = []
+	var bag: Array = []
 	for pool in _chronicle["act_echo_pools"]:
 		if int(pool["act"]) == act:
-			families = pool["families"]
+			bag = (pool["families"] as Array).duplicate()
+	var families: Array = []
+	for family in session.rng.shuffle(bag):
+		if not families.has(str(family)):
+			families.append(str(family))
+
 	var deck: Dictionary = world["echo_deck"]
-	for i in range((deck["draw"] as Array).size()):
-		var card_id: String = str(deck["draw"][i])
-		var card: Variant = data.echo_cards.get(card_id)
-		if card == null or not families.has(str(card["dramatic_family"])):
-			continue
-		if not _conditions.all_hold(card["eligibility"], {}):
-			continue
-		(deck["draw"] as Array).remove_at(i)
-		(deck["drawn"] as Array).append(card_id)
-		return card
+	for family in families:
+		for i in range((deck["draw"] as Array).size()):
+			var card_id: String = str(deck["draw"][i])
+			var card: Variant = data.echo_cards.get(card_id)
+			if card == null or str(card["dramatic_family"]) != str(family):
+				continue
+			if not _conditions.all_hold(card["eligibility"], {}):
+				continue
+			(deck["draw"] as Array).remove_at(i)
+			(deck["drawn"] as Array).append(card_id)
+			return card
 	return {}
 
 

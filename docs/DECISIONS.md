@@ -331,6 +331,86 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-030 — The Propp layer: families shape the Act, functions order the story
+**implemented in 0.0.6** · §15
+
+### What was already there, and what was not
+
+An Echo card carries two pieces of narrative metadata: `dramatic_family`
+(PRESSURE / RUPTURE / TURN / RESOLUTION) and `function_id`, an adapted set of 24
+of Propp's narrative functions.
+
+Measured with `cli/run_echo_probe.gd` over 40 Chronicles:
+
+- **`dramatic_family` was load-bearing.** It gates which cards an Act may draw,
+  so the three-act shape was already enforced: Act 1 PRESSURE 40/40.
+- **`function_id` was read by nothing.** Grep found it in exactly one place: the
+  column that prints it in the asset manifest.
+
+The cost of that showed up immediately. **19 functions in 18 Chronicles out of 40
+arrived without their antecedent**: a Return with nothing to return from, a
+Reconciliation with no betrayal, a Liberation with nothing forbidden. Propp's
+whole point is that the functions come in an *order*, and nothing enforced it.
+
+### The rule, written in data rather than code
+
+Drawing a card now records the function it performed as a global tag,
+`function:<ID>`, applied as an ordinary Effect. That is the entire engine change,
+and the engine still does not know a single function name.
+
+The grammar itself lives on the cards, in the `eligibility` block they already
+had:
+
+| carta | funzione | non e giocabile finche |
+|---|---|---|
+| `ECH_RECONCILIATION` | RECONCILIATION | non c'e stato un BETRAYAL |
+| `ECH_AMNESTY` | LIBERATION | non c'e stata una USURPATION |
+| `ECH_ROADS_OPEN` | RETURN | non c'e stata una PROHIBITION |
+| `ECH_OATH_SWORN` | TRANSFORMATION | non c'e stato un THREAT |
+| `ECH_GOOD_YEAR` | GIFT | non c'e stato un LACK |
+| `ECH_REVELATION` | REVELATION | non c'e stata una DISCOVERY |
+
+Orphan functions: **19 -> 0**.
+
+### Two things this broke, and what they taught
+
+**Over-gating stops the arc from closing.** Gating all four RESOLUTION cards
+dropped Act 3 from resolving 18/40 to 11/40: the draw skipped the gated cards and
+fell through to a rupture. Fixed by leaving `ECH_SACRIFICE` unconditional - a
+sacrifice presupposes nothing, it is a choice - and guarded by a test asserting
+that **every dramatic family keeps at least one card that presupposes nothing**.
+
+**A strict preference is not a shape, it is a rail.** Reading the Act pool as an
+ordered preference (RESOLUTION first, then fall back) produced *one* dramatic arc
+in all forty Chronicles: PRE RUP RES, 40/40. Perfect shape, no story.
+
+So `act_echo_pools[].families` is now a **weighted bag**: repeating a family makes
+it likelier, and the seeded RNG picks the order families are tried in. No schema
+change - repeats were always legal, they simply meant nothing. Chronicle I:
+
+```
+Atto 1  [PRESSURE]                                      apre sempre in tensione
+Atto 2  [RUPTURE, RUPTURE, TURN, TURN, PRESSURE]
+Atto 3  [RESOLUTION x3, TURN, RUPTURE]                  risolve ~60% delle volte
+```
+
+### After
+
+| | prima | dopo |
+|---|---|---|
+| funzioni senza antecedente | 19 (18/40 partite) | **0** |
+| archi drammatici distinti | 9 | 9 |
+| Atto 1 apre in PRESSURE | 40/40 | 40/40 |
+| Atto 3 risolve | 18/40 | **23/40** |
+| Chronicle che finiscono a meta crisi | 22/40 | 17/40 |
+
+An Act 3 that ends mid-crisis 40% of the time is not a bug: the unanswered
+question is what the next Chronicle inherits.
+
+Unplanned again: the Confluence band went to **85% inside 4-5** from 75%.
+
+---
+
 ## D-029 — Pressure is displaced, not removed
 **implemented in 0.0.5** · `chronicle.influence_rules.displacement_on_decrease`
 
@@ -829,6 +909,9 @@ Content that cannot be reached is content that does not exist. Worth checking
 against real players before deciding whether the propositions are weak or the
 policy is narrow - tuning the policy until its own content fires would be fitting
 the measurement to the answer.
+
+### O-10 — `function_id` was metadata the engine never read
+**closed by D-030.** 19 orphan functions in 40 Chronicles, now 0.
 
 ### O-9 — A table that only suppresses can keep a Chronicle silent
 **closed by D-029.** Measured at 33 silent Chronicles out of 40; now 1.

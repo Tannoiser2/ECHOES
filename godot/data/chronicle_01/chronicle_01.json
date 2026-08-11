@@ -73,17 +73,21 @@
         {
           "act": 2,
           "families": [
-            "PRESSURE",
             "RUPTURE",
-            "TURN"
+            "RUPTURE",
+            "TURN",
+            "TURN",
+            "PRESSURE"
           ]
         },
         {
           "act": 3,
           "families": [
-            "RUPTURE",
+            "RESOLUTION",
+            "RESOLUTION",
+            "RESOLUTION",
             "TURN",
-            "RESOLUTION"
+            "RUPTURE"
           ]
         }
       ],
@@ -144,17 +148,21 @@
         {
           "act": 2,
           "families": [
-            "PRESSURE",
             "RUPTURE",
-            "TURN"
+            "RUPTURE",
+            "TURN",
+            "TURN",
+            "PRESSURE"
           ]
         },
         {
           "act": 3,
           "families": [
-            "RUPTURE",
+            "RESOLUTION",
+            "RESOLUTION",
+            "RESOLUTION",
             "TURN",
-            "RESOLUTION"
+            "RUPTURE"
           ]
         }
       ],
