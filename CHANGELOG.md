@@ -5,6 +5,41 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.0.13] — Il quinto decisore e una persona
+
+### Added
+
+- **`cli/run_hotseat.gd` + `cli/human_decider.gd`** — ECHOES si gioca alla
+  tastiera. Il tabellone si stampa dal punto di vista di un seggio: le domande
+  dell'anno con i numeri che *quel* seggio puo vedere (una Tensione velata non
+  mostra niente a chi non l'ha esplorata, §11.1), la mappa, la mano, e il Destino
+  come una scala con le caselle gia spuntate. Il menu delle azioni lo costruisce
+  il resolver: ogni voce ha gia passato `can_execute`, quindi non ti viene mai
+  offerto qualcosa che le regole poi rifiutano.
+
+  `--seats=all` per quattro giocatori, `--seats=ENT_NAHR` per uno solo contro tre
+  policy. **Nessuna regola e stata trattata in modo speciale**: il
+  ChronicleController chiede a un `decider` e applica quello che torna, come ha
+  sempre fatto. La cucitura scelta nella 0.0.1 ha retto senza toccare una riga
+  del controller.
+
+- **`tests/smoke/test_hotseat.gd`** — un tavolo di quattro "umani" che non
+  rispondono niente deve produrre una Chronicle **identica riga per riga** a una
+  giocata da quattro policy, e ogni azione che il menu offre dev'essere una che
+  il resolver accetta.
+
+### Fixed
+
+- **La stringa vuota che chiudeva fuori i giocatori.**
+  `OS.read_string_from_stdin` restituisce **la stessa stringa vuota** per un
+  Invio a vuoto e per la fine dell'input: misurato, non supposto. La prima
+  versione ci provava lo stesso e si spegneva alla prima lettura vuota — cosi
+  **chi accettava un solo default restava chiuso fuori dalla propria partita**,
+  in silenzio, senza che niente andasse in errore. Ora vuoto vuol dire "decidi
+  tu", che e anche il comportamento giusto a fine input.
+
+---
+
 ## [0.0.12] — Nessuno aveva un motivo per essere nella stanza
 
 Chiude O-12, O-13 e la serratura di Vaerax. Tre cose aperte, sistemate insieme

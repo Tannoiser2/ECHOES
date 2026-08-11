@@ -331,6 +331,64 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-037 — The fifth decider is a person
+**implemented in 0.0.13**
+
+The ChronicleController has never known who its players are. It asks a
+duck-typed `decider` and applies whatever comes back, and four of those existed
+for machines: ScriptedDecider replays authored plans, PolicyDecider plays to
+win, SuppressorDecider only ever calms things down, and the stance probe borrows
+PolicyDecider to read its own mind. `cli/run_hotseat.gd` adds the fifth, and the
+first one that does not decide anything itself.
+
+**No rule was special-cased for it.** That is the result worth recording: the
+decider seam, chosen in 0.0.1 so a simulation and a UI could share one engine,
+held without a single change to the controller.
+
+### Why now
+
+The measurements have run out of things to say. D-034, D-035 and D-036 each
+found the *instrument* at fault rather than the rules, and what is left open is
+O-14 — the crown sits at Minimum in 32 Chronicles out of 40 — which is a question
+about whether a game feels right. No probe answers that. The honest next step is
+to stop modelling a player and let one sit down.
+
+### What a seat actually needs to see
+
+The board prints from one seat's point of view, and every line of it is
+something that seat is already entitled to know: the year's questions with the
+numbers *that viewer* can read (a veiled Tension shows nothing to anyone who has
+not scouted it, §11.1), the map, the hand, and the Destiny as a ladder with the
+rungs that currently hold already ticked. A player who cannot read their own
+goal cannot steer towards it.
+
+The action menu is built by asking the resolver, not by listing templates: every
+entry has already passed `can_execute`, so a person is never offered something
+the rules will then refuse. That is the query the 0.1 Confluence Board will draw
+as buttons.
+
+### The empty string that locked players out
+
+`OS.read_string_from_stdin` returns **the same empty string** for a bare Enter
+and for end-of-input. They cannot be told apart — measured, not assumed.
+
+The first version tried anyway: on an empty read it latched itself off and handed
+the rest of the Chronicle to the policy. The effect was that **a player who
+accepted a single default was locked out of their own game**, silently, with
+nothing crashing.
+
+The fix is to stop trying. An empty answer means "you decide" and hands that one
+choice back to the policy — which is also exactly the right behaviour at
+end-of-input, where every remaining prompt reads empty, takes the default, and
+the policy finishes the Chronicle. One meaning, no ambiguity, and piping a file
+of answers becomes a faithful way to drive the game.
+
+`tests/smoke/test_hotseat.gd` guards it: a table of four "humans" who answer
+nothing must produce a Chronicle **identical line for line** to one played by
+four policies, and every action the menu offers must be one the resolver accepts.
+
+---
+
 ## D-036 — Who raises a question is decided by the place, not the domain
 **implemented in 0.0.12** · closes O-12, closes O-13, closes the Vaerax lock
 

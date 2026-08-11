@@ -46,6 +46,28 @@ caricare agli smoke test. Non c'è UI di gioco: è previsto.
 
 ---
 
+## Sedersi al tavolo
+
+```bash
+godot --headless --path godot --script res://cli/run_hotseat.gd -- \
+    --seats=ENT_NAHR --seed=812
+```
+
+Gioca davvero: il tabellone si stampa dal punto di vista del tuo seggio — le
+domande dell'anno con i numeri che *tu* puoi vedere, la mappa, la tua mano, il
+tuo Destino con le caselle gia spuntate — e ti offre un menu delle sole azioni
+che le regole accettano. In Consiglio scegli la domanda, la proposta, la tua
+posizione e cosa impegni.
+
+`--seats=all` mette tutti e quattro i seggi alla tastiera; qualsiasi seggio non
+elencato lo gioca la policy. **Invio a vuoto su qualsiasi scelta la lascia
+decidere alla policy**, quindi si puo giocare un seggio solo, o mollarne uno a
+meta partita, o pipare un file di risposte e lasciare che finisca da sola.
+
+Opzioni: `--seed=<n>` stesso seme stesso mondo · `--chronicle=CHR_02` la
+Chronicle di libreria · `--quiet` toglie la traccia delle regole round per round
+e lascia solo i Consigli, le carte Echo e il finale.
+
 ## Giocare una Chronicle da riga di comando
 
 ```bash
@@ -147,8 +169,9 @@ godot/
     confluence/  ConfluenceController, confluence_resolution (Strategy baseline_v0)
     actions/     ActionResolver — i sei template
   data/          contenuto della Chronicle I (ridotto §18.2)
-  cli/           run_chronicle_sim.gd, scripted_decider.gd,
-                 run_balance_probe.gd, policy_decider.gd
+  cli/           run_hotseat.gd, human_decider.gd — il tavolo umano
+                 run_chronicle_sim.gd, scripted_decider.gd
+                 run_balance_probe.gd, policy_decider.gd, e le altre sonde
   tests/         unit/ e smoke/, con il runner
 docs/            design, regole, decisioni, piano di test, art bible
 ```
