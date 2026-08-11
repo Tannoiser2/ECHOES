@@ -330,6 +330,7 @@ func card_bindings(hook: Dictionary) -> Dictionary:
 		str(bindings["region_focus"]), str(bindings["proponent"])
 	)
 	bindings["capital"] = session.confluence.narrative.capital_region()
+	bindings["adjacent"] = session.confluence.narrative.adjacent_to(str(bindings["region_focus"]))
 	bindings["rival_seat"] = session.confluence.narrative.seat_of(
 		str(bindings["rival"]), str(bindings["region_focus"])
 	)

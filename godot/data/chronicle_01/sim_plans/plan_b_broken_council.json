@@ -310,7 +310,7 @@
           "SUCCESS_WITH_COST",
           "SUCCESS_WITH_COST",
           "DECISIVE_SUCCESS",
-          "FAILURE"
+          "SUCCESS_WITH_COST"
         ],
         "min_echoes": 3,
         "min_truths": 3

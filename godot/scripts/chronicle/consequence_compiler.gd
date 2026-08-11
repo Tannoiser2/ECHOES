@@ -9,10 +9,15 @@ const Effect := preload("res://scripts/core/effect.gd")
 const Ids := preload("res://scripts/core/ids.gd")
 
 var data: RefCounted
+## Optional. Only `$region_with:<tag>` needs it: every other slot is resolved by
+## whoever builds the context, because only they know what the Confluence is
+## about. This one asks the board a question instead.
+var world: Dictionary = {}
 
 
-func _init(p_data: RefCounted) -> void:
+func _init(p_data: RefCounted, p_world: Dictionary = {}) -> void:
 	data = p_data
+	world = p_world
 
 
 ## Compile one Consequence id into its Effects.
@@ -78,6 +83,27 @@ func _substitute(value: Variant, context: Dictionary) -> Variant:
 	return value
 
 
+## `$region_with:<tag>` names a *kind* of place rather than a place: the first
+## Region in Chronicle order carrying that tag, preferring one that is not the
+## Region already under discussion, so a Consequence can say "the granary" or
+## "the crossroads" and still travel from one Chronicle to the next (D-033).
+##
+## Unresolvable - no Region carries the tag in this Chronicle - falls back to the
+## focus, because an Effect with a hole in it is worse than one aimed slightly
+## wrong. `validate_data.py` checks the tag is one some Region actually declares.
+func _resolve_region_with(tag: String, context: Dictionary) -> String:
+	var avoid: String = str(context.get("region_focus", ""))
+	var fallback: String = ""
+	for region_id in world.get("regions", {}):
+		var id: String = str(region_id)
+		if not (world["regions"][id]["tags"] as Array).has(tag):
+			continue
+		if id != avoid:
+			return id
+		fallback = id
+	return fallback if fallback != "" else avoid
+
+
 ## Public: the Confluence controller resolves the authored Scar block with it,
 ## because a Scar may name $region_focus like any other authored target.
 func substitute_string(value: String, context: Dictionary) -> String:
@@ -95,4 +121,6 @@ func _substitute_string(value: String, context: Dictionary) -> String:
 	var out: String = value
 	for key in keys:
 		out = out.replace("$%s" % key, str(context[key]))
+	if out.begins_with("$region_with:"):
+		out = _resolve_region_with(out.substr("$region_with:".length()), context)
 	return out

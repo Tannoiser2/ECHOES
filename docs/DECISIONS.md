@@ -331,6 +331,83 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-033 — Two more ways to aim: the neighbour, and a kind of place
+**implemented in 0.0.9** · closes O-11
+
+O-11 measured the cost of D-032: `$region_focus` is *stable* for a Tension, so
+every Consequence of that Tension landed on the same place and the control map
+stopped moving. Two slots answer it, and a third finding explains most of it.
+
+### `$adjacent` — where the trouble spills
+
+The Region next to the one under discussion, picked as the neighbour **carrying
+the fewest marks already**. Damage spreads across the board instead of piling up,
+and it reads right: the trouble goes where it has not been yet. Ties go to the
+Chronicle's Region order, so the same board always spills the same way.
+
+Used by the five Consequences whose narrative is overflow rather than target -
+the unrest that does not stay where it was born, the road cut on the far side of
+a plundered one.
+
+### `$region_with:<tag>` — a kind of place, not a place
+
+A parameterised slot: the first Region in Chronicle order carrying that tag,
+preferring one that is *not* the Region already under discussion. A Consequence
+can now say **the granary**, **the crossroads**, **the crystal site** and travel
+from one Chronicle to the next without knowing the map.
+
+Resolved by `ConsequenceCompiler`, which needed a world reference for it - every
+other slot is filled by whoever builds the context, because only they know what
+the Confluence is about; this one asks the board a question instead.
+`validate_data.py` checks the tag is one some Region actually declares, so a
+`$region_with:granray` fails at build time rather than silently resolving to the
+focus.
+
+### The third finding, and it was the big one
+
+The two slots helped (distinct tag sets 21 -> 23) and left the control map at 3.
+The real cause was not the slots at all.
+
+`PolicyDecider.choose_proposition` started from `options[0]` and only replaced it
+on a **strictly greater** score. Most propositions score 0 against most Destinies,
+so the first legal option won every tie - and **twelve of the eighteen authored
+propositions were never chosen once in forty Chronicles**. Their Consequences
+could not fire, so most of the content that changes control simply never ran.
+
+Breaking the tie with the session RNG - a player with no preference does not
+always take the first thing on the list - is a change to the *measuring
+instrument*, not to the rules. Same lesson as D-021, where most of the apparent
+balance problem turned out to be the policy.
+
+### After
+
+| | D-032 | D-033 |
+|---|---|---|
+| mappe di controllo distinte (40 partite) | 3 | **5** |
+| set di tag distinti | 21 | **31** |
+| stato finale distinto | 24 | **31** |
+| Scar per Chronicle | 0.17 | **1.52** |
+| proposte diverse messe ai voti | 6 | **10** |
+| domande diverse poste | 6 | **8** |
+| frasi Truth distinte | 56 su 94 | **73 su 104** |
+| tag sulla mappa in 10 Chronicle | 1 -> 10 | **1 -> 17** |
+
+Scars per Chronicle are now double what they were *before* D-032 lost them
+(0.75), so the generalisation ended up ahead rather than merely recovered.
+
+### A probe that was lying
+
+`run_world_probe` printed "il controllo e cambiato: NO" for a campaign in which
+Aldric lost the capital at Chronicle 2, the Nahr took it at 6, and Aldric took it
+back at 10 - because it compared only the first and last map, and they matched.
+It now counts every distinct control map the campaign passed through: 3.
+
+Worth stating on its own: a measurement that compares endpoints will call a
+round trip "no change". Every probe in this project is now suspect in the same
+way until checked.
+
+---
+
 ## D-032 — Consequences written in slots, and a Truth register that varies
 **implemented in 0.0.8** · completes the content half of D-028
 
@@ -1046,7 +1123,11 @@ policy is narrow - tuning the policy until its own content fires would be fittin
 the measurement to the answer.
 
 ### O-11 — Slot-written Consequences concentrate the damage
-**flagged, open** - the cost side of D-032.
+**closed by D-033.** The concentration was real but secondary: the dominant cause
+was a policy that always took the first proposition on a tie, leaving two thirds
+of the authored content unplayable.
+
+**original note:**
 
 Control maps distinct over 40 Chronicles went 6 -> 3 and Scars per Chronicle
 0.75 -> 0.17, because `$region_focus` is stable for a Tension and six hard-coded

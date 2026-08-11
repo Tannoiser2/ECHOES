@@ -117,6 +117,36 @@ func seat_of(entity_id: String, fallback_region: String) -> String:
 	return fallback_region
 
 
+## Where the trouble spills next: a Region adjacent to the one under discussion,
+## picked as the neighbour carrying the fewest marks already.
+##
+## A Consequence aimed at $region_focus always lands on the same place, because
+## the focus of a Tension is stable - that is what collapsed the control map in
+## D-032. Aiming the spill-over at the *least marked* neighbour spreads damage
+## across the board instead, and reads right: the trouble goes where it has not
+## been yet. Ties go to the Chronicle's own Region order.
+func adjacent_to(region_id: String) -> String:
+	var region: Variant = data.regions.get(region_id)
+	if region == null:
+		return region_id
+	var best: String = ""
+	var fewest: int = -1
+	for neighbour_id in region["adjacency"]:
+		var id: String = str(neighbour_id)
+		if not world["regions"].has(id):
+			continue
+		var marks: int = 0
+		for tag in world["regions"][id]["tags"]:
+			for prefix in ["condition:", "scar:", "structure:", "settlement:"]:
+				if str(tag).begins_with(prefix):
+					marks += 1
+					break
+		if fewest < 0 or marks < fewest:
+			best = id
+			fewest = marks
+	return best if best != "" else region_id
+
+
 ## The Region the Chronicle calls its seat of power. Authored as a tag, so a
 ## Chronicle with a different capital needs no code change.
 func capital_region() -> String:

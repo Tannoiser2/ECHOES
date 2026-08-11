@@ -273,7 +273,17 @@ def check_references(
 #: anything else compiles to nothing at all, and the only sign is a push_error
 #: buried in a log nobody reads - which is exactly how CNS_HARVEST_RETURNS
 #: silently did nothing on an Echo card.
-KNOWN_BINDINGS = {"proponent", "tension", "confluence", "region_focus", "rival", "rival_seat", "capital", "actor"}
+KNOWN_BINDINGS = {
+    "proponent",
+    "tension",
+    "confluence",
+    "region_focus",
+    "adjacent",
+    "rival",
+    "rival_seat",
+    "capital",
+    "actor",
+}
 
 
 def check_bindings(
@@ -288,6 +298,17 @@ def check_bindings(
             # A relation target is a pair joined by "|", so each half is checked
             # on its own; anything else is a single binding.
             for token in value.split("|") if "|" in value else [value]:
+                # `$region_with:<tag>` names a kind of place; the tag has to be
+                # one some Region actually declares, or it silently resolves to
+                # the focus and the Consequence quietly means something else.
+                if token.startswith("$region_with:"):
+                    wanted = token[len("$region_with:") :]
+                    declared = {
+                        tag for r in documents.get("region", []) for tag in r.get("tags", [])
+                    }
+                    if wanted not in declared:
+                        report.fail(where, f"no Region declares the tag '{wanted}'")
+                    continue
                 if token.startswith("$") and token[1:] not in KNOWN_BINDINGS:
                     report.fail(
                         where,

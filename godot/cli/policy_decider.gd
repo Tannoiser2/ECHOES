@@ -13,7 +13,10 @@ extends RefCounted
 ## edge. In a Confluence it scores every proposition against its own Destiny and
 ## supports, opposes or abstains accordingly.
 ##
-## Deterministic: it never draws from the RNG, so a seed still fixes the run.
+## Deterministic, but not RNG-free: it breaks a tie between equally useful
+## propositions with the session RNG, because always taking the first option on
+## the list left two thirds of the authored propositions unplayable. Same seed,
+## same run.
 
 const Ids := preload("res://scripts/core/ids.gd")
 const WorldStateService := preload("res://scripts/world/world_state_service.gd")
@@ -338,16 +341,28 @@ func choose_question(_context: Dictionary, _options: Array, _session: RefCounted
 
 
 ## Pick the proposition whose world changes serve this Destiny best.
+## Pick what serves your Destiny best - and when nothing does, do not always pick
+## the first thing on the list.
+##
+## Most propositions score 0 against most Destinies, so taking `options[0]` on a
+## tie meant twelve of the eighteen authored propositions were never chosen once
+## in forty Chronicles, and their Consequences never fired. That is the measuring
+## instrument being wrong, not the rules - the same lesson as D-021. The tie is
+## broken with the session RNG, so it stays deterministic per seed.
 func choose_proposition(context: Dictionary, options: Array, session: RefCounted) -> String:
 	var proponent: String = str(context["proponent"])
-	var best: String = str(options[0]["id"])
 	var best_score: int = -999
+	var tied: Array = []
 	for option in options:
 		var score: int = _score_proposition(option, proponent, proponent, session)
 		if score > best_score:
 			best_score = score
-			best = str(option["id"])
-	return best
+			tied = [str(option["id"])]
+		elif score == best_score:
+			tied.append(str(option["id"]))
+	if tied.size() == 1:
+		return str(tied[0])
+	return str(tied[session.rng.range_int(0, tied.size() - 1)])
 
 
 ## How much a proposition's consequences help (+) or hurt (-) `entity_id`.

@@ -66,7 +66,7 @@ func _init(
 	tensions = p_tensions
 	service = WorldStateService.new(p_world, p_data)
 	conditions = ConditionEvaluator.new(p_world, p_data)
-	compiler = ConsequenceCompiler.new(p_data)
+	compiler = ConsequenceCompiler.new(p_data, p_world)
 	narrative = NarrativeText.new(p_world, p_data, service)
 	recorder = EchoRecorder.new(p_world, p_data, p_applier, p_log)
 	recorder.narrative = narrative
@@ -590,6 +590,7 @@ func _context() -> Dictionary:
 			narrative.focus_region(str(current["tension_id"])), str(current["proponent"])
 		),
 		"capital": narrative.capital_region(),
+		"adjacent": narrative.adjacent_to(narrative.focus_region(str(current["tension_id"]))),
 		"rival_seat": narrative.seat_of(
 			narrative.rival_id(
 				narrative.focus_region(str(current["tension_id"])), str(current["proponent"])

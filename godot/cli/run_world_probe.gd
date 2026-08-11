@@ -112,6 +112,10 @@ func _campaign(data: RefCounted, chronicles: int, first_seed: int, chronicle_id:
 	print("")
 
 	var previous: Dictionary = {}
+	# Every control map the campaign passed through. Comparing only the first and
+	# the last says "nothing changed" about a world that changed hands twice and
+	# happened to end where it started.
+	var control_seen: Dictionary = {}
 	var start_control: String = ""
 	var start_tags: Array = []
 	var truths: int = 0
@@ -140,6 +144,7 @@ func _campaign(data: RefCounted, chronicles: int, first_seed: int, chronicle_id:
 		if index == 0:
 			start_control = _control_signature(world)
 			start_tags = _region_tags(world)
+		control_seen[_control_signature(world)] = true
 		for truth in world["truth_log"]:
 			sentences[str(truth["text"]).split(": ", true, 1)[-1]] = true
 
@@ -174,7 +179,9 @@ func _campaign(data: RefCounted, chronicles: int, first_seed: int, chronicle_id:
 	print("Dopo %d Chronicle" % chronicles)
 	print("  Truth accumulate           %d" % truths)
 	print("  frasi distinte lette       %d" % sentences.size())
-	print("  il controllo e cambiato    %s" % ("si" if _control_signature(previous) != start_control else "NO"))
+	print("  mappe di controllo viste   %d%s" % [
+		control_seen.size(), "" if control_seen.size() > 1 else "   (il controllo non si e mai mosso)"
+	])
 	print("  tag sulla mappa            %d -> %d" % [start_tags.size(), _region_tags(previous).size()])
 
 	print("")

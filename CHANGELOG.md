@@ -5,6 +5,58 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.0.9] — Il vicino, il tipo di luogo, e uno strumento che mentiva
+
+Chiude O-11, il prezzo pagato nella 0.0.8.
+
+### Added
+
+- **`$adjacent`** — la Regione accanto a quella in discussione, scelta come il
+  vicino che porta gia **meno segni**. Il danno si sparge invece di accumularsi,
+  e si legge bene: il guaio va dove non e ancora stato.
+- **`$region_with:<tag>`** — uno slot parametrico: nomina un **tipo** di luogo
+  invece di un luogo. Una Conseguenza puo dire *il granaio*, *il crocevia*, *il
+  sito del cristallo* e viaggiare da una Chronicle all'altra senza conoscere la
+  mappa. Risolto dal compilatore, che per questo ha ricevuto un riferimento al
+  mondo; `validate_data.py` verifica che il tag sia dichiarato da qualche
+  Regione, cosi un refuso fallisce alla build invece di risolversi in silenzio.
+
+### Changed
+
+- **`PolicyDecider.choose_proposition` rompe i pareggi con l'RNG di sessione.**
+  Partiva da `options[0]` e la sostituiva solo con un punteggio *strettamente*
+  maggiore: quasi tutte le proposte pareggiano a zero, quindi la prima opzione
+  legale vinceva sempre e **dodici delle diciotto proposte autorate non sono mai
+  state scelte in quaranta Chronicle**. E un cambio allo *strumento di misura*,
+  non alle regole — la stessa lezione di D-021.
+
+### Fixed
+
+- **`run_world_probe` mentiva.** Stampava "il controllo e cambiato: NO" per una
+  campagna in cui Aldric perde la capitale alla seconda Chronicle, i Nahr la
+  prendono alla sesta e Aldric la riprende alla decima — perche confrontava solo
+  la prima e l'ultima mappa, e coincidevano. Ora conta tutte le mappe di
+  controllo attraversate. Una misura che confronta gli estremi chiama "nessun
+  cambiamento" un viaggio di andata e ritorno.
+
+### La misura
+
+| | 0.0.8 | 0.0.9 |
+|---|---|---|
+| mappe di controllo distinte (40 partite) | 3 | **5** |
+| set di tag distinti | 21 | **31** |
+| stato finale distinto | 24 | **31** |
+| Scar per Chronicle | 0.17 | **1.52** |
+| proposte diverse messe ai voti | 6 | **10** |
+| frasi Truth distinte | 56 su 94 | **73 su 104** |
+| tag sulla mappa in 10 Chronicle | 1 → 10 | **1 → 17** |
+
+Le Scar per Chronicle sono ora il doppio di quante ne avevamo **prima** che la
+0.0.8 le perdesse (0.75): la generalizzazione e finita in attivo, non solo
+recuperata.
+
+---
+
 ## [0.0.8] — Conseguenze a slot, e un registro che non si ripete
 
 Chiude la meta di contenuto di D-028, che era rimasta dichiarata e non fatta.

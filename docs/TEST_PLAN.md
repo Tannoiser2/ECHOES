@@ -10,7 +10,7 @@ python3 tools/gen_gd_schema.py --check
 GODOT=/path/to/godot tools/run_sims.sh
 ```
 
-Stato 0.0.7: **94 test in 12 suite, 662 asserzioni, tutto verde**, più i 3 piani di
+Stato 0.0.9: **94 test in 12 suite, 661 asserzioni, tutto verde**, più i 3 piani di
 simulazione che passano le proprie asserzioni.
 
 La sonda di bilanciamento gioca N Chronicle con giocatori che perseguono davvero

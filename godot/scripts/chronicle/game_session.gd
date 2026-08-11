@@ -94,7 +94,7 @@ func _wire_systems() -> void:
 	applier = EffectApplier.new(world, data)
 	applier.effect_applied.connect(func(effect: Dictionary) -> void: effect_applied.emit(effect))
 	service = WorldStateService.new(world, data)
-	compiler = ConsequenceCompiler.new(data)
+	compiler = ConsequenceCompiler.new(data, world)
 	tensions = TensionSystem.new(world, data, applier, log)
 	actions = ActionResolver.new(world, data, applier, rng, log, tensions)
 	confluence = ConfluenceController.new(world, data, applier, rng, log, tensions)

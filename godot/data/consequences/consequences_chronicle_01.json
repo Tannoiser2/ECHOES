@@ -12,7 +12,7 @@
           "type": "SET_REGION_TAG",
           "target": {
             "kind": "region",
-            "id": "$capital"
+            "id": "$region_with:granary"
           },
           "payload": {
             "tag": "structure:granary"
@@ -104,7 +104,7 @@
           "type": "SET_GLOBAL_TAG",
           "target": {
             "kind": "world",
-            "id": "WORLD"
+            "id": "$adjacent"
           },
           "payload": {
             "tag": "valley_sealed"
@@ -139,7 +139,7 @@
       "description": "Il Cristallo Rosso esce dalle gallerie a peso. Quello che era una domanda diventa una voce di bilancio.",
       "creates_scar": true,
       "scar": {
-        "region_id": "$region_focus",
+        "region_id": "$region_with:crystal_site",
         "tag": "scar:open_wound",
         "description": "La galleria maestra non si richiude piu: la roccia intorno resta tiepida."
       },
@@ -148,7 +148,7 @@
           "type": "SET_REGION_TAG",
           "target": {
             "kind": "region",
-            "id": "$region_focus"
+            "id": "$region_with:crystal_site"
           },
           "payload": {
             "tag": "condition:exploited"
@@ -196,7 +196,7 @@
           "type": "SET_REGION_TAG",
           "target": {
             "kind": "region",
-            "id": "$region_focus"
+            "id": "$region_with:crystal_site"
           },
           "payload": {
             "tag": "structure:sealed"
@@ -234,7 +234,7 @@
           "type": "SET_REGION_TAG",
           "target": {
             "kind": "region",
-            "id": "$region_focus"
+            "id": "$adjacent"
           },
           "payload": {
             "tag": "condition:unrest"
@@ -757,7 +757,7 @@
           "type": "SET_CONTROL",
           "target": {
             "kind": "region",
-            "id": "$region_focus"
+            "id": "$region_with:trade"
           },
           "payload": {
             "entity_id": "$proponent"
@@ -767,7 +767,7 @@
           "type": "SET_REGION_TAG",
           "target": {
             "kind": "region",
-            "id": "$region_focus"
+            "id": "$region_with:trade"
           },
           "payload": {
             "tag": "structure:tollgate"
@@ -811,7 +811,7 @@
           "type": "SET_REGION_TAG",
           "target": {
             "kind": "region",
-            "id": "$rival_seat"
+            "id": "$adjacent"
           },
           "payload": {
             "tag": "condition:cut_off"
@@ -875,7 +875,7 @@
       "description": "Un ponte in meno, e le Miniere diventano un posto da cui e piu facile entrare che uscire.",
       "creates_scar": true,
       "scar": {
-        "region_id": "$region_focus",
+        "region_id": "$adjacent",
         "tag": "scar:broken_bridge",
         "description": "Le due teste del ponte, ancora in piedi, con niente in mezzo."
       },
@@ -884,7 +884,7 @@
           "type": "SET_REGION_TAG",
           "target": {
             "kind": "region",
-            "id": "$region_focus"
+            "id": "$adjacent"
           },
           "payload": {
             "tag": "condition:cut_off"
@@ -932,7 +932,7 @@
           "type": "SET_REGION_TAG",
           "target": {
             "kind": "region",
-            "id": "$capital"
+            "id": "$adjacent"
           },
           "payload": {
             "tag": "condition:cut_off"
@@ -1156,7 +1156,7 @@
           "type": "SET_REGION_TAG",
           "target": {
             "kind": "region",
-            "id": "$region_focus"
+            "id": "$region_with:nomad_range"
           },
           "payload": {
             "tag": "condition:emptied"
