@@ -22,8 +22,8 @@ func test_reduced_content_matches_the_milestone() -> void:
 	# 2 Tensions and 8 Consequences could not move the world enough to matter.
 	assert_eq(loaded.tensions.size(), 6, "6 Tensioni in biblioteca (§18.2 ne chiedeva 2; vedi D-024, D-028)")
 	assert_eq(loaded.confluence_templates.size(), 5, "5 Consigli, uno dei quali legato a un dominio")
-	assert_eq(loaded.echo_cards.size(), 16, "16 carte Echo (§18.2 ne chiedeva 8; vedi D-024)")
-	assert_eq(loaded.consequences.size(), 29, "29 Conseguenze (§18.2 ne chiedeva 8; vedi D-022, D-024)")
+	assert_eq(loaded.echo_cards.size(), 24, "24 carte Echo: una per ogni funzione di Propp (vedi D-024, D-031)")
+	assert_eq(loaded.consequences.size(), 32, "32 Conseguenze (§18.2 ne chiedeva 8; vedi D-022, D-024)")
 	assert_eq(loaded.chronicles.size(), 2, "CHR_01 scritta a mano, CHR_02 assemblata dalla biblioteca")
 	assert_eq(loaded.entities.size(), 4, "4 Entita")
 	assert_eq(loaded.destinies.size(), 4, "4 Destiny")

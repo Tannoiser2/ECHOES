@@ -304,10 +304,11 @@
         }
       ],
       "expected": {
-        "confluence_count": 4,
+        "confluence_count": 5,
         "outcomes": [
           "FAILURE",
-          "SUCCESS",
+          "SUCCESS_WITH_COST",
+          "SUCCESS_WITH_COST",
           "DECISIVE_SUCCESS",
           "FAILURE"
         ],

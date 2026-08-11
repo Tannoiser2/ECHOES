@@ -4,6 +4,7 @@ extends "res://tests/test_case.gd"
 
 const Effect := preload("res://scripts/core/effect.gd")
 const PolicyDecider := preload("res://cli/policy_decider.gd")
+const SchemaDefs := preload("res://scripts/core/schema_defs.gd")
 
 
 ## Drawing a card records the function it performed, so a later card can require
@@ -89,3 +90,48 @@ func test_the_act_pool_is_weighted_and_seeded() -> void:
 		assert_eq(str(arc[0]), "PRESSURE", "l'Atto 1 apre sempre in tensione")
 		session.dispose()
 	assert_true(arcs.size() > 1, "seed diversi devono dare archi diversi: %d" % arcs.size())
+
+
+## The deck covers Propp's set exactly: every function the schema declares has a
+## card, and the four dramatic families are balanced. Content that exists only in
+## the enum is content that cannot happen.
+func test_every_declared_function_has_a_card() -> void:
+	var by_function: Dictionary = {}
+	var by_family: Dictionary = {}
+	for card in data().echo_cards.values():
+		by_function[str(card["function_id"])] = str(card["id"])
+		var family: String = str(card["dramatic_family"])
+		by_family[family] = int(by_family.get(family, 0)) + 1
+
+	for function_id in SchemaDefs.DEFS["echo_card"]["properties"]["function_id"]["enum"]:
+		assert_true(
+			by_function.has(str(function_id)),
+			"la funzione '%s' e dichiarata nello schema ma nessuna carta la svolge" % function_id
+		)
+	for family in ["PRESSURE", "RUPTURE", "TURN", "RESOLUTION"]:
+		assert_eq(int(by_family.get(family, 0)), 6, "sei carte per la famiglia %s" % family)
+
+
+## `any_of` is what lets Propp's alternatives be written down: a Return follows a
+## Separation *or* a Prohibition. Every other condition list in the data is an AND.
+func test_any_of_holds_when_one_branch_does() -> void:
+	new_session()
+	var conditions: RefCounted = load("res://scripts/world/condition_evaluator.gd").new(
+		session.world, data()
+	)
+	var condition: Dictionary = {
+		"type": "any_of",
+		"conditions": [
+			{"type": "state_tag_present", "scope": "GLOBAL", "tag": "function:PROHIBITION"},
+			{"type": "state_tag_present", "scope": "GLOBAL", "tag": "function:SEPARATION"},
+		],
+	}
+	assert_false(conditions.holds(condition, {}), "nessuno dei due rami vale")
+
+	session.applier.apply(
+		Effect.make(
+			"SET_GLOBAL_TAG", "world", "WORLD", {"tag": "function:SEPARATION"},
+			Effect.source("test", "TEST", "", 1, 1, 0)
+		)
+	)
+	assert_true(conditions.holds(condition, {}), "basta che ne valga uno")

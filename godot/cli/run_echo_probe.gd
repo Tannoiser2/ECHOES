@@ -8,10 +8,12 @@ extends SceneTree
 ## `dramatic_family` (PRESSURE / RUPTURE / TURN / RESOLUTION) gates which cards
 ## an Act may draw, so it is load-bearing: it is the three-act shape, enforced.
 ##
-## `function_id` - the 24 narrative functions - is read by nothing. This probe
-## measures what that costs: how often a Chronicle draws the same function twice,
-## and how often it draws a function whose antecedent never happened (a RETURN
-## with no SEPARATION, a RECONCILIATION with no BETRAYAL).
+## `function_id` - the 24 narrative functions - orders the story: drawing a card
+## records the function it performed, and a card that presupposes something is
+## not eligible until that something has happened (D-030). This probe checks the
+## grammar actually holds: no function arriving without its antecedent, no
+## function repeating inside one Chronicle, and enough distinct arcs that two
+## Chronicles do not feel like the same one.
 
 const DataSet := preload("res://scripts/core/data_set.gd")
 const GameSession := preload("res://scripts/chronicle/game_session.gd")
@@ -23,11 +25,16 @@ const SEATS: Array = ["ENT_ALDRIC", "ENT_NAHR", "ENT_LYRA", "ENT_VAERAX"]
 ## card only makes sense once something else has happened, used here purely to
 ## measure how often the current deck violates them.
 const NEEDS_ANTECEDENT: Dictionary = {
-	"RETURN": ["SEPARATION", "LOSS"],
-	"RECONCILIATION": ["BETRAYAL", "VIOLATION", "ATTACK"],
-	"LIBERATION": ["PROHIBITION", "USURPATION", "ATTACK"],
-	"PUNISHMENT": ["VIOLATION", "BETRAYAL", "USURPATION"],
-	"REVELATION": ["DISCOVERY", "OMEN"],
+	"RETURN": ["PROHIBITION", "SEPARATION"],
+	"RECONCILIATION": ["BETRAYAL", "VIOLATION", "ATTACK", "SEPARATION"],
+	"LIBERATION": ["USURPATION", "PROHIBITION", "CONQUEST"],
+	"PUNISHMENT": ["VIOLATION", "BETRAYAL", "USURPATION", "CONQUEST"],
+	"REVELATION": ["DISCOVERY"],
+	"VIOLATION": ["PROHIBITION", "REQUEST"],
+	"CONQUEST": ["ATTACK", "THREAT", "USURPATION"],
+	"SUCCESSION": ["THREAT", "USURPATION", "CONQUEST", "SEPARATION"],
+	"TRANSFORMATION": ["THREAT"],
+	"GIFT": ["LACK"],
 }
 
 
@@ -111,7 +118,7 @@ func _initialize() -> void:
 		print("  %-24s %dx" % [str(key), int(arcs[key])])
 
 	print("")
-	print("Funzioni narrative (questa il motore NON la usa)")
+	print("Funzioni narrative (la grammatica di Propp, D-030)")
 	print("  funzioni distinte pescate    %d su 24 dichiarate nello schema" % function_counts.size())
 	print("  ripetizioni dentro una stessa Chronicle   %d (%d/%d partite)" % [
 		repeats, chronicles_with_repeat, runs

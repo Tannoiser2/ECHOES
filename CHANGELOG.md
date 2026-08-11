@@ -5,6 +5,56 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.0.7] — Le 24 funzioni
+
+D-030 aveva cablato la grammatica, ma solo 16 delle 24 funzioni dichiarate nello
+schema avevano una carta. Le otto mancanti erano anche le piu interessanti da
+vincolare: una Punizione dopo una Violazione, una Separazione che rende possibile
+un Ritorno.
+
+### Added
+
+- **Otto carte Echo** (16 → 24), una per ogni funzione ancora scoperta: Supplica
+  (REQUEST), Offerta (TEMPTATION), Parola Data (VIOLATION), Partenza
+  (SEPARATION), Incontro (ENCOUNTER), Presa (CONQUEST), Conto (PUNISHMENT), Chi
+  Siede (SUCCESSION). Il mazzo e ora **24 carte, 6 per famiglia drammatica, una
+  per funzione dichiarata** — e un test impone tutti e tre i numeri.
+- **La condizione `any_of`**: vale se almeno una delle condizioni annidate vale.
+  Ogni lista di condizioni nei dati e un AND, e la grammatica di Propp e piena di
+  alternative — un Ritorno segue una Separazione **o** una Chiusura. Senza, le
+  otto carte nuove non si potevano scrivere onestamente. Dodici righe
+  nell'evaluator, un `$ref` a se stesso nello schema, un ramo di ricorsione nel
+  validatore.
+- Tre Conseguenze nuove (29 → 32) per gli effetti delle carte nuove.
+
+### Changed
+
+- `ECH_ROADS_OPEN`, `ECH_RECONCILIATION` e `ECH_AMNESTY` usano `any_of`: i
+  vincoli a un solo antecedente le rendevano piu rare di quanto la grammatica
+  richieda.
+
+### La misura
+
+| | D-030 | D-031 |
+|---|---|---|
+| funzioni con una carta | 16/24 | **24/24** |
+| funzioni pescate in 40 Chronicle | 16 | **21** |
+| funzioni senza antecedente | 0 | **0** |
+| Atto 3 risolve | 23/40 | **28/40** |
+
+Verificato anche sulla Chronicle di biblioteca: 22 funzioni pescate, 0 orfane.
+
+### Segnalato, non corretto
+
+- `SACRIFICE` esce 14 volte su 40 perche e l'unica carta RESOLUTION che non
+  presuppone niente, e l'Atto 3 chiede prima una risoluzione. E il prezzo
+  dell'invariante — ogni famiglia mantiene una carta sempre giocabile — e
+  spianarlo vorrebbe dire inventare un antecedente che un sacrificio non ha.
+- La banda delle Confluence e scesa dall'85% al 70% dentro 4-5 con il mazzo piu
+  largo, sempre senza niente fuori da 2-7. Resta O-6.
+
+---
+
 ## [0.0.6] — Propp entra davvero nel gioco
 
 Le carte Echo portavano due metadati narrativi. Uno lavorava, l'altro era

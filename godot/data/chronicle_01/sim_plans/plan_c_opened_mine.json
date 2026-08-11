@@ -231,16 +231,17 @@
         }
       ],
       "expected": {
-        "confluence_count": 5,
+        "confluence_count": 6,
         "outcomes": [
           "FAILURE",
-          "FAILURE",
-          "FAILURE",
+          "SUCCESS",
+          "SUCCESS_WITH_COST",
+          "SUCCESS_WITH_COST",
           "SUCCESS",
           "SUCCESS_WITH_COST"
         ],
-        "min_echoes": 2,
-        "min_truths": 2
+        "min_echoes": 5,
+        "min_truths": 5
       }
     }
   ]

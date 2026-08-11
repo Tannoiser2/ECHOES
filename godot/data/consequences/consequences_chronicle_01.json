@@ -1100,6 +1100,108 @@
           }
         }
       ]
+    },
+    {
+      "id": "CNS_OATH_BROKEN",
+      "title": "Il Patto Rotto",
+      "category": "REVOLT",
+      "description": "Qualcuno fa esattamente la cosa che aveva promesso di non fare, e lo fa dove si vede.",
+      "creates_scar": true,
+      "scar": {
+        "region_id": "$region_focus",
+        "tag": "scar:broken_word",
+        "description": "La pietra del patto, spaccata a meta e lasciata dov'era."
+      },
+      "effects": [
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "oath_broken"
+          }
+        },
+        {
+          "type": "SET_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "tag": "condition:unrest"
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_EXODUS",
+      "title": "La Partenza",
+      "category": "MIGRATION",
+      "description": "Non se ne vanno tutti, e non se ne va nessuno del tutto. Ma qualcosa parte e non torna quell'anno.",
+      "effects": [
+        {
+          "type": "REMOVE_PRESENCE",
+          "target": {
+            "kind": "entity",
+            "id": "$proponent"
+          },
+          "payload": {
+            "region_id": "$region_focus",
+            "optional": true
+          }
+        },
+        {
+          "type": "SET_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "tag": "condition:emptied"
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_ACCOUNT_SETTLED",
+      "title": "Il Conto Saldato",
+      "category": "INFLUENCE",
+      "description": "Si paga per quello che si e fatto, davanti a chi lo ha subito. Non ripara niente, ma chiude.",
+      "effects": [
+        {
+          "type": "REMOVE_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "oath_broken",
+            "optional": true
+          }
+        },
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "account_settled"
+          }
+        },
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "$tension"
+          },
+          "payload": {
+            "delta": -2
+          }
+        }
+      ]
     }
   ]
 }

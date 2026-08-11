@@ -331,6 +331,70 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-031 — Propp's set completed: 24 cards, 24 functions, and an `any_of`
+**implemented in 0.0.7** · §15, §18.2
+
+D-030 wired the grammar but only 16 of the 24 functions the schema declares had
+a card. The eight missing ones were also the most interesting to constrain:
+a Punishment after a Violation, a Separation that makes a Return possible.
+
+### The eight
+
+| carta | famiglia | funzione | aspetta |
+|---|---|---|---|
+| `ECH_PETITION` | PRESSURE | REQUEST | — |
+| `ECH_OFFER` | PRESSURE | TEMPTATION | — |
+| `ECH_OATH_BROKEN` | RUPTURE | VIOLATION | PROHIBITION o REQUEST |
+| `ECH_EXODUS` | RUPTURE | SEPARATION | — |
+| `ECH_PARLEY` | TURN | ENCOUNTER | — |
+| `ECH_SEIZURE` | TURN | CONQUEST | ATTACK, THREAT o USURPATION |
+| `ECH_RECKONING` | RESOLUTION | PUNISHMENT | VIOLATION, BETRAYAL, USURPATION o CONQUEST |
+| `ECH_CROWNING` | RESOLUTION | SUCCESSION | THREAT, USURPATION, CONQUEST o SEPARATION |
+
+The deck is now **24 cards, 6 per dramatic family, one per declared function**,
+and a test asserts all three of those numbers: content that exists only in an
+enum is content that cannot happen.
+
+### `any_of`
+
+Every condition list in the data is an AND, and Propp's grammar is full of
+alternatives - a Return follows a Separation *or* a Prohibition. The eight new
+cards could not be written honestly without it.
+
+A new condition type, `any_of`, holds when at least one of its nested conditions
+does. Twelve lines in the evaluator, a `$ref` to itself in the schema, and one
+recursion branch in the Python validator. `ECH_ROADS_OPEN`, `ECH_RECONCILIATION`
+and `ECH_AMNESTY` were widened to use it, because single-antecedent gates made
+them rarer than the grammar requires.
+
+It is available to Destiny conditions and Confluence eligibility too, which is
+where it will earn its keep next.
+
+### After
+
+| | D-030 | D-031 |
+|---|---|---|
+| funzioni con una carta | 16/24 | **24/24** |
+| funzioni pescate in 40 Chronicle | 16 | **21** |
+| funzioni senza antecedente | 0 | **0** |
+| archi drammatici distinti | 9 | 9 |
+| Atto 3 risolve | 23/40 | **28/40** |
+
+Verified on the library Chronicle too (`--chronicle=CHR_02`): 22 functions drawn,
+0 orphans, 7 distinct arcs.
+
+### Reported, not fixed
+
+`SACRIFICE` is drawn 14 times in 40 because it is the only RESOLUTION card that
+presupposes nothing, and Act 3 asks for a resolution first. That is the price of
+the invariant - every family keeps one unconditional card - and forcing it flat
+would mean inventing an antecedent a sacrifice does not have.
+
+The Confluence band moved 85% -> 70% inside 4-5 with the wider deck, still with
+nothing outside 2-7. Related to O-6, still not tuned away.
+
+---
+
 ## D-030 — The Propp layer: families shape the Act, functions order the story
 **implemented in 0.0.6** · §15
 

@@ -26,25 +26,33 @@ Milestone 0.0 ships the reduced content of §18.2. The full §19.4 list (48 Asse
 | AST_WEALTH_CARAVAN | Carovana | WEALTH | 2 | UNCOMMON | 4 | ALWAYS_DISCARD | `asset.wealth.caravan` |
 | AST_WEALTH_GRAIN | Riserva di Grano | WEALTH | 1 | COMMON | 6 | DISCARD | `asset.wealth.grain` |
 
-## Echo cards (16)
+## Echo cards (24)
 | id | titolo | famiglia drammatica | funzione | art_prompt_key |
 |---|---|---|---|---|
 | ECH_EMPTY_THRONE | Sedia Vuota | PRESSURE | THREAT | `echo.pressure.threat` |
 | ECH_LACK | Mancanza | PRESSURE | LACK | `echo.pressure.lack` |
+| ECH_OFFER | L'Offerta | PRESSURE | TEMPTATION | `echo.pressure.temptation` |
 | ECH_OMEN | Presagio | PRESSURE | OMEN | `echo.pressure.omen` |
+| ECH_PETITION | La Supplica | PRESSURE | REQUEST | `echo.pressure.request` |
 | ECH_ROAD_CLOSED | Strada Chiusa | PRESSURE | PROHIBITION | `echo.pressure.prohibition` |
 | ECH_AMNESTY | Amnistia | RESOLUTION | LIBERATION | `echo.resolution.liberation` |
+| ECH_CROWNING | Chi Siede | RESOLUTION | SUCCESSION | `echo.resolution.succession` |
+| ECH_RECKONING | Il Conto | RESOLUTION | PUNISHMENT | `echo.resolution.punishment` |
 | ECH_RECONCILIATION | Riconciliazione | RESOLUTION | RECONCILIATION | `echo.resolution.reconciliation` |
 | ECH_ROADS_OPEN | Vie Riaperte | RESOLUTION | RETURN | `echo.resolution.return` |
 | ECH_SACRIFICE | Sacrificio | RESOLUTION | SACRIFICE | `echo.resolution.sacrifice` |
 | ECH_BETRAYAL | Tradimento | RUPTURE | BETRAYAL | `echo.rupture.betrayal` |
 | ECH_CARAVAN_LOST | Carovana Perduta | RUPTURE | ATTACK | `echo.rupture.attack` |
+| ECH_EXODUS | La Partenza | RUPTURE | SEPARATION | `echo.rupture.separation` |
 | ECH_LOSS | Perdita | RUPTURE | LOSS | `echo.rupture.loss` |
+| ECH_OATH_BROKEN | La Parola Data | RUPTURE | VIOLATION | `echo.rupture.violation` |
 | ECH_USURPATION | Usurpazione | RUPTURE | USURPATION | `echo.rupture.usurpation` |
 | ECH_DISCOVERY | Scoperta | TURN | DISCOVERY | `echo.turn.discovery` |
 | ECH_GOOD_YEAR | Annata Buona | TURN | GIFT | `echo.turn.gift` |
 | ECH_OATH_SWORN | Giuramento Prestato | TURN | TRANSFORMATION | `echo.turn.transformation` |
+| ECH_PARLEY | L'Incontro | TURN | ENCOUNTER | `echo.turn.encounter` |
 | ECH_REVELATION | Rivelazione | TURN | REVELATION | `echo.turn.revelation` |
+| ECH_SEIZURE | La Presa | TURN | CONQUEST | `echo.turn.conquest` |
 
 ## Region tiles (6)
 | id | nome | biome | ruolo | slot | fonti Asset | art_prompt_key | marker_id |
@@ -82,7 +90,7 @@ Milestone 0.0 ships the reduced content of §18.2. The full §19.4 list (48 Asse
 | TEN_SUCCESSION | La Successione | TERRITORY | 2 | 6 | OPEN | 2 |
 | TEN_THIRST | I Pozzi Bassi | SURVIVAL | 1 | 5 | VEILED | 2 |
 
-## Map overlays (26)
+## Map overlays (27)
 Ogni tag di Regione che il gioco puo mostrare sulla mappa. `domain:` marca il dominio di Tensione usato da INFLUENCE; `structure:`, `condition:` e `scar:` sono livelli grafici distinti (spec §19.5).
 
 | tag | layer |
@@ -91,6 +99,7 @@ Ogni tag di Regione che il gioco puo mostrare sulla mappa. `domain:` marca il do
 | `condition:abandoned` | condition |
 | `condition:contested` | condition |
 | `condition:cut_off` | condition |
+| `condition:emptied` | condition |
 | `condition:exploited` | condition |
 | `condition:indebted` | condition |
 | `condition:plundered` | condition |

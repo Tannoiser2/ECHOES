@@ -1295,6 +1295,7 @@ const CONDITION_TYPES := [
 	"region_presence",
 	"promise_kept",
 	"promise_broken",
+	"any_of",
 ]
 
 const ASSET_FAMILIES := [

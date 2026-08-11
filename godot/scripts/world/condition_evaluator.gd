@@ -34,6 +34,14 @@ func holds(condition: Dictionary, context: Dictionary = {}) -> bool:
 	var condition_type: String = str(condition.get("type", ""))
 	var entity_id: String = _resolve(str(condition.get("entity_id", "")), context)
 	match condition_type:
+		"any_of":
+			# Every other condition list in the data is an AND. Propp's grammar
+			# needs an OR - a Return follows a Separation *or* a Loss - and
+			# nesting is the least invasive way to say so (D-031).
+			for sub in condition.get("conditions", []):
+				if holds(sub, context):
+					return true
+			return false
 		"control_count":
 			return _within(service.control_count(entity_id), condition)
 		"state_tag_present":

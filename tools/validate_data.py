@@ -314,6 +314,10 @@ def _check_condition(
     report: Report,
     where: str,
 ) -> None:
+    if condition.get("type") == "any_of":
+        for sub in condition.get("conditions", []):
+            _check_condition(sub, entities, regions, tensions, report, where)
+        return
     for key, container, kind in (
         ("entity_id", entities, "entity"),
         ("other_entity_id", entities, "entity"),
