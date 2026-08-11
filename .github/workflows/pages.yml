@@ -7,13 +7,17 @@ name: pages
 # headers, which Pages cannot send. A turn-based game that waits on a click has
 # nothing to gain from threads and everything to lose from not loading at all.
 
-# Build su ogni branch, pubblica solo da main. Cosi l'export viene verificato
-# *prima* del merge: `workflow_dispatch` compare nella UI solo quando il file e
-# gia sul branch di default, quindi senza questo l'unico modo di scoprire un
-# export rotto sarebbe fonderlo su main e guardarlo fallire li.
+# Build su ogni pull request, pubblica solo da main. Cosi l'export viene
+# verificato *prima* del merge: `workflow_dispatch` compare nella UI solo quando
+# il file e gia sul branch di default, quindi senza questo l'unico modo di
+# scoprire un export rotto sarebbe fonderlo su main e guardarlo fallire li.
+#
+# `push` e limitato a main di proposito: su un branch con una PR aperta i due
+# eventi partono entrambi, e la seconda run viene cancellata dopo aver gia
+# scaricato 1,3 GB di export template per niente.
 on:
   push:
-    branches: ["**"]
+    branches: ["main"]
   pull_request:
   workflow_dispatch:
 
