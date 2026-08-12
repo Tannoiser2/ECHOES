@@ -17,7 +17,7 @@ name: pages
 # scaricato 1,3 GB di export template per niente.
 on:
   push:
-    branches: ["main", "claude/leggi-il-md-ze8b5m"]
+    branches: ["main"]
   pull_request:
   workflow_dispatch:
 
@@ -77,6 +77,7 @@ jobs:
       # annotazione sul check. Non c'e niente da leggere in nessun altro posto, e
       # per tre tentativi ho dedotto invece di guardare.
       - name: Com'e configurato Pages
+        if: github.ref == 'refs/heads/main'
         continue-on-error: true
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -94,7 +95,7 @@ jobs:
       # Sugli altri branch resta comunque scaricabile, per poterlo aprire in
       # locale e vedere cosa fara la pagina dopo il merge.
       - uses: actions/upload-artifact@v4
-        if: false
+        if: github.ref != 'refs/heads/main'
         with:
           name: web-build
           path: build/web
@@ -103,20 +104,12 @@ jobs:
   deploy:
     name: Pubblica
     needs: build
-    # TEMPORANEO, e va tolto appena si puo. L'ambiente github-pages accetta il
-    # deploy solo dal branch registrato in `source.branch` della configurazione
-    # di Pages, che su questo repo e claude/leggi-il-md-ze8b5m e non main. Da
-    # main il job viene rifiutato prima di ricevere un runner: un secondo,
-    # nessun log, nessuna annotazione sul check.
-    #
-    # Misurato, non dedotto: stesso workflow e stesso artifact, cambiato solo il
-    # branch di partenza, e il deploy passa. Il PUT che lo correggerebbe torna
-    # 403 - il GITHUB_TOKEN non puo toccare le impostazioni di Pages - quindi
-    # finche il vincolo resta, pubblicare da qui e l'unico modo di avere una
-    # pagina aggiornata. Si aggiunge main all'elenco in
-    # Settings -> Environments -> github-pages -> Deployment branches, e questa
-    # riga torna a essere solo `== main`.
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/claude/leggi-il-md-ze8b5m'
+    # Solo da main. La toppa che accettava anche il branch di lavoro serviva
+    # finche l'ambiente github-pages rifiutava main: quel vincolo e stato tolto
+    # ("No restriction"), quindi la toppa se ne va con lui. Pubblicare da un
+    # branch di lavoro vuol dire mandare online codice che non e passato da una
+    # PR, e non e una cosa da lasciare accesa per comodita.
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
