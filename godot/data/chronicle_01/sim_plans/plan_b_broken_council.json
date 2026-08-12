@@ -5,7 +5,7 @@
     {
       "id": "SIM_PLAN_B",
       "title": "Il consiglio spezzato",
-      "description": "I Nahr chiedono la terra che ancora produce e il tavolo intero risponde di no: il fronte contrario arriva a 7 e la proposta cade di quattro, quindi anche una sconfitta diventa storia (§12.4). La corona ne approfitta per mettere in ordine la successione, i Nahr tornano a chiedere e stavolta il consiglio cede a caro prezzo, e l'anno si chiude con il trono piu saldo di come era cominciato.",
+      "description": "I Nahr chiedono la terra a chi la lavora e il tavolo dice di no due volte di fila: la prima all'unanimita, la seconda con S 2 contro O 2 e il Fattore Mondo a -2. Due fallimenti non lasciano storia - la questione resta aperta esattamente dov'era - e mentre il Grano si impantana Aldric porta a casa la Successione con un Decisive. E la Chronicle di chi insiste sulla domanda sbagliata: un solo Echo in tutto l'anno, e non e suo.",
       "chronicle_id": "CHR_01",
       "seed": 20260811,
       "seats": [
@@ -304,15 +304,14 @@
         }
       ],
       "expected": {
-        "confluence_count": 4,
+        "confluence_count": 3,
         "outcomes": [
           "FAILURE",
-          "SUCCESS",
-          "SUCCESS_WITH_COST",
+          "FAILURE",
           "DECISIVE_SUCCESS"
         ],
-        "min_echoes": 3,
-        "min_truths": 3
+        "min_echoes": 1,
+        "min_truths": 1
       }
     }
   ]

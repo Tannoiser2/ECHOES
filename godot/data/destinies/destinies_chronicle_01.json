@@ -263,6 +263,257 @@
         ]
       },
       "art_prompt_key": "destiny.vaerax"
+    },
+    {
+      "id": "DST_ALDRIC_RECORD",
+      "entity_id": "ENT_ALDRIC",
+      "title": "Il Regno che Ricorda",
+      "description": "Il trono regge gia. Quello che manca e che le sue decisioni restino scritte e nessuno debba riprenderle da capo.",
+      "minimum": {
+        "label": "La casa siede ancora",
+        "conditions": [
+          {
+            "type": "entity_alive",
+            "entity_id": "ENT_ALDRIC",
+            "label": "La casa e ancora al tavolo"
+          },
+          {
+            "type": "region_presence",
+            "entity_id": "ENT_ALDRIC",
+            "region_id": "REG_EREDAN",
+            "min": 1,
+            "label": "Presenza a Eredan"
+          }
+        ]
+      },
+      "victory": {
+        "label": "Nessuno rilegge la stessa domanda",
+        "conditions": [
+          {
+            "type": "control_count",
+            "entity_id": "ENT_ALDRIC",
+            "min": 2,
+            "label": "Controllo di almeno 2 Regioni"
+          },
+          {
+            "type": "state_tag_absent",
+            "scope": "GLOBAL",
+            "tag": "question_unresolved",
+            "label": "Nessuna questione lasciata aperta"
+          }
+        ]
+      },
+      "triumph": {
+        "label": "Un regno che non ha dovuto dividersi per reggere",
+        "conditions": [
+          {
+            "type": "state_tag_absent",
+            "scope": "GLOBAL",
+            "tag": "crown_divided",
+            "label": "La corona non e stata spezzata"
+          },
+          {
+            "type": "state_tag_present",
+            "scope": "GLOBAL",
+            "tag": "succession_by_law",
+            "label": "La successione e passata per la legge"
+          },
+          {
+            "type": "state_tag_absent",
+            "scope": "REGION",
+            "region_id": "REG_EREDAN",
+            "tag": "condition:unrest",
+            "label": "Eredan non e in rivolta"
+          }
+        ]
+      }
+    },
+    {
+      "id": "DST_NAHR_ROOTED",
+      "entity_id": "ENT_NAHR",
+      "title": "La Terra Sotto i Piedi",
+      "description": "Il popolo si e fermato. Adesso la domanda e se il posto in cui si e fermato e suo, o solo prestato.",
+      "minimum": {
+        "label": "Il popolo e ancora qui",
+        "conditions": [
+          {
+            "type": "entity_alive",
+            "entity_id": "ENT_NAHR",
+            "label": "Il popolo esiste ancora"
+          }
+        ]
+      },
+      "victory": {
+        "label": "La terra risponde a chi la lavora",
+        "conditions": [
+          {
+            "type": "control_count",
+            "entity_id": "ENT_NAHR",
+            "min": 1,
+            "label": "Almeno una Regione controllata"
+          },
+          {
+            "type": "region_presence",
+            "entity_id": "ENT_NAHR",
+            "region_id": "REG_VALLE_VERDE",
+            "min": 1,
+            "label": "Presenza nella Valle Verde"
+          }
+        ]
+      },
+      "triumph": {
+        "label": "Radicati senza aver chiuso la porta a nessuno",
+        "conditions": [
+          {
+            "type": "state_tag_present",
+            "scope": "GLOBAL",
+            "tag": "nahr_settled",
+            "label": "L'insediamento e riconosciuto"
+          },
+          {
+            "type": "state_tag_absent",
+            "scope": "REGION",
+            "region_id": "REG_TERRE_NAHR",
+            "tag": "condition:emptied",
+            "label": "Le Terre Nahr non si sono svuotate"
+          },
+          {
+            "type": "state_tag_absent",
+            "scope": "GLOBAL",
+            "tag": "valley_sealed",
+            "label": "La Valle non e stata chiusa"
+          }
+        ]
+      }
+    },
+    {
+      "id": "DST_LYRA_TAUGHT",
+      "entity_id": "ENT_LYRA",
+      "title": "Quello che Resta Insegnato",
+      "description": "Il sapere e uscito dalle gallerie una volta. Chi viene dopo vuole che non ci torni dentro alla prima paura.",
+      "minimum": {
+        "label": "Qualcuno sa ancora leggere le carte",
+        "conditions": [
+          {
+            "type": "entity_alive",
+            "entity_id": "ENT_LYRA",
+            "label": "La scuola esiste ancora"
+          }
+        ]
+      },
+      "victory": {
+        "label": "Il sapere ha un posto suo",
+        "conditions": [
+          {
+            "type": "discovery_count",
+            "entity_id": "ENT_LYRA",
+            "min": 1,
+            "label": "Almeno una scoperta all'attivo"
+          },
+          {
+            "type": "state_tag_absent",
+            "scope": "GLOBAL",
+            "tag": "mine_sealed",
+            "label": "Le gallerie non sono state sigillate"
+          }
+        ]
+      },
+      "triumph": {
+        "label": "Verificabile da chiunque, anche da chi non c'era",
+        "conditions": [
+          {
+            "type": "state_tag_present",
+            "scope": "GLOBAL",
+            "tag": "crystal_measured",
+            "label": "Il Cristallo e stato misurato"
+          },
+          {
+            "type": "state_tag_absent",
+            "scope": "GLOBAL",
+            "tag": "study_supervised",
+            "label": "Nessuno ha messo una guardia allo studio"
+          },
+          {
+            "type": "any_of",
+            "label": "E qualcuno lo ha imparato",
+            "conditions": [
+              {
+                "type": "state_tag_present",
+                "scope": "GLOBAL",
+                "tag": "petition_heard",
+                "label": "La richiesta e stata ascoltata"
+              },
+              {
+                "type": "state_tag_present",
+                "scope": "GLOBAL",
+                "tag": "parley_held",
+                "label": "Si e parlato apertamente"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "DST_VAERAX_WATCHED",
+      "entity_id": "ENT_VAERAX",
+      "title": "Il Sonno Sorvegliato",
+      "description": "La montagna e ancora sua e il Cristallo e ancora dentro. Adesso vuole sapere chi lo guarda, e che continui a guardarlo senza toccarlo.",
+      "minimum": {
+        "label": "La montagna e ancora sua",
+        "conditions": [
+          {
+            "type": "region_presence",
+            "entity_id": "ENT_VAERAX",
+            "region_id": "REG_MONTAGNE_ROSSE",
+            "min": 1,
+            "label": "Presenza sulle Montagne Rosse"
+          }
+        ]
+      },
+      "victory": {
+        "label": "Nessuno scava piu",
+        "conditions": [
+          {
+            "type": "state_tag_absent",
+            "scope": "GLOBAL",
+            "tag": "crystal_exploited",
+            "label": "Il Cristallo non e stato messo a peso"
+          },
+          {
+            "type": "control_count",
+            "entity_id": "ENT_VAERAX",
+            "min": 1,
+            "label": "Almeno una Regione controllata"
+          }
+        ]
+      },
+      "triumph": {
+        "label": "Guardato da qualcuno che non lo vuole",
+        "conditions": [
+          {
+            "type": "state_tag_absent",
+            "scope": "GLOBAL",
+            "tag": "crystal_exploited",
+            "label": "Il Cristallo non e stato messo a peso"
+          },
+          {
+            "type": "relation_state",
+            "entity_id": "ENT_VAERAX",
+            "other_entity_id": "ENT_LYRA",
+            "level": "ALLY",
+            "at_least": true,
+            "label": "Chi studia la pietra non la vuole"
+          },
+          {
+            "type": "state_tag_absent",
+            "scope": "REGION",
+            "region_id": "REG_MONTAGNE_ROSSE",
+            "tag": "condition:unrest",
+            "label": "Le Montagne non sono in rivolta"
+          }
+        ]
+      }
     }
   ]
 }

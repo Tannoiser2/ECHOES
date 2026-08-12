@@ -5,6 +5,250 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.8] — Fra una Chronicle e l'altra passano secoli
+
+Un audit di dieci Chronicle ha prodotto un registro di 28 Verità con **12 frasi
+diverse**, e la più frequente era *«la corona fu divisa in due»* — **sei volte in
+dieci anni**. Una corona non si divide sei volte. Succedeva perché il motore
+aggiungeva un anno e rimetteva a sedere le stesse quattro persone con la stessa
+domanda ancora aperta.
+
+### L'id è il seggio, non la persona
+
+`ENT_ALDRIC` è la casa che tiene Eredan. **Chi siede sulla sedia** — nome,
+Destino, generazione — è stato del mondo e cambia da una Chronicle all'altra.
+Tenere fermo l'id è ciò che permette a ogni Cicatrice, tag e controllo scritti
+prima di continuare a puntare a qualcosa che esiste ancora.
+
+Chi sopravvive a un salto è scritto nei dati: `persistence` è **MORTAL** (una
+persona), **COLLECTIVE** (un popolo, che cambia senza finire) o **ETERNAL**
+(qualcosa sotto una montagna). Un seggio mortale che attraversa 25 anni o più
+prende un nome nuovo dalla propria lista di successori — Re Serane, Re Corvin,
+Regina Isaura, Mira la Cartografa.
+
+### Il salto lo dichiara la Chronicle
+
+`years_after_previous`: un numero, o un intervallo pescato dal seme. `CHR_01` è
+l'anno scritto e dice 1. `CHR_02`, quella che si pesca le domande da sola, dice
+**20-200**: una saga di Chronicle di biblioteca copre secoli, e li copre in modo
+riproducibile.
+
+### Le tre eredità, ognuna con la sua condizione
+
+- **La posizione, sempre.** La mappa è il mondo e il mondo non riparte da capo.
+- **I rapporti, ma il tempo li smussa.** Oltre i 50 anni ogni rapporto si sposta
+  di un passo verso NEUTRAL: una guerra si ricorda come un rancore, un'alleanza
+  come una cortesia. I tag restano comunque: quelli erano scritti.
+- **Il Destino, ma solo di chi ha fallito.** Chi ha raggiunto VICTORY o TRIUMPH
+  pesca la cosa dopo dal proprio `destiny_pool`; chi è rimasto al MINIMUM
+  riprova con lo stesso obiettivo. È questa la regola che tiene viva una domanda
+  attraverso le generazioni invece che attraverso le primavere.
+
+Otto Destini adesso, due per seggio: quello con cui comincia e quello che vuole
+dopo averlo ottenuto.
+
+### Misurato, sugli stessi dieci semi
+
+| | prima | dopo |
+|---|---|---|
+| anni coperti | 812 → 821 | 812 → **1767** |
+| frasi distinte nel registro | 12 su 28 | **19 su 24** |
+| la frase più ripetuta | **6 volte** | 3 volte |
+| persone sedute al tavolo | 4 | **12** |
+
+I tre piani di simulazione escono **riga per riga identici**: una Chronicle sola
+non ha nessun salto da fare. Quello che è cambiato è `world.entities`, che ora
+porta nome, Destino e generazione.
+
+---
+
+## [0.1.7] — Le carte di Propp esistono anche sullo schermo
+
+C'erano due mazzi e se ne vedeva uno solo. Le 48 carte Asset sono tue: le peschi,
+le tieni, le spendi, e dalla 0.1.5 dicono cosa fanno. Le **24 carte Echo** — una
+per ogni funzione di Propp, in quattro famiglie drammatiche da sei — non le pesca
+nessuno: **ne esce una alla fine di ogni Atto**, dal mazzo che quell'Atto ammette
+(il primo solo *pressione*, l'ultimo soprattutto *risoluzione*). Muovono il mondo
+da sole, due di loro **convocano un Consiglio sul posto**, e ognuna scrive nel
+mondo la funzione che ha appena svolto, così che una carta successiva possa
+richiederla: un Ritorno ha bisogno di una Separazione da cui tornare.
+
+Sullo schermo erano un paragrafo che scorreva via nel transcript.
+
+### Added
+
+- **`ui/echo_card_view.gd`** — la carta prende il centro dello schermo, col
+  colore della sua famiglia, il suo testo, la funzione di Propp in italiano, e
+  **cosa ha appena cambiato**. Resta lì finché non premi Avanti. Tre volte per
+  Chronicle, nei tre momenti in cui la storia gira.
+- **`act_echo_drawn`** sul controller: la carta e gli Effect che ha applicato.
+  Nessuno nel motore lo ascolta — esiste perché lo schermo possa dire cosa la
+  carta *ha fatto*, non solo cosa dice. C'è un test che gioca una Chronicle
+  intera e pretende tre carte, ognuna con almeno un Effect, ognuno dicibile.
+- **`scripts/core/effect_text.gd`** — un Effect in una riga italiana: «La
+  Successione sale di 2», «Eredan: condition:contested», «Cicatrice in Valle
+  Verde: …». I tipi che non conosce si dichiarano per nome invece di tacere.
+- La pagina «Come si gioca» adesso spiega anche questo mazzo.
+
+---
+
+## [0.1.6] — La seconda Chronicle, e il mondo che puoi rigiocare
+
+### Added
+
+- **`CHR_02` si gioca nel browser.** Esisteva dalla D-028 ed è il senso del
+  modello a biblioteca: non elenca le proprie domande, **ne pesca quattro fra
+  sei**, quindi due partite non sono lo stesso anno. Dalla riga di comando si
+  poteva già (`--chronicle=CHR_02`); nel browser `CHR_01` era scritto dentro il
+  codice.
+- **Il seme si sceglie.** «Un mondo a caso», «Rigioca il seme *N*» (quello
+  dell'ultima partita) oppure lo scrivi tu. Il seme viene stampato in cima a
+  ogni Chronicle dalla 0.0 proprio perché un anno che vale la pena raccontare si
+  possa rigiocare — e fino a ieri non c'era nessun posto dove riscriverlo.
+- **I rapporti fra le Entità**, sotto le domande dell'anno: tre righe, colorate
+  lungo la scala da `enemy` a `bound`. Erano informazione pubblica che il
+  browser non mostrava — si leggeva solo dentro un bottone che si offriva di
+  romperli — e i Destini li contano: chi non li vede viene giudicato su qualcosa
+  di invisibile.
+- La pagina delle regole si riscrive per l'anno scelto. E la stessa cosa ha
+  trovato un errore che sarebbe scoppiato in faccia a chi sceglie `CHR_02`:
+  leggeva `chronicle["tensions"]`, che una Chronicle a biblioteca non ha. Adesso
+  legge il pool e lo dice: *questa Chronicle ne pesca 4 fra queste*.
+
+---
+
+## [0.1.5] — Le carte dicono cosa fanno
+
+Due buchi rimasti dalla 0.1, uguali fra loro: le regole davano qualcosa a chi
+gioca e il gioco se lo teneva.
+
+### Added
+
+- **Il recupero dopo una sconfitta adesso lo scegli tu.** Il §12.3 dice che
+  quando una proposta cade, chi si era opposto **si riprende una delle carte che
+  aveva messo giù**. Era l'unica decisione delle regole che nessun giocatore
+  veniva mai chiamato a prendere: la faceva la policy, prendendo la più forte.
+  Si chiede dove la chiedono le regole, cioè **prima del tiro** — «se la proposta
+  cade, quale carta ti riprendi?» — e solo quando c'è davvero da scegliere: chi
+  non si è opposto non recupera niente, una carta che per sua regola non torna
+  mai non viene offerta, e una carta sola non è una scelta.
+- **`scripts/core/asset_text.gd`** — una carta detta in una riga, la stessa per
+  il terminale e per il browser: il bonus nei termini in cui il resolver lo
+  applica (`+2 se ti opponi`, non `+2`), cosa succede alla carta dopo, e cosa
+  costa impegnarla. Ogni pezzo è costruito dai campi che la risoluzione legge
+  davvero, quindi una carta non può dire una cosa e farne un'altra.
+- **In Consiglio le carte da impegnare lo dicono**: «Interdetto — authority,
+  vale 3 · si scarta comunque · costa: la domanda in gioco sale». E nella mano,
+  fermando il cursore su una carta, compare tutto: cosa vale, cosa le succede,
+  cosa costa, e la riga che le ha scritto l'autore.
+
+### Fixed
+
+- **La mano si calcolava il valore da sola** — `forza se rilevante, 1 altrimenti`
+  — ignorando il `confluence_modifier`. I Mercenari (forza 1, +1 sempre) valgono
+  2 e la carta diceva 1. Adesso chiama `ConfluenceResolution.asset_value`, la
+  funzione del resolver: il numero sulla carta è il numero che entra nella
+  somma. È la seconda volta quest'anno che una mano mostra un valore che la
+  risoluzione non darebbe (D-040); è l'ultima possibile, perché non c'è più un
+  posto dove ricalcolarlo.
+- Il tooltip è disegnato invece che lasciato al default: quello di Godot non va
+  a capo, e una carta con una riga da 130 caratteri si dipingeva addosso alla
+  mano.
+
+---
+
+## [0.1.4] — Il gioco spiega se stesso
+
+Fino a ieri si apriva la pagina, si sceglieva un seggio e ci si trovava davanti
+quattordici bottoni. Le regole c'erano — in `docs/RULES_V0_2.md`, cioè esattamente
+dove chi si siede a giocare non guarderà mai.
+
+### Added
+
+- **`ui/help_panel.gd` — una pagina «Come si gioca»** che prende il centro dello
+  schermo: la forma dell'anno, le sei cose che può fare un'azione, le domande di
+  quest'anno con soglia e famiglie che ascoltano, cosa succede in un Consiglio,
+  e come si vince. Si apre da sola al menu, si toglie di mezzo quando comincia
+  la Chronicle, e resta a un bottone di distanza per tutto l'anno.
+- **Metà della pagina è scritta dai dati**, non battuta a mano: gli Atti, i
+  round, le azioni per round, il limite di mano, quante carte si impegnano, le
+  quattro Tensioni con le loro soglie, le sei Regioni. Una pagina di regole che
+  può andare fuori sincrono con le regole è peggio di niente.
+- **Una riga di contesto sopra le scelte**, che spiega *questo turno*:
+  «La Carestia è a un passo dalla soglia: un'altra spinta e si apre il
+  Consiglio», «Consiglio aperto: qui valgono forza piena le carte wealth,
+  people, authority». Legge solo quello che il tuo seggio ha diritto di leggere:
+  di una domanda velata dice che c'è, non quanto vale.
+
+---
+
+## [0.1.3] — Le 48 carte
+
+Il traguardo §19.4 sugli Asset: da 12 carte a **48**, otto per famiglia.
+
+### Added
+
+- **36 nuove carte Asset.** Una parola sola — la rarità — dice tutto quello che
+  serve sapere: **comune** = forza 1, 4 copie · **non comune** = forza 2, 2
+  copie · **rara** = forza 3, 1 copia. Sono 22 carte per mazzo di famiglia, 132
+  in tutto.
+- **Ogni famiglia sa dire di no.** Due carte per famiglia pagano sul fronte
+  Oppose, e una vale di più quando la domanda è la sua. Prima erano quattro
+  carte in tutto il gioco.
+- **Le carte da 3 costano.** Il Vecchio Esercito, Le Porte Bruciate, l'Atto di
+  Successione, l'Esodo, il Cristallo Rosso, l'Ipoteca sulle Terre, l'Ostaggio,
+  il Patto Rotto e le altre: si scartano comunque, e impegnarle fa qualcosa al
+  mondo — alza la Tensione, o mette il tuo rivale dove si sta discutendo, o ti
+  toglie da lì. Una carta che vale 6 senza contropartita non è una scelta, è la
+  mossa giusta.
+- `on_commit_effects` era esercitato da una carta sola nella 0.0 (O-3). Adesso
+  sono tredici.
+- **`cli/run_margin_probe.gd`** — la sonda che ha trovato il problema qui sotto:
+  stampa S, O e la distribuzione di M, non solo il conteggio degli esiti.
+
+### La tabella degli esiti si è rotta, e la media non lo diceva
+
+Con le 48 carte al primo tentativo, sulle stesse 40 Chronicle: **Decisivo dal
+33% al 49%**, con metà dei Consigli che passano senza discussione. E la media
+del margine era **identica** (3.23 → 3.37).
+
+Quattro tentativi di aggiustarlo cambiando i pesi non hanno spostato niente,
+perché miravano alla media. La distribuzione ha mostrato la causa in un colpo:
+con due carte per famiglia un impegno era quasi sempre 2+2, e il set da 12
+ammucchiava tutto su **M = +4**, un punto sotto la banda Decisiva. Una biblioteca
+più ampia liscia la distribuzione e sposta quel mucchio di un punto — oltre la
+riga.
+
+La cura è stata la **curva**, non i pesi: la rilevanza è scesa dalle carte da 2 a
+una carta da 1 per famiglia, e una carta da 2 per famiglia è diventata una da 1.
+Un impegno preparato torna a valere 4 invece di 6.
+
+| | Failure | con Costo | Successo | Decisivo |
+|---|---|---|---|---|
+| 12 carte | 16% | 13% | 38% | 33% |
+| 48 carte | **21%** | 15% | 30% | **34%** |
+
+Il resolver non è stato toccato: §A5 è la specifica, il contenuto è quello che si
+tara (D-023, D-040).
+
+### Fixed
+
+- **La mano dichiarava un ×2 che la regola non ha.** Dalla 0.1.1 una carta
+  rilevante veniva disegnata come `authority · 2 ×2 = 4`. Il §9 dice che un Asset
+  vale la sua **forza piena** se la famiglia è rilevante e **1** altrimenti: la
+  rilevanza non raddoppia niente. Adesso la carta dice `authority · vale 2`, e
+  `vale 1` quando la domanda non è la sua.
+
+### Il prezzo, detto
+
+- **Consigli per Chronicle: mediana da 5 a 6**, e una partita su quaranta arriva
+  a 8 contro il tetto di 7 del §7. Il test di bilanciamento passa (tollera il
+  10% fuori banda), ma la deriva è vera ed è il numero da guardare nella 0.2.
+- **I tre piani di simulazione escono diversi** e sono stati **rimisurati**, non
+  ritoccati: le tre storie tengono ancora, le sequenze di esito no.
+
+---
+
 ## [0.1.2] — La mappa si preme, e il Consiglio dice cosa costa
 
 Le due cose che nella 0.1 restavano a meta: una mappa che si guardava e basta, e

@@ -16,7 +16,7 @@ func test_data_loads_and_validates() -> void:
 ## §18.2: the reduced content the milestone actually asks for.
 func test_reduced_content_matches_the_milestone() -> void:
 	var loaded: RefCounted = data()
-	assert_eq(loaded.assets.size(), 12, "12 Asset (2 per famiglia)")
+	assert_eq(loaded.assets.size(), 48, "48 Asset, 8 per famiglia: il traguardo §19.4 (D-040)")
 	assert_eq(loaded.regions.size(), 6, "6 Regioni: le 5 principali piu un raccordo")
 	# Grown past §18.2's reduced set on purpose, and measured: D-024 records why
 	# 2 Tensions and 8 Consequences could not move the world enough to matter.
@@ -26,18 +26,91 @@ func test_reduced_content_matches_the_milestone() -> void:
 	assert_eq(loaded.consequences.size(), 32, "32 Conseguenze (§18.2 ne chiedeva 8; vedi D-022, D-024)")
 	assert_eq(loaded.chronicles.size(), 2, "CHR_01 scritta a mano, CHR_02 assemblata dalla biblioteca")
 	assert_eq(loaded.entities.size(), 4, "4 Entita")
-	assert_eq(loaded.destinies.size(), 4, "4 Destiny")
+	# Due per seggio: quello con cui comincia, e quello che vuole dopo averlo
+	# ottenuto. Chi fallisce riprova con lo stesso (D-045).
+	assert_eq(loaded.destinies.size(), 8, "8 Destiny: due per ogni seggio")
 	assert_eq(loaded.actions.size(), 6, "i sei template di azione")
 
 
-func test_every_family_has_one_of_each_strength() -> void:
+## §19.4: eight cards per family, and the same curve in each - four at 1, two at
+## 2, two at 3. A family with a different shape is a family that plays a
+## different game, and ACQUIRE gives no way to tell which one you are drawing
+## from until it is too late.
+##
+## The curve is not decoration either: it is what keeps a prepared hand worth
+## about four points instead of six, which is the difference between "passa" and
+## "passa senza discussione" (D-040).
+func test_every_family_has_the_same_curve() -> void:
 	var loaded: RefCounted = data()
 	for family in SchemaDefs.ASSET_FAMILIES:
 		var strengths: Array = []
 		for asset in loaded.assets_of_family(str(family)):
 			strengths.append(int(asset["strength"]))
 		strengths.sort()
-		assert_eq(strengths, [1, 2], "la famiglia %s ha un Asset da 1 e uno da 2" % family)
+		assert_eq(
+			strengths, [1, 1, 1, 1, 2, 2, 3, 3],
+			"la famiglia %s ha 8 carte: quattro da 1, due da 2, due da 3" % family
+		)
+
+
+## Every family can say no, and every family has one card that counts for more
+## when the question is its own. Without the first a table can only ever push,
+## which is what O-6 measured; without the second preparation is just drawing.
+func test_every_family_can_refuse_and_has_a_card_of_its_own() -> void:
+	var loaded: RefCounted = data()
+	for family in SchemaDefs.ASSET_FAMILIES:
+		var oppose: int = 0
+		var relevant: int = 0
+		for asset in loaded.assets_of_family(str(family)):
+			match str(asset["confluence_modifier"]["kind"]):
+				"OPPOSE_BONUS": oppose += 1
+				"RELEVANT_BONUS": relevant += 1
+		assert_true(oppose >= 2, "%s ha almeno due carte che pagano sul fronte Oppose" % family)
+		assert_true(relevant >= 1, "%s ha almeno una carta che vale di piu sul suo tema" % family)
+
+
+## The two strongest cards in a family are worth 6 in a relevant Tension, which
+## is a whole Confluence on its own. Every one of them pays for it: it is spent
+## whatever happens, and it does something to the world on the way out. Without
+## that they are simply the correct play, and preparation stops being a choice.
+func test_the_strongest_cards_all_cost_something() -> void:
+	var loaded: RefCounted = data()
+	var checked: int = 0
+	for asset_id in loaded.assets:
+		var asset: Dictionary = loaded.assets[asset_id]
+		if int(asset["strength"]) < 3:
+			continue
+		checked += 1
+		assert_eq(
+			str(asset["discard_or_retain_rule"]), "ALWAYS_DISCARD",
+			"%s e da 3: si deve scartare comunque" % asset_id
+		)
+		assert_true(
+			(asset.get("on_commit_effects", []) as Array).size() > 0,
+			"%s e da 3: impegnarla deve costare qualcosa al mondo" % asset_id
+		)
+	assert_eq(checked, 12, "due carte da 3 per famiglia")
+
+
+## Rarity is not decoration: one word fixes both how strong a card is and how
+## many copies of it are in the deck. A player who has seen a family twice knows
+## what the deck holds without a manual, and the deck arithmetic stops depending
+## on 48 individual decisions.
+func test_rarity_fixes_strength_and_copies() -> void:
+	var copies: Dictionary = {"COMMON": 4, "UNCOMMON": 2, "RARE": 1}
+	var strength: Dictionary = {"COMMON": 1, "UNCOMMON": 2, "RARE": 3}
+	var loaded: RefCounted = data()
+	for asset_id in loaded.assets:
+		var asset: Dictionary = loaded.assets[asset_id]
+		var rarity: String = str(asset["rarity"])
+		assert_eq(
+			int(asset["deck_copies"]), int(copies[rarity]),
+			"%s e %s: %d copie nel mazzo" % [asset_id, rarity, int(copies[rarity])]
+		)
+		assert_eq(
+			int(asset["strength"]), int(strength[rarity]),
+			"%s e %s: forza %d" % [asset_id, rarity, int(strength[rarity])]
+		)
 
 
 func test_chronicle_matches_the_baseline_numbers() -> void:

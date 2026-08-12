@@ -19,6 +19,34 @@ func _init(p_world: Dictionary, p_data: RefCounted) -> void:
 
 # --- presence and regions --------------------------------------------------
 
+## Who is sitting in this seat right now, and what they want.
+##
+## The id is the seat; the name and the Destiny are state, because between two
+## Chronicles a century can pass and the person changes while the house does not
+## (D-045). Everything that shows a name to a player goes through here, or it
+## will show the founder's name to their great-granddaughter's table.
+func name_of(entity_id: String) -> String:
+	var entity: Variant = world["entities"].get(entity_id)
+	if entity != null and str(entity.get("name", "")) != "":
+		return str(entity["name"])
+	var definition: Variant = data.entities.get(entity_id)
+	return entity_id if definition == null else str(definition["name"])
+
+
+func destiny_of(entity_id: String) -> String:
+	var entity: Variant = world["entities"].get(entity_id)
+	if entity != null and str(entity.get("destiny_id", "")) != "":
+		return str(entity["destiny_id"])
+	var definition: Variant = data.entities.get(entity_id)
+	return "" if definition == null else str(definition["destiny_id"])
+
+
+## How many handovers this seat has been through. 0 is the founder.
+func generation_of(entity_id: String) -> int:
+	var entity: Variant = world["entities"].get(entity_id)
+	return 0 if entity == null else int(entity.get("generation", 0))
+
+
 func presence_count(entity_id: String, region_id: String) -> int:
 	var entity: Variant = world["entities"].get(entity_id)
 	if entity == null:

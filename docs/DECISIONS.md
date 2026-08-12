@@ -331,6 +331,358 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-045 — Fra una Chronicle e l'altra passano secoli, e il tavolo cambia
+**implemented in 0.1.8**
+
+A ten-Chronicle audit produced a register of 28 Truths containing **12 distinct
+sentences**, and the most frequent was *"la corona fu divisa in due, e di Eredan
+nessuno seppe piu dire a chi rispondesse"* - **six times in ten years**. A crown
+does not divide six times. It happened because `inherit_from` added exactly one
+year and sat the same four people back down with the same unfinished question.
+
+### The id is the seat, not the person
+
+`ENT_ALDRIC` is the house that holds Eredan. Who is sitting in the chair is
+`world.entities` state - name, Destiny, generation - and it changes between
+Chronicles. Keeping the id fixed is what lets every Scar, tag, control marker
+and relation the previous Chronicle wrote go on pointing at something that still
+exists. Everything that shows a name now asks `service.name_of()`; the data file
+holds the founder's name and nothing else.
+
+Who survives a jump is authored, not guessed: `persistence` is MORTAL (a person),
+COLLECTIVE (a people, which changes without ending) or ETERNAL (a thing under a
+mountain). A MORTAL seat crosses 25 years or more with a new name from its own
+`successors` list.
+
+### The jump is declared by the Chronicle
+
+`years_after_previous`: an integer, or a `{min, max}` drawn with the seeded RNG.
+`CHR_01` is the written year and says 1. `CHR_02` - the library Chronicle that
+deals its own questions (D-028) - says 20 to 200, so a saga of library
+Chronicles covers centuries and does it reproducibly.
+
+### The three inheritances, each with its own condition
+
+The question was whether a successor inherits the position, the relations, or
+the Destiny. The answer is all three - **but if all three carried
+unconditionally we would be back to the crown dividing every other spring**. So:
+
+- **La posizione, sempre.** The map is the world and the world does not restart.
+- **I rapporti, ma il tempo li smussa.** Across a jump of 50 years or more every
+  relation moves one step towards NEUTRAL: a war is remembered as a grudge, an
+  alliance as a courtesy. The tags stay whatever happens, because those are the
+  things that were written down.
+- **Il Destino, ma solo di chi ha fallito.** A seat that reached VICTORY or
+  TRIUMPH draws the next thing it wants from its own `destiny_pool`; a seat that
+  came out at MINIMUM tries again with the same goal. That is what keeps a
+  question alive across generations instead of across springs - and it is the
+  one that fixed the audit.
+
+Eight Destinies now, two per seat: what it starts with, and what it wants once
+it has that.
+
+### Measured, on the same ten seeds
+
+| | prima | dopo |
+|---|---|---|
+| anni coperti | 812 → 821 | 812 → **1767** |
+| frasi distinte nel registro | 12 su 28 | **19 su 24** |
+| la frase piu ripetuta | **6 volte** | 3 volte |
+| persone che si sono sedute al tavolo | 4 | **12** |
+
+The three sim plans come out **line for line identical** - the same Councils,
+the same rolls, the same endings - because a single Chronicle does not have a
+jump to make. What changed is `world.entities`, which now carries a name, a
+Destiny and a generation, so the saved JSON of a Chronicle is three fields
+larger than it was.
+
+---
+
+## D-044 — Propp was in the deck and nowhere on the screen
+**implemented in 0.1.7**
+
+Two card decks exist. The 48 Assets are yours: you draw them, hold them, spend
+them, and since 0.1.5 every one of them says what it does. The other deck is not
+yours at all - **24 Echo cards, one per function of Propp**, in four dramatic
+families of six - and one is drawn at the end of every Act from the pool that
+Act allows: Act I only PRESSURE, Act III mostly RESOLUTION. The shape of a story
+sits in the deck rather than in a narrator's head (§15).
+
+They move the world on their own (28 direct Effects and 11 Consequences across
+the deck), two of the twenty-four **convene a Council on the spot**, and each one
+writes `function:<NAME>` into the world so a later card can require an earlier
+one - a Return needs a Separation to return from. That is the whole Propp idea,
+and it lives in authored data: the engine knows no function names (D-030).
+
+**On screen it was a paragraph scrolling past in the transcript.** Three times a
+Chronicle the story turns, and a player saw the turn only if they happened to be
+reading the log. Exactly the illness the Council had before 0.1.2, and the same
+cure: the card takes the middle of the screen, in its family's colour, with its
+text, its Propp function in Italian, **what it just changed**, and a button.
+
+### `act_echo_drawn`, and an Effect said out loud
+
+One signal on the controller, emitted after the hooks land, carrying the card and
+the Effects it applied. Nothing in the engine listens to it; it exists so the
+screen can say what the card *did* and not only what it says. Guarded by a test
+that runs a whole Chronicle and asserts three cards, each with at least one
+Effect, each Effect renderable.
+
+`scripts/core/effect_text.gd` is that rendering: an Effect to one Italian line -
+*La Successione sale di 2*, *Eredan: condition:contested*, *Cicatrice in Valle
+Verde: ...*. Unknown types report themselves by name rather than staying silent,
+because a card that quietly did something is worse than a card that says
+`SET_ENTITY_TAG`. The one line it deliberately swallows is the `function:` tag:
+that is the deck's plumbing, not the player's world.
+
+### What a card looks like now
+
+> PRESSIONE — qualcosa si accumula
+> **Presagio**
+> funzione di Propp: presagio
+> *Un segno che nessuno sa leggere del tutto e che nessuno riesce a ignorare del
+> tutto.*
+> COSA HA CAMBIATO
+> · Il Risveglio sale di 1
+
+---
+
+## D-043 — The second Chronicle was written, and unreachable
+**implemented in 0.1.6**
+
+`CHR_02` has existed since D-028 and is the whole point of the library model: it
+names no questions, it **draws four from the six** in the library, so two runs
+are not the same year. The CLI could play it (`--chronicle=CHR_02`). The browser
+could not: `_play` had `"CHR_01"` written into it.
+
+The menu now asks three things instead of one - seat, year, world - and the
+third is the seed. The seed has been printed at the top of every Chronicle since
+0.0 *precisely* so a year worth talking about can be played again, which it
+could not be until there was somewhere to type it back in. It also offers the
+last seed back, because the most likely thing anyone wants to replay is the game
+they just finished.
+
+The rules page re-renders for the chosen year, and that turned out to matter
+more than expected: it read `chronicle["tensions"]`, which `CHR_02` does not
+have. A Chronicle either names its questions or draws them, and a rules page
+that assumed the first would have crashed on exactly the Chronicle a returning
+player picks. It now reads the pool and says so - *questa Chronicle ne pesca 4
+fra queste*.
+
+### And the relations, which the Destinies count
+
+Where you stand with the other three was public information the browser never
+showed. It was readable only inside a button offering to break it (*"Rompi i
+rapporti con Lyra (ora NEUTRAL)"*), and FORGE spends an Action Opportunity
+moving it. Destinies count these levels: a player who cannot see them is being
+scored on something invisible. Three lines under the year's questions, coloured
+along the ladder from `ENEMY` to `BOUND`.
+
+---
+
+## D-042 — A card that says what it does, and the last decision nobody was asked
+**implemented in 0.1.5**
+
+Two holes left over from 0.1, both of the same kind: the rules gave a player
+something and the game kept it.
+
+### The recovery
+
+§12.3: when a proposal falls, whoever opposed it **keeps one of the cards they
+put down**. `SeatDecider.choose_recovery` handed that straight to the policy,
+which took the strongest recoverable card. It was the only decision in the rules
+that a person playing the game was never offered - at the terminal and in the
+browser alike.
+
+It is asked where the rules ask it: *before* the roll, alongside the commits,
+because the controller collects the recovery and only uses it if the Council
+falls. So the question is a real one - you name what you would save from a
+defeat that has not happened yet - and it is asked only when there is something
+to decide. A seat that did not oppose has no recovery; a card whose own rule
+says it never comes back is not offered, because a choice the resolver is about
+to ignore is worse than no choice; and one card left standing is not a choice
+either.
+
+### The card
+
+A hand card carried a title, a family and a number. With the 0.1.3 library that
+is not enough to choose with: a quarter of the cards do something to the world
+when committed, and "si scarta comunque" is the difference between spending a
+card and lending it.
+
+`scripts/core/asset_text.gd` turns an Asset into a sentence, once, for both
+front-ends: the bonus in the terms the resolver applies it (`+2 se ti opponi`,
+not `+2`), what becomes of the card, and what committing it costs. Every line is
+built from the fields the resolution actually reads, so a card cannot say one
+thing and do another - guarded by `test_asset_text.gd`, which checks the printed
+value against `ConfluenceResolution.asset_value` for every card in the library,
+in and out of theme.
+
+The terminal prints it under each commit option. The browser puts it in the
+card's tooltip and, in a Council, on the commit cards themselves:
+
+> Interdetto — authority, vale 3
+> si scarta comunque · costa: la domanda in gioco sale
+
+### A bug the same code found
+
+The hand computed its own value - `strength if relevant else 1` - which ignored
+`confluence_modifier`. Mercenari (forza 1, +1 sempre) is worth 2 and the card
+said 1. It now calls `ConfluenceResolution.asset_value`, the resolver's own
+function, so the number on the card is the number that enters the sum. This is
+the second time this year a hand has shown a value the resolution would not give
+(D-040); it is the last time it can, because it is no longer possible to compute
+it separately.
+
+The tooltip is drawn rather than defaulted (`_make_custom_tooltip`): Godot's
+default one does not wrap, and a card whose authored line runs to 130 characters
+painted itself straight across the hand below it.
+
+---
+
+## D-041 — The rules are on the screen where the game is
+**implemented in 0.1.4**
+
+A player opened the page, chose a seat, and was handed fourteen buttons. The
+rules existed - `docs/RULES_V0_2.md`, complete and current - in the one place a
+person sitting down to play will never look.
+
+### The page
+
+`ui/help_panel.gd` takes the middle of the screen, the same piece the map and
+the Council share, because a player reading the rules is not looking at the
+board and the board is where there is room to read. It opens by itself at the
+seat menu, closes itself when a Chronicle starts, and is one always-present
+button away for the rest of the year - outside `_buttons`, which is cleared
+after every question.
+
+Half of it is written from `DataSet`: the shape of the year, the four questions
+with their thresholds and the families each one listens to, the Regions, the
+hand limit, the commit limit. A rules page that can fall out of step with the
+rules is worse than no rules page, so everything that *can* drift is read rather
+than typed.
+
+### The line above the choices
+
+The page explains the game once. The line explains *this turn*, every turn:
+
+> La domanda piu vicina a scoppiare e La Carestia, a 3 passi. (e 2 che non puoi
+> ancora leggere)
+
+> La Carestia e a un passo dalla soglia: un'altra spinta e si apre il Consiglio.
+
+> Consiglio aperto: qui valgono forza piena le carte wealth, people, authority.
+
+It reads exactly what the seat is entitled to read - `visible_tension_value`
+returns -1 for a veiled question nobody has scouted - so it can say *there is
+something here you cannot see* without ever saying what. And the last form is
+the one that ties the whole screen together: it names the families that count,
+while the hand below each card says `vale 2` or `vale 1` for that same question.
+
+### Still no rule in the screen
+
+Neither piece decides anything or asks the rules a question a decider does not
+already ask. The line reads thresholds and visible values through the same
+services `StatusPanel` has used since 0.1; the page reads authored data. The
+seam is where it was (D-038, D-039).
+
+---
+
+## D-040 — 48 Assets, and the outcome table they moved
+**implemented in 0.1.3**
+
+§19.4's full Asset list: 12 cards become 48, eight per family. The cards were
+the easy half. The half worth recording is that adding them **broke the outcome
+table**, and that the number which showed why was not the one being watched.
+
+### What the set is
+
+One word - the rarity - fixes everything mechanical about a card:
+
+| rarità | forza | copie nel mazzo | per famiglia |
+|---|---|---|---|
+| COMMON | 1 | 4 | 4 carte |
+| UNCOMMON | 2 | 2 | 2 carte |
+| RARE | 3 | 1 | 2 carte |
+
+22 cards per family deck, 132 in the box. A player who has seen a family twice
+knows what is in it, which matters more than it sounds: ACQUIRE draws two and
+keeps one, so knowing the deck is knowing what the other draw probably was.
+
+Every family carries the same shape: two cards that pay on the Oppose front,
+one that counts for more when the question is its own, and two rares that are
+worth 3 and cost something on the way out. Every strength-3 card is discarded
+whatever happens **and** does something to the world when committed - it raises
+the Tension, or hands the rival a foothold where the argument is, or empties
+your own. That is guarded by a test: a card worth 6 in a relevant question with
+no downside is not a choice, it is the correct play.
+
+`on_commit_effects` was exercised by exactly one card in 0.0 (O-3). It is now on
+thirteen.
+
+### The outcome table broke, and the average said nothing
+
+Measured over the same 40 Chronicles, before and after:
+
+| | Failure | con Costo | Successo | Decisivo |
+|---|---|---|---|---|
+| 12 carte | 16% | 13% | 38% | **33%** |
+| 48 carte, primo tentativo | 15% | 11% | 26% | **49%** |
+
+Half of every Council passing without discussion is the same illness as O-4 in
+the other direction: two of the four bands stop meaning anything.
+
+The strange part: **the average margin barely moved** - 3.23 to 3.37 - and S was
+identical to two decimals. Four separate attempts to fix it by re-weighting the
+set (fewer copies of the strong cards, more copies of the weak ones, bigger
+Oppose bonuses, dropping strength 3 entirely) each moved the outcome table by
+almost nothing, because each was aimed at the average.
+
+`cli/run_margin_probe.gd` printed the distribution instead, and the cause was
+immediately visible: the 12-card set piled its mass on **M = +4**, one point
+below the Decisive band, because with two cards per family a commit was almost
+always 2+2. A wider library smooths the distribution and pushes that pile one
+point right - over the line. The old 33% was partly an artefact of a library too
+poor to produce anything else.
+
+### The fix, and why it is the curve
+
+The lever that worked was the shape of the curve, not the weights: relevance
+moved off the strength-2 cards and onto a strength-1 card in each family, and
+one strength-2 card per family became a strength-1 with a small always-on bonus.
+A prepared commit is worth about 4 again instead of 6.
+
+| | Failure | con Costo | Successo | Decisivo |
+|---|---|---|---|---|
+| 48 carte, com'è ora | 21% | 15% | 30% | 34% |
+
+Decisive is back where it was and Failure is up five points - more Councils are
+genuinely contested, which is what a wider library was supposed to buy.
+
+The resolver was not touched. §A5's bands are the specification; the content is
+what gets tuned (D-023).
+
+### The cost, stated
+
+- **Councils per Chronicle: median 5 → 6**, and one Chronicle in forty reaches 8
+  against §7's ceiling of 7. `test_balance` allows 10% outside the band and it
+  passes, but the drift is real and it is the number to watch in 0.2.
+- **The three sim plans came out differently** and were re-measured rather than
+  re-tuned: the stories still hold (the grain accord passes unopposed, the broken
+  council fails twice, the opened mine plays all four bands), the outcome
+  sequences in their `expected` blocks are new. Plan A's authored Council now
+  binds to index 1, because with a full library the Succession opens first.
+
+### A bug the measurement found
+
+`ui/hand_view.gd` had been drawing a relevant card as `authority · 2 ×2 = 4`
+since 0.1.1. §9 says an Asset is worth its full strength when its family is
+relevant and **1** otherwise - relevance does not double anything. The card was
+telling a player their hand was worth twice what the resolver would give them.
+It now reads `authority · vale 2`, and `vale 1` when the question is not its own.
+
+---
+
 ## D-039 — A choice knows what it is about; the screen decides where to put it
 **implemented in 0.1.2**
 

@@ -7,24 +7,65 @@ Every visual element the Chronicle needs, taken straight from `godot/data`.
 [ART_BIBLE.md](ART_BIBLE.md); `marker_id` is the optional fiducial hook reserved
 for the physical table (spec §19.5) and is not used by any code in 0.0.
 
-Milestone 0.0 ships the reduced content of §18.2. The full §19.4 list (48 Assets,
-24 Echo cards, 12 Region tiles, 24 map overlays, 12 standees) lands with 0.1.
+§19.4 asks for 48 Assets, 24 Echo cards, 12 Region tiles, 24 map overlays and 12
+standees. The Assets and the Echo cards are there; the tiles, the overlays and
+the standees are art, and they are 0.2's problem.
 
-## Asset cards (12)
+The Asset deck reads off the rarity: COMMON is strength 1 and 4 copies, UNCOMMON
+strength 2 and 2 copies, RARE strength 3 and a single copy. Eight cards per
+family, 22 copies per family deck, 132 cards in the box (D-040).
+
+## Asset cards (48)
 | id | titolo | famiglia | forza | rarita | copie | scarto | art_prompt_key |
 |---|---|---|---|---|---|---|---|
-| AST_AUTHORITY_CROWN_RIGHT | Diritto di Corona | AUTHORITY | 2 | UNCOMMON | 4 | ALWAYS_DISCARD | `asset.authority.crown_right` |
-| AST_AUTHORITY_EDICT | Editto | AUTHORITY | 1 | COMMON | 6 | DISCARD | `asset.authority.edict` |
-| AST_BONDS_OATH | Giuramento | BONDS | 2 | RARE | 4 | RETAIN | `asset.bonds.oath` |
-| AST_BONDS_FAVOR | Favore | BONDS | 1 | COMMON | 6 | DISCARD | `asset.bonds.favor` |
-| AST_FORCE_WARBAND | Banda Armata | FORCE | 2 | UNCOMMON | 4 | ALWAYS_DISCARD | `asset.force.warband` |
-| AST_FORCE_LEVY | Leva Contadina | FORCE | 1 | COMMON | 6 | DISCARD | `asset.force.levy` |
-| AST_KNOWLEDGE_PROOF | Prova | KNOWLEDGE | 2 | RARE | 4 | RETAIN_ON_SUCCESS | `asset.knowledge.proof` |
-| AST_KNOWLEDGE_RUMOR | Voce di Corridoio | KNOWLEDGE | 1 | COMMON | 6 | DISCARD | `asset.knowledge.rumor` |
-| AST_PEOPLE_MOBILIZATION | Mobilitazione | PEOPLE | 2 | UNCOMMON | 4 | ALWAYS_DISCARD | `asset.people.mobilization` |
-| AST_PEOPLE_CROWD | Folla | PEOPLE | 1 | COMMON | 6 | DISCARD | `asset.people.crowd` |
-| AST_WEALTH_CARAVAN | Carovana | WEALTH | 2 | UNCOMMON | 4 | ALWAYS_DISCARD | `asset.wealth.caravan` |
-| AST_WEALTH_GRAIN | Riserva di Grano | WEALTH | 1 | COMMON | 6 | DISCARD | `asset.wealth.grain` |
+| AST_AUTHORITY_INTERDICT | Interdetto | AUTHORITY | 3 | RARE | 1 | ALWAYS_DISCARD | `asset.authority.interdict` |
+| AST_AUTHORITY_SUCCESSION_ACT | Atto di Successione | AUTHORITY | 3 | RARE | 1 | ALWAYS_DISCARD | `asset.authority.succession_act` |
+| AST_AUTHORITY_CROWN_RIGHT | Diritto di Corona | AUTHORITY | 2 | UNCOMMON | 2 | ALWAYS_DISCARD | `asset.authority.crown_right` |
+| AST_AUTHORITY_MAGISTRATE | Magistrato | AUTHORITY | 2 | UNCOMMON | 2 | RETAIN_ON_SUCCESS | `asset.authority.magistrate` |
+| AST_AUTHORITY_CENSUS | Censimento | AUTHORITY | 1 | COMMON | 4 | DISCARD | `asset.authority.census` |
+| AST_AUTHORITY_EDICT | Editto | AUTHORITY | 1 | COMMON | 4 | DISCARD | `asset.authority.edict` |
+| AST_AUTHORITY_INVESTITURE | Investitura | AUTHORITY | 1 | COMMON | 4 | ALWAYS_DISCARD | `asset.authority.investiture` |
+| AST_AUTHORITY_SEAL | Sigillo | AUTHORITY | 1 | COMMON | 4 | DISCARD | `asset.authority.seal` |
+| AST_BONDS_BROKEN_PACT | Patto Rotto | BONDS | 3 | RARE | 1 | ALWAYS_DISCARD | `asset.bonds.broken_pact` |
+| AST_BONDS_HOSTAGE | Ostaggio | BONDS | 3 | RARE | 1 | ALWAYS_DISCARD | `asset.bonds.hostage` |
+| AST_BONDS_BETROTHAL | Promessa di Nozze | BONDS | 2 | UNCOMMON | 2 | ALWAYS_DISCARD | `asset.bonds.betrothal` |
+| AST_BONDS_BLOOD_TIE | Legame di Sangue | BONDS | 2 | UNCOMMON | 2 | DISCARD | `asset.bonds.blood_tie` |
+| AST_BONDS_FAVOR | Favore | BONDS | 1 | COMMON | 4 | DISCARD | `asset.bonds.favor` |
+| AST_BONDS_GUEST_RIGHT | Diritto di Ospitalita | BONDS | 1 | COMMON | 4 | DISCARD | `asset.bonds.guest_right` |
+| AST_BONDS_OATH | Giuramento | BONDS | 1 | COMMON | 4 | RETAIN | `asset.bonds.oath` |
+| AST_BONDS_OLD_DEBT | Debito Vecchio | BONDS | 1 | COMMON | 4 | DISCARD | `asset.bonds.old_debt` |
+| AST_FORCE_BURNED_GATE | Le Porte Bruciate | FORCE | 3 | RARE | 1 | ALWAYS_DISCARD | `asset.force.burned_gate` |
+| AST_FORCE_OLD_ARMY | Il Vecchio Esercito | FORCE | 3 | RARE | 1 | ALWAYS_DISCARD | `asset.force.old_army` |
+| AST_FORCE_SIEGE | Assedio | FORCE | 2 | UNCOMMON | 2 | DISCARD | `asset.force.siege` |
+| AST_FORCE_WARBAND | Banda Armata | FORCE | 2 | UNCOMMON | 2 | ALWAYS_DISCARD | `asset.force.warband` |
+| AST_FORCE_BORDER_WATCH | Guardia di Confine | FORCE | 1 | COMMON | 4 | DISCARD | `asset.force.border_watch` |
+| AST_FORCE_LEVY | Leva Contadina | FORCE | 1 | COMMON | 4 | DISCARD | `asset.force.levy` |
+| AST_FORCE_MERCENARIES | Mercenari | FORCE | 1 | COMMON | 4 | DISCARD | `asset.force.mercenaries` |
+| AST_FORCE_ROADBLOCK | Posto di Blocco | FORCE | 1 | COMMON | 4 | DISCARD | `asset.force.roadblock` |
+| AST_KNOWLEDGE_RED_CRYSTAL | Il Cristallo Rosso | KNOWLEDGE | 3 | RARE | 1 | ALWAYS_DISCARD | `asset.knowledge.red_crystal` |
+| AST_KNOWLEDGE_SEALED_TESTIMONY | Deposizione Sigillata | KNOWLEDGE | 3 | RARE | 1 | ALWAYS_DISCARD | `asset.knowledge.sealed_testimony` |
+| AST_KNOWLEDGE_PROOF | Prova | KNOWLEDGE | 2 | UNCOMMON | 2 | RETAIN_ON_SUCCESS | `asset.knowledge.proof` |
+| AST_KNOWLEDGE_WITNESS | Testimone | KNOWLEDGE | 2 | UNCOMMON | 2 | ALWAYS_DISCARD | `asset.knowledge.witness` |
+| AST_KNOWLEDGE_ARCHIVE | Archivio | KNOWLEDGE | 1 | COMMON | 4 | RETAIN_ON_SUCCESS | `asset.knowledge.archive` |
+| AST_KNOWLEDGE_LEDGER | Registro | KNOWLEDGE | 1 | COMMON | 4 | DISCARD | `asset.knowledge.ledger` |
+| AST_KNOWLEDGE_OLD_MAP | Mappa Vecchia | KNOWLEDGE | 1 | COMMON | 4 | DISCARD | `asset.knowledge.old_map` |
+| AST_KNOWLEDGE_RUMOR | Voce di Corridoio | KNOWLEDGE | 1 | COMMON | 4 | DISCARD | `asset.knowledge.rumor` |
+| AST_PEOPLE_EXODUS | Esodo | PEOPLE | 3 | RARE | 1 | ALWAYS_DISCARD | `asset.people.exodus` |
+| AST_PEOPLE_STILL_HANDS | Braccia Ferme | PEOPLE | 3 | RARE | 1 | ALWAYS_DISCARD | `asset.people.still_hands` |
+| AST_PEOPLE_MOBILIZATION | Mobilitazione | PEOPLE | 2 | UNCOMMON | 2 | ALWAYS_DISCARD | `asset.people.mobilization` |
+| AST_PEOPLE_SPOKESMAN | Portavoce | PEOPLE | 2 | UNCOMMON | 2 | DISCARD | `asset.people.spokesman` |
+| AST_PEOPLE_CROWD | Folla | PEOPLE | 1 | COMMON | 4 | DISCARD | `asset.people.crowd` |
+| AST_PEOPLE_ELDERS | Consiglio degli Anziani | PEOPLE | 1 | COMMON | 4 | DISCARD | `asset.people.elders` |
+| AST_PEOPLE_HARVEST_HANDS | Braccia per il Raccolto | PEOPLE | 1 | COMMON | 4 | DISCARD | `asset.people.harvest_hands` |
+| AST_PEOPLE_MARCH | Marcia | PEOPLE | 1 | COMMON | 4 | DISCARD | `asset.people.march` |
+| AST_WEALTH_LAND_MORTGAGE | Ipoteca sulle Terre | WEALTH | 3 | RARE | 1 | ALWAYS_DISCARD | `asset.wealth.land_mortgage` |
+| AST_WEALTH_TREASURY | Il Tesoro | WEALTH | 3 | RARE | 1 | ALWAYS_DISCARD | `asset.wealth.treasury` |
+| AST_WEALTH_CARAVAN | Carovana | WEALTH | 2 | UNCOMMON | 2 | ALWAYS_DISCARD | `asset.wealth.caravan` |
+| AST_WEALTH_GRANARY_KEYS | Chiavi del Granaio | WEALTH | 2 | UNCOMMON | 2 | DISCARD | `asset.wealth.granary_keys` |
+| AST_WEALTH_CREDIT | Credito | WEALTH | 1 | COMMON | 4 | DISCARD | `asset.wealth.credit` |
+| AST_WEALTH_GRAIN | Riserva di Grano | WEALTH | 1 | COMMON | 4 | DISCARD | `asset.wealth.grain` |
+| AST_WEALTH_SALT | Sale | WEALTH | 1 | COMMON | 4 | DISCARD | `asset.wealth.salt` |
+| AST_WEALTH_TOLL | Pedaggio | WEALTH | 1 | COMMON | 4 | DISCARD | `asset.wealth.toll` |
 
 ## Echo cards (24)
 | id | titolo | famiglia drammatica | funzione | art_prompt_key |
@@ -72,13 +113,17 @@ Milestone 0.0 ships the reduced content of §18.2. The full §19.4 list (48 Asse
 | ENT_NAHR | Popolo Nahr | PEOPLE | SURVIVAL | DST_NAHR | `entity.nahr` |
 | ENT_VAERAX | Vaerax | CREATURE | PROTECTION | DST_VAERAX | `entity.vaerax` |
 
-## Destiny cards (4)
+## Destiny cards (8)
 | id | titolo | entita | Minimum | Victory | Triumph |
 |---|---|---|---|---|---|
 | DST_ALDRIC | Il Regno che Resta | ENT_ALDRIC | Il trono regge | Il regno decide | Un regno che non ha pagato il pane con il sangue |
+| DST_ALDRIC_RECORD | Il Regno che Ricorda | ENT_ALDRIC | La casa siede ancora | Nessuno rilegge la stessa domanda | Un regno che non ha dovuto dividersi per reggere |
 | DST_LYRA | Sapere e Poter Tornare a Guardare | ENT_LYRA | Ha capito qualcosa | Sa, ed e ancora nelle gallerie | Il sapere e diventato pubblico e verificabile |
+| DST_LYRA_TAUGHT | Quello che Resta Insegnato | ENT_LYRA | Qualcuno sa ancora leggere le carte | Il sapere ha un posto suo | Verificabile da chiunque, anche da chi non c'era |
 | DST_NAHR | Una Terra dove Fermarsi | ENT_NAHR | Il popolo sopravvive | Il popolo si ferma | Fermarsi senza smettere di essere Nahr |
+| DST_NAHR_ROOTED | La Terra Sotto i Piedi | ENT_NAHR | Il popolo e ancora qui | La terra risponde a chi la lavora | Radicati senza aver chiuso la porta a nessuno |
 | DST_VAERAX | Cio che Dorme Resti Addormentato | ENT_VAERAX | La montagna e ancora sua | Nessuno ha portato via il Cristallo | Il sonno e stato reso sicuro |
+| DST_VAERAX_WATCHED | Il Sonno Sorvegliato | ENT_VAERAX | La montagna e ancora sua | Nessuno scava piu | Guardato da qualcuno che non lo vuole |
 
 ## Tension tracks (6)
 | id | titolo | dominio | iniziale | soglia | visibilita | presagi |

@@ -22,11 +22,12 @@ verificati: vedi [TEST_PLAN.md](TEST_PLAN.md) per la mappa criterio → test.
 
 Ordine di lavoro (§25, punti 11–16):
 
-11. Main Board, mappa, Entity View, Action Dialog
-12. `HotseatController` e Confluence Board
-13. Contenuto completo §19.4 con validazione
+11. ✅ Main Board, mappa, Entity View, Action Dialog — 0.1.0 / 0.1.2 (D-039)
+12. ✅ `HotseatController` e Confluence Board — 0.0.14 / 0.1.1 (D-037, D-038)
+13. ✅ Contenuto completo §19.4 con validazione — 0.1.3, le 48 carte Asset (D-040)
 14. Developer Dashboard
-15. `CardView`, Export Preview, placeholder migliorati
+15. ✅ `CardView` — 0.1.5, la carta dice cosa fa (D-042) · Export Preview e
+    placeholder migliorati restano
 16. Issue list / roadmap GitHub-ready finale
 
 Il motore è già pronto a riceverli: `ChronicleController` chiede ogni decisione a
@@ -35,8 +36,10 @@ quello scriptato che usa la CLI oggi. Nessuna regola va riscritta.
 
 Da chiudere in 0.1 e già noto:
 
-- gli overlay `condition:` / `structure:` / `scar:` esistono nei dati ma nessuna
-  scena li disegna
+- il salvataggio esiste (`SaveManager`, testato) ma la UI non lo chiama, e non
+  basterebbe: `run()` è una coroutine dentro tre cicli annidati, quindi
+  riprendere una partita lasciata a metà vuol dire un punto di ripresa nel
+  motore (atto/round da cui ricominciare), non solo uno snapshot del mondo
 - `promise_kept` / `promise_broken` sono implementati ma nessun Destiny di 0.0 li
   usa
 - il set completo dei Destiny a più di 2 condizioni per livello

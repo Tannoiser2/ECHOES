@@ -17,9 +17,15 @@ const ConsequenceCompiler := preload("res://scripts/chronicle/consequence_compil
 const DestinyEvaluator := preload("res://scripts/chronicle/destiny_evaluator.gd")
 const ChronicleController := preload("res://scripts/chronicle/chronicle_controller.gd")
 const SaveSerializer := preload("res://scripts/core/save_serializer.gd")
+const Succession := preload("res://scripts/chronicle/succession.gd")
 
 signal effect_applied(effect: Dictionary)
 signal log_line(text: String)
+
+## How many years the jump into this Chronicle covered, and who changed across
+## it. Zero and empty for the Chronicle that starts a saga.
+var _years_passed: int = 0
+var _handover: Dictionary = {}
 
 var data: RefCounted
 var world: Dictionary = {}
@@ -109,17 +115,44 @@ func factory_setup_effects() -> Array:
 ## Continue a campaign: what the previous Chronicle left behind is applied on
 ## top of a fresh setup. Call before run(); the truth and echo registers are
 ## copied straight across because they are the world's memory, not its state.
-func inherit_from(previous: Dictionary) -> void:
+##
+## `results` is the Destiny report of the Chronicle that just ended. It decides
+## one thing and one only: whether a seat keeps the Destiny it failed or moves
+## on to the next one it wanted (D-045). Omitting it means nobody achieved
+## anything, which is the right reading for a world that has no report.
+func inherit_from(previous: Dictionary, results: Dictionary = {}) -> void:
 	_inherited = previous
 	if previous.is_empty():
 		return
-	world["year"] = int(previous.get("year", world["year"])) + 1
+	# How much time passed is the Chronicle's own declaration - one year for a
+	# written year, a drawn span of decades for a library one.
+	_years_passed = Succession.years_between(_chronicle_def, rng)
+	world["year"] = int(previous.get("year", world["year"])) + _years_passed
 	world["echo_log"] = (previous.get("echo_log", []) as Array).duplicate(true)
 	world["truth_log"] = (previous.get("truth_log", []) as Array).duplicate(true)
 
+	_handover = Succession.plan(previous, results, _chronicle_def, data, _years_passed)
+	for entity_id in _handover:
+		var seat: Variant = world["entities"].get(str(entity_id))
+		if seat == null:
+			continue
+		seat["name"] = str(_handover[entity_id]["name"])
+		seat["destiny_id"] = str(_handover[entity_id]["destiny_id"])
+		seat["generation"] = int(_handover[entity_id]["generation"])
+
+
+func years_passed() -> int:
+	return _years_passed
+
+
+func handover() -> Dictionary:
+	return _handover
+
 
 func inheritance_effects() -> Array:
-	return WorldStateFactory.inheritance_effects(_inherited, _chronicle_def, data)
+	return WorldStateFactory.inheritance_effects(
+		_inherited, _chronicle_def, data, _years_passed
+	)
 
 
 func chronicle_def() -> Dictionary:

@@ -9,6 +9,7 @@ extends RefCounted
 
 const Effect := preload("res://scripts/core/effect.gd")
 const Ids := preload("res://scripts/core/ids.gd")
+const Succession := preload("res://scripts/chronicle/succession.gd")
 
 const DEFAULT_DECK_COPIES: int = 3
 
@@ -50,6 +51,13 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 		var definition: Dictionary = data.entities[entity_id]
 		world["entities"][entity_id] = {
 			"id": entity_id,
+			# The id is the seat - the house, the people, the thing under the
+			# mountain. Who is sitting in it, and what they want, is state: both
+			# can change between Chronicles while every Scar and relation the
+			# world wrote keeps pointing at something that exists (D-045).
+			"name": str(definition["name"]),
+			"destiny_id": str(definition["destiny_id"]),
+			"generation": 0,
 			"presence": [],
 			"hand": [],
 			"tags": (definition["tags"] as Array).duplicate(),
@@ -203,7 +211,9 @@ const INHERITED_TAG_PREFIXES: Array = ["condition:", "structure:", "settlement:"
 ## everything else (§6.3). A full propagation engine is 0.3; this is the part
 ## of it a measurement needs - the map remembers, the people remember, the
 ## question resets.
-static func inheritance_effects(previous: Dictionary, chronicle: Dictionary, data: RefCounted) -> Array:
+static func inheritance_effects(
+	previous: Dictionary, chronicle: Dictionary, data: RefCounted, years: int = 1
+) -> Array:
 	var effects: Array = []
 	var source: Dictionary = Effect.source("system", "INHERITANCE", "", 0, 0, 0)
 	if previous.is_empty():
@@ -239,14 +249,23 @@ static func inheritance_effects(previous: Dictionary, chronicle: Dictionary, dat
 					)
 					break
 
+	# What people felt about each other outlives them - but not undimmed. Across
+	# a long jump every relation moves one step towards NEUTRAL: a war is
+	# remembered as a grudge, an alliance as a courtesy. The tags stay whatever
+	# happens, because those are the things that were written down (D-045).
+	var soften: bool = Succession.decays_after(years)
 	for key in previous.get("relations", {}):
 		var relation: Dictionary = previous["relations"][key]
+		var level: String = str(relation["level"])
 		effects.append(
 			Effect.make(
 				"SET_RELATION",
 				"relation",
 				str(key),
-				{"level": str(relation["level"]), "tags": (relation["tags"] as Array).duplicate()},
+				{
+					"level": Succession.decayed(level) if soften else level,
+					"tags": (relation["tags"] as Array).duplicate(),
+				},
 				source
 			)
 		)

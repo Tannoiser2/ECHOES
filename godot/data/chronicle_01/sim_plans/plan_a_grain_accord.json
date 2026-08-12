@@ -5,7 +5,7 @@
     {
       "id": "SIM_PLAN_A",
       "title": "L'accordo del grano",
-      "description": "Aldric si assicura il seggio di proponente mettendo il terzo token nella Valle Verde - il proponente e chi ha piu presenza nella Regione di cui si discute (D-036), e la Valle e il posto in cui si discute di grano - accumula Asset rilevanti e requisisce il grano senza una voce contraria. La requisizione decisiva sgombera i Nahr dalla Valle, e senza quella presenza nessuno puo piu toccare le Vie: la Chronicle si chiude su due sole domande, e la seconda le ha chiuse tutte. Esito atteso: un Decisive Success senza opposizione.",
+      "description": "Aldric si assicura il seggio di proponente mettendo il terzo token nella Valle Verde - il proponente e chi ha piu presenza nella Regione di cui si discute (D-036) - accumula Asset rilevanti e requisisce il grano senza una voce contraria: S 5 contro O 0, Decisive. Con la biblioteca completa (D-040) l'anno e piu pieno di prima: la Successione si apre per prima e passa anche lei senza discussione, poi torna e la seconda volta costa, e le Vie si chiudono con un accordo normale. Quattro domande, nessuna persa: e la Chronicle di chi ha preparato meglio.",
       "chronicle_id": "CHR_01",
       "seed": 20260810,
       "seats": [
@@ -195,9 +195,9 @@
       ],
       "confluences": [
         {
-          "index": 0,
+          "index": 1,
           "tension_id": "TEN_FAMINE",
-          "note": "Il Consiglio del Grano. Nessuno si oppone: i Nahr pongono una condizione che qualifica, Lyra sostiene, Vaerax si astiene. S alto e O a zero danno un Decisive.",
+          "note": "Il Consiglio del Grano, che adesso e il secondo dell'anno: con 48 Asset in gioco la Successione si apre prima. Nessuno si oppone - i Nahr pongono una condizione che qualifica, Lyra sostiene, Vaerax si astiene - e S alto contro O a zero da un Decisive.",
           "question_id": "Q_FAMINE_GRAIN",
           "proposition_id": "P_REQUISITION",
           "stances": {
@@ -229,13 +229,15 @@
         }
       ],
       "expected": {
-        "confluence_count": 2,
+        "confluence_count": 4,
         "outcomes": [
-          "SUCCESS",
-          "DECISIVE_SUCCESS"
+          "DECISIVE_SUCCESS",
+          "DECISIVE_SUCCESS",
+          "SUCCESS_WITH_COST",
+          "SUCCESS"
         ],
-        "min_echoes": 2,
-        "min_truths": 2
+        "min_echoes": 4,
+        "min_truths": 4
       }
     }
   ]

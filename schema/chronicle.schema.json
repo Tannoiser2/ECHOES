@@ -325,6 +325,36 @@
               "description": "Drawn first, every time: the questions this Chronicle is about by definition."
             }
           }
+        },
+        "years_after_previous": {
+          "description": "Quanto tempo passa fra la Chronicle precedente e questa. Un numero, oppure un intervallo pescato dal seme: e cosi che una saga puo coprire secoli invece di anni consecutivi (D-045). Assente = 1 anno.",
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 2000
+            },
+            {
+              "type": "object",
+              "required": [
+                "min",
+                "max"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "min": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 2000
+                },
+                "max": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 2000
+                }
+              }
+            }
+          ]
         }
       }
     }

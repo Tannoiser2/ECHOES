@@ -772,7 +772,7 @@ func _title(asset_id: String) -> String:
 
 func _name(entity_id: String) -> String:
 	var entity: Variant = data.entities.get(entity_id)
-	return entity_id if entity == null else str(entity["name"])
+	return entity_id if entity == null else str(service.name_of(entity_id))
 
 
 func _region(region_id: String) -> String:

@@ -303,6 +303,9 @@ const DEFS := {
 			"tension_pool": {
 				"type": "Dictionary",
 			},
+			"years_after_previous": {
+				"type": "Variant",
+			},
 		},
 	},
 	"confluence_template": {
@@ -751,6 +754,27 @@ const DEFS := {
 			},
 			"marker_id": {
 				"type": "String",
+			},
+			"persistence": {
+				"type": "String",
+				"enum": [
+					"MORTAL",
+					"COLLECTIVE",
+					"ETERNAL",
+				],
+			},
+			"successors": {
+				"type": "Array",
+				"element": {
+					"type": "Dictionary",
+				},
+			},
+			"destiny_pool": {
+				"type": "Array",
+				"element": {
+					"type": "String",
+					"pattern": "^DST_[A-Z0-9_]+$",
+				},
 			},
 		},
 	},

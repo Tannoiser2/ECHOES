@@ -7,8 +7,16 @@ extends VBoxContainer
 ## word "velata" - present, unreadable, and clearly *there*, which is the whole
 ## point of a veiled Tension.
 
+## The five levels a relation can sit at, warmest last, with the colour each one
+## is drawn in. FORGE moves a relation one step along this list.
+const RELATIONS: Dictionary = {
+	"ENEMY": "#c8553d", "HOSTILE": "#b06b8f", "NEUTRAL": "#8a8172",
+	"ALLY": "#6fa88a", "BOUND": "#e8b563",
+}
+
 var _rows: Dictionary = {}
 var _destiny: VBoxContainer
+var _relations: VBoxContainer
 var _title: Label
 
 
@@ -24,6 +32,7 @@ func render(session: RefCounted, viewer_id: String) -> void:
 		if not _rows.has(id):
 			_rows[id] = _add_row(str(session.data.tensions[id]["title"]))
 		_update_row(_rows[id], session, id, viewer_id)
+	_update_relations(session, viewer_id)
 	_update_destiny(session, viewer_id)
 
 
@@ -87,13 +96,62 @@ func _update_row(row: Dictionary, session: RefCounted, tension_id: String, viewe
 	bar.add_theme_stylebox_override("fill", fill)
 
 
+## Where you stand with the other three. Public information - FORGE announces
+## itself and the terminal has printed the level inside its own action labels
+## since 0.0 - but until 0.1.6 the only way to read it in the browser was to
+## look at a button offering to break it. Destinies count these levels, so a
+## player who cannot see them is being scored on something invisible.
+func _update_relations(session: RefCounted, viewer_id: String) -> void:
+	if _relations == null:
+		add_child(_spacer())
+		var header := Label.new()
+		header.text = "I RAPPORTI"
+		header.add_theme_font_size_override("font_size", 12)
+		header.add_theme_color_override("font_color", Color("#8a8172"))
+		add_child(header)
+		_relations = VBoxContainer.new()
+		_relations.add_theme_constant_override("separation", 1)
+		add_child(_relations)
+
+	for child in _relations.get_children():
+		child.queue_free()
+		_relations.remove_child(child)
+	if viewer_id == "":
+		return
+
+	for entity_id in session.world["turn_order"]:
+		var other: String = str(entity_id)
+		if other == viewer_id:
+			continue
+		var level: String = session.service.relation_level(viewer_id, other)
+		var row := HBoxContainer.new()
+		_relations.add_child(row)
+
+		var name := Label.new()
+		name.text = session.service.name_of(other)
+		name.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		name.add_theme_font_size_override("font_size", 12)
+		name.add_theme_color_override("font_color", Color("#c9bfae"))
+		row.add_child(name)
+
+		var value := Label.new()
+		value.text = level.to_lower()
+		value.add_theme_font_size_override("font_size", 12)
+		value.add_theme_color_override("font_color", Color(str(RELATIONS.get(level, "#8a8172"))))
+		row.add_child(value)
+
+
+func _spacer() -> Control:
+	var spacer := Control.new()
+	spacer.custom_minimum_size = Vector2(0, 12)
+	return spacer
+
+
 ## The ladder, with the rungs that hold already ticked. A player who cannot read
 ## their own goal cannot steer towards it.
 func _update_destiny(session: RefCounted, viewer_id: String) -> void:
 	if _destiny == null:
-		var spacer := Control.new()
-		spacer.custom_minimum_size = Vector2(0, 12)
-		add_child(spacer)
+		add_child(_spacer())
 		var header := Label.new()
 		header.text = "IL TUO DESTINO"
 		header.add_theme_font_size_override("font_size", 12)
@@ -111,7 +169,7 @@ func _update_destiny(session: RefCounted, viewer_id: String) -> void:
 	var entity: Variant = session.data.entities.get(viewer_id)
 	if entity == null:
 		return
-	var destiny: Variant = session.data.destinies.get(str(entity["destiny_id"]))
+	var destiny: Variant = session.data.destinies.get(session.service.destiny_of(viewer_id))
 	if destiny == null:
 		return
 	for level in ["minimum", "victory", "triumph"]:

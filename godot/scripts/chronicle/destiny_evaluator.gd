@@ -29,7 +29,11 @@ func evaluate_all() -> Dictionary:
 		var definition: Variant = data.entities.get(str(entity_id))
 		if definition == null:
 			continue
-		results[str(entity_id)] = evaluate(str(definition["destiny_id"]))
+		# The Destiny is state, not definition: a house that got what it wanted
+		# last Chronicle is chasing the next thing now (D-045).
+		var seat: Dictionary = (world["entities"] as Dictionary).get(str(entity_id), {})
+		var destiny_id: String = str(seat.get("destiny_id", definition["destiny_id"]))
+		results[str(entity_id)] = evaluate(destiny_id)
 	return results
 
 
@@ -70,7 +74,8 @@ func evaluate(destiny_id: String) -> Dictionary:
 ## One-line summary for the Chronicle End log.
 func describe(result: Dictionary) -> String:
 	var destiny: Dictionary = data.destinies[str(result["destiny_id"])]
-	var entity: Dictionary = data.entities[str(result["entity_id"])]
+	var seat: Dictionary = (world["entities"] as Dictionary).get(str(result["entity_id"]), {})
+	var who: String = str(seat.get("name", data.entities[str(result["entity_id"])]["name"]))
 	var label: String = "nessun livello raggiunto"
 	match str(result["level"]):
 		"MINIMUM":
@@ -79,4 +84,4 @@ func describe(result: Dictionary) -> String:
 			label = str(destiny["victory"]["label"])
 		"TRIUMPH":
 			label = str(destiny["triumph"]["label"])
-	return "%s - %s: %s" % [str(entity["name"]), str(result["level"]), label]
+	return "%s - %s: %s" % [who, str(result["level"]), label]
