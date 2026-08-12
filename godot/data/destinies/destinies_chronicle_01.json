@@ -168,6 +168,13 @@
             "scope": "GLOBAL",
             "tag": "mine_sealed",
             "label": "Le Miniere non sono sigillate"
+          },
+          {
+            "type": "state_tag_present",
+            "scope": "ENTITY",
+            "entity_id": "ENT_LYRA",
+            "tag": "escort_sworn",
+            "label": "Qualcuno ha giurato di tenerle aperta la strada"
           }
         ]
       },
@@ -193,6 +200,12 @@
             "region_id": "REG_STRADA_MERCANTI",
             "tag": "condition:cut_off",
             "label": "La strada per le gallerie e ancora aperta"
+          },
+          {
+            "type": "state_tag_absent",
+            "scope": "GLOBAL",
+            "tag": "study_supervised",
+            "label": "Nessuno ha messo una guardia allo studio"
           }
         ]
       },
@@ -422,34 +435,23 @@
         "label": "Verificabile da chiunque, anche da chi non c'era",
         "conditions": [
           {
-            "type": "state_tag_present",
+            "type": "state_tag_absent",
             "scope": "GLOBAL",
-            "tag": "crystal_measured",
-            "label": "Il Cristallo e stato misurato"
+            "tag": "mine_sealed",
+            "label": "Le gallerie sono ancora aperte a chi vuole verificare"
+          },
+          {
+            "type": "state_tag_present",
+            "scope": "ENTITY",
+            "entity_id": "ENT_LYRA",
+            "tag": "escort_sworn",
+            "label": "E c'e una scorta giurata per arrivarci"
           },
           {
             "type": "state_tag_absent",
             "scope": "GLOBAL",
             "tag": "study_supervised",
             "label": "Nessuno ha messo una guardia allo studio"
-          },
-          {
-            "type": "any_of",
-            "label": "E qualcuno lo ha imparato",
-            "conditions": [
-              {
-                "type": "state_tag_present",
-                "scope": "GLOBAL",
-                "tag": "petition_heard",
-                "label": "La richiesta e stata ascoltata"
-              },
-              {
-                "type": "state_tag_present",
-                "scope": "GLOBAL",
-                "tag": "parley_held",
-                "label": "Si e parlato apertamente"
-              }
-            ]
           }
         ]
       }

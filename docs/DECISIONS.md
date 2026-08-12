@@ -331,6 +331,88 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-048 — Un Destino che si vince in due mosse, e uno che non si vince mai
+**implemented in 0.1.11**
+
+The scholars' seat was broken at both ends of a saga, and neither end showed up
+in an outcome table.
+
+### Vinto al round due, quaranta volte su quaranta
+
+`DST_LYRA` asked for: a Discovery, presence in the Ancient Mines, the mines not
+sealed, two Discoveries, the Awakening not exploded, the road still open. Seven
+clauses, and **five of them were true before the first token was placed**. The
+other two were Discoveries - and a Discovery costs *one action*: SCHEME on a
+veiled Tension. Lyra has two Action Opportunities in round one and CHR_01 deals
+two veiled Tensions.
+
+So her whole ladder - Minimum, Victory *and* Triumph - closed in **Act I round
+two, in 40 Chronicles out of 40**, after which she spent the remaining seventeen
+Action Opportunities drawing cards she had no use for. The end-of-year report
+said TRIUMPH; the register said eighteen turns of shopping. That is O-14's
+"Lyra reaches Triumph in four out of five", and the cause was not that her
+Destiny was generous - it was that nothing in it had to be played for.
+
+The new `run_destiny_probe.gd` asks the two questions that make this visible, and
+the first needs no dice at all: **what is already true before the year starts**,
+clause by clause, and **at what round is each seat's ladder closed**.
+
+### And never won at all
+
+`DST_LYRA_TAUGHT` - the Destiny she *advances to* under D-045 - asked in its
+Triumph for `crystal_measured`, `petition_heard` and `parley_held`. **No
+Consequence in the game writes any of the three**, and none is on the table at
+the start. It was not hard to win: it was impossible, which is why the ten-
+Chronicle saga reported that seat at MINIMUM ten times out of ten.
+
+Nothing caught it because a tag is a string: it validates, it loads, and it
+evaluates to false for ever. `test_data_boot.gd` now walks every
+`state_tag_present` clause of every Destiny and insists something in the world
+can put that tag there - Consequence, Echo card, or the opening position. Only
+`present` is checked: a clause asking for a tag to be *absent* is a stake, not a
+goal, and a tag nothing writes just makes it a stake nobody can take.
+
+### What was changed, and what was not
+
+Two clauses added to `DST_LYRA`, none removed:
+
+- **Victory** now also asks for `escort_sworn` - twelve people who answer for
+  every load with their own name, sworn in a Council. That is the half of the
+  title that was never implemented: *poter tornare a guardare*. Knowing something
+  is the Minimum; being able to go back and check is the Victory.
+- **Triumph** now also asks that nobody put a guard on the study
+  (`study_supervised` absent) - which is the author's own idea of the scholar's
+  full win, since that clause was already in `DST_LYRA_TAUGHT`.
+
+`DST_LYRA_TAUGHT`'s Triumph was rewritten onto tags that exist, keeping the
+meaning - *what remains taught* is knowledge others can still reach and verify:
+the galleries not sealed, an escort sworn, no guard on the study.
+
+A third clause was tried and reverted: `discovery:crystal` on the Triumph, "and
+she measured the Crystal herself". It reads well and it measured badly - her
+Triumph went to 0/40 and the Council count left its band at 6.20 - so it is
+recorded here rather than shipped.
+
+### Measured
+
+Forty Chronicles per figure.
+
+| | prima | dopo |
+|---|---|---|
+| scala chiusa in anticipo (Lyra) | **40/40**, round 2.0 | 9/40, round 7.0 |
+| Lyra | MIN 16 / VIC 4 / **TRI 20** | **MIN 34** / TRI 6 |
+| Consigli CHR_01 | 5.70 | 6.10 |
+| Consigli CHR_02 | 4.65, da 2 a 7 | 4.83, da 3 a 6 |
+
+The three sim plans still pass and still produce byte-identical output on a
+second run. Plan C's description was corrected: it claimed the year ended with
+knowledge "public and verifiable", and what the plan actually plays is
+`P_GUARDED_STUDY` - the Crystal measurable, but in front of a keeper. Under the
+new pricing that is precisely what falls short of what Lyra wanted, which makes
+it a better ending than the one the text claimed.
+
+---
+
 ## D-047 — Un anno non si chiude senza aver deciso niente
 **implemented in 0.1.10**
 
@@ -2081,7 +2163,13 @@ longer shares `CNS_MINE_SEALED` with `P_SEAL_MINE`. Every proposition in the set
 lands on its own world change.
 
 ### O-14 — The Destiny spread tilted, and this time in Lyra's favour
-**flagged, open — recorded, not tuned**
+**closed by D-048.** The tilt was real and the cause was mechanical: Lyra's whole
+ladder was closed by Act I round two in 40 Chronicles out of 40, so "reaches
+Triumph in four out of five" was not a seat that was winning, it was a seat that
+had been handed the win before play began. Priced properly she is at MIN 34 /
+TRI 6 - and the table is now lopsided the *other* way, which is O-15.
+
+**original note:**
 
 D-036 opened the rooms and the standings moved with them:
 
@@ -2106,6 +2194,31 @@ numbers is wrong.
 
 Relations also collapsed to a single distinct end state across forty Chronicles,
 down from two. Small, but it says the relation graph is scenery right now.
+
+### O-15 — Six Destiny levels out of twelve are true before anyone plays
+**flagged, open — recorded, not tuned**
+
+`run_destiny_probe.gd` checks every clause against the opening position, and the
+count is 19 clauses out of 28 already true, with **six whole levels given away**:
+Aldric's Minimum and Triumph, Nahr's Minimum, Lyra's Victory (now repriced by
+D-048), and both of Vaerax's lower rungs.
+
+Not all of these are wrong. A clause asking for a tag to be *absent* is a stake,
+not a gift: "the crown was not broken" is true until somebody breaks it, and
+Aldric's Triumph is 3/3 free at the start and still reaches TRIUMPH only 3 times
+in 40, because the year takes it off him. That is the mechanism working.
+
+Vaerax is the one that is not working. His Victory is two absent-tags and nothing
+else, and he reports VICTORY in 37-40 Chronicles out of 40 - in CHR_02, **40 out
+of 40**. He wins by sitting still, and after D-048 he wins while the seat he is
+in direct conflict with wins 6 times in 40. The asymmetry is now the loudest
+thing in the standings.
+
+Recorded rather than tuned, and deliberately: D-048 already moved one seat from
+best at the table to worst, and moving a second one in the same pass would make
+neither measurable. The next pass should start from this probe's first table -
+what is already true before the year starts - rather than from the outcome
+counts, because the outcome counts are where this hid for four milestones.
 
 ### O-13 — `P_ANY_LEAVE` is a proposition nobody would ever make
 **closed by D-036.** Not with the first fix: giving it `ADJUST_TENSION -2` was

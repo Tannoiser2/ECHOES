@@ -154,6 +154,71 @@ func test_every_tension_can_reach_its_threshold() -> void:
 		)
 
 
+## A Destiny clause nobody can ever make true.
+##
+## `DST_LYRA_TAUGHT` asked, in its Triumph, for `crystal_measured`,
+## `petition_heard` and `parley_held` - **all three of them**. No Consequence in
+## the game writes any of the three, and none is on the table at the start, so
+## the scholars' second Destiny was not hard to win: it was impossible, and the
+## measured saga duly reported that seat at MINIMUM ten Chronicles out of ten.
+##
+## Nothing caught it because a tag is just a string: it validates, it loads, it
+## evaluates to false for ever. So this walks every Destiny clause that asks for
+## a tag to be *present* and insists something in the world can put it there.
+##
+## Only `state_tag_present` is checked. A clause asking for a tag to be *absent*
+## is a stake, not a goal - it is true until someone breaks it, and a tag nothing
+## writes simply makes it a stake nobody can take.
+func test_no_destiny_asks_for_a_tag_nothing_can_write() -> void:
+	var loaded: RefCounted = data()
+
+	var writable: Dictionary = {}
+	for consequence in loaded.consequences.values():
+		for effect in consequence["effects"]:
+			if not str(effect["type"]).begins_with("SET_"):
+				continue
+			var tag: String = str((effect.get("payload", {}) as Dictionary).get("tag", ""))
+			if tag != "":
+				writable[tag] = str(consequence["id"])
+	# An Echo card can write one too, and so can the opening position.
+	for card in loaded.echo_cards.values():
+		for effect in card.get("effects", []):
+			var tag: String = str((effect.get("payload", {}) as Dictionary).get("tag", ""))
+			if str(effect["type"]).begins_with("SET_") and tag != "":
+				writable[tag] = str(card["id"])
+	for region in loaded.regions.values():
+		for tag in region["tags"]:
+			writable[str(tag)] = str(region["id"])
+	for chronicle in loaded.chronicles.values():
+		for tag in chronicle.get("global_tags", []):
+			writable[str(tag)] = str(chronicle["id"])
+
+	for destiny in loaded.destinies.values():
+		for level in ["minimum", "victory", "triumph"]:
+			for condition in _flattened(destiny[level]["conditions"]):
+				if str((condition as Dictionary).get("type", "")) != "state_tag_present":
+					continue
+				var tag: String = str((condition as Dictionary)["tag"])
+				assert_true(
+					writable.has(tag),
+					"%s/%s chiede '%s', che niente al mondo puo scrivere"
+					% [str(destiny["id"]), level, tag]
+				)
+
+
+## Conditions can nest inside `any_of` / `all_of`, and the one that mattered
+## here was nested: two of the three unreachable tags were inside an `any_of`.
+func _flattened(conditions: Array) -> Array:
+	var out: Array = []
+	for condition in conditions:
+		var kind: String = str((condition as Dictionary).get("type", ""))
+		if kind == "any_of" or kind == "all_of":
+			out.append_array(_flattened((condition as Dictionary)["conditions"]))
+		else:
+			out.append(condition)
+	return out
+
+
 func test_boot_scene_instantiates() -> void:
 	var packed: Variant = load("res://scenes/boot/boot.tscn")
 	assert_true(packed != null, "la scena di boot si carica")

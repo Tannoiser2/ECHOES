@@ -80,7 +80,19 @@ func test_victory_needs_the_consequence_that_grants_it() -> void:
 	assert_eq(str(result["level"]), "MINIMUM", "senza presenza nella Valle si torna al Minimum")
 
 
-## Discoveries are counted from the 'discovery:' tags an Entity has earned.
+## Discoveries are counted from the 'discovery:' tags an Entity has earned - and
+## what they are worth (D-048).
+##
+## This test used to end at "one Discovery and presence in the Mines: Victory",
+## and it passed, and that was the bug. A Discovery costs **one action** - SCHEME
+## on a veiled Tension - and the Mines are where Lyra is standing when the
+## Chronicle is dealt. So the scholars' Victory was two SCHEMEs, and a probe over
+## forty Chronicles found her whole ladder - Minimum, Victory *and* Triumph -
+## closed by **Act I round two, forty times out of forty**. She then spent the
+## remaining seventeen Action Opportunities drawing cards she had no use for.
+##
+## Knowing something is the Minimum now. The Victory is the other half of the
+## title - *poter tornare a guardare* - and it has to be obtained from a Council.
 func test_discovery_count_drives_lyra() -> void:
 	var result: Dictionary = session.destinies.evaluate("DST_LYRA")
 	assert_eq(str(result["level"]), "NONE", "senza Scoperte Lyra non raggiunge nemmeno il Minimum")
@@ -89,11 +101,32 @@ func test_discovery_count_drives_lyra() -> void:
 		"ENT_LYRA", {"template": "SCHEME", "params": {"mode": "TENSION", "tension_id": "TEN_AWAKENING"}}
 	)
 	result = session.destinies.evaluate("DST_LYRA")
-	assert_eq(str(result["level"]), "VICTORY", "una Scoperta e la presenza nelle Miniere: Victory")
+	assert_eq(
+		str(result["level"]), "MINIMUM",
+		"sapere qualcosa e il Minimo: una SCHEME non e una Vittoria"
+	)
 
+	# Two Discoveries are still two actions, and still do not buy the rung above.
 	_apply("SET_ENTITY_TAG", "entity", "ENT_LYRA", {"tag": "discovery:crystal"})
-	result = session.destinies.evaluate("DST_LYRA")
-	assert_eq(str(result["level"]), "TRIUMPH", "due Scoperte e Risveglio sotto controllo: Triumph")
+	assert_eq(
+		str(session.destinies.evaluate("DST_LYRA")["level"]), "MINIMUM",
+		"e nemmeno due"
+	)
+
+	# The escort is the Victory: somebody had to swear it, in a Council.
+	_apply("SET_ENTITY_TAG", "entity", "ENT_LYRA", {"tag": "escort_sworn"})
+	assert_eq(
+		str(session.destinies.evaluate("DST_LYRA")["level"]), "TRIUMPH",
+		"con la scorta giurata la scala si apre fino in fondo"
+	)
+
+	# And the Triumph on top of it is a stake, not a purchase: put a guard on the
+	# study and it goes, without anything she did being undone.
+	_apply("SET_GLOBAL_TAG", "world", "WORLD", {"tag": "study_supervised"})
+	assert_eq(
+		str(session.destinies.evaluate("DST_LYRA")["level"]), "VICTORY",
+		"una guardia allo studio costa il Trionfo e lascia la Vittoria"
+	)
 
 
 ## Every seated Entity gets its own result; there is no shared score (§14).

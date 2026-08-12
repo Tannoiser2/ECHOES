@@ -5,6 +5,81 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.11] — Un Destino che si vince in due mosse, e uno che non si vince mai
+
+Il seggio degli studiosi era rotto ai due capi di una saga, e nessuno dei due si
+vedeva guardando gli esiti.
+
+**Vinto al round due, quaranta volte su quaranta.** Il Destino di Lyra chiedeva
+sette clausole, e **cinque erano già vere prima che venisse messo il primo
+segnalino**. Le altre due erano Scoperte — e una Scoperta costa *un'azione*:
+SCHEME su una Tensione velata. Lyra ha due Azioni nel primo round, e CHR_01 di
+Tensioni velate ne distribuisce due. Risultato: tutta la sua scala — Minimo,
+Vittoria *e* Trionfo — chiusa nell'**Atto I round due, 40 Chronicle su 40**, e le
+altre diciassette Azioni spese a comprare carte che non le servivano. Il
+rapporto di fine anno diceva TRIONFO; il registro diceva diciotto turni di
+shopping.
+
+**E mai vinto.** `DST_LYRA_TAUGHT` — il Destino a cui *avanza* fra una Chronicle
+e l'altra — chiedeva nel Trionfo `crystal_measured`, `petition_heard` e
+`parley_held`: **nessuna Consequence del gioco scrive nessuno dei tre**. Non era
+difficile, era impossibile, ed è per questo che nella saga quel seggio risultava
+MINIMO dieci volte su dieci.
+
+### Added
+
+- **`run_destiny_probe.gd`**: fa le due domande che rendono visibile tutto
+  questo, e la prima non ha bisogno di dadi — **cosa è già vero prima che l'anno
+  cominci**, clausola per clausola, e **a che round la scala di ogni seggio è già
+  tutta chiusa**. Più: quali Consigli ogni seggio riesce davvero a proporre e
+  quali tag finisce per indossare, perché «una Consequence scrive questo tag» e
+  «questo seggio può ottenerlo» non sono la stessa domanda.
+- Un controllo al boot: ogni clausola `state_tag_present` di ogni Destino deve
+  chiedere un tag che qualcosa al mondo può scrivere. Un tag è una stringa —
+  valida, si carica, ed è falsa per sempre.
+
+### Changed
+
+- **Il Destino di Lyra**, due clausole aggiunte e nessuna tolta. La Vittoria
+  chiede ora la **scorta giurata**: dodici persone che rispondono di ogni carico
+  col proprio nome, e si ottiene solo in un Consiglio. È la metà del titolo che
+  non era mai stata implementata — *poter tornare a guardare*. Sapere qualcosa è
+  il Minimo; poterci tornare è la Vittoria. Il Trionfo chiede in più che nessuno
+  abbia messo **una guardia allo studio**.
+- Il Trionfo di `DST_LYRA_TAUGHT` riscritto su tag che esistono, tenendo il
+  senso: *quello che resta insegnato* è il sapere che gli altri possono ancora
+  raggiungere e verificare — gallerie non sigillate, scorta giurata, nessun
+  custode.
+- La descrizione del piano C diceva che l'anno finiva col sapere «pubblico e
+  verificabile». Quello che il piano gioca è `P_GUARDED_STUDY`: il Cristallo si
+  può misurare, ma davanti a un custode. Col nuovo prezzo è esattamente ciò che
+  a Lyra non basta, ed è un finale migliore di quello che il testo dichiarava.
+
+### Misurato
+
+| | prima | dopo |
+|---|---|---|
+| scala chiusa in anticipo (Lyra) | **40/40**, round 2,0 | 9/40, round 7,0 |
+| Lyra | MIN 16 / VIT 4 / **TRI 20** | **MIN 34** / TRI 6 |
+| Consigli CHR_01 | 5,70 | 6,10 |
+| Consigli CHR_02 | 4,65, da 2 a 7 | 4,83, da 3 a 6 |
+
+Una terza clausola è stata provata e tolta: `discovery:crystal` sul Trionfo, «e
+il Cristallo lo ha misurato lei». Si legge bene e si misura male — Trionfo a
+0/40 e Consigli fuori banda a 6,20 — quindi resta scritta nelle decisioni,
+non nei dati.
+
+**Cosa ha fatto emergere.** Sei livelli di Destino su dodici sono veri prima che
+qualcuno giochi. Non tutti sono sbagliati: una clausola che chiede l'*assenza* di
+un tag è una posta, non un regalo, e il Trionfo di Aldric è 3/3 gratis in
+partenza e lo raggiunge lo stesso solo 3 volte su 40, perché è l'anno a
+portarglielo via. Vaerax no: la sua Vittoria sono due tag assenti e basta, e la
+prende in 37-40 Chronicle su 40 — in CHR_02, **40 su 40**. Registrato, non
+ritoccato: questo giro ha già spostato un seggio dal primo all'ultimo posto, e
+spostarne due insieme non si misurerebbe.
+
+---
+
 ## [0.1.10] — Un anno non si chiude senza aver deciso niente
 
 Una saga da dieci Chronicle ha prodotto **tre anni con zero Consigli**. Non anni
