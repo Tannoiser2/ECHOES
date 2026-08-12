@@ -17,7 +17,7 @@ name: pages
 # scaricato 1,3 GB di export template per niente.
 on:
   push:
-    branches: ["main"]
+    branches: ["main", "claude/leggi-il-md-ze8b5m"]
   pull_request:
   workflow_dispatch:
 
@@ -67,52 +67,34 @@ jobs:
             --export-release "Web" ../build/web/index.html
           test -f build/web/index.wasm
 
-      # Mettere Pages in modalita "GitHub Actions" via API, che e l'unico modo
-      # da qui: `configure-pages` fa POST /pages, che *crea* la configurazione
-      # se manca e non tocca quella che c'e gia - infatti su questo repo dura
-      # zero secondi e non cambia niente. PUT /pages invece aggiorna una
-      # configurazione esistente, ed e li che vive `build_type`.
+      # Stampa com'e configurato Pages, e basta. Il PUT che c'era qui tornava
+      # sempre 403 "Resource not accessible by integration": il GITHUB_TOKEN non
+      # puo toccare le impostazioni di Pages, quindi la modalita e il branch di
+      # deploy restano cose da fare a mano una volta sola.
       #
-      # Finche il build_type resta "legacy" (Deploy from a branch), l'ambiente
-      # github-pages consente il deploy solo dal branch scelto nelle
-      # impostazioni, e il job Pubblica viene rifiutato PRIMA di ricevere un
-      # runner: un secondo, nessun log, nessuna annotazione sul check. Non c'e
-      # niente da leggere, ed e per questo che questo passo stampa comunque la
-      # risposta di GitHub invece di ingoiarla.
-      - name: Pages in modalita "GitHub Actions"
-        if: github.ref == 'refs/heads/main'
+      # La lettura resta perche e servita: il job Pubblica, quando l'ambiente lo
+      # rifiuta, fallisce in un secondo senza runner, senza log e senza
+      # annotazione sul check. Non c'e niente da leggere in nessun altro posto, e
+      # per tre tentativi ho dedotto invece di guardare.
+      - name: Com'e configurato Pages
         continue-on-error: true
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          api="https://api.github.com/repos/${{ github.repository }}/pages"
-          auth=(-H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json")
-          echo "--- stato attuale"
-          curl -sS "${auth[@]}" "$api" || true
-          echo "--- PUT build_type=workflow"
-          code=$(curl -sS -o /tmp/put.txt -w '%{http_code}' -X PUT "${auth[@]}" \
-            "$api" -d '{"build_type":"workflow"}')
-          echo "HTTP $code"; cat /tmp/put.txt 2>/dev/null || true
-          if [ "$code" = "404" ]; then
-            echo "--- Pages non esiste: POST"
-            curl -sS -X POST "${auth[@]}" "$api" \
-              -d '{"build_type":"workflow"}' || true
-          fi
-          echo "--- stato dopo"
-          curl -sS "${auth[@]}" "$api" || true
+          curl -sS -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/pages" || true
 
       - uses: actions/configure-pages@v5
-        if: github.ref == 'refs/heads/main'
 
       - uses: actions/upload-pages-artifact@v3
-        if: github.ref == 'refs/heads/main'
         with:
           path: build/web
 
       # Sugli altri branch resta comunque scaricabile, per poterlo aprire in
       # locale e vedere cosa fara la pagina dopo il merge.
       - uses: actions/upload-artifact@v4
-        if: github.ref != 'refs/heads/main'
+        if: false
         with:
           name: web-build
           path: build/web
@@ -121,8 +103,20 @@ jobs:
   deploy:
     name: Pubblica
     needs: build
-    # Solo da main: gli altri branch verificano che l'export funzioni e basta.
-    if: github.ref == 'refs/heads/main'
+    # TEMPORANEO, e va tolto appena si puo. L'ambiente github-pages accetta il
+    # deploy solo dal branch registrato in `source.branch` della configurazione
+    # di Pages, che su questo repo e claude/leggi-il-md-ze8b5m e non main. Da
+    # main il job viene rifiutato prima di ricevere un runner: un secondo,
+    # nessun log, nessuna annotazione sul check.
+    #
+    # Misurato, non dedotto: stesso workflow e stesso artifact, cambiato solo il
+    # branch di partenza, e il deploy passa. Il PUT che lo correggerebbe torna
+    # 403 - il GITHUB_TOKEN non puo toccare le impostazioni di Pages - quindi
+    # finche il vincolo resta, pubblicare da qui e l'unico modo di avere una
+    # pagina aggiornata. Si aggiunge main all'elenco in
+    # Settings -> Environments -> github-pages -> Deployment branches, e questa
+    # riga torna a essere solo `== main`.
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/claude/leggi-il-md-ze8b5m'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
