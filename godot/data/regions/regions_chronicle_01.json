@@ -30,6 +30,10 @@
         "definite": "Eredan",
         "locative": "a Eredan",
         "genitive": "di Eredan"
+      },
+      "map_position": {
+        "x": 0.81,
+        "y": 0.27
       }
     },
     {
@@ -61,6 +65,10 @@
         "definite": "la Valle Verde",
         "locative": "nella Valle Verde",
         "genitive": "della Valle Verde"
+      },
+      "map_position": {
+        "x": 0.69,
+        "y": 0.68
       }
     },
     {
@@ -91,6 +99,10 @@
         "definite": "le Terre Nahr",
         "locative": "nelle Terre Nahr",
         "genitive": "delle Terre Nahr"
+      },
+      "map_position": {
+        "x": 0.25,
+        "y": 0.73
       }
     },
     {
@@ -121,6 +133,10 @@
         "definite": "le Montagne Rosse",
         "locative": "sulle Montagne Rosse",
         "genitive": "delle Montagne Rosse"
+      },
+      "map_position": {
+        "x": 0.16,
+        "y": 0.3
       }
     },
     {
@@ -151,6 +167,10 @@
         "definite": "le Miniere Antiche",
         "locative": "nelle Miniere Antiche",
         "genitive": "delle Miniere Antiche"
+      },
+      "map_position": {
+        "x": 0.33,
+        "y": 0.17
       }
     },
     {
@@ -183,6 +203,10 @@
         "definite": "la Strada dei Mercanti",
         "locative": "sulla Strada dei Mercanti",
         "genitive": "della Strada dei Mercanti"
+      },
+      "map_position": {
+        "x": 0.5,
+        "y": 0.45
       }
     }
   ]

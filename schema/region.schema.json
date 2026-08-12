@@ -141,6 +141,27 @@
               "description": "With the articulated preposition 'di': 'della Valle Verde', 'di Eredan'."
             }
           }
+        },
+        "map_position": {
+          "type": "object",
+          "description": "Where the Region sits on the map, in normalised 0..1 coordinates (x rightwards, y downwards) so the board scales to any window. Authored rather than computed: a graph layout algorithm draws a correct picture of the adjacency and a wrong picture of the world, because it does not know that the mountains are west and the valley feeds the city. Omit and the Region is laid out on a circle.",
+          "properties": {
+            "x": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "y": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          },
+          "required": [
+            "x",
+            "y"
+          ],
+          "additionalProperties": false
         }
       }
     }
