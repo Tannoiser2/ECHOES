@@ -1,10 +1,16 @@
 extends HBoxContainer
 ## The seat's hand, as cards rather than a comma-separated list.
 ##
-## An Asset is worth double in a Tension that finds its family relevant (§12.2 E),
-## and that is the single fact a player needs when deciding what to commit. So a
-## card carries its family colour and its strength, and when a Council is open it
-## says out loud which of the two it is worth here.
+## An Asset is worth its **full strength** in a Tension that finds its family
+## relevant, and **1** otherwise (§9). That is the single fact a player needs
+## when deciding what to commit, so a card carries its family colour and its
+## strength, and when a Council is open it says out loud which of the two it is
+## worth here.
+##
+## 0.1.1 drew that as "forza 2 ×2 = 4", which is not the rule: relevance does not
+## double anything, it is the difference between counting for what you are and
+## counting for one. The card was telling a player their hand was worth twice
+## what the resolver would give them (D-040).
 
 var _cards: Array = []
 
@@ -15,6 +21,13 @@ func _ready() -> void:
 
 ## `tension_id` empty means no Council is open: cards are drawn plain, because
 ## relevance has no meaning outside a question.
+##
+## `_open` is what separates "no question on the table" from "a question this
+## card has nothing to do with": the second is worth saying out loud, and it is
+## the more common of the two.
+var _open: bool = false
+
+
 func render(session: RefCounted, viewer_id: String, tension_id: String = "") -> void:
 	for card in _cards:
 		card.queue_free()
@@ -24,7 +37,8 @@ func render(session: RefCounted, viewer_id: String, tension_id: String = "") -> 
 		return
 
 	var relevant: Array = []
-	if tension_id != "" and session.world["tensions"].has(tension_id):
+	_open = tension_id != "" and session.world["tensions"].has(tension_id)
+	if _open:
 		relevant = session.data.tensions[tension_id]["relevant_asset_families"]
 
 	for asset_id in session.service.hand(viewer_id):
@@ -67,10 +81,11 @@ func _card(asset: Dictionary, is_relevant: bool) -> Control:
 	box.add_child(title)
 
 	var footer := Label.new()
-	# The doubled strength is the number that actually enters the sum, so it is
-	# the number shown - not the printed one with a note attached.
-	footer.text = ("%s · %d ×2 = %d" % [family.to_lower(), strength, strength * 2]) \
-		if is_relevant else ("%s · %d" % [family.to_lower(), strength])
+	# What this card will actually add to the sum, in this Council, right now -
+	# not the printed strength with a rule attached to it.
+	footer.text = "%s · %d" % [family.to_lower(), strength]
+	if _open:
+		footer.text = "%s · vale %d" % [family.to_lower(), strength if is_relevant else 1]
 	footer.add_theme_font_size_override("font_size", 10)
 	footer.add_theme_color_override(
 		"font_color", _family_colour(family) if is_relevant else Color("#6b6355")

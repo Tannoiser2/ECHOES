@@ -5,7 +5,7 @@
     {
       "id": "SIM_PLAN_C",
       "title": "La miniera aperta",
-      "description": "Aldric usa un Claim per forzare la Confluence sulle Miniere invece di aspettare la soglia, e il tavolo intero la fa cadere: fronte contrario a 6, quindi anche questa sconfitta lascia un Echo (§12.4). Esercita CLAIM/CREATE, CLAIM/FORCE e il trigger (c) del §12.1. La seconda meta del piano mostra D-029 al lavoro: i Nahr tengono la Carestia sotto soglia in ogni round degli Atti 2 e 3 e ci riescono, ma il peso che tolgono di li si scarica altrove, e a scoppiare sono il Risveglio e le Vie Interrotte. Non si spegne una crisi: si sceglie quale avere.",
+      "description": "Lyra scava, Vaerax si oppone, e la prima proposta sul Cristallo cade con S 1 contro O 5: le Miniere restano chiuse per un anno intero. Poi l'anno si apre - il Grano passa in modo decisivo, il Risveglio torna e questa volta passa pagando, le Vie e la Successione si chiudono con accordi normali - e alla fine il sapere e pubblico e verificabile. Cinque domande, tutte e quattro le bande di esito del §12.3 in una partita sola.",
       "chronicle_id": "CHR_01",
       "seed": 20260812,
       "seats": [
@@ -234,13 +234,13 @@
         "confluence_count": 5,
         "outcomes": [
           "FAILURE",
+          "DECISIVE_SUCCESS",
+          "SUCCESS_WITH_COST",
           "SUCCESS",
-          "SUCCESS_WITH_COST",
-          "SUCCESS_WITH_COST",
-          "SUCCESS_WITH_COST"
+          "SUCCESS"
         ],
-        "min_echoes": 3,
-        "min_truths": 3
+        "min_echoes": 4,
+        "min_truths": 4
       }
     }
   ]

@@ -30,8 +30,13 @@ Every visual element the Chronicle needs, taken straight from `godot/data`.
 [ART_BIBLE.md](ART_BIBLE.md); `marker_id` is the optional fiducial hook reserved
 for the physical table (spec §19.5) and is not used by any code in 0.0.
 
-Milestone 0.0 ships the reduced content of §18.2. The full §19.4 list (48 Assets,
-24 Echo cards, 12 Region tiles, 24 map overlays, 12 standees) lands with 0.1.
+§19.4 asks for 48 Assets, 24 Echo cards, 12 Region tiles, 24 map overlays and 12
+standees. The Assets and the Echo cards are there; the tiles, the overlays and
+the standees are art, and they are 0.2's problem.
+
+The Asset deck reads off the rarity: COMMON is strength 1 and 4 copies, UNCOMMON
+strength 2 and 2 copies, RARE strength 3 and a single copy. Eight cards per
+family, 22 copies per family deck, 132 cards in the box (D-040).
 
 """
 

@@ -88,7 +88,7 @@ Dal manifest generato ([ASSET_MANIFEST.md](ASSET_MANIFEST.md)), con il traguardo
 
 | pezzo | 0.0 | 0.1 | si ristampa per una Chronicle nuova? |
 |---|---|---|---|
-| carte Asset | 12 | 48 | **no, si riusano** |
+| carte Asset | 12 | **48** ✅ | **no, si riusano** |
 | carte Echo | 24 | 24 | no — sono le funzioni di Propp, vocabolario permanente |
 | tessere Regione | 6 | 12 | solo se cambia la mappa |
 | overlay mappa | — | 24 | no: si **aggiungono** alla mappa esistente |
@@ -96,6 +96,12 @@ Dal manifest generato ([ASSET_MANIFEST.md](ASSET_MANIFEST.md)), con il traguardo
 | plance azione, paraventi, tracce Tensione | — | 4 + 4 | no |
 | **carte Tensione** | 6 | — | **sì** |
 | **carte Destiny** | 4 | — | **sì** |
+
+Le 48 carte Asset sono 8 per famiglia e si leggono dalla rarità: **comune** =
+forza 1, 4 copie · **non comune** = forza 2, 2 copie · **rara** = forza 3, 1
+copia. Sono 22 carte per mazzo di famiglia, 132 in tutto ([D-040](DECISIONS.md)).
+Chi ha visto una famiglia due volte sa già cosa contiene, e questo conta più di
+quanto sembri: ACQUIRE pesca due carte e te ne fa tenere una.
 
 Una Chronicle nuova è quindi **un'espansione da poche decine di carte**, non una
 scatola nuova. E con il modello a biblioteca ([D-028](DECISIONS.md#d-028)) anche

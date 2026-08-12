@@ -5,6 +5,73 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.3] — Le 48 carte
+
+Il traguardo §19.4 sugli Asset: da 12 carte a **48**, otto per famiglia.
+
+### Added
+
+- **36 nuove carte Asset.** Una parola sola — la rarità — dice tutto quello che
+  serve sapere: **comune** = forza 1, 4 copie · **non comune** = forza 2, 2
+  copie · **rara** = forza 3, 1 copia. Sono 22 carte per mazzo di famiglia, 132
+  in tutto.
+- **Ogni famiglia sa dire di no.** Due carte per famiglia pagano sul fronte
+  Oppose, e una vale di più quando la domanda è la sua. Prima erano quattro
+  carte in tutto il gioco.
+- **Le carte da 3 costano.** Il Vecchio Esercito, Le Porte Bruciate, l'Atto di
+  Successione, l'Esodo, il Cristallo Rosso, l'Ipoteca sulle Terre, l'Ostaggio,
+  il Patto Rotto e le altre: si scartano comunque, e impegnarle fa qualcosa al
+  mondo — alza la Tensione, o mette il tuo rivale dove si sta discutendo, o ti
+  toglie da lì. Una carta che vale 6 senza contropartita non è una scelta, è la
+  mossa giusta.
+- `on_commit_effects` era esercitato da una carta sola nella 0.0 (O-3). Adesso
+  sono tredici.
+- **`cli/run_margin_probe.gd`** — la sonda che ha trovato il problema qui sotto:
+  stampa S, O e la distribuzione di M, non solo il conteggio degli esiti.
+
+### La tabella degli esiti si è rotta, e la media non lo diceva
+
+Con le 48 carte al primo tentativo, sulle stesse 40 Chronicle: **Decisivo dal
+33% al 49%**, con metà dei Consigli che passano senza discussione. E la media
+del margine era **identica** (3.23 → 3.37).
+
+Quattro tentativi di aggiustarlo cambiando i pesi non hanno spostato niente,
+perché miravano alla media. La distribuzione ha mostrato la causa in un colpo:
+con due carte per famiglia un impegno era quasi sempre 2+2, e il set da 12
+ammucchiava tutto su **M = +4**, un punto sotto la banda Decisiva. Una biblioteca
+più ampia liscia la distribuzione e sposta quel mucchio di un punto — oltre la
+riga.
+
+La cura è stata la **curva**, non i pesi: la rilevanza è scesa dalle carte da 2 a
+una carta da 1 per famiglia, e una carta da 2 per famiglia è diventata una da 1.
+Un impegno preparato torna a valere 4 invece di 6.
+
+| | Failure | con Costo | Successo | Decisivo |
+|---|---|---|---|---|
+| 12 carte | 16% | 13% | 38% | 33% |
+| 48 carte | **21%** | 15% | 30% | **34%** |
+
+Il resolver non è stato toccato: §A5 è la specifica, il contenuto è quello che si
+tara (D-023, D-040).
+
+### Fixed
+
+- **La mano dichiarava un ×2 che la regola non ha.** Dalla 0.1.1 una carta
+  rilevante veniva disegnata come `authority · 2 ×2 = 4`. Il §9 dice che un Asset
+  vale la sua **forza piena** se la famiglia è rilevante e **1** altrimenti: la
+  rilevanza non raddoppia niente. Adesso la carta dice `authority · vale 2`, e
+  `vale 1` quando la domanda non è la sua.
+
+### Il prezzo, detto
+
+- **Consigli per Chronicle: mediana da 5 a 6**, e una partita su quaranta arriva
+  a 8 contro il tetto di 7 del §7. Il test di bilanciamento passa (tollera il
+  10% fuori banda), ma la deriva è vera ed è il numero da guardare nella 0.2.
+- **I tre piani di simulazione escono diversi** e sono stati **rimisurati**, non
+  ritoccati: le tre storie tengono ancora, le sequenze di esito no.
+
+---
+
 ## [0.1.2] — La mappa si preme, e il Consiglio dice cosa costa
 
 Le due cose che nella 0.1 restavano a meta: una mappa che si guardava e basta, e

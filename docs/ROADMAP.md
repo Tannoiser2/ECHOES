@@ -22,9 +22,9 @@ verificati: vedi [TEST_PLAN.md](TEST_PLAN.md) per la mappa criterio → test.
 
 Ordine di lavoro (§25, punti 11–16):
 
-11. Main Board, mappa, Entity View, Action Dialog
-12. `HotseatController` e Confluence Board
-13. Contenuto completo §19.4 con validazione
+11. ✅ Main Board, mappa, Entity View, Action Dialog — 0.1.0 / 0.1.2 (D-039)
+12. ✅ `HotseatController` e Confluence Board — 0.0.14 / 0.1.1 (D-037, D-038)
+13. ✅ Contenuto completo §19.4 con validazione — 0.1.3, le 48 carte Asset (D-040)
 14. Developer Dashboard
 15. `CardView`, Export Preview, placeholder migliorati
 16. Issue list / roadmap GitHub-ready finale
@@ -35,8 +35,12 @@ quello scriptato che usa la CLI oggi. Nessuna regola va riscritta.
 
 Da chiudere in 0.1 e già noto:
 
-- gli overlay `condition:` / `structure:` / `scar:` esistono nei dati ma nessuna
-  scena li disegna
+- il `choose_recovery` non viene mai chiesto a chi gioca: su un Consiglio fallito
+  chi si era opposto tiene **una carta a scelta** (§12.3) e quella scelta la fa
+  ancora la policy, al terminale come nel browser
+- una carta non dice cosa fa: `HandView` mostra titolo, famiglia e valore, non
+  `on_commit_effects` né la regola di scarto — è il `CardView` del punto 15, e
+  con le carte da 3 della 0.1.3 serve davvero
 - `promise_kept` / `promise_broken` sono implementati ma nessun Destiny di 0.0 li
   usa
 - il set completo dei Destiny a più di 2 condizioni per livello

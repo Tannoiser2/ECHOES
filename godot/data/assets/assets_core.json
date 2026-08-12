@@ -1,6 +1,6 @@
 {
   "schema_id": "asset",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "items": [
     {
       "id": "AST_FORCE_LEVY",
@@ -18,9 +18,49 @@
       },
       "discard_or_retain_rule": "DISCARD",
       "rarity": "COMMON",
-      "deck_copies": 6,
+      "deck_copies": 4,
       "art_prompt_key": "asset.force.levy",
       "rules_text": "Uomini con attrezzi da lavoro tenuti come lance. Bastano finche nessuno li conta."
+    },
+    {
+      "id": "AST_FORCE_BORDER_WATCH",
+      "title": "Guardia di Confine",
+      "family": "FORCE",
+      "strength": 1,
+      "tags": [
+        "garrison",
+        "border"
+      ],
+      "acquisition_rule": "ACQUIRE su FORCE. Fonte: Montagne Rosse.",
+      "confluence_modifier": {
+        "kind": "RELEVANT_BONUS",
+        "value": 1
+      },
+      "discard_or_retain_rule": "DISCARD",
+      "rarity": "COMMON",
+      "deck_copies": 4,
+      "art_prompt_key": "asset.force.border_watch",
+      "rules_text": "+1 quando FORCE e rilevante per la Tensione. Contano i carri che passano, e sanno quali contare."
+    },
+    {
+      "id": "AST_FORCE_ROADBLOCK",
+      "title": "Posto di Blocco",
+      "family": "FORCE",
+      "strength": 1,
+      "tags": [
+        "roads",
+        "control"
+      ],
+      "acquisition_rule": "ACQUIRE su FORCE. Fonte: Montagne Rosse.",
+      "confluence_modifier": {
+        "kind": "OPPOSE_BONUS",
+        "value": 1
+      },
+      "discard_or_retain_rule": "DISCARD",
+      "rarity": "COMMON",
+      "deck_copies": 4,
+      "art_prompt_key": "asset.force.roadblock",
+      "rules_text": "+1 sul fronte Oppose. Fermare un carro costa sempre meno che farlo partire."
     },
     {
       "id": "AST_FORCE_WARBAND",
@@ -39,9 +79,9 @@
       },
       "discard_or_retain_rule": "ALWAYS_DISCARD",
       "rarity": "UNCOMMON",
-      "deck_copies": 4,
+      "deck_copies": 2,
       "art_prompt_key": "asset.force.warband",
-      "rules_text": "Si scarta sempre dopo l'uso. Impegnandola, la Tensione in gioco sale di 1: la paura non si spegne con la questione.",
+      "rules_text": "Si scarta sempre, e la Tensione in gioco sale di 1: la paura non si spegne insieme alla questione.",
       "on_commit_effects": [
         {
           "type": "ADJUST_TENSION",
@@ -52,7 +92,116 @@
           "payload": {
             "delta": 1
           },
-          "note": "Il costo della Banda Armata: la violenza mostrata alza la posta."
+          "note": "Il costo della carta: usarla lascia la questione piu calda di come l'ha trovata."
+        }
+      ]
+    },
+    {
+      "id": "AST_FORCE_MERCENARIES",
+      "title": "Mercenari",
+      "family": "FORCE",
+      "strength": 1,
+      "tags": [
+        "hired",
+        "risky"
+      ],
+      "acquisition_rule": "ACQUIRE su FORCE. Fonte: Montagne Rosse.",
+      "confluence_modifier": {
+        "kind": "FLAT_BONUS",
+        "value": 1
+      },
+      "discard_or_retain_rule": "DISCARD",
+      "rarity": "COMMON",
+      "deck_copies": 4,
+      "art_prompt_key": "asset.force.mercenaries",
+      "rules_text": "+1 sempre, su qualsiasi fronte: fuori tema vale quanto in tema, ed e tutto quello che sanno fare."
+    },
+    {
+      "id": "AST_FORCE_SIEGE",
+      "title": "Assedio",
+      "family": "FORCE",
+      "strength": 2,
+      "tags": [
+        "siege",
+        "pressure"
+      ],
+      "acquisition_rule": "ACQUIRE su FORCE. Fonte: Montagne Rosse.",
+      "confluence_modifier": {
+        "kind": "OPPOSE_BONUS",
+        "value": 2
+      },
+      "discard_or_retain_rule": "DISCARD",
+      "rarity": "UNCOMMON",
+      "deck_copies": 2,
+      "art_prompt_key": "asset.force.siege",
+      "rules_text": "+1 sul fronte Oppose. Non serve prendere una cosa per impedire che sia di qualcun altro."
+    },
+    {
+      "id": "AST_FORCE_OLD_ARMY",
+      "title": "Il Vecchio Esercito",
+      "family": "FORCE",
+      "strength": 3,
+      "tags": [
+        "army",
+        "legacy",
+        "risky"
+      ],
+      "acquisition_rule": "ACQUIRE su FORCE. Fonte: Montagne Rosse.",
+      "confluence_modifier": {
+        "kind": "NONE",
+        "value": 0
+      },
+      "discard_or_retain_rule": "ALWAYS_DISCARD",
+      "rarity": "RARE",
+      "deck_copies": 1,
+      "art_prompt_key": "asset.force.old_army",
+      "rules_text": "Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: richiamare i vecchi reggimenti dice al mondo che la cosa e seria.",
+      "on_commit_effects": [
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "$tension"
+          },
+          "payload": {
+            "delta": 1
+          },
+          "note": "Il costo della carta: usarla lascia la questione piu calda di come l'ha trovata."
+        }
+      ]
+    },
+    {
+      "id": "AST_FORCE_BURNED_GATE",
+      "title": "Le Porte Bruciate",
+      "family": "FORCE",
+      "strength": 3,
+      "tags": [
+        "terror",
+        "irreversible",
+        "risky"
+      ],
+      "acquisition_rule": "ACQUIRE su FORCE. Fonte: Montagne Rosse.",
+      "confluence_modifier": {
+        "kind": "NONE",
+        "value": 0
+      },
+      "discard_or_retain_rule": "ALWAYS_DISCARD",
+      "rarity": "RARE",
+      "deck_copies": 1,
+      "art_prompt_key": "asset.force.burned_gate",
+      "rules_text": "Forza 3. Si scarta sempre, e chi la gioca perde la propria presenza nella Regione di cui si discute: chi apre una porta cosi non resta li a difenderla.",
+      "on_commit_effects": [
+        {
+          "type": "REMOVE_PRESENCE",
+          "target": {
+            "kind": "entity",
+            "id": "$actor"
+          },
+          "payload": {
+            "region_id": "$region_focus",
+            "optional": true
+          },
+          "note": "Il costo della carta: chi la gioca lascia il posto di cui si sta parlando."
         }
       ]
     },
@@ -72,9 +221,49 @@
       },
       "discard_or_retain_rule": "DISCARD",
       "rarity": "COMMON",
-      "deck_copies": 6,
+      "deck_copies": 4,
       "art_prompt_key": "asset.authority.edict",
       "rules_text": "Una riga scritta bene vale quanto chi la fa rispettare."
+    },
+    {
+      "id": "AST_AUTHORITY_SEAL",
+      "title": "Sigillo",
+      "family": "AUTHORITY",
+      "strength": 1,
+      "tags": [
+        "law",
+        "symbol"
+      ],
+      "acquisition_rule": "ACQUIRE su AUTHORITY. Fonte: Eredan.",
+      "confluence_modifier": {
+        "kind": "OPPOSE_BONUS",
+        "value": 1
+      },
+      "discard_or_retain_rule": "DISCARD",
+      "rarity": "COMMON",
+      "deck_copies": 4,
+      "art_prompt_key": "asset.authority.seal",
+      "rules_text": "+1 sul fronte Oppose. Il sigillo che manca ferma piu cose del sigillo che c'e."
+    },
+    {
+      "id": "AST_AUTHORITY_CENSUS",
+      "title": "Censimento",
+      "family": "AUTHORITY",
+      "strength": 1,
+      "tags": [
+        "record",
+        "administration"
+      ],
+      "acquisition_rule": "ACQUIRE su AUTHORITY. Fonte: Eredan.",
+      "confluence_modifier": {
+        "kind": "RELEVANT_BONUS",
+        "value": 1
+      },
+      "discard_or_retain_rule": "DISCARD",
+      "rarity": "COMMON",
+      "deck_copies": 4,
+      "art_prompt_key": "asset.authority.census",
+      "rules_text": "+1 quando AUTHORITY e rilevante per la Tensione. Una lista di nomi e la forma piu semplice del potere."
     },
     {
       "id": "AST_AUTHORITY_CROWN_RIGHT",
@@ -88,14 +277,122 @@
       ],
       "acquisition_rule": "ACQUIRE su AUTHORITY. Fonte: Eredan.",
       "confluence_modifier": {
-        "kind": "RELEVANT_BONUS",
-        "value": 1
+        "kind": "NONE",
+        "value": 0
       },
       "discard_or_retain_rule": "ALWAYS_DISCARD",
       "rarity": "UNCOMMON",
-      "deck_copies": 4,
+      "deck_copies": 2,
       "art_prompt_key": "asset.authority.crown_right",
-      "rules_text": "+1 quando AUTHORITY e rilevante per la Tensione. Si scarta sempre: un diritto invocato due volte non e piu un diritto."
+      "rules_text": "Si scarta sempre: un diritto invocato due volte non e piu un diritto, e una pretesa."
+    },
+    {
+      "id": "AST_AUTHORITY_MAGISTRATE",
+      "title": "Magistrato",
+      "family": "AUTHORITY",
+      "strength": 2,
+      "tags": [
+        "law",
+        "judgement"
+      ],
+      "acquisition_rule": "ACQUIRE su AUTHORITY. Fonte: Eredan.",
+      "confluence_modifier": {
+        "kind": "OPPOSE_BONUS",
+        "value": 2
+      },
+      "discard_or_retain_rule": "RETAIN_ON_SUCCESS",
+      "rarity": "UNCOMMON",
+      "deck_copies": 2,
+      "art_prompt_key": "asset.authority.magistrate",
+      "rules_text": "+1 sul fronte Oppose. Se la proposta passa lo stesso resta in mano: un giudice che ha avuto ragione serve ancora domani."
+    },
+    {
+      "id": "AST_AUTHORITY_INVESTITURE",
+      "title": "Investitura",
+      "family": "AUTHORITY",
+      "strength": 1,
+      "tags": [
+        "title",
+        "grant"
+      ],
+      "acquisition_rule": "ACQUIRE su AUTHORITY. Fonte: Eredan.",
+      "confluence_modifier": {
+        "kind": "FLAT_BONUS",
+        "value": 1
+      },
+      "discard_or_retain_rule": "ALWAYS_DISCARD",
+      "rarity": "COMMON",
+      "deck_copies": 4,
+      "art_prompt_key": "asset.authority.investiture",
+      "rules_text": "+1 sempre, su qualsiasi fronte. Si scarta sempre: si concede una volta sola, e tutti se ne ricordano."
+    },
+    {
+      "id": "AST_AUTHORITY_INTERDICT",
+      "title": "Interdetto",
+      "family": "AUTHORITY",
+      "strength": 3,
+      "tags": [
+        "law",
+        "prohibition",
+        "risky"
+      ],
+      "acquisition_rule": "ACQUIRE su AUTHORITY. Fonte: Eredan.",
+      "confluence_modifier": {
+        "kind": "NONE",
+        "value": 0
+      },
+      "discard_or_retain_rule": "ALWAYS_DISCARD",
+      "rarity": "RARE",
+      "deck_copies": 1,
+      "art_prompt_key": "asset.authority.interdict",
+      "rules_text": "Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: vietare una cosa a tutti alza la posta per tutti.",
+      "on_commit_effects": [
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "$tension"
+          },
+          "payload": {
+            "delta": 1
+          },
+          "note": "Il costo della carta: usarla lascia la questione piu calda di come l'ha trovata."
+        }
+      ]
+    },
+    {
+      "id": "AST_AUTHORITY_SUCCESSION_ACT",
+      "title": "Atto di Successione",
+      "family": "AUTHORITY",
+      "strength": 3,
+      "tags": [
+        "title",
+        "succession",
+        "risky"
+      ],
+      "acquisition_rule": "ACQUIRE su AUTHORITY. Fonte: Eredan.",
+      "confluence_modifier": {
+        "kind": "NONE",
+        "value": 0
+      },
+      "discard_or_retain_rule": "ALWAYS_DISCARD",
+      "rarity": "RARE",
+      "deck_copies": 1,
+      "art_prompt_key": "asset.authority.succession_act",
+      "rules_text": "Forza 3. Si scarta sempre, e chi ti sta di fronte guadagna una presenza nella Regione di cui si discute: nominare un erede fa arrivare tutti quelli che non sono stati nominati.",
+      "on_commit_effects": [
+        {
+          "type": "ADD_PRESENCE",
+          "target": {
+            "kind": "entity",
+            "id": "$rival"
+          },
+          "payload": {
+            "region_id": "$region_focus"
+          },
+          "note": "Il costo della carta: chi ti sta di fronte mette piede dove si discute."
+        }
+      ]
     },
     {
       "id": "AST_PEOPLE_CROWD",
@@ -113,9 +410,49 @@
       },
       "discard_or_retain_rule": "DISCARD",
       "rarity": "COMMON",
-      "deck_copies": 6,
+      "deck_copies": 4,
       "art_prompt_key": "asset.people.crowd",
       "rules_text": "Nessuno l'ha convocata. E' arrivata lo stesso."
+    },
+    {
+      "id": "AST_PEOPLE_ELDERS",
+      "title": "Consiglio degli Anziani",
+      "family": "PEOPLE",
+      "strength": 1,
+      "tags": [
+        "tradition",
+        "voice"
+      ],
+      "acquisition_rule": "ACQUIRE su PEOPLE. Fonti: Valle Verde, Terre Nahr.",
+      "confluence_modifier": {
+        "kind": "OPPOSE_BONUS",
+        "value": 1
+      },
+      "discard_or_retain_rule": "DISCARD",
+      "rarity": "COMMON",
+      "deck_copies": 4,
+      "art_prompt_key": "asset.people.elders",
+      "rules_text": "+1 sul fronte Oppose. Parlano piano, dicono di no, e vengono ripetuti per tre villaggi."
+    },
+    {
+      "id": "AST_PEOPLE_HARVEST_HANDS",
+      "title": "Braccia per il Raccolto",
+      "family": "PEOPLE",
+      "strength": 1,
+      "tags": [
+        "labour",
+        "harvest"
+      ],
+      "acquisition_rule": "ACQUIRE su PEOPLE. Fonti: Valle Verde, Terre Nahr.",
+      "confluence_modifier": {
+        "kind": "RELEVANT_BONUS",
+        "value": 1
+      },
+      "discard_or_retain_rule": "DISCARD",
+      "rarity": "COMMON",
+      "deck_copies": 4,
+      "art_prompt_key": "asset.people.harvest_hands",
+      "rules_text": "+1 quando PEOPLE e rilevante per la Tensione. Non sono un esercito: ma senza di loro non si mangia, e lo sanno anche i re."
     },
     {
       "id": "AST_PEOPLE_MOBILIZATION",
@@ -130,13 +467,122 @@
       "acquisition_rule": "ACQUIRE su PEOPLE. Fonti: Valle Verde, Terre Nahr.",
       "confluence_modifier": {
         "kind": "OPPOSE_BONUS",
-        "value": 1
+        "value": 2
       },
       "discard_or_retain_rule": "ALWAYS_DISCARD",
       "rarity": "UNCOMMON",
-      "deck_copies": 4,
+      "deck_copies": 2,
       "art_prompt_key": "asset.people.mobilization",
       "rules_text": "+1 sul fronte Oppose: e piu facile fermare qualcosa in molti che costruirla. Si scarta sempre."
+    },
+    {
+      "id": "AST_PEOPLE_SPOKESMAN",
+      "title": "Portavoce",
+      "family": "PEOPLE",
+      "strength": 2,
+      "tags": [
+        "voice",
+        "consensus"
+      ],
+      "acquisition_rule": "ACQUIRE su PEOPLE. Fonti: Valle Verde, Terre Nahr.",
+      "confluence_modifier": {
+        "kind": "NONE",
+        "value": 0
+      },
+      "discard_or_retain_rule": "DISCARD",
+      "rarity": "UNCOMMON",
+      "deck_copies": 2,
+      "art_prompt_key": "asset.people.spokesman",
+      "rules_text": "Qualcuno che dice ad alta voce quello che gia pensano in molti, e che dopo non puo piu tornare indietro."
+    },
+    {
+      "id": "AST_PEOPLE_MARCH",
+      "title": "Marcia",
+      "family": "PEOPLE",
+      "strength": 1,
+      "tags": [
+        "mobilisation",
+        "pressure"
+      ],
+      "acquisition_rule": "ACQUIRE su PEOPLE. Fonti: Valle Verde, Terre Nahr.",
+      "confluence_modifier": {
+        "kind": "NONE",
+        "value": 0
+      },
+      "discard_or_retain_rule": "DISCARD",
+      "rarity": "COMMON",
+      "deck_copies": 4,
+      "art_prompt_key": "asset.people.march",
+      "rules_text": "Poca gente, ma in strada e alla stessa ora. Il punto non e quanti sono: e che si sono trovati."
+    },
+    {
+      "id": "AST_PEOPLE_EXODUS",
+      "title": "Esodo",
+      "family": "PEOPLE",
+      "strength": 3,
+      "tags": [
+        "migration",
+        "irreversible",
+        "risky"
+      ],
+      "acquisition_rule": "ACQUIRE su PEOPLE. Fonti: Valle Verde, Terre Nahr.",
+      "confluence_modifier": {
+        "kind": "NONE",
+        "value": 0
+      },
+      "discard_or_retain_rule": "ALWAYS_DISCARD",
+      "rarity": "RARE",
+      "deck_copies": 1,
+      "art_prompt_key": "asset.people.exodus",
+      "rules_text": "Forza 3. Si scarta sempre, e chi la gioca perde la propria presenza nella Regione di cui si discute: chi parte non torna al tavolo.",
+      "on_commit_effects": [
+        {
+          "type": "REMOVE_PRESENCE",
+          "target": {
+            "kind": "entity",
+            "id": "$actor"
+          },
+          "payload": {
+            "region_id": "$region_focus",
+            "optional": true
+          },
+          "note": "Il costo della carta: chi la gioca lascia il posto di cui si sta parlando."
+        }
+      ]
+    },
+    {
+      "id": "AST_PEOPLE_STILL_HANDS",
+      "title": "Braccia Ferme",
+      "family": "PEOPLE",
+      "strength": 3,
+      "tags": [
+        "strike",
+        "labour",
+        "risky"
+      ],
+      "acquisition_rule": "ACQUIRE su PEOPLE. Fonti: Valle Verde, Terre Nahr.",
+      "confluence_modifier": {
+        "kind": "NONE",
+        "value": 0
+      },
+      "discard_or_retain_rule": "ALWAYS_DISCARD",
+      "rarity": "RARE",
+      "deck_copies": 1,
+      "art_prompt_key": "asset.people.still_hands",
+      "rules_text": "Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: un paese che si ferma non si rimette in moto dove l'avevi lasciato.",
+      "on_commit_effects": [
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "$tension"
+          },
+          "payload": {
+            "delta": 1
+          },
+          "note": "Il costo della carta: usarla lascia la questione piu calda di come l'ha trovata."
+        }
+      ]
     },
     {
       "id": "AST_KNOWLEDGE_RUMOR",
@@ -154,9 +600,49 @@
       },
       "discard_or_retain_rule": "DISCARD",
       "rarity": "COMMON",
-      "deck_copies": 6,
+      "deck_copies": 4,
       "art_prompt_key": "asset.knowledge.rumor",
       "rules_text": "Non e vera. Non e ancora falsa."
+    },
+    {
+      "id": "AST_KNOWLEDGE_OLD_MAP",
+      "title": "Mappa Vecchia",
+      "family": "KNOWLEDGE",
+      "strength": 1,
+      "tags": [
+        "record",
+        "roads"
+      ],
+      "acquisition_rule": "ACQUIRE su KNOWLEDGE. Fonte: Miniere Antiche.",
+      "confluence_modifier": {
+        "kind": "RELEVANT_BONUS",
+        "value": 1
+      },
+      "discard_or_retain_rule": "DISCARD",
+      "rarity": "COMMON",
+      "deck_copies": 4,
+      "art_prompt_key": "asset.knowledge.old_map",
+      "rules_text": "+1 quando KNOWLEDGE e rilevante per la Tensione. I confini sono sbagliati; le strade no, e le strade bastano."
+    },
+    {
+      "id": "AST_KNOWLEDGE_LEDGER",
+      "title": "Registro",
+      "family": "KNOWLEDGE",
+      "strength": 1,
+      "tags": [
+        "record",
+        "trade"
+      ],
+      "acquisition_rule": "ACQUIRE su KNOWLEDGE. Fonte: Miniere Antiche.",
+      "confluence_modifier": {
+        "kind": "OPPOSE_BONUS",
+        "value": 1
+      },
+      "discard_or_retain_rule": "DISCARD",
+      "rarity": "COMMON",
+      "deck_copies": 4,
+      "art_prompt_key": "asset.knowledge.ledger",
+      "rules_text": "+1 sul fronte Oppose. Chi tiene i conti sa cosa manca, e lo dice nel momento peggiore."
     },
     {
       "id": "AST_KNOWLEDGE_PROOF",
@@ -169,14 +655,123 @@
       ],
       "acquisition_rule": "ACQUIRE su KNOWLEDGE. Fonte: Miniere Antiche.",
       "confluence_modifier": {
-        "kind": "RELEVANT_BONUS",
-        "value": 1
+        "kind": "NONE",
+        "value": 0
       },
       "discard_or_retain_rule": "RETAIN_ON_SUCCESS",
-      "rarity": "RARE",
-      "deck_copies": 4,
+      "rarity": "UNCOMMON",
+      "deck_copies": 2,
       "art_prompt_key": "asset.knowledge.proof",
-      "rules_text": "+1 quando KNOWLEDGE e rilevante. Se la proposta passa, resta in mano: una prova dimostrata non si consuma."
+      "rules_text": "Se la proposta passa, resta in mano: una prova dimostrata non si consuma."
+    },
+    {
+      "id": "AST_KNOWLEDGE_ARCHIVE",
+      "title": "Archivio",
+      "family": "KNOWLEDGE",
+      "strength": 1,
+      "tags": [
+        "record",
+        "memory"
+      ],
+      "acquisition_rule": "ACQUIRE su KNOWLEDGE. Fonte: Miniere Antiche.",
+      "confluence_modifier": {
+        "kind": "NONE",
+        "value": 0
+      },
+      "discard_or_retain_rule": "RETAIN_ON_SUCCESS",
+      "rarity": "COMMON",
+      "deck_copies": 4,
+      "art_prompt_key": "asset.knowledge.archive",
+      "rules_text": "Se la proposta passa resta in mano. Le carte non si consumano: si consuma chi le sa leggere."
+    },
+    {
+      "id": "AST_KNOWLEDGE_WITNESS",
+      "title": "Testimone",
+      "family": "KNOWLEDGE",
+      "strength": 2,
+      "tags": [
+        "proof",
+        "voice",
+        "risky"
+      ],
+      "acquisition_rule": "ACQUIRE su KNOWLEDGE. Fonte: Miniere Antiche.",
+      "confluence_modifier": {
+        "kind": "OPPOSE_BONUS",
+        "value": 2
+      },
+      "discard_or_retain_rule": "ALWAYS_DISCARD",
+      "rarity": "UNCOMMON",
+      "deck_copies": 2,
+      "art_prompt_key": "asset.knowledge.witness",
+      "rules_text": "+1 sul fronte Oppose. Si scarta sempre: un testimone si spende una volta sola, e dopo e solo qualcuno che ha parlato."
+    },
+    {
+      "id": "AST_KNOWLEDGE_RED_CRYSTAL",
+      "title": "Il Cristallo Rosso",
+      "family": "KNOWLEDGE",
+      "strength": 3,
+      "tags": [
+        "discovery",
+        "awakening",
+        "risky"
+      ],
+      "acquisition_rule": "ACQUIRE su KNOWLEDGE. Fonte: Miniere Antiche.",
+      "confluence_modifier": {
+        "kind": "NONE",
+        "value": 0
+      },
+      "discard_or_retain_rule": "ALWAYS_DISCARD",
+      "rarity": "RARE",
+      "deck_copies": 1,
+      "art_prompt_key": "asset.knowledge.red_crystal",
+      "rules_text": "Forza 3. Si scarta sempre, e la Tensione in gioco diventa aperta a tutti: mostrarlo chiude ogni dubbio e apre la domanda a chiunque fosse nella stanza.",
+      "on_commit_effects": [
+        {
+          "type": "SET_TENSION_VISIBILITY",
+          "target": {
+            "kind": "tension",
+            "id": "$tension"
+          },
+          "payload": {
+            "visibility": "OPEN"
+          },
+          "note": "Il costo della carta: quello che sapevi da solo adesso lo leggono tutti."
+        }
+      ]
+    },
+    {
+      "id": "AST_KNOWLEDGE_SEALED_TESTIMONY",
+      "title": "Deposizione Sigillata",
+      "family": "KNOWLEDGE",
+      "strength": 3,
+      "tags": [
+        "proof",
+        "secret",
+        "risky"
+      ],
+      "acquisition_rule": "ACQUIRE su KNOWLEDGE. Fonte: Miniere Antiche.",
+      "confluence_modifier": {
+        "kind": "NONE",
+        "value": 0
+      },
+      "discard_or_retain_rule": "ALWAYS_DISCARD",
+      "rarity": "RARE",
+      "deck_copies": 1,
+      "art_prompt_key": "asset.knowledge.sealed_testimony",
+      "rules_text": "Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: quello che era scritto per un solo lettore adesso lo hanno sentito tutti.",
+      "on_commit_effects": [
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "$tension"
+          },
+          "payload": {
+            "delta": 1
+          },
+          "note": "Il costo della carta: usarla lascia la questione piu calda di come l'ha trovata."
+        }
+      ]
     },
     {
       "id": "AST_WEALTH_GRAIN",
@@ -194,9 +789,49 @@
       },
       "discard_or_retain_rule": "DISCARD",
       "rarity": "COMMON",
-      "deck_copies": 6,
+      "deck_copies": 4,
       "art_prompt_key": "asset.wealth.grain",
       "rules_text": "Conta piu di un titolo, per il tempo in cui dura."
+    },
+    {
+      "id": "AST_WEALTH_SALT",
+      "title": "Sale",
+      "family": "WEALTH",
+      "strength": 1,
+      "tags": [
+        "trade",
+        "food"
+      ],
+      "acquisition_rule": "ACQUIRE su WEALTH. Fonti: Eredan, Valle Verde, Miniere Antiche, Strada dei Mercanti.",
+      "confluence_modifier": {
+        "kind": "RELEVANT_BONUS",
+        "value": 1
+      },
+      "discard_or_retain_rule": "DISCARD",
+      "rarity": "COMMON",
+      "deck_copies": 4,
+      "art_prompt_key": "asset.wealth.salt",
+      "rules_text": "+1 quando WEALTH e rilevante per la Tensione. Non nutre nessuno: senza, quello che nutre non arriva a marzo."
+    },
+    {
+      "id": "AST_WEALTH_TOLL",
+      "title": "Pedaggio",
+      "family": "WEALTH",
+      "strength": 1,
+      "tags": [
+        "roads",
+        "trade"
+      ],
+      "acquisition_rule": "ACQUIRE su WEALTH. Fonti: Eredan, Valle Verde, Miniere Antiche, Strada dei Mercanti.",
+      "confluence_modifier": {
+        "kind": "OPPOSE_BONUS",
+        "value": 1
+      },
+      "discard_or_retain_rule": "DISCARD",
+      "rarity": "COMMON",
+      "deck_copies": 4,
+      "art_prompt_key": "asset.wealth.toll",
+      "rules_text": "+1 sul fronte Oppose. Una corda tesa fra due pali, e il diritto di non alzarla."
     },
     {
       "id": "AST_WEALTH_CARAVAN",
@@ -214,9 +849,117 @@
       },
       "discard_or_retain_rule": "ALWAYS_DISCARD",
       "rarity": "UNCOMMON",
-      "deck_copies": 4,
+      "deck_copies": 2,
       "art_prompt_key": "asset.wealth.caravan",
-      "rules_text": "Si scarta sempre. Una carovana spesa e una carovana partita."
+      "rules_text": "Si scarta sempre: una carovana spesa e una carovana partita."
+    },
+    {
+      "id": "AST_WEALTH_CREDIT",
+      "title": "Credito",
+      "family": "WEALTH",
+      "strength": 1,
+      "tags": [
+        "debt",
+        "trade"
+      ],
+      "acquisition_rule": "ACQUIRE su WEALTH. Fonti: Eredan, Valle Verde, Miniere Antiche, Strada dei Mercanti.",
+      "confluence_modifier": {
+        "kind": "FLAT_BONUS",
+        "value": 1
+      },
+      "discard_or_retain_rule": "DISCARD",
+      "rarity": "COMMON",
+      "deck_copies": 4,
+      "art_prompt_key": "asset.wealth.credit",
+      "rules_text": "+1 sempre, su qualsiasi fronte. Vale nel momento in cui lo chiedi, e non un minuto dopo."
+    },
+    {
+      "id": "AST_WEALTH_GRANARY_KEYS",
+      "title": "Chiavi del Granaio",
+      "family": "WEALTH",
+      "strength": 2,
+      "tags": [
+        "food",
+        "control"
+      ],
+      "acquisition_rule": "ACQUIRE su WEALTH. Fonti: Eredan, Valle Verde, Miniere Antiche, Strada dei Mercanti.",
+      "confluence_modifier": {
+        "kind": "OPPOSE_BONUS",
+        "value": 2
+      },
+      "discard_or_retain_rule": "DISCARD",
+      "rarity": "UNCOMMON",
+      "deck_copies": 2,
+      "art_prompt_key": "asset.wealth.granary_keys",
+      "rules_text": "+1 sul fronte Oppose. Non possiedi il grano: possiedi la serratura, e la serratura si usa per chiudere."
+    },
+    {
+      "id": "AST_WEALTH_TREASURY",
+      "title": "Il Tesoro",
+      "family": "WEALTH",
+      "strength": 3,
+      "tags": [
+        "wealth",
+        "crown",
+        "risky"
+      ],
+      "acquisition_rule": "ACQUIRE su WEALTH. Fonti: Eredan, Valle Verde, Miniere Antiche, Strada dei Mercanti.",
+      "confluence_modifier": {
+        "kind": "NONE",
+        "value": 0
+      },
+      "discard_or_retain_rule": "ALWAYS_DISCARD",
+      "rarity": "RARE",
+      "deck_copies": 1,
+      "art_prompt_key": "asset.wealth.treasury",
+      "rules_text": "Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: aprire il tesoro dice a tutti quanto vale davvero la questione.",
+      "on_commit_effects": [
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "$tension"
+          },
+          "payload": {
+            "delta": 1
+          },
+          "note": "Il costo della carta: usarla lascia la questione piu calda di come l'ha trovata."
+        }
+      ]
+    },
+    {
+      "id": "AST_WEALTH_LAND_MORTGAGE",
+      "title": "Ipoteca sulle Terre",
+      "family": "WEALTH",
+      "strength": 3,
+      "tags": [
+        "debt",
+        "land",
+        "risky"
+      ],
+      "acquisition_rule": "ACQUIRE su WEALTH. Fonti: Eredan, Valle Verde, Miniere Antiche, Strada dei Mercanti.",
+      "confluence_modifier": {
+        "kind": "NONE",
+        "value": 0
+      },
+      "discard_or_retain_rule": "ALWAYS_DISCARD",
+      "rarity": "RARE",
+      "deck_copies": 1,
+      "art_prompt_key": "asset.wealth.land_mortgage",
+      "rules_text": "Forza 3. Si scarta sempre, e chi ti sta di fronte guadagna una presenza nella Regione di cui si discute: impegnare una terra fa arrivare chi la vuole.",
+      "on_commit_effects": [
+        {
+          "type": "ADD_PRESENCE",
+          "target": {
+            "kind": "entity",
+            "id": "$rival"
+          },
+          "payload": {
+            "region_id": "$region_focus"
+          },
+          "note": "Il costo della carta: chi ti sta di fronte mette piede dove si discute."
+        }
+      ]
     },
     {
       "id": "AST_BONDS_FAVOR",
@@ -234,15 +977,55 @@
       },
       "discard_or_retain_rule": "DISCARD",
       "rarity": "COMMON",
-      "deck_copies": 6,
+      "deck_copies": 4,
       "art_prompt_key": "asset.bonds.favor",
       "rules_text": "Piccolo, ricordato con precisione."
+    },
+    {
+      "id": "AST_BONDS_GUEST_RIGHT",
+      "title": "Diritto di Ospitalita",
+      "family": "BONDS",
+      "strength": 1,
+      "tags": [
+        "custom",
+        "kinship"
+      ],
+      "acquisition_rule": "ACQUIRE su BONDS. Fonti: Terre Nahr, Montagne Rosse, Strada dei Mercanti.",
+      "confluence_modifier": {
+        "kind": "RELEVANT_BONUS",
+        "value": 1
+      },
+      "discard_or_retain_rule": "DISCARD",
+      "rarity": "COMMON",
+      "deck_copies": 4,
+      "art_prompt_key": "asset.bonds.guest_right",
+      "rules_text": "+1 quando BONDS e rilevante per la Tensione. Chi ha mangiato al tuo tavolo non puo dire di no davanti a tutti. Puo dirlo dopo."
+    },
+    {
+      "id": "AST_BONDS_OLD_DEBT",
+      "title": "Debito Vecchio",
+      "family": "BONDS",
+      "strength": 1,
+      "tags": [
+        "debt",
+        "memory"
+      ],
+      "acquisition_rule": "ACQUIRE su BONDS. Fonti: Terre Nahr, Montagne Rosse, Strada dei Mercanti.",
+      "confluence_modifier": {
+        "kind": "OPPOSE_BONUS",
+        "value": 1
+      },
+      "discard_or_retain_rule": "DISCARD",
+      "rarity": "COMMON",
+      "deck_copies": 4,
+      "art_prompt_key": "asset.bonds.old_debt",
+      "rules_text": "+1 sul fronte Oppose. Nessuno se lo ricorda tranne le due persone che contano, e una delle due lo tira fuori adesso."
     },
     {
       "id": "AST_BONDS_OATH",
       "title": "Giuramento",
       "family": "BONDS",
-      "strength": 2,
+      "strength": 1,
       "tags": [
         "pact",
         "kinship"
@@ -253,10 +1036,118 @@
         "value": 0
       },
       "discard_or_retain_rule": "RETAIN",
-      "rarity": "RARE",
+      "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.bonds.oath",
-      "rules_text": "Non si scarta mai. Un giuramento impegnato resta impegnato anche dopo."
+      "rules_text": "Non si scarta mai. Un giuramento impegnato resta impegnato anche dopo, ed e la sua unica forza."
+    },
+    {
+      "id": "AST_BONDS_BETROTHAL",
+      "title": "Promessa di Nozze",
+      "family": "BONDS",
+      "strength": 2,
+      "tags": [
+        "pact",
+        "kinship"
+      ],
+      "acquisition_rule": "ACQUIRE su BONDS. Fonti: Terre Nahr, Montagne Rosse, Strada dei Mercanti.",
+      "confluence_modifier": {
+        "kind": "OPPOSE_BONUS",
+        "value": 2
+      },
+      "discard_or_retain_rule": "ALWAYS_DISCARD",
+      "rarity": "UNCOMMON",
+      "deck_copies": 2,
+      "art_prompt_key": "asset.bonds.betrothal",
+      "rules_text": "+1 sul fronte Oppose: una promessa serve piu a impedire un'alleanza che a farne una. Si scarta sempre."
+    },
+    {
+      "id": "AST_BONDS_BLOOD_TIE",
+      "title": "Legame di Sangue",
+      "family": "BONDS",
+      "strength": 2,
+      "tags": [
+        "kinship",
+        "pact"
+      ],
+      "acquisition_rule": "ACQUIRE su BONDS. Fonti: Terre Nahr, Montagne Rosse, Strada dei Mercanti.",
+      "confluence_modifier": {
+        "kind": "NONE",
+        "value": 0
+      },
+      "discard_or_retain_rule": "DISCARD",
+      "rarity": "UNCOMMON",
+      "deck_copies": 2,
+      "art_prompt_key": "asset.bonds.blood_tie",
+      "rules_text": "Non e un accordo: e una cosa che c'era prima dell'accordo, e che nessuno ha firmato."
+    },
+    {
+      "id": "AST_BONDS_HOSTAGE",
+      "title": "Ostaggio",
+      "family": "BONDS",
+      "strength": 3,
+      "tags": [
+        "pact",
+        "coercion",
+        "risky"
+      ],
+      "acquisition_rule": "ACQUIRE su BONDS. Fonti: Terre Nahr, Montagne Rosse, Strada dei Mercanti.",
+      "confluence_modifier": {
+        "kind": "NONE",
+        "value": 0
+      },
+      "discard_or_retain_rule": "ALWAYS_DISCARD",
+      "rarity": "RARE",
+      "deck_copies": 1,
+      "art_prompt_key": "asset.bonds.hostage",
+      "rules_text": "Forza 3. Si scarta sempre, e chi ti sta di fronte guadagna una presenza nella Regione di cui si discute: chi consegna un figlio compra una parola, e la paga a casa propria.",
+      "on_commit_effects": [
+        {
+          "type": "ADD_PRESENCE",
+          "target": {
+            "kind": "entity",
+            "id": "$rival"
+          },
+          "payload": {
+            "region_id": "$region_focus"
+          },
+          "note": "Il costo della carta: chi ti sta di fronte mette piede dove si discute."
+        }
+      ]
+    },
+    {
+      "id": "AST_BONDS_BROKEN_PACT",
+      "title": "Patto Rotto",
+      "family": "BONDS",
+      "strength": 3,
+      "tags": [
+        "pact",
+        "betrayal",
+        "risky"
+      ],
+      "acquisition_rule": "ACQUIRE su BONDS. Fonti: Terre Nahr, Montagne Rosse, Strada dei Mercanti.",
+      "confluence_modifier": {
+        "kind": "NONE",
+        "value": 0
+      },
+      "discard_or_retain_rule": "ALWAYS_DISCARD",
+      "rarity": "RARE",
+      "deck_copies": 1,
+      "art_prompt_key": "asset.bonds.broken_pact",
+      "rules_text": "Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: rompere un patto davanti al tavolo scalda ogni domanda ancora aperta.",
+      "on_commit_effects": [
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "$tension"
+          },
+          "payload": {
+            "delta": 1
+          },
+          "note": "Il costo della carta: usarla lascia la questione piu calda di come l'ha trovata."
+        }
+      ]
     }
   ]
 }

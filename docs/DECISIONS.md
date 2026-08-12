@@ -331,6 +331,101 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-040 — 48 Assets, and the outcome table they moved
+**implemented in 0.1.3**
+
+§19.4's full Asset list: 12 cards become 48, eight per family. The cards were
+the easy half. The half worth recording is that adding them **broke the outcome
+table**, and that the number which showed why was not the one being watched.
+
+### What the set is
+
+One word - the rarity - fixes everything mechanical about a card:
+
+| rarità | forza | copie nel mazzo | per famiglia |
+|---|---|---|---|
+| COMMON | 1 | 4 | 4 carte |
+| UNCOMMON | 2 | 2 | 2 carte |
+| RARE | 3 | 1 | 2 carte |
+
+22 cards per family deck, 132 in the box. A player who has seen a family twice
+knows what is in it, which matters more than it sounds: ACQUIRE draws two and
+keeps one, so knowing the deck is knowing what the other draw probably was.
+
+Every family carries the same shape: two cards that pay on the Oppose front,
+one that counts for more when the question is its own, and two rares that are
+worth 3 and cost something on the way out. Every strength-3 card is discarded
+whatever happens **and** does something to the world when committed - it raises
+the Tension, or hands the rival a foothold where the argument is, or empties
+your own. That is guarded by a test: a card worth 6 in a relevant question with
+no downside is not a choice, it is the correct play.
+
+`on_commit_effects` was exercised by exactly one card in 0.0 (O-3). It is now on
+thirteen.
+
+### The outcome table broke, and the average said nothing
+
+Measured over the same 40 Chronicles, before and after:
+
+| | Failure | con Costo | Successo | Decisivo |
+|---|---|---|---|---|
+| 12 carte | 16% | 13% | 38% | **33%** |
+| 48 carte, primo tentativo | 15% | 11% | 26% | **49%** |
+
+Half of every Council passing without discussion is the same illness as O-4 in
+the other direction: two of the four bands stop meaning anything.
+
+The strange part: **the average margin barely moved** - 3.23 to 3.37 - and S was
+identical to two decimals. Four separate attempts to fix it by re-weighting the
+set (fewer copies of the strong cards, more copies of the weak ones, bigger
+Oppose bonuses, dropping strength 3 entirely) each moved the outcome table by
+almost nothing, because each was aimed at the average.
+
+`cli/run_margin_probe.gd` printed the distribution instead, and the cause was
+immediately visible: the 12-card set piled its mass on **M = +4**, one point
+below the Decisive band, because with two cards per family a commit was almost
+always 2+2. A wider library smooths the distribution and pushes that pile one
+point right - over the line. The old 33% was partly an artefact of a library too
+poor to produce anything else.
+
+### The fix, and why it is the curve
+
+The lever that worked was the shape of the curve, not the weights: relevance
+moved off the strength-2 cards and onto a strength-1 card in each family, and
+one strength-2 card per family became a strength-1 with a small always-on bonus.
+A prepared commit is worth about 4 again instead of 6.
+
+| | Failure | con Costo | Successo | Decisivo |
+|---|---|---|---|---|
+| 48 carte, com'è ora | 21% | 15% | 30% | 34% |
+
+Decisive is back where it was and Failure is up five points - more Councils are
+genuinely contested, which is what a wider library was supposed to buy.
+
+The resolver was not touched. §A5's bands are the specification; the content is
+what gets tuned (D-023).
+
+### The cost, stated
+
+- **Councils per Chronicle: median 5 → 6**, and one Chronicle in forty reaches 8
+  against §7's ceiling of 7. `test_balance` allows 10% outside the band and it
+  passes, but the drift is real and it is the number to watch in 0.2.
+- **The three sim plans came out differently** and were re-measured rather than
+  re-tuned: the stories still hold (the grain accord passes unopposed, the broken
+  council fails twice, the opened mine plays all four bands), the outcome
+  sequences in their `expected` blocks are new. Plan A's authored Council now
+  binds to index 1, because with a full library the Succession opens first.
+
+### A bug the measurement found
+
+`ui/hand_view.gd` had been drawing a relevant card as `authority · 2 ×2 = 4`
+since 0.1.1. §9 says an Asset is worth its full strength when its family is
+relevant and **1** otherwise - relevance does not double anything. The card was
+telling a player their hand was worth twice what the resolver would give them.
+It now reads `authority · vale 2`, and `vale 1` when the question is not its own.
+
+---
+
 ## D-039 — A choice knows what it is about; the screen decides where to put it
 **implemented in 0.1.2**
 
