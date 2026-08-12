@@ -51,6 +51,8 @@ var _context: Label
 var _help: PanelContainer
 var _help_button: Button
 var _help_data: RefCounted
+## The seed of the last Chronicle played, so the menu can offer it back.
+var _last_seed: int = -1
 ## The map and the Council share the middle of the screen: one is visible at a
 ## time, because they answer different questions and a player looking at a
 ## Council is not choosing where to walk.
@@ -392,7 +394,71 @@ func _menu() -> void:
 		labels.append("Guardo giocare le policy")
 		var choice: int = await ask("Quale seggio prendi?", labels)
 		var humans: Array = [] if choice >= SEATS.size() else [str(SEATS[choice])]
-		await _play(humans)
+		var chronicle_id: String = await _ask_chronicle()
+		_help.render(_load_help_data(), chronicle_id)
+		await _play(humans, chronicle_id, await _ask_seed())
+
+
+## Which Chronicle. CHR_01 is written by hand and always the same four
+## questions; CHR_02 draws four from the library of six, so it is a different
+## year every time (D-028).
+func _ask_chronicle() -> String:
+	var data: RefCounted = _load_help_data()
+	var ids: Array = ["CHR_01", "CHR_02"]
+	var labels: Array = []
+	for chronicle_id in ids:
+		var chronicle: Variant = null if data == null else data.chronicles.get(str(chronicle_id))
+		if chronicle == null:
+			continue
+		labels.append("%s — %s" % [
+			str(chronicle["title"]),
+			"le quattro domande scritte a mano" if str(chronicle_id) == "CHR_01"
+			else "quattro domande pescate dalla biblioteca",
+		])
+	if labels.size() < 2:
+		return "CHR_01"
+	var choice: int = await ask("Quale anno giochi?", labels)
+	return str(ids[clampi(choice, 0, ids.size() - 1)])
+
+
+## The seed is the world. It is printed at the top of every Chronicle precisely
+## so a year worth talking about can be played again - which it could not be,
+## until there was somewhere to type it back in.
+func _ask_seed() -> int:
+	var random: int = int(Time.get_unix_time_from_system()) % 100000
+	var labels: Array = ["Un mondo a caso"]
+	if _last_seed >= 0:
+		labels.append("Rigioca il seme %d" % _last_seed)
+	labels.append("Scrivo io il seme")
+	var choice: int = await ask("Che mondo?", labels)
+	if choice == 0:
+		return random
+	if _last_seed >= 0 and choice == 1:
+		return _last_seed
+	return await _ask_number("Il seme:", random)
+
+
+## A number, typed. Enter answers as well as the button, because a field with a
+## button beside it that only the button ends is a field that feels broken.
+func _ask_number(prompt: String, fallback: int) -> int:
+	_prompt.text = prompt
+	_clear_buttons()
+	var field := LineEdit.new()
+	field.placeholder_text = str(fallback)
+	field.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_buttons.add_child(field)
+	var button := Button.new()
+	button.text = "Vai"
+	button.pressed.connect(func() -> void: picked.emit(0))
+	field.text_submitted.connect(func(_t: String) -> void: picked.emit(0))
+	_buttons.add_child(button)
+	field.grab_focus()
+
+	await picked
+	var typed: String = field.text.strip_edges()
+	_clear_buttons()
+	_prompt.text = ""
+	return int(typed) if typed.is_valid_int() else fallback
 
 
 func _entity_name(entity_id: String) -> String:
@@ -405,7 +471,7 @@ func _entity_name(entity_id: String) -> String:
 	}.get(entity_id, entity_id)
 
 
-func _play(humans: Array) -> void:
+func _play(humans: Array, chronicle_id: String, seed_value: int) -> void:
 	if _busy:
 		return
 	_busy = true
@@ -422,11 +488,11 @@ func _play(humans: Array) -> void:
 		_busy = false
 		return
 
-	# A different world every time the page is opened, but still a *seeded* one:
-	# the seed is shown so a Chronicle worth talking about can be played again.
-	var seed_value: int = int(Time.get_unix_time_from_system()) % 100000
+	# The seed *is* the world: same seed, same year, down to the die. Kept so the
+	# menu can offer it back after the Chronicle ends.
+	_last_seed = seed_value
 	_session = GameSession.new(data)
-	_session.setup("CHR_01", SEATS, seed_value)
+	_session.setup(chronicle_id, SEATS, seed_value)
 
 	var shown: Dictionary = {"lines": 0}
 	_session.chronicle.phase_changed.connect(
@@ -436,7 +502,7 @@ func _play(humans: Array) -> void:
 	)
 
 	say("[b]%s[/b] — anno %d, seme %d" % [
-		str(data.chronicles["CHR_01"]["title"]), int(_session.world["year"]), seed_value,
+		str(data.chronicles[chronicle_id]["title"]), int(_session.world["year"]), seed_value,
 	])
 	say("")
 

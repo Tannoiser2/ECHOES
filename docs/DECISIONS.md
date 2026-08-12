@@ -331,6 +331,39 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-043 — The second Chronicle was written, and unreachable
+**implemented in 0.1.6**
+
+`CHR_02` has existed since D-028 and is the whole point of the library model: it
+names no questions, it **draws four from the six** in the library, so two runs
+are not the same year. The CLI could play it (`--chronicle=CHR_02`). The browser
+could not: `_play` had `"CHR_01"` written into it.
+
+The menu now asks three things instead of one - seat, year, world - and the
+third is the seed. The seed has been printed at the top of every Chronicle since
+0.0 *precisely* so a year worth talking about can be played again, which it
+could not be until there was somewhere to type it back in. It also offers the
+last seed back, because the most likely thing anyone wants to replay is the game
+they just finished.
+
+The rules page re-renders for the chosen year, and that turned out to matter
+more than expected: it read `chronicle["tensions"]`, which `CHR_02` does not
+have. A Chronicle either names its questions or draws them, and a rules page
+that assumed the first would have crashed on exactly the Chronicle a returning
+player picks. It now reads the pool and says so - *questa Chronicle ne pesca 4
+fra queste*.
+
+### And the relations, which the Destinies count
+
+Where you stand with the other three was public information the browser never
+showed. It was readable only inside a button offering to break it (*"Rompi i
+rapporti con Lyra (ora NEUTRAL)"*), and FORGE spends an Action Opportunity
+moving it. Destinies count these levels: a player who cannot see them is being
+scored on something invisible. Three lines under the year's questions, coloured
+along the ladder from `ENEMY` to `BOUND`.
+
+---
+
 ## D-042 — A card that says what it does, and the last decision nobody was asked
 **implemented in 0.1.5**
 

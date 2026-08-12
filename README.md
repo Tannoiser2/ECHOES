@@ -59,7 +59,12 @@ vince. Si toglie di mezzo appena scegli un seggio e torna con il bottone in
 fondo alla colonna. Sopra le scelte c'è sempre una riga che dice cosa sta per
 succedere — «La Carestia è a un passo dalla soglia».
 
-Si sceglie un seggio, e poi si gioca sul tabellone: le **Regioni cerchiate d'oro**
+Si sceglie **il seggio, l'anno e il mondo**: `CHR_01` è la Carestia Rossa con le
+sue quattro domande scritte a mano, `CHR_02` ne pesca quattro dalla biblioteca e
+non è mai due volte la stessa storia; il seme può essere casuale, riscritto a
+mano, o quello della partita appena finita.
+
+Poi si gioca sul tabellone: le **Regioni cerchiate d'oro**
 sono quelle dove puoi mettere una presenza, e ci si va premendole. Le altre azioni
 stanno nella colonna a destra, insieme alle domande dell'anno e al tuo Destino.
 Quando si apre un **Consiglio** la mappa lascia il centro alla plancia: la

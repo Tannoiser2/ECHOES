@@ -84,12 +84,24 @@ func _lines(data: RefCounted, chronicle_id: String) -> Array:
 	out.append("")
 
 	if data != null and chronicle != null:
-		out.append(SECTION % "LE DOMANDE DI QUEST'ANNO")
+		# A Chronicle either names its questions or draws them from a pool: the
+		# library Chronicles do the second, and a rules page that assumed the
+		# first would crash on exactly the Chronicle a returning player picks.
+		var questions: Array = chronicle.get("tensions", [])
+		var drawn: bool = questions.is_empty()
+		if drawn:
+			questions = (chronicle.get("tension_pool", {}) as Dictionary).get("candidates", [])
+		out.append(SECTION % ("LE DOMANDE DI QUEST'ANNO" if not drawn else "LE DOMANDE POSSIBILI"))
 		out.append(
 			"Salgono da sole ogni round. [b]Quando una arriva alla sua soglia si apre "
 			+ "un Consiglio[/b], ed e li che il gioco decide qualcosa."
 		)
-		for tension_id in chronicle["tensions"]:
+		if drawn:
+			out.append(
+				"Questa Chronicle ne pesca %d fra queste: due partite non fanno la stessa storia."
+				% int((chronicle.get("tension_pool", {}) as Dictionary).get("count", 4))
+			)
+		for tension_id in questions:
 			var tension: Variant = data.tensions.get(str(tension_id))
 			if tension == null:
 				continue

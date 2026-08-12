@@ -36,11 +36,10 @@ quello scriptato che usa la CLI oggi. Nessuna regola va riscritta.
 
 Da chiudere in 0.1 e già noto:
 
-- il salvataggio esiste (`SaveManager`, testato) ma la UI non lo chiama: nel
-  browser non si può riprendere una Chronicle lasciata a metà, né scegliere il
-  seme, né giocare CHR_02
-- le relazioni fra Entità si leggono solo dentro l'etichetta di un bottone
-  («Rompi i rapporti con Lyra (ora NEUTRAL)»), e i Destini le guardano
+- il salvataggio esiste (`SaveManager`, testato) ma la UI non lo chiama, e non
+  basterebbe: `run()` è una coroutine dentro tre cicli annidati, quindi
+  riprendere una partita lasciata a metà vuol dire un punto di ripresa nel
+  motore (atto/round da cui ricominciare), non solo uno snapshot del mondo
 - `promise_kept` / `promise_broken` sono implementati ma nessun Destiny di 0.0 li
   usa
 - il set completo dei Destiny a più di 2 condizioni per livello

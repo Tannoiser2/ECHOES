@@ -5,6 +5,31 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.6] — La seconda Chronicle, e il mondo che puoi rigiocare
+
+### Added
+
+- **`CHR_02` si gioca nel browser.** Esisteva dalla D-028 ed è il senso del
+  modello a biblioteca: non elenca le proprie domande, **ne pesca quattro fra
+  sei**, quindi due partite non sono lo stesso anno. Dalla riga di comando si
+  poteva già (`--chronicle=CHR_02`); nel browser `CHR_01` era scritto dentro il
+  codice.
+- **Il seme si sceglie.** «Un mondo a caso», «Rigioca il seme *N*» (quello
+  dell'ultima partita) oppure lo scrivi tu. Il seme viene stampato in cima a
+  ogni Chronicle dalla 0.0 proprio perché un anno che vale la pena raccontare si
+  possa rigiocare — e fino a ieri non c'era nessun posto dove riscriverlo.
+- **I rapporti fra le Entità**, sotto le domande dell'anno: tre righe, colorate
+  lungo la scala da `enemy` a `bound`. Erano informazione pubblica che il
+  browser non mostrava — si leggeva solo dentro un bottone che si offriva di
+  romperli — e i Destini li contano: chi non li vede viene giudicato su qualcosa
+  di invisibile.
+- La pagina delle regole si riscrive per l'anno scelto. E la stessa cosa ha
+  trovato un errore che sarebbe scoppiato in faccia a chi sceglie `CHR_02`:
+  leggeva `chronicle["tensions"]`, che una Chronicle a biblioteca non ha. Adesso
+  legge il pool e lo dice: *questa Chronicle ne pesca 4 fra queste*.
+
+---
+
 ## [0.1.5] — Le carte dicono cosa fanno
 
 Due buchi rimasti dalla 0.1, uguali fra loro: le regole davano qualcosa a chi
