@@ -97,6 +97,12 @@
           "minimum": 1,
           "default": 2
         },
+        "minimum_confluences": {
+          "type": "integer",
+          "minimum": 0,
+          "default": 0,
+          "description": "How many Councils this Chronicle guarantees. The world's drift spreads across every question in play and can be one chip short of all of them at once, so a table with nothing to play for produces a year in which nothing was decided. When the last round arrives with fewer Councils than this, the question that came closest is brought to a head. 0 turns the floor off."
+        },
         "entities": {
           "type": "array",
           "minItems": 2,

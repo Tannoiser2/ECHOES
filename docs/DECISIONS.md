@@ -331,6 +331,97 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-047 — Un anno non si chiude senza aver deciso niente
+**implemented in 0.1.10**
+
+A ten-Chronicle saga produced **three years with zero Councils**. Not close ones
+- zero: three Chronicles in which nobody proposed anything, nothing was decided,
+and the register got a blank page. §7 asks for a report below two.
+
+The first guess was that inheritance was suppressing the Tensions across a saga,
+because the same Chronicle measured standalone over forty seeds never fell below
+one. That guess was wrong, and the instrument that disproved it - `run_silence_
+probe.gd` - is the useful part of this entry: per Chronicle it prints, for every
+question in play, where it started, how many chips the **world** gave it, how
+many pushes the **table** gave it, and where it ended relative to its threshold;
+then, per seat, the Destiny it carries and what that Destiny actually asks it to
+push. Counting outcomes says a year was quiet. Counting pushes says why.
+
+### What the pushes said
+
+Three separate causes, stacked, each real on its own.
+
+**The world alone can never bring a question to a head.** Drift deals one chip
+per round spread across every question in play - nine chips over four questions -
+while the smallest gap between a question's opening value and its threshold is
+three. The world can therefore sit **one chip short of all four at once**, and in
+the silent years it did, every time. Every Council in this game needs a seat to
+push. There was no floor at all; there was only the table.
+
+**And the table had stopped playing.** In the silent years three seats out of
+four spent **all eighteen Action Opportunities on ACQUIRE** - drawing cards for a
+Council that would never open. The register recorded eighteen turns of shopping.
+
+**Because a seat stopped the moment its nearest rung asked nothing of it.** The
+policy played the lowest rung of its ladder it had not secured and nothing else.
+That is right about the order and wrong about the stopping: a rung can be open
+and still ask nothing of the Tensions - "stand on the Red Mountains" is answered
+by walking there - and a rung whose remaining clauses are all *negative* ("the
+mine is not sealed", "the road is still open") asks nothing of anybody. A seat
+focused on one of those would not even reach for the Victory above it.
+
+### The floor
+
+`minimum_confluences` on the Chronicle. When an Act closes and the year is short
+of the Councils it guarantees, the question that came closest is brought to a
+head: *"L'anno non si chiude con la domanda ancora aperta."*
+
+The quota grows with the Act - `floor * act / acts`, rounded down - because only
+one Council opens per round (§7), so a floor of two checked once at the very end
+could only ever deliver one. With three Acts and a floor of two that is nothing
+owed after Act I, one after Act II, two after Act III, which leaves the first two
+thirds of a Chronicle exactly as they were.
+
+The push is an **Effect** like everything else - system source `YEAR_END`, in the
+register, with an inverse - and not a rule reaching into the Tension directly.
+`minimum_confluences: 0` turns it off: a Chronicle is allowed to say that silence
+is an acceptable ending for it.
+
+### Why a floor rather than a re-tuned Drift bag
+
+The alternative was to weight the drift bag so one question always crosses. It
+was rejected for two reasons. It would change **every** Chronicle, including the
+seven in ten that were working; and it would make the authored
+`drift_distribution` decorative, since the guarantee would always override it.
+The floor fires only when the thing it guards against actually happened, and a
+loud year never learns it exists - which a test asserts.
+
+### What it measured out at
+
+Standalone, forty seeds each. CHR_01 is **unchanged** - 5.70 mean, median 6,
+range 3-8, never below §7's floor even before this. CHR_02 went from a mean of
+4.17 and a range of **1**-7 to a mean of 4.65, median 5, range **2**-7, with 0/40
+below the floor and 48% inside the declared band. Across four ten-Chronicle sagas
+- forty chained Chronicles - there is no longer a single silent year.
+
+The table that only ever calms things down - the O-9 stress test, four seats
+spending every action holding every question below its threshold - went from 1.75
+Councils per Chronicle to 2.48, which is the first time that table has sat above
+§7's floor rather than under it.
+
+The three sim plans still pass and still produce byte-identical output on a
+second run.
+
+### What this does not fix
+
+Lyra's whole ladder - Minimum, Victory *and* Triumph - closes in **Act I round
+two**, on two SCHEME actions, after which she has genuinely won and correctly
+has nothing left to play for. That is a Destiny that is too cheap, and it is
+content, not rules: it belongs with the scholars' seat finding (`DST_LYRA_TAUGHT`
+depending on a Consequence the policy never triggers), not here.
+
+---
+
 ## D-046 — Una casa non finisce i nomi
 **implemented in 0.1.9**
 

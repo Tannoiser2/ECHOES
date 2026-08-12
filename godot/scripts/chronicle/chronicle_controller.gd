@@ -197,6 +197,10 @@ func _end_of_round_confluence(decider: Object) -> void:
 	elif not ready.is_empty():
 		tension_id = str(ready[0])
 		trigger = {"kind": "THRESHOLD", "entity_id": ""}
+	else:
+		tension_id = _bring_the_year_to_a_head()
+		if tension_id != "":
+			trigger = {"kind": "THRESHOLD", "entity_id": ""}
 
 	world["confluence_queue"] = ready.filter(
 		func(id: Variant) -> bool: return str(id) != tension_id
@@ -210,6 +214,71 @@ func _end_of_round_confluence(decider: Object) -> void:
 		)
 	_set_phase(int(world["act"]), int(world["round"]), "CONFLUENCE")
 	await run_confluence(tension_id, trigger, decider)
+
+
+## The floor under a Chronicle: the year does not close with nothing decided
+## (D-047).
+##
+## A ten-Chronicle saga produced three years with **zero** Councils. The cause is
+## arithmetic, not luck: the world's Drift deals one chip per round across every
+## question in play - nine chips over four questions - while the smallest gap
+## between a question's opening value and its threshold is three. The world can
+## therefore be one chip short of *all four at once*, and in the silent years it
+## was, every time. Every Council in the game needs a seat to push, and a table
+## with nothing left to play for pushes nothing.
+##
+## That is a hole in the rules, not a quiet year: a Chronicle with no Council is
+## a Chronicle in which nobody played. So when the last round arrives and the
+## year is still short of the Councils the Chronicle guarantees, the question
+## that came closest is brought to a head. The push is an Effect like any other,
+## so the log says who did it - the world - and it inverts like everything else.
+##
+## The floor is checked at the close of each Act, against a quota that grows with
+## the Act - `floor * act / acts`, rounded down. Only one Council opens per round
+## (§7), so a floor of two checked once at the very end could only ever deliver
+## one: the year has to be owed its Councils on a schedule, or the guarantee is
+## not one. With three Acts and a floor of two that is nothing owed after Act I,
+## one after Act II, two after Act III - which leaves the first two thirds of a
+## Chronicle exactly as they were.
+##
+## `minimum_confluences: 0` turns the floor off; a Chronicle that wants to be
+## able to end in silence is allowed to say so.
+func _bring_the_year_to_a_head() -> String:
+	var floor_count: int = int(_chronicle.get("minimum_confluences", 0))
+	if floor_count <= 0:
+		return ""
+	if int(world["round"]) < int(_chronicle["rounds_per_act"]):
+		return ""
+	var owed: int = floor_count * int(world["act"]) / int(_chronicle["acts"])
+	if int(world["confluence_count"]) >= owed:
+		return ""
+
+	# The question that came closest, ties broken by the Chronicle's own order -
+	# the same rule `tensions_at_threshold` uses, so a forced Council and a
+	# threshold one never disagree about which question was the loudest.
+	var closest: String = ""
+	var smallest_gap: int = 0
+	for tension_id in world["tensions"]:
+		var id: String = str(tension_id)
+		var gap: int = session.tensions.threshold(id) - session.tensions.value(id)
+		if closest == "" or gap < smallest_gap:
+			closest = id
+			smallest_gap = gap
+	if closest == "" or smallest_gap <= 0:
+		return ""
+
+	log.bullet(
+		"L'anno non si chiude con la domanda ancora aperta: %s arriva al punto."
+		% str(data.tensions[closest]["title"])
+	)
+	var source: Dictionary = Effect.source(
+		"system", "YEAR_END", "", int(world["act"]), int(world["round"]), 0
+	)
+	session.applier.apply(
+		Effect.make("ADJUST_TENSION", "tension", closest, {"delta": smallest_gap}, source)
+	)
+	session.tensions.fire_omens(source)
+	return closest
 
 
 ## Drive one Confluence through A-K with the decider answering C, D, E.

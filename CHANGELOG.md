@@ -5,6 +5,60 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.10] — Un anno non si chiude senza aver deciso niente
+
+Una saga da dieci Chronicle ha prodotto **tre anni con zero Consigli**. Non anni
+tranquilli: anni in cui nessuno ha proposto niente, non si è deciso niente e il
+registro è rimasto in bianco. Il §7 chiede una segnalazione sotto i due.
+
+La prima ipotesi — che fosse l'eredità fra una Chronicle e l'altra a spegnere le
+Tensioni — era sbagliata, e a smentirla è stato lo strumento nuovo: contare gli
+*esiti* dice che un anno è stato quieto, contare le **spinte** dice perché.
+
+### Added
+
+- **`run_silence_probe.gd`**: per ogni Chronicle stampa, per ogni domanda in
+  gioco, da dove parte, quanti colpi le ha dato il **mondo**, quanti gliene ha
+  dati il **tavolo** e dove finisce rispetto alla soglia; poi, per ogni seggio,
+  il Destino che porta e cosa quel Destino gli chiede davvero di spingere.
+- **`minimum_confluences`**: la Chronicle dichiara quanti Consigli garantisce.
+  Quando un Atto si chiude e l'anno è ancora sotto quota, la domanda arrivata più
+  vicina viene portata al punto — «L'anno non si chiude con la domanda ancora
+  aperta». La quota cresce con l'Atto (`floor * atto / atti`), perché per il §7
+  si apre un solo Consiglio per round e un pavimento di due controllato solo alla
+  fine potrebbe consegnarne uno soltanto. La spinta è un Effect come tutti gli
+  altri, con sorgente `YEAR_END` e il suo inverso; `0` lo spegne.
+
+### Fixed
+
+- **Il mondo da solo non può portare nessuna domanda al punto.** Il Drift dà un
+  colpo per round diviso fra tutte le domande in gioco — nove colpi su quattro
+  domande — mentre il salto più corto fra valore iniziale e soglia è tre. Il
+  mondo può restare a un colpo da tutte e quattro insieme, e negli anni muti è
+  successo ogni volta. Ogni Consiglio ha bisogno che qualcuno spinga.
+- **E il tavolo aveva smesso di giocare**: negli anni muti tre seggi su quattro
+  hanno speso **tutte e diciotto le Azioni in ACQUIRE**, comprando carte per un
+  Consiglio che non si sarebbe mai aperto.
+- **Un seggio si fermava appena il gradino più vicino non gli chiedeva niente.**
+  La policy giocava solo il gradino più basso non ancora conquistato: giusto
+  sull'ordine, sbagliato su dove fermarsi. Un gradino può essere aperto e non
+  chiedere niente alle Tensioni («stare sulle Montagne Rosse» si risolve
+  camminando), e uno fatto di sole clausole negative non chiede niente a nessuno.
+  Adesso si arriva al primo gradino che qualcosa chiede.
+
+### Misurato
+
+Quaranta semi per Chronicle. CHR_01 **non cambia** (media 5,70, mediana 6, da 3 a
+8). CHR_02 passa da media 4,17 con minimo **1** a media 4,65, mediana 5, minimo
+**2**, 0/40 sotto il pavimento del §7. Su quattro saghe da dieci Chronicle non
+c'è più un solo anno muto. Il tavolo che sopprime e basta — quattro seggi che
+spendono ogni azione per tenere giù ogni domanda — passa da 1,75 Consigli per
+Chronicle a 2,48: è la prima volta che sta sopra il pavimento del §7 invece che
+sotto. I tre piani di simulazione passano e restano identici
+byte per byte.
+
+---
+
 ## [0.1.9] — Una casa non finisce i nomi
 
 La 0.1.8 dava a ogni seggio mortale quattro successori scritti a mano. Il primo

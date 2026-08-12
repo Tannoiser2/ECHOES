@@ -232,6 +232,11 @@ const DEFS := {
 				"min": 1,
 				"default": 2,
 			},
+			"minimum_confluences": {
+				"type": "int",
+				"min": 0,
+				"default": 0,
+			},
 			"entities": {
 				"type": "Array",
 				"min_items": 2,
