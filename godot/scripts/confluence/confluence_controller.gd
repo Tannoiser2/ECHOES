@@ -433,6 +433,11 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 	result["proponent"] = str(current["proponent"])
 	result["proposition_id"] = str(current["proposition_id"])
 	result["question_id"] = str(current["question_id"])
+	# What actually landed, by id. The log has printed this line since 0.0; the
+	# result carries it too so a front-end can show the table what it just did
+	# without re-deriving which pool applied - which would be the resolution
+	# order restated somewhere it could quietly fall out of step.
+	result["consequence_ids"] = consequence_ids.duplicate()
 	result["effect_ids"] = applied.map(func(e: Dictionary) -> String: return str(e["effect_id"]))
 	current["step"] = "CLOSED"
 	current["result"] = result

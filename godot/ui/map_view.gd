@@ -19,14 +19,17 @@ var _session: RefCounted
 var _viewer: String = ""
 var _hovered: String = ""
 
-## Region ids the player may act on right now; drawn as reachable.
+## Region ids the player may act on right now, mapped to whatever the caller
+## wants back when one is pressed. The map does not decide what is in here and
+## cannot: the set comes from the choices SeatDecider has already had the rules
+## accept, so a Region is pressable exactly when the action is legal (D-039).
 var highlighted: Dictionary = {}
 
 signal region_clicked(region_id: String)
 
 
 func _ready() -> void:
-	mouse_filter = Control.MOUSE_FILTER_PASS
+	mouse_filter = Control.MOUSE_FILTER_STOP
 	resized.connect(_relayout)
 
 
@@ -61,18 +64,29 @@ func _relayout() -> void:
 			_points[region_id] = origin + Vector2(float(place["x"]), float(place["y"])) * area
 
 
+## Only the Regions the current question offers answer to the mouse. A Region
+## that lights up under the cursor and then does nothing when pressed reads as a
+## broken game, so one that cannot be chosen does not light up at all.
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		var was: String = _hovered
-		_hovered = _region_at((event as InputEventMouseMotion).position)
+		_hovered = _offered_at((event as InputEventMouseMotion).position)
 		if was != _hovered:
+			mouse_default_cursor_shape = (
+				Control.CURSOR_POINTING_HAND if _hovered != "" else Control.CURSOR_ARROW
+			)
 			queue_redraw()
 	elif event is InputEventMouseButton:
 		var button := event as InputEventMouseButton
 		if button.pressed and button.button_index == MOUSE_BUTTON_LEFT:
-			var hit: String = _region_at(button.position)
+			var hit: String = _offered_at(button.position)
 			if hit != "":
 				region_clicked.emit(hit)
+
+
+func _offered_at(point: Vector2) -> String:
+	var hit: String = _region_at(point)
+	return hit if highlighted.has(hit) else ""
 
 
 func _region_at(point: Vector2) -> String:
@@ -124,11 +138,12 @@ func _draw_region(region_id: String) -> void:
 	var definition: Dictionary = _session.data.regions[region_id]
 	var control: Variant = region.get("control", null)
 
+	var offered: bool = highlighted.has(region_id)
 	var fill: Color = Color("#1c1915")
-	if highlighted.has(region_id):
+	if offered:
 		fill = Color("#2a2418")
 	if _hovered == region_id:
-		fill = fill.lightened(0.12)
+		fill = fill.lightened(0.14)
 	draw_circle(centre, RADIUS, fill)
 
 	# The ring is who holds the place. No ring means nobody does, which is a
@@ -139,6 +154,16 @@ func _draw_region(region_id: String) -> void:
 		ring = _entity_colour(str(control))
 		width = 4.0
 	draw_arc(centre, RADIUS, 0.0, TAU, 48, ring, width, true)
+
+	# A second ring, outside the first, for "you may go here". Outside because
+	# the inner ring already means something else - who holds the place - and the
+	# two facts have to stay separable at a glance.
+	if offered:
+		draw_arc(
+			centre, RADIUS + 7.0, 0.0, TAU, 48,
+			Color("#e8b563") if _hovered == region_id else Color("#7a6338"),
+			3.0 if _hovered == region_id else 2.0, true
+		)
 
 	var font: Font = ThemeDB.fallback_font
 	var name: String = str(definition["name"])

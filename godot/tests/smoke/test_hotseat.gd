@@ -21,6 +21,23 @@ const PolicyDecider := preload("res://scripts/seat/policy_decider.gd")
 const SEATS: Array = ["ENT_ALDRIC", "ENT_NAHR", "ENT_LYRA", "ENT_VAERAX"]
 
 
+## A seat that writes down what it was asked and answers whatever it was told
+## to. It is the whole of what an `io` is, which is the point: the terminal and
+## the browser screen are the same two methods.
+class RecordingIo extends RefCounted:
+	var labels: Array = []
+	var subjects: Array = []
+	var answer: int = -1
+
+	func say(_text: String) -> void:
+		pass
+
+	func choose(_prompt: String, p_labels: Array, p_subjects: Array = []) -> int:
+		labels = p_labels
+		subjects = p_subjects
+		return answer
+
+
 ## With nobody at the keyboard every choice falls through to the policy, so a
 ## Chronicle played by four "humans" who answer nothing has to come out exactly
 ## like one played by four policies. That is what makes a piped script - and this
@@ -92,6 +109,69 @@ func test_the_menu_never_offers_to_scout_what_is_already_visible() -> void:
 				"il menu offre di riscoprire %s a chi la conosce gia" % tension_id
 			)
 	assert_true(int(checked["scouts"]) > 0, "in partenza qualcosa deve essere velato")
+
+
+## The map is pressable because the decider says which choice is about which
+## Region (D-039). If that stops lining up, the browser lights up one Region and
+## sends a presence to another - a bug no headless run would ever show, so it is
+## asserted here rather than looked at.
+func test_a_move_carries_the_region_it_is_about() -> void:
+	new_session(4242, false)
+	var decider: RefCounted = SeatDecider.new(SEATS, null)
+	var io := RecordingIo.new()
+	io.answer = -1  # "you decide": the point is what was offered, not what came back
+	decider.io = io
+
+	var options: Array = decider._action_options("ENT_ALDRIC", session)
+	await decider.choose_action("ENT_ALDRIC", 0, session)
+
+	assert_eq(io.subjects.size(), io.labels.size(), "un soggetto per ogni voce offerta")
+	var moves: int = 0
+	for i in range(options.size()):
+		var subject: Dictionary = io.subjects[i]
+		var named: String = str(subject.get("region", ""))
+		if str(options[i]["template"]) == "MOVE":
+			moves += 1
+			assert_eq(
+				named, str(options[i]["params"]["region_id"]),
+				"il luogo dichiarato e quello dove la mossa mette la presenza"
+			)
+			assert_true(session.world["regions"].has(named), "ed e una Regione che esiste")
+		else:
+			assert_eq(named, "", "solo una mossa ha un posto sulla mappa")
+	assert_true(moves > 0, "in partenza qualche Regione deve essere raggiungibile")
+	assert_eq(
+		str((io.subjects[io.subjects.size() - 1] as Dictionary).get("region", "")), "",
+		"e 'Passa' non e un posto"
+	)
+
+
+## And pressing it does what it says: the index the map reports is the index of
+## that move, not of the one next to it.
+func test_pressing_a_region_is_choosing_that_move() -> void:
+	new_session(4242, false)
+	var decider: RefCounted = SeatDecider.new(SEATS, null)
+	var io := RecordingIo.new()
+	decider.io = io
+
+	var options: Array = decider._action_options("ENT_ALDRIC", session)
+	var chosen: int = -1
+	for i in range(options.size()):
+		if str(options[i]["template"]) == "MOVE":
+			chosen = i
+	assert_true(chosen >= 0, "ci deve essere almeno una mossa da scegliere")
+
+	io.answer = chosen
+	var request: Dictionary = await decider.choose_action("ENT_ALDRIC", 0, session)
+	assert_eq(str(request["template"]), "MOVE", "quello che torna e una mossa")
+	assert_eq(
+		str(request["params"]["region_id"]), str(options[chosen]["params"]["region_id"]),
+		"verso la Regione che era stata premuta"
+	)
+	assert_eq(
+		session.actions.check("ENT_ALDRIC", "MOVE", request["params"]), "",
+		"e le regole la accettano"
+	)
 
 
 ## A seat nobody is playing is never asked anything, whatever the decider is

@@ -66,15 +66,22 @@ func _say(text: String) -> void:
 ## A coroutine: a mouse cannot answer on the same frame it was asked, and
 ## `ChronicleController.run()` is awaitable precisely so this can suspend the
 ## Chronicle in place instead of freezing it (D-038).
-func _choose(prompt: String, entries: Array, default_index: int = -1) -> int:
+##
+## `subjects[i]` says what choice `i` is *about* - `{"region": "REG_X"}` and
+## nothing else so far - so a front-end that draws the world can put the choice
+## where the thing is, instead of in a list beside it. It is a fact about the
+## choice, not an instruction about the screen: the terminal ignores it, and no
+## front-end may infer legality from it, because the entry only exists at all if
+## the rules already accepted it (D-039).
+func _choose(prompt: String, entries: Array, subjects: Array = []) -> int:
 	if entries.is_empty() or io == null:
-		return default_index
+		return -1
 	var labels: Array = []
 	for entry in entries:
 		labels.append(str(entry))
-	var picked: int = await io.choose(prompt, labels)
+	var picked: int = await io.choose(prompt, labels, subjects)
 	if picked < 0 or picked >= entries.size():
-		return default_index
+		return -1
 	return picked
 
 
@@ -88,11 +95,14 @@ func choose_action(entity_id: String, ao_index: int, session: RefCounted) -> Dic
 	_say(_board(entity_id, session))
 	var options: Array = _action_options(entity_id, session)
 	var labels: Array = []
+	var subjects: Array = []
 	for option in options:
 		labels.append(str(option["label"]))
+		subjects.append(option.get("subject", {}))
 	labels.append("Passa")
+	subjects.append({})
 	var choice: int = await _choose(
-		"%s, azione %d:" % [_name(entity_id, session), ao_index + 1], labels
+		"%s, azione %d:" % [_name(entity_id, session), ao_index + 1], labels, subjects
 	)
 	if choice < 0:
 		return fallback.choose_action(entity_id, ao_index, session)
@@ -125,6 +135,9 @@ func _action_options(entity_id: String, session: RefCounted) -> Array:
 			out.append({
 				"label": "Metti una presenza in %s" % _region(str(region_id), session),
 				"template": "MOVE", "params": request,
+				# The one choice that has a place on a map: a front-end that draws
+				# one can offer it there instead of as a line of text.
+				"subject": {"region": str(region_id)},
 			})
 
 	for tension_id in _sorted(session.world["tensions"].keys()):
