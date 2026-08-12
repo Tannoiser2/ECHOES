@@ -5,6 +5,46 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.5] — Le carte dicono cosa fanno
+
+Due buchi rimasti dalla 0.1, uguali fra loro: le regole davano qualcosa a chi
+gioca e il gioco se lo teneva.
+
+### Added
+
+- **Il recupero dopo una sconfitta adesso lo scegli tu.** Il §12.3 dice che
+  quando una proposta cade, chi si era opposto **si riprende una delle carte che
+  aveva messo giù**. Era l'unica decisione delle regole che nessun giocatore
+  veniva mai chiamato a prendere: la faceva la policy, prendendo la più forte.
+  Si chiede dove la chiedono le regole, cioè **prima del tiro** — «se la proposta
+  cade, quale carta ti riprendi?» — e solo quando c'è davvero da scegliere: chi
+  non si è opposto non recupera niente, una carta che per sua regola non torna
+  mai non viene offerta, e una carta sola non è una scelta.
+- **`scripts/core/asset_text.gd`** — una carta detta in una riga, la stessa per
+  il terminale e per il browser: il bonus nei termini in cui il resolver lo
+  applica (`+2 se ti opponi`, non `+2`), cosa succede alla carta dopo, e cosa
+  costa impegnarla. Ogni pezzo è costruito dai campi che la risoluzione legge
+  davvero, quindi una carta non può dire una cosa e farne un'altra.
+- **In Consiglio le carte da impegnare lo dicono**: «Interdetto — authority,
+  vale 3 · si scarta comunque · costa: la domanda in gioco sale». E nella mano,
+  fermando il cursore su una carta, compare tutto: cosa vale, cosa le succede,
+  cosa costa, e la riga che le ha scritto l'autore.
+
+### Fixed
+
+- **La mano si calcolava il valore da sola** — `forza se rilevante, 1 altrimenti`
+  — ignorando il `confluence_modifier`. I Mercenari (forza 1, +1 sempre) valgono
+  2 e la carta diceva 1. Adesso chiama `ConfluenceResolution.asset_value`, la
+  funzione del resolver: il numero sulla carta è il numero che entra nella
+  somma. È la seconda volta quest'anno che una mano mostra un valore che la
+  risoluzione non darebbe (D-040); è l'ultima possibile, perché non c'è più un
+  posto dove ricalcolarlo.
+- Il tooltip è disegnato invece che lasciato al default: quello di Godot non va
+  a capo, e una carta con una riga da 130 caratteri si dipingeva addosso alla
+  mano.
+
+---
+
 ## [0.1.4] — Il gioco spiega se stesso
 
 Fino a ieri si apriva la pagina, si sceglieva un seggio e ci si trovava davanti

@@ -174,6 +174,63 @@ func test_pressing_a_region_is_choosing_that_move() -> void:
 	)
 
 
+## §12.3's recovery is the last decision the rules give a player, and it was the
+## only one nobody was ever asked (D-042). It is asked before the roll - "what
+## would you save if this falls" - and only when there is something to save.
+func test_the_seat_that_opposed_chooses_what_it_keeps() -> void:
+	new_session(4242, false)
+	var decider: RefCounted = SeatDecider.new(["ENT_NAHR"], null)
+	var io := RecordingIo.new()
+	io.answer = 1
+	decider.io = io
+
+	var context: Dictionary = {
+		"stances": {"ENT_NAHR": {"stance": "OPPOSE"}},
+		"commits": {"ENT_NAHR": ["AST_BONDS_OATH", "AST_KNOWLEDGE_PROOF"]},
+	}
+	var recovery: Dictionary = await decider.choose_recovery(context, session)
+	assert_eq(io.labels.size(), 2, "le due carte recuperabili sono state offerte")
+	assert_eq(
+		str(recovery.get("ENT_NAHR", "")), "AST_KNOWLEDGE_PROOF",
+		"e torna quella scelta, non la piu forte"
+	)
+
+
+## A card whose own rule says it never comes back is not offered: a choice the
+## resolver is about to ignore is worse than no choice.
+func test_a_card_that_never_comes_back_is_not_offered() -> void:
+	new_session(4242, false)
+	var decider: RefCounted = SeatDecider.new(["ENT_NAHR"], null)
+	var io := RecordingIo.new()
+	decider.io = io
+
+	var context: Dictionary = {
+		"stances": {"ENT_NAHR": {"stance": "OPPOSE"}},
+		# La Banda Armata e ALWAYS_DISCARD: resta una sola carta recuperabile,
+		# e una sola carta non e una scelta.
+		"commits": {"ENT_NAHR": ["AST_FORCE_WARBAND", "AST_BONDS_OATH"]},
+	}
+	var recovery: Dictionary = await decider.choose_recovery(context, session)
+	assert_true(io.labels.is_empty(), "senza alternative non si chiede niente")
+	assert_true(recovery.is_empty(), "e la scelta resta al motore")
+
+
+## And a seat that did not oppose has no recovery to name at all.
+func test_a_seat_that_did_not_oppose_is_not_asked() -> void:
+	new_session(4242, false)
+	var decider: RefCounted = SeatDecider.new(["ENT_NAHR"], null)
+	var io := RecordingIo.new()
+	decider.io = io
+
+	var context: Dictionary = {
+		"stances": {"ENT_NAHR": {"stance": "SUPPORT"}},
+		"commits": {"ENT_NAHR": ["AST_BONDS_OATH", "AST_KNOWLEDGE_PROOF"]},
+	}
+	var recovery: Dictionary = await decider.choose_recovery(context, session)
+	assert_true(io.labels.is_empty(), "chi ha sostenuto non recupera niente")
+	assert_true(recovery.is_empty(), "e non compare nella mappa dei recuperi")
+
+
 ## A seat nobody is playing is never asked anything, whatever the decider is
 ## told: one person at the table must not stop the other three from moving.
 func test_a_seat_nobody_plays_is_left_to_the_policy() -> void:

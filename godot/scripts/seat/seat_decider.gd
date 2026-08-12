@@ -29,6 +29,7 @@ extends RefCounted
 ## uses `const X := preload(...)` and no `class_name`, and the rule holds here.
 
 const PolicyDecider := preload("res://scripts/seat/policy_decider.gd")
+const AssetText := preload("res://scripts/core/asset_text.gd")
 
 ## Entity ids a person is playing.
 var humans: Dictionary = {}
@@ -255,6 +256,7 @@ func choose_commit(entity_id: String, context: Dictionary, limit: int, session: 
 	)
 	if ranked.is_empty():
 		return []
+	var relevant: Array = session.service.relevant_families(str(context["tension_id"]))
 
 	var chosen: Array = []
 	while chosen.size() < limit:
@@ -265,8 +267,13 @@ func choose_commit(entity_id: String, context: Dictionary, limit: int, session: 
 				continue
 			var asset: Dictionary = session.data.assets[str(asset_id)]
 			remaining.append(asset_id)
-			labels.append("%s (%s, forza %d)" % [
-				str(asset["title"]), str(asset["family"]), int(asset["strength"]),
+			# What it is worth *here*, and what it does on the way out. Choosing
+			# what to put down without either is choosing blind, and a quarter of
+			# the library now does something to the world when committed (D-042).
+			labels.append("%s — %s, vale %d\n%s" % [
+				str(asset["title"]), str(asset["family"]).to_lower(),
+				AssetText.value_on(asset, relevant),
+				AssetText.note(asset),
 			])
 		if remaining.is_empty():
 			break
@@ -284,8 +291,45 @@ func choose_commit(entity_id: String, context: Dictionary, limit: int, session: 
 	return chosen
 
 
+## §12.3: if the proposal falls, whoever opposed it keeps **one** of the cards
+## they put down. This is the last decision the rules give a player, and until
+## 0.1.5 it was the only one nobody was ever asked - the engine picked the
+## strongest recoverable card and moved on.
+##
+## It is asked *before* the roll, because that is when the rules ask it: the
+## controller collects the recovery alongside the commits and only uses it if
+## the Council actually falls. So the question is a real one - you are naming
+## what you would save from a defeat that has not happened yet.
+##
+## Asked only when there is something to decide: a seat that did not oppose has
+## no recovery, and one card left standing is not a choice.
 func choose_recovery(context: Dictionary, session: RefCounted) -> Dictionary:
-	return fallback.choose_recovery(context, session)
+	var recovery: Dictionary = fallback.choose_recovery(context, session)
+	for entity_id in humans:
+		var seat: String = str(entity_id)
+		var stance: Dictionary = (context.get("stances", {}) as Dictionary).get(seat, {})
+		if str(stance.get("stance", "")) != "OPPOSE":
+			continue
+		var options: Array = []
+		var labels: Array = []
+		for asset_id in (context.get("commits", {}) as Dictionary).get(seat, []):
+			var asset: Variant = session.data.assets.get(str(asset_id))
+			# ALWAYS_DISCARD never comes back, whoever wins: offering it would be
+			# offering a choice the resolver is about to ignore.
+			if asset == null or str(asset["discard_or_retain_rule"]) == "ALWAYS_DISCARD":
+				continue
+			options.append(str(asset_id))
+			labels.append("%s — %s, forza %d" % [
+				str(asset["title"]), str(asset["family"]).to_lower(), int(asset["strength"]),
+			])
+		if options.size() < 2:
+			continue
+		var choice: int = await _choose(
+			"  %s, se la proposta cade quale carta ti riprendi?" % _name(seat, session), labels
+		)
+		if choice >= 0:
+			recovery[seat] = str(options[choice])
+	return recovery
 
 
 # --- what a player needs to see --------------------------------------------

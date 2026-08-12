@@ -18,7 +18,9 @@ func say(text: String) -> void:
 ## list is already the whole map a terminal has.
 func choose(prompt: String, labels: Array, _subjects: Array = []) -> int:
 	for i in range(labels.size()):
-		print("   %2d) %s" % [i + 1, str(labels[i])])
+		# A label may carry a second line - what a card does, under what it is
+		# worth. Indented to the text, or the numbered list stops looking like one.
+		print("   %2d) %s" % [i + 1, str(labels[i]).replace("\n", "\n       ")])
 	printraw("%s [invio = lascia decidere alla policy] " % prompt)
 	var answer: String = OS.read_string_from_stdin(1024).strip_edges()
 	if answer == "" or not answer.is_valid_int():

@@ -331,6 +331,66 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-042 — A card that says what it does, and the last decision nobody was asked
+**implemented in 0.1.5**
+
+Two holes left over from 0.1, both of the same kind: the rules gave a player
+something and the game kept it.
+
+### The recovery
+
+§12.3: when a proposal falls, whoever opposed it **keeps one of the cards they
+put down**. `SeatDecider.choose_recovery` handed that straight to the policy,
+which took the strongest recoverable card. It was the only decision in the rules
+that a person playing the game was never offered - at the terminal and in the
+browser alike.
+
+It is asked where the rules ask it: *before* the roll, alongside the commits,
+because the controller collects the recovery and only uses it if the Council
+falls. So the question is a real one - you name what you would save from a
+defeat that has not happened yet - and it is asked only when there is something
+to decide. A seat that did not oppose has no recovery; a card whose own rule
+says it never comes back is not offered, because a choice the resolver is about
+to ignore is worse than no choice; and one card left standing is not a choice
+either.
+
+### The card
+
+A hand card carried a title, a family and a number. With the 0.1.3 library that
+is not enough to choose with: a quarter of the cards do something to the world
+when committed, and "si scarta comunque" is the difference between spending a
+card and lending it.
+
+`scripts/core/asset_text.gd` turns an Asset into a sentence, once, for both
+front-ends: the bonus in the terms the resolver applies it (`+2 se ti opponi`,
+not `+2`), what becomes of the card, and what committing it costs. Every line is
+built from the fields the resolution actually reads, so a card cannot say one
+thing and do another - guarded by `test_asset_text.gd`, which checks the printed
+value against `ConfluenceResolution.asset_value` for every card in the library,
+in and out of theme.
+
+The terminal prints it under each commit option. The browser puts it in the
+card's tooltip and, in a Council, on the commit cards themselves:
+
+> Interdetto — authority, vale 3
+> si scarta comunque · costa: la domanda in gioco sale
+
+### A bug the same code found
+
+The hand computed its own value - `strength if relevant else 1` - which ignored
+`confluence_modifier`. Mercenari (forza 1, +1 sempre) is worth 2 and the card
+said 1. It now calls `ConfluenceResolution.asset_value`, the resolver's own
+function, so the number on the card is the number that enters the sum. This is
+the second time this year a hand has shown a value the resolution would not give
+(D-040); it is the last time it can, because it is no longer possible to compute
+it separately.
+
+The tooltip is drawn rather than defaulted (`_make_custom_tooltip`): Godot's
+default one does not wrap, and a card whose authored line runs to 130 characters
+painted itself straight across the hand below it.
+
+---
+
 ## D-041 — The rules are on the screen where the game is
 **implemented in 0.1.4**
 

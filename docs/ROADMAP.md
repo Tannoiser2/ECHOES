@@ -26,7 +26,8 @@ Ordine di lavoro (§25, punti 11–16):
 12. ✅ `HotseatController` e Confluence Board — 0.0.14 / 0.1.1 (D-037, D-038)
 13. ✅ Contenuto completo §19.4 con validazione — 0.1.3, le 48 carte Asset (D-040)
 14. Developer Dashboard
-15. `CardView`, Export Preview, placeholder migliorati
+15. ✅ `CardView` — 0.1.5, la carta dice cosa fa (D-042) · Export Preview e
+    placeholder migliorati restano
 16. Issue list / roadmap GitHub-ready finale
 
 Il motore è già pronto a riceverli: `ChronicleController` chiede ogni decisione a
@@ -35,12 +36,11 @@ quello scriptato che usa la CLI oggi. Nessuna regola va riscritta.
 
 Da chiudere in 0.1 e già noto:
 
-- il `choose_recovery` non viene mai chiesto a chi gioca: su un Consiglio fallito
-  chi si era opposto tiene **una carta a scelta** (§12.3) e quella scelta la fa
-  ancora la policy, al terminale come nel browser
-- una carta non dice cosa fa: `HandView` mostra titolo, famiglia e valore, non
-  `on_commit_effects` né la regola di scarto — è il `CardView` del punto 15, e
-  con le carte da 3 della 0.1.3 serve davvero
+- il salvataggio esiste (`SaveManager`, testato) ma la UI non lo chiama: nel
+  browser non si può riprendere una Chronicle lasciata a metà, né scegliere il
+  seme, né giocare CHR_02
+- le relazioni fra Entità si leggono solo dentro l'etichetta di un bottone
+  («Rompi i rapporti con Lyra (ora NEUTRAL)»), e i Destini le guardano
 - `promise_kept` / `promise_broken` sono implementati ma nessun Destiny di 0.0 li
   usa
 - il set completo dei Destiny a più di 2 condizioni per livello
