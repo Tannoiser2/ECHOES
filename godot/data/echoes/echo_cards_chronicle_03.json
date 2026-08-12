@@ -45,7 +45,7 @@
         }
       ],
       "forces_confluence_on": null,
-      "art_prompt_key": "echo.pressure.lack"
+      "art_prompt_key": "echo.pressure.silt"
     },
     {
       "id": "ECH_CALL_OF_ACCOUNTS",
@@ -90,7 +90,7 @@
         }
       ],
       "forces_confluence_on": null,
-      "art_prompt_key": "echo.pressure.request"
+      "art_prompt_key": "echo.pressure.call_of_accounts"
     },
     {
       "id": "ECH_VIGIL_MOVED",
@@ -122,7 +122,7 @@
         }
       ],
       "forces_confluence_on": null,
-      "art_prompt_key": "echo.pressure.omen"
+      "art_prompt_key": "echo.pressure.vigil_moved"
     },
     {
       "id": "ECH_TWO_VERDICTS",
@@ -167,7 +167,7 @@
         }
       ],
       "forces_confluence_on": null,
-      "art_prompt_key": "echo.rupture.violation"
+      "art_prompt_key": "echo.rupture.two_verdicts"
     },
     {
       "id": "ECH_THE_CRACK",
@@ -212,7 +212,7 @@
         }
       ],
       "forces_confluence_on": null,
-      "art_prompt_key": "echo.rupture.threat"
+      "art_prompt_key": "echo.rupture.the_crack"
     },
     {
       "id": "ECH_THE_FIRES_OUTSIDE",
@@ -257,7 +257,7 @@
         }
       ],
       "forces_confluence_on": null,
-      "art_prompt_key": "echo.rupture.separation"
+      "art_prompt_key": "echo.rupture.the_fires_outside"
     },
     {
       "id": "ECH_THE_COPY",
@@ -302,7 +302,7 @@
         }
       ],
       "forces_confluence_on": null,
-      "art_prompt_key": "echo.turn.discovery"
+      "art_prompt_key": "echo.turn.the_copy"
     },
     {
       "id": "ECH_THE_SHORT_YEAR",
@@ -347,7 +347,7 @@
         }
       ],
       "forces_confluence_on": null,
-      "art_prompt_key": "echo.turn.transformation"
+      "art_prompt_key": "echo.turn.the_short_year"
     },
     {
       "id": "ECH_THE_LONG_TABLE",
@@ -392,7 +392,7 @@
         }
       ],
       "forces_confluence_on": null,
-      "art_prompt_key": "echo.resolution.reconciliation"
+      "art_prompt_key": "echo.resolution.the_long_table"
     },
     {
       "id": "ECH_THE_DUG_SEASON",
@@ -437,7 +437,7 @@
         }
       ],
       "forces_confluence_on": null,
-      "art_prompt_key": "echo.resolution.gift"
+      "art_prompt_key": "echo.resolution.the_dug_season"
     },
     {
       "id": "ECH_WRITTEN_DOWN",
@@ -482,7 +482,7 @@
         }
       ],
       "forces_confluence_on": null,
-      "art_prompt_key": "echo.resolution.liberation"
+      "art_prompt_key": "echo.resolution.written_down"
     },
     {
       "id": "ECH_THE_QUIET_SHAFT",
@@ -527,7 +527,7 @@
         }
       ],
       "forces_confluence_on": null,
-      "art_prompt_key": "echo.turn.return"
+      "art_prompt_key": "echo.turn.the_quiet_shaft"
     }
   ]
 }

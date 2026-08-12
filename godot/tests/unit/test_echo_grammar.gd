@@ -141,6 +141,24 @@ func _is_second_saga(card: Dictionary) -> bool:
 	return false
 
 
+## Two different cards must not ask for the same drawing (D-049).
+##
+## The second saga's twelve cards were generated with the key built from family
+## and function - `echo.pressure.request` - which is exactly the key the first
+## saga's Supplica already had. Nine of the twelve collided, and nothing noticed:
+## the manifest lists whatever it is given. An art key is an order to somebody,
+## and two cards sharing one is two cards that come back as the same picture.
+func test_no_two_cards_ask_for_the_same_drawing() -> void:
+	var seen: Dictionary = {}
+	for card in data().echo_cards.values():
+		var key: String = str(card["art_prompt_key"])
+		assert_false(
+			seen.has(key),
+			"%s e %s chiedono lo stesso disegno: '%s'" % [str(seen.get(key, "")), str(card["id"]), key]
+		)
+		seen[key] = str(card["id"])
+
+
 ## `any_of` is what lets Propp's alternatives be written down: a Return follows a
 ## Separation *or* a Prohibition. Every other condition list in the data is an AND.
 func test_any_of_holds_when_one_branch_does() -> void:
