@@ -379,7 +379,7 @@ func _destiny_line(entity_id: String, session: RefCounted) -> String:
 	var definition: Variant = session.data.entities.get(entity_id)
 	if definition == null:
 		return ""
-	var destiny: Variant = session.data.destinies.get(str(definition["destiny_id"]))
+	var destiny: Variant = session.data.destinies.get(session.service.destiny_of(entity_id))
 	if destiny == null:
 		return ""
 	var rungs: Array = []
@@ -398,7 +398,7 @@ func _tension_reading(tension_id: String, viewer_id: String, session: RefCounted
 
 func _name(entity_id: String, session: RefCounted) -> String:
 	var entity: Variant = session.data.entities.get(entity_id)
-	return entity_id if entity == null else str(entity["name"])
+	return entity_id if entity == null else str(session.service.name_of(entity_id))
 
 
 func _region(region_id: String, session: RefCounted) -> String:

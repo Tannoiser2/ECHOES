@@ -205,7 +205,7 @@ func _controller_name(region_id: String) -> String:
 
 func _entity_name(entity_id: String) -> String:
 	var entity: Variant = data.entities.get(entity_id)
-	return entity_id if entity == null else str(entity["name"])
+	return entity_id if entity == null else service.name_of(entity_id)
 
 
 func _tension_name(tension_id: String) -> String:

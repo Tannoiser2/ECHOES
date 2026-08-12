@@ -87,10 +87,9 @@ func _opening(session: RefCounted, data: RefCounted, humans: Array, seed_value: 
 	print("=========================================================")
 	print("")
 	for entity_id in SEATS:
-		var entity: Dictionary = data.entities[str(entity_id)]
-		var destiny: Dictionary = data.destinies[str(entity["destiny_id"])]
+		var destiny: Dictionary = data.destinies[session.service.destiny_of(str(entity_id))]
 		print("  %-14s %-34s %s" % [
-			str(entity["name"]), str(destiny["title"]),
+			session.service.name_of(str(entity_id)), str(destiny["title"]),
 			"<- tu" if humans.has(str(entity_id)) else "(policy)",
 		])
 	print("")
@@ -105,7 +104,7 @@ func _closing(session: RefCounted, data: RefCounted, report: Dictionary) -> void
 	for entity_id in SEATS:
 		var entry: Dictionary = report["destiny_results"][str(entity_id)]
 		print("  %-14s %-10s %s" % [
-			str(data.entities[str(entity_id)]["name"]),
+			session.service.name_of(str(entity_id)),
 			str(entry["level"]), str(entry.get("label", "")),
 		])
 	if not (session.world["truth_log"] as Array).is_empty():

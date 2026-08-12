@@ -120,7 +120,7 @@ func _draw(session: RefCounted, council: Dictionary) -> void:
 	var template: Dictionary = session.data.confluence_templates[str(council["template_id"])]
 	_header.text = "%s — %s propone" % [
 		str(session.data.tensions[str(council["tension_id"])]["title"]),
-		str(session.data.entities[str(council["proponent"])]["name"]),
+		session.service.name_of(str(council["proponent"])),
 	]
 	_question.text = _fill(session, council, _question_text(template, str(council["question_id"])))
 	_proposition.text = ""
@@ -173,7 +173,7 @@ func _render_stances(session: RefCounted, current: Dictionary) -> void:
 		_stances.add_child(row)
 
 		var who := Label.new()
-		who.text = str(session.data.entities[entity_id]["name"])
+		who.text = session.service.name_of(entity_id)
 		who.custom_minimum_size = Vector2(120, 0)
 		who.add_theme_font_size_override("font_size", 13)
 		who.add_theme_color_override("font_color", Color("#c9bfae"))

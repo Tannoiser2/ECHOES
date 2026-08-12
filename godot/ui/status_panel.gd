@@ -128,7 +128,7 @@ func _update_relations(session: RefCounted, viewer_id: String) -> void:
 		_relations.add_child(row)
 
 		var name := Label.new()
-		name.text = str(session.data.entities[other]["name"])
+		name.text = session.service.name_of(other)
 		name.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		name.add_theme_font_size_override("font_size", 12)
 		name.add_theme_color_override("font_color", Color("#c9bfae"))
@@ -169,7 +169,7 @@ func _update_destiny(session: RefCounted, viewer_id: String) -> void:
 	var entity: Variant = session.data.entities.get(viewer_id)
 	if entity == null:
 		return
-	var destiny: Variant = session.data.destinies.get(str(entity["destiny_id"]))
+	var destiny: Variant = session.data.destinies.get(session.service.destiny_of(viewer_id))
 	if destiny == null:
 		return
 	for level in ["minimum", "victory", "triumph"]:

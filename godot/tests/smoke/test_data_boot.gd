@@ -26,7 +26,9 @@ func test_reduced_content_matches_the_milestone() -> void:
 	assert_eq(loaded.consequences.size(), 32, "32 Conseguenze (§18.2 ne chiedeva 8; vedi D-022, D-024)")
 	assert_eq(loaded.chronicles.size(), 2, "CHR_01 scritta a mano, CHR_02 assemblata dalla biblioteca")
 	assert_eq(loaded.entities.size(), 4, "4 Entita")
-	assert_eq(loaded.destinies.size(), 4, "4 Destiny")
+	# Due per seggio: quello con cui comincia, e quello che vuole dopo averlo
+	# ottenuto. Chi fallisce riprova con lo stesso (D-045).
+	assert_eq(loaded.destinies.size(), 8, "8 Destiny: due per ogni seggio")
 	assert_eq(loaded.actions.size(), 6, "i sei template di azione")
 
 

@@ -50,7 +50,7 @@ func _destiny(entity_id: String, session: RefCounted) -> Dictionary:
 	var definition: Variant = session.data.entities.get(entity_id)
 	if definition == null:
 		return {}
-	var destiny: Variant = session.data.destinies.get(str(definition["destiny_id"]))
+	var destiny: Variant = session.data.destinies.get(session.service.destiny_of(entity_id))
 	return {} if destiny == null else destiny
 
 

@@ -5,6 +5,63 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.8] — Fra una Chronicle e l'altra passano secoli
+
+Un audit di dieci Chronicle ha prodotto un registro di 28 Verità con **12 frasi
+diverse**, e la più frequente era *«la corona fu divisa in due»* — **sei volte in
+dieci anni**. Una corona non si divide sei volte. Succedeva perché il motore
+aggiungeva un anno e rimetteva a sedere le stesse quattro persone con la stessa
+domanda ancora aperta.
+
+### L'id è il seggio, non la persona
+
+`ENT_ALDRIC` è la casa che tiene Eredan. **Chi siede sulla sedia** — nome,
+Destino, generazione — è stato del mondo e cambia da una Chronicle all'altra.
+Tenere fermo l'id è ciò che permette a ogni Cicatrice, tag e controllo scritti
+prima di continuare a puntare a qualcosa che esiste ancora.
+
+Chi sopravvive a un salto è scritto nei dati: `persistence` è **MORTAL** (una
+persona), **COLLECTIVE** (un popolo, che cambia senza finire) o **ETERNAL**
+(qualcosa sotto una montagna). Un seggio mortale che attraversa 25 anni o più
+prende un nome nuovo dalla propria lista di successori — Re Serane, Re Corvin,
+Regina Isaura, Mira la Cartografa.
+
+### Il salto lo dichiara la Chronicle
+
+`years_after_previous`: un numero, o un intervallo pescato dal seme. `CHR_01` è
+l'anno scritto e dice 1. `CHR_02`, quella che si pesca le domande da sola, dice
+**20-200**: una saga di Chronicle di biblioteca copre secoli, e li copre in modo
+riproducibile.
+
+### Le tre eredità, ognuna con la sua condizione
+
+- **La posizione, sempre.** La mappa è il mondo e il mondo non riparte da capo.
+- **I rapporti, ma il tempo li smussa.** Oltre i 50 anni ogni rapporto si sposta
+  di un passo verso NEUTRAL: una guerra si ricorda come un rancore, un'alleanza
+  come una cortesia. I tag restano comunque: quelli erano scritti.
+- **Il Destino, ma solo di chi ha fallito.** Chi ha raggiunto VICTORY o TRIUMPH
+  pesca la cosa dopo dal proprio `destiny_pool`; chi è rimasto al MINIMUM
+  riprova con lo stesso obiettivo. È questa la regola che tiene viva una domanda
+  attraverso le generazioni invece che attraverso le primavere.
+
+Otto Destini adesso, due per seggio: quello con cui comincia e quello che vuole
+dopo averlo ottenuto.
+
+### Misurato, sugli stessi dieci semi
+
+| | prima | dopo |
+|---|---|---|
+| anni coperti | 812 → 821 | 812 → **1767** |
+| frasi distinte nel registro | 12 su 28 | **19 su 24** |
+| la frase più ripetuta | **6 volte** | 3 volte |
+| persone sedute al tavolo | 4 | **12** |
+
+I tre piani di simulazione escono **riga per riga identici**: una Chronicle sola
+non ha nessun salto da fare. Quello che è cambiato è `world.entities`, che ora
+porta nome, Destino e generazione.
+
+---
+
 ## [0.1.7] — Le carte di Propp esistono anche sullo schermo
 
 C'erano due mazzi e se ne vedeva uno solo. Le 48 carte Asset sono tue: le peschi,

@@ -331,6 +331,73 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-045 — Fra una Chronicle e l'altra passano secoli, e il tavolo cambia
+**implemented in 0.1.8**
+
+A ten-Chronicle audit produced a register of 28 Truths containing **12 distinct
+sentences**, and the most frequent was *"la corona fu divisa in due, e di Eredan
+nessuno seppe piu dire a chi rispondesse"* - **six times in ten years**. A crown
+does not divide six times. It happened because `inherit_from` added exactly one
+year and sat the same four people back down with the same unfinished question.
+
+### The id is the seat, not the person
+
+`ENT_ALDRIC` is the house that holds Eredan. Who is sitting in the chair is
+`world.entities` state - name, Destiny, generation - and it changes between
+Chronicles. Keeping the id fixed is what lets every Scar, tag, control marker
+and relation the previous Chronicle wrote go on pointing at something that still
+exists. Everything that shows a name now asks `service.name_of()`; the data file
+holds the founder's name and nothing else.
+
+Who survives a jump is authored, not guessed: `persistence` is MORTAL (a person),
+COLLECTIVE (a people, which changes without ending) or ETERNAL (a thing under a
+mountain). A MORTAL seat crosses 25 years or more with a new name from its own
+`successors` list.
+
+### The jump is declared by the Chronicle
+
+`years_after_previous`: an integer, or a `{min, max}` drawn with the seeded RNG.
+`CHR_01` is the written year and says 1. `CHR_02` - the library Chronicle that
+deals its own questions (D-028) - says 20 to 200, so a saga of library
+Chronicles covers centuries and does it reproducibly.
+
+### The three inheritances, each with its own condition
+
+The question was whether a successor inherits the position, the relations, or
+the Destiny. The answer is all three - **but if all three carried
+unconditionally we would be back to the crown dividing every other spring**. So:
+
+- **La posizione, sempre.** The map is the world and the world does not restart.
+- **I rapporti, ma il tempo li smussa.** Across a jump of 50 years or more every
+  relation moves one step towards NEUTRAL: a war is remembered as a grudge, an
+  alliance as a courtesy. The tags stay whatever happens, because those are the
+  things that were written down.
+- **Il Destino, ma solo di chi ha fallito.** A seat that reached VICTORY or
+  TRIUMPH draws the next thing it wants from its own `destiny_pool`; a seat that
+  came out at MINIMUM tries again with the same goal. That is what keeps a
+  question alive across generations instead of across springs - and it is the
+  one that fixed the audit.
+
+Eight Destinies now, two per seat: what it starts with, and what it wants once
+it has that.
+
+### Measured, on the same ten seeds
+
+| | prima | dopo |
+|---|---|---|
+| anni coperti | 812 → 821 | 812 → **1767** |
+| frasi distinte nel registro | 12 su 28 | **19 su 24** |
+| la frase piu ripetuta | **6 volte** | 3 volte |
+| persone che si sono sedute al tavolo | 4 | **12** |
+
+The three sim plans come out **line for line identical** - the same Councils,
+the same rolls, the same endings - because a single Chronicle does not have a
+jump to make. What changed is `world.entities`, which now carries a name, a
+Destiny and a generation, so the saved JSON of a Chronicle is three fields
+larger than it was.
+
+---
+
 ## D-044 — Propp was in the deck and nowhere on the screen
 **implemented in 0.1.7**
 

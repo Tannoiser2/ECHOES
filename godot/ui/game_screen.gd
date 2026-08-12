@@ -585,6 +585,6 @@ func _ending(data: RefCounted, report: Dictionary) -> void:
 	for entity_id in SEATS:
 		var entry: Dictionary = report["destiny_results"][str(entity_id)]
 		say("  %s — [b]%s[/b] %s" % [
-			str(data.entities[str(entity_id)]["name"]),
+			_session.service.name_of(str(entity_id)) if _session != null else str(data.entities[str(entity_id)]["name"]),
 			str(entry["level"]), str(entry.get("label", "")),
 		])

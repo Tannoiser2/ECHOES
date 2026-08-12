@@ -8,20 +8,70 @@
       "archetype": "SOVEREIGN",
       "need": "POWER",
       "description": "Terzo della sua casa, primo a regnare su un raccolto che non basta. Sa che il trono e una promessa di pane con un altro nome.",
-      "action_values": { "ACQUIRE": 3, "MOVE": 2, "INFLUENCE": 4, "FORGE": 2, "SCHEME": 1, "CLAIM": 4 },
-      "starting_assets": ["AST_AUTHORITY_CROWN_RIGHT", "AST_FORCE_LEVY"],
-      "relations": [
-        { "with": "ENT_NAHR", "level": "HOSTILE", "tags": [] },
-        { "with": "ENT_LYRA", "level": "NEUTRAL", "tags": [] },
-        { "with": "ENT_VAERAX", "level": "NEUTRAL", "tags": [] }
+      "action_values": {
+        "ACQUIRE": 3,
+        "MOVE": 2,
+        "INFLUENCE": 4,
+        "FORGE": 2,
+        "SCHEME": 1,
+        "CLAIM": 4
+      },
+      "starting_assets": [
+        "AST_AUTHORITY_CROWN_RIGHT",
+        "AST_FORCE_LEVY"
       ],
-      "presence": ["REG_EREDAN", "REG_VALLE_VERDE"],
+      "relations": [
+        {
+          "with": "ENT_NAHR",
+          "level": "HOSTILE",
+          "tags": []
+        },
+        {
+          "with": "ENT_LYRA",
+          "level": "NEUTRAL",
+          "tags": []
+        },
+        {
+          "with": "ENT_VAERAX",
+          "level": "NEUTRAL",
+          "tags": []
+        }
+      ],
+      "presence": [
+        "REG_EREDAN",
+        "REG_VALLE_VERDE"
+      ],
       "destiny_id": "DST_ALDRIC",
       "private_information": "Le riserve del palazzo bastano per un inverno. Non per due.",
-      "tags": ["crowned"],
+      "tags": [
+        "crowned"
+      ],
       "active": true,
       "art_prompt_key": "entity.aldric",
-      "marker_id": "MK_ENT_ALDRIC"
+      "marker_id": "MK_ENT_ALDRIC",
+      "persistence": "MORTAL",
+      "successors": [
+        {
+          "name": "Re Serane",
+          "description": "Nipote di Aldric. Ha ereditato un trono e un registro di cose non decise."
+        },
+        {
+          "name": "Re Corvin",
+          "description": "Sali al trono con un atto e non con un nome, e non lo lascio dimenticare a nessuno."
+        },
+        {
+          "name": "Regina Isaura",
+          "description": "La prima della casa a contare i granai prima delle spade."
+        },
+        {
+          "name": "Re Aldric IV",
+          "description": "Porta il nome del primo. Nella Valle dicono che sia l'unica cosa che hanno in comune."
+        }
+      ],
+      "destiny_pool": [
+        "DST_ALDRIC",
+        "DST_ALDRIC_RECORD"
+      ]
     },
     {
       "id": "ENT_NAHR",
@@ -29,20 +79,52 @@
       "archetype": "PEOPLE",
       "need": "SURVIVAL",
       "description": "Non un esercito e non una folla: una lingua, un calendario e undicimila persone che si spostano quando la terra smette di rispondere.",
-      "action_values": { "ACQUIRE": 3, "MOVE": 4, "INFLUENCE": 3, "FORGE": 3, "SCHEME": 1, "CLAIM": 1 },
-      "starting_assets": ["AST_PEOPLE_MOBILIZATION", "AST_BONDS_FAVOR"],
-      "relations": [
-        { "with": "ENT_ALDRIC", "level": "HOSTILE", "tags": [] },
-        { "with": "ENT_LYRA", "level": "NEUTRAL", "tags": [] },
-        { "with": "ENT_VAERAX", "level": "NEUTRAL", "tags": [] }
+      "action_values": {
+        "ACQUIRE": 3,
+        "MOVE": 4,
+        "INFLUENCE": 3,
+        "FORGE": 3,
+        "SCHEME": 1,
+        "CLAIM": 1
+      },
+      "starting_assets": [
+        "AST_PEOPLE_MOBILIZATION",
+        "AST_BONDS_FAVOR"
       ],
-      "presence": ["REG_TERRE_NAHR", "REG_VALLE_VERDE"],
+      "relations": [
+        {
+          "with": "ENT_ALDRIC",
+          "level": "HOSTILE",
+          "tags": []
+        },
+        {
+          "with": "ENT_LYRA",
+          "level": "NEUTRAL",
+          "tags": []
+        },
+        {
+          "with": "ENT_VAERAX",
+          "level": "NEUTRAL",
+          "tags": []
+        }
+      ],
+      "presence": [
+        "REG_TERRE_NAHR",
+        "REG_VALLE_VERDE"
+      ],
       "destiny_id": "DST_NAHR",
       "private_information": "I pascoli orientali sono gia perduti. Nessuno fuori dal popolo lo sa ancora.",
-      "tags": ["migrating"],
+      "tags": [
+        "migrating"
+      ],
       "active": true,
       "art_prompt_key": "entity.nahr",
-      "marker_id": "MK_ENT_NAHR"
+      "marker_id": "MK_ENT_NAHR",
+      "persistence": "COLLECTIVE",
+      "destiny_pool": [
+        "DST_NAHR",
+        "DST_NAHR_ROOTED"
+      ]
     },
     {
       "id": "ENT_LYRA",
@@ -50,20 +132,70 @@
       "archetype": "INDIVIDUAL",
       "need": "KNOWLEDGE",
       "description": "Studiosa senza patrono. E' scesa nelle Miniere Antiche per misurare una pietra e ne e risalita con una domanda.",
-      "action_values": { "ACQUIRE": 3, "MOVE": 2, "INFLUENCE": 2, "FORGE": 2, "SCHEME": 5, "CLAIM": 1 },
-      "starting_assets": ["AST_KNOWLEDGE_PROOF", "AST_WEALTH_GRAIN"],
-      "relations": [
-        { "with": "ENT_ALDRIC", "level": "NEUTRAL", "tags": [] },
-        { "with": "ENT_NAHR", "level": "NEUTRAL", "tags": [] },
-        { "with": "ENT_VAERAX", "level": "HOSTILE", "tags": [] }
+      "action_values": {
+        "ACQUIRE": 3,
+        "MOVE": 2,
+        "INFLUENCE": 2,
+        "FORGE": 2,
+        "SCHEME": 5,
+        "CLAIM": 1
+      },
+      "starting_assets": [
+        "AST_KNOWLEDGE_PROOF",
+        "AST_WEALTH_GRAIN"
       ],
-      "presence": ["REG_MINIERE_ANTICHE", "REG_EREDAN"],
+      "relations": [
+        {
+          "with": "ENT_ALDRIC",
+          "level": "NEUTRAL",
+          "tags": []
+        },
+        {
+          "with": "ENT_NAHR",
+          "level": "NEUTRAL",
+          "tags": []
+        },
+        {
+          "with": "ENT_VAERAX",
+          "level": "HOSTILE",
+          "tags": []
+        }
+      ],
+      "presence": [
+        "REG_MINIERE_ANTICHE",
+        "REG_EREDAN"
+      ],
       "destiny_id": "DST_LYRA",
       "private_information": "Il Cristallo Rosso pesa meno di quanto dovrebbe. Ogni giorno un poco meno.",
-      "tags": ["scholar"],
+      "tags": [
+        "scholar"
+      ],
       "active": true,
       "art_prompt_key": "entity.lyra",
-      "marker_id": "MK_ENT_LYRA"
+      "marker_id": "MK_ENT_LYRA",
+      "persistence": "MORTAL",
+      "successors": [
+        {
+          "name": "Teren di Lyra",
+          "description": "Studio le carte di Lyra prima di conoscere il suo nome."
+        },
+        {
+          "name": "Mira la Cartografa",
+          "description": "Non cerca cosa dorme sotto la pietra: cerca chi ci ha gia guardato."
+        },
+        {
+          "name": "Corin il Verificatore",
+          "description": "Rifa ogni misura dall'inizio. Non si fida nemmeno dei suoi maestri."
+        },
+        {
+          "name": "Sela di Eredan",
+          "description": "La prima a insegnare fuori dalle gallerie."
+        }
+      ],
+      "destiny_pool": [
+        "DST_LYRA",
+        "DST_LYRA_TAUGHT"
+      ]
     },
     {
       "id": "ENT_VAERAX",
@@ -71,20 +203,53 @@
       "archetype": "CREATURE",
       "need": "PROTECTION",
       "description": "Dorme sotto le Montagne Rosse da prima che Eredan avesse un nome. Si sveglia raramente, e mai per una ragione piccola.",
-      "action_values": { "ACQUIRE": 2, "MOVE": 2, "INFLUENCE": 4, "FORGE": 1, "SCHEME": 4, "CLAIM": 1 },
-      "starting_assets": ["AST_BONDS_OATH", "AST_KNOWLEDGE_RUMOR"],
-      "relations": [
-        { "with": "ENT_ALDRIC", "level": "NEUTRAL", "tags": [] },
-        { "with": "ENT_NAHR", "level": "NEUTRAL", "tags": [] },
-        { "with": "ENT_LYRA", "level": "HOSTILE", "tags": [] }
+      "action_values": {
+        "ACQUIRE": 2,
+        "MOVE": 2,
+        "INFLUENCE": 4,
+        "FORGE": 1,
+        "SCHEME": 4,
+        "CLAIM": 1
+      },
+      "starting_assets": [
+        "AST_BONDS_OATH",
+        "AST_KNOWLEDGE_RUMOR"
       ],
-      "presence": ["REG_MONTAGNE_ROSSE", "REG_MINIERE_ANTICHE"],
+      "relations": [
+        {
+          "with": "ENT_ALDRIC",
+          "level": "NEUTRAL",
+          "tags": []
+        },
+        {
+          "with": "ENT_NAHR",
+          "level": "NEUTRAL",
+          "tags": []
+        },
+        {
+          "with": "ENT_LYRA",
+          "level": "HOSTILE",
+          "tags": []
+        }
+      ],
+      "presence": [
+        "REG_MONTAGNE_ROSSE",
+        "REG_MINIERE_ANTICHE"
+      ],
       "destiny_id": "DST_VAERAX",
       "private_information": "Il Cristallo Rosso e legato alla stirpe dei draghi: estrarlo e estrarre qualcosa di vivo.",
-      "tags": ["ancient", "sleeping"],
+      "tags": [
+        "ancient",
+        "sleeping"
+      ],
       "active": true,
       "art_prompt_key": "entity.vaerax",
-      "marker_id": "MK_ENT_VAERAX"
+      "marker_id": "MK_ENT_VAERAX",
+      "persistence": "ETERNAL",
+      "destiny_pool": [
+        "DST_VAERAX",
+        "DST_VAERAX_WATCHED"
+      ]
     }
   ]
 }

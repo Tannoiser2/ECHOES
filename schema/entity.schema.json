@@ -5,15 +5,25 @@
   "x-echoes-def": "entity",
   "x-echoes-kind": "collection",
   "type": "object",
-  "required": ["schema_id", "version", "items"],
+  "required": [
+    "schema_id",
+    "version",
+    "items"
+  ],
   "additionalProperties": false,
   "properties": {
-    "schema_id": { "const": "entity" },
-    "version": { "type": "string" },
+    "schema_id": {
+      "const": "entity"
+    },
+    "version": {
+      "type": "string"
+    },
     "items": {
       "type": "array",
       "minItems": 1,
-      "items": { "$ref": "#/$defs/entity" }
+      "items": {
+        "$ref": "#/$defs/entity"
+      }
     }
   },
   "$defs": {
@@ -36,11 +46,24 @@
       ],
       "additionalProperties": false,
       "properties": {
-        "id": { "type": "string", "pattern": "^ENT_[A-Z0-9_]+$" },
-        "name": { "type": "string", "minLength": 1 },
+        "id": {
+          "type": "string",
+          "pattern": "^ENT_[A-Z0-9_]+$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
         "archetype": {
           "type": "string",
-          "enum": ["INDIVIDUAL", "SOVEREIGN", "PEOPLE", "FACTION", "CREATURE", "CULT"]
+          "enum": [
+            "INDIVIDUAL",
+            "SOVEREIGN",
+            "PEOPLE",
+            "FACTION",
+            "CREATURE",
+            "CULT"
+          ]
         },
         "need": {
           "type": "string",
@@ -55,36 +78,71 @@
             "FAITH"
           ]
         },
-        "description": { "type": "string", "minLength": 1 },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
         "action_values": {
           "type": "object",
           "description": "Per-template flavour weighting used by the CLI default policy. Not a modifier on resolution math in v0.2.",
-          "additionalProperties": { "type": "integer", "minimum": 0, "maximum": 5 },
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 5
+          },
           "propertyNames": {
-            "enum": ["ACQUIRE", "MOVE", "INFLUENCE", "FORGE", "SCHEME", "CLAIM"]
+            "enum": [
+              "ACQUIRE",
+              "MOVE",
+              "INFLUENCE",
+              "FORGE",
+              "SCHEME",
+              "CLAIM"
+            ]
           }
         },
         "starting_assets": {
           "type": "array",
-          "items": { "type": "string", "pattern": "^AST_[A-Z0-9_]+$" }
+          "items": {
+            "type": "string",
+            "pattern": "^AST_[A-Z0-9_]+$"
+          }
         },
         "relations": {
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["with", "level"],
+            "required": [
+              "with",
+              "level"
+            ],
             "additionalProperties": false,
             "properties": {
-              "with": { "type": "string", "pattern": "^ENT_[A-Z0-9_]+$" },
+              "with": {
+                "type": "string",
+                "pattern": "^ENT_[A-Z0-9_]+$"
+              },
               "level": {
                 "type": "string",
-                "enum": ["ENEMY", "HOSTILE", "NEUTRAL", "ALLY", "BOUND"]
+                "enum": [
+                  "ENEMY",
+                  "HOSTILE",
+                  "NEUTRAL",
+                  "ALLY",
+                  "BOUND"
+                ]
               },
               "tags": {
                 "type": "array",
                 "items": {
                   "type": "string",
-                  "enum": ["PACT", "DEBT", "PROMISE", "VENDETTA", "KINSHIP"]
+                  "enum": [
+                    "PACT",
+                    "DEBT",
+                    "PROMISE",
+                    "VENDETTA",
+                    "KINSHIP"
+                  ]
                 }
               }
             }
@@ -93,14 +151,70 @@
         "presence": {
           "type": "array",
           "maxItems": 3,
-          "items": { "type": "string", "pattern": "^REG_[A-Z0-9_]+$" }
+          "items": {
+            "type": "string",
+            "pattern": "^REG_[A-Z0-9_]+$"
+          }
         },
-        "destiny_id": { "type": "string", "pattern": "^DST_[A-Z0-9_]+$" },
-        "private_information": { "type": "string" },
-        "tags": { "type": "array", "items": { "type": "string" } },
-        "active": { "type": "boolean" },
-        "art_prompt_key": { "type": "string" },
-        "marker_id": { "type": "string" }
+        "destiny_id": {
+          "type": "string",
+          "pattern": "^DST_[A-Z0-9_]+$"
+        },
+        "private_information": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "active": {
+          "type": "boolean"
+        },
+        "art_prompt_key": {
+          "type": "string"
+        },
+        "marker_id": {
+          "type": "string"
+        },
+        "persistence": {
+          "type": "string",
+          "enum": [
+            "MORTAL",
+            "COLLECTIVE",
+            "ETERNAL"
+          ],
+          "description": "Chi attraversa un salto di secoli. MORTAL: una persona, e dopo un salto lungo al suo posto c'e un successore. COLLECTIVE: un popolo, che cambia senza finire. ETERNAL: qualcosa che il tempo non tocca. L'id resta - e il seggio, la casa, la cosa sotto la montagna - e a cambiare e il nome (D-045)."
+        },
+        "successors": {
+          "type": "array",
+          "description": "I nomi che questo seggio prende dopo un salto lungo, in ordine. Serve solo a MORTAL.",
+          "items": {
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "type": "string",
+                "minLength": 1
+              },
+              "description": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "destiny_pool": {
+          "type": "array",
+          "description": "Cosa questo seggio puo volere nelle Chronicle successive. Si pesca da qui solo quando il Destino precedente e stato raggiunto: chi ha fallito riprova, chi ha ottenuto vuole altro (D-045).",
+          "items": {
+            "type": "string",
+            "pattern": "^DST_[A-Z0-9_]+$"
+          }
+        }
       }
     }
   }

@@ -432,4 +432,4 @@ func _set_phase(act: int, round_number: int, phase: String) -> void:
 
 func _name(entity_id: String) -> String:
 	var entity: Variant = data.entities.get(entity_id)
-	return entity_id if entity == null else str(entity["name"])
+	return entity_id if entity == null else str(session.service.name_of(entity_id))

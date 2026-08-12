@@ -113,13 +113,17 @@ family, 22 copies per family deck, 132 cards in the box (D-040).
 | ENT_NAHR | Popolo Nahr | PEOPLE | SURVIVAL | DST_NAHR | `entity.nahr` |
 | ENT_VAERAX | Vaerax | CREATURE | PROTECTION | DST_VAERAX | `entity.vaerax` |
 
-## Destiny cards (4)
+## Destiny cards (8)
 | id | titolo | entita | Minimum | Victory | Triumph |
 |---|---|---|---|---|---|
 | DST_ALDRIC | Il Regno che Resta | ENT_ALDRIC | Il trono regge | Il regno decide | Un regno che non ha pagato il pane con il sangue |
+| DST_ALDRIC_RECORD | Il Regno che Ricorda | ENT_ALDRIC | La casa siede ancora | Nessuno rilegge la stessa domanda | Un regno che non ha dovuto dividersi per reggere |
 | DST_LYRA | Sapere e Poter Tornare a Guardare | ENT_LYRA | Ha capito qualcosa | Sa, ed e ancora nelle gallerie | Il sapere e diventato pubblico e verificabile |
+| DST_LYRA_TAUGHT | Quello che Resta Insegnato | ENT_LYRA | Qualcuno sa ancora leggere le carte | Il sapere ha un posto suo | Verificabile da chiunque, anche da chi non c'era |
 | DST_NAHR | Una Terra dove Fermarsi | ENT_NAHR | Il popolo sopravvive | Il popolo si ferma | Fermarsi senza smettere di essere Nahr |
+| DST_NAHR_ROOTED | La Terra Sotto i Piedi | ENT_NAHR | Il popolo e ancora qui | La terra risponde a chi la lavora | Radicati senza aver chiuso la porta a nessuno |
 | DST_VAERAX | Cio che Dorme Resti Addormentato | ENT_VAERAX | La montagna e ancora sua | Nessuno ha portato via il Cristallo | Il sonno e stato reso sicuro |
+| DST_VAERAX_WATCHED | Il Sonno Sorvegliato | ENT_VAERAX | La montagna e ancora sua | Nessuno scava piu | Guardato da qualcuno che non lo vuole |
 
 ## Tension tracks (6)
 | id | titolo | dominio | iniziale | soglia | visibilita | presagi |

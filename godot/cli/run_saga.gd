@@ -34,13 +34,17 @@ func _initialize() -> void:
 		quit(3)
 		return
 
+	# The first year can be the written one; everything after it is library
+	# content, which is where the centuries and the successors come from (D-045).
+	var later_id: String = str(options.get("then", chronicle_id))
 	var previous: Dictionary = {}
+	var previous_results: Dictionary = {}
 	var saga: Array = []
 
 	for index in range(chronicles):
 		var session: RefCounted = GameSession.new(data)
-		session.setup(chronicle_id, SEATS, first_seed + index * 97)
-		session.inherit_from(previous)
+		session.setup(chronicle_id if index == 0 else later_id, SEATS, first_seed + index * 97)
+		session.inherit_from(previous, previous_results)
 
 		# What the world played at each Act end, in order.
 		var cards: Array = []
@@ -101,7 +105,7 @@ func _initialize() -> void:
 			changed.append({
 				"region": str(data.regions[str(region_id)]["name"]),
 				"from": "nessuno" if control_before.get(str(region_id)) == null else str(data.entities[str(control_before[str(region_id)])]["name"]),
-				"to": "nessuno" if now == null else str(data.entities[str(now)]["name"]),
+				"to": "nessuno" if now == null else session.service.name_of(str(now)),
 			})
 
 		var new_truths: Array = []
@@ -128,14 +132,29 @@ func _initialize() -> void:
 		for entity_id in SEATS:
 			var entry: Dictionary = report["destiny_results"][str(entity_id)]
 			destinies.append({
-				"name": str(data.entities[str(entity_id)]["name"]),
+				"name": session.service.name_of(str(entity_id)),
 				"level": str(entry["level"]),
 				"text": str(entry.get("label", "")),
+			})
+
+		# Who sat down this year, and who they replaced.
+		var seats: Array = []
+		for entity_id in SEATS:
+			var handover: Dictionary = (session.handover() as Dictionary).get(str(entity_id), {})
+			seats.append({
+				"name": session.service.name_of(str(entity_id)),
+				"generation": session.service.generation_of(str(entity_id)),
+				"changed": bool(handover.get("changed", false)),
+				"wants_new": bool(handover.get("wants_new", false)),
+				"note": str(handover.get("note", "")),
+				"destiny": str(data.destinies[session.service.destiny_of(str(entity_id))]["title"]),
 			})
 
 		saga.append({
 			"chronicle": index + 1,
 			"year": int(world["year"]),
+			"years_passed": session.years_passed(),
+			"seats": seats,
 			"tensions": tensions,
 			"confluences": confluences,
 			"cards": cards,
@@ -155,6 +174,7 @@ func _initialize() -> void:
 				handle.close()
 
 		previous = world.duplicate(true)
+		previous_results = (report["destiny_results"] as Dictionary).duplicate(true)
 		session.dispose()
 
 	_print_saga(saga)
@@ -185,7 +205,9 @@ func _map_state(world: Dictionary, data: RefCounted) -> Array:
 		out.append({
 			"region": str(data.regions[str(region_id)]["name"]),
 			"control": "nessuno" if region.get("control", null) == null else str(
-				data.entities[str(region["control"])]["name"]
+				(world["entities"] as Dictionary).get(str(region["control"]), {}).get(
+					"name", data.entities[str(region["control"])]["name"]
+				)
 			),
 			"marks": marks,
 		})
@@ -198,6 +220,29 @@ func _print_saga(saga: Array) -> void:
 		print("=========================================================")
 		print("CHRONICLE %d - anno %d" % [int(year["chronicle"]), int(year["year"])])
 		print("=========================================================")
+
+		# Il salto, e chi lo ha attraversato. E la meta della storia che il
+		# registro non racconta: il mondo resta, le persone no (D-045).
+		var passed: int = int(year.get("years_passed", 0))
+		if passed > 0:
+			print("Sono passati %d anni." % passed)
+		var changed: Array = []
+		for seat in year.get("seats", []):
+			if bool((seat as Dictionary).get("changed", false)):
+				changed.append("%s (%s)" % [
+					str((seat as Dictionary)["name"]), str((seat as Dictionary)["note"]),
+				])
+		if not changed.is_empty():
+			print("Al tavolo adesso siedono: %s" % "; ".join(PackedStringArray(changed)))
+		var wants: Array = []
+		for seat in year.get("seats", []):
+			wants.append("%s vuole %s%s" % [
+				str((seat as Dictionary)["name"]), str((seat as Dictionary)["destiny"]),
+				" (nuovo: aveva gia ottenuto il precedente)"
+				if bool((seat as Dictionary).get("wants_new", false)) else "",
+			])
+		if passed > 0:
+			print("Cosa vogliono: %s" % " · ".join(PackedStringArray(wants)))
 
 		var questions: Array = []
 		for tension in year["tensions"]:
