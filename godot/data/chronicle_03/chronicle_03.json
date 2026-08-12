@@ -1,0 +1,255 @@
+{
+  "schema_id": "chronicle",
+  "version": "0.2.0",
+  "items": [
+    {
+      "world_id": "WORLD_ECHOES",
+      "acts": 3,
+      "rounds_per_act": 3,
+      "action_opportunities_per_round": 2,
+      "minimum_confluences": 2,
+      "hand_limit": 7,
+      "presence_tokens": 3,
+      "max_commit_assets": 3,
+      "max_condition_commit_assets": 2,
+      "condition_qualified_threshold": 2,
+      "influence_rules": {
+        "max_per_entity_per_round": 1,
+        "max_per_tension_per_round": 1,
+        "displacement_on_decrease": 1
+      },
+      "control_rules": {
+        "max_stable_control": 2,
+        "overextension_delta": 1,
+        "lapse_without_presence": true
+      },
+      "entities": [
+        "ENT_SALE",
+        "ENT_CENERE",
+        "ENT_VETRO",
+        "ENT_LIBERE"
+      ],
+      "regions": [
+        "REG_EREDAN",
+        "REG_VALLE_VERDE",
+        "REG_TERRE_NAHR",
+        "REG_MONTAGNE_ROSSE",
+        "REG_MINIERE_ANTICHE",
+        "REG_STRADA_MERCANTI"
+      ],
+      "act_echo_pools": [
+        {
+          "act": 1,
+          "families": [
+            "PRESSURE"
+          ]
+        },
+        {
+          "act": 2,
+          "families": [
+            "RUPTURE",
+            "RUPTURE",
+            "TURN",
+            "TURN",
+            "PRESSURE"
+          ]
+        },
+        {
+          "act": 3,
+          "families": [
+            "RESOLUTION",
+            "RESOLUTION",
+            "RESOLUTION",
+            "TURN",
+            "RUPTURE"
+          ]
+        }
+      ],
+      "confluence_templates": [
+        "CNF_WATER_03",
+        "CNF_DEBT_03",
+        "CNF_RELIC_03",
+        "CNF_CHARTER_03",
+        "CNF_ANY_SURVIVAL",
+        "CNF_ANY_ANCIENT"
+      ],
+      "starting_relations": [],
+      "global_tags": [],
+      "id": "CHR_03",
+      "title": "Le Citta Libere",
+      "start_year": 1640,
+      "years_after_previous": 1,
+      "tensions": [
+        "TEN_WATER",
+        "TEN_DEBT",
+        "TEN_RELIC",
+        "TEN_CHARTER"
+      ],
+      "drift_distribution": [
+        {
+          "tension_id": "TEN_WATER",
+          "count": 2
+        },
+        {
+          "tension_id": "TEN_DEBT",
+          "count": 2
+        },
+        {
+          "tension_id": "TEN_RELIC",
+          "count": 3
+        },
+        {
+          "tension_id": "TEN_CHARTER",
+          "count": 2
+        }
+      ],
+      "opening_text": "Ottocento anni dopo Aldric non c'e piu una corona, e per otto secoli non e servita. Le sette citta si governano da sole, la Gilda del Sale tiene il registro di tutti, l'Ordine del Vetro custodisce un frammento che nessuno dei vivi ha visto, e sulle Montagne Rosse si scava piu in basso di quanto sia mai stato scavato. La Valle non da piu da mangiare a tutti: i canali ci sono ancora, sono pieni di terra, e nessuno e obbligato a toglierla.",
+      "starting_control": [
+        {
+          "region_id": "REG_EREDAN",
+          "entity_id": "ENT_LIBERE"
+        },
+        {
+          "region_id": "REG_STRADA_MERCANTI",
+          "entity_id": "ENT_SALE"
+        },
+        {
+          "region_id": "REG_MONTAGNE_ROSSE",
+          "entity_id": "ENT_CENERE"
+        },
+        {
+          "region_id": "REG_TERRE_NAHR",
+          "entity_id": null
+        },
+        {
+          "region_id": "REG_VALLE_VERDE",
+          "entity_id": null
+        },
+        {
+          "region_id": "REG_MINIERE_ANTICHE",
+          "entity_id": null
+        }
+      ]
+    },
+    {
+      "world_id": "WORLD_ECHOES",
+      "acts": 3,
+      "rounds_per_act": 3,
+      "action_opportunities_per_round": 2,
+      "minimum_confluences": 2,
+      "hand_limit": 7,
+      "presence_tokens": 3,
+      "max_commit_assets": 3,
+      "max_condition_commit_assets": 2,
+      "condition_qualified_threshold": 2,
+      "influence_rules": {
+        "max_per_entity_per_round": 1,
+        "max_per_tension_per_round": 1,
+        "displacement_on_decrease": 1
+      },
+      "control_rules": {
+        "max_stable_control": 2,
+        "overextension_delta": 1,
+        "lapse_without_presence": true
+      },
+      "entities": [
+        "ENT_SALE",
+        "ENT_CENERE",
+        "ENT_VETRO",
+        "ENT_LIBERE"
+      ],
+      "regions": [
+        "REG_EREDAN",
+        "REG_VALLE_VERDE",
+        "REG_TERRE_NAHR",
+        "REG_MONTAGNE_ROSSE",
+        "REG_MINIERE_ANTICHE",
+        "REG_STRADA_MERCANTI"
+      ],
+      "act_echo_pools": [
+        {
+          "act": 1,
+          "families": [
+            "PRESSURE"
+          ]
+        },
+        {
+          "act": 2,
+          "families": [
+            "RUPTURE",
+            "RUPTURE",
+            "TURN",
+            "TURN",
+            "PRESSURE"
+          ]
+        },
+        {
+          "act": 3,
+          "families": [
+            "RESOLUTION",
+            "RESOLUTION",
+            "RESOLUTION",
+            "TURN",
+            "RUPTURE"
+          ]
+        }
+      ],
+      "confluence_templates": [
+        "CNF_WATER_03",
+        "CNF_DEBT_03",
+        "CNF_RELIC_03",
+        "CNF_CHARTER_03",
+        "CNF_ANY_SURVIVAL",
+        "CNF_ANY_ANCIENT"
+      ],
+      "starting_relations": [],
+      "global_tags": [],
+      "id": "CHR_04",
+      "title": "Gli anni delle citta",
+      "start_year": 1641,
+      "years_after_previous": {
+        "min": 20,
+        "max": 200
+      },
+      "tension_pool": {
+        "candidates": [
+          "TEN_WATER",
+          "TEN_DEBT",
+          "TEN_RELIC",
+          "TEN_CHARTER",
+          "TEN_NAMELESS",
+          "TEN_ASH"
+        ],
+        "count": 4,
+        "always": []
+      },
+      "opening_text": "Le citta continuano, e non sempre nello stesso ordine. Questa Chronicle non elenca le proprie domande: le pesca dalla biblioteca, in base a com'e finita quella prima.",
+      "starting_control": [
+        {
+          "region_id": "REG_EREDAN",
+          "entity_id": "ENT_LIBERE"
+        },
+        {
+          "region_id": "REG_STRADA_MERCANTI",
+          "entity_id": "ENT_SALE"
+        },
+        {
+          "region_id": "REG_MONTAGNE_ROSSE",
+          "entity_id": "ENT_CENERE"
+        },
+        {
+          "region_id": "REG_TERRE_NAHR",
+          "entity_id": null
+        },
+        {
+          "region_id": "REG_VALLE_VERDE",
+          "entity_id": null
+        },
+        {
+          "region_id": "REG_MINIERE_ANTICHE",
+          "entity_id": null
+        }
+      ]
+    }
+  ]
+}

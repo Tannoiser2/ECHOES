@@ -21,8 +21,13 @@ const DataSet := preload("res://scripts/core/data_set.gd")
 const GameSession := preload("res://scripts/chronicle/game_session.gd")
 const PolicyDecider := preload("res://scripts/seat/policy_decider.gd")
 
-const SEATS: Array = ["ENT_ALDRIC", "ENT_NAHR", "ENT_LYRA", "ENT_VAERAX"]
 const LEVELS: Array = ["minimum", "victory", "triumph"]
+
+
+## Chi siede al tavolo lo dice la Chronicle, non questo file (D-049).
+func _seats(data: RefCounted, chronicle_id: String) -> Array:
+	var chronicle: Variant = data.chronicles.get(chronicle_id)
+	return [] if chronicle == null else (chronicle["entities"] as Array).duplicate()
 
 
 func _initialize() -> void:
@@ -54,6 +59,7 @@ func _initialize() -> void:
 func _what_a_seat_can_actually_get(
 	data: RefCounted, chronicle_id: String, runs: int, first_seed: int
 ) -> void:
+	var SEATS: Array = _seats(data, chronicle_id)
 	var proposed: Dictionary = {}
 	var tagged: Dictionary = {}
 	for entity_id in SEATS:
@@ -94,6 +100,7 @@ func _what_a_seat_can_actually_get(
 ## Every clause of every Destiny, checked against the opening position - the
 ## table as it is dealt, before a single Action Opportunity is spent.
 func _free_at_the_start(data: RefCounted, chronicle_id: String) -> void:
+	var SEATS: Array = _seats(data, chronicle_id)
 	var session: RefCounted = GameSession.new(data)
 	session.setup(chronicle_id, SEATS, 1)
 	for effect in session.factory_setup_effects():
@@ -130,6 +137,7 @@ func _free_at_the_start(data: RefCounted, chronicle_id: String) -> void:
 func _when_the_ladder_closes(
 	data: RefCounted, chronicle_id: String, runs: int, first_seed: int
 ) -> void:
+	var SEATS: Array = _seats(data, chronicle_id)
 	var closed_at: Dictionary = {}
 	var never: Dictionary = {}
 	for entity_id in SEATS:

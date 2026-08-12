@@ -113,26 +113,40 @@ func test_a_loud_year_is_left_exactly_as_it_was() -> void:
 ## the same seed is played twice and the two runs are compared - which is the
 ## only way to say what the floor did rather than what the year did.
 func test_a_chronicle_can_opt_out_of_the_floor() -> void:
-	var with_floor: int = ((await _run_chronicle(
-		"CHR_02", 1867, Idle.new()
-	))["confluences"] as Array).size()
-
 	var chronicle: Dictionary = data().chronicles["CHR_02"]
 	var declared: int = int(chronicle["minimum_confluences"])
-	chronicle["minimum_confluences"] = 0
-	var without: Dictionary = await _run_chronicle("CHR_02", 1867, Idle.new())
-	chronicle["minimum_confluences"] = declared
+	var quieter: int = 0
 
-	assert_true(
-		(without["confluences"] as Array).size() < with_floor,
-		"senza pavimento lo stesso anno decide di meno: %d contro %d"
-		% [(without["confluences"] as Array).size(), with_floor]
-	)
-	for effect in session.world["effect_log"]:
-		assert_ne(
-			str(effect["source"]["id"]), "YEAR_END",
-			"e il mondo non spinge niente di sua iniziativa"
+	# Swept over seeds rather than pinned to one, because not every seed needs
+	# the floor: an Act-end Echo card can force a Council on its own, and a year
+	# that got there by itself looks identical with the floor on and off. What
+	# has to be true is that turning it off never *adds* anything, and that on at
+	# least one of these years it was the floor doing the work.
+	for index in range(5):
+		var seed_value: int = 1867 + index * 97
+		var with_floor: int = ((await _run_chronicle(
+			"CHR_02", seed_value, Idle.new()
+		))["confluences"] as Array).size()
+
+		chronicle["minimum_confluences"] = 0
+		var without: Dictionary = await _run_chronicle("CHR_02", seed_value, Idle.new())
+		chronicle["minimum_confluences"] = declared
+
+		var alone: int = (without["confluences"] as Array).size()
+		assert_true(
+			alone <= with_floor,
+			"seme %d: senza pavimento non si decide di piu (%d contro %d)"
+			% [seed_value, alone, with_floor]
 		)
+		for effect in session.world["effect_log"]:
+			assert_ne(
+				str(effect["source"]["id"]), "YEAR_END",
+				"seme %d: e il mondo non spinge niente di sua iniziativa" % seed_value
+			)
+		if alone < with_floor:
+			quieter += 1
+
+	assert_true(quieter > 0, "e su almeno un anno il pavimento e servito davvero")
 
 
 ## What the world does to force a question is an Effect like everything else:

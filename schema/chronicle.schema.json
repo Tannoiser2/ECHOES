@@ -228,6 +228,30 @@
             }
           }
         },
+        "starting_control": {
+          "type": "array",
+          "description": "Chi tiene quale Regione all'apertura. La mappa e' condivisa fra le saghe - sono le stesse sei terre a distanza di secoli - quindi il controllo iniziale non puo' stare nella definizione della Regione: quella porterebbe nella seconda saga le casate della prima. Una Regione non nominata qui parte da quello che dice la Regione.",
+          "items": {
+            "type": "object",
+            "required": [
+              "region_id"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "region_id": {
+                "type": "string",
+                "pattern": "^REG_[A-Z0-9_]+$"
+              },
+              "entity_id": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "null vuol dire che non la tiene nessuno."
+              }
+            }
+          }
+        },
         "global_tags": {
           "type": "array",
           "items": {

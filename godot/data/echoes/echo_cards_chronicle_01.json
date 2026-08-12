@@ -8,7 +8,14 @@
       "dramatic_family": "PRESSURE",
       "function_id": "LACK",
       "description": "Qualcosa che c'era non c'e piu, e la sua assenza comincia a organizzare le giornate di tutti.",
-      "eligibility": [],
+      "eligibility": [
+        {
+          "type": "tension_limit",
+          "tension_id": "TEN_FAMINE",
+          "min": 0,
+          "label": "TEN_FAMINE e in gioco quest'anno"
+        }
+      ],
       "effect_hooks": [
         {
           "kind": "EFFECT",
@@ -46,7 +53,14 @@
       "dramatic_family": "PRESSURE",
       "function_id": "OMEN",
       "description": "Un segno che nessuno sa leggere del tutto e che nessuno riesce a ignorare del tutto.",
-      "eligibility": [],
+      "eligibility": [
+        {
+          "type": "tension_limit",
+          "tension_id": "TEN_AWAKENING",
+          "min": 0,
+          "label": "TEN_AWAKENING e in gioco quest'anno"
+        }
+      ],
       "effect_hooks": [
         {
           "kind": "EFFECT",
@@ -71,7 +85,14 @@
       "dramatic_family": "RUPTURE",
       "function_id": "BETRAYAL",
       "description": "Un accordo viene rotto da chi lo aveva proposto. Il danno non e la rottura: e che ora tutti ricalcolano.",
-      "eligibility": [],
+      "eligibility": [
+        {
+          "type": "tension_limit",
+          "tension_id": "TEN_FAMINE",
+          "min": 0,
+          "label": "TEN_FAMINE e in gioco quest'anno"
+        }
+      ],
       "effect_hooks": [
         {
           "kind": "EFFECT",
@@ -109,7 +130,14 @@
       "dramatic_family": "RUPTURE",
       "function_id": "LOSS",
       "description": "Qualcuno non c'e piu, e la sua parte di lavoro resta scoperta.",
-      "eligibility": [],
+      "eligibility": [
+        {
+          "type": "tension_limit",
+          "tension_id": "TEN_FAMINE",
+          "min": 0,
+          "label": "TEN_FAMINE e in gioco quest'anno"
+        }
+      ],
       "effect_hooks": [
         {
           "kind": "EFFECT",
@@ -147,7 +175,14 @@
       "dramatic_family": "TURN",
       "function_id": "DISCOVERY",
       "description": "Qualcosa di nascosto viene misurato. Da questo momento la questione ha dei numeri, e i numeri si discutono.",
-      "eligibility": [],
+      "eligibility": [
+        {
+          "type": "tension_limit",
+          "tension_id": "TEN_AWAKENING",
+          "min": 0,
+          "label": "TEN_AWAKENING e in gioco quest'anno"
+        }
+      ],
       "effect_hooks": [
         {
           "kind": "EFFECT",
@@ -343,7 +378,14 @@
       "dramatic_family": "PRESSURE",
       "function_id": "PROHIBITION",
       "description": "Una frana, o qualcuno che l'ha fatta sembrare una frana. Il risultato non cambia: da est non arriva piu niente.",
-      "eligibility": [],
+      "eligibility": [
+        {
+          "type": "tension_limit",
+          "tension_id": "TEN_ROADS",
+          "min": 0,
+          "label": "TEN_ROADS e in gioco quest'anno"
+        }
+      ],
       "effect_hooks": [
         {
           "kind": "EFFECT",
@@ -381,7 +423,14 @@
       "dramatic_family": "PRESSURE",
       "function_id": "THREAT",
       "description": "Il re manca a un consiglio. Poi a un secondo. Alla terza volta la stanza ha smesso di aspettarlo.",
-      "eligibility": [],
+      "eligibility": [
+        {
+          "type": "tension_limit",
+          "tension_id": "TEN_SUCCESSION",
+          "min": 0,
+          "label": "TEN_SUCCESSION e in gioco quest'anno"
+        }
+      ],
       "effect_hooks": [
         {
           "kind": "EFFECT",
@@ -419,7 +468,14 @@
       "dramatic_family": "RUPTURE",
       "function_id": "USURPATION",
       "description": "Qualcuno si siede dove non gli spetta, e scopre che nessuno si alza per protestare.",
-      "eligibility": [],
+      "eligibility": [
+        {
+          "type": "tension_limit",
+          "tension_id": "TEN_SUCCESSION",
+          "min": 0,
+          "label": "TEN_SUCCESSION e in gioco quest'anno"
+        }
+      ],
       "effect_hooks": [
         {
           "kind": "CONSEQUENCE",
@@ -723,7 +779,14 @@
       "dramatic_family": "RUPTURE",
       "function_id": "SEPARATION",
       "description": "Le carriole partono di notte per non dover salutare nessuno. Al mattino mancano tre famiglie su dieci.",
-      "eligibility": [],
+      "eligibility": [
+        {
+          "type": "tension_limit",
+          "tension_id": "TEN_FAMINE",
+          "min": 0,
+          "label": "TEN_FAMINE e in gioco quest'anno"
+        }
+      ],
       "effect_hooks": [
         {
           "kind": "CONSEQUENCE",

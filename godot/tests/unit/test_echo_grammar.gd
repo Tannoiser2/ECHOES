@@ -108,8 +108,37 @@ func test_every_declared_function_has_a_card() -> void:
 			by_function.has(str(function_id)),
 			"la funzione '%s' e dichiarata nello schema ma nessuna carta la svolge" % function_id
 		)
+	# Six per family in the first saga, three in the second: a Chronicle only ever
+	# sees the cards that could matter to its own questions (D-049), so the count
+	# that means something is per saga, not in total.
+	var by_saga: Dictionary = {}
+	for card in data().echo_cards.values():
+		var saga: String = "seconda" if _is_second_saga(card) else "prima"
+		var per: Dictionary = by_saga.get(saga, {})
+		per[str(card["dramatic_family"])] = int(per.get(str(card["dramatic_family"]), 0)) + 1
+		by_saga[saga] = per
 	for family in ["PRESSURE", "RUPTURE", "TURN", "RESOLUTION"]:
-		assert_eq(int(by_family.get(family, 0)), 6, "sei carte per la famiglia %s" % family)
+		assert_eq(
+			int((by_saga["prima"] as Dictionary).get(family, 0)), 6,
+			"prima saga: sei carte per la famiglia %s" % family
+		)
+		assert_eq(
+			int((by_saga["seconda"] as Dictionary).get(family, 0)), 3,
+			"seconda saga: tre carte per la famiglia %s" % family
+		)
+
+
+## A card belongs to the saga whose questions it names. The ones that name none -
+## or name `$tension`, "the one we are talking about" - belong to both, and are
+## counted with the first because that is where they were written.
+func _is_second_saga(card: Dictionary) -> bool:
+	const SECOND: Array = [
+		"TEN_WATER", "TEN_DEBT", "TEN_RELIC", "TEN_CHARTER", "TEN_NAMELESS", "TEN_ASH",
+	]
+	for condition in card["eligibility"]:
+		if SECOND.has(str((condition as Dictionary).get("tension_id", ""))):
+			return true
+	return false
 
 
 ## `any_of` is what lets Propp's alternatives be written down: a Return follows a

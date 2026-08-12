@@ -5,6 +5,58 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.12] — Una seconda saga sulla stessa mappa
+
+Il motore dice da sempre di essere guidato dai dati. Questa è la prima volta che
+qualcuno lo verifica: una **seconda saga** — trama, personaggi, obiettivi e
+domande nuovi — scritta interamente in JSON, **senza toccare una regola**.
+
+### Added
+
+- **Le Città Libere**, ottocento anni dopo Aldric, sulle stesse sei terre. Non
+  c'è una corona e non c'è da otto secoli. Quattro seggi: la **Gilda del Sale**,
+  che non possiede nessuna città e tiene il registro di tutte; l'**Ordine del
+  Vetro**, erede della scuola di Lyra diventata fede, custode di un frammento che
+  nessuno dei vivi ha visto; i **Signori della Cenere**, che tengono le Montagne
+  Rosse e scavano ogni anno più in basso; le **Città Libere**, sette città che si
+  riuniscono solo quando non possono evitarlo.
+- Sei domande — l'Acqua Ferma, il Debito, la Reliquia, la Carta, i Senza Città,
+  la Cenere che Sale — sei Consigli, tredici Conseguenze, sedici Destini, dodici
+  carte Echo, e due Chronicle: CHR_03 scritta, CHR_04 pescata dalla biblioteca.
+- **`starting_control`** sulla Chronicle: chi tiene quale Regione all'apertura.
+
+### Fixed
+
+- **Il mazzo Echo era uno solo per tutto il gioco**: aggiungere dodici carte
+  rimescolava il mazzo della prima saga e cambiava anni che nessuno aveva
+  toccato — i tre piani scritti a mano si rompevano tutti. Adesso il mazzo di una
+  Chronicle si costruisce con le carte che quell'anno possono contare, e i piani
+  sono tornati identici byte per byte.
+- **La mappa portava il controllo della prima saga**: le Montagne Rosse
+  rispondevano ancora a Vaerax in una Chronicle dove Vaerax non esiste. Non era
+  un dettaglio: l'intera Vittoria dei Signori della Cenere sta su una Regione
+  tenuta, e non ne tenevano nessuna.
+- **Undici probe avevano i seggi scritti dentro.** Adesso li leggono dalla
+  Chronicle.
+- Due volte, scrivendo il contenuto nuovo, si è ripresentato **lo stesso errore
+  della 0.1.11**: una clausola di Destino appesa a qualcosa che quel seggio non
+  può ottenere. La prima volta perché la Conseguenza stava su un Consiglio che
+  non si tiene mai; la seconda perché due seggi avevano bisogno dello stesso
+  Consiglio e a proporlo è uno solo. Le ha trovate entrambe la terza tabella
+  della sonda dei Destini — *quali Consigli un seggio riesce davvero a proporre*.
+
+### Misurato
+
+CHR_03 su quaranta semi: 6,55 Consigli per Chronicle, mediana 7, da 5 a 7 — la
+stessa forma di CHR_01 e dentro i limiti del §7. Ogni seggio vince qualche volta.
+
+Due saghe da dieci Chronicle giocate per intero: la prima copre **999 anni** e
+scrive **35 Verità, tutte e 35 diverse**; la seconda copre **753 anni** e ne
+scrive 38, tutte diverse. L'audit da cui è partita questa serie di lavori ne
+produsse 12 distinte su 28.
+
+---
+
 ## [0.1.11] — Un Destino che si vince in due mosse, e uno che non si vince mai
 
 Il seggio degli studiosi era rotto ai due capi di una saga, e nessuno dei due si

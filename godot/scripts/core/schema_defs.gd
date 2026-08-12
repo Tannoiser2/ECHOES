@@ -289,6 +289,12 @@ const DEFS := {
 					"type": "Dictionary",
 				},
 			},
+			"starting_control": {
+				"type": "Array",
+				"element": {
+					"type": "Dictionary",
+				},
+			},
 			"global_tags": {
 				"type": "Array",
 				"element": {

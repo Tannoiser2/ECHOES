@@ -65,11 +65,22 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 			"ao_remaining": 0,
 		}
 
+	# Who holds what at the opening. The Region says what it says, and the
+	# Chronicle overrides it: the map is shared between sagas - the same six
+	# places centuries apart - so a starting owner written into the Region would
+	# seat the first saga's houses at the second saga's table (D-049).
+	var held: Dictionary = {}
+	for entry in chronicle.get("starting_control", []):
+		held[str((entry as Dictionary)["region_id"])] = (entry as Dictionary).get("entity_id", null)
+
 	for region_id in chronicle["regions"]:
 		var definition: Dictionary = data.regions[region_id]
+		var control: Variant = (
+			held[str(region_id)] if held.has(str(region_id)) else definition.get("control", null)
+		)
 		world["regions"][region_id] = {
 			"id": region_id,
-			"control": definition.get("control", null),
+			"control": control,
 			"tags": (definition["tags"] as Array).duplicate(),
 		}
 
@@ -173,12 +184,35 @@ static func _build_asset_decks(
 
 ## A single shuffled Echo deck; the Act pools (§15) filter it by dramatic family
 ## at draw time, so "the top of the Act deck" is well defined and reproducible.
+##
+## The deck is built from the cards that could matter *this year*. A card whose
+## eligibility names a Tension the Chronicle is not asking about can never be
+## legally drawn, and leaving it in the pile is not harmless: the deck is global
+## to the whole game, so a second saga's content would reshuffle the first one's
+## deck and change years nobody touched. Filtering here keeps a Chronicle's deck
+## a function of that Chronicle.
 static func _build_echo_deck(world: Dictionary, data: RefCounted, rng: RefCounted) -> void:
 	var ids: Array = []
 	for card in data.echo_cards.values():
+		if _asks_about_a_question_not_in_play(card, world):
+			continue
 		ids.append(str(card["id"]))
 	ids.sort()
 	world["echo_deck"] = {"draw": rng.shuffle(ids), "drawn": []}
+
+
+static func _asks_about_a_question_not_in_play(card: Dictionary, world: Dictionary) -> bool:
+	for condition in card.get("eligibility", []):
+		if str((condition as Dictionary).get("type", "")) != "tension_limit":
+			continue
+		var tension_id: String = str((condition as Dictionary).get("tension_id", ""))
+		# `$tension` is resolved against the Council being held and means "the one
+		# we are talking about", which is in play by definition.
+		if tension_id.begins_with("$"):
+			continue
+		if not (world["tensions"] as Dictionary).has(tension_id):
+			return true
+	return false
 
 
 ## The drift bag (§11.2): a fixed distribution shuffled once with the seeded RNG.

@@ -331,6 +331,88 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-049 — Una seconda saga sulla stessa mappa
+**implemented in 0.1.12**
+
+The engine has always claimed to be data-driven. This is the first time anything
+checked: a second saga - new plot, new houses, new objectives, new questions -
+authored entirely as JSON, with **no change to any rule**. What did have to
+change was three places where the first saga's content had quietly become part
+of the engine's assumptions.
+
+### Le Citta Libere
+
+Eight centuries after Aldric, on the same six places, because the map is the
+world and the world does not restart. There is no crown and there has not been
+one for eight hundred years. Four seats: **la Gilda del Sale**, which owns no
+city and keeps the ledger of all of them; **l'Ordine del Vetro**, heir to Lyra's
+school turned into a faith, custodian of a shard nobody living has seen;
+**i Signori della Cenere**, who hold the Red Mountains and dig lower every year;
+**le Citta Libere**, seven towns that meet only when they cannot avoid it.
+
+Six questions - l'Acqua Ferma, il Debito, la Reliquia, la Carta, i Senza Citta,
+la Cenere che Sale - six Councils, thirteen Consequences, sixteen Destinies,
+twelve Echo cards, and two Chronicles: CHR_03 written out, CHR_04 dealt from the
+library.
+
+### Le tre cose che non erano contenuto
+
+**Il mazzo Echo era uno solo per tutto il gioco.** Adding twelve cards reshuffled
+the first saga's deck and changed years nobody had touched - the three authored
+sim plans all broke. A Chronicle's deck is now built from the cards that could
+matter *that year*: a card whose eligibility names a question the Chronicle is
+not asking can never legally be drawn, and leaving it in the pile made one
+saga's content a function of the other's. The first saga's plans went back to
+byte-identical the moment the filter landed.
+
+**La mappa portava il controllo della prima saga.** `control` lives on the
+Region, so the Red Mountains still answered to Vaerax in a Chronicle where
+Vaerax does not exist. `starting_control` on the Chronicle overrides it. This
+was not cosmetic: the Ash Lords' whole Victory hangs on holding a Region, and
+they held none, so they reported MINIMUM in 40 Chronicles out of 40.
+
+**I probe avevano i seggi scritti dentro.** Eleven CLI tools carried
+`const SEATS = [ENT_ALDRIC, ...]`. They read the Chronicle now.
+
+### E una lezione della D-048 che si e' ripresentata due volte
+
+Authoring the second saga reproduced the same failure twice, from a standing
+start, which is the best evidence that it is structural and not a slip:
+
+- **CNS_ASH_WATCH era irraggiungibile.** It sat on a domain-bound Council, and
+  the Tension that would have used it declares its own template - so the
+  proposition was never on any table. The Ash Lords' Victory depended on it.
+- **Due seggi avevano bisogno dello stesso Consiglio, e a proporlo e' uno solo.**
+  Fixing the Ash Lords' proponency took it away from the Order, whose Victory
+  then became unreachable in turn. The fix was not another swap: a custodian
+  does not win by proposing, it wins by preventing, so its Victory is now two
+  stakes - the vault not opened, the galleries not abandoned - and its Triumph
+  keys on `discovery:relic`, which a *non*-proponent can obtain by declaring a
+  condition clause.
+
+Both were found by `run_destiny_probe.gd`'s third table, which is the one D-048
+added for exactly this: **which Councils a seat actually gets to propose**.
+
+### Misurato
+
+CHR_03 over forty seeds: 6.55 Councils per Chronicle, median 7, range 5-7 - the
+same shape as CHR_01's 6.10 and inside §7's hard bounds. Every seat wins
+sometimes (M38/T2, M12/V28, M1/V39, M2/V38), which is the bar D-048 set and
+which the first three drafts of this content did not clear.
+
+Two ten-Chronicle sagas played end to end: the first covers 999 years and writes
+**35 Truths, all 35 distinct**; the second covers 753 years and writes 38, all
+distinct. The audit that started this whole line of work got 12 distinct
+sentences out of 28.
+
+### Cosa resta aperto
+
+O-15 applies to the second saga as much as the first: the Guild reports MINIMUM
+in all ten Chronicles of the played saga, and the seats that win, win early and
+then hold. Recorded, not tuned - same reason as before.
+
+---
+
 ## D-048 — Un Destino che si vince in due mosse, e uno che non si vince mai
 **implemented in 0.1.11**
 

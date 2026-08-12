@@ -1,0 +1,683 @@
+{
+  "schema_id": "confluence_template",
+  "version": "0.2.0",
+  "items": [
+    {
+      "id": "CNF_WATER_03",
+      "tension_id": "TEN_WATER",
+      "title": "Chi Manda gli Uomini",
+      "description": "I canali si possono riaprire in due stagioni. Il problema non e mai stato la terra da togliere: e che chi paga vuole riscuotere, e chi scava vuole bere.",
+      "questions": [
+        {
+          "id": "Q_WATER_CANALS",
+          "text": "Chi manda gli uomini a scavare $in_region?",
+          "eligibility": []
+        },
+        {
+          "id": "Q_WATER_PRICE",
+          "text": "E l'acqua, dopo, di chi e?",
+          "eligibility": [
+            {
+              "type": "tension_limit",
+              "tension_id": "TEN_WATER",
+              "min": 4,
+              "label": "L'Acqua Ferma e al limite"
+            }
+          ]
+        }
+      ],
+      "propositions": [
+        {
+          "id": "P_DIG_TOGETHER",
+          "question_id": "Q_WATER_CANALS",
+          "text": "Ogni citta manda braccia in proporzione a quanta acqua prende. Nessuno riscuote.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_CANALS_DUG"
+          ],
+          "echo_summary": "I canali furono riaperti a spese di tutti, e l'acqua torno a muoversi $in_region.",
+          "echo_summaries": {
+            "FAILURE": "Si stabili chi mandava le braccia, e a primavera non le mando nessuno."
+          }
+        },
+        {
+          "id": "P_DIG_FOR_HIRE",
+          "question_id": "Q_WATER_CANALS",
+          "text": "Li paga $proponent, e chi vuole l'acqua dopo la compra.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_CANALS_DUG",
+            "CNS_WATER_PRICED"
+          ],
+          "echo_summary": "I canali furono riaperti da $proponent, e da allora l'acqua ebbe un prezzo."
+        },
+        {
+          "id": "P_WATER_RIGHTS",
+          "question_id": "Q_WATER_PRICE",
+          "text": "Un atto scritto: l'acqua della Valle risponde a $proponent, che risponde della Valle.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_WATER_PRICED"
+          ],
+          "echo_summary": "L'acqua $of_region passo a $proponent, per atto e non per forza.",
+          "echo_summaries": {
+            "DECISIVE_SUCCESS": "L'acqua $of_region passo a $proponent, e nessuno provo a discuterlo."
+          }
+        },
+        {
+          "id": "P_WATER_COMMON",
+          "question_id": "Q_WATER_PRICE",
+          "text": "L'acqua non e di nessuno. Chi la devia risponde a tutti.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_CANALS_DUG"
+          ],
+          "echo_summary": "Si stabili che l'acqua non fosse di nessuno, e per un anno intero funziono."
+        }
+      ],
+      "condition_clauses": [
+        {
+          "id": "C_WATER_LAST",
+          "text": "...purche l'ultima presa sia di chi sta piu in basso.",
+          "effects": [
+            {
+              "type": "SET_GLOBAL_TAG",
+              "target": {
+                "kind": "world",
+                "id": "WORLD"
+              },
+              "payload": {
+                "tag": "water_shared"
+              }
+            },
+            {
+              "type": "ADJUST_TENSION",
+              "target": {
+                "kind": "tension",
+                "id": "TEN_NAMELESS"
+              },
+              "payload": {
+                "delta": -1
+              }
+            }
+          ]
+        },
+        {
+          "id": "C_WATER_COUNT",
+          "text": "...purche le braccia mandate da ciascuno siano contate e scritte.",
+          "effects": [
+            {
+              "type": "SET_ENTITY_TAG",
+              "target": {
+                "kind": "entity",
+                "id": "$rival"
+              },
+              "payload": {
+                "tag": "discovery:the_ledger"
+              }
+            },
+            {
+              "type": "ADJUST_TENSION",
+              "target": {
+                "kind": "tension",
+                "id": "TEN_DEBT"
+              },
+              "payload": {
+                "delta": -1
+              }
+            }
+          ]
+        }
+      ],
+      "consequence_pools": {
+        "cost": [
+          "CNS_COST_DEBT"
+        ],
+        "failure": [
+          "CNS_FAILURE_SPIRAL"
+        ],
+        "decisive_bonus": [
+          "CNS_DECISIVE_RENOWN"
+        ]
+      },
+      "ripple": {
+        "targets": [
+          "TEN_DEBT",
+          "TEN_NAMELESS"
+        ],
+        "delta": 1
+      },
+      "echo_title_template": "Chi Manda gli Uomini"
+    },
+    {
+      "id": "CNF_DEBT_03",
+      "tension_id": "TEN_DEBT",
+      "title": "La Colonna dei Numeri",
+      "description": "Nessuno contesta il debito. Si contesta che a tenere il conto sia una parte sola, e che quella parte possa chiamarlo quando vuole.",
+      "questions": [
+        {
+          "id": "Q_DEBT_LEDGER",
+          "text": "Chi tiene il registro, e chi puo leggerlo?",
+          "eligibility": []
+        },
+        {
+          "id": "Q_DEBT_CALL",
+          "text": "E se lo chiamano tutto insieme, $in_region cosa succede?",
+          "eligibility": [
+            {
+              "type": "tension_limit",
+              "tension_id": "TEN_DEBT",
+              "min": 3,
+              "label": "Il Debito e al limite"
+            }
+          ]
+        }
+      ],
+      "propositions": [
+        {
+          "id": "P_OPEN_LEDGER",
+          "question_id": "Q_DEBT_LEDGER",
+          "text": "Il registro viene copiato e lasciato dove chiunque puo leggerlo.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_LEDGER_OPENED"
+          ],
+          "echo_summary": "Il registro fu copiato e lasciato leggere, e nessuno ci trovo un imbroglio."
+        },
+        {
+          "id": "P_KEEP_LEDGER",
+          "question_id": "Q_DEBT_LEDGER",
+          "text": "Il registro resta a $proponent, che ne risponde con il proprio nome.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_DEBT_CALLED"
+          ],
+          "echo_summary": "Il registro resto a $proponent, e le condizioni le seppe solo chi le firmava.",
+          "echo_summaries": {
+            "FAILURE": "Si volle che il registro restasse a uno solo, e tre citta smisero di firmare."
+          }
+        },
+        {
+          "id": "P_FORGIVE",
+          "question_id": "Q_DEBT_CALL",
+          "text": "Una riga tirata sotto la colonna. Si riparte da zero e si scrive come.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_DEBT_FORGIVEN"
+          ],
+          "echo_summary": "Il debito fu rimesso, e per un anno non si parlo d'altro."
+        },
+        {
+          "id": "P_CALL_IT_IN",
+          "question_id": "Q_DEBT_CALL",
+          "text": "Si chiede tutto adesso. Chi non paga risponde con quello che ha.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_DEBT_CALLED",
+            "CNS_SEAT_CLAIMED"
+          ],
+          "echo_summary": "Il debito fu chiamato tutto insieme, e $in_region cambio padrone senza che partisse un colpo."
+        }
+      ],
+      "condition_clauses": [
+        {
+          "id": "C_DEBT_YEARS",
+          "text": "...purche il rientro sia in dieci anni e non in uno.",
+          "effects": [
+            {
+              "type": "ADJUST_TENSION",
+              "target": {
+                "kind": "tension",
+                "id": "TEN_DEBT"
+              },
+              "payload": {
+                "delta": -1
+              }
+            },
+            {
+              "type": "SET_GLOBAL_TAG",
+              "target": {
+                "kind": "world",
+                "id": "WORLD"
+              },
+              "payload": {
+                "tag": "debt_staggered"
+              }
+            }
+          ]
+        },
+        {
+          "id": "C_DEBT_WITNESS",
+          "text": "...purche a contare sia presente anche $rival.",
+          "effects": [
+            {
+              "type": "SET_ENTITY_TAG",
+              "target": {
+                "kind": "entity",
+                "id": "$rival"
+              },
+              "payload": {
+                "tag": "discovery:the_ledger"
+              }
+            }
+          ]
+        }
+      ],
+      "consequence_pools": {
+        "cost": [
+          "CNS_COST_DEBT"
+        ],
+        "failure": [
+          "CNS_FAILURE_SPIRAL"
+        ],
+        "decisive_bonus": [
+          "CNS_DECISIVE_RENOWN"
+        ]
+      },
+      "ripple": {
+        "targets": [
+          "TEN_CHARTER",
+          "TEN_WATER"
+        ],
+        "delta": 1
+      },
+      "echo_title_template": "La Colonna dei Numeri"
+    },
+    {
+      "id": "CNF_RELIC_03",
+      "tension_id": "TEN_RELIC",
+      "title": "Quello che c'e nella Teca",
+      "description": "L'Ordine dice che non si guarda. I Signori della Cenere scavano sotto la cella da un anno. Nessuno dei due ha ancora detto ad alta voce cosa pensa che ci sia.",
+      "questions": [
+        {
+          "id": "Q_RELIC_KEEP",
+          "text": "Chi risponde di quello che c'e nella teca?",
+          "eligibility": []
+        },
+        {
+          "id": "Q_RELIC_SHOW",
+          "text": "E chi ha diritto di vederlo?",
+          "eligibility": [
+            {
+              "type": "tension_limit",
+              "tension_id": "TEN_RELIC",
+              "min": 4,
+              "label": "La Reliquia e al limite"
+            }
+          ]
+        }
+      ],
+      "propositions": [
+        {
+          "id": "P_ANOINT_KEEPER",
+          "question_id": "Q_RELIC_KEEP",
+          "text": "La custodia diventa un incarico scritto, e a tenerlo e $proponent.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_ORDER_ANOINTED"
+          ],
+          "echo_summary": "La custodia fu riconosciuta a $proponent per atto, e smise di essere una consuetudine."
+        },
+        {
+          "id": "P_DIG_BELOW",
+          "question_id": "Q_RELIC_KEEP",
+          "text": "Sotto la cella si continua a scavare. Chi custodisce non decide della roccia.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_ASH_ABANDONED",
+            "CNS_SEAT_CLAIMED"
+          ],
+          "echo_summary": "Si stabili che la roccia non fosse dell'Ordine, e sotto la cella si continuo a scendere.",
+          "echo_summaries": {
+            "FAILURE": "Si volle scavare sotto la cella, e i puntelli non ressero un inverno."
+          }
+        },
+        {
+          "id": "P_WATCH_THE_ROCK",
+          "question_id": "Q_RELIC_KEEP",
+          "text": "La teca resti dov'e. Quello che va guardato e la montagna, e la guarda $proponent.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_ASH_WATCH"
+          ],
+          "echo_summary": "Si stabili che il pericolo non fosse nella teca ma nella roccia, e a vegliarla fu $proponent.",
+          "echo_summaries": {
+            "FAILURE": "Si volle spostare la veglia dalla teca alla montagna, e per un anno non la tenne nessuno."
+          }
+        },
+        {
+          "id": "P_SHOW_IT",
+          "question_id": "Q_RELIC_SHOW",
+          "text": "Si apre la teca davanti a testimoni, e a mostrarla e $proponent.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_RELIC_SHOWN"
+          ],
+          "echo_summary": "La teca fu aperta davanti a testimoni, e non successe niente: fu quella la notizia.",
+          "echo_summaries": {
+            "DECISIVE_SUCCESS": "La teca fu aperta davanti a tutti, e otto secoli di prudenza finirono in un pomeriggio."
+          }
+        },
+        {
+          "id": "P_BURY_IT",
+          "question_id": "Q_RELIC_SHOW",
+          "text": "Si mura la cella e si mette a verbale che e stata murata.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_RELIC_BURIED"
+          ],
+          "echo_summary": "La cella fu murata, e messo a verbale che era stata murata."
+        }
+      ],
+      "condition_clauses": [
+        {
+          "id": "C_RELIC_RECORD",
+          "text": "...purche quello che si vede sia scritto lo stesso giorno.",
+          "effects": [
+            {
+              "type": "SET_ENTITY_TAG",
+              "target": {
+                "kind": "entity",
+                "id": "$rival"
+              },
+              "payload": {
+                "tag": "discovery:relic"
+              }
+            },
+            {
+              "type": "SET_GLOBAL_TAG",
+              "target": {
+                "kind": "world",
+                "id": "WORLD"
+              },
+              "payload": {
+                "tag": "relic_recorded"
+              }
+            }
+          ]
+        },
+        {
+          "id": "C_RELIC_WATCH",
+          "text": "...purche sulla montagna resti una veglia, chiunque la tenga.",
+          "effects": [
+            {
+              "type": "SET_ENTITY_TAG",
+              "target": {
+                "kind": "entity",
+                "id": "$rival"
+              },
+              "payload": {
+                "tag": "ash_watch"
+              }
+            },
+            {
+              "type": "ADJUST_TENSION",
+              "target": {
+                "kind": "tension",
+                "id": "TEN_ASH"
+              },
+              "payload": {
+                "delta": -1
+              }
+            }
+          ]
+        }
+      ],
+      "consequence_pools": {
+        "cost": [
+          "CNS_COST_UNREST"
+        ],
+        "failure": [
+          "CNS_FAILURE_SPIRAL"
+        ],
+        "decisive_bonus": [
+          "CNS_DECISIVE_RENOWN"
+        ]
+      },
+      "ripple": {
+        "targets": [
+          "TEN_ASH",
+          "TEN_CHARTER"
+        ],
+        "delta": 1
+      },
+      "echo_title_template": "Quello che c'e nella Teca"
+    },
+    {
+      "id": "CNF_CHARTER_03",
+      "tension_id": "TEN_CHARTER",
+      "title": "Chi Scrive la Regola",
+      "description": "Sette citta, sette modi di giudicare lo stesso caso. Finche i casi restavano dentro le mura non importava a nessuno.",
+      "questions": [
+        {
+          "id": "Q_CHARTER_WRITE",
+          "text": "Chi scrive la regola che vale $in_region?",
+          "eligibility": []
+        },
+        {
+          "id": "Q_CHARTER_SEAT",
+          "text": "E chi si siede, quando non si e d'accordo?",
+          "eligibility": [
+            {
+              "type": "tension_limit",
+              "tension_id": "TEN_CHARTER",
+              "min": 3,
+              "label": "La Carta e al limite"
+            }
+          ]
+        }
+      ],
+      "propositions": [
+        {
+          "id": "P_WRITE_CHARTER",
+          "question_id": "Q_CHARTER_WRITE",
+          "text": "Una Carta corta, firmata da tutte e sette, che dice solo cosa non si puo fare.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_CHARTER_WRITTEN"
+          ],
+          "echo_summary": "Sette citta firmarono lo stesso foglio, e il foglio era piu corto di quanto tutti si aspettassero."
+        },
+        {
+          "id": "P_REFUSE_CHARTER",
+          "question_id": "Q_CHARTER_WRITE",
+          "text": "Ogni citta tiene la propria. Chi vuole commerciare si adegui.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_CHARTER_REFUSED"
+          ],
+          "echo_summary": "Si stabili che ognuno tenesse la propria regola, e da allora contava chi arrivava prima.",
+          "echo_summaries": {
+            "FAILURE": "Si volle che ognuno tenesse la propria, e la prima causa la vinsero tutti e due."
+          }
+        },
+        {
+          "id": "P_TAKE_SEAT",
+          "question_id": "Q_CHARTER_SEAT",
+          "text": "Quando non si e d'accordo decide $proponent, e se ne assume il costo.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_SEAT_CLAIMED"
+          ],
+          "echo_summary": "$proponent si sedette dove non si sedeva nessuno da otto secoli, e per un po' funziono meglio."
+        },
+        {
+          "id": "P_DRAW_LOTS",
+          "question_id": "Q_CHARTER_SEAT",
+          "text": "Quando non si e d'accordo si tira a sorte, e la sorte e scritta.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_CHARTER_WRITTEN"
+          ],
+          "echo_summary": "Si stabili di tirare a sorte, e la cosa strana e che tenne."
+        }
+      ],
+      "condition_clauses": [
+        {
+          "id": "C_CHARTER_REVIEW",
+          "text": "...purche fra dieci anni si possa riscriverla.",
+          "effects": [
+            {
+              "type": "SET_GLOBAL_TAG",
+              "target": {
+                "kind": "world",
+                "id": "WORLD"
+              },
+              "payload": {
+                "tag": "charter_temporary"
+              }
+            },
+            {
+              "type": "ADJUST_TENSION",
+              "target": {
+                "kind": "tension",
+                "id": "TEN_CHARTER"
+              },
+              "payload": {
+                "delta": -1
+              }
+            }
+          ]
+        },
+        {
+          "id": "C_CHARTER_NAMELESS",
+          "text": "...purche valga anche per chi non ha una citta.",
+          "effects": [
+            {
+              "type": "ADJUST_TENSION",
+              "target": {
+                "kind": "tension",
+                "id": "TEN_NAMELESS"
+              },
+              "payload": {
+                "delta": -2
+              }
+            },
+            {
+              "type": "SET_GLOBAL_TAG",
+              "target": {
+                "kind": "world",
+                "id": "WORLD"
+              },
+              "payload": {
+                "tag": "charter_for_all"
+              }
+            }
+          ]
+        }
+      ],
+      "consequence_pools": {
+        "cost": [
+          "CNS_COST_UNREST"
+        ],
+        "failure": [
+          "CNS_FAILURE_SPIRAL"
+        ],
+        "decisive_bonus": [
+          "CNS_DECISIVE_RENOWN"
+        ]
+      },
+      "ripple": {
+        "targets": [
+          "TEN_DEBT",
+          "TEN_NAMELESS"
+        ],
+        "delta": 1
+      },
+      "echo_title_template": "Chi Scrive la Regola"
+    },
+    {
+      "id": "CNF_ANY_ANCIENT",
+      "applies_to_domain": "ANCIENT",
+      "title": "Quello che c'era Prima",
+      "description": "Ogni generazione trova sotto i piedi qualcosa che non ha messo lei, e deve decidere se guardarlo o lasciarlo dov'e.",
+      "questions": [
+        {
+          "id": "Q_ANY_ANCIENT_WATCH",
+          "text": "Chi tiene d'occhio quello che c'e $in_region?",
+          "eligibility": []
+        },
+        {
+          "id": "Q_ANY_ANCIENT_LEAVE",
+          "text": "E se conviene andarsene, chi lo dice?",
+          "eligibility": [
+            {
+              "type": "tension_limit",
+              "tension_id": "$tension",
+              "min": 3,
+              "label": "La questione e al limite"
+            }
+          ]
+        }
+      ],
+      "propositions": [
+        {
+          "id": "P_ANY_WATCH",
+          "question_id": "Q_ANY_ANCIENT_WATCH",
+          "text": "Due torri e un turno di guardia. Non impedisce niente: fa sapere prima.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_ASH_WATCH"
+          ],
+          "echo_summary": "Si mise una veglia $in_region, e da allora si seppe sempre con un giorno di anticipo."
+        },
+        {
+          "id": "P_ANY_IGNORE",
+          "question_id": "Q_ANY_ANCIENT_WATCH",
+          "text": "Non c'e niente da guardare. Chi vuole guardare paghi le proprie guardie.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_COST_UNREST"
+          ],
+          "echo_summary": "Si stabili che non ci fosse niente da guardare, e per qualche mese fu vero."
+        },
+        {
+          "id": "P_ANY_WITHDRAW",
+          "question_id": "Q_ANY_ANCIENT_LEAVE",
+          "text": "Si smette di scendere. Non per paura: perche costa meno risalire.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_ASH_ABANDONED"
+          ],
+          "echo_summary": "Si smise di scendere $in_region, e i conti tornarono meglio dell'anno prima."
+        }
+      ],
+      "condition_clauses": [
+        {
+          "id": "C_ANY_ANCIENT_TELL",
+          "text": "...purche quello che si vede sia detto anche a $rival.",
+          "effects": [
+            {
+              "type": "SET_ENTITY_TAG",
+              "target": {
+                "kind": "entity",
+                "id": "$rival"
+              },
+              "payload": {
+                "tag": "discovery:relic"
+              }
+            }
+          ]
+        }
+      ],
+      "consequence_pools": {
+        "cost": [
+          "CNS_COST_UNREST"
+        ],
+        "failure": [
+          "CNS_FAILURE_SPIRAL"
+        ],
+        "decisive_bonus": [
+          "CNS_DECISIVE_RENOWN"
+        ]
+      },
+      "ripple": {
+        "targets": [
+          "TEN_RELIC"
+        ],
+        "delta": 1
+      },
+      "echo_title_template": "Quello che c'era Prima"
+    }
+  ]
+}
