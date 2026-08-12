@@ -331,6 +331,54 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-041 — The rules are on the screen where the game is
+**implemented in 0.1.4**
+
+A player opened the page, chose a seat, and was handed fourteen buttons. The
+rules existed - `docs/RULES_V0_2.md`, complete and current - in the one place a
+person sitting down to play will never look.
+
+### The page
+
+`ui/help_panel.gd` takes the middle of the screen, the same piece the map and
+the Council share, because a player reading the rules is not looking at the
+board and the board is where there is room to read. It opens by itself at the
+seat menu, closes itself when a Chronicle starts, and is one always-present
+button away for the rest of the year - outside `_buttons`, which is cleared
+after every question.
+
+Half of it is written from `DataSet`: the shape of the year, the four questions
+with their thresholds and the families each one listens to, the Regions, the
+hand limit, the commit limit. A rules page that can fall out of step with the
+rules is worse than no rules page, so everything that *can* drift is read rather
+than typed.
+
+### The line above the choices
+
+The page explains the game once. The line explains *this turn*, every turn:
+
+> La domanda piu vicina a scoppiare e La Carestia, a 3 passi. (e 2 che non puoi
+> ancora leggere)
+
+> La Carestia e a un passo dalla soglia: un'altra spinta e si apre il Consiglio.
+
+> Consiglio aperto: qui valgono forza piena le carte wealth, people, authority.
+
+It reads exactly what the seat is entitled to read - `visible_tension_value`
+returns -1 for a veiled question nobody has scouted - so it can say *there is
+something here you cannot see* without ever saying what. And the last form is
+the one that ties the whole screen together: it names the families that count,
+while the hand below each card says `vale 2` or `vale 1` for that same question.
+
+### Still no rule in the screen
+
+Neither piece decides anything or asks the rules a question a decider does not
+already ask. The line reads thresholds and visible values through the same
+services `StatusPanel` has used since 0.1; the page reads authored data. The
+seam is where it was (D-038, D-039).
+
+---
+
 ## D-040 — 48 Assets, and the outcome table they moved
 **implemented in 0.1.3**
 

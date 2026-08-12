@@ -23,6 +23,7 @@ const MapView := preload("res://ui/map_view.gd")
 const StatusPanel := preload("res://ui/status_panel.gd")
 const HandView := preload("res://ui/hand_view.gd")
 const ConfluenceBoard := preload("res://ui/confluence_board.gd")
+const HelpPanel := preload("res://ui/help_panel.gd")
 
 const SEATS: Array = ["ENT_ALDRIC", "ENT_NAHR", "ENT_LYRA", "ENT_VAERAX"]
 
@@ -43,6 +44,13 @@ var _board: VBoxContainer
 ## would never be drawn.
 var _closed_council: Dictionary = {}
 var _hint: Label
+## What is about to happen, in one line, above the choices. See `_context_line`.
+var _context: Label
+## The rules page, and the data it reads itself from. Open at the start, one
+## button away for the rest of the Chronicle.
+var _help: PanelContainer
+var _help_button: Button
+var _help_data: RefCounted
 ## The map and the Council share the middle of the screen: one is visible at a
 ## time, because they answer different questions and a player looking at a
 ## Council is not choosing where to walk.
@@ -112,6 +120,12 @@ func _build() -> void:
 	_board.visible = false
 	_centre.add_child(_board)
 
+	# Same piece of screen as the map and the Council: a player reading the rules
+	# is not looking at the board, and the board is where there is room to read.
+	_help = HelpPanel.new()
+	_help.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_centre.add_child(_help)
+
 	var right := VBoxContainer.new()
 	right.custom_minimum_size = Vector2(280, 0)
 	right.add_theme_constant_override("separation", 12)
@@ -119,6 +133,12 @@ func _build() -> void:
 
 	_status = StatusPanel.new()
 	right.add_child(_status)
+
+	_context = Label.new()
+	_context.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_context.add_theme_font_size_override("font_size", 12)
+	_context.add_theme_color_override("font_color", Color("#8a8172"))
+	right.add_child(_context)
 
 	_prompt = Label.new()
 	_prompt.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -142,9 +162,20 @@ func _build() -> void:
 	_buttons.add_theme_constant_override("separation", 5)
 	_scroll.add_child(_buttons)
 
+	# Outside `_buttons` on purpose: the choices are cleared after every question
+	# and this must not go with them. It is the one control that is always there.
+	_help_button = Button.new()
+	_help_button.text = "Come si gioca"
+	_help_button.toggle_mode = true
+	_help_button.button_pressed = true
+	_help_button.toggled.connect(_on_help_toggled)
+	right.add_child(_help_button)
+
 	_hand = HandView.new()
 	_hand.custom_minimum_size = Vector2(0, 80)
 	rows.add_child(_hand)
+
+	_help.render(_load_help_data())
 
 
 ## Redraw the board from the world. Called after every phase and before every
@@ -154,13 +185,79 @@ func _refresh() -> void:
 	if _session == null:
 		return
 	var council_open: bool = _session.confluence.is_open()
-	_board.visible = council_open
-	_map.visible = not council_open
+	_board.visible = council_open and not _help.visible
+	_map.visible = not council_open and not _help.visible
 	if council_open:
 		_board.render(_session, _viewer)
 	_map.render(_session, _viewer)
 	_status.render(_session, _viewer)
 	_hand.render(_session, _viewer, _focus_tension)
+	_context.text = _context_line()
+
+
+## The one line above the choices: what is about to happen, and why the choice
+## on screen matters. A player who cannot see that a question is one push from
+## its Council is choosing in the dark.
+##
+## It reads exactly what the seat is entitled to read - `visible_tension_value`
+## returns -1 for a veiled question nobody has scouted - so it can say "there is
+## something you cannot see" without ever saying what.
+func _context_line() -> String:
+	if _session == null:
+		return ""
+	if _session.confluence.is_open():
+		var current: Dictionary = _session.confluence.current
+		if current.is_empty():
+			return ""
+		var families: Array = _session.data.tensions[str(current["tension_id"])]["relevant_asset_families"]
+		return "Consiglio aperto: qui valgono forza piena le carte %s." % ", ".join(
+			PackedStringArray(families)
+		).to_lower()
+
+	var closest: String = ""
+	var margin: int = 99
+	var veiled: int = 0
+	for tension_id in _session.world["tensions"]:
+		var id: String = str(tension_id)
+		var value: int = _session.service.visible_tension_value(id, _viewer)
+		if value < 0:
+			veiled += 1
+			continue
+		var left: int = _session.tensions.threshold(id) - value
+		if left < margin:
+			margin = left
+			closest = id
+	if closest == "":
+		return "Le domande dell'anno sono tutte velate: TRAMA per leggerne una."
+
+	var title: String = str(_session.data.tensions[closest]["title"])
+	var tail: String = "" if veiled == 0 else "  (e %d che non puoi ancora leggere)" % veiled
+	if margin <= 0:
+		return "%s ha raggiunto la soglia: il Consiglio si apre.%s" % [title, tail]
+	if margin == 1:
+		return "%s e a un passo dalla soglia: un'altra spinta e si apre il Consiglio.%s" % [title, tail]
+	return "La domanda piu vicina a scoppiare e %s, a %d passi.%s" % [title, margin, tail]
+
+
+func _on_help_toggled(pressed: bool) -> void:
+	_help.visible = pressed
+	if pressed:
+		_help.render(_load_help_data())
+	if _session != null:
+		_refresh()
+	else:
+		_map.visible = false
+		_board.visible = false
+
+
+## The rules page opens before any Chronicle exists, so it loads its own copy of
+## the data. Cheap, and it keeps `_play` exactly as it was.
+func _load_help_data() -> RefCounted:
+	if _help_data == null:
+		var loaded: RefCounted = DataSet.new()
+		if loaded.load_from("res://data"):
+			_help_data = loaded
+	return _help_data
 
 
 ## The beat after a Council closes.
@@ -175,6 +272,7 @@ func _beat() -> void:
 		return
 	var council: Dictionary = _closed_council
 	_closed_council = {}
+	_help_button.button_pressed = false
 	_board.visible = true
 	_map.visible = false
 	_board.render_closed(_session, council)
@@ -231,6 +329,10 @@ func ask(prompt: String, labels: Array, subjects: Array = []) -> int:
 		var region_id: String = str(subject.get("region", ""))
 		if region_id != "":
 			on_map[region_id] = i
+	# Some of the choices are on the map, so the map has to be the thing on
+	# screen: a rules page covering the answer is worse than no rules page.
+	if not on_map.is_empty() and _help.visible:
+		_help_button.button_pressed = false
 	_map.highlighted = on_map
 	_map.queue_redraw()
 
@@ -308,6 +410,10 @@ func _play(humans: Array) -> void:
 		return
 	_busy = true
 	_transcript.clear()
+
+	# The Chronicle starts: the rules page gets out of the way and leaves the
+	# middle to the map. One press brings it back.
+	_help_button.button_pressed = false
 
 	var data: RefCounted = DataSet.new()
 	if not data.load_from("res://data"):

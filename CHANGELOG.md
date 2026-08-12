@@ -5,6 +5,31 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.4] — Il gioco spiega se stesso
+
+Fino a ieri si apriva la pagina, si sceglieva un seggio e ci si trovava davanti
+quattordici bottoni. Le regole c'erano — in `docs/RULES_V0_2.md`, cioè esattamente
+dove chi si siede a giocare non guarderà mai.
+
+### Added
+
+- **`ui/help_panel.gd` — una pagina «Come si gioca»** che prende il centro dello
+  schermo: la forma dell'anno, le sei cose che può fare un'azione, le domande di
+  quest'anno con soglia e famiglie che ascoltano, cosa succede in un Consiglio,
+  e come si vince. Si apre da sola al menu, si toglie di mezzo quando comincia
+  la Chronicle, e resta a un bottone di distanza per tutto l'anno.
+- **Metà della pagina è scritta dai dati**, non battuta a mano: gli Atti, i
+  round, le azioni per round, il limite di mano, quante carte si impegnano, le
+  quattro Tensioni con le loro soglie, le sei Regioni. Una pagina di regole che
+  può andare fuori sincrono con le regole è peggio di niente.
+- **Una riga di contesto sopra le scelte**, che spiega *questo turno*:
+  «La Carestia è a un passo dalla soglia: un'altra spinta e si apre il
+  Consiglio», «Consiglio aperto: qui valgono forza piena le carte wealth,
+  people, authority». Legge solo quello che il tuo seggio ha diritto di leggere:
+  di una domanda velata dice che c'è, non quanto vale.
+
+---
+
 ## [0.1.3] — Le 48 carte
 
 Il traguardo §19.4 sugli Asset: da 12 carte a **48**, otto per famiglia.

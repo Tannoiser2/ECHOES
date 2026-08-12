@@ -53,6 +53,12 @@ Il progetto esporta come applicazione web ed e pubblicato su GitHub Pages dal
 workflow `.github/workflows/pages.yml` a ogni push su `main`. Non c'e niente da
 installare: si apre una pagina.
 
+La pagina si apre su **«Come si gioca»**: cosa fa un'azione, quali sono le
+domande dell'anno con le loro soglie, cosa succede in un Consiglio e come si
+vince. Si toglie di mezzo appena scegli un seggio e torna con il bottone in
+fondo alla colonna. Sopra le scelte c'è sempre una riga che dice cosa sta per
+succedere — «La Carestia è a un passo dalla soglia».
+
 Si sceglie un seggio, e poi si gioca sul tabellone: le **Regioni cerchiate d'oro**
 sono quelle dove puoi mettere una presenza, e ci si va premendole. Le altre azioni
 stanno nella colonna a destra, insieme alle domande dell'anno e al tuo Destino.
