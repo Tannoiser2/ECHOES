@@ -91,7 +91,7 @@ func _initialize() -> void:
 			confluences.append({
 				"tension": str(data.tensions[str(result["tension_id"])]["title"]),
 				"outcome": str(result["outcome"]),
-				"proponent": str(data.entities[str(result["proponent"])]["name"]),
+				"proponent": session.service.name_of(str(result["proponent"])),
 				"support": int(result["support_total"]),
 				"oppose": int(result["oppose_total"]),
 				"margin": int(result["margin"]),
