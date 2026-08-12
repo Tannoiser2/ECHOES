@@ -5,6 +5,37 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.9] — Una casa non finisce i nomi
+
+La 0.1.8 dava a ogni seggio mortale quattro successori scritti a mano. Il primo
+audit da dieci Chronicle li ha esauriti al sesto salto e ha rimesso a sedere un
+**secondo «Re Serane» quattrocento anni dopo il primo**, con addosso la
+descrizione del primo: nel 1240 risultava nipote di Aldric. Sembrava un errore,
+ed era un errore — una saga non ha un numero di generazioni deciso in anticipo,
+quindi qualunque lista finita finisce.
+
+### Added
+
+- **`name_grammar`**: una casa dichiara *come* fa i nomi invece di elencarli —
+  un pattern con fessure (`{given} {epithet} {ordinal}`), un sacchetto di nomi,
+  i titoli. Le prime generazioni restano scritte a mano, perché sono quelle
+  caratterizzate; la grammatica subentra dalla quinta.
+- **La numerazione** è quello che lo rende infinito *e* giusto: le case i nomi se
+  li ripassano davvero, ed è esattamente per questo che li numerano. Vharn, e
+  quattro generazioni dopo Vharn II. Trenta generazioni, trenta nomi distinti,
+  con un test che lo pretende.
+- Il nome è una **funzione pura della generazione**: nessun RNG, quindi è stabile
+  a prescindere da quando lo si chiede e la saga resta rigiocabile dal seme.
+
+### Fixed
+
+- Il primo tentativo pescava dalla stessa lista dei quattro scritti a mano, e
+  quindi la generazione 5 era di nuovo «Re Serane»: lo stesso errore, un giro
+  più in là. E i titoli giravano indipendentemente dai nomi, producendo «Re
+  Ottima» e «Regina Corvin». Adesso il titolo sta attaccato al nome.
+
+---
+
 ## [0.1.8] — Fra una Chronicle e l'altra passano secoli
 
 Un audit di dieci Chronicle ha prodotto un registro di 28 Verità con **12 frasi

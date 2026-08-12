@@ -776,6 +776,9 @@ const DEFS := {
 					"pattern": "^DST_[A-Z0-9_]+$",
 				},
 			},
+			"name_grammar": {
+				"type": "Dictionary",
+			},
 		},
 	},
 	"region": {

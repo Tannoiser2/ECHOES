@@ -331,6 +331,41 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-046 — Una casa non finisce i nomi
+**implemented in 0.1.9**
+
+D-045 gave every mortal seat a hand-written list of successors. Four names each.
+The very first ten-Chronicle audit of the feature wore them out at the sixth
+jump and sat a **second "Re Serane" four centuries after the first** - with the
+first one's description attached, calling him Aldric's grandson in the year
+1240. It read as a bug, and it was one: a saga has no agreed number of
+generations, so any finite list is a list that runs out.
+
+### A house declares how it makes names, instead of listing them
+
+`name_grammar`: a pattern with slots (`{given} {epithet} {ordinal}`), a bag of
+given names, and whatever else that house uses. The first generations stay
+hand-written - those are the characterised ones, and they are worth keeping -
+and the grammar takes over from the fifth on.
+
+The choice is a **pure function of the generation**: no RNG, so a name is stable
+no matter when it is asked for and a saga stays replayable from its seed.
+
+Numbering is what makes it both endless and right: houses do reuse names, which
+is exactly why they number them. Vharn, and four generations later Vharn II.
+That is a tradition, not a repeat. Thirty generations, thirty distinct names, in
+a test.
+
+### Two things the first attempt got wrong
+
+The generated pool started with the same given names as the hand-written four,
+so generation 5 was "Re Serane" again - the very bug being fixed, one loop
+further out. And titles cycled independently of names, which produced "Re
+Ottima" and "Regina Corvin": in Italian that does not read. The title now
+belongs to the given name, because a house knows what its own people are called.
+
+---
+
 ## D-045 — Fra una Chronicle e l'altra passano secoli, e il tavolo cambia
 **implemented in 0.1.8**
 
