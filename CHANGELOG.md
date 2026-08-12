@@ -34,8 +34,9 @@ Tensioni — era sbagliata, e a smentirla è stato lo strumento nuovo: contare g
 - **Il mondo da solo non può portare nessuna domanda al punto.** Il Drift dà un
   colpo per round diviso fra tutte le domande in gioco — nove colpi su quattro
   domande — mentre il salto più corto fra valore iniziale e soglia è tre. Il
-  mondo può restare a un colpo da tutte e quattro insieme, e negli anni muti è
-  successo ogni volta. Ogni Consiglio ha bisogno che qualcuno spinga.
+  mondo può lasciare corte tutte le domande insieme, e negli anni muti è successo:
+  quella arrivata più vicina si è fermata **a un colpo dalla soglia**, tre volte
+  su tre. Ogni Consiglio ha bisogno che qualcuno spinga.
 - **E il tavolo aveva smesso di giocare**: negli anni muti tre seggi su quattro
   hanno speso **tutte e diciotto le Azioni in ACQUIRE**, comprando carte per un
   Consiglio che non si sarebbe mai aperto.

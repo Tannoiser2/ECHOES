@@ -354,8 +354,9 @@ Three separate causes, stacked, each real on its own.
 **The world alone can never bring a question to a head.** Drift deals one chip
 per round spread across every question in play - nine chips over four questions -
 while the smallest gap between a question's opening value and its threshold is
-three. The world can therefore sit **one chip short of all four at once**, and in
-the silent years it did, every time. Every Council in this game needs a seat to
+three. So the world can leave **every question in play short at the same time**,
+and in the silent years it did: the nearest one finished a single chip under its
+threshold, three times out of three. Every Council in this game needs a seat to
 push. There was no floor at all; there was only the table.
 
 **And the table had stopped playing.** In the silent years three seats out of

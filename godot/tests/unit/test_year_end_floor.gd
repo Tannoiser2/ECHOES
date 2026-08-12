@@ -7,8 +7,9 @@ extends "res://tests/test_case.gd"
 ## arithmetic rather than luck: the world's Drift deals one chip per round spread
 ## across every question in play, nine chips over four questions, while the
 ## smallest gap between a question's opening value and its threshold is three. So
-## the world can sit one chip short of all four questions at once, and in the
-## silent years it did. Every Council in the game needs a seat to push it there,
+## the world can leave every question short at the same time, and in the silent
+## years it did - the nearest one a single chip under its threshold, three times
+## out of three. Every Council in the game needs a seat to push it there,
 ## and a table whose Destinies are all already satisfied pushes nothing: eighteen
 ## Action Opportunities, eighteen ACQUIRE, nothing decided, nothing to play.
 
