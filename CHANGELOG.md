@@ -5,6 +5,46 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.1] — La plancia del Consiglio
+
+Il momento in cui il gioco decide qualcosa adesso sembra tale.
+
+### Added
+
+- **`ui/confluence_board.gd`** — quando un Consiglio si apre, prende il centro
+  dello schermo al posto della mappa. In alto la Tensione e chi propone, poi la
+  domanda in grande, poi la proposta. Sotto, i quattro seggi in colonna: il
+  proponente marcato, gli altri con `…` finche non parlano, e la loro posizione
+  colorata quando arriva — verde chi sostiene, rosso chi si oppone, ambra chi
+  pone una condizione.
+- **Gli impegni restano vuoti fino al passo E.** Quello che qualcuno ha messo giu
+  non e pubblico finche non e pubblico: la colonna si riempie tutta insieme, alla
+  rivelazione simultanea, com'e nelle regole (§12.2 E).
+- **Le scelte stanno dentro il Consiglio**, come carte accanto alla domanda a cui
+  rispondono, invece che nella colonna laterale dove vivono le azioni. Stesse
+  etichette, stesso contratto, posto diverso sullo schermo.
+- **Il Fattore Mondo in chiaro** una volta tirato: `1d6 = 6 → +2`. §12.2 G e il
+  momento in cui il gioco decide, e chi gioca deve poter rifare il conto.
+
+### La mano cambia significato
+
+Con un Consiglio aperto le carte rilevanti passano da `authority · 2` a
+`authority · 2 ×2 = 4`. E il numero che entra davvero nella somma, e compare nel
+momento in cui compare la domanda.
+
+### La cucitura, di nuovo
+
+La plancia legge `session.confluence.current` — lo stesso dizionario che rende il
+log e che il terminale stampava nella 0.0 — e non decide niente. Le scelte
+arrivano come `ask(prompt, labels)` gia formattate da SeatDecider, e vengono
+disegnate come carte: **la plancia non sa se sta mostrando proposte, posizioni o
+Asset**, e non deve saperlo. E quello che impedisce a browser e terminale di
+offrire opzioni diverse.
+
+Il motore resta byte-identico a prima di tutta la UI.
+
+---
+
 ## [0.1.0] — Un tabellone, non un resoconto
 
 La milestone 0.1 comincia da dove serviva: chi apre la pagina vede una **mappa**,

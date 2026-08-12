@@ -22,6 +22,7 @@ const SeatDecider := preload("res://scripts/seat/seat_decider.gd")
 const MapView := preload("res://ui/map_view.gd")
 const StatusPanel := preload("res://ui/status_panel.gd")
 const HandView := preload("res://ui/hand_view.gd")
+const ConfluenceBoard := preload("res://ui/confluence_board.gd")
 
 const SEATS: Array = ["ENT_ALDRIC", "ENT_NAHR", "ENT_LYRA", "ENT_VAERAX"]
 
@@ -36,6 +37,11 @@ var _session: RefCounted
 var _busy: bool = false
 
 var _map: Control
+var _board: VBoxContainer
+## The map and the Council share the middle of the screen: one is visible at a
+## time, because they answer different questions and a player looking at a
+## Council is not choosing where to walk.
+var _centre: Control
 var _status: VBoxContainer
 var _hand: HBoxContainer
 ## The seat the board is drawn for, and the Tension under discussion if any.
@@ -83,10 +89,20 @@ func _build() -> void:
 	_transcript.add_theme_color_override("default_color", Color("#8a8172"))
 	columns.add_child(_transcript)
 
+	_centre = Control.new()
+	_centre.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_centre.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	_centre.size_flags_stretch_ratio = 2.2
+	columns.add_child(_centre)
+
 	_map = MapView.new()
-	_map.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_map.size_flags_stretch_ratio = 2.2
-	columns.add_child(_map)
+	_map.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_centre.add_child(_map)
+
+	_board = ConfluenceBoard.new()
+	_board.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_board.visible = false
+	_centre.add_child(_board)
 
 	var right := VBoxContainer.new()
 	right.custom_minimum_size = Vector2(280, 0)
@@ -123,6 +139,11 @@ func _build() -> void:
 func _refresh() -> void:
 	if _session == null:
 		return
+	var council_open: bool = _session.confluence.is_open()
+	_board.visible = council_open
+	_map.visible = not council_open
+	if council_open:
+		_board.render(_session, _viewer)
 	_map.render(_session, _viewer)
 	_status.render(_session, _viewer)
 	_hand.render(_session, _viewer, _focus_tension)
@@ -150,8 +171,14 @@ func choose(prompt: String, labels: Array) -> int:
 
 
 ## Put the choices on screen and suspend until one is pressed.
+##
+## While a Council is open the choices belong *in* the Council - beside the
+## question they answer - rather than in the side column, which is where actions
+## live. Same labels, same contract, different place on the screen.
 func ask(prompt: String, labels: Array) -> int:
 	_refresh()
+	if _session != null and _session.confluence.is_open():
+		return await _board.ask(prompt, labels)
 	_prompt.text = prompt
 	_clear_buttons()
 	for i in range(labels.size()):
