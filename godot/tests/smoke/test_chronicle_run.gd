@@ -2,7 +2,10 @@ extends "res://tests/test_case.gd"
 ## Smoke: a whole Chronicle, headless, from the shipped sim plans (§18.3).
 
 const ScriptedDecider := preload("res://cli/scripted_decider.gd")
+const PolicyDecider := preload("res://scripts/seat/policy_decider.gd")
 const SaveSerializer := preload("res://scripts/core/save_serializer.gd")
+const EffectText := preload("res://scripts/core/effect_text.gd")
+const EchoCardView := preload("res://ui/echo_card_view.gd")
 
 const PLAN_DIR: String = "res://data/chronicle_01/sim_plans"
 
@@ -137,6 +140,42 @@ func test_a_resolved_council_reports_what_it_applied() -> void:
 				)
 			seen += 1
 	assert_true(seen > 0, "almeno un Consiglio deve essersi risolto")
+
+
+## The Act-end Echo card announces itself, with the Effects it applied (D-044).
+## Three times a Chronicle the story turns on a card; the screen shows it, and
+## it can only show what the controller says out loud.
+func test_the_act_echo_card_announces_itself_and_what_it_did() -> void:
+	new_session(4242, false)
+	var seen: Array = []
+	session.chronicle.act_echo_drawn.connect(
+		func(card: Dictionary, applied: Array) -> void:
+			seen.append({"card": card, "applied": applied})
+	)
+	await session.run(PolicyDecider.new(session.log))
+
+	assert_eq(seen.size(), 3, "una carta per Atto, tre in una Chronicle")
+	for entry in seen:
+		var card: Dictionary = entry["card"]
+		assert_true(str(card["title"]) != "", "la carta ha un titolo")
+		assert_true(
+			EchoCardView.FAMILIES.has(str(card["dramatic_family"])),
+			"e una famiglia drammatica che lo schermo sa disegnare: %s" % str(card["dramatic_family"])
+		)
+		assert_true(str(card["description"]) != "", "e un testo da leggere")
+		assert_true(
+			EchoCardView.FUNCTIONS.has(str(card["function_id"])),
+			"e la funzione di Propp ha un nome in italiano: %s" % str(card["function_id"])
+		)
+		assert_true(
+			(entry["applied"] as Array).size() > 0,
+			"%s ha applicato almeno un Effect al mondo" % str(card["id"])
+		)
+		for effect in entry["applied"]:
+			assert_true(
+				EffectText.say(effect as Dictionary, data()) != "",
+				"e ogni Effect si sa dire a voce: %s" % str((effect as Dictionary)["type"])
+			)
 
 
 ## §18.3: same seed + same plan => byte-identical final save.

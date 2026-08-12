@@ -331,6 +331,55 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-044 — Propp was in the deck and nowhere on the screen
+**implemented in 0.1.7**
+
+Two card decks exist. The 48 Assets are yours: you draw them, hold them, spend
+them, and since 0.1.5 every one of them says what it does. The other deck is not
+yours at all - **24 Echo cards, one per function of Propp**, in four dramatic
+families of six - and one is drawn at the end of every Act from the pool that
+Act allows: Act I only PRESSURE, Act III mostly RESOLUTION. The shape of a story
+sits in the deck rather than in a narrator's head (§15).
+
+They move the world on their own (28 direct Effects and 11 Consequences across
+the deck), two of the twenty-four **convene a Council on the spot**, and each one
+writes `function:<NAME>` into the world so a later card can require an earlier
+one - a Return needs a Separation to return from. That is the whole Propp idea,
+and it lives in authored data: the engine knows no function names (D-030).
+
+**On screen it was a paragraph scrolling past in the transcript.** Three times a
+Chronicle the story turns, and a player saw the turn only if they happened to be
+reading the log. Exactly the illness the Council had before 0.1.2, and the same
+cure: the card takes the middle of the screen, in its family's colour, with its
+text, its Propp function in Italian, **what it just changed**, and a button.
+
+### `act_echo_drawn`, and an Effect said out loud
+
+One signal on the controller, emitted after the hooks land, carrying the card and
+the Effects it applied. Nothing in the engine listens to it; it exists so the
+screen can say what the card *did* and not only what it says. Guarded by a test
+that runs a whole Chronicle and asserts three cards, each with at least one
+Effect, each Effect renderable.
+
+`scripts/core/effect_text.gd` is that rendering: an Effect to one Italian line -
+*La Successione sale di 2*, *Eredan: condition:contested*, *Cicatrice in Valle
+Verde: ...*. Unknown types report themselves by name rather than staying silent,
+because a card that quietly did something is worse than a card that says
+`SET_ENTITY_TAG`. The one line it deliberately swallows is the `function:` tag:
+that is the deck's plumbing, not the player's world.
+
+### What a card looks like now
+
+> PRESSIONE — qualcosa si accumula
+> **Presagio**
+> funzione di Propp: presagio
+> *Un segno che nessuno sa leggere del tutto e che nessuno riesce a ignorare del
+> tutto.*
+> COSA HA CAMBIATO
+> · Il Risveglio sale di 1
+
+---
+
 ## D-043 — The second Chronicle was written, and unreachable
 **implemented in 0.1.6**
 

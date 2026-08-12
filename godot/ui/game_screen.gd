@@ -24,6 +24,7 @@ const StatusPanel := preload("res://ui/status_panel.gd")
 const HandView := preload("res://ui/hand_view.gd")
 const ConfluenceBoard := preload("res://ui/confluence_board.gd")
 const HelpPanel := preload("res://ui/help_panel.gd")
+const EchoCardView := preload("res://ui/echo_card_view.gd")
 
 const SEATS: Array = ["ENT_ALDRIC", "ENT_NAHR", "ENT_LYRA", "ENT_VAERAX"]
 
@@ -53,6 +54,9 @@ var _help_button: Button
 var _help_data: RefCounted
 ## The seed of the last Chronicle played, so the menu can offer it back.
 var _last_seed: int = -1
+## The Act-end Echo card waiting to be looked at, and what it did.
+var _echo: PanelContainer
+var _pending_echo: Dictionary = {}
 ## The map and the Council share the middle of the screen: one is visible at a
 ## time, because they answer different questions and a player looking at a
 ## Council is not choosing where to walk.
@@ -128,6 +132,11 @@ func _build() -> void:
 	_help.set_anchors_preset(Control.PRESET_FULL_RECT)
 	_centre.add_child(_help)
 
+	_echo = EchoCardView.new()
+	_echo.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_echo.visible = false
+	_centre.add_child(_echo)
+
 	var right := VBoxContainer.new()
 	right.custom_minimum_size = Vector2(280, 0)
 	right.add_theme_constant_override("separation", 12)
@@ -187,8 +196,9 @@ func _refresh() -> void:
 	if _session == null:
 		return
 	var council_open: bool = _session.confluence.is_open()
-	_board.visible = council_open and not _help.visible
-	_map.visible = not council_open and not _help.visible
+	var busy: bool = _help.visible or _echo.visible
+	_board.visible = council_open and not busy
+	_map.visible = not council_open and not busy
 	if council_open:
 		_board.render(_session, _viewer)
 	_map.render(_session, _viewer)
@@ -270,6 +280,7 @@ func _load_help_data() -> RefCounted:
 ## screen holds the snapshot and stops here on its own - no decider is asked
 ## anything, because there is nothing to decide (D-039).
 func _beat() -> void:
+	await _echo_beat()
 	if _closed_council.is_empty():
 		return
 	var council: Dictionary = _closed_council
@@ -277,10 +288,30 @@ func _beat() -> void:
 	_help_button.button_pressed = false
 	_board.visible = true
 	_map.visible = false
+	_echo.visible = false
 	_board.render_closed(_session, council)
 	_status.render(_session, _viewer)
 	_hand.render(_session, _viewer, "")
 	await _board.ask("Il Consiglio ha deciso.", ["Avanti"])
+
+
+## The same pause, for the card that ends an Act. It comes first when both are
+## waiting, because that is the order they happened in: the card is drawn, and
+## then it may force the Council that follows it (D-044).
+func _echo_beat() -> void:
+	if _pending_echo.is_empty() or _viewer == "":
+		_pending_echo = {}
+		return
+	var drawn: Dictionary = _pending_echo
+	_pending_echo = {}
+	_help_button.button_pressed = false
+	_echo.visible = true
+	_board.visible = false
+	_map.visible = false
+	_echo.render(drawn["card"], drawn["applied"], _session.data)
+	_status.render(_session, _viewer)
+	await _echo.wait()
+	_echo.visible = false
 
 
 # --- the screen's whole API -------------------------------------------------
@@ -499,6 +530,13 @@ func _play(humans: Array, chronicle_id: String, seed_value: int) -> void:
 		func(_a: int, _r: int, _p: String) -> void:
 			_flush(shown)
 			_refresh()
+	)
+	# Held, not shown: the card is drawn deep inside the Act and the screen has
+	# nowhere to suspend there. It is looked at at the next question, like the
+	# closed Council.
+	_session.chronicle.act_echo_drawn.connect(
+		func(card: Dictionary, applied: Array) -> void:
+			_pending_echo = {"card": card.duplicate(true), "applied": applied.duplicate(true)}
 	)
 
 	say("[b]%s[/b] — anno %d, seme %d" % [

@@ -128,6 +128,22 @@ func _lines(data: RefCounted, chronicle_id: String) -> Array:
 	out.append("Alla fine: [b]sostegno − opposizione + 1d6[/b]. Sotto zero la proposta cade; da 5 in su passa senza discussione.")
 	out.append("")
 
+	if data != null and data.echo_cards.size() > 0:
+		out.append(SECTION % "LE CARTE ECHO")
+		out.append(
+			"Alla fine di ogni Atto ne esce una, e non la pesca nessuno di voi: sono "
+			+ "%d carte, una per ogni [b]funzione di Propp[/b] — mancanza, presagio, "
+			% data.echo_cards.size()
+			+ "tradimento, scoperta, ritorno. Muovono il mondo da sole, e due di loro "
+			+ "convocano un Consiglio sul posto."
+		)
+		out.append(
+			"L'Atto in cui esce decide che tipo puo essere: il primo solo [b]pressione[/b], "
+			+ "l'ultimo soprattutto [b]risoluzione[/b]. La forma di una storia sta nel "
+			+ "mazzo, non nella testa di chi la racconta."
+		)
+		out.append("")
+
 	out.append(SECTION % "COME SI VINCE")
 	out.append(
 		"Ognuno ha un [b]Destino[/b] a tre gradini, in basso a destra, e nessun altro "

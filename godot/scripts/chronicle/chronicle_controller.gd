@@ -16,6 +16,11 @@ const ConditionEvaluator := preload("res://scripts/world/condition_evaluator.gd"
 
 signal phase_changed(act: int, round: int, phase: String)
 signal confluence_resolved(result: Dictionary)
+## The Act-end Echo card, with the Effects it applied. Emitted after they land,
+## so whoever draws it can say what the card *did* and not only what it says.
+## Nothing in the engine listens: it exists because three times a Chronicle the
+## story turns on a card nobody at the table ever sees (D-044).
+signal act_echo_drawn(card: Dictionary, applied: Array)
 
 var session: RefCounted
 var world: Dictionary
@@ -294,6 +299,9 @@ func end_of_act(act: int, decider: Object) -> void:
 			source
 		)
 	)
+	# Kept as they are applied, in order, so the card can be shown with what it
+	# actually did to the world underneath it.
+	var applied: Array = []
 	for hook in card["effect_hooks"]:
 		var bindings: Dictionary = card_bindings(hook)
 		if str(hook["kind"]) == "CONSEQUENCE":
@@ -301,11 +309,13 @@ func end_of_act(act: int, decider: Object) -> void:
 				str(hook["consequence_id"]), bindings, source
 			):
 				session.applier.apply(effect)
+				applied.append(effect)
 		else:
-			session.applier.apply(
-				session.compiler.compile_spec(hook["effect"], bindings, source)
-			)
+			var effect: Dictionary = session.compiler.compile_spec(hook["effect"], bindings, source)
+			session.applier.apply(effect)
+			applied.append(effect)
 	session.tensions.fire_omens(source)
+	act_echo_drawn.emit(card, applied)
 
 	# §12.1 b: a card may prescribe a Confluence. It opens now, at Act end - it
 	# is the card's demand, not a round threshold, so the one-per-round cap in

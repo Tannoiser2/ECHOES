@@ -5,6 +5,36 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.7] — Le carte di Propp esistono anche sullo schermo
+
+C'erano due mazzi e se ne vedeva uno solo. Le 48 carte Asset sono tue: le peschi,
+le tieni, le spendi, e dalla 0.1.5 dicono cosa fanno. Le **24 carte Echo** — una
+per ogni funzione di Propp, in quattro famiglie drammatiche da sei — non le pesca
+nessuno: **ne esce una alla fine di ogni Atto**, dal mazzo che quell'Atto ammette
+(il primo solo *pressione*, l'ultimo soprattutto *risoluzione*). Muovono il mondo
+da sole, due di loro **convocano un Consiglio sul posto**, e ognuna scrive nel
+mondo la funzione che ha appena svolto, così che una carta successiva possa
+richiederla: un Ritorno ha bisogno di una Separazione da cui tornare.
+
+Sullo schermo erano un paragrafo che scorreva via nel transcript.
+
+### Added
+
+- **`ui/echo_card_view.gd`** — la carta prende il centro dello schermo, col
+  colore della sua famiglia, il suo testo, la funzione di Propp in italiano, e
+  **cosa ha appena cambiato**. Resta lì finché non premi Avanti. Tre volte per
+  Chronicle, nei tre momenti in cui la storia gira.
+- **`act_echo_drawn`** sul controller: la carta e gli Effect che ha applicato.
+  Nessuno nel motore lo ascolta — esiste perché lo schermo possa dire cosa la
+  carta *ha fatto*, non solo cosa dice. C'è un test che gioca una Chronicle
+  intera e pretende tre carte, ognuna con almeno un Effect, ognuno dicibile.
+- **`scripts/core/effect_text.gd`** — un Effect in una riga italiana: «La
+  Successione sale di 2», «Eredan: condition:contested», «Cicatrice in Valle
+  Verde: …». I tipi che non conosce si dichiarano per nome invece di tacere.
+- La pagina «Come si gioca» adesso spiega anche questo mazzo.
+
+---
+
 ## [0.1.6] — La seconda Chronicle, e il mondo che puoi rigiocare
 
 ### Added
