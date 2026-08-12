@@ -20,10 +20,21 @@ const STANCE_COLOURS: Dictionary = {
 	"CONDITION": "#e8b563", "ABSTAIN": "#5f584c",
 }
 
+## What the four outcomes are, in words. The engine's names are for the log; a
+## table wants to know whether the thing passed.
+const OUTCOMES: Dictionary = {
+	"FAILURE": "Respinta",
+	"SUCCESS_WITH_COST": "Passa, ma si paga",
+	"SUCCESS": "Passa",
+	"DECISIVE_SUCCESS": "Passa senza discussione",
+}
+
 var _header: Label
 var _question: Label
 var _proposition: Label
 var _stances: VBoxContainer
+var _consequences: VBoxContainer
+var _consequences_title: Label
 var _outcome: Label
 var _choices: HFlowContainer
 var _prompt: Label
@@ -53,6 +64,13 @@ func _build() -> void:
 	_stances.add_theme_constant_override("separation", 3)
 	add_child(_stances)
 
+	_consequences_title = _label(12, "#8a8172")
+	add_child(_consequences_title)
+
+	_consequences = VBoxContainer.new()
+	_consequences.add_theme_constant_override("separation", 6)
+	add_child(_consequences)
+
 	_outcome = _label(15, "#efe7d8")
 	add_child(_outcome)
 
@@ -80,24 +98,46 @@ func _label(font_size: int, colour: String) -> Label:
 # --- reading the Council ----------------------------------------------------
 
 func render(session: RefCounted, _viewer_id: String) -> void:
-	var council: RefCounted = session.confluence
-	if not council.is_open():
+	if not session.confluence.is_open():
 		return
-	var current: Dictionary = council.current
-	var template: Dictionary = session.data.confluence_templates[str(current["template_id"])]
+	_draw(session, session.confluence.current)
 
+
+## The same board, drawn from a Council that has already closed.
+##
+## `resolve()` is atomic and clears `current` at the end of it, so the one
+## moment the whole game turns on - the roll, the sum, and what it wrote on the
+## map - would otherwise never be on screen for a single frame. The screen keeps
+## the snapshot it was handed at RESOLVED and draws it until the player has
+## looked at it (D-039).
+func render_closed(session: RefCounted, council: Dictionary) -> void:
+	if council.is_empty():
+		return
+	_draw(session, council)
+
+
+func _draw(session: RefCounted, council: Dictionary) -> void:
+	var template: Dictionary = session.data.confluence_templates[str(council["template_id"])]
 	_header.text = "%s — %s propone" % [
-		str(session.data.tensions[str(current["tension_id"])]["title"]),
-		str(session.data.entities[str(current["proponent"])]["name"]),
+		str(session.data.tensions[str(council["tension_id"])]["title"]),
+		str(session.data.entities[str(council["proponent"])]["name"]),
 	]
-	_question.text = council.say(_question_text(template, str(current["question_id"])))
+	_question.text = _fill(session, council, _question_text(template, str(council["question_id"])))
 	_proposition.text = ""
 	for proposition in template["propositions"]:
-		if str(proposition["id"]) == str(current.get("proposition_id", "")):
-			_proposition.text = council.say(str(proposition["text"]))
+		if str(proposition["id"]) == str(council.get("proposition_id", "")):
+			_proposition.text = _fill(session, council, str(proposition["text"]))
 
-	_render_stances(session, current)
-	_render_outcome(current)
+	_render_stances(session, council)
+	_render_consequences(session, council, template)
+	_render_outcome(council)
+
+
+## The narrative slots ($the_region, $rival...) filled from the bindings this
+## Council resolved at step A. Taken from the snapshot rather than from the
+## controller, because a closed Council has no bindings left to ask for.
+func _fill(session: RefCounted, council: Dictionary, text: String) -> String:
+	return session.confluence.narrative.fill(text, council.get("text_bindings", {}))
 
 
 func _question_text(template: Dictionary, question_id: String) -> String:
@@ -165,15 +205,79 @@ func _render_stances(session: RefCounted, current: Dictionary) -> void:
 			row.add_child(cards)
 
 
+## What the proposition on the table would write into the world, and - once it
+## has been voted - what it actually wrote.
+##
+## This is the number-free half of the Council and the one that decides whether
+## a stance is worth taking: "sostieni" and "opponiti" mean nothing until you can
+## read what you are supporting. The list is authored data (title, description,
+## and whether it leaves a Scar); the board picks none of it, it only knows which
+## ids to look up - before the vote, the proposition's own; after it, the ones
+## the resolution recorded.
+func _render_consequences(
+	session: RefCounted, council: Dictionary, template: Dictionary
+) -> void:
+	for child in _consequences.get_children():
+		child.queue_free()
+		_consequences.remove_child(child)
+
+	var result: Variant = council.get("result", null)
+	var ids: Array = []
+	if result != null:
+		ids = (result as Dictionary).get("consequence_ids", [])
+		_consequences_title.text = "COSA RESTA"
+	else:
+		for proposition in template["propositions"]:
+			if str(proposition["id"]) == str(council.get("proposition_id", "")):
+				ids = proposition["success_consequences"]
+		_consequences_title.text = "SE PASSA"
+	if ids.is_empty():
+		_consequences_title.text = ""
+		return
+
+	for consequence_id in ids:
+		var consequence: Variant = session.data.consequences.get(str(consequence_id))
+		if consequence == null:
+			continue
+		var scars: bool = bool(consequence.get("creates_scar", false))
+		var box := VBoxContainer.new()
+		box.add_theme_constant_override("separation", 1)
+		_consequences.add_child(box)
+
+		var title := _label(13, "#c8553d" if scars else "#c9bfae")
+		# A Scar is the one mark that never comes off, so it says so where the
+		# decision is taken rather than in the log afterwards.
+		title.text = ("%s — lascia una Cicatrice" % str(consequence["title"])) if scars \
+			else str(consequence["title"])
+		box.add_child(title)
+
+		var body := _label(11, "#8a8172")
+		body.text = _fill(session, council, str(consequence["description"]))
+		box.add_child(body)
+
+
 ## The maths in the clear, once F has rolled. §12.2 G is the moment the game
 ## decides something, and a player should be able to check the arithmetic.
-func _render_outcome(current: Dictionary) -> void:
-	var die: int = int(current.get("die", 0))
+func _render_outcome(council: Dictionary) -> void:
+	var die: int = int(council.get("die", 0))
 	if die <= 0:
 		_outcome.text = ""
 		return
-	var factor: int = int(current.get("world_factor", 0))
-	_outcome.text = "Fattore Mondo: 1d6 = %d → %+d" % [die, factor]
+	# "->" and not an arrow glyph: the fallback font a Web export ships has no
+	# arrow, and a missing glyph draws as a tofu box in the middle of the one line
+	# a player reads to check the arithmetic. Same reason as the destiny ladder.
+	var lines: Array = ["Fattore Mondo: 1d6 = %d -> %+d" % [die, int(council.get("world_factor", 0))]]
+	var result: Variant = council.get("result", null)
+	if result != null:
+		var outcome: String = str((result as Dictionary)["outcome"])
+		lines.append("S %d · O %d · Mondo %+d -> M %+d — %s" % [
+			int((result as Dictionary)["support_total"]),
+			int((result as Dictionary)["oppose_total"]),
+			int((result as Dictionary)["world_factor"]),
+			int((result as Dictionary)["margin"]),
+			str(OUTCOMES.get(outcome, outcome)),
+		])
+	_outcome.text = "\n".join(PackedStringArray(lines))
 
 
 # --- asking ------------------------------------------------------------------

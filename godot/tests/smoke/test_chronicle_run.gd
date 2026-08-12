@@ -116,6 +116,29 @@ func test_at_least_one_plan_writes_history() -> void:
 	assert_true(truths >= 1, "almeno un Truth registrato")
 
 
+## Every resolved Council reports the Consequences it applied, by id and in
+## order. The board shows that list to the table as "cosa resta" (D-039), so it
+## has to be the list the resolution actually used and not a plausible one:
+## which pool applies depends on the outcome, and re-deriving it in the screen
+## would be the resolution order written down twice.
+func test_a_resolved_council_reports_what_it_applied() -> void:
+	var seen: int = 0
+	for file_name in _plan_files():
+		var report: Dictionary = await _run(str(file_name))
+		if report.is_empty():
+			continue
+		for result in report["confluences"]:
+			var ids: Array = (result as Dictionary).get("consequence_ids", [])
+			assert_true(ids.size() > 0, "un Consiglio risolto applica almeno una Conseguenza")
+			for consequence_id in ids:
+				assert_true(
+					session.data.consequences.has(str(consequence_id)),
+					"e ogni Conseguenza citata esiste: %s" % str(consequence_id)
+				)
+			seen += 1
+	assert_true(seen > 0, "almeno un Consiglio deve essersi risolto")
+
+
 ## §18.3: same seed + same plan => byte-identical final save.
 func test_same_seed_and_plan_give_an_identical_save() -> void:
 	var file_name: String = str(_plan_files()[0])

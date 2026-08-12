@@ -331,6 +331,71 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-039 — A choice knows what it is about; the screen decides where to put it
+**implemented in 0.1.2**
+
+0.1 drew a map and then asked where to move in a list beside it. Both halves
+worked and the pair was absurd: six Regions on screen, and the way to walk into
+one of them was to read "Metti una presenza in Terre Nahr" off a column of
+fourteen buttons.
+
+### What was added, and what deliberately was not
+
+`SeatDecider` now hands `io.choose` a third argument: `subjects`, one entry per
+choice, saying what that choice is *about*. Today it holds exactly one thing -
+`{"region": "REG_X"}` on a MOVE - and it is a fact about the choice, not an
+instruction about the screen.
+
+The alternative was to let the map ask the rules which Regions are reachable.
+That is the version to avoid: it puts a legality query in a drawing node, and
+two answers to "where may I go" that can disagree. Instead the map is handed a
+set of Regions and what to report when one is pressed, and it can no more invent
+a legal move than a button could. The terminal takes the same argument and
+ignores it — a numbered list is already all the map a terminal has.
+
+So: the screen sorts the choices between the map, the open Council and the side
+column; it does not judge them. Every entry it puts on the map is an entry it
+would otherwise have put in the column, unchanged.
+
+### The moment the game decides something was never on screen
+
+`ConfluenceController.resolve()` runs F-K in one atomic pass and clears
+`current` on the last line. Nothing in the loop ever came back to draw the
+result, so the roll, the sum and the Consequences existed only in the transcript:
+the `Fattore Mondo` line added in 0.1.1 could not be seen at all.
+
+The screen now keeps the snapshot it is handed at `RESOLVED` and stops on it -
+board, stances, commits, the arithmetic, what it wrote - until the player presses
+Avanti. No decider is asked anything, because there is nothing to decide. It is
+the screen's own pause and it lives entirely in `ui/`.
+
+### `result["consequence_ids"]`
+
+One engine addition, and the reason for it is the seam: which Consequences apply
+depends on the outcome (success takes the proposition's own, plus the cost or the
+decisive pool; failure takes the failure pool). Re-deriving that in the board
+would be the resolution order written down twice, in a place that could quietly
+fall out of step with §12.2. So the resolution reports what it applied, by id and
+in order - the list the log has printed since 0.0 - and the board looks the ids
+up. The three sim plans come out byte for byte identical.
+
+### What the middle of the board holds now
+
+Before the vote, the Consequences the proposition on the table would write, with
+a Scar marked as a Scar. After it, the ones that actually landed. "Sostieni" and
+"opponiti" mean nothing until you can read what you are supporting, and until
+0.1.2 the only way to find out was to lose and read the log.
+
+### Two things the browser found again
+
+The arrow in `1d6 = 6 → +2` is a tofu box in the fallback font a Web export
+ships - the same class of bug as the check mark in 0.1, in the one line a player
+reads to check the arithmetic. It is `->` now. And the whole feature was verified
+by clicking a Region in Chromium and watching a presence appear in it: a map that
+lights up and does nothing when pressed is a bug no headless run can see.
+
+---
+
 ## D-038 — The Chronicle can wait for a click
 **implemented in 0.0.14**
 

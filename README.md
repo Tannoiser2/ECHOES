@@ -37,12 +37,13 @@ Nessun backend, nessuna API key, nessun servizio esterno. Tutto offline.
 La cartella `godot/` è il progetto Godot: aprila direttamente dall'editor, oppure
 
 ```bash
-godot --path godot                    # esegue la scena di boot (validazione dati)
-godot --headless --path godot         # stessa cosa, senza finestra
+godot --path godot                    # apre il gioco (ui/main.tscn)
+godot --headless --path godot --script res://tests/run_tests.gd   # i test
 ```
 
-In 0.0 la scena di boot esiste solo per validare i dati e dare qualcosa da
-caricare agli smoke test. Non c'è UI di gioco: è previsto.
+La scena principale e `ui/main.tscn`: la stessa che gira nel browser, perche e
+la stessa partita. `scenes/boot/` resta come validazione dati per gli smoke test
+e non e piu la scena di avvio.
 
 ---
 
@@ -51,6 +52,15 @@ caricare agli smoke test. Non c'è UI di gioco: è previsto.
 Il progetto esporta come applicazione web ed e pubblicato su GitHub Pages dal
 workflow `.github/workflows/pages.yml` a ogni push su `main`. Non c'e niente da
 installare: si apre una pagina.
+
+Si sceglie un seggio, e poi si gioca sul tabellone: le **Regioni cerchiate d'oro**
+sono quelle dove puoi mettere una presenza, e ci si va premendole. Le altre azioni
+stanno nella colonna a destra, insieme alle domande dell'anno e al tuo Destino.
+Quando si apre un **Consiglio** la mappa lascia il centro alla plancia: la
+domanda, la proposta, chi dice cosa, cosa ognuno ha impegnato, e **le Conseguenze
+che la proposta scriverebbe sul mondo** — comprese quelle che lasciano una
+Cicatrice. Alla fine il tiro e il conto restano su schermo finche non premi
+Avanti.
 
 L'export e **single-thread** di proposito. La build Web con i thread richiede
 `SharedArrayBuffer`, che richiede gli header `COOP`/`COEP`, che GitHub Pages non

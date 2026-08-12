@@ -5,6 +5,51 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.2] — La mappa si preme, e il Consiglio dice cosa costa
+
+Le due cose che nella 0.1 restavano a meta: una mappa che si guardava e basta, e
+una plancia con un buco in mezzo.
+
+### Si gioca sulla mappa
+
+- **Le mosse si scelgono premendo una Regione.** Le Regioni raggiungibili sono
+  cerchiate d'oro, si illuminano sotto il cursore e il puntatore diventa una
+  mano; le altre non reagiscono, perche una Regione che si accende e poi non fa
+  niente sembra un gioco rotto. Il bottone «Metti una presenza in…» sparisce
+  dalla colonna: erano fino a sei voci su quattordici.
+- **La legalita non si sposta sulla mappa.** `SeatDecider` dice *di cosa parla*
+  ogni scelta (`{"region": "REG_X"}` su una mossa) e la mappa riceve l'insieme
+  gia filtrato dalle regole: disegna, non giudica. Il terminale riceve lo stesso
+  dato e lo ignora — una lista numerata e gia tutta la mappa che ha (D-039).
+
+### Il momento in cui il gioco decide qualcosa
+
+- **La plancia si ferma sul Consiglio appena chiuso** finche non premi Avanti.
+  `resolve()` esegue F-K in un passo solo e si azzera alla fine: il tiro, la
+  somma e le conseguenze non erano mai stati su schermo per un frame — nemmeno la
+  riga `Fattore Mondo` aggiunta nella 0.1.1.
+- **Il conto in chiaro**: `S 6 · O 7 · Mondo +0 -> M -1 — Respinta`.
+
+### Cosa metti in gioco quando dici «sostengo»
+
+- **Al centro della plancia adesso ci sono le Conseguenze**: prima del voto quelle
+  che la proposta scriverebbe sul mondo, dopo il voto quelle che ci ha scritto
+  davvero. Ognuna col suo titolo, la sua riga di testo, e **«lascia una
+  Cicatrice»** quando e il caso. Fino a ieri l'unico modo di scoprirlo era
+  perdere e leggere il log.
+- Il motore riporta le Conseguenze applicate (`result["consequence_ids"]`) invece
+  di farle ridedurre allo schermo: quale pool si applica dipende dall'esito, e
+  riscriverlo nella UI sarebbe l'ordine di risoluzione scritto due volte.
+
+### Fixed
+
+- La freccia di `1d6 = 6 → +2` era un quadratino vuoto nel font di fallback del
+  build Web, proprio nella riga che serve a rifare il conto. Ora e `->`.
+
+Il motore resta byte-identico: le tre sim escono uguali carattere per carattere.
+
+---
+
 ## [0.1.1] — La plancia del Consiglio
 
 Il momento in cui il gioco decide qualcosa adesso sembra tale.

@@ -13,7 +13,10 @@ func say(text: String) -> void:
 	print(text)
 
 
-func choose(prompt: String, labels: Array) -> int:
+## `subjects` says what each choice is about (a Region, so far). A terminal has
+## nowhere to put that, so it takes the argument and ignores it: the numbered
+## list is already the whole map a terminal has.
+func choose(prompt: String, labels: Array, _subjects: Array = []) -> int:
 	for i in range(labels.size()):
 		print("   %2d) %s" % [i + 1, str(labels[i])])
 	printraw("%s [invio = lascia decidere alla policy] " % prompt)

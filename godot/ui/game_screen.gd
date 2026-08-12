@@ -38,6 +38,11 @@ var _busy: bool = false
 
 var _map: Control
 var _board: VBoxContainer
+## The last Council to close, kept until the player has looked at it. See
+## `_beat()`: resolve() is atomic, so without this the roll and its consequences
+## would never be drawn.
+var _closed_council: Dictionary = {}
+var _hint: Label
 ## The map and the Council share the middle of the screen: one is visible at a
 ## time, because they answer different questions and a player looking at a
 ## Council is not choosing where to walk.
@@ -97,6 +102,9 @@ func _build() -> void:
 
 	_map = MapView.new()
 	_map.set_anchors_preset(Control.PRESET_FULL_RECT)
+	# Pressing a Region *is* choosing an action, so the map answers the question
+	# on screen. Which Regions may be pressed is set by whoever asked it.
+	_map.region_clicked.connect(_on_region_clicked)
 	_centre.add_child(_map)
 
 	_board = ConfluenceBoard.new()
@@ -117,6 +125,12 @@ func _build() -> void:
 	_prompt.add_theme_font_size_override("font_size", 15)
 	_prompt.add_theme_color_override("font_color", Color("#e8b563"))
 	right.add_child(_prompt)
+
+	_hint = Label.new()
+	_hint.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_hint.add_theme_font_size_override("font_size", 12)
+	_hint.add_theme_color_override("font_color", Color("#8a8172"))
+	right.add_child(_hint)
 
 	_scroll = ScrollContainer.new()
 	_scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
@@ -149,6 +163,26 @@ func _refresh() -> void:
 	_hand.render(_session, _viewer, _focus_tension)
 
 
+## The beat after a Council closes.
+##
+## `ConfluenceController.resolve()` runs F-K in one pass and clears itself, so
+## nothing in the loop ever comes back to draw the result: the roll, the sum and
+## the Consequences would flash past between two frames that never happen. The
+## screen holds the snapshot and stops here on its own - no decider is asked
+## anything, because there is nothing to decide (D-039).
+func _beat() -> void:
+	if _closed_council.is_empty():
+		return
+	var council: Dictionary = _closed_council
+	_closed_council = {}
+	_board.visible = true
+	_map.visible = false
+	_board.render_closed(_session, council)
+	_status.render(_session, _viewer)
+	_hand.render(_session, _viewer, "")
+	await _board.ask("Il Consiglio ha deciso.", ["Avanti"])
+
+
 # --- the screen's whole API -------------------------------------------------
 
 ## One line into the transcript. Lines the engine writes arrive here too, so
@@ -163,25 +197,51 @@ func say(text: String) -> void:
 ## SeatDecider's `io.choose`. Adds the "you decide" button the terminal spells
 ## as a bare Enter, and reports it as -1, which is the contract for handing this
 ## single choice back to the policy.
-func choose(prompt: String, labels: Array) -> int:
+func choose(prompt: String, labels: Array, subjects: Array = []) -> int:
 	var entries: Array = labels.duplicate()
 	entries.append("Lascia decidere alla policy")
-	var picked: int = await ask(prompt, entries)
+	var about: Array = subjects.duplicate()
+	while about.size() < entries.size():
+		about.append({})
+	var picked: int = await ask(prompt, entries, about)
 	return -1 if picked >= labels.size() else picked
 
 
 ## Put the choices on screen and suspend until one is pressed.
 ##
-## While a Council is open the choices belong *in* the Council - beside the
-## question they answer - rather than in the side column, which is where actions
-## live. Same labels, same contract, different place on the screen.
-func ask(prompt: String, labels: Array) -> int:
+## Three places a choice can live, and the choice itself says which:
+##  - inside an open Council, beside the question it answers;
+##  - on the map, when `subjects[i]` names a Region: the whole point of drawing
+##    a board is that you point at it, so "metti una presenza in X" is not a line
+##    of text, it is X, lit up and pressable;
+##  - otherwise in the side column, which is where the rest of a turn lives.
+##
+## The screen sorts them; it does not judge them. Every entry it is handed is
+## already legal, and an entry it puts on the map is the same entry it would
+## have put in the column (D-039).
+func ask(prompt: String, labels: Array, subjects: Array = []) -> int:
+	await _beat()
 	_refresh()
 	if _session != null and _session.confluence.is_open():
 		return await _board.ask(prompt, labels)
+
+	var on_map: Dictionary = {}
+	for i in range(labels.size()):
+		var subject: Dictionary = subjects[i] if i < subjects.size() else {}
+		var region_id: String = str(subject.get("region", ""))
+		if region_id != "":
+			on_map[region_id] = i
+	_map.highlighted = on_map
+	_map.queue_redraw()
+
 	_prompt.text = prompt
+	_hint.text = "" if on_map.is_empty() else \
+		"Le Regioni cerchiate d'oro sono raggiungibili: cliccane una per metterci una presenza."
 	_clear_buttons()
 	for i in range(labels.size()):
+		var subject: Dictionary = subjects[i] if i < subjects.size() else {}
+		if str(subject.get("region", "")) != "":
+			continue
 		var button := Button.new()
 		button.text = str(labels[i])
 		button.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -190,10 +250,21 @@ func ask(prompt: String, labels: Array) -> int:
 		var index: int = i
 		button.pressed.connect(func() -> void: picked.emit(index))
 		_buttons.add_child(button)
+
 	var chosen: int = await picked
+	# Cleared before returning, so a stray click on the map between two questions
+	# cannot answer the next one.
+	_map.highlighted = {}
+	_map.queue_redraw()
 	_clear_buttons()
 	_prompt.text = ""
+	_hint.text = ""
 	return chosen
+
+
+func _on_region_clicked(region_id: String) -> void:
+	if _map.highlighted.has(region_id):
+		picked.emit(int(_map.highlighted[region_id]))
 
 
 func _clear_buttons() -> void:
@@ -270,6 +341,10 @@ func _play(humans: Array) -> void:
 	_session.confluence.step_changed.connect(
 		func(step: String, context: Dictionary) -> void:
 			_focus_tension = "" if step == "RESOLVED" else str(context["tension_id"])
+			if step == "RESOLVED":
+				# Copied, not referenced: resolve() empties the controller's
+				# dictionary on the next line.
+				_closed_council = context.duplicate(true)
 	)
 	_refresh()
 
@@ -277,7 +352,9 @@ func _play(humans: Array) -> void:
 	seat.io = self
 	var report: Dictionary = await _session.run(seat)
 	_focus_tension = ""
+	await _beat()
 	_flush(shown)
+	_map.highlighted = {}
 	_refresh()
 	_ending(data, report)
 	_session.dispose()
