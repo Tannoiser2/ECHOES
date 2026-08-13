@@ -81,6 +81,20 @@ livelli di tag uscivano come una colonna di parole grigie.
   mano e stampate — il glifo della famiglia sta nell'angolo in basso a destra:
   è come si ordina un mazzo di 132 carte senza leggerne una.
 
+### Changed
+
+- **La regola 3 della ART_BIBLE è cambiata alla prima carta consegnata**: gli
+  Asset possono avere volti. Quello che separa i due mazzi non è il volto ma la
+  **composizione** — l'Asset è una *scena*, la Casata un *ritratto*
+  ([D-060](docs/DECISIONS.md#d-060)). La riga sta adesso dentro il MASTER PROMPT,
+  quindi arriva a chi disegna attraverso `BRIEF_ARTE.md` invece di vivere in un
+  documento che potrebbe non aprire mai.
+
+- La fascia sotto il testo di una carta al vivo è una **sfumatura** e non un
+  rettangolo: un bordo netto sopra un dipinto è un taglio, una sfumatura è
+  un'ombra che sale dal basso. Definita una volta per foglio, in unità relative,
+  quindi si adatta da sola a quanto testo ha quella carta.
+
 ### Fixed
 
 - I segni sulle Regioni (`condition:`, `scar:`, …) finivano **in cima alla

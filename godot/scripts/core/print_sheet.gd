@@ -87,6 +87,15 @@ static func page_svg(faces: Array, shape: String, label: String, number: int, to
 		'<svg xmlns="http://www.w3.org/2000/svg" width="%dmm" height="%dmm" viewBox="0 0 %d %d">'
 		% [int(PAGE_W), int(PAGE_H), int(PAGE_W), int(PAGE_H)]
 	)
+	# La sfumatura sotto il testo, definita una volta per foglio e usata da ogni
+	# carta: in unita' relative al proprio rettangolo, quindi si adatta da sola a
+	# quanto testo ha quella carta. Un bordo netto sopra un dipinto e' un taglio;
+	# una sfumatura e' un'ombra che sale dal basso.
+	out.append('<defs><linearGradient id="velo" x1="0" y1="0" x2="0" y2="1">')
+	out.append('<stop offset="0" stop-color="#0d0b09" stop-opacity="0"/>')
+	out.append('<stop offset="0.28" stop-color="#0d0b09" stop-opacity="0.66"/>')
+	out.append('<stop offset="1" stop-color="#0d0b09" stop-opacity="0.86"/>')
+	out.append('</linearGradient></defs>')
 	out.append('<rect width="%d" height="%d" fill="#ffffff"/>' % [int(PAGE_W), int(PAGE_H)])
 	out.append(
 		'<text x="%.1f" y="%.1f" font-family="sans-serif" font-size="3" fill="#999999">%s</text>'
@@ -299,9 +308,11 @@ static func _face_svg(face: Dictionary, x: float, y: float, cell: Vector2) -> St
 	# lo rimette a galla senza coprire il quadro.
 	if (bool(drawn["full_tile"]) or bool(drawn["painted"])) and not (drawn["lines"] as Array).is_empty():
 		var first: Dictionary = (drawn["lines"] as Array)[0]
-		var top: float = float(first["y"]) - float(first["size"]) - 1.2
+		# La sfumatura comincia un po' piu' in alto della prima riga: il testo deve
+		# posarsi su qualcosa di gia' scuro, non sul bordo della sfumatura.
+		var top: float = float(first["y"]) - float(first["size"]) - 5.0
 		out.append(
-			'<rect x="%.2f" y="%.2f" width="%.2f" height="%.2f" fill="#0d0b09" opacity="0.62"/>'
+			'<rect x="%.2f" y="%.2f" width="%.2f" height="%.2f" fill="url(#velo)"/>'
 			% [x, y + top, cell.x, cell.y - top]
 		)
 

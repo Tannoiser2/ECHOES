@@ -19,6 +19,8 @@ Historical dark-fantasy painting, single evocative scene depicting Censimento �
 Painterly oil technique, visible brushwork, muted earth palette with a single
 oro spento accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
+A scene, not a portrait: figures may show their faces, but never a single centred
+figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
@@ -35,6 +37,8 @@ Historical dark-fantasy painting, single evocative scene depicting Diritto di Co
 Painterly oil technique, visible brushwork, muted earth palette with a single
 oro spento accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
+A scene, not a portrait: figures may show their faces, but never a single centred
+figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
@@ -51,6 +55,8 @@ Historical dark-fantasy painting, single evocative scene depicting Editto — Un
 Painterly oil technique, visible brushwork, muted earth palette with a single
 oro spento accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
+A scene, not a portrait: figures may show their faces, but never a single centred
+figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
@@ -67,6 +73,8 @@ Historical dark-fantasy painting, single evocative scene depicting Interdetto �
 Painterly oil technique, visible brushwork, muted earth palette with a single
 oro spento accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
+A scene, not a portrait: figures may show their faces, but never a single centred
+figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
@@ -83,6 +91,8 @@ Historical dark-fantasy painting, single evocative scene depicting Investitura �
 Painterly oil technique, visible brushwork, muted earth palette with a single
 oro spento accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
+A scene, not a portrait: figures may show their faces, but never a single centred
+figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
@@ -99,6 +109,8 @@ Historical dark-fantasy painting, single evocative scene depicting Magistrato �
 Painterly oil technique, visible brushwork, muted earth palette with a single
 oro spento accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
+A scene, not a portrait: figures may show their faces, but never a single centred
+figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
@@ -115,6 +127,8 @@ Historical dark-fantasy painting, single evocative scene depicting Sigillo — +
 Painterly oil technique, visible brushwork, muted earth palette with a single
 oro spento accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
+A scene, not a portrait: figures may show their faces, but never a single centred
+figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
@@ -131,6 +145,8 @@ Historical dark-fantasy painting, single evocative scene depicting Atto di Succe
 Painterly oil technique, visible brushwork, muted earth palette with a single
 oro spento accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
+A scene, not a portrait: figures may show their faces, but never a single centred
+figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
@@ -147,6 +163,8 @@ Historical dark-fantasy painting, single evocative scene depicting Promessa di N
 Painterly oil technique, visible brushwork, muted earth palette with a single
 porpora tenue accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
+A scene, not a portrait: figures may show their faces, but never a single centred
+figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
@@ -163,6 +181,8 @@ Historical dark-fantasy painting, single evocative scene depicting Legame di San
 Painterly oil technique, visible brushwork, muted earth palette with a single
 porpora tenue accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
+A scene, not a portrait: figures may show their faces, but never a single centred
+figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
@@ -179,6 +199,8 @@ Historical dark-fantasy painting, single evocative scene depicting Patto Rotto �
 Painterly oil technique, visible brushwork, muted earth palette with a single
 porpora tenue accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
+A scene, not a portrait: figures may show their faces, but never a single centred
+figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
@@ -195,6 +217,8 @@ Historical dark-fantasy painting, single evocative scene depicting Favore — Pi
 Painterly oil technique, visible brushwork, muted earth palette with a single
 porpora tenue accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
+A scene, not a portrait: figures may show their faces, but never a single centred
+figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
@@ -211,6 +235,8 @@ Historical dark-fantasy painting, single evocative scene depicting Diritto di Os
 Painterly oil technique, visible brushwork, muted earth palette with a single
 porpora tenue accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
+A scene, not a portrait: figures may show their faces, but never a single centred
+figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
@@ -227,6 +253,8 @@ Historical dark-fantasy painting, single evocative scene depicting Ostaggio — 
 Painterly oil technique, visible brushwork, muted earth palette with a single
 porpora tenue accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
+A scene, not a portrait: figures may show their faces, but never a single centred
+figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
@@ -243,6 +271,8 @@ Historical dark-fantasy painting, single evocative scene depicting Giuramento �
 Painterly oil technique, visible brushwork, muted earth palette with a single
 porpora tenue accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
+A scene, not a portrait: figures may show their faces, but never a single centred
+figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
@@ -259,6 +289,8 @@ Historical dark-fantasy painting, single evocative scene depicting Debito Vecchi
 Painterly oil technique, visible brushwork, muted earth palette with a single
 porpora tenue accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
+A scene, not a portrait: figures may show their faces, but never a single centred
+figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
@@ -275,6 +307,8 @@ Historical dark-fantasy painting, single evocative scene depicting Guardia di Co
 Painterly oil technique, visible brushwork, muted earth palette with a single
 rosso ossido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
+A scene, not a portrait: figures may show their faces, but never a single centred
+figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
@@ -291,6 +325,8 @@ Historical dark-fantasy painting, single evocative scene depicting Le Porte Bruc
 Painterly oil technique, visible brushwork, muted earth palette with a single
 rosso ossido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
+A scene, not a portrait: figures may show their faces, but never a single centred
+figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
@@ -307,6 +343,8 @@ Historical dark-fantasy painting, single evocative scene depicting Leva Contadin
 Painterly oil technique, visible brushwork, muted earth palette with a single
 rosso ossido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
+A scene, not a portrait: figures may show their faces, but never a single centred
+figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
@@ -323,6 +361,8 @@ Historical dark-fantasy painting, single evocative scene depicting Mercenari —
 Painterly oil technique, visible brushwork, muted earth palette with a single
 rosso ossido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
+A scene, not a portrait: figures may show their faces, but never a single centred
+figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
@@ -339,6 +379,8 @@ Historical dark-fantasy painting, single evocative scene depicting Il Vecchio Es
 Painterly oil technique, visible brushwork, muted earth palette with a single
 rosso ossido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
+A scene, not a portrait: figures may show their faces, but never a single centred
+figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
@@ -355,6 +397,8 @@ Historical dark-fantasy painting, single evocative scene depicting Posto di Bloc
 Painterly oil technique, visible brushwork, muted earth palette with a single
 rosso ossido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
+A scene, not a portrait: figures may show their faces, but never a single centred
+figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
@@ -371,6 +415,8 @@ Historical dark-fantasy painting, single evocative scene depicting Assedio — +
 Painterly oil technique, visible brushwork, muted earth palette with a single
 rosso ossido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
+A scene, not a portrait: figures may show their faces, but never a single centred
+figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
@@ -387,6 +433,8 @@ Historical dark-fantasy painting, single evocative scene depicting Banda Armata 
 Painterly oil technique, visible brushwork, muted earth palette with a single
 rosso ossido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
+A scene, not a portrait: figures may show their faces, but never a single centred
+figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
@@ -403,6 +451,8 @@ Historical dark-fantasy painting, single evocative scene depicting Archivio — 
 Painterly oil technique, visible brushwork, muted earth palette with a single
 verde-azzurro pallido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
+A scene, not a portrait: figures may show their faces, but never a single centred
+figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
@@ -419,6 +469,8 @@ Historical dark-fantasy painting, single evocative scene depicting Registro — 
 Painterly oil technique, visible brushwork, muted earth palette with a single
 verde-azzurro pallido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
+A scene, not a portrait: figures may show their faces, but never a single centred
+figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
@@ -435,6 +487,8 @@ Historical dark-fantasy painting, single evocative scene depicting Mappa Vecchia
 Painterly oil technique, visible brushwork, muted earth palette with a single
 verde-azzurro pallido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
+A scene, not a portrait: figures may show their faces, but never a single centred
+figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
@@ -451,6 +505,8 @@ Historical dark-fantasy painting, single evocative scene depicting Prova — Se 
 Painterly oil technique, visible brushwork, muted earth palette with a single
 verde-azzurro pallido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
+A scene, not a portrait: figures may show their faces, but never a single centred
+figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
@@ -467,6 +523,8 @@ Historical dark-fantasy painting, single evocative scene depicting Il Cristallo 
 Painterly oil technique, visible brushwork, muted earth palette with a single
 verde-azzurro pallido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
+A scene, not a portrait: figures may show their faces, but never a single centred
+figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
@@ -483,6 +541,8 @@ Historical dark-fantasy painting, single evocative scene depicting Voce di Corri
 Painterly oil technique, visible brushwork, muted earth palette with a single
 verde-azzurro pallido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
+A scene, not a portrait: figures may show their faces, but never a single centred
+figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
@@ -499,6 +559,8 @@ Historical dark-fantasy painting, single evocative scene depicting Deposizione S
 Painterly oil technique, visible brushwork, muted earth palette with a single
 verde-azzurro pallido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
+A scene, not a portrait: figures may show their faces, but never a single centred
+figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
@@ -515,6 +577,8 @@ Historical dark-fantasy painting, single evocative scene depicting Testimone —
 Painterly oil technique, visible brushwork, muted earth palette with a single
 verde-azzurro pallido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
+A scene, not a portrait: figures may show their faces, but never a single centred
+figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
@@ -531,6 +595,8 @@ Historical dark-fantasy painting, single evocative scene depicting Folla — Nes
 Painterly oil technique, visible brushwork, muted earth palette with a single
 terracotta accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
+A scene, not a portrait: figures may show their faces, but never a single centred
+figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
@@ -547,6 +613,8 @@ Historical dark-fantasy painting, single evocative scene depicting Consiglio deg
 Painterly oil technique, visible brushwork, muted earth palette with a single
 terracotta accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
+A scene, not a portrait: figures may show their faces, but never a single centred
+figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
@@ -563,6 +631,8 @@ Historical dark-fantasy painting, single evocative scene depicting Esodo — For
 Painterly oil technique, visible brushwork, muted earth palette with a single
 terracotta accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
+A scene, not a portrait: figures may show their faces, but never a single centred
+figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
@@ -579,6 +649,8 @@ Historical dark-fantasy painting, single evocative scene depicting Braccia per i
 Painterly oil technique, visible brushwork, muted earth palette with a single
 terracotta accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
+A scene, not a portrait: figures may show their faces, but never a single centred
+figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
@@ -595,6 +667,8 @@ Historical dark-fantasy painting, single evocative scene depicting Marcia — Po
 Painterly oil technique, visible brushwork, muted earth palette with a single
 terracotta accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
+A scene, not a portrait: figures may show their faces, but never a single centred
+figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
@@ -611,6 +685,8 @@ Historical dark-fantasy painting, single evocative scene depicting Mobilitazione
 Painterly oil technique, visible brushwork, muted earth palette with a single
 terracotta accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
+A scene, not a portrait: figures may show their faces, but never a single centred
+figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
@@ -627,6 +703,8 @@ Historical dark-fantasy painting, single evocative scene depicting Portavoce —
 Painterly oil technique, visible brushwork, muted earth palette with a single
 terracotta accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
+A scene, not a portrait: figures may show their faces, but never a single centred
+figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
@@ -643,6 +721,8 @@ Historical dark-fantasy painting, single evocative scene depicting Braccia Ferme
 Painterly oil technique, visible brushwork, muted earth palette with a single
 terracotta accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
+A scene, not a portrait: figures may show their faces, but never a single centred
+figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
@@ -659,6 +739,8 @@ Historical dark-fantasy painting, single evocative scene depicting Carovana — 
 Painterly oil technique, visible brushwork, muted earth palette with a single
 ambra accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
+A scene, not a portrait: figures may show their faces, but never a single centred
+figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
@@ -675,6 +757,8 @@ Historical dark-fantasy painting, single evocative scene depicting Credito — +
 Painterly oil technique, visible brushwork, muted earth palette with a single
 ambra accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
+A scene, not a portrait: figures may show their faces, but never a single centred
+figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
@@ -691,6 +775,8 @@ Historical dark-fantasy painting, single evocative scene depicting Riserva di Gr
 Painterly oil technique, visible brushwork, muted earth palette with a single
 ambra accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
+A scene, not a portrait: figures may show their faces, but never a single centred
+figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
@@ -707,6 +793,8 @@ Historical dark-fantasy painting, single evocative scene depicting Chiavi del Gr
 Painterly oil technique, visible brushwork, muted earth palette with a single
 ambra accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
+A scene, not a portrait: figures may show their faces, but never a single centred
+figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
@@ -723,6 +811,8 @@ Historical dark-fantasy painting, single evocative scene depicting Ipoteca sulle
 Painterly oil technique, visible brushwork, muted earth palette with a single
 ambra accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
+A scene, not a portrait: figures may show their faces, but never a single centred
+figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
@@ -739,6 +829,8 @@ Historical dark-fantasy painting, single evocative scene depicting Sale — +1 q
 Painterly oil technique, visible brushwork, muted earth palette with a single
 ambra accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
+A scene, not a portrait: figures may show their faces, but never a single centred
+figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
@@ -755,6 +847,8 @@ Historical dark-fantasy painting, single evocative scene depicting Pedaggio — 
 Painterly oil technique, visible brushwork, muted earth palette with a single
 ambra accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
+A scene, not a portrait: figures may show their faces, but never a single centred
+figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
@@ -771,6 +865,8 @@ Historical dark-fantasy painting, single evocative scene depicting Il Tesoro —
 Painterly oil technique, visible brushwork, muted earth palette with a single
 ambra accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
+A scene, not a portrait: figures may show their faces, but never a single centred
+figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,

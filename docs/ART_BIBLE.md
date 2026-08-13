@@ -26,8 +26,16 @@ candele. Nessun neon, nessun bagliore magico generico.
    composti da Godot (§21). Un'illustrazione con testo rasterizzato è da rifare.
 2. **Area di respiro per l'overlay.** Ogni immagine riserva una fascia meno
    dettagliata dove andrà il testo: bassa sulle carte, alta sui tile Regione.
-3. **Nessun volto in primo piano sulle carte Asset.** Gli Asset sono forze, non
-   personaggi. I volti stanno sulle Entity card.
+3. **Gli Asset sono scene, le Casate sono ritratti.** Un Asset può avere volti,
+   e anche in primo piano. *Cambiata in 0.1.21, alla prima carta consegnata*
+   ([D-060](DECISIONS.md#d-060)): la regola diceva «nessun volto sulle carte
+   Asset», e il Censimento senza la fila che aspetta non è il Censimento — una
+   scena di spalle si disegna, ma costa naturalezza a ogni singola carta, e
+   quarantotto volte è un prezzo che non vale il vincolo.
+   La distinzione fra i due mazzi passa adesso dalla **composizione**: l'Asset è
+   una **scena** — un luogo, un gesto, delle persone dentro una cosa che sta
+   succedendo — mai un ritratto singolo centrato; la Casata è un **ritratto**,
+   una figura sola, ravvicinata, che guarda chi la guarda.
 4. **Coerenza di scala.** Una Folla e una Leva Contadina devono sembrare lo stesso
    mondo visto da due distanze.
 
@@ -40,6 +48,8 @@ Historical dark-fantasy painting, single evocative scene depicting {SOGGETTO}.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 {ACCENTO} accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
+A scene, not a portrait: figures may show their faces, but never a single centred
+figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,

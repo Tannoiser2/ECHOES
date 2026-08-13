@@ -331,6 +331,41 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-060 — Gli Asset sono scene, le Casate sono ritratti
+**changed in 0.1.21** (ART_BIBLE, regola invalicabile 3)
+
+The rule said: *«no faces in the foreground on Asset cards. Assets are forces,
+not characters. Faces belong on the Entity cards.»* The first delivered card
+broke it - a scribe writing names while a family queues, four readable faces -
+and the rule lost.
+
+It lost for a good reason. The rule's job was to keep two decks apart, and it
+paid for that with the naturalness of every single Asset card: a Census without
+the queue that waits is not a Census, and «shot from behind» is a constraint the
+illustrator pays forty-eight times. What separates the decks is not whether a
+face is visible - it is **what the picture is of**.
+
+So the distinction moved to composition, where it costs nothing:
+
+- an **Asset** is a *scene* - a place, a gesture, people inside something that is
+  happening - and never a single centred figure looking out;
+- a **House** is a *portrait* - one figure, close, looking at whoever looks.
+
+MASTER PROMPT 1 now says so in the prompt itself, which means the line reaches
+whoever draws through `BRIEF_ARTE.md` instead of living in a document they may
+never open.
+
+### Perche' e' scritto qui e non sistemato in silenzio
+
+A constraint broken by the very first delivery is a constraint to rewrite, not
+one to quietly ignore - otherwise the deck drifts one card at a time and nobody
+can say when the rule stopped being true. This is the second time the ART_BIBLE
+has been corrected by something arriving from the outside rather than by
+reasoning: the first was the icon set, where the proof sheet refused two glyphs
+(D-058).
+
+---
+
 ## D-059 — Un posto dove mettere l'arte vera
 **implemented in 0.1.21** (ISSUES 5)
 
