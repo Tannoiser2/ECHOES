@@ -89,21 +89,19 @@ all'illustrazione e le chiavi si tolgono dai dati.
 `test_print_export.test_the_keys_without_a_prompt_are_the_ones_we_know_about` è
 aggiornato di conseguenza.
 
-### 5. Un posto dove mettere l'arte vera
+### 5. ✅ Un posto dove mettere l'arte vera — fatto in 0.1.21
 
-`arte` · `motore`
+`arte` · `motore` · **chiusa** ([D-059](DECISIONS.md#d-059))
 
-Il segnaposto esiste e il brief pure, ma **non c'è modo di sostituire il
-segnaposto con un'immagine**: niente nel codice carica un file d'immagine per
-`art_prompt_key`.
+La convenzione è il nome del file: la chiave con i punti al posto delle barre,
+sotto `res://art/` (vedi [`godot/art/README.md`](../godot/art/README.md)). Se il
+file c'è si disegna quello, se non c'è il segnaposto — sullo schermo,
+nell'anteprima e nel foglio di stampa, che lo incorpora come `data:` URI.
 
-Serve una convenzione (`godot/art/<art_prompt_key>.png`, o un manifesto che le
-mappi) e un solo punto che decida: se il file c'è si disegna quello, se non c'è
-si disegna il segnaposto — sia nell'anteprima sia nell'SVG, che dovrà
-incorporare l'immagine come `data:` URI per restare un file solo.
+Più `map.board`, il tabellone dipinto: l'unica chiave che non sta nei dati.
 
-**Fatto quando** una carta con l'illustrazione vera e una senza convivono nello
-stesso foglio, e l'export resta deterministico.
+**Resta da fare**: consegnare le illustrazioni. Sono 96 chiavi, e il brief per
+mandarle a chi disegna lo genera già `tools/run_export.sh`.
 
 ### 6. ✅ L'iconografia di sistema — fatta in 0.1.20
 

@@ -12,6 +12,7 @@ extends Control
 
 const RegionArt := preload("res://scripts/core/region_art.gd")
 const Glyph := preload("res://ui/glyph.gd")
+const ArtLibrary := preload("res://scripts/core/art_library.gd")
 
 ## Quanto e' grande una tessera. Cresce con lo spazio che ha: a schermo intero
 ## una mappa di sei bolli piccoli in mezzo al vuoto spreca l'unica vista che
@@ -54,6 +55,22 @@ func render(session: RefCounted, viewer_id: String) -> void:
 	queue_redraw()
 
 
+## Il tabellone dipinto, se qualcuno l'ha messo in `res://art/map/board.png`.
+## Quando c'e', il terreno generato si fa da parte: l'immagine **e'** il terreno,
+## e la mappa disegna solo quello che il quadro non sa - chi tiene un posto, chi
+## ci sta, cosa gli e' successo quest'anno.
+func _board() -> Texture2D:
+	return ArtLibrary.texture(ArtLibrary.BOARD)
+
+
+## Il rettangolo del quadro dentro questa vista, a proporzioni rispettate.
+func _board_rect(board: Texture2D) -> Rect2:
+	var art: Vector2 = board.get_size()
+	var scale: float = minf(size.x / art.x, size.y / art.y)
+	var span: Vector2 = art * scale
+	return Rect2((size - span) * 0.5, span)
+
+
 func _relayout() -> void:
 	if _session == null:
 		return
@@ -62,6 +79,26 @@ func _relayout() -> void:
 	# dallo spazio disponibile invece di essere una costante, cosi la stessa vista
 	# funziona in una finestra stretta e a schermo intero.
 	_radius = clampf(minf(size.x, size.y) * 0.17, RADIUS_MIN, RADIUS_MAX)
+
+	# Con il quadro le coordinate dei dati si prendono **alla lettera**: chi ha
+	# dipinto la mappa ha messo la citta' dove i dati dicevano che stava, e
+	# allungare il riquadro come si fa senza quadro sposterebbe i segnalini fuori
+	# dai posti dipinti.
+	var board: Texture2D = _board()
+	if board != null:
+		var frame: Rect2 = _board_rect(board)
+		# Le presenze stanno nelle aree calme che il quadro lascia libere, quindi
+		# il raggio serve solo a tenerle raccolte e a dare un bersaglio al dito.
+		_radius = clampf(minf(frame.size.x, frame.size.y) * 0.10, 30.0, 70.0)
+		for region_id in _regions:
+			var known: Variant = _session.data.regions.get(str(region_id))
+			var spot: Variant = null if known == null else known.get("map_position")
+			if spot == null:
+				continue
+			_points[str(region_id)] = frame.position + Vector2(
+				float(spot["x"]), float(spot["y"])
+			) * frame.size
+		return
 	var area: Vector2 = size - Vector2(_radius * 2.4, _radius * 2.8)
 	var origin: Vector2 = Vector2(_radius * 1.2, _radius * 1.2)
 	# Le coordinate scritte nei dati vanno da 0.16 a 0.81: prese alla lettera
@@ -131,7 +168,13 @@ func _region_at(point: Vector2) -> String:
 func _draw() -> void:
 	if _session == null or _points.is_empty():
 		return
-	_draw_roads()
+	var board: Texture2D = _board()
+	if board != null:
+		draw_texture_rect(board, _board_rect(board), false)
+	else:
+		# Senza quadro le strade sono disegnate; con il quadro ci sono gia'
+		# dentro, e ridisegnarle sopra sarebbe una seconda mappa sulla prima.
+		_draw_roads()
 	for region_id in _regions:
 		_draw_region(str(region_id))
 
@@ -174,6 +217,9 @@ func _draw_region(region_id: String) -> void:
 	var control: Variant = region.get("control", null)
 
 	var offered: bool = highlighted.has(region_id)
+	if _board() != null:
+		_draw_over_board(region_id, centre, control, offered)
+		return
 	# Il terreno, generato dal bioma e dall'id: la tessera si riconosce da lontano
 	# per quello che e', non per l'etichetta scritta sotto (D-057). Il centro
 	# resta calmo perche' e' li che cadono presenze e segni.
@@ -217,6 +263,42 @@ func _draw_region(region_id: String) -> void:
 
 	_draw_presence(centre, region_id)
 	_draw_marks(centre, region)
+
+
+## Quello che il quadro non sa.
+##
+## Un velo scuro appena accennato sotto i segnalini - senza, un token chiaro su
+## un campo chiaro sparisce - poi l'anello di chi tiene il posto, il nome e i
+## segni. Nessuna sagoma piena: l'immagine sotto e' il pezzo forte, e coprirla
+## sarebbe come stampare una mappa e incollarci sopra dei cerchi.
+func _draw_over_board(region_id: String, centre: Vector2, control: Variant, offered: bool) -> void:
+	var veil: float = 0.30
+	if offered:
+		veil += 0.10
+	if _hovered == region_id:
+		veil += 0.12
+	draw_circle(centre, _radius, Color(0.07, 0.06, 0.05, veil))
+
+	if control != null:
+		draw_arc(centre, _radius, 0.0, TAU, 40, _entity_colour(str(control)), 3.0, true)
+	if offered:
+		draw_arc(
+			centre, _radius + 6.0, 0.0, TAU, 40,
+			Color("#e8b563") if _hovered == region_id else Color("#7a6338"),
+			3.0 if _hovered == region_id else 2.0, true
+		)
+
+	var font: Font = ThemeDB.fallback_font
+	var name: String = str(_session.data.regions[region_id]["name"])
+	var name_size: Vector2 = font.get_string_size(name, HORIZONTAL_ALIGNMENT_LEFT, -1, 13)
+	# Il nome su un fondo dipinto ha bisogno di un'ombra per staccarsi: un solo
+	# pixel di nero sotto, che e' il trucco piu' vecchio e ancora il migliore.
+	var at: Vector2 = centre + Vector2(-name_size.x * 0.5, _radius + 16.0)
+	draw_string(font, at + Vector2(1, 1), name, HORIZONTAL_ALIGNMENT_LEFT, -1, 13, Color(0, 0, 0, 0.8))
+	draw_string(font, at, name, HORIZONTAL_ALIGNMENT_LEFT, -1, 13, Color("#efe7d8"))
+
+	_draw_presence(centre, region_id)
+	_draw_marks(centre, _session.world["regions"][region_id])
 
 
 ## Il terreno: la sagoma piena, poi i tratti del bioma. `lift` schiarisce tutto

@@ -20,6 +20,7 @@ extends PanelContainer
 const CardFace := preload("res://scripts/core/card_face.gd")
 const PrintSheet := preload("res://scripts/core/print_sheet.gd")
 const ArtPlaceholder := preload("res://scripts/core/art_placeholder.gd")
+const ArtLibrary := preload("res://scripts/core/art_library.gd")
 
 const SECTION: String = "[color=#e8b563][b]%s[/b][/color]"
 const DIM: String = "[color=#8a8172]%s[/color]"
@@ -274,6 +275,12 @@ class Card extends Control:
 	## Lo stesso piano che l'SVG scrive, disegnato con le primitive di Godot:
 	## stesse forme, stessa fascia calma, stessa chiave in chiaro.
 	func _draw_art(box: Rect2, key: String, accent: Color) -> void:
+		# Se l'illustrazione vera esiste, l'anteprima mostra quella: e' l'unico
+		# modo in cui l'anteprima resta un'anteprima anche dopo la consegna.
+		var painted: Texture2D = ArtLibrary.texture(key)
+		if painted != null:
+			draw_texture_rect(painted, box, false)
+			return
 		var plan: Dictionary = ArtPlaceholder.plan(key, "")
 		draw_rect(box, Color(str(plan["sky"])))
 		for shape in plan["shapes"]:
