@@ -2598,7 +2598,23 @@ Relations also collapsed to a single distinct end state across forty Chronicles,
 down from two. Small, but it says the relation graph is scenery right now.
 
 ### O-15 — Six Destiny levels out of twelve are true before anyone plays
-**flagged, open — recorded, not tuned**
+**closed by D-051 and D-053.** Half of what this entry counted was not a defect:
+a free Minimum says "you are still at the table", and an absent-tag clause is a
+stake the year takes off you. What was broken were two Victories made only of
+stakes nothing ever attacked, and those are fixed (D-051).
+
+The rest - "recorded, not tuned", because it wanted a table of real players -
+was then actually measured (D-053): four different characters over 100
+Chronicles against the same 100 seeds played by four identical optimisers. It
+found that four of the eight seats were an artefact of the instrument, two were
+genuinely too expensive, and those two were lowered. Seats locked on one level
+at a mixed table: 1 of 8, against 4 of 8 with the optimisers.
+
+What outlived this observation is a different one, and it is in the ROADMAP
+rather than here because it is about the resolver and not the content:
+**blocking is the dominant strategy**. See D-053's closing section.
+
+**original note:**
 
 `run_destiny_probe.gd` checks every clause against the opening position, and the
 count is 19 clauses out of 28 already true, with **six whole levels given away**:
