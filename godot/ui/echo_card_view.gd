@@ -14,29 +14,19 @@ extends PanelContainer
 ## already applied, and it draws them. It decides nothing and applies nothing.
 
 const EffectText := preload("res://scripts/core/effect_text.gd")
+const CardFace := preload("res://scripts/core/card_face.gd")
 
 ## The four dramatic families, and what each one is for. Colour first, because
 ## across three Acts the colour is the thing a player learns to read.
-const FAMILIES: Dictionary = {
-	"PRESSURE": {"colour": "#c9a86a", "label": "PRESSIONE — qualcosa si accumula"},
-	"RUPTURE": {"colour": "#c8553d", "label": "ROTTURA — qualcosa si spezza"},
-	"TURN": {"colour": "#7fa6c9", "label": "SVOLTA — qualcosa cambia direzione"},
-	"RESOLUTION": {"colour": "#6fa88a", "label": "RISOLUZIONE — qualcosa si chiude"},
-}
+##
+## La tabella sta in `card_face.gd`: la carta sullo schermo e la carta stampata
+## si tingono dello stesso colore perche' leggono la stessa riga (D-056).
+const FAMILIES: Dictionary = CardFace.DRAMA
 
 ## Propp's functions have English names in the data because that is where the
-## morphology comes from; the table reads Italian. A name missing from here
-## still shows - as the id - rather than disappearing.
-const FUNCTIONS: Dictionary = {
-	"LACK": "mancanza", "OMEN": "presagio", "BETRAYAL": "tradimento", "LOSS": "perdita",
-	"DISCOVERY": "scoperta", "REVELATION": "rivelazione", "SACRIFICE": "sacrificio",
-	"RECONCILIATION": "riconciliazione", "PROHIBITION": "divieto", "THREAT": "minaccia",
-	"USURPATION": "usurpazione", "ATTACK": "attacco", "GIFT": "dono",
-	"TRANSFORMATION": "trasformazione", "LIBERATION": "liberazione", "RETURN": "ritorno",
-	"REQUEST": "richiesta", "TEMPTATION": "tentazione", "VIOLATION": "violazione",
-	"SEPARATION": "separazione", "ENCOUNTER": "incontro", "CONQUEST": "conquista",
-	"PUNISHMENT": "punizione", "SUCCESSION": "successione",
-}
+## morphology comes from; the table reads Italian. Same table as the printed
+## card: see `card_face.gd`.
+const FUNCTIONS: Dictionary = CardFace.PROPP
 
 signal picked(index: int)
 

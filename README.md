@@ -163,10 +163,31 @@ GODOT=/path/to/godot tools/run_sims.sh     # scrive log e save in out/
 
 ---
 
+## Stampare le carte
+
+Le stesse righe JSON che muovono la partita producono i pezzi fisici: il gioco è
+un boardgame con un'app, non uno dei due.
+
+```bash
+GODOT=/path/to/godot tools/run_export.sh            # il mazzo intero, in out/export
+GODOT=/path/to/godot tools/run_export.sh --proof    # una copia per faccia, per correggere
+```
+
+Escono **25 fogli A4 in SVG, in scala 1:1** con i segni di taglio — carte 63×88
+mm tre per tre, tessere Regione 80×80 due per tre, il mazzo espanso per
+`deck_copies` (48 facce Asset = 132 carte) — più `brief_arte.md`, cioè ogni
+`art_prompt_key` in uso col MASTER PROMPT della ART_BIBLE già composto.
+
+L'arte è segnaposto: ogni immagine mostra in chiaro la propria chiave e lascia
+libero il terzo basso, dove andrà il testo. Dentro l'app, **F4** apre
+l'anteprima di stampa (e **F3** il cruscotto per chi sviluppa).
+
+---
+
 ## Test e validazione
 
 ```bash
-# 72 test unit + smoke, headless
+# 144 test unit + smoke, headless
 godot --headless --path godot --script res://tests/run_tests.gd
 godot --headless --path godot --script res://tests/run_tests.gd -- --filter=confluence
 
@@ -202,13 +223,21 @@ OUT=/tmp/run1 tools/run_sims.sh && OUT=/tmp/run2 tools/run_sims.sh
 cmp /tmp/run1/plan_a_grain_accord.save.json /tmp/run2/plan_a_grain_accord.save.json
 ```
 
+Vale anche per i fogli di stampa, che sono testo e quindi si confrontano riga
+per riga:
+
+```bash
+OUT=/tmp/exp1 tools/run_export.sh && OUT=/tmp/exp2 tools/run_export.sh
+diff -r /tmp/exp1 /tmp/exp2
+```
+
 ---
 
 ## Struttura
 
 ```
 schema/          JSON Schema 2020-12 — la fonte unica del modello dati
-tools/           validate_data.py, gen_gd_schema.py, build_manifest.py, run_sims.sh
+tools/           validate_data.py, gen_gd_schema.py, build_manifest.py, run_sims.sh, run_export.sh
 godot/
   autoload/      EventBus, DataRegistry, GameState, SaveManager
   scripts/

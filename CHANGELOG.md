@@ -5,6 +5,56 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.18] — Il gioco esce dallo schermo
+
+La roadmap della 0.1 aveva una riga aperta: «Export Preview e placeholder d'arte
+migliorati». `CardView` era arrivata con la 0.1.5, l'altra metà mai. E mancava
+qualcosa di più grande di una schermata: **niente trasformava i JSON in un pezzo
+fisico**. La COMPONENTS §1 dice che ECHOES è un gioco da tavolo con un'app e non
+uno dei due, e fino a oggi c'era solo l'app.
+
+### Added
+
+- **`card_face.gd`**: cosa c'è stampato su un pezzo, detto una volta sola.
+  Titolo, sottotitolo, accento, cifra d'angolo, corpo, note, chiave d'arte — e
+  lo leggono sia il foglio di stampa sia l'anteprima ([D-056](docs/DECISIONS.md#d-056)).
+- **`cli/run_export.gd`** + `tools/run_export.sh`: **25 fogli A4 in scala 1:1**
+  con i segni di taglio (carte 63×88 mm tre per tre, tessere Regione 80×80 due
+  per tre), il mazzo espanso per `deck_copies` — 48 facce Asset fanno 132 carte
+  — più `brief_arte.md` e un `README.md` che spiega come si stampa. In SVG, che
+  è testo: due export escono identici byte per byte e la CI li confronta.
+- **`art_placeholder.gd`**: il segnaposto che la ART_BIBLE chiedeva dalla 0.0 e
+  che non esisteva. Mostra in chiaro la propria `art_prompt_key`, è **diverso
+  per ogni chiave** in modo deterministico, e lascia libero il terzo basso —
+  cioè rispetta il vincolo di composizione che dovrà rispettare l'arte vera.
+- **`art_bible.gd`**: il brief **legge** i tre MASTER PROMPT dalla ART_BIBLE e ci
+  mette dentro il soggetto che solo i dati conoscono. Il prompt resta del
+  documento, il soggetto resta dei dati.
+- **`ui/export_preview.gd`** dietro **F4**, anche dal menu: a sinistra il foglio
+  com'è impaginato, a destra la carta a grandezza leggibile, frecce per
+  scorrere. Disegna passando dalla stessa `PrintSheet.layout()` che scrive
+  l'SVG: un'anteprima con un'impaginazione «somigliante» non è un'anteprima.
+
+### Fixed
+
+- Il testo dei Destini usciva dal bordo inferiore e il titolo di `DST_LYRA` da
+  quello destro. Adesso l'impaginazione è una funzione pura che restituisce
+  `overflow`, e un test lo chiede a **ogni faccia del set**: ne ha trovate
+  subito altre due. Quando il testo non ci sta cede l'illustrazione, non il
+  corpo — l'immagine scende fino al 34% della carta prima che il testo si
+  stringa di un punto.
+- I colori delle sei famiglie erano scritti due volte e i nomi delle funzioni di
+  Propp tre. Adesso stanno in `card_face.gd` e le viste li leggono.
+
+### Trovato
+
+- **Le otto chiavi `entity.*` non hanno un MASTER PROMPT.** I tre della
+  ART_BIBLE sono carta Asset, carta Echo e tessera Regione, e nessuno è un
+  ritratto. L'export lo dice in coda, e un test tiene il numero fermo a otto
+  perché non cresca in silenzio. O si scrive il quarto prompt, o si tolgono.
+
+---
+
 ## [0.1.17] — Una condizione pagata è sostegno
 
 Fino alla 0.1.16 dichiarare Condition voleva dire dire «sono a favore, a un

@@ -26,8 +26,8 @@ Ordine di lavoro (§25, punti 11–16):
 12. ✅ `HotseatController` e Confluence Board — 0.0.14 / 0.1.1 (D-037, D-038)
 13. ✅ Contenuto completo §19.4 con validazione — 0.1.3, le 48 carte Asset (D-040)
 14. ✅ Developer Dashboard — 0.1.16, le sonde dentro la partita (D-054)
-15. ✅ `CardView` — 0.1.5, la carta dice cosa fa (D-042) · Export Preview e
-    placeholder migliorati restano
+15. ✅ `CardView` — 0.1.5, la carta dice cosa fa (D-042) · ✅ Export Preview e
+    placeholder d'arte — 0.1.18, i fogli di stampa e il brief (D-056)
 16. Issue list / roadmap GitHub-ready finale
 
 Il motore è già pronto a riceverli: `ChronicleController` chiede ogni decisione a
@@ -45,8 +45,11 @@ Da chiudere in 0.1:
 - ✅ il set completo dei Destiny a più di 2 condizioni per livello — 16 Destini
   su due saghe, con un controllo al boot che rifiuta una clausola che chiede un
   tag che niente al mondo può scrivere (D-048).
-- **Export Preview e placeholder d'arte migliorati** (parte del punto 15) — non
-  fatti.
+- ✅ **Export Preview e placeholder d'arte** (parte del punto 15) — 0.1.18.
+  Venticinque fogli A4 in scala 1:1 con i segni di taglio, il mazzo espanso per
+  `deck_copies`, il brief d'arte composto leggendo la ART_BIBLE, e l'anteprima
+  dentro l'app dietro F4. Ha anche trovato un buco: le otto chiavi `entity.*`
+  non hanno un MASTER PROMPT ([D-056](DECISIONS.md#d-056)).
 
 ---
 

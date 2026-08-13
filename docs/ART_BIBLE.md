@@ -137,9 +137,24 @@ l'icona deve reggere anche senza.
 
 ## Placeholder (0.0 → 0.1)
 
-Fino all'arte definitiva ogni elemento usa un placeholder procedurale o SVG che
-mostra in chiaro il proprio id e la propria `art_prompt_key`, così una carta
-sbagliata si riconosce a colpo d'occhio durante il playtest. In 0.0 non esiste
-ancora nessuna scena che li renderizzi: l'unico asset grafico del repository è
-`godot/icon.svg`. Il generatore di placeholder e la `CardView` arrivano con la
-0.1 (§19.4, §21).
+Fino all'arte definitiva ogni elemento usa un placeholder procedurale che mostra
+in chiaro la propria `art_prompt_key`, così una carta sbagliata si riconosce a
+colpo d'occhio durante il playtest.
+
+**Fatto in 0.1.18** (`scripts/core/art_placeholder.gd`, [D-056](DECISIONS.md#d-056)):
+il segnaposto è **diverso per ogni chiave** in modo deterministico — cinquanta
+carte identiche sono cinquanta carte che sul tavolo non si distinguono — e
+**rispetta la regola invalicabile 2**: soggetto nei due terzi alti, terzo basso
+calmo e segnato con un tratteggio. Se un'illustrazione vera arriverà con la
+composizione sbagliata si vedrà subito, perché il segnaposto la mostrava giusta.
+
+Si guarda in due modi: `tools/run_export.sh` scrive i fogli in SVG, e **F4**
+dentro l'app apre l'anteprima di stampa.
+
+### Il quarto MASTER PROMPT che non c'è
+
+L'export passa in rassegna ogni chiave in uso, ed è così che si è scoperto che
+le **otto chiavi `entity.*` non hanno un MASTER PROMPT**: i tre qui sopra sono
+carta Asset, carta Echo e tessera Regione, e nessuno di essi è un ritratto. O si
+scrive il quarto, o le carte Casata rinunciano all'illustrazione. Finché la
+decisione non è presa, `brief_arte.md` le elenca a parte e lo dice.

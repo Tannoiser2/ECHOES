@@ -9,8 +9,10 @@ dicesse **dove va a finire**, ed è la domanda da chiudere prima di disegnare 48
 carte.
 
 Ogni riga qui è ricavata da `godot/data/**`, che è la sorgente unica: le stesse
-righe JSON producono le carte da stampare (`CardView` + Export Preview, 0.1) e le
-schermate. Il testo non si scrive due volte.
+righe JSON producono le carte da stampare e le schermate. Il testo non si scrive
+due volte — e dalla 0.1.18 non è più una promessa: `tools/run_export.sh` genera i
+fogli A4 in scala 1:1 da questi stessi dati, e **F4** ne apre l'anteprima dentro
+l'app ([D-056](DECISIONS.md#d-056)).
 
 ---
 
