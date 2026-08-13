@@ -331,6 +331,56 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-055 — Una Condition pagata e sostegno
+**implemented in 0.1.17** (§12.3, §A5)
+
+Until 0.1.16 a Condition sat outside the arithmetic entirely. You declared "I am
+for this, on one condition", spent up to two Assets to qualify the clause, and
+moved the margin by **zero**: the clause attached itself only if the proposal
+passed anyway, carried by other people's cards.
+
+Against OPPOSE — three Assets, every point subtracting, and one card back when
+the proposal falls — that is not a close call. It is strictly dominated, and the
+stance nobody takes is not a stance.
+
+### La misura, prima di toccare niente
+
+100 Chronicles, four characters dealt across the seats (D-053), same 100 seeds:
+
+| | 0.1.16 | col Condition che conta |
+|---|---|---|
+| Consigli caduti | 315 / 603 (52%) | **282 / 596 (47%)** |
+| prudente (NONE/MIN/VIC/TRI) | 0 / 82 / 14 / 4 | 0 / **74 / 22 / 4** |
+| aggressivo | 0 / 29 / 63 / 8 | 0 / 30 / **61** / 9 |
+| DECISIVE_SUCCESS | 95 | **128** |
+| seggi bloccati, tavolo misto | 1 su 8 | **0 su 8** |
+
+### La regola
+
+`M = S + C − O + W`, where C is the Condition front's total **only when the
+clause qualifies** (`condition_total >= condition_qualified_threshold`, still 2
+in the data). An unqualified Condition attaches nothing and moves nothing, and
+the cards are spent all the same: that is the price of negotiating, and it is
+what keeps the stance a choice rather than a discount.
+
+`condition_total` and `condition_qualified` stay in the result dictionary, so
+the log, the board and the dashboard keep showing the three fronts separately —
+the arithmetic changed, what you can read off it did not.
+
+### Quello che non risolve, detto qui
+
+Blocking is still the strongest seat at the table: **aggressivo closes 61
+Victories against prudente's 22**. This rule makes CONDITION a live option and
+takes five points off the failure rate; it does not dethrone OPPOSE. The ROADMAP
+entry "opporsi non costa abbastanza" stays open, and the second lever — a real
+price on the Oppose front — is still unmeasured.
+
+One earlier attempt at that price is already recorded as a failure: a Consequence
+adding `+1` to the question when a proposal fell made blocking *more* attractive,
+not less, and pushed Chronicles over the §7 ceiling. It was reverted.
+
+---
+
 ## D-054 — Il cruscotto, cioe le sonde dentro la partita
 **implemented in 0.1.16** (§25, punto 14)
 

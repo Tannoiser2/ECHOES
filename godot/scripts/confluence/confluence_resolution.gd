@@ -4,7 +4,7 @@ extends RefCounted
 ## Pure functions over plain data: no world access, no RNG, no side effects.
 ## Swapping this file for another Strategy changes the maths and nothing else.
 ##
-##   M = S - O + W
+##   M = S + C - O + W   (C only when the Condition clause qualifies, D-055)
 ##   M <= -1        Failure
 ##   0 <= M <= 1    Success with Cost
 ##   2 <= M <= 4    Success
@@ -106,19 +106,28 @@ static func resolve(
 
 	var support_total: int = front_total(support_assets, assets, relevant_families, "SUPPORT")
 	var oppose_total: int = front_total(oppose_assets, assets, relevant_families, "OPPOSE")
-	# Condition commits sit outside the arithmetic; they only decide whether the
-	# clause is qualified enough to attach itself to a successful outcome.
+	# A Condition that is paid for is support - "I am for this, on one condition"
+	# - and one that is not paid for is nothing (D-055).
+	#
+	# Until 0.1.16 a Condition sat outside the arithmetic entirely: you spent up
+	# to two cards, moved the margin by zero, and got your clause attached only if
+	# the proposal passed anyway. Against OPPOSE - three cards, every point
+	# subtracting, and one card back if it falls - that is not a close call, it is
+	# strictly dominated, and a hundred measured Chronicles said so: the character
+	# that blocks everything finishes 29/63/8 and the one that negotiates 82/14/4,
+	# with more than half of all Councils falling.
 	var condition_total: int = front_total(
 		condition_assets, assets, relevant_families, "CONDITION"
 	)
-	var margin: int = support_total - oppose_total + factor
+	var qualified: bool = condition_total >= condition_threshold
+	var margin: int = support_total + (condition_total if qualified else 0) - oppose_total + factor
 
 	return {
 		"strategy": STRATEGY_ID,
 		"support_total": support_total,
 		"oppose_total": oppose_total,
 		"condition_total": condition_total,
-		"condition_qualified": condition_total >= condition_threshold,
+		"condition_qualified": qualified,
 		"world_factor": factor,
 		"margin": margin,
 		"outcome": outcome_for(margin),

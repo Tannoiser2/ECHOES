@@ -239,9 +239,10 @@ simultaneamente.
 
 ```
 S = somma dei valori del fronte Support (proponente incluso)
+C = somma dei valori del fronte Condition, se la clausola è qualificata (0 altrimenti)
 O = somma dei valori del fronte Oppose
 W = World Factor
-M = S − O + W
+M = S + C − O + W
 ```
 
 | M | esito |
@@ -251,9 +252,12 @@ M = S − O + W
 | 2 … 4 | **Success** |
 | ≥ 5 | **Decisive Success** |
 
-Gli Asset impegnati da chi ha dichiarato Condition non entrano né in S né in O:
-se il loro totale è ≥ 2 la clausola è **qualificata** e si allega a ogni esito di
-successo.
+Gli Asset impegnati da chi ha dichiarato Condition restano contati a parte: se il
+loro totale è ≥ 2 la clausola è **qualificata**, si allega a ogni esito di
+successo **e il totale entra nel margine dalla parte del Support**. Una condizione
+è «sono a favore, a un patto», e chi la pone paga per farla passare
+([D-055](DECISIONS.md#d-055)). Una condizione non qualificata non allega niente e
+non sposta il margine: le carte sono spese lo stesso.
 
 Effetti sulla Tensione:
 

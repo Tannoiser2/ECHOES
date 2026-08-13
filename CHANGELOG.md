@@ -5,6 +5,47 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.17] — Una condizione pagata è sostegno
+
+Fino alla 0.1.16 dichiarare Condition voleva dire dire «sono a favore, a un
+patto», spendere fino a due Asset per qualificare la clausola e spostare il
+margine di **zero**: la clausola si allegava solo se la proposta passava
+comunque, portata dalle carte degli altri. Contro un Oppose — tre Asset, ogni
+punto che sottrae, e una carta che torna in mano quando la proposta cade — non è
+una scelta difficile: è una scelta dominata. E una posizione che nessuno prende
+non è una posizione.
+
+### Changed
+
+- **§A5, `confluence_resolution.gd`**: `M = S + C − O + W`, dove C è il totale
+  del fronte Condition **solo se la clausola qualifica** (soglia 2, come nei
+  dati). Una condizione non qualificata non allega niente e non sposta niente, e
+  le carte sono spese lo stesso: è il prezzo del negoziato, ed è ciò che tiene
+  la Condition una scelta e non uno sconto ([D-055](docs/DECISIONS.md#d-055)).
+- `condition_total` e `condition_qualified` restano nel risultato: il registro,
+  il tabellone e il cruscotto continuano a mostrare i tre fronti separati. È
+  cambiata la matematica, non quello che se ne legge.
+
+### Misurato
+
+Su 100 partite a tavolo misto (D-053), gli stessi 100 semi di prima:
+
+| | 0.1.16 | oggi |
+|---|---|---|
+| Consigli caduti | 315 / 603 (52%) | **282 / 596 (47%)** |
+| prudente (NONE/MIN/VIC/TRI) | 0 / 82 / 14 / 4 | 0 / **74 / 22 / 4** |
+| aggressivo | 0 / 29 / 63 / 8 | 0 / 30 / **61** / 9 |
+| DECISIVE_SUCCESS | 95 | **128** |
+| seggi bloccati su un livello | 1 su 8 | **0 su 8** |
+
+**Non risolve la voce aperta.** Bloccare resta il seggio più forte del tavolo:
+l'aggressivo chiude 61 Vittorie contro le 22 del prudente. Questa regola rende
+la Condition una mossa viva e toglie cinque punti ai fallimenti; non detronizza
+l'Oppose. La voce «opporsi non costa abbastanza» resta aperta sulla roadmap, e
+la seconda leva — un prezzo vero sul fronte contrario — è ancora da misurare.
+
+---
+
 ## [0.1.16] — Il cruscotto
 
 Tutto quello che questo progetto ha imparato sul proprio gioco è arrivato da una

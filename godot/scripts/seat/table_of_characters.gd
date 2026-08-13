@@ -62,8 +62,17 @@ class Prudente extends PolicyDecider:
 			else {"stance": "ABSTAIN", "clause_id": ""}
 		)
 
+	## Tiene le carte in mano - una in meno di quante ne spenderebbe la policy -
+	## tranne quando sta ponendo una condizione. Una condizione che non si
+	## qualifica non vale niente, quindi chi negozia paga il prezzo del negoziato:
+	## e' la differenza fra essere cauti e non aver capito la regola.
 	func choose_commit(entity_id: String, context: Dictionary, limit: int, session: RefCounted) -> Array:
 		var wanted: Array = super.choose_commit(entity_id, context, limit, session)
+		var stance: String = str(
+			session.confluence.current.get("stances", {}).get(entity_id, {}).get("stance", "")
+		)
+		if stance == "CONDITION":
+			return wanted
 		return wanted.slice(0, maxi(1, wanted.size() - 1))
 
 
