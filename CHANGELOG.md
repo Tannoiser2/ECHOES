@@ -29,6 +29,10 @@ file per una `art_prompt_key`.
   quelle coordinate che il quadro è stato dipinto.
 - `godot/art/README.md` dice dove va cosa: si copia il PNG al suo posto, anche
   dall'interfaccia web di GitHub, e basta.
+- **Le tessere dipinte sulla mappa** sono ritagliate dentro l'esagono e non
+  appoggiate sopra: una Regione resta una Regione e non diventa un quadro con
+  un bordo. Le UV sono le stesse coordinate normalizzate del piano generato, e
+  una Regione consegnata convive con cinque che non lo sono ancora.
 
 ### Il build esportato è il posto dove il primo tentativo falliva
 

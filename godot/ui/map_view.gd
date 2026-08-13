@@ -230,7 +230,14 @@ func _draw_region(region_id: String) -> void:
 		lift += 0.10
 	if _hovered == region_id:
 		lift += 0.12
-	_draw_terrain(art, box, lift)
+	# La tessera dipinta, se e' stata consegnata: ritagliata dentro l'esagono
+	# invece che appoggiata sopra, cosi' la Regione resta una Regione e non
+	# diventa un quadro con un bordo (D-059).
+	var painted: Texture2D = ArtLibrary.texture(str(definition.get("art_prompt_key", "")))
+	if painted != null:
+		_draw_painted(art["outline"], box, painted, lift)
+	else:
+		_draw_terrain(art, box, lift)
 
 	# The ring is who holds the place. No ring means nobody does, which is a
 	# fact worth seeing rather than a blank.
@@ -299,6 +306,17 @@ func _draw_over_board(region_id: String, centre: Vector2, control: Variant, offe
 
 	_draw_presence(centre, region_id)
 	_draw_marks(centre, _session.world["regions"][region_id])
+
+
+## L'illustrazione dentro la sagoma. Le UV sono le stesse coordinate normalizzate
+## del piano - il disegno generato e l'immagine vera occupano lo stesso quadrato,
+## quindi il ritaglio coincide senza calcoli.
+func _draw_painted(outline: Array, box: Rect2, painted: Texture2D, lift: float) -> void:
+	var points: PackedVector2Array = _mapped(outline, box)
+	var uvs: PackedVector2Array = PackedVector2Array()
+	for point in outline:
+		uvs.append(point as Vector2)
+	draw_colored_polygon(points, Color(1, 1, 1).darkened(0.12 - lift), uvs, painted)
 
 
 ## Il terreno: la sagoma piena, poi i tratti del bioma. `lift` schiarisce tutto
