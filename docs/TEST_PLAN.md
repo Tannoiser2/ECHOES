@@ -10,8 +10,9 @@ python3 tools/gen_gd_schema.py --check
 GODOT=/path/to/godot tools/run_sims.sh
 ```
 
-Stato 0.0.9: **94 test in 12 suite, 661 asserzioni, tutto verde**, più i 3 piani di
-simulazione che passano le proprie asserzioni.
+Stato 0.1.18: **144 test in 19 suite, 3773 asserzioni, tutto verde**, più i 3
+piani di simulazione che passano le proprie asserzioni e l'export di stampa che
+esce identico a ogni rigenerazione.
 
 La sonda di bilanciamento gioca N Chronicle con giocatori che perseguono davvero
 il proprio Destiny e riporta la distribuzione dei risultati:
@@ -67,6 +68,7 @@ godot --headless --path godot --script res://cli/run_balance_probe.gd -- \
 | `smoke/test_data_boot.gd` | 8 | il caricamento e la validazione dei dati, il contenuto (§18.2 piu le deviazioni dichiarate D-022/D-024), un Asset da 1 e uno da 2 per famiglia, i numeri di baseline della Chronicle, la raggiungibilità di ogni soglia, la scena di boot, la copertura dello schema generato, e che ogni hook di carta Echo compili in almeno un Effect |
 | `smoke/test_balance.gd` | 8 | il numero di Confluence su 24 partite giocate dal policy decider resta nella banda del §7 giudicata sull'aggregato (mediana 3-4, al massimo il 10% delle partite fuori da 2-6, almeno 1 Echo ogni 2 Chronicle), i Destiny restano contesi, i due cap su INFLUENCE reggono per una Chronicle intera ricostruita dall'effect_log, la sonda e deterministica e la policy non propone mai un'azione illegale; piu D-029: spingere giu una Tensione ne alza una collegata, lo spostamento non consuma una seconda INFLUENCE ed e distinguibile nel log, e spingere in su non sposta niente |
 | `unit/test_echo_grammar.gd` | 6 | pescare una carta registra la funzione narrativa svolta, una carta che presuppone qualcosa non e giocabile finche quel qualcosa non e successo, ogni famiglia drammatica mantiene almeno una carta sempre giocabile, il pool dell'Atto e un sacchetto pesato che da archi diversi su seed diversi tenendo l'Atto 1 in tensione, ogni funzione dichiarata nello schema ha una carta con sei carte per famiglia, e `any_of` vale quando almeno un ramo vale |
+| `unit/test_print_export.gd` | 9 | ogni faccia stampabile del set ci sta nella propria carta (nessun `overflow`, corpo mai sotto il 74%), nessuna faccia vuota, la carta Casata non stampa mai il proprio Destino e ogni carta Destino e' marcata segreta, il mazzo espanso per `deck_copies` (48 facce Asset = 132 carte su 15 fogli), il segnaposto d'arte deterministico e diverso per chiave, l'SVG che protegge i caratteri XML e resta in millimetri, il brief che legge i MASTER PROMPT dalla ART_BIBLE, e le chiavi senza prompt ferme alle otto Casate |
 | `unit/test_library_content.gd` | 6 | una Tensione senza Consiglio proprio prende quello del suo dominio, ogni Tensione della biblioteca ne trova uno, il sorteggio delle Tensioni e deterministico per seed e varia fra seed, una Chronicle scritta a mano resta invariata, un Effect su una Tensione non in gioco e un no-op mentre un id inesistente resta un errore, e una Chronicle assemblata gioca fino in fondo |
 | `unit/test_narrative_text.gd` | 6 | la Regione a fuoco segue il tag condition e resta nel dominio, la stessa frase autorata nomina un posto diverso in due mondi diversi, le forme italiane (articolo, locativo, genitivo) e la maiuscola di uno slot in testa, l'ordine di sostituzione per lunghezza, e che nessuno slot irrisolto finisca nel registro Truth |
 | `smoke/test_chronicle_run.gd` | 6 | i tre piani giocati per intero, le loro asserzioni `expected`, il fatto che finiscano diversamente, Echo e Truth automatici, il determinismo per seed, e che il log pubblico non riveli mai il valore velato |

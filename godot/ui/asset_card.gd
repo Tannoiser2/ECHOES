@@ -11,6 +11,7 @@ extends PanelContainer
 ## characters painted itself across the hand below it (D-042).
 
 const AssetText := preload("res://scripts/core/asset_text.gd")
+const CardFace := preload("res://scripts/core/card_face.gd")
 
 var asset: Dictionary = {}
 
@@ -94,12 +95,8 @@ func _make_custom_tooltip(_for_text: String) -> Object:
 	return panel
 
 
+## Lo stesso accento che finisce sulla carta stampata: la tavolozza sta in
+## `card_face.gd` perche' la mano sullo schermo e il foglio in stampa devono
+## dire la stessa cosa sulla stessa famiglia.
 func _family_colour(family: String) -> Color:
-	match family:
-		"AUTHORITY": return Color("#e8b563")
-		"FORCE": return Color("#c8553d")
-		"PEOPLE": return Color("#6fa88a")
-		"KNOWLEDGE": return Color("#7fa6c9")
-		"WEALTH": return Color("#c9a86a")
-		"BONDS": return Color("#b06b8f")
-	return Color("#8a8172")
+	return Color(CardFace.family_colour(family))

@@ -16,9 +16,11 @@ verificati: vedi [TEST_PLAN.md](TEST_PLAN.md) per la mappa criterio → test.
 
 ---
 
-## 0.1 — Vertical Slice Hotseat ⟵ prossima
+## 0.1 — Vertical Slice Hotseat ✅ completata
 
-**Non iniziare prima di aver accettato la 0.0.**
+Tutti e sei i punti del §25 e tutte e quattro le voci di chiusura sono chiusi.
+Si gioca una Chronicle intera dal browser o dal terminale, su due saghe, si
+salva e si riprende, e da oggi si stampa.
 
 Ordine di lavoro (§25, punti 11–16):
 
@@ -26,9 +28,10 @@ Ordine di lavoro (§25, punti 11–16):
 12. ✅ `HotseatController` e Confluence Board — 0.0.14 / 0.1.1 (D-037, D-038)
 13. ✅ Contenuto completo §19.4 con validazione — 0.1.3, le 48 carte Asset (D-040)
 14. ✅ Developer Dashboard — 0.1.16, le sonde dentro la partita (D-054)
-15. ✅ `CardView` — 0.1.5, la carta dice cosa fa (D-042) · Export Preview e
-    placeholder migliorati restano
-16. Issue list / roadmap GitHub-ready finale
+15. ✅ `CardView` — 0.1.5, la carta dice cosa fa (D-042) · ✅ Export Preview e
+    placeholder d'arte — 0.1.18, i fogli di stampa e il brief (D-056)
+16. ✅ Issue list / roadmap GitHub-ready — 0.1.18, [ISSUES.md](ISSUES.md): 13
+    voci già scritte come issue, più i due template in `.github/ISSUE_TEMPLATE/`
 
 Il motore è già pronto a riceverli: `ChronicleController` chiede ogni decisione a
 un oggetto `decider`, e la UI hotseat sarà semplicemente un decider diverso da
@@ -45,8 +48,11 @@ Da chiudere in 0.1:
 - ✅ il set completo dei Destiny a più di 2 condizioni per livello — 16 Destini
   su due saghe, con un controllo al boot che rifiuta una clausola che chiede un
   tag che niente al mondo può scrivere (D-048).
-- **Export Preview e placeholder d'arte migliorati** (parte del punto 15) — non
-  fatti.
+- ✅ **Export Preview e placeholder d'arte** (parte del punto 15) — 0.1.18.
+  Venticinque fogli A4 in scala 1:1 con i segni di taglio, il mazzo espanso per
+  `deck_copies`, il brief d'arte composto leggendo la ART_BIBLE, e l'anteprima
+  dentro l'app dietro F4. Ha anche trovato un buco: le otto chiavi `entity.*`
+  non hanno un MASTER PROMPT ([D-056](DECISIONS.md#d-056)).
 
 ---
 
@@ -60,7 +66,7 @@ completa in [DECISIONS D-021](DECISIONS.md#d-021).
 
 ---
 
-## 0.2 — Bilanciamento
+## 0.2 — Bilanciamento ⟵ prossima
 
 **La voce con cui questa sezione si apriva è chiusa.** Diceva: «Failure e Success
 with Cost non compaiono, 0 e 1 su 154 Confluence misurate». Sulle 244 Confluence
@@ -68,7 +74,8 @@ di CHR_01 misurate oggi sono **48 e 38**, e tutte e quattro le bande del §12.3
 compaiono in entrambe le saghe. Chiusa dal contenuto, come previsto, senza
 toccare la matematica del §A5.
 
-Prima voce in agenda adesso, con i dati raccolti fino alla 0.1.14:
+Prima voce in agenda adesso, con i dati raccolti fino alla 0.1.17. Le voci sono
+scritte come issue apribili in [ISSUES.md](ISSUES.md):
 
 - ✅ **O-15 — il playtest è stato fatto** (0.1.15, D-053), con quattro caratteri
   diversi su 100 partite contro gli stessi 100 semi giocati da quattro

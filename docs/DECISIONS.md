@@ -331,6 +331,73 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-056 — L'export di stampa, e il segnaposto che mostra la propria chiave
+**implemented in 0.1.18** (§25, punto 15)
+
+The 0.1 roadmap carried one unfinished line: *«Export Preview e placeholder
+d'arte migliorati»*. `CardView` shipped in 0.1.5, and the other half never did.
+What was actually missing was bigger than a screen: **nothing turned the JSON
+into a physical component**. COMPONENTS §1 says ECHOES is a physical boardgame
+with an app rather than either one, and until now the app was all there was.
+
+### Le facce stanno in un posto solo
+
+`card_face.gd` turns a definition into a **face** - title, subtitle, accent,
+corner number, body, notes, footer, art key - and both consumers read it: the
+SVG sheet and the on-screen preview. The alternative was two layouts that agree
+by hand, which is how the family colours ended up written twice (`asset_card.gd`
+and now here) and the Propp function names three times. Both are now single
+copies, read from this file.
+
+### SVG, non PNG
+
+An export that gets printed has to be **deterministic and readable**, like the
+saves (§18.3). An SVG is text: two exports of the same data are byte-identical,
+CI can diff them, and the diff says *which card* changed rather than that six
+megabytes of pixels differ. It also needs no rendering context - it runs under
+`--headless` with no GPU, like everything else here.
+
+Sheets are A4 at **1:1**: cards 63x88 mm three by three, Region tiles 80x80 two
+by three, crop marks outside the cut. The deck is expanded by `deck_copies`, so
+48 Asset faces print as 132 cards over 15 sheets (D-040).
+
+### Il segnaposto rispetta il vincolo che l'arte vera dovra' rispettare
+
+The ART_BIBLE asked for a placeholder showing its own `art_prompt_key` «so a
+wrong card is recognisable at a glance during playtest», and there was none: the
+only graphic in the repository was `icon.svg`. A grey rectangle would have
+satisfied the letter. This one is **different for every key**, deterministically
+(FNV-1a over the key, then an LCG - never the session RNG, which it must not
+touch), and it leaves the lower third calm, which is invalidable rule 2 of the
+ART_BIBLE. When real art arrives with the wrong composition it will be obvious,
+because the placeholder had it right.
+
+### Il brief legge la ART_BIBLE invece di ricopiarla
+
+`art_bible.gd` parses the three MASTER PROMPTs and their variation keys out of
+the document and fills in the subject the data knows. The prompt stays the
+document's, the subject stays the data's. If `docs/ART_BIBLE.md` is not there
+the brief still comes out, with the pointer instead of the prompt: an incomplete
+brief is useful, an export that fails because a prose document moved is not.
+
+Passing every key in the set through one tool also found the gap nobody had
+noticed: **the eight Entity keys have no MASTER PROMPT**. Three exist - Asset
+card, Echo card, Region tile - and none of them is a portrait. The export says
+so, and a test holds the number at eight so it cannot grow quietly.
+
+### Quello che il test ha trovato che l'occhio aveva gia' visto
+
+The first sheets ran the Destiny text past the bottom edge and `DST_LYRA`'s
+title past the right one. I saw them because I rendered a PNG and looked. That
+is not a method - twenty-five sheets is exactly the amount nobody re-checks - so
+the layout became a pure function returning `overflow` and `scale`, and
+`test_print_export.gd` asks every face in the set whether it fits. It
+immediately found two more (`AST_BONDS_HOSTAGE`, `AST_WEALTH_LAND_MORTGAGE`),
+and the fix is that **the illustration yields before the text does**: the art
+shrinks to a 34% floor before the body is scaled down at all.
+
+---
+
 ## D-055 — Una Condition pagata e sostegno
 **implemented in 0.1.17** (§12.3, §A5)
 

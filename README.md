@@ -6,22 +6,25 @@ diversa — un sovrano, un popolo, una creatura antica, un individuo — prepara
 propria posizione mentre le Tensioni del mondo salgono, e si scontrano nelle
 **Confluence**, gli eventi storici in cui il tavolo decide cosa succede davvero.
 
-**Stato: Milestone 0.0 — Core Headless, completata, più un passo di
-bilanciamento (0.0.1).** Il motore è completo e giocabile senza UI: una Chronicle
-intera gira da riga di comando in meno di un secondo. La 0.1 (vertical slice
-hotseat) non è iniziata.
+**Stato: Milestone 0.1 — Vertical Slice Hotseat, completata (0.1.18).** Si gioca
+una Chronicle intera dal browser o dal terminale, su due saghe, con salvataggio e
+ripresa; una partita headless gira in meno di un secondo; e i pezzi si stampano
+dagli stessi dati. Prossima: la 0.2, bilanciamento — cosa resta è scritto in
+[ISSUES.md](docs/ISSUES.md).
 
 - [Game Design](docs/GAME_DESIGN.md) — perché il gioco è fatto così
 - [Regole v0.2](docs/RULES_V0_2.md) — cosa fa il codice, numeri compresi
+- [Componenti](docs/COMPONENTS.md) — cosa si stampa e cosa sta sullo schermo
 - [Modello dati](docs/DATA_SCHEMA.md) · [Decisioni](docs/DECISIONS.md) ·
   [Piano di test](docs/TEST_PLAN.md) · [Roadmap](docs/ROADMAP.md) ·
+  [Da fare](docs/ISSUES.md) · [Changelog](CHANGELOG.md) ·
   [Art Bible](docs/ART_BIBLE.md) · [Asset Manifest](docs/ASSET_MANIFEST.md)
 
 ---
 
 ## Requisiti
 
-- **Godot 4.7.1 stable** — per la 0.0 basta il build headless
+- **Godot 4.7.1 stable** — per giocare da terminale basta il build headless
 - **Python 3.10+** con `jsonschema>=4.18` per gli strumenti di validazione
 
 ```bash
@@ -163,10 +166,31 @@ GODOT=/path/to/godot tools/run_sims.sh     # scrive log e save in out/
 
 ---
 
+## Stampare le carte
+
+Le stesse righe JSON che muovono la partita producono i pezzi fisici: il gioco è
+un boardgame con un'app, non uno dei due.
+
+```bash
+GODOT=/path/to/godot tools/run_export.sh            # il mazzo intero, in out/export
+GODOT=/path/to/godot tools/run_export.sh --proof    # una copia per faccia, per correggere
+```
+
+Escono **25 fogli A4 in SVG, in scala 1:1** con i segni di taglio — carte 63×88
+mm tre per tre, tessere Regione 80×80 due per tre, il mazzo espanso per
+`deck_copies` (48 facce Asset = 132 carte) — più `brief_arte.md`, cioè ogni
+`art_prompt_key` in uso col MASTER PROMPT della ART_BIBLE già composto.
+
+L'arte è segnaposto: ogni immagine mostra in chiaro la propria chiave e lascia
+libero il terzo basso, dove andrà il testo. Dentro l'app, **F4** apre
+l'anteprima di stampa (e **F3** il cruscotto per chi sviluppa).
+
+---
+
 ## Test e validazione
 
 ```bash
-# 72 test unit + smoke, headless
+# 144 test unit + smoke, headless
 godot --headless --path godot --script res://tests/run_tests.gd
 godot --headless --path godot --script res://tests/run_tests.gd -- --filter=confluence
 
@@ -202,13 +226,21 @@ OUT=/tmp/run1 tools/run_sims.sh && OUT=/tmp/run2 tools/run_sims.sh
 cmp /tmp/run1/plan_a_grain_accord.save.json /tmp/run2/plan_a_grain_accord.save.json
 ```
 
+Vale anche per i fogli di stampa, che sono testo e quindi si confrontano riga
+per riga:
+
+```bash
+OUT=/tmp/exp1 tools/run_export.sh && OUT=/tmp/exp2 tools/run_export.sh
+diff -r /tmp/exp1 /tmp/exp2
+```
+
 ---
 
 ## Struttura
 
 ```
 schema/          JSON Schema 2020-12 — la fonte unica del modello dati
-tools/           validate_data.py, gen_gd_schema.py, build_manifest.py, run_sims.sh
+tools/           validate_data.py, gen_gd_schema.py, build_manifest.py, run_sims.sh, run_export.sh
 godot/
   autoload/      EventBus, DataRegistry, GameState, SaveManager
   scripts/
@@ -236,8 +268,9 @@ applica e li registra. Da lì arrivano gratis l'undo del Developer Mode, la
 riproducibilità e un log che spiega ogni singola cosa successa al tavolo.
 
 **Il motore non decide niente.** `ChronicleController` chiede ogni scelta a un
-oggetto `decider`. Oggi è lo `ScriptedDecider` della CLI; in 0.1 sarà la UI
-hotseat. Le regole non cambiano di una riga.
+oggetto `decider`: lo `ScriptedDecider` dei piani, il `PolicyDecider` delle
+sonde, i quattro caratteri del playtest, la UI del browser. Sono lo stesso
+motore con l'altro capo del tubo diverso, e le regole non cambiano di una riga.
 
 ---
 

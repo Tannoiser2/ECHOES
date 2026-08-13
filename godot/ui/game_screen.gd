@@ -26,6 +26,7 @@ const ConfluenceBoard := preload("res://ui/confluence_board.gd")
 const HelpPanel := preload("res://ui/help_panel.gd")
 const SaveSerializer := preload("res://scripts/core/save_serializer.gd")
 const DevDashboard := preload("res://ui/dev_dashboard.gd")
+const ExportPreview := preload("res://ui/export_preview.gd")
 const EchoCardView := preload("res://ui/echo_card_view.gd")
 
 ## Who is at the table is a property of the Chronicle, not of this screen
@@ -70,6 +71,10 @@ var _centre: Control
 ## Il cruscotto per chi sviluppa, e se e aperto adesso.
 var _dev: PanelContainer
 var _dev_open: bool = false
+## L'anteprima di stampa. Non guarda la partita - guarda i dati - quindi si apre
+## anche dal menu, prima che una Chronicle esista.
+var _export: PanelContainer
+var _export_open: bool = false
 var _status: VBoxContainer
 var _hand: HBoxContainer
 ## The seat the board is drawn for, and the Tension under discussion if any.
@@ -82,16 +87,36 @@ func _ready() -> void:
 	_menu()
 
 
-## F3 apre e chiude il cruscotto. Un tasto e non un bottone: quello che mostra
-## rovina una partita a chi lo legge per sbaglio (D-054).
+## F3 apre e chiude il cruscotto, F4 l'anteprima di stampa. Tasti e non bottoni:
+## il primo mostra quello che al tavolo e coperto (D-054), il secondo non
+## riguarda la partita in corso, e nessuno dei due va premuto per curiosita' in
+## mezzo a un Consiglio. Con l'anteprima aperta, le frecce scorrono le carte.
 func _unhandled_input(event: InputEvent) -> void:
 	if not (event is InputEventKey) or not event.pressed or event.is_echo():
 		return
-	if (event as InputEventKey).keycode != KEY_F3:
+	var key: int = (event as InputEventKey).keycode
+	if _export_open and (key == KEY_LEFT or key == KEY_RIGHT):
+		_export.step(1 if key == KEY_RIGHT else -1)
+		get_viewport().set_input_as_handled()
 		return
-	_dev_open = not _dev_open
-	if _dev_open:
+	if key != KEY_F3 and key != KEY_F4:
+		return
+	if key == KEY_F3:
+		_dev_open = not _dev_open
+		if _dev_open:
+			_export_open = false
+	else:
+		_export_open = not _export_open
+		if _export_open:
+			_dev_open = false
+	if _dev_open or _export_open:
 		_help_button.button_pressed = false
+	# L'anteprima legge i dati, non il mondo: da sola sa disegnarsi anche quando
+	# non c'e' nessuna Chronicle, ed e' li' che serve di piu' - si corregge un
+	# mazzo prima di sedersi, non durante.
+	_export.visible = _export_open
+	if _export_open:
+		_export.render(_load_help_data())
 	_refresh()
 	get_viewport().set_input_as_handled()
 
@@ -169,6 +194,13 @@ func _build() -> void:
 	_dev.visible = false
 	_centre.add_child(_dev)
 
+	# E l'anteprima di stampa (§25.15), stessa meta' di schermo: e' l'altra cosa
+	# che si guarda invece di guardare il tavolo.
+	_export = ExportPreview.new()
+	_export.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_export.visible = false
+	_centre.add_child(_export)
+
 	var right := VBoxContainer.new()
 	right.custom_minimum_size = Vector2(280, 0)
 	right.add_theme_constant_override("separation", 12)
@@ -230,10 +262,11 @@ func _refresh() -> void:
 	# Il cruscotto sta davanti a tutto quando e aperto: chi lo guarda non sta
 	# guardando il tavolo, ed e per questo che occupa la stessa meta di schermo.
 	_dev.visible = _dev_open
+	_export.visible = _export_open
 	if _dev_open:
 		_dev.render(_session)
 	var council_open: bool = _session.confluence.is_open()
-	var busy: bool = _help.visible or _echo.visible or _dev_open
+	var busy: bool = _help.visible or _echo.visible or _dev_open or _export_open
 	_board.visible = council_open and not busy
 	_map.visible = not council_open and not busy
 	if council_open:
@@ -291,6 +324,8 @@ func _context_line() -> String:
 func _on_help_toggled(pressed: bool) -> void:
 	if pressed:
 		_dev_open = false
+		_export_open = false
+		_export.visible = false
 	_help.visible = pressed
 	if pressed:
 		_help.render(_load_help_data())
