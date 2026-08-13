@@ -26,37 +26,42 @@
         ]
       },
       "victory": {
-        "label": "Quello che e scritto vale",
+        "label": "Il debito e stato chiamato, e nessuno lo ha cancellato",
         "conditions": [
           {
             "type": "state_tag_present",
-            "scope": "ENTITY",
-            "entity_id": "ENT_SALE",
-            "tag": "water_rights",
-            "label": "I diritti sull'acqua sono suoi, per atto"
+            "scope": "GLOBAL",
+            "tag": "debt_called",
+            "label": "Il debito e stato chiamato per intero"
           },
           {
             "type": "state_tag_absent",
             "scope": "GLOBAL",
             "tag": "debt_forgiven",
-            "label": "Nessun debito e stato cancellato"
+            "label": "E nessuno lo ha cancellato"
           }
         ]
       },
       "triumph": {
-        "label": "E lo scrive lei",
+        "label": "E la firma vale ancora",
         "conditions": [
           {
-            "type": "control_count",
+            "type": "promise_kept",
             "entity_id": "ENT_SALE",
-            "min": 2,
-            "label": "Controllo di almeno 2 Regioni"
+            "other_entity_id": "ENT_CENERE",
+            "label": "Il patto con i Signori della Cenere regge"
           },
           {
             "type": "state_tag_absent",
             "scope": "GLOBAL",
             "tag": "ledger_public",
-            "label": "Il registro resta suo"
+            "label": "E il registro resta suo"
+          },
+          {
+            "type": "control_count",
+            "entity_id": "ENT_SALE",
+            "min": 2,
+            "label": "E il registro copre due Regioni, non una"
           }
         ]
       }
@@ -131,19 +136,38 @@
             "type": "region_presence",
             "entity_id": "ENT_VETRO",
             "region_id": "REG_MINIERE_ANTICHE",
-            "min": 1,
-            "label": "Presenza nelle Miniere Antiche"
+            "min": 2,
+            "label": "Le gallerie sono presidiate, non solo abitate"
           }
         ]
       },
       "victory": {
-        "label": "Niente e' uscito, e niente e' stato svuotato",
+        "label": "La custodia e un incarico, e la teca resta chiusa",
         "conditions": [
+          {
+            "type": "state_tag_present",
+            "scope": "ENTITY",
+            "entity_id": "ENT_VETRO",
+            "tag": "anointed",
+            "label": "La custodia e stata riconosciuta per atto"
+          },
           {
             "type": "state_tag_absent",
             "scope": "GLOBAL",
             "tag": "relic_shown",
-            "label": "Nessuno ha aperto la teca"
+            "label": "E nessuno ha aperto la teca"
+          }
+        ]
+      },
+      "triumph": {
+        "label": "E cosa ci sia dentro lo sa, e le gallerie sono ancora sue",
+        "conditions": [
+          {
+            "type": "state_tag_present",
+            "scope": "ENTITY",
+            "entity_id": "ENT_VETRO",
+            "tag": "discovery:relic",
+            "label": "L'Ordine ha messo a verbale cosa custodisce"
           },
           {
             "type": "state_tag_absent",
@@ -151,25 +175,6 @@
             "region_id": "REG_MINIERE_ANTICHE",
             "tag": "condition:emptied",
             "label": "E le gallerie non sono state abbandonate"
-          }
-        ]
-      },
-      "triumph": {
-        "label": "E la custodia e' un incarico, non una consuetudine",
-        "conditions": [
-          {
-            "type": "state_tag_present",
-            "scope": "ENTITY",
-            "entity_id": "ENT_VETRO",
-            "tag": "discovery:relic",
-            "label": "E cosa ci sia dentro l'Ordine lo ha messo a verbale"
-          },
-          {
-            "type": "state_tag_absent",
-            "scope": "REGION",
-            "region_id": "REG_MONTAGNE_ROSSE",
-            "tag": "condition:unrest",
-            "label": "E sulle Montagne non si e' dovuta imporre"
           }
         ]
       }
@@ -181,12 +186,19 @@
       "description": "Un Ordine che ha tenuto la teca chiusa e stato creduto sulla parola. Il passo dopo e piu pericoloso: mostrarla, e restare creduto lo stesso.",
       "art_prompt_key": "destiny.vetro.shown",
       "minimum": {
-        "label": "L'Ordine esiste ancora",
+        "label": "L'Ordine tiene la sua casa",
         "conditions": [
           {
             "type": "entity_alive",
             "entity_id": "ENT_VETRO",
             "label": "L'Ordine esiste ancora"
+          },
+          {
+            "type": "region_presence",
+            "entity_id": "ENT_VETRO",
+            "region_id": "REG_MINIERE_ANTICHE",
+            "min": 2,
+            "label": "Le gallerie sono presidiate, non solo abitate"
           }
         ]
       },
@@ -313,18 +325,18 @@
             "scope": "REGION",
             "region_id": "REG_MINIERE_ANTICHE",
             "tag": "structure:sealed",
-            "label": "Le gallerie non sono state murate"
+            "label": "E le gallerie non sono state murate"
           }
         ]
       },
       "triumph": {
-        "label": "E adesso lo sanno tutti",
+        "label": "E non devono piu niente a nessuno",
         "conditions": [
           {
-            "type": "state_tag_present",
-            "scope": "GLOBAL",
-            "tag": "relic_shown",
-            "label": "La reliquia e uscita dalla teca"
+            "type": "promise_broken",
+            "entity_id": "ENT_CENERE",
+            "other_entity_id": "ENT_SALE",
+            "label": "Il patto con la Gilda e saltato"
           },
           {
             "type": "control_count",

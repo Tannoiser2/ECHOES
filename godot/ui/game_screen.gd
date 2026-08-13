@@ -24,6 +24,7 @@ const StatusPanel := preload("res://ui/status_panel.gd")
 const HandView := preload("res://ui/hand_view.gd")
 const ConfluenceBoard := preload("res://ui/confluence_board.gd")
 const HelpPanel := preload("res://ui/help_panel.gd")
+const SaveSerializer := preload("res://scripts/core/save_serializer.gd")
 const EchoCardView := preload("res://ui/echo_card_view.gd")
 
 ## Who is at the table is a property of the Chronicle, not of this screen
@@ -429,6 +430,8 @@ func _menu() -> void:
 	# The year is chosen before the seat, and it has to be: who is at the table
 	# is what the Chronicle says it is, and the two sagas seat nobody in common.
 	while true:
+		if await _offer_to_resume():
+			continue
 		var chronicle_id: String = await _ask_chronicle()
 		_seats = _seats_of(chronicle_id)
 		# Redrawn here and not after the seat is picked: the rules page names the
@@ -539,6 +542,71 @@ func _entity_name(entity_id: String) -> String:
 	return str(data.entities[entity_id]["name"])
 
 
+## An interrupted Chronicle, if there is one (D-052).
+##
+## The save has existed and been tested since 0.0 and nothing on screen ever
+## called it, which is the open line this closes. What was missing was not the
+## file: it was somewhere to come back *to*. `run()` now starts from the Act and
+## round the world is on, so a save taken at the close of a round is a place to
+## stand.
+func _offer_to_resume() -> bool:
+	# In un browser `user://` sta in IndexedDB, e non e detto che ci sia: in
+	# navigazione privata, o con lo storage bloccato, Godot lo segnala e quello
+	# che si scrive sparisce alla chiusura della scheda. Offrire una ripresa che
+	# non ci sara e peggio che non offrirla.
+	if not OS.is_userfs_persistent():
+		return false
+	var save: Dictionary = SaveSerializer.read(SaveManager.save_path("autosave"))
+	if save.is_empty():
+		return false
+	var world: Dictionary = save.get("world_state", {})
+	var chronicle_id: String = str(world.get("chronicle_id", ""))
+	var data: RefCounted = _load_help_data()
+	if data == null or not data.chronicles.has(chronicle_id):
+		return false
+	# A Chronicle that ran to the end is not something to resume into.
+	if int(world.get("act", 0)) <= 0:
+		return false
+
+	var choice: int = await ask(
+		"C'e un anno lasciato a meta.",
+		[
+			"Riprendi %s, atto %d round %d" % [
+				str(data.chronicles[chronicle_id]["title"]),
+				int(world.get("act", 1)), int(world.get("round", 1)),
+			],
+			"Lascia perdere e comincia un anno nuovo",
+		]
+	)
+	if choice != 0:
+		return false
+	await _resume(chronicle_id)
+	return true
+
+
+func _resume(chronicle_id: String) -> void:
+	if _busy:
+		return
+	_busy = true
+	_transcript.clear()
+	_help_button.button_pressed = false
+
+	var data: RefCounted = DataSet.new()
+	if not data.load_from("res://data"):
+		_busy = false
+		return
+	_seats = _seats_of(chronicle_id)
+	_session = GameSession.new(data)
+	_session.setup(chronicle_id, _seats, 0)
+	if not SaveManager.load_into(_session, "autosave"):
+		say("[color=#c8553d]Il salvataggio non si e potuto rileggere.[/color]")
+		_busy = false
+		return
+	_last_seed = int(_session.world["rng_seed"])
+	_help.render(data, chronicle_id)
+	await _drive(data, [], chronicle_id)
+
+
 func _play(humans: Array, chronicle_id: String, seed_value: int) -> void:
 	if _busy:
 		return
@@ -561,12 +629,26 @@ func _play(humans: Array, chronicle_id: String, seed_value: int) -> void:
 	_last_seed = seed_value
 	_session = GameSession.new(data)
 	_session.setup(chronicle_id, _seats, seed_value)
+	await _drive(data, humans, chronicle_id)
 
+
+## Everything from "there is a session" to "the year is over". Split out of
+## `_play` so a resumed Chronicle goes through exactly the same screen as a fresh
+## one - the alternative was a second copy of it, and a second copy is where the
+## two would stop agreeing (D-052).
+func _drive(data: RefCounted, humans: Array, chronicle_id: String) -> void:
+	_busy = true
+	_help_button.button_pressed = false
 	var shown: Dictionary = {"lines": 0}
 	_session.chronicle.phase_changed.connect(
-		func(_a: int, _r: int, _p: String) -> void:
+		func(_a: int, _r: int, phase: String) -> void:
 			_flush(shown)
 			_refresh()
+			# Il punto di ripresa del motore e' l'inizio di un round (D-052), e
+			# THRESHOLD_CHECK e' l'ultima cosa che succede dentro uno: salvare qui
+			# vuol dire che riprendere costa al massimo il round in corso.
+			if phase == "THRESHOLD_CHECK":
+				SaveManager.autosave(_session)
 	)
 	# Held, not shown: the card is drawn deep inside the Act and the screen has
 	# nowhere to suspend there. It is looked at at the next question, like the
@@ -577,7 +659,7 @@ func _play(humans: Array, chronicle_id: String, seed_value: int) -> void:
 	)
 
 	say("[b]%s[/b] — anno %d, seme %d" % [
-		str(data.chronicles[chronicle_id]["title"]), int(_session.world["year"]), seed_value,
+		str(data.chronicles[chronicle_id]["title"]), int(_session.world["year"]), _last_seed,
 	])
 	say("")
 

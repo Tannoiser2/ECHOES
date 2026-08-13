@@ -1234,6 +1234,9 @@ const DEFS := {
 					"type": "String",
 				},
 			},
+			"last_proponent": {
+				"type": "Dictionary",
+			},
 			"forced_confluence": {
 				"type": "Dictionary",
 				"nullable": true,

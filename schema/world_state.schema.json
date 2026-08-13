@@ -128,7 +128,7 @@
         },
         "decks": {
           "type": "object",
-          "description": "Per-family Asset draw/discard piles (\u00a79, \u00a722).",
+          "description": "Per-family Asset draw/discard piles (§9, §22).",
           "additionalProperties": {
             "$ref": "#/$defs/deck_state"
           }
@@ -152,12 +152,19 @@
             "type": "string"
           }
         },
+        "last_proponent": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Chi ha aperto l'ultimo Consiglio su ogni domanda. Serve a far girare la parola: un seggio che ha proposto l'ultima volta si fa da parte se c'e qualcun altro nella Regione di cui si discute (D-051)."
+        },
         "forced_confluence": {
           "type": [
             "object",
             "null"
           ],
-          "description": "Set by CLAIM/FORCE or an Echo card: overrides the threshold queue at the next end-of-round check (\u00a710, \u00a712.1)."
+          "description": "Set by CLAIM/FORCE or an Echo card: overrides the threshold queue at the next end-of-round check (§10, §12.1)."
         },
         "confluence_count": {
           "type": "integer",

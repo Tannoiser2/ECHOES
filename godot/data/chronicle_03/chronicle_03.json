@@ -83,7 +83,8 @@
         "TEN_WATER",
         "TEN_DEBT",
         "TEN_RELIC",
-        "TEN_CHARTER"
+        "TEN_CHARTER",
+        "TEN_ASH"
       ],
       "drift_distribution": [
         {
@@ -96,11 +97,15 @@
         },
         {
           "tension_id": "TEN_RELIC",
-          "count": 3
+          "count": 2
         },
         {
           "tension_id": "TEN_CHARTER",
           "count": 2
+        },
+        {
+          "tension_id": "TEN_ASH",
+          "count": 1
         }
       ],
       "opening_text": "Ottocento anni dopo Aldric non c'e piu una corona, e per otto secoli non e servita. Le sette citta si governano da sole, la Gilda del Sale tiene il registro di tutti, l'Ordine del Vetro custodisce un frammento che nessuno dei vivi ha visto, e sulle Montagne Rosse si scava piu in basso di quanto sia mai stato scavato. La Valle non da piu da mangiare a tutti: i canali ci sono ancora, sono pieni di terra, e nessuno e obbligato a toglierla.",

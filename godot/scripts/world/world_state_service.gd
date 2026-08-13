@@ -295,14 +295,48 @@ func active_entities() -> Array:
 ## his, and he was never in the room as a voter on the only Tension he cares
 ## about. Counting the focus asks a narrower and truer question: who is standing
 ## in the place we are arguing over?
+## And the word goes round (D-051).
+##
+## D-036 narrowed the count from the domain to the focus Region, which stopped
+## one seat owning a question by standing in two places. It did not stop one seat
+## owning a question by standing in *the* place: the ranking is deterministic, so
+## in any stable matchup the same house opens the same Council in all forty
+## measured Chronicles, and the seat on the other side of that question never
+## gets to put anything on the table. Measured three times in three different
+## pairs - Vaerax against Lyra, the Ash Lords against the Order, and back again
+## when the first fix moved it - which is what makes it a rule and not a tuning
+## problem.
+##
+## So: whoever opened the last Council on this question steps aside, if anybody
+## else is standing where it is being argued. Not a rotation imposed from
+## outside - a council does not let the same person open the same question twice
+## running, and everything else about the ranking is unchanged.
 func determine_proponent(tension_id: String, focus_region: String = "") -> String:
+	var previous: String = str(
+		(world.get("last_proponent", {}) as Dictionary).get(tension_id, "")
+	)
+	if previous != "":
+		var others: Array = []
+		for entity_id in active_entities():
+			if str(entity_id) == previous:
+				continue
+			if focus_region == "" or presence_count(str(entity_id), focus_region) > 0:
+				others.append(str(entity_id))
+		# Only if somebody else is actually in the room. A question nobody else
+		# is standing over goes back to whoever is.
+		if not others.is_empty():
+			return _rank_proponent(tension_id, focus_region, others)
+	return _rank_proponent(tension_id, focus_region, active_entities())
+
+
+func _rank_proponent(tension_id: String, focus_region: String, among: Array) -> String:
 	var domain: String = tension_domain(tension_id)
 	var families: Array = relevant_families(tension_id)
 	var best: String = ""
 	var best_presence: int = -1
 	var best_assets: int = -1
 	var best_order: int = 999
-	for entity_id in active_entities():
+	for entity_id in among:
 		var presence: int = (
 			presence_count(str(entity_id), focus_region) if focus_region != ""
 			else presence_in_domain(str(entity_id), domain)

@@ -39,6 +39,7 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 		"drift_track": [],
 		"drift_index": 0,
 		"confluence_queue": [],
+		"last_proponent": {},
 		"forced_confluence": null,
 		"confluence_count": 0,
 		"effect_sequence": 0,

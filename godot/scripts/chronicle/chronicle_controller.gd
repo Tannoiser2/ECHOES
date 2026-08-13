@@ -52,9 +52,39 @@ func _init(p_session: RefCounted) -> void:
 ## without this the browser would have to freeze the whole Chronicle to ask a
 ## question (D-038).
 func run(decider: Object) -> Dictionary:
-	setup()
-	for act in range(1, int(_chronicle["acts"]) + 1):
-		await play_act(act, decider)
+	# A restored world is one that has already been dealt: setting it up again
+	# would deal every opening hand a second time. `act` is 0 only before the
+	# first round of a fresh Chronicle, which is exactly the test (D-052).
+	if int(world["act"]) == 0:
+		setup()
+		for act in range(1, int(_chronicle["acts"]) + 1):
+			await play_act(act, decider)
+		return chronicle_end()
+
+	# Where to pick up. The world carries the round it was *in*, and the phase
+	# says whether that round finished: anything past ACTIONS means it did, so
+	# the next one is where to stand. Getting this off by one replays a round -
+	# the same actions twice, the same Drift twice - and the year comes out
+	# different from the one that was never interrupted.
+	var from_act: int = int(world["act"])
+	var from_round: int = int(world["round"]) + (
+		0 if str(world["phase"]) == "ACTIONS" else 1
+	)
+	var rounds: int = int(_chronicle["rounds_per_act"])
+
+	# And if that round is off the end of the Act, the Act's own ending has not
+	# happened yet: the Echo card is drawn there, and skipping it would lose the
+	# one move the world makes on its own.
+	if from_round > rounds:
+		log.section("SI RIPRENDE - fine dell'Atto %d" % from_act)
+		await end_of_act(from_act, decider)
+		from_act += 1
+		from_round = 1
+	else:
+		log.section("SI RIPRENDE - Atto %d, round %d" % [from_act, from_round])
+
+	for act in range(from_act, int(_chronicle["acts"]) + 1):
+		await play_act(act, decider, from_round if act == from_act else 1)
 	return chronicle_end()
 
 
@@ -86,9 +116,9 @@ func setup() -> void:
 		log.bullet(session.tensions.public_status(str(tension_id)))
 
 
-func play_act(act: int, decider: Object) -> void:
+func play_act(act: int, decider: Object, from_round: int = 1) -> void:
 	log.section("ATTO %d" % act)
-	for round_number in range(1, int(_chronicle["rounds_per_act"]) + 1):
+	for round_number in range(from_round, int(_chronicle["rounds_per_act"]) + 1):
 		await play_round(act, round_number, decider)
 	await end_of_act(act, decider)
 
