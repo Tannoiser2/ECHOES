@@ -164,12 +164,6 @@
             "label": "Presenza nelle Miniere Antiche"
           },
           {
-            "type": "state_tag_absent",
-            "scope": "GLOBAL",
-            "tag": "mine_sealed",
-            "label": "Le Miniere non sono sigillate"
-          },
-          {
             "type": "state_tag_present",
             "scope": "ENTITY",
             "entity_id": "ENT_LYRA",

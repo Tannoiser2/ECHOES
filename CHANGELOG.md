@@ -5,6 +5,94 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.15] — Il playtest, e dove la 0.1.14 aveva torto
+
+La D-051 aveva concluso che gli esiti si raggruppano **perché a ogni seggio c'è
+lo stesso ottimizzatore**, e non per come è scritto il contenuto. Era un'ipotesi
+dichiarata senza prove. Questo è l'esperimento, e dice che era **giusta a metà**.
+
+### Added
+
+- **`table_of_characters.gd`** — quattro modi diversi di stare allo stesso
+  tavolo: *prudente* (non si oppone mai, impegna una carta in meno),
+  *aggressivo* (blocca tutto quello che non lo aiuta, impegna tutto),
+  *distratto* (un giro su quattro fa un'altra cosa, legale), *ostinato* (gioca
+  per il Trionfo dal primo round). Nessuno bara: stessi controlli di legalità.
+- **`run_playtest.gd`** — 100 Chronicle, 50 per saga, i caratteri mescolati fra i
+  seggi; poi gli **stessi 100 semi** rigiocati da quattro ottimizzatori identici.
+  La differenza è il tavolo, non la fortuna.
+
+### Misurato — dove l'ipotesi reggeva
+
+Quattro seggi che sembravano bloccati non lo erano (MINIMUM / VITTORIA /
+TRIONFO):
+
+| seggio | quattro ottimizzatori | tavolo misto |
+|---|---|---|
+| Le Città Libere | 0 / **49** / 0 | 21 / 29 / 0 |
+| Maestra Ilve | 5 / **43** / 2 | 21 / 24 / 5 |
+| Vaerax | 4 / **43** / 3 | 26 / 19 / 5 |
+| Priore Anselmo | 11 / **39** / 0 | 26 / 24 / 0 |
+
+### Misurato — dove non reggeva
+
+Due seggi non si muovono, e l'incrocio per carattere lo dice senza appello: il
+giocatore migliore del tavolo, seduto lì, supera il Minimo **una o due volte su
+dieci**. Kessa dei Fuochi 48 Minimi su 50, Lyra 47 su 50, e col giocatore
+aggressivo 1 Vittoria su 10 e 2 Trionfi su 10. Non è un artefatto
+dell'ottimizzatore: **quei due Destini costano troppo**, e la D-051 su questo
+aveva torto.
+
+### Fixed — quello che il playtest ha detto di sistemare
+
+- **Lyra.** La sua Vittoria chiedeva la scorta giurata *e* che le gallerie non
+  fossero sigillate — l'esatta negazione della Vittoria di Vaerax, che deve
+  sigillarle. Due Destini che sono l'uno il contrario dell'altro li decide
+  l'ordine di parola. La posta resta a lui: Lyra passa da **47 Minimi su 50 a
+  39 / 0 / 11 Trionfi**.
+- **Kessa dei Fuochi.** La sua Vittoria stava tutta su `ash_watch`, che si
+  ottiene da *una* proposta di *un* Consiglio: se non lo apre lei, non c'è altra
+  strada. Tenere la montagna in forze si raggiunge da più Consigli; la veglia
+  sale al Trionfo. E la domanda della Cenere è stata resa raggiungibile (da 1 con
+  soglia 5 a 2 con soglia 4). Da **48 Minimi su 50 a 45 / 5**.
+
+Seggi bloccati su un solo livello a tavolo misto: **da 2 su 8 a 1 su 8**. Il
+tavolo di quattro ottimizzatori, sullo stesso identico contenuto, ne blocca
+**4 su 8**: la differenza fra i due numeri è tutta la conclusione.
+
+### Provato e tolto — il prezzo dell'opposizione
+
+`CNS_FAILURE_SPIRAL` promette nella propria descrizione «con meno tempo davanti e
+più rancore intorno» e negli effetti non alzava niente. Aggiungere `+1` sulla
+Tensione sembrava ovvio. **Misurato, ha fatto il contrario**: i fallimenti da 302
+a 322 su cento partite — si è bloccato di *più* — e quattro Chronicle su 24 sopra
+il tetto del §7, con un piano scritto a mano rotto. Tolto.
+
+Bloccare resta la strategia migliore. Non si sistema con una Conseguenza: è la
+matematica del resolver del §A5, e non si tocca senza dirlo. **Resta aperta.**
+
+### Changed — il tetto
+
+Il tetto del §7 nel test passa da 7 a 8, con la stessa aritmetica che aveva
+spostato la banda: il §7 chiede 3-4 sulle **due** Tensioni del §18.2, cioè
+1,5-2,0 per Tensione, e con quattro fa **6-8**. Ha cominciato a fallire
+esattamente quando le correzioni hanno rimesso in gioco due seggi. Il
+**pavimento non si è mosso**.
+
+### E due cose che nessuno stava misurando
+
+- **Un tavolo misto scrive una storia molto più varia**: 511 Verità, **479
+  diverse** (94%), contro 448 e 322 (72%) del tavolo uniforme. Stesso contenuto,
+  stessi semi: la varietà era nei giocatori.
+- **Opporsi non costa abbastanza.** In cento partite l'aggressivo chiude
+  32/57/11 e il prudente 86/14/**0** — nemmeno un Trionfo in cento partite. E un
+  solo giocatore aggressivo su quattro porta i Consigli da 149 fallimenti a
+  **302 su 593**: più della metà di quello che si propone cade. È la prima
+  segnalazione di bilanciamento che arriva dal guardare gente che gioca in modo
+  diverso, e non un giocatore che gioca bene.
+
+---
+
 ## [0.1.14] — La parola gira, e un anno lasciato a metà si riprende
 
 Due voci rimaste aperte: lo squilibrio registrato come O-15, e il salvataggio che

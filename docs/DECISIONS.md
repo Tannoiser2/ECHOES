@@ -331,6 +331,129 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-053 — Il playtest, e dove la D-051 aveva torto
+**measured and acted on in 0.1.15**
+
+D-051 concluded that Destiny outcomes cluster - several seats at 37-40 out of 40
+on one level - **because every seat is the same deterministic optimiser**, not
+because of how the clauses are written, and said it wanted a table of real
+players rather than another turn of the knobs. That was a hypothesis stated
+without evidence. This is the experiment, and it says the hypothesis was **half
+right**, which is the useful half of the result.
+
+### L'esperimento
+
+Four characters, each the same policy with one thing different, none of them
+cheating and all of them going through the same legality checks: **prudente**
+(never opposes, commits one card fewer), **aggressivo** (blocks anything that
+does not help, commits everything), **distratto** (one turn in four does
+something else legal), **ostinato** (plays for its Triumph from round one
+instead of the nearest rung).
+
+100 Chronicles, 50 per saga, the characters dealt across the seats by a separate
+RNG so the *world* is identical in both halves - then the same 100 seeds played
+again by four identical optimisers. The difference is the table, not the luck.
+
+### Dove aveva ragione
+
+| seggio | quattro ottimizzatori | tavolo misto |
+|---|---|---|
+| Le Citta Libere | 0 / **49** / 0 | 21 / 29 / 0 |
+| Maestra Ilve | 5 / **43** / 2 | 21 / 24 / 5 |
+| Vaerax | 4 / **43** / 3 | 26 / 19 / 5 |
+| Priore Anselmo | 11 / **39** / 0 | 26 / 24 / 0 |
+
+*(MINIMUM / VICTORY / TRIUMPH)*
+
+Four seats that looked locked were not: put different people in them and they
+spread. Seats stuck on one level go from 3 of 8 to 2 of 8, and the ones that
+move are exactly the ones D-051 had been re-writing clauses for. **Those clauses
+were not the problem.**
+
+### Dove aveva torto
+
+Two seats do not move, and the cross-tab is what settles it - not "they lose
+often" but "they lose no matter who plays them":
+
+| | prudente | aggressivo | distratto | ostinato |
+|---|---|---|---|---|
+| **Kessa dei Fuochi** | 17 MIN / 0 | 9 MIN / **1 VIC** | 12 MIN / 1 VIC | 10 MIN / 0 |
+| **Lyra** | 14 MIN / 0 | 8 MIN / **2 TRI** | 15 MIN / 1 TRI | 10 MIN / 0 |
+
+The best player at the table, holding those two seats, gets past Minimum once or
+twice in ten. That is not an optimiser artefact and no amount of varied play
+fixes it: **those two Destinies are simply too expensive**, and D-051's "the
+cause is not the content" was wrong about them specifically. Written down here
+rather than quietly fixed, because the wrong half of a conclusion is worth as
+much as the right half.
+
+### E due cose che nessuno stava misurando
+
+**Un tavolo misto scrive una storia molto piu varia.** 511 Truths written, **479
+distinct** - 94%. The uniform table wrote 448 and only 322 distinct, 72%. Same
+content, same seeds: the variety was in the players all along, which is the
+strongest argument yet that the register is doing its job.
+
+**Opporsi non costa abbastanza.** Across 100 Chronicles the aggressive character
+finishes 32 MIN / 57 VIC / 11 TRI and the cautious one 86 MIN / 14 VIC / **0
+TRI** - not one Triumph in a hundred games. And one aggressive player in four is
+enough to take Councils from 149 failures to **302 out of 593**: over half of
+everything proposed now falls. Blocking is free and it dominates. That is a
+balance finding about the resolver, not about the content, and it is the first
+one this project has that came from watching people play differently rather than
+from watching one player play well.
+
+### Cosa e stato fatto con il risultato
+
+**I due Destini troppo cari sono stati abbassati, e il playtest lo conferma.**
+
+- **Lyra**: la sua Vittoria chiedeva la scorta giurata *e* che le gallerie non
+  fossero sigillate - cioe l'esatta negazione della Vittoria di Vaerax, che deve
+  sigillarle. Due Destini che sono l'uno il contrario dell'altro li decide
+  l'ordine di parola, che e la stessa trappola gia trovata con la promessa. La
+  posta resta a lui, e lei passa da **47 Minimi su 50 a 39 / 0 / 11 Trionfi**.
+- **Kessa dei Fuochi**: la sua Vittoria stava tutta su `ash_watch`, che si ottiene
+  da *una* proposta di *un* Consiglio - se quel Consiglio non lo apre lei, non
+  c'e nessun'altra strada. E' il difetto della D-048 un giro piu in la. Tenere
+  la montagna in forze si raggiunge da piu Consigli diversi; la veglia sale al
+  Trionfo. Da **48 Minimi su 50 a 45 / 5**, e con la domanda della Cenere resa
+  raggiungibile (da 1 con soglia 5 a 2 con soglia 4) arriva a 43 / 7.
+
+Seggi bloccati su un solo livello, a tavolo misto: **da 2 su 8 a 1 su 8** - e a
+zero quando la domanda della Cenere si apre abbastanza spesso. Il tavolo di
+quattro ottimizzatori, sullo stesso contenuto, ne blocca 4 su 8: la differenza
+fra i due numeri e tutta la conclusione di questa voce.
+
+### E il prezzo dell'opposizione: provato e tolto
+
+`CNS_FAILURE_SPIRAL` promette nella propria descrizione *"la questione resta
+esattamente dov'era, con meno tempo davanti e piu rancore intorno"* e negli
+effetti non alzava niente. Aggiungere `+1` sulla Tensione sembrava la correzione
+ovvia: una domanda a cui nessuno ha risposto diventa piu rumorosa, e chi la
+blocca se la ritrova.
+
+Misurato, **non ha fatto quello che doveva**: i fallimenti sono passati da 302 a
+322 su 100 partite - cioe si e bloccato *di piu*, non di meno - e le Chronicle
+sono uscite sopra il tetto del §7 in 4 partite su 24, rompendo anche un piano
+scritto a mano. Tolto.
+
+Bloccare resta la strategia migliore: l'aggressivo chiude 29/63/8 e il prudente
+82/14/4. Non e una cosa che si sistemi con una Conseguenza, ed e la matematica
+del resolver del §A5 - che il §A5 fissa apposta e che non si tocca senza
+dirlo. **Resta aperta, con i numeri accanto.**
+
+### Il tetto
+
+Il tetto del §7 nel test passa da 7 a 8, con la stessa aritmetica che aveva
+spostato la banda nella D-051: il §7 chiede 3-4 sulle **due** Tensioni del
+§18.2, cioe 1,5-2,0 per Tensione, e con quattro Tensioni fa **6-8**. Sette era
+un'altra stretta che il progetto si era dato da solo, e ha cominciato a fallire
+esattamente quando le correzioni hanno rimesso in gioco due seggi: un seggio che
+comincia a giocare rende l'anno piu rumoroso. Il **pavimento non si e mosso**, ed
+e la meta a cui il §7 tiene davvero.
+
+---
+
 ## D-052 — Un anno lasciato a meta si riprende
 **implemented in 0.1.14**
 
