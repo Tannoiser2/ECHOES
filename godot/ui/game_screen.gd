@@ -25,6 +25,7 @@ const HandView := preload("res://ui/hand_view.gd")
 const ConfluenceBoard := preload("res://ui/confluence_board.gd")
 const HelpPanel := preload("res://ui/help_panel.gd")
 const SaveSerializer := preload("res://scripts/core/save_serializer.gd")
+const DevDashboard := preload("res://ui/dev_dashboard.gd")
 const EchoCardView := preload("res://ui/echo_card_view.gd")
 
 ## Who is at the table is a property of the Chronicle, not of this screen
@@ -66,6 +67,9 @@ var _pending_echo: Dictionary = {}
 ## time, because they answer different questions and a player looking at a
 ## Council is not choosing where to walk.
 var _centre: Control
+## Il cruscotto per chi sviluppa, e se e aperto adesso.
+var _dev: PanelContainer
+var _dev_open: bool = false
 var _status: VBoxContainer
 var _hand: HBoxContainer
 ## The seat the board is drawn for, and the Tension under discussion if any.
@@ -76,6 +80,20 @@ var _focus_tension: String = ""
 func _ready() -> void:
 	_build()
 	_menu()
+
+
+## F3 apre e chiude il cruscotto. Un tasto e non un bottone: quello che mostra
+## rovina una partita a chi lo legge per sbaglio (D-054).
+func _unhandled_input(event: InputEvent) -> void:
+	if not (event is InputEventKey) or not event.pressed or event.is_echo():
+		return
+	if (event as InputEventKey).keycode != KEY_F3:
+		return
+	_dev_open = not _dev_open
+	if _dev_open:
+		_help_button.button_pressed = false
+	_refresh()
+	get_viewport().set_input_as_handled()
 
 
 # --- layout -----------------------------------------------------------------
@@ -142,6 +160,15 @@ func _build() -> void:
 	_echo.visible = false
 	_centre.add_child(_echo)
 
+	# Il cruscotto (§25.14): stessa meta' di schermo di mappa, Consiglio e regole,
+	# perche' chi lo sta leggendo non sta guardando il tavolo. Sta dietro F3 e non
+	# dietro un bottone: mostra anche quello che al tavolo e coperto, e non e una
+	# cosa da premere per curiosita' in mezzo a una partita.
+	_dev = DevDashboard.new()
+	_dev.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_dev.visible = false
+	_centre.add_child(_dev)
+
 	var right := VBoxContainer.new()
 	right.custom_minimum_size = Vector2(280, 0)
 	right.add_theme_constant_override("separation", 12)
@@ -200,8 +227,13 @@ func _build() -> void:
 func _refresh() -> void:
 	if _session == null:
 		return
+	# Il cruscotto sta davanti a tutto quando e aperto: chi lo guarda non sta
+	# guardando il tavolo, ed e per questo che occupa la stessa meta di schermo.
+	_dev.visible = _dev_open
+	if _dev_open:
+		_dev.render(_session)
 	var council_open: bool = _session.confluence.is_open()
-	var busy: bool = _help.visible or _echo.visible
+	var busy: bool = _help.visible or _echo.visible or _dev_open
 	_board.visible = council_open and not busy
 	_map.visible = not council_open and not busy
 	if council_open:
@@ -257,6 +289,8 @@ func _context_line() -> String:
 
 
 func _on_help_toggled(pressed: bool) -> void:
+	if pressed:
+		_dev_open = false
 	_help.visible = pressed
 	if pressed:
 		_help.render(_load_help_data())
@@ -639,6 +673,7 @@ func _play(humans: Array, chronicle_id: String, seed_value: int) -> void:
 func _drive(data: RefCounted, humans: Array, chronicle_id: String) -> void:
 	_busy = true
 	_help_button.button_pressed = false
+	_dev.watch(_session)
 	var shown: Dictionary = {"lines": 0}
 	_session.chronicle.phase_changed.connect(
 		func(_a: int, _r: int, phase: String) -> void:

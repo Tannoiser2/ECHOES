@@ -331,6 +331,51 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-054 — Il cruscotto, cioe le sonde dentro la partita
+**implemented in 0.1.16** (§25, punto 14)
+
+Everything this project has learned about its own game arrived through a
+command-line probe - the margin, the silence, the Destinies, the playtest - and
+every one of them has the same shape: somebody looks at a number nobody was
+looking at and finds it has been there for four milestones. The cost of that
+loop is that you have to export, replay and read a file, so you only pay it once
+you already suspect something.
+
+The dashboard puts the same four tables **inside the Chronicle being played**,
+redrawn on every phase: the questions with how much the *world* pushed them and
+how much the *table* did, each seat's ladder clause by clause, the Councils with
+S/O/margin, and the tail of the Effect register with each line's source.
+
+### Mostra quello che al tavolo e coperto, e lo dice
+
+A veiled Tension's real value, everyone's hand, who pushed what. The screenshot
+that verified it is the argument for the design: the player panel on the right
+says *"Il Risveglio — velata"* while the dashboard says *"Il Risveglio 5/6"*, in
+the same frame. That is exactly what a developer needs and exactly what ruins a
+game, so it is behind **F3** rather than a button, and it says what it is in red
+across the top.
+
+It shares the middle of the screen with the map, the Council and the rules page,
+for the reason all of them share it: somebody reading one of those is not looking
+at the table.
+
+### E non sa niente
+
+Like every other view it takes a session and draws what is there - no rule, no
+decision (D-038). The one piece of state it keeps is the running total of who
+pushed which Tension, because the register holds every push and re-reading three
+hundred Effects on every phase change to re-add them would be the one thing in
+this screen that does work instead of showing it.
+
+### Un dettaglio che si vede solo guardando
+
+The first draft marked held clauses with a tick. It is not in the font, so a
+table of true and false clauses came out as a column of empty boxes - the worst
+possible character in that specific place. It uses `[x]` and `[ ]`, which is what
+the rest of the game already writes.
+
+---
+
 ## D-053 — Il playtest, e dove la D-051 aveva torto
 **measured and acted on in 0.1.15**
 
