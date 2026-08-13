@@ -5,6 +5,81 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.14] — La parola gira, e un anno lasciato a metà si riprende
+
+Due voci rimaste aperte: lo squilibrio registrato come O-15, e il salvataggio che
+esisteva e non lo chiamava nessuno.
+
+### Fixed — quello che era davvero rotto in O-15
+
+Un **Minimo** gratis è giusto: dice «sei ancora al tavolo». Una clausola che
+chiede l'*assenza* di un tag è una posta, non un regalo — il Trionfo di Aldric è
+3/3 vero in partenza e lo raggiunge 2 volte su 40, perché è l'anno a
+portarglielo via.
+
+Erano rotte due **Vittorie** fatte solo di poste che nessuno attaccava: quella di
+Vaerax reggeva in 37-40 Chronicle su 40, e quella dell'Ordine del Vetro l'aveva
+resa tale la 0.1.11 mentre sistemava altro. Adesso chiedono una cosa da ottenere
+in un Consiglio — il sigillo per Vaerax, la custodia riconosciuta per l'Ordine.
+
+### Added — la parola gira
+
+Chi ha aperto l'ultimo Consiglio su una domanda **si fa da parte**, se c'è
+qualcun altro nella Regione di cui si discute. Serviva: la classifica del
+proponente è deterministica, quindi in un accoppiamento stabile la stessa casata
+apriva lo stesso Consiglio in tutte e quaranta le Chronicle misurate.
+L'Ordine del Vetro passa da **0 a 39** Consigli proposti; la prima saga si
+appiattisce da 94/65/50/35 a 80/52/60/59.
+
+### Added — `promise_kept` finalmente usato
+
+Collegarlo a un Destino ha mostrato perché la riga era rimasta aperta: **la
+policy non aveva mai giocato FORGE**, quindi un rapporto non si muoveva, quindi
+una promessa era mantenuta gratis e non si poteva rompere. Adesso forgia quando
+una clausola glielo chiede.
+
+Ha mostrato anche cosa *non* spedire: un `promise_kept` contro un
+`promise_broken` lo decide l'ordine di parola, perché rompere costa un'azione e
+ricucire costa un'azione **più** il consenso dell'altro e una carta BONDS. La
+promessa è quindi una posta del Trionfo della Gilda, e a prendersela viene il
+Destino *avanzato* della Cenere, che esiste solo dopo una saga.
+
+### Added — riprendere un anno a metà
+
+`run()` riparte dall'Atto e dal round su cui il mondo si trova, e la schermata
+salva alla chiusura di ogni round. Due dettagli sono tutto, ed erano sbagliati
+tutti e due alla prima stesura: **il round salvato è un round finito** (sbagliare
+di uno lo rigioca, e l'anno esce diverso), e **un Atto ha una fine propria** —
+fermarsi sull'ultimo round e ripartire dall'Atto dopo salterebbe la carta Echo.
+
+Il test che conta non è che il file si rilegga: è che **un anno interrotto
+finisca identico a uno mai interrotto** — stessi Consigli, stessi Destini, stesso
+numero di Effect, stesse ultime dodici righe. Provato in due punti, e il secondo
+è sul confine fra due Atti perché è il ramo che altrimenti si mangia una carta in
+silenzio.
+
+### Verificato anche nel browser
+
+In un build Web `user://` sta in IndexedDB, che non è garantito: in navigazione
+privata la pagina accetta la scrittura e la perde. La schermata chiede
+`OS.is_userfs_persistent()` e non propone la ripresa se la risposta è no.
+
+E la prova è stata fatta, non dedotta: esportato, giocati tre round nel browser,
+**ricaricata la pagina**, e il menu è tornato con *«C'è un anno lasciato a metà —
+Riprendi La Carestia Rossa, atto 1 round 3»* — e premendolo l'anno è arrivato
+fino all'Atto 3 round 3, Consiglio e carta Echo compresi, senza errori.
+
+### E cosa non si è mosso
+
+Gli esiti restano raggruppati: diversi seggi stanno a 37-40 su 40 di un livello.
+Quattro giri di modifiche hanno spostato *quali* seggi, mai la forma. La causa
+non è il contenuto: con un ottimizzatore deterministico a ogni seggio e un
+Consiglio per domanda, il risultato dipende da se il Destino punta a un Consiglio
+che quel seggio può vincere. Registrato e lasciato lì — è quello che O-14 chiedeva
+fin dall'inizio: serve un tavolo di persone vere, non un altro giro di manopole.
+
+---
+
 ## [0.1.13] — Lo schermo non sa chi siede al tavolo
 
 La 0.1.12 ha pubblicato una seconda saga completa — quattro casate, sei domande,

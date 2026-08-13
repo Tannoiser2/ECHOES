@@ -234,32 +234,25 @@
         ]
       },
       "victory": {
-        "label": "Nessuno ha portato via il Cristallo",
-        "conditions": [
-          {
-            "type": "state_tag_absent",
-            "scope": "GLOBAL",
-            "tag": "crystal_exploited",
-            "label": "Il Cristallo non e stato sfruttato"
-          },
-          {
-            "type": "state_tag_absent",
-            "scope": "REGION",
-            "region_id": "REG_MINIERE_ANTICHE",
-            "tag": "condition:exploited",
-            "label": "Le Miniere non sono state svuotate"
-          }
-        ]
-      },
-      "triumph": {
-        "label": "Il sonno e stato reso sicuro",
+        "label": "Le gallerie sono chiuse, e il Cristallo non e uscito",
         "conditions": [
           {
             "type": "state_tag_present",
             "scope": "GLOBAL",
             "tag": "mine_sealed",
-            "label": "Le Miniere sono sigillate"
+            "label": "Le Miniere sono state sigillate"
           },
+          {
+            "type": "state_tag_absent",
+            "scope": "GLOBAL",
+            "tag": "crystal_exploited",
+            "label": "Il Cristallo non e stato sfruttato"
+          }
+        ]
+      },
+      "triumph": {
+        "label": "E nessuno ci arriva piu",
+        "conditions": [
           {
             "type": "tension_limit",
             "tension_id": "TEN_AWAKENING",
@@ -272,6 +265,13 @@
             "region_id": "REG_STRADA_MERCANTI",
             "tag": "condition:cut_off",
             "label": "Nessuno arriva facilmente fin lassu"
+          },
+          {
+            "type": "state_tag_absent",
+            "scope": "REGION",
+            "region_id": "REG_MINIERE_ANTICHE",
+            "tag": "condition:exploited",
+            "label": "E le Miniere non sono state svuotate"
           }
         ]
       },

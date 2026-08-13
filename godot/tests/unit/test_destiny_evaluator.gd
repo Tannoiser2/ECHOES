@@ -18,29 +18,38 @@ func _apply(type: String, kind: String, id: String, payload: Dictionary) -> void
 ## Vaerax walks the full ladder: Minimum, then Victory, then Triumph, and the
 ## level only rises while every lower level still holds.
 func test_three_levels_for_vaerax() -> void:
-	# Vaerax opens on Victory: nothing has been exploited yet, and that is
-	# exactly what his Destiny asks for. Only the Triumph is still out of reach.
+	# Vaerax opens on Minimum, and that is the fix of D-051. He used to open on
+	# *Victory*: his second rung was "the Crystal has not been exploited" and "the
+	# Miniere have not been emptied", two clauses that are true before a token is
+	# placed and that hold in 37 Chronicles out of 40. A watcher who has already
+	# won by sitting down is a watcher with nothing to play, which is the same
+	# defect D-048 found in the scholars' seat one milestone earlier.
 	var result: Dictionary = session.destinies.evaluate("DST_VAERAX")
-	assert_eq(str(result["level"]), "VICTORY", "in partenza nessuno ha toccato il Cristallo")
+	assert_eq(str(result["level"]), "MINIMUM", "in partenza ha solo il Minimo")
 	assert_true(bool(result["levels"]["MINIMUM"]), "condizioni Minimum soddisfatte")
-	assert_true(bool(result["levels"]["VICTORY"]), "nessuno ha ancora sfruttato il Cristallo")
-	assert_false(bool(result["levels"]["TRIUMPH"]), "le Miniere non sono sigillate")
+	assert_false(bool(result["levels"]["VICTORY"]), "le gallerie non sono ancora sigillate")
 
-	# Losing the Victory conditions pulls him back down to Minimum.
-	_apply("SET_GLOBAL_TAG", "world", "WORLD", {"tag": "crystal_exploited"})
+	# The seal is the Victory, and it is a thing he has to obtain in a Council.
+	_apply("SET_GLOBAL_TAG", "world", "WORLD", {"tag": "mine_sealed"})
 	result = session.destinies.evaluate("DST_VAERAX")
-	assert_eq(str(result["level"]), "MINIMUM", "Cristallo sfruttato: resta solo il Minimum")
+	assert_eq(str(result["level"]), "VICTORY", "sigillate le gallerie, e il Cristallo non e uscito")
+
+	# And the stake still costs him it: exploiting the Crystal is the one thing
+	# his Destiny is against, whatever else is true.
+	_apply("SET_GLOBAL_TAG", "world", "WORLD", {"tag": "crystal_exploited"})
+	assert_eq(
+		str(session.destinies.evaluate("DST_VAERAX")["level"]), "MINIMUM",
+		"Cristallo sfruttato: resta solo il Minimum"
+	)
 	_apply("REMOVE_GLOBAL_TAG", "world", "WORLD", {"tag": "crystal_exploited"})
 
-	# The mine is sealed, the Awakening pushed back down, and the road that would
-	# carry anyone up there is cut: Triumph. The road is the O-12 clause - his
-	# Destiny is that the sleep stays safe, and a safe sleep is one nobody can
-	# easily reach.
-	_apply("SET_GLOBAL_TAG", "world", "WORLD", {"tag": "mine_sealed"})
+	# The Awakening pushed back down and the road that would carry anyone up
+	# there cut: Triumph. The road is the O-12 clause - his Destiny is that the
+	# sleep stays safe, and a safe sleep is one nobody can easily reach.
 	_apply("ADJUST_TENSION", "tension", "TEN_AWAKENING", {"delta": -1})
 	_apply("SET_REGION_TAG", "region", "REG_STRADA_MERCANTI", {"tag": "condition:cut_off"})
 	result = session.destinies.evaluate("DST_VAERAX")
-	assert_eq(str(result["level"]), "TRIUMPH", "Miniere sigillate, Risveglio sotto 4, strada interrotta: Triumph")
+	assert_eq(str(result["level"]), "TRIUMPH", "Risveglio sotto 4 e strada interrotta: Triumph")
 
 	# Losing the mountain drops him to nothing at all, whatever else is true.
 	_apply("REMOVE_PRESENCE", "entity", "ENT_VAERAX", {"region_id": "REG_MONTAGNE_ROSSE"})

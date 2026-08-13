@@ -123,6 +123,11 @@ func open(tension_id: String, trigger: Dictionary) -> Dictionary:
 	log.section("CONFLUENCE %s - %s" % [current["confluence_id"], str(template["title"])])
 	log.bullet("A. Trigger: %s su %s" % [str(trigger.get("kind", "THRESHOLD")), _tension_name(tension_id)])
 	log.bullet("B. Domanda: %s" % say(_question_text(template, question_id)))
+	# Chi ha aperto questo Consiglio si fara da parte al prossimo sulla stessa
+	# domanda, se ci sara qualcun altro nella Regione di cui si discute (D-051).
+	if not world.has("last_proponent"):
+		world["last_proponent"] = {}
+	world["last_proponent"][tension_id] = proponent
 	log.bullet("C. Proponente: %s" % _name(proponent))
 	step_changed.emit("QUESTION", current)
 	return current

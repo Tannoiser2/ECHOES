@@ -196,6 +196,62 @@ func _tensions_offering(consequence_id: String, session: RefCounted) -> Array:
 	return out
 
 
+## Relation goals: `other_entity_id` -> +1 to warm it, -1 to sour it (D-051).
+##
+## `promise_kept` and `promise_broken` have been in the evaluator since 0.0 and
+## no Destiny used them - an open line on the 0.1 roadmap. Wiring them in showed
+## why the line stayed open: **the policy has never once played FORGE**, so a
+## relation never moves, so a promise is kept for free and can never be broken.
+## The relation graph was scenery, which is exactly what O-14 recorded and
+## nobody had followed up.
+##
+## A promise is a relation carrying a PACT or PROMISE tag: kept while the two are
+## not hostile, broken when they are. So the seat that needs it kept warms it
+## when it slips, and the seat that needs it broken sours it - which is the first
+## thing in the game that makes FORGE worth an Action Opportunity.
+func _relation_goals(entity_id: String, session: RefCounted) -> Dictionary:
+	return _nearest_demanding(
+		entity_id,
+		session,
+		func(live: Array) -> Dictionary: return _relations_of(entity_id, session, live)
+	)
+
+
+func _relations_of(entity_id: String, session: RefCounted, live: Array) -> Dictionary:
+	var goals: Dictionary = {}
+	for condition in live:
+		var kind: String = str(condition.get("type", ""))
+		if kind != "promise_kept" and kind != "promise_broken" and kind != "relation_state":
+			continue
+		if str(condition.get("entity_id", "")) != entity_id:
+			continue
+		var other: String = str(condition.get("other_entity_id", ""))
+		if not session.world["entities"].has(other):
+			continue
+		if session.destinies.conditions.holds(condition, {}):
+			continue  # already true; FORGE has nothing to add
+		goals[other] = -1 if kind == "promise_broken" else 1
+	return goals
+
+
+## Move a relation the Destiny has an opinion about. Souring one needs nothing
+## but the action; warming one needs the other seat's consent and a BONDS card,
+## which is why a promise is easier to break than to hold - and why the seat that
+## needs it kept has to spend on it before it slips.
+func _forge(entity_id: String, session: RefCounted) -> Dictionary:
+	var goals: Dictionary = _relation_goals(entity_id, session)
+	for other in _sorted(goals.keys()):
+		var direction: String = "UP" if int(goals[other]) > 0 else "DOWN"
+		var request: Dictionary = {
+			"target_entity_id": str(other),
+			"direction": direction,
+			"consent": direction == "UP",
+		}
+		if session.actions.can_execute(entity_id, "FORGE", request):
+			return {"template": "FORGE", "params": request}
+	return {}
+
+
 ## Global and entity tags this Destiny wants present (+1) or absent (-1).
 func _tag_goals(entity_id: String, session: RefCounted) -> Dictionary:
 	var goals: Dictionary = {}
@@ -224,7 +280,14 @@ func choose_action(entity_id: String, _ao_index: int, session: RefCounted) -> Di
 	if not move.is_empty():
 		return move
 
-	# 3. Steer a Tension that is about to decide something, in the direction
+	# 3. A promise your Destiny is standing on, when it has moved off where you
+	#    need it. Before the stockpiling: a pact that has soured is not repaired
+	#    by drawing cards.
+	var forge: Dictionary = _forge(entity_id, session)
+	if not forge.is_empty():
+		return forge
+
+	# 4. Steer a Tension that is about to decide something, in the direction
 	#    your Destiny needs - but only once you have something to spend.
 	if service.hand_size(entity_id) >= COMFORTABLE_HAND:
 		var steer: Dictionary = _steer(entity_id, session)

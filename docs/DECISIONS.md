@@ -331,6 +331,141 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-052 — Un anno lasciato a meta si riprende
+**implemented in 0.1.14**
+
+`SaveManager` has existed and been tested since 0.0, and nothing on screen ever
+called it. The 0.1 roadmap kept the line open with the reason written next to
+it, and the reason was right: the file was never the missing piece. `run()` was
+three nested loops that always began at Act 1, round 1, so re-reading a half
+played world meant dealing every opening hand a second time and playing the year
+again from the top.
+
+### Il punto di ripresa
+
+`run()` now starts from the Act and round the world is on. Two details are the
+whole of it, and both were wrong in the first draft:
+
+**The saved round is a finished round.** The world carries the round it was
+*in*, and the phase says whether that round completed - anything past ACTIONS
+means it did, so the next one is where to stand. Off by one, and the round is
+replayed: the same actions twice, the same Drift twice, and the year comes out
+different from the one nobody interrupted.
+
+**An Act has an ending of its own.** Stop on the last round of an Act and
+`end_of_act` has not run: the Echo card is drawn there, and resuming at the
+first round of the next Act would skip it - losing the one move the world makes
+without being asked. So a resume that lands past the end of an Act plays that
+Act's ending first.
+
+The screen autosaves at THRESHOLD_CHECK, the last thing inside a round, so
+coming back costs at most the round in progress.
+
+### Il test che conta
+
+Not "the file round-trips" - `test_snapshot_and_save.gd` already had that. The
+one that matters is that **an interrupted year ends identical to an
+uninterrupted one**: same Councils, same Destiny levels, same number of Effects,
+same last twelve lines of the register. Run at two stopping points, and the
+second one is on an Act boundary because that is the branch that would otherwise
+silently eat a card.
+
+If that test does not hold, the save is not a save, and a campaign standing on
+it is lying.
+
+### Verificato anche dove non era scontato
+
+In a Web build `user://` lives in IndexedDB, which is not a given: a page in
+private browsing, or with storage blocked, accepts the write and loses it. So
+the screen asks `OS.is_userfs_persistent()` and does not offer to resume when
+the answer is no - offering a resume that will not be there is worse than not
+offering one.
+
+And it was driven end to end rather than assumed: exported, played three rounds
+of Chronicle I in a real browser, **reloaded the page**, and the menu came back
+with *"C'e un anno lasciato a meta - Riprendi La Carestia Rossa, atto 1 round
+3"* - and pressing it carried the year through to Act 3, round 3, Council and
+Echo card and all, with no console errors. The first draft of this entry said
+browser persistence was untested. It
+said so because the first attempt at the test never finished a round, which is
+not the same thing as a failure - and the difference between the two is worth a
+second attempt before writing either one down.
+
+---
+
+## D-051 — La parola gira, e una Vittoria si deve giocare
+**implemented in 0.1.14**
+
+O-15 recorded that six Destiny levels out of twelve were true before anyone
+played, and left it alone on purpose. This is the follow-up, and it separates
+two things that were being counted together.
+
+### Quello che era davvero rotto
+
+A **Minimum** that is free is correct: it says "you are still at the table".
+A clause asking for a tag to be *absent* is a stake, not a gift - Aldric's
+Triumph is 3/3 true at the start and he reaches it 2 times in 40, because the
+year takes it off him.
+
+What was broken were two **Victories** made entirely of stakes that nothing ever
+attacked: the watcher's (`crystal_exploited` absent, `condition:exploited`
+absent) held in 37-40 Chronicles out of 40, and the Order's, which 0.1.11 had
+made two stakes while fixing something else. Both seats won their second rung by
+sitting down. Each now asks for a thing that has to be obtained in a Council -
+the seal for the watcher, the written custodianship for the Order - and neither
+is free any more.
+
+### E la parola gira
+
+D-036 narrowed proponency from the domain to the focus Region, which stopped one
+seat owning a question by standing in two places. It did not stop one seat
+owning a question by standing in *the* place: the ranking is deterministic, so in
+a stable matchup the same house opens the same Council in all forty measured
+Chronicles and the seat on the other side never puts anything on the table. The
+Order proposed **0 Councils out of 262**.
+
+So whoever opened the last Council on a question steps aside, if anybody else is
+standing where it is being argued. Measured: the Order went from **0 to 39**, and
+the first saga's spread flattened from 94/65/50/35 to 80/52/60/59.
+
+### `promise_kept`, e perche la riga era rimasta aperta
+
+Wiring the promise conditions into a Destiny - an open 0.1 roadmap line - showed
+why nobody had: **the policy had never once played FORGE**, so a relation never
+moved, so a promise was kept for free and could never be broken. The relation
+graph was scenery, which is what O-14 said and nobody followed up. The decider
+now forges when a live clause asks it to.
+
+It also showed what *not* to ship: a `promise_kept` facing a `promise_broken`
+across the table is decided by turn order, because breaking a promise costs an
+action and mending one costs an action *plus* the other seat's consent and a
+BONDS card. So the promise is a stake on the Guild's Triumph, and the seat that
+comes for it is the Ash Lords' *advanced* Destiny - which only exists once a saga
+has run. Contested, but not by a coin already flipped.
+
+### Cosa non si e mosso, e perche non insisto
+
+Outcomes still cluster: several seats sit at 37-40 out of 40 on one level, and
+two sit near the floor. Four rounds of content changes moved *which* seats, never
+the shape. The cause is not the content: with a deterministic optimiser at every
+seat and one Council per question, a seat's result is essentially decided by
+whether its Destiny points at a Council it can win. No arrangement of clauses
+produces a spread out of that.
+
+Recorded and stopped, which is what O-14 asked for in the first place: this wants
+a table of real players, not another turn of the knobs. What *is* fixed is
+objective and holds: no Victory or Triumph is won by doing nothing, no seat is
+locked out of proposing, and both Chronicles stay inside §7's bounds.
+
+The declared band moved from 5-6 to 6-7 as a consequence, and the arithmetic is
+the reason rather than the measurement: §7 asks 3-4 over the **two** Tensions of
+§18.2, which is 1.5-2.0 per Tension; four Tensions make that 6-8. Every band this
+project has declared was tighter than §7 and said so. 6-7 is the first one inside
+it - and what pushed the median there was the watcher starting to play for a
+Victory he used to be given.
+
+---
+
 ## D-050 — Lo schermo non sa chi siede al tavolo
 **implemented in 0.1.13**
 

@@ -31,9 +31,23 @@ const FIRST_SEED: int = 500
 const FLOOR: int = 2
 const CEILING: int = 7
 
-## The band a 4-Tension Chronicle is expected to sit in (D-026).
-const BAND_LOW: int = 5
-const BAND_HIGH: int = 6
+## The band a 4-Tension Chronicle is expected to sit in (D-026, D-036, D-051).
+##
+## Moved to 6-7 in 0.1.14, and the arithmetic is the reason rather than the
+## measurement: §7 asks for 3-4 Confluence over the **two** Tensions of §18.2,
+## which is 1.5-2.0 *per Tension*. A Chronicle now carries four, so §7's own rate
+## is 6-8. Every band this file has declared was tighter than that - D-026's 4-5
+## is 1.0-1.25 per Tension, D-036's 5-6 is 1.25-1.5 - and both said so at the
+## time. 6-7 is 1.5-1.75, and is the first one actually inside the number §7
+## wrote down.
+##
+## What moved the median there was D-051: the watcher's Victory used to be two
+## clauses that were true before the game started, so he sat on it; now it asks
+## for the seal, so he plays for the Council that grants it. A seat that starts
+## playing is supposed to make the year louder. The hard bounds below did not
+## move, and they are what §7 actually forbids.
+const BAND_LOW: int = 6
+const BAND_HIGH: int = 7
 
 
 func _play(seed_value: int) -> Dictionary:

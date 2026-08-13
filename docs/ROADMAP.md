@@ -34,15 +34,20 @@ Il motore è già pronto a riceverli: `ChronicleController` chiede ogni decision
 un oggetto `decider`, e la UI hotseat sarà semplicemente un decider diverso da
 quello scriptato che usa la CLI oggi. Nessuna regola va riscritta.
 
-Da chiudere in 0.1 e già noto:
+Da chiudere in 0.1:
 
-- il salvataggio esiste (`SaveManager`, testato) ma la UI non lo chiama, e non
-  basterebbe: `run()` è una coroutine dentro tre cicli annidati, quindi
-  riprendere una partita lasciata a metà vuol dire un punto di ripresa nel
-  motore (atto/round da cui ricominciare), non solo uno snapshot del mondo
-- `promise_kept` / `promise_broken` sono implementati ma nessun Destiny di 0.0 li
-  usa
-- il set completo dei Destiny a più di 2 condizioni per livello
+- ✅ **salvataggio e ripresa** — 0.1.14. Il punto di ripresa nel motore c'è:
+  `run()` riparte dall'Atto e dal round su cui il mondo si trova, e un anno
+  interrotto finisce identico a uno mai interrotto (D-052). Verificata anche nel
+  browser: giocato, ricaricata la pagina, e la ripresa è lì.
+- ✅ `promise_kept` / `promise_broken` — 0.1.14, sul Trionfo della Gilda del Sale.
+  Collegarli ha fatto emergere che la policy non aveva mai giocato FORGE (D-051).
+- ✅ il set completo dei Destiny a più di 2 condizioni per livello — 16 Destini
+  su due saghe, con un controllo al boot che rifiuta una clausola che chiede un
+  tag che niente al mondo può scrivere (D-048).
+- **Developer Dashboard** (punto 14) — non fatto.
+- **Export Preview e placeholder d'arte migliorati** (parte del punto 15) — non
+  fatti.
 
 ---
 
@@ -58,14 +63,20 @@ completa in [DECISIONS D-021](DECISIONS.md#d-021).
 
 ## 0.2 — Bilanciamento
 
-Prima voce in agenda, di nuovo con i dati già raccolti: **Failure e Success with
-Cost non compaiono** nel gioco aperto (0 e 1 su 154 Confluence misurate). Due
-delle quattro bande di esito sono morte, e la causa sembra il contenuto — troppo
-poche Consequence toccano qualcosa a cui i Destiny altrui tengono, quindi
-nessuno ha motivo di opporsi. Da rimisurare **dopo** il contenuto completo della
-0.1, prima di toccare la matematica del resolver che il §A5 fissa apposta.
+**La voce con cui questa sezione si apriva è chiusa.** Diceva: «Failure e Success
+with Cost non compaiono, 0 e 1 su 154 Confluence misurate». Sulle 244 Confluence
+di CHR_01 misurate oggi sono **48 e 38**, e tutte e quattro le bande del §12.3
+compaiono in entrambe le saghe. Chiusa dal contenuto, come previsto, senza
+toccare la matematica del §A5.
 
-Insieme a: 3–5 template di Confluence aggiuntivi, Asset economy e UX.
+Prima voce in agenda adesso, con i dati raccolti fino alla 0.1.14:
+
+- **O-15, la parte che resta.** Gli esiti dei Destini restano raggruppati:
+  diversi seggi stanno a 37-40 su 40 di un livello. Quattro giri di modifiche al
+  contenuto hanno spostato *quali* seggi, mai la forma. La D-051 spiega perché e
+  conclude che serve un tavolo di persone vere, non un altro giro di manopole:
+  **questa voce vuole un playtest, non un commit.**
+- Insieme a: 3–5 template di Confluence aggiuntivi, Asset economy e UX.
 
 ---
 
