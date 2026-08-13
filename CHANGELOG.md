@@ -5,6 +5,46 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.22] — Il Consiglio non chiede due volte la stessa cosa
+
+Trovata giocando, non testando: nel registro delle Truth di una partita vera **la
+stessa frase compariva tre volte** nello stesso anno, con solo i numeri diversi.
+
+### Changed
+
+- **§12.2 B**: le domande eleggibili di una Confluence, meno quelle che questa
+  Tensione ha già messo ai voti nella Chronicle. Quando le ha fatte tutte tornano
+  disponibili tutte ([D-061](docs/DECISIONS.md#d-061)).
+- La memoria sta in `world_state.questions_asked`, è per Tensione, si segna alla
+  **risoluzione** e non all'apertura, e nasce vuota a ogni Chronicle: è la
+  memoria dell'anno che si gioca, non del mondo.
+
+### Added
+
+- `cli/run_text_probe.gd` accetta `--chronicle` (le sonde guardavano solo la
+  prima saga) e conta le ripetizioni **dentro la stessa Chronicle**: quante
+  frasi diverse esistono in quaranta partite non era la domanda giusta — la
+  domanda è quante volte una partita ripete sé stessa a chi la sta giocando.
+- `tests/unit/test_questions_asked.gd`, 6 test.
+
+### Misurato
+
+Su 40 Chronicle per saga, prima → dopo:
+
+| | CHR_01 | CHR_03 |
+|---|---|---|
+| Chronicle con una Truth ripetuta | 6 → **2** | 20 → **0** |
+| domande distinte poste | 8 → **12** (tutte) | 5 → **7** |
+| proposte distinte votate | 17 → 17 | 10 → **13** |
+
+Il Debito della seconda saga poneva 94 volte su 94 la stessa domanda. Con
+`run_playtest.gd` sugli stessi 100 semi di D-055: fallimenti 282 → 274, Consigli
+per Chronicle 5,96 invariati, seggi bloccati al tavolo uniforme 4 su 8 → 3 su 8.
+Il divario fra aggressivo e prudente resta dov'era — **questa non è la seconda
+leva** (ISSUES 1).
+
+---
+
 ## [0.1.21] — Un posto dove mettere l'arte vera
 
 Il segnaposto e il brief c'erano dalla 0.1.18, e in mezzo mancava la cosa più

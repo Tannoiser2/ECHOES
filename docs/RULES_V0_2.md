@@ -219,8 +219,12 @@ Regole di scarto:
 ## 5. Confluence: la sequenza A–K (§12.2)
 
 **A. Trigger** — soglia, Claim forzato o carta Echo.
-**B. Question** — dal template, fra quelle la cui eligibility è soddisfatta.
-Default: l'**ultima** eligibile in ordine di definizione, cioè la più dura
+**B. Question** — dal template, fra quelle la cui eligibility è soddisfatta
+**meno quelle che questa Tensione ha già messo ai voti nella Chronicle**: un
+Consiglio non rimette in discussione quello che ha già deciso, finché gli resta
+qualcosa che non ha ancora chiesto ([D-061](DECISIONS.md#d-061)). Quando le ha
+fatte tutte tornano disponibili tutte. Default fra quelle rimaste: l'**ultima**
+eligibile in ordine di definizione, cioè la più dura
 ([D-016](DECISIONS.md#d-016)). Il proponente può sceglierne un'altra.
 **C. Proposition** — il proponente è chi ha forzato il Claim; altrimenti chi ha
 più presenza nelle Regioni del dominio, poi chi ha più Asset di famiglie

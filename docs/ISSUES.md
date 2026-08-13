@@ -52,6 +52,15 @@ i numeri accanto.
 Dieci template su due saghe. Le domande che una Tensione può porre sono la parte
 di contenuto che si vede di più al tavolo, ed è quella che si ripete prima.
 
+**Aggiornato dalla misura di [D-061](DECISIONS.md#d-061).** Il problema non era
+solo quanti template ci sono: metà delle domande già scritte non veniva mai
+posta, e su 40 Chronicle della seconda saga 10 proposte su 23 arrivavano ai voti.
+Il filtro della 0.1.22 ha portato le proposte votate a 13 su 23 e le domande da 5
+a 7 su 12 — **restano dieci proposte che nessuno ha ancora mai messo ai voti**.
+Prima di scriverne di nuove vale la pena guardare perché quelle non si
+raggiungono: potrebbero essere condizioni di eligibility che non si avverano mai,
+o proposte che la policy considera sempre peggiori.
+
 **Fatto quando** i nuovi template passano `validate_data.py`, ogni proposta è
 raggiungibile in gioco (D-035: una proposta che la policy non sceglie mai è
 contenuto che non esiste) e `test_balance.gd` resta in banda.
