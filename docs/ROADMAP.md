@@ -16,9 +16,11 @@ verificati: vedi [TEST_PLAN.md](TEST_PLAN.md) per la mappa criterio → test.
 
 ---
 
-## 0.1 — Vertical Slice Hotseat ⟵ prossima
+## 0.1 — Vertical Slice Hotseat ✅ completata
 
-**Non iniziare prima di aver accettato la 0.0.**
+Tutti e sei i punti del §25 e tutte e quattro le voci di chiusura sono chiusi.
+Si gioca una Chronicle intera dal browser o dal terminale, su due saghe, si
+salva e si riprende, e da oggi si stampa.
 
 Ordine di lavoro (§25, punti 11–16):
 
@@ -28,7 +30,8 @@ Ordine di lavoro (§25, punti 11–16):
 14. ✅ Developer Dashboard — 0.1.16, le sonde dentro la partita (D-054)
 15. ✅ `CardView` — 0.1.5, la carta dice cosa fa (D-042) · ✅ Export Preview e
     placeholder d'arte — 0.1.18, i fogli di stampa e il brief (D-056)
-16. Issue list / roadmap GitHub-ready finale
+16. ✅ Issue list / roadmap GitHub-ready — 0.1.18, [ISSUES.md](ISSUES.md): 13
+    voci già scritte come issue, più i due template in `.github/ISSUE_TEMPLATE/`
 
 Il motore è già pronto a riceverli: `ChronicleController` chiede ogni decisione a
 un oggetto `decider`, e la UI hotseat sarà semplicemente un decider diverso da
@@ -63,7 +66,7 @@ completa in [DECISIONS D-021](DECISIONS.md#d-021).
 
 ---
 
-## 0.2 — Bilanciamento
+## 0.2 — Bilanciamento ⟵ prossima
 
 **La voce con cui questa sezione si apriva è chiusa.** Diceva: «Failure e Success
 with Cost non compaiono, 0 e 1 su 154 Confluence misurate». Sulle 244 Confluence
@@ -71,7 +74,8 @@ di CHR_01 misurate oggi sono **48 e 38**, e tutte e quattro le bande del §12.3
 compaiono in entrambe le saghe. Chiusa dal contenuto, come previsto, senza
 toccare la matematica del §A5.
 
-Prima voce in agenda adesso, con i dati raccolti fino alla 0.1.14:
+Prima voce in agenda adesso, con i dati raccolti fino alla 0.1.17. Le voci sono
+scritte come issue apribili in [ISSUES.md](ISSUES.md):
 
 - ✅ **O-15 — il playtest è stato fatto** (0.1.15, D-053), con quattro caratteri
   diversi su 100 partite contro gli stessi 100 semi giocati da quattro

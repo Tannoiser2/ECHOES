@@ -7,6 +7,11 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ## [0.1.18] — Il gioco esce dallo schermo
 
+**Con questa la Milestone 0.1 è chiusa**: tutti e sei i punti del §25 e tutte e
+quattro le voci di chiusura. Si gioca una Chronicle intera dal browser o dal
+terminale, su due saghe, si salva e si riprende — e da oggi si stampa.
+
+
 La roadmap della 0.1 aveva una riga aperta: «Export Preview e placeholder d'arte
 migliorati». `CardView` era arrivata con la 0.1.5, l'altra metà mai. E mancava
 qualcosa di più grande di una schermata: **niente trasformava i JSON in un pezzo
@@ -45,6 +50,12 @@ uno dei due, e fino a oggi c'era solo l'app.
   stringa di un punto.
 - I colori delle sei famiglie erano scritti due volte e i nomi delle funzioni di
   Propp tre. Adesso stanno in `card_face.gd` e le viste li leggono.
+
+- **`docs/ISSUES.md`** (§25.16): quello che resta da fare, in pezzi apribili —
+  13 voci con titolo, etichette, milestone, il perché e cosa le chiude, pronte
+  da incollare su GitHub. Più due template in `.github/ISSUE_TEMPLATE/`: quello
+  per le regole chiede i numeri **prima** della proposta, quello per i difetti
+  chiede il seme, perché con il seme si rivede lo stesso identico anno.
 
 ### Trovato
 
