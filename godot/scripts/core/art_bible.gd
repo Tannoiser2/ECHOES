@@ -98,9 +98,12 @@ func brief(data: RefCounted) -> String:
 	var lines: Array = [
 		"# ECHOES — brief d'arte",
 		"",
-		"Ogni `art_prompt_key` in uso nei dati, con il MASTER PROMPT della",
-		"[ART_BIBLE](../../docs/ART_BIBLE.md) gia' composto col soggetto che i dati",
-		"conoscono. Generato da `cli/run_export.gd`: non si modifica a mano.",
+		"Ogni `art_prompt_key` in uso nei dati, con il MASTER PROMPT di",
+		"`docs/ART_BIBLE.md` gia' composto col soggetto che i dati conoscono.",
+		"",
+		"**Generato da `cli/run_export.gd`: non si modifica a mano.** Ne esce una",
+		"copia in `out/export/` a ogni `tools/run_export.sh`, e quella committata in",
+		"`docs/BRIEF_ARTE.md` e' la stessa - la CI le confronta.",
 		"",
 	]
 	if not available():

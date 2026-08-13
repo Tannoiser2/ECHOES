@@ -29,6 +29,13 @@ file per una `art_prompt_key`.
   quelle coordinate che il quadro è stato dipinto.
 - `godot/art/README.md` dice dove va cosa: si copia il PNG al suo posto, anche
   dall'interfaccia web di GitHub, e basta.
+- **Una carta con l'illustrazione vera va al vivo**: l'immagine prende tutta la
+  carta e il testo ci sta sopra, su una fascia scura in basso. È come la
+  ART_BIBLE descrive la carta dalla 0.0 — *«il soggetto occupa i due terzi alti;
+  il terzo basso è un'area calma riservata a un overlay di testo»* — e quella
+  riga ha senso solo se il testo sta sopra il dipinto. Il segnaposto generato
+  resta nel riquadro: è uno schema, non un quadro. Una carta cambia
+  impaginazione il giorno in cui la sua illustrazione arriva.
 - **Le tessere dipinte sulla mappa** sono ritagliate dentro l'esagono e non
   appoggiate sopra: una Regione resta una Regione e non diventa un quadro con
   un bordo. Le UV sono le stesse coordinate normalizzate del piano generato, e
@@ -73,6 +80,30 @@ livelli di tag uscivano come una colonna di parole grigie.
   glifo dice *che tipo* di segno è, la parola dice quale. Sulle carte Asset — in
   mano e stampate — il glifo della famiglia sta nell'angolo in basso a destra:
   è come si ordina un mazzo di 132 carte senza leggerne una.
+
+### Changed
+
+- **La regola 3 della ART_BIBLE è cambiata alla prima carta consegnata**: gli
+  Asset possono avere volti. Quello che separa i due mazzi non è il volto ma la
+  **composizione** — l'Asset è una *scena*, la Casata un *ritratto*
+  ([D-060](docs/DECISIONS.md#d-060)). La riga sta adesso dentro il MASTER PROMPT,
+  quindi arriva a chi disegna attraverso `BRIEF_ARTE.md` invece di vivere in un
+  documento che potrebbe non aprire mai.
+
+- La fascia sotto il testo di una carta al vivo è una **sfumatura** e non un
+  rettangolo: un bordo netto sopra un dipinto è un taglio, una sfumatura è
+  un'ombra che sale dal basso. Definita una volta per foglio, in unità relative,
+  quindi si adatta da sola a quanto testo ha quella carta.
+
+### Fixed
+
+- I segni sulle Regioni (`condition:`, `scar:`, …) finivano **in cima alla
+  mappa**, uno sull'altro, invece che sotto la propria tessera: aggiungendo il
+  glifo si era persa la somma con il centro sull'asse verticale. Non si vedeva a
+  inizio partita, perché le Regioni cominciano senza segni — si è visto giocando
+  una Chronicle intera fino in fondo. E sul quadro dipinto hanno adesso la
+  stessa ombra di un pixel che porta il nome, perché un grigio su terra bruciata
+  non si legge.
 
 ### Il vincolo ha cambiato due disegni
 

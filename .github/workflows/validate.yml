@@ -97,6 +97,10 @@ jobs:
           OUT="$PWD/export-b" GODOT=~/godot/godot tools/run_export.sh > /dev/null
           diff -r export-a export-b
           echo "l'export e' deterministico"
+          # Il brief committato e' quello generato: e' il documento che si manda
+          # a chi disegna, e se invecchia manda prompt sbagliati.
+          diff export-a/brief_arte.md docs/BRIEF_ARTE.md
+          echo "docs/BRIEF_ARTE.md e' allineato"
 
       - name: Upload sim logs
         if: always()

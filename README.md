@@ -178,8 +178,10 @@ GODOT=/path/to/godot tools/run_export.sh --proof    # una copia per faccia, per 
 
 Escono **25 fogli A4 in SVG, in scala 1:1** con i segni di taglio — carte 63×88
 mm tre per tre, tessere Regione 80×80 due per tre, il mazzo espanso per
-`deck_copies` (48 facce Asset = 132 carte) — più `brief_arte.md`, cioè ogni
-`art_prompt_key` in uso col MASTER PROMPT della ART_BIBLE già composto.
+`deck_copies` (48 facce Asset = 132 carte) — più il brief d'arte, cioè ogni
+`art_prompt_key` in uso col MASTER PROMPT della ART_BIBLE già composto. Il brief
+è anche committato in [`docs/BRIEF_ARTE.md`](docs/BRIEF_ARTE.md), così si legge
+senza generare niente; la CI controlla che sia allineato.
 
 L'arte è segnaposto finché non arriva quella vera: ogni immagine generata mostra
 in chiaro la propria chiave e lascia libero il terzo basso, dove andrà il testo.

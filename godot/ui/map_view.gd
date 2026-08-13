@@ -394,11 +394,21 @@ func _draw_marks(centre: Vector2, region: Dictionary) -> void:
 		# Prima c'era solo la parola, e quattro cose diverse si leggevano tutte
 		# uguali: una fila di parole in grigio (ISSUES 6).
 		var size: Vector2 = font.get_string_size(label, HORIZONTAL_ALIGNMENT_LEFT, -1, 11)
-		var left: float = centre.x - (size.x + 14.0) * 0.5
-		Glyph.paint(self, level, Rect2(Vector2(left, y - 9.0), Vector2(10.0, 10.0)), tint)
+		# Sotto **questa** Regione: `y` e' la distanza dal centro, non una
+		# posizione sullo schermo. Aggiungendo il glifo si e' persa la somma con
+		# `centre` sull'asse verticale, e per un anno intero i segni di tutte e
+		# sei le Regioni sono finiti in cima alla mappa, uno sull'altro. Non si
+		# vedeva a inizio partita, perche' le Regioni cominciano senza segni.
+		var at: Vector2 = Vector2(centre.x - (size.x + 14.0) * 0.5, centre.y + y)
+		Glyph.paint(self, level, Rect2(at - Vector2(0.0, 9.0), Vector2(10.0, 10.0)), tint)
+		# Sul quadro dipinto un grigio su terra bruciata non si legge: la stessa
+		# ombra di un pixel che porta il nome della Regione.
 		draw_string(
-			font, Vector2(left + 14.0, y), label,
-			HORIZONTAL_ALIGNMENT_LEFT, -1, 11, tint
+			font, at + Vector2(15.0, 1.0), label, HORIZONTAL_ALIGNMENT_LEFT, -1, 11,
+			Color(0, 0, 0, 0.75)
+		)
+		draw_string(
+			font, at + Vector2(14.0, 0.0), label, HORIZONTAL_ALIGNMENT_LEFT, -1, 11, tint
 		)
 		y += 14.0
 
