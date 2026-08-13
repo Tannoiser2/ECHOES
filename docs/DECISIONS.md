@@ -331,6 +331,67 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-057 — La mappa smette di essere sei cerchi
+**implemented in 0.1.19** (ART_BIBLE §MASTER PROMPT 3, §21)
+
+The ART_BIBLE splits the work in two: a person paints the **illustration**, the
+code draws the **system graphics** - vector, semi-flat, legible over anything.
+Region tiles sit on the line between them, and this is the half that is code's:
+the silhouette of the ground, the biome you read from across the table, the calm
+centre where the tokens go.
+
+Until now the map was six circles with a name under each. That is a diagram of
+adjacency, and adjacency is the one thing about a Region that the game barely
+uses. What a player needs at a glance - *where am I, what is this place* - is a
+shape and a colour, and both of those generate.
+
+### Un disegno, due supporti
+
+`region_art.gd` returns a **plan** in normalised coordinates - an irregular
+hexagon plus strokes in a three-word vocabulary (`poly`, `line`, `dot`) - and
+two renderers consume it: `map_view.gd` with Godot's primitives and
+`print_sheet.gd` in SVG. **The tile on screen and the tile you print are the
+same picture**, not two that resemble each other. That is the same seam as
+D-056's `PrintSheet.layout()`, applied one level down.
+
+Six biomes, six vocabularies: roofs and a stretch of wall for the city, striped
+fields and a river for the valley, a ridge with snow on one side for the
+mountain, tunnel mouths for underground, a road band with stops, low grass and
+tracks for the steppe. Deterministic from the region id alone, so two Regions of
+the same biome differ and the same Region never changes between two games or two
+exports.
+
+### Tre cose che si sono viste solo guardando
+
+- **Il disegno usciva dalla tessera.** The vocabularies are written on the full
+  unit square, because that is how you think while drawing - *roofs go low, the
+  wall runs high*. A hexagon of radius 0.46 has an inscribed circle of 0.40, so
+  the city roofs poked out below the tile edge. Everything is now pulled toward
+  the centre by a fixed factor, and a test walks every point of every Region.
+- **La tessera stampata era un francobollo.** The art box was a wide rectangle,
+  so the square plan was squashed and a mountain stopped being a mountain. Now
+  the terrain always draws into a centred square - and a Region tile is
+  *full-bleed*: the terrain takes the whole card and the name sits on the ground
+  in the lower-left corner, where the hexagon leaves the background bare. The
+  description and the asset sources are gone from the tile: they are reference
+  text, they do not go on the table, and printing them cost the illustration
+  half its size.
+- **Il raggio era una costante.** 46 pixels, whatever the window. Six small dots
+  in the middle of a full screen waste the one view that says where things are,
+  and at that size the terrain is invisible. The radius now comes from the
+  space available, and the authored `map_position` box is stretched to fill it -
+  which moves everything together and changes nothing about where a Region sits
+  relative to the others.
+
+### Quello che questo non e'
+
+It is not the painted art. MASTER PROMPT 3 still describes an illustration that
+somebody has to paint, and `brief_arte.md` still generates the prompt for it.
+This is the layer underneath, the one the ART_BIBLE always assigned to code -
+and it is now good enough that the game is legible without the other one.
+
+---
+
 ## D-056 — L'export di stampa, e il segnaposto che mostra la propria chiave
 **implemented in 0.1.18** (§25, punto 15)
 

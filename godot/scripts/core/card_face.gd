@@ -130,6 +130,9 @@ static func _face(deck: String, id: String, shape: String) -> Dictionary:
 		"deck": deck, "id": id, "shape": shape, "title": "", "subtitle": "",
 		"accent": NEUTRAL, "corner": "", "body": [], "notes": [], "footer": "",
 		"art_prompt_key": "", "copies": 1, "secret": false,
+		# Vuoto tranne che sulle Regioni: quelle non hanno un segnaposto generico
+		# ma il proprio terreno, generato dal bioma (D-057).
+		"terrain": "",
 	}
 
 
@@ -252,5 +255,6 @@ static func _region(region: Dictionary) -> Dictionary:
 		PackedStringArray(region.get("asset_sources", []))
 	).to_lower()]
 	face["art_prompt_key"] = str(region.get("art_prompt_key", ""))
+	face["terrain"] = str(region["biome"])
 	face["footer"] = str(region["id"])
 	return face

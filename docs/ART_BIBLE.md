@@ -151,6 +151,18 @@ composizione sbagliata si vedrà subito, perché il segnaposto la mostrava giust
 Si guarda in due modi: `tools/run_export.sh` scrive i fogli in SVG, e **F4**
 dentro l'app apre l'anteprima di stampa.
 
+### Le tessere Regione non hanno un segnaposto: hanno un terreno
+
+Fatto in 0.1.19 (`scripts/core/region_art.gd`, [D-057](DECISIONS.md#d-057)). Il
+MASTER PROMPT 3 descrive un'illustrazione che qualcuno dovrà dipingere; sotto
+c'è il livello che questa Art Bible ha sempre assegnato al codice — la sagoma
+del terreno, il bioma leggibile da lontano, il centro calmo per i segnalini.
+
+Ogni bioma della variation key ha il proprio vocabolario di tratti e la propria
+terna di colori (terra, rilievo, accento). Il piano è in coordinate normalizzate
+e lo disegnano **due motori**: la mappa dentro l'app e il foglio di stampa in
+SVG. La tessera sul tavolo e quella sullo schermo sono la stessa immagine.
+
 ### Il quarto MASTER PROMPT che non c'è
 
 L'export passa in rassegna ogni chiave in uso, ed è così che si è scoperto che

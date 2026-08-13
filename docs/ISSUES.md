@@ -111,8 +111,13 @@ stesso foglio, e l'export resta deterministico.
 
 La ART_BIBLE chiede overlay e icone come **grafica di sistema**: sei famiglie di
 Asset, i livelli `structure:` / `condition:` / `settlement:` / `scar:`, i marker
-di Tensione ed Echo. Non esistono. Il vincolo è dichiarato: se un'icona ha
-bisogno del colore per distinguersi da un'altra, va ridisegnata.
+di Tensione ed Echo. Non esistono — sulla mappa i tag si leggono ancora come
+parole sotto il nome. Il vincolo è dichiarato: se un'icona ha bisogno del colore
+per distinguersi da un'altra, va ridisegnata.
+
+Il terreno delle Regioni è già fatto ([D-057](DECISIONS.md#d-057)) e mostra la
+strada: un piano di tratti normalizzati che disegnano sia lo schermo sia l'SVG.
+Le icone possono usare lo stesso vocabolario.
 
 **Fatto quando** il set esiste come SVG nel repository, la mappa e le carte lo
 usano, e la prova in monocromatico a 16 px è nel documento.

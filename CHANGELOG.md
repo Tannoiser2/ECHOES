@@ -5,6 +5,51 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.19] — La mappa smette di essere sei cerchi
+
+La ART_BIBLE divide il lavoro in due: l'**illustrazione** la fa una persona, la
+**grafica di sistema** la fa il codice. Le tessere Regione stanno sul confine, e
+questa è la metà che tocca al codice — la sagoma del terreno, il bioma che si
+riconosce da lontano, il centro lasciato calmo per i segnalini.
+
+### Added
+
+- **`region_art.gd`**: il terreno di una Regione come **piano** in coordinate
+  normalizzate — esagono irregolare più tratti in un vocabolario di tre parole —
+  disegnato sia da `map_view.gd` con le primitive di Godot sia da
+  `print_sheet.gd` in SVG. La tessera sullo schermo e quella che si stampa sono
+  **la stessa immagine** ([D-057](docs/DECISIONS.md#d-057)).
+- Sei biomi, sei vocabolari: tetti e mura per la città, campi a strisce e un
+  fiume per la valle, creste con la neve su un versante per la montagna,
+  imbocchi di galleria per il sottosuolo, la banda della strada con le soste,
+  erba bassa e piste per la steppa. Deterministici dall'id: due Regioni dello
+  stesso bioma sono diverse, la stessa Regione non cambia mai.
+- La tessera stampata è **al vivo**: il terreno prende tutta la carta e il nome
+  sta in basso a sinistra, dove l'esagono lascia scoperto il fondo.
+
+### Changed
+
+- La mappa disegna esagoni e non cerchi, con l'anello del controllo che segue la
+  sagoma, e le strade sono due tratti — una banda scura e un filo chiaro —
+  invece di una riga sola: i posti sono posti, non nodi di un diagramma.
+- **Il raggio delle tessere cresce con lo spazio.** Era 46 pixel fissi: sei
+  bolli piccoli in mezzo a uno schermo vuoto, con il terreno invisibile. E il
+  riquadro delle posizioni scritte nei dati viene allungato fino a riempire la
+  vista, il che sposta tutto insieme senza cambiare dove sta una Regione
+  rispetto alle altre.
+
+### Fixed
+
+- Il disegno usciva dalla tessera — i tetti della città spuntavano sotto il
+  bordo — perché i vocabolari sono scritti sul quadrato pieno e l'esagono ha un
+  cerchio inscritto più piccolo. Adesso tutto rientra, e un test cammina su ogni
+  punto di ogni Regione.
+- Il terreno stampato era schiacciato dentro un riquadro rettangolare: una
+  montagna schiacciata smette di essere una montagna. Ora disegna sempre in un
+  quadrato centrato.
+
+---
+
 ## [0.1.18] — Il gioco esce dallo schermo
 
 **Con questa la Milestone 0.1 è chiusa**: tutti e sei i punti del §25 e tutte e
