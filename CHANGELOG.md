@@ -5,6 +5,58 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.15] — Il playtest, e dove la 0.1.14 aveva torto
+
+La D-051 aveva concluso che gli esiti si raggruppano **perché a ogni seggio c'è
+lo stesso ottimizzatore**, e non per come è scritto il contenuto. Era un'ipotesi
+dichiarata senza prove. Questo è l'esperimento, e dice che era **giusta a metà**.
+
+### Added
+
+- **`table_of_characters.gd`** — quattro modi diversi di stare allo stesso
+  tavolo: *prudente* (non si oppone mai, impegna una carta in meno),
+  *aggressivo* (blocca tutto quello che non lo aiuta, impegna tutto),
+  *distratto* (un giro su quattro fa un'altra cosa, legale), *ostinato* (gioca
+  per il Trionfo dal primo round). Nessuno bara: stessi controlli di legalità.
+- **`run_playtest.gd`** — 100 Chronicle, 50 per saga, i caratteri mescolati fra i
+  seggi; poi gli **stessi 100 semi** rigiocati da quattro ottimizzatori identici.
+  La differenza è il tavolo, non la fortuna.
+
+### Misurato — dove l'ipotesi reggeva
+
+Quattro seggi che sembravano bloccati non lo erano (MINIMUM / VITTORIA /
+TRIONFO):
+
+| seggio | quattro ottimizzatori | tavolo misto |
+|---|---|---|
+| Le Città Libere | 0 / **49** / 0 | 21 / 29 / 0 |
+| Maestra Ilve | 5 / **43** / 2 | 21 / 24 / 5 |
+| Vaerax | 4 / **43** / 3 | 26 / 19 / 5 |
+| Priore Anselmo | 11 / **39** / 0 | 26 / 24 / 0 |
+
+### Misurato — dove non reggeva
+
+Due seggi non si muovono, e l'incrocio per carattere lo dice senza appello: il
+giocatore migliore del tavolo, seduto lì, supera il Minimo **una o due volte su
+dieci**. Kessa dei Fuochi 48 Minimi su 50, Lyra 47 su 50, e col giocatore
+aggressivo 1 Vittoria su 10 e 2 Trionfi su 10. Non è un artefatto
+dell'ottimizzatore: **quei due Destini costano troppo**, e la D-051 su questo
+aveva torto.
+
+### E due cose che nessuno stava misurando
+
+- **Un tavolo misto scrive una storia molto più varia**: 511 Verità, **479
+  diverse** (94%), contro 448 e 322 (72%) del tavolo uniforme. Stesso contenuto,
+  stessi semi: la varietà era nei giocatori.
+- **Opporsi non costa abbastanza.** In cento partite l'aggressivo chiude
+  32/57/11 e il prudente 86/14/**0** — nemmeno un Trionfo in cento partite. E un
+  solo giocatore aggressivo su quattro porta i Consigli da 149 fallimenti a
+  **302 su 593**: più della metà di quello che si propone cade. È la prima
+  segnalazione di bilanciamento che arriva dal guardare gente che gioca in modo
+  diverso, e non un giocatore che gioca bene.
+
+---
+
 ## [0.1.14] — La parola gira, e un anno lasciato a metà si riprende
 
 Due voci rimaste aperte: lo squilibrio registrato come O-15, e il salvataggio che

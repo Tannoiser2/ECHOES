@@ -71,11 +71,14 @@ toccare la matematica del §A5.
 
 Prima voce in agenda adesso, con i dati raccolti fino alla 0.1.14:
 
-- **O-15, la parte che resta.** Gli esiti dei Destini restano raggruppati:
-  diversi seggi stanno a 37-40 su 40 di un livello. Quattro giri di modifiche al
-  contenuto hanno spostato *quali* seggi, mai la forma. La D-051 spiega perché e
-  conclude che serve un tavolo di persone vere, non un altro giro di manopole:
-  **questa voce vuole un playtest, non un commit.**
+- ✅ **O-15 — il playtest è stato fatto** (0.1.15, D-053), con quattro caratteri
+  diversi su 100 partite contro gli stessi 100 semi giocati da quattro
+  ottimizzatori identici. Quattro seggi su otto si sbloccano: quelle clausole non
+  erano il problema. **Due no** — Kessa dei Fuochi e Lyra restano al Minimo
+  qualunque sia il giocatore, e vanno **abbassate**: sono la voce che resta.
+- **Opporsi non costa abbastanza.** Un solo giocatore aggressivo su quattro porta
+  i Consigli da 149 fallimenti a 302 su 593, e il giocatore prudente non fa un
+  Trionfo in cento partite. Riguarda il resolver del §A5, non il contenuto.
 - Insieme a: 3–5 template di Confluence aggiuntivi, Asset economy e UX.
 
 ---

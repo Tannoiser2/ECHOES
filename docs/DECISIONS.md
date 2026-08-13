@@ -331,6 +331,80 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-053 — Il playtest, e dove la D-051 aveva torto
+**measured in 0.1.15**
+
+D-051 concluded that Destiny outcomes cluster - several seats at 37-40 out of 40
+on one level - **because every seat is the same deterministic optimiser**, not
+because of how the clauses are written, and said it wanted a table of real
+players rather than another turn of the knobs. That was a hypothesis stated
+without evidence. This is the experiment, and it says the hypothesis was **half
+right**, which is the useful half of the result.
+
+### L'esperimento
+
+Four characters, each the same policy with one thing different, none of them
+cheating and all of them going through the same legality checks: **prudente**
+(never opposes, commits one card fewer), **aggressivo** (blocks anything that
+does not help, commits everything), **distratto** (one turn in four does
+something else legal), **ostinato** (plays for its Triumph from round one
+instead of the nearest rung).
+
+100 Chronicles, 50 per saga, the characters dealt across the seats by a separate
+RNG so the *world* is identical in both halves - then the same 100 seeds played
+again by four identical optimisers. The difference is the table, not the luck.
+
+### Dove aveva ragione
+
+| seggio | quattro ottimizzatori | tavolo misto |
+|---|---|---|
+| Le Citta Libere | 0 / **49** / 0 | 21 / 29 / 0 |
+| Maestra Ilve | 5 / **43** / 2 | 21 / 24 / 5 |
+| Vaerax | 4 / **43** / 3 | 26 / 19 / 5 |
+| Priore Anselmo | 11 / **39** / 0 | 26 / 24 / 0 |
+
+*(MINIMUM / VICTORY / TRIUMPH)*
+
+Four seats that looked locked were not: put different people in them and they
+spread. Seats stuck on one level go from 3 of 8 to 2 of 8, and the ones that
+move are exactly the ones D-051 had been re-writing clauses for. **Those clauses
+were not the problem.**
+
+### Dove aveva torto
+
+Two seats do not move, and the cross-tab is what settles it - not "they lose
+often" but "they lose no matter who plays them":
+
+| | prudente | aggressivo | distratto | ostinato |
+|---|---|---|---|---|
+| **Kessa dei Fuochi** | 17 MIN / 0 | 9 MIN / **1 VIC** | 12 MIN / 1 VIC | 10 MIN / 0 |
+| **Lyra** | 14 MIN / 0 | 8 MIN / **2 TRI** | 15 MIN / 1 TRI | 10 MIN / 0 |
+
+The best player at the table, holding those two seats, gets past Minimum once or
+twice in ten. That is not an optimiser artefact and no amount of varied play
+fixes it: **those two Destinies are simply too expensive**, and D-051's "the
+cause is not the content" was wrong about them specifically. Written down here
+rather than quietly fixed, because the wrong half of a conclusion is worth as
+much as the right half.
+
+### E due cose che nessuno stava misurando
+
+**Un tavolo misto scrive una storia molto piu varia.** 511 Truths written, **479
+distinct** - 94%. The uniform table wrote 448 and only 322 distinct, 72%. Same
+content, same seeds: the variety was in the players all along, which is the
+strongest argument yet that the register is doing its job.
+
+**Opporsi non costa abbastanza.** Across 100 Chronicles the aggressive character
+finishes 32 MIN / 57 VIC / 11 TRI and the cautious one 86 MIN / 14 VIC / **0
+TRI** - not one Triumph in a hundred games. And one aggressive player in four is
+enough to take Councils from 149 failures to **302 out of 593**: over half of
+everything proposed now falls. Blocking is free and it dominates. That is a
+balance finding about the resolver, not about the content, and it is the first
+one this project has that came from watching people play differently rather than
+from watching one player play well.
+
+---
+
 ## D-052 — Un anno lasciato a meta si riprende
 **implemented in 0.1.14**
 
