@@ -81,6 +81,16 @@ livelli di tag uscivano come una colonna di parole grigie.
   mano e stampate — il glifo della famiglia sta nell'angolo in basso a destra:
   è come si ordina un mazzo di 132 carte senza leggerne una.
 
+### Fixed
+
+- I segni sulle Regioni (`condition:`, `scar:`, …) finivano **in cima alla
+  mappa**, uno sull'altro, invece che sotto la propria tessera: aggiungendo il
+  glifo si era persa la somma con il centro sull'asse verticale. Non si vedeva a
+  inizio partita, perché le Regioni cominciano senza segni — si è visto giocando
+  una Chronicle intera fino in fondo. E sul quadro dipinto hanno adesso la
+  stessa ombra di un pixel che porta il nome, perché un grigio su terra bruciata
+  non si legge.
+
 ### Il vincolo ha cambiato due disegni
 
 Tutt'e due li ha mostrati la prova, e nessun ragionamento li avrebbe presi:
