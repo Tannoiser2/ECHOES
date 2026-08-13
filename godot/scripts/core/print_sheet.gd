@@ -153,10 +153,25 @@ static func layout(face: Dictionary, cell: Vector2) -> Dictionary:
 	if full_tile:
 		art_h = cell.x - pad * 2.0
 
+	# **Una carta con l'illustrazione vera va al vivo**, come la ART_BIBLE la
+	# descrive dalla 0.0: «il soggetto occupa i due terzi alti; il terzo basso e'
+	# un'area calma riservata a un overlay di testo». Quella riga ha senso solo se
+	# il testo sta *sopra* il dipinto - un'immagine dentro un riquadro con il
+	# testo sotto e' un'altra carta, e chiederebbe un'altra composizione.
+	#
+	# Il segnaposto generato resta invece nel riquadro: e' uno schema, non un
+	# quadro, e stenderlo su tutta la carta lo farebbe sembrare quello che non e'.
+	# Una carta cambia impaginazione il giorno in cui la sua illustrazione arriva.
+	var painted: bool = has_art and ArtLibrary.has(str(face["art_prompt_key"]))
+	if painted and not full_tile:
+		art_h = cell.y
+
 	# Quanto testo c'e', al corpo pieno.
 	var blocks: Array = [{"size": 3.6, "bold": true, "colour": INK, "text": str(face["title"]), "gap": 1.4}]
 	if str(face["subtitle"]) != "":
 		blocks.append({"size": 2.2, "bold": false, "colour": accent, "text": str(face["subtitle"]), "gap": 2.0})
+	# Sulla tessera Regione descrizione e fonti non salgono sul tavolo; su una
+	# carta Asset il testo di regole ci deve stare, dipinta o no.
 	if not full_tile:
 		for paragraph in face["body"]:
 			if str(paragraph) != "":
@@ -181,6 +196,11 @@ static func layout(face: Dictionary, cell: Vector2) -> Dictionary:
 		# Il testo sta *sopra* il terreno, non sotto: parte da dove serve perche'
 		# le due righe finiscano appoggiate al bordo basso.
 		available = needed
+	elif painted:
+		# Al vivo il testo ha tutta la carta meno i margini: appoggiato in basso,
+		# risale quanto gli serve. Se un giorno servisse piu' di mezza carta e'
+		# la carta a doverlo dire, e il test lo dice.
+		available = bottom - pad
 	elif has_art and needed > available:
 		var floor_h: float = cell.y * 0.34
 		art_h = maxf(floor_h, art_h - (needed - available))
@@ -191,8 +211,8 @@ static func layout(face: Dictionary, cell: Vector2) -> Dictionary:
 
 	var lines: Array = []
 	var cursor: float = pad + art_h + gap
-	if full_tile:
-		cursor = bottom - needed
+	if full_tile or painted:
+		cursor = bottom - needed * scale
 	var overflow: bool = false
 	for block in blocks:
 		var item: Dictionary = block
@@ -216,6 +236,7 @@ static func layout(face: Dictionary, cell: Vector2) -> Dictionary:
 		footer += " · dietro il paravento"
 	return {
 		"pad": pad, "accent": accent, "art_h": art_h, "has_art": has_art, "full_tile": full_tile,
+		"painted": painted,
 		"art_key": str(face["art_prompt_key"]), "corner": str(face["corner"]),
 		"lines": lines, "footer": footer, "overflow": overflow, "scale": scale,
 	}
@@ -244,11 +265,19 @@ static func _face_svg(face: Dictionary, x: float, y: float, cell: Vector2) -> St
 		# L'arte vera, se qualcuno l'ha consegnata: incorporata come `data:` URI
 		# perche' un foglio che punta a un file esterno e' due file che si perdono
 		# uno senza l'altro (D-059).
-		var painted: String = ArtLibrary.data_uri(str(face["art_prompt_key"]))
-		if painted != "":
+		var picture: String = ArtLibrary.data_uri(str(face["art_prompt_key"]))
+		if picture != "":
+			# Al vivo l'immagine parte dall'angolo della carta, senza margine: e'
+			# quello che si taglia, ed e' il motivo per cui il prompt chiede 2:3.
+			var edge: float = 0.0 if bool(drawn["painted"]) and not bool(drawn["full_tile"]) else pad
 			out.append(
 				'<image href="%s" x="%.2f" y="%.2f" width="%.2f" height="%.2f"'
-				% [painted, x + pad, y + pad, cell.x - pad * 2.0, float(drawn["art_h"])]
+				% [
+					picture, x + edge, y + edge,
+					cell.x - edge * 2.0,
+					cell.y if bool(drawn["painted"]) and not bool(drawn["full_tile"])
+						else float(drawn["art_h"]),
+				]
 				+ ' preserveAspectRatio="xMidYMid slice"/>'
 			)
 		# Una Regione porta il proprio terreno, non il segnaposto generico: e' la
@@ -268,7 +297,7 @@ static func _face_svg(face: Dictionary, x: float, y: float, cell: Vector2) -> St
 	# chiara sparisce: il nome di Terre Nahr sul suo pascolo giallo non si legge,
 	# e l'id nemmeno. Una fascia scura sotto le righe - solo dove ci sono righe -
 	# lo rimette a galla senza coprire il quadro.
-	if bool(drawn["full_tile"]) and not (drawn["lines"] as Array).is_empty():
+	if (bool(drawn["full_tile"]) or bool(drawn["painted"])) and not (drawn["lines"] as Array).is_empty():
 		var first: Dictionary = (drawn["lines"] as Array)[0]
 		var top: float = float(first["y"]) - float(first["size"]) - 1.2
 		out.append(

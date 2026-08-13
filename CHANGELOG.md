@@ -29,6 +29,13 @@ file per una `art_prompt_key`.
   quelle coordinate che il quadro è stato dipinto.
 - `godot/art/README.md` dice dove va cosa: si copia il PNG al suo posto, anche
   dall'interfaccia web di GitHub, e basta.
+- **Una carta con l'illustrazione vera va al vivo**: l'immagine prende tutta la
+  carta e il testo ci sta sopra, su una fascia scura in basso. È come la
+  ART_BIBLE descrive la carta dalla 0.0 — *«il soggetto occupa i due terzi alti;
+  il terzo basso è un'area calma riservata a un overlay di testo»* — e quella
+  riga ha senso solo se il testo sta sopra il dipinto. Il segnaposto generato
+  resta nel riquadro: è uno schema, non un quadro. Una carta cambia
+  impaginazione il giorno in cui la sua illustrazione arriva.
 - **Le tessere dipinte sulla mappa** sono ritagliate dentro l'esagono e non
   appoggiate sopra: una Regione resta una Regione e non diventa un quadro con
   un bordo. Le UV sono le stesse coordinate normalizzate del piano generato, e
