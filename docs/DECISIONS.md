@@ -331,6 +331,68 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-050 — Lo schermo non sa chi siede al tavolo
+**implemented in 0.1.13**
+
+D-049 shipped a second saga - four houses, six questions, sixteen Destinies, two
+Chronicles, validated, measured, playable from the terminal - and **the browser
+could not reach a line of it**. Content that cannot be reached is content that
+does not exist, which is the sentence D-035 already wrote about propositions the
+policy never chose.
+
+Three constants were the whole reason, and every one of them was a thing the
+screen had no business knowing:
+
+- `game_screen.gd` held `const SEATS = ["ENT_ALDRIC", ...]` and passed it to
+  `setup()`, so the browser could only ever seat the first saga;
+- next to it, a table mapping those four ids to display names, used before a
+  session exists;
+- `map_view.gd` handed out map colours with a `match` on the same four ids, so
+  every house of the second saga came out the same grey - on a map that is the
+  same six places.
+
+Everything else on that screen was already reading the data set. These were the
+last four names in the UI, and they were load-bearing.
+
+### Cosa fa adesso
+
+**The year is chosen before the seat**, because who is at the table is what the
+Chronicle says it is and the two sagas seat nobody in common. The list offers
+every Chronicle in the data, oldest first, with its year and whether it writes
+its questions out or draws them from the library - so a third saga appears in
+the menu by existing.
+
+**Colours are handed out by turn order**, not by name: per Chronicle, stable
+inside one, and correct for a saga nobody has written yet.
+
+**The rules page names the people actually at the table**, and is redrawn when
+the year is chosen rather than after the seat is picked - a step later it was
+still describing the age the player had just declined. It also says how many
+cards *this year's* Echo deck holds, which stopped being `echo_cards.size()` the
+moment D-049 made the deck a function of the Chronicle.
+
+### Il test
+
+`test_ui_knows_no_names.gd`, and it is deliberately blunt: **no Entity id appears
+anywhere under `res://ui`**, checked against every id in the data set, comments
+excluded. A screen that names a house has an opinion about which saga is being
+played, and it is not entitled to one.
+
+Chronicle ids are not checked: two remain as the fallback for "the data set
+failed to load and there is nothing to list", which is a default rather than a
+choice.
+
+### Verificato dove conta
+
+Not with a unit test - the bug was invisible to those, and would have stayed
+invisible. Exported to the web and driven in a real browser: the menu lists all
+four Chronicles, picking *Le Citta Libere* seats Maestra Ilve, Kessa dei Fuochi,
+Priore Anselmo and le Citta Libere, the questions panel reads l'Acqua Ferma 3/6
+and il Debito 2/7, the Red Mountains are ringed in the Ash Lords' green and the
+Merchants' Road in the Guild's gold, and the console reports no errors.
+
+---
+
 ## D-049 — Una seconda saga sulla stessa mappa
 **implemented in 0.1.12**
 

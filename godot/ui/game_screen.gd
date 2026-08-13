@@ -26,7 +26,11 @@ const ConfluenceBoard := preload("res://ui/confluence_board.gd")
 const HelpPanel := preload("res://ui/help_panel.gd")
 const EchoCardView := preload("res://ui/echo_card_view.gd")
 
-const SEATS: Array = ["ENT_ALDRIC", "ENT_NAHR", "ENT_LYRA", "ENT_VAERAX"]
+## Who is at the table is a property of the Chronicle, not of this screen
+## (D-050). It used to be a constant here, which meant the browser could only
+## ever seat the first saga's four houses - the second saga shipped complete and
+## unreachable, on a map the same screen was already drawing.
+var _seats: Array = []
 
 ## Emitted by whichever button was pressed, carrying its index.
 signal picked(index: int)
@@ -413,41 +417,71 @@ func _clear_buttons() -> void:
 func _menu() -> void:
 	say("[b]ECHOES[/b] — un boardgame narrativo-strategico a Chronicle.")
 	say("")
-	say("Ogni Chronicle e una storia completa nello stesso mondo. Quattro Entita di")
-	say("scala diversa — un re, un popolo, una studiosa, qualcosa di molto antico —")
-	say("preparano la propria posizione e poi si siedono a un Consiglio, dove una")
-	say("domanda viene decisa e quello che si decide resta scritto.")
+	say("Ogni Chronicle e una storia completa nello stesso mondo: quattro Entita di")
+	say("scala diversa preparano la propria posizione e poi si siedono a un Consiglio,")
+	say("dove una domanda viene decisa e quello che si decide resta scritto.")
 	say("")
+	# Who those four are depends on the year, and there is more than one age to
+	# choose from: the map is the same six places, and the people on it are not.
+	say("La mappa e sempre la stessa. Le persone che ci stanno sopra no: fra un'epoca")
+	say("e l'altra cambiano le case, le domande e quello che ognuno vuole.")
+	say("")
+	# The year is chosen before the seat, and it has to be: who is at the table
+	# is what the Chronicle says it is, and the two sagas seat nobody in common.
 	while true:
+		var chronicle_id: String = await _ask_chronicle()
+		_seats = _seats_of(chronicle_id)
+		# Redrawn here and not after the seat is picked: the rules page names the
+		# people at the table and the year's questions, and it is on screen while
+		# the seat is being chosen. A step later it was still describing the age
+		# the player had just declined.
+		_help.render(_load_help_data(), chronicle_id)
 		var labels: Array = []
-		for entity_id in SEATS:
+		for entity_id in _seats:
 			labels.append("Gioco %s" % _entity_name(str(entity_id)))
 		labels.append("Guardo giocare le policy")
 		var choice: int = await ask("Quale seggio prendi?", labels)
-		var humans: Array = [] if choice >= SEATS.size() else [str(SEATS[choice])]
-		var chronicle_id: String = await _ask_chronicle()
-		_help.render(_load_help_data(), chronicle_id)
+		var humans: Array = [] if choice >= _seats.size() else [str(_seats[choice])]
 		await _play(humans, chronicle_id, await _ask_seed())
 
 
-## Which Chronicle. CHR_01 is written by hand and always the same four
-## questions; CHR_02 draws four from the library of six, so it is a different
-## year every time (D-028).
+func _seats_of(chronicle_id: String) -> Array:
+	var data: RefCounted = _load_help_data()
+	if data == null or not data.chronicles.has(chronicle_id):
+		return []
+	return (data.chronicles[chronicle_id]["entities"] as Array).duplicate()
+
+
+## Which year. Every Chronicle in the data is offered, oldest first, because
+## there is more than one saga now and the browser was showing one of them.
+##
+## A Chronicle that writes its questions out is always the same four; one that
+## declares a `tension_pool` draws them from the library, so it is a different
+## year every time (D-028). The opening year of a saga is the written one - that
+## is the one to start from, and the list says so by putting the year on it.
 func _ask_chronicle() -> String:
 	var data: RefCounted = _load_help_data()
-	var ids: Array = ["CHR_01", "CHR_02"]
+	if data == null:
+		return "CHR_01"
+	var ids: Array = (data.chronicles as Dictionary).keys()
+	ids.sort_custom(func(a: Variant, b: Variant) -> bool:
+		var year_a: int = int(data.chronicles[str(a)]["start_year"])
+		var year_b: int = int(data.chronicles[str(b)]["start_year"])
+		if year_a == year_b:
+			return str(a) < str(b)
+		return year_a < year_b
+	)
+	if ids.size() < 2:
+		return "CHR_01" if ids.is_empty() else str(ids[0])
+
 	var labels: Array = []
 	for chronicle_id in ids:
-		var chronicle: Variant = null if data == null else data.chronicles.get(str(chronicle_id))
-		if chronicle == null:
-			continue
-		labels.append("%s — %s" % [
-			str(chronicle["title"]),
-			"le quattro domande scritte a mano" if str(chronicle_id) == "CHR_01"
-			else "quattro domande pescate dalla biblioteca",
+		var chronicle: Dictionary = data.chronicles[str(chronicle_id)]
+		labels.append("%s (anno %d) — %s" % [
+			str(chronicle["title"]), int(chronicle["start_year"]),
+			"quattro domande pescate dalla biblioteca" if chronicle.has("tension_pool")
+			else "le quattro domande scritte a mano",
 		])
-	if labels.size() < 2:
-		return "CHR_01"
 	var choice: int = await ask("Quale anno giochi?", labels)
 	return str(ids[clampi(choice, 0, ids.size() - 1)])
 
@@ -492,14 +526,17 @@ func _ask_number(prompt: String, fallback: int) -> int:
 	return int(typed) if typed.is_valid_int() else fallback
 
 
+## Before the first Chronicle there is no session, so the name comes from the
+## data set the menu already loads for the rules page. It used to come from a
+## table written here, which listed the first saga's four houses and nothing
+## else (D-050).
 func _entity_name(entity_id: String) -> String:
 	if _session != null:
 		return str(_session.data.entities[entity_id]["name"])
-	# Before the first Chronicle there is no session; the names are static.
-	return {
-		"ENT_ALDRIC": "Re Aldric", "ENT_NAHR": "il Popolo Nahr",
-		"ENT_LYRA": "Lyra", "ENT_VAERAX": "Vaerax",
-	}.get(entity_id, entity_id)
+	var data: RefCounted = _load_help_data()
+	if data == null or not data.entities.has(entity_id):
+		return entity_id
+	return str(data.entities[entity_id]["name"])
 
 
 func _play(humans: Array, chronicle_id: String, seed_value: int) -> void:
@@ -523,7 +560,7 @@ func _play(humans: Array, chronicle_id: String, seed_value: int) -> void:
 	# menu can offer it back after the Chronicle ends.
 	_last_seed = seed_value
 	_session = GameSession.new(data)
-	_session.setup(chronicle_id, SEATS, seed_value)
+	_session.setup(chronicle_id, _seats, seed_value)
 
 	var shown: Dictionary = {"lines": 0}
 	_session.chronicle.phase_changed.connect(
@@ -582,7 +619,7 @@ func _flush(shown: Dictionary) -> void:
 func _ending(data: RefCounted, report: Dictionary) -> void:
 	say("")
 	say("== COM'E FINITA ==")
-	for entity_id in SEATS:
+	for entity_id in _seats:
 		var entry: Dictionary = report["destiny_results"][str(entity_id)]
 		say("  %s — [b]%s[/b] %s" % [
 			_session.service.name_of(str(entity_id)) if _session != null else str(data.entities[str(entity_id)]["name"]),

@@ -223,12 +223,21 @@ func _draw_marks(centre: Vector2, region: Dictionary) -> void:
 		y += 14.0
 
 
-## Stable per Entity and readable next to each other. Authored here rather than
-## in the data because it is a property of the screen, not of the world.
+## Four colours, readable next to each other, handed out by seat rather than by
+## name (D-050).
+##
+## They used to be a `match` on `ENT_ALDRIC` and its three neighbours, which was
+## fine while there was one saga and stopped being fine the moment there were
+## two: every house of the second one came out the same grey, on a map that is
+## the same six places. The turn order is the right hook - it is per Chronicle,
+## it is stable inside one, and it works for a saga nobody has written yet.
+const SEAT_COLOURS: Array = ["#e8b563", "#6fa88a", "#7fa6c9", "#b06b8f", "#c8a86b", "#7f9a8b"]
+
+
 func _entity_colour(entity_id: String) -> Color:
-	match entity_id:
-		"ENT_ALDRIC": return Color("#e8b563")
-		"ENT_NAHR": return Color("#6fa88a")
-		"ENT_LYRA": return Color("#7fa6c9")
-		"ENT_VAERAX": return Color("#b06b8f")
-	return Color("#8a8172")
+	if _session == null:
+		return Color("#8a8172")
+	var at: int = (_session.world["turn_order"] as Array).find(entity_id)
+	if at < 0:
+		return Color("#8a8172")
+	return Color(str(SEAT_COLOURS[at % SEAT_COLOURS.size()]))
