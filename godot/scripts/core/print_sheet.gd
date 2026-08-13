@@ -16,6 +16,8 @@ extends RefCounted
 ## Non decide niente sul contenuto: riceve facce e le dispone.
 
 const ArtPlaceholder := preload("res://scripts/core/art_placeholder.gd")
+const RegionArt := preload("res://scripts/core/region_art.gd")
+const IconSet := preload("res://scripts/core/icon_set.gd")
 
 const PAGE_W: float = 210.0
 const PAGE_H: float = 297.0
@@ -141,17 +143,26 @@ static func layout(face: Dictionary, cell: Vector2) -> Dictionary:
 	var art_h: float = 0.0
 	if has_art:
 		art_h = cell.y * (0.46 if str(face["shape"]) == "CARD" else 0.52)
+	# Una tessera Regione e' una tessera di mappa, non una carta con un'immagine
+	# sopra: il terreno prende tutto il quadrato e il testo ci sta sopra, in
+	# basso a sinistra, dove la sagoma esagonale lascia scoperto il fondo. La
+	# descrizione e le fonti non salgono sul tavolo - si leggono altrove - e una
+	# tessera che le stampa e' una tessera con l'illustrazione grande la meta'.
+	var full_tile: bool = str(face["terrain"]) != ""
+	if full_tile:
+		art_h = cell.x - pad * 2.0
 
 	# Quanto testo c'e', al corpo pieno.
 	var blocks: Array = [{"size": 3.6, "bold": true, "colour": INK, "text": str(face["title"]), "gap": 1.4}]
 	if str(face["subtitle"]) != "":
 		blocks.append({"size": 2.2, "bold": false, "colour": accent, "text": str(face["subtitle"]), "gap": 2.0})
-	for paragraph in face["body"]:
-		if str(paragraph) != "":
-			blocks.append({"size": 2.3, "bold": false, "colour": "#c9bfae", "text": str(paragraph), "gap": 1.6})
-	for note in face["notes"]:
-		if str(note) != "":
-			blocks.append({"size": 2.0, "bold": false, "colour": DIM, "text": str(note), "gap": 0.9})
+	if not full_tile:
+		for paragraph in face["body"]:
+			if str(paragraph) != "":
+				blocks.append({"size": 2.3, "bold": false, "colour": "#c9bfae", "text": str(paragraph), "gap": 1.6})
+		for note in face["notes"]:
+			if str(note) != "":
+				blocks.append({"size": 2.0, "bold": false, "colour": DIM, "text": str(note), "gap": 0.9})
 
 	# Se il testo non ci sta, la prima cosa che cede e' l'illustrazione, non il
 	# corpo del testo: due carte su quarantotto hanno una riga di regole lunga il
@@ -165,7 +176,11 @@ static func layout(face: Dictionary, cell: Vector2) -> Dictionary:
 	var gap: float = 4.6 if has_art else 3.2
 	var bottom: float = cell.y - pad - 2.6
 	var available: float = bottom - (pad + art_h + gap)
-	if has_art and needed > available:
+	if full_tile:
+		# Il testo sta *sopra* il terreno, non sotto: parte da dove serve perche'
+		# le due righe finiscano appoggiate al bordo basso.
+		available = needed
+	elif has_art and needed > available:
 		var floor_h: float = cell.y * 0.34
 		art_h = maxf(floor_h, art_h - (needed - available))
 		available = bottom - (pad + art_h + gap)
@@ -175,6 +190,8 @@ static func layout(face: Dictionary, cell: Vector2) -> Dictionary:
 
 	var lines: Array = []
 	var cursor: float = pad + art_h + gap
+	if full_tile:
+		cursor = bottom - needed
 	var overflow: bool = false
 	for block in blocks:
 		var item: Dictionary = block
@@ -197,7 +214,7 @@ static func layout(face: Dictionary, cell: Vector2) -> Dictionary:
 	if bool(face["secret"]):
 		footer += " · dietro il paravento"
 	return {
-		"pad": pad, "accent": accent, "art_h": art_h, "has_art": has_art,
+		"pad": pad, "accent": accent, "art_h": art_h, "has_art": has_art, "full_tile": full_tile,
 		"art_key": str(face["art_prompt_key"]), "corner": str(face["corner"]),
 		"lines": lines, "footer": footer, "overflow": overflow, "scale": scale,
 	}
@@ -223,10 +240,18 @@ static func _face_svg(face: Dictionary, x: float, y: float, cell: Vector2) -> St
 	])
 
 	if bool(drawn["has_art"]):
-		out.append(ArtPlaceholder.svg(
-			str(drawn["art_key"]), accent, x + pad, y + pad, cell.x - pad * 2.0,
-			float(drawn["art_h"])
-		))
+		# Una Regione porta il proprio terreno, non il segnaposto generico: e' la
+		# stessa immagine che la mappa disegna sullo schermo (D-057).
+		if bool(drawn["full_tile"]):
+			out.append(RegionArt.svg(
+				str(face["id"]), str(face["terrain"]), x + pad, y + pad,
+				cell.x - pad * 2.0, float(drawn["art_h"])
+			))
+		else:
+			out.append(ArtPlaceholder.svg(
+				str(drawn["art_key"]), accent, x + pad, y + pad, cell.x - pad * 2.0,
+				float(drawn["art_h"])
+			))
 
 	for line in drawn["lines"]:
 		var item: Dictionary = line
@@ -244,6 +269,14 @@ static func _face_svg(face: Dictionary, x: float, y: float, cell: Vector2) -> St
 			% [cx, cy + 1.8]
 			+ ' text-anchor="middle" fill="%s">%s</text>' % [PAPER, str(drawn["corner"])]
 		)
+
+	# Il glifo della famiglia, in basso a destra: e' lo stesso segno che la carta
+	# porta sullo schermo, ed e' quello che permette di ordinare un mazzo di
+	# centotrentadue carte senza leggerne una (ISSUES 6).
+	if str(face["family"]) != "":
+		out.append(IconSet.svg(
+			str(face["family"]), x + cell.x - pad - 6.0, y + cell.y - pad - 7.4, 6.0, accent
+		))
 
 	# Il pie' di pagina e' l'id, che sul tavolo non serve a nessuno e in playtest
 	# serve a tutto: e' come si dice «questa carta qui» a chi tiene il registro.

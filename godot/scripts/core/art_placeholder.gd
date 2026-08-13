@@ -44,24 +44,24 @@ static func fingerprint(key: String) -> int:
 ## dalla ART_BIBLE: il segnaposto usa quello e due terre, e nient'altro.
 static func plan(key: String, accent: String) -> Dictionary:
 	var state: int = fingerprint(key)
-	var horizon: float = 0.42 + 0.16 * _unit(state)
-	state = _step(state)
+	var horizon: float = 0.42 + 0.16 * unit(state)
+	state = step(state)
 
 	var count: int = 3 + (state % 3)
-	state = _step(state)
+	state = step(state)
 
 	var shapes: Array = []
 	for i in range(count):
-		var width: float = 0.10 + 0.16 * _unit(state)
-		state = _step(state)
-		var height: float = 0.12 + 0.34 * _unit(state)
-		state = _step(state)
+		var width: float = 0.10 + 0.16 * unit(state)
+		state = step(state)
+		var height: float = 0.12 + 0.34 * unit(state)
+		state = step(state)
 		# Distribuite sulla larghezza invece che a caso: tre sagome ammucchiate
 		# sono un errore di composizione, non una variazione.
-		var centre: float = (float(i) + 0.5) / float(count) + 0.10 * (_unit(state) - 0.5)
-		state = _step(state)
+		var centre: float = (float(i) + 0.5) / float(count) + 0.10 * (unit(state) - 0.5)
+		state = step(state)
 		var kind: String = ["block", "spire", "disc"][state % 3]
-		state = _step(state)
+		state = step(state)
 		shapes.append({
 			"kind": kind,
 			"x": clampf(centre - width * 0.5, 0.02, 0.98 - width),
@@ -70,7 +70,7 @@ static func plan(key: String, accent: String) -> Dictionary:
 			"h": height,
 			"tone": (state % 2),
 		})
-		state = _step(state)
+		state = step(state)
 
 	return {
 		"key": key,
@@ -83,13 +83,18 @@ static func plan(key: String, accent: String) -> Dictionary:
 	}
 
 
-static func _step(state: int) -> int:
+## Il passo successivo della sequenza, e il numero fra 0 e 1 che se ne ricava.
+##
+## Pubblici perche' li usa anche `region_art.gd`: due generatori deterministici
+## nello stesso progetto devono girare sulla stessa aritmetica, altrimenti sono
+## due cose da verificare invece di una.
+static func step(state: int) -> int:
 	# LCG di Numerical Recipes, mascherato a 32 bit: serve una sequenza ripetibile
 	# e non una buona sequenza.
 	return (state * 1664525 + 1013904223) & 0xffffffff
 
 
-static func _unit(state: int) -> float:
+static func unit(state: int) -> float:
 	return float(state % 10000) / 10000.0
 
 

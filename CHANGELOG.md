@@ -5,6 +5,86 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.20] — Dodici segni
+
+La ART_BIBLE chiede overlay e icone come **grafica di sistema**, e dichiara il
+vincolo che le governa: il set delle sei famiglie deve funzionare in
+**monocromatico a 16 px** — se un'icona ha bisogno del colore per distinguersi
+da un'altra, va ridisegnata. Non esisteva niente, e sulla mappa i quattro
+livelli di tag uscivano come una colonna di parole grigie.
+
+### Added
+
+- **`icon_set.gd`**: dodici glifi — le sei famiglie di Asset, i quattro livelli
+  della mappa (`structure`, `condition`, `settlement`, `scar`) e i due marker
+  (Tensione, Echo). Stesso vocabolario di tre parole del terreno, stesso piano
+  normalizzato, disegnati da Godot sullo schermo e dall'SVG in stampa — e
+  **senza colori**: il colore lo decide chi chiama ([D-058](docs/DECISIONS.md#d-058)).
+- **`prova_icone.svg`** esce dall'export insieme a tutto il resto: ogni glifo a
+  16, 24, 32 e 64 px, scuro su chiaro e chiaro su scuro. È la prova che la
+  ART_BIBLE chiede, e rigenerandosi non può invecchiare.
+- Sulla mappa ogni segno ha il glifo del proprio livello accanto alla parola: il
+  glifo dice *che tipo* di segno è, la parola dice quale. Sulle carte Asset — in
+  mano e stampate — il glifo della famiglia sta nell'angolo in basso a destra:
+  è come si ordina un mazzo di 132 carte senza leggerne una.
+
+### Il vincolo ha cambiato due disegni
+
+Tutt'e due li ha mostrati la prova, e nessun ragionamento li avrebbe presi:
+
+- **FORCE era una punta di lancia**, e a 16 px una punta di lancia è il marker
+  di Tensione, che è una freccia in su. Adesso è una lama con l'elsa.
+- **KNOWLEDGE era un compasso**, cioè due gambe e una traversa, cioè la lettera
+  A. Un glifo che si legge come una lettera non è un glifo. Adesso è un libro
+  aperto.
+
+---
+
+## [0.1.19] — La mappa smette di essere sei cerchi
+
+La ART_BIBLE divide il lavoro in due: l'**illustrazione** la fa una persona, la
+**grafica di sistema** la fa il codice. Le tessere Regione stanno sul confine, e
+questa è la metà che tocca al codice — la sagoma del terreno, il bioma che si
+riconosce da lontano, il centro lasciato calmo per i segnalini.
+
+### Added
+
+- **`region_art.gd`**: il terreno di una Regione come **piano** in coordinate
+  normalizzate — esagono irregolare più tratti in un vocabolario di tre parole —
+  disegnato sia da `map_view.gd` con le primitive di Godot sia da
+  `print_sheet.gd` in SVG. La tessera sullo schermo e quella che si stampa sono
+  **la stessa immagine** ([D-057](docs/DECISIONS.md#d-057)).
+- Sei biomi, sei vocabolari: tetti e mura per la città, campi a strisce e un
+  fiume per la valle, creste con la neve su un versante per la montagna,
+  imbocchi di galleria per il sottosuolo, la banda della strada con le soste,
+  erba bassa e piste per la steppa. Deterministici dall'id: due Regioni dello
+  stesso bioma sono diverse, la stessa Regione non cambia mai.
+- La tessera stampata è **al vivo**: il terreno prende tutta la carta e il nome
+  sta in basso a sinistra, dove l'esagono lascia scoperto il fondo.
+
+### Changed
+
+- La mappa disegna esagoni e non cerchi, con l'anello del controllo che segue la
+  sagoma, e le strade sono due tratti — una banda scura e un filo chiaro —
+  invece di una riga sola: i posti sono posti, non nodi di un diagramma.
+- **Il raggio delle tessere cresce con lo spazio.** Era 46 pixel fissi: sei
+  bolli piccoli in mezzo a uno schermo vuoto, con il terreno invisibile. E il
+  riquadro delle posizioni scritte nei dati viene allungato fino a riempire la
+  vista, il che sposta tutto insieme senza cambiare dove sta una Regione
+  rispetto alle altre.
+
+### Fixed
+
+- Il disegno usciva dalla tessera — i tetti della città spuntavano sotto il
+  bordo — perché i vocabolari sono scritti sul quadrato pieno e l'esagono ha un
+  cerchio inscritto più piccolo. Adesso tutto rientra, e un test cammina su ogni
+  punto di ogni Regione.
+- Il terreno stampato era schiacciato dentro un riquadro rettangolare: una
+  montagna schiacciata smette di essere una montagna. Ora disegna sempre in un
+  quadrato centrato.
+
+---
+
 ## [0.1.18] — Il gioco esce dallo schermo
 
 **Con questa la Milestone 0.1 è chiusa**: tutti e sei i punti del §25 e tutte e

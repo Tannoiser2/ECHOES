@@ -130,6 +130,12 @@ static func _face(deck: String, id: String, shape: String) -> Dictionary:
 		"deck": deck, "id": id, "shape": shape, "title": "", "subtitle": "",
 		"accent": NEUTRAL, "corner": "", "body": [], "notes": [], "footer": "",
 		"art_prompt_key": "", "copies": 1, "secret": false,
+		# Vuoto tranne che sulle Regioni: quelle non hanno un segnaposto generico
+		# ma il proprio terreno, generato dal bioma (D-057).
+		"terrain": "",
+		# La famiglia, quando ce n'e' una: serve al glifo di sistema, che e' lo
+		# stesso sullo schermo e in stampa.
+		"family": "",
 	}
 
 
@@ -147,6 +153,7 @@ static func _asset(asset: Dictionary) -> Dictionary:
 	# `AssetText` e non riscritta: una carta non puo' stampare una cosa e farne
 	# un'altra (D-042).
 	face["notes"] = [AssetText.note(asset), str(asset.get("acquisition_rule", ""))]
+	face["family"] = family
 	face["art_prompt_key"] = str(asset["art_prompt_key"])
 	face["copies"] = int(asset.get("deck_copies", 1))
 	face["footer"] = str(asset["id"])
@@ -252,5 +259,6 @@ static func _region(region: Dictionary) -> Dictionary:
 		PackedStringArray(region.get("asset_sources", []))
 	).to_lower()]
 	face["art_prompt_key"] = str(region.get("art_prompt_key", ""))
+	face["terrain"] = str(region["biome"])
 	face["footer"] = str(region["id"])
 	return face
