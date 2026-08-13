@@ -100,8 +100,10 @@ nell'anteprima e nel foglio di stampa, che lo incorpora come `data:` URI.
 
 Più `map.board`, il tabellone dipinto: l'unica chiave che non sta nei dati.
 
-**Resta da fare**: consegnare le illustrazioni. Sono 96 chiavi, e il brief per
-mandarle a chi disegna lo genera già `tools/run_export.sh`.
+**Resta da fare**: consegnare le illustrazioni. Le chiavi sono 98 e i prompt
+sono già scritti uno per uno in [BRIEF_ARTE.md](BRIEF_ARTE.md) — la mappa e le
+sei tessere Regione sono arrivate, restano le 48 Asset, le 36 Echo e le 8
+Casate (che aspettano la decisione 4).
 
 ### 6. ✅ L'iconografia di sistema — fatta in 0.1.20
 
