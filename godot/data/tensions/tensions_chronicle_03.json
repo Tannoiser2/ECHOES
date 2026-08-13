@@ -227,8 +227,8 @@
       "id": "TEN_ASH",
       "title": "La Cenere che Sale",
       "domain": "ANCIENT",
-      "current_value": 1,
-      "threshold": 5,
+      "current_value": 2,
+      "threshold": 4,
       "visibility": "VEILED",
       "relevant_asset_families": [
         "FORCE",

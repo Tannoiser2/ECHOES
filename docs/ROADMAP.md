@@ -74,11 +74,15 @@ Prima voce in agenda adesso, con i dati raccolti fino alla 0.1.14:
 - ✅ **O-15 — il playtest è stato fatto** (0.1.15, D-053), con quattro caratteri
   diversi su 100 partite contro gli stessi 100 semi giocati da quattro
   ottimizzatori identici. Quattro seggi su otto si sbloccano: quelle clausole non
-  erano il problema. **Due no** — Kessa dei Fuochi e Lyra restano al Minimo
-  qualunque sia il giocatore, e vanno **abbassate**: sono la voce che resta.
-- **Opporsi non costa abbastanza.** Un solo giocatore aggressivo su quattro porta
-  i Consigli da 149 fallimenti a 302 su 593, e il giocatore prudente non fa un
-  Trionfo in cento partite. Riguarda il resolver del §A5, non il contenuto.
+  erano il problema. **Due no** — Kessa dei Fuochi e Lyra — e sono state
+  abbassate nella stessa milestone: i seggi bloccati passano da 2 su 8 a 1 su 8,
+  contro i 4 su 8 di un tavolo di ottimizzatori identici.
+- **Opporsi non costa abbastanza** — la voce che resta. Un solo giocatore
+  aggressivo su quattro porta i Consigli da 121 a **315 fallimenti su 603**, e il
+  prudente chiude 82/14/4 contro il 29/63/8 dell'aggressivo. Provato a metterci
+  un prezzo con una Conseguenza (`+1` sulla domanda quando una proposta cade):
+  **misurato, si è bloccato di più, non di meno**, e le Chronicle sono uscite
+  sopra il tetto. È la matematica del resolver del §A5, e va affrontata lì.
 - Insieme a: 3–5 template di Confluence aggiuntivi, Asset economy e UX.
 
 ---

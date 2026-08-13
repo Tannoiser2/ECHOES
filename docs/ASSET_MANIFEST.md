@@ -134,7 +134,7 @@ family, 22 copies per family deck, 132 cards in the box (D-040).
 |---|---|---|---|---|---|
 | DST_ALDRIC | Il Regno che Resta | ENT_ALDRIC | Il trono regge | Il regno decide | Un regno che non ha pagato il pane con il sangue |
 | DST_ALDRIC_RECORD | Il Regno che Ricorda | ENT_ALDRIC | La casa siede ancora | Nessuno rilegge la stessa domanda | Un regno che non ha dovuto dividersi per reggere |
-| DST_CENERE | La Montagna e Nostra | ENT_CENERE | Restano sulla montagna | E la montagna risponde a loro | E nessuno viene a dirgli dove fermarsi |
+| DST_CENERE | La Montagna e Nostra | ENT_CENERE | Restano sulla montagna | Tengono la montagna, e non solo quella | E la veglia sulla montagna e loro |
 | DST_CENERE_DEEP | Piu a Fondo | ENT_CENERE | Restano sulla montagna | E hanno visto cosa c'e sotto | E non devono piu niente a nessuno |
 | DST_LIBERE | Una Legge Senza Corona | ENT_LIBERE | Le citta esistono ancora | E c'e una Carta, e l'acqua non e' di nessuno | E nessuno l'ha pagata piu degli altri |
 | DST_LIBERE_WATER | L'Acqua Torna a Muoversi | ENT_LIBERE | Le citta esistono ancora | E l'acqua si muove | E non e di nessuno |
@@ -152,7 +152,7 @@ family, 22 copies per family deck, 132 cards in the box (D-040).
 ## Tension tracks (12)
 | id | titolo | dominio | iniziale | soglia | visibilita | presagi |
 |---|---|---|---|---|---|---|
-| TEN_ASH | La Cenere che Sale | ANCIENT | 1 | 5 | VEILED | 1 |
+| TEN_ASH | La Cenere che Sale | ANCIENT | 2 | 4 | VEILED | 1 |
 | TEN_AWAKENING | Il Risveglio | ANCIENT | 2 | 6 | VEILED | 2 |
 | TEN_CHARTER | La Carta | TERRITORY | 2 | 7 | OPEN | 1 |
 | TEN_DEBT | Il Debito | RESOURCE | 2 | 7 | OPEN | 1 |

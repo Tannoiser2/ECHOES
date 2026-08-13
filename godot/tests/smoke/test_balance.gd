@@ -28,8 +28,18 @@ const RUNS: int = 24
 const FIRST_SEED: int = 500
 
 ## §7's hard bounds: outside these the numbers need revisiting, not the data.
+##
+## The ceiling moved from 7 to 8 in 0.1.15, by the same arithmetic that moved the
+## band in D-051 and for the same reason. §7 asks for 3-4 Confluence over the
+## **two** Tensions of §18.2 - 1.5-2.0 per Tension - and a Chronicle now carries
+## four, so §7's own rate is 6-8. Seven was another self-imposed tightening, and
+## it started failing the moment the playtest fixes let two more seats play: a
+## seat that starts playing makes the year louder, which is the fix working.
+##
+## The floor did not move, and it is the half of this that §7 really cares about
+## - a Chronicle that decides nothing is the failure worth catching (D-047).
 const FLOOR: int = 2
-const CEILING: int = 7
+const CEILING: int = 8
 
 ## The band a 4-Tension Chronicle is expected to sit in (D-026, D-036, D-051).
 ##

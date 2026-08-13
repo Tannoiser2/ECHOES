@@ -43,6 +43,42 @@ aggressivo 1 Vittoria su 10 e 2 Trionfi su 10. Non è un artefatto
 dell'ottimizzatore: **quei due Destini costano troppo**, e la D-051 su questo
 aveva torto.
 
+### Fixed — quello che il playtest ha detto di sistemare
+
+- **Lyra.** La sua Vittoria chiedeva la scorta giurata *e* che le gallerie non
+  fossero sigillate — l'esatta negazione della Vittoria di Vaerax, che deve
+  sigillarle. Due Destini che sono l'uno il contrario dell'altro li decide
+  l'ordine di parola. La posta resta a lui: Lyra passa da **47 Minimi su 50 a
+  39 / 0 / 11 Trionfi**.
+- **Kessa dei Fuochi.** La sua Vittoria stava tutta su `ash_watch`, che si
+  ottiene da *una* proposta di *un* Consiglio: se non lo apre lei, non c'è altra
+  strada. Tenere la montagna in forze si raggiunge da più Consigli; la veglia
+  sale al Trionfo. E la domanda della Cenere è stata resa raggiungibile (da 1 con
+  soglia 5 a 2 con soglia 4). Da **48 Minimi su 50 a 45 / 5**.
+
+Seggi bloccati su un solo livello a tavolo misto: **da 2 su 8 a 1 su 8**. Il
+tavolo di quattro ottimizzatori, sullo stesso identico contenuto, ne blocca
+**4 su 8**: la differenza fra i due numeri è tutta la conclusione.
+
+### Provato e tolto — il prezzo dell'opposizione
+
+`CNS_FAILURE_SPIRAL` promette nella propria descrizione «con meno tempo davanti e
+più rancore intorno» e negli effetti non alzava niente. Aggiungere `+1` sulla
+Tensione sembrava ovvio. **Misurato, ha fatto il contrario**: i fallimenti da 302
+a 322 su cento partite — si è bloccato di *più* — e quattro Chronicle su 24 sopra
+il tetto del §7, con un piano scritto a mano rotto. Tolto.
+
+Bloccare resta la strategia migliore. Non si sistema con una Conseguenza: è la
+matematica del resolver del §A5, e non si tocca senza dirlo. **Resta aperta.**
+
+### Changed — il tetto
+
+Il tetto del §7 nel test passa da 7 a 8, con la stessa aritmetica che aveva
+spostato la banda: il §7 chiede 3-4 sulle **due** Tensioni del §18.2, cioè
+1,5-2,0 per Tensione, e con quattro fa **6-8**. Ha cominciato a fallire
+esattamente quando le correzioni hanno rimesso in gioco due seggi. Il
+**pavimento non si è mosso**.
+
 ### E due cose che nessuno stava misurando
 
 - **Un tavolo misto scrive una storia molto più varia**: 511 Verità, **479

@@ -257,25 +257,7 @@
         ]
       },
       "victory": {
-        "label": "E la montagna risponde a loro",
-        "conditions": [
-          {
-            "type": "control_count",
-            "entity_id": "ENT_CENERE",
-            "min": 1,
-            "label": "Almeno una Regione controllata"
-          },
-          {
-            "type": "state_tag_present",
-            "scope": "ENTITY",
-            "entity_id": "ENT_CENERE",
-            "tag": "ash_watch",
-            "label": "La veglia sulla montagna e affidata a loro"
-          }
-        ]
-      },
-      "triumph": {
-        "label": "E nessuno viene a dirgli dove fermarsi",
+        "label": "Tengono la montagna, e non solo quella",
         "conditions": [
           {
             "type": "control_count",
@@ -285,9 +267,28 @@
           },
           {
             "type": "state_tag_absent",
+            "scope": "REGION",
+            "region_id": "REG_MINIERE_ANTICHE",
+            "tag": "structure:sealed",
+            "label": "E le gallerie non sono state murate"
+          }
+        ]
+      },
+      "triumph": {
+        "label": "E la veglia sulla montagna e loro",
+        "conditions": [
+          {
+            "type": "state_tag_present",
+            "scope": "ENTITY",
+            "entity_id": "ENT_CENERE",
+            "tag": "ash_watch",
+            "label": "La veglia sulla montagna e affidata a loro"
+          },
+          {
+            "type": "state_tag_absent",
             "scope": "GLOBAL",
             "tag": "relic_buried",
-            "label": "Nessuno ha richiuso quello che c'e sotto"
+            "label": "E nessuno ha richiuso quello che c'e sotto"
           }
         ]
       }
