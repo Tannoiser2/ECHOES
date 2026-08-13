@@ -146,12 +146,20 @@ func _lines(session: RefCounted) -> Array:
 	if not councils.is_empty():
 		out.append(SECTION % "I CONSIGLI")
 		for result in councils:
-			out.append("  %-18s %-16s %-18s S%d O%d M%+d" % [
+			# `C2` e' entrato nel margine, `C2!` e' stato speso per niente (D-055).
+			# Un Consiglio senza condizioni non scrive la colonna affatto.
+			var condition: String = ""
+			if int(result["condition_total"]) > 0:
+				condition = " C%d%s" % [
+					int(result["condition_total"]),
+					"" if bool(result["condition_qualified"]) else "!",
+				]
+			out.append("  %-18s %-16s %-18s S%d%s O%d M%+d" % [
 				str(data.tensions[str(result["tension_id"])]["title"]),
 				session.service.name_of(str(result["proponent"])),
 				str(result["outcome"]),
-				int(result["support_total"]), int(result["oppose_total"]),
-				int(result["margin"]),
+				int(result["support_total"]), condition,
+				int(result["oppose_total"]), int(result["margin"]),
 			])
 		out.append("")
 

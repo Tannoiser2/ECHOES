@@ -37,10 +37,12 @@ Tre proprietà le rendono il centro del tavolo:
 1. **Chiunque può intervenire.** Il proponente formula la proposta, ma ogni altro
    giocatore dichiara pubblicamente Support, Oppose, Condition o Abstain, e poi
    impegna Asset in segreto. Nessuno è spettatore.
-2. **La Condition è una terza via.** Non è né sostegno né opposizione: è "passi,
-   ma a questa condizione". Se chi la pone impegna abbastanza, la clausola si
-   attacca a ogni esito di successo. È il modo in cui un perdente strutturale
-   ottiene comunque qualcosa.
+2. **La Condition è una terza via.** È "passi, ma a questa condizione": chi la
+   pone è a favore, a un patto. Se impegna abbastanza la clausola qualifica, si
+   attacca a ogni esito di successo **e le sue carte contano nel margine dalla
+   parte del Support** ([D-055](DECISIONS.md#d-055)); se non impegna abbastanza
+   non ottiene niente e le carte sono spese lo stesso. È il modo in cui un
+   perdente strutturale ottiene comunque qualcosa, ed è una mossa che costa.
 3. **Il fallimento non risolve nulla.** Una proposta che cade fa scendere la
    Tensione di 2, non la azzera: la questione resta viva e può tornare. Non si
    può "vincere" una Confluence non facendola passare.

@@ -4,7 +4,7 @@ extends RefCounted
 ## Pure functions over plain data: no world access, no RNG, no side effects.
 ## Swapping this file for another Strategy changes the maths and nothing else.
 ##
-##   M = S - O + W
+##   M = S + C - O + W   (C only when the Condition clause qualifies, D-055)
 ##   M <= -1        Failure
 ##   0 <= M <= 1    Success with Cost
 ##   2 <= M <= 4    Success
@@ -107,7 +107,7 @@ static func resolve(
 	var support_total: int = front_total(support_assets, assets, relevant_families, "SUPPORT")
 	var oppose_total: int = front_total(oppose_assets, assets, relevant_families, "OPPOSE")
 	# A Condition that is paid for is support - "I am for this, on one condition"
-	# - and one that is not paid for is nothing (D-055 candidate).
+	# - and one that is not paid for is nothing (D-055).
 	#
 	# Until 0.1.16 a Condition sat outside the arithmetic entirely: you spent up
 	# to two cards, moved the margin by zero, and got your clause attached only if

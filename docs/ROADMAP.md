@@ -76,12 +76,20 @@ Prima voce in agenda adesso, con i dati raccolti fino alla 0.1.14:
   erano il problema. **Due no** — Kessa dei Fuochi e Lyra — e sono state
   abbassate nella stessa milestone: i seggi bloccati passano da 2 su 8 a 1 su 8,
   contro i 4 su 8 di un tavolo di ottimizzatori identici.
-- **Opporsi non costa abbastanza** — la voce che resta. Un solo giocatore
-  aggressivo su quattro porta i Consigli da 121 a **315 fallimenti su 603**, e il
-  prudente chiude 82/14/4 contro il 29/63/8 dell'aggressivo. Provato a metterci
-  un prezzo con una Conseguenza (`+1` sulla domanda quando una proposta cade):
-  **misurato, si è bloccato di più, non di meno**, e le Chronicle sono uscite
-  sopra il tetto. È la matematica del resolver del §A5, e va affrontata lì.
+- **Opporsi non costa abbastanza** — la voce che resta, adesso a metà. Un solo
+  giocatore aggressivo su quattro portava i Consigli da 121 a **315 fallimenti su
+  603**, e il prudente chiudeva 82/14/4 contro il 29/63/8 dell'aggressivo.
+  Provato a metterci un prezzo con una Conseguenza (`+1` sulla domanda quando una
+  proposta cade): **misurato, si è bloccato di più, non di meno**, e le Chronicle
+  sono uscite sopra il tetto. È la matematica del resolver del §A5, e si è
+  affrontata lì.
+  - ✅ **prima leva, 0.1.17 ([D-055](DECISIONS.md#d-055))**: una Condition
+    qualificata entra nel margine come sostegno. I fallimenti scendono a
+    **282 su 596**, il prudente sale a 74/22/4, i DECISIVE passano da 95 a 128 e
+    i seggi bloccati vanno da 1 su 8 a **0 su 8**.
+  - **seconda leva, da misurare**: bloccare resta comunque il seggio più forte —
+    l'aggressivo chiude 61 Vittorie contro le 22 del prudente. Serve un prezzo
+    sul fronte Oppose, e va misurato prima di scriverlo.
 - Insieme a: 3–5 template di Confluence aggiuntivi, Asset economy e UX.
 
 ---

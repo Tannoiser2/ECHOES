@@ -4,8 +4,8 @@ extends "res://tests/test_case.gd"
 const ConfluenceResolution := preload("res://scripts/confluence/confluence_resolution.gd")
 
 
-## M = S - O + W, with the §12.3 bands. Each row states the maths in the open so
-## a Strategy swap that changes a boundary fails here and not in a playtest.
+## M = S + C - O + W, with the §12.3 bands. Each row states the maths in the open
+## so a Strategy swap that changes a boundary fails here and not in a playtest.
 func test_outcome_table() -> void:
 	var rows: Array = [
 		# support, oppose, world factor, margin, outcome
@@ -100,8 +100,9 @@ func test_asset_value_modifiers() -> void:
 	)
 
 
-## §12.3: Condition commits stay out of S and O; they only decide qualification.
-func test_condition_commits_are_outside_the_maths() -> void:
+## §12.3 (D-055): a Condition that is paid for argues *for* the proposition - its
+## commits join S - and one that is not paid for argues for nothing.
+func test_a_qualified_condition_counts_as_support() -> void:
 	var assets: Dictionary = {
 		"AST_WEALTH_GRAIN": {
 			"family": "WEALTH", "strength": 1, "confluence_modifier": {"kind": "NONE", "value": 0}
@@ -128,12 +129,12 @@ func test_condition_commits_are_outside_the_maths() -> void:
 		0,
 		2
 	)
-	assert_eq(result["support_total"], 3, "S conta solo il proponente e i Support")
+	assert_eq(result["support_total"], 3, "S resta il totale del solo fronte Support")
 	assert_eq(result["oppose_total"], 1, "O conta solo gli Oppose")
-	assert_eq(result["condition_total"], 2, "il Condition e contato a parte")
+	assert_eq(result["condition_total"], 2, "il Condition e contato a parte, e resta leggibile")
 	assert_true(bool(result["condition_qualified"]), "totale 2 >= soglia 2: qualificato")
-	assert_eq(result["margin"], 2, "M = 3 - 1 + 0")
-	assert_eq(result["outcome"], ConfluenceResolution.SUCCESS, "M=2 e Success")
+	assert_eq(result["margin"], 4, "M = (3 + 2) - 1 + 0: il Condition qualificato entra nel margine")
+	assert_eq(result["outcome"], ConfluenceResolution.SUCCESS, "M=4 e Success")
 
 
 func test_abstain_commits_are_ignored() -> void:
@@ -172,3 +173,6 @@ func test_condition_below_threshold_is_not_qualified() -> void:
 	)
 	assert_eq(result["condition_total"], 1, "un solo Asset da 1")
 	assert_false(bool(result["condition_qualified"]), "sotto la soglia 2 la clausola non qualifica")
+	# E se non qualifica non vale niente: e' il prezzo del negoziato, ed e' quello
+	# che tiene la Condition una scelta invece di uno sconto (D-055).
+	assert_eq(result["margin"], 0, "M = 0 - 0 + 0: una condizione non pagata non sposta il margine")

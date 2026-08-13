@@ -336,10 +336,21 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 	)
 	_log_commitments()
 	log.bullet("F. World Factor: 1d6 = %d -> %+d" % [die, factor])
+	# A qualified Condition is part of the margin (D-055), so it is part of the one
+	# line a player reads to check the arithmetic - and an unqualified one is shown
+	# too, crossed out of the sum, because "you spent two cards for nothing" is
+	# exactly the thing that has to be visible.
+	var condition: String = ""
+	if int(result["condition_total"]) > 0:
+		condition = (
+			" C=%d" % int(result["condition_total"]) if bool(result["condition_qualified"])
+			else " C=%d non qualificata" % int(result["condition_total"])
+		)
 	log.bullet(
-		"G. S=%d O=%d W=%+d -> M=%d -> %s"
+		"G. S=%d%s O=%d W=%+d -> M=%d -> %s"
 		% [
 			int(result["support_total"]),
+			condition,
 			int(result["oppose_total"]),
 			factor,
 			int(result["margin"]),
