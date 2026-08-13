@@ -5,6 +5,52 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.21] — Un posto dove mettere l'arte vera
+
+Il segnaposto e il brief c'erano dalla 0.1.18, e in mezzo mancava la cosa più
+semplice: **un posto dove mettere l'immagine**. Niente nel codice caricava un
+file per una `art_prompt_key`.
+
+### Added
+
+- **`art_library.gd`**: la convenzione è il nome del file — la chiave con i
+  punti al posto delle barre, sotto `res://art/`. Niente manifesto, niente
+  elenco da tenere allineato ([D-059](docs/DECISIONS.md#d-059)).
+- Se il file c'è si disegna quello, se non c'è il segnaposto: **un'immagine che
+  manca non è un errore**, ed è la proprietà che tiene il gioco giocabile con
+  zero illustrazioni consegnate e con qualunque sottoinsieme.
+- Vale nei tre posti insieme: la mappa e le carte sullo schermo, l'anteprima
+  dietro F4, e il foglio di stampa — che la incorpora come `data:` URI, così
+  resta un file solo.
+- **`map.board`**: quando il tabellone dipinto esiste, la mappa smette di
+  disegnare il terreno generato e ci mette sopra solo quello che il quadro non
+  sa — chi tiene un posto, chi ci sta, cosa gli è successo quest'anno. Le
+  posizioni delle Regioni si prendono **alla lettera** dai dati, perché è su
+  quelle coordinate che il quadro è stato dipinto.
+- `godot/art/README.md` dice dove va cosa: si copia il PNG al suo posto, anche
+  dall'interfaccia web di GitHub, e basta.
+- **Le tessere dipinte sulla mappa** sono ritagliate dentro l'esagono e non
+  appoggiate sopra: una Regione resta una Regione e non diventa un quadro con
+  un bordo. Le UV sono le stesse coordinate normalizzate del piano generato, e
+  una Regione consegnata convive con cinque che non lo sono ancora.
+
+### Il build esportato è il posto dove il primo tentativo falliva
+
+Leggere i byte del PNG fa funzionare un file appena copiato senza aprire
+l'editor — nei test, nella CLI, mentre si lavora. Ma **un build esportato
+impacchetta la texture importata e non il PNG originale**, quindi lì quella
+strada non trova niente: il quadro spariva esattamente dove si gioca davvero.
+Adesso c'è il ripiego sulla risorsa importata. (`.gdignore` più un filtro di
+inclusione era il primo tentativo e non funziona: una cartella ignorata è
+invisibile anche all'esportatore.)
+
+Verificato da capo a fondo con un tabellone finto costruito sulle coordinate
+vere, in un build Web esportato: i sei seggi cadono esatti sui posti dipinti. Il
+finto **non è committato** — un tabellone falso nel repository sarebbe una
+bugia sullo schermo.
+
+---
+
 ## [0.1.20] — Dodici segni
 
 La ART_BIBLE chiede overlay e icone come **grafica di sistema**, e dichiara il

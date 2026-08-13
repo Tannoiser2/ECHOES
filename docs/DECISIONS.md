@@ -331,6 +331,61 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-059 — Un posto dove mettere l'arte vera
+**implemented in 0.1.21** (ISSUES 5)
+
+The placeholder and the brief have been there since 0.1.18, and the simplest
+thing was missing in between: **somewhere to put the picture**. Nothing in the
+code loaded a file for an `art_prompt_key`, so a delivered illustration stayed a
+file in a folder.
+
+The convention is one line: the key with dots turned into slashes, under
+`res://art/`, in PNG. `asset.force.levy` → `art/asset/force/levy.png`. No
+manifest, no index to keep in step - **the filename is the key**. A file that
+is there shows up; a file that is missing changes nothing, because whoever asks
+for a picture that does not exist gets `null` and draws the placeholder. That
+property is the whole point: the game has to be playable with none of the
+ninety-six illustrations delivered, and with any subset of them.
+
+### Due strade per la stessa immagine, e servono tutt'e due
+
+Reading the PNG's bytes at runtime means a file just copied into the folder
+works immediately - no editor, no reimport - which is how it behaves in the
+tests, in the CLI and while working. But **an exported build packs the imported
+texture and not the original PNG**, so that path finds nothing exactly where
+the game is actually played. The exported build was the first thing I checked,
+and the board did not appear; the fallback to `ResourceLoader` is what makes it
+appear. First one that works wins, and the caller never knows which.
+
+`.gdignore` plus an include filter was the first attempt and it does not work:
+an ignored folder is invisible to the editor filesystem, which is what the
+export filter walks.
+
+### Il tabellone e' l'unica chiave che non sta nei dati
+
+`map.board` belongs to no Region and no Chronicle: it is the map, which both
+sagas share. When it exists the map stops drawing generated terrain and draws
+the painting, and the Region positions are taken **literally** from the authored
+`map_position` - the painter put the city where the data said it was, and the
+0.1.19 trick of stretching the bounding box to fill the view would slide every
+token off its painted place.
+
+What stays on top of the painting is only what the picture cannot know: a barely
+there veil so a light token on a light field is still visible, the ring of whoever
+holds the place, the name with a one-pixel shadow under it, and this year's
+marks.
+
+### Verificato con un sostituto
+
+The real board is a painting somebody generated from the brief, and I do not
+have the file. So the path was verified end to end with a stand-in PNG built at
+the authored coordinates: the six seats land exactly on their painted spots, in
+a real exported Web build. The stand-in is **not** committed - a fake board in
+the repository would be a lie on screen - and `godot/art/README.md` says where
+the real one goes.
+
+---
+
 ## D-058 — Le icone di sistema, e il vincolo che le governa
 **implemented in 0.1.20** (ART_BIBLE §Overlay e iconografia, ISSUES 6)
 

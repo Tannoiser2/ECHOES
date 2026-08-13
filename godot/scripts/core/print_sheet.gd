@@ -18,6 +18,7 @@ extends RefCounted
 const ArtPlaceholder := preload("res://scripts/core/art_placeholder.gd")
 const RegionArt := preload("res://scripts/core/region_art.gd")
 const IconSet := preload("res://scripts/core/icon_set.gd")
+const ArtLibrary := preload("res://scripts/core/art_library.gd")
 
 const PAGE_W: float = 210.0
 const PAGE_H: float = 297.0
@@ -240,9 +241,19 @@ static func _face_svg(face: Dictionary, x: float, y: float, cell: Vector2) -> St
 	])
 
 	if bool(drawn["has_art"]):
+		# L'arte vera, se qualcuno l'ha consegnata: incorporata come `data:` URI
+		# perche' un foglio che punta a un file esterno e' due file che si perdono
+		# uno senza l'altro (D-059).
+		var painted: String = ArtLibrary.data_uri(str(face["art_prompt_key"]))
+		if painted != "":
+			out.append(
+				'<image href="%s" x="%.2f" y="%.2f" width="%.2f" height="%.2f"'
+				% [painted, x + pad, y + pad, cell.x - pad * 2.0, float(drawn["art_h"])]
+				+ ' preserveAspectRatio="xMidYMid slice"/>'
+			)
 		# Una Regione porta il proprio terreno, non il segnaposto generico: e' la
 		# stessa immagine che la mappa disegna sullo schermo (D-057).
-		if bool(drawn["full_tile"]):
+		elif bool(drawn["full_tile"]):
 			out.append(RegionArt.svg(
 				str(face["id"]), str(face["terrain"]), x + pad, y + pad,
 				cell.x - pad * 2.0, float(drawn["art_h"])
@@ -252,6 +263,18 @@ static func _face_svg(face: Dictionary, x: float, y: float, cell: Vector2) -> St
 				str(drawn["art_key"]), accent, x + pad, y + pad, cell.x - pad * 2.0,
 				float(drawn["art_h"])
 			))
+
+	# Su una tessera al vivo il testo sta *sopra* l'illustrazione, e su un'arte
+	# chiara sparisce: il nome di Terre Nahr sul suo pascolo giallo non si legge,
+	# e l'id nemmeno. Una fascia scura sotto le righe - solo dove ci sono righe -
+	# lo rimette a galla senza coprire il quadro.
+	if bool(drawn["full_tile"]) and not (drawn["lines"] as Array).is_empty():
+		var first: Dictionary = (drawn["lines"] as Array)[0]
+		var top: float = float(first["y"]) - float(first["size"]) - 1.2
+		out.append(
+			'<rect x="%.2f" y="%.2f" width="%.2f" height="%.2f" fill="#0d0b09" opacity="0.62"/>'
+			% [x, y + top, cell.x, cell.y - top]
+		)
 
 	for line in drawn["lines"]:
 		var item: Dictionary = line

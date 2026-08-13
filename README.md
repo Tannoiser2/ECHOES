@@ -181,9 +181,15 @@ mm tre per tre, tessere Regione 80×80 due per tre, il mazzo espanso per
 `deck_copies` (48 facce Asset = 132 carte) — più `brief_arte.md`, cioè ogni
 `art_prompt_key` in uso col MASTER PROMPT della ART_BIBLE già composto.
 
-L'arte è segnaposto: ogni immagine mostra in chiaro la propria chiave e lascia
-libero il terzo basso, dove andrà il testo. Dentro l'app, **F4** apre
-l'anteprima di stampa (e **F3** il cruscotto per chi sviluppa).
+L'arte è segnaposto finché non arriva quella vera: ogni immagine generata mostra
+in chiaro la propria chiave e lascia libero il terzo basso, dove andrà il testo.
+Dentro l'app, **F4** apre l'anteprima di stampa (e **F3** il cruscotto per chi
+sviluppa).
+
+Per consegnare un'illustrazione si copia il PNG in `godot/art/`, con il nome
+della sua chiave: `asset.force.levy` → `art/asset/force/levy.png`. Se il file
+c'è si disegna quello, se non c'è il segnaposto — nel gioco, nell'anteprima e in
+stampa. I dettagli in [`godot/art/README.md`](godot/art/README.md).
 
 ---
 
