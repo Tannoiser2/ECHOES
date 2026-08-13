@@ -16,20 +16,63 @@ func test_data_loads_and_validates() -> void:
 ## §18.2: the reduced content the milestone actually asks for.
 func test_reduced_content_matches_the_milestone() -> void:
 	var loaded: RefCounted = data()
+	# Shared by every saga: the rules, the cards you can hold, and the land.
 	assert_eq(loaded.assets.size(), 48, "48 Asset, 8 per famiglia: il traguardo §19.4 (D-040)")
 	assert_eq(loaded.regions.size(), 6, "6 Regioni: le 5 principali piu un raccordo")
+	assert_eq(loaded.actions.size(), 6, "i sei template di azione")
+
+	# And two sagas standing on them (D-049). The map is the world and the world
+	# does not restart: the second saga is the same six places eight centuries
+	# later, with different houses asking different questions.
+	assert_eq(loaded.chronicles.size(), 4, "due saghe, ognuna con l'anno scritto e quello di biblioteca")
+	for chronicle_id in ["CHR_01", "CHR_02", "CHR_03", "CHR_04"]:
+		assert_true(loaded.chronicles.has(str(chronicle_id)), "%s esiste" % chronicle_id)
+
 	# Grown past §18.2's reduced set on purpose, and measured: D-024 records why
 	# 2 Tensions and 8 Consequences could not move the world enough to matter.
-	assert_eq(loaded.tensions.size(), 6, "6 Tensioni in biblioteca (§18.2 ne chiedeva 2; vedi D-024, D-028)")
-	assert_eq(loaded.confluence_templates.size(), 5, "5 Consigli, uno dei quali legato a un dominio")
-	assert_eq(loaded.echo_cards.size(), 24, "24 carte Echo: una per ogni funzione di Propp (vedi D-024, D-031)")
-	assert_eq(loaded.consequences.size(), 32, "32 Conseguenze (§18.2 ne chiedeva 8; vedi D-022, D-024)")
-	assert_eq(loaded.chronicles.size(), 2, "CHR_01 scritta a mano, CHR_02 assemblata dalla biblioteca")
-	assert_eq(loaded.entities.size(), 4, "4 Entita")
+	_saga_has("prima", loaded, ["CHR_01", "CHR_02"], 6, 5, 4, 8)
+	_saga_has("seconda", loaded, ["CHR_03", "CHR_04"], 6, 6, 4, 8)
+
+
+## What one saga is made of: its questions, the Councils that can be held about
+## them, who is at the table and what they can want. Counted per saga rather
+## than in total, because a total goes up every time content is added and stops
+## saying anything about either story.
+func _saga_has(
+	name: String,
+	loaded: RefCounted,
+	chronicle_ids: Array,
+	tensions: int,
+	templates: int,
+	seats: int,
+	destinies: int
+) -> void:
+	var questions: Dictionary = {}
+	var councils: Dictionary = {}
+	var table: Dictionary = {}
+	for chronicle_id in chronicle_ids:
+		var chronicle: Dictionary = loaded.chronicles[str(chronicle_id)]
+		for tension_id in chronicle.get("tensions", []):
+			questions[str(tension_id)] = true
+		for tension_id in (chronicle.get("tension_pool", {}) as Dictionary).get("candidates", []):
+			questions[str(tension_id)] = true
+		for template_id in chronicle["confluence_templates"]:
+			councils[str(template_id)] = true
+		for entity_id in chronicle["entities"]:
+			table[str(entity_id)] = true
+
+	var wanted: Dictionary = {}
+	for entity_id in table:
+		var definition: Dictionary = loaded.entities[str(entity_id)]
+		for destiny_id in definition.get("destiny_pool", [str(definition["destiny_id"])]):
+			wanted[str(destiny_id)] = true
+
+	assert_eq(questions.size(), tensions, "saga %s: %d domande in biblioteca" % [name, tensions])
+	assert_eq(councils.size(), templates, "saga %s: %d Consigli" % [name, templates])
+	assert_eq(table.size(), seats, "saga %s: %d seggi al tavolo" % [name, seats])
 	# Due per seggio: quello con cui comincia, e quello che vuole dopo averlo
 	# ottenuto. Chi fallisce riprova con lo stesso (D-045).
-	assert_eq(loaded.destinies.size(), 8, "8 Destiny: due per ogni seggio")
-	assert_eq(loaded.actions.size(), 6, "i sei template di azione")
+	assert_eq(wanted.size(), destinies, "saga %s: %d Destiny, due per seggio" % [name, destinies])
 
 
 ## §19.4: eight cards per family, and the same curve in each - four at 1, two at
@@ -152,6 +195,71 @@ func test_every_tension_can_reach_its_threshold() -> void:
 			"%s: da %d, con Drift e Ripple, non arriva mai a %d"
 			% [tension_id, int(tension["current_value"]), int(tension["threshold"])]
 		)
+
+
+## A Destiny clause nobody can ever make true.
+##
+## `DST_LYRA_TAUGHT` asked, in its Triumph, for `crystal_measured`,
+## `petition_heard` and `parley_held` - **all three of them**. No Consequence in
+## the game writes any of the three, and none is on the table at the start, so
+## the scholars' second Destiny was not hard to win: it was impossible, and the
+## measured saga duly reported that seat at MINIMUM ten Chronicles out of ten.
+##
+## Nothing caught it because a tag is just a string: it validates, it loads, it
+## evaluates to false for ever. So this walks every Destiny clause that asks for
+## a tag to be *present* and insists something in the world can put it there.
+##
+## Only `state_tag_present` is checked. A clause asking for a tag to be *absent*
+## is a stake, not a goal - it is true until someone breaks it, and a tag nothing
+## writes simply makes it a stake nobody can take.
+func test_no_destiny_asks_for_a_tag_nothing_can_write() -> void:
+	var loaded: RefCounted = data()
+
+	var writable: Dictionary = {}
+	for consequence in loaded.consequences.values():
+		for effect in consequence["effects"]:
+			if not str(effect["type"]).begins_with("SET_"):
+				continue
+			var tag: String = str((effect.get("payload", {}) as Dictionary).get("tag", ""))
+			if tag != "":
+				writable[tag] = str(consequence["id"])
+	# An Echo card can write one too, and so can the opening position.
+	for card in loaded.echo_cards.values():
+		for effect in card.get("effects", []):
+			var tag: String = str((effect.get("payload", {}) as Dictionary).get("tag", ""))
+			if str(effect["type"]).begins_with("SET_") and tag != "":
+				writable[tag] = str(card["id"])
+	for region in loaded.regions.values():
+		for tag in region["tags"]:
+			writable[str(tag)] = str(region["id"])
+	for chronicle in loaded.chronicles.values():
+		for tag in chronicle.get("global_tags", []):
+			writable[str(tag)] = str(chronicle["id"])
+
+	for destiny in loaded.destinies.values():
+		for level in ["minimum", "victory", "triumph"]:
+			for condition in _flattened(destiny[level]["conditions"]):
+				if str((condition as Dictionary).get("type", "")) != "state_tag_present":
+					continue
+				var tag: String = str((condition as Dictionary)["tag"])
+				assert_true(
+					writable.has(tag),
+					"%s/%s chiede '%s', che niente al mondo puo scrivere"
+					% [str(destiny["id"]), level, tag]
+				)
+
+
+## Conditions can nest inside `any_of` / `all_of`, and the one that mattered
+## here was nested: two of the three unreachable tags were inside an `any_of`.
+func _flattened(conditions: Array) -> Array:
+	var out: Array = []
+	for condition in conditions:
+		var kind: String = str((condition as Dictionary).get("type", ""))
+		if kind == "any_of" or kind == "all_of":
+			out.append_array(_flattened((condition as Dictionary)["conditions"]))
+		else:
+			out.append(condition)
+	return out
 
 
 func test_boot_scene_instantiates() -> void:

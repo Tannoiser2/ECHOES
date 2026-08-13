@@ -20,6 +20,7 @@ extends "res://tests/test_case.gd"
 ## median of 5 in three blocks and 6 in the fourth.
 
 const PolicyDecider := preload("res://scripts/seat/policy_decider.gd")
+const Effect := preload("res://scripts/core/effect.gd")
 # GameSession comes from test_case.gd; re-declaring it is a parse error.
 
 const SEATS: Array = ["ENT_ALDRIC", "ENT_NAHR", "ENT_LYRA", "ENT_VAERAX"]
@@ -301,6 +302,51 @@ func test_the_policy_scores_every_axis_the_destinies_name() -> void:
 			bindings
 		) < 0,
 		"sfruttare il Cristallo deve costare a chi ha giurato di impedirlo"
+	)
+
+
+## A seat reaches past a rung that asks nothing of it (D-047).
+##
+## The policy used to play the lowest rung of its ladder it had not secured, and
+## nothing else. That is right about the order and wrong about the stopping: a
+## rung can be open and still ask nothing of the Tensions - "stand on the Red
+## Mountains" is answered by walking there, not by bringing a question to a head -
+## and a seat focused on it stopped playing entirely. It would not even reach for
+## the Victory above, whose "hold a Region" only a Council can grant.
+func test_a_seat_reaches_past_a_rung_that_asks_nothing() -> void:
+	new_session()
+	var source: Dictionary = Effect.source("system", "TEST", "", 0, 0, 0)
+	# The watcher's ladder, and a watcher who is neither where it swore to stand
+	# nor holding anything: the Minimum is open and asks nothing, the Victory is
+	# open and needs a Council.
+	session.world["entities"]["ENT_VAERAX"]["destiny_id"] = "DST_VAERAX_WATCHED"
+	for region_id in session.service.regions_with_presence("ENT_VAERAX"):
+		session.applier.apply(Effect.make(
+			"REMOVE_PRESENCE", "entity", "ENT_VAERAX", {"region_id": str(region_id)}, source
+		))
+	session.applier.apply(Effect.make(
+		"SET_CONTROL", "region", "REG_MONTAGNE_ROSSE", {"entity_id": null}, source
+	))
+
+	var destiny: Dictionary = data().destinies["DST_VAERAX_WATCHED"]
+	assert_false(
+		session.destinies.conditions.all_hold(destiny["minimum"]["conditions"], {}),
+		"il Minimo e aperto"
+	)
+	assert_true(
+		PolicyDecider.new(null)._goals_of(
+			"ENT_VAERAX", session, destiny["minimum"]["conditions"]
+		).is_empty(),
+		"e non chiede niente alle Tensioni: si risponde camminando"
+	)
+	assert_false(
+		session.destinies.conditions.all_hold(destiny["victory"]["conditions"], {}),
+		"la Vittoria e aperta"
+	)
+
+	assert_false(
+		PolicyDecider.new(null)._tension_goals("ENT_VAERAX", session).is_empty(),
+		"chi ha un gradino piu in alto da prendere ha ancora qualcosa da spingere"
 	)
 
 

@@ -71,7 +71,24 @@
       "destiny_pool": [
         "DST_ALDRIC",
         "DST_ALDRIC_RECORD"
-      ]
+      ],
+      "name_grammar": {
+        "pattern": "{given}{ordinal}",
+        "given": [
+          "Re Vharn",
+          "Regina Eleyna",
+          "Re Torvald",
+          "Regina Mirea",
+          "Re Rethis",
+          "Regina Ansa",
+          "Re Kelvar",
+          "Regina Ottima",
+          "Re Danu",
+          "Regina Selve",
+          "Re Orlan",
+          "Regina Nima"
+        ]
+      }
     },
     {
       "id": "ENT_NAHR",
@@ -195,7 +212,34 @@
       "destiny_pool": [
         "DST_LYRA",
         "DST_LYRA_TAUGHT"
-      ]
+      ],
+      "name_grammar": {
+        "pattern": "{given} {epithet}",
+        "given": [
+          "Anselm",
+          "Idris",
+          "Vela",
+          "Marek",
+          "Noa",
+          "Cathal",
+          "Runa",
+          "Ilve",
+          "Bren",
+          "Ysolde",
+          "Kael",
+          "Nerina"
+        ],
+        "epithets": [
+          "di Lyra",
+          "delle Gallerie",
+          "che Conta",
+          "la Seconda Mano",
+          "il Testimone",
+          "di Eredan",
+          "la Paziente",
+          "che Rifa i Conti"
+        ]
+      }
     },
     {
       "id": "ENT_VAERAX",

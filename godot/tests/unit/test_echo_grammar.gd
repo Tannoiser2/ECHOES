@@ -108,8 +108,55 @@ func test_every_declared_function_has_a_card() -> void:
 			by_function.has(str(function_id)),
 			"la funzione '%s' e dichiarata nello schema ma nessuna carta la svolge" % function_id
 		)
+	# Six per family in the first saga, three in the second: a Chronicle only ever
+	# sees the cards that could matter to its own questions (D-049), so the count
+	# that means something is per saga, not in total.
+	var by_saga: Dictionary = {}
+	for card in data().echo_cards.values():
+		var saga: String = "seconda" if _is_second_saga(card) else "prima"
+		var per: Dictionary = by_saga.get(saga, {})
+		per[str(card["dramatic_family"])] = int(per.get(str(card["dramatic_family"]), 0)) + 1
+		by_saga[saga] = per
 	for family in ["PRESSURE", "RUPTURE", "TURN", "RESOLUTION"]:
-		assert_eq(int(by_family.get(family, 0)), 6, "sei carte per la famiglia %s" % family)
+		assert_eq(
+			int((by_saga["prima"] as Dictionary).get(family, 0)), 6,
+			"prima saga: sei carte per la famiglia %s" % family
+		)
+		assert_eq(
+			int((by_saga["seconda"] as Dictionary).get(family, 0)), 3,
+			"seconda saga: tre carte per la famiglia %s" % family
+		)
+
+
+## A card belongs to the saga whose questions it names. The ones that name none -
+## or name `$tension`, "the one we are talking about" - belong to both, and are
+## counted with the first because that is where they were written.
+func _is_second_saga(card: Dictionary) -> bool:
+	const SECOND: Array = [
+		"TEN_WATER", "TEN_DEBT", "TEN_RELIC", "TEN_CHARTER", "TEN_NAMELESS", "TEN_ASH",
+	]
+	for condition in card["eligibility"]:
+		if SECOND.has(str((condition as Dictionary).get("tension_id", ""))):
+			return true
+	return false
+
+
+## Two different cards must not ask for the same drawing (D-049).
+##
+## The second saga's twelve cards were generated with the key built from family
+## and function - `echo.pressure.request` - which is exactly the key the first
+## saga's Supplica already had. Nine of the twelve collided, and nothing noticed:
+## the manifest lists whatever it is given. An art key is an order to somebody,
+## and two cards sharing one is two cards that come back as the same picture.
+func test_no_two_cards_ask_for_the_same_drawing() -> void:
+	var seen: Dictionary = {}
+	for card in data().echo_cards.values():
+		var key: String = str(card["art_prompt_key"])
+		assert_false(
+			seen.has(key),
+			"%s e %s chiedono lo stesso disegno: '%s'" % [str(seen.get(key, "")), str(card["id"]), key]
+		)
+		seen[key] = str(card["id"])
 
 
 ## `any_of` is what lets Propp's alternatives be written down: a Return follows a

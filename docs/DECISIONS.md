@@ -331,6 +331,297 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-049 — Una seconda saga sulla stessa mappa
+**implemented in 0.1.12**
+
+The engine has always claimed to be data-driven. This is the first time anything
+checked: a second saga - new plot, new houses, new objectives, new questions -
+authored entirely as JSON, with **no change to any rule**. What did have to
+change was three places where the first saga's content had quietly become part
+of the engine's assumptions.
+
+### Le Citta Libere
+
+Eight centuries after Aldric, on the same six places, because the map is the
+world and the world does not restart. There is no crown and there has not been
+one for eight hundred years. Four seats: **la Gilda del Sale**, which owns no
+city and keeps the ledger of all of them; **l'Ordine del Vetro**, heir to Lyra's
+school turned into a faith, custodian of a shard nobody living has seen;
+**i Signori della Cenere**, who hold the Red Mountains and dig lower every year;
+**le Citta Libere**, seven towns that meet only when they cannot avoid it.
+
+Six questions - l'Acqua Ferma, il Debito, la Reliquia, la Carta, i Senza Citta,
+la Cenere che Sale - six Councils, thirteen Consequences, sixteen Destinies,
+twelve Echo cards, and two Chronicles: CHR_03 written out, CHR_04 dealt from the
+library.
+
+### Le tre cose che non erano contenuto
+
+**Il mazzo Echo era uno solo per tutto il gioco.** Adding twelve cards reshuffled
+the first saga's deck and changed years nobody had touched - the three authored
+sim plans all broke. A Chronicle's deck is now built from the cards that could
+matter *that year*: a card whose eligibility names a question the Chronicle is
+not asking can never legally be drawn, and leaving it in the pile made one
+saga's content a function of the other's. The first saga's plans went back to
+byte-identical the moment the filter landed.
+
+**La mappa portava il controllo della prima saga.** `control` lives on the
+Region, so the Red Mountains still answered to Vaerax in a Chronicle where
+Vaerax does not exist. `starting_control` on the Chronicle overrides it. This
+was not cosmetic: the Ash Lords' whole Victory hangs on holding a Region, and
+they held none, so they reported MINIMUM in 40 Chronicles out of 40.
+
+**I probe avevano i seggi scritti dentro.** Eleven CLI tools carried
+`const SEATS = [ENT_ALDRIC, ...]`. They read the Chronicle now.
+
+### E una lezione della D-048 che si e' ripresentata due volte
+
+Authoring the second saga reproduced the same failure twice, from a standing
+start, which is the best evidence that it is structural and not a slip:
+
+- **CNS_ASH_WATCH era irraggiungibile.** It sat on a domain-bound Council, and
+  the Tension that would have used it declares its own template - so the
+  proposition was never on any table. The Ash Lords' Victory depended on it.
+- **Due seggi avevano bisogno dello stesso Consiglio, e a proporlo e' uno solo.**
+  Fixing the Ash Lords' proponency took it away from the Order, whose Victory
+  then became unreachable in turn. The fix was not another swap: a custodian
+  does not win by proposing, it wins by preventing, so its Victory is now two
+  stakes - the vault not opened, the galleries not abandoned - and its Triumph
+  keys on `discovery:relic`, which a *non*-proponent can obtain by declaring a
+  condition clause.
+
+Both were found by `run_destiny_probe.gd`'s third table, which is the one D-048
+added for exactly this: **which Councils a seat actually gets to propose**.
+
+### Misurato
+
+CHR_03 over forty seeds: 6.55 Councils per Chronicle, median 7, range 5-7 - the
+same shape as CHR_01's 6.10 and inside §7's hard bounds. Every seat wins
+sometimes (M38/T2, M12/V28, M1/V39, M2/V38), which is the bar D-048 set and
+which the first three drafts of this content did not clear.
+
+Two ten-Chronicle sagas played end to end: the first covers 999 years and writes
+**35 Truths, all 35 distinct**; the second covers 753 years and writes 38, all
+distinct. The audit that started this whole line of work got 12 distinct
+sentences out of 28.
+
+### Cosa resta aperto
+
+O-15 applies to the second saga as much as the first: the Guild reports MINIMUM
+in all ten Chronicles of the played saga, and the seats that win, win early and
+then hold. Recorded, not tuned - same reason as before.
+
+---
+
+## D-048 — Un Destino che si vince in due mosse, e uno che non si vince mai
+**implemented in 0.1.11**
+
+The scholars' seat was broken at both ends of a saga, and neither end showed up
+in an outcome table.
+
+### Vinto al round due, quaranta volte su quaranta
+
+`DST_LYRA` asked for: a Discovery, presence in the Ancient Mines, the mines not
+sealed, two Discoveries, the Awakening not exploded, the road still open. Seven
+clauses, and **five of them were true before the first token was placed**. The
+other two were Discoveries - and a Discovery costs *one action*: SCHEME on a
+veiled Tension. Lyra has two Action Opportunities in round one and CHR_01 deals
+two veiled Tensions.
+
+So her whole ladder - Minimum, Victory *and* Triumph - closed in **Act I round
+two, in 40 Chronicles out of 40**, after which she spent the remaining seventeen
+Action Opportunities drawing cards she had no use for. The end-of-year report
+said TRIUMPH; the register said eighteen turns of shopping. That is O-14's
+"Lyra reaches Triumph in four out of five", and the cause was not that her
+Destiny was generous - it was that nothing in it had to be played for.
+
+The new `run_destiny_probe.gd` asks the two questions that make this visible, and
+the first needs no dice at all: **what is already true before the year starts**,
+clause by clause, and **at what round is each seat's ladder closed**.
+
+### And never won at all
+
+`DST_LYRA_TAUGHT` - the Destiny she *advances to* under D-045 - asked in its
+Triumph for `crystal_measured`, `petition_heard` and `parley_held`. **No
+Consequence in the game writes any of the three**, and none is on the table at
+the start. It was not hard to win: it was impossible, which is why the ten-
+Chronicle saga reported that seat at MINIMUM ten times out of ten.
+
+Nothing caught it because a tag is a string: it validates, it loads, and it
+evaluates to false for ever. `test_data_boot.gd` now walks every
+`state_tag_present` clause of every Destiny and insists something in the world
+can put that tag there - Consequence, Echo card, or the opening position. Only
+`present` is checked: a clause asking for a tag to be *absent* is a stake, not a
+goal, and a tag nothing writes just makes it a stake nobody can take.
+
+### What was changed, and what was not
+
+Two clauses added to `DST_LYRA`, none removed:
+
+- **Victory** now also asks for `escort_sworn` - twelve people who answer for
+  every load with their own name, sworn in a Council. That is the half of the
+  title that was never implemented: *poter tornare a guardare*. Knowing something
+  is the Minimum; being able to go back and check is the Victory.
+- **Triumph** now also asks that nobody put a guard on the study
+  (`study_supervised` absent) - which is the author's own idea of the scholar's
+  full win, since that clause was already in `DST_LYRA_TAUGHT`.
+
+`DST_LYRA_TAUGHT`'s Triumph was rewritten onto tags that exist, keeping the
+meaning - *what remains taught* is knowledge others can still reach and verify:
+the galleries not sealed, an escort sworn, no guard on the study.
+
+A third clause was tried and reverted: `discovery:crystal` on the Triumph, "and
+she measured the Crystal herself". It reads well and it measured badly - her
+Triumph went to 0/40 and the Council count left its band at 6.20 - so it is
+recorded here rather than shipped.
+
+### Measured
+
+Forty Chronicles per figure.
+
+| | prima | dopo |
+|---|---|---|
+| scala chiusa in anticipo (Lyra) | **40/40**, round 2.0 | 9/40, round 7.0 |
+| Lyra | MIN 16 / VIC 4 / **TRI 20** | **MIN 34** / TRI 6 |
+| Consigli CHR_01 | 5.70 | 6.10 |
+| Consigli CHR_02 | 4.65, da 2 a 7 | 4.83, da 3 a 6 |
+
+The three sim plans still pass and still produce byte-identical output on a
+second run. Plan C's description was corrected: it claimed the year ended with
+knowledge "public and verifiable", and what the plan actually plays is
+`P_GUARDED_STUDY` - the Crystal measurable, but in front of a keeper. Under the
+new pricing that is precisely what falls short of what Lyra wanted, which makes
+it a better ending than the one the text claimed.
+
+---
+
+## D-047 — Un anno non si chiude senza aver deciso niente
+**implemented in 0.1.10**
+
+A ten-Chronicle saga produced **three years with zero Councils**. Not close ones
+- zero: three Chronicles in which nobody proposed anything, nothing was decided,
+and the register got a blank page. §7 asks for a report below two.
+
+The first guess was that inheritance was suppressing the Tensions across a saga,
+because the same Chronicle measured standalone over forty seeds never fell below
+one. That guess was wrong, and the instrument that disproved it - `run_silence_
+probe.gd` - is the useful part of this entry: per Chronicle it prints, for every
+question in play, where it started, how many chips the **world** gave it, how
+many pushes the **table** gave it, and where it ended relative to its threshold;
+then, per seat, the Destiny it carries and what that Destiny actually asks it to
+push. Counting outcomes says a year was quiet. Counting pushes says why.
+
+### What the pushes said
+
+Three separate causes, stacked, each real on its own.
+
+**The world alone can never bring a question to a head.** Drift deals one chip
+per round spread across every question in play - nine chips over four questions -
+while the smallest gap between a question's opening value and its threshold is
+three. So the world can leave **every question in play short at the same time**,
+and in the silent years it did: the nearest one finished a single chip under its
+threshold, three times out of three. Every Council in this game needs a seat to
+push. There was no floor at all; there was only the table.
+
+**And the table had stopped playing.** In the silent years three seats out of
+four spent **all eighteen Action Opportunities on ACQUIRE** - drawing cards for a
+Council that would never open. The register recorded eighteen turns of shopping.
+
+**Because a seat stopped the moment its nearest rung asked nothing of it.** The
+policy played the lowest rung of its ladder it had not secured and nothing else.
+That is right about the order and wrong about the stopping: a rung can be open
+and still ask nothing of the Tensions - "stand on the Red Mountains" is answered
+by walking there - and a rung whose remaining clauses are all *negative* ("the
+mine is not sealed", "the road is still open") asks nothing of anybody. A seat
+focused on one of those would not even reach for the Victory above it.
+
+### The floor
+
+`minimum_confluences` on the Chronicle. When an Act closes and the year is short
+of the Councils it guarantees, the question that came closest is brought to a
+head: *"L'anno non si chiude con la domanda ancora aperta."*
+
+The quota grows with the Act - `floor * act / acts`, rounded down - because only
+one Council opens per round (§7), so a floor of two checked once at the very end
+could only ever deliver one. With three Acts and a floor of two that is nothing
+owed after Act I, one after Act II, two after Act III, which leaves the first two
+thirds of a Chronicle exactly as they were.
+
+The push is an **Effect** like everything else - system source `YEAR_END`, in the
+register, with an inverse - and not a rule reaching into the Tension directly.
+`minimum_confluences: 0` turns it off: a Chronicle is allowed to say that silence
+is an acceptable ending for it.
+
+### Why a floor rather than a re-tuned Drift bag
+
+The alternative was to weight the drift bag so one question always crosses. It
+was rejected for two reasons. It would change **every** Chronicle, including the
+seven in ten that were working; and it would make the authored
+`drift_distribution` decorative, since the guarantee would always override it.
+The floor fires only when the thing it guards against actually happened, and a
+loud year never learns it exists - which a test asserts.
+
+### What it measured out at
+
+Standalone, forty seeds each. CHR_01 is **unchanged** - 5.70 mean, median 6,
+range 3-8, never below §7's floor even before this. CHR_02 went from a mean of
+4.17 and a range of **1**-7 to a mean of 4.65, median 5, range **2**-7, with 0/40
+below the floor and 48% inside the declared band. Across four ten-Chronicle sagas
+- forty chained Chronicles - there is no longer a single silent year.
+
+The table that only ever calms things down - the O-9 stress test, four seats
+spending every action holding every question below its threshold - went from 1.75
+Councils per Chronicle to 2.48, which is the first time that table has sat above
+§7's floor rather than under it.
+
+The three sim plans still pass and still produce byte-identical output on a
+second run.
+
+### What this does not fix
+
+Lyra's whole ladder - Minimum, Victory *and* Triumph - closes in **Act I round
+two**, on two SCHEME actions, after which she has genuinely won and correctly
+has nothing left to play for. That is a Destiny that is too cheap, and it is
+content, not rules: it belongs with the scholars' seat finding (`DST_LYRA_TAUGHT`
+depending on a Consequence the policy never triggers), not here.
+
+---
+
+## D-046 — Una casa non finisce i nomi
+**implemented in 0.1.9**
+
+D-045 gave every mortal seat a hand-written list of successors. Four names each.
+The very first ten-Chronicle audit of the feature wore them out at the sixth
+jump and sat a **second "Re Serane" four centuries after the first** - with the
+first one's description attached, calling him Aldric's grandson in the year
+1240. It read as a bug, and it was one: a saga has no agreed number of
+generations, so any finite list is a list that runs out.
+
+### A house declares how it makes names, instead of listing them
+
+`name_grammar`: a pattern with slots (`{given} {epithet} {ordinal}`), a bag of
+given names, and whatever else that house uses. The first generations stay
+hand-written - those are the characterised ones, and they are worth keeping -
+and the grammar takes over from the fifth on.
+
+The choice is a **pure function of the generation**: no RNG, so a name is stable
+no matter when it is asked for and a saga stays replayable from its seed.
+
+Numbering is what makes it both endless and right: houses do reuse names, which
+is exactly why they number them. Vharn, and four generations later Vharn II.
+That is a tradition, not a repeat. Thirty generations, thirty distinct names, in
+a test.
+
+### Two things the first attempt got wrong
+
+The generated pool started with the same given names as the hand-written four,
+so generation 5 was "Re Serane" again - the very bug being fixed, one loop
+further out. And titles cycled independently of names, which produced "Re
+Ottima" and "Regina Corvin": in Italian that does not read. The title now
+belongs to the given name, because a house knows what its own people are called.
+
+---
+
 ## D-045 — Fra una Chronicle e l'altra passano secoli, e il tavolo cambia
 **implemented in 0.1.8**
 
@@ -1954,7 +2245,13 @@ longer shares `CNS_MINE_SEALED` with `P_SEAL_MINE`. Every proposition in the set
 lands on its own world change.
 
 ### O-14 — The Destiny spread tilted, and this time in Lyra's favour
-**flagged, open — recorded, not tuned**
+**closed by D-048.** The tilt was real and the cause was mechanical: Lyra's whole
+ladder was closed by Act I round two in 40 Chronicles out of 40, so "reaches
+Triumph in four out of five" was not a seat that was winning, it was a seat that
+had been handed the win before play began. Priced properly she is at MIN 34 /
+TRI 6 - and the table is now lopsided the *other* way, which is O-15.
+
+**original note:**
 
 D-036 opened the rooms and the standings moved with them:
 
@@ -1979,6 +2276,31 @@ numbers is wrong.
 
 Relations also collapsed to a single distinct end state across forty Chronicles,
 down from two. Small, but it says the relation graph is scenery right now.
+
+### O-15 — Six Destiny levels out of twelve are true before anyone plays
+**flagged, open — recorded, not tuned**
+
+`run_destiny_probe.gd` checks every clause against the opening position, and the
+count is 19 clauses out of 28 already true, with **six whole levels given away**:
+Aldric's Minimum and Triumph, Nahr's Minimum, Lyra's Victory (now repriced by
+D-048), and both of Vaerax's lower rungs.
+
+Not all of these are wrong. A clause asking for a tag to be *absent* is a stake,
+not a gift: "the crown was not broken" is true until somebody breaks it, and
+Aldric's Triumph is 3/3 free at the start and still reaches TRIUMPH only 3 times
+in 40, because the year takes it off him. That is the mechanism working.
+
+Vaerax is the one that is not working. His Victory is two absent-tags and nothing
+else, and he reports VICTORY in 37-40 Chronicles out of 40 - in CHR_02, **40 out
+of 40**. He wins by sitting still, and after D-048 he wins while the seat he is
+in direct conflict with wins 6 times in 40. The asymmetry is now the loudest
+thing in the standings.
+
+Recorded rather than tuned, and deliberately: D-048 already moved one seat from
+best at the table to worst, and moving a second one in the same pass would make
+neither measurable. The next pass should start from this probe's first table -
+what is already true before the year starts - rather than from the outcome
+counts, because the outcome counts are where this hid for four milestones.
 
 ### O-13 — `P_ANY_LEAVE` is a proposition nobody would ever make
 **closed by D-036.** Not with the first fix: giving it `ADJUST_TENSION -2` was

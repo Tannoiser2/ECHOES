@@ -1,0 +1,341 @@
+{
+  "schema_id": "entity",
+  "version": "0.2.0",
+  "items": [
+    {
+      "id": "ENT_SALE",
+      "name": "Maestra Ilve",
+      "archetype": "FACTION",
+      "need": "WEALTH",
+      "description": "Alla testa della Gilda del Sale, che non possiede nessuna citta e tiene il registro di tutte. Non chiede obbedienza: chiede una firma.",
+      "action_values": {
+        "ACQUIRE": 4,
+        "MOVE": 2,
+        "INFLUENCE": 3,
+        "FORGE": 3,
+        "SCHEME": 2,
+        "CLAIM": 2
+      },
+      "starting_assets": [
+        "AST_WEALTH_GRAIN",
+        "AST_AUTHORITY_EDICT"
+      ],
+      "relations": [
+        {
+          "with": "ENT_LIBERE",
+          "level": "HOSTILE",
+          "tags": [
+            "DEBT"
+          ]
+        },
+        {
+          "with": "ENT_VETRO",
+          "level": "NEUTRAL",
+          "tags": []
+        },
+        {
+          "with": "ENT_CENERE",
+          "level": "ALLY",
+          "tags": [
+            "PACT"
+          ]
+        }
+      ],
+      "presence": [
+        "REG_STRADA_MERCANTI",
+        "REG_EREDAN"
+      ],
+      "destiny_id": "DST_SALE",
+      "private_information": "Tre delle sette citta non pagheranno mai. La Gilda lo sa da due anni e non lo ha scritto.",
+      "tags": [
+        "guild"
+      ],
+      "active": true,
+      "art_prompt_key": "entity.sale",
+      "marker_id": "MK_ENT_SALE",
+      "persistence": "MORTAL",
+      "successors": [
+        {
+          "name": "Maestro Ordan",
+          "description": "Il primo a proporre che il registro fosse letto anche da fuori. Non ando in porto, e non lo ritiro mai."
+        },
+        {
+          "name": "Maestra Ceva",
+          "description": "Comprava i debiti prima che diventassero domande."
+        },
+        {
+          "name": "Maestro Ruel",
+          "description": "Sotto di lui la Gilda smise di prestare a chi non aveva mura."
+        },
+        {
+          "name": "Maestra Sadin",
+          "description": "Diceva che una firma vale finche qualcuno ha voglia di leggerla."
+        }
+      ],
+      "destiny_pool": [
+        "DST_SALE",
+        "DST_SALE_OPEN"
+      ],
+      "name_grammar": {
+        "pattern": "{title} {given}{ordinal}",
+        "given": [
+          "Velan",
+          "Turi",
+          "Onara",
+          "Mesc",
+          "Ivrea",
+          "Dalon",
+          "Sperta",
+          "Nemi",
+          "Coran",
+          "Bissa",
+          "Ferro",
+          "Alda"
+        ],
+        "titles": [
+          "Maestro",
+          "Maestra"
+        ]
+      }
+    },
+    {
+      "id": "ENT_VETRO",
+      "name": "Priore Anselmo",
+      "archetype": "CULT",
+      "need": "FAITH",
+      "description": "Guida l'Ordine del Vetro, che discende da una scuola e si comporta da fede. Custodisce quello che fu misurato, e la regola dice che misurarlo di nuovo sarebbe rimetterlo in discussione.",
+      "action_values": {
+        "ACQUIRE": 2,
+        "MOVE": 2,
+        "INFLUENCE": 3,
+        "FORGE": 3,
+        "SCHEME": 4,
+        "CLAIM": 3
+      },
+      "starting_assets": [
+        "AST_KNOWLEDGE_PROOF",
+        "AST_BONDS_OATH"
+      ],
+      "relations": [
+        {
+          "with": "ENT_CENERE",
+          "level": "ENEMY",
+          "tags": [
+            "VENDETTA"
+          ]
+        },
+        {
+          "with": "ENT_SALE",
+          "level": "NEUTRAL",
+          "tags": []
+        },
+        {
+          "with": "ENT_LIBERE",
+          "level": "ALLY",
+          "tags": []
+        }
+      ],
+      "presence": [
+        "REG_MINIERE_ANTICHE",
+        "REG_MONTAGNE_ROSSE"
+      ],
+      "destiny_id": "DST_VETRO",
+      "private_information": "Il registro antico ha una pagina strappata, e l'Ordine non sa cosa ci fosse scritto.",
+      "tags": [
+        "order"
+      ],
+      "active": true,
+      "art_prompt_key": "entity.vetro",
+      "marker_id": "MK_ENT_VETRO",
+      "persistence": "MORTAL",
+      "successors": [
+        {
+          "name": "Priora Ilaria",
+          "description": "Fece murare la seconda teca senza dire cosa contenesse."
+        },
+        {
+          "name": "Priore Teodo",
+          "description": "Sosteneva che una regola che non si puo spiegare non e una regola."
+        },
+        {
+          "name": "Priora Vesna",
+          "description": "Sotto di lei l'Ordine smise di insegnare a leggere il registro antico."
+        },
+        {
+          "name": "Priore Malco",
+          "description": "L'ultimo ad aver visto la reliquia, e non lo ha mai confermato."
+        }
+      ],
+      "destiny_pool": [
+        "DST_VETRO",
+        "DST_VETRO_SHOWN"
+      ],
+      "name_grammar": {
+        "pattern": "{title} {given}{ordinal}",
+        "given": [
+          "Amerio",
+          "Isaura",
+          "Crino",
+          "Bendetta",
+          "Ilario",
+          "Norma",
+          "Fabro",
+          "Serena",
+          "Ottavio",
+          "Perpetua",
+          "Ruggero",
+          "Vittoria"
+        ],
+        "titles": [
+          "Priore",
+          "Priora"
+        ]
+      }
+    },
+    {
+      "id": "ENT_CENERE",
+      "name": "Kessa dei Fuochi",
+      "archetype": "FACTION",
+      "need": "POWER",
+      "description": "Parla per i Signori della Cenere, che tengono le Montagne Rosse e campano di quello che l'antica miniera ha lasciato indietro. Sanno che sotto c'e di piu.",
+      "action_values": {
+        "ACQUIRE": 3,
+        "MOVE": 3,
+        "INFLUENCE": 3,
+        "FORGE": 2,
+        "SCHEME": 3,
+        "CLAIM": 4
+      },
+      "starting_assets": [
+        "AST_FORCE_LEVY",
+        "AST_KNOWLEDGE_RUMOR"
+      ],
+      "relations": [
+        {
+          "with": "ENT_VETRO",
+          "level": "ENEMY",
+          "tags": [
+            "VENDETTA"
+          ]
+        },
+        {
+          "with": "ENT_SALE",
+          "level": "ALLY",
+          "tags": []
+        },
+        {
+          "with": "ENT_LIBERE",
+          "level": "NEUTRAL",
+          "tags": []
+        }
+      ],
+      "presence": [
+        "REG_MONTAGNE_ROSSE",
+        "REG_MINIERE_ANTICHE"
+      ],
+      "destiny_id": "DST_CENERE",
+      "private_information": "La galleria bassa e gia aperta da un anno. Dentro non hanno ancora trovato niente, e questo li spaventa piu del contrario.",
+      "tags": [
+        "ash"
+      ],
+      "active": true,
+      "art_prompt_key": "entity.cenere",
+      "marker_id": "MK_ENT_CENERE",
+      "persistence": "MORTAL",
+      "successors": [
+        {
+          "name": "Toldan dei Fuochi",
+          "description": "Il primo a vendere il calore invece della pietra."
+        },
+        {
+          "name": "Neve dei Fuochi",
+          "description": "Chiuse tre gallerie in un mese e non spiego perche."
+        },
+        {
+          "name": "Grim dei Fuochi",
+          "description": "Sotto di lui la Cenere cominciò a chiamarsi un popolo e non un mestiere."
+        },
+        {
+          "name": "Arla dei Fuochi",
+          "description": "Diceva che la montagna paga chi la ascolta e seppellisce chi la interroga."
+        }
+      ],
+      "destiny_pool": [
+        "DST_CENERE",
+        "DST_CENERE_DEEP"
+      ],
+      "name_grammar": {
+        "pattern": "{given} dei Fuochi{ordinal}",
+        "given": [
+          "Orsa",
+          "Turno",
+          "Ferra",
+          "Baldo",
+          "Cinzia",
+          "Marek",
+          "Duna",
+          "Loris",
+          "Vera",
+          "Ansel",
+          "Bruna",
+          "Teo"
+        ]
+      }
+    },
+    {
+      "id": "ENT_LIBERE",
+      "name": "Le Citta Libere",
+      "archetype": "PEOPLE",
+      "need": "FREEDOM",
+      "description": "Sette citta che si governano da sole e si riuniscono solo quando non possono evitarlo. Non hanno una capitale, e considerano questo il loro unico principio.",
+      "action_values": {
+        "ACQUIRE": 3,
+        "MOVE": 3,
+        "INFLUENCE": 4,
+        "FORGE": 3,
+        "SCHEME": 1,
+        "CLAIM": 3
+      },
+      "starting_assets": [
+        "AST_PEOPLE_MOBILIZATION",
+        "AST_AUTHORITY_SEAL"
+      ],
+      "relations": [
+        {
+          "with": "ENT_SALE",
+          "level": "HOSTILE",
+          "tags": [
+            "DEBT"
+          ]
+        },
+        {
+          "with": "ENT_VETRO",
+          "level": "ALLY",
+          "tags": []
+        },
+        {
+          "with": "ENT_CENERE",
+          "level": "NEUTRAL",
+          "tags": []
+        }
+      ],
+      "presence": [
+        "REG_EREDAN",
+        "REG_VALLE_VERDE"
+      ],
+      "destiny_id": "DST_LIBERE",
+      "private_information": "Quattro citta su sette hanno gia scritto la propria carta, e sono incompatibili fra loro.",
+      "tags": [
+        "free_cities"
+      ],
+      "active": true,
+      "art_prompt_key": "entity.libere",
+      "marker_id": "MK_ENT_LIBERE",
+      "persistence": "COLLECTIVE",
+      "destiny_pool": [
+        "DST_LIBERE",
+        "DST_LIBERE_WATER"
+      ]
+    }
+  ]
+}

@@ -75,12 +75,18 @@ static func plan(
 		# mountain do. Which is which is authored, not guessed.
 		if str(definition.get("persistence", "MORTAL")) == "MORTAL" and years >= LIFETIME_YEARS:
 			var successors: Array = definition.get("successors", [])
-			if not successors.is_empty():
+			if not successors.is_empty() or definition.has("name_grammar"):
 				generation += 1
-				var successor: Dictionary = successors[(generation - 1) % successors.size()]
-				name = str(successor["name"])
+				if generation <= successors.size():
+					# The first generations are written by hand, with a line each
+					# about who they were. Those are the interesting ones.
+					var successor: Dictionary = successors[generation - 1]
+					name = str(successor["name"])
+					note = str(successor.get("description", ""))
+				else:
+					name = compose_name(definition, generation - successors.size())
+					note = "%s generazione della casa" % _ordinal_word(generation + 1)
 				changed = true
-				note = str(successor.get("description", ""))
 
 		# Whoever is sitting there now: if the seat got what it wanted, it wants
 		# the next thing. If it did not, it tries again - and *that* is what
@@ -102,6 +108,56 @@ static func plan(
 			"note": note,
 		}
 	return out
+
+
+## A name for a generation nobody wrote down.
+##
+## Any hand-written list runs out: the first audit of this feature used four
+## names per house and a ten-Chronicle saga wore them out at the sixth jump, so
+## a second "Re Serane" sat down four centuries after the first one and read as
+## a bug rather than as a tradition (D-046).
+##
+## So the house declares how it makes names instead of listing them: a pattern
+## with slots, a bag of given names, titles, epithets. The choice is a pure
+## function of the generation - no RNG - so a saga stays reproducible and a name
+## is stable no matter when it is asked for.
+##
+## Numbering is what makes it endless *and* right: houses do reuse names, which
+## is precisely why they number them. Serane, then Serane II four generations
+## later. That is a tradition; it is not a repeat.
+static func compose_name(definition: Dictionary, index: int) -> String:
+	var grammar: Dictionary = definition.get("name_grammar", {})
+	var given: Array = grammar.get("given", [])
+	if given.is_empty():
+		return str(definition["name"])
+
+	var step: int = maxi(0, index - 1)
+	var cycle: int = step / given.size()
+	var out: String = str(grammar.get("pattern", "{given}"))
+	out = out.replace("{given}", str(given[step % given.size()]))
+	out = out.replace("{ordinal}", "" if cycle == 0 else " %s" % _roman(cycle + 1))
+	out = out.replace("{title}", _pick(grammar.get("titles", []), cycle, "Re"))
+	out = out.replace("{epithet}", _pick(grammar.get("epithets", []), cycle, ""))
+	return out.strip_edges()
+
+
+static func _pick(options: Array, index: int, fallback: String) -> String:
+	return fallback if options.is_empty() else str(options[index % options.size()])
+
+
+const ROMAN: Array = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"]
+const ORDINALS: Array = [
+	"", "prima", "seconda", "terza", "quarta", "quinta", "sesta", "settima",
+	"ottava", "nona", "decima", "undicesima", "dodicesima",
+]
+
+
+static func _roman(value: int) -> String:
+	return str(ROMAN[value]) if value < ROMAN.size() else str(value)
+
+
+static func _ordinal_word(value: int) -> String:
+	return str(ORDINALS[value]) if value < ORDINALS.size() else "%da" % value
 
 
 ## One step towards NEUTRAL, applied to a relation level. Time softens; it does

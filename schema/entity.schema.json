@@ -214,6 +214,43 @@
             "type": "string",
             "pattern": "^DST_[A-Z0-9_]+$"
           }
+        },
+        "name_grammar": {
+          "type": "object",
+          "description": "Come questa casa fa i nomi quando la lista dei successori scritti a mano finisce. Serve perche una saga lunga non ha un numero di generazioni deciso in anticipo: dodici nomi bastano per dodici salti e poi ricominciano, ed e esattamente quello che un audit di dieci Chronicle ha trovato (D-046).",
+          "required": [
+            "pattern",
+            "given"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "pattern": {
+              "type": "string",
+              "description": "Le fessure disponibili: {title} {given} {ordinal} {epithet}."
+            },
+            "given": {
+              "type": "array",
+              "minItems": 2,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "titles": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "epithets": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
         }
       }
     }

@@ -1,0 +1,533 @@
+{
+  "schema_id": "echo_card",
+  "version": "0.2.0",
+  "items": [
+    {
+      "id": "ECH_SILT",
+      "title": "Interramento",
+      "dramatic_family": "PRESSURE",
+      "function_id": "LACK",
+      "description": "Un canale che si chiude non fa rumore. Se ne accorge chi sta in fondo, un anno dopo tutti gli altri.",
+      "eligibility": [
+        {
+          "type": "tension_limit",
+          "tension_id": "TEN_WATER",
+          "min": 0,
+          "label": "TEN_WATER e in gioco quest'anno"
+        }
+      ],
+      "effect_hooks": [
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "ADJUST_TENSION",
+            "target": {
+              "kind": "tension",
+              "id": "TEN_WATER"
+            },
+            "payload": {
+              "delta": 1
+            }
+          }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "SET_REGION_TAG",
+            "target": {
+              "kind": "region",
+              "id": "REG_VALLE_VERDE"
+            },
+            "payload": {
+              "tag": "condition:lean"
+            }
+          }
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.pressure.silt"
+    },
+    {
+      "id": "ECH_CALL_OF_ACCOUNTS",
+      "title": "La Chiamata",
+      "dramatic_family": "PRESSURE",
+      "function_id": "REQUEST",
+      "description": "La Gilda scrive a tre citta lo stesso giorno. Non chiede di pagare: chiede di confermare la cifra.",
+      "eligibility": [
+        {
+          "type": "tension_limit",
+          "tension_id": "TEN_DEBT",
+          "min": 0,
+          "label": "TEN_DEBT e in gioco quest'anno"
+        }
+      ],
+      "effect_hooks": [
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "ADJUST_TENSION",
+            "target": {
+              "kind": "tension",
+              "id": "TEN_DEBT"
+            },
+            "payload": {
+              "delta": 1
+            }
+          }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "SET_REGION_TAG",
+            "target": {
+              "kind": "region",
+              "id": "REG_STRADA_MERCANTI"
+            },
+            "payload": {
+              "tag": "condition:indebted"
+            }
+          }
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.pressure.call_of_accounts"
+    },
+    {
+      "id": "ECH_VIGIL_MOVED",
+      "title": "La Veglia Spostata",
+      "dramatic_family": "PRESSURE",
+      "function_id": "OMEN",
+      "description": "L'Ordine cambia l'ora delle veglie e non lo annuncia. Chi abita vicino conta le campane.",
+      "eligibility": [
+        {
+          "type": "tension_limit",
+          "tension_id": "TEN_RELIC",
+          "min": 0,
+          "label": "TEN_RELIC e in gioco quest'anno"
+        }
+      ],
+      "effect_hooks": [
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "ADJUST_TENSION",
+            "target": {
+              "kind": "tension",
+              "id": "TEN_RELIC"
+            },
+            "payload": {
+              "delta": 1
+            }
+          }
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.pressure.vigil_moved"
+    },
+    {
+      "id": "ECH_TWO_VERDICTS",
+      "title": "Due Sentenze",
+      "dramatic_family": "RUPTURE",
+      "function_id": "VIOLATION",
+      "description": "Lo stesso caso, due citta, due sentenze opposte. Entrambe applicate, entrambe legittime.",
+      "eligibility": [
+        {
+          "type": "tension_limit",
+          "tension_id": "TEN_CHARTER",
+          "min": 0,
+          "label": "TEN_CHARTER e in gioco quest'anno"
+        }
+      ],
+      "effect_hooks": [
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "ADJUST_TENSION",
+            "target": {
+              "kind": "tension",
+              "id": "TEN_CHARTER"
+            },
+            "payload": {
+              "delta": 2
+            }
+          }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "SET_REGION_TAG",
+            "target": {
+              "kind": "region",
+              "id": "REG_EREDAN"
+            },
+            "payload": {
+              "tag": "condition:contested"
+            }
+          }
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.rupture.two_verdicts"
+    },
+    {
+      "id": "ECH_THE_CRACK",
+      "title": "La Crepa",
+      "dramatic_family": "RUPTURE",
+      "function_id": "THREAT",
+      "description": "Nella galleria bassa si apre una crepa da cui esce aria calda. I Signori della Cenere la puntellano e non lo scrivono da nessuna parte.",
+      "eligibility": [
+        {
+          "type": "tension_limit",
+          "tension_id": "TEN_RELIC",
+          "min": 0,
+          "label": "TEN_RELIC e in gioco quest'anno"
+        }
+      ],
+      "effect_hooks": [
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "ADJUST_TENSION",
+            "target": {
+              "kind": "tension",
+              "id": "TEN_RELIC"
+            },
+            "payload": {
+              "delta": 2
+            }
+          }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "SET_REGION_TAG",
+            "target": {
+              "kind": "region",
+              "id": "REG_MINIERE_ANTICHE"
+            },
+            "payload": {
+              "tag": "condition:unrest"
+            }
+          }
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.rupture.the_crack"
+    },
+    {
+      "id": "ECH_THE_FIRES_OUTSIDE",
+      "title": "I Fuochi Fuori",
+      "dramatic_family": "RUPTURE",
+      "function_id": "SEPARATION",
+      "description": "Fuori dalle mura i fuochi sono gli stessi di ottobre. Dentro le mura si smette di contarli.",
+      "eligibility": [
+        {
+          "type": "tension_limit",
+          "tension_id": "TEN_WATER",
+          "min": 0,
+          "label": "TEN_WATER e in gioco quest'anno"
+        }
+      ],
+      "effect_hooks": [
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "ADJUST_TENSION",
+            "target": {
+              "kind": "tension",
+              "id": "TEN_WATER"
+            },
+            "payload": {
+              "delta": 1
+            }
+          }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "SET_REGION_TAG",
+            "target": {
+              "kind": "region",
+              "id": "REG_TERRE_NAHR"
+            },
+            "payload": {
+              "tag": "condition:emptied"
+            }
+          }
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.rupture.the_fires_outside"
+    },
+    {
+      "id": "ECH_THE_COPY",
+      "title": "La Copia",
+      "dramatic_family": "TURN",
+      "function_id": "DISCOVERY",
+      "description": "Salta fuori una copia del registro antico in una casa dove nessuno sa leggerlo. Adesso lo sanno in tre.",
+      "eligibility": [
+        {
+          "type": "tension_limit",
+          "tension_id": "TEN_RELIC",
+          "min": 0,
+          "label": "TEN_RELIC e in gioco quest'anno"
+        }
+      ],
+      "effect_hooks": [
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "ADJUST_TENSION",
+            "target": {
+              "kind": "tension",
+              "id": "TEN_RELIC"
+            },
+            "payload": {
+              "delta": 1
+            }
+          }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "SET_TENSION_VISIBILITY",
+            "target": {
+              "kind": "tension",
+              "id": "TEN_RELIC"
+            },
+            "payload": {
+              "visibility": "OPEN"
+            }
+          }
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.turn.the_copy"
+    },
+    {
+      "id": "ECH_THE_SHORT_YEAR",
+      "title": "L'Anno Corto",
+      "dramatic_family": "TURN",
+      "function_id": "TRANSFORMATION",
+      "description": "Il fiume arriva sei settimane in ritardo e riparte in anticipo. Nessuno lo chiama siccita: si dice che e' stato un anno corto.",
+      "eligibility": [
+        {
+          "type": "tension_limit",
+          "tension_id": "TEN_WATER",
+          "min": 0,
+          "label": "TEN_WATER e in gioco quest'anno"
+        }
+      ],
+      "effect_hooks": [
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "ADJUST_TENSION",
+            "target": {
+              "kind": "tension",
+              "id": "TEN_WATER"
+            },
+            "payload": {
+              "delta": 2
+            }
+          }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "ADJUST_TENSION",
+            "target": {
+              "kind": "tension",
+              "id": "TEN_DEBT"
+            },
+            "payload": {
+              "delta": 1
+            }
+          }
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.turn.the_short_year"
+    },
+    {
+      "id": "ECH_THE_LONG_TABLE",
+      "title": "Il Tavolo Lungo",
+      "dramatic_family": "RESOLUTION",
+      "function_id": "RECONCILIATION",
+      "description": "Si mette un tavolo abbastanza lungo perche ci stiano tutti seduti, e si scopre che era quello il problema.",
+      "eligibility": [
+        {
+          "type": "tension_limit",
+          "tension_id": "TEN_CHARTER",
+          "min": 0,
+          "label": "TEN_CHARTER e in gioco quest'anno"
+        }
+      ],
+      "effect_hooks": [
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "ADJUST_TENSION",
+            "target": {
+              "kind": "tension",
+              "id": "TEN_CHARTER"
+            },
+            "payload": {
+              "delta": -2
+            }
+          }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "ADJUST_TENSION",
+            "target": {
+              "kind": "tension",
+              "id": "TEN_DEBT"
+            },
+            "payload": {
+              "delta": -1
+            }
+          }
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.resolution.the_long_table"
+    },
+    {
+      "id": "ECH_THE_DUG_SEASON",
+      "title": "La Stagione Scavata",
+      "dramatic_family": "RESOLUTION",
+      "function_id": "GIFT",
+      "description": "Due stagioni di braccia, e l'acqua arriva dove arrivava prima. Non e' un miracolo: e' terra tolta.",
+      "eligibility": [
+        {
+          "type": "tension_limit",
+          "tension_id": "TEN_WATER",
+          "min": 0,
+          "label": "TEN_WATER e in gioco quest'anno"
+        }
+      ],
+      "effect_hooks": [
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "ADJUST_TENSION",
+            "target": {
+              "kind": "tension",
+              "id": "TEN_WATER"
+            },
+            "payload": {
+              "delta": -2
+            }
+          }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "SET_REGION_TAG",
+            "target": {
+              "kind": "region",
+              "id": "REG_VALLE_VERDE"
+            },
+            "payload": {
+              "tag": "structure:canal"
+            }
+          }
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.resolution.the_dug_season"
+    },
+    {
+      "id": "ECH_WRITTEN_DOWN",
+      "title": "Messo per Iscritto",
+      "dramatic_family": "RESOLUTION",
+      "function_id": "LIBERATION",
+      "description": "Non si risolve niente: si scrive. E qualche anno dopo si scopre che scrivere era risolvere.",
+      "eligibility": [
+        {
+          "type": "tension_limit",
+          "tension_id": "TEN_CHARTER",
+          "min": 0,
+          "label": "TEN_CHARTER e in gioco quest'anno"
+        }
+      ],
+      "effect_hooks": [
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "ADJUST_TENSION",
+            "target": {
+              "kind": "tension",
+              "id": "TEN_CHARTER"
+            },
+            "payload": {
+              "delta": -1
+            }
+          }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "SET_GLOBAL_TAG",
+            "target": {
+              "kind": "world",
+              "id": "WORLD"
+            },
+            "payload": {
+              "tag": "charter_temporary"
+            }
+          }
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.resolution.written_down"
+    },
+    {
+      "id": "ECH_THE_QUIET_SHAFT",
+      "title": "Il Pozzo Zitto",
+      "dramatic_family": "TURN",
+      "function_id": "RETURN",
+      "description": "La crepa smette di soffiare da sola. I Signori della Cenere tornano a scendere, e stavolta lo scrivono.",
+      "eligibility": [
+        {
+          "type": "tension_limit",
+          "tension_id": "TEN_ASH",
+          "min": 0,
+          "label": "TEN_ASH e in gioco quest'anno"
+        }
+      ],
+      "effect_hooks": [
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "ADJUST_TENSION",
+            "target": {
+              "kind": "tension",
+              "id": "TEN_ASH"
+            },
+            "payload": {
+              "delta": -1
+            }
+          }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "ADJUST_TENSION",
+            "target": {
+              "kind": "tension",
+              "id": "TEN_RELIC"
+            },
+            "payload": {
+              "delta": 1
+            }
+          }
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.turn.the_quiet_shaft"
+    }
+  ]
+}

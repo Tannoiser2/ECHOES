@@ -54,20 +54,47 @@ func _destiny(entity_id: String, session: RefCounted) -> Dictionary:
 	return {} if destiny == null else destiny
 
 
-## The conditions that actually matter right now: those of the lowest level this
-## Entity has not yet reached. A player sitting on Minimum plays for Victory, not
-## for a Triumph clause they cannot get to - and that changes what they do to the
-## Tensions.
-func _live_conditions(entity_id: String, session: RefCounted) -> Array:
+## The rungs of the ladder this Entity has not secured yet, lowest first.
+##
+## A player plays for the nearest thing they have not got - Minimum before
+## Victory, Victory before Triumph - which is why this is a list in order and not
+## a pile. Everything already held is dropped: there is nothing to play for in a
+## clause that is already true.
+func _open_levels(entity_id: String, session: RefCounted) -> Array:
 	var destiny: Dictionary = _destiny(entity_id, session)
 	if destiny.is_empty():
 		return []
+	var out: Array = []
 	for level in ["minimum", "victory", "triumph"]:
 		var conditions: Array = destiny[level]["conditions"]
 		if not session.destinies.conditions.all_hold(conditions, {}):
-			return conditions
+			out.append(conditions)
 	# Everything already holds: defend the whole ladder.
-	return _conditions(entity_id, session)
+	return [_conditions(entity_id, session)] if out.is_empty() else out
+
+
+## The conditions that actually matter right now (D-047).
+##
+## This used to be the lowest rung and nothing else, on the reasoning that a
+## player sitting on Minimum plays for Victory rather than for a Triumph clause
+## they cannot get to. It is right about the order and wrong about the stopping:
+## a rung whose remaining clauses are all *negative* - "the mine is not sealed",
+## "the road is still open" - asks nothing of anybody, and a seat focused on it
+## stops playing. Lyra reached that rung in round two and spent the other eight
+## rounds drawing cards she never used.
+##
+## So the rule is: play the nearest rung that gives you something to do, and if
+## it gives you nothing, reach past it. `wants` is the test - it takes a rung and
+## returns what that rung asks for.
+func _nearest_demanding(entity_id: String, session: RefCounted, wants: Callable) -> Dictionary:
+	var fallback: Dictionary = {}
+	for conditions in _open_levels(entity_id, session):
+		var asked: Dictionary = wants.call(conditions as Array)
+		if not asked.is_empty():
+			return asked
+		if fallback.is_empty():
+			fallback = asked
+	return fallback
 
 
 ## Tension goals: tension_id -> desired direction (-1 wants it low, +1 high).
@@ -78,9 +105,16 @@ func _live_conditions(entity_id: String, session: RefCounted) -> Array:
 ##     "I need that Confluence to actually happen", which means pushing the
 ##     Tension that opens it *up* to its threshold.
 func _tension_goals(entity_id: String, session: RefCounted) -> Dictionary:
-	var goals: Dictionary = {}
-	var live: Array = _live_conditions(entity_id, session)
+	return _nearest_demanding(
+		entity_id,
+		session,
+		func(live: Array) -> Dictionary: return _goals_of(entity_id, session, live)
+	)
 
+
+## What one rung of the ladder asks of the Tensions.
+func _goals_of(entity_id: String, session: RefCounted, live: Array) -> Dictionary:
+	var goals: Dictionary = {}
 	for tension_id in _needed_confluences(entity_id, session, live):
 		goals[str(tension_id)] = 1
 

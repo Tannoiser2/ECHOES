@@ -54,6 +54,36 @@ func test_only_mortals_are_replaced_and_only_after_a_lifetime() -> void:
 	)
 
 
+## A saga has no agreed number of generations, so a hand-written list of names
+## is a list that runs out - and the first audit of this feature wore four names
+## out at the sixth jump, seating a second "Re Serane" four centuries after the
+## first. Thirty generations, thirty names (D-046).
+func test_a_house_never_runs_out_of_names() -> void:
+	for entity_id in ["ENT_ALDRIC", "ENT_LYRA"]:
+		var definition: Dictionary = data().entities[str(entity_id)]
+		var successors: Array = definition.get("successors", [])
+		var seen: Dictionary = {}
+		for generation in range(1, 31):
+			var name: String = (
+				str(successors[generation - 1]["name"]) if generation <= successors.size()
+				else Succession.compose_name(definition, generation - successors.size())
+			)
+			assert_true(name != "", "%s, generazione %d ha un nome" % [entity_id, generation])
+			assert_false(
+				seen.has(name),
+				"%s: '%s' si ripete alla generazione %d" % [entity_id, name, generation]
+			)
+			seen[name] = true
+
+		# And it is a pure function of the generation: the same house asked twice
+		# for the same generation gives the same person, which is what keeps a
+		# saga replayable from its seed.
+		assert_eq(
+			Succession.compose_name(definition, 9), Succession.compose_name(definition, 9),
+			"%s: stessa generazione, stesso nome" % entity_id
+		)
+
+
 ## The one that stops a saga from being a rerun: you try again for what you
 ## missed, and you want something else once you have it.
 func test_a_seat_keeps_the_destiny_it_failed_and_drops_the_one_it_won() -> void:

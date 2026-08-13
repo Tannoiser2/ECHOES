@@ -1,0 +1,450 @@
+{
+  "schema_id": "destiny",
+  "version": "0.2.0",
+  "items": [
+    {
+      "id": "DST_SALE",
+      "entity_id": "ENT_SALE",
+      "title": "Il Registro che Tiene",
+      "description": "La Gilda non vuole comandare: vuole che quello che e scritto continui a valere, e che a scriverlo sia lei.",
+      "art_prompt_key": "destiny.sale",
+      "minimum": {
+        "label": "La Gilda e ancora al tavolo",
+        "conditions": [
+          {
+            "type": "entity_alive",
+            "entity_id": "ENT_SALE",
+            "label": "La Gilda esiste ancora"
+          },
+          {
+            "type": "region_presence",
+            "entity_id": "ENT_SALE",
+            "region_id": "REG_STRADA_MERCANTI",
+            "min": 1,
+            "label": "Presenza sulla Strada dei Mercanti"
+          }
+        ]
+      },
+      "victory": {
+        "label": "Quello che e scritto vale",
+        "conditions": [
+          {
+            "type": "state_tag_present",
+            "scope": "ENTITY",
+            "entity_id": "ENT_SALE",
+            "tag": "water_rights",
+            "label": "I diritti sull'acqua sono suoi, per atto"
+          },
+          {
+            "type": "state_tag_absent",
+            "scope": "GLOBAL",
+            "tag": "debt_forgiven",
+            "label": "Nessun debito e stato cancellato"
+          }
+        ]
+      },
+      "triumph": {
+        "label": "E lo scrive lei",
+        "conditions": [
+          {
+            "type": "control_count",
+            "entity_id": "ENT_SALE",
+            "min": 2,
+            "label": "Controllo di almeno 2 Regioni"
+          },
+          {
+            "type": "state_tag_absent",
+            "scope": "GLOBAL",
+            "tag": "ledger_public",
+            "label": "Il registro resta suo"
+          }
+        ]
+      }
+    },
+    {
+      "id": "DST_SALE_OPEN",
+      "entity_id": "ENT_SALE",
+      "title": "Il Registro Aperto",
+      "description": "Una Gilda che ha gia vinto una volta scopre che la firma tiene finche qualcuno si fida. Adesso vuole essere creduta, non solo dovuta.",
+      "art_prompt_key": "destiny.sale.open",
+      "minimum": {
+        "label": "La Gilda esiste ancora",
+        "conditions": [
+          {
+            "type": "entity_alive",
+            "entity_id": "ENT_SALE",
+            "label": "La Gilda esiste ancora"
+          }
+        ]
+      },
+      "victory": {
+        "label": "E il registro si puo leggere",
+        "conditions": [
+          {
+            "type": "state_tag_present",
+            "scope": "GLOBAL",
+            "tag": "ledger_public",
+            "label": "Il registro e stato aperto"
+          },
+          {
+            "type": "control_count",
+            "entity_id": "ENT_SALE",
+            "min": 1,
+            "label": "Almeno una Regione controllata"
+          }
+        ]
+      },
+      "triumph": {
+        "label": "E vale lo stesso",
+        "conditions": [
+          {
+            "type": "state_tag_present",
+            "scope": "GLOBAL",
+            "tag": "water_moves",
+            "label": "L'acqua torna a muoversi, e i lavori li ha pagati lei"
+          },
+          {
+            "type": "region_presence",
+            "entity_id": "ENT_SALE",
+            "region_id": "REG_STRADA_MERCANTI",
+            "min": 1,
+            "label": "Presenza sulla Strada dei Mercanti"
+          }
+        ]
+      }
+    },
+    {
+      "id": "DST_VETRO",
+      "entity_id": "ENT_VETRO",
+      "title": "Quello che Non si Deve Guardare",
+      "description": "L'Ordine custodisce un frammento e una regola. La regola e piu importante del frammento, e va difesa proprio quando qualcuno chiede di vederlo.",
+      "art_prompt_key": "destiny.vetro",
+      "minimum": {
+        "label": "L'Ordine tiene la sua casa",
+        "conditions": [
+          {
+            "type": "entity_alive",
+            "entity_id": "ENT_VETRO",
+            "label": "L'Ordine esiste ancora"
+          },
+          {
+            "type": "region_presence",
+            "entity_id": "ENT_VETRO",
+            "region_id": "REG_MINIERE_ANTICHE",
+            "min": 1,
+            "label": "Presenza nelle Miniere Antiche"
+          }
+        ]
+      },
+      "victory": {
+        "label": "Niente e' uscito, e niente e' stato svuotato",
+        "conditions": [
+          {
+            "type": "state_tag_absent",
+            "scope": "GLOBAL",
+            "tag": "relic_shown",
+            "label": "Nessuno ha aperto la teca"
+          },
+          {
+            "type": "state_tag_absent",
+            "scope": "REGION",
+            "region_id": "REG_MINIERE_ANTICHE",
+            "tag": "condition:emptied",
+            "label": "E le gallerie non sono state abbandonate"
+          }
+        ]
+      },
+      "triumph": {
+        "label": "E la custodia e' un incarico, non una consuetudine",
+        "conditions": [
+          {
+            "type": "state_tag_present",
+            "scope": "ENTITY",
+            "entity_id": "ENT_VETRO",
+            "tag": "discovery:relic",
+            "label": "E cosa ci sia dentro l'Ordine lo ha messo a verbale"
+          },
+          {
+            "type": "state_tag_absent",
+            "scope": "REGION",
+            "region_id": "REG_MONTAGNE_ROSSE",
+            "tag": "condition:unrest",
+            "label": "E sulle Montagne non si e' dovuta imporre"
+          }
+        ]
+      }
+    },
+    {
+      "id": "DST_VETRO_SHOWN",
+      "entity_id": "ENT_VETRO",
+      "title": "La Reliquia Mostrata",
+      "description": "Un Ordine che ha tenuto la teca chiusa e stato creduto sulla parola. Il passo dopo e piu pericoloso: mostrarla, e restare creduto lo stesso.",
+      "art_prompt_key": "destiny.vetro.shown",
+      "minimum": {
+        "label": "L'Ordine esiste ancora",
+        "conditions": [
+          {
+            "type": "entity_alive",
+            "entity_id": "ENT_VETRO",
+            "label": "L'Ordine esiste ancora"
+          }
+        ]
+      },
+      "victory": {
+        "label": "E l'ha mostrata lui",
+        "conditions": [
+          {
+            "type": "state_tag_present",
+            "scope": "GLOBAL",
+            "tag": "relic_shown",
+            "label": "La reliquia e stata mostrata"
+          },
+          {
+            "type": "state_tag_present",
+            "scope": "ENTITY",
+            "entity_id": "ENT_VETRO",
+            "tag": "discovery:relic",
+            "label": "E a mostrarla e stato l'Ordine"
+          }
+        ]
+      },
+      "triumph": {
+        "label": "E la fede e diventata legge",
+        "conditions": [
+          {
+            "type": "state_tag_present",
+            "scope": "GLOBAL",
+            "tag": "charter_written",
+            "label": "C'e una Carta scritta"
+          },
+          {
+            "type": "state_tag_absent",
+            "scope": "GLOBAL",
+            "tag": "no_charter",
+            "label": "E nessuno l'ha rifiutata"
+          }
+        ]
+      }
+    },
+    {
+      "id": "DST_CENERE",
+      "entity_id": "ENT_CENERE",
+      "title": "La Montagna e Nostra",
+      "description": "I Signori della Cenere non discutono di reliquie: discutono di chi decide dove si scava. Vogliono che la risposta sia scritta e sia loro.",
+      "art_prompt_key": "destiny.cenere",
+      "minimum": {
+        "label": "Restano sulla montagna",
+        "conditions": [
+          {
+            "type": "region_presence",
+            "entity_id": "ENT_CENERE",
+            "region_id": "REG_MONTAGNE_ROSSE",
+            "min": 2,
+            "label": "Le Montagne Rosse sono presidiate, non solo abitate"
+          }
+        ]
+      },
+      "victory": {
+        "label": "E la montagna risponde a loro",
+        "conditions": [
+          {
+            "type": "control_count",
+            "entity_id": "ENT_CENERE",
+            "min": 1,
+            "label": "Almeno una Regione controllata"
+          },
+          {
+            "type": "state_tag_present",
+            "scope": "ENTITY",
+            "entity_id": "ENT_CENERE",
+            "tag": "ash_watch",
+            "label": "La veglia sulla montagna e affidata a loro"
+          }
+        ]
+      },
+      "triumph": {
+        "label": "E nessuno viene a dirgli dove fermarsi",
+        "conditions": [
+          {
+            "type": "control_count",
+            "entity_id": "ENT_CENERE",
+            "min": 2,
+            "label": "Controllo di almeno 2 Regioni"
+          },
+          {
+            "type": "state_tag_absent",
+            "scope": "GLOBAL",
+            "tag": "relic_buried",
+            "label": "Nessuno ha richiuso quello che c'e sotto"
+          }
+        ]
+      }
+    },
+    {
+      "id": "DST_CENERE_DEEP",
+      "entity_id": "ENT_CENERE",
+      "title": "Piu a Fondo",
+      "description": "Chi ha ottenuto la montagna scopre di volere quello che c'e sotto la montagna. E' lo stesso desiderio di prima, con meno margine.",
+      "art_prompt_key": "destiny.cenere.deep",
+      "minimum": {
+        "label": "Restano sulla montagna",
+        "conditions": [
+          {
+            "type": "region_presence",
+            "entity_id": "ENT_CENERE",
+            "region_id": "REG_MONTAGNE_ROSSE",
+            "min": 2,
+            "label": "Le Montagne Rosse sono presidiate, non solo abitate"
+          }
+        ]
+      },
+      "victory": {
+        "label": "E hanno visto cosa c'e sotto",
+        "conditions": [
+          {
+            "type": "state_tag_present",
+            "scope": "ENTITY",
+            "entity_id": "ENT_CENERE",
+            "tag": "discovery:relic",
+            "label": "Hanno visto la reliquia con i propri occhi"
+          },
+          {
+            "type": "state_tag_absent",
+            "scope": "REGION",
+            "region_id": "REG_MINIERE_ANTICHE",
+            "tag": "structure:sealed",
+            "label": "Le gallerie non sono state murate"
+          }
+        ]
+      },
+      "triumph": {
+        "label": "E adesso lo sanno tutti",
+        "conditions": [
+          {
+            "type": "state_tag_present",
+            "scope": "GLOBAL",
+            "tag": "relic_shown",
+            "label": "La reliquia e uscita dalla teca"
+          },
+          {
+            "type": "control_count",
+            "entity_id": "ENT_CENERE",
+            "min": 2,
+            "label": "Controllo di almeno 2 Regioni"
+          }
+        ]
+      }
+    },
+    {
+      "id": "DST_LIBERE",
+      "entity_id": "ENT_LIBERE",
+      "title": "Una Legge Senza Corona",
+      "description": "Le citta non vogliono un re e hanno smesso di poter fare a meno di una regola. Il loro problema e scriverne una che non diventi un trono.",
+      "art_prompt_key": "destiny.libere",
+      "minimum": {
+        "label": "Le citta esistono ancora",
+        "conditions": [
+          {
+            "type": "entity_alive",
+            "entity_id": "ENT_LIBERE",
+            "label": "Le citta esistono ancora"
+          },
+          {
+            "type": "region_presence",
+            "entity_id": "ENT_LIBERE",
+            "region_id": "REG_EREDAN",
+            "min": 1,
+            "label": "Presenza a Eredan"
+          }
+        ]
+      },
+      "victory": {
+        "label": "E c'e una Carta, e l'acqua non e' di nessuno",
+        "conditions": [
+          {
+            "type": "state_tag_present",
+            "scope": "GLOBAL",
+            "tag": "charter_written",
+            "label": "La Carta e stata scritta"
+          },
+          {
+            "type": "state_tag_absent",
+            "scope": "GLOBAL",
+            "tag": "water_priced",
+            "label": "E l'acqua non e' finita a prezzo"
+          }
+        ]
+      },
+      "triumph": {
+        "label": "E nessuno l'ha pagata piu degli altri",
+        "conditions": [
+          {
+            "type": "state_tag_present",
+            "scope": "GLOBAL",
+            "tag": "debt_forgiven",
+            "label": "Il debito e stato rimesso"
+          },
+          {
+            "type": "state_tag_absent",
+            "scope": "REGION",
+            "region_id": "REG_EREDAN",
+            "tag": "condition:unrest",
+            "label": "Eredan non e in rivolta"
+          }
+        ]
+      }
+    },
+    {
+      "id": "DST_LIBERE_WATER",
+      "entity_id": "ENT_LIBERE",
+      "title": "L'Acqua Torna a Muoversi",
+      "description": "Scritta la regola, resta il motivo per cui serviva: la Valle non da piu da mangiare a sette citta. Questa volta l'obiettivo si vede da fuori.",
+      "art_prompt_key": "destiny.libere.water",
+      "minimum": {
+        "label": "Le citta esistono ancora",
+        "conditions": [
+          {
+            "type": "entity_alive",
+            "entity_id": "ENT_LIBERE",
+            "label": "Le citta esistono ancora"
+          }
+        ]
+      },
+      "victory": {
+        "label": "E l'acqua si muove",
+        "conditions": [
+          {
+            "type": "state_tag_present",
+            "scope": "GLOBAL",
+            "tag": "water_moves",
+            "label": "I canali sono stati riaperti"
+          },
+          {
+            "type": "region_presence",
+            "entity_id": "ENT_LIBERE",
+            "region_id": "REG_VALLE_VERDE",
+            "min": 1,
+            "label": "Presenza nella Valle Verde"
+          }
+        ]
+      },
+      "triumph": {
+        "label": "E non e di nessuno",
+        "conditions": [
+          {
+            "type": "state_tag_absent",
+            "scope": "GLOBAL",
+            "tag": "water_priced",
+            "label": "L'acqua non e stata messa a prezzo"
+          },
+          {
+            "type": "control_count",
+            "entity_id": "ENT_LIBERE",
+            "min": 1,
+            "label": "Almeno una Regione controllata"
+          }
+        ]
+      }
+    }
+  ]
+}

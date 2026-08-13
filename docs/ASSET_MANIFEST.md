@@ -67,26 +67,35 @@ family, 22 copies per family deck, 132 cards in the box (D-040).
 | AST_WEALTH_SALT | Sale | WEALTH | 1 | COMMON | 4 | DISCARD | `asset.wealth.salt` |
 | AST_WEALTH_TOLL | Pedaggio | WEALTH | 1 | COMMON | 4 | DISCARD | `asset.wealth.toll` |
 
-## Echo cards (24)
+## Echo cards (36)
 | id | titolo | famiglia drammatica | funzione | art_prompt_key |
 |---|---|---|---|---|
+| ECH_CALL_OF_ACCOUNTS | La Chiamata | PRESSURE | REQUEST | `echo.pressure.call_of_accounts` |
 | ECH_EMPTY_THRONE | Sedia Vuota | PRESSURE | THREAT | `echo.pressure.threat` |
 | ECH_LACK | Mancanza | PRESSURE | LACK | `echo.pressure.lack` |
 | ECH_OFFER | L'Offerta | PRESSURE | TEMPTATION | `echo.pressure.temptation` |
 | ECH_OMEN | Presagio | PRESSURE | OMEN | `echo.pressure.omen` |
 | ECH_PETITION | La Supplica | PRESSURE | REQUEST | `echo.pressure.request` |
 | ECH_ROAD_CLOSED | Strada Chiusa | PRESSURE | PROHIBITION | `echo.pressure.prohibition` |
+| ECH_SILT | Interramento | PRESSURE | LACK | `echo.pressure.silt` |
+| ECH_VIGIL_MOVED | La Veglia Spostata | PRESSURE | OMEN | `echo.pressure.vigil_moved` |
 | ECH_AMNESTY | Amnistia | RESOLUTION | LIBERATION | `echo.resolution.liberation` |
 | ECH_CROWNING | Chi Siede | RESOLUTION | SUCCESSION | `echo.resolution.succession` |
 | ECH_RECKONING | Il Conto | RESOLUTION | PUNISHMENT | `echo.resolution.punishment` |
 | ECH_RECONCILIATION | Riconciliazione | RESOLUTION | RECONCILIATION | `echo.resolution.reconciliation` |
 | ECH_ROADS_OPEN | Vie Riaperte | RESOLUTION | RETURN | `echo.resolution.return` |
 | ECH_SACRIFICE | Sacrificio | RESOLUTION | SACRIFICE | `echo.resolution.sacrifice` |
+| ECH_THE_DUG_SEASON | La Stagione Scavata | RESOLUTION | GIFT | `echo.resolution.the_dug_season` |
+| ECH_THE_LONG_TABLE | Il Tavolo Lungo | RESOLUTION | RECONCILIATION | `echo.resolution.the_long_table` |
+| ECH_WRITTEN_DOWN | Messo per Iscritto | RESOLUTION | LIBERATION | `echo.resolution.written_down` |
 | ECH_BETRAYAL | Tradimento | RUPTURE | BETRAYAL | `echo.rupture.betrayal` |
 | ECH_CARAVAN_LOST | Carovana Perduta | RUPTURE | ATTACK | `echo.rupture.attack` |
 | ECH_EXODUS | La Partenza | RUPTURE | SEPARATION | `echo.rupture.separation` |
 | ECH_LOSS | Perdita | RUPTURE | LOSS | `echo.rupture.loss` |
 | ECH_OATH_BROKEN | La Parola Data | RUPTURE | VIOLATION | `echo.rupture.violation` |
+| ECH_THE_CRACK | La Crepa | RUPTURE | THREAT | `echo.rupture.the_crack` |
+| ECH_THE_FIRES_OUTSIDE | I Fuochi Fuori | RUPTURE | SEPARATION | `echo.rupture.the_fires_outside` |
+| ECH_TWO_VERDICTS | Due Sentenze | RUPTURE | VIOLATION | `echo.rupture.two_verdicts` |
 | ECH_USURPATION | Usurpazione | RUPTURE | USURPATION | `echo.rupture.usurpation` |
 | ECH_DISCOVERY | Scoperta | TURN | DISCOVERY | `echo.turn.discovery` |
 | ECH_GOOD_YEAR | Annata Buona | TURN | GIFT | `echo.turn.gift` |
@@ -94,6 +103,9 @@ family, 22 copies per family deck, 132 cards in the box (D-040).
 | ECH_PARLEY | L'Incontro | TURN | ENCOUNTER | `echo.turn.encounter` |
 | ECH_REVELATION | Rivelazione | TURN | REVELATION | `echo.turn.revelation` |
 | ECH_SEIZURE | La Presa | TURN | CONQUEST | `echo.turn.conquest` |
+| ECH_THE_COPY | La Copia | TURN | DISCOVERY | `echo.turn.the_copy` |
+| ECH_THE_QUIET_SHAFT | Il Pozzo Zitto | TURN | RETURN | `echo.turn.the_quiet_shaft` |
+| ECH_THE_SHORT_YEAR | L'Anno Corto | TURN | TRANSFORMATION | `echo.turn.the_short_year` |
 
 ## Region tiles (6)
 | id | nome | biome | ruolo | slot | fonti Asset | art_prompt_key | marker_id |
@@ -105,37 +117,55 @@ family, 22 copies per family deck, 132 cards in the box (D-040).
 | REG_VALLE_VERDE | Valle Verde | VALLEY | PRIMARY | 4 | PEOPLE, WEALTH | `region.valle_verde` | `MK_REG_VALLE_VERDE` |
 | REG_STRADA_MERCANTI | Strada dei Mercanti | ROAD | SECONDARY | 4 | WEALTH, BONDS | `region.strada_mercanti` | `MK_REG_STRADA_MERCANTI` |
 
-## Entity cards (4)
+## Entity cards (8)
 | id | nome | archetipo | bisogno | destiny | art_prompt_key |
 |---|---|---|---|---|---|
 | ENT_ALDRIC | Re Aldric | SOVEREIGN | POWER | DST_ALDRIC | `entity.aldric` |
+| ENT_CENERE | Kessa dei Fuochi | FACTION | POWER | DST_CENERE | `entity.cenere` |
+| ENT_LIBERE | Le Citta Libere | PEOPLE | FREEDOM | DST_LIBERE | `entity.libere` |
 | ENT_LYRA | Lyra | INDIVIDUAL | KNOWLEDGE | DST_LYRA | `entity.lyra` |
 | ENT_NAHR | Popolo Nahr | PEOPLE | SURVIVAL | DST_NAHR | `entity.nahr` |
+| ENT_SALE | Maestra Ilve | FACTION | WEALTH | DST_SALE | `entity.sale` |
 | ENT_VAERAX | Vaerax | CREATURE | PROTECTION | DST_VAERAX | `entity.vaerax` |
+| ENT_VETRO | Priore Anselmo | CULT | FAITH | DST_VETRO | `entity.vetro` |
 
-## Destiny cards (8)
+## Destiny cards (16)
 | id | titolo | entita | Minimum | Victory | Triumph |
 |---|---|---|---|---|---|
 | DST_ALDRIC | Il Regno che Resta | ENT_ALDRIC | Il trono regge | Il regno decide | Un regno che non ha pagato il pane con il sangue |
 | DST_ALDRIC_RECORD | Il Regno che Ricorda | ENT_ALDRIC | La casa siede ancora | Nessuno rilegge la stessa domanda | Un regno che non ha dovuto dividersi per reggere |
+| DST_CENERE | La Montagna e Nostra | ENT_CENERE | Restano sulla montagna | E la montagna risponde a loro | E nessuno viene a dirgli dove fermarsi |
+| DST_CENERE_DEEP | Piu a Fondo | ENT_CENERE | Restano sulla montagna | E hanno visto cosa c'e sotto | E adesso lo sanno tutti |
+| DST_LIBERE | Una Legge Senza Corona | ENT_LIBERE | Le citta esistono ancora | E c'e una Carta, e l'acqua non e' di nessuno | E nessuno l'ha pagata piu degli altri |
+| DST_LIBERE_WATER | L'Acqua Torna a Muoversi | ENT_LIBERE | Le citta esistono ancora | E l'acqua si muove | E non e di nessuno |
 | DST_LYRA | Sapere e Poter Tornare a Guardare | ENT_LYRA | Ha capito qualcosa | Sa, ed e ancora nelle gallerie | Il sapere e diventato pubblico e verificabile |
 | DST_LYRA_TAUGHT | Quello che Resta Insegnato | ENT_LYRA | Qualcuno sa ancora leggere le carte | Il sapere ha un posto suo | Verificabile da chiunque, anche da chi non c'era |
 | DST_NAHR | Una Terra dove Fermarsi | ENT_NAHR | Il popolo sopravvive | Il popolo si ferma | Fermarsi senza smettere di essere Nahr |
 | DST_NAHR_ROOTED | La Terra Sotto i Piedi | ENT_NAHR | Il popolo e ancora qui | La terra risponde a chi la lavora | Radicati senza aver chiuso la porta a nessuno |
+| DST_SALE | Il Registro che Tiene | ENT_SALE | La Gilda e ancora al tavolo | Quello che e scritto vale | E lo scrive lei |
+| DST_SALE_OPEN | Il Registro Aperto | ENT_SALE | La Gilda esiste ancora | E il registro si puo leggere | E vale lo stesso |
 | DST_VAERAX | Cio che Dorme Resti Addormentato | ENT_VAERAX | La montagna e ancora sua | Nessuno ha portato via il Cristallo | Il sonno e stato reso sicuro |
 | DST_VAERAX_WATCHED | Il Sonno Sorvegliato | ENT_VAERAX | La montagna e ancora sua | Nessuno scava piu | Guardato da qualcuno che non lo vuole |
+| DST_VETRO | Quello che Non si Deve Guardare | ENT_VETRO | L'Ordine tiene la sua casa | Niente e' uscito, e niente e' stato svuotato | E la custodia e' un incarico, non una consuetudine |
+| DST_VETRO_SHOWN | La Reliquia Mostrata | ENT_VETRO | L'Ordine esiste ancora | E l'ha mostrata lui | E la fede e diventata legge |
 
-## Tension tracks (6)
+## Tension tracks (12)
 | id | titolo | dominio | iniziale | soglia | visibilita | presagi |
 |---|---|---|---|---|---|---|
+| TEN_ASH | La Cenere che Sale | ANCIENT | 1 | 5 | VEILED | 1 |
 | TEN_AWAKENING | Il Risveglio | ANCIENT | 2 | 6 | VEILED | 2 |
+| TEN_CHARTER | La Carta | TERRITORY | 2 | 7 | OPEN | 1 |
+| TEN_DEBT | Il Debito | RESOURCE | 2 | 7 | OPEN | 1 |
 | TEN_FAMINE | La Carestia | SURVIVAL | 3 | 6 | OPEN | 1 |
+| TEN_NAMELESS | I Senza Citta | SURVIVAL | 2 | 5 | VEILED | 1 |
 | TEN_PLAGUE | La Febbre Bassa | SURVIVAL | 2 | 5 | OPEN | 2 |
+| TEN_RELIC | La Reliquia | ANCIENT | 2 | 6 | VEILED | 2 |
 | TEN_ROADS | Le Vie Interrotte | RESOURCE | 1 | 5 | VEILED | 2 |
 | TEN_SUCCESSION | La Successione | TERRITORY | 2 | 6 | OPEN | 2 |
 | TEN_THIRST | I Pozzi Bassi | SURVIVAL | 1 | 5 | VEILED | 2 |
+| TEN_WATER | L'Acqua Ferma | SURVIVAL | 3 | 6 | OPEN | 1 |
 
-## Map overlays (27)
+## Map overlays (29)
 Ogni tag di Regione che il gioco puo mostrare sulla mappa. `domain:` marca il dominio di Tensione usato da INFLUENCE; `structure:`, `condition:` e `scar:` sono livelli grafici distinti (spec §19.5).
 
 | tag | layer |
@@ -162,8 +192,10 @@ Ogni tag di Regione che il gioco puo mostrare sulla mappa. `domain:` marca il do
 | `settlement:$proponent` | settlement |
 | `settlement:march` | settlement |
 | `settlement:market` | settlement |
+| `structure:canal` | structure |
 | `structure:granary` | structure |
 | `structure:sealed` | structure |
 | `structure:tollgate` | structure |
+| `structure:watchtower` | structure |
 | `trade` | base |
 | `wild` | base |

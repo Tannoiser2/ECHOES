@@ -232,6 +232,11 @@ const DEFS := {
 				"min": 1,
 				"default": 2,
 			},
+			"minimum_confluences": {
+				"type": "int",
+				"min": 0,
+				"default": 0,
+			},
 			"entities": {
 				"type": "Array",
 				"min_items": 2,
@@ -279,6 +284,12 @@ const DEFS := {
 				},
 			},
 			"starting_relations": {
+				"type": "Array",
+				"element": {
+					"type": "Dictionary",
+				},
+			},
+			"starting_control": {
 				"type": "Array",
 				"element": {
 					"type": "Dictionary",
@@ -775,6 +786,9 @@ const DEFS := {
 					"type": "String",
 					"pattern": "^DST_[A-Z0-9_]+$",
 				},
+			},
+			"name_grammar": {
+				"type": "Dictionary",
 			},
 		},
 	},

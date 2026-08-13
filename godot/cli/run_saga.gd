@@ -17,7 +17,14 @@ const DataSet := preload("res://scripts/core/data_set.gd")
 const GameSession := preload("res://scripts/chronicle/game_session.gd")
 const PolicyDecider := preload("res://scripts/seat/policy_decider.gd")
 
-const SEATS: Array = ["ENT_ALDRIC", "ENT_NAHR", "ENT_LYRA", "ENT_VAERAX"]
+
+
+## Chi siede al tavolo lo dice la Chronicle, non questo file: il gioco porta due
+## saghe sulla stessa mappa, e una lista scritta qui sarebbe quella di una sola
+## delle due (D-049).
+func _seats(data: RefCounted, chronicle_id: String) -> Array:
+	var chronicle: Variant = data.chronicles.get(chronicle_id)
+	return [] if chronicle == null else (chronicle["entities"] as Array).duplicate()
 
 
 func _initialize() -> void:
@@ -40,6 +47,7 @@ func _initialize() -> void:
 	var previous: Dictionary = {}
 	var previous_results: Dictionary = {}
 	var saga: Array = []
+	var SEATS: Array = _seats(data, chronicle_id)
 
 	for index in range(chronicles):
 		var session: RefCounted = GameSession.new(data)

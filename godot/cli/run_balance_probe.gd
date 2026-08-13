@@ -17,7 +17,16 @@ const DataSet := preload("res://scripts/core/data_set.gd")
 const GameSession := preload("res://scripts/chronicle/game_session.gd")
 const PolicyDecider := preload("res://scripts/seat/policy_decider.gd")
 
-const SEATS: Array = ["ENT_ALDRIC", "ENT_NAHR", "ENT_LYRA", "ENT_VAERAX"]
+
+
+## Chi siede al tavolo lo dice la Chronicle, non questo file: dalla 0.1.12 il
+## gioco porta due saghe sulla stessa mappa, e una lista scritta qui sarebbe la
+## lista di una sola delle due (D-049).
+func _seats(data: RefCounted, chronicle_id: String) -> Array:
+	var chronicle: Variant = data.chronicles.get(chronicle_id)
+	if chronicle == null:
+		return []
+	return (chronicle["entities"] as Array).duplicate()
 
 
 func _initialize() -> void:
@@ -36,6 +45,7 @@ func _initialize() -> void:
 
 	# Sweep the balance knobs without editing the data: --influence-cap=1
 	# --presence-directions=UP tries a candidate rule set for this run only.
+	var SEATS: Array = _seats(data, chronicle_id)
 	var chronicle: Dictionary = data.chronicles[chronicle_id]
 	if options.has("influence-cap") or options.has("presence-directions") or options.has("tension-cap"):
 		var rules: Dictionary = (chronicle.get("influence_rules", {}) as Dictionary).duplicate(true)
@@ -168,7 +178,7 @@ func _report(
 
 	print("")
 	print("Livelli Destiny raggiunti")
-	for entity_id in SEATS:
+	for entity_id in _seats(data, chronicle_id):
 		var parts: Array = []
 		for level in ["NONE", "MINIMUM", "VICTORY", "TRIUMPH"]:
 			var value: int = int(levels.get("%s/%s" % [entity_id, level], 0))

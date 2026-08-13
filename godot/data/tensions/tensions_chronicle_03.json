@@ -1,0 +1,266 @@
+{
+  "schema_id": "tension",
+  "version": "0.2.0",
+  "items": [
+    {
+      "id": "TEN_WATER",
+      "title": "L'Acqua Ferma",
+      "domain": "SURVIVAL",
+      "current_value": 3,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "WEALTH",
+        "PEOPLE",
+        "KNOWLEDGE"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "Nella Valle si scava di notte, e nessuno dice cosa cerca. Di giorno i canali sono gli stessi di prima.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_WATER_CANALS",
+        "Q_WATER_PRICE"
+      ],
+      "triggers": [
+        "Ogni canale che si insabbia e nessuno ripulisce.",
+        "Ogni pozzo che diventa di qualcuno.",
+        "Ogni estate in cui il fiume arriva piu tardi."
+      ],
+      "decrease_rules": [
+        "Una Confluence risolta su chi scava e chi paga.",
+        "Carte Echo di RISOLUZIONE che spendono braccia vere."
+      ],
+      "linked_tensions": [
+        "TEN_DEBT",
+        "TEN_NAMELESS"
+      ],
+      "confluence_template_id": "CNF_WATER_03",
+      "description": "I canali che Aldric fece scavare ci sono ancora. Sono pieni di terra, e da otto secoli nessuno e obbligato a toglierla.",
+      "focus_region_tags": [
+        "granary",
+        "condition:lean",
+        "structure:canal"
+      ]
+    },
+    {
+      "id": "TEN_DEBT",
+      "title": "Il Debito",
+      "domain": "RESOURCE",
+      "current_value": 2,
+      "threshold": 7,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "WEALTH",
+        "AUTHORITY",
+        "BONDS"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 4,
+          "message": "Tre citta hanno chiesto alla Gilda di rimandare, e la Gilda ha detto di si a due.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_DEBT_LEDGER",
+        "Q_DEBT_CALL"
+      ],
+      "triggers": [
+        "Ogni raccolto comprato in anticipo.",
+        "Ogni citta che paga gli interessi e non il capitale.",
+        "Ogni registro che una parte sola puo leggere."
+      ],
+      "decrease_rules": [
+        "Una Confluence risolta sul registro.",
+        "Un condono, per quanto parziale."
+      ],
+      "linked_tensions": [
+        "TEN_WATER",
+        "TEN_CHARTER"
+      ],
+      "confluence_template_id": "CNF_DEBT_03",
+      "description": "Nessuno ha mai dichiarato guerra alla Gilda del Sale. Le devono tutti dei soldi: e' piu efficace.",
+      "focus_region_tags": [
+        "trade",
+        "condition:indebted",
+        "structure:tollgate"
+      ]
+    },
+    {
+      "id": "TEN_RELIC",
+      "title": "La Reliquia",
+      "domain": "ANCIENT",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "VEILED",
+      "relevant_asset_families": [
+        "KNOWLEDGE",
+        "BONDS",
+        "FORCE"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 4,
+          "message": "L'Ordine ha spostato le veglie di un'ora. Non lo ha annunciato, e chi abita vicino se ne e accorto.",
+          "reveals_value": false
+        },
+        {
+          "at": 6,
+          "message": "La teca e stata aperta per un inventario, e l'inventario non e stato scritto.",
+          "reveals_value": true
+        }
+      ],
+      "possible_questions": [
+        "Q_RELIC_SHOW",
+        "Q_RELIC_KEEP"
+      ],
+      "triggers": [
+        "Ogni volta che qualcuno chiede di vederla.",
+        "Ogni copia del registro antico che salta fuori.",
+        "Ogni Signore della Cenere che scava troppo in basso."
+      ],
+      "decrease_rules": [
+        "Una Confluence risolta su chi la custodisce.",
+        "Sotterrarla di nuovo, e dirlo."
+      ],
+      "linked_tensions": [
+        "TEN_ASH",
+        "TEN_CHARTER"
+      ],
+      "confluence_template_id": "CNF_RELIC_03",
+      "description": "Un frammento del Cristallo Rosso, dentro una teca, dentro una regola: si custodisce, non si guarda. Nessuno dei vivi lo ha visto, e questo e' esattamente il punto.",
+      "focus_region_tags": [
+        "crystal_site",
+        "structure:sealed",
+        "condition:unrest"
+      ]
+    },
+    {
+      "id": "TEN_CHARTER",
+      "title": "La Carta",
+      "domain": "TERRITORY",
+      "current_value": 2,
+      "threshold": 7,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "AUTHORITY",
+        "PEOPLE",
+        "BONDS"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 4,
+          "message": "Due citta hanno giudicato lo stesso caso in modo opposto, e tutte e due hanno ragione.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_CHARTER_WRITE",
+        "Q_CHARTER_SEAT"
+      ],
+      "triggers": [
+        "Ogni sentenza che contraddice quella della citta accanto.",
+        "Ogni confine spostato da chi ci abita e basta.",
+        "Ogni volta che qualcuno dice 'come si e sempre fatto'."
+      ],
+      "decrease_rules": [
+        "Una Confluence risolta su chi scrive la regola.",
+        "Una regola scritta e accettata anche da chi ci perde."
+      ],
+      "linked_tensions": [
+        "TEN_DEBT",
+        "TEN_NAMELESS"
+      ],
+      "confluence_template_id": "CNF_CHARTER_03",
+      "description": "Otto secoli senza corona hanno funzionato benissimo finche nessuno ha avuto bisogno di sapere chi decide.",
+      "focus_region_tags": [
+        "capital",
+        "condition:contested",
+        "condition:unrest"
+      ]
+    },
+    {
+      "id": "TEN_NAMELESS",
+      "title": "I Senza Citta",
+      "domain": "SURVIVAL",
+      "current_value": 2,
+      "threshold": 5,
+      "visibility": "VEILED",
+      "relevant_asset_families": [
+        "PEOPLE",
+        "BONDS",
+        "WEALTH"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 4,
+          "message": "Fuori dalle mura ci sono piu fuochi dell'anno scorso, e sono sempre gli stessi fuochi.",
+          "reveals_value": true
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_WHO_DECIDES",
+        "Q_ANY_WHO_STAYS"
+      ],
+      "triggers": [
+        "Ogni famiglia che nessuna citta iscrive nei propri registri.",
+        "Ogni inverno passato fra due confini."
+      ],
+      "decrease_rules": [
+        "Una Confluence risolta su chi ha diritto di restare."
+      ],
+      "linked_tensions": [
+        "TEN_WATER",
+        "TEN_CHARTER"
+      ],
+      "description": "Non sono nemici e non sono poveri: sono persone che non risultano da nessuna parte, e ogni anno sono di piu.",
+      "focus_region_tags": [
+        "nomad_range",
+        "condition:emptied"
+      ]
+    },
+    {
+      "id": "TEN_ASH",
+      "title": "La Cenere che Sale",
+      "domain": "ANCIENT",
+      "current_value": 1,
+      "threshold": 5,
+      "visibility": "VEILED",
+      "relevant_asset_families": [
+        "FORCE",
+        "KNOWLEDGE",
+        "PEOPLE"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 3,
+          "message": "Sulle Montagne Rosse la neve si scioglie a chiazze, e le chiazze sono sempre le stesse.",
+          "reveals_value": true
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_ANCIENT_WATCH",
+        "Q_ANY_ANCIENT_LEAVE"
+      ],
+      "triggers": [
+        "Ogni galleria riaperta piu in basso di quella prima.",
+        "Ogni notte in cui la roccia resta tiepida fino all'alba."
+      ],
+      "decrease_rules": [
+        "Una Confluence risolta su chi tiene d'occhio la montagna."
+      ],
+      "linked_tensions": [
+        "TEN_RELIC"
+      ],
+      "description": "La montagna ha ricominciato a fumare. I vecchi dicono che l'ha sempre fatto; i registri dell'Ordine dicono di no.",
+      "focus_region_tags": [
+        "crystal_site",
+        "wild"
+      ]
+    }
+  ]
+}

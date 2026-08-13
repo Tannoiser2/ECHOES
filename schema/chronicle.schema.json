@@ -97,6 +97,12 @@
           "minimum": 1,
           "default": 2
         },
+        "minimum_confluences": {
+          "type": "integer",
+          "minimum": 0,
+          "default": 0,
+          "description": "How many Councils this Chronicle guarantees. The world's drift spreads across every question in play and can be one chip short of all of them at once, so a table with nothing to play for produces a year in which nothing was decided. When the last round arrives with fewer Councils than this, the question that came closest is brought to a head. 0 turns the floor off."
+        },
         "entities": {
           "type": "array",
           "minItems": 2,
@@ -218,6 +224,30 @@
                 "items": {
                   "type": "string"
                 }
+              }
+            }
+          }
+        },
+        "starting_control": {
+          "type": "array",
+          "description": "Chi tiene quale Regione all'apertura. La mappa e' condivisa fra le saghe - sono le stesse sei terre a distanza di secoli - quindi il controllo iniziale non puo' stare nella definizione della Regione: quella porterebbe nella seconda saga le casate della prima. Una Regione non nominata qui parte da quello che dice la Regione.",
+          "items": {
+            "type": "object",
+            "required": [
+              "region_id"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "region_id": {
+                "type": "string",
+                "pattern": "^REG_[A-Z0-9_]+$"
+              },
+              "entity_id": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "null vuol dire che non la tiene nessuno."
               }
             }
           }
