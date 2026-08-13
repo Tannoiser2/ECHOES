@@ -25,7 +25,7 @@ Ordine di lavoro (§25, punti 11–16):
 11. ✅ Main Board, mappa, Entity View, Action Dialog — 0.1.0 / 0.1.2 (D-039)
 12. ✅ `HotseatController` e Confluence Board — 0.0.14 / 0.1.1 (D-037, D-038)
 13. ✅ Contenuto completo §19.4 con validazione — 0.1.3, le 48 carte Asset (D-040)
-14. Developer Dashboard
+14. ✅ Developer Dashboard — 0.1.16, le sonde dentro la partita (D-054)
 15. ✅ `CardView` — 0.1.5, la carta dice cosa fa (D-042) · Export Preview e
     placeholder migliorati restano
 16. Issue list / roadmap GitHub-ready finale
@@ -45,7 +45,6 @@ Da chiudere in 0.1:
 - ✅ il set completo dei Destiny a più di 2 condizioni per livello — 16 Destini
   su due saghe, con un controllo al boot che rifiuta una clausola che chiede un
   tag che niente al mondo può scrivere (D-048).
-- **Developer Dashboard** (punto 14) — non fatto.
 - **Export Preview e placeholder d'arte migliorati** (parte del punto 15) — non
   fatti.
 

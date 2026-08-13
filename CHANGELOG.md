@@ -5,6 +5,35 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.16] — Il cruscotto
+
+Tutto quello che questo progetto ha imparato sul proprio gioco è arrivato da una
+sonda da riga di comando, e ogni volta con la stessa forma: qualcuno guarda un
+numero che nessuno stava guardando e scopre che era lì da quattro milestone. Il
+costo di quel giro è che bisogna esportare, rigiocare e rileggere un file —
+quindi lo si fa solo quando si sospetta già qualcosa.
+
+### Added
+
+- **`dev_dashboard.gd`** (§25.14): le stesse quattro tabelle **dentro la partita
+  in corso**, ridisegnate a ogni fase — le domande con quanto le ha spinte il
+  *mondo* e quanto il *tavolo*, la scala di ogni Destino clausola per clausola,
+  i Consigli con S/O/margine, e la coda del registro degli Effect con la
+  sorgente di ogni riga.
+- Sta dietro **F3** e non dietro un bottone, e lo dice in rosso in cima: mostra
+  anche quello che al tavolo è coperto. Nella schermata di verifica il pannello
+  del giocatore dice *«Il Risveglio — velata»* e il cruscotto, nello stesso
+  fotogramma, dice *«Il Risveglio 5/6»*. È esattamente ciò che serve a chi
+  sviluppa ed esattamente ciò che rovina una partita.
+
+### Fixed
+
+- Le clausole vere erano segnate con un segno di spunta che nel font non c'è, e
+  una tabella di clausole vere e false usciva come una colonna di quadratini
+  vuoti. Adesso `[x]` e `[ ]`, come li scrive già il resto del gioco.
+
+---
+
 ## [0.1.15] — Il playtest, e dove la 0.1.14 aveva torto
 
 La D-051 aveva concluso che gli esiti si raggruppano **perché a ogni seggio c'è
