@@ -264,6 +264,18 @@ static func _face_svg(face: Dictionary, x: float, y: float, cell: Vector2) -> St
 				float(drawn["art_h"])
 			))
 
+	# Su una tessera al vivo il testo sta *sopra* l'illustrazione, e su un'arte
+	# chiara sparisce: il nome di Terre Nahr sul suo pascolo giallo non si legge,
+	# e l'id nemmeno. Una fascia scura sotto le righe - solo dove ci sono righe -
+	# lo rimette a galla senza coprire il quadro.
+	if bool(drawn["full_tile"]) and not (drawn["lines"] as Array).is_empty():
+		var first: Dictionary = (drawn["lines"] as Array)[0]
+		var top: float = float(first["y"]) - float(first["size"]) - 1.2
+		out.append(
+			'<rect x="%.2f" y="%.2f" width="%.2f" height="%.2f" fill="#0d0b09" opacity="0.62"/>'
+			% [x, y + top, cell.x, cell.y - top]
+		)
+
 	for line in drawn["lines"]:
 		var item: Dictionary = line
 		out.append(_text(
