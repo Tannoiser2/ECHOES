@@ -11,6 +11,7 @@ extends Control
 ## the same rule the terminal follows (§11.1), applied to pixels.
 
 const RegionArt := preload("res://scripts/core/region_art.gd")
+const Glyph := preload("res://ui/glyph.gd")
 
 ## Quanto e' grande una tessera. Cresce con lo spazio che ha: a schermo intero
 ## una mappa di sei bolli piccoli in mezzo al vuoto spreca l'unica vista che
@@ -285,13 +286,19 @@ func _draw_marks(centre: Vector2, region: Dictionary) -> void:
 	var font: Font = ThemeDB.fallback_font
 	var y: float = _radius + 32.0
 	for mark in marks:
-		var scarred: bool = str(mark).begins_with("scar:")
+		var level: String = str(mark).split(":")[0]
 		var label: String = str(mark).split(":")[1]
-		var width: Vector2 = font.get_string_size(label, HORIZONTAL_ALIGNMENT_LEFT, -1, 11)
+		var tint: Color = Color("#c8553d") if level == "scar" else Color("#8a8172")
+		# Il glifo dice di che *livello* e' il segno - una struttura, una
+		# condizione, un insediamento, una Cicatrice - e la parola dice quale.
+		# Prima c'era solo la parola, e quattro cose diverse si leggevano tutte
+		# uguali: una fila di parole in grigio (ISSUES 6).
+		var size: Vector2 = font.get_string_size(label, HORIZONTAL_ALIGNMENT_LEFT, -1, 11)
+		var left: float = centre.x - (size.x + 14.0) * 0.5
+		Glyph.paint(self, level, Rect2(Vector2(left, y - 9.0), Vector2(10.0, 10.0)), tint)
 		draw_string(
-			font, centre + Vector2(-width.x * 0.5, y), label,
-			HORIZONTAL_ALIGNMENT_LEFT, -1, 11,
-			Color("#c8553d") if scarred else Color("#8a8172")
+			font, Vector2(left + 14.0, y), label,
+			HORIZONTAL_ALIGNMENT_LEFT, -1, 11, tint
 		)
 		y += 14.0
 

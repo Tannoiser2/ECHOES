@@ -119,6 +119,16 @@ Chiavi in uso: `region.<nome>`.
 
 ## Overlay e iconografia
 
+**Fatto in 0.1.20** (`scripts/core/icon_set.gd`, [D-058](DECISIONS.md#d-058)):
+dodici glifi — le sei famiglie, i quattro livelli, i due marker — senza colore,
+disegnati sia sullo schermo sia in stampa dallo stesso piano. La prova del
+monocromatico a 16 px si genera con l'export (`prova_icone.svg`) invece di stare
+qui dentro come immagine: un'immagine in un documento invecchia alla prima
+coordinata ritoccata.
+
+Il vincolo ha già respinto due disegni: la punta di lancia di FORCE, che a 16 px
+era il marker di Tensione, e il compasso di KNOWLEDGE, che era la lettera A.
+
 Gli overlay sono **grafica di sistema**, non illustrazione: vettoriali o
 semi-piatti, leggibili sopra qualunque tile, con un contorno che li stacchi dallo
 sfondo dipinto. Livelli indipendenti (§19.5): biome · structure · control/presence

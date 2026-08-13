@@ -22,6 +22,7 @@ const DataSet := preload("res://scripts/core/data_set.gd")
 const CardFace := preload("res://scripts/core/card_face.gd")
 const PrintSheet := preload("res://scripts/core/print_sheet.gd")
 const ArtBible := preload("res://scripts/core/art_bible.gd")
+const IconSet := preload("res://scripts/core/icon_set.gd")
 
 const LABELS: Dictionary = CardFace.DECK_LABELS
 
@@ -77,9 +78,12 @@ func _initialize() -> void:
 	var brief_path: String = "%s/brief_arte.md" % out_dir
 	_write(brief_path, bible.brief(data))
 	_write("%s/README.md" % out_dir, _readme(index, proof, bible))
+	# La prova del monocromatico a 16 px, che la ART_BIBLE chiede per le icone di
+	# sistema: si rigenera con tutto il resto, quindi non puo' invecchiare.
+	_write("%s/prova_icone.svg" % out_dir, IconSet.proof_svg())
 
 	print("")
-	print("  %d fogli, piu' brief_arte.md e README.md" % written.size())
+	print("  %d fogli, piu' brief_arte.md, prova_icone.svg e README.md" % written.size())
 	var missing: Array = bible.keys_without_prompt(data)
 	if not missing.is_empty():
 		# Non e' un errore dell'export: e' un buco nella ART_BIBLE, e questo e' il

@@ -5,6 +5,41 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.20] — Dodici segni
+
+La ART_BIBLE chiede overlay e icone come **grafica di sistema**, e dichiara il
+vincolo che le governa: il set delle sei famiglie deve funzionare in
+**monocromatico a 16 px** — se un'icona ha bisogno del colore per distinguersi
+da un'altra, va ridisegnata. Non esisteva niente, e sulla mappa i quattro
+livelli di tag uscivano come una colonna di parole grigie.
+
+### Added
+
+- **`icon_set.gd`**: dodici glifi — le sei famiglie di Asset, i quattro livelli
+  della mappa (`structure`, `condition`, `settlement`, `scar`) e i due marker
+  (Tensione, Echo). Stesso vocabolario di tre parole del terreno, stesso piano
+  normalizzato, disegnati da Godot sullo schermo e dall'SVG in stampa — e
+  **senza colori**: il colore lo decide chi chiama ([D-058](docs/DECISIONS.md#d-058)).
+- **`prova_icone.svg`** esce dall'export insieme a tutto il resto: ogni glifo a
+  16, 24, 32 e 64 px, scuro su chiaro e chiaro su scuro. È la prova che la
+  ART_BIBLE chiede, e rigenerandosi non può invecchiare.
+- Sulla mappa ogni segno ha il glifo del proprio livello accanto alla parola: il
+  glifo dice *che tipo* di segno è, la parola dice quale. Sulle carte Asset — in
+  mano e stampate — il glifo della famiglia sta nell'angolo in basso a destra:
+  è come si ordina un mazzo di 132 carte senza leggerne una.
+
+### Il vincolo ha cambiato due disegni
+
+Tutt'e due li ha mostrati la prova, e nessun ragionamento li avrebbe presi:
+
+- **FORCE era una punta di lancia**, e a 16 px una punta di lancia è il marker
+  di Tensione, che è una freccia in su. Adesso è una lama con l'elsa.
+- **KNOWLEDGE era un compasso**, cioè due gambe e una traversa, cioè la lettera
+  A. Un glifo che si legge come una lettera non è un glifo. Adesso è un libro
+  aperto.
+
+---
+
 ## [0.1.19] — La mappa smette di essere sei cerchi
 
 La ART_BIBLE divide il lavoro in due: l'**illustrazione** la fa una persona, la

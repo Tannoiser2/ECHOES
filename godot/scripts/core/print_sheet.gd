@@ -17,6 +17,7 @@ extends RefCounted
 
 const ArtPlaceholder := preload("res://scripts/core/art_placeholder.gd")
 const RegionArt := preload("res://scripts/core/region_art.gd")
+const IconSet := preload("res://scripts/core/icon_set.gd")
 
 const PAGE_W: float = 210.0
 const PAGE_H: float = 297.0
@@ -268,6 +269,14 @@ static func _face_svg(face: Dictionary, x: float, y: float, cell: Vector2) -> St
 			% [cx, cy + 1.8]
 			+ ' text-anchor="middle" fill="%s">%s</text>' % [PAPER, str(drawn["corner"])]
 		)
+
+	# Il glifo della famiglia, in basso a destra: e' lo stesso segno che la carta
+	# porta sullo schermo, ed e' quello che permette di ordinare un mazzo di
+	# centotrentadue carte senza leggerne una (ISSUES 6).
+	if str(face["family"]) != "":
+		out.append(IconSet.svg(
+			str(face["family"]), x + cell.x - pad - 6.0, y + cell.y - pad - 7.4, 6.0, accent
+		))
 
 	# Il pie' di pagina e' l'id, che sul tavolo non serve a nessuno e in playtest
 	# serve a tutto: e' come si dice «questa carta qui» a chi tiene il registro.

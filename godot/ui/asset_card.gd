@@ -12,6 +12,7 @@ extends PanelContainer
 
 const AssetText := preload("res://scripts/core/asset_text.gd")
 const CardFace := preload("res://scripts/core/card_face.gd")
+const Glyph := preload("res://ui/glyph.gd")
 
 var asset: Dictionary = {}
 
@@ -69,6 +70,22 @@ func render(p_asset: Dictionary, relevant: Array, council_open: bool) -> void:
 			_footer.text += " (%s)" % bonus
 	_footer.add_theme_color_override(
 		"font_color", _family_colour(family) if is_relevant else Color("#6b6355")
+	)
+	queue_redraw()
+
+
+## Il glifo della famiglia nell'angolo, sopra tutto il resto: e' il segno che si
+## impara a riconoscere in due partite, e che sulla carta stampata sta nello
+## stesso posto.
+func _draw() -> void:
+	if asset.is_empty():
+		return
+	var family: String = str(asset["family"])
+	# In basso a destra e non in alto: il titolo va a capo e in alto gli finiva
+	# addosso. Sotto c'e' solo la riga della famiglia, che sta a sinistra.
+	Glyph.paint(
+		self, family, Rect2(Vector2(size.x - 20.0, size.y - 20.0), Vector2(12.0, 12.0)),
+		Color(CardFace.family_colour(family)) * Color(1, 1, 1, 0.7)
 	)
 
 

@@ -105,22 +105,20 @@ incorporare l'immagine come `data:` URI per restare un file solo.
 **Fatto quando** una carta con l'illustrazione vera e una senza convivono nello
 stesso foglio, e l'export resta deterministico.
 
-### 6. L'iconografia di sistema, leggibile a 16 px in monocromatico
+### 6. ✅ L'iconografia di sistema — fatta in 0.1.20
 
-`arte` · `ux`
+`arte` · `ux` · **chiusa** ([D-058](DECISIONS.md#d-058))
 
-La ART_BIBLE chiede overlay e icone come **grafica di sistema**: sei famiglie di
-Asset, i livelli `structure:` / `condition:` / `settlement:` / `scar:`, i marker
-di Tensione ed Echo. Non esistono — sulla mappa i tag si leggono ancora come
-parole sotto il nome. Il vincolo è dichiarato: se un'icona ha bisogno del colore
-per distinguersi da un'altra, va ridisegnata.
+Dodici glifi senza colore — le sei famiglie, i quattro livelli della mappa, i due
+marker — disegnati sia sullo schermo sia in stampa dallo stesso piano. La prova
+del monocromatico a 16 px esce dall'export come `prova_icone.svg`, quindi si
+rigenera invece di invecchiare. Il vincolo ha respinto due disegni prima di
+chiudersi: FORCE era la stessa cosa del marker di Tensione, KNOWLEDGE era la
+lettera A.
 
-Il terreno delle Regioni è già fatto ([D-057](DECISIONS.md#d-057)) e mostra la
-strada: un piano di tratti normalizzati che disegnano sia lo schermo sia l'SVG.
-Le icone possono usare lo stesso vocabolario.
-
-**Fatto quando** il set esiste come SVG nel repository, la mappa e le carte lo
-usano, e la prova in monocromatico a 16 px è nel documento.
+**Resta fuori**: i glifi delle famiglie sono sulle carte e sulla mappa, ma la
+plancia azione e i paraventi non esistono ancora come pezzi, quindi non li usano.
+Si aggiungeranno con loro.
 
 ### 7. Decidere il formato fisico
 

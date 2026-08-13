@@ -331,6 +331,50 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-058 — Le icone di sistema, e il vincolo che le governa
+**implemented in 0.1.20** (ART_BIBLE §Overlay e iconografia, ISSUES 6)
+
+The ART_BIBLE asks for overlays and icons as **system graphics**, and states the
+constraint that governs them: *«the six-family set must work in monochrome at 16
+px: if an icon needs colour to be told apart from another, it must be
+redrawn»*. Nothing existed. On the map the four tag levels came out as a column
+of grey words, which is how `structure:granary` and `scar:burned` ended up
+looking like the same thing.
+
+Twelve glyphs: the six Asset families, the four map levels (`structure`,
+`condition`, `settlement`, `scar`) and the two markers (Tension, Echo). Same
+three-word vocabulary as the terrain (D-057), same normalised plan, drawn by
+Godot on screen and by the SVG writer in print - **and no colours at all**. The
+caller picks one. A glyph that reads only because it is gold is not a glyph, it
+is a gold smudge.
+
+### Il vincolo ha cambiato due disegni
+
+Both times the proof sheet showed it and no reasoning would have:
+
+- **FORCE was a spearhead**, and at 16 px a spearhead is the Tension marker,
+  which is an arrow pointing up. Two signs that merge at the size they are used
+  at are one sign. It is now a blade with a crossguard - the only horizontal
+  stroke in the set.
+- **KNOWLEDGE was a pair of calipers**, which is two legs and a crossbar, which
+  is the letter A. A glyph that reads as a letter is not a glyph: whoever looks
+  at it starts hunting for the word. It is now an open book, the only shape in
+  the set made of two mirrored halves.
+
+### La prova si rigenera
+
+`prova_icone.svg` comes out of `run_export.gd` with everything else: every glyph
+at 16, 24, 32 and 64 px, dark on light and light on dark. Putting it in a
+document would have meant a picture that goes stale the first time somebody
+nudges a coordinate; generated, it cannot.
+
+The tests hold what silence would hide - every family and level in the data has
+a glyph, nothing leaves its square, no two glyphs share a shape, and the SVG
+carries exactly one colour. They are necessary and not sufficient, and the file
+says so: the real check is looking at the sheet.
+
+---
+
 ## D-057 — La mappa smette di essere sei cerchi
 **implemented in 0.1.19** (ART_BIBLE §MASTER PROMPT 3, §21)
 
