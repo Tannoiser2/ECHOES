@@ -49,9 +49,16 @@ func _lines(data: RefCounted, chronicle_id: String) -> Array:
 	var out: Array = []
 	out.append(SECTION % "COME SI GIOCA")
 	out.append("")
+	# Who is at the table comes from the Chronicle: there is more than one age in
+	# the box now, and they seat nobody in common (D-050).
+	var seated: Array = []
+	if data != null and data.chronicles.has(chronicle_id):
+		for entity_id in data.chronicles[chronicle_id]["entities"]:
+			if data.entities.has(str(entity_id)):
+				seated.append(str(data.entities[str(entity_id)]["name"]))
 	out.append(
-		"Sei una delle quattro Entita sedute allo stesso tavolo: un re, un popolo, "
-		+ "una studiosa e qualcosa di molto antico. Una Chronicle e [b]un anno[/b], "
+		"Sei una delle Entita sedute allo stesso tavolo%s. Una Chronicle e [b]un anno[/b], "
+		% ("" if seated.is_empty() else ": %s" % ", ".join(PackedStringArray(seated)))
 		+ "e alla fine di quell'anno quello che avete deciso resta scritto."
 	)
 	out.append("")
@@ -131,11 +138,18 @@ func _lines(data: RefCounted, chronicle_id: String) -> Array:
 	if data != null and data.echo_cards.size() > 0:
 		out.append(SECTION % "LE CARTE ECHO")
 		out.append(
-			"Alla fine di ogni Atto ne esce una, e non la pesca nessuno di voi: sono "
-			+ "%d carte, una per ogni [b]funzione di Propp[/b] — mancanza, presagio, "
-			% data.echo_cards.size()
-			+ "tradimento, scoperta, ritorno. Muovono il mondo da sole, e due di loro "
-			+ "convocano un Consiglio sul posto."
+			"Alla fine di ogni Atto ne esce una, e non la pesca nessuno di voi: una per "
+			+ "ogni [b]funzione di Propp[/b] — mancanza, presagio, tradimento, scoperta, "
+			+ "ritorno. Muovono il mondo da sole, e due di loro convocano un Consiglio "
+			+ "sul posto."
+		)
+		# The count used to be `data.echo_cards.size()`, which was right while there
+		# was one saga and became the total across all of them. A year's deck holds
+		# the cards that could matter to *its* questions, and nothing else (D-049).
+		out.append(
+			"Il mazzo di quest'anno ne tiene %d: una carta che parla di una domanda "
+			% _deck_size(data, chronicle_id)
+			+ "che quest'anno non si sta facendo non viene distribuita."
 		)
 		out.append(
 			"L'Atto in cui esce decide che tipo puo essere: il primo solo [b]pressione[/b], "
@@ -178,3 +192,32 @@ func _sorted(keys: Array) -> Array:
 	var out: Array = keys.duplicate()
 	out.sort()
 	return out
+
+
+## How many Echo cards this Chronicle's deck actually holds. Mirrors the rule in
+## `WorldStateFactory._build_echo_deck`: a card whose eligibility names a Tension
+## the Chronicle is not asking about can never be drawn.
+func _deck_size(data: RefCounted, chronicle_id: String) -> int:
+	var chronicle: Variant = data.chronicles.get(chronicle_id)
+	if chronicle == null:
+		return data.echo_cards.size()
+	var asked: Dictionary = {}
+	for tension_id in chronicle.get("tensions", []):
+		asked[str(tension_id)] = true
+	for tension_id in (chronicle.get("tension_pool", {}) as Dictionary).get("candidates", []):
+		asked[str(tension_id)] = true
+
+	var total: int = 0
+	for card in data.echo_cards.values():
+		var out_of_year: bool = false
+		for condition in card["eligibility"]:
+			if str((condition as Dictionary).get("type", "")) != "tension_limit":
+				continue
+			var tension_id: String = str((condition as Dictionary).get("tension_id", ""))
+			if tension_id.begins_with("$"):
+				continue
+			if not asked.has(tension_id):
+				out_of_year = true
+		if not out_of_year:
+			total += 1
+	return total

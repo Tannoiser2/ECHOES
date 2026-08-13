@@ -5,6 +5,51 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.13] — Lo schermo non sa chi siede al tavolo
+
+La 0.1.12 ha pubblicato una seconda saga completa — quattro casate, sei domande,
+sedici Destini, due Chronicle — e **dal browser non se ne raggiungeva una riga**.
+
+La colpa era di tre costanti, e nessuna delle tre era una cosa che lo schermo
+avesse motivo di sapere: la lista dei quattro seggi della prima saga in
+`game_screen.gd`, la tabella dei loro nomi lì accanto, e un `match` sugli stessi
+id in `map_view.gd` per i colori della mappa — che infatti restituiva grigio per
+ogni casata della seconda saga, su una mappa che è le stesse sei terre. Tutto il
+resto di quello schermo leggeva già i dati.
+
+### Changed
+
+- **Prima si sceglie l'anno, poi il seggio**: chi siede al tavolo è quello che
+  dice la Chronicle, e le due saghe non hanno nessuno in comune. Il menu elenca
+  tutte le Chronicle nei dati, dalla più antica, con l'anno e se le domande sono
+  scritte o pescate — quindi una terza saga compare nel menu semplicemente
+  esistendo.
+- **I colori si assegnano per ordine di parola**, non per nome.
+- **La pagina delle regole nomina le persone davvero sedute**, e si ridisegna
+  quando si sceglie l'anno invece che dopo aver scelto il seggio: un passo più
+  tardi descriveva ancora l'epoca che il giocatore aveva appena scartato. E dice
+  quante carte tiene il mazzo Echo **di quest'anno**, che dalla 0.1.12 non è più
+  il totale.
+
+### Added
+
+- `test_ui_knows_no_names.gd`: **nessun id di Entità compare da nessuna parte
+  sotto `res://ui`**, verificato contro tutti gli id nei dati. Uno schermo che
+  nomina una casata ha un'opinione su quale saga si sta giocando, e non ne ha
+  diritto.
+
+### Verificato
+
+Non con un test — il problema era invisibile ai test e lo sarebbe rimasto.
+Esportato per il web e guidato in un browser vero: il menu elenca tutte e quattro
+le Chronicle, scegliendo *Le Città Libere* si siedono Maestra Ilve, Kessa dei
+Fuochi, Priore Anselmo e le Città Libere, il pannello delle domande legge
+l'Acqua Ferma 3/6 e il Debito 2/7, le Montagne Rosse sono cerchiate del verde
+della Cenere e la Strada dei Mercanti dell'oro della Gilda, e la console non
+riporta errori.
+
+---
+
 ## [0.1.12] — Una seconda saga sulla stessa mappa
 
 Il motore dice da sempre di essere guidato dai dati. Questa è la prima volta che
