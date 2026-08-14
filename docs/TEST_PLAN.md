@@ -10,7 +10,7 @@ python3 tools/gen_gd_schema.py --check
 GODOT=/path/to/godot tools/run_sims.sh
 ```
 
-Stato 0.1.24: **175 test in 24 suite, 4476 asserzioni, tutto verde**, più i 3
+Stato 0.1.25: **180 test in 25 suite, 4508 asserzioni, tutto verde**, più i 3
 piani di simulazione che passano le proprie asserzioni e l'export di stampa che
 esce identico a ogni rigenerazione.
 
@@ -31,6 +31,9 @@ godot --headless --path godot --script res://cli/run_crisis_probe.gd -- --runs=4
 godot --headless --path godot --script res://cli/run_echo_probe.gd -- --runs=40
 # cosa il tavolo poteva dire e cosa ha detto, e perche' una proposta non arriva mai ai voti:
 godot --headless --path godot --script res://cli/run_choice_probe.gd -- --chronicle=CHR_03 --tavolo=misto
+# perche nessuno si oppone: il punteggio di una proposta seggio per seggio,
+# e quali Effect non spostano mai un punteggio (D-066):
+godot --headless --path godot --script res://cli/run_stance_probe.gd -- --runs=40 --chronicle=CHR_03
 # sweep di un knob senza toccare i dati:
 godot --headless --path godot --script res://cli/run_balance_probe.gd -- \
     --runs=40 --influence-cap=1 --tension-cap=1 --presence-directions=UP
@@ -79,6 +82,7 @@ godot --headless --path godot --script res://cli/run_playtest.gd -- --runs=100 -
 | `unit/test_narrative_text.gd` | 6 | la Regione a fuoco segue il tag condition e resta nel dominio, la stessa frase autorata nomina un posto diverso in due mondi diversi, le forme italiane (articolo, locativo, genitivo) e la maiuscola di uno slot in testa, l'ordine di sostituzione per lunghezza, e che nessuno slot irrisolto finisca nel registro Truth |
 | `unit/test_questions_asked.gd` | 6 | il default della prima Confluence non cambia (la domanda piu affilata), una domanda gia messa ai voti esce dal tavolo finche ne resta una nuova - e le proposte che seguono sono le sue - il filtro si toglie di mezzo quando tutto e stato chiesto, la memoria e della Tensione e non del tavolo, una Confluence aperta e non risolta non consuma niente, e ogni Chronicle comincia senza niente di chiesto (D-061) |
 | `unit/test_log_export.gd` | 6 | il nome del file sopravvive a un filesystem e porta il seme, una sessione senza Chronicle ha comunque un nome, l'intestazione porta il seme e non inventa quello che non sa, fuori dal browser il file si scrive e chi ha premuto sa dove, e un log vuoto non scarica niente (D-062) |
+| `unit/test_stance_scoring.gd` | 5 | quello che un seggio riesce a vedere di una proposta (D-066): un rapporto che rompe una clausola costa e uno che la ripara vale, un rapporto fra altri due non e affar mio, senza una clausola che nomini qualcuno il ramo nuovo non inventa opinioni, una clausola `min` legge anche una spinta che non le passa sotto la soglia, e la stessa spinta si legge in due versi opposti a due seggi diversi |
 | `smoke/test_chronicle_run.gd` | 6 | i tre piani giocati per intero, le loro asserzioni `expected`, il fatto che finiscano diversamente, Echo e Truth automatici, il determinismo per seed, e che il log pubblico non riveli mai il valore velato |
 
 ---

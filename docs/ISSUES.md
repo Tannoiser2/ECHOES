@@ -111,6 +111,38 @@ dichiara morto contenuto che vivo lo è.
 stato pescato, tenuto e impegnato — e la coda (le carte a zero) è o riscritta o
 tolta, con la decisione a verbale.
 
+### 14. L'asse dei rapporti quasi non esiste
+
+`contenuto` · `da-misurare` · milestone **0.2**
+
+Dalla 0.1.25 il punteggio di una proposta **sa leggere** un rapporto che si
+muove ([D-066](DECISIONS.md#d-066)), e continua a pesare **zero su 156**: solo
+**2 Consequence su 45** muovono un rapporto, e nessun Destino in gioco nomina una
+coppia. Forgiare è una delle sei azioni del gioco e non ha quasi niente su cui
+mordere.
+
+**Fatto quando** `run_stance_probe.gd` riporta `SET_RELATION` con un numero
+diverso da zero nella colonna «pesato», e il modo per arrivarci è scritto a
+verbale: Conseguenze che facciano nemici, e clausole `relation_state` nei Destini
+al tavolo.
+
+### 15. Nessuno perde mai
+
+`regola` · `da-misurare` · milestone **0.2**
+
+Su 400 risultati di seggio in 100 partite: **NONE 1**, MINIMUM 205, VICTORY 181,
+TRIUMPH 13. Una scala a quattro gradini in cui il primo non succede mai e il
+quarto succede nel 3% dei casi è una scala a due gradini — e il gradino che manca
+è quello che dà peso a tutti gli altri. Se non puoi fallire, «Vittoria» vuol dire
+solo «ho giocato».
+
+La causa è dove ci si aspetta: i Minimi sono «esisti ancora» e «hai una presenza
+da qualche parte», due cose che nessuno ti può togliere in un anno.
+
+**Fatto quando** una variante è misurata sugli stessi 100 semi di D-055 e NONE
+smette di essere un livello teorico — o è scritta come respinta con i numeri
+accanto.
+
 ---
 
 ## Arte e componenti fisici

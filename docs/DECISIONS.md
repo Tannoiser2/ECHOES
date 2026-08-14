@@ -331,6 +331,98 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-066 — Il tavolo non aveva niente in gioco
+**implemented in 0.1.25** (§12.2 D, estende [D-034](#d-034))
+
+La sonda delle posizioni aveva misurato la cosa peggiore che si potesse
+misurare: su 40 Chronicle **l'80,1% delle posizioni dichiarate era ABSTAIN, e la
+proposta valeva esattamente 0 per l'80,1% dei seggi.** Lo stesso numero due
+volte, e non è una coincidenza — non era apatia, era **indifferenza
+misurabile**: per quattro seggi su cinque, quello che si stava decidendo non
+toccava in alcun modo quello che volevano. Due Consigli su tre si chiudevano
+senza che nessuno dicesse no.
+
+Il Consiglio è la scena centrale del gioco, e per la maggior parte dei presenti
+era un atto notarile.
+
+### Il perché, in tre pezzi
+
+**1. `SET_RELATION` non aveva un ramo nel punteggio.** Letto 126 volte, pesato
+**zero**. Forgiare — muovere di un passo il rapporto con un altro giocatore — è
+una delle sei azioni del gioco, e per chi decide non esisteva.
+
+**2. Una clausola `min` su una Tensione era mezza cieca.** Il ramo `max` aveva il
+suo ripiego dentro la banda (una spinta nella direzione sbagliata vale
+un'obiezione anche se non rompe niente); `min` no. Chi ha bisogno che una domanda
+resti calda non aveva niente da dire finché non gliela spegnevano del tutto.
+
+**3. E soprattutto: le domande che si aprivano non le voleva nessuno.** Le
+Tensioni più visitate dei due tavoli — le Vie Interrotte e la Successione nella
+prima saga, la Carta nella seconda — **non erano nominate da nessun Destino**. La
+seconda saga non aveva **una sola** clausola `tension_limit`: `ADJUST_TENSION`
+letto 558 volte e pesato zero. Su 99 clausole in 16 Destini, 51 erano tag e 4
+erano Tensioni.
+
+I Destini erano scritti in **tag e controllo**; il gioco fa soprattutto
+**tensioni e rapporti**. Le due metà non si parlavano.
+
+### Cosa è stato fatto
+
+Il ramo `SET_RELATION` nel punteggio, il ripiego mancante su `min`, e dieci
+clausole `tension_limit` nei Destini in gioco — a livello **Triumph**, perché il
+punteggio di una proposta legge tutti e tre i livelli e a livello Victory la
+Vittoria crollava da 192 a 126 su 400 e un seggio restava bloccato.
+
+Il criterio che le ha scritte, ed è la parte che vale più delle clausole:
+**ogni Tensione in gioco dev'essere nominata da almeno un Destino, e almeno un
+seggio dev'essere dalla parte opposta.** Vaerax vuole le Vie Interrotte da 3 in
+su perché salire fin lassù non dev'essere facile; Lyra le vuole sotto 4 perché è
+la strada delle gallerie. Quella è una scena. Quattro Destini che vogliono tutti
+la Carestia bassa non lo sono.
+
+`validate_data.py` adesso rifiuta una Chronicle con le Tensioni scritte a mano in
+cui una domanda in gioco non è nominata da nessun seggio.
+
+### Misurato
+
+Sonda delle posizioni, 40 Chronicle per saga:
+
+| | CHR_01 | CHR_03 |
+|---|---|---|
+| Consigli con almeno un no | 37% → **68%** | 38% → **53%** |
+| ABSTAIN | 80,1% → **70,2%** | 85,9% → **74,1%** |
+| CONDITION | 0,7% → 5,0% | 4,7% → **16,7%** |
+| `ADJUST_TENSION` pesato | 6 su 468 → **266 su 669** | **0** su 558 → **146 su 558** |
+
+`run_playtest.gd` sugli stessi 100 semi di D-055 — fallimenti **251 → 219**,
+Decisive **133 → 185**, Consigli per Chronicle 5,97 (dentro la banda del §7),
+Truth diverse 471 → 480, seggi bloccati a tavolo misto **0 su 8** e a tavolo
+uniforme 3 su 8, come prima.
+
+### Il costo, che è reale
+
+Il divario in Vittorie fra aggressivo e prudente passa da 26 a **31**. Non è un
+caso e non si tara via: **rendere contesi i Consigli aiuta il carattere
+costruito per approfittare dei contesi.** I due obiettivi tirano in direzioni
+diverse, e questo è il primo posto in cui il progetto lo vede scritto.
+
+E la Vittoria scende da 192 a 181 su 400 mentre il Minimum sale da 193 a 205: un
+tavolo che discute concede meno.
+
+### Cosa resta aperto
+
+`SET_RELATION` adesso si legge, e continua a pesare **zero su 156**: nessun
+Destino in gioco nomina una coppia, e solo **2 Consequence su 45** muovono un
+rapporto. Il ramo è scritto e corretto — i test lo tengono — ma l'asse dei
+rapporti in gioco quasi non esiste. Perché si accenda servono Conseguenze che
+facciano nemici, e questa è la prossima passata di contenuto.
+
+E **NONE resta 1 su 400**: nessuno perde mai. I Minimi sono «esisti ancora» e
+«hai una presenza da qualche parte», due cose che non si perdono. È un problema
+diverso da questo, ed è il più grosso che resta.
+
+---
+
 ## D-065 — Il quarto MASTER PROMPT: le Casate sono ritratti
 **implemented in 0.1.24** (ISSUES 4, chiude [D-056](#d-056))
 

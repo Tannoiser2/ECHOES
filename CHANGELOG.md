@@ -5,6 +5,65 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.25] — Il tavolo adesso ha qualcosa in gioco
+
+L'80% dei seggi valutava una proposta **esattamente zero**: non apatia scritta nel
+contenuto, indifferenza del codice e dei Destini insieme
+([D-066](docs/DECISIONS.md#d-066)).
+
+### Fixed
+
+- **`SET_RELATION` non aveva un ramo nel punteggio.** Letto 126 volte, pesato
+  zero: Forgiare è una delle sei azioni del gioco e per chi decide non esisteva.
+- **Una clausola `min` su una Tensione era mezza cieca**: `max` aveva il suo
+  ripiego dentro la banda, `min` no. Chi ha bisogno che una domanda resti calda
+  non aveva niente da dire finché non gliela spegnevano del tutto.
+
+### Changed
+
+- **Dieci clausole `tension_limit` nei Destini in gioco.** Le domande più
+  visitate dei due tavoli — le Vie Interrotte, la Successione, la Carta — non
+  erano nominate da nessuno, e la seconda saga non aveva **una sola** clausola su
+  una Tensione. Sono a livello Triumph: il punteggio legge tutti e tre i livelli,
+  e a livello Victory la Vittoria crollava da 192 a 126 su 400.
+- Il criterio, che vale più delle clausole: **ogni Tensione in gioco dev'essere
+  nominata da almeno un Destino, e almeno un seggio dev'essere dalla parte
+  opposta.** Vaerax vuole le Vie Interrotte alte perché salire non dev'essere
+  facile; Lyra le vuole basse perché è la strada delle gallerie. Quella è una
+  scena. Quattro Destini che vogliono tutti la Carestia bassa non lo sono.
+- `validate_data.py` rifiuta una Chronicle in cui una domanda in gioco non è
+  nominata da nessun seggio.
+
+### Added
+
+- `tests/unit/test_stance_scoring.gd`, 5 test.
+- `run_stance_probe.gd` accetta `--chronicle`: guardava solo la prima saga, ed è
+  la seconda quella che di clausole sulle Tensioni non ne aveva nessuna.
+
+### Misurato
+
+40 Chronicle per saga:
+
+| | CHR_01 | CHR_03 |
+|---|---|---|
+| Consigli con almeno un no | 37% → **68%** | 38% → **53%** |
+| ABSTAIN | 80,1% → **70,2%** | 85,9% → **74,1%** |
+| `ADJUST_TENSION` pesato | 6/468 → **266/669** | **0**/558 → **146/558** |
+
+Sui 100 semi di D-055: fallimenti **251 → 219**, Decisive **133 → 185**, Consigli
+per Chronicle 5,97 (in banda §7), Truth diverse 471 → 480, seggi bloccati 0 su 8.
+
+**Il costo, che è reale:** il divario fra aggressivo e prudente passa da 26 a 31.
+Rendere contesi i Consigli aiuta il carattere costruito per approfittare dei
+contesi — i due obiettivi tirano in direzioni diverse, ed è la prima volta che il
+progetto lo vede scritto.
+
+**Resta aperto:** `SET_RELATION` si legge e pesa ancora zero su 156, perché solo
+2 Consequence su 45 muovono un rapporto. E NONE resta 1 su 400: nessuno perde
+mai.
+
+---
+
 ## [0.1.24] — Tre conti aperti chiusi
 
 La seconda leva, il contenuto che non arrivava mai al tavolo, e il quarto MASTER
