@@ -124,7 +124,7 @@ mordere.
 **Fatto quando** `run_stance_probe.gd` riporta `SET_RELATION` con un numero
 diverso da zero nella colonna «pesato», e il modo per arrivarci è scritto a
 verbale: Conseguenze che facciano nemici, e clausole `relation_state` nei Destini
-al tavolo.
+al tavolo. Vedi [AUDIT_DESTINI.md](AUDIT_DESTINI.md) §2.3.
 
 ### 15. Nessuno perde mai
 
@@ -136,8 +136,12 @@ quarto succede nel 3% dei casi è una scala a due gradini — e il gradino che m
 è quello che dà peso a tutti gli altri. Se non puoi fallire, «Vittoria» vuol dire
 solo «ho giocato».
 
-La causa è dove ci si aspetta: i Minimi sono «esisti ancora» e «hai una presenza
-da qualche parte», due cose che nessuno ti può togliere in un anno.
+La causa non è la taratura: **perdere non è implementato.**
+`SET_ENTITY_ACTIVE` compare **zero volte in tutti i dati** — è in 7 Minimi su 8 e
+niente lo può falsificare — e le 5 `REMOVE_PRESENCE` che esistono sono o
+opzionali sulla `$region_focus` o costi che ci si infligge da soli. L'audit
+completo, con le direzioni possibili e le trappole, sta in
+[AUDIT_DESTINI.md](AUDIT_DESTINI.md).
 
 **Fatto quando** una variante è misurata sugli stessi 100 semi di D-055 e NONE
 smette di essere un livello teorico — o è scritta come respinta con i numeri
