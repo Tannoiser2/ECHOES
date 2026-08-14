@@ -234,6 +234,42 @@ def check_references(
             if domain_of.get(tension_id) in templates_by_domain:
                 continue
             report.fail(where, f"tension '{tension_id}' has no Confluence template")
+        # ...e il contrario, che nessuno controllava: un template dichiarato da
+        # una Chronicle che nessuna delle sue Tensioni puo' mai aprire. Il motore
+        # risolve i template globalmente, quindi la lista qui e' documentazione -
+        # e una documentazione che elenca contenuto irraggiungibile e' una
+        # seconda verita' (D-063). Trovato con CNF_ANY_SURVIVAL in CHR_03: tre
+        # proposte contate come contenuto della seconda saga e mai giocabili,
+        # perche' l'unica Tensione SURVIVAL dell'anno ha un template tutto suo.
+        template_by_id = {t["id"]: t for t in documents.get("confluence_template", [])}
+        for template_id in chronicle["confluence_templates"]:
+            template = template_by_id.get(template_id)
+            if template is None:
+                continue  # gia' segnalato sopra come id sconosciuto
+            bound = template.get("tension_id")
+            if bound is not None:
+                if bound not in chronicle_tensions:
+                    report.fail(
+                        where,
+                        f"template '{template_id}' is bound to '{bound}', "
+                        "which this Chronicle does not play",
+                    )
+                continue
+            domain = template.get("applies_to_domain")
+            reachable = [
+                t
+                for t in chronicle_tensions
+                # Una Tensione col proprio template non arriva mai a quello di
+                # dominio: `confluence_template_for()` prova prima il legame
+                # diretto.
+                if domain_of.get(t) == domain and t not in templates_by_tension
+            ]
+            if not reachable:
+                report.fail(
+                    where,
+                    f"template '{template_id}' (domain {domain}) can never open in this "
+                    "Chronicle: every Tension of that domain has a template of its own",
+                )
         # Every Act pool must have at least one card available.
         cards_by_family: Dict[str, int] = defaultdict(int)
         for card in documents.get("echo_card", []):

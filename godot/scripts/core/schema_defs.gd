@@ -308,6 +308,9 @@ const DEFS := {
 			"influence_rules": {
 				"type": "Dictionary",
 			},
+			"confluence_rules": {
+				"type": "Dictionary",
+			},
 			"control_rules": {
 				"type": "Dictionary",
 			},

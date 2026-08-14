@@ -1509,47 +1509,147 @@ no numerals, no map labels, no compass rose, no frame. Boardgame map tile art.
 
 ## entity
 
-La ART_BIBLE non ha un MASTER PROMPT per questo mazzo: i tre esistenti
-sono carta Asset, carta Echo e tessera Regione. Le chiavi sotto sono
-**in uso e senza prompt** — o si scrive il quarto, o si tolgono.
-
 ### `entity.aldric` — Re Aldric
 
 - **soggetto**: Re Aldric — Terzo della sua casa, primo a regnare su un raccolto che non basta. Sa che il trono e una promessa di pane con un altro nome
 - **id**: `ENT_ALDRIC`
+
+```
+Historical dark-fantasy portrait of Re Aldric — Terzo della sua casa, primo a regnare su un raccolto che non basta. Sa che il trono e una promessa di pane con un altro nome. Painterly oil technique, visible
+brushwork, muted earth palette with a single oro spento accent. One subject, close,
+facing the viewer: this framing is what separates a House card from an Asset card,
+where a single centred figure looking out is forbidden. una persona sola, le insegne portate come un peso e mai in posa di trionfo. Low side
+lighting, shallow depth of field; the background says where they come from without
+telling a story of its own. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: head and shoulders in the upper two thirds; the
+lower third is a calm, low-detail area reserved for a text overlay. Vertical card
+framing, 2:3. No text, no letters, no numerals, no logos, no frame, no border.
+Not gory, not horror. Museum-quality illustration, boardgame card art.
+```
 
 ### `entity.cenere` — Kessa dei Fuochi
 
 - **soggetto**: Kessa dei Fuochi — Parla per i Signori della Cenere, che tengono le Montagne Rosse e campano di quello che l'antica miniera ha lasciato indietro. Sanno che sotto c'e di piu
 - **id**: `ENT_CENERE`
 
+```
+Historical dark-fantasy portrait of Kessa dei Fuochi — Parla per i Signori della Cenere, che tengono le Montagne Rosse e campano di quello che l'antica miniera ha lasciato indietro. Sanno che sotto c'e di piu. Painterly oil technique, visible
+brushwork, muted earth palette with a single ambra accent. One subject, close,
+facing the viewer: this framing is what separates a House card from an Asset card,
+where a single centred figure looking out is forbidden. chi risponde per la casa: la persona che firma, non quella che possiede. Low side
+lighting, shallow depth of field; the background says where they come from without
+telling a story of its own. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: head and shoulders in the upper two thirds; the
+lower third is a calm, low-detail area reserved for a text overlay. Vertical card
+framing, 2:3. No text, no letters, no numerals, no logos, no frame, no border.
+Not gory, not horror. Museum-quality illustration, boardgame card art.
+```
+
 ### `entity.libere` — Le Citta Libere
 
 - **soggetto**: Le Citta Libere — Sette citta che si governano da sole e si riuniscono solo quando non possono evitarlo. Non hanno una capitale, e considerano questo il loro unico principio
 - **id**: `ENT_LIBERE`
+
+```
+Historical dark-fantasy portrait of Le Citta Libere — Sette citta che si governano da sole e si riuniscono solo quando non possono evitarlo. Non hanno una capitale, e considerano questo il loro unico principio. Painterly oil technique, visible
+brushwork, muted earth palette with a single terracotta accent. One subject, close,
+facing the viewer: this framing is what separates a House card from an Asset card,
+where a single centred figure looking out is forbidden. una figura sola davanti e la sua gente dietro, fuori fuoco: il ritratto di un popolo è il volto di uno. Low side
+lighting, shallow depth of field; the background says where they come from without
+telling a story of its own. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: head and shoulders in the upper two thirds; the
+lower third is a calm, low-detail area reserved for a text overlay. Vertical card
+framing, 2:3. No text, no letters, no numerals, no logos, no frame, no border.
+Not gory, not horror. Museum-quality illustration, boardgame card art.
+```
 
 ### `entity.lyra` — Lyra
 
 - **soggetto**: Lyra — Studiosa senza patrono. E' scesa nelle Miniere Antiche per misurare una pietra e ne e risalita con una domanda
 - **id**: `ENT_LYRA`
 
+```
+Historical dark-fantasy portrait of Lyra — Studiosa senza patrono. E' scesa nelle Miniere Antiche per misurare una pietra e ne e risalita con una domanda. Painterly oil technique, visible
+brushwork, muted earth palette with a single verde-azzurro pallido accent. One subject, close,
+facing the viewer: this framing is what separates a House card from an Asset card,
+where a single centred figure looking out is forbidden. una persona sola, lo strumento del proprio mestiere a portata di mano. Low side
+lighting, shallow depth of field; the background says where they come from without
+telling a story of its own. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: head and shoulders in the upper two thirds; the
+lower third is a calm, low-detail area reserved for a text overlay. Vertical card
+framing, 2:3. No text, no letters, no numerals, no logos, no frame, no border.
+Not gory, not horror. Museum-quality illustration, boardgame card art.
+```
+
 ### `entity.nahr` — Popolo Nahr
 
 - **soggetto**: Popolo Nahr — Non un esercito e non una folla: una lingua, un calendario e undicimila persone che si spostano quando la terra smette di rispondere
 - **id**: `ENT_NAHR`
+
+```
+Historical dark-fantasy portrait of Popolo Nahr — Non un esercito e non una folla: una lingua, un calendario e undicimila persone che si spostano quando la terra smette di rispondere. Painterly oil technique, visible
+brushwork, muted earth palette with a single terracotta accent. One subject, close,
+facing the viewer: this framing is what separates a House card from an Asset card,
+where a single centred figure looking out is forbidden. una figura sola davanti e la sua gente dietro, fuori fuoco: il ritratto di un popolo è il volto di uno. Low side
+lighting, shallow depth of field; the background says where they come from without
+telling a story of its own. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: head and shoulders in the upper two thirds; the
+lower third is a calm, low-detail area reserved for a text overlay. Vertical card
+framing, 2:3. No text, no letters, no numerals, no logos, no frame, no border.
+Not gory, not horror. Museum-quality illustration, boardgame card art.
+```
 
 ### `entity.sale` — Maestra Ilve
 
 - **soggetto**: Maestra Ilve — Alla testa della Gilda del Sale, che non possiede nessuna citta e tiene il registro di tutte. Non chiede obbedienza: chiede una firma
 - **id**: `ENT_SALE`
 
+```
+Historical dark-fantasy portrait of Maestra Ilve — Alla testa della Gilda del Sale, che non possiede nessuna citta e tiene il registro di tutte. Non chiede obbedienza: chiede una firma. Painterly oil technique, visible
+brushwork, muted earth palette with a single ambra accent. One subject, close,
+facing the viewer: this framing is what separates a House card from an Asset card,
+where a single centred figure looking out is forbidden. chi risponde per la casa: la persona che firma, non quella che possiede. Low side
+lighting, shallow depth of field; the background says where they come from without
+telling a story of its own. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: head and shoulders in the upper two thirds; the
+lower third is a calm, low-detail area reserved for a text overlay. Vertical card
+framing, 2:3. No text, no letters, no numerals, no logos, no frame, no border.
+Not gory, not horror. Museum-quality illustration, boardgame card art.
+```
+
 ### `entity.vaerax` — Vaerax
 
 - **soggetto**: Vaerax — Dorme sotto le Montagne Rosse da prima che Eredan avesse un nome. Si sveglia raramente, e mai per una ragione piccola
 - **id**: `ENT_VAERAX`
 
+```
+Historical dark-fantasy portrait of Vaerax — Dorme sotto le Montagne Rosse da prima che Eredan avesse un nome. Si sveglia raramente, e mai per una ragione piccola. Painterly oil technique, visible
+brushwork, muted earth palette with a single grigio-rosso accent. One subject, close,
+facing the viewer: this framing is what separates a House card from an Asset card,
+where a single centred figure looking out is forbidden. non un volto: una presenza ravvicinata — pietra, scaglia, respiro — inquadrata come si inquadra un volto. Low side
+lighting, shallow depth of field; the background says where they come from without
+telling a story of its own. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: head and shoulders in the upper two thirds; the
+lower third is a calm, low-detail area reserved for a text overlay. Vertical card
+framing, 2:3. No text, no letters, no numerals, no logos, no frame, no border.
+Not gory, not horror. Museum-quality illustration, boardgame card art.
+```
+
 ### `entity.vetro` — Priore Anselmo
 
 - **soggetto**: Priore Anselmo — Guida l'Ordine del Vetro, che discende da una scuola e si comporta da fede. Custodisce quello che fu misurato, e la regola dice che misurarlo di nuovo sarebbe rimetterlo in discussione
 - **id**: `ENT_VETRO`
+
+```
+Historical dark-fantasy portrait of Priore Anselmo — Guida l'Ordine del Vetro, che discende da una scuola e si comporta da fede. Custodisce quello che fu misurato, e la regola dice che misurarlo di nuovo sarebbe rimetterlo in discussione. Painterly oil technique, visible
+brushwork, muted earth palette with a single porpora tenue accent. One subject, close,
+facing the viewer: this framing is what separates a House card from an Asset card,
+where a single centred figure looking out is forbidden. chi custodisce, ripreso da vicino, con quello che custodisce fuori campo. Low side
+lighting, shallow depth of field; the background says where they come from without
+telling a story of its own. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: head and shoulders in the upper two thirds; the
+lower third is a calm, low-detail area reserved for a text overlay. Vertical card
+framing, 2:3. No text, no letters, no numerals, no logos, no frame, no border.
+Not gory, not horror. Museum-quality illustration, boardgame card art.
+```
 

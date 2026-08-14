@@ -300,6 +300,18 @@
             }
           }
         },
+        "confluence_rules": {
+          "type": "object",
+          "description": "Quanto costa stare sul fronte contrario (§12.3). Omesso, vale la regola scritta: su un Failure ogni oppositore si riprende una carta a scelta (D-013).",
+          "additionalProperties": false,
+          "properties": {
+            "opposer_recovers_on_failure": {
+              "type": "boolean",
+              "default": true,
+              "description": "Se false, far cadere una proposta costa quanto proporla: chi si oppone scarta tutto quello che ha impegnato, come il proponente. Prima leva provata contro l'Oppose come strategia dominante (ISSUES 1)."
+            }
+          }
+        },
         "control_rules": {
           "type": "object",
           "description": "How holding territory pushes back (D-027). Omit the whole object and control behaves as in v0.2: whatever you take, you keep.",
