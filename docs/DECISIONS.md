@@ -331,6 +331,53 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-062 — Su un tablet non esiste un F3 da premere
+**changed in 0.1.23** (§25.14, rivede [D-054](#d-054))
+
+Il cruscotto stava dietro F3 per una ragione scritta: *mostra anche quello che al
+tavolo è coperto, e non è una cosa da premere per curiosità in mezzo a un
+Consiglio*. Un tasto funzione è scomodo apposta.
+
+Poi il gioco è stato giocato su un iPad, ed è arrivata la conseguenza che nessuno
+aveva previsto: **su un tablet un F3 non c'è**. Non era scomodo, era assente. Lo
+stesso vale per F4 e l'anteprima di stampa.
+
+Il ragionamento reggeva contro un bottone *dentro* il flusso delle scelte — dove
+si preme per sbaglio, o per curiosità, mentre si sta decidendo. Non regge contro
+uno in fondo alla colonna, accanto alle regole, fuori dalla lista che si azzera a
+ogni domanda: quello si preme apposta. Quindi il cruscotto ha un tasto, e F3
+resta — le due strade chiamano lo stesso metodo, perché due strade che scrivono
+lo stesso stato si disallineano il giorno in cui una delle due cambia.
+
+Il tasto si spegne quando non c'è una sessione: il cruscotto guarda una partita,
+e un pannello vuoto è peggio di un tasto spento.
+
+### E il log, che era leggibile ma non prendibile
+
+La stessa partita ha prodotto la stessa forma di problema. La cronaca è tutta
+sullo schermo, nella colonna di sinistra, e al computer si seleziona e si copia.
+Su un tablet no: **una partita finita si può solo fotografare**, ed è esattamente
+così che sono arrivate le ultime due segnalazioni — screenshot di un registro
+delle Truth.
+
+`scripts/core/log_export.gd` scrive tutto quello che si legge nella colonna — non
+le sole righe del `GameLog`, ma anche il menu, le domande fatte a chi gioca e le
+sue risposte, perché chi rilegge vuole la sessione e non il sottoinsieme che il
+motore considera pubblico. Nel browser via `JavaScriptBridge.download_buffer`,
+altrove scritto in `user://` **dicendo dove**: una cosa che accade in silenzio non
+è distinguibile da una che non accade.
+
+In testa al file vanno saga, anno e **seme**, e il seme è la parte che conta: un
+log senza seme è un racconto, con il seme è una partita che si può rigiocare
+identica. Il nome del file lo porta pure lui — `echoes-chr-03-3330.txt`.
+
+Chronicle e anno sono tenuti accanto a `_last_seed` e non letti dalla sessione,
+perché il log si scarica quasi sempre **a partita finita**, quando la sessione è
+già stata disposta e il registro delle Truth è l'ultima cosa sullo schermo. È lì
+che qualcuno preme.
+
+---
+
 ## D-061 — Un Consiglio non rimette ai voti quello che ha già deciso
 **implemented in 0.1.22** (§12.2 B, estende [D-016](#d-016))
 

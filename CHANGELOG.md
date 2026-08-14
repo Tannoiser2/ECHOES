@@ -5,6 +5,32 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.23] — Il log si porta via, e il cruscotto ha un tasto
+
+Due cose che si vedono solo giocando su un tablet, e il tablet è dove questo
+gioco è stato giocato davvero ([D-062](docs/DECISIONS.md#d-062)).
+
+### Added
+
+- **«Scarica il log»**: tutta la cronaca della sessione in un file di testo — non
+  le sole righe del `GameLog`, ma quello che si legge nella colonna, menu e
+  risposte comprese. Nel browser scende come download, altrove viene scritto in
+  `user://` e la schermata **dice dove**.
+- In testa al file la saga, l'anno e il **seme**, che è la parte che conta: un log
+  senza seme è un racconto, con il seme è una partita che si può rigiocare
+  identica. Il nome se lo porta pure lui: `echoes-chr-03-3330.txt`.
+- **«Cruscotto»**: il pannello che stava solo dietro F3. Su un tablet un F3 non
+  esiste — non era scomodo, era assente. Il tasto sta in fondo alla colonna,
+  fuori dalla lista delle scelte, e si spegne quando non c'è una partita.
+- `tests/unit/test_log_export.gd`, 6 test.
+
+### Changed
+
+- F3 e F4 restano, ma passano per gli stessi due metodi del bottone: due strade
+  che scrivono lo stesso stato si disallineano il giorno in cui una cambia.
+
+---
+
 ## [0.1.22] — Il Consiglio non chiede due volte la stessa cosa
 
 Trovata giocando, non testando: nel registro delle Truth di una partita vera **la
