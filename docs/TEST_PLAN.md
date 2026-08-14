@@ -10,7 +10,7 @@ python3 tools/gen_gd_schema.py --check
 GODOT=/path/to/godot tools/run_sims.sh
 ```
 
-Stato 0.1.21: **162 test in 22 suite, 4443 asserzioni, tutto verde**, più i 3
+Stato 0.1.23: **174 test in 24 suite, 4472 asserzioni, tutto verde**, più i 3
 piani di simulazione che passano le proprie asserzioni e l'export di stampa che
 esce identico a ogni rigenerazione.
 
@@ -74,6 +74,8 @@ godot --headless --path godot --script res://cli/run_balance_probe.gd -- \
 | `unit/test_print_export.gd` | 9 | ogni faccia stampabile del set ci sta nella propria carta (nessun `overflow`, corpo mai sotto il 74%), nessuna faccia vuota, la carta Casata non stampa mai il proprio Destino e ogni carta Destino e' marcata segreta, il mazzo espanso per `deck_copies` (48 facce Asset = 132 carte su 15 fogli), il segnaposto d'arte deterministico e diverso per chiave, l'SVG che protegge i caratteri XML e resta in millimetri, il brief che legge i MASTER PROMPT dalla ART_BIBLE, e le chiavi senza prompt ferme alle otto Casate |
 | `unit/test_library_content.gd` | 6 | una Tensione senza Consiglio proprio prende quello del suo dominio, ogni Tensione della biblioteca ne trova uno, il sorteggio delle Tensioni e deterministico per seed e varia fra seed, una Chronicle scritta a mano resta invariata, un Effect su una Tensione non in gioco e un no-op mentre un id inesistente resta un errore, e una Chronicle assemblata gioca fino in fondo |
 | `unit/test_narrative_text.gd` | 6 | la Regione a fuoco segue il tag condition e resta nel dominio, la stessa frase autorata nomina un posto diverso in due mondi diversi, le forme italiane (articolo, locativo, genitivo) e la maiuscola di uno slot in testa, l'ordine di sostituzione per lunghezza, e che nessuno slot irrisolto finisca nel registro Truth |
+| `unit/test_questions_asked.gd` | 6 | il default della prima Confluence non cambia (la domanda piu affilata), una domanda gia messa ai voti esce dal tavolo finche ne resta una nuova - e le proposte che seguono sono le sue - il filtro si toglie di mezzo quando tutto e stato chiesto, la memoria e della Tensione e non del tavolo, una Confluence aperta e non risolta non consuma niente, e ogni Chronicle comincia senza niente di chiesto (D-061) |
+| `unit/test_log_export.gd` | 6 | il nome del file sopravvive a un filesystem e porta il seme, una sessione senza Chronicle ha comunque un nome, l'intestazione porta il seme e non inventa quello che non sa, fuori dal browser il file si scrive e chi ha premuto sa dove, e un log vuoto non scarica niente (D-062) |
 | `smoke/test_chronicle_run.gd` | 6 | i tre piani giocati per intero, le loro asserzioni `expected`, il fatto che finiscano diversamente, Echo e Truth automatici, il determinismo per seed, e che il log pubblico non riveli mai il valore velato |
 
 ---

@@ -331,6 +331,115 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-062 — Su un tablet non esiste un F3 da premere
+**changed in 0.1.23** (§25.14, rivede [D-054](#d-054))
+
+Il cruscotto stava dietro F3 per una ragione scritta: *mostra anche quello che al
+tavolo è coperto, e non è una cosa da premere per curiosità in mezzo a un
+Consiglio*. Un tasto funzione è scomodo apposta.
+
+Poi il gioco è stato giocato su un iPad, ed è arrivata la conseguenza che nessuno
+aveva previsto: **su un tablet un F3 non c'è**. Non era scomodo, era assente. Lo
+stesso vale per F4 e l'anteprima di stampa.
+
+Il ragionamento reggeva contro un bottone *dentro* il flusso delle scelte — dove
+si preme per sbaglio, o per curiosità, mentre si sta decidendo. Non regge contro
+uno in fondo alla colonna, accanto alle regole, fuori dalla lista che si azzera a
+ogni domanda: quello si preme apposta. Quindi il cruscotto ha un tasto, e F3
+resta — le due strade chiamano lo stesso metodo, perché due strade che scrivono
+lo stesso stato si disallineano il giorno in cui una delle due cambia.
+
+Il tasto si spegne quando non c'è una sessione: il cruscotto guarda una partita,
+e un pannello vuoto è peggio di un tasto spento.
+
+### E il log, che era leggibile ma non prendibile
+
+La stessa partita ha prodotto la stessa forma di problema. La cronaca è tutta
+sullo schermo, nella colonna di sinistra, e al computer si seleziona e si copia.
+Su un tablet no: **una partita finita si può solo fotografare**, ed è esattamente
+così che sono arrivate le ultime due segnalazioni — screenshot di un registro
+delle Truth.
+
+`scripts/core/log_export.gd` scrive tutto quello che si legge nella colonna — non
+le sole righe del `GameLog`, ma anche il menu, le domande fatte a chi gioca e le
+sue risposte, perché chi rilegge vuole la sessione e non il sottoinsieme che il
+motore considera pubblico. Nel browser via `JavaScriptBridge.download_buffer`,
+altrove scritto in `user://` **dicendo dove**: una cosa che accade in silenzio non
+è distinguibile da una che non accade.
+
+In testa al file vanno saga, anno e **seme**, e il seme è la parte che conta: un
+log senza seme è un racconto, con il seme è una partita che si può rigiocare
+identica. Il nome del file lo porta pure lui — `echoes-chr-03-3330.txt`.
+
+Chronicle e anno sono tenuti accanto a `_last_seed` e non letti dalla sessione,
+perché il log si scarica quasi sempre **a partita finita**, quando la sessione è
+già stata disposta e il registro delle Truth è l'ultima cosa sullo schermo. È lì
+che qualcuno preme.
+
+---
+
+## D-061 — Un Consiglio non rimette ai voti quello che ha già deciso
+**implemented in 0.1.22** (§12.2 B, estende [D-016](#d-016))
+
+Trovata da una partita vera, non da un test: il registro delle Truth mostrava a
+schermo **la stessa frase tre volte** nello stesso anno, con solo i numeri (S O
+M) diversi.
+
+### Cosa diceva la misura
+
+La sonda di testo (`cli/run_text_probe.gd`, ora con `--chronicle` e un conteggio
+delle ripetizioni **dentro la stessa Chronicle**) su 40 partite per saga:
+
+| | CHR_01 | CHR_03 |
+|---|---|---|
+| domande poste, distinte | 8 | **5** su 12 scritte |
+| proposte votate, distinte | 17 | **10** su 23 scritte |
+| Chronicle con una Truth ripetuta | 6 su 40 | **20 su 40** |
+
+Il Debito della seconda saga poneva **94 volte su 94** la stessa domanda e
+riceveva 94 volte la stessa proposta. Non era sfortuna: la domanda affilata è
+l'ultima in ordine di definizione (D-016), la sua soglia è bassa, e la policy —
+che gioca per il proprio Destiny — trova sempre la stessa opzione migliore.
+Niente di casuale, quindi niente che il caso potesse variare. Metà del contenuto
+scritto della seconda saga non veniva mai al tavolo: [D-035](#d-035) di nuovo,
+sulle domande invece che sulle proposte.
+
+### La regola
+
+In B, le domande eleggibili **meno quelle che questa Tensione ha già messo ai
+voti in questa Chronicle**. Se non ne resta nessuna il filtro si toglie di mezzo
+e tornano tutte, col default di sempre. La memoria sta in
+`world_state.questions_asked` — per Tensione, quindi due questioni diverse non si
+consumano le domande a vicenda — e si segna alla **risoluzione**, non
+all'apertura: una Confluence che si apre e si annulla non consuma niente.
+
+Nasce vuota a ogni Chronicle. È la memoria dell'anno che si sta giocando, non del
+mondo: l'anno dopo la stessa domanda si può rifare, ed è giusto che si possa.
+
+### Cosa ha cambiato
+
+Ripetizioni nel registro, su 40 partite: CHR_01 **6 → 2**, CHR_03 **20 → 0**.
+Domande distinte poste: CHR_01 8 → 12 (tutte quelle scritte), CHR_03 5 → 7.
+Proposte distinte votate: CHR_03 10 → 13.
+
+Sul bilanciamento, `run_playtest.gd` sugli stessi 100 semi di
+[D-055](#d-055) — tavolo misto: fallimenti 282 → 274, Decisive 128 → 132,
+Consigli per Chronicle 5,96 invariati (dentro la banda del §7). Il divario fra
+aggressivo e prudente resta dov'era (61-22 → 69-32): **questa non è la seconda
+leva**, e non pretende di esserlo (ISSUES 1). Tavolo uniforme: seggi bloccati su
+un solo livello 4 su 8 → **3 su 8**, che è la misura di [D-051](#d-051) e si
+muove nel verso giusto senza che nessuno l'abbia toccata.
+
+### Perché non si è invece variata la frase
+
+L'alternativa ovvia era far scrivere al registro «e ancora una volta…» quando una
+frase si ripete. Sarebbe stato più economico e avrebbe nascosto il problema: le
+tre righe uguali non erano un difetto di prosa, erano il sintomo di un Consiglio
+che poneva sempre la stessa domanda. Riscrivere la frase avrebbe lasciato tredici
+proposte su ventitre a non esistere.
+
+---
+
 ## D-060 — Gli Asset sono scene, le Casate sono ritratti
 **changed in 0.1.21** (ART_BIBLE, regola invalicabile 3)
 

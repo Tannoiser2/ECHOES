@@ -159,6 +159,16 @@
           },
           "description": "Chi ha aperto l'ultimo Consiglio su ogni domanda. Serve a far girare la parola: un seggio che ha proposto l'ultima volta si fa da parte se c'e qualcun altro nella Regione di cui si discute (D-051)."
         },
+        "questions_asked": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "description": "Quali domande ogni Tensione ha gia messo ai voti in questa Chronicle. Un Consiglio non rimette in discussione la stessa cosa finche' resta qualcosa che non ha ancora chiesto (D-061)."
+        },
         "forced_confluence": {
           "type": [
             "object",

@@ -158,13 +158,44 @@ func set_question(question_id: String) -> bool:
 	return false
 
 
+## §12.2 B. Le domande che lo stato della Tensione apre davvero, **meno quelle
+## che questa Chronicle ha gia' messo ai voti** finche' ne resta una nuova
+## (D-061).
+##
+## Senza questo filtro il Debito della seconda saga poneva 94 volte su 94 la
+## stessa domanda in quaranta Chronicle, e la meta' delle proposte scritte non
+## veniva mai votata da nessuno: contenuto che esiste nei dati e non esiste al
+## tavolo (D-035). Il filtro cade quando tutto e' stato chiesto - un Consiglio
+## che ha esaurito le sue domande torna alla piu' affilata, come prima.
 func _eligible_questions(template: Dictionary, proponent: String, tension_id: String) -> Array:
 	var context: Dictionary = {"proponent": proponent, "tension": tension_id}
 	var out: Array = []
 	for question in template["questions"]:
 		if conditions.all_hold(question["eligibility"], context):
 			out.append(question)
-	return out
+	var asked: Array = _asked(tension_id)
+	if asked.is_empty():
+		return out
+	var fresh: Array = []
+	for question in out:
+		if not asked.has(str((question as Dictionary)["id"])):
+			fresh.append(question)
+	return fresh if not fresh.is_empty() else out
+
+
+func _asked(tension_id: String) -> Array:
+	return (world.get("questions_asked", {}) as Dictionary).get(tension_id, []) as Array
+
+
+func _mark_asked(tension_id: String, question_id: String) -> void:
+	if question_id == "":
+		return
+	if not world.has("questions_asked"):
+		world["questions_asked"] = {}
+	var asked: Array = (world["questions_asked"] as Dictionary).get(tension_id, [])
+	if not asked.has(question_id):
+		asked.append(question_id)
+	world["questions_asked"][tension_id] = asked
 
 
 func _select_question(template: Dictionary, proponent: String, tension_id: String) -> String:
@@ -442,6 +473,10 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 	)
 	world["confluence_count"] = int(world["confluence_count"]) + 1
 	world["forced_confluence"] = null
+	# Segnata **qui** e non all'apertura: una domanda vale come posta quando e'
+	# stata messa ai voti davvero. Una Confluence annullata perche' nessuna
+	# proposta era disponibile non consuma niente (D-061).
+	_mark_asked(tension_id, str(current["question_id"]))
 
 	result["echo_created"] = echo_created
 	result["confluence_id"] = str(current["confluence_id"])

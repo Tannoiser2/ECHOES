@@ -1237,6 +1237,9 @@ const DEFS := {
 			"last_proponent": {
 				"type": "Dictionary",
 			},
+			"questions_asked": {
+				"type": "Dictionary",
+			},
 			"forced_confluence": {
 				"type": "Dictionary",
 				"nullable": true,

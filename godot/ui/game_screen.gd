@@ -28,6 +28,7 @@ const SaveSerializer := preload("res://scripts/core/save_serializer.gd")
 const DevDashboard := preload("res://ui/dev_dashboard.gd")
 const ExportPreview := preload("res://ui/export_preview.gd")
 const EchoCardView := preload("res://ui/echo_card_view.gd")
+const LogExport := preload("res://scripts/core/log_export.gd")
 
 ## Who is at the table is a property of the Chronicle, not of this screen
 ## (D-050). It used to be a constant here, which meant the browser could only
@@ -61,6 +62,10 @@ var _help_button: Button
 var _help_data: RefCounted
 ## The seed of the last Chronicle played, so the menu can offer it back.
 var _last_seed: int = -1
+## E quale Chronicle era, e in che anno: il log si scarica quasi sempre a partita
+## finita, quando la sessione non c'e' piu'.
+var _last_chronicle: String = ""
+var _last_year: int = 0
 ## The Act-end Echo card waiting to be looked at, and what it did.
 var _echo: PanelContainer
 var _pending_echo: Dictionary = {}
@@ -71,6 +76,11 @@ var _centre: Control
 ## Il cruscotto per chi sviluppa, e se e aperto adesso.
 var _dev: PanelContainer
 var _dev_open: bool = false
+var _dev_button: Button
+## Il tasto che porta via la cronaca. Sta accanto al cruscotto perche' i due
+## servono alla stessa persona nello stesso momento: quella che ha finito di
+## giocare e vuole rileggere.
+var _log_button: Button
 ## L'anteprima di stampa. Non guarda la partita - guarda i dati - quindi si apre
 ## anche dal menu, prima che una Chronicle esista.
 var _export: PanelContainer
@@ -87,10 +97,15 @@ func _ready() -> void:
 	_menu()
 
 
-## F3 apre e chiude il cruscotto, F4 l'anteprima di stampa. Tasti e non bottoni:
-## il primo mostra quello che al tavolo e coperto (D-054), il secondo non
-## riguarda la partita in corso, e nessuno dei due va premuto per curiosita' in
-## mezzo a un Consiglio. Con l'anteprima aperta, le frecce scorrono le carte.
+## F3 apre e chiude il cruscotto, F4 l'anteprima di stampa. Con l'anteprima
+## aperta, le frecce scorrono le carte.
+##
+## I tasti restano, ma non sono piu' l'unica strada: **su un tablet non esiste un
+## F3 da premere**, e la prima partita giocata su iPad ha trovato il cruscotto
+## irraggiungibile. Il ragionamento che lo teneva dietro un tasto - mostra quello
+## che al tavolo e' coperto, non e' una cosa da premere per curiosita' - vale
+## contro un bottone *dentro* il flusso delle scelte, non contro uno in fondo
+## alla colonna, accanto alle regole, che si preme apposta (D-062).
 func _unhandled_input(event: InputEvent) -> void:
 	if not (event is InputEventKey) or not event.pressed or event.is_echo():
 		return
@@ -102,14 +117,36 @@ func _unhandled_input(event: InputEvent) -> void:
 	if key != KEY_F3 and key != KEY_F4:
 		return
 	if key == KEY_F3:
-		_dev_open = not _dev_open
-		if _dev_open:
-			_export_open = false
+		_toggle_dev(not _dev_open)
 	else:
-		_export_open = not _export_open
-		if _export_open:
-			_dev_open = false
-	if _dev_open or _export_open:
+		_toggle_export(not _export_open)
+	get_viewport().set_input_as_handled()
+
+
+## Il cruscotto (§25.14). Un solo posto che lo apre e lo chiude, che sia venuto
+## da F3 o dal bottone: due strade che scrivono lo stesso stato si disallineano
+## il giorno in cui una delle due cambia.
+func _toggle_dev(open: bool) -> void:
+	# Il cruscotto guarda una partita: senza sessione non ha niente da mostrare,
+	# e un pannello vuoto e' peggio di un tasto spento.
+	_dev_open = open and _session != null
+	if _dev_open:
+		_toggle_export(false)
+		_help_button.button_pressed = false
+	if _dev_button != null:
+		_dev_button.set_pressed_no_signal(_dev_open)
+	_dev.visible = _dev_open
+	if _dev_open:
+		_dev.render(_session)
+	_refresh()
+
+
+func _toggle_export(open: bool) -> void:
+	_export_open = open
+	if _export_open:
+		_dev_open = false
+		if _dev_button != null:
+			_dev_button.set_pressed_no_signal(false)
 		_help_button.button_pressed = false
 	# L'anteprima legge i dati, non il mondo: da sola sa disegnarsi anche quando
 	# non c'e' nessuna Chronicle, ed e' li' che serve di piu' - si corregge un
@@ -118,7 +155,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	if _export_open:
 		_export.render(_load_help_data())
 	_refresh()
-	get_viewport().set_input_as_handled()
 
 
 # --- layout -----------------------------------------------------------------
@@ -246,6 +282,30 @@ func _build() -> void:
 	_help_button.toggled.connect(_on_help_toggled)
 	right.add_child(_help_button)
 
+	# Fuori dal flusso delle scelte e in fondo alla colonna: due cose che non si
+	# fanno *durante* una decisione, ma che devono essere raggiungibili senza una
+	# tastiera. Piccole, e in una riga sola, perche' non competono con la partita.
+	var tools := HBoxContainer.new()
+	tools.add_theme_constant_override("separation", 5)
+	right.add_child(tools)
+
+	_dev_button = Button.new()
+	_dev_button.text = "Cruscotto"
+	_dev_button.tooltip_text = "Quello che al tavolo e coperto (anche F3)"
+	_dev_button.toggle_mode = true
+	_dev_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_dev_button.add_theme_font_size_override("font_size", 12)
+	_dev_button.toggled.connect(_toggle_dev)
+	tools.add_child(_dev_button)
+
+	_log_button = Button.new()
+	_log_button.text = "Scarica il log"
+	_log_button.tooltip_text = "Tutta la cronaca di questa sessione, in un file di testo"
+	_log_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_log_button.add_theme_font_size_override("font_size", 12)
+	_log_button.pressed.connect(_on_log_pressed)
+	tools.add_child(_log_button)
+
 	_hand = HandView.new()
 	_hand.custom_minimum_size = Vector2(0, 80)
 	rows.add_child(_hand)
@@ -257,6 +317,7 @@ func _build() -> void:
 ## question, because a player choosing an action must be looking at the state
 ## the action will apply to - not the state of the last screenshot.
 func _refresh() -> void:
+	_tools_state()
 	if _session == null:
 		return
 	# Il cruscotto sta davanti a tutto quando e aperto: chi lo guarda non sta
@@ -275,6 +336,18 @@ func _refresh() -> void:
 	_status.render(_session, _viewer)
 	_hand.render(_session, _viewer, _focus_tension)
 	_context.text = _context_line()
+
+
+## Lo stato dei due tasti in fondo alla colonna. Sta fuori dal corpo di
+## `_refresh()` perche' quello esce subito quando non c'e' una sessione - ed e'
+## esattamente li', a Chronicle finita e col registro delle Truth sullo schermo,
+## che qualcuno preme «Scarica il log».
+func _tools_state() -> void:
+	if _dev_button == null:
+		return
+	_dev_button.disabled = _session == null
+	if _session == null and _dev_open:
+		_toggle_dev(false)
 
 
 ## The one line above the choices: what is about to happen, and why the choice
@@ -392,6 +465,28 @@ func _echo_beat() -> void:
 
 ## One line into the transcript. Lines the engine writes arrive here too, so
 ## what a player reads and what the log records are the same string.
+## L'intero log, cioe' esattamente quello che si legge nella colonna di sinistra:
+## non le sole righe del `GameLog`, ma anche il menu, le domande fatte a chi
+## gioca e le sue risposte. Chi rilegge vuole la sessione, non il sottoinsieme
+## che il motore considera pubblico.
+func _on_log_pressed() -> void:
+	var chronicle_id: String = _last_chronicle
+	var year: int = _last_year
+	if _session != null:
+		chronicle_id = str(_session.world.get("chronicle_id", chronicle_id))
+		year = int(_session.world.get("year", year))
+	var title: String = ""
+	var data: RefCounted = _load_help_data()
+	if data != null and data.chronicles.has(chronicle_id):
+		title = str(data.chronicles[chronicle_id]["title"])
+	var text: String = (
+		LogExport.header(title, year, _last_seed, Time.get_datetime_string_from_system(false, true))
+		+ _transcript.get_parsed_text()
+	)
+	var said: String = LogExport.deliver(text, LogExport.file_name(chronicle_id, _last_seed))
+	_hint.text = said if said != "" else "Non c'e ancora niente da scaricare."
+
+
 func say(text: String) -> void:
 	if text.begins_with("=="):
 		_transcript.append_text("\n[color=#e8b563][b]%s[/b][/color]\n" % text.strip_edges())
@@ -707,6 +802,11 @@ func _play(humans: Array, chronicle_id: String, seed_value: int) -> void:
 ## two would stop agreeing (D-052).
 func _drive(data: RefCounted, humans: Array, chronicle_id: String) -> void:
 	_busy = true
+	# Tenuti come `_last_seed`, e per la stessa ragione: a fine Chronicle la
+	# sessione viene disposta, e il log si scarica proprio li' - a partita finita.
+	# Senza questi il file uscirebbe senza nome e senza anno.
+	_last_chronicle = chronicle_id
+	_last_year = int(_session.world.get("year", 0))
 	_help_button.button_pressed = false
 	_dev.watch(_session)
 	var shown: Dictionary = {"lines": 0}
@@ -759,6 +859,7 @@ func _drive(data: RefCounted, humans: Array, chronicle_id: String) -> void:
 	_session.dispose()
 	_session = null
 	_busy = false
+	_tools_state()
 
 
 func _flush(shown: Dictionary) -> void:
