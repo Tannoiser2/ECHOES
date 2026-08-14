@@ -19,12 +19,19 @@ extends RefCounted
 
 const CardFace := preload("res://scripts/core/card_face.gd")
 
-## Quale MASTER PROMPT vale per quale mazzo, e con quale variazione. Le Entity
-## non compaiono: la ART_BIBLE ha tre prompt e nessuno di essi e' un ritratto.
-## Vedi `keys_without_prompt()`.
-const PROMPT_FOR: Dictionary = {"asset": 1, "echo": 2, "region": 3}
+## Quale MASTER PROMPT vale per quale mazzo, e con quale variazione.
+const PROMPT_FOR: Dictionary = {"asset": 1, "echo": 2, "region": 3, "entity": 4}
+
+## Le intestazioni delle tabelle di variation key. Sono righe di tabella come le
+## altre e vanno saltate: senza questo elenco la parola «archetipo» diventerebbe
+## una chiave di variazione con dentro la parola «accento».
+const HEADERS: Array = ["FAMIGLIA", "BIOME", "ARCHETIPO"]
 
 var _prompts: Dictionary = {}
+## Accenti e guide **per MASTER PROMPT**, non in un unico mucchio: `PEOPLE` e' sia
+## una famiglia di Asset sia un archetipo di Casata, e con un dizionario solo il
+## ritratto di un popolo si sarebbe preso l'accento della famiglia PEOPLE - o
+## viceversa, a seconda di quale tabella il documento elenca per ultima.
 var _accents: Dictionary = {}
 var _guides: Dictionary = {}
 var _path: String = ""
@@ -70,11 +77,14 @@ func read(path: String) -> bool:
 			for cell in line.split("|"):
 				cells.append(str(cell).strip_edges().replace("**", "").replace("`", ""))
 			var key: String = str(cells[1]).to_upper()
-			if key == "" or key.begins_with("---") or key == "FAMIGLIA" or key == "BIOME":
+			if key == "" or key.begins_with("---") or HEADERS.has(key):
 				continue
-			_accents[key] = str(cells[2])
+			if not _accents.has(current):
+				_accents[current] = {}
+				_guides[current] = {}
+			(_accents[current] as Dictionary)[key] = str(cells[2])
 			if cells.size() > 3:
-				_guides[key] = str(cells[3])
+				(_guides[current] as Dictionary)[key] = str(cells[3])
 	return available()
 
 
@@ -87,8 +97,10 @@ func prompt_for(face: Dictionary, subject: String, accent_key: String) -> String
 	var text: String = str(_prompts[which])
 	text = text.replace("{SOGGETTO}", subject)
 	text = text.replace("{REGIONE}", str(face["title"]))
-	text = text.replace("{DESCRIZIONE}", str(_guides.get(accent_key, subject)))
-	text = text.replace("{ACCENTO}", str(_accents.get(accent_key, "l'accento della sua famiglia")))
+	var guides: Dictionary = _guides.get(which, {})
+	var accents: Dictionary = _accents.get(which, {})
+	text = text.replace("{DESCRIZIONE}", str(guides.get(accent_key, subject)))
+	text = text.replace("{ACCENTO}", str(accents.get(accent_key, "l'accento della sua famiglia")))
 	return text
 
 
@@ -182,4 +194,9 @@ func _accent_key(face: Dictionary, data: RefCounted) -> String:
 			return str(described["label"]).split(" —")[0]
 		"region":
 			return str(data.regions[id]["biome"])
+		"entity":
+			# L'archetipo, che e' la cosa che cambia davvero un ritratto: un
+			# sovrano, una persona, una fazione, un culto, un popolo e una
+			# creatura non si dipingono nello stesso modo (D-065).
+			return str(data.entities[id]["archetype"])
 	return ""

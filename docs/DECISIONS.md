@@ -331,6 +331,160 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-065 — Il quarto MASTER PROMPT: le Casate sono ritratti
+**implemented in 0.1.24** (ISSUES 4, chiude [D-056](#d-056))
+
+L'export aveva trovato che le otto chiavi `entity.*` erano in uso e senza
+prompt, e le due strade erano esclusive: scrivere il quarto MASTER PROMPT, o
+togliere l'illustrazione alle carte Casata. Scelto il ritratto, che è anche
+quello che [D-060](#d-060) aveva già assegnato alle Casate quando ha riscritto la
+regola 3 — *l'Asset è una scena, la Casata è un ritratto*. Senza il quarto
+prompt quella distinzione aveva un solo lato.
+
+**Lo stemma resta il ripiego dichiarato.** È più facile da disegnare otto volte e
+regge meglio la miniatura; se i ritratti non escono, la chiave non cambia e si
+riscrive solo questo prompt. Ma un mazzo di stemmi lascerebbe la regola 3 senza
+il suo mezzo, e uno stemma non dice la cosa che un ritratto dice: che dall'altra
+parte del tavolo c'è qualcuno.
+
+### La variation key è l'archetipo
+
+Sei righe — SOVEREIGN, INDIVIDUAL, FACTION, CULT, PEOPLE, CREATURE — perché è
+quello che cambia davvero un ritratto. Due di quelle righe non sono un volto, ed
+è per loro che il prompt dice *one subject* e non *one face*: un popolo si ritrae
+con uno dei suoi, in primo piano e la sua gente dietro fuori fuoco; una cosa che
+dorme sotto la montagna si ritrae da vicino, e occhi da mostrare non ne ha.
+
+### Un difetto trovato scrivendolo
+
+`PEOPLE` è **sia** una famiglia di Asset **sia** un archetipo di Casata, e
+`art_bible.gd` teneva accenti e guide in un dizionario solo, piatto su tutti i
+MASTER PROMPT. La seconda tabella avrebbe sovrascritto la prima, o viceversa, a
+seconda dell'ordine in cui il documento le elenca. Con il contenuto di oggi non
+si sarebbe visto — i due `PEOPLE` hanno lo stesso accento e il PROMPT 1 non usa
+`{DESCRIZIONE}` — il che lo rende esattamente il tipo di difetto che si scopre
+sei mesi dopo cambiando una parola. Adesso accenti e guide sono per prompt, e un
+test tiene ferma la separazione nei due versi.
+
+Da qui `keys_without_prompt()` torna vuota, e il test che contava le chiavi
+scoperte è diventato la guardia che pretende che restino zero.
+
+---
+
+## D-064 — Far cadere una proposta costa quanto proporla
+**implemented in 0.1.24** (§12.3, rivede [D-013](#d-013) — ISSUES 1)
+
+La seconda leva contro l'Oppose come strategia dominante. La prima
+([D-055](#d-055)) ha fatto entrare la Condition nel margine e ha abbassato i
+fallimenti, ma non ha detronizzato niente: l'aggressivo restava a 69 Vittorie
+contro le 32 del prudente.
+
+Il §12.3 dice che su un Failure il proponente scarta tutto e **ogni oppositore si
+riprende una carta a scelta**. È l'unica asimmetria del sistema che premia il
+fronte contrario: opporsi e vincere costa meno che proporre e vincere. Toglierla
+è la prima delle tre varianti che ISSUES 1 elencava.
+
+### Misurato
+
+`run_playtest.gd --runs=100 --seed=7000`, gli stessi 100 semi di D-055, metà
+CHR_01 e metà CHR_03, tavolo misto:
+
+| carattere | prima (N/M/V/T) | dopo |
+|---|---|---|
+| prudente | 0 / 67 / **32** / 1 | 0 / 60 / **40** / 0 |
+| aggressivo | 0 / 25 / **69** / 6 | 1 / 28 / **66** / 5 |
+| distratto | 0 / 50 / 44 / 6 | 0 / 43 / 52 / 5 |
+| ostinato | 0 / 64 / 32 / 4 | 0 / 62 / 34 / 4 |
+
+Il divario in Vittorie fra aggressivo e prudente passa da **37 a 26**. I
+fallimenti scendono da 274 a 251 su 596 Consigli. I Consigli per Chronicle
+restano 5,96 di media e 6 di mediana — dentro la banda del §7, che è la cosa che
+la prima Conseguenza tentata aveva sfondato. I seggi bloccati su un solo livello
+restano 0 su 8 a tavolo misto e 3 su 8 a tavolo uniforme.
+
+### La regola
+
+`confluence_rules.opposer_recovers_on_failure`, `false` nei dati delle quattro
+Chronicle. Assente o `true` e torna la regola scritta: data-driven e reversibile
+come i cap su INFLUENCE ([D-021](#d-021)), perché una deviazione dalla specifica
+si toglie senza toccare il codice. `run_playtest.gd --oppose-recovery=1` rimette
+il §12.3 originale per un run solo.
+
+### Cosa non ha fatto
+
+Non ha detronizzato l'Oppose: 66 contro 40 resta una distanza. Le altre due
+varianti in elenco — l'Oppose che costa un Asset in più, il proponente che sceglie
+per ultimo — non sono state misurate, e [D-063](#d-063) ne ha aggiunta una terza
+che sembra più mirata di tutt'e tre: **il diritto di proporre**. Il seggio che
+vorrebbe l'esito alternativo non prende mai la parola, e il gioco ha già l'azione
+che lo sposta.
+
+---
+
+## D-063 — Le proposte che nessuno sceglie: il posto decide chi parla
+**measured in 0.1.24** (ISSUES 2 e 3, [D-035](#d-035))
+
+Dopo [D-061](#d-061) restavano dieci proposte su ventitré della seconda saga che
+nessuno aveva mai messo ai voti. `cli/run_choice_probe.gd` è la sonda che separa
+i tre motivi possibili, che vogliono tre rimedi diversi: la domanda non si pone ·
+la proposta non è mai eleggibile · è offerta e non viene mai scelta.
+
+### Cosa è saltato fuori
+
+**«Mai eleggibile» è zero.** In tutt'e due le saghe, 0 proposte su 38. L'ipotesi
+che ci fossero clausole di `eligibility` che non si avverano mai è morta lì, ed è
+il tipo di ipotesi che sarebbe costato una settimana di riscritture.
+
+**Il tavolo uniforme sotto-riporta.** Con quattro ottimizzatori identici CHR_01
+arriva a 13 proposte su 15; con i quattro caratteri di [D-051](#d-051), **15 su
+15**. Il contenuto della prima saga è tutto raggiungibile, e a dirlo non era la
+sonda che il progetto usava. La misura di riferimento per «contenuto che non
+esiste» è il tavolo misto, non l'ottimizzatore.
+
+**Un template che questa Chronicle non può aprire.** CHR_03 dichiarava
+`CNF_ANY_SURVIVAL`, ma la sua unica Tensione SURVIVAL — l'Acqua Ferma — ha un
+template tutto suo, e `confluence_template_for()` prova prima il legame diretto.
+Tre proposte contate come contenuto della seconda saga e mai giocabili. Tolta
+dalla lista, e `validate_data.py` adesso lo controlla: la lista di una Chronicle
+è documentazione, e una documentazione che elenca contenuto irraggiungibile è una
+seconda verità. CHR_04 la tiene, perché pesca le Tensioni dalla biblioteca e lì
+si apre davvero.
+
+### Le cinque che restano, e perché
+
+Con il tavolo misto CHR_03 è a 15 su 20. Le cinque che non passano — 
+`P_OPEN_LEDGER`, `P_FORGIVE`, `P_DIG_BELOW`, `P_WATCH_THE_ROCK`, `P_BURY_IT` —
+hanno una cosa in comune: **esistono solo come cose che qualcun altro vuole
+evitare**. `ledger_public`, `debt_forgiven`, `relic_buried` compaiono nei Destini
+della saga solo come `state_tag_absent`.
+
+Una sola eccezione, e chiude il cerchio: il Trionfo delle Città Libere **vuole**
+`debt_forgiven`. Su 92 Consigli sul Debito in 40 Chronicle il proponente è stato
+57 volte Maestra Ilve, 35 volte Kessa, e **zero volte le Città Libere**. Il
+proponente è deciso dal posto di cui si discute ([D-036](#d-036)), la Strada dei
+Mercanti è di Ilve, e l'unico seggio che vorrebbe rimettere il debito non prende
+mai la parola su quella domanda. Lo stesso schema sulla Reliquia: propone
+l'Ordine del Vetro 30 volte su 34, e le tre alternative sono esattamente le tre
+cose che l'Ordine non vuole.
+
+Quindi non sono proposte scritte male. Sono proposte **scritte per seggi che non
+hanno mai la parola**, e le clausole «e nessuno fece X» dei Destini sono gratis
+per costruzione.
+
+### Cosa non si è fatto
+
+Non si è toccata la policy. D-035 lo dice già: *tarare la policy finché il suo
+contenuto si accende sarebbe adattare la misura alla risposta.* E non si sono
+riscritte le cinque proposte, perché la misura dice che il problema non è come
+sono scritte.
+
+Quello che questa misura consegna è un candidato per la seconda leva (ISSUES 1)
+più mirato dei tre in elenco: **il diritto di proporre**. Il gioco ha già
+l'azione che lo sposta — `CLAIM`, scartare una carta AUTHORITY per prenotarsi il
+prossimo Consiglio su un tema (§11) — e resta da misurare quanto venga usata.
+
+---
+
 ## D-062 — Su un tablet non esiste un F3 da premere
 **changed in 0.1.23** (§25.14, rivede [D-054](#d-054))
 

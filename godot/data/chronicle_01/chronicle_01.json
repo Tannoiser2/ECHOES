@@ -21,6 +21,9 @@
         "max_per_tension_per_round": 1,
         "displacement_on_decrease": 1
       },
+      "confluence_rules": {
+        "opposer_recovers_on_failure": false
+      },
       "control_rules": {
         "max_stable_control": 2,
         "overextension_delta": 1,
@@ -121,6 +124,9 @@
         "max_per_entity_per_round": 1,
         "max_per_tension_per_round": 1,
         "displacement_on_decrease": 1
+      },
+      "confluence_rules": {
+        "opposer_recovers_on_failure": false
       },
       "control_rules": {
         "max_stable_control": 2,

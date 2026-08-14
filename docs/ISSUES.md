@@ -22,9 +22,24 @@ Legenda etichette: `regola` · `contenuto` · `arte` · `motore` · `ux` ·
 
 ## Milestone 0.2 — Bilanciamento
 
-### 1. Opporsi non costa abbastanza: la seconda leva
+### 1. ✅ Opporsi non costa abbastanza: la seconda leva — fatta in 0.1.24
 
-`regola` · `da-misurare` · milestone **0.2**
+`regola` · `da-misurare` · **chiusa** ([D-064](DECISIONS.md#d-064))
+
+La leva scelta fra le tre in elenco è la prima: **chi si oppone non recupera la
+carta quando la proposta cade**. Sugli stessi 100 semi di D-055 il divario in
+Vittorie fra aggressivo e prudente passa da **37 a 26** (69-32 → 66-40), i
+fallimenti da 274 a 251, e i Consigli per Chronicle restano 5,96 — dentro la
+banda del §7, che è quello che la Conseguenza tentata la prima volta aveva
+sfondato. Sta in `confluence_rules.opposer_recovers_on_failure`, quindi si toglie
+senza toccare il codice.
+
+**Non ha detronizzato l'Oppose**: 66 contro 40 resta una distanza. Le altre due
+varianti in elenco non sono state misurate, e [D-063](DECISIONS.md#d-063) ne ha
+aggiunta una terza che sembra più mirata di tutt'e tre — **il diritto di
+proporre**, che il gioco sposta già con `CLAIM`. È il primo candidato della 0.2.
+
+<details><summary>Il testo dell'issue come era stato scritto</summary>
 
 La prima leva è partita con la 0.1.17: una Condition qualificata entra nel
 margine ([D-055](DECISIONS.md#d-055)). I fallimenti sono scesi da 315/603 a
@@ -45,6 +60,8 @@ per ultimo. Una alla volta.
 `run_playtest.gd`, e o entra con i numeri accanto, o è scritta come respinta con
 i numeri accanto.
 
+</details>
+
 ### 2. Tre-cinque template di Confluence in più
 
 `contenuto` · milestone **0.2**
@@ -52,14 +69,25 @@ i numeri accanto.
 Dieci template su due saghe. Le domande che una Tensione può porre sono la parte
 di contenuto che si vede di più al tavolo, ed è quella che si ripete prima.
 
-**Aggiornato dalla misura di [D-061](DECISIONS.md#d-061).** Il problema non era
-solo quanti template ci sono: metà delle domande già scritte non veniva mai
-posta, e su 40 Chronicle della seconda saga 10 proposte su 23 arrivavano ai voti.
-Il filtro della 0.1.22 ha portato le proposte votate a 13 su 23 e le domande da 5
-a 7 su 12 — **restano dieci proposte che nessuno ha ancora mai messo ai voti**.
-Prima di scriverne di nuove vale la pena guardare perché quelle non si
-raggiungono: potrebbero essere condizioni di eligibility che non si avverano mai,
-o proposte che la policy considera sempre peggiori.
+**Aggiornato due volte dalle misure.** Prima [D-061](DECISIONS.md#d-061): metà
+delle domande già scritte non veniva mai posta. Poi
+[D-063](DECISIONS.md#d-063), con la sonda `run_choice_probe.gd`, che ha risposto
+alle domande lasciate aperte qui sopra:
+
+- **eligibility che non si avvera mai: zero**, in tutt'e due le saghe. Ipotesi
+  chiusa.
+- **il tavolo uniforme sotto-riporta**: CHR_01 passa da 13 proposte su 15 a
+  **15 su 15** appena si misura col tavolo misto. La prima saga è tutta
+  raggiungibile.
+- **un template che CHR_03 non poteva aprire** (`CNF_ANY_SURVIVAL`, 3 proposte):
+  tolto dalla lista, e adesso `validate_data.py` lo controlla.
+- restano **5 proposte su 20** in CHR_03 che nessuno sceglie nemmeno a tavolo
+  misto, e non è perché sono scritte male: esistono solo come cose che qualcun
+  altro vuole evitare, e l'unico seggio che ne vorrebbe una non prende mai la
+  parola su quella domanda.
+
+Quindi il lavoro qui non è più «scrivere altri template»: è il diritto di
+proporre (issue 1).
 
 **Fatto quando** i nuovi template passano `validate_data.py`, ogni proposta è
 raggiungibile in gioco (D-035: una proposta che la policy non sceglie mai è
@@ -73,6 +101,12 @@ contenuto che non esiste) e `test_balance.gd` resta in banda.
 acquisite e impegnate: è esattamente la forma di problema che il progetto ha già
 trovato due volte guardando un numero che nessuno guardava.
 
+**Metà fatta in 0.1.24** ([D-063](DECISIONS.md#d-063)): `cli/run_choice_probe.gd`
+fa questo conteggio per le **proposte di Confluence** e separa i tre motivi per
+cui una non arriva mai ai voti. Manca la stessa cosa per gli Asset, e la lezione
+da riportare è che la misura va fatta **a tavolo misto**: l'ottimizzatore da solo
+dichiara morto contenuto che vivo lo è.
+
 **Fatto quando** una sonda riporta, su 100 Chronicle, quante volte ogni Asset è
 stato pescato, tenuto e impegnato — e la coda (le carte a zero) è o riscritta o
 tolta, con la decisione a verbale.
@@ -81,9 +115,20 @@ tolta, con la decisione a verbale.
 
 ## Arte e componenti fisici
 
-### 4. Il quarto MASTER PROMPT, o via le chiavi `entity.*`
+### 4. ✅ Il quarto MASTER PROMPT — fatto in 0.1.24
 
-`arte` · `decisione`
+`arte` · `decisione` · **chiusa** ([D-065](DECISIONS.md#d-065))
+
+Scelto il **ritratto**, che è quello che D-060 aveva già assegnato alle Casate
+quando ha riscritto la regola 3. Variation key sui sei archetipi; due di quelle
+righe non sono un volto, ed è per loro che il prompt dice *one subject* e non
+*one face*. Lo stemma resta il ripiego dichiarato: la chiave non cambierebbe,
+cambierebbe solo il prompt.
+
+`ArtBible.keys_without_prompt()` torna vuota, e il test che contava le chiavi
+scoperte è diventato la guardia che pretende che restino zero.
+
+<details><summary>Il testo dell'issue come era stato scritto</summary>
 
 L'export di stampa passa in rassegna ogni chiave d'arte in uso e ha trovato che
 le **otto `entity.*` non hanno un MASTER PROMPT**: i tre della ART_BIBLE sono
@@ -97,6 +142,8 @@ all'illustrazione e le chiavi si tolgono dai dati.
 **Fatto quando** `ArtBible.keys_without_prompt()` torna vuota e
 `test_print_export.test_the_keys_without_a_prompt_are_the_ones_we_know_about` è
 aggiornato di conseguenza.
+
+</details>
 
 ### 5. ✅ Un posto dove mettere l'arte vera — fatto in 0.1.21
 
@@ -112,7 +159,8 @@ Più `map.board`, il tabellone dipinto: l'unica chiave che non sta nei dati.
 **Resta da fare**: consegnare le illustrazioni. Le chiavi sono 98 e i prompt
 sono già scritti uno per uno in [BRIEF_ARTE.md](BRIEF_ARTE.md) — la mappa e le
 sei tessere Regione sono arrivate, restano le 48 Asset, le 36 Echo e le 8
-Casate (che aspettano la decisione 4).
+Casate — che dalla 0.1.24 hanno il loro prompt come tutte le altre
+([D-065](DECISIONS.md#d-065)).
 
 ### 6. ✅ L'iconografia di sistema — fatta in 0.1.20
 

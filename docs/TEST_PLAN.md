@@ -10,7 +10,7 @@ python3 tools/gen_gd_schema.py --check
 GODOT=/path/to/godot tools/run_sims.sh
 ```
 
-Stato 0.1.23: **174 test in 24 suite, 4472 asserzioni, tutto verde**, più i 3
+Stato 0.1.24: **175 test in 24 suite, 4476 asserzioni, tutto verde**, più i 3
 piani di simulazione che passano le proprie asserzioni e l'export di stampa che
 esce identico a ogni rigenerazione.
 
@@ -29,9 +29,12 @@ godot --headless --path godot --script res://cli/run_text_probe.gd -- --runs=40
 godot --headless --path godot --script res://cli/run_crisis_probe.gd -- --runs=40
 # lo strato di Propp: archi drammatici e funzioni senza antecedente:
 godot --headless --path godot --script res://cli/run_echo_probe.gd -- --runs=40
+# cosa il tavolo poteva dire e cosa ha detto, e perche' una proposta non arriva mai ai voti:
+godot --headless --path godot --script res://cli/run_choice_probe.gd -- --chronicle=CHR_03 --tavolo=misto
 # sweep di un knob senza toccare i dati:
 godot --headless --path godot --script res://cli/run_balance_probe.gd -- \
     --runs=40 --influence-cap=1 --tension-cap=1 --presence-directions=UP
+godot --headless --path godot --script res://cli/run_playtest.gd -- --runs=100 --oppose-recovery=1
 ```
 
 ---
@@ -71,7 +74,7 @@ godot --headless --path godot --script res://cli/run_balance_probe.gd -- \
 | `unit/test_art_library.gd` | 5 | la chiave diventa il percorso del file, un'immagine che c'e' si legge davvero (un PNG di prova da 4x4 in `tests/fixtures/`), **un'immagine che manca non e' un errore** - niente immagine, niente texture, niente da incorporare - il `data:` URI e' stabile e sta dentro un attributo XML, e il foglio di stampa senza illustrazioni disegna quello che disegnava prima |
 | `unit/test_icon_set.gd` | 7 | ogni famiglia e ogni livello di tag presenti nei dati hanno il proprio glifo, nessun tratto esce dal quadrato (meta' spessore per le spezzate, il raggio per i punti), nessun glifo e' la copia di un altro ne' ci si sovrappone, l'SVG di un glifo porta un colore solo - il vincolo del monocromatico della ART_BIBLE - la carta Asset porta la propria famiglia fino in stampa, e la prova a occhio contiene tutti e dodici i segni |
 | `unit/test_region_art.gd` | 6 | ogni tratto del terreno resta dentro la tessera, ogni bioma dei dati ha la propria tavolozza e il proprio disegno, la stessa Regione esce identica a ogni chiamata mentre due Regioni dello stesso bioma differiscono, un bioma sconosciuto disegna comunque qualcosa, la tessera stampata porta il proprio bioma (e nessun altro mazzo lo fa) e l'SVG della tessera e' ben formato |
-| `unit/test_print_export.gd` | 9 | ogni faccia stampabile del set ci sta nella propria carta (nessun `overflow`, corpo mai sotto il 74%), nessuna faccia vuota, la carta Casata non stampa mai il proprio Destino e ogni carta Destino e' marcata segreta, il mazzo espanso per `deck_copies` (48 facce Asset = 132 carte su 15 fogli), il segnaposto d'arte deterministico e diverso per chiave, l'SVG che protegge i caratteri XML e resta in millimetri, il brief che legge i MASTER PROMPT dalla ART_BIBLE, e le chiavi senza prompt ferme alle otto Casate |
+| `unit/test_print_export.gd` | 10 | ogni faccia stampabile del set ci sta nella propria carta (nessun `overflow`, corpo mai sotto il 74%), nessuna faccia vuota, la carta Casata non stampa mai il proprio Destino e ogni carta Destino e' marcata segreta, il mazzo espanso per `deck_copies` (48 facce Asset = 132 carte su 15 fogli), il segnaposto d'arte deterministico e diverso per chiave, l'SVG che protegge i caratteri XML e resta in millimetri, il brief che legge i MASTER PROMPT dalla ART_BIBLE, e il fatto che **nessuna chiave in uso resti senza MASTER PROMPT** (D-065), col ritratto di Casata che prende l'accento del proprio archetipo e non quello della famiglia di Asset che si chiama allo stesso modo |
 | `unit/test_library_content.gd` | 6 | una Tensione senza Consiglio proprio prende quello del suo dominio, ogni Tensione della biblioteca ne trova uno, il sorteggio delle Tensioni e deterministico per seed e varia fra seed, una Chronicle scritta a mano resta invariata, un Effect su una Tensione non in gioco e un no-op mentre un id inesistente resta un errore, e una Chronicle assemblata gioca fino in fondo |
 | `unit/test_narrative_text.gd` | 6 | la Regione a fuoco segue il tag condition e resta nel dominio, la stessa frase autorata nomina un posto diverso in due mondi diversi, le forme italiane (articolo, locativo, genitivo) e la maiuscola di uno slot in testa, l'ordine di sostituzione per lunghezza, e che nessuno slot irrisolto finisca nel registro Truth |
 | `unit/test_questions_asked.gd` | 6 | il default della prima Confluence non cambia (la domanda piu affilata), una domanda gia messa ai voti esce dal tavolo finche ne resta una nuova - e le proposte che seguono sono le sue - il filtro si toglie di mezzo quando tutto e stato chiesto, la memoria e della Tensione e non del tavolo, una Confluence aperta e non risolta non consuma niente, e ogni Chronicle comincia senza niente di chiesto (D-061) |

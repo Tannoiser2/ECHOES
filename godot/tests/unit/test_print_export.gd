@@ -151,12 +151,34 @@ func test_the_brief_reads_the_art_bible() -> void:
 	assert_false(prompt.contains("{"), "non resta nessun segnaposto da sostituire")
 
 
-## Le chiavi in uso che nessun MASTER PROMPT copre. Non e' un fallimento: e' un
-## conto aperto, e il test lo tiene fermo al numero che sappiamo (le otto Casate,
-## per cui la ART_BIBLE ha tre prompt e nessun ritratto).
-func test_the_keys_without_a_prompt_are_the_ones_we_know_about() -> void:
+## Le chiavi in uso che nessun MASTER PROMPT copre. Erano le otto Casate, e con
+## il MASTER PROMPT 4 (D-065) non ce ne sono piu'. Il test resta, e adesso e' la
+## guardia: chi aggiunge un mazzo senza scriverne il prompt lo scopre qui invece
+## che da chi disegna.
+func test_every_key_in_use_has_a_master_prompt() -> void:
 	var bible: RefCounted = ArtBible.new()
-	var missing: Array = bible.keys_without_prompt(data())
-	assert_eq(missing.size(), data().entities.size(), "una per Casata, e nessun'altra")
-	for key in missing:
-		assert_true(str(key).begins_with("entity."), "%s e una Casata" % str(key))
+	assert_eq(bible.keys_without_prompt(data()), [], "nessuna chiave in uso resta senza prompt")
+
+
+## E il ritratto di Casata prende l'accento del proprio archetipo, non quello di
+## una famiglia di Asset che si chiama allo stesso modo: `PEOPLE` e' tutt'e due
+## le cose, ed e' l'unico posto del documento in cui due tabelle usano la stessa
+## parola.
+func test_a_house_portrait_is_varied_by_its_archetype() -> void:
+	var bible: RefCounted = ArtBible.new()
+	if not bible.read("res://../docs/ART_BIBLE.md"):
+		return  # senza il documento non c'e' niente da verificare, e il brief lo dice
+	var people: Dictionary = CardFace.of("entity", "ENT_NAHR", data())
+	var portrait: String = bible.prompt_for(people, str(people["title"]), "PEOPLE")
+	assert_true(portrait.contains("portrait"), "e il prompt del ritratto")
+	assert_true(portrait.contains("terracotta"), "con l'accento del proprio archetipo")
+	assert_true(portrait.contains("il volto di uno"), "e la guida che dice come si ritrae un popolo")
+	assert_false(portrait.contains("{"), "non resta nessun segnaposto da sostituire")
+
+	# E le tabelle non si mescolano nell'altro verso: un archetipo non e' un
+	# accento valido per una carta Asset, e chiederlo deve ricadere sul generico
+	# invece di pescare dalla tabella dei ritratti.
+	var levy: Dictionary = CardFace.of("asset", "AST_FORCE_LEVY", data())
+	var scene: String = bible.prompt_for(levy, str(levy["title"]), "SOVEREIGN")
+	assert_true(scene.contains("l'accento della sua famiglia"), "l'Asset non vede la tabella 4")
+	assert_false(scene.contains("oro spento"), "e non si prende l'accento di un archetipo")

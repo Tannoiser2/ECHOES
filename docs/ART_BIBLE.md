@@ -127,6 +127,49 @@ Chiavi in uso: `region.<nome>`.
 
 ---
 
+## MASTER PROMPT 4 — House card
+
+```
+Historical dark-fantasy portrait of {SOGGETTO}. Painterly oil technique, visible
+brushwork, muted earth palette with a single {ACCENTO} accent. One subject, close,
+facing the viewer: this framing is what separates a House card from an Asset card,
+where a single centred figure looking out is forbidden. {DESCRIZIONE}. Low side
+lighting, shallow depth of field; the background says where they come from without
+telling a story of its own. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: head and shoulders in the upper two thirds; the
+lower third is a calm, low-detail area reserved for a text overlay. Vertical card
+framing, 2:3. No text, no letters, no numerals, no logos, no frame, no border.
+Not gory, not horror. Museum-quality illustration, boardgame card art.
+```
+
+**Variation key per archetipo:**
+
+| archetipo | accento | chi si dipinge |
+|---|---|---|
+| **SOVEREIGN** | oro spento | una persona sola, le insegne portate come un peso e mai in posa di trionfo |
+| **INDIVIDUAL** | verde-azzurro pallido | una persona sola, lo strumento del proprio mestiere a portata di mano |
+| **FACTION** | ambra | chi risponde per la casa: la persona che firma, non quella che possiede |
+| **CULT** | porpora tenue | chi custodisce, ripreso da vicino, con quello che custodisce fuori campo |
+| **PEOPLE** | terracotta | una figura sola davanti e la sua gente dietro, fuori fuoco: il ritratto di un popolo è il volto di uno |
+| **CREATURE** | grigio-rosso | non un volto: una presenza ravvicinata — pietra, scaglia, respiro — inquadrata come si inquadra un volto |
+
+Chiavi in uso: `entity.<nome>`.
+
+**Perché un ritratto e non uno stemma.** Uno stemma è più facile da disegnare
+otto volte e regge meglio la miniatura, ed è il ripiego dichiarato se i ritratti
+non escono: la chiave resta la stessa, cambia solo questo prompt. Ma la
+[regola 3](#regole-invalicabili) ha già assegnato il ritratto alle Casate per
+tenerle distinte dagli Asset, e un mazzo di stemmi lascerebbe quella distinzione
+senza il suo mezzo. Un ritratto dice anche una cosa che uno stemma non dice: che
+dall'altra parte del tavolo c'è qualcuno ([D-065](DECISIONS.md#d-065)).
+
+Le due righe che non sono un volto — PEOPLE e CREATURE — sono la ragione per cui
+il prompt dice «one subject» e non «one face». Un popolo si ritrae con uno dei
+suoi; una cosa che dorme sotto la montagna si ritrae da vicino, e non ha occhi da
+mostrare.
+
+---
+
 ## Overlay e iconografia
 
 **Fatto in 0.1.20** (`scripts/core/icon_set.gd`, [D-058](DECISIONS.md#d-058)):
@@ -183,10 +226,12 @@ terna di colori (terra, rilievo, accento). Il piano è in coordinate normalizzat
 e lo disegnano **due motori**: la mappa dentro l'app e il foglio di stampa in
 SVG. La tessera sul tavolo e quella sullo schermo sono la stessa immagine.
 
-### Il quarto MASTER PROMPT che non c'è
+### Il quarto MASTER PROMPT, che adesso c'è
 
-L'export passa in rassegna ogni chiave in uso, ed è così che si è scoperto che
-le **otto chiavi `entity.*` non hanno un MASTER PROMPT**: i tre qui sopra sono
-carta Asset, carta Echo e tessera Regione, e nessuno di essi è un ritratto. O si
-scrive il quarto, o le carte Casata rinunciano all'illustrazione. Finché la
-decisione non è presa, `brief_arte.md` le elenca a parte e lo dice.
+L'export passa in rassegna ogni chiave in uso, ed è così che si era scoperto che
+le **otto chiavi `entity.*` non avevano un MASTER PROMPT**: i primi tre sono
+carta Asset, carta Echo e tessera Regione, e nessuno di essi è un ritratto
+([D-056](DECISIONS.md#d-056)). Scritto in 0.1.24 come MASTER PROMPT 4
+([D-065](DECISIONS.md#d-065)); da allora `ArtBible.keys_without_prompt()` torna
+vuota, ed è un test che lo tiene fermo — se qualcuno aggiunge un mazzo senza
+prompt, la suite lo dice invece di lasciarlo scoprire a chi disegna.

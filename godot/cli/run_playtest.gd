@@ -45,6 +45,19 @@ func _initialize() -> void:
 	for i in range(runs):
 		plan.append("CHR_01" if i % 2 == 0 else "CHR_03")
 
+	# La leva si prova senza toccare i dati, come i cap su INFLUENCE:
+	# `--oppose-recovery=0` fa costare il fronte contrario quanto la proposta.
+	if options.has("oppose-recovery"):
+		var recovers: bool = str(options["oppose-recovery"]) not in ["0", "false", "no"]
+		for chronicle_id in ["CHR_01", "CHR_03"]:
+			var chronicle: Dictionary = data.chronicles[chronicle_id]
+			var rules: Dictionary = (
+				(chronicle.get("confluence_rules", {}) as Dictionary).duplicate(true)
+			)
+			rules["opposer_recovers_on_failure"] = recovers
+			chronicle["confluence_rules"] = rules
+		print("confluence_rules: opposer_recovers_on_failure = %s" % str(recovers))
+
 	print("PLAYTEST - %d partite, %d per saga, semi da %d" % [runs, runs / 2, first_seed])
 	var mixed: Dictionary = await _play(data, plan, first_seed, true)
 	var same: Dictionary = await _play(data, plan, first_seed, false)

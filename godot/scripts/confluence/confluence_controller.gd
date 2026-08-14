@@ -504,10 +504,18 @@ func _dispose_assets(
 	applied: Array, result: Dictionary, outcome: String, recovery: Dictionary, source: Dictionary
 ) -> void:
 	var failure: bool = outcome == ConfluenceResolution.FAILURE
+	# La regola scritta e' che chi si oppone si riprende una carta (D-013).
+	# Toglierla e' la prima leva provata contro l'Oppose come strategia
+	# dominante, e sta nei dati per essere reversibile come i cap su INFLUENCE.
+	var recovers: bool = bool(
+		(_chronicle.get("confluence_rules", {}) as Dictionary).get(
+			"opposer_recovers_on_failure", true
+		)
+	)
 	for entity_id in current["commits"]:
 		var committed: Array = current["commits"][entity_id]
 		var kept: String = ""
-		if failure and _stance_of(str(entity_id)) == "OPPOSE" and not committed.is_empty():
+		if recovers and failure and _stance_of(str(entity_id)) == "OPPOSE" and not committed.is_empty():
 			kept = str(recovery.get(entity_id, ""))
 			if not committed.has(kept) or _retain_rule(kept) == "ALWAYS_DISCARD":
 				kept = _default_recovery(committed)

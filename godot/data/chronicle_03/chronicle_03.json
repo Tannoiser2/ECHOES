@@ -18,6 +18,9 @@
         "max_per_tension_per_round": 1,
         "displacement_on_decrease": 1
       },
+      "confluence_rules": {
+        "opposer_recovers_on_failure": false
+      },
       "control_rules": {
         "max_stable_control": 2,
         "overextension_delta": 1,
@@ -70,7 +73,6 @@
         "CNF_DEBT_03",
         "CNF_RELIC_03",
         "CNF_CHARTER_03",
-        "CNF_ANY_SURVIVAL",
         "CNF_ANY_ANCIENT"
       ],
       "starting_relations": [],
@@ -151,6 +153,9 @@
         "max_per_entity_per_round": 1,
         "max_per_tension_per_round": 1,
         "displacement_on_decrease": 1
+      },
+      "confluence_rules": {
+        "opposer_recovers_on_failure": false
       },
       "control_rules": {
         "max_stable_control": 2,

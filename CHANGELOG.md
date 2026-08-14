@@ -5,6 +5,64 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.24] — Tre conti aperti chiusi
+
+La seconda leva, il contenuto che non arrivava mai al tavolo, e il quarto MASTER
+PROMPT. **Milestone 0.2 a metà**: restano i template di Confluence e le carte che
+nessuno gioca.
+
+### Changed
+
+- **Far cadere una proposta costa quanto proporla** ([D-064](docs/DECISIONS.md#d-064),
+  ISSUES 1). Il §12.3 restituiva una carta a ogni oppositore su un Failure: era
+  l'unica asimmetria che premiava il fronte contrario. Sugli stessi 100 semi di
+  D-055 il divario in Vittorie fra aggressivo e prudente passa da **37 a 26**
+  (69-32 → 66-40), i fallimenti da 274 a 251, e i Consigli per Chronicle restano
+  5,96 — dentro la banda del §7. Sta in
+  `confluence_rules.opposer_recovers_on_failure`: si toglie senza toccare il
+  codice, e `run_playtest.gd --oppose-recovery=1` rimette l'originale per un run.
+- `CNF_ANY_SURVIVAL` tolta da CHR_03, che non poteva aprirla: l'unica Tensione
+  SURVIVAL dell'anno ha un template tutto suo. Tre proposte contate come
+  contenuto della seconda saga e mai giocabili.
+
+### Added
+
+- **MASTER PROMPT 4 — la carta Casata** ([D-065](docs/DECISIONS.md#d-065),
+  ISSUES 4). Un ritratto, come la regola 3 aveva già stabilito; variation key sui
+  sei archetipi. Due di quelle righe non sono un volto, ed è per loro che il
+  prompt dice *one subject* e non *one face*. Da qui `keys_without_prompt()` torna
+  vuota: **98 chiavi su 98 hanno il loro prompt** in `docs/BRIEF_ARTE.md`.
+- **`cli/run_choice_probe.gd`** ([D-063](docs/DECISIONS.md#d-063)): per ogni
+  Confluence, cosa il tavolo poteva dire e cosa ha detto. Separa i tre motivi per
+  cui una proposta non arriva mai ai voti, che vogliono tre rimedi diversi.
+  `--tavolo=misto` la misura coi quattro caratteri invece che con quattro
+  ottimizzatori identici.
+- `validate_data.py` controlla che una Chronicle non dichiari template che
+  nessuna delle sue Tensioni può aprire.
+- `tests/unit/test_questions_asked.gd` e le due nuove guardie in
+  `test_print_export.gd`.
+
+### Misurato
+
+- **«Mai eleggibile» è zero** su 38 proposte in due saghe: l'ipotesi che ci
+  fossero clausole che non si avverano mai è morta lì.
+- **Il tavolo uniforme sotto-riporta.** CHR_01 passa da 13 proposte su 15 a
+  **15 su 15** appena si misura col tavolo misto: il contenuto della prima saga è
+  tutto raggiungibile, e a dirlo non era la sonda che il progetto usava.
+- Le 5 di CHR_03 che restano fuori esistono solo come cose che qualcun altro
+  vuole evitare. L'unico seggio il cui Trionfo vuole `debt_forgiven` è stato
+  proponente sul Debito **0 volte su 92**: il proponente lo decide il posto, e il
+  posto è di chi vuole l'esito ovvio.
+
+### Fixed
+
+- `art_bible.gd` teneva accenti e guide in un dizionario piatto su tutti i MASTER
+  PROMPT, e `PEOPLE` è sia una famiglia di Asset sia un archetipo di Casata. Con
+  il contenuto di oggi non si sarebbe visto — il che lo rende il tipo di difetto
+  che si scopre sei mesi dopo cambiando una parola.
+
+---
+
 ## [0.1.23] — Il log si porta via, e il cruscotto ha un tasto
 
 Due cose che si vedono solo giocando su un tablet, e il tablet è dove questo
