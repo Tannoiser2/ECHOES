@@ -1025,6 +1025,21 @@ lower-left third. Vertical card framing, 2:3. No text, no letters, no numerals,
 no frame, no border. Not gory. Boardgame card art.
 ```
 
+### `echo.memoria.the_broken_oath` — Il Giuramento che Nessuno Sciolse
+
+- **soggetto**: Il Giuramento che Nessuno Sciolse — Qualcuno ripete a voce alta il giuramento che fu rotto, coi nomi di chi c'era. Le case contano da quanti anni nessuno lo nomina, e la conta non torna a nessuno
+- **id**: `ECH_LEGEND_BROKEN_OATH`
+
+```
+Historical dark-fantasy painting of a narrative moment: Il Giuramento che Nessuno Sciolse — Qualcuno ripete a voce alta il giuramento che fu rotto, coi nomi di chi c'era. Le case contano da quanti anni nessuno lo nomina, e la conta non torna a nessuno. Painterly oil
+technique, muted earth palette, l'accento della sua famiglia accent. The image shows a turning point,
+not an action climax: the instant before or the instant after. Human scale, few
+figures, strong silhouette reading at small size. Composition: negative space
+along the top edge reserved for a title overlay; the focal event sits at the
+lower-left third. Vertical card framing, 2:3. No text, no letters, no numerals,
+no frame, no border. Not gory. Boardgame card art.
+```
+
 ### `echo.memoria.the_called_day` — Il Giorno che la Gilda Chiese Tutto
 
 - **soggetto**: Il Giorno che la Gilda Chiese Tutto — La storia si racconta a ogni firma: una Gilda morta da secoli che un mattino chiese tutto insieme. Il debito di adesso comincia a pesare come quello antico

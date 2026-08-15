@@ -331,6 +331,52 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-082 — La memoria come posta: un Trionfo che nomina la leggenda scritta
+**implemented in 0.1.37** (scelta del committente: «posta nei Trionfi»)
+
+Le leggende coloravano il mondo e nessun Destino le nominava: si poteva
+vincere una saga intera ignorando la memoria. Adesso un Trionfo per saga la
+chiede: **DST_NAHR_ROOTED** (corona) e **DST_SALE_OPEN** (città) domandano
+anche `discovery:legend` — aver *messo per iscritto* la leggenda dell'era,
+che è la cosa su cui un giocatore può agire in anno (le proposte «si dice
+che», D-076).
+
+### Il viaggio: tre collocazioni respinte coi numeri
+
+La posta è stata provata su quattro Destini, e la misura ha scelto:
+
+| collocazione | trascrive? | Trionfo | perché no |
+|---|---|---|---|
+| DST_ALDRIC_RECORD («il Regno che Ricorda») | 12 ere | 2→0 | la Vittoria è morta di suo (2/97): la cumulatività strozza qualsiasi Trionfo |
+| DST_VAERAX_WATCHED | **0** ere | 59→0 | sotto la montagna la parola non arriva: non può proporre di scrivere |
+| DST_LYRA_TAUGHT | 19 ere | 2→0 | in 17 ere su 19 la miniera è murata — e `mine_sealed` è un fatto **eterno** |
+| **DST_NAHR_ROOTED** | **12 ere** | 29→**4** | il popolo ha la parola sui Consigli di sopravvivenza, e la sua storia la racconta davvero |
+
+Il Trionfo del popolo scende da quasi-automatico (29/87) a raro e conteso
+(4/87), con la Vittoria che assorbe il resto (32→38): è la forma giusta di
+un Trionfo. Nelle città la Gilda trascrive in 10 ere su 50 e il suo Trionfo
+resta vivo (1).
+
+### La strada, perché la posta fosse raggiungibile
+
+Nella corona il «mettere per iscritto» passava solo dal Consiglio jolly, che
+apre di rado: la sonda dava **0 trascrizioni in 153 ere**. È entrata
+`P_HEIR_AS_STORY` sul Consiglio della Successione — «si nomini chi la
+ballata nomina, e stavolta lo si scriva» — ineleggibile finché la leggenda
+non esiste, quindi l'anno scritto è intatto per costruzione. Misurata:
+votata 32 volte in 20 saghe, e trascina anche P_ANY_AS_STORY da 4 a 23.
+
+### Il reperto, più grande della posta
+
+**Un fatto eterno usato come condizione di assenza uccide i Trionfi tardivi.**
+`crown_divided` e `mine_sealed` sono `enduring_facts`: una volta accaduti
+restano per la saga, e ogni Destino di seconda rotazione che ne pretende
+l'assenza muore man mano che il mondo invecchia — è così che la Vittoria di
+ALDRIC_RECORD sta a 2/97 e quella di LYRA_TAUGHT resta murata fuori.
+Registrato in ISSUES: è lavoro d'autore sui Destini, non una toppa.
+
+---
+
 ## D-081 — L'iniquità del tempo: un erede non giura sull'ambizione che ha visto fallire
 **implemented in 0.1.35**
 

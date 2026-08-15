@@ -5,6 +5,37 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.37] — La memoria in posta: il Trionfo che nomina la leggenda, e il giuramento che preme
+
+Due scelte del committente: la leggenda come posta nei Trionfi, e una
+memoria che inquieta per la prima saga ([D-082](docs/DECISIONS.md#d-082)).
+
+### Added
+
+- **La memoria come posta** (D-082): il Trionfo di «Radicati» (Popolo Nahr,
+  corona) e del «Registro Aperto» (Gilda del Sale, città) chiede anche la
+  leggenda dell'era **messa per iscritto** (`discovery:legend`). Tre
+  collocazioni respinte coi numeri prima di questa — il verbale del viaggio
+  è in D-082.
+- **`P_HEIR_AS_STORY`** sul Consiglio della Successione: «si nomini chi la
+  ballata nomina, e stavolta lo si scriva» — la strada di corona verso la
+  trascrizione, ineleggibile finché la leggenda non esiste (anno scritto
+  intatto per costruzione). Votata 32 volte in 20 saghe.
+- **«Il Giuramento che Nessuno Sciolse»**: la carta MEMORIA che preme
+  invece di consolare — gated su `legend:oath_broken`, scalda la
+  Successione e **forza il Consiglio**: la domanda si pone. Pescata 4 volte
+  in 20 saghe: rara come il suo gate, ma esiste.
+
+### Misurato
+
+Trionfo del popolo da 29/87 (quasi automatico) a **4/87** (raro e conteso),
+Vittoria 32→38; trascrizioni di corona da 0/153 a 12 ere; P_ANY_AS_STORY
+da 4 a 23 voti. Playtest: **0/8 bloccati al tavolo misto**, anno scritto
+invariato. A ISSUES (voce 18) il reperto: i fatti eterni come condizioni di
+assenza strozzano i Destini tardivi. 198 test in 28 suite verdi.
+
+---
+
 ## [0.1.36] — La soglia della stanchezza: tre ere, non due
 
 Ratifica del committente su D-081: la terza delusione è la tradizione, non

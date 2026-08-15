@@ -120,6 +120,13 @@
             "region_id": "REG_STRADA_MERCANTI",
             "min": 1,
             "label": "Presenza sulla Strada dei Mercanti"
+          },
+          {
+            "type": "state_tag_present",
+            "scope": "ENTITY",
+            "entity_id": "ENT_SALE",
+            "tag": "discovery:legend",
+            "label": "E la vecchia pagina e stata riletta e trascritta nel registro"
           }
         ]
       }
