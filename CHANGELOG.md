@@ -5,6 +5,41 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.34] — La pesca che ascolta, e la guardia sugli anni-biblioteca
+
+Gli ultimi due pezzi dichiarati della #25
+([D-079](docs/DECISIONS.md#d-079), [D-080](docs/DECISIONS.md#d-080)): la
+biblioteca smette di pescare l'anno alla cieca, e l'anno pescato ha la sua
+guardia di bilanciamento.
+
+### Added
+
+- **La pesca che ascolta** (D-079): il `tension_pool` dichiara gli *echi* —
+  per ogni candidata, i segni che la richiamano. Se il mondo ereditato porta
+  uno di quei segni (fatto globale, la sua leggenda, o tag di Regione) la
+  candidata pesa il triplo nella pesca. La ripesca avviene in
+  `inherit_from`, quando il mondo di prima è noto, e ridà anche il sacchetto
+  del Drift; senza echi o senza eredità la pesca resta byte-identica a
+  prima. Echi dichiarati per CHR_02 (corona) e CHR_04 (città), ancorati ai
+  tag che le Conseguenze scrivono davvero.
+- **La guardia sugli anni-biblioteca** (D-080, Fase 4 di #25):
+  `test_library_balance.gd` gioca l'anno scritto, gli fa ereditare quello
+  pescato, e tiene i Consigli del secondo dentro i limiti duri del §7 —
+  per tutte e due le coppie. Banda dichiarata dalla misura di nascita:
+  mediana 4 (corona) e 5 (città), banda 3-6.
+- La sonda delle ere conta la pesca che ascolta.
+
+### Misurato
+
+Le candidate richiamate da un segno vengono pescate il **78%** delle volte
+in 20 saghe, contro il 67% della pesca cieca; su cento semi col solo segno
+della miniera murata, il Risveglio esce 93 volte contro 66. La saga
+dell'812 tiene le sue proprietà (0 domande ridecise, salti invariati) e le
+mani d'era mostrano la continuità voluta. 196 test in 28 suite verdi; il
+playtest non incatena ere e resta intatto per costruzione.
+
+---
+
 ## [0.1.33] — Le due falle del verbale: la domanda ridecisa e il lutto di mille anni
 
 La prima saga giocata per intero ha lasciato un verbale, e il verbale due

@@ -340,8 +340,12 @@ fatto, il resto diventa `legend:<fatto>` · **Fase 3 fatta in 0.1.32**
 ([D-076](DECISIONS.md#d-076)): il contenuto legge le leggende — la famiglia
 MEMORIA nei mazzi delle sole biblioteche, le proposte «si dice che», e la
 memoria come via alle Scoperte; ogni pezzo vive nella sua era e in nessun
-altra. Restano la pesca delle domande pesata sulle conseguenze e la Fase 4
-(le guardie di bilanciamento sugli anni-biblioteca)
+altra · **Pesca e Fase 4 fatte in 0.1.34** ([D-079](DECISIONS.md#d-079),
+[D-080](DECISIONS.md#d-080)): la biblioteca pesca ascoltando i segni
+dell'era prima (le richiamate escono il 78% contro il 67% della pesca
+cieca) e l'anno-biblioteca ha la sua guardia di bilanciamento. Il piano a
+fasi della #25 e' completo; il motore strutturato di generazione resta
+materia della 0.3
 
 `destiny_results.evidence` registra già **come** ogni obiettivo è stato
 raggiunto, e nessuno lo legge. `world_state_factory.inheritance_effects()` porta

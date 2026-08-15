@@ -331,6 +331,83 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-080 — La guardia sugli anni-biblioteca: l'anno pescato deve decidere qualcosa
+**implemented in 0.1.34** (issue [#25](https://github.com/Tannoiser2/ECHOES/issues/25), Fase 4)
+
+`test_balance.gd` sorveglia l'anno scritto dal 2022; nessuno sorvegliava
+l'anno che la biblioteca pesca — che è quello con più modi di rompersi in
+silenzio: la mano cambia a ogni seme, metà delle domande passa dal Consiglio
+del proprio dominio, il mondo arriva già segnato, e da D-079 la pesca
+ascolta quei segni. Un anno-biblioteca che non decide niente è esattamente
+il fallimento che il §7 vuole vedere (D-047), e non c'era un test che lo
+vedesse.
+
+`tests/smoke/test_library_balance.gd` gioca l'anno scritto, gli fa ereditare
+l'anno-biblioteca, e conta i Consigli del secondo — per tutte e due le
+coppie, corona e città.
+
+### La banda, dichiarata dalla misura di nascita
+
+| su 12 semi (500-511) | mediana | distribuzione |
+|---|---|---|
+| CHR_02 dopo CHR_01 | **4** | 2-6, nessuno fuori dai limiti §7 |
+| CHR_04 dopo CHR_03 | **5** | 2-6, nessuno fuori dai limiti §7 |
+
+Limiti duri identici a `test_balance.gd` (2-8, la storia è in D-047/D-051);
+banda della mediana **3-6**, più larga di quella dell'anno scritto perché un
+anno pescato è legittimamente più quieto di uno scritto per essere pieno:
+eredita conti già chiusi. Come sempre: la banda si rivede a verbale, i
+limiti duri no.
+
+---
+
+## D-079 — La pesca che ascolta: l'era dopo cresce da quella prima
+**implemented in 0.1.34** (issue [#25](https://github.com/Tannoiser2/ECHOES/issues/25))
+
+Era il pezzo mancante dichiarato in fondo alla #25: la biblioteca pescava
+l'anno **alla cieca**. Un'era poteva chiudere con la corona divisa e la
+successiva discutere di pozzi, come se il mondo non avesse appena detto di
+cosa aveva bisogno di parlare.
+
+### La regola
+
+Il `tension_pool` dichiara gli **echi**: per ogni candidata, i segni che la
+richiamano. Se il mondo ereditato porta uno di quei segni — come fatto
+globale, come la sua **leggenda** (`legend:<fatto>`, D-075), o come tag su
+una Regione — la candidata pesa **il triplo** nella pesca (3:1, un richiamo
+conta ma non zittisce il caso). Gli echi sono ancorati ai tag che le
+Conseguenze scrivono davvero: la miniera murata richiama il Risveglio, il
+lutto e le terre svuotate richiamano la Febbre, il debito chiamato richiama
+il Debito.
+
+Due vincoli di struttura:
+
+- **La ripesca sta in `inherit_from`**: al setup il mondo di prima non è
+  ancora noto, quindi l'anno viene pescato alla cieca e — solo se il pool
+  dichiara echi e c'è un mondo da ereditare — ridato con le carte pesate,
+  sacchetto del Drift compreso, prima che si giochi. Niente di tutto questo
+  passa per un Effect (D-006), e senza `previous` o senza echi la pesca
+  resta byte-identica a prima.
+- **I tag di Entità non contano**: le persone muoiono, i segni del mondo
+  restano.
+
+### Misurato
+
+- Sonda delle ere (20 saghe): **le candidate richiamate da un segno vengono
+  pescate il 78% delle volte**, contro il 67% analitico della pesca cieca
+  (4 su 6). Il divario è moderato perché a fine era i segni abbondano —
+  spesso 4 candidate su 6 sono richiamate insieme, e i pesi si elidono: la
+  pesca ascolta chi ha lasciato un segno *in più*.
+- La saga dell'812 tiene le sue proprietà: 0 domande ridecise, salti e
+  generazioni invariati, e le mani d'era mostrano la continuità voluta —
+  il Risveglio torna dove la storia della miniera è rimasta aperta.
+- Guardie: `test_library_content.gd` — stessa mano a parità di seme e mondo,
+  il segno pesa (misurato su cento semi: con la miniera murata sul tavolo il
+  Risveglio esce 93 volte, senza 66), la leggenda richiama quanto il fatto,
+  e la ripesca ridà anche il sacchetto del Drift.
+
+---
+
 ## D-078 — Il criterio di D-075 vale anche per la mappa: le condizioni sbiadiscono
 **implemented in 0.1.33**
 

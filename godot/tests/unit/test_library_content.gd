@@ -112,6 +112,68 @@ func test_an_effect_on_a_tension_not_in_play_is_a_noop() -> void:
 	)
 
 
+## D-079: la pesca che ascolta. Con un mondo ereditato che porta un segno
+## dichiarato negli `echoes`, la candidata richiamata pesa il triplo; la pesca
+## resta deterministica, e senza mondo di prima resta quella cieca di sempre.
+func test_the_draw_listens_to_the_marks_of_the_era_before() -> void:
+	var chronicle: Dictionary = data().chronicles["CHR_02"]
+	var marked: Dictionary = {
+		"global_tags": ["mine_sealed"], "regions": {}, "relations": {}, "entities": {},
+	}
+
+	var first: Array = WorldStateFactory.resolve_tensions(chronicle, RngService.new(4242), marked)
+	var again: Array = WorldStateFactory.resolve_tensions(chronicle, RngService.new(4242), marked)
+	assert_eq(first, again, "stesso seed e stesso mondo, stessa mano")
+	assert_eq(first.size(), int(chronicle["tension_pool"]["count"]), "e ne pesca sempre count")
+
+	# Il peso si misura, non si presume: su cento semi, il Risveglio esce piu'
+	# spesso quando la miniera murata e' sul tavolo che quando non c'e' niente.
+	var with_mark: int = 0
+	var without: int = 0
+	for seed_value in range(5000, 5100):
+		if WorldStateFactory.resolve_tensions(
+			chronicle, RngService.new(seed_value), marked
+		).has("TEN_AWAKENING"):
+			with_mark += 1
+		if WorldStateFactory.resolve_tensions(
+			chronicle, RngService.new(seed_value)
+		).has("TEN_AWAKENING"):
+			without += 1
+	assert_true(
+		with_mark > without,
+		"il segno pesa: Risveglio %d/100 col segno, %d/100 senza" % [with_mark, without]
+	)
+
+	# E la leggenda del fatto richiama quanto il fatto (D-075).
+	var legend: Dictionary = {
+		"global_tags": ["legend:mine_sealed"], "regions": {}, "relations": {}, "entities": {},
+	}
+	assert_eq(
+		WorldStateFactory.resolve_tensions(chronicle, RngService.new(4242), legend),
+		first,
+		"stesso seed, il richiamo della leggenda e' il richiamo del fatto"
+	)
+
+
+## E la ripesca di `inherit_from` rida' anche il sacchetto del Drift: ogni
+## chip del sacchetto nomina una Tensione dell'anno ripescato, non di quello
+## pescato alla cieca al setup.
+func test_the_redeal_rebuilds_the_drift_bag_over_the_new_hand() -> void:
+	var session_two: RefCounted = GameSession.new(data())
+	assert_true(session_two.setup("CHR_02", LIBRARY_SEATS, 4242), "CHR_02 si prepara")
+	var previous: Dictionary = {
+		"year": 812,
+		"global_tags": ["mine_sealed"], "regions": {}, "relations": {}, "entities": {},
+	}
+	session_two.inherit_from(previous)
+	for tension_id in session_two.world["drift_track"]:
+		assert_true(
+			(session_two.world["tensions"] as Dictionary).has(str(tension_id)),
+			"il chip %s appartiene all'anno ripescato" % str(tension_id)
+		)
+	session_two.dispose()
+
+
 ## The whole point: a Chronicle assembled from the library plays to the end.
 func test_a_library_chronicle_plays_to_the_end() -> void:
 	var session_two: RefCounted = GameSession.new(data())

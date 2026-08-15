@@ -18,6 +18,7 @@ const DataSet := preload("res://scripts/core/data_set.gd")
 const GameSession := preload("res://scripts/chronicle/game_session.gd")
 const Characters := preload("res://scripts/seat/table_of_characters.gd")
 const RngService := preload("res://scripts/core/rng_service.gd")
+const WorldStateFactory := preload("res://scripts/world/world_state_factory.gd")
 
 
 func _initialize() -> void:
@@ -46,6 +47,8 @@ func _initialize() -> void:
 	var rotations: int = 0
 	var names_seen: Dictionary = {}
 	var hands: Dictionary = {}
+	var echoed_candidates: int = 0
+	var echoed_drawn: int = 0
 	var survivors: Dictionary = {}
 	var survivor_avg: Array = []
 	var first_year_facts_avg: Array = []
@@ -95,6 +98,19 @@ func _initialize() -> void:
 				var hand: Array = (session.world["tensions"] as Dictionary).keys()
 				hand.sort()
 				hands["|".join(PackedStringArray(hand))] = true
+				# La pesca che ascolta (D-079): delle candidate che l'era prima
+				# aveva richiamato con un segno, quante sono state pescate.
+				var pool: Dictionary = (
+					data.chronicles[chronicle_id].get("tension_pool", {})
+				)
+				for tension_id in (pool.get("echoes", {}) as Dictionary):
+					if not WorldStateFactory._era_carries_any(
+						previous, pool["echoes"][str(tension_id)]
+					):
+						continue
+					echoed_candidates += 1
+					if hand.has(str(tension_id)):
+						echoed_drawn += 1
 
 			var table: RefCounted = Characters.deal(
 				seats, RngService.new(seed_value * 31 + 7), session.log
@@ -153,6 +169,10 @@ func _initialize() -> void:
 		rotations, float(rotations) / maxf(sagas, 1)
 	])
 	print("  Mani di domande diverse pescate dalla biblioteca: %d" % hands.size())
+	if echoed_candidates > 0:
+		print("  La pesca che ascolta (D-079): candidate richiamate da un segno pescate %d su %d (%d%%)" % [
+			echoed_drawn, echoed_candidates, int(100.0 * echoed_drawn / echoed_candidates)
+		])
 	print("  Verita' nel registro all'ultimo anno: %.0f in media" % _mean(truths_final))
 	print("")
 	print("  All'ultimo anno il mondo porta in media %.1f fatti correnti e %.1f leggende." % [

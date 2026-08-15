@@ -197,7 +197,39 @@
           "TEN_THIRST"
         ],
         "count": 4,
-        "always": []
+        "always": [],
+        "echoes": {
+          "TEN_FAMINE": [
+            "grain_requisitioned",
+            "condition:starving",
+            "condition:rationed"
+          ],
+          "TEN_AWAKENING": [
+            "mine_sealed",
+            "crystal_exploited",
+            "study_supervised",
+            "condition:exploited"
+          ],
+          "TEN_SUCCESSION": [
+            "crown_divided",
+            "crown_dispossessed",
+            "oath_broken"
+          ],
+          "TEN_ROADS": [
+            "condition:cut_off",
+            "condition:plundered",
+            "structure:tollgate"
+          ],
+          "TEN_PLAGUE": [
+            "condition:mourning",
+            "condition:abandoned",
+            "condition:emptied"
+          ],
+          "TEN_THIRST": [
+            "valley_sealed",
+            "condition:starving"
+          ]
+        }
       },
       "years_after_previous": {
         "min": 20,

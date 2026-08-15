@@ -112,7 +112,15 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 ##
 ## Deterministic by construction: the draw uses the same seeded RNG as the decks
 ## and the drift bag, so the same seed always deals the same year.
-static func resolve_tensions(chronicle: Dictionary, rng: RefCounted) -> Array:
+##
+## Con un mondo ereditato la pesca **ascolta** (D-079): una candidata i cui
+## `echoes` dichiarati sono sul tavolo - un fatto globale, la sua leggenda, o
+## un tag di Regione - pesa il triplo. L'era dopo cresce da quella prima
+## invece di essere pescata alla cieca; senza segni, o senza `previous`, la
+## pesca resta quella uniforme di sempre.
+static func resolve_tensions(
+	chronicle: Dictionary, rng: RefCounted, previous: Dictionary = {}
+) -> Array:
 	if not chronicle.has("tension_pool"):
 		return (chronicle["tensions"] as Array).duplicate()
 
@@ -123,11 +131,53 @@ static func resolve_tensions(chronicle: Dictionary, rng: RefCounted) -> Array:
 		if not drawn.has(str(tension_id)):
 			candidates.append(str(tension_id))
 	candidates.sort()
-	for tension_id in rng.shuffle(candidates):
-		if drawn.size() >= int(pool["count"]):
-			break
-		drawn.append(str(tension_id))
+
+	var echoes: Dictionary = pool.get("echoes", {})
+	if previous.is_empty() or echoes.is_empty():
+		for tension_id in rng.shuffle(candidates):
+			if drawn.size() >= int(pool["count"]):
+				break
+			drawn.append(str(tension_id))
+		return drawn
+
+	var weights: Dictionary = {}
+	for tension_id in candidates:
+		weights[str(tension_id)] = (
+			ECHO_WEIGHT if _era_carries_any(previous, echoes.get(str(tension_id), []))
+			else 1
+		)
+	while drawn.size() < int(pool["count"]) and not candidates.is_empty():
+		var total: int = 0
+		for tension_id in candidates:
+			total += int(weights[str(tension_id)])
+		var roll: int = rng.range_int(1, total)
+		for i in range(candidates.size()):
+			roll -= int(weights[str(candidates[i])])
+			if roll <= 0:
+				drawn.append(str(candidates[i]))
+				candidates.remove_at(i)
+				break
 	return drawn
+
+
+## Il peso di una candidata richiamata da un segno (D-079). Tre a uno: un
+## richiamo conta, ma non zittisce il caso - e' lo stesso rapporto con cui una
+## mano di sei carte ne tiene due fuori.
+const ECHO_WEIGHT: int = 3
+
+
+## Se il mondo ereditato porta uno dei segni: come fatto globale, come la sua
+## leggenda (D-075: `legend:<fatto>`), o come tag su una Regione qualsiasi. I
+## tag di Entita' non contano: le persone muoiono, i segni del mondo restano.
+static func _era_carries_any(previous: Dictionary, tags: Array) -> bool:
+	var global_tags: Array = previous.get("global_tags", [])
+	for tag in tags:
+		if global_tags.has(str(tag)) or global_tags.has("legend:%s" % str(tag)):
+			return true
+		for region_id in previous.get("regions", {}):
+			if ((previous["regions"][str(region_id)] as Dictionary).get("tags", []) as Array).has(str(tag)):
+				return true
+	return false
 
 
 ## Every unordered pair of Entities starts at NEUTRAL so SET_RELATION always has
@@ -229,6 +279,32 @@ static func _asks_about_a_question_not_in_play(card: Dictionary, world: Dictiona
 		if not (world["tensions"] as Dictionary).has(tension_id):
 			return true
 	return false
+
+
+## La ripesca che ascolta (D-079). Al setup l'anno viene pescato alla cieca,
+## perche' il mondo di prima non e' ancora noto; `inherit_from` lo conosce, e
+## se il pool dichiara degli echi si ridanno le carte - Tensioni e sacchetto
+## del Drift - pesate sui segni ereditati. Prima che si giochi: niente di
+## quello che viene rifatto qui e' mai passato per un Effect (D-006).
+static func redeal_tensions(
+	world: Dictionary, chronicle: Dictionary, data: RefCounted, rng: RefCounted,
+	previous: Dictionary
+) -> void:
+	if previous.is_empty() or not chronicle.has("tension_pool"):
+		return
+	if (chronicle["tension_pool"] as Dictionary).get("echoes", {}).is_empty():
+		return
+	(world["tensions"] as Dictionary).clear()
+	for tension_id in resolve_tensions(chronicle, rng, previous):
+		var definition: Dictionary = data.tensions[tension_id]
+		world["tensions"][tension_id] = {
+			"id": tension_id,
+			"current_value": int(definition["current_value"]),
+			"visibility": str(definition["visibility"]),
+			"fired_omens": [],
+			"resolved_count": 0,
+		}
+	_build_drift_track(world, chronicle, rng)
 
 
 ## The drift bag (§11.2): a fixed distribution shuffled once with the seeded RNG.
