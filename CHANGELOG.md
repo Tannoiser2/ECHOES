@@ -20,6 +20,12 @@ contendenti vincono ([D-072](docs/DECISIONS.md#d-072), chiude ISSUES 17).
   le Vie Interrotte — la proposta più votata della Successione adesso tocca
   Lyra e Vaerax nei due versi.
 
+### Added
+
+- La sonda dei margini accetta `--chronicle` e `--tavolo=misto`: guardava solo
+  la prima saga a tavolo uniforme, lo stesso difetto che D-066 aveva corretto
+  nella sonda delle posizioni.
+
 ### Misurato
 
 ABSTAIN della prima saga **71,1% → 59,9%** (era il criterio della voce 17:
@@ -28,6 +34,13 @@ semi di D-055: seggi bloccati 0 su 8, Consigli 5,96, TRIUMPH 11 (pavimento:
 10), fallimenti **195** — il minimo mai misurato — e la seconda saga ferma al
 48,4%. Le due saghe sono ora entrambe sotto il 60% di ABSTAIN, dal 70–86% in
 cui stavano tre versioni fa.
+
+E la domanda tattica che restava — *il dado conta?* — è misurata e chiusa
+senza manopole ([D-073](docs/DECISIONS.md#d-073)): a tavolo misto il d6
+decide la banda in circa due Consigli su tre, l'opposizione c'è nel 71–78%
+dei Consigli, e i margini blindati sono un quarto. A tavolo uniforme sembrava
+il contrario — terza volta che l'ottimizzatore da solo avrebbe indotto
+l'intervento sbagliato.
 
 ---
 

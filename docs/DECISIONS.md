@@ -331,6 +331,30 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-073 — Il dado conta: misurato, e nessuna manopola da girare
+**measured in 0.1.29** (sonda dei margini estesa: `--chronicle`, `--tavolo=misto`)
+
+L'ultima precondizione tattica non misurata: se i Consigli si chiudono con
+margini che il d6 (±2) non può ribaltare, la suspense dell'impegno segreto è
+finta. La sonda dei margini guardava solo la prima saga a tavolo uniforme —
+lo stesso difetto che D-066 aveva corretto nella sonda delle posizioni — ed è
+stata estesa prima di giudicare.
+
+**A tavolo uniforme il sospetto sembrava fondato**: nella seconda saga il 78%
+dei Consigli chiudeva senza un'opposizione e il 53% a M ≥ +7, fuori dalla
+portata del dado. **A tavolo misto sparisce**: senza-opposizione 22% (CHR_01)
+e 29% (CHR_03), S−O medio 0,26 e 1,39, e la massa dei margini a cavallo dei
+tre confini di banda — il dado decide la banda in circa due Consigli su tre,
+e i margini blindati (≥ +7 o ≤ −5) sono un quarto del totale.
+
+Verdetto: **il dado conta e non c'è nessuna manopola da girare.** È la terza
+volta che l'ottimizzatore uniforme, da solo, avrebbe indotto un intervento
+sbagliato (D-051 sui seggi, D-063 sulle proposte, qui sui margini): la misura
+di riferimento è il tavolo misto, sempre, e adesso ogni sonda del progetto
+sa farla.
+
+---
+
 ## D-072 — La prima saga si sveglia: due scene a bande sovrapposte
 **implemented in 0.1.29** (chiude ISSUES 17, col vincolo di [D-070](#d-070))
 
