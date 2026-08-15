@@ -5,6 +5,29 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.30] — La materia prima della campagna
+
+Fase 1 dell'issue [#25](https://github.com/Tannoiser2/ECHOES/issues/25) (la
+Chronicle II generata dalle evidence): prima di scrivere il generatore, si
+misura la sua materia prima ([D-074](docs/DECISIONS.md#d-074)).
+
+### Added
+
+- `cli/run_legacy_probe.gd`: i fatti globali, le cicatrici, il controllo, i
+  rapporti e i livelli con cui un anno si chiude, e quanti mondi diversi
+  producono cento semi.
+
+### Misurato
+
+**99 mondi distinti su 100** — la materia prima c'è. E i tre difetti da
+conoscere prima di costruirci sopra, a verbale in D-074: la cicatrice del
+fallimento è il 73% di tutte le cicatrici (va aggregata, non letta alla
+pari), tre rapporti chiudono identici in ogni seme (costanti travestite da
+variabili, e a monte un fatto di contenuto), e a differenziare gli anni sono
+i fatti rari, non i frequenti.
+
+---
+
 ## [0.1.29] — La prima saga si sveglia
 
 Due scene scritte col vincolo che la respinta di D-070 aveva insegnato: le
