@@ -233,7 +233,7 @@
         "outcomes": [
           "DECISIVE_SUCCESS",
           "DECISIVE_SUCCESS",
-          "SUCCESS_WITH_COST",
+          "DECISIVE_SUCCESS",
           "SUCCESS"
         ],
         "min_echoes": 4,

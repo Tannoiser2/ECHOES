@@ -87,15 +87,26 @@ alle domande lasciate aperte qui sopra:
   parola su quella domanda.
 
 Quindi il lavoro qui non è più «scrivere altri template»: è il diritto di
-proporre (issue 1).
+proporre (issue 1 — poi aperta come [#22](https://github.com/Tannoiser2/ECHOES/issues/22)
+e **fatta in 0.1.27**, [D-069](DECISIONS.md#d-069); vedi la voce 16).
 
 **Fatto quando** i nuovi template passano `validate_data.py`, ogni proposta è
 raggiungibile in gioco (D-035: una proposta che la policy non sceglie mai è
 contenuto che non esiste) e `test_balance.gd` resta in banda.
 
-### 3. Le carte che nessuno gioca
+### 3. ✅ Le carte che nessuno gioca — fatta in 0.1.28: non esistono
 
-`contenuto` · `da-misurare` · milestone **0.2**
+`contenuto` · `da-misurare` · **chiusa** ([D-071](DECISIONS.md#d-071))
+
+`cli/run_asset_probe.gd` fa il conteggio su 100 Chronicle a tavolo misto:
+**la coda è vuota** — mai in una mano 0 su 48, pescate e mai spese 0 su 48. Il
+sospetto era sbagliato, ed è il risultato migliore possibile: misurato, non
+presunto. Nessuna carta da riscrivere né togliere. A verbale invece lo
+sbilancio di circolazione fra famiglie (WEALTH 4.344 passaggi di mano contro i
+~350 di FORCE e PEOPLE): non è un difetto oggi, è il numero da riguardare se
+quelle famiglie sembrassero mai irrilevanti al tavolo.
+
+<details><summary>Il testo dell'issue come era stato scritto</summary>
 
 48 facce Asset, 132 carte. Nessuno ha mai contato quali vengono davvero
 acquisite e impegnate: è esattamente la forma di problema che il progetto ha già
@@ -110,6 +121,8 @@ dichiara morto contenuto che vivo lo è.
 **Fatto quando** una sonda riporta, su 100 Chronicle, quante volte ogni Asset è
 stato pescato, tenuto e impegnato — e la coda (le carte a zero) è o riscritta o
 tolta, con la decisione a verbale.
+
+</details>
 
 ### 14. ✅ L'asse dei rapporti quasi non esiste — fatta in 0.1.26
 
@@ -172,6 +185,42 @@ smette di essere un livello teorico — o è scritta come respinta con i numeri
 accanto.
 
 </details>
+
+### 16. ✅ Il diritto di proporre (#22) — fatta in 0.1.27
+
+`regola` · `da-misurare` · **chiusa** ([D-069](DECISIONS.md#d-069))
+
+Il proponente lo decide il posto, e il posto è di chi vuole l'esito ovvio
+(D-063). L'azione che sposta la parola — `CLAIM` — esisteva e la policy non
+l'ha mai giocata: cinque azioni su sei. Adesso la gioca, con quattro
+moderazioni misurate una alla volta (la forma ingenua è a verbale come
+respinta: fallimenti 219 → 339, mediana fuori banda, due seggi bloccati).
+**Mai ai voti: 2 → 0 su 15 nella prima saga e 4 → 3 su 20 nella seconda — le
+cinque proposte di D-063 votano tutte** — e il divario aggressivo/prudente
+scende da 37 a 31. Lungo la strada è saltato fuori un baco vero della ripresa
+(un salvataggio alla soglia perdeva il Consiglio del round), corretto con la
+sua guardia.
+
+### 17. L'indifferenza della prima saga
+
+`contenuto` · `da-misurare` · milestone **0.2**
+
+Dopo tre versioni di lavoro sugli assi ([D-066](DECISIONS.md#d-066),
+[D-068](DECISIONS.md#d-068), [D-070](DECISIONS.md#d-070)) la seconda saga è
+scesa dal 74,1% al **48,4%** di ABSTAIN. La prima è ferma al **71%**, e adesso
+si sa perché: i suoi quattro Destini si toccano poco — Lyra e Aldric si
+astengono sui Consigli dell'altro — e l'unica scena abbastanza grossa da
+svegliarla, il sigillo delle gallerie conteso fra Lyra e Vaerax, è stata
+misurata due volte e **respinta due volte**: fa crollare i TRIUMPH del tavolo
+da 11 a 3 su 400. La lezione di D-070 è il vincolo di progetto: una scena a
+Triumph regge solo se almeno uno dei due può vincerla senza spegnere il
+gradino dell'altro. Due clausole mutuamente esclusive sono un pareggio a zero
+scritto nei dati.
+
+**Fatto quando** l'ABSTAIN della prima saga scende sotto il 60% a parità di
+vincoli (seggi bloccati 0 su 8, banda del §7, TRIUMPH non sotto 10 su 400),
+misurato con la sonda delle posizioni sugli stessi semi — e le scene nuove
+rispettano il vincolo di D-070.
 
 ---
 

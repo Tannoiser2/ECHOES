@@ -60,6 +60,10 @@ func _initialize() -> void:
 	var open_questions: Dictionary = {}  # question_id -> volte sul tavolo
 	var offered: Dictionary = {}   # proposition_id -> volte disponibile
 	var chosen: Dictionary = {}    # proposition_id -> volte messa ai voti
+	# Il diritto di proporre (issue #22): quante volte un seggio se lo e' preso
+	# con CLAIM invece di riceverlo dal posto (D-036, D-063).
+	var claims_laid: Dictionary = {}    # entity_id -> Claim creati
+	var claims_forced: Dictionary = {}  # entity_id -> Consigli forzati
 
 	for i in range(runs):
 		var session: RefCounted = GameSession.new(data)
@@ -75,6 +79,13 @@ func _initialize() -> void:
 		if mixed:
 			table = Characters.deal(seats, RngService.new(first_seed + i), session.log)
 		await session.run(table)
+		for effect in session.world["effect_log"]:
+			var kind: String = str(effect["type"])
+			if kind != "CREATE_CLAIM" and kind != "CONSUME_CLAIM":
+				continue
+			var who: String = str(effect["source"].get("actor", ""))
+			var tally: Dictionary = claims_laid if kind == "CREATE_CLAIM" else claims_forced
+			tally[who] = int(tally.get(who, 0)) + 1
 		session.dispose()
 
 	print("")
@@ -91,7 +102,30 @@ func _initialize() -> void:
 		)
 	)
 	_report(data, chronicle_id, asked, open_questions, offered, chosen)
+	_report_claims(claims_laid, claims_forced)
 	quit(0)
+
+
+## Chi si e' preso la parola invece di aspettare che il posto gliela desse.
+func _report_claims(laid: Dictionary, forced: Dictionary) -> void:
+	print("")
+	print("== IL DIRITTO DI PROPORRE ==")
+	var total_laid: int = 0
+	var total_forced: int = 0
+	for value in laid.values():
+		total_laid += int(value)
+	for value in forced.values():
+		total_forced += int(value)
+	print("  Claim creati: %d   Consigli forzati: %d" % [total_laid, total_forced])
+	var names: Array = laid.keys()
+	for entity_id in forced:
+		if not names.has(entity_id):
+			names.append(entity_id)
+	names.sort()
+	for entity_id in names:
+		print("    %-14s creati %2d  forzati %2d" % [
+			str(entity_id), int(laid.get(entity_id, 0)), int(forced.get(entity_id, 0))
+		])
 
 
 func _collect(

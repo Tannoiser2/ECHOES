@@ -331,6 +331,202 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-071 — Le carte che nessuno gioca non esistono: la coda è vuota
+**measured in 0.1.28** (chiude ISSUES 3)
+
+La voce era aperta da un sospetto ragionevole: 48 facce, 132 carte, e nessuno
+aveva mai contato quali venissero acquisite e impegnate — la stessa forma di
+problema trovata due volte guardando un numero che nessuno guardava.
+`cli/run_asset_probe.gd` fa il conteggio: per ogni faccia, quante volte è
+arrivata in una mano (setup o pesca), quante è stata spesa (impegnata a un
+Consiglio, scartata per una spinta, spesa per la parola), quante è rimasta in
+mano a fine anno. Cento partite a tavolo misto, gli stessi semi di D-055.
+
+**La coda è vuota.** Mai in una mano: 0 su 48. Pescate e mai spese: 0 su 48.
+Il sospetto era sbagliato, ed è il risultato migliore possibile: misurato, non
+presunto. Nessuna carta va riscritta né tolta.
+
+Quello che la sonda ha trovato invece è uno **sbilancio di circolazione** fra
+famiglie: WEALTH passa di mano 4.344 volte contro le 383 di FORCE e le 342 di
+PEOPLE — un ordine di grandezza. Non è di per sé un difetto (WEALTH è la
+famiglia-ponte di tre Regioni su sei), ma è il numero da riguardare se FORCE e
+PEOPLE dovessero mai sembrare irrilevanti al tavolo. A verbale, non in coda.
+
+Nota di misura: una carta committata e recuperata da chi si oppone non lascia
+un Effect di scarto, quindi il conteggio della spesa è un pavimento, non un
+soffitto. Sta scritto anche nella testata della sonda.
+
+---
+
+## D-070 — Il Consiglio come scena: la clausola scelta, la corsa vista, e una scena respinta
+**implemented in 0.1.28** (dal lavoro su ABSTAIN; estende [D-066](#d-066) e [D-068](#d-068))
+
+Dopo la 0.1.27 il 65–72% delle posizioni restava ABSTAIN: per due seggi su
+tre, quello che si decideva non toccava quello che volevano. Tre mosse,
+misurate una alla volta, e una quarta respinta.
+
+### 1. La clausola non è più un timbro
+
+La posizione CONDITION — l'unica mossa negoziale del gioco, passata dal 5% al
+19% in due versioni — sceglieva **sempre la prima clausola della lista**
+(`_first_clause`): la sonda ha contato zero scelte della seconda clausola di
+ogni template, in tutt'e due le saghe. Metà del contenuto negoziale era morto
+(D-035). Adesso la policy sceglie la clausola i cui Effect servono il proprio
+Destino (`_best_clause`, pareggi all'RNG di sessione): le clausole viventi
+passano da **2 a 8**, e i seggi *preferiscono* — il Popolo pone l'amnistia, non
+il testimone.
+
+### 2. La corsa al controllo si vede
+
+`_score_effect` dava a un seggio con una clausola `control_count` +2 se il
+controllo andava a lui e −3 se gli veniva tolto, e **0 se una Regione cambiava
+mano verso un terzo**: la corsa non esisteva. Adesso vale un'obiezione (−1).
+Da sola, questa riga: ABSTAIN della seconda saga 64,9% → 61,8%.
+
+### 3. Due scene nuove, dal criterio di D-066
+
+- `CNS_ROYAL_GRANARY` alza di 1 le Vie Interrotte: il grano requisito viaggia
+  sotto scorta. La domanda più votata della prima saga adesso tocca Lyra
+  (Vie ≤ 4) e Vaerax (Vie ≥ 3) in versi opposti.
+- `DST_VETRO` a Triumph: «la legge scritta non è arrivata a bussare alla teca»
+  (Carta ≤ 4), contro le Città Libere che la Carta la vogliono matura (≥ 3).
+  L'Ordine passa da 142 astensioni e **zero opposizioni** in 40 Chronicle a 42
+  astensioni, 57 Condition e 71 appoggi.
+
+### La scena respinta, con i numeri
+
+La quarta mossa era la più bella sulla carta: Lyra a Triumph con «le gallerie
+sono aperte a chi vuole verificare» (`mine_sealed` assente), contro la
+Vittoria di Vaerax che il sigillo lo **vuole** — scena perfetta sulla proposta
+più votata in assoluto (P_SEAL_MINE, 40 voti su 40). Misurata due volte, in due
+stesure (aggiunta, e scambiata con la clausola quasi-doppione della strada
+tagliata): sveglia Lyra davvero (astensioni 144 → 96, Consigli con un no 67% →
+80%) ma **i TRIUMPH del tavolo crollano da 11 a 3 su 400** — la guerra sul
+sigillo nega il gradino alto a tutt'e due i contendenti, ogni volta. Respinta.
+La lezione, che affina la trappola 2 dell'audit: una scena a livello Triumph
+regge solo se **almeno uno dei due può vincerla senza spegnere l'altro
+gradino**; due clausole mutuamente esclusive sulla stessa riga non sono una
+scena, sono un pareggio a zero scritto nei dati.
+
+### Misurato
+
+Sonda delle posizioni, 40 Chronicle:
+
+| | 0.1.25 | 0.1.27 | 0.1.28 |
+|---|---|---|---|
+| ABSTAIN CHR_03 | 74,1% | 64,9% | **48,4%** |
+| ABSTAIN CHR_01 | 70,2% | 71,8% | 71,1% |
+| CONDITION CHR_03 | 16,7% | 19,6% | **29,8%** |
+| clausole viventi (due saghe) | 2 | 2 | **8** |
+
+Sui 100 semi di D-055, tavolo misto: seggi bloccati **0 su 8**, Consigli 6,06
+(mediana 6), NONE 11, TRIUMPH 11, Verità diverse **526** (nuovo massimo),
+divario aggressivo/prudente **22** (era 37 due versioni fa). Il `+1` del
+granaio increspa un piano scriptato (il terzo Consiglio di
+`plan_a_grain_accord` passa da SUCCESS_WITH_COST a DECISIVE_SUCCESS per un
+dado diverso): atteso aggiornato, non un silenzioso aggiustamento.
+
+### Cosa resta aperto
+
+La prima saga resta al 71% di ABSTAIN, e adesso si sa perché: i suoi quattro
+Destini si toccano poco, e l'unica scena abbastanza grossa da svegliarla — il
+sigillo — costa il gradino alto. Servono scene nuove che non passino da lì:
+è la voce 17 di ISSUES.
+
+---
+
+## D-069 — Il diritto di proporre: la policy impara CLAIM, una vite alla volta
+**implemented in 0.1.27** (issue [#22](https://github.com/Tannoiser2/ECHOES/issues/22), da [D-063](#d-063), precedente di metodo [D-021](#d-021))
+
+D-063 aveva consegnato il fatto: il proponente lo decide il posto (D-036), e il
+posto è di chi vuole l'esito ovvio. Le Città Libere — l'unico seggio il cui
+Trionfo **vuole** `debt_forgiven` — non hanno preso la parola sul Debito una
+sola volta in 92 Consigli. E l'azione scritta apposta per spostare la parola,
+`CLAIM` (§11), non veniva misurata da nessuna sonda perché la risposta era nota
+per costruzione: **la policy non l'ha mai giocata.** Il modello di giocatore
+competente usava cinque azioni su sei — lo stesso difetto di strumento che
+D-021 trovò quando la policy non sapeva forzare i Consigli che le servivano.
+
+### Cosa è entrato
+
+La policy gioca CLAIM, derivandolo dai dati e non per-Entità: un seggio il cui
+gradino vivo ha bisogno di una Conseguenza dietro un Consiglio
+(`_needed_confluences`, la stessa lista che già spinge le Tensioni), e a cui il
+posto non darebbe la parola, prenota il dominio e poi forza. La sonda delle
+scelte adesso conta Claim creati e Consigli forzati per seggio.
+
+**La forma ingenua è respinta con i numeri**, ed è la parte che vale di più:
+«forza ogni Consiglio che il tuo Destino vuole, appena legale» produce un
+tavolo che litiga a vuoto — fallimenti 219 → **339**, mediana dei Consigli **7**
+(fuori dalla banda del §7), Decisive 185 → 123, **due seggi bloccati**. Da lì,
+quattro viti, ognuna stretta su una rottura misurata:
+
+1. **La domanda deve scaldarsi** (si prenota a soglia−4, si forza a soglia−2 e
+   con una mano da giocare): senza, il tavolo perde i Consigli forzati ai voti.
+2. **La parola ruota** (chi ha parlato per ultimo su una domanda non se la
+   riprenota — lo stesso `last_proponent` di D-051): senza, chi forza
+   monopolizza la domanda.
+3. **Si forza solo in un round che sarebbe rimasto muto**: un Claim forzato ha
+   la precedenza sul trigger a soglia (§7) e manda in coda il Consiglio di
+   qualcun altro — misurato, a pagarlo era sempre il seggio dalla soglia più
+   bassa (Kessa, soglia 4). Così il Consiglio forzato si **aggiunge** all'anno
+   invece di rubare il posto.
+4. **Si prenota solo in coppia** (due AUTHORITY in mano, una da spendere e una
+   per riscuotere) e l'appetito d'acquisto completa una coppia già cominciata
+   invece di inseguirla da zero: 124 Claim creati per 45 forzati erano carte e
+   azioni bruciate, e l'inseguimento da zero costava al seggio del controllo —
+   le cui Regioni non producono AUTHORITY — le due Vittorie che lo tenevano
+   sbloccato.
+
+### Il baco che ha scovato
+
+Un salvataggio preso in fase `DRIFT` o `THRESHOLD_CHECK` riprendeva dal round
+successivo e **saltava il Consiglio del round salvato**. Invisibile finché
+nessun Consiglio si apriva presto nell'anno; la policy che forza col Claim l'ha
+fatto emergere in `test_resume`. La ripresa adesso rientra esattamente lì:
+l'eventuale Drift dovuto, il Consiglio dovuto, poi il resto dell'anno.
+
+### Misurato
+
+Sonda delle scelte, 40 Chronicle a tavolo misto:
+
+| | prima | dopo |
+|---|---|---|
+| Claim creati / forzati CHR_01 | 0 / 0 | 104 / 13 |
+| Claim creati / forzati CHR_03 | 0 / 0 | 60 / **25** (Libere 16) |
+| mai ai voti CHR_01 | 2 su 15 | **0 su 15** — prima volta |
+| mai ai voti CHR_03 | 4 su 20 | **3 su 20** |
+
+**Le cinque proposte di D-063 votano tutte** — `P_OPEN_LEDGER` 9, `P_FORGIVE`
+15, `P_DIG_BELOW` 3, `P_WATCH_THE_ROCK` 1, `P_BURY_IT` 2 — e a rimettere il
+debito adesso è chi lo voleva rimettere. Restano morte `P_DIG_FOR_HIRE` e
+`P_WATER_RIGHTS` (nessuno vuole l'acqua a prezzo: contenuto per un carattere
+che il tavolo non ha), e `P_ANY_WITHDRAW` si è spenta — la sua domanda gated
+non si apre più ora che i Consigli forzati arrivano prima. A verbale, non
+sotto il tappeto.
+
+`run_playtest.gd`, stessi 100 semi, tavolo misto:
+
+| | 0.1.26 | 0.1.27 |
+|---|---|---|
+| divario aggressivo/prudente (Vittorie) | 37 | **31** |
+| NONE | 5 | **9** (il primo di Kessa) |
+| TRIUMPH | 11 | **14** |
+| Verità diverse | 491 | **506** |
+| seggi bloccati (misto) | 0 su 8 | **0 su 8** |
+| Consigli per Chronicle | 5,92 | 6,02 (mediana 6, banda §7) |
+
+I costi, dichiarati: Decisive 185 → 172 (un tavolo dove la parola gira decide
+un po' meno spesso in trionfo), e a tavolo uniforme i bloccati salgono da 3 a
+4 su 8 — l'ottimizzatore identico con più leve si somiglia ancora di più, ed è
+un altro argomento per misurare col tavolo misto (trappola 1 dell'audit).
+
+I 104 Claim creati per 13 forzati della prima saga dicono che Aldric prenota
+più di quanto riscuota: è dentro i vincoli, ma è la prossima cosa da guardare
+se il costo delle AUTHORITY si vorrà alzare.
+
+---
+
 ## D-068 — L'asse dei rapporti si accende dal lato di chi vota
 **implemented in 0.1.26** (ISSUES 14, chiude la metà §2.3 di [AUDIT_DESTINI](AUDIT_DESTINI.md))
 

@@ -193,6 +193,12 @@
             "tension_id": "TEN_WATER",
             "max": 4,
             "label": "E l'acqua non e diventata la questione che sveglia tutti"
+          },
+          {
+            "type": "tension_limit",
+            "tension_id": "TEN_CHARTER",
+            "max": 4,
+            "label": "E la legge scritta non e arrivata a bussare alla teca"
           }
         ]
       }

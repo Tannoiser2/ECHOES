@@ -196,6 +196,84 @@ func _tensions_offering(consequence_id: String, session: RefCounted) -> Array:
 	return out
 
 
+## Il diritto di proporre (issue #22, D-069).
+##
+## Le Tensioni del gradino vivo che il seggio deve portare a soglia
+## (`_needed_confluences`) e su cui, quando il Consiglio si aprisse da solo, la
+## parola andrebbe a qualcun altro: il proponente lo decide il posto (D-036), e
+## il posto e' di chi vuole l'esito ovvio (D-063). La regola del proponente e'
+## pubblica, quindi chiederselo non e' barare: e' contare come conta chiunque
+## abbia letto il regolamento.
+func _tensions_needing_the_word(entity_id: String, session: RefCounted) -> Array:
+	for conditions in _open_levels(entity_id, session):
+		var needed: Array = _needed_confluences(entity_id, session, conditions as Array)
+		if needed.is_empty():
+			continue
+		var out: Array = []
+		for tension_id in needed:
+			var id: String = str(tension_id)
+			if not session.world["tensions"].has(id):
+				continue
+			# Ho gia' parlato per ultimo su questa domanda: la parola ruota
+			# (D-051), e chi la richiede appena finito di usarla monopolizza i
+			# Consigli e affama chi li aspettava per posizione (D-069).
+			if str((session.world.get("last_proponent", {}) as Dictionary).get(id, "")) == entity_id:
+				continue
+			var focus: String = session.confluence.narrative.focus_region(id)
+			if session.service.determine_proponent(id, focus) == entity_id:
+				continue  # la parola l'avrei comunque
+			out.append(id)
+		return out
+	return []
+
+
+## CLAIM e' l'azione scritta apposta per spostare la parola (§11) e la policy
+## non l'ha mai giocata: il modello di giocatore competente usava cinque azioni
+## su sei, e le proposte scritte per i seggi senza parola risultavano contenuto
+## morto (D-063). Due tempi, come da regola: prenotare il dominio con un Asset
+## AUTHORITY, poi - in un round successivo - forzare il Consiglio e parlare per
+## primi.
+##
+## Con moderazione, e la moderazione e' misurata: la prima stesura forzava ogni
+## Consiglio che il Destino volesse, appena legale, e ha prodotto un tavolo che
+## litigava a vuoto - fallimenti 219 -> 339, mediana dei Consigli fuori dalla
+## banda del §7, due seggi bloccati (D-069). Prendersi la parola su una domanda
+## che non scotta e' un Consiglio che il tavolo non voleva, e si perde ai voti.
+## Quindi: si prenota quando la domanda si sta scaldando, si forza quando
+## stava comunque per porsi - cosi' il Consiglio forzato *sostituisce* quello a
+## soglia invece di aggiungersi - e con una mano con cui giocarselo.
+func _claim_the_word(entity_id: String, session: RefCounted) -> Dictionary:
+	for tension_id in _tensions_needing_the_word(entity_id, session):
+		var id: String = str(tension_id)
+		var value: int = session.tensions.value(id)
+		var threshold: int = session.tensions.threshold(id)
+		if value < threshold - 2 * DANGER_MARGIN:
+			continue  # la domanda non si e' ancora scaldata
+		# Si forza in un round che sarebbe rimasto muto: un Claim forzato ha la
+		# precedenza sul trigger a soglia (§7) e manda in coda il Consiglio di
+		# qualcun altro - misurato, e' il seggio dalla soglia piu' bassa a
+		# pagarlo, ogni volta (D-069). Cosi' il Consiglio forzato si aggiunge
+		# all'anno invece di rubare il posto a quello che stava arrivando.
+		if value >= threshold - DANGER_MARGIN \
+				and session.service.hand_size(entity_id) >= COMFORTABLE_HAND \
+				and (session.tensions.tensions_at_threshold() as Array).is_empty():
+			var force: Dictionary = {"mode": "FORCE", "tension_id": id}
+			if session.actions.can_execute(entity_id, "CLAIM", force):
+				return {"template": "CLAIM", "params": force}
+		var domain: String = session.service.tension_domain(id)
+		# Si prenota solo con in mano anche la carta per riscuotere: senza
+		# questo, meta' dei Claim creati non veniva mai forzata - 124 creati e
+		# 45 forzati in 40 Chronicle - e ogni prenotazione a vuoto e' una carta
+		# AUTHORITY e un'azione bruciate (D-069).
+		if session.service.count_family_in_hand(entity_id, "AUTHORITY") < 2:
+			continue
+		if session.service.claim_for_domain(entity_id, domain).is_empty():
+			var create: Dictionary = {"mode": "CREATE", "domain": domain}
+			if session.actions.can_execute(entity_id, "CLAIM", create):
+				return {"template": "CLAIM", "params": create}
+	return {}
+
+
 ## Relation goals: `other_entity_id` -> +1 to warm it, -1 to sour it (D-051).
 ##
 ## `promise_kept` and `promise_broken` have been in the evaluator since 0.0 and
@@ -280,21 +358,27 @@ func choose_action(entity_id: String, _ao_index: int, session: RefCounted) -> Di
 	if not move.is_empty():
 		return move
 
-	# 3. A promise your Destiny is standing on, when it has moved off where you
+	# 3. La parola, quando il posto la darebbe a qualcun altro (issue #22):
+	#    prenotare il dominio o forzare il Consiglio che il Destino aspetta.
+	var word: Dictionary = _claim_the_word(entity_id, session)
+	if not word.is_empty():
+		return word
+
+	# 4. A promise your Destiny is standing on, when it has moved off where you
 	#    need it. Before the stockpiling: a pact that has soured is not repaired
 	#    by drawing cards.
 	var forge: Dictionary = _forge(entity_id, session)
 	if not forge.is_empty():
 		return forge
 
-	# 4. Steer a Tension that is about to decide something, in the direction
+	# 5. Steer a Tension that is about to decide something, in the direction
 	#    your Destiny needs - but only once you have something to spend.
 	if service.hand_size(entity_id) >= COMFORTABLE_HAND:
 		var steer: Dictionary = _steer(entity_id, session)
 		if not steer.is_empty():
 			return steer
 
-	# 4. Otherwise prepare: stock the family that will matter.
+	# 6. Otherwise prepare: stock the family that will matter.
 	var acquire: Dictionary = _acquire(entity_id, session)
 	if not acquire.is_empty():
 		return acquire
@@ -379,6 +463,16 @@ func _can_influence(entity_id: String, tension_id: String, direction: int, sessi
 ## off, preferring a Region this Entity can draw double from.
 func _acquire(entity_id: String, session: RefCounted) -> Dictionary:
 	var wanted: Array = _relevant_families_by_urgency(entity_id, session)
+	# Chi ha bisogno della parola ha bisogno di AUTHORITY: una carta per
+	# prenotare il dominio e una per forzare il Consiglio (§11, issue #22). Ma
+	# solo per completare una coppia gia' cominciata: inseguire AUTHORITY da
+	# zero, per un seggio le cui Regioni non ne producono, e' una mano peggiore
+	# a ogni Consiglio - misurato, e' costato al seggio del controllo le due
+	# Vittorie che lo tenevano sbloccato (D-069).
+	if session.service.count_family_in_hand(entity_id, "AUTHORITY") == 1 \
+			and not _tensions_needing_the_word(entity_id, session).is_empty():
+		wanted = wanted.filter(func(family: Variant) -> bool: return str(family) != "AUTHORITY")
+		wanted.push_front("AUTHORITY")
 	var sourced: Array = []
 	for region_id in session.service.regions_with_presence(entity_id):
 		for family in session.data.regions[region_id]["asset_sources"]:
@@ -612,6 +706,12 @@ func _score_effect(
 				score += 2
 			elif holds_it_now:
 				score -= 3  # handed to someone else, out of your hands
+			else:
+				# La corsa: chi conta le Regioni conta anche quelle degli altri.
+				# Senza questo ramo, un seggio con una clausola control_count
+				# guardava una Regione cambiare mano verso un terzo e non aveva
+				# niente da dire - un'obiezione, non un no (D-070).
+				score -= 1
 	return score
 
 
@@ -793,7 +893,7 @@ func choose_stance(entity_id: String, context: Dictionary, session: RefCounted) 
 	if score <= -2:
 		return {"stance": "OPPOSE", "clause_id": ""}
 	if score < 0:
-		var clause: String = _first_clause(context, session)
+		var clause: String = _best_clause(entity_id, context, session)
 		if clause != "":
 			return {"stance": "CONDITION", "clause_id": clause}
 		return {"stance": "OPPOSE", "clause_id": ""}
@@ -832,11 +932,33 @@ func _current_proposition(context: Dictionary, session: RefCounted) -> Dictionar
 	return {}
 
 
-func _first_clause(context: Dictionary, session: RefCounted) -> String:
+## La clausola e' la meta' negoziale del Consiglio (§12.3), e fino alla 0.1.27
+## la policy prendeva sempre la prima della lista: la sonda delle posizioni ha
+## contato **zero** scelte della seconda clausola di ogni template, in tutt'e
+## due le saghe - meta' del contenuto negoziale era morto (D-035, D-070). Si
+## sceglie quella i cui Effect servono meglio il proprio Destino; a parita'
+## decide l'RNG di sessione, per la stessa ragione di choose_proposition.
+func _best_clause(entity_id: String, context: Dictionary, session: RefCounted) -> String:
 	var template: Variant = session.data.confluence_templates.get(str(context["template_id"]))
 	if template == null or (template["condition_clauses"] as Array).is_empty():
 		return ""
-	return str(template["condition_clauses"][0]["id"])
+	var goals: Dictionary = _tag_goals(entity_id, session)
+	var bindings: Dictionary = session.confluence.effect_context()
+	var proponent: String = str(context.get("proponent", ""))
+	var best_score: int = -999
+	var tied: Array = []
+	for clause in template["condition_clauses"]:
+		var score: int = 0
+		for effect in clause["effects"]:
+			score += _score_effect(effect, entity_id, proponent, goals, session, bindings)
+		if score > best_score:
+			best_score = score
+			tied = [str(clause["id"])]
+		elif score == best_score:
+			tied.append(str(clause["id"]))
+	if tied.size() == 1:
+		return str(tied[0])
+	return str(tied[session.rng.range_int(0, tied.size() - 1)])
 
 
 func _sorted(keys: Array) -> Array:

@@ -5,6 +5,93 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.28] — Il Consiglio come scena
+
+Dopo tre versioni di lavoro sugli assi, il 65–72% delle posizioni restava
+ABSTAIN. Tre mosse misurate una alla volta, una respinta a verbale, e la
+risposta a un sospetto vecchio quanto ISSUES 3
+([D-070](docs/DECISIONS.md#d-070), [D-071](docs/DECISIONS.md#d-071)).
+
+### Fixed
+
+- **La clausola non è più un timbro**: la CONDITION sceglieva sempre la prima
+  clausola della lista — zero scelte della seconda, in tutt'e due le saghe.
+  Adesso si sceglie quella che serve il proprio Destino: le clausole viventi
+  passano da 2 a **8**.
+- **La corsa al controllo si vede**: una Regione che cambiava mano verso un
+  terzo valeva zero per chi conta le Regioni. Adesso vale un'obiezione.
+
+### Changed
+
+- Due scene nuove col criterio di D-066: il grano requisito intasa le Vie
+  (Lyra contro, Vaerax a favore, sulla domanda più votata della prima saga), e
+  l'Ordine del Vetro prende posizione sulla Carta (Carta ≤ 4 a Triumph, contro
+  le Città Libere). Una terza — Lyra contro il sigillo delle gallerie — è
+  **respinta con i numeri**: sveglia Lyra ma fa crollare i TRIUMPH del tavolo
+  da 11 a 3 su 400. Due clausole mutuamente esclusive non sono una scena.
+
+### Added
+
+- `cli/run_asset_probe.gd` (chiude ISSUES 3): **la coda è vuota** — tutte le
+  48 facce arrivano in mano e vengono spese, a tavolo misto. Nessuna carta da
+  riscrivere. A verbale invece lo sbilancio di circolazione: WEALTH 4.344
+  passaggi di mano contro i ~350 di FORCE e PEOPLE.
+- La sonda delle posizioni conta le clausole poste e le Condition qualificate.
+- Una guardia in `test_stance_scoring.gd`: chi vuole la domanda calda non pone
+  la clausola che la raffredda.
+
+### Misurato
+
+ABSTAIN della seconda saga **74,1% → 48,4%** in tre versioni (64,9% alla
+0.1.27), CONDITION al 29,8%, l'Ordine del Vetro da 142 astensioni e zero
+opposizioni a 42/57/71. Sui 100 semi di D-055: divario aggressivo/prudente
+**22** (era 37 alla 0.1.26), NONE 11, TRIUMPH 11, Verità diverse **526**
+(nuovo massimo), seggi bloccati a tavolo misto 0 su 8, Consigli 6,06. La
+prima saga resta al 71% di ABSTAIN: il perché e la strada sono la voce 17 di
+ISSUES.
+
+---
+
+## [0.1.27] — La parola si può prendere
+
+Il proponente di un Consiglio lo decide il posto, e il posto è di chi vuole
+l'esito ovvio ([D-063](docs/DECISIONS.md#d-063)): le Città Libere non hanno mai
+preso la parola sul Debito in 92 Consigli. L'azione che sposta la parola —
+`CLAIM`, §11 — esisteva e **la policy non l'ha mai giocata**
+(issue [#22](https://github.com/Tannoiser2/ECHOES/issues/22),
+[D-069](docs/DECISIONS.md#d-069)).
+
+### Fixed
+
+- **La policy gioca CLAIM**, derivandolo dai dati (precedente D-021): chi ha
+  bisogno di un Consiglio a cui il posto non gli darebbe la parola prenota il
+  dominio e poi lo forza. Con quattro moderazioni, ognuna misurata contro una
+  rottura: la domanda deve scaldarsi, la parola ruota, si forza solo in un
+  round che sarebbe rimasto muto, si prenota solo con la coppia di AUTHORITY
+  in mano. La forma ingenua — forza tutto, subito — è respinta a verbale:
+  fallimenti 219 → 339 e mediana dei Consigli fuori banda.
+- **La ripresa non salta più il Consiglio del round salvato**: un salvataggio
+  in fase `DRIFT`/`THRESHOLD_CHECK` riprendeva dal round dopo, perdendo il
+  Consiglio dovuto. Invisibile finché nessun Consiglio si apriva presto
+  nell'anno: è stata la policy col Claim a scovarlo.
+
+### Added
+
+- La sonda delle scelte conta Claim creati e Consigli forzati per seggio.
+- `tests/unit/test_claim_policy.gd`, 6 test: ogni moderazione è una guardia.
+
+### Misurato
+
+40 Chronicle a tavolo misto: Claim 0/0 → 104 creati/13 forzati (CHR_01) e
+60/25 (CHR_03, Libere 16). **Mai ai voti: 2 → 0 su 15 nella prima saga — prima
+volta — e 4 → 3 su 20 nella seconda; le cinque proposte di D-063 votano
+tutte.** Sui 100 semi di D-055: divario aggressivo/prudente **37 → 31**, NONE
+5 → 9, TRIUMPH 11 → 14, Verità diverse 491 → 506, seggi bloccati a tavolo
+misto 0 su 8, Consigli 6,02 (mediana 6). Costi dichiarati: Decisive 185 → 172,
+bloccati a tavolo uniforme 3 → 4.
+
+---
+
 ## [0.1.26] — Perdere adesso è implementato
 
 Su 400 risultati di seggio, NONE usciva **una volta**. Non per taratura: nessun
