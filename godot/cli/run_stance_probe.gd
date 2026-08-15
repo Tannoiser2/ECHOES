@@ -23,7 +23,9 @@ const DataSet := preload("res://scripts/core/data_set.gd")
 const GameSession := preload("res://scripts/chronicle/game_session.gd")
 const PolicyDecider := preload("res://scripts/seat/policy_decider.gd")
 
-const SEATS: Array = ["ENT_ALDRIC", "ENT_NAHR", "ENT_LYRA", "ENT_VAERAX"]
+## I seggi li dice la Chronicle: la sonda guardava solo la prima saga, e la
+## seconda e' quella che di clausole sulle Tensioni non ne aveva nessuna.
+var seats: Array = []
 
 
 func _initialize() -> void:
@@ -39,6 +41,12 @@ func _initialize() -> void:
 		quit(3)
 		return
 
+	if not data.chronicles.has(chronicle_id):
+		printerr("nessuna Chronicle '%s'" % chronicle_id)
+		quit(4)
+		return
+	seats = (data.chronicles[chronicle_id]["entities"] as Array).duplicate()
+
 	# stance -> count, score -> count, effect type -> [seen, moved the score]
 	var stances: Dictionary = {}
 	var scores: Dictionary = {}
@@ -52,7 +60,7 @@ func _initialize() -> void:
 
 	for i in range(runs):
 		var session: RefCounted = GameSession.new(data)
-		session.setup(chronicle_id, SEATS, first_seed + i)
+		session.setup(chronicle_id, seats, first_seed + i)
 		var probe: RefCounted = PolicyDecider.new(null)
 		session.confluence.step_changed.connect(
 			func(step: String, context: Dictionary) -> void:
@@ -73,7 +81,7 @@ func _initialize() -> void:
 				]
 				voted[put] = int(voted.get(put, 0)) + 1
 				var any_opposition: bool = false
-				for entity_id in SEATS:
+				for entity_id in seats:
 					if str(entity_id) == proponent:
 						continue
 					var score: int = probe._score_proposition(

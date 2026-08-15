@@ -110,6 +110,12 @@ func presence_in_domain(entity_id: String, domain: String) -> int:
 func can_move_to(entity_id: String, region_id: String) -> bool:
 	if not world["regions"].has(region_id):
 		return false
+	# Un Consiglio che ti ha cacciato tiene la porta chiusa fino a fine atto
+	# (D-067): il tag lo mette la risoluzione, il giro d'atto lo toglie. Vince
+	# anche sul diritto di rientrare in una Regione iniziale, che e' il punto.
+	var evicted: Variant = world["entities"].get(entity_id)
+	if evicted != null and (evicted["tags"] as Array).has("evicted:%s" % region_id):
+		return false
 	var definition: Variant = data.entities.get(entity_id)
 	if definition != null and (definition["presence"] as Array).has(region_id):
 		return true

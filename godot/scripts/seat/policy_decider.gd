@@ -592,6 +592,10 @@ func _score_effect(
 		if target_id == entity_id and _wants_discoveries(entity_id, session):
 			score += 2
 
+	# Un rapporto che si muove, per chi ha un Destino che nomina qualcuno.
+	if effect_type == "SET_RELATION":
+		score += _score_relation_move(target_id, payload, entity_id, session)
+
 	# Control changing hands, for whoever counts Regions.
 	if effect_type == "SET_CONTROL" and _counts_control(entity_id, session):
 		if not session.world["regions"].has(target_id):
@@ -645,7 +649,108 @@ func _score_tension_move(
 				score -= 2
 			elif value < floor_value and after >= floor_value:
 				score += 2
+			# Il ramo che mancava. `max` aveva il suo ripiego dentro la banda e
+			# `min` no, quindi una clausola «questa domanda resti calda» era cieca
+			# a tutto quello che non le passava sopra la soglia: chi ha bisogno
+			# che una questione bruci non aveva niente da dire finche' non gliela
+			# spegnevano del tutto (D-066).
+			elif delta < 0:
+				score -= 1
+			else:
+				score += 1
 	return score
+
+
+## Cosa vale, per questa Entita', un rapporto che si muove.
+##
+## `SET_RELATION` era l'unico Effect che nessun punteggio guardava: letto 126
+## volte su 40 Chronicle e **mai** pesato una sola. Forgiare - muovere di un
+## passo il rapporto con un altro giocatore - e' una delle sei azioni del gioco,
+## e per chi decide non esisteva ([D-066](../../../docs/DECISIONS.md#d-066)).
+##
+## Stessa forma di `_score_tension_move`, e per la stessa ragione: rompere una
+## clausola che regge vale un no; muoversi nella direzione sbagliata restando
+## dentro la banda vale un'obiezione.
+func _score_relation_move(
+	pair: String, payload: Dictionary, entity_id: String, session: RefCounted
+) -> int:
+	var halves: PackedStringArray = pair.split("|")
+	if halves.size() != 2:
+		return 0
+	var a: String = str(halves[0])
+	var b: String = str(halves[1])
+	# Un rapporto fra altri due non e' affar mio, come una Scoperta di qualcun
+	# altro. Il tavolo ha quattro seggi: quasi meta' dei rapporti non mi tocca.
+	if entity_id != a and entity_id != b:
+		return 0
+	var other: String = b if entity_id == a else a
+	var level: String = str(payload.get("level", ""))
+	if level == "":
+		return _score_relation_tag(payload, entity_id, other, session)
+	var after: int = WorldStateService.RELATION_ORDER.find(level)
+	if after < 0:
+		return 0
+	var before: int = session.service.relation_rank(entity_id, other)
+	var score: int = 0
+	for condition in _conditions(entity_id, session):
+		if str(condition.get("type", "")) != "relation_state":
+			continue
+		if not _names_pair(condition, entity_id, other):
+			continue
+		var wanted: int = WorldStateService.RELATION_ORDER.find(
+			str(condition.get("level", "NEUTRAL"))
+		)
+		if wanted < 0:
+			continue
+		var held: bool = _relation_satisfied(before, wanted, condition)
+		var holds_after: bool = _relation_satisfied(after, wanted, condition)
+		if held and not holds_after:
+			score -= 2
+		elif holds_after and not held:
+			score += 2
+		elif after < before:
+			score -= 1
+		elif after > before:
+			score += 1
+	return score
+
+
+## Un tag sul rapporto - `PACT` - non e' un livello: e' quello che le clausole
+## `promise_kept` e `promise_broken` guardano. Prendere un impegno con chi il tuo
+## Destino nomina vale; scioglierlo costa.
+func _score_relation_tag(
+	payload: Dictionary, entity_id: String, other: String, session: RefCounted
+) -> int:
+	var added: String = str(payload.get("add_tag", ""))
+	var removed: String = str(payload.get("remove_tag", ""))
+	if added == "" and removed == "":
+		return 0
+	for condition in _conditions(entity_id, session):
+		var kind: String = str(condition.get("type", ""))
+		if kind != "promise_kept" and kind != "promise_broken":
+			continue
+		if not _names_pair(condition, entity_id, other):
+			continue
+		var wants_promise: bool = kind == "promise_kept"
+		if added != "":
+			return 2 if wants_promise else -2
+		return -2 if wants_promise else 2
+	return 0
+
+
+## Se una clausola parla proprio di questa coppia. `$slot` compresi: un Destino
+## che nomina `$rival` parla di chiunque il mondo abbia messo in quel posto.
+func _names_pair(condition: Dictionary, entity_id: String, other: String) -> bool:
+	var named: Array = [
+		str(condition.get("entity_id", "")), str(condition.get("other_entity_id", ""))
+	]
+	return named.has(entity_id) and named.has(other)
+
+
+func _relation_satisfied(rank: int, wanted: int, condition: Dictionary) -> bool:
+	if bool(condition.get("at_least", true)):
+		return rank >= wanted
+	return rank == wanted
 
 
 func _wants_discoveries(entity_id: String, session: RefCounted) -> bool:

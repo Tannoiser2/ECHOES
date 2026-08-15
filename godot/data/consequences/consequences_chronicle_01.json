@@ -121,6 +121,18 @@
           }
         },
         {
+          "type": "REMOVE_PRESENCE",
+          "target": {
+            "kind": "entity",
+            "id": "$rival"
+          },
+          "payload": {
+            "region_id": "REG_TERRE_NAHR",
+            "optional": true
+          },
+          "note": "Un inverno senza uscita non si aspetta sul posto: chi puo andarsene se ne va. Regione nominata, non $region_focus, perche e quella che il Minimo del popolo nomina (AUDIT_DESTINI 7.2); optional copre il rivale che li non sta."
+        },
+        {
           "type": "SET_RELATION",
           "target": {
             "kind": "relation",
@@ -657,6 +669,18 @@
           "payload": {
             "entity_id": "$proponent"
           }
+        },
+        {
+          "type": "REMOVE_PRESENCE",
+          "target": {
+            "kind": "entity",
+            "id": "$rival"
+          },
+          "payload": {
+            "region_id": "$capital",
+            "optional": true
+          },
+          "note": "Chi firma adesso non tiene in citta la gente di chi firmava prima. Il rivale e scelto perche in capitale ci sta: optional copre solo il ripiego raro in cui non c'e (AUDIT_DESTINI 7.2)."
         },
         {
           "type": "SET_REGION_TAG",

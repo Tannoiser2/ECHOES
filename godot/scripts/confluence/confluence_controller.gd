@@ -423,6 +423,7 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 	for consequence_id in consequence_ids:
 		for effect in compiler.compile(str(consequence_id), context, source):
 			_apply(applied, effect)
+			_bar_return(applied, effect, source)
 		_apply_scar(applied, str(consequence_id), source)
 	log.bullet("H. Conseguenze: %s" % ", ".join(PackedStringArray(consequence_ids)))
 
@@ -604,6 +605,38 @@ func _apply(applied: Array, effect: Dictionary) -> void:
 		push_error("ConfluenceController: %s" % applier.last_error)
 		return
 	applied.append(stored)
+
+
+## Un Consiglio che ti caccia non ti caccia per un giro: la Regione resta
+## sbarrata per la vittima fino alla fine dell'atto (D-067), e `can_move_to` lo
+## legge. Vale solo per la presenza tolta a qualcun altro - un costo che ci si
+## infligge da soli, come la Partenza del proponente, non chiude nessuna porta -
+## e solo se c'era davvero qualcuno da cacciare: l'`optional` andato a vuoto
+## resta un no-op da cima a fondo.
+func _bar_return(applied: Array, effect: Dictionary, source: Dictionary) -> void:
+	if str(effect.get("type", "")) != "REMOVE_PRESENCE":
+		return
+	var victim: String = str(effect["target"]["id"])
+	if victim == str(current["proponent"]):
+		return
+	if applied.is_empty():
+		return
+	# L'ultimo Effect registrato e' questa rimozione solo se l'applier l'ha
+	# accettata; un rifiuto non lascia niente da sbarrare.
+	var stored: Dictionary = applied[applied.size() - 1]
+	if str(stored.get("type", "")) != "REMOVE_PRESENCE":
+		return
+	if str(stored["target"]["id"]) != victim:
+		return
+	if bool(stored.get("inverse_payload", {}).get("noop", false)):
+		return
+	var region_id: String = str(stored["payload"].get("region_id", ""))
+	_apply(applied, Effect.make(
+		"SET_ENTITY_TAG", "entity", victim, {"tag": "evicted:%s" % region_id}, source
+	))
+	log.bullet("H. %s e stato cacciato: %s resta sbarrata per lui fino a fine atto." % [
+		_name(victim), str(data.regions.get(region_id, {}).get("name", region_id))
+	])
 
 
 func _log_commitments() -> void:

@@ -331,6 +331,241 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-068 — L'asse dei rapporti si accende dal lato di chi vota
+**implemented in 0.1.26** (ISSUES 14, chiude la metà §2.3 di [AUDIT_DESTINI](AUDIT_DESTINI.md))
+
+La 0.1.25 aveva dato al punteggio il ramo per leggere un rapporto che si muove
+([D-066](#d-066)), e il ramo continuava a pesare **zero su 156**: solo 2
+Consequence su 45 muovevano un rapporto — entrambe nella prima saga — e nessun
+Destino in gioco nominava una coppia. La seconda saga non aveva **un solo modo
+di farsi un nemico**.
+
+### Cosa è entrato
+
+- **Due Conseguenze che fanno nemici**, nella saga che non ne aveva:
+  `CNS_DEBT_CALLED` e `CNS_SEAT_CLAIMED` portano `SET_RELATION` a `HOSTILE` su
+  `$proponent|$rival`. Chi non può pagare non perdona chi ha chiesto adesso.
+- **Due clausole `relation_state` nei Destini in gioco della seconda saga**, a
+  livello **Triumph** (trappola 2 dell'audit): `DST_CENERE` vuole che il patto
+  con la Gilda non sia un conto aperto, `DST_LIBERE` che la Gilda non diventi
+  un nemico delle città. Sono clausole *da tenere* — vere in partenza, spezzate
+  esattamente dalle due Conseguenze qui sopra — quindi raggiungibili per
+  costruzione (D-035).
+
+### La forma respinta, che insegna la regola
+
+La prima stesura metteva una clausola anche sull'**aggressore** (Aldric che non
+vuole farsi nemico il popolo) e pesava **zero**: *chi propone non vota*. Una
+clausola su un rapporto pesa nel punteggio di una posizione solo se chi la
+regge è nella coppia **e siede dal lato che vota**. Le clausole vanno sul lato
+delle vittime.
+
+E la clausola della prima saga (`DST_NAHR` verso Aldric) è stata provata e
+respinta con i numeri: 5 pesate in 40 Chronicle, e in cambio i Triumph della
+prima saga dimezzati per farfalla (Lyra 6 → 3, Vaerax 1 → 0 su 50). La prima
+saga resta quindi a `SET_RELATION` pesato 0: la sua unica coppia mossa è quella
+della Valle Chiusa, e chi la propone non vota. Scritto qui perché nessuno la
+riprovi senza un'idea nuova.
+
+### Misurato
+
+Sonda delle posizioni, 40 Chronicle:
+
+| CHR_03 | prima | dopo |
+|---|---|---|
+| `SET_RELATION` letto / pesato | 156 / **0** | 357 / **85** |
+| ABSTAIN | 74,1% | **64,9%** |
+| OPPOSE | 0,9% | **7,2%** |
+| Consigli con almeno un no | 53% | **59%** |
+
+CHR_01 resta com'era (68% con un no, ABSTAIN 70,3%). Sui 100 semi di D-055 i
+vincoli reggono: Consigli 5,92 (banda §7), seggi bloccati a tavolo misto **0 su
+8**, suite verde.
+
+### Il costo, che è reale
+
+- **Maestra Ilve passa da 3/42/5 a 12/34/4**: il seggio più forte del tavolo
+  adesso trova un no quando chiama il debito. È il costo che ISSUES 14
+  chiedeva di creare.
+- Kessa passa da 39/11 a 43/7: dire di no costa carte anche a chi lo dice.
+- Il divario aggressivo/prudente sale ancora, 30 → 37 in Vittorie. È la stessa
+  forza di D-066 — i Consigli contesi aiutano chi è costruito per approfittarne
+  — e resta messa in conto, non tarata via.
+
+---
+
+## D-067 — Perdere adesso è implementato: le espulsioni e la porta sbarrata
+**implemented in 0.1.26** (ISSUES 15, chiude la metà §2.2 di [AUDIT_DESTINI](AUDIT_DESTINI.md))
+
+Su 400 risultati di seggio NONE usciva **una volta**, e l'audit aveva detto
+perché: nessun contenuto poteva falsificare un Minimo contro la volontà di chi
+lo regge. Non taratura — un pezzo di gioco mancante.
+
+### La forma respinta, che insegna la regola
+
+Il primo tentativo attaccava l'espulsione alle vie del controllo
+(`CNS_SEAT_CLAIMED`, poi `CNS_DEBT_CALLED`): Kessa dei Fuochi — che di quelle
+proposte vive — è crollata da 39/11 a 45/5 e i seggi bloccati a tavolo misto
+sono passati da 0 a 1 su 8. Ripricare una proposta che un seggio propone per sé
+la fa bloccare, e affama chi ci contava.
+
+La regola emersa, che vale più delle tre righe di dati: **l'espulsione va dove
+il no c'è già.** Attaccata a una Conseguenza che la vittima già blocca (la
+capitale presa, la valle chiusa, le gallerie lasciate), non cambia il punteggio
+di nessuno — cambia solo cosa succede quando quel voto si perde comunque.
+
+### Cosa è entrato
+
+Tre `REMOVE_PRESENCE` su `$rival`, tutte su Conseguenze già ostili alla vittima:
+
+| Conseguenza | Regione | il Minimo che tocca |
+|---|---|---|
+| `CNS_CAPITAL_TAKEN` | `$capital` | Aldric, presenza a Eredan |
+| `CNS_SEALED_VALLEY` | `REG_TERRE_NAHR` (nominata, non `$region_focus`) | il popolo, presenza nelle Terre |
+| `CNS_ASH_ABANDONED` | `REG_MINIERE_ANTICHE` (nominata) | l'Ordine, presidio a soglia 2 |
+
+E una sonda nuova, `cli/run_eviction_probe.gd`, che risponde alla domanda che
+mancava: *quando cade un'espulsione, e chi recupera?* La risposta ha deciso
+tutto il resto: col solo contenuto, 30 espulsioni applicate in 100 partite, 13
+su una Regione del Minimo, **12 recuperate** — il rientro costa una MOVE, e una
+MOVE verso una Regione iniziale è sempre legale. NONE restava 1 su 400.
+
+### La regola della porta sbarrata
+
+**Una Regione da cui un Consiglio ti ha cacciato resta sbarrata per te fino a
+fine atto.** La risoluzione mette un tag `evicted:<regione>` alla vittima — solo
+per la presenza tolta a qualcun altro, solo se c'era davvero qualcuno da
+cacciare — `can_move_to` lo legge, e il giro di stagione lo toglie con un Effect
+`SEASON_TURNS` nel log. Senza contenuto che caccia la regola è inerte, quindi è
+reversibile per costruzione: si toglie togliendo le tre righe di dati.
+
+### Misurato
+
+Sui 100 semi di D-055, tavolo misto, dopo D-068:
+
+| | 0.1.25 | 0.1.26 |
+|---|---|---|
+| **NONE** | **1** | **5** |
+| MINIMUM | 205 | 214 |
+| VICTORY | 181 | 170 |
+| TRIUMPH | 13 | 11 |
+| seggi bloccati (misto) | 0 su 8 | **0 su 8** |
+| Consigli per Chronicle | 5,97 | 5,92 |
+
+La sonda delle espulsioni, dopo la regola: 13 espulsioni sul Minimo, 4 → NONE,
+9 recuperate. Il taglio è leggibile al tavolo: **ogni espulsione sul Minimo
+caduta nell'atto III è diventata un NONE** (l'atto non gira più), quelle degli
+atti I–II si recuperano perdendo l'atto. A tavolo uniforme NONE è 9 su 400. Il
+quinto NONE del misto è un Aldric caduto senza espulsione: anche perdere da
+soli adesso capita.
+
+Secondo ordine, misurato con la sonda delle posizioni come l'audit chiedeva:
+ABSTAIN e Consigli-con-un-no invariati in entrambe le saghe, e
+`REMOVE_PRESENCE` passa da Effect invisibile a **pesato 28** in CHR_01: essere
+cacciabili adesso è un motivo di lite che il punteggio vede.
+
+### Cosa resta aperto
+
+I NONE stanno tutti nella prima saga: la seconda ha le stesse espulsioni e la
+stessa porta sbarrata (Vetro e Cenere le subiscono), ma in questi 100 semi
+nessuna è caduta nell'atto III. Il gradino esiste anche lì — lo dice la sonda —
+ma non si è ancora visto in un risultato. Da riguardare quando il contenuto
+della seconda saga cresce.
+
+---
+
+## D-066 — Il tavolo non aveva niente in gioco
+**implemented in 0.1.25** (§12.2 D, estende [D-034](#d-034))
+
+La sonda delle posizioni aveva misurato la cosa peggiore che si potesse
+misurare: su 40 Chronicle **l'80,1% delle posizioni dichiarate era ABSTAIN, e la
+proposta valeva esattamente 0 per l'80,1% dei seggi.** Lo stesso numero due
+volte, e non è una coincidenza — non era apatia, era **indifferenza
+misurabile**: per quattro seggi su cinque, quello che si stava decidendo non
+toccava in alcun modo quello che volevano. Due Consigli su tre si chiudevano
+senza che nessuno dicesse no.
+
+Il Consiglio è la scena centrale del gioco, e per la maggior parte dei presenti
+era un atto notarile.
+
+### Il perché, in tre pezzi
+
+**1. `SET_RELATION` non aveva un ramo nel punteggio.** Letto 126 volte, pesato
+**zero**. Forgiare — muovere di un passo il rapporto con un altro giocatore — è
+una delle sei azioni del gioco, e per chi decide non esisteva.
+
+**2. Una clausola `min` su una Tensione era mezza cieca.** Il ramo `max` aveva il
+suo ripiego dentro la banda (una spinta nella direzione sbagliata vale
+un'obiezione anche se non rompe niente); `min` no. Chi ha bisogno che una domanda
+resti calda non aveva niente da dire finché non gliela spegnevano del tutto.
+
+**3. E soprattutto: le domande che si aprivano non le voleva nessuno.** Le
+Tensioni più visitate dei due tavoli — le Vie Interrotte e la Successione nella
+prima saga, la Carta nella seconda — **non erano nominate da nessun Destino**. La
+seconda saga non aveva **una sola** clausola `tension_limit`: `ADJUST_TENSION`
+letto 558 volte e pesato zero. Su 99 clausole in 16 Destini, 51 erano tag e 4
+erano Tensioni.
+
+I Destini erano scritti in **tag e controllo**; il gioco fa soprattutto
+**tensioni e rapporti**. Le due metà non si parlavano.
+
+### Cosa è stato fatto
+
+Il ramo `SET_RELATION` nel punteggio, il ripiego mancante su `min`, e dieci
+clausole `tension_limit` nei Destini in gioco — a livello **Triumph**, perché il
+punteggio di una proposta legge tutti e tre i livelli e a livello Victory la
+Vittoria crollava da 192 a 126 su 400 e un seggio restava bloccato.
+
+Il criterio che le ha scritte, ed è la parte che vale più delle clausole:
+**ogni Tensione in gioco dev'essere nominata da almeno un Destino, e almeno un
+seggio dev'essere dalla parte opposta.** Vaerax vuole le Vie Interrotte da 3 in
+su perché salire fin lassù non dev'essere facile; Lyra le vuole sotto 4 perché è
+la strada delle gallerie. Quella è una scena. Quattro Destini che vogliono tutti
+la Carestia bassa non lo sono.
+
+`validate_data.py` adesso rifiuta una Chronicle con le Tensioni scritte a mano in
+cui una domanda in gioco non è nominata da nessun seggio.
+
+### Misurato
+
+Sonda delle posizioni, 40 Chronicle per saga:
+
+| | CHR_01 | CHR_03 |
+|---|---|---|
+| Consigli con almeno un no | 37% → **68%** | 38% → **53%** |
+| ABSTAIN | 80,1% → **70,2%** | 85,9% → **74,1%** |
+| CONDITION | 0,7% → 5,0% | 4,7% → **16,7%** |
+| `ADJUST_TENSION` pesato | 6 su 468 → **266 su 669** | **0** su 558 → **146 su 558** |
+
+`run_playtest.gd` sugli stessi 100 semi di D-055 — fallimenti **251 → 219**,
+Decisive **133 → 185**, Consigli per Chronicle 5,97 (dentro la banda del §7),
+Truth diverse 471 → 480, seggi bloccati a tavolo misto **0 su 8** e a tavolo
+uniforme 3 su 8, come prima.
+
+### Il costo, che è reale
+
+Il divario in Vittorie fra aggressivo e prudente passa da 26 a **31**. Non è un
+caso e non si tara via: **rendere contesi i Consigli aiuta il carattere
+costruito per approfittare dei contesi.** I due obiettivi tirano in direzioni
+diverse, e questo è il primo posto in cui il progetto lo vede scritto.
+
+E la Vittoria scende da 192 a 181 su 400 mentre il Minimum sale da 193 a 205: un
+tavolo che discute concede meno.
+
+### Cosa resta aperto
+
+`SET_RELATION` adesso si legge, e continua a pesare **zero su 156**: nessun
+Destino in gioco nomina una coppia, e solo **2 Consequence su 45** muovono un
+rapporto. Il ramo è scritto e corretto — i test lo tengono — ma l'asse dei
+rapporti in gioco quasi non esiste. Perché si accenda servono Conseguenze che
+facciano nemici, e questa è la prossima passata di contenuto.
+
+E **NONE resta 1 su 400**: nessuno perde mai. I Minimi sono «esisti ancora» e
+«hai una presenza da qualche parte», due cose che non si perdono. È un problema
+diverso da questo, ed è il più grosso che resta.
+
+---
+
 ## D-065 — Il quarto MASTER PROMPT: le Casate sono ritratti
 **implemented in 0.1.24** (ISSUES 4, chiude [D-056](#d-056))
 

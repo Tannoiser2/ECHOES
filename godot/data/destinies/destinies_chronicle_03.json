@@ -62,6 +62,12 @@
             "entity_id": "ENT_SALE",
             "min": 2,
             "label": "E il registro copre due Regioni, non una"
+          },
+          {
+            "type": "tension_limit",
+            "tension_id": "TEN_DEBT",
+            "max": 5,
+            "label": "E il Debito non ha spaccato la Strada"
           }
         ]
       }
@@ -175,6 +181,18 @@
             "region_id": "REG_MINIERE_ANTICHE",
             "tag": "condition:emptied",
             "label": "E le gallerie non sono state abbandonate"
+          },
+          {
+            "type": "tension_limit",
+            "tension_id": "TEN_RELIC",
+            "max": 4,
+            "label": "E la Reliquia non e diventata la domanda di tutti"
+          },
+          {
+            "type": "tension_limit",
+            "tension_id": "TEN_WATER",
+            "max": 4,
+            "label": "E l'acqua non e diventata la questione che sveglia tutti"
           }
         ]
       }
@@ -285,10 +303,30 @@
             "label": "La veglia sulla montagna e affidata a loro"
           },
           {
+            "type": "relation_state",
+            "entity_id": "ENT_CENERE",
+            "other_entity_id": "ENT_SALE",
+            "level": "NEUTRAL",
+            "at_least": true,
+            "label": "E il patto con la Gilda non e un conto aperto"
+          },
+          {
             "type": "state_tag_absent",
             "scope": "GLOBAL",
             "tag": "relic_buried",
             "label": "E nessuno ha richiuso quello che c'e sotto"
+          },
+          {
+            "type": "tension_limit",
+            "tension_id": "TEN_ASH",
+            "min": 3,
+            "label": "E la Cenere continua a salire: e quello che tiene la montagna nostra"
+          },
+          {
+            "type": "tension_limit",
+            "tension_id": "TEN_RELIC",
+            "min": 3,
+            "label": "E quello che c'e sotto resta una domanda aperta"
           }
         ]
       }
@@ -398,11 +436,31 @@
             "label": "Il debito e stato rimesso"
           },
           {
+            "type": "relation_state",
+            "entity_id": "ENT_LIBERE",
+            "other_entity_id": "ENT_SALE",
+            "level": "NEUTRAL",
+            "at_least": true,
+            "label": "E la Gilda non e diventata un nemico delle citta"
+          },
+          {
             "type": "state_tag_absent",
             "scope": "REGION",
             "region_id": "REG_EREDAN",
             "tag": "condition:unrest",
             "label": "Eredan non e in rivolta"
+          },
+          {
+            "type": "tension_limit",
+            "tension_id": "TEN_CHARTER",
+            "min": 3,
+            "label": "E la Carta si scrive quando la domanda non si puo piu rimandare"
+          },
+          {
+            "type": "tension_limit",
+            "tension_id": "TEN_DEBT",
+            "min": 3,
+            "label": "E il Debito resta la domanda che nessuno puo fingere di non vedere"
           }
         ]
       }

@@ -48,6 +48,10 @@ func test_three_levels_for_vaerax() -> void:
 	# sleep stays safe, and a safe sleep is one nobody can easily reach.
 	_apply("ADJUST_TENSION", "tension", "TEN_AWAKENING", {"delta": -1})
 	_apply("SET_REGION_TAG", "region", "REG_STRADA_MERCANTI", {"tag": "condition:cut_off"})
+	# E le Vie Interrotte abbastanza alte da non far salire nessuno con comodo:
+	# la clausola aggiunta in 0.1.25, che e' la stessa cosa detta con un numero
+	# invece che con un tag, e tira contro Lyra invece che contro nessuno (D-066).
+	_apply("ADJUST_TENSION", "tension", "TEN_ROADS", {"delta": 3})
 	result = session.destinies.evaluate("DST_VAERAX")
 	assert_eq(str(result["level"]), "TRIUMPH", "Risveglio sotto 4 e strada interrotta: Triumph")
 
@@ -74,6 +78,11 @@ func test_victory_needs_the_consequence_that_grants_it() -> void:
 	assert_false(bool(result["levels"]["TRIUMPH"]), "ma la corona e ancora una sola")
 
 	_apply("SET_GLOBAL_TAG", "world", "WORLD", {"tag": "crown_divided"})
+	# E la Successione ancora aperta: finche' si discute chi siede, nessuno ha il
+	# tempo di mandare via un popolo. E' la stessa cosa che dice `crown_divided`,
+	# detta con un numero - e detta cosi' tira contro Aldric, che la vuole sotto
+	# 4, invece che contro nessuno (D-066).
+	_apply("ADJUST_TENSION", "tension", "TEN_SUCCESSION", {"delta": 3})
 	result = session.destinies.evaluate("DST_NAHR")
 	assert_eq(str(result["level"]), "TRIUMPH", "corona spezzata e Valle aperta: Triumph")
 

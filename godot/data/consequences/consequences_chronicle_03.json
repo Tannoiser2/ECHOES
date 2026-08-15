@@ -172,6 +172,17 @@
           }
         },
         {
+          "type": "SET_RELATION",
+          "target": {
+            "kind": "relation",
+            "id": "$proponent|$rival"
+          },
+          "payload": {
+            "level": "HOSTILE"
+          },
+          "note": "Chi non puo pagare non perdona chi ha chiesto adesso (ISSUES 14: la seconda saga non aveva un solo modo di farsi un nemico)."
+        },
+        {
           "type": "SET_CONTROL",
           "target": {
             "kind": "region",
@@ -407,6 +418,17 @@
           }
         },
         {
+          "type": "SET_RELATION",
+          "target": {
+            "kind": "relation",
+            "id": "$proponent|$rival"
+          },
+          "payload": {
+            "level": "HOSTILE"
+          },
+          "note": "Chi stava nella stanza si ricorda chi ha portato la sedia (ISSUES 14)."
+        },
+        {
           "type": "SET_REGION_TAG",
           "target": {
             "kind": "region",
@@ -481,6 +503,18 @@
           "payload": {
             "tag": "condition:emptied"
           }
+        },
+        {
+          "type": "REMOVE_PRESENCE",
+          "target": {
+            "kind": "entity",
+            "id": "$rival"
+          },
+          "payload": {
+            "region_id": "REG_MINIERE_ANTICHE",
+            "optional": true
+          },
+          "note": "Gallerie lasciate vuol dire che chi le presidiava smette di presidiarle: la Regione e nominata come nel resto della carta, ed e quella che il Minimo dell'Ordine nomina a soglia 2 (AUDIT_DESTINI 7.2)."
         },
         {
           "type": "ADJUST_TENSION",

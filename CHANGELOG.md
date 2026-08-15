@@ -5,6 +5,118 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.26] — Perdere adesso è implementato
+
+Su 400 risultati di seggio, NONE usciva **una volta**. Non per taratura: nessun
+contenuto poteva falsificare un Minimo contro la volontà di chi lo regge
+([AUDIT_DESTINI](docs/AUDIT_DESTINI.md), [D-067](docs/DECISIONS.md#d-067),
+[D-068](docs/DECISIONS.md#d-068)).
+
+### Added
+
+- **Tre espulsioni**: `CNS_CAPITAL_TAKEN`, `CNS_SEALED_VALLEY` e
+  `CNS_ASH_ABANDONED` tolgono una presenza a `$rival` — sulla capitale, sulle
+  Terre Nahr, sulle Miniere Antiche: le Regioni che i Minimi nominano. Tutte su
+  Conseguenze che la vittima già bloccava: **l'espulsione va dove il no c'è
+  già**, così non cambia il punteggio di nessuno — cambia cosa succede quando
+  quel voto si perde comunque. La forma sulle vie del controllo affamava Kessa
+  (39/11 → 45/5, un seggio bloccato) ed è respinta a verbale.
+- **La regola della porta sbarrata**: da una Regione da cui un Consiglio ti ha
+  cacciato non si rientra finché l'atto non gira (`evicted:<regione>` messo
+  dalla risoluzione, letto da `can_move_to`, tolto dal giro di stagione — tutto
+  nel log degli Effect). Senza contenuto che caccia è inerte, quindi si toglie
+  togliendo tre righe di dati. Senza, il rientro era gratis: 12 espulsioni
+  recuperate su 13.
+- **Due Conseguenze che fanno nemici** nella seconda saga, che non ne aveva
+  nessuna: chiamare il debito e prendere il seggio portano il rapporto a
+  `HOSTILE`. E due clausole `relation_state` a livello Triumph, **dal lato di
+  chi vota**: la stesura sull'aggressore pesava zero, perché chi propone non
+  vota (ISSUES 14).
+- `cli/run_eviction_probe.gd`: quando cade un'espulsione, e chi recupera prima
+  che il Destino venga letto. È la sonda che ha trovato il difetto vero.
+- `tests/unit/test_eviction.gd`, 3 test.
+
+### Misurato
+
+Sugli stessi 100 semi di D-055, tavolo misto:
+
+| | 0.1.25 | 0.1.26 |
+|---|---|---|
+| **NONE** | **1** | **5** |
+| MINIMUM / VICTORY / TRIUMPH | 205 / 181 / 13 | 214 / 170 / 11 |
+| seggi bloccati (misto) | 0 su 8 | **0 su 8** |
+| Consigli per Chronicle | 5,97 | 5,92 |
+| `REMOVE_PRESENCE` pesato (CHR_01) | 0 | **28** |
+| `SET_RELATION` pesato (CHR_03) | 0 su 156 | **85 su 357** |
+| ABSTAIN CHR_03 | 74,1% | **64,9%** |
+
+Ogni espulsione sul Minimo caduta nell'atto III è diventata un NONE; quelle
+degli atti I–II si recuperano perdendo l'atto. **I costi, reali e a verbale**:
+Ilve 3/42/5 → 12/34/4 (il seggio più forte trova un no), Kessa 39/11 → 43/7, e
+il divario aggressivo/prudente sale da 30 a 37 — la stessa forza di D-066,
+messa in conto e non tarata via.
+
+---
+
+## [0.1.25] — Il tavolo adesso ha qualcosa in gioco
+
+L'80% dei seggi valutava una proposta **esattamente zero**: non apatia scritta nel
+contenuto, indifferenza del codice e dei Destini insieme
+([D-066](docs/DECISIONS.md#d-066)).
+
+### Fixed
+
+- **`SET_RELATION` non aveva un ramo nel punteggio.** Letto 126 volte, pesato
+  zero: Forgiare è una delle sei azioni del gioco e per chi decide non esisteva.
+- **Una clausola `min` su una Tensione era mezza cieca**: `max` aveva il suo
+  ripiego dentro la banda, `min` no. Chi ha bisogno che una domanda resti calda
+  non aveva niente da dire finché non gliela spegnevano del tutto.
+
+### Changed
+
+- **Dieci clausole `tension_limit` nei Destini in gioco.** Le domande più
+  visitate dei due tavoli — le Vie Interrotte, la Successione, la Carta — non
+  erano nominate da nessuno, e la seconda saga non aveva **una sola** clausola su
+  una Tensione. Sono a livello Triumph: il punteggio legge tutti e tre i livelli,
+  e a livello Victory la Vittoria crollava da 192 a 126 su 400.
+- Il criterio, che vale più delle clausole: **ogni Tensione in gioco dev'essere
+  nominata da almeno un Destino, e almeno un seggio dev'essere dalla parte
+  opposta.** Vaerax vuole le Vie Interrotte alte perché salire non dev'essere
+  facile; Lyra le vuole basse perché è la strada delle gallerie. Quella è una
+  scena. Quattro Destini che vogliono tutti la Carestia bassa non lo sono.
+- `validate_data.py` rifiuta una Chronicle in cui una domanda in gioco non è
+  nominata da nessun seggio.
+
+### Added
+
+- `tests/unit/test_stance_scoring.gd`, 5 test.
+- `run_stance_probe.gd` accetta `--chronicle`: guardava solo la prima saga, ed è
+  la seconda quella che di clausole sulle Tensioni non ne aveva nessuna.
+
+### Misurato
+
+40 Chronicle per saga:
+
+| | CHR_01 | CHR_03 |
+|---|---|---|
+| Consigli con almeno un no | 37% → **68%** | 38% → **53%** |
+| ABSTAIN | 80,1% → **70,2%** | 85,9% → **74,1%** |
+| `ADJUST_TENSION` pesato | 6/468 → **266/669** | **0**/558 → **146/558** |
+
+Sui 100 semi di D-055: fallimenti **251 → 219**, Decisive **133 → 185**, Consigli
+per Chronicle 5,97 (in banda §7), Truth diverse 471 → 480, seggi bloccati 0 su 8.
+
+**Il costo, che è reale:** il divario fra aggressivo e prudente passa da 26 a 31.
+Rendere contesi i Consigli aiuta il carattere costruito per approfittare dei
+contesi — i due obiettivi tirano in direzioni diverse, ed è la prima volta che il
+progetto lo vede scritto.
+
+**Resta aperto:** `SET_RELATION` si legge e pesa ancora zero su 156, perché solo
+2 Consequence su 45 muovono un rapporto. E NONE resta 1 su 400: nessuno perde
+mai.
+
+---
+
 ## [0.1.24] — Tre conti aperti chiusi
 
 La seconda leva, il contenuto che non arrivava mai al tavolo, e il quarto MASTER

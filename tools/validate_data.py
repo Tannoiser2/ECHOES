@@ -270,6 +270,39 @@ def check_references(
                     f"template '{template_id}' (domain {domain}) can never open in this "
                     "Chronicle: every Tension of that domain has a template of its own",
                 )
+        # Ogni Tensione in gioco dev'essere nominata da almeno un Destino al
+        # tavolo (D-066). Una domanda che si apre a ogni Chronicle e non tocca
+        # nessuno e' una scena senza posta: il Consiglio la decide e i tre
+        # seggi che non l'hanno proposta si astengono, perche' per loro non
+        # cambia niente. Misurato: 468 letture di ADJUST_TENSION e 6 volte in
+        # cui hanno spostato un punteggio.
+        #
+        # Solo per le Chronicle con le Tensioni scritte a mano: quelle che
+        # pescano dalla biblioteca non sanno in anticipo chi si siede.
+        if not pool:
+            destiny_of = {e["id"]: e.get("destiny_id") for e in documents.get("entity", [])}
+            destinies_by_id = {d["id"]: d for d in documents.get("destiny", [])}
+            named: set = set()
+            for entity_id in chronicle["entities"]:
+                destiny = destinies_by_id.get(destiny_of.get(entity_id))
+                if destiny is None:
+                    continue
+                for level in ("minimum", "victory", "triumph"):
+                    for condition in destiny.get(level, {}).get("conditions", []):
+                        for one in (
+                            condition.get("conditions", [])
+                            if condition.get("type") == "any_of"
+                            else [condition]
+                        ):
+                            if one.get("type") == "tension_limit":
+                                named.add(one.get("tension_id"))
+            for tension_id in chronicle_tensions:
+                if tension_id not in named:
+                    report.fail(
+                        where,
+                        f"tension '{tension_id}' is in play but no seat's Destiny names it: "
+                        "the table has no reason to care how that question ends",
+                    )
         # Every Act pool must have at least one card available.
         cards_by_family: Dict[str, int] = defaultdict(int)
         for card in documents.get("echo_card", []):

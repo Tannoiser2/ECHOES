@@ -62,6 +62,12 @@
             "scope": "GLOBAL",
             "tag": "crown_divided",
             "label": "La corona non e stata spezzata"
+          },
+          {
+            "type": "tension_limit",
+            "tension_id": "TEN_SUCCESSION",
+            "max": 4,
+            "label": "E nessuno ha ancora chiesto chi siede dopo"
           }
         ]
       },
@@ -127,6 +133,12 @@
             "scope": "GLOBAL",
             "tag": "crown_divided",
             "label": "La corona ha smesso di essere una sola"
+          },
+          {
+            "type": "tension_limit",
+            "tension_id": "TEN_SUCCESSION",
+            "min": 3,
+            "label": "E finche si discute chi siede, nessuno ha tempo di mandarci via"
           }
         ]
       },
@@ -200,6 +212,12 @@
             "scope": "GLOBAL",
             "tag": "study_supervised",
             "label": "Nessuno ha messo una guardia allo studio"
+          },
+          {
+            "type": "tension_limit",
+            "tension_id": "TEN_ROADS",
+            "max": 4,
+            "label": "E la strada per le gallerie non e allo stremo"
           }
         ]
       },
@@ -266,6 +284,12 @@
             "region_id": "REG_MINIERE_ANTICHE",
             "tag": "condition:exploited",
             "label": "E le Miniere non sono state svuotate"
+          },
+          {
+            "type": "tension_limit",
+            "tension_id": "TEN_ROADS",
+            "min": 3,
+            "label": "E salire fin lassu non e facile per nessuno"
           }
         ]
       },
