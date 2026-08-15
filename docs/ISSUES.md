@@ -327,9 +327,10 @@ diffabile).
 
 ## Milestone 0.3 — World Propagation
 
-### 9. La Chronicle II generata dalle evidence
+### 9. La Chronicle II generata dalle evidence (#25)
 
-`motore` · milestone **0.3**
+`motore` · milestone **0.3** · aperta su GitHub con il piano a fasi
+([#25](https://github.com/Tannoiser2/ECHOES/issues/25))
 
 `destiny_results.evidence` registra già **come** ogni obiettivo è stato
 raggiunto, e nessuno lo legge. `world_state_factory.inheritance_effects()` porta
