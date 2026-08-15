@@ -20,16 +20,27 @@ extends SceneTree
 const DataSet := preload("res://scripts/core/data_set.gd")
 const GameSession := preload("res://scripts/chronicle/game_session.gd")
 const PolicyDecider := preload("res://scripts/seat/policy_decider.gd")
+const Characters := preload("res://scripts/seat/table_of_characters.gd")
+const RngService := preload("res://scripts/core/rng_service.gd")
 
-const SEATS: Array = ["ENT_ALDRIC", "ENT_NAHR", "ENT_LYRA", "ENT_VAERAX"]
 const FIRST_SEED: int = 1000
 
 
 func _initialize() -> void:
 	var runs: int = 40
+	# `--chronicle` come nella sonda delle posizioni (D-066): questa guardava
+	# solo la prima saga, con i seggi cablati nel file.
+	var chronicle_id: String = "CHR_01"
+	# `--tavolo=misto` come nella sonda delle scelte: l'ottimizzatore da solo
+	# quasi non si oppone, e un margine misurato senza opposizione dice poco.
+	var mixed: bool = false
 	for argument in OS.get_cmdline_user_args():
 		if str(argument).begins_with("--runs="):
 			runs = int(str(argument).split("=")[1])
+		elif str(argument).begins_with("--chronicle="):
+			chronicle_id = str(argument).split("=")[1]
+		elif str(argument) == "--tavolo=misto":
+			mixed = true
 
 	var data: RefCounted = DataSet.new()
 	if not data.load_from("res://data"):
@@ -37,6 +48,12 @@ func _initialize() -> void:
 			printerr("  %s" % error)
 		quit(3)
 		return
+
+	if not data.chronicles.has(chronicle_id):
+		printerr("nessuna Chronicle '%s'" % chronicle_id)
+		quit(4)
+		return
+	var seats: Array = (data.chronicles[chronicle_id]["entities"] as Array).duplicate()
 
 	var councils: int = 0
 	var support: int = 0
@@ -46,8 +63,11 @@ func _initialize() -> void:
 	var supports: Dictionary = {}
 	for i in range(runs):
 		var session: RefCounted = GameSession.new(data)
-		session.setup("CHR_01", SEATS, FIRST_SEED + i)
-		var report: Dictionary = await session.run(PolicyDecider.new(session.log))
+		session.setup(chronicle_id, seats, FIRST_SEED + i)
+		var table: RefCounted = PolicyDecider.new(session.log)
+		if mixed:
+			table = Characters.deal(seats, RngService.new(FIRST_SEED + i), session.log)
+		var report: Dictionary = await session.run(table)
 		for result in report["confluences"]:
 			councils += 1
 			support += int(result["support_total"])
@@ -59,7 +79,7 @@ func _initialize() -> void:
 		session.dispose()
 
 	print("")
-	print("== SONDA DEI MARGINI - %d Chronicle, CHR_01 ==" % runs)
+	print("== SONDA DEI MARGINI - %d Chronicle, %s, tavolo %s ==" % [runs, chronicle_id, "misto" if mixed else "uniforme"])
 	print("")
 	print("Consigli: %d" % councils)
 	print("  S medio   %.2f" % (float(support) / maxf(councils, 1)))

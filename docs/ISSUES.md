@@ -201,9 +201,18 @@ scende da 37 a 31. Lungo la strada è saltato fuori un baco vero della ripresa
 (un salvataggio alla soglia perdeva il Consiglio del round), corretto con la
 sua guardia.
 
-### 17. L'indifferenza della prima saga
+### 17. ✅ L'indifferenza della prima saga — fatta in 0.1.29
 
-`contenuto` · `da-misurare` · milestone **0.2**
+`contenuto` · `da-misurare` · **chiusa** ([D-072](DECISIONS.md#d-072))
+
+ABSTAIN della prima saga **71,1% → 59,9%**, sotto il criterio del 60%, con due
+scene scritte col vincolo di D-070 (**le bande devono sovrapporsi**): Vaerax a
+Triumph vuole la Carestia da 3 in su contro i tetti di Aldric (4) e del Popolo
+(3), e l'Erede Nominato cala di 1 le Vie Interrotte — la proposta più votata
+della Successione tocca Lyra e Vaerax nei due versi. Vincoli tutti fermi:
+bloccati 0 su 8, banda 5,96, TRIUMPH 11 (pavimento 10), seconda saga al 48,4%.
+
+<details><summary>Il testo dell'issue come era stato scritto</summary>
 
 Dopo tre versioni di lavoro sugli assi ([D-066](DECISIONS.md#d-066),
 [D-068](DECISIONS.md#d-068), [D-070](DECISIONS.md#d-070)) la seconda saga è
@@ -221,6 +230,8 @@ scritto nei dati.
 vincoli (seggi bloccati 0 su 8, banda del §7, TRIUMPH non sotto 10 su 400),
 misurato con la sonda delle posizioni sugli stessi semi — e le scene nuove
 rispettano il vincolo di D-070.
+
+</details>
 
 ---
 
@@ -316,9 +327,10 @@ diffabile).
 
 ## Milestone 0.3 — World Propagation
 
-### 9. La Chronicle II generata dalle evidence
+### 9. La Chronicle II generata dalle evidence (#25)
 
-`motore` · milestone **0.3**
+`motore` · milestone **0.3** · aperta su GitHub con il piano a fasi
+([#25](https://github.com/Tannoiser2/ECHOES/issues/25))
 
 `destiny_results.evidence` registra già **come** ogni obiettivo è stato
 raggiunto, e nessuno lo legge. `world_state_factory.inheritance_effects()` porta

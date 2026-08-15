@@ -594,6 +594,17 @@
           }
         },
         {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "TEN_ROADS"
+          },
+          "payload": {
+            "delta": -1
+          },
+          "note": "Un domani certo rimette in moto le carovane: la domanda piu votata della Successione adesso tocca chi vive di strade, nei due versi (D-072)."
+        },
+        {
           "type": "SET_GLOBAL_TAG",
           "target": {
             "kind": "world",

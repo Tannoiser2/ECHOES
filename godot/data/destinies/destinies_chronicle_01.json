@@ -272,6 +272,12 @@
             "label": "Il Risveglio e stato riportato indietro"
           },
           {
+            "type": "tension_limit",
+            "tension_id": "TEN_FAMINE",
+            "min": 3,
+            "label": "E la fame tiene gli uomini nelle valli, lontani dalla montagna"
+          },
+          {
             "type": "state_tag_present",
             "scope": "REGION",
             "region_id": "REG_STRADA_MERCANTI",

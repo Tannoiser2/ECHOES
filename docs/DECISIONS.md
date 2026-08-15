@@ -331,6 +331,70 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-073 — Il dado conta: misurato, e nessuna manopola da girare
+**measured in 0.1.29** (sonda dei margini estesa: `--chronicle`, `--tavolo=misto`)
+
+L'ultima precondizione tattica non misurata: se i Consigli si chiudono con
+margini che il d6 (±2) non può ribaltare, la suspense dell'impegno segreto è
+finta. La sonda dei margini guardava solo la prima saga a tavolo uniforme —
+lo stesso difetto che D-066 aveva corretto nella sonda delle posizioni — ed è
+stata estesa prima di giudicare.
+
+**A tavolo uniforme il sospetto sembrava fondato**: nella seconda saga il 78%
+dei Consigli chiudeva senza un'opposizione e il 53% a M ≥ +7, fuori dalla
+portata del dado. **A tavolo misto sparisce**: senza-opposizione 22% (CHR_01)
+e 29% (CHR_03), S−O medio 0,26 e 1,39, e la massa dei margini a cavallo dei
+tre confini di banda — il dado decide la banda in circa due Consigli su tre,
+e i margini blindati (≥ +7 o ≤ −5) sono un quarto del totale.
+
+Verdetto: **il dado conta e non c'è nessuna manopola da girare.** È la terza
+volta che l'ottimizzatore uniforme, da solo, avrebbe indotto un intervento
+sbagliato (D-051 sui seggi, D-063 sulle proposte, qui sui margini): la misura
+di riferimento è il tavolo misto, sempre, e adesso ogni sonda del progetto
+sa farla.
+
+---
+
+## D-072 — La prima saga si sveglia: due scene a bande sovrapposte
+**implemented in 0.1.29** (chiude ISSUES 17, col vincolo di [D-070](#d-070))
+
+La prima saga era ferma al 71% di ABSTAIN mentre la seconda scendeva al 48%, e
+il tentativo più ovvio — il sigillo conteso fra Lyra e Vaerax — era stato
+respinto due volte: spegneva i Triumph del tavolo. Il vincolo scritto in D-070
+è diventato il criterio di progetto di queste due scene: **le bande devono
+sovrapporsi** — dev'esserci almeno un mondo in cui tutt'e due i contendenti
+vincono — così la scena produce voti contesi, non un pareggio a zero.
+
+### Le due scene
+
+1. **La fame tiene gli uomini nelle valli** — `DST_VAERAX` a Triumph vuole la
+   Carestia **da 3 in su**; la Vittoria di Aldric la vuole **fino a 4**, il
+   Triumph del Popolo fino a 3. Le bande si toccano in 3–4: ci si può stare
+   tutti, ma ogni spinta è contesa. I Consigli della Carestia — i più
+   frequenti della saga — adesso hanno sempre qualcuno dall'altra parte.
+2. **Un domani certo rimette in moto le carovane** — `CNS_HEIR_NAMED` cala di
+   1 le Vie Interrotte. La proposta più votata della Successione (48 voti su
+   40 Chronicle) adesso tocca Lyra (Vie ≤ 4, a favore) e Vaerax (Vie ≥ 3,
+   contro) nei due versi.
+
+### Misurato
+
+Sonda delle posizioni, 40 Chronicle, prima saga:
+
+| | 0.1.28 | 0.1.29 |
+|---|---|---|
+| ABSTAIN | 71,1% | **59,9%** |
+| CONDITION | 5,1% | **10,6%** |
+| SUPPORT | 5,9% | **10,9%** |
+
+Il criterio della voce 17 (sotto il 60% a parità di vincoli) è passato. Sui
+100 semi di D-055, tavolo misto: seggi bloccati **0 su 8**, Consigli 5,96
+(mediana 6), TRIUMPH **11** (il pavimento della voce era 10), NONE 9,
+fallimenti **195** — il minimo mai misurato — e la seconda saga ferma al
+48,4%. La suite passa senza increspare nessun piano scriptato.
+
+---
+
 ## D-071 — Le carte che nessuno gioca non esistono: la coda è vuota
 **measured in 0.1.28** (chiude ISSUES 3)
 

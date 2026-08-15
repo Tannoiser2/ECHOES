@@ -5,6 +5,45 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.29] — La prima saga si sveglia
+
+Due scene scritte col vincolo che la respinta di D-070 aveva insegnato: le
+bande devono sovrapporsi — dev'esserci almeno un mondo in cui tutt'e due i
+contendenti vincono ([D-072](docs/DECISIONS.md#d-072), chiude ISSUES 17).
+
+### Changed
+
+- **La fame tiene gli uomini nelle valli**: Vaerax a Triumph vuole la Carestia
+  da 3 in su, contro il tetto di 4 di Aldric e di 3 del Popolo. Bande che si
+  toccano in 3–4: ci si può stare tutti, ma ogni spinta è contesa.
+- **Un domani certo rimette in moto le carovane**: l'Erede Nominato cala di 1
+  le Vie Interrotte — la proposta più votata della Successione adesso tocca
+  Lyra e Vaerax nei due versi.
+
+### Added
+
+- La sonda dei margini accetta `--chronicle` e `--tavolo=misto`: guardava solo
+  la prima saga a tavolo uniforme, lo stesso difetto che D-066 aveva corretto
+  nella sonda delle posizioni.
+
+### Misurato
+
+ABSTAIN della prima saga **71,1% → 59,9%** (era il criterio della voce 17:
+sotto il 60 a parità di vincoli), CONDITION e SUPPORT raddoppiati. Sui 100
+semi di D-055: seggi bloccati 0 su 8, Consigli 5,96, TRIUMPH 11 (pavimento:
+10), fallimenti **195** — il minimo mai misurato — e la seconda saga ferma al
+48,4%. Le due saghe sono ora entrambe sotto il 60% di ABSTAIN, dal 70–86% in
+cui stavano tre versioni fa.
+
+E la domanda tattica che restava — *il dado conta?* — è misurata e chiusa
+senza manopole ([D-073](docs/DECISIONS.md#d-073)): a tavolo misto il d6
+decide la banda in circa due Consigli su tre, l'opposizione c'è nel 71–78%
+dei Consigli, e i margini blindati sono un quarto. A tavolo uniforme sembrava
+il contrario — terza volta che l'ottimizzatore da solo avrebbe indotto
+l'intervento sbagliato.
+
+---
+
 ## [0.1.28] — Il Consiglio come scena
 
 Dopo tre versioni di lavoro sugli assi, il 65–72% delle posizioni restava
