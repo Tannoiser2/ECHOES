@@ -200,7 +200,16 @@
       "years_after_previous": {
         "min": 20,
         "max": 200
-      }
+      },
+      "enduring_facts": [
+        "mine_sealed",
+        "valley_sealed",
+        "succession_by_law",
+        "nahr_settled",
+        "crown_divided",
+        "crown_dispossessed",
+        "ledger_public"
+      ]
     }
   ]
 }

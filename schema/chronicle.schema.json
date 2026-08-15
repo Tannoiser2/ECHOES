@@ -368,6 +368,14 @@
             }
           }
         },
+        "enduring_facts": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "I fatti globali che restano fatti anche dopo un salto lungo, perche murati o scritti: tutto il resto diventa legend:<fatto> (D-075). Assente = niente resiste al tempo."
+        },
         "years_after_previous": {
           "description": "Quanto tempo passa fra la Chronicle precedente e questa. Un numero, oppure un intervallo pescato dal seme: e cosi che una saga puo coprire secoli invece di anni consecutivi (D-045). Assente = 1 anno.",
           "oneOf": [

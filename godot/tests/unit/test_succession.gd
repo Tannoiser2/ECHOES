@@ -158,3 +158,37 @@ func test_a_chained_chronicle_keeps_the_world_and_changes_the_table() -> void:
 				"%s e controllata da un seggio che esiste ancora" % str(region_id)
 			)
 	second.dispose()
+
+
+## D-075: la memoria che sbiadisce. Su un salto lungo resta un fatto solo
+## quello che e' murato o scritto; il resto diventa leggenda, e una leggenda
+## attraversa ogni salto successivo. Su un salto breve si ricorda tutto.
+func test_time_turns_unwritten_facts_into_legends() -> void:
+	var previous: Dictionary = {
+		"global_tags": ["mine_sealed", "order_restored", "legend:oath_broken", "function:REQUEST"],
+		"regions": {}, "relations": {}, "entities": {},
+	}
+	var effects: Array = preload("res://scripts/world/world_state_factory.gd").inheritance_effects(
+		previous, _chronicle("CHR_02"), data(), 120
+	)
+	var carried: Array = []
+	for effect in effects:
+		if str(effect["type"]) == "SET_GLOBAL_TAG":
+			carried.append(str(effect["payload"]["tag"]))
+	assert_true(carried.has("mine_sealed"), "quello che e' murato resta un fatto")
+	assert_false(carried.has("order_restored"), "una consuetudine non attraversa un secolo")
+	assert_true(carried.has("legend:order_restored"), "ma non sparisce: diventa leggenda")
+	assert_true(carried.has("legend:oath_broken"), "e una leggenda gia' nata attraversa il salto")
+	assert_false(carried.has("legend:legend:oath_broken"), "senza diventare leggenda di se stessa")
+	for tag in carried:
+		assert_false(str(tag).begins_with("legend:function:"), "la grammatica non lascia leggende")
+
+	# Un salto breve ricorda tutto com'era.
+	var soon: Array = preload("res://scripts/world/world_state_factory.gd").inheritance_effects(
+		previous, _chronicle("CHR_02"), data(), 20
+	)
+	var kept: Array = []
+	for effect in soon:
+		if str(effect["type"]) == "SET_GLOBAL_TAG":
+			kept.append(str(effect["payload"]["tag"]))
+	assert_true(kept.has("order_restored"), "vent'anni dopo, l'ordine ristabilito e' ancora un fatto")

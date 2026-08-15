@@ -331,6 +331,69 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-075 — La memoria che sbiadisce: i fatti diventano leggende
+**implemented in 0.1.31** (issue [#25](https://github.com/Tannoiser2/ECHOES/issues/25), Fase 2 — nella forma corretta dal committente)
+
+Il piano della #25 era scivolato su «la Chronicle II è l'anno dopo», e il
+committente ha rimesso la barra dritta: **fra due partite possono passare
+venti anni o due secoli, i protagonisti possono non esserci più, e dieci
+partite possono coprire mille anni.** La parte bella è che il motore questa
+visione ce l'aveva già — `succession.gd` (D-045/D-046): il seggio è la casa,
+le generazioni si succedono coi loro nomi, i rapporti si smussano, i Destini
+ruotano; e le Chronicle-biblioteca `CHR_02`/`CHR_04` dichiarano salti di
+20–200 anni. La sonda delle ere lo certifica: **una saga di 10 Chronicle
+copre in mediana 1.019 anni**, 17 generazioni nuove al tavolo, 12 Destini
+ruotati, 15 mani di domande diverse.
+
+Quello che mancava, e questa versione aggiunge, è **cosa il tempo fa alla
+memoria**: dei 7,2 fatti globali con cui si chiude l'anno uno, **7,2 su 7,2
+arrivavano letterali all'ultimo anno** — `mine_sealed` dell'812 era un fatto
+corrente nel 1856. Un mondo che ricorda tutto per sempre non ha leggende: ha
+un archivio.
+
+### La regola
+
+Su un salto breve si ricorda tutto com'era. Su un salto lungo (la stessa
+soglia dei rapporti, `DECAY_YEARS` = 50) **resta un fatto solo quello che è
+murato o scritto** — la Chronicle che arriva lo dichiara in
+`enduring_facts` — e il resto non sparisce: **diventa `legend:<fatto>`**,
+vero come la memoria e non come il mondo. Le leggende, una volta nate,
+attraversano ogni salto successivo. I segnaposto della grammatica narrativa
+(`function:`) sbiadiscono e basta.
+
+La lista di ciò che dura è contenuto, non regola: per la prima saga il
+sigillo delle Miniere, il vallo della Valle, la legge di successione,
+l'insediamento riconosciuto, la corona divisa o spodestata, il registro
+copiato; per la seconda la Carta, il registro, l'acqua a prezzo per atto, la
+teca murata, la custodia per atto. Il criterio in una riga: *quello che è
+scritto o murato resta; quello che è consuetudine sbiadisce.*
+
+### Misurato
+
+Sonda delle ere, 20 saghe da 10 Chronicle:
+
+| | prima | dopo |
+|---|---|---|
+| fatti dell'anno uno letterali all'ultimo anno | 7,2 su 7,2 (**100%**) | **5,0** (e i sopravvissuti sono quelli dichiarati o rifatti da ere successive) |
+| il mondo all'ultimo anno porta | 23,3 fatti correnti | 11,7 fatti + **16,1 leggende** |
+| anni coperti / generazioni / rotazioni | 1.019 / 17,3 / 10,8 | 1.019 / 17,3 / 12,6 |
+
+E i casi che la regola produce da sola, senza una riga di contenuto in più:
+la teca mostrata due secoli fa torna leggenda, e l'Ordine di un'altra era
+deve rimostrarla; il debito chiamato da una Gilda morta non è più «chiamato»,
+e la generazione nuova deve rifarlo suo. Il playtest a Chronicle singola è
+intoccato per costruzione (senza eredità niente sbiadisce): 191 test in 27
+suite verdi, sim deterministiche.
+
+### Cosa resta aperto
+
+Nessun contenuto **legge** ancora una leggenda: `legend:*` esiste perché le
+Conseguenze, i Destini e le carte Echo di domani possano nominarlo («si dice
+che sotto la montagna…»). È la prossima passata di contenuto della campagna,
+insieme alla pesca delle domande pesata sulle conseguenze (Fase 3 della #25).
+
+---
+
 ## D-074 — La materia prima della campagna: 99 mondi su 100, e tre difetti noti
 **measured in 0.1.30** (issue [#25](https://github.com/Tannoiser2/ECHOES/issues/25), Fase 1)
 

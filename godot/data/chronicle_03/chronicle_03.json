@@ -259,6 +259,13 @@
           "region_id": "REG_MINIERE_ANTICHE",
           "entity_id": null
         }
+      ],
+      "enduring_facts": [
+        "charter_written",
+        "ledger_public",
+        "water_priced",
+        "relic_buried",
+        "faith_established"
       ]
     }
   ]
