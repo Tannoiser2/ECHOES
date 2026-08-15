@@ -5,6 +5,32 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.35] — L'iniquità del tempo
+
+La rotazione dei Destini premiava solo chi ottiene: chi falliva riprovava la
+stessa ambizione per mille anni — Aldric macinava lo stesso Destino per
+un'intera saga in 6 su 20 ([D-081](docs/DECISIONS.md#d-081)).
+
+### Added
+
+- **Un erede non giura sull'ambizione che ha visto fallire** (D-081): il
+  seggio conta le ere a mani vuote e, quando la persona cambia dopo due ere
+  senza ottenere, l'erede passa al Destino successivo del pool. La rotazione
+  da stanchezza è marcata `weary`, distinta da quella da premio, e lascia una
+  riga nel verbale. Chi non cambia persona non si stanca: la stessa vita
+  riprova finché vive, un popolo si rinnova senza cambiare volto, e Vaerax è
+  sotto la montagna apposta.
+- La sonda delle ere conta le rotazioni da stanchezza.
+
+### Misurato
+
+Su 20 saghe della corona: i macinamenti di un'intera saga passano da 6+2 a
+**zero** (run massimo di Aldric da 10 a 3 ere); le rotazioni da premio
+restano 13.2 per saga, quelle da stanchezza sono 6.7; ogni altra misura
+d'era invariata. 198 test in 28 suite verdi.
+
+---
+
 ## [0.1.34] — La pesca che ascolta, e la guardia sugli anni-biblioteca
 
 Gli ultimi due pezzi dichiarati della #25
