@@ -5,6 +5,24 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.36] — La soglia della stanchezza: tre ere, non due
+
+Ratifica del committente su D-081: la terza delusione è la tradizione, non
+la seconda ([D-081, revisione](docs/DECISIONS.md#d-081)).
+
+### Changed
+
+- `WEARY_ERAS` da 2 a 3: l'erede cambia ambizione dopo **tre** ere a mani
+  vuote. Rimisurato sugli stessi semi: rotazioni da stanchezza da 6.7 a
+  4.1 per saga, da premio tornate a 13.6; i mortali restano sbloccati
+  (run massimo di Aldric 4 ere, zero saghe macinate).
+- A verbale la lettura confermata dal committente: i 4/8 seggi bloccati
+  del **tavolo uniforme** sono un artefatto della misura (quattro
+  ottimizzatori identici), non un difetto del gioco — il vincolo di
+  equilibrio resta 0/8 al tavolo misto.
+
+---
+
 ## [0.1.35] — L'iniquità del tempo
 
 La rotazione dei Destini premiava solo chi ottiene: chi falliva riprovava la

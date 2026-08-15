@@ -32,9 +32,10 @@ const WARMER: Array = ["ENEMY", "HOSTILE", "NEUTRAL", "ALLY", "BOUND"]
 const ACHIEVED: Array = ["VICTORY", "TRIUMPH"]
 
 ## Dopo quante ere a mani vuote un erede smette di giurare sull'ambizione che
-## ha visto fallire (D-081). Due: la prima delusione e' sfortuna, la seconda
-## e' una tradizione - e un erede non giura su una tradizione di fallimenti.
-const WEARY_ERAS: int = 2
+## ha visto fallire (D-081). Tre, per scelta del committente (0.1.36): a due
+## le case cambiavano ambizione al ritmo dei salti; la terza delusione e' una
+## tradizione, e un erede non giura su una tradizione di fallimenti.
+const WEARY_ERAS: int = 3
 
 
 ## How long since the previous Chronicle. An integer is taken as it is; a

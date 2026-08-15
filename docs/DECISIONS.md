@@ -372,9 +372,18 @@ stanchezza sono 6.7. Tutte le altre misure d'era — salti, generazioni,
 pesca che ascolta, memoria letta — invariate. Il playtest non incatena ere
 e resta intatto per costruzione.
 
-Guardie: `test_succession.gd` — l'erede dopo due ere a mani vuote ruota
-(e una sola non basta), la stessa persona non abbandona, l'eterno non si
-stanca, il contatore sale e si azzera con l'ottenuto.
+Guardie: `test_succession.gd` — l'erede dopo le ere a mani vuote di soglia
+ruota (e una in meno non basta), la stessa persona non abbandona, l'eterno
+non si stanca, il contatore sale e si azzera con l'ottenuto.
+
+### Revisione 0.1.36 — la soglia a tre, per scelta del committente
+
+A due ere la stanchezza ruotava 6.7 Destini per saga — quasi al ritmo dei
+salti. Il committente ha scelto tre: la terza delusione è la tradizione, non
+la seconda. Rimisurato sugli stessi semi: rotazioni da stanchezza **4.1**
+per saga, da premio tornate a 13.6, e i mortali restano sbloccati — run
+massimo di Aldric 4 ere (era 10 senza regola), zero saghe macinate per i
+MORTAL. Il Popolo e Vaerax restano fuori dalla regola, come da disegno.
 
 ---
 
