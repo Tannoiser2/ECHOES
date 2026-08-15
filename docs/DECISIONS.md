@@ -331,6 +331,41 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-074 — La materia prima della campagna: 99 mondi su 100, e tre difetti noti
+**measured in 0.1.30** (issue [#25](https://github.com/Tannoiser2/ECHOES/issues/25), Fase 1)
+
+Prima di scrivere il generatore della Chronicle II, la domanda che decide se
+vale la pena scriverlo: **cento semi producono cento anni diversi, o lo stesso
+anno cento volte?** `cli/run_legacy_probe.gd` misura la materia prima — fatti
+globali, cicatrici, controllo, rapporti e livelli con cui un anno si chiude —
+sugli stessi 100 semi e lo stesso tavolo misto di tutte le misure.
+
+**La materia prima c'è: 50 mondi distinti su 50 nella prima saga, 49 su 50
+nella seconda.** 47 fatti globali diversi con distribuzioni sane (dal 94% al
+2%), il controllo di Eredan che cambia mano (70% Aldric, 14% Lyra, 8% il
+Popolo), 267 cicatrici, livelli variati. Un generatore ha di che lavorare.
+
+E i tre difetti da sapere prima di costruirci sopra:
+
+1. **La cicatrice del fallimento domina**: `scar:unanswered` è 195 delle 267
+   cicatrici totali (73%) — 2,4 per anno nella prima saga. Un generatore che
+   legga le cicatrici alla pari vedrebbe soprattutto questo rumore. Va
+   aggregata, non letta: «quante domande sono rimaste senza risposta» è un
+   numero che può *aprire una Tensione* nell'anno dopo, non 195 fatti diversi.
+2. **Tre rapporti sono costanti travestite da variabili**: Lyra–Vaerax chiude
+   HOSTILE in 50 anni su 50, Cenere–Vetro ENEMY+VENDETTA 50 su 50,
+   Libere–Vetro ALLY 50 su 50. Una costante non è informazione per il
+   generatore — e a monte dice che il contenuto rende quei tre destini di
+   coppia inevitabili: da riguardare come contenuto, non solo come input.
+3. **I fatti frequenti dicono poco, i rari sono l'oro**: `order_restored`
+   (88–94%) e `question_unresolved` (78–94%) sono quasi-costanti; a
+   differenziare gli anni sono `crown_divided` (8%), `no_charter` (12%),
+   `crystal_exploited` (2%). Il generatore deve pesare per rarità.
+
+La Fase 2 (l'assegnazione dei Destini di successione) parte da qui.
+
+---
+
 ## D-073 — Il dado conta: misurato, e nessuna manopola da girare
 **measured in 0.1.29** (sonda dei margini estesa: `--chronicle`, `--tavolo=misto`)
 

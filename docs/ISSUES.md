@@ -330,7 +330,9 @@ diffabile).
 ### 9. La Chronicle II generata dalle evidence (#25)
 
 `motore` · milestone **0.3** · aperta su GitHub con il piano a fasi
-([#25](https://github.com/Tannoiser2/ECHOES/issues/25))
+([#25](https://github.com/Tannoiser2/ECHOES/issues/25)) · **Fase 1 fatta in
+0.1.30** ([D-074](DECISIONS.md#d-074)): la materia prima c'è — 99 mondi
+distinti su 100 — con i tre difetti del caso a verbale
 
 `destiny_results.evidence` registra già **come** ogni obiettivo è stato
 raggiunto, e nessuno lo legge. `world_state_factory.inheritance_effects()` porta
