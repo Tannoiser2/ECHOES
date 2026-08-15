@@ -87,7 +87,8 @@ alle domande lasciate aperte qui sopra:
   parola su quella domanda.
 
 Quindi il lavoro qui non è più «scrivere altri template»: è il diritto di
-proporre (issue 1).
+proporre (issue 1 — poi aperta come [#22](https://github.com/Tannoiser2/ECHOES/issues/22)
+e **fatta in 0.1.27**, [D-069](DECISIONS.md#d-069); vedi la voce 16).
 
 **Fatto quando** i nuovi template passano `validate_data.py`, ogni proposta è
 raggiungibile in gioco (D-035: una proposta che la policy non sceglie mai è
@@ -172,6 +173,21 @@ smette di essere un livello teorico — o è scritta come respinta con i numeri
 accanto.
 
 </details>
+
+### 16. ✅ Il diritto di proporre (#22) — fatta in 0.1.27
+
+`regola` · `da-misurare` · **chiusa** ([D-069](DECISIONS.md#d-069))
+
+Il proponente lo decide il posto, e il posto è di chi vuole l'esito ovvio
+(D-063). L'azione che sposta la parola — `CLAIM` — esisteva e la policy non
+l'ha mai giocata: cinque azioni su sei. Adesso la gioca, con quattro
+moderazioni misurate una alla volta (la forma ingenua è a verbale come
+respinta: fallimenti 219 → 339, mediana fuori banda, due seggi bloccati).
+**Mai ai voti: 2 → 0 su 15 nella prima saga e 4 → 3 su 20 nella seconda — le
+cinque proposte di D-063 votano tutte** — e il divario aggressivo/prudente
+scende da 37 a 31. Lungo la strada è saltato fuori un baco vero della ripresa
+(un salvataggio alla soglia perdeva il Consiglio del round), corretto con la
+sua guardia.
 
 ---
 

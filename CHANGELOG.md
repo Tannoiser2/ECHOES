@@ -5,6 +5,46 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.27] — La parola si può prendere
+
+Il proponente di un Consiglio lo decide il posto, e il posto è di chi vuole
+l'esito ovvio ([D-063](docs/DECISIONS.md#d-063)): le Città Libere non hanno mai
+preso la parola sul Debito in 92 Consigli. L'azione che sposta la parola —
+`CLAIM`, §11 — esisteva e **la policy non l'ha mai giocata**
+(issue [#22](https://github.com/Tannoiser2/ECHOES/issues/22),
+[D-069](docs/DECISIONS.md#d-069)).
+
+### Fixed
+
+- **La policy gioca CLAIM**, derivandolo dai dati (precedente D-021): chi ha
+  bisogno di un Consiglio a cui il posto non gli darebbe la parola prenota il
+  dominio e poi lo forza. Con quattro moderazioni, ognuna misurata contro una
+  rottura: la domanda deve scaldarsi, la parola ruota, si forza solo in un
+  round che sarebbe rimasto muto, si prenota solo con la coppia di AUTHORITY
+  in mano. La forma ingenua — forza tutto, subito — è respinta a verbale:
+  fallimenti 219 → 339 e mediana dei Consigli fuori banda.
+- **La ripresa non salta più il Consiglio del round salvato**: un salvataggio
+  in fase `DRIFT`/`THRESHOLD_CHECK` riprendeva dal round dopo, perdendo il
+  Consiglio dovuto. Invisibile finché nessun Consiglio si apriva presto
+  nell'anno: è stata la policy col Claim a scovarlo.
+
+### Added
+
+- La sonda delle scelte conta Claim creati e Consigli forzati per seggio.
+- `tests/unit/test_claim_policy.gd`, 6 test: ogni moderazione è una guardia.
+
+### Misurato
+
+40 Chronicle a tavolo misto: Claim 0/0 → 104 creati/13 forzati (CHR_01) e
+60/25 (CHR_03, Libere 16). **Mai ai voti: 2 → 0 su 15 nella prima saga — prima
+volta — e 4 → 3 su 20 nella seconda; le cinque proposte di D-063 votano
+tutte.** Sui 100 semi di D-055: divario aggressivo/prudente **37 → 31**, NONE
+5 → 9, TRIUMPH 11 → 14, Verità diverse 491 → 506, seggi bloccati a tavolo
+misto 0 su 8, Consigli 6,02 (mediana 6). Costi dichiarati: Decisive 185 → 172,
+bloccati a tavolo uniforme 3 → 4.
+
+---
+
 ## [0.1.26] — Perdere adesso è implementato
 
 Su 400 risultati di seggio, NONE usciva **una volta**. Non per taratura: nessun

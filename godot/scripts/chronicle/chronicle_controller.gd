@@ -67,15 +67,35 @@ func run(decider: Object) -> Dictionary:
 	# the same actions twice, the same Drift twice - and the year comes out
 	# different from the one that was never interrupted.
 	var from_act: int = int(world["act"])
-	var from_round: int = int(world["round"]) + (
-		0 if str(world["phase"]) == "ACTIONS" else 1
-	)
+	var phase: String = str(world["phase"])
+	var from_round: int = int(world["round"]) + (0 if phase == "ACTIONS" else 1)
 	var rounds: int = int(_chronicle["rounds_per_act"])
 
+	# Un salvataggio preso fra le azioni e il Consiglio - DRIFT o THRESHOLD_CHECK
+	# - ha il round quasi finito: le azioni sono spese, ma la domanda del round
+	# non e' ancora stata posta. Riprendere dal round dopo la salterebbe, e
+	# rigiocare il round rifarebbe le azioni due volte. Il buco e' rimasto
+	# invisibile finche' nessun Consiglio si apriva cosi' presto nell'anno: e'
+	# stata la policy che forza i Consigli col Claim (D-069) a scoprirlo. Si
+	# riprende esattamente da li': l'eventuale Drift dovuto, il Consiglio dovuto,
+	# e poi il resto dell'anno.
+	if phase == "DRIFT" or phase == "THRESHOLD_CHECK":
+		log.section("SI RIPRENDE - Atto %d, round %d, alla soglia" % [from_act, int(world["round"])])
+		if phase == "DRIFT":
+			session.tensions.apply_drift()
+			_apply_overextension(from_act, int(world["round"]))
+		_set_phase(from_act, int(world["round"]), "THRESHOLD_CHECK")
+		await _end_of_round_confluence(decider)
+		for tension_id in world["tensions"]:
+			log.bullet(session.tensions.public_status(str(tension_id)))
+		if from_round > rounds:
+			await end_of_act(from_act, decider)
+			from_act += 1
+			from_round = 1
 	# And if that round is off the end of the Act, the Act's own ending has not
 	# happened yet: the Echo card is drawn there, and skipping it would lose the
 	# one move the world makes on its own.
-	if from_round > rounds:
+	elif from_round > rounds:
 		log.section("SI RIPRENDE - fine dell'Atto %d" % from_act)
 		await end_of_act(from_act, decider)
 		from_act += 1
