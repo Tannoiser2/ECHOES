@@ -306,10 +306,27 @@ static func inheritance_effects(
 			)
 		)
 
+	# La memoria del mondo, e cosa il tempo le fa (D-075). Su un salto breve si
+	# ricorda tutto com'era. Su un salto lungo resta un *fatto* solo quello che
+	# e' murato o scritto - la Chronicle che arriva lo dichiara in
+	# `enduring_facts` - e il resto non sparisce: diventa `legend:<fatto>`,
+	# vero come la memoria e non come il mondo. Le leggende, una volta nate,
+	# attraversano ogni salto successivo: la memoria della memoria non scade.
+	# I segnaposto della grammatica narrativa (`function:`) sbiadiscono e basta.
+	var fades: bool = Succession.decays_after(years)
+	var enduring: Array = chronicle.get("enduring_facts", [])
 	for tag in previous.get("global_tags", []):
-		if (chronicle.get("global_tags", []) as Array).has(str(tag)):
+		var fact: String = str(tag)
+		if (chronicle.get("global_tags", []) as Array).has(fact):
 			continue
-		effects.append(Effect.make("SET_GLOBAL_TAG", "world", "WORLD", {"tag": str(tag)}, source))
+		if fades and not enduring.has(fact) and not fact.begins_with("legend:"):
+			if fact.begins_with("function:"):
+				continue
+			effects.append(Effect.make(
+				"SET_GLOBAL_TAG", "world", "WORLD", {"tag": "legend:%s" % fact}, source
+			))
+			continue
+		effects.append(Effect.make("SET_GLOBAL_TAG", "world", "WORLD", {"tag": fact}, source))
 
 	# Scars are the visible half of the world's memory: they stay on the map.
 	for scar in previous.get("scars", []):

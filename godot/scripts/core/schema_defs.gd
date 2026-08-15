@@ -317,6 +317,12 @@ const DEFS := {
 			"tension_pool": {
 				"type": "Dictionary",
 			},
+			"enduring_facts": {
+				"type": "Array",
+				"element": {
+					"type": "String",
+				},
+			},
 			"years_after_previous": {
 				"type": "Variant",
 			},

@@ -5,6 +5,38 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.31] — La memoria che sbiadisce
+
+La correzione di rotta è del committente: **fra due partite possono passare
+venti anni o due secoli, e dieci partite possono coprire mille anni.** Il
+motore la visione ce l'aveva già — salti dichiarati, generazioni, Destini che
+ruotano — ma la memoria no: il 100% dei fatti dell'anno uno arrivava
+letterale a mille anni dopo ([D-075](docs/DECISIONS.md#d-075)).
+
+### Added
+
+- **I fatti diventano leggende**: su un salto lungo resta un *fatto* solo
+  quello che è murato o scritto — la Chronicle lo dichiara in
+  `enduring_facts` — e il resto diventa `legend:<fatto>`, vero come la
+  memoria e non come il mondo. Le leggende attraversano ogni salto
+  successivo. La teca mostrata due secoli fa torna leggenda, e l'Ordine di
+  un'altra era deve rimostrarla.
+- `cli/run_era_probe.gd`: cosa fa il tempo a una saga — anni coperti (mediana
+  **1.019 su 10 Chronicle**), salti, generazioni (17 per saga), Destini
+  ruotati, mani di domande, e il bilancio fatti/leggende all'ultimo anno.
+- `enduring_facts` nello schema delle Chronicle, con le liste autorate per le
+  due biblioteche (`CHR_02`, `CHR_04`).
+
+### Misurato
+
+Dei 7,2 fatti dell'anno uno, i letterali all'ultimo anno passano da **7,2
+(100%) a 5,0** — e i sopravvissuti sono quelli dichiarati o rifatti dalle ere
+successive. Il mondo all'ultimo anno porta 11,7 fatti e **16,1 leggende**.
+Il playtest a Chronicle singola è intoccato per costruzione. 191 test in 27
+suite verdi.
+
+---
+
 ## [0.1.30] — La materia prima della campagna
 
 Fase 1 dell'issue [#25](https://github.com/Tannoiser2/ECHOES/issues/25) (la
