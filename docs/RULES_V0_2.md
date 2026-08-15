@@ -47,6 +47,33 @@ Ordine di un round:
 Un'azione rifiutata consuma comunque l'AO: il tempo passa anche quando il piano
 non funziona.
 
+### I Consigli attesi in un anno (riscritto in 0.1.38, su decisione del committente)
+
+La specifica originale chiedeva «3-4 Confluence per Chronicle, e un report
+sotto 2 o sopra 6». Quel numero era scritto per le **due** Tensioni della
+§18.2; il gioco ne porta quattro, e per sei versioni ogni banda è stata
+ridichiarata in deroga a verbale (la storia: D-026 → D-036 → D-051 → D-077
+→ D-080). Da questa versione i numeri del gioco sono questi, e la deroga
+non serve più:
+
+| misura | valore | guardia |
+|---|---|---|
+| anno scritto, mediana | **5-6** Consigli (1.25-1.5 per Tensione) | `tests/smoke/test_balance.gd` |
+| anno-biblioteca, mediana | **3-6** Consigli (eredita conti già chiusi) | `tests/smoke/test_library_balance.gd` |
+| limiti duri, ogni anno | **2-8** — al massimo il 10% delle partite fuori | entrambe |
+
+Sotto il pavimento l'anno non ha deciso niente — che è il fallimento che
+conta (D-047); sopra il soffitto il tavolo non ha fatto altro che riunirsi.
+Una domanda **decisa resta decisa** per l'anno; una **bocciata resta sul
+tavolo** (D-077): i Consigli si contano su ciò che decide, non su ciò che
+si ripete.
+
+L'equilibrio dei seggi si giudica al **tavolo misto** (i quattro caratteri
+di D-051): il vincolo è **0 seggi su 8 bloccati** su un solo livello. Il
+tavolo uniforme — quattro ottimizzatori identici — ne blocca 4 su 8 per
+costruzione: è un artefatto della misura, non un difetto del gioco
+(lettura confermata dal committente, 0.1.36).
+
 ---
 
 ## 2. Le sei azioni ordinarie (§10)

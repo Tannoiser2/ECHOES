@@ -19,6 +19,14 @@ possibile, tolte se no ([D-083](docs/DECISIONS.md#d-083)).
   a questione fredda e il ritiro non ha un solo elettore fra i Destini —
   tolti; la veglia e l'ignorare restano vivi.
 
+### Docs
+
+- **Il §7 riscritto per il gioco a 4 Tensioni** (punto 5 del committente):
+  `RULES_V0_2.md` dichiara i numeri veri — anno scritto mediana 5-6,
+  anno-biblioteca 3-6, limiti duri 2-8 — e chiude sei versioni di bande
+  «in deroga». A verbale anche il vincolo di equilibrio (0/8 al tavolo
+  misto) e la lettura del tavolo uniforme.
+
 ### Misurato
 
 Il «mai ai voti» di CHR_03 scende da 7 proposte su 21 a **2 su 19**, con le
