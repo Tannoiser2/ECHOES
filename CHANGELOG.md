@@ -5,6 +5,27 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.38] — Il contenuto senza elettorato si toglie
+
+Punto 7 del committente: le voci croniche a zero di CHR_03/04, riscritte se
+possibile, tolte se no ([D-083](docs/DECISIONS.md#d-083)).
+
+### Removed
+
+- **`P_WATER_RIGHTS`**: era il cattivo della questione dell'acqua e i poteri
+  locali la tenevano fuori per costruzione — la cura misurata (un debito
+  saldato nel prezzo) non ha mosso niente: 0 su 23, respinta e tolta.
+- **`Q_ANY_ANCIENT_LEAVE` / `P_ANY_WITHDRAW`**: i Consigli jolly si aprono
+  a questione fredda e il ritiro non ha un solo elettore fra i Destini —
+  tolti; la veglia e l'ignorare restano vivi.
+
+### Misurato
+
+Il «mai ai voti» di CHR_03 scende da 7 proposte su 21 a **2 su 19**, con le
+due superstiti giustificate a verbale. 198 test in 28 suite verdi.
+
+---
+
 ## [0.1.37] — La memoria in posta: il Trionfo che nomina la leggenda, e il giuramento che preme
 
 Due scelte del committente: la leggenda come posta nei Trionfi, e una

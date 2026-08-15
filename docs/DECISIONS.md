@@ -331,6 +331,37 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-083 — Il contenuto senza elettorato si toglie: due tagli e una variante respinta
+**implemented in 0.1.38** (scelta del committente: «riscriverle o toglierle»)
+
+La disciplina D-035 — una voce a zero è contenuto che non esiste — aveva due
+imputati cronici in CHR_03/04, e la sonda ha detto perché nessuno dei due
+era un incidente:
+
+- **`P_WATER_RIGHTS`** («l'acqua risponde a chi la paga»): il seggio che
+  tiene la parola sulla Valle sono le Città Libere, e il loro Destino vuole
+  `water_priced` **assente** — l'opzione era il cattivo della questione, e i
+  poteri locali la tenevano fuori dal tavolo per costruzione. La cura
+  provata coi numeri — `CNS_WATER_PRICED` salda anche un debito, perché chi
+  propone abbia un motivo — non ha mosso niente: **0 scelte su 23 offerte**,
+  identico a prima. Respinta, e la proposta è **tolta**: la domanda
+  dell'acqua resta con la risposta comune, che è viva (23/23).
+- **`Q_ANY_ANCIENT_LEAVE` / `P_ANY_WITHDRAW`** («si smette di scendere»):
+  i Consigli jolly di quest'era si aprono dal pavimento di fine anno, a
+  questione fredda — la soglia di eleggibilità non scatta mai (1 posa su
+  76 aperture attraverso tutte le sonde), e abbassarla a 2 non ha cambiato
+  niente (0 su 16). E il ritiro non ha un solo elettore: la Cenere vuole la
+  montagna calda, il Priore odia lo svuotamento. **Tolti** domanda e
+  proposta; la veglia e l'ignorare restano vivi (9/7 su 16).
+
+`CNS_ASH_ABANDONED` resta raggiungibile da `P_DIG_BELOW`. Dopo i tagli, il
+«mai ai voti» di CHR_03 passa da 7 proposte su 21 a **2 su 19**, ed
+entrambe le superstiti hanno una ragione dichiarata: `P_OLD_PAGE` è
+eleggibile solo nelle ere con una memoria (5 voti misurati nelle saghe
+delle città), `P_SHOW_IT` vive su altre serie di semi (2-6 voti).
+
+---
+
 ## D-082 — La memoria come posta: un Trionfo che nomina la leggenda scritta
 **implemented in 0.1.37** (scelta del committente: «posta nei Trionfi»)
 

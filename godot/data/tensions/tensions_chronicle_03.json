@@ -243,8 +243,7 @@
         }
       ],
       "possible_questions": [
-        "Q_ANY_ANCIENT_WATCH",
-        "Q_ANY_ANCIENT_LEAVE"
+        "Q_ANY_ANCIENT_WATCH"
       ],
       "triggers": [
         "Ogni galleria riaperta piu in basso di quella prima.",
