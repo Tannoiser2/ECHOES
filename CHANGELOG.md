@@ -5,6 +5,59 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.26] — Perdere adesso è implementato
+
+Su 400 risultati di seggio, NONE usciva **una volta**. Non per taratura: nessun
+contenuto poteva falsificare un Minimo contro la volontà di chi lo regge
+([AUDIT_DESTINI](docs/AUDIT_DESTINI.md), [D-067](docs/DECISIONS.md#d-067),
+[D-068](docs/DECISIONS.md#d-068)).
+
+### Added
+
+- **Tre espulsioni**: `CNS_CAPITAL_TAKEN`, `CNS_SEALED_VALLEY` e
+  `CNS_ASH_ABANDONED` tolgono una presenza a `$rival` — sulla capitale, sulle
+  Terre Nahr, sulle Miniere Antiche: le Regioni che i Minimi nominano. Tutte su
+  Conseguenze che la vittima già bloccava: **l'espulsione va dove il no c'è
+  già**, così non cambia il punteggio di nessuno — cambia cosa succede quando
+  quel voto si perde comunque. La forma sulle vie del controllo affamava Kessa
+  (39/11 → 45/5, un seggio bloccato) ed è respinta a verbale.
+- **La regola della porta sbarrata**: da una Regione da cui un Consiglio ti ha
+  cacciato non si rientra finché l'atto non gira (`evicted:<regione>` messo
+  dalla risoluzione, letto da `can_move_to`, tolto dal giro di stagione — tutto
+  nel log degli Effect). Senza contenuto che caccia è inerte, quindi si toglie
+  togliendo tre righe di dati. Senza, il rientro era gratis: 12 espulsioni
+  recuperate su 13.
+- **Due Conseguenze che fanno nemici** nella seconda saga, che non ne aveva
+  nessuna: chiamare il debito e prendere il seggio portano il rapporto a
+  `HOSTILE`. E due clausole `relation_state` a livello Triumph, **dal lato di
+  chi vota**: la stesura sull'aggressore pesava zero, perché chi propone non
+  vota (ISSUES 14).
+- `cli/run_eviction_probe.gd`: quando cade un'espulsione, e chi recupera prima
+  che il Destino venga letto. È la sonda che ha trovato il difetto vero.
+- `tests/unit/test_eviction.gd`, 3 test.
+
+### Misurato
+
+Sugli stessi 100 semi di D-055, tavolo misto:
+
+| | 0.1.25 | 0.1.26 |
+|---|---|---|
+| **NONE** | **1** | **5** |
+| MINIMUM / VICTORY / TRIUMPH | 205 / 181 / 13 | 214 / 170 / 11 |
+| seggi bloccati (misto) | 0 su 8 | **0 su 8** |
+| Consigli per Chronicle | 5,97 | 5,92 |
+| `REMOVE_PRESENCE` pesato (CHR_01) | 0 | **28** |
+| `SET_RELATION` pesato (CHR_03) | 0 su 156 | **85 su 357** |
+| ABSTAIN CHR_03 | 74,1% | **64,9%** |
+
+Ogni espulsione sul Minimo caduta nell'atto III è diventata un NONE; quelle
+degli atti I–II si recuperano perdendo l'atto. **I costi, reali e a verbale**:
+Ilve 3/42/5 → 12/34/4 (il seggio più forte trova un no), Kessa 39/11 → 43/7, e
+il divario aggressivo/prudente sale da 30 a 37 — la stessa forza di D-066,
+messa in conto e non tarata via.
+
+---
+
 ## [0.1.25] — Il tavolo adesso ha qualcosa in gioco
 
 L'80% dei seggi valutava una proposta **esattamente zero**: non apatia scritta nel

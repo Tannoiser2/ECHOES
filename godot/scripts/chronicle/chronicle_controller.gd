@@ -118,9 +118,31 @@ func setup() -> void:
 
 func play_act(act: int, decider: Object, from_round: int = 1) -> void:
 	log.section("ATTO %d" % act)
+	# Solo all'apertura vera dell'atto: una ripresa a meta' atto (`from_round` > 1)
+	# ha gia' avuto il suo giro di stagione, e rifarlo cambierebbe la partita.
+	if from_round == 1:
+		_lift_evictions(act)
 	for round_number in range(from_round, int(_chronicle["rounds_per_act"]) + 1):
 		await play_round(act, round_number, decider)
 	await end_of_act(act, decider)
+
+
+## La stagione gira e le porte si riaprono: i tag `evicted:` messi dai Consigli
+## dell'atto precedente (D-067) si tolgono qui, con un Effect come ogni altra
+## mutazione. All'Atto 1 non c'e' niente da togliere e il giro e' un no-op.
+func _lift_evictions(act: int) -> void:
+	for entity_id in world["turn_order"]:
+		var tags: Array = (world["entities"][str(entity_id)]["tags"] as Array).duplicate()
+		for tag in tags:
+			if not str(tag).begins_with("evicted:"):
+				continue
+			var source: Dictionary = Effect.source(
+				"system", "SEASON_TURNS", "", act, 1, int(world["effect_sequence"])
+			)
+			session.applier.apply(Effect.make(
+				"REMOVE_ENTITY_TAG", "entity", str(entity_id), {"tag": str(tag)}, source
+			))
+			log.bullet("La stagione gira: %s puo tornare dov'era stato cacciato." % _name(str(entity_id)))
 
 
 func play_round(act: int, round_number: int, decider: Object) -> void:

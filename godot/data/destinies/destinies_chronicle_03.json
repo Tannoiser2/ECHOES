@@ -303,6 +303,14 @@
             "label": "La veglia sulla montagna e affidata a loro"
           },
           {
+            "type": "relation_state",
+            "entity_id": "ENT_CENERE",
+            "other_entity_id": "ENT_SALE",
+            "level": "NEUTRAL",
+            "at_least": true,
+            "label": "E il patto con la Gilda non e un conto aperto"
+          },
+          {
             "type": "state_tag_absent",
             "scope": "GLOBAL",
             "tag": "relic_buried",
@@ -426,6 +434,14 @@
             "scope": "GLOBAL",
             "tag": "debt_forgiven",
             "label": "Il debito e stato rimesso"
+          },
+          {
+            "type": "relation_state",
+            "entity_id": "ENT_LIBERE",
+            "other_entity_id": "ENT_SALE",
+            "level": "NEUTRAL",
+            "at_least": true,
+            "label": "E la Gilda non e diventata un nemico delle citta"
           },
           {
             "type": "state_tag_absent",

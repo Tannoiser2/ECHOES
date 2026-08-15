@@ -7,6 +7,16 @@ problema sta qui dentro o è linkato da qui.
 **Stato**: 0.1.25 · 180 test in 25 suite verdi · `main` pubblicato su
 <https://tannoiser2.github.io> a ogni merge.
 
+> **Esito (0.1.26)**: il problema è stato lavorato e chiuso con le direzioni 2
+> e 5, più una regola che questo documento non prevedeva — la porta sbarrata
+> fino a fine atto — trovata da una sonda nuova (`cli/run_eviction_probe.gd`):
+> il vero difetto non era che nessuno cacciava, ma che il rientro era gratis.
+> NONE 1 → 5 su 400, `SET_RELATION` pesato 0 → 85, vincoli del §9 tutti verdi.
+> Il verbale, con le forme respinte e i numeri, sta in
+> [D-067](DECISIONS.md#d-067) e [D-068](DECISIONS.md#d-068). I numeri di
+> baseline qui sotto restano quelli della 0.1.25, che è lo stato che questo
+> documento fotografa.
+
 ---
 
 ## 1. Cos'è ECHOES, in dieci righe

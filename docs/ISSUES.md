@@ -111,9 +111,19 @@ dichiara morto contenuto che vivo lo è.
 stato pescato, tenuto e impegnato — e la coda (le carte a zero) è o riscritta o
 tolta, con la decisione a verbale.
 
-### 14. L'asse dei rapporti quasi non esiste
+### 14. ✅ L'asse dei rapporti quasi non esiste — fatta in 0.1.26
 
-`contenuto` · `da-misurare` · milestone **0.2**
+`contenuto` · `da-misurare` · **chiusa** ([D-068](DECISIONS.md#d-068))
+
+`SET_RELATION` passa da **pesato 0 su 156** a **pesato 85 su 357** nella
+seconda saga: due Conseguenze che fanno nemici (`CNS_DEBT_CALLED` e
+`CNS_SEAT_CLAIMED` portano il rapporto a `HOSTILE`) e due clausole
+`relation_state` a livello Triumph, **dal lato di chi vota** — la stesura con la
+clausola sull'aggressore pesava zero, perché chi propone non vota, ed è a
+verbale come respinta. ABSTAIN della seconda saga 74,1% → 64,9%, OPPOSE 0,9% →
+7,2%. La prima saga resta a zero, con il motivo scritto in D-068.
+
+<details><summary>Il testo dell'issue come era stato scritto</summary>
 
 Dalla 0.1.25 il punteggio di una proposta **sa leggere** un rapporto che si
 muove ([D-066](DECISIONS.md#d-066)), e continua a pesare **zero su 156**: solo
@@ -126,9 +136,23 @@ diverso da zero nella colonna «pesato», e il modo per arrivarci è scritto a
 verbale: Conseguenze che facciano nemici, e clausole `relation_state` nei Destini
 al tavolo. Vedi [AUDIT_DESTINI.md](AUDIT_DESTINI.md) §2.3.
 
-### 15. Nessuno perde mai
+</details>
 
-`regola` · `da-misurare` · milestone **0.2**
+### 15. ✅ Nessuno perde mai — fatta in 0.1.26
+
+`regola` · `da-misurare` · **chiusa** ([D-067](DECISIONS.md#d-067))
+
+NONE passa da **1 a 5 su 400** (9 a tavolo uniforme) con i seggi bloccati fermi
+a 0 su 8 e i Consigli in banda. Due pezzi, misurati uno alla volta sugli stessi
+100 semi: tre `REMOVE_PRESENCE` su `$rival` attaccate a Conseguenze che la
+vittima già blocca — *l'espulsione va dove il no c'è già*, la forma sulle vie
+del controllo affamava Kessa ed è respinta a verbale — e la regola della porta
+sbarrata: da una Regione da cui un Consiglio ti ha cacciato non si rientra
+finché l'atto non gira. La sonda nuova (`run_eviction_probe.gd`) è quella che
+ha trovato il vero difetto: 12 recuperi su 13, il rientro era gratis. Adesso
+ogni espulsione sul Minimo caduta nell'atto III è un NONE.
+
+<details><summary>Il testo dell'issue come era stato scritto</summary>
 
 Su 400 risultati di seggio in 100 partite: **NONE 1**, MINIMUM 205, VICTORY 181,
 TRIUMPH 13. Una scala a quattro gradini in cui il primo non succede mai e il
@@ -146,6 +170,8 @@ completo, con le direzioni possibili e le trappole, sta in
 **Fatto quando** una variante è misurata sugli stessi 100 semi di D-055 e NONE
 smette di essere un livello teorico — o è scritta come respinta con i numeri
 accanto.
+
+</details>
 
 ---
 
