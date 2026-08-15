@@ -18,6 +18,7 @@ const DataSet := preload("res://scripts/core/data_set.gd")
 const GameSession := preload("res://scripts/chronicle/game_session.gd")
 const Characters := preload("res://scripts/seat/table_of_characters.gd")
 const RngService := preload("res://scripts/core/rng_service.gd")
+const WorldStateFactory := preload("res://scripts/world/world_state_factory.gd")
 
 
 func _initialize() -> void:
@@ -46,12 +47,29 @@ func _initialize() -> void:
 	var rotations: int = 0
 	var names_seen: Dictionary = {}
 	var hands: Dictionary = {}
+	var echoed_candidates: int = 0
+	var echoed_drawn: int = 0
 	var survivors: Dictionary = {}
 	var survivor_avg: Array = []
 	var first_year_facts_avg: Array = []
 	var truths_final: Array = []
 	var legends_final: Array = []
 	var facts_final: Array = []
+
+	# Il contenuto che legge le leggende (D-076): le carte MEMORIA e le proposte
+	# la cui eleggibilita' nomina un `legend:`. Se a fine misura sono a zero,
+	# sono contenuto che non esiste (D-035), e va detto qui, non scoperto poi.
+	var memoria_cards: Array = []
+	for card in data.echo_cards.values():
+		if str(card["dramatic_family"]) == "MEMORIA":
+			memoria_cards.append(str(card["id"]))
+	var legend_propositions: Array = []
+	for template in data.confluence_templates.values():
+		for proposition in template["propositions"]:
+			for condition in proposition.get("eligibility", []):
+				if str((condition as Dictionary).get("tag", "")).begins_with("legend:"):
+					legend_propositions.append(str(proposition["id"]))
+	var memory_read: Dictionary = {}
 
 	for saga_index in range(sagas):
 		var seed_base: int = first_seed + saga_index * 1009
@@ -80,11 +98,32 @@ func _initialize() -> void:
 				var hand: Array = (session.world["tensions"] as Dictionary).keys()
 				hand.sort()
 				hands["|".join(PackedStringArray(hand))] = true
+				# La pesca che ascolta (D-079): delle candidate che l'era prima
+				# aveva richiamato con un segno, quante sono state pescate.
+				var pool: Dictionary = (
+					data.chronicles[chronicle_id].get("tension_pool", {})
+				)
+				for tension_id in (pool.get("echoes", {}) as Dictionary):
+					if not WorldStateFactory._era_carries_any(
+						previous, pool["echoes"][str(tension_id)]
+					):
+						continue
+					echoed_candidates += 1
+					if hand.has(str(tension_id)):
+						echoed_drawn += 1
 
 			var table: RefCounted = Characters.deal(
 				seats, RngService.new(seed_value * 31 + 7), session.log
 			)
 			var report: Dictionary = await session.run(table)
+
+			for card_id in session.world["echo_deck"]["drawn"]:
+				if memoria_cards.has(str(card_id)):
+					memory_read[str(card_id)] = int(memory_read.get(str(card_id), 0)) + 1
+			for result in report["confluences"]:
+				var voted: String = str((result as Dictionary).get("proposition_id", ""))
+				if legend_propositions.has(voted):
+					memory_read[voted] = int(memory_read.get(voted, 0)) + 1
 
 			var tags: Array = (session.world["global_tags"] as Array).duplicate()
 			tags = tags.filter(func(tag: Variant) -> bool: return not str(tag).begins_with("function:"))
@@ -130,6 +169,10 @@ func _initialize() -> void:
 		rotations, float(rotations) / maxf(sagas, 1)
 	])
 	print("  Mani di domande diverse pescate dalla biblioteca: %d" % hands.size())
+	if echoed_candidates > 0:
+		print("  La pesca che ascolta (D-079): candidate richiamate da un segno pescate %d su %d (%d%%)" % [
+			echoed_drawn, echoed_candidates, int(100.0 * echoed_drawn / echoed_candidates)
+		])
 	print("  Verita' nel registro all'ultimo anno: %.0f in media" % _mean(truths_final))
 	print("")
 	print("  All'ultimo anno il mondo porta in media %.1f fatti correnti e %.1f leggende." % [
@@ -148,6 +191,11 @@ func _initialize() -> void:
 	for key in keys.slice(0, 12):
 		print("    %-36s %3d" % [str(key), int(survivors[key])])
 
+	print("")
+	print("  La memoria letta: quante volte il contenuto ha nominato una leggenda")
+	print("  (una voce a zero e' contenuto che non esiste, D-035):")
+	for id in memoria_cards + legend_propositions:
+		print("    %-36s %3d" % [str(id), int(memory_read.get(str(id), 0))])
 
 	quit(0)
 

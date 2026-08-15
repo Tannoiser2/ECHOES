@@ -993,6 +993,58 @@
       ],
       "forces_confluence_on": null,
       "art_prompt_key": "echo.resolution.succession"
+    },
+    {
+      "id": "ECH_LEGEND_GOOD_YEAR",
+      "title": "La Ballata dell'Anno Buono",
+      "dramatic_family": "MEMORIA",
+      "function_id": "RETURN",
+      "description": "Un cantastorie riporta in giro la ballata dell'anno in cui l'ordine torno davvero. Nessuno dei presenti c'era, e tutti giurano di ricordarselo.",
+      "eligibility": [
+        {
+          "type": "state_tag_present",
+          "scope": "GLOBAL",
+          "tag": "legend:order_restored",
+          "label": "Si racconta di un anno in cui l'ordine torno"
+        },
+        {
+          "type": "tension_limit",
+          "tension_id": "TEN_SUCCESSION",
+          "min": 0,
+          "label": "TEN_SUCCESSION e in gioco quest'anno"
+        }
+      ],
+      "effect_hooks": [
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "ADJUST_TENSION",
+            "target": {
+              "kind": "tension",
+              "id": "TEN_SUCCESSION"
+            },
+            "payload": {
+              "delta": -1
+            }
+          }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "REMOVE_REGION_TAG",
+            "target": {
+              "kind": "region",
+              "id": "REG_EREDAN"
+            },
+            "payload": {
+              "tag": "condition:unrest",
+              "optional": true
+            }
+          }
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.memoria.the_good_year"
     }
   ]
 }

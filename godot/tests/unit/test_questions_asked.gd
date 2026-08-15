@@ -80,14 +80,25 @@ func test_a_question_already_put_to_the_vote_is_not_asked_again() -> void:
 	assert_false(seen.has("Q_FAMINE_LAND"), "e nessuna e della domanda gia decisa")
 
 
-## Quando non resta piu' niente da chiedere il filtro si toglie di mezzo: un
-## Consiglio senza domande non e' un Consiglio.
-func test_when_every_question_has_been_asked_the_filter_lets_go() -> void:
+## Quando non resta piu' niente da chiedere, il Consiglio non si apre (D-077).
+##
+## La guardia qui difendeva l'opposto - «il filtro si toglie di mezzo e si
+## ripropone tutto» - e alla frequenza dei Consigli del 2022 il caso era
+## teorico. La prima saga giocata l'ha reso reale: la stessa domanda decisa
+## due volte nello stesso anno, e nel 1827 due eredi nominati da due
+## proponenti diversi. Una domanda decisa resta decisa.
+func test_when_every_question_has_been_asked_the_council_stays_shut() -> void:
 	session.world["questions_asked"] = {TENSION: ["Q_FAMINE_LAND", "Q_FAMINE_GRAIN"]}
+	assert_false(
+		session.confluence.has_fresh_question(TENSION),
+		"la Tensione non ha piu' niente di nuovo da chiedere"
+	)
 	var context: Dictionary = session.confluence.open(TENSION, {"kind": "THRESHOLD"})
-	assert_false(context.is_empty(), "la Confluence si apre lo stesso")
-	assert_eq(_question_ids().size(), 2, "e le domande tornano tutte")
-	assert_eq(str(context["question_id"]), "Q_FAMINE_LAND", "col default di sempre")
+	assert_true(context.is_empty(), "e il Consiglio non si apre")
+	assert_true(
+		session.confluence.has_fresh_question("TEN_ROADS"),
+		"mentre una Tensione con domande ancora da fare resta apribile"
+	)
 
 
 ## La memoria e' della Tensione, non del tavolo: due questioni diverse non si
@@ -108,6 +119,54 @@ func test_an_unresolved_council_consumes_nothing() -> void:
 	assert_eq(
 		(session.world["questions_asked"] as Dictionary).get(TENSION, []), [],
 		"aperta e non risolta: la Tensione non ha ancora chiesto niente"
+	)
+
+
+## E nemmeno una proposta bocciata consuma: respingere non e' decidere, e la
+## domanda resta sul tavolo (D-077). Senza questo, un Consiglio andato male
+## chiudeva la questione per l'anno intero - e con D-077 nessuno poteva piu'
+## riaprirla: la prima misura lo pagava in seggi bloccati, non in Consigli
+## risparmiati.
+func test_a_rejected_proposal_leaves_the_question_on_the_table() -> void:
+	var context: Dictionary = session.confluence.open(TENSION, {"kind": "THRESHOLD"})
+	assert_false(context.is_empty(), "la Confluence si apre")
+	var question_id: String = str(context["question_id"])
+	var proposition: Dictionary = session.confluence.available_propositions()[0]
+	assert_true(
+		session.confluence.set_proposition(str(proposition["id"])), "una proposta e' sul tavolo"
+	)
+	# Tutto il tavolo contro, con tutte le carte: S=0 e O abbastanza grande da
+	# perdere anche col mondo a +2, qualunque sia il dado.
+	for entity_id in session.confluence.stance_order():
+		assert_true(
+			session.confluence.declare_stance(str(entity_id), "OPPOSE"),
+			"%s si oppone" % str(entity_id)
+		)
+	for entity_id in session.confluence.stance_order():
+		var hand: Array = session.service.hand(str(entity_id))
+		var limit: int = session.confluence.max_commit_for(str(entity_id))
+		assert_true(
+			session.confluence.commit(str(entity_id), hand.slice(0, limit)),
+			"%s impegna le carte" % str(entity_id)
+		)
+	var result: Dictionary = session.confluence.resolve()
+	assert_eq(str(result["outcome"]), "FAILURE", "e la proposta cade")
+	assert_eq(
+		(session.world["questions_asked"] as Dictionary).get(TENSION, []), [],
+		"bocciata non e' decisa: la domanda non risulta posta"
+	)
+	assert_true(
+		session.confluence.has_fresh_question(TENSION),
+		"e la Tensione puo' ancora aprire un Consiglio"
+	)
+	# Il fallimento ha sfogato la Tensione (esito H: -2), quindi la domanda
+	# affilata non e' al momento eleggibile. Quando la Carestia torna al
+	# limite, la domanda rimasta senza risposta torna sul tavolo.
+	_heat(TENSION, 6)
+	var again: Dictionary = session.confluence.open(TENSION, {"kind": "THRESHOLD"})
+	assert_eq(
+		str(again["question_id"]), question_id,
+		"che ripropone la stessa domanda rimasta senza risposta"
 	)
 
 

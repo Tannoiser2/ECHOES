@@ -67,9 +67,11 @@ family, 22 copies per family deck, 132 cards in the box (D-040).
 | AST_WEALTH_SALT | Sale | WEALTH | 1 | COMMON | 4 | DISCARD | `asset.wealth.salt` |
 | AST_WEALTH_TOLL | Pedaggio | WEALTH | 1 | COMMON | 4 | DISCARD | `asset.wealth.toll` |
 
-## Echo cards (36)
+## Echo cards (38)
 | id | titolo | famiglia drammatica | funzione | art_prompt_key |
 |---|---|---|---|---|
+| ECH_LEGEND_CALLED_DAY | Il Giorno che la Gilda Chiese Tutto | MEMORIA | THREAT | `echo.memoria.the_called_day` |
+| ECH_LEGEND_GOOD_YEAR | La Ballata dell'Anno Buono | MEMORIA | RETURN | `echo.memoria.the_good_year` |
 | ECH_CALL_OF_ACCOUNTS | La Chiamata | PRESSURE | REQUEST | `echo.pressure.call_of_accounts` |
 | ECH_EMPTY_THRONE | Sedia Vuota | PRESSURE | THREAT | `echo.pressure.threat` |
 | ECH_LACK | Mancanza | PRESSURE | LACK | `echo.pressure.lack` |

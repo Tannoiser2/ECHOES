@@ -1025,6 +1025,36 @@ lower-left third. Vertical card framing, 2:3. No text, no letters, no numerals,
 no frame, no border. Not gory. Boardgame card art.
 ```
 
+### `echo.memoria.the_called_day` — Il Giorno che la Gilda Chiese Tutto
+
+- **soggetto**: Il Giorno che la Gilda Chiese Tutto — La storia si racconta a ogni firma: una Gilda morta da secoli che un mattino chiese tutto insieme. Il debito di adesso comincia a pesare come quello antico
+- **id**: `ECH_LEGEND_CALLED_DAY`
+
+```
+Historical dark-fantasy painting of a narrative moment: Il Giorno che la Gilda Chiese Tutto — La storia si racconta a ogni firma: una Gilda morta da secoli che un mattino chiese tutto insieme. Il debito di adesso comincia a pesare come quello antico. Painterly oil
+technique, muted earth palette, l'accento della sua famiglia accent. The image shows a turning point,
+not an action climax: the instant before or the instant after. Human scale, few
+figures, strong silhouette reading at small size. Composition: negative space
+along the top edge reserved for a title overlay; the focal event sits at the
+lower-left third. Vertical card framing, 2:3. No text, no letters, no numerals,
+no frame, no border. Not gory. Boardgame card art.
+```
+
+### `echo.memoria.the_good_year` — La Ballata dell'Anno Buono
+
+- **soggetto**: La Ballata dell'Anno Buono — Un cantastorie riporta in giro la ballata dell'anno in cui l'ordine torno davvero. Nessuno dei presenti c'era, e tutti giurano di ricordarselo
+- **id**: `ECH_LEGEND_GOOD_YEAR`
+
+```
+Historical dark-fantasy painting of a narrative moment: La Ballata dell'Anno Buono — Un cantastorie riporta in giro la ballata dell'anno in cui l'ordine torno davvero. Nessuno dei presenti c'era, e tutti giurano di ricordarselo. Painterly oil
+technique, muted earth palette, l'accento della sua famiglia accent. The image shows a turning point,
+not an action climax: the instant before or the instant after. Human scale, few
+figures, strong silhouette reading at small size. Composition: negative space
+along the top edge reserved for a title overlay; the focal event sits at the
+lower-left third. Vertical card framing, 2:3. No text, no letters, no numerals,
+no frame, no border. Not gory. Boardgame card art.
+```
+
 ### `echo.rupture.loss` — Perdita
 
 - **soggetto**: Perdita — Qualcuno non c'e piu, e la sua parte di lavoro resta scoperta

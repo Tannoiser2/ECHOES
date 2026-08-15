@@ -174,9 +174,20 @@ func _consequences_satisfying(condition: Dictionary, entity_id: String, session:
 
 ## Which Tensions can produce that Consequence, through a proposition of their
 ## own Confluence template.
+##
+## Solo i template che QUESTA Chronicle elenca: la biblioteca ne porta anche
+## per altre ere - la proposta che legge una leggenda sta in un template che il
+## primo anno non apre mai - e una policy che pianificasse contro l'intera
+## biblioteca inseguirebbe Consigli che quest'anno non esistono (D-076).
 func _tensions_offering(consequence_id: String, session: RefCounted) -> Array:
+	var listed: Array = (
+		session.data.chronicles[str(session.world["chronicle_id"])]
+		.get("confluence_templates", [])
+	)
 	var out: Array = []
 	for template in session.data.confluence_templates.values():
+		if not listed.has(str(template["id"])):
+			continue
 		var offers: bool = false
 		for proposition in template["propositions"]:
 			if (proposition["success_consequences"] as Array).has(consequence_id):
@@ -213,6 +224,11 @@ func _tensions_needing_the_word(entity_id: String, session: RefCounted) -> Array
 		for tension_id in needed:
 			var id: String = str(tension_id)
 			if not session.world["tensions"].has(id):
+				continue
+			# Un Claim su una domanda gia' decisa e' una carta bruciata: se il
+			# Consiglio non ha piu' niente di nuovo da chiedere, non si forza
+			# (D-077).
+			if not session.confluence.has_fresh_question(id):
 				continue
 			# Ho gia' parlato per ultimo su questa domanda: la parola ruota
 			# (D-051), e chi la richiede appena finito di usarla monopolizza i

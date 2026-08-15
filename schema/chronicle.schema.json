@@ -176,10 +176,11 @@
                     "PRESSURE",
                     "RUPTURE",
                     "TURN",
-                    "RESOLUTION"
+                    "RESOLUTION",
+                    "MEMORIA"
                   ]
                 },
-                "description": "Repeats are weights, not duplicates to be cleaned up."
+                "description": "Repeats are weights, not duplicates to be cleaned up. MEMORIA sta solo nei pool delle Chronicle-biblioteca: e la famiglia delle carte che leggono una leggenda (D-076)."
               }
             }
           }
@@ -365,6 +366,21 @@
                 "pattern": "^TEN_[A-Z0-9_]+$"
               },
               "description": "Drawn first, every time: the questions this Chronicle is about by definition."
+            },
+            "echoes": {
+              "type": "object",
+              "propertyNames": {
+                "pattern": "^TEN_[A-Z0-9_]+$"
+              },
+              "additionalProperties": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "description": "I segni che richiamano una candidata: se il mondo ereditato porta uno di questi tag (globale, di Regione, o la sua legend:) la Tensione pesa il triplo nella pesca. E cosi che l'era dopo cresce da quella prima invece di essere pescata alla cieca (D-079)."
             }
           }
         },

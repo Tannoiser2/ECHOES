@@ -527,6 +527,7 @@ const DEFS := {
 					"RUPTURE",
 					"TURN",
 					"RESOLUTION",
+					"MEMORIA",
 				],
 			},
 			"function_id": {
@@ -1418,4 +1419,5 @@ const DRAMATIC_FAMILIES := [
 	"RUPTURE",
 	"TURN",
 	"RESOLUTION",
+	"MEMORIA",
 ]

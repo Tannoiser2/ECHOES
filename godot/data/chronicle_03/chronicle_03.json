@@ -190,7 +190,8 @@
             "RUPTURE",
             "TURN",
             "TURN",
-            "PRESSURE"
+            "PRESSURE",
+            "MEMORIA"
           ]
         },
         {
@@ -200,7 +201,8 @@
             "RESOLUTION",
             "RESOLUTION",
             "TURN",
-            "RUPTURE"
+            "RUPTURE",
+            "MEMORIA"
           ]
         }
       ],
@@ -231,7 +233,34 @@
           "TEN_ASH"
         ],
         "count": 4,
-        "always": []
+        "always": [],
+        "echoes": {
+          "TEN_WATER": [
+            "water_priced",
+            "condition:starving"
+          ],
+          "TEN_DEBT": [
+            "debt_called",
+            "condition:indebted"
+          ],
+          "TEN_RELIC": [
+            "relic_shown",
+            "relic_buried",
+            "structure:sealed"
+          ],
+          "TEN_CHARTER": [
+            "charter_written",
+            "no_charter"
+          ],
+          "TEN_NAMELESS": [
+            "faith_established",
+            "condition:unrest"
+          ],
+          "TEN_ASH": [
+            "condition:emptied",
+            "structure:watchtower"
+          ]
+        }
       },
       "opening_text": "Le citta continuano, e non sempre nello stesso ordine. Questa Chronicle non elenca le proprie domande: le pesca dalla biblioteca, in base a com'e finita quella prima.",
       "starting_control": [

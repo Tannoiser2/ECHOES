@@ -331,6 +331,240 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-080 — La guardia sugli anni-biblioteca: l'anno pescato deve decidere qualcosa
+**implemented in 0.1.34** (issue [#25](https://github.com/Tannoiser2/ECHOES/issues/25), Fase 4)
+
+`test_balance.gd` sorveglia l'anno scritto dal 2022; nessuno sorvegliava
+l'anno che la biblioteca pesca — che è quello con più modi di rompersi in
+silenzio: la mano cambia a ogni seme, metà delle domande passa dal Consiglio
+del proprio dominio, il mondo arriva già segnato, e da D-079 la pesca
+ascolta quei segni. Un anno-biblioteca che non decide niente è esattamente
+il fallimento che il §7 vuole vedere (D-047), e non c'era un test che lo
+vedesse.
+
+`tests/smoke/test_library_balance.gd` gioca l'anno scritto, gli fa ereditare
+l'anno-biblioteca, e conta i Consigli del secondo — per tutte e due le
+coppie, corona e città.
+
+### La banda, dichiarata dalla misura di nascita
+
+| su 12 semi (500-511) | mediana | distribuzione |
+|---|---|---|
+| CHR_02 dopo CHR_01 | **4** | 2-6, nessuno fuori dai limiti §7 |
+| CHR_04 dopo CHR_03 | **5** | 2-6, nessuno fuori dai limiti §7 |
+
+Limiti duri identici a `test_balance.gd` (2-8, la storia è in D-047/D-051);
+banda della mediana **3-6**, più larga di quella dell'anno scritto perché un
+anno pescato è legittimamente più quieto di uno scritto per essere pieno:
+eredita conti già chiusi. Come sempre: la banda si rivede a verbale, i
+limiti duri no.
+
+---
+
+## D-079 — La pesca che ascolta: l'era dopo cresce da quella prima
+**implemented in 0.1.34** (issue [#25](https://github.com/Tannoiser2/ECHOES/issues/25))
+
+Era il pezzo mancante dichiarato in fondo alla #25: la biblioteca pescava
+l'anno **alla cieca**. Un'era poteva chiudere con la corona divisa e la
+successiva discutere di pozzi, come se il mondo non avesse appena detto di
+cosa aveva bisogno di parlare.
+
+### La regola
+
+Il `tension_pool` dichiara gli **echi**: per ogni candidata, i segni che la
+richiamano. Se il mondo ereditato porta uno di quei segni — come fatto
+globale, come la sua **leggenda** (`legend:<fatto>`, D-075), o come tag su
+una Regione — la candidata pesa **il triplo** nella pesca (3:1, un richiamo
+conta ma non zittisce il caso). Gli echi sono ancorati ai tag che le
+Conseguenze scrivono davvero: la miniera murata richiama il Risveglio, il
+lutto e le terre svuotate richiamano la Febbre, il debito chiamato richiama
+il Debito.
+
+Due vincoli di struttura:
+
+- **La ripesca sta in `inherit_from`**: al setup il mondo di prima non è
+  ancora noto, quindi l'anno viene pescato alla cieca e — solo se il pool
+  dichiara echi e c'è un mondo da ereditare — ridato con le carte pesate,
+  sacchetto del Drift compreso, prima che si giochi. Niente di tutto questo
+  passa per un Effect (D-006), e senza `previous` o senza echi la pesca
+  resta byte-identica a prima.
+- **I tag di Entità non contano**: le persone muoiono, i segni del mondo
+  restano.
+
+### Misurato
+
+- Sonda delle ere (20 saghe): **le candidate richiamate da un segno vengono
+  pescate il 78% delle volte**, contro il 67% analitico della pesca cieca
+  (4 su 6). Il divario è moderato perché a fine era i segni abbondano —
+  spesso 4 candidate su 6 sono richiamate insieme, e i pesi si elidono: la
+  pesca ascolta chi ha lasciato un segno *in più*.
+- La saga dell'812 tiene le sue proprietà: 0 domande ridecise, salti e
+  generazioni invariati, e le mani d'era mostrano la continuità voluta —
+  il Risveglio torna dove la storia della miniera è rimasta aperta.
+- Guardie: `test_library_content.gd` — stessa mano a parità di seme e mondo,
+  il segno pesa (misurato su cento semi: con la miniera murata sul tavolo il
+  Risveglio esce 93 volte, senza 66), la leggenda richiama quanto il fatto,
+  e la ripesca ridà anche il sacchetto del Drift.
+
+---
+
+## D-078 — Il criterio di D-075 vale anche per la mappa: le condizioni sbiadiscono
+**implemented in 0.1.33**
+
+La prima saga giocata dall'inizio alla fine (seme 812, dieci Chronicle,
+812→1856) ha lasciato un verbale, e il verbale conteneva un lutto di mille
+anni: le Terre Nahr chiudono l'anno 812 con `condition:mourning` e ce
+l'hanno ancora nel 1856. In mezzo, solo accumulo — `emptied`, `cut_off`,
+`unrest` si aggiungono e niente si toglie mai. D-075 aveva insegnato al
+tempo a sbiadire i **fatti globali**; i tag di Regione attraversavano i
+secoli letterali, tutti, sempre.
+
+### La regola
+
+Il criterio è lo stesso di D-075 e non ne serve uno nuovo: su un salto che
+supera `DECAY_YEARS`, una **`condition:`** — che è stato sociale, gente che
+piange o si ammutina — non attraversa; ciò che è murato o scritto —
+**`structure:`**, **`settlement:`** — resta, e la **`scar:`** resta perché è
+esattamente la memoria visibile della mappa. Su un salto breve si ricorda
+tutto, com'era.
+
+### Misurato (stessa saga, seme 812)
+
+| Terre Nahr, `condition:` | prima | dopo |
+|---|---|---|
+| 849 (+37) | mourning | mourning — un salto breve ricorda |
+| 1002 (+153) | mourning | il lutto è sbiadito |
+| ultime cinque ere | 4-5 condizioni accumulate, sempre le stesse | 0-2, e sono quelle degli eventi dell'era |
+
+Canali, insediamenti e cicatrici arrivano in fondo alla saga come prima.
+Guardia: `test_succession.gd::test_time_lets_conditions_fade_but_keeps_what_is_built`.
+
+---
+
+## D-077 — Una domanda decisa resta decisa (e una bocciata resta sul tavolo)
+**implemented in 0.1.33**
+
+Il secondo buco del verbale della saga dell'812: **due Chronicle su dieci
+rimettevano ai voti una domanda già decisa nello stesso anno** — nell'849
+«Chi riscuote su quello che passa sulla Strada dei Mercanti?» decisa due
+volte dopo una bocciatura, nel 1334 «Chi riscuote su quello che passa a
+Eredan?» decisa due volte senza nemmeno quella. La causa era il ripiego di
+D-061: esaurite le domande nuove, il filtro si toglieva di mezzo e «si
+torna alla più affilata, come prima». Alla frequenza dei Consigli del
+2022 il caso era teorico; con l'anno pieno di D-066/D-069 succede davvero.
+
+### La regola, in tre pezzi
+
+1. **Niente ripiego**: una Tensione che ha esaurito le domande non rimette
+   ai voti niente (`_eligible_questions`).
+2. **Un Consiglio senza niente di nuovo non si apre**: i trigger — soglia,
+   pavimento di fine anno — chiedono `has_fresh_question()` prima di
+   aprire, e la policy lo chiede prima di spendere un Claim su una domanda
+   che non esiste più.
+3. **Una proposta bocciata non consuma la domanda**: respingere non è
+   decidere. La domanda si segna come posta solo su un esito che decide
+   (tutto tranne FAILURE); bocciata, resta sul tavolo e può tornare.
+
+### Il terzo pezzo è il risultato di due varianti respinte
+
+La prima stesura aveva solo i pezzi 1 e 2, e il playtest dei 100 semi ha
+presentato il conto: **tavolo misto 1/8 bloccati** — Kessa dei Fuochi
+46/3, quando il vincolo di casa è 0/8. La sonda ha mostrato il perché: il
+controllo in CHR_03 passa solo da tre Conseguenze `$proponent`, la parola
+si assegna per presenza nella Regione focale, e Kessa non è mai presente
+dove il controllo è in palio. Il suo motore erano proprio le ridecisioni
+del Debito che il pezzo 1 giustamente elimina.
+
+Due cure misurate e respinte coi numeri, stessi 100 semi:
+
+| variante | bloccati misto | il conto |
+|---|---|---|
+| il controllo sulla veglia (`CNS_ASH_WATCH` assegna la montagna) | 1/8 | Kessa ferma (45/3), Anselmo 0→5 NONE, Libere 32→23 VICTORY, FAIL 163→185: il controllo nel dominio ANCIENT scatena opposizioni ovunque |
+| la caccia all'AUTHORITY da zero (rimisura di D-069) | 0/8 | ma Lyra dimezza i Triumph (10→5), FAIL 163→184, e compare una partita da 1 Consiglio |
+| **una bocciata resta sul tavolo (pezzo 3)** | **0/8** | Kessa 41/8/1, Aldric 7→2 NONE, Lyra 12 Triumph, Verità diverse 484→513 |
+
+Il pezzo 3 non è una toppa per Kessa: è la semantica giusta — la prima
+stesura faceva consumare la domanda anche a un Consiglio andato a vuoto,
+che non aveva deciso niente. Rimesso il significato al suo posto, il
+tavolo si è sbloccato da solo.
+
+### Il conto sull'anno, e la banda
+
+I Consigli tolti erano ridecisioni: la mediana del guardiano §7 scende da
+6 a 5 e la banda dichiarata di `test_balance.gd` torna **5-6** (1.25-1.5
+per Tensione — la storia delle bande è D-026→D-036→D-051, e anche
+stavolta i limiti duri non si sono mossi: 0 partite fuori). Sul playtest
+misto: media 5.88 Consigli, FAIL 163→193 — le bocciature adesso possono
+tornare ai voti, ed è la cosa che si vede — DECISIVE 180→184.
+
+### La controprova sulla saga
+
+Stessa saga dell'812 rigiocata: **0 domande ridecise su dieci Chronicle**
+(erano 2), e le riproposte dopo bocciatura che restano sono la cosa nuova
+che il gioco adesso sa dire: nell'anno 1770 la stessa questione cade tre
+volte e passa alla quarta.
+
+Guardie: `test_questions_asked.gd` — il Consiglio esaurito non si apre, la
+bocciata resta sul tavolo, la memoria è della Tensione.
+
+---
+
+## D-076 — Il contenuto che legge le leggende: la famiglia MEMORIA
+**implemented in 0.1.32** (issue [#25](https://github.com/Tannoiser2/ECHOES/issues/25), Fase 3)
+
+D-075 ha dato al mondo le leggende e nessun contenuto le leggeva: un `legend:`
+era un tag che esisteva perché qualcuno, un giorno, potesse nominarlo. Questa
+versione mette al tavolo quel qualcuno.
+
+### Cosa è entrato
+
+- **La famiglia MEMORIA**: carte Echo la cui eleggibilità nomina una leggenda.
+  «La Ballata dell'Anno Buono» (si racconta dell'anno in cui l'ordine tornò —
+  e la nostalgia calma la Successione), «Il Giorno che la Gilda Chiese Tutto»
+  (il debito di adesso comincia a pesare come quello antico). Una per era,
+  gated sulla leggenda più frequente della sua saga.
+- **Due proposte «si dice che»**: rifare come si racconta che si fece
+  (`P_ANY_AS_STORY`) e rileggere la vecchia pagina del registro
+  (`P_OLD_PAGE`), entrambe verso `CNS_LEGEND_RETOLD` — la leggenda messa per
+  iscritto: chi raccoglie le storie guadagna una **Scoperta**, e la domanda
+  si calma. La memoria è diventata una via alle Scoperte: un ponte fra le ere
+  per i Destini che le contano.
+
+### Le due regole di struttura, trovate dai 12 test rotti
+
+La prima stesura ha rotto dodici asserzioni in un colpo, e i dodici pezzi
+indicavano due difetti veri, non dodici numeri da aggiornare:
+
+1. **Un mazzo non porta famiglie che nessun atto pesca.** Aggiungere una carta
+   al mazzo cambiava il mescolamento anche negli anni scritti, dove la carta
+   non poteva mai essere eleggibile — e tre piani scriptati raccontavano
+   un'altra storia. Adesso il mazzo di una Chronicle contiene solo le famiglie
+   elencate nei suoi `act_echo_pools`, e MEMORIA sta nei pool delle sole
+   biblioteche: **gli anni scritti sono byte-identici a prima, verificato con
+   `diff` sul playtest dei 100 semi.**
+2. **La policy pianifica contro i Consigli di quest'anno, non contro l'intera
+   biblioteca.** `_tensions_offering` scandiva tutti i template: Lyra
+   inseguiva nel primo anno una via-alle-Scoperte che esiste solo nelle ere
+   con una memoria. Adesso guarda i template che la Chronicle in corso
+   elenca, che è comunque la lettura giusta.
+
+### Misurato
+
+Sonda delle ere (che ora conta la memoria *letta*, con la disciplina D-035:
+una voce a zero è contenuto che non esiste):
+
+| su 20 saghe della corona / 10 delle città | corona | città |
+|---|---|---|
+| «La Ballata dell'Anno Buono» pescata | **38** | 0 |
+| «Il Giorno che la Gilda Chiese Tutto» pescata | 0 | **18** |
+| «Si fa come si racconta» votata | **6** | 4 |
+| «La vecchia pagina» votata | 0 | **5** |
+
+Ogni pezzo vive nella sua era, nessuno fuori. 191 test in 27 suite verdi,
+sim deterministiche, anni scritti intoccati per costruzione.
+
+---
+
 ## D-075 — La memoria che sbiadisce: i fatti diventano leggende
 **implemented in 0.1.31** (issue [#25](https://github.com/Tannoiser2/ECHOES/issues/25), Fase 2 — nella forma corretta dal committente)
 

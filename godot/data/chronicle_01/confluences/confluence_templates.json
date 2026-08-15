@@ -695,6 +695,26 @@
             "FAILURE": "$proponent volle andarsene da $the_region, e non parti nessuno.",
             "SUCCESS_WITH_COST": "$proponent lascio $the_region a chi voleva restare, e restarono in pochi - e nessuno dei due gruppi perdono l'altro."
           }
+        },
+        {
+          "id": "P_ANY_AS_STORY",
+          "question_id": "Q_ANY_WHO_DECIDES",
+          "text": "Si fa come si racconta che si fece, l'anno buono: ognuno al suo posto, e i conti dopo.",
+          "eligibility": [
+            {
+              "type": "state_tag_present",
+              "scope": "GLOBAL",
+              "tag": "legend:order_restored",
+              "label": "Si racconta di un anno in cui l'ordine torno davvero"
+            }
+          ],
+          "success_consequences": [
+            "CNS_LEGEND_RETOLD"
+          ],
+          "echo_summary": "Si fece come si racconta che si fece, e per quell'anno basto.",
+          "echo_summaries": {
+            "FAILURE": "Si volle fare come nella storia, e la storia non torno."
+          }
         }
       ],
       "condition_clauses": [

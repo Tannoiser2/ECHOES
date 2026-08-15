@@ -528,6 +528,57 @@
       ],
       "forces_confluence_on": null,
       "art_prompt_key": "echo.turn.the_quiet_shaft"
+    },
+    {
+      "id": "ECH_LEGEND_CALLED_DAY",
+      "title": "Il Giorno che la Gilda Chiese Tutto",
+      "dramatic_family": "MEMORIA",
+      "function_id": "THREAT",
+      "description": "La storia si racconta a ogni firma: una Gilda morta da secoli che un mattino chiese tutto insieme. Il debito di adesso comincia a pesare come quello antico.",
+      "eligibility": [
+        {
+          "type": "state_tag_present",
+          "scope": "GLOBAL",
+          "tag": "legend:debt_called",
+          "label": "Si racconta del giorno in cui la Gilda chiese tutto"
+        },
+        {
+          "type": "tension_limit",
+          "tension_id": "TEN_DEBT",
+          "min": 0,
+          "label": "TEN_DEBT e in gioco quest'anno"
+        }
+      ],
+      "effect_hooks": [
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "ADJUST_TENSION",
+            "target": {
+              "kind": "tension",
+              "id": "TEN_DEBT"
+            },
+            "payload": {
+              "delta": 1
+            }
+          }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "SET_REGION_TAG",
+            "target": {
+              "kind": "region",
+              "id": "REG_STRADA_MERCANTI"
+            },
+            "payload": {
+              "tag": "condition:indebted"
+            }
+          }
+        }
+      ],
+      "forces_confluence_on": null,
+      "art_prompt_key": "echo.memoria.the_called_day"
     }
   ]
 }

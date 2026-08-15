@@ -217,6 +217,26 @@
             "CNS_SEAT_CLAIMED"
           ],
           "echo_summary": "Il debito fu chiamato tutto insieme, e $in_region cambio padrone senza che partisse un colpo."
+        },
+        {
+          "id": "P_OLD_PAGE",
+          "question_id": "Q_DEBT_LEDGER",
+          "text": "Si riapre il registro alla pagina che si racconta, e la si legge ad alta voce prima di scrivere la nuova.",
+          "eligibility": [
+            {
+              "type": "state_tag_present",
+              "scope": "GLOBAL",
+              "tag": "legend:debt_called",
+              "label": "Si racconta del giorno in cui la Gilda chiese tutto"
+            }
+          ],
+          "success_consequences": [
+            "CNS_LEGEND_RETOLD"
+          ],
+          "echo_summary": "La vecchia pagina fu letta ad alta voce, e i numeri nuovi fecero meno paura.",
+          "echo_summaries": {
+            "FAILURE": "Si cerco la pagina che si racconta, e nessuno fu d'accordo su cosa ci fosse scritto."
+          }
         }
       ],
       "condition_clauses": [

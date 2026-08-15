@@ -56,8 +56,15 @@ const CEILING: int = 8
 ## for the seal, so he plays for the Council that grants it. A seat that starts
 ## playing is supposed to make the year louder. The hard bounds below did not
 ## move, and they are what §7 actually forbids.
-const BAND_LOW: int = 6
-const BAND_HIGH: int = 7
+##
+## Tornata a 5-6 con D-077: dei Consigli contati dalla banda 6-7 una parte era
+## ridecisioni - la stessa domanda rimessa ai voti nello stesso anno, due eredi
+## nominati nel 1827 della prima saga. Una domanda decisa resta decisa, quindi
+## l'anno tiene solo i Consigli che decidono qualcosa di nuovo: la mediana
+## misurata scende di uno ed e' un anno piu' corto ma piu' vero, 1.25-1.5 per
+## Tensione. I limiti duri, come sempre, non si sono mossi.
+const BAND_LOW: int = 5
+const BAND_HIGH: int = 6
 
 
 func _play(seed_value: int) -> Dictionary:

@@ -5,6 +5,112 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.34] — La pesca che ascolta, e la guardia sugli anni-biblioteca
+
+Gli ultimi due pezzi dichiarati della #25
+([D-079](docs/DECISIONS.md#d-079), [D-080](docs/DECISIONS.md#d-080)): la
+biblioteca smette di pescare l'anno alla cieca, e l'anno pescato ha la sua
+guardia di bilanciamento.
+
+### Added
+
+- **La pesca che ascolta** (D-079): il `tension_pool` dichiara gli *echi* —
+  per ogni candidata, i segni che la richiamano. Se il mondo ereditato porta
+  uno di quei segni (fatto globale, la sua leggenda, o tag di Regione) la
+  candidata pesa il triplo nella pesca. La ripesca avviene in
+  `inherit_from`, quando il mondo di prima è noto, e ridà anche il sacchetto
+  del Drift; senza echi o senza eredità la pesca resta byte-identica a
+  prima. Echi dichiarati per CHR_02 (corona) e CHR_04 (città), ancorati ai
+  tag che le Conseguenze scrivono davvero.
+- **La guardia sugli anni-biblioteca** (D-080, Fase 4 di #25):
+  `test_library_balance.gd` gioca l'anno scritto, gli fa ereditare quello
+  pescato, e tiene i Consigli del secondo dentro i limiti duri del §7 —
+  per tutte e due le coppie. Banda dichiarata dalla misura di nascita:
+  mediana 4 (corona) e 5 (città), banda 3-6.
+- La sonda delle ere conta la pesca che ascolta.
+
+### Misurato
+
+Le candidate richiamate da un segno vengono pescate il **78%** delle volte
+in 20 saghe, contro il 67% della pesca cieca; su cento semi col solo segno
+della miniera murata, il Risveglio esce 93 volte contro 66. La saga
+dell'812 tiene le sue proprietà (0 domande ridecise, salti invariati) e le
+mani d'era mostrano la continuità voluta. 196 test in 28 suite verdi; il
+playtest non incatena ere e resta intatto per costruzione.
+
+---
+
+## [0.1.33] — Le due falle del verbale: la domanda ridecisa e il lutto di mille anni
+
+La prima saga giocata per intero ha lasciato un verbale, e il verbale due
+buchi di regolamento: due Chronicle su dieci rimettevano ai voti una domanda
+già decisa nello stesso anno, e le Terre Nahr portavano lo stesso lutto
+dall'812 al 1856 ([D-077](docs/DECISIONS.md#d-077),
+[D-078](docs/DECISIONS.md#d-078)).
+
+### Fixed
+
+- **Una domanda decisa resta decisa** (D-077): niente ripiego sulle domande
+  già poste; un Consiglio che non ha più niente di nuovo da chiedere non si
+  apre — né a soglia, né dal pavimento di fine anno, né con un Claim — e
+  **una proposta bocciata non consuma la domanda**: respingere non è
+  decidere, la questione resta sul tavolo e può tornare ai voti.
+- **Le condizioni sbiadiscono come i fatti** (D-078): su un salto oltre i
+  cinquant'anni una `condition:` di Regione non attraversa; strutture,
+  insediamenti e cicatrici restano — la cicatrice è la memoria visibile
+  della mappa. Il criterio è quello di D-075, esteso alla mappa.
+
+### Changed
+
+- La banda dichiarata di `test_balance.gd` torna **5-6**: i Consigli tolti
+  erano ridecisioni, l'anno è più corto ma più vero. I limiti duri del §7
+  non si sono mossi (0 partite fuori).
+
+### Misurato
+
+Playtest dei 100 semi, tavolo misto: **0/8 seggi bloccati** (era arrivato a
+1/8 con la prima stesura — il verbale della cura, con due varianti respinte
+coi numeri, è in D-077), Kessa dei Fuochi 41/8/1, Re Aldric da 7 a 2 NONE,
+Lyra 12 Triumph, Verità diverse 484→513. Saga dell'812 rigiocata: **0
+domande ridecise** (erano 2 su 10 Chronicle), il lutto sopravvive al salto
+breve (+37) e sbiadisce su quello lungo (+153). 193 test in 27 suite verdi.
+
+---
+
+## [0.1.32] — Il contenuto che legge le leggende
+
+D-075 ha dato al mondo le leggende; questa versione mette al tavolo chi le
+racconta ([D-076](docs/DECISIONS.md#d-076)).
+
+### Added
+
+- **La famiglia MEMORIA**: carte Echo gated su una leggenda — «La Ballata
+  dell'Anno Buono» e «Il Giorno che la Gilda Chiese Tutto» — che stanno nei
+  mazzi delle sole Chronicle-biblioteca, le ere che una memoria possono
+  averla.
+- **Due proposte «si dice che»** e la Conseguenza «La Leggenda Messa per
+  Iscritto»: chi raccoglie le storie guadagna una Scoperta, e la domanda si
+  calma. La memoria è una via alle Scoperte: un ponte fra le ere.
+- La sonda delle ere conta la memoria letta (disciplina D-035).
+
+### Fixed
+
+- **Un mazzo non porta famiglie che nessun atto pesca**: la composizione del
+  mazzo Echo di un anno scritto non cambia più quando si aggiungono carte per
+  le ere — gli anni scritti sono byte-identici a prima, verificato con `diff`
+  sul playtest dei 100 semi.
+- **La policy pianifica contro i Consigli di quest'anno**, non contro
+  l'intera biblioteca: inseguiva vie che il primo anno non può aprire.
+
+### Misurato
+
+La Ballata pescata 38 volte in 20 saghe della corona (mai in quelle delle
+città), il Giorno della Gilda 18 volte in 10 saghe delle città (mai prima);
+le proposte votate 6/4 e 5 volte. Ogni pezzo vive nella sua era, nessuno
+fuori. 191 test in 27 suite verdi.
+
+---
+
 ## [0.1.31] — La memoria che sbiadisce
 
 La correzione di rotta è del committente: **fra due partite possono passare
