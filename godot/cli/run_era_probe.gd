@@ -45,6 +45,7 @@ func _initialize() -> void:
 	var jumps: Array = []
 	var generations: int = 0
 	var rotations: int = 0
+	var weary_turns: int = 0
 	var names_seen: Dictionary = {}
 	var hands: Dictionary = {}
 	var echoed_candidates: int = 0
@@ -95,6 +96,8 @@ func _initialize() -> void:
 						names_seen[str(seat["name"])] = true
 					if bool(seat.get("wants_new", false)):
 						rotations += 1
+					if bool(seat.get("weary", false)):
+						weary_turns += 1
 				var hand: Array = (session.world["tensions"] as Dictionary).keys()
 				hand.sort()
 				hands["|".join(PackedStringArray(hand))] = true
@@ -167,6 +170,9 @@ func _initialize() -> void:
 	])
 	print("  Destini cambiati perche' il precedente era ottenuto: %d (%.1f per saga)" % [
 		rotations, float(rotations) / maxf(sagas, 1)
+	])
+	print("  Destini cambiati per stanchezza - l'erede non giura su cio' che ha visto fallire (D-081): %d (%.1f per saga)" % [
+		weary_turns, float(weary_turns) / maxf(sagas, 1)
 	])
 	print("  Mani di domande diverse pescate dalla biblioteca: %d" % hands.size())
 	if echoed_candidates > 0:

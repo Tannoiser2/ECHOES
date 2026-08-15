@@ -331,6 +331,53 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-081 — L'iniquità del tempo: un erede non giura sull'ambizione che ha visto fallire
+**implemented in 0.1.35**
+
+La rotazione dei Destini (D-045) premiava solo chi ottiene: chi vinceva
+cambiava ambizione, chi falliva riprovava la stessa — **per mille anni**.
+Misurato su 20 saghe della corona: Aldric macinava lo stesso Destino
+per un'intera saga in **6 su 20**, Lyra in 2, e run di dieci ere a mani
+vuote esistevano per tre seggi su quattro. Dieci generazioni con la stessa
+identica ambizione fallita non sono una tradizione: sono un personaggio
+solo, molto vecchio, con dieci nomi.
+
+### La regola
+
+Il Destino è **della persona**. Il seggio porta un contatore di ere a mani
+vuote (`barren`: sale quando non si ottiene, si azzera quando si ottiene) e
+quando la persona cambia — solo allora — dopo `WEARY_ERAS = 2` ere senza
+ottenere, l'erede passa al Destino successivo del pool: la prima delusione
+è sfortuna, la seconda è una tradizione, e un erede non giura su una
+tradizione di fallimenti. La rotazione da stanchezza è marcata `weary`,
+distinta da quella da premio (`wants_new`), e lascia una riga nel verbale:
+*«Non ha giurato sull'ambizione che ha visto fallire»*.
+
+Chi non cambia persona non si stanca: la stessa vita riprova finché vive
+(salto breve, nessuna rotazione), un popolo COLLECTIVE si rinnova senza
+cambiare volto, e Vaerax è sotto la montagna apposta — il suo macinare
+eterno è carattere, non bug.
+
+### Misurato (20 saghe da 10 ere, corona)
+
+| run massimo senza ottenere / saghe intere sullo stesso Destino | prima | dopo |
+|---|---|---|
+| Re Aldric (MORTAL) | 10 ere / **6 su 20** | 3 ere / **0** |
+| Lyra (MORTAL) | 10 ere / 2 su 20 | 3 ere / 0 |
+| Popolo Nahr (COLLECTIVE) | 7 ere / 0 | 6 ere / 0 — intoccato, per disegno |
+| Vaerax (ETERNAL) | 10 ere / 1 su 20 | 10 ere / 1 — la montagna non si stanca |
+
+Le rotazioni da premio restano 13.2 per saga (erano 13.6); quelle da
+stanchezza sono 6.7. Tutte le altre misure d'era — salti, generazioni,
+pesca che ascolta, memoria letta — invariate. Il playtest non incatena ere
+e resta intatto per costruzione.
+
+Guardie: `test_succession.gd` — l'erede dopo due ere a mani vuote ruota
+(e una sola non basta), la stessa persona non abbandona, l'eterno non si
+stanca, il contatore sale e si azzera con l'ottenuto.
+
+---
+
 ## D-080 — La guardia sugli anni-biblioteca: l'anno pescato deve decidere qualcosa
 **implemented in 0.1.34** (issue [#25](https://github.com/Tannoiser2/ECHOES/issues/25), Fase 4)
 

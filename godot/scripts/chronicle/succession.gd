@@ -31,6 +31,11 @@ const DECAY_YEARS: int = 50
 const WARMER: Array = ["ENEMY", "HOSTILE", "NEUTRAL", "ALLY", "BOUND"]
 const ACHIEVED: Array = ["VICTORY", "TRIUMPH"]
 
+## Dopo quante ere a mani vuote un erede smette di giurare sull'ambizione che
+## ha visto fallire (D-081). Due: la prima delusione e' sfortuna, la seconda
+## e' una tradizione - e un erede non giura su una tradizione di fallimenti.
+const WEARY_ERAS: int = 2
+
 
 ## How long since the previous Chronicle. An integer is taken as it is; a
 ## `{min, max}` is drawn with the seeded RNG, so a saga is reproducible and
@@ -69,6 +74,7 @@ static func plan(
 		var destiny_id: String = str(before.get("destiny_id", definition["destiny_id"]))
 		var changed: bool = false
 		var wants_new: bool = false
+		var weary: bool = false
 		var note: String = ""
 
 		# A person does not survive two centuries; a people and a thing under a
@@ -92,12 +98,37 @@ static func plan(
 		# the next thing. If it did not, it tries again - and *that* is what
 		# keeps a question alive across generations instead of across springs.
 		var level: String = str((previous_results.get(id, {}) as Dictionary).get("level", ""))
+		var barren: int = int(before.get("barren", 0))
+		if before.is_empty():
+			barren = 0
+		elif ACHIEVED.has(level):
+			barren = 0
+		else:
+			barren += 1
 		if ACHIEVED.has(level):
 			var pool: Array = definition.get("destiny_pool", [])
 			if pool.size() > 1:
 				var at: int = pool.find(destiny_id)
 				destiny_id = str(pool[(at + 1) % pool.size()])
 				wants_new = true
+		# L'iniquita' del tempo (D-081): senza questo ramo, chi otteneva
+		# cambiava ambizione e chi falliva riprovava la stessa **per mille
+		# anni** - misurato, Aldric macinava lo stesso Destino per un'intera
+		# saga in 6 su 20. Il Destino e' della persona: l'erede che si siede
+		# dopo WEARY_ERAS ere a mani vuote giura su altro. Chi non cambia
+		# persona non si stanca - Vaerax e' sotto la montagna apposta.
+		elif changed and barren >= WEARY_ERAS:
+			var pool: Array = definition.get("destiny_pool", [])
+			if pool.size() > 1:
+				var at: int = pool.find(destiny_id)
+				destiny_id = str(pool[(at + 1) % pool.size()])
+				weary = true
+				barren = 0
+				if note.ends_with("."):
+					note = note.substr(0, note.length() - 1)
+				if note != "":
+					note += ". "
+				note += "Non ha giurato sull'ambizione che ha visto fallire"
 
 		out[id] = {
 			"name": name,
@@ -105,6 +136,8 @@ static func plan(
 			"generation": generation,
 			"changed": changed,
 			"wants_new": wants_new,
+			"weary": weary,
+			"barren": barren,
 			"note": note,
 		}
 	return out

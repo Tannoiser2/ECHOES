@@ -143,6 +143,9 @@ func inherit_from(previous: Dictionary, results: Dictionary = {}) -> void:
 		seat["name"] = str(_handover[entity_id]["name"])
 		seat["destiny_id"] = str(_handover[entity_id]["destiny_id"])
 		seat["generation"] = int(_handover[entity_id]["generation"])
+		# Le ere a mani vuote viaggiano col seggio: e' il contatore che fa
+		# stancare un erede della stessa ambizione (D-081).
+		seat["barren"] = int(_handover[entity_id].get("barren", 0))
 
 
 func years_passed() -> int:
