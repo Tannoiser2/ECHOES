@@ -336,9 +336,12 @@ distinti su 100 — con i tre difetti del caso a verbale · **Fase 2 fatta in
 0.1.31** ([D-075](DECISIONS.md#d-075)), nella forma corretta dal committente:
 una saga non è una fila di primavere — 10 Chronicle coprono in mediana 1.019
 anni — e adesso la memoria invecchia: quello che è murato o scritto resta un
-fatto, il resto diventa `legend:<fatto>`. Restano la Fase 3 (le domande
-pescate pesando le conseguenze, e il contenuto che *legge* le leggende) e la
-Fase 4 (le guardie di bilanciamento sulla Chronicle generata)
+fatto, il resto diventa `legend:<fatto>` · **Fase 3 fatta in 0.1.32**
+([D-076](DECISIONS.md#d-076)): il contenuto legge le leggende — la famiglia
+MEMORIA nei mazzi delle sole biblioteche, le proposte «si dice che», e la
+memoria come via alle Scoperte; ogni pezzo vive nella sua era e in nessun
+altra. Restano la pesca delle domande pesata sulle conseguenze e la Fase 4
+(le guardie di bilanciamento sugli anni-biblioteca)
 
 `destiny_results.evidence` registra già **come** ogni obiettivo è stato
 raggiunto, e nessuno lo legge. `world_state_factory.inheritance_effects()` porta

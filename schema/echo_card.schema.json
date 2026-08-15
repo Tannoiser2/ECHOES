@@ -35,7 +35,8 @@
         "title": { "type": "string", "minLength": 1 },
         "dramatic_family": {
           "type": "string",
-          "enum": ["PRESSURE", "RUPTURE", "TURN", "RESOLUTION"]
+          "enum": ["PRESSURE", "RUPTURE", "TURN", "RESOLUTION", "MEMORIA"],
+          "description": "MEMORIA e la famiglia delle carte che leggono una leggenda (D-076): per costruzione condizionale, e sta solo nei mazzi delle Chronicle che la elencano in un act_echo_pool - cioe le ere che una memoria possono averla."
         },
         "function_id": {
           "type": "string",

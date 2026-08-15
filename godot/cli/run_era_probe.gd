@@ -53,6 +53,21 @@ func _initialize() -> void:
 	var legends_final: Array = []
 	var facts_final: Array = []
 
+	# Il contenuto che legge le leggende (D-076): le carte MEMORIA e le proposte
+	# la cui eleggibilita' nomina un `legend:`. Se a fine misura sono a zero,
+	# sono contenuto che non esiste (D-035), e va detto qui, non scoperto poi.
+	var memoria_cards: Array = []
+	for card in data.echo_cards.values():
+		if str(card["dramatic_family"]) == "MEMORIA":
+			memoria_cards.append(str(card["id"]))
+	var legend_propositions: Array = []
+	for template in data.confluence_templates.values():
+		for proposition in template["propositions"]:
+			for condition in proposition.get("eligibility", []):
+				if str((condition as Dictionary).get("tag", "")).begins_with("legend:"):
+					legend_propositions.append(str(proposition["id"]))
+	var memory_read: Dictionary = {}
+
 	for saga_index in range(sagas):
 		var seed_base: int = first_seed + saga_index * 1009
 		var previous: Dictionary = {}
@@ -85,6 +100,14 @@ func _initialize() -> void:
 				seats, RngService.new(seed_value * 31 + 7), session.log
 			)
 			var report: Dictionary = await session.run(table)
+
+			for card_id in session.world["echo_deck"]["drawn"]:
+				if memoria_cards.has(str(card_id)):
+					memory_read[str(card_id)] = int(memory_read.get(str(card_id), 0)) + 1
+			for result in report["confluences"]:
+				var voted: String = str((result as Dictionary).get("proposition_id", ""))
+				if legend_propositions.has(voted):
+					memory_read[voted] = int(memory_read.get(voted, 0)) + 1
 
 			var tags: Array = (session.world["global_tags"] as Array).duplicate()
 			tags = tags.filter(func(tag: Variant) -> bool: return not str(tag).begins_with("function:"))
@@ -148,6 +171,11 @@ func _initialize() -> void:
 	for key in keys.slice(0, 12):
 		print("    %-36s %3d" % [str(key), int(survivors[key])])
 
+	print("")
+	print("  La memoria letta: quante volte il contenuto ha nominato una leggenda")
+	print("  (una voce a zero e' contenuto che non esiste, D-035):")
+	for id in memoria_cards + legend_propositions:
+		print("    %-36s %3d" % [str(id), int(memory_read.get(str(id), 0))])
 
 	quit(0)
 

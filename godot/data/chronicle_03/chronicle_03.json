@@ -190,7 +190,8 @@
             "RUPTURE",
             "TURN",
             "TURN",
-            "PRESSURE"
+            "PRESSURE",
+            "MEMORIA"
           ]
         },
         {
@@ -200,7 +201,8 @@
             "RESOLUTION",
             "RESOLUTION",
             "TURN",
-            "RUPTURE"
+            "RUPTURE",
+            "MEMORIA"
           ]
         }
       ],

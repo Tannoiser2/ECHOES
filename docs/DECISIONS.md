@@ -331,6 +331,62 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-076 — Il contenuto che legge le leggende: la famiglia MEMORIA
+**implemented in 0.1.32** (issue [#25](https://github.com/Tannoiser2/ECHOES/issues/25), Fase 3)
+
+D-075 ha dato al mondo le leggende e nessun contenuto le leggeva: un `legend:`
+era un tag che esisteva perché qualcuno, un giorno, potesse nominarlo. Questa
+versione mette al tavolo quel qualcuno.
+
+### Cosa è entrato
+
+- **La famiglia MEMORIA**: carte Echo la cui eleggibilità nomina una leggenda.
+  «La Ballata dell'Anno Buono» (si racconta dell'anno in cui l'ordine tornò —
+  e la nostalgia calma la Successione), «Il Giorno che la Gilda Chiese Tutto»
+  (il debito di adesso comincia a pesare come quello antico). Una per era,
+  gated sulla leggenda più frequente della sua saga.
+- **Due proposte «si dice che»**: rifare come si racconta che si fece
+  (`P_ANY_AS_STORY`) e rileggere la vecchia pagina del registro
+  (`P_OLD_PAGE`), entrambe verso `CNS_LEGEND_RETOLD` — la leggenda messa per
+  iscritto: chi raccoglie le storie guadagna una **Scoperta**, e la domanda
+  si calma. La memoria è diventata una via alle Scoperte: un ponte fra le ere
+  per i Destini che le contano.
+
+### Le due regole di struttura, trovate dai 12 test rotti
+
+La prima stesura ha rotto dodici asserzioni in un colpo, e i dodici pezzi
+indicavano due difetti veri, non dodici numeri da aggiornare:
+
+1. **Un mazzo non porta famiglie che nessun atto pesca.** Aggiungere una carta
+   al mazzo cambiava il mescolamento anche negli anni scritti, dove la carta
+   non poteva mai essere eleggibile — e tre piani scriptati raccontavano
+   un'altra storia. Adesso il mazzo di una Chronicle contiene solo le famiglie
+   elencate nei suoi `act_echo_pools`, e MEMORIA sta nei pool delle sole
+   biblioteche: **gli anni scritti sono byte-identici a prima, verificato con
+   `diff` sul playtest dei 100 semi.**
+2. **La policy pianifica contro i Consigli di quest'anno, non contro l'intera
+   biblioteca.** `_tensions_offering` scandiva tutti i template: Lyra
+   inseguiva nel primo anno una via-alle-Scoperte che esiste solo nelle ere
+   con una memoria. Adesso guarda i template che la Chronicle in corso
+   elenca, che è comunque la lettura giusta.
+
+### Misurato
+
+Sonda delle ere (che ora conta la memoria *letta*, con la disciplina D-035:
+una voce a zero è contenuto che non esiste):
+
+| su 20 saghe della corona / 10 delle città | corona | città |
+|---|---|---|
+| «La Ballata dell'Anno Buono» pescata | **38** | 0 |
+| «Il Giorno che la Gilda Chiese Tutto» pescata | 0 | **18** |
+| «Si fa come si racconta» votata | **6** | 4 |
+| «La vecchia pagina» votata | 0 | **5** |
+
+Ogni pezzo vive nella sua era, nessuno fuori. 191 test in 27 suite verdi,
+sim deterministiche, anni scritti intoccati per costruzione.
+
+---
+
 ## D-075 — La memoria che sbiadisce: i fatti diventano leggende
 **implemented in 0.1.31** (issue [#25](https://github.com/Tannoiser2/ECHOES/issues/25), Fase 2 — nella forma corretta dal committente)
 

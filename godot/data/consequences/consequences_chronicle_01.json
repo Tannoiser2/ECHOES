@@ -1271,6 +1271,35 @@
           }
         }
       ]
+    },
+    {
+      "id": "CNS_LEGEND_RETOLD",
+      "title": "La Leggenda Messa per Iscritto",
+      "category": "DISCOVERY",
+      "description": "Qualcuno raccoglie quello che si racconta e lo scrive com'e, coi nomi e le date che ancora si trovano. Da quel giorno la storia ha una versione, e la domanda fa meno paura.",
+      "effects": [
+        {
+          "type": "SET_ENTITY_TAG",
+          "target": {
+            "kind": "entity",
+            "id": "$proponent"
+          },
+          "payload": {
+            "tag": "discovery:legend"
+          },
+          "note": "Chi raccoglie le storie sa cose: la memoria e' una via alle Scoperte (D-076)."
+        },
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "$tension"
+          },
+          "payload": {
+            "delta": -1
+          }
+        }
+      ]
     }
   ]
 }

@@ -176,10 +176,11 @@
                     "PRESSURE",
                     "RUPTURE",
                     "TURN",
-                    "RESOLUTION"
+                    "RESOLUTION",
+                    "MEMORIA"
                   ]
                 },
-                "description": "Repeats are weights, not duplicates to be cleaned up."
+                "description": "Repeats are weights, not duplicates to be cleaned up. MEMORIA sta solo nei pool delle Chronicle-biblioteca: e la famiglia delle carte che leggono una leggenda (D-076)."
               }
             }
           }

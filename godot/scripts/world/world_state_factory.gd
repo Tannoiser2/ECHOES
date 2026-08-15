@@ -98,7 +98,7 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 
 	_build_relations(world, chronicle, data)
 	_build_asset_decks(world, chronicle, data, rng)
-	_build_echo_deck(world, data, rng)
+	_build_echo_deck(world, chronicle, data, rng)
 	_build_drift_track(world, chronicle, rng)
 	return world
 
@@ -193,9 +193,23 @@ static func _build_asset_decks(
 ## to the whole game, so a second saga's content would reshuffle the first one's
 ## deck and change years nobody touched. Filtering here keeps a Chronicle's deck
 ## a function of that Chronicle.
-static func _build_echo_deck(world: Dictionary, data: RefCounted, rng: RefCounted) -> void:
+static func _build_echo_deck(
+	world: Dictionary, chronicle: Dictionary, data: RefCounted, rng: RefCounted
+) -> void:
+	# Un mazzo non porta famiglie che nessun atto pesca: le carte MEMORIA, per
+	# esempio, stanno negli act_echo_pools delle sole Chronicle-biblioteca -
+	# cioe' le ere che una memoria possono averla (D-076). Senza questo filtro
+	# la composizione del mazzo di un anno scritto cambierebbe a ogni carta
+	# aggiunta per le ere, e con lei il mescolamento e la partita.
+	var families: Array = []
+	for pool in chronicle.get("act_echo_pools", []):
+		for family in pool.get("families", []):
+			if not families.has(str(family)):
+				families.append(str(family))
 	var ids: Array = []
 	for card in data.echo_cards.values():
+		if not families.has(str(card["dramatic_family"])):
+			continue
 		if _asks_about_a_question_not_in_play(card, world):
 			continue
 		ids.append(str(card["id"]))

@@ -5,6 +5,40 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.32] — Il contenuto che legge le leggende
+
+D-075 ha dato al mondo le leggende; questa versione mette al tavolo chi le
+racconta ([D-076](docs/DECISIONS.md#d-076)).
+
+### Added
+
+- **La famiglia MEMORIA**: carte Echo gated su una leggenda — «La Ballata
+  dell'Anno Buono» e «Il Giorno che la Gilda Chiese Tutto» — che stanno nei
+  mazzi delle sole Chronicle-biblioteca, le ere che una memoria possono
+  averla.
+- **Due proposte «si dice che»** e la Conseguenza «La Leggenda Messa per
+  Iscritto»: chi raccoglie le storie guadagna una Scoperta, e la domanda si
+  calma. La memoria è una via alle Scoperte: un ponte fra le ere.
+- La sonda delle ere conta la memoria letta (disciplina D-035).
+
+### Fixed
+
+- **Un mazzo non porta famiglie che nessun atto pesca**: la composizione del
+  mazzo Echo di un anno scritto non cambia più quando si aggiungono carte per
+  le ere — gli anni scritti sono byte-identici a prima, verificato con `diff`
+  sul playtest dei 100 semi.
+- **La policy pianifica contro i Consigli di quest'anno**, non contro
+  l'intera biblioteca: inseguiva vie che il primo anno non può aprire.
+
+### Misurato
+
+La Ballata pescata 38 volte in 20 saghe della corona (mai in quelle delle
+città), il Giorno della Gilda 18 volte in 10 saghe delle città (mai prima);
+le proposte votate 6/4 e 5 volte. Ogni pezzo vive nella sua era, nessuno
+fuori. 191 test in 27 suite verdi.
+
+---
+
 ## [0.1.31] — La memoria che sbiadisce
 
 La correzione di rotta è del committente: **fra due partite possono passare
