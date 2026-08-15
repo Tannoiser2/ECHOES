@@ -292,6 +292,13 @@ static func inheritance_effects(
 		for tag in before.get("tags", []):
 			if (base["tags"] as Array).has(str(tag)):
 				continue
+			# Il criterio di D-075 vale anche per la mappa: cio' che e' murato o
+			# scritto resta (strutture, insediamenti, cicatrici), una *condizione*
+			# e' stato sociale e su un salto lungo sbiadisce - un lutto dell'anno
+			# 1002 non e' ancora in corso otto secoli dopo (D-078). La cicatrice,
+			# che e' la memoria visibile della mappa, resta a raccontarlo.
+			if str(tag).begins_with("condition:") and Succession.decays_after(years):
+				continue
 			for prefix in INHERITED_TAG_PREFIXES:
 				if str(tag).begins_with(prefix):
 					effects.append(

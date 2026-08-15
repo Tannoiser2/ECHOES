@@ -225,6 +225,11 @@ func _tensions_needing_the_word(entity_id: String, session: RefCounted) -> Array
 			var id: String = str(tension_id)
 			if not session.world["tensions"].has(id):
 				continue
+			# Un Claim su una domanda gia' decisa e' una carta bruciata: se il
+			# Consiglio non ha piu' niente di nuovo da chiedere, non si forza
+			# (D-077).
+			if not session.confluence.has_fresh_question(id):
+				continue
 			# Ho gia' parlato per ultimo su questa domanda: la parola ruota
 			# (D-051), e chi la richiede appena finito di usarla monopolizza i
 			# Consigli e affama chi li aspettava per posizione (D-069).

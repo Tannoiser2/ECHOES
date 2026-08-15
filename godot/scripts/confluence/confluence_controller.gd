@@ -180,7 +180,28 @@ func _eligible_questions(template: Dictionary, proponent: String, tension_id: St
 	for question in out:
 		if not asked.has(str((question as Dictionary)["id"])):
 			fresh.append(question)
-	return fresh if not fresh.is_empty() else out
+	# Niente ripiego sulle domande gia' poste: alla frequenza dei Consigli di
+	# oggi il ripiego rimetteva ai voti la stessa domanda nello stesso anno -
+	# la saga dell'812 ha nominato due eredi nel 1827 (D-077). Una domanda
+	# decisa resta decisa: se non ne restano, il Consiglio non si apre, come
+	# gia' accade quando mancano le proposte (D-061).
+	return fresh
+
+
+## Se questa Tensione ha ancora una domanda mai posta quest'anno. I trigger lo
+## chiedono prima di aprire - e la policy prima di spendere un Claim - cosi' un
+## Consiglio senza niente di nuovo da decidere non si apre e non spreca niente
+## (D-077). L'eleggibilita' qui non conta: e' lo stato del mondo a deciderla al
+## momento dell'apertura, l'esaurimento invece e' definitivo per l'anno.
+func has_fresh_question(tension_id: String) -> bool:
+	var template: Dictionary = data.confluence_template_for(tension_id)
+	if template.is_empty():
+		return false
+	var asked: Array = _asked(tension_id)
+	for question in template["questions"]:
+		if not asked.has(str((question as Dictionary)["id"])):
+			return true
+	return false
 
 
 func _asked(tension_id: String) -> Array:
@@ -476,8 +497,12 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 	world["forced_confluence"] = null
 	# Segnata **qui** e non all'apertura: una domanda vale come posta quando e'
 	# stata messa ai voti davvero. Una Confluence annullata perche' nessuna
-	# proposta era disponibile non consuma niente (D-061).
-	_mark_asked(tension_id, str(current["question_id"]))
+	# proposta era disponibile non consuma niente (D-061). E nemmeno una che
+	# il tavolo ha bocciato: respingere una proposta non e' decidere la
+	# questione, e la domanda resta sul tavolo - quello che non torna mai e'
+	# ridecidere una cosa decisa (D-077).
+	if outcome != ConfluenceResolution.FAILURE:
+		_mark_asked(tension_id, str(current["question_id"]))
 
 	result["echo_created"] = echo_created
 	result["confluence_id"] = str(current["confluence_id"])

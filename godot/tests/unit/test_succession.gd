@@ -192,3 +192,40 @@ func test_time_turns_unwritten_facts_into_legends() -> void:
 		if str(effect["type"]) == "SET_GLOBAL_TAG":
 			kept.append(str(effect["payload"]["tag"]))
 	assert_true(kept.has("order_restored"), "vent'anni dopo, l'ordine ristabilito e' ancora un fatto")
+
+
+## D-078: il criterio di D-075 vale anche per la mappa. Una *condizione* e'
+## stato sociale e su un salto lungo sbiadisce; cio' che e' murato o scritto -
+## strutture, insediamenti - e la cicatrice, che e' la memoria visibile della
+## mappa, restano.
+func test_time_lets_conditions_fade_but_keeps_what_is_built() -> void:
+	var previous: Dictionary = {
+		"global_tags": [],
+		"relations": {},
+		"entities": {},
+		"regions": {
+			"REG_TERRE_NAHR": {
+				"control": null,
+				"tags": ["condition:mourning", "structure:canal", "settlement:march"],
+			},
+		},
+	}
+	var effects: Array = preload("res://scripts/world/world_state_factory.gd").inheritance_effects(
+		previous, _chronicle("CHR_02"), data(), 120
+	)
+	var carried: Array = []
+	for effect in effects:
+		if str(effect["type"]) == "SET_REGION_TAG":
+			carried.append(str(effect["payload"]["tag"]))
+	assert_false(carried.has("condition:mourning"), "un lutto non e' in corso otto secoli dopo")
+	assert_true(carried.has("structure:canal"), "il canale scavato resta")
+	assert_true(carried.has("settlement:march"), "e l'insediamento pure")
+
+	var soon: Array = preload("res://scripts/world/world_state_factory.gd").inheritance_effects(
+		previous, _chronicle("CHR_02"), data(), 20
+	)
+	var kept: Array = []
+	for effect in soon:
+		if str(effect["type"]) == "SET_REGION_TAG":
+			kept.append(str(effect["payload"]["tag"]))
+	assert_true(kept.has("condition:mourning"), "vent'anni dopo il lutto si ricorda ancora")

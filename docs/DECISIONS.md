@@ -331,6 +331,107 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-078 — Il criterio di D-075 vale anche per la mappa: le condizioni sbiadiscono
+**implemented in 0.1.33**
+
+La prima saga giocata dall'inizio alla fine (seme 812, dieci Chronicle,
+812→1856) ha lasciato un verbale, e il verbale conteneva un lutto di mille
+anni: le Terre Nahr chiudono l'anno 812 con `condition:mourning` e ce
+l'hanno ancora nel 1856. In mezzo, solo accumulo — `emptied`, `cut_off`,
+`unrest` si aggiungono e niente si toglie mai. D-075 aveva insegnato al
+tempo a sbiadire i **fatti globali**; i tag di Regione attraversavano i
+secoli letterali, tutti, sempre.
+
+### La regola
+
+Il criterio è lo stesso di D-075 e non ne serve uno nuovo: su un salto che
+supera `DECAY_YEARS`, una **`condition:`** — che è stato sociale, gente che
+piange o si ammutina — non attraversa; ciò che è murato o scritto —
+**`structure:`**, **`settlement:`** — resta, e la **`scar:`** resta perché è
+esattamente la memoria visibile della mappa. Su un salto breve si ricorda
+tutto, com'era.
+
+### Misurato (stessa saga, seme 812)
+
+| Terre Nahr, `condition:` | prima | dopo |
+|---|---|---|
+| 849 (+37) | mourning | mourning — un salto breve ricorda |
+| 1002 (+153) | mourning | il lutto è sbiadito |
+| ultime cinque ere | 4-5 condizioni accumulate, sempre le stesse | 0-2, e sono quelle degli eventi dell'era |
+
+Canali, insediamenti e cicatrici arrivano in fondo alla saga come prima.
+Guardia: `test_succession.gd::test_time_lets_conditions_fade_but_keeps_what_is_built`.
+
+---
+
+## D-077 — Una domanda decisa resta decisa (e una bocciata resta sul tavolo)
+**implemented in 0.1.33**
+
+Il secondo buco del verbale della saga dell'812: **due Chronicle su dieci
+rimettevano ai voti una domanda già decisa nello stesso anno** — nell'849
+«Chi riscuote su quello che passa sulla Strada dei Mercanti?» decisa due
+volte dopo una bocciatura, nel 1334 «Chi riscuote su quello che passa a
+Eredan?» decisa due volte senza nemmeno quella. La causa era il ripiego di
+D-061: esaurite le domande nuove, il filtro si toglieva di mezzo e «si
+torna alla più affilata, come prima». Alla frequenza dei Consigli del
+2022 il caso era teorico; con l'anno pieno di D-066/D-069 succede davvero.
+
+### La regola, in tre pezzi
+
+1. **Niente ripiego**: una Tensione che ha esaurito le domande non rimette
+   ai voti niente (`_eligible_questions`).
+2. **Un Consiglio senza niente di nuovo non si apre**: i trigger — soglia,
+   pavimento di fine anno — chiedono `has_fresh_question()` prima di
+   aprire, e la policy lo chiede prima di spendere un Claim su una domanda
+   che non esiste più.
+3. **Una proposta bocciata non consuma la domanda**: respingere non è
+   decidere. La domanda si segna come posta solo su un esito che decide
+   (tutto tranne FAILURE); bocciata, resta sul tavolo e può tornare.
+
+### Il terzo pezzo è il risultato di due varianti respinte
+
+La prima stesura aveva solo i pezzi 1 e 2, e il playtest dei 100 semi ha
+presentato il conto: **tavolo misto 1/8 bloccati** — Kessa dei Fuochi
+46/3, quando il vincolo di casa è 0/8. La sonda ha mostrato il perché: il
+controllo in CHR_03 passa solo da tre Conseguenze `$proponent`, la parola
+si assegna per presenza nella Regione focale, e Kessa non è mai presente
+dove il controllo è in palio. Il suo motore erano proprio le ridecisioni
+del Debito che il pezzo 1 giustamente elimina.
+
+Due cure misurate e respinte coi numeri, stessi 100 semi:
+
+| variante | bloccati misto | il conto |
+|---|---|---|
+| il controllo sulla veglia (`CNS_ASH_WATCH` assegna la montagna) | 1/8 | Kessa ferma (45/3), Anselmo 0→5 NONE, Libere 32→23 VICTORY, FAIL 163→185: il controllo nel dominio ANCIENT scatena opposizioni ovunque |
+| la caccia all'AUTHORITY da zero (rimisura di D-069) | 0/8 | ma Lyra dimezza i Triumph (10→5), FAIL 163→184, e compare una partita da 1 Consiglio |
+| **una bocciata resta sul tavolo (pezzo 3)** | **0/8** | Kessa 41/8/1, Aldric 7→2 NONE, Lyra 12 Triumph, Verità diverse 484→513 |
+
+Il pezzo 3 non è una toppa per Kessa: è la semantica giusta — la prima
+stesura faceva consumare la domanda anche a un Consiglio andato a vuoto,
+che non aveva deciso niente. Rimesso il significato al suo posto, il
+tavolo si è sbloccato da solo.
+
+### Il conto sull'anno, e la banda
+
+I Consigli tolti erano ridecisioni: la mediana del guardiano §7 scende da
+6 a 5 e la banda dichiarata di `test_balance.gd` torna **5-6** (1.25-1.5
+per Tensione — la storia delle bande è D-026→D-036→D-051, e anche
+stavolta i limiti duri non si sono mossi: 0 partite fuori). Sul playtest
+misto: media 5.88 Consigli, FAIL 163→193 — le bocciature adesso possono
+tornare ai voti, ed è la cosa che si vede — DECISIVE 180→184.
+
+### La controprova sulla saga
+
+Stessa saga dell'812 rigiocata: **0 domande ridecise su dieci Chronicle**
+(erano 2), e le riproposte dopo bocciatura che restano sono la cosa nuova
+che il gioco adesso sa dire: nell'anno 1770 la stessa questione cade tre
+volte e passa alla quarta.
+
+Guardie: `test_questions_asked.gd` — il Consiglio esaurito non si apre, la
+bocciata resta sul tavolo, la memoria è della Tensione.
+
+---
+
 ## D-076 — Il contenuto che legge le leggende: la famiglia MEMORIA
 **implemented in 0.1.32** (issue [#25](https://github.com/Tannoiser2/ECHOES/issues/25), Fase 3)
 

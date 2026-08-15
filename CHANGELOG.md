@@ -5,6 +5,43 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.33] — Le due falle del verbale: la domanda ridecisa e il lutto di mille anni
+
+La prima saga giocata per intero ha lasciato un verbale, e il verbale due
+buchi di regolamento: due Chronicle su dieci rimettevano ai voti una domanda
+già decisa nello stesso anno, e le Terre Nahr portavano lo stesso lutto
+dall'812 al 1856 ([D-077](docs/DECISIONS.md#d-077),
+[D-078](docs/DECISIONS.md#d-078)).
+
+### Fixed
+
+- **Una domanda decisa resta decisa** (D-077): niente ripiego sulle domande
+  già poste; un Consiglio che non ha più niente di nuovo da chiedere non si
+  apre — né a soglia, né dal pavimento di fine anno, né con un Claim — e
+  **una proposta bocciata non consuma la domanda**: respingere non è
+  decidere, la questione resta sul tavolo e può tornare ai voti.
+- **Le condizioni sbiadiscono come i fatti** (D-078): su un salto oltre i
+  cinquant'anni una `condition:` di Regione non attraversa; strutture,
+  insediamenti e cicatrici restano — la cicatrice è la memoria visibile
+  della mappa. Il criterio è quello di D-075, esteso alla mappa.
+
+### Changed
+
+- La banda dichiarata di `test_balance.gd` torna **5-6**: i Consigli tolti
+  erano ridecisioni, l'anno è più corto ma più vero. I limiti duri del §7
+  non si sono mossi (0 partite fuori).
+
+### Misurato
+
+Playtest dei 100 semi, tavolo misto: **0/8 seggi bloccati** (era arrivato a
+1/8 con la prima stesura — il verbale della cura, con due varianti respinte
+coi numeri, è in D-077), Kessa dei Fuochi 41/8/1, Re Aldric da 7 a 2 NONE,
+Lyra 12 Triumph, Verità diverse 484→513. Saga dell'812 rigiocata: **0
+domande ridecise** (erano 2 su 10 Chronicle), il lutto sopravvive al salto
+breve (+37) e sbiadisce su quello lungo (+153). 193 test in 27 suite verdi.
+
+---
+
 ## [0.1.32] — Il contenuto che legge le leggende
 
 D-075 ha dato al mondo le leggende; questa versione mette al tavolo chi le

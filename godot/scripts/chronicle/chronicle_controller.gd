@@ -258,7 +258,12 @@ func _tension_for_region(region_id: String) -> String:
 ## §7 and §12.1: a forced Claim takes precedence over threshold triggers, and
 ## only one Confluence opens per round. Anything else at threshold queues up.
 func _end_of_round_confluence(decider: Object) -> void:
-	var ready: Array = session.tensions.tensions_at_threshold()
+	# Una Tensione a soglia con le domande esaurite non ha niente di nuovo da
+	# decidere: si salta, invece di aprire un Consiglio che ridirebbe una cosa
+	# gia' detta (D-077).
+	var ready: Array = session.tensions.tensions_at_threshold().filter(
+		func(id: Variant) -> bool: return session.confluence.has_fresh_question(str(id))
+	)
 	var forced: Variant = world.get("forced_confluence", null)
 	var tension_id: String = ""
 	var trigger: Dictionary = {}
@@ -332,6 +337,10 @@ func _bring_the_year_to_a_head() -> String:
 	var smallest_gap: int = 0
 	for tension_id in world["tensions"]:
 		var id: String = str(tension_id)
+		# Il pavimento non forza una domanda gia' decisa: una Tensione con le
+		# domande esaurite non e' una domanda aperta (D-077).
+		if not session.confluence.has_fresh_question(id):
+			continue
 		var gap: int = session.tensions.threshold(id) - session.tensions.value(id)
 		if closest == "" or gap < smallest_gap:
 			closest = id
