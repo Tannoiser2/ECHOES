@@ -19,6 +19,17 @@
           }
         },
         {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "TEN_ROADS"
+          },
+          "payload": {
+            "delta": 1
+          },
+          "note": "Il grano requisito viaggia sotto scorta, e le vie si intasano di carri del trono: la domanda piu votata della saga adesso tocca anche chi vive di strade (D-070)."
+        },
+        {
           "type": "SET_CONTROL",
           "target": {
             "kind": "region",

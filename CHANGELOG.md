@@ -5,6 +5,53 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.28] — Il Consiglio come scena
+
+Dopo tre versioni di lavoro sugli assi, il 65–72% delle posizioni restava
+ABSTAIN. Tre mosse misurate una alla volta, una respinta a verbale, e la
+risposta a un sospetto vecchio quanto ISSUES 3
+([D-070](docs/DECISIONS.md#d-070), [D-071](docs/DECISIONS.md#d-071)).
+
+### Fixed
+
+- **La clausola non è più un timbro**: la CONDITION sceglieva sempre la prima
+  clausola della lista — zero scelte della seconda, in tutt'e due le saghe.
+  Adesso si sceglie quella che serve il proprio Destino: le clausole viventi
+  passano da 2 a **8**.
+- **La corsa al controllo si vede**: una Regione che cambiava mano verso un
+  terzo valeva zero per chi conta le Regioni. Adesso vale un'obiezione.
+
+### Changed
+
+- Due scene nuove col criterio di D-066: il grano requisito intasa le Vie
+  (Lyra contro, Vaerax a favore, sulla domanda più votata della prima saga), e
+  l'Ordine del Vetro prende posizione sulla Carta (Carta ≤ 4 a Triumph, contro
+  le Città Libere). Una terza — Lyra contro il sigillo delle gallerie — è
+  **respinta con i numeri**: sveglia Lyra ma fa crollare i TRIUMPH del tavolo
+  da 11 a 3 su 400. Due clausole mutuamente esclusive non sono una scena.
+
+### Added
+
+- `cli/run_asset_probe.gd` (chiude ISSUES 3): **la coda è vuota** — tutte le
+  48 facce arrivano in mano e vengono spese, a tavolo misto. Nessuna carta da
+  riscrivere. A verbale invece lo sbilancio di circolazione: WEALTH 4.344
+  passaggi di mano contro i ~350 di FORCE e PEOPLE.
+- La sonda delle posizioni conta le clausole poste e le Condition qualificate.
+- Una guardia in `test_stance_scoring.gd`: chi vuole la domanda calda non pone
+  la clausola che la raffredda.
+
+### Misurato
+
+ABSTAIN della seconda saga **74,1% → 48,4%** in tre versioni (64,9% alla
+0.1.27), CONDITION al 29,8%, l'Ordine del Vetro da 142 astensioni e zero
+opposizioni a 42/57/71. Sui 100 semi di D-055: divario aggressivo/prudente
+**22** (era 37 alla 0.1.26), NONE 11, TRIUMPH 11, Verità diverse **526**
+(nuovo massimo), seggi bloccati a tavolo misto 0 su 8, Consigli 6,06. La
+prima saga resta al 71% di ABSTAIN: il perché e la strada sono la voce 17 di
+ISSUES.
+
+---
+
 ## [0.1.27] — La parola si può prendere
 
 Il proponente di un Consiglio lo decide il posto, e il posto è di chi vuole

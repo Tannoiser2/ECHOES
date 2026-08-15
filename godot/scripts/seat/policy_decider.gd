@@ -706,6 +706,12 @@ func _score_effect(
 				score += 2
 			elif holds_it_now:
 				score -= 3  # handed to someone else, out of your hands
+			else:
+				# La corsa: chi conta le Regioni conta anche quelle degli altri.
+				# Senza questo ramo, un seggio con una clausola control_count
+				# guardava una Regione cambiare mano verso un terzo e non aveva
+				# niente da dire - un'obiezione, non un no (D-070).
+				score -= 1
 	return score
 
 
@@ -887,7 +893,7 @@ func choose_stance(entity_id: String, context: Dictionary, session: RefCounted) 
 	if score <= -2:
 		return {"stance": "OPPOSE", "clause_id": ""}
 	if score < 0:
-		var clause: String = _first_clause(context, session)
+		var clause: String = _best_clause(entity_id, context, session)
 		if clause != "":
 			return {"stance": "CONDITION", "clause_id": clause}
 		return {"stance": "OPPOSE", "clause_id": ""}
@@ -926,11 +932,33 @@ func _current_proposition(context: Dictionary, session: RefCounted) -> Dictionar
 	return {}
 
 
-func _first_clause(context: Dictionary, session: RefCounted) -> String:
+## La clausola e' la meta' negoziale del Consiglio (§12.3), e fino alla 0.1.27
+## la policy prendeva sempre la prima della lista: la sonda delle posizioni ha
+## contato **zero** scelte della seconda clausola di ogni template, in tutt'e
+## due le saghe - meta' del contenuto negoziale era morto (D-035, D-070). Si
+## sceglie quella i cui Effect servono meglio il proprio Destino; a parita'
+## decide l'RNG di sessione, per la stessa ragione di choose_proposition.
+func _best_clause(entity_id: String, context: Dictionary, session: RefCounted) -> String:
 	var template: Variant = session.data.confluence_templates.get(str(context["template_id"]))
 	if template == null or (template["condition_clauses"] as Array).is_empty():
 		return ""
-	return str(template["condition_clauses"][0]["id"])
+	var goals: Dictionary = _tag_goals(entity_id, session)
+	var bindings: Dictionary = session.confluence.effect_context()
+	var proponent: String = str(context.get("proponent", ""))
+	var best_score: int = -999
+	var tied: Array = []
+	for clause in template["condition_clauses"]:
+		var score: int = 0
+		for effect in clause["effects"]:
+			score += _score_effect(effect, entity_id, proponent, goals, session, bindings)
+		if score > best_score:
+			best_score = score
+			tied = [str(clause["id"])]
+		elif score == best_score:
+			tied.append(str(clause["id"]))
+	if tied.size() == 1:
+		return str(tied[0])
+	return str(tied[session.rng.range_int(0, tied.size() - 1)])
 
 
 func _sorted(keys: Array) -> Array:

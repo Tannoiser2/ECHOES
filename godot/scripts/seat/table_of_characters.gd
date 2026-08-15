@@ -56,7 +56,7 @@ class Prudente extends PolicyDecider:
 		var declared: Dictionary = super.choose_stance(entity_id, context, session)
 		if str(declared["stance"]) != "OPPOSE":
 			return declared
-		var clause: String = _first_clause(context, session)
+		var clause: String = _best_clause(entity_id, context, session)
 		return (
 			{"stance": "CONDITION", "clause_id": clause} if clause != ""
 			else {"stance": "ABSTAIN", "clause_id": ""}

@@ -331,6 +331,110 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-071 — Le carte che nessuno gioca non esistono: la coda è vuota
+**measured in 0.1.28** (chiude ISSUES 3)
+
+La voce era aperta da un sospetto ragionevole: 48 facce, 132 carte, e nessuno
+aveva mai contato quali venissero acquisite e impegnate — la stessa forma di
+problema trovata due volte guardando un numero che nessuno guardava.
+`cli/run_asset_probe.gd` fa il conteggio: per ogni faccia, quante volte è
+arrivata in una mano (setup o pesca), quante è stata spesa (impegnata a un
+Consiglio, scartata per una spinta, spesa per la parola), quante è rimasta in
+mano a fine anno. Cento partite a tavolo misto, gli stessi semi di D-055.
+
+**La coda è vuota.** Mai in una mano: 0 su 48. Pescate e mai spese: 0 su 48.
+Il sospetto era sbagliato, ed è il risultato migliore possibile: misurato, non
+presunto. Nessuna carta va riscritta né tolta.
+
+Quello che la sonda ha trovato invece è uno **sbilancio di circolazione** fra
+famiglie: WEALTH passa di mano 4.344 volte contro le 383 di FORCE e le 342 di
+PEOPLE — un ordine di grandezza. Non è di per sé un difetto (WEALTH è la
+famiglia-ponte di tre Regioni su sei), ma è il numero da riguardare se FORCE e
+PEOPLE dovessero mai sembrare irrilevanti al tavolo. A verbale, non in coda.
+
+Nota di misura: una carta committata e recuperata da chi si oppone non lascia
+un Effect di scarto, quindi il conteggio della spesa è un pavimento, non un
+soffitto. Sta scritto anche nella testata della sonda.
+
+---
+
+## D-070 — Il Consiglio come scena: la clausola scelta, la corsa vista, e una scena respinta
+**implemented in 0.1.28** (dal lavoro su ABSTAIN; estende [D-066](#d-066) e [D-068](#d-068))
+
+Dopo la 0.1.27 il 65–72% delle posizioni restava ABSTAIN: per due seggi su
+tre, quello che si decideva non toccava quello che volevano. Tre mosse,
+misurate una alla volta, e una quarta respinta.
+
+### 1. La clausola non è più un timbro
+
+La posizione CONDITION — l'unica mossa negoziale del gioco, passata dal 5% al
+19% in due versioni — sceglieva **sempre la prima clausola della lista**
+(`_first_clause`): la sonda ha contato zero scelte della seconda clausola di
+ogni template, in tutt'e due le saghe. Metà del contenuto negoziale era morto
+(D-035). Adesso la policy sceglie la clausola i cui Effect servono il proprio
+Destino (`_best_clause`, pareggi all'RNG di sessione): le clausole viventi
+passano da **2 a 8**, e i seggi *preferiscono* — il Popolo pone l'amnistia, non
+il testimone.
+
+### 2. La corsa al controllo si vede
+
+`_score_effect` dava a un seggio con una clausola `control_count` +2 se il
+controllo andava a lui e −3 se gli veniva tolto, e **0 se una Regione cambiava
+mano verso un terzo**: la corsa non esisteva. Adesso vale un'obiezione (−1).
+Da sola, questa riga: ABSTAIN della seconda saga 64,9% → 61,8%.
+
+### 3. Due scene nuove, dal criterio di D-066
+
+- `CNS_ROYAL_GRANARY` alza di 1 le Vie Interrotte: il grano requisito viaggia
+  sotto scorta. La domanda più votata della prima saga adesso tocca Lyra
+  (Vie ≤ 4) e Vaerax (Vie ≥ 3) in versi opposti.
+- `DST_VETRO` a Triumph: «la legge scritta non è arrivata a bussare alla teca»
+  (Carta ≤ 4), contro le Città Libere che la Carta la vogliono matura (≥ 3).
+  L'Ordine passa da 142 astensioni e **zero opposizioni** in 40 Chronicle a 42
+  astensioni, 57 Condition e 71 appoggi.
+
+### La scena respinta, con i numeri
+
+La quarta mossa era la più bella sulla carta: Lyra a Triumph con «le gallerie
+sono aperte a chi vuole verificare» (`mine_sealed` assente), contro la
+Vittoria di Vaerax che il sigillo lo **vuole** — scena perfetta sulla proposta
+più votata in assoluto (P_SEAL_MINE, 40 voti su 40). Misurata due volte, in due
+stesure (aggiunta, e scambiata con la clausola quasi-doppione della strada
+tagliata): sveglia Lyra davvero (astensioni 144 → 96, Consigli con un no 67% →
+80%) ma **i TRIUMPH del tavolo crollano da 11 a 3 su 400** — la guerra sul
+sigillo nega il gradino alto a tutt'e due i contendenti, ogni volta. Respinta.
+La lezione, che affina la trappola 2 dell'audit: una scena a livello Triumph
+regge solo se **almeno uno dei due può vincerla senza spegnere l'altro
+gradino**; due clausole mutuamente esclusive sulla stessa riga non sono una
+scena, sono un pareggio a zero scritto nei dati.
+
+### Misurato
+
+Sonda delle posizioni, 40 Chronicle:
+
+| | 0.1.25 | 0.1.27 | 0.1.28 |
+|---|---|---|---|
+| ABSTAIN CHR_03 | 74,1% | 64,9% | **48,4%** |
+| ABSTAIN CHR_01 | 70,2% | 71,8% | 71,1% |
+| CONDITION CHR_03 | 16,7% | 19,6% | **29,8%** |
+| clausole viventi (due saghe) | 2 | 2 | **8** |
+
+Sui 100 semi di D-055, tavolo misto: seggi bloccati **0 su 8**, Consigli 6,06
+(mediana 6), NONE 11, TRIUMPH 11, Verità diverse **526** (nuovo massimo),
+divario aggressivo/prudente **22** (era 37 due versioni fa). Il `+1` del
+granaio increspa un piano scriptato (il terzo Consiglio di
+`plan_a_grain_accord` passa da SUCCESS_WITH_COST a DECISIVE_SUCCESS per un
+dado diverso): atteso aggiornato, non un silenzioso aggiustamento.
+
+### Cosa resta aperto
+
+La prima saga resta al 71% di ABSTAIN, e adesso si sa perché: i suoi quattro
+Destini si toccano poco, e l'unica scena abbastanza grossa da svegliarla — il
+sigillo — costa il gradino alto. Servono scene nuove che non passino da lì:
+è la voce 17 di ISSUES.
+
+---
+
 ## D-069 — Il diritto di proporre: la policy impara CLAIM, una vite alla volta
 **implemented in 0.1.27** (issue [#22](https://github.com/Tannoiser2/ECHOES/issues/22), da [D-063](#d-063), precedente di metodo [D-021](#d-021))
 

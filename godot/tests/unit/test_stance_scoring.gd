@@ -127,3 +127,17 @@ func test_the_same_push_reads_opposite_at_two_seats() -> void:
 	assert_ne(watcher, 0, "la spinta tocca chi vuole la strada difficile")
 	assert_ne(scholar, 0, "e tocca chi la vuole aperta")
 	assert_true(watcher > 0 and scholar < 0, "e li tocca in due versi opposti")
+
+
+## D-070: la clausola non e' un timbro. Fino alla 0.1.27 la policy prendeva
+## sempre la prima della lista, e la sonda ha contato zero scelte della seconda
+## clausola di ogni template: meta' del contenuto negoziale era morto. Il Popolo
+## Nahr ha bisogno che la Successione resti calda (min 3): il testimone che la
+## raffredda gli costa, l'amnistia no - e la clausola che pone deve dirlo.
+func test_a_condition_names_the_clause_that_serves_its_destiny() -> void:
+	var context: Dictionary = {"template_id": "CNF_SUCCESSION_01", "proponent": ALDRIC}
+	assert_eq(
+		_policy()._best_clause("ENT_NAHR", context, session),
+		"C_SUCCESSION_AMNESTY",
+		"chi vuole la domanda calda non chiede il testimone che la raffredda"
+	)
