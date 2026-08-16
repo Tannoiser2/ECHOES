@@ -5,6 +5,23 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.50] — La voce 2 si chiude coi numeri: i template in più non servono
+
+Solo verbale ([D-093](docs/DECISIONS.md#d-093)): terza e ultima misura
+della voce più vecchia rimasta aperta.
+
+### Misurato
+
+Ogni proposta scritta vive dove vive: CHR_01 15/18 ai voti nell'anno
+singolo (le 3 fuori sono contenuto d'era, misurato vivo sulle saghe:
+21, 4 e 32 volte), CHR_03 17/19 con `P_SHOW_IT` a 88 voti su 20 saghe;
+nessuno zero sul conteggio completo, e le morte storiche di D-063
+(`P_DIG_FOR_HIRE`: 31) resuscitate dal tempo delle ere. La ripetizione
+ha già i suoi rimedi strutturali (D-028, D-077, D-076/D-085): scrivere
+template adesso sarebbe contenuto senza bisogno (D-035).
+
+---
+
 ## [0.1.49] — Il browser dice se sa tenere il salvataggio
 
 Chiude ISSUES voce 12 ([D-092](docs/DECISIONS.md#d-092)): una partita

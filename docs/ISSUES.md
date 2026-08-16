@@ -62,9 +62,17 @@ i numeri accanto.
 
 </details>
 
-### 2. Tre-cinque template di Confluence in più
+### 2. ✅ Tre-cinque template di Confluence in più — chiusa in 0.1.50: non servono
 
-`contenuto` · milestone **0.2**
+`contenuto` · milestone **0.2** · Terza e ultima misura
+([D-093](DECISIONS.md#d-093)): ogni proposta scritta vive dove vive — CHR_01
+15/18 ai voti nell'anno singolo e le 3 fuori sono contenuto d'era misurato
+vivo sulle saghe (21, 4 e 32 volte); CHR_03 17/19, con `P_SHOW_IT` a **88
+voti su 20 saghe** e `P_OLD_PAGE` a 8 nella sua era; nessuno zero, e le morte
+storiche di D-063 sono resuscitate col tempo delle ere. La ripetizione ha già
+i suoi rimedi strutturali (biblioteca D-028, domanda consumata D-077,
+contenuto d'era D-076/D-085): template in più adesso sarebbero contenuto
+senza bisogno, cioè i morti di domani (D-035).
 
 Dieci template su due saghe. Le domande che una Tensione può porre sono la parte
 di contenuto che si vede di più al tavolo, ed è quella che si ripete prima.

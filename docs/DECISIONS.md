@@ -331,6 +331,50 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-093 — La voce 2 si chiude senza scrivere template: i numeri dicono che non servono
+**recorded in 0.1.50** (chiude ISSUES voce 2)
+
+La voce chiedeva «tre-cinque template di Confluence in più» contro la
+ripetizione al tavolo. Era già stata ridimensionata due volte dalle
+misure (D-061: metà delle domande scritte non veniva mai posta; D-063:
+il problema vero era il diritto di proporre, fatto in D-069). Questa è
+la terza misura, ed è quella che chiude: **ogni proposta scritta vive
+dove vive**, e la ripetizione ha già tre rimedi strutturali che nel
+frattempo sono entrati.
+
+### I numeri (sonda delle scelte a tavolo misto, 40 anni, semi 2000; saghe: 20 da 10 ere, semi 812+1009k)
+
+- **CHR_01, anno singolo**: 15 proposte su 18 ai voti. Le 3 fuori sono
+  tutte contenuto d'era che un anno primo non può avere:
+  `P_REOPEN_THE_MINE` e `P_ONE_CROWN` (D-085: **21 e 4 volte su 200
+  ere**), `P_HEIR_AS_STORY` (D-076: **32 volte su 20 saghe**).
+- **CHR_03, anno singolo**: 17 su 19 (erano 14 su 20 ai tempi di D-063,
+  su un corpo più piccolo). Le 2 fuori: `P_OLD_PAGE`, che è contenuto
+  d'era (**8 volte** sulle saghe della sua era), e `P_SHOW_IT`, che
+  nell'anno primo non esce perché la domanda della teca si apre tardi —
+  e sulle saghe va ai voti **88 volte su 20**.
+- **Nessuna proposta a zero** dove il suo contenuto vive: il conteggio
+  completo sulle 20 saghe CHR_03→CHR_04 va da 3 (`P_BURY_IT`) a 158
+  (`P_CALL_IT_IN`), e persino le morte storiche di D-063
+  (`P_DIG_FOR_HIRE`: **31**) sono resuscitate col tempo delle ere.
+
+### Perché non si scrive
+
+La paura della voce era la ripetizione: «le domande sono la parte che si
+vede di più, ed è quella che si ripete prima». Nel frattempo sono
+entrati la biblioteca che pesca l'anno (D-028: ogni era è una mano
+diversa), la domanda decisa che resta decisa (D-077: niente repliche
+nello stesso anno) e il contenuto d'era che entra solo quando la storia
+lo chiama (D-076/D-085). Aggiungere template adesso sarebbe contenuto
+senza bisogno misurato — e ogni misura di questo progetto dice che il
+contenuto in più che nessuno chiede finisce nella colonna dei morti di
+D-035. La banda resta guardata da `test_balance` e
+`test_library_balance`; se un giorno il tavolo umano troverà ripetitivo
+quello che le policy non trovano ripetitivo, quella sarà una
+segnalazione nuova, con la sua misura.
+
+---
+
 ## D-092 — Il browser dice se sa tenere il salvataggio (e lo fa scaricare)
 **implemented in 0.1.49** (chiude ISSUES voce 12)
 
