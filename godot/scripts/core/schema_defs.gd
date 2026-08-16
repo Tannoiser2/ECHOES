@@ -1280,6 +1280,9 @@ const DEFS := {
 					"type": "Dictionary",
 				},
 			},
+			"map_record": {
+				"type": "Dictionary",
+			},
 		},
 	},
 }

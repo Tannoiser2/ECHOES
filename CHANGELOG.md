@@ -5,6 +5,35 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.47] — Il verbale della mappa: come si piazza l'era nuova
+
+Estensione della Fase 3 su richiesta del committente
+([D-090](docs/DECISIONS.md#d-090)): il verbale dice anche la mappa.
+
+### Added
+
+- **`world_state.map_record`**: per ogni Regione chi la tiene (coi nomi
+  dell'era nuova), se è decaduta perché nessuno c'era (D-027), i segni
+  che porta e le condizioni sbiadite dal salto (D-078); in coda i fatti
+  diventati leggenda (D-075) e i rapporti ammorbiditi (D-045). Derivato
+  dagli stessi `inheritance_effects` che piazzano la mappa: una sola
+  fonte di verità.
+- **La prosa della mappa** nel log del tavolo (sotto il verbale delle
+  domande) e in `run_saga` sotto «La mappa che si eredita».
+
+### Changed
+
+- I segni nel verbale delle domande passano all'imperfetto («il mondo ne
+  portava il segno»): la pesca legge il mondo com'era alla chiusura, e il
+  salto può averli sbiaditi subito dopo — lo dice la riga della mappa.
+
+### Misurato
+
+Solo lettura, verificato: suite e sonda delle ere identiche riga per
+riga. 208 test in 29 suite, 4469 asserzioni.
+
+---
+
 ## [0.1.46] — Il verbale d'apertura: la generazione si legge
 
 Fase 3 del World Propagation Engine ([D-089](docs/DECISIONS.md#d-089)),

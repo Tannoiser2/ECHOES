@@ -368,6 +368,9 @@ calde, 14 più quiete · **Fase 3 fatta in 0.1.46**
 pescata il mondo registra e dice chi l'ha richiamata («La Carestia torna:
 Re Aldric non l'ha mai chiusa»), in `world_state.opening_record`, nel log
 del tavolo e nel digest di `run_saga`. Determinismo intatto, misurato.
+In 0.1.47 il verbale copre anche la mappa
+([D-090](DECISIONS.md#d-090)): chi tiene cosa, cosa è decaduto, cosa è
+sbiadito, cosa è diventato leggenda.
 
 **Fatto quando** da una Chronicle conclusa esce una Chronicle nuova con domande
 scelte dalle conseguenze di quella prima, e due Chronicle in fila si giocano

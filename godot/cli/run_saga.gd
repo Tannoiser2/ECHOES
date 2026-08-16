@@ -164,6 +164,7 @@ func _initialize() -> void:
 			"year": int(world["year"]),
 			"years_passed": session.years_passed(),
 			"verbale": WorldStateFactory.opening_lines(world.get("opening_record", []), data),
+			"verbale_mappa": WorldStateFactory.map_lines(world.get("map_record", {}), data, world),
 			"seats": seats,
 			"tensions": tensions,
 			"confluences": confluences,
@@ -265,6 +266,12 @@ func _print_saga(saga: Array) -> void:
 		if not (year.get("verbale", []) as Array).is_empty():
 			print("Perche' queste:")
 			for line in year["verbale"]:
+				print("  - %s" % str(line))
+
+		# E la meta' della mappa (D-090): come si piazza l'era nuova.
+		if not (year.get("verbale_mappa", []) as Array).is_empty():
+			print("La mappa che si eredita:")
+			for line in year["verbale_mappa"]:
 				print("  - %s" % str(line))
 
 		if not (year["confluences"] as Array).is_empty():

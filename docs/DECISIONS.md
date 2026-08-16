@@ -331,6 +331,50 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-090 — Il verbale della mappa: come si piazza l'era nuova
+**implemented in 0.1.47** (estensione di D-089, su richiesta del committente)
+
+D-089 aveva dato voce alla metà delle domande; la mappa restava muta — si
+piazzava per eredità (D-075/D-078/D-027) e il tavolo doveva ricostruire da
+sé cosa il tempo le aveva fatto. Il committente ha chiesto il pezzo che
+mancava: il verbale dice anche come si piazza la mappa.
+
+### La regola
+
+`map_record` è derivato dagli **stessi `inheritance_effects` che la
+piazzano davvero** — una sola fonte di verità, quindi il verbale non può
+mentire sul tavolo — più i default di fabbrica per le Regioni che
+l'eredità non tocca. Per ogni Regione: chi la tiene (coi nomi dell'era
+nuova: il seggio continua, la persona no), se è **decaduta** perché chi la
+teneva non c'era (D-027), i **segni** che porta
+(`structure:`/`settlement:`/`scar:`/`condition:`), e le **condizioni
+sbiadite** dal salto (D-078). In coda: i fatti diventati **leggenda** su
+questo salto (D-075) e quanti **rapporti** hanno fatto un passo verso
+l'indifferenza (D-045). Nel mondo come `world_state.map_record` (schema
+esteso), nel log sotto il verbale delle domande, in `run_saga` sotto
+«La mappa che si eredita»:
+
+> Terre Nahr a Popolo Nahr. 'condition:mourning' è sbiadito: non è più
+> in corso. · Miniere Antiche a nessuno. · Non più fatti, ma leggende:
+> 'order_restored', 'question_unresolved'. · 2 rapporti fanno un passo
+> verso l'indifferenza: la guerra si ricorda come rancore.
+
+E una correzione di tempo verbale alla metà delle domande: i segni
+passano all'**imperfetto** («il mondo ne portava il segno») perché la
+pesca legge il mondo com'era alla chiusura, e il salto può averli
+sbiaditi subito dopo — la riga della mappa dice come stanno adesso. Le
+due metà del verbale non possono più contraddirsi.
+
+### Misurato
+
+Solo lettura come il resto del verbale: suite e sonda delle ere identiche
+riga per riga (574/790, 237/317, 66/14 su 720). Guardie nuove in
+`test_library_content`: chi c'era tiene, chi non c'era decade, il lutto
+sbiadisce a 120 anni e resta in corso a 20, il fatto eterno non diventa
+leggenda, il rancore si conta — e ogni riga di prosa si legge.
+
+---
+
 ## D-089 — Il motore 0.3, Fase 3: il verbale d'apertura
 **implemented in 0.1.46** (milestone 0.3, chiude ISSUES voce 9)
 

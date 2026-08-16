@@ -212,6 +212,70 @@
           "items": {
             "$ref": "#/$defs/opening_entry"
           }
+        },
+        "map_record": {
+          "$ref": "#/$defs/map_record",
+          "description": "La meta' della mappa del verbale d'apertura (D-090): come si piazza la mappa dell'era nuova e cosa il tempo le ha fatto, derivata dagli stessi inheritance_effects che la piazzano. Vuoto ({}) per l'anno che apre una saga."
+        }
+      }
+    },
+    "map_record": {
+      "type": "object",
+      "required": [],
+      "additionalProperties": false,
+      "properties": {
+        "regions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/map_region_entry"
+          }
+        },
+        "legends_born": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "relations_softened": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "map_region_entry": {
+      "type": "object",
+      "required": [
+        "region_id",
+        "holder",
+        "lapsed",
+        "marks",
+        "faded"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "region_id": {
+          "type": "string"
+        },
+        "holder": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "lapsed": {
+          "type": "boolean"
+        },
+        "marks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "faded": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       }
     },

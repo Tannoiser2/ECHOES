@@ -48,6 +48,7 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 		"influence_used": {},
 		"influence_used_by_tension": {},
 		"opening_record": [],
+		"map_record": {},
 	}
 
 	for entity_id in chronicle["entities"]:
@@ -261,6 +262,131 @@ static func opening_record(
 	return record
 
 
+## Il verbale della mappa (D-090): come si piazza la mappa dell'era nuova,
+## e cosa il tempo le ha fatto. Derivato dagli stessi `inheritance_effects`
+## che la piazzano davvero - una sola fonte di verita', quindi il verbale
+## non puo' mentire sul tavolo - piu' i default di fabbrica per le Regioni
+## che l'eredita' non tocca. Solo lettura, come il resto del verbale.
+static func map_record(
+	world: Dictionary, chronicle: Dictionary, data: RefCounted,
+	previous: Dictionary, years: int
+) -> Dictionary:
+	if previous.is_empty():
+		return {}
+	var holders: Dictionary = {}
+	var marks: Dictionary = {}
+	for region_id in world["regions"]:
+		holders[str(region_id)] = world["regions"][str(region_id)].get("control", null)
+		marks[str(region_id)] = []
+		for tag in world["regions"][str(region_id)]["tags"]:
+			if _is_map_mark(str(tag)):
+				(marks[str(region_id)] as Array).append(str(tag))
+
+	var softened: int = 0
+	var legends_born: Array = []
+	for effect in inheritance_effects(previous, chronicle, data, years):
+		var target: String = str(((effect as Dictionary)["target"] as Dictionary)["id"])
+		var payload: Dictionary = (effect as Dictionary)["payload"]
+		match str((effect as Dictionary)["type"]):
+			"SET_CONTROL":
+				holders[target] = payload.get("entity_id", null)
+			"SET_REGION_TAG":
+				if _is_map_mark(str(payload["tag"])) and not (marks[target] as Array).has(str(payload["tag"])):
+					(marks[target] as Array).append(str(payload["tag"]))
+			"ADD_SCAR":
+				var scar_region: String = str(payload["region_id"])
+				if marks.has(scar_region) and not (marks[scar_region] as Array).has(str(payload["tag"])):
+					(marks[scar_region] as Array).append(str(payload["tag"]))
+			"SET_RELATION":
+				var before_level: String = str((
+					(previous.get("relations", {}) as Dictionary).get(target, {}) as Dictionary
+				).get("level", payload["level"]))
+				if str(payload["level"]) != before_level:
+					softened += 1
+			"SET_GLOBAL_TAG":
+				var tag: String = str(payload["tag"])
+				if tag.begins_with("legend:") \
+						and (previous.get("global_tags", []) as Array).has(tag.substr(7)):
+					legends_born.append(tag.substr(7))
+
+	var regions: Array = []
+	var region_ids: Array = (world["regions"] as Dictionary).keys()
+	region_ids.sort()
+	for region_id in region_ids:
+		var before: Dictionary = (previous.get("regions", {}) as Dictionary).get(str(region_id), {})
+		var faded: Array = []
+		for tag in before.get("tags", []):
+			if str(tag).begins_with("condition:") and not (marks[str(region_id)] as Array).has(str(tag)):
+				faded.append(str(tag))
+		faded.sort()
+		var mark_list: Array = (marks[str(region_id)] as Array).duplicate()
+		mark_list.sort()
+		regions.append({
+			"region_id": str(region_id),
+			"holder": holders[str(region_id)],
+			"lapsed": before.get("control", null) != null and holders[str(region_id)] == null,
+			"marks": mark_list,
+			"faded": faded,
+		})
+	legends_born.sort()
+	return {
+		"regions": regions,
+		"legends_born": legends_born,
+		"relations_softened": softened,
+	}
+
+
+static func _is_map_mark(tag: String) -> bool:
+	for prefix in INHERITED_TAG_PREFIXES:
+		if tag.begins_with(prefix):
+			return true
+	return false
+
+
+## La prosa della mappa, una riga per Regione piu' le code del tempo. I nomi
+## dei padroni sono quelli dell'era nuova (il seggio continua, la persona no):
+## si risolvono sul mondo gia' passato per la successione, con la scheda
+## d'autore a fare da riserva.
+static func map_lines(record: Dictionary, data: RefCounted, world: Dictionary = {}) -> Array:
+	var lines: Array = []
+	if record.is_empty():
+		return lines
+	for entry in record.get("regions", []):
+		var region_name: String = str(data.regions[str((entry as Dictionary)["region_id"])]["name"])
+		var holder: Variant = (entry as Dictionary)["holder"]
+		var line: String
+		if holder == null:
+			if bool((entry as Dictionary)["lapsed"]):
+				line = "%s a nessuno: chi la teneva non c'era." % region_name
+			else:
+				line = "%s a nessuno." % region_name
+		else:
+			var holder_name: String = str((
+				(world.get("entities", {}) as Dictionary).get(str(holder), {}) as Dictionary
+			).get("name", data.entities[str(holder)]["name"]))
+			line = "%s a %s." % [region_name, holder_name]
+		var mark_list: Array = (entry as Dictionary)["marks"]
+		if not mark_list.is_empty():
+			line += " Porta: %s." % ", ".join(PackedStringArray(mark_list.map(
+				func(tag: Variant) -> String: return "'%s'" % str(tag)
+			)))
+		for tag in (entry as Dictionary)["faded"]:
+			line += " '%s' e' sbiadito: non e' piu' in corso." % str(tag)
+		lines.append(line)
+	var legends: Array = record.get("legends_born", [])
+	if not legends.is_empty():
+		lines.append("Non piu' fatti, ma leggende: %s." % ", ".join(PackedStringArray(legends.map(
+			func(fact: Variant) -> String: return "'%s'" % str(fact)
+		))))
+	var softened: int = int(record.get("relations_softened", 0))
+	if softened > 0:
+		lines.append(
+			"%d rapporti fanno un passo verso l'indifferenza: la guerra si ricorda come rancore."
+			% softened
+		)
+	return lines
+
+
 ## La prosa del verbale, una riga per domanda. Fuori dal record cosi' la
 ## leggono uguale il log del tavolo e il digest della saga.
 static func opening_lines(record: Array, data: RefCounted) -> Array:
@@ -271,13 +397,16 @@ static func opening_lines(record: Array, data: RefCounted) -> Array:
 		for reason in (entry as Dictionary)["called_by"]:
 			match str((reason as Dictionary)["kind"]):
 				"mark":
+					# L'imperfetto e' onesto: la pesca legge il mondo com'era
+					# alla chiusura, e il salto puo' aver sbiadito il segno
+					# subito dopo - la mappa qui sotto dice come sta adesso.
 					match str((reason as Dictionary)["carried"]):
 						"fact":
-							reasons.append("il mondo ne porta ancora il segno ('%s')" % str(reason["tag"]))
+							reasons.append("il mondo ne portava il segno ('%s')" % str(reason["tag"]))
 						"legend":
 							reasons.append("se ne racconta ancora la leggenda ('%s')" % str(reason["tag"]))
 						"region":
-							reasons.append("%s ne porta il segno ('%s')" % [
+							reasons.append("%s ne portava il segno ('%s')" % [
 								str(data.regions[str(reason["region_id"])]["name"]), str(reason["tag"]),
 							])
 				"account":

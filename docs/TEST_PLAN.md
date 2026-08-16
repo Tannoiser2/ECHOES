@@ -10,7 +10,7 @@ python3 tools/gen_gd_schema.py --check
 GODOT=/path/to/godot tools/run_sims.sh
 ```
 
-Stato 0.1.46: **207 test in 29 suite, 4452 asserzioni, tutto verde**, più i 3
+Stato 0.1.47: **208 test in 29 suite, 4469 asserzioni, tutto verde**, più i 3
 piani di simulazione che passano le proprie asserzioni e l'export di stampa che
 esce identico a ogni rigenerazione.
 

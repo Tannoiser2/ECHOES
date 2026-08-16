@@ -289,6 +289,89 @@ func test_the_opening_record_says_why_each_question_is_on_the_table() -> void:
 	)
 
 
+## D-090: il verbale della mappa. Come si piazza la mappa dell'era nuova -
+## derivato dagli stessi inheritance_effects che la piazzano, quindi non puo'
+## mentire: chi c'era tiene, chi non c'era decade (D-027), le condizioni
+## sbiadiscono su un secolo (D-078), i fatti non eterni diventano leggende
+## (D-075) e la guerra si ricorda come rancore (D-045).
+func test_the_map_record_says_how_the_new_era_is_placed() -> void:
+	var loaded: RefCounted = data()
+	var session_two: RefCounted = GameSession.new(loaded)
+	assert_true(session_two.setup("CHR_02", LIBRARY_SEATS, 4242), "CHR_02 si prepara")
+	var previous: Dictionary = {
+		"year": 812,
+		"global_tags": ["grain_requisitioned", "mine_sealed"],
+		"regions": {
+			"REG_EREDAN": {"id": "REG_EREDAN", "control": "ENT_ALDRIC", "tags": []},
+			"REG_TERRE_NAHR": {
+				"id": "REG_TERRE_NAHR", "control": "ENT_NAHR",
+				"tags": ["condition:mourning"],
+			},
+		},
+		"relations": {"ENT_ALDRIC|ENT_NAHR": {"level": "HOSTILE", "tags": []}},
+		"entities": {
+			"ENT_ALDRIC": {"id": "ENT_ALDRIC", "name": "Re Aldric", "presence": ["REG_EREDAN"]},
+			"ENT_NAHR": {"id": "ENT_NAHR", "name": "Popolo Nahr", "presence": []},
+		},
+		"tensions": {},
+	}
+
+	var record: Dictionary = WorldStateFactory.map_record(
+		session_two.world, loaded.chronicles["CHR_02"], loaded, previous, 120
+	)
+	var by_region: Dictionary = {}
+	for entry in record["regions"]:
+		by_region[str((entry as Dictionary)["region_id"])] = entry
+	assert_eq(
+		str((by_region["REG_EREDAN"] as Dictionary)["holder"]), "ENT_ALDRIC",
+		"chi c'era tiene quello che teneva"
+	)
+	assert_eq(
+		(by_region["REG_TERRE_NAHR"] as Dictionary)["holder"], null,
+		"chi non c'era perde (D-027)"
+	)
+	assert_true(
+		bool((by_region["REG_TERRE_NAHR"] as Dictionary)["lapsed"]),
+		"e il verbale lo dice: decaduto, non mai avuto"
+	)
+	assert_true(
+		((by_region["REG_TERRE_NAHR"] as Dictionary)["faded"] as Array).has("condition:mourning"),
+		"un lutto non dura un secolo (D-078)"
+	)
+	assert_true(
+		(record["legends_born"] as Array).has("grain_requisitioned"),
+		"il fatto non eterno diventa leggenda su un salto lungo"
+	)
+	assert_false(
+		(record["legends_born"] as Array).has("mine_sealed"),
+		"il fatto eterno resta un fatto: nessuna leggenda"
+	)
+	assert_eq(int(record["relations_softened"]), 1, "la guerra si ricorda come rancore")
+
+	var text: String = "\n".join(PackedStringArray(
+		WorldStateFactory.map_lines(record, loaded, session_two.world)
+	))
+	assert_true(text.contains("chi la teneva non c'era"), "la decadenza si legge")
+	assert_true(text.contains("'condition:mourning' e' sbiadito"), "lo sbiadimento si legge")
+	assert_true(text.contains("'grain_requisitioned'"), "la leggenda nuova si legge")
+	assert_true(text.contains("rancore"), "e l'ammorbidirsi dei rapporti pure")
+
+	# Su un salto breve il tempo non ha ancora fatto niente: la condizione
+	# resta in corso, nessuna leggenda nasce, i rapporti restano interi.
+	# Solo la decadenza del controllo resta: e' questione di presenza, non di anni.
+	var short_record: Dictionary = WorldStateFactory.map_record(
+		session_two.world, loaded.chronicles["CHR_02"], loaded, previous, 20
+	)
+	for entry in short_record["regions"]:
+		if str((entry as Dictionary)["region_id"]) == "REG_TERRE_NAHR":
+			assert_true(((entry as Dictionary)["faded"] as Array).is_empty(), "a vent'anni il lutto e' ancora in corso")
+			assert_true(((entry as Dictionary)["marks"] as Array).has("condition:mourning"), "e sta fra i segni della mappa")
+			assert_true(bool((entry as Dictionary)["lapsed"]), "ma la Regione decade lo stesso: nessuno c'era")
+	assert_true((short_record["legends_born"] as Array).is_empty(), "nessuna leggenda a vent'anni")
+	assert_eq(int(short_record["relations_softened"]), 0, "e il rancore e' ancora guerra")
+	session_two.dispose()
+
+
 ## E la ripesca di `inherit_from` rida' anche il sacchetto del Drift: ogni
 ## chip del sacchetto nomina una Tensione dell'anno ripescato, non di quello
 ## pescato alla cieca al setup.
