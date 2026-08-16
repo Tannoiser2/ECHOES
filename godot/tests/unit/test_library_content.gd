@@ -191,6 +191,35 @@ func test_an_open_account_calls_its_question_into_the_draw() -> void:
 	)
 
 
+## D-088 (Fase 2 del motore 0.3): la domanda lasciata calda torna calda.
+## Il confine e' quello della memoria (D-075): un salto breve ricorda il
+## calore, un salto lungo lo sbiadisce - e non si riparte mai gia' a soglia.
+func test_a_question_left_hot_starts_warm_after_a_short_jump() -> void:
+	var definition: Dictionary = data().tensions["TEN_FAMINE"]
+	assert_eq(int(definition["current_value"]), 3, "il valore d'autore della Carestia e' 3")
+	assert_eq(int(definition["threshold"]), 6, "e la sua soglia e' 6")
+
+	var hot: Dictionary = {"tensions": {"TEN_FAMINE": {"current_value": 6}}}
+	assert_eq(
+		WorldStateFactory.inherited_tension_value("TEN_FAMINE", definition, hot, 20), 5,
+		"lasciata a soglia, torna tiepida a soglia meno uno: mai bollente"
+	)
+	assert_eq(
+		WorldStateFactory.inherited_tension_value("TEN_FAMINE", definition, hot, 120), 3,
+		"su un secolo il calore sbiadisce: si riparte dal valore d'autore"
+	)
+	var quiet: Dictionary = {"tensions": {"TEN_FAMINE": {"current_value": 0}}}
+	assert_eq(
+		WorldStateFactory.inherited_tension_value("TEN_FAMINE", definition, quiet, 20), 0,
+		"una questione chiusa bene riparte quieta, anche sotto il valore scritto"
+	)
+	var absent: Dictionary = {"tensions": {}}
+	assert_eq(
+		WorldStateFactory.inherited_tension_value("TEN_FAMINE", definition, absent, 20), 3,
+		"una questione che l'era prima non aveva riparte dal valore d'autore"
+	)
+
+
 ## E la ripesca di `inherit_from` rida' anche il sacchetto del Drift: ogni
 ## chip del sacchetto nomina una Tensione dell'anno ripescato, non di quello
 ## pescato alla cieca al setup.

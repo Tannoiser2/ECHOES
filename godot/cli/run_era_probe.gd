@@ -52,6 +52,9 @@ func _initialize() -> void:
 	var echoed_drawn: int = 0
 	var account_candidates: int = 0
 	var account_drawn: int = 0
+	var warmed: int = 0
+	var quieted: int = 0
+	var drawn_total: int = 0
 	var survivors: Dictionary = {}
 	var survivor_avg: Array = []
 	var first_year_facts_avg: Array = []
@@ -103,6 +106,16 @@ func _initialize() -> void:
 				var hand: Array = (session.world["tensions"] as Dictionary).keys()
 				hand.sort()
 				hands["|".join(PackedStringArray(hand))] = true
+				# Il calore ereditato (D-088): quante pescate partono sopra o
+				# sotto il valore d'autore.
+				for tension_id in hand:
+					drawn_total += 1
+					var start: int = int(session.world["tensions"][str(tension_id)]["current_value"])
+					var authored: int = int(data.tensions[str(tension_id)]["current_value"])
+					if start > authored:
+						warmed += 1
+					elif start < authored:
+						quieted += 1
 				# La pesca che ascolta (D-079): delle candidate che l'era prima
 				# aveva richiamato con un segno, quante sono state pescate.
 				var pool: Dictionary = (
@@ -193,6 +206,10 @@ func _initialize() -> void:
 	if account_candidates > 0:
 		print("  I conti rimasti aperti (D-087): candidate richiamate da una clausola negata pescate %d su %d (%d%%)" % [
 			account_drawn, account_candidates, int(100.0 * account_drawn / account_candidates)
+		])
+	if drawn_total > 0:
+		print("  Il calore ereditato (D-088): su %d domande pescate, %d partono piu' calde e %d piu' quiete del valore d'autore" % [
+			drawn_total, warmed, quieted
 		])
 	print("  Verita' nel registro all'ultimo anno: %.0f in media" % _mean(truths_final))
 	print("")

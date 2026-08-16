@@ -310,7 +310,7 @@ static func _asks_about_a_question_not_in_play(card: Dictionary, world: Dictiona
 ## quello che viene rifatto qui e' mai passato per un Effect (D-006).
 static func redeal_tensions(
 	world: Dictionary, chronicle: Dictionary, data: RefCounted, rng: RefCounted,
-	previous: Dictionary, previous_results: Dictionary = {}
+	previous: Dictionary, previous_results: Dictionary = {}, years: int = 1
 ) -> void:
 	if previous.is_empty() or not chronicle.has("tension_pool"):
 		return
@@ -322,12 +322,34 @@ static func redeal_tensions(
 		var definition: Dictionary = data.tensions[tension_id]
 		world["tensions"][tension_id] = {
 			"id": tension_id,
-			"current_value": int(definition["current_value"]),
+			"current_value": inherited_tension_value(str(tension_id), definition, previous, years),
 			"visibility": str(definition["visibility"]),
 			"fired_omens": [],
 			"resolved_count": 0,
 		}
 	_build_drift_track(world, chronicle, rng)
+
+
+## La domanda lasciata calda torna calda (D-088, Fase 2 del motore 0.3).
+##
+## Il valore di partenza di una Tensione ripescata segue il confine della
+## memoria (D-075): su un salto **breve** la questione riparte da dove l'era
+## prima l'ha lasciata - ma mai gia' a soglia: torna *tiepida*, non bollente,
+## perche' l'era comincia prima del bollore, non dentro. Su un salto lungo il
+## calore sbiadisce come tutto il resto, e si riparte dal valore d'autore.
+## Una questione chiusa bene puo' ripartire anche piu' quieta di com'e'
+## scritta: quiete e' un'eredita' quanto il fuoco.
+static func inherited_tension_value(
+	tension_id: String, definition: Dictionary, previous: Dictionary, years: int
+) -> int:
+	var authored: int = int(definition["current_value"])
+	if Succession.decays_after(years):
+		return authored
+	var before: Variant = (previous.get("tensions", {}) as Dictionary).get(tension_id)
+	if before == null:
+		return authored
+	var carried: int = int((before as Dictionary).get("current_value", authored))
+	return clampi(carried, 0, int(definition["threshold"]) - 1)
 
 
 ## The drift bag (§11.2): a fixed distribution shuffled once with the seeded RNG.

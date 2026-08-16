@@ -5,6 +5,28 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.45] — La domanda lasciata calda torna calda
+
+Fase 2 del World Propagation Engine ([D-088](docs/DECISIONS.md#d-088)): il
+tempo non resetta più le questioni oltre alle persone.
+
+### Added
+
+- **Il calore ereditato**: sui salti brevi (sotto i 50 anni) una Tensione
+  ripescata riparte da dove l'era prima l'ha lasciata — mai già a soglia:
+  torna tiepida, non bollente. Sui salti lunghi il calore sbiadisce e si
+  riparte dal valore d'autore. Una questione chiusa bene può ripartire
+  anche più quieta di com'è scritta.
+- La sonda delle ere conta il calore ereditato.
+
+### Misurato
+
+Su 720 domande pescate in 20 saghe, 66 partono più calde e 14 più quiete
+del valore d'autore; ogni altra misura d'era invariata e la guardia degli
+anni-biblioteca resta verde. 206 test in 29 suite verdi.
+
+---
+
 ## [0.1.44] — Il motore 0.3 apre il cantiere: i conti rimasti aperti
 
 Fase 0 e Fase 1 del World Propagation Engine
