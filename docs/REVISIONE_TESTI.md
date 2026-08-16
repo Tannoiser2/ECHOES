@@ -24,7 +24,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`CHR_03`**
-> Le Citta Libere
+> Le Città Libere
 
 > Ottocento anni dopo Aldric non c'è più una corona, e per otto secoli non è servita. Le sette città si governano da sole, la Gilda del Sale tiene il registro di tutti, l'Ordine del Vetro custodisce un frammento che nessuno dei vivi ha visto, e sulle Montagne Rosse si scava più in basso di quanto sia mai stato scavato. La Valle non da più da mangiare a tutti: i canali ci sono ancora, sono pieni di terra, e nessuno è obbligato a toglierla.
 
@@ -92,7 +92,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`ENT_LIBERE`**
-> Le Citta Libere
+> Le Città Libere
 
 > Sette città che si governano da sole e si riuniscono solo quando non possono evitarlo. Non hanno una capitale, e considerano questo il loro unico principio.
 
@@ -1814,7 +1814,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`DST_CENERE_DEEP`**
-> Piu a Fondo
+> Più a Fondo
 
 > Chi ha ottenuto la montagna scopre di volere quello che c'è sotto la montagna. È lo stesso desiderio di prima, con meno margine.
 

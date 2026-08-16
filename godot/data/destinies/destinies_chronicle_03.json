@@ -347,7 +347,7 @@
     {
       "id": "DST_CENERE_DEEP",
       "entity_id": "ENT_CENERE",
-      "title": "Piu a Fondo",
+      "title": "Più a Fondo",
       "description": "Chi ha ottenuto la montagna scopre di volere quello che c'è sotto la montagna. È lo stesso desiderio di prima, con meno margine.",
       "art_prompt_key": "destiny.cenere.deep",
       "minimum": {
