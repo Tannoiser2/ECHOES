@@ -5,6 +5,20 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.41] — Un PDF, non venticinque SVG
+
+Chiude ISSUES voce 8: il formato di consegna per la tipografia.
+
+### Added
+
+- `tools/make_pdf.py` e il flag `--pdf` di `tools/run_export.sh`:
+  `echoes_print.pdf`, 26 pagine A4 esatte in ordine di consegna (Asset,
+  Echo, Tensioni, Destini, Casate, Regioni). Dipendenze opzionali
+  (`cairosvg`, `pypdf`): servono solo a chi stampa — gli SVG restano la
+  sorgente diffabile che la CI confronta, e senza flag non cambia niente.
+
+---
+
 ## [0.1.40] — Le vie per disfare i fatti eterni
 
 Chiude ISSUES voce 18 ([D-085](docs/DECISIONS.md#d-085)): un fatto eterno

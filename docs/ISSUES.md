@@ -312,16 +312,13 @@ più da costruire.
 **Fatto quando** la scelta è scritta in COMPONENTS §7 al posto della lista di
 domande.
 
-### 8. Un PDF, non venticinque SVG
+### 8. ✅ Un PDF, non venticinque SVG — fatta in 0.1.41
 
-`strumenti`
-
-Per una tipografia servono un PDF e i profili di stampa; oggi escono 25 SVG. La
-conversione è meccanica ma va fatta da qualcosa che non sia un passaggio a mano.
-
-**Fatto quando** `tools/run_export.sh --pdf` produce un unico PDF con le pagine
-in ordine, e la CI continua a confrontare gli SVG (che restano la sorgente
-diffabile).
+`strumenti` · **chiusa in 0.1.41**: `tools/run_export.sh --pdf` produce
+`echoes_print.pdf` — 26 pagine A4 esatte (210×297 mm), in ordine di consegna
+(Asset, Echo, Tensioni, Destini, Casate, Regioni) via `tools/make_pdf.py`
+(cairosvg + pypdf, dipendenze opzionali: servono solo a chi stampa). La CI
+continua a confrontare gli SVG, che restano la sorgente diffabile.
 
 ---
 
