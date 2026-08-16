@@ -368,8 +368,10 @@ divergere per costruzione.
 - ✅ i **token sulla mappa** come i segnalini della fustella (D-097) —
   **fatta in 0.1.60**: i tondi di presenza portano l'iniziale della
   casa, l'anello di controllo c'era già;
-- le **carte-identità** (tarocchi di Casata e Destino) nella vista del
-  seggio.
+- ✅ le **carte-identità** (tarocchi di Casata e Destino) — **fatta in
+  0.1.61**: dietro il paravento, sopra la scala del Destino, e le vede
+  solo chi le giura perché il pannello è già disegnato per il solo
+  viewer. Con questa, le fette dichiarate di D-101 sono complete.
 
 Guardie: `test_print_export` (la carta singola esce della sua taglia,
 senza segni di taglio, deterministica, e si rasterizza per ogni mazzo).

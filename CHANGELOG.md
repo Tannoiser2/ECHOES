@@ -5,6 +5,23 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.61] — I tarocchi dietro il paravento
+
+Terza e ultima fetta dichiarata di [D-101](docs/DECISIONS.md#d-101).
+
+### Added
+
+- **La Casata e il Destino come carte**: nella colonna del seggio, sopra
+  la scala del Destino, i due tarocchi 70×120 dei fogli di stampa — e il
+  Destino lo vede solo chi lo giura, come al tavolo. Alla rotazione di
+  un'era la carta cambia da sola: la texture segue `destiny_of`.
+
+### Misurato
+
+216 test in 29 suite, 4557 asserzioni; UI compilata headless.
+
+---
+
 ## [0.1.60] — La carta si posa al centro del tavolo
 
 Seconda fetta di [D-101](docs/DECISIONS.md#d-101).
