@@ -52,7 +52,6 @@
       ],
       "active": true,
       "art_prompt_key": "entity.sale",
-      "marker_id": "MK_ENT_SALE",
       "persistence": "MORTAL",
       "successors": [
         {
@@ -146,7 +145,6 @@
       ],
       "active": true,
       "art_prompt_key": "entity.vetro",
-      "marker_id": "MK_ENT_VETRO",
       "persistence": "MORTAL",
       "successors": [
         {
@@ -240,7 +238,6 @@
       ],
       "active": true,
       "art_prompt_key": "entity.cenere",
-      "marker_id": "MK_ENT_CENERE",
       "persistence": "MORTAL",
       "successors": [
         {
@@ -330,7 +327,6 @@
       ],
       "active": true,
       "art_prompt_key": "entity.libere",
-      "marker_id": "MK_ENT_LIBERE",
       "persistence": "COLLECTIVE",
       "destiny_pool": [
         "DST_LIBERE",

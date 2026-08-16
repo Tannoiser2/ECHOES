@@ -120,9 +120,6 @@
           "type": "string",
           "minLength": 1
         },
-        "marker_id": {
-          "type": "string"
-        },
         "name_forms": {
           "type": "object",
           "description": "Grammatical forms of the Region name for narrative slots. A bare name is not enough in Italian: $the_region needs the article that agrees with it, $in_region the preposition. Omit and the engine falls back to the bare name.",

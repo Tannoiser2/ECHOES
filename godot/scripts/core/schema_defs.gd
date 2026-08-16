@@ -148,9 +148,6 @@ const DEFS := {
 				"type": "String",
 				"min_length": 1,
 			},
-			"marker_id": {
-				"type": "String",
-			},
 			"rules_text": {
 				"type": "String",
 			},
@@ -583,9 +580,6 @@ const DEFS := {
 				"type": "String",
 				"min_length": 1,
 			},
-			"marker_id": {
-				"type": "String",
-			},
 		},
 	},
 	"effect": {
@@ -773,9 +767,6 @@ const DEFS := {
 			"art_prompt_key": {
 				"type": "String",
 			},
-			"marker_id": {
-				"type": "String",
-			},
 			"persistence": {
 				"type": "String",
 				"enum": [
@@ -890,9 +881,6 @@ const DEFS := {
 			"art_prompt_key": {
 				"type": "String",
 				"min_length": 1,
-			},
-			"marker_id": {
-				"type": "String",
 			},
 			"name_forms": {
 				"type": "Dictionary",

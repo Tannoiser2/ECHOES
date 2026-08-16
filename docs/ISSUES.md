@@ -391,9 +391,15 @@ rasterizza le stesse pagine SVG che la stampa userà (0.1.43). Guardie in
 
 ## Debiti dichiarati
 
-### 11. `marker_id` non è usato da nessun codice
+### 11. ✅ `marker_id` non è usato da nessun codice — fatta in 0.1.48
 
-`debito` · milestone **0.5**
+`debito` · milestone **0.5** · Delle due vie del «fatto quando», è entrata la
+seconda ([D-091](DECISIONS.md#d-091)): il campo è tolto da schemi, dati e
+manifest. Rientrerà col prototipo 0.5 che lo legge — i valori erano meccanici
+(`MK_<id>`) e si rigenerano in un minuto, e la forma giusta del marker si
+decide quando esiste il lettore.
+
+<details><summary>Il testo dell'issue come era stato scritto</summary>
 
 Ogni Regione, Entità, Tensione e carta Echo ha un `marker_id` nello schema e nei
 dati. Nessuna riga di GDScript lo legge: esiste per il prototipo di computer
@@ -401,6 +407,8 @@ vision della 0.5.
 
 **Fatto quando** o il prototipo lo usa, o il campo viene tolto dallo schema. Un
 campo che nessuno legge è un campo che nessuno mantiene.
+
+</details>
 
 ### 12. Il salvataggio nel browser sta in IndexedDB
 

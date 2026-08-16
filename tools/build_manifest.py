@@ -27,8 +27,9 @@ HEADER = """# ECHOES - Asset Manifest
 
 Every visual element the Chronicle needs, taken straight from `godot/data`.
 `art_prompt_key` is the lookup into the Master Prompts in
-[ART_BIBLE.md](ART_BIBLE.md); `marker_id` is the optional fiducial hook reserved
-for the physical table (spec §19.5) and is not used by any code in 0.0.
+[ART_BIBLE.md](ART_BIBLE.md). The fiducial markers for the physical table
+(spec §19.5) enter the data model with the 0.5 prototype that reads them
+(ISSUES 11, D-091).
 
 §19.4 asks for 48 Assets, 24 Echo cards, 12 Region tiles, 24 map overlays and 12
 standees. The Assets and the Echo cards are there; the tiles, the overlays and
@@ -107,11 +108,10 @@ def render(documents: Dict[str, List[Dict[str, Any]]]) -> str:
                     str(r["presence_slots"]),
                     ", ".join(r["asset_sources"]) or "-",
                     f"`{r['art_prompt_key']}`",
-                    f"`{r.get('marker_id', '-')}`",
                 ]
                 for r in regions
             ],
-            ["id", "nome", "biome", "ruolo", "slot", "fonti Asset", "art_prompt_key", "marker_id"],
+            ["id", "nome", "biome", "ruolo", "slot", "fonti Asset", "art_prompt_key"],
         )
     )
 

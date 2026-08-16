@@ -175,9 +175,6 @@
         "art_prompt_key": {
           "type": "string"
         },
-        "marker_id": {
-          "type": "string"
-        },
         "persistence": {
           "type": "string",
           "enum": [

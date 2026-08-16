@@ -4,8 +4,9 @@
 
 Every visual element the Chronicle needs, taken straight from `godot/data`.
 `art_prompt_key` is the lookup into the Master Prompts in
-[ART_BIBLE.md](ART_BIBLE.md); `marker_id` is the optional fiducial hook reserved
-for the physical table (spec §19.5) and is not used by any code in 0.0.
+[ART_BIBLE.md](ART_BIBLE.md). The fiducial markers for the physical table
+(spec §19.5) enter the data model with the 0.5 prototype that reads them
+(ISSUES 11, D-091).
 
 §19.4 asks for 48 Assets, 24 Echo cards, 12 Region tiles, 24 map overlays and 12
 standees. The Assets and the Echo cards are there; the tiles, the overlays and
@@ -111,14 +112,14 @@ family, 22 copies per family deck, 132 cards in the box (D-040).
 | ECH_THE_SHORT_YEAR | L'Anno Corto | TURN | TRANSFORMATION | `echo.turn.the_short_year` |
 
 ## Region tiles (6)
-| id | nome | biome | ruolo | slot | fonti Asset | art_prompt_key | marker_id |
-|---|---|---|---|---|---|---|---|
-| REG_EREDAN | Eredan | CITY | PRIMARY | 4 | AUTHORITY, WEALTH | `region.eredan` | `MK_REG_EREDAN` |
-| REG_MINIERE_ANTICHE | Miniere Antiche | UNDERGROUND | PRIMARY | 4 | KNOWLEDGE, WEALTH | `region.miniere_antiche` | `MK_REG_MINIERE_ANTICHE` |
-| REG_MONTAGNE_ROSSE | Montagne Rosse | MOUNTAIN | PRIMARY | 3 | FORCE, BONDS | `region.montagne_rosse` | `MK_REG_MONTAGNE_ROSSE` |
-| REG_TERRE_NAHR | Terre Nahr | STEPPE | PRIMARY | 4 | PEOPLE, BONDS | `region.terre_nahr` | `MK_REG_TERRE_NAHR` |
-| REG_VALLE_VERDE | Valle Verde | VALLEY | PRIMARY | 4 | PEOPLE, WEALTH | `region.valle_verde` | `MK_REG_VALLE_VERDE` |
-| REG_STRADA_MERCANTI | Strada dei Mercanti | ROAD | SECONDARY | 4 | WEALTH, BONDS | `region.strada_mercanti` | `MK_REG_STRADA_MERCANTI` |
+| id | nome | biome | ruolo | slot | fonti Asset | art_prompt_key |
+|---|---|---|---|---|---|---|
+| REG_EREDAN | Eredan | CITY | PRIMARY | 4 | AUTHORITY, WEALTH | `region.eredan` |
+| REG_MINIERE_ANTICHE | Miniere Antiche | UNDERGROUND | PRIMARY | 4 | KNOWLEDGE, WEALTH | `region.miniere_antiche` |
+| REG_MONTAGNE_ROSSE | Montagne Rosse | MOUNTAIN | PRIMARY | 3 | FORCE, BONDS | `region.montagne_rosse` |
+| REG_TERRE_NAHR | Terre Nahr | STEPPE | PRIMARY | 4 | PEOPLE, BONDS | `region.terre_nahr` |
+| REG_VALLE_VERDE | Valle Verde | VALLEY | PRIMARY | 4 | PEOPLE, WEALTH | `region.valle_verde` |
+| REG_STRADA_MERCANTI | Strada dei Mercanti | ROAD | SECONDARY | 4 | WEALTH, BONDS | `region.strada_mercanti` |
 
 ## Entity cards (8)
 | id | nome | archetipo | bisogno | destiny | art_prompt_key |

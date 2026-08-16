@@ -331,6 +331,28 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-091 — `marker_id` esce dal modello dati (e rientrerà con chi lo legge)
+**implemented in 0.1.48** (chiude ISSUES voce 11)
+
+Ogni Regione, Entità, Asset e carta Echo portava un `marker_id` nello
+schema — l'aggancio fiducial per il prototipo di computer vision della
+0.5 — e nessuna riga di codice l'ha mai letto. La voce 11 dava due vie:
+o il prototipo lo usa, o il campo si toglie. Il prototipo è a due
+milestone di distanza; il campo si toglie.
+
+Il criterio è D-035 applicato ai dati: un campo che nessuno legge è un
+campo che nessuno mantiene — quattordici valori da tenere allineati a
+mano per un lettore che non esiste ancora. Ed è una scelta **reversibile
+a costo zero**: i valori erano meccanici (`MK_<id>`), si rigenerano in un
+minuto quando il prototipo 0.5 esisterà e dirà che forma di marker gli
+serve davvero — che è anche il momento giusto per deciderla, non prima.
+
+Tolto da: `region`/`entity`/`asset`/`echo_card` negli schemi, i tre file
+dati che lo valorizzavano, la colonna del manifest, e la riga di ROADMAP
+0.5 ora racconta la storia. Suite e validazione intatte.
+
+---
+
 ## D-090 — Il verbale della mappa: come si piazza l'era nuova
 **implemented in 0.1.47** (estensione di D-089, su richiesta del committente)
 

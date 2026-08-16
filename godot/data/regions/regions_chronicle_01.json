@@ -25,7 +25,6 @@
       "control": "ENT_ALDRIC",
       "description": "La citta del trono. Vive di leggi, di titoli e del grano che sale dalla Valle.",
       "art_prompt_key": "region.eredan",
-      "marker_id": "MK_REG_EREDAN",
       "name_forms": {
         "definite": "Eredan",
         "locative": "a Eredan",
@@ -60,7 +59,6 @@
       "control": null,
       "description": "Il ventre del regno. Quest'anno la terra restituisce meno di quanto riceve.",
       "art_prompt_key": "region.valle_verde",
-      "marker_id": "MK_REG_VALLE_VERDE",
       "name_forms": {
         "definite": "la Valle Verde",
         "locative": "nella Valle Verde",
@@ -94,7 +92,6 @@
       "control": "ENT_NAHR",
       "description": "Pascoli larghi e magri. I Nahr li percorrono da sempre; quest'anno li stanno lasciando.",
       "art_prompt_key": "region.terre_nahr",
-      "marker_id": "MK_REG_TERRE_NAHR",
       "name_forms": {
         "definite": "le Terre Nahr",
         "locative": "nelle Terre Nahr",
@@ -128,7 +125,6 @@
       "private_information": "Sotto la cresta orientale il respiro della montagna e caldo anche d'inverno.",
       "description": "Pietra rossa e vento. Qualcosa di molto vecchio dorme qui, e il suo sonno si sta assottigliando.",
       "art_prompt_key": "region.montagne_rosse",
-      "marker_id": "MK_REG_MONTAGNE_ROSSE",
       "name_forms": {
         "definite": "le Montagne Rosse",
         "locative": "sulle Montagne Rosse",
@@ -162,7 +158,6 @@
       "private_information": "Il Cristallo Rosso non riflette la luce delle torce: la restituisce piu tardi.",
       "description": "Gallerie scavate da mani che nessuno ricorda. In fondo, il Cristallo Rosso.",
       "art_prompt_key": "region.miniere_antiche",
-      "marker_id": "MK_REG_MINIERE_ANTICHE",
       "name_forms": {
         "definite": "le Miniere Antiche",
         "locative": "nelle Miniere Antiche",
@@ -198,7 +193,6 @@
       "control": null,
       "description": "Il raccordo. Non produce nulla e tocca tutto: chi la tiene sa prima degli altri.",
       "art_prompt_key": "region.strada_mercanti",
-      "marker_id": "MK_REG_STRADA_MERCANTI",
       "name_forms": {
         "definite": "la Strada dei Mercanti",
         "locative": "sulla Strada dei Mercanti",

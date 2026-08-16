@@ -5,6 +5,28 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.48] — `marker_id` esce dal modello dati
+
+Chiude ISSUES voce 11 nel modo che la voce stessa prescrive
+([D-091](docs/DECISIONS.md#d-091)): un campo che nessuno legge è un campo
+che nessuno mantiene.
+
+### Removed
+
+- **`marker_id`** dagli schemi `region`/`entity`/`asset`/`echo_card`, dai
+  tre file dati che lo valorizzavano e dalla colonna del manifest.
+  Nessuna riga di GDScript l'ha mai letto. Rientrerà col prototipo di
+  computer vision della 0.5, che è anche il momento giusto per decidere
+  che forma di marker serve; i valori erano meccanici (`MK_<id>`) e si
+  rigenerano in un minuto.
+
+### Misurato
+
+Suite invariata (208 test in 29 suite, 4469 asserzioni), validazione e
+manifest verdi.
+
+---
+
 ## [0.1.47] — Il verbale della mappa: come si piazza l'era nuova
 
 Estensione della Fase 3 su richiesta del committente
