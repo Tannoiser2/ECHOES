@@ -5,6 +5,30 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.40] — Le vie per disfare i fatti eterni
+
+Chiude ISSUES voce 18 ([D-085](docs/DECISIONS.md#d-085)): un fatto eterno
+non è più una porta murata per sempre — si può disfare, a un Consiglio,
+pagando.
+
+### Added
+
+- **`P_REOPEN_THE_MINE`** (Risveglio): si toglie la pietra, e il Risveglio
+  sale di 2 — riaprire sveglia quello che dormiva.
+- **`P_ONE_CROWN`** (Successione): il titolo torna uno, e chi ha perso la
+  conta diventa OSTILE.
+- **Il ramo del pianificatore che disfa**: una clausola di assenza ora
+  insegue anche la Conseguenza che rimuove il tag.
+
+### Misurato
+
+Su 20 saghe: 21 riaperture e 4 riunificazioni in 200 ere; la scuola risorge
+(Vittorie 6→20, Trionfi 3); il Regno che Ricorda resta strozzato dalla
+propria Vittoria — debito residuo circoscritto e a verbale. Playtest 0/8
+bloccati, anno scritto invariato. 198 test in 28 suite verdi.
+
+---
+
 ## [0.1.39] — Il quinto MASTER PROMPT: i Destini illustrati
 
 L'inventario dei componenti grafici ha trovato le carte Destiny senza

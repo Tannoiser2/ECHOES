@@ -249,6 +249,26 @@
             "DECISIVE_SUCCESS": "Il Cristallo Rosso fu affidato a $rival, e il limite scritto fu piu lungo di quanto chiunque si aspettasse.",
             "FAILURE": "Si propose di affidare il Cristallo Rosso a una custodia, e resto in mano a chi lo aveva gia."
           }
+        },
+        {
+          "id": "P_REOPEN_THE_MINE",
+          "question_id": "Q_AWAKENING_CRYSTAL",
+          "text": "Si tolga la pietra. Quello che fu murato per non dover decidere, si decide adesso, con le lampade accese.",
+          "eligibility": [
+            {
+              "type": "state_tag_present",
+              "scope": "GLOBAL",
+              "tag": "mine_sealed",
+              "label": "Le gallerie sono murate da un'altra era"
+            }
+          ],
+          "success_consequences": [
+            "CNS_MINE_REOPENED"
+          ],
+          "echo_summary": "La pietra fu tolta, e quello che dormiva torno una domanda.",
+          "echo_summaries": {
+            "FAILURE": "Si volle togliere la pietra, e la pietra resto dove qualcuno l'aveva messa."
+          }
         }
       ],
       "condition_clauses": [
@@ -426,6 +446,27 @@
           "echo_summaries": {
             "FAILURE": "$proponent si mosse per prendere il posto e trovo $rival gia seduto, e sveglio.",
             "SUCCESS_WITH_COST": "$proponent prese il posto senza aspettare che si liberasse, e $rival non arrivo in tempo - ma arrivo."
+          }
+        },
+        {
+          "id": "P_ONE_CROWN",
+          "question_id": "Q_SUCCESSION_HEIR",
+          "text": "Due titoli sono due guerre che aspettano. Si conti chi tiene cosa, e il titolo torni uno.",
+          "eligibility": [
+            {
+              "type": "state_tag_present",
+              "scope": "GLOBAL",
+              "tag": "crown_divided",
+              "label": "La corona e divisa da un'altra era"
+            }
+          ],
+          "success_consequences": [
+            "CNS_CROWN_REUNITED",
+            "CNS_HEIR_NAMED"
+          ],
+          "echo_summary": "I due titoli tornarono uno, e chi perse la conta non lo dimentico.",
+          "echo_summaries": {
+            "FAILURE": "Si conto chi teneva cosa, e la conta non torno a nessuno."
           }
         }
       ],

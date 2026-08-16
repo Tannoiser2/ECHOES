@@ -1300,6 +1300,88 @@
           }
         }
       ]
+    },
+    {
+      "id": "CNS_MINE_REOPENED",
+      "title": "Le Gallerie Riaperte",
+      "category": "DISCOVERY",
+      "description": "Si toglie la pietra che qualcuno mise per non dover piu decidere. Sotto, tutto e come lo si era lasciato - ed e questo il punto: nessuno sa se e un bene.",
+      "effects": [
+        {
+          "type": "REMOVE_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "mine_sealed",
+            "optional": true
+          },
+          "note": "L'unico modo di disfare un fatto eterno e' deciderlo a un Consiglio (D-085)."
+        },
+        {
+          "type": "REMOVE_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_with:crystal_site"
+          },
+          "payload": {
+            "tag": "structure:sealed",
+            "optional": true
+          }
+        },
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "TEN_AWAKENING"
+          },
+          "payload": {
+            "delta": 2
+          },
+          "note": "Il prezzo: riaprire sveglia quello che dormiva."
+        }
+      ]
+    },
+    {
+      "id": "CNS_CROWN_REUNITED",
+      "title": "Un Solo Trono",
+      "category": "CONTROL",
+      "description": "I due titoli tornano uno. Non e una riconciliazione: e una conta, e qualcuno l'ha persa.",
+      "effects": [
+        {
+          "type": "REMOVE_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "crown_divided",
+            "optional": true
+          }
+        },
+        {
+          "type": "SET_RELATION",
+          "target": {
+            "kind": "relation",
+            "id": "$proponent|$rival"
+          },
+          "payload": {
+            "level": "HOSTILE"
+          },
+          "note": "Il prezzo: chi ha perso la conta non ringrazia."
+        },
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "TEN_SUCCESSION"
+          },
+          "payload": {
+            "delta": 1
+          }
+        }
+      ]
     }
   ]
 }
