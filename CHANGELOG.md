@@ -5,6 +5,31 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.44] — Il motore 0.3 apre il cantiere: i conti rimasti aperti
+
+Fase 0 e Fase 1 del World Propagation Engine
+([D-087](docs/DECISIONS.md#d-087)): le evidence, registrate «proprio per
+questo passaggio», finalmente si leggono.
+
+### Added
+
+- **`unmet` nei risultati dei Destini**: le clausole negate come dati, non
+  come prosa — la metà strutturata delle evidence. Misurato: un'era lascia
+  in mediana 9 conti aperti (5–13).
+- **Il conto aperto richiama la sua domanda**: una candidata nominata da
+  una clausola `tension_limit` negata nell'era prima pesa il triplo nella
+  pesca, come un segno sul mondo (D-079). La storia preme sull'era, anche
+  se la casa ha cambiato ambizione.
+- La sonda delle ere conta i conti aperti richiamati.
+
+### Misurato
+
+Richiamate pescate il **75%** delle volte (260/343) contro il 67% della
+pesca cieca; ogni altra misura d'era invariata. 205 test in 29 suite
+verdi. Dichiarate le Fasi 2 e 3 del cantiere.
+
+---
+
 ## [0.1.43] — La cronaca si vede: la voce 10 si chiude
 
 La metà app di ISSUES voce 10 ([D-086](docs/DECISIONS.md#d-086)): a fine

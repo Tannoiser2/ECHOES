@@ -155,6 +155,42 @@ func test_the_draw_listens_to_the_marks_of_the_era_before() -> void:
 	)
 
 
+## D-087: il conto rimasto aperto richiama la sua domanda. Una clausola
+## `tension_limit` negata nell'era prima pesa nella pesca come un segno sul
+## mondo (D-079) - e' la prima lettura strutturata delle evidence.
+func test_an_open_account_calls_its_question_into_the_draw() -> void:
+	var chronicle: Dictionary = data().chronicles["CHR_02"]
+	var bare: Dictionary = {
+		"global_tags": [], "regions": {}, "relations": {}, "entities": {},
+	}
+	var owed: Dictionary = {
+		"ENT_ALDRIC": {"level": "MINIMUM", "unmet": [
+			{"type": "tension_limit", "tension_id": "TEN_PLAGUE", "max": 3},
+		]},
+	}
+	var with_account: int = 0
+	var without: int = 0
+	for seed_value in range(6000, 6100):
+		if WorldStateFactory.resolve_tensions(
+			chronicle, RngService.new(seed_value), bare, owed
+		).has("TEN_PLAGUE"):
+			with_account += 1
+		if WorldStateFactory.resolve_tensions(
+			chronicle, RngService.new(seed_value), bare
+		).has("TEN_PLAGUE"):
+			without += 1
+	assert_true(
+		with_account > without,
+		"il conto aperto pesa: Febbre %d/100 col conto, %d/100 senza" % [with_account, without]
+	)
+	# E a parita' di seme e di conti, la pesca resta la stessa.
+	assert_eq(
+		WorldStateFactory.resolve_tensions(chronicle, RngService.new(4242), bare, owed),
+		WorldStateFactory.resolve_tensions(chronicle, RngService.new(4242), bare, owed),
+		"stesso seme e stessi conti, stessa mano"
+	)
+
+
 ## E la ripesca di `inherit_from` rida' anche il sacchetto del Drift: ogni
 ## chip del sacchetto nomina una Tensione dell'anno ripescato, non di quello
 ## pescato alla cieca al setup.

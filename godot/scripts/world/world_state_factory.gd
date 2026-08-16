@@ -119,7 +119,8 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 ## invece di essere pescata alla cieca; senza segni, o senza `previous`, la
 ## pesca resta quella uniforme di sempre.
 static func resolve_tensions(
-	chronicle: Dictionary, rng: RefCounted, previous: Dictionary = {}
+	chronicle: Dictionary, rng: RefCounted, previous: Dictionary = {},
+	previous_results: Dictionary = {}
 ) -> Array:
 	if not chronicle.has("tension_pool"):
 		return (chronicle["tensions"] as Array).duplicate()
@@ -133,7 +134,8 @@ static func resolve_tensions(
 	candidates.sort()
 
 	var echoes: Dictionary = pool.get("echoes", {})
-	if previous.is_empty() or echoes.is_empty():
+	var accounts: Dictionary = _open_accounts(previous_results)
+	if previous.is_empty() or (echoes.is_empty() and accounts.is_empty()):
 		for tension_id in rng.shuffle(candidates):
 			if drawn.size() >= int(pool["count"]):
 				break
@@ -142,10 +144,11 @@ static func resolve_tensions(
 
 	var weights: Dictionary = {}
 	for tension_id in candidates:
-		weights[str(tension_id)] = (
-			ECHO_WEIGHT if _era_carries_any(previous, echoes.get(str(tension_id), []))
-			else 1
+		var called: bool = (
+			_era_carries_any(previous, echoes.get(str(tension_id), []))
+			or accounts.has(str(tension_id))
 		)
+		weights[str(tension_id)] = ECHO_WEIGHT if called else 1
 	while drawn.size() < int(pool["count"]) and not candidates.is_empty():
 		var total: int = 0
 		for tension_id in candidates:
@@ -164,6 +167,25 @@ static func resolve_tensions(
 ## richiamo conta, ma non zittisce il caso - e' lo stesso rapporto con cui una
 ## mano di sei carte ne tiene due fuori.
 const ECHO_WEIGHT: int = 3
+
+
+## I conti rimasti aperti dell'era prima (D-087): le Tensioni nominate dalle
+## clausole `tension_limit` che le case **non** hanno soddisfatto. Una casa che
+## voleva la Carestia sotto il quattro e non l'ha avuta lascia la Carestia come
+## conto aperto, e il conto richiama la sua domanda nella pesca dell'era dopo -
+## con lo stesso peso di un segno sul mondo (D-079). Il conto chiama anche se
+## la casa nel frattempo ha cambiato ambizione: la storia preme sull'era, non
+## sull'erede.
+static func _open_accounts(previous_results: Dictionary) -> Dictionary:
+	var out: Dictionary = {}
+	for entity_id in previous_results:
+		for condition in (previous_results[str(entity_id)] as Dictionary).get("unmet", []):
+			if str((condition as Dictionary).get("type", "")) != "tension_limit":
+				continue
+			var tension_id: String = str((condition as Dictionary).get("tension_id", ""))
+			if tension_id != "" and not tension_id.begins_with("$"):
+				out[tension_id] = true
+	return out
 
 
 ## Se il mondo ereditato porta uno dei segni: come fatto globale, come la sua
@@ -288,14 +310,15 @@ static func _asks_about_a_question_not_in_play(card: Dictionary, world: Dictiona
 ## quello che viene rifatto qui e' mai passato per un Effect (D-006).
 static func redeal_tensions(
 	world: Dictionary, chronicle: Dictionary, data: RefCounted, rng: RefCounted,
-	previous: Dictionary
+	previous: Dictionary, previous_results: Dictionary = {}
 ) -> void:
 	if previous.is_empty() or not chronicle.has("tension_pool"):
 		return
-	if (chronicle["tension_pool"] as Dictionary).get("echoes", {}).is_empty():
+	if (chronicle["tension_pool"] as Dictionary).get("echoes", {}).is_empty() \
+			and _open_accounts(previous_results).is_empty():
 		return
 	(world["tensions"] as Dictionary).clear()
-	for tension_id in resolve_tensions(chronicle, rng, previous):
+	for tension_id in resolve_tensions(chronicle, rng, previous, previous_results):
 		var definition: Dictionary = data.tensions[tension_id]
 		world["tensions"][tension_id] = {
 			"id": tension_id,

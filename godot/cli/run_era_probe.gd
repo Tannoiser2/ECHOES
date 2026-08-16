@@ -50,6 +50,8 @@ func _initialize() -> void:
 	var hands: Dictionary = {}
 	var echoed_candidates: int = 0
 	var echoed_drawn: int = 0
+	var account_candidates: int = 0
+	var account_drawn: int = 0
 	var survivors: Dictionary = {}
 	var survivor_avg: Array = []
 	var first_year_facts_avg: Array = []
@@ -114,6 +116,15 @@ func _initialize() -> void:
 					echoed_candidates += 1
 					if hand.has(str(tension_id)):
 						echoed_drawn += 1
+				# E i conti rimasti aperti (D-087): le clausole tension_limit
+				# negate nell'era prima, quando nominano una candidata.
+				var owed: Dictionary = WorldStateFactory._open_accounts(previous_results)
+				for tension_id in owed:
+					if not (pool.get("candidates", []) as Array).has(str(tension_id)):
+						continue
+					account_candidates += 1
+					if hand.has(str(tension_id)):
+						account_drawn += 1
 
 			var table: RefCounted = Characters.deal(
 				seats, RngService.new(seed_value * 31 + 7), session.log
@@ -178,6 +189,10 @@ func _initialize() -> void:
 	if echoed_candidates > 0:
 		print("  La pesca che ascolta (D-079): candidate richiamate da un segno pescate %d su %d (%d%%)" % [
 			echoed_drawn, echoed_candidates, int(100.0 * echoed_drawn / echoed_candidates)
+		])
+	if account_candidates > 0:
+		print("  I conti rimasti aperti (D-087): candidate richiamate da una clausola negata pescate %d su %d (%d%%)" % [
+			account_drawn, account_candidates, int(100.0 * account_drawn / account_candidates)
 		])
 	print("  Verita' nel registro all'ultimo anno: %.0f in media" % _mean(truths_final))
 	print("")

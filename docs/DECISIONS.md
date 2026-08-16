@@ -331,6 +331,50 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-087 — Il motore 0.3, Fase 1: l'era dopo nasce dai conti rimasti aperti
+**implemented in 0.1.44** (milestone 0.3, ISSUES voce 9)
+
+`destiny_results.evidence` registrava *come* ogni obiettivo era stato
+raggiunto «proprio per questo passaggio» (ROADMAP 0.3) — e nessuno lo
+leggeva. La sonda di apertura del cantiere (Fase 0) ha misurato cosa c'è:
+**un'era lascia in mediana 9 clausole negate** (da 5 a 13), e 2,3 a era
+nominano una Tensione precisa via `tension_limit` — la Carestia sopra
+tutte (88 su 228 in 100 ere).
+
+### La regola
+
+Le evidence diventano dati: ogni risultato di Destino porta ora `unmet` —
+le clausole negate, come dizionari e non come prosa. E la pesca le legge:
+una candidata nominata da una clausola `tension_limit` negata nell'era
+prima è un **conto rimasto aperto**, e pesa il triplo nella pesca — lo
+stesso peso di un segno sul mondo (D-079). Il conto chiama anche se la
+casa nel frattempo ha cambiato ambizione: la storia preme sull'era, non
+sull'erede.
+
+### Misurato (20 saghe da 10 ere)
+
+Le candidate richiamate da una clausola negata vengono pescate il **75%**
+delle volte (260 su 343), contro il 67% della pesca cieca; i segni di
+D-079 stanno al 73%. Rotazioni, stanchezza, generazioni e mani di domande
+invariati; il playtest non incatena ere e resta intatto per costruzione.
+
+Guardie: `test_destiny_evaluator` (le clausole negate escono come dati, e
+un conto chiuso sparisce), `test_library_content` (il conto aperto pesa
+nella pesca, misurato su cento semi, e la pesca resta deterministica).
+
+### Le fasi che restano dichiarate
+
+- **Fase 2 — la domanda lasciata calda torna calda**: i valori di
+  partenza delle Tensioni pescate oggi sono quelli d'autore; una questione
+  che ha chiuso l'era prima vicino alla soglia dovrebbe cominciare l'era
+  dopo già tiepida.
+- **Fase 3 — il verbale d'apertura**: l'era nuova sa *perché* ha pescato
+  le sue domande (segni, conti aperti); dirlo all'apertura — «la Carestia
+  torna: la casa di Aldric non l'ha mai chiusa» — è il pezzo che renderà
+  la generazione leggibile al tavolo.
+
+---
+
 ## D-086 — La cronaca dell'anno: le Verità diventano pagine
 **implemented in 0.1.42** (la metà export di ISSUES voce 10)
 
