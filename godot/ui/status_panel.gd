@@ -14,8 +14,12 @@ const RELATIONS: Dictionary = {
 	"ALLY": "#6fa88a", "BOUND": "#e8b563",
 }
 
+const CardArt := preload("res://ui/card_art.gd")
+
 var _rows: Dictionary = {}
 var _destiny: VBoxContainer
+var _casata_card: TextureRect
+var _destiny_card: TextureRect
 var _relations: VBoxContainer
 var _title: Label
 
@@ -157,6 +161,17 @@ func _update_destiny(session: RefCounted, viewer_id: String) -> void:
 		header.add_theme_font_size_override("font_size", 12)
 		header.add_theme_color_override("font_color", Color("#8a8172"))
 		add_child(header)
+		# I tarocchi dietro il paravento (D-101): la Casata e il Destino del
+		# seggio sono le carte 70x120 dei fogli di stampa - il Destino lo vede
+		# solo chi lo giura, come al tavolo, perche' questo pannello e' gia'
+		# disegnato per il solo viewer.
+		var tarots := HBoxContainer.new()
+		tarots.add_theme_constant_override("separation", 6)
+		add_child(tarots)
+		_casata_card = _tarot()
+		tarots.add_child(_casata_card)
+		_destiny_card = _tarot()
+		tarots.add_child(_destiny_card)
 		_destiny = VBoxContainer.new()
 		_destiny.add_theme_constant_override("separation", 2)
 		add_child(_destiny)
@@ -172,6 +187,10 @@ func _update_destiny(session: RefCounted, viewer_id: String) -> void:
 	var destiny: Variant = session.data.destinies.get(session.service.destiny_of(viewer_id))
 	if destiny == null:
 		return
+	_casata_card.texture = CardArt.texture_for("entity", viewer_id, session.data)
+	_destiny_card.texture = CardArt.texture_for(
+		"destiny", session.service.destiny_of(viewer_id), session.data
+	)
 	for level in ["minimum", "victory", "triumph"]:
 		var holds: bool = session.destinies.conditions.all_hold(destiny[level]["conditions"], {})
 		var line := Label.new()
@@ -185,6 +204,15 @@ func _update_destiny(session: RefCounted, viewer_id: String) -> void:
 			"font_color", Color("#6fa88a") if holds else Color("#5f584c")
 		)
 		_destiny.add_child(line)
+
+
+func _tarot() -> TextureRect:
+	var picture := TextureRect.new()
+	picture.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	picture.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	picture.custom_minimum_size = Vector2(70.0, 120.0) * 1.85
+	picture.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	return picture
 
 
 func _sorted(keys: Array) -> Array:

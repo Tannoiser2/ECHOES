@@ -361,13 +361,17 @@ divergere per costruzione.
 
 ### Le fette dichiarate
 
-- la **carta mini della domanda** posata al centro quando un Consiglio
-  si apre (fisicamente: la carta si prende dalla traccia e si mette in
-  mezzo al tavolo);
-- i **token sulla mappa** disegnati come i segnalini della fustella
-  (D-097): tondi pieni di presenza, anelli di controllo;
-- le **carte-identità** (tarocchi di Casata e Destino) nella vista del
-  seggio.
+- ✅ la **carta mini della domanda** posata al centro quando un Consiglio
+  si apre — **fatta in 0.1.60**: fisicamente, la carta si prende dalla
+  traccia e si mette in mezzo al tavolo, e il tabellone del Consiglio fa
+  lo stesso;
+- ✅ i **token sulla mappa** come i segnalini della fustella (D-097) —
+  **fatta in 0.1.60**: i tondi di presenza portano l'iniziale della
+  casa, l'anello di controllo c'era già;
+- ✅ le **carte-identità** (tarocchi di Casata e Destino) — **fatta in
+  0.1.61**: dietro il paravento, sopra la scala del Destino, e le vede
+  solo chi le giura perché il pannello è già disegnato per il solo
+  viewer. Con questa, le fette dichiarate di D-101 sono complete.
 
 Guardie: `test_print_export` (la carta singola esce della sua taglia,
 senza segni di taglio, deterministica, e si rasterizza per ogni mazzo).
