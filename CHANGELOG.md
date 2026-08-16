@@ -5,6 +5,34 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.59] — La GUI mostra le carte fisiche
+
+Prima fetta della direzione del committente
+([D-101](docs/DECISIONS.md#d-101)): lo schermo mostra i componenti
+fisici, non una loro parafrasi.
+
+### Added
+
+- **`PrintSheet.card_svg`** (una carta sola, stessa faccia della stampa,
+  senza segni di taglio) e **`ui/card_art.gd`** (rasterizza una volta
+  per mazzo, cache). Un solo impaginatore, tre superfici: foglio,
+  anteprima, partita.
+- **La mano è fatta di carte stampate**: la faccia vera 63×88, col bordo
+  di rilevanza e il «vale N» del resolver come sole aggiunte a schermo;
+  tooltip invariato per leggere a carta piccola.
+- **Il mondo cala una carta**: la vista Echo di fine atto mostra la
+  carta stampata accanto al verbale di cosa ha fatto.
+
+Fette dichiarate: la carta mini della domanda al centro del Consiglio,
+i token della fustella sulla mappa, i tarocchi identità nella vista del
+seggio.
+
+### Misurato
+
+216 test in 29 suite, 4557 asserzioni; UI compilata headless.
+
+---
+
 ## [0.1.58] — La voce del Consiglio: le mozioni al congiuntivo
 
 Seconda lettura della voce 13, su segnalazione del committente

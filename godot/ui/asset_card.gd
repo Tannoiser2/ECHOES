@@ -1,27 +1,33 @@
 extends PanelContainer
-## One card in the hand.
+## One card in the hand — **la carta stampata, non un pannello che le somiglia**
+## (D-101).
 ##
-## Small on purpose - a hand of seven has to fit across the bottom of the screen
-## - so the card itself carries only what a player scans for: the title, the
-## family colour, and what it is worth in the question on the table. Everything
-## else waits under the cursor.
+## Dalla 0.1.59 il corpo della carta e' la faccia dei fogli di stampa,
+## rasterizzata da `card_art.gd`: titolo, testo di regola, glifo e colore di
+## famiglia stanno dove stanno sulla carta fisica, perche' *sono* la carta
+## fisica. Lo schermo aggiunge solo quello che il tavolo saprebbe a voce: il
+## bordo di rilevanza quando un Consiglio e' aperto, e la riga «vale N» - che
+## e' chiesta al resolver, non ricalcolata qui (D-040).
 ##
 ## The tooltip is drawn rather than defaulted (`_make_custom_tooltip`) because
-## the default one does not wrap: a card whose authored line runs to 130
-## characters painted itself across the hand below it (D-042).
+## the default one does not wrap (D-042) - e resta: a mano stretta la carta
+## rasterizzata si legge col cursore sopra.
 
 const AssetText := preload("res://scripts/core/asset_text.gd")
 const CardFace := preload("res://scripts/core/card_face.gd")
-const Glyph := preload("res://ui/glyph.gd")
+const CardArt := preload("res://ui/card_art.gd")
+
+## Alta come la fila della mano: 63x88 in proporzione, ~79x110.
+const CARD_H: float = 110.0
 
 var asset: Dictionary = {}
 
-var _title: Label
+var _picture: TextureRect
 var _footer: Label
 
 
 func _ready() -> void:
-	custom_minimum_size = Vector2(118, 74)
+	custom_minimum_size = Vector2(CARD_H * 63.0 / 88.0 + 6.0, CARD_H + 22.0)
 	mouse_filter = Control.MOUSE_FILTER_STOP
 	# Godot only asks for a tooltip when there is one to ask about.
 	tooltip_text = " "
@@ -29,63 +35,50 @@ func _ready() -> void:
 
 ## `relevant` is the list of families the open question listens to; empty means
 ## no Council, and then a card shows its printed strength instead of its value.
-func render(p_asset: Dictionary, relevant: Array, council_open: bool) -> void:
+func render(p_asset: Dictionary, relevant: Array, council_open: bool, data: RefCounted) -> void:
 	asset = p_asset
 	var family: String = str(asset["family"])
 	var is_relevant: bool = relevant.has(family)
 
 	var style := StyleBoxFlat.new()
-	style.bg_color = Color("#221d15") if is_relevant else Color("#1c1915")
-	style.border_color = _family_colour(family)
+	style.bg_color = Color("#0d0b09")
+	style.border_color = _family_colour(family) if is_relevant else Color("#2a251d")
 	style.set_border_width_all(2 if is_relevant else 1)
 	style.set_corner_radius_all(4)
-	style.content_margin_left = 8
-	style.content_margin_right = 8
-	style.content_margin_top = 6
-	style.content_margin_bottom = 6
+	style.content_margin_left = 3
+	style.content_margin_right = 3
+	style.content_margin_top = 3
+	style.content_margin_bottom = 2
 	add_theme_stylebox_override("panel", style)
 
-	if _title == null:
+	if _picture == null:
 		var box := VBoxContainer.new()
-		box.add_theme_constant_override("separation", 2)
+		box.add_theme_constant_override("separation", 1)
 		add_child(box)
-		_title = Label.new()
-		_title.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-		_title.add_theme_font_size_override("font_size", 12)
-		_title.add_theme_color_override("font_color", Color("#d9d2c5"))
-		box.add_child(_title)
+		_picture = TextureRect.new()
+		_picture.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		_picture.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		_picture.custom_minimum_size = Vector2(CARD_H * 63.0 / 88.0, CARD_H)
+		_picture.size_flags_vertical = Control.SIZE_EXPAND_FILL
+		box.add_child(_picture)
 		_footer = Label.new()
+		_footer.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		_footer.add_theme_font_size_override("font_size", 10)
 		box.add_child(_footer)
 
-	_title.text = str(asset["title"])
+	_picture.texture = CardArt.texture_for("asset", str(asset["id"]), data)
+
 	# What this card will actually add to the sum, in this Council, right now -
 	# asked of the resolver rather than recomputed here, so a card with a bonus
 	# cannot show a number the resolution will not give it.
-	_footer.text = "%s · %d" % [family.to_lower(), int(asset["strength"])]
+	_footer.text = "forza %d" % int(asset["strength"])
 	if council_open:
-		_footer.text = "%s · vale %d" % [family.to_lower(), AssetText.value_on(asset, relevant)]
+		_footer.text = "vale %d" % AssetText.value_on(asset, relevant)
 		var bonus: String = AssetText.modifier_note(asset)
 		if bonus.ends_with("se ti opponi"):
 			_footer.text += " (%s)" % bonus
 	_footer.add_theme_color_override(
 		"font_color", _family_colour(family) if is_relevant else Color("#6b6355")
-	)
-	queue_redraw()
-
-
-## Il glifo della famiglia nell'angolo, sopra tutto il resto: e' il segno che si
-## impara a riconoscere in due partite, e che sulla carta stampata sta nello
-## stesso posto.
-func _draw() -> void:
-	if asset.is_empty():
-		return
-	var family: String = str(asset["family"])
-	# In basso a destra e non in alto: il titolo va a capo e in alto gli finiva
-	# addosso. Sotto c'e' solo la riga della famiglia, che sta a sinistra.
-	Glyph.paint(
-		self, family, Rect2(Vector2(size.x - 20.0, size.y - 20.0), Vector2(12.0, 12.0)),
-		Color(CardFace.family_colour(family)) * Color(1, 1, 1, 0.7)
 	)
 
 

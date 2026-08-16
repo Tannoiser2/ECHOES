@@ -377,7 +377,7 @@ func _build() -> void:
 	tools.add_child(_save_button)
 
 	_hand = HandView.new()
-	_hand.custom_minimum_size = Vector2(0, 80)
+	_hand.custom_minimum_size = Vector2(0, 140)
 	rows.add_child(_hand)
 
 	_help.render(_load_help_data())

@@ -45,4 +45,4 @@ func render(session: RefCounted, viewer_id: String, tension_id: String = "") -> 
 		var card: PanelContainer = AssetCard.new()
 		_cards.append(card)
 		add_child(card)
-		card.render(asset, relevant, council_open)
+		card.render(asset, relevant, council_open, session.data)

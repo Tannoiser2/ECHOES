@@ -331,6 +331,49 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-101 — La GUI mostra i componenti fisici, non una loro parafrasi
+**implemented in 0.1.59** (direzione del committente; prima fetta)
+
+«La GUI di Godot dovrebbe essere quanto di più vicino al gioco fisico.»
+Il progetto aveva già il principio, applicato due volte: la cronaca
+in-app è **le stesse pagine** che si stampano (D-086), l'anteprima F4 è
+**gli stessi fogli** (D-056). Questa decisione lo estende al tavolo:
+quello che un giocatore vede durante la partita è il componente fisico,
+rasterizzato — non un pannello che gli somiglia.
+
+### Il mattone e la prima fetta
+
+`PrintSheet.card_svg(face)`: una carta sola, stessa faccia del foglio di
+stampa, taglia propria, senza segni di taglio. `ui/card_art.gd` la
+rasterizza una volta per mazzo e la tiene in cache. Con questo:
+
+- **la mano è fatta di carte stampate**: `asset_card` mostra la faccia
+  vera (63×88 in proporzione); lo schermo aggiunge solo ciò che il
+  tavolo saprebbe a voce — il bordo di rilevanza e la riga «vale N»
+  chiesta al resolver (D-040) — e il tooltip resta per leggere il testo
+  a carta piccola;
+- **il mondo cala una carta**: a fine atto la vista Echo mostra la carta
+  stampata a sinistra e il verbale di cosa ha fatto a destra.
+
+Un solo impaginatore, tre superfici: foglio, anteprima, partita. Una
+correzione a un testo o a un layout arriva ovunque insieme, e non può
+divergere per costruzione.
+
+### Le fette dichiarate
+
+- la **carta mini della domanda** posata al centro quando un Consiglio
+  si apre (fisicamente: la carta si prende dalla traccia e si mette in
+  mezzo al tavolo);
+- i **token sulla mappa** disegnati come i segnalini della fustella
+  (D-097): tondi pieni di presenza, anelli di controllo;
+- le **carte-identità** (tarocchi di Casata e Destino) nella vista del
+  seggio.
+
+Guardie: `test_print_export` (la carta singola esce della sua taglia,
+senza segni di taglio, deterministica, e si rasterizza per ogni mazzo).
+
+---
+
 ## D-100 — La voce del Consiglio: le mozioni al congiuntivo
 **implemented in 0.1.58** (seconda lettura della voce 13, su segnalazione del committente)
 
