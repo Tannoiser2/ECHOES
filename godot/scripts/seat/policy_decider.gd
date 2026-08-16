@@ -161,6 +161,13 @@ func _consequences_satisfying(condition: Dictionary, entity_id: String, session:
 				"state_tag_present":
 					if effect_type.begins_with("SET_") and str(payload.get("tag", "")) == str(condition.get("tag", "")):
 						out.append(str(consequence["id"]))
+				"state_tag_absent":
+					# Il ramo che disfa (D-085): una clausola di assenza si
+					# soddisfa anche con la Conseguenza che RIMUOVE il tag -
+					# senza questo, «le gallerie non sono murate» non aveva
+					# nessun Consiglio da inseguire quando lo erano gia'.
+					if effect_type.begins_with("REMOVE_") and str(payload.get("tag", "")) == str(condition.get("tag", "")):
+						out.append(str(consequence["id"]))
 				"control_count":
 					# Control only ever changes hands through a Confluence, and
 					# only in favour of the proponent.

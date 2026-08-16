@@ -331,6 +331,49 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-085 — Le vie per disfare i fatti eterni: riaprire la miniera, riunire la corona
+**implemented in 0.1.40** (chiude ISSUES voce 18)
+
+D-082 aveva lasciato a verbale il reperto: un fatto in `enduring_facts` usato
+come condizione di **assenza** rende un Destino tardivo sempre più morto man
+mano che la saga invecchia — la corona spezzata nell'850 bloccava «Il Regno
+che Ricorda» per mille anni, la miniera murata faceva lo stesso con la
+scuola. Delle due opzioni d'autore registrate, è entrata la più ricca:
+**una via per disfare il fatto, a un Consiglio, pagando un prezzo.**
+
+### Cosa è entrato
+
+- **`P_REOPEN_THE_MINE`** sul Consiglio del Risveglio, eleggibile solo con
+  le gallerie murate → `CNS_MINE_REOPENED`: il fatto eterno si rimuove, e il
+  prezzo è che **il Risveglio sale di 2** — riaprire sveglia quello che
+  dormiva.
+- **`P_ONE_CROWN`** sul Consiglio della Successione, eleggibile solo con la
+  corona divisa → `CNS_CROWN_REUNITED`: il titolo torna uno, e il prezzo è
+  un rapporto che precipita a OSTILE — chi ha perso la conta non ringrazia.
+- **Il ramo del pianificatore che disfa**: `_consequences_satisfying`
+  soddisfa una clausola `state_tag_absent` anche con la Conseguenza che
+  RIMUOVE il tag. Il punteggio al voto capiva già le assenze (D-066); era il
+  pianificatore a non avere nessun Consiglio da inseguire quando il fatto
+  c'era già.
+
+### Misurato (20 saghe da 10 ere, corona)
+
+| | prima | dopo |
+|---|---|---|
+| gallerie riaperte / corona riunita | 0 / 0 | **21 / 4** ere su 200 |
+| DST_LYRA_TAUGHT | 92 MIN · 6 VIC · 0-2 TRI | 71 MIN · **20 VIC** · **3 TRI** |
+| DST_ALDRIC_RECORD | 91 MIN · 2 VIC · 1-2 TRI | 91 MIN · 3 VIC · 1 TRI |
+
+La scuola risorge; il Regno che Ricorda resta strozzato dalla **propria
+Vittoria** (controllo di 2 Regioni + nessuna questione aperta), che il
+disfare non tocca — è il debito residuo della voce 18, ora circoscritto a
+un Destino solo. Playtest: 0/8 bloccati al tavolo misto, anno scritto
+invariato. La riapertura può accadere anche nell'era del murare — murata
+all'atto primo, riaperta al terzo — ed è giusto così: una decisione presa
+male si può ridiscutere, a prezzo pieno.
+
+---
+
 ## D-084 — Il quinto MASTER PROMPT: i Destini sono nature morte del desiderio
 **implemented in 0.1.39** (su richiesta del committente, per il brief d'arte)
 
