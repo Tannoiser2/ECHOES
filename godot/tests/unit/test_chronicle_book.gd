@@ -95,3 +95,48 @@ func test_a_silent_year_says_so() -> void:
 		str(pages[0]).contains("senza lasciare storia"),
 		"e la pagina dice che l'anno non ha lasciato storia"
 	)
+
+
+## D-096: il libro della saga. Due anni in fila danno la Timeline in apertura
+## - anni, salti, chi sedeva e com'e' finita - e poi le cronache di ogni anno,
+## nell'ordine in cui sono state vissute. Con un anno solo resta il libro di
+## sempre.
+func test_the_saga_book_opens_with_the_timeline() -> void:
+	var first: Dictionary = {
+		"chronicle_id": "CHR_01",
+		"world_state": {
+			"year": 812,
+			"truth_log": [{"act": 1, "round": 1, "truth_id": "TRU_0001",
+				"text": "Anno 812, Atto 1: il granaio fu conteso davanti a tutti. (S3 O1 M2)."}],
+			"entities": {"ENT_ALDRIC": {"name": "Re Aldric"}},
+		},
+		"destiny_results": {"ENT_ALDRIC": {"level": "VICTORY"}},
+	}
+	var second: Dictionary = {
+		"chronicle_id": "CHR_02",
+		"world_state": {
+			"year": 904,
+			"truth_log": [{"act": 1, "round": 1, "truth_id": "TRU_0002",
+				"text": "Anno 904, Atto 1: la strada fu giurata sotto scorta. (S2 O0 M3)."}],
+			"entities": {"ENT_ALDRIC": {"name": "Re Serane"}},
+		},
+		"destiny_results": {"ENT_ALDRIC": {"level": "MINIMUM"}},
+	}
+
+	var pages: Array = ChronicleBook.saga_pages([first, second], data())
+	assert_true(pages.size() >= 3, "Timeline piu' due cronache: almeno tre pagine")
+	var timeline: String = str(pages[0])
+	assert_true(timeline.contains("LA SAGA"), "la prima pagina e' il frontespizio della saga")
+	assert_true(timeline.contains("Anni 812"), "e dice da dove parte")
+	assert_true(timeline.contains("92 anni dopo"), "la Timeline conta il salto")
+	assert_true(timeline.contains("Re Serane"), "e nomina chi si e' seduto dopo")
+	assert_true(timeline.contains("la vittoria"), "com'e' finita, in breve")
+	var book: String = "\n".join(PackedStringArray(pages))
+	assert_true(book.contains("granaio"), "la cronaca del primo anno c'e'")
+	assert_true(book.contains("giurata"), "e quella del secondo")
+
+	assert_eq(
+		ChronicleBook.saga_pages([first], data()),
+		ChronicleBook.pages(first, data()),
+		"con un anno solo il libro della saga e' il libro di sempre"
+	)

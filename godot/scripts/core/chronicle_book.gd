@@ -80,10 +80,75 @@ static func pages(save: Dictionary, data: RefCounted) -> Array:
 			blocks.append(["%s — %s" % [name, str(LEVEL_NAMES.get(level, level))],
 				BODY_SIZE, PrintSheet.INK, false, 2.5])
 
-	return _paginate(blocks, year)
+	return _paginate(blocks, "la cronaca dell'anno %d" % year)
 
 
-static func _paginate(blocks: Array, year: int) -> Array:
+## Le forme brevi dei livelli, per le righe strette della Timeline.
+const LEVEL_SHORT: Dictionary = {
+	"NONE": "niente", "MINIMUM": "il minimo",
+	"VICTORY": "la vittoria", "TRIUMPH": "il trionfo",
+}
+
+
+## Il libro dell'intera saga (D-096): la Timeline dei secoli in apertura -
+## un anno per riga, il salto, chi sedeva e com'e' finita - e poi la cronaca
+## di ogni anno, capitolo per capitolo, con le stesse pagine di sempre.
+## `saves` e' la fila dei `session.to_save()` degli anni giocati, in ordine.
+static func saga_pages(saves: Array, data: RefCounted) -> Array:
+	if saves.is_empty():
+		return []
+	if saves.size() == 1:
+		return pages(saves[0], data)
+
+	var first_year: int = int((saves[0].get("world_state", {}) as Dictionary).get("year", 0))
+	var last_year: int = int(
+		(saves[saves.size() - 1].get("world_state", {}) as Dictionary).get("year", 0)
+	)
+	var blocks: Array = []
+	blocks.append(["LA SAGA", 3.0, PrintSheet.DIM, false, 0.0])
+	blocks.append(["Anni %d – %d" % [first_year, last_year], 9.0, PrintSheet.INK, true, 9.0])
+	blocks.append(["%d Chronicle giocate, %d anni di mondo" % [
+		saves.size(), last_year - first_year
+	], 4.2, PrintSheet.DIM, false, 7.0])
+	blocks.append(["LA TIMELINE", 3.0, PrintSheet.DIM, false, 12.0])
+
+	var previous_year: int = 0
+	for save in saves:
+		var world: Dictionary = (save as Dictionary).get("world_state", {})
+		var year: int = int(world.get("year", 0))
+		var chronicle_id: String = str((save as Dictionary).get("chronicle_id", ""))
+		var title: String = str(
+			(data.chronicles.get(chronicle_id, {}) as Dictionary).get("title", chronicle_id)
+		)
+		var head: String = "Anno %d — %s" % [year, title]
+		if previous_year > 0:
+			head = "Anno %d, %d anni dopo — %s" % [year, year - previous_year, title]
+		previous_year = year
+		blocks.append([head, BODY_SIZE, PrintSheet.INK, true, 6.0])
+		var results: Dictionary = (save as Dictionary).get("destiny_results", {})
+		var seats: Array = results.keys()
+		seats.sort()
+		var fates: Array = []
+		for entity_id in seats:
+			var level: String = str((results[str(entity_id)] as Dictionary).get("level", "NONE"))
+			var name: String = str(
+				(world.get("entities", {}) as Dictionary)
+				.get(str(entity_id), {}).get("name", entity_id)
+			)
+			fates.append("%s %s" % [name, str(LEVEL_SHORT.get(level, level))])
+		if not fates.is_empty():
+			for line in PrintSheet.wrap_text(
+				" · ".join(PackedStringArray(fates)), PAGE_W - MARGIN * 2.0, BODY_SIZE
+			):
+				blocks.append([str(line), BODY_SIZE, PrintSheet.DIM, false, 1.5])
+
+	var out: Array = _paginate(blocks, "la saga, anni %d – %d" % [first_year, last_year])
+	for save in saves:
+		out.append_array(pages(save, data))
+	return out
+
+
+static func _paginate(blocks: Array, footer: String) -> Array:
 	var pages_out: Array = []
 	var current: Array = []
 	var cursor: float = MARGIN + 8.0
@@ -104,11 +169,11 @@ static func _paginate(blocks: Array, year: int) -> Array:
 
 	var out: Array = []
 	for index in range(pages_out.size()):
-		out.append(_page_svg(pages_out[index], year, index + 1, pages_out.size()))
+		out.append(_page_svg(pages_out[index], footer, index + 1, pages_out.size()))
 	return out
 
 
-static func _page_svg(placed: Array, year: int, number: int, total: int) -> String:
+static func _page_svg(placed: Array, footer: String, number: int, total: int) -> String:
 	var out: Array = []
 	out.append(
 		'<svg xmlns="http://www.w3.org/2000/svg" width="%dmm" height="%dmm" viewBox="0 0 %d %d">'
@@ -121,7 +186,7 @@ static func _page_svg(placed: Array, year: int, number: int, total: int) -> Stri
 		out.append(_line(MARGIN, baseline, str(block[0]), float(block[1]), str(block[2]), bool(block[3])))
 	out.append(_line(
 		MARGIN, PAGE_H - 12.0,
-		"ECHOES · la cronaca dell'anno %d · pagina %d di %d" % [year, number, total],
+		"ECHOES · %s · pagina %d di %d" % [footer, number, total],
 		2.6, PrintSheet.DIM, false
 	))
 	out.append("</svg>")

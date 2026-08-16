@@ -66,7 +66,7 @@ completa in [DECISIONS D-021](DECISIONS.md#d-021).
 
 ---
 
-## 0.2 — Bilanciamento — resta una voce sola
+## 0.2 — Bilanciamento ✅ completata (0.1.55)
 
 **La voce con cui questa sezione si apriva è chiusa.** Diceva: «Failure e Success
 with Cost non compaiono, 0 e 1 su 154 Confluence misurate». Sulle 244 Confluence
@@ -94,10 +94,12 @@ scritte come issue apribili in [ISSUES.md](ISSUES.md):
     qualificata entra nel margine come sostegno. I fallimenti scendono a
     **282 su 596**, il prudente sale a 74/22/4, i DECISIVE passano da 95 a 128 e
     i seggi bloccati vanno da 1 su 8 a **0 su 8**.
-  - **seconda leva, da misurare — è la voce che resta di tutta la 0.2**:
-    bloccare è ancora il seggio più forte (nell'ultima misura, 0.1.51,
-    l'aggressivo chiude 64 Vittorie contro le 34 del prudente). Serve un
-    prezzo sul fronte Oppose, e va misurato prima di scriverlo.
+  - ✅ **seconda leva, fatta in 0.1.55** ([D-098](DECISIONS.md#d-098)):
+    la proposta bocciata non compra quiete (`failure_delta` −2 → −1,
+    il gradino 0 respinto coi numeri). Divario aggressivo−prudente
+    28 → 26, i NONE del bloccante da 2 a 6, i Consigli recuperati vanno
+    al centro del tavolo (distratto 46 → 53). La storia del divario:
+    37 → 31 → 28 → 26.
 - ✅ I compagni di lista sono chiusi strada facendo: i template aggiuntivi
   non servono, misurato tre volte ([D-093](DECISIONS.md#d-093)); l'Asset
   economy è misurata e sana — nessuna carta morta su 48
@@ -133,10 +135,11 @@ campo che nessuno legge è un campo che nessuno mantiene — tolti in 0.1.48
 
 ## 0.6 — Print-and-play e sincronizzazione tavolo fisico/digitale
 
-## 1.0 — Campagna multi-Chronicle, Timeline, Legacy, Chronicle Book — a metà
+## 1.0 — Campagna multi-Chronicle, Timeline, Legacy, Chronicle Book — quasi tutta
 
 Il motore della campagna esiste ed è misurato su migliaia di ere
-(`run_saga`, `run_era_probe`); il Chronicle Book impagina l'anno finito
-dentro l'app (D-086). Quello che manca è il resto della vita in app: la
-**Timeline** dei secoli e il **libro dell'intera saga** (oggi il libro
-copre un anno alla volta).
+(`run_saga`, `run_era_probe`); **la saga si gioca dall'app** — a fine
+anno l'era successiva si offre, con eredità e verbale d'apertura
+([D-095](DECISIONS.md#d-095)) — e ha il suo **libro con la Timeline**
+dei secoli in apertura ([D-096](DECISIONS.md#d-096)). Restano la
+campagna Legacy vera e propria e le rifiniture d'autore.

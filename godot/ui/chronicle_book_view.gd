@@ -16,6 +16,7 @@ const RASTER_SCALE: float = 4.0
 
 var _pages: Array = []
 var _index: int = 0
+var _label: String = "La cronaca dell'anno"
 var _picture: TextureRect
 var _footer: Label
 
@@ -47,6 +48,16 @@ func _ready() -> void:
 ## Impagina un salvataggio e mostra la prima pagina.
 func show_year(save: Dictionary, data: RefCounted) -> void:
 	_pages = ChronicleBook.pages(save, data)
+	_label = "La cronaca dell'anno"
+	_index = 0
+	_show()
+
+
+## Il libro dell'intera saga (D-096): la Timeline in apertura, poi la cronaca
+## di ogni anno giocato. Con un anno solo e' il libro di sempre.
+func show_saga(saves: Array, data: RefCounted) -> void:
+	_pages = ChronicleBook.saga_pages(saves, data)
+	_label = "Il libro della saga" if saves.size() > 1 else "La cronaca dell'anno"
 	_index = 0
 	_show()
 
@@ -73,8 +84,8 @@ func _show() -> void:
 		return
 	_picture.texture = ImageTexture.create_from_image(image)
 	_footer.text = (
-		"La cronaca dell'anno · pagina %d di %d%s" % [
-			_index + 1, _pages.size(),
+		"%s · pagina %d di %d%s" % [
+			_label, _index + 1, _pages.size(),
 			" · frecce per sfogliare" if _pages.size() > 1 else "",
 		]
 	)

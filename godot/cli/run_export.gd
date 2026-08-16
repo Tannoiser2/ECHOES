@@ -21,6 +21,7 @@ extends SceneTree
 const DataSet := preload("res://scripts/core/data_set.gd")
 const CardFace := preload("res://scripts/core/card_face.gd")
 const PrintSheet := preload("res://scripts/core/print_sheet.gd")
+const TokenSheet := preload("res://scripts/core/token_sheet.gd")
 const ArtBible := preload("res://scripts/core/art_bible.gd")
 const IconSet := preload("res://scripts/core/icon_set.gd")
 
@@ -73,6 +74,31 @@ func _initialize() -> void:
 		])
 		index.append({"deck": str(deck), "faces": faces, "pages": pages.size(), "cards": to_print.size()})
 
+	# I segnalini e la traccia dei valori (D-097, voce 7): un foglio-fustella
+	# per ogni eta' scritta - le case sono le sue - e la plancia dei tracciati,
+	# una sola perche' le corsie sono generiche (la soglia sta sulla carta).
+	var age_ids: Array = data.chronicles.keys()
+	age_ids.sort()
+	for chronicle_id in age_ids:
+		if (data.chronicles[str(chronicle_id)] as Dictionary).has("tension_pool"):
+			continue
+		var path: String = "%s/fogli/segnalini_%s.svg" % [
+			out_dir, str(chronicle_id).to_lower()
+		]
+		if not _write(path, TokenSheet.tokens_svg(data, str(chronicle_id))):
+			printerr("non riesco a scrivere %s" % path)
+			quit(4)
+			return
+		written.append(path)
+		print("  %-16s %6s %6s %7d" % ["segnalini %s" % str(chronicle_id), "-", "-", 1])
+	var track_path: String = "%s/fogli/traccia_valori.svg" % out_dir
+	if not _write(track_path, TokenSheet.track_board_svg()):
+		printerr("non riesco a scrivere %s" % track_path)
+		quit(4)
+		return
+	written.append(track_path)
+	print("  %-16s %6s %6s %7d" % ["traccia valori", "-", "-", 1])
+
 	var bible: RefCounted = ArtBible.new()
 	bible.read(str(options.get("bible", "docs/ART_BIBLE.md")))
 	var brief_path: String = "%s/brief_arte.md" % out_dir
@@ -103,7 +129,10 @@ func _readme(index: Array, proof: bool, bible: RefCounted) -> String:
 		"mano: si rigenera. Ogni foglio e' A4 in **scala 1:1** — si stampa al 100%,",
 		"senza «adatta alla pagina», altrimenti i segni di taglio mentono.",
 		"",
-		"Carte 63x88 mm, tre per tre. Tessere Regione 80x80 mm, due per tre.",
+		"I formati (D-097): Asset ed Echo 63x88 mm (classiche, tre per tre);",
+		"Destini ed Entita' 70x120 mm (tarocchi, due per due); Tensioni 44x68 mm",
+		"(mini, quattro per quattro); tessere Regione 80x80 mm, due per tre. In",
+		"coda i fogli-fustella dei segnalini (15 mm) e la traccia dei valori.",
 		"",
 		"| mazzo | facce | carte | fogli |",
 		"|---|---|---|---|",

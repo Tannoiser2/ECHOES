@@ -414,10 +414,16 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 	var outcome: String = str(result["outcome"])
 	var context: Dictionary = effect_context()
 
-	# H.1 The Tension itself. Failure drops it by 2 and leaves the question
-	# alive (appendix A6); any success settles it to 1.
+	# H.1 The Tension itself. Failure drops it and leaves the question alive
+	# (appendix A6); any success settles it to 1. Quanto il fallimento sfoga
+	# e' una regola della Chronicle (default -2, la lettera dell'appendice):
+	# e' la rendita del blocco - una proposta affondata compra quiete - e la
+	# seconda leva della 0.2 la misura prima di scriverla (D-098).
 	var before: int = tensions.value(tension_id)
-	var delta: int = -2 if outcome == ConfluenceResolution.FAILURE else 1 - before
+	var failure_delta: int = int(
+		(_chronicle.get("confluence_rules", {}) as Dictionary).get("failure_delta", -2)
+	)
+	var delta: int = failure_delta if outcome == ConfluenceResolution.FAILURE else 1 - before
 	_apply(applied, Effect.make("ADJUST_TENSION", "tension", tension_id, {"delta": delta}, source))
 
 	# H.2 What the committed cards cost their owners.

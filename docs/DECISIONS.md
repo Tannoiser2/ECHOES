@@ -331,6 +331,126 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-098 — La seconda leva: la proposta bocciata non compra quiete
+**implemented in 0.1.55** (chiude la 0.2: era l'ultima voce)
+
+Bloccare era ancora il seggio più forte, e la voce di ROADMAP chiedeva
+«un prezzo sul fronte Oppose, misurato prima di scriverlo». Misurato — e
+per strada si è chiarito un equivoco: la prima leva (l'oppositore non
+recupera la carta, ISSUES 1) **era già nei dati** di tutte le Chronicle,
+e la manopola che sembrava inerte la stava reimpostando sul valore che
+già aveva. Il prezzo sul portafoglio c'era già; quello che mancava era
+il prezzo sulla **rendita**.
+
+### La rendita del blocco, e la regola
+
+Una proposta affondata sfogava la domanda di −2 (appendice A6): il
+blocco comprava quiete — la questione si allontanava dalla soglia e il
+mondo restava com'era, che è esattamente ciò che i Destini del bloccante
+vogliono. Da questa versione `confluence_rules.failure_delta = -1` in
+tutte le Chronicle: la domanda bocciata resta vicina alla soglia e
+**torna prima**. In armonia con D-077 (la domanda resta sul tavolo) e
+D-094 (il conto resta aperto): dire di no non chiude niente.
+
+### Misurato (tavolo misto, stessi 100 semi, 7000-7099)
+
+| | −2 (prima) | **−1 (adottata)** | 0 (respinta) |
+|---|---|---|---|
+| aggressivo N/M/V/T | 2/33/**63**/2 | 6/32/**60**/2 | 4/32/**62**/2 |
+| prudente N/M/V/T | 0/61/35/4 | 1/63/34/2 | 3/63/31/3 |
+| distratto (Vittorie) | 46 | **53** | 54 |
+| divario aggressivo−prudente | 28 | **26** | 31 |
+| Consigli media / mediana | 5.85 / 6 | 5.97 / 6 | 6.02 / 6 |
+| bloccati al tavolo misto | 0/8 | **0/8** | 0/8 |
+
+Il gradino oltre (0: nessuno sfogo) è **respinto coi numeri**: la
+domanda ribolle subito, il bloccante blocca di nuovo e risale a 62 — il
+ginocchio della curva è a −1. Il prezzo vero della leva non è tanto le
+tre Vittorie in meno quanto il rischio: i NONE dell'aggressivo passano
+da 2 a 6 — bloccare può costarti l'anno — e i Consigli recuperati vanno
+al centro del tavolo (distratto 46→53). La storia del divario: 37 (prima
+di D-069) → 31 → 28 → **26**.
+
+Effetto collaterale misurato e giusto: il piano scriptato «il consiglio
+spezzato» ora ha una coda — la questione bocciata due volte torna ai
+voti una quarta, che passa (attese del piano aggiornate). Sulle saghe:
+sonde stabili (74%/74%), il calore ereditato sale un poco (72 calde su
+720: le domande sfogano meno), `question_unresolved` letterale a 4/20.
+
+---
+
+## D-097 — Il formato fisico: tre taglie di carta, token e segnalini
+**implemented in 0.1.54** (chiude ISSUES voce 7, decisione del committente)
+
+La voce 7 aspettava tre scelte di produzione, e il committente le ha
+date: **formati diversi per ruolo**, **mappa unica** (già fatta), **valori
+su token e segnalini**. Questa versione le implementa nell'export, così
+la decisione non resta un appunto: si stampa.
+
+### Le taglie
+
+| formato | mm | per foglio | mazzi |
+|---|---|---|---|
+| classica | 63×88 | 3×3 | Asset, Echo — si mescolano, stanno in mano |
+| tarocco | 70×120 | 2×2 | Destini, Casate — identità sempre in vista |
+| mini | 44×68 | 4×4 | Domande — si appoggiano alla traccia dei valori |
+| tessera | 80×80 | 2×3 | Regioni — la mappa, che resta com'è |
+
+`print_sheet` ora ha una tabella dei formati (`SHAPES`) invece di due
+costanti; l'impaginazione, i segni di taglio e l'anteprima F4 seguono da
+sé. La guardia che chiede a ogni carta se il suo testo ci sta è passata
+su tutte le taglie al primo colpo (719 asserzioni).
+
+### I segnalini
+
+`token_sheet.gd`, due fogli nuovi in coda al fascicolo PDF:
+
+- **la fustella** (una per saga, 15 mm): per ogni casa sei tondi pieni di
+  presenza e sei anelli di controllo — sei Regioni, il pezzo in più non
+  esiste (§19.4) — più i rombi del valore e il quadrato del Drift;
+- **la traccia dei valori**: quattro corsie 0–8, il posto della carta
+  mini a sinistra, la regola della soglia scritta sul foglio. La soglia
+  sta sulla carta perché cambia da domanda a domanda.
+
+Deterministico byte per byte come tutto l'export. COMPONENTS §7 riscritta
+da lista di domande a decisione, come chiedeva il «fatto quando»; alla
+0.6 restano tablet-contro-telefoni e scatola-contro-espansioni.
+
+---
+
+## D-096 — Il libro della saga: la Timeline in apertura, poi i capitoli
+**implemented in 0.1.53** (con D-095 completa la parte in-app della 1.0 dichiarata)
+
+D-095 ha messo la saga davanti a chi gioca; questo le da' il suo libro.
+Il Chronicle Book impaginava un anno alla volta (D-086) — giusto per una
+partita secca, monco per una saga: dieci ere giocate in fila uscivano
+come dieci libri separati, senza la vista che le tiene insieme.
+
+### La regola
+
+`ChronicleBook.saga_pages(saves, data)`: in apertura la **Timeline** —
+un anno per voce, con il salto («Anno 904, 92 anni dopo — …»), chi
+sedeva e com'è finita in breve (niente / il minimo / la vittoria / il
+trionfo) — e poi la cronaca di ogni anno, capitolo per capitolo, con le
+stesse identiche pagine di D-086. Con un anno solo il libro della saga
+*è* il libro di sempre, per costruzione (`saga_pages([x]) == pages(x)`).
+
+Nell'app: `game_screen` tiene la fila degli anni giocati
+(`_saga_saves`, azzerata quando dal menu comincia una storia nuova), e
+il bottone «La cronaca» mostra il libro intero appena la saga ha più di
+un anno. Il piè di pagina dice cosa si sta sfogliando — «la saga, anni
+812 – 1804» — e la vista è la stessa rasterizzazione di sempre: quello
+che si vede è quello che si stamperà.
+
+Della 1.0 restano ora la campagna Legacy vera e propria e le rifiniture
+d'autore; la triade motore–gioco–libro della saga è chiusa.
+
+Guardie: `test_chronicle_book` (la Timeline conta il salto, nomina chi
+si è seduto e come è finita; le cronache seguono in ordine; un anno solo
+dà il libro di sempre).
+
+---
+
 ## D-095 — La saga si gioca: l'era successiva si offre a fine anno
 **implemented in 0.1.52** (il primo pezzo mancante della 1.0)
 

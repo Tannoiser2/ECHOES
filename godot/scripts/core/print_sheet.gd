@@ -23,17 +23,23 @@ const ArtLibrary := preload("res://scripts/core/art_library.gd")
 const PAGE_W: float = 210.0
 const PAGE_H: float = 297.0
 
-## 63x88 e' il formato carta da gioco piu' diffuso (bustine standard); 80x80 la
-## tessera Regione, quadrata come chiede il MASTER PROMPT 3.
+## I formati delle carte (D-097, voce 7): ogni mazzo ha la taglia del suo
+## ruolo al tavolo. 63x88 e' la carta da gioco classica (bustine standard) per
+## i mazzi che si mescolano e stanno in mano; 70x120 e' il tarocco per le
+## carte-identita' che restano in vista tutta la partita; 44x68 e' la mini per
+## i riferimenti che stanno accanto ai tracciati; 80x80 la tessera Regione,
+## quadrata come chiede il MASTER PROMPT 3.
+const SHAPES: Dictionary = {
+	"CARD": {"w": 63.0, "h": 88.0, "cols": 3, "rows": 3},
+	"TAROT": {"w": 70.0, "h": 120.0, "cols": 2, "rows": 2},
+	"MINI": {"w": 44.0, "h": 68.0, "cols": 4, "rows": 4},
+	"TILE": {"w": 80.0, "h": 80.0, "cols": 2, "rows": 3},
+}
+
 const CARD_W: float = 63.0
 const CARD_H: float = 88.0
 const TILE_W: float = 80.0
 const TILE_H: float = 80.0
-
-const CARD_COLS: int = 3
-const CARD_ROWS: int = 3
-const TILE_COLS: int = 2
-const TILE_ROWS: int = 3
 
 const INK: String = "#efe7d8"
 const DIM: String = "#8a8172"
@@ -41,11 +47,17 @@ const PAPER: String = "#12100e"
 
 
 static func cell_size(shape: String) -> Vector2:
-	return Vector2(TILE_W, TILE_H) if shape == "TILE" else Vector2(CARD_W, CARD_H)
+	var spec: Dictionary = SHAPES.get(shape, SHAPES["CARD"])
+	return Vector2(float(spec["w"]), float(spec["h"]))
+
+
+static func columns(shape: String) -> int:
+	return int((SHAPES.get(shape, SHAPES["CARD"]) as Dictionary)["cols"])
 
 
 static func per_page(shape: String) -> int:
-	return TILE_COLS * TILE_ROWS if shape == "TILE" else CARD_COLS * CARD_ROWS
+	var spec: Dictionary = SHAPES.get(shape, SHAPES["CARD"])
+	return int(spec["cols"]) * int(spec["rows"])
 
 
 ## Una carta stampata quattro volte e' quattro carte (D-040: comune = 4 copie).
@@ -77,9 +89,9 @@ static func paginate(faces: Array, shape: String) -> Array:
 ## foglio manca e' un mazzo da ristampare tutto.
 static func page_svg(faces: Array, shape: String, label: String, number: int, total: int) -> String:
 	var cell: Vector2 = cell_size(shape)
-	var columns: int = TILE_COLS if shape == "TILE" else CARD_COLS
-	var rows: int = TILE_ROWS if shape == "TILE" else CARD_ROWS
-	var left: float = (PAGE_W - cell.x * float(columns)) * 0.5
+	var cols: int = columns(shape)
+	var rows: int = per_page(shape) / cols
+	var left: float = (PAGE_W - cell.x * float(cols)) * 0.5
 	var top: float = (PAGE_H - cell.y * float(rows)) * 0.5
 
 	var out: Array = []
@@ -105,8 +117,8 @@ static func page_svg(faces: Array, shape: String, label: String, number: int, to
 	)
 
 	for index in range(faces.size()):
-		var column: int = index % columns
-		var row: int = index / columns
+		var column: int = index % cols
+		var row: int = index / cols
 		var x: float = left + float(column) * cell.x
 		var y: float = top + float(row) * cell.y
 		out.append(_crop_marks(x, y, cell))

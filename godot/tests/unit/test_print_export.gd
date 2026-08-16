@@ -182,3 +182,37 @@ func test_a_house_portrait_is_varied_by_its_archetype() -> void:
 	var scene: String = bible.prompt_for(levy, str(levy["title"]), "SOVEREIGN")
 	assert_true(scene.contains("l'accento della sua famiglia"), "l'Asset non vede la tabella 4")
 	assert_false(scene.contains("oro spento"), "e non si prende l'accento di un archetipo")
+
+
+## D-097 (voce 7): ogni mazzo ha la taglia del suo ruolo al tavolo. I mazzi
+## che si mescolano restano classici, le carte-identita' diventano tarocchi,
+## le domande diventano mini da appoggiare alla traccia dei valori.
+func test_each_deck_has_the_size_of_its_table_role() -> void:
+	var loaded: RefCounted = data()
+	assert_eq(str(CardFace.deck_of("asset", loaded)[0]["shape"]), "CARD", "gli Asset si mescolano: classica")
+	assert_eq(str(CardFace.deck_of("echo", loaded)[0]["shape"]), "CARD", "gli Echo pure")
+	assert_eq(str(CardFace.deck_of("tension", loaded)[0]["shape"]), "MINI", "le domande sono mini, per la traccia")
+	assert_eq(str(CardFace.deck_of("destiny", loaded)[0]["shape"]), "TAROT", "i Destini sono tarocchi, sempre in vista")
+	assert_eq(str(CardFace.deck_of("entity", loaded)[0]["shape"]), "TAROT", "le Casate pure")
+	assert_eq(str(CardFace.deck_of("region", loaded)[0]["shape"]), "TILE", "le Regioni restano tessere: la mappa e' fatta")
+	assert_eq(PrintSheet.cell_size("TAROT"), Vector2(70.0, 120.0), "il tarocco e' 70x120")
+	assert_eq(PrintSheet.cell_size("MINI"), Vector2(44.0, 68.0), "la mini e' 44x68")
+	assert_eq(PrintSheet.per_page("TAROT"), 4, "quattro tarocchi per foglio")
+	assert_eq(PrintSheet.per_page("MINI"), 16, "sedici mini per foglio")
+
+
+## E i segnalini si contano: sei presenze e sei controlli per casa (sei
+## Regioni: il pezzo in piu' non esiste), i rombi dei valori, il quadrato del
+## Drift - e due export identici byte per byte, come tutto il resto.
+func test_the_token_sheet_counts_its_pieces() -> void:
+	var TokenSheet: GDScript = load("res://scripts/core/token_sheet.gd")
+	var svg: String = TokenSheet.tokens_svg(data(), "CHR_01")
+	assert_eq(svg.count("<circle"), 48, "4 case x (6 tondi + 6 anelli) = 48 cerchi")
+	assert_eq(svg.count("<path"), 6, "sei rombi di valore")
+	assert_true(svg.contains("Re Aldric"), "le case sono quelle della Chronicle")
+	assert_true(svg.contains("width=\"210mm\" height=\"297mm\""), "il foglio e' un A4 vero")
+	assert_eq(svg, TokenSheet.tokens_svg(data(), "CHR_01"), "deterministico byte per byte")
+
+	var track: String = TokenSheet.track_board_svg()
+	assert_eq(track.count("<rect"), 1 + 4 * 10, "il fondo, e per corsia un posto-carta e nove caselle")
+	assert_true(track.contains("si apre il Consiglio"), "la regola della soglia e' scritta sul foglio")

@@ -187,7 +187,7 @@ class Sheet extends Control:
 		var origin: Vector2 = Vector2((size.x - page.x) * 0.5, 0.0)
 		draw_rect(Rect2(origin, page), Color("#e8e4dc"))
 
-		var columns: int = int(PrintSheet.PAGE_W / cell.x)
+		var columns: int = PrintSheet.columns(str(_current["shape"]))
 		var left: float = (PrintSheet.PAGE_W - cell.x * float(columns)) * 0.5
 		var rows: int = int(PrintSheet.per_page(str(_current["shape"])) / columns)
 		var top: float = (PrintSheet.PAGE_H - cell.y * float(rows)) * 0.5
