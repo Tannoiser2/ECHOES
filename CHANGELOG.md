@@ -5,6 +5,32 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.55] — La seconda leva: la proposta bocciata non compra quiete
+
+Chiude la milestone 0.2 ([D-098](docs/DECISIONS.md#d-098)): era l'ultima
+voce.
+
+### Changed
+
+- **`confluence_rules.failure_delta` = −1** in tutte le Chronicle (era
+  −2, appendice A6): una proposta affondata non sfoga più la domanda —
+  resta vicina alla soglia e torna prima. In armonia con D-077 e D-094:
+  dire di no non chiude niente. Il gradino 0 è respinto coi numeri; la
+  manopola `--failure-delta` resta nel playtest per rimisurare.
+- Le attese del piano scriptato «il consiglio spezzato» aggiornate: la
+  questione bocciata due volte torna ai voti una quarta, che passa.
+
+### Misurato (stessi 100 semi)
+
+Divario aggressivo−prudente 28→26 (storia: 37→31→28→26); i NONE del
+bloccante da 2 a 6 — bloccare può costarti l'anno; i Consigli recuperati
+vanno al centro del tavolo (distratto 46→53). Mediana Consigli 6, 0/8
+bloccati al tavolo misto, saghe stabili. Scoperto per strada che la
+prima leva (ISSUES 1) era già nei dati. 215 test in 29 suite, 4518
+asserzioni.
+
+---
+
 ## [0.1.54] — Il formato fisico: tre taglie di carta, token e segnalini
 
 Chiude ISSUES voce 7 con le decisioni del committente, implementate

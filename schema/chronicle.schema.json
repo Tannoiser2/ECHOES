@@ -310,6 +310,12 @@
               "type": "boolean",
               "default": true,
               "description": "Se false, far cadere una proposta costa quanto proporla: chi si oppone scarta tutto quello che ha impegnato, come il proponente. Prima leva provata contro l'Oppose come strategia dominante (ISSUES 1)."
+            },
+            "failure_delta": {
+              "type": "integer",
+              "default": -2,
+              "maximum": 0,
+              "description": "Di quanto un Failure sfoga la Tensione (appendice A6: -2). A -1 la proposta bocciata non compra quiete: la domanda resta piu' vicina alla soglia e torna prima - la seconda leva contro l'Oppose come strategia dominante, misurata in D-098."
             }
           }
         },

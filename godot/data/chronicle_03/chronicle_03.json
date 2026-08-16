@@ -19,7 +19,8 @@
         "displacement_on_decrease": 1
       },
       "confluence_rules": {
-        "opposer_recovers_on_failure": false
+        "opposer_recovers_on_failure": false,
+        "failure_delta": -1
       },
       "control_rules": {
         "max_stable_control": 2,
@@ -155,7 +156,8 @@
         "displacement_on_decrease": 1
       },
       "confluence_rules": {
-        "opposer_recovers_on_failure": false
+        "opposer_recovers_on_failure": false,
+        "failure_delta": -1
       },
       "control_rules": {
         "max_stable_control": 2,

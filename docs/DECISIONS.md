@@ -331,6 +331,54 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-098 — La seconda leva: la proposta bocciata non compra quiete
+**implemented in 0.1.55** (chiude la 0.2: era l'ultima voce)
+
+Bloccare era ancora il seggio più forte, e la voce di ROADMAP chiedeva
+«un prezzo sul fronte Oppose, misurato prima di scriverlo». Misurato — e
+per strada si è chiarito un equivoco: la prima leva (l'oppositore non
+recupera la carta, ISSUES 1) **era già nei dati** di tutte le Chronicle,
+e la manopola che sembrava inerte la stava reimpostando sul valore che
+già aveva. Il prezzo sul portafoglio c'era già; quello che mancava era
+il prezzo sulla **rendita**.
+
+### La rendita del blocco, e la regola
+
+Una proposta affondata sfogava la domanda di −2 (appendice A6): il
+blocco comprava quiete — la questione si allontanava dalla soglia e il
+mondo restava com'era, che è esattamente ciò che i Destini del bloccante
+vogliono. Da questa versione `confluence_rules.failure_delta = -1` in
+tutte le Chronicle: la domanda bocciata resta vicina alla soglia e
+**torna prima**. In armonia con D-077 (la domanda resta sul tavolo) e
+D-094 (il conto resta aperto): dire di no non chiude niente.
+
+### Misurato (tavolo misto, stessi 100 semi, 7000-7099)
+
+| | −2 (prima) | **−1 (adottata)** | 0 (respinta) |
+|---|---|---|---|
+| aggressivo N/M/V/T | 2/33/**63**/2 | 6/32/**60**/2 | 4/32/**62**/2 |
+| prudente N/M/V/T | 0/61/35/4 | 1/63/34/2 | 3/63/31/3 |
+| distratto (Vittorie) | 46 | **53** | 54 |
+| divario aggressivo−prudente | 28 | **26** | 31 |
+| Consigli media / mediana | 5.85 / 6 | 5.97 / 6 | 6.02 / 6 |
+| bloccati al tavolo misto | 0/8 | **0/8** | 0/8 |
+
+Il gradino oltre (0: nessuno sfogo) è **respinto coi numeri**: la
+domanda ribolle subito, il bloccante blocca di nuovo e risale a 62 — il
+ginocchio della curva è a −1. Il prezzo vero della leva non è tanto le
+tre Vittorie in meno quanto il rischio: i NONE dell'aggressivo passano
+da 2 a 6 — bloccare può costarti l'anno — e i Consigli recuperati vanno
+al centro del tavolo (distratto 46→53). La storia del divario: 37 (prima
+di D-069) → 31 → 28 → **26**.
+
+Effetto collaterale misurato e giusto: il piano scriptato «il consiglio
+spezzato» ora ha una coda — la questione bocciata due volte torna ai
+voti una quarta, che passa (attese del piano aggiornate). Sulle saghe:
+sonde stabili (74%/74%), il calore ereditato sale un poco (72 calde su
+720: le domande sfogano meno), `question_unresolved` letterale a 4/20.
+
+---
+
 ## D-097 — Il formato fisico: tre taglie di carta, token e segnalini
 **implemented in 0.1.54** (chiude ISSUES voce 7, decisione del committente)
 

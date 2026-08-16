@@ -58,6 +58,20 @@ func _initialize() -> void:
 			chronicle["confluence_rules"] = rules
 		print("confluence_rules: opposer_recovers_on_failure = %s" % str(recovers))
 
+	# La seconda leva della 0.2 (D-098): quanto sfoga una proposta affondata.
+	# `--failure-delta=-1` toglie meta' della rendita del blocco, senza toccare
+	# i dati - come sopra, e come i cap su INFLUENCE.
+	if options.has("failure-delta"):
+		var failure_delta: int = int(str(options["failure-delta"]))
+		for chronicle_id in ["CHR_01", "CHR_03"]:
+			var chronicle: Dictionary = data.chronicles[chronicle_id]
+			var rules: Dictionary = (
+				(chronicle.get("confluence_rules", {}) as Dictionary).duplicate(true)
+			)
+			rules["failure_delta"] = failure_delta
+			chronicle["confluence_rules"] = rules
+		print("confluence_rules: failure_delta = %d" % failure_delta)
+
 	print("PLAYTEST - %d partite, %d per saga, semi da %d" % [runs, runs / 2, first_seed])
 	var mixed: Dictionary = await _play(data, plan, first_seed, true)
 	var same: Dictionary = await _play(data, plan, first_seed, false)
