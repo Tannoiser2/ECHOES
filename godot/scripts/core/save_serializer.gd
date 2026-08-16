@@ -32,6 +32,18 @@ static func to_json(save: Dictionary, pretty: bool = true) -> String:
 	return JSON.stringify(save, "  " if pretty else "", true, false)
 
 
+## Il nome del salvataggio da portarsi via (voce 12, D-092). Stessa grammatica
+## del log: lettere, numeri e trattini, cosi' passa per una cartella Download e
+## per un allegato senza sorprese - e il seme nel nome dice quale mondo e'.
+static func download_name(chronicle_id: String, seed_value: int) -> String:
+	var slug: String = chronicle_id.to_lower().replace("_", "-")
+	if slug == "":
+		slug = "sessione"
+	if seed_value < 0:
+		return "echoes-salvataggio-%s.json" % slug
+	return "echoes-salvataggio-%s-%d.json" % [slug, seed_value]
+
+
 static func write(save: Dictionary, path: String) -> bool:
 	var directory: String = path.get_base_dir()
 	if directory != "" and not DirAccess.dir_exists_absolute(directory):

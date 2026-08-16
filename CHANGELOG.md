@@ -5,6 +5,68 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.50] — La voce 2 si chiude coi numeri: i template in più non servono
+
+Solo verbale ([D-093](docs/DECISIONS.md#d-093)): terza e ultima misura
+della voce più vecchia rimasta aperta.
+
+### Misurato
+
+Ogni proposta scritta vive dove vive: CHR_01 15/18 ai voti nell'anno
+singolo (le 3 fuori sono contenuto d'era, misurato vivo sulle saghe:
+21, 4 e 32 volte), CHR_03 17/19 con `P_SHOW_IT` a 88 voti su 20 saghe;
+nessuno zero sul conteggio completo, e le morte storiche di D-063
+(`P_DIG_FOR_HIRE`: 31) resuscitate dal tempo delle ere. La ripetizione
+ha già i suoi rimedi strutturali (D-028, D-077, D-076/D-085): scrivere
+template adesso sarebbe contenuto senza bisogno (D-035).
+
+---
+
+## [0.1.49] — Il browser dice se sa tenere il salvataggio
+
+Chiude ISSUES voce 12 ([D-092](docs/DECISIONS.md#d-092)): una partita
+persa perché il browser ha pulito lo spazio non è più persa in silenzio.
+
+### Added
+
+- **L'avviso prima di cominciare**: nel browser il menu dichiara se lo
+  storage c'è («i salvataggi restano in questo browser») o no
+  (navigazione privata: «chiusa la scheda, la partita sparisce») — e
+  l'avviso torna a fine anno, quando serve davvero.
+- **«Scarica il salvataggio»**: la partita in corso (o l'anno appena
+  finito) come JSON, per la stessa via del log; il nome del file porta
+  chronicle e seme (`echoes-salvataggio-chr-01-7042.json`).
+- `LogExport.deliver` ha imparato il MIME e i suoi messaggi sono neutri;
+  `SaveSerializer.download_name` nuovo, con guardia.
+
+### Misurato
+
+209 test in 29 suite, 4471 asserzioni; `game_screen.gd` compila headless.
+
+---
+
+## [0.1.48] — `marker_id` esce dal modello dati
+
+Chiude ISSUES voce 11 nel modo che la voce stessa prescrive
+([D-091](docs/DECISIONS.md#d-091)): un campo che nessuno legge è un campo
+che nessuno mantiene.
+
+### Removed
+
+- **`marker_id`** dagli schemi `region`/`entity`/`asset`/`echo_card`, dai
+  tre file dati che lo valorizzavano e dalla colonna del manifest.
+  Nessuna riga di GDScript l'ha mai letto. Rientrerà col prototipo di
+  computer vision della 0.5, che è anche il momento giusto per decidere
+  che forma di marker serve; i valori erano meccanici (`MK_<id>`) e si
+  rigenerano in un minuto.
+
+### Misurato
+
+Suite invariata (208 test in 29 suite, 4469 asserzioni), validazione e
+manifest verdi.
+
+---
+
 ## [0.1.47] — Il verbale della mappa: come si piazza l'era nuova
 
 Estensione della Fase 3 su richiesta del committente

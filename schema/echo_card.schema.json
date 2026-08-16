@@ -81,8 +81,7 @@
           "type": ["string", "null"],
           "description": "Tension id whose Confluence this card prescribes (§12.1b), or null."
         },
-        "art_prompt_key": { "type": "string", "minLength": 1 },
-        "marker_id": { "type": "string" }
+        "art_prompt_key": { "type": "string", "minLength": 1 }
       }
     },
     "effect_hook": {

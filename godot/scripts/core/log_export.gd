@@ -46,18 +46,21 @@ static func file_name(chronicle_id: String, seed_value: int) -> String:
 
 ## Scrive, e torna la riga da dire a chi ha premuto. Vuota solo se non c'e'
 ## niente da scrivere: un log vuoto non e' un errore, e' una sessione appena
-## cominciata.
-static func deliver(text: String, name: String) -> String:
+## cominciata. Il MIME e' un parametro perche' per questa via passa anche il
+## salvataggio (voce 12, D-092), che e' JSON e non testo.
+static func deliver(
+	text: String, name: String, mime: String = "text/plain;charset=utf-8"
+) -> String:
 	if text.strip_edges() == "":
 		return ""
 	var bytes: PackedByteArray = text.to_utf8_buffer()
 	if OS.has_feature("web"):
-		JavaScriptBridge.download_buffer(bytes, name, "text/plain;charset=utf-8")
-		return "Log scaricato: %s" % name
+		JavaScriptBridge.download_buffer(bytes, name, mime)
+		return "Scaricato: %s" % name
 	var path: String = "user://%s" % name
 	var handle: FileAccess = FileAccess.open(path, FileAccess.WRITE)
 	if handle == null:
 		return "Non sono riuscito a scrivere %s" % path
 	handle.store_buffer(bytes)
 	handle.close()
-	return "Log scritto in %s" % ProjectSettings.globalize_path(path)
+	return "Scritto in %s" % ProjectSettings.globalize_path(path)

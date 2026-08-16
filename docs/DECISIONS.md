@@ -331,6 +331,103 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-093 — La voce 2 si chiude senza scrivere template: i numeri dicono che non servono
+**recorded in 0.1.50** (chiude ISSUES voce 2)
+
+La voce chiedeva «tre-cinque template di Confluence in più» contro la
+ripetizione al tavolo. Era già stata ridimensionata due volte dalle
+misure (D-061: metà delle domande scritte non veniva mai posta; D-063:
+il problema vero era il diritto di proporre, fatto in D-069). Questa è
+la terza misura, ed è quella che chiude: **ogni proposta scritta vive
+dove vive**, e la ripetizione ha già tre rimedi strutturali che nel
+frattempo sono entrati.
+
+### I numeri (sonda delle scelte a tavolo misto, 40 anni, semi 2000; saghe: 20 da 10 ere, semi 812+1009k)
+
+- **CHR_01, anno singolo**: 15 proposte su 18 ai voti. Le 3 fuori sono
+  tutte contenuto d'era che un anno primo non può avere:
+  `P_REOPEN_THE_MINE` e `P_ONE_CROWN` (D-085: **21 e 4 volte su 200
+  ere**), `P_HEIR_AS_STORY` (D-076: **32 volte su 20 saghe**).
+- **CHR_03, anno singolo**: 17 su 19 (erano 14 su 20 ai tempi di D-063,
+  su un corpo più piccolo). Le 2 fuori: `P_OLD_PAGE`, che è contenuto
+  d'era (**8 volte** sulle saghe della sua era), e `P_SHOW_IT`, che
+  nell'anno primo non esce perché la domanda della teca si apre tardi —
+  e sulle saghe va ai voti **88 volte su 20**.
+- **Nessuna proposta a zero** dove il suo contenuto vive: il conteggio
+  completo sulle 20 saghe CHR_03→CHR_04 va da 3 (`P_BURY_IT`) a 158
+  (`P_CALL_IT_IN`), e persino le morte storiche di D-063
+  (`P_DIG_FOR_HIRE`: **31**) sono resuscitate col tempo delle ere.
+
+### Perché non si scrive
+
+La paura della voce era la ripetizione: «le domande sono la parte che si
+vede di più, ed è quella che si ripete prima». Nel frattempo sono
+entrati la biblioteca che pesca l'anno (D-028: ogni era è una mano
+diversa), la domanda decisa che resta decisa (D-077: niente repliche
+nello stesso anno) e il contenuto d'era che entra solo quando la storia
+lo chiama (D-076/D-085). Aggiungere template adesso sarebbe contenuto
+senza bisogno misurato — e ogni misura di questo progetto dice che il
+contenuto in più che nessuno chiede finisce nella colonna dei morti di
+D-035. La banda resta guardata da `test_balance` e
+`test_library_balance`; se un giorno il tavolo umano troverà ripetitivo
+quello che le policy non trovano ripetitivo, quella sarà una
+segnalazione nuova, con la sua misura.
+
+---
+
+## D-092 — Il browser dice se sa tenere il salvataggio (e lo fa scaricare)
+**implemented in 0.1.49** (chiude ISSUES voce 12)
+
+Il Web export tiene `user://` in IndexedDB e la guardia c'era
+(`OS.is_userfs_persistent()` già proteggeva la ripresa, D-052) — ma una
+partita persa perché il browser ha pulito lo spazio restava una partita
+persa **in silenzio**. La voce 12 chiedeva due cose, e sono entrate
+tutt'e due:
+
+**La schermata lo dice prima di cominciare.** Nel browser, il menu apre
+con una riga: se lo storage c'è, «i salvataggi restano in questo
+browser»; se non c'è (navigazione privata, storage bloccato), l'avviso a
+colore dice che chiusa la scheda la partita sparisce — e la stessa rete
+si tende a fine anno, nel momento in cui serve davvero. Fuori dal
+browser, niente: non c'è rischio da dichiarare.
+
+**E offre di scaricarlo.** Un bottone «Scarica il salvataggio» accanto a
+«Scarica il log»: la partita in corso (o l'anno appena finito) come JSON,
+per la stessa via del log — `JavaScriptBridge.download_buffer` nel
+browser, `user://` altrove. `LogExport.deliver` ha imparato il MIME (i
+suoi messaggi ora sono neutri: per di lì passa anche un salvataggio),
+`SaveSerializer.download_name` dà il nome con chronicle e seme dentro —
+`echoes-salvataggio-chr-01-7042.json` — perché un file che non dice quale
+mondo è, è un file che non si ritrova.
+
+Guardie: `test_snapshot_and_save` (il nome è onesto nei due casi),
+`test_log_export` invariato sul contratto di consegna. Il round-trip del
+JSON era già coperto («risalvare produce lo stesso identico testo»).
+
+---
+
+## D-091 — `marker_id` esce dal modello dati (e rientrerà con chi lo legge)
+**implemented in 0.1.48** (chiude ISSUES voce 11)
+
+Ogni Regione, Entità, Asset e carta Echo portava un `marker_id` nello
+schema — l'aggancio fiducial per il prototipo di computer vision della
+0.5 — e nessuna riga di codice l'ha mai letto. La voce 11 dava due vie:
+o il prototipo lo usa, o il campo si toglie. Il prototipo è a due
+milestone di distanza; il campo si toglie.
+
+Il criterio è D-035 applicato ai dati: un campo che nessuno legge è un
+campo che nessuno mantiene — quattordici valori da tenere allineati a
+mano per un lettore che non esiste ancora. Ed è una scelta **reversibile
+a costo zero**: i valori erano meccanici (`MK_<id>`), si rigenerano in un
+minuto quando il prototipo 0.5 esisterà e dirà che forma di marker gli
+serve davvero — che è anche il momento giusto per deciderla, non prima.
+
+Tolto da: `region`/`entity`/`asset`/`echo_card` negli schemi, i tre file
+dati che lo valorizzavano, la colonna del manifest, e la riga di ROADMAP
+0.5 ora racconta la storia. Suite e validazione intatte.
+
+---
+
 ## D-090 — Il verbale della mappa: come si piazza l'era nuova
 **implemented in 0.1.47** (estensione di D-089, su richiesta del committente)
 

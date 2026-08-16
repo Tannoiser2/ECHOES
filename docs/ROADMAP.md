@@ -115,7 +115,11 @@ determinato dalle regole.
 
 ## 0.5 — Prototipo computer vision QR/fiducial
 
-I `marker_id` sono già nel modello dati e non usati da nessun codice.
+I `marker_id` entreranno nel modello dati insieme al prototipo che li
+legge: erano nello schema dalla 0.0, nessun codice li ha mai letti, e un
+campo che nessuno legge è un campo che nessuno mantiene — tolti in 0.1.48
+(ISSUES 11, [D-091](DECISIONS.md#d-091)). I valori erano meccanici
+(`MK_<id>`): si rigenerano in un minuto quando serviranno.
 
 ## 0.6 — Print-and-play e sincronizzazione tavolo fisico/digitale
 

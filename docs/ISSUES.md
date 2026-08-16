@@ -62,9 +62,17 @@ i numeri accanto.
 
 </details>
 
-### 2. Tre-cinque template di Confluence in più
+### 2. ✅ Tre-cinque template di Confluence in più — chiusa in 0.1.50: non servono
 
-`contenuto` · milestone **0.2**
+`contenuto` · milestone **0.2** · Terza e ultima misura
+([D-093](DECISIONS.md#d-093)): ogni proposta scritta vive dove vive — CHR_01
+15/18 ai voti nell'anno singolo e le 3 fuori sono contenuto d'era misurato
+vivo sulle saghe (21, 4 e 32 volte); CHR_03 17/19, con `P_SHOW_IT` a **88
+voti su 20 saghe** e `P_OLD_PAGE` a 8 nella sua era; nessuno zero, e le morte
+storiche di D-063 sono resuscitate col tempo delle ere. La ripetizione ha già
+i suoi rimedi strutturali (biblioteca D-028, domanda consumata D-077,
+contenuto d'era D-076/D-085): template in più adesso sarebbero contenuto
+senza bisogno, cioè i morti di domani (D-035).
 
 Dieci template su due saghe. Le domande che una Tensione può porre sono la parte
 di contenuto che si vede di più al tavolo, ed è quella che si ripete prima.
@@ -391,9 +399,15 @@ rasterizza le stesse pagine SVG che la stampa userà (0.1.43). Guardie in
 
 ## Debiti dichiarati
 
-### 11. `marker_id` non è usato da nessun codice
+### 11. ✅ `marker_id` non è usato da nessun codice — fatta in 0.1.48
 
-`debito` · milestone **0.5**
+`debito` · milestone **0.5** · Delle due vie del «fatto quando», è entrata la
+seconda ([D-091](DECISIONS.md#d-091)): il campo è tolto da schemi, dati e
+manifest. Rientrerà col prototipo 0.5 che lo legge — i valori erano meccanici
+(`MK_<id>`) e si rigenerano in un minuto, e la forma giusta del marker si
+decide quando esiste il lettore.
+
+<details><summary>Il testo dell'issue come era stato scritto</summary>
 
 Ogni Regione, Entità, Tensione e carta Echo ha un `marker_id` nello schema e nei
 dati. Nessuna riga di GDScript lo legge: esiste per il prototipo di computer
@@ -402,9 +416,17 @@ vision della 0.5.
 **Fatto quando** o il prototipo lo usa, o il campo viene tolto dallo schema. Un
 campo che nessuno legge è un campo che nessuno mantiene.
 
-### 12. Il salvataggio nel browser sta in IndexedDB
+</details>
 
-`debito` · `ux`
+### 12. ✅ Il salvataggio nel browser sta in IndexedDB — fatta in 0.1.49
+
+`debito` · `ux` · Tutt'e due le metà del «fatto quando»
+([D-092](DECISIONS.md#d-092)): il menu dichiara prima di cominciare se questo
+browser tiene i salvataggi (e ripete l'avviso a fine anno, quando serve), e
+«Scarica il salvataggio» porta via la partita come JSON con chronicle e seme
+nel nome, per la stessa via del log.
+
+<details><summary>Il testo dell'issue come era stato scritto</summary>
 
 Il Web export tiene `user://` in IndexedDB. La guardia c'è
 (`OS.is_userfs_persistent()`), ma una partita persa perché il browser ha pulito
@@ -412,6 +434,8 @@ lo spazio è una partita persa in silenzio.
 
 **Fatto quando** la schermata dice, prima di cominciare, se questo browser sa
 tenere il salvataggio — e offre di scaricarlo quando non lo sa.
+
+</details>
 
 ### 13. Il testo delle carte non ha una revisione editoriale
 

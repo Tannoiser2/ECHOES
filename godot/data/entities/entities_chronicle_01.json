@@ -48,7 +48,6 @@
       ],
       "active": true,
       "art_prompt_key": "entity.aldric",
-      "marker_id": "MK_ENT_ALDRIC",
       "persistence": "MORTAL",
       "successors": [
         {
@@ -136,7 +135,6 @@
       ],
       "active": true,
       "art_prompt_key": "entity.nahr",
-      "marker_id": "MK_ENT_NAHR",
       "persistence": "COLLECTIVE",
       "destiny_pool": [
         "DST_NAHR",
@@ -189,7 +187,6 @@
       ],
       "active": true,
       "art_prompt_key": "entity.lyra",
-      "marker_id": "MK_ENT_LYRA",
       "persistence": "MORTAL",
       "successors": [
         {
@@ -288,7 +285,6 @@
       ],
       "active": true,
       "art_prompt_key": "entity.vaerax",
-      "marker_id": "MK_ENT_VAERAX",
       "persistence": "ETERNAL",
       "destiny_pool": [
         "DST_VAERAX",
