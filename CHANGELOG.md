@@ -5,6 +5,22 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.56] — Il tavolo di lettura per la revisione dei testi
+
+Il materiale della voce 13, su richiesta del committente.
+
+### Added
+
+- **`tools/build_review.py`** → [docs/REVISIONE_TESTI.md](docs/REVISIONE_TESTI.md):
+  i 661 testi d'autore in ordine di lettura — aperture, Regioni, Casate,
+  Domande coi presagi, Consigli con proposte ed esiti raccontati,
+  Conseguenze e cicatrici, carte Echo, carte Asset, Destini gradino per
+  gradino, Azioni — ognuno col suo identificativo, così una correzione si
+  segna con una riga e si riporta nei dati senza cercare. Generato e
+  deterministico, come il manifest: non si corregge lì, si rigenera.
+
+---
+
 ## [0.1.55] — La seconda leva: la proposta bocciata non compra quiete
 
 Chiude la milestone 0.2 ([D-098](docs/DECISIONS.md#d-098)): era l'ultima

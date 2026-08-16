@@ -447,15 +447,19 @@ tenere il salvataggio — e offre di scaricarlo quando non lo sa.
 
 </details>
 
-### 13. Il testo delle carte non ha una revisione editoriale
+### 13. Il testo delle carte non ha una revisione editoriale — materiale pronto (0.1.56)
 
-`contenuto` · `debito`
+`contenuto` · `debito` · **Il tavolo di lettura c'è**:
+[REVISIONE_TESTI.md](REVISIONE_TESTI.md), generato da
+`tools/build_review.py` — 661 testi in ordine di lettura, ognuno col suo
+identificativo, così una correzione si segna con una riga
+(«`P_SHOW_IT`: riscrivi così…») e si riporta nei dati senza cercare. La
+lettura è del committente.
 
-305 frasi, circa 3.300 parole, due saghe. Sono state scritte insieme al codice e
-mai rilette di fila. L'export dà per la prima volta il modo di farlo: 25 fogli,
-una carta accanto all'altra.
+305 frasi, circa 3.300 parole, due saghe (oggi: 661 testi con esiti e
+presagi). Sono state scritte insieme al codice e mai rilette di fila.
 
-**Fatto quando** qualcuno ha letto i fogli dall'inizio alla fine e le correzioni
+**Fatto quando** qualcuno ha letto i testi dall'inizio alla fine e le correzioni
 sono nei JSON.
 
 ---
