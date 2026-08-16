@@ -331,6 +331,39 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-084 — Il quinto MASTER PROMPT: i Destini sono nature morte del desiderio
+**implemented in 0.1.39** (su richiesta del committente, per il brief d'arte)
+
+L'inventario dei componenti grafici ha trovato le carte Destiny nella stessa
+situazione in cui D-065 trovò i ritratti: **12 chiavi d'arte nei dati, nessun
+MASTER PROMPT, nessuna voce nel brief** — e 4 Destini della corona senza
+nemmeno la chiave.
+
+### La direzione
+
+La carta Destiny è l'unico pezzo che un giocatore guarda da solo, dietro il
+paravento: è la *sua* ambizione vista coi suoi occhi, e in quella
+inquadratura non c'è nessuno — c'è **la cosa**. Quindi niente volti: un
+oggetto, un luogo, una soglia, composti come un'immagine votiva. Il set
+resta leggibile a colpo d'occhio: gli Asset sono scene con gente dentro, le
+Casate sono ritratti (regola 3), i Destini sono nature morte del desiderio.
+
+La variation key è l'**archetipo di chi desidera**, con gli stessi accenti
+del MASTER PROMPT 4: il Destino di una casa porta il colore della casa, e le
+due carte del pool — l'ambizione di partenza e quella dopo — sono due quadri
+della stessa parete.
+
+### Cosa è entrato
+
+- MASTER PROMPT 5 in `ART_BIBLE.md`, con la tabella per archetipo;
+- le 4 chiavi mancanti (`destiny.aldric.record`, `destiny.nahr.rooted`,
+  `destiny.lyra.taught`, `destiny.vaerax.watched`);
+- il mazzo `destiny` collegato al brief (`art_bible.gd`) e la faccia che
+  porta la propria chiave (`card_face.gd` — non la esponeva);
+- il brief passa da 101 a **117 prompt**.
+
+---
+
 ## D-083 — Il contenuto senza elettorato si toglie: due tagli e una variante respinta
 **implemented in 0.1.38** (scelta del committente: «riscriverle o toglierle»)
 

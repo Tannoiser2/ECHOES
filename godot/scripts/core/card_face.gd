@@ -219,6 +219,7 @@ static func _destiny(destiny: Dictionary, data: RefCounted) -> Dictionary:
 		])
 	face["notes"] = rungs
 	face["footer"] = str(destiny["id"])
+	face["art_prompt_key"] = str(destiny.get("art_prompt_key", ""))
 	# Sta dietro il paravento (COMPONENTS §5): il foglio la stampa, l'anteprima la
 	# marca, e chi la stampa sa che non va lasciata sul tavolo.
 	face["secret"] = true
