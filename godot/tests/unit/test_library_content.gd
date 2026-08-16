@@ -220,6 +220,75 @@ func test_a_question_left_hot_starts_warm_after_a_short_jump() -> void:
 	)
 
 
+## D-089 (Fase 3 del motore 0.3): il verbale d'apertura. L'era nuova sa dire
+## *perche'* ha in mano le sue domande - il segno che l'ha richiamata, il conto
+## che qualcuno ha lasciato aperto, il calore con cui riparte - e la prosa
+## nomina le cose per nome. Solo lettura: costruirlo due volte da' lo stesso
+## verbale, e non consuma un solo tiro.
+func test_the_opening_record_says_why_each_question_is_on_the_table() -> void:
+	var loaded: RefCounted = data()
+	var chronicle: Dictionary = loaded.chronicles["CHR_02"]
+	var world: Dictionary = {"tensions": {
+		"TEN_AWAKENING": {"current_value": 2},
+		"TEN_PLAGUE": {"current_value": 4},
+		"TEN_FAMINE": {"current_value": 3},
+	}}
+	var previous: Dictionary = {
+		"global_tags": ["legend:mine_sealed"],
+		"regions": {},
+		"entities": {"ENT_ALDRIC": {"name": "Re Aldric II"}},
+		"tensions": {},
+	}
+	var results: Dictionary = {
+		"ENT_ALDRIC": {"level": "MINIMUM", "unmet": [
+			{"type": "tension_limit", "tension_id": "TEN_PLAGUE", "max": 3},
+		]},
+	}
+
+	var record: Array = WorldStateFactory.opening_record(
+		world, chronicle, loaded, previous, results
+	)
+	assert_eq(record.size(), 3, "una voce per domanda in mano")
+	assert_eq(
+		record, WorldStateFactory.opening_record(world, chronicle, loaded, previous, results),
+		"solo lettura: due costruzioni, lo stesso verbale"
+	)
+
+	var by_id: Dictionary = {}
+	for entry in record:
+		by_id[str((entry as Dictionary)["tension_id"])] = entry
+	var awakening: Array = (by_id["TEN_AWAKENING"] as Dictionary)["called_by"]
+	assert_eq(awakening.size(), 1, "il Risveglio e' richiamato da un segno solo")
+	assert_eq(str((awakening[0] as Dictionary)["carried"]), "legend", "ed e' la leggenda della miniera")
+	assert_eq(str((awakening[0] as Dictionary)["tag"]), "mine_sealed", "nominata per nome")
+	var plague: Array = (by_id["TEN_PLAGUE"] as Dictionary)["called_by"]
+	assert_eq(plague.size(), 1, "la Febbre e' richiamata dal conto aperto")
+	assert_eq(str((plague[0] as Dictionary)["name"]), "Re Aldric II", "di chi l'ha lasciato: il nome dell'era prima")
+	assert_true(
+		((by_id["TEN_FAMINE"] as Dictionary)["called_by"] as Array).is_empty(),
+		"la Carestia non e' richiamata da niente: biblioteca"
+	)
+
+	var lines: Array = WorldStateFactory.opening_lines(record, loaded)
+	assert_eq(lines.size(), 3, "una riga di prosa per domanda")
+	var text: String = "\n".join(PackedStringArray(lines))
+	assert_true(text.contains("se ne racconta ancora la leggenda ('mine_sealed')"), "la leggenda si legge")
+	assert_true(text.contains("Re Aldric II non l'ha mai chiusa"), "il conto aperto nomina chi l'ha lasciato")
+	assert_true(text.contains("esce dalla biblioteca"), "e il caso resta il caso")
+	assert_true(
+		text.contains("Apre a 4, non al 2 d'autore"),
+		"il calore ereditato (D-088) sta nel verbale con i suoi numeri"
+	)
+
+	# E un anno scritto non verbalizza: le sue domande non sono pescate.
+	assert_true(
+		WorldStateFactory.opening_record(
+			world, loaded.chronicles["CHR_01"], loaded, previous, results
+		).is_empty(),
+		"CHR_01 non ha pool: niente verbale"
+	)
+
+
 ## E la ripesca di `inherit_from` rida' anche il sacchetto del Drift: ogni
 ## chip del sacchetto nomina una Tensione dell'anno ripescato, non di quello
 ## pescato alla cieca al setup.

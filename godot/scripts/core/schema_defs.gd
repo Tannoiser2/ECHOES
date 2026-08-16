@@ -1274,6 +1274,12 @@ const DEFS := {
 			"influence_used_by_tension": {
 				"type": "Dictionary",
 			},
+			"opening_record": {
+				"type": "Array",
+				"element": {
+					"type": "Dictionary",
+				},
+			},
 		},
 	},
 }

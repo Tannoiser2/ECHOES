@@ -134,6 +134,17 @@ func inherit_from(previous: Dictionary, results: Dictionary = {}) -> void:
 	# perche' il mondo di prima non era ancora noto. Adesso lo e': se il pool
 	# dichiara degli echi, si ridanno le carte pesate sui segni ereditati.
 	WorldStateFactory.redeal_tensions(world, _chronicle_def, data, rng, previous, results, _years_passed)
+	# E il verbale d'apertura (D-089): perche' queste domande. Solo lettura,
+	# dopo che la mano e' data; il tavolo lo trova in testa al log.
+	world["opening_record"] = WorldStateFactory.opening_record(
+		world, _chronicle_def, data, previous, results
+	)
+	if not (world["opening_record"] as Array).is_empty():
+		log.section("IL VERBALE D'APERTURA - anno %d, %d anni dopo" % [
+			int(world["year"]), _years_passed
+		])
+		for line in WorldStateFactory.opening_lines(world["opening_record"], data):
+			log.bullet(str(line))
 
 	_handover = Succession.plan(previous, results, _chronicle_def, data, _years_passed)
 	for entity_id in _handover:

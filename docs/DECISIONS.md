@@ -331,6 +331,53 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-089 — Il motore 0.3, Fase 3: il verbale d'apertura
+**implemented in 0.1.46** (milestone 0.3, chiude ISSUES voce 9)
+
+Il motore sapeva *perché* pescava — i segni (D-079), i conti aperti
+(D-087), il calore (D-088) — ma il perché moriva dentro la pesca: il
+tavolo vedeva la mano e non la memoria che l'aveva scelta. La generazione
+funzionava ed era illeggibile.
+
+### La regola
+
+All'apertura di un'era ereditata, per ogni domanda in mano il mondo
+registra chi l'ha richiamata: il segno che porta (fatto, leggenda, o tag
+di Regione — nominato per nome), il conto rimasto aperto (con il nome del
+seggio dell'era prima che l'ha lasciato), o niente — la biblioteca, il
+caso. E con che valore riparte, quando non è quello d'autore. Il record
+sta in `world_state.opening_record` (schema esteso), la prosa in testa al
+log del tavolo e nel digest di `run_saga`:
+
+> La Carestia torna: Re Aldric non l'ha mai chiusa; Popolo Nahr non l'ha
+> mai chiusa. · Il Risveglio torna: il mondo ne porta ancora il segno
+> ('mine_sealed'). · I Pozzi Bassi esce dalla biblioteca: il caso, non la
+> memoria.
+
+Solo lettura, per costruzione: `opening_record()` non pesca, non tira e
+non tocca il mondo. `_era_carries_any` è diventato il bordo di
+`_carried_mark` (stesso ordine di visita, quindi stessa pesca bit per
+bit) e `_open_accounts` restituisce *chi* ha lasciato ogni conto, non
+solo che esiste — la pesca continua a usarlo con `has()`.
+
+### Misurato
+
+Determinismo intatto sugli stessi semi: playtest a tavolo misto invariato
+(0 seggi bloccati su 8), sonda delle ere identica alla 0.1.45 riga per
+riga (66 calde / 14 quiete su 720, richiamate D-079 al 72%, conti D-087
+al 74%). Il verbale legge, non gioca.
+
+Guardie: `test_library_content` (il record nomina segno, conto e calore
+con i numeri giusti; due costruzioni danno lo stesso verbale; un anno
+scritto non verbalizza).
+
+Con questa fase le quattro dichiarate del cantiere (D-087) sono fatte, e
+il criterio della voce 9 è soddisfatto: da una Chronicle conclusa esce
+una Chronicle nuova con domande scelte dalle conseguenze della prima — e
+adesso lo dice ad alta voce.
+
+---
+
 ## D-088 — Il motore 0.3, Fase 2: la domanda lasciata calda torna calda
 **implemented in 0.1.45** (milestone 0.3, ISSUES voce 9)
 
@@ -400,10 +447,8 @@ nella pesca, misurato su cento semi, e la pesca resta deterministica).
 
 - **Fase 2 — la domanda lasciata calda torna calda**: ~~i valori di
   partenza~~ **fatta in 0.1.45** (D-088).
-- **Fase 3 — il verbale d'apertura**: l'era nuova sa *perché* ha pescato
-  le sue domande (segni, conti aperti); dirlo all'apertura — «la Carestia
-  torna: la casa di Aldric non l'ha mai chiusa» — è il pezzo che renderà
-  la generazione leggibile al tavolo.
+- **Fase 3 — il verbale d'apertura**: ~~l'era nuova sa *perché* ha
+  pescato le sue domande~~ **fatta in 0.1.46** (D-089).
 
 ---
 

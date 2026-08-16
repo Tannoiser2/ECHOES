@@ -205,6 +205,78 @@
             "type": "integer",
             "minimum": 0
           }
+        },
+        "opening_record": {
+          "type": "array",
+          "description": "Il verbale d'apertura (Fase 3 del motore 0.3): per ogni domanda pescata, chi l'ha richiamata - un segno sul mondo (D-079) o un conto rimasto aperto (D-087) - e con che valore riparte (D-088). Vuoto per l'anno che apre una saga e per gli anni scritti.",
+          "items": {
+            "$ref": "#/$defs/opening_entry"
+          }
+        }
+      }
+    },
+    "opening_entry": {
+      "type": "object",
+      "required": [
+        "tension_id",
+        "start",
+        "authored",
+        "called_by"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "tension_id": {
+          "type": "string"
+        },
+        "start": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "authored": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "called_by": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/opening_reason"
+          }
+        }
+      }
+    },
+    "opening_reason": {
+      "type": "object",
+      "required": [
+        "kind"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "mark",
+            "account"
+          ]
+        },
+        "tag": {
+          "type": "string"
+        },
+        "carried": {
+          "type": "string",
+          "enum": [
+            "fact",
+            "legend",
+            "region"
+          ]
+        },
+        "region_id": {
+          "type": "string"
+        },
+        "entity_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
         }
       }
     },

@@ -5,6 +5,33 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.46] — Il verbale d'apertura: la generazione si legge
+
+Fase 3 del World Propagation Engine ([D-089](docs/DECISIONS.md#d-089)),
+l'ultima dichiarata: chiude ISSUES voce 9.
+
+### Added
+
+- **`world_state.opening_record`**: per ogni domanda pescata, chi l'ha
+  richiamata — il segno sul mondo (D-079, nominato per nome: fatto,
+  leggenda o Regione), il conto rimasto aperto (D-087, con il nome del
+  seggio che l'ha lasciato), o la biblioteca — e con che valore riparte
+  (D-088). Schema esteso, chiave sempre presente.
+- **La prosa del verbale**: in testa al log del tavolo a ogni eredità
+  («La Carestia torna: Re Aldric non l'ha mai chiusa») e nel digest di
+  `run_saga` sotto «Perché queste».
+- `_open_accounts` dice *chi* ha lasciato ogni conto; `_carried_mark`
+  dice *quale* segno ha richiamato — la pesca usa gli stessi bordi di
+  prima e resta bit per bit identica.
+
+### Misurato
+
+Solo lettura, verificato sugli stessi semi: playtest a tavolo misto
+invariato (0/8 seggi bloccati), sonda delle ere identica alla 0.1.45 riga
+per riga. 207 test in 29 suite, 4452 asserzioni.
+
+---
+
 ## [0.1.45] — La domanda lasciata calda torna calda
 
 Fase 2 del World Propagation Engine ([D-088](docs/DECISIONS.md#d-088)): il
