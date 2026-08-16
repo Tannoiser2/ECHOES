@@ -366,6 +366,27 @@
           }
         },
         {
+          "id": "P_HEIR_AS_STORY",
+          "question_id": "Q_SUCCESSION_HEIR",
+          "text": "Si nomini chi la ballata nomina: l'erede che l'anno buono avrebbe voluto. E stavolta lo si scriva.",
+          "eligibility": [
+            {
+              "type": "state_tag_present",
+              "scope": "GLOBAL",
+              "tag": "legend:order_restored",
+              "label": "Si racconta di un anno in cui l'ordine torno davvero"
+            }
+          ],
+          "success_consequences": [
+            "CNS_HEIR_NAMED",
+            "CNS_LEGEND_RETOLD"
+          ],
+          "echo_summary": "L'erede fu nominato come nella storia, e la storia fini nel registro.",
+          "echo_summaries": {
+            "FAILURE": "Si cerco l'erede della ballata, e la ballata non lo diede."
+          }
+        },
+        {
           "id": "P_DIVIDE_CROWN",
           "question_id": "Q_SUCCESSION_HEIR",
           "text": "Non uno solo: il titolo si divide, e $the_region risponde a chi la tiene davvero.",

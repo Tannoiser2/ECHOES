@@ -110,19 +110,19 @@ func test_a_seat_keeps_the_destiny_it_failed_and_drops_the_one_it_won() -> void:
 
 ## D-081: l'iniquita' del tempo. Chi otteneva cambiava ambizione e chi falliva
 ## riprovava la stessa per mille anni. Il Destino e' della persona: l'erede che
-## si siede dopo due ere a mani vuote giura su altro; chi non cambia persona -
+## si siede dopo tre ere a mani vuote giura su altro; chi non cambia persona -
 ## la stessa vita, un popolo, la cosa sotto la montagna - non si stanca.
 func test_an_heir_does_not_swear_on_a_failed_ambition() -> void:
-	# `barren` e' il contatore alla fine dell'era precedente: con 1 gia'
-	# segnata, l'era appena chiusa a mani vuote e' la seconda che l'erede vede.
+	# `barren` e' il contatore alla fine dell'era precedente: con 2 gia'
+	# segnate, l'era appena chiusa a mani vuote e' la terza che l'erede vede.
 	var worn: Dictionary = {"entities": {
-		"ENT_ALDRIC": {"name": "Re Aldric", "destiny_id": "DST_ALDRIC", "generation": 0, "barren": 1},
+		"ENT_ALDRIC": {"name": "Re Aldric", "destiny_id": "DST_ALDRIC", "generation": 0, "barren": 2},
 		"ENT_VAERAX": {"name": "Vaerax", "destiny_id": "DST_VAERAX", "generation": 0, "barren": 9},
 	}}
 	var heirs: Dictionary = Succession.plan(worn, {}, _chronicle("CHR_02"), data(), 120)
 	assert_eq(
 		str(heirs["ENT_ALDRIC"]["destiny_id"]), "DST_ALDRIC_RECORD",
-		"l'erede dopo due ere a mani vuote vuole un'altra cosa"
+		"l'erede dopo tre ere a mani vuote vuole un'altra cosa"
 	)
 	assert_true(bool(heirs["ENT_ALDRIC"]["weary"]), "ed e' dichiarata stanchezza, non premio")
 	assert_false(bool(heirs["ENT_ALDRIC"]["wants_new"]), "perche' nessuno ha ottenuto niente")
@@ -140,14 +140,15 @@ func test_an_heir_does_not_swear_on_a_failed_ambition() -> void:
 		"la stessa persona riprova finche' vive"
 	)
 
-	# E una sola delusione e' sfortuna, non una tradizione: non basta.
-	var once: Dictionary = {"entities": {
-		"ENT_ALDRIC": {"name": "Re Aldric", "destiny_id": "DST_ALDRIC", "generation": 0, "barren": 0},
+	# E due delusioni sono sfortuna, non una tradizione: non bastano (0.1.36,
+	# soglia a tre per scelta del committente).
+	var twice: Dictionary = {"entities": {
+		"ENT_ALDRIC": {"name": "Re Aldric", "destiny_id": "DST_ALDRIC", "generation": 0, "barren": 1},
 	}}
 	assert_eq(
-		str(Succession.plan(once, {}, _chronicle("CHR_02"), data(), 120)["ENT_ALDRIC"]["destiny_id"]),
+		str(Succession.plan(twice, {}, _chronicle("CHR_02"), data(), 120)["ENT_ALDRIC"]["destiny_id"]),
 		"DST_ALDRIC",
-		"un erede che ha visto una sola era fallita ci riprova"
+		"un erede che ha visto due ere fallite ci riprova ancora"
 	)
 
 

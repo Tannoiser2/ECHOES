@@ -65,8 +65,12 @@ func test_both_chronicles_declare_the_floor() -> void:
 
 ## The one that would have caught the audit. A table that pushes nothing - every
 ## seat passing, every round - still gets its year decided.
+##
+## Il seme e' scelto perche' il pavimento scatti davvero: 1867 lo faceva fino
+## alla 0.1.36, la seconda carta MEMORIA nel mazzo della corona (0.1.37) ha
+## rimescolato l'anno e il seme si e' spostato di uno.
 func test_a_table_that_does_nothing_still_gets_a_year() -> void:
-	var report: Dictionary = await _run_chronicle("CHR_02", 1867, Idle.new())
+	var report: Dictionary = await _run_chronicle("CHR_02", 1868, Idle.new())
 	assert_true(
 		(report["confluences"] as Array).size() >= 2,
 		"un tavolo che non spinge niente ottiene comunque i suoi Consigli: %d"
@@ -154,7 +158,7 @@ func test_a_chronicle_can_opt_out_of_the_floor() -> void:
 ## that reached into the Tension directly would be the one place in the engine
 ## where the register stops explaining the table.
 func test_the_forced_push_goes_through_the_effect_log() -> void:
-	await _run_chronicle("CHR_02", 1867, Idle.new())
+	await _run_chronicle("CHR_02", 1868, Idle.new())
 	var forced: Array = []
 	for effect in session.world["effect_log"]:
 		if str(effect["source"]["id"]) == "YEAR_END":

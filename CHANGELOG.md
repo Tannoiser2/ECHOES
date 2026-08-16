@@ -5,6 +5,84 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.38] — Il contenuto senza elettorato si toglie
+
+Punto 7 del committente: le voci croniche a zero di CHR_03/04, riscritte se
+possibile, tolte se no ([D-083](docs/DECISIONS.md#d-083)).
+
+### Removed
+
+- **`P_WATER_RIGHTS`**: era il cattivo della questione dell'acqua e i poteri
+  locali la tenevano fuori per costruzione — la cura misurata (un debito
+  saldato nel prezzo) non ha mosso niente: 0 su 23, respinta e tolta.
+- **`Q_ANY_ANCIENT_LEAVE` / `P_ANY_WITHDRAW`**: i Consigli jolly si aprono
+  a questione fredda e il ritiro non ha un solo elettore fra i Destini —
+  tolti; la veglia e l'ignorare restano vivi.
+
+### Docs
+
+- **Il §7 riscritto per il gioco a 4 Tensioni** (punto 5 del committente):
+  `RULES_V0_2.md` dichiara i numeri veri — anno scritto mediana 5-6,
+  anno-biblioteca 3-6, limiti duri 2-8 — e chiude sei versioni di bande
+  «in deroga». A verbale anche il vincolo di equilibrio (0/8 al tavolo
+  misto) e la lettura del tavolo uniforme.
+
+### Misurato
+
+Il «mai ai voti» di CHR_03 scende da 7 proposte su 21 a **2 su 19**, con le
+due superstiti giustificate a verbale. 198 test in 28 suite verdi.
+
+---
+
+## [0.1.37] — La memoria in posta: il Trionfo che nomina la leggenda, e il giuramento che preme
+
+Due scelte del committente: la leggenda come posta nei Trionfi, e una
+memoria che inquieta per la prima saga ([D-082](docs/DECISIONS.md#d-082)).
+
+### Added
+
+- **La memoria come posta** (D-082): il Trionfo di «Radicati» (Popolo Nahr,
+  corona) e del «Registro Aperto» (Gilda del Sale, città) chiede anche la
+  leggenda dell'era **messa per iscritto** (`discovery:legend`). Tre
+  collocazioni respinte coi numeri prima di questa — il verbale del viaggio
+  è in D-082.
+- **`P_HEIR_AS_STORY`** sul Consiglio della Successione: «si nomini chi la
+  ballata nomina, e stavolta lo si scriva» — la strada di corona verso la
+  trascrizione, ineleggibile finché la leggenda non esiste (anno scritto
+  intatto per costruzione). Votata 32 volte in 20 saghe.
+- **«Il Giuramento che Nessuno Sciolse»**: la carta MEMORIA che preme
+  invece di consolare — gated su `legend:oath_broken`, scalda la
+  Successione e **forza il Consiglio**: la domanda si pone. Pescata 4 volte
+  in 20 saghe: rara come il suo gate, ma esiste.
+
+### Misurato
+
+Trionfo del popolo da 29/87 (quasi automatico) a **4/87** (raro e conteso),
+Vittoria 32→38; trascrizioni di corona da 0/153 a 12 ere; P_ANY_AS_STORY
+da 4 a 23 voti. Playtest: **0/8 bloccati al tavolo misto**, anno scritto
+invariato. A ISSUES (voce 18) il reperto: i fatti eterni come condizioni di
+assenza strozzano i Destini tardivi. 198 test in 28 suite verdi.
+
+---
+
+## [0.1.36] — La soglia della stanchezza: tre ere, non due
+
+Ratifica del committente su D-081: la terza delusione è la tradizione, non
+la seconda ([D-081, revisione](docs/DECISIONS.md#d-081)).
+
+### Changed
+
+- `WEARY_ERAS` da 2 a 3: l'erede cambia ambizione dopo **tre** ere a mani
+  vuote. Rimisurato sugli stessi semi: rotazioni da stanchezza da 6.7 a
+  4.1 per saga, da premio tornate a 13.6; i mortali restano sbloccati
+  (run massimo di Aldric 4 ere, zero saghe macinate).
+- A verbale la lettura confermata dal committente: i 4/8 seggi bloccati
+  del **tavolo uniforme** sono un artefatto della misura (quattro
+  ottimizzatori identici), non un difetto del gioco — il vincolo di
+  equilibrio resta 0/8 al tavolo misto.
+
+---
+
 ## [0.1.35] — L'iniquità del tempo
 
 La rotazione dei Destini premiava solo chi ottiene: chi falliva riprovava la

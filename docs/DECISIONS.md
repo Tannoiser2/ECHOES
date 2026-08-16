@@ -331,6 +331,83 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-083 — Il contenuto senza elettorato si toglie: due tagli e una variante respinta
+**implemented in 0.1.38** (scelta del committente: «riscriverle o toglierle»)
+
+La disciplina D-035 — una voce a zero è contenuto che non esiste — aveva due
+imputati cronici in CHR_03/04, e la sonda ha detto perché nessuno dei due
+era un incidente:
+
+- **`P_WATER_RIGHTS`** («l'acqua risponde a chi la paga»): il seggio che
+  tiene la parola sulla Valle sono le Città Libere, e il loro Destino vuole
+  `water_priced` **assente** — l'opzione era il cattivo della questione, e i
+  poteri locali la tenevano fuori dal tavolo per costruzione. La cura
+  provata coi numeri — `CNS_WATER_PRICED` salda anche un debito, perché chi
+  propone abbia un motivo — non ha mosso niente: **0 scelte su 23 offerte**,
+  identico a prima. Respinta, e la proposta è **tolta**: la domanda
+  dell'acqua resta con la risposta comune, che è viva (23/23).
+- **`Q_ANY_ANCIENT_LEAVE` / `P_ANY_WITHDRAW`** («si smette di scendere»):
+  i Consigli jolly di quest'era si aprono dal pavimento di fine anno, a
+  questione fredda — la soglia di eleggibilità non scatta mai (1 posa su
+  76 aperture attraverso tutte le sonde), e abbassarla a 2 non ha cambiato
+  niente (0 su 16). E il ritiro non ha un solo elettore: la Cenere vuole la
+  montagna calda, il Priore odia lo svuotamento. **Tolti** domanda e
+  proposta; la veglia e l'ignorare restano vivi (9/7 su 16).
+
+`CNS_ASH_ABANDONED` resta raggiungibile da `P_DIG_BELOW`. Dopo i tagli, il
+«mai ai voti» di CHR_03 passa da 7 proposte su 21 a **2 su 19**, ed
+entrambe le superstiti hanno una ragione dichiarata: `P_OLD_PAGE` è
+eleggibile solo nelle ere con una memoria (5 voti misurati nelle saghe
+delle città), `P_SHOW_IT` vive su altre serie di semi (2-6 voti).
+
+---
+
+## D-082 — La memoria come posta: un Trionfo che nomina la leggenda scritta
+**implemented in 0.1.37** (scelta del committente: «posta nei Trionfi»)
+
+Le leggende coloravano il mondo e nessun Destino le nominava: si poteva
+vincere una saga intera ignorando la memoria. Adesso un Trionfo per saga la
+chiede: **DST_NAHR_ROOTED** (corona) e **DST_SALE_OPEN** (città) domandano
+anche `discovery:legend` — aver *messo per iscritto* la leggenda dell'era,
+che è la cosa su cui un giocatore può agire in anno (le proposte «si dice
+che», D-076).
+
+### Il viaggio: tre collocazioni respinte coi numeri
+
+La posta è stata provata su quattro Destini, e la misura ha scelto:
+
+| collocazione | trascrive? | Trionfo | perché no |
+|---|---|---|---|
+| DST_ALDRIC_RECORD («il Regno che Ricorda») | 12 ere | 2→0 | la Vittoria è morta di suo (2/97): la cumulatività strozza qualsiasi Trionfo |
+| DST_VAERAX_WATCHED | **0** ere | 59→0 | sotto la montagna la parola non arriva: non può proporre di scrivere |
+| DST_LYRA_TAUGHT | 19 ere | 2→0 | in 17 ere su 19 la miniera è murata — e `mine_sealed` è un fatto **eterno** |
+| **DST_NAHR_ROOTED** | **12 ere** | 29→**4** | il popolo ha la parola sui Consigli di sopravvivenza, e la sua storia la racconta davvero |
+
+Il Trionfo del popolo scende da quasi-automatico (29/87) a raro e conteso
+(4/87), con la Vittoria che assorbe il resto (32→38): è la forma giusta di
+un Trionfo. Nelle città la Gilda trascrive in 10 ere su 50 e il suo Trionfo
+resta vivo (1).
+
+### La strada, perché la posta fosse raggiungibile
+
+Nella corona il «mettere per iscritto» passava solo dal Consiglio jolly, che
+apre di rado: la sonda dava **0 trascrizioni in 153 ere**. È entrata
+`P_HEIR_AS_STORY` sul Consiglio della Successione — «si nomini chi la
+ballata nomina, e stavolta lo si scriva» — ineleggibile finché la leggenda
+non esiste, quindi l'anno scritto è intatto per costruzione. Misurata:
+votata 32 volte in 20 saghe, e trascina anche P_ANY_AS_STORY da 4 a 23.
+
+### Il reperto, più grande della posta
+
+**Un fatto eterno usato come condizione di assenza uccide i Trionfi tardivi.**
+`crown_divided` e `mine_sealed` sono `enduring_facts`: una volta accaduti
+restano per la saga, e ogni Destino di seconda rotazione che ne pretende
+l'assenza muore man mano che il mondo invecchia — è così che la Vittoria di
+ALDRIC_RECORD sta a 2/97 e quella di LYRA_TAUGHT resta murata fuori.
+Registrato in ISSUES: è lavoro d'autore sui Destini, non una toppa.
+
+---
+
 ## D-081 — L'iniquità del tempo: un erede non giura sull'ambizione che ha visto fallire
 **implemented in 0.1.35**
 
@@ -372,9 +449,18 @@ stanchezza sono 6.7. Tutte le altre misure d'era — salti, generazioni,
 pesca che ascolta, memoria letta — invariate. Il playtest non incatena ere
 e resta intatto per costruzione.
 
-Guardie: `test_succession.gd` — l'erede dopo due ere a mani vuote ruota
-(e una sola non basta), la stessa persona non abbandona, l'eterno non si
-stanca, il contatore sale e si azzera con l'ottenuto.
+Guardie: `test_succession.gd` — l'erede dopo le ere a mani vuote di soglia
+ruota (e una in meno non basta), la stessa persona non abbandona, l'eterno
+non si stanca, il contatore sale e si azzera con l'ottenuto.
+
+### Revisione 0.1.36 — la soglia a tre, per scelta del committente
+
+A due ere la stanchezza ruotava 6.7 Destini per saga — quasi al ritmo dei
+salti. Il committente ha scelto tre: la terza delusione è la tradizione, non
+la seconda. Rimisurato sugli stessi semi: rotazioni da stanchezza **4.1**
+per saga, da premio tornate a 13.6, e i mortali restano sbloccati — run
+massimo di Aldric 4 ere (era 10 senza regola), zero saghe macinate per i
+MORTAL. Il Popolo e Vaerax restano fuori dalla regola, come da disegno.
 
 ---
 

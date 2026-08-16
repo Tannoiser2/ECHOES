@@ -325,6 +325,18 @@ diffabile).
 
 ---
 
+### 18. I fatti eterni strozzano i Destini di seconda rotazione
+
+`contenuto` · trovata in 0.1.37 (D-082) · un fatto in `enduring_facts` usato
+come condizione di **assenza** rende un Destino tardivo sempre più morto man
+mano che la saga invecchia: la corona spezzata nell'850 blocca il Trionfo di
+«Il Regno che Ricorda» per mille anni, la miniera murata fa lo stesso con la
+scuola. Misurato: Vittoria di DST_ALDRIC_RECORD 2 su 97 ere, Trionfo di
+DST_LYRA_TAUGHT 0-2 con la miniera murata in 17 ere trascritte su 19. Le
+opzioni sono d'autore: una via per *disfare* il fatto eterno (riaprire la
+miniera, riunire la corona), o Destini tardivi che chiedono presenze invece
+che assenze.
+
 ## Milestone 0.3 — World Propagation
 
 ### 9. La Chronicle II generata dalle evidence (#25)

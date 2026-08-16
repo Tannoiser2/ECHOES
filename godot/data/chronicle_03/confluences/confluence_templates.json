@@ -52,19 +52,6 @@
           "echo_summary": "I canali furono riaperti da $proponent, e da allora l'acqua ebbe un prezzo."
         },
         {
-          "id": "P_WATER_RIGHTS",
-          "question_id": "Q_WATER_PRICE",
-          "text": "Un atto scritto: l'acqua della Valle risponde a $proponent, che risponde della Valle.",
-          "eligibility": [],
-          "success_consequences": [
-            "CNS_WATER_PRICED"
-          ],
-          "echo_summary": "L'acqua $of_region passo a $proponent, per atto e non per forza.",
-          "echo_summaries": {
-            "DECISIVE_SUCCESS": "L'acqua $of_region passo a $proponent, e nessuno provo a discuterlo."
-          }
-        },
-        {
           "id": "P_WATER_COMMON",
           "question_id": "Q_WATER_PRICE",
           "text": "L'acqua non e di nessuno. Chi la devia risponde a tutti.",
@@ -616,18 +603,6 @@
           "id": "Q_ANY_ANCIENT_WATCH",
           "text": "Chi tiene d'occhio quello che c'e $in_region?",
           "eligibility": []
-        },
-        {
-          "id": "Q_ANY_ANCIENT_LEAVE",
-          "text": "E se conviene andarsene, chi lo dice?",
-          "eligibility": [
-            {
-              "type": "tension_limit",
-              "tension_id": "$tension",
-              "min": 3,
-              "label": "La questione e al limite"
-            }
-          ]
         }
       ],
       "propositions": [
@@ -650,16 +625,6 @@
             "CNS_COST_UNREST"
           ],
           "echo_summary": "Si stabili che non ci fosse niente da guardare, e per qualche mese fu vero."
-        },
-        {
-          "id": "P_ANY_WITHDRAW",
-          "question_id": "Q_ANY_ANCIENT_LEAVE",
-          "text": "Si smette di scendere. Non per paura: perche costa meno risalire.",
-          "eligibility": [],
-          "success_consequences": [
-            "CNS_ASH_ABANDONED"
-          ],
-          "echo_summary": "Si smise di scendere $in_region, e i conti tornarono meglio dell'anno prima."
         }
       ],
       "condition_clauses": [

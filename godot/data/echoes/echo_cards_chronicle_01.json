@@ -1045,6 +1045,44 @@
       ],
       "forces_confluence_on": null,
       "art_prompt_key": "echo.memoria.the_good_year"
+    },
+    {
+      "id": "ECH_LEGEND_BROKEN_OATH",
+      "title": "Il Giuramento che Nessuno Sciolse",
+      "dramatic_family": "MEMORIA",
+      "function_id": "BETRAYAL",
+      "description": "Qualcuno ripete a voce alta il giuramento che fu rotto, coi nomi di chi c'era. Le case contano da quanti anni nessuno lo nomina, e la conta non torna a nessuno.",
+      "eligibility": [
+        {
+          "type": "state_tag_present",
+          "scope": "GLOBAL",
+          "tag": "legend:oath_broken",
+          "label": "Si racconta di un giuramento rotto e mai sciolto"
+        },
+        {
+          "type": "tension_limit",
+          "tension_id": "TEN_SUCCESSION",
+          "min": 0,
+          "label": "TEN_SUCCESSION e in gioco quest'anno"
+        }
+      ],
+      "effect_hooks": [
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "ADJUST_TENSION",
+            "target": {
+              "kind": "tension",
+              "id": "TEN_SUCCESSION"
+            },
+            "payload": {
+              "delta": 1
+            }
+          }
+        }
+      ],
+      "forces_confluence_on": "TEN_SUCCESSION",
+      "art_prompt_key": "echo.memoria.the_broken_oath"
     }
   ]
 }

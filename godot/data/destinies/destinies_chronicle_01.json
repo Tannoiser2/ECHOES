@@ -419,6 +419,13 @@
             "scope": "GLOBAL",
             "tag": "valley_sealed",
             "label": "La Valle non e stata chiusa"
+          },
+          {
+            "type": "state_tag_present",
+            "scope": "ENTITY",
+            "entity_id": "ENT_NAHR",
+            "tag": "discovery:legend",
+            "label": "E la storia del popolo e stata messa per iscritto, com'e' raccontata"
           }
         ]
       }
