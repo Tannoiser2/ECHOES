@@ -95,7 +95,64 @@
           "Maestro",
           "Maestra"
         ]
-      }
+      },
+      "incarnations": [
+        {
+          "id": "INC_SALE_01",
+          "name": "Maestra Ilve",
+          "description": "Alla testa della Gilda del Sale, che non possiede nessuna città e tiene il registro di tutte. Non chiede obbedienza: chiede una firma.",
+          "persistence": "MORTAL",
+          "action_values": {
+            "ACQUIRE": 4,
+            "MOVE": 2,
+            "INFLUENCE": 3,
+            "FORGE": 3,
+            "SCHEME": 2,
+            "CLAIM": 2
+          },
+          "art_prompt_key": "entity.sale",
+          "successors": [
+            {
+              "name": "Maestro Ordan",
+              "description": "Il primo a proporre che il registro fosse letto anche da fuori. Non andò in porto, e non lo ritirò mai."
+            },
+            {
+              "name": "Maestra Ceva",
+              "description": "Comprava i debiti prima che diventassero domande."
+            },
+            {
+              "name": "Maestro Ruel",
+              "description": "Sotto di lui la Gilda smise di prestare a chi non aveva mura."
+            },
+            {
+              "name": "Maestra Sadin",
+              "description": "Diceva che una firma vale finché qualcuno ha voglia di leggerla."
+            }
+          ],
+          "name_grammar": {
+            "pattern": "{title} {given}{ordinal}",
+            "given": [
+              "Velan",
+              "Turi",
+              "Onara",
+              "Mesc",
+              "Ivrea",
+              "Dalon",
+              "Sperta",
+              "Nemi",
+              "Coran",
+              "Bissa",
+              "Ferro",
+              "Alda"
+            ],
+            "titles": [
+              "Maestro",
+              "Maestra"
+            ]
+          },
+          "entry": "FOUNDING"
+        }
+      ]
     },
     {
       "id": "ENT_VETRO",
@@ -188,7 +245,64 @@
           "Priore",
           "Priora"
         ]
-      }
+      },
+      "incarnations": [
+        {
+          "id": "INC_VETRO_01",
+          "name": "Priore Anselmo",
+          "description": "Guida l'Ordine del Vetro, che discende da una scuola e si comporta da fede. Custodisce quello che fu misurato, e la regola dice che misurarlo di nuovo sarebbe rimetterlo in discussione.",
+          "persistence": "MORTAL",
+          "action_values": {
+            "ACQUIRE": 2,
+            "MOVE": 2,
+            "INFLUENCE": 3,
+            "FORGE": 3,
+            "SCHEME": 4,
+            "CLAIM": 3
+          },
+          "art_prompt_key": "entity.vetro",
+          "successors": [
+            {
+              "name": "Priora Ilaria",
+              "description": "Fece murare la seconda teca senza dire cosa contenesse."
+            },
+            {
+              "name": "Priore Teodo",
+              "description": "Sosteneva che una regola che non si può spiegare non è una regola."
+            },
+            {
+              "name": "Priora Vesna",
+              "description": "Sotto di lei l'Ordine smise di insegnare a leggere il registro antico."
+            },
+            {
+              "name": "Priore Malco",
+              "description": "L'ultimo ad aver visto la reliquia, e non lo ha mai confermato."
+            }
+          ],
+          "name_grammar": {
+            "pattern": "{title} {given}{ordinal}",
+            "given": [
+              "Amerio",
+              "Isaura",
+              "Crino",
+              "Bendetta",
+              "Ilario",
+              "Norma",
+              "Fabro",
+              "Serena",
+              "Ottavio",
+              "Perpetua",
+              "Ruggero",
+              "Vittoria"
+            ],
+            "titles": [
+              "Priore",
+              "Priora"
+            ]
+          },
+          "entry": "FOUNDING"
+        }
+      ]
     },
     {
       "id": "ENT_CENERE",
@@ -277,7 +391,60 @@
           "Bruna",
           "Teo"
         ]
-      }
+      },
+      "incarnations": [
+        {
+          "id": "INC_CENERE_01",
+          "name": "Kessa dei Fuochi",
+          "description": "Parla per i Signori della Cenere, che tengono le Montagne Rosse e campano di quello che l'antica miniera ha lasciato indietro. Sanno che sotto c'è di più.",
+          "persistence": "MORTAL",
+          "action_values": {
+            "ACQUIRE": 3,
+            "MOVE": 3,
+            "INFLUENCE": 3,
+            "FORGE": 2,
+            "SCHEME": 3,
+            "CLAIM": 4
+          },
+          "art_prompt_key": "entity.cenere",
+          "successors": [
+            {
+              "name": "Toldan dei Fuochi",
+              "description": "Il primo a vendere il calore invece della pietra."
+            },
+            {
+              "name": "Neve dei Fuochi",
+              "description": "Chiuse tre gallerie in un mese e non spiegò perché."
+            },
+            {
+              "name": "Grim dei Fuochi",
+              "description": "Sotto di lui la Cenere cominciò a chiamarsi un popolo e non un mestiere."
+            },
+            {
+              "name": "Arla dei Fuochi",
+              "description": "Diceva che la montagna paga chi la ascolta e seppellisce chi la interroga."
+            }
+          ],
+          "name_grammar": {
+            "pattern": "{given} dei Fuochi{ordinal}",
+            "given": [
+              "Orsa",
+              "Turno",
+              "Ferra",
+              "Baldo",
+              "Cinzia",
+              "Marek",
+              "Duna",
+              "Loris",
+              "Vera",
+              "Ansel",
+              "Bruna",
+              "Teo"
+            ]
+          },
+          "entry": "FOUNDING"
+        }
+      ]
     },
     {
       "id": "ENT_LIBERE",
@@ -331,6 +498,24 @@
       "destiny_pool": [
         "DST_LIBERE",
         "DST_LIBERE_WATER"
+      ],
+      "incarnations": [
+        {
+          "id": "INC_LIBERE_01",
+          "name": "Le Città Libere",
+          "description": "Sette città che si governano da sole e si riuniscono solo quando non possono evitarlo. Non hanno una capitale, e considerano questo il loro unico principio.",
+          "persistence": "COLLECTIVE",
+          "action_values": {
+            "ACQUIRE": 3,
+            "MOVE": 3,
+            "INFLUENCE": 4,
+            "FORGE": 3,
+            "SCHEME": 1,
+            "CLAIM": 3
+          },
+          "art_prompt_key": "entity.libere",
+          "entry": "FOUNDING"
+        }
       ]
     }
   ]

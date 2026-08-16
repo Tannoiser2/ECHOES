@@ -83,23 +83,7 @@
           "minLength": 1
         },
         "action_values": {
-          "type": "object",
-          "description": "Per-template flavour weighting used by the CLI default policy. Not a modifier on resolution math in v0.2.",
-          "additionalProperties": {
-            "type": "integer",
-            "minimum": 0,
-            "maximum": 5
-          },
-          "propertyNames": {
-            "enum": [
-              "ACQUIRE",
-              "MOVE",
-              "INFLUENCE",
-              "FORGE",
-              "SCHEME",
-              "CLAIM"
-            ]
-          }
+          "$ref": "#/$defs/action_values"
         },
         "starting_assets": {
           "type": "array",
@@ -176,33 +160,10 @@
           "type": "string"
         },
         "persistence": {
-          "type": "string",
-          "enum": [
-            "MORTAL",
-            "COLLECTIVE",
-            "ETERNAL"
-          ],
-          "description": "Chi attraversa un salto di secoli. MORTAL: una persona, e dopo un salto lungo al suo posto c'e un successore. COLLECTIVE: un popolo, che cambia senza finire. ETERNAL: qualcosa che il tempo non tocca. L'id resta - e il seggio, la casa, la cosa sotto la montagna - e a cambiare e il nome (D-045)."
+          "$ref": "#/$defs/persistence"
         },
         "successors": {
-          "type": "array",
-          "description": "I nomi che questo seggio prende dopo un salto lungo, in ordine. Serve solo a MORTAL.",
-          "items": {
-            "type": "object",
-            "required": [
-              "name"
-            ],
-            "additionalProperties": false,
-            "properties": {
-              "name": {
-                "type": "string",
-                "minLength": 1
-              },
-              "description": {
-                "type": "string"
-              }
-            }
-          }
+          "$ref": "#/$defs/successors"
         },
         "destiny_pool": {
           "type": "array",
@@ -213,43 +174,147 @@
           }
         },
         "name_grammar": {
-          "type": "object",
-          "description": "Come questa casa fa i nomi quando la lista dei successori scritti a mano finisce. Serve perche una saga lunga non ha un numero di generazioni deciso in anticipo: dodici nomi bastano per dodici salti e poi ricominciano, ed e esattamente quello che un audit di dieci Chronicle ha trovato (D-046).",
-          "required": [
-            "pattern",
-            "given"
-          ],
-          "additionalProperties": false,
-          "properties": {
-            "pattern": {
-              "type": "string",
-              "description": "Le fessure disponibili: {title} {given} {ordinal} {epithet}."
-            },
-            "given": {
-              "type": "array",
-              "minItems": 2,
-              "items": {
+          "$ref": "#/$defs/name_grammar"
+        },
+        "incarnations": {
+          "type": "array",
+          "minItems": 1,
+          "description": "Le vite del seggio lungo la saga (ISSUES 19): prima la persona, poi quello che nasce da lei — Anselmo, e poi il suo culto. La prima incarnazione è quella in gioco oggi e rispecchia i campi dell'Entità (guardia anti-deriva nel validatore); le successive entrano quando la linea prima si esaurisce. In v0.2 il motore non le legge ancora: questa è la forma (Fase 1), l'attraversamento è la Fase 2.",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "name",
+              "description",
+              "persistence",
+              "entry"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^INC_[A-Z0-9_]+$"
+              },
+              "name": {
                 "type": "string",
                 "minLength": 1
-              }
-            },
-            "titles": {
-              "type": "array",
-              "items": {
+              },
+              "description": {
                 "type": "string",
                 "minLength": 1
-              }
-            },
-            "epithets": {
-              "type": "array",
-              "items": {
+              },
+              "persistence": {
+                "$ref": "#/$defs/persistence"
+              },
+              "action_values": {
+                "$ref": "#/$defs/action_values"
+              },
+              "art_prompt_key": {
+                "type": "string"
+              },
+              "successors": {
+                "$ref": "#/$defs/successors"
+              },
+              "name_grammar": {
+                "$ref": "#/$defs/name_grammar"
+              },
+              "entry": {
                 "type": "string",
-                "minLength": 1
+                "enum": [
+                  "FOUNDING",
+                  "LINE_EXHAUSTED"
+                ],
+                "description": "Quando questa incarnazione entra in gioco. FOUNDING: siede al tavolo dalla prima cronaca, e può essercene una sola. LINE_EXHAUSTED: entra quando la lista dei successori dell'incarnazione precedente finisce."
               }
             }
           }
         }
       }
+    },
+    "action_values": {
+      "type": "object",
+      "description": "Per-template flavour weighting used by the CLI default policy. Not a modifier on resolution math in v0.2.",
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 5
+      },
+      "propertyNames": {
+        "enum": [
+          "ACQUIRE",
+          "MOVE",
+          "INFLUENCE",
+          "FORGE",
+          "SCHEME",
+          "CLAIM"
+        ]
+      }
+    },
+    "successors": {
+      "type": "array",
+      "description": "I nomi che questa vita del seggio prende dopo un salto lungo, in ordine. Serve solo a MORTAL.",
+      "items": {
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "name_grammar": {
+      "type": "object",
+      "description": "Come questa casa fa i nomi quando la lista dei successori scritti a mano finisce. Serve perche una saga lunga non ha un numero di generazioni deciso in anticipo: dodici nomi bastano per dodici salti e poi ricominciano, ed e esattamente quello che un audit di dieci Chronicle ha trovato (D-046).",
+      "required": [
+        "pattern",
+        "given"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "pattern": {
+          "type": "string",
+          "description": "Le fessure disponibili: {title} {given} {ordinal} {epithet}."
+        },
+        "given": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "titles": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "epithets": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "persistence": {
+      "type": "string",
+      "enum": [
+        "MORTAL",
+        "COLLECTIVE",
+        "ETERNAL"
+      ],
+      "description": "Chi attraversa un salto di secoli. MORTAL: una persona, e dopo un salto lungo al suo posto c'e un successore. COLLECTIVE: un popolo, che cambia senza finire. ETERNAL: qualcosa che il tempo non tocca. L'id resta - e il seggio, la casa, la cosa sotto la montagna - e a cambiare e il nome (D-045)."
     }
   }
 }

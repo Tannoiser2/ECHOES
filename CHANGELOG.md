@@ -5,6 +5,30 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.63] — Le vite del seggio hanno una forma
+
+Fase 1 della voce 19 ([D-102](docs/DECISIONS.md#d-102)): le incarnazioni.
+
+### Added
+
+- **Schema `incarnations`** sull'Entità: le vite del seggio lungo la saga
+  — prima la persona, poi quello che nasce da lei — ognuna con nome,
+  natura, valori d'azione, prompt d'arte, successori propri e regola
+  d'ingresso (`FOUNDING`/`LINE_EXHAUSTED`). Le forme condivise
+  (`action_values`, `successors`, `name_grammar`, `persistence`) salgono
+  in `$defs`.
+- **Gli 8 seggi migrati**: la prima incarnazione (`INC_<SEGGIO>_01`)
+  assorbe i campi attuali. Il motore non le legge ancora: una guardia in
+  `validate_data.py` impone lo specchio esatto finché la Fase 2 non
+  sposta il lettore.
+
+### Misurato
+
+Suite verde prima e dopo (216/4557); playtest standard invariato, 0/8
+seggi bloccati al tavolo misto. Nessun comportamento cambiato.
+
+---
+
 ## [0.1.62] — Quello che una partita vera ha insegnato
 
 La prima cronaca giocata dal committente (seme 15308) letta riga per riga:

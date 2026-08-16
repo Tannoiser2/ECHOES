@@ -365,10 +365,13 @@ prompt d'arte propri.
 
 Le fasi:
 
-1. **Lo schema**: `incarnations` sull'Entità — ognuna con nome, descrizione,
-   `persistence`, `action_values` propri, `art_prompt_key` proprio, i propri
-   successori (i nomi *dentro* l'incarnazione) e la regola d'ingresso (quando
-   la linea prima si esaurisce).
+1. ✅ **Lo schema** — fatta in 0.1.63 ([D-102](DECISIONS.md#d-102)):
+   `incarnations` sull'Entità — ognuna con nome, descrizione, `persistence`,
+   `action_values` propri, `art_prompt_key` proprio, i propri successori (i
+   nomi *dentro* l'incarnazione) e la regola d'ingresso `entry`
+   (`FOUNDING`/`LINE_EXHAUSTED`). Gli 8 seggi migrati con la prima
+   incarnazione a specchio dei campi attuali, guardia anti-deriva nel
+   validatore; il motore non le legge ancora.
 2. **La successione le attraversa**: i nomi cambiano dentro un'incarnazione;
    l'incarnazione cambia quando la sua linea finisce, e il verbale d'apertura
    lo racconta («Il priorato è finito: al suo posto siede il culto»).
