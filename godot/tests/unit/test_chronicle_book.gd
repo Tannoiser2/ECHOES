@@ -1,0 +1,97 @@
+extends "res://tests/test_case.gd"
+## La cronaca dell'anno come pagine (ISSUES voce 10, D-086).
+##
+## Le Verita' sono l'unico pezzo di carta che il gioco produce invece di
+## consumare, e queste guardie tengono fermo il minimo: ogni Verita' scritta
+## finisce sulla pagina, le pagine sono A4 veri, un anno lungo si spezza in
+## piu' pagine invece di uscire dal foglio, e un anno muto lo dice.
+
+const ChronicleBook := preload("res://scripts/core/chronicle_book.gd")
+const PolicyDecider := preload("res://scripts/seat/policy_decider.gd")
+
+
+func test_every_truth_written_ends_up_on_a_page() -> void:
+	new_session(4242, false)
+	await session.run(PolicyDecider.new(session.log))
+	var save: Dictionary = session.to_save()
+	var truths: Array = (save["world_state"] as Dictionary).get("truth_log", [])
+	assert_true(truths.size() > 0, "la partita di guardia scrive almeno una Verita'")
+	var book: String = "\n".join(PackedStringArray(ChronicleBook.pages(save, data())))
+	for truth in truths:
+		var text: String = str((truth as Dictionary)["text"])
+		var separator: int = text.find(": ")
+		if separator > 0 and text.substr(0, separator).begins_with("Anno "):
+			text = text.substr(separator + 2)
+		# La pagina manda a capo a mano: si controlla la prima parola lunga,
+		# che sopravvive intera a qualunque a-capo.
+		var probe: String = ""
+		for word in text.split(" ", false):
+			if str(word).length() >= 8:
+				probe = str(word)
+				break
+		if probe != "":
+			assert_true(
+				book.contains(probe.xml_escape()) or book.contains(probe),
+				"la Verita' «%s...» e' sulla pagina" % text.substr(0, 30)
+			)
+
+
+func test_pages_are_true_a4_and_numbered() -> void:
+	new_session(4242, false)
+	await session.run(PolicyDecider.new(session.log))
+	var pages: Array = ChronicleBook.pages(session.to_save(), data())
+	assert_true(pages.size() >= 1, "almeno una pagina")
+	for index in range(pages.size()):
+		var page: String = str(pages[index])
+		assert_true(page.contains('width="210mm" height="297mm"'), "la pagina e' un A4 vero")
+		assert_true(
+			page.contains("pagina %d di %d" % [index + 1, pages.size()]),
+			"e porta il proprio numero"
+		)
+
+
+func test_a_long_year_breaks_into_more_pages() -> void:
+	var truths: Array = []
+	for index in range(80):
+		truths.append({
+			"act": 1 + (index / 30), "round": 1,
+			"truth_id": "TRU_%04d" % index, "echo_id": "ECHO_%04d" % index,
+			"text": "Anno 900, Atto 1: la lunga voce numero %d del registro, scritta apposta per riempire la pagina fino a mandarla a capo. (S1 O0 M1)." % index,
+		})
+	var save: Dictionary = {
+		"chronicle_id": "CHR_01",
+		"world_state": {"year": 900, "truth_log": truths, "entities": {}},
+		"destiny_results": {},
+	}
+	var pages: Array = ChronicleBook.pages(save, data())
+	assert_true(pages.size() > 1, "ottanta Verita' non stanno su una pagina: %d" % pages.size())
+
+
+## La vista in-app (chronicle_book_view.gd) rasterizza l'SVG delle pagine:
+## se una pagina non si lascia disegnare da Image.load_svg_from_string, al
+## tavolo si vedrebbe un pannello vuoto. Ogni pagina deve rasterizzarsi.
+func test_every_page_rasterizes_for_the_screen() -> void:
+	new_session(4242, false)
+	await session.run(PolicyDecider.new(session.log))
+	var pages: Array = ChronicleBook.pages(session.to_save(), data())
+	for index in range(pages.size()):
+		var image := Image.new()
+		assert_eq(
+			image.load_svg_from_string(str(pages[index]), 2.0), OK,
+			"la pagina %d si rasterizza" % (index + 1)
+		)
+		assert_true(image.get_width() > 0, "e ha dei pixel")
+
+
+func test_a_silent_year_says_so() -> void:
+	var save: Dictionary = {
+		"chronicle_id": "CHR_01",
+		"world_state": {"year": 813, "truth_log": [], "entities": {}},
+		"destiny_results": {},
+	}
+	var pages: Array = ChronicleBook.pages(save, data())
+	assert_eq(pages.size(), 1, "un anno muto e' comunque una pagina")
+	assert_true(
+		str(pages[0]).contains("senza lasciare storia"),
+		"e la pagina dice che l'anno non ha lasciato storia"
+	)

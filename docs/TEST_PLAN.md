@@ -10,7 +10,7 @@ python3 tools/gen_gd_schema.py --check
 GODOT=/path/to/godot tools/run_sims.sh
 ```
 
-Stato 0.1.41: **198 test in 28 suite, 4402 asserzioni, tutto verde**, più i 3
+Stato 0.1.43: **203 test in 29 suite, 4423 asserzioni, tutto verde**, più i 3
 piani di simulazione che passano le proprie asserzioni e l'export di stampa che
 esce identico a ogni rigenerazione.
 
@@ -83,6 +83,7 @@ godot --headless --path godot --script res://cli/run_playtest.gd -- --runs=100 -
 | `unit/test_questions_asked.gd` | 7 | il default della prima Confluence non cambia (la domanda piu affilata), una domanda gia messa ai voti esce dal tavolo finche ne resta una nuova - e le proposte che seguono sono le sue - un Consiglio che ha esaurito le domande non si apre (D-077), una proposta bocciata lascia la domanda sul tavolo, la memoria e della Tensione e non del tavolo, una Confluence aperta e non risolta non consuma niente, e ogni Chronicle comincia senza niente di chiesto (D-061) |
 | `unit/test_log_export.gd` | 6 | il nome del file sopravvive a un filesystem e porta il seme, una sessione senza Chronicle ha comunque un nome, l'intestazione porta il seme e non inventa quello che non sa, fuori dal browser il file si scrive e chi ha premuto sa dove, e un log vuoto non scarica niente (D-062) |
 | `unit/test_stance_scoring.gd` | 5 | quello che un seggio riesce a vedere di una proposta (D-066): un rapporto che rompe una clausola costa e uno che la ripara vale, un rapporto fra altri due non e affar mio, senza una clausola che nomini qualcuno il ramo nuovo non inventa opinioni, una clausola `min` legge anche una spinta che non le passa sotto la soglia, e la stessa spinta si legge in due versi opposti a due seggi diversi |
+| `unit/test_chronicle_book.gd` | 5 | ogni Verita scritta finisce sulla pagina della cronaca, le pagine sono A4 veri e numerati, ottanta Verita si spezzano in piu pagine invece di uscire dal foglio, un anno muto lo dice, e ogni pagina si rasterizza per la vista in-app (D-086) |
 | `smoke/test_library_balance.gd` | 1 | l'anno-biblioteca ereditato da quello scritto decide qualcosa: Consigli dentro i limiti duri del §7 e mediana nella banda dichiarata alla nascita, per la coppia della corona e quella delle citta (D-080) |
 | `smoke/test_chronicle_run.gd` | 6 | i tre piani giocati per intero, le loro asserzioni `expected`, il fatto che finiscano diversamente, Echo e Truth automatici, il determinismo per seed, e che il log pubblico non riveli mai il valore velato |
 

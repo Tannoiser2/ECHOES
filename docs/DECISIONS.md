@@ -331,6 +331,40 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-086 — La cronaca dell'anno: le Verità diventano pagine
+**implemented in 0.1.42** (la metà export di ISSUES voce 10)
+
+Le Verità sono l'unico pezzo di carta che il gioco **produce** invece di
+consumare (COMPONENTS §6), e a fine anno vivevano solo nel log. Adesso un
+salvataggio si impagina: `cli/run_chronicle_book.gd` legge un
+`session.to_save()` qualsiasi — un piano scriptato, l'hotseat, un anno di
+saga — e scrive le pagine A4 della cronaca: l'anno in testa, le Verità in
+ordine atto per atto (senza il prefisso di registro «Anno N, Atto M», che
+sulla pagina è già scritto sopra), e in fondo come è finita per ogni seggio.
+
+Stesso linguaggio dei fogli di stampa (`print_sheet.gd`): A4 in millimetri,
+la carta scura del set, il testo mandato a capo a mano, serif per l'anno.
+È il seme del Chronicle Book della 1.0 — un anno per capitolo. La metà
+**app** della voce 10 (la schermata di fine Chronicle) resta per la 1.0,
+ed è annotata nella voce.
+
+Guardie (`test_chronicle_book.gd`): ogni Verità scritta finisce sulla
+pagina, le pagine sono A4 veri e numerati, ottanta Verità si spezzano in
+più pagine invece di uscire dal foglio, e un anno muto lo dice.
+
+### La metà app (0.1.43) — e la voce 10 si chiude
+
+A fine Chronicle la cronaca **si vede**: `ui/chronicle_book_view.gd` si
+apre da sola quando l'anno finisce, con le frecce per sfogliare e il
+bottone «La cronaca» per tornarci — il salvataggio resta nello schermo
+anche dopo il congedo della sessione, come il seme. La vista rasterizza
+**le stesse pagine SVG** che il Chronicle Book stamperà (la disciplina
+dell'anteprima di stampa, D-056): quello che si vede al tavolo è quello
+che uscirà dalla stampa, non una cosa che gli somiglia. Guardia: ogni
+pagina generata deve rasterizzarsi (`test_every_page_rasterizes_for_the_screen`).
+
+---
+
 ## D-085 — Le vie per disfare i fatti eterni: riaprire la miniera, riunire la corona
 **implemented in 0.1.40** (chiude ISSUES voce 18)
 

@@ -27,6 +27,7 @@ const HelpPanel := preload("res://ui/help_panel.gd")
 const SaveSerializer := preload("res://scripts/core/save_serializer.gd")
 const DevDashboard := preload("res://ui/dev_dashboard.gd")
 const ExportPreview := preload("res://ui/export_preview.gd")
+const ChronicleBookView := preload("res://ui/chronicle_book_view.gd")
 const EchoCardView := preload("res://ui/echo_card_view.gd")
 const LogExport := preload("res://scripts/core/log_export.gd")
 
@@ -85,6 +86,14 @@ var _log_button: Button
 ## anche dal menu, prima che una Chronicle esista.
 var _export: PanelContainer
 var _export_open: bool = false
+
+## La cronaca dell'anno (voce 10, D-086): il salvataggio dell'ultima Chronicle
+## finita, tenuto perche' la sessione a quel punto e' gia' stata congedata -
+## come `_last_seed`, e per la stessa ragione.
+var _cronaca: PanelContainer
+var _cronaca_open: bool = false
+var _cronaca_button: Button
+var _year_save: Dictionary = {}
 var _status: VBoxContainer
 var _hand: HBoxContainer
 ## The seat the board is drawn for, and the Tension under discussion if any.
@@ -114,6 +123,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		_export.step(1 if key == KEY_RIGHT else -1)
 		get_viewport().set_input_as_handled()
 		return
+	if _cronaca_open and (key == KEY_LEFT or key == KEY_RIGHT):
+		_cronaca.step(1 if key == KEY_RIGHT else -1)
+		get_viewport().set_input_as_handled()
+		return
 	if key != KEY_F3 and key != KEY_F4:
 		return
 	if key == KEY_F3:
@@ -132,6 +145,7 @@ func _toggle_dev(open: bool) -> void:
 	_dev_open = open and _session != null
 	if _dev_open:
 		_toggle_export(false)
+		_toggle_cronaca(false)
 		_help_button.button_pressed = false
 	if _dev_button != null:
 		_dev_button.set_pressed_no_signal(_dev_open)
@@ -147,6 +161,7 @@ func _toggle_export(open: bool) -> void:
 		_dev_open = false
 		if _dev_button != null:
 			_dev_button.set_pressed_no_signal(false)
+		_toggle_cronaca(false)
 		_help_button.button_pressed = false
 	# L'anteprima legge i dati, non il mondo: da sola sa disegnarsi anche quando
 	# non c'e' nessuna Chronicle, ed e' li' che serve di piu' - si corregge un
@@ -154,6 +169,26 @@ func _toggle_export(open: bool) -> void:
 	_export.visible = _export_open
 	if _export_open:
 		_export.render(_load_help_data())
+	_refresh()
+
+
+## La cronaca dell'anno finito (voce 10, D-086): le stesse pagine che il
+## Chronicle Book stampera', rasterizzate. Si apre da sola a fine Chronicle e
+## resta dietro il suo bottone finche' un'altra partita non la sostituisce.
+func _toggle_cronaca(open: bool) -> void:
+	_cronaca_open = open and not _year_save.is_empty()
+	if _cronaca_open:
+		_dev_open = false
+		if _dev_button != null:
+			_dev_button.set_pressed_no_signal(false)
+		_export_open = false
+		_export.visible = false
+		_help_button.button_pressed = false
+		_cronaca.show_year(_year_save, _load_help_data())
+	if _cronaca_button != null:
+		_cronaca_button.set_pressed_no_signal(_cronaca_open)
+	_cronaca.visible = _cronaca_open
+	_dev.visible = _dev_open
 	_refresh()
 
 
@@ -237,6 +272,12 @@ func _build() -> void:
 	_export.visible = false
 	_centre.add_child(_export)
 
+	# E la cronaca dell'anno finito (voce 10), stessa meta' di schermo.
+	_cronaca = ChronicleBookView.new()
+	_cronaca.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_cronaca.visible = false
+	_centre.add_child(_cronaca)
+
 	var right := VBoxContainer.new()
 	right.custom_minimum_size = Vector2(280, 0)
 	right.add_theme_constant_override("separation", 12)
@@ -298,6 +339,16 @@ func _build() -> void:
 	_dev_button.toggled.connect(_toggle_dev)
 	tools.add_child(_dev_button)
 
+	_cronaca_button = Button.new()
+	_cronaca_button.text = "La cronaca"
+	_cronaca_button.tooltip_text = "Le pagine dell'anno finito, come le stampera' il Chronicle Book"
+	_cronaca_button.toggle_mode = true
+	_cronaca_button.disabled = true
+	_cronaca_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_cronaca_button.add_theme_font_size_override("font_size", 12)
+	_cronaca_button.toggled.connect(_toggle_cronaca)
+	tools.add_child(_cronaca_button)
+
 	_log_button = Button.new()
 	_log_button.text = "Scarica il log"
 	_log_button.tooltip_text = "Tutta la cronaca di questa sessione, in un file di testo"
@@ -327,7 +378,7 @@ func _refresh() -> void:
 	if _dev_open:
 		_dev.render(_session)
 	var council_open: bool = _session.confluence.is_open()
-	var busy: bool = _help.visible or _echo.visible or _dev_open or _export_open
+	var busy: bool = _help.visible or _echo.visible or _dev_open or _export_open or _cronaca_open
 	_board.visible = council_open and not busy
 	_map.visible = not council_open and not busy
 	if council_open:
@@ -348,6 +399,8 @@ func _tools_state() -> void:
 	_dev_button.disabled = _session == null
 	if _session == null and _dev_open:
 		_toggle_dev(false)
+	if _cronaca_button != null:
+		_cronaca_button.disabled = _year_save.is_empty()
 
 
 ## The one line above the choices: what is about to happen, and why the choice
@@ -855,6 +908,9 @@ func _drive(data: RefCounted, humans: Array, chronicle_id: String) -> void:
 	_flush(shown)
 	_map.highlighted = {}
 	_refresh()
+	# Il salvataggio si prende ADESSO: _ending congeda la sessione subito dopo,
+	# e la cronaca deve poter restare sullo schermo a partita finita.
+	_year_save = _session.to_save()
 	_ending(data, report)
 	_session.dispose()
 	_session = null
@@ -872,6 +928,7 @@ func _flush(shown: Dictionary) -> void:
 func _ending(data: RefCounted, report: Dictionary) -> void:
 	say("")
 	say("== COM'E FINITA ==")
+	_toggle_cronaca(true)
 	for entity_id in _seats:
 		var entry: Dictionary = report["destiny_results"][str(entity_id)]
 		say("  %s — [b]%s[/b] %s" % [
