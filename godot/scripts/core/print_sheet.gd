@@ -128,6 +128,29 @@ static func page_svg(faces: Array, shape: String, label: String, number: int, to
 	return "\n".join(PackedStringArray(out)) + "\n"
 
 
+## Una carta sola, come SVG a sé (D-101): la stessa faccia che va sul foglio
+## di stampa, senza segni di taglio, dimensionata sulla propria taglia. E' il
+## mattone con cui la GUI mostra i componenti fisici invece di una loro
+## parafrasi - la stessa disciplina della cronaca (D-086) e dell'anteprima
+## (D-056): quello che si vede al tavolo digitale e' quello che esce dalla
+## stampante, non una cosa che gli somiglia.
+static func card_svg(face: Dictionary) -> String:
+	var cell: Vector2 = cell_size(str(face.get("shape", "CARD")))
+	var out: Array = []
+	out.append(
+		'<svg xmlns="http://www.w3.org/2000/svg" width="%.0fmm" height="%.0fmm" viewBox="0 0 %.0f %.0f">'
+		% [cell.x, cell.y, cell.x, cell.y]
+	)
+	out.append('<defs><linearGradient id="velo" x1="0" y1="0" x2="0" y2="1">')
+	out.append('<stop offset="0" stop-color="#0d0b09" stop-opacity="0"/>')
+	out.append('<stop offset="0.28" stop-color="#0d0b09" stop-opacity="0.66"/>')
+	out.append('<stop offset="1" stop-color="#0d0b09" stop-opacity="0.86"/>')
+	out.append('</linearGradient></defs>')
+	out.append(_face_svg(face, 0.0, 0.0, cell))
+	out.append("</svg>")
+	return "\n".join(PackedStringArray(out)) + "\n"
+
+
 ## I segni di taglio stanno **fuori** dalla carta, uno per angolo: dentro
 ## sarebbero stampati sulla carta finita.
 static func _crop_marks(x: float, y: float, cell: Vector2) -> String:

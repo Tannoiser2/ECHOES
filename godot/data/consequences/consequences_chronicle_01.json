@@ -98,7 +98,7 @@
       "scar": {
         "region_id": "$region_focus",
         "tag": "scar:sealed_border",
-        "description": "Il vallo di pietra a secco tirato su in un inverno: nessuno lo ha piu smontato."
+        "description": "Il vallo di pietra a secco tirato su in un inverno: nessuno lo ha più smontato."
       },
       "effects": [
         {
@@ -164,7 +164,7 @@
       "scar": {
         "region_id": "$region_with:crystal_site",
         "tag": "scar:open_wound",
-        "description": "La galleria maestra non si richiude piu, e la roccia intorno resta tiepida."
+        "description": "La galleria maestra non si richiude più, e la roccia intorno resta tiepida."
       },
       "effects": [
         {
@@ -213,7 +213,7 @@
       "id": "CNS_MINE_SEALED",
       "title": "Le Miniere Sigillate",
       "category": "SECRET",
-      "description": "Le gallerie vengono chiuse. Chi ha visto il Cristallo Rosso continuera a saperlo; nessun altro potra verificarlo.",
+      "description": "Le gallerie vengono chiuse. Chi ha visto il Cristallo Rosso continuera a saperlo; nessun altro potrà verificarlo.",
       "effects": [
         {
           "type": "SET_REGION_TAG",
@@ -279,7 +279,7 @@
       "id": "CNS_FAILURE_SPIRAL",
       "title": "Nessuno Decide",
       "category": "DEVASTATION",
-      "description": "La proposta cade. La questione resta esattamente dov'era, con meno tempo davanti e piu rancore intorno.",
+      "description": "La proposta cade. La questione resta esattamente dov'era, con meno tempo davanti e più rancore intorno.",
       "creates_scar": true,
       "scar": {
         "region_id": "$region_focus",
@@ -375,9 +375,9 @@
     },
     {
       "id": "CNS_CROWN_DISPOSSESSED",
-      "title": "Il Titolo che non Vale piu",
+      "title": "Il Titolo che non Vale più",
       "category": "CONTROL",
-      "description": "Se la terra e di chi la lavora, il sigillo di Eredan sulla Valle diventa una riga su una pergamena e nient'altro.",
+      "description": "Se la terra è di chi la lavora, il sigillo di Eredan sulla Valle diventa una riga su una pergamena e nient'altro.",
       "effects": [
         {
           "type": "SET_CONTROL",
@@ -423,7 +423,7 @@
       "id": "CNS_STUDY_UNDER_GUARD",
       "title": "Studio sotto Custodia",
       "category": "DISCOVERY",
-      "description": "Il Cristallo si puo misurare, ma davanti a un custode e con un limite scritto. Nessuno lo porta fuori, e nessuno smette di guardarlo.",
+      "description": "Il Cristallo si può misurare, ma davanti a un custode e con un limite scritto. Nessuno lo porta fuori, e nessuno smette di guardarlo.",
       "effects": [
         {
           "type": "SET_GLOBAL_TAG",
@@ -541,7 +541,7 @@
       "id": "CNS_ROADS_REOPENED",
       "title": "Le Vie Riaperte",
       "category": "PROSPERITY",
-      "description": "Le carovane tornano a partire da sole. E il segno piu chiaro che qualcosa e finito.",
+      "description": "Le carovane tornano a partire da sole. E il segno più chiaro che qualcosa è finito.",
       "effects": [
         {
           "type": "REMOVE_REGION_TAG",
@@ -630,12 +630,12 @@
       "id": "CNS_CROWN_DIVIDED",
       "title": "La Corona Divisa",
       "category": "CONTROL",
-      "description": "Due titoli dove ce n'era uno. Funziona finche i due non si guardano.",
+      "description": "Due titoli dove ce n'era uno. Funziona finché i due non si guardano.",
       "creates_scar": true,
       "scar": {
         "region_id": "$capital",
         "tag": "scar:divided_seal",
-        "description": "Il sigillo spezzato in due meta, e nessuna delle due restituita."
+        "description": "Il sigillo spezzato in due metà, e nessuna delle due restituita."
       },
       "effects": [
         {
@@ -674,7 +674,7 @@
       "id": "CNS_CAPITAL_TAKEN",
       "title": "La Capitale Presa",
       "category": "CONTROL",
-      "description": "Eredan cambia mano in una notte. La citta non brucia: cambia solo chi firma.",
+      "description": "Eredan cambia mano in una notte. La città non brucia: cambia solo chi firma.",
       "creates_scar": true,
       "scar": {
         "region_id": "$capital",
@@ -731,7 +731,7 @@
       "id": "CNS_LAW_OF_SUCCESSION",
       "title": "La Legge Scritta",
       "category": "INFLUENCE",
-      "description": "Non un erede: una regola. Chi verra dopo lo decidera la carta, non le spade.",
+      "description": "Non un erede: una regola. Chi verrà dopo lo decidera la carta, non le spade.",
       "effects": [
         {
           "type": "SET_GLOBAL_TAG",
@@ -769,7 +769,7 @@
       "id": "CNS_MARCH_GRANTED",
       "title": "La Marca Concessa",
       "category": "CONTROL",
-      "description": "Una terra di confine data a chi la tiene gia. Il trono ci guadagna un alleato e ci perde un pezzo.",
+      "description": "Una terra di confine data a chi la tiene già. Il trono ci guadagna un alleato e ci perde un pezzo.",
       "effects": [
         {
           "type": "SET_CONTROL",
@@ -840,7 +840,7 @@
       "scar": {
         "region_id": "$region_focus",
         "tag": "scar:plundered",
-        "description": "Quello che restava dei carri, lasciato dov'era perche si vedesse."
+        "description": "Quello che restava dei carri, lasciato dov'era perché si vedesse."
       },
       "effects": [
         {
@@ -918,7 +918,7 @@
       "id": "CNS_MINE_ROAD_CUT",
       "title": "La Via delle Miniere Tagliata",
       "category": "DEVASTATION",
-      "description": "Un ponte in meno, e le Miniere diventano un posto da cui e piu facile entrare che uscire.",
+      "description": "Un ponte in meno, e le Miniere diventano un posto da cui è più facile entrare che uscire.",
       "creates_scar": true,
       "scar": {
         "region_id": "$adjacent",
@@ -990,7 +990,7 @@
       "id": "CNS_COST_DEBT",
       "title": "Il Debito Contratto",
       "category": "REVOLT",
-      "description": "Si e pagato, ma con soldi di qualcun altro, e quel qualcuno se lo ricorda.",
+      "description": "Si è pagato, ma con soldi di qualcun altro, e quel qualcuno se lo ricorda.",
       "effects": [
         {
           "type": "SET_REGION_TAG",
@@ -1018,7 +1018,7 @@
       "id": "CNS_RATIONED",
       "title": "La Razione Imposta",
       "category": "CONTROL",
-      "description": "Si conta quanto c'e e si decide chi ne ha diritto. Funziona, e nessuno perdona chi ha fatto la lista.",
+      "description": "Si conta quanto c'è e si decide chi ne ha diritto. Funziona, e nessuno perdona chi ha fatto la lista.",
       "effects": [
         {
           "type": "SET_CONTROL",
@@ -1124,7 +1124,7 @@
       "id": "CNS_SHARED_BURDEN",
       "title": "Il Peso Diviso",
       "category": "INFLUENCE",
-      "description": "Nessuno ne esce bene e nessuno ne esce solo. E il massimo che un consiglio riesce a fare, certe volte.",
+      "description": "Nessuno ne esce bene e nessuno ne esce solo. È il massimo che un consiglio riesce a fare, certe volte.",
       "effects": [
         {
           "type": "REMOVE_REGION_TAG",
@@ -1179,7 +1179,7 @@
       "scar": {
         "region_id": "$region_focus",
         "tag": "scar:broken_word",
-        "description": "La pietra del patto, spaccata a meta e lasciata dov'era."
+        "description": "La pietra del patto, spaccata a metà e lasciata dov'era."
       },
       "effects": [
         {
@@ -1237,7 +1237,7 @@
       "id": "CNS_ACCOUNT_SETTLED",
       "title": "Il Conto Saldato",
       "category": "INFLUENCE",
-      "description": "Si paga per quello che si e fatto, davanti a chi lo ha subito. Non ripara niente, ma chiude.",
+      "description": "Si paga per quello che si è fatto, davanti a chi lo ha subito. Non ripara niente, ma chiude.",
       "effects": [
         {
           "type": "REMOVE_GLOBAL_TAG",
@@ -1276,7 +1276,7 @@
       "id": "CNS_LEGEND_RETOLD",
       "title": "La Leggenda Messa per Iscritto",
       "category": "DISCOVERY",
-      "description": "Qualcuno raccoglie quello che si racconta e lo scrive com'e, coi nomi e le date che ancora si trovano. Da quel giorno la storia ha una versione, e la domanda fa meno paura.",
+      "description": "Qualcuno raccoglie quello che si racconta e lo scrive com'è, coi nomi e le date che ancora si trovano. Da quel giorno la storia ha una versione, e la domanda fa meno paura.",
       "effects": [
         {
           "type": "SET_ENTITY_TAG",
@@ -1305,7 +1305,7 @@
       "id": "CNS_MINE_REOPENED",
       "title": "Le Gallerie Riaperte",
       "category": "DISCOVERY",
-      "description": "Si toglie la pietra che qualcuno mise per non dover piu decidere. Sotto, tutto e come lo si era lasciato - ed e questo il punto: nessuno sa se e un bene.",
+      "description": "Si toglie la pietra che qualcuno mise per non dover più decidere. Sotto, tutto è come lo si era lasciato - ed è questo il punto: nessuno sa se è un bene.",
       "effects": [
         {
           "type": "REMOVE_GLOBAL_TAG",
@@ -1347,7 +1347,7 @@
       "id": "CNS_CROWN_REUNITED",
       "title": "Un Solo Trono",
       "category": "CONTROL",
-      "description": "I due titoli tornano uno. Non e una riconciliazione: e una conta, e qualcuno l'ha persa.",
+      "description": "I due titoli tornano uno. Non è una riconciliazione: è una conta, e qualcuno l'ha persa.",
       "effects": [
         {
           "type": "REMOVE_GLOBAL_TAG",
@@ -1387,7 +1387,7 @@
       "id": "CNS_QUESTION_RETAKEN",
       "title": "La Domanda Ripresa",
       "category": "CONTROL",
-      "description": "Quello che un consiglio lascio cadere viene deciso e scritto. Il registro non ha piu pagine bianche - e riaprire vecchie ferite ha un prezzo.",
+      "description": "Quello che un consiglio lasciò cadere viene deciso e scritto. Il registro non ha più pagine bianche - e riaprire vecchie ferite ha un prezzo.",
       "effects": [
         {
           "type": "REMOVE_GLOBAL_TAG",

@@ -7,7 +7,7 @@
       "name": "Re Aldric",
       "archetype": "SOVEREIGN",
       "need": "POWER",
-      "description": "Terzo della sua casa, primo a regnare su un raccolto che non basta. Sa che il trono e una promessa di pane con un altro nome.",
+      "description": "Terzo della sua casa, primo a regnare su un raccolto che non basta. Sa che il trono è una promessa di pane con un altro nome.",
       "action_values": {
         "ACQUIRE": 3,
         "MOVE": 2,
@@ -56,7 +56,7 @@
         },
         {
           "name": "Re Corvin",
-          "description": "Sali al trono con un atto e non con un nome, e non lo lascio dimenticare a nessuno."
+          "description": "Salì al trono con un atto e non con un nome, e non lo lasciò dimenticare a nessuno."
         },
         {
           "name": "Regina Isaura",
@@ -129,7 +129,7 @@
         "REG_VALLE_VERDE"
       ],
       "destiny_id": "DST_NAHR",
-      "private_information": "I pascoli orientali sono gia perduti. Nessuno fuori dal popolo lo sa ancora.",
+      "private_information": "I pascoli orientali sono già perduti. Nessuno fuori dal popolo lo sa ancora.",
       "tags": [
         "migrating"
       ],
@@ -146,7 +146,7 @@
       "name": "Lyra",
       "archetype": "INDIVIDUAL",
       "need": "KNOWLEDGE",
-      "description": "Studiosa senza patrono. E' scesa nelle Miniere Antiche per misurare una pietra e ne e risalita con una domanda.",
+      "description": "Studiosa senza patrono. È scesa nelle Miniere Antiche per misurare una pietra e ne è risalita con una domanda.",
       "action_values": {
         "ACQUIRE": 3,
         "MOVE": 2,
@@ -195,7 +195,7 @@
         },
         {
           "name": "Mira la Cartografa",
-          "description": "Non cerca cosa dorme sotto la pietra: cerca chi ci ha gia guardato."
+          "description": "Non cerca cosa dorme sotto la pietra: cerca chi ci ha già guardato."
         },
         {
           "name": "Corin il Verificatore",
@@ -278,7 +278,7 @@
         "REG_MINIERE_ANTICHE"
       ],
       "destiny_id": "DST_VAERAX",
-      "private_information": "Il Cristallo Rosso e legato alla stirpe dei draghi: estrarlo e estrarre qualcosa di vivo.",
+      "private_information": "Il Cristallo Rosso è legato alla stirpe dei draghi: estrarlo è estrarre qualcosa di vivo.",
       "tags": [
         "ancient",
         "sleeping"

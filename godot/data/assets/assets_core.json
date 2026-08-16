@@ -20,7 +20,7 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.force.levy",
-      "rules_text": "Uomini con attrezzi da lavoro tenuti come lance. Bastano finche nessuno li conta."
+      "rules_text": "Uomini con attrezzi da lavoro tenuti come lance. Bastano finché nessuno li conta."
     },
     {
       "id": "AST_FORCE_BORDER_WATCH",
@@ -40,7 +40,7 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.force.border_watch",
-      "rules_text": "+1 quando FORCE e rilevante per la Tensione. Contano i carri che passano, e sanno quali contare."
+      "rules_text": "+1 quando FORCE è rilevante per la Tensione. Contano i carri che passano, e sanno quali contare."
     },
     {
       "id": "AST_FORCE_ROADBLOCK",
@@ -114,7 +114,7 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.force.mercenaries",
-      "rules_text": "+1 sempre, su qualsiasi fronte: fuori tema vale quanto in tema, ed e tutto quello che sanno fare."
+      "rules_text": "+1 sempre, su qualsiasi fronte: fuori tema vale quanto in tema, ed è tutto quello che sanno fare."
     },
     {
       "id": "AST_FORCE_SIEGE",
@@ -155,7 +155,7 @@
       "rarity": "RARE",
       "deck_copies": 1,
       "art_prompt_key": "asset.force.old_army",
-      "rules_text": "Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: richiamare i vecchi reggimenti dice al mondo che la cosa e seria.",
+      "rules_text": "Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: richiamare i vecchi reggimenti dice al mondo che la cosa è seria.",
       "on_commit_effects": [
         {
           "type": "ADJUST_TENSION",
@@ -189,7 +189,7 @@
       "rarity": "RARE",
       "deck_copies": 1,
       "art_prompt_key": "asset.force.burned_gate",
-      "rules_text": "Forza 3. Si scarta sempre, e chi la gioca perde la propria presenza nella Regione di cui si discute: chi apre una porta cosi non resta li a difenderla.",
+      "rules_text": "Forza 3. Si scarta sempre, e chi la gioca perde la propria presenza nella Regione di cui si discute: chi apre una porta così non resta li a difenderla.",
       "on_commit_effects": [
         {
           "type": "REMOVE_PRESENCE",
@@ -243,7 +243,7 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.authority.seal",
-      "rules_text": "+1 sul fronte Oppose. Il sigillo che manca ferma piu cose del sigillo che c'e."
+      "rules_text": "+1 sul fronte Oppose. Il sigillo che manca ferma più cose del sigillo che c'è."
     },
     {
       "id": "AST_AUTHORITY_CENSUS",
@@ -263,7 +263,7 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.authority.census",
-      "rules_text": "+1 quando AUTHORITY e rilevante per la Tensione. Una lista di nomi e la forma piu semplice del potere."
+      "rules_text": "+1 quando AUTHORITY è rilevante per la Tensione. Una lista di nomi è la forma più semplice del potere."
     },
     {
       "id": "AST_AUTHORITY_CROWN_RIGHT",
@@ -284,7 +284,7 @@
       "rarity": "UNCOMMON",
       "deck_copies": 2,
       "art_prompt_key": "asset.authority.crown_right",
-      "rules_text": "Si scarta sempre: un diritto invocato due volte non e piu un diritto, e una pretesa."
+      "rules_text": "Si scarta sempre: un diritto invocato due volte non è più un diritto, e una pretesa."
     },
     {
       "id": "AST_AUTHORITY_MAGISTRATE",
@@ -412,7 +412,7 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.people.crowd",
-      "rules_text": "Nessuno l'ha convocata. E' arrivata lo stesso."
+      "rules_text": "Nessuno l'ha convocata. È arrivata lo stesso."
     },
     {
       "id": "AST_PEOPLE_ELDERS",
@@ -452,7 +452,7 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.people.harvest_hands",
-      "rules_text": "+1 quando PEOPLE e rilevante per la Tensione. Non sono un esercito: ma senza di loro non si mangia, e lo sanno anche i re."
+      "rules_text": "+1 quando PEOPLE è rilevante per la Tensione. Non sono un esercito: ma senza di loro non si mangia, e lo sanno anche i re."
     },
     {
       "id": "AST_PEOPLE_MOBILIZATION",
@@ -473,7 +473,7 @@
       "rarity": "UNCOMMON",
       "deck_copies": 2,
       "art_prompt_key": "asset.people.mobilization",
-      "rules_text": "+1 sul fronte Oppose: e piu facile fermare qualcosa in molti che costruirla. Si scarta sempre."
+      "rules_text": "+1 sul fronte Oppose: è più facile fermare qualcosa in molti che costruirla. Si scarta sempre."
     },
     {
       "id": "AST_PEOPLE_SPOKESMAN",
@@ -493,7 +493,7 @@
       "rarity": "UNCOMMON",
       "deck_copies": 2,
       "art_prompt_key": "asset.people.spokesman",
-      "rules_text": "Qualcuno che dice ad alta voce quello che gia pensano in molti, e che dopo non puo piu tornare indietro."
+      "rules_text": "Qualcuno che dice ad alta voce quello che già pensano in molti, e che dopo non può più tornare indietro."
     },
     {
       "id": "AST_PEOPLE_MARCH",
@@ -513,7 +513,7 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.people.march",
-      "rules_text": "Poca gente, ma in strada e alla stessa ora. Il punto non e quanti sono: e che si sono trovati."
+      "rules_text": "Poca gente, ma in strada e alla stessa ora. Il punto non è quanti sono: è che si sono trovati."
     },
     {
       "id": "AST_PEOPLE_EXODUS",
@@ -602,7 +602,7 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.knowledge.rumor",
-      "rules_text": "Non e vera. Non e ancora falsa."
+      "rules_text": "Non è vera. Non è ancora falsa."
     },
     {
       "id": "AST_KNOWLEDGE_OLD_MAP",
@@ -622,7 +622,7 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.knowledge.old_map",
-      "rules_text": "+1 quando KNOWLEDGE e rilevante per la Tensione. I confini sono sbagliati; le strade no, e le strade bastano."
+      "rules_text": "+1 quando KNOWLEDGE è rilevante per la Tensione. I confini sono sbagliati; le strade no, e le strade bastano."
     },
     {
       "id": "AST_KNOWLEDGE_LEDGER",
@@ -703,7 +703,7 @@
       "rarity": "UNCOMMON",
       "deck_copies": 2,
       "art_prompt_key": "asset.knowledge.witness",
-      "rules_text": "+1 sul fronte Oppose. Si scarta sempre: un testimone si spende una volta sola, e dopo e solo qualcuno che ha parlato."
+      "rules_text": "+1 sul fronte Oppose. Si scarta sempre: un testimone si spende una volta sola, e dopo è solo qualcuno che ha parlato."
     },
     {
       "id": "AST_KNOWLEDGE_RED_CRYSTAL",
@@ -791,7 +791,7 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.wealth.grain",
-      "rules_text": "Conta piu di un titolo, per il tempo in cui dura."
+      "rules_text": "Conta più di un titolo, per il tempo in cui dura."
     },
     {
       "id": "AST_WEALTH_SALT",
@@ -811,7 +811,7 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.wealth.salt",
-      "rules_text": "+1 quando WEALTH e rilevante per la Tensione. Non nutre nessuno: senza, quello che nutre non arriva a marzo."
+      "rules_text": "+1 quando WEALTH è rilevante per la Tensione. Non nutre nessuno: senza, quello che nutre non arriva a marzo."
     },
     {
       "id": "AST_WEALTH_TOLL",
@@ -851,7 +851,7 @@
       "rarity": "UNCOMMON",
       "deck_copies": 2,
       "art_prompt_key": "asset.wealth.caravan",
-      "rules_text": "Si scarta sempre: una carovana spesa e una carovana partita."
+      "rules_text": "Si scarta sempre: una carovana spesa è una carovana partita."
     },
     {
       "id": "AST_WEALTH_CREDIT",
@@ -999,7 +999,7 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.bonds.guest_right",
-      "rules_text": "+1 quando BONDS e rilevante per la Tensione. Chi ha mangiato al tuo tavolo non puo dire di no davanti a tutti. Puo dirlo dopo."
+      "rules_text": "+1 quando BONDS è rilevante per la Tensione. Chi ha mangiato al tuo tavolo non può dire di no davanti a tutti. Puo dirlo dopo."
     },
     {
       "id": "AST_BONDS_OLD_DEBT",
@@ -1039,7 +1039,7 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.bonds.oath",
-      "rules_text": "Non si scarta mai. Un giuramento impegnato resta impegnato anche dopo, ed e la sua unica forza."
+      "rules_text": "Non si scarta mai. Un giuramento impegnato resta impegnato anche dopo, ed è la sua unica forza."
     },
     {
       "id": "AST_BONDS_BETROTHAL",
@@ -1059,7 +1059,7 @@
       "rarity": "UNCOMMON",
       "deck_copies": 2,
       "art_prompt_key": "asset.bonds.betrothal",
-      "rules_text": "+1 sul fronte Oppose: una promessa serve piu a impedire un'alleanza che a farne una. Si scarta sempre."
+      "rules_text": "+1 sul fronte Oppose: una promessa serve più a impedire un'alleanza che a farne una. Si scarta sempre."
     },
     {
       "id": "AST_BONDS_BLOOD_TIE",
@@ -1079,7 +1079,7 @@
       "rarity": "UNCOMMON",
       "deck_copies": 2,
       "art_prompt_key": "asset.bonds.blood_tie",
-      "rules_text": "Non e un accordo: e una cosa che c'era prima dell'accordo, e che nessuno ha firmato."
+      "rules_text": "Non è un accordo: e una cosa che c'era prima dell'accordo, e che nessuno ha firmato."
     },
     {
       "id": "AST_BONDS_HOSTAGE",

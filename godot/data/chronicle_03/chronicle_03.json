@@ -79,7 +79,7 @@
       "starting_relations": [],
       "global_tags": [],
       "id": "CHR_03",
-      "title": "Le Citta Libere",
+      "title": "Le Città Libere",
       "start_year": 1640,
       "years_after_previous": 1,
       "tensions": [
@@ -111,7 +111,7 @@
           "count": 1
         }
       ],
-      "opening_text": "Ottocento anni dopo Aldric non c'e piu una corona, e per otto secoli non e servita. Le sette citta si governano da sole, la Gilda del Sale tiene il registro di tutti, l'Ordine del Vetro custodisce un frammento che nessuno dei vivi ha visto, e sulle Montagne Rosse si scava piu in basso di quanto sia mai stato scavato. La Valle non da piu da mangiare a tutti: i canali ci sono ancora, sono pieni di terra, e nessuno e obbligato a toglierla.",
+      "opening_text": "Ottocento anni dopo Aldric non c'è più una corona, e per otto secoli non è servita. Le sette città si governano da sole, la Gilda del Sale tiene il registro di tutti, l'Ordine del Vetro custodisce un frammento che nessuno dei vivi ha visto, e sulle Montagne Rosse si scava più in basso di quanto sia mai stato scavato. La Valle non da più da mangiare a tutti: i canali ci sono ancora, sono pieni di terra, e nessuno è obbligato a toglierla.",
       "starting_control": [
         {
           "region_id": "REG_EREDAN",
@@ -219,7 +219,7 @@
       "starting_relations": [],
       "global_tags": [],
       "id": "CHR_04",
-      "title": "Gli anni delle citta",
+      "title": "Gli anni delle città",
       "start_year": 1641,
       "years_after_previous": {
         "min": 20,
@@ -264,7 +264,7 @@
           ]
         }
       },
-      "opening_text": "Le citta continuano, e non sempre nello stesso ordine. Questa Chronicle non elenca le proprie domande: le pesca dalla biblioteca, in base a com'e finita quella prima.",
+      "opening_text": "Le città continuano, e non sempre nello stesso ordine. Questa Chronicle non elenca le proprie domande: le pesca dalla biblioteca, in base a com'è finita quella prima.",
       "starting_control": [
         {
           "region_id": "REG_EREDAN",

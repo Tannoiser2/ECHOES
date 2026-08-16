@@ -6,10 +6,10 @@
       "id": "DST_SALE",
       "entity_id": "ENT_SALE",
       "title": "Il Registro che Tiene",
-      "description": "La Gilda non vuole comandare: vuole che quello che e scritto continui a valere, e che a scriverlo sia lei.",
+      "description": "La Gilda non vuole comandare: vuole che quello che è scritto continui a valere, e che a scriverlo sia lei.",
       "art_prompt_key": "destiny.sale",
       "minimum": {
-        "label": "La Gilda e ancora al tavolo",
+        "label": "La Gilda è ancora al tavolo",
         "conditions": [
           {
             "type": "entity_alive",
@@ -26,13 +26,13 @@
         ]
       },
       "victory": {
-        "label": "Il debito e stato chiamato, e nessuno lo ha cancellato",
+        "label": "Il debito è stato chiamato, e nessuno lo ha cancellato",
         "conditions": [
           {
             "type": "state_tag_present",
             "scope": "GLOBAL",
             "tag": "debt_called",
-            "label": "Il debito e stato chiamato per intero"
+            "label": "Il debito è stato chiamato per intero"
           },
           {
             "type": "state_tag_absent",
@@ -76,7 +76,7 @@
       "id": "DST_SALE_OPEN",
       "entity_id": "ENT_SALE",
       "title": "Il Registro Aperto",
-      "description": "Una Gilda che ha gia vinto una volta scopre che la firma tiene finche qualcuno si fida. Adesso vuole essere creduta, non solo dovuta.",
+      "description": "Una Gilda che ha già vinto una volta scopre che la firma tiene finché qualcuno si fida. Adesso vuole essere creduta, non solo dovuta.",
       "art_prompt_key": "destiny.sale.open",
       "minimum": {
         "label": "La Gilda esiste ancora",
@@ -89,13 +89,13 @@
         ]
       },
       "victory": {
-        "label": "E il registro si puo leggere",
+        "label": "E il registro si può leggere",
         "conditions": [
           {
             "type": "state_tag_present",
             "scope": "GLOBAL",
             "tag": "ledger_public",
-            "label": "Il registro e stato aperto"
+            "label": "Il registro è stato aperto"
           },
           {
             "type": "control_count",
@@ -126,7 +126,7 @@
             "scope": "ENTITY",
             "entity_id": "ENT_SALE",
             "tag": "discovery:legend",
-            "label": "E la vecchia pagina e stata riletta e trascritta nel registro"
+            "label": "E la vecchia pagina è stata riletta e trascritta nel registro"
           }
         ]
       }
@@ -135,7 +135,7 @@
       "id": "DST_VETRO",
       "entity_id": "ENT_VETRO",
       "title": "Quello che Non si Deve Guardare",
-      "description": "L'Ordine custodisce un frammento e una regola. La regola e piu importante del frammento, e va difesa proprio quando qualcuno chiede di vederlo.",
+      "description": "L'Ordine custodisce un frammento e una regola. La regola è più importante del frammento, e va difesa proprio quando qualcuno chiede di vederlo.",
       "art_prompt_key": "destiny.vetro",
       "minimum": {
         "label": "L'Ordine tiene la sua casa",
@@ -155,14 +155,14 @@
         ]
       },
       "victory": {
-        "label": "La custodia e un incarico, e la teca resta chiusa",
+        "label": "La custodia è un incarico, e la teca resta chiusa",
         "conditions": [
           {
             "type": "state_tag_present",
             "scope": "ENTITY",
             "entity_id": "ENT_VETRO",
             "tag": "anointed",
-            "label": "La custodia e stata riconosciuta per atto"
+            "label": "La custodia è stata riconosciuta per atto"
           },
           {
             "type": "state_tag_absent",
@@ -193,19 +193,19 @@
             "type": "tension_limit",
             "tension_id": "TEN_RELIC",
             "max": 4,
-            "label": "E la Reliquia non e diventata la domanda di tutti"
+            "label": "E la Reliquia non è diventata la domanda di tutti"
           },
           {
             "type": "tension_limit",
             "tension_id": "TEN_WATER",
             "max": 4,
-            "label": "E l'acqua non e diventata la questione che sveglia tutti"
+            "label": "E l'acqua non è diventata la questione che sveglia tutti"
           },
           {
             "type": "tension_limit",
             "tension_id": "TEN_CHARTER",
             "max": 4,
-            "label": "E la legge scritta non e arrivata a bussare alla teca"
+            "label": "E la legge scritta non è arrivata a bussare alla teca"
           }
         ]
       }
@@ -214,7 +214,7 @@
       "id": "DST_VETRO_SHOWN",
       "entity_id": "ENT_VETRO",
       "title": "La Reliquia Mostrata",
-      "description": "Un Ordine che ha tenuto la teca chiusa e stato creduto sulla parola. Il passo dopo e piu pericoloso: mostrarla, e restare creduto lo stesso.",
+      "description": "Un Ordine che ha tenuto la teca chiusa è stato creduto sulla parola. Il passo dopo è più pericoloso: mostrarla, e restare creduto lo stesso.",
       "art_prompt_key": "destiny.vetro.shown",
       "minimum": {
         "label": "L'Ordine tiene la sua casa",
@@ -240,25 +240,25 @@
             "type": "state_tag_present",
             "scope": "GLOBAL",
             "tag": "relic_shown",
-            "label": "La reliquia e stata mostrata"
+            "label": "La reliquia è stata mostrata"
           },
           {
             "type": "state_tag_present",
             "scope": "ENTITY",
             "entity_id": "ENT_VETRO",
             "tag": "discovery:relic",
-            "label": "E a mostrarla e stato l'Ordine"
+            "label": "E a mostrarla è stato l'Ordine"
           }
         ]
       },
       "triumph": {
-        "label": "E la fede e diventata legge",
+        "label": "E la fede è diventata legge",
         "conditions": [
           {
             "type": "state_tag_present",
             "scope": "GLOBAL",
             "tag": "charter_written",
-            "label": "C'e una Carta scritta"
+            "label": "C'è una Carta scritta"
           },
           {
             "type": "state_tag_absent",
@@ -272,7 +272,7 @@
     {
       "id": "DST_CENERE",
       "entity_id": "ENT_CENERE",
-      "title": "La Montagna e Nostra",
+      "title": "La Montagna è Nostra",
       "description": "I Signori della Cenere non discutono di reliquie: discutono di chi decide dove si scava. Vogliono che la risposta sia scritta e sia loro.",
       "art_prompt_key": "destiny.cenere",
       "minimum": {
@@ -306,14 +306,14 @@
         ]
       },
       "triumph": {
-        "label": "E la veglia sulla montagna e loro",
+        "label": "E la veglia sulla montagna è loro",
         "conditions": [
           {
             "type": "state_tag_present",
             "scope": "ENTITY",
             "entity_id": "ENT_CENERE",
             "tag": "ash_watch",
-            "label": "La veglia sulla montagna e affidata a loro"
+            "label": "La veglia sulla montagna è affidata a loro"
           },
           {
             "type": "relation_state",
@@ -321,25 +321,25 @@
             "other_entity_id": "ENT_SALE",
             "level": "NEUTRAL",
             "at_least": true,
-            "label": "E il patto con la Gilda non e un conto aperto"
+            "label": "E il patto con la Gilda non è un conto aperto"
           },
           {
             "type": "state_tag_absent",
             "scope": "GLOBAL",
             "tag": "relic_buried",
-            "label": "E nessuno ha richiuso quello che c'e sotto"
+            "label": "E nessuno ha richiuso quello che c'è sotto"
           },
           {
             "type": "tension_limit",
             "tension_id": "TEN_ASH",
             "min": 3,
-            "label": "E la Cenere continua a salire: e quello che tiene la montagna nostra"
+            "label": "E la Cenere continua a salire: è quello che tiene la montagna nostra"
           },
           {
             "type": "tension_limit",
             "tension_id": "TEN_RELIC",
             "min": 3,
-            "label": "E quello che c'e sotto resta una domanda aperta"
+            "label": "E quello che c'è sotto resta una domanda aperta"
           }
         ]
       }
@@ -347,8 +347,8 @@
     {
       "id": "DST_CENERE_DEEP",
       "entity_id": "ENT_CENERE",
-      "title": "Piu a Fondo",
-      "description": "Chi ha ottenuto la montagna scopre di volere quello che c'e sotto la montagna. E' lo stesso desiderio di prima, con meno margine.",
+      "title": "Più a Fondo",
+      "description": "Chi ha ottenuto la montagna scopre di volere quello che c'è sotto la montagna. È lo stesso desiderio di prima, con meno margine.",
       "art_prompt_key": "destiny.cenere.deep",
       "minimum": {
         "label": "Restano sulla montagna",
@@ -363,7 +363,7 @@
         ]
       },
       "victory": {
-        "label": "E hanno visto cosa c'e sotto",
+        "label": "E hanno visto cosa c'è sotto",
         "conditions": [
           {
             "type": "state_tag_present",
@@ -382,13 +382,13 @@
         ]
       },
       "triumph": {
-        "label": "E non devono piu niente a nessuno",
+        "label": "E non devono più niente a nessuno",
         "conditions": [
           {
             "type": "promise_broken",
             "entity_id": "ENT_CENERE",
             "other_entity_id": "ENT_SALE",
-            "label": "Il patto con la Gilda e saltato"
+            "label": "Il patto con la Gilda è saltato"
           },
           {
             "type": "control_count",
@@ -403,15 +403,15 @@
       "id": "DST_LIBERE",
       "entity_id": "ENT_LIBERE",
       "title": "Una Legge Senza Corona",
-      "description": "Le citta non vogliono un re e hanno smesso di poter fare a meno di una regola. Il loro problema e scriverne una che non diventi un trono.",
+      "description": "Le città non vogliono un re e hanno smesso di poter fare a meno di una regola. Il loro problema è scriverne una che non diventi un trono.",
       "art_prompt_key": "destiny.libere",
       "minimum": {
-        "label": "Le citta esistono ancora",
+        "label": "Le città esistono ancora",
         "conditions": [
           {
             "type": "entity_alive",
             "entity_id": "ENT_LIBERE",
-            "label": "Le citta esistono ancora"
+            "label": "Le città esistono ancora"
           },
           {
             "type": "region_presence",
@@ -423,30 +423,30 @@
         ]
       },
       "victory": {
-        "label": "E c'e una Carta, e l'acqua non e' di nessuno",
+        "label": "E c'è una Carta, e l'acqua non è di nessuno",
         "conditions": [
           {
             "type": "state_tag_present",
             "scope": "GLOBAL",
             "tag": "charter_written",
-            "label": "La Carta e stata scritta"
+            "label": "La Carta è stata scritta"
           },
           {
             "type": "state_tag_absent",
             "scope": "GLOBAL",
             "tag": "water_priced",
-            "label": "E l'acqua non e' finita a prezzo"
+            "label": "E l'acqua non è finita a prezzo"
           }
         ]
       },
       "triumph": {
-        "label": "E nessuno l'ha pagata piu degli altri",
+        "label": "E nessuno l'ha pagata più degli altri",
         "conditions": [
           {
             "type": "state_tag_present",
             "scope": "GLOBAL",
             "tag": "debt_forgiven",
-            "label": "Il debito e stato rimesso"
+            "label": "Il debito è stato rimesso"
           },
           {
             "type": "relation_state",
@@ -454,26 +454,26 @@
             "other_entity_id": "ENT_SALE",
             "level": "NEUTRAL",
             "at_least": true,
-            "label": "E la Gilda non e diventata un nemico delle citta"
+            "label": "E la Gilda non è diventata un nemico delle città"
           },
           {
             "type": "state_tag_absent",
             "scope": "REGION",
             "region_id": "REG_EREDAN",
             "tag": "condition:unrest",
-            "label": "Eredan non e in rivolta"
+            "label": "Eredan non è in rivolta"
           },
           {
             "type": "tension_limit",
             "tension_id": "TEN_CHARTER",
             "min": 3,
-            "label": "E la Carta si scrive quando la domanda non si puo piu rimandare"
+            "label": "E la Carta si scrive quando la domanda non si può più rimandare"
           },
           {
             "type": "tension_limit",
             "tension_id": "TEN_DEBT",
             "min": 3,
-            "label": "E il Debito resta la domanda che nessuno puo fingere di non vedere"
+            "label": "E il Debito resta la domanda che nessuno può fingere di non vedere"
           }
         ]
       }
@@ -482,15 +482,15 @@
       "id": "DST_LIBERE_WATER",
       "entity_id": "ENT_LIBERE",
       "title": "L'Acqua Torna a Muoversi",
-      "description": "Scritta la regola, resta il motivo per cui serviva: la Valle non da piu da mangiare a sette citta. Questa volta l'obiettivo si vede da fuori.",
+      "description": "Scritta la regola, resta il motivo per cui serviva: la Valle non da più da mangiare a sette città. Questa volta l'obiettivo si vede da fuori.",
       "art_prompt_key": "destiny.libere.water",
       "minimum": {
-        "label": "Le citta esistono ancora",
+        "label": "Le città esistono ancora",
         "conditions": [
           {
             "type": "entity_alive",
             "entity_id": "ENT_LIBERE",
-            "label": "Le citta esistono ancora"
+            "label": "Le città esistono ancora"
           }
         ]
       },
@@ -513,13 +513,13 @@
         ]
       },
       "triumph": {
-        "label": "E non e di nessuno",
+        "label": "E non è di nessuno",
         "conditions": [
           {
             "type": "state_tag_absent",
             "scope": "GLOBAL",
             "tag": "water_priced",
-            "label": "L'acqua non e stata messa a prezzo"
+            "label": "L'acqua non è stata messa a prezzo"
           },
           {
             "type": "control_count",

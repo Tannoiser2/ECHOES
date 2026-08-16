@@ -5,6 +5,93 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.59] — La GUI mostra le carte fisiche
+
+Prima fetta della direzione del committente
+([D-101](docs/DECISIONS.md#d-101)): lo schermo mostra i componenti
+fisici, non una loro parafrasi.
+
+### Added
+
+- **`PrintSheet.card_svg`** (una carta sola, stessa faccia della stampa,
+  senza segni di taglio) e **`ui/card_art.gd`** (rasterizza una volta
+  per mazzo, cache). Un solo impaginatore, tre superfici: foglio,
+  anteprima, partita.
+- **La mano è fatta di carte stampate**: la faccia vera 63×88, col bordo
+  di rilevanza e il «vale N» del resolver come sole aggiunte a schermo;
+  tooltip invariato per leggere a carta piccola.
+- **Il mondo cala una carta**: la vista Echo di fine atto mostra la
+  carta stampata accanto al verbale di cosa ha fatto.
+
+Fette dichiarate: la carta mini della domanda al centro del Consiglio,
+i token della fustella sulla mappa, i tarocchi identità nella vista del
+seggio.
+
+### Misurato
+
+216 test in 29 suite, 4557 asserzioni; UI compilata headless.
+
+---
+
+## [0.1.58] — La voce del Consiglio: le mozioni al congiuntivo
+
+Seconda lettura della voce 13, su segnalazione del committente
+([D-100](docs/DECISIONS.md#d-100)).
+
+### Changed
+
+- **Le proposte dei Consigli parlano da mozioni**: congiuntivo
+  esortativo, registro alto («Si levino i banchi e si portino dove le
+  mura sanno difenderli», «Il grano sia requisito in nome del trono») —
+  34 riscritture sulle due saghe; gli esiti restano cronaca, con le due
+  segnalazioni riscritte per immagine.
+- Altre 22 code di passato remoto senza accento chiuse rileggendo.
+
+### Misurato
+
+215 test in 29 suite, 4518 asserzioni; simulazioni, export, brief,
+manifesto e tavolo di lettura riallineati.
+
+---
+
+## [0.1.57] — La revisione dei testi: gli accenti tornano, le regole escono dal racconto
+
+Chiude ISSUES voce 13 su delega del committente
+([D-099](docs/DECISIONS.md#d-099)): prima lettura di fila dei 661 testi.
+
+### Fixed
+
+- **Gli accenti restaurati ovunque**: 357 righe corrette su 17 file
+  («piu»→«più», «la cosa e seria»→«è seria», «il consiglio lascio
+  cadere»→«lasciò cadere»…). Ogni «e» nuda classificata a occhio su due
+  censimenti completi: le congiunzioni restano congiunzioni.
+- **Le regole fuori dal racconto**: la velatura ora la dichiara la carta
+  dal dato `visibility` («domanda velata · survival»), e le descrizioni
+  del Risveglio e delle Vie Interrotte sono tornate narrativa.
+
+### Misurato
+
+Suite intatta (215 test, 4518 asserzioni), validazione, simulazioni,
+export, manifesto e tavolo di lettura rigenerati.
+
+---
+
+## [0.1.56] — Il tavolo di lettura per la revisione dei testi
+
+Il materiale della voce 13, su richiesta del committente.
+
+### Added
+
+- **`tools/build_review.py`** → [docs/REVISIONE_TESTI.md](docs/REVISIONE_TESTI.md):
+  i 661 testi d'autore in ordine di lettura — aperture, Regioni, Casate,
+  Domande coi presagi, Consigli con proposte ed esiti raccontati,
+  Conseguenze e cicatrici, carte Echo, carte Asset, Destini gradino per
+  gradino, Azioni — ognuno col suo identificativo, così una correzione si
+  segna con una riga e si riporta nei dati senza cercare. Generato e
+  deterministico, come il manifest: non si corregge lì, si rigenera.
+
+---
+
 ## [0.1.55] — La seconda leva: la proposta bocciata non compra quiete
 
 Chiude la milestone 0.2 ([D-098](docs/DECISIONS.md#d-098)): era l'ultima

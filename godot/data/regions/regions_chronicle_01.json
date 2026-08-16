@@ -23,7 +23,7 @@
       ],
       "presence_slots": 4,
       "control": "ENT_ALDRIC",
-      "description": "La citta del trono. Vive di leggi, di titoli e del grano che sale dalla Valle.",
+      "description": "La città del trono. Vive di leggi, di titoli e del grano che sale dalla Valle.",
       "art_prompt_key": "region.eredan",
       "name_forms": {
         "definite": "Eredan",
@@ -122,7 +122,7 @@
       ],
       "presence_slots": 3,
       "control": "ENT_VAERAX",
-      "private_information": "Sotto la cresta orientale il respiro della montagna e caldo anche d'inverno.",
+      "private_information": "Sotto la cresta orientale il respiro della montagna è caldo anche d'inverno.",
       "description": "Pietra rossa e vento. Qualcosa di molto vecchio dorme qui, e il suo sonno si sta assottigliando.",
       "art_prompt_key": "region.montagne_rosse",
       "name_forms": {
@@ -155,7 +155,7 @@
       ],
       "presence_slots": 4,
       "control": null,
-      "private_information": "Il Cristallo Rosso non riflette la luce delle torce: la restituisce piu tardi.",
+      "private_information": "Il Cristallo Rosso non riflette la luce delle torce: la restituisce più tardi.",
       "description": "Gallerie scavate da mani che nessuno ricorda. In fondo, il Cristallo Rosso.",
       "art_prompt_key": "region.miniere_antiche",
       "name_forms": {

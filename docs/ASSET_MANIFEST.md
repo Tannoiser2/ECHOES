@@ -126,7 +126,7 @@ family, 22 copies per family deck, 132 cards in the box (D-040).
 |---|---|---|---|---|---|
 | ENT_ALDRIC | Re Aldric | SOVEREIGN | POWER | DST_ALDRIC | `entity.aldric` |
 | ENT_CENERE | Kessa dei Fuochi | FACTION | POWER | DST_CENERE | `entity.cenere` |
-| ENT_LIBERE | Le Citta Libere | PEOPLE | FREEDOM | DST_LIBERE | `entity.libere` |
+| ENT_LIBERE | Le Città Libere | PEOPLE | FREEDOM | DST_LIBERE | `entity.libere` |
 | ENT_LYRA | Lyra | INDIVIDUAL | KNOWLEDGE | DST_LYRA | `entity.lyra` |
 | ENT_NAHR | Popolo Nahr | PEOPLE | SURVIVAL | DST_NAHR | `entity.nahr` |
 | ENT_SALE | Maestra Ilve | FACTION | WEALTH | DST_SALE | `entity.sale` |
@@ -138,20 +138,20 @@ family, 22 copies per family deck, 132 cards in the box (D-040).
 |---|---|---|---|---|---|
 | DST_ALDRIC | Il Regno che Resta | ENT_ALDRIC | Il trono regge | Il regno decide | Un regno che non ha pagato il pane con il sangue |
 | DST_ALDRIC_RECORD | Il Regno che Ricorda | ENT_ALDRIC | La casa siede ancora | Nessuno rilegge la stessa domanda | Un regno che non ha dovuto dividersi per reggere |
-| DST_CENERE | La Montagna e Nostra | ENT_CENERE | Restano sulla montagna | Tengono la montagna, e non solo quella | E la veglia sulla montagna e loro |
-| DST_CENERE_DEEP | Piu a Fondo | ENT_CENERE | Restano sulla montagna | E hanno visto cosa c'e sotto | E non devono piu niente a nessuno |
-| DST_LIBERE | Una Legge Senza Corona | ENT_LIBERE | Le citta esistono ancora | E c'e una Carta, e l'acqua non e' di nessuno | E nessuno l'ha pagata piu degli altri |
-| DST_LIBERE_WATER | L'Acqua Torna a Muoversi | ENT_LIBERE | Le citta esistono ancora | E l'acqua si muove | E non e di nessuno |
-| DST_LYRA | Sapere e Poter Tornare a Guardare | ENT_LYRA | Ha capito qualcosa | Sa, ed e ancora nelle gallerie | Il sapere e diventato pubblico e verificabile |
+| DST_CENERE | La Montagna è Nostra | ENT_CENERE | Restano sulla montagna | Tengono la montagna, e non solo quella | E la veglia sulla montagna è loro |
+| DST_CENERE_DEEP | Più a Fondo | ENT_CENERE | Restano sulla montagna | E hanno visto cosa c'è sotto | E non devono più niente a nessuno |
+| DST_LIBERE | Una Legge Senza Corona | ENT_LIBERE | Le città esistono ancora | E c'è una Carta, e l'acqua non è di nessuno | E nessuno l'ha pagata più degli altri |
+| DST_LIBERE_WATER | L'Acqua Torna a Muoversi | ENT_LIBERE | Le città esistono ancora | E l'acqua si muove | E non è di nessuno |
+| DST_LYRA | Sapere e Poter Tornare a Guardare | ENT_LYRA | Ha capito qualcosa | Sa, ed è ancora nelle gallerie | Il sapere è diventato pubblico e verificabile |
 | DST_LYRA_TAUGHT | Quello che Resta Insegnato | ENT_LYRA | Qualcuno sa ancora leggere le carte | Il sapere ha un posto suo | Verificabile da chiunque, anche da chi non c'era |
 | DST_NAHR | Una Terra dove Fermarsi | ENT_NAHR | Il popolo sopravvive | Il popolo si ferma | Fermarsi senza smettere di essere Nahr |
-| DST_NAHR_ROOTED | La Terra Sotto i Piedi | ENT_NAHR | Il popolo e ancora qui | La terra risponde a chi la lavora | Radicati senza aver chiuso la porta a nessuno |
-| DST_SALE | Il Registro che Tiene | ENT_SALE | La Gilda e ancora al tavolo | Il debito e stato chiamato, e nessuno lo ha cancellato | E la firma vale ancora |
-| DST_SALE_OPEN | Il Registro Aperto | ENT_SALE | La Gilda esiste ancora | E il registro si puo leggere | E vale lo stesso |
-| DST_VAERAX | Cio che Dorme Resti Addormentato | ENT_VAERAX | La montagna e ancora sua | Le gallerie sono chiuse, e il Cristallo non e uscito | E nessuno ci arriva piu |
-| DST_VAERAX_WATCHED | Il Sonno Sorvegliato | ENT_VAERAX | La montagna e ancora sua | Nessuno scava piu | Guardato da qualcuno che non lo vuole |
-| DST_VETRO | Quello che Non si Deve Guardare | ENT_VETRO | L'Ordine tiene la sua casa | La custodia e un incarico, e la teca resta chiusa | E cosa ci sia dentro lo sa, e le gallerie sono ancora sue |
-| DST_VETRO_SHOWN | La Reliquia Mostrata | ENT_VETRO | L'Ordine tiene la sua casa | E l'ha mostrata lui | E la fede e diventata legge |
+| DST_NAHR_ROOTED | La Terra Sotto i Piedi | ENT_NAHR | Il popolo è ancora qui | La terra risponde a chi la lavora | Radicati senza aver chiuso la porta a nessuno |
+| DST_SALE | Il Registro che Tiene | ENT_SALE | La Gilda è ancora al tavolo | Il debito è stato chiamato, e nessuno lo ha cancellato | E la firma vale ancora |
+| DST_SALE_OPEN | Il Registro Aperto | ENT_SALE | La Gilda esiste ancora | E il registro si può leggere | E vale lo stesso |
+| DST_VAERAX | Cio che Dorme Resti Addormentato | ENT_VAERAX | La montagna è ancora sua | Le gallerie sono chiuse, e il Cristallo non è uscito | E nessuno ci arriva più |
+| DST_VAERAX_WATCHED | Il Sonno Sorvegliato | ENT_VAERAX | La montagna è ancora sua | Nessuno scava più | Guardato da qualcuno che non lo vuole |
+| DST_VETRO | Quello che Non si Deve Guardare | ENT_VETRO | L'Ordine tiene la sua casa | La custodia è un incarico, e la teca resta chiusa | E cosa ci sia dentro lo sa, e le gallerie sono ancora sue |
+| DST_VETRO_SHOWN | La Reliquia Mostrata | ENT_VETRO | L'Ordine tiene la sua casa | E l'ha mostrata lui | E la fede è diventata legge |
 
 ## Tension tracks (12)
 | id | titolo | dominio | iniziale | soglia | visibilita | presagi |

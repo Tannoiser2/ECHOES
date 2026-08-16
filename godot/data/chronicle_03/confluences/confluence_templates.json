@@ -6,7 +6,7 @@
       "id": "CNF_WATER_03",
       "tension_id": "TEN_WATER",
       "title": "Chi Manda gli Uomini",
-      "description": "I canali si possono riaprire in due stagioni. Il problema non e mai stato la terra da togliere: e che chi paga vuole riscuotere, e chi scava vuole bere.",
+      "description": "I canali si possono riaprire in due stagioni. Il problema non è mai stato la terra da togliere: e che chi paga vuole riscuotere, e chi scava vuole bere.",
       "questions": [
         {
           "id": "Q_WATER_CANALS",
@@ -21,7 +21,7 @@
               "type": "tension_limit",
               "tension_id": "TEN_WATER",
               "min": 4,
-              "label": "L'Acqua Ferma e al limite"
+              "label": "L'Acqua Ferma è al limite"
             }
           ]
         }
@@ -30,20 +30,20 @@
         {
           "id": "P_DIG_TOGETHER",
           "question_id": "Q_WATER_CANALS",
-          "text": "Ogni citta manda braccia in proporzione a quanta acqua prende. Nessuno riscuote.",
+          "text": "Ogni città mandi braccia per quanta acqua prende. E nessuno riscuota.",
           "eligibility": [],
           "success_consequences": [
             "CNS_CANALS_DUG"
           ],
-          "echo_summary": "I canali furono riaperti a spese di tutti, e l'acqua torno a muoversi $in_region.",
+          "echo_summary": "I canali furono riaperti a spese di tutti, e l'acqua tornò a muoversi $in_region.",
           "echo_summaries": {
-            "FAILURE": "Si stabili chi mandava le braccia, e a primavera non le mando nessuno."
+            "FAILURE": "Si stabilì chi mandava le braccia, e a primavera non le mandò nessuno."
           }
         },
         {
           "id": "P_DIG_FOR_HIRE",
           "question_id": "Q_WATER_CANALS",
-          "text": "Li paga $proponent, e chi vuole l'acqua dopo la compra.",
+          "text": "Li paghi $proponent; chi vorrà l'acqua, poi, la compri.",
           "eligibility": [],
           "success_consequences": [
             "CNS_CANALS_DUG",
@@ -54,18 +54,18 @@
         {
           "id": "P_WATER_COMMON",
           "question_id": "Q_WATER_PRICE",
-          "text": "L'acqua non e di nessuno. Chi la devia risponde a tutti.",
+          "text": "L'acqua non è di nessuno. Chi la devia risponde a tutti.",
           "eligibility": [],
           "success_consequences": [
             "CNS_CANALS_DUG"
           ],
-          "echo_summary": "Si stabili che l'acqua non fosse di nessuno, e per un anno intero funziono."
+          "echo_summary": "Si stabilì che l'acqua non fosse di nessuno, e per un anno intero funzionò."
         }
       ],
       "condition_clauses": [
         {
           "id": "C_WATER_LAST",
-          "text": "...purche l'ultima presa sia di chi sta piu in basso.",
+          "text": "...purche l'ultima presa sia di chi sta più in basso.",
           "effects": [
             {
               "type": "SET_GLOBAL_TAG",
@@ -144,7 +144,7 @@
       "questions": [
         {
           "id": "Q_DEBT_LEDGER",
-          "text": "Chi tiene il registro, e chi puo leggerlo?",
+          "text": "Chi tiene il registro, e chi può leggerlo?",
           "eligibility": []
         },
         {
@@ -155,7 +155,7 @@
               "type": "tension_limit",
               "tension_id": "TEN_DEBT",
               "min": 3,
-              "label": "Il Debito e al limite"
+              "label": "Il Debito è al limite"
             }
           ]
         }
@@ -164,46 +164,46 @@
         {
           "id": "P_OPEN_LEDGER",
           "question_id": "Q_DEBT_LEDGER",
-          "text": "Il registro viene copiato e lasciato dove chiunque puo leggerlo.",
+          "text": "Si copi il registro e lo si lasci dove chiunque possa leggerlo.",
           "eligibility": [],
           "success_consequences": [
             "CNS_LEDGER_OPENED"
           ],
-          "echo_summary": "Il registro fu copiato e lasciato leggere, e nessuno ci trovo un imbroglio."
+          "echo_summary": "Il registro fu copiato e lasciato leggere, e nessuno ci trovò un imbroglio."
         },
         {
           "id": "P_KEEP_LEDGER",
           "question_id": "Q_DEBT_LEDGER",
-          "text": "Il registro resta a $proponent, che ne risponde con il proprio nome.",
+          "text": "Il registro resti a $proponent, che ne risponda col proprio nome.",
           "eligibility": [],
           "success_consequences": [
             "CNS_DEBT_CALLED"
           ],
-          "echo_summary": "Il registro resto a $proponent, e le condizioni le seppe solo chi le firmava.",
+          "echo_summary": "Il registro restò a $proponent, e le condizioni le seppe solo chi le firmava.",
           "echo_summaries": {
-            "FAILURE": "Si volle che il registro restasse a uno solo, e tre citta smisero di firmare."
+            "FAILURE": "Si volle che il registro restasse a uno solo, e tre città smisero di firmare."
           }
         },
         {
           "id": "P_FORGIVE",
           "question_id": "Q_DEBT_CALL",
-          "text": "Una riga tirata sotto la colonna. Si riparte da zero e si scrive come.",
+          "text": "Una riga tirata sotto la colonna: si riparta da zero, e si scriva come.",
           "eligibility": [],
           "success_consequences": [
             "CNS_DEBT_FORGIVEN"
           ],
-          "echo_summary": "Il debito fu rimesso, e per un anno non si parlo d'altro."
+          "echo_summary": "Il debito fu rimesso, e per un anno non si parlò d'altro."
         },
         {
           "id": "P_CALL_IT_IN",
           "question_id": "Q_DEBT_CALL",
-          "text": "Si chiede tutto adesso. Chi non paga risponde con quello che ha.",
+          "text": "Si chieda tutto, adesso. Chi non può pagare, paghi con quello che ha.",
           "eligibility": [],
           "success_consequences": [
             "CNS_DEBT_CALLED",
             "CNS_SEAT_CLAIMED"
           ],
-          "echo_summary": "Il debito fu chiamato tutto insieme, e $in_region cambio padrone senza che partisse un colpo."
+          "echo_summary": "Il debito fu chiamato tutto insieme, e $in_region cambiò padrone senza che partisse un colpo."
         },
         {
           "id": "P_OLD_PAGE",
@@ -222,7 +222,7 @@
           ],
           "echo_summary": "La vecchia pagina fu letta ad alta voce, e i numeri nuovi fecero meno paura.",
           "echo_summaries": {
-            "FAILURE": "Si cerco la pagina che si racconta, e nessuno fu d'accordo su cosa ci fosse scritto."
+            "FAILURE": "Si cercò la pagina che si racconta, e nessuno fu d'accordo su cosa ci fosse scritto."
           }
         }
       ],
@@ -293,12 +293,12 @@
     {
       "id": "CNF_RELIC_03",
       "tension_id": "TEN_RELIC",
-      "title": "Quello che c'e nella Teca",
+      "title": "Quello che c'è nella Teca",
       "description": "L'Ordine dice che non si guarda. I Signori della Cenere scavano sotto la cella da un anno. Nessuno dei due ha ancora detto ad alta voce cosa pensa che ci sia.",
       "questions": [
         {
           "id": "Q_RELIC_KEEP",
-          "text": "Chi risponde di quello che c'e nella teca?",
+          "text": "Chi risponde di quello che c'è nella teca?",
           "eligibility": []
         },
         {
@@ -309,7 +309,7 @@
               "type": "tension_limit",
               "tension_id": "TEN_RELIC",
               "min": 4,
-              "label": "La Reliquia e al limite"
+              "label": "La Reliquia è al limite"
             }
           ]
         }
@@ -318,7 +318,7 @@
         {
           "id": "P_ANOINT_KEEPER",
           "question_id": "Q_RELIC_KEEP",
-          "text": "La custodia diventa un incarico scritto, e a tenerlo e $proponent.",
+          "text": "La custodia divenga incarico scritto, e a portarlo sia $proponent.",
           "eligibility": [],
           "success_consequences": [
             "CNS_ORDER_ANOINTED"
@@ -328,13 +328,13 @@
         {
           "id": "P_DIG_BELOW",
           "question_id": "Q_RELIC_KEEP",
-          "text": "Sotto la cella si continua a scavare. Chi custodisce non decide della roccia.",
+          "text": "Sotto la cella si continui a scavare: chi custodisce non comanda alla roccia.",
           "eligibility": [],
           "success_consequences": [
             "CNS_ASH_ABANDONED",
             "CNS_SEAT_CLAIMED"
           ],
-          "echo_summary": "Si stabili che la roccia non fosse dell'Ordine, e sotto la cella si continuo a scendere.",
+          "echo_summary": "Si stabilì che la roccia non fosse dell'Ordine, e sotto la cella si continuò a scendere.",
           "echo_summaries": {
             "FAILURE": "Si volle scavare sotto la cella, e i puntelli non ressero un inverno."
           }
@@ -342,12 +342,12 @@
         {
           "id": "P_WATCH_THE_ROCK",
           "question_id": "Q_RELIC_KEEP",
-          "text": "La teca resti dov'e. Quello che va guardato e la montagna, e la guarda $proponent.",
+          "text": "La teca resti dov'è. Ciò che va guardato è la montagna, e la guardi $proponent.",
           "eligibility": [],
           "success_consequences": [
             "CNS_ASH_WATCH"
           ],
-          "echo_summary": "Si stabili che il pericolo non fosse nella teca ma nella roccia, e a vegliarla fu $proponent.",
+          "echo_summary": "Si stabilì che il pericolo non fosse nella teca ma nella roccia, e a vegliarla fu $proponent.",
           "echo_summaries": {
             "FAILURE": "Si volle spostare la veglia dalla teca alla montagna, e per un anno non la tenne nessuno."
           }
@@ -355,7 +355,7 @@
         {
           "id": "P_SHOW_IT",
           "question_id": "Q_RELIC_SHOW",
-          "text": "Si apre la teca davanti a testimoni, e a mostrarla e $proponent.",
+          "text": "Si apra la teca davanti a testimoni, e a mostrarla sia $proponent.",
           "eligibility": [],
           "success_consequences": [
             "CNS_RELIC_SHOWN"
@@ -368,7 +368,7 @@
         {
           "id": "P_BURY_IT",
           "question_id": "Q_RELIC_SHOW",
-          "text": "Si mura la cella e si mette a verbale che e stata murata.",
+          "text": "Si muri la cella, e si metta a verbale che è stata murata.",
           "eligibility": [],
           "success_consequences": [
             "CNS_RELIC_BURIED"
@@ -454,7 +454,7 @@
       "id": "CNF_CHARTER_03",
       "tension_id": "TEN_CHARTER",
       "title": "Chi Scrive la Regola",
-      "description": "Sette citta, sette modi di giudicare lo stesso caso. Finche i casi restavano dentro le mura non importava a nessuno.",
+      "description": "Sette città, sette modi di giudicare lo stesso caso. Finche i casi restavano dentro le mura non importava a nessuno.",
       "questions": [
         {
           "id": "Q_CHARTER_WRITE",
@@ -463,13 +463,13 @@
         },
         {
           "id": "Q_CHARTER_SEAT",
-          "text": "E chi si siede, quando non si e d'accordo?",
+          "text": "E chi si siede, quando non si è d'accordo?",
           "eligibility": [
             {
               "type": "tension_limit",
               "tension_id": "TEN_CHARTER",
               "min": 3,
-              "label": "La Carta e al limite"
+              "label": "La Carta è al limite"
             }
           ]
         }
@@ -478,22 +478,22 @@
         {
           "id": "P_WRITE_CHARTER",
           "question_id": "Q_CHARTER_WRITE",
-          "text": "Una Carta corta, firmata da tutte e sette, che dice solo cosa non si puo fare.",
+          "text": "Una Carta breve, firmata da tutte e sette, che dica soltanto ciò che non si può fare.",
           "eligibility": [],
           "success_consequences": [
             "CNS_CHARTER_WRITTEN"
           ],
-          "echo_summary": "Sette citta firmarono lo stesso foglio, e il foglio era piu corto di quanto tutti si aspettassero."
+          "echo_summary": "Sette città firmarono lo stesso foglio, e il foglio era più corto di quanto tutti si aspettassero."
         },
         {
           "id": "P_REFUSE_CHARTER",
           "question_id": "Q_CHARTER_WRITE",
-          "text": "Ogni citta tiene la propria. Chi vuole commerciare si adegui.",
+          "text": "Ogni città tenga la propria legge. Chi vuole commerciare, si adegui.",
           "eligibility": [],
           "success_consequences": [
             "CNS_CHARTER_REFUSED"
           ],
-          "echo_summary": "Si stabili che ognuno tenesse la propria regola, e da allora contava chi arrivava prima.",
+          "echo_summary": "Si stabilì che ognuno tenesse la propria regola, e da allora contava chi arrivava prima.",
           "echo_summaries": {
             "FAILURE": "Si volle che ognuno tenesse la propria, e la prima causa la vinsero tutti e due."
           }
@@ -501,22 +501,22 @@
         {
           "id": "P_TAKE_SEAT",
           "question_id": "Q_CHARTER_SEAT",
-          "text": "Quando non si e d'accordo decide $proponent, e se ne assume il costo.",
+          "text": "Quando l'accordo manca, decida $proponent - e ne porti il costo.",
           "eligibility": [],
           "success_consequences": [
             "CNS_SEAT_CLAIMED"
           ],
-          "echo_summary": "$proponent si sedette dove non si sedeva nessuno da otto secoli, e per un po' funziono meglio."
+          "echo_summary": "$proponent si sedette dove non si sedeva nessuno da otto secoli, e per un po' funzionò meglio."
         },
         {
           "id": "P_DRAW_LOTS",
           "question_id": "Q_CHARTER_SEAT",
-          "text": "Quando non si e d'accordo si tira a sorte, e la sorte e scritta.",
+          "text": "Quando l'accordo manca, si tiri a sorte; e la sorte sia scritta.",
           "eligibility": [],
           "success_consequences": [
             "CNS_CHARTER_WRITTEN"
           ],
-          "echo_summary": "Si stabili di tirare a sorte, e la cosa strana e che tenne."
+          "echo_summary": "Si stabilì di tirare a sorte, e la cosa strana è che tenne."
         }
       ],
       "condition_clauses": [
@@ -548,7 +548,7 @@
         },
         {
           "id": "C_CHARTER_NAMELESS",
-          "text": "...purche valga anche per chi non ha una citta.",
+          "text": "...purche valga anche per chi non ha una città.",
           "effects": [
             {
               "type": "ADJUST_TENSION",
@@ -597,11 +597,11 @@
       "id": "CNF_ANY_ANCIENT",
       "applies_to_domain": "ANCIENT",
       "title": "Quello che c'era Prima",
-      "description": "Ogni generazione trova sotto i piedi qualcosa che non ha messo lei, e deve decidere se guardarlo o lasciarlo dov'e.",
+      "description": "Ogni generazione trova sotto i piedi qualcosa che non ha messo lei, e deve decidere se guardarlo o lasciarlo dov'è.",
       "questions": [
         {
           "id": "Q_ANY_ANCIENT_WATCH",
-          "text": "Chi tiene d'occhio quello che c'e $in_region?",
+          "text": "Chi tiene d'occhio quello che c'è $in_region?",
           "eligibility": []
         }
       ],
@@ -609,7 +609,7 @@
         {
           "id": "P_ANY_WATCH",
           "question_id": "Q_ANY_ANCIENT_WATCH",
-          "text": "Due torri e un turno di guardia. Non impedisce niente: fa sapere prima.",
+          "text": "Due torri e un turno di guardia. Non impediranno nulla: faranno sapere prima.",
           "eligibility": [],
           "success_consequences": [
             "CNS_ASH_WATCH"
@@ -619,12 +619,12 @@
         {
           "id": "P_ANY_IGNORE",
           "question_id": "Q_ANY_ANCIENT_WATCH",
-          "text": "Non c'e niente da guardare. Chi vuole guardare paghi le proprie guardie.",
+          "text": "Non c'è nulla da guardare. Chi vuole vegliare, paghi le proprie guardie.",
           "eligibility": [],
           "success_consequences": [
             "CNS_COST_UNREST"
           ],
-          "echo_summary": "Si stabili che non ci fosse niente da guardare, e per qualche mese fu vero."
+          "echo_summary": "Si stabilì che non ci fosse niente da guardare, e per qualche mese fu vero."
         }
       ],
       "condition_clauses": [

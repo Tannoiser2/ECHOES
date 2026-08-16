@@ -331,6 +331,111 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-101 — La GUI mostra i componenti fisici, non una loro parafrasi
+**implemented in 0.1.59** (direzione del committente; prima fetta)
+
+«La GUI di Godot dovrebbe essere quanto di più vicino al gioco fisico.»
+Il progetto aveva già il principio, applicato due volte: la cronaca
+in-app è **le stesse pagine** che si stampano (D-086), l'anteprima F4 è
+**gli stessi fogli** (D-056). Questa decisione lo estende al tavolo:
+quello che un giocatore vede durante la partita è il componente fisico,
+rasterizzato — non un pannello che gli somiglia.
+
+### Il mattone e la prima fetta
+
+`PrintSheet.card_svg(face)`: una carta sola, stessa faccia del foglio di
+stampa, taglia propria, senza segni di taglio. `ui/card_art.gd` la
+rasterizza una volta per mazzo e la tiene in cache. Con questo:
+
+- **la mano è fatta di carte stampate**: `asset_card` mostra la faccia
+  vera (63×88 in proporzione); lo schermo aggiunge solo ciò che il
+  tavolo saprebbe a voce — il bordo di rilevanza e la riga «vale N»
+  chiesta al resolver (D-040) — e il tooltip resta per leggere il testo
+  a carta piccola;
+- **il mondo cala una carta**: a fine atto la vista Echo mostra la carta
+  stampata a sinistra e il verbale di cosa ha fatto a destra.
+
+Un solo impaginatore, tre superfici: foglio, anteprima, partita. Una
+correzione a un testo o a un layout arriva ovunque insieme, e non può
+divergere per costruzione.
+
+### Le fette dichiarate
+
+- la **carta mini della domanda** posata al centro quando un Consiglio
+  si apre (fisicamente: la carta si prende dalla traccia e si mette in
+  mezzo al tavolo);
+- i **token sulla mappa** disegnati come i segnalini della fustella
+  (D-097): tondi pieni di presenza, anelli di controllo;
+- le **carte-identità** (tarocchi di Casata e Destino) nella vista del
+  seggio.
+
+Guardie: `test_print_export` (la carta singola esce della sua taglia,
+senza segni di taglio, deterministica, e si rasterizza per ogni mazzo).
+
+---
+
+## D-100 — La voce del Consiglio: le mozioni al congiuntivo
+**implemented in 0.1.58** (seconda lettura della voce 13, su segnalazione del committente)
+
+Il committente ha riletto e ha indicato la direzione: i testi dei
+Consigli erano «un po' strani» — troppo piatti per essere letti ad alta
+voce — e vanno resi più comprensibili e più «aulici fantasy». Sono i
+testi più esposti del gioco: la proposta la **pronuncia** il proponente
+davanti al tavolo.
+
+**La regola di stile**: una proposta è una *mozione*, e parla al
+congiuntivo esortativo — «Si levino i banchi e si portino dove le mura
+sanno difenderli», «Il grano sia requisito in nome del trono», «Quando
+l'accordo manca, si tiri a sorte; e la sorte sia scritta». Gli esiti
+restano cronaca al passato remoto, con le due segnalazioni riscritte
+per immagine: «ogni sbarra tenne la propria tariffa, e la strada restò
+dei tanti esattori»; «dove andarono le merci, là passò anche il
+comando». 34 riscritture, più 22 code di passato remoto senza accento
+trovate rileggendo («passò sotto il sigillo», «Si stabilì», «ripeté»).
+
+Suite, simulazioni, export e brief riallineati e verdi. I testi buoni
+(«Due titoli sono due guerre che aspettano», «Si tolga la pietra») non
+si toccano: la passata alza il pavimento, non pareggia il soffitto.
+
+---
+
+## D-099 — La revisione dei testi: gli accenti tornano, le regole escono dal racconto
+**implemented in 0.1.57** (chiude ISSUES voce 13, su delega del committente)
+
+Prima lettura di fila di tutti i 661 testi del gioco, dal tavolo di
+lettura della 0.1.56. Due difetti sistematici e una manciata di code:
+
+**Gli accenti non c'erano.** I testi erano in ASCII puro fin dalla 0.0:
+«piu», «citta», «la cosa e seria», «il consiglio lascio cadere». Restaurati
+ovunque — 357 righe corrette su 17 file — in tre passate: la mappa delle
+parole certe (più, città, può, c'è, già, perché…), i pattern verbali
+sicuri («e al limite» → «è al limite», «si e » → «si è », «TEN_X e in
+gioco» → «è in gioco»), e **125 + 16 coppie esplicite col loro contesto**
+per le copule e i passati remoti che una regola cieca sbaglierebbe
+(«il consiglio lasciò cadere», «la porta restò dov'era», «Salì al trono»,
+«estrarlo è estrarre qualcosa di vivo»). Ogni occorrenza di «e» nuda è
+stata classificata a occhio, due censimenti completi (520 poi 317
+occorrenze): quello che resta è congiunzione legittima.
+
+**Le regole erano finite nel racconto.** Il caso segnalato dal
+committente: la descrizione del Risveglio diceva *«Velata: i giocatori
+vedono i presagi, non il numero. Solo SCHEME apre il valore»* — gergo di
+motore in un campo narrativo. La velatura è un dato (`visibility`), e
+adesso è **la carta a dichiararla da sé** («domanda velata · survival»
+nel sottotitolo, motore, D-035-style); le due descrizioni colpevoli
+(TEN_AWAKENING, TEN_ROADS) sono tornate racconto: *«Qualcosa si è mosso
+sotto le Miniere, e nessuno sa dire quanto manca. Si vedono i segni, non
+la misura.»* Le Azioni invece restano com'erano: quelle *sono* carte
+regolamento, e il loro posto è quello.
+
+Verificato: suite intatta (215 test, 4518 asserzioni — nessuna guardia
+citava i testi corrotti), validazione, simulazioni, export e manifesto
+rigenerati. La voce 13 chiude sul suo «fatto quando»: i testi sono stati
+letti dall'inizio alla fine e le correzioni sono nei JSON — il diff è la
+lettura, e il committente può obiettare riga per riga.
+
+---
+
 ## D-098 — La seconda leva: la proposta bocciata non compra quiete
 **implemented in 0.1.55** (chiude la 0.2: era l'ultima voce)
 

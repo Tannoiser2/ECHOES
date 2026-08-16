@@ -216,3 +216,24 @@ func test_the_token_sheet_counts_its_pieces() -> void:
 	var track: String = TokenSheet.track_board_svg()
 	assert_eq(track.count("<rect"), 1 + 4 * 10, "il fondo, e per corsia un posto-carta e nove caselle")
 	assert_true(track.contains("si apre il Consiglio"), "la regola della soglia e' scritta sul foglio")
+
+
+## D-101: la GUI mostra le carte fisiche. Una carta si rende da sola - stessa
+## faccia del foglio di stampa, taglia propria, niente segni di taglio - e si
+## rasterizza, perche' e' cosi' che la mano e la carta Echo finiscono sullo
+## schermo.
+func test_a_single_card_renders_standalone_for_the_screen() -> void:
+	var loaded: RefCounted = data()
+	for deck in CardFace.DECKS + CardFace.TILES:
+		var face: Dictionary = CardFace.deck_of(str(deck), loaded)[0]
+		var svg: String = PrintSheet.card_svg(face)
+		var cell: Vector2 = PrintSheet.cell_size(str(face["shape"]))
+		assert_true(
+			svg.contains('width="%.0fmm" height="%.0fmm"' % [cell.x, cell.y]),
+			"%s: la carta esce della sua taglia" % str(deck)
+		)
+		assert_false(svg.contains("#bbbbbb"), "%s: niente segni di taglio sullo schermo" % str(deck))
+		assert_eq(svg, PrintSheet.card_svg(face), "%s: due rese identiche byte per byte" % str(deck))
+		var image := Image.new()
+		assert_eq(image.load_svg_from_string(svg, 3.0), OK, "%s: la carta si rasterizza" % str(deck))
+		assert_true(image.get_width() > 0, "%s: e ha dei pixel" % str(deck))

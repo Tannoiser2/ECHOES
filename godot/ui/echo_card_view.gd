@@ -14,6 +14,7 @@ extends PanelContainer
 ## already applied, and it draws them. It decides nothing and applies nothing.
 
 const EffectText := preload("res://scripts/core/effect_text.gd")
+const CardArt := preload("res://ui/card_art.gd")
 const CardFace := preload("res://scripts/core/card_face.gd")
 
 ## The four dramatic families, and what each one is for. Colour first, because
@@ -30,6 +31,7 @@ const FUNCTIONS: Dictionary = CardFace.PROPP
 
 signal picked(index: int)
 
+var _picture: TextureRect
 var _family: Label
 var _title: Label
 var _function: Label
@@ -51,9 +53,23 @@ func _ready() -> void:
 	_frame.content_margin_bottom = 22
 	add_theme_stylebox_override("panel", _frame)
 
+	# La carta fisica a sinistra, il verbale di cosa ha fatto a destra (D-101):
+	# il mondo *cala una carta*, e quella che si vede e' quella stampata.
+	var row := HBoxContainer.new()
+	row.add_theme_constant_override("separation", 24)
+	add_child(row)
+
+	_picture = TextureRect.new()
+	_picture.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	_picture.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	_picture.custom_minimum_size = Vector2(63.0, 88.0) * 3.4
+	_picture.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	row.add_child(_picture)
+
 	var box := VBoxContainer.new()
 	box.add_theme_constant_override("separation", 10)
-	add_child(box)
+	box.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	row.add_child(box)
 
 	_family = _label(12, "#8a8172")
 	box.add_child(_family)
@@ -101,6 +117,7 @@ func _label(font_size: int, colour: String) -> Label:
 ## the whole point: a paragraph about a betrayal means nothing until you can see
 ## that it pushed the Succession up by one and put a Scar in the Valley.
 func render(card: Dictionary, applied: Array, data: RefCounted) -> void:
+	_picture.texture = CardArt.texture_for("echo", str(card["id"]), data)
 	var family: String = str(card["dramatic_family"])
 	var described: Dictionary = FAMILIES.get(family, {"colour": "#8a8172", "label": family})
 	_frame.border_color = Color(str(described["colour"]))
