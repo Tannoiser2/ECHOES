@@ -5,6 +5,31 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.52] — La saga si gioca: l'era successiva si offre a fine anno
+
+Il primo pezzo mancante della 1.0 ([D-095](docs/DECISIONS.md#d-095)): il
+motore della campagna esisteva solo in riga di comando, adesso lo vede
+chi gioca.
+
+### Added
+
+- **«Gioca l'era successiva»**: a fine anno l'app offre di continuare la
+  saga nella stessa seduta — la nuova era eredita mondo e risultati per
+  lo stesso percorso di `run_saga`, il transcript continua col verbale
+  d'apertura in testa, il seme avanza di +97 (una saga giocata a mano è
+  riproducibile come una simulata).
+- **`DataSet.library_sequel_of`**: quale biblioteca prosegue quale età —
+  lo stesso tavolo di Entità — scritto una volta sola, con guardia.
+- ROADMAP aggiornata allo stato vero (0.2 con una voce sola, 0.3
+  completata, 1.0 a metà).
+
+### Misurato
+
+212 test in 29 suite, 4487 asserzioni; `game_screen.gd` compila headless;
+batteria di chiusura verde.
+
+---
+
 ## [0.1.51] — La spirale del fallimento si chiude ri-decidendo
 
 Scioglie il debito residuo della voce 18

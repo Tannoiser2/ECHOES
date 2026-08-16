@@ -391,6 +391,18 @@ func test_the_redeal_rebuilds_the_drift_bag_over_the_new_hand() -> void:
 	session_two.dispose()
 
 
+## D-095: la saga sa chi viene dopo. L'era successiva e' la biblioteca che
+## siede lo stesso tavolo - il criterio con cui run_saga incatena le ere,
+## adesso scritto nei dati una volta sola e usato anche dall'app.
+func test_every_age_knows_which_library_continues_it() -> void:
+	var loaded: RefCounted = data()
+	assert_eq(loaded.library_sequel_of("CHR_01"), "CHR_02", "la prima eta' prosegue nella sua biblioteca")
+	assert_eq(loaded.library_sequel_of("CHR_02"), "CHR_02", "una biblioteca prosegue se stessa")
+	assert_eq(loaded.library_sequel_of("CHR_03"), "CHR_04", "la seconda eta' nella sua")
+	assert_eq(loaded.library_sequel_of("CHR_04"), "CHR_04", "e anche lei prosegue se stessa")
+	assert_eq(loaded.library_sequel_of("CHR_MAI_SCRITTA"), "", "un'eta' sconosciuta non ha seguito")
+
+
 ## The whole point: a Chronicle assembled from the library plays to the end.
 func test_a_library_chronicle_plays_to_the_end() -> void:
 	var session_two: RefCounted = GameSession.new(data())

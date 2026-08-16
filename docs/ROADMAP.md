@@ -66,7 +66,7 @@ completa in [DECISIONS D-021](DECISIONS.md#d-021).
 
 ---
 
-## 0.2 — Bilanciamento ⟵ prossima
+## 0.2 — Bilanciamento — resta una voce sola
 
 **La voce con cui questa sezione si apriva è chiusa.** Diceva: «Failure e Success
 with Cost non compaiono, 0 e 1 su 154 Confluence misurate». Sulle 244 Confluence
@@ -94,18 +94,28 @@ scritte come issue apribili in [ISSUES.md](ISSUES.md):
     qualificata entra nel margine come sostegno. I fallimenti scendono a
     **282 su 596**, il prudente sale a 74/22/4, i DECISIVE passano da 95 a 128 e
     i seggi bloccati vanno da 1 su 8 a **0 su 8**.
-  - **seconda leva, da misurare**: bloccare resta comunque il seggio più forte —
-    l'aggressivo chiude 61 Vittorie contro le 22 del prudente. Serve un prezzo
-    sul fronte Oppose, e va misurato prima di scriverlo.
-- Insieme a: 3–5 template di Confluence aggiuntivi, Asset economy e UX.
+  - **seconda leva, da misurare — è la voce che resta di tutta la 0.2**:
+    bloccare è ancora il seggio più forte (nell'ultima misura, 0.1.51,
+    l'aggressivo chiude 64 Vittorie contro le 34 del prudente). Serve un
+    prezzo sul fronte Oppose, e va misurato prima di scriverlo.
+- ✅ I compagni di lista sono chiusi strada facendo: i template aggiuntivi
+  non servono, misurato tre volte ([D-093](DECISIONS.md#d-093)); l'Asset
+  economy è misurata e sana — nessuna carta morta su 48
+  ([D-071](DECISIONS.md#d-071), ISSUES 3); la UX ha avuto le sue passate
+  (CardView, cronaca in-app, avvisi sul salvataggio browser).
 
 ---
 
-## 0.3 — World Propagation Engine
+## 0.3 — World Propagation Engine ✅ completata (0.1.44–0.1.47)
 
-Propagazione delle conseguenze e generazione strutturata della Chronicle II. Il
-`destiny_results.evidence` già registra *come* ogni obiettivo è stato raggiunto,
-proprio per questo passaggio.
+Da una Chronicle conclusa esce una Chronicle nuova con domande scelte dalle
+conseguenze della prima, e dieci ere si incatenano senza che nessuno scriva
+JSON a mano. Le evidence sono diventate dati (`unmet`,
+[D-087](DECISIONS.md#d-087)), la pesca legge segni, conti aperti e calore
+ereditato ([D-079](DECISIONS.md#d-079), [D-088](DECISIONS.md#d-088)), e il
+verbale d'apertura racconta al tavolo domande e mappa
+([D-089](DECISIONS.md#d-089), [D-090](DECISIONS.md#d-090)). Chiusa con la
+voce 9 di ISSUES e la issue [#25](https://github.com/Tannoiser2/ECHOES/issues/25).
 
 ## 0.4 — Local Narrative Model adapter
 
@@ -123,4 +133,10 @@ campo che nessuno legge è un campo che nessuno mantiene — tolti in 0.1.48
 
 ## 0.6 — Print-and-play e sincronizzazione tavolo fisico/digitale
 
-## 1.0 — Campagna multi-Chronicle, Timeline, Legacy, Chronicle Book
+## 1.0 — Campagna multi-Chronicle, Timeline, Legacy, Chronicle Book — a metà
+
+Il motore della campagna esiste ed è misurato su migliaia di ere
+(`run_saga`, `run_era_probe`); il Chronicle Book impagina l'anno finito
+dentro l'app (D-086). Quello che manca è il resto della vita in app: la
+**Timeline** dei secoli e il **libro dell'intera saga** (oggi il libro
+copre un anno alla volta).

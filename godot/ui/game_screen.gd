@@ -957,6 +957,36 @@ func _drive(data: RefCounted, humans: Array, chronicle_id: String) -> void:
 	# e la cronaca deve poter restare sullo schermo a partita finita.
 	_year_save = _session.to_save()
 	_ending(data, report)
+
+	# La saga continua da qui (D-095): quello che run_saga fa da sempre in
+	# riga di comando, offerto a chi gioca. L'era dopo e' la biblioteca della
+	# stessa eta', eredita il mondo e i risultati appena chiusi, e il seme
+	# avanza dello stesso passo delle sonde - cosi' una saga giocata a mano e'
+	# riproducibile come una simulata.
+	var sequel: String = data.library_sequel_of(chronicle_id)
+	if sequel != "":
+		var choice: int = await ask(
+			"L'anno e' chiuso, ma il mondo no. Il tempo passa.",
+			[
+				"Gioca l'era successiva — %s" % str(data.chronicles[sequel]["title"]),
+				"Basta cosi: la saga si ferma qui",
+			]
+		)
+		if choice == 0:
+			var previous: Dictionary = (_session.world as Dictionary).duplicate(true)
+			var results: Dictionary = (report["destiny_results"] as Dictionary).duplicate(true)
+			_session.dispose()
+			_toggle_cronaca(false)
+			_session = GameSession.new(data)
+			_last_seed = _last_seed + 97
+			_seats = _seats_of(sequel)
+			_session.setup(sequel, _seats, _last_seed)
+			_session.inherit_from(previous, results)
+			_help.render(data, sequel)
+			say("")
+			await _drive(data, humans, sequel)
+			return
+
 	_session.dispose()
 	_session = null
 	_busy = false
