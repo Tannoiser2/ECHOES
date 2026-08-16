@@ -1460,7 +1460,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`AST_AUTHORITY_CROWN_RIGHT`**
 > Diritto di Corona
 
-> Si scarta sempre: un diritto invocato due volte non è più un diritto, e una pretesa.
+> Si scarta sempre: un diritto invocato due volte non è più un diritto, è una pretesa.
 
 
 **`AST_AUTHORITY_EDICT`**

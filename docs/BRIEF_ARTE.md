@@ -29,11 +29,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.authority.crown_right` — Diritto di Corona
 
-- **soggetto**: Diritto di Corona — Si scarta sempre: un diritto invocato due volte non è più un diritto, e una pretesa
+- **soggetto**: Diritto di Corona — Si scarta sempre: un diritto invocato due volte non è più un diritto, è una pretesa
 - **id**: `AST_AUTHORITY_CROWN_RIGHT`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Diritto di Corona — Si scarta sempre: un diritto invocato due volte non è più un diritto, e una pretesa.
+Historical dark-fantasy painting, single evocative scene depicting Diritto di Corona — Si scarta sempre: un diritto invocato due volte non è più un diritto, è una pretesa.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 oro spento accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
