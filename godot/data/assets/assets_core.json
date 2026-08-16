@@ -284,7 +284,7 @@
       "rarity": "UNCOMMON",
       "deck_copies": 2,
       "art_prompt_key": "asset.authority.crown_right",
-      "rules_text": "Si scarta sempre: un diritto invocato due volte non è più un diritto, e una pretesa."
+      "rules_text": "Si scarta sempre: un diritto invocato due volte non è più un diritto, è una pretesa."
     },
     {
       "id": "AST_AUTHORITY_MAGISTRATE",
