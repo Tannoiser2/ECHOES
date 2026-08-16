@@ -331,6 +331,41 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-095 — La saga si gioca: l'era successiva si offre a fine anno
+**implemented in 0.1.52** (il primo pezzo mancante della 1.0)
+
+Il motore della campagna esisteva ed era misurato su migliaia di ere, ma
+viveva solo in riga di comando: nell'app si giocava un anno alla volta, e
+la parte più caratteristica del gioco — il tempo che passa, gli eredi, il
+verbale d'apertura — un giocatore non la vedeva mai.
+
+### La regola
+
+A fine anno, se l'età ha una biblioteca, lo schermo lo offre: *«L'anno è
+chiuso, ma il mondo no. Il tempo passa.»* Chi accetta gioca l'era
+successiva nella stessa seduta: la nuova sessione eredita il mondo e i
+risultati appena chiusi (`inherit_from`, lo stesso identico percorso di
+`run_saga`), il transcript continua — il verbale d'apertura compare in
+testa al nuovo anno — e il seme avanza del passo delle sonde (+97), così
+una saga giocata a mano è riproducibile come una simulata.
+
+Quale Chronicle prosegue quale età lo dicono i dati, una volta sola:
+`DataSet.library_sequel_of` — la biblioteca che siede **lo stesso tavolo
+di Entità** (CHR_01→CHR_02, CHR_03→CHR_04; una biblioteca prosegue se
+stessa; un'età senza biblioteca chiude la saga). È il criterio che
+`run_saga` usava da sempre, scritto nel posto giusto invece che in ogni
+chiamante.
+
+Restano dichiarate, per la 1.0: la **Timeline** dei secoli e il **libro
+dell'intera saga** (il Chronicle Book copre l'anno singolo).
+
+Guardie: `test_library_content` (ogni età sa chi la prosegue, nei due
+sensi e col caso vuoto); `game_screen` compila headless; l'autosave a
+ogni round vale anche per gli anni-biblioteca, quindi la ripresa (D-052)
+copre anche una saga interrotta.
+
+---
+
 ## D-094 — La spirale del fallimento si chiude ri-decidendo
 **implemented in 0.1.51** (scioglie il debito residuo della voce 18)
 

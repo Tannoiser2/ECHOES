@@ -185,6 +185,33 @@ func confluence_template_for(tension_id: String) -> Dictionary:
 	return {}
 
 
+## La Chronicle-biblioteca che prosegue questa eta' (D-095): quella che pesca
+## le sue domande (`tension_pool`) e siede **lo stesso tavolo di Entita'**.
+## E' il criterio con cui run_saga incatena le ere da sempre - CHR_01 prosegue
+## in CHR_02, CHR_03 in CHR_04 - scritto una volta sola invece che in ogni
+## chiamante. Una biblioteca prosegue se stessa; un'eta' senza biblioteca
+## torna stringa vuota, e la saga li' finisce.
+func library_sequel_of(chronicle_id: String) -> String:
+	var current: Variant = chronicles.get(chronicle_id)
+	if current == null:
+		return ""
+	if (current as Dictionary).has("tension_pool"):
+		return chronicle_id
+	var table: Array = ((current as Dictionary)["entities"] as Array).duplicate()
+	table.sort()
+	var ids: Array = chronicles.keys()
+	ids.sort()
+	for id in ids:
+		var candidate: Dictionary = chronicles[str(id)]
+		if not candidate.has("tension_pool"):
+			continue
+		var seats: Array = (candidate["entities"] as Array).duplicate()
+		seats.sort()
+		if seats == table:
+			return str(id)
+	return ""
+
+
 func assets_of_family(family: String) -> Array:
 	var out: Array = []
 	for asset in assets.values():
