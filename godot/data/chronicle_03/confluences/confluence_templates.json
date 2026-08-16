@@ -30,20 +30,20 @@
         {
           "id": "P_DIG_TOGETHER",
           "question_id": "Q_WATER_CANALS",
-          "text": "Ogni città manda braccia in proporzione a quanta acqua prende. Nessuno riscuote.",
+          "text": "Ogni città mandi braccia per quanta acqua prende. E nessuno riscuota.",
           "eligibility": [],
           "success_consequences": [
             "CNS_CANALS_DUG"
           ],
           "echo_summary": "I canali furono riaperti a spese di tutti, e l'acqua tornò a muoversi $in_region.",
           "echo_summaries": {
-            "FAILURE": "Si stabili chi mandava le braccia, e a primavera non le mandò nessuno."
+            "FAILURE": "Si stabilì chi mandava le braccia, e a primavera non le mandò nessuno."
           }
         },
         {
           "id": "P_DIG_FOR_HIRE",
           "question_id": "Q_WATER_CANALS",
-          "text": "Li paga $proponent, e chi vuole l'acqua dopo la compra.",
+          "text": "Li paghi $proponent; chi vorrà l'acqua, poi, la compri.",
           "eligibility": [],
           "success_consequences": [
             "CNS_CANALS_DUG",
@@ -59,7 +59,7 @@
           "success_consequences": [
             "CNS_CANALS_DUG"
           ],
-          "echo_summary": "Si stabili che l'acqua non fosse di nessuno, e per un anno intero funzionò."
+          "echo_summary": "Si stabilì che l'acqua non fosse di nessuno, e per un anno intero funzionò."
         }
       ],
       "condition_clauses": [
@@ -164,7 +164,7 @@
         {
           "id": "P_OPEN_LEDGER",
           "question_id": "Q_DEBT_LEDGER",
-          "text": "Il registro viene copiato e lasciato dove chiunque può leggerlo.",
+          "text": "Si copi il registro e lo si lasci dove chiunque possa leggerlo.",
           "eligibility": [],
           "success_consequences": [
             "CNS_LEDGER_OPENED"
@@ -174,7 +174,7 @@
         {
           "id": "P_KEEP_LEDGER",
           "question_id": "Q_DEBT_LEDGER",
-          "text": "Il registro resta a $proponent, che ne risponde con il proprio nome.",
+          "text": "Il registro resti a $proponent, che ne risponda col proprio nome.",
           "eligibility": [],
           "success_consequences": [
             "CNS_DEBT_CALLED"
@@ -187,7 +187,7 @@
         {
           "id": "P_FORGIVE",
           "question_id": "Q_DEBT_CALL",
-          "text": "Una riga tirata sotto la colonna. Si riparte da zero e si scrive come.",
+          "text": "Una riga tirata sotto la colonna: si riparta da zero, e si scriva come.",
           "eligibility": [],
           "success_consequences": [
             "CNS_DEBT_FORGIVEN"
@@ -197,7 +197,7 @@
         {
           "id": "P_CALL_IT_IN",
           "question_id": "Q_DEBT_CALL",
-          "text": "Si chiede tutto adesso. Chi non paga risponde con quello che ha.",
+          "text": "Si chieda tutto, adesso. Chi non può pagare, paghi con quello che ha.",
           "eligibility": [],
           "success_consequences": [
             "CNS_DEBT_CALLED",
@@ -318,7 +318,7 @@
         {
           "id": "P_ANOINT_KEEPER",
           "question_id": "Q_RELIC_KEEP",
-          "text": "La custodia diventa un incarico scritto, e a tenerlo è $proponent.",
+          "text": "La custodia divenga incarico scritto, e a portarlo sia $proponent.",
           "eligibility": [],
           "success_consequences": [
             "CNS_ORDER_ANOINTED"
@@ -328,13 +328,13 @@
         {
           "id": "P_DIG_BELOW",
           "question_id": "Q_RELIC_KEEP",
-          "text": "Sotto la cella si continua a scavare. Chi custodisce non decide della roccia.",
+          "text": "Sotto la cella si continui a scavare: chi custodisce non comanda alla roccia.",
           "eligibility": [],
           "success_consequences": [
             "CNS_ASH_ABANDONED",
             "CNS_SEAT_CLAIMED"
           ],
-          "echo_summary": "Si stabili che la roccia non fosse dell'Ordine, e sotto la cella si continuò a scendere.",
+          "echo_summary": "Si stabilì che la roccia non fosse dell'Ordine, e sotto la cella si continuò a scendere.",
           "echo_summaries": {
             "FAILURE": "Si volle scavare sotto la cella, e i puntelli non ressero un inverno."
           }
@@ -342,12 +342,12 @@
         {
           "id": "P_WATCH_THE_ROCK",
           "question_id": "Q_RELIC_KEEP",
-          "text": "La teca resti dov'è. Quello che va guardato è la montagna, e la guarda $proponent.",
+          "text": "La teca resti dov'è. Ciò che va guardato è la montagna, e la guardi $proponent.",
           "eligibility": [],
           "success_consequences": [
             "CNS_ASH_WATCH"
           ],
-          "echo_summary": "Si stabili che il pericolo non fosse nella teca ma nella roccia, e a vegliarla fu $proponent.",
+          "echo_summary": "Si stabilì che il pericolo non fosse nella teca ma nella roccia, e a vegliarla fu $proponent.",
           "echo_summaries": {
             "FAILURE": "Si volle spostare la veglia dalla teca alla montagna, e per un anno non la tenne nessuno."
           }
@@ -355,7 +355,7 @@
         {
           "id": "P_SHOW_IT",
           "question_id": "Q_RELIC_SHOW",
-          "text": "Si apre la teca davanti a testimoni, e a mostrarla è $proponent.",
+          "text": "Si apra la teca davanti a testimoni, e a mostrarla sia $proponent.",
           "eligibility": [],
           "success_consequences": [
             "CNS_RELIC_SHOWN"
@@ -368,7 +368,7 @@
         {
           "id": "P_BURY_IT",
           "question_id": "Q_RELIC_SHOW",
-          "text": "Si mura la cella e si mette a verbale che è stata murata.",
+          "text": "Si muri la cella, e si metta a verbale che è stata murata.",
           "eligibility": [],
           "success_consequences": [
             "CNS_RELIC_BURIED"
@@ -478,7 +478,7 @@
         {
           "id": "P_WRITE_CHARTER",
           "question_id": "Q_CHARTER_WRITE",
-          "text": "Una Carta corta, firmata da tutte e sette, che dice solo cosa non si può fare.",
+          "text": "Una Carta breve, firmata da tutte e sette, che dica soltanto ciò che non si può fare.",
           "eligibility": [],
           "success_consequences": [
             "CNS_CHARTER_WRITTEN"
@@ -488,12 +488,12 @@
         {
           "id": "P_REFUSE_CHARTER",
           "question_id": "Q_CHARTER_WRITE",
-          "text": "Ogni città tiene la propria. Chi vuole commerciare si adegui.",
+          "text": "Ogni città tenga la propria legge. Chi vuole commerciare, si adegui.",
           "eligibility": [],
           "success_consequences": [
             "CNS_CHARTER_REFUSED"
           ],
-          "echo_summary": "Si stabili che ognuno tenesse la propria regola, e da allora contava chi arrivava prima.",
+          "echo_summary": "Si stabilì che ognuno tenesse la propria regola, e da allora contava chi arrivava prima.",
           "echo_summaries": {
             "FAILURE": "Si volle che ognuno tenesse la propria, e la prima causa la vinsero tutti e due."
           }
@@ -501,7 +501,7 @@
         {
           "id": "P_TAKE_SEAT",
           "question_id": "Q_CHARTER_SEAT",
-          "text": "Quando non si è d'accordo decide $proponent, e se ne assume il costo.",
+          "text": "Quando l'accordo manca, decida $proponent - e ne porti il costo.",
           "eligibility": [],
           "success_consequences": [
             "CNS_SEAT_CLAIMED"
@@ -511,7 +511,7 @@
         {
           "id": "P_DRAW_LOTS",
           "question_id": "Q_CHARTER_SEAT",
-          "text": "Quando non si è d'accordo si tira a sorte, e la sorte è scritta.",
+          "text": "Quando l'accordo manca, si tiri a sorte; e la sorte sia scritta.",
           "eligibility": [],
           "success_consequences": [
             "CNS_CHARTER_WRITTEN"
@@ -609,7 +609,7 @@
         {
           "id": "P_ANY_WATCH",
           "question_id": "Q_ANY_ANCIENT_WATCH",
-          "text": "Due torri e un turno di guardia. Non impedisce niente: fa sapere prima.",
+          "text": "Due torri e un turno di guardia. Non impediranno nulla: faranno sapere prima.",
           "eligibility": [],
           "success_consequences": [
             "CNS_ASH_WATCH"
@@ -619,12 +619,12 @@
         {
           "id": "P_ANY_IGNORE",
           "question_id": "Q_ANY_ANCIENT_WATCH",
-          "text": "Non c'è niente da guardare. Chi vuole guardare paghi le proprie guardie.",
+          "text": "Non c'è nulla da guardare. Chi vuole vegliare, paghi le proprie guardie.",
           "eligibility": [],
           "success_consequences": [
             "CNS_COST_UNREST"
           ],
-          "echo_summary": "Si stabili che non ci fosse niente da guardare, e per qualche mese fu vero."
+          "echo_summary": "Si stabilì che non ci fosse niente da guardare, e per qualche mese fu vero."
         }
       ],
       "condition_clauses": [

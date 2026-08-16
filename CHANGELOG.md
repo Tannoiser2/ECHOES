@@ -5,6 +5,27 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.58] — La voce del Consiglio: le mozioni al congiuntivo
+
+Seconda lettura della voce 13, su segnalazione del committente
+([D-100](docs/DECISIONS.md#d-100)).
+
+### Changed
+
+- **Le proposte dei Consigli parlano da mozioni**: congiuntivo
+  esortativo, registro alto («Si levino i banchi e si portino dove le
+  mura sanno difenderli», «Il grano sia requisito in nome del trono») —
+  34 riscritture sulle due saghe; gli esiti restano cronaca, con le due
+  segnalazioni riscritte per immagine.
+- Altre 22 code di passato remoto senza accento chiuse rileggendo.
+
+### Misurato
+
+215 test in 29 suite, 4518 asserzioni; simulazioni, export, brief,
+manifesto e tavolo di lettura riallineati.
+
+---
+
 ## [0.1.57] — La revisione dei testi: gli accenti tornano, le regole escono dal racconto
 
 Chiude ISSUES voce 13 su delega del committente

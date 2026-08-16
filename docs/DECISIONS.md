@@ -331,6 +331,31 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-100 — La voce del Consiglio: le mozioni al congiuntivo
+**implemented in 0.1.58** (seconda lettura della voce 13, su segnalazione del committente)
+
+Il committente ha riletto e ha indicato la direzione: i testi dei
+Consigli erano «un po' strani» — troppo piatti per essere letti ad alta
+voce — e vanno resi più comprensibili e più «aulici fantasy». Sono i
+testi più esposti del gioco: la proposta la **pronuncia** il proponente
+davanti al tavolo.
+
+**La regola di stile**: una proposta è una *mozione*, e parla al
+congiuntivo esortativo — «Si levino i banchi e si portino dove le mura
+sanno difenderli», «Il grano sia requisito in nome del trono», «Quando
+l'accordo manca, si tiri a sorte; e la sorte sia scritta». Gli esiti
+restano cronaca al passato remoto, con le due segnalazioni riscritte
+per immagine: «ogni sbarra tenne la propria tariffa, e la strada restò
+dei tanti esattori»; «dove andarono le merci, là passò anche il
+comando». 34 riscritture, più 22 code di passato remoto senza accento
+trovate rileggendo («passò sotto il sigillo», «Si stabilì», «ripeté»).
+
+Suite, simulazioni, export e brief riallineati e verdi. I testi buoni
+(«Due titoli sono due guerre che aspettano», «Si tolga la pietra») non
+si toccano: la passata alza il pavimento, non pareggia il soffitto.
+
+---
+
 ## D-099 — La revisione dei testi: gli accenti tornano, le regole escono dal racconto
 **implemented in 0.1.57** (chiude ISSUES voce 13, su delega del committente)
 

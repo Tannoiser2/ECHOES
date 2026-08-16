@@ -30,7 +30,7 @@
         {
           "id": "P_REQUISITION",
           "question_id": "Q_FAMINE_GRAIN",
-          "text": "Il grano $of_region è requisito e distribuito dal trono, razione per razione.",
+          "text": "Il grano $of_region sia requisito in nome del trono, e distribuito razione per razione.",
           "eligibility": [
             {
               "type": "state_tag_present",
@@ -44,17 +44,17 @@
             "CNS_ROYAL_GRANARY",
             "CNS_VALLEY_CLEARED"
           ],
-          "echo_summary": "Il grano $of_region passo sotto il sigillo di $proponent.",
+          "echo_summary": "Il grano $of_region passò sotto il sigillo di $proponent.",
           "echo_summaries": {
-            "DECISIVE_SUCCESS": "Il grano $of_region passo sotto il sigillo di $proponent, e nessuno alzò la voce: contarlo era diventato più urgente che possederlo.",
+            "DECISIVE_SUCCESS": "Il grano $of_region passò sotto il sigillo di $proponent, e nessuno alzò la voce: contarlo era diventato più urgente che possederlo.",
             "FAILURE": "$proponent volle il grano $of_region sotto il proprio sigillo, e i granai restarono chiusi a chiave da qualcun altro.",
-            "SUCCESS_WITH_COST": "Il grano $of_region passo sotto il sigillo di $proponent, e la prima razione arrivò con nove giorni di ritardo."
+            "SUCCESS_WITH_COST": "Il grano $of_region passò sotto il sigillo di $proponent, e la prima razione arrivò con nove giorni di ritardo."
           }
         },
         {
           "id": "P_OPEN_VALLEY",
           "question_id": "Q_FAMINE_GRAIN",
-          "text": "$proponent apre $the_region a chi arriva da est: chi lavora la terra ne mangia.",
+          "text": "$proponent apra $the_region a chi giunge da levante: chi ne lavora la terra, ne mangi.",
           "eligibility": [],
           "success_consequences": [
             "CNS_NAHR_SETTLEMENT",
@@ -70,7 +70,7 @@
         {
           "id": "P_SEAL_BORDERS",
           "question_id": "Q_FAMINE_LAND",
-          "text": "I confini si chiudono: quello che cresce $in_region resta a $proponent, e a nessun altro.",
+          "text": "Si serrino i confini: quello che cresce $in_region resti a $proponent, e a nessun altro.",
           "eligibility": [
             {
               "type": "state_tag_present",
@@ -85,25 +85,25 @@
           ],
           "echo_summary": "I confini $of_region furono chiusi, e l'inverno restò fuori con $rival.",
           "echo_summaries": {
-            "DECISIVE_SUCCESS": "I confini $of_region furono chiusi in una notte, e per un anno intero nessuno provo a discuterne.",
-            "FAILURE": "Si provo a chiudere i confini $of_region, e il primo a passare fu chi li aveva proposti.",
-            "SUCCESS_WITH_COST": "I confini $of_region furono chiusi, e l'inverno restò fuori con $rival: dentro si conto due volte tutto quello che c'era."
+            "DECISIVE_SUCCESS": "I confini $of_region furono chiusi in una notte, e per un anno intero nessuno provò a discuterne.",
+            "FAILURE": "Si provò a chiudere i confini $of_region, e il primo a passare fu chi li aveva proposti.",
+            "SUCCESS_WITH_COST": "I confini $of_region furono chiusi, e l'inverno restò fuori con $rival: dentro si contò due volte tutto quello che c'era."
           }
         },
         {
           "id": "P_LAND_TO_WORKERS",
           "question_id": "Q_FAMINE_LAND",
-          "text": "La terra $of_region appartiene a chi la lavora, e quest'anno la lavora chi è arrivato.",
+          "text": "La terra $of_region appartenga a chi la lavora - e quest'anno la lavora chi è arrivato.",
           "eligibility": [],
           "success_consequences": [
             "CNS_NAHR_SETTLEMENT",
             "CNS_CROWN_DISPOSSESSED"
           ],
-          "echo_summary": "La terra $of_region fu assegnata a chi la lavorava, e il titolo di chi la teneva resto scritto solo sulla carta.",
+          "echo_summary": "La terra $of_region fu assegnata a chi la lavorava, e il titolo di chi la teneva restò scritto solo sulla carta.",
           "echo_summaries": {
             "DECISIVE_SUCCESS": "La terra $of_region passò a chi la lavorava, e il vecchio titolo non fu nemmeno riletto ad alta voce.",
             "FAILURE": "Si chiese che la terra $of_region andasse a chi la lavorava, e la carta rimase quella di prima.",
-            "SUCCESS_WITH_COST": "La terra $of_region fu assegnata a chi la lavorava, e il titolo di chi la teneva resto scritto solo sulla carta - insieme al conto di chi ci aveva rimesso."
+            "SUCCESS_WITH_COST": "La terra $of_region fu assegnata a chi la lavorava, e il titolo di chi la teneva restò scritto solo sulla carta - insieme al conto di chi ci aveva rimesso."
           }
         }
       ],
@@ -209,7 +209,7 @@
         {
           "id": "P_EXPLOIT",
           "question_id": "Q_AWAKENING_CRYSTAL",
-          "text": "Si scava $in_region. Il Cristallo diventa ricchezza, e la ricchezza diventa grano.",
+          "text": "Si scavi $in_region: il Cristallo diventi ricchezza, e la ricchezza pane.",
           "eligibility": [],
           "success_consequences": [
             "CNS_CRYSTAL_EXPLOITED",
@@ -225,7 +225,7 @@
         {
           "id": "P_SEAL_MINE",
           "question_id": "Q_AWAKENING_CRYSTAL",
-          "text": "Le gallerie $in_region si sigillano. Cio che dorme resta addormentato.",
+          "text": "Si sigillino le gallerie $in_region: ciò che dorme resti addormentato.",
           "eligibility": [],
           "success_consequences": [
             "CNS_MINE_SEALED"
@@ -239,7 +239,7 @@
         {
           "id": "P_GUARDED_STUDY",
           "question_id": "Q_AWAKENING_MOUNTAIN",
-          "text": "Il Cristallo si studia sotto vincolo, e a rispondere del limite è $rival.",
+          "text": "Il Cristallo si studi sotto vincolo, e del limite risponda $rival.",
           "eligibility": [],
           "success_consequences": [
             "CNS_STUDY_UNDER_GUARD"
@@ -373,16 +373,16 @@
         {
           "id": "P_NAME_HEIR",
           "question_id": "Q_SUCCESSION_HEIR",
-          "text": "Un erede si nomina adesso, davanti a tutti, e chi c'è ne risponde.",
+          "text": "Si nomini un erede ora, davanti a tutti, e chi è presente ne risponda.",
           "eligibility": [],
           "success_consequences": [
             "CNS_HEIR_NAMED",
             "CNS_ORDER_RESTORED"
           ],
-          "echo_summary": "$proponent fece dire un nome ad alta voce, e da quel giorno contestarlo costo qualcosa.",
+          "echo_summary": "$proponent fece dire un nome ad alta voce, e da quel giorno contestarlo costò qualcosa.",
           "echo_summaries": {
             "DECISIVE_SUCCESS": "$proponent fece dire un nome ad alta voce, e nessuno chiese chi lo avesse scelto.",
-            "FAILURE": "$proponent fece dire un nome ad alta voce, e nella stanza nessuno lo ripete."
+            "FAILURE": "$proponent fece dire un nome ad alta voce, e nella stanza nessuno lo ripeté."
           }
         },
         {
@@ -409,7 +409,7 @@
         {
           "id": "P_DIVIDE_CROWN",
           "question_id": "Q_SUCCESSION_HEIR",
-          "text": "Non uno solo: il titolo si divide, e $the_region risponde a chi la tiene davvero.",
+          "text": "Non uno solo: si divida il titolo, e $the_region risponda a chi la tiene davvero.",
           "eligibility": [],
           "success_consequences": [
             "CNS_CROWN_DIVIDED",
@@ -420,7 +420,7 @@
         {
           "id": "P_WRITE_THE_LAW",
           "question_id": "Q_SUCCESSION_LAW",
-          "text": "Si scrive una legge invece di scegliere una persona. Vale anche per chi la scrive.",
+          "text": "Si scriva una legge in luogo di scegliere un uomo. E valga anche per chi la scrive.",
           "eligibility": [],
           "success_consequences": [
             "CNS_LAW_OF_SUCCESSION"
@@ -445,7 +445,7 @@
           "echo_summary": "$proponent prese il posto senza aspettare che si liberasse, e $rival non arrivò in tempo.",
           "echo_summaries": {
             "FAILURE": "$proponent si mosse per prendere il posto e trovò $rival già seduto, e sveglio.",
-            "SUCCESS_WITH_COST": "$proponent prese il posto senza aspettare che si liberasse, e $rival non arrivò in tempo - ma arrivo."
+            "SUCCESS_WITH_COST": "$proponent prese il posto senza aspettare che si liberasse, e $rival non arrivò in tempo - ma arrivò."
           }
         },
         {
@@ -464,7 +464,7 @@
             "CNS_CROWN_REUNITED",
             "CNS_HEIR_NAMED"
           ],
-          "echo_summary": "I due titoli tornarono uno, e chi perse la conta non lo dimentico.",
+          "echo_summary": "I due titoli tornarono uno, e chi perse la conta non lo dimenticò.",
           "echo_summaries": {
             "FAILURE": "Si contò chi teneva cosa, e la conta non tornò a nessuno."
           }
@@ -593,7 +593,7 @@
         {
           "id": "P_SET_TOLL",
           "question_id": "Q_ROADS_TOLL",
-          "text": "Un pedaggio scritto, uguale per tutti, riscosso da $proponent.",
+          "text": "Un pedaggio scritto, uguale per ogni carro, riscosso dalla sola mano di $proponent.",
           "eligibility": [],
           "success_consequences": [
             "CNS_TOLL_ESTABLISHED"
@@ -601,18 +601,18 @@
           "echo_summary": "Il pedaggio $of_region fu scritto e riscosso da $proponent, e la strada tornò sicura e cara.",
           "echo_summaries": {
             "DECISIVE_SUCCESS": "Il pedaggio $of_region fu scritto, uguale per tutti, e nessuno provò a scontarlo.",
-            "FAILURE": "Si propose un pedaggio scritto $in_region, e ognuno continuò a riscuotere il proprio."
+            "FAILURE": "Si volle scrivere un pedaggio $in_region; ma ogni sbarra tenne la propria tariffa, e la strada restò dei tanti esattori."
           }
         },
         {
           "id": "P_MOVE_MARKET",
           "question_id": "Q_ROADS_TOLL",
-          "text": "Il mercato si sposta dove si può difenderlo, e chi ci vive intorno ne campa.",
+          "text": "Si levino i banchi e si portino dove le mura sanno difenderli: chi vive alla loro ombra ne avrà pane.",
           "eligibility": [],
           "success_consequences": [
             "CNS_MARKET_MOVED"
           ],
-          "echo_summary": "Il mercato lasciò la strada e si fermò $in_region, e con lui si spostò chi comandava."
+          "echo_summary": "Il mercato abbandonò la strada e piantò i banchi $in_region; e dove andarono le merci, là passò anche il comando."
         },
         {
           "id": "P_SWEAR_ESCORT",
@@ -628,7 +628,7 @@
         {
           "id": "P_LET_IT_ROT",
           "question_id": "Q_ROADS_ESCORT",
-          "text": "Nessuno risponde di niente. Chi vuole passare $in_region si paghi le guardie da se.",
+          "text": "Nessuno risponde di niente. Chi vuole passare $in_region si paghi le guardie da sé.",
           "eligibility": [],
           "success_consequences": [
             "CNS_ROADS_PLUNDERED",
@@ -743,7 +743,7 @@
         {
           "id": "P_ANY_RATION",
           "question_id": "Q_ANY_WHO_DECIDES",
-          "text": "Si conta quello che c'è e $proponent decide chi ne ha diritto.",
+          "text": "Si conti quello che c'è, e $proponent decida chi ne ha diritto.",
           "eligibility": [],
           "success_consequences": [
             "CNS_RATIONED"
@@ -757,12 +757,12 @@
         {
           "id": "P_ANY_SHARE",
           "question_id": "Q_ANY_WHO_DECIDES",
-          "text": "Si divide in parti uguali e si accetta che nessuno ne esca bene.",
+          "text": "Si divida in parti uguali, e si accetti che nessuno ne esca bene.",
           "eligibility": [],
           "success_consequences": [
             "CNS_SHARED_BURDEN"
           ],
-          "echo_summary": "Il peso $of_region fu diviso in parti uguali, e fu il massimo che quel consiglio riusci a fare."
+          "echo_summary": "Il peso $of_region fu diviso in parti uguali, e fu il massimo che quel consiglio riuscì a fare."
         },
         {
           "id": "P_ANY_LEAVE",
@@ -772,10 +772,10 @@
           "success_consequences": [
             "CNS_ABANDONED"
           ],
-          "echo_summary": "$proponent lascio $the_region a chi voleva restare, e restarono in pochi.",
+          "echo_summary": "$proponent lasciò $the_region a chi voleva restare, e restarono in pochi.",
           "echo_summaries": {
             "FAILURE": "$proponent volle andarsene da $the_region, e non partì nessuno.",
-            "SUCCESS_WITH_COST": "$proponent lascio $the_region a chi voleva restare, e restarono in pochi - e nessuno dei due gruppi perdono l'altro."
+            "SUCCESS_WITH_COST": "$proponent lasciò $the_region a chi voleva restare, e restarono in pochi - e nessuno dei due gruppi perdonò l'altro."
           }
         },
         {

@@ -294,7 +294,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_ANY_WATCH`**
-> Due torri e un turno di guardia. Non impedisce niente: fa sapere prima.
+> Due torri e un turno di guardia. Non impediranno nulla: faranno sapere prima.
 
 
 **`P_ANY_WATCH, esito`**
@@ -302,11 +302,11 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_ANY_IGNORE`**
-> Non c'è niente da guardare. Chi vuole guardare paghi le proprie guardie.
+> Non c'è nulla da guardare. Chi vuole vegliare, paghi le proprie guardie.
 
 
 **`P_ANY_IGNORE, esito`**
-> Si stabili che non ci fosse niente da guardare, e per qualche mese fu vero.
+> Si stabilì che non ci fosse niente da guardare, e per qualche mese fu vero.
 
 
 **`Q_ANY_WHO_DECIDES`**
@@ -318,7 +318,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_ANY_RATION`**
-> Si conta quello che c'è e $proponent decide chi ne ha diritto.
+> Si conti quello che c'è, e $proponent decida chi ne ha diritto.
 
 
 **`P_ANY_RATION, esito`**
@@ -334,11 +334,11 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_ANY_SHARE`**
-> Si divide in parti uguali e si accetta che nessuno ne esca bene.
+> Si divida in parti uguali, e si accetti che nessuno ne esca bene.
 
 
 **`P_ANY_SHARE, esito`**
-> Il peso $of_region fu diviso in parti uguali, e fu il massimo che quel consiglio riusci a fare.
+> Il peso $of_region fu diviso in parti uguali, e fu il massimo che quel consiglio riuscì a fare.
 
 
 **`P_ANY_LEAVE`**
@@ -346,7 +346,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_ANY_LEAVE, esito`**
-> $proponent lascio $the_region a chi voleva restare, e restarono in pochi.
+> $proponent lasciò $the_region a chi voleva restare, e restarono in pochi.
 
 
 **`P_ANY_LEAVE, esito FAILURE`**
@@ -354,7 +354,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_ANY_LEAVE, esito SUCCESS_WITH_COST`**
-> $proponent lascio $the_region a chi voleva restare, e restarono in pochi - e nessuno dei due gruppi perdono l'altro.
+> $proponent lasciò $the_region a chi voleva restare, e restarono in pochi - e nessuno dei due gruppi perdonò l'altro.
 
 
 **`P_ANY_AS_STORY`**
@@ -378,7 +378,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_EXPLOIT`**
-> Si scava $in_region. Il Cristallo diventa ricchezza, e la ricchezza diventa grano.
+> Si scavi $in_region: il Cristallo diventi ricchezza, e la ricchezza pane.
 
 
 **`P_EXPLOIT, esito`**
@@ -398,7 +398,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_SEAL_MINE`**
-> Le gallerie $in_region si sigillano. Cio che dorme resta addormentato.
+> Si sigillino le gallerie $in_region: ciò che dorme resti addormentato.
 
 
 **`P_SEAL_MINE, esito`**
@@ -414,7 +414,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_GUARDED_STUDY`**
-> Il Cristallo si studia sotto vincolo, e a rispondere del limite è $rival.
+> Il Cristallo si studi sotto vincolo, e del limite risponda $rival.
 
 
 **`P_GUARDED_STUDY, esito`**
@@ -450,7 +450,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_WRITE_CHARTER`**
-> Una Carta corta, firmata da tutte e sette, che dice solo cosa non si può fare.
+> Una Carta breve, firmata da tutte e sette, che dica soltanto ciò che non si può fare.
 
 
 **`P_WRITE_CHARTER, esito`**
@@ -458,11 +458,11 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_REFUSE_CHARTER`**
-> Ogni città tiene la propria. Chi vuole commerciare si adegui.
+> Ogni città tenga la propria legge. Chi vuole commerciare, si adegui.
 
 
 **`P_REFUSE_CHARTER, esito`**
-> Si stabili che ognuno tenesse la propria regola, e da allora contava chi arrivava prima.
+> Si stabilì che ognuno tenesse la propria regola, e da allora contava chi arrivava prima.
 
 
 **`P_REFUSE_CHARTER, esito FAILURE`**
@@ -470,7 +470,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_TAKE_SEAT`**
-> Quando non si è d'accordo decide $proponent, e se ne assume il costo.
+> Quando l'accordo manca, decida $proponent - e ne porti il costo.
 
 
 **`P_TAKE_SEAT, esito`**
@@ -478,7 +478,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_DRAW_LOTS`**
-> Quando non si è d'accordo si tira a sorte, e la sorte è scritta.
+> Quando l'accordo manca, si tiri a sorte; e la sorte sia scritta.
 
 
 **`P_DRAW_LOTS, esito`**
@@ -494,7 +494,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_OPEN_LEDGER`**
-> Il registro viene copiato e lasciato dove chiunque può leggerlo.
+> Si copi il registro e lo si lasci dove chiunque possa leggerlo.
 
 
 **`P_OPEN_LEDGER, esito`**
@@ -502,7 +502,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_KEEP_LEDGER`**
-> Il registro resta a $proponent, che ne risponde con il proprio nome.
+> Il registro resti a $proponent, che ne risponda col proprio nome.
 
 
 **`P_KEEP_LEDGER, esito`**
@@ -514,7 +514,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_FORGIVE`**
-> Una riga tirata sotto la colonna. Si riparte da zero e si scrive come.
+> Una riga tirata sotto la colonna: si riparta da zero, e si scriva come.
 
 
 **`P_FORGIVE, esito`**
@@ -522,7 +522,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_CALL_IT_IN`**
-> Si chiede tutto adesso. Chi non paga risponde con quello che ha.
+> Si chieda tutto, adesso. Chi non può pagare, paghi con quello che ha.
 
 
 **`P_CALL_IT_IN, esito`**
@@ -550,15 +550,15 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_REQUISITION`**
-> Il grano $of_region è requisito e distribuito dal trono, razione per razione.
+> Il grano $of_region sia requisito in nome del trono, e distribuito razione per razione.
 
 
 **`P_REQUISITION, esito`**
-> Il grano $of_region passo sotto il sigillo di $proponent.
+> Il grano $of_region passò sotto il sigillo di $proponent.
 
 
 **`P_REQUISITION, esito DECISIVE_SUCCESS`**
-> Il grano $of_region passo sotto il sigillo di $proponent, e nessuno alzò la voce: contarlo era diventato più urgente che possederlo.
+> Il grano $of_region passò sotto il sigillo di $proponent, e nessuno alzò la voce: contarlo era diventato più urgente che possederlo.
 
 
 **`P_REQUISITION, esito FAILURE`**
@@ -566,11 +566,11 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_REQUISITION, esito SUCCESS_WITH_COST`**
-> Il grano $of_region passo sotto il sigillo di $proponent, e la prima razione arrivò con nove giorni di ritardo.
+> Il grano $of_region passò sotto il sigillo di $proponent, e la prima razione arrivò con nove giorni di ritardo.
 
 
 **`P_OPEN_VALLEY`**
-> $proponent apre $the_region a chi arriva da est: chi lavora la terra ne mangia.
+> $proponent apra $the_region a chi giunge da levante: chi ne lavora la terra, ne mangi.
 
 
 **`P_OPEN_VALLEY, esito`**
@@ -590,7 +590,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_SEAL_BORDERS`**
-> I confini si chiudono: quello che cresce $in_region resta a $proponent, e a nessun altro.
+> Si serrino i confini: quello che cresce $in_region resti a $proponent, e a nessun altro.
 
 
 **`P_SEAL_BORDERS, esito`**
@@ -598,23 +598,23 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_SEAL_BORDERS, esito DECISIVE_SUCCESS`**
-> I confini $of_region furono chiusi in una notte, e per un anno intero nessuno provo a discuterne.
+> I confini $of_region furono chiusi in una notte, e per un anno intero nessuno provò a discuterne.
 
 
 **`P_SEAL_BORDERS, esito FAILURE`**
-> Si provo a chiudere i confini $of_region, e il primo a passare fu chi li aveva proposti.
+> Si provò a chiudere i confini $of_region, e il primo a passare fu chi li aveva proposti.
 
 
 **`P_SEAL_BORDERS, esito SUCCESS_WITH_COST`**
-> I confini $of_region furono chiusi, e l'inverno restò fuori con $rival: dentro si conto due volte tutto quello che c'era.
+> I confini $of_region furono chiusi, e l'inverno restò fuori con $rival: dentro si contò due volte tutto quello che c'era.
 
 
 **`P_LAND_TO_WORKERS`**
-> La terra $of_region appartiene a chi la lavora, e quest'anno la lavora chi è arrivato.
+> La terra $of_region appartenga a chi la lavora - e quest'anno la lavora chi è arrivato.
 
 
 **`P_LAND_TO_WORKERS, esito`**
-> La terra $of_region fu assegnata a chi la lavorava, e il titolo di chi la teneva resto scritto solo sulla carta.
+> La terra $of_region fu assegnata a chi la lavorava, e il titolo di chi la teneva restò scritto solo sulla carta.
 
 
 **`P_LAND_TO_WORKERS, esito DECISIVE_SUCCESS`**
@@ -626,7 +626,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_LAND_TO_WORKERS, esito SUCCESS_WITH_COST`**
-> La terra $of_region fu assegnata a chi la lavorava, e il titolo di chi la teneva resto scritto solo sulla carta - insieme al conto di chi ci aveva rimesso.
+> La terra $of_region fu assegnata a chi la lavorava, e il titolo di chi la teneva restò scritto solo sulla carta - insieme al conto di chi ci aveva rimesso.
 
 
 **`Q_RELIC_KEEP`**
@@ -638,7 +638,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_ANOINT_KEEPER`**
-> La custodia diventa un incarico scritto, e a tenerlo è $proponent.
+> La custodia divenga incarico scritto, e a portarlo sia $proponent.
 
 
 **`P_ANOINT_KEEPER, esito`**
@@ -646,11 +646,11 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_DIG_BELOW`**
-> Sotto la cella si continua a scavare. Chi custodisce non decide della roccia.
+> Sotto la cella si continui a scavare: chi custodisce non comanda alla roccia.
 
 
 **`P_DIG_BELOW, esito`**
-> Si stabili che la roccia non fosse dell'Ordine, e sotto la cella si continuò a scendere.
+> Si stabilì che la roccia non fosse dell'Ordine, e sotto la cella si continuò a scendere.
 
 
 **`P_DIG_BELOW, esito FAILURE`**
@@ -658,11 +658,11 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_WATCH_THE_ROCK`**
-> La teca resti dov'è. Quello che va guardato è la montagna, e la guarda $proponent.
+> La teca resti dov'è. Ciò che va guardato è la montagna, e la guardi $proponent.
 
 
 **`P_WATCH_THE_ROCK, esito`**
-> Si stabili che il pericolo non fosse nella teca ma nella roccia, e a vegliarla fu $proponent.
+> Si stabilì che il pericolo non fosse nella teca ma nella roccia, e a vegliarla fu $proponent.
 
 
 **`P_WATCH_THE_ROCK, esito FAILURE`**
@@ -670,7 +670,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_SHOW_IT`**
-> Si apre la teca davanti a testimoni, e a mostrarla è $proponent.
+> Si apra la teca davanti a testimoni, e a mostrarla sia $proponent.
 
 
 **`P_SHOW_IT, esito`**
@@ -682,7 +682,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_BURY_IT`**
-> Si mura la cella e si mette a verbale che è stata murata.
+> Si muri la cella, e si metta a verbale che è stata murata.
 
 
 **`P_BURY_IT, esito`**
@@ -698,7 +698,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_SET_TOLL`**
-> Un pedaggio scritto, uguale per tutti, riscosso da $proponent.
+> Un pedaggio scritto, uguale per ogni carro, riscosso dalla sola mano di $proponent.
 
 
 **`P_SET_TOLL, esito`**
@@ -710,15 +710,15 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_SET_TOLL, esito FAILURE`**
-> Si propose un pedaggio scritto $in_region, e ognuno continuò a riscuotere il proprio.
+> Si volle scrivere un pedaggio $in_region; ma ogni sbarra tenne la propria tariffa, e la strada restò dei tanti esattori.
 
 
 **`P_MOVE_MARKET`**
-> Il mercato si sposta dove si può difenderlo, e chi ci vive intorno ne campa.
+> Si levino i banchi e si portino dove le mura sanno difenderli: chi vive alla loro ombra ne avrà pane.
 
 
 **`P_MOVE_MARKET, esito`**
-> Il mercato lasciò la strada e si fermò $in_region, e con lui si spostò chi comandava.
+> Il mercato abbandonò la strada e piantò i banchi $in_region; e dove andarono le merci, là passò anche il comando.
 
 
 **`P_SWEAR_ESCORT`**
@@ -730,7 +730,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_LET_IT_ROT`**
-> Nessuno risponde di niente. Chi vuole passare $in_region si paghi le guardie da se.
+> Nessuno risponde di niente. Chi vuole passare $in_region si paghi le guardie da sé.
 
 
 **`P_LET_IT_ROT, esito`**
@@ -754,11 +754,11 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_NAME_HEIR`**
-> Un erede si nomina adesso, davanti a tutti, e chi c'è ne risponde.
+> Si nomini un erede ora, davanti a tutti, e chi è presente ne risponda.
 
 
 **`P_NAME_HEIR, esito`**
-> $proponent fece dire un nome ad alta voce, e da quel giorno contestarlo costo qualcosa.
+> $proponent fece dire un nome ad alta voce, e da quel giorno contestarlo costò qualcosa.
 
 
 **`P_NAME_HEIR, esito DECISIVE_SUCCESS`**
@@ -766,7 +766,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_NAME_HEIR, esito FAILURE`**
-> $proponent fece dire un nome ad alta voce, e nella stanza nessuno lo ripete.
+> $proponent fece dire un nome ad alta voce, e nella stanza nessuno lo ripeté.
 
 
 **`P_HEIR_AS_STORY`**
@@ -782,7 +782,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_DIVIDE_CROWN`**
-> Non uno solo: il titolo si divide, e $the_region risponde a chi la tiene davvero.
+> Non uno solo: si divida il titolo, e $the_region risponda a chi la tiene davvero.
 
 
 **`P_DIVIDE_CROWN, esito`**
@@ -790,7 +790,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_WRITE_THE_LAW`**
-> Si scrive una legge invece di scegliere una persona. Vale anche per chi la scrive.
+> Si scriva una legge in luogo di scegliere un uomo. E valga anche per chi la scrive.
 
 
 **`P_WRITE_THE_LAW, esito`**
@@ -810,7 +810,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_TAKE_THE_SEAT, esito SUCCESS_WITH_COST`**
-> $proponent prese il posto senza aspettare che si liberasse, e $rival non arrivò in tempo - ma arrivo.
+> $proponent prese il posto senza aspettare che si liberasse, e $rival non arrivò in tempo - ma arrivò.
 
 
 **`P_ONE_CROWN`**
@@ -818,7 +818,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_ONE_CROWN, esito`**
-> I due titoli tornarono uno, e chi perse la conta non lo dimentico.
+> I due titoli tornarono uno, e chi perse la conta non lo dimenticò.
 
 
 **`P_ONE_CROWN, esito FAILURE`**
@@ -846,7 +846,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_DIG_TOGETHER`**
-> Ogni città manda braccia in proporzione a quanta acqua prende. Nessuno riscuote.
+> Ogni città mandi braccia per quanta acqua prende. E nessuno riscuota.
 
 
 **`P_DIG_TOGETHER, esito`**
@@ -854,11 +854,11 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_DIG_TOGETHER, esito FAILURE`**
-> Si stabili chi mandava le braccia, e a primavera non le mandò nessuno.
+> Si stabilì chi mandava le braccia, e a primavera non le mandò nessuno.
 
 
 **`P_DIG_FOR_HIRE`**
-> Li paga $proponent, e chi vuole l'acqua dopo la compra.
+> Li paghi $proponent; chi vorrà l'acqua, poi, la compri.
 
 
 **`P_DIG_FOR_HIRE, esito`**
@@ -870,7 +870,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_WATER_COMMON, esito`**
-> Si stabili che l'acqua non fosse di nessuno, e per un anno intero funzionò.
+> Si stabilì che l'acqua non fosse di nessuno, e per un anno intero funzionò.
 
 
 ## 6. Le Conseguenze — quello che una decisione lascia
