@@ -363,11 +363,19 @@ func _draw_presence(centre: Vector2, region_id: String) -> void:
 	if tokens.is_empty():
 		return
 	var step: float = TAU / float(maxi(tokens.size(), 3))
+	var font: Font = get_theme_default_font()
 	for i in range(tokens.size()):
 		var angle: float = -PI / 2.0 + step * float(i)
 		var at: Vector2 = centre + Vector2(cos(angle), sin(angle)) * (_radius * 0.52)
-		draw_circle(at, 7.0, _entity_colour(str(tokens[i])))
-		draw_arc(at, 7.0, 0.0, TAU, 16, Color("#12100e"), 1.5, true)
+		draw_circle(at, 7.5, _entity_colour(str(tokens[i])))
+		draw_arc(at, 7.5, 0.0, TAU, 16, Color("#12100e"), 1.5, true)
+		# L'iniziale della casa, come sul segnalino della fustella (D-097):
+		# il tondo sullo schermo e' lo stesso pezzo che si stampa e si punzona.
+		var letter: String = str(tokens[i]).trim_prefix("ENT_").substr(0, 1)
+		draw_string(
+			font, at + Vector2(-3.5, 3.5), letter, HORIZONTAL_ALIGNMENT_LEFT, -1, 10,
+			Color("#12100e")
+		)
 
 
 ## Conditions, structures and Scars, as small marks under the name. A Scar is

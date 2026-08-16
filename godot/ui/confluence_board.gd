@@ -15,6 +15,8 @@ extends VBoxContainer
 ## Emitted by whichever card was pressed.
 signal picked(index: int)
 
+const CardArt := preload("res://ui/card_art.gd")
+
 const STANCE_COLOURS: Dictionary = {
 	"SUPPORT": "#6fa88a", "OPPOSE": "#c8553d",
 	"CONDITION": "#e8b563", "ABSTAIN": "#5f584c",
@@ -29,6 +31,7 @@ const OUTCOMES: Dictionary = {
 	"DECISIVE_SUCCESS": "Passa senza discussione",
 }
 
+var _card: TextureRect
 var _header: Label
 var _question: Label
 var _proposition: Label
@@ -46,14 +49,33 @@ func _ready() -> void:
 
 
 func _build() -> void:
+	# La carta della domanda, posata al centro del tavolo (D-101): quando un
+	# Consiglio si apre, fisicamente si prende la carta mini dalla traccia dei
+	# valori e la si mette in mezzo. Qui fa lo stesso.
+	var top := HBoxContainer.new()
+	top.add_theme_constant_override("separation", 18)
+	add_child(top)
+
+	_card = TextureRect.new()
+	_card.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	_card.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	_card.custom_minimum_size = Vector2(44.0, 68.0) * 2.1
+	_card.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
+	top.add_child(_card)
+
+	var column := VBoxContainer.new()
+	column.add_theme_constant_override("separation", 10)
+	column.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	top.add_child(column)
+
 	_header = _label(15, "#e8b563")
-	add_child(_header)
+	column.add_child(_header)
 
 	_question = _label(19, "#efe7d8")
-	add_child(_question)
+	column.add_child(_question)
 
 	_proposition = _label(14, "#c9bfae")
-	add_child(_proposition)
+	column.add_child(_proposition)
 
 	var rule := ColorRect.new()
 	rule.color = Color("#3a332a")
@@ -118,6 +140,7 @@ func render_closed(session: RefCounted, council: Dictionary) -> void:
 
 func _draw(session: RefCounted, council: Dictionary) -> void:
 	var template: Dictionary = session.data.confluence_templates[str(council["template_id"])]
+	_card.texture = CardArt.texture_for("tension", str(council["tension_id"]), session.data)
 	_header.text = "%s — %s propone" % [
 		str(session.data.tensions[str(council["tension_id"])]["title"]),
 		session.service.name_of(str(council["proponent"])),

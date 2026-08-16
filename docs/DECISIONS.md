@@ -361,11 +361,13 @@ divergere per costruzione.
 
 ### Le fette dichiarate
 
-- la **carta mini della domanda** posata al centro quando un Consiglio
-  si apre (fisicamente: la carta si prende dalla traccia e si mette in
-  mezzo al tavolo);
-- i **token sulla mappa** disegnati come i segnalini della fustella
-  (D-097): tondi pieni di presenza, anelli di controllo;
+- ✅ la **carta mini della domanda** posata al centro quando un Consiglio
+  si apre — **fatta in 0.1.60**: fisicamente, la carta si prende dalla
+  traccia e si mette in mezzo al tavolo, e il tabellone del Consiglio fa
+  lo stesso;
+- ✅ i **token sulla mappa** come i segnalini della fustella (D-097) —
+  **fatta in 0.1.60**: i tondi di presenza portano l'iniziale della
+  casa, l'anello di controllo c'era già;
 - le **carte-identità** (tarocchi di Casata e Destino) nella vista del
   seggio.
 

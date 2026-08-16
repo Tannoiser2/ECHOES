@@ -5,6 +5,25 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.60] — La carta si posa al centro del tavolo
+
+Seconda fetta di [D-101](docs/DECISIONS.md#d-101).
+
+### Added
+
+- **Il Consiglio si apre posando la carta**: il tabellone mostra la
+  carta mini della domanda a sinistra di intestazione e mozione — come
+  al tavolo fisico, dove si prende dalla traccia e si mette in mezzo.
+- **I tondi di presenza portano l'iniziale della casa**, come i
+  segnalini della fustella (D-097): il pezzo sullo schermo è il pezzo
+  che si punzona.
+
+### Misurato
+
+216 test in 29 suite, 4557 asserzioni; UI compilata headless.
+
+---
+
 ## [0.1.59] — La GUI mostra le carte fisiche
 
 Prima fetta della direzione del committente
