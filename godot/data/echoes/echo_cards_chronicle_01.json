@@ -7,13 +7,13 @@
       "title": "Mancanza",
       "dramatic_family": "PRESSURE",
       "function_id": "LACK",
-      "description": "Qualcosa che c'era non c'e piu, e la sua assenza comincia a organizzare le giornate di tutti.",
+      "description": "Qualcosa che c'era non c'è più, e la sua assenza comincia a organizzare le giornate di tutti.",
       "eligibility": [
         {
           "type": "tension_limit",
           "tension_id": "TEN_FAMINE",
           "min": 0,
-          "label": "TEN_FAMINE e in gioco quest'anno"
+          "label": "TEN_FAMINE è in gioco quest'anno"
         }
       ],
       "effect_hooks": [
@@ -58,7 +58,7 @@
           "type": "tension_limit",
           "tension_id": "TEN_AWAKENING",
           "min": 0,
-          "label": "TEN_AWAKENING e in gioco quest'anno"
+          "label": "TEN_AWAKENING è in gioco quest'anno"
         }
       ],
       "effect_hooks": [
@@ -84,13 +84,13 @@
       "title": "Tradimento",
       "dramatic_family": "RUPTURE",
       "function_id": "BETRAYAL",
-      "description": "Un accordo viene rotto da chi lo aveva proposto. Il danno non e la rottura: e che ora tutti ricalcolano.",
+      "description": "Un accordo viene rotto da chi lo aveva proposto. Il danno non è la rottura: è che ora tutti ricalcolano.",
       "eligibility": [
         {
           "type": "tension_limit",
           "tension_id": "TEN_FAMINE",
           "min": 0,
-          "label": "TEN_FAMINE e in gioco quest'anno"
+          "label": "TEN_FAMINE è in gioco quest'anno"
         }
       ],
       "effect_hooks": [
@@ -129,13 +129,13 @@
       "title": "Perdita",
       "dramatic_family": "RUPTURE",
       "function_id": "LOSS",
-      "description": "Qualcuno non c'e piu, e la sua parte di lavoro resta scoperta.",
+      "description": "Qualcuno non c'è più, e la sua parte di lavoro resta scoperta.",
       "eligibility": [
         {
           "type": "tension_limit",
           "tension_id": "TEN_FAMINE",
           "min": 0,
-          "label": "TEN_FAMINE e in gioco quest'anno"
+          "label": "TEN_FAMINE è in gioco quest'anno"
         }
       ],
       "effect_hooks": [
@@ -180,7 +180,7 @@
           "type": "tension_limit",
           "tension_id": "TEN_AWAKENING",
           "min": 0,
-          "label": "TEN_AWAKENING e in gioco quest'anno"
+          "label": "TEN_AWAKENING è in gioco quest'anno"
         }
       ],
       "effect_hooks": [
@@ -219,19 +219,19 @@
       "title": "Rivelazione",
       "dramatic_family": "TURN",
       "function_id": "REVELATION",
-      "description": "Cio che era privato diventa pubblico davanti a tutti. Non si puo piu decidere come se non si sapesse.",
+      "description": "Cio che era privato diventa pubblico davanti a tutti. Non si può più decidere come se non si sapesse.",
       "eligibility": [
         {
           "type": "tension_limit",
           "tension_id": "TEN_AWAKENING",
           "min": 3,
-          "label": "Il Risveglio e gia in movimento"
+          "label": "Il Risveglio è già in movimento"
         },
         {
           "type": "state_tag_present",
           "scope": "GLOBAL",
           "tag": "function:DISCOVERY",
-          "label": "Si rivela quello che qualcuno aveva gia scoperto"
+          "label": "Si rivela quello che qualcuno aveva già scoperto"
         }
       ],
       "effect_hooks": [
@@ -377,13 +377,13 @@
       "title": "Strada Chiusa",
       "dramatic_family": "PRESSURE",
       "function_id": "PROHIBITION",
-      "description": "Una frana, o qualcuno che l'ha fatta sembrare una frana. Il risultato non cambia: da est non arriva piu niente.",
+      "description": "Una frana, o qualcuno che l'ha fatta sembrare una frana. Il risultato non cambia: da est non arriva più niente.",
       "eligibility": [
         {
           "type": "tension_limit",
           "tension_id": "TEN_ROADS",
           "min": 0,
-          "label": "TEN_ROADS e in gioco quest'anno"
+          "label": "TEN_ROADS è in gioco quest'anno"
         }
       ],
       "effect_hooks": [
@@ -428,7 +428,7 @@
           "type": "tension_limit",
           "tension_id": "TEN_SUCCESSION",
           "min": 0,
-          "label": "TEN_SUCCESSION e in gioco quest'anno"
+          "label": "TEN_SUCCESSION è in gioco quest'anno"
         }
       ],
       "effect_hooks": [
@@ -473,7 +473,7 @@
           "type": "tension_limit",
           "tension_id": "TEN_SUCCESSION",
           "min": 0,
-          "label": "TEN_SUCCESSION e in gioco quest'anno"
+          "label": "TEN_SUCCESSION è in gioco quest'anno"
         }
       ],
       "effect_hooks": [
@@ -504,7 +504,7 @@
       "title": "Carovana Perduta",
       "dramatic_family": "RUPTURE",
       "function_id": "ATTACK",
-      "description": "Undici carri partiti, nessuno arrivato, e nessun corpo trovato. E la parte senza corpi che spaventa.",
+      "description": "Undici carri partiti, nessuno arrivato, e nessun corpo trovato. È la parte senza corpi che spaventa.",
       "eligibility": [],
       "effect_hooks": [
         {
@@ -571,11 +571,11 @@
       "title": "Amnistia",
       "dramatic_family": "RESOLUTION",
       "function_id": "LIBERATION",
-      "description": "Si decide di non contare piu chi aveva giurato a chi. Non tutti sono d'accordo, e nessuno lo dice.",
+      "description": "Si decide di non contare più chi aveva giurato a chi. Non tutti sono d'accordo, e nessuno lo dice.",
       "eligibility": [
         {
           "type": "any_of",
-          "label": "Si perdona dopo che qualcuno si e preso o ha vietato qualcosa",
+          "label": "Si perdona dopo che qualcuno si è preso o ha vietato qualcosa",
           "conditions": [
             {
               "type": "state_tag_present",
@@ -628,7 +628,7 @@
       "title": "Vie Riaperte",
       "dramatic_family": "RESOLUTION",
       "function_id": "RETURN",
-      "description": "Il primo carro che passa senza scorta non fa notizia. E per questo che si capisce che e finita.",
+      "description": "Il primo carro che passa senza scorta non fa notizia. E per questo che si capisce che è finita.",
       "eligibility": [
         {
           "type": "any_of",
@@ -664,7 +664,7 @@
       "title": "La Supplica",
       "dramatic_family": "PRESSURE",
       "function_id": "REQUEST",
-      "description": "Arrivano a chiedere, e lo fanno in pubblico. Dire di no adesso costa piu di quanto costava ieri.",
+      "description": "Arrivano a chiedere, e lo fanno in pubblico. Dire di no adesso costa più di quanto costava ieri.",
       "eligibility": [],
       "effect_hooks": [
         {
@@ -784,7 +784,7 @@
           "type": "tension_limit",
           "tension_id": "TEN_FAMINE",
           "min": 0,
-          "label": "TEN_FAMINE e in gioco quest'anno"
+          "label": "TEN_FAMINE è in gioco quest'anno"
         }
       ],
       "effect_hooks": [
@@ -899,7 +899,7 @@
       "title": "Il Conto",
       "dramatic_family": "RESOLUTION",
       "function_id": "PUNISHMENT",
-      "description": "Si paga per quello che si e fatto, davanti a chi lo ha subito. Non ripara niente, ma chiude.",
+      "description": "Si paga per quello che si è fatto, davanti a chi lo ha subito. Non ripara niente, ma chiude.",
       "eligibility": [
         {
           "type": "any_of",
@@ -949,11 +949,11 @@
       "title": "Chi Siede",
       "dramatic_family": "RESOLUTION",
       "function_id": "SUCCESSION",
-      "description": "Un nome viene detto e non viene contestato. Non e giustizia: e che tutti sono stanchi.",
+      "description": "Un nome viene detto e non viene contestato. Non è giustizia: è che tutti sono stanchi.",
       "eligibility": [
         {
           "type": "any_of",
-          "label": "Si succede a qualcuno solo dopo che il posto si e liberato o e stato preso",
+          "label": "Si succede a qualcuno solo dopo che il posto si è liberato o è stato preso",
           "conditions": [
             {
               "type": "state_tag_present",
@@ -1011,7 +1011,7 @@
           "type": "tension_limit",
           "tension_id": "TEN_SUCCESSION",
           "min": 0,
-          "label": "TEN_SUCCESSION e in gioco quest'anno"
+          "label": "TEN_SUCCESSION è in gioco quest'anno"
         }
       ],
       "effect_hooks": [
@@ -1063,7 +1063,7 @@
           "type": "tension_limit",
           "tension_id": "TEN_SUCCESSION",
           "min": 0,
-          "label": "TEN_SUCCESSION e in gioco quest'anno"
+          "label": "TEN_SUCCESSION è in gioco quest'anno"
         }
       ],
       "effect_hooks": [

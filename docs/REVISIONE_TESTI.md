@@ -14,25 +14,25 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`CHR_01`**
 > La Carestia Rossa
 
-> Ottocentododici. La Valle Verde ha reso un terzo meno dell'anno scorso e i Nahr hanno cominciato a spostarsi verso ovest. A Eredan il trono conta le riserve due volte al giorno e ottiene lo stesso numero. Nelle Miniere Antiche qualcuno ha trovato una pietra rossa che non si comporta come una pietra. Sulle Montagne Rosse, qualcosa che dormiva da molto tempo si e girato nel sonno.
+> Ottocentododici. La Valle Verde ha reso un terzo meno dell'anno scorso e i Nahr hanno cominciato a spostarsi verso ovest. A Eredan il trono conta le riserve due volte al giorno e ottiene lo stesso numero. Nelle Miniere Antiche qualcuno ha trovato una pietra rossa che non si comporta come una pietra. Sulle Montagne Rosse, qualcosa che dormiva da molto tempo si è girato nel sonno.
 
 
 **`CHR_02`**
 > Gli anni che vengono
 
-> Ogni anno il mondo sceglie da solo di cosa si parlera. Questa Chronicle non elenca le proprie domande: le pesca dalla biblioteca, in base a com'e finita quella prima. Stesso seed, stesso anno.
+> Ogni anno il mondo sceglie da solo di cosa si parlera. Questa Chronicle non elenca le proprie domande: le pesca dalla biblioteca, in base a com'è finita quella prima. Stesso seed, stesso anno.
 
 
 **`CHR_03`**
 > Le Citta Libere
 
-> Ottocento anni dopo Aldric non c'e piu una corona, e per otto secoli non e servita. Le sette citta si governano da sole, la Gilda del Sale tiene il registro di tutti, l'Ordine del Vetro custodisce un frammento che nessuno dei vivi ha visto, e sulle Montagne Rosse si scava piu in basso di quanto sia mai stato scavato. La Valle non da piu da mangiare a tutti: i canali ci sono ancora, sono pieni di terra, e nessuno e obbligato a toglierla.
+> Ottocento anni dopo Aldric non c'è più una corona, e per otto secoli non è servita. Le sette città si governano da sole, la Gilda del Sale tiene il registro di tutti, l'Ordine del Vetro custodisce un frammento che nessuno dei vivi ha visto, e sulle Montagne Rosse si scava più in basso di quanto sia mai stato scavato. La Valle non da più da mangiare a tutti: i canali ci sono ancora, sono pieni di terra, e nessuno è obbligato a toglierla.
 
 
 **`CHR_04`**
-> Gli anni delle citta
+> Gli anni delle città
 
-> Le citta continuano, e non sempre nello stesso ordine. Questa Chronicle non elenca le proprie domande: le pesca dalla biblioteca, in base a com'e finita quella prima.
+> Le città continuano, e non sempre nello stesso ordine. Questa Chronicle non elenca le proprie domande: le pesca dalla biblioteca, in base a com'è finita quella prima.
 
 
 ## 2. Le Regioni — la mappa
@@ -40,7 +40,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`REG_EREDAN`**
 > Eredan
 
-> La citta del trono. Vive di leggi, di titoli e del grano che sale dalla Valle.
+> La città del trono. Vive di leggi, di titoli e del grano che sale dalla Valle.
 
 
 **`REG_MINIERE_ANTICHE`**
@@ -78,7 +78,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`ENT_ALDRIC`**
 > Re Aldric
 
-> Terzo della sua casa, primo a regnare su un raccolto che non basta. Sa che il trono e una promessa di pane con un altro nome.
+> Terzo della sua casa, primo a regnare su un raccolto che non basta. Sa che il trono è una promessa di pane con un altro nome.
 
 > Le riserve del palazzo bastano per un inverno. Non per due.
 
@@ -86,23 +86,23 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`ENT_CENERE`**
 > Kessa dei Fuochi
 
-> Parla per i Signori della Cenere, che tengono le Montagne Rosse e campano di quello che l'antica miniera ha lasciato indietro. Sanno che sotto c'e di piu.
+> Parla per i Signori della Cenere, che tengono le Montagne Rosse e campano di quello che l'antica miniera ha lasciato indietro. Sanno che sotto c'è di più.
 
-> La galleria bassa e gia aperta da un anno. Dentro non hanno ancora trovato niente, e questo li spaventa piu del contrario.
+> La galleria bassa è già aperta da un anno. Dentro non hanno ancora trovato niente, e questo li spaventa più del contrario.
 
 
 **`ENT_LIBERE`**
 > Le Citta Libere
 
-> Sette citta che si governano da sole e si riuniscono solo quando non possono evitarlo. Non hanno una capitale, e considerano questo il loro unico principio.
+> Sette città che si governano da sole e si riuniscono solo quando non possono evitarlo. Non hanno una capitale, e considerano questo il loro unico principio.
 
-> Quattro citta su sette hanno gia scritto la propria carta, e sono incompatibili fra loro.
+> Quattro città su sette hanno già scritto la propria carta, e sono incompatibili fra loro.
 
 
 **`ENT_LYRA`**
 > Lyra
 
-> Studiosa senza patrono. E' scesa nelle Miniere Antiche per misurare una pietra e ne e risalita con una domanda.
+> Studiosa senza patrono. È scesa nelle Miniere Antiche per misurare una pietra e ne è risalita con una domanda.
 
 > Il Cristallo Rosso pesa meno di quanto dovrebbe. Ogni giorno un poco meno.
 
@@ -112,15 +112,15 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 > Non un esercito e non una folla: una lingua, un calendario e undicimila persone che si spostano quando la terra smette di rispondere.
 
-> I pascoli orientali sono gia perduti. Nessuno fuori dal popolo lo sa ancora.
+> I pascoli orientali sono già perduti. Nessuno fuori dal popolo lo sa ancora.
 
 
 **`ENT_SALE`**
 > Maestra Ilve
 
-> Alla testa della Gilda del Sale, che non possiede nessuna citta e tiene il registro di tutte. Non chiede obbedienza: chiede una firma.
+> Alla testa della Gilda del Sale, che non possiede nessuna città e tiene il registro di tutte. Non chiede obbedienza: chiede una firma.
 
-> Tre delle sette citta non pagheranno mai. La Gilda lo sa da due anni e non lo ha scritto.
+> Tre delle sette città non pagheranno mai. La Gilda lo sa da due anni e non lo ha scritto.
 
 
 **`ENT_VAERAX`**
@@ -128,7 +128,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 > Dorme sotto le Montagne Rosse da prima che Eredan avesse un nome. Si sveglia raramente, e mai per una ragione piccola.
 
-> Il Cristallo Rosso e legato alla stirpe dei draghi: estrarlo e estrarre qualcosa di vivo.
+> Il Cristallo Rosso è legato alla stirpe dei draghi: estrarlo è estrarre qualcosa di vivo.
 
 
 **`ENT_VETRO`**
@@ -154,7 +154,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`TEN_AWAKENING`**
 > Il Risveglio
 
-> Velata: i giocatori vedono i presagi, non il numero. Solo SCHEME apre il valore.
+> Qualcosa si è mosso sotto le Miniere, e nessuno sa dire quanto manca. Si vedono i segni, non la misura.
 
 
 **`TEN_AWAKENING, presagio al 3`**
@@ -162,33 +162,33 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`TEN_AWAKENING, presagio al 5`**
-> Sulle Montagne Rosse la neve non attecchisce piu sul versante orientale.
+> Sulle Montagne Rosse la neve non attecchisce più sul versante orientale.
 
 
 **`TEN_CHARTER`**
 > La Carta
 
-> Otto secoli senza corona hanno funzionato benissimo finche nessuno ha avuto bisogno di sapere chi decide.
+> Otto secoli senza corona hanno funzionato benissimo finché nessuno ha avuto bisogno di sapere chi decide.
 
 
 **`TEN_CHARTER, presagio al 4`**
-> Due citta hanno giudicato lo stesso caso in modo opposto, e tutte e due hanno ragione.
+> Due città hanno giudicato lo stesso caso in modo opposto, e tutte e due hanno ragione.
 
 
 **`TEN_DEBT`**
 > Il Debito
 
-> Nessuno ha mai dichiarato guerra alla Gilda del Sale. Le devono tutti dei soldi: e' piu efficace.
+> Nessuno ha mai dichiarato guerra alla Gilda del Sale. Le devono tutti dei soldi: è più efficace.
 
 
 **`TEN_DEBT, presagio al 4`**
-> Tre citta hanno chiesto alla Gilda di rimandare, e la Gilda ha detto di si a due.
+> Tre città hanno chiesto alla Gilda di rimandare, e la Gilda ha detto di sì a due.
 
 
 **`TEN_FAMINE`**
 > La Carestia
 
-> Non e ancora fame. E' il calcolo, fatto a voce bassa, di quanto manchi alla fame.
+> Non è ancora fame. È il calcolo, fatto a voce bassa, di quanto manchi alla fame.
 
 
 **`TEN_FAMINE, presagio al 5`**
@@ -198,11 +198,11 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`TEN_NAMELESS`**
 > I Senza Citta
 
-> Non sono nemici e non sono poveri: sono persone che non risultano da nessuna parte, e ogni anno sono di piu.
+> Non sono nemici e non sono poveri: sono persone che non risultano da nessuna parte, e ogni anno sono di più.
 
 
 **`TEN_NAMELESS, presagio al 4`**
-> Fuori dalle mura ci sono piu fuochi dell'anno scorso, e sono sempre gli stessi fuochi.
+> Fuori dalle mura ci sono più fuochi dell'anno scorso, e sono sempre gli stessi fuochi.
 
 
 **`TEN_PLAGUE`**
@@ -222,21 +222,21 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`TEN_RELIC`**
 > La Reliquia
 
-> Un frammento del Cristallo Rosso, dentro una teca, dentro una regola: si custodisce, non si guarda. Nessuno dei vivi lo ha visto, e questo e' esattamente il punto.
+> Un frammento del Cristallo Rosso, dentro una teca, dentro una regola: si custodisce, non si guarda. Nessuno dei vivi lo ha visto, e questo è esattamente il punto.
 
 
 **`TEN_RELIC, presagio al 4`**
-> L'Ordine ha spostato le veglie di un'ora. Non lo ha annunciato, e chi abita vicino se ne e accorto.
+> L'Ordine ha spostato le veglie di un'ora. Non lo ha annunciato, e chi abita vicino se ne è accorto.
 
 
 **`TEN_RELIC, presagio al 6`**
-> La teca e stata aperta per un inventario, e l'inventario non e stato scritto.
+> La teca è stata aperta per un inventario, e l'inventario non è stato scritto.
 
 
 **`TEN_ROADS`**
 > Le Vie Interrotte
 
-> Velata: si vede il prezzo del sale, non chi lo fa salire.
+> Si vede il prezzo del sale, non chi lo fa salire.
 
 
 **`TEN_ROADS, presagio al 2`**
@@ -244,13 +244,13 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`TEN_ROADS, presagio al 4`**
-> Il prezzo del sale a Eredan raddoppia in nove giorni e nessuno sa dire perche.
+> Il prezzo del sale a Eredan raddoppia in nove giorni e nessuno sa dire perché.
 
 
 **`TEN_SUCCESSION`**
 > La Successione
 
-> Aperta: tutti sanno che Aldric non ha erede. Nessuno sa ancora chi lo dira per primo.
+> Aperta: tutti sanno che Aldric non ha erede. Nessuno sa ancora chi lo dirà per primo.
 
 
 **`TEN_SUCCESSION, presagio al 4`**
@@ -278,7 +278,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`TEN_WATER`**
 > L'Acqua Ferma
 
-> I canali che Aldric fece scavare ci sono ancora. Sono pieni di terra, e da otto secoli nessuno e obbligato a toglierla.
+> I canali che Aldric fece scavare ci sono ancora. Sono pieni di terra, e da otto secoli nessuno è obbligato a toglierla.
 
 
 **`TEN_WATER, presagio al 5`**
@@ -290,7 +290,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 *(La proposta è la frase votata; sotto, come l'esito viene raccontato.)*
 
 **`Q_ANY_ANCIENT_WATCH`**
-> Chi tiene d'occhio quello che c'e $in_region?
+> Chi tiene d'occhio quello che c'è $in_region?
 
 
 **`P_ANY_WATCH`**
@@ -302,7 +302,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_ANY_IGNORE`**
-> Non c'e niente da guardare. Chi vuole guardare paghi le proprie guardie.
+> Non c'è niente da guardare. Chi vuole guardare paghi le proprie guardie.
 
 
 **`P_ANY_IGNORE, esito`**
@@ -318,11 +318,11 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_ANY_RATION`**
-> Si conta quello che c'e e $proponent decide chi ne ha diritto.
+> Si conta quello che c'è e $proponent decide chi ne ha diritto.
 
 
 **`P_ANY_RATION, esito`**
-> $proponent fece la lista di chi aveva diritto $in_region, e nessuno la dimentico.
+> $proponent fece la lista di chi aveva diritto $in_region, e nessuno la dimenticò.
 
 
 **`P_ANY_RATION, esito DECISIVE_SUCCESS`**
@@ -350,7 +350,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_ANY_LEAVE, esito FAILURE`**
-> $proponent volle andarsene da $the_region, e non parti nessuno.
+> $proponent volle andarsene da $the_region, e non partì nessuno.
 
 
 **`P_ANY_LEAVE, esito SUCCESS_WITH_COST`**
@@ -362,11 +362,11 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_ANY_AS_STORY, esito`**
-> Si fece come si racconta che si fece, e per quell'anno basto.
+> Si fece come si racconta che si fece, e per quell'anno bastò.
 
 
 **`P_ANY_AS_STORY, esito FAILURE`**
-> Si volle fare come nella storia, e la storia non torno.
+> Si volle fare come nella storia, e la storia non tornò.
 
 
 **`Q_AWAKENING_CRYSTAL`**
@@ -374,7 +374,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`Q_AWAKENING_MOUNTAIN`**
-> A chi appartiene cio che dorme sotto $the_region?
+> A chi appartiene ciò che dorme sotto $the_region?
 
 
 **`P_EXPLOIT`**
@@ -382,11 +382,11 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_EXPLOIT, esito`**
-> Si scavo $in_region, e il Cristallo Rosso usci alla luce a peso.
+> Si scavò $in_region, e il Cristallo Rosso uscì alla luce a peso.
 
 
 **`P_EXPLOIT, esito DECISIVE_SUCCESS`**
-> Si scavo $in_region senza che nessuno chiedesse a che prezzo, e il Cristallo Rosso usci alla luce a peso.
+> Si scavò $in_region senza che nessuno chiedesse a che prezzo, e il Cristallo Rosso uscì alla luce a peso.
 
 
 **`P_EXPLOIT, esito FAILURE`**
@@ -394,7 +394,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_EXPLOIT, esito SUCCESS_WITH_COST`**
-> Si scavo $in_region, e il Cristallo Rosso usci alla luce a peso: con lui uscirono due squadre su tre.
+> Si scavò $in_region, e il Cristallo Rosso uscì alla luce a peso: con lui uscirono due squadre su tre.
 
 
 **`P_SEAL_MINE`**
@@ -406,15 +406,15 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_SEAL_MINE, esito DECISIVE_SUCCESS`**
-> Le gallerie $in_region furono sigillate e la domanda con loro, e per una generazione nessuno seppe piu formularla.
+> Le gallerie $in_region furono sigillate e la domanda con loro, e per una generazione nessuno seppe più formularla.
 
 
 **`P_SEAL_MINE, esito FAILURE`**
-> Si volle sigillare le gallerie $in_region, e la pietra resto dov'era, con la porta aperta.
+> Si volle sigillare le gallerie $in_region, e la pietra restò dov'era, con la porta aperta.
 
 
 **`P_GUARDED_STUDY`**
-> Il Cristallo si studia sotto vincolo, e a rispondere del limite e $rival.
+> Il Cristallo si studia sotto vincolo, e a rispondere del limite è $rival.
 
 
 **`P_GUARDED_STUDY, esito`**
@@ -422,11 +422,11 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_GUARDED_STUDY, esito DECISIVE_SUCCESS`**
-> Il Cristallo Rosso fu affidato a $rival, e il limite scritto fu piu lungo di quanto chiunque si aspettasse.
+> Il Cristallo Rosso fu affidato a $rival, e il limite scritto fu più lungo di quanto chiunque si aspettasse.
 
 
 **`P_GUARDED_STUDY, esito FAILURE`**
-> Si propose di affidare il Cristallo Rosso a una custodia, e resto in mano a chi lo aveva gia.
+> Si propose di affidare il Cristallo Rosso a una custodia, e restò in mano a chi lo aveva già.
 
 
 **`P_REOPEN_THE_MINE`**
@@ -434,11 +434,11 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_REOPEN_THE_MINE, esito`**
-> La pietra fu tolta, e quello che dormiva torno una domanda.
+> La pietra fu tolta, e quello che dormiva tornò una domanda.
 
 
 **`P_REOPEN_THE_MINE, esito FAILURE`**
-> Si volle togliere la pietra, e la pietra resto dove qualcuno l'aveva messa.
+> Si volle togliere la pietra, e la pietra restò dove qualcuno l'aveva messa.
 
 
 **`Q_CHARTER_WRITE`**
@@ -446,19 +446,19 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`Q_CHARTER_SEAT`**
-> E chi si siede, quando non si e d'accordo?
+> E chi si siede, quando non si è d'accordo?
 
 
 **`P_WRITE_CHARTER`**
-> Una Carta corta, firmata da tutte e sette, che dice solo cosa non si puo fare.
+> Una Carta corta, firmata da tutte e sette, che dice solo cosa non si può fare.
 
 
 **`P_WRITE_CHARTER, esito`**
-> Sette citta firmarono lo stesso foglio, e il foglio era piu corto di quanto tutti si aspettassero.
+> Sette città firmarono lo stesso foglio, e il foglio era più corto di quanto tutti si aspettassero.
 
 
 **`P_REFUSE_CHARTER`**
-> Ogni citta tiene la propria. Chi vuole commerciare si adegui.
+> Ogni città tiene la propria. Chi vuole commerciare si adegui.
 
 
 **`P_REFUSE_CHARTER, esito`**
@@ -470,23 +470,23 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_TAKE_SEAT`**
-> Quando non si e d'accordo decide $proponent, e se ne assume il costo.
+> Quando non si è d'accordo decide $proponent, e se ne assume il costo.
 
 
 **`P_TAKE_SEAT, esito`**
-> $proponent si sedette dove non si sedeva nessuno da otto secoli, e per un po' funziono meglio.
+> $proponent si sedette dove non si sedeva nessuno da otto secoli, e per un po' funzionò meglio.
 
 
 **`P_DRAW_LOTS`**
-> Quando non si e d'accordo si tira a sorte, e la sorte e scritta.
+> Quando non si è d'accordo si tira a sorte, e la sorte è scritta.
 
 
 **`P_DRAW_LOTS, esito`**
-> Si stabili di tirare a sorte, e la cosa strana e che tenne.
+> Si stabilì di tirare a sorte, e la cosa strana è che tenne.
 
 
 **`Q_DEBT_LEDGER`**
-> Chi tiene il registro, e chi puo leggerlo?
+> Chi tiene il registro, e chi può leggerlo?
 
 
 **`Q_DEBT_CALL`**
@@ -494,11 +494,11 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_OPEN_LEDGER`**
-> Il registro viene copiato e lasciato dove chiunque puo leggerlo.
+> Il registro viene copiato e lasciato dove chiunque può leggerlo.
 
 
 **`P_OPEN_LEDGER, esito`**
-> Il registro fu copiato e lasciato leggere, e nessuno ci trovo un imbroglio.
+> Il registro fu copiato e lasciato leggere, e nessuno ci trovò un imbroglio.
 
 
 **`P_KEEP_LEDGER`**
@@ -506,11 +506,11 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_KEEP_LEDGER, esito`**
-> Il registro resto a $proponent, e le condizioni le seppe solo chi le firmava.
+> Il registro restò a $proponent, e le condizioni le seppe solo chi le firmava.
 
 
 **`P_KEEP_LEDGER, esito FAILURE`**
-> Si volle che il registro restasse a uno solo, e tre citta smisero di firmare.
+> Si volle che il registro restasse a uno solo, e tre città smisero di firmare.
 
 
 **`P_FORGIVE`**
@@ -518,7 +518,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_FORGIVE, esito`**
-> Il debito fu rimesso, e per un anno non si parlo d'altro.
+> Il debito fu rimesso, e per un anno non si parlò d'altro.
 
 
 **`P_CALL_IT_IN`**
@@ -526,7 +526,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_CALL_IT_IN, esito`**
-> Il debito fu chiamato tutto insieme, e $in_region cambio padrone senza che partisse un colpo.
+> Il debito fu chiamato tutto insieme, e $in_region cambiò padrone senza che partisse un colpo.
 
 
 **`P_OLD_PAGE`**
@@ -538,7 +538,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_OLD_PAGE, esito FAILURE`**
-> Si cerco la pagina che si racconta, e nessuno fu d'accordo su cosa ci fosse scritto.
+> Si cercò la pagina che si racconta, e nessuno fu d'accordo su cosa ci fosse scritto.
 
 
 **`Q_FAMINE_GRAIN`**
@@ -550,7 +550,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_REQUISITION`**
-> Il grano $of_region e requisito e distribuito dal trono, razione per razione.
+> Il grano $of_region è requisito e distribuito dal trono, razione per razione.
 
 
 **`P_REQUISITION, esito`**
@@ -558,7 +558,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_REQUISITION, esito DECISIVE_SUCCESS`**
-> Il grano $of_region passo sotto il sigillo di $proponent, e nessuno alzo la voce: contarlo era diventato piu urgente che possederlo.
+> Il grano $of_region passo sotto il sigillo di $proponent, e nessuno alzò la voce: contarlo era diventato più urgente che possederlo.
 
 
 **`P_REQUISITION, esito FAILURE`**
@@ -566,7 +566,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_REQUISITION, esito SUCCESS_WITH_COST`**
-> Il grano $of_region passo sotto il sigillo di $proponent, e la prima razione arrivo con nove giorni di ritardo.
+> Il grano $of_region passo sotto il sigillo di $proponent, e la prima razione arrivò con nove giorni di ritardo.
 
 
 **`P_OPEN_VALLEY`**
@@ -574,19 +574,19 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_OPEN_VALLEY, esito`**
-> $proponent entro $in_region, e quella terra smise di essere solo di $controller.
+> $proponent entrò $in_region, e quella terra smise di essere solo di $controller.
 
 
 **`P_OPEN_VALLEY, esito DECISIVE_SUCCESS`**
-> $proponent entro $in_region senza che nessuno contasse i carri, e quella terra smise di essere di qualcuno in particolare.
+> $proponent entrò $in_region senza che nessuno contasse i carri, e quella terra smise di essere di qualcuno in particolare.
 
 
 **`P_OPEN_VALLEY, esito FAILURE`**
-> $proponent chiese di entrare $in_region e la porta resto dov'era, con la stessa gente davanti.
+> $proponent chiese di entrare $in_region e la porta restò dov'era, con la stessa gente davanti.
 
 
 **`P_OPEN_VALLEY, esito SUCCESS_WITH_COST`**
-> $proponent entro $in_region, e quella terra smise di essere solo di $controller: ci vollero due inverni perche qualcuno lo chiamasse un accordo.
+> $proponent entrò $in_region, e quella terra smise di essere solo di $controller: ci vollero due inverni perché qualcuno lo chiamasse un accordo.
 
 
 **`P_SEAL_BORDERS`**
@@ -594,7 +594,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_SEAL_BORDERS, esito`**
-> I confini $of_region furono chiusi, e l'inverno resto fuori con $rival.
+> I confini $of_region furono chiusi, e l'inverno restò fuori con $rival.
 
 
 **`P_SEAL_BORDERS, esito DECISIVE_SUCCESS`**
@@ -606,11 +606,11 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_SEAL_BORDERS, esito SUCCESS_WITH_COST`**
-> I confini $of_region furono chiusi, e l'inverno resto fuori con $rival: dentro si conto due volte tutto quello che c'era.
+> I confini $of_region furono chiusi, e l'inverno restò fuori con $rival: dentro si conto due volte tutto quello che c'era.
 
 
 **`P_LAND_TO_WORKERS`**
-> La terra $of_region appartiene a chi la lavora, e quest'anno la lavora chi e arrivato.
+> La terra $of_region appartiene a chi la lavora, e quest'anno la lavora chi è arrivato.
 
 
 **`P_LAND_TO_WORKERS, esito`**
@@ -618,7 +618,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_LAND_TO_WORKERS, esito DECISIVE_SUCCESS`**
-> La terra $of_region passo a chi la lavorava, e il vecchio titolo non fu nemmeno riletto ad alta voce.
+> La terra $of_region passò a chi la lavorava, e il vecchio titolo non fu nemmeno riletto ad alta voce.
 
 
 **`P_LAND_TO_WORKERS, esito FAILURE`**
@@ -630,7 +630,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`Q_RELIC_KEEP`**
-> Chi risponde di quello che c'e nella teca?
+> Chi risponde di quello che c'è nella teca?
 
 
 **`Q_RELIC_SHOW`**
@@ -638,7 +638,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_ANOINT_KEEPER`**
-> La custodia diventa un incarico scritto, e a tenerlo e $proponent.
+> La custodia diventa un incarico scritto, e a tenerlo è $proponent.
 
 
 **`P_ANOINT_KEEPER, esito`**
@@ -650,7 +650,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_DIG_BELOW, esito`**
-> Si stabili che la roccia non fosse dell'Ordine, e sotto la cella si continuo a scendere.
+> Si stabili che la roccia non fosse dell'Ordine, e sotto la cella si continuò a scendere.
 
 
 **`P_DIG_BELOW, esito FAILURE`**
@@ -658,7 +658,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_WATCH_THE_ROCK`**
-> La teca resti dov'e. Quello che va guardato e la montagna, e la guarda $proponent.
+> La teca resti dov'è. Quello che va guardato è la montagna, e la guarda $proponent.
 
 
 **`P_WATCH_THE_ROCK, esito`**
@@ -670,7 +670,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_SHOW_IT`**
-> Si apre la teca davanti a testimoni, e a mostrarla e $proponent.
+> Si apre la teca davanti a testimoni, e a mostrarla è $proponent.
 
 
 **`P_SHOW_IT, esito`**
@@ -682,7 +682,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_BURY_IT`**
-> Si mura la cella e si mette a verbale che e stata murata.
+> Si mura la cella e si mette a verbale che è stata murata.
 
 
 **`P_BURY_IT, esito`**
@@ -702,23 +702,23 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_SET_TOLL, esito`**
-> Il pedaggio $of_region fu scritto e riscosso da $proponent, e la strada torno sicura e cara.
+> Il pedaggio $of_region fu scritto e riscosso da $proponent, e la strada tornò sicura e cara.
 
 
 **`P_SET_TOLL, esito DECISIVE_SUCCESS`**
-> Il pedaggio $of_region fu scritto, uguale per tutti, e nessuno provo a scontarlo.
+> Il pedaggio $of_region fu scritto, uguale per tutti, e nessuno provò a scontarlo.
 
 
 **`P_SET_TOLL, esito FAILURE`**
-> Si propose un pedaggio scritto $in_region, e ognuno continuo a riscuotere il proprio.
+> Si propose un pedaggio scritto $in_region, e ognuno continuò a riscuotere il proprio.
 
 
 **`P_MOVE_MARKET`**
-> Il mercato si sposta dove si puo difenderlo, e chi ci vive intorno ne campa.
+> Il mercato si sposta dove si può difenderlo, e chi ci vive intorno ne campa.
 
 
 **`P_MOVE_MARKET, esito`**
-> Il mercato lascio la strada e si fermo $in_region, e con lui si sposto chi comandava.
+> Il mercato lasciò la strada e si fermò $in_region, e con lui si spostò chi comandava.
 
 
 **`P_SWEAR_ESCORT`**
@@ -750,11 +750,11 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`Q_SUCCESSION_LAW`**
-> $in_region, che cosa vale piu di un nome: la legge o le spade?
+> $in_region, che cosa vale più di un nome: la legge o le spade?
 
 
 **`P_NAME_HEIR`**
-> Un erede si nomina adesso, davanti a tutti, e chi c'e ne risponde.
+> Un erede si nomina adesso, davanti a tutti, e chi c'è ne risponde.
 
 
 **`P_NAME_HEIR, esito`**
@@ -774,11 +774,11 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_HEIR_AS_STORY, esito`**
-> L'erede fu nominato come nella storia, e la storia fini nel registro.
+> L'erede fu nominato come nella storia, e la storia finì nel registro.
 
 
 **`P_HEIR_AS_STORY, esito FAILURE`**
-> Si cerco l'erede della ballata, e la ballata non lo diede.
+> Si cercò l'erede della ballata, e la ballata non lo diede.
 
 
 **`P_DIVIDE_CROWN`**
@@ -786,7 +786,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_DIVIDE_CROWN, esito`**
-> La corona fu divisa in due, e $of_region nessuno seppe piu dire a chi rispondesse.
+> La corona fu divisa in due, e $of_region nessuno seppe più dire a chi rispondesse.
 
 
 **`P_WRITE_THE_LAW`**
@@ -802,15 +802,15 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_TAKE_THE_SEAT, esito`**
-> $proponent prese il posto senza aspettare che si liberasse, e $rival non arrivo in tempo.
+> $proponent prese il posto senza aspettare che si liberasse, e $rival non arrivò in tempo.
 
 
 **`P_TAKE_THE_SEAT, esito FAILURE`**
-> $proponent si mosse per prendere il posto e trovo $rival gia seduto, e sveglio.
+> $proponent si mosse per prendere il posto e trovò $rival già seduto, e sveglio.
 
 
 **`P_TAKE_THE_SEAT, esito SUCCESS_WITH_COST`**
-> $proponent prese il posto senza aspettare che si liberasse, e $rival non arrivo in tempo - ma arrivo.
+> $proponent prese il posto senza aspettare che si liberasse, e $rival non arrivò in tempo - ma arrivo.
 
 
 **`P_ONE_CROWN`**
@@ -822,15 +822,15 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_ONE_CROWN, esito FAILURE`**
-> Si conto chi teneva cosa, e la conta non torno a nessuno.
+> Si contò chi teneva cosa, e la conta non tornò a nessuno.
 
 
 **`P_RETAKE_QUESTION`**
-> Si riprenda la domanda che un consiglio lascio cadere, e stavolta la risposta si scriva nel registro.
+> Si riprenda la domanda che un consiglio lasciò cadere, e stavolta la risposta si scriva nel registro.
 
 
 **`P_RETAKE_QUESTION, esito`**
-> La domanda lasciata cadere fu ripresa, e la risposta fini nel registro.
+> La domanda lasciata cadere fu ripresa, e la risposta finì nel registro.
 
 
 **`P_RETAKE_QUESTION, esito FAILURE`**
@@ -846,15 +846,15 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_DIG_TOGETHER`**
-> Ogni citta manda braccia in proporzione a quanta acqua prende. Nessuno riscuote.
+> Ogni città manda braccia in proporzione a quanta acqua prende. Nessuno riscuote.
 
 
 **`P_DIG_TOGETHER, esito`**
-> I canali furono riaperti a spese di tutti, e l'acqua torno a muoversi $in_region.
+> I canali furono riaperti a spese di tutti, e l'acqua tornò a muoversi $in_region.
 
 
 **`P_DIG_TOGETHER, esito FAILURE`**
-> Si stabili chi mandava le braccia, e a primavera non le mando nessuno.
+> Si stabili chi mandava le braccia, e a primavera non le mandò nessuno.
 
 
 **`P_DIG_FOR_HIRE`**
@@ -866,11 +866,11 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`P_WATER_COMMON`**
-> L'acqua non e di nessuno. Chi la devia risponde a tutti.
+> L'acqua non è di nessuno. Chi la devia risponde a tutti.
 
 
 **`P_WATER_COMMON, esito`**
-> Si stabili che l'acqua non fosse di nessuno, e per un anno intero funziono.
+> Si stabili che l'acqua non fosse di nessuno, e per un anno intero funzionò.
 
 
 ## 6. Le Conseguenze — quello che una decisione lascia
@@ -888,13 +888,13 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`CNS_ACCOUNT_SETTLED`**
 > Il Conto Saldato
 
-> Si paga per quello che si e fatto, davanti a chi lo ha subito. Non ripara niente, ma chiude.
+> Si paga per quello che si è fatto, davanti a chi lo ha subito. Non ripara niente, ma chiude.
 
 
 **`CNS_ASH_ABANDONED`**
 > Le Gallerie Lasciate
 
-> Si smette di scendere. Non per paura: perche l'anno prossimo costa meno risalire che puntellare.
+> Si smette di scendere. Non per paura: perché l'anno prossimo costa meno risalire che puntellare.
 
 
 **`CNS_ASH_WATCH`**
@@ -912,7 +912,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`CNS_CAPITAL_TAKEN`**
 > La Capitale Presa
 
-> Eredan cambia mano in una notte. La citta non brucia: cambia solo chi firma.
+> Eredan cambia mano in una notte. La città non brucia: cambia solo chi firma.
 
 
 **`CNS_CAPITAL_TAKEN, cicatrice`**
@@ -922,19 +922,19 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`CNS_CHARTER_REFUSED`**
 > La Carta Rifiutata
 
-> Una citta non firma, e le altre scoprono che non c'e niente da fare se una citta non firma. La regola esisteva finche tutti fingevano che esistesse.
+> Una città non firma, e le altre scoprono che non c'è niente da fare se una città non firma. La regola esisteva finché tutti fingevano che esistesse.
 
 
 **`CNS_CHARTER_WRITTEN`**
 > La Carta Scritta
 
-> Sette citta firmano lo stesso foglio. Ci hanno messo un anno e mezzo, e il foglio e piu corto di quanto chiunque si aspettasse.
+> Sette città firmano lo stesso foglio. Ci hanno messo un anno e mezzo, e il foglio è più corto di quanto chiunque si aspettasse.
 
 
 **`CNS_COST_DEBT`**
 > Il Debito Contratto
 
-> Si e pagato, ma con soldi di qualcun altro, e quel qualcuno se lo ricorda.
+> Si è pagato, ma con soldi di qualcun altro, e quel qualcuno se lo ricorda.
 
 
 **`CNS_COST_UNREST`**
@@ -944,25 +944,25 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`CNS_CROWN_DISPOSSESSED`**
-> Il Titolo che non Vale piu
+> Il Titolo che non Vale più
 
-> Se la terra e di chi la lavora, il sigillo di Eredan sulla Valle diventa una riga su una pergamena e nient'altro.
+> Se la terra è di chi la lavora, il sigillo di Eredan sulla Valle diventa una riga su una pergamena e nient'altro.
 
 
 **`CNS_CROWN_DIVIDED`**
 > La Corona Divisa
 
-> Due titoli dove ce n'era uno. Funziona finche i due non si guardano.
+> Due titoli dove ce n'era uno. Funziona finché i due non si guardano.
 
 
 **`CNS_CROWN_DIVIDED, cicatrice`**
-> Il sigillo spezzato in due meta, e nessuna delle due restituita.
+> Il sigillo spezzato in due metà, e nessuna delle due restituita.
 
 
 **`CNS_CROWN_REUNITED`**
 > Un Solo Trono
 
-> I due titoli tornano uno. Non e una riconciliazione: e una conta, e qualcuno l'ha persa.
+> I due titoli tornano uno. Non è una riconciliazione: è una conta, e qualcuno l'ha persa.
 
 
 **`CNS_CRYSTAL_EXPLOITED`**
@@ -972,13 +972,13 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`CNS_CRYSTAL_EXPLOITED, cicatrice`**
-> La galleria maestra non si richiude piu, e la roccia intorno resta tiepida.
+> La galleria maestra non si richiude più, e la roccia intorno resta tiepida.
 
 
 **`CNS_DEBT_CALLED`**
 > Il Debito Chiamato
 
-> La Gilda chiede tutto insieme. Ha diritto di farlo, e nessuno puo pagare: e' esattamente per questo che lo fa adesso.
+> La Gilda chiede tutto insieme. Ha diritto di farlo, e nessuno può pagare: è esattamente per questo che lo fa adesso.
 
 
 **`CNS_DEBT_FORGIVEN`**
@@ -1008,7 +1008,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`CNS_FAILURE_SPIRAL`**
 > Nessuno Decide
 
-> La proposta cade. La questione resta esattamente dov'era, con meno tempo davanti e piu rancore intorno.
+> La proposta cade. La questione resta esattamente dov'era, con meno tempo davanti e più rancore intorno.
 
 
 **`CNS_FAILURE_SPIRAL, cicatrice`**
@@ -1030,25 +1030,25 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`CNS_LAW_OF_SUCCESSION`**
 > La Legge Scritta
 
-> Non un erede: una regola. Chi verra dopo lo decidera la carta, non le spade.
+> Non un erede: una regola. Chi verrà dopo lo decidera la carta, non le spade.
 
 
 **`CNS_LEDGER_OPENED`**
 > Il Registro Aperto
 
-> Il registro della Gilda viene copiato e lasciato dove chiunque puo leggerlo. Nessuno ci trova un imbroglio: ci trova le condizioni, che era la cosa importante.
+> Il registro della Gilda viene copiato e lasciato dove chiunque può leggerlo. Nessuno ci trova un imbroglio: ci trova le condizioni, che era la cosa importante.
 
 
 **`CNS_LEGEND_RETOLD`**
 > La Leggenda Messa per Iscritto
 
-> Qualcuno raccoglie quello che si racconta e lo scrive com'e, coi nomi e le date che ancora si trovano. Da quel giorno la storia ha una versione, e la domanda fa meno paura.
+> Qualcuno raccoglie quello che si racconta e lo scrive com'è, coi nomi e le date che ancora si trovano. Da quel giorno la storia ha una versione, e la domanda fa meno paura.
 
 
 **`CNS_MARCH_GRANTED`**
 > La Marca Concessa
 
-> Una terra di confine data a chi la tiene gia. Il trono ci guadagna un alleato e ci perde un pezzo.
+> Una terra di confine data a chi la tiene già. Il trono ci guadagna un alleato e ci perde un pezzo.
 
 
 **`CNS_MARKET_MOVED`**
@@ -1060,13 +1060,13 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`CNS_MINE_REOPENED`**
 > Le Gallerie Riaperte
 
-> Si toglie la pietra che qualcuno mise per non dover piu decidere. Sotto, tutto e come lo si era lasciato - ed e questo il punto: nessuno sa se e un bene.
+> Si toglie la pietra che qualcuno mise per non dover più decidere. Sotto, tutto è come lo si era lasciato - ed è questo il punto: nessuno sa se è un bene.
 
 
 **`CNS_MINE_ROAD_CUT`**
 > La Via delle Miniere Tagliata
 
-> Un ponte in meno, e le Miniere diventano un posto da cui e piu facile entrare che uscire.
+> Un ponte in meno, e le Miniere diventano un posto da cui è più facile entrare che uscire.
 
 
 **`CNS_MINE_ROAD_CUT, cicatrice`**
@@ -1076,7 +1076,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`CNS_MINE_SEALED`**
 > Le Miniere Sigillate
 
-> Le gallerie vengono chiuse. Chi ha visto il Cristallo Rosso continuera a saperlo; nessun altro potra verificarlo.
+> Le gallerie vengono chiuse. Chi ha visto il Cristallo Rosso continuera a saperlo; nessun altro potrà verificarlo.
 
 
 **`CNS_MINE_TAKEN`**
@@ -1098,7 +1098,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`CNS_OATH_BROKEN, cicatrice`**
-> La pietra del patto, spaccata a meta e lasciata dov'era.
+> La pietra del patto, spaccata a metà e lasciata dov'era.
 
 
 **`CNS_ORDER_ANOINTED`**
@@ -1116,25 +1116,25 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`CNS_QUESTION_RETAKEN`**
 > La Domanda Ripresa
 
-> Quello che un consiglio lascio cadere viene deciso e scritto. Il registro non ha piu pagine bianche - e riaprire vecchie ferite ha un prezzo.
+> Quello che un consiglio lasciò cadere viene deciso e scritto. Il registro non ha più pagine bianche - e riaprire vecchie ferite ha un prezzo.
 
 
 **`CNS_RATIONED`**
 > La Razione Imposta
 
-> Si conta quanto c'e e si decide chi ne ha diritto. Funziona, e nessuno perdona chi ha fatto la lista.
+> Si conta quanto c'è e si decide chi ne ha diritto. Funziona, e nessuno perdona chi ha fatto la lista.
 
 
 **`CNS_RELIC_BURIED`**
 > La Teca Murata
 
-> Si mura la cella e si mette a verbale che e stata murata. Chi verra dopo sapra che c'e qualcosa e non sapra cosa: era il piano.
+> Si mura la cella e si mette a verbale che è stata murata. Chi verrà dopo saprà che c'è qualcosa e non saprà cosa: era il piano.
 
 
 **`CNS_RELIC_SHOWN`**
 > La Teca Aperta
 
-> La reliquia esce dalla teca davanti a testimoni. Non succede niente, e questa e' la notizia: per otto secoli era stato detto il contrario.
+> La reliquia esce dalla teca davanti a testimoni. Non succede niente, e questa è la notizia: per otto secoli era stato detto il contrario.
 
 
 **`CNS_ROADS_PLUNDERED`**
@@ -1144,13 +1144,13 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`CNS_ROADS_PLUNDERED, cicatrice`**
-> Quello che restava dei carri, lasciato dov'era perche si vedesse.
+> Quello che restava dei carri, lasciato dov'era perché si vedesse.
 
 
 **`CNS_ROADS_REOPENED`**
 > Le Vie Riaperte
 
-> Le carovane tornano a partire da sole. E il segno piu chiaro che qualcosa e finito.
+> Le carovane tornano a partire da sole. E il segno più chiaro che qualcosa è finito.
 
 
 **`CNS_ROYAL_GRANARY`**
@@ -1166,29 +1166,29 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`CNS_SEALED_VALLEY, cicatrice`**
-> Il vallo di pietra a secco tirato su in un inverno: nessuno lo ha piu smontato.
+> Il vallo di pietra a secco tirato su in un inverno: nessuno lo ha più smontato.
 
 
 **`CNS_SEAT_CLAIMED`**
 > Il Seggio Preso
 
-> Qualcuno si siede dove non si sedeva nessuno da otto secoli, e per un po' funziona meglio. E' il per un po' che preoccupa.
+> Qualcuno si siede dove non si sedeva nessuno da otto secoli, e per un po' funziona meglio. È il per un po' che preoccupa.
 
 
 **`CNS_SEAT_CLAIMED, cicatrice`**
-> Nella sala del consiglio c'e una sedia piu alta delle altre, e nessuno l'ha piu tolta.
+> Nella sala del consiglio c'è una sedia più alta delle altre, e nessuno l'ha più tolta.
 
 
 **`CNS_SHARED_BURDEN`**
 > Il Peso Diviso
 
-> Nessuno ne esce bene e nessuno ne esce solo. E il massimo che un consiglio riesce a fare, certe volte.
+> Nessuno ne esce bene e nessuno ne esce solo. È il massimo che un consiglio riesce a fare, certe volte.
 
 
 **`CNS_STUDY_UNDER_GUARD`**
 > Studio sotto Custodia
 
-> Il Cristallo si puo misurare, ma davanti a un custode e con un limite scritto. Nessuno lo porta fuori, e nessuno smette di guardarlo.
+> Il Cristallo si può misurare, ma davanti a un custode e con un limite scritto. Nessuno lo porta fuori, e nessuno smette di guardarlo.
 
 
 **`CNS_TOLL_ESTABLISHED`**
@@ -1210,7 +1210,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`CNS_WATER_PRICED`**
 > L'Acqua a Prezzo
 
-> Chi ha pagato i lavori riscuote sull'acqua. E' legittimo, e' scritto, e da quel giorno la Valle ha un padrone che non ha mai messo piede nella Valle.
+> Chi ha pagato i lavori riscuote sull'acqua. È legittimo, è scritto, e da quel giorno la Valle ha un padrone che non ha mai messo piede nella Valle.
 
 
 ## 7. Le carte Echo — il mondo risponde
@@ -1218,31 +1218,31 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`ECH_AMNESTY`**
 > Amnistia
 
-> Si decide di non contare piu chi aveva giurato a chi. Non tutti sono d'accordo, e nessuno lo dice.
+> Si decide di non contare più chi aveva giurato a chi. Non tutti sono d'accordo, e nessuno lo dice.
 
 
 **`ECH_BETRAYAL`**
 > Tradimento
 
-> Un accordo viene rotto da chi lo aveva proposto. Il danno non e la rottura: e che ora tutti ricalcolano.
+> Un accordo viene rotto da chi lo aveva proposto. Il danno non è la rottura: è che ora tutti ricalcolano.
 
 
 **`ECH_CALL_OF_ACCOUNTS`**
 > La Chiamata
 
-> La Gilda scrive a tre citta lo stesso giorno. Non chiede di pagare: chiede di confermare la cifra.
+> La Gilda scrive a tre città lo stesso giorno. Non chiede di pagare: chiede di confermare la cifra.
 
 
 **`ECH_CARAVAN_LOST`**
 > Carovana Perduta
 
-> Undici carri partiti, nessuno arrivato, e nessun corpo trovato. E la parte senza corpi che spaventa.
+> Undici carri partiti, nessuno arrivato, e nessun corpo trovato. È la parte senza corpi che spaventa.
 
 
 **`ECH_CROWNING`**
 > Chi Siede
 
-> Un nome viene detto e non viene contestato. Non e giustizia: e che tutti sono stanchi.
+> Un nome viene detto e non viene contestato. Non è giustizia: è che tutti sono stanchi.
 
 
 **`ECH_DISCOVERY`**
@@ -1272,7 +1272,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`ECH_LACK`**
 > Mancanza
 
-> Qualcosa che c'era non c'e piu, e la sua assenza comincia a organizzare le giornate di tutti.
+> Qualcosa che c'era non c'è più, e la sua assenza comincia a organizzare le giornate di tutti.
 
 
 **`ECH_LEGEND_BROKEN_OATH`**
@@ -1296,7 +1296,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`ECH_LOSS`**
 > Perdita
 
-> Qualcuno non c'e piu, e la sua parte di lavoro resta scoperta.
+> Qualcuno non c'è più, e la sua parte di lavoro resta scoperta.
 
 
 **`ECH_OATH_BROKEN`**
@@ -1332,13 +1332,13 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`ECH_PETITION`**
 > La Supplica
 
-> Arrivano a chiedere, e lo fanno in pubblico. Dire di no adesso costa piu di quanto costava ieri.
+> Arrivano a chiedere, e lo fanno in pubblico. Dire di no adesso costa più di quanto costava ieri.
 
 
 **`ECH_RECKONING`**
 > Il Conto
 
-> Si paga per quello che si e fatto, davanti a chi lo ha subito. Non ripara niente, ma chiude.
+> Si paga per quello che si è fatto, davanti a chi lo ha subito. Non ripara niente, ma chiude.
 
 
 **`ECH_RECONCILIATION`**
@@ -1350,19 +1350,19 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`ECH_REVELATION`**
 > Rivelazione
 
-> Cio che era privato diventa pubblico davanti a tutti. Non si puo piu decidere come se non si sapesse.
+> Cio che era privato diventa pubblico davanti a tutti. Non si può più decidere come se non si sapesse.
 
 
 **`ECH_ROADS_OPEN`**
 > Vie Riaperte
 
-> Il primo carro che passa senza scorta non fa notizia. E per questo che si capisce che e finita.
+> Il primo carro che passa senza scorta non fa notizia. E per questo che si capisce che è finita.
 
 
 **`ECH_ROAD_CLOSED`**
 > Strada Chiusa
 
-> Una frana, o qualcuno che l'ha fatta sembrare una frana. Il risultato non cambia: da est non arriva piu niente.
+> Una frana, o qualcuno che l'ha fatta sembrare una frana. Il risultato non cambia: da est non arriva più niente.
 
 
 **`ECH_SACRIFICE`**
@@ -1398,7 +1398,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`ECH_THE_DUG_SEASON`**
 > La Stagione Scavata
 
-> Due stagioni di braccia, e l'acqua arriva dove arrivava prima. Non e' un miracolo: e' terra tolta.
+> Due stagioni di braccia, e l'acqua arriva dove arrivava prima. Non è un miracolo: è terra tolta.
 
 
 **`ECH_THE_FIRES_OUTSIDE`**
@@ -1410,7 +1410,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`ECH_THE_LONG_TABLE`**
 > Il Tavolo Lungo
 
-> Si mette un tavolo abbastanza lungo perche ci stiano tutti seduti, e si scopre che era quello il problema.
+> Si mette un tavolo abbastanza lungo perché ci stiano tutti seduti, e si scopre che era quello il problema.
 
 
 **`ECH_THE_QUIET_SHAFT`**
@@ -1422,13 +1422,13 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`ECH_THE_SHORT_YEAR`**
 > L'Anno Corto
 
-> Il fiume arriva sei settimane in ritardo e riparte in anticipo. Nessuno lo chiama siccita: si dice che e' stato un anno corto.
+> Il fiume arriva sei settimane in ritardo e riparte in anticipo. Nessuno lo chiama siccita: si dice che è stato un anno corto.
 
 
 **`ECH_TWO_VERDICTS`**
 > Due Sentenze
 
-> Lo stesso caso, due citta, due sentenze opposte. Entrambe applicate, entrambe legittime.
+> Lo stesso caso, due città, due sentenze opposte. Entrambe applicate, entrambe legittime.
 
 
 **`ECH_USURPATION`**
@@ -1454,13 +1454,13 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`AST_AUTHORITY_CENSUS`**
 > Censimento
 
-> +1 quando AUTHORITY e rilevante per la Tensione. Una lista di nomi e la forma piu semplice del potere.
+> +1 quando AUTHORITY è rilevante per la Tensione. Una lista di nomi è la forma più semplice del potere.
 
 
 **`AST_AUTHORITY_CROWN_RIGHT`**
 > Diritto di Corona
 
-> Si scarta sempre: un diritto invocato due volte non e piu un diritto, e una pretesa.
+> Si scarta sempre: un diritto invocato due volte non è più un diritto, e una pretesa.
 
 
 **`AST_AUTHORITY_EDICT`**
@@ -1490,7 +1490,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`AST_AUTHORITY_SEAL`**
 > Sigillo
 
-> +1 sul fronte Oppose. Il sigillo che manca ferma piu cose del sigillo che c'e.
+> +1 sul fronte Oppose. Il sigillo che manca ferma più cose del sigillo che c'è.
 
 
 **`AST_AUTHORITY_SUCCESSION_ACT`**
@@ -1502,13 +1502,13 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`AST_BONDS_BETROTHAL`**
 > Promessa di Nozze
 
-> +1 sul fronte Oppose: una promessa serve piu a impedire un'alleanza che a farne una. Si scarta sempre.
+> +1 sul fronte Oppose: una promessa serve più a impedire un'alleanza che a farne una. Si scarta sempre.
 
 
 **`AST_BONDS_BLOOD_TIE`**
 > Legame di Sangue
 
-> Non e un accordo: e una cosa che c'era prima dell'accordo, e che nessuno ha firmato.
+> Non è un accordo: e una cosa che c'era prima dell'accordo, e che nessuno ha firmato.
 
 
 **`AST_BONDS_BROKEN_PACT`**
@@ -1526,7 +1526,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`AST_BONDS_GUEST_RIGHT`**
 > Diritto di Ospitalita
 
-> +1 quando BONDS e rilevante per la Tensione. Chi ha mangiato al tuo tavolo non puo dire di no davanti a tutti. Puo dirlo dopo.
+> +1 quando BONDS è rilevante per la Tensione. Chi ha mangiato al tuo tavolo non può dire di no davanti a tutti. Puo dirlo dopo.
 
 
 **`AST_BONDS_HOSTAGE`**
@@ -1538,7 +1538,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`AST_BONDS_OATH`**
 > Giuramento
 
-> Non si scarta mai. Un giuramento impegnato resta impegnato anche dopo, ed e la sua unica forza.
+> Non si scarta mai. Un giuramento impegnato resta impegnato anche dopo, ed è la sua unica forza.
 
 
 **`AST_BONDS_OLD_DEBT`**
@@ -1550,31 +1550,31 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`AST_FORCE_BORDER_WATCH`**
 > Guardia di Confine
 
-> +1 quando FORCE e rilevante per la Tensione. Contano i carri che passano, e sanno quali contare.
+> +1 quando FORCE è rilevante per la Tensione. Contano i carri che passano, e sanno quali contare.
 
 
 **`AST_FORCE_BURNED_GATE`**
 > Le Porte Bruciate
 
-> Forza 3. Si scarta sempre, e chi la gioca perde la propria presenza nella Regione di cui si discute: chi apre una porta cosi non resta li a difenderla.
+> Forza 3. Si scarta sempre, e chi la gioca perde la propria presenza nella Regione di cui si discute: chi apre una porta così non resta li a difenderla.
 
 
 **`AST_FORCE_LEVY`**
 > Leva Contadina
 
-> Uomini con attrezzi da lavoro tenuti come lance. Bastano finche nessuno li conta.
+> Uomini con attrezzi da lavoro tenuti come lance. Bastano finché nessuno li conta.
 
 
 **`AST_FORCE_MERCENARIES`**
 > Mercenari
 
-> +1 sempre, su qualsiasi fronte: fuori tema vale quanto in tema, ed e tutto quello che sanno fare.
+> +1 sempre, su qualsiasi fronte: fuori tema vale quanto in tema, ed è tutto quello che sanno fare.
 
 
 **`AST_FORCE_OLD_ARMY`**
 > Il Vecchio Esercito
 
-> Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: richiamare i vecchi reggimenti dice al mondo che la cosa e seria.
+> Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: richiamare i vecchi reggimenti dice al mondo che la cosa è seria.
 
 
 **`AST_FORCE_ROADBLOCK`**
@@ -1610,7 +1610,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`AST_KNOWLEDGE_OLD_MAP`**
 > Mappa Vecchia
 
-> +1 quando KNOWLEDGE e rilevante per la Tensione. I confini sono sbagliati; le strade no, e le strade bastano.
+> +1 quando KNOWLEDGE è rilevante per la Tensione. I confini sono sbagliati; le strade no, e le strade bastano.
 
 
 **`AST_KNOWLEDGE_PROOF`**
@@ -1628,7 +1628,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`AST_KNOWLEDGE_RUMOR`**
 > Voce di Corridoio
 
-> Non e vera. Non e ancora falsa.
+> Non è vera. Non è ancora falsa.
 
 
 **`AST_KNOWLEDGE_SEALED_TESTIMONY`**
@@ -1640,13 +1640,13 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`AST_KNOWLEDGE_WITNESS`**
 > Testimone
 
-> +1 sul fronte Oppose. Si scarta sempre: un testimone si spende una volta sola, e dopo e solo qualcuno che ha parlato.
+> +1 sul fronte Oppose. Si scarta sempre: un testimone si spende una volta sola, e dopo è solo qualcuno che ha parlato.
 
 
 **`AST_PEOPLE_CROWD`**
 > Folla
 
-> Nessuno l'ha convocata. E' arrivata lo stesso.
+> Nessuno l'ha convocata. È arrivata lo stesso.
 
 
 **`AST_PEOPLE_ELDERS`**
@@ -1664,25 +1664,25 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`AST_PEOPLE_HARVEST_HANDS`**
 > Braccia per il Raccolto
 
-> +1 quando PEOPLE e rilevante per la Tensione. Non sono un esercito: ma senza di loro non si mangia, e lo sanno anche i re.
+> +1 quando PEOPLE è rilevante per la Tensione. Non sono un esercito: ma senza di loro non si mangia, e lo sanno anche i re.
 
 
 **`AST_PEOPLE_MARCH`**
 > Marcia
 
-> Poca gente, ma in strada e alla stessa ora. Il punto non e quanti sono: e che si sono trovati.
+> Poca gente, ma in strada e alla stessa ora. Il punto non è quanti sono: è che si sono trovati.
 
 
 **`AST_PEOPLE_MOBILIZATION`**
 > Mobilitazione
 
-> +1 sul fronte Oppose: e piu facile fermare qualcosa in molti che costruirla. Si scarta sempre.
+> +1 sul fronte Oppose: è più facile fermare qualcosa in molti che costruirla. Si scarta sempre.
 
 
 **`AST_PEOPLE_SPOKESMAN`**
 > Portavoce
 
-> Qualcuno che dice ad alta voce quello che gia pensano in molti, e che dopo non puo piu tornare indietro.
+> Qualcuno che dice ad alta voce quello che già pensano in molti, e che dopo non può più tornare indietro.
 
 
 **`AST_PEOPLE_STILL_HANDS`**
@@ -1694,7 +1694,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`AST_WEALTH_CARAVAN`**
 > Carovana
 
-> Si scarta sempre: una carovana spesa e una carovana partita.
+> Si scarta sempre: una carovana spesa è una carovana partita.
 
 
 **`AST_WEALTH_CREDIT`**
@@ -1706,7 +1706,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`AST_WEALTH_GRAIN`**
 > Riserva di Grano
 
-> Conta piu di un titolo, per il tempo in cui dura.
+> Conta più di un titolo, per il tempo in cui dura.
 
 
 **`AST_WEALTH_GRANARY_KEYS`**
@@ -1724,7 +1724,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`AST_WEALTH_SALT`**
 > Sale
 
-> +1 quando WEALTH e rilevante per la Tensione. Non nutre nessuno: senza, quello che nutre non arriva a marzo.
+> +1 quando WEALTH è rilevante per la Tensione. Non nutre nessuno: senza, quello che nutre non arriva a marzo.
 
 
 **`AST_WEALTH_TOLL`**
@@ -1750,7 +1750,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`DST_ALDRIC, minimum`**
 > Il trono regge
 
-> Aldric e ancora sul trono · Presenza a Eredan
+> Aldric è ancora sul trono · Presenza a Eredan
 
 
 **`DST_ALDRIC, victory`**
@@ -1762,19 +1762,19 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`DST_ALDRIC, triumph`**
 > Un regno che non ha pagato il pane con il sangue
 
-> Eredan non e in rivolta · Nessuna questione lasciata aperta · La corona non e stata spezzata · E nessuno ha ancora chiesto chi siede dopo
+> Eredan non è in rivolta · Nessuna questione lasciata aperta · La corona non è stata spezzata · E nessuno ha ancora chiesto chi siede dopo
 
 
 **`DST_ALDRIC_RECORD`**
 > Il Regno che Ricorda
 
-> Il trono regge gia. Quello che manca e che le sue decisioni restino scritte e nessuno debba riprenderle da capo.
+> Il trono regge già. Quello che manca è che le sue decisioni restino scritte e nessuno debba riprenderle da capo.
 
 
 **`DST_ALDRIC_RECORD, minimum`**
 > La casa siede ancora
 
-> La casa e ancora al tavolo · Presenza a Eredan
+> La casa è ancora al tavolo · Presenza a Eredan
 
 
 **`DST_ALDRIC_RECORD, victory`**
@@ -1786,11 +1786,11 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`DST_ALDRIC_RECORD, triumph`**
 > Un regno che non ha dovuto dividersi per reggere
 
-> La corona non e stata spezzata · La successione e passata per la legge · Eredan non e in rivolta
+> La corona non è stata spezzata · La successione è passata per la legge · Eredan non è in rivolta
 
 
 **`DST_CENERE`**
-> La Montagna e Nostra
+> La Montagna è Nostra
 
 > I Signori della Cenere non discutono di reliquie: discutono di chi decide dove si scava. Vogliono che la risposta sia scritta e sia loro.
 
@@ -1808,15 +1808,15 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`DST_CENERE, triumph`**
-> E la veglia sulla montagna e loro
+> E la veglia sulla montagna è loro
 
-> La veglia sulla montagna e affidata a loro · E il patto con la Gilda non e un conto aperto · E nessuno ha richiuso quello che c'e sotto · E la Cenere continua a salire: e quello che tiene la montagna nostra · E quello che c'e sotto resta una domanda aperta
+> La veglia sulla montagna è affidata a loro · E il patto con la Gilda non è un conto aperto · E nessuno ha richiuso quello che c'è sotto · E la Cenere continua a salire: è quello che tiene la montagna nostra · E quello che c'è sotto resta una domanda aperta
 
 
 **`DST_CENERE_DEEP`**
 > Piu a Fondo
 
-> Chi ha ottenuto la montagna scopre di volere quello che c'e sotto la montagna. E' lo stesso desiderio di prima, con meno margine.
+> Chi ha ottenuto la montagna scopre di volere quello che c'è sotto la montagna. È lo stesso desiderio di prima, con meno margine.
 
 
 **`DST_CENERE_DEEP, minimum`**
@@ -1826,51 +1826,51 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`DST_CENERE_DEEP, victory`**
-> E hanno visto cosa c'e sotto
+> E hanno visto cosa c'è sotto
 
 > Hanno visto la reliquia con i propri occhi · E le gallerie non sono state murate
 
 
 **`DST_CENERE_DEEP, triumph`**
-> E non devono piu niente a nessuno
+> E non devono più niente a nessuno
 
-> Il patto con la Gilda e saltato · Controllo di almeno 2 Regioni
+> Il patto con la Gilda è saltato · Controllo di almeno 2 Regioni
 
 
 **`DST_LIBERE`**
 > Una Legge Senza Corona
 
-> Le citta non vogliono un re e hanno smesso di poter fare a meno di una regola. Il loro problema e scriverne una che non diventi un trono.
+> Le città non vogliono un re e hanno smesso di poter fare a meno di una regola. Il loro problema è scriverne una che non diventi un trono.
 
 
 **`DST_LIBERE, minimum`**
-> Le citta esistono ancora
+> Le città esistono ancora
 
-> Le citta esistono ancora · Presenza a Eredan
+> Le città esistono ancora · Presenza a Eredan
 
 
 **`DST_LIBERE, victory`**
-> E c'e una Carta, e l'acqua non e' di nessuno
+> E c'è una Carta, e l'acqua non è di nessuno
 
-> La Carta e stata scritta · E l'acqua non e' finita a prezzo
+> La Carta è stata scritta · E l'acqua non è finita a prezzo
 
 
 **`DST_LIBERE, triumph`**
-> E nessuno l'ha pagata piu degli altri
+> E nessuno l'ha pagata più degli altri
 
-> Il debito e stato rimesso · E la Gilda non e diventata un nemico delle citta · Eredan non e in rivolta · E la Carta si scrive quando la domanda non si puo piu rimandare · E il Debito resta la domanda che nessuno puo fingere di non vedere
+> Il debito è stato rimesso · E la Gilda non è diventata un nemico delle città · Eredan non è in rivolta · E la Carta si scrive quando la domanda non si può più rimandare · E il Debito resta la domanda che nessuno può fingere di non vedere
 
 
 **`DST_LIBERE_WATER`**
 > L'Acqua Torna a Muoversi
 
-> Scritta la regola, resta il motivo per cui serviva: la Valle non da piu da mangiare a sette citta. Questa volta l'obiettivo si vede da fuori.
+> Scritta la regola, resta il motivo per cui serviva: la Valle non da più da mangiare a sette città. Questa volta l'obiettivo si vede da fuori.
 
 
 **`DST_LIBERE_WATER, minimum`**
-> Le citta esistono ancora
+> Le città esistono ancora
 
-> Le citta esistono ancora
+> Le città esistono ancora
 
 
 **`DST_LIBERE_WATER, victory`**
@@ -1880,39 +1880,39 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`DST_LIBERE_WATER, triumph`**
-> E non e di nessuno
+> E non è di nessuno
 
-> L'acqua non e stata messa a prezzo · Almeno una Regione controllata
+> L'acqua non è stata messa a prezzo · Almeno una Regione controllata
 
 
 **`DST_LYRA`**
 > Sapere e Poter Tornare a Guardare
 
-> Scoprire le proprieta del Cristallo Rosso e conservare l'accesso a cio che lo produce.
+> Scoprire le proprietà del Cristallo Rosso e conservare l'accesso a ciò che lo produce.
 
 
 **`DST_LYRA, minimum`**
 > Ha capito qualcosa
 
-> Lyra e viva · Almeno una Scoperta
+> Lyra è viva · Almeno una Scoperta
 
 
 **`DST_LYRA, victory`**
-> Sa, ed e ancora nelle gallerie
+> Sa, ed è ancora nelle gallerie
 
 > Presenza nelle Miniere Antiche · Qualcuno ha giurato di tenerle aperta la strada
 
 
 **`DST_LYRA, triumph`**
-> Il sapere e diventato pubblico e verificabile
+> Il sapere è diventato pubblico e verificabile
 
-> Due Scoperte · Il Risveglio non e esploso · La strada per le gallerie e ancora aperta · Nessuno ha messo una guardia allo studio · E la strada per le gallerie non e allo stremo
+> Due Scoperte · Il Risveglio non è esploso · La strada per le gallerie è ancora aperta · Nessuno ha messo una guardia allo studio · E la strada per le gallerie non è allo stremo
 
 
 **`DST_LYRA_TAUGHT`**
 > Quello che Resta Insegnato
 
-> Il sapere e uscito dalle gallerie una volta. Chi viene dopo vuole che non ci torni dentro alla prima paura.
+> Il sapere è uscito dalle gallerie una volta. Chi viene dopo vuole che non ci torni dentro alla prima paura.
 
 
 **`DST_LYRA_TAUGHT, minimum`**
@@ -1930,7 +1930,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`DST_LYRA_TAUGHT, triumph`**
 > Verificabile da chiunque, anche da chi non c'era
 
-> Le gallerie sono ancora aperte a chi vuole verificare · E c'e una scorta giurata per arrivarci · Nessuno ha messo una guardia allo studio
+> Le gallerie sono ancora aperte a chi vuole verificare · E c'è una scorta giurata per arrivarci · Nessuno ha messo una guardia allo studio
 
 
 **`DST_NAHR`**
@@ -1948,23 +1948,23 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`DST_NAHR, victory`**
 > Il popolo si ferma
 
-> L'insediamento e riconosciuto · Presenza nella Valle Verde
+> L'insediamento è riconosciuto · Presenza nella Valle Verde
 
 
 **`DST_NAHR, triumph`**
 > Fermarsi senza smettere di essere Nahr
 
-> La Valle non e stata chiusa · La Carestia e sotto controllo · La corona ha smesso di essere una sola · E finche si discute chi siede, nessuno ha tempo di mandarci via
+> La Valle non è stata chiusa · La Carestia è sotto controllo · La corona ha smesso di essere una sola · E finché si discute chi siede, nessuno ha tempo di mandarci via
 
 
 **`DST_NAHR_ROOTED`**
 > La Terra Sotto i Piedi
 
-> Il popolo si e fermato. Adesso la domanda e se il posto in cui si e fermato e suo, o solo prestato.
+> Il popolo si è fermato. Adesso la domanda è se il posto in cui si è fermato è suo, o solo prestato.
 
 
 **`DST_NAHR_ROOTED, minimum`**
-> Il popolo e ancora qui
+> Il popolo è ancora qui
 
 > Il popolo esiste ancora
 
@@ -1978,25 +1978,25 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`DST_NAHR_ROOTED, triumph`**
 > Radicati senza aver chiuso la porta a nessuno
 
-> L'insediamento e riconosciuto · Le Terre Nahr non si sono svuotate · La Valle non e stata chiusa · E la storia del popolo e stata messa per iscritto, com'e' raccontata
+> L'insediamento è riconosciuto · Le Terre Nahr non si sono svuotate · La Valle non è stata chiusa · E la storia del popolo è stata messa per iscritto, com'è' raccontata
 
 
 **`DST_SALE`**
 > Il Registro che Tiene
 
-> La Gilda non vuole comandare: vuole che quello che e scritto continui a valere, e che a scriverlo sia lei.
+> La Gilda non vuole comandare: vuole che quello che è scritto continui a valere, e che a scriverlo sia lei.
 
 
 **`DST_SALE, minimum`**
-> La Gilda e ancora al tavolo
+> La Gilda è ancora al tavolo
 
 > La Gilda esiste ancora · Presenza sulla Strada dei Mercanti
 
 
 **`DST_SALE, victory`**
-> Il debito e stato chiamato, e nessuno lo ha cancellato
+> Il debito è stato chiamato, e nessuno lo ha cancellato
 
-> Il debito e stato chiamato per intero · E nessuno lo ha cancellato
+> Il debito è stato chiamato per intero · E nessuno lo ha cancellato
 
 
 **`DST_SALE, triumph`**
@@ -2008,7 +2008,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`DST_SALE_OPEN`**
 > Il Registro Aperto
 
-> Una Gilda che ha gia vinto una volta scopre che la firma tiene finche qualcuno si fida. Adesso vuole essere creduta, non solo dovuta.
+> Una Gilda che ha già vinto una volta scopre che la firma tiene finché qualcuno si fida. Adesso vuole essere creduta, non solo dovuta.
 
 
 **`DST_SALE_OPEN, minimum`**
@@ -2018,15 +2018,15 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`DST_SALE_OPEN, victory`**
-> E il registro si puo leggere
+> E il registro si può leggere
 
-> Il registro e stato aperto · Almeno una Regione controllata
+> Il registro è stato aperto · Almeno una Regione controllata
 
 
 **`DST_SALE_OPEN, triumph`**
 > E vale lo stesso
 
-> L'acqua torna a muoversi, e i lavori li ha pagati lei · Presenza sulla Strada dei Mercanti · E la vecchia pagina e stata riletta e trascritta nel registro
+> L'acqua torna a muoversi, e i lavori li ha pagati lei · Presenza sulla Strada dei Mercanti · E la vecchia pagina è stata riletta e trascritta nel registro
 
 
 **`DST_VAERAX`**
@@ -2036,51 +2036,51 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`DST_VAERAX, minimum`**
-> La montagna e ancora sua
+> La montagna è ancora sua
 
-> Vaerax e ancora presente nel mondo · Presenza sulle Montagne Rosse
+> Vaerax è ancora presente nel mondo · Presenza sulle Montagne Rosse
 
 
 **`DST_VAERAX, victory`**
-> Le gallerie sono chiuse, e il Cristallo non e uscito
+> Le gallerie sono chiuse, e il Cristallo non è uscito
 
-> Le Miniere sono state sigillate · Il Cristallo non e stato sfruttato
+> Le Miniere sono state sigillate · Il Cristallo non è stato sfruttato
 
 
 **`DST_VAERAX, triumph`**
-> E nessuno ci arriva piu
+> E nessuno ci arriva più
 
-> Il Risveglio e stato riportato indietro · E la fame tiene gli uomini nelle valli, lontani dalla montagna · Nessuno arriva facilmente fin lassu · E le Miniere non sono state svuotate · E salire fin lassu non e facile per nessuno
+> Il Risveglio è stato riportato indietro · E la fame tiene gli uomini nelle valli, lontani dalla montagna · Nessuno arriva facilmente fin lassù · E le Miniere non sono state svuotate · E salire fin lassù non è facile per nessuno
 
 
 **`DST_VAERAX_WATCHED`**
 > Il Sonno Sorvegliato
 
-> La montagna e ancora sua e il Cristallo e ancora dentro. Adesso vuole sapere chi lo guarda, e che continui a guardarlo senza toccarlo.
+> La montagna è ancora sua e il Cristallo è ancora dentro. Adesso vuole sapere chi lo guarda, e che continui a guardarlo senza toccarlo.
 
 
 **`DST_VAERAX_WATCHED, minimum`**
-> La montagna e ancora sua
+> La montagna è ancora sua
 
 > Presenza sulle Montagne Rosse
 
 
 **`DST_VAERAX_WATCHED, victory`**
-> Nessuno scava piu
+> Nessuno scava più
 
-> Il Cristallo non e stato messo a peso · Almeno una Regione controllata
+> Il Cristallo non è stato messo a peso · Almeno una Regione controllata
 
 
 **`DST_VAERAX_WATCHED, triumph`**
 > Guardato da qualcuno che non lo vuole
 
-> Il Cristallo non e stato messo a peso · Chi studia la pietra non la vuole · Le Montagne non sono in rivolta
+> Il Cristallo non è stato messo a peso · Chi studia la pietra non la vuole · Le Montagne non sono in rivolta
 
 
 **`DST_VETRO`**
 > Quello che Non si Deve Guardare
 
-> L'Ordine custodisce un frammento e una regola. La regola e piu importante del frammento, e va difesa proprio quando qualcuno chiede di vederlo.
+> L'Ordine custodisce un frammento e una regola. La regola è più importante del frammento, e va difesa proprio quando qualcuno chiede di vederlo.
 
 
 **`DST_VETRO, minimum`**
@@ -2090,21 +2090,21 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`DST_VETRO, victory`**
-> La custodia e un incarico, e la teca resta chiusa
+> La custodia è un incarico, e la teca resta chiusa
 
-> La custodia e stata riconosciuta per atto · E nessuno ha aperto la teca
+> La custodia è stata riconosciuta per atto · E nessuno ha aperto la teca
 
 
 **`DST_VETRO, triumph`**
 > E cosa ci sia dentro lo sa, e le gallerie sono ancora sue
 
-> L'Ordine ha messo a verbale cosa custodisce · E le gallerie non sono state abbandonate · E la Reliquia non e diventata la domanda di tutti · E l'acqua non e diventata la questione che sveglia tutti · E la legge scritta non e arrivata a bussare alla teca
+> L'Ordine ha messo a verbale cosa custodisce · E le gallerie non sono state abbandonate · E la Reliquia non è diventata la domanda di tutti · E l'acqua non è diventata la questione che sveglia tutti · E la legge scritta non è arrivata a bussare alla teca
 
 
 **`DST_VETRO_SHOWN`**
 > La Reliquia Mostrata
 
-> Un Ordine che ha tenuto la teca chiusa e stato creduto sulla parola. Il passo dopo e piu pericoloso: mostrarla, e restare creduto lo stesso.
+> Un Ordine che ha tenuto la teca chiusa è stato creduto sulla parola. Il passo dopo è più pericoloso: mostrarla, e restare creduto lo stesso.
 
 
 **`DST_VETRO_SHOWN, minimum`**
@@ -2116,13 +2116,13 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`DST_VETRO_SHOWN, victory`**
 > E l'ha mostrata lui
 
-> La reliquia e stata mostrata · E a mostrarla e stato l'Ordine
+> La reliquia è stata mostrata · E a mostrarla è stato l'Ordine
 
 
 **`DST_VETRO_SHOWN, triumph`**
-> E la fede e diventata legge
+> E la fede è diventata legge
 
-> C'e una Carta scritta · E nessuno l'ha rifiutata
+> C'è una Carta scritta · E nessuno l'ha rifiutata
 
 
 ## 10. Le Azioni — la plancia, stampata una volta
@@ -2132,7 +2132,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 > Pesca 1 Asset dal mazzo di una famiglia a scelta. Con presenza in una Regione che elenca quella famiglia fra le proprie asset_sources, pesca 2 e ne tieni 1.
 
-> Il limite di mano e 7: all'ottavo Asset se ne scarta uno a scelta.
+> Il limite di mano è 7: all'ottavo Asset se ne scarta uno a scelta.
 
 
 **`ACT_CLAIM`**
@@ -2140,13 +2140,13 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 > CREATE: scarta 1 Asset AUTHORITY per creare un Claim su un dominio di Tensione. FORCE: in un round successivo consuma il Claim e scarta 1 altro AUTHORITY per forzare la Confluence.
 
-> La Confluence forzata si apre a fine round al posto delle soglie in coda, e il proponente e chi ha forzato.
+> La Confluence forzata si apre a fine round al posto delle soglie in coda, e il proponente è chi ha forzato.
 
 
 **`ACT_FORGE`**
 > Forgiare
 
-> Sposta di 1 passo una relazione. Verso l'alto serve 1 Asset BONDS scartato e il consenso dell'altro giocatore; verso il basso e unilaterale e gratuito.
+> Sposta di 1 passo una relazione. Verso l'alto serve 1 Asset BONDS scartato e il consenso dell'altro giocatore; verso il basso è unilaterale e gratuito.
 
 > Scendere genera sempre un Effect visibile nel log pubblico. I tag speciali (Patto, Debito...) arrivano da Asset e Consequence, non da FORGE.
 
@@ -2156,15 +2156,15 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 > Modifica di +/-1 una Tensione aperta. Serve presenza in una Regione taggata col dominio della Tensione, oppure lo scarto di 1 Asset di una famiglia rilevante.
 
-> Le Tensioni velate non sono influenzabili finche l'Entita non ne conosce il valore (SCHEME).
+> Le Tensioni velate non sono influenzabili finché l'Entita non ne conosce il valore (SCHEME).
 
 
 **`ACT_MOVE`**
 > Muovere
 
-> Aggiungi o sposta 1 token presenza in una Regione adiacente a una in cui hai gia presenza, o in una delle tue Regioni iniziali.
+> Aggiungi o sposta 1 token presenza in una Regione adiacente a una in cui hai già presenza, o in una delle tue Regioni iniziali.
 
-> Ogni Entita ha 3 token presenza. Una Regione non puo ospitare piu token dei suoi presence_slots.
+> Ogni Entita ha 3 token presenza. Una Regione non può ospitare più token dei suoi presence_slots.
 
 
 **`ACT_SCHEME`**

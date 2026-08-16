@@ -331,6 +331,43 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-099 — La revisione dei testi: gli accenti tornano, le regole escono dal racconto
+**implemented in 0.1.57** (chiude ISSUES voce 13, su delega del committente)
+
+Prima lettura di fila di tutti i 661 testi del gioco, dal tavolo di
+lettura della 0.1.56. Due difetti sistematici e una manciata di code:
+
+**Gli accenti non c'erano.** I testi erano in ASCII puro fin dalla 0.0:
+«piu», «citta», «la cosa e seria», «il consiglio lascio cadere». Restaurati
+ovunque — 357 righe corrette su 17 file — in tre passate: la mappa delle
+parole certe (più, città, può, c'è, già, perché…), i pattern verbali
+sicuri («e al limite» → «è al limite», «si e » → «si è », «TEN_X e in
+gioco» → «è in gioco»), e **125 + 16 coppie esplicite col loro contesto**
+per le copule e i passati remoti che una regola cieca sbaglierebbe
+(«il consiglio lasciò cadere», «la porta restò dov'era», «Salì al trono»,
+«estrarlo è estrarre qualcosa di vivo»). Ogni occorrenza di «e» nuda è
+stata classificata a occhio, due censimenti completi (520 poi 317
+occorrenze): quello che resta è congiunzione legittima.
+
+**Le regole erano finite nel racconto.** Il caso segnalato dal
+committente: la descrizione del Risveglio diceva *«Velata: i giocatori
+vedono i presagi, non il numero. Solo SCHEME apre il valore»* — gergo di
+motore in un campo narrativo. La velatura è un dato (`visibility`), e
+adesso è **la carta a dichiararla da sé** («domanda velata · survival»
+nel sottotitolo, motore, D-035-style); le due descrizioni colpevoli
+(TEN_AWAKENING, TEN_ROADS) sono tornate racconto: *«Qualcosa si è mosso
+sotto le Miniere, e nessuno sa dire quanto manca. Si vedono i segni, non
+la misura.»* Le Azioni invece restano com'erano: quelle *sono* carte
+regolamento, e il loro posto è quello.
+
+Verificato: suite intatta (215 test, 4518 asserzioni — nessuna guardia
+citava i testi corrotti), validazione, simulazioni, export e manifesto
+rigenerati. La voce 13 chiude sul suo «fatto quando»: i testi sono stati
+letti dall'inizio alla fine e le correzioni sono nei JSON — il diff è la
+lettura, e il committente può obiettare riga per riga.
+
+---
+
 ## D-098 — La seconda leva: la proposta bocciata non compra quiete
 **implemented in 0.1.55** (chiude la 0.2: era l'ultima voce)
 

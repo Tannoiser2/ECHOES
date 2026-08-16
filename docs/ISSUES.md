@@ -447,9 +447,15 @@ tenere il salvataggio — e offre di scaricarlo quando non lo sa.
 
 </details>
 
-### 13. Il testo delle carte non ha una revisione editoriale — materiale pronto (0.1.56)
+### 13. ✅ Il testo delle carte non ha una revisione editoriale — fatta in 0.1.57
 
-`contenuto` · `debito` · **Il tavolo di lettura c'è**:
+`contenuto` · `debito` · **Letta tutta, su delega del committente**
+([D-099](DECISIONS.md#d-099)): 357 righe corrette su 17 file — gli accenti
+restaurati ovunque (ogni «e» nuda classificata a occhio su due censimenti
+completi), e le regole tolte dal racconto (la velatura ora la dichiara la
+carta dal dato `visibility`; le descrizioni del Risveglio e delle Vie
+tornate narrativa). Il diff è la lettura: si può obiettare riga per riga.
+Il tavolo di lettura resta:
 [REVISIONE_TESTI.md](REVISIONE_TESTI.md), generato da
 `tools/build_review.py` — 661 testi in ordine di lettura, ognuno col suo
 identificativo, così una correzione si segna con una riga

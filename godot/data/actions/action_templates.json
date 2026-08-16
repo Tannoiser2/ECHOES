@@ -8,26 +8,65 @@
       "title": "Acquisire",
       "ao_cost": 1,
       "description": "Pesca 1 Asset dal mazzo di una famiglia a scelta. Con presenza in una Regione che elenca quella famiglia fra le proprie asset_sources, pesca 2 e ne tieni 1.",
-      "narrative_verbs": ["Raccogliere", "Commerciare", "Reclutare"],
-      "params": [
-        { "name": "family", "type": "enum", "required": true, "values": ["FORCE", "AUTHORITY", "PEOPLE", "KNOWLEDGE", "WEALTH", "BONDS"] },
-        { "name": "keep_asset_id", "type": "asset_id", "required": false, "note": "Quale delle due carte tenere quando la fonte concede la pesca doppia." },
-        { "name": "discard_asset_id", "type": "asset_id", "required": false, "note": "Scarto obbligato se la mano supera il limite." }
+      "narrative_verbs": [
+        "Raccogliere",
+        "Commerciare",
+        "Reclutare"
       ],
-      "rules_text": "Il limite di mano e 7: all'ottavo Asset se ne scarta uno a scelta."
+      "params": [
+        {
+          "name": "family",
+          "type": "enum",
+          "required": true,
+          "values": [
+            "FORCE",
+            "AUTHORITY",
+            "PEOPLE",
+            "KNOWLEDGE",
+            "WEALTH",
+            "BONDS"
+          ]
+        },
+        {
+          "name": "keep_asset_id",
+          "type": "asset_id",
+          "required": false,
+          "note": "Quale delle due carte tenere quando la fonte concede la pesca doppia."
+        },
+        {
+          "name": "discard_asset_id",
+          "type": "asset_id",
+          "required": false,
+          "note": "Scarto obbligato se la mano supera il limite."
+        }
+      ],
+      "rules_text": "Il limite di mano è 7: all'ottavo Asset se ne scarta uno a scelta."
     },
     {
       "id": "ACT_MOVE",
       "template": "MOVE",
       "title": "Muovere",
       "ao_cost": 1,
-      "description": "Aggiungi o sposta 1 token presenza in una Regione adiacente a una in cui hai gia presenza, o in una delle tue Regioni iniziali.",
-      "narrative_verbs": ["Muovere", "Occupare", "Migrare"],
-      "params": [
-        { "name": "region_id", "type": "region_id", "required": true },
-        { "name": "from_region_id", "type": "region_id", "required": false, "note": "Obbligatorio quando i 3 token sono gia tutti sul tavolo." }
+      "description": "Aggiungi o sposta 1 token presenza in una Regione adiacente a una in cui hai già presenza, o in una delle tue Regioni iniziali.",
+      "narrative_verbs": [
+        "Muovere",
+        "Occupare",
+        "Migrare"
       ],
-      "rules_text": "Ogni Entita ha 3 token presenza. Una Regione non puo ospitare piu token dei suoi presence_slots."
+      "params": [
+        {
+          "name": "region_id",
+          "type": "region_id",
+          "required": true
+        },
+        {
+          "name": "from_region_id",
+          "type": "region_id",
+          "required": false,
+          "note": "Obbligatorio quando i 3 token sono gia tutti sul tavolo."
+        }
+      ],
+      "rules_text": "Ogni Entita ha 3 token presenza. Una Regione non può ospitare più token dei suoi presence_slots."
     },
     {
       "id": "ACT_INFLUENCE",
@@ -35,27 +74,77 @@
       "title": "Influenzare",
       "ao_cost": 1,
       "description": "Modifica di +/-1 una Tensione aperta. Serve presenza in una Regione taggata col dominio della Tensione, oppure lo scarto di 1 Asset di una famiglia rilevante.",
-      "narrative_verbs": ["Persuadere", "Minacciare", "Placare"],
-      "params": [
-        { "name": "tension_id", "type": "tension_id", "required": true },
-        { "name": "delta", "type": "int", "required": true, "note": "+1 o -1." },
-        { "name": "via", "type": "enum", "required": false, "values": ["PRESENCE", "DISCARD"] },
-        { "name": "discard_asset_id", "type": "asset_id", "required": false }
+      "narrative_verbs": [
+        "Persuadere",
+        "Minacciare",
+        "Placare"
       ],
-      "rules_text": "Le Tensioni velate non sono influenzabili finche l'Entita non ne conosce il valore (SCHEME)."
+      "params": [
+        {
+          "name": "tension_id",
+          "type": "tension_id",
+          "required": true
+        },
+        {
+          "name": "delta",
+          "type": "int",
+          "required": true,
+          "note": "+1 o -1."
+        },
+        {
+          "name": "via",
+          "type": "enum",
+          "required": false,
+          "values": [
+            "PRESENCE",
+            "DISCARD"
+          ]
+        },
+        {
+          "name": "discard_asset_id",
+          "type": "asset_id",
+          "required": false
+        }
+      ],
+      "rules_text": "Le Tensioni velate non sono influenzabili finché l'Entita non ne conosce il valore (SCHEME)."
     },
     {
       "id": "ACT_FORGE",
       "template": "FORGE",
       "title": "Forgiare",
       "ao_cost": 1,
-      "description": "Sposta di 1 passo una relazione. Verso l'alto serve 1 Asset BONDS scartato e il consenso dell'altro giocatore; verso il basso e unilaterale e gratuito.",
-      "narrative_verbs": ["Allearsi", "Rompere", "Giurare"],
+      "description": "Sposta di 1 passo una relazione. Verso l'alto serve 1 Asset BONDS scartato e il consenso dell'altro giocatore; verso il basso è unilaterale e gratuito.",
+      "narrative_verbs": [
+        "Allearsi",
+        "Rompere",
+        "Giurare"
+      ],
       "params": [
-        { "name": "target_entity_id", "type": "entity_id", "required": true },
-        { "name": "direction", "type": "enum", "required": true, "values": ["UP", "DOWN"] },
-        { "name": "consent", "type": "bool", "required": false },
-        { "name": "discard_asset_id", "type": "asset_id", "required": false, "note": "Asset BONDS richiesto per salire." }
+        {
+          "name": "target_entity_id",
+          "type": "entity_id",
+          "required": true
+        },
+        {
+          "name": "direction",
+          "type": "enum",
+          "required": true,
+          "values": [
+            "UP",
+            "DOWN"
+          ]
+        },
+        {
+          "name": "consent",
+          "type": "bool",
+          "required": false
+        },
+        {
+          "name": "discard_asset_id",
+          "type": "asset_id",
+          "required": false,
+          "note": "Asset BONDS richiesto per salire."
+        }
       ],
       "rules_text": "Scendere genera sempre un Effect visibile nel log pubblico. I tag speciali (Patto, Debito...) arrivano da Asset e Consequence, non da FORGE."
     },
@@ -65,11 +154,32 @@
       "title": "Tramare",
       "ao_cost": 1,
       "description": "Scegli uno: leggi in privato il valore di una Tensione velata; guarda le prime 2 carte del mazzo Echo dell'Atto; leggi 1 informazione privata di una Regione.",
-      "narrative_verbs": ["Spiare", "Studiare", "Ascoltare"],
+      "narrative_verbs": [
+        "Spiare",
+        "Studiare",
+        "Ascoltare"
+      ],
       "params": [
-        { "name": "mode", "type": "enum", "required": true, "values": ["TENSION", "ECHO_DECK", "REGION"] },
-        { "name": "tension_id", "type": "tension_id", "required": false },
-        { "name": "region_id", "type": "region_id", "required": false }
+        {
+          "name": "mode",
+          "type": "enum",
+          "required": true,
+          "values": [
+            "TENSION",
+            "ECHO_DECK",
+            "REGION"
+          ]
+        },
+        {
+          "name": "tension_id",
+          "type": "tension_id",
+          "required": false
+        },
+        {
+          "name": "region_id",
+          "type": "region_id",
+          "required": false
+        }
       ],
       "rules_text": "Scoprire il valore di una Tensione velata e una Scoperta: lascia un tag discovery: sull'Entita."
     },
@@ -79,14 +189,46 @@
       "title": "Rivendicare",
       "ao_cost": 1,
       "description": "CREATE: scarta 1 Asset AUTHORITY per creare un Claim su un dominio di Tensione. FORCE: in un round successivo consuma il Claim e scarta 1 altro AUTHORITY per forzare la Confluence.",
-      "narrative_verbs": ["Rivendicare", "Convocare", "Esigere"],
-      "params": [
-        { "name": "mode", "type": "enum", "required": true, "values": ["CREATE", "FORCE"] },
-        { "name": "domain", "type": "enum", "required": false, "values": ["TERRITORY", "RESOURCE", "SURVIVAL", "KNOWLEDGE", "ANCIENT"] },
-        { "name": "tension_id", "type": "tension_id", "required": false, "note": "Bersaglio del mode FORCE. Richiede valore >= 3." },
-        { "name": "discard_asset_id", "type": "asset_id", "required": false }
+      "narrative_verbs": [
+        "Rivendicare",
+        "Convocare",
+        "Esigere"
       ],
-      "rules_text": "La Confluence forzata si apre a fine round al posto delle soglie in coda, e il proponente e chi ha forzato."
+      "params": [
+        {
+          "name": "mode",
+          "type": "enum",
+          "required": true,
+          "values": [
+            "CREATE",
+            "FORCE"
+          ]
+        },
+        {
+          "name": "domain",
+          "type": "enum",
+          "required": false,
+          "values": [
+            "TERRITORY",
+            "RESOURCE",
+            "SURVIVAL",
+            "KNOWLEDGE",
+            "ANCIENT"
+          ]
+        },
+        {
+          "name": "tension_id",
+          "type": "tension_id",
+          "required": false,
+          "note": "Bersaglio del mode FORCE. Richiede valore >= 3."
+        },
+        {
+          "name": "discard_asset_id",
+          "type": "asset_id",
+          "required": false
+        }
+      ],
+      "rules_text": "La Confluence forzata si apre a fine round al posto delle soglie in coda, e il proponente è chi ha forzato."
     }
   ]
 }

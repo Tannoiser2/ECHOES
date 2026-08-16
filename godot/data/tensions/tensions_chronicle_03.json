@@ -39,7 +39,7 @@
         "TEN_NAMELESS"
       ],
       "confluence_template_id": "CNF_WATER_03",
-      "description": "I canali che Aldric fece scavare ci sono ancora. Sono pieni di terra, e da otto secoli nessuno e obbligato a toglierla.",
+      "description": "I canali che Aldric fece scavare ci sono ancora. Sono pieni di terra, e da otto secoli nessuno è obbligato a toglierla.",
       "focus_region_tags": [
         "granary",
         "condition:lean",
@@ -61,7 +61,7 @@
       "omen_thresholds": [
         {
           "at": 4,
-          "message": "Tre citta hanno chiesto alla Gilda di rimandare, e la Gilda ha detto di si a due.",
+          "message": "Tre città hanno chiesto alla Gilda di rimandare, e la Gilda ha detto di sì a due.",
           "reveals_value": false
         }
       ],
@@ -83,7 +83,7 @@
         "TEN_CHARTER"
       ],
       "confluence_template_id": "CNF_DEBT_03",
-      "description": "Nessuno ha mai dichiarato guerra alla Gilda del Sale. Le devono tutti dei soldi: e' piu efficace.",
+      "description": "Nessuno ha mai dichiarato guerra alla Gilda del Sale. Le devono tutti dei soldi: è più efficace.",
       "focus_region_tags": [
         "trade",
         "condition:indebted",
@@ -105,12 +105,12 @@
       "omen_thresholds": [
         {
           "at": 4,
-          "message": "L'Ordine ha spostato le veglie di un'ora. Non lo ha annunciato, e chi abita vicino se ne e accorto.",
+          "message": "L'Ordine ha spostato le veglie di un'ora. Non lo ha annunciato, e chi abita vicino se ne è accorto.",
           "reveals_value": false
         },
         {
           "at": 6,
-          "message": "La teca e stata aperta per un inventario, e l'inventario non e stato scritto.",
+          "message": "La teca è stata aperta per un inventario, e l'inventario non è stato scritto.",
           "reveals_value": true
         }
       ],
@@ -132,7 +132,7 @@
         "TEN_CHARTER"
       ],
       "confluence_template_id": "CNF_RELIC_03",
-      "description": "Un frammento del Cristallo Rosso, dentro una teca, dentro una regola: si custodisce, non si guarda. Nessuno dei vivi lo ha visto, e questo e' esattamente il punto.",
+      "description": "Un frammento del Cristallo Rosso, dentro una teca, dentro una regola: si custodisce, non si guarda. Nessuno dei vivi lo ha visto, e questo è esattamente il punto.",
       "focus_region_tags": [
         "crystal_site",
         "structure:sealed",
@@ -154,7 +154,7 @@
       "omen_thresholds": [
         {
           "at": 4,
-          "message": "Due citta hanno giudicato lo stesso caso in modo opposto, e tutte e due hanno ragione.",
+          "message": "Due città hanno giudicato lo stesso caso in modo opposto, e tutte e due hanno ragione.",
           "reveals_value": false
         }
       ],
@@ -176,7 +176,7 @@
         "TEN_NAMELESS"
       ],
       "confluence_template_id": "CNF_CHARTER_03",
-      "description": "Otto secoli senza corona hanno funzionato benissimo finche nessuno ha avuto bisogno di sapere chi decide.",
+      "description": "Otto secoli senza corona hanno funzionato benissimo finché nessuno ha avuto bisogno di sapere chi decide.",
       "focus_region_tags": [
         "capital",
         "condition:contested",
@@ -198,7 +198,7 @@
       "omen_thresholds": [
         {
           "at": 4,
-          "message": "Fuori dalle mura ci sono piu fuochi dell'anno scorso, e sono sempre gli stessi fuochi.",
+          "message": "Fuori dalle mura ci sono più fuochi dell'anno scorso, e sono sempre gli stessi fuochi.",
           "reveals_value": true
         }
       ],
@@ -217,7 +217,7 @@
         "TEN_WATER",
         "TEN_CHARTER"
       ],
-      "description": "Non sono nemici e non sono poveri: sono persone che non risultano da nessuna parte, e ogni anno sono di piu.",
+      "description": "Non sono nemici e non sono poveri: sono persone che non risultano da nessuna parte, e ogni anno sono di più.",
       "focus_region_tags": [
         "nomad_range",
         "condition:emptied"

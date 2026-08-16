@@ -7,7 +7,7 @@
       "name": "Maestra Ilve",
       "archetype": "FACTION",
       "need": "WEALTH",
-      "description": "Alla testa della Gilda del Sale, che non possiede nessuna citta e tiene il registro di tutte. Non chiede obbedienza: chiede una firma.",
+      "description": "Alla testa della Gilda del Sale, che non possiede nessuna città e tiene il registro di tutte. Non chiede obbedienza: chiede una firma.",
       "action_values": {
         "ACQUIRE": 4,
         "MOVE": 2,
@@ -46,7 +46,7 @@
         "REG_EREDAN"
       ],
       "destiny_id": "DST_SALE",
-      "private_information": "Tre delle sette citta non pagheranno mai. La Gilda lo sa da due anni e non lo ha scritto.",
+      "private_information": "Tre delle sette città non pagheranno mai. La Gilda lo sa da due anni e non lo ha scritto.",
       "tags": [
         "guild"
       ],
@@ -56,7 +56,7 @@
       "successors": [
         {
           "name": "Maestro Ordan",
-          "description": "Il primo a proporre che il registro fosse letto anche da fuori. Non ando in porto, e non lo ritiro mai."
+          "description": "Il primo a proporre che il registro fosse letto anche da fuori. Non andò in porto, e non lo ritirò mai."
         },
         {
           "name": "Maestra Ceva",
@@ -68,7 +68,7 @@
         },
         {
           "name": "Maestra Sadin",
-          "description": "Diceva che una firma vale finche qualcuno ha voglia di leggerla."
+          "description": "Diceva che una firma vale finché qualcuno ha voglia di leggerla."
         }
       ],
       "destiny_pool": [
@@ -153,7 +153,7 @@
         },
         {
           "name": "Priore Teodo",
-          "description": "Sosteneva che una regola che non si puo spiegare non e una regola."
+          "description": "Sosteneva che una regola che non si può spiegare non è una regola."
         },
         {
           "name": "Priora Vesna",
@@ -195,7 +195,7 @@
       "name": "Kessa dei Fuochi",
       "archetype": "FACTION",
       "need": "POWER",
-      "description": "Parla per i Signori della Cenere, che tengono le Montagne Rosse e campano di quello che l'antica miniera ha lasciato indietro. Sanno che sotto c'e di piu.",
+      "description": "Parla per i Signori della Cenere, che tengono le Montagne Rosse e campano di quello che l'antica miniera ha lasciato indietro. Sanno che sotto c'è di più.",
       "action_values": {
         "ACQUIRE": 3,
         "MOVE": 3,
@@ -232,7 +232,7 @@
         "REG_MINIERE_ANTICHE"
       ],
       "destiny_id": "DST_CENERE",
-      "private_information": "La galleria bassa e gia aperta da un anno. Dentro non hanno ancora trovato niente, e questo li spaventa piu del contrario.",
+      "private_information": "La galleria bassa è già aperta da un anno. Dentro non hanno ancora trovato niente, e questo li spaventa più del contrario.",
       "tags": [
         "ash"
       ],
@@ -246,7 +246,7 @@
         },
         {
           "name": "Neve dei Fuochi",
-          "description": "Chiuse tre gallerie in un mese e non spiego perche."
+          "description": "Chiuse tre gallerie in un mese e non spiegò perché."
         },
         {
           "name": "Grim dei Fuochi",
@@ -284,7 +284,7 @@
       "name": "Le Citta Libere",
       "archetype": "PEOPLE",
       "need": "FREEDOM",
-      "description": "Sette citta che si governano da sole e si riuniscono solo quando non possono evitarlo. Non hanno una capitale, e considerano questo il loro unico principio.",
+      "description": "Sette città che si governano da sole e si riuniscono solo quando non possono evitarlo. Non hanno una capitale, e considerano questo il loro unico principio.",
       "action_values": {
         "ACQUIRE": 3,
         "MOVE": 3,
@@ -321,7 +321,7 @@
         "REG_VALLE_VERDE"
       ],
       "destiny_id": "DST_LIBERE",
-      "private_information": "Quattro citta su sette hanno gia scritto la propria carta, e sono incompatibili fra loro.",
+      "private_information": "Quattro città su sette hanno già scritto la propria carta, e sono incompatibili fra loro.",
       "tags": [
         "free_cities"
       ],

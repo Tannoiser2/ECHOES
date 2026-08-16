@@ -44,7 +44,7 @@
       "id": "CNS_WATER_PRICED",
       "title": "L'Acqua a Prezzo",
       "category": "CONTROL",
-      "description": "Chi ha pagato i lavori riscuote sull'acqua. E' legittimo, e' scritto, e da quel giorno la Valle ha un padrone che non ha mai messo piede nella Valle.",
+      "description": "Chi ha pagato i lavori riscuote sull'acqua. È legittimo, è scritto, e da quel giorno la Valle ha un padrone che non ha mai messo piede nella Valle.",
       "effects": [
         {
           "type": "SET_GLOBAL_TAG",
@@ -82,7 +82,7 @@
       "id": "CNS_LEDGER_OPENED",
       "title": "Il Registro Aperto",
       "category": "DISCOVERY",
-      "description": "Il registro della Gilda viene copiato e lasciato dove chiunque puo leggerlo. Nessuno ci trova un imbroglio: ci trova le condizioni, che era la cosa importante.",
+      "description": "Il registro della Gilda viene copiato e lasciato dove chiunque può leggerlo. Nessuno ci trova un imbroglio: ci trova le condizioni, che era la cosa importante.",
       "effects": [
         {
           "type": "SET_GLOBAL_TAG",
@@ -159,7 +159,7 @@
       "id": "CNS_DEBT_CALLED",
       "title": "Il Debito Chiamato",
       "category": "DEBT",
-      "description": "La Gilda chiede tutto insieme. Ha diritto di farlo, e nessuno puo pagare: e' esattamente per questo che lo fa adesso.",
+      "description": "La Gilda chiede tutto insieme. Ha diritto di farlo, e nessuno può pagare: è esattamente per questo che lo fa adesso.",
       "effects": [
         {
           "type": "SET_GLOBAL_TAG",
@@ -208,7 +208,7 @@
       "id": "CNS_RELIC_SHOWN",
       "title": "La Teca Aperta",
       "category": "DISCOVERY",
-      "description": "La reliquia esce dalla teca davanti a testimoni. Non succede niente, e questa e' la notizia: per otto secoli era stato detto il contrario.",
+      "description": "La reliquia esce dalla teca davanti a testimoni. Non succede niente, e questa è la notizia: per otto secoli era stato detto il contrario.",
       "creates_scar": false,
       "effects": [
         {
@@ -247,7 +247,7 @@
       "id": "CNS_RELIC_BURIED",
       "title": "La Teca Murata",
       "category": "SECRET",
-      "description": "Si mura la cella e si mette a verbale che e stata murata. Chi verra dopo sapra che c'e qualcosa e non sapra cosa: era il piano.",
+      "description": "Si mura la cella e si mette a verbale che è stata murata. Chi verrà dopo saprà che c'è qualcosa e non saprà cosa: era il piano.",
       "effects": [
         {
           "type": "SET_GLOBAL_TAG",
@@ -323,7 +323,7 @@
       "id": "CNS_CHARTER_WRITTEN",
       "title": "La Carta Scritta",
       "category": "INFLUENCE",
-      "description": "Sette citta firmano lo stesso foglio. Ci hanno messo un anno e mezzo, e il foglio e piu corto di quanto chiunque si aspettasse.",
+      "description": "Sette città firmano lo stesso foglio. Ci hanno messo un anno e mezzo, e il foglio è più corto di quanto chiunque si aspettasse.",
       "effects": [
         {
           "type": "SET_GLOBAL_TAG",
@@ -361,7 +361,7 @@
       "id": "CNS_CHARTER_REFUSED",
       "title": "La Carta Rifiutata",
       "category": "REVOLT",
-      "description": "Una citta non firma, e le altre scoprono che non c'e niente da fare se una citta non firma. La regola esisteva finche tutti fingevano che esistesse.",
+      "description": "Una città non firma, e le altre scoprono che non c'è niente da fare se una città non firma. La regola esisteva finché tutti fingevano che esistesse.",
       "effects": [
         {
           "type": "SET_GLOBAL_TAG",
@@ -399,12 +399,12 @@
       "id": "CNS_SEAT_CLAIMED",
       "title": "Il Seggio Preso",
       "category": "CONTROL",
-      "description": "Qualcuno si siede dove non si sedeva nessuno da otto secoli, e per un po' funziona meglio. E' il per un po' che preoccupa.",
+      "description": "Qualcuno si siede dove non si sedeva nessuno da otto secoli, e per un po' funziona meglio. È il per un po' che preoccupa.",
       "creates_scar": true,
       "scar": {
         "region_id": "$region_focus",
         "tag": "scar:the_empty_chair",
-        "description": "Nella sala del consiglio c'e una sedia piu alta delle altre, e nessuno l'ha piu tolta."
+        "description": "Nella sala del consiglio c'è una sedia più alta delle altre, e nessuno l'ha più tolta."
       },
       "effects": [
         {
@@ -492,7 +492,7 @@
       "id": "CNS_ASH_ABANDONED",
       "title": "Le Gallerie Lasciate",
       "category": "MIGRATION",
-      "description": "Si smette di scendere. Non per paura: perche l'anno prossimo costa meno risalire che puntellare.",
+      "description": "Si smette di scendere. Non per paura: perché l'anno prossimo costa meno risalire che puntellare.",
       "effects": [
         {
           "type": "SET_REGION_TAG",

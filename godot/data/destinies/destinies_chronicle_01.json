@@ -13,7 +13,7 @@
           {
             "type": "entity_alive",
             "entity_id": "ENT_ALDRIC",
-            "label": "Aldric e ancora sul trono"
+            "label": "Aldric è ancora sul trono"
           },
           {
             "type": "region_presence",
@@ -49,7 +49,7 @@
             "scope": "REGION",
             "region_id": "REG_EREDAN",
             "tag": "condition:unrest",
-            "label": "Eredan non e in rivolta"
+            "label": "Eredan non è in rivolta"
           },
           {
             "type": "state_tag_absent",
@@ -61,7 +61,7 @@
             "type": "state_tag_absent",
             "scope": "GLOBAL",
             "tag": "crown_divided",
-            "label": "La corona non e stata spezzata"
+            "label": "La corona non è stata spezzata"
           },
           {
             "type": "tension_limit",
@@ -102,7 +102,7 @@
             "type": "state_tag_present",
             "scope": "GLOBAL",
             "tag": "nahr_settled",
-            "label": "L'insediamento e riconosciuto"
+            "label": "L'insediamento è riconosciuto"
           },
           {
             "type": "region_presence",
@@ -120,13 +120,13 @@
             "type": "state_tag_absent",
             "scope": "GLOBAL",
             "tag": "valley_sealed",
-            "label": "La Valle non e stata chiusa"
+            "label": "La Valle non è stata chiusa"
           },
           {
             "type": "tension_limit",
             "tension_id": "TEN_FAMINE",
             "max": 3,
-            "label": "La Carestia e sotto controllo"
+            "label": "La Carestia è sotto controllo"
           },
           {
             "type": "state_tag_present",
@@ -138,7 +138,7 @@
             "type": "tension_limit",
             "tension_id": "TEN_SUCCESSION",
             "min": 3,
-            "label": "E finche si discute chi siede, nessuno ha tempo di mandarci via"
+            "label": "E finché si discute chi siede, nessuno ha tempo di mandarci via"
           }
         ]
       },
@@ -148,14 +148,14 @@
       "id": "DST_LYRA",
       "entity_id": "ENT_LYRA",
       "title": "Sapere e Poter Tornare a Guardare",
-      "description": "Scoprire le proprieta del Cristallo Rosso e conservare l'accesso a cio che lo produce.",
+      "description": "Scoprire le proprietà del Cristallo Rosso e conservare l'accesso a ciò che lo produce.",
       "minimum": {
         "label": "Ha capito qualcosa",
         "conditions": [
           {
             "type": "entity_alive",
             "entity_id": "ENT_LYRA",
-            "label": "Lyra e viva"
+            "label": "Lyra è viva"
           },
           {
             "type": "discovery_count",
@@ -166,7 +166,7 @@
         ]
       },
       "victory": {
-        "label": "Sa, ed e ancora nelle gallerie",
+        "label": "Sa, ed è ancora nelle gallerie",
         "conditions": [
           {
             "type": "region_presence",
@@ -185,7 +185,7 @@
         ]
       },
       "triumph": {
-        "label": "Il sapere e diventato pubblico e verificabile",
+        "label": "Il sapere è diventato pubblico e verificabile",
         "conditions": [
           {
             "type": "discovery_count",
@@ -198,14 +198,14 @@
             "tension_id": "TEN_AWAKENING",
             "min": 0,
             "max": 6,
-            "label": "Il Risveglio non e esploso"
+            "label": "Il Risveglio non è esploso"
           },
           {
             "type": "state_tag_absent",
             "scope": "REGION",
             "region_id": "REG_STRADA_MERCANTI",
             "tag": "condition:cut_off",
-            "label": "La strada per le gallerie e ancora aperta"
+            "label": "La strada per le gallerie è ancora aperta"
           },
           {
             "type": "state_tag_absent",
@@ -217,7 +217,7 @@
             "type": "tension_limit",
             "tension_id": "TEN_ROADS",
             "max": 4,
-            "label": "E la strada per le gallerie non e allo stremo"
+            "label": "E la strada per le gallerie non è allo stremo"
           }
         ]
       },
@@ -229,12 +229,12 @@
       "title": "Cio che Dorme Resti Addormentato",
       "description": "Impedire lo sfruttamento incontrollato del Cristallo e preservare le Montagne Rosse.",
       "minimum": {
-        "label": "La montagna e ancora sua",
+        "label": "La montagna è ancora sua",
         "conditions": [
           {
             "type": "entity_alive",
             "entity_id": "ENT_VAERAX",
-            "label": "Vaerax e ancora presente nel mondo"
+            "label": "Vaerax è ancora presente nel mondo"
           },
           {
             "type": "region_presence",
@@ -246,7 +246,7 @@
         ]
       },
       "victory": {
-        "label": "Le gallerie sono chiuse, e il Cristallo non e uscito",
+        "label": "Le gallerie sono chiuse, e il Cristallo non è uscito",
         "conditions": [
           {
             "type": "state_tag_present",
@@ -258,18 +258,18 @@
             "type": "state_tag_absent",
             "scope": "GLOBAL",
             "tag": "crystal_exploited",
-            "label": "Il Cristallo non e stato sfruttato"
+            "label": "Il Cristallo non è stato sfruttato"
           }
         ]
       },
       "triumph": {
-        "label": "E nessuno ci arriva piu",
+        "label": "E nessuno ci arriva più",
         "conditions": [
           {
             "type": "tension_limit",
             "tension_id": "TEN_AWAKENING",
             "max": 4,
-            "label": "Il Risveglio e stato riportato indietro"
+            "label": "Il Risveglio è stato riportato indietro"
           },
           {
             "type": "tension_limit",
@@ -282,7 +282,7 @@
             "scope": "REGION",
             "region_id": "REG_STRADA_MERCANTI",
             "tag": "condition:cut_off",
-            "label": "Nessuno arriva facilmente fin lassu"
+            "label": "Nessuno arriva facilmente fin lassù"
           },
           {
             "type": "state_tag_absent",
@@ -295,7 +295,7 @@
             "type": "tension_limit",
             "tension_id": "TEN_ROADS",
             "min": 3,
-            "label": "E salire fin lassu non e facile per nessuno"
+            "label": "E salire fin lassù non è facile per nessuno"
           }
         ]
       },
@@ -305,14 +305,14 @@
       "id": "DST_ALDRIC_RECORD",
       "entity_id": "ENT_ALDRIC",
       "title": "Il Regno che Ricorda",
-      "description": "Il trono regge gia. Quello che manca e che le sue decisioni restino scritte e nessuno debba riprenderle da capo.",
+      "description": "Il trono regge già. Quello che manca è che le sue decisioni restino scritte e nessuno debba riprenderle da capo.",
       "minimum": {
         "label": "La casa siede ancora",
         "conditions": [
           {
             "type": "entity_alive",
             "entity_id": "ENT_ALDRIC",
-            "label": "La casa e ancora al tavolo"
+            "label": "La casa è ancora al tavolo"
           },
           {
             "type": "region_presence",
@@ -347,20 +347,20 @@
             "type": "state_tag_absent",
             "scope": "GLOBAL",
             "tag": "crown_divided",
-            "label": "La corona non e stata spezzata"
+            "label": "La corona non è stata spezzata"
           },
           {
             "type": "state_tag_present",
             "scope": "GLOBAL",
             "tag": "succession_by_law",
-            "label": "La successione e passata per la legge"
+            "label": "La successione è passata per la legge"
           },
           {
             "type": "state_tag_absent",
             "scope": "REGION",
             "region_id": "REG_EREDAN",
             "tag": "condition:unrest",
-            "label": "Eredan non e in rivolta"
+            "label": "Eredan non è in rivolta"
           }
         ]
       },
@@ -370,9 +370,9 @@
       "id": "DST_NAHR_ROOTED",
       "entity_id": "ENT_NAHR",
       "title": "La Terra Sotto i Piedi",
-      "description": "Il popolo si e fermato. Adesso la domanda e se il posto in cui si e fermato e suo, o solo prestato.",
+      "description": "Il popolo si è fermato. Adesso la domanda è se il posto in cui si è fermato è suo, o solo prestato.",
       "minimum": {
-        "label": "Il popolo e ancora qui",
+        "label": "Il popolo è ancora qui",
         "conditions": [
           {
             "type": "entity_alive",
@@ -406,7 +406,7 @@
             "type": "state_tag_present",
             "scope": "GLOBAL",
             "tag": "nahr_settled",
-            "label": "L'insediamento e riconosciuto"
+            "label": "L'insediamento è riconosciuto"
           },
           {
             "type": "state_tag_absent",
@@ -419,14 +419,14 @@
             "type": "state_tag_absent",
             "scope": "GLOBAL",
             "tag": "valley_sealed",
-            "label": "La Valle non e stata chiusa"
+            "label": "La Valle non è stata chiusa"
           },
           {
             "type": "state_tag_present",
             "scope": "ENTITY",
             "entity_id": "ENT_NAHR",
             "tag": "discovery:legend",
-            "label": "E la storia del popolo e stata messa per iscritto, com'e' raccontata"
+            "label": "E la storia del popolo è stata messa per iscritto, com'è' raccontata"
           }
         ]
       },
@@ -436,7 +436,7 @@
       "id": "DST_LYRA_TAUGHT",
       "entity_id": "ENT_LYRA",
       "title": "Quello che Resta Insegnato",
-      "description": "Il sapere e uscito dalle gallerie una volta. Chi viene dopo vuole che non ci torni dentro alla prima paura.",
+      "description": "Il sapere è uscito dalle gallerie una volta. Chi viene dopo vuole che non ci torni dentro alla prima paura.",
       "minimum": {
         "label": "Qualcuno sa ancora leggere le carte",
         "conditions": [
@@ -478,7 +478,7 @@
             "scope": "ENTITY",
             "entity_id": "ENT_LYRA",
             "tag": "escort_sworn",
-            "label": "E c'e una scorta giurata per arrivarci"
+            "label": "E c'è una scorta giurata per arrivarci"
           },
           {
             "type": "state_tag_absent",
@@ -494,9 +494,9 @@
       "id": "DST_VAERAX_WATCHED",
       "entity_id": "ENT_VAERAX",
       "title": "Il Sonno Sorvegliato",
-      "description": "La montagna e ancora sua e il Cristallo e ancora dentro. Adesso vuole sapere chi lo guarda, e che continui a guardarlo senza toccarlo.",
+      "description": "La montagna è ancora sua e il Cristallo è ancora dentro. Adesso vuole sapere chi lo guarda, e che continui a guardarlo senza toccarlo.",
       "minimum": {
-        "label": "La montagna e ancora sua",
+        "label": "La montagna è ancora sua",
         "conditions": [
           {
             "type": "region_presence",
@@ -508,13 +508,13 @@
         ]
       },
       "victory": {
-        "label": "Nessuno scava piu",
+        "label": "Nessuno scava più",
         "conditions": [
           {
             "type": "state_tag_absent",
             "scope": "GLOBAL",
             "tag": "crystal_exploited",
-            "label": "Il Cristallo non e stato messo a peso"
+            "label": "Il Cristallo non è stato messo a peso"
           },
           {
             "type": "control_count",
@@ -531,7 +531,7 @@
             "type": "state_tag_absent",
             "scope": "GLOBAL",
             "tag": "crystal_exploited",
-            "label": "Il Cristallo non e stato messo a peso"
+            "label": "Il Cristallo non è stato messo a peso"
           },
           {
             "type": "relation_state",

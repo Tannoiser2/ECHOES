@@ -13,7 +13,7 @@
           "type": "tension_limit",
           "tension_id": "TEN_WATER",
           "min": 0,
-          "label": "TEN_WATER e in gioco quest'anno"
+          "label": "TEN_WATER è in gioco quest'anno"
         }
       ],
       "effect_hooks": [
@@ -52,13 +52,13 @@
       "title": "La Chiamata",
       "dramatic_family": "PRESSURE",
       "function_id": "REQUEST",
-      "description": "La Gilda scrive a tre citta lo stesso giorno. Non chiede di pagare: chiede di confermare la cifra.",
+      "description": "La Gilda scrive a tre città lo stesso giorno. Non chiede di pagare: chiede di confermare la cifra.",
       "eligibility": [
         {
           "type": "tension_limit",
           "tension_id": "TEN_DEBT",
           "min": 0,
-          "label": "TEN_DEBT e in gioco quest'anno"
+          "label": "TEN_DEBT è in gioco quest'anno"
         }
       ],
       "effect_hooks": [
@@ -103,7 +103,7 @@
           "type": "tension_limit",
           "tension_id": "TEN_RELIC",
           "min": 0,
-          "label": "TEN_RELIC e in gioco quest'anno"
+          "label": "TEN_RELIC è in gioco quest'anno"
         }
       ],
       "effect_hooks": [
@@ -129,13 +129,13 @@
       "title": "Due Sentenze",
       "dramatic_family": "RUPTURE",
       "function_id": "VIOLATION",
-      "description": "Lo stesso caso, due citta, due sentenze opposte. Entrambe applicate, entrambe legittime.",
+      "description": "Lo stesso caso, due città, due sentenze opposte. Entrambe applicate, entrambe legittime.",
       "eligibility": [
         {
           "type": "tension_limit",
           "tension_id": "TEN_CHARTER",
           "min": 0,
-          "label": "TEN_CHARTER e in gioco quest'anno"
+          "label": "TEN_CHARTER è in gioco quest'anno"
         }
       ],
       "effect_hooks": [
@@ -180,7 +180,7 @@
           "type": "tension_limit",
           "tension_id": "TEN_RELIC",
           "min": 0,
-          "label": "TEN_RELIC e in gioco quest'anno"
+          "label": "TEN_RELIC è in gioco quest'anno"
         }
       ],
       "effect_hooks": [
@@ -225,7 +225,7 @@
           "type": "tension_limit",
           "tension_id": "TEN_WATER",
           "min": 0,
-          "label": "TEN_WATER e in gioco quest'anno"
+          "label": "TEN_WATER è in gioco quest'anno"
         }
       ],
       "effect_hooks": [
@@ -270,7 +270,7 @@
           "type": "tension_limit",
           "tension_id": "TEN_RELIC",
           "min": 0,
-          "label": "TEN_RELIC e in gioco quest'anno"
+          "label": "TEN_RELIC è in gioco quest'anno"
         }
       ],
       "effect_hooks": [
@@ -309,13 +309,13 @@
       "title": "L'Anno Corto",
       "dramatic_family": "TURN",
       "function_id": "TRANSFORMATION",
-      "description": "Il fiume arriva sei settimane in ritardo e riparte in anticipo. Nessuno lo chiama siccita: si dice che e' stato un anno corto.",
+      "description": "Il fiume arriva sei settimane in ritardo e riparte in anticipo. Nessuno lo chiama siccita: si dice che è stato un anno corto.",
       "eligibility": [
         {
           "type": "tension_limit",
           "tension_id": "TEN_WATER",
           "min": 0,
-          "label": "TEN_WATER e in gioco quest'anno"
+          "label": "TEN_WATER è in gioco quest'anno"
         }
       ],
       "effect_hooks": [
@@ -354,13 +354,13 @@
       "title": "Il Tavolo Lungo",
       "dramatic_family": "RESOLUTION",
       "function_id": "RECONCILIATION",
-      "description": "Si mette un tavolo abbastanza lungo perche ci stiano tutti seduti, e si scopre che era quello il problema.",
+      "description": "Si mette un tavolo abbastanza lungo perché ci stiano tutti seduti, e si scopre che era quello il problema.",
       "eligibility": [
         {
           "type": "tension_limit",
           "tension_id": "TEN_CHARTER",
           "min": 0,
-          "label": "TEN_CHARTER e in gioco quest'anno"
+          "label": "TEN_CHARTER è in gioco quest'anno"
         }
       ],
       "effect_hooks": [
@@ -399,13 +399,13 @@
       "title": "La Stagione Scavata",
       "dramatic_family": "RESOLUTION",
       "function_id": "GIFT",
-      "description": "Due stagioni di braccia, e l'acqua arriva dove arrivava prima. Non e' un miracolo: e' terra tolta.",
+      "description": "Due stagioni di braccia, e l'acqua arriva dove arrivava prima. Non è un miracolo: è terra tolta.",
       "eligibility": [
         {
           "type": "tension_limit",
           "tension_id": "TEN_WATER",
           "min": 0,
-          "label": "TEN_WATER e in gioco quest'anno"
+          "label": "TEN_WATER è in gioco quest'anno"
         }
       ],
       "effect_hooks": [
@@ -450,7 +450,7 @@
           "type": "tension_limit",
           "tension_id": "TEN_CHARTER",
           "min": 0,
-          "label": "TEN_CHARTER e in gioco quest'anno"
+          "label": "TEN_CHARTER è in gioco quest'anno"
         }
       ],
       "effect_hooks": [
@@ -495,7 +495,7 @@
           "type": "tension_limit",
           "tension_id": "TEN_ASH",
           "min": 0,
-          "label": "TEN_ASH e in gioco quest'anno"
+          "label": "TEN_ASH è in gioco quest'anno"
         }
       ],
       "effect_hooks": [
@@ -546,7 +546,7 @@
           "type": "tension_limit",
           "tension_id": "TEN_DEBT",
           "min": 0,
-          "label": "TEN_DEBT e in gioco quest'anno"
+          "label": "TEN_DEBT è in gioco quest'anno"
         }
       ],
       "effect_hooks": [

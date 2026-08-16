@@ -5,6 +5,28 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.57] — La revisione dei testi: gli accenti tornano, le regole escono dal racconto
+
+Chiude ISSUES voce 13 su delega del committente
+([D-099](docs/DECISIONS.md#d-099)): prima lettura di fila dei 661 testi.
+
+### Fixed
+
+- **Gli accenti restaurati ovunque**: 357 righe corrette su 17 file
+  («piu»→«più», «la cosa e seria»→«è seria», «il consiglio lascio
+  cadere»→«lasciò cadere»…). Ogni «e» nuda classificata a occhio su due
+  censimenti completi: le congiunzioni restano congiunzioni.
+- **Le regole fuori dal racconto**: la velatura ora la dichiara la carta
+  dal dato `visibility` («domanda velata · survival»), e le descrizioni
+  del Risveglio e delle Vie Interrotte sono tornate narrativa.
+
+### Misurato
+
+Suite intatta (215 test, 4518 asserzioni), validazione, simulazioni,
+export, manifesto e tavolo di lettura rigenerati.
+
+---
+
 ## [0.1.56] — Il tavolo di lettura per la revisione dei testi
 
 Il materiale della voce 13, su richiesta del committente.

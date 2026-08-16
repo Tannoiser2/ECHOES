@@ -6,7 +6,7 @@
       "id": "CNF_FAMINE_01",
       "tension_id": "TEN_FAMINE",
       "title": "Il Consiglio del Grano",
-      "description": "Quando la Carestia raggiunge la soglia, la questione non e piu se ci sia abbastanza: e chi decide a chi non ne tocca.",
+      "description": "Quando la Carestia raggiunge la soglia, la questione non è più se ci sia abbastanza: è chi decide a chi non ne tocca.",
       "questions": [
         {
           "id": "Q_FAMINE_GRAIN",
@@ -21,7 +21,7 @@
               "type": "tension_limit",
               "tension_id": "TEN_FAMINE",
               "min": 6,
-              "label": "La Carestia e al limite"
+              "label": "La Carestia è al limite"
             }
           ]
         }
@@ -30,14 +30,14 @@
         {
           "id": "P_REQUISITION",
           "question_id": "Q_FAMINE_GRAIN",
-          "text": "Il grano $of_region e requisito e distribuito dal trono, razione per razione.",
+          "text": "Il grano $of_region è requisito e distribuito dal trono, razione per razione.",
           "eligibility": [
             {
               "type": "state_tag_present",
               "scope": "ENTITY",
               "entity_id": "$proponent",
               "tag": "crowned",
-              "label": "Solo chi porta la corona puo requisire"
+              "label": "Solo chi porta la corona può requisire"
             }
           ],
           "success_consequences": [
@@ -46,9 +46,9 @@
           ],
           "echo_summary": "Il grano $of_region passo sotto il sigillo di $proponent.",
           "echo_summaries": {
-            "DECISIVE_SUCCESS": "Il grano $of_region passo sotto il sigillo di $proponent, e nessuno alzo la voce: contarlo era diventato piu urgente che possederlo.",
+            "DECISIVE_SUCCESS": "Il grano $of_region passo sotto il sigillo di $proponent, e nessuno alzò la voce: contarlo era diventato più urgente che possederlo.",
             "FAILURE": "$proponent volle il grano $of_region sotto il proprio sigillo, e i granai restarono chiusi a chiave da qualcun altro.",
-            "SUCCESS_WITH_COST": "Il grano $of_region passo sotto il sigillo di $proponent, e la prima razione arrivo con nove giorni di ritardo."
+            "SUCCESS_WITH_COST": "Il grano $of_region passo sotto il sigillo di $proponent, e la prima razione arrivò con nove giorni di ritardo."
           }
         },
         {
@@ -60,11 +60,11 @@
             "CNS_NAHR_SETTLEMENT",
             "CNS_CROWN_DISPOSSESSED"
           ],
-          "echo_summary": "$proponent entro $in_region, e quella terra smise di essere solo di $controller.",
+          "echo_summary": "$proponent entrò $in_region, e quella terra smise di essere solo di $controller.",
           "echo_summaries": {
-            "DECISIVE_SUCCESS": "$proponent entro $in_region senza che nessuno contasse i carri, e quella terra smise di essere di qualcuno in particolare.",
-            "FAILURE": "$proponent chiese di entrare $in_region e la porta resto dov'era, con la stessa gente davanti.",
-            "SUCCESS_WITH_COST": "$proponent entro $in_region, e quella terra smise di essere solo di $controller: ci vollero due inverni perche qualcuno lo chiamasse un accordo."
+            "DECISIVE_SUCCESS": "$proponent entrò $in_region senza che nessuno contasse i carri, e quella terra smise di essere di qualcuno in particolare.",
+            "FAILURE": "$proponent chiese di entrare $in_region e la porta restò dov'era, con la stessa gente davanti.",
+            "SUCCESS_WITH_COST": "$proponent entrò $in_region, e quella terra smise di essere solo di $controller: ci vollero due inverni perché qualcuno lo chiamasse un accordo."
           }
         },
         {
@@ -77,23 +77,23 @@
               "scope": "ENTITY",
               "entity_id": "$proponent",
               "tag": "crowned",
-              "label": "Solo il trono puo chiudere i confini del regno"
+              "label": "Solo il trono può chiudere i confini del regno"
             }
           ],
           "success_consequences": [
             "CNS_SEALED_VALLEY"
           ],
-          "echo_summary": "I confini $of_region furono chiusi, e l'inverno resto fuori con $rival.",
+          "echo_summary": "I confini $of_region furono chiusi, e l'inverno restò fuori con $rival.",
           "echo_summaries": {
             "DECISIVE_SUCCESS": "I confini $of_region furono chiusi in una notte, e per un anno intero nessuno provo a discuterne.",
             "FAILURE": "Si provo a chiudere i confini $of_region, e il primo a passare fu chi li aveva proposti.",
-            "SUCCESS_WITH_COST": "I confini $of_region furono chiusi, e l'inverno resto fuori con $rival: dentro si conto due volte tutto quello che c'era."
+            "SUCCESS_WITH_COST": "I confini $of_region furono chiusi, e l'inverno restò fuori con $rival: dentro si conto due volte tutto quello che c'era."
           }
         },
         {
           "id": "P_LAND_TO_WORKERS",
           "question_id": "Q_FAMINE_LAND",
-          "text": "La terra $of_region appartiene a chi la lavora, e quest'anno la lavora chi e arrivato.",
+          "text": "La terra $of_region appartiene a chi la lavora, e quest'anno la lavora chi è arrivato.",
           "eligibility": [],
           "success_consequences": [
             "CNS_NAHR_SETTLEMENT",
@@ -101,7 +101,7 @@
           ],
           "echo_summary": "La terra $of_region fu assegnata a chi la lavorava, e il titolo di chi la teneva resto scritto solo sulla carta.",
           "echo_summaries": {
-            "DECISIVE_SUCCESS": "La terra $of_region passo a chi la lavorava, e il vecchio titolo non fu nemmeno riletto ad alta voce.",
+            "DECISIVE_SUCCESS": "La terra $of_region passò a chi la lavorava, e il vecchio titolo non fu nemmeno riletto ad alta voce.",
             "FAILURE": "Si chiese che la terra $of_region andasse a chi la lavorava, e la carta rimase quella di prima.",
             "SUCCESS_WITH_COST": "La terra $of_region fu assegnata a chi la lavorava, e il titolo di chi la teneva resto scritto solo sulla carta - insieme al conto di chi ci aveva rimesso."
           }
@@ -185,7 +185,7 @@
       "id": "CNF_AWAKENING_01",
       "tension_id": "TEN_AWAKENING",
       "title": "Cio che Dorme sotto la Pietra",
-      "description": "Il Cristallo Rosso non e piu una curiosita. Qualcuno deve dire, ad alta voce, cosa se ne fa.",
+      "description": "Il Cristallo Rosso non è più una curiosità. Qualcuno deve dire, ad alta voce, cosa se ne fa.",
       "questions": [
         {
           "id": "Q_AWAKENING_CRYSTAL",
@@ -194,13 +194,13 @@
         },
         {
           "id": "Q_AWAKENING_MOUNTAIN",
-          "text": "A chi appartiene cio che dorme sotto $the_region?",
+          "text": "A chi appartiene ciò che dorme sotto $the_region?",
           "eligibility": [
             {
               "type": "tension_limit",
               "tension_id": "TEN_AWAKENING",
               "min": 6,
-              "label": "Il Risveglio e vicino"
+              "label": "Il Risveglio è vicino"
             }
           ]
         }
@@ -215,11 +215,11 @@
             "CNS_CRYSTAL_EXPLOITED",
             "CNS_MINE_TAKEN"
           ],
-          "echo_summary": "Si scavo $in_region, e il Cristallo Rosso usci alla luce a peso.",
+          "echo_summary": "Si scavò $in_region, e il Cristallo Rosso uscì alla luce a peso.",
           "echo_summaries": {
-            "DECISIVE_SUCCESS": "Si scavo $in_region senza che nessuno chiedesse a che prezzo, e il Cristallo Rosso usci alla luce a peso.",
+            "DECISIVE_SUCCESS": "Si scavò $in_region senza che nessuno chiedesse a che prezzo, e il Cristallo Rosso uscì alla luce a peso.",
             "FAILURE": "Si volle scavare $in_region, e le gallerie restarono buie come le si era trovate.",
-            "SUCCESS_WITH_COST": "Si scavo $in_region, e il Cristallo Rosso usci alla luce a peso: con lui uscirono due squadre su tre."
+            "SUCCESS_WITH_COST": "Si scavò $in_region, e il Cristallo Rosso uscì alla luce a peso: con lui uscirono due squadre su tre."
           }
         },
         {
@@ -232,22 +232,22 @@
           ],
           "echo_summary": "Le gallerie $in_region furono sigillate, e la domanda con loro.",
           "echo_summaries": {
-            "DECISIVE_SUCCESS": "Le gallerie $in_region furono sigillate e la domanda con loro, e per una generazione nessuno seppe piu formularla.",
-            "FAILURE": "Si volle sigillare le gallerie $in_region, e la pietra resto dov'era, con la porta aperta."
+            "DECISIVE_SUCCESS": "Le gallerie $in_region furono sigillate e la domanda con loro, e per una generazione nessuno seppe più formularla.",
+            "FAILURE": "Si volle sigillare le gallerie $in_region, e la pietra restò dov'era, con la porta aperta."
           }
         },
         {
           "id": "P_GUARDED_STUDY",
           "question_id": "Q_AWAKENING_MOUNTAIN",
-          "text": "Il Cristallo si studia sotto vincolo, e a rispondere del limite e $rival.",
+          "text": "Il Cristallo si studia sotto vincolo, e a rispondere del limite è $rival.",
           "eligibility": [],
           "success_consequences": [
             "CNS_STUDY_UNDER_GUARD"
           ],
           "echo_summary": "Il Cristallo Rosso fu affidato a $rival, e lo studio ebbe un limite scritto.",
           "echo_summaries": {
-            "DECISIVE_SUCCESS": "Il Cristallo Rosso fu affidato a $rival, e il limite scritto fu piu lungo di quanto chiunque si aspettasse.",
-            "FAILURE": "Si propose di affidare il Cristallo Rosso a una custodia, e resto in mano a chi lo aveva gia."
+            "DECISIVE_SUCCESS": "Il Cristallo Rosso fu affidato a $rival, e il limite scritto fu più lungo di quanto chiunque si aspettasse.",
+            "FAILURE": "Si propose di affidare il Cristallo Rosso a una custodia, e restò in mano a chi lo aveva già."
           }
         },
         {
@@ -265,9 +265,9 @@
           "success_consequences": [
             "CNS_MINE_REOPENED"
           ],
-          "echo_summary": "La pietra fu tolta, e quello che dormiva torno una domanda.",
+          "echo_summary": "La pietra fu tolta, e quello che dormiva tornò una domanda.",
           "echo_summaries": {
-            "FAILURE": "Si volle togliere la pietra, e la pietra resto dove qualcuno l'aveva messa."
+            "FAILURE": "Si volle togliere la pietra, e la pietra restò dove qualcuno l'aveva messa."
           }
         }
       ],
@@ -300,7 +300,7 @@
         },
         {
           "id": "C_AWAKENING_SHARE",
-          "text": "...purche cio che si scopre sia detto a tutti, non a chi paga.",
+          "text": "...purche ciò che si scopre sia detto a tutti, non a chi paga.",
           "effects": [
             {
               "type": "SET_GLOBAL_TAG",
@@ -349,7 +349,7 @@
       "id": "CNF_SUCCESSION_01",
       "tension_id": "TEN_SUCCESSION",
       "title": "Chi Siede Dopo",
-      "description": "Aldric non ha erede e tutti lo sanno da anni. La differenza e che adesso qualcuno lo dice a voce alta, in una stanza dove ci sono testimoni.",
+      "description": "Aldric non ha erede e tutti lo sanno da anni. La differenza è che adesso qualcuno lo dice a voce alta, in una stanza dove ci sono testimoni.",
       "questions": [
         {
           "id": "Q_SUCCESSION_HEIR",
@@ -358,13 +358,13 @@
         },
         {
           "id": "Q_SUCCESSION_LAW",
-          "text": "$in_region, che cosa vale piu di un nome: la legge o le spade?",
+          "text": "$in_region, che cosa vale più di un nome: la legge o le spade?",
           "eligibility": [
             {
               "type": "tension_limit",
               "tension_id": "TEN_SUCCESSION",
               "min": 5,
-              "label": "La Successione e al limite"
+              "label": "La Successione è al limite"
             }
           ]
         }
@@ -373,7 +373,7 @@
         {
           "id": "P_NAME_HEIR",
           "question_id": "Q_SUCCESSION_HEIR",
-          "text": "Un erede si nomina adesso, davanti a tutti, e chi c'e ne risponde.",
+          "text": "Un erede si nomina adesso, davanti a tutti, e chi c'è ne risponde.",
           "eligibility": [],
           "success_consequences": [
             "CNS_HEIR_NAMED",
@@ -401,9 +401,9 @@
             "CNS_HEIR_NAMED",
             "CNS_LEGEND_RETOLD"
           ],
-          "echo_summary": "L'erede fu nominato come nella storia, e la storia fini nel registro.",
+          "echo_summary": "L'erede fu nominato come nella storia, e la storia finì nel registro.",
           "echo_summaries": {
-            "FAILURE": "Si cerco l'erede della ballata, e la ballata non lo diede."
+            "FAILURE": "Si cercò l'erede della ballata, e la ballata non lo diede."
           }
         },
         {
@@ -415,7 +415,7 @@
             "CNS_CROWN_DIVIDED",
             "CNS_MARCH_GRANTED"
           ],
-          "echo_summary": "La corona fu divisa in due, e $of_region nessuno seppe piu dire a chi rispondesse."
+          "echo_summary": "La corona fu divisa in due, e $of_region nessuno seppe più dire a chi rispondesse."
         },
         {
           "id": "P_WRITE_THE_LAW",
@@ -436,16 +436,16 @@
               "type": "tension_limit",
               "tension_id": "TEN_SUCCESSION",
               "min": 6,
-              "label": "Solo un trono al limite si prende cosi"
+              "label": "Solo un trono al limite si prende così"
             }
           ],
           "success_consequences": [
             "CNS_CAPITAL_TAKEN"
           ],
-          "echo_summary": "$proponent prese il posto senza aspettare che si liberasse, e $rival non arrivo in tempo.",
+          "echo_summary": "$proponent prese il posto senza aspettare che si liberasse, e $rival non arrivò in tempo.",
           "echo_summaries": {
-            "FAILURE": "$proponent si mosse per prendere il posto e trovo $rival gia seduto, e sveglio.",
-            "SUCCESS_WITH_COST": "$proponent prese il posto senza aspettare che si liberasse, e $rival non arrivo in tempo - ma arrivo."
+            "FAILURE": "$proponent si mosse per prendere il posto e trovò $rival già seduto, e sveglio.",
+            "SUCCESS_WITH_COST": "$proponent prese il posto senza aspettare che si liberasse, e $rival non arrivò in tempo - ma arrivo."
           }
         },
         {
@@ -457,7 +457,7 @@
               "type": "state_tag_present",
               "scope": "GLOBAL",
               "tag": "crown_divided",
-              "label": "La corona e divisa da un'altra era"
+              "label": "La corona è divisa da un'altra era"
             }
           ],
           "success_consequences": [
@@ -466,25 +466,25 @@
           ],
           "echo_summary": "I due titoli tornarono uno, e chi perse la conta non lo dimentico.",
           "echo_summaries": {
-            "FAILURE": "Si conto chi teneva cosa, e la conta non torno a nessuno."
+            "FAILURE": "Si contò chi teneva cosa, e la conta non tornò a nessuno."
           }
         },
         {
           "id": "P_RETAKE_QUESTION",
           "question_id": "Q_SUCCESSION_LAW",
-          "text": "Si riprenda la domanda che un consiglio lascio cadere, e stavolta la risposta si scriva nel registro.",
+          "text": "Si riprenda la domanda che un consiglio lasciò cadere, e stavolta la risposta si scriva nel registro.",
           "eligibility": [
             {
               "type": "state_tag_present",
               "scope": "GLOBAL",
               "tag": "question_unresolved",
-              "label": "Una questione e rimasta aperta"
+              "label": "Una questione è rimasta aperta"
             }
           ],
           "success_consequences": [
             "CNS_QUESTION_RETAKEN"
           ],
-          "echo_summary": "La domanda lasciata cadere fu ripresa, e la risposta fini nel registro.",
+          "echo_summary": "La domanda lasciata cadere fu ripresa, e la risposta finì nel registro.",
           "echo_summaries": {
             "FAILURE": "Si volle riprendere la domanda caduta, e cadde una seconda volta."
           }
@@ -569,7 +569,7 @@
       "id": "CNF_ROADS_01",
       "tension_id": "TEN_ROADS",
       "title": "Il Prezzo del Sale",
-      "description": "Non e una guerra e non e una carestia: e che da qualche mese le cose non arrivano piu, e nessuno vuole essere il primo a dire di chi e la colpa.",
+      "description": "Non è una guerra e non è una carestia: è che da qualche mese le cose non arrivano più, e nessuno vuole essere il primo a dire di chi è la colpa.",
       "questions": [
         {
           "id": "Q_ROADS_TOLL",
@@ -598,21 +598,21 @@
           "success_consequences": [
             "CNS_TOLL_ESTABLISHED"
           ],
-          "echo_summary": "Il pedaggio $of_region fu scritto e riscosso da $proponent, e la strada torno sicura e cara.",
+          "echo_summary": "Il pedaggio $of_region fu scritto e riscosso da $proponent, e la strada tornò sicura e cara.",
           "echo_summaries": {
-            "DECISIVE_SUCCESS": "Il pedaggio $of_region fu scritto, uguale per tutti, e nessuno provo a scontarlo.",
-            "FAILURE": "Si propose un pedaggio scritto $in_region, e ognuno continuo a riscuotere il proprio."
+            "DECISIVE_SUCCESS": "Il pedaggio $of_region fu scritto, uguale per tutti, e nessuno provò a scontarlo.",
+            "FAILURE": "Si propose un pedaggio scritto $in_region, e ognuno continuò a riscuotere il proprio."
           }
         },
         {
           "id": "P_MOVE_MARKET",
           "question_id": "Q_ROADS_TOLL",
-          "text": "Il mercato si sposta dove si puo difenderlo, e chi ci vive intorno ne campa.",
+          "text": "Il mercato si sposta dove si può difenderlo, e chi ci vive intorno ne campa.",
           "eligibility": [],
           "success_consequences": [
             "CNS_MARKET_MOVED"
           ],
-          "echo_summary": "Il mercato lascio la strada e si fermo $in_region, e con lui si sposto chi comandava."
+          "echo_summary": "Il mercato lasciò la strada e si fermò $in_region, e con lui si spostò chi comandava."
         },
         {
           "id": "P_SWEAR_ESCORT",
@@ -670,7 +670,7 @@
         },
         {
           "id": "C_ROADS_LEDGER",
-          "text": "...purche ogni carico sia scritto su un registro che chiunque puo leggere.",
+          "text": "...purche ogni carico sia scritto su un registro che chiunque può leggere.",
           "effects": [
             {
               "type": "SET_ENTITY_TAG",
@@ -719,7 +719,7 @@
       "id": "CNF_ANY_SURVIVAL",
       "applies_to_domain": "SURVIVAL",
       "title": "Il Consiglio di Chi Resta",
-      "description": "Non importa quale sia la cosa che manca. Prima o poi qualcuno chiede, ad alta voce, chi decide a chi non ne tocca. Questo Consiglio serve qualunque crisi di sopravvivenza: e contenuto di biblioteca, non di questa Chronicle.",
+      "description": "Non importa quale sia la cosa che manca. Prima o poi qualcuno chiede, ad alta voce, chi decide a chi non ne tocca. Questo Consiglio serve qualunque crisi di sopravvivenza: è contenuto di biblioteca, non di questa Chronicle.",
       "questions": [
         {
           "id": "Q_ANY_WHO_DECIDES",
@@ -734,7 +734,7 @@
               "type": "tension_limit",
               "tension_id": "$tension",
               "min": 4,
-              "label": "La questione e al limite"
+              "label": "La questione è al limite"
             }
           ]
         }
@@ -743,12 +743,12 @@
         {
           "id": "P_ANY_RATION",
           "question_id": "Q_ANY_WHO_DECIDES",
-          "text": "Si conta quello che c'e e $proponent decide chi ne ha diritto.",
+          "text": "Si conta quello che c'è e $proponent decide chi ne ha diritto.",
           "eligibility": [],
           "success_consequences": [
             "CNS_RATIONED"
           ],
-          "echo_summary": "$proponent fece la lista di chi aveva diritto $in_region, e nessuno la dimentico.",
+          "echo_summary": "$proponent fece la lista di chi aveva diritto $in_region, e nessuno la dimenticò.",
           "echo_summaries": {
             "DECISIVE_SUCCESS": "$proponent fece la lista di chi aveva diritto $in_region, e nessuno chiese di vederla due volte.",
             "FAILURE": "$proponent volle fare la lista di chi aveva diritto $in_region, e la lista non fu mai letta."
@@ -774,7 +774,7 @@
           ],
           "echo_summary": "$proponent lascio $the_region a chi voleva restare, e restarono in pochi.",
           "echo_summaries": {
-            "FAILURE": "$proponent volle andarsene da $the_region, e non parti nessuno.",
+            "FAILURE": "$proponent volle andarsene da $the_region, e non partì nessuno.",
             "SUCCESS_WITH_COST": "$proponent lascio $the_region a chi voleva restare, e restarono in pochi - e nessuno dei due gruppi perdono l'altro."
           }
         },
@@ -793,9 +793,9 @@
           "success_consequences": [
             "CNS_LEGEND_RETOLD"
           ],
-          "echo_summary": "Si fece come si racconta che si fece, e per quell'anno basto.",
+          "echo_summary": "Si fece come si racconta che si fece, e per quell'anno bastò.",
           "echo_summaries": {
-            "FAILURE": "Si volle fare come nella storia, e la storia non torno."
+            "FAILURE": "Si volle fare come nella storia, e la storia non tornò."
           }
         }
       ],

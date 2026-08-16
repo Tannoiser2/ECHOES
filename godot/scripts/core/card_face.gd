@@ -184,7 +184,12 @@ static func _echo(card: Dictionary, data: RefCounted) -> Dictionary:
 static func _tension(tension: Dictionary) -> Dictionary:
 	var face: Dictionary = _face("tension", str(tension["id"]), "MINI")
 	face["title"] = str(tension["title"])
-	face["subtitle"] = "domanda · %s" % str(tension["domain"]).to_lower()
+	# La velatura e' una regola e sta nel dato `visibility`: la carta la
+	# dichiara da se', cosi' la descrizione resta racconto (D-099).
+	face["subtitle"] = "domanda%s · %s" % [
+		"" if str(tension["visibility"]) == "OPEN" else " velata",
+		str(tension["domain"]).to_lower(),
+	]
 	# La soglia e' il numero che sta sulla traccia: la carta la ripete perche' la
 	# traccia e' dall'altra parte del tavolo.
 	face["corner"] = str(int(tension["threshold"]))
