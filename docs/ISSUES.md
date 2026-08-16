@@ -352,6 +352,50 @@ opzioni sono d'autore: una via per *disfare* il fatto eterno (riaprire la
 miniera, riunire la corona), o Destini tardivi che chiedono presenze invece
 che assenze.
 
+### 19. Le incarnazioni del seggio: Anselmo, e poi il suo culto
+
+`motore` · `contenuto` · voluta dal committente
+
+Il seggio attraversa i secoli, ma oggi cambia solo il nome: Priore Anselmo,
+Priora Ilaria, Priore Teodo — la stessa carta, gli stessi poteri. Il
+committente vuole di più: in un'era si gioca *la persona*, in una successiva
+**il culto nato da lei** (Anselmo → i suoi frati, come Francesco → i
+Francescani) — natura diversa (MORTAL → COLLECTIVE), poteri diversi, carta e
+prompt d'arte propri.
+
+Le fasi:
+
+1. **Lo schema**: `incarnations` sull'Entità — ognuna con nome, descrizione,
+   `persistence`, `action_values` propri, `art_prompt_key` proprio, i propri
+   successori (i nomi *dentro* l'incarnazione) e la regola d'ingresso (quando
+   la linea prima si esaurisce).
+2. **La successione le attraversa**: i nomi cambiano dentro un'incarnazione;
+   l'incarnazione cambia quando la sua linea finisce, e il verbale d'apertura
+   lo racconta («Il priorato è finito: al suo posto siede il culto»).
+3. **Le carte**: un tarocco per incarnazione — il nome corrente resta nel
+   verbale, come i re di una dinastia — e un prompt d'arte per incarnazione
+   (chiude anche la domanda «c'è il prompt di Anselmo ma non dei successori»).
+4. **I poteri per incarnazione**: prima leva onesta e misurabile,
+   `action_values` e `persistence` propri; i poteri *nominati* («solo
+   l'Ordine può…») sono design d'autore da definire insieme prima, misurare
+   dopo.
+
+**Fatto quando** una saga attraversa almeno un cambio d'incarnazione, con
+carta e prompt propri e il passaggio nel verbale, e le sonde d'era restano in
+banda.
+
+### 20. Ampliare i pool dei Destini
+
+`contenuto` · `da-misurare` · voluta dal committente
+
+Due ambizioni per casa sono il minimo vitale: su ~14 rotazioni a saga, il giro
+torna. Da 2 a **3-4 per casa**, con due nature: identitarie (scritte per il
+seggio) e **condivisibili** — clausole con `$self`, scritte una volta e messe
+nei pool di più case (il motore deve solo imparare `$self` nelle condizioni).
+
+**Fatto quando** ogni Destino nuovo è misurato raggiungibile dove vive (D-035,
+sonde esistenti), i pool sono almeno a 3, e il playtest resta 0/8 bloccati.
+
 ## Milestone 0.3 — World Propagation
 
 ### 9. ✅ La Chronicle II generata dalle evidence (#25) — fatta in 0.1.44–0.1.46
