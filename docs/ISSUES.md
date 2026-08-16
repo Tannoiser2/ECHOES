@@ -396,6 +396,23 @@ nei pool di più case (il motore deve solo imparare `$self` nelle condizioni).
 **Fatto quando** ogni Destino nuovo è misurato raggiungibile dove vive (D-035,
 sonde esistenti), i pool sono almeno a 3, e il playtest resta 0/8 bloccati.
 
+### 21. La mossa che spegne il tuo Destino avverta prima
+
+`app` · nata da una partita vera (seme 15308)
+
+Nella partita del committente, Vaerax entra nell'ultimo round con la prima
+spunta accesa («La montagna è ancora sua») e la spegne **da solo**, spostando
+l'ultimo token via dalle Montagne Rosse — chiude la cronaca a NONE senza che
+l'app abbia detto nulla. Al tavolo fisico un compagno te lo farebbe notare;
+l'app deve fare almeno altrettanto: quando l'azione scelta dal giocatore umano
+farebbe passare una clausola del *suo* Destino da vera a falsa, una riga di
+avviso prima di confermare («questa mossa spegne: *La montagna è ancora sua*»).
+Solo per il posto proprio, solo clausole già accese, nessun suggerimento
+strategico: un cartello, non un consigliere.
+
+**Fatto quando** la mossa di quella partita, rigiocata, mostra l'avviso, e una
+mossa qualsiasi che non tocca il Destino non lo mostra.
+
 ## Milestone 0.3 — World Propagation
 
 ### 9. ✅ La Chronicle II generata dalle evidence (#25) — fatta in 0.1.44–0.1.46

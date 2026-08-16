@@ -65,7 +65,7 @@
       "condition_clauses": [
         {
           "id": "C_WATER_LAST",
-          "text": "...purche l'ultima presa sia di chi sta più in basso.",
+          "text": "...purché l'ultima presa sia di chi sta più in basso.",
           "effects": [
             {
               "type": "SET_GLOBAL_TAG",
@@ -91,7 +91,7 @@
         },
         {
           "id": "C_WATER_COUNT",
-          "text": "...purche le braccia mandate da ciascuno siano contate e scritte.",
+          "text": "...purché le braccia mandate da ciascuno siano contate e scritte.",
           "effects": [
             {
               "type": "SET_ENTITY_TAG",
@@ -229,7 +229,7 @@
       "condition_clauses": [
         {
           "id": "C_DEBT_YEARS",
-          "text": "...purche il rientro sia in dieci anni e non in uno.",
+          "text": "...purché il rientro sia in dieci anni e non in uno.",
           "effects": [
             {
               "type": "ADJUST_TENSION",
@@ -255,7 +255,7 @@
         },
         {
           "id": "C_DEBT_WITNESS",
-          "text": "...purche a contare sia presente anche $rival.",
+          "text": "...purché a contare sia presente anche $rival.",
           "effects": [
             {
               "type": "SET_ENTITY_TAG",
@@ -379,7 +379,7 @@
       "condition_clauses": [
         {
           "id": "C_RELIC_RECORD",
-          "text": "...purche quello che si vede sia scritto lo stesso giorno.",
+          "text": "...purché quello che si vede sia scritto lo stesso giorno.",
           "effects": [
             {
               "type": "SET_ENTITY_TAG",
@@ -405,7 +405,7 @@
         },
         {
           "id": "C_RELIC_WATCH",
-          "text": "...purche sulla montagna resti una veglia, chiunque la tenga.",
+          "text": "...purché sulla montagna resti una veglia, chiunque la tenga.",
           "effects": [
             {
               "type": "SET_ENTITY_TAG",
@@ -522,7 +522,7 @@
       "condition_clauses": [
         {
           "id": "C_CHARTER_REVIEW",
-          "text": "...purche fra dieci anni si possa riscriverla.",
+          "text": "...purché fra dieci anni si possa riscriverla.",
           "effects": [
             {
               "type": "SET_GLOBAL_TAG",
@@ -548,7 +548,7 @@
         },
         {
           "id": "C_CHARTER_NAMELESS",
-          "text": "...purche valga anche per chi non ha una città.",
+          "text": "...purché valga anche per chi non ha una città.",
           "effects": [
             {
               "type": "ADJUST_TENSION",
@@ -630,7 +630,7 @@
       "condition_clauses": [
         {
           "id": "C_ANY_ANCIENT_TELL",
-          "text": "...purche quello che si vede sia detto anche a $rival.",
+          "text": "...purché quello che si vede sia detto anche a $rival.",
           "effects": [
             {
               "type": "SET_ENTITY_TAG",

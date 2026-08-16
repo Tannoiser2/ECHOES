@@ -50,7 +50,7 @@
           "params": {
             "region_id": "REG_VALLE_VERDE"
           },
-          "note": "Il terzo token scende nella Valle Verde. Il proponente e chi ha piu presenza nella Regione di cui si discute (D-036), non nel dominio: la Valle e il posto, quindi la domanda sul grano e loro da porre."
+          "note": "Il terzo token scende nella Valle Verde. Il proponente e chi ha più presenza nella Regione di cui si discute (D-036), non nel dominio: la Valle e il posto, quindi la domanda sul grano e loro da porre."
         },
         {
           "act": 1,
@@ -70,7 +70,7 @@
             "mode": "TENSION",
             "tension_id": "TEN_AWAKENING"
           },
-          "note": "Senza questa Scoperta, Vaerax non puo toccare il Risveglio."
+          "note": "Senza questa Scoperta, Vaerax non può toccare il Risveglio."
         },
         {
           "act": 1,
@@ -232,7 +232,7 @@
         {
           "index": 0,
           "tension_id": "TEN_FAMINE",
-          "note": "I Nahr propongono, e impegnano poco perche non hanno altro. Aldric ribalta il fronte con il Diritto di Corona (AUTHORITY e rilevante: 2+1) e due Editti.",
+          "note": "I Nahr propongono, e impegnano poco perché non hanno altro. Aldric ribalta il fronte con il Diritto di Corona (AUTHORITY e rilevante: 2+1) e due Editti.",
           "question_id": "Q_FAMINE_LAND",
           "proposition_id": "P_LAND_TO_WORKERS",
           "stances": {

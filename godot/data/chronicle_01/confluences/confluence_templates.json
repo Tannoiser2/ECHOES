@@ -110,7 +110,7 @@
       "condition_clauses": [
         {
           "id": "C_FAMINE_SHARE",
-          "text": "...purche una quota fissa resti a $rival.",
+          "text": "...purché una quota fissa resti a $rival.",
           "effects": [
             {
               "type": "REMOVE_REGION_TAG",
@@ -136,7 +136,7 @@
         },
         {
           "id": "C_FAMINE_AUDIT",
-          "text": "...purche la distribuzione $in_region sia contata davanti a testimoni.",
+          "text": "...purché la distribuzione $in_region sia contata davanti a testimoni.",
           "effects": [
             {
               "type": "SET_GLOBAL_TAG",
@@ -274,7 +274,7 @@
       "condition_clauses": [
         {
           "id": "C_AWAKENING_WITNESS",
-          "text": "...purche $rival assista a ogni discesa.",
+          "text": "...purché $rival assista a ogni discesa.",
           "effects": [
             {
               "type": "SET_GLOBAL_TAG",
@@ -300,7 +300,7 @@
         },
         {
           "id": "C_AWAKENING_SHARE",
-          "text": "...purche ciò che si scopre sia detto a tutti, non a chi paga.",
+          "text": "...purché ciò che si scopre sia detto a tutti, non a chi paga.",
           "effects": [
             {
               "type": "SET_GLOBAL_TAG",
@@ -493,7 +493,7 @@
       "condition_clauses": [
         {
           "id": "C_SUCCESSION_WITNESS",
-          "text": "...purche $rival sia fra i testimoni, e la sua firma valga come le altre.",
+          "text": "...purché $rival sia fra i testimoni, e la sua firma valga come le altre.",
           "effects": [
             {
               "type": "SET_GLOBAL_TAG",
@@ -519,7 +519,7 @@
         },
         {
           "id": "C_SUCCESSION_AMNESTY",
-          "text": "...purche chi ha giurato all'altro non ne paghi il prezzo.",
+          "text": "...purché chi ha giurato all'altro non ne paghi il prezzo.",
           "effects": [
             {
               "type": "REMOVE_REGION_TAG",
@@ -644,7 +644,7 @@
       "condition_clauses": [
         {
           "id": "C_ROADS_SHARE",
-          "text": "...purche una quota resti a chi la strada la percorre e non la possiede.",
+          "text": "...purché una quota resti a chi la strada la percorre e non la possiede.",
           "effects": [
             {
               "type": "SET_GLOBAL_TAG",
@@ -670,7 +670,7 @@
         },
         {
           "id": "C_ROADS_LEDGER",
-          "text": "...purche ogni carico sia scritto su un registro che chiunque può leggere.",
+          "text": "...purché ogni carico sia scritto su un registro che chiunque può leggere.",
           "effects": [
             {
               "type": "SET_ENTITY_TAG",
@@ -802,7 +802,7 @@
       "condition_clauses": [
         {
           "id": "C_ANY_WITNESS",
-          "text": "...purche $rival veda la lista con i propri occhi.",
+          "text": "...purché $rival veda la lista con i propri occhi.",
           "effects": [
             {
               "type": "SET_GLOBAL_TAG",
@@ -828,7 +828,7 @@
         },
         {
           "id": "C_ANY_RETURN",
-          "text": "...purche chi se ne va possa tornare quando torna l'acqua.",
+          "text": "...purché chi se ne va possa tornare quando torna l'acqua.",
           "effects": [
             {
               "type": "REMOVE_REGION_TAG",

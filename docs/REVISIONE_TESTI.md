@@ -196,7 +196,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`TEN_NAMELESS`**
-> I Senza Citta
+> I Senza Città
 
 > Non sono nemici e non sono poveri: sono persone che non risultano da nessuna parte, e ogni anno sono di più.
 
@@ -1524,9 +1524,9 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 
 
 **`AST_BONDS_GUEST_RIGHT`**
-> Diritto di Ospitalita
+> Diritto di Ospitalità
 
-> +1 quando BONDS è rilevante per la Tensione. Chi ha mangiato al tuo tavolo non può dire di no davanti a tutti. Puo dirlo dopo.
+> +1 quando BONDS è rilevante per la Tensione. Chi ha mangiato al tuo tavolo non può dire di no davanti a tutti. Può dirlo dopo.
 
 
 **`AST_BONDS_HOSTAGE`**

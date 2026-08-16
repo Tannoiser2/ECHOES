@@ -63,7 +63,7 @@
           "name": "from_region_id",
           "type": "region_id",
           "required": false,
-          "note": "Obbligatorio quando i 3 token sono gia tutti sul tavolo."
+          "note": "Obbligatorio quando i 3 token sono già tutti sul tavolo."
         }
       ],
       "rules_text": "Ogni Entita ha 3 token presenza. Una Regione non può ospitare più token dei suoi presence_slots."

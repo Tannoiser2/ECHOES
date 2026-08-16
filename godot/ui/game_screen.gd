@@ -1017,7 +1017,7 @@ func _flush(shown: Dictionary) -> void:
 
 func _ending(data: RefCounted, report: Dictionary) -> void:
 	say("")
-	say("== COM'E FINITA ==")
+	say("== COM'È FINITA ==")
 	_toggle_cronaca(true)
 	for entity_id in _seats:
 		var entry: Dictionary = report["destiny_results"][str(entity_id)]

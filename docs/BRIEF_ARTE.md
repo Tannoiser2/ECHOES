@@ -225,13 +225,13 @@ Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame
 no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
 ```
 
-### `asset.bonds.guest_right` — Diritto di Ospitalita
+### `asset.bonds.guest_right` — Diritto di Ospitalità
 
-- **soggetto**: Diritto di Ospitalita — +1 quando BONDS è rilevante per la Tensione. Chi ha mangiato al tuo tavolo non può dire di no davanti a tutti. Puo dirlo dopo
+- **soggetto**: Diritto di Ospitalità — +1 quando BONDS è rilevante per la Tensione. Chi ha mangiato al tuo tavolo non può dire di no davanti a tutti. Può dirlo dopo
 - **id**: `AST_BONDS_GUEST_RIGHT`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Diritto di Ospitalita — +1 quando BONDS è rilevante per la Tensione. Chi ha mangiato al tuo tavolo non può dire di no davanti a tutti. Puo dirlo dopo.
+Historical dark-fantasy painting, single evocative scene depicting Diritto di Ospitalità — +1 quando BONDS è rilevante per la Tensione. Chi ha mangiato al tuo tavolo non può dire di no davanti a tutti. Può dirlo dopo.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 porpora tenue accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.

@@ -32,7 +32,7 @@ family, 22 copies per family deck, 132 cards in the box (D-040).
 | AST_BONDS_BETROTHAL | Promessa di Nozze | BONDS | 2 | UNCOMMON | 2 | ALWAYS_DISCARD | `asset.bonds.betrothal` |
 | AST_BONDS_BLOOD_TIE | Legame di Sangue | BONDS | 2 | UNCOMMON | 2 | DISCARD | `asset.bonds.blood_tie` |
 | AST_BONDS_FAVOR | Favore | BONDS | 1 | COMMON | 4 | DISCARD | `asset.bonds.favor` |
-| AST_BONDS_GUEST_RIGHT | Diritto di Ospitalita | BONDS | 1 | COMMON | 4 | DISCARD | `asset.bonds.guest_right` |
+| AST_BONDS_GUEST_RIGHT | Diritto di Ospitalità | BONDS | 1 | COMMON | 4 | DISCARD | `asset.bonds.guest_right` |
 | AST_BONDS_OATH | Giuramento | BONDS | 1 | COMMON | 4 | RETAIN | `asset.bonds.oath` |
 | AST_BONDS_OLD_DEBT | Debito Vecchio | BONDS | 1 | COMMON | 4 | DISCARD | `asset.bonds.old_debt` |
 | AST_FORCE_BURNED_GATE | Le Porte Bruciate | FORCE | 3 | RARE | 1 | ALWAYS_DISCARD | `asset.force.burned_gate` |
@@ -161,7 +161,7 @@ family, 22 copies per family deck, 132 cards in the box (D-040).
 | TEN_CHARTER | La Carta | TERRITORY | 2 | 7 | OPEN | 1 |
 | TEN_DEBT | Il Debito | RESOURCE | 2 | 7 | OPEN | 1 |
 | TEN_FAMINE | La Carestia | SURVIVAL | 3 | 6 | OPEN | 1 |
-| TEN_NAMELESS | I Senza Citta | SURVIVAL | 2 | 5 | VEILED | 1 |
+| TEN_NAMELESS | I Senza Città | SURVIVAL | 2 | 5 | VEILED | 1 |
 | TEN_PLAGUE | La Febbre Bassa | SURVIVAL | 2 | 5 | OPEN | 2 |
 | TEN_RELIC | La Reliquia | ANCIENT | 2 | 6 | VEILED | 2 |
 | TEN_ROADS | Le Vie Interrotte | RESOURCE | 1 | 5 | VEILED | 2 |

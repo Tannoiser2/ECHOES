@@ -28,7 +28,7 @@
       "triggers": [
         "Ogni canale che si insabbia e nessuno ripulisce.",
         "Ogni pozzo che diventa di qualcuno.",
-        "Ogni estate in cui il fiume arriva piu tardi."
+        "Ogni estate in cui il fiume arriva più tardi."
       ],
       "decrease_rules": [
         "Una Confluence risolta su chi scava e chi paga.",
@@ -71,8 +71,8 @@
       ],
       "triggers": [
         "Ogni raccolto comprato in anticipo.",
-        "Ogni citta che paga gli interessi e non il capitale.",
-        "Ogni registro che una parte sola puo leggere."
+        "Ogni città che paga gli interessi e non il capitale.",
+        "Ogni registro che una parte sola può leggere."
       ],
       "decrease_rules": [
         "Una Confluence risolta sul registro.",
@@ -163,7 +163,7 @@
         "Q_CHARTER_SEAT"
       ],
       "triggers": [
-        "Ogni sentenza che contraddice quella della citta accanto.",
+        "Ogni sentenza che contraddice quella della città accanto.",
         "Ogni confine spostato da chi ci abita e basta.",
         "Ogni volta che qualcuno dice 'come si e sempre fatto'."
       ],
@@ -185,7 +185,7 @@
     },
     {
       "id": "TEN_NAMELESS",
-      "title": "I Senza Citta",
+      "title": "I Senza Città",
       "domain": "SURVIVAL",
       "current_value": 2,
       "threshold": 5,
@@ -207,7 +207,7 @@
         "Q_ANY_WHO_STAYS"
       ],
       "triggers": [
-        "Ogni famiglia che nessuna citta iscrive nei propri registri.",
+        "Ogni famiglia che nessuna città iscrive nei propri registri.",
         "Ogni inverno passato fra due confini."
       ],
       "decrease_rules": [
@@ -246,7 +246,7 @@
         "Q_ANY_ANCIENT_WATCH"
       ],
       "triggers": [
-        "Ogni galleria riaperta piu in basso di quella prima.",
+        "Ogni galleria riaperta più in basso di quella prima.",
         "Ogni notte in cui la roccia resta tiepida fino all'alba."
       ],
       "decrease_rules": [

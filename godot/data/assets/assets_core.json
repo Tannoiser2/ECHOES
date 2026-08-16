@@ -92,7 +92,7 @@
           "payload": {
             "delta": 1
           },
-          "note": "Il costo della carta: usarla lascia la questione piu calda di come l'ha trovata."
+          "note": "Il costo della carta: usarla lascia la questione più calda di come l'ha trovata."
         }
       ]
     },
@@ -166,7 +166,7 @@
           "payload": {
             "delta": 1
           },
-          "note": "Il costo della carta: usarla lascia la questione piu calda di come l'ha trovata."
+          "note": "Il costo della carta: usarla lascia la questione più calda di come l'ha trovata."
         }
       ]
     },
@@ -356,7 +356,7 @@
           "payload": {
             "delta": 1
           },
-          "note": "Il costo della carta: usarla lascia la questione piu calda di come l'ha trovata."
+          "note": "Il costo della carta: usarla lascia la questione più calda di come l'ha trovata."
         }
       ]
     },
@@ -580,7 +580,7 @@
           "payload": {
             "delta": 1
           },
-          "note": "Il costo della carta: usarla lascia la questione piu calda di come l'ha trovata."
+          "note": "Il costo della carta: usarla lascia la questione più calda di come l'ha trovata."
         }
       ]
     },
@@ -769,7 +769,7 @@
           "payload": {
             "delta": 1
           },
-          "note": "Il costo della carta: usarla lascia la questione piu calda di come l'ha trovata."
+          "note": "Il costo della carta: usarla lascia la questione più calda di come l'ha trovata."
         }
       ]
     },
@@ -923,7 +923,7 @@
           "payload": {
             "delta": 1
           },
-          "note": "Il costo della carta: usarla lascia la questione piu calda di come l'ha trovata."
+          "note": "Il costo della carta: usarla lascia la questione più calda di come l'ha trovata."
         }
       ]
     },
@@ -983,7 +983,7 @@
     },
     {
       "id": "AST_BONDS_GUEST_RIGHT",
-      "title": "Diritto di Ospitalita",
+      "title": "Diritto di Ospitalità",
       "family": "BONDS",
       "strength": 1,
       "tags": [
@@ -999,7 +999,7 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.bonds.guest_right",
-      "rules_text": "+1 quando BONDS è rilevante per la Tensione. Chi ha mangiato al tuo tavolo non può dire di no davanti a tutti. Puo dirlo dopo."
+      "rules_text": "+1 quando BONDS è rilevante per la Tensione. Chi ha mangiato al tuo tavolo non può dire di no davanti a tutti. Può dirlo dopo."
     },
     {
       "id": "AST_BONDS_OLD_DEBT",
@@ -1145,7 +1145,7 @@
           "payload": {
             "delta": 1
           },
-          "note": "Il costo della carta: usarla lascia la questione piu calda di come l'ha trovata."
+          "note": "Il costo della carta: usarla lascia la questione più calda di come l'ha trovata."
         }
       ]
     }
