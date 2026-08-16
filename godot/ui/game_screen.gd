@@ -82,6 +82,7 @@ var _dev_button: Button
 ## servono alla stessa persona nello stesso momento: quella che ha finito di
 ## giocare e vuole rileggere.
 var _log_button: Button
+var _save_button: Button
 ## L'anteprima di stampa. Non guarda la partita - guarda i dati - quindi si apre
 ## anche dal menu, prima che una Chronicle esista.
 var _export: PanelContainer
@@ -357,6 +358,16 @@ func _build() -> void:
 	_log_button.pressed.connect(_on_log_pressed)
 	tools.add_child(_log_button)
 
+	# La voce 12 (D-092): il salvataggio si porta via come il log. Nel browser
+	# e' l'unica rete quando lo storage non c'e'; altrove e' una copia in piu'.
+	_save_button = Button.new()
+	_save_button.text = "Scarica il salvataggio"
+	_save_button.tooltip_text = "La partita in corso come file JSON, da tenere o riportare"
+	_save_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_save_button.add_theme_font_size_override("font_size", 12)
+	_save_button.pressed.connect(_on_save_pressed)
+	tools.add_child(_save_button)
+
 	_hand = HandView.new()
 	_hand.custom_minimum_size = Vector2(0, 80)
 	rows.add_child(_hand)
@@ -540,6 +551,28 @@ func _on_log_pressed() -> void:
 	_hint.text = said if said != "" else "Non c'e ancora niente da scaricare."
 
 
+## Il salvataggio come file (voce 12, D-092). La partita in corso se c'e', o
+## l'anno appena finito; per la stessa via del log, con il MIME del JSON.
+func _on_save_pressed() -> void:
+	var save: Dictionary = {}
+	if _session != null:
+		save = _session.to_save("download")
+	elif not _year_save.is_empty():
+		save = _year_save
+	if save.is_empty():
+		_hint.text = "Non c'e ancora una partita da salvare."
+		return
+	var world: Dictionary = save.get("world_state", {})
+	var said: String = LogExport.deliver(
+		SaveSerializer.to_json(save),
+		SaveSerializer.download_name(
+			str(world.get("chronicle_id", "")), int(world.get("rng_seed", -1))
+		),
+		"application/json"
+	)
+	_hint.text = said if said != "" else "Non c'e ancora una partita da salvare."
+
+
 func say(text: String) -> void:
 	if text.begins_with("=="):
 		_transcript.append_text("\n[color=#e8b563][b]%s[/b][/color]\n" % text.strip_edges())
@@ -635,6 +668,18 @@ func _clear_buttons() -> void:
 func _menu() -> void:
 	say("[b]ECHOES[/b] — un boardgame narrativo-strategico a Chronicle.")
 	say("")
+	# La voce 12 (D-092): se il salvataggio vive in un browser, la schermata lo
+	# dice prima di cominciare - non dopo, quando la scheda chiusa l'ha gia'
+	# perso. Una partita persa in silenzio e' il difetto; la frase e' il fix.
+	if OS.has_feature("web"):
+		if OS.is_userfs_persistent():
+			say("I salvataggi restano in questo browser. Con «Scarica il salvataggio»")
+			say("puoi comunque portartene via una copia quando vuoi.")
+		else:
+			say("[color=#c8553d]Questo browser non tiene i salvataggi[/color] (navigazione privata")
+			say("o storage bloccato): chiusa la scheda, la partita sparisce. Usa «Scarica")
+			say("il salvataggio» per portartela via prima di chiudere.")
+		say("")
 	say("Ogni Chronicle e una storia completa nello stesso mondo: quattro Entita di")
 	say("scala diversa preparano la propria posizione e poi si siedono a un Consiglio,")
 	say("dove una domanda viene decisa e quello che si decide resta scritto.")
@@ -935,3 +980,9 @@ func _ending(data: RefCounted, report: Dictionary) -> void:
 			_session.service.name_of(str(entity_id)) if _session != null else str(data.entities[str(entity_id)]["name"]),
 			str(entry["level"]), str(entry.get("label", "")),
 		])
+	# La rete della voce 12 (D-092), tesa nel momento in cui serve: un anno
+	# finito in un browser senza storage e' un anno che sparisce con la scheda.
+	if OS.has_feature("web") and not OS.is_userfs_persistent():
+		say("")
+		say("[color=#c8553d]Questo browser non tiene i salvataggi:[/color] scarica il log o il")
+		say("salvataggio adesso, prima di chiudere la scheda.")

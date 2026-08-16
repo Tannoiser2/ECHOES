@@ -331,6 +331,37 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-092 — Il browser dice se sa tenere il salvataggio (e lo fa scaricare)
+**implemented in 0.1.49** (chiude ISSUES voce 12)
+
+Il Web export tiene `user://` in IndexedDB e la guardia c'era
+(`OS.is_userfs_persistent()` già proteggeva la ripresa, D-052) — ma una
+partita persa perché il browser ha pulito lo spazio restava una partita
+persa **in silenzio**. La voce 12 chiedeva due cose, e sono entrate
+tutt'e due:
+
+**La schermata lo dice prima di cominciare.** Nel browser, il menu apre
+con una riga: se lo storage c'è, «i salvataggi restano in questo
+browser»; se non c'è (navigazione privata, storage bloccato), l'avviso a
+colore dice che chiusa la scheda la partita sparisce — e la stessa rete
+si tende a fine anno, nel momento in cui serve davvero. Fuori dal
+browser, niente: non c'è rischio da dichiarare.
+
+**E offre di scaricarlo.** Un bottone «Scarica il salvataggio» accanto a
+«Scarica il log»: la partita in corso (o l'anno appena finito) come JSON,
+per la stessa via del log — `JavaScriptBridge.download_buffer` nel
+browser, `user://` altrove. `LogExport.deliver` ha imparato il MIME (i
+suoi messaggi ora sono neutri: per di lì passa anche un salvataggio),
+`SaveSerializer.download_name` dà il nome con chronicle e seme dentro —
+`echoes-salvataggio-chr-01-7042.json` — perché un file che non dice quale
+mondo è, è un file che non si ritrova.
+
+Guardie: `test_snapshot_and_save` (il nome è onesto nei due casi),
+`test_log_export` invariato sul contratto di consegna. Il round-trip del
+JSON era già coperto («risalvare produce lo stesso identico testo»).
+
+---
+
 ## D-091 — `marker_id` esce dal modello dati (e rientrerà con chi lo legge)
 **implemented in 0.1.48** (chiude ISSUES voce 11)
 

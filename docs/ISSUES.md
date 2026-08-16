@@ -410,9 +410,15 @@ campo che nessuno legge è un campo che nessuno mantiene.
 
 </details>
 
-### 12. Il salvataggio nel browser sta in IndexedDB
+### 12. ✅ Il salvataggio nel browser sta in IndexedDB — fatta in 0.1.49
 
-`debito` · `ux`
+`debito` · `ux` · Tutt'e due le metà del «fatto quando»
+([D-092](DECISIONS.md#d-092)): il menu dichiara prima di cominciare se questo
+browser tiene i salvataggi (e ripete l'avviso a fine anno, quando serve), e
+«Scarica il salvataggio» porta via la partita come JSON con chronicle e seme
+nel nome, per la stessa via del log.
+
+<details><summary>Il testo dell'issue come era stato scritto</summary>
 
 Il Web export tiene `user://` in IndexedDB. La guardia c'è
 (`OS.is_userfs_persistent()`), ma una partita persa perché il browser ha pulito
@@ -420,6 +426,8 @@ lo spazio è una partita persa in silenzio.
 
 **Fatto quando** la schermata dice, prima di cominciare, se questo browser sa
 tenere il salvataggio — e offre di scaricarlo quando non lo sa.
+
+</details>
 
 ### 13. Il testo delle carte non ha una revisione editoriale
 

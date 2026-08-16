@@ -125,3 +125,18 @@ func test_rng_position_survives_a_save() -> void:
 	assert_true(restored.restore(save), "sessione ripristinata")
 	assert_eq(restored.rng.get_draws(), draws, "il contatore di estrazioni e tornato al suo posto")
 	assert_eq(restored.rng.roll_d6(), expected, "il prossimo tiro e lo stesso")
+
+
+## La voce 12 (D-092): il salvataggio si porta via come file, e il nome dice
+## quale mondo e' - stessa grammatica del log (lettere, numeri, trattini).
+func test_the_downloaded_save_has_an_honest_name() -> void:
+	assert_eq(
+		SaveSerializer.download_name("CHR_01", 7042),
+		"echoes-salvataggio-chr-01-7042.json",
+		"chronicle e seme nel nome, in minuscolo coi trattini"
+	)
+	assert_eq(
+		SaveSerializer.download_name("", -1),
+		"echoes-salvataggio-sessione.json",
+		"senza chronicle ne' seme resta un nome onesto"
+	)

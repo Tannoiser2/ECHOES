@@ -5,6 +5,29 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.49] — Il browser dice se sa tenere il salvataggio
+
+Chiude ISSUES voce 12 ([D-092](docs/DECISIONS.md#d-092)): una partita
+persa perché il browser ha pulito lo spazio non è più persa in silenzio.
+
+### Added
+
+- **L'avviso prima di cominciare**: nel browser il menu dichiara se lo
+  storage c'è («i salvataggi restano in questo browser») o no
+  (navigazione privata: «chiusa la scheda, la partita sparisce») — e
+  l'avviso torna a fine anno, quando serve davvero.
+- **«Scarica il salvataggio»**: la partita in corso (o l'anno appena
+  finito) come JSON, per la stessa via del log; il nome del file porta
+  chronicle e seme (`echoes-salvataggio-chr-01-7042.json`).
+- `LogExport.deliver` ha imparato il MIME e i suoi messaggi sono neutri;
+  `SaveSerializer.download_name` nuovo, con guardia.
+
+### Misurato
+
+209 test in 29 suite, 4471 asserzioni; `game_screen.gd` compila headless.
+
+---
+
 ## [0.1.48] — `marker_id` esce dal modello dati
 
 Chiude ISSUES voce 11 nel modo che la voce stessa prescrive
