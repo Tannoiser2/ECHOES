@@ -331,6 +331,45 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-097 — Il formato fisico: tre taglie di carta, token e segnalini
+**implemented in 0.1.54** (chiude ISSUES voce 7, decisione del committente)
+
+La voce 7 aspettava tre scelte di produzione, e il committente le ha
+date: **formati diversi per ruolo**, **mappa unica** (già fatta), **valori
+su token e segnalini**. Questa versione le implementa nell'export, così
+la decisione non resta un appunto: si stampa.
+
+### Le taglie
+
+| formato | mm | per foglio | mazzi |
+|---|---|---|---|
+| classica | 63×88 | 3×3 | Asset, Echo — si mescolano, stanno in mano |
+| tarocco | 70×120 | 2×2 | Destini, Casate — identità sempre in vista |
+| mini | 44×68 | 4×4 | Domande — si appoggiano alla traccia dei valori |
+| tessera | 80×80 | 2×3 | Regioni — la mappa, che resta com'è |
+
+`print_sheet` ora ha una tabella dei formati (`SHAPES`) invece di due
+costanti; l'impaginazione, i segni di taglio e l'anteprima F4 seguono da
+sé. La guardia che chiede a ogni carta se il suo testo ci sta è passata
+su tutte le taglie al primo colpo (719 asserzioni).
+
+### I segnalini
+
+`token_sheet.gd`, due fogli nuovi in coda al fascicolo PDF:
+
+- **la fustella** (una per saga, 15 mm): per ogni casa sei tondi pieni di
+  presenza e sei anelli di controllo — sei Regioni, il pezzo in più non
+  esiste (§19.4) — più i rombi del valore e il quadrato del Drift;
+- **la traccia dei valori**: quattro corsie 0–8, il posto della carta
+  mini a sinistra, la regola della soglia scritta sul foglio. La soglia
+  sta sulla carta perché cambia da domanda a domanda.
+
+Deterministico byte per byte come tutto l'export. COMPONENTS §7 riscritta
+da lista di domande a decisione, come chiedeva il «fatto quando»; alla
+0.6 restano tablet-contro-telefoni e scatola-contro-espansioni.
+
+---
+
 ## D-096 — Il libro della saga: la Timeline in apertura, poi i capitoli
 **implemented in 0.1.53** (con D-095 completa la parte in-app della 1.0 dichiarata)
 

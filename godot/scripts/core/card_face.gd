@@ -182,7 +182,7 @@ static func _echo(card: Dictionary, data: RefCounted) -> Dictionary:
 
 
 static func _tension(tension: Dictionary) -> Dictionary:
-	var face: Dictionary = _face("tension", str(tension["id"]), "CARD")
+	var face: Dictionary = _face("tension", str(tension["id"]), "MINI")
 	face["title"] = str(tension["title"])
 	face["subtitle"] = "domanda · %s" % str(tension["domain"]).to_lower()
 	# La soglia e' il numero che sta sulla traccia: la carta la ripete perche' la
@@ -201,7 +201,7 @@ static func _tension(tension: Dictionary) -> Dictionary:
 
 
 static func _destiny(destiny: Dictionary, data: RefCounted) -> Dictionary:
-	var face: Dictionary = _face("destiny", str(destiny["id"]), "CARD")
+	var face: Dictionary = _face("destiny", str(destiny["id"]), "TAROT")
 	face["title"] = str(destiny["title"])
 	var owner_id: String = str(destiny["entity_id"])
 	face["subtitle"] = str(data.entities[owner_id]["name"]) if data.entities.has(owner_id) else owner_id
@@ -227,7 +227,7 @@ static func _destiny(destiny: Dictionary, data: RefCounted) -> Dictionary:
 
 
 static func _entity(entity: Dictionary) -> Dictionary:
-	var face: Dictionary = _face("entity", str(entity["id"]), "CARD")
+	var face: Dictionary = _face("entity", str(entity["id"]), "TAROT")
 	face["title"] = str(entity["name"])
 	face["subtitle"] = "%s · vuole %s" % [
 		str(entity["archetype"]).to_lower(), str(entity["need"]).to_lower(),

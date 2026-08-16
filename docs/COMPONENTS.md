@@ -146,13 +146,27 @@ sul tavolo per la campagna successiva.
 
 ---
 
-## 7. Quello che questo documento non decide
+## 7. Il formato fisico — deciso (voce 7, [D-097](DECISIONS.md#d-097))
 
-- Il formato fisico (dimensioni carte, materiale del tabellone, tipo di
-  paravento). Sono scelte di produzione, non di design.
-- Se l'app giri su un tablet condiviso passato di mano o sui telefoni dei
-  giocatori. La Tensione velata funziona in entrambi i casi; il secondo è più
-  comodo e più costoso da costruire.
-- Il numero di componenti della scatola base contro le espansioni.
+Le scelte di produzione, dichiarate dal committente in 0.1.54 e già
+implementate nell'export:
 
-Vanno decise prima della 0.6 (print-and-play), non prima della 0.1.
+- **Le carte hanno formati diversi, per ruolo al tavolo.**
+  - *Classiche* 63×88 mm: **Asset** ed **Echo** — i mazzi che si mescolano
+    e stanno in mano (bustine standard).
+  - *Tarocchi* 70×120 mm: **Destini** e **Casate** — le carte-identità che
+    restano in vista (o dietro il paravento) tutta la partita.
+  - *Mini* 44×68 mm: le **Domande** (Tensioni) — riferimenti che si
+    appoggiano alla traccia dei valori.
+- **La mappa è un tabellone unico**, già fatto e implementato; le tessere
+  Regione 80×80 restano come componenti della mappa e retro informativo.
+- **I valori che cambiano vivono su token e segnalini**, non su ghiere o
+  dadi: per ogni casa sei tondi pieni di presenza e sei anelli di
+  controllo (sei Regioni: il pezzo in più non esiste), i rombi del valore
+  delle domande sulla **traccia dei valori** (plancia con quattro corsie
+  0–8, la soglia è scritta sulla carta), e il quadrato del Drift.
+  L'export genera i fogli-fustella da 15 mm, uno per saga, e la plancia.
+
+Restano aperte, per la 0.6: se l'app giri su un tablet condiviso o sui
+telefoni dei giocatori (la Tensione velata funziona in entrambi i casi),
+e la scatola base contro le espansioni.

@@ -5,6 +5,32 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.54] — Il formato fisico: tre taglie di carta, token e segnalini
+
+Chiude ISSUES voce 7 con le decisioni del committente, implementate
+nell'export ([D-097](docs/DECISIONS.md#d-097)).
+
+### Added
+
+- **Tre taglie di carta per ruolo**: classiche 63×88 (Asset, Echo),
+  tarocchi 70×120 (Destini, Casate), mini 44×68 (Domande); le tessere
+  Regione 80×80 restano — la mappa è un tabellone unico, già fatto.
+  `print_sheet` ha la tabella dei formati; impaginazione, segni di
+  taglio e anteprima F4 seguono da sé.
+- **`token_sheet.gd`**: la fustella dei segnalini (15 mm, una per saga —
+  sei presenze e sei controlli per casa, i rombi del valore, il quadrato
+  del Drift) e la **traccia dei valori** (quattro corsie 0–8; la soglia
+  sta sulla carta). In coda al PDF: ora 32 pagine.
+- COMPONENTS §7 riscritta da lista di domande a decisione.
+
+### Misurato
+
+La guardia «il testo ci sta» passa su tutte le taglie (719 asserzioni di
+stampa); 215 test in 29 suite, 4513 asserzioni; export e PDF
+deterministici.
+
+---
+
 ## [0.1.53] — Il libro della saga: la Timeline in apertura, poi i capitoli
 
 Con D-095 completa la parte in-app della 1.0 dichiarata

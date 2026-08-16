@@ -307,9 +307,17 @@ lettera A.
 plancia azione e i paraventi non esistono ancora come pezzi, quindi non li usano.
 Si aggiungeranno con loro.
 
-### 7. Decidere il formato fisico
+### 7. ✅ Decidere il formato fisico — decisa e implementata in 0.1.54
 
-`decisione` · milestone **0.6**
+`decisione` · milestone **0.6** · Il committente ha deciso, e l'export già
+stampa così ([D-097](DECISIONS.md#d-097)): **formati diversi per ruolo** —
+classiche 63×88 per Asset/Echo, tarocchi 70×120 per Destini/Casate, mini 44×68
+per le Domande — **mappa unica** già fatta, **valori su token e segnalini**
+(fustelle da 15 mm per saga + la traccia dei valori). Scritto in COMPONENTS §7
+al posto della lista di domande, come chiedeva il «fatto quando»; restano per
+la 0.6 solo tablet-contro-telefoni e scatola-contro-espansioni.
+
+<details><summary>Il testo dell'issue come era stato scritto</summary>
 
 La COMPONENTS §7 lascia aperte tre cose che non sono di design ma di produzione:
 dimensioni carte (l'export dà per buono 63×88 mm), materiale del tabellone, tipo
@@ -319,6 +327,8 @@ più da costruire.
 
 **Fatto quando** la scelta è scritta in COMPONENTS §7 al posto della lista di
 domande.
+
+</details>
 
 ### 8. ✅ Un PDF, non venticinque SVG — fatta in 0.1.41
 

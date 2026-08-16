@@ -17,7 +17,12 @@ import sys
 from pathlib import Path
 
 # L'ordine di consegna: lo stesso dell'export, che e' l'ordine del manifest.
-DECK_ORDER = ["asset", "echo", "tension", "destiny", "entity", "region"]
+# I segnalini e la traccia (D-097) chiudono il fascicolo, dopo i mazzi. Il
+# sort_key spoglia l'ultimo suffisso numerico, quindi i nomi qui sono i gambi.
+DECK_ORDER = [
+    "asset", "echo", "tension", "destiny", "entity", "region",
+    "segnalini_chr", "traccia",
+]
 
 
 def sort_key(path: Path):
