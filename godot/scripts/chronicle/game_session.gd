@@ -133,7 +133,7 @@ func inherit_from(previous: Dictionary, results: Dictionary = {}) -> void:
 	# La pesca che ascolta (D-079): il setup ha pescato l'anno alla cieca,
 	# perche' il mondo di prima non era ancora noto. Adesso lo e': se il pool
 	# dichiara degli echi, si ridanno le carte pesate sui segni ereditati.
-	WorldStateFactory.redeal_tensions(world, _chronicle_def, data, rng, previous, results)
+	WorldStateFactory.redeal_tensions(world, _chronicle_def, data, rng, previous, results, _years_passed)
 
 	_handover = Succession.plan(previous, results, _chronicle_def, data, _years_passed)
 	for entity_id in _handover:

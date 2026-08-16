@@ -331,6 +331,40 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-088 — Il motore 0.3, Fase 2: la domanda lasciata calda torna calda
+**implemented in 0.1.45** (milestone 0.3, ISSUES voce 9)
+
+I valori di partenza delle Tensioni pescate erano sempre quelli d'autore:
+un'era poteva chiudere con la Carestia al limite e la successiva ricominciare
+da tre, come se il tempo resettasse le questioni oltre che le persone.
+
+### La regola
+
+Il confine è quello della memoria (D-075), e non ne serve uno nuovo:
+
+- **salto breve** (sotto i 50 anni): una Tensione ripescata riparte da dove
+  l'era prima l'ha lasciata — ma mai già a soglia: torna **tiepida**, non
+  bollente (tetto a soglia−1), perché l'era comincia prima del bollore.
+- **salto lungo**: il calore sbiadisce come tutto il resto, e si riparte dal
+  valore d'autore.
+- una questione chiusa bene può ripartire anche **più quieta** di com'è
+  scritta: la quiete è un'eredità quanto il fuoco.
+
+`inherited_tension_value()` è una funzione pura, testata direttamente.
+
+### Misurato (20 saghe da 10 ere)
+
+Su 720 domande pescate, **66 partono più calde e 14 più quiete** del valore
+d'autore — l'11% delle domande d'era porta il calore di quella prima,
+concentrato sui salti brevi (che sono ~1 su 5). Salti, rotazioni,
+stanchezza, pesca che ascolta e conti aperti invariati; la guardia degli
+anni-biblioteca (D-080) resta verde.
+
+Guardie: `test_library_content` — lasciata a soglia torna a soglia−1, su un
+secolo sbiadisce, chiusa bene riparte quieta, mai vista riparte d'autore.
+
+---
+
 ## D-087 — Il motore 0.3, Fase 1: l'era dopo nasce dai conti rimasti aperti
 **implemented in 0.1.44** (milestone 0.3, ISSUES voce 9)
 
@@ -364,10 +398,8 @@ nella pesca, misurato su cento semi, e la pesca resta deterministica).
 
 ### Le fasi che restano dichiarate
 
-- **Fase 2 — la domanda lasciata calda torna calda**: i valori di
-  partenza delle Tensioni pescate oggi sono quelli d'autore; una questione
-  che ha chiuso l'era prima vicino alla soglia dovrebbe cominciare l'era
-  dopo già tiepida.
+- **Fase 2 — la domanda lasciata calda torna calda**: ~~i valori di
+  partenza~~ **fatta in 0.1.45** (D-088).
 - **Fase 3 — il verbale d'apertura**: l'era nuova sa *perché* ha pescato
   le sue domande (segni, conti aperti); dirlo all'apertura — «la Carestia
   torna: la casa di Aldric non l'ha mai chiusa» — è il pezzo che renderà

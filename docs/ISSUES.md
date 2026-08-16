@@ -356,12 +356,15 @@ cieca) e l'anno-biblioteca ha la sua guardia di bilanciamento. Il piano a
 fasi della #25 e' completo; il motore strutturato di generazione resta
 materia della 0.3
 
-**Il cantiere 0.3 è aperto: Fase 0 e Fase 1 fatte in 0.1.44**
-([D-087](DECISIONS.md#d-087)): le evidence diventano dati (`unmet`, le
-clausole negate) e la pesca li legge — un conto rimasto aperto richiama la
-sua domanda nell'era dopo (75% contro il 67% della pesca cieca). Restano
-dichiarate la Fase 2 (la domanda lasciata calda torna calda) e la Fase 3
-(il verbale d'apertura dell'era).
+**Il cantiere 0.3 è aperto: Fasi 0-1 fatte in 0.1.44**
+([D-087](DECISIONS.md#d-087)): le evidence diventano dati (`unmet`) e la
+pesca li legge — un conto rimasto aperto richiama la sua domanda (75%
+contro il 67% della pesca cieca) · **Fase 2 fatta in 0.1.45**
+([D-088](DECISIONS.md#d-088)): la domanda lasciata calda torna calda — sui
+salti brevi le Tensioni ripescate ereditano il valore dell'era prima
+(tetto a soglia−1), sui lunghi sbiadiscono; 66 domande su 720 partono più
+calde, 14 più quiete. Resta dichiarata la Fase 3 (il verbale d'apertura
+dell'era).
 
 `world_state_factory.inheritance_effects()` porta
 avanti la metà che serviva a misurare — controllo, tag della mappa, relazioni
