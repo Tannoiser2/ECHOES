@@ -175,3 +175,70 @@ func test_a_rejected_proposal_leaves_the_question_on_the_table() -> void:
 func test_a_new_chronicle_starts_with_nothing_asked() -> void:
 	assert_true(session.world.has("questions_asked"), "il campo c'e")
 	assert_eq(session.world["questions_asked"], {}, "e comincia vuoto")
+
+
+## D-094: la spirale del fallimento si chiude ri-decidendo. Una proposta
+## caduta scrive `question_unresolved` (CNS_FAILURE_SPIRAL) e apre il conto
+## dell'era; quando la questione torna ai voti e si decide, il conto si
+## chiude e il segno sparisce dal mondo.
+func test_deciding_the_fallen_question_closes_the_spiral() -> void:
+	session.confluence.open(TENSION, {"kind": "THRESHOLD"})
+	var proposition: Dictionary = session.confluence.available_propositions()[0]
+	assert_true(session.confluence.set_proposition(str(proposition["id"])), "una proposta e' sul tavolo")
+	for entity_id in session.confluence.stance_order():
+		session.confluence.declare_stance(str(entity_id), "OPPOSE")
+	for entity_id in session.confluence.stance_order():
+		var hand: Array = session.service.hand(str(entity_id))
+		session.confluence.commit(
+			str(entity_id), hand.slice(0, session.confluence.max_commit_for(str(entity_id)))
+		)
+	assert_eq(str(session.confluence.resolve()["outcome"]), "FAILURE", "la proposta cade")
+	assert_true(
+		(session.world["global_tags"] as Array).has("question_unresolved"),
+		"e il mondo porta il segno della spirale"
+	)
+	assert_eq(session.world["open_failures"], [TENSION], "il conto dell'era e' aperto")
+
+	_heat(TENSION, 6)
+	session.confluence.open(TENSION, {"kind": "THRESHOLD"})
+	var second: Dictionary = session.confluence.available_propositions()[0]
+	assert_true(session.confluence.set_proposition(str(second["id"])), "si riprova")
+	for entity_id in session.confluence.stance_order():
+		session.confluence.declare_stance(str(entity_id), "SUPPORT")
+	for entity_id in session.confluence.stance_order():
+		var hand: Array = session.service.hand(str(entity_id))
+		session.confluence.commit(
+			str(entity_id), hand.slice(0, session.confluence.max_commit_for(str(entity_id)))
+		)
+	var result: Dictionary = session.confluence.resolve()
+	assert_true(str(result["outcome"]) != "FAILURE", "stavolta il tavolo decide")
+	assert_true((session.world["open_failures"] as Array).is_empty(), "il conto si chiude")
+	assert_false(
+		(session.world["global_tags"] as Array).has("question_unresolved"),
+		"e il segno sparisce: la spirale e' chiusa"
+	)
+
+
+## Il segno ereditato da un'era prima invece non si chiude per caso: nessun
+## conto di quest'era lo riguarda, e lo scioglie solo la via del riprendere
+## (P_RETAKE_QUESTION, D-094).
+func test_an_inherited_mark_does_not_close_by_accident() -> void:
+	session.applier.apply(Effect.make(
+		"SET_GLOBAL_TAG", "world", "WORLD", {"tag": "question_unresolved"},
+		{"kind": "TEST", "id": "inherited"}
+	))
+	session.confluence.open(TENSION, {"kind": "THRESHOLD"})
+	var proposition: Dictionary = session.confluence.available_propositions()[0]
+	assert_true(session.confluence.set_proposition(str(proposition["id"])), "una proposta e' sul tavolo")
+	for entity_id in session.confluence.stance_order():
+		session.confluence.declare_stance(str(entity_id), "SUPPORT")
+	for entity_id in session.confluence.stance_order():
+		var hand: Array = session.service.hand(str(entity_id))
+		session.confluence.commit(
+			str(entity_id), hand.slice(0, session.confluence.max_commit_for(str(entity_id)))
+		)
+	assert_true(str(session.confluence.resolve()["outcome"]) != "FAILURE", "il Consiglio decide")
+	assert_true(
+		(session.world["global_tags"] as Array).has("question_unresolved"),
+		"ma il segno di un'altra era resta sul mondo"
+	)

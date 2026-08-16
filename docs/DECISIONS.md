@@ -331,6 +331,56 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-094 — La spirale del fallimento si chiude ri-decidendo
+**implemented in 0.1.51** (scioglie il debito residuo della voce 18)
+
+D-085 aveva circoscritto il debito: «Il Regno che Ricorda» restava
+strozzato dalla propria Victory. La misura d'apertura (20 saghe, ere in
+cui il seggio giura quel Destino) ha dato il colpevole: su 91 ere, la
+Victory moriva **74 volte per `question_unresolved`** e solo 7 per il
+solo controllo. Il tag era un'asimmetria: **qualunque** proposta caduta
+lo scriveva (CNS_FAILURE_SPIRAL) e **niente** lo toglieva mai — nemmeno
+ri-decidere la stessa domanda, che è esattamente ciò che D-077 tiene sul
+tavolo. Il registro restava in colpa a questione decisa.
+
+### Le due metà, misurate una alla volta
+
+**A — la via del riprendere** (contenuto, la forma di D-085):
+`P_RETAKE_QUESTION` su Q_SUCCESSION_LAW, eleggibile col segno sul mondo;
+il successo è `CNS_QUESTION_RETAKEN` — `REMOVE_GLOBAL_TAG
+question_unresolved` col prezzo della domanda che torna calda (+2 su
+`$tension`). Da sola: ai voti 18 volte su 200 ere, tutte a buon fine, ma
+Victory ferma (6) — la via è giusta e stretta.
+
+**B — il conto dell'era** (motore): `world_state.open_failures` tiene le
+Tensioni cadute in quest'era e non ancora ri-decise; quando l'ultima si
+decide, la spirale si chiude e il tag si toglie con un Effect di
+sistema, a registro. Il segno **ereditato** da un'era prima invece non
+si chiude per caso: nessun conto di quest'era lo riguarda, e lo scioglie
+solo la via A — un conto di un'altra generazione non si salda per
+sbaglio.
+
+### Misurato (20 saghe da 10 ere, semi 812+1009k)
+
+| | prima | dopo A | dopo A+B |
+|---|---|---|---|
+| VICTORY / TRIUMPH (su ere giurate) | 6 / 4 su 91 | 6 / 5 su 92 | **16 / 7 su 84** |
+| sopra il Minimo | 11% | 12% | **27%** |
+| ere che chiudono col tag | 140/200 | 140/200 | **75/200** |
+| `question_unresolved` letterale all'ultimo anno | 18/20 saghe | — | **5/20** |
+| la Victory muore per: solo tag / solo controllo | 39 / 7 | 28 / 13 | **14 / 24** |
+
+La Victory adesso è limitata quasi equamente dalle sue due clausole
+invece che strozzata da una. Playtest sugli stessi 100 semi: **0/8
+bloccati al tavolo misto** (4/8 uniforme), Consigli in banda; sonda
+delle ere sana (D-079 74%, D-087 74%, D-088 64/10). Il tag resta vivo
+come contenuto: 75 ere su 200 chiudono ancora in colpa.
+
+Guardie: `test_questions_asked` (la spirale si chiude ri-decidendo; il
+segno ereditato non si chiude per caso).
+
+---
+
 ## D-093 — La voce 2 si chiude senza scrivere template: i numeri dicono che non servono
 **recorded in 0.1.50** (chiude ISSUES voce 2)
 

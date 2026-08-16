@@ -332,7 +332,7 @@ continua a confrontare gli SVG, che restano la sorgente diffabile.
 
 ### 18. ✅ I fatti eterni strozzano i Destini di seconda rotazione — fatta in 0.1.40
 
-`contenuto` · trovata in 0.1.37 (D-082) · **chiusa in 0.1.40** ([D-085](DECISIONS.md#d-085)): le vie per disfare — riaprire la miniera (21 ere su 200), riunire la corona (4) — e il ramo del pianificatore che le insegue; la scuola risorge (6→20 Vittorie). Resta, circoscritto, il debito della Vittoria di DST_ALDRIC_RECORD · un fatto in `enduring_facts` usato
+`contenuto` · trovata in 0.1.37 (D-082) · **chiusa in 0.1.40** ([D-085](DECISIONS.md#d-085)): le vie per disfare — riaprire la miniera (21 ere su 200), riunire la corona (4) — e il ramo del pianificatore che le insegue; la scuola risorge (6→20 Vittorie) · **il debito residuo di DST_ALDRIC_RECORD è sciolto in 0.1.51** ([D-094](DECISIONS.md#d-094)): la spirale del fallimento si chiude ri-decidendo — Vittorie 6→16, sopra il Minimo 11%→27%, e `question_unresolved` da macchia permanente (18/20 saghe) a segno vivo (5/20) · un fatto in `enduring_facts` usato
 come condizione di **assenza** rende un Destino tardivo sempre più morto man
 mano che la saga invecchia: la corona spezzata nell'850 blocca il Trionfo di
 «Il Regno che Ricorda» per mille anni, la miniera murata fa lo stesso con la

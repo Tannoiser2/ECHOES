@@ -216,6 +216,13 @@
         "map_record": {
           "$ref": "#/$defs/map_record",
           "description": "La meta' della mappa del verbale d'apertura (D-090): come si piazza la mappa dell'era nuova e cosa il tempo le ha fatto, derivata dagli stessi inheritance_effects che la piazzano. Vuoto ({}) per l'anno che apre una saga."
+        },
+        "open_failures": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Le Tensioni le cui questioni sono cadute in quest'era e non sono ancora state ri-decise (D-094). Quando l'ultima si decide, la spirale del fallimento si chiude e `question_unresolved` viene tolto; il segno ereditato da un'era prima resta finche' la via del riprendere non lo scioglie."
         }
       }
     },

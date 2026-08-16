@@ -1271,6 +1271,12 @@ const DEFS := {
 			"map_record": {
 				"type": "Dictionary",
 			},
+			"open_failures": {
+				"type": "Array",
+				"element": {
+					"type": "String",
+				},
+			},
 		},
 	},
 }

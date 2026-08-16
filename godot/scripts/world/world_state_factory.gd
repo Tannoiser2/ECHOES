@@ -49,6 +49,7 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 		"influence_used_by_tension": {},
 		"opening_record": [],
 		"map_record": {},
+		"open_failures": [],
 	}
 
 	for entity_id in chronicle["entities"]:
