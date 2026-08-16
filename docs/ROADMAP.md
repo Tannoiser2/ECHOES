@@ -133,10 +133,11 @@ campo che nessuno legge è un campo che nessuno mantiene — tolti in 0.1.48
 
 ## 0.6 — Print-and-play e sincronizzazione tavolo fisico/digitale
 
-## 1.0 — Campagna multi-Chronicle, Timeline, Legacy, Chronicle Book — a metà
+## 1.0 — Campagna multi-Chronicle, Timeline, Legacy, Chronicle Book — quasi tutta
 
 Il motore della campagna esiste ed è misurato su migliaia di ere
-(`run_saga`, `run_era_probe`); il Chronicle Book impagina l'anno finito
-dentro l'app (D-086). Quello che manca è il resto della vita in app: la
-**Timeline** dei secoli e il **libro dell'intera saga** (oggi il libro
-copre un anno alla volta).
+(`run_saga`, `run_era_probe`); **la saga si gioca dall'app** — a fine
+anno l'era successiva si offre, con eredità e verbale d'apertura
+([D-095](DECISIONS.md#d-095)) — e ha il suo **libro con la Timeline**
+dei secoli in apertura ([D-096](DECISIONS.md#d-096)). Restano la
+campagna Legacy vera e propria e le rifiniture d'autore.

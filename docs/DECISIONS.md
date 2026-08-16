@@ -331,6 +331,39 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-096 — Il libro della saga: la Timeline in apertura, poi i capitoli
+**implemented in 0.1.53** (con D-095 completa la parte in-app della 1.0 dichiarata)
+
+D-095 ha messo la saga davanti a chi gioca; questo le da' il suo libro.
+Il Chronicle Book impaginava un anno alla volta (D-086) — giusto per una
+partita secca, monco per una saga: dieci ere giocate in fila uscivano
+come dieci libri separati, senza la vista che le tiene insieme.
+
+### La regola
+
+`ChronicleBook.saga_pages(saves, data)`: in apertura la **Timeline** —
+un anno per voce, con il salto («Anno 904, 92 anni dopo — …»), chi
+sedeva e com'è finita in breve (niente / il minimo / la vittoria / il
+trionfo) — e poi la cronaca di ogni anno, capitolo per capitolo, con le
+stesse identiche pagine di D-086. Con un anno solo il libro della saga
+*è* il libro di sempre, per costruzione (`saga_pages([x]) == pages(x)`).
+
+Nell'app: `game_screen` tiene la fila degli anni giocati
+(`_saga_saves`, azzerata quando dal menu comincia una storia nuova), e
+il bottone «La cronaca» mostra il libro intero appena la saga ha più di
+un anno. Il piè di pagina dice cosa si sta sfogliando — «la saga, anni
+812 – 1804» — e la vista è la stessa rasterizzazione di sempre: quello
+che si vede è quello che si stamperà.
+
+Della 1.0 restano ora la campagna Legacy vera e propria e le rifiniture
+d'autore; la triade motore–gioco–libro della saga è chiusa.
+
+Guardie: `test_chronicle_book` (la Timeline conta il salto, nomina chi
+si è seduto e come è finita; le cronache seguono in ordine; un anno solo
+dà il libro di sempre).
+
+---
+
 ## D-095 — La saga si gioca: l'era successiva si offre a fine anno
 **implemented in 0.1.52** (il primo pezzo mancante della 1.0)
 

@@ -95,6 +95,9 @@ var _cronaca: PanelContainer
 var _cronaca_open: bool = false
 var _cronaca_button: Button
 var _year_save: Dictionary = {}
+## Gli anni della saga in corso, in ordine (D-096): la fila che il libro
+## della saga impagina. Si azzera quando dal menu comincia una storia nuova.
+var _saga_saves: Array = []
 var _status: VBoxContainer
 var _hand: HBoxContainer
 ## The seat the board is drawn for, and the Tension under discussion if any.
@@ -185,7 +188,12 @@ func _toggle_cronaca(open: bool) -> void:
 		_export_open = false
 		_export.visible = false
 		_help_button.button_pressed = false
-		_cronaca.show_year(_year_save, _load_help_data())
+		# Con piu' anni in fila e' il libro della saga (D-096): la Timeline in
+		# apertura, poi la cronaca di ogni anno. Con uno solo, quello di sempre.
+		if _saga_saves.size() > 1:
+			_cronaca.show_saga(_saga_saves, _load_help_data())
+		else:
+			_cronaca.show_year(_year_save, _load_help_data())
 	if _cronaca_button != null:
 		_cronaca_button.set_pressed_no_signal(_cronaca_open)
 	_cronaca.visible = _cronaca_open
@@ -851,6 +859,9 @@ func _resume(chronicle_id: String) -> void:
 		return
 	_busy = true
 	_transcript.clear()
+	# Una storia nuova azzera la fila della saga (D-096): il libro racconta
+	# una saga alla volta.
+	_saga_saves = []
 	_help_button.button_pressed = false
 
 	var data: RefCounted = DataSet.new()
@@ -874,6 +885,9 @@ func _play(humans: Array, chronicle_id: String, seed_value: int) -> void:
 		return
 	_busy = true
 	_transcript.clear()
+	# Una storia nuova azzera la fila della saga (D-096): il libro racconta
+	# una saga alla volta.
+	_saga_saves = []
 
 	# The Chronicle starts: the rules page gets out of the way and leaves the
 	# middle to the map. One press brings it back.
@@ -956,6 +970,7 @@ func _drive(data: RefCounted, humans: Array, chronicle_id: String) -> void:
 	# Il salvataggio si prende ADESSO: _ending congeda la sessione subito dopo,
 	# e la cronaca deve poter restare sullo schermo a partita finita.
 	_year_save = _session.to_save()
+	_saga_saves.append(_year_save)
 	_ending(data, report)
 
 	# La saga continua da qui (D-095): quello che run_saga fa da sempre in

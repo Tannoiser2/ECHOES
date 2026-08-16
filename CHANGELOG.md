@@ -5,6 +5,28 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.53] — Il libro della saga: la Timeline in apertura, poi i capitoli
+
+Con D-095 completa la parte in-app della 1.0 dichiarata
+([D-096](docs/DECISIONS.md#d-096)).
+
+### Added
+
+- **`ChronicleBook.saga_pages`**: la Timeline dei secoli in apertura —
+  un anno per voce, col salto, chi sedeva e com'è finita in breve — poi
+  la cronaca di ogni anno, capitolo per capitolo, con le stesse pagine
+  di D-086. Con un anno solo è il libro di sempre, per costruzione.
+- **Il libro nell'app**: la fila degli anni giocati viaggia con la
+  saga; «La cronaca» mostra il libro intero appena gli anni sono più di
+  uno, e il piè di pagina dice cosa si sfoglia.
+
+### Misurato
+
+213 test in 29 suite, 4496 asserzioni; viste compilate headless;
+batteria di chiusura verde.
+
+---
+
 ## [0.1.52] — La saga si gioca: l'era successiva si offre a fine anno
 
 Il primo pezzo mancante della 1.0 ([D-095](docs/DECISIONS.md#d-095)): il
