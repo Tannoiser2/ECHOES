@@ -45,6 +45,11 @@ func evaluate(destiny_id: String) -> Dictionary:
 	var achieved: Dictionary = {}
 	var reached: String = "NONE"
 	var evidence: Array = []
+	# I conti rimasti aperti (D-087): le clausole negate, come dati e non come
+	# prosa. Sono la meta' strutturata delle evidence - quello che una casa
+	# voleva e non ha avuto - ed e' cio' che il motore 0.3 legge per far
+	# nascere l'era dopo dai conti di quella prima.
+	var unmet: Array = []
 	var cumulative: bool = true
 
 	for i in range(LEVELS.size()):
@@ -53,6 +58,8 @@ func evaluate(destiny_id: String) -> Dictionary:
 		achieved[LEVEL_NAMES[i]] = holds
 		for condition in level["conditions"]:
 			evidence.append("%s %s" % [LEVEL_NAMES[i], conditions.describe(condition, context)])
+			if not conditions.holds(condition, context):
+				unmet.append((condition as Dictionary).duplicate(true))
 		# A higher level only counts while every lower one still holds.
 		cumulative = cumulative and holds
 		if cumulative:
@@ -68,6 +75,7 @@ func evaluate(destiny_id: String) -> Dictionary:
 		"level": reached,
 		"levels": achieved,
 		"evidence": evidence,
+		"unmet": unmet,
 	}
 
 

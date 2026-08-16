@@ -15,6 +15,33 @@ func _apply(type: String, kind: String, id: String, payload: Dictionary) -> void
 	)
 
 
+## D-087: i conti rimasti aperti. Le clausole negate escono anche come dati -
+## e' la meta' strutturata delle evidence, quella che il motore 0.3 legge per
+## far nascere l'era dopo dai conti di quella prima.
+func test_unmet_conditions_are_recorded_as_data() -> void:
+	var result: Dictionary = session.destinies.evaluate("DST_VAERAX")
+	var unmet: Array = result["unmet"]
+	assert_true(unmet.size() > 0, "in partenza qualche clausola e' negata")
+	for condition in unmet:
+		assert_true((condition as Dictionary).has("type"), "ogni conto aperto e' la clausola, come dato")
+	# La Vittoria di Vaerax chiede le gallerie sigillate: finche' non lo sono,
+	# quel conto e' aperto. Appena lo sono, si chiude.
+	var wants_seal: bool = false
+	for condition in unmet:
+		if str((condition as Dictionary).get("tag", "")) == "mine_sealed":
+			wants_seal = true
+	assert_true(wants_seal, "il sigillo mancante e' fra i conti aperti")
+	_apply("SET_GLOBAL_TAG", "world", "WORLD", {"tag": "mine_sealed"})
+	var after: Array = session.destinies.evaluate("DST_VAERAX")["unmet"]
+	for condition in after:
+		assert_false(
+			str((condition as Dictionary).get("tag", "")) == "mine_sealed"
+			and str((condition as Dictionary).get("type", "")) == "state_tag_present",
+			"sigillate le gallerie, quel conto e' chiuso"
+		)
+	_apply("REMOVE_GLOBAL_TAG", "world", "WORLD", {"tag": "mine_sealed"})
+
+
 ## Vaerax walks the full ladder: Minimum, then Victory, then Triumph, and the
 ## level only rises while every lower level still holds.
 func test_three_levels_for_vaerax() -> void:

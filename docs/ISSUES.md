@@ -356,10 +356,16 @@ cieca) e l'anno-biblioteca ha la sua guardia di bilanciamento. Il piano a
 fasi della #25 e' completo; il motore strutturato di generazione resta
 materia della 0.3
 
-`destiny_results.evidence` registra già **come** ogni obiettivo è stato
-raggiunto, e nessuno lo legge. `world_state_factory.inheritance_effects()` porta
+**Il cantiere 0.3 è aperto: Fase 0 e Fase 1 fatte in 0.1.44**
+([D-087](DECISIONS.md#d-087)): le evidence diventano dati (`unmet`, le
+clausole negate) e la pesca li legge — un conto rimasto aperto richiama la
+sua domanda nell'era dopo (75% contro il 67% della pesca cieca). Restano
+dichiarate la Fase 2 (la domanda lasciata calda torna calda) e la Fase 3
+(il verbale d'apertura dell'era).
+
+`world_state_factory.inheritance_effects()` porta
 avanti la metà che serviva a misurare — controllo, tag della mappa, relazioni
-che sbiadiscono — ma la generazione strutturata dell'anno dopo non c'è.
+che sbiadiscono — e la generazione strutturata dell'anno dopo è cominciata.
 
 **Fatto quando** da una Chronicle conclusa esce una Chronicle nuova con domande
 scelte dalle conseguenze di quella prima, e due Chronicle in fila si giocano
