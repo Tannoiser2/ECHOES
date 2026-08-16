@@ -67,6 +67,22 @@ func test_a_long_year_breaks_into_more_pages() -> void:
 	assert_true(pages.size() > 1, "ottanta Verita' non stanno su una pagina: %d" % pages.size())
 
 
+## La vista in-app (chronicle_book_view.gd) rasterizza l'SVG delle pagine:
+## se una pagina non si lascia disegnare da Image.load_svg_from_string, al
+## tavolo si vedrebbe un pannello vuoto. Ogni pagina deve rasterizzarsi.
+func test_every_page_rasterizes_for_the_screen() -> void:
+	new_session(4242, false)
+	await session.run(PolicyDecider.new(session.log))
+	var pages: Array = ChronicleBook.pages(session.to_save(), data())
+	for index in range(pages.size()):
+		var image := Image.new()
+		assert_eq(
+			image.load_svg_from_string(str(pages[index]), 2.0), OK,
+			"la pagina %d si rasterizza" % (index + 1)
+		)
+		assert_true(image.get_width() > 0, "e ha dei pixel")
+
+
 func test_a_silent_year_says_so() -> void:
 	var save: Dictionary = {
 		"chronicle_id": "CHR_01",

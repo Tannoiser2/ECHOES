@@ -352,6 +352,17 @@ Guardie (`test_chronicle_book.gd`): ogni Verità scritta finisce sulla
 pagina, le pagine sono A4 veri e numerati, ottanta Verità si spezzano in
 più pagine invece di uscire dal foglio, e un anno muto lo dice.
 
+### La metà app (0.1.43) — e la voce 10 si chiude
+
+A fine Chronicle la cronaca **si vede**: `ui/chronicle_book_view.gd` si
+apre da sola quando l'anno finisce, con le frecce per sfogliare e il
+bottone «La cronaca» per tornarci — il salvataggio resta nello schermo
+anche dopo il congedo della sessione, come il seme. La vista rasterizza
+**le stesse pagine SVG** che il Chronicle Book stamperà (la disciplina
+dell'anteprima di stampa, D-056): quello che si vede al tavolo è quello
+che uscirà dalla stampa, non una cosa che gli somiglia. Guardia: ogni
+pagina generata deve rasterizzarsi (`test_every_page_rasterizes_for_the_screen`).
+
 ---
 
 ## D-085 — Le vie per disfare i fatti eterni: riaprire la miniera, riunire la corona

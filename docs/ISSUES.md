@@ -365,16 +365,14 @@ che sbiadiscono — ma la generazione strutturata dell'anno dopo non c'è.
 scelte dalle conseguenze di quella prima, e due Chronicle in fila si giocano
 senza che nessuno scriva JSON a mano.
 
-### 10. Il registro delle Truth non ha una vista
+### 10. ✅ Il registro delle Truth non ha una vista — fatta in 0.1.42–0.1.43
 
-`ux` · milestone **1.0** · **metà fatta in 0.1.42**
-([D-086](DECISIONS.md#d-086)): `cli/run_chronicle_book.gd` impagina un
-salvataggio nelle pagine A4 della cronaca — le Verità atto per atto, gli
-esiti dei seggi — con le guardie di `test_chronicle_book.gd`. Resta la metà
-**app**: la schermata di fine Chronicle che mostra la cronaca al tavolo.
-
-**Fatto quando** a fine Chronicle si vede la cronaca dell'anno (la parte
-che resta), ~~e l'export sa scriverla come pagine del Chronicle Book~~.
+`ux` · **chiusa** ([D-086](DECISIONS.md#d-086)): `cli/run_chronicle_book.gd`
+impagina un salvataggio nelle pagine A4 della cronaca (0.1.42), e a fine
+Chronicle la cronaca **si vede** — `ui/chronicle_book_view.gd` si apre da
+sola, sfoglia con le frecce, resta dietro il bottone «La cronaca», e
+rasterizza le stesse pagine SVG che la stampa userà (0.1.43). Guardie in
+`test_chronicle_book.gd`, comprese le rasterizzazioni.
 
 ---
 
