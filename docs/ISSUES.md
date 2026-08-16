@@ -367,14 +367,14 @@ senza che nessuno scriva JSON a mano.
 
 ### 10. Il registro delle Truth non ha una vista
 
-`ux` · milestone **1.0**
+`ux` · milestone **1.0** · **metà fatta in 0.1.42**
+([D-086](DECISIONS.md#d-086)): `cli/run_chronicle_book.gd` impagina un
+salvataggio nelle pagine A4 della cronaca — le Verità atto per atto, gli
+esiti dei seggi — con le guardie di `test_chronicle_book.gd`. Resta la metà
+**app**: la schermata di fine Chronicle che mostra la cronaca al tavolo.
 
-Le Truth sono l'unico pezzo di carta che il gioco **produce** invece di
-consumare (COMPONENTS §6), e a fine anno vivono solo nel log. Nessuna schermata
-le mostra insieme, e l'export non le stampa.
-
-**Fatto quando** a fine Chronicle si vede la cronaca dell'anno, e
-`run_export.gd` sa scriverla come pagine del Chronicle Book.
+**Fatto quando** a fine Chronicle si vede la cronaca dell'anno (la parte
+che resta), ~~e l'export sa scriverla come pagine del Chronicle Book~~.
 
 ---
 

@@ -5,6 +5,22 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.42] — La cronaca dell'anno: le Verità diventano pagine
+
+La metà export di ISSUES voce 10 ([D-086](docs/DECISIONS.md#d-086)): il
+seme del Chronicle Book della 1.0.
+
+### Added
+
+- `cli/run_chronicle_book.gd`: da un salvataggio qualsiasi alle pagine A4
+  della cronaca — l'anno in testa, le Verità atto per atto, e come è finita
+  per i seggi. Carta scura del set, serif per l'anno, a capo a mano.
+- `scripts/core/chronicle_book.gd` e le guardie di `test_chronicle_book.gd`:
+  ogni Verità finisce sulla pagina, A4 veri e numerati, un anno lungo si
+  spezza in più pagine, un anno muto lo dice.
+
+---
+
 ## [0.1.41] — Un PDF, non venticinque SVG
 
 Chiude ISSUES voce 8: il formato di consegna per la tipografia.
