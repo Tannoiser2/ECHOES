@@ -20,7 +20,7 @@ extends RefCounted
 const CardFace := preload("res://scripts/core/card_face.gd")
 
 ## Quale MASTER PROMPT vale per quale mazzo, e con quale variazione.
-const PROMPT_FOR: Dictionary = {"asset": 1, "echo": 2, "region": 3, "entity": 4}
+const PROMPT_FOR: Dictionary = {"asset": 1, "echo": 2, "region": 3, "entity": 4, "destiny": 5}
 
 ## Le intestazioni delle tabelle di variation key. Sono righe di tabella come le
 ## altre e vanno saltate: senza questo elenco la parola «archetipo» diventerebbe
@@ -123,7 +123,7 @@ func brief(data: RefCounted) -> String:
 		lines.append("> soggetti; i prompt sono nel documento.")
 		lines.append("")
 
-	for deck in ["asset", "echo", "region", "entity"]:
+	for deck in ["asset", "echo", "region", "entity", "destiny"]:
 		var faces: Array = CardFace.deck_of(str(deck), data)
 		if faces.is_empty():
 			continue
@@ -199,4 +199,9 @@ func _accent_key(face: Dictionary, data: RefCounted) -> String:
 			# sovrano, una persona, una fazione, un culto, un popolo e una
 			# creatura non si dipingono nello stesso modo (D-065).
 			return str(data.entities[id]["archetype"])
+		"destiny":
+			# L'archetipo di chi la desidera: il Destino di una casa porta il
+			# colore della casa, cosi' le due carte del pool - l'ambizione di
+			# partenza e quella dopo - sono due quadri della stessa parete.
+			return str(data.entities[str(data.destinies[id]["entity_id"])]["archetype"])
 	return ""

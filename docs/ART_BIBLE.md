@@ -170,6 +170,45 @@ mostrare.
 
 ---
 
+## MASTER PROMPT 5 — Destiny card
+
+```
+Historical dark-fantasy emblematic scene of {SOGGETTO}. Painterly oil technique,
+visible brushwork, muted earth palette with a single {ACCENTO} accent. No faces:
+a Destiny card shows the thing wanted, not the one who wants it — an object, a
+place, a threshold, composed like a votive image. {DESCRIZIONE}. Seen close and
+slightly from below, the way an ambition is seen; one strong light source, deep
+quiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: subject in the upper two thirds; the lower third
+is a calm, low-detail area reserved for a text overlay. Vertical card framing,
+2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,
+not horror. Museum-quality illustration, boardgame card art.
+```
+
+**Variation key per archetipo** (di chi la desidera — gli accenti sono quelli
+del MASTER PROMPT 4, perché il Destino di una casa porta il colore della casa):
+
+| archetipo | accento | cosa si dipinge |
+|---|---|---|
+| **SOVEREIGN** | oro spento | ciò che si tiene: il sigillo, la sala vuota, la corona posata — mai indossata |
+| **INDIVIDUAL** | verde-azzurro pallido | ciò che si capisce: pagine aperte, strumenti, una porta socchiusa sul buio |
+| **FACTION** | ambra | ciò che si firma: il registro, le chiavi, il banco dove si conta |
+| **CULT** | porpora tenue | ciò che si custodisce: la teca, il velo, la soglia che non si passa |
+| **PEOPLE** | terracotta | ciò che si abita: la terra lavorata, il ponte, il fuoco tenuto acceso |
+| **CREATURE** | grigio-rosso | ciò che si veglia: la pietra vista da dentro, il cunicolo, il respiro della montagna |
+
+Chiavi in uso: `destiny.<casa>[.<ambizione>]`.
+
+**Perché niente volti.** La carta Destiny è l'unico pezzo che un giocatore
+guarda da solo, dietro il paravento: è la *sua* ambizione vista coi suoi
+occhi, e in quella inquadratura non c'è nessuno — c'è la cosa. E il set resta
+leggibile a colpo d'occhio: gli Asset sono scene con gente dentro, le Casate
+sono ritratti (regola 3), i Destini sono nature morte del desiderio. Ogni
+casa ha due Destini nel pool — l'ambizione di partenza e quella dopo — e le
+due carte condividono accento e mondo: due quadri della stessa parete.
+
+---
+
 ## Overlay e iconografia
 
 **Fatto in 0.1.20** (`scripts/core/icon_set.gd`, [D-058](DECISIONS.md#d-058)):

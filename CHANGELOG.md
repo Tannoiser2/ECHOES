@@ -5,6 +5,29 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.39] — Il quinto MASTER PROMPT: i Destini illustrati
+
+L'inventario dei componenti grafici ha trovato le carte Destiny senza
+direzione d'arte, come i ritratti prima di D-065
+([D-084](docs/DECISIONS.md#d-084)).
+
+### Added
+
+- **MASTER PROMPT 5 — Destiny card**: niente volti, la cosa desiderata
+  composta come un'immagine votiva; variation key per archetipo di chi
+  desidera, con gli accenti del MP4 — le due carte di un pool sono due
+  quadri della stessa parete.
+- Le 4 chiavi d'arte mancanti dei Destini di seconda rotazione della
+  corona; il mazzo `destiny` collegato al brief. **Il brief passa da 101 a
+  117 prompt.**
+
+### Fixed
+
+- `card_face.gd` non esponeva la chiave d'arte sulla faccia Destiny: il
+  brief la saltava in silenzio.
+
+---
+
 ## [0.1.38] — Il contenuto senza elettorato si toglie
 
 Punto 7 del committente: le voci croniche a zero di CHR_03/04, riscritte se

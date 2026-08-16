@@ -363,7 +363,8 @@
             "label": "Eredan non e in rivolta"
           }
         ]
-      }
+      },
+      "art_prompt_key": "destiny.aldric.record"
     },
     {
       "id": "DST_NAHR_ROOTED",
@@ -428,7 +429,8 @@
             "label": "E la storia del popolo e stata messa per iscritto, com'e' raccontata"
           }
         ]
-      }
+      },
+      "art_prompt_key": "destiny.nahr.rooted"
     },
     {
       "id": "DST_LYRA_TAUGHT",
@@ -485,7 +487,8 @@
             "label": "Nessuno ha messo una guardia allo studio"
           }
         ]
-      }
+      },
+      "art_prompt_key": "destiny.lyra.taught"
     },
     {
       "id": "DST_VAERAX_WATCHED",
@@ -546,7 +549,8 @@
             "label": "Le Montagne non sono in rivolta"
           }
         ]
-      }
+      },
+      "art_prompt_key": "destiny.vaerax.watched"
     }
   ]
 }

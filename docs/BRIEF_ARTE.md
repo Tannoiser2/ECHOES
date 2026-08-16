@@ -1698,3 +1698,293 @@ framing, 2:3. No text, no letters, no numerals, no logos, no frame, no border.
 Not gory, not horror. Museum-quality illustration, boardgame card art.
 ```
 
+## destiny
+
+### `destiny.aldric` — Il Regno che Resta
+
+- **soggetto**: Il Regno che Resta — Tenere Eredan indipendente e raggiungere un controllo politico sufficiente, senza lasciare il regno in collasso
+- **id**: `DST_ALDRIC`
+
+```
+Historical dark-fantasy emblematic scene of Il Regno che Resta — Tenere Eredan indipendente e raggiungere un controllo politico sufficiente, senza lasciare il regno in collasso. Painterly oil technique,
+visible brushwork, muted earth palette with a single oro spento accent. No faces:
+a Destiny card shows the thing wanted, not the one who wants it — an object, a
+place, a threshold, composed like a votive image. ciò che si tiene: il sigillo, la sala vuota, la corona posata — mai indossata. Seen close and
+slightly from below, the way an ambition is seen; one strong light source, deep
+quiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: subject in the upper two thirds; the lower third
+is a calm, low-detail area reserved for a text overlay. Vertical card framing,
+2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,
+not horror. Museum-quality illustration, boardgame card art.
+```
+
+### `destiny.aldric.record` — Il Regno che Ricorda
+
+- **soggetto**: Il Regno che Ricorda — Il trono regge gia. Quello che manca e che le sue decisioni restino scritte e nessuno debba riprenderle da capo
+- **id**: `DST_ALDRIC_RECORD`
+
+```
+Historical dark-fantasy emblematic scene of Il Regno che Ricorda — Il trono regge gia. Quello che manca e che le sue decisioni restino scritte e nessuno debba riprenderle da capo. Painterly oil technique,
+visible brushwork, muted earth palette with a single oro spento accent. No faces:
+a Destiny card shows the thing wanted, not the one who wants it — an object, a
+place, a threshold, composed like a votive image. ciò che si tiene: il sigillo, la sala vuota, la corona posata — mai indossata. Seen close and
+slightly from below, the way an ambition is seen; one strong light source, deep
+quiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: subject in the upper two thirds; the lower third
+is a calm, low-detail area reserved for a text overlay. Vertical card framing,
+2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,
+not horror. Museum-quality illustration, boardgame card art.
+```
+
+### `destiny.cenere` — La Montagna e Nostra
+
+- **soggetto**: La Montagna e Nostra — I Signori della Cenere non discutono di reliquie: discutono di chi decide dove si scava. Vogliono che la risposta sia scritta e sia loro
+- **id**: `DST_CENERE`
+
+```
+Historical dark-fantasy emblematic scene of La Montagna e Nostra — I Signori della Cenere non discutono di reliquie: discutono di chi decide dove si scava. Vogliono che la risposta sia scritta e sia loro. Painterly oil technique,
+visible brushwork, muted earth palette with a single ambra accent. No faces:
+a Destiny card shows the thing wanted, not the one who wants it — an object, a
+place, a threshold, composed like a votive image. ciò che si firma: il registro, le chiavi, il banco dove si conta. Seen close and
+slightly from below, the way an ambition is seen; one strong light source, deep
+quiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: subject in the upper two thirds; the lower third
+is a calm, low-detail area reserved for a text overlay. Vertical card framing,
+2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,
+not horror. Museum-quality illustration, boardgame card art.
+```
+
+### `destiny.cenere.deep` — Piu a Fondo
+
+- **soggetto**: Piu a Fondo — Chi ha ottenuto la montagna scopre di volere quello che c'e sotto la montagna. E' lo stesso desiderio di prima, con meno margine
+- **id**: `DST_CENERE_DEEP`
+
+```
+Historical dark-fantasy emblematic scene of Piu a Fondo — Chi ha ottenuto la montagna scopre di volere quello che c'e sotto la montagna. E' lo stesso desiderio di prima, con meno margine. Painterly oil technique,
+visible brushwork, muted earth palette with a single ambra accent. No faces:
+a Destiny card shows the thing wanted, not the one who wants it — an object, a
+place, a threshold, composed like a votive image. ciò che si firma: il registro, le chiavi, il banco dove si conta. Seen close and
+slightly from below, the way an ambition is seen; one strong light source, deep
+quiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: subject in the upper two thirds; the lower third
+is a calm, low-detail area reserved for a text overlay. Vertical card framing,
+2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,
+not horror. Museum-quality illustration, boardgame card art.
+```
+
+### `destiny.libere` — Una Legge Senza Corona
+
+- **soggetto**: Una Legge Senza Corona — Le citta non vogliono un re e hanno smesso di poter fare a meno di una regola. Il loro problema e scriverne una che non diventi un trono
+- **id**: `DST_LIBERE`
+
+```
+Historical dark-fantasy emblematic scene of Una Legge Senza Corona — Le citta non vogliono un re e hanno smesso di poter fare a meno di una regola. Il loro problema e scriverne una che non diventi un trono. Painterly oil technique,
+visible brushwork, muted earth palette with a single terracotta accent. No faces:
+a Destiny card shows the thing wanted, not the one who wants it — an object, a
+place, a threshold, composed like a votive image. ciò che si abita: la terra lavorata, il ponte, il fuoco tenuto acceso. Seen close and
+slightly from below, the way an ambition is seen; one strong light source, deep
+quiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: subject in the upper two thirds; the lower third
+is a calm, low-detail area reserved for a text overlay. Vertical card framing,
+2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,
+not horror. Museum-quality illustration, boardgame card art.
+```
+
+### `destiny.libere.water` — L'Acqua Torna a Muoversi
+
+- **soggetto**: L'Acqua Torna a Muoversi — Scritta la regola, resta il motivo per cui serviva: la Valle non da piu da mangiare a sette citta. Questa volta l'obiettivo si vede da fuori
+- **id**: `DST_LIBERE_WATER`
+
+```
+Historical dark-fantasy emblematic scene of L'Acqua Torna a Muoversi — Scritta la regola, resta il motivo per cui serviva: la Valle non da piu da mangiare a sette citta. Questa volta l'obiettivo si vede da fuori. Painterly oil technique,
+visible brushwork, muted earth palette with a single terracotta accent. No faces:
+a Destiny card shows the thing wanted, not the one who wants it — an object, a
+place, a threshold, composed like a votive image. ciò che si abita: la terra lavorata, il ponte, il fuoco tenuto acceso. Seen close and
+slightly from below, the way an ambition is seen; one strong light source, deep
+quiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: subject in the upper two thirds; the lower third
+is a calm, low-detail area reserved for a text overlay. Vertical card framing,
+2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,
+not horror. Museum-quality illustration, boardgame card art.
+```
+
+### `destiny.lyra` — Sapere e Poter Tornare a Guardare
+
+- **soggetto**: Sapere e Poter Tornare a Guardare — Scoprire le proprieta del Cristallo Rosso e conservare l'accesso a cio che lo produce
+- **id**: `DST_LYRA`
+
+```
+Historical dark-fantasy emblematic scene of Sapere e Poter Tornare a Guardare — Scoprire le proprieta del Cristallo Rosso e conservare l'accesso a cio che lo produce. Painterly oil technique,
+visible brushwork, muted earth palette with a single verde-azzurro pallido accent. No faces:
+a Destiny card shows the thing wanted, not the one who wants it — an object, a
+place, a threshold, composed like a votive image. ciò che si capisce: pagine aperte, strumenti, una porta socchiusa sul buio. Seen close and
+slightly from below, the way an ambition is seen; one strong light source, deep
+quiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: subject in the upper two thirds; the lower third
+is a calm, low-detail area reserved for a text overlay. Vertical card framing,
+2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,
+not horror. Museum-quality illustration, boardgame card art.
+```
+
+### `destiny.lyra.taught` — Quello che Resta Insegnato
+
+- **soggetto**: Quello che Resta Insegnato — Il sapere e uscito dalle gallerie una volta. Chi viene dopo vuole che non ci torni dentro alla prima paura
+- **id**: `DST_LYRA_TAUGHT`
+
+```
+Historical dark-fantasy emblematic scene of Quello che Resta Insegnato — Il sapere e uscito dalle gallerie una volta. Chi viene dopo vuole che non ci torni dentro alla prima paura. Painterly oil technique,
+visible brushwork, muted earth palette with a single verde-azzurro pallido accent. No faces:
+a Destiny card shows the thing wanted, not the one who wants it — an object, a
+place, a threshold, composed like a votive image. ciò che si capisce: pagine aperte, strumenti, una porta socchiusa sul buio. Seen close and
+slightly from below, the way an ambition is seen; one strong light source, deep
+quiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: subject in the upper two thirds; the lower third
+is a calm, low-detail area reserved for a text overlay. Vertical card framing,
+2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,
+not horror. Museum-quality illustration, boardgame card art.
+```
+
+### `destiny.nahr` — Una Terra dove Fermarsi
+
+- **soggetto**: Una Terra dove Fermarsi — Ottenere una patria stabile conservando autonomia e cultura del popolo
+- **id**: `DST_NAHR`
+
+```
+Historical dark-fantasy emblematic scene of Una Terra dove Fermarsi — Ottenere una patria stabile conservando autonomia e cultura del popolo. Painterly oil technique,
+visible brushwork, muted earth palette with a single terracotta accent. No faces:
+a Destiny card shows the thing wanted, not the one who wants it — an object, a
+place, a threshold, composed like a votive image. ciò che si abita: la terra lavorata, il ponte, il fuoco tenuto acceso. Seen close and
+slightly from below, the way an ambition is seen; one strong light source, deep
+quiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: subject in the upper two thirds; the lower third
+is a calm, low-detail area reserved for a text overlay. Vertical card framing,
+2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,
+not horror. Museum-quality illustration, boardgame card art.
+```
+
+### `destiny.nahr.rooted` — La Terra Sotto i Piedi
+
+- **soggetto**: La Terra Sotto i Piedi — Il popolo si e fermato. Adesso la domanda e se il posto in cui si e fermato e suo, o solo prestato
+- **id**: `DST_NAHR_ROOTED`
+
+```
+Historical dark-fantasy emblematic scene of La Terra Sotto i Piedi — Il popolo si e fermato. Adesso la domanda e se il posto in cui si e fermato e suo, o solo prestato. Painterly oil technique,
+visible brushwork, muted earth palette with a single terracotta accent. No faces:
+a Destiny card shows the thing wanted, not the one who wants it — an object, a
+place, a threshold, composed like a votive image. ciò che si abita: la terra lavorata, il ponte, il fuoco tenuto acceso. Seen close and
+slightly from below, the way an ambition is seen; one strong light source, deep
+quiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: subject in the upper two thirds; the lower third
+is a calm, low-detail area reserved for a text overlay. Vertical card framing,
+2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,
+not horror. Museum-quality illustration, boardgame card art.
+```
+
+### `destiny.sale` — Il Registro che Tiene
+
+- **soggetto**: Il Registro che Tiene — La Gilda non vuole comandare: vuole che quello che e scritto continui a valere, e che a scriverlo sia lei
+- **id**: `DST_SALE`
+
+```
+Historical dark-fantasy emblematic scene of Il Registro che Tiene — La Gilda non vuole comandare: vuole che quello che e scritto continui a valere, e che a scriverlo sia lei. Painterly oil technique,
+visible brushwork, muted earth palette with a single ambra accent. No faces:
+a Destiny card shows the thing wanted, not the one who wants it — an object, a
+place, a threshold, composed like a votive image. ciò che si firma: il registro, le chiavi, il banco dove si conta. Seen close and
+slightly from below, the way an ambition is seen; one strong light source, deep
+quiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: subject in the upper two thirds; the lower third
+is a calm, low-detail area reserved for a text overlay. Vertical card framing,
+2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,
+not horror. Museum-quality illustration, boardgame card art.
+```
+
+### `destiny.sale.open` — Il Registro Aperto
+
+- **soggetto**: Il Registro Aperto — Una Gilda che ha gia vinto una volta scopre che la firma tiene finche qualcuno si fida. Adesso vuole essere creduta, non solo dovuta
+- **id**: `DST_SALE_OPEN`
+
+```
+Historical dark-fantasy emblematic scene of Il Registro Aperto — Una Gilda che ha gia vinto una volta scopre che la firma tiene finche qualcuno si fida. Adesso vuole essere creduta, non solo dovuta. Painterly oil technique,
+visible brushwork, muted earth palette with a single ambra accent. No faces:
+a Destiny card shows the thing wanted, not the one who wants it — an object, a
+place, a threshold, composed like a votive image. ciò che si firma: il registro, le chiavi, il banco dove si conta. Seen close and
+slightly from below, the way an ambition is seen; one strong light source, deep
+quiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: subject in the upper two thirds; the lower third
+is a calm, low-detail area reserved for a text overlay. Vertical card framing,
+2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,
+not horror. Museum-quality illustration, boardgame card art.
+```
+
+### `destiny.vaerax` — Cio che Dorme Resti Addormentato
+
+- **soggetto**: Cio che Dorme Resti Addormentato — Impedire lo sfruttamento incontrollato del Cristallo e preservare le Montagne Rosse
+- **id**: `DST_VAERAX`
+
+```
+Historical dark-fantasy emblematic scene of Cio che Dorme Resti Addormentato — Impedire lo sfruttamento incontrollato del Cristallo e preservare le Montagne Rosse. Painterly oil technique,
+visible brushwork, muted earth palette with a single grigio-rosso accent. No faces:
+a Destiny card shows the thing wanted, not the one who wants it — an object, a
+place, a threshold, composed like a votive image. ciò che si veglia: la pietra vista da dentro, il cunicolo, il respiro della montagna. Seen close and
+slightly from below, the way an ambition is seen; one strong light source, deep
+quiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: subject in the upper two thirds; the lower third
+is a calm, low-detail area reserved for a text overlay. Vertical card framing,
+2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,
+not horror. Museum-quality illustration, boardgame card art.
+```
+
+### `destiny.vaerax.watched` — Il Sonno Sorvegliato
+
+- **soggetto**: Il Sonno Sorvegliato — La montagna e ancora sua e il Cristallo e ancora dentro. Adesso vuole sapere chi lo guarda, e che continui a guardarlo senza toccarlo
+- **id**: `DST_VAERAX_WATCHED`
+
+```
+Historical dark-fantasy emblematic scene of Il Sonno Sorvegliato — La montagna e ancora sua e il Cristallo e ancora dentro. Adesso vuole sapere chi lo guarda, e che continui a guardarlo senza toccarlo. Painterly oil technique,
+visible brushwork, muted earth palette with a single grigio-rosso accent. No faces:
+a Destiny card shows the thing wanted, not the one who wants it — an object, a
+place, a threshold, composed like a votive image. ciò che si veglia: la pietra vista da dentro, il cunicolo, il respiro della montagna. Seen close and
+slightly from below, the way an ambition is seen; one strong light source, deep
+quiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: subject in the upper two thirds; the lower third
+is a calm, low-detail area reserved for a text overlay. Vertical card framing,
+2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,
+not horror. Museum-quality illustration, boardgame card art.
+```
+
+### `destiny.vetro` — Quello che Non si Deve Guardare
+
+- **soggetto**: Quello che Non si Deve Guardare — L'Ordine custodisce un frammento e una regola. La regola e piu importante del frammento, e va difesa proprio quando qualcuno chiede di vederlo
+- **id**: `DST_VETRO`
+
+```
+Historical dark-fantasy emblematic scene of Quello che Non si Deve Guardare — L'Ordine custodisce un frammento e una regola. La regola e piu importante del frammento, e va difesa proprio quando qualcuno chiede di vederlo. Painterly oil technique,
+visible brushwork, muted earth palette with a single porpora tenue accent. No faces:
+a Destiny card shows the thing wanted, not the one who wants it — an object, a
+place, a threshold, composed like a votive image. ciò che si custodisce: la teca, il velo, la soglia che non si passa. Seen close and
+slightly from below, the way an ambition is seen; one strong light source, deep
+quiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: subject in the upper two thirds; the lower third
+is a calm, low-detail area reserved for a text overlay. Vertical card framing,
+2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,
+not horror. Museum-quality illustration, boardgame card art.
+```
+
+### `destiny.vetro.shown` — La Reliquia Mostrata
+
+- **soggetto**: La Reliquia Mostrata — Un Ordine che ha tenuto la teca chiusa e stato creduto sulla parola. Il passo dopo e piu pericoloso: mostrarla, e restare creduto lo stesso
+- **id**: `DST_VETRO_SHOWN`
+
+```
+Historical dark-fantasy emblematic scene of La Reliquia Mostrata — Un Ordine che ha tenuto la teca chiusa e stato creduto sulla parola. Il passo dopo e piu pericoloso: mostrarla, e restare creduto lo stesso. Painterly oil technique,
+visible brushwork, muted earth palette with a single porpora tenue accent. No faces:
+a Destiny card shows the thing wanted, not the one who wants it — an object, a
+place, a threshold, composed like a votive image. ciò che si custodisce: la teca, il velo, la soglia che non si passa. Seen close and
+slightly from below, the way an ambition is seen; one strong light source, deep
+quiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: subject in the upper two thirds; the lower third
+is a calm, low-detail area reserved for a text overlay. Vertical card framing,
+2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,
+not horror. Museum-quality illustration, boardgame card art.
+```
+
