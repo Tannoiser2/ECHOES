@@ -134,6 +134,16 @@ func inherit_from(previous: Dictionary, results: Dictionary = {}) -> void:
 	# perche' il mondo di prima non era ancora noto. Adesso lo e': se il pool
 	# dichiara degli echi, si ridanno le carte pesate sui segni ereditati.
 	WorldStateFactory.redeal_tensions(world, _chronicle_def, data, rng, previous, results, _years_passed)
+	# E il verbale d'apertura (D-089): perche' queste domande. Solo lettura,
+	# dopo che la mano e' data; il tavolo lo trova in testa al log.
+	world["opening_record"] = WorldStateFactory.opening_record(
+		world, _chronicle_def, data, previous, results
+	)
+	# La meta' della mappa (D-090): come si piazza, e cosa il tempo le ha
+	# fatto. Derivata dagli stessi Effects che la piazzeranno al setup.
+	world["map_record"] = WorldStateFactory.map_record(
+		world, _chronicle_def, data, previous, _years_passed
+	)
 
 	_handover = Succession.plan(previous, results, _chronicle_def, data, _years_passed)
 	for entity_id in _handover:
@@ -146,6 +156,22 @@ func inherit_from(previous: Dictionary, results: Dictionary = {}) -> void:
 		# Le ere a mani vuote viaggiano col seggio: e' il contatore che fa
 		# stancare un erede della stessa ambizione (D-081).
 		seat["barren"] = int(_handover[entity_id].get("barren", 0))
+
+	# Il verbale si legge dopo la successione: i conti aperti portano i nomi
+	# dell'era prima (chi li ha lasciati), la mappa quelli dell'era nuova
+	# (chi la tiene adesso).
+	if not (world["opening_record"] as Array).is_empty() \
+			or not (world["map_record"] as Dictionary).is_empty():
+		log.section("IL VERBALE D'APERTURA - anno %d, %d anni dopo" % [
+			int(world["year"]), _years_passed
+		])
+		for line in WorldStateFactory.opening_lines(world["opening_record"], data):
+			log.bullet(str(line))
+		var map_lines: Array = WorldStateFactory.map_lines(world["map_record"], data, world)
+		if not map_lines.is_empty():
+			log.line("La mappa che si eredita:")
+			for line in map_lines:
+				log.bullet(str(line))
 
 
 func years_passed() -> int:

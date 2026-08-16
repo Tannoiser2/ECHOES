@@ -5,6 +5,62 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.47] — Il verbale della mappa: come si piazza l'era nuova
+
+Estensione della Fase 3 su richiesta del committente
+([D-090](docs/DECISIONS.md#d-090)): il verbale dice anche la mappa.
+
+### Added
+
+- **`world_state.map_record`**: per ogni Regione chi la tiene (coi nomi
+  dell'era nuova), se è decaduta perché nessuno c'era (D-027), i segni
+  che porta e le condizioni sbiadite dal salto (D-078); in coda i fatti
+  diventati leggenda (D-075) e i rapporti ammorbiditi (D-045). Derivato
+  dagli stessi `inheritance_effects` che piazzano la mappa: una sola
+  fonte di verità.
+- **La prosa della mappa** nel log del tavolo (sotto il verbale delle
+  domande) e in `run_saga` sotto «La mappa che si eredita».
+
+### Changed
+
+- I segni nel verbale delle domande passano all'imperfetto («il mondo ne
+  portava il segno»): la pesca legge il mondo com'era alla chiusura, e il
+  salto può averli sbiaditi subito dopo — lo dice la riga della mappa.
+
+### Misurato
+
+Solo lettura, verificato: suite e sonda delle ere identiche riga per
+riga. 208 test in 29 suite, 4469 asserzioni.
+
+---
+
+## [0.1.46] — Il verbale d'apertura: la generazione si legge
+
+Fase 3 del World Propagation Engine ([D-089](docs/DECISIONS.md#d-089)),
+l'ultima dichiarata: chiude ISSUES voce 9.
+
+### Added
+
+- **`world_state.opening_record`**: per ogni domanda pescata, chi l'ha
+  richiamata — il segno sul mondo (D-079, nominato per nome: fatto,
+  leggenda o Regione), il conto rimasto aperto (D-087, con il nome del
+  seggio che l'ha lasciato), o la biblioteca — e con che valore riparte
+  (D-088). Schema esteso, chiave sempre presente.
+- **La prosa del verbale**: in testa al log del tavolo a ogni eredità
+  («La Carestia torna: Re Aldric non l'ha mai chiusa») e nel digest di
+  `run_saga` sotto «Perché queste».
+- `_open_accounts` dice *chi* ha lasciato ogni conto; `_carried_mark`
+  dice *quale* segno ha richiamato — la pesca usa gli stessi bordi di
+  prima e resta bit per bit identica.
+
+### Misurato
+
+Solo lettura, verificato sugli stessi semi: playtest a tavolo misto
+invariato (0/8 seggi bloccati), sonda delle ere identica alla 0.1.45 riga
+per riga. 207 test in 29 suite, 4452 asserzioni.
+
+---
+
 ## [0.1.45] — La domanda lasciata calda torna calda
 
 Fase 2 del World Propagation Engine ([D-088](docs/DECISIONS.md#d-088)): il

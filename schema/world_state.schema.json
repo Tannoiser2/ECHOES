@@ -205,6 +205,142 @@
             "type": "integer",
             "minimum": 0
           }
+        },
+        "opening_record": {
+          "type": "array",
+          "description": "Il verbale d'apertura (Fase 3 del motore 0.3): per ogni domanda pescata, chi l'ha richiamata - un segno sul mondo (D-079) o un conto rimasto aperto (D-087) - e con che valore riparte (D-088). Vuoto per l'anno che apre una saga e per gli anni scritti.",
+          "items": {
+            "$ref": "#/$defs/opening_entry"
+          }
+        },
+        "map_record": {
+          "$ref": "#/$defs/map_record",
+          "description": "La meta' della mappa del verbale d'apertura (D-090): come si piazza la mappa dell'era nuova e cosa il tempo le ha fatto, derivata dagli stessi inheritance_effects che la piazzano. Vuoto ({}) per l'anno che apre una saga."
+        }
+      }
+    },
+    "map_record": {
+      "type": "object",
+      "required": [],
+      "additionalProperties": false,
+      "properties": {
+        "regions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/map_region_entry"
+          }
+        },
+        "legends_born": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "relations_softened": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "map_region_entry": {
+      "type": "object",
+      "required": [
+        "region_id",
+        "holder",
+        "lapsed",
+        "marks",
+        "faded"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "region_id": {
+          "type": "string"
+        },
+        "holder": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "lapsed": {
+          "type": "boolean"
+        },
+        "marks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "faded": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "opening_entry": {
+      "type": "object",
+      "required": [
+        "tension_id",
+        "start",
+        "authored",
+        "called_by"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "tension_id": {
+          "type": "string"
+        },
+        "start": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "authored": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "called_by": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/opening_reason"
+          }
+        }
+      }
+    },
+    "opening_reason": {
+      "type": "object",
+      "required": [
+        "kind"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "mark",
+            "account"
+          ]
+        },
+        "tag": {
+          "type": "string"
+        },
+        "carried": {
+          "type": "string",
+          "enum": [
+            "fact",
+            "legend",
+            "region"
+          ]
+        },
+        "region_id": {
+          "type": "string"
+        },
+        "entity_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
         }
       }
     },

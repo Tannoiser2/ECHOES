@@ -336,7 +336,7 @@ che assenze.
 
 ## Milestone 0.3 — World Propagation
 
-### 9. La Chronicle II generata dalle evidence (#25)
+### 9. ✅ La Chronicle II generata dalle evidence (#25) — fatta in 0.1.44–0.1.46
 
 `motore` · milestone **0.3** · aperta su GitHub con il piano a fasi
 ([#25](https://github.com/Tannoiser2/ECHOES/issues/25)) · **Fase 1 fatta in
@@ -363,16 +363,20 @@ contro il 67% della pesca cieca) · **Fase 2 fatta in 0.1.45**
 ([D-088](DECISIONS.md#d-088)): la domanda lasciata calda torna calda — sui
 salti brevi le Tensioni ripescate ereditano il valore dell'era prima
 (tetto a soglia−1), sui lunghi sbiadiscono; 66 domande su 720 partono più
-calde, 14 più quiete. Resta dichiarata la Fase 3 (il verbale d'apertura
-dell'era).
-
-`world_state_factory.inheritance_effects()` porta
-avanti la metà che serviva a misurare — controllo, tag della mappa, relazioni
-che sbiadiscono — e la generazione strutturata dell'anno dopo è cominciata.
+calde, 14 più quiete · **Fase 3 fatta in 0.1.46**
+([D-089](DECISIONS.md#d-089)): il verbale d'apertura — per ogni domanda
+pescata il mondo registra e dice chi l'ha richiamata («La Carestia torna:
+Re Aldric non l'ha mai chiusa»), in `world_state.opening_record`, nel log
+del tavolo e nel digest di `run_saga`. Determinismo intatto, misurato.
+In 0.1.47 il verbale copre anche la mappa
+([D-090](DECISIONS.md#d-090)): chi tiene cosa, cosa è decaduto, cosa è
+sbiadito, cosa è diventato leggenda.
 
 **Fatto quando** da una Chronicle conclusa esce una Chronicle nuova con domande
 scelte dalle conseguenze di quella prima, e due Chronicle in fila si giocano
-senza che nessuno scriva JSON a mano.
+senza che nessuno scriva JSON a mano. **È così**: la pesca legge segni (D-079),
+conti aperti (D-087) e calore (D-088), `run_saga` incatena dieci ere senza un
+JSON scritto a mano, e il verbale rende la scelta leggibile al tavolo.
 
 ### 10. ✅ Il registro delle Truth non ha una vista — fatta in 0.1.42–0.1.43
 
