@@ -1382,6 +1382,37 @@
           }
         }
       ]
+    },
+    {
+      "id": "CNS_QUESTION_RETAKEN",
+      "title": "La Domanda Ripresa",
+      "category": "CONTROL",
+      "description": "Quello che un consiglio lascio cadere viene deciso e scritto. Il registro non ha piu pagine bianche - e riaprire vecchie ferite ha un prezzo.",
+      "effects": [
+        {
+          "type": "REMOVE_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "question_unresolved",
+            "optional": true
+          },
+          "note": "La spirale si chiude solo decidendo: la via di D-085, applicata al fallimento (D-094)."
+        },
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "$tension"
+          },
+          "payload": {
+            "delta": 2
+          },
+          "note": "Il prezzo: la domanda ripresa torna calda."
+        }
+      ]
     }
   ]
 }

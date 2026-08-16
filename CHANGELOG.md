@@ -5,6 +5,34 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.51] — La spirale del fallimento si chiude ri-decidendo
+
+Scioglie il debito residuo della voce 18
+([D-094](docs/DECISIONS.md#d-094)): «Il Regno che Ricorda» non è più
+strozzato dalla propria Victory.
+
+### Added
+
+- **La via del riprendere**: `P_RETAKE_QUESTION` (Q_SUCCESSION_LAW,
+  eleggibile con `question_unresolved` sul mondo) e
+  `CNS_QUESTION_RETAKEN` — il segno si toglie, la domanda torna calda
+  (+2). La forma di D-085 applicata al fallimento.
+- **Il conto dell'era** (`world_state.open_failures`): le Tensioni cadute
+  e non ancora ri-decise; quando l'ultima si decide, la spirale si
+  chiude e il tag si toglie con un Effect di sistema. Il segno ereditato
+  da un'era prima non si chiude per caso: quello lo scioglie solo la via
+  del riprendere.
+
+### Misurato
+
+Su 20 saghe: Vittorie del Regno che Ricorda **6→16**, Trionfi 4→7
+(sopra il Minimo 11%→27%); ere che chiudono col tag 140→75 su 200;
+`question_unresolved` letterale all'ultimo anno da 18/20 a 5/20 saghe.
+Playtest sugli stessi 100 semi: 0/8 bloccati al tavolo misto, Consigli
+in banda. 211 test in 29 suite, 4482 asserzioni.
+
+---
+
 ## [0.1.50] — La voce 2 si chiude coi numeri: i template in più non servono
 
 Solo verbale ([D-093](docs/DECISIONS.md#d-093)): terza e ultima misura

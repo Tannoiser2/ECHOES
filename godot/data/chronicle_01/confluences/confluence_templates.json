@@ -468,6 +468,26 @@
           "echo_summaries": {
             "FAILURE": "Si conto chi teneva cosa, e la conta non torno a nessuno."
           }
+        },
+        {
+          "id": "P_RETAKE_QUESTION",
+          "question_id": "Q_SUCCESSION_LAW",
+          "text": "Si riprenda la domanda che un consiglio lascio cadere, e stavolta la risposta si scriva nel registro.",
+          "eligibility": [
+            {
+              "type": "state_tag_present",
+              "scope": "GLOBAL",
+              "tag": "question_unresolved",
+              "label": "Una questione e rimasta aperta"
+            }
+          ],
+          "success_consequences": [
+            "CNS_QUESTION_RETAKEN"
+          ],
+          "echo_summary": "La domanda lasciata cadere fu ripresa, e la risposta fini nel registro.",
+          "echo_summaries": {
+            "FAILURE": "Si volle riprendere la domanda caduta, e cadde una seconda volta."
+          }
         }
       ],
       "condition_clauses": [

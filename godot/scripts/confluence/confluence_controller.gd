@@ -495,6 +495,30 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 	)
 	world["confluence_count"] = int(world["confluence_count"]) + 1
 	world["forced_confluence"] = null
+	# La spirale del fallimento si chiude ri-decidendo (D-094). Quando una
+	# proposta cade, CNS_FAILURE_SPIRAL scrive `question_unresolved` sul mondo
+	# e D-077 tiene la domanda sul tavolo proprio perche' possa tornare ai
+	# voti. Fin qui pero' nessun successo toglieva mai quel segno: il registro
+	# restava in colpa anche a questione decisa. Adesso il mondo tiene il
+	# conto delle questioni cadute in quest'era, e quando l'ultima viene
+	# decisa la spirale si chiude. Il segno ereditato da un'era prima invece
+	# resta: quello lo scioglie solo la via del riprendere (P_RETAKE_QUESTION),
+	# perche' un conto di un'altra generazione non si chiude per caso.
+	if not world.has("open_failures"):
+		world["open_failures"] = []
+	if outcome == ConfluenceResolution.FAILURE:
+		if not (world["open_failures"] as Array).has(tension_id):
+			(world["open_failures"] as Array).append(tension_id)
+	elif (world["open_failures"] as Array).has(tension_id):
+		(world["open_failures"] as Array).erase(tension_id)
+		if (world["open_failures"] as Array).is_empty() \
+				and (world["global_tags"] as Array).has("question_unresolved"):
+			_apply(applied, Effect.make(
+				"REMOVE_GLOBAL_TAG", "world", "WORLD",
+				{"tag": "question_unresolved", "optional": true}, source
+			))
+			log.bullet("H. La domanda caduta e' stata ripresa e decisa: la spirale si chiude.")
+
 	# Segnata **qui** e non all'apertura: una domanda vale come posta quando e'
 	# stata messa ai voti davvero. Una Confluence annullata perche' nessuna
 	# proposta era disponibile non consuma niente (D-061). E nemmeno una che
