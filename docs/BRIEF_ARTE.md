@@ -299,11 +299,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.force.border_watch` — Guardia di Confine
 
-- **soggetto**: Guardia di Confine — +1 quando FORCE è rilevante per la Tensione. Contano i carri che passano, e sanno quali contare
+- **soggetto**: Guardia di Confine — +1 quando FORCE è rilevante per la Tensione. Contano i carri che passano, e sanno quali contare — e ogni conta ferma la strada: Le Vie Interrotte salgono di 1
 - **id**: `AST_FORCE_BORDER_WATCH`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Guardia di Confine — +1 quando FORCE è rilevante per la Tensione. Contano i carri che passano, e sanno quali contare.
+Historical dark-fantasy painting, single evocative scene depicting Guardia di Confine — +1 quando FORCE è rilevante per la Tensione. Contano i carri che passano, e sanno quali contare — e ogni conta ferma la strada: Le Vie Interrotte salgono di 1.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 rosso ossido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -335,11 +335,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.force.levy` — Leva Contadina
 
-- **soggetto**: Leva Contadina — Uomini con attrezzi da lavoro tenuti come lance. Bastano finché nessuno li conta
+- **soggetto**: Leva Contadina — Uomini con attrezzi da lavoro tenuti come lance. Bastano finché nessuno li conta — ma i campi restano soli: la Carestia sale di 1
 - **id**: `AST_FORCE_LEVY`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Leva Contadina — Uomini con attrezzi da lavoro tenuti come lance. Bastano finché nessuno li conta.
+Historical dark-fantasy painting, single evocative scene depicting Leva Contadina — Uomini con attrezzi da lavoro tenuti come lance. Bastano finché nessuno li conta — ma i campi restano soli: la Carestia sale di 1.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 rosso ossido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -353,11 +353,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.force.mercenaries` — Mercenari
 
-- **soggetto**: Mercenari — +1 sempre, su qualsiasi fronte: fuori tema vale quanto in tema, ed è tutto quello che sanno fare
+- **soggetto**: Mercenari — +1 sempre, su qualsiasi fronte: fuori tema vale quanto in tema. Dove passano, però, resta l'inquietudine
 - **id**: `AST_FORCE_MERCENARIES`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Mercenari — +1 sempre, su qualsiasi fronte: fuori tema vale quanto in tema, ed è tutto quello che sanno fare.
+Historical dark-fantasy painting, single evocative scene depicting Mercenari — +1 sempre, su qualsiasi fronte: fuori tema vale quanto in tema. Dove passano, però, resta l'inquietudine.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 rosso ossido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -389,11 +389,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.force.roadblock` — Posto di Blocco
 
-- **soggetto**: Posto di Blocco — +1 sul fronte Oppose. Fermare un carro costa sempre meno che farlo partire
+- **soggetto**: Posto di Blocco — +1 sul fronte Oppose. Fermare un carro costa sempre meno che farlo partire — e la Regione della domanda resta tagliata fuori dal mondo
 - **id**: `AST_FORCE_ROADBLOCK`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Posto di Blocco — +1 sul fronte Oppose. Fermare un carro costa sempre meno che farlo partire.
+Historical dark-fantasy painting, single evocative scene depicting Posto di Blocco — +1 sul fronte Oppose. Fermare un carro costa sempre meno che farlo partire — e la Regione della domanda resta tagliata fuori dal mondo.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 rosso ossido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -407,11 +407,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.force.siege` — Assedio
 
-- **soggetto**: Assedio — +1 sul fronte Oppose. Non serve prendere una cosa per impedire che sia di qualcun altro
+- **soggetto**: Assedio — +2 sul fronte Oppose. Non serve prendere una cosa per impedire che sia di qualcun altro — ma l'assedio affama anche la terra intorno: la Carestia sale di 1
 - **id**: `AST_FORCE_SIEGE`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Assedio — +1 sul fronte Oppose. Non serve prendere una cosa per impedire che sia di qualcun altro.
+Historical dark-fantasy painting, single evocative scene depicting Assedio — +2 sul fronte Oppose. Non serve prendere una cosa per impedire che sia di qualcun altro — ma l'assedio affama anche la terra intorno: la Carestia sale di 1.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 rosso ossido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.

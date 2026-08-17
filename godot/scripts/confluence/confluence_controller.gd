@@ -442,10 +442,25 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 			var asset: Variant = data.assets.get(str(asset_id))
 			if asset == null:
 				continue
+			var first_hook: int = applied.size()
 			for spec in asset.get("on_commit_effects", []):
 				var hook_context: Dictionary = context.duplicate()
 				hook_context["actor"] = str(entity_id)
 				_apply(applied, compiler.compile_spec(spec, hook_context, source))
+			# ISSUES 26 / D-106: una carta con un mestiere lo dichiara al
+			# tavolo. Il titolo apre, le frasi del narratore dicono cosa ha
+			# fatto davvero; una carta che non ha mosso nulla non parla.
+			var spoken: Array = []
+			for i in range(first_hook, applied.size()):
+				var said: String = EffectNarrator.narrate(applied[i], data)
+				if said != "":
+					spoken.append(said)
+			if not spoken.is_empty():
+				log.bullet("H. La carta parla - %s (%s):" % [
+					str(asset["title"]), _name(str(entity_id))
+				])
+				for said in spoken:
+					log.bullet("  %s" % said)
 
 	# H.3-H.5 Outcome consequences.
 	var consequence_ids: Array = []
