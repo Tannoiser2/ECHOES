@@ -5,6 +5,26 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.65] — La sonda dei segni, e la voce 24 a verbale
+
+«Ogni conseguenza, ogni cicatrice, ogni decisione potrebbe cambiare il
+meccanismo di gioco»: prima di dare denti, il censimento di quanti ne
+mancano.
+
+### Added
+
+- **`tools/tag_census.py`**: chi scrive un segno e chi lo legge. Primo
+  censimento: 79 segni scritti — 27 vivi per clausola, 5 vivi per motore
+  (`discovery:`), 2 con vita postuma (`legend:`), 27 ereditati fra le ere
+  ma senza dente in partita, **18 muti del tutto** (fra cui `renowned`,
+  `heir_named`, `grain_requisitioned`).
+- **ISSUES voce 24**: il telaio `tag_rules` — un dato dichiarativo che
+  lega un segno a un gancio del motore (modificatore d'azione in Regione,
+  modificatore al Consiglio, porta, relazione) — e le fasi per accendere
+  i denti d'autore uno alla volta, misurati.
+
+---
+
 ## [0.1.64] — Il verbale impara a raccontare
 
 Fase 1 della voce 22 ([D-103](docs/DECISIONS.md#d-103)): le decisioni si
