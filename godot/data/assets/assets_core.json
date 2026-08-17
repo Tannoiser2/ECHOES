@@ -1517,7 +1517,20 @@
       "rarity": "UNCOMMON",
       "deck_copies": 2,
       "art_prompt_key": "asset.bonds.blood_tie",
-      "rules_text": "Non è un accordo: e una cosa che c'era prima dell'accordo, e che nessuno ha firmato."
+      "rules_text": "Non è un accordo: e una cosa che c'era prima dell'accordo, e che nessuno ha firmato. Impegnata, scrive il vincolo di sangue sulla coppia: da lì in poi, quella relazione non scende sotto il neutrale.",
+      "on_commit_effects": [
+        {
+          "type": "SET_RELATION",
+          "target": {
+            "kind": "relation",
+            "id": "$actor|$rival"
+          },
+          "payload": {
+            "add_tag": "BLOOD"
+          },
+          "note": "Il mestiere della carta (D-117): il vincolo che non si sceglie. Il segno BLOOD accende il pavimento di TGR_BLOOD_FLOOR - la coppia non scende sotto NEUTRAL - ed era il potere che D-113 aveva rimandato alla voce 25. Con questo, 48 carte su 48 lavorano."
+        }
+      ]
     },
     {
       "id": "AST_BONDS_HOSTAGE",

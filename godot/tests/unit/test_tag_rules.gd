@@ -33,7 +33,10 @@ func test_with_no_signs_on_the_board_every_hook_is_neutral() -> void:
 	# D-105: le cinque regole di casa viaggiano nei dati, ma i loro segni
 	# (granaio, fame, razzia, giuramento, fama) non esistono a inizio
 	# partita - quindi ogni gancio resta neutro finché il gioco non li posa.
-	assert_eq(session.data.tag_rules.size(), 14, "le regole di D-105 e i poteri di vita di D-109")
+	assert_eq(
+		session.data.tag_rules.size(), 19,
+		"le regole di D-105, i poteri di vita di D-109 e i denti di D-117"
+	)
 	var bonus: Dictionary = TagRules.action_bonus(
 		session.data, session.world, "ENT_ALDRIC", "INFLUENCE", "TEN_FAMINE"
 	)

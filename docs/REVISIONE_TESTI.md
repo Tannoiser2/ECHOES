@@ -1760,7 +1760,7 @@ possono spostare nella frase, non togliere. 745 testi in lettura.
 **`AST_BONDS_BLOOD_TIE`**
 > Legame di Sangue
 
-> Non è un accordo: e una cosa che c'era prima dell'accordo, e che nessuno ha firmato.
+> Non è un accordo: e una cosa che c'era prima dell'accordo, e che nessuno ha firmato. Impegnata, scrive il vincolo di sangue sulla coppia: da lì in poi, quella relazione non scende sotto il neutrale.
 
 
 **`AST_BONDS_BROKEN_PACT`**

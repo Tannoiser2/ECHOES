@@ -5,6 +5,35 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.79] — I denti veri, e la 48ª carta
+
+La voce 25 si chiude ([D-117](docs/DECISIONS.md#d-117)): cinque regole
+d'autore, una per tipo, tutte su segni che il gioco già produce — e il
+Legame di Sangue riceve il suo mestiere: **48 carte su 48 lavorano**.
+
+### Added
+
+- **I patti non si firmano a stomaco vuoto**: in una Regione affamata
+  niente alleanze (FORGE vietato finché la fame non si cura).
+- **Il debito chiamato guasta il mercato**: col debito del Banco chiamato,
+  chi pesca ricchezza prende la peggiore delle prime due carte.
+- **La fame mangia le scorte**: presenza in Regione affamata, una carta
+  di meno in mano.
+- **Chi riapre i canali ha il grano**: il proponente che fa scavare i
+  canali riceve la Riserva di Grano.
+- **Il sangue non si sceglie**: il Legame di Sangue impegnato scrive il
+  vincolo sulla coppia, e quella relazione non scende più sotto il
+  neutrale (il tetto del giuramento spezzato vince sul pavimento).
+
+### Misurato
+
+Un dente alla volta, stessi 100 semi (tabella in D-117): il divieto della
+fame non morde mai nelle sedie automatiche (aspetta la sua condizione,
+come le cure), gli altri quattro spostano poco e in salute. **0/8 al
+tavolo misto a ogni passo**; ere in banda; 255 test verdi.
+
+---
+
 ## [0.1.78] — I denti che aggiungono e tolgono: il telaio
 
 Fase 1 della voce 25 ([D-116](docs/DECISIONS.md#d-116)): **cinque tipi
