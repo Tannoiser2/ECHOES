@@ -389,6 +389,17 @@ Le fasi:
    `action_values` e `persistence` propri; i poteri *nominati* («solo
    l'Ordine può…») sono design d'autore da definire insieme prima, misurare
    dopo.
+5. **L'albero delle vite** — su richiesta del committente («farei molte
+   più trasformazioni, ognuna con poteri asimmetrici, altrimenti sono
+   nomi che cambiano su una carta»), lo studio completo per le otto case
+   è in [TRASFORMAZIONI.md](TRASFORMAZIONI.md): ~17 vite con ingresso
+   narrativo, potere asimmetrico e gancio tecnico dichiarati — il drago
+   che muore e diventa culto della sua memoria, il popolo che si siede e
+   diventa mortale, la stessa morte di Lyra con due nascite possibili.
+   Regola della casa: una vita senza dente non si scrive. Servono gli
+   ingressi `ON_TAG`/`ON_DEATH` con vite alternative, il segno automatico
+   `life:<id>` che le tag_rules già sanno leggere, e i tipi della voce 25
+   per i poteri più ambiziosi.
 
 **Fatto quando** una saga attraversa almeno un cambio d'incarnazione, con
 carta e prompt propri e il passaggio nel verbale, e le sonde d'era restano in
