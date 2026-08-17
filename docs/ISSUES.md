@@ -433,11 +433,12 @@ clausole leggono ma che **nessuna vista mostra**.
 
 Le fasi:
 
-1. **Il verbale racconta gli effetti**: dopo «H. Conseguenze:» non gli id
-   ma il titolo della Conseguenza e una riga parlata per ogni effetto
-   applicato («La Valle Verde non risponde più alla corona», «Aldric perde
-   la presenza nella Valle»). Ogni tipo di effetto ha la sua forma
-   parlata; vale anche per gli effetti della carta Echo d'atto, oggi muti.
+1. ✅ **Il verbale racconta gli effetti** — fatta in 0.1.64
+   ([D-103](DECISIONS.md#d-103)): `effect_narrator.gd`, una frase con i
+   nomi del tavolo per ogni effetto applicato da Conseguenze, clausole
+   qualificate e carta Echo d'atto («Valle Verde passa sotto il controllo
+   di Re Aldric»); gli id non si leggono più, i no-op e la contabilità di
+   Propp tacciono per scelta.
 2. **La mappa non nasconde**: le regioni contese appaiono («Valle Verde —
    contesa»), e un cambio di controllo si vede nel momento in cui accade.
 3. **I tag hanno un corpo**: i tag di regione come segnalini sulla mappa

@@ -5,6 +5,33 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.64] — Il verbale impara a raccontare
+
+Fase 1 della voce 22 ([D-103](docs/DECISIONS.md#d-103)): le decisioni si
+devono vedere, a cominciare da quello che resta scritto.
+
+### Added
+
+- **Il narratore degli effetti** (`effect_narrator.gd`): una frase con i
+  nomi del tavolo per ogni effetto applicato — «Valle Verde passa sotto
+  il controllo di Re Aldric», «Il Risveglio non è più velata». Parla per
+  le Conseguenze di un Consiglio (ora aperte dal titolo, non dagli id),
+  per la clausola qualificata e per la carta Echo d'atto, prima muta.
+  Tace sui no-op, sulla contabilità di Propp e su ciò che ha già una voce
+  (Scar, Echo, Truth).
+
+### Changed
+
+- Gli `applied` della carta Echo d'atto sono gli Effect registrati, non i
+  compilati: il segnale `act_echo_drawn` porta l'effetto com'è nel log.
+
+### Misurato
+
+223 test in 30 suite (7 nuovi), 4955 asserzioni; playtest standard
+invariato, 0/8 seggi bloccati al tavolo misto.
+
+---
+
 ## [0.1.63] — Le vite del seggio hanno una forma
 
 Fase 1 della voce 19 ([D-102](docs/DECISIONS.md#d-102)): le incarnazioni.

@@ -331,6 +331,46 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-103 — Il verbale racconta gli effetti, non gli id
+**implemented in 0.1.64** (ISSUES 22, Fase 1; dalla partita al seme 15308)
+
+«Non si capisce quali sono le conseguenze delle decisioni prese.» Il
+mondo cambiava davvero — nella partita vera la corona ha perso il
+controllo della Valle Verde — ma in silenzio: il verbale elencava gli id
+(«H. Conseguenze: CNS_NAHR_SETTLEMENT, …») e applicava gli effetti senza
+una parola.
+
+### Il narratore
+
+`effect_narrator.gd`: una frase parlata per ogni Effect applicato, con i
+nomi del tavolo e mai gli id — «Valle Verde passa sotto il controllo di
+Re Aldric», «Popolo Nahr perde la presenza in Valle Verde», «Il Risveglio
+non è più velata: il suo numero è sul tavolo», «Su Valle Verde resta un
+segno: “structure:granary”». Tace per scelta su tre cose: i no-op (un
+segno già presente non si riscrive), la contabilità di Propp (i tag
+`function:` sono grammatica, non storia — D-030), e ciò che ha già una
+voce propria (Scar, Echo, Truth).
+
+### Dove parla
+
+- **Le Conseguenze di un Consiglio**: ogni Conseguenza apre col titolo
+  («H. Conseguenza - Il Granaio del Trono:») e sotto le sue frasi;
+  la riga con gli id non esiste più.
+- **La clausola qualificata**: gli effetti della condizione che passa.
+- **La carta Echo d'atto**: quello che la carta fa al mondo, scritto
+  sotto quello che la carta dice — la «Scoperta» del seme 15308 aveva
+  svelato una Tensione senza una riga.
+
+Nel passaggio, gli `applied` della carta d'atto sono ora gli Effect
+registrati (con l'inverse), non i compilati: il narratore distingue i
+no-op dall'inverse, e il segnale `act_echo_drawn` ne guadagna in fedeltà.
+
+### Misurato
+
+223 test in 30 suite (7 nuovi sul narratore), 4955 asserzioni, verdi;
+playtest standard invariato, 0/8 seggi bloccati al tavolo misto. Il
+verbale è più lungo solo dove prima era muto.
+
 ## D-102 — Le incarnazioni del seggio: la forma prima dell'attraversamento
 **implemented in 0.1.63** (ISSUES 19, Fase 1; voluta dal committente)
 
