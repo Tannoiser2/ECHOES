@@ -27,7 +27,7 @@
       ],
       "triggers": [
         "Ogni raccolto mancato nella Valle Verde.",
-        "Ogni bocca in piu che arriva da est.",
+        "Ogni bocca in più che arriva da est.",
         "Ogni riserva spesa per qualcosa che non e cibo."
       ],
       "decrease_rules": [

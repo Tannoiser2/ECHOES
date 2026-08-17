@@ -331,6 +331,43 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-102 — Le incarnazioni del seggio: la forma prima dell'attraversamento
+**implemented in 0.1.63** (ISSUES 19, Fase 1; voluta dal committente)
+
+«In una partita il giocatore gioca padre Anselmo, in una seguente un culto
+derivato da lui.» Oggi il seggio attraversa i secoli cambiando solo il nome
+(D-045/D-046): stessa natura, stessi poteri, stessa carta. Le
+**incarnazioni** sono le vite del seggio: prima la persona, poi quello che
+nasce da lei — natura diversa, `action_values` propri, tarocco e prompt
+d'arte propri.
+
+### La Fase 1: solo la forma
+
+Lo schema `entity` guadagna l'array opzionale `incarnations` — ognuna con
+`id` (`INC_…`), nome, descrizione, `persistence`, `action_values`,
+`art_prompt_key`, i *propri* successori e `name_grammar`, e la regola
+d'ingresso `entry`: `FOUNDING` (siede al tavolo dalla prima cronaca, una
+sola per seggio) o `LINE_EXHAUSTED` (entra quando la linea dei successori
+dell'incarnazione precedente finisce). Le forme condivise fra Entità e
+incarnazione (`action_values`, `successors`, `name_grammar`,
+`persistence`) sono salite in `$defs` e referenziate da entrambe.
+
+Gli 8 seggi migrati: la prima incarnazione (`INC_<SEGGIO>_01`,
+`FOUNDING`) assorbe i campi attuali. Il motore **non le legge ancora**:
+finché la Fase 2 non sposta il lettore, i campi al livello dell'Entità
+restano l'autorità, e una guardia in `validate_data.py` impone che la
+prima incarnazione li rispecchi esattamente (test negativo: rompere lo
+specchio fa fallire la validazione con `does not mirror entity field`).
+
+### Prima/dopo
+
+Suite 216 test / 4557 asserzioni verde prima e dopo; playtest standard
+(`--runs=100 --seed=7000`) invariato, **0/8 seggi bloccati al tavolo
+misto**. Nessun comportamento è cambiato: questa fase compra solo il
+posto dove la Fase 2 (l'attraversamento con riga di verbale), la Fase 3
+(un tarocco e un prompt per incarnazione) e la Fase 4 (i poteri) potranno
+vivere.
+
 ## D-101 — La GUI mostra i componenti fisici, non una loro parafrasi
 **implemented in 0.1.59** (direzione del committente; prima fetta)
 

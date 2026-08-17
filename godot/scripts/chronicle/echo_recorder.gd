@@ -84,7 +84,7 @@ func record(context: Dictionary, result: Dictionary, effect_ids: Array, source: 
 		applied.append(truth_effect)
 
 	log.bullet("Echo registrato [%s]: %s" % [echo_id, summary])
-	log.bullet("Truth [%s] e ora immutabile." % truth_id)
+	log.bullet("Truth [%s] è ora immutabile." % truth_id)
 	return applied
 
 

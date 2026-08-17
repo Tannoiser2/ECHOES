@@ -27,7 +27,7 @@
           "payload": {
             "delta": 1
           },
-          "note": "Il grano requisito viaggia sotto scorta, e le vie si intasano di carri del trono: la domanda piu votata della saga adesso tocca anche chi vive di strade (D-070)."
+          "note": "Il grano requisito viaggia sotto scorta, e le vie si intasano di carri del trono: la domanda più votata della saga adesso tocca anche chi vive di strade (D-070)."
         },
         {
           "type": "SET_CONTROL",
@@ -141,7 +141,7 @@
             "region_id": "REG_TERRE_NAHR",
             "optional": true
           },
-          "note": "Un inverno senza uscita non si aspetta sul posto: chi puo andarsene se ne va. Regione nominata, non $region_focus, perche e quella che il Minimo del popolo nomina (AUDIT_DESTINI 7.2); optional copre il rivale che li non sta."
+          "note": "Un inverno senza uscita non si aspetta sul posto: chi può andarsene se ne va. Regione nominata, non $region_focus, perché e quella che il Minimo del popolo nomina (AUDIT_DESTINI 7.2); optional copre il rivale che li non sta."
         },
         {
           "type": "SET_RELATION",
@@ -359,7 +359,7 @@
             "region_id": "$region_focus",
             "optional": true
           },
-          "note": "optional: la Valle puo essere gia sgombera."
+          "note": "optional: la Valle può essere già sgombera."
         },
         {
           "type": "SET_REGION_TAG",
@@ -602,7 +602,7 @@
           "payload": {
             "delta": -1
           },
-          "note": "Un domani certo rimette in moto le carovane: la domanda piu votata della Successione adesso tocca chi vive di strade, nei due versi (D-072)."
+          "note": "Un domani certo rimette in moto le carovane: la domanda più votata della Successione adesso tocca chi vive di strade, nei due versi (D-072)."
         },
         {
           "type": "SET_GLOBAL_TAG",
@@ -702,7 +702,7 @@
             "region_id": "$capital",
             "optional": true
           },
-          "note": "Chi firma adesso non tiene in citta la gente di chi firmava prima. Il rivale e scelto perche in capitale ci sta: optional copre solo il ripiego raro in cui non c'e (AUDIT_DESTINI 7.2)."
+          "note": "Chi firma adesso non tiene in città la gente di chi firmava prima. Il rivale e scelto perché in capitale ci sta: optional copre solo il ripiego raro in cui non c'e (AUDIT_DESTINI 7.2)."
         },
         {
           "type": "SET_REGION_TAG",
@@ -1104,7 +1104,7 @@
           "payload": {
             "delta": -2
           },
-          "note": "Non si risolve: si va via, e la domanda si spegne perche non resta nessuno a porla."
+          "note": "Non si risolve: si va via, e la domanda si spegne perché non resta nessuno a porla."
         },
         {
           "type": "ADD_PRESENCE",
@@ -1116,7 +1116,7 @@
             "region_id": "$adjacent",
             "optional": true
           },
-          "note": "optional: il posto accanto puo essere pieno."
+          "note": "optional: il posto accanto può essere pieno."
         }
       ]
     },

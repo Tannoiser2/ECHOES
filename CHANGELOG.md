@@ -5,6 +5,61 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.63] — Le vite del seggio hanno una forma
+
+Fase 1 della voce 19 ([D-102](docs/DECISIONS.md#d-102)): le incarnazioni.
+
+### Added
+
+- **Schema `incarnations`** sull'Entità: le vite del seggio lungo la saga
+  — prima la persona, poi quello che nasce da lei — ognuna con nome,
+  natura, valori d'azione, prompt d'arte, successori propri e regola
+  d'ingresso (`FOUNDING`/`LINE_EXHAUSTED`). Le forme condivise
+  (`action_values`, `successors`, `name_grammar`, `persistence`) salgono
+  in `$defs`.
+- **Gli 8 seggi migrati**: la prima incarnazione (`INC_<SEGGIO>_01`)
+  assorbe i campi attuali. Il motore non le legge ancora: una guardia in
+  `validate_data.py` impone lo specchio esatto finché la Fase 2 non
+  sposta il lettore.
+
+### Misurato
+
+Suite verde prima e dopo (216/4557); playtest standard invariato, 0/8
+seggi bloccati al tavolo misto. Nessun comportamento cambiato.
+
+---
+
+## [0.1.62] — Quello che una partita vera ha insegnato
+
+La prima cronaca giocata dal committente (seme 15308) letta riga per riga:
+nessun difetto di regole, ma il log parla — e quello che dice è a verbale.
+
+### Fixed
+
+- **Gli accenti del motore**: le stringhe scritte nei `.gd` erano rimaste
+  fuori dalla revisione dei dati ([D-099](docs/DECISIONS.md#d-099)) — «Truth
+  è ora immutabile», «la domanda caduta è stata ripresa», «COM'È FINITA»,
+  «REGISTRO DELLE VERITÀ».
+- **Gli accenti dei dati, ultime sacche**: le parole senza ambiguità
+  (purché, più, già, città, può, così…) applicate a *tutti* i valori
+  stringa dei JSON — cadono «...purche $rival» nelle clausole, «Diritto di
+  Ospitalita» e «Puo dirlo dopo» sulla carta, «I Senza Citta» fra i titoli,
+  e i segni delle Tensioni. Rigenerati brief d'arte, manifest e materiale
+  di revisione.
+
+### Added
+
+- **ISSUES voce 21**: la mossa che spegne una spunta del proprio Destino
+  deve avvertire prima — nella partita vera Vaerax ha chiuso a NONE
+  spegnendo da solo «La montagna è ancora sua» all'ultimo round, senza un
+  cartello.
+
+### Misurato
+
+216 test in 29 suite, 4557 asserzioni; 20 documenti validi contro gli schemi.
+
+---
+
 ## [0.1.61] — I tarocchi dietro il paravento
 
 Terza e ultima fetta dichiarata di [D-101](docs/DECISIONS.md#d-101).

@@ -523,7 +523,7 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 				"REMOVE_GLOBAL_TAG", "world", "WORLD",
 				{"tag": "question_unresolved", "optional": true}, source
 			))
-			log.bullet("H. La domanda caduta e' stata ripresa e decisa: la spirale si chiude.")
+			log.bullet("H. La domanda caduta è stata ripresa e decisa: la spirale si chiude.")
 
 	# Segnata **qui** e non all'apertura: una domanda vale come posta quando e'
 	# stata messa ai voti davvero. Una Confluence annullata perche' nessuna

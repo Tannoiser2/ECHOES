@@ -180,7 +180,7 @@
           "payload": {
             "level": "HOSTILE"
           },
-          "note": "Chi non puo pagare non perdona chi ha chiesto adesso (ISSUES 14: la seconda saga non aveva un solo modo di farsi un nemico)."
+          "note": "Chi non può pagare non perdona chi ha chiesto adesso (ISSUES 14: la seconda saga non aveva un solo modo di farsi un nemico)."
         },
         {
           "type": "SET_CONTROL",

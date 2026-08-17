@@ -99,7 +99,7 @@ func _opening(session: RefCounted, data: RefCounted, humans: Array, seed_value: 
 func _closing(session: RefCounted, data: RefCounted, report: Dictionary) -> void:
 	print("")
 	print("=========================================================")
-	print(" COM'E FINITA")
+	print(" COM'È FINITA")
 	print("=========================================================")
 	for entity_id in SEATS:
 		var entry: Dictionary = report["destiny_results"][str(entity_id)]

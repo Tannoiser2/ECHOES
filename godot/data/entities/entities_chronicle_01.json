@@ -87,7 +87,60 @@
           "Re Orlan",
           "Regina Nima"
         ]
-      }
+      },
+      "incarnations": [
+        {
+          "id": "INC_ALDRIC_01",
+          "name": "Re Aldric",
+          "description": "Terzo della sua casa, primo a regnare su un raccolto che non basta. Sa che il trono è una promessa di pane con un altro nome.",
+          "persistence": "MORTAL",
+          "action_values": {
+            "ACQUIRE": 3,
+            "MOVE": 2,
+            "INFLUENCE": 4,
+            "FORGE": 2,
+            "SCHEME": 1,
+            "CLAIM": 4
+          },
+          "art_prompt_key": "entity.aldric",
+          "successors": [
+            {
+              "name": "Re Serane",
+              "description": "Nipote di Aldric. Ha ereditato un trono e un registro di cose non decise."
+            },
+            {
+              "name": "Re Corvin",
+              "description": "Salì al trono con un atto e non con un nome, e non lo lasciò dimenticare a nessuno."
+            },
+            {
+              "name": "Regina Isaura",
+              "description": "La prima della casa a contare i granai prima delle spade."
+            },
+            {
+              "name": "Re Aldric IV",
+              "description": "Porta il nome del primo. Nella Valle dicono che sia l'unica cosa che hanno in comune."
+            }
+          ],
+          "name_grammar": {
+            "pattern": "{given}{ordinal}",
+            "given": [
+              "Re Vharn",
+              "Regina Eleyna",
+              "Re Torvald",
+              "Regina Mirea",
+              "Re Rethis",
+              "Regina Ansa",
+              "Re Kelvar",
+              "Regina Ottima",
+              "Re Danu",
+              "Regina Selve",
+              "Re Orlan",
+              "Regina Nima"
+            ]
+          },
+          "entry": "FOUNDING"
+        }
+      ]
     },
     {
       "id": "ENT_NAHR",
@@ -139,6 +192,24 @@
       "destiny_pool": [
         "DST_NAHR",
         "DST_NAHR_ROOTED"
+      ],
+      "incarnations": [
+        {
+          "id": "INC_NAHR_01",
+          "name": "Popolo Nahr",
+          "description": "Non un esercito e non una folla: una lingua, un calendario e undicimila persone che si spostano quando la terra smette di rispondere.",
+          "persistence": "COLLECTIVE",
+          "action_values": {
+            "ACQUIRE": 3,
+            "MOVE": 4,
+            "INFLUENCE": 3,
+            "FORGE": 3,
+            "SCHEME": 1,
+            "CLAIM": 1
+          },
+          "art_prompt_key": "entity.nahr",
+          "entry": "FOUNDING"
+        }
       ]
     },
     {
@@ -236,7 +307,70 @@
           "la Paziente",
           "che Rifa i Conti"
         ]
-      }
+      },
+      "incarnations": [
+        {
+          "id": "INC_LYRA_01",
+          "name": "Lyra",
+          "description": "Studiosa senza patrono. È scesa nelle Miniere Antiche per misurare una pietra e ne è risalita con una domanda.",
+          "persistence": "MORTAL",
+          "action_values": {
+            "ACQUIRE": 3,
+            "MOVE": 2,
+            "INFLUENCE": 2,
+            "FORGE": 2,
+            "SCHEME": 5,
+            "CLAIM": 1
+          },
+          "art_prompt_key": "entity.lyra",
+          "successors": [
+            {
+              "name": "Teren di Lyra",
+              "description": "Studio le carte di Lyra prima di conoscere il suo nome."
+            },
+            {
+              "name": "Mira la Cartografa",
+              "description": "Non cerca cosa dorme sotto la pietra: cerca chi ci ha già guardato."
+            },
+            {
+              "name": "Corin il Verificatore",
+              "description": "Rifa ogni misura dall'inizio. Non si fida nemmeno dei suoi maestri."
+            },
+            {
+              "name": "Sela di Eredan",
+              "description": "La prima a insegnare fuori dalle gallerie."
+            }
+          ],
+          "name_grammar": {
+            "pattern": "{given} {epithet}",
+            "given": [
+              "Anselm",
+              "Idris",
+              "Vela",
+              "Marek",
+              "Noa",
+              "Cathal",
+              "Runa",
+              "Ilve",
+              "Bren",
+              "Ysolde",
+              "Kael",
+              "Nerina"
+            ],
+            "epithets": [
+              "di Lyra",
+              "delle Gallerie",
+              "che Conta",
+              "la Seconda Mano",
+              "il Testimone",
+              "di Eredan",
+              "la Paziente",
+              "che Rifa i Conti"
+            ]
+          },
+          "entry": "FOUNDING"
+        }
+      ]
     },
     {
       "id": "ENT_VAERAX",
@@ -289,6 +423,24 @@
       "destiny_pool": [
         "DST_VAERAX",
         "DST_VAERAX_WATCHED"
+      ],
+      "incarnations": [
+        {
+          "id": "INC_VAERAX_01",
+          "name": "Vaerax",
+          "description": "Dorme sotto le Montagne Rosse da prima che Eredan avesse un nome. Si sveglia raramente, e mai per una ragione piccola.",
+          "persistence": "ETERNAL",
+          "action_values": {
+            "ACQUIRE": 2,
+            "MOVE": 2,
+            "INFLUENCE": 4,
+            "FORGE": 1,
+            "SCHEME": 4,
+            "CLAIM": 1
+          },
+          "art_prompt_key": "entity.vaerax",
+          "entry": "FOUNDING"
+        }
       ]
     }
   ]

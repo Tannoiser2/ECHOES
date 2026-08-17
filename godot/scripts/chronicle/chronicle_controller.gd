@@ -558,7 +558,7 @@ func chronicle_end() -> Dictionary:
 			log.bullet(session.destinies.describe(results[entity_id]))
 
 	if not (world["truth_log"] as Array).is_empty():
-		log.section("REGISTRO DELLE VERITA")
+		log.section("REGISTRO DELLE VERITÀ")
 		for truth in world["truth_log"]:
 			log.bullet(str(truth["text"]))
 

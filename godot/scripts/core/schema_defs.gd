@@ -791,6 +791,13 @@ const DEFS := {
 			"name_grammar": {
 				"type": "Dictionary",
 			},
+			"incarnations": {
+				"type": "Array",
+				"min_items": 1,
+				"element": {
+					"type": "Dictionary",
+				},
+			},
 		},
 	},
 	"region": {

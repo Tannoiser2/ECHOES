@@ -108,7 +108,7 @@ class Distratto extends PolicyDecider:
 		var best: Dictionary = super.choose_action(entity_id, ao_index, session)
 		if session.rng.range_int(0, 3) != 0:
 			return best
-		# Qualcosa d'altro, purche si possa fare: la famiglia sbagliata, un giro
+		# Qualcosa d'altro, purché si possa fare: la famiglia sbagliata, un giro
 		# a vuoto, una presenza messa dove non serviva.
 		var families: Array = ["FORCE", "AUTHORITY", "PEOPLE", "KNOWLEDGE", "WEALTH", "BONDS"]
 		var family: String = str(families[session.rng.range_int(0, families.size() - 1)])

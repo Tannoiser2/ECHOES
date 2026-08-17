@@ -97,6 +97,31 @@ def check_references(
         for relation in entity.get("relations", []):
             require(known_entities, relation["with"], "entity", where)
         require(known_destinies, entity["destiny_id"], "destiny", where)
+        # Incarnations (ISSUES 19, Fase 1): the engine still reads the entity's
+        # top-level fields, so the first incarnation must mirror them exactly
+        # or the two copies drift apart before Fase 2 flips the reader.
+        incarnations = entity.get("incarnations", [])
+        if incarnations:
+            first = incarnations[0]
+            if first.get("entry") != "FOUNDING":
+                report.fail(where, "first incarnation must have entry FOUNDING")
+            for later in incarnations[1:]:
+                if later.get("entry") == "FOUNDING":
+                    report.fail(where, "only the first incarnation can be FOUNDING")
+            for field in ("name", "description", "persistence", "action_values",
+                          "art_prompt_key", "successors", "name_grammar"):
+                if first.get(field) != entity.get(field):
+                    report.fail(
+                        where,
+                        f"first incarnation '{first.get('id')}' does not mirror "
+                        f"entity field '{field}'",
+                    )
+            seen_inc: Set[str] = set()
+            for incarnation in incarnations:
+                inc_id = str(incarnation.get("id"))
+                if inc_id in seen_inc:
+                    report.fail(where, f"duplicate incarnation id '{inc_id}'")
+                seen_inc.add(inc_id)
 
     for region in documents.get("region", []):
         where = f"{origins['region']} [{region['id']}]"
