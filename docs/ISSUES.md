@@ -507,8 +507,10 @@ Le fasi:
    controllo, Consigli aperti), non solo +1 — da scrivere carta per carta.
 3. ✅ **Il motore** — fatto in 0.1.80 (D-118): `echo_hand`, azione
    PLAY_ECHO, eleggibilità al momento di calare, sedie con freno (una per
-   atto) e filtro (solo se serve al Destino). Manca la **GUI del browser**
-   per calare dalla mano (oggi: terminale sì, browser no).
+   atto) e filtro (solo se serve al Destino). **La GUI** è arrivata in
+   0.1.81: la mano si vede nell'app (spenta quando non calabile, col
+   motivo), e il bottone per calare era già lì — stesso SeatDecider del
+   terminale (D-038).
 4. ✅ **La misura** — in D-118: due forme respinte coi numeri, la terza
    dà 190·88·120·176 con **0/8** e ere in banda.
 

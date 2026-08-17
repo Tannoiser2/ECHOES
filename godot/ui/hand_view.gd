@@ -15,6 +15,7 @@ extends HBoxContainer
 ## to say under the cursor. This just decides which cards are in the row.
 
 const AssetCard := preload("res://ui/asset_card.gd")
+const CardArt := preload("res://ui/card_art.gd")
 
 var _cards: Array = []
 
@@ -46,3 +47,28 @@ func render(session: RefCounted, viewer_id: String, tension_id: String = "") -> 
 		_cards.append(card)
 		add_child(card)
 		card.render(asset, relevant, council_open, session.data)
+
+	# La mano del Narratore (ISSUES 23, D-118): le carte di Propp accanto agli
+	# Asset, spente quando la storia non le accetta ancora - il motivo sta
+	# sotto il cursore. Il bottone per calarle arriva dal SeatDecider, lo
+	# stesso del terminale: qui si mostra soltanto cosa si ha in mano.
+	var echo_hand: Array = (session.world["entities"].get(viewer_id, {}) as Dictionary).get("echo_hand", [])
+	for card_id in echo_hand:
+		var echo: Variant = session.data.echo_cards.get(str(card_id))
+		if echo == null:
+			continue
+		var picture := TextureRect.new()
+		picture.texture = CardArt.texture_for("echo", str(card_id), session.data)
+		picture.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		picture.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		picture.custom_minimum_size = Vector2(70.0, 120.0)
+		var refusal: String = session.actions.check(
+			viewer_id, "PLAY_ECHO", {"echo_card_id": str(card_id)}
+		)
+		picture.modulate = Color(1, 1, 1, 1.0 if refusal == "" else 0.45)
+		picture.tooltip_text = "%s\n%s%s" % [
+			str(echo["title"]), str(echo["description"]),
+			"" if refusal == "" else "\n(non calabile: %s)" % refusal,
+		]
+		_cards.append(picture)
+		add_child(picture)
