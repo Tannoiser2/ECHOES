@@ -5,6 +5,31 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.66] — Il telaio dei denti
+
+Fase 2 della voce 24 ([D-104](docs/DECISIONS.md#d-104)): il posto dove i
+segni potranno mordere, costruito vuoto e misurato invariato.
+
+### Added
+
+- **Schema `tag_rule`**: un segno (su mondo, Regione, Entità o
+  relazione) legato a un gancio del motore — ACTION_MODIFIER (INFLUENCE
+  si allarga), COUNCIL_MODIFIER (il World Factor si piega), GATE (la
+  porta sbarrata o concessa), RELATION_CAP (il tetto alla relazione).
+  Con `chronicle_id` la regola resta a casa sua; `active` obbligatorio.
+- **I quattro ganci nel motore** (`tag_rules.gd` + resolver, Consiglio,
+  movimento, applier): con zero regole ogni gancio restituisce il suo
+  neutro; quando una regola morde su azione o Consiglio si firma a
+  verbale («Il segno pesa: …»).
+
+### Misurato
+
+231 test in 31 suite (8 nuovi: ogni gancio provato con una regola
+sintetica accesa e spenta), 4974 asserzioni; playtest standard
+invariato, 0/8 seggi bloccati al tavolo misto.
+
+---
+
 ## [0.1.65] — La sonda dei segni, e la voce 24 a verbale
 
 «Ogni conseguenza, ogni cicatrice, ogni decisione potrebbe cambiare il

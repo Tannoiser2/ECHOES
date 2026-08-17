@@ -331,6 +331,49 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-104 — Il telaio delle tag_rules: i segni possono avere un dente
+**implemented in 0.1.66** (ISSUES 24, Fase 2; zero regole accese)
+
+Il censimento della voce 24 (0.1.65) ha contato 18 segni muti e 27
+ereditati senza dente. Prima dei denti, il telaio: un nuovo documento
+dati `tag_rule` che lega un segno a un gancio del motore, così ogni
+regola futura sarà un dato d'autore — scritto, acceso da solo e misurato
+sui 100 semi standard — e mai un ramo di codice nascosto.
+
+### La forma
+
+`schema/tag_rule.schema.json`: id `TGR_…`, `title` (come il verbale la
+nomina), `when` {`scope`: GLOBAL/REGION/ENTITY/RELATION, `tag`}, `kind`,
+i campi del suo tipo, `chronicle_id` opzionale (la regola resta a casa
+sua), `active` obbligatorio (una regola spenta è un progetto, non una
+meccanica). I quattro ganci:
+
+- **ACTION_MODIFIER** (`template`, `delta`, `tension_id?`): il valore
+  dell'azione si allarga nel suo verso. Cablato in INFLUENCE; scope
+  REGION vale se il segno sta dove chi agisce ha presenza.
+- **COUNCIL_MODIFIER** (`world_factor_delta`, `tension_id?`): il dado
+  resta il dado, è il World Factor che un mondo segnato piega.
+- **GATE** (`movement` BLOCK/ALLOW, scope REGION): la porta sbarrata
+  vince, come la cacciata di D-067; ALLOW concede un passo anche senza
+  adiacenza.
+- **RELATION_CAP** (`max_level`, scope GLOBAL/RELATION): il tetto clampa
+  le salite nell'applier — scendere resta sempre possibile. (Nota: un
+  undo dev-mode di una salita sopra il tetto riclampa; da sciogliere in
+  Fase 3 con la prima regola vera.)
+
+Ogni regola che morde su un'azione o un Consiglio **si firma a verbale**
+(«Il segno pesa: …»), nello spirito di D-103. `TagRules.active()` scorre
+gli id ordinati: deterministico come tutto il resto (§18.3).
+
+### Misurato
+
+Zero regole nei dati: 231 test in 31 suite (8 nuovi sul telaio, ogni
+gancio provato con una regola sintetica accesa e spenta), 4974
+asserzioni, verdi; playtest standard invariato, 0/8 seggi bloccati al
+tavolo misto. La Fase 3 — i denti d'autore, uno alla volta — parte dalle
+scelte del committente su granary, starving, plundered, oath_broken,
+renowned.
+
 ## D-103 — Il verbale racconta gli effetti, non gli id
 **implemented in 0.1.64** (ISSUES 22, Fase 1; dalla partita al seme 15308)
 

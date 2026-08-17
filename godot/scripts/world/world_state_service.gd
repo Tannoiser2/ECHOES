@@ -5,6 +5,7 @@ extends RefCounted
 ## and hands it to EffectApplier instead.
 
 const Ids := preload("res://scripts/core/ids.gd")
+const TagRules := preload("res://scripts/world/tag_rules.gd")
 
 const RELATION_ORDER: Array = ["ENEMY", "HOSTILE", "NEUTRAL", "ALLY", "BOUND"]
 
@@ -116,6 +117,11 @@ func can_move_to(entity_id: String, region_id: String) -> bool:
 	var evicted: Variant = world["entities"].get(entity_id)
 	if evicted != null and (evicted["tags"] as Array).has("evicted:%s" % region_id):
 		return false
+	# ISSUES 24: un segno sulla Regione può sbarrare la porta o concederla
+	# anche senza adiacenza. BLOCK vince, come la cacciata di D-067.
+	var gate: String = TagRules.movement_gate(data, world, region_id)
+	if gate == "BLOCK":
+		return false
 	var definition: Variant = data.entities.get(entity_id)
 	if definition != null and (definition["presence"] as Array).has(region_id):
 		return true
@@ -123,7 +129,7 @@ func can_move_to(entity_id: String, region_id: String) -> bool:
 		var neighbours: Array = data.regions[held]["adjacency"]
 		if neighbours.has(region_id):
 			return true
-	return false
+	return gate == "ALLOW"
 
 
 func region_free_slots(region_id: String) -> int:

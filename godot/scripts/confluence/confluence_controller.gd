@@ -27,6 +27,7 @@ const EchoRecorder := preload("res://scripts/chronicle/echo_recorder.gd")
 const WorldStateService := preload("res://scripts/world/world_state_service.gd")
 const NarrativeText := preload("res://scripts/chronicle/narrative_text.gd")
 const EffectNarrator := preload("res://scripts/chronicle/effect_narrator.gd")
+const TagRules := preload("res://scripts/world/tag_rules.gd")
 
 const STANCES: Array = ["SUPPORT", "OPPOSE", "CONDITION", "ABSTAIN"]
 
@@ -374,6 +375,10 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 	# F. World Factor.
 	var die: int = rng.roll_d6()
 	var factor: int = ConfluenceResolution.world_factor(die)
+	# ISSUES 24: i segni con un dente pesano sul mondo prima che sul tavolo.
+	# Il dado resta il dado; è il World Factor che un mondo segnato piega.
+	var bite: Dictionary = TagRules.council_world_factor(data, world, tension_id)
+	factor += int(bite["delta"])
 	current["die"] = die
 	current["world_factor"] = factor
 
@@ -389,6 +394,8 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 	)
 	_log_commitments()
 	log.bullet("F. World Factor: 1d6 = %d -> %+d" % [die, factor])
+	for title in bite["titles"]:
+		log.bullet("  Il segno pesa sul Consiglio: %s." % str(title))
 	# A qualified Condition is part of the margin (D-055), so it is part of the one
 	# line a player reads to check the arithmetic - and an unqualified one is shown
 	# too, crossed out of the sum, because "you spent two cards for nothing" is

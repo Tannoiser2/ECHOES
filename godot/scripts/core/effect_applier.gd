@@ -11,6 +11,7 @@ extends RefCounted
 
 const Effect := preload("res://scripts/core/effect.gd")
 const Ids := preload("res://scripts/core/ids.gd")
+const TagRules := preload("res://scripts/world/tag_rules.gd")
 
 signal effect_applied(effect: Dictionary)
 
@@ -258,7 +259,12 @@ func _set_relation(target: Dictionary, payload: Dictionary) -> Variant:
 		var level: String = str(payload["level"])
 		if not ["ENEMY", "HOSTILE", "NEUTRAL", "ALLY", "BOUND"].has(level):
 			return _fail("invalid relation level '%s'" % level)
-		relation["level"] = level
+		# ISSUES 24: un segno può mettere un tetto alla relazione - un
+		# giuramento spezzato non si supera alzando le spalle. Il tetto
+		# clampa le salite; scendere resta sempre possibile.
+		relation["level"] = TagRules.clamp_level(
+			level, TagRules.relation_cap(data, world, key)
+		)
 	if payload.has("tags"):
 		relation["tags"] = (payload["tags"] as Array).duplicate()
 	if payload.has("add_tag") and not relation["tags"].has(payload["add_tag"]):

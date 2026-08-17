@@ -997,6 +997,90 @@ const DEFS := {
 			},
 		},
 	},
+	"tag_rule": {
+		"kind": "collection",
+		"required": [
+			"id",
+			"title",
+			"when",
+			"kind",
+			"active",
+		],
+		"additional_properties": false,
+		"properties": {
+			"id": {
+				"type": "String",
+				"pattern": "^TGR_[A-Z0-9_]+$",
+			},
+			"title": {
+				"type": "String",
+				"min_length": 1,
+			},
+			"when": {
+				"type": "Dictionary",
+			},
+			"kind": {
+				"type": "String",
+				"enum": [
+					"ACTION_MODIFIER",
+					"COUNCIL_MODIFIER",
+					"GATE",
+					"RELATION_CAP",
+				],
+			},
+			"template": {
+				"type": "String",
+				"enum": [
+					"ACQUIRE",
+					"MOVE",
+					"INFLUENCE",
+					"FORGE",
+					"SCHEME",
+					"CLAIM",
+				],
+			},
+			"tension_id": {
+				"type": "String",
+				"pattern": "^TEN_[A-Z0-9_]+$",
+			},
+			"delta": {
+				"type": "int",
+				"min": -2,
+				"max": 2,
+			},
+			"world_factor_delta": {
+				"type": "int",
+				"min": -2,
+				"max": 2,
+			},
+			"movement": {
+				"type": "String",
+				"enum": [
+					"BLOCK",
+					"ALLOW",
+				],
+			},
+			"max_level": {
+				"type": "String",
+				"enum": [
+					"ENEMY",
+					"HOSTILE",
+					"NEUTRAL",
+					"ALLY",
+				],
+			},
+			"chronicle_id": {
+				"type": "String",
+				"pattern": "^CHR_[A-Z0-9_]+$",
+			},
+			"active": {
+				"type": "bool",
+			},
+			"note": {
+				"type": "String",
+			},
+		},
+	},
 	"tension": {
 		"kind": "collection",
 		"required": [
@@ -1300,6 +1384,7 @@ const COLLECTION_SCHEMA_IDS := [
 	"entity",
 	"region",
 	"sim_plan",
+	"tag_rule",
 	"tension",
 ]
 

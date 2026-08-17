@@ -517,8 +517,11 @@ Le fasi:
 
 1. ✅ **Il censimento** — la classificazione qui sopra, rifatta dalla
    sonda a ogni giro.
-2. **Il telaio**: `tag_rules` nello schema e i 3-4 tipi di gancio nel
-   motore, con zero regole accese — comportamento invariato, misurato.
+2. ✅ **Il telaio** — fatta in 0.1.66 ([D-104](DECISIONS.md#d-104)):
+   schema `tag_rule` (ACTION_MODIFIER, COUNCIL_MODIFIER, GATE,
+   RELATION_CAP), i quattro ganci nel motore, la firma a verbale quando
+   una regola morde, zero regole nei dati — comportamento invariato
+   misurato, ogni gancio provato con regole sintetiche.
 3. **I denti d'autore, uno alla volta**: le regole per i segni di prima
    fila della Chronicle I (granary, starving, plundered, oath_broken,
    renowned…), ognuna scritta insieme, accesa da sola e misurata sui 100
