@@ -6,6 +6,7 @@ extends "res://tests/test_case.gd"
 
 const Succession := preload("res://scripts/chronicle/succession.gd")
 const TagRules := preload("res://scripts/world/tag_rules.gd")
+const CardFace := preload("res://scripts/core/card_face.gd")
 
 const LONG_JUMP: int = 60
 
@@ -171,6 +172,24 @@ func test_the_republic_can_become_a_crown_again() -> void:
 	assert_eq(str(restored["name"]), "La Corona Restaurata", "un nome torna a valere")
 	var view: Dictionary = Succession.active_view(definition, int(restored["incarnation"]))
 	assert_eq(str(view["persistence"]), "MORTAL", "la corona restaurata muore di nuovo")
+
+
+func test_every_life_has_its_own_tarot() -> void:
+	# D-111: il mazzo Casata porta una carta per ogni vita oltre la prima -
+	# nome e volto propri, il seggio nel sottotitolo.
+	var deck: Array = CardFace.deck_of("entity", session.data)
+	var expected: int = session.data.entities.size()
+	var by_id: Dictionary = {}
+	for face in deck:
+		by_id[str(face["id"])] = face
+	for entity_id in session.data.entities:
+		expected += maxi(0, (session.data.entities[entity_id].get("incarnations", []) as Array).size() - 1)
+	assert_eq(deck.size(), expected, "una carta per seggio più una per ogni vita nuova")
+	var friars: Dictionary = by_id.get("INC_VETRO_02", {})
+	assert_false(friars.is_empty(), "i Frati del Vetro hanno la loro carta")
+	assert_eq(str(friars["title"]), "I Frati del Vetro", "col loro nome")
+	assert_eq(str(friars["art_prompt_key"]), "entity.vetro_friars", "e il loro prompt d'arte")
+	assert_eq(str(friars["shape"]), "TAROT", "stessa taglia della casata")
 
 
 func test_the_active_view_swaps_the_authored_fields() -> void:

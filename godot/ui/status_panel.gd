@@ -235,7 +235,15 @@ func _update_destiny(session: RefCounted, viewer_id: String) -> void:
 	var destiny: Variant = session.data.destinies.get(session.service.destiny_of(viewer_id))
 	if destiny == null:
 		return
-	_casata_card.texture = CardArt.texture_for("entity", viewer_id, session.data)
+	# Il tarocco segue la vita (D-111): quando il seggio si trasforma, sul
+	# tavolo si posa la carta della vita nuova - qui come al tavolo fisico.
+	var casata_id: String = viewer_id
+	var seat_state: Dictionary = session.world["entities"].get(viewer_id, {})
+	var life_index: int = int(seat_state.get("incarnation", 0))
+	var lives: Array = entity.get("incarnations", [])
+	if life_index > 0 and life_index < lives.size():
+		casata_id = str(lives[life_index]["id"])
+	_casata_card.texture = CardArt.texture_for("entity", casata_id, session.data)
 	_destiny_card.texture = CardArt.texture_for(
 		"destiny", session.service.destiny_of(viewer_id), session.data
 	)

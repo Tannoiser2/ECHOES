@@ -5,6 +5,29 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.73] — Il tarocco per ogni vita
+
+Fase 3 della voce 19, l'ultima ([D-111](docs/DECISIONS.md#d-111)).
+
+### Added
+
+- **Una carta per ogni vita**: il mazzo Casata porta un tarocco per
+  ciascuna delle 11 vite oltre le prime — nome, descrizione e valori
+  della vita, il seggio nel sottotitolo. I fogli di stampa e la cache
+  dell'app crescono da soli.
+- **Il tarocco segue la vita**: quando il seggio si trasforma, il
+  pannello del seggio posa la carta della vita corrente.
+- **Il brief d'arte con gli 11 prompt delle vite** (l'archetipo viene
+  dal seggio) e il materiale di revisione a **745 testi** (le vite e
+  tutti gli eredi, compresi i re restaurati).
+
+### Misurato
+
+Nessun cambio di regole: 246 test, 5175 asserzioni, verdi; parità del
+brief in CI.
+
+---
+
 ## [0.1.72] — L'albero si riempie
 
 Sei vite dai rami di [TRASFORMAZIONI.md](docs/TRASFORMAZIONI.md)

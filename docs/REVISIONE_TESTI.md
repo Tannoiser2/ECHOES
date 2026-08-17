@@ -7,7 +7,7 @@ Ogni testo che un giocatore può leggere, nell'ordine in cui lo incontra,
 con il suo identificativo. Per correggere basta una riga, anche a voce:
 «`P_SHOW_IT`: riscrivi così…» — al resto pensa il motore. I segnaposto
 (`$the_region`, `$proponent`…) sono gli slot che il mondo riempie: si
-possono spostare nella frase, non togliere. 661 testi in lettura.
+possono spostare nella frase, non togliere. 745 testi in lettura.
 
 ## 1. Le aperture — lette ad alta voce all'inizio dell'anno
 
@@ -83,12 +83,108 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 > Le riserve del palazzo bastano per un inverno. Non per due.
 
 
+**`INC_ALDRIC_REGENCY`**
+> La Reggenza del Granaio
+
+> Quando la casa finì, il trono era già diventato una dispensa: il grano requisito aveva bisogno di firme più che di re. La Reggenza governa a razioni, e nessuno le ha mai giurato amore.
+
+
+**`INC_ALDRIC_02`**
+> La Repubblica della Valle
+
+> Quando l'ultimo nome della casa si spense senza eredi, i magistrati che contavano il grano contavano già tutto il resto. Non serve un re a una valle che sa contare: serve un registro, e il registro ha più firme.
+
+
+**`INC_ALDRIC_RESTORED`**
+> La Corona Restaurata
+
+> La repubblica scrisse registri; un giorno un nome tornò a valere più delle firme. La Corona Restaurata porta il peso di due tradizioni: quella che conta e quella che comanda.
+
+
+**`INC_ALDRIC_RESTORED, erede`**
+> Re Calvan il Firmato
+
+> Il primo re eletto da un registro. Non lo dimenticò mai, né lo perdonò.
+
+
+**`INC_ALDRIC_RESTORED, erede`**
+> Regina Odila
+
+> Regnò come si tiene un libro contabile: senza affetto e senza errori.
+
+
+**`INC_ALDRIC_RESTORED, erede`**
+> Re Bren
+
+> Voleva essere amato. La Valle gli concesse di essere rispettato.
+
+
+**`INC_ALDRIC_RESTORED, erede`**
+> Regina Calva II
+
+> L'ultima a firmare col nome e col sigillo insieme, per non scegliere.
+
+
+**`ENT_ALDRIC, erede`**
+> Re Serane
+
+> Nipote di Aldric. Ha ereditato un trono e un registro di cose non decise.
+
+
+**`ENT_ALDRIC, erede`**
+> Re Corvin
+
+> Salì al trono con un atto e non con un nome, e non lo lasciò dimenticare a nessuno.
+
+
+**`ENT_ALDRIC, erede`**
+> Regina Isaura
+
+> La prima della casa a contare i granai prima delle spade.
+
+
+**`ENT_ALDRIC, erede`**
+> Re Aldric IV
+
+> Porta il nome del primo. Nella Valle dicono che sia l'unica cosa che hanno in comune.
+
+
 **`ENT_CENERE`**
 > Kessa dei Fuochi
 
 > Parla per i Signori della Cenere, che tengono le Montagne Rosse e campano di quello che l'antica miniera ha lasciato indietro. Sanno che sotto c'è di più.
 
 > La galleria bassa è già aperta da un anno. Dentro non hanno ancora trovato niente, e questo li spaventa più del contrario.
+
+
+**`INC_CENERE_02`**
+> Le Custodi della Cenere
+
+> L'ultima dei Fuochi non lasciò figli: lasciò una veglia. Le custodi tengono il fuoco per mestiere e la montagna per giuramento, e nessuna di loro porta un nome suo.
+
+
+**`ENT_CENERE, erede`**
+> Toldan dei Fuochi
+
+> Il primo a vendere il calore invece della pietra.
+
+
+**`ENT_CENERE, erede`**
+> Neve dei Fuochi
+
+> Chiuse tre gallerie in un mese e non spiegò perché.
+
+
+**`ENT_CENERE, erede`**
+> Grim dei Fuochi
+
+> Sotto di lui la Cenere cominciò a chiamarsi un popolo e non un mestiere.
+
+
+**`ENT_CENERE, erede`**
+> Arla dei Fuochi
+
+> Diceva che la montagna paga chi la ascolta e seppellisce chi la interroga.
 
 
 **`ENT_LIBERE`**
@@ -99,12 +195,54 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 > Quattro città su sette hanno già scritto la propria carta, e sono incompatibili fra loro.
 
 
+**`INC_LIBERE_LEAGUE`**
+> La Lega delle Sette
+
+> La Carta firmata ha fatto delle sette città una cosa sola nei giorni dispari. La Lega delibera piano, ma quando una firma delle sette scende su un foglio, il foglio pesa.
+
+
 **`ENT_LYRA`**
 > Lyra
 
 > Studiosa senza patrono. È scesa nelle Miniere Antiche per misurare una pietra e ne è risalita con una domanda.
 
 > Il Cristallo Rosso pesa meno di quanto dovrebbe. Ogni giorno un poco meno.
+
+
+**`INC_LYRA_ACADEMY`**
+> L'Accademia delle Misure
+
+> Dove la legge fu scritta, il sapere trovò un'istituzione e non un altare: le misure di Lyra si insegnano, non si venerano, e chiunque può rifarle.
+
+
+**`INC_LYRA_02`**
+> Il Culto della Misura
+
+> Gli appunti divennero scritture, gli allievi custodi. Ciò che Lyra domandava, il Culto lo crede: la domanda si è fatta dogma, e il dogma porta il nome di lei come un sigillo che nessuno ha il permesso di aprire.
+
+
+**`ENT_LYRA, erede`**
+> Teren di Lyra
+
+> Studio le carte di Lyra prima di conoscere il suo nome.
+
+
+**`ENT_LYRA, erede`**
+> Mira la Cartografa
+
+> Non cerca cosa dorme sotto la pietra: cerca chi ci ha già guardato.
+
+
+**`ENT_LYRA, erede`**
+> Corin il Verificatore
+
+> Rifa ogni misura dall'inizio. Non si fida nemmeno dei suoi maestri.
+
+
+**`ENT_LYRA, erede`**
+> Sela di Eredan
+
+> La prima a insegnare fuori dalle gallerie.
 
 
 **`ENT_NAHR`**
@@ -115,12 +253,78 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 > I pascoli orientali sono già perduti. Nessuno fuori dal popolo lo sa ancora.
 
 
+**`INC_NAHR_KINGDOM`**
+> Il Regno di Nahr
+
+> La terra data a chi la lavora ha fatto quello che nessuna spada aveva fatto: il popolo si è seduto. Un regno giovane con un granaio vero — e per la prima volta, eredi da perdere.
+
+
+**`INC_NAHR_KINGDOM, erede`**
+> Re Dhalan
+
+> Il primo a portare una corona che sa di grano. La tenne come si tiene un aratro.
+
+
+**`INC_NAHR_KINGDOM, erede`**
+> Regina Sahri
+
+> Contò le famiglie prima dei soldati, e le fece contare di più.
+
+
+**`INC_NAHR_KINGDOM, erede`**
+> Re Ottai
+
+> Nato sedentario: per lui il cammino è una storia della nonna.
+
+
+**`INC_NAHR_KINGDOM, erede`**
+> Regina Vesse
+
+> L'ultima a parlare la lingua vecchia senza accento.
+
+
 **`ENT_SALE`**
 > Maestra Ilve
 
 > Alla testa della Gilda del Sale, che non possiede nessuna città e tiene il registro di tutte. Non chiede obbedienza: chiede una firma.
 
 > Tre delle sette città non pagheranno mai. La Gilda lo sa da due anni e non lo ha scritto.
+
+
+**`INC_SALE_BANK`**
+> Il Banco Nero
+
+> Quando il debito fu chiamato, chi teneva il registro tenne anche i debitori. Il Banco Nero non chiede obbedienza e non la nomina mai: la addebita.
+
+
+**`INC_SALE_02`**
+> La Compagnia del Sale
+
+> Morta l'ultima maestra senza allievi, i banchi si federarono. Nessuna mano sola tiene il registro: un sigillo solo, molte firme, e il credito non muore più con nessuno.
+
+
+**`ENT_SALE, erede`**
+> Maestro Ordan
+
+> Il primo a proporre che il registro fosse letto anche da fuori. Non andò in porto, e non lo ritirò mai.
+
+
+**`ENT_SALE, erede`**
+> Maestra Ceva
+
+> Comprava i debiti prima che diventassero domande.
+
+
+**`ENT_SALE, erede`**
+> Maestro Ruel
+
+> Sotto di lui la Gilda smise di prestare a chi non aveva mura.
+
+
+**`ENT_SALE, erede`**
+> Maestra Sadin
+
+> Diceva che una firma vale finché qualcuno ha voglia di leggerla.
 
 
 **`ENT_VAERAX`**
@@ -131,12 +335,60 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 > Il Cristallo Rosso è legato alla stirpe dei draghi: estrarlo è estrarre qualcosa di vivo.
 
 
+**`INC_VAERAX_RISEN`**
+> Vaerax Ridestato
+
+> Il Cristallo cavato dalla montagna ha tolto il sonno a ciò che dormiva. Non è arrabbiato: è sveglio, ed è peggio — perché adesso ascolta ogni Consiglio che parla di lui.
+
+
+**`INC_VAERAX_CULT`**
+> Il Culto della Montagna
+
+> Il drago non c'è più; la paura è rimasta, e la paura organizzata si chiama fede. Custodiscono le cicatrici della montagna come reliquie, e parlano per ciò che non parla più.
+
+
 **`ENT_VETRO`**
 > Priore Anselmo
 
 > Guida l'Ordine del Vetro, che discende da una scuola e si comporta da fede. Custodisce quello che fu misurato, e la regola dice che misurarlo di nuovo sarebbe rimetterlo in discussione.
 
 > Il registro antico ha una pagina strappata, e l'Ordine non sa cosa ci fosse scritto.
+
+
+**`INC_VETRO_INQUISITION`**
+> L'Inquisizione del Vetro
+
+> Mostrata la Reliquia, la custodia smise di custodire e cominciò a interrogare. L'Inquisizione misura le persone come l'Ordine misurava le pietre, e archivia le differenze.
+
+
+**`INC_VETRO_02`**
+> I Frati del Vetro
+
+> Il priorato è finito; i frati restano. Portano il nome di Anselmo come una reliquia e la sua regola come una misura: ciò che fu una scuola adesso è una fede, e le fedi non muoiono di vecchiaia.
+
+
+**`ENT_VETRO, erede`**
+> Priora Ilaria
+
+> Fece murare la seconda teca senza dire cosa contenesse.
+
+
+**`ENT_VETRO, erede`**
+> Priore Teodo
+
+> Sosteneva che una regola che non si può spiegare non è una regola.
+
+
+**`ENT_VETRO, erede`**
+> Priora Vesna
+
+> Sotto di lei l'Ordine smise di insegnare a leggere il registro antico.
+
+
+**`ENT_VETRO, erede`**
+> Priore Malco
+
+> L'ultimo ad aver visto la reliquia, e non lo ha mai confermato.
 
 
 ## 4. Le Domande — le Tensioni e i loro presagi

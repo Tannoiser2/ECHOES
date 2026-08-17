@@ -114,6 +114,20 @@ def main() -> int:
             entity["id"], entity.get("name"), entity.get("description"),
             entity.get("private_information"),
         )
+        # Le vite del seggio (D-108/D-110): la prima rispecchia la casa,
+        # le successive sono testi nuovi da rivedere.
+        for life in entity.get("incarnations", [])[1:]:
+            review.entry(life["id"], life.get("name"), life.get("description"))
+            for successor in life.get("successors", []):
+                review.entry(
+                    "%s, erede" % life["id"], successor.get("name"),
+                    successor.get("description"),
+                )
+        for successor in entity.get("successors", []):
+            review.entry(
+                "%s, erede" % entity["id"], successor.get("name"),
+                successor.get("description"),
+            )
 
     review.line("## 4. Le Domande — le Tensioni e i loro presagi")
     review.line()

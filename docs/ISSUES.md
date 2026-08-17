@@ -382,9 +382,12 @@ Le fasi:
    Cinque seconde vite d'autore: la Repubblica della Valle, il Culto della
    Misura, la Compagnia del Sale, i Frati del Vetro, le Custodi della
    Cenere. La natura nuova (COLLECTIVE) smette di consumare eredi.
-3. **Le carte**: un tarocco per incarnazione — il nome corrente resta nel
-   verbale, come i re di una dinastia — e un prompt d'arte per incarnazione
-   (chiude anche la domanda «c'è il prompt di Anselmo ma non dei successori»).
+3. ✅ **Le carte** — fatta in 0.1.73 ([D-111](DECISIONS.md#d-111)): un
+   tarocco per ogni vita (19 nel mazzo Casata), il pannello del seggio che
+   posa la carta della vita corrente, gli 11 prompt d'arte delle vite nel
+   brief, e le descrizioni di vite ed eredi nel materiale di revisione
+   (661→745 testi). Il nome corrente resta nel verbale, come i re di una
+   dinastia.
 4. **I poteri per incarnazione**: prima leva onesta e misurabile,
    `action_values` e `persistence` propri; i poteri *nominati* («solo
    l'Ordine può…») sono design d'autore da definire insieme prima, misurare
