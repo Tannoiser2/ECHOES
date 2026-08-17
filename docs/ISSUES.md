@@ -614,8 +614,12 @@ che ora esiste (effetti + tag_rules):
    nominato (e apre la porta della Corona Restaurata). Misura per carta,
    0/8 a ogni passo; il «riaprire una domanda chiusa» vero resta alla
    voce 25.
-3. **BONDS**: i legami toccano le relazioni — il Giuramento lega (e
-   spezzarlo firma la coppia, D-105), la Promessa di Nozze vincola.
+3. ✅ **BONDS** — fatta in 0.1.75 ([D-113](DECISIONS.md#d-113)): la
+   famiglia delle cure — il Giuramento scioglie il tradimento, il Favore
+   spegne la vendetta, l'Ospitalità riapre la porta sbarrata, la
+   Promessa scrive un patto che le promesse giudicano, il Debito Vecchio
+   segna la sede del debitore. Il Legame di Sangue aspetta la voce 25:
+   il suo potere vero è un pavimento di relazione, non un numero.
 4. **WEALTH / KNOWLEDGE / PEOPLE**: il grano compra, il sapere svela, la
    gente marcia.
 

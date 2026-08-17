@@ -1754,7 +1754,7 @@ possono spostare nella frase, non togliere. 745 testi in lettura.
 **`AST_BONDS_BETROTHAL`**
 > Promessa di Nozze
 
-> +1 sul fronte Oppose: una promessa serve più a impedire un'alleanza che a farne una. Si scarta sempre.
+> +2 sul fronte Oppose: una promessa serve più a impedire un'alleanza che a farne una. Si scarta sempre — e resta scritta: fra le due case nasce un patto, e i patti si giudicano.
 
 
 **`AST_BONDS_BLOOD_TIE`**
@@ -1772,13 +1772,13 @@ possono spostare nella frase, non togliere. 745 testi in lettura.
 **`AST_BONDS_FAVOR`**
 > Favore
 
-> Piccolo, ricordato con precisione.
+> Piccolo, ricordato con precisione — e restituito al momento giusto: fra chi lo impegna e il rivale, una vendetta si spegne.
 
 
 **`AST_BONDS_GUEST_RIGHT`**
 > Diritto di Ospitalità
 
-> +1 quando BONDS è rilevante per la Tensione. Chi ha mangiato al tuo tavolo non può dire di no davanti a tutti. Può dirlo dopo.
+> +1 quando BONDS è rilevante per la Tensione. Chi ha mangiato al tuo tavolo non può dire di no davanti a tutti. Può dirlo dopo — e chi lo impegna torna ospite: la cacciata dalla Regione della domanda si cancella.
 
 
 **`AST_BONDS_HOSTAGE`**
@@ -1790,13 +1790,13 @@ possono spostare nella frase, non togliere. 745 testi in lettura.
 **`AST_BONDS_OATH`**
 > Giuramento
 
-> Non si scarta mai. Un giuramento impegnato resta impegnato anche dopo, ed è la sua unica forza.
+> Non si scarta mai. Un giuramento impegnato resta impegnato anche dopo, ed è la sua unica forza — e un giuramento rifatto scioglie quello spezzato: fra chi lo impegna e il rivale, il tradimento si cancella.
 
 
 **`AST_BONDS_OLD_DEBT`**
 > Debito Vecchio
 
-> +1 sul fronte Oppose. Nessuno se lo ricorda tranne le due persone che contano, e una delle due lo tira fuori adesso.
+> +1 sul fronte Oppose. Nessuno se lo ricorda tranne le due persone che contano, e una delle due lo tira fuori adesso — e da adesso è pubblico: la sede del debitore resta segnata come indebitata.
 
 
 **`AST_FORCE_BORDER_WATCH`**

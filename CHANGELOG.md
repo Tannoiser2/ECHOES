@@ -5,6 +5,36 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.75] — I legami imparano il mestiere
+
+Terzo mazzetto della voce 26 ([D-113](docs/DECISIONS.md#d-113)): la
+famiglia delle cure.
+
+### Added
+
+- **I mestieri**: il Giuramento rifatto scioglie quello spezzato (la
+  cura del tetto di D-105), il Favore spegne la vendetta, il Diritto di
+  Ospitalità riapre la porta sbarrata per chi lo impegna, la Promessa di
+  Nozze scrive un PACT che il giudizio delle promesse legge, il Debito
+  Vecchio segna la sede del debitore. Il Legame di Sangue resta
+  dichiarato per la voce 25: il suo potere vero è un pavimento di
+  relazione.
+- **L'applier**: una relazione con se stessi è un no-op, non un errore.
+
+### Fixed
+
+- **Promessa di Nozze**: il testo diceva «+1», il modificatore è sempre
+  stato 2 — terza etichetta bugiarda allineata.
+
+### Misurato
+
+Base identica a D-112 e tutti i passi fermi: i legami sono cure e stati,
+mordono quando le condizioni esistono — al tavolo umano, non nei numeri
+medi delle sedie automatiche. 0/8 a ogni passo, ere in banda. 246 test,
+5190 asserzioni.
+
+---
+
 ## [0.1.74] — I sigilli imparano il mestiere
 
 Secondo mazzetto della voce 26 ([D-112](docs/DECISIONS.md#d-112)): le
