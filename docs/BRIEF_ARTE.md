@@ -1698,6 +1698,258 @@ framing, 2:3. No text, no letters, no numerals, no logos, no frame, no border.
 Not gory, not horror. Museum-quality illustration, boardgame card art.
 ```
 
+### `entity.aldric_republic` — La Repubblica della Valle
+
+- **soggetto**: La Repubblica della Valle — Quando l'ultimo nome della casa si spense senza eredi, i magistrati che contavano il grano contavano già tutto il resto. Non serve un re a una valle che sa contare: serve un registro, e il registro ha più firme
+- **id**: `INC_ALDRIC_02`
+
+```
+Historical dark-fantasy portrait of La Repubblica della Valle — Quando l'ultimo nome della casa si spense senza eredi, i magistrati che contavano il grano contavano già tutto il resto. Non serve un re a una valle che sa contare: serve un registro, e il registro ha più firme. Painterly oil technique, visible
+brushwork, muted earth palette with a single oro spento accent. One subject, close,
+facing the viewer: this framing is what separates a House card from an Asset card,
+where a single centred figure looking out is forbidden. una persona sola, le insegne portate come un peso e mai in posa di trionfo. Low side
+lighting, shallow depth of field; the background says where they come from without
+telling a story of its own. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: head and shoulders in the upper two thirds; the
+lower third is a calm, low-detail area reserved for a text overlay. Vertical card
+framing, 2:3. No text, no letters, no numerals, no logos, no frame, no border.
+Not gory, not horror. Museum-quality illustration, boardgame card art.
+```
+
+### `entity.aldric_regency` — La Reggenza del Granaio
+
+- **soggetto**: La Reggenza del Granaio — Quando la casa finì, il trono era già diventato una dispensa: il grano requisito aveva bisogno di firme più che di re. La Reggenza governa a razioni, e nessuno le ha mai giurato amore
+- **id**: `INC_ALDRIC_REGENCY`
+
+```
+Historical dark-fantasy portrait of La Reggenza del Granaio — Quando la casa finì, il trono era già diventato una dispensa: il grano requisito aveva bisogno di firme più che di re. La Reggenza governa a razioni, e nessuno le ha mai giurato amore. Painterly oil technique, visible
+brushwork, muted earth palette with a single oro spento accent. One subject, close,
+facing the viewer: this framing is what separates a House card from an Asset card,
+where a single centred figure looking out is forbidden. una persona sola, le insegne portate come un peso e mai in posa di trionfo. Low side
+lighting, shallow depth of field; the background says where they come from without
+telling a story of its own. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: head and shoulders in the upper two thirds; the
+lower third is a calm, low-detail area reserved for a text overlay. Vertical card
+framing, 2:3. No text, no letters, no numerals, no logos, no frame, no border.
+Not gory, not horror. Museum-quality illustration, boardgame card art.
+```
+
+### `entity.aldric_restored` — La Corona Restaurata
+
+- **soggetto**: La Corona Restaurata — La repubblica scrisse registri; un giorno un nome tornò a valere più delle firme. La Corona Restaurata porta il peso di due tradizioni: quella che conta e quella che comanda
+- **id**: `INC_ALDRIC_RESTORED`
+
+```
+Historical dark-fantasy portrait of La Corona Restaurata — La repubblica scrisse registri; un giorno un nome tornò a valere più delle firme. La Corona Restaurata porta il peso di due tradizioni: quella che conta e quella che comanda. Painterly oil technique, visible
+brushwork, muted earth palette with a single oro spento accent. One subject, close,
+facing the viewer: this framing is what separates a House card from an Asset card,
+where a single centred figure looking out is forbidden. una persona sola, le insegne portate come un peso e mai in posa di trionfo. Low side
+lighting, shallow depth of field; the background says where they come from without
+telling a story of its own. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: head and shoulders in the upper two thirds; the
+lower third is a calm, low-detail area reserved for a text overlay. Vertical card
+framing, 2:3. No text, no letters, no numerals, no logos, no frame, no border.
+Not gory, not horror. Museum-quality illustration, boardgame card art.
+```
+
+### `entity.cenere_keepers` — Le Custodi della Cenere
+
+- **soggetto**: Le Custodi della Cenere — L'ultima dei Fuochi non lasciò figli: lasciò una veglia. Le custodi tengono il fuoco per mestiere e la montagna per giuramento, e nessuna di loro porta un nome suo
+- **id**: `INC_CENERE_02`
+
+```
+Historical dark-fantasy portrait of Le Custodi della Cenere — L'ultima dei Fuochi non lasciò figli: lasciò una veglia. Le custodi tengono il fuoco per mestiere e la montagna per giuramento, e nessuna di loro porta un nome suo. Painterly oil technique, visible
+brushwork, muted earth palette with a single ambra accent. One subject, close,
+facing the viewer: this framing is what separates a House card from an Asset card,
+where a single centred figure looking out is forbidden. chi risponde per la casa: la persona che firma, non quella che possiede. Low side
+lighting, shallow depth of field; the background says where they come from without
+telling a story of its own. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: head and shoulders in the upper two thirds; the
+lower third is a calm, low-detail area reserved for a text overlay. Vertical card
+framing, 2:3. No text, no letters, no numerals, no logos, no frame, no border.
+Not gory, not horror. Museum-quality illustration, boardgame card art.
+```
+
+### `entity.libere_league` — La Lega delle Sette
+
+- **soggetto**: La Lega delle Sette — La Carta firmata ha fatto delle sette città una cosa sola nei giorni dispari. La Lega delibera piano, ma quando una firma delle sette scende su un foglio, il foglio pesa
+- **id**: `INC_LIBERE_LEAGUE`
+
+```
+Historical dark-fantasy portrait of La Lega delle Sette — La Carta firmata ha fatto delle sette città una cosa sola nei giorni dispari. La Lega delibera piano, ma quando una firma delle sette scende su un foglio, il foglio pesa. Painterly oil technique, visible
+brushwork, muted earth palette with a single terracotta accent. One subject, close,
+facing the viewer: this framing is what separates a House card from an Asset card,
+where a single centred figure looking out is forbidden. una figura sola davanti e la sua gente dietro, fuori fuoco: il ritratto di un popolo è il volto di uno. Low side
+lighting, shallow depth of field; the background says where they come from without
+telling a story of its own. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: head and shoulders in the upper two thirds; the
+lower third is a calm, low-detail area reserved for a text overlay. Vertical card
+framing, 2:3. No text, no letters, no numerals, no logos, no frame, no border.
+Not gory, not horror. Museum-quality illustration, boardgame card art.
+```
+
+### `entity.lyra_cult` — Il Culto della Misura
+
+- **soggetto**: Il Culto della Misura — Gli appunti divennero scritture, gli allievi custodi. Ciò che Lyra domandava, il Culto lo crede: la domanda si è fatta dogma, e il dogma porta il nome di lei come un sigillo che nessuno ha il permesso di aprire
+- **id**: `INC_LYRA_02`
+
+```
+Historical dark-fantasy portrait of Il Culto della Misura — Gli appunti divennero scritture, gli allievi custodi. Ciò che Lyra domandava, il Culto lo crede: la domanda si è fatta dogma, e il dogma porta il nome di lei come un sigillo che nessuno ha il permesso di aprire. Painterly oil technique, visible
+brushwork, muted earth palette with a single verde-azzurro pallido accent. One subject, close,
+facing the viewer: this framing is what separates a House card from an Asset card,
+where a single centred figure looking out is forbidden. una persona sola, lo strumento del proprio mestiere a portata di mano. Low side
+lighting, shallow depth of field; the background says where they come from without
+telling a story of its own. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: head and shoulders in the upper two thirds; the
+lower third is a calm, low-detail area reserved for a text overlay. Vertical card
+framing, 2:3. No text, no letters, no numerals, no logos, no frame, no border.
+Not gory, not horror. Museum-quality illustration, boardgame card art.
+```
+
+### `entity.lyra_academy` — L'Accademia delle Misure
+
+- **soggetto**: L'Accademia delle Misure — Dove la legge fu scritta, il sapere trovò un'istituzione e non un altare: le misure di Lyra si insegnano, non si venerano, e chiunque può rifarle
+- **id**: `INC_LYRA_ACADEMY`
+
+```
+Historical dark-fantasy portrait of L'Accademia delle Misure — Dove la legge fu scritta, il sapere trovò un'istituzione e non un altare: le misure di Lyra si insegnano, non si venerano, e chiunque può rifarle. Painterly oil technique, visible
+brushwork, muted earth palette with a single verde-azzurro pallido accent. One subject, close,
+facing the viewer: this framing is what separates a House card from an Asset card,
+where a single centred figure looking out is forbidden. una persona sola, lo strumento del proprio mestiere a portata di mano. Low side
+lighting, shallow depth of field; the background says where they come from without
+telling a story of its own. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: head and shoulders in the upper two thirds; the
+lower third is a calm, low-detail area reserved for a text overlay. Vertical card
+framing, 2:3. No text, no letters, no numerals, no logos, no frame, no border.
+Not gory, not horror. Museum-quality illustration, boardgame card art.
+```
+
+### `entity.nahr_kingdom` — Il Regno di Nahr
+
+- **soggetto**: Il Regno di Nahr — La terra data a chi la lavora ha fatto quello che nessuna spada aveva fatto: il popolo si è seduto. Un regno giovane con un granaio vero — e per la prima volta, eredi da perdere
+- **id**: `INC_NAHR_KINGDOM`
+
+```
+Historical dark-fantasy portrait of Il Regno di Nahr — La terra data a chi la lavora ha fatto quello che nessuna spada aveva fatto: il popolo si è seduto. Un regno giovane con un granaio vero — e per la prima volta, eredi da perdere. Painterly oil technique, visible
+brushwork, muted earth palette with a single terracotta accent. One subject, close,
+facing the viewer: this framing is what separates a House card from an Asset card,
+where a single centred figure looking out is forbidden. una figura sola davanti e la sua gente dietro, fuori fuoco: il ritratto di un popolo è il volto di uno. Low side
+lighting, shallow depth of field; the background says where they come from without
+telling a story of its own. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: head and shoulders in the upper two thirds; the
+lower third is a calm, low-detail area reserved for a text overlay. Vertical card
+framing, 2:3. No text, no letters, no numerals, no logos, no frame, no border.
+Not gory, not horror. Museum-quality illustration, boardgame card art.
+```
+
+### `entity.sale_company` — La Compagnia del Sale
+
+- **soggetto**: La Compagnia del Sale — Morta l'ultima maestra senza allievi, i banchi si federarono. Nessuna mano sola tiene il registro: un sigillo solo, molte firme, e il credito non muore più con nessuno
+- **id**: `INC_SALE_02`
+
+```
+Historical dark-fantasy portrait of La Compagnia del Sale — Morta l'ultima maestra senza allievi, i banchi si federarono. Nessuna mano sola tiene il registro: un sigillo solo, molte firme, e il credito non muore più con nessuno. Painterly oil technique, visible
+brushwork, muted earth palette with a single ambra accent. One subject, close,
+facing the viewer: this framing is what separates a House card from an Asset card,
+where a single centred figure looking out is forbidden. chi risponde per la casa: la persona che firma, non quella che possiede. Low side
+lighting, shallow depth of field; the background says where they come from without
+telling a story of its own. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: head and shoulders in the upper two thirds; the
+lower third is a calm, low-detail area reserved for a text overlay. Vertical card
+framing, 2:3. No text, no letters, no numerals, no logos, no frame, no border.
+Not gory, not horror. Museum-quality illustration, boardgame card art.
+```
+
+### `entity.sale_bank` — Il Banco Nero
+
+- **soggetto**: Il Banco Nero — Quando il debito fu chiamato, chi teneva il registro tenne anche i debitori. Il Banco Nero non chiede obbedienza e non la nomina mai: la addebita
+- **id**: `INC_SALE_BANK`
+
+```
+Historical dark-fantasy portrait of Il Banco Nero — Quando il debito fu chiamato, chi teneva il registro tenne anche i debitori. Il Banco Nero non chiede obbedienza e non la nomina mai: la addebita. Painterly oil technique, visible
+brushwork, muted earth palette with a single ambra accent. One subject, close,
+facing the viewer: this framing is what separates a House card from an Asset card,
+where a single centred figure looking out is forbidden. chi risponde per la casa: la persona che firma, non quella che possiede. Low side
+lighting, shallow depth of field; the background says where they come from without
+telling a story of its own. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: head and shoulders in the upper two thirds; the
+lower third is a calm, low-detail area reserved for a text overlay. Vertical card
+framing, 2:3. No text, no letters, no numerals, no logos, no frame, no border.
+Not gory, not horror. Museum-quality illustration, boardgame card art.
+```
+
+### `entity.vaerax_cult` — Il Culto della Montagna
+
+- **soggetto**: Il Culto della Montagna — Il drago non c'è più; la paura è rimasta, e la paura organizzata si chiama fede. Custodiscono le cicatrici della montagna come reliquie, e parlano per ciò che non parla più
+- **id**: `INC_VAERAX_CULT`
+
+```
+Historical dark-fantasy portrait of Il Culto della Montagna — Il drago non c'è più; la paura è rimasta, e la paura organizzata si chiama fede. Custodiscono le cicatrici della montagna come reliquie, e parlano per ciò che non parla più. Painterly oil technique, visible
+brushwork, muted earth palette with a single grigio-rosso accent. One subject, close,
+facing the viewer: this framing is what separates a House card from an Asset card,
+where a single centred figure looking out is forbidden. non un volto: una presenza ravvicinata — pietra, scaglia, respiro — inquadrata come si inquadra un volto. Low side
+lighting, shallow depth of field; the background says where they come from without
+telling a story of its own. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: head and shoulders in the upper two thirds; the
+lower third is a calm, low-detail area reserved for a text overlay. Vertical card
+framing, 2:3. No text, no letters, no numerals, no logos, no frame, no border.
+Not gory, not horror. Museum-quality illustration, boardgame card art.
+```
+
+### `entity.vaerax_risen` — Vaerax Ridestato
+
+- **soggetto**: Vaerax Ridestato — Il Cristallo cavato dalla montagna ha tolto il sonno a ciò che dormiva. Non è arrabbiato: è sveglio, ed è peggio — perché adesso ascolta ogni Consiglio che parla di lui
+- **id**: `INC_VAERAX_RISEN`
+
+```
+Historical dark-fantasy portrait of Vaerax Ridestato — Il Cristallo cavato dalla montagna ha tolto il sonno a ciò che dormiva. Non è arrabbiato: è sveglio, ed è peggio — perché adesso ascolta ogni Consiglio che parla di lui. Painterly oil technique, visible
+brushwork, muted earth palette with a single grigio-rosso accent. One subject, close,
+facing the viewer: this framing is what separates a House card from an Asset card,
+where a single centred figure looking out is forbidden. non un volto: una presenza ravvicinata — pietra, scaglia, respiro — inquadrata come si inquadra un volto. Low side
+lighting, shallow depth of field; the background says where they come from without
+telling a story of its own. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: head and shoulders in the upper two thirds; the
+lower third is a calm, low-detail area reserved for a text overlay. Vertical card
+framing, 2:3. No text, no letters, no numerals, no logos, no frame, no border.
+Not gory, not horror. Museum-quality illustration, boardgame card art.
+```
+
+### `entity.vetro_friars` — I Frati del Vetro
+
+- **soggetto**: I Frati del Vetro — Il priorato è finito; i frati restano. Portano il nome di Anselmo come una reliquia e la sua regola come una misura: ciò che fu una scuola adesso è una fede, e le fedi non muoiono di vecchiaia
+- **id**: `INC_VETRO_02`
+
+```
+Historical dark-fantasy portrait of I Frati del Vetro — Il priorato è finito; i frati restano. Portano il nome di Anselmo come una reliquia e la sua regola come una misura: ciò che fu una scuola adesso è una fede, e le fedi non muoiono di vecchiaia. Painterly oil technique, visible
+brushwork, muted earth palette with a single porpora tenue accent. One subject, close,
+facing the viewer: this framing is what separates a House card from an Asset card,
+where a single centred figure looking out is forbidden. chi custodisce, ripreso da vicino, con quello che custodisce fuori campo. Low side
+lighting, shallow depth of field; the background says where they come from without
+telling a story of its own. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: head and shoulders in the upper two thirds; the
+lower third is a calm, low-detail area reserved for a text overlay. Vertical card
+framing, 2:3. No text, no letters, no numerals, no logos, no frame, no border.
+Not gory, not horror. Museum-quality illustration, boardgame card art.
+```
+
+### `entity.vetro_inquisition` — L'Inquisizione del Vetro
+
+- **soggetto**: L'Inquisizione del Vetro — Mostrata la Reliquia, la custodia smise di custodire e cominciò a interrogare. L'Inquisizione misura le persone come l'Ordine misurava le pietre, e archivia le differenze
+- **id**: `INC_VETRO_INQUISITION`
+
+```
+Historical dark-fantasy portrait of L'Inquisizione del Vetro — Mostrata la Reliquia, la custodia smise di custodire e cominciò a interrogare. L'Inquisizione misura le persone come l'Ordine misurava le pietre, e archivia le differenze. Painterly oil technique, visible
+brushwork, muted earth palette with a single porpora tenue accent. One subject, close,
+facing the viewer: this framing is what separates a House card from an Asset card,
+where a single centred figure looking out is forbidden. chi custodisce, ripreso da vicino, con quello che custodisce fuori campo. Low side
+lighting, shallow depth of field; the background says where they come from without
+telling a story of its own. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: head and shoulders in the upper two thirds; the
+lower third is a calm, low-detail area reserved for a text overlay. Vertical card
+framing, 2:3. No text, no letters, no numerals, no logos, no frame, no border.
+Not gory, not horror. Museum-quality illustration, boardgame card art.
+```
+
 ## destiny
 
 ### `destiny.aldric` — Il Regno che Resta

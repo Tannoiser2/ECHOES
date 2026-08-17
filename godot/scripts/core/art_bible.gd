@@ -197,8 +197,14 @@ func _accent_key(face: Dictionary, data: RefCounted) -> String:
 		"entity":
 			# L'archetipo, che e' la cosa che cambia davvero un ritratto: un
 			# sovrano, una persona, una fazione, un culto, un popolo e una
-			# creatura non si dipingono nello stesso modo (D-065).
-			return str(data.entities[id]["archetype"])
+			# creatura non si dipingono nello stesso modo (D-065). Una vita del
+			# seggio (D-111) porta l'archetipo del suo seggio.
+			if data.entities.has(id):
+				return str(data.entities[id]["archetype"])
+			var found: Dictionary = CardFace.life_of(id, data)
+			if not found.is_empty():
+				return str((found["seat"] as Dictionary)["archetype"])
+			return ""
 		"destiny":
 			# L'archetipo di chi la desidera: il Destino di una casa porta il
 			# colore della casa, cosi' le due carte del pool - l'ambizione di

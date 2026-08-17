@@ -91,6 +91,14 @@ static func every(data: RefCounted) -> Array:
 static func deck_of(deck: String, data: RefCounted) -> Array:
 	var source: Dictionary = _source(deck, data)
 	var ids: Array = source.keys()
+	# Il tarocco per ogni vita (D-111): il mazzo Casata porta anche le
+	# incarnazioni oltre la prima - stessa taglia, stesso seggio in
+	# sottotitolo, nome e volto propri. La prima vita e' gia' la carta base.
+	if deck == "entity":
+		for entity_id in source:
+			var incarnations: Array = (source[entity_id] as Dictionary).get("incarnations", [])
+			for index in range(1, incarnations.size()):
+				ids.append(str(incarnations[index]["id"]))
 	ids.sort()
 	var out: Array = []
 	for id in ids:
@@ -113,6 +121,18 @@ static func _source(deck: String, data: RefCounted) -> Dictionary:
 ## (D-040), su tutto il resto e' una.
 static func of(deck: String, id: String, data: RefCounted) -> Dictionary:
 	var item: Dictionary = _source(deck, data).get(id, {})
+	# Una vita del seggio (INC_..., D-111): la carta e' il seggio con sopra i
+	# campi della vita - nome, descrizione, valori, arte - e l'id della vita,
+	# cosi' la cache e i fogli la tengono distinta dalla carta base.
+	if item.is_empty() and deck == "entity" and id.begins_with("INC_"):
+		var found: Dictionary = life_of(id, data)
+		if found.is_empty():
+			return {}
+		item = (found["seat"] as Dictionary).duplicate()
+		for field in ["name", "description", "action_values", "art_prompt_key"]:
+			if (found["life"] as Dictionary).has(field):
+				item[field] = found["life"][field]
+		item["id"] = id
 	if item.is_empty():
 		return {}
 	match deck:
@@ -122,6 +142,16 @@ static func of(deck: String, id: String, data: RefCounted) -> Dictionary:
 		"destiny": return _destiny(item, data)
 		"entity": return _entity(item)
 		"region": return _region(item)
+	return {}
+
+
+## La vita e il suo seggio, cercati per id (INC_...): {seat, life}, o vuoto.
+static func life_of(life_id: String, data: RefCounted) -> Dictionary:
+	for entity_id in data.entities:
+		var seat: Dictionary = data.entities[entity_id]
+		for life in seat.get("incarnations", []):
+			if str((life as Dictionary).get("id", "")) == life_id:
+				return {"seat": seat, "life": life}
 	return {}
 
 

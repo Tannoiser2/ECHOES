@@ -331,6 +331,32 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-111 — Il tarocco per ogni vita
+**implemented in 0.1.73** (ISSUES 19, Fase 3 — l'ultima della voce)
+
+Con 11 vite oltre le prime, un solo tarocco per seggio era tornato a
+essere «nomi che cambiano su una carta». Ora **ogni vita ha la sua
+carta**:
+
+- **Il mazzo Casata** (`CardFace.deck_of("entity")`) porta una carta
+  TAROT per ogni incarnazione oltre la prima: nome e descrizione della
+  vita, valori suoi, prompt d'arte suo, il seggio nel sottotitolo. I
+  fogli di stampa crescono da soli (19 tarocchi di casata), la cache
+  dell'app pure.
+- **Il tarocco segue la vita** nel pannello del seggio: quando il seggio
+  si trasforma, sul tavolo dell'app si posa la carta della vita corrente
+  — come al tavolo fisico, dove il tarocco nuovo esce dal mazzo.
+- **Il brief d'arte** ora contiene gli 11 prompt delle vite (l'ArtBible
+  risolve l'archetipo dal seggio: un culto nato da un drago si dipinge
+  col colore del suo seggio), e il materiale di revisione passa da 661 a
+  **745 testi**: le descrizioni delle vite e degli eredi — anche quelli
+  dei re restaurati — entrano nel giro editoriale.
+
+### Misurato
+
+Nessun cambio di regole: 246 test in 33 suite (1 nuovo sul mazzo), 5175
+asserzioni, verdi; export con i fogli nuovi; parità del brief in CI.
+
 ## D-110 — L'albero si riempie: sei vite dai rami
 **implemented in 0.1.72** (TRASFORMAZIONI.md, prima ondata)
 
