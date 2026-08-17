@@ -11,11 +11,11 @@ copia in `out/export/` a ogni `tools/run_export.sh`, e quella committata in
 
 ### `asset.authority.census` — Censimento
 
-- **soggetto**: Censimento — +1 quando AUTHORITY è rilevante per la Tensione. Una lista di nomi è la forma più semplice del potere
+- **soggetto**: Censimento — +1 quando AUTHORITY è rilevante per la Tensione. Una lista di nomi è la forma più semplice del potere — e la lista chiarisce: la Regione della domanda smette di essere contesa
 - **id**: `AST_AUTHORITY_CENSUS`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Censimento — +1 quando AUTHORITY è rilevante per la Tensione. Una lista di nomi è la forma più semplice del potere.
+Historical dark-fantasy painting, single evocative scene depicting Censimento — +1 quando AUTHORITY è rilevante per la Tensione. Una lista di nomi è la forma più semplice del potere — e la lista chiarisce: la Regione della domanda smette di essere contesa.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 oro spento accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -29,11 +29,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.authority.crown_right` — Diritto di Corona
 
-- **soggetto**: Diritto di Corona — Si scarta sempre: un diritto invocato due volte non è più un diritto, è una pretesa
+- **soggetto**: Diritto di Corona — Si scarta sempre: un diritto invocato due volte non è più un diritto, è una pretesa — e la pretesa divide: la Regione della domanda resta contesa
 - **id**: `AST_AUTHORITY_CROWN_RIGHT`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Diritto di Corona — Si scarta sempre: un diritto invocato due volte non è più un diritto, è una pretesa.
+Historical dark-fantasy painting, single evocative scene depicting Diritto di Corona — Si scarta sempre: un diritto invocato due volte non è più un diritto, è una pretesa — e la pretesa divide: la Regione della domanda resta contesa.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 oro spento accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -47,11 +47,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.authority.edict` — Editto
 
-- **soggetto**: Editto — Una riga scritta bene vale quanto chi la fa rispettare
+- **soggetto**: Editto — Una riga scritta bene vale quanto chi la fa rispettare — e dove si discute, la legge calma la piazza: l'inquietudine si cancella
 - **id**: `AST_AUTHORITY_EDICT`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Editto — Una riga scritta bene vale quanto chi la fa rispettare.
+Historical dark-fantasy painting, single evocative scene depicting Editto — Una riga scritta bene vale quanto chi la fa rispettare — e dove si discute, la legge calma la piazza: l'inquietudine si cancella.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 oro spento accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -83,11 +83,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.authority.investiture` — Investitura
 
-- **soggetto**: Investitura — +1 sempre, su qualsiasi fronte. Si scarta sempre: si concede una volta sola, e tutti se ne ricordano
+- **soggetto**: Investitura — +1 sempre, su qualsiasi fronte. Si scarta sempre: si concede una volta sola, e tutti se ne ricordano — perché la nomina scrive un nome nella linea: il mondo ricorda l'erede nominato
 - **id**: `AST_AUTHORITY_INVESTITURE`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Investitura — +1 sempre, su qualsiasi fronte. Si scarta sempre: si concede una volta sola, e tutti se ne ricordano.
+Historical dark-fantasy painting, single evocative scene depicting Investitura — +1 sempre, su qualsiasi fronte. Si scarta sempre: si concede una volta sola, e tutti se ne ricordano — perché la nomina scrive un nome nella linea: il mondo ricorda l'erede nominato.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 oro spento accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -101,11 +101,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.authority.magistrate` — Magistrato
 
-- **soggetto**: Magistrato — +1 sul fronte Oppose. Se la proposta passa lo stesso resta in mano: un giudice che ha avuto ragione serve ancora domani
+- **soggetto**: Magistrato — +2 sul fronte Oppose. Se la proposta passa lo stesso resta in mano: un giudice che ha avuto ragione serve ancora — e il giudice risponde: la domanda rimasta scritta sul muro si cancella
 - **id**: `AST_AUTHORITY_MAGISTRATE`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Magistrato — +1 sul fronte Oppose. Se la proposta passa lo stesso resta in mano: un giudice che ha avuto ragione serve ancora domani.
+Historical dark-fantasy painting, single evocative scene depicting Magistrato — +2 sul fronte Oppose. Se la proposta passa lo stesso resta in mano: un giudice che ha avuto ragione serve ancora — e il giudice risponde: la domanda rimasta scritta sul muro si cancella.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 oro spento accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -119,11 +119,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.authority.seal` — Sigillo
 
-- **soggetto**: Sigillo — +1 sul fronte Oppose. Il sigillo che manca ferma più cose del sigillo che c'è
+- **soggetto**: Sigillo — +1 sul fronte Oppose. Il sigillo che manca ferma più cose del sigillo che c'è — e quello impegnato raffredda la questione: la Tensione in gioco scende di 1
 - **id**: `AST_AUTHORITY_SEAL`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Sigillo — +1 sul fronte Oppose. Il sigillo che manca ferma più cose del sigillo che c'è.
+Historical dark-fantasy painting, single evocative scene depicting Sigillo — +1 sul fronte Oppose. Il sigillo che manca ferma più cose del sigillo che c'è — e quello impegnato raffredda la questione: la Tensione in gioco scende di 1.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 oro spento accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.

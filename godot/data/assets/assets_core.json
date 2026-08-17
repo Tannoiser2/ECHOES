@@ -288,7 +288,21 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.authority.edict",
-      "rules_text": "Una riga scritta bene vale quanto chi la fa rispettare."
+      "rules_text": "Una riga scritta bene vale quanto chi la fa rispettare — e dove si discute, la legge calma la piazza: l'inquietudine si cancella.",
+      "on_commit_effects": [
+        {
+          "type": "REMOVE_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "tag": "condition:unrest",
+            "optional": true
+          },
+          "note": "Il mestiere della carta (D-112): l'editto è la cura dell'inquietudine che i Mercenari lasciano. Se non c'è, non accade nulla."
+        }
+      ]
     },
     {
       "id": "AST_AUTHORITY_SEAL",
@@ -308,7 +322,20 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.authority.seal",
-      "rules_text": "+1 sul fronte Oppose. Il sigillo che manca ferma più cose del sigillo che c'è."
+      "rules_text": "+1 sul fronte Oppose. Il sigillo che manca ferma più cose del sigillo che c'è — e quello impegnato raffredda la questione: la Tensione in gioco scende di 1.",
+      "on_commit_effects": [
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "$tension"
+          },
+          "payload": {
+            "delta": -1
+          },
+          "note": "Il mestiere della carta (D-112): il sigillo raffredda - l'opposto della Banda Armata."
+        }
+      ]
     },
     {
       "id": "AST_AUTHORITY_CENSUS",
@@ -328,7 +355,21 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.authority.census",
-      "rules_text": "+1 quando AUTHORITY è rilevante per la Tensione. Una lista di nomi è la forma più semplice del potere."
+      "rules_text": "+1 quando AUTHORITY è rilevante per la Tensione. Una lista di nomi è la forma più semplice del potere — e la lista chiarisce: la Regione della domanda smette di essere contesa.",
+      "on_commit_effects": [
+        {
+          "type": "REMOVE_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "tag": "condition:contested",
+            "optional": true
+          },
+          "note": "Il mestiere della carta (D-112): contare chi sta dove toglie il segno della contesa - la cura del Diritto di Corona."
+        }
+      ]
     },
     {
       "id": "AST_AUTHORITY_CROWN_RIGHT",
@@ -349,7 +390,20 @@
       "rarity": "UNCOMMON",
       "deck_copies": 2,
       "art_prompt_key": "asset.authority.crown_right",
-      "rules_text": "Si scarta sempre: un diritto invocato due volte non è più un diritto, è una pretesa."
+      "rules_text": "Si scarta sempre: un diritto invocato due volte non è più un diritto, è una pretesa — e la pretesa divide: la Regione della domanda resta contesa.",
+      "on_commit_effects": [
+        {
+          "type": "SET_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "tag": "condition:contested"
+          },
+          "note": "Il mestiere della carta (D-112): invocare la corona spacca il posto di cui si discute. La cura è il Censimento."
+        }
+      ]
     },
     {
       "id": "AST_AUTHORITY_MAGISTRATE",
@@ -369,7 +423,21 @@
       "rarity": "UNCOMMON",
       "deck_copies": 2,
       "art_prompt_key": "asset.authority.magistrate",
-      "rules_text": "+1 sul fronte Oppose. Se la proposta passa lo stesso resta in mano: un giudice che ha avuto ragione serve ancora domani."
+      "rules_text": "+2 sul fronte Oppose. Se la proposta passa lo stesso resta in mano: un giudice che ha avuto ragione serve ancora — e il giudice risponde: la domanda rimasta scritta sul muro si cancella.",
+      "on_commit_effects": [
+        {
+          "type": "REMOVE_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "tag": "scar:unanswered",
+            "optional": true
+          },
+          "note": "Il mestiere della carta (D-112): il Magistrato chiude la cicatrice del consiglio che non decise. Se non c'è, non accade nulla."
+        }
+      ]
     },
     {
       "id": "AST_AUTHORITY_INVESTITURE",
@@ -389,7 +457,20 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.authority.investiture",
-      "rules_text": "+1 sempre, su qualsiasi fronte. Si scarta sempre: si concede una volta sola, e tutti se ne ricordano."
+      "rules_text": "+1 sempre, su qualsiasi fronte. Si scarta sempre: si concede una volta sola, e tutti se ne ricordano — perché la nomina scrive un nome nella linea: il mondo ricorda l'erede nominato.",
+      "on_commit_effects": [
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "heir_named"
+          },
+          "note": "Il mestiere della carta (D-112): investire un erede è un fatto del mondo - lo stesso segno di CNS_HEIR_NAMED, e la porta della Corona Restaurata (D-110) lo legge."
+        }
+      ]
     },
     {
       "id": "AST_AUTHORITY_INTERDICT",

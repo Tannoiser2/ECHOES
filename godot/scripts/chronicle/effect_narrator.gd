@@ -9,6 +9,8 @@ extends RefCounted
 ## Echo/Truth records that have their own lines), and the Scar, which already
 ## speaks for itself.
 
+const SignLabels := preload("res://scripts/core/sign_labels.gd")
+
 const VISIBILITY_SAID: Dictionary = {
 	"OPEN": "%s non è più velata: il suo numero è sul tavolo.",
 	"VEILED": "%s torna velata.",
@@ -57,11 +59,11 @@ static func narrate(effect: Dictionary, data) -> String:
 			]
 		"SET_REGION_TAG":
 			return "Su %s resta un segno: «%s»." % [
-				_region(target_id, data), str(payload.get("tag", ""))
+				_region(target_id, data), SignLabels.label(str(payload.get("tag", "")), data)
 			]
 		"REMOVE_REGION_TAG":
 			return "Da %s si cancella il segno «%s»." % [
-				_region(target_id, data), str(payload.get("tag", ""))
+				_region(target_id, data), SignLabels.label(str(payload.get("tag", "")), data)
 			]
 		"SET_GLOBAL_TAG":
 			var tag: String = str(payload.get("tag", ""))
@@ -69,16 +71,16 @@ static func narrate(effect: Dictionary, data) -> String:
 			# not history: the card that set them already had its section.
 			if tag.begins_with("function:"):
 				return ""
-			return "Il mondo ricorda: «%s»." % tag
+			return "Il mondo ricorda: «%s»." % SignLabels.label(tag, data)
 		"REMOVE_GLOBAL_TAG":
-			return "Il mondo dimentica: «%s»." % str(payload.get("tag", ""))
+			return "Il mondo dimentica: «%s»." % SignLabels.label(str(payload.get("tag", "")), data)
 		"SET_ENTITY_TAG":
 			return "%s porta ora il segno «%s»." % [
-				_entity(target_id, data), str(payload.get("tag", ""))
+				_entity(target_id, data), SignLabels.label(str(payload.get("tag", "")), data)
 			]
 		"REMOVE_ENTITY_TAG":
 			return "%s si libera del segno «%s»." % [
-				_entity(target_id, data), str(payload.get("tag", ""))
+				_entity(target_id, data), SignLabels.label(str(payload.get("tag", "")), data)
 			]
 		"SET_RELATION":
 			return _relation(target_id, payload, data)

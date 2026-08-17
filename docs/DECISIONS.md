@@ -331,6 +331,48 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-112 — Le carte con un mestiere, secondo mazzetto: AUTHORITY
+**implemented in 0.1.74** (ISSUES 26, punto 2)
+
+I sei sigilli che erano solo un numero ora fanno quello che il nome
+promette — e il mazzetto disegna un'economia di segni, con cure e
+contro-cure:
+
+- **Editto**: la riga scritta calma la piazza — cancella l'inquietudine
+  (`condition:unrest`, il segno dei Mercenari) dalla Regione della
+  domanda;
+- **Sigillo**: il sigillo raffredda — la Tensione in gioco scende di 1
+  (l'opposto della Banda Armata);
+- **Censimento**: la lista chiarisce — toglie la contesa
+  (`condition:contested`) dalla Regione della domanda;
+- **Diritto di Corona**: la pretesa divide — posa la contesa che il
+  Censimento cura;
+- **Magistrato**: il giudice risponde — cancella la domanda rimasta sul
+  muro (`scar:unanswered`, la cicatrice della spirale). E il testo dice
+  finalmente il **+2** vero sul fronte Oppose (stessa svista
+  dell'Assedio, D-106);
+- **Investitura**: la nomina scrive un nome nella linea — posa
+  `heir_named` sul mondo, lo stesso segno di CNS_HEIR_NAMED, che la
+  porta della Corona Restaurata (D-110) legge. Una carta comune che può
+  aprire una vita.
+
+Aggiustato per strada: il narratore ora dà ai segni le **parole del
+dizionario** (D-107) anche a verbale — «resta un segno: “contesa”», non
+«condition:contested».
+
+### Misurato (un mestiere alla volta, stessi 100 semi)
+
+Base 198·94·128·183 (identica a D-110). Editto, Censimento, Magistrato,
+Investitura: esiti invariati nei sim (cure e fatti che mordono altrove).
+Sigillo: 197·96·127·181 — il raffreddamento ammorbidisce, due Decisive
+in meno. Diritto di Corona: 197·94·127·182. **0/8 a ogni passo**; ere in
+banda (20,4 generazioni, la porta della Restaurazione si apre un filo di
+più per via dell'Investitura — voluto); guardia biblioteca verde. Il
+piano B aggiorna le attese (4→6 Confluence: il Sigillo sposta i tempi).
+246 test, 5178 asserzioni. (Nota di metodo: la prima misura era falsata
+— lo strumento spegneva solo i mestieri D-106; rifatta con il passo 0
+identico alla base, com'è giusto.)
+
 ## D-111 — Il tarocco per ogni vita
 **implemented in 0.1.73** (ISSUES 19, Fase 3 — l'ultima della voce)
 
