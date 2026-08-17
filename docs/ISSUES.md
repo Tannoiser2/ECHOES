@@ -589,6 +589,14 @@ davvero. Tipi nuovi di tag_rule, sempre dati d'autore:
 Ogni tipo: prima il gancio nel motore provato con regole sintetiche, poi
 le regole vere scelte col committente, accese una alla volta e misurate.
 
+**Fase 1 ✅ — i ganci** — fatta in 0.1.78 ([D-116](DECISIONS.md#d-116)):
+i quattro tipi più il **RELATION_FLOOR** (il pavimento che il Legame di
+Sangue aspetta da D-113), ciascuno provato con regole sintetiche, playtest
+identico byte per byte con zero regole accese.
+
+**Fase 2 — i denti veri**: le regole d'autore scelte col committente,
+accese una alla volta e misurate (il rito di D-105).
+
 **Fatto quando** almeno un dente per tipo vive nei dati, misurato, e il
 playtest resta 0/8.
 

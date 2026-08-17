@@ -78,9 +78,14 @@
             "ACTION_MODIFIER",
             "COUNCIL_MODIFIER",
             "GATE",
-            "RELATION_CAP"
+            "RELATION_CAP",
+            "ACTION_GATE",
+            "DRAW_BIAS",
+            "HAND_LIMIT",
+            "GRANT_ON_SET",
+            "RELATION_FLOOR"
           ],
-          "description": "Il gancio del motore che la regola piega. ACTION_MODIFIER: il valore di un'azione (per ora INFLUENCE) cambia di `delta`. COUNCIL_MODIFIER: il World Factor dei Consigli sulla Tensione indicata cambia di `world_factor_delta`. GATE: il movimento verso la Regione col segno è sbarrato (BLOCK) o concesso anche senza adiacenza (ALLOW). RELATION_CAP: finché il segno c'è, il livello della relazione non sale sopra `max_level`."
+          "description": "Il gancio del motore che la regola piega. ACTION_MODIFIER: il valore di un'azione (per ora INFLUENCE) cambia di `delta`. COUNCIL_MODIFIER: il World Factor dei Consigli sulla Tensione indicata cambia di `world_factor_delta`. GATE: il movimento verso la Regione col segno è sbarrato (BLOCK) o concesso anche senza adiacenza (ALLOW). RELATION_CAP: finché il segno c'è, il livello della relazione non sale sopra `max_level`. I cinque della voce 25 (D-116) - ACTION_GATE: finché il segno c'è, l'azione `template` è vietata a chi lo porta. DRAW_BIAS: chi pesca da `family` col segno addosso guarda le prime due carte e prende la peggiore (MALUS) o la migliore (BONUS). HAND_LIMIT: il limite di mano si muove di `hand_limit_delta`, mai sotto 1. GRANT_ON_SET: quando il segno viene posato nello scope indicato, la carta `grant.asset_id` passa a chi spetta, se è nel mazzo o negli scarti. RELATION_FLOOR: finché il segno c'è, il livello della relazione non scende sotto `min_level` (il tetto vince sul pavimento)."
         },
         "template": {
           "type": "string",
@@ -92,7 +97,7 @@
             "SCHEME",
             "CLAIM"
           ],
-          "description": "Solo per ACTION_MODIFIER: quale azione la regola piega."
+          "description": "Per ACTION_MODIFIER e ACTION_GATE: quale azione la regola piega o vieta."
         },
         "tension_id": {
           "type": "string",
@@ -128,6 +133,65 @@
             "ALLY"
           ],
           "description": "Solo per RELATION_CAP: il tetto. BOUND non è un tetto: senza segno non serve una regola."
+        },
+        "min_level": {
+          "type": "string",
+          "enum": [
+            "HOSTILE",
+            "NEUTRAL",
+            "ALLY",
+            "BOUND"
+          ],
+          "description": "Solo per RELATION_FLOOR: il pavimento. ENEMY non è un pavimento: è già il fondo."
+        },
+        "family": {
+          "type": "string",
+          "enum": [
+            "FORCE",
+            "AUTHORITY",
+            "WEALTH",
+            "KNOWLEDGE",
+            "PEOPLE",
+            "BONDS"
+          ],
+          "description": "Solo per DRAW_BIAS: quale mazzo la pesca piegata tocca."
+        },
+        "bias": {
+          "type": "string",
+          "enum": [
+            "MALUS",
+            "BONUS"
+          ],
+          "description": "Solo per DRAW_BIAS: MALUS prende la peggiore delle prime due carte, BONUS la migliore. MALUS vince su BONUS."
+        },
+        "hand_limit_delta": {
+          "type": "integer",
+          "minimum": -3,
+          "maximum": 3,
+          "description": "Solo per HAND_LIMIT: di quanto il limite di mano si muove per chi porta il segno. Il limite non scende mai sotto 1."
+        },
+        "grant": {
+          "type": "object",
+          "required": [
+            "asset_id"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "asset_id": {
+              "type": "string",
+              "pattern": "^AST_[A-Z0-9_]+$",
+              "description": "La carta consegnata. Se è già in una mano, la regola tace: una carta non si strappa."
+            },
+            "give_to": {
+              "type": "string",
+              "enum": [
+                "ACTOR",
+                "TARGET"
+              ],
+              "description": "ACTOR (default): chi ha causato l'effetto che posa il segno. TARGET: l'Entità su cui il segno è stato posato (solo scope ENTITY)."
+            }
+          },
+          "description": "Solo per GRANT_ON_SET: cosa viene consegnato, e a chi."
         },
         "chronicle_id": {
           "type": "string",

@@ -96,6 +96,89 @@ static func movement_gate(data, world: Dictionary, region_id: String) -> String:
 	return verdict
 
 
+## ACTION_GATE (ISSUES 25): finché il segno c'è, l'azione è vietata. Restituisce
+## il titolo della regola che sbarra, o "" se la strada è libera. Vive dentro
+## check(), quindi vale ovunque: la sedia automatica non la propone, il
+## browser la mostra grigia, execute() la rifiuta - una volta sola.
+static func action_gate(
+	data, world: Dictionary, entity_id: String, template: String
+) -> String:
+	for rule in active(data, "ACTION_GATE", str(world.get("chronicle_id", ""))):
+		if str(rule.get("template", "")) != template:
+			continue
+		if _sign_present(world, rule["when"], {"entity_id": entity_id}):
+			return str(rule["title"])
+	return ""
+
+
+## DRAW_BIAS (ISSUES 25): la pesca piegata. Con un segno addosso, chi pesca da
+## questa famiglia guarda le prime due carte e prende la peggiore (MALUS) o la
+## migliore (BONUS). MALUS vince su BONUS: un mercato guasto resta guasto.
+static func draw_bias(
+	data, world: Dictionary, entity_id: String, family: String
+) -> Dictionary:
+	var out: Dictionary = {"bias": "", "title": ""}
+	for rule in active(data, "DRAW_BIAS", str(world.get("chronicle_id", ""))):
+		if str(rule.get("family", "")) != family:
+			continue
+		if not _sign_present(world, rule["when"], {"entity_id": entity_id}):
+			continue
+		var bias: String = str(rule.get("bias", ""))
+		if bias == "MALUS":
+			return {"bias": "MALUS", "title": str(rule["title"])}
+		if bias == "BONUS" and out["bias"] == "":
+			out = {"bias": "BONUS", "title": str(rule["title"])}
+	return out
+
+
+## HAND_LIMIT (ISSUES 25): di quanto i segni muovono il limite di mano di chi
+## pesca - l'assedio stringe le mani di chi è dentro.
+static func hand_limit_delta(data, world: Dictionary, entity_id: String) -> Dictionary:
+	var delta: int = 0
+	var titles: Array = []
+	for rule in active(data, "HAND_LIMIT", str(world.get("chronicle_id", ""))):
+		if _sign_present(world, rule["when"], {"entity_id": entity_id}):
+			delta += int(rule.get("hand_limit_delta", 0))
+			titles.append(str(rule["title"]))
+	return {"delta": delta, "titles": titles}
+
+
+## GRANT_ON_SET (ISSUES 25): le regole che consegnano una carta quando questo
+## segno viene posato in questo scope - chi costruisce il canale riceve i
+## Diritti dell'Acqua. La consegna vera la fa l'applier; qui solo la scelta.
+static func grants_for(data, world: Dictionary, scope: String, tag: String) -> Array:
+	var out: Array = []
+	for rule in active(data, "GRANT_ON_SET", str(world.get("chronicle_id", ""))):
+		var when: Dictionary = rule["when"]
+		if str(when.get("scope", "")) == scope and str(when.get("tag", "")) == tag:
+			out.append(rule)
+	return out
+
+
+## RELATION_FLOOR (ISSUES 25): il pavimento più alto fra le regole accese per
+## questa coppia, o "" se nessuna morde. È il potere che il Legame di Sangue
+## aspetta da D-113: un vincolo che non si sceglie, sotto cui non si scende.
+static func relation_floor(data, world: Dictionary, relation_key: String) -> String:
+	var floor_level: String = ""
+	for rule in active(data, "RELATION_FLOOR", str(world.get("chronicle_id", ""))):
+		if not _sign_present(world, rule["when"], {"relation_key": relation_key}):
+			continue
+		var level: String = str(rule.get("min_level", ""))
+		if level == "":
+			continue
+		if floor_level == "" or LEVEL_ORDER.find(level) > LEVEL_ORDER.find(floor_level):
+			floor_level = level
+	return floor_level
+
+
+static func raise_to_floor(level: String, floor_level: String) -> String:
+	if floor_level == "":
+		return level
+	if LEVEL_ORDER.find(level) < LEVEL_ORDER.find(floor_level):
+		return floor_level
+	return level
+
+
 ## RELATION_CAP: il tetto più basso fra le regole accese per questa coppia,
 ## o "" se nessuna morde.
 static func relation_cap(data, world: Dictionary, relation_key: String) -> String:

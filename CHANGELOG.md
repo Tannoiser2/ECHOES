@@ -5,6 +5,36 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.78] — I denti che aggiungono e tolgono: il telaio
+
+Fase 1 della voce 25 ([D-116](docs/DECISIONS.md#d-116)): **cinque tipi
+nuovi di regola**, costruiti nel motore e provati con regole sintetiche.
+Nessuna regola vera è ancora accesa: il gioco è identico, il telaio è
+pronto.
+
+### Added
+
+- **ACTION_GATE**: un segno può vietare un'azione («il segno lo vieta»),
+  in un punto solo — sedia automatica, browser e motore lo rispettano
+  insieme.
+- **DRAW_BIAS**: la pesca piegata — col segno addosso si prende la
+  peggiore (o la migliore) delle prime due carte del mazzo.
+- **HAND_LIMIT**: il limite di mano si muove — l'assedio stringe le mani
+  di chi è dentro, mai sotto una carta.
+- **GRANT_ON_SET**: un segno appena posato consegna una carta con nome e
+  cognome, a chi l'ha causato o a chi lo porta.
+- **RELATION_FLOOR**: il pavimento di relazione — sotto non si scende; se
+  tetto e pavimento litigano, vince il tetto. È il potere che il Legame
+  di Sangue aspettava.
+
+### Misurato
+
+Zero regole accese: playtest 100/7000 **identico byte per byte** alla
+base, 0/8 al tavolo misto; 255 test, 5372 asserzioni. Le regole vere si
+scelgono col committente e si accendono una alla volta, misurate.
+
+---
+
 ## [0.1.77] — Il Destino che legge chi lo giura
 
 La voce 20 si chiude ([D-115](docs/DECISIONS.md#d-115)): ogni casa ha ora

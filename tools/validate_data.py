@@ -155,6 +155,11 @@ def check_references(
         "COUNCIL_MODIFIER": ("world_factor_delta",),
         "GATE": ("movement",),
         "RELATION_CAP": ("max_level",),
+        "ACTION_GATE": ("template",),
+        "DRAW_BIAS": ("family", "bias"),
+        "HAND_LIMIT": ("hand_limit_delta",),
+        "GRANT_ON_SET": ("grant",),
+        "RELATION_FLOOR": ("min_level",),
     }
     for rule in documents.get("tag_rule", []):
         where = f"{origins['tag_rule']} [{rule['id']}]"
@@ -167,8 +172,15 @@ def check_references(
         scope = str(rule.get("when", {}).get("scope", ""))
         if kind == "GATE" and scope != "REGION":
             report.fail(where, "GATE rules only make sense with scope REGION")
-        if kind == "RELATION_CAP" and scope not in ("GLOBAL", "RELATION"):
-            report.fail(where, "RELATION_CAP needs scope GLOBAL or RELATION")
+        if kind in ("RELATION_CAP", "RELATION_FLOOR") and scope not in ("GLOBAL", "RELATION"):
+            report.fail(where, f"{kind} needs scope GLOBAL or RELATION")
+        if kind == "HAND_LIMIT" and int(rule.get("hand_limit_delta", 0)) == 0:
+            report.fail(where, "HAND_LIMIT with delta 0 is a dead letter")
+        if kind == "GRANT_ON_SET":
+            grant = rule.get("grant", {})
+            require(known_assets, grant.get("asset_id", ""), "asset", where)
+            if str(grant.get("give_to", "ACTOR")) == "TARGET" and scope != "ENTITY":
+                report.fail(where, "GRANT_ON_SET give_to TARGET needs scope ENTITY")
 
     for tension in documents.get("tension", []):
         where = f"{origins['tension']} [{tension['id']}]"
