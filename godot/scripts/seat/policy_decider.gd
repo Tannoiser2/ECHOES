@@ -394,6 +394,13 @@ func choose_action(entity_id: String, _ao_index: int, session: RefCounted) -> Di
 	if not forge.is_empty():
 		return forge
 
+	# 4b. La carta del Narratore (ISSUES 23, D-118): se una carta in mano e'
+	#     pronta per la storia e le risorse reggono il prezzo, si cala. Prima
+	#     dello steering: un atto che resta muto e' un'occasione persa.
+	var narrated: Dictionary = _play_narrator(entity_id, session)
+	if not narrated.is_empty():
+		return narrated
+
 	# 5. Steer a Tension that is about to decide something, in the direction
 	#    your Destiny needs - but only once you have something to spend.
 	if service.hand_size(entity_id) >= COMFORTABLE_HAND:
@@ -982,6 +989,44 @@ func _best_clause(entity_id: String, context: Dictionary, session: RefCounted) -
 	if tied.size() == 1:
 		return str(tied[0])
 	return str(tied[session.rng.range_int(0, tied.size() - 1)])
+
+
+## La carta del Narratore (ISSUES 23, D-118): la prima carta in mano che la
+## storia accetta, quando le risorse reggono il prezzo (una carta Asset). Il
+## resolver rifiuta da solo quelle non eleggibili: qui si chiede, non si giudica.
+##
+## Al massimo UNA per atto a seggio: senza questo freno la sedia svuotava la
+## mano appena poteva - 17 carte a cronaca contro le 3 di prima - e i Consigli
+## scendevano sotto la banda del §7 (le azioni finivano tutte nel Narratore).
+## Il conto si legge dal registro degli Effect, non da una memoria della sedia:
+## una partita ripresa dal salvataggio deve rifare le stesse scelte (§18.3).
+func _play_narrator(entity_id: String, session: RefCounted) -> Dictionary:
+	if session.service.hand_size(entity_id) < COMFORTABLE_HAND:
+		return {}
+	var act: int = int(session.world["act"])
+	for effect in session.world["effect_log"]:
+		var src: Dictionary = effect.get("source", {})
+		if str(src.get("id", "")) == "ACT_PLAY_ECHO" \
+				and str(src.get("actor", "")) == entity_id \
+				and int(src.get("act", 0)) == act:
+			return {}
+	# Non basta che la storia accetti la carta: deve servire a chi la cala.
+	# Senza questo filtro le sedie calavano qualunque cosa fosse eleggibile e
+	# Kessa restava piantata al Minimo (46/50): le carte altrui le scaldavano
+	# le questioni contro. Il punteggio e' lo stesso delle clausole negoziali.
+	var goals: Dictionary = _tag_goals(entity_id, session)
+	var bindings: Dictionary = session.confluence.effect_context()
+	for card_id in session.world["entities"][entity_id].get("echo_hand", []):
+		var params: Dictionary = {"echo_card_id": str(card_id)}
+		if not session.actions.can_execute(entity_id, "PLAY_ECHO", params):
+			continue
+		var score: int = 0
+		for hook in session.data.echo_cards[str(card_id)].get("effect_hooks", []):
+			if str(hook.get("kind", "")) == "EFFECT":
+				score += _score_effect(hook["effect"], entity_id, entity_id, goals, session, bindings)
+		if score > 0:
+			return {"template": "PLAY_ECHO", "params": params}
+	return {}
 
 
 func _sorted(keys: Array) -> Array:

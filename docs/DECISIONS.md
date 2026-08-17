@@ -331,6 +331,41 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-118 — Le carte di Propp in mano ai giocatori
+**implemented in 0.1.80** (ISSUES 23, fasi 1 e 3)
+
+Il disegno è del committente (quattro scelte, a domanda): **2 carte a
+testa per atto** dal sacchetto pesato dell'atto (§15), si calano **nel
+proprio turno come azione** (PLAY_ECHO), calarle **costa una carta Asset
+scartata**, e se nessuno cala **l'atto resta senza carta** — il silenzio
+è una scelta del tavolo, nessuna rete di sicurezza. La pesca automatica
+di fine atto non esiste più.
+
+- L'ordine di Propp resta custodito dall'eleggibilità sui segni
+  `function:` (D-030), giudicata **quando si cala**, non quando si pesca.
+- Chi cala è il proponente della carta: `$proponent`/`$rival` leggono la
+  mano che l'ha giocata; un Consiglio prescritto si prenota nello slot
+  del CLAIM (`forced_confluence`).
+- `echo_hand` per seggio nel mondo e nei salvataggi; il verbale dice chi
+  paga e chi cala.
+- **Le sedie automatiche**: al più una carta per atto a seggio (letta dal
+  registro degli Effect — una memoria nella sedia divergeva alla ripresa),
+  e **solo se gli effetti servono al proprio Destino** (lo stesso
+  punteggio delle clausole negoziali). Senza il freno: 17 carte a cronaca
+  e Consigli sotto banda; senza il filtro: Kessa piantata al Minimo 46/50
+  e **1/8 bloccato** — entrambe le forme respinte coi numeri.
+
+### Misurato (stessi 100 semi)
+
+Base 0.1.79: 200·87·138·171. Con le mani del Narratore: **190·88·120·176,
+0/8 al tavolo misto**, Kessa 41 MIN / 8 VIC (in salute), nessun seggio
+crolla; ere in banda (955 mediana, 20.4 generazioni, 22 nomi); piani
+scritti riallineati (la carta automatica non esiste più); 255 test,
+5550 asserzioni. Restano aperte: gli effetti che pesano (fase 2, carta
+per carta col committente) e la GUI del browser per calare dalla mano.
+
+---
+
 ## D-117 — I denti veri: cinque regole d'autore, e la 48ª carta
 **implemented in 0.1.79** (ISSUES 25, chiusa)
 

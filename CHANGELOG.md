@@ -5,6 +5,33 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.80] — Le carte di Propp in mano ai giocatori
+
+La visione della voce 23 diventa motore ([D-118](docs/DECISIONS.md#d-118)),
+col disegno scelto dal committente: **2 carte a testa per atto**, si
+calano **nel proprio turno** pagando **una carta Asset**, e se nessuno
+cala l'atto resta muto — la pesca automatica di fine atto non esiste più.
+
+### Added
+
+- La **mano del Narratore** per ogni seggio (nel mondo e nei salvataggi)
+  e l'azione **PLAY_ECHO**: l'ordine di Propp resta custodito
+  dall'eleggibilità, giudicata quando si cala.
+- Chi cala è il proponente della carta; un Consiglio prescritto si apre
+  a fine round come per il CLAIM.
+- Le sedie automatiche calano al più una carta per atto, e solo se serve
+  al loro Destino; l'umano al terminale vede le carte calabili fra le
+  azioni.
+
+### Misurato
+
+Due forme respinte coi numeri (17 carte a cronaca; Kessa piantata e 1/8
+bloccato) prima di quella giusta: **190·88·120·176 con 0/8 al tavolo
+misto**, ere in banda, 255 test verdi. Restano la GUI del browser e gli
+effetti più pesanti, carta per carta.
+
+---
+
 ## [0.1.79] — I denti veri, e la 48ª carta
 
 La voce 25 si chiude ([D-117](docs/DECISIONS.md#d-117)): cinque regole

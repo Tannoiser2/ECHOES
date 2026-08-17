@@ -1347,6 +1347,10 @@ const DEFS := {
 			"echo_deck": {
 				"type": "Dictionary",
 			},
+			"echoes_played_in_act": {
+				"type": "int",
+				"min": 0,
+			},
 			"drift_track": {
 				"type": "Array",
 				"element": {

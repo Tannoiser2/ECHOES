@@ -143,6 +143,7 @@ func play_act(act: int, decider: Object, from_round: int = 1) -> void:
 	# ha gia' avuto il suo giro di stagione, e rifarlo cambierebbe la partita.
 	if from_round == 1:
 		_lift_evictions(act)
+		_deal_narrator_hands(act)
 	for round_number in range(from_round, int(_chronicle["rounds_per_act"]) + 1):
 		await play_round(act, round_number, decider)
 	await end_of_act(act, decider)
@@ -423,42 +424,87 @@ func run_confluence(tension_id: String, trigger: Dictionary, decider: Object) ->
 	return result
 
 
-## §7: at the end of an Act one Echo card is drawn from that Act's pool (§15).
-func end_of_act(act: int, decider: Object) -> void:
+## ISSUES 23 (D-118): la carta di Propp non si pesca piu' da sola a fine atto —
+## la cala un giocatore, nel suo turno, pagandola. Qui resta solo il sipario:
+## se in tutto l'atto nessuno ha parlato, il silenzio e' una scelta del tavolo
+## (decisione del committente: nessuna rete di sicurezza).
+func end_of_act(act: int, _decider: Object) -> void:
 	_set_phase(act, int(_chronicle["rounds_per_act"]), "ACT_ECHO")
-	var card: Dictionary = _draw_act_echo(act)
-	if card.is_empty():
-		log.bullet("Nessuna carta Echo disponibile per l'Atto %d." % act)
-		return
-	log.section("CARTA ECHO DI ATTO - %s (%s)" % [str(card["title"]), str(card["dramatic_family"])])
-	log.line(str(card["description"]))
+	var played: int = int(world.get("echoes_played_in_act", 0))
+	world["echoes_played_in_act"] = 0
+	if played == 0:
+		log.bullet("L'Atto %d si chiude senza una carta del Narratore: il silenzio resta scritto." % act)
 
-	var source: Dictionary = Effect.source(
-		"echo_card", str(card["id"]), "", act, int(world["round"]), int(world["effect_sequence"])
-	)
-	# §15: the narrative function this card just performed becomes a fact about
-	# the world, so a later card can require it. Propp's whole point is that the
-	# functions come in an order - a Return needs a Separation to return from -
-	# and this is what lets a card say so in its own eligibility, without the
-	# engine knowing a single function name (D-030).
+
+## La mano del Narratore (ISSUES 23, D-118): all'apertura dell'atto ogni seggio
+## pesca due carte di Propp dal sacchetto pesato dell'atto (§15) - le famiglie
+## ripetute pescano piu' spesso, l'ordine lo decide l'RNG a seme, e
+## l'eleggibilita' NON si guarda qui: una carta puo' diventare giocabile piu'
+## tardi, quando la funzione che aspetta e' stata compiuta (D-030).
+const NARRATOR_CARDS_PER_ACT: int = 2
+
+
+func _deal_narrator_hands(act: int) -> void:
+	var bag: Array = []
+	for pool in _chronicle["act_echo_pools"]:
+		if int(pool["act"]) == act:
+			bag = (pool["families"] as Array).duplicate()
+	for entity_id in session.service.active_entities():
+		var dealt: int = 0
+		for _i in range(NARRATOR_CARDS_PER_ACT):
+			var card_id: String = _draw_from_bag(bag)
+			if card_id == "":
+				break
+			(world["entities"][str(entity_id)]["echo_hand"] as Array).append(card_id)
+			dealt += 1
+		if dealt > 0:
+			log.bullet("%s riceve %d carte del Narratore." % [_name(str(entity_id)), dealt])
+
+
+## Una carta dal sacchetto: le famiglie mescolate col seme, la prima famiglia
+## che ha ancora una carta nel mazzo vince, dentro la famiglia decide l'ordine
+## mescolato del mazzo. Niente eleggibilita': quella si giudica quando si cala.
+func _draw_from_bag(bag: Array) -> String:
+	var families: Array = []
+	for family in session.rng.shuffle(bag):
+		if not families.has(str(family)):
+			families.append(str(family))
+	var deck: Dictionary = world["echo_deck"]
+	for family in families:
+		for i in range((deck["draw"] as Array).size()):
+			var card_id: String = str(deck["draw"][i])
+			var card: Variant = data.echo_cards.get(card_id)
+			if card == null or str(card["dramatic_family"]) != str(family):
+				continue
+			(deck["draw"] as Array).remove_at(i)
+			(deck["drawn"] as Array).append(card_id)
+			return card_id
+	return ""
+
+
+## ISSUES 23 (D-118): la carta calata da una mano. Costo e legalita' li ha gia'
+## giudicati l'ActionResolver; qui la carta parla - la funzione diventa un fatto
+## del mondo (D-030), gli effetti si applicano e si raccontano, i presagi
+## scattano, e un eventuale Consiglio prescritto si prenota nello stesso posto
+## del CLAIM (`forced_confluence`), per aprirsi a fine round.
+func play_narrator_card(entity_id: String, card_id: String, source: Dictionary) -> Array:
+	var card: Dictionary = data.echo_cards[card_id]
+	log.section("LA CARTA DEL NARRATORE - %s (%s)" % [str(card["title"]), str(card["dramatic_family"])])
+	log.bullet("%s la cala sul tavolo." % _name(entity_id))
+	log.line(str(card["description"]))
 	session.applier.apply(
 		Effect.make(
-			"SET_GLOBAL_TAG",
-			"world",
-			"WORLD",
-			{"tag": "function:%s" % str(card["function_id"])},
-			source
+			"SET_GLOBAL_TAG", "world", "WORLD",
+			{"tag": "function:%s" % str(card["function_id"])}, source
 		)
 	)
-	# Kept as they are applied, in order, so the card can be shown with what it
-	# actually did to the world underneath it.
 	var applied: Array = []
 	for hook in card["effect_hooks"]:
-		var bindings: Dictionary = card_bindings(hook)
+		# Chi cala la carta e' il suo proponente: gli effetti scritti per un
+		# Consiglio ($proponent, $rival) leggono la mano che l'ha giocata.
+		var bindings: Dictionary = card_bindings(hook, entity_id)
 		if str(hook["kind"]) == "CONSEQUENCE":
-			for effect in session.compiler.compile(
-				str(hook["consequence_id"]), bindings, source
-			):
+			for effect in session.compiler.compile(str(hook["consequence_id"]), bindings, source):
 				var stored: Dictionary = session.applier.apply(effect)
 				if not stored.is_empty():
 					applied.append(stored)
@@ -467,30 +513,25 @@ func end_of_act(act: int, decider: Object) -> void:
 			var stored: Dictionary = session.applier.apply(effect)
 			if not stored.is_empty():
 				applied.append(stored)
-	# ISSUES 22 (Fase 1): the card's Effects were landing in silence — the
-	# Scoperta at seed 15308 unveiled a Tension and no line said so. Now what
-	# the card did to the world is spoken right under what the card says.
 	for effect in applied:
 		var said: String = EffectNarrator.narrate(effect, data)
 		if said != "":
 			log.bullet(said)
 	session.tensions.fire_omens(source)
+	world["echoes_played_in_act"] = int(world.get("echoes_played_in_act", 0)) + 1
 	act_echo_drawn.emit(card, applied)
-
-	# §12.1 b: a card may prescribe a Confluence. It opens now, at Act end - it
-	# is the card's demand, not a round threshold, so the one-per-round cap in
-	# §7 does not apply to it (DECISIONS D-007).
 	var forced: Variant = card.get("forces_confluence_on", null)
 	if forced != null and world["tensions"].has(str(forced)):
-		log.bullet("La carta prescrive una Confluence su %s." % str(forced))
-		await run_confluence(str(forced), {"kind": "ECHO_CARD", "entity_id": ""}, decider)
+		world["forced_confluence"] = {"tension_id": str(forced), "entity_id": entity_id}
+		log.bullet("La carta prescrive un Consiglio su %s." % str(forced))
+	return applied
 
 
 ## An Echo card has no Confluence behind it, so `$region_focus` has nothing to
 ## resolve against unless the card says which question it is about. `bindings`
 ## may name a `focus_tension`; without one the Chronicle's first Tension is used,
 ## which keeps every card written before this still working.
-func card_bindings(hook: Dictionary) -> Dictionary:
+func card_bindings(hook: Dictionary, proponent: String = "") -> Dictionary:
 	var bindings: Dictionary = (hook.get("bindings", {}) as Dictionary).duplicate(true)
 	var tension_id: String = str(bindings.get("focus_tension", ""))
 	if tension_id == "" or not world["tensions"].has(tension_id):
@@ -500,8 +541,11 @@ func card_bindings(hook: Dictionary) -> Dictionary:
 	# A card has no proponent, but the Consequences it fires were written for a
 	# Confluence and expect one. Whoever would carry that question if it opened
 	# now is the honest answer - and it is the same rule the Confluence uses, so
-	# a card and a council name the same person in the same world.
-	if not bindings.has("proponent"):
+	# a card and a council name the same person in the same world. Una carta
+	# calata da una mano (ISSUES 23) il proponente ce l'ha: chi l'ha giocata.
+	if proponent != "":
+		bindings["proponent"] = proponent
+	elif not bindings.has("proponent"):
 		bindings["proponent"] = session.service.determine_proponent(tension_id)
 	bindings["rival"] = session.confluence.narrative.rival_id(
 		str(bindings["region_focus"]), str(bindings["proponent"])
@@ -512,39 +556,6 @@ func card_bindings(hook: Dictionary) -> Dictionary:
 		str(bindings["rival"]), str(bindings["region_focus"])
 	)
 	return bindings
-
-
-## §15: the Act's pool is a *weighted bag*, not a set. Repeating a family makes
-## it likelier; the seeded RNG picks the order the families are tried in, and the
-## first one with an eligible card wins. An Act 3 weighted towards RESOLUTION
-## usually resolves and can still end mid-crisis, which is the three-act shape
-## with room to breathe - a pool read as a strict preference produced the same
-## arc in all forty measured Chronicles (D-030).
-##
-## Within a family the shuffled deck order decides, so the draw stays seeded.
-func _draw_act_echo(act: int) -> Dictionary:
-	var bag: Array = []
-	for pool in _chronicle["act_echo_pools"]:
-		if int(pool["act"]) == act:
-			bag = (pool["families"] as Array).duplicate()
-	var families: Array = []
-	for family in session.rng.shuffle(bag):
-		if not families.has(str(family)):
-			families.append(str(family))
-
-	var deck: Dictionary = world["echo_deck"]
-	for family in families:
-		for i in range((deck["draw"] as Array).size()):
-			var card_id: String = str(deck["draw"][i])
-			var card: Variant = data.echo_cards.get(card_id)
-			if card == null or str(card["dramatic_family"]) != str(family):
-				continue
-			if not _conditions.all_hold(card["eligibility"], {}):
-				continue
-			(deck["draw"] as Array).remove_at(i)
-			(deck["drawn"] as Array).append(card_id)
-			return card
-	return {}
 
 
 func chronicle_end() -> Dictionary:

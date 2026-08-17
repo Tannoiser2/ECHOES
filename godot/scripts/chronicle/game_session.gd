@@ -106,6 +106,9 @@ func _wire_systems() -> void:
 	confluence = ConfluenceController.new(world, data, applier, rng, log, tensions)
 	destinies = DestinyEvaluator.new(world, data)
 	chronicle = ChronicleController.new(self)
+	# ISSUES 23 (D-118): l'azione PLAY_ECHO paga e giudica nel resolver, ma la
+	# carta parla nel ChronicleController - funzione, effetti, presagi.
+	actions.play_card = chronicle.play_narrator_card
 
 
 func factory_setup_effects() -> Array:
