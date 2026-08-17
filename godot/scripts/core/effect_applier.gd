@@ -58,7 +58,59 @@ func apply(effect: Dictionary) -> Dictionary:
 	world["effect_sequence"] = sequence
 	world["effect_log"].append(stored)
 	effect_applied.emit(stored)
+	# ISSUES 25: un segno appena posato può consegnare una carta (GRANT_ON_SET).
+	# La consegna è un Effect a sé, applicato qui sotto: entra nel log con il
+	# suo inverso, quindi undo e salvataggi la vedono come tutto il resto. Un
+	# GRANT_ASSET non posa segni, perciò la ricorsione muore al primo passo.
+	if TAG_SETTERS.has(effect_type) and not bool((inverse as Dictionary).get("noop", false)):
+		_grant_on_set(effect_type, stored)
 	return stored
+
+
+const TAG_SETTERS: Dictionary = {
+	"SET_GLOBAL_TAG": "GLOBAL", "SET_REGION_TAG": "REGION", "SET_ENTITY_TAG": "ENTITY",
+}
+
+
+## Il segno che consegna (ISSUES 25): per ogni regola GRANT_ON_SET accesa sul
+## segno appena posato, la carta dichiarata passa a chi spetta - se è ancora
+## nel mazzo o negli scarti. Una carta già in una mano non si strappa.
+func _grant_on_set(effect_type: String, stored: Dictionary) -> void:
+	var tag: String = str((stored["payload"] as Dictionary).get("tag", ""))
+	for rule in TagRules.active(
+		data, "GRANT_ON_SET", str(world.get("chronicle_id", ""))
+	):
+		var when: Dictionary = rule["when"]
+		if str(when.get("scope", "")) != str(TAG_SETTERS[effect_type]):
+			continue
+		if str(when.get("tag", "")) != tag:
+			continue
+		var grant: Dictionary = rule.get("grant", {})
+		var receiver: String = ""
+		if str(grant.get("give_to", "ACTOR")) == "TARGET":
+			receiver = str((stored["target"] as Dictionary).get("id", ""))
+		else:
+			receiver = str((stored["source"] as Dictionary).get("actor", ""))
+		var entity: Variant = world["entities"].get(receiver)
+		if entity == null:
+			continue
+		var asset_id: String = str(grant.get("asset_id", ""))
+		if (entity["hand"] as Array).has(asset_id):
+			continue
+		var deck: Variant = world.get("decks", {}).get(Ids.asset_family(asset_id))
+		if deck == null:
+			continue
+		var payload: Dictionary = {"asset_id": asset_id}
+		var at: int = (deck["draw"] as Array).find(asset_id)
+		if at >= 0:
+			payload["source"] = "DECK"
+			if at > 0:
+				payload["deck_index"] = at
+		elif (deck["discard"] as Array).has(asset_id):
+			payload["source"] = "DISCARD"
+		else:
+			continue
+		apply(Effect.make("GRANT_ASSET", "entity", receiver, payload, stored["source"]))
 
 
 ## Apply a batch, stopping at the first failure. Returns the Effects applied.
@@ -268,8 +320,13 @@ func _set_relation(target: Dictionary, payload: Dictionary) -> Variant:
 		# ISSUES 24: un segno può mettere un tetto alla relazione - un
 		# giuramento spezzato non si supera alzando le spalle. Il tetto
 		# clampa le salite; scendere resta sempre possibile.
+		# ISSUES 25: e un segno può mettere un pavimento - il sangue non si
+		# sceglie: sotto il pavimento non si scende, nemmeno litigando.
+		# Se tetto e pavimento si contraddicono, vince il tetto: la ferita
+		# scritta pesa più del vincolo di nascita.
 		relation["level"] = TagRules.clamp_level(
-			level, TagRules.relation_cap(data, world, key)
+			TagRules.raise_to_floor(level, TagRules.relation_floor(data, world, key)),
+			TagRules.relation_cap(data, world, key)
 		)
 	if payload.has("tags"):
 		relation["tags"] = (payload["tags"] as Array).duplicate()
@@ -313,14 +370,18 @@ func _grant_asset(target: Dictionary, payload: Dictionary) -> Variant:
 				if payload.has("reshuffle"):
 					deck["draw"] = (payload["reshuffle"] as Array).duplicate()
 					deck["discard"] = []
-				if (deck["draw"] as Array).is_empty():
-					return _fail("family deck '%s' is empty" % family)
-				if str(deck["draw"][0]) != asset_id:
+				# deck_index arriva dalla pesca piegata (ISSUES 25) o da una
+				# consegna GRANT_ON_SET: la carta non è in cima, ma è sempre
+				# quella dichiarata - l'applier verifica, non sceglie.
+				var deck_index: int = int(payload.get("deck_index", 0))
+				if deck_index < 0 or deck_index >= (deck["draw"] as Array).size():
+					return _fail("family deck '%s' has no card at %d" % [family, deck_index])
+				if str(deck["draw"][deck_index]) != asset_id:
 					return _fail(
-						"deck '%s' top is '%s', expected '%s'"
-						% [family, deck["draw"][0], asset_id]
+						"deck '%s' at %d is '%s', expected '%s'"
+						% [family, deck_index, deck["draw"][deck_index], asset_id]
 					)
-				(deck["draw"] as Array).pop_front()
+				(deck["draw"] as Array).remove_at(deck_index)
 				touched_deck = true
 			"DISCARD":
 				if deck == null:

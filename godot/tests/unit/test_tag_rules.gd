@@ -166,6 +166,218 @@ func test_relation_cap_holds_the_ceiling() -> void:
 	)
 
 
+# --- ISSUES 25 (D-116): i denti che aggiungono e tolgono --------------------
+
+
+## Con zero regole dei tipi nuovi, ogni gancio nuovo resta neutro: il telaio
+## si misura vuoto prima che i denti veri si accendano (stesso rito di D-104).
+func test_new_hooks_are_neutral_without_rules() -> void:
+	assert_eq(
+		TagRules.action_gate(session.data, session.world, "ENT_ALDRIC", "FORGE"),
+		"", "nessun divieto"
+	)
+	var bias: Dictionary = TagRules.draw_bias(session.data, session.world, "ENT_ALDRIC", "FORCE")
+	assert_eq(str(bias["bias"]), "", "nessuna pesca piegata")
+	var squeeze: Dictionary = TagRules.hand_limit_delta(session.data, session.world, "ENT_ALDRIC")
+	assert_eq(int(squeeze["delta"]), 0, "il limite di mano non si muove")
+	assert_eq(
+		TagRules.relation_floor(session.data, session.world, "ENT_ALDRIC|ENT_NAHR"),
+		"", "nessun pavimento"
+	)
+
+
+func test_action_gate_forbids_while_the_sign_stands() -> void:
+	_rule("TGR_INTERDETTO", {"kind": "ACTION_GATE", "template": "ACQUIRE"})
+	var params: Dictionary = {"family": "FORCE"}
+	assert_eq(
+		session.actions.check("ENT_ALDRIC", "ACQUIRE", params), "",
+		"senza segno la pesca e' legale"
+	)
+	_set_global("test_sign")
+	var refusal: String = session.actions.check("ENT_ALDRIC", "ACQUIRE", params)
+	assert_true(
+		refusal.contains("il segno lo vieta"),
+		"col segno la pesca e' vietata, e il rifiuto si firma: %s" % refusal
+	)
+	# E il divieto pesa una volta sola, dentro check(): execute() lo rispetta.
+	var result: Dictionary = session.actions.execute(
+		"ENT_ALDRIC", {"template": "ACQUIRE", "params": params}
+	)
+	assert_false(bool(result.get("ok", true)), "execute rifiuta con lo stesso motivo")
+
+
+## La pesca piegata guarda le prime due carte e prende quella che il segno
+## impone; l'altra resta dov'era, e l'indice viaggia nell'Effect.
+func test_draw_bias_malus_takes_the_worse_of_two() -> void:
+	var family: String = _family_without_source("ENT_VAERAX")
+	var pair: Dictionary = _weak_and_strong(family)
+	_rule("TGR_MERCATO_GUASTO", {
+		"kind": "DRAW_BIAS", "family": family, "bias": "MALUS",
+		"title": "Il mercato guasto",
+	})
+	_set_global("test_sign")
+	var deck: Dictionary = session.world["decks"][family]
+	var rest: Array = []
+	for id in deck["draw"]:
+		if str(id) != pair["strong"] and str(id) != pair["weak"]:
+			rest.append(str(id))
+	deck["draw"] = [pair["strong"], pair["weak"]] + rest
+	var result: Dictionary = session.actions.execute(
+		"ENT_VAERAX", {"template": "ACQUIRE", "params": {"family": family}}
+	)
+	assert_true(bool(result.get("ok", false)), "la pesca riesce: %s" % str(result.get("error", "")))
+	assert_true(
+		(session.world["entities"]["ENT_VAERAX"]["hand"] as Array).has(pair["weak"]),
+		"in mano arriva la carta debole"
+	)
+	assert_eq(
+		str((session.world["decks"][family]["draw"] as Array)[0]), pair["strong"],
+		"la carta forte resta in cima al mazzo"
+	)
+
+
+func test_hand_limit_delta_squeezes_the_hand() -> void:
+	_rule("TGR_ASSEDIO_STRINGE", {
+		"kind": "HAND_LIMIT", "hand_limit_delta": -3, "title": "L'assedio stringe",
+	})
+	_set_global("test_sign")
+	var source: Dictionary = Effect.source("test", "TEST", "", 1, 1, 0)
+	var family: String = _family_without_source("ENT_VAERAX")
+	# Quattro carte in mano dal nulla: al limite nuovo (7-3=4) la quinta
+	# pescata deve costare uno scarto immediato.
+	var stock: Array = _assets_of(family)
+	for i in range(4):
+		session.applier.apply(Effect.make(
+			"GRANT_ASSET", "entity", "ENT_VAERAX",
+			{"source": "VOID", "asset_id": str(stock[i])}, source
+		))
+	var result: Dictionary = session.actions.execute(
+		"ENT_VAERAX", {"template": "ACQUIRE", "params": {"family": family}}
+	)
+	assert_true(bool(result.get("ok", false)), "la pesca riesce: %s" % str(result.get("error", "")))
+	assert_eq(
+		session.service.hand_size("ENT_VAERAX"), 4,
+		"la mano torna al limite stretto dal segno"
+	)
+	var told: bool = false
+	for line in session.log.lines:
+		if str(line).contains("L'assedio stringe"):
+			told = true
+	assert_true(told, "la stretta si firma a verbale")
+
+
+func test_grant_on_set_hands_the_named_card() -> void:
+	var family: String = _family_without_source("ENT_NAHR")
+	# In fondo alla pila, non in cima: la consegna deve trovarla ovunque sia.
+	var deck: Dictionary = session.world["decks"][family]
+	var granted: String = str((deck["draw"] as Array).back())
+	_rule("TGR_CANALE", {
+		"kind": "GRANT_ON_SET",
+		"when": {"scope": "GLOBAL", "tag": "canal_built"},
+		"grant": {"asset_id": granted, "give_to": "ACTOR"},
+	})
+	var copies: int = (deck["draw"] as Array).count(granted)
+	var source: Dictionary = Effect.source("action", "ACT_TEST", "ENT_NAHR", 1, 1, 0)
+	session.applier.apply(Effect.make(
+		"SET_GLOBAL_TAG", "world", "WORLD", {"tag": "canal_built"}, source
+	))
+	var hand: Array = session.world["entities"]["ENT_NAHR"]["hand"]
+	assert_true(hand.has(granted), "chi costruisce il canale riceve la carta")
+	# Un mazzo può portare due copie della stessa carta: la consegna ne
+	# toglie una sola.
+	assert_eq(
+		(session.world["decks"][family]["draw"] as Array).count(granted), copies - 1,
+		"una copia e' uscita dal mazzo"
+	)
+	# Posare lo stesso segno di nuovo e' un no-op: nessuna seconda consegna.
+	session.applier.apply(Effect.make(
+		"SET_GLOBAL_TAG", "world", "WORLD", {"tag": "canal_built"}, source
+	))
+	assert_eq(hand.count(granted), 1, "una carta sola, anche se il segno torna")
+
+
+func test_grant_on_set_to_target_reads_the_marked_entity() -> void:
+	var family: String = _family_without_source("ENT_LYRA")
+	var granted: String = str((session.world["decks"][family]["draw"] as Array)[0])
+	_rule("TGR_INVESTITURA_DONA", {
+		"kind": "GRANT_ON_SET",
+		"when": {"scope": "ENTITY", "tag": "canal_rights"},
+		"grant": {"asset_id": granted, "give_to": "TARGET"},
+	})
+	var source: Dictionary = Effect.source("action", "ACT_TEST", "ENT_ALDRIC", 1, 1, 0)
+	session.applier.apply(Effect.make(
+		"SET_ENTITY_TAG", "entity", "ENT_LYRA", {"tag": "canal_rights"}, source
+	))
+	assert_true(
+		(session.world["entities"]["ENT_LYRA"]["hand"] as Array).has(granted),
+		"la carta va a chi porta il segno, non a chi lo posa"
+	)
+
+
+func test_relation_floor_holds_and_the_cap_wins() -> void:
+	_rule("TGR_SANGUE", {
+		"kind": "RELATION_FLOOR", "min_level": "NEUTRAL",
+		"when": {"scope": "GLOBAL", "tag": "blood_bond"},
+	})
+	_set_global("blood_bond")
+	var source: Dictionary = Effect.source("test", "TEST", "", 1, 1, 0)
+	session.applier.apply(Effect.make(
+		"SET_RELATION", "relation", "ENT_ALDRIC|ENT_NAHR", {"level": "ENEMY"}, source
+	))
+	assert_eq(
+		str(session.world["relations"]["ENT_ALDRIC|ENT_NAHR"]["level"]), "NEUTRAL",
+		"il sangue non si sceglie: sotto il pavimento non si scende"
+	)
+	# Tetto e pavimento insieme: la ferita scritta pesa piu' del vincolo.
+	_rule("TGR_GIURAMENTO_ROTTO", {
+		"kind": "RELATION_CAP", "max_level": "HOSTILE",
+		"when": {"scope": "GLOBAL", "tag": "oath_broken"},
+	})
+	_set_global("oath_broken")
+	session.applier.apply(Effect.make(
+		"SET_RELATION", "relation", "ENT_ALDRIC|ENT_NAHR", {"level": "ALLY"}, source
+	))
+	assert_eq(
+		str(session.world["relations"]["ENT_ALDRIC|ENT_NAHR"]["level"]), "HOSTILE",
+		"quando tetto e pavimento si contraddicono, vince il tetto"
+	)
+
+
+## La famiglia per cui il seggio NON ha una Regione-fonte: cosi' la pesca e'
+## singola e il test legge esattamente una carta.
+func _family_without_source(entity_id: String) -> String:
+	for family in ["FORCE", "AUTHORITY", "WEALTH", "KNOWLEDGE", "PEOPLE", "BONDS"]:
+		var has_source: bool = false
+		for region_id in session.service.regions_with_presence(entity_id):
+			if (session.data.regions[str(region_id)]["asset_sources"] as Array).has(family):
+				has_source = true
+		if not has_source:
+			return str(family)
+	return "FORCE"
+
+
+func _assets_of(family: String) -> Array:
+	var out: Array = []
+	var ids: Array = session.data.assets.keys()
+	ids.sort()
+	for id in ids:
+		if str(session.data.assets[id]["family"]) == family:
+			out.append(str(id))
+	return out
+
+
+func _weak_and_strong(family: String) -> Dictionary:
+	var weak: String = ""
+	var strong: String = ""
+	for id in _assets_of(family):
+		var strength: int = int(session.data.assets[id]["strength"])
+		if weak == "" or strength < int(session.data.assets[weak]["strength"]):
+			weak = id
+		if strong == "" or strength > int(session.data.assets[strong]["strength"]):
+			strong = id
+	return {"weak": weak, "strong": strong}
+
+
 func test_chronicle_filter_keeps_rules_at_home() -> void:
 	_rule("TGR_ALTROVE", {
 		"template": "INFLUENCE", "delta": 2, "chronicle_id": "CHR_03",

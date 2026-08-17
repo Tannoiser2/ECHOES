@@ -1026,6 +1026,11 @@ const DEFS := {
 					"COUNCIL_MODIFIER",
 					"GATE",
 					"RELATION_CAP",
+					"ACTION_GATE",
+					"DRAW_BIAS",
+					"HAND_LIMIT",
+					"GRANT_ON_SET",
+					"RELATION_FLOOR",
 				],
 			},
 			"template": {
@@ -1068,6 +1073,41 @@ const DEFS := {
 					"NEUTRAL",
 					"ALLY",
 				],
+			},
+			"min_level": {
+				"type": "String",
+				"enum": [
+					"HOSTILE",
+					"NEUTRAL",
+					"ALLY",
+					"BOUND",
+				],
+			},
+			"family": {
+				"type": "String",
+				"enum": [
+					"FORCE",
+					"AUTHORITY",
+					"WEALTH",
+					"KNOWLEDGE",
+					"PEOPLE",
+					"BONDS",
+				],
+			},
+			"bias": {
+				"type": "String",
+				"enum": [
+					"MALUS",
+					"BONUS",
+				],
+			},
+			"hand_limit_delta": {
+				"type": "int",
+				"min": -3,
+				"max": 3,
+			},
+			"grant": {
+				"type": "Dictionary",
 			},
 			"chronicle_id": {
 				"type": "String",

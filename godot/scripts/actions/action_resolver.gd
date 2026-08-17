@@ -56,6 +56,12 @@ func check(entity_id: String, template: String, params: Dictionary) -> String:
 		return "template sconosciuto '%s'" % template
 	if not world["entities"].has(entity_id):
 		return "entita sconosciuta '%s'" % entity_id
+	# ISSUES 25: un segno può vietare un'azione. Il divieto vive qui perché qui
+	# vive ogni precondizione: la sedia automatica non la propone, il browser
+	# la spegne, execute() la rifiuta - scritta una volta sola.
+	var gate: String = TagRules.action_gate(data, world, entity_id, template)
+	if gate != "":
+		return "il segno lo vieta: %s" % gate
 	match template:
 		"ACQUIRE":
 			return _check_acquire(entity_id, params)
@@ -332,16 +338,27 @@ func _has_source_for(entity_id: String, family: String) -> bool:
 func _draw_one(family: String, entity_id: String, source: Dictionary, effects: Array) -> String:
 	var deck: Dictionary = world["decks"][family]
 	var payload: Dictionary = {"source": "DECK"}
-	var top: String = ""
-	if (deck["draw"] as Array).is_empty():
+	var pile: Array = deck["draw"]
+	if pile.is_empty():
 		if (deck["discard"] as Array).is_empty():
 			return ""
 		var reshuffled: Array = rng.shuffle(deck["discard"])
 		payload["reshuffle"] = reshuffled
-		top = str(reshuffled[0])
+		pile = reshuffled
 		log.bullet("Il mazzo %s viene rimescolato dagli scarti." % family)
-	else:
-		top = str(deck["draw"][0])
+	var top: String = str(pile[0])
+	# ISSUES 25: la pesca piegata. Col segno addosso si guardano le prime due
+	# carte e si prende la peggiore (MALUS) o la migliore (BONUS); l'altra
+	# resta dov'era. Deterministico: l'indice viaggia nell'Effect.
+	if pile.size() >= 2:
+		var bias: Dictionary = TagRules.draw_bias(data, world, entity_id, family)
+		if str(bias["bias"]) != "":
+			var gap: int = _strength(str(pile[1])) - _strength(str(pile[0]))
+			var wants_second: bool = gap > 0 if str(bias["bias"]) == "BONUS" else gap < 0
+			if wants_second:
+				payload["deck_index"] = 1
+				top = str(pile[1])
+			log.bullet("Il segno pesa: %s." % str(bias["title"]))
 	payload["asset_id"] = top
 	var applied: Dictionary = applier.apply(
 		Effect.make("GRANT_ASSET", "entity", entity_id, payload, source)
@@ -352,9 +369,16 @@ func _draw_one(family: String, entity_id: String, source: Dictionary, effects: A
 	return top
 
 
-## §9: hand limit 7; the eighth Asset forces a discard.
+## §9: hand limit 7; the eighth Asset forces a discard. ISSUES 25: un segno
+## può muovere il limite (l'assedio stringe le mani di chi è dentro), mai
+## sotto una carta.
 func _enforce_hand_limit(entity_id: String, params: Dictionary, source: Dictionary) -> Array:
-	var limit: int = int(_chronicle["hand_limit"])
+	var squeeze: Dictionary = TagRules.hand_limit_delta(data, world, entity_id)
+	var limit: int = maxi(1, int(_chronicle["hand_limit"]) + int(squeeze["delta"]))
+	if int(squeeze["delta"]) != 0 and service.hand_size(entity_id) > limit:
+		log.bullet(
+			"Il segno pesa: %s." % ", ".join(PackedStringArray(squeeze["titles"]))
+		)
 	var effects: Array = []
 	while service.hand_size(entity_id) > limit:
 		var choice: String = str(params.get("discard_asset_id", ""))

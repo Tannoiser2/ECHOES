@@ -331,6 +331,44 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-116 — I denti che aggiungono e tolgono: i cinque ganci nuovi
+**implemented in 0.1.78** (ISSUES 25, Fase 1)
+
+I quattro ganci di D-104 piegano numeri e porte; questi aggiungono e
+tolgono davvero. Cinque tipi nuovi di `tag_rule` — il quinto è il
+pavimento che il Legame di Sangue aspetta da D-113 — costruiti col rito
+di D-104: **il telaio prima dei denti**, ogni gancio provato con regole
+sintetiche nei test e neutro finché nessuna regola vera è accesa.
+
+- **ACTION_GATE** — finché il segno c'è, l'azione è vietata. Vive dentro
+  `check()`, quindi vale una volta sola e ovunque: la sedia automatica
+  non la propone, il browser la spegne, `execute()` la rifiuta («il
+  segno lo vieta: …»).
+- **DRAW_BIAS** — la pesca piegata: col segno addosso si guardano le
+  prime due carte del mazzo indicato e si prende la peggiore (MALUS) o
+  la migliore (BONUS); l'altra resta dov'era. Deterministico: l'indice
+  viaggia nell'Effect (`deck_index`), l'applier verifica e non sceglie.
+- **HAND_LIMIT** — il limite di mano si muove (`hand_limit_delta`), mai
+  sotto una carta: l'assedio stringe le mani di chi è dentro.
+- **GRANT_ON_SET** — il segno appena posato consegna una carta: quando
+  un tag entra nello scope dichiarato, `grant.asset_id` passa all'ACTOR
+  (chi ha causato l'effetto) o al TARGET (chi porta il segno), se la
+  carta è nel mazzo o negli scarti — **una carta già in mano non si
+  strappa**. La consegna è un Effect a sé nel log, con inverso: undo e
+  salvataggi la vedono come tutto il resto.
+- **RELATION_FLOOR** — il pavimento: sotto `min_level` non si scende.
+  Se tetto (D-104) e pavimento si contraddicono, **vince il tetto**: la
+  ferita scritta pesa più del vincolo di nascita.
+
+### Misurato
+
+Zero regole nuove accese nei dati: playtest 100/7000 **identico byte per
+byte** alla base 0.1.77 (208·79·132·174, 0/8), suite 255 test / 5372
+asserzioni. I denti veri sono la Fase 2: scritti col committente, accesi
+uno alla volta e misurati — come le cinque regole di D-105.
+
+---
+
 ## D-115 — Il Destino condivisibile: «$self» e i pool a tre
 **implemented in 0.1.77** (ISSUES 20, chiusa)
 
