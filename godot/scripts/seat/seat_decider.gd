@@ -384,7 +384,7 @@ func _destiny_line(entity_id: String, session: RefCounted) -> String:
 		return ""
 	var rungs: Array = []
 	for level in ["minimum", "victory", "triumph"]:
-		var holds: bool = session.destinies.conditions.all_hold(destiny[level]["conditions"], {})
+		var holds: bool = session.destinies.conditions.all_hold(destiny[level]["conditions"], {"self": entity_id})
 		rungs.append("%s %s" % ["[x]" if holds else "[ ]", str(destiny[level]["label"])])
 	return "Il tuo Destino: %s" % "  ".join(PackedStringArray(rungs))
 

@@ -30,8 +30,8 @@ func test_reduced_content_matches_the_milestone() -> void:
 
 	# Grown past §18.2's reduced set on purpose, and measured: D-024 records why
 	# 2 Tensions and 8 Consequences could not move the world enough to matter.
-	_saga_has("prima", loaded, ["CHR_01", "CHR_02"], 6, 5, 4, 8)
-	_saga_has("seconda", loaded, ["CHR_03", "CHR_04"], 6, 6, 4, 8)
+	_saga_has("prima", loaded, ["CHR_01", "CHR_02"], 6, 5, 4, 11)
+	_saga_has("seconda", loaded, ["CHR_03", "CHR_04"], 6, 6, 4, 11)
 
 
 ## What one saga is made of: its questions, the Councils that can be held about
@@ -70,9 +70,10 @@ func _saga_has(
 	assert_eq(questions.size(), tensions, "saga %s: %d domande in biblioteca" % [name, tensions])
 	assert_eq(councils.size(), templates, "saga %s: %d Consigli" % [name, templates])
 	assert_eq(table.size(), seats, "saga %s: %d seggi al tavolo" % [name, seats])
-	# Due per seggio: quello con cui comincia, e quello che vuole dopo averlo
-	# ottenuto. Chi fallisce riprova con lo stesso (D-045).
-	assert_eq(wanted.size(), destinies, "saga %s: %d Destiny, due per seggio" % [name, destinies])
+	# Tre per seggio: quello con cui comincia, quello che vuole dopo averlo
+	# ottenuto (D-045), e una carta condivisibile che legge chi la giura
+	# (voce 20, D-115) - le condivise contano una volta sola per saga.
+	assert_eq(wanted.size(), destinies, "saga %s: %d Destiny nei pool" % [name, destinies])
 
 
 ## §19.4: eight cards per family, and the same curve in each - four at 1, two at

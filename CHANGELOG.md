@@ -5,6 +5,35 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.77] — Il Destino che legge chi lo giura
+
+La voce 20 si chiude ([D-115](docs/DECISIONS.md#d-115)): ogni casa ha ora
+**tre ambizioni nel pool** invece di due, e la terza è una carta
+**condivisibile** — scritta una volta con `$self`, letta sul seggio che
+la giura.
+
+### Added
+
+- **Tre Destini condivisi**: *Il Nome che Pesa* (la fama e la terra — a
+  chi vive di parola: Aldric, Vetro, Libere), *La Terra che Risponde*
+  (una, due, tre Regioni — a chi vive di posti: Nahr, Vaerax, Cenere),
+  *I Conti Chiusi* (registro pulito, firma che vale, nessun debito nel
+  mondo — a chi vive di registri: Lyra, Ilve).
+- Il motore risolve `$self` su chi giura (stesso meccanismo di
+  `$proponent`); la carta stampata dice «per chi lo giura»; la sonda dei
+  Destini misura anche le scale condivise, per ogni seggio che le porta.
+
+### Misurato
+
+La prima forma dei Conti Chiusi era **regalata** — tutta di assenze,
+chiusa da sola al round 1 in 100 partite su 100 — ed è stata riscritta
+con la fama nella Vittoria: ora si chiude in anticipo 18/100 (Lyra) e
+47/100 (Ilve), in famiglia con le carte identitarie. Playtest identico
+alla base, **0/8 al tavolo misto**; ere in banda (mediana 955 anni,
+19.8 generazioni, 22 nomi); 248 test verdi.
+
+---
+
 ## [0.1.76] — Tutte le carte lavorano
 
 Ultimi tre mazzetti e la voce 26 si chiude ([D-114](docs/DECISIONS.md#d-114)):

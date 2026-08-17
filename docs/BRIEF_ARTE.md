@@ -2168,6 +2168,60 @@ is a calm, low-detail area reserved for a text overlay. Vertical card framing,
 not horror. Museum-quality illustration, boardgame card art.
 ```
 
+### `destiny.shared.accounts` — I Conti Chiusi
+
+- **soggetto**: I Conti Chiusi — Vincere non è prendere: è una firma che vale, e finire la cronaca senza debiti a verbale. Nessuna proposta caduta, nessuna domanda lasciata aperta, nessun giuramento spezzato nel mondo che lasci
+- **id**: `DST_SHARED_ACCOUNTS`
+
+```
+Historical dark-fantasy emblematic scene of I Conti Chiusi — Vincere non è prendere: è una firma che vale, e finire la cronaca senza debiti a verbale. Nessuna proposta caduta, nessuna domanda lasciata aperta, nessun giuramento spezzato nel mondo che lasci. Painterly oil technique,
+visible brushwork, muted earth palette with a single l'accento della sua famiglia accent. No faces:
+a Destiny card shows the thing wanted, not the one who wants it — an object, a
+place, a threshold, composed like a votive image. I Conti Chiusi — Vincere non è prendere: è una firma che vale, e finire la cronaca senza debiti a verbale. Nessuna proposta caduta, nessuna domanda lasciata aperta, nessun giuramento spezzato nel mondo che lasci. Seen close and
+slightly from below, the way an ambition is seen; one strong light source, deep
+quiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: subject in the upper two thirds; the lower third
+is a calm, low-detail area reserved for a text overlay. Vertical card framing,
+2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,
+not horror. Museum-quality illustration, boardgame card art.
+```
+
+### `destiny.shared.land` — La Terra che Risponde
+
+- **soggetto**: La Terra che Risponde — Chiunque tu sia, la domanda è la stessa: quanta terra risponde quando chiami? Un'ambizione semplice e spietata - contare le Regioni, e contarle tue
+- **id**: `DST_SHARED_LAND`
+
+```
+Historical dark-fantasy emblematic scene of La Terra che Risponde — Chiunque tu sia, la domanda è la stessa: quanta terra risponde quando chiami? Un'ambizione semplice e spietata - contare le Regioni, e contarle tue. Painterly oil technique,
+visible brushwork, muted earth palette with a single l'accento della sua famiglia accent. No faces:
+a Destiny card shows the thing wanted, not the one who wants it — an object, a
+place, a threshold, composed like a votive image. La Terra che Risponde — Chiunque tu sia, la domanda è la stessa: quanta terra risponde quando chiami? Un'ambizione semplice e spietata - contare le Regioni, e contarle tue. Seen close and
+slightly from below, the way an ambition is seen; one strong light source, deep
+quiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: subject in the upper two thirds; the lower third
+is a calm, low-detail area reserved for a text overlay. Vertical card framing,
+2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,
+not horror. Museum-quality illustration, boardgame card art.
+```
+
+### `destiny.shared.renown` — Il Nome che Pesa
+
+- **soggetto**: Il Nome che Pesa — Non importa da dove vieni: importa che quando parli, il tavolo ascolta. La stessa ambizione per chiunque la giuri - la fama, e un posto da cui difenderla
+- **id**: `DST_SHARED_RENOWN`
+
+```
+Historical dark-fantasy emblematic scene of Il Nome che Pesa — Non importa da dove vieni: importa che quando parli, il tavolo ascolta. La stessa ambizione per chiunque la giuri - la fama, e un posto da cui difenderla. Painterly oil technique,
+visible brushwork, muted earth palette with a single l'accento della sua famiglia accent. No faces:
+a Destiny card shows the thing wanted, not the one who wants it — an object, a
+place, a threshold, composed like a votive image. Il Nome che Pesa — Non importa da dove vieni: importa che quando parli, il tavolo ascolta. La stessa ambizione per chiunque la giuri - la fama, e un posto da cui difenderla. Seen close and
+slightly from below, the way an ambition is seen; one strong light source, deep
+quiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: subject in the upper two thirds; the lower third
+is a calm, low-detail area reserved for a text overlay. Vertical card framing,
+2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,
+not horror. Museum-quality illustration, boardgame card art.
+```
+
 ### `destiny.vaerax` — Cio che Dorme Resti Addormentato
 
 - **soggetto**: Cio che Dorme Resti Addormentato — Impedire lo sfruttamento incontrollato del Cristallo e preservare le Montagne Rosse

@@ -69,7 +69,8 @@
       ],
       "destiny_pool": [
         "DST_ALDRIC",
-        "DST_ALDRIC_RECORD"
+        "DST_ALDRIC_RECORD",
+        "DST_SHARED_RENOWN"
       ],
       "name_grammar": {
         "pattern": "{given}{ordinal}",
@@ -259,7 +260,8 @@
       "persistence": "COLLECTIVE",
       "destiny_pool": [
         "DST_NAHR",
-        "DST_NAHR_ROOTED"
+        "DST_NAHR_ROOTED",
+        "DST_SHARED_LAND"
       ],
       "incarnations": [
         {
@@ -382,7 +384,8 @@
       ],
       "destiny_pool": [
         "DST_LYRA",
-        "DST_LYRA_TAUGHT"
+        "DST_LYRA_TAUGHT",
+        "DST_SHARED_ACCOUNTS"
       ],
       "name_grammar": {
         "pattern": "{given} {epithet}",
@@ -558,7 +561,8 @@
       "persistence": "ETERNAL",
       "destiny_pool": [
         "DST_VAERAX",
-        "DST_VAERAX_WATCHED"
+        "DST_VAERAX_WATCHED",
+        "DST_SHARED_LAND"
       ],
       "incarnations": [
         {

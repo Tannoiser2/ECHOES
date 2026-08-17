@@ -180,7 +180,10 @@ def check_references(
 
     for destiny in documents.get("destiny", []):
         where = f"{origins['destiny']} [{destiny['id']}]"
-        require(known_entities, destiny["entity_id"], "entity", where)
+        # "$self" è il Destino condivisibile (voce 20, D-115): non appartiene a
+        # una casa, si risolve su chi lo giura - niente da cercare nell'elenco.
+        if destiny["entity_id"] != "$self":
+            require(known_entities, destiny["entity_id"], "entity", where)
         for level_name in ("minimum", "victory", "triumph"):
             for condition in destiny[level_name]["conditions"]:
                 _check_condition(condition, known_entities, known_regions, known_tensions, report, f"{where}.{level_name}")

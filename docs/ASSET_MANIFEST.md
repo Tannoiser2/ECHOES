@@ -133,7 +133,7 @@ family, 22 copies per family deck, 132 cards in the box (D-040).
 | ENT_VAERAX | Vaerax | CREATURE | PROTECTION | DST_VAERAX | `entity.vaerax` |
 | ENT_VETRO | Priore Anselmo | CULT | FAITH | DST_VETRO | `entity.vetro` |
 
-## Destiny cards (16)
+## Destiny cards (19)
 | id | titolo | entita | Minimum | Victory | Triumph |
 |---|---|---|---|---|---|
 | DST_ALDRIC | Il Regno che Resta | ENT_ALDRIC | Il trono regge | Il regno decide | Un regno che non ha pagato il pane con il sangue |
@@ -148,6 +148,9 @@ family, 22 copies per family deck, 132 cards in the box (D-040).
 | DST_NAHR_ROOTED | La Terra Sotto i Piedi | ENT_NAHR | Il popolo è ancora qui | La terra risponde a chi la lavora | Radicati senza aver chiuso la porta a nessuno |
 | DST_SALE | Il Registro che Tiene | ENT_SALE | La Gilda è ancora al tavolo | Il debito è stato chiamato, e nessuno lo ha cancellato | E la firma vale ancora |
 | DST_SALE_OPEN | Il Registro Aperto | ENT_SALE | La Gilda esiste ancora | E il registro si può leggere | E vale lo stesso |
+| DST_SHARED_ACCOUNTS | I Conti Chiusi | $self | Il proprio registro è pulito | Una firma che vale, e nessuna domanda aperta | Un mondo che non deve niente a nessuno |
+| DST_SHARED_LAND | La Terra che Risponde | $self | Un posto che risponde | Due terre, una voce | La mappa parla la tua lingua |
+| DST_SHARED_RENOWN | Il Nome che Pesa | $self | Il nome è conosciuto | Il nome ha una casa | Un nome che nessuno ha visto fallire |
 | DST_VAERAX | Cio che Dorme Resti Addormentato | ENT_VAERAX | La montagna è ancora sua | Le gallerie sono chiuse, e il Cristallo non è uscito | E nessuno ci arriva più |
 | DST_VAERAX_WATCHED | Il Sonno Sorvegliato | ENT_VAERAX | La montagna è ancora sua | Nessuno scava più | Guardato da qualcuno che non lo vuole |
 | DST_VETRO | Quello che Non si Deve Guardare | ENT_VETRO | L'Ordine tiene la sua casa | La custodia è un incarico, e la teca resta chiusa | E cosa ci sia dentro lo sa, e le gallerie sono ancora sue |

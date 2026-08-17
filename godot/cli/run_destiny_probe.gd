@@ -111,25 +111,41 @@ func _free_at_the_start(data: RefCounted, chronicle_id: String) -> void:
 	for entity_id in SEATS:
 		var destiny: Dictionary = data.destinies[session.service.destiny_of(str(entity_id))]
 		print("%s - %s" % [session.service.name_of(str(entity_id)), str(destiny["title"])])
-		for level in LEVELS:
-			var conditions: Array = destiny[str(level)]["conditions"]
-			var held: int = 0
-			var marks: Array = []
-			for condition in conditions:
-				var holds: bool = session.destinies.conditions.holds(condition, {})
-				held += 1 if holds else 0
-				marks.append("%s%s" % [
-					"[gia' vero] " if holds else "[da fare]  ",
-					str((condition as Dictionary).get("label", condition["type"])),
-				])
-			print("  %-8s %d/%d gia' vero%s" % [
-				str(level), held, conditions.size(),
-				"   <<< REGALATO" if held == conditions.size() else "",
-			])
-			for mark in marks:
-				print("      %s" % str(mark))
+		_print_ladder(session, destiny, {})
 		print("")
+	# Le carte condivisibili (voce 20, D-115): la stessa scala, letta una volta
+	# per ogni seggio che la porta nel pool - "gia' vero" per uno puo' essere
+	# "da fare" per un altro, ed e' esattamente cio' che va guardato.
+	for entity_id in SEATS:
+		var id: String = str(entity_id)
+		for destiny_id in (data.entities[id] as Dictionary).get("destiny_pool", []):
+			var pooled: Dictionary = data.destinies[str(destiny_id)]
+			if str(pooled["entity_id"]) != "$self":
+				continue
+			print("%s, se giura - %s" % [session.service.name_of(id), str(pooled["title"])])
+			_print_ladder(session, pooled, {"self": id})
+			print("")
 	session.dispose()
+
+
+func _print_ladder(session: RefCounted, destiny: Dictionary, context: Dictionary) -> void:
+	for level in LEVELS:
+		var conditions: Array = destiny[str(level)]["conditions"]
+		var held: int = 0
+		var marks: Array = []
+		for condition in conditions:
+			var holds: bool = session.destinies.conditions.holds(condition, context)
+			held += 1 if holds else 0
+			marks.append("%s%s" % [
+				"[gia' vero] " if holds else "[da fare]  ",
+				str((condition as Dictionary).get("label", condition["type"])),
+			])
+		print("  %-8s %d/%d gia' vero%s" % [
+			str(level), held, conditions.size(),
+			"   <<< REGALATO" if held == conditions.size() else "",
+		])
+		for mark in marks:
+			print("      %s" % str(mark))
 
 
 ## And the round at which each seat's whole ladder is closed - after which it has
@@ -140,9 +156,18 @@ func _when_the_ladder_closes(
 	var SEATS: Array = _seats(data, chronicle_id)
 	var closed_at: Dictionary = {}
 	var never: Dictionary = {}
+	# Le scale condivise (voce 20, D-115) si misurano nelle stesse partite: per
+	# ogni seggio che ne porta una nel pool, la chiave e' "seggio|carta".
+	var shared: Array = []
 	for entity_id in SEATS:
 		closed_at[str(entity_id)] = []
 		never[str(entity_id)] = 0
+		for destiny_id in (data.entities[str(entity_id)] as Dictionary).get("destiny_pool", []):
+			if str(data.destinies[str(destiny_id)]["entity_id"]) == "$self":
+				var key: String = "%s|%s" % [str(entity_id), str(destiny_id)]
+				shared.append(key)
+				closed_at[key] = []
+				never[key] = 0
 
 	for index in range(runs):
 		var session: RefCounted = GameSession.new(data)
@@ -152,27 +177,26 @@ func _when_the_ladder_closes(
 			func(act: int, round_number: int, phase: String) -> void:
 				if phase != "ACTIONS":
 					return
+				var at: int = (act - 1) * int(data.chronicles[chronicle_id]["rounds_per_act"]) + round_number
 				for entity_id in SEATS:
 					var id: String = str(entity_id)
-					if seen.has(id):
-						continue
-					var destiny: Dictionary = data.destinies[session.service.destiny_of(id)]
-					var all_held: bool = true
-					for level in LEVELS:
-						if not session.destinies.conditions.all_hold(
-							destiny[str(level)]["conditions"], {}
-						):
-							all_held = false
-					if all_held:
-						seen[id] = (act - 1) * int(data.chronicles[chronicle_id]["rounds_per_act"]) + round_number
+					if not seen.has(id):
+						var destiny: Dictionary = data.destinies[session.service.destiny_of(id)]
+						if _ladder_closed(session, destiny, {}):
+							seen[id] = at
+					for key in shared:
+						if seen.has(key) or not str(key).begins_with(id + "|"):
+							continue
+						var pooled: Dictionary = data.destinies[str(key).get_slice("|", 1)]
+						if _ladder_closed(session, pooled, {"self": id}):
+							seen[key] = at
 		)
 		await session.run(PolicyDecider.new(session.log))
-		for entity_id in SEATS:
-			var id: String = str(entity_id)
-			if seen.has(id):
-				(closed_at[id] as Array).append(int(seen[id]))
+		for key in closed_at:
+			if seen.has(key):
+				(closed_at[key] as Array).append(int(seen[key]))
 			else:
-				never[id] = int(never[id]) + 1
+				never[key] = int(never[key]) + 1
 		session.dispose()
 
 	var rounds: int = int(data.chronicles[chronicle_id]["acts"]) * int(
@@ -180,18 +204,37 @@ func _when_the_ladder_closes(
 	)
 	print("== QUANDO LA SCALA E' GIA' TUTTA CHIUSA (%d Chronicle da %d round) ==" % [runs, rounds])
 	print("")
-	print("  %-14s %-24s %s" % ["seggio", "chiusa in anticipo", "round medio"])
+	print("  %-22s %-16s %s" % ["seggio", "chiusa in anticipo", "round medio"])
 	for entity_id in SEATS:
-		var id: String = str(entity_id)
-		var closures: Array = closed_at[id]
-		var total: int = 0
-		for value in closures:
-			total += int(value)
-		print("  %-14s %-24s %s" % [
-			id.trim_prefix("ENT_"),
-			"%d/%d" % [closures.size(), runs],
-			"-" if closures.is_empty() else "%.1f" % (float(total) / float(closures.size())),
-		])
+		_print_closure(str(entity_id), str(entity_id).trim_prefix("ENT_"), closed_at, runs)
+	if not shared.is_empty():
+		print("")
+		print("  e le scale condivise, per chi le porta nel pool:")
+		for key in shared:
+			var label: String = "%s: %s" % [
+				str(key).get_slice("|", 0).trim_prefix("ENT_"),
+				str(key).get_slice("|", 1).trim_prefix("DST_SHARED_"),
+			]
+			_print_closure(str(key), label, closed_at, runs)
+
+
+func _ladder_closed(session: RefCounted, destiny: Dictionary, context: Dictionary) -> bool:
+	for level in LEVELS:
+		if not session.destinies.conditions.all_hold(destiny[str(level)]["conditions"], context):
+			return false
+	return true
+
+
+func _print_closure(key: String, label: String, closed_at: Dictionary, runs: int) -> void:
+	var closures: Array = closed_at[key]
+	var total: int = 0
+	for value in closures:
+		total += int(value)
+	print("  %-22s %-16s %s" % [
+		label,
+		"%d/%d" % [closures.size(), runs],
+		"-" if closures.is_empty() else "%.1f" % (float(total) / float(closures.size())),
+	])
 
 
 func _parse_args(args: PackedStringArray) -> Dictionary:
