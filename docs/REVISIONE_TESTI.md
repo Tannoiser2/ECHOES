@@ -1550,7 +1550,7 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`AST_FORCE_BORDER_WATCH`**
 > Guardia di Confine
 
-> +1 quando FORCE è rilevante per la Tensione. Contano i carri che passano, e sanno quali contare.
+> +1 quando FORCE è rilevante per la Tensione. Contano i carri che passano, e sanno quali contare — e ogni conta ferma la strada: Le Vie Interrotte salgono di 1.
 
 
 **`AST_FORCE_BURNED_GATE`**
@@ -1562,13 +1562,13 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`AST_FORCE_LEVY`**
 > Leva Contadina
 
-> Uomini con attrezzi da lavoro tenuti come lance. Bastano finché nessuno li conta.
+> Uomini con attrezzi da lavoro tenuti come lance. Bastano finché nessuno li conta — ma i campi restano soli: la Carestia sale di 1.
 
 
 **`AST_FORCE_MERCENARIES`**
 > Mercenari
 
-> +1 sempre, su qualsiasi fronte: fuori tema vale quanto in tema, ed è tutto quello che sanno fare.
+> +1 sempre, su qualsiasi fronte: fuori tema vale quanto in tema. Dove passano, però, resta l'inquietudine.
 
 
 **`AST_FORCE_OLD_ARMY`**
@@ -1580,13 +1580,13 @@ possono spostare nella frase, non togliere. 661 testi in lettura.
 **`AST_FORCE_ROADBLOCK`**
 > Posto di Blocco
 
-> +1 sul fronte Oppose. Fermare un carro costa sempre meno che farlo partire.
+> +1 sul fronte Oppose. Fermare un carro costa sempre meno che farlo partire — e la Regione della domanda resta tagliata fuori dal mondo.
 
 
 **`AST_FORCE_SIEGE`**
 > Assedio
 
-> +1 sul fronte Oppose. Non serve prendere una cosa per impedire che sia di qualcun altro.
+> +2 sul fronte Oppose. Non serve prendere una cosa per impedire che sia di qualcun altro — ma l'assedio affama anche la terra intorno: la Carestia sale di 1.
 
 
 **`AST_FORCE_WARBAND`**

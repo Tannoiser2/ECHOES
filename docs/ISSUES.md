@@ -575,8 +575,11 @@ faccia quello che il nome promette. Non 35 effetti inventati in un
 pomeriggio: famiglia per famiglia, col committente, usando il vocabolario
 che ora esiste (effetti + tag_rules):
 
-1. **FORCE**: le armi toccano la mappa — la Guardia di Confine sbarra
-   (GATE temporaneo), l'Assedio stringe, le Porte Bruciate già cacciano.
+1. ✅ **FORCE** — fatta in 0.1.68 ([D-106](DECISIONS.md#d-106)): la Leva
+   affama, la Guardia di Confine chiude le vie, il Posto di Blocco taglia
+   fuori la Regione (con cura esistente), i Mercenari lasciano
+   l'inquietudine, l'Assedio affama (e il suo testo ora dice il +2 vero).
+   La carta impegnata parla a verbale; misura per carta, 0/8 a ogni passo.
 2. **AUTHORITY**: i sigilli toccano le regole — l'Editto vieta,
    l'Investitura nomina, il Magistrato riapre una domanda chiusa.
 3. **BONDS**: i legami toccano le relazioni — il Giuramento lega (e

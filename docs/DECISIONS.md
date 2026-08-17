@@ -331,6 +331,49 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-106 — Le carte con un mestiere, primo mazzetto: FORCE
+**implemented in 0.1.68** (ISSUES 26, punto 1)
+
+«Le carte impegnate servono a qualcosa o sono solo punti?» Il censimento
+diceva 35 su 48 solo numero. Il primo mazzetto risponde: le cinque carte
+FORCE senza mestiere ora ne hanno uno, con `on_commit_effects` che fanno
+quello che il nome promette:
+
+- **Leva Contadina**: le braccia tolte ai campi — la Carestia sale di 1;
+- **Guardia di Confine**: la conta ferma anche i carri onesti — Le Vie
+  Interrotte salgono di 1;
+- **Posto di Blocco**: la Regione della domanda resta `condition:cut_off`
+  — segno vivo (letto dalle clausole) e curabile (la Scorta Giurata e Le
+  Vie Riaperte lo tolgono);
+- **Mercenari**: dove passano resta `condition:unrest`;
+- **Assedio**: chi assedia affama — la Carestia sale di 1. (Nel
+  passaggio: il testo diceva «+1 sul fronte Oppose» ma il modificatore è
+  sempre stato 2 — testo allineato al +2 reale.)
+
+I riscaldi su Carestia e Vie sono no-op nelle Cronache che non giocano
+quelle Tensioni; i due segni-condizione lavorano ovunque. E la carta
+impegnata **parla a verbale**: «H. La carta parla - Leva Contadina
+(Popolo Nahr): La Carestia sale di 1.» — stesso narratore di D-103,
+stessa regola: chi non muove nulla non parla.
+
+### Misurato (un mestiere alla volta, stessi 100 semi)
+
+| passo | esiti Consigli (FAIL/SUCC-c/SUCC/DECI) |
+|---|---|
+| base (D-105) | 196 · 88 · 124 · 189 |
+| + Leva | 198 · 91 · 127 · 186 |
+| + Guardia | 198 · 92 · 127 · 185 |
+| + Posto di Blocco | invariato (morde via clausole ed eredità) |
+| + Mercenari | invariato (idem) |
+| + Assedio | 198 · 94 · 128 · 183 |
+
+**0/8 seggi bloccati al tavolo misto a ogni passo.** Il mondo si fa un
+filo più duro (sei Decisive in meno) e le distribuzioni si muovono in
+modo sano: i Nahr respirano (4→1 NONE, 22→25 VIC — la famiglia della
+forza scalda la Carestia, che è la loro domanda), Aldric al tavolo misto
+guadagna Trionfi (7→10). Suite 231 test / 5012 asserzioni verde; brief,
+manifest e materiale di revisione rigenerati.
+
 ## D-105 — I primi cinque denti, accesi uno alla volta
 **implemented in 0.1.67** (ISSUES 24, Fase 3; «accendi tutte» del committente)
 

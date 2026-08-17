@@ -5,6 +5,36 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.68] — Le armi imparano il mestiere
+
+Primo mazzetto della voce 26 ([D-106](docs/DECISIONS.md#d-106)): le
+cinque carte FORCE che erano solo un numero ora fanno quello che il nome
+promette.
+
+### Added
+
+- **I mestieri**: Leva Contadina e Assedio affamano (+1 Carestia), la
+  Guardia di Confine chiude le vie (+1 Vie Interrotte), il Posto di
+  Blocco taglia fuori la Regione della domanda (`condition:cut_off`,
+  curabile), i Mercenari lasciano l'inquietudine (`condition:unrest`).
+- **La carta parla**: quando una carta impegnata muove il mondo, il
+  verbale lo dice col suo nome — «H. La carta parla - Leva Contadina
+  (Popolo Nahr): La Carestia sale di 1.»
+
+### Fixed
+
+- **Assedio**: il testo diceva «+1 sul fronte Oppose», il modificatore è
+  sempre stato 2 — testo allineato al +2 reale.
+
+### Misurato
+
+Un mestiere alla volta sugli stessi 100 semi (tabella in D-106): sei
+Decisive in meno a regime, i Nahr respirano, 0/8 seggi bloccati a ogni
+passo. Suite 231 test / 5012 asserzioni verde; brief, manifest e
+revisione rigenerati.
+
+---
+
 ## [0.1.67] — I primi cinque denti
 
 Fase 3 della voce 24 ([D-105](docs/DECISIONS.md#d-105)): «accendi tutte».
