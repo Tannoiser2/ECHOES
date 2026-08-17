@@ -21,7 +21,7 @@ from pathlib import Path
 # sort_key spoglia l'ultimo suffisso numerico, quindi i nomi qui sono i gambi.
 DECK_ORDER = [
     "asset", "echo", "tension", "destiny", "entity", "region",
-    "segnalini_chr", "traccia",
+    "segnalini_chr", "segni", "traccia",
 ]
 
 

@@ -98,6 +98,18 @@ func _initialize() -> void:
 		return
 	written.append(track_path)
 	print("  %-16s %6s %6s %7d" % ["traccia valori", "-", "-", 1])
+	# I segni con un corpo (D-107): due fogli per tutta la saga - i segni si
+	# chiamano allo stesso modo in ogni eta', quindi la fustella e' una sola.
+	for entry in [
+		["%s/fogli/segni_regioni.svg" % out_dir, TokenSheet.region_signs_svg(), "segni regioni"],
+		["%s/fogli/segni_case.svg" % out_dir, TokenSheet.entity_signs_svg(), "segni case"],
+	]:
+		if not _write(str(entry[0]), str(entry[1])):
+			printerr("non riesco a scrivere %s" % str(entry[0]))
+			quit(4)
+			return
+		written.append(str(entry[0]))
+		print("  %-16s %6s %6s %7d" % [str(entry[2]), "-", "-", 1])
 
 	var bible: RefCounted = ArtBible.new()
 	bible.read(str(options.get("bible", "docs/ART_BIBLE.md")))

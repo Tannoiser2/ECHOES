@@ -5,6 +5,38 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.69] — I segni hanno un corpo
+
+Fase 3 della voce 22 ([D-107](docs/DECISIONS.md#d-107)): un segno che
+morde si deve vedere — sulla mappa, sul seggio e sul tavolo di cartone.
+
+### Added
+
+- **Il dizionario dei segni** (`sign_labels.gd`): ogni tag ha la sua
+  parola italiana, una sola per app e fustella; un test la pretende per
+  ogni segno che i dati sanno scrivere.
+- **La mappa parla italiano**: «tagliata fuori» al posto di «cut_off».
+- **«I SEGNI DELLA CASA»** nel pannello del seggio: fama, scoperte,
+  scorta giurata, la porta sbarrata in rosso.
+- **Due pagine di fustella nuove**: i segni delle Regioni (condizioni
+  ×2 tratteggiate, strutture, insediamenti, Cicatrici in rosso) e i
+  segni delle case (più «cacciata» ×4 e «giuramento spezzato» ×2), in
+  export e PDF.
+
+### Fixed
+
+- **L'app non compilava dall'0.1.60**: `confluence_board.gd` chiamava
+  `_draw(session, council)` una funzione che Godot riserva al disegno —
+  rinominata `_paint_council`, avvio pulito. La suite headless non
+  carica le scene: a verbale il debito di un controllo in CI.
+
+### Misurato
+
+234 test in 32 suite (3 nuovi), 5066 asserzioni; nessun cambio di
+regole.
+
+---
+
 ## [0.1.68] — Le armi imparano il mestiere
 
 Primo mazzetto della voce 26 ([D-106](docs/DECISIONS.md#d-106)): le

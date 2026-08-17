@@ -13,6 +13,7 @@ extends Control
 const RegionArt := preload("res://scripts/core/region_art.gd")
 const Glyph := preload("res://ui/glyph.gd")
 const ArtLibrary := preload("res://scripts/core/art_library.gd")
+const SignLabels := preload("res://scripts/core/sign_labels.gd")
 
 ## Quanto e' grande una tessera. Cresce con lo spazio che ha: a schermo intero
 ## una mappa di sei bolli piccoli in mezzo al vuoto spreca l'unica vista che
@@ -395,7 +396,9 @@ func _draw_marks(centre: Vector2, region: Dictionary) -> void:
 	var y: float = _radius + 32.0
 	for mark in marks:
 		var level: String = str(mark).split(":")[0]
-		var label: String = str(mark).split(":")[1]
+		# La parola del segno viene dal dizionario condiviso (D-107): la stessa
+		# che sta sul segnalino di cartone, non il suffisso inglese del tag.
+		var label: String = SignLabels.label(str(mark), _session.data if _session != null else null)
 		var tint: Color = Color("#c8553d") if level == "scar" else Color("#8a8172")
 		# Il glifo dice di che *livello* e' il segno - una struttura, una
 		# condizione, un insediamento, una Cicatrice - e la parola dice quale.

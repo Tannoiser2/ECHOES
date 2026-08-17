@@ -441,10 +441,13 @@ Le fasi:
    Propp tacciono per scelta.
 2. **La mappa non nasconde**: le regioni contese appaiono («Valle Verde —
    contesa»), e un cambio di controllo si vede nel momento in cui accade.
-3. **I tag hanno un corpo**: i tag di regione come segnalini sulla mappa
-   (in GUI e nella fustella), i tag d'entità nel pannello del seggio, i
-   fatti del mondo in una striscia dedicata. Se un tag governa una
-   clausola, il giocatore deve poterlo vedere sul tavolo.
+3. ✅ **I tag hanno un corpo** — fatta in 0.1.69
+   ([D-107](DECISIONS.md#d-107)): il dizionario `sign_labels` (un test
+   pretende una parola per ogni segno nei dati), la mappa in italiano, «I
+   SEGNI DELLA CASA» nel pannello del seggio, due pagine di fustella
+   (segni delle Regioni e delle case). I fatti del mondo restano nelle
+   pagine della cronaca, per scelta. Trovato e riparato per strada: l'app
+   non compilava dall'0.1.60 (`_draw` ombreggiata in `confluence_board`).
 4. **La sonda della visibilità**: contare per 100 semi gli effetti
    applicati per tipo e verificare che ognuno abbia riga a verbale e
    rappresentazione. Un effetto invisibile è un bug, non un'atmosfera.

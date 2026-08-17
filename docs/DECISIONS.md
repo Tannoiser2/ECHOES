@@ -331,6 +331,44 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-107 — I segni hanno un corpo: la parola, il pannello, il segnalino
+**implemented in 0.1.69** (ISSUES 22, Fase 3)
+
+Da D-105/D-106 i segni mordono; un giocatore giudicato da regole
+invisibili è la definizione di un gioco rotto. Tre corpi, una sola voce:
+
+- **Il dizionario condiviso** (`sign_labels.gd`): l'unico posto dove un
+  tag diventa una parola italiana — «tagliata fuori», «il granaio», «la
+  domanda sul muro», «cacciata da Valle Verde». Un test scorre tutti i
+  segni che i dati sanno scrivere e pretende che ognuno abbia qui la sua
+  parola: un segno senza nome fallisce la suite.
+- **La mappa e il seggio**: la mappa scriveva già i segni ma col suffisso
+  inglese del tag («cut_off») — ora usa il dizionario; il pannello del
+  seggio guadagna «I SEGNI DELLA CASA» (fama, scoperte, la porta
+  sbarrata in rosso), che sparisce quando non c'è nulla da dire.
+- **La fustella** (`region_signs_svg` / `entity_signs_svg`): due pagine
+  nuove nell'export e nel PDF — i segni delle Regioni (condizioni in
+  doppia copia col bordo tratteggiato: si tolgono quando la cura arriva;
+  strutture e insediamenti; Cicatrici in rosso, copia singola: la mappa
+  non le dimentica) e i segni delle case (uno ciascuno, più quattro
+  «cacciata» e due «giuramento spezzato»). Stessa parola dell'app.
+
+I **fatti del mondo** restano senza segnalino per scelta: la loro casa
+fisica sono le pagine della cronaca, che già si stampano.
+
+### Trovato per strada
+
+`confluence_board.gd` dichiarava `_draw(session, council)` sopra la
+`_draw()` di CanvasItem: dall'0.1.60 l'app **non compilava** — la suite
+headless non carica le scene, quindi nessun test lo vedeva. Rinominata
+`_paint_council`, avvio headless pulito; a verbale il debito di un
+controllo di compilazione dell'app in CI.
+
+### Misurato
+
+234 test in 32 suite (3 nuovi sulle parole dei segni), 5066 asserzioni,
+verdi; export con le due pagine nuove; nessun cambio di regole.
+
 ## D-106 — Le carte con un mestiere, primo mazzetto: FORCE
 **implemented in 0.1.68** (ISSUES 26, punto 1)
 

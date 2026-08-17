@@ -122,7 +122,7 @@ func _label(font_size: int, colour: String) -> Label:
 func render(session: RefCounted, _viewer_id: String) -> void:
 	if not session.confluence.is_open():
 		return
-	_draw(session, session.confluence.current)
+	_paint_council(session, session.confluence.current)
 
 
 ## The same board, drawn from a Council that has already closed.
@@ -135,10 +135,10 @@ func render(session: RefCounted, _viewer_id: String) -> void:
 func render_closed(session: RefCounted, council: Dictionary) -> void:
 	if council.is_empty():
 		return
-	_draw(session, council)
+	_paint_council(session, council)
 
 
-func _draw(session: RefCounted, council: Dictionary) -> void:
+func _paint_council(session: RefCounted, council: Dictionary) -> void:
 	var template: Dictionary = session.data.confluence_templates[str(council["template_id"])]
 	_card.texture = CardArt.texture_for("tension", str(council["tension_id"]), session.data)
 	_header.text = "%s — %s propone" % [
