@@ -26,6 +26,8 @@ const ConditionEvaluator := preload("res://scripts/world/condition_evaluator.gd"
 const EchoRecorder := preload("res://scripts/chronicle/echo_recorder.gd")
 const WorldStateService := preload("res://scripts/world/world_state_service.gd")
 const NarrativeText := preload("res://scripts/chronicle/narrative_text.gd")
+const EffectNarrator := preload("res://scripts/chronicle/effect_narrator.gd")
+const TagRules := preload("res://scripts/world/tag_rules.gd")
 
 const STANCES: Array = ["SUPPORT", "OPPOSE", "CONDITION", "ABSTAIN"]
 
@@ -373,6 +375,10 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 	# F. World Factor.
 	var die: int = rng.roll_d6()
 	var factor: int = ConfluenceResolution.world_factor(die)
+	# ISSUES 24: i segni con un dente pesano sul mondo prima che sul tavolo.
+	# Il dado resta il dado; è il World Factor che un mondo segnato piega.
+	var bite: Dictionary = TagRules.council_world_factor(data, world, tension_id)
+	factor += int(bite["delta"])
 	current["die"] = die
 	current["world_factor"] = factor
 
@@ -388,6 +394,8 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 	)
 	_log_commitments()
 	log.bullet("F. World Factor: 1d6 = %d -> %+d" % [die, factor])
+	for title in bite["titles"]:
+		log.bullet("  Il segno pesa sul Consiglio: %s." % str(title))
 	# A qualified Condition is part of the margin (D-055), so it is part of the one
 	# line a player reads to check the arithmetic - and an unqualified one is shown
 	# too, crossed out of the sum, because "you spent two cards for nothing" is
@@ -447,12 +455,18 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 			consequence_ids.append_array(template["consequence_pools"]["decisive_bonus"])
 	else:
 		consequence_ids.append_array(template["consequence_pools"]["failure"])
+	# ISSUES 22 (Fase 1): the Consequence speaks with its title, and every
+	# Effect it lands gets its own spoken line — the crown losing the Valle
+	# Verde must be a sentence at the table, not a silent SET_CONTROL.
 	for consequence_id in consequence_ids:
+		var consequence: Dictionary = data.consequences.get(str(consequence_id), {})
+		log.bullet("H. Conseguenza - %s:" % str(consequence.get("title", consequence_id)))
+		var first_effect: int = applied.size()
 		for effect in compiler.compile(str(consequence_id), context, source):
 			_apply(applied, effect)
 			_bar_return(applied, effect, source)
 		_apply_scar(applied, str(consequence_id), source)
-	log.bullet("H. Conseguenze: %s" % ", ".join(PackedStringArray(consequence_ids)))
+		_narrate_applied(applied, first_effect)
 
 	# H.6 A qualified Condition rides along with any successful outcome (§12.3).
 	if bool(result["condition_qualified"]) and ConfluenceResolution.is_success(outcome):
@@ -464,8 +478,10 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 			if clause.is_empty():
 				continue
 			log.bullet("H. Clausola qualificata: %s" % say(str(clause["text"])))
+			var first_clause_effect: int = applied.size()
 			for spec in clause["effects"]:
 				_apply(applied, compiler.compile_spec(spec, context, source))
+			_narrate_applied(applied, first_clause_effect)
 
 	# I. Asset disposition.
 	_dispose_assets(applied, result, outcome, recovery, source)
@@ -660,6 +676,16 @@ func _apply(applied: Array, effect: Dictionary) -> void:
 		push_error("ConfluenceController: %s" % applier.last_error)
 		return
 	applied.append(stored)
+
+
+## One spoken line for every Effect landed since `first` (ISSUES 22, Fase 1).
+## The narrator keeps quiet on no-ops and bookkeeping, so a silent block just
+## produces no lines.
+func _narrate_applied(applied: Array, first: int) -> void:
+	for i in range(first, applied.size()):
+		var said: String = EffectNarrator.narrate(applied[i], data)
+		if said != "":
+			log.bullet("  %s" % said)
 
 
 ## Un Consiglio che ti caccia non ti caccia per un giro: la Regione resta

@@ -433,11 +433,12 @@ clausole leggono ma che **nessuna vista mostra**.
 
 Le fasi:
 
-1. **Il verbale racconta gli effetti**: dopo «H. Conseguenze:» non gli id
-   ma il titolo della Conseguenza e una riga parlata per ogni effetto
-   applicato («La Valle Verde non risponde più alla corona», «Aldric perde
-   la presenza nella Valle»). Ogni tipo di effetto ha la sua forma
-   parlata; vale anche per gli effetti della carta Echo d'atto, oggi muti.
+1. ✅ **Il verbale racconta gli effetti** — fatta in 0.1.64
+   ([D-103](DECISIONS.md#d-103)): `effect_narrator.gd`, una frase con i
+   nomi del tavolo per ogni effetto applicato da Conseguenze, clausole
+   qualificate e carta Echo d'atto («Valle Verde passa sotto il controllo
+   di Re Aldric»); gli id non si leggono più, i no-op e la contabilità di
+   Propp tacciono per scelta.
 2. **La mappa non nasconde**: le regioni contese appaiono («Valle Verde —
    contesa»), e un cambio di controllo si vede nel momento in cui accade.
 3. **I tag hanno un corpo**: i tag di regione come segnalini sulla mappa
@@ -479,6 +480,58 @@ Le fasi:
 **Fatto quando** in una partita al tavolo misto ogni carta di Propp
 arrivata sul tavolo ce l'ha messa una mano, l'ordine delle funzioni regge,
 e i numeri prima/dopo sono a verbale.
+
+### 24. Ogni segno ha un dente: la meccanica di conseguenze e cicatrici
+
+`regole` · `da-misurare` · voluta dal committente
+
+«Ogni conseguenza, ogni cicatrice, ogni decisione potrebbe cambiare il
+meccanismo di gioco e gli effetti su entità e luoghi.» Il censimento
+(sonda in `tag_census`, 0.1.65) dice dove siamo: **79 segni** scritti da
+Conseguenze, cicatrici e carte Echo, di cui **27 vivi** (letti da clausole
+di Destini, Conseguenze o eleggibilità), **5 vivi per il motore**
+(`discovery:` contati da `discovery_count`), **2 con vita postuma** (letti
+solo nella forma `legend:` dopo lo sfumare), **27 ereditati fra le ere e
+narrati** ma senza alcun dente durante la partita, e **18 muti del tutto**
+— fra cui `renowned` (la rinomanza dei Decisive!), `heir_named`,
+`crown_dispossessed`, `grain_requisitioned`, `failed_proposal`. Due terzi
+della memoria del mondo oggi non muove una regola.
+
+Il telaio proposto — dichiarativo, come tutto il resto: un blocco
+`tag_rules` nei dati che lega un segno (o un prefisso) a un gancio che il
+motore conosce, così ogni regola è un dato scritto d'autore e misurabile,
+non un ramo di codice:
+
+- **modificatore d'azione in Regione**: `structure:granary` → INFLUENCE
+  sulla Carestia vale +1 in quella Regione; `scar:plundered` → ACQUIRE
+  lì costa un round di rilevanza;
+- **modificatore al Consiglio**: `condition:starving` → i Consigli sulla
+  Carestia partono con World Factor −1; `scar:unanswered` → riproporre la
+  stessa domanda costa un impegno in più;
+- **porta**: `settlement:march` → il passo concesso/negato (come già
+  `evicted:` sbarra il rientro, D-067);
+- **relazione**: `oath_broken` → la relazione fra le due case non sale
+  sopra HOSTILE finché il giuramento non è rifatto.
+
+Le fasi:
+
+1. ✅ **Il censimento** — la classificazione qui sopra, rifatta dalla
+   sonda a ogni giro.
+2. ✅ **Il telaio** — fatta in 0.1.66 ([D-104](DECISIONS.md#d-104)):
+   schema `tag_rule` (ACTION_MODIFIER, COUNCIL_MODIFIER, GATE,
+   RELATION_CAP), i quattro ganci nel motore, la firma a verbale quando
+   una regola morde, zero regole nei dati — comportamento invariato
+   misurato, ogni gancio provato con regole sintetiche.
+3. **I denti d'autore, uno alla volta**: le regole per i segni di prima
+   fila della Chronicle I (granary, starving, plundered, oath_broken,
+   renowned…), ognuna scritta insieme, accesa da sola e misurata sui 100
+   semi standard.
+4. **La cicatrice che morde**: ogni `scar:` con un effetto locale suo, e
+   i 27 segni ereditati che diventano il ponte meccanico fra le ere.
+
+**Fatto quando** la sonda conta zero segni di prima fila senza lettore —
+o li dichiara memoria esplicitamente — e il playtest resta 0/8 seggi
+bloccati al tavolo misto.
 
 ## Milestone 0.3 — World Propagation
 

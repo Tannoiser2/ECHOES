@@ -141,6 +141,29 @@ def check_references(
                     f"adjacency to '{neighbour}' is not reciprocal",
                 )
 
+    # Tag rules (ISSUES 24, Fase 2): every kind needs its own fields, or the
+    # engine hook it feeds reads a zero and the rule is a dead letter with
+    # extra steps.
+    NEEDED_BY_KIND = {
+        "ACTION_MODIFIER": ("template", "delta"),
+        "COUNCIL_MODIFIER": ("world_factor_delta",),
+        "GATE": ("movement",),
+        "RELATION_CAP": ("max_level",),
+    }
+    for rule in documents.get("tag_rule", []):
+        where = f"{origins['tag_rule']} [{rule['id']}]"
+        kind = str(rule.get("kind", ""))
+        for field in NEEDED_BY_KIND.get(kind, ()):
+            if field not in rule:
+                report.fail(where, f"kind {kind} requires field '{field}'")
+        if "tension_id" in rule:
+            require(known_tensions, rule["tension_id"], "tension", where)
+        scope = str(rule.get("when", {}).get("scope", ""))
+        if kind == "GATE" and scope != "REGION":
+            report.fail(where, "GATE rules only make sense with scope REGION")
+        if kind == "RELATION_CAP" and scope not in ("GLOBAL", "RELATION"):
+            report.fail(where, "RELATION_CAP needs scope GLOBAL or RELATION")
+
     for tension in documents.get("tension", []):
         where = f"{origins['tension']} [{tension['id']}]"
         for linked in tension.get("linked_tensions", []):

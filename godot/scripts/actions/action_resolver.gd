@@ -11,6 +11,7 @@ extends RefCounted
 const Effect := preload("res://scripts/core/effect.gd")
 const Ids := preload("res://scripts/core/ids.gd")
 const WorldStateService := preload("res://scripts/world/world_state_service.gd")
+const TagRules := preload("res://scripts/world/tag_rules.gd")
 
 const TEMPLATES: Array = ["ACQUIRE", "MOVE", "INFLUENCE", "FORGE", "SCHEME", "CLAIM"]
 
@@ -417,6 +418,15 @@ func _influence(entity_id: String, params: Dictionary, source: Dictionary) -> Di
 	var via: String = str(params.get("via", ""))
 	if via == "" and _influence_uses_presence(entity_id, tension_id, delta):
 		via = "PRESENCE"
+
+	# ISSUES 24: un segno con un dente può pesare sull'azione. Il bonus
+	# allarga la grandezza nel verso scelto, mai il contrario, e ogni regola
+	# che morde si firma a verbale.
+	var bite: Dictionary = TagRules.action_bonus(data, world, entity_id, "INFLUENCE", tension_id)
+	if int(bite["delta"]) != 0:
+		delta += int(bite["delta"]) if delta > 0 else -int(bite["delta"])
+		for title in bite["titles"]:
+			log.bullet("  Il segno pesa: %s." % str(title))
 
 	if via != "PRESENCE":
 		effects.append_array(

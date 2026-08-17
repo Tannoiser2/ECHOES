@@ -331,6 +331,89 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-104 — Il telaio delle tag_rules: i segni possono avere un dente
+**implemented in 0.1.66** (ISSUES 24, Fase 2; zero regole accese)
+
+Il censimento della voce 24 (0.1.65) ha contato 18 segni muti e 27
+ereditati senza dente. Prima dei denti, il telaio: un nuovo documento
+dati `tag_rule` che lega un segno a un gancio del motore, così ogni
+regola futura sarà un dato d'autore — scritto, acceso da solo e misurato
+sui 100 semi standard — e mai un ramo di codice nascosto.
+
+### La forma
+
+`schema/tag_rule.schema.json`: id `TGR_…`, `title` (come il verbale la
+nomina), `when` {`scope`: GLOBAL/REGION/ENTITY/RELATION, `tag`}, `kind`,
+i campi del suo tipo, `chronicle_id` opzionale (la regola resta a casa
+sua), `active` obbligatorio (una regola spenta è un progetto, non una
+meccanica). I quattro ganci:
+
+- **ACTION_MODIFIER** (`template`, `delta`, `tension_id?`): il valore
+  dell'azione si allarga nel suo verso. Cablato in INFLUENCE; scope
+  REGION vale se il segno sta dove chi agisce ha presenza.
+- **COUNCIL_MODIFIER** (`world_factor_delta`, `tension_id?`): il dado
+  resta il dado, è il World Factor che un mondo segnato piega.
+- **GATE** (`movement` BLOCK/ALLOW, scope REGION): la porta sbarrata
+  vince, come la cacciata di D-067; ALLOW concede un passo anche senza
+  adiacenza.
+- **RELATION_CAP** (`max_level`, scope GLOBAL/RELATION): il tetto clampa
+  le salite nell'applier — scendere resta sempre possibile. (Nota: un
+  undo dev-mode di una salita sopra il tetto riclampa; da sciogliere in
+  Fase 3 con la prima regola vera.)
+
+Ogni regola che morde su un'azione o un Consiglio **si firma a verbale**
+(«Il segno pesa: …»), nello spirito di D-103. `TagRules.active()` scorre
+gli id ordinati: deterministico come tutto il resto (§18.3).
+
+### Misurato
+
+Zero regole nei dati: 231 test in 31 suite (8 nuovi sul telaio, ogni
+gancio provato con una regola sintetica accesa e spenta), 4974
+asserzioni, verdi; playtest standard invariato, 0/8 seggi bloccati al
+tavolo misto. La Fase 3 — i denti d'autore, uno alla volta — parte dalle
+scelte del committente su granary, starving, plundered, oath_broken,
+renowned.
+
+## D-103 — Il verbale racconta gli effetti, non gli id
+**implemented in 0.1.64** (ISSUES 22, Fase 1; dalla partita al seme 15308)
+
+«Non si capisce quali sono le conseguenze delle decisioni prese.» Il
+mondo cambiava davvero — nella partita vera la corona ha perso il
+controllo della Valle Verde — ma in silenzio: il verbale elencava gli id
+(«H. Conseguenze: CNS_NAHR_SETTLEMENT, …») e applicava gli effetti senza
+una parola.
+
+### Il narratore
+
+`effect_narrator.gd`: una frase parlata per ogni Effect applicato, con i
+nomi del tavolo e mai gli id — «Valle Verde passa sotto il controllo di
+Re Aldric», «Popolo Nahr perde la presenza in Valle Verde», «Il Risveglio
+non è più velata: il suo numero è sul tavolo», «Su Valle Verde resta un
+segno: “structure:granary”». Tace per scelta su tre cose: i no-op (un
+segno già presente non si riscrive), la contabilità di Propp (i tag
+`function:` sono grammatica, non storia — D-030), e ciò che ha già una
+voce propria (Scar, Echo, Truth).
+
+### Dove parla
+
+- **Le Conseguenze di un Consiglio**: ogni Conseguenza apre col titolo
+  («H. Conseguenza - Il Granaio del Trono:») e sotto le sue frasi;
+  la riga con gli id non esiste più.
+- **La clausola qualificata**: gli effetti della condizione che passa.
+- **La carta Echo d'atto**: quello che la carta fa al mondo, scritto
+  sotto quello che la carta dice — la «Scoperta» del seme 15308 aveva
+  svelato una Tensione senza una riga.
+
+Nel passaggio, gli `applied` della carta d'atto sono ora gli Effect
+registrati (con l'inverse), non i compilati: il narratore distingue i
+no-op dall'inverse, e il segnale `act_echo_drawn` ne guadagna in fedeltà.
+
+### Misurato
+
+223 test in 30 suite (7 nuovi sul narratore), 4955 asserzioni, verdi;
+playtest standard invariato, 0/8 seggi bloccati al tavolo misto. Il
+verbale è più lungo solo dove prima era muto.
+
 ## D-102 — Le incarnazioni del seggio: la forma prima dell'attraversamento
 **implemented in 0.1.63** (ISSUES 19, Fase 1; voluta dal committente)
 

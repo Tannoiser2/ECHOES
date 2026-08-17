@@ -1,0 +1,147 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://echoes.local/schema/tag_rule.schema.json",
+  "title": "Tag rule collection",
+  "x-echoes-def": "tag_rule",
+  "x-echoes-kind": "collection",
+  "type": "object",
+  "required": [
+    "schema_id",
+    "version",
+    "items"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_id": {
+      "const": "tag_rule"
+    },
+    "version": {
+      "type": "string"
+    },
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/tag_rule"
+      }
+    }
+  },
+  "$defs": {
+    "tag_rule": {
+      "type": "object",
+      "description": "Un segno con un dente (ISSUES 24): un tag sul mondo, su una Regione, su un'Entità o su una relazione che, finché è presente, piega una meccanica dichiarata. Ogni regola è un dato d'autore: si scrive, si accende da sola e si misura sui semi standard prima di restare.",
+      "required": [
+        "id",
+        "title",
+        "when",
+        "kind",
+        "active"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^TGR_[A-Z0-9_]+$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Come il verbale nomina la regola quando morde."
+        },
+        "when": {
+          "type": "object",
+          "required": [
+            "scope",
+            "tag"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "scope": {
+              "type": "string",
+              "enum": [
+                "GLOBAL",
+                "REGION",
+                "ENTITY",
+                "RELATION"
+              ],
+              "description": "Dove vive il segno che accende la regola. REGION: per un modificatore d'azione, una Regione dove chi agisce ha presenza; per una porta, la Regione in cui si entra. ENTITY: chi agisce. RELATION: la coppia di cui si sta cambiando il livello."
+            },
+            "tag": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "ACTION_MODIFIER",
+            "COUNCIL_MODIFIER",
+            "GATE",
+            "RELATION_CAP"
+          ],
+          "description": "Il gancio del motore che la regola piega. ACTION_MODIFIER: il valore di un'azione (per ora INFLUENCE) cambia di `delta`. COUNCIL_MODIFIER: il World Factor dei Consigli sulla Tensione indicata cambia di `world_factor_delta`. GATE: il movimento verso la Regione col segno è sbarrato (BLOCK) o concesso anche senza adiacenza (ALLOW). RELATION_CAP: finché il segno c'è, il livello della relazione non sale sopra `max_level`."
+        },
+        "template": {
+          "type": "string",
+          "enum": [
+            "ACQUIRE",
+            "MOVE",
+            "INFLUENCE",
+            "FORGE",
+            "SCHEME",
+            "CLAIM"
+          ],
+          "description": "Solo per ACTION_MODIFIER: quale azione la regola piega."
+        },
+        "tension_id": {
+          "type": "string",
+          "pattern": "^TEN_[A-Z0-9_]+$",
+          "description": "Per ACTION_MODIFIER e COUNCIL_MODIFIER: la regola vale solo per questa Tensione. Assente, vale per tutte."
+        },
+        "delta": {
+          "type": "integer",
+          "minimum": -2,
+          "maximum": 2,
+          "description": "Solo per ACTION_MODIFIER: quanto si aggiunge alla grandezza dell'azione, nel suo verso."
+        },
+        "world_factor_delta": {
+          "type": "integer",
+          "minimum": -2,
+          "maximum": 2,
+          "description": "Solo per COUNCIL_MODIFIER."
+        },
+        "movement": {
+          "type": "string",
+          "enum": [
+            "BLOCK",
+            "ALLOW"
+          ],
+          "description": "Solo per GATE."
+        },
+        "max_level": {
+          "type": "string",
+          "enum": [
+            "ENEMY",
+            "HOSTILE",
+            "NEUTRAL",
+            "ALLY"
+          ],
+          "description": "Solo per RELATION_CAP: il tetto. BOUND non è un tetto: senza segno non serve una regola."
+        },
+        "chronicle_id": {
+          "type": "string",
+          "pattern": "^CHR_[A-Z0-9_]+$",
+          "description": "La regola vale solo nelle sessioni di questa Chronicle. Assente, vale ovunque il segno appaia."
+        },
+        "active": {
+          "type": "boolean",
+          "description": "Le regole si accendono una alla volta, misurate (ISSUES 24): una regola scritta ma spenta è un progetto, non una meccanica."
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

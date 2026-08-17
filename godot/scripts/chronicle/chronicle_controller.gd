@@ -13,6 +13,7 @@ extends RefCounted
 const Effect := preload("res://scripts/core/effect.gd")
 const ConfluenceResolution := preload("res://scripts/confluence/confluence_resolution.gd")
 const ConditionEvaluator := preload("res://scripts/world/condition_evaluator.gd")
+const EffectNarrator := preload("res://scripts/chronicle/effect_narrator.gd")
 
 signal phase_changed(act: int, round: int, phase: String)
 signal confluence_resolved(result: Dictionary)
@@ -458,12 +459,21 @@ func end_of_act(act: int, decider: Object) -> void:
 			for effect in session.compiler.compile(
 				str(hook["consequence_id"]), bindings, source
 			):
-				session.applier.apply(effect)
-				applied.append(effect)
+				var stored: Dictionary = session.applier.apply(effect)
+				if not stored.is_empty():
+					applied.append(stored)
 		else:
 			var effect: Dictionary = session.compiler.compile_spec(hook["effect"], bindings, source)
-			session.applier.apply(effect)
-			applied.append(effect)
+			var stored: Dictionary = session.applier.apply(effect)
+			if not stored.is_empty():
+				applied.append(stored)
+	# ISSUES 22 (Fase 1): the card's Effects were landing in silence — the
+	# Scoperta at seed 15308 unveiled a Tension and no line said so. Now what
+	# the card did to the world is spoken right under what the card says.
+	for effect in applied:
+		var said: String = EffectNarrator.narrate(effect, data)
+		if said != "":
+			log.bullet(said)
 	session.tensions.fire_omens(source)
 	act_echo_drawn.emit(card, applied)
 

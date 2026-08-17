@@ -17,6 +17,7 @@ var destinies: Dictionary = {}
 var confluence_templates: Dictionary = {}
 var chronicles: Dictionary = {}
 var sim_plans: Dictionary = {}
+var tag_rules: Dictionary = {}
 
 var errors: PackedStringArray = PackedStringArray()
 var data_version: String = ""
@@ -33,6 +34,7 @@ const _TARGETS: Dictionary = {
 	"confluence_template": "confluence_templates",
 	"chronicle": "chronicles",
 	"sim_plan": "sim_plans",
+	"tag_rule": "tag_rules",
 }
 
 

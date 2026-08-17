@@ -5,6 +5,78 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.66] — Il telaio dei denti
+
+Fase 2 della voce 24 ([D-104](docs/DECISIONS.md#d-104)): il posto dove i
+segni potranno mordere, costruito vuoto e misurato invariato.
+
+### Added
+
+- **Schema `tag_rule`**: un segno (su mondo, Regione, Entità o
+  relazione) legato a un gancio del motore — ACTION_MODIFIER (INFLUENCE
+  si allarga), COUNCIL_MODIFIER (il World Factor si piega), GATE (la
+  porta sbarrata o concessa), RELATION_CAP (il tetto alla relazione).
+  Con `chronicle_id` la regola resta a casa sua; `active` obbligatorio.
+- **I quattro ganci nel motore** (`tag_rules.gd` + resolver, Consiglio,
+  movimento, applier): con zero regole ogni gancio restituisce il suo
+  neutro; quando una regola morde su azione o Consiglio si firma a
+  verbale («Il segno pesa: …»).
+
+### Misurato
+
+231 test in 31 suite (8 nuovi: ogni gancio provato con una regola
+sintetica accesa e spenta), 4974 asserzioni; playtest standard
+invariato, 0/8 seggi bloccati al tavolo misto.
+
+---
+
+## [0.1.65] — La sonda dei segni, e la voce 24 a verbale
+
+«Ogni conseguenza, ogni cicatrice, ogni decisione potrebbe cambiare il
+meccanismo di gioco»: prima di dare denti, il censimento di quanti ne
+mancano.
+
+### Added
+
+- **`tools/tag_census.py`**: chi scrive un segno e chi lo legge. Primo
+  censimento: 79 segni scritti — 27 vivi per clausola, 5 vivi per motore
+  (`discovery:`), 2 con vita postuma (`legend:`), 27 ereditati fra le ere
+  ma senza dente in partita, **18 muti del tutto** (fra cui `renowned`,
+  `heir_named`, `grain_requisitioned`).
+- **ISSUES voce 24**: il telaio `tag_rules` — un dato dichiarativo che
+  lega un segno a un gancio del motore (modificatore d'azione in Regione,
+  modificatore al Consiglio, porta, relazione) — e le fasi per accendere
+  i denti d'autore uno alla volta, misurati.
+
+---
+
+## [0.1.64] — Il verbale impara a raccontare
+
+Fase 1 della voce 22 ([D-103](docs/DECISIONS.md#d-103)): le decisioni si
+devono vedere, a cominciare da quello che resta scritto.
+
+### Added
+
+- **Il narratore degli effetti** (`effect_narrator.gd`): una frase con i
+  nomi del tavolo per ogni effetto applicato — «Valle Verde passa sotto
+  il controllo di Re Aldric», «Il Risveglio non è più velata». Parla per
+  le Conseguenze di un Consiglio (ora aperte dal titolo, non dagli id),
+  per la clausola qualificata e per la carta Echo d'atto, prima muta.
+  Tace sui no-op, sulla contabilità di Propp e su ciò che ha già una voce
+  (Scar, Echo, Truth).
+
+### Changed
+
+- Gli `applied` della carta Echo d'atto sono gli Effect registrati, non i
+  compilati: il segnale `act_echo_drawn` porta l'effetto com'è nel log.
+
+### Misurato
+
+223 test in 30 suite (7 nuovi), 4955 asserzioni; playtest standard
+invariato, 0/8 seggi bloccati al tavolo misto.
+
+---
+
 ## [0.1.63] — Le vite del seggio hanno una forma
 
 Fase 1 della voce 19 ([D-102](docs/DECISIONS.md#d-102)): le incarnazioni.
