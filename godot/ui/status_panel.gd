@@ -15,12 +15,15 @@ const RELATIONS: Dictionary = {
 }
 
 const CardArt := preload("res://ui/card_art.gd")
+const SignLabels := preload("res://scripts/core/sign_labels.gd")
 
 var _rows: Dictionary = {}
 var _destiny: VBoxContainer
 var _casata_card: TextureRect
 var _destiny_card: TextureRect
 var _relations: VBoxContainer
+var _signs: VBoxContainer
+var _signs_header: Label
 var _title: Label
 
 
@@ -37,6 +40,7 @@ func render(session: RefCounted, viewer_id: String) -> void:
 			_rows[id] = _add_row(str(session.data.tensions[id]["title"]))
 		_update_row(_rows[id], session, id, viewer_id)
 	_update_relations(session, viewer_id)
+	_update_signs(session, viewer_id)
 	_update_destiny(session, viewer_id)
 
 
@@ -143,6 +147,50 @@ func _update_relations(session: RefCounted, viewer_id: String) -> void:
 		value.add_theme_font_size_override("font_size", 12)
 		value.add_theme_color_override("font_color", Color(str(RELATIONS.get(level, "#8a8172"))))
 		row.add_child(value)
+
+
+## I segni che questa casa porta con sé - la fama, le scoperte, la scorta
+## giurata, la porta sbarrata (ISSUES 22, D-107). Da quando i segni hanno un
+## dente (D-105), un giocatore che non vede i propri viene giudicato da regole
+## invisibili. Le parole vengono dal dizionario condiviso: le stesse dei
+## segnalini di cartone.
+func _update_signs(session: RefCounted, viewer_id: String) -> void:
+	if _signs == null:
+		add_child(_spacer())
+		_signs_header = Label.new()
+		_signs_header.text = "I SEGNI DELLA CASA"
+		_signs_header.add_theme_font_size_override("font_size", 12)
+		_signs_header.add_theme_color_override("font_color", Color("#8a8172"))
+		add_child(_signs_header)
+		_signs = VBoxContainer.new()
+		_signs.add_theme_constant_override("separation", 1)
+		add_child(_signs)
+
+	for child in _signs.get_children():
+		child.queue_free()
+		_signs.remove_child(child)
+	var holder: Variant = session.world["entities"].get(viewer_id)
+	if holder == null:
+		_signs_header.visible = false
+		_signs.visible = false
+		return
+	var tags: Array = (holder["tags"] as Array).duplicate()
+	tags.sort()
+	var shown: int = 0
+	for tag in tags:
+		var line := Label.new()
+		line.text = SignLabels.label(str(tag), session.data)
+		line.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		line.add_theme_font_size_override("font_size", 12)
+		line.add_theme_color_override(
+			"font_color",
+			Color("#c8553d") if str(tag).begins_with("evicted:") else Color("#c9bfae")
+		)
+		_signs.add_child(line)
+		shown += 1
+	# Senza segni la sezione sparisce: un'intestazione sopra il nulla è rumore.
+	_signs_header.visible = shown > 0
+	_signs.visible = shown > 0
 
 
 func _spacer() -> Control:

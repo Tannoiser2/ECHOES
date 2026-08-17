@@ -12,6 +12,7 @@ extends RefCounted
 
 const PrintSheet := preload("res://scripts/core/print_sheet.gd")
 const ArtPlaceholder := preload("res://scripts/core/art_placeholder.gd")
+const SignLabels := preload("res://scripts/core/sign_labels.gd")
 
 const PAGE_W: float = PrintSheet.PAGE_W
 const PAGE_H: float = PrintSheet.PAGE_H
@@ -119,6 +120,136 @@ static func track_board_svg() -> String:
 		2.8, "#666666", false))
 	out.append("</svg>")
 	return "\n".join(PackedStringArray(out)) + "\n"
+
+
+## La fustella dei segni delle Regioni (ISSUES 22, D-107): un segnalino
+## quadrato per ogni segno che il gioco può posare sulla mappa, con la stessa
+## parola italiana che l'app mostra. Le condizioni (curabili) in doppia copia
+## e col bordo tratteggiato; le strutture e le Cicatrici in copia singola, le
+## Cicatrici nel rosso dei segni permanenti. Quattro segnalini d'insediamento
+## portano l'angolo bianco per l'iniziale della casa, scritta a mano.
+static func region_signs_svg() -> String:
+	var out: Array = []
+	_open_page(out, "ECHOES · i segni delle Regioni · si posano sulla mappa, fustella 15 mm")
+	var y: float = MARGIN + 10.0
+
+	y = _sign_section(out, y, "Condizioni (2 copie: si tolgono quando la cura arriva)",
+		_words_with_prefix("condition:"), 2, "#8a8172", true)
+	y = _sign_section(out, y, "Strutture e insediamenti (restano finché qualcuno non li disfa)",
+		_words_with_prefix("structure:") + _words_with_prefix("settlement:"), 1, "#5a5244", false)
+	# L'insediamento di una casa: il segno porta l'angolo per l'iniziale.
+	out.append(_text(MARGIN, y, "Insediamento di una casa (scrivi l'iniziale nell'angolo)", 3.0, "#333333", true))
+	y += 6.0
+	for index in range(4):
+		var x: float = MARGIN + float(index) * STEP
+		out.append(_sign_square(x, y, "insediamento", "#5a5244", false))
+		out.append(
+			'<rect x="%.1f" y="%.1f" width="4.5" height="4.5" fill="none" stroke="#5a5244" stroke-width="0.3"/>'
+			% [x + 0.8, y + 0.8]
+		)
+	y += TOKEN_R * 2.0 + 9.0
+	y = _sign_section(out, y, "Cicatrici (una sola: la mappa non le dimentica)",
+		_words_with_prefix("scar:"), 1, "#c8553d", false)
+
+	out.append(_text(MARGIN, y + 2.0,
+		"Quando il verbale posa un segno, il segnalino va sulla Regione; quando la cura lo toglie, torna nella riserva.",
+		2.8, "#666666", false))
+	out.append("</svg>")
+	return "\n".join(PackedStringArray(out)) + "\n"
+
+
+## La fustella dei segni delle case: la fama, le scoperte, la scorta giurata -
+## si tengono accanto al tarocco della casata. La porta sbarrata (cacciata) e
+## il giuramento spezzato in più copie: possono toccare più case insieme.
+static func entity_signs_svg() -> String:
+	var out: Array = []
+	_open_page(out, "ECHOES · i segni delle case · accanto al tarocco della casata, fustella 15 mm")
+	var y: float = MARGIN + 10.0
+
+	var words: Array = []
+	for tag in SignLabels.ENTITY_WORDS:
+		words.append(str(SignLabels.ENTITY_WORDS[tag]))
+	words.sort()
+	y = _sign_section(out, y, "I segni di una casa (una copia)", words, 1, "#5a5244", false)
+	y = _sign_section(out, y, "La porta sbarrata (la cacciata dura fino a fine atto)",
+		["cacciata"], 4, "#c8553d", true)
+	y = _sign_section(out, y, "Il giuramento spezzato (sta fra le due case che si sono tradite)",
+		["giuramento spezzato"], 2, "#c8553d", false)
+
+	out.append("</svg>")
+	return "\n".join(PackedStringArray(out)) + "\n"
+
+
+static func _open_page(out: Array, caption: String) -> void:
+	out.append(
+		'<svg xmlns="http://www.w3.org/2000/svg" width="%dmm" height="%dmm" viewBox="0 0 %d %d">'
+		% [int(PAGE_W), int(PAGE_H), int(PAGE_W), int(PAGE_H)]
+	)
+	out.append('<rect width="%d" height="%d" fill="#ffffff"/>' % [int(PAGE_W), int(PAGE_H)])
+	out.append(_text(MARGIN, MARGIN - 5.0, caption, 3.0, "#999999", false))
+
+
+static func _words_with_prefix(prefix: String) -> Array:
+	var words: Array = []
+	var tags: Array = SignLabels.REGION_WORDS.keys()
+	tags.sort()
+	for tag in tags:
+		if str(tag).begins_with(prefix):
+			words.append(str(SignLabels.REGION_WORDS[tag]))
+	return words
+
+
+static func _sign_section(
+	out: Array, y: float, caption: String, words: Array, copies: int,
+	tint: String, dashed: bool
+) -> float:
+	out.append(_text(MARGIN, y, caption, 3.0, "#333333", true))
+	y += 6.0
+	var column: int = 0
+	var per_row: int = 8
+	for word in words:
+		for _copy in range(copies):
+			var x: float = MARGIN + float(column) * STEP
+			out.append(_sign_square(x, y, str(word), tint, dashed))
+			column += 1
+			if column >= per_row:
+				column = 0
+				y += TOKEN_R * 2.0 + 6.0
+	if column > 0:
+		y += TOKEN_R * 2.0 + 6.0
+	return y + 3.0
+
+
+## Un segnalino quadrato 15 mm con la parola dentro, spezzata su due righe se
+## serve: la stessa parola che l'app scrive sotto la Regione.
+static func _sign_square(x: float, y: float, word: String, tint: String, dashed: bool) -> String:
+	var side: float = TOKEN_R * 2.0
+	var dash: String = ' stroke-dasharray="1.6,1.1"' if dashed else ""
+	var parts: PackedStringArray = word.split(" ")
+	var lines: Array = []
+	var line: String = ""
+	for part in parts:
+		var joined: String = part if line == "" else line + " " + part
+		if joined.length() > 9 and line != "":
+			lines.append(line)
+			line = str(part)
+		else:
+			line = joined
+	if line != "":
+		lines.append(line)
+	var svg: String = (
+		'<rect x="%.1f" y="%.1f" width="%.1f" height="%.1f" rx="1.5" fill="%s" stroke="%s" stroke-width="0.45"%s/>'
+		% [x, y, side, side, PrintSheet.PAPER, tint, dash]
+	)
+	var line_h: float = 2.9
+	var top: float = y + side * 0.5 - line_h * float(lines.size() - 1) * 0.5 + 0.9
+	for index in range(lines.size()):
+		var text: String = str(lines[index])
+		svg += (
+			'<text x="%.1f" y="%.1f" font-family="Georgia, serif" font-size="2.5" fill="%s" text-anchor="middle">%s</text>'
+			% [x + side * 0.5, top + float(index) * line_h, PrintSheet.INK, text.xml_escape()]
+		)
+	return svg
 
 
 static func _token_full(x: float, y: float, letter: String) -> String:
