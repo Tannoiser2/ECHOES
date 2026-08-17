@@ -173,11 +173,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.bonds.blood_tie` — Legame di Sangue
 
-- **soggetto**: Legame di Sangue — Non è un accordo: e una cosa che c'era prima dell'accordo, e che nessuno ha firmato
+- **soggetto**: Legame di Sangue — Non è un accordo: e una cosa che c'era prima dell'accordo, e che nessuno ha firmato. Impegnata, scrive il vincolo di sangue sulla coppia: da lì in poi, quella relazione non scende sotto il neutrale
 - **id**: `AST_BONDS_BLOOD_TIE`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Legame di Sangue — Non è un accordo: e una cosa che c'era prima dell'accordo, e che nessuno ha firmato.
+Historical dark-fantasy painting, single evocative scene depicting Legame di Sangue — Non è un accordo: e una cosa che c'era prima dell'accordo, e che nessuno ha firmato. Impegnata, scrive il vincolo di sangue sulla coppia: da lì in poi, quella relazione non scende sotto il neutrale.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 porpora tenue accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.

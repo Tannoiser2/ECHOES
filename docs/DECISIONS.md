@@ -331,6 +331,47 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-117 — I denti veri: cinque regole d'autore, e la 48ª carta
+**implemented in 0.1.79** (ISSUES 25, chiusa)
+
+Il telaio di D-116 riceve i suoi denti — uno per tipo, tutti su segni che
+il gioco già produce, accesi uno alla volta sugli stessi 100 semi:
+
+- **I patti non si firmano a stomaco vuoto** (ACTION_GATE): chi ha
+  presenza in una Regione affamata non FORGE. La fame si cura prima.
+- **Il debito chiamato guasta il mercato** (DRAW_BIAS): con `debt_called`
+  al mondo (la porta del Banco Nero, posata dal Credito di D-114), chi
+  pesca WEALTH guarda due carte e prende la peggiore.
+- **La fame mangia le scorte** (HAND_LIMIT): presenza in Regione
+  affamata, limite di mano −1.
+- **Chi riapre i canali ha il grano** (GRANT_ON_SET): quando
+  `CNS_CANALS_DUG` posa `structure:canal`, il proponente riceve la
+  Riserva di Grano.
+- **Il sangue non si sceglie** (RELATION_FLOOR): il **Legame di Sangue**
+  impegnato scrive `BLOOD` sulla coppia — è il suo mestiere, quello che
+  D-113 aveva rimandato — e da lì la relazione non scende sotto NEUTRAL.
+  Con questo, **48 carte su 48 lavorano**.
+
+### Misurato (un dente alla volta, stessi 100 semi)
+
+| passo | esiti Consigli (tavolo misto) |
+|---|---|
+| base (0.1.78) | 208 · 79 · 132 · 174 |
+| + patti/fame | identico byte per byte |
+| + debito/mercato | 202 · 87 · 135 · 171 |
+| + fame/mano | esiti fermi (morde di rado: mani corte) |
+| + canale/grano | 200 · 89 · 136 · 171 |
+| + sangue/pavimento | 200 · 87 · 138 · 171 |
+
+Il divieto della fame non morde mai in queste 100: le sedie automatiche
+non firmano patti da una Regione affamata — come le cure di D-113, è una
+regola che aspetta la sua condizione, e al tavolo umano è un vincolo che
+si vede. Gli altri quattro mordono e spostano poco, in salute: **0/8 al
+tavolo misto a ogni passo**, nessun seggio crolla, ere in banda (mediana
+955 anni, 20.4 generazioni, 22 nomi), 255 test, 5370 asserzioni.
+
+---
+
 ## D-116 — I denti che aggiungono e tolgono: i cinque ganci nuovi
 **implemented in 0.1.78** (ISSUES 25, Fase 1)
 

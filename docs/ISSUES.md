@@ -567,9 +567,9 @@ Le fasi:
 o li dichiara memoria esplicitamente — e il playtest resta 0/8 seggi
 bloccati al tavolo misto.
 
-### 25. I denti che aggiungono e tolgono
+### 25. ✅ I denti che aggiungono e tolgono — fatta in 0.1.78/0.1.79
 
-`regole` · `da-misurare` · voluta dal committente
+`regole` · `da-misurare` · **chiusa** ([D-116](DECISIONS.md#d-116), [D-117](DECISIONS.md#d-117))
 
 «Fanne altre che cambiano le regole o servono veramente a qualcosa,
 aggiungendo o togliendo azioni, risorse, regole, asset o carte.» I quattro
@@ -594,11 +594,15 @@ i quattro tipi più il **RELATION_FLOOR** (il pavimento che il Legame di
 Sangue aspetta da D-113), ciascuno provato con regole sintetiche, playtest
 identico byte per byte con zero regole accese.
 
-**Fase 2 — i denti veri**: le regole d'autore scelte col committente,
-accese una alla volta e misurate (il rito di D-105).
+**Fase 2 ✅ — i denti veri** — fatta in 0.1.79 ([D-117](DECISIONS.md#d-117)):
+un dente per tipo su segni che il gioco già produce — i patti vietati dalla
+fame, il debito che guasta il mercato, la fame che stringe la mano, il
+canale che consegna il grano, e il **sangue col suo pavimento**: il Legame
+di Sangue ha il suo mestiere e le carte sono 48/48. Misura a passi, 0/8 a
+ogni passo.
 
 **Fatto quando** almeno un dente per tipo vive nei dati, misurato, e il
-playtest resta 0/8.
+playtest resta 0/8. ✓
 
 ### 26. Le carte con un mestiere
 
@@ -632,8 +636,8 @@ che ora esiste (effetti + tag_rules):
    famiglia delle cure — il Giuramento scioglie il tradimento, il Favore
    spegne la vendetta, l'Ospitalità riapre la porta sbarrata, la
    Promessa scrive un patto che le promesse giudicano, il Debito Vecchio
-   segna la sede del debitore. Il Legame di Sangue aspetta la voce 25:
-   il suo potere vero è un pavimento di relazione, non un numero.
+   segna la sede del debitore. Il Legame di Sangue aspettava la voce 25:
+   il suo pavimento di relazione è arrivato in 0.1.79 (D-117) — 48/48.
 4. ✅ **WEALTH / KNOWLEDGE / PEOPLE** — fatta in 0.1.76
    ([D-114](DECISIONS.md#d-114)): il grano compra e cura, il sapere svela
    e mente (la Voce vela, la Prova smentisce), la gente marcia. Il

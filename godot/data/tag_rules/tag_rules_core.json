@@ -179,6 +179,70 @@
       "world_factor_delta": 1,
       "active": true,
       "note": "Il potere della vita (D-109): quando la Lega delibera, sette citta' hanno gia' detto si' - World Factor +1 quando propone."
+    },
+    {
+      "id": "TGR_STARVING_NO_FORGE",
+      "title": "I patti non si firmano a stomaco vuoto",
+      "when": {
+        "scope": "REGION",
+        "tag": "condition:starving"
+      },
+      "kind": "ACTION_GATE",
+      "template": "FORGE",
+      "active": true,
+      "note": "Il primo divieto (D-117, ISSUES 25): chi ha presenza in una Regione affamata non stringe alleanze. La fame si cura prima - con la Riserva, con le Braccia, con un Consiglio - e poi si torna a firmare."
+    },
+    {
+      "id": "TGR_DEBT_SOURS_MARKET",
+      "title": "Il debito chiamato guasta il mercato",
+      "when": {
+        "scope": "GLOBAL",
+        "tag": "debt_called"
+      },
+      "kind": "DRAW_BIAS",
+      "family": "WEALTH",
+      "bias": "MALUS",
+      "active": true,
+      "note": "La pesca piegata (D-117): finche' il Banco ha chiamato il debito, chi pesca ricchezza guarda due carte e prende la peggiore. Il segno debt_called lo posa la carta Credito (D-114) ed e' la porta del Banco Nero."
+    },
+    {
+      "id": "TGR_STARVING_HAND",
+      "title": "La fame mangia le scorte",
+      "when": {
+        "scope": "REGION",
+        "tag": "condition:starving"
+      },
+      "kind": "HAND_LIMIT",
+      "hand_limit_delta": -1,
+      "active": true,
+      "note": "La mano stretta (D-117): chi ha presenza in una Regione affamata tiene una carta in meno. La fame non ferma solo i patti: consuma."
+    },
+    {
+      "id": "TGR_CANAL_GRAIN",
+      "title": "Chi riapre i canali ha il grano",
+      "when": {
+        "scope": "REGION",
+        "tag": "structure:canal"
+      },
+      "kind": "GRANT_ON_SET",
+      "grant": {
+        "asset_id": "AST_WEALTH_GRAIN",
+        "give_to": "ACTOR"
+      },
+      "active": true,
+      "note": "La carta consegnata (D-117): quando CNS_CANALS_DUG posa il canale, il proponente riceve la Riserva di Grano - l'acqua torna nei campi, e il primo raccolto e' di chi ha scavato."
+    },
+    {
+      "id": "TGR_BLOOD_FLOOR",
+      "title": "Il sangue non si sceglie",
+      "when": {
+        "scope": "RELATION",
+        "tag": "BLOOD"
+      },
+      "kind": "RELATION_FLOOR",
+      "min_level": "NEUTRAL",
+      "active": true,
+      "note": "Il pavimento (D-117): il segno BLOOD lo scrive il Legame di Sangue impegnato, e da li' in poi quella coppia non scende sotto NEUTRAL. Il tetto del giuramento spezzato (D-105) vince sul pavimento: la ferita pesa piu' del vincolo."
     }
   ]
 }
