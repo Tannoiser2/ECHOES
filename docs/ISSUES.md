@@ -416,6 +416,70 @@ strategico: un cartello, non un consigliere.
 **Fatto quando** la mossa di quella partita, rigiocata, mostra l'avviso, e una
 mossa qualsiasi che non tocca il Destino non lo mostra.
 
+### 22. Le decisioni si devono vedere: le Conseguenze sul tavolo e a verbale
+
+`app` · `motore` · voluta dal committente, nata dalla partita 15308
+
+«Non si capisce quali sono le conseguenze delle decisioni prese... è tutto
+quello scritto sembra non avere un vero impatto nel gioco.» Il censimento
+dice che l'impatto **c'è** ma è muto: nella partita vera
+`CNS_CROWN_DISPOSSESSED` ha tolto alla corona il controllo della Valle
+Verde (`SET_CONTROL`) e **nessuna riga l'ha detto**; la carta *Scoperta* ha
+svelato una Tensione (`SET_TENSION_VISIBILITY`) in silenzio; la Valle
+Verde — il cuore della domanda del grano — non è mai apparsa nella riga
+della mappa per due atti, perché contesa e senza controllore. Sui 145
+effetti delle Conseguenze, 84 sono tag (regione/entità/mondo) che le
+clausole leggono ma che **nessuna vista mostra**.
+
+Le fasi:
+
+1. **Il verbale racconta gli effetti**: dopo «H. Conseguenze:» non gli id
+   ma il titolo della Conseguenza e una riga parlata per ogni effetto
+   applicato («La Valle Verde non risponde più alla corona», «Aldric perde
+   la presenza nella Valle»). Ogni tipo di effetto ha la sua forma
+   parlata; vale anche per gli effetti della carta Echo d'atto, oggi muti.
+2. **La mappa non nasconde**: le regioni contese appaiono («Valle Verde —
+   contesa»), e un cambio di controllo si vede nel momento in cui accade.
+3. **I tag hanno un corpo**: i tag di regione come segnalini sulla mappa
+   (in GUI e nella fustella), i tag d'entità nel pannello del seggio, i
+   fatti del mondo in una striscia dedicata. Se un tag governa una
+   clausola, il giocatore deve poterlo vedere sul tavolo.
+4. **La sonda della visibilità**: contare per 100 semi gli effetti
+   applicati per tipo e verificare che ognuno abbia riga a verbale e
+   rappresentazione. Un effetto invisibile è un bug, non un'atmosfera.
+
+**Fatto quando** la partita 15308 rigiocata mostra il passaggio della
+Valle Verde nel momento in cui avviene, e la sonda conta zero effetti
+senza voce né corpo.
+
+### 23. Le carte di Propp in mano ai giocatori
+
+`regole` · `da-misurare` · voluta dal committente
+
+«Le carte di Propp hanno veramente un impatto minimo... dovrebbero essere
+molto importanti e non generate casualmente dal gioco ma giocate
+effettivamente dai giocatori.» Oggi la carta Echo d'atto si pesca da sola
+a fine atto e i suoi hook valgono un +1 a una Tensione e un tag: né peso
+né agentività. La visione: le funzioni drammatiche come **carte in mano**,
+scelte e calate dai giocatori nel momento giusto — l'ordine di Propp resta
+custodito dall'eleggibilità sui tag `function:` (D-030), che già esiste.
+
+Le fasi:
+
+1. **Il design insieme** (d'autore, prima di ogni riga): quante in mano,
+   quando si calano (a fine atto? in Consiglio?), cosa costa calarle, cosa
+   succede a chi non le cala, e come pescano le sedie automatiche.
+2. **Gli effetti che pesano**: hook che toccano il tavolo (presenza,
+   controllo, Consigli aperti), non solo +1 — da scrivere carta per carta.
+3. **Il motore**: la mano di carte Echo, l'azione di gioco, l'eleggibilità
+   che custodisce l'ordine, la policy per le sedie automatiche.
+4. **La misura**: stessa batteria di semi, una variante alla volta, prima e
+   dopo; il vincolo resta 0/8 seggi bloccati al tavolo misto.
+
+**Fatto quando** in una partita al tavolo misto ogni carta di Propp
+arrivata sul tavolo ce l'ha messa una mano, l'ordine delle funzioni regge,
+e i numeri prima/dopo sono a verbale.
+
 ## Milestone 0.3 — World Propagation
 
 ### 9. ✅ La Chronicle II generata dalle evidence (#25) — fatta in 0.1.44–0.1.46
