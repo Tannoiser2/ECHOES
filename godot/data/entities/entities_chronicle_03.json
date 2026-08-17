@@ -153,6 +153,23 @@
           "entry": "FOUNDING"
         },
         {
+          "id": "INC_SALE_BANK",
+          "name": "Il Banco Nero",
+          "description": "Quando il debito fu chiamato, chi teneva il registro tenne anche i debitori. Il Banco Nero non chiede obbedienza e non la nomina mai: la addebita.",
+          "persistence": "COLLECTIVE",
+          "action_values": {
+            "ACQUIRE": 4,
+            "MOVE": 2,
+            "INFLUENCE": 3,
+            "FORGE": 2,
+            "SCHEME": 4,
+            "CLAIM": 1
+          },
+          "art_prompt_key": "entity.sale_bank",
+          "entry": "ON_TAG",
+          "entry_tag": "debt_called"
+        },
+        {
           "id": "INC_SALE_02",
           "name": "La Compagnia del Sale",
           "description": "Morta l'ultima maestra senza allievi, i banchi si federarono. Nessuna mano sola tiene il registro: un sigillo solo, molte firme, e il credito non muore più con nessuno.",
@@ -317,6 +334,23 @@
             ]
           },
           "entry": "FOUNDING"
+        },
+        {
+          "id": "INC_VETRO_INQUISITION",
+          "name": "L'Inquisizione del Vetro",
+          "description": "Mostrata la Reliquia, la custodia smise di custodire e cominciò a interrogare. L'Inquisizione misura le persone come l'Ordine misurava le pietre, e archivia le differenze.",
+          "persistence": "COLLECTIVE",
+          "action_values": {
+            "ACQUIRE": 2,
+            "MOVE": 3,
+            "INFLUENCE": 3,
+            "FORGE": 2,
+            "SCHEME": 5,
+            "CLAIM": 2
+          },
+          "art_prompt_key": "entity.vetro_inquisition",
+          "entry": "ON_TAG",
+          "entry_tag": "relic_shown"
         },
         {
           "id": "INC_VETRO_02",
@@ -563,6 +597,23 @@
           },
           "art_prompt_key": "entity.libere",
           "entry": "FOUNDING"
+        },
+        {
+          "id": "INC_LIBERE_LEAGUE",
+          "name": "La Lega delle Sette",
+          "description": "La Carta firmata ha fatto delle sette città una cosa sola nei giorni dispari. La Lega delibera piano, ma quando una firma delle sette scende su un foglio, il foglio pesa.",
+          "persistence": "COLLECTIVE",
+          "action_values": {
+            "ACQUIRE": 3,
+            "MOVE": 2,
+            "INFLUENCE": 4,
+            "FORGE": 4,
+            "SCHEME": 1,
+            "CLAIM": 3
+          },
+          "art_prompt_key": "entity.libere_league",
+          "entry": "ON_TAG",
+          "entry_tag": "charter_written"
         }
       ]
     }

@@ -331,6 +331,37 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-110 — L'albero si riempie: sei vite dai rami
+**implemented in 0.1.72** (TRASFORMAZIONI.md, prima ondata)
+
+Le sei vite dell'albero che il vocabolario di oggi sa sostenere, ognuna
+con ingresso e potere:
+
+| vita | seggio | ingresso | potere (W +1 quando propone su…) |
+|---|---|---|---|
+| La Reggenza del Granaio | Aldric | `grain_requisitioned` a linea esaurita | la Carestia |
+| La Corona Restaurata | Aldric | `heir_named` dalla Repubblica — **il cerchio**: torna MORTAL con 4 re nuovi | la Successione |
+| Vaerax Ridestato | Vaerax | `crystal_exploited` (evento) | il Risveglio |
+| Il Banco Nero | Sale | `debt_called` a linea esaurita | il Debito |
+| L'Inquisizione del Vetro | Vetro | `relic_shown` a linea esaurita | la Reliquia |
+| La Lega delle Sette | Libere | `charter_written` (evento) | tutto ciò che propone |
+
+### La correzione del motore
+
+L'ingresso `ON_TAG` immediato (senza linea esaurita) ora vale **solo per
+chi non muore** (COLLECTIVE/ETERNAL): una dinastia non si interrompe a
+metà — per i MORTAL il segno sceglie la vita al momento giusto, quando
+la linea si esaurisce. Senza questo, un grano requisito avrebbe tagliato
+la dinastia di Aldric alla prima generazione.
+
+### Misurato
+
+Playtest standard identico, 0/8 al tavolo misto; guardia degli
+anni-biblioteca verde. Sonda delle ere: tavola I 20,2 generazioni e 22
+nomi distinti per saga (il cerchio repubblica→corona consuma anche i re
+restaurati), tavola III 16,0 e 18; anni in banda su entrambe (955 e
+1049). Suite 245 test in 33 suite, 5115 asserzioni.
+
 ## D-109 — Gli ingressi dell'albero: la storia sceglie la vita
 **implemented in 0.1.71** (voce 19, verso TRASFORMAZIONI.md)
 
