@@ -1201,6 +1201,17 @@
           "payload": {
             "tag": "condition:unrest"
           }
+        },
+        {
+          "type": "SET_RELATION",
+          "target": {
+            "kind": "relation",
+            "id": "$proponent|$rival"
+          },
+          "payload": {
+            "add_tag": "oath_broken"
+          },
+          "note": "Il tetto della voce 24 (D-105) legge questo segno: il giuramento spezzato resta scritto sulla coppia, non su tutto il mondo."
         }
       ]
     },

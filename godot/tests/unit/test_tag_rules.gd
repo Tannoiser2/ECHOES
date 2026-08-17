@@ -29,14 +29,17 @@ func _set_global(tag: String) -> void:
 	session.applier.apply(Effect.make("SET_GLOBAL_TAG", "world", "WORLD", {"tag": tag}, source))
 
 
-func test_without_rules_every_hook_is_neutral() -> void:
-	assert_eq(session.data.tag_rules.size(), 0, "il telaio parte vuoto: zero regole nei dati")
+func test_with_no_signs_on_the_board_every_hook_is_neutral() -> void:
+	# D-105: le cinque regole di casa viaggiano nei dati, ma i loro segni
+	# (granaio, fame, razzia, giuramento, fama) non esistono a inizio
+	# partita - quindi ogni gancio resta neutro finché il gioco non li posa.
+	assert_eq(session.data.tag_rules.size(), 5, "le cinque regole di D-105 sono nei dati")
 	var bonus: Dictionary = TagRules.action_bonus(
 		session.data, session.world, "ENT_ALDRIC", "INFLUENCE", "TEN_FAMINE"
 	)
 	assert_eq(int(bonus["delta"]), 0, "nessun bonus d'azione")
 	var factor: Dictionary = TagRules.council_world_factor(
-		session.data, session.world, "TEN_FAMINE"
+		session.data, session.world, "TEN_FAMINE", "ENT_ALDRIC"
 	)
 	assert_eq(int(factor["delta"]), 0, "nessun peso sul Consiglio")
 	assert_eq(
@@ -91,12 +94,12 @@ func test_action_modifier_respects_tension_filter() -> void:
 
 func test_region_scope_needs_presence_on_the_marked_region() -> void:
 	_rule("TGR_LOCALE", {
-		"when": {"scope": "REGION", "tag": "structure:granary"},
+		"when": {"scope": "REGION", "tag": "structure:prova"},
 		"template": "INFLUENCE", "delta": 1,
 	})
 	var source: Dictionary = Effect.source("test", "TEST", "", 1, 1, 0)
 	session.applier.apply(Effect.make(
-		"SET_REGION_TAG", "region", "REG_TERRE_NAHR", {"tag": "structure:granary"}, source
+		"SET_REGION_TAG", "region", "REG_TERRE_NAHR", {"tag": "structure:prova"}, source
 	))
 	var with_presence: Dictionary = TagRules.action_bonus(
 		session.data, session.world, "ENT_NAHR", "INFLUENCE", "TEN_FAMINE"

@@ -53,8 +53,12 @@ static func action_bonus(
 
 
 ## COUNCIL_MODIFIER: di quanto i segni pesano sul World Factor del Consiglio.
+## Al tavolo del Consiglio gli scope si leggono così: GLOBAL è il mondo,
+## ENTITY è il proponente (la fama precede chi propone), REGION è una Regione
+## qualsiasi che porti il segno (se da qualche parte si muore di fame, la fame
+## siede al tavolo).
 static func council_world_factor(
-	data, world: Dictionary, tension_id: String
+	data, world: Dictionary, tension_id: String, proponent_id: String
 ) -> Dictionary:
 	var delta: int = 0
 	var titles: Array = []
@@ -62,7 +66,13 @@ static func council_world_factor(
 		var wanted_tension: String = str(rule.get("tension_id", ""))
 		if wanted_tension != "" and wanted_tension != tension_id:
 			continue
-		if _sign_present(world, rule["when"], {}):
+		var when: Dictionary = rule["when"]
+		var present: bool = false
+		if str(when.get("scope", "")) == "REGION":
+			present = _any_region_has(world, str(when.get("tag", "")))
+		else:
+			present = _sign_present(world, when, {"entity_id": proponent_id})
+		if present:
 			delta += int(rule.get("world_factor_delta", 0))
 			titles.append(str(rule["title"]))
 	return {"delta": delta, "titles": titles}
@@ -135,3 +145,10 @@ static func _sign_present(world: Dictionary, when: Dictionary, context: Dictiona
 static func _region_has(world: Dictionary, region_id: String, tag: String) -> bool:
 	var region: Variant = world.get("regions", {}).get(region_id)
 	return region != null and (region["tags"] as Array).has(tag)
+
+
+static func _any_region_has(world: Dictionary, tag: String) -> bool:
+	for region_id in world.get("regions", {}):
+		if _region_has(world, str(region_id), tag):
+			return true
+	return false

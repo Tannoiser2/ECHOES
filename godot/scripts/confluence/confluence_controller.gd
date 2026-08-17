@@ -377,7 +377,9 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 	var factor: int = ConfluenceResolution.world_factor(die)
 	# ISSUES 24: i segni con un dente pesano sul mondo prima che sul tavolo.
 	# Il dado resta il dado; è il World Factor che un mondo segnato piega.
-	var bite: Dictionary = TagRules.council_world_factor(data, world, tension_id)
+	var bite: Dictionary = TagRules.council_world_factor(
+		data, world, tension_id, str(current["proponent"])
+	)
 	factor += int(bite["delta"])
 	current["die"] = die
 	current["world_factor"] = factor

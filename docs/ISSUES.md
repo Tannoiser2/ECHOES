@@ -522,16 +522,71 @@ Le fasi:
    RELATION_CAP), i quattro ganci nel motore, la firma a verbale quando
    una regola morde, zero regole nei dati — comportamento invariato
    misurato, ogni gancio provato con regole sintetiche.
-3. **I denti d'autore, uno alla volta**: le regole per i segni di prima
-   fila della Chronicle I (granary, starving, plundered, oath_broken,
-   renowned…), ognuna scritta insieme, accesa da sola e misurata sui 100
-   semi standard.
+3. ✅ **I primi cinque denti** — fatta in 0.1.67
+   ([D-105](DECISIONS.md#d-105)): granaio, fame, strada depredata,
+   giuramento spezzato (che ora firma la coppia), fama. Accesi uno alla
+   volta sui 100 semi standard, esiti a verbale, 0/8 a ogni passo; il
+   Consiglio ha imparato a leggere il proponente e le Regioni.
 4. **La cicatrice che morde**: ogni `scar:` con un effetto locale suo, e
    i 27 segni ereditati che diventano il ponte meccanico fra le ere.
 
 **Fatto quando** la sonda conta zero segni di prima fila senza lettore —
 o li dichiara memoria esplicitamente — e il playtest resta 0/8 seggi
 bloccati al tavolo misto.
+
+### 25. I denti che aggiungono e tolgono
+
+`regole` · `da-misurare` · voluta dal committente
+
+«Fanne altre che cambiano le regole o servono veramente a qualcosa,
+aggiungendo o togliendo azioni, risorse, regole, asset o carte.» I quattro
+ganci di D-104 piegano numeri e porte; questi aggiungono e tolgono
+davvero. Tipi nuovi di tag_rule, sempre dati d'autore:
+
+- **ACTION_GATE**: finché il segno c'è, un'azione è vietata o concessa —
+  in una Regione affamata non si FORGE, chi ha il registro pubblico non
+  può SCHEME di nascosto;
+- **DRAW_BIAS**: la pesca piegata — nel mercato spostato la famiglia
+  WEALTH pesca peggio, sotto la torre di guardia FORCE pesca meglio;
+- **HAND_LIMIT**: il limite di mano che si muove — l'assedio stringe le
+  mani di chi è dentro;
+- **GRANT_ON_SET**: il segno che consegna o toglie una carta — chi
+  costruisce il canale riceve i Diritti dell'Acqua.
+
+Ogni tipo: prima il gancio nel motore provato con regole sintetiche, poi
+le regole vere scelte col committente, accese una alla volta e misurate.
+
+**Fatto quando** almeno un dente per tipo vive nei dati, misurato, e il
+playtest resta 0/8.
+
+### 26. Le carte con un mestiere
+
+`contenuto` · `regole` · voluta dal committente, nata dalla domanda giusta
+
+«Le carte impegnate servono a qualcosa o sono solo punti? Cambia solo il
+nome ma l'effetto è solo numerico.» Il censimento dà ragione: **35 carte
+su 48 sono solo un numero con un nome** — forza, famiglia rilevante, e
+nient'altro; 7 hanno un costo (scaldano la questione); solo 6 fanno
+qualcosa di vero (spostano presenze, svelano). Il Giuramento non giura,
+il Magistrato non giudica, l'Assedio non assedia.
+
+Il piano: dare a ogni carta **un mestiere** — un effetto `on_commit` che
+faccia quello che il nome promette. Non 35 effetti inventati in un
+pomeriggio: famiglia per famiglia, col committente, usando il vocabolario
+che ora esiste (effetti + tag_rules):
+
+1. **FORCE**: le armi toccano la mappa — la Guardia di Confine sbarra
+   (GATE temporaneo), l'Assedio stringe, le Porte Bruciate già cacciano.
+2. **AUTHORITY**: i sigilli toccano le regole — l'Editto vieta,
+   l'Investitura nomina, il Magistrato riapre una domanda chiusa.
+3. **BONDS**: i legami toccano le relazioni — il Giuramento lega (e
+   spezzarlo firma la coppia, D-105), la Promessa di Nozze vincola.
+4. **WEALTH / KNOWLEDGE / PEOPLE**: il grano compra, il sapere svela, la
+   gente marcia.
+
+**Fatto quando** ogni carta ha un effetto che il suo nome spiega, ogni
+mazzetto è misurato sui 100 semi prima di restare, e al tavolo impegnare
+una carta è una scelta, non un conteggio.
 
 ## Milestone 0.3 — World Propagation
 
