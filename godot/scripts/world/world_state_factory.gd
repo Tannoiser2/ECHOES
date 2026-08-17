@@ -63,6 +63,9 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 			"name": str(definition["name"]),
 			"destiny_id": str(definition["destiny_id"]),
 			"generation": 0,
+			# La vita del seggio al tavolo (D-108): si parte dalla prima, e la
+			# successione la fa avanzare quando una linea si esaurisce.
+			"incarnation": 0,
 			"presence": [],
 			"hand": [],
 			"tags": (definition["tags"] as Array).duplicate(),

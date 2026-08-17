@@ -146,6 +146,7 @@ func inherit_from(previous: Dictionary, results: Dictionary = {}) -> void:
 	)
 
 	_handover = Succession.plan(previous, results, _chronicle_def, data, _years_passed)
+	var mutations: Array = []
 	for entity_id in _handover:
 		var seat: Variant = world["entities"].get(str(entity_id))
 		if seat == null:
@@ -156,15 +157,30 @@ func inherit_from(previous: Dictionary, results: Dictionary = {}) -> void:
 		# Le ere a mani vuote viaggiano col seggio: e' il contatore che fa
 		# stancare un erede della stessa ambizione (D-081).
 		seat["barren"] = int(_handover[entity_id].get("barren", 0))
+		# La vita corrente del seggio (D-108): quando la linea si esaurisce,
+		# l'incarnazione successiva prende il posto - e il verbale lo dice.
+		seat["incarnation"] = int(_handover[entity_id].get("incarnation", 0))
+		if bool(_handover[entity_id].get("transformed", false)):
+			var line: String = "La linea di %s si è esaurita: al suo posto siede %s." % [
+				str(_handover[entity_id]["transformed_from"]),
+				str(_handover[entity_id]["name"]),
+			]
+			var told: String = str(_handover[entity_id].get("note", ""))
+			if told != "":
+				line += " " + told
+			mutations.append(line)
 
 	# Il verbale si legge dopo la successione: i conti aperti portano i nomi
 	# dell'era prima (chi li ha lasciati), la mappa quelli dell'era nuova
 	# (chi la tiene adesso).
 	if not (world["opening_record"] as Array).is_empty() \
-			or not (world["map_record"] as Dictionary).is_empty():
+			or not (world["map_record"] as Dictionary).is_empty() \
+			or not mutations.is_empty():
 		log.section("IL VERBALE D'APERTURA - anno %d, %d anni dopo" % [
 			int(world["year"]), _years_passed
 		])
+		for line in mutations:
+			log.bullet(str(line))
 		for line in WorldStateFactory.opening_lines(world["opening_record"], data):
 			log.bullet(str(line))
 		var map_lines: Array = WorldStateFactory.map_lines(world["map_record"], data, world)

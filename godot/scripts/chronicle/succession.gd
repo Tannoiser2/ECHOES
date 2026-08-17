@@ -71,18 +71,29 @@ static func plan(
 			continue
 		var before: Dictionary = (previous.get("entities", {}) as Dictionary).get(id, {})
 		var generation: int = int(before.get("generation", 0))
-		var name: String = str(before.get("name", definition["name"]))
+		var incarnation: int = int(before.get("incarnation", 0))
+		var incarnations: Array = definition.get("incarnations", [])
+		# La vita corrente del seggio (D-108): la definizione con sopra i campi
+		# dell'incarnazione al tavolo. Con la sola prima incarnazione (o senza)
+		# e' la definizione di sempre.
+		var active: Dictionary = active_view(definition, incarnation)
+		var name: String = str(before.get("name", active["name"]))
 		var destiny_id: String = str(before.get("destiny_id", definition["destiny_id"]))
 		var changed: bool = false
 		var wants_new: bool = false
 		var weary: bool = false
+		var transformed: bool = false
+		var transformed_from: String = ""
 		var note: String = ""
 
 		# A person does not survive two centuries; a people and a thing under a
-		# mountain do. Which is which is authored, not guessed.
-		if str(definition.get("persistence", "MORTAL")) == "MORTAL" and years >= LIFETIME_YEARS:
-			var successors: Array = definition.get("successors", [])
-			if not successors.is_empty() or definition.has("name_grammar"):
+		# mountain do. Which is which is authored, not guessed - and it belongs
+		# to the *life*, not to the seat: a dynasty that became a republic stops
+		# dying (D-108).
+		if str(active.get("persistence", "MORTAL")) == "MORTAL" and years >= LIFETIME_YEARS:
+			var successors: Array = active.get("successors", [])
+			var has_next_life: bool = incarnation + 1 < incarnations.size()
+			if not successors.is_empty() or active.has("name_grammar") or has_next_life:
 				generation += 1
 				if generation <= successors.size():
 					# The first generations are written by hand, with a line each
@@ -90,8 +101,20 @@ static func plan(
 					var successor: Dictionary = successors[generation - 1]
 					name = str(successor["name"])
 					note = str(successor.get("description", ""))
+				elif has_next_life:
+					# La linea si esaurisce e il seggio cambia natura (D-108):
+					# la dinastia diventa repubblica, i saggi un culto. La
+					# generazione riparte: i successori nuovi sono della vita
+					# nuova.
+					transformed_from = str(active["name"])
+					incarnation += 1
+					active = active_view(definition, incarnation)
+					name = str(active["name"])
+					note = str(active.get("description", ""))
+					generation = 0
+					transformed = true
 				else:
-					name = compose_name(definition, generation - successors.size())
+					name = compose_name(active, generation - successors.size())
 					note = "%s generazione della casa" % _ordinal_word(generation + 1)
 				changed = true
 
@@ -135,13 +158,36 @@ static func plan(
 			"name": name,
 			"destiny_id": destiny_id,
 			"generation": generation,
+			"incarnation": incarnation,
 			"changed": changed,
 			"wants_new": wants_new,
 			"weary": weary,
+			"transformed": transformed,
+			"transformed_from": transformed_from,
 			"barren": barren,
 			"note": note,
 		}
 	return out
+
+
+## La definizione del seggio con sopra la vita corrente: i campi che
+## un'incarnazione dichiara (nome, natura, valori, arte, successori, grammatica
+## dei nomi) coprono quelli della definizione; il resto resta del seggio.
+static func active_view(definition: Dictionary, incarnation: int) -> Dictionary:
+	var incarnations: Array = definition.get("incarnations", [])
+	if incarnation <= 0 or incarnation >= incarnations.size():
+		return definition
+	var view: Dictionary = definition.duplicate()
+	var life: Dictionary = incarnations[incarnation]
+	for field in ["name", "description", "persistence", "action_values",
+			"art_prompt_key", "successors", "name_grammar"]:
+		if life.has(field):
+			view[field] = life[field]
+		elif field in ["successors", "name_grammar"]:
+			# La vita nuova non eredita gli eredi della vecchia: una linea
+			# esaurita resta esaurita.
+			view.erase(field)
+	return view
 
 
 ## A name for a generation nobody wrote down.

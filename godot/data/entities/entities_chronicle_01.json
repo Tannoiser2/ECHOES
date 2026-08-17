@@ -139,6 +139,22 @@
             ]
           },
           "entry": "FOUNDING"
+        },
+        {
+          "id": "INC_ALDRIC_02",
+          "name": "La Repubblica della Valle",
+          "description": "Quando l'ultimo nome della casa si spense senza eredi, i magistrati che contavano il grano contavano già tutto il resto. Non serve un re a una valle che sa contare: serve un registro, e il registro ha più firme.",
+          "persistence": "COLLECTIVE",
+          "action_values": {
+            "ACQUIRE": 3,
+            "MOVE": 2,
+            "INFLUENCE": 4,
+            "FORGE": 3,
+            "SCHEME": 2,
+            "CLAIM": 2
+          },
+          "art_prompt_key": "entity.aldric_republic",
+          "entry": "LINE_EXHAUSTED"
         }
       ]
     },
@@ -369,6 +385,22 @@
             ]
           },
           "entry": "FOUNDING"
+        },
+        {
+          "id": "INC_LYRA_02",
+          "name": "Il Culto della Misura",
+          "description": "Gli appunti divennero scritture, gli allievi custodi. Ciò che Lyra domandava, il Culto lo crede: la domanda si è fatta dogma, e il dogma porta il nome di lei come un sigillo che nessuno ha il permesso di aprire.",
+          "persistence": "COLLECTIVE",
+          "action_values": {
+            "ACQUIRE": 2,
+            "MOVE": 2,
+            "INFLUENCE": 4,
+            "FORGE": 2,
+            "SCHEME": 3,
+            "CLAIM": 3
+          },
+          "art_prompt_key": "entity.lyra_cult",
+          "entry": "LINE_EXHAUSTED"
         }
       ]
     },
