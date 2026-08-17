@@ -393,13 +393,16 @@ Le fasi:
    più trasformazioni, ognuna con poteri asimmetrici, altrimenti sono
    nomi che cambiano su una carta»), lo studio completo per le otto case
    è in [TRASFORMAZIONI.md](TRASFORMAZIONI.md): ~17 vite con ingresso
-   narrativo, potere asimmetrico e gancio tecnico dichiarati — il drago
-   che muore e diventa culto della sua memoria, il popolo che si siede e
-   diventa mortale, la stessa morte di Lyra con due nascite possibili.
-   Regola della casa: una vita senza dente non si scrive. Servono gli
-   ingressi `ON_TAG`/`ON_DEATH` con vite alternative, il segno automatico
-   `life:<id>` che le tag_rules già sanno leggere, e i tipi della voce 25
-   per i poteri più ambiziosi.
+   narrativo, potere asimmetrico e gancio tecnico dichiarati. Regola
+   della casa: una vita senza dente non si scrive. **Gli ingressi sono
+   fatti in 0.1.71** ([D-109](DECISIONS.md#d-109)): `ON_TAG` (la storia
+   sceglie), `ON_DEATH` (il seggio sopravvive alla creatura), vite
+   alternative in ordine d'autore, e il segno `life:<id>` che dà i poteri
+   per vita via tag_rules — con tre vite di dimostrazione in gioco
+   (l'Accademia delle Misure, il Regno di Nahr che torna mortale, il
+   Culto della Montagna in attesa che qualcuno impari a uccidere un
+   drago). Restano da scrivere e misurare le altre vite dell'albero, i
+   tipi della voce 25 per i poteri più ambiziosi, e i tarocchi per vita.
 
 **Fatto quando** una saga attraversa almeno un cambio d'incarnazione, con
 carta e prompt propri e il passaggio nel verbale, e le sonde d'era restano in

@@ -222,9 +222,16 @@
                 "type": "string",
                 "enum": [
                   "FOUNDING",
-                  "LINE_EXHAUSTED"
+                  "LINE_EXHAUSTED",
+                  "ON_TAG",
+                  "ON_DEATH"
                 ],
-                "description": "Quando questa incarnazione entra in gioco. FOUNDING: siede al tavolo dalla prima cronaca, e può essercene una sola. LINE_EXHAUSTED: entra quando la lista dei successori dell'incarnazione precedente finisce."
+                "description": "Quando questa incarnazione entra in gioco. FOUNDING: siede al tavolo dalla prima cronaca, e può essercene una sola. LINE_EXHAUSTED: entra quando la lista dei successori dell'incarnazione precedente finisce. ON_TAG: entra alla successione se il segno `entry_tag` sta sul mondo, sulla casa o su una Regione - è la storia giocata a scegliere la vita. ON_DEATH: entra quando il seggio è morto (active=false): il seggio sopravvive alla creatura. Fra più candidate vince la prima, in ordine d'autore, il cui ingresso è vero (D-109)."
+              },
+              "entry_tag": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Solo per ON_TAG: il segno che apre questa vita."
               }
             }
           }

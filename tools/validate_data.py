@@ -108,6 +108,12 @@ def check_references(
             for later in incarnations[1:]:
                 if later.get("entry") == "FOUNDING":
                     report.fail(where, "only the first incarnation can be FOUNDING")
+                if later.get("entry") == "ON_TAG" and "entry_tag" not in later:
+                    report.fail(
+                        where,
+                        f"incarnation '{later.get('id')}' has entry ON_TAG "
+                        "without entry_tag",
+                    )
             for field in ("name", "description", "persistence", "action_values",
                           "art_prompt_key", "successors", "name_grammar"):
                 if first.get(field) != entity.get(field):

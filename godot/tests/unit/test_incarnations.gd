@@ -5,6 +5,7 @@ extends "res://tests/test_case.gd"
 ## il verbale racconta il passaggio.
 
 const Succession := preload("res://scripts/chronicle/succession.gd")
+const TagRules := preload("res://scripts/world/tag_rules.gd")
 
 const LONG_JUMP: int = 60
 
@@ -13,9 +14,12 @@ func before_each() -> void:
 	new_session()
 
 
-func _plan_for(entity_id: String, before_state: Dictionary) -> Dictionary:
+func _plan_for(
+	entity_id: String, before_state: Dictionary, world_extra: Dictionary = {}
+) -> Dictionary:
 	var chronicle: Dictionary = {"entities": [entity_id]}
 	var previous: Dictionary = {"entities": {entity_id: before_state}}
+	previous.merge(world_extra)
 	return Succession.plan(previous, {}, chronicle, session.data, LONG_JUMP)[entity_id]
 
 
@@ -57,10 +61,79 @@ func test_every_mortal_seat_has_a_second_life() -> void:
 			incarnations.size() >= 2,
 			"%s ha una seconda vita scritta (D-108)" % entity_id
 		)
-		var second: Dictionary = incarnations[1]
-		assert_eq(str(second["entry"]), "LINE_EXHAUSTED", "la vita nuova entra a linea esaurita")
-		assert_true(str(second["name"]) != str(definition["name"]), "la vita nuova ha un altro nome")
+		var last: Dictionary = incarnations[incarnations.size() - 1]
+		var fallback: bool = false
+		for life in incarnations:
+			if str(life.get("entry", "")) == "LINE_EXHAUSTED":
+				fallback = true
+		assert_true(
+			fallback or str(last.get("entry", "")) == "ON_TAG",
+			"il seggio mortale ha almeno una vita di ripiego o condizionata"
+		)
+		assert_true(str(last["name"]) != str(definition["name"]), "la vita nuova ha un altro nome")
 	assert_eq(mortals, 5, "cinque seggi mortali fra le due Cronache")
+
+
+func test_the_played_story_chooses_which_life_is_born() -> void:
+	# D-109: la stessa morte, due nascite. Con la legge scritta sul mondo
+	# nasce l'Accademia; senza, il Culto della Misura.
+	var with_law: Dictionary = _plan_for(
+		"ENT_LYRA", {"name": "Sela di Eredan", "generation": 4},
+		{"global_tags": ["succession_by_law"]}
+	)
+	assert_eq(str(with_law["name"]), "L'Accademia delle Misure", "la legge scritta fa l'università")
+	assert_eq(str(with_law["entry_kind"]), "ON_TAG", "l'ingresso è la storia giocata")
+	var without: Dictionary = _plan_for("ENT_LYRA", {"name": "Sela di Eredan", "generation": 4})
+	assert_eq(str(without["name"]), "Il Culto della Misura", "senza legge nasce la chiesa")
+
+
+func test_a_people_that_settles_becomes_mortal() -> void:
+	# D-109: il segno sceglie la vita senza aspettare una linea esaurita -
+	# e trasformarsi può costare: il Regno guadagna eredi da consumare.
+	var settled: Dictionary = _plan_for(
+		"ENT_NAHR", {"name": "Popolo Nahr", "generation": 0},
+		{"global_tags": ["nahr_settled"]}
+	)
+	assert_true(bool(settled["transformed"]), "il popolo insediato si trasforma")
+	assert_eq(str(settled["name"]), "Il Regno di Nahr", "il popolo seduto è un regno")
+	var kingdom_view: Dictionary = Succession.active_view(
+		session.data.entities["ENT_NAHR"], int(settled["incarnation"])
+	)
+	assert_eq(str(kingdom_view["persistence"]), "MORTAL", "un regno ha re, e i re muoiono")
+	var next_jump: Dictionary = _plan_for(
+		"ENT_NAHR",
+		{"name": "Il Regno di Nahr", "generation": 0,
+			"incarnation": int(settled["incarnation"])}
+	)
+	assert_eq(str(next_jump["name"]), "Re Dhalan", "al salto dopo siede il primo re")
+
+
+func test_a_dead_seat_rises_in_its_on_death_life() -> void:
+	# D-109: il seggio sopravvive alla creatura. Vaerax morto, il Culto siede.
+	var risen: Dictionary = _plan_for(
+		"ENT_VAERAX", {"name": "Vaerax", "generation": 0, "active": false}
+	)
+	assert_true(bool(risen["transformed"]), "la morte apre la vita ON_DEATH")
+	assert_true(bool(risen["revived"]), "il seggio torna al tavolo")
+	assert_eq(str(risen["name"]), "Il Culto della Montagna", "la memoria si organizza")
+	# E finché nessuno lo uccide, il drago dorme come sempre.
+	var asleep: Dictionary = _plan_for("ENT_VAERAX", {"name": "Vaerax", "generation": 0})
+	assert_false(bool(asleep["transformed"]), "senza morte niente culto")
+
+
+func test_the_life_sign_powers_the_life() -> void:
+	# D-109: la vita porta il segno life: e le tag_rules lo leggono - il
+	# potere è della vita, non del seggio.
+	var seat: Dictionary = session.world["entities"]["ENT_LYRA"]
+	(seat["tags"] as Array).append("life:INC_LYRA_ACADEMY")
+	var factor: Dictionary = TagRules.council_world_factor(
+		session.data, session.world, "TEN_FAMINE", "ENT_LYRA"
+	)
+	assert_eq(int(factor["delta"]), 1, "l'Accademia fa testo quando propone")
+	var other: Dictionary = TagRules.council_world_factor(
+		session.data, session.world, "TEN_FAMINE", "ENT_ALDRIC"
+	)
+	assert_eq(int(other["delta"]), 0, "il potere non è di chi non vive quella vita")
 
 
 func test_the_active_view_swaps_the_authored_fields() -> void:

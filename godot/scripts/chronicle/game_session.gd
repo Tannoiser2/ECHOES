@@ -160,8 +160,28 @@ func inherit_from(previous: Dictionary, results: Dictionary = {}) -> void:
 		# La vita corrente del seggio (D-108): quando la linea si esaurisce,
 		# l'incarnazione successiva prende il posto - e il verbale lo dice.
 		seat["incarnation"] = int(_handover[entity_id].get("incarnation", 0))
+		# D-109: il seggio morto rivive nella vita ON_DEATH, e ogni vita oltre
+		# la prima porta il suo segno `life:` - e' il gancio che le tag_rules
+		# leggono per i poteri per vita.
+		if bool(_handover[entity_id].get("revived", false)):
+			seat["active"] = true
+		var life_index: int = int(seat["incarnation"])
+		if life_index > 0:
+			var lives: Array = data.entities[str(entity_id)].get("incarnations", [])
+			if life_index < lives.size():
+				var life_tag: String = "life:%s" % str(lives[life_index]["id"])
+				if not (seat["tags"] as Array).has(life_tag):
+					seat["tags"].append(life_tag)
 		if bool(_handover[entity_id].get("transformed", false)):
-			var line: String = "La linea di %s si è esaurita: al suo posto siede %s." % [
+			var opening: String = ""
+			match str(_handover[entity_id].get("entry_kind", "")):
+				"ON_DEATH":
+					opening = "%s non c'è più, ma il seggio non muore: al suo posto siede %s."
+				"ON_TAG":
+					opening = "I segni hanno scelto: al posto di %s siede %s."
+				_:
+					opening = "La linea di %s si è esaurita: al suo posto siede %s."
+			var line: String = opening % [
 				str(_handover[entity_id]["transformed_from"]),
 				str(_handover[entity_id]["name"]),
 			]
