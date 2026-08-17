@@ -73,7 +73,8 @@
       ],
       "destiny_pool": [
         "DST_SALE",
-        "DST_SALE_OPEN"
+        "DST_SALE_OPEN",
+        "DST_SHARED_ACCOUNTS"
       ],
       "name_grammar": {
         "pattern": "{title} {given}{ordinal}",
@@ -256,7 +257,8 @@
       ],
       "destiny_pool": [
         "DST_VETRO",
-        "DST_VETRO_SHOWN"
+        "DST_VETRO_SHOWN",
+        "DST_SHARED_RENOWN"
       ],
       "name_grammar": {
         "pattern": "{title} {given}{ordinal}",
@@ -439,7 +441,8 @@
       ],
       "destiny_pool": [
         "DST_CENERE",
-        "DST_CENERE_DEEP"
+        "DST_CENERE_DEEP",
+        "DST_SHARED_LAND"
       ],
       "name_grammar": {
         "pattern": "{given} dei Fuochi{ordinal}",
@@ -579,7 +582,8 @@
       "persistence": "COLLECTIVE",
       "destiny_pool": [
         "DST_LIBERE",
-        "DST_LIBERE_WATER"
+        "DST_LIBERE_WATER",
+        "DST_SHARED_RENOWN"
       ],
       "incarnations": [
         {

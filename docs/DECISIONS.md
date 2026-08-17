@@ -331,6 +331,57 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-115 — Il Destino condivisibile: «$self» e i pool a tre
+**implemented in 0.1.77** (ISSUES 20, chiusa)
+
+Due ambizioni per casa erano il minimo vitale: su ~14 rotazioni a saga il
+giro tornava. La terza carta di ogni pool è **condivisibile**: scrive
+`$self` al posto della casa, e le clausole si risolvono su **chi la
+giura** — la stessa carta, un'ambizione per ciascuno. Il motore doveva
+solo imparare `$self`: `evaluate(destiny_id, holder)` lo sostituisce e
+passa `{"self": holder}` al risolutore delle condizioni (lo stesso
+meccanismo di `$proponent`, D-028); pianificatore, negoziato e pannello
+passano il contesto del proprio seggio; la carta stampata dice «per chi
+lo giura» e il brief d'arte non le dà l'accento di nessuna casa.
+
+Tre carte, assegnate per carattere (pool 2→3 per tutte e otto le case):
+
+- **Il Nome che Pesa** (Aldric, Vetro, Libere — chi vive di parola):
+  la fama, poi una Regione, poi due e nessuna proposta caduta;
+- **La Terra che Risponde** (Nahr, Vaerax, Cenere — chi vive di posti):
+  una, due, tre Regioni controllate;
+- **I Conti Chiusi** (Lyra, Ilve — chi vive di registri): il proprio
+  registro pulito, poi la fama e nessuna domanda aperta, poi nessun
+  giuramento spezzato nel mondo che lasci.
+
+`promise_kept` è rimasto fuori apposta: vuole un `other_entity_id`
+fisso, e una carta condivisa non sa in anticipo con chi.
+
+### Misurato (sonda dei Destini, 100 semi da 7000, per tavola)
+
+La prima forma dei Conti Chiusi è stata **respinta coi numeri**: tre
+clausole tutte di assenze, vere al primo round — scala intera già chiusa
+**100/100 al round 1.0**, il difetto di D-051 (vincere stando seduti).
+Riscritta con la fama nella Vittoria (un segno che si conquista al
+tavolo: 33–58/100 in CHR_01, 61–100/100 in CHR_03):
+
+| scala condivisa | chiusa in anticipo (round medio) |
+|---|---|
+| Nome che Pesa | Aldric 18/100 (8.2) · Vetro 0/100 · Libere 3/100 (8.3) |
+| Terra che Risponde | Nahr 0/100 · Vaerax 0/100 · Cenere 0/100 |
+| Conti Chiusi | Lyra 18/100 (7.3) · Ilve 47/100 (6.3) |
+
+In famiglia con le identitarie (Lyra 69/100, Vaerax 18/100, NAHR 2/100);
+la vetta della Terra (tre Regioni) non si è mai chiusa in 100 partite —
+è la vetta, e i gradini sotto vivono. Playtest **identico alla base**
+(208·79·132·174) con **0/8 al tavolo misto** — dentro una Chronicle non
+cambia nulla finché la rotazione non posa la carta; ere in banda
+(mediana 955 anni, 19.8 generazioni, 22 nomi); 248 test, 5352 asserzioni.
+La sonda dei Destini ora misura anche le scale condivise, per ogni seggio
+che le porta nel pool.
+
+---
+
 ## D-114 — Le carte con un mestiere, ultimi mazzetti: WEALTH, KNOWLEDGE, PEOPLE
 **implemented in 0.1.76** (ISSUES 26, chiusa)
 

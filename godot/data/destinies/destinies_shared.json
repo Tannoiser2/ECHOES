@@ -1,0 +1,142 @@
+{
+  "schema_id": "destiny",
+  "version": "0.2.0",
+  "items": [
+    {
+      "id": "DST_SHARED_RENOWN",
+      "entity_id": "$self",
+      "title": "Il Nome che Pesa",
+      "description": "Non importa da dove vieni: importa che quando parli, il tavolo ascolta. La stessa ambizione per chiunque la giuri - la fama, e un posto da cui difenderla.",
+      "minimum": {
+        "label": "Il nome è conosciuto",
+        "conditions": [
+          {
+            "type": "state_tag_present",
+            "scope": "ENTITY",
+            "entity_id": "$self",
+            "tag": "renowned",
+            "label": "La casa porta il segno della fama"
+          }
+        ]
+      },
+      "victory": {
+        "label": "Il nome ha una casa",
+        "conditions": [
+          {
+            "type": "control_count",
+            "entity_id": "$self",
+            "min": 1,
+            "label": "Almeno una Regione controllata"
+          }
+        ]
+      },
+      "triumph": {
+        "label": "Un nome che nessuno ha visto fallire",
+        "conditions": [
+          {
+            "type": "control_count",
+            "entity_id": "$self",
+            "min": 2,
+            "label": "Controllo di almeno 2 Regioni"
+          },
+          {
+            "type": "state_tag_absent",
+            "scope": "ENTITY",
+            "entity_id": "$self",
+            "tag": "failed_proposal",
+            "label": "Nessuna proposta caduta a verbale"
+          }
+        ]
+      },
+      "art_prompt_key": "destiny.shared.renown"
+    },
+    {
+      "id": "DST_SHARED_LAND",
+      "entity_id": "$self",
+      "title": "La Terra che Risponde",
+      "description": "Chiunque tu sia, la domanda è la stessa: quanta terra risponde quando chiami? Un'ambizione semplice e spietata - contare le Regioni, e contarle tue.",
+      "minimum": {
+        "label": "Un posto che risponde",
+        "conditions": [
+          {
+            "type": "control_count",
+            "entity_id": "$self",
+            "min": 1,
+            "label": "Almeno una Regione controllata"
+          }
+        ]
+      },
+      "victory": {
+        "label": "Due terre, una voce",
+        "conditions": [
+          {
+            "type": "control_count",
+            "entity_id": "$self",
+            "min": 2,
+            "label": "Controllo di almeno 2 Regioni"
+          }
+        ]
+      },
+      "triumph": {
+        "label": "La mappa parla la tua lingua",
+        "conditions": [
+          {
+            "type": "control_count",
+            "entity_id": "$self",
+            "min": 3,
+            "label": "Controllo di almeno 3 Regioni"
+          }
+        ]
+      },
+      "art_prompt_key": "destiny.shared.land"
+    },
+    {
+      "id": "DST_SHARED_ACCOUNTS",
+      "entity_id": "$self",
+      "title": "I Conti Chiusi",
+      "description": "Vincere non è prendere: è una firma che vale, e finire la cronaca senza debiti a verbale. Nessuna proposta caduta, nessuna domanda lasciata aperta, nessun giuramento spezzato nel mondo che lasci.",
+      "minimum": {
+        "label": "Il proprio registro è pulito",
+        "conditions": [
+          {
+            "type": "state_tag_absent",
+            "scope": "ENTITY",
+            "entity_id": "$self",
+            "tag": "failed_proposal",
+            "label": "Nessuna proposta caduta a verbale"
+          }
+        ]
+      },
+      "victory": {
+        "label": "Una firma che vale, e nessuna domanda aperta",
+        "conditions": [
+          {
+            "type": "state_tag_present",
+            "scope": "ENTITY",
+            "entity_id": "$self",
+            "tag": "renowned",
+            "label": "La casa porta il segno della fama"
+          },
+          {
+            "type": "state_tag_absent",
+            "scope": "GLOBAL",
+            "tag": "question_unresolved",
+            "label": "Nessuna questione lasciata aperta"
+          }
+        ]
+      },
+      "triumph": {
+        "label": "Un mondo che non deve niente a nessuno",
+        "conditions": [
+          {
+            "type": "state_tag_absent",
+            "scope": "GLOBAL",
+            "tag": "oath_broken",
+            "label": "Nessun giuramento spezzato è rimasto scritto"
+          }
+        ]
+      },
+      "art_prompt_key": "destiny.shared.accounts"
+    }
+  ]
+}

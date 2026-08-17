@@ -209,5 +209,9 @@ func _accent_key(face: Dictionary, data: RefCounted) -> String:
 			# L'archetipo di chi la desidera: il Destino di una casa porta il
 			# colore della casa, cosi' le due carte del pool - l'ambizione di
 			# partenza e quella dopo - sono due quadri della stessa parete.
-			return str(data.entities[str(data.destinies[id]["entity_id"])]["archetype"])
+			# Il Destino condivisibile (D-115) non ha una casa: nessun accento.
+			var owner: String = str(data.destinies[id]["entity_id"])
+			if owner == "$self":
+				return ""
+			return str(data.entities[owner]["archetype"])
 	return ""

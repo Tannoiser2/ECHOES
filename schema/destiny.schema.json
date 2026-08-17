@@ -139,7 +139,8 @@
         },
         "entity_id": {
           "type": "string",
-          "pattern": "^ENT_[A-Z0-9_]+$"
+          "pattern": "^(ENT_[A-Z0-9_]+|\\$self)$",
+          "description": "Il seggio a cui questo Destino appartiene - o \"$self\" per un Destino condivisibile (voce 20, D-115): la stessa carta in più pool, le clausole risolte su chi la giura."
         },
         "title": {
           "type": "string",

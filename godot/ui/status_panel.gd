@@ -248,7 +248,7 @@ func _update_destiny(session: RefCounted, viewer_id: String) -> void:
 		"destiny", session.service.destiny_of(viewer_id), session.data
 	)
 	for level in ["minimum", "victory", "triumph"]:
-		var holds: bool = session.destinies.conditions.all_hold(destiny[level]["conditions"], {})
+		var holds: bool = session.destinies.conditions.all_hold(destiny[level]["conditions"], {"self": viewer_id})
 		var line := Label.new()
 		# ASCII on purpose: the fallback font a Web export ships has no check mark,
 		# and a missing glyph renders as a tofu box - which reads as a bug in the

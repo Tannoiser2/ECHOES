@@ -174,6 +174,38 @@ func test_discovery_count_drives_lyra() -> void:
 	)
 
 
+## Voce 20 (D-115): il Destino condivisibile scrive "$self" al posto della casa,
+## e le clausole si risolvono su chi lo giura. La stessa carta, giurata da due
+## seggi diversi, legge due mondi diversi.
+func test_shared_destiny_resolves_on_the_holder() -> void:
+	var result: Dictionary = session.destinies.evaluate("DST_SHARED_RENOWN", "ENT_ALDRIC")
+	assert_eq(str(result["entity_id"]), "ENT_ALDRIC", "la carta appartiene a chi la giura")
+	assert_false(bool(result["levels"]["MINIMUM"]), "senza fama il Minimo non c'e'")
+
+	_apply("SET_ENTITY_TAG", "entity", "ENT_ALDRIC", {"tag": "renowned"})
+	result = session.destinies.evaluate("DST_SHARED_RENOWN", "ENT_ALDRIC")
+	assert_true(bool(result["levels"]["MINIMUM"]), "la fama di Aldric apre il suo Minimo")
+	# La stessa carta in mano ai Nahr non legge Aldric: legge i Nahr.
+	var other: Dictionary = session.destinies.evaluate("DST_SHARED_RENOWN", "ENT_NAHR")
+	assert_eq(str(other["entity_id"]), "ENT_NAHR", "il risultato porta il nome del giurante")
+	assert_false(bool(other["levels"]["MINIMUM"]), "la fama di Aldric non e' fama dei Nahr")
+	_apply("REMOVE_ENTITY_TAG", "entity", "ENT_ALDRIC", {"tag": "renowned"})
+
+
+## E quando la rotazione del pool (D-045/D-081) posa una carta condivisa su un
+## seggio, evaluate_all la valuta sul seggio che la porta - non su nessuno.
+func test_evaluate_all_reads_shared_destiny_on_the_seat() -> void:
+	session.world["entities"]["ENT_ALDRIC"]["destiny_id"] = "DST_SHARED_LAND"
+	var results: Dictionary = session.destinies.evaluate_all()
+	var result: Dictionary = results["ENT_ALDRIC"]
+	assert_eq(str(result["destiny_id"]), "DST_SHARED_LAND", "il seggio giura la carta del pool")
+	assert_eq(str(result["entity_id"]), "ENT_ALDRIC", "e la carta si risolve sul seggio")
+	# Aldric apre la Chronicle con una Regione controllata: il Minimo della
+	# Terra che Risponde e' suo dalla prima mano, i gradini sopra no.
+	assert_true(bool(result["levels"]["MINIMUM"]), "una Regione controllata: il Minimo tiene")
+	assert_false(bool(result["levels"]["TRIUMPH"]), "tre Regioni non le ha nessuno in apertura")
+
+
 ## Every seated Entity gets its own result; there is no shared score (§14).
 func test_evaluate_all_covers_every_seat() -> void:
 	var results: Dictionary = session.destinies.evaluate_all()

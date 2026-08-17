@@ -239,7 +239,12 @@ static func _destiny(destiny: Dictionary, data: RefCounted) -> Dictionary:
 	var face: Dictionary = _face("destiny", str(destiny["id"]), "TAROT")
 	face["title"] = str(destiny["title"])
 	var owner_id: String = str(destiny["entity_id"])
-	face["subtitle"] = str(data.entities[owner_id]["name"]) if data.entities.has(owner_id) else owner_id
+	if owner_id == "$self":
+		# Il Destino condivisibile (D-115) non ha una casa in calce: la carta
+		# dice a chi appartiene nel momento in cui qualcuno lo giura.
+		face["subtitle"] = "per chi lo giura"
+	else:
+		face["subtitle"] = str(data.entities[owner_id]["name"]) if data.entities.has(owner_id) else owner_id
 	face["body"] = [str(destiny.get("description", ""))]
 	# La scala per intero, clausola per clausola: e' la carta che un giocatore
 	# guarda piu' di ogni altra, e la guarda per contare quanto gli manca.

@@ -67,7 +67,7 @@ func _open_levels(entity_id: String, session: RefCounted) -> Array:
 	var out: Array = []
 	for level in ["minimum", "victory", "triumph"]:
 		var conditions: Array = destiny[level]["conditions"]
-		if not session.destinies.conditions.all_hold(conditions, {}):
+		if not session.destinies.conditions.all_hold(conditions, {"self": entity_id}):
 			out.append(conditions)
 	# Everything already holds: defend the whole ladder.
 	return [_conditions(entity_id, session)] if out.is_empty() else out

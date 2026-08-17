@@ -33,13 +33,19 @@ func evaluate_all() -> Dictionary:
 		# last Chronicle is chasing the next thing now (D-045).
 		var seat: Dictionary = (world["entities"] as Dictionary).get(str(entity_id), {})
 		var destiny_id: String = str(seat.get("destiny_id", definition["destiny_id"]))
-		results[str(entity_id)] = evaluate(destiny_id)
+		results[str(entity_id)] = evaluate(destiny_id, str(entity_id))
 	return results
 
 
-func evaluate(destiny_id: String) -> Dictionary:
+## `holder` e' chi ha giurato questo Destino. Per un Destino identitario
+## coincide con l'entity_id scritto nel dato; per un Destino condivisibile
+## (voce 20, D-115) l'entity_id e' "$self" e le clausole si risolvono su chi
+## lo giura: la stessa carta, un'ambizione per ciascuno.
+func evaluate(destiny_id: String, holder: String = "") -> Dictionary:
 	var destiny: Dictionary = data.destinies[destiny_id]
 	var entity_id: String = str(destiny["entity_id"])
+	if entity_id == "$self":
+		entity_id = holder
 	var context: Dictionary = {"self": entity_id}
 
 	var achieved: Dictionary = {}

@@ -126,7 +126,7 @@ class Ostinato extends PolicyDecider:
 		if destiny.is_empty():
 			return []
 		var top: Array = destiny["triumph"]["conditions"]
-		if not session.destinies.conditions.all_hold(top, {}):
+		if not session.destinies.conditions.all_hold(top, {"self": entity_id}):
 			return [top]
 		return super._open_levels(entity_id, session)
 

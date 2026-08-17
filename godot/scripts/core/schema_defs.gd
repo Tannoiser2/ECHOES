@@ -471,7 +471,7 @@ const DEFS := {
 			},
 			"entity_id": {
 				"type": "String",
-				"pattern": "^ENT_[A-Z0-9_]+$",
+				"pattern": "^(ENT_[A-Z0-9_]+|\\$self)$",
 			},
 			"title": {
 				"type": "String",

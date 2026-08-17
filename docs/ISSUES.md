@@ -411,9 +411,9 @@ Le fasi:
 carta e prompt propri e il passaggio nel verbale, e le sonde d'era restano in
 banda.
 
-### 20. Ampliare i pool dei Destini
+### 20. ✅ Ampliare i pool dei Destini — fatta in 0.1.77
 
-`contenuto` · `da-misurare` · voluta dal committente
+`contenuto` · `da-misurare` · **chiusa** ([D-115](DECISIONS.md#d-115))
 
 Due ambizioni per casa sono il minimo vitale: su ~14 rotazioni a saga, il giro
 torna. Da 2 a **3-4 per casa**, con due nature: identitarie (scritte per il
@@ -422,6 +422,12 @@ nei pool di più case (il motore deve solo imparare `$self` nelle condizioni).
 
 **Fatto quando** ogni Destino nuovo è misurato raggiungibile dove vive (D-035,
 sonde esistenti), i pool sono almeno a 3, e il playtest resta 0/8 bloccati.
+
+**Com'è finita (0.1.77)**: il motore ha imparato `$self`, tre carte condivise
+(*Il Nome che Pesa*, *La Terra che Risponde*, *I Conti Chiusi*) e tutti gli
+otto pool a 3. La prima forma dei Conti Chiusi era regalata (chiusa da sola
+100/100 al round 1) ed è stata riscritta con la fama nella Vittoria — le
+misure per tavola sono in D-115; playtest identico alla base, 0/8.
 
 ### 21. La mossa che spegne il tuo Destino avverta prima
 
