@@ -1,0 +1,69 @@
+{
+  "schema_id": "tag_rule",
+  "version": "0.2.0",
+  "items": [
+    {
+      "id": "TGR_GRANARY_VOICE",
+      "title": "Il granaio parla",
+      "when": {
+        "scope": "REGION",
+        "tag": "structure:granary"
+      },
+      "kind": "ACTION_MODIFIER",
+      "template": "INFLUENCE",
+      "tension_id": "TEN_FAMINE",
+      "delta": 1,
+      "active": true,
+      "note": "Chi sta nella Regione del granaio pesa di più sulla Carestia, nel verso che sceglie: il grano è un argomento (D-105)."
+    },
+    {
+      "id": "TGR_STARVING_TABLE",
+      "title": "La fame siede al tavolo",
+      "when": {
+        "scope": "REGION",
+        "tag": "condition:starving"
+      },
+      "kind": "COUNCIL_MODIFIER",
+      "tension_id": "TEN_FAMINE",
+      "world_factor_delta": -1,
+      "active": true,
+      "note": "Finché una Regione muore di fame, i Consigli sulla Carestia partono col mondo contro (D-105)."
+    },
+    {
+      "id": "TGR_PLUNDERED_GATE",
+      "title": "La strada depredata",
+      "when": {
+        "scope": "REGION",
+        "tag": "condition:plundered"
+      },
+      "kind": "GATE",
+      "movement": "BLOCK",
+      "active": true,
+      "note": "Dove è passata la razzia non si entra, finché Le Vie Riaperte non tolgono il segno: la cura esiste già nei dati (D-105)."
+    },
+    {
+      "id": "TGR_OATH_CEILING",
+      "title": "Il giuramento spezzato",
+      "when": {
+        "scope": "RELATION",
+        "tag": "oath_broken"
+      },
+      "kind": "RELATION_CAP",
+      "max_level": "HOSTILE",
+      "active": true,
+      "note": "Il Patto Rotto firma la coppia (CNS_OATH_BROKEN): fra quelle due case la relazione non sale sopra HOSTILE. Scendere resta possibile (D-105)."
+    },
+    {
+      "id": "TGR_RENOWN_PRECEDES",
+      "title": "La fama precede",
+      "when": {
+        "scope": "ENTITY",
+        "tag": "renowned"
+      },
+      "kind": "COUNCIL_MODIFIER",
+      "world_factor_delta": 1,
+      "active": true,
+      "note": "Chi ha vinto un Consiglio in modo clamoroso viene ascoltato: quando propone, il World Factor parte a +1. Il segno più famoso fra i muti del censimento, finalmente al lavoro (D-105)."
+    }
+  ]
+}

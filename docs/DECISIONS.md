@@ -331,6 +331,50 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-105 — I primi cinque denti, accesi uno alla volta
+**implemented in 0.1.67** (ISSUES 24, Fase 3; «accendi tutte» del committente)
+
+Le prime cinque tag_rules vere, in `godot/data/tag_rules/tag_rules_core.json`,
+accese in fila sui 100 semi standard (`--runs=100 --seed=7000`), esiti dei
+Consigli (FAIL / SUCC-costo / SUCC / DECI) a ogni passo:
+
+| passo | esiti | note |
+|---|---|---|
+| tutte spente | 198 · 91 · 121 · 187 | la base, identica a D-104 |
+| + granaio | 196 · 92 · 121 · 188 | due fallimenti in meno; Aldric uniforme 8→7 VIC, 4→5 TRI |
+| + fame | 196 · 92 · 122 · 187 | un Consiglio della Carestia perde il Decisive |
+| + strada | invariato | la porta non flippa esiti nei sim: morde sul movimento |
+| + giuramento | invariato | il tetto morde solo a risalita sulla coppia firmata: raro nei sim |
+| + fama | 196 · 88 · 124 · 189 | il dente più visibile: quattro Consigli cambiano riva |
+
+**0/8 seggi bloccati al tavolo misto a ogni passo**; le distribuzioni dei
+Destini restano stabili (unica variazione: quella di Aldric col granaio).
+Tutte e cinque restano accese.
+
+### Le regole
+
+1. **Il granaio parla** (`structure:granary`, REGION): INFLUENCE sulla
+   Carestia +1 per chi ha presenza nella Regione del granaio.
+2. **La fame siede al tavolo** (`condition:starving`, REGION): World
+   Factor −1 sui Consigli della Carestia finché una Regione muore di fame.
+3. **La strada depredata** (`condition:plundered`, REGION): porta BLOCK;
+   la cura esiste già — Le Vie Riaperte tolgono il segno.
+4. **Il giuramento spezzato** (`oath_broken`, RELATION): il Patto Rotto
+   ora firma la coppia (`add_tag` su `$proponent|$rival` in
+   CNS_OATH_BROKEN) e fra quelle due case la relazione non sale sopra
+   HOSTILE. Scendere resta possibile.
+5. **La fama precede** (`renowned`, ENTITY sul proponente): World Factor
+   +1 quando propone chi ha vinto un Decisive. Il più famoso dei segni
+   muti del censimento, al lavoro.
+
+### Il motore imparato per strada
+
+`council_world_factor` ora conosce il proponente e legge tre scope:
+GLOBAL (il mondo), ENTITY (chi propone), REGION (una Regione qualsiasi
+col segno). Prova dal vivo sul piano A: quarto Consiglio, Aldric già
+`renowned`, «1d6 = 6 -> +3 · Il segno pesa sul Consiglio: La fama
+precede.»
+
 ## D-104 — Il telaio delle tag_rules: i segni possono avere un dente
 **implemented in 0.1.66** (ISSUES 24, Fase 2; zero regole accese)
 

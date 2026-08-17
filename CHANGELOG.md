@@ -5,6 +5,34 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.67] — I primi cinque denti
+
+Fase 3 della voce 24 ([D-105](docs/DECISIONS.md#d-105)): «accendi tutte».
+
+### Added
+
+- **Cinque tag_rules vere** in `godot/data/tag_rules/tag_rules_core.json`:
+  il granaio parla (INFLUENCE +1 sulla Carestia dalla sua Regione), la
+  fame siede al tavolo (World Factor −1 sui Consigli della Carestia), la
+  strada depredata (porta sbarrata finché Le Vie Riaperte non la
+  riaprono), il giuramento spezzato (il Patto Rotto firma la coppia, e
+  fra le due case non si sale sopra HOSTILE), la fama precede (World
+  Factor +1 per il proponente `renowned`).
+- **Il Consiglio legge il mondo**: `council_world_factor` conosce il
+  proponente e tre scope — il mondo, chi propone, una Regione qualsiasi
+  col segno.
+
+### Misurato
+
+Accese in fila sui 100 semi standard, esiti a verbale in D-105: il
+granaio toglie due fallimenti, la fame smorza un Decisive, la fama
+sposta quattro Consigli; strada e giuramento mordono su movimento e
+relazioni, fuori dagli esiti dei sim. **0/8 seggi bloccati a ogni
+passo.** 231 test verdi; ISSUES 25 e 26 aperte (i denti che aggiungono
+e tolgono; le carte con un mestiere — 35 su 48 sono solo un numero).
+
+---
+
 ## [0.1.66] — Il telaio dei denti
 
 Fase 2 della voce 24 ([D-104](docs/DECISIONS.md#d-104)): il posto dove i

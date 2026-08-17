@@ -74,6 +74,10 @@ def main() -> None:
         for item in document.get("items", []):
             where = document.get("schema_id", "?") + ":" + str(item.get("id", "?"))
             walk_conditions(item, where, read)
+            # Una tag_rule accesa è un lettore a pieno titolo (D-104/D-105):
+            # il suo segno ha un dente, non è più memoria.
+            if document.get("schema_id") == "tag_rule" and item.get("active"):
+                read[str(item.get("when", {}).get("tag", ""))].add(where)
 
     tags_written = set(written) - {""}
     tags_read = set(read) - {""}
