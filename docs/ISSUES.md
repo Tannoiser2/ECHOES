@@ -358,10 +358,12 @@ che assenze.
 
 Il seggio attraversa i secoli, ma oggi cambia solo il nome: Priore Anselmo,
 Priora Ilaria, Priore Teodo — la stessa carta, gli stessi poteri. Il
-committente vuole di più: in un'era si gioca *la persona*, in una successiva
-**il culto nato da lei** (Anselmo → i suoi frati, come Francesco → i
-Francescani) — natura diversa (MORTAL → COLLECTIVE), poteri diversi, carta e
-prompt d'arte propri.
+committente vuole di più, e **per ogni seggio, non solo per Anselmo**: in
+un'era si gioca *la persona o la forma presente*, in una successiva **quello
+che ne nasce** — il culto dal priore (Anselmo → i frati, come Francesco → i
+Francescani), la repubblica dalla dinastia, il culto assolutista della
+persona dai saggi — natura diversa (MORTAL → COLLECTIVE), poteri diversi,
+carta e prompt d'arte propri.
 
 Le fasi:
 
@@ -372,9 +374,14 @@ Le fasi:
    (`FOUNDING`/`LINE_EXHAUSTED`). Gli 8 seggi migrati con la prima
    incarnazione a specchio dei campi attuali, guardia anti-deriva nel
    validatore; il motore non le legge ancora.
-2. **La successione le attraversa**: i nomi cambiano dentro un'incarnazione;
-   l'incarnazione cambia quando la sua linea finisce, e il verbale d'apertura
-   lo racconta («Il priorato è finito: al suo posto siede il culto»).
+2. ✅ **La successione le attraversa** — fatta in 0.1.70
+   ([D-108](DECISIONS.md#d-108)): i nomi cambiano dentro un'incarnazione;
+   quando la linea finisce entra la vita successiva — nome, natura, valori
+   e successori propri — e il verbale d'apertura lo racconta («La linea di
+   Priore Anselmo si è esaurita: al suo posto siede I Frati del Vetro»).
+   Cinque seconde vite d'autore: la Repubblica della Valle, il Culto della
+   Misura, la Compagnia del Sale, i Frati del Vetro, le Custodi della
+   Cenere. La natura nuova (COLLECTIVE) smette di consumare eredi.
 3. **Le carte**: un tarocco per incarnazione — il nome corrente resta nel
    verbale, come i re di una dinastia — e un prompt d'arte per incarnazione
    (chiude anche la domanda «c'è il prompt di Anselmo ma non dei successori»).
@@ -382,6 +389,17 @@ Le fasi:
    `action_values` e `persistence` propri; i poteri *nominati* («solo
    l'Ordine può…») sono design d'autore da definire insieme prima, misurare
    dopo.
+5. **L'albero delle vite** — su richiesta del committente («farei molte
+   più trasformazioni, ognuna con poteri asimmetrici, altrimenti sono
+   nomi che cambiano su una carta»), lo studio completo per le otto case
+   è in [TRASFORMAZIONI.md](TRASFORMAZIONI.md): ~17 vite con ingresso
+   narrativo, potere asimmetrico e gancio tecnico dichiarati — il drago
+   che muore e diventa culto della sua memoria, il popolo che si siede e
+   diventa mortale, la stessa morte di Lyra con due nascite possibili.
+   Regola della casa: una vita senza dente non si scrive. Servono gli
+   ingressi `ON_TAG`/`ON_DEATH` con vite alternative, il segno automatico
+   `life:<id>` che le tag_rules già sanno leggere, e i tipi della voce 25
+   per i poteri più ambiziosi.
 
 **Fatto quando** una saga attraversa almeno un cambio d'incarnazione, con
 carta e prompt propri e il passaggio nel verbale, e le sonde d'era restano in

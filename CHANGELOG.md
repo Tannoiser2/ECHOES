@@ -5,6 +5,32 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.70] — Il seggio cambia vita
+
+Fase 2 della voce 19 ([D-108](docs/DECISIONS.md#d-108)), generalizzata
+dal committente: ogni seggio può mutare, non solo Anselmo.
+
+### Added
+
+- **La traversata**: quando la linea dei successori scritti si esaurisce,
+  entra la vita successiva del seggio — nome, natura, valori e successori
+  propri — e il verbale d'apertura lo racconta. Una vita COLLECTIVE
+  smette di consumare eredi: la repubblica non muore di vecchiaia.
+- **Cinque seconde vite d'autore**: la Repubblica della Valle (da Re
+  Aldric), il Culto della Misura (da Lyra), la Compagnia del Sale (da
+  Maestra Ilve), i Frati del Vetro (da Priore Anselmo), le Custodi della
+  Cenere (da Kessa dei Fuochi).
+- Lo stato del seggio porta `incarnation` (save e schema).
+
+### Misurato
+
+Playtest standard identico, 0/8; sonda delle ere: 10 generazioni e 10
+nomi distinti per saga (gli eredi scritti più la vita nuova, poi il
+seggio smette di morire), anni in banda. 239 test in 33 suite, 5097
+asserzioni.
+
+---
+
 ## [0.1.69] — I segni hanno un corpo
 
 Fase 3 della voce 22 ([D-107](docs/DECISIONS.md#d-107)): un segno che

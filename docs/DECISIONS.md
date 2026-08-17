@@ -331,6 +331,47 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-108 — La successione attraversa le incarnazioni
+**implemented in 0.1.70** (ISSUES 19, Fase 2; generalizzata dal committente)
+
+«Le incarnazioni sono un esempio di Anselmo, ma anche le altre entità
+potrebbero mutare: la dinastia potrebbe diventare una repubblica, i saggi
+un culto della persona.» Prima di questa fase, una linea esaurita
+riciclava nomi per grammatica (D-046) per sempre: dieci secoli di re
+intercambiabili. Ora **quando la linea dei successori scritti finisce, il
+seggio cambia vita**: entra l'incarnazione successiva (`entry:
+LINE_EXHAUSTED`) con nome, descrizione, natura, valori e successori
+propri, e il verbale d'apertura lo racconta — «La linea di Priore Anselmo
+si è esaurita: al suo posto siede I Frati del Vetro.»
+
+### Come
+
+- `Succession.plan` ragiona sulla **vita corrente** (`active_view`): la
+  definizione del seggio con sopra i campi dell'incarnazione al tavolo.
+  La persistenza appartiene alla vita, non al seggio: una dinastia
+  diventata repubblica (COLLECTIVE) **smette di morire** e di consumare
+  eredi. La vita nuova non eredita né successori né grammatica dei nomi
+  della vecchia: una linea esaurita resta esaurita.
+- Lo stato del seggio nel mondo porta `incarnation` (indice della vita,
+  in save e schema); la generazione riparte da zero con la vita nuova.
+- **Cinque seconde vite d'autore** per i cinque seggi MORTAL: Re Aldric →
+  *La Repubblica della Valle*; Lyra → *Il Culto della Misura* (il culto
+  assolutista della persona); Maestra Ilve → *La Compagnia del Sale*;
+  Priore Anselmo → *I Frati del Vetro*; Kessa dei Fuochi → *Le Custodi
+  della Cenere*. Tutte COLLECTIVE, con valori d'azione propri (oggi solo
+  sulla carta, per D-104 il telaio è pronto) e `art_prompt_key` proprio
+  in attesa della Fase 3 (il tarocco per incarnazione).
+
+### Misurato
+
+Playtest standard **identico** (198·94·128·183, 0/8 al tavolo misto): le
+saghe corte non esauriscono linee. Sonda delle ere (20 saghe × 10
+Chronicle, seme 812): **10 generazioni per saga e 10 nomi distinti** — i
+quattro eredi scritti più la vita nuova per ciascun seggio mortale, e poi
+il seggio smette di morire; anni per saga mediana 955 (in banda con
+D-075), salti 20–200, Destini ruotati 16,2 per saga. Suite 239 test in
+33 suite (5 nuovi sulla traversata), 5097 asserzioni, verde.
+
 ## D-107 — I segni hanno un corpo: la parola, il pannello, il segnalino
 **implemented in 0.1.69** (ISSUES 22, Fase 3)
 

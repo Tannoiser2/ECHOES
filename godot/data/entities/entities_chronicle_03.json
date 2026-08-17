@@ -151,6 +151,22 @@
             ]
           },
           "entry": "FOUNDING"
+        },
+        {
+          "id": "INC_SALE_02",
+          "name": "La Compagnia del Sale",
+          "description": "Morta l'ultima maestra senza allievi, i banchi si federarono. Nessuna mano sola tiene il registro: un sigillo solo, molte firme, e il credito non muore più con nessuno.",
+          "persistence": "COLLECTIVE",
+          "action_values": {
+            "ACQUIRE": 4,
+            "MOVE": 3,
+            "INFLUENCE": 3,
+            "FORGE": 3,
+            "SCHEME": 2,
+            "CLAIM": 1
+          },
+          "art_prompt_key": "entity.sale_company",
+          "entry": "LINE_EXHAUSTED"
         }
       ]
     },
@@ -301,6 +317,22 @@
             ]
           },
           "entry": "FOUNDING"
+        },
+        {
+          "id": "INC_VETRO_02",
+          "name": "I Frati del Vetro",
+          "description": "Il priorato è finito; i frati restano. Portano il nome di Anselmo come una reliquia e la sua regola come una misura: ciò che fu una scuola adesso è una fede, e le fedi non muoiono di vecchiaia.",
+          "persistence": "COLLECTIVE",
+          "action_values": {
+            "ACQUIRE": 2,
+            "MOVE": 2,
+            "INFLUENCE": 4,
+            "FORGE": 3,
+            "SCHEME": 3,
+            "CLAIM": 3
+          },
+          "art_prompt_key": "entity.vetro_friars",
+          "entry": "LINE_EXHAUSTED"
         }
       ]
     },
@@ -443,6 +475,22 @@
             ]
           },
           "entry": "FOUNDING"
+        },
+        {
+          "id": "INC_CENERE_02",
+          "name": "Le Custodi della Cenere",
+          "description": "L'ultima dei Fuochi non lasciò figli: lasciò una veglia. Le custodi tengono il fuoco per mestiere e la montagna per giuramento, e nessuna di loro porta un nome suo.",
+          "persistence": "COLLECTIVE",
+          "action_values": {
+            "ACQUIRE": 3,
+            "MOVE": 3,
+            "INFLUENCE": 3,
+            "FORGE": 3,
+            "SCHEME": 2,
+            "CLAIM": 3
+          },
+          "art_prompt_key": "entity.cenere_keepers",
+          "entry": "LINE_EXHAUSTED"
         }
       ]
     },

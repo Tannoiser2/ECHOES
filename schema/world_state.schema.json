@@ -390,6 +390,25 @@
         "ao_remaining": {
           "type": "integer",
           "minimum": 0
+        },
+        "name": {
+          "type": "string"
+        },
+        "destiny_id": {
+          "type": "string"
+        },
+        "generation": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "barren": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "incarnation": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Quale vita del seggio è al tavolo (indice in entity.incarnations, D-108): la persona, poi quello che nasce da lei quando la linea si esaurisce."
         }
       }
     },
