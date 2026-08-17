@@ -5,6 +5,33 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.76] — Tutte le carte lavorano
+
+Ultimi tre mazzetti e la voce 26 si chiude ([D-114](docs/DECISIONS.md#d-114)):
+**46 carte su 48 fanno quello che il nome promette**, e le due che no lo
+dichiarano.
+
+### Added
+
+- **WEALTH**: la Riserva sfama, il Sale supera la magra, la Carovana
+  ricollega, il Pedaggio si scrive sulla mappa, le Chiavi razionano, il
+  Credito chiama il debito (la porta del Banco Nero).
+- **KNOWLEDGE**: la Voce di Corridoio vela e la Prova svela, la Mappa
+  Vecchia ricuce il ponte rotto, il Registro apre i conti, il Testimone
+  agita la sede dell'accusato.
+- **PEOPLE**: la Folla inquieta la capitale, gli Anziani elaborano il
+  lutto, le Braccia spengono la fame, la Mobilitazione scalda la piazza,
+  il Portavoce impegna promesse, la Marcia rompe le razioni.
+
+### Misurato
+
+Una famiglia alla volta (tabella in D-114): il mondo più duro e meno
+estremo — più fallimenti, meno Decisive — con distribuzioni sane, **0/8
+a ogni passo**, ere in banda, guardia biblioteca verde; i piani B e C
+aggiornano le attese. 246 test, 5324 asserzioni.
+
+---
+
 ## [0.1.75] — I legami imparano il mestiere
 
 Terzo mazzetto della voce 26 ([D-113](docs/DECISIONS.md#d-113)): la
