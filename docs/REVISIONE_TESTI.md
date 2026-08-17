@@ -1706,19 +1706,19 @@ possono spostare nella frase, non togliere. 745 testi in lettura.
 **`AST_AUTHORITY_CENSUS`**
 > Censimento
 
-> +1 quando AUTHORITY è rilevante per la Tensione. Una lista di nomi è la forma più semplice del potere.
+> +1 quando AUTHORITY è rilevante per la Tensione. Una lista di nomi è la forma più semplice del potere — e la lista chiarisce: la Regione della domanda smette di essere contesa.
 
 
 **`AST_AUTHORITY_CROWN_RIGHT`**
 > Diritto di Corona
 
-> Si scarta sempre: un diritto invocato due volte non è più un diritto, è una pretesa.
+> Si scarta sempre: un diritto invocato due volte non è più un diritto, è una pretesa — e la pretesa divide: la Regione della domanda resta contesa.
 
 
 **`AST_AUTHORITY_EDICT`**
 > Editto
 
-> Una riga scritta bene vale quanto chi la fa rispettare.
+> Una riga scritta bene vale quanto chi la fa rispettare — e dove si discute, la legge calma la piazza: l'inquietudine si cancella.
 
 
 **`AST_AUTHORITY_INTERDICT`**
@@ -1730,19 +1730,19 @@ possono spostare nella frase, non togliere. 745 testi in lettura.
 **`AST_AUTHORITY_INVESTITURE`**
 > Investitura
 
-> +1 sempre, su qualsiasi fronte. Si scarta sempre: si concede una volta sola, e tutti se ne ricordano.
+> +1 sempre, su qualsiasi fronte. Si scarta sempre: si concede una volta sola, e tutti se ne ricordano — perché la nomina scrive un nome nella linea: il mondo ricorda l'erede nominato.
 
 
 **`AST_AUTHORITY_MAGISTRATE`**
 > Magistrato
 
-> +1 sul fronte Oppose. Se la proposta passa lo stesso resta in mano: un giudice che ha avuto ragione serve ancora domani.
+> +2 sul fronte Oppose. Se la proposta passa lo stesso resta in mano: un giudice che ha avuto ragione serve ancora — e il giudice risponde: la domanda rimasta scritta sul muro si cancella.
 
 
 **`AST_AUTHORITY_SEAL`**
 > Sigillo
 
-> +1 sul fronte Oppose. Il sigillo che manca ferma più cose del sigillo che c'è.
+> +1 sul fronte Oppose. Il sigillo che manca ferma più cose del sigillo che c'è — e quello impegnato raffredda la questione: la Tensione in gioco scende di 1.
 
 
 **`AST_AUTHORITY_SUCCESSION_ACT`**

@@ -5,6 +5,39 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.74] — I sigilli imparano il mestiere
+
+Secondo mazzetto della voce 26 ([D-112](docs/DECISIONS.md#d-112)): le
+sei carte AUTHORITY che erano solo un numero ora lavorano — e il
+mazzetto disegna cure e contro-cure.
+
+### Added
+
+- **I mestieri**: l'Editto calma la piazza (via l'inquietudine dei
+  Mercenari), il Sigillo raffredda la questione (−1, l'opposto della
+  Banda Armata), il Censimento chiarisce la contesa che il Diritto di
+  Corona posa, il Magistrato cancella la domanda rimasta sul muro,
+  l'Investitura scrive l'erede nominato — lo stesso segno che apre la
+  porta della Corona Restaurata.
+- **Il verbale parla col dizionario**: i segni negli effetti narrati
+  usano le parole di D-107 («contesa», non «condition:contested»).
+
+### Fixed
+
+- **Magistrato**: il testo diceva «+1 sul fronte Oppose», il
+  modificatore è sempre stato 2 — allineato (stessa svista
+  dell'Assedio).
+
+### Misurato
+
+Un mestiere alla volta sugli stessi 100 semi (tabella in D-112): il
+Sigillo ammorbidisce (due Decisive in meno), il resto è quieto nei sim;
+0/8 a ogni passo, ere in banda, guardia biblioteca verde. Il piano B
+aggiorna le attese (il Sigillo sposta i tempi dei Consigli). 246 test,
+5178 asserzioni.
+
+---
+
 ## [0.1.73] — Il tarocco per ogni vita
 
 Fase 3 della voce 19, l'ultima ([D-111](docs/DECISIONS.md#d-111)).

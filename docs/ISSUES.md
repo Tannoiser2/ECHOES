@@ -607,8 +607,13 @@ che ora esiste (effetti + tag_rules):
    fuori la Regione (con cura esistente), i Mercenari lasciano
    l'inquietudine, l'Assedio affama (e il suo testo ora dice il +2 vero).
    La carta impegnata parla a verbale; misura per carta, 0/8 a ogni passo.
-2. **AUTHORITY**: i sigilli toccano le regole — l'Editto vieta,
-   l'Investitura nomina, il Magistrato riapre una domanda chiusa.
+2. ✅ **AUTHORITY** — fatta in 0.1.74 ([D-112](DECISIONS.md#d-112)):
+   l'Editto calma la piazza, il Sigillo raffredda la questione, il
+   Censimento chiarisce la contesa che il Diritto di Corona posa, il
+   Magistrato cancella la domanda dal muro, l'Investitura scrive l'erede
+   nominato (e apre la porta della Corona Restaurata). Misura per carta,
+   0/8 a ogni passo; il «riaprire una domanda chiusa» vero resta alla
+   voce 25.
 3. **BONDS**: i legami toccano le relazioni — il Giuramento lega (e
    spezzarlo firma la coppia, D-105), la Promessa di Nozze vincola.
 4. **WEALTH / KNOWLEDGE / PEOPLE**: il grano compra, il sapere svela, la
