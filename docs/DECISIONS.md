@@ -331,6 +331,45 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-113 — Le carte con un mestiere, terzo mazzetto: BONDS
+**implemented in 0.1.75** (ISSUES 26, punto 3)
+
+I legami toccano le relazioni, ed è la famiglia delle **cure**:
+
+- **Giuramento**: il giuramento rifatto scioglie quello spezzato — toglie
+  `oath_broken` dalla coppia (la cura del tetto di D-105, che non ne
+  aveva);
+- **Favore**: il piccolo favore spegne la vendetta — toglie `VENDETTA`
+  dalla coppia (il segno che il giudizio delle promesse legge come
+  rottura);
+- **Diritto di Ospitalità**: chi lo impegna torna ospite — cancella la
+  propria cacciata (`evicted:`) dalla Regione della domanda (la cura di
+  D-067);
+- **Promessa di Nozze**: fra le due case nasce un `PACT` — il segno che
+  le promesse giudicano: mantenerlo è `promise_kept`, tradirlo
+  `promise_broken`. E il testo dice il **+2** vero (terza etichetta
+  bugiarda della serie);
+- **Debito Vecchio**: il debito chiamato segna la sede del debitore
+  (`condition:indebted`, segno vivo).
+
+**Il Legame di Sangue resta senza mestiere, dichiarato**: il suo potere
+vero — il vincolo che non si sceglie, un pavimento di relazione — è
+design della voce 25, e una toppa qui sarebbe stata un numero travestito.
+
+Nel passaggio l'applier ha imparato che una relazione con se stessi è un
+no-op, non un errore: quando «$actor|$rival» degenera (a impegnare la
+carta è il rivale), l'effetto tace.
+
+### Misurato (un mestiere alla volta, stessi 100 semi)
+
+Base 197·94·127·182 (identica a D-112) e **tutti i passi identici**:
+esiti e distribuzioni dei Destini fermi. Onesto e atteso — i legami sono
+cure e stati, non forza: mordono quando le loro condizioni esistono
+(un giuramento spezzato da sciogliere, una cacciata da annullare), e le
+sedie automatiche raramente ci camminano dentro. Al tavolo umano sono
+esattamente le carte che si tengono in mano per il momento giusto. 0/8 a
+ogni passo; ere in banda (20,3 / 22 nomi); 246 test, 5190 asserzioni.
+
 ## D-112 — Le carte con un mestiere, secondo mazzetto: AUTHORITY
 **implemented in 0.1.74** (ISSUES 26, punto 2)
 

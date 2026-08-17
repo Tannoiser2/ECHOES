@@ -155,11 +155,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.bonds.betrothal` — Promessa di Nozze
 
-- **soggetto**: Promessa di Nozze — +1 sul fronte Oppose: una promessa serve più a impedire un'alleanza che a farne una. Si scarta sempre
+- **soggetto**: Promessa di Nozze — +2 sul fronte Oppose: una promessa serve più a impedire un'alleanza che a farne una. Si scarta sempre — e resta scritta: fra le due case nasce un patto, e i patti si giudicano
 - **id**: `AST_BONDS_BETROTHAL`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Promessa di Nozze — +1 sul fronte Oppose: una promessa serve più a impedire un'alleanza che a farne una. Si scarta sempre.
+Historical dark-fantasy painting, single evocative scene depicting Promessa di Nozze — +2 sul fronte Oppose: una promessa serve più a impedire un'alleanza che a farne una. Si scarta sempre — e resta scritta: fra le due case nasce un patto, e i patti si giudicano.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 porpora tenue accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -209,11 +209,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.bonds.favor` — Favore
 
-- **soggetto**: Favore — Piccolo, ricordato con precisione
+- **soggetto**: Favore — Piccolo, ricordato con precisione — e restituito al momento giusto: fra chi lo impegna e il rivale, una vendetta si spegne
 - **id**: `AST_BONDS_FAVOR`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Favore — Piccolo, ricordato con precisione.
+Historical dark-fantasy painting, single evocative scene depicting Favore — Piccolo, ricordato con precisione — e restituito al momento giusto: fra chi lo impegna e il rivale, una vendetta si spegne.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 porpora tenue accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -227,11 +227,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.bonds.guest_right` — Diritto di Ospitalità
 
-- **soggetto**: Diritto di Ospitalità — +1 quando BONDS è rilevante per la Tensione. Chi ha mangiato al tuo tavolo non può dire di no davanti a tutti. Può dirlo dopo
+- **soggetto**: Diritto di Ospitalità — +1 quando BONDS è rilevante per la Tensione. Chi ha mangiato al tuo tavolo non può dire di no davanti a tutti. Può dirlo dopo — e chi lo impegna torna ospite: la cacciata dalla Regione della domanda si cancella
 - **id**: `AST_BONDS_GUEST_RIGHT`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Diritto di Ospitalità — +1 quando BONDS è rilevante per la Tensione. Chi ha mangiato al tuo tavolo non può dire di no davanti a tutti. Può dirlo dopo.
+Historical dark-fantasy painting, single evocative scene depicting Diritto di Ospitalità — +1 quando BONDS è rilevante per la Tensione. Chi ha mangiato al tuo tavolo non può dire di no davanti a tutti. Può dirlo dopo — e chi lo impegna torna ospite: la cacciata dalla Regione della domanda si cancella.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 porpora tenue accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -263,11 +263,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.bonds.oath` — Giuramento
 
-- **soggetto**: Giuramento — Non si scarta mai. Un giuramento impegnato resta impegnato anche dopo, ed è la sua unica forza
+- **soggetto**: Giuramento — Non si scarta mai. Un giuramento impegnato resta impegnato anche dopo, ed è la sua unica forza — e un giuramento rifatto scioglie quello spezzato: fra chi lo impegna e il rivale, il tradimento si cancella
 - **id**: `AST_BONDS_OATH`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Giuramento — Non si scarta mai. Un giuramento impegnato resta impegnato anche dopo, ed è la sua unica forza.
+Historical dark-fantasy painting, single evocative scene depicting Giuramento — Non si scarta mai. Un giuramento impegnato resta impegnato anche dopo, ed è la sua unica forza — e un giuramento rifatto scioglie quello spezzato: fra chi lo impegna e il rivale, il tradimento si cancella.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 porpora tenue accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -281,11 +281,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.bonds.old_debt` — Debito Vecchio
 
-- **soggetto**: Debito Vecchio — +1 sul fronte Oppose. Nessuno se lo ricorda tranne le due persone che contano, e una delle due lo tira fuori adesso
+- **soggetto**: Debito Vecchio — +1 sul fronte Oppose. Nessuno se lo ricorda tranne le due persone che contano, e una delle due lo tira fuori adesso — e da adesso è pubblico: la sede del debitore resta segnata come indebitata
 - **id**: `AST_BONDS_OLD_DEBT`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Debito Vecchio — +1 sul fronte Oppose. Nessuno se lo ricorda tranne le due persone che contano, e una delle due lo tira fuori adesso.
+Historical dark-fantasy painting, single evocative scene depicting Debito Vecchio — +1 sul fronte Oppose. Nessuno se lo ricorda tranne le due persone che contano, e una delle due lo tira fuori adesso — e da adesso è pubblico: la sede del debitore resta segnata come indebitata.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 porpora tenue accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.

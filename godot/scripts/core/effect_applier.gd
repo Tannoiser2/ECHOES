@@ -248,6 +248,12 @@ func _set_control(target: Dictionary, payload: Dictionary) -> Variant:
 
 func _set_relation(target: Dictionary, payload: Dictionary) -> Variant:
 	var key: String = str(target.get("id", ""))
+	# Una relazione con se stessi non esiste: quando una carta parla di
+	# "$actor|$rival" e a giocarla e' proprio il rivale, l'effetto e' un no-op,
+	# non un errore (D-113).
+	var halves: PackedStringArray = key.split("|")
+	if halves.size() == 2 and halves[0] == halves[1]:
+		return {"noop": true}
 	var relation: Variant = world["relations"].get(key)
 	if relation == null:
 		return _fail("unknown relation '%s'" % key)
