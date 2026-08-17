@@ -12,8 +12,9 @@ const Effect := preload("res://scripts/core/effect.gd")
 const Ids := preload("res://scripts/core/ids.gd")
 const WorldStateService := preload("res://scripts/world/world_state_service.gd")
 const TagRules := preload("res://scripts/world/tag_rules.gd")
+const ConditionEvaluator := preload("res://scripts/world/condition_evaluator.gd")
 
-const TEMPLATES: Array = ["ACQUIRE", "MOVE", "INFLUENCE", "FORGE", "SCHEME", "CLAIM"]
+const TEMPLATES: Array = ["ACQUIRE", "MOVE", "INFLUENCE", "FORGE", "SCHEME", "CLAIM", "PLAY_ECHO"]
 
 var world: Dictionary
 var data: RefCounted
@@ -22,6 +23,11 @@ var rng: RefCounted
 var log: RefCounted
 var service: RefCounted
 var tensions: RefCounted
+## ISSUES 23 (D-118): calare una carta del Narratore e' un'azione, ma la carta
+## parla nel ChronicleController (funzione, effetti, presagi). GameSession
+## aggancia qui `play_narrator_card`; l'eleggibilita' si giudica in check().
+var play_card: Callable = Callable()
+var _eligibility: RefCounted
 
 var _chronicle: Dictionary
 
@@ -41,6 +47,7 @@ func _init(
 	log = p_log
 	tensions = p_tensions
 	service = WorldStateService.new(p_world, p_data)
+	_eligibility = ConditionEvaluator.new(p_world, p_data)
 	_chronicle = data.chronicles[world["chronicle_id"]]
 
 
@@ -75,6 +82,8 @@ func check(entity_id: String, template: String, params: Dictionary) -> String:
 			return _check_scheme(entity_id, params)
 		"CLAIM":
 			return _check_claim(entity_id, params)
+		"PLAY_ECHO":
+			return _check_play_echo(entity_id, params)
 	return "template non implementato"
 
 
@@ -116,6 +125,8 @@ func execute(entity_id: String, request: Dictionary) -> Dictionary:
 			return _scheme(entity_id, params, source)
 		"CLAIM":
 			return _claim(entity_id, params, source)
+		"PLAY_ECHO":
+			return _play_echo(entity_id, params, source)
 	return _error(template, "template non implementato")
 
 
@@ -275,6 +286,40 @@ func _check_claim(entity_id: String, params: Dictionary) -> String:
 	if _pick_authority(entity_id, params) == "":
 		return "serve 1 ulteriore Asset AUTHORITY da scartare"
 	return ""
+
+
+## ISSUES 23 (D-118): calare una carta del Narratore. Legale solo se la carta
+## e' in mano, la storia e' pronta (l'eleggibilita' custodisce l'ordine di
+## Propp, D-030), e c'e' una carta Asset con cui pagare la parola.
+func _check_play_echo(entity_id: String, params: Dictionary) -> String:
+	var card_id: String = str(params.get("echo_card_id", ""))
+	var hand: Array = world["entities"][entity_id].get("echo_hand", [])
+	if not hand.has(card_id):
+		return "'%s' non e nella mano del Narratore di %s" % [card_id, entity_id]
+	var card: Dictionary = data.echo_cards[card_id]
+	if service.hand_size(entity_id) < 1:
+		return "calare una carta del Narratore costa una carta Asset, e la mano e vuota"
+	if not _eligibility.all_hold(card.get("eligibility", []), {}):
+		return "la storia non e pronta per '%s'" % str(card["title"])
+	if card.get("forces_confluence_on", null) != null and world.get("forced_confluence", null) != null:
+		return "il tavolo ha gia un Consiglio prescritto per questo round"
+	return ""
+
+
+func _play_echo(entity_id: String, params: Dictionary, source: Dictionary) -> Dictionary:
+	var card_id: String = str(params.get("echo_card_id", ""))
+	var effects: Array = []
+	# Prima il costo: la parola si paga (scelta del committente, D-118). Senza
+	# una scelta esplicita si scarta la carta piu' debole.
+	var price: String = str(params.get("discard_asset_id", ""))
+	if not service.hand(entity_id).has(price):
+		price = _worst_of(service.hand(entity_id))
+	effects.append_array(_discard(entity_id, price, source))
+	log.bullet("%s paga la parola: scarta %s." % [_name(entity_id), _title(price)])
+	(world["entities"][entity_id]["echo_hand"] as Array).erase(card_id)
+	var applied: Array = play_card.call(entity_id, card_id, source)
+	effects.append_array(applied)
+	return _ok("PLAY_ECHO", effects, {"echo_card_id": card_id})
 
 
 # --- ACQUIRE ---------------------------------------------------------------

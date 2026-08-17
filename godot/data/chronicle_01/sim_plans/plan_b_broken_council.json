@@ -307,11 +307,11 @@
         "confluence_count": 6,
         "outcomes": [
           "FAILURE",
-          "FAILURE",
-          "FAILURE",
-          "DECISIVE_SUCCESS",
           "SUCCESS_WITH_COST",
-          "SUCCESS"
+          "FAILURE",
+          "SUCCESS",
+          "SUCCESS_WITH_COST",
+          "SUCCESS_WITH_COST"
         ],
         "min_echoes": 1,
         "min_truths": 1

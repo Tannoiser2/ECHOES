@@ -122,6 +122,18 @@ func _action_options(entity_id: String, session: RefCounted) -> Array:
 	var out: Array = []
 	var service: RefCounted = session.service
 
+	# ISSUES 23 (D-118): le carte del Narratore in mano, quelle che la storia
+	# accetta adesso. Il prezzo (una carta Asset) lo sceglie il resolver.
+	for card_id in session.world["entities"][entity_id].get("echo_hand", []):
+		var request: Dictionary = {"echo_card_id": str(card_id)}
+		if session.actions.can_execute(entity_id, "PLAY_ECHO", request):
+			out.append({
+				"label": "Cala la carta del Narratore: %s" % str(
+					session.data.echo_cards[str(card_id)]["title"]
+				),
+				"template": "PLAY_ECHO", "params": request,
+			})
+
 	for family in ["AUTHORITY", "FORCE", "PEOPLE", "KNOWLEDGE", "WEALTH", "BONDS"]:
 		var request: Dictionary = {"family": family}
 		if session.actions.can_execute(entity_id, "ACQUIRE", request):

@@ -7,26 +7,39 @@ const PolicyDecider := preload("res://scripts/seat/policy_decider.gd")
 const SchemaDefs := preload("res://scripts/core/schema_defs.gd")
 
 
-## Drawing a card records the function it performed, so a later card can require
-## it. Without this the function_id was a label the engine never read.
-func test_drawing_a_card_records_its_function() -> void:
+## Playing a card records the function it performed, so a later card can require
+## it. Without this the function_id was a label the engine never read. Dalla
+## 0.1.80 (ISSUES 23, D-118) la carta la cala una mano, come azione: la
+## grammatica resta la stessa, cambia chi parla.
+func test_playing_a_card_records_its_function() -> void:
 	new_session()
 	assert_false(
 		str(session.world["global_tags"]).contains("function:"),
 		"all'inizio nessuna funzione e stata svolta"
 	)
-	session.chronicle.end_of_act(1, PolicyDecider.new(session.log))
+	var card_id: String = "ECH_LACK"
+	(session.world["entities"]["ENT_ALDRIC"]["echo_hand"] as Array).append(card_id)
+	var before: int = session.service.hand_size("ENT_ALDRIC")
+	var result: Dictionary = session.actions.execute(
+		"ENT_ALDRIC", {"template": "PLAY_ECHO", "params": {"echo_card_id": card_id}}
+	)
+	assert_true(bool(result.get("ok", false)), "la carta si cala: %s" % str(result.get("error", "")))
 
 	var recorded: Array = []
 	for tag in session.world["global_tags"]:
 		if str(tag).begins_with("function:"):
 			recorded.append(str(tag))
-	assert_eq(recorded.size(), 1, "una carta pescata, una funzione registrata: %s" % str(recorded))
-	var drawn_id: String = str(session.world["echo_deck"]["drawn"][0])
+	assert_eq(recorded.size(), 1, "una carta calata, una funzione registrata: %s" % str(recorded))
 	assert_eq(
 		recorded[0],
-		"function:%s" % str(data().echo_cards[drawn_id]["function_id"]),
+		"function:%s" % str(data().echo_cards[card_id]["function_id"]),
 		"e la funzione registrata e quella della carta"
+	)
+	# La parola si paga (scelta del committente): una carta Asset e' uscita.
+	assert_eq(session.service.hand_size("ENT_ALDRIC"), before - 1, "il prezzo e' una carta Asset")
+	assert_false(
+		(session.world["entities"]["ENT_ALDRIC"]["echo_hand"] as Array).has(card_id),
+		"e la carta del Narratore non e' piu' in mano"
 	)
 
 

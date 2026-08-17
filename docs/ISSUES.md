@@ -500,15 +500,17 @@ custodito dall'eleggibilità sui tag `function:` (D-030), che già esiste.
 
 Le fasi:
 
-1. **Il design insieme** (d'autore, prima di ogni riga): quante in mano,
-   quando si calano (a fine atto? in Consiglio?), cosa costa calarle, cosa
-   succede a chi non le cala, e come pescano le sedie automatiche.
+1. ✅ **Il design insieme** — deciso dal committente in 0.1.80 (D-118):
+   2 carte a testa per atto, si calano nel proprio turno come azione,
+   costano una carta Asset, e se nessuno cala l'atto resta senza carta.
 2. **Gli effetti che pesano**: hook che toccano il tavolo (presenza,
    controllo, Consigli aperti), non solo +1 — da scrivere carta per carta.
-3. **Il motore**: la mano di carte Echo, l'azione di gioco, l'eleggibilità
-   che custodisce l'ordine, la policy per le sedie automatiche.
-4. **La misura**: stessa batteria di semi, una variante alla volta, prima e
-   dopo; il vincolo resta 0/8 seggi bloccati al tavolo misto.
+3. ✅ **Il motore** — fatto in 0.1.80 (D-118): `echo_hand`, azione
+   PLAY_ECHO, eleggibilità al momento di calare, sedie con freno (una per
+   atto) e filtro (solo se serve al Destino). Manca la **GUI del browser**
+   per calare dalla mano (oggi: terminale sì, browser no).
+4. ✅ **La misura** — in D-118: due forme respinte coi numeri, la terza
+   dà 190·88·120·176 con **0/8** e ere in banda.
 
 **Fatto quando** in una partita al tavolo misto ogni carta di Propp
 arrivata sul tavolo ce l'ha messa una mano, l'ordine delle funzioni regge,

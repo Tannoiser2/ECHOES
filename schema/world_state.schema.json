@@ -136,6 +136,11 @@
         "echo_deck": {
           "$ref": "#/$defs/echo_deck_state"
         },
+        "echoes_played_in_act": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Quante carte del Narratore sono state calate nell'atto in corso (ISSUES 23, D-118): a fine atto il conto si azzera, e uno zero dice che il tavolo ha scelto il silenzio. Facoltativo per i salvataggi scritti prima della 0.1.80."
+        },
         "drift_track": {
           "type": "array",
           "items": {
@@ -377,6 +382,13 @@
           "items": {
             "type": "string"
           }
+        },
+        "echo_hand": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "La mano del Narratore (ISSUES 23, D-118): le carte di Propp pescate a inizio atto e non ancora calate. Facoltativa per i salvataggi scritti prima della 0.1.80."
         },
         "tags": {
           "type": "array",

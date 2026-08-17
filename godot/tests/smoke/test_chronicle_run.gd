@@ -154,7 +154,12 @@ func test_the_act_echo_card_announces_itself_and_what_it_did() -> void:
 	)
 	await session.run(PolicyDecider.new(session.log))
 
-	assert_eq(seen.size(), 3, "una carta per Atto, tre in una Chronicle")
+	# ISSUES 23 (D-118): la carta non si pesca piu' da sola a fine atto - la
+	# calano le mani, al piu' una per atto a seggio, e solo quando serve al
+	# proprio Destino. Il numero e' una scelta del tavolo, non una quota:
+	# che almeno una mano parli dice che il canale vive.
+	assert_true(seen.size() >= 1, "almeno una mano ha calato una carta: %d" % seen.size())
+	assert_true(seen.size() <= 12, "e mai piu' di una per atto a seggio: %d" % seen.size())
 	for entry in seen:
 		var card: Dictionary = entry["card"]
 		assert_true(str(card["title"]) != "", "la carta ha un titolo")
