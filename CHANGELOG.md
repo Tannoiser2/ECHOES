@@ -5,6 +5,23 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.81] — La mano del Narratore sullo schermo
+
+La fetta browser della voce 23: le carte di Propp in mano si **vedono**
+nell'app, accanto agli Asset — spente quando la storia non le accetta
+ancora, col motivo sotto il cursore. Il bottone per calarle c'era già
+gratis: il browser corre lo stesso SeatDecider del terminale (D-038).
+
+### Added
+
+- `HandView` disegna la mano del Narratore: figura della carta, tooltip
+  con titolo e testo, e «non calabile: …» quando l'eleggibilità o il
+  costo lo vietano.
+- Un test che compila e disegna la vista nella suite headless (il debito
+  di 0.1.60, pagato per questa vista).
+
+---
+
 ## [0.1.80] — Le carte di Propp in mano ai giocatori
 
 La visione della voce 23 diventa motore ([D-118](docs/DECISIONS.md#d-118)),
