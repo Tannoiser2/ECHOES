@@ -5,6 +5,36 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.71] — La storia sceglie la vita
+
+Gli ingressi dell'albero ([D-109](docs/DECISIONS.md#d-109), verso
+[TRASFORMAZIONI.md](docs/TRASFORMAZIONI.md)).
+
+### Added
+
+- **Tre porte per le vite**: `ON_TAG` (entra la vita il cui segno sta
+  sul mondo, sulla casa o su una Regione — anche senza linea esaurita),
+  `ON_DEATH` (il seggio morto rivive nella vita che lo aspetta), e le
+  vite alternative: fra più candidate vince la prima, in ordine
+  d'autore, il cui ingresso è vero. Il verbale distingue le tre porte.
+- **Il segno `life:<id>`** posato sulla casa a ogni vita oltre la prima:
+  le tag_rules lo leggono con lo scope che già esiste — i poteri per
+  vita senza ganci nuovi.
+- **Tre vite di dimostrazione**: l'Accademia delle Misure (Lyra, se la
+  legge scritta sta sul mondo — altrimenti il Culto), il Regno di Nahr
+  (il popolo insediato torna MORTAL, quattro re scritti), il Culto della
+  Montagna (alla morte del drago). Ognuna col suo potere al tavolo.
+
+### Misurato
+
+Motore con dati vecchi: invariato al byte. Con le vite: playtest
+identico e 0/8; sonda delle ere 16,4 generazioni e 16 nomi distinti per
+saga (il Regno consuma i suoi re), anni e guardie in banda. Prima forma
+del potere del Regno respinta coi numeri (scaldava la Carestia: mediana
+7 contro banda 3–6 in biblioteca) e riscritta. 243 test, 5110 asserzioni.
+
+---
+
 ## [0.1.70] — Il seggio cambia vita
 
 Fase 2 della voce 19 ([D-108](docs/DECISIONS.md#d-108)), generalizzata

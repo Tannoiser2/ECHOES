@@ -83,17 +83,54 @@ static func plan(
 		var wants_new: bool = false
 		var weary: bool = false
 		var transformed: bool = false
+		var revived: bool = false
 		var transformed_from: String = ""
+		var entry_kind: String = ""
 		var note: String = ""
+
+		# D-109: il seggio morto puo' sopravvivere alla creatura - se una vita
+		# ON_DEATH e' scritta, entra adesso, e il seggio torna al tavolo. E'
+		# l'unico ingresso che non aspetta il tempo: la morte e' gia' successa.
+		if not bool(before.get("active", true)):
+			var risen: int = _next_life(definition, incarnation, previous, before, false)
+			if risen >= 0 and str(incarnations[risen].get("entry", "")) == "ON_DEATH":
+				transformed_from = str(active["name"])
+				incarnation = risen
+				active = active_view(definition, incarnation)
+				name = str(active["name"])
+				note = str(active.get("description", ""))
+				generation = 0
+				transformed = true
+				revived = true
+				entry_kind = "ON_DEATH"
+				changed = true
+
+		# D-109: la storia giocata puo' scegliere la vita anche senza una morte
+		# o una linea esaurita - il popolo che si e' insediato diventa regno
+		# quando il suo segno sta sul mondo, non quando finisce una lista.
+		if not transformed:
+			var called: int = _next_life(definition, incarnation, previous, before, false)
+			if called >= 0 and str(incarnations[called].get("entry", "")) == "ON_TAG":
+				transformed_from = str(active["name"])
+				incarnation = called
+				active = active_view(definition, incarnation)
+				name = str(active["name"])
+				note = str(active.get("description", ""))
+				generation = 0
+				transformed = true
+				entry_kind = "ON_TAG"
+				changed = true
 
 		# A person does not survive two centuries; a people and a thing under a
 		# mountain do. Which is which is authored, not guessed - and it belongs
 		# to the *life*, not to the seat: a dynasty that became a republic stops
 		# dying (D-108).
-		if str(active.get("persistence", "MORTAL")) == "MORTAL" and years >= LIFETIME_YEARS:
+		if not transformed \
+				and str(active.get("persistence", "MORTAL")) == "MORTAL" \
+				and years >= LIFETIME_YEARS:
 			var successors: Array = active.get("successors", [])
-			var has_next_life: bool = incarnation + 1 < incarnations.size()
-			if not successors.is_empty() or active.has("name_grammar") or has_next_life:
+			var next_life: int = _next_life(definition, incarnation, previous, before, true)
+			if not successors.is_empty() or active.has("name_grammar") or next_life >= 0:
 				generation += 1
 				if generation <= successors.size():
 					# The first generations are written by hand, with a line each
@@ -101,18 +138,20 @@ static func plan(
 					var successor: Dictionary = successors[generation - 1]
 					name = str(successor["name"])
 					note = str(successor.get("description", ""))
-				elif has_next_life:
+				elif next_life >= 0:
 					# La linea si esaurisce e il seggio cambia natura (D-108):
-					# la dinastia diventa repubblica, i saggi un culto. La
-					# generazione riparte: i successori nuovi sono della vita
-					# nuova.
+					# la dinastia diventa repubblica, i saggi un culto - e fra
+					# piu' vite candidate sceglie la storia giocata (D-109).
 					transformed_from = str(active["name"])
-					incarnation += 1
+					incarnation = next_life
 					active = active_view(definition, incarnation)
 					name = str(active["name"])
 					note = str(active.get("description", ""))
 					generation = 0
 					transformed = true
+					entry_kind = str(
+						incarnations[incarnation].get("entry", "LINE_EXHAUSTED")
+					)
 				else:
 					name = compose_name(active, generation - successors.size())
 					note = "%s generazione della casa" % _ordinal_word(generation + 1)
@@ -164,10 +203,51 @@ static func plan(
 			"weary": weary,
 			"transformed": transformed,
 			"transformed_from": transformed_from,
+			"entry_kind": entry_kind,
+			"revived": revived,
 			"barren": barren,
 			"note": note,
 		}
 	return out
+
+
+## La prossima vita del seggio, o -1: la prima candidata dopo quella corrente,
+## in ordine d'autore, il cui ingresso e' vero adesso (D-109). ON_DEATH vale
+## solo per un seggio morto; ON_TAG quando il suo segno sta sul mondo, sulla
+## casa o su una Regione; LINE_EXHAUSTED solo quando la linea e' davvero
+## finita (`exhausted`).
+static func _next_life(
+	definition: Dictionary, incarnation: int, previous: Dictionary,
+	before: Dictionary, exhausted: bool
+) -> int:
+	var incarnations: Array = definition.get("incarnations", [])
+	for index in range(incarnation + 1, incarnations.size()):
+		var life: Dictionary = incarnations[index]
+		match str(life.get("entry", "")):
+			"ON_DEATH":
+				if not bool(before.get("active", true)):
+					return index
+			"ON_TAG":
+				if _sign_anywhere(str(life.get("entry_tag", "")), previous, before):
+					return index
+			"LINE_EXHAUSTED":
+				if exhausted:
+					return index
+	return -1
+
+
+static func _sign_anywhere(tag: String, previous: Dictionary, before: Dictionary) -> bool:
+	if tag == "":
+		return false
+	if (previous.get("global_tags", []) as Array).has(tag):
+		return true
+	if (before.get("tags", []) as Array).has(tag):
+		return true
+	for region_id in previous.get("regions", {}):
+		var region: Dictionary = previous["regions"][region_id]
+		if (region.get("tags", []) as Array).has(tag):
+			return true
+	return false
 
 
 ## La definizione del seggio con sopra la vita corrente: i campi che

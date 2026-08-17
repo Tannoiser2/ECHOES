@@ -225,6 +225,41 @@
           },
           "art_prompt_key": "entity.nahr",
           "entry": "FOUNDING"
+        },
+        {
+          "id": "INC_NAHR_KINGDOM",
+          "name": "Il Regno di Nahr",
+          "description": "La terra data a chi la lavora ha fatto quello che nessuna spada aveva fatto: il popolo si è seduto. Un regno giovane con un granaio vero — e per la prima volta, eredi da perdere.",
+          "persistence": "MORTAL",
+          "action_values": {
+            "ACQUIRE": 3,
+            "MOVE": 2,
+            "INFLUENCE": 3,
+            "FORGE": 3,
+            "SCHEME": 1,
+            "CLAIM": 4
+          },
+          "art_prompt_key": "entity.nahr_kingdom",
+          "successors": [
+            {
+              "name": "Re Dhalan",
+              "description": "Il primo a portare una corona che sa di grano. La tenne come si tiene un aratro."
+            },
+            {
+              "name": "Regina Sahri",
+              "description": "Contò le famiglie prima dei soldati, e le fece contare di più."
+            },
+            {
+              "name": "Re Ottai",
+              "description": "Nato sedentario: per lui il cammino è una storia della nonna."
+            },
+            {
+              "name": "Regina Vesse",
+              "description": "L'ultima a parlare la lingua vecchia senza accento."
+            }
+          ],
+          "entry": "ON_TAG",
+          "entry_tag": "nahr_settled"
         }
       ]
     },
@@ -387,6 +422,23 @@
           "entry": "FOUNDING"
         },
         {
+          "id": "INC_LYRA_ACADEMY",
+          "name": "L'Accademia delle Misure",
+          "description": "Dove la legge fu scritta, il sapere trovò un'istituzione e non un altare: le misure di Lyra si insegnano, non si venerano, e chiunque può rifarle.",
+          "persistence": "COLLECTIVE",
+          "action_values": {
+            "ACQUIRE": 3,
+            "MOVE": 2,
+            "INFLUENCE": 4,
+            "FORGE": 3,
+            "SCHEME": 2,
+            "CLAIM": 1
+          },
+          "art_prompt_key": "entity.lyra_academy",
+          "entry": "ON_TAG",
+          "entry_tag": "succession_by_law"
+        },
+        {
           "id": "INC_LYRA_02",
           "name": "Il Culto della Misura",
           "description": "Gli appunti divennero scritture, gli allievi custodi. Ciò che Lyra domandava, il Culto lo crede: la domanda si è fatta dogma, e il dogma porta il nome di lei come un sigillo che nessuno ha il permesso di aprire.",
@@ -472,6 +524,22 @@
           },
           "art_prompt_key": "entity.vaerax",
           "entry": "FOUNDING"
+        },
+        {
+          "id": "INC_VAERAX_CULT",
+          "name": "Il Culto della Montagna",
+          "description": "Il drago non c'è più; la paura è rimasta, e la paura organizzata si chiama fede. Custodiscono le cicatrici della montagna come reliquie, e parlano per ciò che non parla più.",
+          "persistence": "COLLECTIVE",
+          "action_values": {
+            "ACQUIRE": 2,
+            "MOVE": 2,
+            "INFLUENCE": 4,
+            "FORGE": 3,
+            "SCHEME": 3,
+            "CLAIM": 2
+          },
+          "art_prompt_key": "entity.vaerax_cult",
+          "entry": "ON_DEATH"
         }
       ]
     }

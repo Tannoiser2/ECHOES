@@ -64,6 +64,44 @@
       "world_factor_delta": 1,
       "active": true,
       "note": "Chi ha vinto un Consiglio in modo clamoroso viene ascoltato: quando propone, il World Factor parte a +1. Il segno più famoso fra i muti del censimento, finalmente al lavoro (D-105)."
+    },
+    {
+      "id": "TGR_ACADEMY_VOICE",
+      "title": "L'Accademia fa testo",
+      "when": {
+        "scope": "ENTITY",
+        "tag": "life:INC_LYRA_ACADEMY"
+      },
+      "kind": "COUNCIL_MODIFIER",
+      "world_factor_delta": 1,
+      "active": true,
+      "note": "Il potere della vita (D-109): quando l'Accademia propone, la sua misura fa testo - World Factor +1. Vale solo finché quella vita siede al tavolo."
+    },
+    {
+      "id": "TGR_KINGDOM_GRANARY",
+      "title": "Il regno del grano",
+      "when": {
+        "scope": "ENTITY",
+        "tag": "life:INC_NAHR_KINGDOM"
+      },
+      "kind": "COUNCIL_MODIFIER",
+      "tension_id": "TEN_FAMINE",
+      "world_factor_delta": 1,
+      "active": true,
+      "note": "Il potere della vita (D-109): quando il Regno di Nahr propone sulla Carestia, parla chi ha il granaio - World Factor +1. Prima forma (INFLUENCE +1) respinta coi numeri: scaldava la Carestia e l'anno-biblioteca decideva 7 Consigli contro la banda 3-6 della guardia."
+    },
+    {
+      "id": "TGR_MOUNTAIN_MEMORY",
+      "title": "La memoria della montagna",
+      "when": {
+        "scope": "ENTITY",
+        "tag": "life:INC_VAERAX_CULT"
+      },
+      "kind": "COUNCIL_MODIFIER",
+      "tension_id": "TEN_AWAKENING",
+      "world_factor_delta": 1,
+      "active": true,
+      "note": "Il potere della vita (D-109): quando il Culto della Montagna propone sul Risveglio, parla per ciò che non parla più - World Factor +1."
     }
   ]
 }

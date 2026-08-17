@@ -331,6 +331,53 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-109 — Gli ingressi dell'albero: la storia sceglie la vita
+**implemented in 0.1.71** (voce 19, verso TRASFORMAZIONI.md)
+
+Tre porte per le vite del seggio, e non più solo il calendario:
+
+- **`ON_TAG`**: la vita entra alla successione se il suo segno
+  (`entry_tag`) sta sul mondo, sulla casa o su una Regione — è la storia
+  giocata a scegliere. Vale anche senza linea esaurita: il popolo che si
+  è insediato diventa regno quando il suo segno è scritto, non quando
+  finisce una lista.
+- **`ON_DEATH`**: il seggio morto (active=false) rivive nella vita che
+  lo aspetta — il seggio sopravvive alla creatura.
+- **Vite alternative**: fra più candidate entra la prima, in ordine
+  d'autore, il cui ingresso è vero. A linea esaurita, un `ON_TAG` messo
+  prima del ripiego `LINE_EXHAUSTED` fa scegliere alla storia.
+
+Ogni vita oltre la prima porta il segno **`life:<id>`** sulla casa, e le
+tag_rules lo leggono con lo scope ENTITY che già esiste: **i poteri per
+vita non hanno richiesto un gancio nuovo.** Il verbale distingue le tre
+porte («I segni hanno scelto…», «X non c'è più, ma il seggio non
+muore…», «La linea si è esaurita…»).
+
+### Le tre vite di dimostrazione (dall'albero)
+
+1. **L'Accademia delle Misure** (Lyra, `ON_TAG succession_by_law`): con
+   la legge scritta sul mondo, a linea esaurita nasce l'università, non
+   la chiesa. Potere: quando propone, World Factor +1.
+2. **Il Regno di Nahr** (`ON_TAG nahr_settled`): il popolo che si siede
+   **diventa MORTAL** — quattro re scritti, eredi da perdere.
+   Potere: World Factor +1 quando propone sulla Carestia. (Prima forma
+   — INFLUENCE +1 sulla Carestia — **respinta coi numeri**: scaldava la
+   pentola e l'anno-biblioteca decideva 7 Consigli contro la banda 3–6
+   della guardia. Riscritta come peso al tavolo: guardia in banda.)
+3. **Il Culto della Montagna** (Vaerax, `ON_DEATH`): oggi nessuna
+   Conseguenza sa uccidere il drago — scriverla è contenuto d'autore che
+   questa vita rende possibile. Potere: World Factor +1 quando propone
+   sul Risveglio.
+
+### Misurato
+
+Motore nuovo con dati vecchi: **tutto invariato al byte**. Con le tre
+vite: playtest standard identico, 0/8; sonda delle ere: generazioni per
+saga 10→**16,4** e nomi distinti 10→**16** — il Regno consuma i suoi re,
+l'Accademia esiste — con anni (mediana 955) e salti (20–200) in banda e
+la guardia degli anni-biblioteca verde. Suite 243 test in 33 suite (4
+nuovi sulle porte), 5110 asserzioni.
+
 ## D-108 — La successione attraversa le incarnazioni
 **implemented in 0.1.70** (ISSUES 19, Fase 2; generalizzata dal committente)
 
