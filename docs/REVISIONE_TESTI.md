@@ -1856,19 +1856,19 @@ possono spostare nella frase, non togliere. 745 testi in lettura.
 **`AST_KNOWLEDGE_LEDGER`**
 > Registro
 
-> +1 sul fronte Oppose. Chi tiene i conti sa cosa manca, e lo dice nel momento peggiore.
+> +1 sul fronte Oppose. Chi tiene i conti sa cosa manca, e lo dice nel momento peggiore — e da quel momento i conti sono di tutti: il registro è pubblico.
 
 
 **`AST_KNOWLEDGE_OLD_MAP`**
 > Mappa Vecchia
 
-> +1 quando KNOWLEDGE è rilevante per la Tensione. I confini sono sbagliati; le strade no, e le strade bastano.
+> +1 quando KNOWLEDGE è rilevante per la Tensione. I confini sono sbagliati; le strade no — e una strada giusta ricuce il ponte rotto sulla Regione della domanda.
 
 
 **`AST_KNOWLEDGE_PROOF`**
 > Prova
 
-> Se la proposta passa, resta in mano: una prova dimostrata non si consuma.
+> Se la proposta passa, resta in mano: una prova dimostrata non si consuma — e dimostra: la questione in gioco si apre a tutti i presenti.
 
 
 **`AST_KNOWLEDGE_RED_CRYSTAL`**
@@ -1880,7 +1880,7 @@ possono spostare nella frase, non togliere. 745 testi in lettura.
 **`AST_KNOWLEDGE_RUMOR`**
 > Voce di Corridoio
 
-> Non è vera. Non è ancora falsa.
+> Non è vera. Non è ancora falsa — e finché gira, la questione in gioco torna velata: i numeri si nascondono dietro le voci.
 
 
 **`AST_KNOWLEDGE_SEALED_TESTIMONY`**
@@ -1892,19 +1892,19 @@ possono spostare nella frase, non togliere. 745 testi in lettura.
 **`AST_KNOWLEDGE_WITNESS`**
 > Testimone
 
-> +1 sul fronte Oppose. Si scarta sempre: un testimone si spende una volta sola, e dopo è solo qualcuno che ha parlato.
+> +2 sul fronte Oppose. Si scarta sempre: un testimone si spende una volta sola — e la deposizione agita la casa accusata: la sua sede resta inquieta.
 
 
 **`AST_PEOPLE_CROWD`**
 > Folla
 
-> Nessuno l'ha convocata. È arrivata lo stesso.
+> Nessuno l'ha convocata. È arrivata lo stesso — in capitale: e la capitale resta inquieta.
 
 
 **`AST_PEOPLE_ELDERS`**
 > Consiglio degli Anziani
 
-> +1 sul fronte Oppose. Parlano piano, dicono di no, e vengono ripetuti per tre villaggi.
+> +1 sul fronte Oppose. Parlano piano, dicono di no, e vengono ripetuti per tre villaggi — e sanno accompagnare: il lutto della Regione della domanda si elabora.
 
 
 **`AST_PEOPLE_EXODUS`**
@@ -1916,25 +1916,25 @@ possono spostare nella frase, non togliere. 745 testi in lettura.
 **`AST_PEOPLE_HARVEST_HANDS`**
 > Braccia per il Raccolto
 
-> +1 quando PEOPLE è rilevante per la Tensione. Non sono un esercito: ma senza di loro non si mangia, e lo sanno anche i re.
+> +1 quando PEOPLE è rilevante per la Tensione. Non sono un esercito: ma senza di loro non si mangia — e dove arrivano, la fame della Regione della domanda si spegne.
 
 
 **`AST_PEOPLE_MARCH`**
 > Marcia
 
-> Poca gente, ma in strada e alla stessa ora. Il punto non è quanti sono: è che si sono trovati.
+> Poca gente, ma in strada e alla stessa ora. Il punto non è quanti sono: è che si sono trovati — e le razioni imposte sulla Regione della domanda si rompono.
 
 
 **`AST_PEOPLE_MOBILIZATION`**
 > Mobilitazione
 
-> +1 sul fronte Oppose: è più facile fermare qualcosa in molti che costruirla. Si scarta sempre.
+> +2 sul fronte Oppose: è più facile fermare qualcosa in molti che costruirla. Si scarta sempre — e la piazza resta calda: la Tensione in gioco sale di 1.
 
 
 **`AST_PEOPLE_SPOKESMAN`**
 > Portavoce
 
-> Qualcuno che dice ad alta voce quello che già pensano in molti, e che dopo non può più tornare indietro.
+> Qualcuno che dice ad alta voce quello che già pensano in molti, e che dopo non può più tornare indietro — la parola detta è una promessa fra le due case.
 
 
 **`AST_PEOPLE_STILL_HANDS`**
@@ -1946,25 +1946,25 @@ possono spostare nella frase, non togliere. 745 testi in lettura.
 **`AST_WEALTH_CARAVAN`**
 > Carovana
 
-> Si scarta sempre: una carovana spesa è una carovana partita.
+> Si scarta sempre: una carovana spesa è una carovana partita — e una carovana che parte riapre la via: la Regione tagliata fuori si ricollega.
 
 
 **`AST_WEALTH_CREDIT`**
 > Credito
 
-> +1 sempre, su qualsiasi fronte. Vale nel momento in cui lo chiedi, e non un minuto dopo.
+> +1 sempre, su qualsiasi fronte. Vale nel momento in cui lo chiedi, e non un minuto dopo — perché chiederlo chiama tutti i debiti: il mondo ricorda che il debito fu chiamato.
 
 
 **`AST_WEALTH_GRAIN`**
 > Riserva di Grano
 
-> Conta più di un titolo, per il tempo in cui dura.
+> Conta più di un titolo, per il tempo in cui dura — e dura quanto basta: la Carestia scende di 1.
 
 
 **`AST_WEALTH_GRANARY_KEYS`**
 > Chiavi del Granaio
 
-> +1 sul fronte Oppose. Non possiedi il grano: possiedi la serratura, e la serratura si usa per chiudere.
+> +2 sul fronte Oppose. Non possiedi il grano: possiedi la serratura — e la serratura raziona: sulla Regione della domanda resta il segno della razione.
 
 
 **`AST_WEALTH_LAND_MORTGAGE`**
@@ -1976,13 +1976,13 @@ possono spostare nella frase, non togliere. 745 testi in lettura.
 **`AST_WEALTH_SALT`**
 > Sale
 
-> +1 quando WEALTH è rilevante per la Tensione. Non nutre nessuno: senza, quello che nutre non arriva a marzo.
+> +1 quando WEALTH è rilevante per la Tensione. Non nutre nessuno: senza, quello che nutre non arriva — e dove arriva, la magra si supera.
 
 
 **`AST_WEALTH_TOLL`**
 > Pedaggio
 
-> +1 sul fronte Oppose. Una corda tesa fra due pali, e il diritto di non alzarla.
+> +1 sul fronte Oppose. Una corda tesa fra due pali, e il diritto di non alzarla — e il diritto si scrive: sulla Regione della domanda resta il pedaggio.
 
 
 **`AST_WEALTH_TREASURY`**

@@ -558,7 +558,20 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.people.crowd",
-      "rules_text": "Nessuno l'ha convocata. È arrivata lo stesso."
+      "rules_text": "Nessuno l'ha convocata. È arrivata lo stesso — in capitale: e la capitale resta inquieta.",
+      "on_commit_effects": [
+        {
+          "type": "SET_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$capital"
+          },
+          "payload": {
+            "tag": "condition:unrest"
+          },
+          "note": "Il mestiere della carta (D-114): la folla arriva dove sta il potere."
+        }
+      ]
     },
     {
       "id": "AST_PEOPLE_ELDERS",
@@ -578,7 +591,21 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.people.elders",
-      "rules_text": "+1 sul fronte Oppose. Parlano piano, dicono di no, e vengono ripetuti per tre villaggi."
+      "rules_text": "+1 sul fronte Oppose. Parlano piano, dicono di no, e vengono ripetuti per tre villaggi — e sanno accompagnare: il lutto della Regione della domanda si elabora.",
+      "on_commit_effects": [
+        {
+          "type": "REMOVE_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "tag": "condition:mourning",
+            "optional": true
+          },
+          "note": "Il mestiere della carta (D-114): gli anziani curano il lutto."
+        }
+      ]
     },
     {
       "id": "AST_PEOPLE_HARVEST_HANDS",
@@ -598,7 +625,21 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.people.harvest_hands",
-      "rules_text": "+1 quando PEOPLE è rilevante per la Tensione. Non sono un esercito: ma senza di loro non si mangia, e lo sanno anche i re."
+      "rules_text": "+1 quando PEOPLE è rilevante per la Tensione. Non sono un esercito: ma senza di loro non si mangia — e dove arrivano, la fame della Regione della domanda si spegne.",
+      "on_commit_effects": [
+        {
+          "type": "REMOVE_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "tag": "condition:starving",
+            "optional": true
+          },
+          "note": "Il mestiere della carta (D-114): le braccia sono la cura della Regione affamata - e della sua regola (D-105)."
+        }
+      ]
     },
     {
       "id": "AST_PEOPLE_MOBILIZATION",
@@ -619,7 +660,20 @@
       "rarity": "UNCOMMON",
       "deck_copies": 2,
       "art_prompt_key": "asset.people.mobilization",
-      "rules_text": "+1 sul fronte Oppose: è più facile fermare qualcosa in molti che costruirla. Si scarta sempre."
+      "rules_text": "+2 sul fronte Oppose: è più facile fermare qualcosa in molti che costruirla. Si scarta sempre — e la piazza resta calda: la Tensione in gioco sale di 1.",
+      "on_commit_effects": [
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "$tension"
+          },
+          "payload": {
+            "delta": 1
+          },
+          "note": "Il mestiere della carta (D-114): mobilitare ha un prezzo: la questione non si raffredda con la folla in strada."
+        }
+      ]
     },
     {
       "id": "AST_PEOPLE_SPOKESMAN",
@@ -639,7 +693,20 @@
       "rarity": "UNCOMMON",
       "deck_copies": 2,
       "art_prompt_key": "asset.people.spokesman",
-      "rules_text": "Qualcuno che dice ad alta voce quello che già pensano in molti, e che dopo non può più tornare indietro."
+      "rules_text": "Qualcuno che dice ad alta voce quello che già pensano in molti, e che dopo non può più tornare indietro — la parola detta è una promessa fra le due case.",
+      "on_commit_effects": [
+        {
+          "type": "SET_RELATION",
+          "target": {
+            "kind": "relation",
+            "id": "$actor|$rival"
+          },
+          "payload": {
+            "add_tag": "PROMISE"
+          },
+          "note": "Il mestiere della carta (D-114): il portavoce impegna la parola: PROMISE e' un segno che il giudizio delle promesse legge."
+        }
+      ]
     },
     {
       "id": "AST_PEOPLE_MARCH",
@@ -659,7 +726,21 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.people.march",
-      "rules_text": "Poca gente, ma in strada e alla stessa ora. Il punto non è quanti sono: è che si sono trovati."
+      "rules_text": "Poca gente, ma in strada e alla stessa ora. Il punto non è quanti sono: è che si sono trovati — e le razioni imposte sulla Regione della domanda si rompono.",
+      "on_commit_effects": [
+        {
+          "type": "REMOVE_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "tag": "condition:rationed",
+            "optional": true
+          },
+          "note": "Il mestiere della carta (D-114): la marcia rompe le serrature delle Chiavi del Granaio."
+        }
+      ]
     },
     {
       "id": "AST_PEOPLE_EXODUS",
@@ -748,7 +829,20 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.knowledge.rumor",
-      "rules_text": "Non è vera. Non è ancora falsa."
+      "rules_text": "Non è vera. Non è ancora falsa — e finché gira, la questione in gioco torna velata: i numeri si nascondono dietro le voci.",
+      "on_commit_effects": [
+        {
+          "type": "SET_TENSION_VISIBILITY",
+          "target": {
+            "kind": "tension",
+            "id": "$tension"
+          },
+          "payload": {
+            "visibility": "VEILED"
+          },
+          "note": "Il mestiere della carta (D-114): la voce vela - l'inverso del Cristallo. La Prova la smentisce."
+        }
+      ]
     },
     {
       "id": "AST_KNOWLEDGE_OLD_MAP",
@@ -768,7 +862,21 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.knowledge.old_map",
-      "rules_text": "+1 quando KNOWLEDGE è rilevante per la Tensione. I confini sono sbagliati; le strade no, e le strade bastano."
+      "rules_text": "+1 quando KNOWLEDGE è rilevante per la Tensione. I confini sono sbagliati; le strade no — e una strada giusta ricuce il ponte rotto sulla Regione della domanda.",
+      "on_commit_effects": [
+        {
+          "type": "REMOVE_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "tag": "scar:broken_bridge",
+            "optional": true
+          },
+          "note": "Il mestiere della carta (D-114): la mappa vecchia cura la cicatrice della via tagliata."
+        }
+      ]
     },
     {
       "id": "AST_KNOWLEDGE_LEDGER",
@@ -788,7 +896,20 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.knowledge.ledger",
-      "rules_text": "+1 sul fronte Oppose. Chi tiene i conti sa cosa manca, e lo dice nel momento peggiore."
+      "rules_text": "+1 sul fronte Oppose. Chi tiene i conti sa cosa manca, e lo dice nel momento peggiore — e da quel momento i conti sono di tutti: il registro è pubblico.",
+      "on_commit_effects": [
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "ledger_public"
+          },
+          "note": "Il mestiere della carta (D-114): il registro aperto e' un fatto del mondo, letto dalle clausole."
+        }
+      ]
     },
     {
       "id": "AST_KNOWLEDGE_PROOF",
@@ -808,7 +929,20 @@
       "rarity": "UNCOMMON",
       "deck_copies": 2,
       "art_prompt_key": "asset.knowledge.proof",
-      "rules_text": "Se la proposta passa, resta in mano: una prova dimostrata non si consuma."
+      "rules_text": "Se la proposta passa, resta in mano: una prova dimostrata non si consuma — e dimostra: la questione in gioco si apre a tutti i presenti.",
+      "on_commit_effects": [
+        {
+          "type": "SET_TENSION_VISIBILITY",
+          "target": {
+            "kind": "tension",
+            "id": "$tension"
+          },
+          "payload": {
+            "visibility": "OPEN"
+          },
+          "note": "Il mestiere della carta (D-114): la prova svela - la smentita della Voce di Corridoio."
+        }
+      ]
     },
     {
       "id": "AST_KNOWLEDGE_ARCHIVE",
@@ -849,7 +983,20 @@
       "rarity": "UNCOMMON",
       "deck_copies": 2,
       "art_prompt_key": "asset.knowledge.witness",
-      "rules_text": "+1 sul fronte Oppose. Si scarta sempre: un testimone si spende una volta sola, e dopo è solo qualcuno che ha parlato."
+      "rules_text": "+2 sul fronte Oppose. Si scarta sempre: un testimone si spende una volta sola — e la deposizione agita la casa accusata: la sua sede resta inquieta.",
+      "on_commit_effects": [
+        {
+          "type": "SET_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$rival_seat"
+          },
+          "payload": {
+            "tag": "condition:unrest"
+          },
+          "note": "Il mestiere della carta (D-114): il testimone accusa: l'inquietudine si posa sulla sede del rivale."
+        }
+      ]
     },
     {
       "id": "AST_KNOWLEDGE_RED_CRYSTAL",
@@ -937,7 +1084,20 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.wealth.grain",
-      "rules_text": "Conta più di un titolo, per il tempo in cui dura."
+      "rules_text": "Conta più di un titolo, per il tempo in cui dura — e dura quanto basta: la Carestia scende di 1.",
+      "on_commit_effects": [
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "TEN_FAMINE"
+          },
+          "payload": {
+            "delta": -1
+          },
+          "note": "Il mestiere della carta (D-114): la riserva sfama. Nelle Cronache senza Carestia non accade nulla."
+        }
+      ]
     },
     {
       "id": "AST_WEALTH_SALT",
@@ -957,7 +1117,21 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.wealth.salt",
-      "rules_text": "+1 quando WEALTH è rilevante per la Tensione. Non nutre nessuno: senza, quello che nutre non arriva a marzo."
+      "rules_text": "+1 quando WEALTH è rilevante per la Tensione. Non nutre nessuno: senza, quello che nutre non arriva — e dove arriva, la magra si supera.",
+      "on_commit_effects": [
+        {
+          "type": "REMOVE_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "tag": "condition:lean",
+            "optional": true
+          },
+          "note": "Il mestiere della carta (D-114): il sale conserva: la Regione della domanda non è più magra."
+        }
+      ]
     },
     {
       "id": "AST_WEALTH_TOLL",
@@ -977,7 +1151,20 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.wealth.toll",
-      "rules_text": "+1 sul fronte Oppose. Una corda tesa fra due pali, e il diritto di non alzarla."
+      "rules_text": "+1 sul fronte Oppose. Una corda tesa fra due pali, e il diritto di non alzarla — e il diritto si scrive: sulla Regione della domanda resta il pedaggio.",
+      "on_commit_effects": [
+        {
+          "type": "SET_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "tag": "structure:tollgate"
+          },
+          "note": "Il mestiere della carta (D-114): il pedaggio impegnato diventa una struttura sulla mappa."
+        }
+      ]
     },
     {
       "id": "AST_WEALTH_CARAVAN",
@@ -997,7 +1184,21 @@
       "rarity": "UNCOMMON",
       "deck_copies": 2,
       "art_prompt_key": "asset.wealth.caravan",
-      "rules_text": "Si scarta sempre: una carovana spesa è una carovana partita."
+      "rules_text": "Si scarta sempre: una carovana spesa è una carovana partita — e una carovana che parte riapre la via: la Regione tagliata fuori si ricollega.",
+      "on_commit_effects": [
+        {
+          "type": "REMOVE_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "tag": "condition:cut_off",
+            "optional": true
+          },
+          "note": "Il mestiere della carta (D-114): la carovana è la cura del taglio - come la Scorta Giurata."
+        }
+      ]
     },
     {
       "id": "AST_WEALTH_CREDIT",
@@ -1017,7 +1218,20 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.wealth.credit",
-      "rules_text": "+1 sempre, su qualsiasi fronte. Vale nel momento in cui lo chiedi, e non un minuto dopo."
+      "rules_text": "+1 sempre, su qualsiasi fronte. Vale nel momento in cui lo chiedi, e non un minuto dopo — perché chiederlo chiama tutti i debiti: il mondo ricorda che il debito fu chiamato.",
+      "on_commit_effects": [
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "debt_called"
+          },
+          "note": "Il mestiere della carta (D-114): il credito chiesto in pubblico apre i conti - lo stesso segno che apre la porta del Banco Nero (D-110)."
+        }
+      ]
     },
     {
       "id": "AST_WEALTH_GRANARY_KEYS",
@@ -1037,7 +1251,20 @@
       "rarity": "UNCOMMON",
       "deck_copies": 2,
       "art_prompt_key": "asset.wealth.granary_keys",
-      "rules_text": "+1 sul fronte Oppose. Non possiedi il grano: possiedi la serratura, e la serratura si usa per chiudere."
+      "rules_text": "+2 sul fronte Oppose. Non possiedi il grano: possiedi la serratura — e la serratura raziona: sulla Regione della domanda resta il segno della razione.",
+      "on_commit_effects": [
+        {
+          "type": "SET_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "tag": "condition:rationed"
+          },
+          "note": "Il mestiere della carta (D-114): le chiavi chiudono il granaio; la Marcia rompe le razioni."
+        }
+      ]
     },
     {
       "id": "AST_WEALTH_TREASURY",

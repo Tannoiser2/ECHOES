@@ -620,12 +620,18 @@ che ora esiste (effetti + tag_rules):
    Promessa scrive un patto che le promesse giudicano, il Debito Vecchio
    segna la sede del debitore. Il Legame di Sangue aspetta la voce 25:
    il suo potere vero è un pavimento di relazione, non un numero.
-4. **WEALTH / KNOWLEDGE / PEOPLE**: il grano compra, il sapere svela, la
-   gente marcia.
+4. ✅ **WEALTH / KNOWLEDGE / PEOPLE** — fatta in 0.1.76
+   ([D-114](DECISIONS.md#d-114)): il grano compra e cura, il sapere svela
+   e mente (la Voce vela, la Prova smentisce), la gente marcia. Il
+   Credito apre la porta del Banco Nero, il Registro apre i conti, il
+   Portavoce impegna promesse.
 
 **Fatto quando** ogni carta ha un effetto che il suo nome spiega, ogni
 mazzetto è misurato sui 100 semi prima di restare, e al tavolo impegnare
-una carta è una scelta, non un conteggio.
+una carta è una scelta, non un conteggio. — ✅ **Chiusa in 0.1.76**: 46
+carte su 48 lavorano; l'Archivio ha già il suo mestiere (restare in
+mano) e il Legame di Sangue aspetta, dichiarato, il pavimento di
+relazione della voce 25.
 
 ## Milestone 0.3 — World Propagation
 

@@ -331,6 +331,50 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-114 — Le carte con un mestiere, ultimi mazzetti: WEALTH, KNOWLEDGE, PEOPLE
+**implemented in 0.1.76** (ISSUES 26, chiusa)
+
+Diciassette mestieri e la voce si chiude: **46 carte su 48 lavorano**, e
+le due che no lo dichiarano (l'Archivio ha già il suo mestiere — restare
+in mano; il Legame di Sangue aspetta il pavimento di relazione della
+voce 25).
+
+- **WEALTH, il grano compra e cura**: la Riserva sfama (Carestia −1), il
+  Sale supera la magra, la Carovana ricollega la Regione tagliata fuori,
+  il Pedaggio si scrive sulla mappa, le Chiavi razionano, e il **Credito
+  chiama il debito** — `debt_called`, la porta del Banco Nero.
+- **KNOWLEDGE, il sapere svela e mente**: la **Voce di Corridoio vela**
+  la questione e la **Prova la svela** — la coppia più bella del mazzo;
+  la Mappa Vecchia ricuce il ponte rotto, il **Registro apre i conti**
+  (`ledger_public`), il Testimone agita la sede dell'accusato.
+- **PEOPLE, la gente marcia**: la Folla porta l'inquietudine in
+  capitale, gli Anziani elaborano il lutto, le **Braccia spengono la
+  fame della Regione affamata** (e la sua regola D-105), la
+  Mobilitazione scalda la piazza (+1), il **Portavoce impegna una
+  PROMISE** che il giudizio delle promesse legge, la Marcia rompe le
+  razioni delle Chiavi.
+
+Contromosse fra famiglie: Chiavi↔Marcia, Voce↔Prova, Mercenari/Folla↔
+Editto, Diritto di Corona↔Censimento, Banda/Mobilitazione↔Sigillo. I
+piani B e C aggiornano le attese (i riscaldi e i raffreddi spostano i
+tempi dei Consigli).
+
+### Misurato (una famiglia alla volta, stessi 100 semi)
+
+| passo | esiti Consigli |
+|---|---|
+| base (D-113) | 197 · 94 · 127 · 182 |
+| + WEALTH | 197 · 90 · 126 · 179 |
+| + KNOWLEDGE | 193 · 84 · 133 · 176 |
+| + PEOPLE | 208 · 79 · 132 · 174 |
+
+Il mondo si fa più duro e meno estremo: più fallimenti (la Mobilitazione
+scalda), meno Decisive (Sigillo, Riserva e Braccia raffreddano). Le
+distribuzioni restano sane — Ilve respira (17→12 MIN), Lyra resta prima
+ma meno schiacciante (28→22 TRI al tavolo misto), nessun seggio crolla —
+e **0/8 al tavolo misto a ogni passo**; ere in banda (20,6 / 22 nomi);
+guardia biblioteca verde. 246 test, 5324 asserzioni.
+
 ## D-113 — Le carte con un mestiere, terzo mazzetto: BONDS
 **implemented in 0.1.75** (ISSUES 26, punto 3)
 

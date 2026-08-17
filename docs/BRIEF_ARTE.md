@@ -461,11 +461,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.knowledge.ledger` — Registro
 
-- **soggetto**: Registro — +1 sul fronte Oppose. Chi tiene i conti sa cosa manca, e lo dice nel momento peggiore
+- **soggetto**: Registro — +1 sul fronte Oppose. Chi tiene i conti sa cosa manca, e lo dice nel momento peggiore — e da quel momento i conti sono di tutti: il registro è pubblico
 - **id**: `AST_KNOWLEDGE_LEDGER`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Registro — +1 sul fronte Oppose. Chi tiene i conti sa cosa manca, e lo dice nel momento peggiore.
+Historical dark-fantasy painting, single evocative scene depicting Registro — +1 sul fronte Oppose. Chi tiene i conti sa cosa manca, e lo dice nel momento peggiore — e da quel momento i conti sono di tutti: il registro è pubblico.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 verde-azzurro pallido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -479,11 +479,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.knowledge.old_map` — Mappa Vecchia
 
-- **soggetto**: Mappa Vecchia — +1 quando KNOWLEDGE è rilevante per la Tensione. I confini sono sbagliati; le strade no, e le strade bastano
+- **soggetto**: Mappa Vecchia — +1 quando KNOWLEDGE è rilevante per la Tensione. I confini sono sbagliati; le strade no — e una strada giusta ricuce il ponte rotto sulla Regione della domanda
 - **id**: `AST_KNOWLEDGE_OLD_MAP`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Mappa Vecchia — +1 quando KNOWLEDGE è rilevante per la Tensione. I confini sono sbagliati; le strade no, e le strade bastano.
+Historical dark-fantasy painting, single evocative scene depicting Mappa Vecchia — +1 quando KNOWLEDGE è rilevante per la Tensione. I confini sono sbagliati; le strade no — e una strada giusta ricuce il ponte rotto sulla Regione della domanda.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 verde-azzurro pallido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -497,11 +497,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.knowledge.proof` — Prova
 
-- **soggetto**: Prova — Se la proposta passa, resta in mano: una prova dimostrata non si consuma
+- **soggetto**: Prova — Se la proposta passa, resta in mano: una prova dimostrata non si consuma — e dimostra: la questione in gioco si apre a tutti i presenti
 - **id**: `AST_KNOWLEDGE_PROOF`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Prova — Se la proposta passa, resta in mano: una prova dimostrata non si consuma.
+Historical dark-fantasy painting, single evocative scene depicting Prova — Se la proposta passa, resta in mano: una prova dimostrata non si consuma — e dimostra: la questione in gioco si apre a tutti i presenti.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 verde-azzurro pallido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -533,11 +533,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.knowledge.rumor` — Voce di Corridoio
 
-- **soggetto**: Voce di Corridoio — Non è vera. Non è ancora falsa
+- **soggetto**: Voce di Corridoio — Non è vera. Non è ancora falsa — e finché gira, la questione in gioco torna velata: i numeri si nascondono dietro le voci
 - **id**: `AST_KNOWLEDGE_RUMOR`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Voce di Corridoio — Non è vera. Non è ancora falsa.
+Historical dark-fantasy painting, single evocative scene depicting Voce di Corridoio — Non è vera. Non è ancora falsa — e finché gira, la questione in gioco torna velata: i numeri si nascondono dietro le voci.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 verde-azzurro pallido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -569,11 +569,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.knowledge.witness` — Testimone
 
-- **soggetto**: Testimone — +1 sul fronte Oppose. Si scarta sempre: un testimone si spende una volta sola, e dopo è solo qualcuno che ha parlato
+- **soggetto**: Testimone — +2 sul fronte Oppose. Si scarta sempre: un testimone si spende una volta sola — e la deposizione agita la casa accusata: la sua sede resta inquieta
 - **id**: `AST_KNOWLEDGE_WITNESS`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Testimone — +1 sul fronte Oppose. Si scarta sempre: un testimone si spende una volta sola, e dopo è solo qualcuno che ha parlato.
+Historical dark-fantasy painting, single evocative scene depicting Testimone — +2 sul fronte Oppose. Si scarta sempre: un testimone si spende una volta sola — e la deposizione agita la casa accusata: la sua sede resta inquieta.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 verde-azzurro pallido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -587,11 +587,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.people.crowd` — Folla
 
-- **soggetto**: Folla — Nessuno l'ha convocata. È arrivata lo stesso
+- **soggetto**: Folla — Nessuno l'ha convocata. È arrivata lo stesso — in capitale: e la capitale resta inquieta
 - **id**: `AST_PEOPLE_CROWD`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Folla — Nessuno l'ha convocata. È arrivata lo stesso.
+Historical dark-fantasy painting, single evocative scene depicting Folla — Nessuno l'ha convocata. È arrivata lo stesso — in capitale: e la capitale resta inquieta.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 terracotta accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -605,11 +605,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.people.elders` — Consiglio degli Anziani
 
-- **soggetto**: Consiglio degli Anziani — +1 sul fronte Oppose. Parlano piano, dicono di no, e vengono ripetuti per tre villaggi
+- **soggetto**: Consiglio degli Anziani — +1 sul fronte Oppose. Parlano piano, dicono di no, e vengono ripetuti per tre villaggi — e sanno accompagnare: il lutto della Regione della domanda si elabora
 - **id**: `AST_PEOPLE_ELDERS`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Consiglio degli Anziani — +1 sul fronte Oppose. Parlano piano, dicono di no, e vengono ripetuti per tre villaggi.
+Historical dark-fantasy painting, single evocative scene depicting Consiglio degli Anziani — +1 sul fronte Oppose. Parlano piano, dicono di no, e vengono ripetuti per tre villaggi — e sanno accompagnare: il lutto della Regione della domanda si elabora.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 terracotta accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -641,11 +641,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.people.harvest_hands` — Braccia per il Raccolto
 
-- **soggetto**: Braccia per il Raccolto — +1 quando PEOPLE è rilevante per la Tensione. Non sono un esercito: ma senza di loro non si mangia, e lo sanno anche i re
+- **soggetto**: Braccia per il Raccolto — +1 quando PEOPLE è rilevante per la Tensione. Non sono un esercito: ma senza di loro non si mangia — e dove arrivano, la fame della Regione della domanda si spegne
 - **id**: `AST_PEOPLE_HARVEST_HANDS`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Braccia per il Raccolto — +1 quando PEOPLE è rilevante per la Tensione. Non sono un esercito: ma senza di loro non si mangia, e lo sanno anche i re.
+Historical dark-fantasy painting, single evocative scene depicting Braccia per il Raccolto — +1 quando PEOPLE è rilevante per la Tensione. Non sono un esercito: ma senza di loro non si mangia — e dove arrivano, la fame della Regione della domanda si spegne.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 terracotta accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -659,11 +659,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.people.march` — Marcia
 
-- **soggetto**: Marcia — Poca gente, ma in strada e alla stessa ora. Il punto non è quanti sono: è che si sono trovati
+- **soggetto**: Marcia — Poca gente, ma in strada e alla stessa ora. Il punto non è quanti sono: è che si sono trovati — e le razioni imposte sulla Regione della domanda si rompono
 - **id**: `AST_PEOPLE_MARCH`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Marcia — Poca gente, ma in strada e alla stessa ora. Il punto non è quanti sono: è che si sono trovati.
+Historical dark-fantasy painting, single evocative scene depicting Marcia — Poca gente, ma in strada e alla stessa ora. Il punto non è quanti sono: è che si sono trovati — e le razioni imposte sulla Regione della domanda si rompono.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 terracotta accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -677,11 +677,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.people.mobilization` — Mobilitazione
 
-- **soggetto**: Mobilitazione — +1 sul fronte Oppose: è più facile fermare qualcosa in molti che costruirla. Si scarta sempre
+- **soggetto**: Mobilitazione — +2 sul fronte Oppose: è più facile fermare qualcosa in molti che costruirla. Si scarta sempre — e la piazza resta calda: la Tensione in gioco sale di 1
 - **id**: `AST_PEOPLE_MOBILIZATION`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Mobilitazione — +1 sul fronte Oppose: è più facile fermare qualcosa in molti che costruirla. Si scarta sempre.
+Historical dark-fantasy painting, single evocative scene depicting Mobilitazione — +2 sul fronte Oppose: è più facile fermare qualcosa in molti che costruirla. Si scarta sempre — e la piazza resta calda: la Tensione in gioco sale di 1.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 terracotta accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -695,11 +695,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.people.spokesman` — Portavoce
 
-- **soggetto**: Portavoce — Qualcuno che dice ad alta voce quello che già pensano in molti, e che dopo non può più tornare indietro
+- **soggetto**: Portavoce — Qualcuno che dice ad alta voce quello che già pensano in molti, e che dopo non può più tornare indietro — la parola detta è una promessa fra le due case
 - **id**: `AST_PEOPLE_SPOKESMAN`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Portavoce — Qualcuno che dice ad alta voce quello che già pensano in molti, e che dopo non può più tornare indietro.
+Historical dark-fantasy painting, single evocative scene depicting Portavoce — Qualcuno che dice ad alta voce quello che già pensano in molti, e che dopo non può più tornare indietro — la parola detta è una promessa fra le due case.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 terracotta accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -731,11 +731,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.wealth.caravan` — Carovana
 
-- **soggetto**: Carovana — Si scarta sempre: una carovana spesa è una carovana partita
+- **soggetto**: Carovana — Si scarta sempre: una carovana spesa è una carovana partita — e una carovana che parte riapre la via: la Regione tagliata fuori si ricollega
 - **id**: `AST_WEALTH_CARAVAN`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Carovana — Si scarta sempre: una carovana spesa è una carovana partita.
+Historical dark-fantasy painting, single evocative scene depicting Carovana — Si scarta sempre: una carovana spesa è una carovana partita — e una carovana che parte riapre la via: la Regione tagliata fuori si ricollega.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 ambra accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -749,11 +749,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.wealth.credit` — Credito
 
-- **soggetto**: Credito — +1 sempre, su qualsiasi fronte. Vale nel momento in cui lo chiedi, e non un minuto dopo
+- **soggetto**: Credito — +1 sempre, su qualsiasi fronte. Vale nel momento in cui lo chiedi, e non un minuto dopo — perché chiederlo chiama tutti i debiti: il mondo ricorda che il debito fu chiamato
 - **id**: `AST_WEALTH_CREDIT`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Credito — +1 sempre, su qualsiasi fronte. Vale nel momento in cui lo chiedi, e non un minuto dopo.
+Historical dark-fantasy painting, single evocative scene depicting Credito — +1 sempre, su qualsiasi fronte. Vale nel momento in cui lo chiedi, e non un minuto dopo — perché chiederlo chiama tutti i debiti: il mondo ricorda che il debito fu chiamato.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 ambra accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -767,11 +767,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.wealth.grain` — Riserva di Grano
 
-- **soggetto**: Riserva di Grano — Conta più di un titolo, per il tempo in cui dura
+- **soggetto**: Riserva di Grano — Conta più di un titolo, per il tempo in cui dura — e dura quanto basta: la Carestia scende di 1
 - **id**: `AST_WEALTH_GRAIN`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Riserva di Grano — Conta più di un titolo, per il tempo in cui dura.
+Historical dark-fantasy painting, single evocative scene depicting Riserva di Grano — Conta più di un titolo, per il tempo in cui dura — e dura quanto basta: la Carestia scende di 1.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 ambra accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -785,11 +785,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.wealth.granary_keys` — Chiavi del Granaio
 
-- **soggetto**: Chiavi del Granaio — +1 sul fronte Oppose. Non possiedi il grano: possiedi la serratura, e la serratura si usa per chiudere
+- **soggetto**: Chiavi del Granaio — +2 sul fronte Oppose. Non possiedi il grano: possiedi la serratura — e la serratura raziona: sulla Regione della domanda resta il segno della razione
 - **id**: `AST_WEALTH_GRANARY_KEYS`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Chiavi del Granaio — +1 sul fronte Oppose. Non possiedi il grano: possiedi la serratura, e la serratura si usa per chiudere.
+Historical dark-fantasy painting, single evocative scene depicting Chiavi del Granaio — +2 sul fronte Oppose. Non possiedi il grano: possiedi la serratura — e la serratura raziona: sulla Regione della domanda resta il segno della razione.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 ambra accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -821,11 +821,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.wealth.salt` — Sale
 
-- **soggetto**: Sale — +1 quando WEALTH è rilevante per la Tensione. Non nutre nessuno: senza, quello che nutre non arriva a marzo
+- **soggetto**: Sale — +1 quando WEALTH è rilevante per la Tensione. Non nutre nessuno: senza, quello che nutre non arriva — e dove arriva, la magra si supera
 - **id**: `AST_WEALTH_SALT`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Sale — +1 quando WEALTH è rilevante per la Tensione. Non nutre nessuno: senza, quello che nutre non arriva a marzo.
+Historical dark-fantasy painting, single evocative scene depicting Sale — +1 quando WEALTH è rilevante per la Tensione. Non nutre nessuno: senza, quello che nutre non arriva — e dove arriva, la magra si supera.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 ambra accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -839,11 +839,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.wealth.toll` — Pedaggio
 
-- **soggetto**: Pedaggio — +1 sul fronte Oppose. Una corda tesa fra due pali, e il diritto di non alzarla
+- **soggetto**: Pedaggio — +1 sul fronte Oppose. Una corda tesa fra due pali, e il diritto di non alzarla — e il diritto si scrive: sulla Regione della domanda resta il pedaggio
 - **id**: `AST_WEALTH_TOLL`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Pedaggio — +1 sul fronte Oppose. Una corda tesa fra due pali, e il diritto di non alzarla.
+Historical dark-fantasy painting, single evocative scene depicting Pedaggio — +1 sul fronte Oppose. Una corda tesa fra due pali, e il diritto di non alzarla — e il diritto si scrive: sulla Regione della domanda resta il pedaggio.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 ambra accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
