@@ -5,6 +5,37 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.72] — L'albero si riempie
+
+Sei vite dai rami di [TRASFORMAZIONI.md](docs/TRASFORMAZIONI.md)
+([D-110](docs/DECISIONS.md#d-110)), ognuna con ingresso e potere.
+
+### Added
+
+- **Tavola I**: la Reggenza del Granaio (se il grano fu requisito), la
+  Corona Restaurata (il cerchio: dalla Repubblica si torna re, con
+  quattro eredi nuovi da consumare), Vaerax Ridestato (se il Cristallo
+  fu cavato).
+- **Tavola III**: il Banco Nero (se il debito fu chiamato),
+  l'Inquisizione del Vetro (se la Reliquia fu mostrata), la Lega delle
+  Sette (se la Carta fu firmata).
+- Ogni vita col suo potere al tavolo (World Factor +1 sulla sua
+  materia) e il suo prompt d'arte in attesa dei tarocchi per vita.
+
+### Fixed
+
+- **La dinastia non si interrompe a metà**: l'ingresso a evento vale
+  solo per chi non muore; per i mortali il segno sceglie la vita quando
+  la linea si esaurisce.
+
+### Misurato
+
+Playtest identico, 0/8; guardia biblioteca verde; ere: 20,2 gen/22 nomi
+(tavola I), 16,0/18 (tavola III), anni in banda. 245 test, 5115
+asserzioni.
+
+---
+
 ## [0.1.71] — La storia sceglie la vita
 
 Gli ingressi dell'albero ([D-109](docs/DECISIONS.md#d-109), verso

@@ -141,6 +141,23 @@
           "entry": "FOUNDING"
         },
         {
+          "id": "INC_ALDRIC_REGENCY",
+          "name": "La Reggenza del Granaio",
+          "description": "Quando la casa finì, il trono era già diventato una dispensa: il grano requisito aveva bisogno di firme più che di re. La Reggenza governa a razioni, e nessuno le ha mai giurato amore.",
+          "persistence": "COLLECTIVE",
+          "action_values": {
+            "ACQUIRE": 4,
+            "MOVE": 2,
+            "INFLUENCE": 4,
+            "FORGE": 2,
+            "SCHEME": 2,
+            "CLAIM": 1
+          },
+          "art_prompt_key": "entity.aldric_regency",
+          "entry": "ON_TAG",
+          "entry_tag": "grain_requisitioned"
+        },
+        {
           "id": "INC_ALDRIC_02",
           "name": "La Repubblica della Valle",
           "description": "Quando l'ultimo nome della casa si spense senza eredi, i magistrati che contavano il grano contavano già tutto il resto. Non serve un re a una valle che sa contare: serve un registro, e il registro ha più firme.",
@@ -155,6 +172,41 @@
           },
           "art_prompt_key": "entity.aldric_republic",
           "entry": "LINE_EXHAUSTED"
+        },
+        {
+          "id": "INC_ALDRIC_RESTORED",
+          "name": "La Corona Restaurata",
+          "description": "La repubblica scrisse registri; un giorno un nome tornò a valere più delle firme. La Corona Restaurata porta il peso di due tradizioni: quella che conta e quella che comanda.",
+          "persistence": "MORTAL",
+          "action_values": {
+            "ACQUIRE": 3,
+            "MOVE": 2,
+            "INFLUENCE": 3,
+            "FORGE": 2,
+            "SCHEME": 2,
+            "CLAIM": 4
+          },
+          "art_prompt_key": "entity.aldric_restored",
+          "successors": [
+            {
+              "name": "Re Calvan il Firmato",
+              "description": "Il primo re eletto da un registro. Non lo dimenticò mai, né lo perdonò."
+            },
+            {
+              "name": "Regina Odila",
+              "description": "Regnò come si tiene un libro contabile: senza affetto e senza errori."
+            },
+            {
+              "name": "Re Bren",
+              "description": "Voleva essere amato. La Valle gli concesse di essere rispettato."
+            },
+            {
+              "name": "Regina Calva II",
+              "description": "L'ultima a firmare col nome e col sigillo insieme, per non scegliere."
+            }
+          ],
+          "entry": "ON_TAG",
+          "entry_tag": "heir_named"
         }
       ]
     },
@@ -524,6 +576,23 @@
           },
           "art_prompt_key": "entity.vaerax",
           "entry": "FOUNDING"
+        },
+        {
+          "id": "INC_VAERAX_RISEN",
+          "name": "Vaerax Ridestato",
+          "description": "Il Cristallo cavato dalla montagna ha tolto il sonno a ciò che dormiva. Non è arrabbiato: è sveglio, ed è peggio — perché adesso ascolta ogni Consiglio che parla di lui.",
+          "persistence": "ETERNAL",
+          "action_values": {
+            "ACQUIRE": 1,
+            "MOVE": 3,
+            "INFLUENCE": 4,
+            "FORGE": 1,
+            "SCHEME": 3,
+            "CLAIM": 4
+          },
+          "art_prompt_key": "entity.vaerax_risen",
+          "entry": "ON_TAG",
+          "entry_tag": "crystal_exploited"
         },
         {
           "id": "INC_VAERAX_CULT",

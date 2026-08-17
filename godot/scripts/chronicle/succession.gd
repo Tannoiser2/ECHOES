@@ -108,7 +108,10 @@ static func plan(
 		# D-109: la storia giocata puo' scegliere la vita anche senza una morte
 		# o una linea esaurita - il popolo che si e' insediato diventa regno
 		# quando il suo segno sta sul mondo, non quando finisce una lista.
-		if not transformed:
+		# Vale solo per chi non muore (COLLECTIVE/ETERNAL): una dinastia non
+		# si interrompe a meta' - per i MORTAL il segno sceglie la vita al
+		# momento giusto, quando la linea si esaurisce (0.1.72).
+		if not transformed and str(active.get("persistence", "MORTAL")) != "MORTAL":
 			var called: int = _next_life(definition, incarnation, previous, before, false)
 			if called >= 0 and str(incarnations[called].get("entry", "")) == "ON_TAG":
 				transformed_from = str(active["name"])

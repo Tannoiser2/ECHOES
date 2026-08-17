@@ -102,6 +102,83 @@
       "world_factor_delta": 1,
       "active": true,
       "note": "Il potere della vita (D-109): quando il Culto della Montagna propone sul Risveglio, parla per ciò che non parla più - World Factor +1."
+    },
+    {
+      "id": "TGR_REGENCY_RATIONS",
+      "title": "La Reggenza tiene le razioni",
+      "when": {
+        "scope": "ENTITY",
+        "tag": "life:INC_ALDRIC_REGENCY"
+      },
+      "kind": "COUNCIL_MODIFIER",
+      "tension_id": "TEN_FAMINE",
+      "world_factor_delta": 1,
+      "active": true,
+      "note": "Il potere della vita (D-109): chi governa a razioni parla per ultimo sulla fame - World Factor +1 quando la Reggenza propone sulla Carestia."
+    },
+    {
+      "id": "TGR_RESTORED_NAME",
+      "title": "Il nome restaurato",
+      "when": {
+        "scope": "ENTITY",
+        "tag": "life:INC_ALDRIC_RESTORED"
+      },
+      "kind": "COUNCIL_MODIFIER",
+      "tension_id": "TEN_SUCCESSION",
+      "world_factor_delta": 1,
+      "active": true,
+      "note": "Il potere della vita (D-109): la Corona Restaurata parla di corone - World Factor +1 quando propone sulla Successione."
+    },
+    {
+      "id": "TGR_RISEN_LISTENS",
+      "title": "Il Ridestato ascolta",
+      "when": {
+        "scope": "ENTITY",
+        "tag": "life:INC_VAERAX_RISEN"
+      },
+      "kind": "COUNCIL_MODIFIER",
+      "tension_id": "TEN_AWAKENING",
+      "world_factor_delta": 1,
+      "active": true,
+      "note": "Il potere della vita (D-109): ogni Consiglio sul Risveglio parla di lui, e lui e' sveglio - World Factor +1 quando Vaerax Ridestato propone sul Risveglio."
+    },
+    {
+      "id": "TGR_BANK_LEDGER",
+      "title": "Il Banco chiama",
+      "when": {
+        "scope": "ENTITY",
+        "tag": "life:INC_SALE_BANK"
+      },
+      "kind": "COUNCIL_MODIFIER",
+      "tension_id": "TEN_DEBT",
+      "world_factor_delta": 1,
+      "active": true,
+      "note": "Il potere della vita (D-109): chi tiene il registro dei debiti decide quando parlarne - World Factor +1 quando il Banco Nero propone sul Debito."
+    },
+    {
+      "id": "TGR_INQUISITION_EYE",
+      "title": "L'occhio dell'Inquisizione",
+      "when": {
+        "scope": "ENTITY",
+        "tag": "life:INC_VETRO_INQUISITION"
+      },
+      "kind": "COUNCIL_MODIFIER",
+      "tension_id": "TEN_RELIC",
+      "world_factor_delta": 1,
+      "active": true,
+      "note": "Il potere della vita (D-109): sulla Reliquia nessuno sa piu' cose dell'Inquisizione - World Factor +1 quando propone sulla Reliquia."
+    },
+    {
+      "id": "TGR_LEAGUE_SIGNATURE",
+      "title": "La firma delle sette",
+      "when": {
+        "scope": "ENTITY",
+        "tag": "life:INC_LIBERE_LEAGUE"
+      },
+      "kind": "COUNCIL_MODIFIER",
+      "world_factor_delta": 1,
+      "active": true,
+      "note": "Il potere della vita (D-109): quando la Lega delibera, sette citta' hanno gia' detto si' - World Factor +1 quando propone."
     }
   ]
 }

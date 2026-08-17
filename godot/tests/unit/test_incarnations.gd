@@ -36,7 +36,7 @@ func test_when_the_line_ends_the_next_life_takes_the_seat() -> void:
 	assert_true(bool(seat["transformed"]), "la linea esaurita muta il seggio")
 	assert_eq(str(seat["name"]), "I Frati del Vetro", "al seggio siede la vita nuova")
 	assert_eq(str(seat["transformed_from"]), "Priore Anselmo", "il verbale sa da dove viene")
-	assert_eq(int(seat["incarnation"]), 1, "la seconda vita è al tavolo")
+	assert_eq(int(seat["incarnation"]), 2, "la vita di ripiego siede (l'Inquisizione aspetta il suo segno)")
 	assert_eq(int(seat["generation"]), 0, "la generazione riparte con la vita nuova")
 
 
@@ -136,9 +136,46 @@ func test_the_life_sign_powers_the_life() -> void:
 	assert_eq(int(other["delta"]), 0, "il potere non è di chi non vive quella vita")
 
 
+func test_a_dynasty_is_not_cut_short_by_a_sign() -> void:
+	# 0.1.72: per i MORTAL il segno sceglie la vita solo a linea esaurita -
+	# il grano requisito non interrompe la dinastia a metà.
+	var mid_line: Dictionary = _plan_for(
+		"ENT_ALDRIC", {"name": "Re Aldric", "generation": 1},
+		{"global_tags": ["grain_requisitioned"]}
+	)
+	assert_false(bool(mid_line["transformed"]), "la dinastia continua coi suoi eredi")
+	var at_end: Dictionary = _plan_for(
+		"ENT_ALDRIC", {"name": "Re Aldric IV", "generation": 4},
+		{"global_tags": ["grain_requisitioned"]}
+	)
+	assert_eq(str(at_end["name"]), "La Reggenza del Granaio", "a linea esaurita sceglie il segno")
+	var plain_end: Dictionary = _plan_for(
+		"ENT_ALDRIC", {"name": "Re Aldric IV", "generation": 4}
+	)
+	assert_eq(str(plain_end["name"]), "La Repubblica della Valle", "senza segno, il ripiego")
+
+
+func test_the_republic_can_become_a_crown_again() -> void:
+	# Il cerchio: dalla Repubblica (COLLECTIVE) si torna corona per evento,
+	# e la Corona Restaurata è di nuovo mortale coi suoi eredi.
+	var definition: Dictionary = session.data.entities["ENT_ALDRIC"]
+	var republic_at: int = -1
+	for index in range(definition["incarnations"].size()):
+		if str(definition["incarnations"][index]["id"]) == "INC_ALDRIC_02":
+			republic_at = index
+	var restored: Dictionary = _plan_for(
+		"ENT_ALDRIC",
+		{"name": "La Repubblica della Valle", "generation": 0, "incarnation": republic_at},
+		{"global_tags": ["heir_named"]}
+	)
+	assert_eq(str(restored["name"]), "La Corona Restaurata", "un nome torna a valere")
+	var view: Dictionary = Succession.active_view(definition, int(restored["incarnation"]))
+	assert_eq(str(view["persistence"]), "MORTAL", "la corona restaurata muore di nuovo")
+
+
 func test_the_active_view_swaps_the_authored_fields() -> void:
 	var definition: Dictionary = session.data.entities["ENT_ALDRIC"]
-	var republic: Dictionary = Succession.active_view(definition, 1)
+	var republic: Dictionary = Succession.active_view(definition, 2)
 	assert_eq(str(republic["name"]), "La Repubblica della Valle", "il nome della vita nuova")
 	assert_eq(str(republic["persistence"]), "COLLECTIVE", "la natura della vita nuova")
 	assert_false(republic.has("successors"), "la linea vecchia non si eredita")
