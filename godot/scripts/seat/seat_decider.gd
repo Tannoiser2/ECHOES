@@ -56,10 +56,23 @@ func _is_human(entity_id: String) -> bool:
 ## nobody is watching this seat.
 var io: Object = null
 
+## Piu' console, un decider (voce 27 fase 2 — D-135): `ios[seat]` e' l'io del
+## telefono di quel seggio; `io` resta il ripiego condiviso (il terminale,
+## l'hotseat, la console di riserva sullo schermo grande). Ogni ingresso
+## pubblico dichiara a chi sta parlando prima di dire o chiedere: e' cosi'
+## che l'avviso di un Destino finisce sul telefono giusto e su nessun altro.
+var ios: Dictionary = {}
+var _speaking_to: String = ""
+
+
+func _io_now() -> Object:
+	return ios.get(_speaking_to, io)
+
 
 func _say(text: String) -> void:
-	if io != null:
-		io.say(text)
+	var ear: Object = _io_now()
+	if ear != null:
+		ear.say(text)
 
 
 ## Offer the choices and wait for one. Returns the chosen index, or -1 for
@@ -77,12 +90,13 @@ func _say(text: String) -> void:
 ## front-end may infer legality from it, because the entry only exists at all if
 ## the rules already accepted it (D-039).
 func _choose(prompt: String, entries: Array, subjects: Array = []) -> int:
-	if entries.is_empty() or io == null:
+	var ear: Object = _io_now()
+	if entries.is_empty() or ear == null:
 		return -1
 	var labels: Array = []
 	for entry in entries:
 		labels.append(str(entry))
-	var picked: int = await io.choose(prompt, labels, subjects)
+	var picked: int = await ear.choose(prompt, labels, subjects)
 	if picked < 0 or picked >= entries.size():
 		return -1
 	return picked
@@ -93,6 +107,7 @@ func _choose(prompt: String, entries: Array, subjects: Array = []) -> int:
 func choose_action(entity_id: String, ao_index: int, session: RefCounted) -> Dictionary:
 	if not _is_human(entity_id):
 		return fallback.choose_action(entity_id, ao_index, session)
+	_speaking_to = entity_id
 
 	_say("")
 	_say(_board(entity_id, session))
@@ -271,6 +286,7 @@ func choose_question(context: Dictionary, options: Array, session: RefCounted) -
 	var proponent: String = str(context["proponent"])
 	if not _is_human(proponent):
 		return fallback.choose_question(context, options, session)
+	_speaking_to = proponent
 	_say("")
 	_say("  %s apre il Consiglio su %s." % [
 		_name(proponent, session), _tension(str(context["tension_id"]), session),
@@ -288,6 +304,7 @@ func choose_proposition(context: Dictionary, options: Array, session: RefCounted
 	var proponent: String = str(context["proponent"])
 	if not _is_human(proponent):
 		return fallback.choose_proposition(context, options, session)
+	_speaking_to = proponent
 	var labels: Array = []
 	for proposition in options:
 		labels.append(session.confluence.say(str(proposition["text"])))
@@ -300,6 +317,7 @@ func choose_proposition(context: Dictionary, options: Array, session: RefCounted
 func choose_stance(entity_id: String, context: Dictionary, session: RefCounted) -> Dictionary:
 	if not _is_human(entity_id):
 		return fallback.choose_stance(entity_id, context, session)
+	_speaking_to = entity_id
 	var template: Dictionary = session.data.confluence_templates[str(context["template_id"])]
 	var clauses: Array = template["condition_clauses"]
 
@@ -323,6 +341,7 @@ func choose_stance(entity_id: String, context: Dictionary, session: RefCounted) 
 ## drive - and it reads closer to what committing is: you put one thing down,
 ## then decide whether to put another.
 func choose_commit(entity_id: String, context: Dictionary, limit: int, session: RefCounted) -> Array:
+	_speaking_to = entity_id
 	if not _is_human(entity_id):
 		return fallback.choose_commit(entity_id, context, limit, session)
 	var ranked: Array = session.service.ranked_hand_for_tension(
@@ -381,6 +400,7 @@ func choose_recovery(context: Dictionary, session: RefCounted) -> Dictionary:
 	var recovery: Dictionary = fallback.choose_recovery(context, session)
 	for entity_id in humans:
 		var seat: String = str(entity_id)
+		_speaking_to = seat
 		var stance: Dictionary = (context.get("stances", {}) as Dictionary).get(seat, {})
 		if str(stance.get("stance", "")) != "OPPOSE":
 			continue
