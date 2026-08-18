@@ -5,6 +5,32 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.90] — La morte di Vaerax, per via di Propp
+
+La decisione B della seduta ([D-127](docs/DECISIONS.md#d-127)): il drago
+si può uccidere, e la porta è la carta di Propp.
+
+### Added
+
+- **La caccia** (`P_SLAY_THE_DRAGON`): sulla domanda dura del Risveglio,
+  eleggibile solo se una **Rivelazione** è stata compiuta quest'anno —
+  e chi cala la Rivelazione prescrive il Consiglio e propone per primo.
+- **Il Drago Abbattuto** (`CNS_DRAGON_SLAIN`): il drago si spegne (primo
+  `SET_ENTITY_ACTIVE` nei dati), il Risveglio crolla, la montagna porta
+  la **caduta del drago** — e il potere del Culto ora legge proprio
+  quella cicatrice (segni compositi).
+- **Il drago si difende**: il punteggio teme la propria fine (−6). La
+  morte non elimina il giocatore: `ON_DEATH`, e chi giocava il drago
+  gioca il Culto.
+
+### Misurato
+
+Condizionale dichiarata (mai eleggibile nelle 100 standard, come il
+riaprire la miniera): playtest identico byte per byte, ere in banda,
+270 test / 5782 asserzioni verdi.
+
+---
+
 ## [0.1.89] — I denti veri sui pezzi nuovi
 
 I poteri pieni che aspettavano il telaio ([D-126](docs/DECISIONS.md#d-126)):

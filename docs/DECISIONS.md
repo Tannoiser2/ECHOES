@@ -331,6 +331,50 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-127 — La morte di Vaerax, per via di Propp
+**implemented in 0.1.90** (ISSUES 19, decisione B della seduta — «si scrive, e la può proporre qualcuno con carta di Propp»)
+
+Prima di oggi niente nel gioco sapeva uccidere il drago, e il Culto della
+Montagna (`ON_DEATH`) era contenuto irraggiungibile. Adesso la strada c'è,
+ed è quella chiesta dal committente — **attraverso la carta di Propp**:
+
+- **La caccia** (`P_SLAY_THE_DRAGON`) sta sulla domanda dura del Risveglio
+  («A chi appartiene ciò che dorme sotto la montagna?», che si apre solo a
+  Risveglio ≥ 6) ed è eleggibile **solo se una Rivelazione è stata compiuta
+  quest'anno** (`function:REVELATION`): si caccia solo ciò che una carta ha
+  mostrato. E la Rivelazione stessa prescrive il Consiglio sul Risveglio e
+  fa proponente chi la cala (D-118) — chi gioca la carta apre la porta e
+  può entrarci per primo.
+- **La Conseguenza** (`CNS_DRAGON_SLAIN`): il drago si spegne
+  (`SET_ENTITY_ACTIVE`, la prima volta che compare nei dati), il Risveglio
+  crolla (−6: la domanda muore con lui), il mondo ricorda (`dragon_slain`,
+  dichiarato memoria), e la montagna porta la **caduta del drago** —
+  cicatrice nuova, con la sua parola.
+- **La cicatrice ha il suo lettore dal primo giorno**: il potere del Culto
+  (`TGR_MOUNTAIN_MEMORY`) è passato in forma composita — la vita **e**
+  `scar:dragonfall` — perché la memoria che arma i fedeli sia esattamente
+  la caduta che li ha fatti nascere.
+- **Il drago si difende**: il punteggio teme la propria fine (−6, più di
+  qualunque clausola) — senza, la caccia sarebbe una passeggiata nelle sim.
+  La morte altrui resta zero: non è un obiettivo di nessun Destino.
+- **La morte non elimina il giocatore**: alla successione scatta `ON_DEATH`
+  (già provato) e chi giocava il drago gioca il Culto.
+
+### Misurato, e la dichiarazione
+
+Tre test nuovi (la porta della Rivelazione che si apre e si chiude,
+l'abbattimento con la cicatrice, la paura del drago). La sonda delle scelte
+mette la caccia fra le **condizionali dichiarate** — mai eleggibile nelle
+100 partite standard, con `P_REOPEN_THE_MINE` e `P_HEIR_AS_STORY`: vuole il
+Risveglio quasi a soglia **e** la Rivelazione calata nello stesso anno, ed
+è disegno, non difetto — l'uccisione di un dio non capita per caso. Difatti
+il playtest è **identico byte per byte** alla 0.1.89, ere in banda, suite
+270 test / 5782 asserzioni verde. Al tavolo umano la strada è chiara:
+tenere alta la domanda, calare la Rivelazione, proporre la caccia — e
+superare il muro del drago.
+
+---
+
 ## D-126 — I denti veri sui pezzi nuovi: la Repubblica, il dogma, la firma
 **implemented in 0.1.89** (ISSUES 19 — i poteri pieni che aspettavano D-125)
 

@@ -720,6 +720,14 @@ func _score_effect(
 	if effect_type == "SET_RELATION":
 		score += _score_relation_move(target_id, payload, entity_id, session)
 
+	# La propria morte (D-127): un Effect che ti spegne vale piu' di qualunque
+	# clausola - il drago si difende con tutto quello che ha, o la caccia
+	# diventerebbe una passeggiata nelle sim. La morte altrui resta zero: non
+	# e' un obiettivo di nessun Destino, e non deve diventarlo per sbaglio.
+	if effect_type == "SET_ENTITY_ACTIVE" and not bool(payload.get("active", true)):
+		if target_id == entity_id:
+			score -= 6
+
 	# Control changing hands, for whoever counts Regions.
 	if effect_type == "SET_CONTROL" and _counts_control(entity_id, session):
 		if not session.world["regions"].has(target_id):

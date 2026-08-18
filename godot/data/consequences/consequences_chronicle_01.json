@@ -1424,6 +1424,50 @@
           "note": "Il prezzo: la domanda ripresa torna calda."
         }
       ]
+    },
+    {
+      "id": "CNS_DRAGON_SLAIN",
+      "title": "Il Drago Abbattuto",
+      "category": "WAR",
+      "description": "Si scende con ferro e fuoco, e si risale in meno. Quello che dormiva sotto la montagna non si svegliera' piu' - e la montagna, da quel giorno, e' soltanto pietra che ricorda.",
+      "creates_scar": true,
+      "scar": {
+        "region_id": "REG_MONTAGNE_ROSSE",
+        "tag": "scar:dragonfall",
+        "description": "Il punto dove la montagna smise di respirare. Nessuno ci costruisce sopra."
+      },
+      "effects": [
+        {
+          "type": "SET_ENTITY_ACTIVE",
+          "target": {
+            "kind": "entity",
+            "id": "ENT_VAERAX"
+          },
+          "payload": {
+            "active": false
+          }
+        },
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "TEN_AWAKENING"
+          },
+          "payload": {
+            "delta": -6
+          }
+        },
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "dragon_slain"
+          }
+        }
+      ]
     }
   ]
 }

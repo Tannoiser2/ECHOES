@@ -55,8 +55,9 @@ DECLARED_MEMORY = {
 WORLD_MEMORY = {
     "account_settled", "amnesty_granted", "betrayal_spoken", "burden_shared",
     "charter_temporary", "crown_dispossessed", "crystal_measured",
-    "faith_established", "grain_requisitioned", "heir_named", "parley_held",
-    "petition_heard", "someone_paid", "succession_settled", "water_rights",
+    "dragon_slain", "faith_established", "grain_requisitioned", "heir_named",
+    "parley_held", "petition_heard", "someone_paid", "succession_settled",
+    "water_rights",
 }
 
 

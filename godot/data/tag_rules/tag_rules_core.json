@@ -101,7 +101,13 @@
       "tension_id": "TEN_AWAKENING",
       "world_factor_delta": 1,
       "active": true,
-      "note": "Il potere della vita (D-109): quando il Culto della Montagna propone sul Risveglio, parla per ciò che non parla più - World Factor +1."
+      "note": "D-109, portata in forma piena da D-127: la memoria arma i fedeli - il Culto della Montagna pesa +1 quando propone, finche' la caduta del drago e' scritta sulla montagna. La cicatrice che lo ha fatto nascere e' la stessa che lo sostiene.",
+      "when_also": [
+        {
+          "scope": "REGION",
+          "tag": "scar:dragonfall"
+        }
+      ]
     },
     {
       "id": "TGR_REGENCY_RATIONS",

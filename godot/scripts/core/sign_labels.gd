@@ -29,6 +29,7 @@ const REGION_WORDS: Dictionary = {
 	"scar:broken_word": "la parola rotta",
 	"scar:changed_hands": "passata di mano",
 	"scar:divided_seal": "il sigillo diviso",
+	"scar:dragonfall": "la caduta del drago",
 	"scar:emptied": "lo sgombero",
 	"scar:open_wound": "la ferita aperta",
 	"scar:plundered": "la razzia",

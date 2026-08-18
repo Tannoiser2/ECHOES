@@ -269,6 +269,22 @@
           "echo_summaries": {
             "FAILURE": "Si volle togliere la pietra, e la pietra restò dove qualcuno l'aveva messa."
           }
+        },
+        {
+          "id": "P_SLAY_THE_DRAGON",
+          "question_id": "Q_AWAKENING_MOUNTAIN",
+          "text": "Si scenda con ferro e fuoco: cio' che dorme sotto $the_region non si svegli mai piu'.",
+          "eligibility": [
+            {
+              "type": "state_tag_present",
+              "scope": "GLOBAL",
+              "tag": "function:REVELATION",
+              "label": "Si caccia solo cio' che una Rivelazione ha mostrato: la carta di Propp e' la porta (D-127)"
+            }
+          ],
+          "success_consequences": [
+            "CNS_DRAGON_SLAIN"
+          ]
         }
       ],
       "condition_clauses": [
