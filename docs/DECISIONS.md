@@ -331,6 +331,42 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-126 — I denti veri sui pezzi nuovi: la Repubblica, il dogma, la firma
+**implemented in 0.1.89** (ISSUES 19 — i poteri pieni che aspettavano D-125)
+
+- **La Repubblica della Valle** ha il suo carattere intero: *il consenso
+  frena chi propone* (COUNCIL_MODIFIER −1 quando propone) e *il consenso fa
+  muro* (STANCE_MODIFIER: la sua opposizione con almeno una carta vale +1).
+  Un collegio che dice no è più difficile da scavalcare di un re. La quinta
+  seconda vita del 0.1.70 rispetta finalmente la regola della casa.
+- **Il Culto della Misura** ha *il dogma che vela* (ACTION_GRANT
+  SCHEME_VEIL): può chiudere un numero al tavolo, l'arte che nessun altro
+  ha. Le sedie automatiche non la usano — al tavolo umano è un potere che
+  si vede, come i divieti di D-117.
+- **I Frati del Vetro in forma piena**: la regola come misura vale *dove la
+  reliquia è custodita* — segni compositi, la vita **e** `structure:sealed`
+  da qualche parte, su **ogni** Consiglio. La forma provvisoria (solo sulla
+  Reliquia) è durata una versione, come dichiarato in D-124.
+- **La Lega delle Sette piena**: *la firma leggera* (CONDITION_THRESHOLD
+  −1) — per lei una Condition qualifica con un impegno in meno, mai sotto
+  uno. Sette città hanno già firmato.
+
+**Dichiarati non esprimibili, a verbale**: il «vale doppio» delle Custodi
+sulla torre (DRAW_BIAS non somma: guarda due carte comunque) e la paura
+piena del Ridestato (un malus sul fronte *altrui* contro un proponente
+specifico — il tipo legge chi porta il segno, non i suoi avversari). Se un
+giorno serviranno, saranno pezzi loro, non forzature di questi.
+
+### Misurato
+
+Suite 267 test / 5773 asserzioni verde; playtest sui 100 semi **identico
+byte per byte** (le vite dormono fuori dalle saghe); ere in banda (mediana
+955 anni, 20,5 generazioni, 22 nomi). Con questo, **le nove vite oltre la
+fondazione hanno tutte almeno un dente**: la regola della casa — una vita
+senza dente non si scrive — vale su tutto l'albero scritto.
+
+---
+
 ## D-125 — I pezzi del telaio per le vite: compositi, fronti, velo, passo, soglia
 **implemented in 0.1.88** (ISSUES 19, decisione E della seduta — SEDUTA_VITE.md §4)
 

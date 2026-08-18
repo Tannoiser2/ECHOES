@@ -5,6 +5,26 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.89] — I denti veri sui pezzi nuovi
+
+I poteri pieni che aspettavano il telaio ([D-126](docs/DECISIONS.md#d-126)):
+la Repubblica della Valle (il consenso frena chi propone, e fa muro
+quando si oppone), il Culto della Misura (il dogma vela — l'arte che
+nessun altro ha), i Frati del Vetro in forma piena (la regola come
+misura, dove la reliquia è custodita — segni compositi), la Lega delle
+Sette (la firma leggera: la Condition qualifica con un impegno in meno).
+
+Con questo **le nove vite oltre la fondazione hanno tutte almeno un
+dente**. Dichiarati non esprimibili: il «vale doppio» delle Custodi e la
+paura piena del Ridestato — pezzi futuri, non forzature.
+
+### Misurato
+
+Suite 267/5773 verde; playtest identico byte per byte (le vite dormono
+fuori dalle saghe); ere in banda (955 · 20,5 · 22).
+
+---
+
 ## [0.1.88] — I pezzi del telaio per le vite
 
 La decisione E della seduta ([D-125](docs/DECISIONS.md#d-125)): tutti e

@@ -414,16 +414,21 @@
     },
     {
       "id": "TGR_FRIARS_MEASURE",
-      "title": "La regola come misura",
+      "title": "La regola come misura, dove la reliquia e' custodita",
       "when": {
         "scope": "ENTITY",
         "tag": "life:INC_VETRO_02"
       },
       "kind": "COUNCIL_MODIFIER",
-      "tension_id": "TEN_RELIC",
       "world_factor_delta": 1,
       "active": true,
-      "note": "La seduta sulle vite (D-124, decisione A): quando i Frati del Vetro propongono sulla Reliquia, la regola dell'ordine fa testo - World Factor +1. La forma piena (+1 dove la reliquia e' custodita) arrivera' coi segni compositi (decisione E)."
+      "note": "La seduta sulle vite (D-124, portata in forma piena da D-126 coi segni compositi): quando i Frati del Vetro propongono e da qualche parte la reliquia e' custodita (structure:sealed), World Factor +1 su ogni Consiglio - la custodia fa autorita'. La forma provvisoria (solo sulla Reliquia) e' durata una versione.",
+      "when_also": [
+        {
+          "scope": "REGION",
+          "tag": "structure:sealed"
+        }
+      ]
     },
     {
       "id": "TGR_ASH_VIGIL",
@@ -437,6 +442,55 @@
       "bias": "BONUS",
       "active": true,
       "note": "La seduta sulle vite (D-124, decisione A): le Custodi della Cenere vegliano armate - quando pescano forza guardano due carte e tengono la migliore. La torre di D-122 resta per tutti; questa e' la mano delle Custodi."
+    },
+    {
+      "id": "TGR_REPUBLIC_BRAKE",
+      "title": "Il consenso frena chi propone",
+      "when": {
+        "scope": "ENTITY",
+        "tag": "life:INC_ALDRIC_02"
+      },
+      "kind": "COUNCIL_MODIFIER",
+      "world_factor_delta": -1,
+      "active": true,
+      "note": "La seduta sulle vite (D-126): la Repubblica della Valle delibera per collegi - quando propone, il mondo la ascolta con un anno di ritardo. E' la meta' prudente del suo carattere; l'altra meta' e' il muro."
+    },
+    {
+      "id": "TGR_REPUBLIC_WALL",
+      "title": "Il consenso fa muro",
+      "when": {
+        "scope": "ENTITY",
+        "tag": "life:INC_ALDRIC_02"
+      },
+      "kind": "STANCE_MODIFIER",
+      "stance": "OPPOSE",
+      "stance_delta": 1,
+      "active": true,
+      "note": "La seduta sulle vite (D-126): quando la Repubblica si oppone con almeno una carta sul tavolo, il suo fronte vale +1 - un collegio che dice no e' piu' difficile da scavalcare di un re."
+    },
+    {
+      "id": "TGR_DOGMA_VEILS",
+      "title": "Il dogma vela",
+      "when": {
+        "scope": "ENTITY",
+        "tag": "life:INC_LYRA_02"
+      },
+      "kind": "ACTION_GRANT",
+      "grants": "SCHEME_VEIL",
+      "active": true,
+      "note": "La seduta sulle vite (D-126): il Culto della Misura puo' chiudere un numero al tavolo - lo SCHEME inverso, l'arte che nessun altro ha. Le sedie automatiche non la usano: al tavolo umano e' un potere che si vede, come i divieti di D-117."
+    },
+    {
+      "id": "TGR_LEAGUE_LIGHT_SIGNATURE",
+      "title": "La firma leggera delle Sette",
+      "when": {
+        "scope": "ENTITY",
+        "tag": "life:INC_LIBERE_LEAGUE"
+      },
+      "kind": "CONDITION_THRESHOLD",
+      "threshold_delta": -1,
+      "active": true,
+      "note": "La seduta sulle vite (D-126): per la Lega una Condition qualifica con un impegno in meno - sette citta' hanno gia' firmato, il tavolo deve solo prenderne atto. Mai sotto 1: una firma serve sempre."
     }
   ]
 }
