@@ -169,6 +169,30 @@ Seduta del 2026-08-18, risposte del committente:
 modelli di vista (`TableModel`/`ConsoleModel` — i futuri messaggi), la
 vetrina con l'ispezione, la console con il `say`, il cavalletto
 `dev_split.tscn`, e la sonda delle viste che perquisisce i modelli
-serializzati. Playtest identico byte per byte. **Prossima: la fase 2**
-(il filo in casa — host HTTP+WebSocket, protocollo
-`state/say/choose/chosen`, la sonda dei messaggi).
+serializzati. Playtest identico byte per byte.
+
+**Le fasi 2 e 3 sono eseguite** (il filo, il telefono vero e la
+stanza): il verbale con le misure complete è in D-135/D-136.
+
+## 9. La prova (computer + iPad + telefoni)
+
+1. **Sul computer** (host — serve il progetto Godot, non l'export web:
+   Safari non può aprire porte): `godot --path godot`, dal menu «Apro
+   la stanza — console sui telefoni» (oppure dritto:
+   `godot --path godot res://ui/room_screen.tscn`). Si sceglie l'anno
+   e la stanza si apre: per ogni seggio compare il suo indirizzo.
+2. **Sull'iPad** (la vetrina): Safari su `http://<ip>:8123/tavolo`.
+   L'ip è scritto in testa alla stanza. Si aggiorna da sola a ogni
+   mossa; il tocco su una Regione apre i suoi segni.
+3. **Sui telefoni** (le console): ognuno apre l'indirizzo del proprio
+   seggio (`http://<ip>:8123/?t=CODICE`). Il codice resta nel telefono:
+   se la pagina si chiude o il WiFi cade, si riapre e si rientra da
+   soli, con la domanda in sospeso riproposta.
+4. **«Si comincia»**: chi è collegato in quel momento gioca dal
+   telefono; i seggi senza console giocano da soli (policy). Durante la
+   partita la striscia in alto dice chi è al tavolo e chi «non risponde
+   da Ns»; «Rigenera il codice» taglia fuori un telefono perso.
+
+Se un telefono non vede il computer: stessa rete WiFi, e occhio
+all'isolamento AP del router (il rischio dichiarato in §6). Le porte:
+8123 (pagine) e 8137 (filo).
