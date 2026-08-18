@@ -47,6 +47,12 @@ func _initialize() -> void:
 	var rotations: int = 0
 	var weary_turns: int = 0
 	var names_seen: Dictionary = {}
+	# D-130: le vite mutate che siedono davvero, e i NONE per seggio attraverso
+	# le ere. La Diaspora spunta la leva dell'espulsione: se il NONE di Nahr
+	# sparisce dalle saghe, la vita va ritoccata - questa riga e' la sentinella.
+	var lives_seated: Dictionary = {}
+	var levels_by_seat: Dictionary = {}
+	var years_played: int = 0
 	var hands: Dictionary = {}
 	var echoed_candidates: int = 0
 	var echoed_drawn: int = 0
@@ -99,6 +105,9 @@ func _initialize() -> void:
 					if bool(seat.get("changed", false)):
 						generations += 1
 						names_seen[str(seat["name"])] = true
+					if bool(seat.get("transformed", false)):
+						var life: String = str(seat["name"])
+						lives_seated[life] = int(lives_seated.get(life, 0)) + 1
 					if bool(seat.get("wants_new", false)):
 						rotations += 1
 					if bool(seat.get("weary", false)):
@@ -170,6 +179,16 @@ func _initialize() -> void:
 			previous = session.world
 			previous_results = report["destiny_results"]
 			# Niente dispose: `previous` e' il mondo che il prossimo anno eredita.
+			years_played += 1
+			for entity_id in previous_results:
+				var level: String = str(
+					(previous_results[entity_id] as Dictionary).get("level", "")
+				)
+				if level == "":
+					level = "NONE"
+				var ladder: Dictionary = levels_by_seat.get(str(entity_id), {})
+				ladder[level] = int(ladder.get(level, 0)) + 1
+				levels_by_seat[str(entity_id)] = ladder
 
 		spans.append(final_year - start_year)
 		var survived: int = 0
@@ -192,6 +211,20 @@ func _initialize() -> void:
 	print("  Generazioni nuove sedute al tavolo: %d (%.1f per saga), %d nomi distinti" % [
 		generations, float(generations) / maxf(sagas, 1), names_seen.size()
 	])
+	var life_names: Array = lives_seated.keys()
+	life_names.sort()
+	print("  Le vite mutate sedute nelle saghe:")
+	for life in life_names:
+		print("    %-34s %4d" % [str(life), int(lives_seated[life])])
+	print("  I NONE per seggio, su %d anni giocati (la leva di D-067 deve restare vera):" % years_played)
+	var seat_ids: Array = levels_by_seat.keys()
+	seat_ids.sort()
+	for seat_id in seat_ids:
+		var ladder: Dictionary = levels_by_seat[seat_id]
+		print("    %-14s NONE %3d   MINIMUM %3d   VICTORY %3d   TRIUMPH %3d" % [
+			str(seat_id), int(ladder.get("NONE", 0)), int(ladder.get("MINIMUM", 0)),
+			int(ladder.get("VICTORY", 0)), int(ladder.get("TRIUMPH", 0)),
+		])
 	print("  Destini cambiati perche' il precedente era ottenuto: %d (%.1f per saga)" % [
 		rotations, float(rotations) / maxf(sagas, 1)
 	])

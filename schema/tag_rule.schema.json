@@ -129,6 +129,10 @@
           ],
           "description": "Solo per GATE. BLOCK sbarra l'ingresso nella Regione col segno; ALLOW lo concede anche senza adiacenza; PASS (scope ENTITY o GLOBAL) fa passare chi porta il segno attraverso i BLOCK delle regole - la cacciata di D-067 resta piu' forte, finche' una vita non decida altrimenti."
         },
+        "passes_eviction": {
+          "type": "boolean",
+          "description": "Solo per GATE con movement PASS. La vita che decide altrimenti (D-130): chi porta il segno attraversa anche la cacciata di D-067 - la porta sbarrata dal Consiglio non lo tiene. Oggi solo la Diaspora."
+        },
         "max_level": {
           "type": "string",
           "enum": [

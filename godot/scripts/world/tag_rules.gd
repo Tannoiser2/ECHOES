@@ -127,6 +127,21 @@ static func movement_gate(
 	return verdict
 
 
+## La vita che decide altrimenti (D-130): un PASS con `passes_eviction`
+## attraversa anche la cacciata di D-067 - la porta sbarrata dal Consiglio
+## non tiene chi non ha piu' un centro. Restituisce il titolo della regola
+## che apre, o "" se la cacciata tiene come sempre.
+static func eviction_pass(data, world: Dictionary, entity_id: String) -> String:
+	for rule in active(data, "GATE", str(world.get("chronicle_id", ""))):
+		if str(rule.get("movement", "")) != "PASS":
+			continue
+		if not bool(rule.get("passes_eviction", false)):
+			continue
+		if _all_present(world, rule, {"entity_id": entity_id}):
+			return str(rule["title"])
+	return ""
+
+
 ## ACTION_GATE (ISSUES 25): finché il segno c'è, l'azione è vietata. Restituisce
 ## il titolo della regola che sbarra, o "" se la strada è libera. Vive dentro
 ## check(), quindi vale ovunque: la sedia automatica non la propone, il

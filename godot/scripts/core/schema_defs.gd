@@ -1076,6 +1076,9 @@ const DEFS := {
 					"PASS",
 				],
 			},
+			"passes_eviction": {
+				"type": "bool",
+			},
 			"max_level": {
 				"type": "String",
 				"enum": [

@@ -1842,6 +1842,24 @@ framing, 2:3. No text, no letters, no numerals, no logos, no frame, no border.
 Not gory, not horror. Museum-quality illustration, boardgame card art.
 ```
 
+### `entity.nahr_diaspora` — La Diaspora di Nahr
+
+- **soggetto**: La Diaspora di Nahr — Cacciato due volte nello stesso anno, il popolo ha smesso di chiedere una terra: il centro adesso è la lingua, il calendario, e la strada. Non lo si può chiudere fuori — non c'è più un dentro
+- **id**: `INC_NAHR_DIASPORA`
+
+```
+Historical dark-fantasy portrait of La Diaspora di Nahr — Cacciato due volte nello stesso anno, il popolo ha smesso di chiedere una terra: il centro adesso è la lingua, il calendario, e la strada. Non lo si può chiudere fuori — non c'è più un dentro. Painterly oil technique, visible
+brushwork, muted earth palette with a single terracotta accent. One subject, close,
+facing the viewer: this framing is what separates a House card from an Asset card,
+where a single centred figure looking out is forbidden. una figura sola davanti e la sua gente dietro, fuori fuoco: il ritratto di un popolo è il volto di uno. Low side
+lighting, shallow depth of field; the background says where they come from without
+telling a story of its own. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: head and shoulders in the upper two thirds; the
+lower third is a calm, low-detail area reserved for a text overlay. Vertical card
+framing, 2:3. No text, no letters, no numerals, no logos, no frame, no border.
+Not gory, not horror. Museum-quality illustration, boardgame card art.
+```
+
 ### `entity.nahr_kingdom` — Il Regno di Nahr
 
 - **soggetto**: Il Regno di Nahr — La terra data a chi la lavora ha fatto quello che nessuna spada aveva fatto: il popolo si è seduto. Un regno giovane con un granaio vero — e per la prima volta, eredi da perdere

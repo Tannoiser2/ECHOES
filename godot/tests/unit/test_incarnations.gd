@@ -231,3 +231,23 @@ func test_the_reopened_mine_lights_the_furnaces_unless_sealed() -> void:
 		{"regions": {"REG_MINIERE_ANTICHE": {"tags": ["scar:open_wound"]}}}
 	)
 	assert_false(bool(midline["transformed"]), "la dinastia non si interrompe a meta'")
+
+
+## La Diaspora di Nahr (D-130): due sradicamenti in un anno tolgono il centro,
+## e il popolo che il tavolo ha cacciato smette di poter essere chiuso fuori.
+func test_the_twice_uprooted_people_becomes_the_diaspora() -> void:
+	var scattered: Dictionary = _plan_for(
+		"ENT_NAHR", {"name": "Popolo Nahr", "generation": 0, "tags": ["twice_uprooted"]}
+	)
+	assert_true(bool(scattered["transformed"]), "senza centro, il popolo si disperde")
+	assert_eq(str(scattered["name"]), "La Diaspora di Nahr", "la vita nuova ha il suo nome")
+	assert_eq(int(scattered["incarnation"]), 2, "la terza vita del seggio")
+
+	var settled: Dictionary = _plan_for(
+		"ENT_NAHR", {"name": "Popolo Nahr", "generation": 0, "tags": ["twice_uprooted"]},
+		{"global_tags": ["nahr_settled"]}
+	)
+	assert_eq(str(settled["name"]), "Il Regno di Nahr", "l'ordine d'autore: chi si e' seduto siede")
+
+	var quiet: Dictionary = _plan_for("ENT_NAHR", {"name": "Popolo Nahr", "generation": 0})
+	assert_false(bool(quiet["transformed"]), "senza sradicamenti il popolo resta popolo")

@@ -5,6 +5,34 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.93] — La Diaspora di Nahr
+
+La seconda vita della decisione C
+([D-130](docs/DECISIONS.md#d-130)): il popolo cacciato due volte in un
+anno smette di avere un centro — e non lo si può più chiudere fuori.
+
+### Added
+
+- **La Diaspora di Nahr** (`INC_NAHR_DIASPORA`, COLLECTIVE): entra col
+  segno `twice_uprooted`, che `_bar_return` scrive alla seconda cacciata
+  vera nello stesso anno (`uprooted` alla prima). I tag d'entità non si
+  ereditano: il conto riparte a ogni Chronicle da solo.
+- **`passes_eviction`** (`TGR_DIASPORA_ROOTLESS`, GATE PASS): la vita
+  che decide altrimenti — la cacciata di D-067 e i BLOCK non la
+  tengono; il rientro costa comunque la MOVE del round dopo. Il
+  validatore ora conosce il PASS su scope ENTITY/GLOBAL.
+- **La sentinella nella sonda delle ere**: vite mutate sedute e NONE
+  per seggio attraverso le ere.
+
+### Measured
+
+- La Diaspora siede 2 volte in 20 saghe; il NONE di Nahr resta vivo
+  (33 su 200 anni giocati): la leva dell'espulsione morde ancora.
+  Playtest identico (185·78·123·176, 0/8); sims deterministici;
+  censimento 0/0; suite 275 test, 5817 asserzioni, verde.
+
+---
+
 ## [0.1.92] — I Forni Riaccesi
 
 La prima delle tre vite della decisione C

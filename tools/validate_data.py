@@ -170,8 +170,15 @@ def check_references(
         if "tension_id" in rule:
             require(known_tensions, rule["tension_id"], "tension", where)
         scope = str(rule.get("when", {}).get("scope", ""))
-        if kind == "GATE" and scope != "REGION":
-            report.fail(where, "GATE rules only make sense with scope REGION")
+        movement = str(rule.get("movement", ""))
+        if kind == "GATE" and movement == "PASS":
+            # Il PASS (D-125) e' un segno addosso a chi passa, non sulla porta.
+            if scope not in ("ENTITY", "GLOBAL"):
+                report.fail(where, "GATE PASS wants scope ENTITY or GLOBAL")
+        elif kind == "GATE" and scope != "REGION":
+            report.fail(where, "GATE BLOCK/ALLOW rules only make sense with scope REGION")
+        if rule.get("passes_eviction") and movement != "PASS":
+            report.fail(where, "passes_eviction only rides on a PASS")
         if kind in ("RELATION_CAP", "RELATION_FLOOR") and scope not in ("GLOBAL", "RELATION"):
             report.fail(where, f"{kind} needs scope GLOBAL or RELATION")
         if kind == "HAND_LIMIT" and int(rule.get("hand_limit_delta", 0)) == 0:

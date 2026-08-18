@@ -331,6 +331,47 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-130 — La Diaspora di Nahr: il conto delle cacciate, e la porta che non tiene
+**implemented in 0.1.93** (ISSUES 19, decisione C della seduta — la seconda delle tre vite)
+
+Il popolo che il tavolo caccia due volte nello stesso anno smette di avere
+un centro — e diventa impossibile da chiudere fuori. **La Diaspora di Nahr**
+(`INC_NAHR_DIASPORA`, COLLECTIVE, terza vita del seggio) entra alla
+successione col segno `twice_uprooted` addosso; il Regno, che viene prima
+in ordine d'autore, vince se il popolo si è anche seduto.
+
+Tre pezzi:
+
+- **Il conto delle cacciate** (`_bar_return`): ogni sradicamento vero — le
+  espulsioni dei Consigli e le Conseguenze che svuotano (la Valle
+  Sgomberata), tutte passano di lì — scrive sul seggio `uprooted` la prima
+  volta e `twice_uprooted` la seconda, con una riga a verbale («Due volte
+  sradicato in un anno»). I tag d'entità non si ereditano fra le ere:
+  il conto riparte da solo a ogni Chronicle, che è esattamente il «nell'era
+  appena chiusa» del dossier — nessun contatore, solo segni.
+- **La porta che non tiene** (`passes_eviction`, schema + `TagRules.
+  eviction_pass` + `can_move_to`): il PASS di D-125 lasciava la cacciata
+  di D-067 più forte «finché una vita non decida altrimenti» — la Diaspora
+  è quella vita. `TGR_DIASPORA_ROOTLESS` (GATE PASS con `passes_eviction`)
+  le fa attraversare anche la porta del Consiglio; il rientro costa
+  comunque la MOVE del round dopo. Il validatore ora conosce il PASS
+  (scope ENTITY/GLOBAL) — D-125 l'aveva costruito solo nel telaio.
+- **La sentinella nella sonda delle ere**: il rischio dichiarato a dossier
+  è che Nahr diventi imperdibile. La sonda ora stampa le vite mutate che
+  siedono e i NONE per seggio attraverso le ere. Misurato: la Diaspora
+  siede **2 volte in 20 saghe** (rara come deve: due cacciate nello stesso
+  anno), e il NONE di Nahr resta vivo — **33 su 200 anni giocati**, la
+  leva di D-067 morde ancora dove la Diaspora non è al tavolo (la sonda
+  delle espulsioni conferma: seme 7020, Nahr NONE da cacciata sul Minimo).
+
+Misure: playtest 100 semi identico alla baseline (185·78·123·176, 0/8 al
+tavolo misto — i segni del conto non muovono nulla dentro l'anno), banda
+delle ere in banda (955 mediana, 20,2 generazioni, 23 nomi — il
+ventitreesimo è la Diaspora), sims deterministici, censimento 0/0,
+BRIEF_ARTE rigenerato con `entity.nahr_diaspora`, suite 275/5817 verde.
+
+---
+
 ## D-129 — I Forni Riaccesi: il segno che sceglie, il sigillo che sbarra, l'azione che sfoga
 **implemented in 0.1.92** (ISSUES 19, decisione C della seduta — la prima delle tre vite da scrivere, via libera del committente a verbale in SEDUTA_VITE §4)
 

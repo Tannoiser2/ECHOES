@@ -113,10 +113,13 @@ func can_move_to(entity_id: String, region_id: String) -> bool:
 		return false
 	# Un Consiglio che ti ha cacciato tiene la porta chiusa fino a fine atto
 	# (D-067): il tag lo mette la risoluzione, il giro d'atto lo toglie. Vince
-	# anche sul diritto di rientrare in una Regione iniziale, che e' il punto.
+	# anche sul diritto di rientrare in una Regione iniziale, che e' il punto -
+	# salvo per la vita che ha smesso di avere un centro (D-130): il suo PASS
+	# dichiarato attraversa anche la cacciata.
 	var evicted: Variant = world["entities"].get(entity_id)
 	if evicted != null and (evicted["tags"] as Array).has("evicted:%s" % region_id):
-		return false
+		if TagRules.eviction_pass(data, world, entity_id) == "":
+			return false
 	# ISSUES 24: un segno sulla Regione può sbarrare la porta o concederla
 	# anche senza adiacenza. BLOCK vince, come la cacciata di D-067 - salvo
 	# per chi porta un segno PASS (D-125): quello attraversa i BLOCK delle

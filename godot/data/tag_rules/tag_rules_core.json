@@ -530,6 +530,19 @@
       "ripple_delta": 1,
       "active": true,
       "note": "I Forni Riaccesi (D-129): ogni patto che i Forni stringono e' un contratto di fornitura, e la domanda dell'acqua si scalda - l'industria non e' gratis, e il conto arriva sulla questione della sopravvivenza. Su una Tensione assente il colpo e' un no-op (D-028)."
+    },
+    {
+      "id": "TGR_DIASPORA_ROOTLESS",
+      "title": "Nessun centro da cui cacciarla",
+      "when": {
+        "scope": "ENTITY",
+        "tag": "life:INC_NAHR_DIASPORA"
+      },
+      "kind": "GATE",
+      "movement": "PASS",
+      "passes_eviction": true,
+      "active": true,
+      "note": "La Diaspora di Nahr (D-130, decisione C della seduta): la cacciata di un Consiglio (D-067) e i BLOCK delle regole non tengono chi non ha piu' un dentro. Dove gli altri restano fuori un atto intero, la Diaspora rientra il round dopo - il rientro costa comunque la sua azione di MOVE."
     }
   ]
 }

@@ -57,6 +57,8 @@ const ENTITY_WORDS: Dictionary = {
 	"discovery:the_ledger": "scoperta: il registro",
 	"discovery:written_law": "scoperta: la legge scritta",
 	"escort_sworn": "la scorta giurata",
+	"uprooted": "sradicato",
+	"twice_uprooted": "due volte sradicato",
 	"failed_proposal": "la proposta caduta",
 	"heir_named": "l'erede nominato",
 	"renowned": "la fama",

@@ -784,6 +784,20 @@ func _bar_return(applied: Array, effect: Dictionary, source: Dictionary) -> void
 	log.bullet("H. %s e stato cacciato: %s resta sbarrata per lui fino a fine atto." % [
 		_name(victim), str(data.regions.get(region_id, {}).get("name", region_id))
 	])
+	# D-130: il seggio ricorda di essere stato sradicato. Il primo segno e' un
+	# fatto; il secondo nello stesso anno e' una natura - ed e' quello che la
+	# successione legge per far nascere una vita senza centro. I tag d'entita'
+	# non si ereditano fra le ere: il conto riparte da solo a ogni Chronicle.
+	var memory: Array = world["entities"][victim]["tags"]
+	if not memory.has("uprooted"):
+		_apply(applied, Effect.make(
+			"SET_ENTITY_TAG", "entity", victim, {"tag": "uprooted"}, source
+		))
+	elif not memory.has("twice_uprooted"):
+		_apply(applied, Effect.make(
+			"SET_ENTITY_TAG", "entity", victim, {"tag": "twice_uprooted"}, source
+		))
+		log.bullet("H. Due volte sradicato in un anno: %s non ha piu' un centro da difendere." % _name(victim))
 
 
 func _log_commitments() -> void:

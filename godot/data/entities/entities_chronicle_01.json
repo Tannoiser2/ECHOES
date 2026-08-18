@@ -314,6 +314,23 @@
           ],
           "entry": "ON_TAG",
           "entry_tag": "nahr_settled"
+        },
+        {
+          "id": "INC_NAHR_DIASPORA",
+          "name": "La Diaspora di Nahr",
+          "description": "Cacciato due volte nello stesso anno, il popolo ha smesso di chiedere una terra: il centro adesso è la lingua, il calendario, e la strada. Non lo si può chiudere fuori — non c'è più un dentro.",
+          "persistence": "COLLECTIVE",
+          "action_values": {
+            "ACQUIRE": 3,
+            "MOVE": 5,
+            "INFLUENCE": 3,
+            "FORGE": 3,
+            "SCHEME": 2,
+            "CLAIM": 1
+          },
+          "art_prompt_key": "entity.nahr_diaspora",
+          "entry": "ON_TAG",
+          "entry_tag": "twice_uprooted"
         }
       ]
     },
