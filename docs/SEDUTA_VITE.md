@@ -174,7 +174,29 @@ Le risposte del committente, con la lettura che ne guida il lavoro:
 - **E — tutti e cinque.** Segni compositi, STANCE_MODIFIER, il velo,
   l'eccezione di porta, la soglia della Condition — col rito di D-116:
   ogni gancio provato con regole sintetiche e neutro finché nessuna
-  regola vera lo usa.
+  regola vera lo usa. *(Fatti in 0.1.88, D-125; i denti veri in 0.1.89,
+  D-126; la morte di Vaerax in 0.1.90, D-127.)*
+
+### Aggiornamenti del verbale, dopo il lavoro
+
+- **C, la Leggenda della Montagna**: il committente approva la direzione
+  e **la progettazione si fa in una seduta dedicata**. Diaspora, Forni
+  Riaccesi ed Egemonia restano in attesa di un sì o un no espliciti.
+- **D, il ritrovamento che la blocca**: i valori d'azione sono oggi
+  **solo stampa**. Lo schema li dichiara «peso di sapore per la policy di
+  default, non un modificatore della matematica di risoluzione (v0.2)» —
+  ma la policy che li leggeva è stata sostituita in D-021 da quella a
+  obiettivi, che è una scala di priorità **senza pareggi**: non c'è un
+  punto dove un peso possa mordere. Ridistribuirli ora sarebbe «cambiare
+  solo i numeri sulla carta», che è esattamente ciò che la regola della
+  casa vieta. Due strade oneste, da scegliere in seduta:
+  1. **dichiararli sapore di stampa** e allineare i numeri ai denti veri
+     che ogni vita ormai ha (D-124/D-126) — la differenziazione meccanica
+     per vita esiste già, vive nelle tag_rules;
+  2. **rimandare la D alla 0.4**, quando il modello narrativo locale
+     cambierà comunque lo strumento che decide — e lì i pesi avranno un
+     lettore vero, da misurare contro baseline nuove.
+  La raccomandazione del dossier è la 1 adesso e la 2 quando verrà.
 
 ---
 
