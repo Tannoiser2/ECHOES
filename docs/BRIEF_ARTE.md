@@ -1770,6 +1770,24 @@ framing, 2:3. No text, no letters, no numerals, no logos, no frame, no border.
 Not gory, not horror. Museum-quality illustration, boardgame card art.
 ```
 
+### `entity.cenere_furnaces` — I Forni Riaccesi
+
+- **soggetto**: I Forni Riaccesi — La ferita della montagna torna a soffiare calore, e i Signori della Cenere smettono di vegliare: accendono. I forni pagano bene e mangiano molto - e quello che mangiano cresce nella Valle di qualcun altro
+- **id**: `INC_CENERE_FURNACES`
+
+```
+Historical dark-fantasy portrait of I Forni Riaccesi — La ferita della montagna torna a soffiare calore, e i Signori della Cenere smettono di vegliare: accendono. I forni pagano bene e mangiano molto - e quello che mangiano cresce nella Valle di qualcun altro. Painterly oil technique, visible
+brushwork, muted earth palette with a single ambra accent. One subject, close,
+facing the viewer: this framing is what separates a House card from an Asset card,
+where a single centred figure looking out is forbidden. chi risponde per la casa: la persona che firma, non quella che possiede. Low side
+lighting, shallow depth of field; the background says where they come from without
+telling a story of its own. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: head and shoulders in the upper two thirds; the
+lower third is a calm, low-detail area reserved for a text overlay. Vertical card
+framing, 2:3. No text, no letters, no numerals, no logos, no frame, no border.
+Not gory, not horror. Museum-quality illustration, boardgame card art.
+```
+
 ### `entity.libere_league` — La Lega delle Sette
 
 - **soggetto**: La Lega delle Sette — La Carta firmata ha fatto delle sette città una cosa sola nei giorni dispari. La Lega delibera piano, ma quando una firma delle sette scende su un foglio, il foglio pesa
