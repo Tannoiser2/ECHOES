@@ -47,6 +47,7 @@ func _initialize() -> void:
 	remote.setup(chronicle_id, seats, seed_value)
 	var host: RefCounted = ConsoleHost.new(remote)
 	var tokens: Dictionary = host.open(port, humans, seed_value)
+	assert(host.serve_pages(port + 1), "la porta delle pagine non si apre")
 	var remote_decider: RefCounted = SeatDecider.new(humans, remote.log)
 	remote_decider.ios = {
 		humans[0]: host.io_for(humans[0]),
@@ -57,6 +58,12 @@ func _initialize() -> void:
 		ProbeClient.new(url, str(tokens[humans[0]]), seed_value + 1),
 		ProbeClient.new(url, str(tokens[humans[1]]), seed_value + 2),
 	]
+	# La vetrina in ascolto: un iPad finto che riceve il TableModel a ogni
+	# cambiamento del mondo, per contare che il feed viva davvero.
+	var table_ws := WebSocketPeer.new()
+	table_ws.connect_to_url(url)
+	var table_greeted: bool = false
+	var table_updates: Array = [0]
 
 	var finished: Array = [false]
 	_run_remote(remote, remote_decider, finished)
@@ -65,12 +72,33 @@ func _initialize() -> void:
 		host.poll()
 		for console in consoles:
 			console.poll()
+		table_ws.poll()
+		if table_ws.get_ready_state() == WebSocketPeer.STATE_OPEN:
+			if not table_greeted:
+				table_ws.send_text(JSON.stringify({"kind": "hello", "table": true}))
+				table_greeted = true
+			while table_ws.get_available_packet_count() > 0:
+				var seen: Dictionary = JSON.parse_string(
+					table_ws.get_packet().get_string_from_utf8()
+				)
+				if str(seen.get("kind", "")) == "table":
+					table_updates[0] += 1
 		turns += 1
 		if turns > 200000:
 			printerr("IL FILO SI E' INCEPPATO: la partita remota non finisce.")
 			quit(1)
 			return
 		await process_frame
+
+	# Le pagine si servono davvero, con la porta del filo gia' scritta dentro.
+	var console_page: String = await _fetch(host, port + 1, "/?t=%s" % str(tokens[humans[0]]))
+	var table_page: String = await _fetch(host, port + 1, "/tavolo")
+	var pages_ok: bool = (
+		console_page.contains("ECHOES") and console_page.contains(str(port))
+		and table_page.contains("ECHOES") and table_page.contains(str(port))
+	)
+
+	table_ws.close()
 	for console in consoles:
 		console.close()
 	host.close()
@@ -83,12 +111,17 @@ func _initialize() -> void:
 
 	print("")
 	print("== LA SONDA DEL FILO - %s, seme %d ==" % [chronicle_id, seed_value])
-	print("  Messaggi alle console: %d   risposte dai telefoni: %d" % [received, answered])
+	print("  Messaggi alle console: %d   risposte dai telefoni: %d   vetrina aggiornata: %d volte" % [
+		received, answered, table_updates[0]
+	])
+	print("  Pagine servite (console e tavolo, porta del filo scritta dentro): %s" % (
+		"si'" if pages_ok else "NO"
+	))
 	var same_save: bool = (
 		JSON.stringify(local.to_save()) == JSON.stringify(remote.to_save())
 	)
 	var same_log: bool = local.log.text() == remote.log.text()
-	if same_save and same_log:
+	if same_save and same_log and pages_ok and table_updates[0] > 0:
 		print("  IL FILO E' TRASPARENTE: salvataggio e verbale identici byte per byte.")
 		quit(0)
 		return
@@ -96,12 +129,36 @@ func _initialize() -> void:
 		printerr("  IL SALVATAGGIO DIFFERISCE: il filo ha toccato la partita.")
 	if not same_log:
 		printerr("  IL VERBALE DIFFERISCE: il filo ha toccato la partita.")
+	if table_updates[0] == 0:
+		printerr("  LA VETRINA NON HA MAI RICEVUTO IL TAVOLO.")
 	quit(1)
 
 
 func _run_remote(session: RefCounted, decider: RefCounted, finished: Array) -> void:
 	await session.run(decider)
 	finished[0] = true
+
+
+## Un GET da sonda: si collega, chiede, legge finche' il server chiude.
+func _fetch(host: RefCounted, port: int, path: String) -> String:
+	var tcp := StreamPeerTCP.new()
+	if tcp.connect_to_host("127.0.0.1", port) != OK:
+		return ""
+	var body: String = ""
+	var sent: bool = false
+	for _turn in range(2000):
+		host.poll()
+		tcp.poll()
+		var status: int = tcp.get_status()
+		if status == StreamPeerTCP.STATUS_CONNECTED and not sent:
+			tcp.put_data(("GET %s HTTP/1.1\r\nHost: sonda\r\n\r\n" % path).to_utf8_buffer())
+			sent = true
+		if sent and tcp.get_available_bytes() > 0:
+			body += tcp.get_utf8_string(tcp.get_available_bytes())
+		if status == StreamPeerTCP.STATUS_NONE or status == StreamPeerTCP.STATUS_ERROR:
+			break
+		await process_frame
+	return body
 
 
 func _parse_args(args: Array) -> Dictionary:

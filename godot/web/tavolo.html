@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ECHOES — Il tavolo</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    background: #17140f; color: #c9bfae;
+    font: 16px/1.5 Georgia, 'Times New Roman', serif;
+    padding: 18px;
+  }
+  h1 { font-size: 26px; color: #e8dcc3; }
+  #stato { font-size: 13px; color: #8a8172; margin-bottom: 14px; }
+  #stato.giu { color: #c8553d; }
+  h2 {
+    font-size: 12px; letter-spacing: .14em; text-transform: uppercase;
+    color: #8a8172; margin: 18px 0 8px; border-bottom: 1px solid #2c2820;
+    padding-bottom: 4px;
+  }
+  #mappa { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; }
+  .regione {
+    background: #221e16; border: 1px solid #3a3427; border-radius: 8px;
+    padding: 10px 12px; cursor: pointer;
+  }
+  .regione h3 { font-size: 16px; color: #e8dcc3; }
+  .padrone { font-size: 13px; color: #e8b563; }
+  .pedine { font-size: 13px; }
+  .segni { font-size: 12px; color: #8a8172; display: none; margin-top: 6px; }
+  .regione.aperta .segni { display: block; }
+  .riga { padding: 2px 0; }
+  .coperta { color: #8a8172; font-style: italic; }
+  #verbale {
+    background: #12100c; border: 1px solid #2c2820; border-radius: 8px;
+    padding: 10px 12px; max-height: 34vh; overflow-y: auto;
+    font-size: 14px; white-space: pre-wrap;
+  }
+  #colonne { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media (max-width: 700px) { #colonne { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<h1 id="testata">ECHOES — il tavolo</h1>
+<div id="stato">mi collego…</div>
+<div id="mappa"></div>
+<div id="colonne">
+  <div><h2>Le domande</h2><div id="domande"></div></div>
+  <div><h2>I Consigli dell'anno</h2><div id="consigli"></div></div>
+</div>
+<h2>Il verbale</h2>
+<div id="verbale"></div>
+<script>
+"use strict";
+// La vetrina + ispezione (la C della seduta): questa pagina guarda e basta.
+// Un tocco su una Regione apre i suoi segni - nessun tocco decide niente,
+// e il filo che arriva qui porta solo il TableModel pubblico (D-134).
+const WS_PORT = "__WS_PORT__";
+const stato = document.getElementById("stato");
+let ws = null;
+const aperte = new Set();
+
+function collega() {
+  ws = new WebSocket("ws://" + location.hostname + ":" + WS_PORT);
+  ws.onopen = () => {
+    stato.textContent = "in ascolto";
+    stato.classList.remove("giu");
+    ws.send(JSON.stringify({kind: "hello", table: true}));
+  };
+  ws.onmessage = (event) => {
+    const msg = JSON.parse(event.data);
+    if (msg.kind === "table") disegna(msg.model);
+  };
+  ws.onclose = () => {
+    stato.textContent = "filo caduto — riprovo…";
+    stato.classList.add("giu");
+    setTimeout(collega, 2000);
+  };
+}
+
+function scappa(testo) {
+  return String(testo).replace(/&/g, "&amp;").replace(/</g, "&lt;");
+}
+
+function disegna(m) {
+  document.getElementById("testata").textContent =
+    "Anno " + m.year + " — atto " + m.act + ", round " + m.round;
+  let h = "";
+  for (const r of m.regions) {
+    const chi = r.holder ? "di " + scappa(r.holder) : "di nessuno";
+    const pedine = r.presences.map(p => scappa(p.name) + " ×" + p.count).join(", ");
+    h += '<div class="regione' + (aperte.has(r.name) ? " aperta" : "") +
+         '" data-nome="' + scappa(r.name) + '">' +
+         "<h3>" + scappa(r.name) + "</h3>" +
+         '<div class="padrone">' + chi + "</div>" +
+         (pedine ? '<div class="pedine">' + pedine + "</div>" : "") +
+         '<div class="segni">' +
+         (r.marks.length ? r.marks.map(scappa).join(" · ") : "nessun segno") +
+         "</div></div>";
+  }
+  document.getElementById("mappa").innerHTML = h;
+  document.querySelectorAll(".regione").forEach(el => {
+    el.onclick = () => {
+      const nome = el.dataset.nome;
+      aperte.has(nome) ? aperte.delete(nome) : aperte.add(nome);
+      el.classList.toggle("aperta");
+    };
+  });
+
+  document.getElementById("domande").innerHTML = m.tensions.map(t =>
+    '<div class="riga">' + (t.value < 0
+      ? scappa(t.title) + ' — <span class="coperta">domanda coperta</span>'
+      : scappa(t.title) + " — " + t.value + " su " + t.threshold) + "</div>"
+  ).join("");
+
+  const consigli = m.councils.map(c =>
+    '<div class="riga">' + scappa(c.tension) + " — " + scappa(c.outcome) +
+    " (propose " + scappa(c.proponent) + ")</div>");
+  for (const titolo of m.echoes_played)
+    consigli.push('<div class="riga coperta">Il mondo ha calato: ' + scappa(titolo) + "</div>");
+  document.getElementById("consigli").innerHTML = consigli.join("") || '<div class="riga coperta">ancora nessuno</div>';
+
+  const verbale = document.getElementById("verbale");
+  const in_fondo = verbale.scrollTop + verbale.clientHeight >= verbale.scrollHeight - 30;
+  verbale.textContent = m.verbale.slice(-200).join("\n");
+  if (in_fondo) verbale.scrollTop = verbale.scrollHeight;
+}
+
+collega();
+</script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>ECHOES — La tua console</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    background: #17140f; color: #c9bfae;
+    font: 15px/1.45 Georgia, 'Times New Roman', serif;
+    padding: 12px 12px 90px;
+  }
+  h1 { font-size: 22px; color: #e8dcc3; margin-bottom: 2px; }
+  h2 {
+    font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+    color: #8a8172; margin: 16px 0 6px; border-bottom: 1px solid #2c2820;
+    padding-bottom: 3px;
+  }
+  #stato { font-size: 12px; color: #8a8172; }
+  #stato.giu { color: #c8553d; }
+  .riga { padding: 2px 0; }
+  .mia { color: #e8b563; }
+  .fatto { color: #6fa88a; }
+  .manca { color: #5f584c; }
+  .carta {
+    display: inline-block; background: #221e16; border: 1px solid #3a3427;
+    border-radius: 6px; padding: 4px 9px; margin: 3px 4px 3px 0; font-size: 13px;
+  }
+  .famiglia { color: #8a8172; font-size: 11px; }
+  #avvisi .riga { color: #e8b563; }
+  #domanda {
+    position: fixed; left: 0; right: 0; bottom: 0;
+    background: #221e16; border-top: 2px solid #e8b563;
+    padding: 12px; max-height: 62vh; overflow-y: auto; display: none;
+  }
+  #domanda.aperta { display: block; }
+  #domanda p { color: #e8dcc3; margin-bottom: 8px; }
+  #domanda button {
+    display: block; width: 100%; text-align: left;
+    background: #2c2820; color: #c9bfae; border: 1px solid #3a3427;
+    border-radius: 6px; padding: 10px 12px; margin: 6px 0;
+    font: 14px Georgia, serif; cursor: pointer;
+  }
+  #domanda button:active { background: #3a3427; }
+  #domanda button.decidi { color: #8a8172; font-style: italic; }
+  .coperta { color: #8a8172; font-style: italic; }
+</style>
+</head>
+<body>
+<h1 id="nome">ECHOES</h1>
+<div id="stato">mi collego…</div>
+<div id="avvisi"></div>
+<div id="scheda"></div>
+<div id="domanda"></div>
+<script>
+"use strict";
+const WS_PORT = "__WS_PORT__";
+const params = new URLSearchParams(location.search);
+let token = params.get("t") || localStorage.getItem("echoes_token") || "";
+if (params.get("t")) localStorage.setItem("echoes_token", params.get("t"));
+
+const stato = document.getElementById("stato");
+const scheda = document.getElementById("scheda");
+const avvisi = document.getElementById("avvisi");
+const domanda = document.getElementById("domanda");
+let ws = null, pinger = null;
+const dette = [];
+
+function collega() {
+  ws = new WebSocket("ws://" + location.hostname + ":" + WS_PORT);
+  ws.onopen = () => {
+    stato.textContent = "al tavolo";
+    stato.classList.remove("giu");
+    ws.send(JSON.stringify({kind: "hello", token: token}));
+    clearInterval(pinger);
+    pinger = setInterval(() => {
+      if (ws.readyState === 1) ws.send(JSON.stringify({kind: "ping"}));
+    }, 8000);
+  };
+  ws.onmessage = (event) => ricevi(JSON.parse(event.data));
+  ws.onclose = () => {
+    stato.textContent = "filo caduto — riprovo…";
+    stato.classList.add("giu");
+    setTimeout(collega, 2000);
+  };
+}
+
+function ricevi(msg) {
+  if (msg.kind === "state") disegna(msg.model);
+  else if (msg.kind === "say") avvisa(msg.text);
+  else if (msg.kind === "choose") chiedi(msg);
+}
+
+function riga(testo, classe) {
+  return '<div class="riga ' + (classe || "") + '">' + testo + "</div>";
+}
+function scappa(testo) {
+  return String(testo).replace(/&/g, "&amp;").replace(/</g, "&lt;");
+}
+
+function disegna(m) {
+  document.getElementById("nome").textContent = m.name;
+  let h = "";
+  h += "<h2>Anno " + m.year + " — atto " + m.act + ", round " + m.round + "</h2>";
+  h += "<h2>Le domande</h2>";
+  for (const t of m.tensions) {
+    h += riga(t.value < 0
+      ? scappa(t.title) + ' — <span class="coperta">coperta</span>'
+      : scappa(t.title) + " — " + t.value + " su " + t.threshold);
+  }
+  if (m.destiny && m.destiny.title) {
+    h += "<h2>Il tuo Destino — " + scappa(m.destiny.title) + "</h2>";
+    for (const r of m.destiny.rungs)
+      h += riga((r.holds ? "[x] " : "[ ] ") + scappa(r.label), r.holds ? "fatto" : "manca");
+  }
+  h += "<h2>La tua mano</h2>";
+  if (!m.hand.length) h += riga("vuota", "manca");
+  for (const c of m.hand)
+    h += '<span class="carta">' + scappa(c.title) +
+         ' <span class="famiglia">' + scappa(c.family).toLowerCase() + "</span></span>";
+  for (const c of m.echo_hand)
+    h += '<span class="carta mia">' + scappa(c) + ' <span class="famiglia">narratore</span></span>';
+  if (m.signs.length) {
+    h += "<h2>I segni della casa</h2>";
+    for (const s of m.signs) h += riga(scappa(s));
+  }
+  h += "<h2>I rapporti</h2>";
+  for (const r of m.relations) h += riga(scappa(r.name) + " — " + scappa(r.level).toLowerCase());
+  if (m.rights.length) {
+    h += "<h2>I diritti</h2>";
+    for (const d of m.rights)
+      h += riga(scappa(d.holder) + " — " + scappa(d.domain), d.mine ? "mia" : "");
+  }
+  scheda.innerHTML = h;
+}
+
+function avvisa(testo) {
+  if (!testo.trim()) return;
+  dette.push(testo);
+  while (dette.length > 6) dette.shift();
+  avvisi.innerHTML = dette.map(t => riga(scappa(t))).join("");
+}
+
+function chiedi(msg) {
+  let h = "<p>" + scappa(msg.prompt) + "</p>";
+  msg.labels.forEach((label, i) => {
+    h += '<button data-i="' + i + '">' + scappa(label) + "</button>";
+  });
+  h += '<button class="decidi" data-i="-1">Decidi tu (la policy gioca per me)</button>';
+  domanda.innerHTML = h;
+  domanda.classList.add("aperta");
+  domanda.querySelectorAll("button").forEach(b => {
+    b.onclick = () => {
+      ws.send(JSON.stringify({kind: "chosen", ask_id: msg.ask_id, index: +b.dataset.i}));
+      domanda.classList.remove("aperta");
+    };
+  });
+  if (navigator.vibrate) navigator.vibrate(80);
+}
+
+collega();
+</script>
+</body>
+</html>
