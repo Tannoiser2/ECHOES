@@ -429,9 +429,15 @@ otto pool a 3. La prima forma dei Conti Chiusi era regalata (chiusa da sola
 100/100 al round 1) ed è stata riscritta con la fama nella Vittoria — le
 misure per tavola sono in D-115; playtest identico alla base, 0/8.
 
-### 21. La mossa che spegne il tuo Destino avverta prima
+### 21. ✅ La mossa che spegne il tuo Destino avverte prima — fatta in 0.1.83
 
-`app` · nata da una partita vera (seme 15308)
+`app` · nata da una partita vera (seme 15308) · **chiusa** ([D-120](DECISIONS.md#d-120))
+
+L'avviso vive nel `SeatDecider` (uno solo per terminale e browser, D-038):
+l'anteprima è una sessione ricostruita dal salvataggio — stesso mondo,
+stesso dado, previsione esatta, nessun ramo di regole duplicato — e tre
+test la inchiodano: la mossa nella forma del 15308 avverte nominando la
+clausola, il ripensamento torna al menu, una mossa neutra passa in silenzio.
 
 Nella partita del committente, Vaerax entra nell'ultimo round con la prima
 spunta accesa («La montagna è ancora sua») e la spegne **da solo**, spostando

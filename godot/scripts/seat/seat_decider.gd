@@ -30,6 +30,7 @@ extends RefCounted
 
 const PolicyDecider := preload("res://scripts/seat/policy_decider.gd")
 const AssetText := preload("res://scripts/core/asset_text.gd")
+const GameSession := preload("res://scripts/chronicle/game_session.gd")
 
 ## Entity ids a person is playing.
 var humans: Dictionary = {}
@@ -102,17 +103,67 @@ func choose_action(entity_id: String, ao_index: int, session: RefCounted) -> Dic
 		subjects.append(option.get("subject", {}))
 	labels.append("Passa")
 	subjects.append({})
-	var choice: int = await _choose(
-		"%s, azione %d:" % [_name(entity_id, session), ao_index + 1], labels, subjects
-	)
-	if choice < 0:
-		return fallback.choose_action(entity_id, ao_index, session)
-	if choice >= options.size():
-		return {"template": "PASS", "params": {}}
-	return {
-		"template": str(options[choice]["template"]),
-		"params": options[choice]["params"],
-	}
+	# ISSUES 21: al tavolo fisico un compagno ti farebbe notare che stai
+	# spegnendo la tua stessa spunta. L'app fa altrettanto: se la mossa scelta
+	# spegne una clausola accesa del proprio Destino, una riga di avviso e la
+	# scelta di ripensarci. Un cartello, non un consigliere.
+	while true:
+		var choice: int = await _choose(
+			"%s, azione %d:" % [_name(entity_id, session), ao_index + 1], labels, subjects
+		)
+		if choice < 0:
+			return fallback.choose_action(entity_id, ao_index, session)
+		if choice >= options.size():
+			return {"template": "PASS", "params": {}}
+		var request: Dictionary = {
+			"template": str(options[choice]["template"]),
+			"params": options[choice]["params"],
+		}
+		var dying: Array = _clauses_this_switches_off(entity_id, request, session)
+		if dying.is_empty():
+			return request
+		_say("  ⚠ Questa mossa spegne: %s" % ", ".join(PackedStringArray(dying)))
+		var confirmed: int = await _choose(
+			"  La fai lo stesso?", ["Sì, la faccio", "No, ci ripenso"]
+		)
+		if confirmed != 1:
+			return request
+	return {"template": "PASS", "params": {}}
+
+
+## ISSUES 21: le clausole del proprio Destino, oggi accese, che questa azione
+## spegnerebbe. L'anteprima è una sessione ricostruita dal salvataggio — stesso
+## mondo, stesso dado, quindi la previsione è esatta — su cui l'azione viene
+## eseguita davvero e poi buttata via: nessun ramo di regole duplicato da
+## tenere allineato. Solo il posto proprio e solo clausole già vere: chi vuole
+## sapere cosa conviene ha il tavolo, non un consigliere.
+func _clauses_this_switches_off(
+	entity_id: String, request: Dictionary, session: RefCounted
+) -> Array:
+	var destiny: Variant = session.data.destinies.get(session.service.destiny_of(entity_id))
+	if destiny == null:
+		return []
+	var lit: Array = []
+	for level in ["minimum", "victory", "triumph"]:
+		for condition in destiny[level]["conditions"]:
+			if session.destinies.conditions.holds(condition, {"self": entity_id}):
+				lit.append(condition)
+	if lit.is_empty():
+		return []
+	var preview: RefCounted = GameSession.new(session.data)
+	if not preview.restore(session.to_save("anteprima")):
+		return []
+	var dying: Array = []
+	var outcome: Dictionary = preview.actions.execute(entity_id, request)
+	if bool(outcome.get("ok", false)):
+		for condition in lit:
+			if preview.destinies.conditions.holds(condition, {"self": entity_id}):
+				continue
+			var said: String = "«%s»" % str(condition.get("label", ""))
+			if not dying.has(said):
+				dying.append(said)
+	preview.dispose()
+	return dying
 
 
 ## Every legal action, already checked against the rules, so a person is never

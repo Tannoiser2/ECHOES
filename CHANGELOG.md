@@ -5,6 +5,32 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.83] — La mossa che spegne il tuo Destino avverte prima
+
+La voce 21 si chiude ([D-120](docs/DECISIONS.md#d-120)): nella partita al
+seme 15308 Vaerax aveva spento da solo la sua prima spunta, spostando
+l'ultimo token via dalle Montagne Rosse senza che l'app dicesse nulla.
+
+### Added
+
+- Nel `SeatDecider` (uno per terminale e browser, D-038): se l'azione
+  scelta spegnerebbe una clausola **accesa** del **proprio** Destino, una
+  riga di avviso che la nomina e la scelta di ripensarci. Un cartello,
+  non un consigliere.
+- L'anteprima è una sessione ricostruita dal salvataggio (`to_save` →
+  `restore`): stesso mondo, stesso dado, previsione esatta, nessun ramo
+  di regole duplicato. Si paga solo quando un umano ha già scelto.
+- Tre test: la mossa nella forma del 15308 avverte nominando la clausola
+  (e il mondo vero resta intatto), il ripensamento torna al menu, una
+  mossa che non tocca il Destino passa senza cerimonie.
+
+### Misurato
+
+259 test / 5732 asserzioni verdi; le partite senza umani sono identiche
+per costruzione (il ramo non viene mai percorso).
+
+---
+
 ## [0.1.82] — Gli effetti che pesano: la voce 23 si chiude
 
 La fase 2 della voce 23 ([D-119](docs/DECISIONS.md#d-119)): le carte di

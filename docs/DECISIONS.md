@@ -331,6 +331,44 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-120 — La mossa che spegne il tuo Destino avverte prima
+**implemented in 0.1.83** (ISSUES 21, chiusa)
+
+Nella partita vera al seme 15308 Vaerax entra nell'ultimo round con la prima
+spunta accesa («Presenza sulle Montagne Rosse») e la spegne **da solo**: un
+MOVE al limite dei token toglie il presidio dalla montagna, e l'app non dice
+nulla. Al tavolo fisico un compagno te lo farebbe notare.
+
+### La forma
+
+Nel `SeatDecider` — lo stesso del terminale e del browser (D-038), quindi una
+sola implementazione — quando l'azione **scelta** dal giocatore spegnerebbe
+una clausola del *suo* Destino oggi accesa: una riga («⚠ Questa mossa
+spegne: …», con l'etichetta della clausola) e la scelta di ripensarci, che
+riporta al menu. Solo il posto proprio, solo clausole già vere, nessun
+suggerimento strategico: un cartello, non un consigliere.
+
+### Il meccanismo
+
+L'anteprima è una **sessione ricostruita dal salvataggio**
+(`to_save` → `restore`): stesso mondo e stesso dado, quindi la previsione è
+esatta — l'azione viene eseguita davvero sulla copia e buttata via, e non
+esiste un secondo ramo di regole da tenere allineato al primo. Il costo si
+paga solo quando un umano ha già scelto un'azione; le sedie automatiche e le
+sim non passano di qui. (La copia fedele esiste perché D-119 ha appena messo
+nel salvataggio anche i Consigli chiusi.)
+
+### Misurato
+
+Tre test (`test_destiny_warning`): la mossa nella forma del seme 15308
+mostra l'avviso **nominando la clausola** e non tocca il mondo vero; «No, ci
+ripenso» torna al menu; un ACQUIRE che non sfiora il Destino passa senza
+cerimonie, una domanda sola. Suite 259 test / 5732 asserzioni verde; le
+partite senza umani sono identiche per costruzione (il ramo non viene mai
+percorso).
+
+---
+
 ## D-119 — Gli effetti che pesano: le carte di Propp toccano il tavolo
 **implemented in 0.1.82** (ISSUES 23, fase 2 — la voce si chiude)
 
