@@ -544,9 +544,9 @@ Le fasi:
 arrivata sul tavolo ce l'ha messa una mano, l'ordine delle funzioni regge,
 e i numeri prima/dopo sono a verbale.
 
-### 24. Ogni segno ha un dente: la meccanica di conseguenze e cicatrici
+### 24. ✅ Ogni segno ha un dente — fatta in 0.1.65–0.1.85
 
-`regole` · `da-misurare` · voluta dal committente
+`regole` · `da-misurare` · voluta dal committente · **chiusa** ([D-104](DECISIONS.md#d-104), [D-105](DECISIONS.md#d-105), [D-122](DECISIONS.md#d-122))
 
 «Ogni conseguenza, ogni cicatrice, ogni decisione potrebbe cambiare il
 meccanismo di gioco e gli effetti su entità e luoghi.» Il censimento
@@ -590,8 +590,16 @@ Le fasi:
    giuramento spezzato (che ora firma la coppia), fama. Accesi uno alla
    volta sui 100 semi standard, esiti a verbale, 0/8 a ogni passo; il
    Consiglio ha imparato a leggere il proponente e le Regioni.
-4. **La cicatrice che morde**: ogni `scar:` con un effetto locale suo, e
-   i 27 segni ereditati che diventano il ponte meccanico fra le ere.
+4. ✅ **La cicatrice che morde** — fatta in 0.1.85
+   ([D-122](DECISIONS.md#d-122)): undici regole nuove coi tipi del telaio
+   — tre pesi del Consiglio sulle cicatrici delle domande, tre pesche
+   guaste, tre pesche buone sulle strutture, la ferita che parla, e il
+   pavimento del PACT (che il censimento ha rivelato essere un tag di
+   relazione). Le cicatrici non si curano: sono il ponte meccanico fra
+   le ere. Per i segni il cui gemello vivo morde già, la **memoria
+   dichiarata** sta nella sonda, col motivo accanto. Censimento: vivi
+   34 → 46, prima fila senza lettore **0**, muti senza dichiarazione
+   **0**.
 
 **Fatto quando** la sonda conta zero segni di prima fila senza lettore —
 o li dichiara memoria esplicitamente — e il playtest resta 0/8 seggi

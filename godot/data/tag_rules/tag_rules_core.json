@@ -243,6 +243,161 @@
       "min_level": "NEUTRAL",
       "active": true,
       "note": "Il pavimento (D-117): il segno BLOOD lo scrive il Legame di Sangue impegnato, e da li' in poi quella coppia non scende sotto NEUTRAL. Il tetto del giuramento spezzato (D-105) vince sul pavimento: la ferita pesa piu' del vincolo."
+    },
+    {
+      "id": "TGR_BRIDGE_WEIGHS",
+      "title": "Il ponte rotto pesa sulle vie",
+      "when": {
+        "scope": "REGION",
+        "tag": "scar:broken_bridge"
+      },
+      "kind": "COUNCIL_MODIFIER",
+      "tension_id": "TEN_ROADS",
+      "world_factor_delta": -1,
+      "active": true,
+      "note": "La cicatrice che morde (ISSUES 24, fase 4): finche' da qualche parte un ponte resta rotto, i Consigli sulle Vie partono col mondo contro. La cicatrice non si cura: e' il ponte meccanico fra le ere."
+    },
+    {
+      "id": "TGR_TAKEN_CAPITAL_REMEMBERS",
+      "title": "La capitale presa non dimentica",
+      "when": {
+        "scope": "REGION",
+        "tag": "scar:changed_hands"
+      },
+      "kind": "COUNCIL_MODIFIER",
+      "tension_id": "TEN_SUCCESSION",
+      "world_factor_delta": -1,
+      "active": true,
+      "note": "La cicatrice che morde (ISSUES 24, fase 4): una capitale passata di mano con la forza rende ogni Consiglio sulla Successione piu' duro, per sempre. Le corone si contano da quel giorno."
+    },
+    {
+      "id": "TGR_EMPTY_CHAIR_WEIGHS",
+      "title": "Il seggio vuoto pesa sulla Carta",
+      "when": {
+        "scope": "REGION",
+        "tag": "scar:the_empty_chair"
+      },
+      "kind": "COUNCIL_MODIFIER",
+      "tension_id": "TEN_CHARTER",
+      "world_factor_delta": -1,
+      "active": true,
+      "note": "La cicatrice che morde (ISSUES 24, fase 4): dove un seggio fu preso con la forza, la Carta si scrive in salita - il mondo ricorda chi non si fido' delle firme."
+    },
+    {
+      "id": "TGR_BROKEN_WORD_BONDS",
+      "title": "La parola rotta guasta i legami",
+      "when": {
+        "scope": "REGION",
+        "tag": "scar:broken_word"
+      },
+      "kind": "DRAW_BIAS",
+      "family": "BONDS",
+      "bias": "MALUS",
+      "active": true,
+      "note": "La cicatrice che morde (ISSUES 24, fase 4): chi sta dove una parola fu rotta pesca legami peggiori - guarda due carte e prende la piu' debole. Nessuno giura volentieri su quella terra."
+    },
+    {
+      "id": "TGR_EMPTIED_ARMS",
+      "title": "Dove la gente fu sgomberata, le braccia mancano",
+      "when": {
+        "scope": "REGION",
+        "tag": "scar:emptied"
+      },
+      "kind": "DRAW_BIAS",
+      "family": "PEOPLE",
+      "bias": "MALUS",
+      "active": true,
+      "note": "La cicatrice che morde (ISSUES 24, fase 4): lo sgombero si paga per generazioni - chi sta nella terra svuotata pesca la gente che e' rimasta, cioe' poca."
+    },
+    {
+      "id": "TGR_ABANDONED_WEALTH",
+      "title": "Nella terra abbandonata la ricchezza non attecchisce",
+      "when": {
+        "scope": "REGION",
+        "tag": "scar:abandoned"
+      },
+      "kind": "DRAW_BIAS",
+      "family": "WEALTH",
+      "bias": "MALUS",
+      "active": true,
+      "note": "La cicatrice che morde (ISSUES 24, fase 4): dove tutto fu lasciato, i commerci tornano per ultimi - la pesca di ricchezza prende la carta peggiore."
+    },
+    {
+      "id": "TGR_WATCHTOWER_FORCE",
+      "title": "Sotto la torre di veglia la forza si trova",
+      "when": {
+        "scope": "REGION",
+        "tag": "structure:watchtower"
+      },
+      "kind": "DRAW_BIAS",
+      "family": "FORCE",
+      "bias": "BONUS",
+      "active": true,
+      "note": "Il segno che costruisce (ISSUES 24, fase 4 - lo schizzo di D-116): chi sta sotto la torre di veglia pesca la forza migliore. La Veglia sulla Montagna adesso paga anche in armi."
+    },
+    {
+      "id": "TGR_TOLLGATE_WEALTH",
+      "title": "Al pedaggio i denari girano",
+      "when": {
+        "scope": "REGION",
+        "tag": "structure:tollgate"
+      },
+      "kind": "DRAW_BIAS",
+      "family": "WEALTH",
+      "bias": "BONUS",
+      "active": true,
+      "note": "Il segno che costruisce (ISSUES 24, fase 4): dove si riscuote il pedaggio la ricchezza passa di mano - chi ci sta pesca la carta migliore."
+    },
+    {
+      "id": "TGR_MARKET_DRAWS",
+      "title": "Dove sta il mercato, la ricchezza gira",
+      "when": {
+        "scope": "REGION",
+        "tag": "settlement:market"
+      },
+      "kind": "DRAW_BIAS",
+      "family": "WEALTH",
+      "bias": "BONUS",
+      "active": true,
+      "note": "Il segno che costruisce (ISSUES 24, fase 4): il mercato spostato porta i commerci dove sta - chi ha presenza li' pesca ricchezza migliore. Il MALUS di una terra abbandonata vince, se le due si sommano."
+    },
+    {
+      "id": "TGR_MARCH_PASSES",
+      "title": "La marca tiene il passo aperto",
+      "when": {
+        "scope": "REGION",
+        "tag": "settlement:march"
+      },
+      "kind": "GATE",
+      "movement": "ALLOW",
+      "active": true,
+      "note": "La porta concessa (ISSUES 24, fase 4 - lo schizzo di D-104): nella marca si entra anche senza presenza adiacente. Il passo e' il suo mestiere; una porta sbarrata (BLOCK, la cacciata) vince comunque."
+    },
+    {
+      "id": "TGR_WOUND_SPEAKS",
+      "title": "La ferita aperta parla del Risveglio",
+      "when": {
+        "scope": "REGION",
+        "tag": "scar:open_wound"
+      },
+      "kind": "ACTION_MODIFIER",
+      "template": "INFLUENCE",
+      "tension_id": "TEN_AWAKENING",
+      "delta": 1,
+      "active": true,
+      "note": "La cicatrice che morde (ISSUES 24, fase 4): dove il Cristallo fu sfruttato, chi sta sulla ferita pesa di piu' sul Risveglio, nel verso che sceglie - come il granaio parla della fame (D-105). La montagna ricorda a voce alta."
+    },
+    {
+      "id": "TGR_PACT_FLOOR",
+      "title": "Il patto firmato non si rimangia",
+      "when": {
+        "scope": "RELATION",
+        "tag": "PACT"
+      },
+      "kind": "RELATION_FLOOR",
+      "min_level": "NEUTRAL",
+      "active": true,
+      "note": "La cicatrice che morde (ISSUES 24, fase 4): il PACT lo scrive l'Insediamento Nahr sulla coppia che lo firma, e da quel giorno quella relazione non scende sotto NEUTRAL - come il sangue (D-117). Il tetto del giuramento spezzato vince, se i due segni coesistono."
     }
   ]
 }

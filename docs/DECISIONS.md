@@ -331,6 +331,82 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-122 — La cicatrice che morde: il ponte meccanico fra le ere
+**implemented in 0.1.85** (ISSUES 24, fase 4 — la voce si chiude)
+
+Il censimento diceva: 11 cicatrici scritte e nessuna letta, i segni ereditati
+narrati ma senza dente. Undici regole nuove — tutte coi tipi che il telaio ha
+già (D-104/D-116), nessun ramo di motore — e la **memoria dichiarata** per i
+segni il cui gemello vivo morde già. Le cicatrici non si curano: quello che
+scrivono lo leggono anche le ere dopo, ed è questo il ponte.
+
+### I denti nuovi, accesi a gruppi sugli stessi 100 semi
+
+- **I tre pesi del Consiglio** (COUNCIL_MODIFIER, −1 World Factor finché la
+  cicatrice esiste): il ponte rotto pesa sulle Vie, la capitale presa non
+  dimentica (Successione), il seggio vuoto pesa sulla Carta.
+- **Le tre pesche guaste** (DRAW_BIAS MALUS, per chi ha presenza sulla
+  cicatrice): la parola rotta guasta i legami (BONDS), dove la gente fu
+  sgomberata le braccia mancano (PEOPLE), nella terra abbandonata la
+  ricchezza non attecchisce (WEALTH).
+- **Le pesche buone e la porta** (i segni che costruiscono): sotto la torre
+  di veglia la forza si trova (FORCE BONUS — lo schizzo di D-116), al
+  pedaggio i denari girano, dove sta il mercato la ricchezza gira, e la
+  marca tiene il passo aperto (GATE ALLOW: vi si entra anche senza
+  adiacenza — la porta concessa dello schizzo di D-104).
+- **La ferita che parla** (ACTION_MODIFIER): dove il Cristallo fu sfruttato,
+  chi sta sulla ferita pesa +1 sull'INFLUENCE del Risveglio, come il granaio
+  parla della fame (D-105).
+- **Il pavimento del patto** (RELATION_FLOOR): il censimento ha rivelato che
+  `PACT` è un tag di **relazione** (lo scrive l'Insediamento Nahr sulla
+  coppia che firma) — e da oggi quella coppia non scende sotto NEUTRAL,
+  come il sangue (D-117).
+
+### La memoria dichiarata
+
+«O li dichiara memoria esplicitamente»: la sonda dei segni ora porta la
+dichiarazione dentro di sé, con il motivo accanto — quattro cicatrici il cui
+dente vivo è il gemello (plundered→condition:, divided_seal→crown_divided,
+sealed_border→valley_sealed, unanswered→question_unresolved), le condition
+curabili che sono mappa e cura, e quindici fatti nudi del mondo, narrati da
+D-103 ed ereditati: la materia prima della voce 9. Un segno dichiarato senza
+motivo vero è un imbroglio, e la lista è nel codice della sonda per essere
+riletta.
+
+### Misurato (stessi 100 semi, tavolo misto)
+
+| passo | esiti Consigli | bloccati |
+|---|---|---|
+| base 0.1.84 | 184 · 75 · 129 · 177 | 0/8 |
+| + i tre pesi del Consiglio | 183 · 80 · 123 · 177 | 0/8 |
+| + le tre pesche guaste | identico al passo prima | 0/8 |
+| + le pesche buone e la porta | 183 · 77 · 123 · 178 | 0/8 |
+| + la ferita che parla | 185 · 78 · 121 · 178 | 0/8 |
+| + il pavimento del patto | **185 · 78 · 123 · 176** | **0/8** |
+
+Le pesche guaste non spostano gli esiti in 100 partite — le cicatrici
+arrivano tardi nell'anno e la presenza lì è rara; al tavolo umano sono un
+vincolo che si vede, come i divieti di D-117. Il censimento: **vivi per
+clausola 34 → 46**, prima fila senza lettore né dichiarazione **0**, muti
+senza dichiarazione **0**. Consigli 5,62 (mediana 6), nessun seggio crolla;
+ere in banda (mediana 955 anni, 20,5 generazioni, 22 nomi), sim scritte a
+zero fallimenti, sonda della visibilità ancora a zero.
+
+### Il difetto trovato dalla guardia dei round-trip
+
+Il pavimento del PACT ha reso significativo il tag sintetico che il test dei
+round-trip usa da sempre, e il test è andato rosso con ragione: in
+`_set_relation` il **livello veniva ripristinato prima dei tag**, quindi
+l'undo leggeva il pavimento non ancora tolto e non poteva tornare sotto —
+lo stato non tornava com'era. Latente dal pavimento del sangue (D-116), mai
+morso perché nessun undo aveva ancora attraversato un pavimento. Adesso i
+tag si ripristinano prima del livello, l'inverso è esatto, e per la stessa
+moneta un segno scritto nello stesso effetto vale subito anche per il
+livello che l'effetto dichiara (nessun dato d'autore combina le due cose:
+comportamento di gioco invariato, verificato).
+
+---
+
 ## D-121 — La sonda della visibilità, e i silenzi che ha trovato
 **implemented in 0.1.84** (ISSUES 22, fasi 2 e 4 — la voce si chiude)
 

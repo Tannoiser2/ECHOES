@@ -321,6 +321,21 @@ func _set_relation(target: Dictionary, payload: Dictionary) -> Variant:
 		"level": str(relation["level"]),
 		"tags": (relation["tags"] as Array).duplicate(),
 	}
+	# I tag prima del livello, e non per estetica: l'inverso di una
+	# SET_RELATION riporta tags e livello di prima, e il clamp del livello
+	# deve leggere i tag GIA' ripristinati - sennò il pavimento appena tolto
+	# (PACT, BLOOD) blocca l'undo sotto di sé e il round-trip mente
+	# (ISSUES 24, trovato dalla guardia dei round-trip con TGR_PACT_FLOOR).
+	# Per la stessa moneta, in avanti: un segno scritto nello stesso effetto
+	# vale subito anche per il livello che l'effetto dichiara.
+	if payload.has("tags"):
+		relation["tags"] = (payload["tags"] as Array).duplicate()
+	if payload.has("add_tag") and not relation["tags"].has(payload["add_tag"]):
+		relation["tags"].append(payload["add_tag"])
+	if payload.has("remove_tag"):
+		var tag_index: int = relation["tags"].find(payload["remove_tag"])
+		if tag_index >= 0:
+			relation["tags"].remove_at(tag_index)
 	if payload.has("level"):
 		var level: String = str(payload["level"])
 		if not ["ENEMY", "HOSTILE", "NEUTRAL", "ALLY", "BOUND"].has(level):
@@ -336,14 +351,6 @@ func _set_relation(target: Dictionary, payload: Dictionary) -> Variant:
 			TagRules.raise_to_floor(level, TagRules.relation_floor(data, world, key)),
 			TagRules.relation_cap(data, world, key)
 		)
-	if payload.has("tags"):
-		relation["tags"] = (payload["tags"] as Array).duplicate()
-	if payload.has("add_tag") and not relation["tags"].has(payload["add_tag"]):
-		relation["tags"].append(payload["add_tag"])
-	if payload.has("remove_tag"):
-		var tag_index: int = relation["tags"].find(payload["remove_tag"])
-		if tag_index >= 0:
-			relation["tags"].remove_at(tag_index)
 	return before
 
 

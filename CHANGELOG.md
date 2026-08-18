@@ -5,6 +5,40 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.85] — La cicatrice che morde: la voce 24 si chiude
+
+Le undici cicatrici erano scritte e mai lette; adesso sono il ponte
+meccanico fra le ere ([D-122](docs/DECISIONS.md#d-122)). Undici regole
+nuove, tutte coi tipi che il telaio ha già — nessun ramo di motore.
+
+### Added
+
+- **I tre pesi del Consiglio**: il ponte rotto pesa sulle Vie, la
+  capitale presa non dimentica, il seggio vuoto pesa sulla Carta
+  (World Factor −1 finché la cicatrice esiste).
+- **Le tre pesche guaste**: la parola rotta guasta i legami, dove la
+  gente fu sgomberata le braccia mancano, nella terra abbandonata la
+  ricchezza non attecchisce.
+- **Le pesche buone e la porta**: la torre di veglia (FORCE), il
+  pedaggio e il mercato (WEALTH), e la marca che tiene il passo aperto
+  (GATE ALLOW: vi si entra anche senza adiacenza).
+- **La ferita che parla**: chi sta dove il Cristallo fu sfruttato pesa
+  +1 sull'INFLUENCE del Risveglio.
+- **Il pavimento del patto**: `PACT` è un tag di relazione (lo scrive
+  l'Insediamento Nahr) e la coppia che firma non scende sotto NEUTRAL.
+- La **memoria dichiarata** nella sonda dei segni: per ogni segno senza
+  regola, il motivo scritto accanto — o il gemello vivo che morde già,
+  o la memoria del mondo che aspetta la voce 9.
+
+### Misurato
+
+Cinque gruppi accesi uno alla volta sugli stessi 100 semi: 184·75·129·177
+→ **185·78·123·176 con 0/8 al tavolo misto** a ogni passo. Censimento:
+vivi per clausola **34 → 46**, prima fila senza lettore **0**, muti senza
+dichiarazione **0**.
+
+---
+
 ## [0.1.84] — La sonda della visibilità: la voce 22 si chiude
 
 «Un effetto invisibile è un bug, non un'atmosfera» ([D-121](docs/DECISIONS.md#d-121)).
