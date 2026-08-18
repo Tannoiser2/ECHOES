@@ -235,6 +235,16 @@ func _action_options(entity_id: String, session: RefCounted) -> Array:
 				"template": "SCHEME", "params": request,
 			})
 
+	# Il velo (D-125): l'arte inversa, per chi ha il segno che la concede.
+	# Il resolver rifiuta da solo chi non ce l'ha: qui si offre, non si giudica.
+	for tension_id in _sorted(session.world["tensions"].keys()):
+		var veil: Dictionary = {"mode": "VEIL", "tension_id": str(tension_id)}
+		if session.actions.can_execute(entity_id, "SCHEME", veil):
+			out.append({
+				"label": "Cala il velo su %s" % _tension(str(tension_id), session),
+				"template": "SCHEME", "params": veil,
+			})
+
 	for other_id in session.world["turn_order"]:
 		if str(other_id) == entity_id:
 			continue

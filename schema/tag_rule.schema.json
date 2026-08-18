@@ -83,9 +83,12 @@
             "DRAW_BIAS",
             "HAND_LIMIT",
             "GRANT_ON_SET",
-            "RELATION_FLOOR"
+            "RELATION_FLOOR",
+            "STANCE_MODIFIER",
+            "CONDITION_THRESHOLD",
+            "ACTION_GRANT"
           ],
-          "description": "Il gancio del motore che la regola piega. ACTION_MODIFIER: il valore di un'azione (per ora INFLUENCE) cambia di `delta`. COUNCIL_MODIFIER: il World Factor dei Consigli sulla Tensione indicata cambia di `world_factor_delta`. GATE: il movimento verso la Regione col segno è sbarrato (BLOCK) o concesso anche senza adiacenza (ALLOW). RELATION_CAP: finché il segno c'è, il livello della relazione non sale sopra `max_level`. I cinque della voce 25 (D-116) - ACTION_GATE: finché il segno c'è, l'azione `template` è vietata a chi lo porta. DRAW_BIAS: chi pesca da `family` col segno addosso guarda le prime due carte e prende la peggiore (MALUS) o la migliore (BONUS). HAND_LIMIT: il limite di mano si muove di `hand_limit_delta`, mai sotto 1. GRANT_ON_SET: quando il segno viene posato nello scope indicato, la carta `grant.asset_id` passa a chi spetta, se è nel mazzo o negli scarti. RELATION_FLOOR: finché il segno c'è, il livello della relazione non scende sotto `min_level` (il tetto vince sul pavimento)."
+          "description": "Il gancio del motore che la regola piega. ACTION_MODIFIER: il valore di un'azione (per ora INFLUENCE) cambia di `delta`. COUNCIL_MODIFIER: il World Factor dei Consigli sulla Tensione indicata cambia di `world_factor_delta`. GATE: il movimento verso la Regione col segno è sbarrato (BLOCK) o concesso anche senza adiacenza (ALLOW). RELATION_CAP: finché il segno c'è, il livello della relazione non sale sopra `max_level`. I cinque della voce 25 (D-116) - ACTION_GATE: finché il segno c'è, l'azione `template` è vietata a chi lo porta. DRAW_BIAS: chi pesca da `family` col segno addosso guarda le prime due carte e prende la peggiore (MALUS) o la migliore (BONUS). HAND_LIMIT: il limite di mano si muove di `hand_limit_delta`, mai sotto 1. GRANT_ON_SET: quando il segno viene posato nello scope indicato, la carta `grant.asset_id` passa a chi spetta, se è nel mazzo o negli scarti. RELATION_FLOOR: finché il segno c'è, il livello della relazione non scende sotto `min_level` (il tetto vince sul pavimento). I tre della seduta sulle vite (D-125) - STANCE_MODIFIER: il fronte (`stance`) di chi porta il segno vale `stance_delta` in piu' al Consiglio, se ha impegnato almeno una carta su quel fronte. CONDITION_THRESHOLD: per chi porta il segno la Condition qualifica con `threshold_delta` impegni in piu' o in meno (mai sotto 1). ACTION_GRANT: finche' il segno c'e', la variante d'azione `grants` e' concessa a chi lo porta (oggi: SCHEME_VEIL, il velo)."
         },
         "template": {
           "type": "string",
@@ -120,9 +123,10 @@
           "type": "string",
           "enum": [
             "BLOCK",
-            "ALLOW"
+            "ALLOW",
+            "PASS"
           ],
-          "description": "Solo per GATE."
+          "description": "Solo per GATE. BLOCK sbarra l'ingresso nella Regione col segno; ALLOW lo concede anche senza adiacenza; PASS (scope ENTITY o GLOBAL) fa passare chi porta il segno attraverso i BLOCK delle regole - la cacciata di D-067 resta piu' forte, finche' una vita non decida altrimenti."
         },
         "max_level": {
           "type": "string",
@@ -204,6 +208,61 @@
         },
         "note": {
           "type": "string"
+        },
+        "when_also": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "scope",
+              "tag"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "scope": {
+                "type": "string",
+                "enum": [
+                  "GLOBAL",
+                  "REGION",
+                  "ENTITY",
+                  "RELATION"
+                ],
+                "description": "Dove vive il segno che accende la regola. REGION: per un modificatore d'azione, una Regione dove chi agisce ha presenza; per una porta, la Regione in cui si entra. ENTITY: chi agisce. RELATION: la coppia di cui si sta cambiando il livello."
+              },
+              "tag": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "description": "Segni compositi (D-125): la regola morde solo se anche TUTTI questi segni sono presenti, letti con lo stesso contesto del gancio. Nel World Factor del Consiglio uno scope REGION qui dentro vale come nel `when`: una Regione qualsiasi che porti il segno."
+        },
+        "stance": {
+          "type": "string",
+          "enum": [
+            "SUPPORT",
+            "OPPOSE"
+          ],
+          "description": "Solo per STANCE_MODIFIER: il fronte che il segno rinforza."
+        },
+        "stance_delta": {
+          "type": "integer",
+          "minimum": -2,
+          "maximum": 2,
+          "description": "Solo per STANCE_MODIFIER: quanto vale in piu' (o in meno) quel fronte."
+        },
+        "threshold_delta": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 1,
+          "description": "Solo per CONDITION_THRESHOLD: lo scostamento della soglia di qualifica, mai sotto 1."
+        },
+        "grants": {
+          "type": "string",
+          "enum": [
+            "SCHEME_VEIL"
+          ],
+          "description": "Solo per ACTION_GRANT: la variante concessa. SCHEME_VEIL e' il velo - chiudere un numero al tavolo, l'arte inversa dello scouting."
         }
       }
     }

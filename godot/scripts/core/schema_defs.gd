@@ -1037,6 +1037,9 @@ const DEFS := {
 					"HAND_LIMIT",
 					"GRANT_ON_SET",
 					"RELATION_FLOOR",
+					"STANCE_MODIFIER",
+					"CONDITION_THRESHOLD",
+					"ACTION_GRANT",
 				],
 			},
 			"template": {
@@ -1069,6 +1072,7 @@ const DEFS := {
 				"enum": [
 					"BLOCK",
 					"ALLOW",
+					"PASS",
 				],
 			},
 			"max_level": {
@@ -1124,6 +1128,35 @@ const DEFS := {
 			},
 			"note": {
 				"type": "String",
+			},
+			"when_also": {
+				"type": "Array",
+				"element": {
+					"type": "Dictionary",
+				},
+			},
+			"stance": {
+				"type": "String",
+				"enum": [
+					"SUPPORT",
+					"OPPOSE",
+				],
+			},
+			"stance_delta": {
+				"type": "int",
+				"min": -2,
+				"max": 2,
+			},
+			"threshold_delta": {
+				"type": "int",
+				"min": -1,
+				"max": 1,
+			},
+			"grants": {
+				"type": "String",
+				"enum": [
+					"SCHEME_VEIL",
+				],
 			},
 		},
 	},

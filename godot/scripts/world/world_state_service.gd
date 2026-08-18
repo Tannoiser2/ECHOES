@@ -118,8 +118,10 @@ func can_move_to(entity_id: String, region_id: String) -> bool:
 	if evicted != null and (evicted["tags"] as Array).has("evicted:%s" % region_id):
 		return false
 	# ISSUES 24: un segno sulla Regione può sbarrare la porta o concederla
-	# anche senza adiacenza. BLOCK vince, come la cacciata di D-067.
-	var gate: String = TagRules.movement_gate(data, world, region_id)
+	# anche senza adiacenza. BLOCK vince, come la cacciata di D-067 - salvo
+	# per chi porta un segno PASS (D-125): quello attraversa i BLOCK delle
+	# regole, non la cacciata.
+	var gate: String = TagRules.movement_gate(data, world, region_id, entity_id)
 	if gate == "BLOCK":
 		return false
 	var definition: Variant = data.entities.get(entity_id)

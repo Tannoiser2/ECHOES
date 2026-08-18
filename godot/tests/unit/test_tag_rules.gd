@@ -6,6 +6,7 @@ extends "res://tests/test_case.gd"
 
 const Effect := preload("res://scripts/core/effect.gd")
 const TagRules := preload("res://scripts/world/tag_rules.gd")
+const Ids := preload("res://scripts/core/ids.gd")
 
 
 func before_each() -> void:
@@ -390,3 +391,136 @@ func test_chronicle_filter_keeps_rules_at_home() -> void:
 		session.data, session.world, "ENT_ALDRIC", "INFLUENCE", "TEN_FAMINE"
 	)
 	assert_eq(int(bonus["delta"]), 0, "una regola della Chronicle III non morde nella I")
+
+
+# --- i pezzi della seduta sulle vite (D-125) ---------------------------------
+
+## I segni compositi: una regola con `when_also` morde solo quando TUTTI i
+## suoi segni sono presenti - la vita E il fatto del mondo, non l'una o l'altro.
+func test_composite_signs_bite_only_together() -> void:
+	_rule("TGR_COMPOSITA", {
+		"kind": "ACTION_MODIFIER", "template": "INFLUENCE", "delta": 1,
+		"when": {"scope": "GLOBAL", "tag": "test_sign"},
+		"when_also": [{"scope": "GLOBAL", "tag": "second_sign"}],
+	})
+	_set_global("test_sign")
+	var alone: Dictionary = TagRules.action_bonus(
+		session.data, session.world, "ENT_ALDRIC", "INFLUENCE", "TEN_FAMINE"
+	)
+	assert_eq(int(alone["delta"]), 0, "un segno solo non basta")
+	_set_global("second_sign")
+	var both: Dictionary = TagRules.action_bonus(
+		session.data, session.world, "ENT_ALDRIC", "INFLUENCE", "TEN_FAMINE"
+	)
+	assert_eq(int(both["delta"]), 1, "insieme, la regola morde")
+
+
+## Il fronte che vale di piu': solo il lato dichiarato, solo col segno.
+func test_stance_bonus_needs_the_sign_and_the_side() -> void:
+	_rule("TGR_FRONTE", {
+		"kind": "STANCE_MODIFIER", "stance": "OPPOSE", "stance_delta": 1,
+	})
+	var before: Dictionary = TagRules.stance_bonus(
+		session.data, session.world, "ENT_NAHR", "OPPOSE"
+	)
+	assert_eq(int(before["delta"]), 0, "senza segno il fronte vale il suo")
+	_set_global("test_sign")
+	assert_eq(
+		int(TagRules.stance_bonus(session.data, session.world, "ENT_NAHR", "OPPOSE")["delta"]),
+		1, "col segno l'opposizione vale +1"
+	)
+	assert_eq(
+		int(TagRules.stance_bonus(session.data, session.world, "ENT_NAHR", "SUPPORT")["delta"]),
+		0, "il sostegno non c'entra: il lato e' dichiarato"
+	)
+
+
+## La soglia della Condition si sposta una volta per regola, non una per seggio.
+func test_condition_threshold_moves_once_per_rule() -> void:
+	var source: Dictionary = Effect.source("test", "TEST", "", 1, 1, 0)
+	_rule("TGR_SOGLIA", {
+		"kind": "CONDITION_THRESHOLD", "threshold_delta": -1,
+		"when": {"scope": "ENTITY", "tag": "firma_leggera"},
+	})
+	var unsigned: Dictionary = TagRules.condition_threshold_delta(
+		session.data, session.world, ["ENT_ALDRIC", "ENT_NAHR"]
+	)
+	assert_eq(int(unsigned["delta"]), 0, "senza segno la soglia non si muove")
+	for entity_id in ["ENT_ALDRIC", "ENT_NAHR"]:
+		session.applier.apply(Effect.make(
+			"SET_ENTITY_TAG", "entity", entity_id, {"tag": "firma_leggera"}, source
+		))
+	var signed: Dictionary = TagRules.condition_threshold_delta(
+		session.data, session.world, ["ENT_ALDRIC", "ENT_NAHR"]
+	)
+	assert_eq(int(signed["delta"]), -1, "due firmatari, una regola: la soglia scende di 1")
+
+
+## Il segno PASS attraversa i BLOCK delle regole - ma non la cacciata di D-067.
+func test_the_pass_sign_walks_through_rule_blocks() -> void:
+	var source: Dictionary = Effect.source("test", "TEST", "", 1, 1, 0)
+	_rule("TGR_SBARRATA_2", {
+		"kind": "GATE", "movement": "BLOCK",
+		"when": {"scope": "REGION", "tag": "scar:sealed_border"},
+	})
+	_rule("TGR_INARRESTABILE", {
+		"kind": "GATE", "movement": "PASS",
+		"when": {"scope": "ENTITY", "tag": "cammino_disperso"},
+	})
+	session.applier.apply(Effect.make(
+		"SET_REGION_TAG", "region", "REG_VALLE_VERDE", {"tag": "scar:sealed_border"}, source
+	))
+	assert_false(
+		session.service.can_move_to("ENT_NAHR", "REG_VALLE_VERDE"),
+		"senza il segno la porta sbarrata tiene"
+	)
+	session.applier.apply(Effect.make(
+		"SET_ENTITY_TAG", "entity", "ENT_NAHR", {"tag": "cammino_disperso"}, source
+	))
+	assert_true(
+		session.service.can_move_to("ENT_NAHR", "REG_VALLE_VERDE"),
+		"col segno PASS il popolo passa"
+	)
+	# La cacciata di un Consiglio resta piu' forte del passo (D-067).
+	session.applier.apply(Effect.make(
+		"SET_ENTITY_TAG", "entity", "ENT_NAHR", {"tag": "evicted:REG_VALLE_VERDE"}, source
+	))
+	assert_false(
+		session.service.can_move_to("ENT_NAHR", "REG_VALLE_VERDE"),
+		"la porta della cacciata non si attraversa"
+	)
+
+
+## Il velo: chi ha il segno che lo concede chiude un numero al tavolo, e chi
+## aveva mandato spie non sa piu'. Chi vela, sa cosa ha coperto.
+func test_the_veil_closes_a_number_on_the_table() -> void:
+	var source: Dictionary = Effect.source("test", "TEST", "", 1, 1, 0)
+	var params: Dictionary = {"mode": "VEIL", "tension_id": "TEN_FAMINE"}
+	var refusal: String = session.actions.check("ENT_LYRA", "SCHEME", params)
+	assert_true(
+		refusal.contains("non e un'arte"),
+		"senza il segno il velo si rifiuta: %s" % refusal
+	)
+	_rule("TGR_DOGMA", {"kind": "ACTION_GRANT", "grants": "SCHEME_VEIL"})
+	_set_global("test_sign")
+	session.applier.apply(Effect.make(
+		"SET_ENTITY_TAG", "entity", "ENT_VAERAX",
+		{"tag": Ids.knows_tension_tag("TEN_FAMINE")}, source
+	))
+	var result: Dictionary = session.actions.execute(
+		"ENT_LYRA", {"template": "SCHEME", "params": params}
+	)
+	assert_true(bool(result.get("ok", false)), "col segno il velo cala: %s" % str(result.get("error", "")))
+	assert_true(session.tensions.is_veiled("TEN_FAMINE"), "il numero non e' piu' sul tavolo")
+	assert_false(
+		session.service.knows_tension("ENT_VAERAX", "TEN_FAMINE"),
+		"le spie degli altri non sanno piu'"
+	)
+	assert_true(
+		session.service.knows_tension("ENT_LYRA", "TEN_FAMINE"),
+		"chi vela sa cosa ha coperto"
+	)
+	assert_true(
+		session.actions.check("ENT_LYRA", "SCHEME", params) != "",
+		"una questione gia' velata non si vela due volte"
+	)

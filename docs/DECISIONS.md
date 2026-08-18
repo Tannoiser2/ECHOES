@@ -331,6 +331,52 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-125 — I pezzi del telaio per le vite: compositi, fronti, velo, passo, soglia
+**implemented in 0.1.88** (ISSUES 19, decisione E della seduta — SEDUTA_VITE.md §4)
+
+Il committente ha autorizzato tutti e cinque i pezzi, e sono entrati col
+rito di D-116: **il telaio prima dei denti** — ogni gancio provato con
+regole sintetiche nei test, e neutro finché nessuna regola vera lo usa.
+
+- **I segni compositi** (`when_also`): una regola può chiedere più segni
+  insieme — la vita **e** il fatto del mondo — letti con lo stesso contesto
+  del gancio. Tutti i ganci del telaio li capiscono. È il pezzo che
+  aspettavano i Frati pieni («+1 dove la reliquia è custodita») e ogni
+  potere «vale doppio per lei».
+- **STANCE_MODIFIER**: il fronte (`stance`) di chi porta il segno vale
+  `stance_delta` in più al Consiglio — ma solo se quel seggio ha impegnato
+  almeno una carta sul fronte: un +1 dal nulla sarebbe un voto gratis. Il
+  proponente conta sempre come sostegno (chi propone non vota, ma spinge).
+  È il pezzo della Repubblica della Valle.
+- **Il velo** (`ACTION_GRANT` + SCHEME modo VEIL): l'arte inversa dello
+  scouting — chiudere un numero al tavolo. La concede un segno; la
+  questione torna velata, chi aveva mandato spie non sa più, chi vela sa
+  cosa ha coperto. È il pezzo del Culto della Misura.
+- **Il passo** (`GATE` con `movement: PASS`): chi porta il segno attraversa
+  i BLOCK delle regole — il confine sigillato, la strada depredata. **La
+  cacciata di D-067 resta più forte**, finché la vita che userà questo
+  pezzo (la Diaspora) non decida altrimenti, coi numeri accanto. È scritto
+  anche nello schema.
+- **La soglia della Condition** (`CONDITION_THRESHOLD`): per chi porta il
+  segno la Condition qualifica con un impegno in meno (o in più), mai sotto
+  1; ogni regola morde una volta per Consiglio, non una per firmatario. È
+  il pezzo della Lega delle Sette piena.
+
+Ogni morso si firma a verbale come sempre («Il segno pesa sul fronte: …»,
+«Il segno sposta la soglia della Condition: …», «cala il velo»), e il menu
+del seggio offre il velo solo a chi lo ha (stessa via di D-038).
+
+### Misurato
+
+Cinque test sintetici nuovi (compositi, fronte, soglia una-volta-per-regola,
+il passo che non batte la cacciata, il velo end-to-end). Con **zero regole
+vere** dei tipi nuovi: playtest sui 100 semi identico byte per byte alla
+0.1.87, suite verde. I denti veri — la Repubblica, il Culto della Misura, i
+Frati e le Custodi in forma piena, la Lega piena — sono il prossimo passo,
+accesi uno alla volta e misurati.
+
+---
+
 ## D-124 — La seduta sulle vite: le decisioni, e i primi tre denti
 **implemented in 0.1.87** (ISSUES 19, fasi 4-5 — la seduta è a verbale in [SEDUTA_VITE.md](SEDUTA_VITE.md) §4)
 

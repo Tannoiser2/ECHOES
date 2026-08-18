@@ -5,6 +5,33 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.88] — I pezzi del telaio per le vite
+
+La decisione E della seduta ([D-125](docs/DECISIONS.md#d-125)): tutti e
+cinque i pezzi, col rito di D-116 — il telaio prima dei denti, ogni
+gancio provato con regole sintetiche e neutro finché nessuna regola vera
+lo usa.
+
+### Added
+
+- **I segni compositi** (`when_also`): una regola può chiedere la vita
+  **e** il fatto del mondo insieme; tutti i ganci li capiscono.
+- **STANCE_MODIFIER**: il fronte di chi porta il segno vale di più — solo
+  se ha impegnato almeno una carta su quel fronte.
+- **Il velo** (SCHEME modo VEIL, concesso da `ACTION_GRANT`): chiudere un
+  numero al tavolo; chi aveva mandato spie non sa più, chi vela sì.
+- **Il passo** (`GATE` PASS): chi porta il segno attraversa i BLOCK delle
+  regole; la cacciata di D-067 resta più forte.
+- **La soglia della Condition** (`CONDITION_THRESHOLD`): qualificare con
+  un impegno in meno, mai sotto 1, una volta per regola.
+
+### Misurato
+
+Cinque test sintetici nuovi; con zero regole vere dei tipi nuovi il
+playtest sui 100 semi è identico byte per byte alla 0.1.87, suite verde.
+
+---
+
 ## [0.1.87] — La seduta sulle vite: le decisioni, e i primi tre denti
 
 La seduta della voce 19 è a verbale ([D-124](docs/DECISIONS.md#d-124),

@@ -253,6 +253,17 @@ func _check_scheme(entity_id: String, params: Dictionary) -> String:
 			if str(data.regions[region_id].get("private_information", "")) == "":
 				return "'%s' non ha informazioni private" % region_id
 			return ""
+		"VEIL":
+			# Il velo (D-125): l'arte inversa dello scouting - chiudere un
+			# numero al tavolo. Non e' di tutti: la concede un segno.
+			var veiled_id: String = str(params.get("tension_id", ""))
+			if not world["tensions"].has(veiled_id):
+				return "tensione sconosciuta '%s'" % veiled_id
+			if TagRules.action_granted(data, world, entity_id, "SCHEME_VEIL") == "":
+				return "il velo non e un'arte di questa casa"
+			if tensions.is_veiled(veiled_id):
+				return "'%s' e gia velata" % veiled_id
+			return ""
 	return "modo sconosciuto '%s'" % params.get("mode", "")
 
 
@@ -717,6 +728,48 @@ func _scheme(entity_id: String, params: Dictionary, source: Dictionary) -> Dicti
 			)
 			log.bullet("%s indaga su %s." % [_name(entity_id), _region(region_id)])
 			return _ok("SCHEME", effects, {"private": true, "region_secret": secret})
+		"VEIL":
+			# Il velo (D-125): il numero torna coperto per il tavolo, e chi
+			# aveva mandato spie non sa piu' - il dogma riscrive il saputo.
+			# Chi vela, invece, sa cosa ha coperto: il suo `knows` resta.
+			var veiled_id: String = str(params.get("tension_id", ""))
+			effects.append(
+				applier.apply(
+					Effect.make(
+						"SET_TENSION_VISIBILITY",
+						"tension",
+						veiled_id,
+						{"visibility": "VEILED"},
+						source
+					)
+				)
+			)
+			var known_tag: String = Ids.knows_tension_tag(veiled_id)
+			for other_id in world["turn_order"]:
+				if str(other_id) == entity_id:
+					continue
+				if not (world["entities"][str(other_id)]["tags"] as Array).has(known_tag):
+					continue
+				effects.append(
+					applier.apply(
+						Effect.make(
+							"REMOVE_ENTITY_TAG", "entity", str(other_id),
+							{"tag": known_tag}, source
+						)
+					)
+				)
+			effects.append(
+				applier.apply(
+					Effect.make(
+						"SET_ENTITY_TAG", "entity", entity_id, {"tag": known_tag}, source
+					)
+				)
+			)
+			log.bullet(
+				"%s cala il velo: %s non ha piu' un numero sul tavolo."
+				% [_name(entity_id), str(data.tensions[veiled_id]["title"])]
+			)
+			return _ok("SCHEME", effects, {"tension_id": veiled_id, "veiled": true})
 	return _error("SCHEME", "modo sconosciuto '%s'" % mode)
 
 
