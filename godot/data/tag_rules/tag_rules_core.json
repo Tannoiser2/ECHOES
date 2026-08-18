@@ -543,6 +543,30 @@
       "passes_eviction": true,
       "active": true,
       "note": "La Diaspora di Nahr (D-130, decisione C della seduta): la cacciata di un Consiglio (D-067) e i BLOCK delle regole non tengono chi non ha piu' un dentro. Dove gli altri restano fuori un atto intero, la Diaspora rientra il round dopo - il rientro costa comunque la sua azione di MOVE."
+    },
+    {
+      "id": "TGR_HEGEMONY_WORD",
+      "title": "La parola che comanda",
+      "when": {
+        "scope": "ENTITY",
+        "tag": "life:INC_LIBERE_HEGEMONY"
+      },
+      "kind": "ACTION_DISCOUNT",
+      "template": "CLAIM",
+      "active": true,
+      "note": "L'Egemonia di Eredan (D-131, decisione C della seduta): rivendicare e forzare il Consiglio non le costa l'Asset AUTHORITY - la parola dell'ultima citta' piena e' gia' autorita'. Lo sconto si nomina a verbale: un diritto gratis e' un fatto del tavolo."
+    },
+    {
+      "id": "TGR_HEGEMONY_UNLOVED",
+      "title": "Nessuno ama l'egemone",
+      "when": {
+        "scope": "ENTITY",
+        "tag": "life:INC_LIBERE_HEGEMONY"
+      },
+      "kind": "RELATION_CAP",
+      "max_level": "ALLY",
+      "active": true,
+      "note": "L'Egemonia di Eredan (D-131): ogni coppia di cui l'egemone e' membro ha un tetto ad ALLY - ci si allea con lei, non ci si lega. Il gancio ENTITY sulla coppia e' l'estensione di D-131."
     }
   ]
 }

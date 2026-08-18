@@ -200,14 +200,16 @@ Le risposte del committente, con la lettura che ne guida il lavoro:
   **Scelta dal committente: la strada 1** («Vai») — eseguita in 0.1.91
   (D-128): la tabella di D-108 era già buona, corretto il solo Culto della
   Misura (il velo è un'arte dello SCHEME: 3 → 4, INFLUENCE 4 → 3).
-- **La C è confermata** («D vai con la 1 e sì per C», a verbale): si
-  scrivono le tre vite rimaste, una alla volta col loro pezzo di motore —
-  i Forni Riaccesi (eseguiti in 0.1.92, D-129: entrata sbarrabile
-  col sigillo, l'azione che sfoga, il minerale composito), la Diaspora
-  (eseguita in 0.1.93, D-130: il conto delle cacciate nei segni, la porta
-  che non la tiene, la sentinella dei NONE nella sonda delle ere), e
-  l'Egemonia (il tetto verso di lei e lo sconto sul diritto) che chiude.
-  Ogni vita resta una regola nei dati: si spegne senza toccare il motore.
+- **La C è confermata ed eseguita** («D vai con la 1 e sì per C», a
+  verbale): le tre vite sono scritte, una alla volta col loro pezzo di
+  motore — i Forni Riaccesi (0.1.92, D-129: entrata sbarrabile col
+  sigillo, l'azione che sfoga, il minerale composito), la Diaspora
+  (0.1.93, D-130: il conto delle cacciate nei segni, la porta che non la
+  tiene, la sentinella dei NONE nella sonda delle ere), l'Egemonia di
+  Eredan (0.1.94, D-131: il segno qualificato per Regione, lo sconto sul
+  diritto, il tetto verso di lei). Ogni vita resta una regola nei dati:
+  si spegne senza toccare il motore. **Della seduta resta solo la
+  Leggenda della Montagna**, da progettare nella sua seduta dedicata.
 
 ---
 

@@ -251,3 +251,32 @@ func test_the_twice_uprooted_people_becomes_the_diaspora() -> void:
 
 	var quiet: Dictionary = _plan_for("ENT_NAHR", {"name": "Popolo Nahr", "generation": 0})
 	assert_false(bool(quiet["transformed"]), "senza sradicamenti il popolo resta popolo")
+
+
+## L'Egemonia di Eredan (D-131): quando la Valle si svuota e Eredan resta
+## piena, il coro diventa una voce. Il segno qualificato `tag@REG` chiede lo
+## sgombero su QUELLA Regione: uno sgombero qualsiasi non fa un'egemonia,
+## e con Eredan svuotata a sua volta non resta nessuno che comandi.
+func test_the_last_full_city_becomes_the_hegemony() -> void:
+	var alone: Dictionary = _plan_for(
+		"ENT_LIBERE", {"name": "Le Città Libere", "generation": 0},
+		{"regions": {"REG_VALLE_VERDE": {"tags": ["scar:emptied"]}}}
+	)
+	assert_true(bool(alone["transformed"]), "la Valle svuotata lascia una voce sola")
+	assert_eq(str(alone["name"]), "L'Egemonia di Eredan", "e quella voce comanda")
+	assert_eq(int(alone["incarnation"]), 2, "la terza vita del seggio")
+
+	var ruins: Dictionary = _plan_for(
+		"ENT_LIBERE", {"name": "Le Città Libere", "generation": 0},
+		{"regions": {
+			"REG_VALLE_VERDE": {"tags": ["scar:emptied"]},
+			"REG_EREDAN": {"tags": ["scar:emptied"]},
+		}}
+	)
+	assert_false(bool(ruins["transformed"]), "con Eredan svuotata non c'e' egemonia")
+
+	var elsewhere: Dictionary = _plan_for(
+		"ENT_LIBERE", {"name": "Le Città Libere", "generation": 0},
+		{"regions": {"REG_TERRE_NAHR": {"tags": ["scar:emptied"]}}}
+	)
+	assert_false(bool(elsewhere["transformed"]), "uno sgombero qualsiasi non fa un'egemonia")

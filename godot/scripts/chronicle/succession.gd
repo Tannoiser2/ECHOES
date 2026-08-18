@@ -247,6 +247,15 @@ static func _next_life(
 static func _sign_anywhere(tag: String, previous: Dictionary, before: Dictionary) -> bool:
 	if tag == "":
 		return false
+	# La forma qualificata `tag@REG_ID` (D-131): il segno vale solo su quella
+	# Regione - lo sgombero della Valle fa l'Egemonia, non uno sgombero
+	# qualsiasi in giro per il mondo.
+	var at: int = tag.find("@")
+	if at >= 0:
+		var region: Dictionary = (previous.get("regions", {}) as Dictionary).get(
+			tag.substr(at + 1), {}
+		)
+		return (region.get("tags", []) as Array).has(tag.substr(0, at))
 	if (previous.get("global_tags", []) as Array).has(tag):
 		return true
 	if (before.get("tags", []) as Array).has(tag):

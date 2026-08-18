@@ -1041,6 +1041,7 @@ const DEFS := {
 					"CONDITION_THRESHOLD",
 					"ACTION_GRANT",
 					"ACTION_RIPPLE",
+					"ACTION_DISCOUNT",
 				],
 			},
 			"template": {

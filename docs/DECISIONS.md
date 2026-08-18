@@ -331,6 +331,53 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-131 — L'Egemonia di Eredan: il segno qualificato, lo sconto sul diritto, il tetto verso di lei
+**implemented in 0.1.94** (ISSUES 19, decisione C della seduta — la terza vita, la C si chiude; resta la Leggenda della Montagna in seduta dedicata)
+
+Quando la Valle Verde si svuota e Eredan resta l'ultima città piena, il coro
+delle Libere diventa una voce sola: **L'Egemonia di Eredan**
+(`INC_LIBERE_HEGEMONY`, COLLECTIVE, terza vita del seggio). Il dossier
+diceva «una sola città piena»; con due città scritte la forma concreta è
+questa — lo sgombero della Valle senza lo sgombero di Eredan — ed è una
+scelta d'autore messa a verbale, non una semplificazione nascosta.
+
+Tre pezzi di motore, tutti piccoli:
+
+- **Il segno qualificato `tag@REG_ID`** (`Succession._sign_anywhere`):
+  l'ingresso di una vita può chiedere il segno su UNA Regione precisa.
+  `entry_tag: scar:emptied@REG_VALLE_VERDE` +
+  `entry_forbidden_tag: scar:emptied@REG_EREDAN` — uno sgombero qualsiasi
+  in giro per il mondo non fa un'egemonia (test `elsewhere`), e con
+  Eredan svuotata a sua volta non resta nessuno che comandi (test `ruins`).
+- **ACTION_DISCOUNT** (`TagRules.action_discount` + check/execute del
+  CLAIM): chi porta il segno compie l'azione senza scartare la carta che
+  l'azione chiede. `TGR_HEGEMONY_WORD`: rivendicare e forzare il Consiglio
+  non costano l'Asset AUTHORITY — la parola dell'ultima città piena è già
+  autorità. Lo sconto si nomina a verbale («rivendica il dominio per
+  parola propria»): un diritto gratis è un fatto del tavolo, non un
+  silenzio.
+- **Il gancio ENTITY sulla coppia** (`_sign_present`, ganci di relazione):
+  nei contesti di relazione il `when` con scope ENTITY morde se UN membro
+  della coppia porta il segno. `TGR_HEGEMONY_UNLOVED` (RELATION_CAP ALLY):
+  con l'egemone ci si allea, non ci si lega — e solo le coppie di cui è
+  membro hanno il tetto (test sulla coppia terza). Il validatore ora
+  accetta ENTITY su RELATION_CAP/FLOOR e pretende i campi di
+  ACTION_RIPPLE/ACTION_DISCOUNT.
+
+**Condizionale dichiarata (D-035)**: la vita entra solo dai salti d'era
+della terza cronaca, e le sonde correnti (playtest a anno singolo, saghe
+CHR_01→CHR_02) non la fanno sedere — il playtest è identico alla baseline
+(185·78·123·176, 0/8), la banda delle ere identica (955 / 20,2 / 23), la
+sonda delle scelte invariata. I denti sono inchiodati dai test del telaio
+(sconto senza carta e a verbale, tetto sulla coppia giusta e non sulle
+altre, ingresso qualificato nei tre casi); la misura *in saga* arriverà con
+una sonda d'era sulla terza cronaca, da scrivere quando la Leggenda della
+Montagna porterà comunque la seduta sul mazzo di CHR_03. Due regole in più
+(41→43), censimento 0/0, sims deterministici, BRIEF_ARTE rigenerato con
+`entity.libere_hegemony`, suite 278/5832 verde.
+
+---
+
 ## D-130 — La Diaspora di Nahr: il conto delle cacciate, e la porta che non tiene
 **implemented in 0.1.93** (ISSUES 19, decisione C della seduta — la seconda delle tre vite)
 

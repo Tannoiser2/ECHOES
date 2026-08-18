@@ -301,7 +301,8 @@ func _check_claim(entity_id: String, params: Dictionary) -> String:
 			return "dominio mancante"
 		if not service.claim_for_domain(entity_id, domain).is_empty():
 			return "%s ha gia un Claim su %s" % [entity_id, domain]
-		if _pick_authority(entity_id, params) == "":
+		if _pick_authority(entity_id, params) == "" \
+				and TagRules.action_discount(data, world, entity_id, "CLAIM") == "":
 			return "serve 1 Asset AUTHORITY da scartare"
 		return ""
 	if mode != "FORCE":
@@ -320,7 +321,8 @@ func _check_claim(entity_id: String, params: Dictionary) -> String:
 		return "la Tensione deve valere almeno 3 per essere forzata"
 	if world.get("forced_confluence", null) != null:
 		return "una Confluence e gia stata forzata per questo round"
-	if _pick_authority(entity_id, params) == "":
+	if _pick_authority(entity_id, params) == "" \
+			and TagRules.action_discount(data, world, entity_id, "CLAIM") == "":
 		return "serve 1 ulteriore Asset AUTHORITY da scartare"
 	return ""
 
@@ -826,7 +828,10 @@ func _claim(entity_id: String, params: Dictionary, source: Dictionary) -> Dictio
 
 	if mode == "CREATE":
 		var domain: String = str(params.get("domain", ""))
-		var price: String = _pick_authority(entity_id, params)
+		# D-131: la parola dell'egemone e' gia' autorita' - col segno dello
+		# sconto il CLAIM non scarta niente, carta in mano o no.
+		var waived: String = TagRules.action_discount(data, world, entity_id, "CLAIM")
+		var price: String = "" if waived != "" else _pick_authority(entity_id, params)
 		effects.append_array(_discard(entity_id, price, source))
 		var claim_id: String = Ids.claim_id(int(world["effect_sequence"]) + 1)
 		effects.append(
@@ -847,15 +852,22 @@ func _claim(entity_id: String, params: Dictionary, source: Dictionary) -> Dictio
 			)
 		)
 		# ISSUES 22 (fase 4): la carta spesa si nomina - uno scarto muto era uno
-		# dei silenzi che la sonda della visibilita' ha trovato.
-		log.bullet("%s scarta %s e rivendica il dominio %s." % [
-			_name(entity_id), _title(price), domain
-		])
+		# dei silenzi che la sonda della visibilita' ha trovato. E anche lo
+		# sconto si nomina (D-131): un diritto gratis e' un fatto del tavolo.
+		if price == "":
+			log.bullet("%s rivendica il dominio %s per parola propria - %s." % [
+				_name(entity_id), domain, waived
+			])
+		else:
+			log.bullet("%s scarta %s e rivendica il dominio %s." % [
+				_name(entity_id), _title(price), domain
+			])
 		return _ok("CLAIM", effects, {"claim_id": claim_id, "domain": domain})
 
 	var tension_id: String = str(params.get("tension_id", ""))
 	var claim: Dictionary = service.claim_for_domain(entity_id, service.tension_domain(tension_id))
-	var second: String = _pick_authority(entity_id, params)
+	var forced_waiver: String = TagRules.action_discount(data, world, entity_id, "CLAIM")
+	var second: String = "" if forced_waiver != "" else _pick_authority(entity_id, params)
 	effects.append_array(_discard(entity_id, second, source))
 	effects.append(
 		applier.apply(
@@ -869,10 +881,16 @@ func _claim(entity_id: String, params: Dictionary, source: Dictionary) -> Dictio
 		)
 	)
 	world["forced_confluence"] = {"tension_id": tension_id, "entity_id": entity_id}
-	log.bullet(
-		"%s consuma il proprio Claim, scarta %s, e forza una Confluence su %s."
-		% [_name(entity_id), _title(second), str(data.tensions[tension_id]["title"])]
-	)
+	if second == "":
+		log.bullet(
+			"%s consuma il proprio Claim e forza una Confluence su %s - %s."
+			% [_name(entity_id), str(data.tensions[tension_id]["title"]), forced_waiver]
+		)
+	else:
+		log.bullet(
+			"%s consuma il proprio Claim, scarta %s, e forza una Confluence su %s."
+			% [_name(entity_id), _title(second), str(data.tensions[tension_id]["title"])]
+		)
 	return _ok("CLAIM", effects, {"forced": tension_id})
 
 
@@ -903,6 +921,8 @@ func _pick_authority(entity_id: String, params: Dictionary) -> String:
 # --- helpers ---------------------------------------------------------------
 
 func _discard(entity_id: String, asset_id: String, source: Dictionary) -> Array:
+	if asset_id == "":
+		return []
 	var applied: Dictionary = applier.apply(
 		Effect.make(
 			"REMOVE_ASSET",

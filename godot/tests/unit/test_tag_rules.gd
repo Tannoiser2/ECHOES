@@ -35,8 +35,8 @@ func test_with_no_signs_on_the_board_every_hook_is_neutral() -> void:
 	# (granaio, fame, razzia, giuramento, fama) non esistono a inizio
 	# partita - quindi ogni gancio resta neutro finché il gioco non li posa.
 	assert_eq(
-		session.data.tag_rules.size(), 41,
-		"le regole di D-105, i poteri di vita di D-109/D-124/D-126/D-129/D-130, i denti di D-117 e le cicatrici di D-122"
+		session.data.tag_rules.size(), 43,
+		"le regole di D-105, i poteri di vita di D-109/D-124/D-126/D-129/D-130/D-131, i denti di D-117 e le cicatrici di D-122"
 	)
 	var bonus: Dictionary = TagRules.action_bonus(
 		session.data, session.world, "ENT_ALDRIC", "INFLUENCE", "TEN_FAMINE"
@@ -560,3 +560,55 @@ func test_action_ripple_heats_the_question_and_signs() -> void:
 		if str(line).contains("Il segno sfoga: I forni di prova"):
 			told = true
 	assert_true(told, "lo sfogo si firma a verbale")
+
+
+## D-131: la parola che comanda - col segno dello sconto il CLAIM non scarta
+## l'Asset AUTHORITY (carta in mano o no), e il verbale lo dice.
+func test_the_discounted_claim_spends_no_card() -> void:
+	_rule("TGR_SCONTO", {"kind": "ACTION_DISCOUNT", "template": "CLAIM"})
+	_set_global("test_sign")
+	var outcome: Dictionary = session.actions.execute("ENT_ALDRIC", {
+		"template": "CLAIM", "params": {"mode": "CREATE", "domain": "TERRITORY"},
+	})
+	assert_true(
+		bool(outcome.get("ok", false)),
+		"il diritto e' concesso: %s" % str(outcome.get("error", ""))
+	)
+	for effect in outcome.get("effects", []):
+		assert_true(
+			str((effect as Dictionary).get("type", "")) != "REMOVE_ASSET",
+			"nessuna carta scartata"
+		)
+	var told: bool = false
+	for line in session.log.lines:
+		if str(line).contains("per parola propria"):
+			told = true
+	assert_true(told, "lo sconto si nomina a verbale")
+
+
+## D-131: nessuno ama l'egemone - il gancio ENTITY sulla coppia mette il
+## tetto a ogni relazione di cui il portatore del segno e' membro, e solo
+## a quelle.
+func test_the_cap_toward_the_sign_bearer_holds_for_the_pair() -> void:
+	_rule("TGR_EGEMONE", {
+		"kind": "RELATION_CAP", "max_level": "ALLY",
+		"when": {"scope": "ENTITY", "tag": "test_sign"},
+	})
+	var source: Dictionary = Effect.source("test", "TEST", "", 1, 1, 0)
+	session.applier.apply(Effect.make(
+		"SET_ENTITY_TAG", "entity", "ENT_ALDRIC", {"tag": "test_sign"}, source
+	))
+	session.applier.apply(Effect.make(
+		"SET_RELATION", "relation", "ENT_ALDRIC|ENT_NAHR", {"level": "BOUND"}, source
+	))
+	assert_eq(
+		str(session.world["relations"]["ENT_ALDRIC|ENT_NAHR"]["level"]), "ALLY",
+		"con l'egemone ci si allea, non ci si lega"
+	)
+	session.applier.apply(Effect.make(
+		"SET_RELATION", "relation", "ENT_LYRA|ENT_NAHR", {"level": "BOUND"}, source
+	))
+	assert_eq(
+		str(session.world["relations"]["ENT_LYRA|ENT_NAHR"]["level"]), "BOUND",
+		"le coppie senza l'egemone si legano come sempre"
+	)

@@ -388,10 +388,13 @@ Le fasi:
    brief, e le descrizioni di vite ed eredi nel materiale di revisione
    (661→745 testi). Il nome corrente resta nel verbale, come i re di una
    dinastia.
-4. **I poteri per incarnazione**: prima leva onesta e misurabile,
-   `action_values` e `persistence` propri; i poteri *nominati* («solo
-   l'Ordine può…») sono design d'autore da definire insieme prima, misurare
-   dopo.
+4. ✅ **I poteri per incarnazione** — fatta nella seduta (0.1.87–0.1.91):
+   i denti pronti ([D-124](DECISIONS.md#d-124)), i cinque pezzi del telaio
+   ([D-125](DECISIONS.md#d-125)), i denti veri su ogni vita
+   ([D-126](DECISIONS.md#d-126)), la morte di Vaerax per via di Propp
+   ([D-127](DECISIONS.md#d-127)); gli `action_values` per vita sono sapore
+   dichiarato ([D-128](DECISIONS.md#d-128)) e la leva meccanica aspetta il
+   lettore vero della 0.4.
 5. **L'albero delle vite** — su richiesta del committente («farei molte
    più trasformazioni, ognuna con poteri asimmetrici, altrimenti sono
    nomi che cambiano su una carta»), lo studio completo per le otto case
@@ -404,11 +407,17 @@ Le fasi:
    per vita via tag_rules — con tre vite di dimostrazione in gioco
    (l'Accademia delle Misure, il Regno di Nahr che torna mortale, il
    Culto della Montagna in attesa che qualcuno impari a uccidere un
-   drago). Restano da scrivere e misurare le altre vite dell'albero, i
-   tipi della voce 25 per i poteri più ambiziosi, e i tarocchi per vita.
-   Il **dossier di decisione per la seduta** — lo stato vero dei dati,
-   una proposta concreta per vita, le domande secche — è in
-   [SEDUTA_VITE.md](SEDUTA_VITE.md).
+   drago). Il **dossier di decisione per la seduta** — lo stato vero dei
+   dati, una proposta concreta per vita, le domande secche — è in
+   [SEDUTA_VITE.md](SEDUTA_VITE.md). **Le tre vite della decisione C sono
+   scritte e misurate**: i Forni Riaccesi (0.1.92,
+   [D-129](DECISIONS.md#d-129)), la Diaspora di Nahr (0.1.93,
+   [D-130](DECISIONS.md#d-130)), l'Egemonia di Eredan (0.1.94,
+   [D-131](DECISIONS.md#d-131)) — ognuna col suo pezzo di motore
+   (l'azione che sfoga, la porta che non tiene, lo sconto sul diritto e
+   il tetto verso l'egemone). **Resta la Leggenda della Montagna**,
+   approvata come direzione: si progetta in una seduta dedicata (il
+   seggio senza corpo chiede più di un tipo di regola).
 
 **Fatto quando** una saga attraversa almeno un cambio d'incarnazione, con
 carta e prompt propri e il passaggio nel verbale, e le sonde d'era restano in

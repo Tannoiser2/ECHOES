@@ -171,6 +171,21 @@ static func action_granted(
 	return ""
 
 
+## ACTION_DISCOUNT (D-131): chi porta il segno compie l'azione `template`
+## senza scartare la carta che l'azione chiede - il CLAIM dell'egemone non
+## paga l'Asset AUTHORITY, perche' la sua parola e' gia' autorita'.
+## Restituisce il titolo della regola che sconta, o "" se si paga come tutti.
+static func action_discount(
+	data, world: Dictionary, entity_id: String, template: String
+) -> String:
+	for rule in active(data, "ACTION_DISCOUNT", str(world.get("chronicle_id", ""))):
+		if str(rule.get("template", "")) != template:
+			continue
+		if _all_present(world, rule, {"entity_id": entity_id}):
+			return str(rule["title"])
+	return ""
+
+
 ## STANCE_MODIFIER (D-125): quanto vale in più il fronte `side` di questo
 ## seggio. Si paga con la presenza sul fronte: il chiamante lo applica solo a
 ## chi ha impegnato almeno una carta — un +1 dal nulla sarebbe un voto gratis.
@@ -322,7 +337,17 @@ static func _sign_present(world: Dictionary, when: Dictionary, context: Dictiona
 		"GLOBAL":
 			return (world.get("global_tags", []) as Array).has(tag)
 		"ENTITY":
-			var entity: Variant = world.get("entities", {}).get(str(context.get("entity_id", "")))
+			# Nei ganci di relazione (D-131) il contesto porta la coppia, non
+			# una casa sola: il segno morde se UN membro lo porta - il tetto
+			# verso l'egemone vale per chiunque tratti con lei.
+			var entity_id: String = str(context.get("entity_id", ""))
+			if entity_id == "" and context.has("relation_key"):
+				for member in str(context["relation_key"]).split("|"):
+					var side: Variant = world.get("entities", {}).get(str(member))
+					if side != null and (side["tags"] as Array).has(tag):
+						return true
+				return false
+			var entity: Variant = world.get("entities", {}).get(entity_id)
 			return entity != null and (entity["tags"] as Array).has(tag)
 		"REGION":
 			var entity_id: String = str(context.get("entity_id", ""))

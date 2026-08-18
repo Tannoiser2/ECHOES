@@ -636,6 +636,24 @@
           "art_prompt_key": "entity.libere_league",
           "entry": "ON_TAG",
           "entry_tag": "charter_written"
+        },
+        {
+          "id": "INC_LIBERE_HEGEMONY",
+          "name": "L'Egemonia di Eredan",
+          "description": "Quando la Valle si è svuotata e una sola città è rimasta piena, il coro è diventato una voce. Eredan non vota più: mette all'ordine del giorno. E chi tratta con lei sa che un patto con l'egemone non è mai fra pari.",
+          "persistence": "COLLECTIVE",
+          "action_values": {
+            "ACQUIRE": 3,
+            "MOVE": 2,
+            "INFLUENCE": 4,
+            "FORGE": 2,
+            "SCHEME": 2,
+            "CLAIM": 5
+          },
+          "art_prompt_key": "entity.libere_hegemony",
+          "entry": "ON_TAG",
+          "entry_tag": "scar:emptied@REG_VALLE_VERDE",
+          "entry_forbidden_tag": "scar:emptied@REG_EREDAN"
         }
       ]
     }

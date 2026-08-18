@@ -5,6 +5,36 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.94] — L'Egemonia di Eredan
+
+La terza vita della decisione C, che la chiude
+([D-131](docs/DECISIONS.md#d-131)): quando la Valle si svuota e Eredan
+resta piena, il coro diventa una voce — e nessuno ama l'egemone.
+
+### Added
+
+- **L'Egemonia di Eredan** (`INC_LIBERE_HEGEMONY`, COLLECTIVE): entra
+  col segno qualificato — `scar:emptied@REG_VALLE_VERDE`, sbarrata da
+  `scar:emptied@REG_EREDAN`. La forma `tag@REG_ID` (nuova in
+  `_sign_anywhere`) chiede il segno su QUELLA Regione: uno sgombero
+  qualsiasi non fa un'egemonia.
+- **`ACTION_DISCOUNT`** (`TGR_HEGEMONY_WORD`): il CLAIM — rivendicare e
+  forzare — senza scartare l'Asset AUTHORITY; lo sconto si nomina a
+  verbale («per parola propria»).
+- **Il gancio ENTITY sulla coppia** (`TGR_HEGEMONY_UNLOVED`,
+  RELATION_CAP ALLY): il tetto morde ogni relazione di cui l'egemone è
+  membro, e solo quelle.
+
+### Measured
+
+- Condizionale dichiarata (D-035): la vita entra dai salti d'era di
+  CHR_03, fuori dalle sonde correnti — playtest identico
+  (185·78·123·176, 0/8), ere in banda, sonda delle scelte invariata;
+  i denti inchiodati dai test del telaio. Sims deterministici,
+  censimento 0/0, suite 278 test / 5832 asserzioni, verde.
+
+---
+
 ## [0.1.93] — La Diaspora di Nahr
 
 La seconda vita della decisione C
