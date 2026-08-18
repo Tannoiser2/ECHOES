@@ -384,6 +384,42 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 	current["die"] = die
 	current["world_factor"] = factor
 
+	# I fronti che valgono di più (D-125): il segno rinforza il fronte di chi
+	# lo porta, ma solo se quel seggio ha messo almeno una carta sul tavolo -
+	# un +1 dal nulla sarebbe un voto gratis. Il proponente sostiene sempre.
+	var support_bonus: int = 0
+	var oppose_bonus: int = 0
+	var stance_titles: Array = []
+	var fronts: Dictionary = {str(current["proponent"]): "SUPPORT"}
+	for entity_id in current["stances"]:
+		if str(entity_id) == str(current["proponent"]):
+			continue
+		fronts[str(entity_id)] = str(current["stances"][entity_id].get("stance", "ABSTAIN"))
+	for entity_id in fronts:
+		var seat: String = str(entity_id)
+		var side: String = str(fronts[seat])
+		if side != "SUPPORT" and side != "OPPOSE":
+			continue
+		if (current["commits"].get(seat, []) as Array).is_empty():
+			continue
+		var lean: Dictionary = TagRules.stance_bonus(data, world, seat, side)
+		if int(lean["delta"]) != 0:
+			if side == "SUPPORT":
+				support_bonus += int(lean["delta"])
+			else:
+				oppose_bonus += int(lean["delta"])
+			stance_titles.append_array(lean["titles"])
+
+	# La soglia della Condition che si sposta (D-125), mai sotto 1.
+	var condition_entities: Array = []
+	for entity_id in current["stances"]:
+		if str(current["stances"][entity_id].get("stance", "")) == "CONDITION":
+			condition_entities.append(str(entity_id))
+	var shifted: Dictionary = TagRules.condition_threshold_delta(data, world, condition_entities)
+	var threshold: int = maxi(
+		1, int(_chronicle["condition_qualified_threshold"]) + int(shifted["delta"])
+	)
+
 	# G. Resolution.
 	var result: Dictionary = ConfluenceResolution.resolve(
 		str(current["proponent"]),
@@ -392,12 +428,18 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 		data.assets,
 		service.relevant_families(tension_id),
 		factor,
-		int(_chronicle["condition_qualified_threshold"])
+		threshold,
+		support_bonus,
+		oppose_bonus
 	)
 	_log_commitments()
 	log.bullet("F. World Factor: 1d6 = %d -> %+d" % [die, factor])
 	for title in bite["titles"]:
 		log.bullet("  Il segno pesa sul Consiglio: %s." % str(title))
+	for title in stance_titles:
+		log.bullet("  Il segno pesa sul fronte: %s." % str(title))
+	for title in shifted["titles"]:
+		log.bullet("  Il segno sposta la soglia della Condition: %s." % str(title))
 	# A qualified Condition is part of the margin (D-055), so it is part of the one
 	# line a player reads to check the arithmetic - and an unqualified one is shown
 	# too, crossed out of the sum, because "you spent two cards for nothing" is
@@ -435,6 +477,13 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 	)
 	var delta: int = failure_delta if outcome == ConfluenceResolution.FAILURE else 1 - before
 	_apply(applied, Effect.make("ADJUST_TENSION", "tension", tension_id, {"delta": delta}, source))
+	# ISSUES 22 (fase 4): il placarsi - o lo sfogo - della questione decisa era
+	# l'unico effetto del Consiglio senza una riga sua: si leggeva solo nello
+	# stato di fine round. La sonda della visibilita' l'ha trovato; adesso parla.
+	if not applied.is_empty():
+		var settled: String = EffectNarrator.narrate(applied[applied.size() - 1], data)
+		if settled != "":
+			log.bullet("H. %s" % settled)
 
 	# H.2 What the committed cards cost their owners.
 	for entity_id in current["commits"]:
@@ -735,6 +784,20 @@ func _bar_return(applied: Array, effect: Dictionary, source: Dictionary) -> void
 	log.bullet("H. %s e stato cacciato: %s resta sbarrata per lui fino a fine atto." % [
 		_name(victim), str(data.regions.get(region_id, {}).get("name", region_id))
 	])
+	# D-130: il seggio ricorda di essere stato sradicato. Il primo segno e' un
+	# fatto; il secondo nello stesso anno e' una natura - ed e' quello che la
+	# successione legge per far nascere una vita senza centro. I tag d'entita'
+	# non si ereditano fra le ere: il conto riparte da solo a ogni Chronicle.
+	var memory: Array = world["entities"][victim]["tags"]
+	if not memory.has("uprooted"):
+		_apply(applied, Effect.make(
+			"SET_ENTITY_TAG", "entity", victim, {"tag": "uprooted"}, source
+		))
+	elif not memory.has("twice_uprooted"):
+		_apply(applied, Effect.make(
+			"SET_ENTITY_TAG", "entity", victim, {"tag": "twice_uprooted"}, source
+		))
+		log.bullet("H. Due volte sradicato in un anno: %s non ha piu' un centro da difendere." % _name(victim))
 
 
 func _log_commitments() -> void:

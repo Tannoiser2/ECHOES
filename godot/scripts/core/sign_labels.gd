@@ -29,6 +29,7 @@ const REGION_WORDS: Dictionary = {
 	"scar:broken_word": "la parola rotta",
 	"scar:changed_hands": "passata di mano",
 	"scar:divided_seal": "il sigillo diviso",
+	"scar:dragonfall": "la caduta del drago",
 	"scar:emptied": "lo sgombero",
 	"scar:open_wound": "la ferita aperta",
 	"scar:plundered": "la razzia",
@@ -56,6 +57,8 @@ const ENTITY_WORDS: Dictionary = {
 	"discovery:the_ledger": "scoperta: il registro",
 	"discovery:written_law": "scoperta: la legge scritta",
 	"escort_sworn": "la scorta giurata",
+	"uprooted": "sradicato",
+	"twice_uprooted": "due volte sradicato",
 	"failed_proposal": "la proposta caduta",
 	"heir_named": "l'erede nominato",
 	"renowned": "la fama",
@@ -70,6 +73,20 @@ const ENTITY_WORDS: Dictionary = {
 	"ash": "la cenere",
 	"free_cities": "le città libere",
 }
+
+
+## I domini delle Tensioni, in italiano: un Claim rivendica un dominio, e sul
+## pannello si legge la parola, non l'enum (ISSUES 22, l'inventario dell'app).
+const DOMAIN_WORDS: Dictionary = {
+	"SURVIVAL": "la sopravvivenza",
+	"RESOURCE": "le risorse",
+	"TERRITORY": "il territorio",
+	"ANCIENT": "l'antico",
+}
+
+
+static func domain(id: String) -> String:
+	return str(DOMAIN_WORDS.get(id, id.to_lower()))
 
 
 ## La parola di un segno, con il vocabolario giusto per dove sta. `data` serve

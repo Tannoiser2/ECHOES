@@ -5,6 +5,408 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.96] — La Leggenda della Montagna
+
+Le risposte A e C della seduta ([D-133](docs/DECISIONS.md#d-133)): il
+seggio senza corpo — e la voce 19 si chiude.
+
+### Added
+
+- **Il conto delle ere nei segni** (`era_tallies`, D-133): tre ere col
+  sigillo intatto e il mondo posa `mountain_forgotten`; il sigillo
+  caduto azzera il conto senza lasciare leggende.
+- **La Leggenda della Montagna** (`INC_VAERAX_LEGEND`, COLLECTIVE):
+  entra su `mountain_forgotten`, sbarrata solo dal fatto vivo del
+  Cristallo — che sbiadisce: anche il Ridestato, richiuso e
+  dimenticato, torna racconto. `presence: []` (niente pedine, niente
+  cacciate), MOVE vietato dichiarato, la voce sui fronti finché il
+  mondo dimentica.
+- **Il Destino per vita** (`destiny_id`/`destiny_pool`
+  sull'incarnazione): `DST_VAERAX_LEGEND`, senza clausole di presenza
+  — il Minimo si perde se il sigillo cade.
+
+### Measured
+
+- La Leggenda siede **3/20 saghe** (Ridestato 20 → 18, NONE di Vaerax
+  9 → 16: la vita non è un rifugio), banda identica (24 nomi).
+  Playtest identico (0/8), sims deterministici, censimento 0/0, suite
+  281 test / 5865 asserzioni, verde.
+
+---
+
+## [0.1.95] — La montagna delle città
+
+La risposta B della seduta sulla Leggenda
+([D-132](docs/DECISIONS.md#d-132)): il tavolo delle città può ferire
+la montagna e svuotare la Valle — le porte d'ingresso di Forni ed
+Egemonia si aprono.
+
+### Added
+
+- **La Roccia che Cede** (`CNS_MOUNTAIN_WOUNDED`, sul successo di
+  `P_DIG_BELOW`): `scar:open_wound` + `condition:exploited` sulle
+  Miniere Antiche.
+- **La Valle che si Vuota** (`CNS_VALLEY_DRAINED`, sul fallimento
+  della domanda dell'Acqua): `scar:emptied` + `condition:lean` sulla
+  Valle Verde.
+
+### Measured
+
+- Sonda delle città: i Forni siedono **5/20 saghe**, l'Egemonia
+  **11/20** (Custodi 20 → 15), NONE tutti vivi, banda identica.
+  Playtest coi totali identici (0/8), sims deterministici, censimento
+  0/0, suite verde.
+
+---
+
+## [0.1.94] — L'Egemonia di Eredan
+
+La terza vita della decisione C, che la chiude
+([D-131](docs/DECISIONS.md#d-131)): quando la Valle si svuota e Eredan
+resta piena, il coro diventa una voce — e nessuno ama l'egemone.
+
+### Added
+
+- **L'Egemonia di Eredan** (`INC_LIBERE_HEGEMONY`, COLLECTIVE): entra
+  col segno qualificato — `scar:emptied@REG_VALLE_VERDE`, sbarrata da
+  `scar:emptied@REG_EREDAN`. La forma `tag@REG_ID` (nuova in
+  `_sign_anywhere`) chiede il segno su QUELLA Regione: uno sgombero
+  qualsiasi non fa un'egemonia.
+- **`ACTION_DISCOUNT`** (`TGR_HEGEMONY_WORD`): il CLAIM — rivendicare e
+  forzare — senza scartare l'Asset AUTHORITY; lo sconto si nomina a
+  verbale («per parola propria»).
+- **Il gancio ENTITY sulla coppia** (`TGR_HEGEMONY_UNLOVED`,
+  RELATION_CAP ALLY): il tetto morde ogni relazione di cui l'egemone è
+  membro, e solo quelle.
+
+### Measured
+
+- Condizionale dichiarata (D-035): la vita entra dai salti d'era di
+  CHR_03, fuori dalle sonde correnti — playtest identico
+  (185·78·123·176, 0/8), ere in banda, sonda delle scelte invariata;
+  i denti inchiodati dai test del telaio. Sims deterministici,
+  censimento 0/0, suite 278 test / 5832 asserzioni, verde.
+
+---
+
+## [0.1.93] — La Diaspora di Nahr
+
+La seconda vita della decisione C
+([D-130](docs/DECISIONS.md#d-130)): il popolo cacciato due volte in un
+anno smette di avere un centro — e non lo si può più chiudere fuori.
+
+### Added
+
+- **La Diaspora di Nahr** (`INC_NAHR_DIASPORA`, COLLECTIVE): entra col
+  segno `twice_uprooted`, che `_bar_return` scrive alla seconda cacciata
+  vera nello stesso anno (`uprooted` alla prima). I tag d'entità non si
+  ereditano: il conto riparte a ogni Chronicle da solo.
+- **`passes_eviction`** (`TGR_DIASPORA_ROOTLESS`, GATE PASS): la vita
+  che decide altrimenti — la cacciata di D-067 e i BLOCK non la
+  tengono; il rientro costa comunque la MOVE del round dopo. Il
+  validatore ora conosce il PASS su scope ENTITY/GLOBAL.
+- **La sentinella nella sonda delle ere**: vite mutate sedute e NONE
+  per seggio attraverso le ere.
+
+### Measured
+
+- La Diaspora siede 2 volte in 20 saghe; il NONE di Nahr resta vivo
+  (33 su 200 anni giocati): la leva dell'espulsione morde ancora.
+  Playtest identico (185·78·123·176, 0/8); sims deterministici;
+  censimento 0/0; suite 275 test, 5817 asserzioni, verde.
+
+---
+
+## [0.1.92] — I Forni Riaccesi
+
+La prima delle tre vite della decisione C
+([D-129](docs/DECISIONS.md#d-129)): fra i Fuochi e le Custodi nasce
+l'industria — ma solo se la storia ha riaperto la miniera.
+
+### Added
+
+- **I Forni Riaccesi** (`INC_CENERE_FURNACES`, COLLECTIVE): entra
+  all'esaurimento della linea se `scar:open_wound` sta sul mondo — e il
+  nuovo **`entry_forbidden_tag`** la sbarra se `structure:sealed` chiude
+  la miniera (allora siedono le Custodi, come sempre).
+- **`ACTION_RIPPLE`**, pezzo nuovo del telaio: un'azione riuscita sfoga
+  su una Tensione, a verbale e con gli omen. Il dente della fame:
+  ogni FORGE dei Forni scalda `TEN_WATER` (+1, `TGR_FURNACE_HUNGER`).
+- **`TGR_FURNACE_ORE`** (DRAW_BIAS composito): Forni al tavolo *e*
+  ferita sulla mappa → pescano WEALTH più spesso.
+
+### Fixed
+
+- `scar:dragonfall` (0.1.90) stava in prima fila senza lettore né
+  dichiarazione: dichiarato nel censimento (il dente vivo è la morte
+  del seggio, letta da ON_DEATH).
+
+### Measured
+
+- Playtest 100 semi identico alla baseline (185·78·123·176, 0/8 al
+  tavolo misto); banda delle ere identica (955 / 20,5 / 22); sims ed
+  export deterministici; censimento 0/0; suite 272 test, 5799
+  asserzioni, verde.
+
+---
+
+## [0.1.91] — I valori per vita sono sapore dichiarato
+
+La decisione D della seduta si chiude sulla strada onesta
+([D-128](docs/DECISIONS.md#d-128)): i valori d'azione non hanno un
+lettore (la policy di D-021 è una scala senza pareggi) e si dichiarano
+**sapore di stampa**, allineati ai denti veri; la D meccanica resta a
+verbale per la 0.4. La tabella di D-108 era già buona — corretto il solo
+Culto della Misura: il velo è un'arte dello SCHEME (3 → 4, INFLUENCE
+4 → 3, somma invariata).
+
+---
+
+## [0.1.90] — La morte di Vaerax, per via di Propp
+
+La decisione B della seduta ([D-127](docs/DECISIONS.md#d-127)): il drago
+si può uccidere, e la porta è la carta di Propp.
+
+### Added
+
+- **La caccia** (`P_SLAY_THE_DRAGON`): sulla domanda dura del Risveglio,
+  eleggibile solo se una **Rivelazione** è stata compiuta quest'anno —
+  e chi cala la Rivelazione prescrive il Consiglio e propone per primo.
+- **Il Drago Abbattuto** (`CNS_DRAGON_SLAIN`): il drago si spegne (primo
+  `SET_ENTITY_ACTIVE` nei dati), il Risveglio crolla, la montagna porta
+  la **caduta del drago** — e il potere del Culto ora legge proprio
+  quella cicatrice (segni compositi).
+- **Il drago si difende**: il punteggio teme la propria fine (−6). La
+  morte non elimina il giocatore: `ON_DEATH`, e chi giocava il drago
+  gioca il Culto.
+
+### Misurato
+
+Condizionale dichiarata (mai eleggibile nelle 100 standard, come il
+riaprire la miniera): playtest identico byte per byte, ere in banda,
+270 test / 5782 asserzioni verdi.
+
+---
+
+## [0.1.89] — I denti veri sui pezzi nuovi
+
+I poteri pieni che aspettavano il telaio ([D-126](docs/DECISIONS.md#d-126)):
+la Repubblica della Valle (il consenso frena chi propone, e fa muro
+quando si oppone), il Culto della Misura (il dogma vela — l'arte che
+nessun altro ha), i Frati del Vetro in forma piena (la regola come
+misura, dove la reliquia è custodita — segni compositi), la Lega delle
+Sette (la firma leggera: la Condition qualifica con un impegno in meno).
+
+Con questo **le nove vite oltre la fondazione hanno tutte almeno un
+dente**. Dichiarati non esprimibili: il «vale doppio» delle Custodi e la
+paura piena del Ridestato — pezzi futuri, non forzature.
+
+### Misurato
+
+Suite 267/5773 verde; playtest identico byte per byte (le vite dormono
+fuori dalle saghe); ere in banda (955 · 20,5 · 22).
+
+---
+
+## [0.1.88] — I pezzi del telaio per le vite
+
+La decisione E della seduta ([D-125](docs/DECISIONS.md#d-125)): tutti e
+cinque i pezzi, col rito di D-116 — il telaio prima dei denti, ogni
+gancio provato con regole sintetiche e neutro finché nessuna regola vera
+lo usa.
+
+### Added
+
+- **I segni compositi** (`when_also`): una regola può chiedere la vita
+  **e** il fatto del mondo insieme; tutti i ganci li capiscono.
+- **STANCE_MODIFIER**: il fronte di chi porta il segno vale di più — solo
+  se ha impegnato almeno una carta su quel fronte.
+- **Il velo** (SCHEME modo VEIL, concesso da `ACTION_GRANT`): chiudere un
+  numero al tavolo; chi aveva mandato spie non sa più, chi vela sì.
+- **Il passo** (`GATE` PASS): chi porta il segno attraversa i BLOCK delle
+  regole; la cacciata di D-067 resta più forte.
+- **La soglia della Condition** (`CONDITION_THRESHOLD`): qualificare con
+  un impegno in meno, mai sotto 1, una volta per regola.
+
+### Misurato
+
+Cinque test sintetici nuovi; con zero regole vere dei tipi nuovi il
+playtest sui 100 semi è identico byte per byte alla 0.1.87, suite verde.
+
+---
+
+## [0.1.87] — La seduta sulle vite: le decisioni, e i primi tre denti
+
+La seduta della voce 19 è a verbale ([D-124](docs/DECISIONS.md#d-124),
+[SEDUTA_VITE.md](docs/SEDUTA_VITE.md) §4): i tre denti pronti si
+accendono, la morte di Vaerax si scriverà per via di Propp, i valori per
+vita sono approvati, tutti e cinque i pezzi del telaio autorizzati, le
+quattro vite nuove rispiegate (§5) in attesa di decisione.
+
+### Added
+
+- **Il credito federato**: la Compagnia del Sale pesca WEALTH migliore.
+- **La regola come misura**: i Frati del Vetro propongono sulla Reliquia
+  con World Factor +1.
+- **La veglia arma**: le Custodi della Cenere pescano FORCE migliore.
+
+Tre seconde vite del 0.1.70 tornano in regola («una vita senza dente non
+si scrive»); Repubblica e Culto della Misura aspettano, dichiarate, i
+pezzi nuovi del telaio.
+
+### Misurato
+
+Disgiunte per costruzione e dormienti fuori dalle saghe: playtest sui
+100 semi **identico byte per byte** alla 0.1.85, ere in banda (955 ·
+20,5 · 22), 262 test / 5757 asserzioni verdi.
+
+---
+
+## [0.1.86] — L'inventario dell'app: i Diritti, l'eco, i marker, la cronaca
+
+Il committente ha chiesto cosa manca sullo schermo
+([D-123](docs/DECISIONS.md#d-123)). Quattro cose, e sono entrate.
+
+### Added
+
+- **«I DIRITTI»** nel pannello del seggio: chi tiene un Claim, col dominio
+  in italiano; il proprio in ambra. Prima viveva solo nel verbale.
+- **L'eco del cambiamento** sulla mappa: ogni effetto che tocca una
+  Regione accende un anello ambra che sfuma in sei secondi — dice *dove*
+  guardare, il cosa lo dicono verbale e segnalini. I no-op non accendono
+  niente.
+- **I marker delle domande**: ogni Tensione pianta il suo glifo sulla
+  Regione su cui la sua domanda verte adesso, col numero se il seggio ha
+  diritto di leggerlo e «?» se è velata. Colori come nel pannello.
+- **La cronaca a metà anno**: appena c'è una Truth scritta il bottone si
+  accende e impagina il registro fin qui — le stesse pagine di fine anno.
+
+Solo schermo: nessun file di motore toccato. 262 test / 5757 asserzioni
+verdi, tre nuovi (`test_app_inventory`).
+
+---
+
+## [0.1.85] — La cicatrice che morde: la voce 24 si chiude
+
+Le undici cicatrici erano scritte e mai lette; adesso sono il ponte
+meccanico fra le ere ([D-122](docs/DECISIONS.md#d-122)). Undici regole
+nuove, tutte coi tipi che il telaio ha già — nessun ramo di motore.
+
+### Added
+
+- **I tre pesi del Consiglio**: il ponte rotto pesa sulle Vie, la
+  capitale presa non dimentica, il seggio vuoto pesa sulla Carta
+  (World Factor −1 finché la cicatrice esiste).
+- **Le tre pesche guaste**: la parola rotta guasta i legami, dove la
+  gente fu sgomberata le braccia mancano, nella terra abbandonata la
+  ricchezza non attecchisce.
+- **Le pesche buone e la porta**: la torre di veglia (FORCE), il
+  pedaggio e il mercato (WEALTH), e la marca che tiene il passo aperto
+  (GATE ALLOW: vi si entra anche senza adiacenza).
+- **La ferita che parla**: chi sta dove il Cristallo fu sfruttato pesa
+  +1 sull'INFLUENCE del Risveglio.
+- **Il pavimento del patto**: `PACT` è un tag di relazione (lo scrive
+  l'Insediamento Nahr) e la coppia che firma non scende sotto NEUTRAL.
+- La **memoria dichiarata** nella sonda dei segni: per ogni segno senza
+  regola, il motivo scritto accanto — o il gemello vivo che morde già,
+  o la memoria del mondo che aspetta la voce 9.
+
+### Misurato
+
+Cinque gruppi accesi uno alla volta sugli stessi 100 semi: 184·75·129·177
+→ **185·78·123·176 con 0/8 al tavolo misto** a ogni passo. Censimento:
+vivi per clausola **34 → 46**, prima fila senza lettore **0**, muti senza
+dichiarazione **0**.
+
+---
+
+## [0.1.84] — La sonda della visibilità: la voce 22 si chiude
+
+«Un effetto invisibile è un bug, non un'atmosfera» ([D-121](docs/DECISIONS.md#d-121)).
+La sonda nuova conta, e quello che ha trovato è stato curato.
+
+### Added
+
+- `cli/run_visibility_probe.gd`: 100 semi a tavolo misto, ogni effetto del
+  registro o ha la sua frase a verbale (parola per parola) o un silenzio
+  dichiarato — i senza voce vengono nominati, con la fonte. Oggi: **0**.
+- Il **placarsi della questione decisa** (H.1) ha la sua riga — era
+  l'effetto centrale di ogni Consiglio, e non lo diceva nessuno.
+- La **rivelazione del presagio** parla («… non è più velata») invece di
+  posare il numero sul tavolo in silenzio.
+- Il CLAIM e l'INFLUENCE via scarto **nominano la carta spesa**.
+- **La mappa non nasconde** (fase 2): una Regione segnata appare nella
+  riga «Sulla mappa» anche senza presidi né controllore, coi nomi dei
+  segni di D-107 («Valle Verde (contesa)»).
+
+### Fixed
+
+- `SET_CONTROL` che non cambia mano e `SET_TENSION_VISIBILITY` su una
+  questione già aperta si marcano no-op: nessuna riga annuncia un trono
+  che non si è mosso.
+
+---
+
+## [0.1.83] — La mossa che spegne il tuo Destino avverte prima
+
+La voce 21 si chiude ([D-120](docs/DECISIONS.md#d-120)): nella partita al
+seme 15308 Vaerax aveva spento da solo la sua prima spunta, spostando
+l'ultimo token via dalle Montagne Rosse senza che l'app dicesse nulla.
+
+### Added
+
+- Nel `SeatDecider` (uno per terminale e browser, D-038): se l'azione
+  scelta spegnerebbe una clausola **accesa** del **proprio** Destino, una
+  riga di avviso che la nomina e la scelta di ripensarci. Un cartello,
+  non un consigliere.
+- L'anteprima è una sessione ricostruita dal salvataggio (`to_save` →
+  `restore`): stesso mondo, stesso dado, previsione esatta, nessun ramo
+  di regole duplicato. Si paga solo quando un umano ha già scelto.
+- Tre test: la mossa nella forma del 15308 avverte nominando la clausola
+  (e il mondo vero resta intatto), il ripensamento torna al menu, una
+  mossa che non tocca il Destino passa senza cerimonie.
+
+### Misurato
+
+259 test / 5732 asserzioni verdi; le partite senza umani sono identiche
+per costruzione (il ramo non viene mai percorso).
+
+---
+
+## [0.1.82] — Gli effetti che pesano: la voce 23 si chiude
+
+La fase 2 della voce 23 ([D-119](docs/DECISIONS.md#d-119)): le carte di
+Propp toccano il tavolo — presenza, controllo, Consigli prescritti, segni
+con lettori veri — carta per carta, tutte e due le saghe, un passo alla
+volta sugli stessi 100 semi.
+
+### Changed
+
+- **23 carte Echo riscritte** (10 nella prima saga, 13 nella seconda, che
+  non aveva un solo hook pesante): presidi che si piantano e si ritirano,
+  controllo che decade, sei carte che prescrivono un Consiglio, scoperte,
+  fama, il granaio che si svuota, il canale che si chiude, la Valle che ha
+  fame coi denti di D-117. Una forma respinta coi numeri: il controllo
+  tolto gratis bloccava Aldric (1/8) — il titolo si perde a un Consiglio.
+- Il punteggio delle sedie legge le carte **con i binding con cui verranno
+  compilate** (chi cala è il proponente) e pesa anche le Conseguenze
+  agganciate: prima, un hook su un `$slot` valeva zero per costruzione.
+
+### Fixed
+
+- I **Consigli chiusi entrano nel salvataggio**: vivevano solo in memoria,
+  e una Chronicle ripresa li dimenticava — il rapporto di fine anno ne
+  contava uno in meno. Trovato dal test di ripresa il giorno in cui una
+  carta ha aperto un Consiglio prima del punto di interruzione.
+
+### Misurato
+
+Stessi 100 semi: 190·88·120·176 → **184·75·129·177 con 0/8 al tavolo
+misto**, Consigli 5,65 (mediana 6), ere in banda (955 anni, 20,1
+generazioni, 22 nomi), sim scritte deterministiche, 256 test verdi.
+
+---
+
 ## [0.1.81] — La mano del Narratore sullo schermo
 
 La fetta browser della voce 23: le carte di Propp in mano si **vedono**

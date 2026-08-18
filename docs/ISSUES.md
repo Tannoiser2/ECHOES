@@ -352,9 +352,9 @@ opzioni sono d'autore: una via per *disfare* il fatto eterno (riaprire la
 miniera, riunire la corona), o Destini tardivi che chiedono presenze invece
 che assenze.
 
-### 19. Le incarnazioni del seggio: Anselmo, e poi il suo culto
+### 19. ✅ Le incarnazioni del seggio: Anselmo, e poi il suo culto — fatta in 0.1.63–0.1.96
 
-`motore` · `contenuto` · voluta dal committente
+`motore` · `contenuto` · voluta dal committente · **chiusa** ([D-124](DECISIONS.md#d-124)…[D-133](DECISIONS.md#d-133))
 
 Il seggio attraversa i secoli, ma oggi cambia solo il nome: Priore Anselmo,
 Priora Ilaria, Priore Teodo — la stessa carta, gli stessi poteri. Il
@@ -388,10 +388,13 @@ Le fasi:
    brief, e le descrizioni di vite ed eredi nel materiale di revisione
    (661→745 testi). Il nome corrente resta nel verbale, come i re di una
    dinastia.
-4. **I poteri per incarnazione**: prima leva onesta e misurabile,
-   `action_values` e `persistence` propri; i poteri *nominati* («solo
-   l'Ordine può…») sono design d'autore da definire insieme prima, misurare
-   dopo.
+4. ✅ **I poteri per incarnazione** — fatta nella seduta (0.1.87–0.1.91):
+   i denti pronti ([D-124](DECISIONS.md#d-124)), i cinque pezzi del telaio
+   ([D-125](DECISIONS.md#d-125)), i denti veri su ogni vita
+   ([D-126](DECISIONS.md#d-126)), la morte di Vaerax per via di Propp
+   ([D-127](DECISIONS.md#d-127)); gli `action_values` per vita sono sapore
+   dichiarato ([D-128](DECISIONS.md#d-128)) e la leva meccanica aspetta il
+   lettore vero della 0.4.
 5. **L'albero delle vite** — su richiesta del committente («farei molte
    più trasformazioni, ognuna con poteri asimmetrici, altrimenti sono
    nomi che cambiano su una carta»), lo studio completo per le otto case
@@ -404,8 +407,29 @@ Le fasi:
    per vita via tag_rules — con tre vite di dimostrazione in gioco
    (l'Accademia delle Misure, il Regno di Nahr che torna mortale, il
    Culto della Montagna in attesa che qualcuno impari a uccidere un
-   drago). Restano da scrivere e misurare le altre vite dell'albero, i
-   tipi della voce 25 per i poteri più ambiziosi, e i tarocchi per vita.
+   drago). Il **dossier di decisione per la seduta** — lo stato vero dei
+   dati, una proposta concreta per vita, le domande secche — è in
+   [SEDUTA_VITE.md](SEDUTA_VITE.md). **Le tre vite della decisione C sono
+   scritte e misurate**: i Forni Riaccesi (0.1.92,
+   [D-129](DECISIONS.md#d-129)), la Diaspora di Nahr (0.1.93,
+   [D-130](DECISIONS.md#d-130)), l'Egemonia di Eredan (0.1.94,
+   [D-131](DECISIONS.md#d-131)) — ognuna col suo pezzo di motore
+   (l'azione che sfoga, la porta che non tiene, lo sconto sul diritto e
+   il tetto verso l'egemone). Le loro porte d'ingresso in saga sono
+   aperte dalla montagna delle città (0.1.95,
+   [D-132](DECISIONS.md#d-132): Forni 5/20, Egemonia 11/20). **E la
+   Leggenda della Montagna è scritta** (0.1.96,
+   [D-133](DECISIONS.md#d-133)): il conto delle ere nei segni, il primo
+   seggio senza corpo, il Destino su misura — siede 3/20 saghe, e il suo
+   Minimo si perde se il sigillo cade. La seduta dedicata e il suo
+   verbale sono in [SEDUTA_LEGGENDA.md](SEDUTA_LEGGENDA.md).
+
+**Com'è finita**: tutte le vite dell'albero sono scritte, ognuna con
+almeno un dente e una misura; le saghe attraversano i cambi
+d'incarnazione con carta, prompt e verbale (le sonde d'era su entrambi i
+tavoli in banda, NONE vivi per ogni seggio). Fuori scope dichiarati: le
+illustrazioni (voce 5) e la D meccanica dei valori (a verbale per la
+0.4, D-128).
 
 **Fatto quando** una saga attraversa almeno un cambio d'incarnazione, con
 carta e prompt propri e il passaggio nel verbale, e le sonde d'era restano in
@@ -429,9 +453,15 @@ otto pool a 3. La prima forma dei Conti Chiusi era regalata (chiusa da sola
 100/100 al round 1) ed è stata riscritta con la fama nella Vittoria — le
 misure per tavola sono in D-115; playtest identico alla base, 0/8.
 
-### 21. La mossa che spegne il tuo Destino avverta prima
+### 21. ✅ La mossa che spegne il tuo Destino avverte prima — fatta in 0.1.83
 
-`app` · nata da una partita vera (seme 15308)
+`app` · nata da una partita vera (seme 15308) · **chiusa** ([D-120](DECISIONS.md#d-120))
+
+L'avviso vive nel `SeatDecider` (uno solo per terminale e browser, D-038):
+l'anteprima è una sessione ricostruita dal salvataggio — stesso mondo,
+stesso dado, previsione esatta, nessun ramo di regole duplicato — e tre
+test la inchiodano: la mossa nella forma del 15308 avverte nominando la
+clausola, il ripensamento torna al menu, una mossa neutra passa in silenzio.
 
 Nella partita del committente, Vaerax entra nell'ultimo round con la prima
 spunta accesa («La montagna è ancora sua») e la spegne **da solo**, spostando
@@ -446,9 +476,9 @@ strategico: un cartello, non un consigliere.
 **Fatto quando** la mossa di quella partita, rigiocata, mostra l'avviso, e una
 mossa qualsiasi che non tocca il Destino non lo mostra.
 
-### 22. Le decisioni si devono vedere: le Conseguenze sul tavolo e a verbale
+### 22. ✅ Le decisioni si devono vedere — fatta in 0.1.64–0.1.84
 
-`app` · `motore` · voluta dal committente, nata dalla partita 15308
+`app` · `motore` · voluta dal committente, nata dalla partita 15308 · **chiusa** ([D-103](DECISIONS.md#d-103), [D-107](DECISIONS.md#d-107), [D-121](DECISIONS.md#d-121))
 
 «Non si capisce quali sono le conseguenze delle decisioni prese... è tutto
 quello scritto sembra non avere un vero impatto nel gioco.» Il censimento
@@ -469,8 +499,13 @@ Le fasi:
    qualificate e carta Echo d'atto («Valle Verde passa sotto il controllo
    di Re Aldric»); gli id non si leggono più, i no-op e la contabilità di
    Propp tacciono per scelta.
-2. **La mappa non nasconde**: le regioni contese appaiono («Valle Verde —
-   contesa»), e un cambio di controllo si vede nel momento in cui accade.
+2. ✅ **La mappa non nasconde** — fatta in 0.1.84
+   ([D-121](DECISIONS.md#d-121)): una Regione segnata si vede anche senza
+   presidi né controllore — la riga «Sulla mappa» del seggio dice i segni
+   con le parole di D-107 («Valle Verde (contesa)»), e il cambio di
+   controllo ha la sua frase nel momento in cui accade (D-103, e da
+   0.1.84 anche il placarsi della questione e la rivelazione del
+   presagio).
 3. ✅ **I tag hanno un corpo** — fatta in 0.1.69
    ([D-107](DECISIONS.md#d-107)): il dizionario `sign_labels` (un test
    pretende una parola per ogni segno nei dati), la mappa in italiano, «I
@@ -478,17 +513,21 @@ Le fasi:
    (segni delle Regioni e delle case). I fatti del mondo restano nelle
    pagine della cronaca, per scelta. Trovato e riparato per strada: l'app
    non compilava dall'0.1.60 (`_draw` ombreggiata in `confluence_board`).
-4. **La sonda della visibilità**: contare per 100 semi gli effetti
-   applicati per tipo e verificare che ognuno abbia riga a verbale e
-   rappresentazione. Un effetto invisibile è un bug, non un'atmosfera.
+4. ✅ **La sonda della visibilità** — fatta in 0.1.84
+   ([D-121](DECISIONS.md#d-121)): `cli/run_visibility_probe.gd`, 100 semi
+   a tavolo misto, ogni effetto del registro o ha la sua frase a verbale
+   o un silenzio dichiarato. Ha trovato quattro silenzi veri — il
+   placarsi della questione decisa, la rivelazione del presagio, gli
+   scarti del CLAIM e dell'INFLUENCE, i falsi passaggi di controllo — e
+   adesso conta **SENZA VOCE: 0**.
 
 **Fatto quando** la partita 15308 rigiocata mostra il passaggio della
 Valle Verde nel momento in cui avviene, e la sonda conta zero effetti
 senza voce né corpo.
 
-### 23. Le carte di Propp in mano ai giocatori
+### 23. ✅ Le carte di Propp in mano ai giocatori — fatta in 0.1.80–0.1.82
 
-`regole` · `da-misurare` · voluta dal committente
+`regole` · `da-misurare` · voluta dal committente · **chiusa** ([D-118](DECISIONS.md#d-118), [D-119](DECISIONS.md#d-119))
 
 «Le carte di Propp hanno veramente un impatto minimo... dovrebbero essere
 molto importanti e non generate casualmente dal gioco ma giocate
@@ -503,8 +542,16 @@ Le fasi:
 1. ✅ **Il design insieme** — deciso dal committente in 0.1.80 (D-118):
    2 carte a testa per atto, si calano nel proprio turno come azione,
    costano una carta Asset, e se nessuno cala l'atto resta senza carta.
-2. **Gli effetti che pesano**: hook che toccano il tavolo (presenza,
-   controllo, Consigli aperti), non solo +1 — da scrivere carta per carta.
+2. ✅ **Gli effetti che pesano** — fatta in 0.1.82 ([D-119](DECISIONS.md#d-119)):
+   carta per carta, tutte e due le saghe. Presenza (la Perdita, la Crepa,
+   la Veglia Spostata, il Pozzo Zitto, l'Offerta), controllo (i Fuochi
+   Fuori), Consigli prescritti (la Supplica, il Tradimento, la Sedia
+   Vuota, la Chiamata, Due Sentenze, il Giorno che la Gilda Chiese Tutto),
+   segni con lettori veri (scoperte, fama, granaio, canale, fame, coppie).
+   Una forma respinta coi numeri: il controllo tolto gratis bloccava
+   Aldric — il titolo si perde a un Consiglio, non per un'assenza. E il
+   punteggio delle sedie adesso legge le carte con i binding con cui
+   verranno compilate, Conseguenze comprese.
 3. ✅ **Il motore** — fatto in 0.1.80 (D-118): `echo_hand`, azione
    PLAY_ECHO, eleggibilità al momento di calare, sedie con freno (una per
    atto) e filtro (solo se serve al Destino). **La GUI** è arrivata in
@@ -512,15 +559,18 @@ Le fasi:
    motivo), e il bottone per calare era già lì — stesso SeatDecider del
    terminale (D-038).
 4. ✅ **La misura** — in D-118: due forme respinte coi numeri, la terza
-   dà 190·88·120·176 con **0/8** e ere in banda.
+   dà 190·88·120·176 con **0/8** e ere in banda. In D-119, con gli
+   effetti pesanti: **184·75·129·177, 0/8**, Consigli 5,65 (mediana 6),
+   ere in banda — e il difetto trovato per strada (i Consigli chiusi non
+   stavano nel salvataggio) riparato con il suo test.
 
 **Fatto quando** in una partita al tavolo misto ogni carta di Propp
 arrivata sul tavolo ce l'ha messa una mano, l'ordine delle funzioni regge,
 e i numeri prima/dopo sono a verbale.
 
-### 24. Ogni segno ha un dente: la meccanica di conseguenze e cicatrici
+### 24. ✅ Ogni segno ha un dente — fatta in 0.1.65–0.1.85
 
-`regole` · `da-misurare` · voluta dal committente
+`regole` · `da-misurare` · voluta dal committente · **chiusa** ([D-104](DECISIONS.md#d-104), [D-105](DECISIONS.md#d-105), [D-122](DECISIONS.md#d-122))
 
 «Ogni conseguenza, ogni cicatrice, ogni decisione potrebbe cambiare il
 meccanismo di gioco e gli effetti su entità e luoghi.» Il censimento
@@ -564,8 +614,16 @@ Le fasi:
    giuramento spezzato (che ora firma la coppia), fama. Accesi uno alla
    volta sui 100 semi standard, esiti a verbale, 0/8 a ogni passo; il
    Consiglio ha imparato a leggere il proponente e le Regioni.
-4. **La cicatrice che morde**: ogni `scar:` con un effetto locale suo, e
-   i 27 segni ereditati che diventano il ponte meccanico fra le ere.
+4. ✅ **La cicatrice che morde** — fatta in 0.1.85
+   ([D-122](DECISIONS.md#d-122)): undici regole nuove coi tipi del telaio
+   — tre pesi del Consiglio sulle cicatrici delle domande, tre pesche
+   guaste, tre pesche buone sulle strutture, la ferita che parla, e il
+   pavimento del PACT (che il censimento ha rivelato essere un tag di
+   relazione). Le cicatrici non si curano: sono il ponte meccanico fra
+   le ere. Per i segni il cui gemello vivo morde già, la **memoria
+   dichiarata** sta nella sonda, col motivo accanto. Censimento: vivi
+   34 → 46, prima fila senza lettore **0**, muti senza dichiarazione
+   **0**.
 
 **Fatto quando** la sonda conta zero segni di prima fila senza lettore —
 o li dichiara memoria esplicitamente — e il playtest resta 0/8 seggi
@@ -654,6 +712,55 @@ una carta è una scelta, non un conteggio. — ✅ **Chiusa in 0.1.76**: 46
 carte su 48 lavorano; l'Archivio ha già il suo mestiere (restare in
 mano) e il Legame di Sangue aspetta, dichiarato, il pavimento di
 relazione della voce 25.
+
+### 27. Il tavolo sullo schermo grande, le console in tasca
+
+`app` · `motore` · milestone **0.6** · voluta dal committente
+
+«La mappa e le indicazioni delle carte giocate restino sul computer (o
+iPad), e i giocatori possano usare gli smartphone come console dove avere
+le indicazioni segrete, le carte in mano e tutte le informazioni di
+gioco.» È la seconda delle due strade che COMPONENTS §7 aveva lasciato
+aperte (il tablet passato di mano, o i telefoni dei giocatori) — quella
+che costa di più da costruire, e quella per cui la Tensione velata è
+stata disegnata.
+
+**La metà difficile è già fatta.** Tutto il codice disegna *per viewer*:
+`visible_tension_value(tension_id, viewer)` (§11.1), la mappa e il
+pannello prendono `render(session, viewer_id)`, il Destino lo vede solo
+chi lo giura (D-101), e il `SeatDecider` separa il *cosa si può fare*
+dal *come si mostra* con l'`io` iniettato (D-038) — un oggetto con
+`say` e `choose`, oggi il terminale o lo schermo del browser, domani il
+telefono di un seggio. Le viste console esistono già come pezzi: il
+pannello del seggio, la mano, le domande del decider.
+
+**Quello che manca:**
+
+1. **Le due viste dallo stesso mondo**: la vista *tavolo* (mappa, carte
+   calate, Consigli, verbale — niente segreti di seggio) e la vista
+   *console* (pannello del seggio, mano, avvisi del Destino, le domande
+   di `choose`). Sono ricomposizioni di pezzi esistenti, non pezzi nuovi.
+2. **Il trasporto**: una partita, più dispositivi. Il computer ospita la
+   sessione (il motore resta uno solo, deterministico com'è); i telefoni
+   sono `io` remoti — ogni `choose` di un seggio umano viaggia verso la
+   sua console e torna con l'indice scelto. **Deciso dal committente:
+   stanza locale, stessa rete** — il computer fa da host, i telefoni si
+   collegano a lui, nessun servizio esterno da mantenere.
+3. **La disciplina dei segreti sul filo**: a una console arriva solo ciò
+   che il suo seggio ha diritto di leggere — la stessa regola dei pixel
+   (§11.1), applicata ai messaggi. Un filtro provabile in headless, come
+   la sonda della visibilità.
+4. **Il rientro**: un telefono che cade o si blocca non deve rompere la
+   partita — la console si riaggancia e il `choose` in sospeso si
+   ripropone (il salvataggio a ogni soglia c'è già, D-052).
+
+**Fatto quando** una partita si gioca con la mappa sul computer e due
+telefoni come console, le informazioni segrete arrivano solo al loro
+seggio (la Tensione velata funziona come al tavolo fisico), un telefono
+riavviato rientra senza perdere niente, e le sim restano deterministiche
+— il motore non deve accorgersi di quanti schermi lo guardano.
+
+---
 
 ## Milestone 0.3 — World Propagation
 

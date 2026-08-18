@@ -331,6 +331,694 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-133 — La Leggenda della Montagna: il seggio senza corpo
+**implemented in 0.1.96** (seduta sulla Leggenda, risposte A «va bene» e C «proviamo» — la voce 19 si chiude)
+
+La vita più radicale delle diciassette dell'albero: il drago che il sigillo
+ha tenuto sotto così a lungo da diventare la storia che si racconta di lui.
+Quarta vita di `ENT_VAERAX` (`INC_VAERAX_LEGEND`, COLLECTIVE), e la prima
+del gioco **senza un solo segnalino sulla mappa**.
+
+I pezzi, dal verbale della seduta:
+
+- **Il conto delle ere nei segni** (risposta A — `era_tallies` sulla
+  Chronicle, applicato da `inheritance_effects`): a ogni successione, se
+  `mine_sealed` sta sui fatti dell'era chiusa e `crystal_exploited` no, il
+  mondo posa il prossimo segno della catena `seal_kept` →
+  `seal_kept_twice` → `mountain_forgotten`; la condizione caduta azzera
+  tutto senza lasciare leggende (un conteggio interrotto non è una
+  memoria). Come per la Diaspora: segni, non contatori.
+- **L'ingresso**: ON_TAG `mountain_forgotten`, sbarrato da
+  `crystal_exploited` — ma solo dal *fatto vivo*: il Cristallo non è
+  perenne, e sui salti lunghi sbiadisce in `legend:crystal_exploited`.
+  È la strada che rende la vita raggiungibile: **anche il Ridestato,
+  richiuso e dimenticato nei secoli, torna racconto** (l'ordine d'autore
+  protegge il corpo: col fatto vivo siede il Ridestato, mai la storia).
+- **Il seggio senza corpo**: la vita dichiara `presence: []` (campo nuovo
+  per incarnazione; `setup_effects` ora legge la vita corrente) — nessuna
+  pedina al setup, quindi niente da cacciare e niente porte che la
+  tengano. Il MOVE è vietato dichiarato (`TGR_LEGEND_STILL`, ACTION_GATE:
+  l'app lo mostra grigio invece di lasciarlo fallire).
+- **Il Destino su misura** (risposta C — `destiny_id`/`destiny_pool` per
+  vita, nuova estensione di `active_view` e del piano di successione):
+  `DST_VAERAX_LEGEND`, senza clausole di presenza. Minimo «La storia si
+  racconta ancora» (il segno `mountain_forgotten` regge — si perde se il
+  sigillo cade); Vittoria «La montagna tiene lontani gli uomini»
+  (sigillo + Risveglio quieto); Trionfo «Nessuno ricorda com'era davvero»
+  (più `legend:crystal_exploited`: il giorno del Cristallo ormai solo un
+  racconto).
+- **La voce sui fronti** (`TGR_LEGEND_VOICE`, STANCE_MODIFIER composito):
+  finché il mondo dimentica, i fronti che sostiene pesano un impegno in
+  più. Se il sigillo cade, il segno sparisce e la voce torna una voce.
+- La guardia dei Destini irraggiungibili ora conosce **le due mani del
+  motore**: i conti d'era scrivono le loro catene, e il tempo scrive
+  `legend:<fatto>` per ogni fatto che almeno una Chronicle non dichiara
+  perenne.
+
+Misurato (20 saghe CHR_01→CHR_02): **la Leggenda siede 3 volte** — rara
+come deve (tre ere col sigillo e il Cristallo sbiadito) — il Ridestato
+scende 20 → 18, e i NONE di Vaerax salgono 9 → 16: il Minimo della storia
+si perde davvero, la vita non è un rifugio. Banda identica (955 / 20,2 /
+24 nomi — il ventiquattresimo è lei). Playtest 100 semi identico
+(185·78·123·176, 0/8), sims deterministici, censimento 0/0, BRIEF_ARTE e
+ASSET_MANIFEST rigenerati (arte della vita e del Destino), suite 281/5865
+verde.
+
+---
+
+## D-132 — La montagna delle città: le porte d'ingresso si aprono
+**implemented in 0.1.95** (seduta sulla Leggenda, risposta B — «prima la B», D del verbale)
+
+La sonda d'era sul tavolo delle città (prima misura in SEDUTA_LEGGENDA §2)
+aveva trovato il buco: `scar:open_wound` e `scar:emptied` le scriveva solo
+il contenuto di CHR_01, e i Forni Riaccesi e l'Egemonia di Eredan — scritti
+e testati in D-129/D-131 — non sedevano mai nelle loro saghe (0/20,
+contenuto che non esiste, D-035). Due Conseguenze nuove nel mazzo delle
+città, nessun motore toccato:
+
+- **La Roccia che Cede** (`CNS_MOUNTAIN_WOUNDED`), sul successo di
+  `P_DIG_BELOW` («sotto la cella si continui a scavare»): la ferita
+  (`scar:open_wound`) sulle Miniere Antiche, più `condition:exploited` —
+  la stessa coppia che CHR_01 usa per la Miniera Aperta.
+- **La Valle che si Vuota** (`CNS_VALLEY_DRAINED`), sul fallimento della
+  domanda dell'Acqua (`CNF_WATER_03`): lo sgombero (`scar:emptied`) sulla
+  Valle Verde, più `condition:lean` — l'acqua che non arriva svuota le
+  case prima del secondo inverno.
+
+Misurato sulla sonda delle città (20 saghe): **i Forni siedono 5 volte**
+(rari come devono: ferita + linea esaurita + niente sigillo),
+**l'Egemonia 11** (le Custodi scendono 20 → 15: i Forni rubano loro le
+entrate giuste), NONE per seggio tutti vivi (Cenere 8, Libere 27, Sale
+28, Vetro 53), banda identica (1049 mediana, 16,5 generazioni, 20 nomi —
+i due nuovi sono le vite). Se in futuro l'Egemonia sembrasse troppo
+frequente, la manopola dichiarata è spostare lo sgombero dal pool di
+fallimento a una proposizione singola. Playtest 100 semi coi totali
+identici alla baseline (185·78·123·176, 0/8), sims deterministici,
+censimento 0/0 (segni e cicatrici tutti già dichiarati), brief invariato,
+suite 278/5832 verde.
+
+---
+
+## D-131 — L'Egemonia di Eredan: il segno qualificato, lo sconto sul diritto, il tetto verso di lei
+**implemented in 0.1.94** (ISSUES 19, decisione C della seduta — la terza vita, la C si chiude; resta la Leggenda della Montagna in seduta dedicata)
+
+Quando la Valle Verde si svuota e Eredan resta l'ultima città piena, il coro
+delle Libere diventa una voce sola: **L'Egemonia di Eredan**
+(`INC_LIBERE_HEGEMONY`, COLLECTIVE, terza vita del seggio). Il dossier
+diceva «una sola città piena»; con due città scritte la forma concreta è
+questa — lo sgombero della Valle senza lo sgombero di Eredan — ed è una
+scelta d'autore messa a verbale, non una semplificazione nascosta.
+
+Tre pezzi di motore, tutti piccoli:
+
+- **Il segno qualificato `tag@REG_ID`** (`Succession._sign_anywhere`):
+  l'ingresso di una vita può chiedere il segno su UNA Regione precisa.
+  `entry_tag: scar:emptied@REG_VALLE_VERDE` +
+  `entry_forbidden_tag: scar:emptied@REG_EREDAN` — uno sgombero qualsiasi
+  in giro per il mondo non fa un'egemonia (test `elsewhere`), e con
+  Eredan svuotata a sua volta non resta nessuno che comandi (test `ruins`).
+- **ACTION_DISCOUNT** (`TagRules.action_discount` + check/execute del
+  CLAIM): chi porta il segno compie l'azione senza scartare la carta che
+  l'azione chiede. `TGR_HEGEMONY_WORD`: rivendicare e forzare il Consiglio
+  non costano l'Asset AUTHORITY — la parola dell'ultima città piena è già
+  autorità. Lo sconto si nomina a verbale («rivendica il dominio per
+  parola propria»): un diritto gratis è un fatto del tavolo, non un
+  silenzio.
+- **Il gancio ENTITY sulla coppia** (`_sign_present`, ganci di relazione):
+  nei contesti di relazione il `when` con scope ENTITY morde se UN membro
+  della coppia porta il segno. `TGR_HEGEMONY_UNLOVED` (RELATION_CAP ALLY):
+  con l'egemone ci si allea, non ci si lega — e solo le coppie di cui è
+  membro hanno il tetto (test sulla coppia terza). Il validatore ora
+  accetta ENTITY su RELATION_CAP/FLOOR e pretende i campi di
+  ACTION_RIPPLE/ACTION_DISCOUNT.
+
+**Condizionale dichiarata (D-035)**: la vita entra solo dai salti d'era
+della terza cronaca, e le sonde correnti (playtest a anno singolo, saghe
+CHR_01→CHR_02) non la fanno sedere — il playtest è identico alla baseline
+(185·78·123·176, 0/8), la banda delle ere identica (955 / 20,2 / 23), la
+sonda delle scelte invariata. I denti sono inchiodati dai test del telaio
+(sconto senza carta e a verbale, tetto sulla coppia giusta e non sulle
+altre, ingresso qualificato nei tre casi); la misura *in saga* arriverà con
+una sonda d'era sulla terza cronaca, da scrivere quando la Leggenda della
+Montagna porterà comunque la seduta sul mazzo di CHR_03. Due regole in più
+(41→43), censimento 0/0, sims deterministici, BRIEF_ARTE rigenerato con
+`entity.libere_hegemony`, suite 278/5832 verde.
+
+---
+
+## D-130 — La Diaspora di Nahr: il conto delle cacciate, e la porta che non tiene
+**implemented in 0.1.93** (ISSUES 19, decisione C della seduta — la seconda delle tre vite)
+
+Il popolo che il tavolo caccia due volte nello stesso anno smette di avere
+un centro — e diventa impossibile da chiudere fuori. **La Diaspora di Nahr**
+(`INC_NAHR_DIASPORA`, COLLECTIVE, terza vita del seggio) entra alla
+successione col segno `twice_uprooted` addosso; il Regno, che viene prima
+in ordine d'autore, vince se il popolo si è anche seduto.
+
+Tre pezzi:
+
+- **Il conto delle cacciate** (`_bar_return`): ogni sradicamento vero — le
+  espulsioni dei Consigli e le Conseguenze che svuotano (la Valle
+  Sgomberata), tutte passano di lì — scrive sul seggio `uprooted` la prima
+  volta e `twice_uprooted` la seconda, con una riga a verbale («Due volte
+  sradicato in un anno»). I tag d'entità non si ereditano fra le ere:
+  il conto riparte da solo a ogni Chronicle, che è esattamente il «nell'era
+  appena chiusa» del dossier — nessun contatore, solo segni.
+- **La porta che non tiene** (`passes_eviction`, schema + `TagRules.
+  eviction_pass` + `can_move_to`): il PASS di D-125 lasciava la cacciata
+  di D-067 più forte «finché una vita non decida altrimenti» — la Diaspora
+  è quella vita. `TGR_DIASPORA_ROOTLESS` (GATE PASS con `passes_eviction`)
+  le fa attraversare anche la porta del Consiglio; il rientro costa
+  comunque la MOVE del round dopo. Il validatore ora conosce il PASS
+  (scope ENTITY/GLOBAL) — D-125 l'aveva costruito solo nel telaio.
+- **La sentinella nella sonda delle ere**: il rischio dichiarato a dossier
+  è che Nahr diventi imperdibile. La sonda ora stampa le vite mutate che
+  siedono e i NONE per seggio attraverso le ere. Misurato: la Diaspora
+  siede **2 volte in 20 saghe** (rara come deve: due cacciate nello stesso
+  anno), e il NONE di Nahr resta vivo — **33 su 200 anni giocati**, la
+  leva di D-067 morde ancora dove la Diaspora non è al tavolo (la sonda
+  delle espulsioni conferma: seme 7020, Nahr NONE da cacciata sul Minimo).
+
+Misure: playtest 100 semi identico alla baseline (185·78·123·176, 0/8 al
+tavolo misto — i segni del conto non muovono nulla dentro l'anno), banda
+delle ere in banda (955 mediana, 20,2 generazioni, 23 nomi — il
+ventitreesimo è la Diaspora), sims deterministici, censimento 0/0,
+BRIEF_ARTE rigenerato con `entity.nahr_diaspora`, suite 275/5817 verde.
+
+---
+
+## D-129 — I Forni Riaccesi: il segno che sceglie, il sigillo che sbarra, l'azione che sfoga
+**implemented in 0.1.92** (ISSUES 19, decisione C della seduta — la prima delle tre vite da scrivere, via libera del committente a verbale in SEDUTA_VITE §4)
+
+La terza cronaca aveva per Cenere una sola vita di ripiego (le Custodi):
+esaurita la linea dei Fuochi, sedeva sempre la stessa storia. Adesso fra i
+Fuochi e le Custodi sta **I Forni Riaccesi** (`INC_CENERE_FURNACES`,
+COLLECTIVE): l'industria che nasce solo se la storia giocata ha lasciato il
+suo segno.
+
+Tre pezzi di motore, due nuovi e uno esteso:
+
+- **`entry_forbidden_tag`** (schema entity + `Succession._next_life`): un
+  segno può anche *sbarrare* una nascita. I Forni chiedono `scar:open_wound`
+  (la miniera riaperta è una ferita sul mondo) e sono vietati da
+  `structure:sealed` (il sigillo che la chiude). Con la linea esaurita e il
+  sigillo posato, siedono le Custodi come sempre: il segno sceglie *quale*
+  vita, non *se* — una dinastia MORTAL non si interrompe a metà (D-109,
+  confermato dal test `midline`).
+- **`ACTION_RIPPLE`** (schema tag_rule + `TagRules.action_ripples` +
+  post-process in `ActionResolver.execute`): un'azione riuscita può sfogare
+  su una Tensione. Il dente della fame dei Forni: ogni FORGE col loro segno
+  al tavolo scalda `TEN_WATER` di +1 (`TGR_FURNACE_HUNGER`) — l'industria
+  ripara i rapporti bruciando l'acqua di tutti. Lo sfogo si firma a verbale
+  («Il segno sfoga: …») e sveglia gli omen, come ogni altro tocco di
+  Tensione. `execute()` è stato rifattorizzato (il match assegna l'esito
+  invece di uscire per ramo) perché lo sfogo valga per ogni template senza
+  otto copie dello stesso codice.
+- **`TGR_FURNACE_ORE`** (DRAW_BIAS, pezzo del telaio D-125): con i Forni al
+  tavolo *e* la ferita aperta sulla mappa (gancio composito `when_also`),
+  pescano WEALTH più spesso — il minerale esce dalla miniera.
+
+Due regole in più (38→40), censimento pulito — e nel ripulire è saltata
+fuori una dichiarazione mancata della 0.1.90: `scar:dragonfall` stava in
+prima fila senza lettore né dichiarazione. Dichiarata adesso (la mappa
+ricorda dove cadde il drago; il dente vivo è la morte del seggio, letta da
+ON_DEATH). Misure: playtest 100 semi identico alla baseline (185·78·123·176,
+0/8 bloccati al tavolo misto — le vite dormono fuori dai salti d'era, e lo
+sfogo è neutro senza il segno), banda delle ere identica (955 mediana, 20,5
+generazioni, 22 nomi), sims ed export deterministici, suite 272/5799 verde.
+
+---
+
+## D-128 — I valori per vita sono sapore dichiarato (la D si chiude)
+**implemented in 0.1.91** (ISSUES 19, decisione D della seduta — la strada 1 del verbale)
+
+Il ritrovamento è in SEDUTA_VITE.md §4: i valori d'azione oggi non hanno un
+lettore — lo schema li dichiara «peso per la policy di default, non un
+modificatore della matematica (v0.2)», e la policy a obiettivi di D-021 è
+una scala senza pareggi. Il committente ha scelto la **strada 1**: si
+dichiarano **sapore di stampa**, allineati ai denti veri che ogni vita ha
+(D-124/D-126/D-127), e la D *meccanica* resta a verbale come intenzione per
+la 0.4, quando il modello narrativo locale darà loro un lettore vero da
+misurare contro baseline nuove.
+
+La tabella per vita esisteva già (D-108 l'aveva scritta bene: il Regno di
+Nahr guadagna il CLAIM e smette di camminare, la Repubblica tratta invece
+di rivendicare, il Banco trama). Un solo disallineamento vero, corretto: il
+**Culto della Misura**, il cui dente è il velo — un'arte dello SCHEME — ma i
+cui valori lo davano a 3 dove Lyra stava a 5. Ora SCHEME 4 / INFLUENCE 3, a
+somma invariata (±2, mai un profilo strettamente peggiore, come da regola
+approvata).
+
+Niente da misurare oltre le guardie: nessuna regola legge questi numeri
+(è il punto), l'export resta deterministico, la suite verde.
+
+---
+
+## D-127 — La morte di Vaerax, per via di Propp
+**implemented in 0.1.90** (ISSUES 19, decisione B della seduta — «si scrive, e la può proporre qualcuno con carta di Propp»)
+
+Prima di oggi niente nel gioco sapeva uccidere il drago, e il Culto della
+Montagna (`ON_DEATH`) era contenuto irraggiungibile. Adesso la strada c'è,
+ed è quella chiesta dal committente — **attraverso la carta di Propp**:
+
+- **La caccia** (`P_SLAY_THE_DRAGON`) sta sulla domanda dura del Risveglio
+  («A chi appartiene ciò che dorme sotto la montagna?», che si apre solo a
+  Risveglio ≥ 6) ed è eleggibile **solo se una Rivelazione è stata compiuta
+  quest'anno** (`function:REVELATION`): si caccia solo ciò che una carta ha
+  mostrato. E la Rivelazione stessa prescrive il Consiglio sul Risveglio e
+  fa proponente chi la cala (D-118) — chi gioca la carta apre la porta e
+  può entrarci per primo.
+- **La Conseguenza** (`CNS_DRAGON_SLAIN`): il drago si spegne
+  (`SET_ENTITY_ACTIVE`, la prima volta che compare nei dati), il Risveglio
+  crolla (−6: la domanda muore con lui), il mondo ricorda (`dragon_slain`,
+  dichiarato memoria), e la montagna porta la **caduta del drago** —
+  cicatrice nuova, con la sua parola.
+- **La cicatrice ha il suo lettore dal primo giorno**: il potere del Culto
+  (`TGR_MOUNTAIN_MEMORY`) è passato in forma composita — la vita **e**
+  `scar:dragonfall` — perché la memoria che arma i fedeli sia esattamente
+  la caduta che li ha fatti nascere.
+- **Il drago si difende**: il punteggio teme la propria fine (−6, più di
+  qualunque clausola) — senza, la caccia sarebbe una passeggiata nelle sim.
+  La morte altrui resta zero: non è un obiettivo di nessun Destino.
+- **La morte non elimina il giocatore**: alla successione scatta `ON_DEATH`
+  (già provato) e chi giocava il drago gioca il Culto.
+
+### Misurato, e la dichiarazione
+
+Tre test nuovi (la porta della Rivelazione che si apre e si chiude,
+l'abbattimento con la cicatrice, la paura del drago). La sonda delle scelte
+mette la caccia fra le **condizionali dichiarate** — mai eleggibile nelle
+100 partite standard, con `P_REOPEN_THE_MINE` e `P_HEIR_AS_STORY`: vuole il
+Risveglio quasi a soglia **e** la Rivelazione calata nello stesso anno, ed
+è disegno, non difetto — l'uccisione di un dio non capita per caso. Difatti
+il playtest è **identico byte per byte** alla 0.1.89, ere in banda, suite
+270 test / 5782 asserzioni verde. Al tavolo umano la strada è chiara:
+tenere alta la domanda, calare la Rivelazione, proporre la caccia — e
+superare il muro del drago.
+
+---
+
+## D-126 — I denti veri sui pezzi nuovi: la Repubblica, il dogma, la firma
+**implemented in 0.1.89** (ISSUES 19 — i poteri pieni che aspettavano D-125)
+
+- **La Repubblica della Valle** ha il suo carattere intero: *il consenso
+  frena chi propone* (COUNCIL_MODIFIER −1 quando propone) e *il consenso fa
+  muro* (STANCE_MODIFIER: la sua opposizione con almeno una carta vale +1).
+  Un collegio che dice no è più difficile da scavalcare di un re. La quinta
+  seconda vita del 0.1.70 rispetta finalmente la regola della casa.
+- **Il Culto della Misura** ha *il dogma che vela* (ACTION_GRANT
+  SCHEME_VEIL): può chiudere un numero al tavolo, l'arte che nessun altro
+  ha. Le sedie automatiche non la usano — al tavolo umano è un potere che
+  si vede, come i divieti di D-117.
+- **I Frati del Vetro in forma piena**: la regola come misura vale *dove la
+  reliquia è custodita* — segni compositi, la vita **e** `structure:sealed`
+  da qualche parte, su **ogni** Consiglio. La forma provvisoria (solo sulla
+  Reliquia) è durata una versione, come dichiarato in D-124.
+- **La Lega delle Sette piena**: *la firma leggera* (CONDITION_THRESHOLD
+  −1) — per lei una Condition qualifica con un impegno in meno, mai sotto
+  uno. Sette città hanno già firmato.
+
+**Dichiarati non esprimibili, a verbale**: il «vale doppio» delle Custodi
+sulla torre (DRAW_BIAS non somma: guarda due carte comunque) e la paura
+piena del Ridestato (un malus sul fronte *altrui* contro un proponente
+specifico — il tipo legge chi porta il segno, non i suoi avversari). Se un
+giorno serviranno, saranno pezzi loro, non forzature di questi.
+
+### Misurato
+
+Suite 267 test / 5773 asserzioni verde; playtest sui 100 semi **identico
+byte per byte** (le vite dormono fuori dalle saghe); ere in banda (mediana
+955 anni, 20,5 generazioni, 22 nomi). Con questo, **le nove vite oltre la
+fondazione hanno tutte almeno un dente**: la regola della casa — una vita
+senza dente non si scrive — vale su tutto l'albero scritto.
+
+---
+
+## D-125 — I pezzi del telaio per le vite: compositi, fronti, velo, passo, soglia
+**implemented in 0.1.88** (ISSUES 19, decisione E della seduta — SEDUTA_VITE.md §4)
+
+Il committente ha autorizzato tutti e cinque i pezzi, e sono entrati col
+rito di D-116: **il telaio prima dei denti** — ogni gancio provato con
+regole sintetiche nei test, e neutro finché nessuna regola vera lo usa.
+
+- **I segni compositi** (`when_also`): una regola può chiedere più segni
+  insieme — la vita **e** il fatto del mondo — letti con lo stesso contesto
+  del gancio. Tutti i ganci del telaio li capiscono. È il pezzo che
+  aspettavano i Frati pieni («+1 dove la reliquia è custodita») e ogni
+  potere «vale doppio per lei».
+- **STANCE_MODIFIER**: il fronte (`stance`) di chi porta il segno vale
+  `stance_delta` in più al Consiglio — ma solo se quel seggio ha impegnato
+  almeno una carta sul fronte: un +1 dal nulla sarebbe un voto gratis. Il
+  proponente conta sempre come sostegno (chi propone non vota, ma spinge).
+  È il pezzo della Repubblica della Valle.
+- **Il velo** (`ACTION_GRANT` + SCHEME modo VEIL): l'arte inversa dello
+  scouting — chiudere un numero al tavolo. La concede un segno; la
+  questione torna velata, chi aveva mandato spie non sa più, chi vela sa
+  cosa ha coperto. È il pezzo del Culto della Misura.
+- **Il passo** (`GATE` con `movement: PASS`): chi porta il segno attraversa
+  i BLOCK delle regole — il confine sigillato, la strada depredata. **La
+  cacciata di D-067 resta più forte**, finché la vita che userà questo
+  pezzo (la Diaspora) non decida altrimenti, coi numeri accanto. È scritto
+  anche nello schema.
+- **La soglia della Condition** (`CONDITION_THRESHOLD`): per chi porta il
+  segno la Condition qualifica con un impegno in meno (o in più), mai sotto
+  1; ogni regola morde una volta per Consiglio, non una per firmatario. È
+  il pezzo della Lega delle Sette piena.
+
+Ogni morso si firma a verbale come sempre («Il segno pesa sul fronte: …»,
+«Il segno sposta la soglia della Condition: …», «cala il velo»), e il menu
+del seggio offre il velo solo a chi lo ha (stessa via di D-038).
+
+### Misurato
+
+Cinque test sintetici nuovi (compositi, fronte, soglia una-volta-per-regola,
+il passo che non batte la cacciata, il velo end-to-end). Con **zero regole
+vere** dei tipi nuovi: playtest sui 100 semi identico byte per byte alla
+0.1.87, suite verde. I denti veri — la Repubblica, il Culto della Misura, i
+Frati e le Custodi in forma piena, la Lega piena — sono il prossimo passo,
+accesi uno alla volta e misurati.
+
+---
+
+## D-124 — La seduta sulle vite: le decisioni, e i primi tre denti
+**implemented in 0.1.87** (ISSUES 19, fasi 4-5 — la seduta è a verbale in [SEDUTA_VITE.md](SEDUTA_VITE.md) §4)
+
+Il committente ha deciso sul dossier ([SEDUTA_VITE.md](SEDUTA_VITE.md)):
+**A** i tre denti pronti si accendono, e Repubblica e Culto della Misura
+aspettano il potere pieno (niente ponte provvisorio); **B** la morte di
+Vaerax si scrive, e la si propone *attraverso* una carta di Propp — la
+strada è la Rivelazione, che prescrive il Consiglio sul Risveglio e fa
+proponente chi la cala (D-118); **C** le quattro vite nuove rispiegate una
+per una (§5 del dossier), decisione rimandata; **D** la regola dei valori
+per vita approvata (ridistribuire ±2, mai un profilo strettamente
+peggiore); **E** tutti e cinque i pezzi del telaio autorizzati, col rito
+di D-116.
+
+### I tre denti (decisione A), in questa versione
+
+- **Il credito federato** (`TGR_SALT_CREDIT`): la Compagnia del Sale pesca
+  WEALTH guardando due carte e tenendo la migliore.
+- **La regola come misura** (`TGR_FRIARS_MEASURE`): quando i Frati del
+  Vetro propongono sulla Reliquia, World Factor +1. La forma piena («dove
+  la reliquia è custodita») arriverà coi segni compositi.
+- **La veglia arma** (`TGR_ASH_VIGIL`): le Custodi della Cenere pescano
+  FORCE meglio.
+
+Le tre seconde vite del 0.1.70 che ancora violavano la regola della casa
+(«una vita senza dente non si scrive») adesso la rispettano; restano
+Repubblica e Culto della Misura, in attesa dichiarata dei pezzi E.
+
+### Misurato
+
+Accese insieme, con la motivazione a verbale: sono **disgiunte per
+costruzione** (ogni regola legge il segno di una vita diversa di una casa
+diversa) e **dormienti fuori dalle saghe** — nessuna trasformazione
+avviene dentro una Chronicle singola. Difatti: playtest sui 100 semi
+**identico byte per byte** alla 0.1.85; ere in banda (mediana 955 anni,
+20,5 generazioni, 22 nomi); suite 262 test / 5757 asserzioni verde.
+
+---
+
+## D-123 — L'inventario dell'app: i Diritti, l'eco, i marker, la cronaca
+**implemented in 0.1.86** (su richiesta del committente, dall'inventario dell'app)
+
+Il committente ha chiesto cosa manca sullo schermo. L'inventario ha risposto:
+le carte ci sono tutte (ma 91 illustrazioni su 98 sono segnaposto — quella è
+consegna d'arte, voce 5), i segnalini ci sono; mancavano quattro cose, e sono
+entrate:
+
+- **I Diritti si vedono.** Un Claim creato è un fatto pubblico — l'azione si
+  annuncia — ma viveva solo nel verbale. Il pannello del seggio ha la sezione
+  «I DIRITTI»: chi tiene cosa, col dominio nella sua parola italiana
+  (`SignLabels.DOMAIN_WORDS`), il proprio in ambra. Senza Diritti la sezione
+  sparisce, come i segni.
+- **L'eco del cambiamento.** Al tavolo fisico vedi la mano che sposta il
+  pezzo; sullo schermo il pezzo era già spostato. Ora ogni effetto che tocca
+  una Regione accende un anello ambra che sfuma in sei secondi — un'evidenza,
+  non un'informazione: dice *dove* guardare, il cosa lo dicono verbale e
+  segnalini. La mappa dei tipi (`MapView.region_of_effect`) è pura e provata
+  in headless; i no-op non accendono niente, per la stessa moneta di D-121.
+- **I marker delle domande.** Ogni Tensione pianta il suo marker (il glifo di
+  D-058) sulla Regione su cui la sua domanda verte adesso — la stessa regola
+  del Consiglio, `focus_region` — con la lettura che spetta a chi guarda: il
+  numero se ne ha diritto, il glifo spento e «?» se è velata (§11.1). I
+  colori sono quelli del pannello: verde lontana, ambra a un passo, rossa a
+  soglia.
+- **La cronaca si sfoglia anche a metà anno.** Appena c'è una Truth scritta,
+  il bottone si accende e impagina il registro fin qui — le stesse pagine che
+  uscirebbero a fine anno, non un'anteprima che gli somiglia.
+
+Solo schermo: nessun file di motore toccato (a `sign_labels` si aggiunge un
+dizionario), quindi playtest e sim invariati per costruzione. Suite 262 test /
+5757 asserzioni verde, con tre test nuovi (`test_app_inventory`).
+
+---
+
+## D-122 — La cicatrice che morde: il ponte meccanico fra le ere
+**implemented in 0.1.85** (ISSUES 24, fase 4 — la voce si chiude)
+
+Il censimento diceva: 11 cicatrici scritte e nessuna letta, i segni ereditati
+narrati ma senza dente. Undici regole nuove — tutte coi tipi che il telaio ha
+già (D-104/D-116), nessun ramo di motore — e la **memoria dichiarata** per i
+segni il cui gemello vivo morde già. Le cicatrici non si curano: quello che
+scrivono lo leggono anche le ere dopo, ed è questo il ponte.
+
+### I denti nuovi, accesi a gruppi sugli stessi 100 semi
+
+- **I tre pesi del Consiglio** (COUNCIL_MODIFIER, −1 World Factor finché la
+  cicatrice esiste): il ponte rotto pesa sulle Vie, la capitale presa non
+  dimentica (Successione), il seggio vuoto pesa sulla Carta.
+- **Le tre pesche guaste** (DRAW_BIAS MALUS, per chi ha presenza sulla
+  cicatrice): la parola rotta guasta i legami (BONDS), dove la gente fu
+  sgomberata le braccia mancano (PEOPLE), nella terra abbandonata la
+  ricchezza non attecchisce (WEALTH).
+- **Le pesche buone e la porta** (i segni che costruiscono): sotto la torre
+  di veglia la forza si trova (FORCE BONUS — lo schizzo di D-116), al
+  pedaggio i denari girano, dove sta il mercato la ricchezza gira, e la
+  marca tiene il passo aperto (GATE ALLOW: vi si entra anche senza
+  adiacenza — la porta concessa dello schizzo di D-104).
+- **La ferita che parla** (ACTION_MODIFIER): dove il Cristallo fu sfruttato,
+  chi sta sulla ferita pesa +1 sull'INFLUENCE del Risveglio, come il granaio
+  parla della fame (D-105).
+- **Il pavimento del patto** (RELATION_FLOOR): il censimento ha rivelato che
+  `PACT` è un tag di **relazione** (lo scrive l'Insediamento Nahr sulla
+  coppia che firma) — e da oggi quella coppia non scende sotto NEUTRAL,
+  come il sangue (D-117).
+
+### La memoria dichiarata
+
+«O li dichiara memoria esplicitamente»: la sonda dei segni ora porta la
+dichiarazione dentro di sé, con il motivo accanto — quattro cicatrici il cui
+dente vivo è il gemello (plundered→condition:, divided_seal→crown_divided,
+sealed_border→valley_sealed, unanswered→question_unresolved), le condition
+curabili che sono mappa e cura, e quindici fatti nudi del mondo, narrati da
+D-103 ed ereditati: la materia prima della voce 9. Un segno dichiarato senza
+motivo vero è un imbroglio, e la lista è nel codice della sonda per essere
+riletta.
+
+### Misurato (stessi 100 semi, tavolo misto)
+
+| passo | esiti Consigli | bloccati |
+|---|---|---|
+| base 0.1.84 | 184 · 75 · 129 · 177 | 0/8 |
+| + i tre pesi del Consiglio | 183 · 80 · 123 · 177 | 0/8 |
+| + le tre pesche guaste | identico al passo prima | 0/8 |
+| + le pesche buone e la porta | 183 · 77 · 123 · 178 | 0/8 |
+| + la ferita che parla | 185 · 78 · 121 · 178 | 0/8 |
+| + il pavimento del patto | **185 · 78 · 123 · 176** | **0/8** |
+
+Le pesche guaste non spostano gli esiti in 100 partite — le cicatrici
+arrivano tardi nell'anno e la presenza lì è rara; al tavolo umano sono un
+vincolo che si vede, come i divieti di D-117. Il censimento: **vivi per
+clausola 34 → 46**, prima fila senza lettore né dichiarazione **0**, muti
+senza dichiarazione **0**. Consigli 5,62 (mediana 6), nessun seggio crolla;
+ere in banda (mediana 955 anni, 20,5 generazioni, 22 nomi), sim scritte a
+zero fallimenti, sonda della visibilità ancora a zero.
+
+### Il difetto trovato dalla guardia dei round-trip
+
+Il pavimento del PACT ha reso significativo il tag sintetico che il test dei
+round-trip usa da sempre, e il test è andato rosso con ragione: in
+`_set_relation` il **livello veniva ripristinato prima dei tag**, quindi
+l'undo leggeva il pavimento non ancora tolto e non poteva tornare sotto —
+lo stato non tornava com'era. Latente dal pavimento del sangue (D-116), mai
+morso perché nessun undo aveva ancora attraversato un pavimento. Adesso i
+tag si ripristinano prima del livello, l'inverso è esatto, e per la stessa
+moneta un segno scritto nello stesso effetto vale subito anche per il
+livello che l'effetto dichiara (nessun dato d'autore combina le due cose:
+comportamento di gioco invariato, verificato).
+
+---
+
+## D-121 — La sonda della visibilità, e i silenzi che ha trovato
+**implemented in 0.1.84** (ISSUES 22, fasi 2 e 4 — la voce si chiude)
+
+«Un effetto invisibile è un bug, non un'atmosfera.» La fase 1 (D-103) aveva
+dato una frase agli effetti di Conseguenze, clausole e carta del Narratore; la
+fase 3 (D-107) un corpo ai segni. Nessuno però aveva mai **contato**: la sonda
+nuova (`cli/run_visibility_probe.gd`) gioca i 100 semi standard a tavolo misto
+e rilegge il registro degli Effect contro il verbale della stessa partita —
+ogni effetto o ha la sua frase a verbale (parola per parola), o un silenzio
+**dichiarato** (i no-op, i delta finiti a zero, la contabilità di Propp, i
+registri con la loro riga, il setup che si racconta in apertura, le azioni
+che il resolver racconta con parole sue), o è **senza voce**: nominato, con
+la fonte accanto.
+
+### I silenzi che ha trovato, e le cure
+
+- **Il placarsi della questione decisa (H.1)** — l'effetto centrale di ogni
+  Consiglio, la Tensione che si placa a 1 o sfoga di 2, non aveva nessuna
+  riga: si leggeva solo nello stato di fine round. Adesso parla
+  («H. La Carestia scende di 5.»).
+- **La rivelazione del presagio** — il presagio parlava, ma il numero
+  arrivava sul tavolo in silenzio (`reveals_value` applicato senza riga).
+  Adesso, se ha davvero svelato qualcosa: «… non è più velata: il suo numero
+  è sul tavolo.»
+- **Gli scarti muti** — il CLAIM (creare e forzare) e l'INFLUENCE via scarto
+  spendevano una carta senza nominarla. Adesso la nominano.
+- **I falsi passaggi** — `SET_CONTROL` su un controllo che non cambia mano e
+  `SET_TENSION_VISIBILITY` su una questione già aperta ora si marcano no-op
+  nell'applier: nessuna riga annuncia un trono che non si è mosso, e la
+  «Carta parla» non racconta più cambi che non sono avvenuti.
+- **Fase 2, la mappa non nasconde** — nella partita 15308 la Valle Verde,
+  contesa e senza controllore, non è mai apparsa nella riga «Sulla mappa» del
+  seggio: compariva solo chi aveva presidi o padrone. Una Regione **segnata**
+  ora si vede sempre, coi nomi dei segni («Valle Verde (contesa)») — le
+  stesse parole di D-107 che la mappa del browser disegna già.
+
+Due voci di flusso sono dichiarate alla sonda con le loro parole: il Ripple
+(«K. Ripple: … +1») e la spirale che si chiude ri-decidendo (D-094).
+
+### Misurato
+
+La sonda su 100 semi: **SENZA VOCE: 0** — ogni effetto che deve parlare,
+parla. Playtest sugli stessi 100 semi invariato negli esiti (cambiano solo le
+righe del verbale), suite verde.
+
+---
+
+## D-120 — La mossa che spegne il tuo Destino avverte prima
+**implemented in 0.1.83** (ISSUES 21, chiusa)
+
+Nella partita vera al seme 15308 Vaerax entra nell'ultimo round con la prima
+spunta accesa («Presenza sulle Montagne Rosse») e la spegne **da solo**: un
+MOVE al limite dei token toglie il presidio dalla montagna, e l'app non dice
+nulla. Al tavolo fisico un compagno te lo farebbe notare.
+
+### La forma
+
+Nel `SeatDecider` — lo stesso del terminale e del browser (D-038), quindi una
+sola implementazione — quando l'azione **scelta** dal giocatore spegnerebbe
+una clausola del *suo* Destino oggi accesa: una riga («⚠ Questa mossa
+spegne: …», con l'etichetta della clausola) e la scelta di ripensarci, che
+riporta al menu. Solo il posto proprio, solo clausole già vere, nessun
+suggerimento strategico: un cartello, non un consigliere.
+
+### Il meccanismo
+
+L'anteprima è una **sessione ricostruita dal salvataggio**
+(`to_save` → `restore`): stesso mondo e stesso dado, quindi la previsione è
+esatta — l'azione viene eseguita davvero sulla copia e buttata via, e non
+esiste un secondo ramo di regole da tenere allineato al primo. Il costo si
+paga solo quando un umano ha già scelto un'azione; le sedie automatiche e le
+sim non passano di qui. (La copia fedele esiste perché D-119 ha appena messo
+nel salvataggio anche i Consigli chiusi.)
+
+### Misurato
+
+Tre test (`test_destiny_warning`): la mossa nella forma del seme 15308
+mostra l'avviso **nominando la clausola** e non tocca il mondo vero; «No, ci
+ripenso» torna al menu; un ACQUIRE che non sfiora il Destino passa senza
+cerimonie, una domanda sola. Suite 259 test / 5732 asserzioni verde; le
+partite senza umani sono identiche per costruzione (il ramo non viene mai
+percorso).
+
+---
+
+## D-119 — Gli effetti che pesano: le carte di Propp toccano il tavolo
+**implemented in 0.1.82** (ISSUES 23, fase 2 — la voce si chiude)
+
+D-118 aveva messo le carte in mano ai giocatori e lasciato aperta la fase 2:
+«hook che toccano il tavolo (presenza, controllo, Consigli aperti), non solo
++1». Tre passi, ciascuno misurato sugli stessi 100 semi da 7000.
+
+### Passo 1 — il punteggio legge le carte come le compila (motore)
+
+`_play_narrator` valutava i hook coi binding del Consiglio aperto
+(`effect_context()`), che fuori da un Consiglio sono **vuoti**: qualunque hook
+scritto su un `$slot` pesava zero per costruzione, e i hook `CONSEQUENCE` non
+erano valutati affatto — le sette carte della prima saga che sparano una
+Conseguenza non potevano superare il filtro «serve al mio Destino» col loro
+vero contenuto. Adesso il punteggio usa `card_bindings(hook, seggio)` — gli
+stessi binding con cui la carta verrà compilata, chi cala è il proponente — e
+le Conseguenze agganciate contano come contano in una proposta
+(`_score_proposition`). Da solo: 190·88·120·176 → 182·83·123·175, 0/8,
+Consigli 5,63; Lyra 9 → 11 Triumph (le sue carte-scoperta finalmente pesano).
+
+### Passo 2 — la prima saga, carta per carta
+
+Dieci carte riscritte, le altre dichiarate: le undici che sparano una
+Conseguenza (controllo, presenza, relazioni) pesavano già, e `ECH_ROAD_CLOSED`
+ha già due Destini che leggono il suo segno. Cosa è entrato:
+
+- **presenza**: la Perdita ritira un presidio del `$rival` dalle Terre
+  (opzionale), l'Offerta pianta chi la accetta nella `$region_focus`;
+- **Consigli aperti**: la Supplica e il Tradimento prescrivono il Consiglio
+  della Carestia, la Sedia Vuota quello della Successione;
+- **segni con lettori**: il Presagio e la Scoperta danno una `discovery:` a
+  chi cala (Lyra le conta), il Sacrificio dà la fama (dente D-105 + Destini
+  condivisi), la Mancanza svuota il granaio (via il dente D-105), la
+  Riconciliazione toglie l'inquietudine da Eredan (la Vittoria di Aldric la
+  legge). L'Incontro resta leggero, a verbale: i rapporti nella prima saga
+  non hanno lettori (D-068), e il suo mestiere (−1) è già del negoziatore.
+
+**La forma respinta, coi numeri**: la prima Sedia Vuota faceva
+`SET_CONTROL: null` su Eredan — il titolo tolto gratis, senza Consiglio e
+senza cura fuori dai Consigli. Aldric crollava a 46 MIN / 3 VIC e il tavolo
+misto tornava a **1/8 bloccato**. Il titolo non si perde per un'assenza: si
+perde a un Consiglio, e la carta adesso lo apre. Forma finale:
+184·79·124·176, **0/8**.
+
+### Passo 3 — la seconda saga, che non aveva un solo hook pesante
+
+Tredici carte su tredici erano «±1 e un tag». Adesso: l'Interramento chiude il
+canale costruito (opzionale), la Chiamata e il Giorno che la Gilda Chiese
+Tutto prescrivono il Consiglio del Debito, Due Sentenze quello della Carta; la
+Veglia Spostata e il Pozzo Zitto piantano presenza (chi conta le campane manda
+qualcuno, chi riapre il pozzo scende); la Crepa ritira un presidio del
+`$rival` dalle Miniere; i Fuochi Fuori fanno decadere il controllo delle
+Terre Nahr (periferia contesa, non il seggio di nessuno — la lezione della
+Sedia Vuota); la Copia dà `discovery:relic` (due Destini la leggono);
+l'Anno Corto affama la Valle coi denti veri di D-117 (niente patti, mano
+stretta, e la cura esiste: le Braccia); il Tavolo Lungo riporta la coppia
+`$proponent|$rival` a NEUTRAL (le clausole di D-068 lo leggono); la Stagione
+Scavata muove l'acqua (`water_moves`, due Destini) e il canale che posa
+consegna già il grano (GRANT_ON_SET, D-117); Messo per Iscritto dà la fama a
+chi scrive. Misurato: **184·75·129·177, 0/8**, Consigli 5,65 (mediana 6).
+
+### Il difetto trovato per strada
+
+Il test di ripresa è l'unico andato rosso, e aveva ragione: i Consigli chiusi
+vivevano solo in `ChronicleController.confluence_results`, **fuori dal
+salvataggio** — una Chronicle ripresa dimenticava i Consigli già decisi e il
+rapporto di fine anno ne contava uno in meno. Non si era mai visto perché
+nessun seme di test apriva un Consiglio prima del punto di interruzione;
+adesso che una carta può prescriverne uno al round 2, è successo. La cura:
+`confluence_results` entra nel salvataggio accanto a `destiny_results`
+(schema, serializer, restore).
+
+### Le guardie
+
+Suite 256 test / 5719 asserzioni verde; sim scritte deterministiche (due giri
+identici, `expected` invariati); ere in banda (mediana 955 anni, 20,1
+generazioni, 22 nomi); `validate_data.py` OK. Nessun seggio crolla: Aldric
+43/6/1, Kessa 43/6/0, Ilve 10/39/1 — spostamenti di 2-3 partite su 50.
+Resta un neo **pre-esistente**, identico sulla baseline: `ECH_LEGEND_CALLED_DAY`
+non viene mai letta nelle saghe della sonda delle ere (una voce a zero è
+contenuto che non esiste, D-035) — è materia per la voce 24, non di questa.
+
+---
+
 ## D-118 — Le carte di Propp in mano ai giocatori
 **implemented in 0.1.80** (ISSUES 23, fasi 1 e 3)
 

@@ -30,6 +30,8 @@ extends RefCounted
 
 const PolicyDecider := preload("res://scripts/seat/policy_decider.gd")
 const AssetText := preload("res://scripts/core/asset_text.gd")
+const GameSession := preload("res://scripts/chronicle/game_session.gd")
+const SignLabels := preload("res://scripts/core/sign_labels.gd")
 
 ## Entity ids a person is playing.
 var humans: Dictionary = {}
@@ -102,17 +104,67 @@ func choose_action(entity_id: String, ao_index: int, session: RefCounted) -> Dic
 		subjects.append(option.get("subject", {}))
 	labels.append("Passa")
 	subjects.append({})
-	var choice: int = await _choose(
-		"%s, azione %d:" % [_name(entity_id, session), ao_index + 1], labels, subjects
-	)
-	if choice < 0:
-		return fallback.choose_action(entity_id, ao_index, session)
-	if choice >= options.size():
-		return {"template": "PASS", "params": {}}
-	return {
-		"template": str(options[choice]["template"]),
-		"params": options[choice]["params"],
-	}
+	# ISSUES 21: al tavolo fisico un compagno ti farebbe notare che stai
+	# spegnendo la tua stessa spunta. L'app fa altrettanto: se la mossa scelta
+	# spegne una clausola accesa del proprio Destino, una riga di avviso e la
+	# scelta di ripensarci. Un cartello, non un consigliere.
+	while true:
+		var choice: int = await _choose(
+			"%s, azione %d:" % [_name(entity_id, session), ao_index + 1], labels, subjects
+		)
+		if choice < 0:
+			return fallback.choose_action(entity_id, ao_index, session)
+		if choice >= options.size():
+			return {"template": "PASS", "params": {}}
+		var request: Dictionary = {
+			"template": str(options[choice]["template"]),
+			"params": options[choice]["params"],
+		}
+		var dying: Array = _clauses_this_switches_off(entity_id, request, session)
+		if dying.is_empty():
+			return request
+		_say("  ⚠ Questa mossa spegne: %s" % ", ".join(PackedStringArray(dying)))
+		var confirmed: int = await _choose(
+			"  La fai lo stesso?", ["Sì, la faccio", "No, ci ripenso"]
+		)
+		if confirmed != 1:
+			return request
+	return {"template": "PASS", "params": {}}
+
+
+## ISSUES 21: le clausole del proprio Destino, oggi accese, che questa azione
+## spegnerebbe. L'anteprima è una sessione ricostruita dal salvataggio — stesso
+## mondo, stesso dado, quindi la previsione è esatta — su cui l'azione viene
+## eseguita davvero e poi buttata via: nessun ramo di regole duplicato da
+## tenere allineato. Solo il posto proprio e solo clausole già vere: chi vuole
+## sapere cosa conviene ha il tavolo, non un consigliere.
+func _clauses_this_switches_off(
+	entity_id: String, request: Dictionary, session: RefCounted
+) -> Array:
+	var destiny: Variant = session.data.destinies.get(session.service.destiny_of(entity_id))
+	if destiny == null:
+		return []
+	var lit: Array = []
+	for level in ["minimum", "victory", "triumph"]:
+		for condition in destiny[level]["conditions"]:
+			if session.destinies.conditions.holds(condition, {"self": entity_id}):
+				lit.append(condition)
+	if lit.is_empty():
+		return []
+	var preview: RefCounted = GameSession.new(session.data)
+	if not preview.restore(session.to_save("anteprima")):
+		return []
+	var dying: Array = []
+	var outcome: Dictionary = preview.actions.execute(entity_id, request)
+	if bool(outcome.get("ok", false)):
+		for condition in lit:
+			if preview.destinies.conditions.holds(condition, {"self": entity_id}):
+				continue
+			var said: String = "«%s»" % str(condition.get("label", ""))
+			if not dying.has(said):
+				dying.append(said)
+	preview.dispose()
+	return dying
 
 
 ## Every legal action, already checked against the rules, so a person is never
@@ -181,6 +233,16 @@ func _action_options(entity_id: String, session: RefCounted) -> Array:
 			out.append({
 				"label": "Scopri il numero di %s" % _tension(str(tension_id), session),
 				"template": "SCHEME", "params": request,
+			})
+
+	# Il velo (D-125): l'arte inversa, per chi ha il segno che la concede.
+	# Il resolver rifiuta da solo chi non ce l'ha: qui si offre, non si giudica.
+	for tension_id in _sorted(session.world["tensions"].keys()):
+		var veil: Dictionary = {"mode": "VEIL", "tension_id": str(tension_id)}
+		if session.actions.can_execute(entity_id, "SCHEME", veil):
+			out.append({
+				"label": "Cala il velo su %s" % _tension(str(tension_id), session),
+				"template": "SCHEME", "params": veil,
 			})
 
 	for other_id in session.world["turn_order"]:
@@ -367,13 +429,24 @@ func _board(entity_id: String, session: RefCounted) -> String:
 	for region_id in _sorted(world["regions"].keys()):
 		var mine: int = session.service.presence_count(entity_id, str(region_id))
 		var control: Variant = world["regions"][str(region_id)].get("control", null)
-		if mine == 0 and control == null:
+		# ISSUES 22 (fase 2): la mappa non nasconde. Nella partita 15308 la
+		# Valle Verde - contesa e senza controllore - non e' mai apparsa qui
+		# per due atti. Una Regione segnata si vede anche senza presidi.
+		var signs: Array = []
+		for tag in world["regions"][str(region_id)]["tags"]:
+			for prefix in ["condition:", "scar:", "structure:", "settlement:"]:
+				if str(tag).begins_with(prefix):
+					signs.append(SignLabels.label(str(tag), session.data))
+					break
+		if mine == 0 and control == null and signs.is_empty():
 			continue
 		var mark: String = ""
 		if mine > 0:
 			mark += "1 tuo" if mine == 1 else "%d tuoi" % mine
 		if control != null:
 			mark += "%s%s" % ["/" if mark != "" else "", _name(str(control), session)]
+		if not signs.is_empty():
+			mark += "%s%s" % ["; " if mark != "" else "", ", ".join(PackedStringArray(signs))]
 		places.append("%s (%s)" % [_region(str(region_id), session), mark])
 	lines.append("| Sulla mappa: %s" % ", ".join(PackedStringArray(places)))
 

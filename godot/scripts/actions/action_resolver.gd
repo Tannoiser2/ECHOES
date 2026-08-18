@@ -112,22 +112,48 @@ func execute(entity_id: String, request: Dictionary) -> Dictionary:
 		int(world["round"]),
 		int(world["effect_sequence"])
 	)
+	var outcome: Dictionary = {}
 	match template:
 		"ACQUIRE":
-			return _acquire(entity_id, params, source)
+			outcome = _acquire(entity_id, params, source)
 		"MOVE":
-			return _move(entity_id, params, source)
+			outcome = _move(entity_id, params, source)
 		"INFLUENCE":
-			return _influence(entity_id, params, source)
+			outcome = _influence(entity_id, params, source)
 		"FORGE":
-			return _forge(entity_id, params, source)
+			outcome = _forge(entity_id, params, source)
 		"SCHEME":
-			return _scheme(entity_id, params, source)
+			outcome = _scheme(entity_id, params, source)
 		"CLAIM":
-			return _claim(entity_id, params, source)
+			outcome = _claim(entity_id, params, source)
 		"PLAY_ECHO":
-			return _play_echo(entity_id, params, source)
-	return _error(template, "template non implementato")
+			outcome = _play_echo(entity_id, params, source)
+		_:
+			return _error(template, "template non implementato")
+
+	# ACTION_RIPPLE (D-129): l'azione che sfoga su una domanda. Dopo un'azione
+	# riuscita, i segni di chi ha agito possono muovere una Tensione - i forni
+	# producono, e il grano lo paga la valle. Ogni sfogo si firma a verbale.
+	if bool(outcome.get("ok", false)):
+		var rippled: bool = false
+		for ripple in TagRules.action_ripples(data, world, entity_id, template):
+			var applied: Dictionary = applier.apply(Effect.make(
+				"ADJUST_TENSION", "tension", str(ripple["tension_id"]),
+				{"delta": int(ripple["delta"])}, source
+			))
+			if applied.is_empty():
+				continue
+			(outcome.get("effects", []) as Array).append(applied)
+			rippled = true
+			var tension: Variant = data.tensions.get(str(ripple["tension_id"]))
+			log.bullet("  Il segno sfoga: %s — %s %+d." % [
+				str(ripple["title"]),
+				str(ripple["tension_id"]) if tension == null else str(tension["title"]),
+				int(ripple["delta"]),
+			])
+		if rippled:
+			tensions.fire_omens(source)
+	return outcome
 
 
 # --- preconditions ---------------------------------------------------------
@@ -253,6 +279,17 @@ func _check_scheme(entity_id: String, params: Dictionary) -> String:
 			if str(data.regions[region_id].get("private_information", "")) == "":
 				return "'%s' non ha informazioni private" % region_id
 			return ""
+		"VEIL":
+			# Il velo (D-125): l'arte inversa dello scouting - chiudere un
+			# numero al tavolo. Non e' di tutti: la concede un segno.
+			var veiled_id: String = str(params.get("tension_id", ""))
+			if not world["tensions"].has(veiled_id):
+				return "tensione sconosciuta '%s'" % veiled_id
+			if TagRules.action_granted(data, world, entity_id, "SCHEME_VEIL") == "":
+				return "il velo non e un'arte di questa casa"
+			if tensions.is_veiled(veiled_id):
+				return "'%s' e gia velata" % veiled_id
+			return ""
 	return "modo sconosciuto '%s'" % params.get("mode", "")
 
 
@@ -264,7 +301,8 @@ func _check_claim(entity_id: String, params: Dictionary) -> String:
 			return "dominio mancante"
 		if not service.claim_for_domain(entity_id, domain).is_empty():
 			return "%s ha gia un Claim su %s" % [entity_id, domain]
-		if _pick_authority(entity_id, params) == "":
+		if _pick_authority(entity_id, params) == "" \
+				and TagRules.action_discount(data, world, entity_id, "CLAIM") == "":
 			return "serve 1 Asset AUTHORITY da scartare"
 		return ""
 	if mode != "FORCE":
@@ -283,7 +321,8 @@ func _check_claim(entity_id: String, params: Dictionary) -> String:
 		return "la Tensione deve valere almeno 3 per essere forzata"
 	if world.get("forced_confluence", null) != null:
 		return "una Confluence e gia stata forzata per questo round"
-	if _pick_authority(entity_id, params) == "":
+	if _pick_authority(entity_id, params) == "" \
+			and TagRules.action_discount(data, world, entity_id, "CLAIM") == "":
 		return "serve 1 ulteriore Asset AUTHORITY da scartare"
 	return ""
 
@@ -497,10 +536,10 @@ func _influence(entity_id: String, params: Dictionary, source: Dictionary) -> Di
 		for title in bite["titles"]:
 			log.bullet("  Il segno pesa: %s." % str(title))
 
+	var spent: String = ""
 	if via != "PRESENCE":
-		effects.append_array(
-			_discard(entity_id, _pick_relevant_asset(entity_id, tension_id, params), source)
-		)
+		spent = _pick_relevant_asset(entity_id, tension_id, params)
+		effects.append_array(_discard(entity_id, spent, source))
 		via = "DISCARD"
 
 	var applied: Dictionary = applier.apply(
@@ -517,10 +556,17 @@ func _influence(entity_id: String, params: Dictionary, source: Dictionary) -> Di
 	world["influence_used_by_tension"][tension_id] = (
 		int(world["influence_used_by_tension"].get(tension_id, 0)) + 1
 	)
-	log.bullet(
-		"%s influenza %s (%+d, via %s)."
-		% [_name(entity_id), str(data.tensions[tension_id]["title"]), delta, via]
-	)
+	# ISSUES 22 (fase 4): se la via e' lo scarto, la carta spesa si nomina.
+	if spent == "":
+		log.bullet(
+			"%s influenza %s (%+d, via %s)."
+			% [_name(entity_id), str(data.tensions[tension_id]["title"]), delta, via]
+		)
+	else:
+		log.bullet(
+			"%s scarta %s e influenza %s (%+d)."
+			% [_name(entity_id), _title(spent), str(data.tensions[tension_id]["title"]), delta]
+		)
 
 	var displaced: String = ""
 	if delta < 0:
@@ -710,6 +756,48 @@ func _scheme(entity_id: String, params: Dictionary, source: Dictionary) -> Dicti
 			)
 			log.bullet("%s indaga su %s." % [_name(entity_id), _region(region_id)])
 			return _ok("SCHEME", effects, {"private": true, "region_secret": secret})
+		"VEIL":
+			# Il velo (D-125): il numero torna coperto per il tavolo, e chi
+			# aveva mandato spie non sa piu' - il dogma riscrive il saputo.
+			# Chi vela, invece, sa cosa ha coperto: il suo `knows` resta.
+			var veiled_id: String = str(params.get("tension_id", ""))
+			effects.append(
+				applier.apply(
+					Effect.make(
+						"SET_TENSION_VISIBILITY",
+						"tension",
+						veiled_id,
+						{"visibility": "VEILED"},
+						source
+					)
+				)
+			)
+			var known_tag: String = Ids.knows_tension_tag(veiled_id)
+			for other_id in world["turn_order"]:
+				if str(other_id) == entity_id:
+					continue
+				if not (world["entities"][str(other_id)]["tags"] as Array).has(known_tag):
+					continue
+				effects.append(
+					applier.apply(
+						Effect.make(
+							"REMOVE_ENTITY_TAG", "entity", str(other_id),
+							{"tag": known_tag}, source
+						)
+					)
+				)
+			effects.append(
+				applier.apply(
+					Effect.make(
+						"SET_ENTITY_TAG", "entity", entity_id, {"tag": known_tag}, source
+					)
+				)
+			)
+			log.bullet(
+				"%s cala il velo: %s non ha piu' un numero sul tavolo."
+				% [_name(entity_id), str(data.tensions[veiled_id]["title"])]
+			)
+			return _ok("SCHEME", effects, {"tension_id": veiled_id, "veiled": true})
 	return _error("SCHEME", "modo sconosciuto '%s'" % mode)
 
 
@@ -740,7 +828,11 @@ func _claim(entity_id: String, params: Dictionary, source: Dictionary) -> Dictio
 
 	if mode == "CREATE":
 		var domain: String = str(params.get("domain", ""))
-		effects.append_array(_discard(entity_id, _pick_authority(entity_id, params), source))
+		# D-131: la parola dell'egemone e' gia' autorita' - col segno dello
+		# sconto il CLAIM non scarta niente, carta in mano o no.
+		var waived: String = TagRules.action_discount(data, world, entity_id, "CLAIM")
+		var price: String = "" if waived != "" else _pick_authority(entity_id, params)
+		effects.append_array(_discard(entity_id, price, source))
 		var claim_id: String = Ids.claim_id(int(world["effect_sequence"]) + 1)
 		effects.append(
 			applier.apply(
@@ -759,12 +851,24 @@ func _claim(entity_id: String, params: Dictionary, source: Dictionary) -> Dictio
 				)
 			)
 		)
-		log.bullet("%s rivendica il dominio %s." % [_name(entity_id), domain])
+		# ISSUES 22 (fase 4): la carta spesa si nomina - uno scarto muto era uno
+		# dei silenzi che la sonda della visibilita' ha trovato. E anche lo
+		# sconto si nomina (D-131): un diritto gratis e' un fatto del tavolo.
+		if price == "":
+			log.bullet("%s rivendica il dominio %s per parola propria - %s." % [
+				_name(entity_id), domain, waived
+			])
+		else:
+			log.bullet("%s scarta %s e rivendica il dominio %s." % [
+				_name(entity_id), _title(price), domain
+			])
 		return _ok("CLAIM", effects, {"claim_id": claim_id, "domain": domain})
 
 	var tension_id: String = str(params.get("tension_id", ""))
 	var claim: Dictionary = service.claim_for_domain(entity_id, service.tension_domain(tension_id))
-	effects.append_array(_discard(entity_id, _pick_authority(entity_id, params), source))
+	var forced_waiver: String = TagRules.action_discount(data, world, entity_id, "CLAIM")
+	var second: String = "" if forced_waiver != "" else _pick_authority(entity_id, params)
+	effects.append_array(_discard(entity_id, second, source))
 	effects.append(
 		applier.apply(
 			Effect.make(
@@ -777,10 +881,16 @@ func _claim(entity_id: String, params: Dictionary, source: Dictionary) -> Dictio
 		)
 	)
 	world["forced_confluence"] = {"tension_id": tension_id, "entity_id": entity_id}
-	log.bullet(
-		"%s consuma il proprio Claim e forza una Confluence su %s."
-		% [_name(entity_id), str(data.tensions[tension_id]["title"])]
-	)
+	if second == "":
+		log.bullet(
+			"%s consuma il proprio Claim e forza una Confluence su %s - %s."
+			% [_name(entity_id), str(data.tensions[tension_id]["title"]), forced_waiver]
+		)
+	else:
+		log.bullet(
+			"%s consuma il proprio Claim, scarta %s, e forza una Confluence su %s."
+			% [_name(entity_id), _title(second), str(data.tensions[tension_id]["title"])]
+		)
 	return _ok("CLAIM", effects, {"forced": tension_id})
 
 
@@ -811,6 +921,8 @@ func _pick_authority(entity_id: String, params: Dictionary) -> String:
 # --- helpers ---------------------------------------------------------------
 
 func _discard(entity_id: String, asset_id: String, source: Dictionary) -> Array:
+	if asset_id == "":
+		return []
 	var applied: Dictionary = applier.apply(
 		Effect.make(
 			"REMOVE_ASSET",

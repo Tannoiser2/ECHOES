@@ -160,6 +160,8 @@ def check_references(
         "HAND_LIMIT": ("hand_limit_delta",),
         "GRANT_ON_SET": ("grant",),
         "RELATION_FLOOR": ("min_level",),
+        "ACTION_RIPPLE": ("template", "tension_id", "ripple_delta"),
+        "ACTION_DISCOUNT": ("template",),
     }
     for rule in documents.get("tag_rule", []):
         where = f"{origins['tag_rule']} [{rule['id']}]"
@@ -170,10 +172,19 @@ def check_references(
         if "tension_id" in rule:
             require(known_tensions, rule["tension_id"], "tension", where)
         scope = str(rule.get("when", {}).get("scope", ""))
-        if kind == "GATE" and scope != "REGION":
-            report.fail(where, "GATE rules only make sense with scope REGION")
-        if kind in ("RELATION_CAP", "RELATION_FLOOR") and scope not in ("GLOBAL", "RELATION"):
-            report.fail(where, f"{kind} needs scope GLOBAL or RELATION")
+        movement = str(rule.get("movement", ""))
+        if kind == "GATE" and movement == "PASS":
+            # Il PASS (D-125) e' un segno addosso a chi passa, non sulla porta.
+            if scope not in ("ENTITY", "GLOBAL"):
+                report.fail(where, "GATE PASS wants scope ENTITY or GLOBAL")
+        elif kind == "GATE" and scope != "REGION":
+            report.fail(where, "GATE BLOCK/ALLOW rules only make sense with scope REGION")
+        if rule.get("passes_eviction") and movement != "PASS":
+            report.fail(where, "passes_eviction only rides on a PASS")
+        # ENTITY sui ganci di relazione (D-131): il segno morde su ogni coppia
+        # di cui il portatore e' membro - il tetto verso l'egemone.
+        if kind in ("RELATION_CAP", "RELATION_FLOOR") and scope not in ("GLOBAL", "RELATION", "ENTITY"):
+            report.fail(where, f"{kind} needs scope GLOBAL, RELATION or ENTITY")
         if kind == "HAND_LIMIT" and int(rule.get("hand_limit_delta", 0)) == 0:
             report.fail(where, "HAND_LIMIT with delta 0 is a dead letter")
         if kind == "GRANT_ON_SET":

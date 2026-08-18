@@ -29,6 +29,38 @@ import json
 INHERITED_PREFIXES = ("condition:", "structure:", "settlement:", "scar:")
 ENGINE_PREFIXES = ("discovery:", "evicted:", "function:")
 
+# La memoria dichiarata (ISSUES 24, fase 4): un segno di prima fila che non ha
+# una regola sua, con il motivo scritto accanto. «O li dichiara memoria
+# esplicitamente»: questa e' la dichiarazione, e la sonda la mostra. Un segno
+# che finisce qui senza motivo vero e' un imbroglio, non una dichiarazione.
+DECLARED_MEMORY = {
+    "scar:plundered": "il dente vivo e' il gemello curabile condition:plundered (la porta di D-105)",
+    "scar:divided_seal": "il dente vivo e' crown_divided, letto dai Destini e sciolto da CNS_CROWN_REUNITED",
+    "scar:sealed_border": "il dente vivo e' valley_sealed, letto dai Destini",
+    "scar:unanswered": "il dente vivo e' question_unresolved: la spirale di D-094 morde e si chiude",
+    "scar:dragonfall": "la mappa ricorda dove cadde il drago (D-127); il dente vivo e' la morte del seggio, letta da ON_DEATH (Il Culto della Montagna)",
+    "settlement:$proponent": "porta un id dinamico; il suo dente e' nahr_settled nelle clausole, e il PACT sulla coppia (TGR_PACT_FLOOR)",
+    "condition:contested": "mappa e verbale (D-107/D-121); si cura decidendo la questione al Consiglio",
+    "condition:lean": "mappa; la cura e' l'Annata Buona, e il gradino con i denti e' condition:starving (D-105/D-117)",
+    "condition:mourning": "mappa; la cura sono gli Anziani (D-114)",
+    "condition:rationed": "il segno delle Chiavi (D-114); la Marcia lo rompe",
+    "condition:requisitioned": "mappa e narrazione; il sopruso vivo e' il controllo passato di mano",
+    "condition:indebted": "il debito che morde e' debt_called (D-117); la Regione indebitata e' mappa, e Il Debito Rimesso la cura",
+    "condition:abandoned": "il dente sta sulla cicatrice gemella (TGR_ABANDONED_WEALTH); la condition e' la parte curabile",
+}
+
+# La memoria del mondo: fatti nudi che il verbale racconta («Il mondo
+# ricorda», D-103), le ere ereditano e nessuna regola legge - di proposito.
+# Sono la materia prima della voce 9 (la Chronicle II generata dalle
+# evidence): dichiararli qui li tiene a vista senza fingere che mordano.
+WORLD_MEMORY = {
+    "account_settled", "amnesty_granted", "betrayal_spoken", "burden_shared",
+    "charter_temporary", "crown_dispossessed", "crystal_measured",
+    "dragon_slain", "faith_established", "grain_requisitioned", "heir_named",
+    "parley_held", "petition_heard", "someone_paid", "succession_settled",
+    "water_rights",
+}
+
 
 def walk_effects(effects, who, written):
     for entry in effects:
@@ -95,13 +127,23 @@ def main() -> None:
     } - alive - engine - afterlife
     mute = tags_written - alive - engine - afterlife - inherited
 
+    declared = {t for t in (inherited | mute) if t in DECLARED_MEMORY or t in WORLD_MEMORY}
+    front_line_silent = inherited - declared
+    mute_silent = mute - declared
+
     print("segni scritti da Conseguenze, cicatrici e carte: %d" % len(tags_written))
     print("  vivi per clausola:  %2d" % len(alive))
     print("  vivi per motore:    %2d  (%s)" % (len(engine), ", ".join(sorted(engine)[:4]) or "-"))
     print("  vita postuma:       %2d  (%s)" % (len(afterlife), ", ".join(sorted(afterlife)) or "-"))
-    print("  ereditati, no dente:%2d" % len(inherited))
-    print("  muti del tutto:     %2d" % len(mute))
-    for tag in sorted(mute):
+    print("  memoria dichiarata: %2d" % len(declared))
+    for tag in sorted(declared):
+        reason = DECLARED_MEMORY.get(tag, "memoria del mondo: narrata (D-103), ereditata; materia della voce 9")
+        print("      %-24s %s" % (tag, reason))
+    print("  prima fila senza lettore ne' dichiarazione: %d" % len(front_line_silent))
+    for tag in sorted(front_line_silent):
+        print("      %-24s <- %s" % (tag, ", ".join(sorted(written[tag])[:2])))
+    print("  muti senza dichiarazione: %d" % len(mute_silent))
+    for tag in sorted(mute_silent):
         print("      %-24s <- %s" % (tag, ", ".join(sorted(written[tag])[:2])))
     orphans = sorted(
         t for t in tags_read

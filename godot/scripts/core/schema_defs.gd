@@ -320,6 +320,12 @@ const DEFS := {
 					"type": "String",
 				},
 			},
+			"era_tallies": {
+				"type": "Array",
+				"element": {
+					"type": "Dictionary",
+				},
+			},
 			"years_after_previous": {
 				"type": "Variant",
 			},
@@ -931,6 +937,12 @@ const DEFS := {
 			"destiny_results": {
 				"type": "Dictionary",
 			},
+			"confluence_results": {
+				"type": "Array",
+				"element": {
+					"type": "Dictionary",
+				},
+			},
 			"label": {
 				"type": "String",
 			},
@@ -1031,6 +1043,11 @@ const DEFS := {
 					"HAND_LIMIT",
 					"GRANT_ON_SET",
 					"RELATION_FLOOR",
+					"STANCE_MODIFIER",
+					"CONDITION_THRESHOLD",
+					"ACTION_GRANT",
+					"ACTION_RIPPLE",
+					"ACTION_DISCOUNT",
 				],
 			},
 			"template": {
@@ -1063,7 +1080,11 @@ const DEFS := {
 				"enum": [
 					"BLOCK",
 					"ALLOW",
+					"PASS",
 				],
+			},
+			"passes_eviction": {
+				"type": "bool",
 			},
 			"max_level": {
 				"type": "String",
@@ -1118,6 +1139,40 @@ const DEFS := {
 			},
 			"note": {
 				"type": "String",
+			},
+			"when_also": {
+				"type": "Array",
+				"element": {
+					"type": "Dictionary",
+				},
+			},
+			"stance": {
+				"type": "String",
+				"enum": [
+					"SUPPORT",
+					"OPPOSE",
+				],
+			},
+			"stance_delta": {
+				"type": "int",
+				"min": -2,
+				"max": 2,
+			},
+			"threshold_delta": {
+				"type": "int",
+				"min": -1,
+				"max": 1,
+			},
+			"grants": {
+				"type": "String",
+				"enum": [
+					"SCHEME_VEIL",
+				],
+			},
+			"ripple_delta": {
+				"type": "int",
+				"min": -2,
+				"max": 2,
 			},
 		},
 	},

@@ -97,3 +97,49 @@ func test_the_bar_is_set_for_a_victim_and_not_for_a_cost() -> void:
 		(session.world["entities"]["ENT_LYRA"]["tags"] as Array).has("evicted:REG_TERRE_NAHR"),
 		"l'optional a vuoto resta un no-op da cima a fondo"
 	)
+
+
+## D-130: il seggio ricorda gli sradicamenti. Il primo e' un fatto; il secondo
+## nello stesso anno e' una natura - il segno che la successione legge per far
+## nascere la Diaspora. I tag d'entita' non si ereditano: il conto riparte
+## da solo a ogni Chronicle.
+func test_two_evictions_in_a_year_leave_the_rootless_sign() -> void:
+	session.confluence.current = {"proponent": "ENT_ALDRIC"}
+	var applied: Array = []
+	var first: Dictionary = Effect.make(
+		"REMOVE_PRESENCE", "entity", "ENT_NAHR", {"region_id": "REG_TERRE_NAHR"}, _source()
+	)
+	session.confluence._apply(applied, first)
+	session.confluence._bar_return(applied, first, _source())
+	var tags: Array = session.world["entities"]["ENT_NAHR"]["tags"]
+	assert_true(tags.has("uprooted"), "la prima cacciata si scrive addosso")
+	assert_false(tags.has("twice_uprooted"), "una volta sola non e' ancora una natura")
+
+	var second: Dictionary = Effect.make(
+		"REMOVE_PRESENCE", "entity", "ENT_NAHR", {"region_id": "REG_VALLE_VERDE"}, _source()
+	)
+	session.confluence._apply(applied, second)
+	session.confluence._bar_return(applied, second, _source())
+	assert_true(
+		(session.world["entities"]["ENT_NAHR"]["tags"] as Array).has("twice_uprooted"),
+		"la seconda nello stesso anno e' la natura che la successione legge"
+	)
+
+
+## D-130: la Diaspora non ha piu' un centro - la porta sbarrata dal Consiglio
+## non la tiene. Il rientro costa comunque la MOVE del round dopo.
+func test_the_diaspora_walks_back_through_the_barred_door() -> void:
+	session.applier.apply(Effect.make(
+		"SET_ENTITY_TAG", "entity", "ENT_NAHR", {"tag": "evicted:REG_TERRE_NAHR"}, _source()
+	))
+	assert_false(
+		session.service.can_move_to("ENT_NAHR", "REG_TERRE_NAHR"),
+		"da popolo, la cacciata tiene come sempre"
+	)
+	session.applier.apply(Effect.make(
+		"SET_ENTITY_TAG", "entity", "ENT_NAHR", {"tag": "life:INC_NAHR_DIASPORA"}, _source()
+	))
+	assert_true(
+		session.service.can_move_to("ENT_NAHR", "REG_TERRE_NAHR"),
+		"da Diaspora, nessuna porta la tiene"
+	)

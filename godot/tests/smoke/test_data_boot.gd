@@ -236,6 +236,23 @@ func test_no_destiny_asks_for_a_tag_nothing_can_write() -> void:
 	for chronicle in loaded.chronicles.values():
 		for tag in chronicle.get("global_tags", []):
 			writable[str(tag)] = str(chronicle["id"])
+	# Il motore scrive anche (due mani sue): i conti d'era posano i segni
+	# delle loro catene (D-133), e il tempo sbiadisce in `legend:<fatto>`
+	# ogni fatto scrivibile che almeno una Chronicle non dichiara perenne
+	# (D-075) - la leggenda del Cristallo e' un obiettivo raggiungibile,
+	# quella del sigillo perenne no.
+	for chronicle in loaded.chronicles.values():
+		for tally in chronicle.get("era_tallies", []):
+			for sign in (tally as Dictionary)["chain"]:
+				writable[str(sign)] = str((tally as Dictionary)["id"])
+	for tag in writable.keys().duplicate():
+		var fact: String = str(tag)
+		if fact.begins_with("legend:") or fact.begins_with("function:"):
+			continue
+		for chronicle in loaded.chronicles.values():
+			if not (chronicle.get("enduring_facts", []) as Array).has(fact):
+				writable["legend:%s" % fact] = "il tempo (D-075)"
+				break
 
 	for destiny in loaded.destinies.values():
 		for level in ["minimum", "victory", "triumph"]:

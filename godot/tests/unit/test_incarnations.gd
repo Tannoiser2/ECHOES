@@ -200,3 +200,144 @@ func test_the_active_view_swaps_the_authored_fields() -> void:
 	assert_false(republic.has("successors"), "la linea vecchia non si eredita")
 	assert_false(republic.has("name_grammar"), "nemmeno la grammatica dei nomi")
 	assert_eq(str(republic["id"]), "ENT_ALDRIC", "il seggio resta il seggio")
+
+
+## I Forni Riaccesi (D-129): quando la linea dei Fuochi si esaurisce, il segno
+## sceglie la vita - la miniera ferita accende l'industria, il sigillo la sbarra
+## (e allora siedono le Custodi), senza ferita le Custodi come sempre. Una
+## dinastia MORTAL non si interrompe a meta' (D-109): il segno decide al
+## momento giusto, non prima.
+func test_the_reopened_mine_lights_the_furnaces_unless_sealed() -> void:
+	var wounded: Dictionary = _plan_for(
+		"ENT_CENERE", {"name": "Arla dei Fuochi", "generation": 4},
+		{"regions": {"REG_MINIERE_ANTICHE": {"tags": ["scar:open_wound"]}}}
+	)
+	assert_true(bool(wounded["transformed"]), "la linea esaurita muta il seggio")
+	assert_eq(str(wounded["name"]), "I Forni Riaccesi", "l'industria si accende")
+	assert_eq(int(wounded["incarnation"]), 1, "la vita chiamata dal segno")
+
+	var sealed: Dictionary = _plan_for(
+		"ENT_CENERE", {"name": "Arla dei Fuochi", "generation": 4},
+		{"regions": {"REG_MINIERE_ANTICHE": {"tags": ["scar:open_wound", "structure:sealed"]}}}
+	)
+	assert_eq(str(sealed["name"]), "Le Custodi della Cenere", "il sigillo sbarra i forni")
+	assert_eq(int(sealed["incarnation"]), 2, "e siede la vita di ripiego")
+
+	var quiet: Dictionary = _plan_for("ENT_CENERE", {"name": "Arla dei Fuochi", "generation": 4})
+	assert_eq(str(quiet["name"]), "Le Custodi della Cenere", "senza ferita niente forni")
+
+	var midline: Dictionary = _plan_for(
+		"ENT_CENERE", {"name": "Kessa dei Fuochi", "generation": 0},
+		{"regions": {"REG_MINIERE_ANTICHE": {"tags": ["scar:open_wound"]}}}
+	)
+	assert_false(bool(midline["transformed"]), "la dinastia non si interrompe a meta'")
+
+
+## La Diaspora di Nahr (D-130): due sradicamenti in un anno tolgono il centro,
+## e il popolo che il tavolo ha cacciato smette di poter essere chiuso fuori.
+func test_the_twice_uprooted_people_becomes_the_diaspora() -> void:
+	var scattered: Dictionary = _plan_for(
+		"ENT_NAHR", {"name": "Popolo Nahr", "generation": 0, "tags": ["twice_uprooted"]}
+	)
+	assert_true(bool(scattered["transformed"]), "senza centro, il popolo si disperde")
+	assert_eq(str(scattered["name"]), "La Diaspora di Nahr", "la vita nuova ha il suo nome")
+	assert_eq(int(scattered["incarnation"]), 2, "la terza vita del seggio")
+
+	var settled: Dictionary = _plan_for(
+		"ENT_NAHR", {"name": "Popolo Nahr", "generation": 0, "tags": ["twice_uprooted"]},
+		{"global_tags": ["nahr_settled"]}
+	)
+	assert_eq(str(settled["name"]), "Il Regno di Nahr", "l'ordine d'autore: chi si e' seduto siede")
+
+	var quiet: Dictionary = _plan_for("ENT_NAHR", {"name": "Popolo Nahr", "generation": 0})
+	assert_false(bool(quiet["transformed"]), "senza sradicamenti il popolo resta popolo")
+
+
+## L'Egemonia di Eredan (D-131): quando la Valle si svuota e Eredan resta
+## piena, il coro diventa una voce. Il segno qualificato `tag@REG` chiede lo
+## sgombero su QUELLA Regione: uno sgombero qualsiasi non fa un'egemonia,
+## e con Eredan svuotata a sua volta non resta nessuno che comandi.
+func test_the_last_full_city_becomes_the_hegemony() -> void:
+	var alone: Dictionary = _plan_for(
+		"ENT_LIBERE", {"name": "Le Città Libere", "generation": 0},
+		{"regions": {"REG_VALLE_VERDE": {"tags": ["scar:emptied"]}}}
+	)
+	assert_true(bool(alone["transformed"]), "la Valle svuotata lascia una voce sola")
+	assert_eq(str(alone["name"]), "L'Egemonia di Eredan", "e quella voce comanda")
+	assert_eq(int(alone["incarnation"]), 2, "la terza vita del seggio")
+
+	var ruins: Dictionary = _plan_for(
+		"ENT_LIBERE", {"name": "Le Città Libere", "generation": 0},
+		{"regions": {
+			"REG_VALLE_VERDE": {"tags": ["scar:emptied"]},
+			"REG_EREDAN": {"tags": ["scar:emptied"]},
+		}}
+	)
+	assert_false(bool(ruins["transformed"]), "con Eredan svuotata non c'e' egemonia")
+
+	var elsewhere: Dictionary = _plan_for(
+		"ENT_LIBERE", {"name": "Le Città Libere", "generation": 0},
+		{"regions": {"REG_TERRE_NAHR": {"tags": ["scar:emptied"]}}}
+	)
+	assert_false(bool(elsewhere["transformed"]), "uno sgombero qualsiasi non fa un'egemonia")
+
+
+## La Leggenda della Montagna (D-133): quando il mondo dimentica, il drago
+## diventa la storia che si racconta di lui - e la storia giura su ambizioni
+## sue. L'ordine d'autore protegge il corpo: finche' il Cristallo e' un fatto
+## vivo, siede il Ridestato, non il racconto.
+func test_the_forgotten_mountain_seats_the_legend() -> void:
+	var told: Dictionary = _plan_for(
+		"ENT_VAERAX", {"name": "Vaerax", "generation": 0},
+		{"global_tags": ["mountain_forgotten"]}
+	)
+	assert_true(bool(told["transformed"]), "la dimenticanza compiuta muta il seggio")
+	assert_eq(str(told["name"]), "La Leggenda della Montagna", "e siede il racconto")
+	assert_eq(int(told["incarnation"]), 3, "la quarta vita del seggio")
+	assert_eq(
+		str(told["destiny_id"]), "DST_VAERAX_LEGEND",
+		"la vita giura su ambizioni sue"
+	)
+
+	var faded: Dictionary = _plan_for(
+		"ENT_VAERAX", {"name": "Vaerax Ridestato", "generation": 0, "incarnation": 1},
+		{"global_tags": ["mountain_forgotten", "legend:crystal_exploited"]}
+	)
+	assert_eq(
+		str(faded["name"]), "La Leggenda della Montagna",
+		"anche il drago richiuso, nei secoli, torna racconto"
+	)
+
+	var awake: Dictionary = _plan_for(
+		"ENT_VAERAX", {"name": "Vaerax", "generation": 0},
+		{"global_tags": ["mountain_forgotten", "crystal_exploited"]}
+	)
+	assert_eq(
+		str(awake["name"]), "Vaerax Ridestato",
+		"col Cristallo fuori siede il corpo, non la storia (ordine d'autore)"
+	)
+
+	var still_awake: Dictionary = _plan_for(
+		"ENT_VAERAX", {"name": "Vaerax Ridestato", "generation": 0, "incarnation": 1},
+		{"global_tags": ["mountain_forgotten", "crystal_exploited"]}
+	)
+	assert_false(
+		bool(still_awake["transformed"]),
+		"il fatto vivo del Cristallo sbarra la leggenda"
+	)
+
+
+## D-133: il seggio senza corpo. La vita che dichiara `presence: []` non
+## piazza pedine al setup - e le altre case piazzano le loro come sempre.
+func test_the_bodiless_life_places_no_tokens() -> void:
+	var factory: GDScript = preload("res://scripts/world/world_state_factory.gd")
+	session.world["entities"]["ENT_VAERAX"]["incarnation"] = 3
+	var placed: Dictionary = {}
+	for effect in factory.setup_effects(
+		session.data.chronicles["CHR_01"], session.data, session.world
+	):
+		if str(effect["type"]) == "ADD_PRESENCE":
+			var seat: String = str(effect["target"]["id"])
+			placed[seat] = int(placed.get(seat, 0)) + 1
+	assert_false(placed.has("ENT_VAERAX"), "la Leggenda non sta in nessun posto")
+	assert_true(int(placed.get("ENT_ALDRIC", 0)) > 0, "le case col corpo si piazzano come sempre")

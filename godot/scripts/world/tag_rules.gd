@@ -33,6 +33,21 @@ static func active(data, kind: String, chronicle_id: String) -> Array:
 	return out
 
 
+## I segni di una regola, il `when` e gli eventuali compositi (D-125): la
+## regola morde solo se TUTTI sono presenti, letti con lo stesso contesto.
+static func _signs_of(rule: Dictionary) -> Array:
+	var out: Array = [rule["when"]]
+	out.append_array(rule.get("when_also", []))
+	return out
+
+
+static func _all_present(world: Dictionary, rule: Dictionary, context: Dictionary) -> bool:
+	for when in _signs_of(rule):
+		if not _sign_present(world, when, context):
+			return false
+	return true
+
+
 ## ACTION_MODIFIER: di quanto il segno piega un'azione, e con che titoli.
 ## REGION vale se il segno sta su una Regione dove chi agisce ha presenza.
 static func action_bonus(
@@ -46,7 +61,7 @@ static func action_bonus(
 		var wanted_tension: String = str(rule.get("tension_id", ""))
 		if wanted_tension != "" and wanted_tension != tension_id:
 			continue
-		if _sign_present(world, rule["when"], {"entity_id": entity_id}):
+		if _all_present(world, rule, {"entity_id": entity_id}):
 			delta += int(rule.get("delta", 0))
 			titles.append(str(rule["title"]))
 	return {"delta": delta, "titles": titles}
@@ -66,12 +81,14 @@ static func council_world_factor(
 		var wanted_tension: String = str(rule.get("tension_id", ""))
 		if wanted_tension != "" and wanted_tension != tension_id:
 			continue
-		var when: Dictionary = rule["when"]
-		var present: bool = false
-		if str(when.get("scope", "")) == "REGION":
-			present = _any_region_has(world, str(when.get("tag", "")))
-		else:
-			present = _sign_present(world, when, {"entity_id": proponent_id})
+		var present: bool = true
+		for when in _signs_of(rule):
+			if str(when.get("scope", "")) == "REGION":
+				present = _any_region_has(world, str(when.get("tag", "")))
+			else:
+				present = _sign_present(world, when, {"entity_id": proponent_id})
+			if not present:
+				break
 		if present:
 			delta += int(rule.get("world_factor_delta", 0))
 			titles.append(str(rule["title"]))
@@ -79,21 +96,50 @@ static func council_world_factor(
 
 
 ## GATE: "" (nessuna porta), "BLOCK" o "ALLOW" per l'ingresso in una Regione.
-## BLOCK vince su ALLOW: una porta sbarrata resta sbarrata.
-static func movement_gate(data, world: Dictionary, region_id: String) -> String:
+## BLOCK vince su ALLOW: una porta sbarrata resta sbarrata. L'eccezione
+## (D-125) è PASS: chi porta il segno di una regola PASS attraversa i BLOCK
+## delle regole — la cacciata di D-067 resta più forte, finché una vita non
+## decida altrimenti.
+static func movement_gate(
+	data, world: Dictionary, region_id: String, entity_id: String = ""
+) -> String:
 	var verdict: String = ""
 	for rule in active(data, "GATE", str(world.get("chronicle_id", ""))):
+		var movement: String = str(rule.get("movement", ""))
+		if movement == "PASS":
+			continue
 		var when: Dictionary = rule["when"]
 		if str(when.get("scope", "")) != "REGION":
 			continue
 		if not _region_has(world, region_id, str(when.get("tag", ""))):
 			continue
-		var movement: String = str(rule.get("movement", ""))
 		if movement == "BLOCK":
-			return "BLOCK"
-		if movement == "ALLOW":
+			verdict = "BLOCK"
+			break
+		if movement == "ALLOW" and verdict == "":
 			verdict = "ALLOW"
+	if verdict == "BLOCK" and entity_id != "":
+		for rule in active(data, "GATE", str(world.get("chronicle_id", ""))):
+			if str(rule.get("movement", "")) != "PASS":
+				continue
+			if _all_present(world, rule, {"entity_id": entity_id}):
+				return ""
 	return verdict
+
+
+## La vita che decide altrimenti (D-130): un PASS con `passes_eviction`
+## attraversa anche la cacciata di D-067 - la porta sbarrata dal Consiglio
+## non tiene chi non ha piu' un centro. Restituisce il titolo della regola
+## che apre, o "" se la cacciata tiene come sempre.
+static func eviction_pass(data, world: Dictionary, entity_id: String) -> String:
+	for rule in active(data, "GATE", str(world.get("chronicle_id", ""))):
+		if str(rule.get("movement", "")) != "PASS":
+			continue
+		if not bool(rule.get("passes_eviction", false)):
+			continue
+		if _all_present(world, rule, {"entity_id": entity_id}):
+			return str(rule["title"])
+	return ""
 
 
 ## ACTION_GATE (ISSUES 25): finché il segno c'è, l'azione è vietata. Restituisce
@@ -106,9 +152,92 @@ static func action_gate(
 	for rule in active(data, "ACTION_GATE", str(world.get("chronicle_id", ""))):
 		if str(rule.get("template", "")) != template:
 			continue
-		if _sign_present(world, rule["when"], {"entity_id": entity_id}):
+		if _all_present(world, rule, {"entity_id": entity_id}):
 			return str(rule["title"])
 	return ""
+
+
+## ACTION_GRANT (D-125): la variante d'azione concessa a chi porta il segno.
+## Restituisce il titolo della regola che concede, o "" se nessuna: il velo
+## (SCHEME_VEIL) non è un'arte di tutti.
+static func action_granted(
+	data, world: Dictionary, entity_id: String, variant: String
+) -> String:
+	for rule in active(data, "ACTION_GRANT", str(world.get("chronicle_id", ""))):
+		if str(rule.get("grants", "")) != variant:
+			continue
+		if _all_present(world, rule, {"entity_id": entity_id}):
+			return str(rule["title"])
+	return ""
+
+
+## ACTION_DISCOUNT (D-131): chi porta il segno compie l'azione `template`
+## senza scartare la carta che l'azione chiede - il CLAIM dell'egemone non
+## paga l'Asset AUTHORITY, perche' la sua parola e' gia' autorita'.
+## Restituisce il titolo della regola che sconta, o "" se si paga come tutti.
+static func action_discount(
+	data, world: Dictionary, entity_id: String, template: String
+) -> String:
+	for rule in active(data, "ACTION_DISCOUNT", str(world.get("chronicle_id", ""))):
+		if str(rule.get("template", "")) != template:
+			continue
+		if _all_present(world, rule, {"entity_id": entity_id}):
+			return str(rule["title"])
+	return ""
+
+
+## STANCE_MODIFIER (D-125): quanto vale in più il fronte `side` di questo
+## seggio. Si paga con la presenza sul fronte: il chiamante lo applica solo a
+## chi ha impegnato almeno una carta — un +1 dal nulla sarebbe un voto gratis.
+static func stance_bonus(
+	data, world: Dictionary, entity_id: String, side: String
+) -> Dictionary:
+	var delta: int = 0
+	var titles: Array = []
+	for rule in active(data, "STANCE_MODIFIER", str(world.get("chronicle_id", ""))):
+		if str(rule.get("stance", "")) != side:
+			continue
+		if _all_present(world, rule, {"entity_id": entity_id}):
+			delta += int(rule.get("stance_delta", 0))
+			titles.append(str(rule["title"]))
+	return {"delta": delta, "titles": titles}
+
+
+## CONDITION_THRESHOLD (D-125): lo scostamento della soglia di qualifica per
+## questo tavolo di Condition. Ogni regola morde una volta, se almeno uno dei
+## seggi in Condition porta i suoi segni; il chiamante non scende mai sotto 1.
+static func condition_threshold_delta(
+	data, world: Dictionary, condition_entities: Array
+) -> Dictionary:
+	var delta: int = 0
+	var titles: Array = []
+	for rule in active(data, "CONDITION_THRESHOLD", str(world.get("chronicle_id", ""))):
+		for entity_id in condition_entities:
+			if _all_present(world, rule, {"entity_id": str(entity_id)}):
+				delta += int(rule.get("threshold_delta", 0))
+				titles.append(str(rule["title"]))
+				break
+	return {"delta": delta, "titles": titles}
+
+
+## ACTION_RIPPLE (D-129): l'azione che sfoga su una domanda. Quando chi porta
+## il segno compie `template` con successo, la Tensione indicata si muove —
+## i forni producono, e il grano lo paga la valle. Il chiamante applica.
+static func action_ripples(
+	data, world: Dictionary, entity_id: String, template: String
+) -> Array:
+	var out: Array = []
+	for rule in active(data, "ACTION_RIPPLE", str(world.get("chronicle_id", ""))):
+		if str(rule.get("template", "")) != template:
+			continue
+		if not _all_present(world, rule, {"entity_id": entity_id}):
+			continue
+		out.append({
+			"tension_id": str(rule.get("tension_id", "")),
+			"delta": int(rule.get("ripple_delta", 0)),
+			"title": str(rule["title"]),
+		})
+	return out
 
 
 ## DRAW_BIAS (ISSUES 25): la pesca piegata. Con un segno addosso, chi pesca da
@@ -121,7 +250,7 @@ static func draw_bias(
 	for rule in active(data, "DRAW_BIAS", str(world.get("chronicle_id", ""))):
 		if str(rule.get("family", "")) != family:
 			continue
-		if not _sign_present(world, rule["when"], {"entity_id": entity_id}):
+		if not _all_present(world, rule, {"entity_id": entity_id}):
 			continue
 		var bias: String = str(rule.get("bias", ""))
 		if bias == "MALUS":
@@ -137,7 +266,7 @@ static func hand_limit_delta(data, world: Dictionary, entity_id: String) -> Dict
 	var delta: int = 0
 	var titles: Array = []
 	for rule in active(data, "HAND_LIMIT", str(world.get("chronicle_id", ""))):
-		if _sign_present(world, rule["when"], {"entity_id": entity_id}):
+		if _all_present(world, rule, {"entity_id": entity_id}):
 			delta += int(rule.get("hand_limit_delta", 0))
 			titles.append(str(rule["title"]))
 	return {"delta": delta, "titles": titles}
@@ -161,7 +290,7 @@ static func grants_for(data, world: Dictionary, scope: String, tag: String) -> A
 static func relation_floor(data, world: Dictionary, relation_key: String) -> String:
 	var floor_level: String = ""
 	for rule in active(data, "RELATION_FLOOR", str(world.get("chronicle_id", ""))):
-		if not _sign_present(world, rule["when"], {"relation_key": relation_key}):
+		if not _all_present(world, rule, {"relation_key": relation_key}):
 			continue
 		var level: String = str(rule.get("min_level", ""))
 		if level == "":
@@ -184,7 +313,7 @@ static func raise_to_floor(level: String, floor_level: String) -> String:
 static func relation_cap(data, world: Dictionary, relation_key: String) -> String:
 	var cap: String = ""
 	for rule in active(data, "RELATION_CAP", str(world.get("chronicle_id", ""))):
-		if not _sign_present(world, rule["when"], {"relation_key": relation_key}):
+		if not _all_present(world, rule, {"relation_key": relation_key}):
 			continue
 		var level: String = str(rule.get("max_level", ""))
 		if level == "":
@@ -208,7 +337,17 @@ static func _sign_present(world: Dictionary, when: Dictionary, context: Dictiona
 		"GLOBAL":
 			return (world.get("global_tags", []) as Array).has(tag)
 		"ENTITY":
-			var entity: Variant = world.get("entities", {}).get(str(context.get("entity_id", "")))
+			# Nei ganci di relazione (D-131) il contesto porta la coppia, non
+			# una casa sola: il segno morde se UN membro lo porta - il tetto
+			# verso l'egemone vale per chiunque tratti con lei.
+			var entity_id: String = str(context.get("entity_id", ""))
+			if entity_id == "" and context.has("relation_key"):
+				for member in str(context["relation_key"]).split("|"):
+					var side: Variant = world.get("entities", {}).get(str(member))
+					if side != null and (side["tags"] as Array).has(tag):
+						return true
+				return false
+			var entity: Variant = world.get("entities", {}).get(entity_id)
 			return entity != null and (entity["tags"] as Array).has(tag)
 		"REGION":
 			var entity_id: String = str(context.get("entity_id", ""))

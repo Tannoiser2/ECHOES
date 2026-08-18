@@ -121,7 +121,8 @@
           "CNS_COST_DEBT"
         ],
         "failure": [
-          "CNS_FAILURE_SPIRAL"
+          "CNS_FAILURE_SPIRAL",
+          "CNS_VALLEY_DRAINED"
         ],
         "decisive_bonus": [
           "CNS_DECISIVE_RENOWN"
@@ -332,7 +333,8 @@
           "eligibility": [],
           "success_consequences": [
             "CNS_ASH_ABANDONED",
-            "CNS_SEAT_CLAIMED"
+            "CNS_SEAT_CLAIMED",
+            "CNS_MOUNTAIN_WOUNDED"
           ],
           "echo_summary": "Si stabilì che la roccia non fosse dell'Ordine, e sotto la cella si continuò a scendere.",
           "echo_summaries": {

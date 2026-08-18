@@ -160,6 +160,11 @@ static func plan(
 					note = "%s generazione della casa" % _ordinal_word(generation + 1)
 				changed = true
 
+		# D-133: la vita che giura su ambizioni sue le prende sedendosi - la
+		# Leggenda non puo' volere la presenza che non ha.
+		if transformed and (incarnations[incarnation] as Dictionary).has("destiny_id"):
+			destiny_id = str((incarnations[incarnation] as Dictionary)["destiny_id"])
+
 		# Whoever is sitting there now: if the seat got what it wanted, it wants
 		# the next thing. If it did not, it tries again - and *that* is what
 		# keeps a question alive across generations instead of across springs.
@@ -172,7 +177,7 @@ static func plan(
 		else:
 			barren += 1
 		if ACHIEVED.has(level):
-			var pool: Array = definition.get("destiny_pool", [])
+			var pool: Array = active.get("destiny_pool", [])
 			if pool.size() > 1:
 				var at: int = pool.find(destiny_id)
 				destiny_id = str(pool[(at + 1) % pool.size()])
@@ -184,7 +189,7 @@ static func plan(
 		# dopo WEARY_ERAS ere a mani vuote giura su altro. Chi non cambia
 		# persona non si stanca - Vaerax e' sotto la montagna apposta.
 		elif changed and barren >= WEARY_ERAS:
-			var pool: Array = definition.get("destiny_pool", [])
+			var pool: Array = active.get("destiny_pool", [])
 			if pool.size() > 1:
 				var at: int = pool.find(destiny_id)
 				destiny_id = str(pool[(at + 1) % pool.size()])
@@ -231,6 +236,11 @@ static func _next_life(
 				if not bool(before.get("active", true)):
 					return index
 			"ON_TAG":
+				# D-129: un segno puo' anche sbarrare la nascita - la miniera
+				# riaperta non fa i Forni finche' il sigillo la chiude.
+				var forbidden: String = str(life.get("entry_forbidden_tag", ""))
+				if forbidden != "" and _sign_anywhere(forbidden, previous, before):
+					continue
 				if _sign_anywhere(str(life.get("entry_tag", "")), previous, before):
 					return index
 			"LINE_EXHAUSTED":
@@ -242,6 +252,15 @@ static func _next_life(
 static func _sign_anywhere(tag: String, previous: Dictionary, before: Dictionary) -> bool:
 	if tag == "":
 		return false
+	# La forma qualificata `tag@REG_ID` (D-131): il segno vale solo su quella
+	# Regione - lo sgombero della Valle fa l'Egemonia, non uno sgombero
+	# qualsiasi in giro per il mondo.
+	var at: int = tag.find("@")
+	if at >= 0:
+		var region: Dictionary = (previous.get("regions", {}) as Dictionary).get(
+			tag.substr(at + 1), {}
+		)
+		return (region.get("tags", []) as Array).has(tag.substr(0, at))
 	if (previous.get("global_tags", []) as Array).has(tag):
 		return true
 	if (before.get("tags", []) as Array).has(tag):
@@ -262,8 +281,12 @@ static func active_view(definition: Dictionary, incarnation: int) -> Dictionary:
 		return definition
 	var view: Dictionary = definition.duplicate()
 	var life: Dictionary = incarnations[incarnation]
+	# `presence` e i campi del Destino (D-133) coprono solo se la vita li
+	# dichiara: la Leggenda parte senza pedine e giura su ambizioni sue,
+	# le altre vite tengono corpo e giuramenti del seggio.
 	for field in ["name", "description", "persistence", "action_values",
-			"art_prompt_key", "successors", "name_grammar"]:
+			"art_prompt_key", "successors", "name_grammar",
+			"presence", "destiny_id", "destiny_pool"]:
 		if life.has(field):
 			view[field] = life[field]
 		elif field in ["successors", "name_grammar"]:

@@ -180,7 +180,13 @@ func _toggle_export(open: bool) -> void:
 ## Chronicle Book stampera', rasterizzate. Si apre da sola a fine Chronicle e
 ## resta dietro il suo bottone finche' un'altra partita non la sostituisce.
 func _toggle_cronaca(open: bool) -> void:
-	_cronaca_open = open and not _year_save.is_empty()
+	# L'anno in corso conta se ha gia' scritto almeno una Truth: la cronaca a
+	# meta' anno e' il registro fin qui, impaginato come lo sara' a fine anno.
+	var live: Dictionary = {}
+	if _year_save.is_empty() and _session != null \
+			and not (_session.world["truth_log"] as Array).is_empty():
+		live = _session.to_save("cronaca")
+	_cronaca_open = open and (not _year_save.is_empty() or not live.is_empty())
 	if _cronaca_open:
 		_dev_open = false
 		if _dev_button != null:
@@ -192,6 +198,8 @@ func _toggle_cronaca(open: bool) -> void:
 		# apertura, poi la cronaca di ogni anno. Con uno solo, quello di sempre.
 		if _saga_saves.size() > 1:
 			_cronaca.show_saga(_saga_saves, _load_help_data())
+		elif not live.is_empty():
+			_cronaca.show_year(live, _load_help_data())
 		else:
 			_cronaca.show_year(_year_save, _load_help_data())
 	if _cronaca_button != null:
@@ -419,7 +427,11 @@ func _tools_state() -> void:
 	if _session == null and _dev_open:
 		_toggle_dev(false)
 	if _cronaca_button != null:
-		_cronaca_button.disabled = _year_save.is_empty()
+		# La cronaca si legge anche a meta' anno (l'inventario dell'app): appena
+		# c'e' una Truth scritta, le pagine esistono e si possono sfogliare.
+		_cronaca_button.disabled = _year_save.is_empty() and (
+			_session == null or (_session.world["truth_log"] as Array).is_empty()
+		)
 
 
 ## The one line above the choices: what is about to happen, and why the choice
@@ -938,6 +950,13 @@ func _drive(data: RefCounted, humans: Array, chronicle_id: String) -> void:
 	_session.chronicle.act_echo_drawn.connect(
 		func(card: Dictionary, applied: Array) -> void:
 			_pending_echo = {"card": card.duplicate(true), "applied": applied.duplicate(true)}
+	)
+	# L'eco del cambiamento (l'inventario dell'app): ogni effetto che tocca una
+	# Regione accende un anello che sfuma li' dove e' successo. La mappa decide
+	# da sola quale effetto tocca cosa; qui si passa soltanto il fatto.
+	_session.effect_applied.connect(
+		func(effect: Dictionary) -> void:
+			_map.mark_changed(MapView.region_of_effect(effect))
 	)
 
 	say("[b]%s[/b] — anno %d, seme %d" % [

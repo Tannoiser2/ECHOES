@@ -81,7 +81,9 @@ static func resolve(
 	assets: Dictionary,
 	relevant_families: Array,
 	factor: int,
-	condition_threshold: int
+	condition_threshold: int,
+	support_bonus: int = 0,
+	oppose_bonus: int = 0
 ) -> Dictionary:
 	var support_assets: Array = []
 	var oppose_assets: Array = []
@@ -104,8 +106,15 @@ static func resolve(
 			_:
 				pass
 
+	# I fronti che valgono di più (D-125, STANCE_MODIFIER): il chiamante li ha
+	# già pesati per seggio; qui entrano nel totale, e solo se il fronte esiste
+	# - un bonus su zero carte sarebbe un voto gratis, e resta zero.
 	var support_total: int = front_total(support_assets, assets, relevant_families, "SUPPORT")
 	var oppose_total: int = front_total(oppose_assets, assets, relevant_families, "OPPOSE")
+	if support_total > 0:
+		support_total += support_bonus
+	if oppose_total > 0:
+		oppose_total += oppose_bonus
 	# A Condition that is paid for is support - "I am for this, on one condition"
 	# - and one that is not paid for is nothing (D-055).
 	#

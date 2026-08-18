@@ -1770,6 +1770,42 @@ framing, 2:3. No text, no letters, no numerals, no logos, no frame, no border.
 Not gory, not horror. Museum-quality illustration, boardgame card art.
 ```
 
+### `entity.cenere_furnaces` — I Forni Riaccesi
+
+- **soggetto**: I Forni Riaccesi — La ferita della montagna torna a soffiare calore, e i Signori della Cenere smettono di vegliare: accendono. I forni pagano bene e mangiano molto - e quello che mangiano cresce nella Valle di qualcun altro
+- **id**: `INC_CENERE_FURNACES`
+
+```
+Historical dark-fantasy portrait of I Forni Riaccesi — La ferita della montagna torna a soffiare calore, e i Signori della Cenere smettono di vegliare: accendono. I forni pagano bene e mangiano molto - e quello che mangiano cresce nella Valle di qualcun altro. Painterly oil technique, visible
+brushwork, muted earth palette with a single ambra accent. One subject, close,
+facing the viewer: this framing is what separates a House card from an Asset card,
+where a single centred figure looking out is forbidden. chi risponde per la casa: la persona che firma, non quella che possiede. Low side
+lighting, shallow depth of field; the background says where they come from without
+telling a story of its own. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: head and shoulders in the upper two thirds; the
+lower third is a calm, low-detail area reserved for a text overlay. Vertical card
+framing, 2:3. No text, no letters, no numerals, no logos, no frame, no border.
+Not gory, not horror. Museum-quality illustration, boardgame card art.
+```
+
+### `entity.libere_hegemony` — L'Egemonia di Eredan
+
+- **soggetto**: L'Egemonia di Eredan — Quando la Valle si è svuotata e una sola città è rimasta piena, il coro è diventato una voce. Eredan non vota più: mette all'ordine del giorno. E chi tratta con lei sa che un patto con l'egemone non è mai fra pari
+- **id**: `INC_LIBERE_HEGEMONY`
+
+```
+Historical dark-fantasy portrait of L'Egemonia di Eredan — Quando la Valle si è svuotata e una sola città è rimasta piena, il coro è diventato una voce. Eredan non vota più: mette all'ordine del giorno. E chi tratta con lei sa che un patto con l'egemone non è mai fra pari. Painterly oil technique, visible
+brushwork, muted earth palette with a single terracotta accent. One subject, close,
+facing the viewer: this framing is what separates a House card from an Asset card,
+where a single centred figure looking out is forbidden. una figura sola davanti e la sua gente dietro, fuori fuoco: il ritratto di un popolo è il volto di uno. Low side
+lighting, shallow depth of field; the background says where they come from without
+telling a story of its own. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: head and shoulders in the upper two thirds; the
+lower third is a calm, low-detail area reserved for a text overlay. Vertical card
+framing, 2:3. No text, no letters, no numerals, no logos, no frame, no border.
+Not gory, not horror. Museum-quality illustration, boardgame card art.
+```
+
 ### `entity.libere_league` — La Lega delle Sette
 
 - **soggetto**: La Lega delle Sette — La Carta firmata ha fatto delle sette città una cosa sola nei giorni dispari. La Lega delibera piano, ma quando una firma delle sette scende su un foglio, il foglio pesa
@@ -1816,6 +1852,24 @@ Historical dark-fantasy portrait of L'Accademia delle Misure — Dove la legge f
 brushwork, muted earth palette with a single verde-azzurro pallido accent. One subject, close,
 facing the viewer: this framing is what separates a House card from an Asset card,
 where a single centred figure looking out is forbidden. una persona sola, lo strumento del proprio mestiere a portata di mano. Low side
+lighting, shallow depth of field; the background says where they come from without
+telling a story of its own. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: head and shoulders in the upper two thirds; the
+lower third is a calm, low-detail area reserved for a text overlay. Vertical card
+framing, 2:3. No text, no letters, no numerals, no logos, no frame, no border.
+Not gory, not horror. Museum-quality illustration, boardgame card art.
+```
+
+### `entity.nahr_diaspora` — La Diaspora di Nahr
+
+- **soggetto**: La Diaspora di Nahr — Cacciato due volte nello stesso anno, il popolo ha smesso di chiedere una terra: il centro adesso è la lingua, il calendario, e la strada. Non lo si può chiudere fuori — non c'è più un dentro
+- **id**: `INC_NAHR_DIASPORA`
+
+```
+Historical dark-fantasy portrait of La Diaspora di Nahr — Cacciato due volte nello stesso anno, il popolo ha smesso di chiedere una terra: il centro adesso è la lingua, il calendario, e la strada. Non lo si può chiudere fuori — non c'è più un dentro. Painterly oil technique, visible
+brushwork, muted earth palette with a single terracotta accent. One subject, close,
+facing the viewer: this framing is what separates a House card from an Asset card,
+where a single centred figure looking out is forbidden. una figura sola davanti e la sua gente dietro, fuori fuoco: il ritratto di un popolo è il volto di uno. Low side
 lighting, shallow depth of field; the background says where they come from without
 telling a story of its own. Grounded medieval-adjacent world, no invented heraldry,
 no glowing magic. Composition: head and shoulders in the upper two thirds; the
@@ -1885,6 +1939,24 @@ Not gory, not horror. Museum-quality illustration, boardgame card art.
 
 ```
 Historical dark-fantasy portrait of Il Culto della Montagna — Il drago non c'è più; la paura è rimasta, e la paura organizzata si chiama fede. Custodiscono le cicatrici della montagna come reliquie, e parlano per ciò che non parla più. Painterly oil technique, visible
+brushwork, muted earth palette with a single grigio-rosso accent. One subject, close,
+facing the viewer: this framing is what separates a House card from an Asset card,
+where a single centred figure looking out is forbidden. non un volto: una presenza ravvicinata — pietra, scaglia, respiro — inquadrata come si inquadra un volto. Low side
+lighting, shallow depth of field; the background says where they come from without
+telling a story of its own. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: head and shoulders in the upper two thirds; the
+lower third is a calm, low-detail area reserved for a text overlay. Vertical card
+framing, 2:3. No text, no letters, no numerals, no logos, no frame, no border.
+Not gory, not horror. Museum-quality illustration, boardgame card art.
+```
+
+### `entity.vaerax_legend` — La Leggenda della Montagna
+
+- **soggetto**: La Leggenda della Montagna — Il drago che nessuno vivo ha mai visto. Il sigillo ha retto tanto a lungo che la creatura è diventata la storia che si racconta di lei — e chi custodisce quella storia siede al tavolo senza un solo segnalino sulla mappa: non sta in nessun posto, e per questo nessuna porta lo tiene fuori
+- **id**: `INC_VAERAX_LEGEND`
+
+```
+Historical dark-fantasy portrait of La Leggenda della Montagna — Il drago che nessuno vivo ha mai visto. Il sigillo ha retto tanto a lungo che la creatura è diventata la storia che si racconta di lei — e chi custodisce quella storia siede al tavolo senza un solo segnalino sulla mappa: non sta in nessun posto, e per questo nessuna porta lo tiene fuori. Painterly oil technique, visible
 brushwork, muted earth palette with a single grigio-rosso accent. One subject, close,
 facing the viewer: this framing is what separates a House card from an Asset card,
 where a single centred figure looking out is forbidden. non un volto: una presenza ravvicinata — pietra, scaglia, respiro — inquadrata come si inquadra un volto. Low side
@@ -2229,6 +2301,24 @@ not horror. Museum-quality illustration, boardgame card art.
 
 ```
 Historical dark-fantasy emblematic scene of Cio che Dorme Resti Addormentato — Impedire lo sfruttamento incontrollato del Cristallo e preservare le Montagne Rosse. Painterly oil technique,
+visible brushwork, muted earth palette with a single grigio-rosso accent. No faces:
+a Destiny card shows the thing wanted, not the one who wants it — an object, a
+place, a threshold, composed like a votive image. ciò che si veglia: la pietra vista da dentro, il cunicolo, il respiro della montagna. Seen close and
+slightly from below, the way an ambition is seen; one strong light source, deep
+quiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: subject in the upper two thirds; the lower third
+is a calm, low-detail area reserved for a text overlay. Vertical card framing,
+2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,
+not horror. Museum-quality illustration, boardgame card art.
+```
+
+### `destiny.vaerax.legend` — La Storia che si Racconta
+
+- **soggetto**: La Storia che si Racconta — Non c'è più un corpo da difendere: c'è un racconto da tenere vivo. Finché il mondo dimentica cosa dorme davvero sotto la montagna, la montagna è di chi la racconta
+- **id**: `DST_VAERAX_LEGEND`
+
+```
+Historical dark-fantasy emblematic scene of La Storia che si Racconta — Non c'è più un corpo da difendere: c'è un racconto da tenere vivo. Finché il mondo dimentica cosa dorme davvero sotto la montagna, la montagna è di chi la racconta. Painterly oil technique,
 visible brushwork, muted earth palette with a single grigio-rosso accent. No faces:
 a Destiny card shows the thing wanted, not the one who wants it — an object, a
 place, a threshold, composed like a votive image. ciò che si veglia: la pietra vista da dentro, il cunicolo, il respiro della montagna. Seen close and

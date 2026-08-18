@@ -133,7 +133,7 @@ family, 22 copies per family deck, 132 cards in the box (D-040).
 | ENT_VAERAX | Vaerax | CREATURE | PROTECTION | DST_VAERAX | `entity.vaerax` |
 | ENT_VETRO | Priore Anselmo | CULT | FAITH | DST_VETRO | `entity.vetro` |
 
-## Destiny cards (19)
+## Destiny cards (20)
 | id | titolo | entita | Minimum | Victory | Triumph |
 |---|---|---|---|---|---|
 | DST_ALDRIC | Il Regno che Resta | ENT_ALDRIC | Il trono regge | Il regno decide | Un regno che non ha pagato il pane con il sangue |
@@ -152,6 +152,7 @@ family, 22 copies per family deck, 132 cards in the box (D-040).
 | DST_SHARED_LAND | La Terra che Risponde | $self | Un posto che risponde | Due terre, una voce | La mappa parla la tua lingua |
 | DST_SHARED_RENOWN | Il Nome che Pesa | $self | Il nome è conosciuto | Il nome ha una casa | Un nome che nessuno ha visto fallire |
 | DST_VAERAX | Cio che Dorme Resti Addormentato | ENT_VAERAX | La montagna è ancora sua | Le gallerie sono chiuse, e il Cristallo non è uscito | E nessuno ci arriva più |
+| DST_VAERAX_LEGEND | La Storia che si Racconta | ENT_VAERAX | La storia si racconta ancora | La montagna tiene lontani gli uomini | Nessuno ricorda com'era davvero |
 | DST_VAERAX_WATCHED | Il Sonno Sorvegliato | ENT_VAERAX | La montagna è ancora sua | Nessuno scava più | Guardato da qualcuno che non lo vuole |
 | DST_VETRO | Quello che Non si Deve Guardare | ENT_VETRO | L'Ordine tiene la sua casa | La custodia è un incarico, e la teca resta chiusa | E cosa ci sia dentro lo sa, e le gallerie sono ancora sue |
 | DST_VETRO_SHOWN | La Reliquia Mostrata | ENT_VETRO | L'Ordine tiene la sua casa | E l'ha mostrata lui | E la fede è diventata legge |
@@ -172,7 +173,7 @@ family, 22 copies per family deck, 132 cards in the box (D-040).
 | TEN_THIRST | I Pozzi Bassi | SURVIVAL | 1 | 5 | VEILED | 2 |
 | TEN_WATER | L'Acqua Ferma | SURVIVAL | 3 | 6 | OPEN | 1 |
 
-## Map overlays (29)
+## Map overlays (30)
 Ogni tag di Regione che il gioco puo mostrare sulla mappa. `domain:` marca il dominio di Tensione usato da INFLUENCE; `structure:`, `condition:` e `scar:` sono livelli grafici distinti (spec §19.5).
 
 | tag | layer |
@@ -184,6 +185,7 @@ Ogni tag di Regione che il gioco puo mostrare sulla mappa. `domain:` marca il do
 | `condition:emptied` | condition |
 | `condition:exploited` | condition |
 | `condition:indebted` | condition |
+| `condition:lean` | condition |
 | `condition:plundered` | condition |
 | `condition:rationed` | condition |
 | `condition:requisitioned` | condition |

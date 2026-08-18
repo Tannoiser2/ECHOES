@@ -93,6 +93,9 @@ func restore(save: Dictionary) -> bool:
 	log = GameLog.new()
 	log.line_added.connect(func(text: String) -> void: log_line.emit(text))
 	_wire_systems()
+	# Il registro dei Consigli chiusi prima dell'interruzione (ISSUES 23 fase 2):
+	# torna nel controller nuovo, cosi' il rapporto di fine anno conta tutto l'anno.
+	chronicle.confluence_results = (save.get("confluence_results", []) as Array).duplicate(true)
 	return true
 
 
@@ -112,7 +115,7 @@ func _wire_systems() -> void:
 
 
 func factory_setup_effects() -> Array:
-	return WorldStateFactory.setup_effects(_chronicle_def, data)
+	return WorldStateFactory.setup_effects(_chronicle_def, data, world)
 
 
 ## Continue a campaign: what the previous Chronicle left behind is applied on

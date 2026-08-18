@@ -398,6 +398,40 @@
           },
           "description": "I fatti globali che restano fatti anche dopo un salto lungo, perche murati o scritti: tutto il resto diventa legend:<fatto> (D-075). Assente = niente resiste al tempo."
         },
+        "era_tallies": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "if_tag",
+              "chain"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^TLY_[A-Z0-9_]+$"
+              },
+              "if_tag": {
+                "type": "string",
+                "minLength": 1
+              },
+              "if_not_tag": {
+                "type": "string"
+              },
+              "chain": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "minItems": 2
+              }
+            },
+            "additionalProperties": false
+          },
+          "description": "Il conto delle ere nei segni (D-133): a ogni successione, se `if_tag` sta sui fatti globali dell'era chiusa (e `if_not_tag` no), il mondo posa il prossimo segno di `chain`; se la condizione cade, tutta la catena sparisce senza diventare leggenda - il conto riparte. E' cosi che tre ere col sigillo intatto diventano `mountain_forgotten`, il segno che fa sedere la Leggenda."
+        },
         "years_after_previous": {
           "description": "Quanto tempo passa fra la Chronicle precedente e questa. Un numero, oppure un intervallo pescato dal seme: e cosi che una saga puo coprire secoli invece di anni consecutivi (D-045). Assente = 1 anno.",
           "oneOf": [
