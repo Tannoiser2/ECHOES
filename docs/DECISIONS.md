@@ -331,6 +331,90 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-119 — Gli effetti che pesano: le carte di Propp toccano il tavolo
+**implemented in 0.1.82** (ISSUES 23, fase 2 — la voce si chiude)
+
+D-118 aveva messo le carte in mano ai giocatori e lasciato aperta la fase 2:
+«hook che toccano il tavolo (presenza, controllo, Consigli aperti), non solo
++1». Tre passi, ciascuno misurato sugli stessi 100 semi da 7000.
+
+### Passo 1 — il punteggio legge le carte come le compila (motore)
+
+`_play_narrator` valutava i hook coi binding del Consiglio aperto
+(`effect_context()`), che fuori da un Consiglio sono **vuoti**: qualunque hook
+scritto su un `$slot` pesava zero per costruzione, e i hook `CONSEQUENCE` non
+erano valutati affatto — le sette carte della prima saga che sparano una
+Conseguenza non potevano superare il filtro «serve al mio Destino» col loro
+vero contenuto. Adesso il punteggio usa `card_bindings(hook, seggio)` — gli
+stessi binding con cui la carta verrà compilata, chi cala è il proponente — e
+le Conseguenze agganciate contano come contano in una proposta
+(`_score_proposition`). Da solo: 190·88·120·176 → 182·83·123·175, 0/8,
+Consigli 5,63; Lyra 9 → 11 Triumph (le sue carte-scoperta finalmente pesano).
+
+### Passo 2 — la prima saga, carta per carta
+
+Dieci carte riscritte, le altre dichiarate: le undici che sparano una
+Conseguenza (controllo, presenza, relazioni) pesavano già, e `ECH_ROAD_CLOSED`
+ha già due Destini che leggono il suo segno. Cosa è entrato:
+
+- **presenza**: la Perdita ritira un presidio del `$rival` dalle Terre
+  (opzionale), l'Offerta pianta chi la accetta nella `$region_focus`;
+- **Consigli aperti**: la Supplica e il Tradimento prescrivono il Consiglio
+  della Carestia, la Sedia Vuota quello della Successione;
+- **segni con lettori**: il Presagio e la Scoperta danno una `discovery:` a
+  chi cala (Lyra le conta), il Sacrificio dà la fama (dente D-105 + Destini
+  condivisi), la Mancanza svuota il granaio (via il dente D-105), la
+  Riconciliazione toglie l'inquietudine da Eredan (la Vittoria di Aldric la
+  legge). L'Incontro resta leggero, a verbale: i rapporti nella prima saga
+  non hanno lettori (D-068), e il suo mestiere (−1) è già del negoziatore.
+
+**La forma respinta, coi numeri**: la prima Sedia Vuota faceva
+`SET_CONTROL: null` su Eredan — il titolo tolto gratis, senza Consiglio e
+senza cura fuori dai Consigli. Aldric crollava a 46 MIN / 3 VIC e il tavolo
+misto tornava a **1/8 bloccato**. Il titolo non si perde per un'assenza: si
+perde a un Consiglio, e la carta adesso lo apre. Forma finale:
+184·79·124·176, **0/8**.
+
+### Passo 3 — la seconda saga, che non aveva un solo hook pesante
+
+Tredici carte su tredici erano «±1 e un tag». Adesso: l'Interramento chiude il
+canale costruito (opzionale), la Chiamata e il Giorno che la Gilda Chiese
+Tutto prescrivono il Consiglio del Debito, Due Sentenze quello della Carta; la
+Veglia Spostata e il Pozzo Zitto piantano presenza (chi conta le campane manda
+qualcuno, chi riapre il pozzo scende); la Crepa ritira un presidio del
+`$rival` dalle Miniere; i Fuochi Fuori fanno decadere il controllo delle
+Terre Nahr (periferia contesa, non il seggio di nessuno — la lezione della
+Sedia Vuota); la Copia dà `discovery:relic` (due Destini la leggono);
+l'Anno Corto affama la Valle coi denti veri di D-117 (niente patti, mano
+stretta, e la cura esiste: le Braccia); il Tavolo Lungo riporta la coppia
+`$proponent|$rival` a NEUTRAL (le clausole di D-068 lo leggono); la Stagione
+Scavata muove l'acqua (`water_moves`, due Destini) e il canale che posa
+consegna già il grano (GRANT_ON_SET, D-117); Messo per Iscritto dà la fama a
+chi scrive. Misurato: **184·75·129·177, 0/8**, Consigli 5,65 (mediana 6).
+
+### Il difetto trovato per strada
+
+Il test di ripresa è l'unico andato rosso, e aveva ragione: i Consigli chiusi
+vivevano solo in `ChronicleController.confluence_results`, **fuori dal
+salvataggio** — una Chronicle ripresa dimenticava i Consigli già decisi e il
+rapporto di fine anno ne contava uno in meno. Non si era mai visto perché
+nessun seme di test apriva un Consiglio prima del punto di interruzione;
+adesso che una carta può prescriverne uno al round 2, è successo. La cura:
+`confluence_results` entra nel salvataggio accanto a `destiny_results`
+(schema, serializer, restore).
+
+### Le guardie
+
+Suite 256 test / 5719 asserzioni verde; sim scritte deterministiche (due giri
+identici, `expected` invariati); ere in banda (mediana 955 anni, 20,1
+generazioni, 22 nomi); `validate_data.py` OK. Nessun seggio crolla: Aldric
+43/6/1, Kessa 43/6/0, Ilve 10/39/1 — spostamenti di 2-3 partite su 50.
+Resta un neo **pre-esistente**, identico sulla baseline: `ECH_LEGEND_CALLED_DAY`
+non viene mai letta nelle saghe della sonda delle ere (una voce a zero è
+contenuto che non esiste, D-035) — è materia per la voce 24, non di questa.
+
+---
+
 ## D-118 — Le carte di Propp in mano ai giocatori
 **implemented in 0.1.80** (ISSUES 23, fasi 1 e 3)
 

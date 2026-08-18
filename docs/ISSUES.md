@@ -486,9 +486,9 @@ Le fasi:
 Valle Verde nel momento in cui avviene, e la sonda conta zero effetti
 senza voce né corpo.
 
-### 23. Le carte di Propp in mano ai giocatori
+### 23. ✅ Le carte di Propp in mano ai giocatori — fatta in 0.1.80–0.1.82
 
-`regole` · `da-misurare` · voluta dal committente
+`regole` · `da-misurare` · voluta dal committente · **chiusa** ([D-118](DECISIONS.md#d-118), [D-119](DECISIONS.md#d-119))
 
 «Le carte di Propp hanno veramente un impatto minimo... dovrebbero essere
 molto importanti e non generate casualmente dal gioco ma giocate
@@ -503,8 +503,16 @@ Le fasi:
 1. ✅ **Il design insieme** — deciso dal committente in 0.1.80 (D-118):
    2 carte a testa per atto, si calano nel proprio turno come azione,
    costano una carta Asset, e se nessuno cala l'atto resta senza carta.
-2. **Gli effetti che pesano**: hook che toccano il tavolo (presenza,
-   controllo, Consigli aperti), non solo +1 — da scrivere carta per carta.
+2. ✅ **Gli effetti che pesano** — fatta in 0.1.82 ([D-119](DECISIONS.md#d-119)):
+   carta per carta, tutte e due le saghe. Presenza (la Perdita, la Crepa,
+   la Veglia Spostata, il Pozzo Zitto, l'Offerta), controllo (i Fuochi
+   Fuori), Consigli prescritti (la Supplica, il Tradimento, la Sedia
+   Vuota, la Chiamata, Due Sentenze, il Giorno che la Gilda Chiese Tutto),
+   segni con lettori veri (scoperte, fama, granaio, canale, fame, coppie).
+   Una forma respinta coi numeri: il controllo tolto gratis bloccava
+   Aldric — il titolo si perde a un Consiglio, non per un'assenza. E il
+   punteggio delle sedie adesso legge le carte con i binding con cui
+   verranno compilate, Conseguenze comprese.
 3. ✅ **Il motore** — fatto in 0.1.80 (D-118): `echo_hand`, azione
    PLAY_ECHO, eleggibilità al momento di calare, sedie con freno (una per
    atto) e filtro (solo se serve al Destino). **La GUI** è arrivata in
@@ -512,7 +520,10 @@ Le fasi:
    motivo), e il bottone per calare era già lì — stesso SeatDecider del
    terminale (D-038).
 4. ✅ **La misura** — in D-118: due forme respinte coi numeri, la terza
-   dà 190·88·120·176 con **0/8** e ere in banda.
+   dà 190·88·120·176 con **0/8** e ere in banda. In D-119, con gli
+   effetti pesanti: **184·75·129·177, 0/8**, Consigli 5,65 (mediana 6),
+   ere in banda — e il difetto trovato per strada (i Consigli chiusi non
+   stavano nel salvataggio) riparato con il suo test.
 
 **Fatto quando** in una partita al tavolo misto ogni carta di Propp
 arrivata sul tavolo ce l'ha messa una mano, l'ordine delle funzioni regge,

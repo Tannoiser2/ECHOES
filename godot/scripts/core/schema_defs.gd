@@ -931,6 +931,12 @@ const DEFS := {
 			"destiny_results": {
 				"type": "Dictionary",
 			},
+			"confluence_results": {
+				"type": "Array",
+				"element": {
+					"type": "Dictionary",
+				},
+			},
 			"label": {
 				"type": "String",
 			},

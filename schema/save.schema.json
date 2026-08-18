@@ -28,6 +28,11 @@
           "type": "object",
           "additionalProperties": { "$ref": "#/$defs/destiny_result" }
         },
+        "confluence_results": {
+          "type": "array",
+          "description": "I Consigli gia' chiusi quest'anno, nell'ordine in cui sono stati decisi: senza, una Chronicle ripresa dal salvataggio li dimentica e il rapporto di fine anno mente (ISSUES 23 fase 2).",
+          "items": { "type": "object" }
+        },
         "label": { "type": "string" }
       }
     },

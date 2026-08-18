@@ -5,6 +5,40 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.82] — Gli effetti che pesano: la voce 23 si chiude
+
+La fase 2 della voce 23 ([D-119](docs/DECISIONS.md#d-119)): le carte di
+Propp toccano il tavolo — presenza, controllo, Consigli prescritti, segni
+con lettori veri — carta per carta, tutte e due le saghe, un passo alla
+volta sugli stessi 100 semi.
+
+### Changed
+
+- **23 carte Echo riscritte** (10 nella prima saga, 13 nella seconda, che
+  non aveva un solo hook pesante): presidi che si piantano e si ritirano,
+  controllo che decade, sei carte che prescrivono un Consiglio, scoperte,
+  fama, il granaio che si svuota, il canale che si chiude, la Valle che ha
+  fame coi denti di D-117. Una forma respinta coi numeri: il controllo
+  tolto gratis bloccava Aldric (1/8) — il titolo si perde a un Consiglio.
+- Il punteggio delle sedie legge le carte **con i binding con cui verranno
+  compilate** (chi cala è il proponente) e pesa anche le Conseguenze
+  agganciate: prima, un hook su un `$slot` valeva zero per costruzione.
+
+### Fixed
+
+- I **Consigli chiusi entrano nel salvataggio**: vivevano solo in memoria,
+  e una Chronicle ripresa li dimenticava — il rapporto di fine anno ne
+  contava uno in meno. Trovato dal test di ripresa il giorno in cui una
+  carta ha aperto un Consiglio prima del punto di interruzione.
+
+### Misurato
+
+Stessi 100 semi: 190·88·120·176 → **184·75·129·177 con 0/8 al tavolo
+misto**, Consigli 5,65 (mediana 6), ere in banda (955 anni, 20,1
+generazioni, 22 nomi), sim scritte deterministiche, 256 test verdi.
+
+---
+
 ## [0.1.81] — La mano del Narratore sullo schermo
 
 La fetta browser della voce 23: le carte di Propp in mano si **vedono**

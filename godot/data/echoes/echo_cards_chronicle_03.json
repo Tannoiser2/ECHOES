@@ -42,6 +42,20 @@
               "tag": "condition:lean"
             }
           }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "REMOVE_REGION_TAG",
+            "target": {
+              "kind": "region",
+              "id": "REG_VALLE_VERDE"
+            },
+            "payload": {
+              "tag": "structure:canal",
+              "optional": true
+            }
+          }
         }
       ],
       "forces_confluence_on": null,
@@ -89,7 +103,7 @@
           }
         }
       ],
-      "forces_confluence_on": null,
+      "forces_confluence_on": "TEN_DEBT",
       "art_prompt_key": "echo.pressure.call_of_accounts"
     },
     {
@@ -118,6 +132,22 @@
             "payload": {
               "delta": 1
             }
+          }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "ADD_PRESENCE",
+            "target": {
+              "kind": "entity",
+              "id": "$proponent"
+            },
+            "payload": {
+              "region_id": "$region_focus"
+            }
+          },
+          "bindings": {
+            "focus_tension": "TEN_RELIC"
           }
         }
       ],
@@ -166,7 +196,7 @@
           }
         }
       ],
-      "forces_confluence_on": null,
+      "forces_confluence_on": "TEN_CHARTER",
       "art_prompt_key": "echo.rupture.two_verdicts"
     },
     {
@@ -208,6 +238,23 @@
             "payload": {
               "tag": "condition:unrest"
             }
+          }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "REMOVE_PRESENCE",
+            "target": {
+              "kind": "entity",
+              "id": "$rival"
+            },
+            "payload": {
+              "region_id": "REG_MINIERE_ANTICHE",
+              "optional": true
+            }
+          },
+          "bindings": {
+            "focus_tension": "TEN_RELIC"
           }
         }
       ],
@@ -252,6 +299,19 @@
             },
             "payload": {
               "tag": "condition:emptied"
+            }
+          }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "SET_CONTROL",
+            "target": {
+              "kind": "region",
+              "id": "REG_TERRE_NAHR"
+            },
+            "payload": {
+              "entity_id": null
             }
           }
         }
@@ -299,6 +359,22 @@
               "visibility": "OPEN"
             }
           }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "SET_ENTITY_TAG",
+            "target": {
+              "kind": "entity",
+              "id": "$proponent"
+            },
+            "payload": {
+              "tag": "discovery:relic"
+            }
+          },
+          "bindings": {
+            "focus_tension": "TEN_RELIC"
+          }
         }
       ],
       "forces_confluence_on": null,
@@ -342,6 +418,19 @@
             },
             "payload": {
               "delta": 1
+            }
+          }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "SET_REGION_TAG",
+            "target": {
+              "kind": "region",
+              "id": "REG_VALLE_VERDE"
+            },
+            "payload": {
+              "tag": "condition:starving"
             }
           }
         }
@@ -389,6 +478,22 @@
               "delta": -1
             }
           }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "SET_RELATION",
+            "target": {
+              "kind": "relation",
+              "id": "$proponent|$rival"
+            },
+            "payload": {
+              "level": "NEUTRAL"
+            }
+          },
+          "bindings": {
+            "focus_tension": "TEN_CHARTER"
+          }
         }
       ],
       "forces_confluence_on": null,
@@ -432,6 +537,19 @@
             },
             "payload": {
               "tag": "structure:canal"
+            }
+          }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "SET_GLOBAL_TAG",
+            "target": {
+              "kind": "world",
+              "id": "WORLD"
+            },
+            "payload": {
+              "tag": "water_moves"
             }
           }
         }
@@ -479,6 +597,19 @@
               "tag": "charter_temporary"
             }
           }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "SET_ENTITY_TAG",
+            "target": {
+              "kind": "entity",
+              "id": "$proponent"
+            },
+            "payload": {
+              "tag": "renowned"
+            }
+          }
         }
       ],
       "forces_confluence_on": null,
@@ -522,6 +653,19 @@
             },
             "payload": {
               "delta": 1
+            }
+          }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "ADD_PRESENCE",
+            "target": {
+              "kind": "entity",
+              "id": "$proponent"
+            },
+            "payload": {
+              "region_id": "REG_MINIERE_ANTICHE"
             }
           }
         }
@@ -577,7 +721,7 @@
           }
         }
       ],
-      "forces_confluence_on": null,
+      "forces_confluence_on": "TEN_DEBT",
       "art_prompt_key": "echo.memoria.the_called_day"
     }
   ]

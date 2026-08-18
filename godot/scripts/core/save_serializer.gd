@@ -18,6 +18,10 @@ static func to_save(session: RefCounted, label: String = "") -> Dictionary:
 		"assignments": (session.assignments as Dictionary).duplicate(true),
 		"pending_confluence": null,
 		"destiny_results": (session.destiny_results as Dictionary).duplicate(true),
+		# I Consigli gia' chiusi vivono nel ChronicleController, non nel mondo:
+		# senza portarli nel salvataggio, una Chronicle ripresa li dimentica e il
+		# rapporto di fine anno conta un Consiglio in meno (ISSUES 23 fase 2).
+		"confluence_results": (session.chronicle.confluence_results as Array).duplicate(true),
 	}
 	if session.confluence != null and session.confluence.is_open():
 		save["pending_confluence"] = (session.confluence.current as Dictionary).duplicate(true)

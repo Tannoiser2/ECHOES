@@ -1014,16 +1014,30 @@ func _play_narrator(entity_id: String, session: RefCounted) -> Dictionary:
 	# Senza questo filtro le sedie calavano qualunque cosa fosse eleggibile e
 	# Kessa restava piantata al Minimo (46/50): le carte altrui le scaldavano
 	# le questioni contro. Il punteggio e' lo stesso delle clausole negoziali.
+	#
+	# ISSUES 23 fase 2: i binding sono quelli con cui la carta verra' davvero
+	# compilata (chi cala e' il proponente), non quelli del Consiglio aperto -
+	# fuori da un Consiglio sono vuoti, e un hook scritto su un $slot pesava
+	# zero per costruzione. E le Conseguenze agganciate contano come contano
+	# in una proposta: sono la parte pesante della carta.
 	var goals: Dictionary = _tag_goals(entity_id, session)
-	var bindings: Dictionary = session.confluence.effect_context()
 	for card_id in session.world["entities"][entity_id].get("echo_hand", []):
 		var params: Dictionary = {"echo_card_id": str(card_id)}
 		if not session.actions.can_execute(entity_id, "PLAY_ECHO", params):
 			continue
 		var score: int = 0
 		for hook in session.data.echo_cards[str(card_id)].get("effect_hooks", []):
+			var bindings: Dictionary = session.chronicle.card_bindings(hook, entity_id)
 			if str(hook.get("kind", "")) == "EFFECT":
 				score += _score_effect(hook["effect"], entity_id, entity_id, goals, session, bindings)
+			elif str(hook.get("kind", "")) == "CONSEQUENCE":
+				var consequence: Variant = session.data.consequences.get(
+					str(hook.get("consequence_id", ""))
+				)
+				if consequence == null:
+					continue
+				for effect in consequence["effects"]:
+					score += _score_effect(effect, entity_id, entity_id, goals, session, bindings)
 		if score > 0:
 			return {"template": "PLAY_ECHO", "params": params}
 	return {}

@@ -42,6 +42,20 @@
               "tag": "condition:lean"
             }
           }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "REMOVE_REGION_TAG",
+            "target": {
+              "kind": "region",
+              "id": "REG_VALLE_VERDE"
+            },
+            "payload": {
+              "tag": "structure:granary",
+              "optional": true
+            }
+          }
         }
       ],
       "forces_confluence_on": null,
@@ -72,6 +86,19 @@
             },
             "payload": {
               "delta": 1
+            }
+          }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "SET_ENTITY_TAG",
+            "target": {
+              "kind": "entity",
+              "id": "$proponent"
+            },
+            "payload": {
+              "tag": "discovery:the_omen"
             }
           }
         }
@@ -121,7 +148,7 @@
           }
         }
       ],
-      "forces_confluence_on": null,
+      "forces_confluence_on": "TEN_FAMINE",
       "art_prompt_key": "echo.rupture.betrayal"
     },
     {
@@ -162,6 +189,20 @@
             },
             "payload": {
               "tag": "condition:mourning"
+            }
+          }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "REMOVE_PRESENCE",
+            "target": {
+              "kind": "entity",
+              "id": "$rival"
+            },
+            "payload": {
+              "region_id": "REG_TERRE_NAHR",
+              "optional": true
             }
           }
         }
@@ -208,6 +249,22 @@
             "payload": {
               "tag": "crystal_measured"
             }
+          }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "SET_ENTITY_TAG",
+            "target": {
+              "kind": "entity",
+              "id": "$proponent"
+            },
+            "payload": {
+              "tag": "discovery:the_measure"
+            }
+          },
+          "bindings": {
+            "focus_tension": "TEN_AWAKENING"
           }
         }
       ],
@@ -298,6 +355,19 @@
               "tag": "someone_paid"
             }
           }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "SET_ENTITY_TAG",
+            "target": {
+              "kind": "entity",
+              "id": "$proponent"
+            },
+            "payload": {
+              "tag": "renowned"
+            }
+          }
         }
       ],
       "forces_confluence_on": null,
@@ -365,6 +435,20 @@
             },
             "payload": {
               "delta": -1
+            }
+          }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "REMOVE_REGION_TAG",
+            "target": {
+              "kind": "region",
+              "id": "REG_EREDAN"
+            },
+            "payload": {
+              "tag": "condition:unrest",
+              "optional": true
             }
           }
         }
@@ -459,7 +543,7 @@
           }
         }
       ],
-      "forces_confluence_on": null,
+      "forces_confluence_on": "TEN_SUCCESSION",
       "art_prompt_key": "echo.pressure.threat"
     },
     {
@@ -694,7 +778,7 @@
           }
         }
       ],
-      "forces_confluence_on": null,
+      "forces_confluence_on": "TEN_FAMINE",
       "art_prompt_key": "echo.pressure.request"
     },
     {
@@ -728,6 +812,19 @@
             },
             "payload": {
               "tag": "condition:indebted"
+            }
+          }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "ADD_PRESENCE",
+            "target": {
+              "kind": "entity",
+              "id": "$proponent"
+            },
+            "payload": {
+              "region_id": "$region_focus"
             }
           }
         }
