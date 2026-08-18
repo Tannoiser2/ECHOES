@@ -722,10 +722,9 @@ pannello del seggio, la mano, le domande del decider.
 2. **Il trasporto**: una partita, più dispositivi. Il computer ospita la
    sessione (il motore resta uno solo, deterministico com'è); i telefoni
    sono `io` remoti — ogni `choose` di un seggio umano viaggia verso la
-   sua console e torna con l'indice scelto. Da decidere col committente:
-   stanza locale (stessa rete, il computer fa da host) o rendez-vous via
-   un servizio esterno; la prima è più semplice e non ha server da
-   mantenere.
+   sua console e torna con l'indice scelto. **Deciso dal committente:
+   stanza locale, stessa rete** — il computer fa da host, i telefoni si
+   collegano a lui, nessun servizio esterno da mantenere.
 3. **La disciplina dei segreti sul filo**: a una console arriva solo ciò
    che il suo seggio ha diritto di leggere — la stessa regola dei pixel
    (§11.1), applicata ai messaggi. Un filtro provabile in headless, come
