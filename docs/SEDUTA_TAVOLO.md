@@ -149,4 +149,15 @@ fisico.
 
 ## 8. Verbale delle risposte
 
-*(da compilare in seduta)*
+Seduta del 2026-08-18, risposte del committente:
+
+- **A — la console è la pagina web servita dall'host** (A1, la
+  raccomandata): il telefono apre un indirizzo, niente installazione.
+- **B — «ok»**: accoppiamento col QR + token di seggio, e il tavolo può
+  rigenerare il token a partita in corso.
+- **C — in chiarimento**: chiesto cosa significhi «schermo grande
+  interattivo»; la spiegazione è a verbale in chat, la decisione
+  arriva dopo. Ipotesi di lavoro intanto: la vetrina (raccomandata),
+  reversibile — l'interattività sarebbe additiva, non un rifacimento.
+- **D — «ok»**: le fasi 1→4, cominciando dalla ricomposizione delle due
+  viste senza rete.
