@@ -406,6 +406,9 @@ Le fasi:
    Culto della Montagna in attesa che qualcuno impari a uccidere un
    drago). Restano da scrivere e misurare le altre vite dell'albero, i
    tipi della voce 25 per i poteri più ambiziosi, e i tarocchi per vita.
+   Il **dossier di decisione per la seduta** — lo stato vero dei dati,
+   una proposta concreta per vita, le domande secche — è in
+   [SEDUTA_VITE.md](SEDUTA_VITE.md).
 
 **Fatto quando** una saga attraversa almeno un cambio d'incarnazione, con
 carta e prompt propri e il passaggio nel verbale, e le sonde d'era restano in
