@@ -760,6 +760,11 @@ seggio (la Tensione velata funziona come al tavolo fisico), un telefono
 riavviato rientra senza perdere niente, e le sim restano deterministiche
 — il motore non deve accorgersi di quanti schermi lo guardano.
 
+Il **dossier di decisione per la seduta** — architettura host+console,
+la disciplina dei segreti sul filo, l'accoppiamento col QR, le fasi coi
+loro «fatto quando» e i rischi onesti delle reti di casa — è in
+[SEDUTA_TAVOLO.md](SEDUTA_TAVOLO.md).
+
 ---
 
 ## Milestone 0.3 — World Propagation
