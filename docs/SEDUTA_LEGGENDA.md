@@ -169,4 +169,21 @@ vite devono *poter* sedere (non zero), e restare rare.
 
 ## 5. Verbale delle risposte
 
-*(da compilare in seduta)*
+Seduta del 2026-08-18, risposte del committente:
+
+- **A — «va bene»**: l'ingresso è il conto nei segni globali
+  (`seal_kept` → `seal_kept_twice` → `mountain_forgotten`), tre ere.
+- **B — «sì»**: `P_DIG_BELOW` apre la ferita, e una domanda del mazzo
+  delle città prende lo sgombero della Valle.
+- **C — «proviamo»**: il Destino su misura di 3c si scrive come base,
+  e si misura — se il NONE non è raggiungibile o il Minimo è regalato,
+  si torna qui.
+- **D — «prima la B»**: si esegue la B (sblocca i Forni e l'Egemonia,
+  già scritti), poi la Leggenda.
+
+**La B è eseguita** (0.1.95, [D-132](DECISIONS.md#d-132)): la Roccia che
+Cede su `P_DIG_BELOW`, la Valle che si Vuota sul fallimento dell'Acqua.
+Misurato: i Forni siedono 5/20, l'Egemonia 11/20, le Custodi 20 → 15,
+NONE tutti vivi, banda identica. La manopola, se l'Egemonia sembrasse
+troppo frequente: spostare lo sgombero su una proposizione singola.
+**Prossimo passo: la Leggenda** (risposte A e C).

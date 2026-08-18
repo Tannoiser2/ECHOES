@@ -5,6 +5,31 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.95] — La montagna delle città
+
+La risposta B della seduta sulla Leggenda
+([D-132](docs/DECISIONS.md#d-132)): il tavolo delle città può ferire
+la montagna e svuotare la Valle — le porte d'ingresso di Forni ed
+Egemonia si aprono.
+
+### Added
+
+- **La Roccia che Cede** (`CNS_MOUNTAIN_WOUNDED`, sul successo di
+  `P_DIG_BELOW`): `scar:open_wound` + `condition:exploited` sulle
+  Miniere Antiche.
+- **La Valle che si Vuota** (`CNS_VALLEY_DRAINED`, sul fallimento
+  della domanda dell'Acqua): `scar:emptied` + `condition:lean` sulla
+  Valle Verde.
+
+### Measured
+
+- Sonda delle città: i Forni siedono **5/20 saghe**, l'Egemonia
+  **11/20** (Custodi 20 → 15), NONE tutti vivi, banda identica.
+  Playtest coi totali identici (0/8), sims deterministici, censimento
+  0/0, suite verde.
+
+---
+
 ## [0.1.94] — L'Egemonia di Eredan
 
 La terza vita della decisione C, che la chiude

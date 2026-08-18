@@ -537,6 +537,54 @@
           }
         }
       ]
+    },
+    {
+      "id": "CNS_MOUNTAIN_WOUNDED",
+      "title": "La Roccia che Cede",
+      "category": "EXPLOITATION",
+      "description": "Sotto la cella i puntelli trovano il vuoto: la galleria maestra si riapre, e la roccia intorno resta tiepida. Quello che l'Ordine custodiva adesso è una porta.",
+      "creates_scar": true,
+      "scar": {
+        "region_id": "REG_MINIERE_ANTICHE",
+        "tag": "scar:open_wound",
+        "description": "La galleria maestra non si richiude più, e la roccia intorno resta tiepida."
+      },
+      "effects": [
+        {
+          "type": "SET_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "REG_MINIERE_ANTICHE"
+          },
+          "payload": {
+            "tag": "condition:exploited"
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_VALLEY_DRAINED",
+      "title": "La Valle che si Vuota",
+      "category": "MIGRATION",
+      "description": "L'acqua non è arrivata, e i campi hanno risposto a modo loro. Chi poteva partire è partito prima del secondo inverno.",
+      "creates_scar": true,
+      "scar": {
+        "region_id": "REG_VALLE_VERDE",
+        "tag": "scar:emptied",
+        "description": "Le case basse con le porte aperte, e i canali asciutti che nessuno riscava."
+      },
+      "effects": [
+        {
+          "type": "SET_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "REG_VALLE_VERDE"
+          },
+          "payload": {
+            "tag": "condition:lean"
+          }
+        }
+      ]
     }
   ]
 }

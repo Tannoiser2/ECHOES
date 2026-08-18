@@ -331,6 +331,39 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-132 — La montagna delle città: le porte d'ingresso si aprono
+**implemented in 0.1.95** (seduta sulla Leggenda, risposta B — «prima la B», D del verbale)
+
+La sonda d'era sul tavolo delle città (prima misura in SEDUTA_LEGGENDA §2)
+aveva trovato il buco: `scar:open_wound` e `scar:emptied` le scriveva solo
+il contenuto di CHR_01, e i Forni Riaccesi e l'Egemonia di Eredan — scritti
+e testati in D-129/D-131 — non sedevano mai nelle loro saghe (0/20,
+contenuto che non esiste, D-035). Due Conseguenze nuove nel mazzo delle
+città, nessun motore toccato:
+
+- **La Roccia che Cede** (`CNS_MOUNTAIN_WOUNDED`), sul successo di
+  `P_DIG_BELOW` («sotto la cella si continui a scavare»): la ferita
+  (`scar:open_wound`) sulle Miniere Antiche, più `condition:exploited` —
+  la stessa coppia che CHR_01 usa per la Miniera Aperta.
+- **La Valle che si Vuota** (`CNS_VALLEY_DRAINED`), sul fallimento della
+  domanda dell'Acqua (`CNF_WATER_03`): lo sgombero (`scar:emptied`) sulla
+  Valle Verde, più `condition:lean` — l'acqua che non arriva svuota le
+  case prima del secondo inverno.
+
+Misurato sulla sonda delle città (20 saghe): **i Forni siedono 5 volte**
+(rari come devono: ferita + linea esaurita + niente sigillo),
+**l'Egemonia 11** (le Custodi scendono 20 → 15: i Forni rubano loro le
+entrate giuste), NONE per seggio tutti vivi (Cenere 8, Libere 27, Sale
+28, Vetro 53), banda identica (1049 mediana, 16,5 generazioni, 20 nomi —
+i due nuovi sono le vite). Se in futuro l'Egemonia sembrasse troppo
+frequente, la manopola dichiarata è spostare lo sgombero dal pool di
+fallimento a una proposizione singola. Playtest 100 semi coi totali
+identici alla baseline (185·78·123·176, 0/8), sims deterministici,
+censimento 0/0 (segni e cicatrici tutti già dichiarati), brief invariato,
+suite 278/5832 verde.
+
+---
+
 ## D-131 — L'Egemonia di Eredan: il segno qualificato, lo sconto sul diritto, il tetto verso di lei
 **implemented in 0.1.94** (ISSUES 19, decisione C della seduta — la terza vita, la C si chiude; resta la Leggenda della Montagna in seduta dedicata)
 
