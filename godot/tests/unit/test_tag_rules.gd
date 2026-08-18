@@ -34,8 +34,8 @@ func test_with_no_signs_on_the_board_every_hook_is_neutral() -> void:
 	# (granaio, fame, razzia, giuramento, fama) non esistono a inizio
 	# partita - quindi ogni gancio resta neutro finché il gioco non li posa.
 	assert_eq(
-		session.data.tag_rules.size(), 31,
-		"le regole di D-105, i poteri di vita di D-109, i denti di D-117 e le cicatrici di D-122"
+		session.data.tag_rules.size(), 34,
+		"le regole di D-105, i poteri di vita di D-109 e D-124, i denti di D-117 e le cicatrici di D-122"
 	)
 	var bonus: Dictionary = TagRules.action_bonus(
 		session.data, session.world, "ENT_ALDRIC", "INFLUENCE", "TEN_FAMINE"

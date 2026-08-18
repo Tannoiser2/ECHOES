@@ -331,6 +331,45 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-124 — La seduta sulle vite: le decisioni, e i primi tre denti
+**implemented in 0.1.87** (ISSUES 19, fasi 4-5 — la seduta è a verbale in [SEDUTA_VITE.md](SEDUTA_VITE.md) §4)
+
+Il committente ha deciso sul dossier ([SEDUTA_VITE.md](SEDUTA_VITE.md)):
+**A** i tre denti pronti si accendono, e Repubblica e Culto della Misura
+aspettano il potere pieno (niente ponte provvisorio); **B** la morte di
+Vaerax si scrive, e la si propone *attraverso* una carta di Propp — la
+strada è la Rivelazione, che prescrive il Consiglio sul Risveglio e fa
+proponente chi la cala (D-118); **C** le quattro vite nuove rispiegate una
+per una (§5 del dossier), decisione rimandata; **D** la regola dei valori
+per vita approvata (ridistribuire ±2, mai un profilo strettamente
+peggiore); **E** tutti e cinque i pezzi del telaio autorizzati, col rito
+di D-116.
+
+### I tre denti (decisione A), in questa versione
+
+- **Il credito federato** (`TGR_SALT_CREDIT`): la Compagnia del Sale pesca
+  WEALTH guardando due carte e tenendo la migliore.
+- **La regola come misura** (`TGR_FRIARS_MEASURE`): quando i Frati del
+  Vetro propongono sulla Reliquia, World Factor +1. La forma piena («dove
+  la reliquia è custodita») arriverà coi segni compositi.
+- **La veglia arma** (`TGR_ASH_VIGIL`): le Custodi della Cenere pescano
+  FORCE meglio.
+
+Le tre seconde vite del 0.1.70 che ancora violavano la regola della casa
+(«una vita senza dente non si scrive») adesso la rispettano; restano
+Repubblica e Culto della Misura, in attesa dichiarata dei pezzi E.
+
+### Misurato
+
+Accese insieme, con la motivazione a verbale: sono **disgiunte per
+costruzione** (ogni regola legge il segno di una vita diversa di una casa
+diversa) e **dormienti fuori dalle saghe** — nessuna trasformazione
+avviene dentro una Chronicle singola. Difatti: playtest sui 100 semi
+**identico byte per byte** alla 0.1.85; ere in banda (mediana 955 anni,
+20,5 generazioni, 22 nomi); suite 262 test / 5757 asserzioni verde.
+
+---
+
 ## D-123 — L'inventario dell'app: i Diritti, l'eco, i marker, la cronaca
 **implemented in 0.1.86** (su richiesta del committente, dall'inventario dell'app)
 

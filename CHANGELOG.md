@@ -5,6 +5,33 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.87] — La seduta sulle vite: le decisioni, e i primi tre denti
+
+La seduta della voce 19 è a verbale ([D-124](docs/DECISIONS.md#d-124),
+[SEDUTA_VITE.md](docs/SEDUTA_VITE.md) §4): i tre denti pronti si
+accendono, la morte di Vaerax si scriverà per via di Propp, i valori per
+vita sono approvati, tutti e cinque i pezzi del telaio autorizzati, le
+quattro vite nuove rispiegate (§5) in attesa di decisione.
+
+### Added
+
+- **Il credito federato**: la Compagnia del Sale pesca WEALTH migliore.
+- **La regola come misura**: i Frati del Vetro propongono sulla Reliquia
+  con World Factor +1.
+- **La veglia arma**: le Custodi della Cenere pescano FORCE migliore.
+
+Tre seconde vite del 0.1.70 tornano in regola («una vita senza dente non
+si scrive»); Repubblica e Culto della Misura aspettano, dichiarate, i
+pezzi nuovi del telaio.
+
+### Misurato
+
+Disgiunte per costruzione e dormienti fuori dalle saghe: playtest sui
+100 semi **identico byte per byte** alla 0.1.85, ere in banda (955 ·
+20,5 · 22), 262 test / 5757 asserzioni verdi.
+
+---
+
 ## [0.1.86] — L'inventario dell'app: i Diritti, l'eco, i marker, la cronaca
 
 Il committente ha chiesto cosa manca sullo schermo

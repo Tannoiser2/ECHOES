@@ -148,3 +148,137 @@ la vita che li aspetta viene approvata.)
 
 A ogni passo il vincolo di sempre: 0/8 seggi bloccati al tavolo misto, ere
 in banda, ogni esito a verbale con i numeri accanto.
+
+---
+
+## 4. Il verbale della seduta
+
+Le risposte del committente, con la lettura che ne guida il lavoro:
+
+- **A — tutte e tre.** I denti pronti si accendono (0.1.87): il credito
+  federato della Compagnia, la regola come misura dei Frati, la veglia
+  armata delle Custodi. Repubblica e Culto della Misura **non** prendono il
+  ponte provvisorio: avranno il potere pieno coi pezzi della E.
+- **B — si scrive, e la può proporre qualcuno con carta di Propp.** La
+  strada c'è già nel gioco: la **Rivelazione** prescrive il Consiglio sul
+  Risveglio e chi la cala ne è il proponente (D-118). La caccia al drago
+  sarà una proposta di quel Consiglio, eleggibile solo quando la funzione
+  di Propp giusta è stata compiuta — si arriva a proporla *attraverso* la
+  carta, come chiesto. Il drago imparerà a difendersi (il punteggio deve
+  temere `SET_ENTITY_ACTIVE`), e la morte non elimina il giocatore: scatta
+  `ON_DEATH` e chi giocava il drago gioca il Culto.
+- **C — da rispiegare.** Fatto qui sotto, al §5, una vita alla volta.
+- **D — approvata.** La regola della ridistribuzione (±2, mai un profilo
+  strettamente peggiore); la tabella si compila e si misura con la sonda
+  delle ere.
+- **E — tutti e cinque.** Segni compositi, STANCE_MODIFIER, il velo,
+  l'eccezione di porta, la soglia della Condition — col rito di D-116:
+  ogni gancio provato con regole sintetiche e neutro finché nessuna
+  regola vera lo usa.
+
+---
+
+## 5. Le quattro vite mai scritte, spiegate una per una (la C)
+
+### La Diaspora — il Popolo Nahr disperso
+
+**Chi è.** Il popolo che ha smesso di chiedere una terra: se il mondo lo
+caccia due volte, smette di avere un centro — e diventa impossibile da
+chiudere fuori.
+
+**Quando entra.** Alla successione fra le ere, se nell'era appena chiusa
+Nahr è stato **cacciato o espropriato due volte** (le espulsioni dei
+Consigli, la Valle requisita). Non è una scelta: è quello che il tavolo
+gli ha fatto.
+
+**Come si gioca diversa.** Il suo potere è l'**eccezione di porta**: le
+porte sbarrate — la cacciata di un Consiglio (D-067), il confine
+sigillato, la strada depredata — **non la tengono**. Dove gli altri
+restano fuori un atto intero, la Diaspora rientra il round dopo. In
+partita: la cacci dalla Valle al secondo atto, e al terzo i suoi fuochi
+sono di nuovo lì.
+
+**Cosa rischia il tavolo.** L'espulsione è la leva che rende perdibile il
+Minimo (D-067): per la Diaspora quella leva si spunta. Va misurato che
+Nahr non diventi imperdibile — se il suo NONE sparisce dalle saghe, la
+vita va ritoccata (per esempio: rientra, ma il rientro costa l'azione).
+
+**Cosa chiede al motore.** L'eccezione di porta (pezzo E, autorizzato).
+
+### La Leggenda della Montagna — Vaerax sfumato
+
+**Chi è.** Il drago che non si è mai alzato: se la miniera sigillata regge
+**tre ere** e nessuno lo ha svegliato, la creatura smette di essere un
+corpo e diventa la storia che si racconta di lei. Il seggio passa a *chi
+custodisce quella storia*.
+
+**Quando entra.** Alla successione, dopo tre ere con il sigillo intatto e
+il Risveglio mai sfondato.
+
+**Come si gioca diversa.** È la vita più radicale: **non ha pedine sulla
+mappa**. Niente presenze, niente MOVE, non la si può cacciare — non c'è
+da dove. Gioca soltanto sui Consigli e sulle leggende: i suoi fronti
+valgono di più dove una leggenda della montagna è nel mondo, e **pesa
+sulla pesca delle domande** delle ere future (il meccanismo del peso
+delle leggende esiste da D-095). In partita: un giocatore senza segnalini
+che decide quali domande il mondo si farà.
+
+**Cosa rischia il tavolo.** Il suo Minimo non può più essere «sei ancora
+lì» — serve un Destino su misura (clausole su leggende e Consigli), da
+scrivere con la stessa cura dell'audit dei Destini: una vita senza NONE
+possibile violerebbe la voce 15.
+
+**Cosa chiede al motore.** Il «seggio senza corpo»: più di un tipo di
+regola — il movimento vietato per natura, il Minimo non-di-presenza. È la
+vita da disegnare insieme per ultima, e il dossier propone di approvarla
+**come direzione** e progettarla in una seduta sua.
+
+### I Forni Riaccesi — Kessa industriale
+
+**Chi è.** I Signori della Cenere quando la miniera riapre: la ferita
+aperta della montagna (la cicatrice di D-122) diventa un'occasione, e la
+casa che vegliava diventa la casa che produce.
+
+**Quando entra.** Alla successione, se `scar:open_wound` è sulla mappa e
+il sigillo non c'è — cioè se il tavolo ha sfruttato il Cristallo e nessuno
+ha richiuso.
+
+**Come si gioca diversa.** L'industria: alle Montagne Rosse **pesca
+meglio** (il minerale paga), ma **ogni volta che forgia, la Carestia
+sale** — i forni mangiano il grano della Valle. In partita: Kessa diventa
+ricca e sporca; il tavolo la lascia produrre sapendo che il conto arriva
+sulla domanda del pane, e la Carestia diventa anche affare suo.
+
+**Cosa rischia il tavolo.** Accelera la Carestia: da misurare che i
+Consigli restino in banda e che Kessa non compri la partita.
+
+**Cosa chiede al motore.** La pesca c'è (DRAW_BIAS); il costo «quando
+forgi, una Tensione sale» è un **sesto pezzo piccolo** non elencato in E
+— l'azione che sfoga su una domanda. Da autorizzare con questa vita.
+
+### L'Egemonia — le Città Libere ridotte a una
+
+**Chi è.** Quando le altre città si sono svuotate e una sola resta piena,
+le Libere smettono di essere un coro: una città comanda, e parla come
+comanda.
+
+**Quando entra.** Alla successione, se una sola delle città è piena e le
+altre portano il segno dello svuotamento.
+
+**Come si gioca diversa.** Il **diritto potenziato**: i suoi CLAIM pesano
+di più (rivendicare le costa meno, forzare il Consiglio è più facile) —
+ma **nessuno ama l'egemone**: le relazioni con lei hanno un tetto ad
+ALLY, non si sale oltre. In partita: le Libere passano dal votare
+all'imporre l'ordine del giorno, e il tavolo smette di fidarsi.
+
+**Cosa rischia il tavolo.** Il diritto di proporre è la leva più forte
+del gioco (D-063): il CLAIM potenziato va misurato con la sonda delle
+scelte, non solo col playtest.
+
+**Cosa chiede al motore.** Il tetto c'è (RELATION_CAP). Il CLAIM
+potenziato è un tipo piccolo (lo sconto sul diritto), da autorizzare con
+questa vita.
+
+**La domanda C, riformulata**: quali delle quattro approvi — e per la
+Leggenda della Montagna, va bene approvarla come direzione e disegnarla
+in una seduta dedicata?

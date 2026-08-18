@@ -398,6 +398,45 @@
       "min_level": "NEUTRAL",
       "active": true,
       "note": "La cicatrice che morde (ISSUES 24, fase 4): il PACT lo scrive l'Insediamento Nahr sulla coppia che lo firma, e da quel giorno quella relazione non scende sotto NEUTRAL - come il sangue (D-117). Il tetto del giuramento spezzato vince, se i due segni coesistono."
+    },
+    {
+      "id": "TGR_SALT_CREDIT",
+      "title": "Il credito federato pesca il meglio",
+      "when": {
+        "scope": "ENTITY",
+        "tag": "life:INC_SALE_02"
+      },
+      "kind": "DRAW_BIAS",
+      "family": "WEALTH",
+      "bias": "BONUS",
+      "active": true,
+      "note": "La seduta sulle vite (D-124, decisione A): la Compagnia del Sale ha il credito di tutte le case federate - quando pesca ricchezza guarda due carte e tiene la migliore. Il dente che la seconda vita di Ilve aspettava dal 0.1.70."
+    },
+    {
+      "id": "TGR_FRIARS_MEASURE",
+      "title": "La regola come misura",
+      "when": {
+        "scope": "ENTITY",
+        "tag": "life:INC_VETRO_02"
+      },
+      "kind": "COUNCIL_MODIFIER",
+      "tension_id": "TEN_RELIC",
+      "world_factor_delta": 1,
+      "active": true,
+      "note": "La seduta sulle vite (D-124, decisione A): quando i Frati del Vetro propongono sulla Reliquia, la regola dell'ordine fa testo - World Factor +1. La forma piena (+1 dove la reliquia e' custodita) arrivera' coi segni compositi (decisione E)."
+    },
+    {
+      "id": "TGR_ASH_VIGIL",
+      "title": "La veglia arma",
+      "when": {
+        "scope": "ENTITY",
+        "tag": "life:INC_CENERE_02"
+      },
+      "kind": "DRAW_BIAS",
+      "family": "FORCE",
+      "bias": "BONUS",
+      "active": true,
+      "note": "La seduta sulle vite (D-124, decisione A): le Custodi della Cenere vegliano armate - quando pescano forza guardano due carte e tengono la migliore. La torre di D-122 resta per tutti; questa e' la mano delle Custodi."
     }
   ]
 }
