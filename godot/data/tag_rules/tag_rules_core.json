@@ -567,6 +567,37 @@
       "max_level": "ALLY",
       "active": true,
       "note": "L'Egemonia di Eredan (D-131): ogni coppia di cui l'egemone e' membro ha un tetto ad ALLY - ci si allea con lei, non ci si lega. Il gancio ENTITY sulla coppia e' l'estensione di D-131."
+    },
+    {
+      "id": "TGR_LEGEND_STILL",
+      "title": "La storia non cammina",
+      "when": {
+        "scope": "ENTITY",
+        "tag": "life:INC_VAERAX_LEGEND"
+      },
+      "kind": "ACTION_GATE",
+      "template": "MOVE",
+      "active": true,
+      "note": "La Leggenda della Montagna (D-133): un seggio senza corpo non muove pedine - non ne ha. Il divieto e' dichiarato perche' l'app lo mostri grigio invece di lasciarlo fallire."
+    },
+    {
+      "id": "TGR_LEGEND_VOICE",
+      "title": "La voce che il mondo ricorda",
+      "when": {
+        "scope": "ENTITY",
+        "tag": "life:INC_VAERAX_LEGEND"
+      },
+      "kind": "STANCE_MODIFIER",
+      "stance": "SUPPORT",
+      "stance_delta": 1,
+      "active": true,
+      "when_also": [
+        {
+          "scope": "GLOBAL",
+          "tag": "mountain_forgotten"
+        }
+      ],
+      "note": "La Leggenda della Montagna (D-133): finche' il mondo dimentica cosa dorme davvero, la sua parola sui fronti che sostiene pesa un impegno in piu'. Se il sigillo cade il segno sparisce, e la voce torna una voce."
     }
   ]
 }

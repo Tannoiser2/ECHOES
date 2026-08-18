@@ -280,3 +280,64 @@ func test_the_last_full_city_becomes_the_hegemony() -> void:
 		{"regions": {"REG_TERRE_NAHR": {"tags": ["scar:emptied"]}}}
 	)
 	assert_false(bool(elsewhere["transformed"]), "uno sgombero qualsiasi non fa un'egemonia")
+
+
+## La Leggenda della Montagna (D-133): quando il mondo dimentica, il drago
+## diventa la storia che si racconta di lui - e la storia giura su ambizioni
+## sue. L'ordine d'autore protegge il corpo: finche' il Cristallo e' un fatto
+## vivo, siede il Ridestato, non il racconto.
+func test_the_forgotten_mountain_seats_the_legend() -> void:
+	var told: Dictionary = _plan_for(
+		"ENT_VAERAX", {"name": "Vaerax", "generation": 0},
+		{"global_tags": ["mountain_forgotten"]}
+	)
+	assert_true(bool(told["transformed"]), "la dimenticanza compiuta muta il seggio")
+	assert_eq(str(told["name"]), "La Leggenda della Montagna", "e siede il racconto")
+	assert_eq(int(told["incarnation"]), 3, "la quarta vita del seggio")
+	assert_eq(
+		str(told["destiny_id"]), "DST_VAERAX_LEGEND",
+		"la vita giura su ambizioni sue"
+	)
+
+	var faded: Dictionary = _plan_for(
+		"ENT_VAERAX", {"name": "Vaerax Ridestato", "generation": 0, "incarnation": 1},
+		{"global_tags": ["mountain_forgotten", "legend:crystal_exploited"]}
+	)
+	assert_eq(
+		str(faded["name"]), "La Leggenda della Montagna",
+		"anche il drago richiuso, nei secoli, torna racconto"
+	)
+
+	var awake: Dictionary = _plan_for(
+		"ENT_VAERAX", {"name": "Vaerax", "generation": 0},
+		{"global_tags": ["mountain_forgotten", "crystal_exploited"]}
+	)
+	assert_eq(
+		str(awake["name"]), "Vaerax Ridestato",
+		"col Cristallo fuori siede il corpo, non la storia (ordine d'autore)"
+	)
+
+	var still_awake: Dictionary = _plan_for(
+		"ENT_VAERAX", {"name": "Vaerax Ridestato", "generation": 0, "incarnation": 1},
+		{"global_tags": ["mountain_forgotten", "crystal_exploited"]}
+	)
+	assert_false(
+		bool(still_awake["transformed"]),
+		"il fatto vivo del Cristallo sbarra la leggenda"
+	)
+
+
+## D-133: il seggio senza corpo. La vita che dichiara `presence: []` non
+## piazza pedine al setup - e le altre case piazzano le loro come sempre.
+func test_the_bodiless_life_places_no_tokens() -> void:
+	var factory: GDScript = preload("res://scripts/world/world_state_factory.gd")
+	session.world["entities"]["ENT_VAERAX"]["incarnation"] = 3
+	var placed: Dictionary = {}
+	for effect in factory.setup_effects(
+		session.data.chronicles["CHR_01"], session.data, session.world
+	):
+		if str(effect["type"]) == "ADD_PRESENCE":
+			var seat: String = str(effect["target"]["id"])
+			placed[seat] = int(placed.get(seat, 0)) + 1
+	assert_false(placed.has("ENT_VAERAX"), "la Leggenda non sta in nessun posto")
+	assert_true(int(placed.get("ENT_ALDRIC", 0)) > 0, "le case col corpo si piazzano come sempre")

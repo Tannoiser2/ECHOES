@@ -551,6 +551,69 @@
         ]
       },
       "art_prompt_key": "destiny.vaerax.watched"
+    },
+    {
+      "id": "DST_VAERAX_LEGEND",
+      "entity_id": "ENT_VAERAX",
+      "title": "La Storia che si Racconta",
+      "description": "Non c'è più un corpo da difendere: c'è un racconto da tenere vivo. Finché il mondo dimentica cosa dorme davvero sotto la montagna, la montagna è di chi la racconta.",
+      "minimum": {
+        "label": "La storia si racconta ancora",
+        "conditions": [
+          {
+            "type": "entity_alive",
+            "entity_id": "ENT_VAERAX",
+            "label": "Il seggio della storia non è stato spento"
+          },
+          {
+            "type": "state_tag_present",
+            "scope": "GLOBAL",
+            "tag": "mountain_forgotten",
+            "label": "Il mondo dimentica ancora la montagna"
+          }
+        ]
+      },
+      "victory": {
+        "label": "La montagna tiene lontani gli uomini",
+        "conditions": [
+          {
+            "type": "state_tag_present",
+            "scope": "GLOBAL",
+            "tag": "mine_sealed",
+            "label": "Il sigillo regge"
+          },
+          {
+            "type": "tension_limit",
+            "tension_id": "TEN_AWAKENING",
+            "max": 3,
+            "label": "Il Risveglio resta quieto"
+          }
+        ]
+      },
+      "triumph": {
+        "label": "Nessuno ricorda com'era davvero",
+        "conditions": [
+          {
+            "type": "state_tag_present",
+            "scope": "GLOBAL",
+            "tag": "mine_sealed",
+            "label": "Il sigillo regge"
+          },
+          {
+            "type": "tension_limit",
+            "tension_id": "TEN_AWAKENING",
+            "max": 2,
+            "label": "Il Risveglio è un sussurro"
+          },
+          {
+            "type": "state_tag_present",
+            "scope": "GLOBAL",
+            "tag": "legend:crystal_exploited",
+            "label": "Il giorno del Cristallo è ormai soltanto un racconto"
+          }
+        ]
+      },
+      "art_prompt_key": "destiny.vaerax.legend"
     }
   ]
 }

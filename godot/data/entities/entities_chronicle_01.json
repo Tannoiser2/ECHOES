@@ -630,6 +630,29 @@
           },
           "art_prompt_key": "entity.vaerax_cult",
           "entry": "ON_DEATH"
+        },
+        {
+          "id": "INC_VAERAX_LEGEND",
+          "name": "La Leggenda della Montagna",
+          "description": "Il drago che nessuno vivo ha mai visto. Il sigillo ha retto tanto a lungo che la creatura è diventata la storia che si racconta di lei — e chi custodisce quella storia siede al tavolo senza un solo segnalino sulla mappa: non sta in nessun posto, e per questo nessuna porta lo tiene fuori.",
+          "persistence": "COLLECTIVE",
+          "presence": [],
+          "action_values": {
+            "ACQUIRE": 2,
+            "MOVE": 0,
+            "INFLUENCE": 5,
+            "FORGE": 3,
+            "SCHEME": 3,
+            "CLAIM": 2
+          },
+          "art_prompt_key": "entity.vaerax_legend",
+          "entry": "ON_TAG",
+          "entry_tag": "mountain_forgotten",
+          "entry_forbidden_tag": "crystal_exploited",
+          "destiny_id": "DST_VAERAX_LEGEND",
+          "destiny_pool": [
+            "DST_VAERAX_LEGEND"
+          ]
         }
       ]
     }

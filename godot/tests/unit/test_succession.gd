@@ -290,3 +290,68 @@ func test_time_lets_conditions_fade_but_keeps_what_is_built() -> void:
 		if str(effect["type"]) == "SET_REGION_TAG":
 			kept.append(str(effect["payload"]["tag"]))
 	assert_true(kept.has("condition:mourning"), "vent'anni dopo il lutto si ricorda ancora")
+
+
+## D-133: il conto delle ere nei segni. Un'era chiusa col sigillo intatto
+## avanza la catena di un segno; alla terza il mondo posa `mountain_forgotten`.
+## La condizione caduta azzera tutto senza lasciare leggende: un conteggio
+## interrotto non e' una memoria.
+func test_the_era_tally_counts_held_seals_and_resets() -> void:
+	var factory: GDScript = preload("res://scripts/world/world_state_factory.gd")
+	var chronicle: Dictionary = _chronicle("CHR_02")
+
+	var first: Array = _global_tags(factory.inheritance_effects(
+		{"global_tags": ["mine_sealed"], "regions": {}, "relations": {}, "entities": {}},
+		chronicle, data(), 120
+	))
+	assert_true(first.has("seal_kept"), "la prima era col sigillo si conta")
+	assert_false(first.has("seal_kept_twice"), "una sola volta")
+
+	var second: Array = _global_tags(factory.inheritance_effects(
+		{"global_tags": ["mine_sealed", "seal_kept"], "regions": {}, "relations": {}, "entities": {}},
+		chronicle, data(), 120
+	))
+	assert_true(
+		second.has("seal_kept") and second.has("seal_kept_twice"),
+		"la seconda era avanza la catena"
+	)
+	assert_false(second.has("mountain_forgotten"), "ma la montagna non e' ancora storia")
+
+	var third: Array = _global_tags(factory.inheritance_effects(
+		{
+			"global_tags": ["mine_sealed", "seal_kept", "seal_kept_twice"],
+			"regions": {}, "relations": {}, "entities": {},
+		},
+		chronicle, data(), 120
+	))
+	assert_true(third.has("mountain_forgotten"), "alla terza la montagna diventa racconto")
+
+	var broken: Array = _global_tags(factory.inheritance_effects(
+		{"global_tags": ["seal_kept", "seal_kept_twice"], "regions": {}, "relations": {}, "entities": {}},
+		chronicle, data(), 120
+	))
+	assert_false(
+		broken.has("seal_kept") or broken.has("seal_kept_twice"),
+		"il sigillo caduto azzera il conto"
+	)
+	assert_false(
+		broken.has("legend:seal_kept") or broken.has("legend:seal_kept_twice"),
+		"e il conteggio interrotto non diventa leggenda"
+	)
+
+	var woken: Array = _global_tags(factory.inheritance_effects(
+		{
+			"global_tags": ["mine_sealed", "seal_kept", "crystal_exploited"],
+			"regions": {}, "relations": {}, "entities": {},
+		},
+		chronicle, data(), 20
+	))
+	assert_false(woken.has("seal_kept"), "il drago sveglio interrompe il conto")
+
+
+func _global_tags(effects: Array) -> Array:
+	var out: Array = []
+	for effect in effects:
+		if str(effect["type"]) == "SET_GLOBAL_TAG":
+			out.append(str(effect["payload"]["tag"]))
+	return out

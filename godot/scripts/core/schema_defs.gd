@@ -320,6 +320,12 @@ const DEFS := {
 					"type": "String",
 				},
 			},
+			"era_tallies": {
+				"type": "Array",
+				"element": {
+					"type": "Dictionary",
+				},
+			},
 			"years_after_previous": {
 				"type": "Variant",
 			},

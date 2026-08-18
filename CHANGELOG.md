@@ -5,6 +5,35 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.96] — La Leggenda della Montagna
+
+Le risposte A e C della seduta ([D-133](docs/DECISIONS.md#d-133)): il
+seggio senza corpo — e la voce 19 si chiude.
+
+### Added
+
+- **Il conto delle ere nei segni** (`era_tallies`, D-133): tre ere col
+  sigillo intatto e il mondo posa `mountain_forgotten`; il sigillo
+  caduto azzera il conto senza lasciare leggende.
+- **La Leggenda della Montagna** (`INC_VAERAX_LEGEND`, COLLECTIVE):
+  entra su `mountain_forgotten`, sbarrata solo dal fatto vivo del
+  Cristallo — che sbiadisce: anche il Ridestato, richiuso e
+  dimenticato, torna racconto. `presence: []` (niente pedine, niente
+  cacciate), MOVE vietato dichiarato, la voce sui fronti finché il
+  mondo dimentica.
+- **Il Destino per vita** (`destiny_id`/`destiny_pool`
+  sull'incarnazione): `DST_VAERAX_LEGEND`, senza clausole di presenza
+  — il Minimo si perde se il sigillo cade.
+
+### Measured
+
+- La Leggenda siede **3/20 saghe** (Ridestato 20 → 18, NONE di Vaerax
+  9 → 16: la vita non è un rifugio), banda identica (24 nomi).
+  Playtest identico (0/8), sims deterministici, censimento 0/0, suite
+  281 test / 5865 asserzioni, verde.
+
+---
+
 ## [0.1.95] — La montagna delle città
 
 La risposta B della seduta sulla Leggenda

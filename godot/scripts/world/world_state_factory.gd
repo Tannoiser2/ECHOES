@@ -687,8 +687,17 @@ static func inheritance_effects(
 	# I segnaposto della grammatica narrativa (`function:`) sbiadiscono e basta.
 	var fades: bool = Succession.decays_after(years)
 	var enduring: Array = chronicle.get("enduring_facts", [])
+	# I segni dei conti d'era (D-133) non passano dal giro normale: li riemette
+	# il conto qui sotto se la sua condizione tiene, e se non tiene spariscono
+	# senza diventare leggenda - un conteggio interrotto non e' una memoria.
+	var tallied: Dictionary = {}
+	for tally in chronicle.get("era_tallies", []):
+		for sign in (tally as Dictionary)["chain"]:
+			tallied[str(sign)] = true
 	for tag in previous.get("global_tags", []):
 		var fact: String = str(tag)
+		if tallied.has(fact):
+			continue
 		if (chronicle.get("global_tags", []) as Array).has(fact):
 			continue
 		if fades and not enduring.has(fact) and not fact.begins_with("legend:"):
@@ -699,6 +708,27 @@ static func inheritance_effects(
 			))
 			continue
 		effects.append(Effect.make("SET_GLOBAL_TAG", "world", "WORLD", {"tag": fact}, source))
+
+	# Il conto delle ere (D-133): un'era chiusa con la condizione vera avanza
+	# la catena di un segno; la condizione caduta azzera tutto. E' il tempo
+	# che lavora - tre ere col sigillo intatto e la montagna diventa racconto.
+	for tally in chronicle.get("era_tallies", []):
+		var held: Dictionary = tally
+		var facts: Array = previous.get("global_tags", [])
+		if not facts.has(str(held["if_tag"])):
+			continue
+		if str(held.get("if_not_tag", "")) != "" and facts.has(str(held["if_not_tag"])):
+			continue
+		var chain: Array = held["chain"]
+		var reached: int = -1
+		for index in range(chain.size()):
+			if facts.has(str(chain[index])):
+				reached = index
+		var next: int = mini(reached + 1, chain.size() - 1)
+		for index in range(next + 1):
+			effects.append(Effect.make(
+				"SET_GLOBAL_TAG", "world", "WORLD", {"tag": str(chain[index])}, source
+			))
 
 	# Scars are the visible half of the world's memory: they stay on the map.
 	for scar in previous.get("scars", []):
@@ -717,12 +747,21 @@ static func _had_presence(previous: Dictionary, entity_id: String, region_id: St
 
 
 ## Setup Effects: presence tokens and opening hands (§13).
-static func setup_effects(chronicle: Dictionary, data: RefCounted) -> Array:
+##
+## `world` serve solo alla vita corrente (D-133): dopo una successione il
+## seggio puo' portare un'incarnazione che dichiara una presenza sua - la
+## Leggenda della Montagna parte senza pedine. Senza mondo (prima Chronicle,
+## sonde) la vita e' la prima e la presenza e' quella del seggio.
+static func setup_effects(chronicle: Dictionary, data: RefCounted, world: Dictionary = {}) -> Array:
 	var effects: Array = []
 	var source: Dictionary = Effect.source("system", "SETUP", "", 0, 0, 0)
 	for entity_id in chronicle["entities"]:
 		var definition: Dictionary = data.entities[entity_id]
-		for region_id in definition["presence"]:
+		var incarnation: int = int((
+			(world.get("entities", {}) as Dictionary).get(str(entity_id), {}) as Dictionary
+		).get("incarnation", 0))
+		var active: Dictionary = Succession.active_view(definition, incarnation)
+		for region_id in active["presence"]:
 			effects.append(
 				Effect.make("ADD_PRESENCE", "entity", entity_id, {"region_id": region_id}, source)
 			)

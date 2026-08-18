@@ -160,6 +160,11 @@ static func plan(
 					note = "%s generazione della casa" % _ordinal_word(generation + 1)
 				changed = true
 
+		# D-133: la vita che giura su ambizioni sue le prende sedendosi - la
+		# Leggenda non puo' volere la presenza che non ha.
+		if transformed and (incarnations[incarnation] as Dictionary).has("destiny_id"):
+			destiny_id = str((incarnations[incarnation] as Dictionary)["destiny_id"])
+
 		# Whoever is sitting there now: if the seat got what it wanted, it wants
 		# the next thing. If it did not, it tries again - and *that* is what
 		# keeps a question alive across generations instead of across springs.
@@ -172,7 +177,7 @@ static func plan(
 		else:
 			barren += 1
 		if ACHIEVED.has(level):
-			var pool: Array = definition.get("destiny_pool", [])
+			var pool: Array = active.get("destiny_pool", [])
 			if pool.size() > 1:
 				var at: int = pool.find(destiny_id)
 				destiny_id = str(pool[(at + 1) % pool.size()])
@@ -184,7 +189,7 @@ static func plan(
 		# dopo WEARY_ERAS ere a mani vuote giura su altro. Chi non cambia
 		# persona non si stanca - Vaerax e' sotto la montagna apposta.
 		elif changed and barren >= WEARY_ERAS:
-			var pool: Array = definition.get("destiny_pool", [])
+			var pool: Array = active.get("destiny_pool", [])
 			if pool.size() > 1:
 				var at: int = pool.find(destiny_id)
 				destiny_id = str(pool[(at + 1) % pool.size()])
@@ -276,8 +281,12 @@ static func active_view(definition: Dictionary, incarnation: int) -> Dictionary:
 		return definition
 	var view: Dictionary = definition.duplicate()
 	var life: Dictionary = incarnations[incarnation]
+	# `presence` e i campi del Destino (D-133) coprono solo se la vita li
+	# dichiara: la Leggenda parte senza pedine e giura su ambizioni sue,
+	# le altre vite tengono corpo e giuramenti del seggio.
 	for field in ["name", "description", "persistence", "action_values",
-			"art_prompt_key", "successors", "name_grammar"]:
+			"art_prompt_key", "successors", "name_grammar",
+			"presence", "destiny_id", "destiny_pool"]:
 		if life.has(field):
 			view[field] = life[field]
 		elif field in ["successors", "name_grammar"]:

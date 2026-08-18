@@ -331,6 +331,61 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-133 — La Leggenda della Montagna: il seggio senza corpo
+**implemented in 0.1.96** (seduta sulla Leggenda, risposte A «va bene» e C «proviamo» — la voce 19 si chiude)
+
+La vita più radicale delle diciassette dell'albero: il drago che il sigillo
+ha tenuto sotto così a lungo da diventare la storia che si racconta di lui.
+Quarta vita di `ENT_VAERAX` (`INC_VAERAX_LEGEND`, COLLECTIVE), e la prima
+del gioco **senza un solo segnalino sulla mappa**.
+
+I pezzi, dal verbale della seduta:
+
+- **Il conto delle ere nei segni** (risposta A — `era_tallies` sulla
+  Chronicle, applicato da `inheritance_effects`): a ogni successione, se
+  `mine_sealed` sta sui fatti dell'era chiusa e `crystal_exploited` no, il
+  mondo posa il prossimo segno della catena `seal_kept` →
+  `seal_kept_twice` → `mountain_forgotten`; la condizione caduta azzera
+  tutto senza lasciare leggende (un conteggio interrotto non è una
+  memoria). Come per la Diaspora: segni, non contatori.
+- **L'ingresso**: ON_TAG `mountain_forgotten`, sbarrato da
+  `crystal_exploited` — ma solo dal *fatto vivo*: il Cristallo non è
+  perenne, e sui salti lunghi sbiadisce in `legend:crystal_exploited`.
+  È la strada che rende la vita raggiungibile: **anche il Ridestato,
+  richiuso e dimenticato nei secoli, torna racconto** (l'ordine d'autore
+  protegge il corpo: col fatto vivo siede il Ridestato, mai la storia).
+- **Il seggio senza corpo**: la vita dichiara `presence: []` (campo nuovo
+  per incarnazione; `setup_effects` ora legge la vita corrente) — nessuna
+  pedina al setup, quindi niente da cacciare e niente porte che la
+  tengano. Il MOVE è vietato dichiarato (`TGR_LEGEND_STILL`, ACTION_GATE:
+  l'app lo mostra grigio invece di lasciarlo fallire).
+- **Il Destino su misura** (risposta C — `destiny_id`/`destiny_pool` per
+  vita, nuova estensione di `active_view` e del piano di successione):
+  `DST_VAERAX_LEGEND`, senza clausole di presenza. Minimo «La storia si
+  racconta ancora» (il segno `mountain_forgotten` regge — si perde se il
+  sigillo cade); Vittoria «La montagna tiene lontani gli uomini»
+  (sigillo + Risveglio quieto); Trionfo «Nessuno ricorda com'era davvero»
+  (più `legend:crystal_exploited`: il giorno del Cristallo ormai solo un
+  racconto).
+- **La voce sui fronti** (`TGR_LEGEND_VOICE`, STANCE_MODIFIER composito):
+  finché il mondo dimentica, i fronti che sostiene pesano un impegno in
+  più. Se il sigillo cade, il segno sparisce e la voce torna una voce.
+- La guardia dei Destini irraggiungibili ora conosce **le due mani del
+  motore**: i conti d'era scrivono le loro catene, e il tempo scrive
+  `legend:<fatto>` per ogni fatto che almeno una Chronicle non dichiara
+  perenne.
+
+Misurato (20 saghe CHR_01→CHR_02): **la Leggenda siede 3 volte** — rara
+come deve (tre ere col sigillo e il Cristallo sbiadito) — il Ridestato
+scende 20 → 18, e i NONE di Vaerax salgono 9 → 16: il Minimo della storia
+si perde davvero, la vita non è un rifugio. Banda identica (955 / 20,2 /
+24 nomi — il ventiquattresimo è lei). Playtest 100 semi identico
+(185·78·123·176, 0/8), sims deterministici, censimento 0/0, BRIEF_ARTE e
+ASSET_MANIFEST rigenerati (arte della vita e del Destino), suite 281/5865
+verde.
+
+---
+
 ## D-132 — La montagna delle città: le porte d'ingresso si aprono
 **implemented in 0.1.95** (seduta sulla Leggenda, risposta B — «prima la B», D del verbale)
 

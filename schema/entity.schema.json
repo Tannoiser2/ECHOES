@@ -218,6 +218,28 @@
               "name_grammar": {
                 "$ref": "#/$defs/name_grammar"
               },
+              "presence": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^REG_[A-Z0-9_]+$"
+                },
+                "description": "Solo se la vita cambia dove il seggio comincia. La lista vuota e' il seggio senza corpo (D-133): nessuna pedina al setup - la Leggenda della Montagna non sta in nessun posto, e per questo non la si puo' cacciare da nessuno."
+              },
+              "destiny_id": {
+                "type": "string",
+                "pattern": "^DST_[A-Z0-9_]+$",
+                "description": "Solo se la vita giura su ambizioni sue (D-133): alla trasformazione il seggio passa a questo Destino - la Leggenda non puo' volere la presenza che non ha."
+              },
+              "destiny_pool": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^DST_[A-Z0-9_]+$"
+                },
+                "minItems": 1,
+                "description": "Solo con destiny_id: il giro delle ambizioni della vita, al posto di quello del seggio."
+              },
               "entry": {
                 "type": "string",
                 "enum": [

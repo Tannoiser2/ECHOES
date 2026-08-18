@@ -245,6 +245,18 @@
         "crown_divided",
         "crown_dispossessed",
         "ledger_public"
+      ],
+      "era_tallies": [
+        {
+          "id": "TLY_SEAL",
+          "if_tag": "mine_sealed",
+          "if_not_tag": "crystal_exploited",
+          "chain": [
+            "seal_kept",
+            "seal_kept_twice",
+            "mountain_forgotten"
+          ]
+        }
       ]
     }
   ]

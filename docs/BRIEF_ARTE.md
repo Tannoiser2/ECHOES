@@ -1950,6 +1950,24 @@ framing, 2:3. No text, no letters, no numerals, no logos, no frame, no border.
 Not gory, not horror. Museum-quality illustration, boardgame card art.
 ```
 
+### `entity.vaerax_legend` — La Leggenda della Montagna
+
+- **soggetto**: La Leggenda della Montagna — Il drago che nessuno vivo ha mai visto. Il sigillo ha retto tanto a lungo che la creatura è diventata la storia che si racconta di lei — e chi custodisce quella storia siede al tavolo senza un solo segnalino sulla mappa: non sta in nessun posto, e per questo nessuna porta lo tiene fuori
+- **id**: `INC_VAERAX_LEGEND`
+
+```
+Historical dark-fantasy portrait of La Leggenda della Montagna — Il drago che nessuno vivo ha mai visto. Il sigillo ha retto tanto a lungo che la creatura è diventata la storia che si racconta di lei — e chi custodisce quella storia siede al tavolo senza un solo segnalino sulla mappa: non sta in nessun posto, e per questo nessuna porta lo tiene fuori. Painterly oil technique, visible
+brushwork, muted earth palette with a single grigio-rosso accent. One subject, close,
+facing the viewer: this framing is what separates a House card from an Asset card,
+where a single centred figure looking out is forbidden. non un volto: una presenza ravvicinata — pietra, scaglia, respiro — inquadrata come si inquadra un volto. Low side
+lighting, shallow depth of field; the background says where they come from without
+telling a story of its own. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: head and shoulders in the upper two thirds; the
+lower third is a calm, low-detail area reserved for a text overlay. Vertical card
+framing, 2:3. No text, no letters, no numerals, no logos, no frame, no border.
+Not gory, not horror. Museum-quality illustration, boardgame card art.
+```
+
 ### `entity.vaerax_risen` — Vaerax Ridestato
 
 - **soggetto**: Vaerax Ridestato — Il Cristallo cavato dalla montagna ha tolto il sonno a ciò che dormiva. Non è arrabbiato: è sveglio, ed è peggio — perché adesso ascolta ogni Consiglio che parla di lui
@@ -2283,6 +2301,24 @@ not horror. Museum-quality illustration, boardgame card art.
 
 ```
 Historical dark-fantasy emblematic scene of Cio che Dorme Resti Addormentato — Impedire lo sfruttamento incontrollato del Cristallo e preservare le Montagne Rosse. Painterly oil technique,
+visible brushwork, muted earth palette with a single grigio-rosso accent. No faces:
+a Destiny card shows the thing wanted, not the one who wants it — an object, a
+place, a threshold, composed like a votive image. ciò che si veglia: la pietra vista da dentro, il cunicolo, il respiro della montagna. Seen close and
+slightly from below, the way an ambition is seen; one strong light source, deep
+quiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: subject in the upper two thirds; the lower third
+is a calm, low-detail area reserved for a text overlay. Vertical card framing,
+2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,
+not horror. Museum-quality illustration, boardgame card art.
+```
+
+### `destiny.vaerax.legend` — La Storia che si Racconta
+
+- **soggetto**: La Storia che si Racconta — Non c'è più un corpo da difendere: c'è un racconto da tenere vivo. Finché il mondo dimentica cosa dorme davvero sotto la montagna, la montagna è di chi la racconta
+- **id**: `DST_VAERAX_LEGEND`
+
+```
+Historical dark-fantasy emblematic scene of La Storia che si Racconta — Non c'è più un corpo da difendere: c'è un racconto da tenere vivo. Finché il mondo dimentica cosa dorme davvero sotto la montagna, la montagna è di chi la racconta. Painterly oil technique,
 visible brushwork, muted earth palette with a single grigio-rosso accent. No faces:
 a Destiny card shows the thing wanted, not the one who wants it — an object, a
 place, a threshold, composed like a votive image. ciò che si veglia: la pietra vista da dentro, il cunicolo, il respiro della montagna. Seen close and

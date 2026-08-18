@@ -352,9 +352,9 @@ opzioni sono d'autore: una via per *disfare* il fatto eterno (riaprire la
 miniera, riunire la corona), o Destini tardivi che chiedono presenze invece
 che assenze.
 
-### 19. Le incarnazioni del seggio: Anselmo, e poi il suo culto
+### 19. ✅ Le incarnazioni del seggio: Anselmo, e poi il suo culto — fatta in 0.1.63–0.1.96
 
-`motore` · `contenuto` · voluta dal committente
+`motore` · `contenuto` · voluta dal committente · **chiusa** ([D-124](DECISIONS.md#d-124)…[D-133](DECISIONS.md#d-133))
 
 Il seggio attraversa i secoli, ma oggi cambia solo il nome: Priore Anselmo,
 Priora Ilaria, Priore Teodo — la stessa carta, gli stessi poteri. Il
@@ -415,12 +415,21 @@ Le fasi:
    [D-130](DECISIONS.md#d-130)), l'Egemonia di Eredan (0.1.94,
    [D-131](DECISIONS.md#d-131)) — ognuna col suo pezzo di motore
    (l'azione che sfoga, la porta che non tiene, lo sconto sul diritto e
-   il tetto verso l'egemone). **Resta la Leggenda della Montagna**,
-   approvata come direzione: si progetta in una seduta dedicata (il
-   seggio senza corpo chiede più di un tipo di regola) — il dossier di
-   decisione, con le misure delle saghe di città e il ritrovamento sulle
-   porte d'ingresso di Forni ed Egemonia, è in
-   [SEDUTA_LEGGENDA.md](SEDUTA_LEGGENDA.md).
+   il tetto verso l'egemone). Le loro porte d'ingresso in saga sono
+   aperte dalla montagna delle città (0.1.95,
+   [D-132](DECISIONS.md#d-132): Forni 5/20, Egemonia 11/20). **E la
+   Leggenda della Montagna è scritta** (0.1.96,
+   [D-133](DECISIONS.md#d-133)): il conto delle ere nei segni, il primo
+   seggio senza corpo, il Destino su misura — siede 3/20 saghe, e il suo
+   Minimo si perde se il sigillo cade. La seduta dedicata e il suo
+   verbale sono in [SEDUTA_LEGGENDA.md](SEDUTA_LEGGENDA.md).
+
+**Com'è finita**: tutte le vite dell'albero sono scritte, ognuna con
+almeno un dente e una misura; le saghe attraversano i cambi
+d'incarnazione con carta, prompt e verbale (le sonde d'era su entrambi i
+tavoli in banda, NONE vivi per ogni seggio). Fuori scope dichiarati: le
+illustrazioni (voce 5) e la D meccanica dei valori (a verbale per la
+0.4, D-128).
 
 **Fatto quando** una saga attraversa almeno un cambio d'incarnazione, con
 carta e prompt propri e il passaggio nel verbale, e le sonde d'era restano in

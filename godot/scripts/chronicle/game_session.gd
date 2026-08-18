@@ -115,7 +115,7 @@ func _wire_systems() -> void:
 
 
 func factory_setup_effects() -> Array:
-	return WorldStateFactory.setup_effects(_chronicle_def, data)
+	return WorldStateFactory.setup_effects(_chronicle_def, data, world)
 
 
 ## Continue a campaign: what the previous Chronicle left behind is applied on

@@ -186,4 +186,13 @@ Cede su `P_DIG_BELOW`, la Valle che si Vuota sul fallimento dell'Acqua.
 Misurato: i Forni siedono 5/20, l'Egemonia 11/20, le Custodi 20 → 15,
 NONE tutti vivi, banda identica. La manopola, se l'Egemonia sembrasse
 troppo frequente: spostare lo sgombero su una proposizione singola.
-**Prossimo passo: la Leggenda** (risposte A e C).
+
+**Le A e C sono eseguite** (0.1.96, [D-133](DECISIONS.md#d-133)): il
+conto nei segni (`era_tallies`), la Leggenda col seggio senza corpo e il
+Destino su misura. Misurato: siede **3/20 saghe**, il Ridestato 20 → 18,
+i NONE di Vaerax 9 → 16 (il Minimo della storia si perde davvero: la
+vita non è un rifugio). Una scoperta d'implementazione degna del
+verbale: l'ingresso è sbarrato dal *fatto vivo* del Cristallo, ma il
+fatto sbiadisce in leggenda sui salti lunghi — così **anche il drago che
+si è alzato, richiuso e dimenticato nei secoli, può tornare racconto**.
+La seduta è chiusa: tutte le vite dell'albero sono scritte.
