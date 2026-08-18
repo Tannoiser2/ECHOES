@@ -112,22 +112,48 @@ func execute(entity_id: String, request: Dictionary) -> Dictionary:
 		int(world["round"]),
 		int(world["effect_sequence"])
 	)
+	var outcome: Dictionary = {}
 	match template:
 		"ACQUIRE":
-			return _acquire(entity_id, params, source)
+			outcome = _acquire(entity_id, params, source)
 		"MOVE":
-			return _move(entity_id, params, source)
+			outcome = _move(entity_id, params, source)
 		"INFLUENCE":
-			return _influence(entity_id, params, source)
+			outcome = _influence(entity_id, params, source)
 		"FORGE":
-			return _forge(entity_id, params, source)
+			outcome = _forge(entity_id, params, source)
 		"SCHEME":
-			return _scheme(entity_id, params, source)
+			outcome = _scheme(entity_id, params, source)
 		"CLAIM":
-			return _claim(entity_id, params, source)
+			outcome = _claim(entity_id, params, source)
 		"PLAY_ECHO":
-			return _play_echo(entity_id, params, source)
-	return _error(template, "template non implementato")
+			outcome = _play_echo(entity_id, params, source)
+		_:
+			return _error(template, "template non implementato")
+
+	# ACTION_RIPPLE (D-129): l'azione che sfoga su una domanda. Dopo un'azione
+	# riuscita, i segni di chi ha agito possono muovere una Tensione - i forni
+	# producono, e il grano lo paga la valle. Ogni sfogo si firma a verbale.
+	if bool(outcome.get("ok", false)):
+		var rippled: bool = false
+		for ripple in TagRules.action_ripples(data, world, entity_id, template):
+			var applied: Dictionary = applier.apply(Effect.make(
+				"ADJUST_TENSION", "tension", str(ripple["tension_id"]),
+				{"delta": int(ripple["delta"])}, source
+			))
+			if applied.is_empty():
+				continue
+			(outcome.get("effects", []) as Array).append(applied)
+			rippled = true
+			var tension: Variant = data.tensions.get(str(ripple["tension_id"]))
+			log.bullet("  Il segno sfoga: %s — %s %+d." % [
+				str(ripple["title"]),
+				str(ripple["tension_id"]) if tension == null else str(tension["title"]),
+				int(ripple["delta"]),
+			])
+		if rippled:
+			tensions.fire_omens(source)
+	return outcome
 
 
 # --- preconditions ---------------------------------------------------------

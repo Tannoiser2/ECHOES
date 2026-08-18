@@ -1040,6 +1040,7 @@ const DEFS := {
 					"STANCE_MODIFIER",
 					"CONDITION_THRESHOLD",
 					"ACTION_GRANT",
+					"ACTION_RIPPLE",
 				],
 			},
 			"template": {
@@ -1157,6 +1158,11 @@ const DEFS := {
 				"enum": [
 					"SCHEME_VEIL",
 				],
+			},
+			"ripple_delta": {
+				"type": "int",
+				"min": -2,
+				"max": 2,
 			},
 		},
 	},

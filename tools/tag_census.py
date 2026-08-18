@@ -38,6 +38,7 @@ DECLARED_MEMORY = {
     "scar:divided_seal": "il dente vivo e' crown_divided, letto dai Destini e sciolto da CNS_CROWN_REUNITED",
     "scar:sealed_border": "il dente vivo e' valley_sealed, letto dai Destini",
     "scar:unanswered": "il dente vivo e' question_unresolved: la spirale di D-094 morde e si chiude",
+    "scar:dragonfall": "la mappa ricorda dove cadde il drago (D-127); il dente vivo e' la morte del seggio, letta da ON_DEATH (Il Culto della Montagna)",
     "settlement:$proponent": "porta un id dinamico; il suo dente e' nahr_settled nelle clausole, e il PACT sulla coppia (TGR_PACT_FLOOR)",
     "condition:contested": "mappa e verbale (D-107/D-121); si cura decidendo la questione al Consiglio",
     "condition:lean": "mappa; la cura e' l'Annata Buona, e il gradino con i denti e' condition:starving (D-105/D-117)",

@@ -5,6 +5,39 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.92] — I Forni Riaccesi
+
+La prima delle tre vite della decisione C
+([D-129](docs/DECISIONS.md#d-129)): fra i Fuochi e le Custodi nasce
+l'industria — ma solo se la storia ha riaperto la miniera.
+
+### Added
+
+- **I Forni Riaccesi** (`INC_CENERE_FURNACES`, COLLECTIVE): entra
+  all'esaurimento della linea se `scar:open_wound` sta sul mondo — e il
+  nuovo **`entry_forbidden_tag`** la sbarra se `structure:sealed` chiude
+  la miniera (allora siedono le Custodi, come sempre).
+- **`ACTION_RIPPLE`**, pezzo nuovo del telaio: un'azione riuscita sfoga
+  su una Tensione, a verbale e con gli omen. Il dente della fame:
+  ogni FORGE dei Forni scalda `TEN_WATER` (+1, `TGR_FURNACE_HUNGER`).
+- **`TGR_FURNACE_ORE`** (DRAW_BIAS composito): Forni al tavolo *e*
+  ferita sulla mappa → pescano WEALTH più spesso.
+
+### Fixed
+
+- `scar:dragonfall` (0.1.90) stava in prima fila senza lettore né
+  dichiarazione: dichiarato nel censimento (il dente vivo è la morte
+  del seggio, letta da ON_DEATH).
+
+### Measured
+
+- Playtest 100 semi identico alla baseline (185·78·123·176, 0/8 al
+  tavolo misto); banda delle ere identica (955 / 20,5 / 22); sims ed
+  export deterministici; censimento 0/0; suite 272 test, 5799
+  asserzioni, verde.
+
+---
+
 ## [0.1.91] — I valori per vita sono sapore dichiarato
 
 La decisione D della seduta si chiude sulla strada onesta

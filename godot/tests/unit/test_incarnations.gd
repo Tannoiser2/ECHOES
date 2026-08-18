@@ -200,3 +200,34 @@ func test_the_active_view_swaps_the_authored_fields() -> void:
 	assert_false(republic.has("successors"), "la linea vecchia non si eredita")
 	assert_false(republic.has("name_grammar"), "nemmeno la grammatica dei nomi")
 	assert_eq(str(republic["id"]), "ENT_ALDRIC", "il seggio resta il seggio")
+
+
+## I Forni Riaccesi (D-129): quando la linea dei Fuochi si esaurisce, il segno
+## sceglie la vita - la miniera ferita accende l'industria, il sigillo la sbarra
+## (e allora siedono le Custodi), senza ferita le Custodi come sempre. Una
+## dinastia MORTAL non si interrompe a meta' (D-109): il segno decide al
+## momento giusto, non prima.
+func test_the_reopened_mine_lights_the_furnaces_unless_sealed() -> void:
+	var wounded: Dictionary = _plan_for(
+		"ENT_CENERE", {"name": "Arla dei Fuochi", "generation": 4},
+		{"regions": {"REG_MINIERE_ANTICHE": {"tags": ["scar:open_wound"]}}}
+	)
+	assert_true(bool(wounded["transformed"]), "la linea esaurita muta il seggio")
+	assert_eq(str(wounded["name"]), "I Forni Riaccesi", "l'industria si accende")
+	assert_eq(int(wounded["incarnation"]), 1, "la vita chiamata dal segno")
+
+	var sealed: Dictionary = _plan_for(
+		"ENT_CENERE", {"name": "Arla dei Fuochi", "generation": 4},
+		{"regions": {"REG_MINIERE_ANTICHE": {"tags": ["scar:open_wound", "structure:sealed"]}}}
+	)
+	assert_eq(str(sealed["name"]), "Le Custodi della Cenere", "il sigillo sbarra i forni")
+	assert_eq(int(sealed["incarnation"]), 2, "e siede la vita di ripiego")
+
+	var quiet: Dictionary = _plan_for("ENT_CENERE", {"name": "Arla dei Fuochi", "generation": 4})
+	assert_eq(str(quiet["name"]), "Le Custodi della Cenere", "senza ferita niente forni")
+
+	var midline: Dictionary = _plan_for(
+		"ENT_CENERE", {"name": "Kessa dei Fuochi", "generation": 0},
+		{"regions": {"REG_MINIERE_ANTICHE": {"tags": ["scar:open_wound"]}}}
+	)
+	assert_false(bool(midline["transformed"]), "la dinastia non si interrompe a meta'")

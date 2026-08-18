@@ -200,12 +200,13 @@ Le risposte del committente, con la lettura che ne guida il lavoro:
   **Scelta dal committente: la strada 1** («Vai») — eseguita in 0.1.91
   (D-128): la tabella di D-108 era già buona, corretto il solo Culto della
   Misura (il velo è un'arte dello SCHEME: 3 → 4, INFLUENCE 4 → 3).
-- **Il «Vai» copre anche la C**: si scrivono le tre vite rimaste, una alla
-  volta col loro pezzo di motore — i Forni Riaccesi per primi (il pezzo
-  piccolo dell'azione che sfoga), poi la Diaspora (il conteggio delle
-  cacciate) e l'Egemonia (il tetto verso di lei e lo sconto sul diritto).
-  Se la lettura del «Vai» fosse più larga del voluto, ogni vita è una
-  regola nei dati: si spegne senza toccare il motore.
+- **La C è confermata** («D vai con la 1 e sì per C», a verbale): si
+  scrivono le tre vite rimaste, una alla volta col loro pezzo di motore —
+  i Forni Riaccesi per primi (eseguiti in 0.1.92, D-129: entrata sbarrabile
+  col sigillo, l'azione che sfoga, il minerale composito), poi la Diaspora
+  (il conteggio delle cacciate) e l'Egemonia (il tetto verso di lei e lo
+  sconto sul diritto). Ogni vita resta una regola nei dati: si spegne
+  senza toccare il motore.
 
 ---
 

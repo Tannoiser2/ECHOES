@@ -497,6 +497,39 @@
       "threshold_delta": -1,
       "active": true,
       "note": "La seduta sulle vite (D-126): per la Lega una Condition qualifica con un impegno in meno - sette citta' hanno gia' firmato, il tavolo deve solo prenderne atto. Mai sotto 1: una firma serve sempre."
+    },
+    {
+      "id": "TGR_FURNACE_ORE",
+      "title": "I forni pagano bene",
+      "when": {
+        "scope": "ENTITY",
+        "tag": "life:INC_CENERE_FURNACES"
+      },
+      "kind": "DRAW_BIAS",
+      "family": "WEALTH",
+      "bias": "BONUS",
+      "active": true,
+      "when_also": [
+        {
+          "scope": "REGION",
+          "tag": "scar:open_wound"
+        }
+      ],
+      "note": "I Forni Riaccesi (D-129, decisione C della seduta): chi sta sulla ferita aperta e la lavora pesca ricchezza migliore. Composita: la vita E la presenza sulla ferita - l'industria e' dove la montagna soffia."
+    },
+    {
+      "id": "TGR_FURNACE_HUNGER",
+      "title": "I forni mangiano il grano",
+      "when": {
+        "scope": "ENTITY",
+        "tag": "life:INC_CENERE_FURNACES"
+      },
+      "kind": "ACTION_RIPPLE",
+      "template": "FORGE",
+      "tension_id": "TEN_WATER",
+      "ripple_delta": 1,
+      "active": true,
+      "note": "I Forni Riaccesi (D-129): ogni patto che i Forni stringono e' un contratto di fornitura, e la domanda dell'acqua si scalda - l'industria non e' gratis, e il conto arriva sulla questione della sopravvivenza. Su una Tensione assente il colpo e' un no-op (D-028)."
     }
   ]
 }

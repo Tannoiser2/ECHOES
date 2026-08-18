@@ -232,6 +232,11 @@
                 "type": "string",
                 "minLength": 1,
                 "description": "Solo per ON_TAG: il segno che apre questa vita."
+              },
+              "entry_forbidden_tag": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Solo per ON_TAG: la vita NON entra finche' questo segno esiste (D-129) - la miniera riaperta non fa nascere i Forni se il sigillo la chiude."
               }
             }
           }

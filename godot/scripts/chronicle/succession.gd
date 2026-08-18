@@ -231,6 +231,11 @@ static func _next_life(
 				if not bool(before.get("active", true)):
 					return index
 			"ON_TAG":
+				# D-129: un segno puo' anche sbarrare la nascita - la miniera
+				# riaperta non fa i Forni finche' il sigillo la chiude.
+				var forbidden: String = str(life.get("entry_forbidden_tag", ""))
+				if forbidden != "" and _sign_anywhere(forbidden, previous, before):
+					continue
 				if _sign_anywhere(str(life.get("entry_tag", "")), previous, before):
 					return index
 			"LINE_EXHAUSTED":

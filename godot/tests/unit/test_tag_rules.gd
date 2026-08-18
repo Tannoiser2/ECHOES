@@ -35,8 +35,8 @@ func test_with_no_signs_on_the_board_every_hook_is_neutral() -> void:
 	# (granaio, fame, razzia, giuramento, fama) non esistono a inizio
 	# partita - quindi ogni gancio resta neutro finché il gioco non li posa.
 	assert_eq(
-		session.data.tag_rules.size(), 38,
-		"le regole di D-105, i poteri di vita di D-109/D-124/D-126, i denti di D-117 e le cicatrici di D-122"
+		session.data.tag_rules.size(), 40,
+		"le regole di D-105, i poteri di vita di D-109/D-124/D-126/D-129, i denti di D-117 e le cicatrici di D-122"
 	)
 	var bonus: Dictionary = TagRules.action_bonus(
 		session.data, session.world, "ENT_ALDRIC", "INFLUENCE", "TEN_FAMINE"
@@ -524,3 +524,39 @@ func test_the_veil_closes_a_number_on_the_table() -> void:
 		session.actions.check("ENT_LYRA", "SCHEME", params) != "",
 		"una questione gia' velata non si vela due volte"
 	)
+
+
+## L'azione che sfoga (D-129): il FORGE di chi porta il segno scalda la
+## domanda indicata, si firma a verbale, e senza segno non sfoga niente.
+func test_action_ripple_heats_the_question_and_signs() -> void:
+	_rule("TGR_SFOGO", {
+		"kind": "ACTION_RIPPLE", "template": "FORGE",
+		"tension_id": "TEN_FAMINE", "ripple_delta": 1,
+		"title": "I forni di prova",
+	})
+	var before: int = int(session.world["tensions"]["TEN_FAMINE"]["current_value"])
+	var request: Dictionary = {"template": "FORGE", "params": {
+		"target_entity_id": "ENT_NAHR", "direction": "DOWN",
+	}}
+	var quiet: Dictionary = session.actions.execute("ENT_ALDRIC", request)
+	assert_true(bool(quiet.get("ok", false)), "il FORGE riesce: %s" % str(quiet.get("error", "")))
+	assert_eq(
+		int(session.world["tensions"]["TEN_FAMINE"]["current_value"]), before,
+		"senza segno l'azione non sfoga"
+	)
+	_set_global("test_sign")
+	# Il primo FORGE ha portato Nahr al minimo: il secondo colpo cade su Lyra.
+	request = {"template": "FORGE", "params": {
+		"target_entity_id": "ENT_LYRA", "direction": "DOWN",
+	}}
+	var loud: Dictionary = session.actions.execute("ENT_ALDRIC", request)
+	assert_true(bool(loud.get("ok", false)), "il secondo FORGE riesce: %s" % str(loud.get("error", "")))
+	assert_eq(
+		int(session.world["tensions"]["TEN_FAMINE"]["current_value"]), before + 1,
+		"col segno la domanda si scalda"
+	)
+	var told: bool = false
+	for line in session.log.lines:
+		if str(line).contains("Il segno sfoga: I forni di prova"):
+			told = true
+	assert_true(told, "lo sfogo si firma a verbale")

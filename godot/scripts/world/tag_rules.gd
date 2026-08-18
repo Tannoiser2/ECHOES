@@ -190,6 +190,26 @@ static func condition_threshold_delta(
 	return {"delta": delta, "titles": titles}
 
 
+## ACTION_RIPPLE (D-129): l'azione che sfoga su una domanda. Quando chi porta
+## il segno compie `template` con successo, la Tensione indicata si muove —
+## i forni producono, e il grano lo paga la valle. Il chiamante applica.
+static func action_ripples(
+	data, world: Dictionary, entity_id: String, template: String
+) -> Array:
+	var out: Array = []
+	for rule in active(data, "ACTION_RIPPLE", str(world.get("chronicle_id", ""))):
+		if str(rule.get("template", "")) != template:
+			continue
+		if not _all_present(world, rule, {"entity_id": entity_id}):
+			continue
+		out.append({
+			"tension_id": str(rule.get("tension_id", "")),
+			"delta": int(rule.get("ripple_delta", 0)),
+			"title": str(rule["title"]),
+		})
+	return out
+
+
 ## DRAW_BIAS (ISSUES 25): la pesca piegata. Con un segno addosso, chi pesca da
 ## questa famiglia guarda le prime due carte e prende la peggiore (MALUS) o la
 ## migliore (BONUS). MALUS vince su BONUS: un mercato guasto resta guasto.

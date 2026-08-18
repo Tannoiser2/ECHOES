@@ -331,6 +331,48 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-129 — I Forni Riaccesi: il segno che sceglie, il sigillo che sbarra, l'azione che sfoga
+**implemented in 0.1.92** (ISSUES 19, decisione C della seduta — la prima delle tre vite da scrivere, via libera del committente a verbale in SEDUTA_VITE §4)
+
+La terza cronaca aveva per Cenere una sola vita di ripiego (le Custodi):
+esaurita la linea dei Fuochi, sedeva sempre la stessa storia. Adesso fra i
+Fuochi e le Custodi sta **I Forni Riaccesi** (`INC_CENERE_FURNACES`,
+COLLECTIVE): l'industria che nasce solo se la storia giocata ha lasciato il
+suo segno.
+
+Tre pezzi di motore, due nuovi e uno esteso:
+
+- **`entry_forbidden_tag`** (schema entity + `Succession._next_life`): un
+  segno può anche *sbarrare* una nascita. I Forni chiedono `scar:open_wound`
+  (la miniera riaperta è una ferita sul mondo) e sono vietati da
+  `structure:sealed` (il sigillo che la chiude). Con la linea esaurita e il
+  sigillo posato, siedono le Custodi come sempre: il segno sceglie *quale*
+  vita, non *se* — una dinastia MORTAL non si interrompe a metà (D-109,
+  confermato dal test `midline`).
+- **`ACTION_RIPPLE`** (schema tag_rule + `TagRules.action_ripples` +
+  post-process in `ActionResolver.execute`): un'azione riuscita può sfogare
+  su una Tensione. Il dente della fame dei Forni: ogni FORGE col loro segno
+  al tavolo scalda `TEN_WATER` di +1 (`TGR_FURNACE_HUNGER`) — l'industria
+  ripara i rapporti bruciando l'acqua di tutti. Lo sfogo si firma a verbale
+  («Il segno sfoga: …») e sveglia gli omen, come ogni altro tocco di
+  Tensione. `execute()` è stato rifattorizzato (il match assegna l'esito
+  invece di uscire per ramo) perché lo sfogo valga per ogni template senza
+  otto copie dello stesso codice.
+- **`TGR_FURNACE_ORE`** (DRAW_BIAS, pezzo del telaio D-125): con i Forni al
+  tavolo *e* la ferita aperta sulla mappa (gancio composito `when_also`),
+  pescano WEALTH più spesso — il minerale esce dalla miniera.
+
+Due regole in più (38→40), censimento pulito — e nel ripulire è saltata
+fuori una dichiarazione mancata della 0.1.90: `scar:dragonfall` stava in
+prima fila senza lettore né dichiarazione. Dichiarata adesso (la mappa
+ricorda dove cadde il drago; il dente vivo è la morte del seggio, letta da
+ON_DEATH). Misure: playtest 100 semi identico alla baseline (185·78·123·176,
+0/8 bloccati al tavolo misto — le vite dormono fuori dai salti d'era, e lo
+sfogo è neutro senza il segno), banda delle ere identica (955 mediana, 20,5
+generazioni, 22 nomi), sims ed export deterministici, suite 272/5799 verde.
+
+---
+
 ## D-128 — I valori per vita sono sapore dichiarato (la D si chiude)
 **implemented in 0.1.91** (ISSUES 19, decisione D della seduta — la strada 1 del verbale)
 
