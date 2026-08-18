@@ -692,6 +692,56 @@ carte su 48 lavorano; l'Archivio ha già il suo mestiere (restare in
 mano) e il Legame di Sangue aspetta, dichiarato, il pavimento di
 relazione della voce 25.
 
+### 27. Il tavolo sullo schermo grande, le console in tasca
+
+`app` · `motore` · milestone **0.6** · voluta dal committente
+
+«La mappa e le indicazioni delle carte giocate restino sul computer (o
+iPad), e i giocatori possano usare gli smartphone come console dove avere
+le indicazioni segrete, le carte in mano e tutte le informazioni di
+gioco.» È la seconda delle due strade che COMPONENTS §7 aveva lasciato
+aperte (il tablet passato di mano, o i telefoni dei giocatori) — quella
+che costa di più da costruire, e quella per cui la Tensione velata è
+stata disegnata.
+
+**La metà difficile è già fatta.** Tutto il codice disegna *per viewer*:
+`visible_tension_value(tension_id, viewer)` (§11.1), la mappa e il
+pannello prendono `render(session, viewer_id)`, il Destino lo vede solo
+chi lo giura (D-101), e il `SeatDecider` separa il *cosa si può fare*
+dal *come si mostra* con l'`io` iniettato (D-038) — un oggetto con
+`say` e `choose`, oggi il terminale o lo schermo del browser, domani il
+telefono di un seggio. Le viste console esistono già come pezzi: il
+pannello del seggio, la mano, le domande del decider.
+
+**Quello che manca:**
+
+1. **Le due viste dallo stesso mondo**: la vista *tavolo* (mappa, carte
+   calate, Consigli, verbale — niente segreti di seggio) e la vista
+   *console* (pannello del seggio, mano, avvisi del Destino, le domande
+   di `choose`). Sono ricomposizioni di pezzi esistenti, non pezzi nuovi.
+2. **Il trasporto**: una partita, più dispositivi. Il computer ospita la
+   sessione (il motore resta uno solo, deterministico com'è); i telefoni
+   sono `io` remoti — ogni `choose` di un seggio umano viaggia verso la
+   sua console e torna con l'indice scelto. Da decidere col committente:
+   stanza locale (stessa rete, il computer fa da host) o rendez-vous via
+   un servizio esterno; la prima è più semplice e non ha server da
+   mantenere.
+3. **La disciplina dei segreti sul filo**: a una console arriva solo ciò
+   che il suo seggio ha diritto di leggere — la stessa regola dei pixel
+   (§11.1), applicata ai messaggi. Un filtro provabile in headless, come
+   la sonda della visibilità.
+4. **Il rientro**: un telefono che cade o si blocca non deve rompere la
+   partita — la console si riaggancia e il `choose` in sospeso si
+   ripropone (il salvataggio a ogni soglia c'è già, D-052).
+
+**Fatto quando** una partita si gioca con la mappa sul computer e due
+telefoni come console, le informazioni segrete arrivano solo al loro
+seggio (la Tensione velata funziona come al tavolo fisico), un telefono
+riavviato rientra senza perdere niente, e le sim restano deterministiche
+— il motore non deve accorgersi di quanti schermi lo guardano.
+
+---
+
 ## Milestone 0.3 — World Propagation
 
 ### 9. ✅ La Chronicle II generata dalle evidence (#25) — fatta in 0.1.44–0.1.46

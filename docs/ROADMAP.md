@@ -135,6 +135,14 @@ campo che nessuno legge è un campo che nessuno mantiene — tolti in 0.1.48
 
 ## 0.6 — Print-and-play e sincronizzazione tavolo fisico/digitale
 
+Qui vive anche **il tavolo sullo schermo grande e le console in tasca**
+(ISSUES 27, voluta dal committente): la mappa e le carte calate sul
+computer o sull'iPad, gli smartphone dei giocatori come console private —
+segreti, mano, domande del proprio seggio. La seconda strada di
+COMPONENTS §7, quella per cui la Tensione velata è stata disegnata; la
+metà difficile (tutto il codice disegna già *per viewer*, D-038/D-101) è
+fatta, mancano le due viste e il trasporto.
+
 ## 1.0 — Campagna multi-Chronicle, Timeline, Legacy, Chronicle Book — quasi tutta
 
 Il motore della campagna esiste ed è misurato su migliaia di ere
