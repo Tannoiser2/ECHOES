@@ -36,12 +36,60 @@ var _hovered: String = ""
 ## accept, so a Region is pressable exactly when the action is legal (D-039).
 var highlighted: Dictionary = {}
 
+## L'eco del cambiamento (l'inventario dell'app, ISSUES 22): al tavolo fisico
+## vedi la mano che sposta il pezzo, sullo schermo il pezzo e' gia' spostato.
+## Quando un effetto tocca una Regione, un anello ambra le si accende intorno
+## e sfuma in qualche secondo - un'evidenza, non un'informazione: cosa sia
+## cambiato lo dicono il verbale e i segnalini, questo dice solo *dove* guardare.
+const ECHO_SECONDS: float = 6.0
+var _echoes: Dictionary = {}
+
 signal region_clicked(region_id: String)
 
 
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_STOP
 	resized.connect(_relayout)
+	set_process(false)
+
+
+## La Regione che un Effect applicato ha toccato, o "" se non ne tocca nessuna.
+## Pura e statica, cosi' la mappa dei tipi sta in un posto solo ed e' provabile
+## in headless. I no-op non accendono niente: non e' cambiato nulla.
+static func region_of_effect(effect: Dictionary) -> String:
+	if bool(effect.get("inverse_payload", {}).get("noop", false)):
+		return ""
+	var payload: Dictionary = effect.get("payload", {})
+	match str(effect.get("type", "")):
+		"SET_CONTROL", "SET_REGION_TAG", "REMOVE_REGION_TAG":
+			return str(effect.get("target", {}).get("id", ""))
+		"ADD_PRESENCE", "REMOVE_PRESENCE":
+			return str(payload.get("region_id", ""))
+		"ADD_SCAR", "REMOVE_SCAR":
+			return str(payload.get("region_id", ""))
+	return ""
+
+
+func mark_changed(region_id: String) -> void:
+	if region_id == "" or _session == null or not _session.world["regions"].has(region_id):
+		return
+	_echoes[region_id] = 1.0
+	set_process(true)
+	queue_redraw()
+
+
+func _process(delta: float) -> void:
+	if _echoes.is_empty():
+		set_process(false)
+		return
+	var gone: Array = []
+	for region_id in _echoes:
+		_echoes[region_id] = float(_echoes[region_id]) - delta / ECHO_SECONDS
+		if float(_echoes[region_id]) <= 0.0:
+			gone.append(region_id)
+	for region_id in gone:
+		_echoes.erase(region_id)
+	queue_redraw()
 
 
 ## The only way in. Called after every phase, and after every action.
@@ -178,6 +226,7 @@ func _draw() -> void:
 		_draw_roads()
 	for region_id in _regions:
 		_draw_region(str(region_id))
+	_draw_questions()
 
 
 ## Roads first, so the Regions sit on top of them. Drawn once per pair: the
@@ -269,6 +318,7 @@ func _draw_region(region_id: String) -> void:
 		name, HORIZONTAL_ALIGNMENT_LEFT, -1, 13, Color("#d9d2c5")
 	)
 
+	_draw_echo(centre, region_id)
 	_draw_presence(centre, region_id)
 	_draw_marks(centre, region)
 
@@ -305,8 +355,64 @@ func _draw_over_board(region_id: String, centre: Vector2, control: Variant, offe
 	draw_string(font, at + Vector2(1, 1), name, HORIZONTAL_ALIGNMENT_LEFT, -1, 13, Color(0, 0, 0, 0.8))
 	draw_string(font, at, name, HORIZONTAL_ALIGNMENT_LEFT, -1, 13, Color("#efe7d8"))
 
+	_draw_echo(centre, region_id)
 	_draw_presence(centre, region_id)
 	_draw_marks(centre, _session.world["regions"][region_id])
+
+
+## L'anello che sfuma: qualcosa e' appena successo qui. Fuori da tutti gli
+## altri anelli, perche' quelli vogliono dire altro (chi tiene il posto, dove
+## si puo' andare) e i tre fatti devono restare separabili a colpo d'occhio.
+func _draw_echo(centre: Vector2, region_id: String) -> void:
+	if not _echoes.has(region_id):
+		return
+	var strength: float = clampf(float(_echoes[region_id]), 0.0, 1.0)
+	draw_arc(
+		centre, _radius + 12.0, 0.0, TAU, 48,
+		Color(0.91, 0.71, 0.39, 0.85 * strength), 2.0 + 2.5 * strength, true
+	)
+
+
+## I marker delle domande (l'inventario dell'app, ISSUES 22): ogni Tensione
+## abita la Regione su cui la sua domanda verte adesso - la stessa regola del
+## Consiglio (`focus_region`) - e li' pianta il suo marker con la lettura che
+## spetta a chi guarda: il numero se ne ha diritto, il glifo spento se la
+## questione e' velata (§11.1). I colori sono quelli del pannello: verde
+## lontana, ambra a un passo, rossa a soglia.
+func _draw_questions() -> void:
+	var per_region: Dictionary = {}
+	for tension_id in _session.world["tensions"]:
+		var home: String = str(_session.confluence.narrative.focus_region(str(tension_id)))
+		if home == "" or not _points.has(home):
+			continue
+		if not per_region.has(home):
+			per_region[home] = []
+		(per_region[home] as Array).append(str(tension_id))
+
+	var font: Font = ThemeDB.fallback_font
+	for region_id in per_region:
+		var centre: Vector2 = _points[region_id]
+		var at: Vector2 = centre + Vector2(_radius * 0.55, -_radius - 8.0)
+		for tension_id in per_region[region_id]:
+			var threshold: int = _session.tensions.threshold(str(tension_id))
+			var value: int = _session.service.visible_tension_value(str(tension_id), _viewer)
+			var reading: String = "?" if value < 0 else "%d/%d" % [value, threshold]
+			var tint: Color = Color("#5f584c")
+			if value >= 0:
+				var margin: int = threshold - value
+				tint = Color("#6fa88a")
+				if margin <= 0:
+					tint = Color("#c8553d")
+				elif margin <= 1:
+					tint = Color("#e8b563")
+			Glyph.paint(self, "tension", Rect2(at, Vector2(11.0, 11.0)), tint)
+			var text_at: Vector2 = at + Vector2(15.0, 10.0)
+			draw_string(
+				font, text_at + Vector2(1, 1), reading,
+				HORIZONTAL_ALIGNMENT_LEFT, -1, 11, Color(0, 0, 0, 0.8)
+			)
+			draw_string(font, text_at, reading, HORIZONTAL_ALIGNMENT_LEFT, -1, 11, tint)
+			at.y -= 15.0
 
 
 ## L'illustrazione dentro la sagoma. Le UV sono le stesse coordinate normalizzate

@@ -22,6 +22,8 @@ var _destiny: VBoxContainer
 var _casata_card: TextureRect
 var _destiny_card: TextureRect
 var _relations: VBoxContainer
+var _claims: VBoxContainer
+var _claims_header: Label
 var _signs: VBoxContainer
 var _signs_header: Label
 var _title: Label
@@ -40,6 +42,7 @@ func render(session: RefCounted, viewer_id: String) -> void:
 			_rows[id] = _add_row(str(session.data.tensions[id]["title"]))
 		_update_row(_rows[id], session, id, viewer_id)
 	_update_relations(session, viewer_id)
+	_update_claims(session, viewer_id)
 	_update_signs(session, viewer_id)
 	_update_destiny(session, viewer_id)
 
@@ -147,6 +150,47 @@ func _update_relations(session: RefCounted, viewer_id: String) -> void:
 		value.add_theme_font_size_override("font_size", 12)
 		value.add_theme_color_override("font_color", Color(str(RELATIONS.get(level, "#8a8172"))))
 		row.add_child(value)
+
+
+## I Diritti sul tavolo (l'inventario dell'app, ISSUES 22): un Claim creato e'
+## un fatto pubblico - l'azione si annuncia - ma fin qui viveva solo nel
+## verbale, e un giocatore non poteva guardare lo schermo e sapere chi tiene
+## un diritto pronto a forzare un Consiglio. Il proprio in ambra, gli altrui
+## nel colore neutro, il dominio con la sua parola italiana.
+func _update_claims(session: RefCounted, viewer_id: String) -> void:
+	if _claims == null:
+		add_child(_spacer())
+		_claims_header = Label.new()
+		_claims_header.text = "I DIRITTI"
+		_claims_header.add_theme_font_size_override("font_size", 12)
+		_claims_header.add_theme_color_override("font_color", Color("#8a8172"))
+		add_child(_claims_header)
+		_claims = VBoxContainer.new()
+		_claims.add_theme_constant_override("separation", 1)
+		add_child(_claims)
+
+	for child in _claims.get_children():
+		child.queue_free()
+		_claims.remove_child(child)
+	var shown: int = 0
+	for claim in session.world.get("claims", []):
+		var holder: String = str(claim.get("entity_id", ""))
+		var line := Label.new()
+		line.text = "%s — %s (atto %d)" % [
+			session.service.name_of(holder),
+			SignLabels.domain(str(claim.get("domain", ""))),
+			int(claim.get("act", 0)),
+		]
+		line.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		line.add_theme_font_size_override("font_size", 12)
+		line.add_theme_color_override(
+			"font_color", Color("#e8b563") if holder == viewer_id else Color("#c9bfae")
+		)
+		_claims.add_child(line)
+		shown += 1
+	# Senza diritti la sezione sparisce, come i segni: niente intestazioni vuote.
+	_claims_header.visible = shown > 0
+	_claims.visible = shown > 0
 
 
 ## I segni che questa casa porta con sé - la fama, le scoperte, la scorta

@@ -5,6 +5,30 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.86] — L'inventario dell'app: i Diritti, l'eco, i marker, la cronaca
+
+Il committente ha chiesto cosa manca sullo schermo
+([D-123](docs/DECISIONS.md#d-123)). Quattro cose, e sono entrate.
+
+### Added
+
+- **«I DIRITTI»** nel pannello del seggio: chi tiene un Claim, col dominio
+  in italiano; il proprio in ambra. Prima viveva solo nel verbale.
+- **L'eco del cambiamento** sulla mappa: ogni effetto che tocca una
+  Regione accende un anello ambra che sfuma in sei secondi — dice *dove*
+  guardare, il cosa lo dicono verbale e segnalini. I no-op non accendono
+  niente.
+- **I marker delle domande**: ogni Tensione pianta il suo glifo sulla
+  Regione su cui la sua domanda verte adesso, col numero se il seggio ha
+  diritto di leggerlo e «?» se è velata. Colori come nel pannello.
+- **La cronaca a metà anno**: appena c'è una Truth scritta il bottone si
+  accende e impagina il registro fin qui — le stesse pagine di fine anno.
+
+Solo schermo: nessun file di motore toccato. 262 test / 5757 asserzioni
+verdi, tre nuovi (`test_app_inventory`).
+
+---
+
 ## [0.1.85] — La cicatrice che morde: la voce 24 si chiude
 
 Le undici cicatrici erano scritte e mai lette; adesso sono il ponte

@@ -331,6 +331,41 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-123 — L'inventario dell'app: i Diritti, l'eco, i marker, la cronaca
+**implemented in 0.1.86** (su richiesta del committente, dall'inventario dell'app)
+
+Il committente ha chiesto cosa manca sullo schermo. L'inventario ha risposto:
+le carte ci sono tutte (ma 91 illustrazioni su 98 sono segnaposto — quella è
+consegna d'arte, voce 5), i segnalini ci sono; mancavano quattro cose, e sono
+entrate:
+
+- **I Diritti si vedono.** Un Claim creato è un fatto pubblico — l'azione si
+  annuncia — ma viveva solo nel verbale. Il pannello del seggio ha la sezione
+  «I DIRITTI»: chi tiene cosa, col dominio nella sua parola italiana
+  (`SignLabels.DOMAIN_WORDS`), il proprio in ambra. Senza Diritti la sezione
+  sparisce, come i segni.
+- **L'eco del cambiamento.** Al tavolo fisico vedi la mano che sposta il
+  pezzo; sullo schermo il pezzo era già spostato. Ora ogni effetto che tocca
+  una Regione accende un anello ambra che sfuma in sei secondi — un'evidenza,
+  non un'informazione: dice *dove* guardare, il cosa lo dicono verbale e
+  segnalini. La mappa dei tipi (`MapView.region_of_effect`) è pura e provata
+  in headless; i no-op non accendono niente, per la stessa moneta di D-121.
+- **I marker delle domande.** Ogni Tensione pianta il suo marker (il glifo di
+  D-058) sulla Regione su cui la sua domanda verte adesso — la stessa regola
+  del Consiglio, `focus_region` — con la lettura che spetta a chi guarda: il
+  numero se ne ha diritto, il glifo spento e «?» se è velata (§11.1). I
+  colori sono quelli del pannello: verde lontana, ambra a un passo, rossa a
+  soglia.
+- **La cronaca si sfoglia anche a metà anno.** Appena c'è una Truth scritta,
+  il bottone si accende e impagina il registro fin qui — le stesse pagine che
+  uscirebbero a fine anno, non un'anteprima che gli somiglia.
+
+Solo schermo: nessun file di motore toccato (a `sign_labels` si aggiunge un
+dizionario), quindi playtest e sim invariati per costruzione. Suite 262 test /
+5757 asserzioni verde, con tre test nuovi (`test_app_inventory`).
+
+---
+
 ## D-122 — La cicatrice che morde: il ponte meccanico fra le ere
 **implemented in 0.1.85** (ISSUES 24, fase 4 — la voce si chiude)
 

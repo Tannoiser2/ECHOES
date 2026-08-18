@@ -72,6 +72,20 @@ const ENTITY_WORDS: Dictionary = {
 }
 
 
+## I domini delle Tensioni, in italiano: un Claim rivendica un dominio, e sul
+## pannello si legge la parola, non l'enum (ISSUES 22, l'inventario dell'app).
+const DOMAIN_WORDS: Dictionary = {
+	"SURVIVAL": "la sopravvivenza",
+	"RESOURCE": "le risorse",
+	"TERRITORY": "il territorio",
+	"ANCIENT": "l'antico",
+}
+
+
+static func domain(id: String) -> String:
+	return str(DOMAIN_WORDS.get(id, id.to_lower()))
+
+
 ## La parola di un segno, con il vocabolario giusto per dove sta. `data` serve
 ## solo ai segni che portano un id dentro (la cacciata da una Regione,
 ## l'insediamento di una casa): senza, resta l'id — leggibile, mai vuoto.
