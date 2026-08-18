@@ -331,6 +331,50 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-134 — Le due viste dallo stesso mondo (voce 27, fase 1)
+**implemented in 0.1.97** (seduta sul tavolo: A pagina dall'host, B QR+token, C vetrina+ispezione, D fasi 1→4)
+
+La prima fase della voce 27, senza un centimetro di rete: la vista TAVOLO
+e la vista CONSOLE come ricomposizioni dei pezzi che già disegnano per
+viewer — e, sotto, i **modelli di vista** che in fase 2 saranno i
+messaggi.
+
+- **`TableModel` / `ConsoleModel`** (`scripts/views/`): costruttori puri
+  `build(session[, seat])` → dizionario di ciò che quello schermo mostra.
+  Il tavolo si costruisce col viewer pubblico (`""`): la Tensione velata
+  vale −1 (il dorso), le mani e i Destini non esistono nel dizionario. La
+  console porta il pannello, la mano, la scala del Destino coi gradini
+  spuntati, i rapporti, i segni, i Diritti (pubblici, col proprio
+  evidenziato). **Il filtro sta nella costruzione, non nel trasporto**:
+  se un segreto non entra nel modello, non potrà entrare nel filo.
+- **`ui/table_view.gd`** — la vetrina: mappa (viewer pubblico), domande,
+  Consigli dell'anno, carte del mondo, coda del verbale (pubblico per
+  contratto: `game_log.gd` lo dichiara dalla nascita, i segreti passano
+  da `io.say`). La **C della seduta** è già dentro: il click su una
+  Regione apre il dettaglio *pubblico* (l'ispezione) — tocchi che
+  guardano, mai che decidono.
+- **`ui/console_view.gd`** — il telefono di un seggio: `render(session,
+  seat)` più `say(text)`, la metà passiva dell'`io` di D-038 — gli
+  avvisi del decider si mostrano lì e non toccano il verbale comune. Il
+  `choose` arriverà col filo (fase 2).
+- **`ui/dev_split.tscn`** — il cavalletto: una Chronicle giocata in
+  automatico e le due viste affiancate
+  (`godot --path godot res://ui/dev_split.tscn`).
+- **La sonda delle viste** (`test_views`, 5 test): la domanda coperta
+  mostra il dorso al tavolo anche se un seggio l'ha sbirciata (e il
+  numero vive solo sulla console di chi sa); il modello del tavolo,
+  serializzato e perquisito, non contiene nessuna carta di nessuna mano
+  né un gradino di Destino; la console contiene i segreti del suo seggio
+  e nessuno di quelli altrui; i modelli sono di sola lettura; le due
+  viste compilano e si disegnano.
+
+Il «fatto quando» della fase 1 regge: la sonda passa su entrambe le
+viste, la lente della UI (D-050) non trova nomi di seggio nei file
+nuovi, il playtest è identico byte per byte (185·78·123·176, 0/8) —
+le viste guardano il mondo, non lo muovono. Suite 286/5923 verde.
+
+---
+
 ## D-133 — La Leggenda della Montagna: il seggio senza corpo
 **implemented in 0.1.96** (seduta sulla Leggenda, risposte A «va bene» e C «proviamo» — la voce 19 si chiude)
 

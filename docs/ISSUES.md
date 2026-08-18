@@ -736,10 +736,12 @@ pannello del seggio, la mano, le domande del decider.
 
 **Quello che manca:**
 
-1. **Le due viste dallo stesso mondo**: la vista *tavolo* (mappa, carte
-   calate, Consigli, verbale — niente segreti di seggio) e la vista
-   *console* (pannello del seggio, mano, avvisi del Destino, le domande
-   di `choose`). Sono ricomposizioni di pezzi esistenti, non pezzi nuovi.
+1. ✅ **Le due viste dallo stesso mondo** — fatta in 0.1.97
+   ([D-134](DECISIONS.md#d-134)): `TableModel`/`ConsoleModel` (i futuri
+   messaggi di rete, filtrati alla costruzione), la vetrina con
+   l'ispezione (la C della seduta), la console col `say`, il cavalletto
+   `dev_split.tscn`, e la sonda delle viste che perquisisce i modelli
+   serializzati. Playtest identico byte per byte.
 2. **Il trasporto**: una partita, più dispositivi. Il computer ospita la
    sessione (il motore resta uno solo, deterministico com'è); i telefoni
    sono `io` remoti — ogni `choose` di un seggio umano viaggia verso la

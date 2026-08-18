@@ -5,6 +5,34 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.97] — Le due viste dallo stesso mondo
+
+La fase 1 della voce 27 ([D-134](docs/DECISIONS.md#d-134)), senza un
+centimetro di rete: la vetrina e la console come ricomposizioni, e i
+modelli di vista che in fase 2 saranno i messaggi.
+
+### Added
+
+- **`TableModel` / `ConsoleModel`**: il tavolo col viewer pubblico
+  (velate a −1, niente mani né Destini), la console con tutto e solo
+  ciò che il suo seggio ha diritto di leggere. Il filtro sta nella
+  costruzione, non nel trasporto.
+- **`table_view`** (vetrina + ispezione: il click su una Regione apre
+  il dettaglio pubblico) e **`console_view`** (`render` + `say`, la
+  metà passiva dell'`io` di D-038).
+- **`dev_split.tscn`**: le due viste affiancate su una Chronicle
+  giocata in automatico.
+- **La sonda delle viste** (`test_views`): dorso al tavolo e numero a
+  chi ha sbirciato; il modello del tavolo perquisito senza segreti; la
+  console senza segreti altrui; sola lettura; le viste si disegnano.
+
+### Measured
+
+- Playtest identico byte per byte (0/8); lente della UI pulita; suite
+  286 test / 5923 asserzioni, verde.
+
+---
+
 ## [0.1.96] — La Leggenda della Montagna
 
 Le risposte A e C della seduta ([D-133](docs/DECISIONS.md#d-133)): il

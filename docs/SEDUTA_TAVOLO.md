@@ -164,3 +164,11 @@ Seduta del 2026-08-18, risposte del committente:
   opzioni del seggio sullo schermo comune.
 - **D — «ok»**: le fasi 1→4, cominciando dalla ricomposizione delle due
   viste senza rete.
+
+**La fase 1 è eseguita** (0.1.97, [D-134](DECISIONS.md#d-134)): i
+modelli di vista (`TableModel`/`ConsoleModel` — i futuri messaggi), la
+vetrina con l'ispezione, la console con il `say`, il cavalletto
+`dev_split.tscn`, e la sonda delle viste che perquisisce i modelli
+serializzati. Playtest identico byte per byte. **Prossima: la fase 2**
+(il filo in casa — host HTTP+WebSocket, protocollo
+`state/say/choose/chosen`, la sonda dei messaggi).
