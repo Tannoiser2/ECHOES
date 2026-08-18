@@ -31,6 +31,7 @@ extends RefCounted
 const PolicyDecider := preload("res://scripts/seat/policy_decider.gd")
 const AssetText := preload("res://scripts/core/asset_text.gd")
 const GameSession := preload("res://scripts/chronicle/game_session.gd")
+const SignLabels := preload("res://scripts/core/sign_labels.gd")
 
 ## Entity ids a person is playing.
 var humans: Dictionary = {}
@@ -418,13 +419,24 @@ func _board(entity_id: String, session: RefCounted) -> String:
 	for region_id in _sorted(world["regions"].keys()):
 		var mine: int = session.service.presence_count(entity_id, str(region_id))
 		var control: Variant = world["regions"][str(region_id)].get("control", null)
-		if mine == 0 and control == null:
+		# ISSUES 22 (fase 2): la mappa non nasconde. Nella partita 15308 la
+		# Valle Verde - contesa e senza controllore - non e' mai apparsa qui
+		# per due atti. Una Regione segnata si vede anche senza presidi.
+		var signs: Array = []
+		for tag in world["regions"][str(region_id)]["tags"]:
+			for prefix in ["condition:", "scar:", "structure:", "settlement:"]:
+				if str(tag).begins_with(prefix):
+					signs.append(SignLabels.label(str(tag), session.data))
+					break
+		if mine == 0 and control == null and signs.is_empty():
 			continue
 		var mark: String = ""
 		if mine > 0:
 			mark += "1 tuo" if mine == 1 else "%d tuoi" % mine
 		if control != null:
 			mark += "%s%s" % ["/" if mark != "" else "", _name(str(control), session)]
+		if not signs.is_empty():
+			mark += "%s%s" % ["; " if mark != "" else "", ", ".join(PackedStringArray(signs))]
 		places.append("%s (%s)" % [_region(str(region_id), session), mark])
 	lines.append("| Sulla mappa: %s" % ", ".join(PackedStringArray(places)))
 

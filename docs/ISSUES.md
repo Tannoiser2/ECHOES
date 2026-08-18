@@ -452,9 +452,9 @@ strategico: un cartello, non un consigliere.
 **Fatto quando** la mossa di quella partita, rigiocata, mostra l'avviso, e una
 mossa qualsiasi che non tocca il Destino non lo mostra.
 
-### 22. Le decisioni si devono vedere: le Conseguenze sul tavolo e a verbale
+### 22. ✅ Le decisioni si devono vedere — fatta in 0.1.64–0.1.84
 
-`app` · `motore` · voluta dal committente, nata dalla partita 15308
+`app` · `motore` · voluta dal committente, nata dalla partita 15308 · **chiusa** ([D-103](DECISIONS.md#d-103), [D-107](DECISIONS.md#d-107), [D-121](DECISIONS.md#d-121))
 
 «Non si capisce quali sono le conseguenze delle decisioni prese... è tutto
 quello scritto sembra non avere un vero impatto nel gioco.» Il censimento
@@ -475,8 +475,13 @@ Le fasi:
    qualificate e carta Echo d'atto («Valle Verde passa sotto il controllo
    di Re Aldric»); gli id non si leggono più, i no-op e la contabilità di
    Propp tacciono per scelta.
-2. **La mappa non nasconde**: le regioni contese appaiono («Valle Verde —
-   contesa»), e un cambio di controllo si vede nel momento in cui accade.
+2. ✅ **La mappa non nasconde** — fatta in 0.1.84
+   ([D-121](DECISIONS.md#d-121)): una Regione segnata si vede anche senza
+   presidi né controllore — la riga «Sulla mappa» del seggio dice i segni
+   con le parole di D-107 («Valle Verde (contesa)»), e il cambio di
+   controllo ha la sua frase nel momento in cui accade (D-103, e da
+   0.1.84 anche il placarsi della questione e la rivelazione del
+   presagio).
 3. ✅ **I tag hanno un corpo** — fatta in 0.1.69
    ([D-107](DECISIONS.md#d-107)): il dizionario `sign_labels` (un test
    pretende una parola per ogni segno nei dati), la mappa in italiano, «I
@@ -484,9 +489,13 @@ Le fasi:
    (segni delle Regioni e delle case). I fatti del mondo restano nelle
    pagine della cronaca, per scelta. Trovato e riparato per strada: l'app
    non compilava dall'0.1.60 (`_draw` ombreggiata in `confluence_board`).
-4. **La sonda della visibilità**: contare per 100 semi gli effetti
-   applicati per tipo e verificare che ognuno abbia riga a verbale e
-   rappresentazione. Un effetto invisibile è un bug, non un'atmosfera.
+4. ✅ **La sonda della visibilità** — fatta in 0.1.84
+   ([D-121](DECISIONS.md#d-121)): `cli/run_visibility_probe.gd`, 100 semi
+   a tavolo misto, ogni effetto del registro o ha la sua frase a verbale
+   o un silenzio dichiarato. Ha trovato quattro silenzi veri — il
+   placarsi della questione decisa, la rivelazione del presagio, gli
+   scarti del CLAIM e dell'INFLUENCE, i falsi passaggi di controllo — e
+   adesso conta **SENZA VOCE: 0**.
 
 **Fatto quando** la partita 15308 rigiocata mostra il passaggio della
 Valle Verde nel momento in cui avviene, e la sonda conta zero effetti

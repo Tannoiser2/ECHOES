@@ -255,6 +255,10 @@ func _set_tension_visibility(target: Dictionary, payload: Dictionary) -> Variant
 		return _fail("invalid visibility '%s'" % visibility)
 	var before: String = str(tension["visibility"])
 	tension["visibility"] = visibility
+	# Svelare una questione gia' aperta non muove niente: marcato no-op, cosi'
+	# il narratore non annuncia due volte la stessa rivelazione (ISSUES 22).
+	if before == visibility:
+		return {"visibility": before, "noop": true}
 	return {"visibility": before}
 
 
@@ -295,6 +299,10 @@ func _set_control(target: Dictionary, payload: Dictionary) -> Variant:
 	if next != null and not world["entities"].has(str(next)):
 		return _fail("unknown entity '%s'" % next)
 	region["control"] = next
+	# Un controllo che non cambia mano non e' un passaggio: marcato no-op,
+	# cosi' nessuna riga annuncia un trono che non si e' mosso (ISSUES 22).
+	if str(before) == str(next) or (before == null and next == null):
+		return {"entity_id": before, "noop": true}
 	return {"entity_id": before}
 
 

@@ -497,10 +497,10 @@ func _influence(entity_id: String, params: Dictionary, source: Dictionary) -> Di
 		for title in bite["titles"]:
 			log.bullet("  Il segno pesa: %s." % str(title))
 
+	var spent: String = ""
 	if via != "PRESENCE":
-		effects.append_array(
-			_discard(entity_id, _pick_relevant_asset(entity_id, tension_id, params), source)
-		)
+		spent = _pick_relevant_asset(entity_id, tension_id, params)
+		effects.append_array(_discard(entity_id, spent, source))
 		via = "DISCARD"
 
 	var applied: Dictionary = applier.apply(
@@ -517,10 +517,17 @@ func _influence(entity_id: String, params: Dictionary, source: Dictionary) -> Di
 	world["influence_used_by_tension"][tension_id] = (
 		int(world["influence_used_by_tension"].get(tension_id, 0)) + 1
 	)
-	log.bullet(
-		"%s influenza %s (%+d, via %s)."
-		% [_name(entity_id), str(data.tensions[tension_id]["title"]), delta, via]
-	)
+	# ISSUES 22 (fase 4): se la via e' lo scarto, la carta spesa si nomina.
+	if spent == "":
+		log.bullet(
+			"%s influenza %s (%+d, via %s)."
+			% [_name(entity_id), str(data.tensions[tension_id]["title"]), delta, via]
+		)
+	else:
+		log.bullet(
+			"%s scarta %s e influenza %s (%+d)."
+			% [_name(entity_id), _title(spent), str(data.tensions[tension_id]["title"]), delta]
+		)
 
 	var displaced: String = ""
 	if delta < 0:
@@ -740,7 +747,8 @@ func _claim(entity_id: String, params: Dictionary, source: Dictionary) -> Dictio
 
 	if mode == "CREATE":
 		var domain: String = str(params.get("domain", ""))
-		effects.append_array(_discard(entity_id, _pick_authority(entity_id, params), source))
+		var price: String = _pick_authority(entity_id, params)
+		effects.append_array(_discard(entity_id, price, source))
 		var claim_id: String = Ids.claim_id(int(world["effect_sequence"]) + 1)
 		effects.append(
 			applier.apply(
@@ -759,12 +767,17 @@ func _claim(entity_id: String, params: Dictionary, source: Dictionary) -> Dictio
 				)
 			)
 		)
-		log.bullet("%s rivendica il dominio %s." % [_name(entity_id), domain])
+		# ISSUES 22 (fase 4): la carta spesa si nomina - uno scarto muto era uno
+		# dei silenzi che la sonda della visibilita' ha trovato.
+		log.bullet("%s scarta %s e rivendica il dominio %s." % [
+			_name(entity_id), _title(price), domain
+		])
 		return _ok("CLAIM", effects, {"claim_id": claim_id, "domain": domain})
 
 	var tension_id: String = str(params.get("tension_id", ""))
 	var claim: Dictionary = service.claim_for_domain(entity_id, service.tension_domain(tension_id))
-	effects.append_array(_discard(entity_id, _pick_authority(entity_id, params), source))
+	var second: String = _pick_authority(entity_id, params)
+	effects.append_array(_discard(entity_id, second, source))
 	effects.append(
 		applier.apply(
 			Effect.make(
@@ -778,8 +791,8 @@ func _claim(entity_id: String, params: Dictionary, source: Dictionary) -> Dictio
 	)
 	world["forced_confluence"] = {"tension_id": tension_id, "entity_id": entity_id}
 	log.bullet(
-		"%s consuma il proprio Claim e forza una Confluence su %s."
-		% [_name(entity_id), str(data.tensions[tension_id]["title"])]
+		"%s consuma il proprio Claim, scarta %s, e forza una Confluence su %s."
+		% [_name(entity_id), _title(second), str(data.tensions[tension_id]["title"])]
 	)
 	return _ok("CLAIM", effects, {"forced": tension_id})
 

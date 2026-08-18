@@ -3,6 +3,7 @@ extends RefCounted
 
 const Effect := preload("res://scripts/core/effect.gd")
 const Ids := preload("res://scripts/core/ids.gd")
+const EffectNarrator := preload("res://scripts/chronicle/effect_narrator.gd")
 
 var world: Dictionary
 var data: RefCounted
@@ -54,7 +55,7 @@ func fire_omens(source: Dictionary) -> void:
 			state["fired_omens"].append(at)
 			log.bullet("Presagio - %s" % str(omen["message"]))
 			if bool(omen.get("reveals_value", false)):
-				applier.apply(
+				var revealed: Dictionary = applier.apply(
 					Effect.make(
 						"SET_TENSION_VISIBILITY",
 						"tension",
@@ -63,6 +64,12 @@ func fire_omens(source: Dictionary) -> void:
 						source
 					)
 				)
+				# ISSUES 22 (fase 4): il presagio parlava, la rivelazione no -
+				# il numero arrivava sul tavolo in silenzio. Se ha davvero
+				# svelato qualcosa (niente no-op), adesso lo dice.
+				var said: String = EffectNarrator.narrate(revealed, data)
+				if said != "":
+					log.bullet(said)
 
 
 ## §7: at most one Confluence opens per round. Tensions at or over threshold are

@@ -435,6 +435,13 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 	)
 	var delta: int = failure_delta if outcome == ConfluenceResolution.FAILURE else 1 - before
 	_apply(applied, Effect.make("ADJUST_TENSION", "tension", tension_id, {"delta": delta}, source))
+	# ISSUES 22 (fase 4): il placarsi - o lo sfogo - della questione decisa era
+	# l'unico effetto del Consiglio senza una riga sua: si leggeva solo nello
+	# stato di fine round. La sonda della visibilita' l'ha trovato; adesso parla.
+	if not applied.is_empty():
+		var settled: String = EffectNarrator.narrate(applied[applied.size() - 1], data)
+		if settled != "":
+			log.bullet("H. %s" % settled)
 
 	# H.2 What the committed cards cost their owners.
 	for entity_id in current["commits"]:

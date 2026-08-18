@@ -331,6 +331,53 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-121 — La sonda della visibilità, e i silenzi che ha trovato
+**implemented in 0.1.84** (ISSUES 22, fasi 2 e 4 — la voce si chiude)
+
+«Un effetto invisibile è un bug, non un'atmosfera.» La fase 1 (D-103) aveva
+dato una frase agli effetti di Conseguenze, clausole e carta del Narratore; la
+fase 3 (D-107) un corpo ai segni. Nessuno però aveva mai **contato**: la sonda
+nuova (`cli/run_visibility_probe.gd`) gioca i 100 semi standard a tavolo misto
+e rilegge il registro degli Effect contro il verbale della stessa partita —
+ogni effetto o ha la sua frase a verbale (parola per parola), o un silenzio
+**dichiarato** (i no-op, i delta finiti a zero, la contabilità di Propp, i
+registri con la loro riga, il setup che si racconta in apertura, le azioni
+che il resolver racconta con parole sue), o è **senza voce**: nominato, con
+la fonte accanto.
+
+### I silenzi che ha trovato, e le cure
+
+- **Il placarsi della questione decisa (H.1)** — l'effetto centrale di ogni
+  Consiglio, la Tensione che si placa a 1 o sfoga di 2, non aveva nessuna
+  riga: si leggeva solo nello stato di fine round. Adesso parla
+  («H. La Carestia scende di 5.»).
+- **La rivelazione del presagio** — il presagio parlava, ma il numero
+  arrivava sul tavolo in silenzio (`reveals_value` applicato senza riga).
+  Adesso, se ha davvero svelato qualcosa: «… non è più velata: il suo numero
+  è sul tavolo.»
+- **Gli scarti muti** — il CLAIM (creare e forzare) e l'INFLUENCE via scarto
+  spendevano una carta senza nominarla. Adesso la nominano.
+- **I falsi passaggi** — `SET_CONTROL` su un controllo che non cambia mano e
+  `SET_TENSION_VISIBILITY` su una questione già aperta ora si marcano no-op
+  nell'applier: nessuna riga annuncia un trono che non si è mosso, e la
+  «Carta parla» non racconta più cambi che non sono avvenuti.
+- **Fase 2, la mappa non nasconde** — nella partita 15308 la Valle Verde,
+  contesa e senza controllore, non è mai apparsa nella riga «Sulla mappa» del
+  seggio: compariva solo chi aveva presidi o padrone. Una Regione **segnata**
+  ora si vede sempre, coi nomi dei segni («Valle Verde (contesa)») — le
+  stesse parole di D-107 che la mappa del browser disegna già.
+
+Due voci di flusso sono dichiarate alla sonda con le loro parole: il Ripple
+(«K. Ripple: … +1») e la spirale che si chiude ri-decidendo (D-094).
+
+### Misurato
+
+La sonda su 100 semi: **SENZA VOCE: 0** — ogni effetto che deve parlare,
+parla. Playtest sugli stessi 100 semi invariato negli esiti (cambiano solo le
+righe del verbale), suite verde.
+
+---
+
 ## D-120 — La mossa che spegne il tuo Destino avverte prima
 **implemented in 0.1.83** (ISSUES 21, chiusa)
 

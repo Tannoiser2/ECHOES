@@ -5,6 +5,33 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.84] — La sonda della visibilità: la voce 22 si chiude
+
+«Un effetto invisibile è un bug, non un'atmosfera» ([D-121](docs/DECISIONS.md#d-121)).
+La sonda nuova conta, e quello che ha trovato è stato curato.
+
+### Added
+
+- `cli/run_visibility_probe.gd`: 100 semi a tavolo misto, ogni effetto del
+  registro o ha la sua frase a verbale (parola per parola) o un silenzio
+  dichiarato — i senza voce vengono nominati, con la fonte. Oggi: **0**.
+- Il **placarsi della questione decisa** (H.1) ha la sua riga — era
+  l'effetto centrale di ogni Consiglio, e non lo diceva nessuno.
+- La **rivelazione del presagio** parla («… non è più velata») invece di
+  posare il numero sul tavolo in silenzio.
+- Il CLAIM e l'INFLUENCE via scarto **nominano la carta spesa**.
+- **La mappa non nasconde** (fase 2): una Regione segnata appare nella
+  riga «Sulla mappa» anche senza presidi né controllore, coi nomi dei
+  segni di D-107 («Valle Verde (contesa)»).
+
+### Fixed
+
+- `SET_CONTROL` che non cambia mano e `SET_TENSION_VISIBILITY` su una
+  questione già aperta si marcano no-op: nessuna riga annuncia un trono
+  che non si è mosso.
+
+---
+
 ## [0.1.83] — La mossa che spegne il tuo Destino avverte prima
 
 La voce 21 si chiude ([D-120](docs/DECISIONS.md#d-120)): nella partita al
