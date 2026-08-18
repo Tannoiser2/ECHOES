@@ -197,6 +197,15 @@ Le risposte del committente, con la lettura che ne guida il lavoro:
      cambierà comunque lo strumento che decide — e lì i pesi avranno un
      lettore vero, da misurare contro baseline nuove.
   La raccomandazione del dossier è la 1 adesso e la 2 quando verrà.
+  **Scelta dal committente: la strada 1** («Vai») — eseguita in 0.1.91
+  (D-128): la tabella di D-108 era già buona, corretto il solo Culto della
+  Misura (il velo è un'arte dello SCHEME: 3 → 4, INFLUENCE 4 → 3).
+- **Il «Vai» copre anche la C**: si scrivono le tre vite rimaste, una alla
+  volta col loro pezzo di motore — i Forni Riaccesi per primi (il pezzo
+  piccolo dell'azione che sfoga), poi la Diaspora (il conteggio delle
+  cacciate) e l'Egemonia (il tetto verso di lei e lo sconto sul diritto).
+  Se la lettura del «Vai» fosse più larga del voluto, ogni vita è una
+  regola nei dati: si spegne senza toccare il motore.
 
 ---
 

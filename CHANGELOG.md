@@ -5,6 +5,18 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.91] — I valori per vita sono sapore dichiarato
+
+La decisione D della seduta si chiude sulla strada onesta
+([D-128](docs/DECISIONS.md#d-128)): i valori d'azione non hanno un
+lettore (la policy di D-021 è una scala senza pareggi) e si dichiarano
+**sapore di stampa**, allineati ai denti veri; la D meccanica resta a
+verbale per la 0.4. La tabella di D-108 era già buona — corretto il solo
+Culto della Misura: il velo è un'arte dello SCHEME (3 → 4, INFLUENCE
+4 → 3, somma invariata).
+
+---
+
 ## [0.1.90] — La morte di Vaerax, per via di Propp
 
 La decisione B della seduta ([D-127](docs/DECISIONS.md#d-127)): il drago

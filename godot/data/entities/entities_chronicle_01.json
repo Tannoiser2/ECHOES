@@ -501,9 +501,9 @@
           "action_values": {
             "ACQUIRE": 2,
             "MOVE": 2,
-            "INFLUENCE": 4,
+            "INFLUENCE": 3,
             "FORGE": 2,
-            "SCHEME": 3,
+            "SCHEME": 4,
             "CLAIM": 3
           },
           "art_prompt_key": "entity.lyra_cult",

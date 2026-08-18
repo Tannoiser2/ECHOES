@@ -331,6 +331,31 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-128 — I valori per vita sono sapore dichiarato (la D si chiude)
+**implemented in 0.1.91** (ISSUES 19, decisione D della seduta — la strada 1 del verbale)
+
+Il ritrovamento è in SEDUTA_VITE.md §4: i valori d'azione oggi non hanno un
+lettore — lo schema li dichiara «peso per la policy di default, non un
+modificatore della matematica (v0.2)», e la policy a obiettivi di D-021 è
+una scala senza pareggi. Il committente ha scelto la **strada 1**: si
+dichiarano **sapore di stampa**, allineati ai denti veri che ogni vita ha
+(D-124/D-126/D-127), e la D *meccanica* resta a verbale come intenzione per
+la 0.4, quando il modello narrativo locale darà loro un lettore vero da
+misurare contro baseline nuove.
+
+La tabella per vita esisteva già (D-108 l'aveva scritta bene: il Regno di
+Nahr guadagna il CLAIM e smette di camminare, la Repubblica tratta invece
+di rivendicare, il Banco trama). Un solo disallineamento vero, corretto: il
+**Culto della Misura**, il cui dente è il velo — un'arte dello SCHEME — ma i
+cui valori lo davano a 3 dove Lyra stava a 5. Ora SCHEME 4 / INFLUENCE 3, a
+somma invariata (±2, mai un profilo strettamente peggiore, come da regola
+approvata).
+
+Niente da misurare oltre le guardie: nessuna regola legge questi numeri
+(è il punto), l'export resta deterministico, la suite verde.
+
+---
+
 ## D-127 — La morte di Vaerax, per via di Propp
 **implemented in 0.1.90** (ISSUES 19, decisione B della seduta — «si scrive, e la può proporre qualcuno con carta di Propp»)
 
