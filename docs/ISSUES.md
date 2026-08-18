@@ -417,7 +417,10 @@ Le fasi:
    (l'azione che sfoga, la porta che non tiene, lo sconto sul diritto e
    il tetto verso l'egemone). **Resta la Leggenda della Montagna**,
    approvata come direzione: si progetta in una seduta dedicata (il
-   seggio senza corpo chiede più di un tipo di regola).
+   seggio senza corpo chiede più di un tipo di regola) — il dossier di
+   decisione, con le misure delle saghe di città e il ritrovamento sulle
+   porte d'ingresso di Forni ed Egemonia, è in
+   [SEDUTA_LEGGENDA.md](SEDUTA_LEGGENDA.md).
 
 **Fatto quando** una saga attraversa almeno un cambio d'incarnazione, con
 carta e prompt propri e il passaggio nel verbale, e le sonde d'era restano in

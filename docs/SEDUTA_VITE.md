@@ -209,7 +209,8 @@ Le risposte del committente, con la lettura che ne guida il lavoro:
   Eredan (0.1.94, D-131: il segno qualificato per Regione, lo sconto sul
   diritto, il tetto verso di lei). Ogni vita resta una regola nei dati:
   si spegne senza toccare il motore. **Della seduta resta solo la
-  Leggenda della Montagna**, da progettare nella sua seduta dedicata.
+  Leggenda della Montagna**, da progettare nella sua seduta dedicata:
+  il dossier è pronto in [SEDUTA_LEGGENDA.md](SEDUTA_LEGGENDA.md).
 
 ---
 
