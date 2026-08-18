@@ -155,9 +155,12 @@ Seduta del 2026-08-18, risposte del committente:
   raccomandata): il telefono apre un indirizzo, niente installazione.
 - **B — «ok»**: accoppiamento col QR + token di seggio, e il tavolo può
   rigenerare il token a partita in corso.
-- **C — in chiarimento**: chiesto cosa significhi «schermo grande
-  interattivo»; la spiegazione è a verbale in chat, la decisione
-  arriva dopo. Ipotesi di lavoro intanto: la vetrina (raccomandata),
-  reversibile — l'interattività sarebbe additiva, non un rifacimento.
+- **C — «vetrina + ispezione»**: lo schermo grande accetta solo tocchi
+  che *guardano* (zoom su una Regione, il libro della cronaca, il
+  verbale), mai tocchi che *decidono* — un tocco sul tabellone non ha
+  identità di seggio. La console di riserva esiste ma solo su
+  dichiarazione esplicita del tavolo («il telefono di Aldric è perso»),
+  e l'app dice ad alta voce il costo di segretezza prima di mostrare le
+  opzioni del seggio sullo schermo comune.
 - **D — «ok»**: le fasi 1→4, cominciando dalla ricomposizione delle due
   viste senza rete.
