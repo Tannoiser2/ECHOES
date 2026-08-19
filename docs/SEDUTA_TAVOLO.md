@@ -177,8 +177,11 @@ stessa partita con due console WebSocket vere è **identica byte per
 byte** a quella senza rete, e su 100 partite la perquisizione ha
 passato **21.109 messaggi con zero fughe** — e il telefono vero: le
 pagine console e tavolo, la stanza dal menu, la diagnosi della rete.
-Restano, dichiarate: la console di riserva piena, il QR, l'inclusione
-di `web/` negli export impacchettati.
+**Il QR è fatto** (0.1.100, [D-137](DECISIONS.md#d-137)): ogni seggio ha
+il suo codice da inquadrare, e la vetrina il suo — verificati contro un
+oracolo indipendente, che ha trovato tre difetti invisibili a occhio.
+Restano, dichiarate: la console di riserva piena e l'inclusione di `web/`
+negli export impacchettati.
 
 ## 9. La prova (computer + iPad + telefoni)
 
@@ -187,11 +190,12 @@ di `web/` negli export impacchettati.
    la stanza — console sui telefoni» (oppure dritto:
    `godot --path godot res://ui/room_screen.tscn`). Si sceglie l'anno
    e la stanza si apre: per ogni seggio compare il suo indirizzo.
-2. **Sull'iPad** (la vetrina): Safari su `http://<ip>:8123/tavolo`.
-   L'ip è scritto in testa alla stanza. Si aggiorna da sola a ogni
+2. **Sull'iPad** (la vetrina): inquadra il QR grande in testa alla
+   stanza, o apri Safari su `http://<ip>:8123/tavolo`. Si aggiorna da sola a ogni
    mossa; il tocco su una Regione apre i suoi segni.
-3. **Sui telefoni** (le console): ognuno apre l'indirizzo del proprio
-   seggio (`http://<ip>:8123/?t=CODICE`). Il codice resta nel telefono:
+3. **Sui telefoni** (le console): ognuno **inquadra il QR del proprio
+   seggio** con la fotocamera (o digita `http://<ip>:8123/?t=CODICE`).
+   Il codice resta nel telefono:
    se la pagina si chiude o il WiFi cade, si riapre e si rientra da
    soli, con la domanda in sospeso riproposta.
 4. **«Si comincia»**: chi è collegato in quel momento gioca dal

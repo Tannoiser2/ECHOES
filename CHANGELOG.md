@@ -5,6 +5,36 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.100] — Il QR della stanza
+
+L'ultima promessa aperta della fase 3 ([D-137](docs/DECISIONS.md#d-137)):
+il codice si inquadra invece di digitarlo.
+
+### Added
+
+- **Encoder QR** scritto a mano (modo byte, correzione M, versioni 1-4) e
+  il riquadro che lo disegna: un codice per ogni seggio (indirizzo +
+  token) e uno per la vetrina, rigenerati quando si rigenera un codice.
+- **L'oracolo**: `tools/gen_qr_fixture.py` congela le matrici attese di
+  un'implementazione indipendente; il test le confronta modulo per
+  modulo, per tutte e otto le maschere.
+
+### Fixed
+
+- Tre difetti che nessuno sguardo avrebbe visto, trovati dal confronto:
+  le due copie dei bit di formato scambiate, il polinomio generatore
+  della correzione d'errore con le potenze invertite, e il riempimento
+  indicizzato sulla posizione invece che sul conteggio — quest'ultimo
+  tornava per caso in versione 1 e sbagliava in versione 3.
+
+### Measured
+
+- 40 matrici su 40 identiche all'oracolo (100 asserzioni); suite 294
+  test / 6064 asserzioni verde; playtest identico (0/8); filo ancora
+  trasparente byte per byte.
+
+---
+
 ## [0.1.99] — Il telefono vero e la stanza
 
 La fase 3 della voce 27 ([D-136](docs/DECISIONS.md#d-136)): le pagine,

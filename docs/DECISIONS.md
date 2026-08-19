@@ -331,6 +331,59 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-137 — Il QR della stanza, e i due oracoli che non erano d'accordo
+**implemented in 0.1.100** (voce 27, la B della seduta: «QR + token» — l'ultima promessa aperta della fase 3)
+
+Il codice si inquadra invece di digitarlo: la stanza disegna un QR per ogni
+seggio (col suo indirizzo e il suo token) e uno per la vetrina. Encoder
+scritto a mano — modo byte, correzione M, versioni 1-4 — perché il progetto
+non tira dipendenze per una schermata.
+
+Il punto della decisione non è il QR: è **come si verifica una cosa che non
+si vede a occhio**. Un codice sbagliato non sembra sbagliato; sembra un
+quadrato. Si scopre quando quattro persone sono sedute e nessuna riesce a
+entrare. Quindi l'encoder ha il suo oracolo: `tools/gen_qr_fixture.py`
+genera le matrici attese con un'implementazione che non è la mia e le
+congela in `tests/fixtures/qr_golden.json`; il test le confronta **modulo
+per modulo, per tutte e otto le maschere** — separare le maschere separa i
+due difetti possibili (i dati piazzati male, la maschera scelta male).
+
+Il confronto ha trovato tre difetti veri, nessuno dei quali si sarebbe
+visto guardando lo schermo:
+
+- **I bit di formato**: le due copie erano scambiate e indicizzate al
+  contrario. Le posizioni sono ora elencate una per una, ricavate
+  dall'oracolo — non si tengono a memoria.
+- **La correzione d'errore**: il polinomio generatore era costruito con le
+  potenze invertite rispetto a come la divisione lo legge. Produceva una
+  parità plausibile e sbagliata.
+- **Il riempimento**: i codeword di riempimento si alternano da `0xEC`
+  contati dall'inizio del riempimento, non dalla posizione nel messaggio.
+  Con la parità della posizione la versione 1 tornava **per caso** e la 3
+  no — il difetto peggiore, quello che un solo esempio avrebbe assolto.
+
+**Gli oracoli interrogati sono stati due, e non erano d'accordo**: `segno`
+aggiunge sempre un byte di zeri dopo il terminatore anche quando il flusso
+è già allineato; lo standard (ISO/IEC 18004 §7.4.10) dice di riempire *solo*
+se non lo è, e `qrcode` fa così. Entrambi i QR si leggono — la differenza
+vive nella zona di riempimento, che un lettore scarta — ma un confronto
+vuole un riferimento solo, e si è scelto quello conforme.
+
+E una cosa si è imparata a non pretendere: **quale** maschera sia la
+migliore non è un invariante fra implementazioni. Sullo stesso indirizzo
+`qrcode` sceglie la 7, `segno` la 1, questo encoder la 2: il punteggio di
+penalità è un'euristica e le tre lo pesano diversamente. Il test quindi non
+pretende la stessa scelta — pretende che la strada automatica produca *una
+delle otto matrici verificate*, che è ciò che deve valere davvero.
+
+Misure: 40 matrici su 40 identiche all'oracolo, 100 asserzioni verdi; suite
+294/6064 verde; playtest identico (0/8); il filo ancora trasparente (249
+messaggi, vetrina 43 volte, salvataggio e verbale byte per byte). Se un
+indirizzo non entra nelle versioni coperte il riquadro resta vuoto e accanto
+c'è l'indirizzo scritto: la stanza non dipende dal QR, lo offre.
+
+---
+
 ## D-136 — Il telefono vero e la stanza (voce 27, fase 3 + rifiniture)
 **implemented in 0.1.99** (per la prova computer + iPad + telefoni; le istruzioni in SEDUTA_TAVOLO §9)
 

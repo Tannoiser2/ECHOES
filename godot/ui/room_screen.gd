@@ -15,6 +15,7 @@ const GameSession := preload("res://scripts/chronicle/game_session.gd")
 const SeatDecider := preload("res://scripts/seat/seat_decider.gd")
 const ConsoleHost := preload("res://scripts/net/console_host.gd")
 const TableView := preload("res://ui/table_view.gd")
+const QrView := preload("res://ui/qr_view.gd")
 
 const WS_PORT: int = 8137
 const HTTP_PORT: int = 8123
@@ -100,13 +101,19 @@ func _open_room(chronicle_id: String, vestibule: Control) -> void:
 	head.text = "La stanza è aperta — seme %d" % seed_value
 	head.add_theme_font_size_override("font_size", 22)
 	_lobby_box.add_child(head)
+	var table_url: String = "http://%s:%d/tavolo" % [address, HTTP_PORT]
+	var table_row := HBoxContainer.new()
+	table_row.add_theme_constant_override("separation", 12)
+	_lobby_box.add_child(table_row)
 	var table_line := Label.new()
 	table_line.text = (
-		"La vetrina (iPad o secondo schermo):  http://%s:%d/tavolo" % [address, HTTP_PORT]
+		"La vetrina (iPad o secondo schermo):  %s" % table_url
 		if served else "La porta %d è occupata: chiudi l'altra stanza e riapri." % HTTP_PORT
 	)
 	table_line.add_theme_font_size_override("font_size", 16)
-	_lobby_box.add_child(table_line)
+	table_row.add_child(table_line)
+	if served:
+		table_row.add_child(_qr_for(table_url, 132))
 
 	for seat in _seats:
 		var row := HBoxContainer.new()
@@ -116,8 +123,11 @@ func _open_room(chronicle_id: String, vestibule: Control) -> void:
 		who.custom_minimum_size = Vector2(220, 0)
 		who.add_theme_font_size_override("font_size", 16)
 		row.add_child(who)
+		var url: String = "http://%s:%d/?t=%s" % [address, HTTP_PORT, str(_tokens[str(seat)])]
+		var code: Control = _qr_for(url, 112)
+		row.add_child(code)
 		var link := Label.new()
-		link.text = "http://%s:%d/?t=%s" % [address, HTTP_PORT, str(_tokens[str(seat)])]
+		link.text = url
 		link.add_theme_font_size_override("font_size", 15)
 		link.add_theme_color_override("font_color", Color("#e8b563"))
 		row.add_child(link)
@@ -125,7 +135,7 @@ func _open_room(chronicle_id: String, vestibule: Control) -> void:
 		status.text = "in attesa"
 		status.add_theme_font_size_override("font_size", 14)
 		row.add_child(status)
-		_rows[str(seat)] = {"status": status, "link": link}
+		_rows[str(seat)] = {"status": status, "link": link, "code": code}
 		var reissue := Button.new()
 		reissue.text = "Rigenera il codice"
 		reissue.pressed.connect(_reissue.bind(str(seat)))
@@ -133,9 +143,22 @@ func _open_room(chronicle_id: String, vestibule: Control) -> void:
 		_lobby_box.add_child(row)
 
 	var hint := Label.new()
-	hint.text = "Chi è collegato al via gioca dal telefono; gli altri seggi giocano da soli."
+	hint.text = (
+		"Inquadra il codice del tuo seggio col telefono (o digita l'indirizzo). "
+		+ "Chi è collegato al via gioca dal telefono; gli altri seggi giocano da soli."
+	)
 	hint.add_theme_color_override("font_color", Color("#8a8172"))
 	_lobby_box.add_child(hint)
+
+
+## Il quadrato da inquadrare. Se l'indirizzo non entra nelle versioni che
+## l'encoder copre, il riquadro resta vuoto e accanto c'e' comunque
+## l'indirizzo scritto — la stanza non dipende dal QR, lo offre.
+func _qr_for(url: String, side: int) -> Control:
+	var code: Control = QrView.new()
+	code.custom_minimum_size = Vector2(side, side)
+	code.show_text(url)
+	return code
 	var go := Button.new()
 	go.text = "Si comincia"
 	go.pressed.connect(_start)
@@ -146,9 +169,9 @@ func _reissue(seat: String) -> void:
 	var fresh: String = _host.reissue(seat, randi())
 	_tokens[seat] = fresh
 	if _rows.has(seat) and not _running:
-		(_rows[seat]["link"] as Label).text = "http://%s:%d/?t=%s" % [
-			ConsoleHost.local_address(), HTTP_PORT, fresh
-		]
+		var url: String = "http://%s:%d/?t=%s" % [ConsoleHost.local_address(), HTTP_PORT, fresh]
+		(_rows[seat]["link"] as Label).text = url
+		(_rows[seat]["code"] as Control).show_text(url)
 
 
 # --- la partita -------------------------------------------------------------
