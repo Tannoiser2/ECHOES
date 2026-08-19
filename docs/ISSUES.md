@@ -821,6 +821,32 @@ impilarle.
 **Fatto quando** una presenza si mette toccando la Regione, le schede separano
 mappa/mano/seggio, e il telefono coricato non chiede di scorrere. ✓
 
+### 34. ✅ Quanti giocatori, e i bot messi alla prova — fatta in 0.1.109
+
+`app` · `regole` · **chiusa** ([D-147](DECISIONS.md#d-147)) · nata da tre domande del committente
+
+«Si può scegliere il numero di giocatori? O si deve giocare per forza in
+quattro? Funzionano i bot?»
+
+**I seggi sono quattro e non è un'impostazione**: ogni Chronicle dichiara le sue
+quattro case, e domande, relazioni, Destini e proposizioni sono scritti per
+quelle voci. Un tavolo a tre o a cinque è un'altra Chronicle da scrivere.
+
+**Quante di quelle voci siano persone è sempre stato libero** — la riga di
+comando lo sa da 0.0, la stanza lo decide da chi si collega — tranne nel menu
+dell'app, che chiedeva quale seggio prendi e basta. Ora chiede anche chi altro
+gioca da quello schermo.
+
+**«Funzionano i bot?» era senza misura da otto versioni.** Il playtest confronta
+tavoli, dando per scontato che i giocatori giochino; nessuno aveva mai chiesto
+ai bot di battere qualcosa. `run_bot_probe.gd` li mette contro il caso sullo
+stesso mondo: la policy fa meglio in **26 partite su 40**, e soprattutto il caso
+manca il Destino minimo in **20 partite su 40** mentre la policy non lo manca
+mai.
+
+**Fatto quando** il menu chiede quanti giocano, e una misura dice se i bot
+giocano davvero. ✓
+
 ### 28. ✅ Le alleanze devono pesare al Consiglio — fatta in 0.1.102
 
 `regole` · voluta dal committente · **chiusa** ([D-139](DECISIONS.md#d-139))

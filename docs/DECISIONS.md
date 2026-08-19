@@ -331,6 +331,66 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-147 — Quanti giocatori, e i bot messi alla prova
+**implemented in 0.1.109** (chiesto dal committente: «si puo' scegliere il numero di giocatori? O si deve giocare per forza in quattro? Funzionano i bot?»)
+
+Tre domande, e le risposte erano diverse fra loro: una era gia' vera, una era
+una lacuna, una non era mai stata misurata.
+
+**I seggi sono quattro, e non e' un'impostazione.** Ogni Chronicle ne dichiara
+quattro — CHR_01/02 le quattro case della prima saga, CHR_03/04 quelle della
+seconda — perche' il Consiglio *e'* quel tavolo: le domande dell'anno, le
+relazioni, i Destini e le proposizioni sono scritti per quelle quattro voci.
+Un tavolo a tre o a cinque non e' un'opzione da spuntare, e' un'altra
+Chronicle da scrivere. Questo si dichiara invece di lasciarlo intuire.
+
+**Quante di quelle quattro voci siano persone, invece, e' sempre stato libero
+— tranne nel posto piu' visibile.** La riga di comando lo sa fare da 0.0
+(`--seats=all`, o un seggio per nome); la stanza lo decide da chi si collega
+col proprio codice; e il menu dell'app chiedeva **quale** seggio prendi e
+basta, cioe' offriva uno solo dei quattro modi. Adesso, scelto il proprio,
+chiede «siete in N, qualcun altro a questo schermo?» finche' il tavolo e'
+pieno o qualcuno dice basta. Nessuna regola nuova: la stessa `humans` che il
+`SeatDecider` accetta da sempre, chiesta anche li'.
+
+**«Funzionano i bot?» non e' una domanda d'opinione**, ed e' rimasta senza
+misura per otto versioni. Il playtest confronta un tavolo di quattro
+ottimizzatori identici con un tavolo di quattro caratteri diversi (D-051,
+D-053) — misura il *contenuto*, dando per scontato che i giocatori giochino.
+Nessuno aveva mai chiesto ai bot di battere qualcosa.
+
+`cli/run_bot_probe.gd` glielo chiede, e il metro e' **il caso**: lo stesso
+mondo giocato due volte, una col seggio studiato alla policy e una allo stesso
+seggio che tira a sorte fra le mosse legali. Il caso resta legale — passa dagli
+stessi controlli — quindi la differenza e' tutta nel giudizio. Il punteggio non
+sono i Consigli vinti ma il **Destino raggiunto**: e' quello che un seggio sta
+cercando di fare, e l'unico modo di dire «gioca bene» senza inventarsi un
+punteggio.
+
+Su 40 partite (semi da 7000, le due Chronicle alternate):
+
+| | NONE | MINIMUM | VICTORY | TRIUMPH | media |
+|---|---|---|---|---|---|
+| policy | **0** | 22 | 10 | 8 | **1,65** |
+| caso | **20** | 18 | 1 | 1 | 0,57 |
+
+La policy fa meglio in **26 partite su 40**, peggio in 2, pari in 12. Il numero
+che dice piu' di tutti e' la prima colonna: **il caso manca il Destino minimo
+in metà delle partite, la policy non lo manca mai**. Un avversario che non
+batte il sorteggio non e' un avversario, e' un generatore di mosse legali;
+questo lo batte, e adesso c'e' scritto quanto.
+
+Le due partite dove il caso ha fatto meglio non sono un difetto: un Destino
+puo' compiersi per come gira il mondo, e una policy che ottimizza puo' passare
+accanto a una fortuna che nessuno stava cercando. Trentotto volte su quaranta
+non succede.
+
+Misure: sonda dei bot **26/40 a favore, media 1,65 contro 0,57**; playtest
+**FAIL 185 · SUCC 76 · SUCC 123 · DECI 178**, tavolo misto **0/8**, invariato;
+suite **300/6141** verde; 22 documenti validi.
+
+---
+
 ## D-146 — Le schede, il telefono coricato, e i pezzi che si muovono sulla mappa
 **implemented in 0.1.108** (chiesto dal committente: «come si fa a muovere i pezzi sulla mappa dagli smartphone? …schede invece di tutto insieme, e in orizzontale si razionalizza meglio»)
 

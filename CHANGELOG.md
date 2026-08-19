@@ -5,6 +5,37 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.109] — Quanti giocatori, e i bot alla prova
+
+Le tre domande del committente sul numero di giocatori e sui bot
+([D-147](docs/DECISIONS.md#d-147)).
+
+### Added
+
+- **Il menu chiede chi altro gioca da questo schermo**: scelto il proprio
+  seggio, «siete in N, qualcun altro?» finche' il tavolo e' pieno o qualcuno
+  dice basta. La riga di comando e la stanza lo sapevano gia' fare; il menu
+  offriva uno solo dei quattro modi.
+- **`cli/run_bot_probe.gd`**: i bot contro il caso, sullo stesso mondo giocato
+  due volte. Il punteggio e' il **Destino raggiunto**, non i Consigli vinti.
+
+### Measured
+
+- **I bot giocano**: su 40 partite la policy fa meglio in **26**, peggio in 2,
+  pari in 12 — media **1,65 contro 0,57**. Il caso manca il Destino minimo in
+  **20 partite su 40**; la policy **mai**.
+- Playtest **FAIL 185 · SUCC 76 · SUCC 123 · DECI 178**, tavolo misto **0 su
+  8**, invariato; suite **300 test / 6141 asserzioni** verde.
+
+### Notes
+
+- **I seggi sono quattro e non e' un'impostazione**: ogni Chronicle dichiara
+  le sue quattro case, e domande, relazioni, Destini e proposizioni sono
+  scritti per quelle voci. Un tavolo a tre o a cinque e' un'altra Chronicle da
+  scrivere, non una casella da spuntare.
+
+---
+
 ## [0.1.108] — I pezzi si muovono sulla mappa
 
 La console ripensata come l'ha chiesta il committente
