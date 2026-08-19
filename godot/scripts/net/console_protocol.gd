@@ -61,22 +61,26 @@ static func decode(text: String) -> Dictionary:
 
 ## La perquisizione (la regola dei pixel applicata ai messaggi, §11.1): un
 ## messaggio diretto alla console di `seat_id` non deve contenere un segreto
-## di nessun altro seggio — una carta della loro mano, un gradino del loro
-## Destino, il numero di una domanda che questo seggio non ha sbirciato.
-## Restituisce le violazioni trovate (vuoto = pulito), calcolate sul mondo
-## di ADESSO: la sonda chiama qui a ogni invio, quando i segreti sono vivi.
+## di nessun altro seggio. Restituisce le violazioni trovate (vuoto =
+## pulito), calcolate sul mondo di ADESSO: la sonda chiama qui a ogni invio,
+## quando i segreti sono vivi.
+##
+## Le mani si perquisiscono sulla STRUTTURA, non sulle parole: le carte
+## esistono in copie e il titolo e' condiviso fra loro — «Carovana» scartata
+## da questo seggio sta legittimamente nel suo verbale anche se un vicino ne
+## tiene un'altra copia in mano. Cio' che e' segreto e' QUALI copie hai in
+## mano, e quello si prova sul campo `hand` dello state: deve essere
+## esattamente la mano del seggio, ne' una carta in piu' ne' una di un
+## altro. (La prima forma di questa perquisizione cercava i titoli nel
+## testo: 658 «fughe» su 100 partite, tutte false — copie e prosa.)
+## I gradini del Destino altrui restano un text-scan: sono frasi d'autore,
+## uniche e mai legittime su una console che non le ha giurate.
 static func audit(message: Dictionary, session: RefCounted, seat_id: String) -> Array:
 	var found: Array = []
 	var stringified: String = encode(message)
 	for other in session.world["turn_order"]:
 		if str(other) == seat_id:
 			continue
-		for asset_id in session.service.hand(str(other)):
-			var title: String = str(session.data.assets[str(asset_id)]["title"])
-			if _held_by(session, seat_id, title):
-				continue
-			if stringified.contains(title):
-				found.append("la mano di %s trapela («%s»)" % [str(other), title])
 		var destiny: Variant = session.data.destinies.get(
 			session.service.destiny_of(str(other))
 		)
@@ -86,26 +90,41 @@ static func audit(message: Dictionary, session: RefCounted, seat_id: String) -> 
 			var label: String = str((destiny as Dictionary)[level]["label"])
 			if stringified.contains(label):
 				found.append("il Destino di %s trapela («%s»)" % [str(other), label])
+
+	if str(message.get("kind", "")) != "state":
+		return found
+	var model: Dictionary = message.get("model", {})
+
+	# La mano dello state e' la mano del seggio, carta per carta.
+	var mine: Array = []
+	for asset_id in session.service.hand(seat_id):
+		mine.append(str(session.data.assets[str(asset_id)]["title"]))
+	mine.sort()
+	var shown: Array = []
+	for card in model.get("hand", []):
+		shown.append(str((card as Dictionary).get("title", "")))
+	shown.sort()
+	if shown != mine:
+		found.append("la mano dello state non e' quella del seggio (%s ≠ %s)" % [
+			str(shown), str(mine)
+		])
+	# E lo state e' proprio il SUO: un messaggio instradato male porterebbe
+	# il nome di un altro.
+	if str(model.get("name", "")) != session.service.name_of(seat_id):
+		found.append("lo state porta il nome di un altro seggio («%s»)" % str(model.get("name", "")))
+
 	# La domanda coperta: se il seggio non la conosce, il suo numero non deve
 	# stare nel modello (il -1 e' il dorso).
-	if str(message.get("kind", "")) == "state":
-		for tension in (message.get("model", {}) as Dictionary).get("tensions", []):
-			var entry: Dictionary = tension
-			if int(entry.get("value", -1)) < 0:
-				continue
-			var tension_id: String = _tension_by_title(session, str(entry.get("title", "")))
-			if tension_id == "":
-				continue
-			if session.service.visible_tension_value(tension_id, seat_id) < 0:
-				found.append("il numero della domanda coperta «%s» trapela" % str(entry["title"]))
+	for tension in model.get("tensions", []):
+		var entry: Dictionary = tension
+		if int(entry.get("value", -1)) < 0:
+			continue
+		var tension_id: String = _tension_by_title(session, str(entry.get("title", "")))
+		if tension_id == "":
+			continue
+		if session.service.visible_tension_value(tension_id, seat_id) < 0:
+			found.append("il numero della domanda coperta «%s» trapela" % str(entry["title"]))
 	return found
-
-
-static func _held_by(session: RefCounted, seat_id: String, title: String) -> bool:
-	for asset_id in session.service.hand(seat_id):
-		if str(session.data.assets[str(asset_id)]["title"]) == title:
-			return true
-	return false
 
 
 static func _tension_by_title(session: RefCounted, title: String) -> String:
