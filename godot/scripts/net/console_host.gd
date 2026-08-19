@@ -19,6 +19,7 @@ const ConsoleIO := preload("res://scripts/net/console_io.gd")
 const TableModel := preload("res://scripts/views/table_model.gd")
 const CardFace := preload("res://scripts/core/card_face.gd")
 const PrintSheet := preload("res://scripts/core/print_sheet.gd")
+const BoardSheet := preload("res://scripts/core/board_sheet.gd")
 
 var session: RefCounted = null
 var _tcp: TCPServer = TCPServer.new()
@@ -240,6 +241,10 @@ func _respond(tcp: StreamPeerTCP, path: String) -> void:
 	if path.begins_with("/carta/"):
 		_respond_card(tcp, path)
 		return
+	# Il tabellone disegnato, dagli stessi piani del canvas (D-145).
+	if path.begins_with("/mappa.svg"):
+		_respond_svg(tcp, BoardSheet.board_svg(session), false)
+		return
 	var body: String = ""
 	if path.begins_with("/tavolo"):
 		body = _page("res://web/tavolo.html")
@@ -275,6 +280,13 @@ func _respond_card(tcp: StreamPeerTCP, path: String) -> void:
 		var face: Dictionary = CardFace.of(str(parts[1]), str(parts[2]), session.data)
 		if not face.is_empty():
 			body = PrintSheet.card_svg(face)
+	_respond_svg(tcp, body, true)
+
+
+## Un SVG, o un 404 se non c'e' niente da disegnare. `forever` distingue le due
+## specie: la faccia di una carta non cambia dentro una partita e si tiene in
+## cache per sempre; il tabellone cambia a ogni mossa e non si tiene affatto.
+func _respond_svg(tcp: StreamPeerTCP, body: String, forever: bool) -> void:
 	if body == "":
 		tcp.put_data(
 			"HTTP/1.1 404 Not Found\r\nContent-Length: 0\r\nConnection: close\r\n\r\n".to_utf8_buffer()
@@ -282,11 +294,9 @@ func _respond_card(tcp: StreamPeerTCP, path: String) -> void:
 		tcp.disconnect_from_host()
 		return
 	var payload: PackedByteArray = body.to_utf8_buffer()
-	# Un anno di cache: la faccia di una carta non cambia dentro una partita, e
-	# una mano che si riapre non deve ridisegnare sei SVG.
 	var head: String = (
 		"HTTP/1.1 200 OK\r\nContent-Type: image/svg+xml; charset=utf-8\r\n"
-		+ "Cache-Control: max-age=31536000, immutable\r\n"
+		+ ("Cache-Control: max-age=31536000, immutable\r\n" if forever else "Cache-Control: no-store\r\n")
 		+ "Content-Length: %d\r\nConnection: close\r\n\r\n"
 	) % payload.size()
 	tcp.put_data(head.to_utf8_buffer())

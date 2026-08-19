@@ -70,10 +70,29 @@ static func build(session: RefCounted) -> Dictionary:
 	# I Consigli gia' chiusi quest'anno: esito e proponente sono fatti del
 	# tavolo (gli impegni si rivelano tutti insieme in seduta, D-014).
 	for result in session.chronicle.confluence_results:
+		# Le carte impegnate: pubbliche perche' gli impegni si rivelano tutti
+		# insieme in seduta (D-014), e questi sono i Consigli **gia' chiusi** —
+		# di uno ancora aperto non c'e' niente qui, ed e' la ragione per cui
+		# `confluence_results` e' la sorgente giusta (D-145).
+		var played: Array = []
+		for front in ["support_assets", "oppose_assets", "condition_assets"]:
+			for asset_id in (result as Dictionary).get(front, []):
+				var asset: Variant = data.assets.get(str(asset_id))
+				if asset != null:
+					played.append({
+						"id": str(asset_id),
+						"title": str(asset["title"]),
+						"front": front.trim_suffix("_assets"),
+					})
 		(out["councils"] as Array).append({
+			# L'identita' della seduta, non il titolo della domanda: la stessa
+			# domanda puo' tornare al Consiglio piu' volte in una Chronicle, e
+			# confrontare i titoli fa gridare al lupo (D-145).
+			"id": str((result as Dictionary).get("confluence_id", "")),
 			"tension": str(data.tensions[str(result["tension_id"])]["title"]),
 			"outcome": str(result["outcome"]),
 			"proponent": session.service.name_of(str(result["proponent"])),
+			"played": played,
 		})
 
 	# Le carte che il mondo ha calato: la faccia in tavola.

@@ -777,6 +777,28 @@ fuga apposta per provare che morda.
 **Fatto quando** la mano sul telefono è fatta di carte, la vetrina mostra solo
 le carte calate, e una guardia lo prova. ✓ (20.844 messaggi perquisiti, 0 fughe)
 
+### 32. ✅ Il tabellone disegnato sulla vetrina, e le carte giocate — fatta in 0.1.107
+
+`app` · **chiusa** ([D-145](DECISIONS.md#d-145)) · nata da una domanda del committente
+
+«Ma la mappa? I token, le pedine e le carte giocate?» Sulla vetrina la mappa era
+raccontata invece che disegnata — una griglia di riquadri — e le pedine e i
+vessilli di D-138 vivevano solo sul canvas di Godot, cioè sull'unico schermo che
+al tavolo nessuno guarda da vicino. Le carte impegnate in Consiglio non c'erano
+affatto.
+
+`board_sheet.gd` non ridisegna niente: rilegge gli stessi piani (`RegionArt`,
+`IconSet`, i colori per ordine di turno) e li scrive in SVG. È la disciplina di
+D-097 estesa a una terza superficie: una forma sola, tre usi — canvas, fustella,
+browser.
+
+Le carte impegnate arrivano dai Consigli **chiusi**, con una guardia che
+impedisce a una seduta ancora aperta di finire in tavola: gli impegni sono
+coperti finché non si rivelano.
+
+**Fatto quando** la vetrina mostra una mappa con le pedine e le carte giocate, e
+nessun impegno ancora coperto. ✓ (20.844 messaggi perquisiti, 0 fughe)
+
 ### 28. ✅ Le alleanze devono pesare al Consiglio — fatta in 0.1.102
 
 `regole` · voluta dal committente · **chiusa** ([D-139](DECISIONS.md#d-139))

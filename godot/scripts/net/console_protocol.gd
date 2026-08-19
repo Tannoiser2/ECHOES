@@ -152,6 +152,20 @@ static func audit_table(message: Dictionary, session: RefCounted) -> Array:
 			found.append("la vetrina mostra «%s», che e' in mano a %s" % [
 				str(entry.get("title", card_id)), session.service.name_of(str(held[card_id]))
 			])
+	# Le carte impegnate in un Consiglio **chiuso** sono roba del tavolo: gli
+	# impegni si rivelano tutti insieme in seduta (D-014), e quello che il
+	# tavolo ha visto rivelare puo' restare in tavola. Quelle di un Consiglio
+	# **aperto** no: li' l'impegno e' ancora coperto, e mostrarlo sarebbe dire a
+	# tutti cosa ha appena messo giu' chi non ha ancora rivelato (D-145).
+	# Sull'identita' della seduta e non sul titolo della domanda: la stessa
+	# domanda torna al Consiglio piu' volte in una Chronicle, e la prima stesura
+	# di questa guardia ha gridato al lupo 58 volte per quello (D-145).
+	if session.confluence.is_open():
+		var open_id: String = str(session.confluence.current.get("confluence_id", ""))
+		for council in model.get("councils", []):
+			if open_id != "" and str((council as Dictionary).get("id", "")) == open_id:
+				found.append("la vetrina mostra il Consiglio ancora aperto (%s)" % open_id)
+
 	# Le carte Asset **non** si cercano per titolo, e la lezione e' costata due
 	# volte: la prima forma di `audit` consegno' 658 fughe tutte false, questa
 	# ne ha consegnate 54 — «la vetrina nomina "Sale", che e' in mano a Kessa».

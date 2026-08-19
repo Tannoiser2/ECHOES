@@ -39,6 +39,13 @@
   }
   #colonne { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
   @media (max-width: 700px) { #colonne { grid-template-columns: 1fr; } }
+  /* Il tabellone: largo quanto la colonna, e mai piu' alto di mezza pagina —
+     sotto ci sono le domande e il verbale, e la mappa non deve spingerli via. */
+  /* Il tabellone: largo quanto la pagina e mai piu' alto di mezza schermata —
+     sotto ci sono le domande, i Consigli e il verbale, e la mappa non deve
+     spingerli via. */
+  #tabellone { margin-bottom: 12px; }
+  #tabellone img { width: 100%; max-height: 54vh; object-fit: contain; display: block; }
   /* Le carte calate, in fila e ampie: la vetrina si guarda da lontano. */
   .calate { display: flex; flex-wrap: wrap; gap: 10px; padding: 6px 0; }
   .calate .faccia {
@@ -50,6 +57,7 @@
 <body>
 <h1 id="testata">ECHOES — il tavolo</h1>
 <div id="stato">mi collego…</div>
+<div id="tabellone"></div>
 <div id="mappa"></div>
 <div id="colonne">
   <div><h2>Le domande</h2><div id="domande"></div></div>
@@ -76,7 +84,7 @@ function collega() {
   };
   ws.onmessage = (event) => {
     const msg = JSON.parse(event.data);
-    if (msg.kind === "table") disegna(msg.model);
+    if (msg.kind === "table") disegna(msg.model, msg.clock || 0);
   };
   ws.onclose = () => {
     stato.textContent = "filo caduto — riprovo…";
@@ -89,7 +97,7 @@ function scappa(testo) {
   return String(testo).replace(/&/g, "&amp;").replace(/</g, "&lt;");
 }
 
-function disegna(m) {
+function disegna(m, clock) {
   document.getElementById("testata").textContent =
     "Anno " + m.year + " — atto " + m.act + ", round " + m.round;
   let h = "";
@@ -105,6 +113,14 @@ function disegna(m) {
          (r.marks.length ? r.marks.map(scappa).join(" · ") : "nessun segno") +
          "</div></div>";
   }
+  // Il tabellone disegnato, dagli stessi piani del canvas (D-145): l'host lo
+  // ridisegna a ogni richiesta, e il numero dell'orologio del mondo in coda
+  // all'indirizzo lo fa ricaricare solo quando il mondo e' cambiato davvero.
+  // Il tabellone sta FUORI dalla griglia delle Regioni, o diventa una cella
+  // larga come un riquadro (visto: la mappa grande come una didascalia). I
+  // riquadri restano sotto: sono l'ispezione al tocco (la C della seduta).
+  document.getElementById("tabellone").innerHTML =
+    '<img alt="Il tabellone" src="/mappa.svg?c=' + clock + '">';
   document.getElementById("mappa").innerHTML = h;
   document.querySelectorAll(".regione").forEach(el => {
     el.onclick = () => {
@@ -120,9 +136,20 @@ function disegna(m) {
       : scappa(t.title) + " — " + t.value + " su " + t.threshold) + "</div>"
   ).join("");
 
-  const consigli = m.councils.map(c =>
-    '<div class="riga">' + scappa(c.tension) + " — " + scappa(c.outcome) +
-    " (propose " + scappa(c.proponent) + ")</div>");
+  const fronti = {support: "a favore", oppose: "contro", condition: "alla condizione"};
+  const consigli = [];
+  for (const c of m.councils) {
+    consigli.push('<div class="riga">' + scappa(c.tension) + " — " + scappa(c.outcome) +
+                  " (propose " + scappa(c.proponent) + ")</div>");
+    // Le carte impegnate, con la faccia: si sono rivelate tutte insieme in
+    // seduta (D-014), quindi in tavola ci stanno di diritto (D-145).
+    if (c.played && c.played.length) {
+      consigli.push('<div class="calate">' + c.played.map(a =>
+        '<img class="faccia" loading="lazy" alt="' + scappa(a.title) +
+        '" title="' + scappa(a.title) + " — " + scappa(fronti[a.front] || a.front) +
+        '" src="/carta/asset/' + encodeURIComponent(a.id) + '.svg">').join("") + "</div>");
+    }
+  }
   // Le carte che il mondo ha calato sono pubbliche — e da bordo tavolo sono la
   // cosa piu' bella da vedere. La faccia arriva dall'host, disegnata dalla
   // stessa funzione che impagina i fogli da fustellare (D-144).

@@ -5,6 +5,46 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.107] — Il tabellone disegnato
+
+La mappa vera sulla vetrina, con pedine e vessilli, e le carte giocate in
+tavola ([D-145](docs/DECISIONS.md#d-145)).
+
+### Added
+
+- **`board_sheet.gd`** e `/mappa.svg` serviti dall'host: il tabellone
+  disegnato dagli **stessi piani** del canvas — `RegionArt.plan` per le
+  tessere e il terreno, `IconSet` per pedine e vessilli, i colori dei seggi
+  dall'ordine di turno. Una forma sola, tre usi: canvas, fustella, browser.
+- **Le carte impegnate in Consiglio** sulla vetrina, con la faccia e il
+  fronte su cui sono cadute — dai Consigli **chiusi**, perche' gli impegni si
+  rivelano tutti insieme in seduta (D-014).
+- Una guardia nella perquisizione della vetrina: nessun Consiglio **ancora
+  aperto** puo' comparire in tavola.
+- Quattro test sul tabellone (ogni Regione col suo nome, una pedina per
+  presenza, i colori dei seggi che non si ripetono, nessuna mano).
+
+### Fixed
+
+- Il tabellone dentro la griglia delle Regioni diventava una cella larga come
+  un riquadro: sta fuori, e i riquadri restano sotto per l'ispezione al tocco.
+
+### Measured
+
+- Sonda dei messaggi: **20.844 perquisiti, FUGHE 0**; filo **trasparente byte
+  per byte**; playtest **FAIL 185 · SUCC 76 · SUCC 123 · DECI 178**, tavolo
+  misto **0 su 8**; suite **300 test / 6141 asserzioni** verde; sims ed export
+  deterministici.
+
+### Notes
+
+- La prima stesura della guardia confrontava il **titolo** della domanda e ha
+  dato **58 fughe false**: la stessa domanda torna al Consiglio piu' volte.
+  Terza volta che il confronto per nome inganna (658 in D-135, 54 in D-144):
+  un titolo non e' un'identita'. Ora confronta il `confluence_id`.
+
+---
+
 ## [0.1.106] — Le carte vere, e la mano che il tavolo leggeva
 
 Le carte come carte sul telefono e sulla vetrina — e la fuga che le facce

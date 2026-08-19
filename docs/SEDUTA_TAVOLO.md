@@ -209,8 +209,15 @@ perquisizione lo prova su 17.509 messaggi).
 
 ![La vetrina: la mappa, le domande, le carte calate e il verbale](img/vetrina-tavolo.png)
 
-Le carte che **il mondo ha calato** stanno in tavola con la loro faccia; la
-mano di nessuno compare qui, ed e' una guardia che adesso c'e' davvero:
+La mappa e' **disegnata**, non raccontata: le stesse tessere, le stesse pedine
+e gli stessi vessilli del canvas, letti dagli stessi piani (D-145) — cambia
+solo la superficie. I riquadri sotto restano: sono l'ispezione al tocco.
+
+Le carte **impegnate in Consiglio** stanno in tavola con la loro faccia, per
+fronte — si sono rivelate tutte insieme in seduta, quindi ci stanno di diritto;
+quelle di una seduta **ancora aperta** no, e una guardia lo verifica. Anche le
+carte che **il mondo ha calato** stanno in tavola; la mano di nessuno compare
+qui, ed e' una guardia che adesso c'e' davvero:
 mettendo le facce e' venuto fuori che la vetrina mostrava anche le carte
 *ancora in mano* ai seggi — sei invece di due — perche' leggeva tutto cio' che
 il mazzo aveva lasciato. Corretto in 0.1.106 ([D-144](DECISIONS.md#d-144)),

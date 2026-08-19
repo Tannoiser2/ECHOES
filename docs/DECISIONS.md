@@ -331,6 +331,58 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-145 — Il tabellone disegnato, e le carte giocate in tavola
+**implemented in 0.1.107** (chiesto dal committente: «ma la mappa? I token, le pedine e le carte giocate?»)
+
+Sulla vetrina la mappa era **raccontata, non disegnata**: una griglia di
+riquadri, «Eredan · di Re Aldric · Re Aldric ×1, Lyra ×1». Da bordo tavolo una
+mappa raccontata non e' una mappa — e le pedine e i vessilli di D-138 vivevano
+solo sul canvas di Godot, cioe' sull'unico schermo che al tavolo nessuno
+guarda da vicino. Le carte impegnate in Consiglio, poi, non c'erano affatto:
+si rivelano tutte insieme in seduta (D-014), e dopo sparivano dentro una riga
+di verbale.
+
+**`board_sheet.gd` non ridisegna niente: rilegge gli stessi piani.** Le sagome
+delle tessere e i tratti del terreno vengono da `RegionArt.plan` — coordinate
+normalizzate, quindi valgono su qualunque superficie (D-057) — le pedine e i
+vessilli da `IconSet` (icone come dati, D-058), i colori dei seggi dallo stesso
+ordine di turno di `map_view` (D-050). E' la disciplina di D-097 estesa a una
+terza superficie: **una forma sola, tre usi** — il canvas, la fustella, il
+browser. Una tessera che cambia nei dati cambia in tutti e tre insieme.
+
+L'host serve `/mappa.svg`, senza cache (il tabellone cambia a ogni mossa, e
+l'orologio del mondo in coda all'indirizzo lo fa ricaricare solo quando il
+mondo e' cambiato davvero); le carte impegnate arrivano dai Consigli **chiusi**
+con la loro faccia, per fronte.
+
+**Il pezzo delicato e' quale Consiglio.** Gli impegni sono coperti finche' non
+si rivelano: mostrarli mentre la seduta e' aperta direbbe a tutti cosa ha
+appena messo giu' chi non ha ancora parlato. La sorgente giusta e'
+`confluence_results` — solo i chiusi — e la guardia nella perquisizione della
+vetrina lo tiene onesto.
+
+**Ma la prima stesura della guardia ha gridato al lupo 58 volte.** Confrontava
+il *titolo della domanda* del Consiglio aperto con quelli in tavola, e la
+stessa domanda torna al Consiglio piu' volte in una Chronicle: un Consiglio
+chiuso su «Il Risveglio» piu' uno aperto sulla stessa domanda erano, per quel
+confronto, la stessa cosa. E' la **terza** volta che il confronto per nome mi
+inganna — 658 fughe false in D-135, 54 in D-144, 58 qui — e la lezione, ormai
+scritta tre volte, e' sempre la stessa: **un titolo non e' un'identita'**. Ora
+la guardia confronta il `confluence_id`, e la seduta e' se stessa e nient'altro.
+
+Un difetto visto e corretto guardando: il tabellone finito **dentro** la
+griglia delle Regioni diventava una cella larga come un riquadro — la mappa
+grande come una didascalia. Sta fuori; i riquadri restano sotto, che sono
+l'ispezione al tocco (la C della seduta).
+
+Misure: sonda dei messaggi **20.844 perquisiti, FUGHE 0**; filo **trasparente
+byte per byte**; playtest **FAIL 185 · SUCC 76 · SUCC 123 · DECI 178**, tavolo
+misto **0/8**; suite **300/6141** verde (quattro test nuovi sul tabellone, fra
+cui il conto delle pedine e i colori che non si ripetono); sims ed export
+deterministici; 22 documenti validi.
+
+---
+
 ## D-144 — Le carte vere sul telefono, e la mano che il tavolo leggeva
 **implemented in 0.1.106** (chiesto dal committente: «e le carte e i tarocchi? Si vedono?»)
 
