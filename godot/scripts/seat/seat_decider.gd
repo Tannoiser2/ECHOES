@@ -75,6 +75,14 @@ func _say(text: String) -> void:
 		ear.say(text)
 
 
+## Se l'io dall'altra parte disegna da se' il pannello del seggio. Chi lo fa
+## non ha bisogno della versione a caratteri; chi tace risponde di no, che e'
+## la risposta giusta per il terminale e per lo schermo del tavolo.
+func _reads_own_state() -> bool:
+	var ear: Object = _io_now()
+	return ear != null and ear.has_method("shows_state") and bool(ear.shows_state())
+
+
 ## Offer the choices and wait for one. Returns the chosen index, or -1 for
 ## "you decide", which hands this single choice back to the policy without
 ## taking the player out of their game.
@@ -110,7 +118,13 @@ func choose_action(entity_id: String, ao_index: int, session: RefCounted) -> Dic
 	_speaking_to = entity_id
 
 	_say("")
-	_say(_board(entity_id, session))
+	# Il pannello a caratteri e' per chi non ha un pannello. Il terminale e lo
+	# schermo del tavolo lo leggono; la console del telefono no: lei riceve gia'
+	# lo `state` strutturato (D-134) e disegna domande, mano, Destino e rapporti
+	# a sezioni. Mandarglielo lo stesso significa dire due volte le stesse cose,
+	# la seconda peggio, in cima allo schermo piu' piccolo che abbiamo (D-143).
+	if not _reads_own_state():
+		_say(_board(entity_id, session))
 	var options: Array = _action_options(entity_id, session)
 	var labels: Array = []
 	var subjects: Array = []

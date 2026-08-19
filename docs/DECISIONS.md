@@ -331,6 +331,66 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-143 — Guardare il telefono, e trovarci il terminale
+**implemented in 0.1.105** (chiesto dal committente: «puoi farmi uno screenshot di quello che si vede sugli smartphone?»)
+
+Fino a qui la console era **misurata** ma non **guardata**: la sonda delle
+viste perquisiva i modelli, la sonda dei messaggi contava le fughe, il filo era
+trasparente byte per byte — e nessuno aveva mai visto la pagina su uno schermo
+da telefono. Una domanda del committente e uno screenshot hanno consegnato due
+difetti che nessuna delle tre misure poteva prendere, perche' tutte e tre
+guardavano il *contenuto* e nessuna la *forma*.
+
+**Come si fotografa un telefono senza avere un telefono.** Serviva un browser
+vero contro l'host vero, non un mockup: quindi `cli/run_room.gd`, la stanza
+senza schermo — stesso `ConsoleHost`, stesso `SeatDecider`, stampa un indirizzo
+per seggio e aspetta — e un browser headless con lo schermo di un iPhone che
+apre l'indirizzo, aspetta la domanda e scatta. Vale oltre lo screenshot: da
+adesso si puo' provare la console da un altro apparecchio senza aprire una
+finestra.
+
+**Primo difetto: il pannello del terminale finiva sul telefono.** Il decider
+dice `_say(_board(...))` prima di ogni azione — il tabellone a caratteri, con
+`+-- ATTO 1, ROUND 1 ------------` e i campi separati da `|`. Al terminale
+serve; alla console **no**, perche' lei riceve gia' lo `state` strutturato
+(D-134) e ne disegna sezioni vere. Il risultato era la stessa cosa detta due
+volte, la seconda peggio, in cima allo schermo piu' piccolo che abbiamo: il
+primo schermo intero occupato da un dump ridondante, ripetuto a ogni mossa,
+mentre le sezioni utili stavano sotto la piega.
+
+La correzione e' un contratto di una riga invece di un `if` sul tipo: l'io puo'
+dichiarare `shows_state()`, e chi lo dichiara non riceve il pannello a
+caratteri. `ConsoleIO` lo dichiara; terminale e schermo del tavolo tacciono, e
+il silenzio e' la risposta giusta per loro. **3.600 messaggi in meno su 100
+partite** (17.509 contro 21.109): il traffico che non parte e' anche traffico
+che non puo' sfuggire.
+
+**Secondo difetto: le scelte oltre il bordo.** Le opzioni stanno in un riquadro
+fisso in basso alto al massimo 62vh che scorre per conto suo. Funziona — ma con
+**ventidue** azioni legali il dito che arriva in fondo continua a scorrere la
+pagina sotto, e sembra che le opzioni siano finite. Adesso: `overscroll-behavior:
+contain` perche' lo scorrimento resti dentro il riquadro, due ombre in CSS puro
+(`background-attachment: local` scorre col contenuto e copre l'ombra al bordo —
+compaiono e spariscono da sole, senza JavaScript), e una riga che conta ad alta
+voce: «22 scelte — scorri per vederle tutte».
+
+**E una cosa vista e non toccata**: ventidue opzioni per un'azione *sono* tante,
+su qualunque schermo. Ma quella e' una domanda di design del gioco — quante
+azioni offrire — non un difetto della pagina, e si decide al tavolo, non qui.
+
+La sonda dei messaggi e' stata **riallineata** nello stesso commit: il suo io
+finto ora dichiara `shows_state()` come la console vera, altrimenti
+continuerebbe a perquisire messaggi che non partono piu'. Una misura che conta
+cose immaginarie e' peggio di nessuna misura.
+
+Misure: filo ancora **trasparente byte per byte**; sonda dei messaggi
+**17.509 messaggi, FUGHE 0**; playtest **FAIL 185 · SUCC 76 · SUCC 123 ·
+DECI 178**, tavolo misto **0/8**; suite 294/6117 verde. Gli screenshot del
+prima e del dopo stanno in `docs/img/`, e sono il primo pezzo di questo
+progetto misurato con un occhio invece che con un numero.
+
+---
+
 ## D-141 — L'app da scaricare, e le pagine che non erano risorse
 **implemented in 0.1.104** (chiesto dal committente: «l'app Godot e' pronta da scaricare per il computer?»)
 

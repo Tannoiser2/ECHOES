@@ -120,6 +120,23 @@ Opzioni: `--seed=<n>` stesso seme stesso mondo · `--chronicle=CHR_02` la
 Chronicle di libreria · `--quiet` toglie la traccia delle regole round per round
 e lascia solo i Consigli, le carte Echo e il finale.
 
+## La stanza senza schermo (console sui telefoni)
+
+```bash
+godot --headless --path godot --script res://cli/run_room.gd -- \
+    --seed=7000 --chronicle=CHR_01 --port=8137 --pages=8123
+```
+
+Apre la stanza della voce 27 senza la scena Godot che la avvolge: stampa un
+indirizzo per seggio, serve le pagine e aspetta i telefoni. Chi apre il proprio
+indirizzo gioca quel seggio; gli altri sono policy. Serve per provare la console
+da un altro apparecchio senza aprire una finestra — e per fotografare quello che
+si vede sul telefono con un browser vero al posto di un mockup.
+
+`--seats=<n>` quanti seggi aspettano un telefono (2 di default) · `--port` il
+filo · `--pages` le pagine. La stanza con l'interfaccia sta nel menu dell'app:
+«Apro la stanza — console sui telefoni».
+
 ## Giocare una Chronicle da riga di comando
 
 ```bash

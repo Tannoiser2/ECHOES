@@ -183,6 +183,29 @@ oracolo indipendente, che ha trovato tre difetti invisibili a occhio.
 Restano, dichiarate: la console di riserva piena e l'inclusione di `web/`
 negli export impacchettati.
 
+## 8bis. Cosa si vede sul telefono
+
+![La console di Re Aldric su uno schermo da telefono](img/console-telefono.png)
+
+Fotografato da un browser vero contro l'host vero (CHR_01, seme 7000, la
+stanza aperta con `cli/run_room.gd`). In testa il seggio e l'anno, poi **le
+domande** con le velate marcate «coperta», e in fondo — fisso, sempre a
+portata di pollice — il **riquadro delle scelte**, che dice quante sono e
+scorre per conto suo.
+
+![Il pannello del seggio, scorrendo fino in fondo](img/console-pannello.png)
+
+Scorrendo: **il tuo Destino** coi gradini spuntati, **la tua mano** come
+cartine, **i segni della casa** e **i rapporti** con gli altri seggi. Tutto
+qui e' gia' pubblico per quel seggio: la Tensione che non ha esplorato dice
+«coperta» e basta, e nessuna carta di un'altra mano compare (§3, e la
+perquisizione lo prova su 17.509 messaggi).
+
+Due difetti sono stati trovati proprio guardando queste foto, e corretti in
+0.1.105 ([D-143](DECISIONS.md#d-143)): il tabellone a caratteri del terminale
+finiva sul telefono, dove diceva due volte cose che le sezioni dicono meglio;
+e le scelte oltre il bordo del riquadro sembravano non esserci.
+
 ## 9bis. L'app da scaricare (macOS)
 
 Chi ospita il tavolo ha bisogno di **un'app vera**, non dell'export web: la

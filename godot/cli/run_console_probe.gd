@@ -44,6 +44,12 @@ class AuditingIO:
 		for violation in Protocol.audit(message, session, seat_id):
 			leaks.append("%s: %s" % [seat_id, str(violation)])
 
+	## Come la console vera (D-143): il pannello a caratteri non le arriva, e la
+	## sonda deve perquisire i messaggi che partono davvero, non quelli che
+	## partivano prima.
+	func shows_state() -> bool:
+		return true
+
 	func say(text: String) -> void:
 		_audit(Protocol.say_message(session, text))
 

@@ -5,6 +5,51 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.105] — Guardare il telefono
+
+I due difetti trovati fotografando la console su uno schermo da telefono
+([D-143](docs/DECISIONS.md#d-143)).
+
+### Added
+
+- **`cli/run_room.gd`**, la stanza senza schermo: stesso `ConsoleHost` e
+  stesso `SeatDecider` della stanza vera, stampa un indirizzo per seggio e
+  aspetta i telefoni. Serve a provare la console da un altro apparecchio
+  senza aprire una finestra — e a fotografarla con un browser vero.
+- Gli screenshot in `docs/img/`.
+
+### Fixed
+
+- **Il pannello a caratteri non va piu' al telefono**: la console riceve gia'
+  lo `state` strutturato e ne disegna sezioni vere, quindi il tabellone del
+  terminale era la stessa cosa detta due volte, in cima allo schermo piu'
+  piccolo. Un io che dichiara `shows_state()` non lo riceve; terminale e
+  schermo del tavolo tacciono e continuano a leggerlo. **3.600 messaggi in
+  meno su 100 partite.**
+- **Le scelte oltre il bordo si vedono**: `overscroll-behavior: contain`
+  perche' il dito non scorra la pagina sotto, due ombre in CSS puro che
+  compaiono solo quando c'e' altro, e il conto scritto («22 scelte — scorri
+  per vederle tutte»).
+
+### Changed
+
+- La sonda dei messaggi dichiara `shows_state()` come la console vera:
+  contava messaggi che non partono piu'.
+
+### Measured
+
+- Sonda dei messaggi: **17.509 messaggi, FUGHE 0** (erano 21.109 col
+  pannello a caratteri).
+- Filo ancora **trasparente byte per byte**; playtest **FAIL 185 · SUCC 76 ·
+  SUCC 123 · DECI 178**, tavolo misto **0 su 8**; suite 294/6117 verde.
+
+### Notes
+
+- Ventidue opzioni per un'azione sono tante su qualunque schermo, ma quella e'
+  una domanda di design del gioco e si decide al tavolo.
+
+---
+
 ## [0.1.104] — L'app da scaricare
 
 L'app vera per chi ospita il tavolo ([D-141](docs/DECISIONS.md#d-141)),

@@ -30,6 +30,13 @@ func _init(p_session: RefCounted, p_seat: String) -> void:
 	seat_id = p_seat
 
 
+## La console disegna il proprio pannello dallo `state` (D-134): domande, mano,
+## Destino, segni e rapporti a sezioni. Il decider lo chiede per sapere che il
+## pannello a caratteri qui sarebbe la stessa cosa detta due volte (D-143).
+func shows_state() -> bool:
+	return true
+
+
 func say(text: String) -> void:
 	outgoing.emit(Protocol.say_message(session, text))
 

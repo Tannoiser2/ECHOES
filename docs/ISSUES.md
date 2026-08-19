@@ -731,6 +731,28 @@ segnala ogni istruzione irraggiungibile.
 **Fatto quando** la stanza si apre e si può cominciare, e un `return` seguito
 da codice fa rossa la CI. ✓
 
+### 30. ✅ La console vista su un telefono vero — fatta in 0.1.105
+
+`app` · **chiusa** ([D-143](DECISIONS.md#d-143)) · nata da una domanda del committente
+
+«Puoi farmi uno screenshot di quello che si vede sugli smartphone?» La console
+era **misurata** ma non **guardata**: la sonda delle viste perquisiva i
+modelli, quella dei messaggi contava le fughe, il filo era trasparente byte per
+byte — e nessuno aveva mai visto la pagina su uno schermo da telefono.
+
+Due difetti, nessuno dei quali le tre misure potevano prendere (guardavano il
+contenuto, non la forma): il tabellone a caratteri del terminale finiva sul
+telefono, ridondante rispetto alle sezioni che la console disegna già dallo
+`state`; e con ventidue azioni legali le ultime stavano sotto il bordo di un
+riquadro che scorre, senza che niente lo dicesse.
+
+Per fotografarlo è nato `cli/run_room.gd`, la stanza senza schermo — che resta
+utile da sola: si prova la console da un altro apparecchio senza aprire una
+finestra.
+
+**Fatto quando** la console è stata guardata su uno schermo da telefono e quello
+che c'era da correggere è corretto. ✓ (17.509 messaggi, 0 fughe; playtest 0/8)
+
 ### 28. ✅ Le alleanze devono pesare al Consiglio — fatta in 0.1.102
 
 `regole` · voluta dal committente · **chiusa** ([D-139](DECISIONS.md#d-139))
