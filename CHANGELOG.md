@@ -5,6 +5,50 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.108] — I pezzi si muovono sulla mappa
+
+La console ripensata come l'ha chiesta il committente
+([D-146](docs/DECISIONS.md#d-146)): schede, telefono coricato, e la mappa che
+risponde alle domande.
+
+### Added
+
+- **Le mosse si giocano sulla mappa**: la console prende `/mappa.svg` inline,
+  le Regioni che la domanda offre si accendono col cerchio d'oro e il tocco
+  risponde. I `subjects` arrivavano al telefono da sempre — nessuno li
+  guardava.
+- **Tre schede** (Mappa · Mano · Seggio) con un pallino sulla linguetta che ha
+  qualcosa, invece di una colonna sola da scorrere.
+- **Il telefono coricato affianca** schede e domanda invece di impilarle:
+  mappa a sinistra, scelte a destra, niente da scorrere per giocare.
+- Ogni Regione nel tabellone porta il suo id (`data-region`) e il cerchio
+  «raggiungibile», spento nel disegno e acceso dalla console.
+
+### Changed
+
+- Le scelte che si giocano sulla mappa **non** compaiono anche come bottoni:
+  due strade per la stessa mossa vogliono dire che una delle due e' sbagliata.
+  Delle 18 scelte di un'azione, 4 vanno sulla mappa e 14 restano in elenco.
+
+### Fixed
+
+- `main` era `display: flex` senza direzione, e in CSS il flex e' una riga:
+  in piedi la barra della domanda si metteva **di fianco** alla mappa e se la
+  mangiava. Una fotografia l'ha trovata in un secondo.
+
+### Measured
+
+- Sonda dei messaggi **20.844 perquisiti, FUGHE 0**; filo **trasparente byte
+  per byte**; playtest **FAIL 185 · SUCC 76 · SUCC 123 · DECI 178**, tavolo
+  misto **0 su 8**; suite **300 test / 6141 asserzioni** verde.
+
+### Notes
+
+- Un token, una console: due pagine aperte con lo stesso codice se lo
+  contendono. Al tavolo un seggio ha un telefono solo, quindi non morde.
+
+---
+
 ## [0.1.107] — Il tabellone disegnato
 
 La mappa vera sulla vetrina, con pedine e vessilli, e le carte giocate in

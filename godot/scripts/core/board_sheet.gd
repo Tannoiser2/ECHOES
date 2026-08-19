@@ -129,8 +129,16 @@ static func _region(session: RefCounted, region_id: String, points: Dictionary) 
 	var origin: Vector2 = centre - Vector2(TILE, TILE) * 0.5
 	var plan: Dictionary = RegionArt.plan(region_id, str(definition["biome"]))
 
+	# Il gruppo porta l'id della Regione e il suo centro: la console lo usa per
+	# accendere le Regioni raggiungibili e per capire dove e' caduto il dito
+	# (D-146). La vetrina se ne infischia — un tocco sul tabellone non ha
+	# identita' di seggio (la C della seduta) — ma il marchio non le costa
+	# niente, e una mappa che si sa nominare serve a chi la guarda comunque.
 	var out: Array = []
-	out.append('<g>')
+	out.append(
+		'<g class="regione" data-region="%s" data-x="%.1f" data-y="%.1f"><title>%s</title>'
+		% [region_id, centre.x, centre.y, _escape(str(definition["name"]))]
+	)
 	out.append(_polygon(plan["outline"], origin, TILE, str(plan["ground"]), "", 0.0))
 	for stroke in plan["strokes"]:
 		out.append(_stroke(stroke, origin, TILE))
@@ -140,6 +148,13 @@ static func _region(session: RefCounted, region_id: String, points: Dictionary) 
 	var control: Variant = region.get("control", null)
 	var ring: String = "#4a4238" if control == null else _seat_colour(world, str(control))
 	out.append(_polygon(plan["outline"], origin, TILE, "none", ring, 2.0 if control == null else 4.0))
+
+	# Il cerchio d'oro «puoi andare qui», spento: lo accende la console quando
+	# una domanda offre quella Regione. Sta nell'SVG e non nel CSS perche' la
+	# sagoma della tessera la conosce solo chi l'ha disegnata.
+	out.append(_polygon(
+		plan["outline"], origin - Vector2(7.0, 7.0), TILE + 14.0, "none", "#e8b563", 3.0
+	).replace("<path ", '<path class="raggiungibile" '))
 
 	out.append(
 		'<text x="%.1f" y="%.1f" fill="%s" font-family="Georgia, serif" font-size="15" text-anchor="middle">%s</text>'

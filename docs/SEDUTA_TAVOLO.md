@@ -185,7 +185,21 @@ negli export impacchettati.
 
 ## 8bis. Cosa si vede sul telefono
 
-![La console di Re Aldric su uno schermo da telefono](img/console-telefono.png)
+![La console: la scheda Mappa, con le Regioni raggiungibili accese](img/console-mappa.png)
+
+Tre schede — **Mappa**, **Mano**, **Seggio** — e la domanda sempre in fondo.
+Le mosse che riguardano un posto **si giocano sulla mappa**: le Regioni che la
+domanda offre si accendono col cerchio d'oro e il dito risponde li'. Quelle
+scelte non compaiono anche fra i bottoni, perche' due strade per la stessa
+mossa vogliono dire che una delle due e' quella sbagliata (D-146).
+
+![Il telefono coricato: mappa a sinistra, scelte a destra](img/console-coricata.png)
+
+**Coricato** il telefono affianca le schede alla domanda invece di impilarle:
+lo spazio di uno schermo orizzontale e' largo e basso, e impilare li' vuol dire
+scorrere sempre. Cosi' si gioca senza scorrere niente.
+
+![La mano, con le carte vere](img/console-telefono.png)
 
 La mano sono **le carte stampate**: la faccia arriva dall'host, disegnata dalla
 stessa funzione che impagina i fogli da fustellare (D-101, D-144). Un tocco la

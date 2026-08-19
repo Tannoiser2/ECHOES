@@ -2,95 +2,190 @@
 <html lang="it">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
 <title>ECHOES — La tua console</title>
+<!--
+  La console di un seggio (voce 27, D-136/D-143/D-144/D-146).
+
+  Tre schede invece di una colonna sola — MAPPA, MANO, SEGGIO — perche' su uno
+  schermo da telefono tutto insieme vuol dire scorrere per trovare, e al tavolo
+  si guarda per un secondo fra una parola e l'altra. Il telefono in orizzontale
+  affianca le schede alla domanda invece di impilarle: lo spazio di un telefono
+  coricato e' largo e basso, esattamente la forma sbagliata per una colonna.
+
+  La mappa e' quella vera (`/mappa.svg`, D-145), presa inline per poterla
+  toccare: quando una domanda offre delle Regioni, quelle si accendono e il
+  dito risponde li' invece che in un elenco di frasi.
+
+  I segreti restano dove stanno: la pagina disegna quello che l'host le manda e
+  non chiede niente per conto suo (D-134).
+-->
 <style>
-  :root { color-scheme: dark; }
+  :root { color-scheme: dark; --oro: #e8b563; --carta: #221e16; --riga: #2c2820; }
   * { box-sizing: border-box; margin: 0; }
+  html, body { height: 100%; }
   body {
     background: #17140f; color: #c9bfae;
     font: 15px/1.45 Georgia, 'Times New Roman', serif;
-    padding: 12px 12px 90px;
+    display: flex; flex-direction: column; overflow: hidden;
   }
-  h1 { font-size: 22px; color: #e8dcc3; margin-bottom: 2px; }
+
+  /* La testata: chi sei, che anno e', e se il filo tiene. */
+  header {
+    display: flex; align-items: baseline; gap: 10px;
+    padding: 8px 12px; border-bottom: 1px solid var(--riga); flex: none;
+  }
+  #nome { font-size: 18px; color: #e8dcc3; }
+  #quando { font-size: 12px; color: #8a8172; }
+  #stato { margin-left: auto; font-size: 12px; color: #6fa88a; }
+  #stato.giu { color: #c8553d; }
+
+  /* Le linguette. Grosse: si toccano col pollice, non col cursore. */
+  nav { display: flex; gap: 2px; padding: 6px 8px 0; flex: none; }
+  nav button {
+    flex: 1; background: none; border: none; border-bottom: 2px solid transparent;
+    color: #8a8172; font: 13px/1 Georgia, serif; letter-spacing: .08em;
+    text-transform: uppercase; padding: 10px 4px; cursor: pointer;
+  }
+  nav button.scelta { color: var(--oro); border-bottom-color: var(--oro); }
+  nav button .pallino {
+    display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+    background: var(--oro); margin-left: 5px; vertical-align: middle;
+  }
+
+  /* In piedi: schede sopra, domanda sotto. Senza `column` esplicito il flex
+     e' una riga, e la domanda si mangia la mappa stando di fianco (visto). */
+  main { flex: 1; display: flex; flex-direction: column; min-height: 0; }
+  #schede { flex: 1; min-height: 0; overflow-y: auto; padding: 10px 12px 14px; }
+  .foglio { display: none; }
+  .foglio.aperto { display: block; }
+
   h2 {
     font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
-    color: #8a8172; margin: 16px 0 6px; border-bottom: 1px solid #2c2820;
+    color: #8a8172; margin: 14px 0 6px; border-bottom: 1px solid var(--riga);
     padding-bottom: 3px;
   }
-  #stato { font-size: 12px; color: #8a8172; }
-  #stato.giu { color: #c8553d; }
-  .riga { padding: 2px 0; }
-  .mia { color: #e8b563; }
+  h2:first-child { margin-top: 0; }
+  .riga { padding: 3px 0; }
   .fatto { color: #6fa88a; }
   .manca { color: #5f584c; }
-  .carta {
-    display: inline-block; background: #221e16; border: 1px solid #3a3427;
-    border-radius: 6px; padding: 4px 9px; margin: 3px 4px 3px 0; font-size: 13px;
-  }
+  .mia { color: var(--oro); }
+  .coperta { color: #8a8172; font-style: italic; }
   .famiglia { color: #8a8172; font-size: 11px; }
-  #avvisi .riga { color: #e8b563; }
+
+  /* La mappa vera, dentro la pagina per poterla toccare. */
+  #mappa { width: 100%; }
+  #mappa svg { width: 100%; height: auto; display: block; }
+  /* Il cerchio «puoi andare qui» esiste sempre nel disegno e si accende solo
+     quando la domanda offre quella Regione: cosi' l'host non deve ridisegnare
+     la mappa per un'evidenziazione. */
+  #mappa .raggiungibile { opacity: 0; transition: opacity .18s; }
+  #mappa .regione.offerta .raggiungibile { opacity: 1; }
+  #mappa .regione.offerta { cursor: pointer; }
+  #mappa .regione.offerta:active { opacity: .75; }
+  #dove { color: var(--oro); font-size: 13px; padding: 6px 0 2px; }
+
+  .mano { display: flex; flex-wrap: wrap; gap: 8px; padding: 4px 0; }
+  .faccia {
+    width: 104px; height: auto; border-radius: 5px; cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .55);
+  }
+  .faccia:active { transform: scale(.97); }
+
+  /* La domanda: in verticale una barra in fondo, in orizzontale la colonna di
+     destra — e in tutti e due i casi la si raggiunge senza cercarla. */
   #domanda {
-    position: fixed; left: 0; right: 0; bottom: 0;
-    border-top: 2px solid #e8b563;
-    padding: 12px; max-height: 62vh; overflow-y: auto; display: none;
-    /* Lo scorrimento resta dentro il riquadro: senza, il dito che arriva in
-       fondo alle scelte continua a scorrere la pagina sotto e sembra che le
-       opzioni siano finite (D-143). */
-    overscroll-behavior: contain;
-    /* Le due ombre che dicono «c'e' altro»: `local` scorre col contenuto e
-       copre l'ombra quando sei al bordo, `scroll` resta ferma. Compaiono e
-       spariscono da sole, senza una riga di JavaScript. */
-    background-color: #221e16;
+    flex: none; display: none; border-top: 2px solid var(--oro);
+    padding: 10px 12px; max-height: 46vh; overflow-y: auto;
+    overscroll-behavior: contain; background-color: var(--carta);
     background-image:
-      linear-gradient(#221e16 30%, rgba(34, 30, 22, 0)),
-      linear-gradient(rgba(34, 30, 22, 0), #221e16 70%),
-      radial-gradient(farthest-side at 50% 0, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0)),
-      radial-gradient(farthest-side at 50% 100%, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0));
+      linear-gradient(var(--carta) 30%, rgba(34, 30, 22, 0)),
+      linear-gradient(rgba(34, 30, 22, 0), var(--carta) 70%),
+      radial-gradient(farthest-side at 50% 0, rgba(0, 0, 0, .55), rgba(0, 0, 0, 0)),
+      radial-gradient(farthest-side at 50% 100%, rgba(0, 0, 0, .55), rgba(0, 0, 0, 0));
     background-position: top, bottom, top, bottom;
     background-size: 100% 26px, 100% 26px, 100% 11px, 100% 11px;
     background-repeat: no-repeat;
     background-attachment: local, local, scroll, scroll;
   }
+  #domanda.aperta { display: block; }
+  #domanda p { color: #e8dcc3; margin-bottom: 6px; }
   #domanda .quante {
-    color: #8a8172; font-size: 12px; letter-spacing: 0.08em;
+    color: #8a8172; font-size: 12px; letter-spacing: .08em;
     text-transform: uppercase; margin: -2px 0 8px;
   }
-  #domanda.aperta { display: block; }
-  #domanda p { color: #e8dcc3; margin-bottom: 8px; }
   #domanda button {
-    display: block; width: 100%; text-align: left;
-    background: #2c2820; color: #c9bfae; border: 1px solid #3a3427;
-    border-radius: 6px; padding: 10px 12px; margin: 6px 0;
-    font: 14px Georgia, serif; cursor: pointer;
+    display: block; width: 100%; text-align: left; background: #2c2820;
+    color: #c9bfae; border: 1px solid #3a3427; border-radius: 6px;
+    padding: 10px 12px; margin: 6px 0; font: 14px Georgia, serif; cursor: pointer;
   }
   #domanda button:active { background: #3a3427; }
   #domanda button.decidi { color: #8a8172; font-style: italic; }
-  .coperta { color: #8a8172; font-style: italic; }
-  /* La mano: le carte in fila, alte quanto basta per leggere il titolo e
-     riconoscere la famiglia dal colore. Il resto lo fa la lente. */
-  .mano { display: flex; flex-wrap: wrap; gap: 8px; padding: 4px 0; }
-  .faccia {
-    width: 104px; height: auto; border-radius: 5px; cursor: pointer;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.55);
+  /* Le scelte che si giocano sulla mappa non diventano bottoni: sarebbero la
+     stessa cosa detta due volte, e la mano andrebbe sulla piu' scomoda. */
+  #domanda .sullamappa {
+    color: var(--oro); font-size: 13px; border: 1px dashed #3a3427;
+    border-radius: 6px; padding: 8px 10px; margin: 6px 0;
   }
-  .faccia:active { transform: scale(0.97); }
+
+  #avvisi { flex: none; padding: 0 12px 6px; }
+  #avvisi .riga { color: var(--oro); font-size: 13px; }
+
   #lente {
-    position: fixed; inset: 0; background: rgba(8, 7, 6, 0.94);
-    display: none; align-items: center; justify-content: center; padding: 18px;
-    z-index: 10;
+    position: fixed; inset: 0; background: rgba(8, 7, 6, .94);
+    display: none; align-items: center; justify-content: center; padding: 18px; z-index: 10;
   }
   #lente.aperta { display: flex; }
   #lente img { max-width: 100%; max-height: 100%; border-radius: 8px; }
+
+  /* Il telefono coricato: schede e domanda affiancate. Lo spazio di uno
+     schermo orizzontale e' largo e basso — impilare li' vuol dire scorrere
+     sempre, e la mappa diventerebbe una striscia. */
+  @media (orientation: landscape) and (max-height: 560px) {
+    main { flex-direction: row; }
+    #schede { flex: 3; }
+    #domanda {
+      flex: 2; border-top: none; border-left: 2px solid var(--oro);
+      max-height: none; min-width: 260px;
+    }
+    nav button { padding: 7px 4px; }
+    .faccia { width: 88px; }
+  }
 </style>
 </head>
 <body>
-<h1 id="nome">ECHOES</h1>
-<div id="stato">mi collego…</div>
+<header>
+  <span id="nome">ECHOES</span>
+  <span id="quando"></span>
+  <span id="stato">mi collego…</span>
+</header>
+
+<nav>
+  <button data-foglio="mappa" class="scelta">Mappa</button>
+  <button data-foglio="mano">Mano</button>
+  <button data-foglio="seggio">Seggio</button>
+</nav>
+
+<main>
+  <div id="schede">
+    <div class="foglio aperto" id="foglio-mappa">
+      <div id="dove"></div>
+      <div id="mappa"></div>
+    </div>
+    <div class="foglio" id="foglio-mano">
+      <h2>La tua mano</h2>
+      <div id="mano"></div>
+    </div>
+    <div class="foglio" id="foglio-seggio">
+      <div id="seggio"></div>
+    </div>
+  </div>
+  <div id="domanda"></div>
+</main>
+
 <div id="avvisi"></div>
-<div id="scheda"></div>
 <div id="lente"></div>
-<div id="domanda"></div>
+
 <script>
 "use strict";
 const WS_PORT = "__WS_PORT__";
@@ -99,12 +194,37 @@ let token = params.get("t") || localStorage.getItem("echoes_token") || "";
 if (params.get("t")) localStorage.setItem("echoes_token", params.get("t"));
 
 const stato = document.getElementById("stato");
-const scheda = document.getElementById("scheda");
+const quando = document.getElementById("quando");
+const mappa = document.getElementById("mappa");
+const dove = document.getElementById("dove");
+const manoBox = document.getElementById("mano");
+const seggioBox = document.getElementById("seggio");
 const avvisi = document.getElementById("avvisi");
 const domanda = document.getElementById("domanda");
 const lente = document.getElementById("lente");
-let ws = null, pinger = null;
+let ws = null, pinger = null, clockDisegnato = -1, inSospeso = null;
 const dette = [];
+
+// --- le schede -------------------------------------------------------------
+
+function apri(quale) {
+  document.querySelectorAll("nav button").forEach(b =>
+    b.classList.toggle("scelta", b.dataset.foglio === quale));
+  document.querySelectorAll(".foglio").forEach(f =>
+    f.classList.toggle("aperto", f.id === "foglio-" + quale));
+}
+document.querySelectorAll("nav button").forEach(b => {
+  b.onclick = () => apri(b.dataset.foglio);
+});
+
+function segna(quale, acceso) {
+  const b = document.querySelector('nav button[data-foglio="' + quale + '"]');
+  const punto = b.querySelector(".pallino");
+  if (acceso && !punto) b.insertAdjacentHTML("beforeend", '<span class="pallino"></span>');
+  if (!acceso && punto) punto.remove();
+}
+
+// --- il filo ---------------------------------------------------------------
 
 function collega() {
   ws = new WebSocket("ws://" + location.hostname + ":" + WS_PORT);
@@ -126,7 +246,7 @@ function collega() {
 }
 
 function ricevi(msg) {
-  if (msg.kind === "state") disegna(msg.model);
+  if (msg.kind === "state") disegna(msg.model, msg.clock || 0);
   else if (msg.kind === "say") avvisa(msg.text);
   else if (msg.kind === "choose") chiedi(msg);
 }
@@ -138,51 +258,96 @@ function scappa(testo) {
   return String(testo).replace(/&/g, "&amp;").replace(/</g, "&lt;");
 }
 
-function disegna(m) {
+// --- la mappa --------------------------------------------------------------
+
+// Presa inline e non come <img>: un'immagine non si puo' toccare per pezzi.
+// Si ricarica solo quando l'orologio del mondo e' cambiato — la mappa e' la
+// stessa fra due domande dello stesso round.
+function aggiornaMappa(clock) {
+  if (clock === clockDisegnato) return;
+  clockDisegnato = clock;
+  fetch("/mappa.svg?c=" + clock)
+    .then(r => r.text())
+    .then(svg => {
+      mappa.innerHTML = svg;
+      if (inSospeso) accendi(inSospeso);
+    })
+    .catch(() => { clockDisegnato = -1; });
+}
+
+// Le Regioni che questa domanda offre si accendono, e il tocco risponde.
+function accendi(msg) {
+  const perRegione = new Map();
+  (msg.subjects || []).forEach((s, i) => {
+    if (s && s.region) perRegione.set(s.region, i);
+  });
+  mappa.querySelectorAll(".regione").forEach(g => {
+    const id = g.dataset.region;
+    const offerta = perRegione.has(id);
+    g.classList.toggle("offerta", offerta);
+    g.onclick = offerta ? () => rispondi(msg.ask_id, perRegione.get(id)) : null;
+  });
+  if (perRegione.size) {
+    dove.textContent = "Tocca una Regione cerchiata d'oro (" + perRegione.size + ").";
+    apri("mappa");
+  } else {
+    dove.textContent = "";
+  }
+  return perRegione;
+}
+
+function spegni() {
+  mappa.querySelectorAll(".regione.offerta").forEach(g => {
+    g.classList.remove("offerta");
+    g.onclick = null;
+  });
+  dove.textContent = "";
+}
+
+// --- il pannello -----------------------------------------------------------
+
+function disegna(m, clock) {
   document.getElementById("nome").textContent = m.name;
+  quando.textContent = "anno " + m.year + " — atto " + m.act + ", round " + m.round;
+  aggiornaMappa(clock);
+
   let h = "";
-  h += "<h2>Anno " + m.year + " — atto " + m.act + ", round " + m.round + "</h2>";
-  h += "<h2>Le domande</h2>";
+  if (!m.hand.length && !m.echo_hand.length) h += riga("vuota", "manca");
+  h += '<div class="mano">';
+  for (const c of m.hand) h += carta("asset", c.id, c.title + " — " + c.family.toLowerCase());
+  for (const c of m.echo_hand) h += carta("echo", c.id, c.title + " — narratore");
+  h += "</div>";
+  manoBox.innerHTML = h;
+  segna("mano", m.hand.length + m.echo_hand.length > 0);
+
+  let s = "<h2>Le domande</h2>";
   for (const t of m.tensions) {
-    h += riga(t.value < 0
+    s += riga(t.value < 0
       ? scappa(t.title) + ' — <span class="coperta">coperta</span>'
       : scappa(t.title) + " — " + t.value + " su " + t.threshold);
   }
   if (m.destiny && m.destiny.title) {
-    h += "<h2>Il tuo Destino — " + scappa(m.destiny.title) + "</h2>";
+    s += "<h2>Il tuo Destino — " + scappa(m.destiny.title) + "</h2>";
     for (const r of m.destiny.rungs)
-      h += riga((r.holds ? "[x] " : "[ ] ") + scappa(r.label), r.holds ? "fatto" : "manca");
+      s += riga((r.holds ? "[x] " : "[ ] ") + scappa(r.label), r.holds ? "fatto" : "manca");
   }
-  h += "<h2>La tua mano</h2>";
-  if (!m.hand.length && !m.echo_hand.length) h += riga("vuota", "manca");
-  // La carta stampata, non un'etichetta che le somiglia (D-101, D-144): la
-  // faccia arriva dall'host, disegnata dalla stessa funzione che impagina i
-  // fogli da fustellare. Un tocco la ingrandisce, perche' a mano piena una
-  // carta larga un pollice non si legge.
-  h += '<div class="mano">';
-  for (const c of m.hand)
-    h += carta("asset", c.id, c.title + " — " + c.family.toLowerCase());
-  for (const c of m.echo_hand)
-    h += carta("echo", c.id, c.title + " — narratore");
-  h += "</div>";
   if (m.signs.length) {
-    h += "<h2>I segni della casa</h2>";
-    for (const s of m.signs) h += riga(scappa(s));
+    s += "<h2>I segni della casa</h2>";
+    for (const x of m.signs) s += riga(scappa(x));
   }
-  h += "<h2>I rapporti</h2>";
-  for (const r of m.relations) h += riga(scappa(r.name) + " — " + scappa(r.level).toLowerCase());
+  s += "<h2>I rapporti</h2>";
+  for (const r of m.relations) s += riga(scappa(r.name) + " — " + scappa(r.level).toLowerCase());
   if (m.rights.length) {
-    h += "<h2>I diritti</h2>";
-    for (const d of m.rights)
-      h += riga(scappa(d.holder) + " — " + scappa(d.domain), d.mine ? "mia" : "");
+    s += "<h2>I diritti</h2>";
+    for (const d of m.rights) s += riga(scappa(d.holder) + " — " + scappa(d.domain), d.mine ? "mia" : "");
   }
-  scheda.innerHTML = h;
+  seggioBox.innerHTML = s;
 }
 
 function avvisa(testo) {
   if (!testo.trim()) return;
   dette.push(testo);
-  while (dette.length > 6) dette.shift();
+  while (dette.length > 3) dette.shift();
   avvisi.innerHTML = dette.map(t => riga(scappa(t))).join("");
 }
 
@@ -203,25 +368,39 @@ document.addEventListener("click", e => {
   if (e.target.closest("#lente")) lente.classList.remove("aperta");
 });
 
+// --- la domanda ------------------------------------------------------------
+
+function rispondi(ask_id, index) {
+  ws.send(JSON.stringify({kind: "chosen", ask_id: ask_id, index: index}));
+  domanda.classList.remove("aperta");
+  inSospeso = null;
+  spegni();
+}
+
 function chiedi(msg) {
+  inSospeso = msg;
+  const perRegione = accendi(msg);
   let h = "<p>" + scappa(msg.prompt) + "</p>";
-  // Con una decina di scelte le ultime stanno sotto il bordo, e su un telefono
-  // nessuno immagina che quel riquadro scorra dentro una pagina che gia'
-  // scorre. Il conto lo dice a parole (D-143); le ombre lo dicono a colori.
-  if (msg.labels.length > 4) {
-    h += '<p class="quante">' + msg.labels.length + " scelte — scorri per vederle tutte</p>";
+  const daBottone = msg.labels.filter((_, i) =>
+    !((msg.subjects || [])[i] || {}).region).length;
+  if (daBottone > 4) {
+    h += '<p class="quante">' + daBottone + " scelte — scorri per vederle tutte</p>";
+  }
+  if (perRegione.size) {
+    h += '<div class="sullamappa">' + perRegione.size +
+         " di queste si giocano sulla mappa: passa alla scheda Mappa e tocca la Regione.</div>";
   }
   msg.labels.forEach((label, i) => {
+    // Le scelte con una Regione vivono sulla mappa, non qui: due strade per la
+    // stessa mossa vogliono dire che una delle due e' quella sbagliata.
+    if (((msg.subjects || [])[i] || {}).region) return;
     h += '<button data-i="' + i + '">' + scappa(label) + "</button>";
   });
   h += '<button class="decidi" data-i="-1">Decidi tu (la policy gioca per me)</button>';
   domanda.innerHTML = h;
   domanda.classList.add("aperta");
   domanda.querySelectorAll("button").forEach(b => {
-    b.onclick = () => {
-      ws.send(JSON.stringify({kind: "chosen", ask_id: msg.ask_id, index: +b.dataset.i}));
-      domanda.classList.remove("aperta");
-    };
+    b.onclick = () => rispondi(msg.ask_id, +b.dataset.i);
   });
   if (navigator.vibrate) navigator.vibrate(80);
 }

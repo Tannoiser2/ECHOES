@@ -331,6 +331,60 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-146 — Le schede, il telefono coricato, e i pezzi che si muovono sulla mappa
+**implemented in 0.1.108** (chiesto dal committente: «come si fa a muovere i pezzi sulla mappa dagli smartphone? …schede invece di tutto insieme, e in orizzontale si razionalizza meglio»)
+
+Tre osservazioni, tutte e tre giuste, e la prima era una domanda con una
+risposta gia' pronta nei dati: **i `subjects` arrivavano al telefono da sempre**
+e nessuno li guardava. Ogni scelta che riguarda una Regione porta con se' quale
+— e' cosi' che lo schermo grande accende le Regioni raggiungibili (D-038) — ma
+la console ne faceva un bottone con scritto «Metti una presenza in Eredan».
+Muovere un pezzo leggendo il nome del posto invece di toccarlo e' la stessa
+distanza che c'e' fra un elenco e una mappa.
+
+**La mappa si tocca.** La console prende `/mappa.svg` (D-145) **inline** invece
+che come immagine — un'immagine non si puo' toccare per pezzi — e ogni Regione
+porta il suo id. Quando una domanda offre delle Regioni, quelle si accendono
+col cerchio d'oro (che sta nel disegno, spento, cosi' l'host non deve
+ridisegnare la mappa per un'evidenziazione) e il dito risponde li'. Le stesse
+scelte **spariscono dai bottoni**: due strade per la stessa mossa vogliono dire
+che una delle due e' quella sbagliata, e la peggiore sarebbe rimasta la piu'
+comoda da premere. Delle 18 scelte di un'azione, 4 vanno sulla mappa e 14
+restano in elenco — che e' anche il modo piu' onesto di accorciare quell'elenco
+senza togliere niente (D-143).
+
+**Tre schede — Mappa, Mano, Seggio.** Tutto insieme in colonna vuol dire
+scorrere per trovare, e al tavolo il telefono si guarda per un secondo fra una
+parola e l'altra. Un pallino sulla linguetta dice quando una scheda ha qualcosa
+(la mano non vuota), cosi' non si va a controllare a vuoto.
+
+**Il telefono coricato non e' il telefono in piedi piu' largo.** Lo spazio di
+uno schermo orizzontale e' largo e basso: impilare li' vuol dire scorrere
+sempre, e la mappa diventerebbe una striscia. In orizzontale le schede e la
+domanda si **affiancano** — mappa a sinistra, scelte a destra, niente da
+scorrere per giocare.
+
+Un difetto preso guardando, che vale la pena scrivere perche' e' il tipo di
+cosa che un test non prende: `main` era `display: flex` senza direzione, e in
+CSS il flex e' una **riga** finche' non dici il contrario. In piedi, la barra
+della domanda si e' messa di fianco alla mappa e se l'e' mangiata: metà schermo
+di scelte sopra una mappa invisibile. La riga mancante e' `flex-direction:
+column`; la fotografia l'ha trovata in un secondo, e nessuna suite l'avrebbe
+mai vista.
+
+Resta come sta, dichiarato: **un token, una console**. Due pagine aperte con lo
+stesso codice se lo contendono, e nella prova si sono viste alternare
+(«filo caduto — riprovo…»). Al tavolo un seggio ha un telefono solo, quindi non
+morde; se un domani mordesse, e' il posto giusto dove metterci una parola.
+
+Misure: sonda dei messaggi **20.844 perquisiti, FUGHE 0**; filo **trasparente
+byte per byte**; playtest **FAIL 185 · SUCC 76 · SUCC 123 · DECI 178**, tavolo
+misto **0/8**; suite **300/6141** verde; 22 documenti validi. La console non
+tocca il motore: la riprogettazione e' tutta di questa parte, e i numeri lo
+dicono restando fermi.
+
+---
+
 ## D-145 — Il tabellone disegnato, e le carte giocate in tavola
 **implemented in 0.1.107** (chiesto dal committente: «ma la mappa? I token, le pedine e le carte giocate?»)
 

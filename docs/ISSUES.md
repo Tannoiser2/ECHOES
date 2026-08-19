@@ -799,6 +799,28 @@ coperti finché non si rivelano.
 **Fatto quando** la vetrina mostra una mappa con le pedine e le carte giocate, e
 nessun impegno ancora coperto. ✓ (20.844 messaggi perquisiti, 0 fughe)
 
+### 33. ✅ Muovere i pezzi dal telefono, e le schede — fatta in 0.1.108
+
+`app` · **chiusa** ([D-146](DECISIONS.md#d-146)) · voluta dal committente
+
+«Come si fa a muovere i pezzi sulla mappa dagli smartphone? Si apre una mini
+mappa? …potresti fare delle schede invece di mettere tutto insieme, e in
+orizzontale si razionalizza meglio.»
+
+Tutte e tre giuste. E la prima aveva già la risposta nei dati: i `subjects`
+arrivavano al telefono da sempre — ogni scelta che riguarda una Regione porta
+con sé quale — e nessuno li guardava; la console ne faceva un bottone con
+scritto «Metti una presenza in Eredan».
+
+Ora la mappa è quella vera (`/mappa.svg`), presa inline per poterla toccare: le
+Regioni offerte si accendono e il dito risponde lì, e quelle scelte spariscono
+dai bottoni. Tre schede (Mappa · Mano · Seggio) con un pallino su quella che ha
+qualcosa. Coricato, il telefono affianca le schede alla domanda invece di
+impilarle.
+
+**Fatto quando** una presenza si mette toccando la Regione, le schede separano
+mappa/mano/seggio, e il telefono coricato non chiede di scorrere. ✓
+
 ### 28. ✅ Le alleanze devono pesare al Consiglio — fatta in 0.1.102
 
 `regole` · voluta dal committente · **chiusa** ([D-139](DECISIONS.md#d-139))
