@@ -331,6 +331,45 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-140 — Il bottone che viveva dietro un `return`
+**implemented in 0.1.103** (trovato dal committente: «le azioni nell'interfaccia non si vedevano piu'»)
+
+La stanza si apriva, mostrava gli indirizzi e i QR, e **non aveva piu' il
+bottone «Si comincia»**. Non un errore, non un test rosso, nessun avviso: in
+0.1.100, estraendo `_qr_for` per il QR, il blocco che costruiva il bottone e'
+finito *dopo* il `return` della funzione nuova. GDScript non ha detto niente,
+perche' per GDScript non c'e' niente da dire: quel codice e' legale, e' solo
+irraggiungibile.
+
+Vale la pena guardare in faccia perche' nessuna misura l'ha preso. La suite
+prova quello che il codice **fa**: 294 test, 6117 asserzioni, tutti verdi
+mentre la stanza era inutilizzabile. Il playtest gira headless e non passa
+mai per una lobby. La sonda delle viste perquisisce i *modelli*, non i figli
+di un contenitore. Erano tutte misure giuste che guardavano altrove — e la
+riga morta non era in una funzione dimenticata, era la penultima cosa che
+serviva per giocare.
+
+Il rimedio non e' un test in piu' sulla stanza (l'avrebbe presa questa volta,
+e non la prossima): e' `tools/dead_code.py`, che legge tutto il GDScript e
+segnala ogni istruzione che segue un `return`/`continue`/`break` allo stesso
+rientro. Gira nella CI accanto ai validatori. La prima stesura ha consegnato
+**76 fughe, tutte false**: un `return` con l'espressione su piu' righe ha la
+graffa di chiusura allo stesso rientro del `return` stesso. Insegnargli a
+contare le parentesi (saltando stringhe e commenti) ha portato il conto a
+**zero su 139 file**, e rimettendo il file rotto la riga la trova, unica, con
+numero e testo.
+
+Da qui in avanti: quello che l'occhio non vede su una schermata, lo vede un
+lettore che non si stanca. E' la stessa lezione del QR (D-137) — un codice
+sbagliato non sembra sbagliato, sembra un quadrato — applicata al codice
+invece che ai moduli.
+
+Misure: suite 294/6117 verde, playtest FAIL 185 · SUCC 76 · SUCC 123 ·
+DECI 178, tavolo misto 0/8 (invariato: il difetto era nella lobby, non nel
+motore); 22 documenti validi; `dead_code.py` verde su 139 file.
+
+---
+
 ## D-139 — Il peso dell'alleanza al Consiglio
 **implemented in 0.1.102** (chiesto dal committente: «le alleanze dovrebbero pesare e influenzare di piu'»)
 

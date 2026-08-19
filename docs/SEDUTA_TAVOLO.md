@@ -203,6 +203,19 @@ negli export impacchettati.
    partita la striscia in alto dice chi è al tavolo e chi «non risponde
    da Ns»; «Rigenera il codice» taglia fuori un telefono perso.
 
+**Se non vuoi usare l'iPad, o i telefoni, o niente di tutto questo**: la
+partita di sempre e' intatta e non e' cambiata di un byte. Dal menu si sceglie
+un seggio («Gioco Aldric…») e si gioca tutto sul computer, come prima della
+voce 27 — le azioni sono i bottoni sotto la mappa, e le Regioni cerchiate
+d'oro si cliccano. L'iPad e' un *secondo* schermo, non un pezzo obbligatorio:
+anche nella stanza la vetrina e' gia' sullo schermo del computer, e chi apre
+`/tavolo` sull'iPad ne vede una copia. Quello che invece **oggi non si puo'
+fare** e' aprire la stanza e giocare un seggio dallo schermo grande: chi non
+ha una console collegata al via e' una policy, per la regola della seduta
+(«un tocco sul tabellone non ha identita' di seggio», §8 C). La console di
+riserva — dichiarare «il telefono di Aldric e' perso» e riprendere quel seggio
+dal computer — resta la cosa aperta, da decidere dopo la prova.
+
 Se un telefono non vede il computer: stessa rete WiFi, e occhio
 all'isolamento AP del router (il rischio dichiarato in §6). Le porte:
 8123 (pagine) e 8137 (filo).

@@ -5,6 +5,33 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.103] — Il bottone che viveva dietro un `return`
+
+Il difetto trovato dal committente ([D-140](docs/DECISIONS.md#d-140)): la
+stanza non aveva piu' il bottone «Si comincia».
+
+### Fixed
+
+- **«Si comincia» torna nella stanza**: in 0.1.100, estraendo `_qr_for`, il
+  blocco del bottone era finito dopo il `return` della funzione nuova —
+  codice legale, mai eseguito, e nessun avviso da GDScript. Senza quel
+  bottone la stanza si apriva e non si poteva cominciare.
+
+### Added
+
+- **`tools/dead_code.py`**, nella CI accanto ai validatori: legge tutti i
+  `.gd` e segnala ogni istruzione che segue un `return`/`continue`/`break`
+  allo stesso rientro. Verde su 139 file; rimettendo il file rotto trova la
+  riga, unica, con numero e testo.
+
+### Measured
+
+- Suite 294 test / 6117 asserzioni verde; playtest **FAIL 185 · SUCC 76 ·
+  SUCC 123 · DECI 178**, tavolo misto **0 su 8** (invariato: il difetto era
+  nella lobby, non nel motore); 22 documenti validi.
+
+---
+
 ## [0.1.102] — Il peso dell'alleanza
 
 Le alleanze pesano al Consiglio ([D-139](docs/DECISIONS.md#d-139)), chieste

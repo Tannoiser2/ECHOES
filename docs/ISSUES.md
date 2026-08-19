@@ -713,6 +713,24 @@ carte su 48 lavorano; l'Archivio ha già il suo mestiere (restare in
 mano) e il Legame di Sangue aspetta, dichiarato, il pavimento di
 relazione della voce 25.
 
+### 29. ✅ La stanza non aveva più il bottone «Si comincia» — fatta in 0.1.103
+
+`app` · **chiusa** ([D-140](DECISIONS.md#d-140)) · trovata dal committente
+
+«Le azioni nell'interfaccia non si vedevano più.» La stanza si apriva,
+mostrava gli indirizzi e i QR, e non aveva niente da premere: in 0.1.100,
+estraendo `_qr_for`, il blocco del bottone era finito dopo il `return` della
+funzione nuova. Codice legale, mai eseguito, nessun avviso.
+
+Nessuna misura poteva prenderlo: la suite prova quello che il codice *fa*, il
+playtest gira headless e non passa per una lobby, la sonda delle viste
+perquisisce i modelli e non i figli di un contenitore. Il rimedio non è un
+test sulla stanza ma `tools/dead_code.py` nella CI, che legge tutti i `.gd` e
+segnala ogni istruzione irraggiungibile.
+
+**Fatto quando** la stanza si apre e si può cominciare, e un `return` seguito
+da codice fa rossa la CI. ✓
+
 ### 28. ✅ Le alleanze devono pesare al Consiglio — fatta in 0.1.102
 
 `regole` · voluta dal committente · **chiusa** ([D-139](DECISIONS.md#d-139))
