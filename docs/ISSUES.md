@@ -713,6 +713,32 @@ carte su 48 lavorano; l'Archivio ha già il suo mestiere (restare in
 mano) e il Legame di Sangue aspetta, dichiarato, il pavimento di
 relazione della voce 25.
 
+### 28. ✅ Le alleanze devono pesare al Consiglio — fatta in 0.1.102
+
+`regole` · voluta dal committente · **chiusa** ([D-139](DECISIONS.md#d-139))
+
+«Le alleanze dovrebbero pesare e influenzare di più.» La domanda è nata
+guardando le relazioni fra entità: servivano già a molto — chi propone con
+chi, chi eredita, cosa dicono i segni, come si sciolgono i patti — ma **nel
+momento del voto non contavano nulla**. Al Consiglio un alleato giurato e
+uno sconosciuto avevano la stessa voce.
+
+Adesso un seggio legato al proponente che lo **sostiene**, e che ha
+**impegnato almeno due carte**, porta un peso in più sul fronte (ALLY +1,
+BOUND +2, tetto 2), firmato a verbale. La regola vive nella Chronicle
+(`confluence_rules.alliance_weight`): una Chronicle può avere un Consiglio
+dove i legami pesano di più, o per niente, senza toccare il codice.
+
+Due forme prima di questa, scritte e misurate e scartate, **entrambe con un
+seggio bloccato su un livello solo**: la simmetrica (il nemico frena quanto
+l'alleato spinge — FAIL 210, perché il tavolo di partenza ha ostilità e non
+ha alleanze) e quella gratis (FAIL 187, Kessa dei Fuochi bloccata per un
+solo tiro). Chiedere due carte non ha ammorbidito il dente: l'ha reso raro e
+voluto.
+
+**Fatto quando** un'alleanza cambia l'esito di un Consiglio, il verbale lo
+dice, e il playtest resta 0/8. ✓ (FAIL 185, 0/8)
+
 ### 27. Il tavolo sullo schermo grande, le console in tasca
 
 `app` · `motore` · milestone **0.6** · voluta dal committente
@@ -742,19 +768,20 @@ pannello del seggio, la mano, le domande del decider.
    l'ispezione (la C della seduta), la console col `say`, il cavalletto
    `dev_split.tscn`, e la sonda delle viste che perquisisce i modelli
    serializzati. Playtest identico byte per byte.
-2. **Il trasporto**: una partita, più dispositivi. Il computer ospita la
-   sessione (il motore resta uno solo, deterministico com'è); i telefoni
-   sono `io` remoti — ogni `choose` di un seggio umano viaggia verso la
-   sua console e torna con l'indice scelto. **Deciso dal committente:
-   stanza locale, stessa rete** — il computer fa da host, i telefoni si
-   collegano a lui, nessun servizio esterno da mantenere.
-3. **La disciplina dei segreti sul filo**: a una console arriva solo ciò
-   che il suo seggio ha diritto di leggere — la stessa regola dei pixel
-   (§11.1), applicata ai messaggi. Un filtro provabile in headless, come
-   la sonda della visibilità.
-4. **Il rientro**: un telefono che cade o si blocca non deve rompere la
-   partita — la console si riaggancia e il `choose` in sospeso si
-   ripropone (il salvataggio a ogni soglia c'è già, D-052).
+2. ✅ **Il trasporto** — fatto in 0.1.98 ([D-135](DECISIONS.md#d-135)):
+   l'host WebSocket coi token, l'`io` remoto a segnali, l'instradamento
+   per seggio nel decider. Misurato nel modo più duro: la stessa partita
+   con due console vere è **identica byte per byte** a quella senza rete.
+3. ✅ **La disciplina dei segreti sul filo** — fatta in 0.1.98: la
+   perquisizione è nel protocollo, strutturale sulle mani (le carte
+   hanno copie: il segreto è *quali copie tieni*, non il titolo) —
+   su 100 partite, **21.109 messaggi e zero fughe**.
+4. ✅ **Il rientro** — fatto in 0.1.98/0.1.99: il token nel telefono, la
+   posta per le console assenti, la domanda in sospeso riproposta, la
+   riconnessione automatica della pagina. E in più (fase 3,
+   [D-136](DECISIONS.md#d-136)): le pagine console e tavolo, la stanza
+   dal menu, la diagnosi della rete. Restano, dichiarate: la console di
+   riserva piena, il QR, `web/` negli export impacchettati.
 
 **Fatto quando** una partita si gioca con la mappa sul computer e due
 telefoni come console, le informazioni segrete arrivano solo al loro

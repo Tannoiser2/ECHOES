@@ -7,7 +7,7 @@ Ogni testo che un giocatore può leggere, nell'ordine in cui lo incontra,
 con il suo identificativo. Per correggere basta una riga, anche a voce:
 «`P_SHOW_IT`: riscrivi così…» — al resto pensa il motore. I segnaposto
 (`$the_region`, `$proponent`…) sono gli slot che il mondo riempie: si
-possono spostare nella frase, non togliere. 745 testi in lettura.
+possono spostare nella frase, non togliere. 771 testi in lettura.
 
 ## 1. Le aperture — lette ad alta voce all'inizio dell'anno
 
@@ -157,6 +157,12 @@ possono spostare nella frase, non togliere. 745 testi in lettura.
 > La galleria bassa è già aperta da un anno. Dentro non hanno ancora trovato niente, e questo li spaventa più del contrario.
 
 
+**`INC_CENERE_FURNACES`**
+> I Forni Riaccesi
+
+> La ferita della montagna torna a soffiare calore, e i Signori della Cenere smettono di vegliare: accendono. I forni pagano bene e mangiano molto - e quello che mangiano cresce nella Valle di qualcun altro.
+
+
 **`INC_CENERE_02`**
 > Le Custodi della Cenere
 
@@ -199,6 +205,12 @@ possono spostare nella frase, non togliere. 745 testi in lettura.
 > La Lega delle Sette
 
 > La Carta firmata ha fatto delle sette città una cosa sola nei giorni dispari. La Lega delibera piano, ma quando una firma delle sette scende su un foglio, il foglio pesa.
+
+
+**`INC_LIBERE_HEGEMONY`**
+> L'Egemonia di Eredan
+
+> Quando la Valle si è svuotata e una sola città è rimasta piena, il coro è diventato una voce. Eredan non vota più: mette all'ordine del giorno. E chi tratta con lei sa che un patto con l'egemone non è mai fra pari.
 
 
 **`ENT_LYRA`**
@@ -283,6 +295,12 @@ possono spostare nella frase, non togliere. 745 testi in lettura.
 > L'ultima a parlare la lingua vecchia senza accento.
 
 
+**`INC_NAHR_DIASPORA`**
+> La Diaspora di Nahr
+
+> Cacciato due volte nello stesso anno, il popolo ha smesso di chiedere una terra: il centro adesso è la lingua, il calendario, e la strada. Non lo si può chiudere fuori — non c'è più un dentro.
+
+
 **`ENT_SALE`**
 > Maestra Ilve
 
@@ -345,6 +363,12 @@ possono spostare nella frase, non togliere. 745 testi in lettura.
 > Il Culto della Montagna
 
 > Il drago non c'è più; la paura è rimasta, e la paura organizzata si chiama fede. Custodiscono le cicatrici della montagna come reliquie, e parlano per ciò che non parla più.
+
+
+**`INC_VAERAX_LEGEND`**
+> La Leggenda della Montagna
+
+> Il drago che nessuno vivo ha mai visto. Il sigillo ha retto tanto a lungo che la creatura è diventata la storia che si racconta di lei — e chi custodisce quella storia siede al tavolo senza un solo segnalino sulla mappa: non sta in nessun posto, e per questo nessuna porta lo tiene fuori.
 
 
 **`ENT_VETRO`**
@@ -691,6 +715,10 @@ possono spostare nella frase, non togliere. 745 testi in lettura.
 
 **`P_REOPEN_THE_MINE, esito FAILURE`**
 > Si volle togliere la pietra, e la pietra restò dove qualcuno l'aveva messa.
+
+
+**`P_SLAY_THE_DRAGON`**
+> Si scenda con ferro e fuoco: cio' che dorme sotto $the_region non si svegli mai piu'.
 
 
 **`Q_CHARTER_WRITE`**
@@ -1245,6 +1273,16 @@ possono spostare nella frase, non togliere. 745 testi in lettura.
 > La proposta non passa soltanto: convince. Per un tempo, il tavolo smette di discutere chi ha ragione.
 
 
+**`CNS_DRAGON_SLAIN`**
+> Il Drago Abbattuto
+
+> Si scende con ferro e fuoco, e si risale in meno. Quello che dormiva sotto la montagna non si svegliera' piu' - e la montagna, da quel giorno, e' soltanto pietra che ricorda.
+
+
+**`CNS_DRAGON_SLAIN, cicatrice`**
+> Il punto dove la montagna smise di respirare. Nessuno ci costruisce sopra.
+
+
 **`CNS_ESCORT_SWORN`**
 > La Scorta Giurata
 
@@ -1335,6 +1373,16 @@ possono spostare nella frase, non togliere. 745 testi in lettura.
 > La Miniera di Stato
 
 > Aprire le gallerie significa metterci qualcuno a contare quello che esce. Chi conta, comanda.
+
+
+**`CNS_MOUNTAIN_WOUNDED`**
+> La Roccia che Cede
+
+> Sotto la cella i puntelli trovano il vuoto: la galleria maestra si riapre, e la roccia intorno resta tiepida. Quello che l'Ordine custodiva adesso è una porta.
+
+
+**`CNS_MOUNTAIN_WOUNDED, cicatrice`**
+> La galleria maestra non si richiude più, e la roccia intorno resta tiepida.
 
 
 **`CNS_NAHR_SETTLEMENT`**
@@ -1457,6 +1505,16 @@ possono spostare nella frase, non togliere. 745 testi in lettura.
 
 **`CNS_VALLEY_CLEARED, cicatrice`**
 > Le piste dei carri incise nel terreno basso, e nessuno che le ripercorra.
+
+
+**`CNS_VALLEY_DRAINED`**
+> La Valle che si Vuota
+
+> L'acqua non è arrivata, e i campi hanno risposto a modo loro. Chi poteva partire è partito prima del secondo inverno.
+
+
+**`CNS_VALLEY_DRAINED, cicatrice`**
+> Le case basse con le porte aperte, e i canali asciutti che nessuno riscava.
 
 
 **`CNS_WATER_PRICED`**
@@ -2303,6 +2361,30 @@ possono spostare nella frase, non togliere. 745 testi in lettura.
 > E nessuno ci arriva più
 
 > Il Risveglio è stato riportato indietro · E la fame tiene gli uomini nelle valli, lontani dalla montagna · Nessuno arriva facilmente fin lassù · E le Miniere non sono state svuotate · E salire fin lassù non è facile per nessuno
+
+
+**`DST_VAERAX_LEGEND`**
+> La Storia che si Racconta
+
+> Non c'è più un corpo da difendere: c'è un racconto da tenere vivo. Finché il mondo dimentica cosa dorme davvero sotto la montagna, la montagna è di chi la racconta.
+
+
+**`DST_VAERAX_LEGEND, minimum`**
+> La storia si racconta ancora
+
+> Il seggio della storia non è stato spento · Il mondo dimentica ancora la montagna
+
+
+**`DST_VAERAX_LEGEND, victory`**
+> La montagna tiene lontani gli uomini
+
+> Il sigillo regge · Il Risveglio resta quieto
+
+
+**`DST_VAERAX_LEGEND, triumph`**
+> Nessuno ricorda com'era davvero
+
+> Il sigillo regge · Il Risveglio è un sussurro · Il giorno del Cristallo è ormai soltanto un racconto
 
 
 **`DST_VAERAX_WATCHED`**

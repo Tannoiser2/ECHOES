@@ -5,6 +5,151 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.102] — Il peso dell'alleanza
+
+Le alleanze pesano al Consiglio ([D-139](docs/DECISIONS.md#d-139)), chieste
+dal committente.
+
+### Added
+
+- **`confluence_rules.alliance_weight`** nelle quattro Chronicle: un seggio
+  legato al proponente che lo **sostiene** e che ha **impegnato almeno due
+  carte** porta un peso in piu' sul fronte — ALLY +1, BOUND +2, mai oltre 2
+  per seggio. Il bonus si firma a verbale: «X parla da alleato (+N)».
+- La regola sta nel dato, non nel codice: togliere `alliance_weight` da una
+  Chronicle riporta il Consiglio a com'era.
+
+### Measured
+
+- Playtest 100 semi (7000): **FAIL 185 · SUCC 76 · SUCC 123 · DECI 178**,
+  tavolo misto **0 su 8** seggi bloccati (baseline 185 · 78 · 123 · 176).
+- Sonda d'era invariata: CHR_01 955 anni / 20,2 generazioni / 24 nomi,
+  CHR_03 1049 / 16,5 / 20.
+- Suite 294 test / 6117 asserzioni verde; sims ed export deterministici;
+  22 documenti validi contro `/schema`.
+
+### Notes
+
+- Due forme scritte e scartate prima di questa, entrambe con **un seggio
+  bloccato su un livello solo**: la simmetrica (il nemico frena quanto
+  l'alleato spinge — FAIL 210, perche' il tavolo di partenza ha ostilita' e
+  non ha alleanze) e quella gratis (FAIL 187). Il verbale le registra.
+
+---
+
+## [0.1.101] — Pedine e vessilli
+
+I pezzi al posto dei cerchietti ([D-138](docs/DECISIONS.md#d-138)),
+chiesti dal committente.
+
+### Added
+
+- **`pawn` e `banner`** nel set delle icone (dati, non disegno nella
+  vista): la mappa dipinge la pedina col profilo della casa, la sua
+  ombra e il contorno scuro; il controllo pianta il suo vessillo sul
+  bordo della Regione.
+- **La stessa sagoma sul cartone**: la fustella mette la pedina dentro
+  il tondo da 15 mm e il vessillo dentro l'anello — schermo e cartone
+  sono lo stesso pezzo (D-097).
+
+### Fixed
+
+- Il test del foglio contava i `<circle>` per contare i segnalini, e
+  dentro un tondo ora c'e' una pedina: i contorni da punzonare si
+  dichiarano (`class="pezzo"`) e si contano quelli.
+
+### Measured
+
+- Suite 294 test / 6117 asserzioni verde; export deterministico byte
+  per byte; playtest identico (0/8).
+
+---
+
+## [0.1.100] — Il QR della stanza
+
+L'ultima promessa aperta della fase 3 ([D-137](docs/DECISIONS.md#d-137)):
+il codice si inquadra invece di digitarlo.
+
+### Added
+
+- **Encoder QR** scritto a mano (modo byte, correzione M, versioni 1-4) e
+  il riquadro che lo disegna: un codice per ogni seggio (indirizzo +
+  token) e uno per la vetrina, rigenerati quando si rigenera un codice.
+- **L'oracolo**: `tools/gen_qr_fixture.py` congela le matrici attese di
+  un'implementazione indipendente; il test le confronta modulo per
+  modulo, per tutte e otto le maschere.
+
+### Fixed
+
+- Tre difetti che nessuno sguardo avrebbe visto, trovati dal confronto:
+  le due copie dei bit di formato scambiate, il polinomio generatore
+  della correzione d'errore con le potenze invertite, e il riempimento
+  indicizzato sulla posizione invece che sul conteggio — quest'ultimo
+  tornava per caso in versione 1 e sbagliava in versione 3.
+
+### Measured
+
+- 40 matrici su 40 identiche all'oracolo (100 asserzioni); suite 294
+  test / 6064 asserzioni verde; playtest identico (0/8); filo ancora
+  trasparente byte per byte.
+
+---
+
+## [0.1.99] — Il telefono vero e la stanza
+
+La fase 3 della voce 27 ([D-136](docs/DECISIONS.md#d-136)): le pagine,
+il feed della vetrina, la stanza — pronti per la prova computer +
+iPad + telefoni (istruzioni in SEDUTA_TAVOLO §9).
+
+### Added
+
+- **`web/console.html`**: il telefono — pannello, mano, Destino,
+  la domanda coi bottoni, rientro col token e riconnessione.
+- **`web/tavolo.html`**: la vetrina per l'iPad (`/tavolo`), senza
+  token (il tavolo è pubblico per costruzione), aggiornata a ogni
+  cambiamento del mondo; il tocco sulla Regione apre i segni.
+- **La stanza** (`room_screen.tscn`, dal menu): indirizzi per seggio,
+  «Rigenera il codice», e al via chi è collegato gioca dal telefono;
+  la striscia di diagnosi dice chi «non risponde da Ns».
+
+### Measured
+
+- Sonda del filo estesa: vetrina 43 aggiornamenti, pagine servite,
+  partita identica byte per byte. Suite e playtest intatti.
+
+---
+
+## [0.1.98] — Il filo in casa
+
+La fase 2 della voce 27 ([D-135](docs/DECISIONS.md#d-135)): il
+trasporto, costruito perché non possa mentire.
+
+### Added
+
+- **L'instradamento per seggio** nel SeatDecider (`ios`): l'avviso del
+  Destino finisce sul telefono giusto e su nessun altro.
+- **Il protocollo** `state/say/choose/chosen` con la perquisizione
+  incorporata — strutturale sulle mani (le carte hanno copie: il
+  segreto è *quali copie tieni*, non il titolo), text-scan sui gradini
+  del Destino altrui.
+- **`ConsoleIO`** (l'io remoto a segnali) e **`ConsoleHost`**
+  (WebSocket, token, posta, rientro con domanda riproposta).
+
+### Fixed
+
+- La formula del copione non può più «ripensarci per sempre» (parità
+  costante sul passo due → hash a bit alti); la sonda stampa il
+  progresso partita per partita.
+
+### Measured
+
+- **Sonda del filo**: partita con due console WebSocket vere identica
+  byte per byte (249 messaggi, 82 risposte). **Sonda dei messaggi**:
+  100 partite, **21.109 messaggi perquisiti, FUGHE: 0**. Suite
+  290/5953 verde, playtest identico.
+
+---
+
 ## [0.1.97] — Le due viste dallo stesso mondo
 
 La fase 1 della voce 27 ([D-134](docs/DECISIONS.md#d-134)), senza un

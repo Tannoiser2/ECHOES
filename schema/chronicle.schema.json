@@ -316,6 +316,31 @@
               "default": -2,
               "maximum": 0,
               "description": "Di quanto un Failure sfoga la Tensione (appendice A6: -2). A -1 la proposta bocciata non compra quiete: la domanda resta piu' vicina alla soglia e torna prima - la seconda leva contro l'Oppose come strategia dominante, misurata in D-098."
+            },
+            "alliance_weight": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "per_step": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 2,
+                  "description": "Quanto pesa ogni passo di distanza da NEUTRAL, sul fronte su cui chi lo porta si schiera."
+                },
+                "max": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 3,
+                  "description": "Il tetto per seggio: senza, due legami stretti deciderebbero il Consiglio da soli."
+                },
+                "commits_at_least": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 3,
+                  "description": "Quante carte l'alleato deve impegnare perche' la sua voce pesi. Un'alleanza che aiuta senza costare e' un bonus passivo; una che chiede di metterci del proprio e' una scelta al tavolo."
+                }
+              },
+              "description": "Quanto pesa un legame al Consiglio (D-139). Un alleato che sostiene il proponente, e che impegna carte per farlo, parla piu' forte di uno sconosciuto: il bonus va al fronte SUPPORT e solo al legame caldo (ALLY un passo, BOUND due). La forma simmetrica - il nemico che osteggia pesa quanto l'alleato che sostiene - e' stata scritta, misurata e scartata: il tavolo di partenza ha ostilita' e non ha alleanze, quindi un dente simmetrico pesa da un lato solo (D-139). Chi tradisce il proprio legame non pesa di piu' ne' di meno: parla da solo. Omesso, i legami non toccano il tavolo - com'era prima di D-139."
             }
           }
         },

@@ -29,9 +29,16 @@ const FAMILIES: Array = ["FORCE", "AUTHORITY", "PEOPLE", "KNOWLEDGE", "WEALTH", 
 const LEVELS: Array = ["structure", "condition", "settlement", "scar"]
 const MARKERS: Array = ["tension", "echo"]
 
+## I pezzi del tavolo: la pedina di chi sta in una Regione e il vessillo di chi
+## la tiene. Non sono overlay ne' famiglie - sono le cose che si toccano, e per
+## D-097 lo stesso profilo va sullo schermo e sul cartone fustellato. Un tondo
+## colorato dice «qualcuno e' qui»; una pedina dice *chi*, e si conta con gli
+## occhi come si contano i pezzi veri.
+const PIECES: Array = ["pawn", "banner"]
+
 
 static func names() -> Array:
-	return FAMILIES + LEVELS + MARKERS
+	return FAMILIES + LEVELS + MARKERS + PIECES
 
 
 ## I tratti di un glifo, in ordine di disegno. Un nome che non esiste torna un
@@ -51,6 +58,8 @@ static func glyph(name: String) -> Array:
 		"scar": return _scar()
 		"tension": return _tension()
 		"echo": return _echo()
+		"pawn": return _pawn()
+		"banner": return _banner()
 	return _unknown()
 
 
@@ -294,3 +303,27 @@ static func proof_svg() -> String:
 			cursor += float(size) + 6.0
 	out.append("</svg>")
 	return "\n".join(PackedStringArray(out)) + "\n"
+
+
+## La pedina: testa, corpo, base. Tre tratti e non uno di piu' - a 16 px un
+## pezzo tornito diventa una macchia, e quello che deve leggersi a colpo
+## d'occhio non e' il legno: e' «qualcuno sta qui».
+static func _pawn() -> Array:
+	return [
+		_dot(Vector2(0.50, 0.26), 0.15),
+		_poly([
+			Vector2(0.35, 0.84), Vector2(0.41, 0.48), Vector2(0.59, 0.48), Vector2(0.65, 0.84),
+		]),
+		_poly([
+			Vector2(0.24, 0.84), Vector2(0.76, 0.84), Vector2(0.76, 0.94), Vector2(0.24, 0.94),
+		]),
+	]
+
+
+## Il vessillo di chi tiene il posto: l'asta e il drappo. Il controllo non e'
+## una presenza - non si conta, si pianta - e la forma lo dice da sola.
+static func _banner() -> Array:
+	return [
+		_line([Vector2(0.30, 0.08), Vector2(0.30, 0.94)]),
+		_poly([Vector2(0.30, 0.14), Vector2(0.82, 0.30), Vector2(0.30, 0.46)]),
+	]

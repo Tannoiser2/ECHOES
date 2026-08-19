@@ -84,7 +84,10 @@ func test_no_two_glyphs_are_the_same_shape() -> void:
 				shape += "%.2f,%.2f;" % [(point as Vector2).x, (point as Vector2).y]
 		assert_false(seen.has(shape), "%s non e la copia di %s" % [str(name), str(seen.get(shape, ""))])
 		seen[shape] = str(name)
-	assert_eq(seen.size(), (IconSet.names() as Array).size(), "dodici segni diversi")
+	assert_eq(
+		seen.size(), (IconSet.names() as Array).size(),
+		"ogni segno del set e diverso da tutti gli altri"
+	)
 
 
 ## Nessun glifo e' un segno solo appena inclinato rispetto a un altro: a 16 px la

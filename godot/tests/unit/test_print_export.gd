@@ -207,8 +207,16 @@ func test_each_deck_has_the_size_of_its_table_role() -> void:
 func test_the_token_sheet_counts_its_pieces() -> void:
 	var TokenSheet: GDScript = load("res://scripts/core/token_sheet.gd")
 	var svg: String = TokenSheet.tokens_svg(data(), "CHR_01")
-	assert_eq(svg.count("<circle"), 48, "4 case x (6 tondi + 6 anelli) = 48 cerchi")
-	assert_eq(svg.count("<path"), 6, "sei rombi di valore")
+	# Si contano i **contorni da punzonare** (`class="pezzo"`), non le forme
+	# grezze: da quando dentro il tondo c'e' la sagoma della pedina (D-137) un
+	# pezzo e' fatto di piu' disegni, e contare i cerchi conterebbe le teste.
+	assert_eq(
+		svg.count("class=\"pezzo\""), 55,
+		"4 case x (6 tondi + 6 anelli) + 6 rombi + il quadrato del Drift"
+	)
+	assert_eq(svg.count("<circle class=\"pezzo\""), 48, "48 segnalini di casa da fustellare")
+	assert_eq(svg.count("<path class=\"pezzo\""), 6, "sei rombi di valore")
+	assert_true(svg.contains("<circle cx="), "e dentro i tondi la sagoma della pedina")
 	assert_true(svg.contains("Re Aldric"), "le case sono quelle della Chronicle")
 	assert_true(svg.contains("width=\"210mm\" height=\"297mm\""), "il foglio e' un A4 vero")
 	assert_eq(svg, TokenSheet.tokens_svg(data(), "CHR_01"), "deterministico byte per byte")

@@ -101,7 +101,9 @@ func test_each_seat_hears_only_its_own_console() -> void:
 	assert_true(shared.heard.size() > 0, "senza console si parla allo schermo comune")
 
 
-## La perquisizione trova quello che deve trovare - e non di piu'.
+## La perquisizione trova quello che deve trovare - e non di piu'. Le mani
+## si controllano sulla struttura (le carte hanno copie: il titolo non e'
+## un segreto, quali copie tieni si'), i Destini altrui sulle parole.
 func test_the_audit_smells_a_planted_leak() -> void:
 	var seats: Array = session.world["turn_order"]
 	var mine: String = str(seats[0])
@@ -109,11 +111,30 @@ func test_the_audit_smells_a_planted_leak() -> void:
 	var clean: Dictionary = Protocol.state_message(session, mine)
 	assert_eq(Protocol.audit(clean, session, mine).size(), 0, "lo stato vero e' pulito")
 
+	# Un titolo scartato a verbale non e' una fuga, anche se un vicino ne
+	# tiene una copia: la prosa non si accusa.
 	var their_hand: Array = session.service.hand(theirs)
 	assert_true(their_hand.size() > 0, "il vicino ha una mano da proteggere")
-	var stolen: String = str(session.data.assets[str(their_hand[0])]["title"])
-	var leaky: Dictionary = Protocol.say_message(session, "ho visto «%s» nella sua mano" % stolen)
+	var twin: String = str(session.data.assets[str(their_hand[0])]["title"])
+	var prose: Dictionary = Protocol.say_message(session, "scarta %s e rivendica." % twin)
+	assert_eq(
+		Protocol.audit(prose, session, mine).size(), 0,
+		"una copia nominata nella prosa non e' la mano di nessuno"
+	)
+
+	# Lo state di un altro seggio, instradato a me: questa e' LA fuga.
+	var stolen: Dictionary = Protocol.state_message(session, theirs)
+	assert_true(
+		Protocol.audit(stolen, session, mine).size() > 0,
+		"lo state altrui sul mio filo si fiuta (mano e nome non tornano)"
+	)
+
+	# E il gradino del Destino altrui e' una frase d'autore: nel testo si fiuta.
+	var their_destiny: Dictionary = session.data.destinies[session.service.destiny_of(theirs)]
+	var leaky: Dictionary = Protocol.say_message(
+		session, "ho letto «%s» sul suo tarocco" % str(their_destiny["minimum"]["label"])
+	)
 	assert_true(
 		Protocol.audit(leaky, session, mine).size() > 0,
-		"la carta altrui nel messaggio si fiuta"
+		"il Destino altrui nel messaggio si fiuta"
 	)

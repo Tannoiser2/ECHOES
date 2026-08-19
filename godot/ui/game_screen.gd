@@ -725,7 +725,13 @@ func _menu() -> void:
 		for entity_id in _seats:
 			labels.append("Gioco %s" % _entity_name(str(entity_id)))
 		labels.append("Guardo giocare le policy")
+		# La stanza (voce 27, D-136): la mappa resta qui, i giocatori sui
+		# telefoni. La scena della stanza chiede l'anno per conto suo.
+		labels.append("Apro la stanza — console sui telefoni")
 		var choice: int = await ask("Quale seggio prendi?", labels)
+		if choice == _seats.size() + 1:
+			get_tree().change_scene_to_file("res://ui/room_screen.tscn")
+			return
 		var humans: Array = [] if choice >= _seats.size() else [str(_seats[choice])]
 		await _play(humans, chronicle_id, await _ask_seed())
 

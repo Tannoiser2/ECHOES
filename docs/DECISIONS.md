@@ -331,6 +331,237 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-139 — Il peso dell'alleanza al Consiglio
+**implemented in 0.1.102** (chiesto dal committente: «le alleanze dovrebbero pesare e influenzare di piu'»)
+
+Le relazioni fra entita' esistevano e servivano a molto — chi puo' proporre
+insieme a chi, chi eredita, cosa dicono i segni, come si sciolgono i patti —
+ma **nel momento in cui si vota non contavano nulla**: al Consiglio un
+alleato giurato e uno sconosciuto avevano la stessa voce. Adesso no: chi
+sostiene il proponente e gli e' legato porta un peso in piu' sul fronte,
+firmato a verbale («Kessa parla da alleato (+1)»), e la regola sta nella
+Chronicle (`confluence_rules.alliance_weight`), non nel codice.
+
+La forma: **un passo per grado sopra NEUTRAL** (ALLY +1, BOUND +2), **tetto a
+2 per seggio**, **e almeno due carte impegnate**. Il tetto perche' senza, due
+legami stretti deciderebbero il Consiglio da soli e il tavolo diventerebbe una
+questione di amicizie invece che di carte. Le carte perche' un'alleanza che
+aiuta senza costare e' un bonus passivo — si eredita a inizio partita e si
+incassa — mentre un'alleanza che chiede di metterci del proprio e' una scelta
+al tavolo, e quella scelta e' il gioco.
+
+**Tre forme scritte, misurate, e due scartate.** Vale la pena registrarle,
+perche' la seconda e la terza sembrano identiche a leggerle:
+
+| forma | FAIL | tavolo misto |
+|---|---|---|
+| simmetrica (l'alleato spinge, il nemico frena) | 210 | **1/8 bloccato** |
+| solo il legame caldo, gratis | 187 | **1/8 bloccato** |
+| solo il legame caldo, e si paga (2 carte) | 185 | 0/8 |
+
+La prima sembrava la piu' onesta — se l'amicizia pesa, l'inimicizia pesa —
+e la misura ha detto il contrario, per una ragione che si vede solo guardando
+il tavolo di partenza: **CHR_01 ha ostilita' e non ha alleanze**. Un dente
+simmetrico su un mondo asimmetrico pesa da un lato solo; in pratica avevamo
+aggiunto un moltiplicatore all'Oppose, cioe' esattamente la strategia che
+D-098 aveva passato mesi a smontare. Venticinque fallimenti in piu' su 100
+semi, e un seggio che non usciva piu' dal suo livello.
+
+La seconda ha rimesso i fallimenti quasi in banda ma ha lasciato **Kessa dei
+Fuochi bloccata per un solo tiro** (`1 44 5 0` invece di `1 45 4 0`): un
+bonus che arriva senza essere chiesto sposta *tutte* le partite di un
+pelo, e da qualche parte quel pelo cade dalla parte sbagliata. Chiedere due
+carte non ha ammorbidito il dente, l'ha reso **raro e voluto**: pesa quando
+qualcuno ha deciso di far pesare la sua alleanza, non ogni volta che il tavolo
+capita di essere amico.
+
+Un effetto collaterale che val la pena dire: questa e' la seconda cosa —
+dopo le promesse di D-051 — che rende il FORGE verso l'alto una mossa da
+Opportunita' d'azione e non un gesto di cortesia. Un'alleanza adesso e' una
+voce in piu' al Consiglio, se sei disposto a pagarla.
+
+Reversibile: si toglie `alliance_weight` dalla Chronicle e i legami tornano a
+non toccare il voto. Le quattro Chronicle la portano con gli stessi numeri;
+una Chronicle futura puo' avere un Consiglio dove i legami pesano di piu' (o
+per niente) senza toccare una riga di codice.
+
+Misure: playtest **FAIL 185 · SUCC 76 · SUCC 123 · DECI 178**, tavolo misto
+**0/8** (uniforme 3/8, invariato); ere CHR_01 955 anni / 20,2 generazioni /
+24 nomi e CHR_03 1049 / 16,5 / 20 — identiche alla baseline: il dente tocca
+chi vince un Consiglio, non quanto dura una saga. Suite 294/6117 verde,
+sims ed export deterministici, 22 documenti validi.
+
+---
+
+## D-138 — Pedine e vessilli: i pezzi, non i cerchietti
+**implemented in 0.1.101** (chiesto dal committente: «sulla mappa vorrei token e pedine vere, no cerchietti»)
+
+La presenza si disegnava come un tondo colorato con l'iniziale dentro, e il
+controllo come un anello sottile attorno alla Regione. Funzionava e non
+sembrava un gioco da tavolo: un tondo dice «qualcuno e' qui», una pedina
+dice *chi*, e si conta con la coda dell'occhio come si contano i pezzi veri.
+
+Due segni nuovi nel set delle icone — **`pawn`** (testa, corpo, base) e
+**`banner`** (asta e drappo) — e la ragione per cui stanno *li* e non
+disegnati a mano nella vista: le icone sono **dati** (D-058), e per D-097 il
+pezzo sullo schermo e quello che esce dalla fustella devono essere lo stesso
+pezzo. Adesso lo sono davvero: `map_view` dipinge la sagoma col profilo della
+casa, la sua ombra sul terreno e il contorno scuro che la tiene leggibile su
+un fondo chiaro o scuro; `token_sheet` mette la **stessa** sagoma dentro il
+tondo da 15 mm della fustella e il vessillo dentro l'anello del controllo.
+L'iniziale resta sul cartone, perche' una fustella stampata in grigio non ha
+il colore per distinguere le case.
+
+Il controllo guadagna anche il suo vessillo piantato sul bordo della Regione:
+non e' una presenza — non si conta, si pianta — e chi guarda da bordo tavolo
+vede di chi e' il posto senza dover leggere il colore di un anello sottile.
+
+Un difetto di misura scoperto strada facendo: il test del foglio contava i
+`<circle>` per contare i segnalini. Da quando dentro il tondo c'e' una pedina,
+contare i cerchi conta anche le teste. I contorni da punzonare adesso si
+dichiarano (`class="pezzo"`) e il test conta quelli: il foglio e' un piano di
+fustella e ora lo dice.
+
+Misure: suite 294/6117 verde, export deterministico byte per byte, playtest
+identico (0/8). Resta fuori, come sempre: l'illustrazione vera delle case e'
+lavoro di chi disegna (voce 5) — questi sono segni, e i segni li fa il gioco.
+
+---
+
+## D-137 — Il QR della stanza, e i due oracoli che non erano d'accordo
+**implemented in 0.1.100** (voce 27, la B della seduta: «QR + token» — l'ultima promessa aperta della fase 3)
+
+Il codice si inquadra invece di digitarlo: la stanza disegna un QR per ogni
+seggio (col suo indirizzo e il suo token) e uno per la vetrina. Encoder
+scritto a mano — modo byte, correzione M, versioni 1-4 — perché il progetto
+non tira dipendenze per una schermata.
+
+Il punto della decisione non è il QR: è **come si verifica una cosa che non
+si vede a occhio**. Un codice sbagliato non sembra sbagliato; sembra un
+quadrato. Si scopre quando quattro persone sono sedute e nessuna riesce a
+entrare. Quindi l'encoder ha il suo oracolo: `tools/gen_qr_fixture.py`
+genera le matrici attese con un'implementazione che non è la mia e le
+congela in `tests/fixtures/qr_golden.json`; il test le confronta **modulo
+per modulo, per tutte e otto le maschere** — separare le maschere separa i
+due difetti possibili (i dati piazzati male, la maschera scelta male).
+
+Il confronto ha trovato tre difetti veri, nessuno dei quali si sarebbe
+visto guardando lo schermo:
+
+- **I bit di formato**: le due copie erano scambiate e indicizzate al
+  contrario. Le posizioni sono ora elencate una per una, ricavate
+  dall'oracolo — non si tengono a memoria.
+- **La correzione d'errore**: il polinomio generatore era costruito con le
+  potenze invertite rispetto a come la divisione lo legge. Produceva una
+  parità plausibile e sbagliata.
+- **Il riempimento**: i codeword di riempimento si alternano da `0xEC`
+  contati dall'inizio del riempimento, non dalla posizione nel messaggio.
+  Con la parità della posizione la versione 1 tornava **per caso** e la 3
+  no — il difetto peggiore, quello che un solo esempio avrebbe assolto.
+
+**Gli oracoli interrogati sono stati due, e non erano d'accordo**: `segno`
+aggiunge sempre un byte di zeri dopo il terminatore anche quando il flusso
+è già allineato; lo standard (ISO/IEC 18004 §7.4.10) dice di riempire *solo*
+se non lo è, e `qrcode` fa così. Entrambi i QR si leggono — la differenza
+vive nella zona di riempimento, che un lettore scarta — ma un confronto
+vuole un riferimento solo, e si è scelto quello conforme.
+
+E una cosa si è imparata a non pretendere: **quale** maschera sia la
+migliore non è un invariante fra implementazioni. Sullo stesso indirizzo
+`qrcode` sceglie la 7, `segno` la 1, questo encoder la 2: il punteggio di
+penalità è un'euristica e le tre lo pesano diversamente. Il test quindi non
+pretende la stessa scelta — pretende che la strada automatica produca *una
+delle otto matrici verificate*, che è ciò che deve valere davvero.
+
+Misure: 40 matrici su 40 identiche all'oracolo, 100 asserzioni verdi; suite
+294/6064 verde; playtest identico (0/8); il filo ancora trasparente (249
+messaggi, vetrina 43 volte, salvataggio e verbale byte per byte). Se un
+indirizzo non entra nelle versioni coperte il riquadro resta vuoto e accanto
+c'è l'indirizzo scritto: la stanza non dipende dal QR, lo offre.
+
+---
+
+## D-136 — Il telefono vero e la stanza (voce 27, fase 3 + rifiniture)
+**implemented in 0.1.99** (per la prova computer + iPad + telefoni; le istruzioni in SEDUTA_TAVOLO §9)
+
+La fase «da toccare»: le pagine, il feed della vetrina, la stanza.
+
+- **`web/console.html`** — il telefono: `http://<ip>:8123/?t=TOKEN`.
+  Pannello, mano, la scala del Destino coi gradini, gli avvisi, la
+  domanda coi bottoni (compreso «Decidi tu», che rimette la singola
+  scelta alla policy). Il token vive in localStorage: la pagina si
+  ricollega da sola e la domanda in sospeso viene riproposta. Ping ogni
+  8 secondi.
+- **`web/tavolo.html`** — la vetrina per l'iPad in Safari (`/tavolo`):
+  mappa a schede, domande (le coperte mostrano il dorso), Consigli,
+  verbale che scorre. La C della seduta anche sul vetro: il tocco su una
+  Regione apre i segni, niente decide. Nessun token: il tavolo è
+  pubblico per costruzione (D-134), e `hello {table:true}` riceve il
+  `TableModel` a ogni cambiamento del mondo.
+- **Il mini HTTP da stanza** (`serve_pages`): serve solo i suoi due
+  file, con la porta del filo già scritta dentro; niente filesystem
+  esposto.
+- **La stanza** (`room_screen.tscn`, dal menu «Apro la stanza — console
+  sui telefoni»): sceglie l'anno scritto, mostra per ogni seggio
+  l'indirizzo con lo stato e «Rigenera il codice» (il reissue del B); al
+  via **chi è collegato gioca dal telefono, gli altri seggi sono
+  policy** — la connessione decide, senza altre domande. Durante la
+  partita lo schermo è la vetrina con la striscia di diagnosi.
+- **La diagnosi onesta della rete** (la rifinitura promessa in §6 del
+  dossier): `silence_of` traduce i ping in «la console di X non risponde
+  da Ns» sulla striscia della stanza.
+
+Restano dichiarati per dopo la prova: la **console di riserva piena**
+(rispondere dallo schermo grande su dichiarazione esplicita, col costo di
+segretezza detto ad alta voce), il **QR** al posto dell'indirizzo scritto,
+e l'inclusione di `web/` negli export impacchettati (dalla cartella di
+progetto funziona già). Misure: la sonda del filo estesa — vetrina
+aggiornata 43 volte, pagine servite con la porta giusta, partita ancora
+**identica byte per byte**; suite e playtest intatti.
+
+---
+
+## D-135 — Il filo in casa (voce 27, fase 2)
+**implemented in 0.1.98** (seduta sul tavolo, risposta D — la fase 2 dopo le viste)
+
+Il trasporto, costruito perché non possa mentire:
+
+- **L'instradamento per seggio** (`ios` nel SeatDecider): ogni ingresso
+  pubblico dichiara a chi sta parlando prima di dire o chiedere — l'avviso
+  del Destino finisce sul telefono giusto e su nessun altro; `io` resta il
+  ripiego condiviso (terminale, hotseat, riserva).
+- **Il protocollo** (`state/say/choose/chosen`): l'orologio del mondo su
+  ogni messaggio dell'host, l'`ask_id` che scarta le risposte stantie, la
+  domanda in sospeso leggibile per il rientro. **La perquisizione è nel
+  protocollo** (`audit`), ed è **strutturale** dove deve esserlo: le carte
+  esistono in copie e il titolo non è un segreto — la prima forma
+  text-scan ha consegnato 658 «fughe» tutte false («Sale» è anche la
+  Compagnia, la Carovana scartata a verbale non rivela la copia del
+  vicino). Ciò che è segreto è *quali copie hai in mano*: la mano dello
+  `state` deve essere esattamente quella del seggio, lo `state` deve
+  portare il suo nome, la domanda coperta resta un dorso. I gradini del
+  Destino altrui restano text-scan: frasi d'autore, uniche.
+- **`ConsoleIO`** — l'io remoto che non sa cosa sia un socket: parla a
+  segnali, stato fresco prima di ogni domanda; **`ConsoleHost`** —
+  TCPServer+WebSocketPeer, accoppiamento a token (chi inquadra il codice
+  di un seggio *è* quel seggio), posta per le console assenti, rientro con
+  stato fresco e domanda riproposta.
+- **L'io copione** e la console simulata condividono una formula pura —
+  e la formula ha la sua cicatrice a verbale: la prima aveva parità
+  costante quando il numero di domanda avanza di due, che è il passo del
+  ciclo «La fai lo stesso?» — un copione poteva ripensarci per sempre, e
+  la sonda ci è rimasta dentro due ore. L'hash a bit alti l'ha guarita,
+  e la sonda ora stampa il progresso partita per partita.
+
+Le misure del «fatto quando», entrambe piene: **la sonda del filo** — la
+stessa partita senza rete e con due console WebSocket vere su localhost
+(249 messaggi, 82 risposte) è **identica byte per byte**, salvataggio e
+verbale; **la sonda dei messaggi** — 100 partite a tavolo misto, **21.109
+messaggi perquisiti, FUGHE: 0**. Sul filo di ogni console viaggia solo il
+suo seggio. Suite 290/5953 verde, playtest identico.
+
+---
+
 ## D-134 — Le due viste dallo stesso mondo (voce 27, fase 1)
 **implemented in 0.1.97** (seduta sul tavolo: A pagina dall'host, B QR+token, C vetrina+ispezione, D fasi 1→4)
 

@@ -410,6 +410,13 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 				oppose_bonus += int(lean["delta"])
 			stance_titles.append_array(lean["titles"])
 
+		# Il peso del legame (D-139): un alleato che ti sostiene e ci mette
+		# del proprio parla piu' forte di uno sconosciuto.
+		var bond: int = _bond_weight(seat, side)
+		if bond > 0:
+			support_bonus += bond
+			stance_titles.append("%s parla da alleato (+%d)" % [_name(seat), bond])
+
 	# La soglia della Condition che si sposta (D-125), mai sotto 1.
 	var condition_entities: Array = []
 	for entity_id in current["stances"]:
@@ -798,6 +805,43 @@ func _bar_return(applied: Array, effect: Dictionary, source: Dictionary) -> void
 			"SET_ENTITY_TAG", "entity", victim, {"tag": "twice_uprooted"}, source
 		))
 		log.bullet("H. Due volte sradicato in un anno: %s non ha piu' un centro da difendere." % _name(victim))
+
+
+## Quanto pesa un'alleanza al Consiglio (D-139): un alleato che ti sostiene
+## parla piu' forte di uno sconosciuto. La distanza sopra NEUTRAL e' la forza -
+## ALLY un passo, BOUND due - con un tetto per seggio, perche' senza, due
+## legami stretti deciderebbero il Consiglio da soli. Il fronte OPPOSE non
+## prende niente: la firma tiene `side` per rifiutarlo esplicitamente.
+##
+## **Pesa solo il legame caldo, e solo su chi sostiene.** La prima stesura era
+## simmetrica (il nemico che ti osteggia pesa come l'alleato che ti sostiene) e
+## sembrava piu' onesta; misurata sui 100 semi ha detto il contrario, perche'
+## il tavolo di partenza *ha ostilita' e non ha alleanze*: i fallimenti sono
+## passati da 185 a 210 e un seggio si e' bloccato su un livello solo. Un dente
+## simmetrico su un mondo asimmetrico pesa da un lato solo.
+##
+## Cosi' invece il bonus non esiste finche' qualcuno non costruisce un'alleanza
+## - ed e' la seconda cosa, dopo le promesse di D-051, che rende il FORGE verso
+## l'alto degno di un'Opportunita' d'azione.
+func _bond_weight(seat: String, side: String) -> int:
+	var rules: Dictionary = (_chronicle.get("confluence_rules", {}) as Dictionary).get(
+		"alliance_weight", {}
+	)
+	if rules.is_empty() or side != "SUPPORT":
+		return 0
+	var proponent: String = str(current["proponent"])
+	if seat == proponent:
+		return 0
+	var order: Array = ["ENEMY", "HOSTILE", "NEUTRAL", "ALLY", "BOUND"]
+	var step: int = order.find(service.relation_level(seat, proponent)) - 2
+	if step <= 0:
+		return 0
+	# E l'alleanza si paga: un alleato che aiuta senza metterci del proprio e'
+	# un bonus passivo, uno che impegna carte e' una scelta al tavolo.
+	var spent: int = (current["commits"].get(seat, []) as Array).size()
+	if spent < int(rules.get("commits_at_least", 1)):
+		return 0
+	return mini(step * int(rules.get("per_step", 1)), int(rules.get("max", 2)))
 
 
 func _log_commitments() -> void:
