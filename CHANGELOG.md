@@ -5,6 +5,33 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.111] — La saga del Sale
+
+Una saga intera sull'altra linea, raccontata
+([SAGA_SALE.md](docs/SAGA_SALE.md)), e il confronto con la prima.
+
+### Added
+
+- **`docs/SAGA_SALE.md`**: dieci Chronicle sulla linea delle citta'
+  (1640–2355, seme 1204, CHR_03 poi CHR_04), anno per anno.
+
+### Measured
+
+- **La saga dell'812 rigiocata oggi e' identica** — anno per anno, nome per
+  nome, livello per livello. Di tutto il lavoro da 0.1.101 in poi l'unica
+  cosa che tocca il motore e' il peso dell'alleanza (D-139), e quel dente ha
+  morso **una volta sola in dieci Chronicle** (nel Consiglio del 1057, senza
+  cambiarne l'esito). Nella saga del Sale: **mai**.
+
+### Notes
+
+- ISSUES 35 aperta: nella seconda meta' della saga del Sale i Consigli
+  continuano a riuscire e i Destini smettono di avanzare — **sedici Minimi su
+  venti** da quando le istituzioni sostituiscono le persone. Da misurare a
+  tavolo misto prima di toccare qualsiasi cosa.
+
+---
+
 ## [0.1.110] — Il ritardatario
 
 Chi si collega a partita cominciata adesso lo sa

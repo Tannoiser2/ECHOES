@@ -847,6 +847,36 @@ mai.
 **Fatto quando** il menu chiede quanti giocano, e una misura dice se i bot
 giocano davvero. ✓
 
+### 35. Le istituzioni governano bene e non vogliono niente
+
+`contenuto` · `da-misurare` · nata dalla saga del Sale ([SAGA_SALE.md](SAGA_SALE.md))
+
+Dieci Chronicle sulla linea delle città (1640–2355) mostrano una forma netta:
+finché al tavolo siedono **persone** — Maestra Ilve, Priora Ilaria, Maestro
+Ruel — ci sono Vittorie e due Trionfi; dal 1981, quando le incarnazioni
+tardive sostituiscono i titolari con le **istituzioni** (La Compagnia del
+Sale, Le Custodi della Cenere, I Frati del Vetro, La Lega delle Sette),
+**sedici Destini su venti finiscono al Minimo** in cinque Chronicle.
+
+E non perché il tavolo si blocchi: i Consigli continuano a riuscire. Il
+debito viene rimesso, l'acqua contrattata, i Senza Città sistemati — le
+stesse quattro frasi che tornano ogni secolo con un firmatario diverso.
+Riescono, e non portano nessuno da nessuna parte.
+
+L'ipotesi: le clausole delle istituzioni parlano di **continuità e registri**,
+e la continuità si ottiene senza fare niente di nuovo. La policy gioca il
+proprio Destino nel modo migliore che sa; se il Destino chiede di non
+muoversi, non si muove.
+
+**Da misurare prima di toccare**: la stessa saga a tavolo misto (i quattro
+caratteri di D-053) invece che a policy identiche, e il conto dei livelli per
+incarnazione su 40 Chronicle. Se la forma regge anche lì, è il contenuto
+delle vite tardive; se sparisce, era l'ottimizzatore — la stessa domanda di
+D-051, un'incarnazione più tardi.
+
+**Fatto quando** si sa se le istituzioni sono difficili da giocare o solo
+scritte per non muoversi.
+
 ### 28. ✅ Le alleanze devono pesare al Consiglio — fatta in 0.1.102
 
 `regole` · voluta dal committente · **chiusa** ([D-139](DECISIONS.md#d-139))
