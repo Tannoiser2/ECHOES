@@ -331,6 +331,41 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-138 — Pedine e vessilli: i pezzi, non i cerchietti
+**implemented in 0.1.101** (chiesto dal committente: «sulla mappa vorrei token e pedine vere, no cerchietti»)
+
+La presenza si disegnava come un tondo colorato con l'iniziale dentro, e il
+controllo come un anello sottile attorno alla Regione. Funzionava e non
+sembrava un gioco da tavolo: un tondo dice «qualcuno e' qui», una pedina
+dice *chi*, e si conta con la coda dell'occhio come si contano i pezzi veri.
+
+Due segni nuovi nel set delle icone — **`pawn`** (testa, corpo, base) e
+**`banner`** (asta e drappo) — e la ragione per cui stanno *li* e non
+disegnati a mano nella vista: le icone sono **dati** (D-058), e per D-097 il
+pezzo sullo schermo e quello che esce dalla fustella devono essere lo stesso
+pezzo. Adesso lo sono davvero: `map_view` dipinge la sagoma col profilo della
+casa, la sua ombra sul terreno e il contorno scuro che la tiene leggibile su
+un fondo chiaro o scuro; `token_sheet` mette la **stessa** sagoma dentro il
+tondo da 15 mm della fustella e il vessillo dentro l'anello del controllo.
+L'iniziale resta sul cartone, perche' una fustella stampata in grigio non ha
+il colore per distinguere le case.
+
+Il controllo guadagna anche il suo vessillo piantato sul bordo della Regione:
+non e' una presenza — non si conta, si pianta — e chi guarda da bordo tavolo
+vede di chi e' il posto senza dover leggere il colore di un anello sottile.
+
+Un difetto di misura scoperto strada facendo: il test del foglio contava i
+`<circle>` per contare i segnalini. Da quando dentro il tondo c'e' una pedina,
+contare i cerchi conta anche le teste. I contorni da punzonare adesso si
+dichiarano (`class="pezzo"`) e il test conta quelli: il foglio e' un piano di
+fustella e ora lo dice.
+
+Misure: suite 294/6117 verde, export deterministico byte per byte, playtest
+identico (0/8). Resta fuori, come sempre: l'illustrazione vera delle case e'
+lavoro di chi disegna (voce 5) — questi sono segni, e i segni li fa il gioco.
+
+---
+
 ## D-137 — Il QR della stanza, e i due oracoli che non erano d'accordo
 **implemented in 0.1.100** (voce 27, la B della seduta: «QR + token» — l'ultima promessa aperta della fase 3)
 

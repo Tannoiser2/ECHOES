@@ -13,6 +13,7 @@ extends RefCounted
 const PrintSheet := preload("res://scripts/core/print_sheet.gd")
 const ArtPlaceholder := preload("res://scripts/core/art_placeholder.gd")
 const SignLabels := preload("res://scripts/core/sign_labels.gd")
+const IconSet := preload("res://scripts/core/icon_set.gd")
 
 const PAGE_W: float = PrintSheet.PAGE_W
 const PAGE_H: float = PrintSheet.PAGE_H
@@ -252,26 +253,71 @@ static func _sign_square(x: float, y: float, word: String, tint: String, dashed:
 	return svg
 
 
+## Il segnalino di presenza: il tondo da punzonare, e dentro **la sagoma della
+## pedina** — la stessa che la mappa disegna (D-137). Chi gioca sullo schermo e
+## chi gioca col cartone guardano lo stesso pezzo; l'iniziale resta perche' a
+## fustella stampata in grigio il colore non c'e'.
 static func _token_full(x: float, y: float, letter: String) -> String:
 	return (
-		'<circle cx="%.1f" cy="%.1f" r="%.1f" fill="%s" stroke="#333333" stroke-width="0.4"/>'
+		'<circle class="pezzo" cx="%.1f" cy="%.1f" r="%.1f" fill="%s" stroke="#333333" stroke-width="0.4"/>'
 		% [x, y, TOKEN_R, PrintSheet.PAPER]
-		+ _text(x - 1.9, y + 2.0, letter, 5.5, PrintSheet.INK, true)
+		+ _glyph_svg("pawn", x, y - 0.6, TOKEN_R * 1.15, PrintSheet.INK)
+		+ _text(x + TOKEN_R * 0.30, y + TOKEN_R * 0.62, letter, 3.6, PrintSheet.INK, true)
 	)
 
 
+## Il segnalino di controllo: l'anello, e dentro il vessillo. Non si conta come
+## una presenza — si pianta — e la forma lo dice anche in bianco e nero.
 static func _token_ring(x: float, y: float, letter: String) -> String:
 	return (
-		'<circle cx="%.1f" cy="%.1f" r="%.1f" fill="#ffffff" stroke="%s" stroke-width="1.6"/>'
+		'<circle class="pezzo" cx="%.1f" cy="%.1f" r="%.1f" fill="#ffffff" stroke="%s" stroke-width="1.6"/>'
 		% [x, y, TOKEN_R - 0.8, PrintSheet.PAPER]
-		+ _text(x - 1.9, y + 2.0, letter, 5.5, "#333333", true)
+		+ _glyph_svg("banner", x, y, TOKEN_R * 1.05, "#333333")
+		+ _text(x + TOKEN_R * 0.30, y + TOKEN_R * 0.62, letter, 3.6, "#333333", true)
 	)
+
+
+## Un glifo del set disegnato in SVG, centrato in (x, y) su un lato dato. Gli
+## stessi tratti che `glyph.gd` porta sul canvas: una forma sola, due usi.
+static func _glyph_svg(name: String, x: float, y: float, side: float, colour: String) -> String:
+	var origin: Vector2 = Vector2(x - side * 0.5, y - side * 0.5)
+	var out: Array = []
+	for stroke in IconSet.glyph(name):
+		var item: Dictionary = stroke
+		var points: Array = []
+		for point in item["points"]:
+			points.append(origin + (point as Vector2) * side)
+		match str(item["kind"]):
+			"poly":
+				var path: Array = []
+				for at in points:
+					path.append("%.2f %.2f" % [(at as Vector2).x, (at as Vector2).y])
+				out.append(
+					'<path d="M %s Z" fill="%s"/>' % [" L ".join(PackedStringArray(path)), colour]
+				)
+			"line":
+				var line: Array = []
+				for at in points:
+					line.append("%.2f,%.2f" % [(at as Vector2).x, (at as Vector2).y])
+				out.append(
+					'<polyline points="%s" fill="none" stroke="%s" stroke-width="%.2f" stroke-linecap="round"/>'
+					% [" ".join(PackedStringArray(line)), colour, float(item["width"]) * side]
+				)
+			"dot":
+				out.append(
+					'<circle cx="%.2f" cy="%.2f" r="%.2f" fill="%s"/>'
+					% [
+						(points[0] as Vector2).x, (points[0] as Vector2).y,
+						float(item["width"]) * side, colour,
+					]
+				)
+	return "".join(PackedStringArray(out))
 
 
 static func _token_diamond(x: float, y: float) -> String:
 	var r: float = TOKEN_R - 0.5
 	return (
-		'<path d="M %.1f %.1f L %.1f %.1f L %.1f %.1f L %.1f %.1f Z" fill="%s" stroke="#333333" stroke-width="0.4"/>'
+		'<path class="pezzo" d="M %.1f %.1f L %.1f %.1f L %.1f %.1f L %.1f %.1f Z" fill="%s" stroke="#333333" stroke-width="0.4"/>'
 		% [x, y - r, x + r, y, x, y + r, x - r, y, PrintSheet.PAPER]
 	)
 
@@ -279,7 +325,7 @@ static func _token_diamond(x: float, y: float) -> String:
 static func _token_square(x: float, y: float) -> String:
 	var r: float = TOKEN_R - 1.0
 	return (
-		'<rect x="%.1f" y="%.1f" width="%.1f" height="%.1f" fill="#ffffff" stroke="%s" stroke-width="1.4"/>'
+		'<rect class="pezzo" x="%.1f" y="%.1f" width="%.1f" height="%.1f" fill="#ffffff" stroke="%s" stroke-width="1.4"/>'
 		% [x - r, y - r, r * 2.0, r * 2.0, PrintSheet.PAPER]
 	)
 

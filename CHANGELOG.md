@@ -5,6 +5,34 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.101] — Pedine e vessilli
+
+I pezzi al posto dei cerchietti ([D-138](docs/DECISIONS.md#d-138)),
+chiesti dal committente.
+
+### Added
+
+- **`pawn` e `banner`** nel set delle icone (dati, non disegno nella
+  vista): la mappa dipinge la pedina col profilo della casa, la sua
+  ombra e il contorno scuro; il controllo pianta il suo vessillo sul
+  bordo della Regione.
+- **La stessa sagoma sul cartone**: la fustella mette la pedina dentro
+  il tondo da 15 mm e il vessillo dentro l'anello — schermo e cartone
+  sono lo stesso pezzo (D-097).
+
+### Fixed
+
+- Il test del foglio contava i `<circle>` per contare i segnalini, e
+  dentro un tondo ora c'e' una pedina: i contorni da punzonare si
+  dichiarano (`class="pezzo"`) e si contano quelli.
+
+### Measured
+
+- Suite 294 test / 6117 asserzioni verde; export deterministico byte
+  per byte; playtest identico (0/8).
+
+---
+
 ## [0.1.100] — Il QR della stanza
 
 L'ultima promessa aperta della fase 3 ([D-137](docs/DECISIONS.md#d-137)):

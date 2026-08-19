@@ -339,6 +339,12 @@ func _draw_over_board(region_id: String, centre: Vector2, control: Variant, offe
 
 	if control != null:
 		draw_arc(centre, _radius, 0.0, TAU, 40, _entity_colour(str(control)), 3.0, true)
+		# E il vessillo piantato sul bordo: il controllo non e' una presenza -
+		# non si conta, si pianta - e chi guarda da lontano vede subito di chi
+		# e' il posto senza dover leggere il colore di un anello sottile.
+		_draw_piece(
+			"banner", centre + Vector2(0.0, -_radius), 20.0, _entity_colour(str(control))
+		)
 	if offered:
 		draw_arc(
 			centre, _radius + 6.0, 0.0, TAU, 40,
@@ -458,9 +464,16 @@ func _mapped(points: Array, box: Rect2) -> PackedVector2Array:
 	return out
 
 
-## One dot per token, in a ring inside the circle. Counting tokens is something
-## a player does constantly, so they are drawn as things to count rather than
-## written as a number.
+## Una pedina per presenza, in cerchio dentro la Regione. Contare le presenze e'
+## una cosa che un giocatore fa di continuo, quindi si disegnano come cose da
+## contare invece che scriverne il numero — e si disegnano come **pezzi**: la
+## sagoma della pedina (D-137/D-097) e' la stessa che esce dalla fustella, con
+## la sua ombra sul terreno e il suo contorno scuro. Un tondo colorato dice
+## «qualcuno e' qui»; una pedina dice chi, e si riconosce con la coda
+## dell'occhio anche da bordo tavolo.
+const PAWN: float = 22.0
+
+
 func _draw_presence(centre: Vector2, region_id: String) -> void:
 	var tokens: Array = []
 	for entity_id in _session.world["turn_order"]:
@@ -470,19 +483,21 @@ func _draw_presence(centre: Vector2, region_id: String) -> void:
 	if tokens.is_empty():
 		return
 	var step: float = TAU / float(maxi(tokens.size(), 3))
-	var font: Font = get_theme_default_font()
 	for i in range(tokens.size()):
 		var angle: float = -PI / 2.0 + step * float(i)
 		var at: Vector2 = centre + Vector2(cos(angle), sin(angle)) * (_radius * 0.52)
-		draw_circle(at, 7.5, _entity_colour(str(tokens[i])))
-		draw_arc(at, 7.5, 0.0, TAU, 16, Color("#12100e"), 1.5, true)
-		# L'iniziale della casa, come sul segnalino della fustella (D-097):
-		# il tondo sullo schermo e' lo stesso pezzo che si stampa e si punzona.
-		var letter: String = str(tokens[i]).trim_prefix("ENT_").substr(0, 1)
-		draw_string(
-			font, at + Vector2(-3.5, 3.5), letter, HORIZONTAL_ALIGNMENT_LEFT, -1, 10,
-			Color("#12100e")
-		)
+		_draw_piece("pawn", at, PAWN, _entity_colour(str(tokens[i])))
+
+
+## Un pezzo posato sul terreno: l'ombra che lo stacca dal fondo, il contorno
+## scuro che lo tiene leggibile su una mappa chiara o scura, e la sagoma piena
+## nel colore della casa. Tre passate, nessuna texture: la stessa forma che il
+## foglio-fustella stampa.
+func _draw_piece(glyph: String, at: Vector2, side: float, colour: Color) -> void:
+	var box: Rect2 = Rect2(at - Vector2(side, side) * 0.5, Vector2(side, side))
+	draw_circle(at + Vector2(0.0, side * 0.34), side * 0.30, Color(0.05, 0.04, 0.03, 0.40))
+	Glyph.paint(self, glyph, box.grow(1.6), Color("#12100e"))
+	Glyph.paint(self, glyph, box, colour)
 
 
 ## Conditions, structures and Scars, as small marks under the name. A Scar is
