@@ -847,6 +847,34 @@ mai.
 **Fatto quando** il menu chiede quanti giocano, e una misura dice se i bot
 giocano davvero. ✓
 
+### 36. Linee sempre diverse: pool di Destini, ruoli, generatore
+
+`contenuto` · `regole` · voluta dal committente · **in seduta** ([SEDUTA_LINEE.md](SEDUTA_LINEE.md))
+
+«Io andrei oltre, farei un sistema che combina e permuta per ottenere linee
+sempre diverse, un randomizzatore di obiettivi, entità e incarnazioni che
+cambiano a ogni partita.»
+
+Metà del principio **esiste già**: le domande si pescano da una biblioteca
+(`tension_pool` in CHR_02/CHR_04), le vite scattano su tag invece che da una
+lista, e i caratteri di D-053 si permutano fra i seggi. Quello che non cambia
+mai sono le quattro case e **cosa ciascuna vuole**.
+
+Il dossier misura le quattro strade e i loro prezzi: **A** il pool dei Destini
+(2–3 per casa, come le domande — poco motore, molta scrittura, e probabile
+cura per ISSUES 35); **B** i ruoli staccati dalle case (combinatoria vera, ma
+la prosa diventa generica: è un compromesso di gusto, non tecnico); **C** il
+generatore di linee (rischio rumore: questo gioco è fatto di frasi che
+qualcuno ha scritto); **D** più vite per casa con ingressi più fini (solo
+scrittura, nessun rischio).
+
+Dichiarato nel dossier: **oggi non sapremmo misurare se ha funzionato**. Le
+sonde misurano il motore, e «le partite sono diverse fra loro?» non è
+FAIL 185 · 0/8. Servirebbe la **distanza fra due saghe**.
+
+**Fatto quando** il committente ha risposto alle cinque domande secche e la
+strada scelta è stata percorsa e misurata.
+
 ### 35. Le istituzioni governano bene e non vogliono niente
 
 `contenuto` · `da-misurare` · nata dalla saga del Sale ([SAGA_SALE.md](SAGA_SALE.md))
