@@ -5,6 +5,35 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.112] — La distanza fra due saghe
+
+La misura che mancava prima di aggiungere varieta'
+([D-149](docs/DECISIONS.md#d-149)).
+
+### Added
+
+- **`cli/run_variety_probe.gd`**: quanto si somigliano due saghe, misurato
+  sulle **Truth** — le frasi che restano scritte nel registro. Frasi
+  distinte, **nocciolo** (quelle presenti in tutte le saghe) e **distanza**
+  media fra due saghe qualsiasi. A tavolo misto (D-053).
+
+### Measured
+
+- Cinque saghe da sei Chronicle: **distanza 0,81** sulla prima linea, **0,79**
+  sulla seconda; nocciolo **2 frasi**; 10 vite su 14 viste al tavolo.
+- **Il 64% dei Destini finisce al Minimo** sulla prima linea, il 52% sulla
+  seconda: le storie sono gia' diverse, **gli obiettivi no**.
+
+### Fixed
+
+- Due difetti di misura presi prima di fidarsi del numero: la distanza usciva
+  **1,00** perche' le frasi portano dentro l'anno e il punteggio (misurava
+  l'orologio, non la storia); e le vite erano contate su un campo che non
+  esiste (`incarnation_id` invece di `incarnation`) — quattro in trenta
+  Chronicle, un numero che non tornava guardando le saghe raccontate.
+
+---
+
 ## [0.1.111] — La saga del Sale
 
 Una saga intera sull'altra linea, raccontata

@@ -331,6 +331,65 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-149 — La distanza fra due saghe
+**implemented in 0.1.112** (la misura che mancava per rispondere al committente: «linee sempre diverse»)
+
+Il committente ha chiesto un sistema che permuti obiettivi, entita' e vite
+per avere linee sempre diverse. La prima cosa che serviva non era il sistema:
+era **sapere quanto sono diverse adesso**. Tutte le sonde del progetto
+misurano il motore — esiti in banda, seggi non bloccati, filo trasparente,
+fughe — e nessuna sa rispondere a «le partite si somigliano?», che e' una
+domanda sul contenuto. Senza, si aggiunge varieta' e si spera.
+
+Il metro sono le **Truth**: le frasi che una decisione lascia scritte nel
+registro. Sono il prodotto del gioco — quello che al tavolo si legge ad alta
+voce e che resta fra una Chronicle e l'altra — quindi due saghe che scrivono
+le stesse frasi hanno raccontato la stessa storia, per diversi che siano
+stati i numeri. Tre indici: le frasi distinte, il **nocciolo** (quelle che
+compaiono in *tutte* le saghe) e la **distanza** media fra due saghe
+qualsiasi (Jaccard sulle frasi: 0 identiche, 1 niente in comune).
+
+A tavolo **misto** per scelta: i quattro caratteri (D-053) sono la cosa piu'
+vicina a persone vere che il progetto abbia, e quattro ottimizzatori identici
+sono il caso in cui la ripetizione e' garantita per costruzione.
+
+**Due difetti di misura, presi prima di fidarsi del numero.** Il primo:
+distanza 1,00 e nocciolo zero al primo giro — perfetto e falso, perche' una
+Truth nasce con l'anno davanti («Anno 1640, Atto 2: …») e il punteggio dietro
+(«(S5 O0 M7)»), quindi due saghe non condividono **mai** una frase. Misurava
+l'orologio invece della storia; ora la frase si spoglia prima di contarla. Il
+secondo: «vite viste al tavolo: 4» in trenta Chronicle, quando le saghe
+raccontate mostrano il Regno di Nahr, il Ridestato, la Lega delle Sette — il
+campo `incarnation_id` non esiste, la vita e' `incarnation`, un indice. Dieci
+su quattordici, adesso.
+
+**La baseline, cinque saghe da sei Chronicle a tavolo misto:**
+
+| | frasi distinte | nocciolo | distanza | NONE | MIN | VIC | TRI | vite |
+|---|---|---|---|---|---|---|---|---|
+| CHR_01 (i re) | 74 | 2 | **0,81** | 7 | **77** | 25 | 11 | 10/14 |
+| CHR_03 (le citta') | 57 | 2 | **0,79** | 19 | **63** | 27 | 11 | — |
+
+E la lettura, che cambia la domanda da cui si era partiti: **le storie sono
+gia' diverse — quello che si ripete sono gli obiettivi.** Otto decimi di
+distanza vuol dire che due saghe condividono poco piu' di una frase su
+cinque, e il nocciolo e' due frasi in tutto. La biblioteca delle domande
+(`tension_pool`) sta gia' facendo il suo lavoro.
+
+Ma i Destini sono uno per casa, sempre quello, e il risultato sta nella
+colonna che conta: **il 64% dei Destini finisce al Minimo** sulla prima linea,
+il 52% sulla seconda. I giocatori raccontano storie diverse **volendo sempre
+la stessa cosa** — ed e' la stessa forma che [ISSUES 35](ISSUES.md) ha visto
+nella seconda meta' della saga del Sale, misurata qui su trenta Chronicle
+invece che su dieci.
+
+Questo dice anche *come* fare la strada A della seduta ([SEDUTA_LINEE.md](SEDUTA_LINEE.md)):
+il pool dei Destini non serve a rendere le storie piu' varie — quelle lo sono
+gia' — serve a **rompere il Minimo come risposta giusta di default**. E il
+numero da battere e' quella colonna, non la distanza.
+
+---
+
 ## D-148 — Il ritardatario, e il silenzio che non e' una risposta
 **implemented in 0.1.110** (dalla domanda di conferma del committente: «i giocatori si collegano e quando parte la partita i mancanti sono bot?»)
 
