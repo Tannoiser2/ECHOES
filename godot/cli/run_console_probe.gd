@@ -82,6 +82,11 @@ func _initialize() -> void:
 		}
 		await session.run(decider)
 		session.dispose()
+		# Il progresso, partita per partita: una sonda che tace per un'ora non
+		# si distingue da una inceppata - e una volta lo e' stata davvero.
+		print("  partita %d/%d (%s, seme %d): messaggi %d, fughe %d" % [
+			index + 1, runs, chronicle_id, seed_value, sent[0], leaks.size()
+		])
 
 	print("")
 	print("== LA SONDA DEI MESSAGGI - %d partite, semi da %d ==" % [runs, first_seed])

@@ -16,10 +16,18 @@ func _init(p_seed: int) -> void:
 ## La formula condivisa: client e copione la chiamano con lo stesso numero
 ## di domanda e ottengono lo stesso indice. Pura, senza RNG: il determinismo
 ## non deve dipendere da nessuno stato fuori dai suoi argomenti.
+##
+## L'hash butta i bit bassi apposta: la prima forma (`% size` su una
+## combinazione lineare) aveva la parita' costante quando `ask_number`
+## avanza di due - ed e' esattamente il passo del ciclo «scegli l'azione /
+## La fai lo stesso?» del SeatDecider. Un copione che risponde «No, ci
+## ripenso» a parita' costante puo' ripensarci per sempre: la sonda dei
+## messaggi ci e' rimasta dentro quasi due ore prima del verbale.
 static func pick(p_seed: int, ask_number: int, size: int) -> int:
 	if size <= 0:
 		return -1
-	return (p_seed * 31 + ask_number * 7) % size
+	var mixed: int = p_seed * 2654435761 + ask_number * 40503
+	return int((mixed >> 4) % size)
 
 
 func say(_text: String) -> void:
