@@ -39,6 +39,12 @@
   }
   #colonne { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
   @media (max-width: 700px) { #colonne { grid-template-columns: 1fr; } }
+  /* Le carte calate, in fila e ampie: la vetrina si guarda da lontano. */
+  .calate { display: flex; flex-wrap: wrap; gap: 10px; padding: 6px 0; }
+  .calate .faccia {
+    width: 132px; height: auto; border-radius: 6px;
+    box-shadow: 0 3px 9px rgba(0, 0, 0, 0.6);
+  }
 </style>
 </head>
 <body>
@@ -117,8 +123,16 @@ function disegna(m) {
   const consigli = m.councils.map(c =>
     '<div class="riga">' + scappa(c.tension) + " — " + scappa(c.outcome) +
     " (propose " + scappa(c.proponent) + ")</div>");
-  for (const titolo of m.echoes_played)
-    consigli.push('<div class="riga coperta">Il mondo ha calato: ' + scappa(titolo) + "</div>");
+  // Le carte che il mondo ha calato sono pubbliche — e da bordo tavolo sono la
+  // cosa piu' bella da vedere. La faccia arriva dall'host, disegnata dalla
+  // stessa funzione che impagina i fogli da fustellare (D-144).
+  if (m.echoes_played.length) {
+    consigli.push('<div class="riga coperta">Il mondo ha calato:</div>');
+    consigli.push('<div class="calate">' + m.echoes_played.map(c =>
+      '<img class="faccia" loading="lazy" alt="' + scappa(c.title) +
+      '" title="' + scappa(c.title) +
+      '" src="/carta/echo/' + encodeURIComponent(c.id) + '.svg">').join("") + "</div>");
+  }
   document.getElementById("consigli").innerHTML = consigli.join("") || '<div class="riga coperta">ancora nessuno</div>';
 
   const verbale = document.getElementById("verbale");

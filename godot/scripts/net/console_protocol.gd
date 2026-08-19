@@ -96,13 +96,15 @@ static func audit(message: Dictionary, session: RefCounted, seat_id: String) -> 
 	var model: Dictionary = message.get("model", {})
 
 	# La mano dello state e' la mano del seggio, carta per carta.
+	# Sugli id e non sui titoli, da quando la mano porta l'id per chiedere la
+	# faccia (D-144): l'id e' la carta, il titolo e' come la chiamiamo.
 	var mine: Array = []
 	for asset_id in session.service.hand(seat_id):
-		mine.append(str(session.data.assets[str(asset_id)]["title"]))
+		mine.append(str(asset_id))
 	mine.sort()
 	var shown: Array = []
 	for card in model.get("hand", []):
-		shown.append(str((card as Dictionary).get("title", "")))
+		shown.append(str((card as Dictionary).get("id", "")))
 	shown.sort()
 	if shown != mine:
 		found.append("la mano dello state non e' quella del seggio (%s ≠ %s)" % [
@@ -124,6 +126,41 @@ static func audit(message: Dictionary, session: RefCounted, seat_id: String) -> 
 			continue
 		if session.service.visible_tension_value(tension_id, seat_id) < 0:
 			found.append("il numero della domanda coperta «%s» trapela" % str(entry["title"]))
+	return found
+
+
+## La perquisizione della **vetrina** (D-144). Fin qui `audit` guardava i
+## messaggi diretti a una console — che hanno un viewer, e quindi un metro. La
+## vetrina non ha viewer: e' pubblica per costruzione, e proprio per questo
+## nessuno le aveva mai chiesto conto di niente. Il metro qui non e' «cosa sa
+## questo seggio» ma «cosa sa il tavolo»: quello che sta in una mano non e'
+## roba del tavolo, di nessun seggio, mai.
+static func audit_table(message: Dictionary, session: RefCounted) -> Array:
+	var found: Array = []
+	if str(message.get("kind", "")) != "table":
+		return found
+	var model: Dictionary = message.get("model", {})
+	var held: Dictionary = {}
+	for entity_id in session.world["entities"]:
+		var seat: Dictionary = session.world["entities"][str(entity_id)]
+		for card_id in seat.get("echo_hand", []):
+			held[str(card_id)] = str(entity_id)
+	for played in model.get("echoes_played", []):
+		var entry: Dictionary = played
+		var card_id: String = str(entry.get("id", ""))
+		if held.has(card_id):
+			found.append("la vetrina mostra «%s», che e' in mano a %s" % [
+				str(entry.get("title", card_id)), session.service.name_of(str(held[card_id]))
+			])
+	# Le carte Asset **non** si cercano per titolo, e la lezione e' costata due
+	# volte: la prima forma di `audit` consegno' 658 fughe tutte false, questa
+	# ne ha consegnate 54 — «la vetrina nomina "Sale", che e' in mano a Kessa».
+	# «Sale» e' una carta e insieme una casa (la Gilda del Sale, CHR_03): un
+	# titolo di una parola vive dentro la prosa di mezzo mondo. Il metro giusto
+	# resta quello strutturale: il modello del tavolo non ha, e non deve avere,
+	# nessun campo che elenchi una mano — se un domani ne spuntasse uno, la
+	# fuga si prova aggiungendo qui il confronto su quel campo, non cercando
+	# parole nel testo (D-135, D-144).
 	return found
 
 

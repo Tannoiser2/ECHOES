@@ -753,6 +753,30 @@ finestra.
 **Fatto quando** la console è stata guardata su uno schermo da telefono e quello
 che c'era da correggere è corretto. ✓ (17.509 messaggi, 0 fughe; playtest 0/8)
 
+### 31. ✅ Le carte come carte sul telefono, e la vetrina che leggeva le mani — fatta in 0.1.106
+
+`app` · **chiusa** ([D-144](DECISIONS.md#d-144)) · nata da una domanda del committente
+
+«E le carte e i tarocchi? Si vedono?» Sull'app sì, e dal 0.1.59 sono la carta
+stampata (D-101). Sul telefono no: la mano era una fila di etichette — il
+principio rispettato ovunque tranne nel posto che conta di più, perché il
+telefono *è* la mano del giocatore.
+
+Adesso l'host serve `/carta/<mazzo>/<id>.svg` da `PrintSheet.card_svg`, la
+stessa funzione che impagina la fustella: una carta che cambia nei dati cambia
+in tutti e tre i posti insieme.
+
+**E le facce hanno fatto vedere una fuga vera**, presente da 0.1.99: la vetrina
+mostrava come «il mondo ha calato» tutto ciò che il mazzo aveva lasciato —
+comprese le carte del Narratore **ancora in mano** ai seggi. Nessuna misura
+poteva prenderla: la perquisizione guarda i messaggi verso le console, che
+hanno un viewer, e la vetrina non ne ha — il pezzo senza segreti era il pezzo
+senza guardia. Ora ce l'ha (`Protocol.audit_table`), con un test che pianta una
+fuga apposta per provare che morda.
+
+**Fatto quando** la mano sul telefono è fatta di carte, la vetrina mostra solo
+le carte calate, e una guardia lo prova. ✓ (20.844 messaggi perquisiti, 0 fughe)
+
 ### 28. ✅ Le alleanze devono pesare al Consiglio — fatta in 0.1.102
 
 `regole` · voluta dal committente · **chiusa** ([D-139](DECISIONS.md#d-139))

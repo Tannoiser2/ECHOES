@@ -67,6 +67,21 @@
   #domanda button:active { background: #3a3427; }
   #domanda button.decidi { color: #8a8172; font-style: italic; }
   .coperta { color: #8a8172; font-style: italic; }
+  /* La mano: le carte in fila, alte quanto basta per leggere il titolo e
+     riconoscere la famiglia dal colore. Il resto lo fa la lente. */
+  .mano { display: flex; flex-wrap: wrap; gap: 8px; padding: 4px 0; }
+  .faccia {
+    width: 104px; height: auto; border-radius: 5px; cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.55);
+  }
+  .faccia:active { transform: scale(0.97); }
+  #lente {
+    position: fixed; inset: 0; background: rgba(8, 7, 6, 0.94);
+    display: none; align-items: center; justify-content: center; padding: 18px;
+    z-index: 10;
+  }
+  #lente.aperta { display: flex; }
+  #lente img { max-width: 100%; max-height: 100%; border-radius: 8px; }
 </style>
 </head>
 <body>
@@ -74,6 +89,7 @@
 <div id="stato">mi collego…</div>
 <div id="avvisi"></div>
 <div id="scheda"></div>
+<div id="lente"></div>
 <div id="domanda"></div>
 <script>
 "use strict";
@@ -86,6 +102,7 @@ const stato = document.getElementById("stato");
 const scheda = document.getElementById("scheda");
 const avvisi = document.getElementById("avvisi");
 const domanda = document.getElementById("domanda");
+const lente = document.getElementById("lente");
 let ws = null, pinger = null;
 const dette = [];
 
@@ -137,12 +154,17 @@ function disegna(m) {
       h += riga((r.holds ? "[x] " : "[ ] ") + scappa(r.label), r.holds ? "fatto" : "manca");
   }
   h += "<h2>La tua mano</h2>";
-  if (!m.hand.length) h += riga("vuota", "manca");
+  if (!m.hand.length && !m.echo_hand.length) h += riga("vuota", "manca");
+  // La carta stampata, non un'etichetta che le somiglia (D-101, D-144): la
+  // faccia arriva dall'host, disegnata dalla stessa funzione che impagina i
+  // fogli da fustellare. Un tocco la ingrandisce, perche' a mano piena una
+  // carta larga un pollice non si legge.
+  h += '<div class="mano">';
   for (const c of m.hand)
-    h += '<span class="carta">' + scappa(c.title) +
-         ' <span class="famiglia">' + scappa(c.family).toLowerCase() + "</span></span>";
+    h += carta("asset", c.id, c.title + " — " + c.family.toLowerCase());
   for (const c of m.echo_hand)
-    h += '<span class="carta mia">' + scappa(c) + ' <span class="famiglia">narratore</span></span>';
+    h += carta("echo", c.id, c.title + " — narratore");
+  h += "</div>";
   if (m.signs.length) {
     h += "<h2>I segni della casa</h2>";
     for (const s of m.signs) h += riga(scappa(s));
@@ -163,6 +185,23 @@ function avvisa(testo) {
   while (dette.length > 6) dette.shift();
   avvisi.innerHTML = dette.map(t => riga(scappa(t))).join("");
 }
+
+function carta(mazzo, id, titolo) {
+  return '<img class="faccia" loading="lazy" alt="' + scappa(titolo) +
+         '" title="' + scappa(titolo) +
+         '" src="/carta/' + encodeURIComponent(mazzo) + "/" + encodeURIComponent(id) + '.svg">';
+}
+
+// La lente: la carta toccata a tutto schermo, e un secondo tocco la chiude.
+document.addEventListener("click", e => {
+  const faccia = e.target.closest(".faccia");
+  if (faccia) {
+    lente.innerHTML = '<img src="' + faccia.getAttribute("src") + '" alt="' + faccia.alt + '">';
+    lente.classList.add("aperta");
+    return;
+  }
+  if (e.target.closest("#lente")) lente.classList.remove("aperta");
+});
 
 function chiedi(msg) {
   let h = "<p>" + scappa(msg.prompt) + "</p>";

@@ -331,6 +331,77 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-144 — Le carte vere sul telefono, e la mano che il tavolo leggeva
+**implemented in 0.1.106** (chiesto dal committente: «e le carte e i tarocchi? Si vedono?»)
+
+Sull'app sì, e dal 0.1.59 sono **la carta stampata** (D-101): il corpo della
+carta in mano e' la faccia dei fogli da fustellare, rasterizzata da
+`card_art.gd`. Sul telefono **no**: la mano era una fila di etichette. Il
+principio era rispettato ovunque tranne che nel posto che conta di piu' — il
+telefono *e'* la mano del giocatore, e gli davamo l'elenco della spesa mentre
+le facce vere stavano sullo schermo grande, che non e' suo.
+
+L'host adesso serve `/carta/<mazzo>/<id>.svg` da `PrintSheet.card_svg`: **la
+stessa funzione** che impagina la fustella e che l'app rasterizza. Nessuna
+immagine da impacchettare, nessuna faccia disegnata due volte, e una carta che
+cambia nei dati cambia in tutti e tre i posti insieme. Sul telefono la mano
+sono carte da toccare (un tocco le ingrandisce: a mano piena una carta larga
+un pollice non si legge), sulla vetrina compaiono le carte del Narratore che il
+mondo ha calato — pubbliche, e da bordo tavolo la cosa piu' bella da vedere.
+
+Nessun token sull'endpoint, e la ragione e' la stessa di D-135: le facce non
+sono segrete. Le carte esistono in copie e il titolo non e' mai stato un
+segreto; il segreto e' *quali copie tieni in mano*, e quello vive nello `state`,
+che il token lo chiede eccome.
+
+### La fuga che le facce hanno reso visibile
+
+Mettendo le facce sulla vetrina ne sono comparse **sei**, e il verbale sotto
+diceva: «Re Aldric riceve 2 carte del Narratore. Popolo Nahr riceve 2 carte.
+Lyra riceve 2 carte». Sei. Erano le mani di tutti.
+
+`echo_deck.drawn` non e' la pila delle carte calate: e' **tutto cio' che il
+mazzo ha lasciato**, e `_deal_narrator_hands` pesca da li' per riempire le mani
+a inizio Atto. La vetrina lo leggeva tale e quale e lo chiamava «il mondo ha
+calato». **La fuga esiste da 0.1.99**, da quando esiste la vetrina; le facce non
+l'hanno creata, l'hanno solo resa impossibile da non vedere — sei titoli in
+corpo minore sotto una riga passavano, sei carte disegnate no.
+
+Perche' nessuna misura l'aveva presa, ed e' la parte che vale:
+
+- `Protocol.audit` perquisisce i messaggi diretti a una **console**, che hanno
+  un viewer e quindi un metro. La vetrina non ha viewer — e' pubblica per
+  costruzione — e proprio per questo **nessuno le aveva mai chiesto conto di
+  niente**. Il pezzo senza segreti era il pezzo senza guardia.
+- `test_the_table_model_carries_no_seat_secrets` cercava i titoli degli
+  **Asset** e le etichette dei Destini. Le carte di Propp sono un altro mazzo,
+  e nessuno lo aveva aggiunto alla lista.
+
+Adesso: `echoes_played` e' «uscita dal mazzo e non piu' in nessuna mano»
+(oggi una carta lascia la mano solo per essere calata, e il commento dice dove
+andra' aggiornato se un domani ci fosse un altro modo di perderla);
+`Protocol.audit_table` perquisisce la vetrina col metro del tavolo — quello che
+sta in una mano non e' roba del tavolo, di nessun seggio, mai — e gira nella
+sonda dei messaggi accanto alle console; e due test nuovi, di cui **uno pianta
+una fuga apposta** per provare che la guardia morda: una guardia che non ha mai
+detto di no non si sa se funziona.
+
+**E la lezione di D-135 l'ho dovuta imparare due volte.** La prima stesura di
+`audit_table` cercava anche i titoli degli Asset nel testo, e ha consegnato
+**54 fughe tutte false**: «la vetrina nomina "Sale", che e' in mano a Kessa».
+«Sale» e' una carta e insieme una casa — la Gilda del Sale di CHR_03 — e un
+titolo di una parola vive dentro la prosa di mezzo mondo. Esattamente le 658
+fughe false di D-135, tre versioni dopo. Il text-scan e' andato via; resta il
+confronto strutturale, che e' l'unico che sappia distinguere una carta da una
+parola.
+
+Misure: sonda dei messaggi **20.844 perquisiti** (17.509 console + 3.335
+vetrine), **FUGHE 0**; filo ancora **trasparente byte per byte**; playtest
+**FAIL 185 · SUCC 76 · SUCC 123 · DECI 178**, tavolo misto **0/8**; suite
+**296/6121** verde; sims ed export deterministici; 22 documenti validi.
+
+---
+
 ## D-143 — Guardare il telefono, e trovarci il terminale
 **implemented in 0.1.105** (chiesto dal committente: «puoi farmi uno screenshot di quello che si vede sugli smartphone?»)
 

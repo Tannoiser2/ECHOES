@@ -5,6 +5,54 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.106] — Le carte vere, e la mano che il tavolo leggeva
+
+Le carte come carte sul telefono e sulla vetrina — e la fuga che le facce
+hanno reso visibile ([D-144](docs/DECISIONS.md#d-144)).
+
+### Added
+
+- **`/carta/<mazzo>/<id>.svg`** servito dall'host, da `PrintSheet.card_svg`:
+  la stessa funzione che impagina i fogli da fustellare e che l'app
+  rasterizza per la mano sullo schermo. Sul telefono la mano sono **carte da
+  toccare** (un tocco le ingrandisce); sulla vetrina compaiono le carte del
+  Narratore che il mondo ha calato.
+- **`Protocol.audit_table`**: la perquisizione della vetrina, col metro del
+  tavolo invece che di un seggio. Gira nella sonda dei messaggi accanto alle
+  console.
+- Due test: la mano del Narratore non sta sul tavolo, e la guardia **morde**
+  (uno pianta una fuga apposta).
+
+### Fixed
+
+- **La vetrina svelava le mani del Narratore.** `echo_deck.drawn` e' tutto
+  cio' che il mazzo ha lasciato, comprese le carte ancora in mano ai seggi, e
+  la vetrina lo mostrava come «il mondo ha calato». Presente da 0.1.99;
+  adesso calata e' una carta uscita dal mazzo e non piu' in nessuna mano.
+
+### Changed
+
+- La mano nel modello della console porta l'`id` (serve per chiedere la
+  faccia), e la perquisizione confronta gli **id** invece dei titoli: l'id e'
+  la carta, il titolo e' come la chiamiamo.
+
+### Measured
+
+- Sonda dei messaggi: **20.844 perquisiti** (17.509 console + 3.335 vetrine),
+  **FUGHE 0**.
+- Filo **trasparente byte per byte**; playtest **FAIL 185 · SUCC 76 · SUCC
+  123 · DECI 178**, tavolo misto **0 su 8**; suite **296 test / 6121
+  asserzioni** verde; sims ed export deterministici.
+
+### Notes
+
+- La prima stesura di `audit_table` cercava anche i titoli nel testo e ha
+  consegnato **54 fughe tutte false** («la vetrina nomina "Sale", che e' in
+  mano a Kessa» — «Sale» e' una carta *e* una casa). E' la lezione di D-135,
+  imparata due volte: il metro giusto e' strutturale.
+
+---
+
 ## [0.1.105] — Guardare il telefono
 
 I due difetti trovati fotografando la console su uno schermo da telefono

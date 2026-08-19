@@ -77,10 +77,28 @@ static func build(session: RefCounted) -> Dictionary:
 		})
 
 	# Le carte che il mondo ha calato: la faccia in tavola.
+	# `drawn` e' tutto cio' che il mazzo ha lasciato: comprese le carte che
+	# stanno ANCORA IN MANO ai seggi (`_deal_narrator_hands` pesca da li'). La
+	# vetrina non ha viewer — e' pubblica per costruzione — quindi mostrarla
+	# tale e quale svelava a tutto il tavolo la mano del Narratore di ognuno
+	# (D-144). Calata e' una carta uscita dal mazzo e non piu' in nessuna mano:
+	# oggi una carta lascia la mano solo per essere calata
+	# (`action_resolver._play_echo`), e se un domani ci fosse un altro modo di
+	# perderla, e' qui che va detto.
+	var still_held: Array = []
+	for entity_id in world["entities"]:
+		still_held.append_array(
+			(world["entities"][str(entity_id)] as Dictionary).get("echo_hand", [])
+		)
 	for card_id in world["echo_deck"]["drawn"]:
+		if still_held.has(card_id):
+			continue
 		var card: Variant = data.echo_cards.get(str(card_id))
 		if card != null:
-			(out["echoes_played"] as Array).append(str(card["title"]))
+			(out["echoes_played"] as Array).append({
+				"id": str(card_id),
+				"title": str(card["title"]),
+			})
 
 	# Il verbale e' pubblico per contratto (game_log.gd): i segreti di seggio
 	# passano da io.say e non lo toccano mai.

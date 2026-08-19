@@ -19,6 +19,7 @@ const GameSession := preload("res://scripts/chronicle/game_session.gd")
 const SeatDecider := preload("res://scripts/seat/seat_decider.gd")
 const ScriptedIO := preload("res://scripts/net/scripted_io.gd")
 const Protocol := preload("res://scripts/net/console_protocol.gd")
+const TableModel := preload("res://scripts/views/table_model.gd")
 
 
 ## L'io che gioca col copione e perquisisce ogni messaggio che partirebbe.
@@ -29,6 +30,9 @@ class AuditingIO:
 	var asked: int = 0
 	var sent: Array = [0]
 	var leaks: Array
+	## La vetrina la guarda uno solo dei due, o la conteremmo due volte: non e'
+	## di nessun seggio, e' del tavolo (D-144).
+	var watches_table: bool = false
 
 	func _init(
 		p_session: RefCounted, p_seat: String, p_seed: int, p_leaks: Array, p_sent: Array
@@ -53,8 +57,19 @@ class AuditingIO:
 	func say(text: String) -> void:
 		_audit(Protocol.say_message(session, text))
 
+	## La vetrina, perquisita col metro del tavolo: quello che sta in una mano
+	## non e' roba del tavolo, di nessun seggio, mai (D-144).
+	func _audit_table() -> void:
+		if not watches_table:
+			return
+		sent[0] += 1
+		var message: Dictionary = {"kind": "table", "model": TableModel.build(session)}
+		for violation in Protocol.audit_table(message, session):
+			leaks.append("vetrina: %s" % str(violation))
+
 	func choose(prompt: String, labels: Array, subjects: Array = []) -> int:
 		asked += 1
+		_audit_table()
 		_audit(Protocol.state_message(session, seat_id))
 		_audit(Protocol.choose_message(session, asked, prompt, labels, subjects))
 		return ScriptedIO.pick(seed_value, asked, labels.size())
@@ -82,8 +97,10 @@ func _initialize() -> void:
 		session.setup(chronicle_id, seats, seed_value)
 		var humans: Array = [str(seats[0]), str(seats[1])]
 		var decider: RefCounted = SeatDecider.new(humans, session.log)
+		var first: RefCounted = AuditingIO.new(session, humans[0], seed_value + 1, leaks, sent)
+		first.watches_table = true
 		decider.ios = {
-			humans[0]: AuditingIO.new(session, humans[0], seed_value + 1, leaks, sent),
+			humans[0]: first,
 			humans[1]: AuditingIO.new(session, humans[1], seed_value + 2, leaks, sent),
 		}
 		await session.run(decider)
@@ -98,7 +115,8 @@ func _initialize() -> void:
 	print("== LA SONDA DEI MESSAGGI - %d partite, semi da %d ==" % [runs, first_seed])
 	print("  Messaggi perquisiti: %d" % sent[0])
 	if leaks.is_empty():
-		print("  FUGHE: 0. Sul filo di ogni console viaggia solo il suo seggio.")
+		print("  FUGHE: 0. Sul filo di ogni console viaggia solo il suo seggio,")
+		print("  e sulla vetrina solo quello che il tavolo ha gia' visto.")
 		quit(0)
 		return
 	print("  FUGHE (%d) - un segreto sul filo sbagliato e' un bug:" % leaks.size())

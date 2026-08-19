@@ -187,6 +187,10 @@ negli export impacchettati.
 
 ![La console di Re Aldric su uno schermo da telefono](img/console-telefono.png)
 
+La mano sono **le carte stampate**: la faccia arriva dall'host, disegnata dalla
+stessa funzione che impagina i fogli da fustellare (D-101, D-144). Un tocco la
+ingrandisce a tutto schermo.
+
 Fotografato da un browser vero contro l'host vero (CHR_01, seme 7000, la
 stanza aperta con `cli/run_room.gd`). In testa il seggio e l'anno, poi **le
 domande** con le velate marcate «coperta», e in fondo — fisso, sempre a
@@ -200,6 +204,18 @@ cartine, **i segni della casa** e **i rapporti** con gli altri seggi. Tutto
 qui e' gia' pubblico per quel seggio: la Tensione che non ha esplorato dice
 «coperta» e basta, e nessuna carta di un'altra mano compare (§3, e la
 perquisizione lo prova su 17.509 messaggi).
+
+### E la vetrina, sull'iPad
+
+![La vetrina: la mappa, le domande, le carte calate e il verbale](img/vetrina-tavolo.png)
+
+Le carte che **il mondo ha calato** stanno in tavola con la loro faccia; la
+mano di nessuno compare qui, ed e' una guardia che adesso c'e' davvero:
+mettendo le facce e' venuto fuori che la vetrina mostrava anche le carte
+*ancora in mano* ai seggi — sei invece di due — perche' leggeva tutto cio' che
+il mazzo aveva lasciato. Corretto in 0.1.106 ([D-144](DECISIONS.md#d-144)),
+insieme alla perquisizione che mancava: la vetrina non ha un viewer, e per
+questo nessuno le aveva mai chiesto conto di niente.
 
 Due difetti sono stati trovati proprio guardando queste foto, e corretti in
 0.1.105 ([D-143](DECISIONS.md#d-143)): il tabellone a caratteri del terminale
