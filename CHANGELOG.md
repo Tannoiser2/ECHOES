@@ -25,6 +25,13 @@ chiesta dal committente.
   §9bis, col comando che funziona sempre (`xattr -dr com.apple.quarantine`):
   l'app non e' firmata, e il costo si dichiara.
 
+### Changed
+
+- **`textures/vram_compression/import_etc2_astc` acceso**: Godot rifiuta di
+  esportare un binario universale o arm64 senza — su Apple Silicon la GPU
+  vuole ASTC. L'export web non cambia (le sue compressioni VRAM restano
+  spente).
+
 ### Notes
 
 - Windows e Linux non sono fatti: un preset per uno, quando serviranno.

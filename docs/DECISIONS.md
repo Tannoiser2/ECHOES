@@ -359,6 +359,17 @@ un bottone dietro un `return`, un QR che sembra un quadrato, un'app che si apre
 e non serve niente — vuole un lettore che non si stanca, non un occhio piu'
 attento.
 
+**Una cicatrice, dal primo giro rosso.** Godot rifiuta di esportare un binario
+universale o arm64 se l'import **ETC2 ASTC** e' spento: su Apple Silicon la GPU
+vuole quel formato, e la verifica arriva prima ancora di scrivere un byte
+(«Cannot export for universal or arm64 if ETC2 ASTC texture format is
+disabled»). Acceso in `project.godot`. Costa qualche versione compressa in piu'
+delle sei tessere in fase di import, e **non** tocca l'export web: le due
+compressioni VRAM del preset Web restano spente, quindi la pagina non ingrassa
+di un byte. Val la pena notarlo perche' e' il genere di vincolo che si scopre
+solo costruendo davvero — l'unica ragione per cui il lavoro `desktop` esiste in
+CI invece di essere un preset scritto e mai eseguito.
+
 **Non firmata**, e il costo si dichiara: firmare e notarizzare richiede un
 certificato Apple che il progetto non ha, quindi al primo avvio macOS la mette
 in quarantena. Le istruzioni della prova danno il comando che funziona sempre

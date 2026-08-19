@@ -39,3 +39,9 @@ window/stretch/aspect="keep"
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+; Acceso per l'app macOS (D-141): Godot rifiuta di esportare un binario
+; universale o arm64 senza questo, perche' su Apple Silicon la GPU vuole ASTC.
+; Costa qualche versione compressa in piu' delle sei tessere in fase di
+; import; l'export web non le imbarca (le due compressioni VRAM del preset
+; Web restano spente), quindi la pagina non ingrassa di un byte.
+textures/vram_compression/import_etc2_astc=true
