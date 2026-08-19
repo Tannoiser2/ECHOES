@@ -5,6 +5,34 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.110] — Il ritardatario
+
+Chi si collega a partita cominciata adesso lo sa
+([D-148](docs/DECISIONS.md#d-148)).
+
+### Added
+
+- **`ConsoleHost.seated()` e `watching()`**: la stanza dichiara chi gioca al
+  via, e chi si aggancia dopo riceve una riga che gli dice che il suo seggio lo
+  sta giocando la policy e che da li' puo' guardare. Prima lo scopriva dal
+  silenzio — identico a un filo rotto.
+- Un test: prima del via nessuno guarda soltanto; dopo, chi non c'era guarda e
+  chi c'era gioca.
+
+### Measured
+
+- Suite **301 test / 6145 asserzioni** verde; filo **trasparente byte per
+  byte**; playtest **FAIL 185 · SUCC 76 · SUCC 123 · DECI 178**, tavolo misto
+  **0 su 8**, invariato.
+
+### Notes
+
+- Un seggio lasciato alla policy resta alla policy fino a fine Chronicle:
+  prenderselo a meta' partita e' la console di riserva rovesciata, e aspetta
+  nello stesso posto — dopo la prova.
+
+---
+
 ## [0.1.109] — Quanti giocatori, e i bot alla prova
 
 Le tre domande del committente sul numero di giocatori e sui bot

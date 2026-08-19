@@ -40,6 +40,7 @@ var _table_clock: int = -1
 # vista tavolo puo' dire «la console di Aldric non risponde» invece di
 # lasciare il dubbio al tavolo.
 var _last_heard: Dictionary = {}  # seat -> msec dell'ultimo segno di vita
+var _playing: Array = []          # i seggi che al via avevano una console
 
 # La pagina in tasca: l'HTTP che serve console e tavolo (fase 3). Un solo
 # file per pagina, servito con la porta del WebSocket gia' scritta dentro.
@@ -336,3 +337,28 @@ func _bind(seat: String, peer: WebSocketPeer) -> void:
 	var io: Variant = _ios.get(seat)
 	if io != null and not (io.pending() as Dictionary).is_empty():
 		peer.send_text(Protocol.encode(io.pending()))
+	# Il ritardatario (D-148). Chi si collega al via gioca; chi arriva dopo
+	# trova il proprio seggio gia' affidato a una policy, e fin qui lo scopriva
+	# **dal silenzio**: il pannello si aggiornava a ogni mossa e non gli veniva
+	# chiesto mai niente. Il silenzio non e' una risposta: la console lo dice.
+	if watching(seat):
+		peer.send_text(Protocol.encode(Protocol.say_message(
+			session,
+			"Sei arrivato a partita cominciata: il tuo seggio lo sta giocando la"
+			+ " policy, e da qui puoi guardare. Al prossimo anno collegati prima"
+			+ " del via."
+		)))
+
+
+## Chi gioca davvero, dichiarato dalla stanza al via. Vuoto vuol dire «non e'
+## ancora cominciata», ed e' la ragione per cui questa lista esiste invece di
+## dedurla dagli `ios`: prima del via nessuno e' un ritardatario.
+func seated(humans: Array) -> void:
+	_playing = humans.duplicate()
+
+
+## Questo seggio sta solo guardando? Vero per chi si collega a partita
+## cominciata senza esserci al via — il suo seggio lo gioca una policy, e la
+## console glielo dice invece di tacere (D-148).
+func watching(seat: String) -> bool:
+	return not _playing.is_empty() and not _playing.has(seat)

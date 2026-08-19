@@ -294,9 +294,14 @@ serviranno.
    se la pagina si chiude o il WiFi cade, si riapre e si rientra da
    soli, con la domanda in sospeso riproposta.
 4. **«Si comincia»**: chi è collegato in quel momento gioca dal
-   telefono; i seggi senza console giocano da soli (policy). Durante la
-   partita la striscia in alto dice chi è al tavolo e chi «non risponde
-   da Ns»; «Rigenera il codice» taglia fuori un telefono perso.
+   telefono; i seggi senza console giocano da soli (policy). **La
+   connessione è la dichiarazione**: non c'è un numero di giocatori da
+   impostare, si guarda chi c'è al via. Chi si collega **dopo** trova il
+   proprio seggio già affidato alla policy e riceve una riga che glielo dice
+   — può guardare, non giocare, e per quella Chronicle resta così
+   ([D-148](DECISIONS.md#d-148)). Durante la partita la striscia in alto dice
+   chi è al tavolo e chi «non risponde da Ns»; «Rigenera il codice» taglia
+   fuori un telefono perso.
 
 **Se non vuoi usare l'iPad, o i telefoni, o niente di tutto questo**: la
 partita di sempre e' intatta e non e' cambiata di un byte. Dal menu si sceglie

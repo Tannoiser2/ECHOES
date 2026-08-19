@@ -187,6 +187,9 @@ func _start() -> void:
 	var decider: RefCounted = SeatDecider.new(humans, _session.log)
 	for seat in humans:
 		decider.ios[str(seat)] = _host.io_for(str(seat))
+	# Da qui in poi chi arriva e' un ritardatario, e l'host glielo dira' invece
+	# di lasciarglielo capire dal silenzio (D-148).
+	_host.seated(humans)
 	_lobby_box.queue_free()
 
 	_table = TableView.new()

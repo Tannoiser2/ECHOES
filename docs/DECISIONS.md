@@ -331,6 +331,46 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-148 — Il ritardatario, e il silenzio che non e' una risposta
+**implemented in 0.1.110** (dalla domanda di conferma del committente: «i giocatori si collegano e quando parte la partita i mancanti sono bot?»)
+
+Si', esattamente cosi': la stanza guarda **chi ha una console agganciata nel
+momento del via** e ne fa la lista degli umani; ogni seggio che in quell'istante
+non ha nessuno lo gioca una policy, per tutta la partita. Nessuna
+configurazione, nessun conteggio da dichiarare prima: **la connessione e' la
+dichiarazione**.
+
+Rispondendo pero' e' venuto fuori il caso che nessuno aveva guardato: **chi
+arriva dopo**. Il suo telefono si aggancia benissimo — l'host accetta il token,
+gli manda lo stato, il pannello si aggiorna a ogni mossa — ma il suo seggio e'
+gia' affidato a una policy, quindi non gli viene chiesto **mai niente**. Lo
+scopriva dal silenzio, e il silenzio non e' una risposta: e' identico a un filo
+rotto, a un telefono che dorme, a una partita che aspetta qualcun altro. Al
+tavolo sarebbero due minuti passati a fissare uno schermo muto chiedendosi se
+si e' rotto qualcosa.
+
+Adesso la stanza dichiara all'host chi gioca (`seated`), e chi si aggancia dopo
+riceve una riga: «sei arrivato a partita cominciata: il tuo seggio lo sta
+giocando la policy, e da qui puoi guardare». Guardare resta possibile — il
+pannello e' il suo e i suoi segreti sono suoi — ma adesso lo sa.
+
+La riga vive in `watching(seat)` invece che dentro l'invio, cosi' e' una domanda
+che si puo' fare a voce alta e un test puo' rispondere: prima del via nessuno
+guarda soltanto (la lista vuota vuol dire «non e' ancora cominciata», ed e' la
+ragione per cui esiste invece di dedurla dagli `ios`); dopo, chi non c'era
+guarda e chi c'era gioca.
+
+Resta dichiarato, e vale la pena saperlo prima della prova: **un seggio lasciato
+alla policy resta alla policy fino a fine Chronicle**. Prendersi un seggio a
+metà partita e' la console di riserva rovesciata, e sta nello stesso posto dove
+quella aspetta — dopo la prova, quando si sara' visto se serve davvero.
+
+Misure: suite **301/6145** verde (il test del ritardatario e' nuovo); filo
+**trasparente byte per byte**; playtest **FAIL 185 · SUCC 76 · SUCC 123 ·
+DECI 178**, tavolo misto **0/8**, invariato.
+
+---
+
 ## D-147 — Quanti giocatori, e i bot messi alla prova
 **implemented in 0.1.109** (chiesto dal committente: «si puo' scegliere il numero di giocatori? O si deve giocare per forza in quattro? Funzionano i bot?»)
 

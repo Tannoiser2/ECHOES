@@ -57,6 +57,7 @@ func _initialize() -> void:
 	var decider: RefCounted = SeatDecider.new(humans, session.log)
 	for seat in humans:
 		decider.ios[str(seat)] = host.io_for(str(seat))
+	host.seated(humans)
 
 	var finished: Array = [false]
 	_play(session, decider, finished)
