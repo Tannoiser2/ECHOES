@@ -1,0 +1,83 @@
+name: desktop
+
+# L'app da scaricare per il computer (voce 27, D-141).
+#
+# La stanza ha bisogno di un processo che apra porte in ascolto, e una pagina
+# in un browser non puo' farlo: chi ospita il tavolo ha bisogno di un'app vera,
+# non dell'export web. Questo lavoro la costruisce e la allega alla run, cosi'
+# si scarica da Actions senza avere Godot installato.
+#
+# Vive in un file suo e non dentro `pages`: la pubblicazione del sito ha una
+# concorrenza sola e un ambiente protetto, e un'app che non si costruisce non
+# deve poter bloccare il sito (ne' viceversa).
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  GODOT_VERSION: "4.7.1"
+
+jobs:
+  macos:
+    name: L'app per macOS
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Stessa fragilita' del lavoro `pages`, stessa cura: 1,3 GB da una CDN,
+      # con backoff e `--retry-all-errors` perche' un 503 non e' un difetto del
+      # codice e non deve sembrarlo.
+      - name: Scarica Godot e i template di export
+        run: |
+          set -euo pipefail
+          base="https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}-stable"
+          fetch() {
+            curl -fsSL --retry 5 --retry-delay 5 --retry-all-errors -o "$1" "$2"
+          }
+          fetch godot.zip "$base/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip"
+          fetch templates.tpz "$base/Godot_v${GODOT_VERSION}-stable_export_templates.tpz"
+          unzip -q godot.zip && chmod +x "Godot_v${GODOT_VERSION}-stable_linux.x86_64"
+          mkdir -p ~/.local/share/godot/export_templates
+          unzip -q templates.tpz -d /tmp/tpl
+          mv /tmp/tpl/templates "$HOME/.local/share/godot/export_templates/${GODOT_VERSION}.stable"
+
+      # Senza questa passata le cartelle aggiunte di recente restano fuori dal
+      # pacchetto in silenzio, e l'app fallisce all'avvio su uno script che non
+      # si risolve.
+      - name: Importa le risorse
+        run: ./Godot_v${GODOT_VERSION}-stable_linux.x86_64 --headless --path godot --import
+
+      - name: Esporta
+        run: |
+          set -euo pipefail
+          mkdir -p build/macos
+          ./Godot_v${GODOT_VERSION}-stable_linux.x86_64 --headless --path godot \
+            --export-release "macOS" ../build/macos/ECHOES.zip
+          test -f build/macos/ECHOES.zip
+
+      # La verifica che conta. `all_resources` non vede console.html e
+      # tavolo.html - non sono risorse che Godot importa - quindi l'app puo'
+      # costruirsi benissimo e poi servire una pagina vuota ai telefoni: un
+      # difetto che si scopre con quattro persone sedute. Il pacchetto e'
+      # binario, ma i nomi dei file ci sono dentro in chiaro.
+      - name: Le pagine delle console sono nel pacchetto
+        run: |
+          set -euo pipefail
+          unzip -q build/macos/ECHOES.zip -d build/macos/opened
+          pack=$(find build/macos/opened -name '*.pck' | head -1)
+          test -n "$pack" || { echo "nessun .pck dentro l'app"; exit 1; }
+          for page in console.html tavolo.html; do
+            grep -qa "$page" "$pack" || { echo "manca $page nel pacchetto"; exit 1; }
+            echo "ok  $page"
+          done
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ECHOES-macos
+          path: build/macos/ECHOES.zip
+          retention-days: 30

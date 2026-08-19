@@ -5,6 +5,32 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.104] — L'app da scaricare
+
+L'app vera per chi ospita il tavolo ([D-141](docs/DECISIONS.md#d-141)),
+chiesta dal committente.
+
+### Added
+
+- **Preset di export macOS** (universale Intel + Apple Silicon) e il lavoro
+  **`desktop`** in CI: `ECHOES.zip` allegato a ogni run, scaricabile da
+  Actions senza avere Godot installato.
+- **`include_filter="web/*"`**: `console.html` e `tavolo.html` non sono
+  risorse che Godot importa, quindi `all_resources` non le vedeva. Senza
+  questa riga l'app si costruiva, si apriva, apriva la stanza — e serviva una
+  pagina vuota ai telefoni.
+- **La CI non si fida del preset**: apre il pacchetto, trova il `.pck` e
+  cerca dentro i nomi delle due pagine. Rossa prima della serata, non durante.
+- Le istruzioni per aprirla su macOS in [SEDUTA_TAVOLO.md](docs/SEDUTA_TAVOLO.md)
+  §9bis, col comando che funziona sempre (`xattr -dr com.apple.quarantine`):
+  l'app non e' firmata, e il costo si dichiara.
+
+### Notes
+
+- Windows e Linux non sono fatti: un preset per uno, quando serviranno.
+
+---
+
 ## [0.1.103] — Il bottone che viveva dietro un `return`
 
 Il difetto trovato dal committente ([D-140](docs/DECISIONS.md#d-140)): la

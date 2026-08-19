@@ -798,8 +798,12 @@ pannello del seggio, la mano, le domande del decider.
    posta per le console assenti, la domanda in sospeso riproposta, la
    riconnessione automatica della pagina. E in più (fase 3,
    [D-136](DECISIONS.md#d-136)): le pagine console e tavolo, la stanza
-   dal menu, la diagnosi della rete. Restano, dichiarate: la console di
-   riserva piena, il QR, `web/` negli export impacchettati.
+   dal menu, la diagnosi della rete. Il QR è fatto in 0.1.100
+   ([D-137](DECISIONS.md#d-137)); **`web/` negli export impacchettati** è
+   fatto in 0.1.104 ([D-141](DECISIONS.md#d-141)), insieme all'app macOS da
+   scaricare — senza `include_filter` l'app si costruiva e serviva una
+   pagina vuota ai telefoni. Resta dichiarata: la console di riserva piena
+   (il seggio ripreso dallo schermo grande quando un telefono è perso).
 
 **Fatto quando** una partita si gioca con la mappa sul computer e due
 telefoni come console, le informazioni segrete arrivano solo al loro

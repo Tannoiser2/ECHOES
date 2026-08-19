@@ -331,6 +331,46 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-141 — L'app da scaricare, e le pagine che non erano risorse
+**implemented in 0.1.104** (chiesto dal committente: «l'app Godot e' pronta da scaricare per il computer?»)
+
+No, non lo era: `export_presets.cfg` aveva un preset solo, **Web**. E il web
+non puo' ospitare la stanza — una pagina in un browser non apre porte in
+ascolto — quindi chi fa da host aveva come unica strada scaricare Godot e
+aprire il progetto. Per un committente che sta per sedersi al tavolo con
+iPad e telefoni, quella non e' una strada: e' un ostacolo.
+
+Adesso c'e' il preset **macOS** (il computer del committente, chiesto prima di
+costruire) e il lavoro `desktop` in CI che allega `ECHOES.zip` a ogni run.
+Windows e Linux non sono fatti — un preset per uno, quando serviranno — e
+questo si dichiara invece di lasciarlo intendere.
+
+**La cosa che si sarebbe scoperta al tavolo.** `export_filter="all_resources"`
+impacchetta le risorse che Godot *importa*: `console.html` e `tavolo.html` non
+lo sono. L'app si sarebbe costruita benissimo, avviata benissimo, aperta la
+stanza benissimo — e avrebbe servito una **pagina vuota** ai telefoni, con
+quattro persone sedute e il QR gia' inquadrato. Il preset le include per nome
+(`include_filter="web/*"`), e la CI non si fida del preset: apre il pacchetto,
+trova il `.pck` e cerca i due nomi dentro. Se un domani qualcuno rinomina la
+cartella, il lavoro diventa rosso prima della serata, non durante.
+
+E' la stessa forma di D-140 e di D-137: il difetto che non si vede guardando —
+un bottone dietro un `return`, un QR che sembra un quadrato, un'app che si apre
+e non serve niente — vuole un lettore che non si stanca, non un occhio piu'
+attento.
+
+**Non firmata**, e il costo si dichiara: firmare e notarizzare richiede un
+certificato Apple che il progetto non ha, quindi al primo avvio macOS la mette
+in quarantena. Le istruzioni della prova danno il comando che funziona sempre
+(`xattr -dr com.apple.quarantine`) invece del tasto destro → *Apri*, che su
+macOS recenti non basta piu'.
+
+Misure: preset e pacchetto verificati dalla CI (le due pagine trovate dentro il
+`.pck`); suite 294/6117 verde, playtest invariato — l'export non tocca il
+motore, e il verbale lo dice invece di ometterlo.
+
+---
+
 ## D-140 — Il bottone che viveva dietro un `return`
 **implemented in 0.1.103** (trovato dal committente: «le azioni nell'interfaccia non si vedevano piu'»)
 

@@ -183,6 +183,41 @@ oracolo indipendente, che ha trovato tre difetti invisibili a occhio.
 Restano, dichiarate: la console di riserva piena e l'inclusione di `web/`
 negli export impacchettati.
 
+## 9bis. L'app da scaricare (macOS)
+
+Chi ospita il tavolo ha bisogno di **un'app vera**, non dell'export web: la
+stanza apre porte in ascolto, e una pagina in un browser non puo' farlo. Da
+0.1.104 la CI la costruisce a ogni run.
+
+1. **Scaricarla**: su GitHub, scheda *Actions* → il lavoro **desktop** →
+   l'ultima run verde su `main` → in fondo, l'allegato **`ECHOES-macos`**.
+   Dentro c'e' `ECHOES.zip`, e dentro quello `ECHOES.app`.
+2. **Aprirla la prima volta**: l'app **non e' firmata** — farlo richiede un
+   certificato Apple che il progetto non ha — quindi macOS la mette in
+   quarantena perche' scaricata da internet. Il modo che funziona sempre, dal
+   Terminale, nella cartella dove sta l'app:
+
+   ```
+   xattr -dr com.apple.quarantine ECHOES.app
+   ```
+
+   poi doppio clic. (Il vecchio tasto destro → *Apri* funziona su alcune
+   versioni di macOS e su altre no: da Sequoia in avanti la strada e'
+   Impostazioni → *Privacy e sicurezza* → *Apri comunque*. Il comando sopra
+   evita la lotteria.)
+3. Da li' in poi e' il §9: si apre la stanza dal menu, l'iPad inquadra il QR
+   della vetrina, i telefoni il proprio.
+
+Una cosa che il pacchetto deve contenere e che a occhio non si vede: le pagine
+`console.html` e `tavolo.html` **non sono risorse che Godot importa**, quindi
+il filtro `all_resources` non le vedrebbe e l'app si costruirebbe benissimo per
+poi servire una pagina vuota ai telefoni — un difetto che si scopre con quattro
+persone sedute. Il preset le include per nome, e la CI apre il pacchetto e
+verifica che ci siano davvero.
+
+Windows e Linux non sono fatti: si aggiungono con un preset per uno, quando
+serviranno.
+
 ## 9. La prova (computer + iPad + telefoni)
 
 1. **Sul computer** (host — serve il progetto Godot, non l'export web:
