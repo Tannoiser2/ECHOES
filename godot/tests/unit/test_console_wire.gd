@@ -7,6 +7,7 @@ extends "res://tests/test_case.gd"
 const Protocol := preload("res://scripts/net/console_protocol.gd")
 const ConsoleIO := preload("res://scripts/net/console_io.gd")
 const SeatDecider := preload("res://scripts/seat/seat_decider.gd")
+const ConsoleHost := preload("res://scripts/net/console_host.gd")
 
 
 class EarIO:
@@ -138,3 +139,20 @@ func test_the_audit_smells_a_planted_leak() -> void:
 		Protocol.audit(leaky, session, mine).size() > 0,
 		"il Destino altrui nel messaggio si fiuta"
 	)
+
+
+## Il ritardatario (D-148): chi si collega a partita cominciata senza esserci al
+## via sta guardando, e la console deve dirglielo. Prima del via non esistono
+## ritardatari — e' l'unica ragione per cui questa lista puo' essere vuota.
+func test_a_latecomer_is_told_they_are_only_watching() -> void:
+	var host: RefCounted = ConsoleHost.new(session)
+	var seats: Array = session.world["turn_order"]
+	var giocante: String = str(seats[0])
+	var tardivo: String = str(seats[1])
+
+	assert_false(host.watching(giocante), "prima del via nessuno guarda soltanto")
+	assert_false(host.watching(tardivo), "prima del via nessuno guarda soltanto")
+
+	host.seated([giocante])
+	assert_false(host.watching(giocante), "chi era al via gioca")
+	assert_true(host.watching(tardivo), "chi arriva dopo guarda")

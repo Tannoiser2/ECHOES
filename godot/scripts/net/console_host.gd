@@ -17,6 +17,9 @@ extends RefCounted
 const Protocol := preload("res://scripts/net/console_protocol.gd")
 const ConsoleIO := preload("res://scripts/net/console_io.gd")
 const TableModel := preload("res://scripts/views/table_model.gd")
+const CardFace := preload("res://scripts/core/card_face.gd")
+const PrintSheet := preload("res://scripts/core/print_sheet.gd")
+const BoardSheet := preload("res://scripts/core/board_sheet.gd")
 
 var session: RefCounted = null
 var _tcp: TCPServer = TCPServer.new()
@@ -37,6 +40,7 @@ var _table_clock: int = -1
 # vista tavolo puo' dire «la console di Aldric non risponde» invece di
 # lasciare il dubbio al tavolo.
 var _last_heard: Dictionary = {}  # seat -> msec dell'ultimo segno di vita
+var _playing: Array = []          # i seggi che al via avevano una console
 
 # La pagina in tasca: l'HTTP che serve console e tavolo (fase 3). Un solo
 # file per pagina, servito con la porta del WebSocket gia' scritta dentro.
@@ -234,6 +238,14 @@ func _serve_http() -> void:
 
 
 func _respond(tcp: StreamPeerTCP, path: String) -> void:
+	# La faccia di una carta, dalla stessa sorgente della fustella (D-144).
+	if path.begins_with("/carta/"):
+		_respond_card(tcp, path)
+		return
+	# Il tabellone disegnato, dagli stessi piani del canvas (D-145).
+	if path.begins_with("/mappa.svg"):
+		_respond_svg(tcp, BoardSheet.board_svg(session), false)
+		return
 	var body: String = ""
 	if path.begins_with("/tavolo"):
 		body = _page("res://web/tavolo.html")
@@ -245,6 +257,49 @@ func _respond(tcp: StreamPeerTCP, path: String) -> void:
 		return
 	var payload: PackedByteArray = body.to_utf8_buffer()
 	var head: String = "HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=utf-8\r\nContent-Length: %d\r\nConnection: close\r\n\r\n" % payload.size()
+	tcp.put_data(head.to_utf8_buffer())
+	tcp.put_data(payload)
+	tcp.disconnect_from_host()
+
+
+## `/carta/<mazzo>/<id>.svg` — la carta, disegnata una volta sola in tutto il
+## progetto: `PrintSheet.card_svg` e' la stessa funzione che impagina i fogli da
+## fustellare e che l'app rasterizza per la mano sullo schermo (D-101, D-144).
+## Il telefono la chiede e la mostra: nessuna immagine da impacchettare, nessuna
+## faccia disegnata due volte, e una carta che cambia nei dati cambia in tutti e
+## tre i posti insieme.
+##
+## Nessun token: le facce non sono segrete. Le carte esistono in copie e il
+## titolo non e' mai stato un segreto — e' il fondamento della perquisizione
+## strutturale (D-135); il segreto e' *quali copie tieni in mano*, e quello vive
+## nello `state`, che il token lo chiede eccome.
+func _respond_card(tcp: StreamPeerTCP, path: String) -> void:
+	var trimmed: String = path.get_slice("?", 0).trim_suffix(".svg")
+	var parts: PackedStringArray = trimmed.split("/", false)
+	var body: String = ""
+	if parts.size() == 3:
+		var face: Dictionary = CardFace.of(str(parts[1]), str(parts[2]), session.data)
+		if not face.is_empty():
+			body = PrintSheet.card_svg(face)
+	_respond_svg(tcp, body, true)
+
+
+## Un SVG, o un 404 se non c'e' niente da disegnare. `forever` distingue le due
+## specie: la faccia di una carta non cambia dentro una partita e si tiene in
+## cache per sempre; il tabellone cambia a ogni mossa e non si tiene affatto.
+func _respond_svg(tcp: StreamPeerTCP, body: String, forever: bool) -> void:
+	if body == "":
+		tcp.put_data(
+			"HTTP/1.1 404 Not Found\r\nContent-Length: 0\r\nConnection: close\r\n\r\n".to_utf8_buffer()
+		)
+		tcp.disconnect_from_host()
+		return
+	var payload: PackedByteArray = body.to_utf8_buffer()
+	var head: String = (
+		"HTTP/1.1 200 OK\r\nContent-Type: image/svg+xml; charset=utf-8\r\n"
+		+ ("Cache-Control: max-age=31536000, immutable\r\n" if forever else "Cache-Control: no-store\r\n")
+		+ "Content-Length: %d\r\nConnection: close\r\n\r\n"
+	) % payload.size()
 	tcp.put_data(head.to_utf8_buffer())
 	tcp.put_data(payload)
 	tcp.disconnect_from_host()
@@ -282,3 +337,28 @@ func _bind(seat: String, peer: WebSocketPeer) -> void:
 	var io: Variant = _ios.get(seat)
 	if io != null and not (io.pending() as Dictionary).is_empty():
 		peer.send_text(Protocol.encode(io.pending()))
+	# Il ritardatario (D-148). Chi si collega al via gioca; chi arriva dopo
+	# trova il proprio seggio gia' affidato a una policy, e fin qui lo scopriva
+	# **dal silenzio**: il pannello si aggiornava a ogni mossa e non gli veniva
+	# chiesto mai niente. Il silenzio non e' una risposta: la console lo dice.
+	if watching(seat):
+		peer.send_text(Protocol.encode(Protocol.say_message(
+			session,
+			"Sei arrivato a partita cominciata: il tuo seggio lo sta giocando la"
+			+ " policy, e da qui puoi guardare. Al prossimo anno collegati prima"
+			+ " del via."
+		)))
+
+
+## Chi gioca davvero, dichiarato dalla stanza al via. Vuoto vuol dire «non e'
+## ancora cominciata», ed e' la ragione per cui questa lista esiste invece di
+## dedurla dagli `ios`: prima del via nessuno e' un ritardatario.
+func seated(humans: Array) -> void:
+	_playing = humans.duplicate()
+
+
+## Questo seggio sta solo guardando? Vero per chi si collega a partita
+## cominciata senza esserci al via — il suo seggio lo gioca una policy, e la
+## console glielo dice invece di tacere (D-148).
+func watching(seat: String) -> bool:
+	return not _playing.is_empty() and not _playing.has(seat)

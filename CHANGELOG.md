@@ -5,6 +5,302 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.110] — Il ritardatario
+
+Chi si collega a partita cominciata adesso lo sa
+([D-148](docs/DECISIONS.md#d-148)).
+
+### Added
+
+- **`ConsoleHost.seated()` e `watching()`**: la stanza dichiara chi gioca al
+  via, e chi si aggancia dopo riceve una riga che gli dice che il suo seggio lo
+  sta giocando la policy e che da li' puo' guardare. Prima lo scopriva dal
+  silenzio — identico a un filo rotto.
+- Un test: prima del via nessuno guarda soltanto; dopo, chi non c'era guarda e
+  chi c'era gioca.
+
+### Measured
+
+- Suite **301 test / 6145 asserzioni** verde; filo **trasparente byte per
+  byte**; playtest **FAIL 185 · SUCC 76 · SUCC 123 · DECI 178**, tavolo misto
+  **0 su 8**, invariato.
+
+### Notes
+
+- Un seggio lasciato alla policy resta alla policy fino a fine Chronicle:
+  prenderselo a meta' partita e' la console di riserva rovesciata, e aspetta
+  nello stesso posto — dopo la prova.
+
+---
+
+## [0.1.109] — Quanti giocatori, e i bot alla prova
+
+Le tre domande del committente sul numero di giocatori e sui bot
+([D-147](docs/DECISIONS.md#d-147)).
+
+### Added
+
+- **Il menu chiede chi altro gioca da questo schermo**: scelto il proprio
+  seggio, «siete in N, qualcun altro?» finche' il tavolo e' pieno o qualcuno
+  dice basta. La riga di comando e la stanza lo sapevano gia' fare; il menu
+  offriva uno solo dei quattro modi.
+- **`cli/run_bot_probe.gd`**: i bot contro il caso, sullo stesso mondo giocato
+  due volte. Il punteggio e' il **Destino raggiunto**, non i Consigli vinti.
+
+### Measured
+
+- **I bot giocano**: su 40 partite la policy fa meglio in **26**, peggio in 2,
+  pari in 12 — media **1,65 contro 0,57**. Il caso manca il Destino minimo in
+  **20 partite su 40**; la policy **mai**.
+- Playtest **FAIL 185 · SUCC 76 · SUCC 123 · DECI 178**, tavolo misto **0 su
+  8**, invariato; suite **300 test / 6141 asserzioni** verde.
+
+### Notes
+
+- **I seggi sono quattro e non e' un'impostazione**: ogni Chronicle dichiara
+  le sue quattro case, e domande, relazioni, Destini e proposizioni sono
+  scritti per quelle voci. Un tavolo a tre o a cinque e' un'altra Chronicle da
+  scrivere, non una casella da spuntare.
+
+---
+
+## [0.1.108] — I pezzi si muovono sulla mappa
+
+La console ripensata come l'ha chiesta il committente
+([D-146](docs/DECISIONS.md#d-146)): schede, telefono coricato, e la mappa che
+risponde alle domande.
+
+### Added
+
+- **Le mosse si giocano sulla mappa**: la console prende `/mappa.svg` inline,
+  le Regioni che la domanda offre si accendono col cerchio d'oro e il tocco
+  risponde. I `subjects` arrivavano al telefono da sempre — nessuno li
+  guardava.
+- **Tre schede** (Mappa · Mano · Seggio) con un pallino sulla linguetta che ha
+  qualcosa, invece di una colonna sola da scorrere.
+- **Il telefono coricato affianca** schede e domanda invece di impilarle:
+  mappa a sinistra, scelte a destra, niente da scorrere per giocare.
+- Ogni Regione nel tabellone porta il suo id (`data-region`) e il cerchio
+  «raggiungibile», spento nel disegno e acceso dalla console.
+
+### Changed
+
+- Le scelte che si giocano sulla mappa **non** compaiono anche come bottoni:
+  due strade per la stessa mossa vogliono dire che una delle due e' sbagliata.
+  Delle 18 scelte di un'azione, 4 vanno sulla mappa e 14 restano in elenco.
+
+### Fixed
+
+- `main` era `display: flex` senza direzione, e in CSS il flex e' una riga:
+  in piedi la barra della domanda si metteva **di fianco** alla mappa e se la
+  mangiava. Una fotografia l'ha trovata in un secondo.
+
+### Measured
+
+- Sonda dei messaggi **20.844 perquisiti, FUGHE 0**; filo **trasparente byte
+  per byte**; playtest **FAIL 185 · SUCC 76 · SUCC 123 · DECI 178**, tavolo
+  misto **0 su 8**; suite **300 test / 6141 asserzioni** verde.
+
+### Notes
+
+- Un token, una console: due pagine aperte con lo stesso codice se lo
+  contendono. Al tavolo un seggio ha un telefono solo, quindi non morde.
+
+---
+
+## [0.1.107] — Il tabellone disegnato
+
+La mappa vera sulla vetrina, con pedine e vessilli, e le carte giocate in
+tavola ([D-145](docs/DECISIONS.md#d-145)).
+
+### Added
+
+- **`board_sheet.gd`** e `/mappa.svg` serviti dall'host: il tabellone
+  disegnato dagli **stessi piani** del canvas — `RegionArt.plan` per le
+  tessere e il terreno, `IconSet` per pedine e vessilli, i colori dei seggi
+  dall'ordine di turno. Una forma sola, tre usi: canvas, fustella, browser.
+- **Le carte impegnate in Consiglio** sulla vetrina, con la faccia e il
+  fronte su cui sono cadute — dai Consigli **chiusi**, perche' gli impegni si
+  rivelano tutti insieme in seduta (D-014).
+- Una guardia nella perquisizione della vetrina: nessun Consiglio **ancora
+  aperto** puo' comparire in tavola.
+- Quattro test sul tabellone (ogni Regione col suo nome, una pedina per
+  presenza, i colori dei seggi che non si ripetono, nessuna mano).
+
+### Fixed
+
+- Il tabellone dentro la griglia delle Regioni diventava una cella larga come
+  un riquadro: sta fuori, e i riquadri restano sotto per l'ispezione al tocco.
+
+### Measured
+
+- Sonda dei messaggi: **20.844 perquisiti, FUGHE 0**; filo **trasparente byte
+  per byte**; playtest **FAIL 185 · SUCC 76 · SUCC 123 · DECI 178**, tavolo
+  misto **0 su 8**; suite **300 test / 6141 asserzioni** verde; sims ed export
+  deterministici.
+
+### Notes
+
+- La prima stesura della guardia confrontava il **titolo** della domanda e ha
+  dato **58 fughe false**: la stessa domanda torna al Consiglio piu' volte.
+  Terza volta che il confronto per nome inganna (658 in D-135, 54 in D-144):
+  un titolo non e' un'identita'. Ora confronta il `confluence_id`.
+
+---
+
+## [0.1.106] — Le carte vere, e la mano che il tavolo leggeva
+
+Le carte come carte sul telefono e sulla vetrina — e la fuga che le facce
+hanno reso visibile ([D-144](docs/DECISIONS.md#d-144)).
+
+### Added
+
+- **`/carta/<mazzo>/<id>.svg`** servito dall'host, da `PrintSheet.card_svg`:
+  la stessa funzione che impagina i fogli da fustellare e che l'app
+  rasterizza per la mano sullo schermo. Sul telefono la mano sono **carte da
+  toccare** (un tocco le ingrandisce); sulla vetrina compaiono le carte del
+  Narratore che il mondo ha calato.
+- **`Protocol.audit_table`**: la perquisizione della vetrina, col metro del
+  tavolo invece che di un seggio. Gira nella sonda dei messaggi accanto alle
+  console.
+- Due test: la mano del Narratore non sta sul tavolo, e la guardia **morde**
+  (uno pianta una fuga apposta).
+
+### Fixed
+
+- **La vetrina svelava le mani del Narratore.** `echo_deck.drawn` e' tutto
+  cio' che il mazzo ha lasciato, comprese le carte ancora in mano ai seggi, e
+  la vetrina lo mostrava come «il mondo ha calato». Presente da 0.1.99;
+  adesso calata e' una carta uscita dal mazzo e non piu' in nessuna mano.
+
+### Changed
+
+- La mano nel modello della console porta l'`id` (serve per chiedere la
+  faccia), e la perquisizione confronta gli **id** invece dei titoli: l'id e'
+  la carta, il titolo e' come la chiamiamo.
+
+### Measured
+
+- Sonda dei messaggi: **20.844 perquisiti** (17.509 console + 3.335 vetrine),
+  **FUGHE 0**.
+- Filo **trasparente byte per byte**; playtest **FAIL 185 · SUCC 76 · SUCC
+  123 · DECI 178**, tavolo misto **0 su 8**; suite **296 test / 6121
+  asserzioni** verde; sims ed export deterministici.
+
+### Notes
+
+- La prima stesura di `audit_table` cercava anche i titoli nel testo e ha
+  consegnato **54 fughe tutte false** («la vetrina nomina "Sale", che e' in
+  mano a Kessa» — «Sale» e' una carta *e* una casa). E' la lezione di D-135,
+  imparata due volte: il metro giusto e' strutturale.
+
+---
+
+## [0.1.105] — Guardare il telefono
+
+I due difetti trovati fotografando la console su uno schermo da telefono
+([D-143](docs/DECISIONS.md#d-143)).
+
+### Added
+
+- **`cli/run_room.gd`**, la stanza senza schermo: stesso `ConsoleHost` e
+  stesso `SeatDecider` della stanza vera, stampa un indirizzo per seggio e
+  aspetta i telefoni. Serve a provare la console da un altro apparecchio
+  senza aprire una finestra — e a fotografarla con un browser vero.
+- Gli screenshot in `docs/img/`.
+
+### Fixed
+
+- **Il pannello a caratteri non va piu' al telefono**: la console riceve gia'
+  lo `state` strutturato e ne disegna sezioni vere, quindi il tabellone del
+  terminale era la stessa cosa detta due volte, in cima allo schermo piu'
+  piccolo. Un io che dichiara `shows_state()` non lo riceve; terminale e
+  schermo del tavolo tacciono e continuano a leggerlo. **3.600 messaggi in
+  meno su 100 partite.**
+- **Le scelte oltre il bordo si vedono**: `overscroll-behavior: contain`
+  perche' il dito non scorra la pagina sotto, due ombre in CSS puro che
+  compaiono solo quando c'e' altro, e il conto scritto («22 scelte — scorri
+  per vederle tutte»).
+
+### Changed
+
+- La sonda dei messaggi dichiara `shows_state()` come la console vera:
+  contava messaggi che non partono piu'.
+
+### Measured
+
+- Sonda dei messaggi: **17.509 messaggi, FUGHE 0** (erano 21.109 col
+  pannello a caratteri).
+- Filo ancora **trasparente byte per byte**; playtest **FAIL 185 · SUCC 76 ·
+  SUCC 123 · DECI 178**, tavolo misto **0 su 8**; suite 294/6117 verde.
+
+### Notes
+
+- Ventidue opzioni per un'azione sono tante su qualunque schermo, ma quella e'
+  una domanda di design del gioco e si decide al tavolo.
+
+---
+
+## [0.1.104] — L'app da scaricare
+
+L'app vera per chi ospita il tavolo ([D-141](docs/DECISIONS.md#d-141)),
+chiesta dal committente.
+
+### Added
+
+- **Preset di export macOS** (universale Intel + Apple Silicon) e il lavoro
+  **`desktop`** in CI: `ECHOES.zip` allegato a ogni run, scaricabile da
+  Actions senza avere Godot installato.
+- **`include_filter="web/*"`**: `console.html` e `tavolo.html` non sono
+  risorse che Godot importa, quindi `all_resources` non le vedeva. Senza
+  questa riga l'app si costruiva, si apriva, apriva la stanza — e serviva una
+  pagina vuota ai telefoni.
+- **La CI non si fida del preset**: apre il pacchetto, trova il `.pck` e
+  cerca dentro i nomi delle due pagine. Rossa prima della serata, non durante.
+- Le istruzioni per aprirla su macOS in [SEDUTA_TAVOLO.md](docs/SEDUTA_TAVOLO.md)
+  §9bis, col comando che funziona sempre (`xattr -dr com.apple.quarantine`):
+  l'app non e' firmata, e il costo si dichiara.
+
+### Changed
+
+- **`textures/vram_compression/import_etc2_astc` acceso**: Godot rifiuta di
+  esportare un binario universale o arm64 senza — su Apple Silicon la GPU
+  vuole ASTC. L'export web non cambia (le sue compressioni VRAM restano
+  spente).
+
+### Notes
+
+- Windows e Linux non sono fatti: un preset per uno, quando serviranno.
+
+---
+
+## [0.1.103] — Il bottone che viveva dietro un `return`
+
+Il difetto trovato dal committente ([D-140](docs/DECISIONS.md#d-140)): la
+stanza non aveva piu' il bottone «Si comincia».
+
+### Fixed
+
+- **«Si comincia» torna nella stanza**: in 0.1.100, estraendo `_qr_for`, il
+  blocco del bottone era finito dopo il `return` della funzione nuova —
+  codice legale, mai eseguito, e nessun avviso da GDScript. Senza quel
+  bottone la stanza si apriva e non si poteva cominciare.
+
+### Added
+
+- **`tools/dead_code.py`**, nella CI accanto ai validatori: legge tutti i
+  `.gd` e segnala ogni istruzione che segue un `return`/`continue`/`break`
+  allo stesso rientro. Verde su 139 file; rimettendo il file rotto trova la
+  riga, unica, con numero e testo.
+
+### Measured
+
+- Suite 294 test / 6117 asserzioni verde; playtest **FAIL 185 · SUCC 76 ·
+  SUCC 123 · DECI 178**, tavolo misto **0 su 8** (invariato: il difetto era
+  nella lobby, non nel motore); 22 documenti validi.
+
+---
+
 ## [0.1.102] — Il peso dell'alleanza
 
 Le alleanze pesano al Consiglio ([D-139](docs/DECISIONS.md#d-139)), chieste

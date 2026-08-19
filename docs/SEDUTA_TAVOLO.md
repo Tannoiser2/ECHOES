@@ -183,6 +183,101 @@ oracolo indipendente, che ha trovato tre difetti invisibili a occhio.
 Restano, dichiarate: la console di riserva piena e l'inclusione di `web/`
 negli export impacchettati.
 
+## 8bis. Cosa si vede sul telefono
+
+![La console: la scheda Mappa, con le Regioni raggiungibili accese](img/console-mappa.png)
+
+Tre schede — **Mappa**, **Mano**, **Seggio** — e la domanda sempre in fondo.
+Le mosse che riguardano un posto **si giocano sulla mappa**: le Regioni che la
+domanda offre si accendono col cerchio d'oro e il dito risponde li'. Quelle
+scelte non compaiono anche fra i bottoni, perche' due strade per la stessa
+mossa vogliono dire che una delle due e' quella sbagliata (D-146).
+
+![Il telefono coricato: mappa a sinistra, scelte a destra](img/console-coricata.png)
+
+**Coricato** il telefono affianca le schede alla domanda invece di impilarle:
+lo spazio di uno schermo orizzontale e' largo e basso, e impilare li' vuol dire
+scorrere sempre. Cosi' si gioca senza scorrere niente.
+
+![La mano, con le carte vere](img/console-telefono.png)
+
+La mano sono **le carte stampate**: la faccia arriva dall'host, disegnata dalla
+stessa funzione che impagina i fogli da fustellare (D-101, D-144). Un tocco la
+ingrandisce a tutto schermo.
+
+Fotografato da un browser vero contro l'host vero (CHR_01, seme 7000, la
+stanza aperta con `cli/run_room.gd`). In testa il seggio e l'anno, poi **le
+domande** con le velate marcate «coperta», e in fondo — fisso, sempre a
+portata di pollice — il **riquadro delle scelte**, che dice quante sono e
+scorre per conto suo.
+
+![Il pannello del seggio, scorrendo fino in fondo](img/console-pannello.png)
+
+Scorrendo: **il tuo Destino** coi gradini spuntati, **la tua mano** come
+cartine, **i segni della casa** e **i rapporti** con gli altri seggi. Tutto
+qui e' gia' pubblico per quel seggio: la Tensione che non ha esplorato dice
+«coperta» e basta, e nessuna carta di un'altra mano compare (§3, e la
+perquisizione lo prova su 17.509 messaggi).
+
+### E la vetrina, sull'iPad
+
+![La vetrina: la mappa, le domande, le carte calate e il verbale](img/vetrina-tavolo.png)
+
+La mappa e' **disegnata**, non raccontata: le stesse tessere, le stesse pedine
+e gli stessi vessilli del canvas, letti dagli stessi piani (D-145) — cambia
+solo la superficie. I riquadri sotto restano: sono l'ispezione al tocco.
+
+Le carte **impegnate in Consiglio** stanno in tavola con la loro faccia, per
+fronte — si sono rivelate tutte insieme in seduta, quindi ci stanno di diritto;
+quelle di una seduta **ancora aperta** no, e una guardia lo verifica. Anche le
+carte che **il mondo ha calato** stanno in tavola; la mano di nessuno compare
+qui, ed e' una guardia che adesso c'e' davvero:
+mettendo le facce e' venuto fuori che la vetrina mostrava anche le carte
+*ancora in mano* ai seggi — sei invece di due — perche' leggeva tutto cio' che
+il mazzo aveva lasciato. Corretto in 0.1.106 ([D-144](DECISIONS.md#d-144)),
+insieme alla perquisizione che mancava: la vetrina non ha un viewer, e per
+questo nessuno le aveva mai chiesto conto di niente.
+
+Due difetti sono stati trovati proprio guardando queste foto, e corretti in
+0.1.105 ([D-143](DECISIONS.md#d-143)): il tabellone a caratteri del terminale
+finiva sul telefono, dove diceva due volte cose che le sezioni dicono meglio;
+e le scelte oltre il bordo del riquadro sembravano non esserci.
+
+## 9bis. L'app da scaricare (macOS)
+
+Chi ospita il tavolo ha bisogno di **un'app vera**, non dell'export web: la
+stanza apre porte in ascolto, e una pagina in un browser non puo' farlo. Da
+0.1.104 la CI la costruisce a ogni run.
+
+1. **Scaricarla**: su GitHub, scheda *Actions* → il lavoro **desktop** →
+   l'ultima run verde su `main` → in fondo, l'allegato **`ECHOES-macos`**.
+   Dentro c'e' `ECHOES.zip`, e dentro quello `ECHOES.app`.
+2. **Aprirla la prima volta**: l'app **non e' firmata** — farlo richiede un
+   certificato Apple che il progetto non ha — quindi macOS la mette in
+   quarantena perche' scaricata da internet. Il modo che funziona sempre, dal
+   Terminale, nella cartella dove sta l'app:
+
+   ```
+   xattr -dr com.apple.quarantine ECHOES.app
+   ```
+
+   poi doppio clic. (Il vecchio tasto destro → *Apri* funziona su alcune
+   versioni di macOS e su altre no: da Sequoia in avanti la strada e'
+   Impostazioni → *Privacy e sicurezza* → *Apri comunque*. Il comando sopra
+   evita la lotteria.)
+3. Da li' in poi e' il §9: si apre la stanza dal menu, l'iPad inquadra il QR
+   della vetrina, i telefoni il proprio.
+
+Una cosa che il pacchetto deve contenere e che a occhio non si vede: le pagine
+`console.html` e `tavolo.html` **non sono risorse che Godot importa**, quindi
+il filtro `all_resources` non le vedrebbe e l'app si costruirebbe benissimo per
+poi servire una pagina vuota ai telefoni — un difetto che si scopre con quattro
+persone sedute. Il preset le include per nome, e la CI apre il pacchetto e
+verifica che ci siano davvero.
+
+Windows e Linux non sono fatti: si aggiungono con un preset per uno, quando
+serviranno.
+
 ## 9. La prova (computer + iPad + telefoni)
 
 1. **Sul computer** (host — serve il progetto Godot, non l'export web:
@@ -199,9 +294,27 @@ negli export impacchettati.
    se la pagina si chiude o il WiFi cade, si riapre e si rientra da
    soli, con la domanda in sospeso riproposta.
 4. **«Si comincia»**: chi è collegato in quel momento gioca dal
-   telefono; i seggi senza console giocano da soli (policy). Durante la
-   partita la striscia in alto dice chi è al tavolo e chi «non risponde
-   da Ns»; «Rigenera il codice» taglia fuori un telefono perso.
+   telefono; i seggi senza console giocano da soli (policy). **La
+   connessione è la dichiarazione**: non c'è un numero di giocatori da
+   impostare, si guarda chi c'è al via. Chi si collega **dopo** trova il
+   proprio seggio già affidato alla policy e riceve una riga che glielo dice
+   — può guardare, non giocare, e per quella Chronicle resta così
+   ([D-148](DECISIONS.md#d-148)). Durante la partita la striscia in alto dice
+   chi è al tavolo e chi «non risponde da Ns»; «Rigenera il codice» taglia
+   fuori un telefono perso.
+
+**Se non vuoi usare l'iPad, o i telefoni, o niente di tutto questo**: la
+partita di sempre e' intatta e non e' cambiata di un byte. Dal menu si sceglie
+un seggio («Gioco Aldric…») e si gioca tutto sul computer, come prima della
+voce 27 — le azioni sono i bottoni sotto la mappa, e le Regioni cerchiate
+d'oro si cliccano. L'iPad e' un *secondo* schermo, non un pezzo obbligatorio:
+anche nella stanza la vetrina e' gia' sullo schermo del computer, e chi apre
+`/tavolo` sull'iPad ne vede una copia. Quello che invece **oggi non si puo'
+fare** e' aprire la stanza e giocare un seggio dallo schermo grande: chi non
+ha una console collegata al via e' una policy, per la regola della seduta
+(«un tocco sul tabellone non ha identita' di seggio», §8 C). La console di
+riserva — dichiarare «il telefono di Aldric e' perso» e riprendere quel seggio
+dal computer — resta la cosa aperta, da decidere dopo la prova.
 
 Se un telefono non vede il computer: stessa rete WiFi, e occhio
 all'isolamento AP del router (il rischio dichiarato in §6). Le porte:

@@ -46,18 +46,24 @@ static func build(session: RefCounted, seat_id: String) -> Dictionary:
 			"threshold": int(data.tensions[str(tension_id)]["threshold"]),
 		})
 
-	# La mano: titoli e famiglie, mai fuori da questa console.
+	# La mano: titoli, famiglie e l'id con cui la console chiede la faccia
+	# (D-144). Mai fuori da questa console: *quali* copie tieni e' il segreto,
+	# e la perquisizione lo prova carta per carta su questo campo.
 	for asset_id in session.service.hand(seat_id):
 		var asset: Variant = data.assets.get(str(asset_id))
 		if asset != null:
 			(out["hand"] as Array).append({
+				"id": str(asset_id),
 				"title": str(asset["title"]),
 				"family": str(asset["family"]),
 			})
 	for card_id in (seat as Dictionary).get("echo_hand", []):
 		var card: Variant = data.echo_cards.get(str(card_id))
 		if card != null:
-			(out["echo_hand"] as Array).append(str(card["title"]))
+			(out["echo_hand"] as Array).append({
+				"id": str(card_id),
+				"title": str(card["title"]),
+			})
 
 	# La scala del Destino, coi gradini gia' spuntati (D-101: la vede solo
 	# chi la giura).

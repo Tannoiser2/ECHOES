@@ -150,6 +150,11 @@ func _open_room(chronicle_id: String, vestibule: Control) -> void:
 	hint.add_theme_color_override("font_color", Color("#8a8172"))
 	_lobby_box.add_child(hint)
 
+	var go := Button.new()
+	go.text = "Si comincia"
+	go.pressed.connect(_start)
+	_lobby_box.add_child(go)
+
 
 ## Il quadrato da inquadrare. Se l'indirizzo non entra nelle versioni che
 ## l'encoder copre, il riquadro resta vuoto e accanto c'e' comunque
@@ -159,10 +164,6 @@ func _qr_for(url: String, side: int) -> Control:
 	code.custom_minimum_size = Vector2(side, side)
 	code.show_text(url)
 	return code
-	var go := Button.new()
-	go.text = "Si comincia"
-	go.pressed.connect(_start)
-	_lobby_box.add_child(go)
 
 
 func _reissue(seat: String) -> void:
@@ -186,6 +187,9 @@ func _start() -> void:
 	var decider: RefCounted = SeatDecider.new(humans, _session.log)
 	for seat in humans:
 		decider.ios[str(seat)] = _host.io_for(str(seat))
+	# Da qui in poi chi arriva e' un ritardatario, e l'host glielo dira' invece
+	# di lasciarglielo capire dal silenzio (D-148).
+	_host.seated(humans)
 	_lobby_box.queue_free()
 
 	_table = TableView.new()

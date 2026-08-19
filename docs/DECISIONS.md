@@ -331,6 +331,433 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-148 — Il ritardatario, e il silenzio che non e' una risposta
+**implemented in 0.1.110** (dalla domanda di conferma del committente: «i giocatori si collegano e quando parte la partita i mancanti sono bot?»)
+
+Si', esattamente cosi': la stanza guarda **chi ha una console agganciata nel
+momento del via** e ne fa la lista degli umani; ogni seggio che in quell'istante
+non ha nessuno lo gioca una policy, per tutta la partita. Nessuna
+configurazione, nessun conteggio da dichiarare prima: **la connessione e' la
+dichiarazione**.
+
+Rispondendo pero' e' venuto fuori il caso che nessuno aveva guardato: **chi
+arriva dopo**. Il suo telefono si aggancia benissimo — l'host accetta il token,
+gli manda lo stato, il pannello si aggiorna a ogni mossa — ma il suo seggio e'
+gia' affidato a una policy, quindi non gli viene chiesto **mai niente**. Lo
+scopriva dal silenzio, e il silenzio non e' una risposta: e' identico a un filo
+rotto, a un telefono che dorme, a una partita che aspetta qualcun altro. Al
+tavolo sarebbero due minuti passati a fissare uno schermo muto chiedendosi se
+si e' rotto qualcosa.
+
+Adesso la stanza dichiara all'host chi gioca (`seated`), e chi si aggancia dopo
+riceve una riga: «sei arrivato a partita cominciata: il tuo seggio lo sta
+giocando la policy, e da qui puoi guardare». Guardare resta possibile — il
+pannello e' il suo e i suoi segreti sono suoi — ma adesso lo sa.
+
+La riga vive in `watching(seat)` invece che dentro l'invio, cosi' e' una domanda
+che si puo' fare a voce alta e un test puo' rispondere: prima del via nessuno
+guarda soltanto (la lista vuota vuol dire «non e' ancora cominciata», ed e' la
+ragione per cui esiste invece di dedurla dagli `ios`); dopo, chi non c'era
+guarda e chi c'era gioca.
+
+Resta dichiarato, e vale la pena saperlo prima della prova: **un seggio lasciato
+alla policy resta alla policy fino a fine Chronicle**. Prendersi un seggio a
+metà partita e' la console di riserva rovesciata, e sta nello stesso posto dove
+quella aspetta — dopo la prova, quando si sara' visto se serve davvero.
+
+Misure: suite **301/6145** verde (il test del ritardatario e' nuovo); filo
+**trasparente byte per byte**; playtest **FAIL 185 · SUCC 76 · SUCC 123 ·
+DECI 178**, tavolo misto **0/8**, invariato.
+
+---
+
+## D-147 — Quanti giocatori, e i bot messi alla prova
+**implemented in 0.1.109** (chiesto dal committente: «si puo' scegliere il numero di giocatori? O si deve giocare per forza in quattro? Funzionano i bot?»)
+
+Tre domande, e le risposte erano diverse fra loro: una era gia' vera, una era
+una lacuna, una non era mai stata misurata.
+
+**I seggi sono quattro, e non e' un'impostazione.** Ogni Chronicle ne dichiara
+quattro — CHR_01/02 le quattro case della prima saga, CHR_03/04 quelle della
+seconda — perche' il Consiglio *e'* quel tavolo: le domande dell'anno, le
+relazioni, i Destini e le proposizioni sono scritti per quelle quattro voci.
+Un tavolo a tre o a cinque non e' un'opzione da spuntare, e' un'altra
+Chronicle da scrivere. Questo si dichiara invece di lasciarlo intuire.
+
+**Quante di quelle quattro voci siano persone, invece, e' sempre stato libero
+— tranne nel posto piu' visibile.** La riga di comando lo sa fare da 0.0
+(`--seats=all`, o un seggio per nome); la stanza lo decide da chi si collega
+col proprio codice; e il menu dell'app chiedeva **quale** seggio prendi e
+basta, cioe' offriva uno solo dei quattro modi. Adesso, scelto il proprio,
+chiede «siete in N, qualcun altro a questo schermo?» finche' il tavolo e'
+pieno o qualcuno dice basta. Nessuna regola nuova: la stessa `humans` che il
+`SeatDecider` accetta da sempre, chiesta anche li'.
+
+**«Funzionano i bot?» non e' una domanda d'opinione**, ed e' rimasta senza
+misura per otto versioni. Il playtest confronta un tavolo di quattro
+ottimizzatori identici con un tavolo di quattro caratteri diversi (D-051,
+D-053) — misura il *contenuto*, dando per scontato che i giocatori giochino.
+Nessuno aveva mai chiesto ai bot di battere qualcosa.
+
+`cli/run_bot_probe.gd` glielo chiede, e il metro e' **il caso**: lo stesso
+mondo giocato due volte, una col seggio studiato alla policy e una allo stesso
+seggio che tira a sorte fra le mosse legali. Il caso resta legale — passa dagli
+stessi controlli — quindi la differenza e' tutta nel giudizio. Il punteggio non
+sono i Consigli vinti ma il **Destino raggiunto**: e' quello che un seggio sta
+cercando di fare, e l'unico modo di dire «gioca bene» senza inventarsi un
+punteggio.
+
+Su 40 partite (semi da 7000, le due Chronicle alternate):
+
+| | NONE | MINIMUM | VICTORY | TRIUMPH | media |
+|---|---|---|---|---|---|
+| policy | **0** | 22 | 10 | 8 | **1,65** |
+| caso | **20** | 18 | 1 | 1 | 0,57 |
+
+La policy fa meglio in **26 partite su 40**, peggio in 2, pari in 12. Il numero
+che dice piu' di tutti e' la prima colonna: **il caso manca il Destino minimo
+in metà delle partite, la policy non lo manca mai**. Un avversario che non
+batte il sorteggio non e' un avversario, e' un generatore di mosse legali;
+questo lo batte, e adesso c'e' scritto quanto.
+
+Le due partite dove il caso ha fatto meglio non sono un difetto: un Destino
+puo' compiersi per come gira il mondo, e una policy che ottimizza puo' passare
+accanto a una fortuna che nessuno stava cercando. Trentotto volte su quaranta
+non succede.
+
+Misure: sonda dei bot **26/40 a favore, media 1,65 contro 0,57**; playtest
+**FAIL 185 · SUCC 76 · SUCC 123 · DECI 178**, tavolo misto **0/8**, invariato;
+suite **300/6141** verde; 22 documenti validi.
+
+---
+
+## D-146 — Le schede, il telefono coricato, e i pezzi che si muovono sulla mappa
+**implemented in 0.1.108** (chiesto dal committente: «come si fa a muovere i pezzi sulla mappa dagli smartphone? …schede invece di tutto insieme, e in orizzontale si razionalizza meglio»)
+
+Tre osservazioni, tutte e tre giuste, e la prima era una domanda con una
+risposta gia' pronta nei dati: **i `subjects` arrivavano al telefono da sempre**
+e nessuno li guardava. Ogni scelta che riguarda una Regione porta con se' quale
+— e' cosi' che lo schermo grande accende le Regioni raggiungibili (D-038) — ma
+la console ne faceva un bottone con scritto «Metti una presenza in Eredan».
+Muovere un pezzo leggendo il nome del posto invece di toccarlo e' la stessa
+distanza che c'e' fra un elenco e una mappa.
+
+**La mappa si tocca.** La console prende `/mappa.svg` (D-145) **inline** invece
+che come immagine — un'immagine non si puo' toccare per pezzi — e ogni Regione
+porta il suo id. Quando una domanda offre delle Regioni, quelle si accendono
+col cerchio d'oro (che sta nel disegno, spento, cosi' l'host non deve
+ridisegnare la mappa per un'evidenziazione) e il dito risponde li'. Le stesse
+scelte **spariscono dai bottoni**: due strade per la stessa mossa vogliono dire
+che una delle due e' quella sbagliata, e la peggiore sarebbe rimasta la piu'
+comoda da premere. Delle 18 scelte di un'azione, 4 vanno sulla mappa e 14
+restano in elenco — che e' anche il modo piu' onesto di accorciare quell'elenco
+senza togliere niente (D-143).
+
+**Tre schede — Mappa, Mano, Seggio.** Tutto insieme in colonna vuol dire
+scorrere per trovare, e al tavolo il telefono si guarda per un secondo fra una
+parola e l'altra. Un pallino sulla linguetta dice quando una scheda ha qualcosa
+(la mano non vuota), cosi' non si va a controllare a vuoto.
+
+**Il telefono coricato non e' il telefono in piedi piu' largo.** Lo spazio di
+uno schermo orizzontale e' largo e basso: impilare li' vuol dire scorrere
+sempre, e la mappa diventerebbe una striscia. In orizzontale le schede e la
+domanda si **affiancano** — mappa a sinistra, scelte a destra, niente da
+scorrere per giocare.
+
+Un difetto preso guardando, che vale la pena scrivere perche' e' il tipo di
+cosa che un test non prende: `main` era `display: flex` senza direzione, e in
+CSS il flex e' una **riga** finche' non dici il contrario. In piedi, la barra
+della domanda si e' messa di fianco alla mappa e se l'e' mangiata: metà schermo
+di scelte sopra una mappa invisibile. La riga mancante e' `flex-direction:
+column`; la fotografia l'ha trovata in un secondo, e nessuna suite l'avrebbe
+mai vista.
+
+Resta come sta, dichiarato: **un token, una console**. Due pagine aperte con lo
+stesso codice se lo contendono, e nella prova si sono viste alternare
+(«filo caduto — riprovo…»). Al tavolo un seggio ha un telefono solo, quindi non
+morde; se un domani mordesse, e' il posto giusto dove metterci una parola.
+
+Misure: sonda dei messaggi **20.844 perquisiti, FUGHE 0**; filo **trasparente
+byte per byte**; playtest **FAIL 185 · SUCC 76 · SUCC 123 · DECI 178**, tavolo
+misto **0/8**; suite **300/6141** verde; 22 documenti validi. La console non
+tocca il motore: la riprogettazione e' tutta di questa parte, e i numeri lo
+dicono restando fermi.
+
+---
+
+## D-145 — Il tabellone disegnato, e le carte giocate in tavola
+**implemented in 0.1.107** (chiesto dal committente: «ma la mappa? I token, le pedine e le carte giocate?»)
+
+Sulla vetrina la mappa era **raccontata, non disegnata**: una griglia di
+riquadri, «Eredan · di Re Aldric · Re Aldric ×1, Lyra ×1». Da bordo tavolo una
+mappa raccontata non e' una mappa — e le pedine e i vessilli di D-138 vivevano
+solo sul canvas di Godot, cioe' sull'unico schermo che al tavolo nessuno
+guarda da vicino. Le carte impegnate in Consiglio, poi, non c'erano affatto:
+si rivelano tutte insieme in seduta (D-014), e dopo sparivano dentro una riga
+di verbale.
+
+**`board_sheet.gd` non ridisegna niente: rilegge gli stessi piani.** Le sagome
+delle tessere e i tratti del terreno vengono da `RegionArt.plan` — coordinate
+normalizzate, quindi valgono su qualunque superficie (D-057) — le pedine e i
+vessilli da `IconSet` (icone come dati, D-058), i colori dei seggi dallo stesso
+ordine di turno di `map_view` (D-050). E' la disciplina di D-097 estesa a una
+terza superficie: **una forma sola, tre usi** — il canvas, la fustella, il
+browser. Una tessera che cambia nei dati cambia in tutti e tre insieme.
+
+L'host serve `/mappa.svg`, senza cache (il tabellone cambia a ogni mossa, e
+l'orologio del mondo in coda all'indirizzo lo fa ricaricare solo quando il
+mondo e' cambiato davvero); le carte impegnate arrivano dai Consigli **chiusi**
+con la loro faccia, per fronte.
+
+**Il pezzo delicato e' quale Consiglio.** Gli impegni sono coperti finche' non
+si rivelano: mostrarli mentre la seduta e' aperta direbbe a tutti cosa ha
+appena messo giu' chi non ha ancora parlato. La sorgente giusta e'
+`confluence_results` — solo i chiusi — e la guardia nella perquisizione della
+vetrina lo tiene onesto.
+
+**Ma la prima stesura della guardia ha gridato al lupo 58 volte.** Confrontava
+il *titolo della domanda* del Consiglio aperto con quelli in tavola, e la
+stessa domanda torna al Consiglio piu' volte in una Chronicle: un Consiglio
+chiuso su «Il Risveglio» piu' uno aperto sulla stessa domanda erano, per quel
+confronto, la stessa cosa. E' la **terza** volta che il confronto per nome mi
+inganna — 658 fughe false in D-135, 54 in D-144, 58 qui — e la lezione, ormai
+scritta tre volte, e' sempre la stessa: **un titolo non e' un'identita'**. Ora
+la guardia confronta il `confluence_id`, e la seduta e' se stessa e nient'altro.
+
+Un difetto visto e corretto guardando: il tabellone finito **dentro** la
+griglia delle Regioni diventava una cella larga come un riquadro — la mappa
+grande come una didascalia. Sta fuori; i riquadri restano sotto, che sono
+l'ispezione al tocco (la C della seduta).
+
+Misure: sonda dei messaggi **20.844 perquisiti, FUGHE 0**; filo **trasparente
+byte per byte**; playtest **FAIL 185 · SUCC 76 · SUCC 123 · DECI 178**, tavolo
+misto **0/8**; suite **300/6141** verde (quattro test nuovi sul tabellone, fra
+cui il conto delle pedine e i colori che non si ripetono); sims ed export
+deterministici; 22 documenti validi.
+
+---
+
+## D-144 — Le carte vere sul telefono, e la mano che il tavolo leggeva
+**implemented in 0.1.106** (chiesto dal committente: «e le carte e i tarocchi? Si vedono?»)
+
+Sull'app sì, e dal 0.1.59 sono **la carta stampata** (D-101): il corpo della
+carta in mano e' la faccia dei fogli da fustellare, rasterizzata da
+`card_art.gd`. Sul telefono **no**: la mano era una fila di etichette. Il
+principio era rispettato ovunque tranne che nel posto che conta di piu' — il
+telefono *e'* la mano del giocatore, e gli davamo l'elenco della spesa mentre
+le facce vere stavano sullo schermo grande, che non e' suo.
+
+L'host adesso serve `/carta/<mazzo>/<id>.svg` da `PrintSheet.card_svg`: **la
+stessa funzione** che impagina la fustella e che l'app rasterizza. Nessuna
+immagine da impacchettare, nessuna faccia disegnata due volte, e una carta che
+cambia nei dati cambia in tutti e tre i posti insieme. Sul telefono la mano
+sono carte da toccare (un tocco le ingrandisce: a mano piena una carta larga
+un pollice non si legge), sulla vetrina compaiono le carte del Narratore che il
+mondo ha calato — pubbliche, e da bordo tavolo la cosa piu' bella da vedere.
+
+Nessun token sull'endpoint, e la ragione e' la stessa di D-135: le facce non
+sono segrete. Le carte esistono in copie e il titolo non e' mai stato un
+segreto; il segreto e' *quali copie tieni in mano*, e quello vive nello `state`,
+che il token lo chiede eccome.
+
+### La fuga che le facce hanno reso visibile
+
+Mettendo le facce sulla vetrina ne sono comparse **sei**, e il verbale sotto
+diceva: «Re Aldric riceve 2 carte del Narratore. Popolo Nahr riceve 2 carte.
+Lyra riceve 2 carte». Sei. Erano le mani di tutti.
+
+`echo_deck.drawn` non e' la pila delle carte calate: e' **tutto cio' che il
+mazzo ha lasciato**, e `_deal_narrator_hands` pesca da li' per riempire le mani
+a inizio Atto. La vetrina lo leggeva tale e quale e lo chiamava «il mondo ha
+calato». **La fuga esiste da 0.1.99**, da quando esiste la vetrina; le facce non
+l'hanno creata, l'hanno solo resa impossibile da non vedere — sei titoli in
+corpo minore sotto una riga passavano, sei carte disegnate no.
+
+Perche' nessuna misura l'aveva presa, ed e' la parte che vale:
+
+- `Protocol.audit` perquisisce i messaggi diretti a una **console**, che hanno
+  un viewer e quindi un metro. La vetrina non ha viewer — e' pubblica per
+  costruzione — e proprio per questo **nessuno le aveva mai chiesto conto di
+  niente**. Il pezzo senza segreti era il pezzo senza guardia.
+- `test_the_table_model_carries_no_seat_secrets` cercava i titoli degli
+  **Asset** e le etichette dei Destini. Le carte di Propp sono un altro mazzo,
+  e nessuno lo aveva aggiunto alla lista.
+
+Adesso: `echoes_played` e' «uscita dal mazzo e non piu' in nessuna mano»
+(oggi una carta lascia la mano solo per essere calata, e il commento dice dove
+andra' aggiornato se un domani ci fosse un altro modo di perderla);
+`Protocol.audit_table` perquisisce la vetrina col metro del tavolo — quello che
+sta in una mano non e' roba del tavolo, di nessun seggio, mai — e gira nella
+sonda dei messaggi accanto alle console; e due test nuovi, di cui **uno pianta
+una fuga apposta** per provare che la guardia morda: una guardia che non ha mai
+detto di no non si sa se funziona.
+
+**E la lezione di D-135 l'ho dovuta imparare due volte.** La prima stesura di
+`audit_table` cercava anche i titoli degli Asset nel testo, e ha consegnato
+**54 fughe tutte false**: «la vetrina nomina "Sale", che e' in mano a Kessa».
+«Sale» e' una carta e insieme una casa — la Gilda del Sale di CHR_03 — e un
+titolo di una parola vive dentro la prosa di mezzo mondo. Esattamente le 658
+fughe false di D-135, tre versioni dopo. Il text-scan e' andato via; resta il
+confronto strutturale, che e' l'unico che sappia distinguere una carta da una
+parola.
+
+Misure: sonda dei messaggi **20.844 perquisiti** (17.509 console + 3.335
+vetrine), **FUGHE 0**; filo ancora **trasparente byte per byte**; playtest
+**FAIL 185 · SUCC 76 · SUCC 123 · DECI 178**, tavolo misto **0/8**; suite
+**296/6121** verde; sims ed export deterministici; 22 documenti validi.
+
+---
+
+## D-143 — Guardare il telefono, e trovarci il terminale
+**implemented in 0.1.105** (chiesto dal committente: «puoi farmi uno screenshot di quello che si vede sugli smartphone?»)
+
+Fino a qui la console era **misurata** ma non **guardata**: la sonda delle
+viste perquisiva i modelli, la sonda dei messaggi contava le fughe, il filo era
+trasparente byte per byte — e nessuno aveva mai visto la pagina su uno schermo
+da telefono. Una domanda del committente e uno screenshot hanno consegnato due
+difetti che nessuna delle tre misure poteva prendere, perche' tutte e tre
+guardavano il *contenuto* e nessuna la *forma*.
+
+**Come si fotografa un telefono senza avere un telefono.** Serviva un browser
+vero contro l'host vero, non un mockup: quindi `cli/run_room.gd`, la stanza
+senza schermo — stesso `ConsoleHost`, stesso `SeatDecider`, stampa un indirizzo
+per seggio e aspetta — e un browser headless con lo schermo di un iPhone che
+apre l'indirizzo, aspetta la domanda e scatta. Vale oltre lo screenshot: da
+adesso si puo' provare la console da un altro apparecchio senza aprire una
+finestra.
+
+**Primo difetto: il pannello del terminale finiva sul telefono.** Il decider
+dice `_say(_board(...))` prima di ogni azione — il tabellone a caratteri, con
+`+-- ATTO 1, ROUND 1 ------------` e i campi separati da `|`. Al terminale
+serve; alla console **no**, perche' lei riceve gia' lo `state` strutturato
+(D-134) e ne disegna sezioni vere. Il risultato era la stessa cosa detta due
+volte, la seconda peggio, in cima allo schermo piu' piccolo che abbiamo: il
+primo schermo intero occupato da un dump ridondante, ripetuto a ogni mossa,
+mentre le sezioni utili stavano sotto la piega.
+
+La correzione e' un contratto di una riga invece di un `if` sul tipo: l'io puo'
+dichiarare `shows_state()`, e chi lo dichiara non riceve il pannello a
+caratteri. `ConsoleIO` lo dichiara; terminale e schermo del tavolo tacciono, e
+il silenzio e' la risposta giusta per loro. **3.600 messaggi in meno su 100
+partite** (17.509 contro 21.109): il traffico che non parte e' anche traffico
+che non puo' sfuggire.
+
+**Secondo difetto: le scelte oltre il bordo.** Le opzioni stanno in un riquadro
+fisso in basso alto al massimo 62vh che scorre per conto suo. Funziona — ma con
+**ventidue** azioni legali il dito che arriva in fondo continua a scorrere la
+pagina sotto, e sembra che le opzioni siano finite. Adesso: `overscroll-behavior:
+contain` perche' lo scorrimento resti dentro il riquadro, due ombre in CSS puro
+(`background-attachment: local` scorre col contenuto e copre l'ombra al bordo —
+compaiono e spariscono da sole, senza JavaScript), e una riga che conta ad alta
+voce: «22 scelte — scorri per vederle tutte».
+
+**E una cosa vista e non toccata**: ventidue opzioni per un'azione *sono* tante,
+su qualunque schermo. Ma quella e' una domanda di design del gioco — quante
+azioni offrire — non un difetto della pagina, e si decide al tavolo, non qui.
+
+La sonda dei messaggi e' stata **riallineata** nello stesso commit: il suo io
+finto ora dichiara `shows_state()` come la console vera, altrimenti
+continuerebbe a perquisire messaggi che non partono piu'. Una misura che conta
+cose immaginarie e' peggio di nessuna misura.
+
+Misure: filo ancora **trasparente byte per byte**; sonda dei messaggi
+**17.509 messaggi, FUGHE 0**; playtest **FAIL 185 · SUCC 76 · SUCC 123 ·
+DECI 178**, tavolo misto **0/8**; suite 294/6117 verde. Gli screenshot del
+prima e del dopo stanno in `docs/img/`, e sono il primo pezzo di questo
+progetto misurato con un occhio invece che con un numero.
+
+---
+
+## D-141 — L'app da scaricare, e le pagine che non erano risorse
+**implemented in 0.1.104** (chiesto dal committente: «l'app Godot e' pronta da scaricare per il computer?»)
+
+No, non lo era: `export_presets.cfg` aveva un preset solo, **Web**. E il web
+non puo' ospitare la stanza — una pagina in un browser non apre porte in
+ascolto — quindi chi fa da host aveva come unica strada scaricare Godot e
+aprire il progetto. Per un committente che sta per sedersi al tavolo con
+iPad e telefoni, quella non e' una strada: e' un ostacolo.
+
+Adesso c'e' il preset **macOS** (il computer del committente, chiesto prima di
+costruire) e il lavoro `desktop` in CI che allega `ECHOES.zip` a ogni run.
+Windows e Linux non sono fatti — un preset per uno, quando serviranno — e
+questo si dichiara invece di lasciarlo intendere.
+
+**La cosa che si sarebbe scoperta al tavolo.** `export_filter="all_resources"`
+impacchetta le risorse che Godot *importa*: `console.html` e `tavolo.html` non
+lo sono. L'app si sarebbe costruita benissimo, avviata benissimo, aperta la
+stanza benissimo — e avrebbe servito una **pagina vuota** ai telefoni, con
+quattro persone sedute e il QR gia' inquadrato. Il preset le include per nome
+(`include_filter="web/*"`), e la CI non si fida del preset: apre il pacchetto,
+trova il `.pck` e cerca i due nomi dentro. Se un domani qualcuno rinomina la
+cartella, il lavoro diventa rosso prima della serata, non durante.
+
+E' la stessa forma di D-140 e di D-137: il difetto che non si vede guardando —
+un bottone dietro un `return`, un QR che sembra un quadrato, un'app che si apre
+e non serve niente — vuole un lettore che non si stanca, non un occhio piu'
+attento.
+
+**Una cicatrice, dal primo giro rosso.** Godot rifiuta di esportare un binario
+universale o arm64 se l'import **ETC2 ASTC** e' spento: su Apple Silicon la GPU
+vuole quel formato, e la verifica arriva prima ancora di scrivere un byte
+(«Cannot export for universal or arm64 if ETC2 ASTC texture format is
+disabled»). Acceso in `project.godot`. Costa qualche versione compressa in piu'
+delle sei tessere in fase di import, e **non** tocca l'export web: le due
+compressioni VRAM del preset Web restano spente, quindi la pagina non ingrassa
+di un byte. Val la pena notarlo perche' e' il genere di vincolo che si scopre
+solo costruendo davvero — l'unica ragione per cui il lavoro `desktop` esiste in
+CI invece di essere un preset scritto e mai eseguito.
+
+**Non firmata**, e il costo si dichiara: firmare e notarizzare richiede un
+certificato Apple che il progetto non ha, quindi al primo avvio macOS la mette
+in quarantena. Le istruzioni della prova danno il comando che funziona sempre
+(`xattr -dr com.apple.quarantine`) invece del tasto destro → *Apri*, che su
+macOS recenti non basta piu'.
+
+Misure: preset e pacchetto verificati dalla CI (le due pagine trovate dentro il
+`.pck`); suite 294/6117 verde, playtest invariato — l'export non tocca il
+motore, e il verbale lo dice invece di ometterlo.
+
+---
+
+## D-140 — Il bottone che viveva dietro un `return`
+**implemented in 0.1.103** (trovato dal committente: «le azioni nell'interfaccia non si vedevano piu'»)
+
+La stanza si apriva, mostrava gli indirizzi e i QR, e **non aveva piu' il
+bottone «Si comincia»**. Non un errore, non un test rosso, nessun avviso: in
+0.1.100, estraendo `_qr_for` per il QR, il blocco che costruiva il bottone e'
+finito *dopo* il `return` della funzione nuova. GDScript non ha detto niente,
+perche' per GDScript non c'e' niente da dire: quel codice e' legale, e' solo
+irraggiungibile.
+
+Vale la pena guardare in faccia perche' nessuna misura l'ha preso. La suite
+prova quello che il codice **fa**: 294 test, 6117 asserzioni, tutti verdi
+mentre la stanza era inutilizzabile. Il playtest gira headless e non passa
+mai per una lobby. La sonda delle viste perquisisce i *modelli*, non i figli
+di un contenitore. Erano tutte misure giuste che guardavano altrove — e la
+riga morta non era in una funzione dimenticata, era la penultima cosa che
+serviva per giocare.
+
+Il rimedio non e' un test in piu' sulla stanza (l'avrebbe presa questa volta,
+e non la prossima): e' `tools/dead_code.py`, che legge tutto il GDScript e
+segnala ogni istruzione che segue un `return`/`continue`/`break` allo stesso
+rientro. Gira nella CI accanto ai validatori. La prima stesura ha consegnato
+**76 fughe, tutte false**: un `return` con l'espressione su piu' righe ha la
+graffa di chiusura allo stesso rientro del `return` stesso. Insegnargli a
+contare le parentesi (saltando stringhe e commenti) ha portato il conto a
+**zero su 139 file**, e rimettendo il file rotto la riga la trova, unica, con
+numero e testo.
+
+Da qui in avanti: quello che l'occhio non vede su una schermata, lo vede un
+lettore che non si stanca. E' la stessa lezione del QR (D-137) — un codice
+sbagliato non sembra sbagliato, sembra un quadrato — applicata al codice
+invece che ai moduli.
+
+Misure: suite 294/6117 verde, playtest FAIL 185 · SUCC 76 · SUCC 123 ·
+DECI 178, tavolo misto 0/8 (invariato: il difetto era nella lobby, non nel
+motore); 22 documenti validi; `dead_code.py` verde su 139 file.
+
+---
+
 ## D-139 — Il peso dell'alleanza al Consiglio
 **implemented in 0.1.102** (chiesto dal committente: «le alleanze dovrebbero pesare e influenzare di piu'»)
 

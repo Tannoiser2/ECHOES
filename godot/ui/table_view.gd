@@ -68,8 +68,8 @@ func _council_lines(model: Dictionary) -> Array:
 		lines.append("%s — %s (propose %s)" % [
 			str(entry["tension"]), str(entry["outcome"]), str(entry["proponent"])
 		])
-	for title in model["echoes_played"]:
-		lines.append("Il mondo ha calato: %s" % str(title))
+	for played in model["echoes_played"]:
+		lines.append("Il mondo ha calato: %s" % str((played as Dictionary)["title"]))
 	return lines
 
 

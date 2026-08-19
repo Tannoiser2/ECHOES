@@ -35,6 +35,12 @@ jobs:
       - name: Drift check - asset manifest
         run: python3 tools/build_manifest.py --check
 
+      # Un blocco finito dopo un `return` non e' un errore per GDScript: e'
+      # silenzio. Il bottone «Si comincia» della stanza e' vissuto una versione
+      # intera dietro un return, e nessun test poteva vederlo (D-140).
+      - name: Codice irraggiungibile nel GDScript
+        run: python3 tools/dead_code.py
+
   godot:
     name: Test headless
     runs-on: ubuntu-latest

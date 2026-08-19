@@ -713,6 +713,140 @@ carte su 48 lavorano; l'Archivio ha già il suo mestiere (restare in
 mano) e il Legame di Sangue aspetta, dichiarato, il pavimento di
 relazione della voce 25.
 
+### 29. ✅ La stanza non aveva più il bottone «Si comincia» — fatta in 0.1.103
+
+`app` · **chiusa** ([D-140](DECISIONS.md#d-140)) · trovata dal committente
+
+«Le azioni nell'interfaccia non si vedevano più.» La stanza si apriva,
+mostrava gli indirizzi e i QR, e non aveva niente da premere: in 0.1.100,
+estraendo `_qr_for`, il blocco del bottone era finito dopo il `return` della
+funzione nuova. Codice legale, mai eseguito, nessun avviso.
+
+Nessuna misura poteva prenderlo: la suite prova quello che il codice *fa*, il
+playtest gira headless e non passa per una lobby, la sonda delle viste
+perquisisce i modelli e non i figli di un contenitore. Il rimedio non è un
+test sulla stanza ma `tools/dead_code.py` nella CI, che legge tutti i `.gd` e
+segnala ogni istruzione irraggiungibile.
+
+**Fatto quando** la stanza si apre e si può cominciare, e un `return` seguito
+da codice fa rossa la CI. ✓
+
+### 30. ✅ La console vista su un telefono vero — fatta in 0.1.105
+
+`app` · **chiusa** ([D-143](DECISIONS.md#d-143)) · nata da una domanda del committente
+
+«Puoi farmi uno screenshot di quello che si vede sugli smartphone?» La console
+era **misurata** ma non **guardata**: la sonda delle viste perquisiva i
+modelli, quella dei messaggi contava le fughe, il filo era trasparente byte per
+byte — e nessuno aveva mai visto la pagina su uno schermo da telefono.
+
+Due difetti, nessuno dei quali le tre misure potevano prendere (guardavano il
+contenuto, non la forma): il tabellone a caratteri del terminale finiva sul
+telefono, ridondante rispetto alle sezioni che la console disegna già dallo
+`state`; e con ventidue azioni legali le ultime stavano sotto il bordo di un
+riquadro che scorre, senza che niente lo dicesse.
+
+Per fotografarlo è nato `cli/run_room.gd`, la stanza senza schermo — che resta
+utile da sola: si prova la console da un altro apparecchio senza aprire una
+finestra.
+
+**Fatto quando** la console è stata guardata su uno schermo da telefono e quello
+che c'era da correggere è corretto. ✓ (17.509 messaggi, 0 fughe; playtest 0/8)
+
+### 31. ✅ Le carte come carte sul telefono, e la vetrina che leggeva le mani — fatta in 0.1.106
+
+`app` · **chiusa** ([D-144](DECISIONS.md#d-144)) · nata da una domanda del committente
+
+«E le carte e i tarocchi? Si vedono?» Sull'app sì, e dal 0.1.59 sono la carta
+stampata (D-101). Sul telefono no: la mano era una fila di etichette — il
+principio rispettato ovunque tranne nel posto che conta di più, perché il
+telefono *è* la mano del giocatore.
+
+Adesso l'host serve `/carta/<mazzo>/<id>.svg` da `PrintSheet.card_svg`, la
+stessa funzione che impagina la fustella: una carta che cambia nei dati cambia
+in tutti e tre i posti insieme.
+
+**E le facce hanno fatto vedere una fuga vera**, presente da 0.1.99: la vetrina
+mostrava come «il mondo ha calato» tutto ciò che il mazzo aveva lasciato —
+comprese le carte del Narratore **ancora in mano** ai seggi. Nessuna misura
+poteva prenderla: la perquisizione guarda i messaggi verso le console, che
+hanno un viewer, e la vetrina non ne ha — il pezzo senza segreti era il pezzo
+senza guardia. Ora ce l'ha (`Protocol.audit_table`), con un test che pianta una
+fuga apposta per provare che morda.
+
+**Fatto quando** la mano sul telefono è fatta di carte, la vetrina mostra solo
+le carte calate, e una guardia lo prova. ✓ (20.844 messaggi perquisiti, 0 fughe)
+
+### 32. ✅ Il tabellone disegnato sulla vetrina, e le carte giocate — fatta in 0.1.107
+
+`app` · **chiusa** ([D-145](DECISIONS.md#d-145)) · nata da una domanda del committente
+
+«Ma la mappa? I token, le pedine e le carte giocate?» Sulla vetrina la mappa era
+raccontata invece che disegnata — una griglia di riquadri — e le pedine e i
+vessilli di D-138 vivevano solo sul canvas di Godot, cioè sull'unico schermo che
+al tavolo nessuno guarda da vicino. Le carte impegnate in Consiglio non c'erano
+affatto.
+
+`board_sheet.gd` non ridisegna niente: rilegge gli stessi piani (`RegionArt`,
+`IconSet`, i colori per ordine di turno) e li scrive in SVG. È la disciplina di
+D-097 estesa a una terza superficie: una forma sola, tre usi — canvas, fustella,
+browser.
+
+Le carte impegnate arrivano dai Consigli **chiusi**, con una guardia che
+impedisce a una seduta ancora aperta di finire in tavola: gli impegni sono
+coperti finché non si rivelano.
+
+**Fatto quando** la vetrina mostra una mappa con le pedine e le carte giocate, e
+nessun impegno ancora coperto. ✓ (20.844 messaggi perquisiti, 0 fughe)
+
+### 33. ✅ Muovere i pezzi dal telefono, e le schede — fatta in 0.1.108
+
+`app` · **chiusa** ([D-146](DECISIONS.md#d-146)) · voluta dal committente
+
+«Come si fa a muovere i pezzi sulla mappa dagli smartphone? Si apre una mini
+mappa? …potresti fare delle schede invece di mettere tutto insieme, e in
+orizzontale si razionalizza meglio.»
+
+Tutte e tre giuste. E la prima aveva già la risposta nei dati: i `subjects`
+arrivavano al telefono da sempre — ogni scelta che riguarda una Regione porta
+con sé quale — e nessuno li guardava; la console ne faceva un bottone con
+scritto «Metti una presenza in Eredan».
+
+Ora la mappa è quella vera (`/mappa.svg`), presa inline per poterla toccare: le
+Regioni offerte si accendono e il dito risponde lì, e quelle scelte spariscono
+dai bottoni. Tre schede (Mappa · Mano · Seggio) con un pallino su quella che ha
+qualcosa. Coricato, il telefono affianca le schede alla domanda invece di
+impilarle.
+
+**Fatto quando** una presenza si mette toccando la Regione, le schede separano
+mappa/mano/seggio, e il telefono coricato non chiede di scorrere. ✓
+
+### 34. ✅ Quanti giocatori, e i bot messi alla prova — fatta in 0.1.109
+
+`app` · `regole` · **chiusa** ([D-147](DECISIONS.md#d-147)) · nata da tre domande del committente
+
+«Si può scegliere il numero di giocatori? O si deve giocare per forza in
+quattro? Funzionano i bot?»
+
+**I seggi sono quattro e non è un'impostazione**: ogni Chronicle dichiara le sue
+quattro case, e domande, relazioni, Destini e proposizioni sono scritti per
+quelle voci. Un tavolo a tre o a cinque è un'altra Chronicle da scrivere.
+
+**Quante di quelle voci siano persone è sempre stato libero** — la riga di
+comando lo sa da 0.0, la stanza lo decide da chi si collega — tranne nel menu
+dell'app, che chiedeva quale seggio prendi e basta. Ora chiede anche chi altro
+gioca da quello schermo.
+
+**«Funzionano i bot?» era senza misura da otto versioni.** Il playtest confronta
+tavoli, dando per scontato che i giocatori giochino; nessuno aveva mai chiesto
+ai bot di battere qualcosa. `run_bot_probe.gd` li mette contro il caso sullo
+stesso mondo: la policy fa meglio in **26 partite su 40**, e soprattutto il caso
+manca il Destino minimo in **20 partite su 40** mentre la policy non lo manca
+mai.
+
+**Fatto quando** il menu chiede quanti giocano, e una misura dice se i bot
+giocano davvero. ✓
+
 ### 28. ✅ Le alleanze devono pesare al Consiglio — fatta in 0.1.102
 
 `regole` · voluta dal committente · **chiusa** ([D-139](DECISIONS.md#d-139))
@@ -780,8 +914,12 @@ pannello del seggio, la mano, le domande del decider.
    posta per le console assenti, la domanda in sospeso riproposta, la
    riconnessione automatica della pagina. E in più (fase 3,
    [D-136](DECISIONS.md#d-136)): le pagine console e tavolo, la stanza
-   dal menu, la diagnosi della rete. Restano, dichiarate: la console di
-   riserva piena, il QR, `web/` negli export impacchettati.
+   dal menu, la diagnosi della rete. Il QR è fatto in 0.1.100
+   ([D-137](DECISIONS.md#d-137)); **`web/` negli export impacchettati** è
+   fatto in 0.1.104 ([D-141](DECISIONS.md#d-141)), insieme all'app macOS da
+   scaricare — senza `include_filter` l'app si costruiva e serviva una
+   pagina vuota ai telefoni. Resta dichiarata: la console di riserva piena
+   (il seggio ripreso dallo schermo grande quando un telefono è perso).
 
 **Fatto quando** una partita si gioca con la mappa sul computer e due
 telefoni come console, le informazioni segrete arrivano solo al loro

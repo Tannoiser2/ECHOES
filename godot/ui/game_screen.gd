@@ -733,7 +733,35 @@ func _menu() -> void:
 			get_tree().change_scene_to_file("res://ui/room_screen.tscn")
 			return
 		var humans: Array = [] if choice >= _seats.size() else [str(_seats[choice])]
+		if not humans.is_empty():
+			humans = await _ask_companions(humans)
 		await _play(humans, chronicle_id, await _ask_seed())
+
+
+## Chi altro gioca da questo schermo (D-147). I seggi di una Chronicle sono
+## sempre quattro — e' il tavolo, non un'impostazione — ma **quanti di quei
+## quattro siano persone** e' sempre stato libero: la riga di comando lo sa fare
+## da 0.0 (`--seats=all`), la stanza lo decide da chi si collega, e l'unico
+## posto che non lo chiedeva era il menu dell'app. Chi non e' nominato qui e'
+## una policy, e le policy giocano davvero (D-147: meglio del caso in 26
+## partite su 40).
+func _ask_companions(taken: Array) -> Array:
+	var humans: Array = taken.duplicate()
+	while humans.size() < _seats.size():
+		var free: Array = []
+		var labels: Array = ["Gli altri li giocano le policy"]
+		for entity_id in _seats:
+			if humans.has(str(entity_id)):
+				continue
+			free.append(str(entity_id))
+			labels.append("Gioca anche %s, da questo schermo" % _entity_name(str(entity_id)))
+		var choice: int = await ask(
+			"Siete in %d. Qualcun altro a questo schermo?" % humans.size(), labels
+		)
+		if choice <= 0:
+			break
+		humans.append(str(free[choice - 1]))
+	return humans
 
 
 func _seats_of(chronicle_id: String) -> Array:
