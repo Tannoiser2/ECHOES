@@ -331,6 +331,68 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-139 — Il peso dell'alleanza al Consiglio
+**implemented in 0.1.102** (chiesto dal committente: «le alleanze dovrebbero pesare e influenzare di piu'»)
+
+Le relazioni fra entita' esistevano e servivano a molto — chi puo' proporre
+insieme a chi, chi eredita, cosa dicono i segni, come si sciolgono i patti —
+ma **nel momento in cui si vota non contavano nulla**: al Consiglio un
+alleato giurato e uno sconosciuto avevano la stessa voce. Adesso no: chi
+sostiene il proponente e gli e' legato porta un peso in piu' sul fronte,
+firmato a verbale («Kessa parla da alleato (+1)»), e la regola sta nella
+Chronicle (`confluence_rules.alliance_weight`), non nel codice.
+
+La forma: **un passo per grado sopra NEUTRAL** (ALLY +1, BOUND +2), **tetto a
+2 per seggio**, **e almeno due carte impegnate**. Il tetto perche' senza, due
+legami stretti deciderebbero il Consiglio da soli e il tavolo diventerebbe una
+questione di amicizie invece che di carte. Le carte perche' un'alleanza che
+aiuta senza costare e' un bonus passivo — si eredita a inizio partita e si
+incassa — mentre un'alleanza che chiede di metterci del proprio e' una scelta
+al tavolo, e quella scelta e' il gioco.
+
+**Tre forme scritte, misurate, e due scartate.** Vale la pena registrarle,
+perche' la seconda e la terza sembrano identiche a leggerle:
+
+| forma | FAIL | tavolo misto |
+|---|---|---|
+| simmetrica (l'alleato spinge, il nemico frena) | 210 | **1/8 bloccato** |
+| solo il legame caldo, gratis | 187 | **1/8 bloccato** |
+| solo il legame caldo, e si paga (2 carte) | 185 | 0/8 |
+
+La prima sembrava la piu' onesta — se l'amicizia pesa, l'inimicizia pesa —
+e la misura ha detto il contrario, per una ragione che si vede solo guardando
+il tavolo di partenza: **CHR_01 ha ostilita' e non ha alleanze**. Un dente
+simmetrico su un mondo asimmetrico pesa da un lato solo; in pratica avevamo
+aggiunto un moltiplicatore all'Oppose, cioe' esattamente la strategia che
+D-098 aveva passato mesi a smontare. Venticinque fallimenti in piu' su 100
+semi, e un seggio che non usciva piu' dal suo livello.
+
+La seconda ha rimesso i fallimenti quasi in banda ma ha lasciato **Kessa dei
+Fuochi bloccata per un solo tiro** (`1 44 5 0` invece di `1 45 4 0`): un
+bonus che arriva senza essere chiesto sposta *tutte* le partite di un
+pelo, e da qualche parte quel pelo cade dalla parte sbagliata. Chiedere due
+carte non ha ammorbidito il dente, l'ha reso **raro e voluto**: pesa quando
+qualcuno ha deciso di far pesare la sua alleanza, non ogni volta che il tavolo
+capita di essere amico.
+
+Un effetto collaterale che val la pena dire: questa e' la seconda cosa —
+dopo le promesse di D-051 — che rende il FORGE verso l'alto una mossa da
+Opportunita' d'azione e non un gesto di cortesia. Un'alleanza adesso e' una
+voce in piu' al Consiglio, se sei disposto a pagarla.
+
+Reversibile: si toglie `alliance_weight` dalla Chronicle e i legami tornano a
+non toccare il voto. Le quattro Chronicle la portano con gli stessi numeri;
+una Chronicle futura puo' avere un Consiglio dove i legami pesano di piu' (o
+per niente) senza toccare una riga di codice.
+
+Misure: playtest **FAIL 185 · SUCC 76 · SUCC 123 · DECI 178**, tavolo misto
+**0/8** (uniforme 3/8, invariato); ere CHR_01 955 anni / 20,2 generazioni /
+24 nomi e CHR_03 1049 / 16,5 / 20 — identiche alla baseline: il dente tocca
+chi vince un Consiglio, non quanto dura una saga. Suite 294/6117 verde,
+sims ed export deterministici, 22 documenti validi.
+
+---
+
 ## D-138 — Pedine e vessilli: i pezzi, non i cerchietti
 **implemented in 0.1.101** (chiesto dal committente: «sulla mappa vorrei token e pedine vere, no cerchietti»)
 

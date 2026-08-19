@@ -713,6 +713,32 @@ carte su 48 lavorano; l'Archivio ha già il suo mestiere (restare in
 mano) e il Legame di Sangue aspetta, dichiarato, il pavimento di
 relazione della voce 25.
 
+### 28. ✅ Le alleanze devono pesare al Consiglio — fatta in 0.1.102
+
+`regole` · voluta dal committente · **chiusa** ([D-139](DECISIONS.md#d-139))
+
+«Le alleanze dovrebbero pesare e influenzare di più.» La domanda è nata
+guardando le relazioni fra entità: servivano già a molto — chi propone con
+chi, chi eredita, cosa dicono i segni, come si sciolgono i patti — ma **nel
+momento del voto non contavano nulla**. Al Consiglio un alleato giurato e
+uno sconosciuto avevano la stessa voce.
+
+Adesso un seggio legato al proponente che lo **sostiene**, e che ha
+**impegnato almeno due carte**, porta un peso in più sul fronte (ALLY +1,
+BOUND +2, tetto 2), firmato a verbale. La regola vive nella Chronicle
+(`confluence_rules.alliance_weight`): una Chronicle può avere un Consiglio
+dove i legami pesano di più, o per niente, senza toccare il codice.
+
+Due forme prima di questa, scritte e misurate e scartate, **entrambe con un
+seggio bloccato su un livello solo**: la simmetrica (il nemico frena quanto
+l'alleato spinge — FAIL 210, perché il tavolo di partenza ha ostilità e non
+ha alleanze) e quella gratis (FAIL 187, Kessa dei Fuochi bloccata per un
+solo tiro). Chiedere due carte non ha ammorbidito il dente: l'ha reso raro e
+voluto.
+
+**Fatto quando** un'alleanza cambia l'esito di un Consiglio, il verbale lo
+dice, e il playtest resta 0/8. ✓ (FAIL 185, 0/8)
+
 ### 27. Il tavolo sullo schermo grande, le console in tasca
 
 `app` · `motore` · milestone **0.6** · voluta dal committente

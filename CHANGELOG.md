@@ -5,6 +5,38 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.102] — Il peso dell'alleanza
+
+Le alleanze pesano al Consiglio ([D-139](docs/DECISIONS.md#d-139)), chieste
+dal committente.
+
+### Added
+
+- **`confluence_rules.alliance_weight`** nelle quattro Chronicle: un seggio
+  legato al proponente che lo **sostiene** e che ha **impegnato almeno due
+  carte** porta un peso in piu' sul fronte — ALLY +1, BOUND +2, mai oltre 2
+  per seggio. Il bonus si firma a verbale: «X parla da alleato (+N)».
+- La regola sta nel dato, non nel codice: togliere `alliance_weight` da una
+  Chronicle riporta il Consiglio a com'era.
+
+### Measured
+
+- Playtest 100 semi (7000): **FAIL 185 · SUCC 76 · SUCC 123 · DECI 178**,
+  tavolo misto **0 su 8** seggi bloccati (baseline 185 · 78 · 123 · 176).
+- Sonda d'era invariata: CHR_01 955 anni / 20,2 generazioni / 24 nomi,
+  CHR_03 1049 / 16,5 / 20.
+- Suite 294 test / 6117 asserzioni verde; sims ed export deterministici;
+  22 documenti validi contro `/schema`.
+
+### Notes
+
+- Due forme scritte e scartate prima di questa, entrambe con **un seggio
+  bloccato su un livello solo**: la simmetrica (il nemico frena quanto
+  l'alleato spinge — FAIL 210, perche' il tavolo di partenza ha ostilita' e
+  non ha alleanze) e quella gratis (FAIL 187). Il verbale le registra.
+
+---
+
 ## [0.1.101] — Pedine e vessilli
 
 I pezzi al posto dei cerchietti ([D-138](docs/DECISIONS.md#d-138)),
