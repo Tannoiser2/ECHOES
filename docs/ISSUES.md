@@ -742,19 +742,20 @@ pannello del seggio, la mano, le domande del decider.
    l'ispezione (la C della seduta), la console col `say`, il cavalletto
    `dev_split.tscn`, e la sonda delle viste che perquisisce i modelli
    serializzati. Playtest identico byte per byte.
-2. **Il trasporto**: una partita, più dispositivi. Il computer ospita la
-   sessione (il motore resta uno solo, deterministico com'è); i telefoni
-   sono `io` remoti — ogni `choose` di un seggio umano viaggia verso la
-   sua console e torna con l'indice scelto. **Deciso dal committente:
-   stanza locale, stessa rete** — il computer fa da host, i telefoni si
-   collegano a lui, nessun servizio esterno da mantenere.
-3. **La disciplina dei segreti sul filo**: a una console arriva solo ciò
-   che il suo seggio ha diritto di leggere — la stessa regola dei pixel
-   (§11.1), applicata ai messaggi. Un filtro provabile in headless, come
-   la sonda della visibilità.
-4. **Il rientro**: un telefono che cade o si blocca non deve rompere la
-   partita — la console si riaggancia e il `choose` in sospeso si
-   ripropone (il salvataggio a ogni soglia c'è già, D-052).
+2. ✅ **Il trasporto** — fatto in 0.1.98 ([D-135](DECISIONS.md#d-135)):
+   l'host WebSocket coi token, l'`io` remoto a segnali, l'instradamento
+   per seggio nel decider. Misurato nel modo più duro: la stessa partita
+   con due console vere è **identica byte per byte** a quella senza rete.
+3. ✅ **La disciplina dei segreti sul filo** — fatta in 0.1.98: la
+   perquisizione è nel protocollo, strutturale sulle mani (le carte
+   hanno copie: il segreto è *quali copie tieni*, non il titolo) —
+   su 100 partite, **21.109 messaggi e zero fughe**.
+4. ✅ **Il rientro** — fatto in 0.1.98/0.1.99: il token nel telefono, la
+   posta per le console assenti, la domanda in sospeso riproposta, la
+   riconnessione automatica della pagina. E in più (fase 3,
+   [D-136](DECISIONS.md#d-136)): le pagine console e tavolo, la stanza
+   dal menu, la diagnosi della rete. Restano, dichiarate: la console di
+   riserva piena, il QR, `web/` negli export impacchettati.
 
 **Fatto quando** una partita si gioca con la mappa sul computer e due
 telefoni come console, le informazioni segrete arrivano solo al loro

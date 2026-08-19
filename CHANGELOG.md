@@ -5,6 +5,61 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.99] — Il telefono vero e la stanza
+
+La fase 3 della voce 27 ([D-136](docs/DECISIONS.md#d-136)): le pagine,
+il feed della vetrina, la stanza — pronti per la prova computer +
+iPad + telefoni (istruzioni in SEDUTA_TAVOLO §9).
+
+### Added
+
+- **`web/console.html`**: il telefono — pannello, mano, Destino,
+  la domanda coi bottoni, rientro col token e riconnessione.
+- **`web/tavolo.html`**: la vetrina per l'iPad (`/tavolo`), senza
+  token (il tavolo è pubblico per costruzione), aggiornata a ogni
+  cambiamento del mondo; il tocco sulla Regione apre i segni.
+- **La stanza** (`room_screen.tscn`, dal menu): indirizzi per seggio,
+  «Rigenera il codice», e al via chi è collegato gioca dal telefono;
+  la striscia di diagnosi dice chi «non risponde da Ns».
+
+### Measured
+
+- Sonda del filo estesa: vetrina 43 aggiornamenti, pagine servite,
+  partita identica byte per byte. Suite e playtest intatti.
+
+---
+
+## [0.1.98] — Il filo in casa
+
+La fase 2 della voce 27 ([D-135](docs/DECISIONS.md#d-135)): il
+trasporto, costruito perché non possa mentire.
+
+### Added
+
+- **L'instradamento per seggio** nel SeatDecider (`ios`): l'avviso del
+  Destino finisce sul telefono giusto e su nessun altro.
+- **Il protocollo** `state/say/choose/chosen` con la perquisizione
+  incorporata — strutturale sulle mani (le carte hanno copie: il
+  segreto è *quali copie tieni*, non il titolo), text-scan sui gradini
+  del Destino altrui.
+- **`ConsoleIO`** (l'io remoto a segnali) e **`ConsoleHost`**
+  (WebSocket, token, posta, rientro con domanda riproposta).
+
+### Fixed
+
+- La formula del copione non può più «ripensarci per sempre» (parità
+  costante sul passo due → hash a bit alti); la sonda stampa il
+  progresso partita per partita.
+
+### Measured
+
+- **Sonda del filo**: partita con due console WebSocket vere identica
+  byte per byte (249 messaggi, 82 risposte). **Sonda dei messaggi**:
+  100 partite, **21.109 messaggi perquisiti, FUGHE: 0**. Suite
+  290/5953 verde, playtest identico.
+
+---
+
 ## [0.1.97] — Le due viste dallo stesso mondo
 
 La fase 1 della voce 27 ([D-134](docs/DECISIONS.md#d-134)), senza un

@@ -331,6 +331,87 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-136 — Il telefono vero e la stanza (voce 27, fase 3 + rifiniture)
+**implemented in 0.1.99** (per la prova computer + iPad + telefoni; le istruzioni in SEDUTA_TAVOLO §9)
+
+La fase «da toccare»: le pagine, il feed della vetrina, la stanza.
+
+- **`web/console.html`** — il telefono: `http://<ip>:8123/?t=TOKEN`.
+  Pannello, mano, la scala del Destino coi gradini, gli avvisi, la
+  domanda coi bottoni (compreso «Decidi tu», che rimette la singola
+  scelta alla policy). Il token vive in localStorage: la pagina si
+  ricollega da sola e la domanda in sospeso viene riproposta. Ping ogni
+  8 secondi.
+- **`web/tavolo.html`** — la vetrina per l'iPad in Safari (`/tavolo`):
+  mappa a schede, domande (le coperte mostrano il dorso), Consigli,
+  verbale che scorre. La C della seduta anche sul vetro: il tocco su una
+  Regione apre i segni, niente decide. Nessun token: il tavolo è
+  pubblico per costruzione (D-134), e `hello {table:true}` riceve il
+  `TableModel` a ogni cambiamento del mondo.
+- **Il mini HTTP da stanza** (`serve_pages`): serve solo i suoi due
+  file, con la porta del filo già scritta dentro; niente filesystem
+  esposto.
+- **La stanza** (`room_screen.tscn`, dal menu «Apro la stanza — console
+  sui telefoni»): sceglie l'anno scritto, mostra per ogni seggio
+  l'indirizzo con lo stato e «Rigenera il codice» (il reissue del B); al
+  via **chi è collegato gioca dal telefono, gli altri seggi sono
+  policy** — la connessione decide, senza altre domande. Durante la
+  partita lo schermo è la vetrina con la striscia di diagnosi.
+- **La diagnosi onesta della rete** (la rifinitura promessa in §6 del
+  dossier): `silence_of` traduce i ping in «la console di X non risponde
+  da Ns» sulla striscia della stanza.
+
+Restano dichiarati per dopo la prova: la **console di riserva piena**
+(rispondere dallo schermo grande su dichiarazione esplicita, col costo di
+segretezza detto ad alta voce), il **QR** al posto dell'indirizzo scritto,
+e l'inclusione di `web/` negli export impacchettati (dalla cartella di
+progetto funziona già). Misure: la sonda del filo estesa — vetrina
+aggiornata 43 volte, pagine servite con la porta giusta, partita ancora
+**identica byte per byte**; suite e playtest intatti.
+
+---
+
+## D-135 — Il filo in casa (voce 27, fase 2)
+**implemented in 0.1.98** (seduta sul tavolo, risposta D — la fase 2 dopo le viste)
+
+Il trasporto, costruito perché non possa mentire:
+
+- **L'instradamento per seggio** (`ios` nel SeatDecider): ogni ingresso
+  pubblico dichiara a chi sta parlando prima di dire o chiedere — l'avviso
+  del Destino finisce sul telefono giusto e su nessun altro; `io` resta il
+  ripiego condiviso (terminale, hotseat, riserva).
+- **Il protocollo** (`state/say/choose/chosen`): l'orologio del mondo su
+  ogni messaggio dell'host, l'`ask_id` che scarta le risposte stantie, la
+  domanda in sospeso leggibile per il rientro. **La perquisizione è nel
+  protocollo** (`audit`), ed è **strutturale** dove deve esserlo: le carte
+  esistono in copie e il titolo non è un segreto — la prima forma
+  text-scan ha consegnato 658 «fughe» tutte false («Sale» è anche la
+  Compagnia, la Carovana scartata a verbale non rivela la copia del
+  vicino). Ciò che è segreto è *quali copie hai in mano*: la mano dello
+  `state` deve essere esattamente quella del seggio, lo `state` deve
+  portare il suo nome, la domanda coperta resta un dorso. I gradini del
+  Destino altrui restano text-scan: frasi d'autore, uniche.
+- **`ConsoleIO`** — l'io remoto che non sa cosa sia un socket: parla a
+  segnali, stato fresco prima di ogni domanda; **`ConsoleHost`** —
+  TCPServer+WebSocketPeer, accoppiamento a token (chi inquadra il codice
+  di un seggio *è* quel seggio), posta per le console assenti, rientro con
+  stato fresco e domanda riproposta.
+- **L'io copione** e la console simulata condividono una formula pura —
+  e la formula ha la sua cicatrice a verbale: la prima aveva parità
+  costante quando il numero di domanda avanza di due, che è il passo del
+  ciclo «La fai lo stesso?» — un copione poteva ripensarci per sempre, e
+  la sonda ci è rimasta dentro due ore. L'hash a bit alti l'ha guarita,
+  e la sonda ora stampa il progresso partita per partita.
+
+Le misure del «fatto quando», entrambe piene: **la sonda del filo** — la
+stessa partita senza rete e con due console WebSocket vere su localhost
+(249 messaggi, 82 risposte) è **identica byte per byte**, salvataggio e
+verbale; **la sonda dei messaggi** — 100 partite a tavolo misto, **21.109
+messaggi perquisiti, FUGHE: 0**. Sul filo di ogni console viaggia solo il
+suo seggio. Suite 290/5953 verde, playtest identico.
+
+---
+
 ## D-134 — Le due viste dallo stesso mondo (voce 27, fase 1)
 **implemented in 0.1.97** (seduta sul tavolo: A pagina dall'host, B QR+token, C vetrina+ispezione, D fasi 1→4)
 

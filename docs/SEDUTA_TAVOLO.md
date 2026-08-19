@@ -171,8 +171,14 @@ vetrina con l'ispezione, la console con il `say`, il cavalletto
 `dev_split.tscn`, e la sonda delle viste che perquisisce i modelli
 serializzati. Playtest identico byte per byte.
 
-**Le fasi 2 e 3 sono eseguite** (il filo, il telefono vero e la
-stanza): il verbale con le misure complete è in D-135/D-136.
+**Le fasi 2 e 3 sono eseguite** (0.1.98/0.1.99,
+[D-135](DECISIONS.md#d-135)/[D-136](DECISIONS.md#d-136)): il filo — la
+stessa partita con due console WebSocket vere è **identica byte per
+byte** a quella senza rete, e su 100 partite la perquisizione ha
+passato **21.109 messaggi con zero fughe** — e il telefono vero: le
+pagine console e tavolo, la stanza dal menu, la diagnosi della rete.
+Restano, dichiarate: la console di riserva piena, il QR, l'inclusione
+di `web/` negli export impacchettati.
 
 ## 9. La prova (computer + iPad + telefoni)
 
