@@ -5,6 +5,58 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.131] — La selva maledetta ha una causa
+
+Correzione al buco dichiarato in D-163 ([D-164](docs/DECISIONS.md#d-164)): la
+selva maledetta era contenuto scritto e **mai raggiunto**.
+
+### Fixed
+
+- **La maledizione ha una causa**: *La Partenza* (812) e *I Fuochi Fuori* (1640)
+  fanno diventare selva il bosco della Regione a fuoco. **Tre selve in venti
+  partite**, contro zero.
+
+### Changed — e due strade sbagliate, per il verbale
+
+Il primo tentativo era **una carta nuova**, e ha rotto tre cose insieme:
+
+1. **il mazzo si rimescola** — il costruttore lo dice da sempre, e i **tre piani
+   di regressione** sono saltati tutti e tre: non per un difetto, ma perche'
+   l'anno scritto non era piu' lo stesso anno;
+2. **l'equilibrio per famiglia** — sei carte ROTTURA per saga, ne avevo messe
+   otto: il mix drammatico e' progettato, non accumulato;
+3. **due carte, un disegno solo** — stesso `art_prompt_key`, e c'e' un test che
+   lo vieta.
+
+Agganciarla a carte che esistono gia' e' meglio su ogni fronte: **nessun
+rimescolo, nessun equilibrio rotto, nessun piano toccato**, e una selva in piu'.
+
+**La regola che ne esce:** quando serve una causa nuova per un effetto nuovo, si
+guarda **prima** se una carta esistente sta gia' raccontando quel fatto. Un
+mazzo e' un equilibrio, non un elenco.
+
+### Removed
+
+- **`TGR_CURSED_WOOD_COUNCIL`**: la selva che faceva partire **ogni** Consiglio
+  col mondo contro. L'avevo aggiunta io e **non era nel progetto** — la seduta
+  diceva «chi ha presenza li' perde una carta», che e' una morsa **locale**. Una
+  penalita' mondiale da un fatto locale e' un dente sbagliato, e costava tre
+  punti.
+
+### Measured
+
+Playtest **FAIL 207 · SUCC 77 · SUCC 112 · DECI 189**, mediana **6**, tavolo
+misto **0 su 8**. Suite **334 test / 6005 asserzioni** verde, sims
+deterministiche.
+
+**Il trend, di nuovo:** i Consigli falliti dall'inizio della strada C sono
+**185 → 191 → 196 → 203 → 201 → 207**, cioe' **+22**. Lo 0/8 regge da undici
+modifiche e la banda dei Consigli e' rispettata, ma ventidue punti non sono
+rumore: **prima del fiume, del sito antico e della palude va deciso se 207 e' il
+numero che vogliamo.** E' una domanda di gusto, e va al committente.
+
+---
+
 ## [0.1.130] — La foresta
 
 Passo 5 del catalogo ([D-163](docs/DECISIONS.md#d-163)): il primo **luogo del

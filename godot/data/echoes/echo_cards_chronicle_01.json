@@ -904,6 +904,22 @@
               "delta": 1
             }
           }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "SET_STRUCTURE_GRADE",
+            "target": {
+              "kind": "region",
+              "id": "$region_focus"
+            },
+            "payload": {
+              "structure_type": "STR_FOREST",
+              "grade": 3,
+              "optional": true
+            },
+            "note": "D-164: quando se ne vanno tutti, quello che resta intorno smette di essere un bosco. Nessuno lo ha maledetto — e' che non lo cura piu' nessuno."
+          }
         }
       ],
       "forces_confluence_on": null,

@@ -314,6 +314,22 @@
               "entity_id": null
             }
           }
+        },
+        {
+          "kind": "EFFECT",
+          "effect": {
+            "type": "SET_STRUCTURE_GRADE",
+            "target": {
+              "kind": "region",
+              "id": "$region_focus"
+            },
+            "payload": {
+              "structure_type": "STR_FOREST",
+              "grade": 3,
+              "optional": true
+            },
+            "note": "D-164: i fuochi fuori dalle mura bruciano quello che trovano, e quello che trovano e' il bosco. Chi ci entra, da qui in avanti, torna con meno."
+          }
         }
       ],
       "forces_confluence_on": null,

@@ -10,6 +10,68 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-164 — La selva maledetta ha una causa, e due strade sbagliate per arrivarci
+**implemented in 0.1.131** (correzione al buco dichiarato in D-163)
+
+D-163 chiudeva dichiarando un buco: la selva maledetta era **contenuto scritto e
+non raggiunto** — zero in venti Chronicle — e le mancava una carta del Narratore
+che la causasse. Questa e' quella carta, e ci sono voluti due tentativi
+sbagliati per capire che non doveva essere una carta.
+
+**Primo tentativo: scrivere una carta nuova.** *Quello che si Taglia*, famiglia
+ROTTURA, funzione VIOLAZIONE, una per linea. Funzionava — due selve in venti
+partite — e ha rotto **tre cose insieme**:
+
+1. **Il mazzo si rimescola.** Il costruttore del mazzo lo dice da sempre, e io
+   l'avevo letto: «la composizione del mazzo di un anno scritto cambierebbe a
+   ogni carta aggiunta, e con lei il mescolamento e la partita». Aggiungendo una
+   carta, i **tre piani di regressione** sono saltati tutti e tre — non per un
+   difetto, ma perche' l'anno scritto non era piu' lo stesso anno.
+2. **L'equilibrio per famiglia.** `test_echo_grammar` pretende un numero fisso di
+   carte per famiglia drammatica per saga: sei per ROTTURA, e ne avevo messe
+   otto. Il mix drammatico di un atto e' progettato, non accumulato.
+3. **Due carte, un disegno solo.** Avevo dato lo stesso `art_prompt_key` a
+   tutte e due — e c'e' un test che lo vieta, giustamente.
+
+**Secondo tentativo, e quello giusto: agganciarla a carte che esistono gia'.**
+*La Partenza* nell'812 e *I Fuochi Fuori* nel 1640. Le due carte parlano gia' di
+gente che se ne va e di fuochi accesi fuori dalle mura: il bosco che smette di
+essere un bosco e' quello che succede intorno, e non serviva una carta per
+dirlo — serviva una riga in fondo a una carta che lo stava gia' dicendo.
+
+Meglio su ogni fronte: **tre selve in venti partite** (contro due), **nessun
+rimescolo**, **nessun equilibrio rotto**, **nessun piano di regressione toccato**.
+
+**La regola che ne esce, e che vale per tutto il resto del catalogo:** quando
+serve una causa nuova per un effetto nuovo, si guarda **prima** se una carta
+esistente sta gia' raccontando quel fatto. Un mazzo e' un equilibrio, non un
+elenco: aggiungerci qualcosa costa piu' di quanto sembri, e quasi sempre la
+frase che serve e' gia' scritta da qualche parte.
+
+**E una regola tolta.** `TGR_CURSED_WOOD_COUNCIL` — la selva che fa partire
+**ogni** Consiglio col mondo contro — l'avevo scritta io, e **non era nel
+progetto**: la seduta diceva «chi ha presenza li' perde una carta», che e' una
+morsa **locale**. Una penalita' mondiale che nasce da un fatto locale e' un
+dente sbagliato, e costava tre punti di fallimenti. Tolta. Resta la morsa
+locale, che e' quella scritta.
+
+**Misure.** Playtest **FAIL 207 · SUCC 77 · SUCC 112 · DECI 189**, Consigli
+mediana **6**, tavolo misto **0 su 8**, uniforme **2 su 8**. Suite **334 test /
+6005 asserzioni** verde; `run_sims.sh` identico su due giri; `dead_code.py`
+pulito su 151 file; job «Dati e schemi» verde.
+
+**Il trend, dichiarato di nuovo perche' e' cresciuto ancora.** I Consigli
+falliti da quando e' cominciata la strada C: **185 → 191 → 196 → 203 → 201 →
+207**. Sono **ventidue punti** sopra il punto di partenza. Il vincolo di casa e'
+0/8 e regge da undici modifiche di fila, la banda dei Consigli e' rispettata
+(mediana 6), e la causa e' nota e ogni volta la stessa: **il mondo ha piu' cose
+che pesano**, e ogni cosa che pesa da' a qualcuno una ragione in piu' per dire
+di no. Ma ventidue punti non sono rumore, e prima di aggiungere il fiume, il
+sito antico e la palude **va deciso se 207 e' il numero che vogliamo** — e' una
+domanda di gusto, non di misura, e va al committente.
+
+---
+
 ## D-163 — La foresta: il primo luogo che non e' di nessuno
 **implemented in 0.1.130** (§8.6 passo 5 della [seduta sulla terra](SEDUTA_TERRA.md))
 
