@@ -1181,7 +1181,7 @@ in [D-152](DECISIONS.md#d-152).
 rivendicazioni morte sono scese sotto la meta', e la mappa a fine anno e'
 diversa da quella di inizio restando **FAIL ~180 · 0/8**.
 
-### 38. La Vittoria della Cenere ha una porta sola
+### 38. ✅ La Vittoria della Cenere ha una porta sola — fatta in 0.1.122
 
 `contenuto` · nata dalla misura respinta di [D-152](DECISIONS.md#d-152)
 
@@ -1201,6 +1201,15 @@ taratura.
 
 **Fatto quando** la nuova clausola esiste e, con la soglia a 1, Kessa resta
 sotto i dieci Trionfi su cinquanta con almeno dieci Minimi.
+
+**Fatta** ([D-156](DECISIONS.md#d-156)). Sedici clausole candidate misurate su 40
+Chronicle prima di sceglierne una: sette valevano il **100%** — fra cui
+`control_count >= 1`, che e' la ragione per cui abbassare la soglia le regalava
+la Vittoria — e l'unica davvero contesa era **la veglia sulla montagna, al 45%**.
+La Vittoria adesso e' «**Chi scava lo dicono loro**» e chiede la veglia; il
+controllo di due Regioni e' **salito al Trionfo**, dove il suo 12% e' una virtu'
+invece che un muro. Kessa passa da **1/44/5/0** a **0/18/31/1**, tavolo misto
+**0/8**, e il gioco intero supera il Minimo il **54%** invece del 48%.
 
 ---
 
@@ -1271,7 +1280,7 @@ interfacce. **Va disegnata in una seduta prima di essere scritta.**
 **Fatto quando** una delle due e' stata percorsa e misurata: le pedine mosse per
 scelta salgono ben sopra una a partita, e il playtest resta **FAIL ~180 · 0/8**.
 
-### 38bis. Nota di metodo: il vincolo 0/8 lo fa rispettare il seggio piu' fragile
+### 38bis. ✅ Nota di metodo: il vincolo 0/8 lo fa rispettare il seggio piu' fragile — chiusa in 0.1.122
 
 `debito` · da [D-154](DECISIONS.md#d-154)
 
@@ -1282,6 +1291,11 @@ Vittoria ha una porta sola, quindi non assorbe nessun cambiamento.
 Finche' resta cosi', **qualunque modifica alle regole del Consiglio rischia di
 essere respinta da Kessa e non dal proprio merito**. ISSUES 38 non e' una voce
 fra le altre: e' la porta da aprire prima di provare altre leve.
+
+**Aperta in 0.1.122**, e la nota resta a verbale per la prossima volta: quando
+una misura viene respinta da **un solo seggio** e per **una sola partita**, la
+domanda giusta non e' «la regola e' sbagliata?» ma «quel seggio riesce ad
+assorbire qualcosa?».
 
 ---
 

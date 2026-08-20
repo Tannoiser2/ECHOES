@@ -331,6 +331,96 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-156 — La porta sola della Cenere: una Vittoria che dice cosa vuole
+**implemented in 0.1.122** (ISSUES 38, chiusa · chiesta dal committente prima della strada C)
+
+D-154 aveva concluso che il vincolo di casa **0 su 8** lo stava facendo
+rispettare il seggio piu' fragile del gioco: due varianti del peso della terra
+sono state respinte da Kessa e non dal proprio merito, con **una partita** di
+differenza. La causa era ISSUES 38 — la sua Vittoria aveva una porta sola. Il
+committente ha chiesto di aprirla prima di tutto il resto.
+
+**Prima ho misurato le porte, invece di sceglierne una a naso.** Sedici clausole
+candidate, valutate a fine anno su **40 Chronicle** di CHR_03:
+
+| tenuta | clausola |
+|---|---|
+| **100%** | le gallerie non sono state murate · la Reliquia non e' stata sepolta · hanno fatto una Scoperta · la montagna non e' stata svuotata · il patto col Sale regge · presenza ≥2 sulla montagna · **`control_count >= 1`** |
+| 88% | la Reliquia resta calda (TEN_RELIC ≥ 3) |
+| 70% | la Cenere sale (TEN_ASH ≥ 3) |
+| **45%** | **la veglia sulla montagna e' affidata a loro** (`ash_watch`) |
+| **12%** | **`control_count >= 2`** — la porta di allora |
+| 10% | la Reliquia e' stata mostrata |
+| **0%** | col Vetro non si e' arrivati alla rottura |
+
+Il numero che spiega tutto: **`control_count >= 1` vale il 100%**. Ecco perche'
+in D-154 abbassare la soglia le regalava la Vittoria — le sue due clausole
+diventavano vere **tutte e due sempre**, e Kessa passava a zero Minimi e trenta
+Trionfi su cinquanta. Non era una soglia sbagliata: era una Vittoria fatta di
+due decorazioni.
+
+**E il suo Destino non diceva quello che voleva.** La descrizione e' netta — *«I
+Signori della Cenere non discutono di reliquie: discutono di **chi decide dove
+si scava**. Vogliono che la risposta sia scritta e sia loro»* — e la Vittoria
+chiedeva «controllo di almeno 2 Regioni», che e' una frase da gioco di
+conquista e non da questa casa.
+
+**La riscrittura**, con l'unica clausola davvero contesa portata dove serve:
+
+| gradino | prima | adesso |
+|---|---|---|
+| Minimo | presenza ≥2 sulla montagna | *invariato* |
+| **Vittoria** | «Tengono la montagna, e non solo quella»: control ≥2 · gallerie non murate | **«Chi scava lo dicono loro»**: la montagna e' ancora loro (control ≥1) · **e la veglia e' affidata a loro, per atto e non per abitudine** · e le gallerie non sono state murate |
+| **Trionfo** | «E la veglia sulla montagna e' loro»: `ash_watch` · patto col Sale · Reliquia non sepolta · TEN_ASH ≥3 · TEN_RELIC ≥3 | **«E non solo quella»**: **il registro della montagna copre due Regioni, non una** (control ≥2) · le altre quattro invariate |
+
+E' lo stesso principio scritto in D-152 e finalmente applicato per intero: **la
+Vittoria chiede di tenere quello che si ha, il Trionfo chiede di crescere.** La
+clausola sul controllo non e' stata cancellata — e' salita di un gradino, dove
+il suo 12% e' una virtu' invece che un muro.
+
+**Cosa ha fatto, sul seggio:**
+
+| Kessa dei Fuochi, 50 partite | NONE | MINIMO | VITTORIA | TRIONFO |
+|---|---|---|---|---|
+| prima | 1 | **44** | 5 | 0 |
+| adesso | 0 | 18 | **31** | 1 |
+
+ISSUES 38 chiedeva «sotto i dieci Trionfi su cinquanta con almeno dieci
+Minimi»: **1 Trionfo e 18 Minimi**. E il tavolo misto resta **0 su 8**.
+
+**Il quadro generale si e' mosso con lei.** Sessanta Chronicle: supera il Minimo
+**48% → 54%**, VITTORIA 43% → **48%**, TRIONFO 5% → **6%**. Non e' solo Kessa
+che si sblocca: un seggio che finalmente insegue qualcosa cambia i Consigli di
+tutti.
+
+**Il prezzo, dichiarato:** i Consigli falliti passano da **177 a 191**, e il
+tavolo uniforme da 2 a 3 seggi bloccati. La ragione e' che la Cenere adesso
+**si batte** per la veglia — la policy legge le clausole del proprio Destino per
+decidere come votare — e un tavolo dove una casa in piu' ha qualcosa da
+difendere e' un tavolo che litiga di piu'. Il vincolo di casa (0/8) regge e la
+mediana dei Consigli non si muove (6); il numero e' comunque sopra la banda
+recente e resta a verbale come tale.
+
+**Una lezione di metodo, presa sul posto.** Le frequenze misurate qui sopra
+valgono **sotto il Destino di prima**. `ash_watch` valeva il 45% quando nessuno
+lo cercava; da quando e' una clausola di Vittoria, la policy lo insegue e la sua
+tenuta sale al **63%**. Una clausola diventa piu' facile *nel momento in cui
+diventa un obiettivo*: la misura preventiva dice quali porte esistono, non quanto
+saranno larghe dopo.
+
+**E una cosa trovata per strada:** «col Vetro non si e' arrivati alla rottura»
+vale **0% su 40 partite**. La Cenere e l'Ordine del Vetro partono NEMICI e non
+risalgono **mai**. E' la terza volta che la stessa cosa si presenta da una porta
+diversa (D-139, D-151): le relazioni non si muovono, e ogni clausola che
+dipende da un altro e' irraggiungibile con questi giocatori.
+
+Misure: suite **319 test / 5959 asserzioni** verde; playtest **FAIL 191 · SUCC
+69 · SUCC 116 · DECI 190**, tavolo misto **0 su 8**; gradini **54%** sopra il
+Minimo. **ISSUES 38 e 38bis chiuse**, e la strada C della
+[seduta sulla terra](SEDUTA_TERRA.md) e' sbloccata.
+
+---
+
 ## D-155 — Le carte parlano: cosa fa una carta, prima di calarla
 **implemented in 0.1.121** (difetto trovato dal committente giocando)
 

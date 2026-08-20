@@ -5,6 +5,57 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.122] — La porta sola della Cenere
+
+ISSUES 38, che il committente ha chiesto di chiudere prima della strada C
+([D-156](docs/DECISIONS.md#d-156)).
+
+### Measured (prima di scrivere)
+
+Sedici clausole candidate valutate a fine anno su **40 Chronicle** di CHR_03:
+sette valgono il **100%** — fra cui **`control_count >= 1`**, che spiega perche'
+in D-154 abbassare la soglia regalava a Kessa la Vittoria — mentre l'unica
+davvero contesa era **`ash_watch`, la veglia sulla montagna, al 45%**.
+`control_count >= 2` valeva il **12%**.
+
+### Changed
+
+- **`DST_CENERE` riscritto.** La Vittoria era «Tengono la montagna, e non solo
+  quella» (control ≥2 · gallerie non murate, cioe' **una porta e una
+  decorazione**) e non diceva quello che questa casa vuole. Adesso e' **«Chi
+  scava lo dicono loro»**: la montagna e' ancora loro · **e la veglia e'
+  affidata a loro, per atto e non per abitudine** · e le gallerie non sono state
+  murate.
+- **Il controllo di due Regioni e' salito al Trionfo** — «E non solo quella» —
+  dove il suo 12% e' una virtu' invece che un muro. E' il principio di D-152
+  applicato per intero: **la Vittoria chiede di tenere, il Trionfo di crescere**.
+
+| Kessa dei Fuochi, 50 partite | NONE | MINIMO | VITTORIA | TRIONFO |
+|---|---|---|---|---|
+| prima | 1 | **44** | 5 | 0 |
+| adesso | 0 | 18 | **31** | 1 |
+
+### Measured (dopo)
+
+- Tavolo misto **0 su 8**. Sessanta Chronicle: supera il Minimo **48% → 54%**,
+  VITTORIA 43% → **48%**, TRIONFO 5% → **6%**.
+- **Il prezzo, dichiarato:** Consigli falliti **177 → 191**, tavolo uniforme da
+  2 a 3 seggi bloccati. La Cenere adesso **si batte** per la veglia, e un tavolo
+  dove una casa in piu' ha qualcosa da difendere litiga di piu'.
+- **Lezione di metodo:** `ash_watch` valeva il 45% quando nessuno lo cercava, e
+  vale il **63%** da quando e' una clausola di Vittoria. Una clausola diventa
+  piu' facile nel momento in cui diventa un obiettivo — la misura preventiva
+  dice quali porte esistono, non quanto saranno larghe dopo.
+- **Trovato per strada:** «col Vetro non si e' arrivati alla rottura» vale
+  **0% su 40 partite**. Cenere e Ordine del Vetro partono NEMICI e non risalgono
+  mai: terza volta che le relazioni ferme si presentano da una porta diversa
+  (D-139, D-151).
+
+**ISSUES 38 e 38bis chiuse**, e la strada C della seduta sulla terra e'
+sbloccata.
+
+---
+
 ## [0.1.121] — Le carte parlano
 
 Difetto trovato dal committente giocando ([D-155](docs/DECISIONS.md#d-155)):

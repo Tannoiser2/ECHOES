@@ -210,16 +210,81 @@ Le ragioni, in ordine di peso:
 
 ---
 
-## 6. Le domande secche
+## 6. Le domande secche — **risposte dal committente**
 
-1. **C, A, o B?** (raccomandata: **C**, con **A** come primo passo)
-2. **ISSUES 38 prima?** (raccomandato: **sì** — altrimenti misuriamo contro un
-   vincolo rotto)
-3. **La scala dei gradi**: tre (torre → castello → reggia) o due?
-4. **La rovina è automatica** — nessuna presenza a fine anno, e la struttura
-   scende di un grado — **o serve che qualcuno la causi?**
-5. **Una struttura dà il controllo della Regione**, o lo dà solo *insieme* alla
-   presenza?
+> «C e prima risolvi la issue 38, i tre gradi vanno bene, ma il cambio può
+> dipendere da come vanno le cose, se la reggia appartiene all'entità che ha
+> perso va in rovina, se invece trionfa diventa una reggia. La struttura da sola
+> potrebbe non essere sufficiente per il controllo, se una entità ha un castello
+> (che magari vale 3) ma un'altra ha un esercito che occupa la regione (che vale
+> 4) la regione viene controllata da chi ha di più. Inoltre il castello è solo
+> una delle strutture possibili, possono esserci foreste che spariscono o
+> diventano maledette, passi di montagna che crollano, villaggi che nascono o si
+> trasformano in città o vengono abbandonati.»
+
+1. **Strada: C.** ISSUES 38 **prima** — ✅ chiusa in 0.1.122
+   ([D-156](DECISIONS.md#d-156)).
+2. **Tre gradi**, confermati.
+3. **Il grado si muove con l'esito del Destino, non col tempo.** Chi *perde* va
+   in rovina; chi *trionfa* sale. La struttura diventa il segno visibile di come
+   e' andato l'anno — ed e' molto meglio di un decadimento a orologeria, perche'
+   lega le pietre alla storia invece che al calendario.
+4. **Il controllo e' una contesa di valori, non un titolo.** Ogni cosa che sta
+   in una Regione porta un numero — un castello 3, un esercito che la occupa 4 —
+   e **controlla chi ha di piu'**. E' la risposta piu' forte a D-152: il
+   controllo smette di essere una riga di stato e diventa il risultato di un
+   confronto che si vede sul tabellone.
+5. **Le strutture sono una famiglia larga**, non solo fortificazioni: foreste che
+   spariscono o diventano maledette, passi di montagna che crollano, villaggi che
+   nascono, diventano citta' o vengono abbandonati. Ognuna con un effetto, un
+   valore e delle conseguenze.
+
+---
+
+## 7. Cosa diventa il lavoro, con queste risposte
+
+Le risposte cambiano la forma di C: non e' piu' «dare una vita al segno
+`structure:`», e' **un livello nuovo della mappa**. Vale la pena dirlo prima di
+scrivere una riga.
+
+**7.1 — La struttura diventa un oggetto, non un tag.** Un tag e' un booleano;
+qui serve un record con **tipo, grado, padrone e valore**. E' la modifica di
+motore piu' grossa del lavoro, e va fatta per prima perche' tutto il resto ci
+sta sopra. Il criterio di casa vale anche qui: passa da un Effect, ha il suo
+inverso, e attraversa le Chronicle come gia' fa `structure:`.
+
+**7.2 — Il controllo si calcola invece di essere assegnato.** Oggi
+`SET_CONTROL` scrive un nome; domani il padrone e' **chi somma di piu'** in
+quella Regione fra strutture e presenza. Due conseguenze da misurare, non da
+dare per buone:
+
+- le **14 Conseguenze** che oggi assegnano il controllo cambiano mestiere:
+  non danno piu' una Regione, danno **una struttura** o **un peso**;
+- `lapse_without_presence` diventa un caso particolare del conto — se non hai
+  niente li', la somma e' zero.
+
+**7.3 — La scala si muove col Destino.** A fine Chronicle, per ogni casa: chi ha
+raggiunto il Trionfo alza di un grado una sua struttura, chi non ha raggiunto il
+Minimo ne perde uno. La rovina lascia una `scar:`, come la demolizione.
+
+**7.4 — Il catalogo.** Ogni tipo di struttura vuole: un nome, un valore, cosa
+fa (una regola dei segni, come le 5 di adesso), come nasce, come sale, come
+cade. E' contenuto d'autore, ed e' la parte piu' lunga — ma anche quella che si
+puo' scrivere un pezzo per volta e misurare a ogni passo.
+
+**7.5 — Quello che va deciso ancora**, e che queste risposte non coprono:
+
+- **quanto valgono le pedine di presenza** nel conto del controllo (una a testa?
+  o le tre insieme?);
+- se una struttura si possa **prendere** invece che solo abbattere;
+- cosa succede quando **due case pareggiano** in una Regione (nessuno controlla,
+  o resta a chi c'era?);
+- se il valore di una struttura pesi anche **al Consiglio**, o solo sulla mappa —
+  cioe' se `focus_weight` ([D-154](DECISIONS.md#d-154), scritto e spento)
+  torni acceso leggendo i valori invece del titolo.
+
+L'ultima e' la piu' interessante: **la leva respinta in D-154 potrebbe essere
+quella giusta una volta che il controllo e' un numero invece di un nome.**
 
 ---
 

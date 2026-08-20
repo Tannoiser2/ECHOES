@@ -288,13 +288,20 @@
         ]
       },
       "victory": {
-        "label": "Tengono la montagna, e non solo quella",
+        "label": "Chi scava lo dicono loro",
         "conditions": [
           {
             "type": "control_count",
             "entity_id": "ENT_CENERE",
-            "min": 2,
-            "label": "Controllo di almeno 2 Regioni"
+            "min": 1,
+            "label": "La montagna è ancora loro"
+          },
+          {
+            "type": "state_tag_present",
+            "scope": "ENTITY",
+            "entity_id": "ENT_CENERE",
+            "tag": "ash_watch",
+            "label": "E la veglia sulla montagna è affidata a loro, per atto e non per abitudine"
           },
           {
             "type": "state_tag_absent",
@@ -306,14 +313,13 @@
         ]
       },
       "triumph": {
-        "label": "E la veglia sulla montagna è loro",
+        "label": "E non solo quella",
         "conditions": [
           {
-            "type": "state_tag_present",
-            "scope": "ENTITY",
+            "type": "control_count",
             "entity_id": "ENT_CENERE",
-            "tag": "ash_watch",
-            "label": "La veglia sulla montagna è affidata a loro"
+            "min": 2,
+            "label": "Il registro della montagna copre due Regioni, non una"
           },
           {
             "type": "relation_state",
