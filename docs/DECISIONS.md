@@ -10,6 +10,63 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-175 — Tre Conseguenze che costruiscono, e mezza ISSUES 37 chiusa
+**implemented in 0.1.143**
+
+### Le Conseguenze che scrivevano un segno senza niente sotto
+
+D-162 aveva chiuso «la fine del segno che non ha un oggetto sotto» per le opere.
+Ne restavano quattro fuori. Guardate una per una, tre andavano convertite e una
+no:
+
+| | il segno | adesso costruisce |
+|---|---|---|
+| `CNS_NAHR_SETTLEMENT` «Chi Lavora Mangia» | `settlement:$proponent` | un **villaggio** che ha un padrone e puo' diventare borgo e citta' |
+| `CNS_MARCH_GRANTED` «La Marca Concessa» | `settlement:march` | una **torre di veglia** — due punti di forza sulla Regione data |
+| `CNS_MARKET_MOVED` «Il Mercato Spostato» | `settlement:market` | un **villaggio**: la gente che si mette intorno al mercato resta anche quando il mercato riparte |
+| `CNS_RELIC_BURIED` «La Teca Murata» | `structure:sealed` | **niente** — la cella murata non e' nessuna delle nove cose del catalogo, e inventarne una decima per una Conseguenza sola sarebbe la tentazione di D-164 |
+
+I segni restano: le regole li leggono, e dicono una cosa diversa dall'oggetto
+(«qui vive questa gente» non e' «c'e' un villaggio»). Quello che cambia e' che
+adesso sotto c'e' qualcosa che pesa nel conto del controllo e che sopravvive
+all'anno.
+
+**La piu' interessante e' la marca.** `CNS_MARCH_GRANTED` assegnava il controllo
+di una Regione e ci scriveva sopra un segno — e dal round dopo il conto del
+controllo poteva ridarla a chi ci aveva piu' pedine. Una concessione che non si
+difende non e' una concessione. La torre e' quello che la tiene.
+
+Misurato: le pietre **alzate giocando** salgono a **174 su 80 partite**, contro le
+poche di prima; i gradini restano dove stavano (supera il Minimo 54%, TRIONFO
+19%), il playtest e' invariato.
+
+### Mezza ISSUES 37 si chiude da sola
+
+La voce diceva «la mappa non si muove». Non e' piu' vero, e non l'ha risolto una
+correzione mirata: l'ha risolto **il padrone che si conta invece di scriverlo**
+(D-158). Caselle con un padrone dal 56% all'**82%**, seggi a zero Regioni dal 30%
+all'**11%**, seggi con due dal 12% al **31%**.
+
+Resta l'altra meta', e adesso ha un nome preciso: **`ACT_CLAIM` muore in mano
+tre volte su quattro** — 128 aperte, 18 forzate, **110 morte** su 80 Chronicle.
+Il punto di rottura non e' un difetto del codice, e' **§10 del regolamento**: il
+Claim deve essere stato posato in un round precedente, quindi chi rivendica deve
+indovinare un round prima che la domanda sara' matura, che nessuno avra' gia'
+forzato un Consiglio, e di avere ancora un secondo AUTORITA' in mano.
+
+**Non l'ho toccata**, e la ragione e' la stessa per cui non ho allargato la banda
+dei Consigli senza chiedere: cambiare §10 e' cambiare il regolamento, non
+bilanciare un numero. La strada piu' piccola che si vede e' scritta nella voce.
+
+### Misure
+
+Playtest 100 semi: **FAIL 248 · SUCC 71 · SUCC 100 · DECI 144**, mediana 6,
+misto e uniforme **0 su 8**, nessun seggio a NONE ne' a zero Trionfi. Sonda dei
+gradini: 0 NONE, TRIONFO 19%, supera il Minimo 54%. Suite **349 test / 6445
+asserzioni** verde.
+
+---
+
 ## D-174 — Tre voci chiuse: il sigillo che riscriveva la storia, il grado che è materia di saga, e un divario che non c'era
 **implemented in 0.1.142** (ISSUES 41 e 42 chiuse, ISSUES 40 decisa)
 

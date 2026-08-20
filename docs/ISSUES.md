@@ -1116,70 +1116,42 @@ presagi). Sono state scritte insieme al codice e mai rilette di fila.
 **Fatto quando** qualcuno ha letto i testi dall'inizio alla fine e le correzioni
 sono nei JSON.
 
-### 37. La mappa non si muove: il controllo passa solo per un Consiglio
+### 37. La mappa si muove — ma `ACT_CLAIM` muore in mano tre volte su quattro
 
-`regole` · `da-misurare` · nata dalla sonda dei gradini ([D-152](DECISIONS.md#d-152))
+`regole` · **metà chiusa in 0.1.121, metà aperta** · [D-152](DECISIONS.md#d-152) → [D-158](DECISIONS.md#d-158) → [D-175](DECISIONS.md#d-175)
 
-Sessanta Chronicle, e il tabellone a fine anno e' quasi quello di inizio anno:
+**La prima metà è chiusa.** La voce nasceva da un tabellone che a fine anno era
+quasi quello d'inizio: 44% di caselle senza padrone, una casa che guadagnava in
+media un quarto di Regione, il Vetro a zero in trenta partite. Da quando il
+padrone **si conta invece di scriverlo** ([D-158](DECISIONS.md#d-158) — pedine
+più il valore delle strutture, ricalcolato a ogni fine round) la mappa si muove
+da sola, senza bisogno che un Consiglio la muova:
 
-| Regioni tenute | seggi |
-|---|---|
-| 0 | **30%** |
-| 1 | 57% |
-| 2 | **12%** |
-| 3 | 1% |
+| | allora | ora |
+|---|---|---|
+| caselle con un padrone | 56% | **82%** |
+| seggi a **zero** Regioni | 30% | **11%** |
+| seggi a **due** Regioni | 12% | **31%** |
 
-**Il 44% delle caselle non e' di nessuno**, e in un anno intero una casa
-guadagna in media **un quarto di Regione**. Il Vetro non ne tiene **mai** una
-in trenta partite; le Citta' Libere ne perdono.
+**La seconda metà è aperta, ed è più stretta di come era scritta.** Non è che
+manchi un modo di prendere una Regione: è che **l'azione fatta apposta non
+funziona**. Su 80 Chronicle: **128 rivendicazioni aperte, 18 forzate, 110 morte
+senza essere usate.** Tre su quattro si pagano — un Asset AUTORITÀ e
+un'Opportunità — e non si spendono mai.
 
-**L'azione per prenderle esiste** ([D-153](DECISIONS.md#d-153), correzione
-sollevata dal committente): e' `ACT_CLAIM`, «Rivendicare». Solo che non
-rivendica una Regione — rivendica una **domanda**. In `CREATE` scarta un Asset
-AUTHORITY e apre un Claim su un dominio di Tensione; in un round successivo, in
-`FORCE`, lo consuma insieme a un secondo AUTHORITY per **strappare un Consiglio
-da proponente**. La Regione arriva solo se quel Consiglio cade su una delle 14
-Consequence che portano un `SET_CONTROL` a `$proponent`.
+Il punto di rottura ha un nome, ed è una **regola del regolamento**, non un
+difetto del codice: §10 vuole che il Claim sia stato posato **in un round
+precedente**. Chi rivendica deve quindi indovinare, un round prima, che quella
+domanda sarà matura *e* che nessun altro avrà già forzato un Consiglio *e* di
+avere ancora un secondo AUTORITÀ in mano.
 
-Cinque anelli in serie: un AUTHORITY e un'Azione · la Tensione bersaglio a 3+ ·
-un secondo AUTHORITY e un'altra Azione in un round dopo · un Consiglio che non
-fallisce (falliscono 177 volte su 100 partite) · la carta giusta.
+**Non la tocco da solo, perché cambiarla è cambiare il regolamento.** La strada
+più piccola che si vede: se la Tensione è **già** a 3 o più, CREATE e FORCE
+avvengono nella stessa azione — non si prenota una domanda che è già matura. Ma
+è §10, e §10 lo decide il committente.
 
-E si spezza al terzo. Su 60 Chronicle: **63 rivendicazioni aperte, 15 forzate,
-48 morte senza essere usate**. Tre su quattro si pagano e non si spendono. Per
-confronto, in trenta Chronicle `ACT_ACQUIRE` produce 4286 effetti e `ACT_CLAIM`
-84: le case raccolgono, non rivendicano.
-
-**E c'e' una seconda meta' della diagnosi, che il committente ha visto guardando
-la mappa: dentro l'anno il controllo non serve a niente.** Cercando ogni punto
-del codice che lo legge, i consumatori sono tre — `control_count` (14 clausole
-di Destino), la sovraestensione (oltre 2 Regioni **costa** Tensione ogni round)
-e il passaggio all'anno dopo — piu' due frasi di prosa e il colore sul
-tabellone. Il controllo **non** decide chi propone al Consiglio (quella e' la
-presenza), non sblocca azioni, non piega la pesca, non vale un punto nel
-margine.
-
-Quindi la catena non e' solo lunga: **e' lunga e non porta a niente di
-immediato**. Una policy che sceglie la mossa migliore per quest'anno non ha
-nessuna ragione di percorrerla, e infatti non la percorre. Delle 63
-rivendicazioni aperte, 48 muoiono in mano.
-
-L'idea e' bella — *rivendicare non e' prendersi una terra, e' costringere il
-tavolo a discuterne*. La domanda non e' quindi «serve un'azione», ma **quale
-anello si accorcia** — o, prima ancora, **se il titolo debba dare qualcosa
-dentro l'anno**: e' una scelta di design, non una taratura. Un controllo che
-non paga mai e' coerente col tema (un gioco sulla legittimita', dove un titolo
-che non puoi esercitare e' il problema) ma lascia sei Destini a chiedere una
-cosa che nessuno ha motivo di inseguire. Quattro strade, nessuna misurata: **(a)** un solo Asset
-invece di due, o un solo round invece di due; **(b)** abbassare da 3 la
-Tensione richiesta dal `FORCE`; **(c)** piu' Consequence con `SET_CONTROL` in
-CHR_03, che ne ha tre contro le nove di CHR_01; **(d)** lasciare la catena
-com'e' e riscrivere le clausole che chiedono terra — gia' cominciata con Aldric
-in [D-152](DECISIONS.md#d-152).
-
-**Fatto quando** una delle quattro e' stata provata sui 100 semi, le
-rivendicazioni morte sono scese sotto la meta', e la mappa a fine anno e'
-diversa da quella di inizio restando **FAIL ~180 · 0/8**.
+**Fatto quando** la decisione è a verbale e, se la regola cambia, le
+rivendicazioni morte scendono sotto una su tre.
 
 ### 38. ✅ La Vittoria della Cenere ha una porta sola — fatta in 0.1.122
 

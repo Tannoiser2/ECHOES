@@ -71,6 +71,19 @@
           }
         },
         {
+          "type": "BUILD_STRUCTURE",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "structure_type": "STR_SETTLEMENT",
+            "grade": 1,
+            "owner": "$proponent"
+          },
+          "note": "D-175: fermarsi e' una cosa che si vede. Il segno «qui vive questa gente» resta - le regole lo leggono - ma sotto adesso c'e' un villaggio che ha un padrone, pesa nel conto del controllo, puo' diventare borgo e citta' negli anni buoni e puo' essere abbandonato in quelli cattivi."
+        },
+        {
           "type": "SET_GLOBAL_TAG",
           "target": {
             "kind": "world",
@@ -832,6 +845,19 @@
           "payload": {
             "tag": "settlement:march"
           }
+        },
+        {
+          "type": "BUILD_STRUCTURE",
+          "target": {
+            "kind": "region",
+            "id": "$rival_seat"
+          },
+          "payload": {
+            "structure_type": "STR_KEEP",
+            "grade": 1,
+            "owner": "$proponent"
+          },
+          "note": "D-175: una marca senza niente sopra era un titolo che il conto del controllo poteva togliere il round dopo. La torre di veglia e' quello che la tiene: due punti di forza sulla Regione data, cioe' la concessione che si difende da sola."
         }
       ]
     },
@@ -1043,6 +1069,19 @@
           "payload": {
             "tag": "settlement:market"
           }
+        },
+        {
+          "type": "BUILD_STRUCTURE",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "structure_type": "STR_SETTLEMENT",
+            "grade": 1,
+            "owner": "$proponent"
+          },
+          "note": "D-175: un mercato che si sposta fa crescere il posto dove arriva. Il segno diceva che il mercato e' li'; l'insediamento e' la gente che ci si e' messa intorno, e quella resta anche quando il mercato riparte."
         },
         {
           "type": "SET_REGION_TAG",

@@ -5,6 +5,24 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.143 — Tre Conseguenze che costruiscono (D-175)
+
+- **`CNS_NAHR_SETTLEMENT`, `CNS_MARCH_GRANTED` e `CNS_MARKET_MOVED`** non
+  scrivono più solo un segno: costruiscono un **villaggio**, una **torre di
+  veglia** e un **villaggio**. I segni restano — le regole li leggono — ma sotto
+  adesso c'è qualcosa che pesa nel conto del controllo e sopravvive all'anno.
+  La più interessante è la marca: una concessione senza niente sopra poteva
+  tornare indietro il round dopo, la torre è quello che la tiene.
+- `CNS_RELIC_BURIED` resta un segno: la cella murata non è nessuna delle nove
+  cose del catalogo, e inventarne una decima per una Conseguenza sola sarebbe la
+  tentazione che D-164 aveva già pagato.
+- Pietre **alzate giocando: 174** su 80 partite. Gradini e playtest invariati.
+- **Mezza ISSUES 37 chiusa**: la mappa si muove — 82% di caselle con un padrone
+  contro il 56%, seggi a zero Regioni dal 30% all'11% — e non per una correzione
+  mirata ma perché il padrone si conta invece di scriverlo. Resta l'altra metà,
+  con un nome preciso: **`ACT_CLAIM` muore in mano 110 volte su 128**, e il punto
+  di rottura è §10 del regolamento, non il codice.
+
 ## 0.1.142 — Tre voci chiuse (D-174)
 
 - **ISSUES 41 chiusa.** Il sito antico non era mai «aperto e ancora intero», e la
