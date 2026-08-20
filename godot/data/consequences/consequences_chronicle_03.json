@@ -78,6 +78,19 @@
           "payload": {
             "entity_id": "$proponent"
           }
+        },
+        {
+          "type": "SET_STRUCTURE_GRADE",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "structure_type": "STR_SPRING",
+            "grade": 3,
+            "optional": true
+          },
+          "note": "D-165: quando l'acqua ha un prezzo, la sorgente libera smette di esistere come sorgente libera. Il segno cambia e il dono finisce."
         }
       ]
     },
@@ -602,6 +615,19 @@
           "payload": {
             "tag": "condition:lean"
           }
+        },
+        {
+          "type": "SET_STRUCTURE_GRADE",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "structure_type": "STR_SPRING",
+            "grade": 2,
+            "optional": true
+          },
+          "note": "D-165: una valle che si vuota si porta dietro l'acqua. La sorgente cala — e chi ci stava vicino smette di contare meno le giornate."
         }
       ]
     }

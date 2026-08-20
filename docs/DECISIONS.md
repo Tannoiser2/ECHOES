@@ -10,6 +10,75 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-165 — Il sito antico e la sorgente, e il degrado che non aggiunge peso
+**implemented in 0.1.132** (§8.6 passo 5, gli altri due luoghi del mondo)
+
+Due luoghi nuovi, e un vincolo di progetto che me li ha fatti scrivere in modo
+diverso da quelli di prima.
+
+**Il vincolo.** D-164 aveva dichiarato un trend che non voleva fermarsi: i
+Consigli falliti da 185 a 207 in undici modifiche. Prima di aggiungere altre due
+famiglie mi sono dato una linea di stop — **oltre 215, o un seggio bloccato, mi
+fermo** — e ho progettato queste due perche' **non aggiungano peso**:
+
+> il degrado **toglie un dono**, non aggiunge una penalita'.
+
+E' l'opposto della selva maledetta, che una penalita' la aggiunge. Qui il sito
+aperto **insegna** (chi ci sta pesca sapere migliore) e la sorgente viva **tiene
+la gente** (pesca gente migliore); quando il sito viene saccheggiato o la
+sorgente cala, il segno cambia e la regola smette di valere. Niente di nuovo che
+morde: solo qualcosa che finisce.
+
+| | grado I | grado II | grado III |
+|---|---|---|---|
+| **Sito antico** | dormiente — non fa niente | **aperto: sapere migliore** | saccheggiato — il dono finisce |
+| **Sorgente** | **viva: gente migliore** | bassa — il dono finisce | secca |
+
+**E ha funzionato, che era la cosa da misurare.** Playtest **FAIL 207 · SUCC 77 ·
+SUCC 112 · DECI 189** — **identico** alla misura prima di aggiungerle. Due
+famiglie nuove, otto tipi nel catalogo, e **zero punti** di costo. Tavolo misto
+**0 su 8**, Consigli mediana **6**.
+
+**Le cause, cercate prima di scriverle** (la regola di D-164): *Le Gallerie
+Riaperte* aprono il sito, *La Miniera Aperta* lo saccheggia, *Le Miniere
+Sigillate* lo rimandano a dormire, *La Valle che si Vuota* abbassa la sorgente,
+*L'Acqua a Prezzo* la secca. Nessuna carta nuova, nessun rimescolo: cinque righe
+in fondo a Conseguenze che raccontavano gia' quel fatto.
+
+**Cosa si raggiunge e cosa no, dichiarato.** Su venti Chronicle:
+
+| | |
+|---|---|
+| siti dormienti | 38 |
+| siti **saccheggiati** | **2** |
+| siti **aperti** | **0** |
+| sorgenti vive | 39 |
+| sorgenti **basse** | **1** |
+| sorgenti **secche** | **0** |
+
+Il degrado si vede, l'apertura no: **`place:open_site` non si raggiunge mai**, e
+con lui dorme la regola del sapere. La causa e' scritta e aggancia una
+Conseguenza vera — *Le Gallerie Riaperte* — che su questi semi non esce quasi
+mai. Non aggiungo un'altra causa per forzarla: sarebbe la terza volta che inseguo
+una frequenza invece di misurarla. **E' contenuto scritto e non raggiunto, come
+la selva di D-163 prima che D-164 le desse una causa**, e la differenza e' che
+stavolta la causa c'e' — e' l'anno che non la pesca.
+
+Il seme lo dice anche di suo: i siti partono **dormienti**, e un mondo dove le
+gallerie restano chiuse e' un mondo coerente. Se il committente vuole vedere i
+siti aperti piu' spesso, la leva e' **partire da aperto** in una delle due
+linee, non aggiungere un'altra porta.
+
+**Misure.** Suite **334 test / 6025 asserzioni** verde; `run_sims.sh` identico
+su due giri; `dead_code.py` pulito su 151 file; job «Dati e schemi» verde.
+
+**Il catalogo, a questo punto.** Otto tipi in cinque famiglie: presidio,
+insediamento, tre opere, e tre luoghi del mondo. Resta **la palude** (che chiede
+gli slot di presenza variabili, cioe' motore) e **il passo che frana**, l'unico
+che riscrive il grafo delle adiacenze.
+
+---
+
 ## D-164 — La selva maledetta ha una causa, e due strade sbagliate per arrivarci
 **implemented in 0.1.131** (correzione al buco dichiarato in D-163)
 

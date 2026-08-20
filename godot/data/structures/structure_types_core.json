@@ -212,6 +212,79 @@
         "scar": "scar:emptied",
         "description": "Ceppi fino all'orizzonte. Da qui in avanti il vento arriva fino alle case, e nessuno lo aveva messo in conto."
       }
+    },
+    {
+      "id": "STR_OLD_SITE",
+      "name": "Sito antico",
+      "family": "LUOGO",
+      "owned": false,
+      "description": "Qualcosa che era gia' qui. Finche' dorme non serve a niente e non fa niente; aperto insegna; saccheggiato non insegna piu' e non torna a dormire.",
+      "biomes": [
+        "MOUNTAIN",
+        "UNDERGROUND"
+      ],
+      "grades": [
+        {
+          "name": "Sito dormiente",
+          "value": 0,
+          "tag": "place:sleeping_site",
+          "description": "Pietre disposte in un ordine che non e' casuale, e nessuno che sappia dire quale."
+        },
+        {
+          "name": "Sito aperto",
+          "value": 0,
+          "tag": "place:open_site",
+          "description": "Ci si scende con le lampade e si risale con le misure. Chi ci sta impara piu' in fretta di chiunque altro."
+        },
+        {
+          "name": "Sito saccheggiato",
+          "value": 0,
+          "tag": "place:stripped_site",
+          "description": "Portato via a pezzi, e i pezzi venduti separatamente. Quello che insegnava non lo insegna piu' a nessuno."
+        }
+      ],
+      "ruin": {
+        "name": "Il Vuoto sotto la Pietra",
+        "scar": "scar:open_wound",
+        "description": "Un buco, e intorno l'erba che non ricresce. Chi passa ci gira intorno senza sapere perche'."
+      }
+    },
+    {
+      "id": "STR_SPRING",
+      "name": "Sorgente",
+      "family": "LUOGO",
+      "owned": false,
+      "description": "L'acqua che c'era prima dei canali e che non chiede il permesso a nessuno. Finche' c'e', non si nota. Quando cala, si nota solo quella.",
+      "biomes": [
+        "VALLEY",
+        "STEPPE",
+        "MOUNTAIN"
+      ],
+      "grades": [
+        {
+          "name": "Sorgente viva",
+          "value": 0,
+          "tag": "place:spring",
+          "description": "Esce dal sasso tutto l'anno, anche negli anni brutti. Chi ci sta vicino conta meno le giornate."
+        },
+        {
+          "name": "Sorgente bassa",
+          "value": 0,
+          "tag": "place:low_spring",
+          "description": "Il secchio tocca il fondo prima di riempirsi, e si dice che sia la stagione."
+        },
+        {
+          "name": "Sorgente secca",
+          "value": 0,
+          "tag": "place:dry_spring",
+          "description": "Il sasso e' asciutto e caldo. Nessuno ci va piu', e in due generazioni nessuno sapra' che c'era."
+        }
+      ],
+      "ruin": {
+        "name": "Il Sasso Asciutto",
+        "scar": "scar:emptied",
+        "description": "Resta il nome del posto, che parla d'acqua, e non c'e' acqua."
+      }
     }
   ]
 }

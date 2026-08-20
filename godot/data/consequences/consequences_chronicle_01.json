@@ -209,6 +209,19 @@
           "payload": {
             "tag": "discovery:crystal"
           }
+        },
+        {
+          "type": "SET_STRUCTURE_GRADE",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "structure_type": "STR_OLD_SITE",
+            "grade": 3,
+            "optional": true
+          },
+          "note": "D-165: sfruttare la miniera vuol dire portare via a pezzi quello che insegnava. Non e' una penalita' nuova: e' il dono che finisce."
         }
       ]
     },
@@ -247,6 +260,19 @@
           "payload": {
             "tag": "discovery:crystal"
           }
+        },
+        {
+          "type": "SET_STRUCTURE_GRADE",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "structure_type": "STR_OLD_SITE",
+            "grade": 1,
+            "optional": true
+          },
+          "note": "D-165: murare le gallerie rimanda il sito a dormire. Quello che insegnava torna a non insegnare, e resta li'."
         }
       ]
     },
@@ -1383,6 +1409,19 @@
             "delta": 2
           },
           "note": "Il prezzo: riaprire sveglia quello che dormiva."
+        },
+        {
+          "type": "SET_STRUCTURE_GRADE",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "structure_type": "STR_OLD_SITE",
+            "grade": 2,
+            "optional": true
+          },
+          "note": "D-165: riaprire le gallerie apre anche quello che c'era prima. Da qui chi ci sta impara piu' in fretta — chiunque sia."
         }
       ]
     },

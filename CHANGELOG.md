@@ -5,6 +5,38 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.132] — Il sito antico e la sorgente
+
+Gli altri due luoghi del mondo ([D-165](docs/DECISIONS.md#d-165)), scritti sotto
+un vincolo nuovo: **il degrado toglie un dono, non aggiunge una penalita'**.
+
+### Added
+
+- **`STR_OLD_SITE`**: dormiente → **aperto (sapere migliore)** → saccheggiato.
+- **`STR_SPRING`**: **viva (gente migliore)** → bassa → secca.
+- Le cause **cercate fra quelle che c'erano**: *Le Gallerie Riaperte*, *La
+  Miniera Aperta*, *Le Miniere Sigillate*, *La Valle che si Vuota*, *L'Acqua a
+  Prezzo*. Nessuna carta nuova, nessun rimescolo.
+
+### Measured
+
+**Playtest FAIL 207 · SUCC 77 · SUCC 112 · DECI 189 — identico** alla misura
+prima di aggiungerle. Due famiglie nuove e **zero punti** di costo: e' il
+vincolo di progetto che ha funzionato. Tavolo misto **0 su 8**, mediana **6**.
+
+Su venti Chronicle: 38 siti dormienti, **2 saccheggiati**, **0 aperti**; 39
+sorgenti vive, **1 bassa**, **0 secche**.
+
+**Da dichiarare:** `place:open_site` **non si raggiunge mai**, e con lui dorme la
+regola del sapere. La causa c'e' ed e' una Conseguenza vera che su questi semi
+non esce quasi mai — non aggiungo un'altra porta per forzarla. Se si vogliono
+vedere i siti aperti, la leva e' **partire da aperto**, non moltiplicare le
+cause.
+
+Suite **334 test / 6025 asserzioni** verde, sims deterministiche.
+
+---
+
 ## [0.1.131] — La selva maledetta ha una causa
 
 Correzione al buco dichiarato in D-163 ([D-164](docs/DECISIONS.md#d-164)): la

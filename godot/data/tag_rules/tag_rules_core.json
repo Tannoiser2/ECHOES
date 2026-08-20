@@ -660,6 +660,32 @@
       "hand_limit_delta": -1,
       "active": true,
       "note": "Il luogo che si guasta (D-163): chi ha presenza nella selva maledetta tiene una carta in meno. Una foresta maledetta non e' una perdita per qualcuno — e' una perdita per chiunque ci stia dentro, e nessuno l'ha fatto apposta."
+    },
+    {
+      "id": "TGR_OPEN_SITE_KNOWLEDGE",
+      "title": "Il sito aperto insegna",
+      "when": {
+        "scope": "REGION",
+        "tag": "place:open_site"
+      },
+      "kind": "DRAW_BIAS",
+      "family": "KNOWLEDGE",
+      "bias": "BONUS",
+      "active": true,
+      "note": "D-165: chi ha presenza dove il sito e' aperto pesca sapere migliore — chiunque sia, perche' un luogo del mondo non e' di nessuno. Il degrado non aggiunge una penalita': toglie questo dono, e basta."
+    },
+    {
+      "id": "TGR_SPRING_PEOPLE",
+      "title": "Dove c'e' acqua, la gente resta",
+      "when": {
+        "scope": "REGION",
+        "tag": "place:spring"
+      },
+      "kind": "DRAW_BIAS",
+      "family": "PEOPLE",
+      "bias": "BONUS",
+      "active": true,
+      "note": "D-165: la sorgente viva fa pescare gente migliore a chi ci sta. Quando cala o si secca il segno cambia e la regola smette di valere: **niente penalita' nuove**, solo un dono che finisce."
     }
   ]
 }
