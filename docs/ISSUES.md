@@ -1204,9 +1204,27 @@ sotto i dieci Trionfi su cinquanta con almeno dieci Minimi.
 
 ---
 
-### 39. Le carte che posano una pedina
+### 39. La terra che si vede: pedine di carta, o strutture con una vita
 
-`contenuto` · `regole` · voluta dal committente · nata da [D-154](DECISIONS.md#d-154)
+`contenuto` · `regole` · voluta dal committente · **in seduta**
+([SEDUTA_TERRA.md](SEDUTA_TERRA.md)) · nata da [D-154](DECISIONS.md#d-154)
+
+Tre idee del committente sono la stessa domanda vista da tre lati: **come si
+rende visibile, costoso e duraturo il possesso di un luogo?** Il dossier mette
+le tre strade accanto — **A** le carte che posano una pedina, **B** la carta che
+*e'* la presenza, **C** le strutture con una vita (torre → castello → reggia, e
+la rovina) — coi prezzi e i numeri. Raccomandata **C**, dopo aver aperto
+ISSUES 38.
+
+Il fatto che le da' ragione: **le strutture funzionano gia' meglio della
+presenza.** Su 30 Chronicle se ne alzano **74** (2,5 a partita, 2 in piedi a
+fine anno, 29 partite su 30 ne hanno almeno una) contro **poco piu' di una
+pedina** mossa per scelta. E il difetto si vede a occhio: **74 costruite, zero
+abbattute**, e visto che `structure:` attraversa le Chronicle senza sbiadire, in
+una saga la mappa **puo' solo riempirsi**.
+
+Quello che segue e' la strada A per esteso, che resta il primo passo piu'
+economico.
 
 «La presenza potrebbe essere anche non solo astratta ma indicata dalle carte,
 tipo la guardia reale puo' giocare effettivamente una presenza in una regione.»

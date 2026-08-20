@@ -5,6 +5,42 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.120] — La seduta sulla terra
+
+Tre idee del committente arrivate una dopo l'altra sono la stessa domanda vista
+da tre lati: **come si rende visibile, costoso e duraturo il possesso di un
+luogo?** Il dossier le mette accanto una volta sola invece che tre.
+
+### Added
+
+- **`docs/SEDUTA_TERRA.md`**: le tre strade coi loro prezzi — **A** le carte che
+  posano una pedina, **B** la carta che *e'* la presenza, **C** le strutture con
+  una vita (torre → castello → reggia, la rovina, la demolizione). Raccomandata
+  **C**, con **A** come primo passo, e **ISSUES 38 prima di tutto**.
+
+### Measured
+
+- **Le strutture funzionano gia' meglio della presenza.** Su 30 Chronicle:
+  **74 alzate** (2,5 a partita), **2,00 in piedi** a fine anno, **29 partite su
+  30** ne hanno almeno una — contro poco piu' di **una pedina** mossa per scelta.
+- **Zero abbattute in 30 anni giocati.** Una struttura oggi e' un interruttore
+  che si accende e non si spegne, e `structure:` attraversa le Chronicle **senza
+  sbiadire** (a differenza di `condition:`): in una saga la mappa puo' solo
+  riempirsi. E' il difetto che l'idea del committente corregge da se'.
+- Il pedaggio da solo e' **48 delle 74**, e lo posa un **Asset**
+  (`AST_WEALTH_TOLL`): la carta che costruisce esiste gia', ed e' una sola.
+- Gia' oggi 11 carte posano una struttura, **5 regole dei segni** le leggono, e
+  tre Asset posano una pedina di presenza.
+
+### Changed
+
+- **ISSUES 39** riscritta come voce di seduta, con la strada A conservata per
+  esteso come primo passo.
+
+Nessuna modifica al gioco.
+
+---
+
 ## [0.1.119] — Il peso della terra: meccanismo acceso, contenuto spento
 
 Il committente ha deciso che **il titolo deve dare qualcosa dentro l'anno**
