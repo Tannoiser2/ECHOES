@@ -5,6 +5,56 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.119] — Il peso della terra: meccanismo acceso, contenuto spento
+
+Il committente ha deciso che **il titolo deve dare qualcosa dentro l'anno**
+([D-154](docs/DECISIONS.md#d-154)). La leva e' scritta e provata; **nei dati e'
+spenta**, e la ragione e' un numero.
+
+### Added
+
+- **`focus_weight`** in `confluence_rules`: al Consiglio, la Regione di cui si
+  discute da' voce a chi ci sta — **il titolo** a chi ne e' il padrone, **la
+  maggioranza** a chi ci ha strettamente piu' pedine (a parita', nessuno). I due
+  si sommano fino a un tetto, e contano solo se quel seggio ha impegnato almeno
+  una carta.
+- **`tests/unit/test_focus_weight.gd`**: sette test che tengono fermo il
+  meccanismo con una regola sintetica, visto che nei dati e' omessa.
+
+### Measured
+
+| | Consigli falliti | tavolo misto |
+|---|---|---|
+| spento | **177** | **0 su 8** |
+| titolo +1, maggioranza +1, a tutti | **164** | **1 su 8** |
+| lo stesso, senza il proponente | 175 | **1 su 8** |
+
+- **Il peso finiva al proponente**, che e' gia' scelto *per* la presenza: pagato
+  due volte per lo stesso investimento, e i Consigli passavano troppo.
+  Escluderlo rimette i numeri in banda.
+- **Resta 1 su 8, e il seggio e' sempre Kessa** — non per il peso della terra ma
+  perche' la sua Vittoria ha una porta sola (ISSUES 38). La differenza e'
+  letteralmente **una partita**. Il vincolo 0/8 lo sta facendo rispettare il
+  seggio piu' fragile del gioco.
+- **Chi muove le pedine, su 30 Chronicle**: 240 posate al setup, **38** da
+  MUOVERE, 21 da una carta, 7 da un Consiglio. Poco piu' di una pedina per
+  partita si muove per scelta. La mappa non e' ferma perche' il titolo non
+  paga — e' ferma perche' **nessuno ha carte con cui muoverla**.
+
+### Changed
+
+- **ISSUES 39** (nuova, voluta dal committente): le carte che posano una pedina.
+  Il vocabolario esiste gia' ma e' quasi spento — 5 Asset su 48, e nessuno nelle
+  famiglie FORZA e GENTE. Due strade: estendere le carte, oppure far si' che la
+  carta **sia** la presenza.
+- **ISSUES 38bis**: nota di metodo — ISSUES 38 va aperta prima di provare altre
+  leve sul Consiglio.
+
+Suite **312 test / 5943 asserzioni** verde. Playtest con la regola spenta
+identico a 0.1.118: **FAIL 177 · SUCC 73 · SUCC 126 · DECI 187**, misto **0/8**.
+
+---
+
 ## [0.1.118] — La presenza fa, il controllo conta
 
 Domanda del committente sulla meccanica appena scritta: «prendere una Regione

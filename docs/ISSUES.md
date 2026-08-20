@@ -1204,6 +1204,69 @@ sotto i dieci Trionfi su cinquanta con almeno dieci Minimi.
 
 ---
 
+### 39. Le carte che posano una pedina
+
+`contenuto` · `regole` · voluta dal committente · nata da [D-154](DECISIONS.md#d-154)
+
+«La presenza potrebbe essere anche non solo astratta ma indicata dalle carte,
+tipo la guardia reale puo' giocare effettivamente una presenza in una regione.»
+
+**Il numero che le da' ragione.** Chi muove le pedine, su 30 Chronicle:
+
+| | |
+|---|---|
+| posate al setup | **240** |
+| aggiunte da MUOVERE | **38** |
+| aggiunte da una carta Narratore | 21 |
+| aggiunte da un Consiglio | 7 |
+| tolte, da tutto | ~34 |
+
+In un anno intero si muove **poco piu' di una pedina per partita** per scelta di
+qualcuno. La mappa non e' ferma perche' il titolo non paga (quella leva e' stata
+provata e respinta, D-154): e' ferma perche' **nessuno ha carte con cui
+muoverla**.
+
+**E il vocabolario esiste gia', quasi spento.** Tre Asset **posano** una pedina
+quando li impegni — `AST_AUTHORITY_SUCCESSION_ACT` (Atto di Successione),
+`AST_WEALTH_LAND_MORTGAGE` (Ipoteca sulle Terre), `AST_BONDS_HOSTAGE` (Ostaggio)
+— e due la **tolgono**: `AST_FORCE_BURNED_GATE` (Le Porte Bruciate),
+`AST_PEOPLE_EXODUS` (Esodo). Cinque carte su quarantotto, e nessuna nelle due
+famiglie che dovrebbero essere fatte di corpi: le otto FORZA e le otto GENTE
+alzano Tensioni e posano tag, ma non mettono nessuno da nessuna parte.
+
+Due modi di farlo, e sono lavori diversi.
+
+**A — la carta che posa una pedina.** Dieci-quindici carte FORZA e GENTE che,
+impegnate, mettono o spostano presenza; la Guardia Reale e' la carta d'esempio.
+Poco motore (l'Effect `ADD_PRESENCE` c'e' gia' e ha il suo inverso), molta
+scrittura, misurabile sui 100 semi, reversibile. E' la strada che rende vero
+«muoversi pesa» senza toccare il Consiglio.
+
+**B — la carta *e'* la presenza.** Niente piu' gettoni astratti: la carta si
+posa scoperta sulla Regione. La presenza diventa una risorsa limitata e
+visibile, perderla e' perdere una carta, e la maggioranza si legge sul tavolo
+senza contare niente. E' il gioco piu' forte — tiene insieme il controllo, la
+mappa ferma e la vetrina in un colpo solo — ma cambia cosa vuol dire «avere una
+carta in mano»: tocca setup, limite di mano, Consiglio e tutte e quattro le
+interfacce. **Va disegnata in una seduta prima di essere scritta.**
+
+**Fatto quando** una delle due e' stata percorsa e misurata: le pedine mosse per
+scelta salgono ben sopra una a partita, e il playtest resta **FAIL ~180 · 0/8**.
+
+### 38bis. Nota di metodo: il vincolo 0/8 lo fa rispettare il seggio piu' fragile
+
+`debito` · da [D-154](DECISIONS.md#d-154)
+
+Due varianti del peso della terra sono state respinte da **un solo seggio** —
+Kessa — e per una sola partita di differenza. Il motivo e' ISSUES 38: la sua
+Vittoria ha una porta sola, quindi non assorbe nessun cambiamento.
+
+Finche' resta cosi', **qualunque modifica alle regole del Consiglio rischia di
+essere respinta da Kessa e non dal proprio merito**. ISSUES 38 non e' una voce
+fra le altre: e' la porta da aprire prima di provare altre leve.
+
+---
+
 ---
 
 ## Come si aprono

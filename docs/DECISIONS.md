@@ -331,6 +331,84 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-154 — Il peso della terra: meccanismo acceso, contenuto spento
+**implemented in 0.1.119** (deciso dal committente, respinto dalla misura)
+
+Il committente ha deciso: «**il titolo deve dare qualcosa dentro l'anno,
+muoversi e avere maggioranza deve pesare**». D-152 aveva mostrato che il
+controllo, dentro l'anno, non fa niente — tre soli consumatori, due dei quali
+sono costi. Questa e' la leva che glielo fa fare, ed e' scritta e provata. **Nei
+dati e' spenta**, e la ragione e' un numero.
+
+**Il meccanismo.** `focus_weight` in `confluence_rules`: al Consiglio, la
+Regione **di cui si discute** da' voce a chi ci sta.
+
+- **il titolo** a chi ne e' il padrone — quello che il Destino gia' contava a
+  fine anno adesso si sente anche al tavolo;
+- **la maggioranza** a chi ci ha *strettamente* piu' pedine di chiunque altro —
+  a parita' non la prende nessuno, perche' una maggioranza contesa non e' una
+  maggioranza.
+
+I due si sommano fino a un tetto: chi la tiene **e** ci sta dentro parla per
+primo. E' `lapse_without_presence` detto dentro l'anno invece che fra un anno e
+l'altro. Come ogni altro peso (D-125, D-139) conta solo se quel seggio ha messo
+almeno una carta sul tavolo: un bonus dal nulla sarebbe un voto gratis.
+
+**La misura, due volte.** Sui 100 semi da 7000:
+
+| | Consigli falliti | tavolo misto |
+|---|---|---|
+| spento (0.1.118) | **177** | **0 su 8** |
+| titolo +1, maggioranza +1, a tutti | **164** | **1 su 8** |
+| lo stesso, senza il proponente | 175 | **1 su 8** |
+
+**Il primo difetto era mio e l'ho capito**: il peso finiva quasi sempre al
+**proponente**, che e' gia' scelto *per* la presenza nel dominio. Pagarlo anche
+al Consiglio vuol dire pagarlo due volte per lo stesso investimento, e i
+Consigli passavano troppo (DECI da 187 a 209). Escluderlo rimette i numeri in
+banda — 175 contro 177 — e lascia al peso il caso che vale davvero: **la voce di
+chi la terra ce l'ha e il Consiglio non l'ha chiamato**, cioe' «non si decide di
+casa mia senza di me».
+
+**Ma resta 1 su 8, e il seggio e' sempre lo stesso.** Kessa dei Fuochi finisce
+al Minimo in tutti e quattro i caratteri. Non e' il peso della terra a
+romperla: e' che la sua Vittoria ha **una porta sola** (ISSUES 38 —
+`control_count >= 2`, e l'altra clausola e' quasi sempre vera). Un seggio che
+dipende da una clausola sola non assorbe *nessun* cambiamento: basta una
+partita che gli costi il Consiglio dove prendeva la seconda Regione. Nella
+variante buona la differenza e' letteralmente **una partita** — Kessa passa da
+1/44/5/0 a 1/45/4/0.
+
+**Il che dice una cosa piu' generale, e vale la pena scriverla:** il vincolo di
+casa **0 su 8** lo sta facendo rispettare il seggio piu' fragile del gioco. Fino
+a che ISSUES 38 resta aperta, qualunque modifica alle regole del Consiglio ha
+una probabilita' alta di essere respinta da Kessa e non dal proprio merito.
+**ISSUES 38 viene prima**, ed e' contenuto d'autore.
+
+**Cosa resta acceso.** Lo schema, il motore, sette test che tengono fermo il
+meccanismo con una `focus_weight` sintetica (il titolo, la maggioranza stretta,
+la somma col tetto, i lati dichiarati dai dati, il proponente escluso, e il
+niente-carte-niente-peso). Nelle Chronicle la chiave e' omessa: senza, il
+Consiglio e' quello di sempre. E' lo stesso criterio di D-150 col pool dei
+Destini — quando la misura dice no, si tiene il meccanismo e si spegne il
+contenuto, cosi' la prossima volta si riaccende con una riga.
+
+**E c'e' una strada migliore, che il committente ha visto subito dopo.** Contate
+le pedine su 30 Chronicle: 240 posate al setup, **38** aggiunte da MUOVERE, 21
+da una carta Narratore, 7 da un Consiglio. In un anno intero si muove **poco
+piu' di una pedina per partita**. La mappa non e' ferma perche' il titolo non
+paga: e' ferma perche' **nessuno ha carte con cui muoverla**. E il vocabolario
+esiste gia' — tre Asset posano una pedina quando li impegni, due la tolgono:
+cinque carte su quarantotto. La proposta del committente («la guardia reale puo'
+giocare effettivamente una presenza in una regione») lavora su quella leva, ed
+e' probabilmente quella giusta. Sta in ISSUES 39.
+
+Misure: suite **312 test / 5943 asserzioni** verde (sette test nuovi); playtest
+con la regola spenta **FAIL 177 · SUCC 73 · SUCC 126 · DECI 187**, tavolo misto
+**0 su 8**, identico a 0.1.118; `dead_code.py` pulito su 147 file.
+
+---
+
 ## D-153 — «Rivendicare» esiste: la catena per prendere una Regione, e dove si spezza
 **implemented in 0.1.116** (correzione a D-152, sollevata dal committente)
 
