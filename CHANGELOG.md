@@ -5,6 +5,21 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.136 — Il giro su Lyra, misurato e non committato
+
+- **[D-168](docs/DECISIONS.md#d-168)**: la scala di Lyra non e' debole, e'
+  **bimodale** — Minimo, spina della Vittoria e spina del Trionfo tutte al 100%,
+  e tutto appeso a un tag solo al **25%**. Tre modi di aprirla, tutti e tre con
+  lo stesso prezzo: la mediana dei Consigli passa da 6 a **7**, e gli anni
+  tranquilli spariscono dalla distribuzione. **Nessuna modifica ai Destini**: e'
+  una scelta fra un seggio che gioca e la banda dei Consigli, ed e' ISSUES 44.
+- **Il banco della sonda** (`tools/clause_candidates.json`) porta le diciassette
+  clausole di Lyra misurate: e' la prova del verbale.
+- Due numeri trovati per strada: le **clausole sociali sono ancora esattamente
+  zero** (alleanza con Aldric 0%, non-inimicizia con Vaerax 0%) — la seconda
+  domanda di D-151 finalmente con un numero accanto — e Lyra **non si sposta mai**
+  sulla Strada dei Mercanti (0%).
+
 ## [0.1.134] — La spina e la scelta
 
 Il Trionfo smette di essere una lista da soddisfare per intero

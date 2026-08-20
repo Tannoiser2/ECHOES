@@ -1414,6 +1414,40 @@ sono mai stati letti da nessuna sonda.
 pesca — la sonda dei gradini mostra tutti e venti i Destini con i Trionfi fra il
 10% e il 30%, come gli otto di oggi.
 
+### 44. La scala di Lyra ha una porta sola, e aprirla costa gli anni tranquilli
+
+`contenuto` · `bilanciamento` · `decisione` · da [D-168](DECISIONS.md#d-168)
+
+Lyra legge **38 Minimi, 3 Vittorie, 9 Trionfi** su 50. Non e' un seggio debole,
+e' un seggio **bimodale**: Minimo gratis, spina della Vittoria gratis (100%),
+spina del Trionfo gratis (100%), e **tutta la scala appesa a un tag solo al
+25%** — `escort_sworn`, che va al `$proponent` di `CNS_ESCORT_SWORN`. Chi non
+apre quella porta resta al Minimo; chi la apre arriva quasi sempre in fondo.
+
+**Aprirla si puo', e il prezzo e' sempre lo stesso.** Tre varianti misurate —
+scelta 2 su 5, scelta 2 su 3, e un `any_of` su due di cui una passiva — danno
+tutte mediana dei Consigli **7**, fuori dalla banda 5-6. Non e' la dimensione
+della scelta: e' che la Vittoria diventa raggiungibile, e un seggio con una
+Vittoria raggiungibile **ricomincia a proporre**. La coda bassa della
+distribuzione sparisce: le partite da 3, 4 e 5 Consigli diventano da 6 e 7.
+
+Nella misura piena a 100 semi il guadagno c'e' ed e' vero: Lyra **27/14/9**
+invece di 38/3/9, Trionfi del tavolo **79 → 91**, tavolo misto sempre 0 su 8.
+Il costo e' **FAIL 191 → 203** e la banda dei Consigli sfondata di uno.
+
+**La scelta e' fra un seggio che gioca e gli anni tranquilli**, e non e' mia:
+il costo cade su una guardia della casa, e allargare la banda per far passare
+una modifica e' spostare il paletto dopo aver tirato.
+
+Se la risposta e' «apri Lyra», la forma gia' misurata e' spina «presenza nelle
+Miniere» + scelta 2 su 3 (scorta 25%, Miniere non sigillate 45%, un posto sulla
+mappa 45%), spina del Trionfo da due a **quattro Scoperte** (40%), e la scelta
+del Trionfo di Nahr da 4 a **3 segni** — perche' aprire Lyra le costa 7 Trionfi
+se non si tocca.
+
+**Fatto quando** il committente ha deciso quale delle due cose vale di piu', e
+la decisione e' a verbale con il numero accanto.
+
 ---
 
 ---

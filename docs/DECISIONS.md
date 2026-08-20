@@ -10,6 +10,94 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-168 — La scala di Lyra ha una porta sola, e aprirla costa gli anni tranquilli
+**misurato, non implementato** (nessuna modifica ai dati)
+
+Avevo dichiarato in 0.1.134 che Lyra non era migliorata — 38 Minimi su 50, il
+seggio piu' debole del tavolo. Questo e' il giro per capirlo, fatto con la sonda
+delle clausole invece che a occhio, e **finisce senza un commit sui Destini**:
+quello che ha trovato non e' un bilanciamento da correggere, e' una scelta da
+fare.
+
+### Non e' debole: e' bimodale
+
+La sonda delle clausole, letta sulla riga `ENT_LYRA` (20 Chronicle):
+
+| clausola | vera a fine anno |
+|---|---|
+| Lyra e' viva + **una Scoperta** (il suo Minimo) | ~100% |
+| **presenza nelle Miniere** (la spina della Vittoria) | **100%** |
+| **la scorta giurata** (l'altra meta' della Vittoria) | **25%** |
+| **due Scoperte** (la spina del Trionfo) | **100%** |
+
+Il suo Minimo e' gratis. La spina della Vittoria e' gratis. La spina del Trionfo
+e' gratis. **Tutta la scala pende da un tag solo al 25%** — `escort_sworn`, che
+`CNS_ESCORT_SWORN` da' al `$proponent`, quindi Lyra deve proporre *e* vincere
+quel Consiglio.
+
+Ecco perche' legge 38/3/9 e non 38/9/3: **non e' una scala, e' una porta.** Chi
+non la apre resta al Minimo; chi la apre arriva quasi sempre in fondo, perche'
+dopo non c'e' altro da pagare.
+
+### Tre modi di aprirla, e tutti e tre costano la stessa cosa
+
+| variante | mediana dei Consigli |
+|---|---|
+| oggi (porta sola) | **6** ✓ |
+| solo la spina del Trionfo a quattro Scoperte | **6** ✓ |
+| scelta 2 su 5 nella Vittoria | **7** ✗ |
+| scelta 2 su 3 nella Vittoria | **7** ✗ |
+| `any_of` su due, di cui una passiva | **7** ✗ |
+
+Non e' la *dimensione* della scelta: e' che la Vittoria diventa **raggiungibile**.
+E non e' rumore di campione — la distribuzione si sposta intera:
+
+```
+oggi        [3, 4, 5,5,5,5,5,5,5,5,5, 6,6,6,6,6, 7,7,7,7,7,7,7, 8]
+con Lyra    [   4, 5,             6,6,6,6,6,6,6,6, 7,7,7,7,7,7,7,7,7,7,7, 8,8,8]
+```
+
+**Gli anni tranquilli spariscono.** La coda bassa — la partita da tre Consigli,
+quella da quattro, otto partite da cinque — non esiste piu'.
+
+### La lettura, che vale oltre Lyra
+
+Un seggio la cui Vittoria e' chiusa **smette di giocare**: la sua policy non ha
+obiettivi aperti, non propone, non forza. Le partite quiete di oggi sono in
+buona parte partite in cui Lyra e' spettatrice. Aprire un seggio bloccato non e'
+una correzione locale: **e' aggiungere un giocatore al tavolo**, e il tavolo
+diventa piu' rumoroso di conseguenza.
+
+Vale anche al contrario, e spiega qualcosa di gia' misurato: quando ho aperto la
+Vittoria di Lyra, Nahr e' passata da 8 Trionfi a 1 (sonda dei gradini, 30
+Chronicle), perche' le sue cinque strade sono tutte «il mondo e' rimasto calmo».
+Nessuno aveva toccato il Destino di Nahr.
+
+### Perche' non ho scelto io
+
+Il costo cade su **una guardia della casa**: la banda dei Consigli, mediana 5-6
+con 4 Tensioni. Allargarla per far passare una modifica e' spostare il paletto
+dopo aver tirato. E il guadagno e' reale ma non enorme: nella misura piena a 100
+semi la scala di Lyra diventa 27/14/9 invece di 38/3/9, e i Trionfi del tavolo
+salgono da 79 a 91.
+
+Quindi: **la scelta e' fra un seggio che gioca e gli anni tranquilli.** E'
+ISSUES 44, e la decido io solo se il committente mi dice di deciderla.
+
+Cosa resta committato di questo giro: il banco della sonda con le diciassette
+clausole di Lyra misurate, che e' la prova, e questo verbale.
+
+### Due numeri che il giro ha trovato per strada
+
+- **Le clausole sociali sono ancora esattamente zero.** «Aldric le e' alleato o
+  meglio»: **0%**. «Vaerax non le e' nemico»: **0%**. E' la seconda domanda di
+  D-151, che finora avevo sempre dichiarato senza misurarla — adesso ha un
+  numero, ed e' zero su 20 partite.
+- **«Una pedina sua sulla Strada dei Mercanti»: 0%.** Lyra non si muove mai da
+  li'. Una clausola sulla mappa scritta per lei sarebbe stata un muro.
+
+---
+
 ## D-167 — La spina e la scelta: il Trionfo smette di essere una lista
 **implemented in 0.1.134** (richiesta del committente sui Destini, ripresa da D-161)
 
