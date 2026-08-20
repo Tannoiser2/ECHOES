@@ -61,7 +61,7 @@ Cinque parole coprono tutto lo stato del gioco. Se l'infografica ha un riquadro
 
 | pezzo | cos'è | come si muove |
 |---|---|---|
-| **Regione** | una casella della mappa. 6 in tutto. Ha *slot di presenza*, *adiacenze*, *tag*, e forse un *padrone* | presenza con MUOVERE · controllo solo tramite una Conseguenza di Consiglio |
+| **Regione** | una casella della mappa. 6 in tutto. Ha *slot di presenza*, *adiacenze*, *tag*, e forse un *padrone*. **Esserci** (presenza) e **averla** (controllo) sono due cose diverse — vedi §3 | presenza con MUOVERE · controllo solo tramite una Conseguenza di Consiglio |
 | **Tensione** | una domanda aperta del mondo, con un numero da 0 in su. 4 in gioco per anno | sale con la Deriva e con le carte, scende quando un Consiglio la risolve |
 | **Asset** | una carta in mano: uomini, titoli, gente, sapere, ricchezza, legami | si pesca con ACQUISIRE, si spende impegnandola al Consiglio |
 | **Relazione** | il rapporto fra due casate, su 5 gradini | si sposta di 1 passo con FORGIARE |
@@ -158,14 +158,48 @@ ammessi e contano: la presenza è un numero, non una bandierina. È quel numero 
 decidere chi propone al Consiglio. Una Regione non può ospitare più gettoni dei
 suoi slot.
 
-**Controllo.** Diverso dalla presenza: è il *padrone* della Regione. All'inizio
-tre Regioni su sei hanno un padrone e tre non sono di nessuno. Il controllo
-**non si prende con un'azione diretta**: cambia solo come Conseguenza di un
-Consiglio (vedi §6.3 e §7).
+**Controllo.** Diverso dalla presenza: è il *padrone* della Regione, cioè chi ci
+sta scritto sopra. All'inizio tre Regioni su sei hanno un padrone e tre non sono
+di nessuno. Il controllo **non si prende con un'azione diretta**: cambia solo
+come Conseguenza di un Consiglio (vedi §6.3 e §7).
 
-**Tenere troppo costa.** Oltre **2 Regioni** (`max_stable_control`), ogni
-Regione in più alza di 1 a ogni round la Tensione del dominio di quella Regione.
-Non è una punizione a chi vince: è l'impero che si crea da solo le proprie crisi.
+### Presenza e controllo: la distinzione che conta
+
+Sono due cose diverse e si confondono facilmente. **La presenza fa, il controllo
+conta.**
+
+**Che cosa comanda la presenza** — cioè: tutto quello che *fai* durante l'anno:
+
+| | |
+|---|---|
+| **chi propone al Consiglio** | chi ha **più presenza** nelle Regioni del dominio. Il controllo non entra nella scelta |
+| **INFLUENZARE gratis** | serve presenza in una Regione taggata col dominio di quella Tensione, altrimenti paghi una carta |
+| **ACQUISIRE potenziato** | presenza in una Regione che elenca quella famiglia → peschi 2 e ne tieni 1 |
+| **dove puoi MUOVERE** | solo verso Regioni adiacenti a una dove sei già |
+| **le regole dei segni** | quelle con `scope: REGION` valgono per chi ha presenza lì |
+| **le clausole di Destino** | 16 chiedono di **essere** in un posto (`region_presence`) |
+
+**Che cosa comanda il controllo** — tre cose, e due sono costi:
+
+| | |
+|---|---|
+| **le clausole di Destino** | 14 chiedono di **avere** un posto (`control_count`) |
+| **la sovraestensione** | oltre 2 Regioni, **+1 di Tensione a round** per ognuna in più: un costo, non un vantaggio |
+| **il passaggio all'anno dopo** | quello che tieni resta tuo — ma solo se ci stai dentro |
+
+E poi due usi che non sono regole: riempie il nome del padrone in un paio di
+frasi (`$controller`) e colora la casella sul tabellone.
+
+**Quindi: dentro l'anno, controllare una Regione non dà nessun vantaggio
+meccanico.** Non ti fa proporre, non ti fa pescare meglio, non ti fa influenzare
+gratis, non vale un punto al Consiglio. È un **titolo**: conta a fine anno, e se
+ne accumuli troppi ti costa.
+
+È coerente col tema — questo è un gioco sulla legittimità, e un titolo che non
+puoi esercitare è esattamente il problema di un re che non basta. Ma è anche il
+motivo per cui la mappa quasi non si muove: a parte i Destini che la chiedono,
+**nessuno ha una ragione, dentro l'anno, per andarsi a prendere una Regione**
+(vedi [ISSUES 37](ISSUES.md)).
 
 **Non si governa dove non si è.** Fra una Chronicle e la successiva, una Regione
 tenuta senza nessun gettone dentro torna a non essere di nessuno.
@@ -639,6 +673,13 @@ il Consiglio è il gioco.
 **Un diagramma che vale la pena fare anche se è di nicchia:** la **catena per
 prendere una Regione** (§7), disegnata come cinque anelli in fila. Racconta la
 filosofia del gioco meglio di qualsiasi frase.
+
+**L'errore che un'infografica fa da sola** è disegnare la mappa come una mappa di
+conquista, con quattro colori che si contendono il territorio. Non è quello: le
+**pedine** (presenza) sono ciò che dà potere, e il **colore della casella**
+(controllo) è solo un titolo che conta a fine anno. Vanno disegnati come due
+strati distinti — pedine sopra, colore sotto — e la legenda deve dire quale dei
+due fa cosa (§3).
 
 **Cosa si può tranquillamente omettere** in una prima infografica: i nomi
 propri delle 48 carte Asset, l'elenco delle 45 regole dei segni, i nomi delle 52

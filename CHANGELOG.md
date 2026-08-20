@@ -5,6 +5,48 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.118] — La presenza fa, il controllo conta
+
+Domanda del committente sulla meccanica appena scritta: «prendere una Regione
+cosa significa? Non basta avere una presenza?». Il documento non lo diceva, e
+l'infografica sarebbe venuta sbagliata.
+
+### Fixed
+
+- **`docs/MECCANICA.md`** ha una sezione nuova, *Presenza e controllo: la
+  distinzione che conta*, con le due liste affiancate. E le note per chi disegna
+  avvertono dell'errore che un'infografica fa da sola: disegnare la mappa come
+  una mappa di conquista.
+
+### Measured
+
+Cercato ogni punto del codice che legge `control`. I consumatori sono **tre**,
+piu' la prosa e il disegno:
+
+- `control_count` — **14 clausole di Destino**;
+- la **sovraestensione** — oltre 2 Regioni, +1 di Tensione a round: un **costo**;
+- il **passaggio all'anno dopo**, e solo se ci si sta dentro.
+
+Il controllo **non** decide chi propone al Consiglio (e' la presenza), non
+sblocca azioni, non piega la pesca, non vale un punto nel margine. **Dentro
+l'anno non da' nessun vantaggio meccanico.**
+
+La presenza invece comanda: chi propone, l'INFLUENZARE gratuito, l'ACQUISIRE
+potenziato, dove si puo' MUOVERE, le regole dei segni con `scope: REGION`, e 16
+clausole di Destino.
+
+### Changed
+
+- **`docs/ISSUES.md` 37** raccoglie la seconda meta' della diagnosi: la catena
+  di `ACT_CLAIM` non e' solo lunga, **e' lunga e non porta a niente di
+  immediato** — ecco perche' 48 rivendicazioni su 63 muoiono in mano. E aggiunge
+  la domanda che viene prima delle quattro strade: **se il titolo debba dare
+  qualcosa dentro l'anno**, che e' design e non taratura.
+
+Nessuna modifica al gioco.
+
+---
+
 ## [0.1.117] — La meccanica, tutta in un foglio
 
 ### Added

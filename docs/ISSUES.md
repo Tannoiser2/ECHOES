@@ -1150,9 +1150,27 @@ E si spezza al terzo. Su 60 Chronicle: **63 rivendicazioni aperte, 15 forzate,
 confronto, in trenta Chronicle `ACT_ACQUIRE` produce 4286 effetti e `ACT_CLAIM`
 84: le case raccolgono, non rivendicano.
 
+**E c'e' una seconda meta' della diagnosi, che il committente ha visto guardando
+la mappa: dentro l'anno il controllo non serve a niente.** Cercando ogni punto
+del codice che lo legge, i consumatori sono tre — `control_count` (14 clausole
+di Destino), la sovraestensione (oltre 2 Regioni **costa** Tensione ogni round)
+e il passaggio all'anno dopo — piu' due frasi di prosa e il colore sul
+tabellone. Il controllo **non** decide chi propone al Consiglio (quella e' la
+presenza), non sblocca azioni, non piega la pesca, non vale un punto nel
+margine.
+
+Quindi la catena non e' solo lunga: **e' lunga e non porta a niente di
+immediato**. Una policy che sceglie la mossa migliore per quest'anno non ha
+nessuna ragione di percorrerla, e infatti non la percorre. Delle 63
+rivendicazioni aperte, 48 muoiono in mano.
+
 L'idea e' bella — *rivendicare non e' prendersi una terra, e' costringere il
 tavolo a discuterne*. La domanda non e' quindi «serve un'azione», ma **quale
-anello si accorcia**. Quattro strade, nessuna misurata: **(a)** un solo Asset
+anello si accorcia** — o, prima ancora, **se il titolo debba dare qualcosa
+dentro l'anno**: e' una scelta di design, non una taratura. Un controllo che
+non paga mai e' coerente col tema (un gioco sulla legittimita', dove un titolo
+che non puoi esercitare e' il problema) ma lascia sei Destini a chiedere una
+cosa che nessuno ha motivo di inseguire. Quattro strade, nessuna misurata: **(a)** un solo Asset
 invece di due, o un solo round invece di due; **(b)** abbassare da 3 la
 Tensione richiesta dal `FORCE`; **(c)** piu' Consequence con `SET_CONTROL` in
 CHR_03, che ne ha tre contro le nove di CHR_01; **(d)** lasciare la catena
