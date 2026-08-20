@@ -598,6 +598,94 @@
         }
       ],
       "note": "La Leggenda della Montagna (D-133): finche' il mondo dimentica cosa dorme davvero, la sua parola sui fronti che sostiene pesa un impegno in piu'. Se il sigillo cade il segno sparisce, e la voce torna una voce."
+    },
+    {
+      "id": "TGR_VILLAGE_PEOPLE",
+      "title": "Dove ci sono case, ci sono braccia",
+      "when": {
+        "scope": "REGION",
+        "tag": "settlement:village"
+      },
+      "kind": "DRAW_BIAS",
+      "family": "PEOPLE",
+      "bias": "BONUS",
+      "active": true,
+      "note": "Il primo grado dell'insediamento (D-160, catalogo §8.2): chi ha presenza dove sta un villaggio pesca gente migliore. Un villaggio non e' una fortezza: e' un posto dove qualcuno risponde quando chiami."
+    },
+    {
+      "id": "TGR_TOWN_HAND",
+      "title": "Nel borgo si tiene qualcosa da parte",
+      "when": {
+        "scope": "REGION",
+        "tag": "settlement:town"
+      },
+      "kind": "HAND_LIMIT",
+      "hand_limit_delta": 1,
+      "active": true,
+      "note": "Il secondo grado (D-160): un borgo ha magazzini, e chi ci sta tiene una carta in piu'. E' l'inverso esatto della fame, che una carta la toglie."
+    },
+    {
+      "id": "TGR_CITY_VOICE",
+      "title": "La citta' parla piu' forte al Consiglio",
+      "when": {
+        "scope": "REGION",
+        "tag": "settlement:city"
+      },
+      "kind": "COUNCIL_MODIFIER",
+      "world_factor_delta": 1,
+      "active": true,
+      "note": "Il terzo grado (D-160): dove c'e' una citta', il mondo ascolta. Non e' un bonus a chi la tiene — e' il Fattore Mondo che pende dalla parte di chi propone, perche' una citta' rende una decisione piu' facile da far applicare."
+    },
+    {
+      "id": "TGR_FOREST_TIMBER",
+      "title": "Il bosco da' legna e riparo",
+      "when": {
+        "scope": "REGION",
+        "tag": "place:forest"
+      },
+      "kind": "DRAW_BIAS",
+      "family": "FORCE",
+      "bias": "BONUS",
+      "active": true,
+      "note": "Il primo dei luoghi del mondo (D-163): chi ha presenza dove il bosco e' ancora intero pesca forza migliore. Non e' di nessuno: vale per chiunque ci stia."
+    },
+    {
+      "id": "TGR_CURSED_WOOD_HAND",
+      "title": "Dalla selva si torna con meno",
+      "when": {
+        "scope": "REGION",
+        "tag": "place:cursed_wood"
+      },
+      "kind": "HAND_LIMIT",
+      "hand_limit_delta": -1,
+      "active": true,
+      "note": "Il luogo che si guasta (D-163): chi ha presenza nella selva maledetta tiene una carta in meno. Una foresta maledetta non e' una perdita per qualcuno — e' una perdita per chiunque ci stia dentro, e nessuno l'ha fatto apposta."
+    },
+    {
+      "id": "TGR_OPEN_SITE_KNOWLEDGE",
+      "title": "Il sito aperto insegna",
+      "when": {
+        "scope": "REGION",
+        "tag": "place:open_site"
+      },
+      "kind": "DRAW_BIAS",
+      "family": "KNOWLEDGE",
+      "bias": "BONUS",
+      "active": true,
+      "note": "D-165: chi ha presenza dove il sito e' aperto pesca sapere migliore — chiunque sia, perche' un luogo del mondo non e' di nessuno. Il degrado non aggiunge una penalita': toglie questo dono, e basta."
+    },
+    {
+      "id": "TGR_SPRING_PEOPLE",
+      "title": "Dove c'e' acqua, la gente resta",
+      "when": {
+        "scope": "REGION",
+        "tag": "place:spring"
+      },
+      "kind": "DRAW_BIAS",
+      "family": "PEOPLE",
+      "bias": "BONUS",
+      "active": true,
+      "note": "D-165: la sorgente viva fa pescare gente migliore a chi ci sta. Quando cala o si secca il segno cambia e la regola smette di valere: **niente penalita' nuove**, solo un dono che finisce."
     }
   ]
 }

@@ -10,6 +10,7 @@ extends RefCounted
 const Effect := preload("res://scripts/core/effect.gd")
 const Ids := preload("res://scripts/core/ids.gd")
 const Succession := preload("res://scripts/chronicle/succession.gd")
+const RngService := preload("res://scripts/core/rng_service.gd")
 
 const DEFAULT_DECK_COPIES: int = 3
 
@@ -53,6 +54,13 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 		"open_failures": [],
 	}
 
+	# Il dado dei Destini e' **a parte** (D-150), come quello che assegna i
+	# caratteri ai seggi nel playtest (D-051): una pesca che attinge al caso
+	# della partita sposta i mazzi, la deriva e le domande anche quando esce lo
+	# stesso Destino — e infatti i tre piani di simulazione sono usciti diversi
+	# il giorno in cui il pool si e' acceso, con i Destini identici. Accendere
+	# il pool deve cambiare **cosa la gente vuole**, non che mondo trova.
+	var destiny_rng: RefCounted = RngService.new(rng.get_seed() * 31 + 11)
 	for entity_id in chronicle["entities"]:
 		var definition: Dictionary = data.entities[entity_id]
 		world["entities"][entity_id] = {
@@ -62,7 +70,7 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 			# can change between Chronicles while every Scar and relation the
 			# world wrote keeps pointing at something that exists (D-045).
 			"name": str(definition["name"]),
-			"destiny_id": str(definition["destiny_id"]),
+			"destiny_id": _deal_destiny(entity_id, definition, chronicle, destiny_rng),
 			"generation": 0,
 			# La vita del seggio al tavolo (D-108): si parte dalla prima, e la
 			# successione la fa avanzare quando una linea si esaurisce.
@@ -92,7 +100,23 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 			"id": region_id,
 			"control": control,
 			"tags": (definition["tags"] as Array).duplicate(),
+			# Cosa ci sta sopra (D-157): un tipo, un grado, e un padrone se e'
+			# opera di una casa. Vuoto finche' qualcuno non costruisce.
+			"structures": [],
 		}
+
+	# La **forma** del mondo (D-166). Fino a 0.1.132 le adiacenze si leggevano
+	# dal dato della Regione ed erano l'unica cosa della mappa che non cambiava
+	# mai. Adesso sono stato: un passo che frana toglie un arco, e da quel
+	# momento due Regioni smettono di essere vicine.
+	world["adjacency"] = {}
+	for region_id in chronicle["regions"]:
+		var links: Array = []
+		for neighbour in (data.regions[region_id]["adjacency"] as Array):
+			# Solo i vicini che questa Chronicle porta davvero al tavolo.
+			if (chronicle["regions"] as Array).has(str(neighbour)):
+				links.append(str(neighbour))
+		world["adjacency"][str(region_id)] = links
 
 	for tension_id in resolve_tensions(chronicle, rng):
 		var definition: Dictionary = data.tensions[tension_id]
@@ -113,6 +137,37 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 
 ## Which Tensions this Chronicle actually runs.
 ##
+## Che cosa vuole questa casa, quest'anno (D-150).
+##
+## Il `destiny_id` scritto sull'Entita' e' quello che ha sempre voluto: resta
+## il suo, e senza pool non cambia niente. Ma una Chronicle puo' dichiarare un
+## `destiny_pool` — per casa, una lista di Destini fra cui pescare — e allora
+## l'anno decide cosa quella casa insegue *stavolta*.
+##
+## E' lo stesso meccanismo delle domande, applicato agli obiettivi, per la
+## stessa ragione: quello che si ripete non sono le storie — la sonda della
+## varieta' le da' a 0,8 di distanza (D-149) — ma cosa i giocatori vogliono, e
+## il risultato e' che due Destini su tre finiscono al Minimo. Un obiettivo
+## pescato rompe il Minimo come risposta giusta di default, e al tavolo toglie
+## la cosa peggiore che ha oggi: alla terza partita tutti sanno cosa vuole
+## l'altro.
+##
+## Ogni Destino del pool e' scritto **per la sua casa** — non si permuta niente
+## fra le case (SEDUTA_LINEE §2: una clausola nomina Regioni, rivali e segni di
+## quell'epoca, e la prosa e' scritta per chi la porta).
+static func _deal_destiny(
+	entity_id: String, definition: Dictionary, chronicle: Dictionary, rng: RefCounted
+) -> String:
+	var pool: Array = (chronicle.get("destiny_pool", {}) as Dictionary).get(entity_id, [])
+	if pool.is_empty():
+		return str(definition["destiny_id"])
+	var candidates: Array = []
+	for destiny_id in pool:
+		candidates.append(str(destiny_id))
+	candidates.sort()
+	return str(rng.shuffle(candidates)[0])
+
+
 ## `tensions` written out is the authored form. `tension_pool` is the library
 ## form: the Chronicle names what it *could* be about and the seeded RNG deals
 ## the year. That is what lets Chronicle N+1 exist without anyone writing it -
@@ -657,6 +712,45 @@ static func inheritance_effects(
 					)
 					break
 
+		# Le pietre attraversano gli anni (D-157). Una struttura non e' un segno
+		# ma un oggetto — tipo, grado, padrone — e passa **com'era**: il
+		# castello resta un castello, e la reggia resta una reggia finche'
+		# qualcosa non la fa scendere. Il padrone segue la stessa regola del
+		# controllo (`lapse_without_presence`): senza nessuno dentro, la casa
+		# non la governa piu' e le pietre restano di nessuno.
+		for structure in before.get("structures", []):
+			var record: Dictionary = structure as Dictionary
+			var holder: Variant = record.get("owner", null)
+			if lapse and holder != null and not _had_presence(previous, str(holder), str(region_id)):
+				holder = null
+			# Prima si toglie quello che l'apertura ha seminato, poi si rialza
+			# com'era: `starting_structures` descrive un anno che comincia da
+			# zero, e un anno che eredita comincia da quello che c'era.
+			# Senza questo, la torre di partenza copriva la reggia dell'anno
+			# prima — `BUILD_STRUCTURE` su un tipo gia' presente e' un no-op.
+			effects.append(
+				Effect.make(
+					"RAZE_STRUCTURE",
+					"region",
+					str(region_id),
+					{"structure_type": str(record["structure_type"])},
+					source
+				)
+			)
+			effects.append(
+				Effect.make(
+					"BUILD_STRUCTURE",
+					"region",
+					str(region_id),
+					{
+						"structure_type": str(record["structure_type"]),
+						"grade": int(record["grade"]),
+						"owner": holder,
+					},
+					source
+				)
+			)
+
 	# What people felt about each other outlives them - but not undimmed. Across
 	# a long jump every relation moves one step towards NEUTRAL: a war is
 	# remembered as a grudge, an alliance as a courtesy. The tags stay whatever
@@ -775,4 +869,19 @@ static func setup_effects(chronicle: Dictionary, data: RefCounted, world: Dictio
 					source
 				)
 			)
+	# Cosa c'e' gia' costruito quando l'anno si apre (D-159). Passa da un
+	# BUILD_STRUCTURE come tutto il resto: stesso Effect, stesso inverso, e la
+	# pietra entra nel conto del controllo dal primo round.
+	for entry in chronicle.get("starting_structures", []):
+		var built: Dictionary = entry as Dictionary
+		effects.append(Effect.make(
+			"BUILD_STRUCTURE", "region", str(built["region_id"]),
+			{
+				"structure_type": str(built["structure_type"]),
+				"grade": int(built.get("grade", 1)),
+				"owner": built.get("owner", null),
+			},
+			source
+		))
+
 	return effects

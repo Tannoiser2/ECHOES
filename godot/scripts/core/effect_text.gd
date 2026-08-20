@@ -15,6 +15,100 @@ extends RefCounted
 ## player about the deck's plumbing instead of about their world.
 const HIDDEN_TAG_PREFIX: String = "function:"
 
+## Il vocabolario della mappa, in italiano. Un tag e' un identificativo: sta
+## bene nei dati e non si legge al tavolo. Fino a 0.1.120 il registro pubblico
+## e la console dicevano «Valle Verde: condition:lean», che e' esattamente il
+## difetto che il committente ha trovato giocando — le frasi sono belle e non si
+## capiscono. Quello che manca a un tag e' un verbo.
+const TAGS: Dictionary = {
+	# Come sta una Regione, adesso. Sbiadisce sui salti lunghi.
+	"condition:starving": "si muore di fame",
+	"condition:lean": "il raccolto non basta",
+	"condition:rationed": "si mangia a razione",
+	"condition:requisitioned": "il grano e' stato preso",
+	"condition:unrest": "monta il malcontento",
+	"condition:contested": "e' conteso",
+	"condition:cut_off": "resta tagliato fuori",
+	"condition:plundered": "e' stato depredato",
+	"condition:abandoned": "e' stato lasciato",
+	"condition:emptied": "si e' svuotato",
+	"condition:mourning": "e' in lutto",
+	"condition:exploited": "viene sfruttato",
+	"condition:indebted": "e' pieno di debiti",
+	# Cosa ci hanno costruito. Non sbiadisce mai.
+	"structure:granary": "vi sorge un granaio",
+	"structure:canal": "i canali portano acqua",
+	"structure:tollgate": "vi sorge una barriera di pedaggio",
+	"structure:watchtower": "vi sorge una torre di veglia",
+	"structure:sealed": "e' stato murato",
+	# Le cicatrici: la memoria visibile della mappa.
+	"scar:burned": "la bruciatura",
+	"scar:emptied": "il vuoto lasciato",
+	"scar:abandoned": "l'abbandono",
+	"scar:plundered": "la razzia",
+	"scar:broken_bridge": "il ponte spezzato",
+	"scar:broken_word": "la parola tradita",
+	"scar:changed_hands": "il passaggio di mano",
+	"scar:divided_seal": "il sigillo diviso",
+	"scar:dragonfall": "la caduta del drago",
+	"scar:open_wound": "la ferita aperta",
+	"scar:sealed_border": "il confine chiuso",
+	"scar:the_empty_chair": "la sedia vuota",
+	"scar:unanswered": "la domanda senza risposta",
+}
+
+
+## Quando il segno **sparisce**. «non piu si muore di fame» non e' italiano: una
+## condizione che finisce ha una frase sua. Dove manca si ripiega su «non piu».
+const TAGS_GONE: Dictionary = {
+	"condition:starving": "la fame e' passata",
+	"condition:lean": "il raccolto ha tenuto",
+	"condition:rationed": "la razione e' finita",
+	"condition:requisitioned": "il grano e' tornato suo",
+	"condition:unrest": "il malcontento si e' spento",
+	"condition:contested": "non lo contende piu nessuno",
+	"condition:cut_off": "la strada e' riaperta",
+	"condition:plundered": "la razzia e' stata rimediata",
+	"condition:abandoned": "ci si e' tornati",
+	"condition:emptied": "si e' ripopolato",
+	"condition:mourning": "il lutto e' finito",
+	"condition:exploited": "lo sfruttamento e' cessato",
+	"condition:indebted": "i debiti sono chiusi",
+	"structure:granary": "il granaio non c'e' piu",
+	"structure:canal": "i canali si sono insabbiati",
+	"structure:tollgate": "la barriera e' stata tolta",
+	"structure:watchtower": "la torre e' stata abbattuta",
+	"structure:sealed": "il muro e' stato aperto",
+}
+
+
+## Il segno che sparisce, detto a voce.
+static func tag_gone(tag: String) -> String:
+	if TAGS_GONE.has(tag):
+		return str(TAGS_GONE[tag])
+	return "non piu %s" % tag_words(tag)
+
+
+## Un tag detto a voce. I prefissi che il gioco usa come famiglie hanno una
+## forma loro; il resto si legge come una frase invece che come un
+## identificativo — `debt_called` e' «il debito chiamato», non `debt_called`.
+static func tag_words(tag: String) -> String:
+	if TAGS.has(tag):
+		return str(TAGS[tag])
+	if tag.begins_with("discovery:"):
+		return "una Scoperta (%s)" % _plain(tag.substr(10))
+	if tag.begins_with("settlement:"):
+		return "un insediamento (%s)" % _plain(tag.substr(11))
+	if tag.begins_with("legend:"):
+		return "una leggenda (%s)" % _plain(tag.substr(7))
+	if tag.begins_with("life:"):
+		return "una vita nuova (%s)" % _plain(tag.substr(5))
+	return _plain(tag)
+
+
+static func _plain(tag: String) -> String:
+	return tag.replace("_", " ").replace(":", " ")
+
 
 static func say(effect: Dictionary, data: RefCounted) -> String:
 	var target: String = str((effect.get("target", {}) as Dictionary).get("id", ""))
@@ -31,14 +125,31 @@ static func say(effect: Dictionary, data: RefCounted) -> String:
 				"aperta a tutti" if str(payload.get("visibility", "")) == "OPEN" else "velata",
 			]
 		"SET_REGION_TAG":
-			return "%s: %s" % [_region(target, data), str(payload.get("tag", ""))]
+			return "%s: %s" % [_region(target, data), tag_words(str(payload.get("tag", "")))]
 		"REMOVE_REGION_TAG":
-			return "%s non e piu %s" % [_region(target, data), str(payload.get("tag", ""))]
+			return "%s: %s" % [_region(target, data), tag_gone(str(payload.get("tag", "")))]
 		"SET_GLOBAL_TAG":
 			var tag: String = str(payload.get("tag", ""))
-			return "" if tag.begins_with(HIDDEN_TAG_PREFIX) else "Nel mondo: %s" % tag
+			return "" if tag.begins_with(HIDDEN_TAG_PREFIX) else "Nel mondo: %s" % tag_words(tag)
 		"REMOVE_GLOBAL_TAG":
-			return "Non vale piu: %s" % str(payload.get("tag", ""))
+			return "Nel mondo: %s" % tag_gone(str(payload.get("tag", "")))
+		"BUILD_STRUCTURE":
+			return "%s: %s" % [
+				_region(target, data),
+				_structure_words(payload, data, "vi sorge"),
+			]
+		"RAZE_STRUCTURE":
+			return "%s: %s va giu" % [
+				_region(target, data), _structure_words(payload, data, ""),
+			]
+		"SET_STRUCTURE_GRADE":
+			return "%s: %s" % [
+				_region(target, data), _structure_words(payload, data, "adesso e"),
+			]
+		"SET_ENTITY_TAG":
+			return "%s: %s" % [_name(target, data), tag_words(str(payload.get("tag", "")))]
+		"REMOVE_ENTITY_TAG":
+			return "%s: %s" % [_name(target, data), tag_gone(str(payload.get("tag", "")))]
 		"ADD_PRESENCE":
 			return "%s mette una presenza in %s" % [
 				_name(target, data), _region(str(payload.get("region_id", "")), data),
@@ -52,8 +163,12 @@ static func say(effect: Dictionary, data: RefCounted) -> String:
 			return "%s passa a %s" % [_region(target, data), _name(str(holder), data)] \
 				if holder != null else "%s non e piu di nessuno" % _region(target, data)
 		"SET_RELATION":
+			var pair: PackedStringArray = target.split("|")
+			var who: String = target.replace("|", " / ")
+			if pair.size() == 2:
+				who = "%s / %s" % [_name(str(pair[0]), data), _name(str(pair[1]), data)]
 			return "Il rapporto %s diventa %s" % [
-				target.replace("|", " / "), str(payload.get("level", "")).to_lower(),
+				who, str(payload.get("level", "")).to_lower(),
 			]
 		"ADD_SCAR":
 			return "Cicatrice in %s: %s" % [
@@ -86,19 +201,65 @@ static func lines(effects: Array, data: RefCounted) -> Array:
 	return out
 
 
+## Le caselle che un Effect scritto a mano lascia da riempire. Al momento di
+## applicarlo sono gia' risolte; in **anteprima** — quando si guarda cosa farebbe
+## una carta prima di calarla — non lo sono ancora, e stampare `$rival` e' il
+## modo piu' rapido per far sembrare il gioco rotto.
+const SLOTS: Dictionary = {
+	"$proponent": "chi la cala",
+	"$self": "chi la cala",
+	"$rival": "un rivale",
+	"$controller": "chi la tiene",
+	"$region_focus": "la Regione della domanda",
+	"$the_region": "la Regione della domanda",
+	"$capital": "la capitale",
+	"$rival_seat": "la terra di un rivale",
+}
+
+
+static func _slot(value: String) -> String:
+	if SLOTS.has(value):
+		return str(SLOTS[value])
+	return "" if not value.begins_with("$") else value.substr(1).replace("_", " ")
+
+
+## Il nome del grado di una struttura, non il suo identificativo. Senza grado
+## nel payload (un abbattimento non lo porta) si dice il tipo.
+static func _structure_words(payload: Dictionary, data: RefCounted, verb: String) -> String:
+	var type_id: String = str(payload.get("structure_type", ""))
+	var definition: Variant = data.structure_types.get(type_id)
+	if definition == null:
+		return type_id if verb == "" else "%s %s" % [verb, type_id]
+	var grades: Array = definition["grades"]
+	var said: String = str(definition["name"]).to_lower()
+	if payload.has("grade"):
+		var grade: int = clampi(int(payload["grade"]), 1, grades.size())
+		said = str((grades[grade - 1] as Dictionary)["name"]).to_lower()
+	return said if verb == "" else "%s %s" % [verb, said]
+
+
 static func _tension(tension_id: String, data: RefCounted) -> String:
 	var tension: Variant = data.tensions.get(tension_id)
-	return tension_id if tension == null else str(tension["title"])
+	if tension != null:
+		return str(tension["title"])
+	var slot: String = _slot(tension_id)
+	return slot if slot != "" else tension_id
 
 
 static func _region(region_id: String, data: RefCounted) -> String:
 	var region: Variant = data.regions.get(region_id)
-	return region_id if region == null else str(region["name"])
+	if region != null:
+		return str(region["name"])
+	var slot: String = _slot(region_id)
+	return slot if slot != "" else region_id
 
 
 static func _name(entity_id: String, data: RefCounted) -> String:
 	var entity: Variant = data.entities.get(entity_id)
-	return entity_id if entity == null else str(entity["name"])
+	if entity != null:
+		return str(entity["name"])
+	var slot: String = _slot(entity_id)
+	return slot if slot != "" else entity_id
 
 
 static func _asset(asset_id: String, data: RefCounted) -> String:

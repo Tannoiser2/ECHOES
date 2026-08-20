@@ -52,22 +52,42 @@
             "label": "Il patto con i Signori della Cenere regge"
           },
           {
-            "type": "state_tag_absent",
-            "scope": "GLOBAL",
-            "tag": "ledger_public",
-            "label": "E il registro resta suo"
-          },
-          {
-            "type": "control_count",
-            "entity_id": "ENT_SALE",
-            "min": 2,
-            "label": "E il registro copre due Regioni, non una"
-          },
-          {
-            "type": "tension_limit",
-            "tension_id": "TEN_DEBT",
-            "max": 5,
-            "label": "E il Debito non ha spaccato la Strada"
+            "type": "some_of",
+            "min": 3,
+            "label": "E tre segni che il registro pesa più della spada",
+            "conditions": [
+              {
+                "type": "state_tag_absent",
+                "scope": "GLOBAL",
+                "tag": "ledger_public",
+                "label": "E il registro resta suo"
+              },
+              {
+                "type": "tension_limit",
+                "tension_id": "TEN_DEBT",
+                "max": 5,
+                "label": "E il Debito non ha spaccato la Strada"
+              },
+              {
+                "type": "structure_count",
+                "entity_id": "ENT_SALE",
+                "min": 2,
+                "label": "Il registro ha più di una casa"
+              },
+              {
+                "type": "scar_count",
+                "region_id": "REG_STRADA_MERCANTI",
+                "max": 0,
+                "label": "La Strada dei Mercanti è uscita pulita"
+              },
+              {
+                "type": "structure_count",
+                "entity_id": "ENT_SALE",
+                "structure_type": "STR_TOLLGATE",
+                "min": 1,
+                "label": "E c'è una sbarra che porta il suo nome"
+              }
+            ]
           }
         ]
       }
@@ -109,12 +129,6 @@
         "label": "E vale lo stesso",
         "conditions": [
           {
-            "type": "state_tag_present",
-            "scope": "GLOBAL",
-            "tag": "water_moves",
-            "label": "L'acqua torna a muoversi, e i lavori li ha pagati lei"
-          },
-          {
             "type": "region_presence",
             "entity_id": "ENT_SALE",
             "region_id": "REG_STRADA_MERCANTI",
@@ -122,11 +136,37 @@
             "label": "Presenza sulla Strada dei Mercanti"
           },
           {
-            "type": "state_tag_present",
-            "scope": "ENTITY",
-            "entity_id": "ENT_SALE",
-            "tag": "discovery:legend",
-            "label": "E la vecchia pagina è stata riletta e trascritta nel registro"
+            "type": "some_of",
+            "min": 2,
+            "label": "E due segni che un registro aperto pesa uguale",
+            "conditions": [
+              {
+                "type": "state_tag_present",
+                "scope": "GLOBAL",
+                "tag": "water_moves",
+                "label": "L'acqua torna a muoversi, e i lavori li ha pagati lei"
+              },
+              {
+                "type": "structure_count",
+                "entity_id": "ENT_SALE",
+                "grade": 2,
+                "min": 1,
+                "label": "E c'è una sbarra che porta il suo nome"
+              },
+              {
+                "type": "scar_count",
+                "region_id": "REG_STRADA_MERCANTI",
+                "max": 0,
+                "label": "La Strada dei Mercanti è uscita pulita"
+              },
+              {
+                "type": "structure_count",
+                "entity_id": "ENT_SALE",
+                "structure_family": "OPERA",
+                "min": 1,
+                "label": "Un'opera che la Gilda ha pagato e tiene"
+              }
+            ]
           }
         ]
       }
@@ -176,36 +216,55 @@
         "label": "E cosa ci sia dentro lo sa, e le gallerie sono ancora sue",
         "conditions": [
           {
-            "type": "state_tag_present",
-            "scope": "ENTITY",
-            "entity_id": "ENT_VETRO",
-            "tag": "discovery:relic",
-            "label": "L'Ordine ha messo a verbale cosa custodisce"
-          },
-          {
             "type": "state_tag_absent",
             "scope": "REGION",
-            "region_id": "REG_MINIERE_ANTICHE",
             "tag": "condition:emptied",
+            "region_id": "REG_MINIERE_ANTICHE",
             "label": "E le gallerie non sono state abbandonate"
           },
           {
-            "type": "tension_limit",
-            "tension_id": "TEN_RELIC",
-            "max": 4,
-            "label": "E la Reliquia non è diventata la domanda di tutti"
-          },
-          {
-            "type": "tension_limit",
-            "tension_id": "TEN_WATER",
-            "max": 4,
-            "label": "E l'acqua non è diventata la questione che sveglia tutti"
-          },
-          {
-            "type": "tension_limit",
-            "tension_id": "TEN_CHARTER",
-            "max": 4,
-            "label": "E la legge scritta non è arrivata a bussare alla teca"
+            "type": "some_of",
+            "min": 4,
+            "label": "E quattro segni che la custodia ha tenuto",
+            "conditions": [
+              {
+                "type": "state_tag_present",
+                "scope": "ENTITY",
+                "tag": "discovery:relic",
+                "entity_id": "ENT_VETRO",
+                "label": "L'Ordine ha messo a verbale cosa custodisce"
+              },
+              {
+                "type": "tension_limit",
+                "tension_id": "TEN_RELIC",
+                "max": 4,
+                "label": "E la Reliquia non è diventata la domanda di tutti"
+              },
+              {
+                "type": "tension_limit",
+                "tension_id": "TEN_WATER",
+                "max": 4,
+                "label": "E l'acqua non è diventata la questione che sveglia tutti"
+              },
+              {
+                "type": "tension_limit",
+                "tension_id": "TEN_CHARTER",
+                "max": 4,
+                "label": "E la legge scritta non è arrivata a bussare alla teca"
+              },
+              {
+                "type": "scar_count",
+                "region_id": "REG_MINIERE_ANTICHE",
+                "max": 0,
+                "label": "Le Miniere sono uscite pulite"
+              },
+              {
+                "type": "structure_count",
+                "entity_id": "ENT_VETRO",
+                "min": 1,
+                "label": "E l'Ordine ha qualcosa di suo che sta in piedi"
+              }
+            ]
           }
         ]
       }
@@ -288,13 +347,20 @@
         ]
       },
       "victory": {
-        "label": "Tengono la montagna, e non solo quella",
+        "label": "Chi scava lo dicono loro",
         "conditions": [
           {
             "type": "control_count",
             "entity_id": "ENT_CENERE",
-            "min": 2,
-            "label": "Controllo di almeno 2 Regioni"
+            "min": 1,
+            "label": "La montagna è ancora loro"
+          },
+          {
+            "type": "state_tag_present",
+            "scope": "ENTITY",
+            "entity_id": "ENT_CENERE",
+            "tag": "ash_watch",
+            "label": "E la veglia sulla montagna è affidata a loro, per atto e non per abitudine"
           },
           {
             "type": "state_tag_absent",
@@ -306,29 +372,8 @@
         ]
       },
       "triumph": {
-        "label": "E la veglia sulla montagna è loro",
+        "label": "E non solo quella",
         "conditions": [
-          {
-            "type": "state_tag_present",
-            "scope": "ENTITY",
-            "entity_id": "ENT_CENERE",
-            "tag": "ash_watch",
-            "label": "La veglia sulla montagna è affidata a loro"
-          },
-          {
-            "type": "relation_state",
-            "entity_id": "ENT_CENERE",
-            "other_entity_id": "ENT_SALE",
-            "level": "NEUTRAL",
-            "at_least": true,
-            "label": "E il patto con la Gilda non è un conto aperto"
-          },
-          {
-            "type": "state_tag_absent",
-            "scope": "GLOBAL",
-            "tag": "relic_buried",
-            "label": "E nessuno ha richiuso quello che c'è sotto"
-          },
           {
             "type": "tension_limit",
             "tension_id": "TEN_ASH",
@@ -336,10 +381,48 @@
             "label": "E la Cenere continua a salire: è quello che tiene la montagna nostra"
           },
           {
-            "type": "tension_limit",
-            "tension_id": "TEN_RELIC",
-            "min": 3,
-            "label": "E quello che c'è sotto resta una domanda aperta"
+            "type": "some_of",
+            "min": 4,
+            "label": "E quattro segni che la montagna è loro davvero",
+            "conditions": [
+              {
+                "type": "control_count",
+                "entity_id": "ENT_CENERE",
+                "min": 2,
+                "label": "Il registro della montagna copre due Regioni, non una"
+              },
+              {
+                "type": "relation_state",
+                "entity_id": "ENT_CENERE",
+                "other_entity_id": "ENT_SALE",
+                "level": "NEUTRAL",
+                "at_least": true,
+                "label": "E il patto con la Gilda non è un conto aperto"
+              },
+              {
+                "type": "state_tag_absent",
+                "scope": "GLOBAL",
+                "tag": "relic_buried",
+                "label": "E nessuno ha richiuso quello che c'è sotto"
+              },
+              {
+                "type": "tension_limit",
+                "tension_id": "TEN_RELIC",
+                "min": 3,
+                "label": "E quello che c'è sotto resta una domanda aperta"
+              },
+              {
+                "type": "structure_count",
+                "entity_id": "ENT_CENERE",
+                "min": 2,
+                "label": "E quello che tengono si vede da due parti"
+              },
+              {
+                "type": "scar_count",
+                "min": 3,
+                "label": "E l'anno ha lasciato segni: sulla montagna si lavora, non si conserva"
+              }
+            ]
           }
         ]
       }
@@ -366,11 +449,11 @@
         "label": "E hanno visto cosa c'è sotto",
         "conditions": [
           {
-            "type": "state_tag_present",
-            "scope": "ENTITY",
+            "type": "region_presence",
             "entity_id": "ENT_CENERE",
-            "tag": "discovery:relic",
-            "label": "Hanno visto la reliquia con i propri occhi"
+            "region_id": "REG_MINIERE_ANTICHE",
+            "min": 1,
+            "label": "Qualcuno di loro è sceso"
           },
           {
             "type": "state_tag_absent",
@@ -378,6 +461,27 @@
             "region_id": "REG_MINIERE_ANTICHE",
             "tag": "structure:sealed",
             "label": "E le gallerie non sono state murate"
+          },
+          {
+            "type": "some_of",
+            "min": 1,
+            "label": "E un segno di cosa hanno trovato",
+            "conditions": [
+              {
+                "type": "state_tag_present",
+                "scope": "ENTITY",
+                "entity_id": "ENT_CENERE",
+                "tag": "discovery:relic",
+                "label": "Hanno visto la reliquia con i propri occhi"
+              },
+              {
+                "type": "region_presence",
+                "entity_id": "ENT_CENERE",
+                "region_id": "REG_MINIERE_ANTICHE",
+                "min": 2,
+                "label": "O sono scesi in due, e non hanno solo guardato"
+              }
+            ]
           }
         ]
       },
@@ -385,16 +489,48 @@
         "label": "E non devono più niente a nessuno",
         "conditions": [
           {
-            "type": "promise_broken",
-            "entity_id": "ENT_CENERE",
-            "other_entity_id": "ENT_SALE",
-            "label": "Il patto con la Gilda è saltato"
-          },
-          {
-            "type": "control_count",
-            "entity_id": "ENT_CENERE",
-            "min": 2,
-            "label": "Controllo di almeno 2 Regioni"
+            "type": "some_of",
+            "min": 3,
+            "label": "Tre segni che quello che hanno trovato è loro",
+            "conditions": [
+              {
+                "type": "state_tag_present",
+                "scope": "ENTITY",
+                "entity_id": "ENT_CENERE",
+                "tag": "discovery:relic",
+                "label": "Hanno visto la reliquia con i propri occhi"
+              },
+              {
+                "type": "promise_broken",
+                "entity_id": "ENT_CENERE",
+                "other_entity_id": "ENT_SALE",
+                "label": "Il patto con la Gilda è saltato"
+              },
+              {
+                "type": "structure_count",
+                "entity_id": "ENT_CENERE",
+                "grade": 2,
+                "min": 1,
+                "label": "E sulla montagna c'è qualcosa di murato che è loro"
+              },
+              {
+                "type": "scar_count",
+                "max": 2,
+                "label": "L'anno non ha lasciato più di due segni sul mondo"
+              },
+              {
+                "type": "scar_count",
+                "region_id": "REG_MINIERE_ANTICHE",
+                "max": 0,
+                "label": "Le gallerie sono uscite dall'anno senza un segno"
+              },
+              {
+                "type": "scar_count",
+                "region_id": "REG_MONTAGNE_ROSSE",
+                "max": 0,
+                "label": "E la montagna anche"
+              }
+            ]
           }
         ]
       }
@@ -443,37 +579,55 @@
         "label": "E nessuno l'ha pagata più degli altri",
         "conditions": [
           {
-            "type": "state_tag_present",
-            "scope": "GLOBAL",
-            "tag": "debt_forgiven",
-            "label": "Il debito è stato rimesso"
-          },
-          {
-            "type": "relation_state",
-            "entity_id": "ENT_LIBERE",
-            "other_entity_id": "ENT_SALE",
-            "level": "NEUTRAL",
-            "at_least": true,
-            "label": "E la Gilda non è diventata un nemico delle città"
-          },
-          {
-            "type": "state_tag_absent",
-            "scope": "REGION",
-            "region_id": "REG_EREDAN",
-            "tag": "condition:unrest",
-            "label": "Eredan non è in rivolta"
-          },
-          {
             "type": "tension_limit",
             "tension_id": "TEN_CHARTER",
             "min": 3,
             "label": "E la Carta si scrive quando la domanda non si può più rimandare"
           },
           {
-            "type": "tension_limit",
-            "tension_id": "TEN_DEBT",
-            "min": 3,
-            "label": "E il Debito resta la domanda che nessuno può fingere di non vedere"
+            "type": "some_of",
+            "min": 4,
+            "label": "E quattro segni che il conto è stato diviso",
+            "conditions": [
+              {
+                "type": "state_tag_present",
+                "scope": "GLOBAL",
+                "tag": "debt_forgiven",
+                "label": "Il debito è stato rimesso"
+              },
+              {
+                "type": "relation_state",
+                "entity_id": "ENT_LIBERE",
+                "other_entity_id": "ENT_SALE",
+                "level": "NEUTRAL",
+                "at_least": true,
+                "label": "E la Gilda non è diventata un nemico delle città"
+              },
+              {
+                "type": "state_tag_absent",
+                "scope": "REGION",
+                "tag": "condition:unrest",
+                "region_id": "REG_EREDAN",
+                "label": "Eredan non è in rivolta"
+              },
+              {
+                "type": "tension_limit",
+                "tension_id": "TEN_DEBT",
+                "min": 3,
+                "label": "E il Debito resta la domanda che nessuno può fingere di non vedere"
+              },
+              {
+                "type": "structure_count",
+                "entity_id": "ENT_LIBERE",
+                "min": 3,
+                "label": "E le città hanno costruito, non solo discusso"
+              },
+              {
+                "type": "scar_count",
+                "max": 2,
+                "label": "E l'anno non ha lasciato più di due segni sul mondo"
+              }
+            ]
           }
         ]
       }
@@ -522,10 +676,35 @@
             "label": "L'acqua non è stata messa a prezzo"
           },
           {
-            "type": "control_count",
-            "entity_id": "ENT_LIBERE",
-            "min": 1,
-            "label": "Almeno una Regione controllata"
+            "type": "some_of",
+            "min": 2,
+            "label": "E due segni che l'hanno tenuta aperta per tutti",
+            "conditions": [
+              {
+                "type": "control_count",
+                "entity_id": "ENT_LIBERE",
+                "min": 2,
+                "label": "Due Regioni rispondono a loro"
+              },
+              {
+                "type": "structure_count",
+                "entity_id": "ENT_LIBERE",
+                "structure_family": "OPERA",
+                "min": 1,
+                "label": "Un canale che le città mantengono"
+              },
+              {
+                "type": "scar_count",
+                "region_id": "REG_VALLE_VERDE",
+                "max": 0,
+                "label": "La Valle Verde è uscita pulita"
+              },
+              {
+                "type": "scar_count",
+                "max": 2,
+                "label": "L'anno non ha lasciato più di due segni sul mondo"
+              }
+            ]
           }
         ]
       }

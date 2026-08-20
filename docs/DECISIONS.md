@@ -10,6 +10,1164 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-170 — Gli undici Destini mai giocati, guardati per la prima volta
+**implemented in 0.1.138** (ISSUES 43 misurata, e **il pool resta spento**)
+
+ISSUES 43 diceva: `_deal_destiny` pesca da `chronicle["destiny_pool"]`, i pool
+sono scritti sulle Entita', nessuna Chronicle ne dichiara uno, quindi **undici
+Destini su venti non si giocano mai all'apertura**. E diceva anche che accenderli
+alla cieca costa una misura vera. Questa e' la misura.
+
+### Accendere il pool oggi peggiora il gioco
+
+Fatto pescare dalla lista dell'Entita' quando la Chronicle non ne dichiara una —
+tre righe — e misurato su 80 Chronicle:
+
+| | pool spento | pool acceso |
+|---|---|---|
+| supera il Minimo | **62%** | **50%** |
+| seggi a NONE | **0%** | **8%** |
+| TRIONFO | 20% | 18% |
+
+**Un seggio su dodici finisce l'anno senza nemmeno il Minimo**, cosa che oggi non
+succede mai. Il meccanismo e' giusto e la misura dice che il contenuto non e'
+pronto: gli undici non sono mai stati bilanciati, perche' nessuna sonda li aveva
+mai visti.
+
+### Cinque muri al 100%, e tre Destini fermi
+
+| Destino | com'era |
+|---|---|
+| `DST_CENERE_DEEP` | **16 su 16 al Minimo**, zero Vittorie: tre clausole mancate al 100% — la reliquia, il patto saltato, due Regioni |
+| `DST_NAHR_ROOTED` | 12 su 12 alla Vittoria, **zero Trionfi**: `discovery:legend`, mai guadagnato |
+| `DST_SALE_OPEN` | 10 su 13 al Minimo, **zero Trionfi**: lo stesso tag |
+| `DST_SHARED_RENOWN` | **20 NONE su 41**: il Minimo chiedeva la fama, che i suoi tre portatori hanno il 35-50% delle volte |
+| `DST_SHARED_ACCOUNTS` | 7 NONE su 23, e un **Trionfo piu' facile della Vittoria** — un gradino che non e' un gradino |
+| `DST_LIBERE_WATER` | Trionfo al **75%** |
+
+Le sei sono state riscritte nella forma di D-167 — spina piu' scelta — con le
+strade misurate prima sul banco della sonda (quaranta candidate, due giri). I
+muri non ci sono piu': `CENERE_DEEP` passa da 16/0/0 a **10/1/4**, `NAHR_ROOTED`
+da 12 Vittorie e zero Trionfi a **2/3/7**, `SALE_OPEN` da zero Trionfi a 7/5/1.
+
+**E non basta.** Col pool acceso e le sei riscritte: supera il Minimo **53%**,
+NONE **7%**. Meglio di 50/8, lontano da 62/0. Restano fuori banda
+`DST_ALDRIC_RECORD` (15 su 17 al Minimo) e le due condivisibili, che continuano
+a mandare a NONE un seggio su tre.
+
+**Quindi il pool resta spento**, le sei riscritture restano — un Destino senza
+muri e' meglio di uno con tre, anche mentre nessuno lo pesca — e ISSUES 43 resta
+aperta con dentro il numero che le mancava.
+
+### Il limite della sonda delle clausole, trovato usandola
+
+La sonda di D-167 misura **quanto e' vera una clausola a fine anno**, e lo fa
+mentre ogni seggio gioca il **proprio** Destino. Per una clausola scritta in un
+Destino che il seggio gia' insegue, e' la misura giusta. Per una scritta in un
+Destino che il seggio **non** insegue, no: cambiare Destino cambia cosa quel
+seggio propone, e quindi cambia il numero.
+
+Si vede in chiaro su `DST_SHARED_RENOWN`. Il banco diceva «una Regione
+controllata» al 100% per Aldric, 100% per le Citta', 80% per il Vetro — quindi
+un Minimo sicuro. Coi seggi che la giurano davvero: **13 NONE su 41**.
+
+Non e' un difetto della sonda, e' il suo perimetro, e adesso e' scritto sul
+manico: *la sonda dice cosa e' vero nel mondo che c'e'; un Destino nuovo fa un
+mondo diverso.* Un Destino che cambia come una casa gioca si misura solo
+giocandolo.
+
+### Misure
+
+Col pool spento — cioe' la configurazione che resta — **tutto invariato**:
+playtest FAIL 203 · SUCC 77 · SUCC 109 · DECI 187, mediana 6, tavolo misto **0
+su 8**, uniforme **0 su 8**, sonda dei gradini 62% sopra il Minimo e 0 NONE.
+Le sei riscritture costano **zero** perche' nessuno le pesca, ed e' esattamente
+il punto di ISSUES 43.
+
+Suite **343 test / 6548 asserzioni** verde; sims deterministici; `dead_code.py`
+pulito su 154 file.
+
+---
+
+## D-169 — Lyra apre, e la banda dei Consigli si sposta con una ragione
+**implemented in 0.1.137** (decisione del committente su ISSUES 44: «apri Lyra, la banda si puo' rivedere dopo»)
+
+D-168 aveva misurato il prezzo e lasciato la scelta. La scelta e' fatta.
+
+### Cosa e' cambiato nei Destini
+
+**Lyra.** La Vittoria era una spina gratis piu' un tag al 25%: una porta, non
+una scala. Adesso e' la spina — presenza nelle Miniere, che e' l'unica cosa che
+il titolo promette — piu' **due segni su tre**: la scorta giurata (25%), le
+Miniere non sigillate (45%), un posto sulla mappa che risponde a lei (45%). E il
+Trionfo chiede **quattro Scoperte** invece di due, perche' due erano vere nel
+100% degli anni misurati: una spina vera nel 100% dei casi non e' una spina.
+
+**Nahr.** La sua scelta scende da quattro segni a **tre**. Non e' bilanciamento
+gratuito: aprendo Lyra, Nahr passava da 8 Trionfi a 1 senza che nessuno toccasse
+il suo Destino, perche' le sue cinque strade dicono tutte «il mondo e' rimasto
+calmo» e Lyra che ricomincia a giocare rende il mondo meno calmo.
+
+### La forma che misurava meglio era rotta, e la misura non bastava a dirlo
+
+Quattro forme provate, tre legittime:
+
+| forma | Lyra | Trionfi del tavolo | gia' vera all'apertura? |
+|---|---|---|---|
+| oggi (porta sola) | 38/3/9 | 79 | no |
+| **2 su 3** | **32/12/6** | **86** | **no** |
+| 2 su 5 | 27/16/7 | **91** | **si' — scartata** |
+| 3 su 5 | 37/8/5 | 85 | no |
+
+La 2 su 5 e' la migliore su ogni numero, ed e' quella che ho scartato: due delle
+cinque strade sono vere sulla posizione d'apertura, quindi **una parte di quelle
+Vittorie erano regalate**. E' esattamente il difetto che la sonda di D-167 era
+stata scritta per trovare in casa d'altri, trovato stavolta in casa mia, e non
+dai numeri — i numeri lo premiavano — ma da un test che valuta il Destino prima
+che qualcuno giochi.
+
+**La regola che ne esce**: quando una forma misura meglio di tutte le altre,
+prima di tenerla si controlla che non stia misurando bene per il motivo
+sbagliato.
+
+### La banda, e perche' non e' spostare il paletto
+
+La mediana dei Consigli passa da 6 a 7. Il soffitto va da 6 a **7** in tutte e
+due le bande — l'anno scritto (`test_balance.gd`) e l'anno pescato
+(`test_library_balance.gd`) — e **i limiti duri non si muovono**: 2 e 8, il
+pavimento che §7 difende davvero.
+
+Tre ragioni, in ordine di peso:
+
+1. **E' gia' successo, per lo stesso motivo.** D-051: la Vittoria di Vaerax era
+   fatta di clausole vere prima dell'inizio, lui non giocava, gliela si e'
+   chiusa e l'anno si e' alzato. Il commento sopra la costante lo racconta da
+   allora. Un seggio che ricomincia a giocare fa l'anno piu' rumoroso.
+2. **La banda nuova e' ancora piu' stretta di quella che §7 scrive.** §7 chiede
+   1,5-2,0 Consigli per Tensione; con quattro Tensioni fa 6-8. 5-7 e' 1,25-1,75:
+   dentro, e da sotto.
+3. **Il prezzo era stato misurato prima di chiederlo**, e nessuna forma della
+   clausola lo evita: 2 su 5, 2 su 3, e perfino un `any_of` su due di cui una
+   passiva danno tutti mediana 7 (D-168). Non e' la dimensione della scelta, e'
+   che la Vittoria diventa raggiungibile.
+
+### Le misure
+
+Playtest 100 semi, tavolo misto, 50 partite per seggio:
+
+| seggio | prima | dopo |
+|---|---|---|
+| Lyra | 38/3/**9** | **32/12/6** |
+| Popolo Nahr | 24/16/**9** | 23/10/**16** |
+| Vaerax | 18/26/**6** | 24/16/**10** |
+| Re Aldric | 26/18/**6** | 26/18/**5** |
+| gli altri quattro | — | invariati |
+
+**Trionfi 79 → 86**, nessun seggio a zero, tavolo misto **0 su 8**, uniforme
+**0 su 8**, mediana 6, media 5,76. Costo dichiarato: **FAIL 191 → 203**.
+
+Sonda dei gradini (60 Chronicle): supera il Minimo **62%**, TRIONFO **20%**,
+nessun seggio a NONE. Lyra da 21/3/6 a **15/9/6** su 30.
+
+Suite **343 test / 6548 asserzioni** verde; `run_sims.sh` e `run_export.sh`
+identici su due giri; `dead_code.py` pulito su 154 file.
+
+**ISSUES 44 chiusa.**
+
+---
+
+## D-168 — La scala di Lyra ha una porta sola, e aprirla costa gli anni tranquilli
+**misurato, non implementato** (nessuna modifica ai dati)
+
+Avevo dichiarato in 0.1.134 che Lyra non era migliorata — 38 Minimi su 50, il
+seggio piu' debole del tavolo. Questo e' il giro per capirlo, fatto con la sonda
+delle clausole invece che a occhio, e **finisce senza un commit sui Destini**:
+quello che ha trovato non e' un bilanciamento da correggere, e' una scelta da
+fare.
+
+### Non e' debole: e' bimodale
+
+La sonda delle clausole, letta sulla riga `ENT_LYRA` (20 Chronicle):
+
+| clausola | vera a fine anno |
+|---|---|
+| Lyra e' viva + **una Scoperta** (il suo Minimo) | ~100% |
+| **presenza nelle Miniere** (la spina della Vittoria) | **100%** |
+| **la scorta giurata** (l'altra meta' della Vittoria) | **25%** |
+| **due Scoperte** (la spina del Trionfo) | **100%** |
+
+Il suo Minimo e' gratis. La spina della Vittoria e' gratis. La spina del Trionfo
+e' gratis. **Tutta la scala pende da un tag solo al 25%** — `escort_sworn`, che
+`CNS_ESCORT_SWORN` da' al `$proponent`, quindi Lyra deve proporre *e* vincere
+quel Consiglio.
+
+Ecco perche' legge 38/3/9 e non 38/9/3: **non e' una scala, e' una porta.** Chi
+non la apre resta al Minimo; chi la apre arriva quasi sempre in fondo, perche'
+dopo non c'e' altro da pagare.
+
+### Tre modi di aprirla, e tutti e tre costano la stessa cosa
+
+| variante | mediana dei Consigli |
+|---|---|
+| oggi (porta sola) | **6** ✓ |
+| solo la spina del Trionfo a quattro Scoperte | **6** ✓ |
+| scelta 2 su 5 nella Vittoria | **7** ✗ |
+| scelta 2 su 3 nella Vittoria | **7** ✗ |
+| `any_of` su due, di cui una passiva | **7** ✗ |
+
+Non e' la *dimensione* della scelta: e' che la Vittoria diventa **raggiungibile**.
+E non e' rumore di campione — la distribuzione si sposta intera:
+
+```
+oggi        [3, 4, 5,5,5,5,5,5,5,5,5, 6,6,6,6,6, 7,7,7,7,7,7,7, 8]
+con Lyra    [   4, 5,             6,6,6,6,6,6,6,6, 7,7,7,7,7,7,7,7,7,7,7, 8,8,8]
+```
+
+**Gli anni tranquilli spariscono.** La coda bassa — la partita da tre Consigli,
+quella da quattro, otto partite da cinque — non esiste piu'.
+
+### La lettura, che vale oltre Lyra
+
+Un seggio la cui Vittoria e' chiusa **smette di giocare**: la sua policy non ha
+obiettivi aperti, non propone, non forza. Le partite quiete di oggi sono in
+buona parte partite in cui Lyra e' spettatrice. Aprire un seggio bloccato non e'
+una correzione locale: **e' aggiungere un giocatore al tavolo**, e il tavolo
+diventa piu' rumoroso di conseguenza.
+
+Vale anche al contrario, e spiega qualcosa di gia' misurato: quando ho aperto la
+Vittoria di Lyra, Nahr e' passata da 8 Trionfi a 1 (sonda dei gradini, 30
+Chronicle), perche' le sue cinque strade sono tutte «il mondo e' rimasto calmo».
+Nessuno aveva toccato il Destino di Nahr.
+
+### Perche' non ho scelto io
+
+Il costo cade su **una guardia della casa**: la banda dei Consigli, mediana 5-6
+con 4 Tensioni. Allargarla per far passare una modifica e' spostare il paletto
+dopo aver tirato. E il guadagno e' reale ma non enorme: nella misura piena a 100
+semi la scala di Lyra diventa 27/14/9 invece di 38/3/9, e i Trionfi del tavolo
+salgono da 79 a 91.
+
+Quindi: **la scelta e' fra un seggio che gioca e gli anni tranquilli.** E'
+ISSUES 44, e la decido io solo se il committente mi dice di deciderla.
+
+Cosa resta committato di questo giro: il banco della sonda con le diciassette
+clausole di Lyra misurate, che e' la prova, e questo verbale.
+
+### Due numeri che il giro ha trovato per strada
+
+- **Le clausole sociali sono ancora esattamente zero.** «Aldric le e' alleato o
+  meglio»: **0%**. «Vaerax non le e' nemico»: **0%**. E' la seconda domanda di
+  D-151, che finora avevo sempre dichiarato senza misurarla — adesso ha un
+  numero, ed e' zero su 20 partite.
+- **«Una pedina sua sulla Strada dei Mercanti»: 0%.** Lyra non si muove mai da
+  li'. Una clausola sulla mappa scritta per lei sarebbe stata un muro.
+
+---
+
+## D-167 — La spina e la scelta: il Trionfo smette di essere una lista
+**implemented in 0.1.134** (richiesta del committente sui Destini, ripresa da D-161)
+
+«Le condizioni di vittoria, i destini li farei diversi, una serie di condizioni
+che se soddisfatte danno il grado di vittoria. E tra le condizioni ci puo'
+essere le cose piu' disparate includendo anche gli edifici e/o il controllo e/o
+le cicatrici.»
+
+D-161 aveva costruito il vocabolario — `structure_count`, `scar_count`,
+`some_of` — e poi **l'aveva lasciato spento**, perche' le clausole scritte a
+occhio erano tre muri e due regali. La regola che mi ero dato allora era: *una
+clausola su uno strato si scrive dopo che quello strato puo' cambiare dentro
+l'anno, e si misura sui gradini prima di restare.* Da D-161 a D-166 lo strato e'
+nato davvero: dentro i nove round si alzano **80 pietre su 40 Chronicle**, se ne
+cambiano di grado 37, e le cicatrici cadono da 1 a 6 per partita.
+
+Quindi prima la misura, poi la scrittura.
+
+### La cosa che nessuno aveva guardato
+
+La sonda dei gradini dice quanto manca una clausola **gia' scritta**. Non
+esisteva niente che dicesse quanto mancherebbe una clausola **che non lo e'
+ancora**, ed e' esattamente il buco in cui D-161 e' caduto. Ora c'e':
+**`cli/run_clause_probe.gd`** legge un file di candidati e riporta, per ogni
+casa, la quota di anni in cui quella clausola sarebbe vera a fine anno. Costa un
+file di prova invece di un commit da rifare.
+
+La prima tabella che ha stampato (40 Chronicle, tavolo misto, semi da 7000):
+
+| clausola | ALDRIC | CENERE | LIBERE | LYRA | NAHR | SALE | VAERAX | VETRO |
+|---|---|---|---|---|---|---|---|---|
+| almeno una pietra sua | 100% | 100% | 100% | 30% | 100% | 100% | 100% | 15% |
+| almeno due pietre | 50% | 10% | 100% | 15% | 100% | 15% | 10% | 0% |
+| almeno tre pietre | 15% | 0% | 60% | 5% | 25% | 5% | 0% | 0% |
+| **una pietra di grado 2** | 15% | 5% | 0% | 0% | 10% | 0% | 0% | 0% |
+| almeno un'opera | 50% | 10% | 60% | 30% | 25% | 15% | 10% | 15% |
+| nessuna cicatrice sul mondo | 0% | 0% | 0% | 0% | 0% | 0% | 0% | 0% |
+| almeno tre cicatrici | 75% | 55% | 55% | 75% | 75% | 55% | 75% | 55% |
+| Eredan uscita pulita | 25% | 75% | 75% | 25% | 25% | 75% | 25% | 75% |
+| due Regioni | 45% | 15% | 100% | 5% | 90% | 20% | 20% | 0% |
+
+Tre letture che valgono piu' della tabella:
+
+1. **Il grado non si muove dentro l'anno.** `_settle_structures` gira *dopo* la
+   valutazione del Destino — e' giusto che sia cosi', l'esito decide la scala —
+   quindi in una Chronicle sola una pietra di grado 2 esiste solo se e' stata
+   ereditata. Una clausola sul grado e' un muro fuori dalla saga: e' ISSUES 40.
+2. **Zero cicatrici non capita mai.** Non e' un obiettivo ambizioso, e' una
+   lotteria che nessuno ha mai vinto in 40 anni. «Al piu' due» invece e' 25-45%.
+3. **Il sito antico, una volta aperto, viene sempre saccheggiato**: aperto 25%,
+   saccheggiato 25%, gli stessi anni. «Aperto e non saccheggiato» e' uno zero
+   che nessuno ha scritto apposta — ISSUES 41.
+
+### E la cosa peggiore, che la misura ha trovato per prima
+
+Il playtest a tavolo misto, 50 partite per seggio, **prima** di questa seduta:
+
+| seggio | NONE | MINIMO | VITTORIA | TRIONFO |
+|---|---|---|---|---|
+| Re Aldric | 0 | 26 | 18 | 6 |
+| Kessa dei Fuochi | 0 | 19 | 30 | **1** |
+| Le Citta' Libere | 2 | 23 | 25 | **0** |
+| Lyra | 0 | 35 | 7 | 8 |
+| Popolo Nahr | 1 | 25 | 18 | 6 |
+| Maestra Ilve | 0 | 10 | 40 | **0** |
+| Vaerax | 0 | 21 | 29 | **0** |
+| Priore Anselmo | 0 | 16 | 34 | **0** |
+
+**Quattro seggi su otto: zero Trionfi su cinquanta partite.** Due dei quattro
+per una ragione sola e verificabile — una clausola mancata il **100%** delle
+volte: Vaerax chiedeva `condition:cut_off` sulla Strada dei Mercanti, che niente
+scrive mai, e la Gilda chiedeva due Regioni a una casa che ne tiene 0,90 di
+media. Una lista in AND con dentro un muro non e' un obiettivo difficile: e' un
+gradino tolto dal gioco, e nessuno se ne accorgeva perche' il seggio riportava
+comunque VITTORIA.
+
+### La forma nuova
+
+Il MINIMO e la VITTORIA restano liste da soddisfare per intero. Il **TRIONFO**
+diventa due cose:
+
+- **la spina** — una o due clausole in AND: quello che quella casa voleva
+  davvero. Senza, non e' quel Trionfo;
+- **la scelta** — `some_of` con `min` su quattro, cinque o sei strade: come ci
+  e' arrivata. Fra le strade ci sono le Tensioni, il controllo, i rapporti, le
+  promesse, e adesso **le pietre e le cicatrici**.
+
+Otto Destini riscritti, uno per casa. Gli otto alternativi restano in AND —
+**e non sono il gruppo di controllo che avevo scritto qui la prima volta.** La
+sonda per Destino, aggiunta subito dopo, dice che in queste misure *non vengono
+mai giocati*: `_deal_destiny` pesca da `chronicle["destiny_pool"]` e **nessuna
+delle quattro Chronicle ne dichiara uno**, quindi ogni casa insegue sempre il
+`destiny_id` scritto sull'Entita'. Gli altri undici Destini — otto alternativi e
+tre condivisibili — si vedono solo per successione, dentro una saga. E' ISSUES
+43, e la correzione sta qui perche' il verbale sbagliato l'ho scritto io.
+
+Esempio, il Trionfo di Vaerax: spina «le Miniere non sono state svuotate», e
+**quattro segni su cinque** fra il Risveglio riportato indietro, le Vie
+Interrotte alte, la fame che tiene gli uomini nelle valli, **il passo franato**,
+e **un segno che si vede sulle gallerie**. Il muro di prima — la strada tagliata
+— e' uscito; al suo posto c'e' una cosa che sta sulla mappa e che qualcuno puo'
+far succedere.
+
+### La prova si legge, e i conti aperti pure
+
+Una scelta che non si vede non serve a niente: «tre di queste cinque» non dice
+nulla se non si vede quali erano e quali hai preso. `describe_all` apre la
+scelta strada per strada, rientrata, e le evidence di fine anno la portano.
+E' lo stesso difetto che il committente ha trovato nelle carte — «le frasi sono
+belle e non si capisce cosa fanno» — sul foglio che conta di piu'.
+
+E lo stesso vale per i **conti rimasti aperti** (D-087), che non sono prosa: sono
+la meta' strutturata delle evidence, quella che il motore 0.3 legge per far
+nascere l'era dopo. Una scelta che finisce li' dentro come voce sola direbbe
+«tre di queste cinque» senza dire quali due sono cadute — un livello di dettaglio
+in meno proprio dove ne ho spostate meta'. `open_roads` mette accanto alla
+scelta le strade che non hanno retto, e la sonda dei gradini adesso le attribuisce
+al livello giusto invece di stamparle come «?».
+
+### Il difetto che questa seduta ha quasi introdotto
+
+Un seggio legge il proprio Destino per sapere cosa vuole, e quella lettura
+guarda **il tipo** della clausola. Una clausola dentro una scelta ha per tipo
+`some_of`: spostandone meta' dentro le scelte, **meta' delle ambizioni del
+tavolo sarebbero sparite in silenzio** — che e' precisamente D-066, dove l'80%
+dei seggi valutava una proposta zero.
+
+Non l'ho visto scrivendo: **l'hanno visto due test** di `test_stance_scoring`,
+caduti al primo giro della suite. `PolicyDecider` adesso appiattisce le scelte
+per la lettura degli obiettivi, e **non** per il giudizio del livello — «tre di
+queste cinque» e' vero anche quando due sono false, e appiattito diventerebbe
+una AND. Lo stesso appiattimento mancava in altri tre punti che nessun test
+copriva: la ricorsione di `validate_data.py`, quella del controllo sui tag
+irraggiungibili in `test_data_boot.gd`, e il controllo che una Chronicle nomini
+le proprie Tensioni. Tutti e tre si fermavano al primo livello. Aggiunto anche
+un controllo che mancava del tutto: **uno `structure_type` sbagliato** non era
+un errore rumoroso, contava zero — cioe' diventava un muro che nessuno aveva
+deciso di alzare.
+
+### Le misure
+
+Playtest 100 semi da 7000, tavolo misto, **prima → dopo**:
+
+| seggio | prima | dopo |
+|---|---|---|
+| Re Aldric | 26/18/**6** | 26/18/**6** |
+| Kessa dei Fuochi | 19/30/**1** | 19/23/**8** |
+| Le Citta' Libere | 23/25/**0** | 10/27/**12** |
+| Lyra | 35/7/**8** | 38/3/**9** |
+| Popolo Nahr | 25/18/**6** | 24/16/**9** |
+| Maestra Ilve | 10/40/**0** | 7/30/**13** |
+| Vaerax | 21/29/**0** | 18/26/**6** |
+| Priore Anselmo | 16/34/**0** | 6/27/**16** |
+
+**Trionfi 21 → 79, e nessun seggio a zero.** Esiti **FAIL 207 → 191** ·
+SUCC 77 → 69 · SUCC 112 → 116 · DECI 189 → 196. Consigli mediana **6**. Tavolo
+misto **0 su 8**, uniforme 1 su 8.
+
+Sonda dei gradini, 60 Chronicle: TRIONFO **6% → 20%**, supera il Minimo
+**54% → 63%**, e nessuna clausola mancata al 100%. Destino per Destino i Trionfi
+stanno fra 3 e 8 su 30 — nessuno murato, nessuno regalato:
+
+| | ALDRIC | CENERE | LIBERE | LYRA | NAHR | SALE | VAERAX | VETRO |
+|---|---|---|---|---|---|---|---|---|
+| Trionfi su 30 | 3 | 4 | 7 | 6 | 8 | 7 | 6 | 7 |
+
+Ci sono voluti **quattro giri di misura** per arrivarci: la prima scrittura
+mandava Cenere al 75% e le Citta' Libere al 37%, la seconda schiacciava le
+Citta' Libere a 1 su 30. Il numero non si indovina — si stringe.
+
+Suite **342 test / 6472 asserzioni** verde; `run_sims.sh` e `run_export.sh`
+identici su due giri; `validate_data`, `gen_gd_schema --check`,
+`build_manifest --check` verdi; `dead_code.py` pulito su 154 file.
+
+**Quello che resta fuori, e lo dico invece di nasconderlo.** I quattro Destini
+di CHR_01 portano 30 Trionfi su 120 e i quattro di CHR_03 ne portano 49: la
+seconda saga e' piu' generosa della prima, e non ho toccato la differenza in
+questa seduta perche' avrei tarato tre manopole su un giro solo di sonda senza
+sapere se la causa sia il contenuto o il tavolo. E' ISSUES 42.
+
+---
+
+## D-166 — Il passo che frana: la sola cosa che cambia la forma del mondo
+**implemented in 0.1.133** (§8.6 passo 5, l'ultimo — tenuto per ultimo di proposito)
+
+Fino a 0.1.132 le **adiacenze** erano l'unica cosa della mappa che non cambiava
+mai: sei Regioni, otto archi, scritti nel dato e letti da li' per sempre. Tutto
+il resto — controllo, pietre, condizioni, cicatrici — era gia' stato del mondo.
+Il grafo no.
+
+**Adesso e' stato anche lui**, e si taglia con una coppia di Effect
+(`CLOSE_PASSAGE` / `OPEN_PASSAGE`, l'uno l'inverso dell'altro) che tolgono un
+arco da tutte e due le parti. Il *Passo* e' il luogo che lo racconta — aperto,
+franato — e *La Via delle Miniere Tagliata* e' la Conseguenza che lo fa cadere:
+due Effect per un fatto solo, il luogo che cambia stato e l'arco che si chiude.
+
+**La guardia, che era il rischio dichiarato in D-160.** Una Regione
+irraggiungibile e' **un Destino impossibile**: una clausola che nessuno potra'
+mai soddisfare, e la mappa non lo direbbe a nessuno. Quindi il taglio si
+**prova**: si toglie l'arco, si visita il grafo, e **se il mondo si e' spezzato
+si rimette a posto e non e' successo niente**. Nessuna frase d'autore vale una
+partita rotta.
+
+Su questa mappa la guardia e' assicurazione e non necessita': otto archi su sei
+nodi hanno abbastanza ridondanza che **nessun taglio singolo isola niente** — la
+montagna che perde la steppa resta attaccata alle Miniere. Il test lo prova
+prendendo l'unico caso che romperebbe davvero: **due** tagli sulle Miniere, e il
+secondo viene rifiutato.
+
+**Un difetto vero, e sottile.** Riaprire un varco rimetteva il vicino **in fondo
+alla lista** invece che al posto suo. Il round-trip lo ha visto subito: lo stato
+non tornava byte per byte. E non e' un dettaglio di stile — **l'ordine dei
+vicini lo legge il gioco**: `$adjacent` ci pesca dentro per decidere dove
+finisce chi viene cacciato. Adesso riaprire ricostruisce la lista nell'ordine
+d'autore, tenendo solo gli archi che ci sono davvero.
+
+**Quanto succede.** Su quaranta Chronicle: **un varco chiuso**, un passo franato
+a fine anno, **zero tagli rifiutati**. Una volta ogni quaranta anni «meta' della
+montagna scende a valle in una notte» — che e' esattamente la frequenza che un
+fatto del genere deve avere. Non l'ho forzata e non la forzero': un evento che
+riscrive la mappa e' memorabile perche' e' raro.
+
+**Misure.** Playtest **FAIL 207 · SUCC 77 · SUCC 112 · DECI 189** — identico a
+D-165: l'ultimo pezzo del catalogo costa **zero**. Tavolo misto **0 su 8**,
+mediana **6**. Suite **339 test / 6051 asserzioni** verde; `run_sims.sh` e
+`run_export.sh` identici su due giri; `dead_code.py` pulito su 152 file.
+
+**Il catalogo e' chiuso**, per quello che si era deciso di scrivere: **nove tipi
+in cinque famiglie** — presidio, insediamento, tre opere, quattro luoghi del
+mondo. Resta fuori solo **la palude**, che chiede gli slot di presenza variabili
+e quindi motore, non contenuto.
+
+---
+
+## D-165 — Il sito antico e la sorgente, e il degrado che non aggiunge peso
+**implemented in 0.1.132** (§8.6 passo 5, gli altri due luoghi del mondo)
+
+Due luoghi nuovi, e un vincolo di progetto che me li ha fatti scrivere in modo
+diverso da quelli di prima.
+
+**Il vincolo.** D-164 aveva dichiarato un trend che non voleva fermarsi: i
+Consigli falliti da 185 a 207 in undici modifiche. Prima di aggiungere altre due
+famiglie mi sono dato una linea di stop — **oltre 215, o un seggio bloccato, mi
+fermo** — e ho progettato queste due perche' **non aggiungano peso**:
+
+> il degrado **toglie un dono**, non aggiunge una penalita'.
+
+E' l'opposto della selva maledetta, che una penalita' la aggiunge. Qui il sito
+aperto **insegna** (chi ci sta pesca sapere migliore) e la sorgente viva **tiene
+la gente** (pesca gente migliore); quando il sito viene saccheggiato o la
+sorgente cala, il segno cambia e la regola smette di valere. Niente di nuovo che
+morde: solo qualcosa che finisce.
+
+| | grado I | grado II | grado III |
+|---|---|---|---|
+| **Sito antico** | dormiente — non fa niente | **aperto: sapere migliore** | saccheggiato — il dono finisce |
+| **Sorgente** | **viva: gente migliore** | bassa — il dono finisce | secca |
+
+**E ha funzionato, che era la cosa da misurare.** Playtest **FAIL 207 · SUCC 77 ·
+SUCC 112 · DECI 189** — **identico** alla misura prima di aggiungerle. Due
+famiglie nuove, otto tipi nel catalogo, e **zero punti** di costo. Tavolo misto
+**0 su 8**, Consigli mediana **6**.
+
+**Le cause, cercate prima di scriverle** (la regola di D-164): *Le Gallerie
+Riaperte* aprono il sito, *La Miniera Aperta* lo saccheggia, *Le Miniere
+Sigillate* lo rimandano a dormire, *La Valle che si Vuota* abbassa la sorgente,
+*L'Acqua a Prezzo* la secca. Nessuna carta nuova, nessun rimescolo: cinque righe
+in fondo a Conseguenze che raccontavano gia' quel fatto.
+
+**Cosa si raggiunge e cosa no, dichiarato.** Su venti Chronicle:
+
+| | |
+|---|---|
+| siti dormienti | 38 |
+| siti **saccheggiati** | **2** |
+| siti **aperti** | **0** |
+| sorgenti vive | 39 |
+| sorgenti **basse** | **1** |
+| sorgenti **secche** | **0** |
+
+Il degrado si vede, l'apertura no: **`place:open_site` non si raggiunge mai**, e
+con lui dorme la regola del sapere. La causa e' scritta e aggancia una
+Conseguenza vera — *Le Gallerie Riaperte* — che su questi semi non esce quasi
+mai. Non aggiungo un'altra causa per forzarla: sarebbe la terza volta che inseguo
+una frequenza invece di misurarla. **E' contenuto scritto e non raggiunto, come
+la selva di D-163 prima che D-164 le desse una causa**, e la differenza e' che
+stavolta la causa c'e' — e' l'anno che non la pesca.
+
+Il seme lo dice anche di suo: i siti partono **dormienti**, e un mondo dove le
+gallerie restano chiuse e' un mondo coerente. Se il committente vuole vedere i
+siti aperti piu' spesso, la leva e' **partire da aperto** in una delle due
+linee, non aggiungere un'altra porta.
+
+**Misure.** Suite **334 test / 6025 asserzioni** verde; `run_sims.sh` identico
+su due giri; `dead_code.py` pulito su 151 file; job «Dati e schemi» verde.
+
+**Il catalogo, a questo punto.** Otto tipi in cinque famiglie: presidio,
+insediamento, tre opere, e tre luoghi del mondo. Resta **la palude** (che chiede
+gli slot di presenza variabili, cioe' motore) e **il passo che frana**, l'unico
+che riscrive il grafo delle adiacenze.
+
+---
+
+## D-164 — La selva maledetta ha una causa, e due strade sbagliate per arrivarci
+**implemented in 0.1.131** (correzione al buco dichiarato in D-163)
+
+D-163 chiudeva dichiarando un buco: la selva maledetta era **contenuto scritto e
+non raggiunto** — zero in venti Chronicle — e le mancava una carta del Narratore
+che la causasse. Questa e' quella carta, e ci sono voluti due tentativi
+sbagliati per capire che non doveva essere una carta.
+
+**Primo tentativo: scrivere una carta nuova.** *Quello che si Taglia*, famiglia
+ROTTURA, funzione VIOLAZIONE, una per linea. Funzionava — due selve in venti
+partite — e ha rotto **tre cose insieme**:
+
+1. **Il mazzo si rimescola.** Il costruttore del mazzo lo dice da sempre, e io
+   l'avevo letto: «la composizione del mazzo di un anno scritto cambierebbe a
+   ogni carta aggiunta, e con lei il mescolamento e la partita». Aggiungendo una
+   carta, i **tre piani di regressione** sono saltati tutti e tre — non per un
+   difetto, ma perche' l'anno scritto non era piu' lo stesso anno.
+2. **L'equilibrio per famiglia.** `test_echo_grammar` pretende un numero fisso di
+   carte per famiglia drammatica per saga: sei per ROTTURA, e ne avevo messe
+   otto. Il mix drammatico di un atto e' progettato, non accumulato.
+3. **Due carte, un disegno solo.** Avevo dato lo stesso `art_prompt_key` a
+   tutte e due — e c'e' un test che lo vieta, giustamente.
+
+**Secondo tentativo, e quello giusto: agganciarla a carte che esistono gia'.**
+*La Partenza* nell'812 e *I Fuochi Fuori* nel 1640. Le due carte parlano gia' di
+gente che se ne va e di fuochi accesi fuori dalle mura: il bosco che smette di
+essere un bosco e' quello che succede intorno, e non serviva una carta per
+dirlo — serviva una riga in fondo a una carta che lo stava gia' dicendo.
+
+Meglio su ogni fronte: **tre selve in venti partite** (contro due), **nessun
+rimescolo**, **nessun equilibrio rotto**, **nessun piano di regressione toccato**.
+
+**La regola che ne esce, e che vale per tutto il resto del catalogo:** quando
+serve una causa nuova per un effetto nuovo, si guarda **prima** se una carta
+esistente sta gia' raccontando quel fatto. Un mazzo e' un equilibrio, non un
+elenco: aggiungerci qualcosa costa piu' di quanto sembri, e quasi sempre la
+frase che serve e' gia' scritta da qualche parte.
+
+**E una regola tolta.** `TGR_CURSED_WOOD_COUNCIL` — la selva che fa partire
+**ogni** Consiglio col mondo contro — l'avevo scritta io, e **non era nel
+progetto**: la seduta diceva «chi ha presenza li' perde una carta», che e' una
+morsa **locale**. Una penalita' mondiale che nasce da un fatto locale e' un
+dente sbagliato, e costava tre punti di fallimenti. Tolta. Resta la morsa
+locale, che e' quella scritta.
+
+**Misure.** Playtest **FAIL 207 · SUCC 77 · SUCC 112 · DECI 189**, Consigli
+mediana **6**, tavolo misto **0 su 8**, uniforme **2 su 8**. Suite **334 test /
+6005 asserzioni** verde; `run_sims.sh` identico su due giri; `dead_code.py`
+pulito su 151 file; job «Dati e schemi» verde.
+
+**Il trend, dichiarato di nuovo perche' e' cresciuto ancora.** I Consigli
+falliti da quando e' cominciata la strada C: **185 → 191 → 196 → 203 → 201 →
+207**. Sono **ventidue punti** sopra il punto di partenza. Il vincolo di casa e'
+0/8 e regge da undici modifiche di fila, la banda dei Consigli e' rispettata
+(mediana 6), e la causa e' nota e ogni volta la stessa: **il mondo ha piu' cose
+che pesano**, e ogni cosa che pesa da' a qualcuno una ragione in piu' per dire
+di no. Ma ventidue punti non sono rumore, e prima di aggiungere il fiume, il
+sito antico e la palude **va deciso se 207 e' il numero che vogliamo** — e' una
+domanda di gusto, non di misura, e va al committente.
+
+---
+
+## D-163 — La foresta: il primo luogo che non e' di nessuno
+**implemented in 0.1.130** (§8.6 passo 5 della [seduta sulla terra](SEDUTA_TERRA.md))
+
+La quarta famiglia del catalogo, e la prima di **natura diversa**: un `LUOGO` non
+ha padrone, non entra nel conto del controllo, e non sale ne' scende col Destino
+(`_pick_structure` salta tutto cio' che ha `owned: false` — era scritto cosi'
+dall'inizio e adesso ha un caso vero). Cambia **cosa vale una Regione**, non
+**chi la tiene**.
+
+| grado | | cosa fa |
+|---|---|---|
+| I | **Foresta** | chi ha presenza li' pesca forza migliore — e vale **per chiunque**, non e' di nessuno |
+| II | **Bosco diradato** | niente: si vede attraverso, e basta |
+| III | **Selva maledetta** | chi ci sta tiene **una carta in meno**, e finche' c'e' i Consigli partono col mondo un po' contro |
+| ↓ | La Radura Spoglia | lascia `scar:emptied` |
+
+Il prefisso dei segni dice di che natura sono: `structure:` e `settlement:` sono
+opere delle case, **`place:` e' del mondo**. Tre foreste aperte sulla mappa, dove
+i biomi le permettono: la Valle, la steppa, la montagna.
+
+**E si guasta per mano di qualcuno, senza che sia colpa di nessuno.** Due
+Conseguenze la fanno scendere: *La Valle Sgomberata* la dirada — sgomberare una
+valle vuol dire anche tagliarla — e *Il Luogo Abbandonato* e *Le Gallerie
+Lasciate* la fanno diventare selva. Nessuno la maledice: e' successo.
+
+**Un difetto vero, trovato misurando.** `SET_STRUCTURE_GRADE` su una Regione
+senza quella struttura **falliva con un errore**. Una Conseguenza scritta a mano
+nomina `$region_focus`, e la Regione a fuoco cambia di anno in anno: diradare un
+bosco dove non c'e' un bosco non e' un errore di dati, e' una frase che non aveva
+niente da dire. Adesso rispetta `optional`, come `REMOVE_PRESENCE` e
+`REMOVE_REGION_TAG` fanno da sempre. In venti Chronicle l'errore compariva a
+ogni partita.
+
+**E il numero che va dichiarato, perche' e' scomodo.** Su venti Chronicle:
+
+| | |
+|---|---|
+| foreste intere a fine anno | **59** |
+| **boschi diradati** | **1** |
+| **selve maledette** | **0** |
+
+Il luogo **c'e' e funziona** — la regola della legna scatta, e scatta per
+chiunque ci stia. Il **degrado quasi no**: un diradamento in venti partite, e la
+selva maledetta **non si e' mai vista**. Due delle tre regole che ho scritto
+sono attaccate a uno stato che non si raggiunge.
+
+E' la stessa forma dell'errore di D-161, in un posto diverso, e la differenza
+conta: li' erano **clausole di Destino**, e una clausola che non si avvera rompe
+l'ambizione di una casa; qui sono **regole dei segni**, e una regola dormiente
+non rompe niente — semplicemente non fa. Non le tolgo, ma non fingo che siano
+vive: **la selva maledetta e' contenuto scritto e non raggiunto**, e quello che
+le manca e' una carta del Narratore che la causi. E' il prossimo passo del
+catalogo, non questo.
+
+**Misure.** Playtest **FAIL 201 · SUCC 74 · SUCC 114 · DECI 192**, Consigli
+mediana **6**, tavolo misto **0 su 8**, uniforme **2 su 8** — identico a D-162:
+la foresta non sposta l'equilibrio, e non doveva. Suite **334 test / 6003
+asserzioni** verde; `run_sims.sh` identico su due giri; `dead_code.py` pulito su
+151 file; job «Dati e schemi» verde.
+
+Due test hanno dovuto imparare che la mappa non e' piu' spoglia: quello che
+conta le regole (48 → 51) e quello che misura il telaio vuoto, che adesso
+sgombera anche il bosco perche' la legna gli piegava la pesca.
+
+**Restano di §8**: il fiume, il sito antico, la palude — e **il passo che frana**,
+l'unico che riscrive il grafo delle adiacenze.
+
+---
+
+## D-162 — Le opere, e la fine del segno che non ha un oggetto sotto
+**implemented in 0.1.129** (§8.6 passo 4 della [seduta sulla terra](SEDUTA_TERRA.md))
+
+D-161 aveva dato all'anno **una** cosa da costruire — la Veglia sulla Montagna —
+e aveva chiuso con una regola: *una clausola su uno strato si scrive dopo che
+quello strato ha un modo di cambiare durante l'anno*. Questo e' il passo che
+rende quel modo la norma invece dell'eccezione.
+
+**La terza famiglia: le opere.** Tre tipi, due gradi ciascuno.
+
+| tipo | I | II | quando cade |
+|---|---|---|---|
+| `STR_GRANARY` | Granaio (1) | **Il Grande Granaio** (2) | Il Granaio Vuoto |
+| `STR_CANAL` | Canale (1) | **La Grande Opera d'Acqua** (2) | L'Insabbiamento |
+| `STR_TOLLGATE` | Pedaggio (1) | **La Dogana** (2) | La Sbarra Rotta |
+
+**I due gradi portano lo stesso segno**, ed e' una scelta: una grande opera non
+e' un'opera diversa, e' la stessa **che pesa di piu'**. Cosi' le tre regole dei
+segni gia' scritte — il granaio che parla, il canale che porta grano, il
+pedaggio dove girano i denari — continuano a valere a tutti e due i gradi senza
+riscriverle, e la differenza sta dove deve stare: nel conto del controllo, 1
+contro 2. Dare al secondo grado una regola propria e' un passo dopo, non questo.
+
+**E la cosa piu' importante non e' il catalogo: e' che il segno non vive piu' da
+solo.** Fino a ieri sette carte posavano `structure:...` come un tag e basta. Un
+tag senza oggetto sotto e' una struttura che si vede sulla mappa, fa scattare le
+regole dei segni, e **non conta per nessuno** nella contesa del controllo: la
+mappa diceva una cosa e il conto ne diceva un'altra. Convertite tutte e sette:
+
+- **tre Conseguenze** — il Granaio del Trono, il Pedaggio Scritto, i Canali
+  Scavati — adesso alzano un'opera **del proponente**;
+- **un Asset**, il Pedaggio: la carta impegnata costruisce, e il padrone e'
+  **chi l'ha messa sul tavolo** (`$actor`, che il contesto degli `on_commit`
+  gia' offriva e nessuno usava);
+- **tre carte del Narratore**: la Stagione Scavata **costruisce**, Mancanza e
+  l'Insabbiamento **fanno cadere l'oggetto** invece di cancellare il segno — e
+  cosi' l'opera smette anche di contare per chi la teneva.
+
+Resta fuori solo `structure:sealed`, che e' una **chiusura** e non un edificio:
+murare una miniera non da' niente a nessuno, ed e' giusto che non abbia un
+padrone.
+
+**La misura, e il trend si e' girato.**
+
+| | D-160 | D-161 | ora |
+|---|---|---|---|
+| playtest, Consigli falliti | 204 | 204 | **201** |
+| tavolo misto, seggi bloccati | 0/8 | 0/8 | **0/8** |
+| caselle tenute a fine anno (su 180) | 143 | 143 | **150** |
+| passaggi di mano per contesa | 74 | 74 | **73** |
+
+I Consigli falliti erano 185 → 191 → 196 → 203 → 204, e adesso **201**: e' la
+prima volta che scendono da quando e' cominciata la strada C. Non e' una cura —
+sono tre punti — ma la direzione unica si e' interrotta, e la lettura di D-160
+regge: non era una tassa sistemica, erano le policy che votavano diverso, e
+adesso hanno piu' cose vere su cui votare.
+
+**I gradini, e la mappa piena:**
+
+| | prima della strada C | ora |
+|---|---|---|
+| supera il Minimo | 47% | **58%** |
+| caselle con un padrone | 56% | **84%** |
+| seggi con **due** Regioni | 12% | **32%** |
+| seggi a **zero** Regioni | 30% | **11%** |
+
+**Nel tempo lungo** (12 saghe da 8 anni): grado I **44**, grado II **13**, grado
+III **4**. Le regge erano zero quando c'era una sola scala, due con
+l'insediamento, quattro adesso. Nessuna e' scritta a mano: sono case che hanno
+vinto tre volte.
+
+Misure: suite **334 test / 5988 asserzioni** verde; `run_sims.sh` identico su
+due giri; `dead_code.py` pulito su 151 file; job «Dati e schemi» verde.
+
+**Adesso lo strato si muove dentro l'anno**, e le clausole di D-161 —
+`structure_count`, `scar_count`, `some_of` — hanno finalmente qualcosa da
+leggere. Scriverle e' il prossimo passo, con la regola di D-161: misurarle sui
+gradini **prima** di lasciarle.
+
+**Restano di §8**: i **luoghi del mondo** — foresta, fiume, sito antico, palude
+— col **passo che frana** per ultimo.
+
+---
+
+## D-161 — Le clausole che leggono le pietre, e la lezione di D-151 ripresa da me
+**implemented in 0.1.128** (richiesta del committente sui Destini)
+
+«I Destini li farei diversi, una serie di condizioni che se soddisfatte danno il
+grado di vittoria. E tra le condizioni ci puo' essere le cose piu' disparate
+includendo anche gli edifici e/o il controllo e/o le cicatrici.»
+
+**Meta' di quello che chiede c'era gia', e vale la pena dirlo prima.** Un Destino
+e' gia' esattamente questo: tre livelli, ognuno **una lista di condizioni** che
+devono valere tutte, con dodici tipi disponibili e `any_of` per l'oppure. 135
+clausole scritte, da 1 a 5 per livello. Quello che mancava era piu' stretto:
+
+- **nessuna clausola sapeva leggere le strutture** — che sono nate ieri;
+- **le cicatrici erano leggibili e nessun Destino le usava**: `state_tag_present`
+  con scope REGION avrebbe funzionato, ma scrivere `scar:burned` come un tag
+  qualunque non dice quello che si intende;
+- non si poteva chiedere **«almeno K su N»**: `any_of` e' il caso K=1.
+
+**Il vocabolario nuovo**, tre tipi:
+
+| tipo | dice |
+|---|---|
+| `structure_count` | quante strutture, coi filtri che servono: tipo, famiglia, **grado minimo**, Regione, e `anyone` per contare anche quelle degli altri |
+| `scar_count` | quante cicatrici, per tag e per Regione |
+| `some_of` | almeno `min` fra queste condizioni |
+
+I due conteggi dicono **presenza e assenza con lo stesso conto**: «un castello a
+Eredan» e' `min: 1`, «e nessuno ha alzato una reggia sulla montagna» e'
+`grade: 3` + `anyone` + `max: 0`. E' il motivo per cui ho buttato via i due tipi
+booleani che avevo scritto per primi (`structure_present`, `scar_present`): il
+vocabolario esistente conta gia' cosi' — `control_count`, `discovery_count` — e
+un tipo in piu' che dice meno e' un tipo in meno da avere.
+
+**E qui ho ripreso la lezione di D-151, da solo, sulla mia scrittura.**
+
+Scritte cinque clausole nuove con i tipi nuovi, la sonda dei gradini ha
+risposto:
+
+| clausola | mancata |
+|---|---|
+| Aldric: «E la corona ha una casa, non solo un titolo» (castello a Eredan) | **100%** |
+| la Cenere: «E quello che tengono si vede da lontano» (presidio di grado 2) | **100%** |
+| le Citta': «E l'anno non ha lasciato cicatrici» | **100%** |
+| Nahr: «E il villaggio e' ancora in piedi» | ~mai mancata |
+| Vaerax: «E sulla montagna non si e' fermato nessuno» | ~mai mancata |
+
+Tre impossibili e due gratis. **Zero utili.** E il Trionfo e' sceso dal 5% al
+3%, perche' avevo aggiunto pesi che non si possono sollevare.
+
+La causa e' una sola e non e' il bilanciamento: **ho scritto clausole su uno
+strato che dentro l'anno nessuno puo' cambiare.** Le strutture, fino a
+stamattina, si muovevano in due soli momenti — all'apertura (`starting_structures`)
+e alla chiusura (D-159, il grado che segue il Destino). Dentro i nove round
+**non si costruiva niente**. Una clausola che chiede un castello di grado 2 in
+una Chronicle singola chiede una cosa che il regolamento non permette a nessuno
+di fare: e' la definizione esatta del difetto che D-151 aveva trovato nel
+contenuto di qualcun altro.
+
+E le cicatrici: un anno su quaranta finisce senza nessuna. «Nessuna cicatrice»
+non e' un obiettivo ambizioso, e' una lotteria al 2,5%.
+
+**Cosa ho fatto.** Le cinque clausole sono state **tolte**. Il vocabolario
+resta — e' provato e serve — ma il contenuto aspetta il pezzo che mancava:
+
+**La prima cosa che si costruisce dentro l'anno.** `CNS_ASH_WATCH` — la Veglia
+sulla Montagna — posava un segno `structure:watchtower` sulla Regione. Adesso
+**alza un presidio che ha un padrone**: entra nel conto del controllo dal round
+dopo, e puo' crescere. E' la prima Conseguenza che costruisce un oggetto invece
+di scrivere un tag, ed e' il modello per le altre dieci.
+
+Si vede subito nella misura: i passaggi di mano per contesa passano da **63 a
+74** su trenta Chronicle, e le caselle tenute a fine anno da 138 a **143**. Una
+torre alzata a meta' anno cambia chi tiene la montagna.
+
+**Misure.** Playtest **FAIL 204 · SUCC 73 · SUCC 113 · DECI 186**, Consigli
+mediana **6**, tavolo misto **0 su 8**, uniforme **2 su 8** — invariato rispetto
+a D-160. Suite **334 test / 5991 asserzioni** verde; `run_sims.sh` identico su
+due giri; `dead_code.py` pulito su 151 file; job «Dati e schemi» verde.
+
+**La regola che mi do, e che vale per il resto di §8:** una clausola che parla
+di uno strato del mondo si scrive **dopo** che quello strato ha almeno un modo
+di cambiare durante l'anno — e si misura sulla sonda dei gradini **prima** di
+restare. Il vocabolario per primo, il contenuto per secondo, la misura fra i
+due.
+
+---
+
+## D-160 — L'insediamento: la seconda scala, e il trend guardato per primo
+**implemented in 0.1.127** (§8.6 passo 3 della [seduta sulla terra](SEDUTA_TERRA.md))
+
+**Prima la promessa mantenuta.** D-159 chiudeva dicendo che i Consigli falliti si
+muovevano sempre nella stessa direzione — 185, 191, 196, 203 — e che alla
+prossima modifica andava guardato per primo. Guardato:
+
+| | |
+|---|---|
+| Consigli aperti, 30 Chronicle | **174** (5,8 a partita, in banda) |
+| **sovraestensioni** (la tassa di D-027) | **11** |
+| passaggi di mano per contesa | 63 |
+
+**Non e' una tassa sistemica.** La sovraestensione morde undici volte in trenta
+partite: non e' lei ad alzare i fallimenti. I Consigli aperti sono cresciuti da
+5,63 a 5,75 di media — dentro la banda dichiarata (mediana 5-6) — e la quota di
+fallimenti e' salita di **1,6 punti**, dal 33,7% al 35,3%. La causa e' che le
+policy **votano diverso**: con il controllo contato, una Conseguenza che
+consegna una Regione vale meno di prima, e le proposte che si fanno e come si
+vota sono cambiate. Il numero da tenere resta la banda dei Consigli e lo 0/8,
+e tutti e due reggono.
+
+**La seconda scala.** `STR_SETTLEMENT`, accanto al presidio:
+
+| grado | nome | valore | cosa fa |
+|---|---|---|---|
+| I | Villaggio | 1 | chi ha presenza li' **pesca gente migliore** |
+| II | Borgo | 2 | e **tiene una carta in piu'** — l'inverso esatto della fame, che una la toglie |
+| III | Citta' | 4 | e il **Fattore Mondo** pende dalla parte di chi propone |
+| ↓ | Abbandono | — | lascia `scar:emptied` |
+
+Riusa il prefisso `settlement:` che c'era gia' invece di inventarne uno, e i tre
+gradi sono tre regole dei segni scritte come tutte le altre. La citta' non da'
+un bonus a **chi la tiene**: piega il **mondo**, perche' dove c'e' una citta'
+una decisione e' piu' facile da far applicare — ed e' l'unico grado del catalogo
+che aiuta anche un rivale che proponga li'.
+
+Un villaggio semina la Valle Verde in tutte e due le linee: i Nahr nell'812, le
+Citta' Libere nel 1640 — case che hanno gia' presenza li', in una Regione che
+non e' di nessuno.
+
+**La misura, e la seconda scala cambia la prima.** Dodici saghe da otto anni:
+
+| | solo presidi (D-159) | col villaggio |
+|---|---|---|
+| in piedi al grado I | 32 | 33 |
+| **grado II — castelli e borghi** | **3** | **13** |
+| **grado III — regge e citta'** | **0** | **2** |
+| gradi persi (senza andare in rovina) | 0 | 1 |
+
+E' l'effetto che si sperava e non era ovvio: **con due strutture, chi perde
+lascia andare il villaggio e tiene il castello**. `_pick_structure` fa cadere la
+piu' bassa e alza la piu' alta, quindi una casa che sbaglia un anno perde i
+margini e conserva il centro — e i presidi, non essendo piu' i primi a cadere,
+arrivano fino in fondo alla scala. Le prime **due regge** compaiono qui, e
+nessuno le aveva scritte a mano.
+
+**Playtest 100 semi: FAIL 204 · SUCC 73 · SUCC 113 · DECI 186**, Consigli mediana
+**6**, tavolo misto **0 su 8**, uniforme **2 su 8**. Un fallimento in piu' di
+D-159: la seconda scala e' **neutra** sulle guardie.
+
+**E i gradini si sono mossi ancora:** supera il Minimo **59%** (era 47% prima di
+tutta la strada C), caselle con un padrone **81%**, seggi con due Regioni
+**30%**.
+
+**Il piano di regressione C e' stato aggiornato, e vale la pena dire come.**
+`SIM_PLAN_C` dichiara gli esiti di un anno scritto a mano: il sesto Consiglio e'
+passato da SUCCESS a **FAILURE**, per **un punto solo** (S 2 contro O 4, M −1).
+La catena e' quella prevista — il villaggio piega la pesca, cambiano le carte in
+mano, cambiano gli impegni. Il Cristallo, che e' il cuore narrativo del piano,
+sta al terzo Consiglio e **non si e' mosso**; a cadere e' l'ultimo giro sulle
+Vie. La descrizione e' stata riscritta per dire il vero: *una domanda che
+sembrava chiusa si riapre e resta aperta*. Un fixture che dichiara aspettative
+si aggiorna quando le regole cambiano di proposito — ma si aggiorna **dopo aver
+guardato cosa e' successo**, non prima.
+
+**E una lezione sui test.** Tre volte di fila i test delle strutture si sono
+rotti perche' davano per scontata una mappa vuota, e ogni semina nuova ne
+rompeva un altro pezzo. Adesso **sgomberano la propria Regione** in
+`before_each` invece di inseguire una casella libera: quali Regioni siano gia'
+costruite e' contenuto, e un test non deve dipendere dal contenuto per misurare
+un meccanismo.
+
+Misure: suite **334 test / 5992 asserzioni** verde; `run_sims.sh` identico su
+due giri; `dead_code.py` pulito su 151 file; job «Dati e schemi» verde.
+
+**Restano di §8**: le opere di grado II (solo dati) e **i luoghi del mondo** —
+foresta, fiume, sito antico, palude — col **passo che frana** per ultimo.
+
+---
+
+## D-159 — La scala che si muove col Destino, e la mappa che si apre costruita
+**implemented in 0.1.126** (§7.3 della [seduta sulla terra](SEDUTA_TERRA.md))
+
+«Il cambio puo' dipendere da come vanno le cose: **se la reggia appartiene
+all'entita' che ha perso va in rovina, se invece trionfa diventa una reggia**.»
+
+A fine Chronicle, e solo se la Chronicle dichiara `structure_rules`:
+
+- chi ha raggiunto un livello di `rise_on` **alza di un grado la sua struttura
+  piu' alta** — una casa che vince costruisce sopra quello che ha gia', non
+  altrove: e' cosi' che nasce una capitale;
+- chi si e' fermato a un livello di `fall_on` **perde un grado sulla piu'
+  bassa** — si perdono prima i margini, come gia' fa il controllo che decade
+  dove non c'e' nessuno. Sotto il primo grado non si scende: **si va in rovina**,
+  e la rovina lascia una cicatrice.
+
+Deterministico: le Regioni si guardano nell'ordine della Chronicle.
+
+**E la mappa si apre gia' costruita.** Senza una pietra sul tabellone la scala
+non ha niente da muovere, quindi arriva `starting_structures` sulla Chronicle —
+accanto a `starting_control`, e per la stessa ragione di D-049: le Regioni sono
+condivise fra saghe distanti secoli, e una pietra scritta sulla Regione
+sederebbe le case della prima saga al tavolo della seconda. Le tre Regioni che
+partono con un padrone partono anche con **una torre di veglia**.
+
+**La misura sul tempo — dodici saghe da otto anni:**
+
+| | |
+|---|---|
+| gradi saliti (Trionfo) | **24** |
+| strutture andate in rovina | **19** |
+| in piedi all'ottavo anno, grado I | 32 |
+| in piedi all'ottavo anno, **grado II (castelli)** | **3** |
+| grado III (regge) | 0 |
+
+Le pietre si muovono, e si muovono **poco**: in otto anni tre torri diventano
+castelli e nessuno arriva a una reggia. E' il ritmo giusto — una reggia deve
+essere un fatto raro, non il quarto anno di chiunque vinca due volte.
+
+**Playtest sui 100 semi: FAIL 203 · SUCC 76 · SUCC 108 · DECI 188**, tavolo
+misto **0 su 8**, tavolo uniforme **2 su 8**. La mappa resta al **76%** di
+caselle con un padrone, e il Vetro resta intorno a 1,00.
+
+**Il numero da dichiarare, perche' si sta muovendo:** i Consigli falliti sono
+passati da **185** (prima di tutta la strada C) a 191, poi 196, ora **203**. Il
+vincolo di casa e' 0/8 e regge; ma tre modifiche di fila hanno spinto lo stesso
+numero nella stessa direzione, e alla prossima va guardato per primo.
+
+**Tre difetti trovati mentre si misurava, e uno era vero.**
+
+1. **La torre di partenza copriva la reggia ereditata.** `BUILD_STRUCTURE` e' un
+   no-op se quel tipo c'e' gia', e il setup gira **prima** dell'eredita': una
+   reggia dell'anno prima tornava una torre. Adesso l'eredita' abbatte e
+   rialza — `starting_structures` descrive un anno che comincia da zero, un
+   anno che eredita comincia da quello che c'era.
+2. **Due test misuravano una mappa vuota che non esiste piu'.** Uno cercava «la
+   prima `BUILD_STRUCTURE`» e ne trovava un'altra; l'altro misurava il telaio
+   dei ganci nuovi «senza regole» e incontrava `TGR_WATCHTOWER_FORCE`, che e'
+   una regola **vera** e faceva il suo mestiere. Nessuno dei due era un difetto
+   del gioco: erano test scritti quando la mappa si apriva spoglia.
+3. **Il passo dei due artefatti, di nuovo.** Aggiunto `starting_structures` allo
+   schema e dimenticato `gen_gd_schema.py`: il playtest e' morto al primo giro
+   con «unexpected field». E' la stessa lezione di D-156, presa due volte.
+
+Misure: suite **334 test / 5977 asserzioni** verde; `run_sims.sh` identico su
+due giri; `dead_code.py` pulito su 151 file; job «Dati e schemi» verde per
+intero.
+
+**Restano di §7**: le 14 Conseguenze che scrivono un nome (7.2, deliberatamente
+non riscritte) e il catalogo §8, che e' contenuto d'autore.
+
+---
+
+## D-158 — La contesa del controllo: il padrone si conta, non si scrive
+**implemented in 0.1.125** (§7.2 della [seduta sulla terra](SEDUTA_TERRA.md))
+
+«Se una entita' ha un castello (che magari vale 3) ma un'altra ha un esercito
+che occupa la regione (che vale 4) la regione viene controllata da chi ha di
+piu'.»
+
+Fino a 0.1.124 il padrone di una Regione era **scritto**: una Conseguenza metteva
+un nome, e quel nome restava finche' un'altra non lo cambiava. Da qui e'
+**contato**, a ogni fine round: chi somma di piu' fra il valore delle proprie
+strutture e le proprie pedine.
+
+**Le due monete si sommano nella stessa colonna**, ed e' il punto: *un castello
+e' una presenza che non se ne va, una pedina e' un castello che si puo'
+spostare.* I **luoghi del mondo** (`owned: false`: foreste, passi, fiumi) non
+contano per nessuno — non sono di nessuno per costruzione.
+
+**A parita' non cambia niente.** Per togliere una Regione bisogna **superare**
+chi la tiene, non pareggiarlo: altrimenti il padrone di una casella contesa
+cambierebbe a ogni pedina che passa. E il passaggio resta un `SET_CONTROL` come
+tutti gli altri — stesso Effect, stesso inverso, stessa riga nel registro.
+Cambia **chi lo decide**, non come si scrive.
+
+**La misura, e la mappa si e' mossa.** Sessanta Chronicle a tavolo misto:
+
+| | 0.1.124 | ora |
+|---|---|---|
+| caselle con un padrone | 56% | **76%** |
+| seggi che finiscono a **zero** Regioni | 30% | **15%** |
+| seggi con **due** Regioni | 12% | **25%** |
+| supera il Minimo | 54% | **55%** |
+
+E casa per casa, la riga che vale piu' di tutte: **il Vetro passa da 0,00 a
+1,00**. La casa che in trenta partite non aveva mai tenuto una Regione adesso ne
+tiene una — non perche' gliel'abbiano data, ma perche' sta da qualche parte. Le
+Citta' Libere da 0,67 a 1,67, i Nahr da 1,20 a 1,70.
+
+**Playtest sui 100 semi: FAIL 196 · SUCC 68 · SUCC 116 · DECI 186**, tavolo
+misto **0 su 8** — il vincolo di casa regge — e tavolo uniforme **3/8 → 2/8**.
+
+**Tre cose cambiano al tavolo, e vanno dette perche' si vedono.**
+
+1. **Una Regione si perde senza che nessuno la prenda**: basta andarsene.
+   `lapse_without_presence` smette di essere una regola a parte e diventa un
+   caso particolare del conto — chi non ha niente li' somma zero, e zero non
+   tiene niente.
+2. **Il Consiglio non consegna piu' un possesso definitivo.** Le 14 Conseguenze
+   che scrivono un nome valgono finche' quel nome regge il conto: il Consiglio
+   da' un **titolo**, tenerlo e' un'altra cosa. Non le ho riscritte — la misura
+   dice che cosi' funzionano, e riscriverle sarebbe stato cambiare due cose
+   insieme.
+3. **La clausola della Cenere non e' piu' il suo problema.** `control_count >= 2`
+   sparisce dalla lista delle clausole mancate; adesso il suo ostacolo e' la
+   seconda clausola scritta in D-156 (la veglia affidata per atto, mancata nel
+   37%), che e' esattamente il mestiere che le avevo dato.
+
+E in cima alla lista di quello che non si avvera restano le **clausole sociali**
+— «qualcuno ha giurato» al 70%, «l'insediamento e' riconosciuto» al 57%, «la
+Carta e' stata scritta» al 53%. E' la seconda famiglia di D-151, e non si muove
+di qui: quella chiede persone, non regole.
+
+Misure: suite **334 test / 5981 asserzioni** verde (sette test nuovi);
+`run_sims.sh` identico su due giri; `dead_code.py` pulito su 151 file; il job
+«Dati e schemi» verde per intero. La regola sta in
+`control_rules.contested` e si spegne togliendo una chiave.
+
+**Il prossimo passo e' §7.3**: il grado che si muove con l'esito del Destino —
+chi trionfa alza una struttura, chi non arriva al Minimo la vede andare in
+rovina.
+
+---
+
+## D-157 — La terra si costruisce: la struttura diventa un oggetto
+**implemented in 0.1.124** (§7.1 della [seduta sulla terra](SEDUTA_TERRA.md), strada C scelta dal committente)
+
+Il primo passo della strada C, e quello su cui sta tutto il resto: **una
+struttura smette di essere un tag e diventa un oggetto**.
+
+**Perche' un tag non basta.** `structure:granary` e' un booleano: c'e' o non
+c'e'. Le risposte del committente chiedono altre tre cose che un booleano non
+sa dire — **un grado** (torre → castello → reggia), **un padrone** (per la
+contesa del controllo), e **un valore** (il castello vale 3, l'esercito 4, e
+vince chi somma di piu'). Servono tutti e tre insieme, quindi serve un record.
+
+**Cosa c'e' adesso.**
+
+- `schema/structure_type.schema.json`: un **catalogo**. Un tipo dichiara la
+  famiglia (PRESIDIO · INSEDIAMENTO · OPERA · LUOGO · CHIUSURA), se ha un
+  padrone, in quali biomi puo' stare, i suoi **gradi** — ognuno con nome,
+  **valore** e il segno che posa — e come finisce in rovina.
+- `world.regions[id].structures`: una lista di `{structure_type, grade, owner}`.
+- Tre Effect nuovi, con i loro inversi: **`BUILD_STRUCTURE`** ↔
+  **`RAZE_STRUCTURE`**, e **`SET_STRUCTURE_GRADE`** che si inverte su se stesso
+  col grado di prima. L'enum chiuso passa da 22 a **25**.
+- **Le pietre attraversano gli anni**: l'eredita' le riporta *com'erano* — una
+  reggia resta una reggia — e il padrone segue la stessa regola del controllo
+  (`lapse_without_presence`): senza nessuno dentro, le pietre restano di
+  nessuno.
+
+**La scelta che tiene insieme il vecchio e il nuovo: l'oggetto e' la verita', il
+tag e' derivato.** Ogni grado dichiara il proprio `structure:`, e alzarlo o
+abbatterlo posa e toglie quel segno. Cosi' le **cinque regole dei segni** gia'
+scritte — il granaio parla, al pedaggio girano i denari, sotto la torre si pesca
+forza — continuano a funzionare senza sapere che sotto e' cambiato tutto. Non
+c'e' un momento in cui il gioco ha due verita'.
+
+**Il catalogo parte con una scala sola**, il **Presidio**: Torre di veglia (2) →
+Castello (3) → Reggia (5), e la Rovina che lascia `scar:abandoned`. Riusa la
+torre di veglia che esisteva gia' come tag, ed e' il caso piu' semplice della
+contesa a valori — che e' esattamente l'ordine dichiarato in SEDUTA_TERRA §8.6.
+
+**Nessun dato del gioco costruisce niente.** Nessuna carta, nessuna Conseguenza
+posa un presidio: il livello c'e', il contenuto no. E infatti il playtest e'
+**identico** a quello di 0.1.122 — **FAIL 191 · SUCC 69 · SUCC 116 · DECI 190**,
+tavolo misto **0 su 8**. E' il modo in cui questo passo si dichiara riuscito:
+un livello nuovo che non muove un solo numero e' un livello che non ha ancora
+opinioni.
+
+**Due difetti presi per strada, tutti e due dalla suite e non a mano.**
+`x-echoes-kind` accettava tre valori e io ne ho scritto un quarto: lo schema
+passava la validazione Python e **spariva dal registro di Godot**, che ha
+bocciato 288 test in un colpo. E il guardiano di D-003 — «ogni EffectType
+reversibile ha un test di andata e ritorno» — ha rifiutato i tre nuovi finche'
+non li ho scritti. Sono le due reti che questo repository si e' costruito
+apposta, e hanno funzionato.
+
+Misure: suite **327 test / 5996 asserzioni** verde (otto test nuovi); playtest
+invariato; `run_sims.sh` identico su due giri; `dead_code.py` pulito su 150
+file; il job «Dati e schemi» verde per intero.
+
+**Il prossimo passo e' §7.2**, la contesa del controllo — ed e' il primo che
+muovera' i numeri.
+
+---
+
 ## D-001 — Godot 4.7.1 confirmed, headless build used throughout
 **implemented**
 
@@ -328,6 +1486,592 @@ so candidate C stays one config line away for the 0.2 pass.
 
 Guarded by `tests/smoke/test_balance.gd`. See D-023 for how that guard was
 rewritten — and why — once the second cap landed.
+
+---
+
+## D-156 — La porta sola della Cenere: una Vittoria che dice cosa vuole
+**implemented in 0.1.122** (ISSUES 38, chiusa · chiesta dal committente prima della strada C)
+
+D-154 aveva concluso che il vincolo di casa **0 su 8** lo stava facendo
+rispettare il seggio piu' fragile del gioco: due varianti del peso della terra
+sono state respinte da Kessa e non dal proprio merito, con **una partita** di
+differenza. La causa era ISSUES 38 — la sua Vittoria aveva una porta sola. Il
+committente ha chiesto di aprirla prima di tutto il resto.
+
+**Prima ho misurato le porte, invece di sceglierne una a naso.** Sedici clausole
+candidate, valutate a fine anno su **40 Chronicle** di CHR_03:
+
+| tenuta | clausola |
+|---|---|
+| **100%** | le gallerie non sono state murate · la Reliquia non e' stata sepolta · hanno fatto una Scoperta · la montagna non e' stata svuotata · il patto col Sale regge · presenza ≥2 sulla montagna · **`control_count >= 1`** |
+| 88% | la Reliquia resta calda (TEN_RELIC ≥ 3) |
+| 70% | la Cenere sale (TEN_ASH ≥ 3) |
+| **45%** | **la veglia sulla montagna e' affidata a loro** (`ash_watch`) |
+| **12%** | **`control_count >= 2`** — la porta di allora |
+| 10% | la Reliquia e' stata mostrata |
+| **0%** | col Vetro non si e' arrivati alla rottura |
+
+Il numero che spiega tutto: **`control_count >= 1` vale il 100%**. Ecco perche'
+in D-154 abbassare la soglia le regalava la Vittoria — le sue due clausole
+diventavano vere **tutte e due sempre**, e Kessa passava a zero Minimi e trenta
+Trionfi su cinquanta. Non era una soglia sbagliata: era una Vittoria fatta di
+due decorazioni.
+
+**E il suo Destino non diceva quello che voleva.** La descrizione e' netta — *«I
+Signori della Cenere non discutono di reliquie: discutono di **chi decide dove
+si scava**. Vogliono che la risposta sia scritta e sia loro»* — e la Vittoria
+chiedeva «controllo di almeno 2 Regioni», che e' una frase da gioco di
+conquista e non da questa casa.
+
+**La riscrittura**, con l'unica clausola davvero contesa portata dove serve:
+
+| gradino | prima | adesso |
+|---|---|---|
+| Minimo | presenza ≥2 sulla montagna | *invariato* |
+| **Vittoria** | «Tengono la montagna, e non solo quella»: control ≥2 · gallerie non murate | **«Chi scava lo dicono loro»**: la montagna e' ancora loro (control ≥1) · **e la veglia e' affidata a loro, per atto e non per abitudine** · e le gallerie non sono state murate |
+| **Trionfo** | «E la veglia sulla montagna e' loro»: `ash_watch` · patto col Sale · Reliquia non sepolta · TEN_ASH ≥3 · TEN_RELIC ≥3 | **«E non solo quella»**: **il registro della montagna copre due Regioni, non una** (control ≥2) · le altre quattro invariate |
+
+E' lo stesso principio scritto in D-152 e finalmente applicato per intero: **la
+Vittoria chiede di tenere quello che si ha, il Trionfo chiede di crescere.** La
+clausola sul controllo non e' stata cancellata — e' salita di un gradino, dove
+il suo 12% e' una virtu' invece che un muro.
+
+**Cosa ha fatto, sul seggio:**
+
+| Kessa dei Fuochi, 50 partite | NONE | MINIMO | VITTORIA | TRIONFO |
+|---|---|---|---|---|
+| prima | 1 | **44** | 5 | 0 |
+| adesso | 0 | 18 | **31** | 1 |
+
+ISSUES 38 chiedeva «sotto i dieci Trionfi su cinquanta con almeno dieci
+Minimi»: **1 Trionfo e 18 Minimi**. E il tavolo misto resta **0 su 8**.
+
+**Il quadro generale si e' mosso con lei.** Sessanta Chronicle: supera il Minimo
+**48% → 54%**, VITTORIA 43% → **48%**, TRIONFO 5% → **6%**. Non e' solo Kessa
+che si sblocca: un seggio che finalmente insegue qualcosa cambia i Consigli di
+tutti.
+
+**Il prezzo, dichiarato:** i Consigli falliti passano da **177 a 191**, e il
+tavolo uniforme da 2 a 3 seggi bloccati. La ragione e' che la Cenere adesso
+**si batte** per la veglia — la policy legge le clausole del proprio Destino per
+decidere come votare — e un tavolo dove una casa in piu' ha qualcosa da
+difendere e' un tavolo che litiga di piu'. Il vincolo di casa (0/8) regge e la
+mediana dei Consigli non si muove (6); il numero e' comunque sopra la banda
+recente e resta a verbale come tale.
+
+**Una lezione di metodo, presa sul posto.** Le frequenze misurate qui sopra
+valgono **sotto il Destino di prima**. `ash_watch` valeva il 45% quando nessuno
+lo cercava; da quando e' una clausola di Vittoria, la policy lo insegue e la sua
+tenuta sale al **63%**. Una clausola diventa piu' facile *nel momento in cui
+diventa un obiettivo*: la misura preventiva dice quali porte esistono, non quanto
+saranno larghe dopo.
+
+**E una cosa trovata per strada:** «col Vetro non si e' arrivati alla rottura»
+vale **0% su 40 partite**. La Cenere e l'Ordine del Vetro partono NEMICI e non
+risalgono **mai**. E' la terza volta che la stessa cosa si presenta da una porta
+diversa (D-139, D-151): le relazioni non si muovono, e ogni clausola che
+dipende da un altro e' irraggiungibile con questi giocatori.
+
+Misure: suite **319 test / 5959 asserzioni** verde; playtest **FAIL 191 · SUCC
+69 · SUCC 116 · DECI 190**, tavolo misto **0 su 8**; gradini **54%** sopra il
+Minimo. **ISSUES 38 e 38bis chiuse**, e la strada C della
+[seduta sulla terra](SEDUTA_TERRA.md) e' sbloccata.
+
+**Poscritto: la CI ha trovato un passo che avevo saltato.** `docs/ASSET_MANIFEST.md`
+e' **generato** e porta anche le etichette dei tre gradini di ogni Destino:
+cambiare la Vittoria della Cenere lo ha disallineato, e
+`tools/build_manifest.py --check` ha bocciato il commit. La regola di casa
+diceva «dopo ogni modifica a `/schema` rilancia `gen_gd_schema.py`»; era
+incompleta. **Dopo una modifica alle etichette di un Destino va rigenerato anche
+il manifesto** — sono due artefatti derivati, non uno.
+
+---
+
+## D-155 — Le carte parlano: cosa fa una carta, prima di calarla
+**implemented in 0.1.121** (difetto trovato dal committente giocando)
+
+«Le carte che vengono giocate ora non si capisce quale effetto hanno, le frasi
+sono belle ma non si capiscono e alla fine **non hanno effetti sul gioco**.»
+
+La seconda meta' della frase e' falsa e la prima la spiega: **39 carte del
+Narratore su 39 portano almeno un effetto**, e 47 Asset su 48. Gli effetti
+c'erano. Era la carta a essere muta.
+
+**Il difetto, in una riga.** Le carte Asset dichiarano il proprio mestiere da
+D-042 — accanto a ogni opzione di impegno c'e' quanto vale *qui* e cosa costa al
+mondo. Le carte del Narratore no: si sceglievano da
+
+> «Cala la carta del Narratore: Mancanza»
+
+e basta. Titolo bellissimo, zero informazione. Una carta che non dichiara cosa
+fa e' **indistinguibile da una che non fa niente** — che e' esattamente la
+conclusione a cui il committente e' arrivato giocando, ed era la conclusione
+ragionevole.
+
+**Cosa dice adesso.** `scripts/core/echo_text.gd`, gemello di `asset_text.gd` e
+costruito con lo stesso criterio: il riassunto si compone **dai campi che il
+motore legge davvero**, cosi' una carta non puo' dire una cosa e farne un'altra.
+
+> Cala la carta del Narratore: **Mancanza** — *stringe*
+> La Carestia sale di 1 · Valle Verde: il raccolto non basta · Valle Verde: il
+> granaio non c'e' piu
+
+> Cala la carta del Narratore: **Tradimento** — *rompe*
+> Nel mondo: betrayal spoken · La Carestia sale di 1 · **apre subito un
+> Consiglio su La Carestia**
+
+Il tono («stringe, rompe, svolta, chiude, ricorda») dice al tavolo che cosa
+aspettarsi dalla famiglia drammatica senza spiegare Propp.
+
+**E per strada e' venuto fuori un difetto piu' largo: la mappa parlava in
+identificativi.** Il registro pubblico, la console e la vetrina dicevano
+`Valle Verde: condition:lean`. Un tag e' un identificativo: sta bene nei dati e
+non si legge al tavolo. Quello che gli manca e' un verbo.
+
+- **31 segni** hanno adesso una frase — le tredici condizioni, le cinque
+  strutture, le tredici cicatrici;
+- e una **seconda** frase per quando spariscono, perche' «non piu si muore di
+  fame» non e' italiano: `condition:starving` va via come «la fame e' passata»,
+  `structure:granary` come «il granaio non c'e' piu»;
+- `SET_ENTITY_TAG` e `REMOVE_ENTITY_TAG` non stampano piu' il tipo grezzo;
+- le **caselle da riempire** (`$rival`, `$proponent`, `$region_focus`) in
+  anteprima diventano parole — «un rivale», «chi la cala», «la Regione della
+  domanda». Prima, guardare una carta prima di calarla mostrava `$rival`.
+
+**Un difetto l'ha trovato il test, non io.** `SET_RELATION` stampava la coppia
+come `$proponent / $rival` senza risolvere nessuno dei due lati: sfuggiva perche'
+al momento di applicare l'Effect le caselle sono gia' piene, e nessuno guardava
+mai la stessa frase *in anteprima*. Il test che vieta gli identificativi al
+tavolo l'ha visto al primo giro. (Ne ha trovato anche uno mio: `str(null)` non
+e' la stringa vuota, e il ciclo che cercava «una carta che apre un Consiglio»
+prendeva la prima carta qualsiasi.)
+
+Misure: suite **319 test / 5959 asserzioni** verde, sette test nuovi;
+`dead_code.py` pulito su 149 file. Nessuna regola cambiata — **il gioco fa
+esattamente quello che faceva prima, e adesso lo dice**.
+
+---
+
+## D-154 — Il peso della terra: meccanismo acceso, contenuto spento
+**implemented in 0.1.119** (deciso dal committente, respinto dalla misura)
+
+Il committente ha deciso: «**il titolo deve dare qualcosa dentro l'anno,
+muoversi e avere maggioranza deve pesare**». D-152 aveva mostrato che il
+controllo, dentro l'anno, non fa niente — tre soli consumatori, due dei quali
+sono costi. Questa e' la leva che glielo fa fare, ed e' scritta e provata. **Nei
+dati e' spenta**, e la ragione e' un numero.
+
+**Il meccanismo.** `focus_weight` in `confluence_rules`: al Consiglio, la
+Regione **di cui si discute** da' voce a chi ci sta.
+
+- **il titolo** a chi ne e' il padrone — quello che il Destino gia' contava a
+  fine anno adesso si sente anche al tavolo;
+- **la maggioranza** a chi ci ha *strettamente* piu' pedine di chiunque altro —
+  a parita' non la prende nessuno, perche' una maggioranza contesa non e' una
+  maggioranza.
+
+I due si sommano fino a un tetto: chi la tiene **e** ci sta dentro parla per
+primo. E' `lapse_without_presence` detto dentro l'anno invece che fra un anno e
+l'altro. Come ogni altro peso (D-125, D-139) conta solo se quel seggio ha messo
+almeno una carta sul tavolo: un bonus dal nulla sarebbe un voto gratis.
+
+**La misura, due volte.** Sui 100 semi da 7000:
+
+| | Consigli falliti | tavolo misto |
+|---|---|---|
+| spento (0.1.118) | **177** | **0 su 8** |
+| titolo +1, maggioranza +1, a tutti | **164** | **1 su 8** |
+| lo stesso, senza il proponente | 175 | **1 su 8** |
+
+**Il primo difetto era mio e l'ho capito**: il peso finiva quasi sempre al
+**proponente**, che e' gia' scelto *per* la presenza nel dominio. Pagarlo anche
+al Consiglio vuol dire pagarlo due volte per lo stesso investimento, e i
+Consigli passavano troppo (DECI da 187 a 209). Escluderlo rimette i numeri in
+banda — 175 contro 177 — e lascia al peso il caso che vale davvero: **la voce di
+chi la terra ce l'ha e il Consiglio non l'ha chiamato**, cioe' «non si decide di
+casa mia senza di me».
+
+**Ma resta 1 su 8, e il seggio e' sempre lo stesso.** Kessa dei Fuochi finisce
+al Minimo in tutti e quattro i caratteri. Non e' il peso della terra a
+romperla: e' che la sua Vittoria ha **una porta sola** (ISSUES 38 —
+`control_count >= 2`, e l'altra clausola e' quasi sempre vera). Un seggio che
+dipende da una clausola sola non assorbe *nessun* cambiamento: basta una
+partita che gli costi il Consiglio dove prendeva la seconda Regione. Nella
+variante buona la differenza e' letteralmente **una partita** — Kessa passa da
+1/44/5/0 a 1/45/4/0.
+
+**Il che dice una cosa piu' generale, e vale la pena scriverla:** il vincolo di
+casa **0 su 8** lo sta facendo rispettare il seggio piu' fragile del gioco. Fino
+a che ISSUES 38 resta aperta, qualunque modifica alle regole del Consiglio ha
+una probabilita' alta di essere respinta da Kessa e non dal proprio merito.
+**ISSUES 38 viene prima**, ed e' contenuto d'autore.
+
+**Cosa resta acceso.** Lo schema, il motore, sette test che tengono fermo il
+meccanismo con una `focus_weight` sintetica (il titolo, la maggioranza stretta,
+la somma col tetto, i lati dichiarati dai dati, il proponente escluso, e il
+niente-carte-niente-peso). Nelle Chronicle la chiave e' omessa: senza, il
+Consiglio e' quello di sempre. E' lo stesso criterio di D-150 col pool dei
+Destini — quando la misura dice no, si tiene il meccanismo e si spegne il
+contenuto, cosi' la prossima volta si riaccende con una riga.
+
+**E c'e' una strada migliore, che il committente ha visto subito dopo.** Contate
+le pedine su 30 Chronicle: 240 posate al setup, **38** aggiunte da MUOVERE, 21
+da una carta Narratore, 7 da un Consiglio. In un anno intero si muove **poco
+piu' di una pedina per partita**. La mappa non e' ferma perche' il titolo non
+paga: e' ferma perche' **nessuno ha carte con cui muoverla**. E il vocabolario
+esiste gia' — tre Asset posano una pedina quando li impegni, due la tolgono:
+cinque carte su quarantotto. La proposta del committente («la guardia reale puo'
+giocare effettivamente una presenza in una regione») lavora su quella leva, ed
+e' probabilmente quella giusta. Sta in ISSUES 39.
+
+Misure: suite **312 test / 5943 asserzioni** verde (sette test nuovi); playtest
+con la regola spenta **FAIL 177 · SUCC 73 · SUCC 126 · DECI 187**, tavolo misto
+**0 su 8**, identico a 0.1.118; `dead_code.py` pulito su 147 file.
+
+---
+
+## D-153 — «Rivendicare» esiste: la catena per prendere una Regione, e dove si spezza
+**implemented in 0.1.116** (correzione a D-152, sollevata dal committente)
+
+D-152 dice che «il controllo **non si prende con un'azione**». La frase e'
+letteralmente vera e **fuorviante**, ed e' stato il committente ad accorgersene:
+«ma scusa, le Regioni non si prendono con un'azione specifica?».
+
+**Si', c'e' un'azione: `ACT_CLAIM`, «Rivendicare».** Quello che rivendica pero'
+non e' una Regione — e' una **domanda**. In `CREATE` scarta un Asset AUTHORITY
+e apre un Claim su un dominio di Tensione (TERRITORY, RESOURCE, SURVIVAL,
+KNOWLEDGE, ANCIENT); in un round successivo, in `FORCE`, consuma quel Claim e
+un secondo AUTHORITY per **strappare un Consiglio di cui si e' proponenti**. La
+Regione arriva solo se quel Consiglio cade su una delle quattordici Consequence
+che portano un `SET_CONTROL` a `$proponent`.
+
+Quindi la catena e' lunga cinque anelli:
+
+1. avere un Asset AUTHORITY da scartare, e spenderci un'Azione;
+2. che la Tensione bersaglio sia a **3 o piu'**;
+3. avere un **secondo** AUTHORITY, e un'altra Azione, in un round dopo;
+4. che il Consiglio non fallisca (falliscono 177 volte su 100 partite);
+5. che la Consequence uscita sia una delle quattordici giuste.
+
+**Dove si spezza, misurato su 60 Chronicle:**
+
+| | |
+|---|---|
+| Rivendicazioni aperte (`CREATE`) | **63** |
+| Consigli strappati (`FORCE`) | **15** |
+| Rivendicazioni morte senza essere usate | **48** |
+
+Circa **una rivendicazione aperta a partita, e una forzata ogni quattro**. Tre
+su quattro muoiono in mano: si paga il primo anello e il secondo non arriva
+mai. E per confronto, delle azioni giocate in trenta Chronicle 4286 effetti
+vengono da `ACT_ACQUIRE` e 84 da `ACT_CLAIM` — le case passano il tempo a
+raccogliere, non a rivendicare.
+
+**Cosa cambia nella diagnosi.** Non «manca la leva»: la leva c'e', e' scritta,
+ed e' anche una bella idea — *rivendicare non e' prendersi una terra, e'
+costringere il tavolo a discuterne*. Quello che manca e' che sia **percorribile**:
+cinque anelli in serie, due Asset dello stesso tipo, due Azioni in round
+diversi, e un esito che dipende dal mazzo. Il numero da guardare non e' piu'
+«quante Regioni cambiano padrone» ma **48 rivendicazioni morte su 63**.
+
+Il che restringe le tre strade di ISSUES 37 a una domanda piu' precisa: non
+«serve un'azione per prendere le Regioni» — c'e' — ma **quale anello della
+catena si accorcia**. Rimane da decidere, e rimane contenuto d'autore.
+
+**Non e' stato toccato niente del gioco.** La sonda dei gradini adesso conta
+anche i tre numeri della catena; D-152 resta a verbale com'e' scritta, con
+questa correzione sopra. Suite **305 verde**, playtest invariato — **FAIL 177 ·
+SUCC 73 · SUCC 126 · DECI 187**, tavolo misto **0/8**.
+
+---
+
+## D-152 — La corona tiene la sua terra: una soglia abbassata, una no
+**implemented in 0.1.115** (la prima delle due decisioni che D-151 aveva rimandato al committente)
+
+D-151 aveva chiuso con due domande. Il committente ha scelto la prima —
+**abbassare la soglia** — e la misura ha detto sì a meta'.
+
+**Prima: D-151 aveva torto sul meccanismo.** Ci sta scritto che
+`control_count >= 2` «chiede il tetto, perche' `max_stable_control` e' 2».
+Non e' cosi'. `max_stable_control` non e' un tetto: e' una **soglia di
+fatica** (D-027) — si possono tenere tre Regioni, costa un punto di Tensione
+per giro sulla domanda di quella Regione. E infatti nessuno ci arriva mai:
+su 240 seggi misurati, **tre** ne tengono tre. Il soffitto non e' il vincolo,
+perche' nessuno lo tocca.
+
+**Il vincolo vero e' che la mappa non si muove.** La sonda dei gradini ora
+misura anche il tabellone, e il quadro e' questo:
+
+| Regioni tenute a fine anno | seggi |
+|---|---|
+| 0 | **30%** |
+| 1 | 57% |
+| 2 | **12%** |
+| 3 | 1% |
+
+**Il 44% delle caselle non e' di nessuno**, a fine anno come a inizio anno. E
+la ragione e' strutturale: il controllo **non si prende con un'azione**. Passa
+solo per una Consequence, cioe' per un Consiglio che si chiude — e i Consigli
+falliscono 185 volte su 100 partite. Casa per casa, in un anno intero:
+
+| casa | inizio | fine |
+|---|---|---|
+| Aldric | 1,00 | 1,23 |
+| Sale | 1,00 | 1,27 |
+| Nahr | 1,00 | 1,20 |
+| Cenere | 1,00 | 1,17 |
+| Vaerax | 1,00 | **1,00** |
+| Le Citta' Libere | 1,00 | **0,67** |
+| Lyra | 0,00 | 0,17 |
+| Il Vetro | 0,00 | **0,00** |
+
+In trenta partite **il Vetro non tiene mai una Regione**, e le Citta' Libere
+ne perdono. Una clausola scritta «almeno due» non chiede il massimo consentito:
+chiede a una casa di **raddoppiare** in un mondo che le muove un quarto di
+Regione all'anno.
+
+**La modifica, e perche' non e' cancellare la clausola.** Le regole hanno
+`lapse_without_presence`: una Regione tenuta senza starci dentro torna a
+nessuno. Percio' «almeno una» non e' gratis — **il 30% dei seggi finisce a
+zero**. La Vittoria smette di chiedere di crescere e chiede di **tenersi
+quello che si ha**, che in questo mondo e' una domanda vera.
+
+- `DST_ALDRIC` vittoria: `min 2` -> `min 1`, e l'etichetta da «Controllo di
+  almeno 2 Regioni» a **«La corona tiene ancora la sua terra»**.
+
+**Cosa ha fatto, sul seggio:**
+
+| Re Aldric, 50 partite | NONE | MINIMO | VITTORIA | TRIONFO |
+|---|---|---|---|---|
+| prima | 0 | **43** | 5 | 2 |
+| dopo | 1 | 24 | **17** | 8 |
+
+Da un muro al Minimo a una distribuzione. E il suo ostacolo adesso non e' piu'
+la terra ma **la Carestia** («La Carestia non supera 4», mancata nel 30%): il
+re vince se il mondo regge, non se il regno cresce. Che e' meglio come frase e
+meglio come gioco.
+
+**E la seconda soglia e' stata rimessa dov'era.** La stessa modifica sulla
+Cenere e' stata provata e **respinta dalla misura**:
+
+| Kessa dei Fuochi, 50 partite | NONE | MINIMO | VITTORIA | TRIONFO |
+|---|---|---|---|---|
+| prima | 1 | 44 | 5 | 0 |
+| con la soglia a 1 | 1 | **0** | 19 | **30** |
+
+Zero Minimi su cinquanta. Il motivo e' che la vittoria della Cenere ha **due**
+clausole e la seconda («le gallerie non sono state murate») e' quasi sempre
+vera: la soglia sul controllo era l'unica porta, e reggeva anche il Trionfo
+sopra di se'. Toglierla non abbassa un gradino, li apre tutti e due. Il suo
+problema non e' la soglia — e' che a quella Vittoria manca una seconda
+clausola con dei denti, e **scriverla e' contenuto, non taratura**. Resta a 2.
+
+**Misure.** Playtest 100 semi da 7000: **FAIL 177 · SUCC 73 · SUCC 126 ·
+DECI 187** (era 185 · 76 · 123 · 178) — i Consigli si muovono perche' la
+policy legge le clausole del proprio Destino per decidere come votare, quindi
+un re che non insegue piu' la seconda Regione vota diverso. Tavolo misto
+**0 su 8**, invariato; tavolo uniforme **3 su 8 -> 2 su 8**, meglio. Gradini
+su 60 Chronicle: supera il Minimo **47% -> 48%**, e la clausola di Aldric
+passa da **63% a 27%** di volte mancata. Suite **305 test verde**;
+`run_sims.sh` e `run_export.sh` identici su due giri.
+
+Le asserzioni sono passate da 6202 a 5930 senza che un test cambiasse: sei
+suite (`test_chronicle_run`, `test_hotseat`, `test_resume`,
+`test_effect_narrator`, `test_year_end_floor`, `test_chronicle_book`)
+camminano su una partita giocata e contano una asserzione per effetto. Cambia
+il voto, cambia il numero degli effetti. Stessi 305 test, tutti verdi.
+
+**Resta aperta la seconda domanda di D-151**, intatta: le clausole sociali non
+si possono misurare senza persone.
+
+---
+
+## D-151 — I gradini: quale clausola non si avvera mai
+**implemented in 0.1.114** (la diagnosi che D-150 ha reso necessaria)
+
+D-150 ha corretto una lettura e lasciato una domanda: se il Minimo e' una
+soglia di sopravvivenza, la misura che conta e' **quanti la superano** — e
+quella non si muove. Ma «la Vittoria e' difficile» non e' una diagnosi.
+`cli/run_rung_probe.gd` chiede una cosa piu' stretta: **quale clausola** resta
+in sospeso, e quanto spesso. Il rapporto dei Destini porta gia' `unmet`, quindi
+la sonda non valuta niente — conta.
+
+**Sessanta Chronicle a tavolo misto:** NONE 0% · MINIMUM **52%** · VICTORY
+**42%** · TRIUMPH **5%**. Supera il Minimo il **47%** — piu' del 30% delle
+saghe, e la differenza e' interessante di suo: una Chronicle dentro una saga
+eredita un mondo gia' segnato, e vincere in una terra ferita e' piu' difficile
+che vincere sul foglio pulito.
+
+Le clausole che nessuno vede mai:
+
+| manca | Destino | clausola |
+|---|---|---|
+| **100%** | Vaerax (trionfo) | Nessuno arriva facilmente fin lassu' |
+| **90%** | Le Citta' (trionfo) | E la Gilda non e' diventata un nemico |
+| **87%** | La Cenere (vittoria) | **Controllo di almeno 2 Regioni** |
+| **77%** | Lyra (vittoria) | **Qualcuno ha giurato** di tenerle aperta la strada |
+| **77%** | Nahr (trionfo) | La corona ha smesso di essere una sola |
+| **63%** | Aldric (vittoria) | **Controllo di almeno 2 Regioni** |
+
+Due famiglie, e ognuna dice una cosa diversa.
+
+**La prima: chiedere il tetto.** `control_count >= 2` compare in sei Destini, e
+il tetto del mondo e' **`max_stable_control: 2`** — cioe' la Vittoria chiede
+esattamente il massimo che le regole concedono, su una mappa di sei Regioni
+divisa fra quattro case. Non e' un obiettivo ambizioso: e' il soffitto. La
+Cenere lo manca nell'87% delle partite, Aldric nel 63%.
+
+**La seconda, e piu' seria: le clausole che dipendono da un altro.** «Qualcuno
+ha giurato», «la Gilda non e' diventata un nemico», i patti che reggono —
+**cinque clausole su centoquattro** parlano di promesse e relazioni, e sono
+proprio quelle che mancano piu' spesso. La ragione la sapevamo gia' da
+stamattina senza collegarla: **in venti Chronicle le relazioni si muovono una
+volta sola**, e le policy non promettono mai. Tutto cio' che chiede *un altro*
+e' irraggiungibile per costruzione con questi giocatori.
+
+Il che chiude il cerchio aperto in D-139. Il peso dell'alleanza non e' raro
+perche' e' tarato stretto: e' raro perche' **nessun bot stringe alleanze**. Le
+stesse clausole sociali che non si avverano sono la meta' del gioco che nessuna
+simulazione ha mai visitato — e sono anche, quasi certamente, la meta' che al
+tavolo vero si accende da sola: le persone promettono, si alleano e si
+tradiscono senza che nessuno glielo chieda.
+
+**Non e' stato toccato niente.** Questa e' una diagnosi, e le due famiglie
+chiedono decisioni diverse — abbassare una soglia e' contenuto d'autore, e
+misurare le clausole sociali richiede persone, non semi. Le due domande vanno
+al committente cosi' come sono.
+
+Misure: sonda nuova, nessuna modifica al motore o ai dati; suite **305/6202**
+verde; playtest **FAIL 185 · SUCC 76 · SUCC 123 · DECI 178**, tavolo misto
+**0/8**, invariato.
+
+---
+
+## D-150 — Il pool dei Destini: il meccanismo sì, il contenuto non ancora
+**implemented in 0.1.113** (strada A della [seduta sulle linee](SEDUTA_LINEE.md), scelta dal committente)
+
+Il meccanismo c'e' ed e' provato; **nelle Chronicle e' spento**, e la ragione
+e' una misura che ha detto di no. Vale la pena scrivere per intero come si e'
+arrivati qui, perche' e' andata diversamente da come sembrava a meta' strada.
+
+**Il meccanismo.** `destiny_pool` sulla Chronicle: per ogni casa, i Destini fra
+cui l'anno pesca. E' `tension_pool` applicato agli obiettivi — omesso, ogni
+casa insegue il `destiny_id` scritto sull'Entita' e non cambia niente. Nessun
+Destino si permuta fra le case: ognuno resta scritto per la sua
+(SEDUTA_LINEE §2).
+
+**La scoperta che ha accorciato il lavoro.** Stavo per scrivere otto Destini
+nuovi; ne esistevano gia' **otto orfani**, uno per casa —
+`DST_ALDRIC_RECORD`, `DST_NAHR_ROOTED`, `DST_LYRA_TAUGHT`,
+`DST_VAERAX_WATCHED`, `DST_SALE_OPEN`, `DST_VETRO_SHOWN`, `DST_CENERE_DEEP`,
+`DST_LIBERE_WATER` — scritti ai tempi dei valori per vita (D-111) e mai
+attaccati a niente. Nove Destini su venti erano in uso; undici no.
+
+**Il dado a parte, che e' un difetto vero preso per strada.** Accendendo i pool
+i tre piani di simulazione sono usciti **diversi a Destini identici**: la pesca
+attingeva al caso della partita, quindi spostava mazzi, deriva e domande. E' lo
+stesso errore che D-051 aveva gia' evitato coi caratteri («chi siede dove lo
+decide un RNG a parte»). Adesso il dado dei Destini e' suo, e un test lo prova:
+accendere il pool cambia **cosa la gente vuole**, non che mondo trova.
+
+**E la misura ha detto no.** Coi pool accesi sulle quattro Chronicle:
+
+| | senza pool | con pool |
+|---|---|---|
+| playtest, Consigli falliti | **185** | **222** |
+| tavolo misto, seggi bloccati | **0 su 8** | **2 su 8** |
+
+Il vincolo di casa e' 0/8, e 222 e' fuori banda. Gli otto Destini orfani non
+sono pronti: **sono contenuto scritto e mai giocato**, e nessuno li ha mai
+misurati contro la policy. Averli trovati gia' fatti mi ha fatto saltare il
+passo che questo progetto non salta mai — accendere **uno per volta** e
+misurare (D-104, D-117). Restano spenti finche' non lo si fa.
+
+**Quello che la sonda della varieta' ha detto lo stesso**, e vale piu' del no:
+con i pool accesi la prima linea e' andata a **distanza 0,89** (da 0,81), 84
+frasi distinte (da 74), Trionfi 15 (da 11) — il pool *funziona*, fa quello che
+deve. Sulla seconda linea invece non e' cambiato quasi niente, e il perche' e'
+la cosa piu' importante uscita da tutta questa giornata:
+
+**Il Minimo di ogni Destino e' «esistere».** Guardati in fila, i primi gradini
+sono tutti la stessa cosa — la casa e' viva e sta da qualche parte — e due
+coppie ce l'hanno **identico parola per parola** (Vetro, Cenere). Il Minimo non
+e' un obiettivo: e' una **soglia di sopravvivenza**.
+
+Questo corregge la lettura che avevo dato a D-149. «Il 64% dei Destini finisce
+al Minimo» non vuol dire «i giocatori vogliono sempre la stessa cosa»: vuol
+dire che **restano vivi e non arrivano al secondo gradino**. La misura giusta
+per [ISSUES 35](ISSUES.md) non e' la colonna MINIMUM, e' **quanti superano il
+Minimo** — e quella e' ferma al 30% col pool e senza. Il pool non era la cura,
+perche' la malattia era un'altra.
+
+**Come si riprende, quando si riprende**: un Destino alternativo per volta,
+acceso su una casa sola, playtest a ogni passo, e si tiene solo se resta
+185 · 0/8. Il meccanismo, la sonda della varieta' e i quattro test sono gia'
+li' e non chiedono niente a nessuno.
+
+Misure: suite **305/6202** verde; playtest **FAIL 185 · SUCC 76 · SUCC 123 ·
+DECI 178**, tavolo misto **0/8** — la baseline esatta, coi pool spenti; sims
+deterministici; 22 documenti validi.
+
+---
+
+## D-149 — La distanza fra due saghe
+**implemented in 0.1.112** (la misura che mancava per rispondere al committente: «linee sempre diverse»)
+
+Il committente ha chiesto un sistema che permuti obiettivi, entita' e vite
+per avere linee sempre diverse. La prima cosa che serviva non era il sistema:
+era **sapere quanto sono diverse adesso**. Tutte le sonde del progetto
+misurano il motore — esiti in banda, seggi non bloccati, filo trasparente,
+fughe — e nessuna sa rispondere a «le partite si somigliano?», che e' una
+domanda sul contenuto. Senza, si aggiunge varieta' e si spera.
+
+Il metro sono le **Truth**: le frasi che una decisione lascia scritte nel
+registro. Sono il prodotto del gioco — quello che al tavolo si legge ad alta
+voce e che resta fra una Chronicle e l'altra — quindi due saghe che scrivono
+le stesse frasi hanno raccontato la stessa storia, per diversi che siano
+stati i numeri. Tre indici: le frasi distinte, il **nocciolo** (quelle che
+compaiono in *tutte* le saghe) e la **distanza** media fra due saghe
+qualsiasi (Jaccard sulle frasi: 0 identiche, 1 niente in comune).
+
+A tavolo **misto** per scelta: i quattro caratteri (D-053) sono la cosa piu'
+vicina a persone vere che il progetto abbia, e quattro ottimizzatori identici
+sono il caso in cui la ripetizione e' garantita per costruzione.
+
+**Due difetti di misura, presi prima di fidarsi del numero.** Il primo:
+distanza 1,00 e nocciolo zero al primo giro — perfetto e falso, perche' una
+Truth nasce con l'anno davanti («Anno 1640, Atto 2: …») e il punteggio dietro
+(«(S5 O0 M7)»), quindi due saghe non condividono **mai** una frase. Misurava
+l'orologio invece della storia; ora la frase si spoglia prima di contarla. Il
+secondo: «vite viste al tavolo: 4» in trenta Chronicle, quando le saghe
+raccontate mostrano il Regno di Nahr, il Ridestato, la Lega delle Sette — il
+campo `incarnation_id` non esiste, la vita e' `incarnation`, un indice. Dieci
+su quattordici, adesso.
+
+**La baseline, cinque saghe da sei Chronicle a tavolo misto:**
+
+| | frasi distinte | nocciolo | distanza | NONE | MIN | VIC | TRI | vite |
+|---|---|---|---|---|---|---|---|---|
+| CHR_01 (i re) | 74 | 2 | **0,81** | 7 | **77** | 25 | 11 | 10/14 |
+| CHR_03 (le citta') | 57 | 2 | **0,79** | 19 | **63** | 27 | 11 | — |
+
+E la lettura, che cambia la domanda da cui si era partiti: **le storie sono
+gia' diverse — quello che si ripete sono gli obiettivi.** Otto decimi di
+distanza vuol dire che due saghe condividono poco piu' di una frase su
+cinque, e il nocciolo e' due frasi in tutto. La biblioteca delle domande
+(`tension_pool`) sta gia' facendo il suo lavoro.
+
+Ma i Destini sono uno per casa, sempre quello, e il risultato sta nella
+colonna che conta: **il 64% dei Destini finisce al Minimo** sulla prima linea,
+il 52% sulla seconda. I giocatori raccontano storie diverse **volendo sempre
+la stessa cosa** — ed e' la stessa forma che [ISSUES 35](ISSUES.md) ha visto
+nella seconda meta' della saga del Sale, misurata qui su trenta Chronicle
+invece che su dieci.
+
+Questo dice anche *come* fare la strada A della seduta ([SEDUTA_LINEE.md](SEDUTA_LINEE.md)):
+il pool dei Destini non serve a rendere le storie piu' varie — quelle lo sono
+gia' — serve a **rompere il Minimo come risposta giusta di default**. E il
+numero da battere e' quella colonna, non la distanza.
 
 ---
 

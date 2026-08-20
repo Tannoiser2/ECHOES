@@ -1154,15 +1154,17 @@
       "rules_text": "+1 sul fronte Oppose. Una corda tesa fra due pali, e il diritto di non alzarla — e il diritto si scrive: sulla Regione della domanda resta il pedaggio.",
       "on_commit_effects": [
         {
-          "type": "SET_REGION_TAG",
+          "type": "BUILD_STRUCTURE",
           "target": {
             "kind": "region",
             "id": "$region_focus"
           },
           "payload": {
-            "tag": "structure:tollgate"
+            "structure_type": "STR_TOLLGATE",
+            "grade": 1,
+            "owner": "$actor"
           },
-          "note": "Il mestiere della carta (D-114): il pedaggio impegnato diventa una struttura sulla mappa."
+          "note": "Il mestiere della carta (D-114, riscritto in D-162): il pedaggio impegnato non e' piu' un segno sulla mappa ma un'opera che ha un padrone — chi ha messo la carta sul tavolo — e che entra nel conto del controllo."
         }
       ]
     },

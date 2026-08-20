@@ -22,6 +22,13 @@ dagli stessi dati. Prossima: la 0.2, bilanciamento — cosa resta è scritto in
 
 ---
 
+## Come funziona il gioco
+
+[docs/MECCANICA.md](docs/MECCANICA.md) — la meccanica per intero in un foglio
+solo: il tempo, la mappa, le casate, le Tensioni, le sette azioni, il Consiglio
+passo per passo con la matematica, le carte, i Destini e cosa attraversa gli
+anni. È il posto da cui partire se non hai mai visto ECHOES.
+
 ## Requisiti
 
 - **Godot 4.7.1 stable** — per giocare da terminale basta il build headless
@@ -119,6 +126,26 @@ meta partita, o pipare un file di risposte e lasciare che finisca da sola.
 Opzioni: `--seed=<n>` stesso seme stesso mondo · `--chronicle=CHR_02` la
 Chronicle di libreria · `--quiet` toglie la traccia delle regole round per round
 e lascia solo i Consigli, le carte Echo e il finale.
+
+## Perché non si supera il Minimo
+
+```bash
+godot --headless --path godot --script res://cli/run_rung_probe.gd -- \
+    --runs=60 --seed=7000
+```
+
+Sessanta Chronicle a tavolo misto, e per ogni Destino **quale clausola** resta
+in sospeso e quanto spesso. Non «la Vittoria è difficile» — quella non è una
+diagnosi — ma «questa condizione non si avvera mai, e nel 77% dei casi è
+perché dipende da una promessa che nessun bot fa».
+
+Stampa anche il tabellone a fine anno, che è dove si legge una clausola scritta
+«almeno due Regioni»: il **30%** dei seggi finisce senza nessuna Regione, il
+**12%** ne tiene due, e il **44% delle caselle non è di nessuno**. In un anno
+intero una casa guadagna in media un quarto di Regione — e la sonda conta anche
+perché: `ACT_CLAIM` («Rivendicare») non prende una Regione, apre una domanda e
+poi strappa un Consiglio, e su 60 partite le rivendicazioni aperte sono 63 ma
+quelle **portate fino in fondo 15** ([ISSUES 37](docs/ISSUES.md)).
 
 ## I bot contro il caso
 

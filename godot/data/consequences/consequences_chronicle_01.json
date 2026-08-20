@@ -9,14 +9,17 @@
       "description": "Il grano della Valle passa dalle mani del trono prima di arrivare a una tavola. Chi lo distribuisce decide chi mangia.",
       "effects": [
         {
-          "type": "SET_REGION_TAG",
+          "type": "BUILD_STRUCTURE",
           "target": {
             "kind": "region",
             "id": "$region_with:granary"
           },
           "payload": {
-            "tag": "structure:granary"
-          }
+            "structure_type": "STR_GRANARY",
+            "grade": 1,
+            "owner": "$proponent"
+          },
+          "note": "L'opera come oggetto (D-162): ha un padrone, entra nel conto del controllo, puo' diventare una grande opera e puo' cadere."
         },
         {
           "type": "ADJUST_TENSION",
@@ -206,6 +209,19 @@
           "payload": {
             "tag": "discovery:crystal"
           }
+        },
+        {
+          "type": "SET_STRUCTURE_GRADE",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "structure_type": "STR_OLD_SITE",
+            "grade": 3,
+            "optional": true
+          },
+          "note": "D-165: sfruttare la miniera vuol dire portare via a pezzi quello che insegnava. Non e' una penalita' nuova: e' il dono che finisce."
         }
       ]
     },
@@ -244,6 +260,19 @@
           "payload": {
             "tag": "discovery:crystal"
           }
+        },
+        {
+          "type": "SET_STRUCTURE_GRADE",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "structure_type": "STR_OLD_SITE",
+            "grade": 1,
+            "optional": true
+          },
+          "note": "D-165: murare le gallerie rimanda il sito a dormire. Quello che insegnava torna a non insegnare, e resta li'."
         }
       ]
     },
@@ -370,6 +399,19 @@
           "payload": {
             "tag": "condition:requisitioned"
           }
+        },
+        {
+          "type": "SET_STRUCTURE_GRADE",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "structure_type": "STR_FOREST",
+            "grade": 2,
+            "optional": true
+          },
+          "note": "D-163: sgomberare una valle vuol dire anche tagliarla. Il bosco passa a diradato — non e' di nessuno, quindi non e' una perdita per qualcuno: e' una perdita per chi ci passera'."
         }
       ]
     },
@@ -810,14 +852,17 @@
           }
         },
         {
-          "type": "SET_REGION_TAG",
+          "type": "BUILD_STRUCTURE",
           "target": {
             "kind": "region",
             "id": "$region_with:trade"
           },
           "payload": {
-            "tag": "structure:tollgate"
-          }
+            "structure_type": "STR_TOLLGATE",
+            "grade": 1,
+            "owner": "$proponent"
+          },
+          "note": "L'opera come oggetto (D-162): ha un padrone, entra nel conto del controllo, puo' diventare una grande opera e puo' cadere."
         },
         {
           "type": "ADJUST_TENSION",
@@ -945,6 +990,31 @@
           "payload": {
             "delta": 1
           }
+        },
+        {
+          "type": "SET_STRUCTURE_GRADE",
+          "target": {
+            "kind": "region",
+            "id": "REG_MONTAGNE_ROSSE"
+          },
+          "payload": {
+            "structure_type": "STR_PASS",
+            "grade": 2,
+            "optional": true
+          },
+          "note": "D-166: tagliare la via delle miniere fa franare il passo. Il luogo cambia stato, e l'arco si chiude nell'Effect dopo."
+        },
+        {
+          "type": "CLOSE_PASSAGE",
+          "target": {
+            "kind": "region",
+            "id": "REG_MONTAGNE_ROSSE"
+          },
+          "payload": {
+            "region_id": "REG_TERRE_NAHR",
+            "optional": true
+          },
+          "note": "D-166: e da qui la montagna e la steppa smettono di toccarsi. Per andare dall'altra parte si fa il giro dalle Miniere. Se il taglio isolasse una Regione l'applicatore lo rifiuta: nessuna frase vale una partita rotta."
         }
       ]
     },
@@ -1117,6 +1187,19 @@
             "optional": true
           },
           "note": "optional: il posto accanto può essere pieno."
+        },
+        {
+          "type": "SET_STRUCTURE_GRADE",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "structure_type": "STR_FOREST",
+            "grade": 3,
+            "optional": true
+          },
+          "note": "D-163: un posto lasciato non torna com'era. Il bosco diventa selva, e da li' in poi chi ci sta dentro tiene una carta in meno — chiunque sia."
         }
       ]
     },
@@ -1351,6 +1434,19 @@
             "delta": 2
           },
           "note": "Il prezzo: riaprire sveglia quello che dormiva."
+        },
+        {
+          "type": "SET_STRUCTURE_GRADE",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "structure_type": "STR_OLD_SITE",
+            "grade": 2,
+            "optional": true
+          },
+          "note": "D-165: riaprire le gallerie apre anche quello che c'era prima. Da qui chi ci sta impara piu' in fretta — chiunque sia."
         }
       ]
     },

@@ -30,6 +30,7 @@ extends RefCounted
 
 const PolicyDecider := preload("res://scripts/seat/policy_decider.gd")
 const AssetText := preload("res://scripts/core/asset_text.gd")
+const EchoText := preload("res://scripts/core/echo_text.gd")
 const GameSession := preload("res://scripts/chronicle/game_session.gd")
 const SignLabels := preload("res://scripts/core/sign_labels.gd")
 
@@ -208,9 +209,11 @@ func _action_options(entity_id: String, session: RefCounted) -> Array:
 	for card_id in session.world["entities"][entity_id].get("echo_hand", []):
 		var request: Dictionary = {"echo_card_id": str(card_id)}
 		if session.actions.can_execute(entity_id, "PLAY_ECHO", request):
+			# Il titolo da solo non dice niente: che tono ha e cosa fa stanno
+			# accanto, come per le carte Asset (EchoText).
 			out.append({
-				"label": "Cala la carta del Narratore: %s" % str(
-					session.data.echo_cards[str(card_id)]["title"]
+				"label": EchoText.label(
+					session.data.echo_cards[str(card_id)] as Dictionary, session.data
 				),
 				"template": "PLAY_ECHO", "params": request,
 			})

@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://echoes.local/schema/structure_type.schema.json",
+  "title": "StructureType",
+  "x-echoes-def": "structure_type",
+  "x-echoes-kind": "collection",
+  "description": "Cosa puo' stare in una Regione oltre alle pedine: un presidio, un insediamento, un'opera, oppure un luogo che non e' di nessuno. Un tipo dichiara i propri gradi; una struttura nel mondo e' un tipo piu' un grado piu' (se e' delle case) un padrone.",
+  "$ref": "#/$defs/document",
+  "$defs": {
+    "document": {
+      "type": "object",
+      "required": ["schema_id", "version", "items"],
+      "additionalProperties": false,
+      "properties": {
+        "schema_id": { "const": "structure_type" },
+        "version": { "type": "string" },
+        "items": { "type": "array", "items": { "$ref": "#/$defs/structure_type" } }
+      }
+    },
+    "structure_type": {
+      "type": "object",
+      "required": ["id", "name", "family", "owned", "grades"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^STR_[A-Z0-9_]+$" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "family": {
+          "type": "string",
+          "enum": ["PRESIDIO", "INSEDIAMENTO", "OPERA", "LUOGO", "CHIUSURA"],
+          "description": "Le prime tre sono opere delle case e hanno un padrone; LUOGO e' del mondo e non e' di nessuno; CHIUSURA e' il contrario di un edificio."
+        },
+        "owned": {
+          "type": "boolean",
+          "description": "Se ha un padrone e quindi se il suo valore entra nella contesa del controllo. Un LUOGO ha owned=false: cambia cosa vale una Regione, non chi la tiene."
+        },
+        "biomes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["CITY", "VALLEY", "STEPPE", "MOUNTAIN", "UNDERGROUND", "ROAD"]
+          },
+          "description": "Dove puo' stare. Omesso, ovunque: una foresta non nasce in una citta' e un passo esiste solo in montagna."
+        },
+        "grades": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 4,
+          "items": { "$ref": "#/$defs/grade" },
+          "description": "Dal primo all'ultimo. L'indice e' il grado, contato da 1."
+        },
+        "ruin": { "$ref": "#/$defs/ruin" }
+      }
+    },
+    "grade": {
+      "type": "object",
+      "required": ["name", "value"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string" },
+        "value": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9,
+          "description": "Quanto pesa nella contesa del controllo, per chi la tiene."
+        },
+        "tag": {
+          "type": "string",
+          "pattern": "^(structure|settlement|place):[a-z_]+$",
+          "description": "Il segno che questo grado posa sulla Regione, cosi' le regole dei segni gia' scritte continuano a leggerlo. L'oggetto e' la verita'; il tag e' derivato. Il prefisso dice di che natura e': `structure:` e `settlement:` sono opere delle case, `place:` e' un luogo del mondo e non e' di nessuno."
+        },
+        "description": { "type": "string" }
+      }
+    },
+    "ruin": {
+      "type": "object",
+      "required": ["name"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string" },
+        "scar": {
+          "type": "string",
+          "pattern": "^scar:[a-z_]+$",
+          "description": "La cicatrice che resta quando cade sotto il primo grado. Come la demolizione: la mappa ricorda."
+        },
+        "description": { "type": "string" }
+      }
+    }
+  }
+}

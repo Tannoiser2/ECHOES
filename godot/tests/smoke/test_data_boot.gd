@@ -267,13 +267,15 @@ func test_no_destiny_asks_for_a_tag_nothing_can_write() -> void:
 				)
 
 
-## Conditions can nest inside `any_of` / `all_of`, and the one that mattered
-## here was nested: two of the three unreachable tags were inside an `any_of`.
+## Conditions can nest inside `any_of` / `some_of` / `all_of`, and the one that
+## mattered here was nested: two of the three unreachable tags were inside an
+## `any_of`. Da D-167 le scelte dei Trionfi sono `some_of`, e una clausola
+## dentro una scelta e' esattamente dove un tag irraggiungibile si nasconde.
 func _flattened(conditions: Array) -> Array:
 	var out: Array = []
 	for condition in conditions:
 		var kind: String = str((condition as Dictionary).get("type", ""))
-		if kind == "any_of" or kind == "all_of":
+		if kind == "any_of" or kind == "some_of" or kind == "all_of":
 			out.append_array(_flattened((condition as Dictionary)["conditions"]))
 		else:
 			out.append(condition)
@@ -299,7 +301,7 @@ func test_generated_schema_covers_every_collection() -> void:
 			SchemaDefs.DEFS.has(str(schema_id)),
 			"schema_defs.gd definisce '%s'" % schema_id
 		)
-	assert_eq(SchemaDefs.EFFECT_TYPES.size(), 22, "l'enum EffectType chiuso ha 22 voci")
+	assert_eq(SchemaDefs.EFFECT_TYPES.size(), 27, "l'enum EffectType chiuso ha 27 voci")
 
 
 ## Every Echo-card hook has to compile to at least one Effect. A card whose

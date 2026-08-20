@@ -847,6 +847,72 @@ mai.
 **Fatto quando** il menu chiede quanti giocano, e una misura dice se i bot
 giocano davvero. ✓
 
+### 36. Linee sempre diverse: pool di Destini, ruoli, generatore
+
+`contenuto` · `regole` · voluta dal committente · **in seduta** ([SEDUTA_LINEE.md](SEDUTA_LINEE.md))
+
+«Io andrei oltre, farei un sistema che combina e permuta per ottenere linee
+sempre diverse, un randomizzatore di obiettivi, entità e incarnazioni che
+cambiano a ogni partita.»
+
+Metà del principio **esiste già**: le domande si pescano da una biblioteca
+(`tension_pool` in CHR_02/CHR_04), le vite scattano su tag invece che da una
+lista, e i caratteri di D-053 si permutano fra i seggi. Quello che non cambia
+mai sono le quattro case e **cosa ciascuna vuole**.
+
+Il dossier misura le quattro strade e i loro prezzi: **A** il pool dei Destini
+(2–3 per casa, come le domande — poco motore, molta scrittura, e probabile
+cura per ISSUES 35); **B** i ruoli staccati dalle case (combinatoria vera, ma
+la prosa diventa generica: è un compromesso di gusto, non tecnico); **C** il
+generatore di linee (rischio rumore: questo gioco è fatto di frasi che
+qualcuno ha scritto); **D** più vite per casa con ingressi più fini (solo
+scrittura, nessun rischio).
+
+Dichiarato nel dossier: **oggi non sapremmo misurare se ha funzionato**. Le
+sonde misurano il motore, e «le partite sono diverse fra loro?» non è
+FAIL 185 · 0/8. Servirebbe la **distanza fra due saghe**.
+
+**Fatto quando** il committente ha risposto alle cinque domande secche e la
+strada scelta è stata percorsa e misurata.
+
+### 35. Le istituzioni governano bene e non vogliono niente
+
+`contenuto` · `da-misurare` · nata dalla saga del Sale ([SAGA_SALE.md](SAGA_SALE.md))
+
+Dieci Chronicle sulla linea delle città (1640–2355) mostrano una forma netta:
+finché al tavolo siedono **persone** — Maestra Ilve, Priora Ilaria, Maestro
+Ruel — ci sono Vittorie e due Trionfi; dal 1981, quando le incarnazioni
+tardive sostituiscono i titolari con le **istituzioni** (La Compagnia del
+Sale, Le Custodi della Cenere, I Frati del Vetro, La Lega delle Sette),
+**sedici Destini su venti finiscono al Minimo** in cinque Chronicle.
+
+E non perché il tavolo si blocchi: i Consigli continuano a riuscire. Il
+debito viene rimesso, l'acqua contrattata, i Senza Città sistemati — le
+stesse quattro frasi che tornano ogni secolo con un firmatario diverso.
+Riescono, e non portano nessuno da nessuna parte.
+
+**L'ipotesi è stata corretta da una misura** ([D-150](DECISIONS.md#d-150)): il
+**Minimo di ogni Destino è «esistere»** — la casa è viva e sta da qualche
+parte — e due coppie ce l'hanno identico parola per parola. Il Minimo non è un
+obiettivo, è una **soglia di sopravvivenza**, e «sedici Destini su venti al
+Minimo» non vuol dire «nessuno vuole niente»: vuol dire che **restano vivi e
+non arrivano al secondo gradino**.
+
+Quindi il numero da guardare non è la colonna MINIMUM ma **quanti la
+superano**, ed è fermo al **30%** su trenta Chronicle — col pool dei Destini
+acceso e spento allo stesso modo. Il pool non era la cura: la malattia è che
+il salto dal primo gradino al secondo è troppo alto, o che il secondo chiede
+cose che una policy non sa cercare.
+
+**Da misurare prima di toccare**: la stessa saga a tavolo misto (i quattro
+caratteri di D-053) invece che a policy identiche, e il conto dei livelli per
+incarnazione su 40 Chronicle. Se la forma regge anche lì, è il contenuto
+delle vite tardive; se sparisce, era l'ottimizzatore — la stessa domanda di
+D-051, un'incarnazione più tardi.
+
+**Fatto quando** si sa se le istituzioni sono difficili da giocare o solo
+scritte per non muoversi.
+
 ### 28. ✅ Le alleanze devono pesare al Consiglio — fatta in 0.1.102
 
 `regole` · voluta dal committente · **chiusa** ([D-139](DECISIONS.md#d-139))
@@ -1049,6 +1115,328 @@ presagi). Sono state scritte insieme al codice e mai rilette di fila.
 
 **Fatto quando** qualcuno ha letto i testi dall'inizio alla fine e le correzioni
 sono nei JSON.
+
+### 37. La mappa non si muove: il controllo passa solo per un Consiglio
+
+`regole` · `da-misurare` · nata dalla sonda dei gradini ([D-152](DECISIONS.md#d-152))
+
+Sessanta Chronicle, e il tabellone a fine anno e' quasi quello di inizio anno:
+
+| Regioni tenute | seggi |
+|---|---|
+| 0 | **30%** |
+| 1 | 57% |
+| 2 | **12%** |
+| 3 | 1% |
+
+**Il 44% delle caselle non e' di nessuno**, e in un anno intero una casa
+guadagna in media **un quarto di Regione**. Il Vetro non ne tiene **mai** una
+in trenta partite; le Citta' Libere ne perdono.
+
+**L'azione per prenderle esiste** ([D-153](DECISIONS.md#d-153), correzione
+sollevata dal committente): e' `ACT_CLAIM`, «Rivendicare». Solo che non
+rivendica una Regione — rivendica una **domanda**. In `CREATE` scarta un Asset
+AUTHORITY e apre un Claim su un dominio di Tensione; in un round successivo, in
+`FORCE`, lo consuma insieme a un secondo AUTHORITY per **strappare un Consiglio
+da proponente**. La Regione arriva solo se quel Consiglio cade su una delle 14
+Consequence che portano un `SET_CONTROL` a `$proponent`.
+
+Cinque anelli in serie: un AUTHORITY e un'Azione · la Tensione bersaglio a 3+ ·
+un secondo AUTHORITY e un'altra Azione in un round dopo · un Consiglio che non
+fallisce (falliscono 177 volte su 100 partite) · la carta giusta.
+
+E si spezza al terzo. Su 60 Chronicle: **63 rivendicazioni aperte, 15 forzate,
+48 morte senza essere usate**. Tre su quattro si pagano e non si spendono. Per
+confronto, in trenta Chronicle `ACT_ACQUIRE` produce 4286 effetti e `ACT_CLAIM`
+84: le case raccolgono, non rivendicano.
+
+**E c'e' una seconda meta' della diagnosi, che il committente ha visto guardando
+la mappa: dentro l'anno il controllo non serve a niente.** Cercando ogni punto
+del codice che lo legge, i consumatori sono tre — `control_count` (14 clausole
+di Destino), la sovraestensione (oltre 2 Regioni **costa** Tensione ogni round)
+e il passaggio all'anno dopo — piu' due frasi di prosa e il colore sul
+tabellone. Il controllo **non** decide chi propone al Consiglio (quella e' la
+presenza), non sblocca azioni, non piega la pesca, non vale un punto nel
+margine.
+
+Quindi la catena non e' solo lunga: **e' lunga e non porta a niente di
+immediato**. Una policy che sceglie la mossa migliore per quest'anno non ha
+nessuna ragione di percorrerla, e infatti non la percorre. Delle 63
+rivendicazioni aperte, 48 muoiono in mano.
+
+L'idea e' bella — *rivendicare non e' prendersi una terra, e' costringere il
+tavolo a discuterne*. La domanda non e' quindi «serve un'azione», ma **quale
+anello si accorcia** — o, prima ancora, **se il titolo debba dare qualcosa
+dentro l'anno**: e' una scelta di design, non una taratura. Un controllo che
+non paga mai e' coerente col tema (un gioco sulla legittimita', dove un titolo
+che non puoi esercitare e' il problema) ma lascia sei Destini a chiedere una
+cosa che nessuno ha motivo di inseguire. Quattro strade, nessuna misurata: **(a)** un solo Asset
+invece di due, o un solo round invece di due; **(b)** abbassare da 3 la
+Tensione richiesta dal `FORCE`; **(c)** piu' Consequence con `SET_CONTROL` in
+CHR_03, che ne ha tre contro le nove di CHR_01; **(d)** lasciare la catena
+com'e' e riscrivere le clausole che chiedono terra — gia' cominciata con Aldric
+in [D-152](DECISIONS.md#d-152).
+
+**Fatto quando** una delle quattro e' stata provata sui 100 semi, le
+rivendicazioni morte sono scese sotto la meta', e la mappa a fine anno e'
+diversa da quella di inizio restando **FAIL ~180 · 0/8**.
+
+### 38. ✅ La Vittoria della Cenere ha una porta sola — fatta in 0.1.122
+
+`contenuto` · nata dalla misura respinta di [D-152](DECISIONS.md#d-152)
+
+La vittoria di `DST_CENERE` ha due clausole: «controllo di almeno 2 Regioni» e
+«le gallerie non sono state murate». La seconda e' quasi sempre vera, quindi la
+prima e' **l'unica porta** — e regge anche il Trionfo che sta sopra, perche' i
+livelli sono cumulativi.
+
+Si vede togliendola: abbassando la soglia a 1, Kessa dei Fuochi passa da
+**1/44/5/0** a **1/0/19/30** su cinquanta partite. Zero Minimi. Non e' un
+gradino che si abbassa, sono due che si aprono insieme.
+
+Quindi la soglia e' rimasta a 2, e il lavoro vero e' un altro: **scrivere una
+seconda clausola con dei denti** per quella Vittoria — qualcosa che la Cenere
+debba fare e che non sia gia' vero per conto suo. E' contenuto d'autore, non
+taratura.
+
+**Fatto quando** la nuova clausola esiste e, con la soglia a 1, Kessa resta
+sotto i dieci Trionfi su cinquanta con almeno dieci Minimi.
+
+**Fatta** ([D-156](DECISIONS.md#d-156)). Sedici clausole candidate misurate su 40
+Chronicle prima di sceglierne una: sette valevano il **100%** — fra cui
+`control_count >= 1`, che e' la ragione per cui abbassare la soglia le regalava
+la Vittoria — e l'unica davvero contesa era **la veglia sulla montagna, al 45%**.
+La Vittoria adesso e' «**Chi scava lo dicono loro**» e chiede la veglia; il
+controllo di due Regioni e' **salito al Trionfo**, dove il suo 12% e' una virtu'
+invece che un muro. Kessa passa da **1/44/5/0** a **0/18/31/1**, tavolo misto
+**0/8**, e il gioco intero supera il Minimo il **54%** invece del 48%.
+
+---
+
+### 39. La terra che si vede: pedine di carta, o strutture con una vita
+
+`contenuto` · `regole` · voluta dal committente · **in seduta**
+([SEDUTA_TERRA.md](SEDUTA_TERRA.md)) · nata da [D-154](DECISIONS.md#d-154)
+
+Tre idee del committente sono la stessa domanda vista da tre lati: **come si
+rende visibile, costoso e duraturo il possesso di un luogo?** Il dossier mette
+le tre strade accanto — **A** le carte che posano una pedina, **B** la carta che
+*e'* la presenza, **C** le strutture con una vita (torre → castello → reggia, e
+la rovina) — coi prezzi e i numeri. Raccomandata **C**, dopo aver aperto
+ISSUES 38.
+
+**E sono poche, contate bene meno di quanto sembri** (osservazione del
+committente): quattro costruzioni vere — granaio, canale, pedaggio, torre di
+veglia — piu' `structure:sealed`, che non e' un edificio ma **il contrario** di
+un edificio, e due insediamenti in una famiglia parallela quasi inutilizzata.
+**Zero luoghi naturali**, e sei biomi che non hanno niente che li distingua. Il
+catalogo sta in [SEDUTA_TERRA §8](SEDUTA_TERRA.md): da cinque tag a una ventina
+di cose, divise in **due nature** — le opere delle case, che hanno un padrone e
+un valore nella contesa del controllo, e **i luoghi del mondo** (foreste, passi,
+fiumi, siti antichi) che non sono di nessuno e cambiano cosa vale una Regione
+senza cambiare chi la tiene.
+
+Il fatto che le da' ragione: **le strutture funzionano gia' meglio della
+presenza.** Su 30 Chronicle se ne alzano **74** (2,5 a partita, 2 in piedi a
+fine anno, 29 partite su 30 ne hanno almeno una) contro **poco piu' di una
+pedina** mossa per scelta. E il difetto si vede a occhio: **74 costruite, zero
+abbattute**, e visto che `structure:` attraversa le Chronicle senza sbiadire, in
+una saga la mappa **puo' solo riempirsi**.
+
+Quello che segue e' la strada A per esteso, che resta il primo passo piu'
+economico.
+
+«La presenza potrebbe essere anche non solo astratta ma indicata dalle carte,
+tipo la guardia reale puo' giocare effettivamente una presenza in una regione.»
+
+**Il numero che le da' ragione.** Chi muove le pedine, su 30 Chronicle:
+
+| | |
+|---|---|
+| posate al setup | **240** |
+| aggiunte da MUOVERE | **38** |
+| aggiunte da una carta Narratore | 21 |
+| aggiunte da un Consiglio | 7 |
+| tolte, da tutto | ~34 |
+
+In un anno intero si muove **poco piu' di una pedina per partita** per scelta di
+qualcuno. La mappa non e' ferma perche' il titolo non paga (quella leva e' stata
+provata e respinta, D-154): e' ferma perche' **nessuno ha carte con cui
+muoverla**.
+
+**E il vocabolario esiste gia', quasi spento.** Tre Asset **posano** una pedina
+quando li impegni — `AST_AUTHORITY_SUCCESSION_ACT` (Atto di Successione),
+`AST_WEALTH_LAND_MORTGAGE` (Ipoteca sulle Terre), `AST_BONDS_HOSTAGE` (Ostaggio)
+— e due la **tolgono**: `AST_FORCE_BURNED_GATE` (Le Porte Bruciate),
+`AST_PEOPLE_EXODUS` (Esodo). Cinque carte su quarantotto, e nessuna nelle due
+famiglie che dovrebbero essere fatte di corpi: le otto FORZA e le otto GENTE
+alzano Tensioni e posano tag, ma non mettono nessuno da nessuna parte.
+
+Due modi di farlo, e sono lavori diversi.
+
+**A — la carta che posa una pedina.** Dieci-quindici carte FORZA e GENTE che,
+impegnate, mettono o spostano presenza; la Guardia Reale e' la carta d'esempio.
+Poco motore (l'Effect `ADD_PRESENCE` c'e' gia' e ha il suo inverso), molta
+scrittura, misurabile sui 100 semi, reversibile. E' la strada che rende vero
+«muoversi pesa» senza toccare il Consiglio.
+
+**B — la carta *e'* la presenza.** Niente piu' gettoni astratti: la carta si
+posa scoperta sulla Regione. La presenza diventa una risorsa limitata e
+visibile, perderla e' perdere una carta, e la maggioranza si legge sul tavolo
+senza contare niente. E' il gioco piu' forte — tiene insieme il controllo, la
+mappa ferma e la vetrina in un colpo solo — ma cambia cosa vuol dire «avere una
+carta in mano»: tocca setup, limite di mano, Consiglio e tutte e quattro le
+interfacce. **Va disegnata in una seduta prima di essere scritta.**
+
+**Fatto quando** una delle due e' stata percorsa e misurata: le pedine mosse per
+scelta salgono ben sopra una a partita, e il playtest resta **FAIL ~180 · 0/8**.
+
+### 38bis. ✅ Nota di metodo: il vincolo 0/8 lo fa rispettare il seggio piu' fragile — chiusa in 0.1.122
+
+`debito` · da [D-154](DECISIONS.md#d-154)
+
+Due varianti del peso della terra sono state respinte da **un solo seggio** —
+Kessa — e per una sola partita di differenza. Il motivo e' ISSUES 38: la sua
+Vittoria ha una porta sola, quindi non assorbe nessun cambiamento.
+
+Finche' resta cosi', **qualunque modifica alle regole del Consiglio rischia di
+essere respinta da Kessa e non dal proprio merito**. ISSUES 38 non e' una voce
+fra le altre: e' la porta da aprire prima di provare altre leve.
+
+**Aperta in 0.1.122**, e la nota resta a verbale per la prossima volta: quando
+una misura viene respinta da **un solo seggio** e per **una sola partita**, la
+domanda giusta non e' «la regola e' sbagliata?» ma «quel seggio riesce ad
+assorbire qualcosa?».
+
+### 40. Il grado non si muove dentro l'anno: una clausola sulle pietre alte e' un muro fuori dalla saga
+
+`regola` · `da-misurare` · da [D-167](DECISIONS.md#d-167)
+
+`_settle_structures` gira **dopo** la valutazione del Destino, ed e' giusto:
+[D-159](DECISIONS.md#d-159) vuole che sia l'esito a decidere se una reggia
+diventa rovina. La conseguenza pero' e' che in una Chronicle sola **il grado non
+sale quasi mai**: una pietra di grado 2 esiste solo se ereditata o alzata da una
+Conseguenza, e la sonda la trova nel **15% degli anni per Aldric e nello 0% per
+cinque case su otto**. Grado 3: **zero, sempre**.
+
+Quindi «un castello» e «una reggia» sono clausole scrivibili **solo in una saga**
+— e nel gioco di una sera sono muri. Oggi nessun Destino le usa, e va bene cosi';
+la voce esiste perche' la prossima volta che verra' la tentazione di scriverle,
+questo numero sia gia' sul tavolo.
+
+**Le due strade.** O si accetta che il grado sia materia di saga e si scrivono le
+clausole sul grado **solo nei Destini di una Chronicle successiva**; oppure si
+apre un secondo momento in cui una pietra puo' salire dentro l'anno — un'azione,
+o una Conseguenza che costruisce *sopra* invece che accanto — e allora si
+rimisura.
+
+**Fatto quando** una delle due e' stata scelta a verbale, e nel secondo caso la
+sonda delle clausole mostra il grado 2 fra il 20% e il 50% per almeno tre case.
+
+### 41. Il sito antico, una volta aperto, viene sempre saccheggiato
+
+`contenuto` · `debito` · da [D-167](DECISIONS.md#d-167)
+
+Nella tabella della sonda delle clausole due righe hanno lo stesso numero, e non
+per caso:
+
+| | |
+|---|---|
+| il sito antico e' stato **aperto** (grado ≥ 2) | 25% |
+| il sito antico e' stato **saccheggiato** (grado 3) | 25% |
+
+Gli stessi anni. **Non esiste un anno in cui il sito viene aperto e non viene
+svuotato**, il che vuol dire che «Sito aperto» — il grado di mezzo, quello che
+insegna — non e' uno stato in cui il mondo si ferma: e' un fotogramma fra due
+Consigli. Una clausola che chiede «aperto e ancora intero» sarebbe uno zero che
+nessuno ha scritto apposta.
+
+Non e' detto sia sbagliato — puo' essere il senso della cosa, che chi scende con
+le lampade risale con i carri. Ma non e' stato deciso: e' successo.
+
+**Fatto quando** si e' guardato quali Conseguenze portano i due gradi e si e'
+deciso a verbale se il grado di mezzo debba poter durare un anno intero.
+
+### 42. La seconda saga e' piu' generosa della prima
+
+`contenuto` · `da-misurare` · da [D-167](DECISIONS.md#d-167)
+
+Dopo la riscrittura dei Trionfi, su 120 seggi-partita per saga: **CHR_01 porta 30
+Trionfi, CHR_03 ne porta 49**. La differenza c'era anche prima e col segno
+opposto (20 contro 1), quindi non e' nata qui — ma adesso che tutti i gradini
+sono raggiungibili si vede pulita.
+
+**Non l'ho toccata di proposito.** Le cause possibili sono almeno tre e si
+confondono fra loro: i Destini della seconda saga chiedono meno; le sue Tensioni
+si muovono di piu'; il suo tavolo ha una casa (il Vetro) che parte senza Regioni
+e quindi ha piu' da guadagnare. Tarare tre manopole su un giro solo di sonda e'
+esattamente il modo in cui si peggiora una cosa credendo di aggiustarla.
+
+**Fatto quando** la sonda delle clausole ha misurato le clausole delle due saghe
+**a parita' di tavolo** — cioe' con lo stesso quartetto di caratteri e gli stessi
+semi — e si sa quale delle tre cause pesa.
+
+### 43. Undici Destini su venti non si giocano mai all'apertura
+
+`contenuto` · `motore` · `debito` · da [D-167](DECISIONS.md#d-167) · **misurata in** [D-170](DECISIONS.md#d-170)
+
+`_deal_destiny` pesca da **`chronicle["destiny_pool"]`**; i pool sono scritti
+sulle **Entita'**; nessuna delle quattro Chronicle ne dichiara uno. All'apertura
+ogni casa insegue sempre il proprio `destiny_id`, e su 240 seggi-partita si
+vedono **otto Destini su venti**. Gli altri undici — otto alternativi e i tre
+condivisibili della voce 20 — si vedono solo per successione, dentro una saga.
+
+**D-170 ha acceso il pool e misurato, e il numero e' chiaro:**
+
+| | pool spento | pool acceso |
+|---|---|---|
+| supera il Minimo | **62%** | **50%** |
+| seggi a NONE | **0%** | **8%** |
+
+Un seggio su dodici finirebbe l'anno senza nemmeno il Minimo. Il meccanismo e'
+giusto; **il contenuto non e' pronto**, e non lo era perche' nessuna sonda
+l'aveva mai guardato: cinque clausole mancate al 100%, tre Destini con zero
+Trionfi, uno fermo 16 volte su 16 al Minimo, e un condivisibile col Trionfo piu'
+facile della Vittoria.
+
+**Sei sono state riscritte** (D-170, forma spina + scelta, strade misurate sul
+banco): i muri non ci sono piu' e col pool acceso si passa a **53% / 7%**.
+Meglio, e ancora lontano.
+
+**Cosa manca per chiuderla**, in ordine:
+
+1. **`DST_ALDRIC_RECORD`** — 15 su 17 al Minimo, mai toccato.
+2. **Le due condivisibili** — `DST_SHARED_RENOWN` e `DST_SHARED_ACCOUNTS`
+   mandano a NONE un seggio su tre anche riscritte. Sono le uniche carte del
+   gioco che devono funzionare su **otto case diverse**, ed e' un problema
+   diverso dal bilanciare un Destino di casa.
+3. **Rimisurare col pool acceso**, non sul banco: D-170 ha trovato che la sonda
+   delle clausole non predice un Destino che *cambia come quel seggio gioca*.
+
+**Fatto quando** col pool acceso la sonda dei gradini dice **0 NONE** e almeno
+**60% sopra il Minimo**, come oggi col pool spento.
+
+### 44. La scala di Lyra ha una porta sola, e aprirla costa gli anni tranquilli
+
+`contenuto` · `bilanciamento` · **chiusa in 0.1.137** · [D-168](DECISIONS.md#d-168) → [D-169](DECISIONS.md#d-169)
+
+Lyra leggeva **38 Minimi, 3 Vittorie, 9 Trionfi** su 50: non un seggio debole,
+un seggio **bimodale**, con Minimo, spina della Vittoria e spina del Trionfo
+tutti veri al 100% e tutta la scala appesa a un tag al **25%**.
+
+Il committente ha deciso: **apri Lyra, la banda si rivede dopo.** Fatto in
+D-169 — Vittoria a spina piu' due segni su tre, Trionfo a quattro Scoperte,
+scelta di Nahr da quattro segni a tre perche' aprire Lyra le costava sette
+Trionfi. Lyra **32/12/6**, Trionfi del tavolo **79 → 86**, nessun seggio a zero.
+
+La banda dei Consigli sale a **5-7** in tutte e due le misure, con i limiti duri
+fermi a 2-8: e' 1,25-1,75 per Tensione, ancora sotto il 6-8 che §7 scrive per
+quattro Tensioni, ed e' la seconda volta che succede per lo stesso motivo
+(D-051, Vaerax).
+
+Costo dichiarato: **FAIL 191 → 203**.
+
+---
 
 ---
 

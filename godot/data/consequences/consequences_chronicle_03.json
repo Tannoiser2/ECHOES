@@ -19,14 +19,17 @@
           }
         },
         {
-          "type": "SET_REGION_TAG",
+          "type": "BUILD_STRUCTURE",
           "target": {
             "kind": "region",
             "id": "$region_with:granary"
           },
           "payload": {
-            "tag": "structure:canal"
-          }
+            "structure_type": "STR_CANAL",
+            "grade": 1,
+            "owner": "$proponent"
+          },
+          "note": "L'opera come oggetto (D-162): ha un padrone, entra nel conto del controllo, puo' diventare una grande opera e puo' cadere."
         },
         {
           "type": "ADJUST_TENSION",
@@ -75,6 +78,19 @@
           "payload": {
             "entity_id": "$proponent"
           }
+        },
+        {
+          "type": "SET_STRUCTURE_GRADE",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "structure_type": "STR_SPRING",
+            "grade": 3,
+            "optional": true
+          },
+          "note": "D-165: quando l'acqua ha un prezzo, la sorgente libera smette di esistere come sorgente libera. Il segno cambia e il dono finisce."
         }
       ]
     },
@@ -454,7 +470,7 @@
       "id": "CNS_ASH_WATCH",
       "title": "La Veglia sulla Montagna",
       "category": "FORTIFICATION",
-      "description": "Due torri e un turno di guardia che nessuno salta. Non impedisce niente: fa sapere prima.",
+      "description": "Due torri e un turno di guardia che nessuno salta. Non impedisce niente: fa sapere prima — e da quel momento sulla montagna c'e' qualcosa che ha un nome sopra.",
       "effects": [
         {
           "type": "SET_ENTITY_TAG",
@@ -467,14 +483,17 @@
           }
         },
         {
-          "type": "SET_REGION_TAG",
+          "type": "BUILD_STRUCTURE",
           "target": {
             "kind": "region",
             "id": "REG_MONTAGNE_ROSSE"
           },
           "payload": {
-            "tag": "structure:watchtower"
-          }
+            "structure_type": "STR_KEEP",
+            "grade": 1,
+            "owner": "$proponent"
+          },
+          "note": "La prima cosa che si costruisce dentro l'anno (D-161): la veglia non e' piu' un segno posato sulla Regione ma una torre che ha un padrone, entra nel conto del controllo e puo' crescere."
         },
         {
           "type": "ADJUST_TENSION",
@@ -535,6 +554,19 @@
           "payload": {
             "delta": 1
           }
+        },
+        {
+          "type": "SET_STRUCTURE_GRADE",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "structure_type": "STR_FOREST",
+            "grade": 3,
+            "optional": true
+          },
+          "note": "D-163: quando le gallerie si lasciano, quello che resta sopra smette di essere un bosco. Nessuno lo ha maledetto: e' successo, e da li' in poi chi ci sta dentro tiene una carta in meno."
         }
       ]
     },
@@ -583,6 +615,19 @@
           "payload": {
             "tag": "condition:lean"
           }
+        },
+        {
+          "type": "SET_STRUCTURE_GRADE",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "structure_type": "STR_SPRING",
+            "grade": 2,
+            "optional": true
+          },
+          "note": "D-165: una valle che si vuota si porta dietro l'acqua. La sorgente cala — e chi ci stava vicino smette di contare meno le giornate."
         }
       ]
     }

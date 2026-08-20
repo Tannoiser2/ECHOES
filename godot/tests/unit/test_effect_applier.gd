@@ -185,6 +185,45 @@ func test_round_trip_every_reversible_type() -> void:
 		_make("REMOVE_SCAR", "scar", "SCR_TEST2", {"scar_id": "SCR_TEST2"})
 	)
 
+	# La terra che si costruisce (D-157). Alzare e abbattere sono l'uno l'inverso
+	# dell'altro; salire di grado si inverte su se stesso col grado di prima.
+	_round_trip(
+		"BUILD_STRUCTURE",
+		_make(
+			"BUILD_STRUCTURE", "region", "REG_MONTAGNE_ROSSE",
+			{"structure_type": "STR_KEEP", "grade": 1, "owner": "ENT_VAERAX"}
+		)
+	)
+	applier.apply(_make(
+		"BUILD_STRUCTURE", "region", "REG_EREDAN",
+		{"structure_type": "STR_KEEP", "grade": 2, "owner": "ENT_ALDRIC"}
+	))
+	_round_trip(
+		"SET_STRUCTURE_GRADE",
+		_make(
+			"SET_STRUCTURE_GRADE", "region", "REG_EREDAN",
+			{"structure_type": "STR_KEEP", "grade": 3}
+		)
+	)
+	# Il varco che si chiude e si riapre (D-166): l'unica coppia di Effect che
+	# cambia la **forma** del mondo. REG_TERRE_NAHR e REG_MONTAGNE_ROSSE si
+	# toccano, e la montagna resta raggiungibile dalle Miniere anche senza
+	# quell'arco — quindi il taglio e' concesso e si annulla pulito.
+	_round_trip(
+		"CLOSE_PASSAGE",
+		_make(
+			"CLOSE_PASSAGE", "region", "REG_TERRE_NAHR", {"region_id": "REG_MONTAGNE_ROSSE"}
+		)
+	)
+	_round_trip(
+		"OPEN_PASSAGE",
+		_make("OPEN_PASSAGE", "region", "REG_EREDAN", {"region_id": "REG_MONTAGNE_ROSSE"})
+	)
+	_round_trip(
+		"RAZE_STRUCTURE",
+		_make("RAZE_STRUCTURE", "region", "REG_EREDAN", {"structure_type": "STR_KEEP"})
+	)
+
 	# Guard: every reversible type in the generated enum is covered above.
 	var covered: Array = [
 		"ADJUST_TENSION", "SET_TENSION_VISIBILITY", "ADD_PRESENCE", "REMOVE_PRESENCE",
@@ -192,6 +231,8 @@ func test_round_trip_every_reversible_type() -> void:
 		"REMOVE_GLOBAL_TAG", "SET_RELATION", "GRANT_ASSET", "REMOVE_ASSET", "TRANSFER_ASSET",
 		"CREATE_CLAIM", "CONSUME_CLAIM", "ADD_SCAR", "REMOVE_SCAR", "SET_ENTITY_TAG",
 		"REMOVE_ENTITY_TAG", "SET_ENTITY_ACTIVE",
+		"BUILD_STRUCTURE", "RAZE_STRUCTURE", "SET_STRUCTURE_GRADE",
+		"CLOSE_PASSAGE", "OPEN_PASSAGE",
 	]
 	for effect_type in SchemaDefs.EFFECT_TYPES:
 		if Effect.IRREVERSIBLE.has(str(effect_type)):

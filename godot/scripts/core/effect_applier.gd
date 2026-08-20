@@ -214,6 +214,16 @@ func _mutate(effect_type: String, target: Dictionary, payload: Dictionary) -> Va
 			return _remove_scar(payload)
 		"SET_ENTITY_ACTIVE":
 			return _set_entity_active(target, payload)
+		"BUILD_STRUCTURE":
+			return _build_structure(target, payload)
+		"RAZE_STRUCTURE":
+			return _raze_structure(target, payload)
+		"SET_STRUCTURE_GRADE":
+			return _set_structure_grade(target, payload)
+		"CLOSE_PASSAGE":
+			return _close_passage(target, payload)
+		"OPEN_PASSAGE":
+			return _open_passage(target, payload)
 		"CREATE_ECHO":
 			world["echo_log"].append(payload.duplicate(true))
 			return {}
@@ -304,6 +314,204 @@ func _set_control(target: Dictionary, payload: Dictionary) -> Variant:
 	if str(before) == str(next) or (before == null and next == null):
 		return {"entity_id": before, "noop": true}
 	return {"entity_id": before}
+
+
+## La terra che si costruisce (D-157). Una struttura vive **dentro** una Regione:
+## il bersaglio resta la Regione, e il payload dice quale tipo, con che grado e
+## di chi e'. Una Regione ne porta al massimo una per tipo — un secondo castello
+## nello stesso posto non e' un castello piu' grande, e' un errore di chi scrive
+## i dati.
+##
+## Il segno `structure:` del grado si posa insieme all'oggetto, cosi' le regole
+## dei segni gia' scritte continuano a leggerlo: **l'oggetto e' la verita', il
+## tag e' derivato**.
+func _build_structure(target: Dictionary, payload: Dictionary) -> Variant:
+	var region: Variant = world["regions"].get(str(target.get("id", "")))
+	if region == null:
+		return _fail("unknown region '%s'" % target.get("id", ""))
+	var type_id: String = str(payload.get("structure_type", ""))
+	var definition: Variant = data.structure_types.get(type_id)
+	if definition == null:
+		return _fail("unknown structure type '%s'" % type_id)
+	if _structure_at(region, type_id) >= 0:
+		return {"noop": true}
+
+	var grade: int = clampi(
+		int(payload.get("grade", 1)), 1, (definition["grades"] as Array).size()
+	)
+	var owner: Variant = payload.get("owner", null)
+	if bool(definition["owned"]) and owner != null and not world["entities"].has(str(owner)):
+		return _fail("unknown entity '%s'" % owner)
+	if not bool(definition["owned"]):
+		owner = null
+
+	(region["structures"] as Array).append({
+		"structure_type": type_id, "grade": grade, "owner": owner,
+	})
+	_apply_grade_tag(region, definition, 0, grade)
+	return {"structure_type": type_id}
+
+
+func _raze_structure(target: Dictionary, payload: Dictionary) -> Variant:
+	var region: Variant = world["regions"].get(str(target.get("id", "")))
+	if region == null:
+		return _fail("unknown region '%s'" % target.get("id", ""))
+	var type_id: String = str(payload.get("structure_type", ""))
+	var index: int = _structure_at(region, type_id)
+	if index < 0:
+		return {"noop": true}
+	var gone: Dictionary = (region["structures"] as Array)[index]
+	var definition: Dictionary = data.structure_types[type_id]
+	_apply_grade_tag(region, definition, int(gone["grade"]), 0)
+	(region["structures"] as Array).remove_at(index)
+	# L'inverso di un abbattimento e' rialzarla **com'era**: grado e padrone
+	# vengono da quello che c'era, non dai valori di partenza.
+	return {
+		"structure_type": type_id, "grade": int(gone["grade"]), "owner": gone.get("owner", null),
+	}
+
+
+func _set_structure_grade(target: Dictionary, payload: Dictionary) -> Variant:
+	var region: Variant = world["regions"].get(str(target.get("id", "")))
+	if region == null:
+		return _fail("unknown region '%s'" % target.get("id", ""))
+	var type_id: String = str(payload.get("structure_type", ""))
+	var index: int = _structure_at(region, type_id)
+	if index < 0:
+		# Una Conseguenza scritta a mano nomina `$region_focus`, e la Regione a
+		# fuoco cambia di anno in anno: diradare un bosco dove non c'e' un bosco
+		# non e' un errore di dati, e' una frase che non aveva niente da dire.
+		# Marcata `optional`, e' un no-op — la stessa convenzione di
+		# REMOVE_PRESENCE e REMOVE_REGION_TAG.
+		if bool(payload.get("optional", false)):
+			return {"noop": true}
+		return _fail("no '%s' in region '%s'" % [type_id, target.get("id", "")])
+	var definition: Dictionary = data.structure_types[type_id]
+	var structure: Dictionary = (region["structures"] as Array)[index]
+	var before: int = int(structure["grade"])
+	var after: int = clampi(
+		int(payload.get("grade", before)), 1, (definition["grades"] as Array).size()
+	)
+	if after == before:
+		return {"structure_type": type_id, "grade": before, "noop": true}
+	structure["grade"] = after
+	_apply_grade_tag(region, definition, before, after)
+	return {"structure_type": type_id, "grade": before}
+
+
+## Il varco che si chiude (D-166): due Regioni smettono di toccarsi.
+##
+## E' l'unica cosa della mappa che cambia la **forma** del mondo invece di cosa
+## ci sta sopra, ed e' anche l'unica che puo' rendere un Destino impossibile:
+## una Regione irraggiungibile e' una clausola che nessuno potra' mai
+## soddisfare. Per questo il taglio si prova e **si annulla se spezza il
+## mondo** — nessuna frase d'autore vale una partita rotta.
+##
+## Il grafo resta simmetrico: si toglie l'arco da tutte e due le parti.
+func _close_passage(target: Dictionary, payload: Dictionary) -> Variant:
+	var here: String = str(target.get("id", ""))
+	var there: String = str(payload.get("region_id", ""))
+	var graph: Dictionary = world.get("adjacency", {})
+	if not graph.has(here) or not graph.has(there):
+		if bool(payload.get("optional", false)):
+			return {"noop": true}
+		return _fail("unknown region in passage '%s' - '%s'" % [here, there])
+	if not (graph[here] as Array).has(there):
+		return {"noop": true}
+
+	(graph[here] as Array).erase(there)
+	(graph[there] as Array).erase(here)
+	# La prova: se il mondo si e' spezzato, il varco si riapre e non e'
+	# successo niente. Meglio una frana che non frana di una Regione dove
+	# nessuno potra' mai arrivare.
+	if not _every_region_reachable():
+		(graph[here] as Array).append(there)
+		(graph[there] as Array).append(here)
+		return {"noop": true, "refused": "isolerebbe una Regione"}
+	return {"region_id": there}
+
+
+func _open_passage(target: Dictionary, payload: Dictionary) -> Variant:
+	var here: String = str(target.get("id", ""))
+	var there: String = str(payload.get("region_id", ""))
+	var graph: Dictionary = world.get("adjacency", {})
+	if not graph.has(here) or not graph.has(there):
+		if bool(payload.get("optional", false)):
+			return {"noop": true}
+		return _fail("unknown region in passage '%s' - '%s'" % [here, there])
+	if (graph[here] as Array).has(there):
+		return {"noop": true}
+	(graph[here] as Array).append(there)
+	(graph[there] as Array).append(here)
+	# Rimesso **al posto suo**, non in fondo: l'ordine dei vicini e' quello
+	# scritto nel dato, e il gioco lo legge (`$adjacent` ci pesca dentro). Un
+	# varco riaperto deve lasciare il mondo identico a com'era, byte per byte.
+	_reorder_neighbours(graph, here)
+	_reorder_neighbours(graph, there)
+	return {"region_id": there}
+
+
+## Rimette i vicini nell'ordine d'autore, tenendo solo quelli che ci sono adesso.
+func _reorder_neighbours(graph: Dictionary, region_id: String) -> void:
+	var definition: Variant = data.regions.get(region_id)
+	if definition == null:
+		return
+	var current: Array = graph[region_id]
+	var ordered: Array = []
+	for neighbour in (definition["adjacency"] as Array):
+		if current.has(str(neighbour)):
+			ordered.append(str(neighbour))
+	# Un vicino che il dato non conosce (non dovrebbe esistere) resta in coda
+	# invece di sparire: perdere un arco in silenzio sarebbe peggio.
+	for neighbour in current:
+		if not ordered.has(str(neighbour)):
+			ordered.append(str(neighbour))
+	graph[region_id] = ordered
+
+
+## Se da una Regione qualsiasi si arriva a tutte le altre. Vive qui e non nel
+## servizio perche' l'applicatore non lo conosce, e perche' e' una guardia
+## dell'Effect: la prova va fatta **prima** che il taglio resti.
+func _every_region_reachable() -> bool:
+	var graph: Dictionary = world.get("adjacency", {})
+	var all_regions: Array = graph.keys()
+	if all_regions.size() <= 1:
+		return true
+	var seen: Dictionary = {str(all_regions[0]): true}
+	var queue: Array = [str(all_regions[0])]
+	while not queue.is_empty():
+		var here: String = str(queue.pop_back())
+		for neighbour in (graph.get(here, []) as Array):
+			if seen.has(str(neighbour)):
+				continue
+			seen[str(neighbour)] = true
+			queue.append(str(neighbour))
+	return seen.size() == all_regions.size()
+
+
+## Dove sta quel tipo dentro la Regione, o -1.
+func _structure_at(region: Dictionary, type_id: String) -> int:
+	var structures: Array = region.get("structures", [])
+	for i in range(structures.size()):
+		if str((structures[i] as Dictionary)["structure_type"]) == type_id:
+			return i
+	return -1
+
+
+## Il segno del grado, tolto quello di prima. Grado 0 vuol dire «non c'e'».
+func _apply_grade_tag(
+	region: Dictionary, definition: Dictionary, before: int, after: int
+) -> void:
+	var grades: Array = definition["grades"]
+	var tags: Array = region["tags"]
+	if before > 0:
+		var old_tag: String = str((grades[before - 1] as Dictionary).get("tag", ""))
+		if old_tag != "":
+			tags.erase(old_tag)
+	if after > 0:
+		var new_tag: String = str((grades[after - 1] as Dictionary).get("tag", ""))
+		if new_tag != "" and not tags.has(new_tag):
+			tags.append(new_tag)
 
 
 func _set_relation(target: Dictionary, payload: Dictionary) -> Variant:

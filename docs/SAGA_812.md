@@ -1,5 +1,12 @@
 # La saga dell'812 — il millennio del drago sveglio
 
+> **Rigiocata a 0.1.110 e uscita identica**, anno per anno e nome per nome.
+> Di tutto il lavoro da 0.1.101 in poi, l'unica cosa che tocca il motore è il
+> peso dell'alleanza ([D-139](DECISIONS.md#d-139)), e in questa saga quel
+> dente ha morso una volta sola — nel Consiglio del 1057, dove non ha
+> cambiato l'esito. Il confronto sta in [SAGA_SALE.md](SAGA_SALE.md), insieme
+> alla saga dell'altra linea.
+
 *Dieci Chronicle, anni 812–2095. Giocata con `run_saga` (seme 812,
 `CHR_01` poi `CHR_02`), deterministica: stesso seme, stessa saga, fino
 alle frasi. I log completi, anno per anno, sono in `out/saga/` dopo:*

@@ -63,8 +63,21 @@ const CEILING: int = 8
 ## l'anno tiene solo i Consigli che decidono qualcosa di nuovo: la mediana
 ## misurata scende di uno ed e' un anno piu' corto ma piu' vero, 1.25-1.5 per
 ## Tensione. I limiti duri, come sempre, non si sono mossi.
+##
+## Tornata a 5-7 con D-169, **per la stessa ragione di D-051 e con la stessa
+## meccanica**: la Vittoria di Lyra era una porta sola al 25%, quindi per tre
+## anni su quattro lei non aveva obiettivi aperti e smetteva di proporre. Le
+## partite quiete di prima erano in buona parte partite in cui era spettatrice —
+## misurato, D-168: la coda bassa della distribuzione (3, 4, otto volte 5) si
+## sposta intera su 6 e 7 non appena la sua Vittoria diventa raggiungibile, e
+## nessuna forma della clausola cambia il prezzo. Un seggio che ricomincia a
+## giocare fa l'anno piu' rumoroso; e' successo con Vaerax e succede con lei.
+##
+## La banda si allarga in alto e non in basso: 5-7 e' 1.25-1.75 per Tensione,
+## ancora dentro il 6-8 che §7 scrive per quattro Tensioni, e il pavimento — la
+## Chronicle che non decide niente — non si e' mosso di un passo.
 const BAND_LOW: int = 5
-const BAND_HIGH: int = 6
+const BAND_HIGH: int = 7
 
 
 func _play(seed_value: int) -> Dictionary:

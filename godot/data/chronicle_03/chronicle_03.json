@@ -28,6 +28,9 @@
         }
       },
       "control_rules": {
+        "contested": {
+          "presence_weight": 1
+        },
         "max_stable_control": 2,
         "overextension_delta": 1,
         "lapse_without_presence": true
@@ -142,7 +145,89 @@
           "region_id": "REG_MINIERE_ANTICHE",
           "entity_id": null
         }
-      ]
+      ],
+      "starting_structures": [
+        {
+          "region_id": "REG_EREDAN",
+          "structure_type": "STR_KEEP",
+          "grade": 1,
+          "owner": "ENT_LIBERE"
+        },
+        {
+          "region_id": "REG_STRADA_MERCANTI",
+          "structure_type": "STR_KEEP",
+          "grade": 1,
+          "owner": "ENT_SALE"
+        },
+        {
+          "region_id": "REG_MONTAGNE_ROSSE",
+          "structure_type": "STR_KEEP",
+          "grade": 1,
+          "owner": "ENT_CENERE"
+        },
+        {
+          "region_id": "REG_VALLE_VERDE",
+          "structure_type": "STR_SETTLEMENT",
+          "grade": 1,
+          "owner": "ENT_LIBERE"
+        },
+        {
+          "region_id": "REG_VALLE_VERDE",
+          "structure_type": "STR_FOREST",
+          "grade": 1,
+          "owner": null
+        },
+        {
+          "region_id": "REG_TERRE_NAHR",
+          "structure_type": "STR_FOREST",
+          "grade": 1,
+          "owner": null
+        },
+        {
+          "region_id": "REG_MONTAGNE_ROSSE",
+          "structure_type": "STR_FOREST",
+          "grade": 1,
+          "owner": null
+        },
+        {
+          "region_id": "REG_MINIERE_ANTICHE",
+          "structure_type": "STR_OLD_SITE",
+          "grade": 1,
+          "owner": null
+        },
+        {
+          "region_id": "REG_MONTAGNE_ROSSE",
+          "structure_type": "STR_OLD_SITE",
+          "grade": 1,
+          "owner": null
+        },
+        {
+          "region_id": "REG_VALLE_VERDE",
+          "structure_type": "STR_SPRING",
+          "grade": 1,
+          "owner": null
+        },
+        {
+          "region_id": "REG_TERRE_NAHR",
+          "structure_type": "STR_SPRING",
+          "grade": 1,
+          "owner": null
+        },
+        {
+          "region_id": "REG_MONTAGNE_ROSSE",
+          "structure_type": "STR_PASS",
+          "grade": 1,
+          "owner": null
+        }
+      ],
+      "structure_rules": {
+        "rise_on": [
+          "TRIUMPH"
+        ],
+        "fall_on": [
+          "NONE"
+        ]
+      }
     },
     {
       "world_id": "WORLD_ECHOES",
@@ -170,6 +255,9 @@
         }
       },
       "control_rules": {
+        "contested": {
+          "presence_weight": 1
+        },
         "max_stable_control": 2,
         "overextension_delta": 1,
         "lapse_without_presence": true
@@ -307,7 +395,89 @@
         "water_priced",
         "relic_buried",
         "faith_established"
-      ]
+      ],
+      "starting_structures": [
+        {
+          "region_id": "REG_EREDAN",
+          "structure_type": "STR_KEEP",
+          "grade": 1,
+          "owner": "ENT_LIBERE"
+        },
+        {
+          "region_id": "REG_STRADA_MERCANTI",
+          "structure_type": "STR_KEEP",
+          "grade": 1,
+          "owner": "ENT_SALE"
+        },
+        {
+          "region_id": "REG_MONTAGNE_ROSSE",
+          "structure_type": "STR_KEEP",
+          "grade": 1,
+          "owner": "ENT_CENERE"
+        },
+        {
+          "region_id": "REG_VALLE_VERDE",
+          "structure_type": "STR_SETTLEMENT",
+          "grade": 1,
+          "owner": "ENT_LIBERE"
+        },
+        {
+          "region_id": "REG_VALLE_VERDE",
+          "structure_type": "STR_FOREST",
+          "grade": 1,
+          "owner": null
+        },
+        {
+          "region_id": "REG_TERRE_NAHR",
+          "structure_type": "STR_FOREST",
+          "grade": 1,
+          "owner": null
+        },
+        {
+          "region_id": "REG_MONTAGNE_ROSSE",
+          "structure_type": "STR_FOREST",
+          "grade": 1,
+          "owner": null
+        },
+        {
+          "region_id": "REG_MINIERE_ANTICHE",
+          "structure_type": "STR_OLD_SITE",
+          "grade": 1,
+          "owner": null
+        },
+        {
+          "region_id": "REG_MONTAGNE_ROSSE",
+          "structure_type": "STR_OLD_SITE",
+          "grade": 1,
+          "owner": null
+        },
+        {
+          "region_id": "REG_VALLE_VERDE",
+          "structure_type": "STR_SPRING",
+          "grade": 1,
+          "owner": null
+        },
+        {
+          "region_id": "REG_TERRE_NAHR",
+          "structure_type": "STR_SPRING",
+          "grade": 1,
+          "owner": null
+        },
+        {
+          "region_id": "REG_MONTAGNE_ROSSE",
+          "structure_type": "STR_PASS",
+          "grade": 1,
+          "owner": null
+        }
+      ],
+      "structure_rules": {
+        "rise_on": [
+          "TRIUMPH"
+        ],
+        "fall_on": [
+          "NONE"
+        ]
+      }
     }
   ]
 }

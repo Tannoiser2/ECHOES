@@ -35,6 +35,17 @@ const INVERSE_TYPE: Dictionary = {
 	"SET_ENTITY_TAG": "REMOVE_ENTITY_TAG",
 	"REMOVE_ENTITY_TAG": "SET_ENTITY_TAG",
 	"SET_ENTITY_ACTIVE": "SET_ENTITY_ACTIVE",
+	# La terra che si costruisce (D-157). Alzare e abbattere sono l'uno
+	# l'inverso dell'altro; salire di grado si inverte su se stesso, col grado
+	# di prima nell'inverse_payload.
+	"BUILD_STRUCTURE": "RAZE_STRUCTURE",
+	"RAZE_STRUCTURE": "BUILD_STRUCTURE",
+	"SET_STRUCTURE_GRADE": "SET_STRUCTURE_GRADE",
+	# Il grafo che si riscrive (D-166). Chiudere e riaprire un varco sono
+	# l'uno l'inverso dell'altro: e' l'unica cosa della mappa che cambia la
+	# **forma** del mondo e non solo cosa ci sta sopra.
+	"CLOSE_PASSAGE": "OPEN_PASSAGE",
+	"OPEN_PASSAGE": "CLOSE_PASSAGE",
 }
 
 

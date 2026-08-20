@@ -317,7 +317,48 @@
               "maximum": 0,
               "description": "Di quanto un Failure sfoga la Tensione (appendice A6: -2). A -1 la proposta bocciata non compra quiete: la domanda resta piu' vicina alla soglia e torna prima - la seconda leva contro l'Oppose come strategia dominante, misurata in D-098."
             },
-            "alliance_weight": {
+            "focus_weight": {
+    "type": "object",
+    "additionalProperties": false,
+    "description": "Quanto pesa, al Consiglio, stare nella Regione di cui si discute (D-154). Omesso, non pesa niente e vale il comportamento fino a 0.1.118: il titolo conta solo a fine anno. Il peso si somma al fronte di chi lo porta, e solo se quel seggio ha impegnato almeno una carta - un bonus dal nulla sarebbe un voto gratis.",
+    "properties": {
+     "control": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 3,
+      "description": "Quanto vale essere il padrone della Regione a fuoco: il titolo che pesa dentro l'anno e non solo nel Destino."
+     },
+     "majority": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 3,
+      "description": "Quanto vale avere strettamente piu' presenza di chiunque altro nella Regione a fuoco. A parita' non lo prende nessuno."
+     },
+     "max": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 4,
+      "description": "Il tetto per seggio, sommando titolo e maggioranza."
+     },
+     "commits_at_least": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 3,
+      "description": "Quante carte bisogna aver impegnato perche' il peso conti."
+     },
+     "sides": {
+      "type": "array",
+      "items": {"type": "string", "enum": ["SUPPORT", "OPPOSE"]},
+      "description": "Su quali fronti il peso si applica. Stare in un posto e' neutro rispetto al lato: «e' terra mia e dico di no» pesa quanto «e' terra mia e dico di si'»."
+     },
+     "includes_proponent": {
+      "type": "boolean",
+      "default": true,
+      "description": "Se il proponente prenda il peso della terra. A true il bonus finisce quasi sempre a chi propone - che e' gia' scelto *per* la presenza - e i Consigli passano troppo: misurato, FAIL 164 e un seggio bloccato. A false il peso va solo a chi la terra ce l'ha ma il Consiglio non l'ha chiamato: «non si decide di casa mia senza di me»."
+     }
+    }
+   },
+   "alliance_weight": {
               "type": "object",
               "additionalProperties": false,
               "properties": {
@@ -344,12 +385,58 @@
             }
           }
         },
+        "starting_structures": {
+          "type": "array",
+          "description": "Cosa c'e' gia' costruito quando l'anno si apre. Sta sulla Chronicle e non sulla Regione per la stessa ragione di `starting_control` (D-049): le Regioni sono condivise fra saghe distanti secoli, e una pietra scritta sulla Regione seduterebbe le case della prima saga al tavolo della seconda.",
+          "items": {
+            "type": "object",
+            "required": ["region_id", "structure_type"],
+            "additionalProperties": false,
+            "properties": {
+              "region_id": { "type": "string" },
+              "structure_type": { "type": "string" },
+              "grade": { "type": "integer", "minimum": 1, "maximum": 4, "default": 1 },
+              "owner": { "type": ["string", "null"] }
+            }
+          }
+        },
+        "structure_rules": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "La scala che si muove con l'esito del Destino (D-159). Omesso, le strutture non salgono e non cadono da sole. Il grado sale sulla struttura piu' alta di chi ha ottenuto quello che voleva, e scende su quella piu' bassa di chi non ha ottenuto niente: si costruisce sopra quello che si ha, e si perdono prima i margini.",
+          "properties": {
+            "rise_on": {
+              "type": "array",
+              "items": { "type": "string", "enum": ["MINIMUM", "VICTORY", "TRIUMPH"] },
+              "description": "I livelli che fanno salire un grado."
+            },
+            "fall_on": {
+              "type": "array",
+              "items": { "type": "string", "enum": ["NONE", "MINIMUM", "VICTORY"] },
+              "description": "I livelli che ne fanno perdere uno. Sotto il primo grado la struttura non scende: va in rovina, e la rovina lascia una cicatrice."
+            }
+          }
+        },
         "control_rules": {
           "type": "object",
           "description": "How holding territory pushes back (D-027). Omit the whole object and control behaves as in v0.2: whatever you take, you keep.",
           "additionalProperties": false,
           "properties": {
-            "max_stable_control": {
+            "contested": {
+            "type": "object",
+            "additionalProperties": false,
+            "description": "La contesa del controllo (D-158). Omesso, il padrone di una Regione e' quello **scritto** da una Conseguenza e resta finche' un'altra non lo cambia. Dichiarato, il padrone e' **contato** a ogni fine round: chi somma di piu' fra il valore delle proprie strutture e le proprie pedine. A parita' non cambia niente — per togliere una Regione bisogna superare chi la tiene, non pareggiarlo.",
+            "properties": {
+              "presence_weight": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 5,
+                "default": 1,
+                "description": "Quanto vale una pedina nel conto, contro il valore di grado di una struttura. A 1 una torre di veglia (2) vale due pedine."
+              }
+            }
+          },
+          "max_stable_control": {
               "type": "integer",
               "minimum": 0,
               "description": "Regions an Entity can hold without strain. Every Region beyond this raises the Tension of that Region's own domain, once per round."
@@ -486,6 +573,19 @@
               }
             }
           ]
+        },
+        "destiny_pool": {
+          "type": "object",
+          "description": "Che cosa vuole ogni casa quest'anno (D-150). Per ogni entità, i Destini fra cui l'anno pesca — tutti scritti per quella casa: non si permuta niente fra le case, perché una clausola nomina Regioni, rivali e segni della sua epoca, e la prosa è scritta per chi la porta. Omesso, ogni casa insegue il `destiny_id` scritto sull'Entità, com'era prima di D-150. È il meccanismo di `tension_pool` applicato agli obiettivi, e serve a rompere il Minimo come risposta giusta di default: la sonda della varietà (D-149) dice che le storie sono già diverse (distanza 0,8) e che a ripetersi è cosa i giocatori vogliono.",
+          "additionalProperties": {
+            "type": "array",
+            "minItems": 2,
+            "items": {
+              "type": "string",
+              "pattern": "^DST_[A-Z0-9_]+$"
+            },
+            "description": "I Destini possibili per quella casa. Almeno due: uno solo sarebbe il campo che c'è già sull'Entità."
+          }
         }
       }
     }

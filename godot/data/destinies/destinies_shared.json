@@ -8,6 +8,17 @@
       "title": "Il Nome che Pesa",
       "description": "Non importa da dove vieni: importa che quando parli, il tavolo ascolta. La stessa ambizione per chiunque la giuri - la fama, e un posto da cui difenderla.",
       "minimum": {
+        "label": "Il nome ha una casa",
+        "conditions": [
+          {
+            "type": "control_count",
+            "entity_id": "$self",
+            "min": 1,
+            "label": "Almeno una Regione controllata"
+          }
+        ]
+      },
+      "victory": {
         "label": "Il nome è conosciuto",
         "conditions": [
           {
@@ -19,32 +30,41 @@
           }
         ]
       },
-      "victory": {
-        "label": "Il nome ha una casa",
-        "conditions": [
-          {
-            "type": "control_count",
-            "entity_id": "$self",
-            "min": 1,
-            "label": "Almeno una Regione controllata"
-          }
-        ]
-      },
       "triumph": {
         "label": "Un nome che nessuno ha visto fallire",
         "conditions": [
-          {
-            "type": "control_count",
-            "entity_id": "$self",
-            "min": 2,
-            "label": "Controllo di almeno 2 Regioni"
-          },
           {
             "type": "state_tag_absent",
             "scope": "ENTITY",
             "entity_id": "$self",
             "tag": "failed_proposal",
             "label": "Nessuna proposta caduta a verbale"
+          },
+          {
+            "type": "some_of",
+            "min": 2,
+            "label": "E due segni che il nome ha un peso",
+            "conditions": [
+              {
+                "type": "control_count",
+                "entity_id": "$self",
+                "min": 2,
+                "label": "Controllo di almeno 2 Regioni"
+              },
+              {
+                "type": "structure_count",
+                "entity_id": "$self",
+                "min": 1,
+                "label": "Qualcosa di suo che sta in piedi"
+              },
+              {
+                "type": "structure_count",
+                "entity_id": "$self",
+                "structure_family": "OPERA",
+                "min": 1,
+                "label": "Un'opera che porta il suo nome"
+              }
+            ]
           }
         ]
       },
@@ -111,13 +131,6 @@
         "label": "Una firma che vale, e nessuna domanda aperta",
         "conditions": [
           {
-            "type": "state_tag_present",
-            "scope": "ENTITY",
-            "entity_id": "$self",
-            "tag": "renowned",
-            "label": "La casa porta il segno della fama"
-          },
-          {
             "type": "state_tag_absent",
             "scope": "GLOBAL",
             "tag": "question_unresolved",
@@ -133,6 +146,31 @@
             "scope": "GLOBAL",
             "tag": "oath_broken",
             "label": "Nessun giuramento spezzato è rimasto scritto"
+          },
+          {
+            "type": "some_of",
+            "min": 2,
+            "label": "E due segni che i conti li ha chiusi lei",
+            "conditions": [
+              {
+                "type": "state_tag_present",
+                "scope": "ENTITY",
+                "entity_id": "$self",
+                "tag": "renowned",
+                "label": "La casa porta il segno della fama"
+              },
+              {
+                "type": "structure_count",
+                "entity_id": "$self",
+                "min": 1,
+                "label": "Qualcosa di suo che sta in piedi"
+              },
+              {
+                "type": "scar_count",
+                "max": 2,
+                "label": "L'anno non ha lasciato più di due segni sul mondo"
+              }
+            ]
           }
         ]
       },

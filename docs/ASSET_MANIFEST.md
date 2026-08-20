@@ -138,7 +138,7 @@ family, 22 copies per family deck, 132 cards in the box (D-040).
 |---|---|---|---|---|---|
 | DST_ALDRIC | Il Regno che Resta | ENT_ALDRIC | Il trono regge | Il regno decide | Un regno che non ha pagato il pane con il sangue |
 | DST_ALDRIC_RECORD | Il Regno che Ricorda | ENT_ALDRIC | La casa siede ancora | Nessuno rilegge la stessa domanda | Un regno che non ha dovuto dividersi per reggere |
-| DST_CENERE | La Montagna è Nostra | ENT_CENERE | Restano sulla montagna | Tengono la montagna, e non solo quella | E la veglia sulla montagna è loro |
+| DST_CENERE | La Montagna è Nostra | ENT_CENERE | Restano sulla montagna | Chi scava lo dicono loro | E non solo quella |
 | DST_CENERE_DEEP | Più a Fondo | ENT_CENERE | Restano sulla montagna | E hanno visto cosa c'è sotto | E non devono più niente a nessuno |
 | DST_LIBERE | Una Legge Senza Corona | ENT_LIBERE | Le città esistono ancora | E c'è una Carta, e l'acqua non è di nessuno | E nessuno l'ha pagata più degli altri |
 | DST_LIBERE_WATER | L'Acqua Torna a Muoversi | ENT_LIBERE | Le città esistono ancora | E l'acqua si muove | E non è di nessuno |
@@ -150,7 +150,7 @@ family, 22 copies per family deck, 132 cards in the box (D-040).
 | DST_SALE_OPEN | Il Registro Aperto | ENT_SALE | La Gilda esiste ancora | E il registro si può leggere | E vale lo stesso |
 | DST_SHARED_ACCOUNTS | I Conti Chiusi | $self | Il proprio registro è pulito | Una firma che vale, e nessuna domanda aperta | Un mondo che non deve niente a nessuno |
 | DST_SHARED_LAND | La Terra che Risponde | $self | Un posto che risponde | Due terre, una voce | La mappa parla la tua lingua |
-| DST_SHARED_RENOWN | Il Nome che Pesa | $self | Il nome è conosciuto | Il nome ha una casa | Un nome che nessuno ha visto fallire |
+| DST_SHARED_RENOWN | Il Nome che Pesa | $self | Il nome ha una casa | Il nome è conosciuto | Un nome che nessuno ha visto fallire |
 | DST_VAERAX | Cio che Dorme Resti Addormentato | ENT_VAERAX | La montagna è ancora sua | Le gallerie sono chiuse, e il Cristallo non è uscito | E nessuno ci arriva più |
 | DST_VAERAX_LEGEND | La Storia che si Racconta | ENT_VAERAX | La storia si racconta ancora | La montagna tiene lontani gli uomini | Nessuno ricorda com'era davvero |
 | DST_VAERAX_WATCHED | Il Sonno Sorvegliato | ENT_VAERAX | La montagna è ancora sua | Nessuno scava più | Guardato da qualcuno che non lo vuole |
@@ -173,7 +173,7 @@ family, 22 copies per family deck, 132 cards in the box (D-040).
 | TEN_THIRST | I Pozzi Bassi | SURVIVAL | 1 | 5 | VEILED | 2 |
 | TEN_WATER | L'Acqua Ferma | SURVIVAL | 3 | 6 | OPEN | 1 |
 
-## Map overlays (30)
+## Map overlays (26)
 Ogni tag di Regione che il gioco puo mostrare sulla mappa. `domain:` marca il dominio di Tensione usato da INFLUENCE; `structure:`, `condition:` e `scar:` sono livelli grafici distinti (spec §19.5).
 
 | tag | layer |
@@ -201,10 +201,6 @@ Ogni tag di Regione che il gioco puo mostrare sulla mappa. `domain:` marca il do
 | `settlement:$proponent` | settlement |
 | `settlement:march` | settlement |
 | `settlement:market` | settlement |
-| `structure:canal` | structure |
-| `structure:granary` | structure |
 | `structure:sealed` | structure |
-| `structure:tollgate` | structure |
-| `structure:watchtower` | structure |
 | `trade` | base |
 | `wild` | base |

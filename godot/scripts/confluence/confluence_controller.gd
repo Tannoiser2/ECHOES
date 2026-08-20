@@ -111,6 +111,10 @@ func open(tension_id: String, trigger: Dictionary) -> Dictionary:
 		# Resolved once, at A, so every sentence in this Confluence names the same
 		# Region and the same rival even if the world moves underneath it (H).
 		"text_bindings": narrative.bindings_for(tension_id, proponent),
+		# Fissata qui per la stessa ragione del testo: il peso di chi sta nella
+		# Regione di cui si discute (D-154) si misura sulla Regione dichiarata
+		# ad A, non su quella che il mondo avra' a G.
+		"focus_region": narrative.focus_region(tension_id),
 		"proposition_id": "",
 		"stances": {},
 		"commits": {},
@@ -416,6 +420,18 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 		if bond > 0:
 			support_bonus += bond
 			stance_titles.append("%s parla da alleato (+%d)" % [_name(seat), bond])
+
+		# Il peso della terra (D-154): chi la Regione a fuoco la tiene, o ci sta
+		# in forze, parla piu' forte di chi ne discute da fuori.
+		var ground: Dictionary = _focus_weight(seat, side)
+		if int(ground["delta"]) > 0:
+			if side == "SUPPORT":
+				support_bonus += int(ground["delta"])
+			else:
+				oppose_bonus += int(ground["delta"])
+			stance_titles.append(
+				"%s %s (+%d)" % [_name(seat), str(ground["why"]), int(ground["delta"])]
+			)
 
 	# La soglia della Condition che si sposta (D-125), mai sotto 1.
 	var condition_entities: Array = []
@@ -842,6 +858,86 @@ func _bond_weight(seat: String, side: String) -> int:
 	if spent < int(rules.get("commits_at_least", 1)):
 		return 0
 	return mini(step * int(rules.get("per_step", 1)), int(rules.get("max", 2)))
+
+
+## Quanto pesa la terra al Consiglio (D-154). Fino a 0.1.118 il controllo non
+## faceva niente dentro l'anno: era una casella del Destino con una tassa
+## attaccata (la sovraestensione), e nessuno aveva una ragione, nell'anno in
+## corso, per andarsi a prendere una Regione. Da qui in poi la Regione **di cui
+## si discute** da' voce a chi ci sta:
+##
+## - **il titolo**, a chi ne e' il padrone: quello che il Destino gia' contava
+##   a fine anno adesso si sente anche al tavolo;
+## - **la maggioranza**, a chi ci ha strettamente piu' pedine di chiunque altro
+##   - a parita' non la prende nessuno, perche' una maggioranza contesa non e'
+##   una maggioranza.
+##
+## I due si sommano fino al tetto: chi la tiene *e* ci sta dentro parla per
+## primo, che e' il punto - un titolo senza nessuno sopra vale meno di un
+## titolo presidiato, ed e' la stessa idea di `lapse_without_presence` detta
+## dentro l'anno invece che fra un anno e l'altro.
+##
+## Vale su tutti e due i fronti dichiarati nei dati: stare in un posto e' neutro
+## rispetto al lato, e «e' terra mia e dico di no» pesa quanto «e' terra mia e
+## dico di si'». E come ogni altro peso, conta solo se quel seggio ha messo
+## almeno una carta sul tavolo.
+func _focus_weight(seat: String, side: String) -> Dictionary:
+	var none: Dictionary = {"delta": 0, "why": ""}
+	var rules: Dictionary = (_chronicle.get("confluence_rules", {}) as Dictionary).get(
+		"focus_weight", {}
+	)
+	if rules.is_empty():
+		return none
+	var sides: Array = rules.get("sides", ["SUPPORT", "OPPOSE"])
+	if not sides.has(side):
+		return none
+	# Il proponente e' gia' pagato dalla terra: e' *per* la presenza nel dominio
+	# che sta li' a proporre. Dargli anche il peso vuol dire pagarlo due volte
+	# per lo stesso investimento, e la misura lo dice forte - col proponente
+	# dentro i Consigli passano troppo (FAIL 164) e un seggio si blocca. Il peso
+	# serve a chi la terra ce l'ha e il Consiglio non l'ha chiamato: e' la voce
+	# di «non si decide di casa mia senza di me».
+	if not bool(rules.get("includes_proponent", true)) and seat == str(current["proponent"]):
+		return none
+	var region_id: String = str(current.get("focus_region", ""))
+	if region_id == "" or not (world["regions"] as Dictionary).has(region_id):
+		return none
+	if (current["commits"].get(seat, []) as Array).size() < int(rules.get("commits_at_least", 1)):
+		return none
+
+	var delta: int = 0
+	var reasons: Array = []
+	if str((world["regions"] as Dictionary)[region_id].get("control", "")) == seat:
+		var titled: int = int(rules.get("control", 0))
+		if titled > 0:
+			delta += titled
+			reasons.append("la tiene")
+
+	var mine: int = service.presence_count(seat, region_id)
+	if mine > 0:
+		var alone: bool = true
+		for other in world["turn_order"]:
+			if str(other) == seat:
+				continue
+			if service.presence_count(str(other), region_id) >= mine:
+				alone = false
+				break
+		if alone:
+			var most: int = int(rules.get("majority", 0))
+			if most > 0:
+				delta += most
+				reasons.append("ci sta in forze")
+	if delta <= 0:
+		return none
+	return {
+		"delta": mini(delta, int(rules.get("max", 2))),
+		"why": "%s %s" % [" e ".join(PackedStringArray(reasons)), _region_name(region_id)],
+	}
+
+
+func _region_name(region_id: String) -> String:
+	var region: Variant = data.regions.get(region_id)
+	return region_id if region == null else str(region["name"])
 
 
 func _log_commitments() -> void:

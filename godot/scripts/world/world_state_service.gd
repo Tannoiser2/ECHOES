@@ -131,10 +131,41 @@ func can_move_to(entity_id: String, region_id: String) -> bool:
 	if definition != null and (definition["presence"] as Array).has(region_id):
 		return true
 	for held in regions_with_presence(entity_id):
-		var neighbours: Array = data.regions[held]["adjacency"]
-		if neighbours.has(region_id):
+		if neighbours_of(held).has(region_id):
 			return true
 	return gate == "ALLOW"
+
+
+## I vicini di una Regione **adesso** (D-166). Il grafo e' stato del mondo: un
+## passo franato toglie un arco, e da li' in poi quelle due Regioni non si
+## toccano piu'. Senza il grafo nel mondo — un salvataggio vecchio, una sonda
+## che non l'ha costruito — si ripiega sul dato, che e' la forma di partenza.
+func neighbours_of(region_id: String) -> Array:
+	var graph: Dictionary = world.get("adjacency", {})
+	if graph.has(region_id):
+		return graph[region_id]
+	var definition: Variant = data.regions.get(region_id)
+	return [] if definition == null else (definition["adjacency"] as Array)
+
+
+## Se da questa Regione si arriva a tutte le altre in gioco. E' la guardia che
+## impedisce a un varco chiuso di spezzare il mondo in due: una Regione
+## irraggiungibile e' un Destino impossibile, e nessuna frase d'autore vale
+## quel prezzo.
+func every_region_reachable() -> bool:
+	var all_regions: Array = (world["regions"] as Dictionary).keys()
+	if all_regions.size() <= 1:
+		return true
+	var seen: Dictionary = {str(all_regions[0]): true}
+	var queue: Array = [str(all_regions[0])]
+	while not queue.is_empty():
+		var here: String = str(queue.pop_back())
+		for neighbour in neighbours_of(here):
+			if seen.has(str(neighbour)):
+				continue
+			seen[str(neighbour)] = true
+			queue.append(str(neighbour))
+	return seen.size() == all_regions.size()
 
 
 func region_free_slots(region_id: String) -> int:
@@ -143,6 +174,98 @@ func region_free_slots(region_id: String) -> int:
 	for entity_id in world["entities"]:
 		used += presence_count(str(entity_id), region_id)
 	return slots - used
+
+
+## Quanto pesa una casa in una Regione (D-158). E' il conto che decide chi la
+## tiene, quando la Chronicle dichiara `control_rules.contested`: le **pietre**
+## che ci ha (il valore del grado di ogni sua struttura) piu' le **pedine** che
+## ci tiene dentro.
+##
+## Il committente l'ha detto cosi': «se una entita' ha un castello (che magari
+## vale 3) ma un'altra ha un esercito che occupa la regione (che vale 4) la
+## regione viene controllata da chi ha di piu'». Le due monete sono diverse e
+## si sommano nella stessa colonna: **un castello e' una presenza che non se ne
+## va, una pedina e' un castello che si puo' spostare.**
+##
+## I **luoghi del mondo** (`owned: false` nel catalogo: foreste, passi, fiumi)
+## non contano per nessuno — non sono di nessuno per costruzione.
+func control_strength(entity_id: String, region_id: String) -> int:
+	var rules: Dictionary = _contest_rules()
+	var total: int = presence_count(entity_id, region_id) * int(
+		rules.get("presence_weight", 1)
+	)
+	var region: Variant = world["regions"].get(region_id)
+	if region == null:
+		return total
+	for structure in (region as Dictionary).get("structures", []):
+		var record: Dictionary = structure as Dictionary
+		if str(record.get("owner", "")) != entity_id:
+			continue
+		var definition: Variant = data.structure_types.get(str(record["structure_type"]))
+		if definition == null or not bool(definition["owned"]):
+			continue
+		var grades: Array = definition["grades"]
+		var grade: int = clampi(int(record["grade"]), 1, grades.size())
+		total += int((grades[grade - 1] as Dictionary)["value"])
+	return total
+
+
+## Chi la tiene, secondo il conto. Restituisce `{entity_id, strength, tied}`.
+##
+## **A parita' non cambia niente**: chi ce l'ha se la tiene, e se non ce l'ha
+## nessuno resta di nessuno. Per togliere una Regione a qualcuno bisogna
+## **superarlo**, non pareggiarlo — altrimenti il padrone di una casella
+## contesa cambierebbe a ogni pedina che passa.
+func strongest_in(region_id: String) -> Dictionary:
+	var region: Variant = world["regions"].get(region_id)
+	if region == null:
+		return {"entity_id": null, "strength": 0, "tied": false}
+	var best: Variant = null
+	var best_strength: int = 0
+	var tied: bool = false
+	for entity_id in world["turn_order"]:
+		var seat: String = str(entity_id)
+		var strength: int = control_strength(seat, region_id)
+		if strength <= 0:
+			continue
+		if strength > best_strength:
+			best = seat
+			best_strength = strength
+			tied = false
+		elif strength == best_strength:
+			tied = true
+	return {"entity_id": best, "strength": best_strength, "tied": tied}
+
+
+## Chi dovrebbe tenere questa Regione adesso, o `null`. Rispetta il pareggio:
+## il padrone in carica resta finche' qualcuno non lo supera.
+func rightful_holder(region_id: String) -> Variant:
+	var region: Variant = world["regions"].get(region_id)
+	if region == null:
+		return null
+	var holder: Variant = (region as Dictionary).get("control", null)
+	var best: Dictionary = strongest_in(region_id)
+	if best["entity_id"] == null:
+		# Nessuno ha niente li': la casella torna a nessuno solo se le regole
+		# lo dicono, che e' `lapse_without_presence` detto dentro l'anno.
+		return null
+	if bool(best["tied"]):
+		# Pareggio: se chi e' in carica e' fra i primi, resta; altrimenti niente.
+		if holder != null and control_strength(str(holder), region_id) == int(best["strength"]):
+			return holder
+		return holder
+	return best["entity_id"]
+
+
+func _contest_rules() -> Dictionary:
+	var chronicle: Variant = data.chronicles.get(str(world.get("chronicle_id", "")))
+	if chronicle == null:
+		return {}
+	return (chronicle.get("control_rules", {}) as Dictionary).get("contested", {})
+
+
+func contest_is_on() -> bool:
+	return not _contest_rules().is_empty()
 
 
 func control_count(entity_id: String) -> int:

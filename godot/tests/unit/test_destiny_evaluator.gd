@@ -70,17 +70,26 @@ func test_three_levels_for_vaerax() -> void:
 	)
 	_apply("REMOVE_GLOBAL_TAG", "world", "WORLD", {"tag": "crystal_exploited"})
 
-	# The Awakening pushed back down and the road that would carry anyone up
-	# there cut: Triumph. The road is the O-12 clause - his Destiny is that the
-	# sleep stays safe, and a safe sleep is one nobody can easily reach.
+	# Il Trionfo non e' piu' una lista da soddisfare per intero: e' una spina —
+	# le gallerie non svuotate — e **quattro strade su cinque** (D-167). Qui se
+	# ne prendono tre, e non bastano.
 	_apply("ADJUST_TENSION", "tension", "TEN_AWAKENING", {"delta": -1})
-	_apply("SET_REGION_TAG", "region", "REG_STRADA_MERCANTI", {"tag": "condition:cut_off"})
-	# E le Vie Interrotte abbastanza alte da non far salire nessuno con comodo:
-	# la clausola aggiunta in 0.1.25, che e' la stessa cosa detta con un numero
-	# invece che con un tag, e tira contro Lyra invece che contro nessuno (D-066).
 	_apply("ADJUST_TENSION", "tension", "TEN_ROADS", {"delta": 3})
+	_apply("ADJUST_TENSION", "tension", "TEN_FAMINE", {"delta": 3})
 	result = session.destinies.evaluate("DST_VAERAX")
-	assert_eq(str(result["level"]), "TRIUMPH", "Risveglio sotto 4 e strada interrotta: Triumph")
+	assert_eq(str(result["level"]), "VICTORY", "tre strade su quattro non sono un Trionfo")
+
+	# La quarta e' una pietra, e questo e' il punto della seduta sulla terra: il
+	# passo frana, il giro lungo lo fa chi vuole, e la montagna e' di nuovo
+	# lontana. Un Trionfo deciso da una cosa che sta sulla mappa.
+	_apply(
+		"SET_STRUCTURE_GRADE",
+		"region",
+		"REG_MONTAGNE_ROSSE",
+		{"structure_type": "STR_PASS", "grade": 2}
+	)
+	result = session.destinies.evaluate("DST_VAERAX")
+	assert_eq(str(result["level"]), "TRIUMPH", "col passo franato la quarta strada c'e': Triumph")
 
 	# Losing the mountain drops him to nothing at all, whatever else is true.
 	_apply("REMOVE_PRESENCE", "entity", "ENT_VAERAX", {"region_id": "REG_MONTAGNE_ROSSE"})
@@ -99,6 +108,21 @@ func test_victory_needs_the_consequence_that_grants_it() -> void:
 	# the Valley: that is the Victory. The Triumph now also asks that the crown
 	# be divided (O-12) - a people can only stop somewhere while the throne is
 	# busy with itself - so settling alone no longer reaches it.
+	# Tre segni sul mondo chiudono le due strade che parlano di un anno calmo:
+	# senza, la scelta del Trionfo sarebbe gia' soddisfatta all'apertura, e un
+	# gradino vero non si regala prima che qualcuno giochi (D-167).
+	for i in range(3):
+		_apply(
+			"ADD_SCAR",
+			"world",
+			"WORLD",
+			{
+				"scar_id": "SCR_TEST_NAHR_%d" % i,
+				"region_id": "REG_VALLE_VERDE",
+				"tag": "scar:burned",
+				"description": "il segno numero %d della prova" % i,
+			}
+		)
 	_apply("SET_GLOBAL_TAG", "world", "WORLD", {"tag": "nahr_settled"})
 	result = session.destinies.evaluate("DST_NAHR")
 	assert_eq(str(result["level"]), "VICTORY", "insediamento riconosciuto: Victory")
@@ -158,11 +182,67 @@ func test_discovery_count_drives_lyra() -> void:
 		"e nemmeno due"
 	)
 
-	# The escort is the Victory: somebody had to swear it, in a Council.
+	# La Vittoria non e' piu' una porta sola (D-169). Le Miniere non sigillate
+	# valgono gia' una strada all'apertura; la scorta e' la seconda, e **due su
+	# tre** aprono il gradino. Prima di D-169 questa riga saliva dritta al
+	# Trionfo, e quello era il difetto: sotto la porta non c'era altro da pagare.
 	_apply("SET_ENTITY_TAG", "entity", "ENT_LYRA", {"tag": "escort_sworn"})
 	assert_eq(
+		str(session.destinies.evaluate("DST_LYRA")["level"]), "VICTORY",
+		"con la scorta giurata la Vittoria si apre, e si ferma li'"
+	)
+
+	# E il Trionfo adesso chiede **quattro** Scoperte, non due: la spina di prima
+	# era vera nel 100% degli anni misurati, cioe' non era una spina (D-168).
+	for name in ["depth", "old_road", "water"]:
+		_apply("SET_ENTITY_TAG", "entity", "ENT_LYRA", {"tag": "discovery:%s" % name})
+	assert_eq(
 		str(session.destinies.evaluate("DST_LYRA")["level"]), "TRIUMPH",
-		"con la scorta giurata la scala si apre fino in fondo"
+		"quattro Scoperte e le strade ancora aperte: la scala arriva in fondo"
+	)
+
+	# E il gradino sopra e' una scelta, non una lista: tre strade su cinque
+	# (D-167, D-169). All'apertura ne ha quattro, e **le cicatrici ne chiudono
+	# due**.
+	_apply(
+		"ADD_SCAR",
+		"world",
+		"WORLD",
+		{
+			"scar_id": "SCR_TEST_ROAD",
+			"region_id": "REG_STRADA_MERCANTI",
+			"tag": "scar:broken_bridge",
+			"description": "il ponte rotto della prova",
+		}
+	)
+	_apply(
+		"ADD_SCAR",
+		"world",
+		"WORLD",
+		{
+			"scar_id": "SCR_TEST_MINE",
+			"region_id": "REG_MINIERE_ANTICHE",
+			"tag": "scar:open_wound",
+			"description": "la galleria aperta della prova",
+		}
+	)
+	assert_eq(
+		str(session.destinies.evaluate("DST_LYRA")["level"]), "VICTORY",
+		"due segni sulla strada e sulle gallerie chiudono due strade"
+	)
+
+	# E una pietra ne rimette una: lo studio con un tetto suo vale quanto una
+	# strada pulita. E' il punto della seduta sulla terra — un livello che si
+	# decide con qualcosa che sta sulla mappa.
+	_apply(
+		"BUILD_STRUCTURE",
+		"region",
+		"REG_MINIERE_ANTICHE",
+		{"structure_type": "STR_KEEP", "grade": 1, "owner": "ENT_LYRA"}
+	)
+	assert_eq(
+		str(session.destinies.evaluate("DST_LYRA")["level"]), "TRIUMPH",
+		"con un tetto sullo studio la terza strada torna"
 	)
 
 	# And the Triumph on top of it is a stake, not a purchase: put a guard on the
@@ -178,17 +258,21 @@ func test_discovery_count_drives_lyra() -> void:
 ## e le clausole si risolvono su chi lo giura. La stessa carta, giurata da due
 ## seggi diversi, legge due mondi diversi.
 func test_shared_destiny_resolves_on_the_holder() -> void:
+	# Da D-170 il Minimo di questa carta e' una Regione, non la fama: chiedere la
+	# fama per esistere lasciava a NONE un terzo dei seggi che la giuravano, e un
+	# Minimo e' una soglia di sopravvivenza. La fama e' salita alla Vittoria.
 	var result: Dictionary = session.destinies.evaluate("DST_SHARED_RENOWN", "ENT_ALDRIC")
 	assert_eq(str(result["entity_id"]), "ENT_ALDRIC", "la carta appartiene a chi la giura")
-	assert_false(bool(result["levels"]["MINIMUM"]), "senza fama il Minimo non c'e'")
+	assert_true(bool(result["levels"]["MINIMUM"]), "una Regione: il Minimo tiene")
+	assert_false(bool(result["levels"]["VICTORY"]), "ma senza fama la Vittoria no")
 
 	_apply("SET_ENTITY_TAG", "entity", "ENT_ALDRIC", {"tag": "renowned"})
 	result = session.destinies.evaluate("DST_SHARED_RENOWN", "ENT_ALDRIC")
-	assert_true(bool(result["levels"]["MINIMUM"]), "la fama di Aldric apre il suo Minimo")
+	assert_true(bool(result["levels"]["VICTORY"]), "la fama di Aldric apre la sua Vittoria")
 	# La stessa carta in mano ai Nahr non legge Aldric: legge i Nahr.
 	var other: Dictionary = session.destinies.evaluate("DST_SHARED_RENOWN", "ENT_NAHR")
 	assert_eq(str(other["entity_id"]), "ENT_NAHR", "il risultato porta il nome del giurante")
-	assert_false(bool(other["levels"]["MINIMUM"]), "la fama di Aldric non e' fama dei Nahr")
+	assert_false(bool(other["levels"]["VICTORY"]), "la fama di Aldric non e' fama dei Nahr")
 	_apply("REMOVE_ENTITY_TAG", "entity", "ENT_ALDRIC", {"tag": "renowned"})
 
 

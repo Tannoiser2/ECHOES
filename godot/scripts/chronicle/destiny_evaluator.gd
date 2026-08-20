@@ -63,9 +63,19 @@ func evaluate(destiny_id: String, holder: String = "") -> Dictionary:
 		var holds: bool = conditions.all_hold(level["conditions"], context)
 		achieved[LEVEL_NAMES[i]] = holds
 		for condition in level["conditions"]:
-			evidence.append("%s %s" % [LEVEL_NAMES[i], conditions.describe(condition, context)])
+			# Una clausola che offre una scelta porta con se' le sue strade
+			# (D-167): la prova dice quante ne servivano e quali sono cadute.
+			for line in conditions.describe_all(condition, context):
+				evidence.append("%s %s" % [LEVEL_NAMES[i], str(line)])
 			if not conditions.holds(condition, context):
 				unmet.append((condition as Dictionary).duplicate(true))
+				# E se quello che manca e' una scelta, mancano **delle strade**: il
+				# conto aperto e' quello, non «tre di queste cinque». Senza,
+				# spostare meta' delle clausole dentro le scelte avrebbe tolto un
+				# livello di dettaglio proprio ai conti che l'era dopo eredita
+				# (D-087) — la meta' strutturata delle evidence.
+				for road in conditions.open_roads(condition, context):
+					unmet.append(road)
 		# A higher level only counts while every lower one still holds.
 		cumulative = cumulative and holds
 		if cumulative:

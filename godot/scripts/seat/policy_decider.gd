@@ -42,7 +42,35 @@ func _conditions(entity_id: String, session: RefCounted) -> Array:
 		return []
 	var out: Array = []
 	for level in ["minimum", "victory", "triumph"]:
-		out.append_array(destiny[level]["conditions"])
+		out.append_array(_flat(destiny[level]["conditions"]))
+	return out
+
+
+## Le clausole annidate, portate in superficie **per la sola lettura degli
+## obiettivi**.
+##
+## Un seggio legge il proprio Destino per sapere cosa vuole: quali Tensioni
+## tenere su, quali giu', quali segni gli servono. Quella lettura guarda il tipo
+## della clausola — `tension_limit`, `state_tag_present` — e una clausola dentro
+## una scelta ha per tipo `some_of`, quindi non la vede nessuno.
+##
+## E' esattamente il buco di D-066, che aveva trovato **l'80% dei seggi a
+## valutare una proposta zero**: non indifferenza scritta, indifferenza del
+## codice. D-167 ha spostato meta' delle clausole dentro le scelte dei Trionfi e
+## l'avrebbe riaperto in silenzio, se la suite non avesse tenuto due test su
+## quella lettura.
+##
+## Attenzione a dove **non** si appiattisce: se un livello e' soddisfatto lo
+## decide `all_hold` sulla lista vera, perche' «tre di queste cinque» e' vero
+## anche quando due sono false, e appiattito diventerebbe una AND.
+func _flat(conditions: Array) -> Array:
+	var out: Array = []
+	for condition in conditions:
+		var kind: String = str((condition as Dictionary).get("type", ""))
+		if kind == "some_of" or kind == "any_of":
+			out.append_array(_flat((condition as Dictionary)["conditions"]))
+		else:
+			out.append(condition)
 	return out
 
 
@@ -67,8 +95,9 @@ func _open_levels(entity_id: String, session: RefCounted) -> Array:
 	var out: Array = []
 	for level in ["minimum", "victory", "triumph"]:
 		var conditions: Array = destiny[level]["conditions"]
+		# Il livello si giudica sulla lista vera e si gioca su quella appiattita.
 		if not session.destinies.conditions.all_hold(conditions, {"self": entity_id}):
-			out.append(conditions)
+			out.append(_flat(conditions))
 	# Everything already holds: defend the whole ladder.
 	return [_conditions(entity_id, session)] if out.is_empty() else out
 
