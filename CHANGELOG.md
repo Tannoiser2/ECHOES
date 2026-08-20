@@ -5,6 +5,24 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.141 — Il pool si accende: venti Destini invece di otto (D-173)
+
+- **ISSUES 43 chiusa.** Le tre che restavano sono riscritte: i due Destini
+  condivisibili chiedevano al **Minimo** una cosa che si ottiene giocando — la
+  fama, il registro pulito — e lasciavano fuori dal gioco al primo colpo un
+  seggio su tre; `DST_ALDRIC_RECORD` chiedeva alla Vittoria due Regioni, mancate
+  all'88%.
+- **Il pool e' acceso**: `_deal_destiny` pesca dalla lista dell'Entita' quando la
+  Chronicle non ne dichiara una. **Venti Destini su venti** si giocano
+  all'apertura, contro otto.
+- **Zero seggi a NONE** (erano 4 su 800), nessuno a zero Trionfi, tavolo misto e
+  uniforme **0 su 8**, mediana dei Consigli **6**.
+- **Costo dichiarato: Consigli falliti da 206 a 246.** E' il numero piu' alto mai
+  misurato, e la causa non e' oscura — undici ambizioni in piu' al tavolo si
+  oppongono fra loro molto piu' spesso. Si spegne in una riga.
+- *Un Minimo non e' un obiettivo, e' una soglia di sopravvivenza* — e le carte
+  scritte per otto case diverse sono il posto dove sbagliarlo costa di piu'.
+
 ## 0.1.140 — Il bot smette di sbirciare (D-172)
 
 - **`world["voted_together"]`**: per ogni coppia, quante volte sono finiti sullo

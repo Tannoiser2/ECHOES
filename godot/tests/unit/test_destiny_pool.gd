@@ -9,21 +9,60 @@ const WorldStateFactory := preload("res://scripts/world/world_state_factory.gd")
 const RngService := preload("res://scripts/core/rng_service.gd")
 
 
-## Senza pool, ogni casa vuole quello che ha sempre voluto: una Chronicle che
-## non lo dichiara si comporta come prima di D-150.
-func test_without_a_pool_a_house_keeps_its_written_destiny() -> void:
+## Senza **nessun** pool — ne' sulla Chronicle ne' sull'Entita' — ogni casa vuole
+## quello che ha sempre voluto. Da D-173 la lista dell'Entita' e' la sorgente di
+## default, quindi per provare il caso «nessuna lista» bisogna toglierle tutte e
+## due: e' il caso di una casa scritta senza alternative, non piu' quello delle
+## quattro Chronicle vere.
+func test_without_any_pool_a_house_keeps_its_written_destiny() -> void:
 	var set: RefCounted = data()
 	var chronicle: Dictionary = (set.chronicles["CHR_01"] as Dictionary).duplicate(true)
 	chronicle.erase("destiny_pool")
+	var bare: Dictionary = {}
+	for entity_id in chronicle["entities"]:
+		var definition: Dictionary = (set.entities[str(entity_id)] as Dictionary).duplicate(true)
+		definition.erase("destiny_pool")
+		bare[str(entity_id)] = definition
+	for entity_id in set.entities:
+		if not bare.has(str(entity_id)):
+			bare[str(entity_id)] = set.entities[str(entity_id)]
+	var kept: Dictionary = set.entities
+	set.entities = bare
 	var world: Dictionary = WorldStateFactory.build(
 		chronicle, set, RngService.new(4242), chronicle["entities"]
 	)
+	set.entities = kept
 	for entity_id in chronicle["entities"]:
 		assert_eq(
 			str(world["entities"][str(entity_id)]["destiny_id"]),
 			str(set.entities[str(entity_id)]["destiny_id"]),
 			"%s insegue il Destino scritto sull'Entita'" % str(entity_id)
 		)
+
+
+## E **con** la lista sull'Entita' e nessuna sulla Chronicle, la casa pesca da
+## li': e' il difetto che ISSUES 43 aveva trovato — i pool erano scritti sulle
+## Entita', il codice li cercava solo sulle Chronicle, e undici Destini su venti
+## non venivano mai giocati all'apertura (D-173).
+func test_the_entity_list_is_the_default_pool() -> void:
+	var set: RefCounted = data()
+	var chronicle: Dictionary = (set.chronicles["CHR_01"] as Dictionary).duplicate(true)
+	chronicle.erase("destiny_pool")
+	var seen: Dictionary = {}
+	for seed_value in [11, 22, 33, 44, 55, 66, 77, 88]:
+		var world: Dictionary = WorldStateFactory.build(
+			chronicle, set, RngService.new(seed_value), chronicle["entities"]
+		)
+		var drawn: String = str(world["entities"]["ENT_ALDRIC"]["destiny_id"])
+		seen[drawn] = true
+		assert_true(
+			(set.entities["ENT_ALDRIC"]["destiny_pool"] as Array).has(drawn),
+			"e pesca dalla sua lista, non da quella di qualcun altro"
+		)
+	assert_true(
+		seen.size() > 1,
+		"su otto semi la casa non insegue sempre la stessa ambizione"
+	)
 
 
 ## Col pool, il Destino esce da quella lista — e da nessun'altra parte: non si

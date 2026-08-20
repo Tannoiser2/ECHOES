@@ -137,8 +137,8 @@
           },
           {
             "type": "some_of",
-            "min": 2,
-            "label": "E due segni che un registro aperto pesa uguale",
+            "min": 1,
+            "label": "E un segno che un registro aperto pesa uguale",
             "conditions": [
               {
                 "type": "state_tag_present",

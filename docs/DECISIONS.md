@@ -10,6 +10,84 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-173 — Il pool si accende: venti Destini invece di otto
+**implemented in 0.1.141** (ISSUES 43 chiusa)
+
+D-170 aveva acceso il pool per misurarlo e l'aveva rispento: supera il Minimo
+dal 62% al 50%, un seggio su dodici a NONE. Le sei riscritture di allora avevano
+portato a 53% e 7%, e la issue era rimasta aperta con dentro la lista di cosa
+mancava. Questa e' quella lista, fatta.
+
+### Le tre che restavano
+
+| Destino | il difetto | cosa e' diventato |
+|---|---|---|
+| `DST_SHARED_RENOWN` | il **Minimo** chiedeva la fama, che i suoi portatori hanno il 35-50% delle volte: 20 seggi su 41 non arrivavano al primo gradino | Minimo «la casa e' ancora al tavolo», la fama sale alla Vittoria |
+| `DST_SHARED_ACCOUNTS` | il **Minimo** chiedeva che nessuna proposta fosse caduta — una moneta lanciata | stesso Minimo, e la Vittoria e' la domanda chiusa |
+| `DST_ALDRIC_RECORD` | la Vittoria chiedeva **due Regioni**, mancate all'88% | spina «nessuna questione aperta» piu' un segno su quattro |
+
+**La lezione, ed e' la seconda volta che la incontro:** un Minimo non e' un
+obiettivo, e' una soglia di sopravvivenza. Le due carte condivisibili chiedevano
+al primo gradino una cosa che si ottiene giocando — la fama, il registro pulito
+— e un seggio che non ce la faceva restava fuori dal gioco al primo colpo. Le
+carte scritte per **otto case diverse** sono il posto dove questo errore costa
+di piu': una casa di casa sua puo' avere un Minimo esigente perche' e' scritto
+addosso a lei, una carta condivisibile no.
+
+### Cosa costa accendere
+
+| | pool spento (`main`) | **pool acceso** |
+|---|---|---|
+| Destini giocati all'apertura | 8 su 20 | **20 su 20** |
+| seggi a **NONE** | 4 su 800 | **0** |
+| Trionfi del tavolo | 86 | **82** |
+| seggi con zero Trionfi | 0 | 0 |
+| tavolo misto / uniforme | 0 su 8 | **0 su 8** |
+| mediana dei Consigli | 6 | **6** |
+| **Consigli falliti** | 206 | **246** |
+| Consigli decisivi | 187 | **144** |
+
+**Il costo dichiarato sono quaranta Consigli falliti in piu' su cento partite**,
+ed e' il numero piu' alto che questo progetto abbia mai misurato. La causa non e'
+oscura: **undici ambizioni in piu' al tavolo vogliono undici cose in piu'**, e le
+proposte si oppongono fra loro molto piu' spesso. Il tasso di successo passa dal
+64% al 56%.
+
+Non e' una tassa nascosta: e' quello che succede quando quattro case che
+inseguono sempre le stesse quattro cose diventano quattro case che potrebbero
+inseguirne venti. Tutte le guardie che il progetto si e' dato reggono — **0 su 8**
+su tutti e due i tavoli, mediana 6, nessun seggio a zero Trionfi, nessun seggio
+a NONE — e la varieta' e' l'intera ragione per cui D-150 aveva costruito il
+meccanismo: *«alla terza partita tutti sanno cosa vuole l'altro»*.
+
+**Si spegne in una riga**, se il committente decide che quaranta Consigli sono
+troppi: in `world_state_factory.gd`, `_deal_destiny`, togliere il ripiego sulla
+lista dell'Entita' e il pool torna a esistere solo se una Chronicle lo dichiara —
+cioe' mai.
+
+### Misure
+
+Playtest 100 semi, tavolo misto, per seggio (NONE/MIN/VIC/TRI su 50):
+
+| seggio | prima | dopo |
+|---|---|---|
+| Re Aldric | 1 · 26/18/5 | **0** · 29/16/5 |
+| Kessa dei Fuochi | 0 · 19/23/8 | 0 · 32/10/8 |
+| Le Citta' Libere | 1 · 10/27/12 | **0** · 19/14/**17** |
+| Lyra | 0 · 32/12/6 | 0 · **17/28**/5 |
+| Popolo Nahr | 1 · 23/10/16 | **0** · 15/16/**19** |
+| Maestra Ilve | 0 · 7/30/13 | 0 · 19/15/16 |
+| Vaerax | 0 · 24/16/10 | 0 · 27/17/6 |
+| Priore Anselmo | 1 · 6/27/16 | **0** · 20/24/6 |
+
+Sonda dei gradini su 80 Chronicle: **0 NONE**, TRIONFO **20%**, supera il Minimo
+**54%**. Suite **349 test / 6438 asserzioni** verde; sims deterministici;
+`dead_code.py` pulito su 155 file; schemi e manifest allineati.
+
+**ISSUES 43 chiusa.**
+
+---
+
 ## D-172 — Il bot smette di sbirciare e guarda come si e' votato
 **implemented in 0.1.140** (il debito che D-171 aveva dichiarato, pagato subito)
 

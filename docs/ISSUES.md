@@ -1378,43 +1378,28 @@ semi — e si sa quale delle tre cause pesa.
 
 ### 43. Undici Destini su venti non si giocano mai all'apertura
 
-`contenuto` · `motore` · `debito` · da [D-167](DECISIONS.md#d-167) · **misurata in** [D-170](DECISIONS.md#d-170)
+`contenuto` · `motore` · **chiusa in 0.1.141** · [D-167](DECISIONS.md#d-167) → [D-170](DECISIONS.md#d-170) → [D-173](DECISIONS.md#d-173)
 
-`_deal_destiny` pesca da **`chronicle["destiny_pool"]`**; i pool sono scritti
-sulle **Entita'**; nessuna delle quattro Chronicle ne dichiara uno. All'apertura
-ogni casa insegue sempre il proprio `destiny_id`, e su 240 seggi-partita si
-vedono **otto Destini su venti**. Gli altri undici — otto alternativi e i tre
-condivisibili della voce 20 — si vedono solo per successione, dentro una saga.
+`_deal_destiny` pescava da **`chronicle["destiny_pool"]`**; i pool erano scritti
+sulle **Entita'**; nessuna Chronicle ne dichiarava uno. Su 240 seggi-partita si
+vedevano **otto Destini su venti**, e i tre condivisibili della voce 20 non
+erano mai stati letti da nessuna sonda.
 
-**D-170 ha acceso il pool e misurato, e il numero e' chiaro:**
+**D-170** ha acceso il pool per misurarlo: supera il Minimo dal 62% al 50%, un
+seggio su dodici a NONE. Cinque clausole mancate al 100%, tre Destini con zero
+Trionfi, uno fermo 16 volte su 16 al Minimo, un condivisibile col Trionfo piu'
+facile della Vittoria. Sei riscritti, si arrivava a 53% e 7%.
 
-| | pool spento | pool acceso |
-|---|---|---|
-| supera il Minimo | **62%** | **50%** |
-| seggi a NONE | **0%** | **8%** |
+**D-173** ha fatto le tre che restavano — i due condivisibili chiedevano al
+**Minimo** una cosa che si ottiene giocando (la fama, il registro pulito), e
+Aldric chiedeva alla Vittoria due Regioni mancate all'88% — e il pool e'
+**acceso**: venti Destini su venti si giocano all'apertura, **zero seggi a
+NONE**, nessuno a zero Trionfi, tavolo misto e uniforme **0 su 8**, mediana 6.
 
-Un seggio su dodici finirebbe l'anno senza nemmeno il Minimo. Il meccanismo e'
-giusto; **il contenuto non e' pronto**, e non lo era perche' nessuna sonda
-l'aveva mai guardato: cinque clausole mancate al 100%, tre Destini con zero
-Trionfi, uno fermo 16 volte su 16 al Minimo, e un condivisibile col Trionfo piu'
-facile della Vittoria.
-
-**Sei sono state riscritte** (D-170, forma spina + scelta, strade misurate sul
-banco): i muri non ci sono piu' e col pool acceso si passa a **53% / 7%**.
-Meglio, e ancora lontano.
-
-**Cosa manca per chiuderla**, in ordine:
-
-1. **`DST_ALDRIC_RECORD`** — 15 su 17 al Minimo, mai toccato.
-2. **Le due condivisibili** — `DST_SHARED_RENOWN` e `DST_SHARED_ACCOUNTS`
-   mandano a NONE un seggio su tre anche riscritte. Sono le uniche carte del
-   gioco che devono funzionare su **otto case diverse**, ed e' un problema
-   diverso dal bilanciare un Destino di casa.
-3. **Rimisurare col pool acceso**, non sul banco: D-170 ha trovato che la sonda
-   delle clausole non predice un Destino che *cambia come quel seggio gioca*.
-
-**Fatto quando** col pool acceso la sonda dei gradini dice **0 NONE** e almeno
-**60% sopra il Minimo**, come oggi col pool spento.
+Costo dichiarato: **Consigli falliti da 206 a 246** su cento partite. Undici
+ambizioni in piu' al tavolo si oppongono fra loro molto piu' spesso, e il tasso
+di successo passa dal 64% al 56%. Si spegne in una riga (`_deal_destiny`, il
+ripiego sulla lista dell'Entita'), se quaranta Consigli sono troppi.
 
 ### 44. La scala di Lyra ha una porta sola, e aprirla costa gli anni tranquilli
 
