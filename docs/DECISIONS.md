@@ -10,6 +10,90 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-162 — Le opere, e la fine del segno che non ha un oggetto sotto
+**implemented in 0.1.129** (§8.6 passo 4 della [seduta sulla terra](SEDUTA_TERRA.md))
+
+D-161 aveva dato all'anno **una** cosa da costruire — la Veglia sulla Montagna —
+e aveva chiuso con una regola: *una clausola su uno strato si scrive dopo che
+quello strato ha un modo di cambiare durante l'anno*. Questo e' il passo che
+rende quel modo la norma invece dell'eccezione.
+
+**La terza famiglia: le opere.** Tre tipi, due gradi ciascuno.
+
+| tipo | I | II | quando cade |
+|---|---|---|---|
+| `STR_GRANARY` | Granaio (1) | **Il Grande Granaio** (2) | Il Granaio Vuoto |
+| `STR_CANAL` | Canale (1) | **La Grande Opera d'Acqua** (2) | L'Insabbiamento |
+| `STR_TOLLGATE` | Pedaggio (1) | **La Dogana** (2) | La Sbarra Rotta |
+
+**I due gradi portano lo stesso segno**, ed e' una scelta: una grande opera non
+e' un'opera diversa, e' la stessa **che pesa di piu'**. Cosi' le tre regole dei
+segni gia' scritte — il granaio che parla, il canale che porta grano, il
+pedaggio dove girano i denari — continuano a valere a tutti e due i gradi senza
+riscriverle, e la differenza sta dove deve stare: nel conto del controllo, 1
+contro 2. Dare al secondo grado una regola propria e' un passo dopo, non questo.
+
+**E la cosa piu' importante non e' il catalogo: e' che il segno non vive piu' da
+solo.** Fino a ieri sette carte posavano `structure:...` come un tag e basta. Un
+tag senza oggetto sotto e' una struttura che si vede sulla mappa, fa scattare le
+regole dei segni, e **non conta per nessuno** nella contesa del controllo: la
+mappa diceva una cosa e il conto ne diceva un'altra. Convertite tutte e sette:
+
+- **tre Conseguenze** — il Granaio del Trono, il Pedaggio Scritto, i Canali
+  Scavati — adesso alzano un'opera **del proponente**;
+- **un Asset**, il Pedaggio: la carta impegnata costruisce, e il padrone e'
+  **chi l'ha messa sul tavolo** (`$actor`, che il contesto degli `on_commit`
+  gia' offriva e nessuno usava);
+- **tre carte del Narratore**: la Stagione Scavata **costruisce**, Mancanza e
+  l'Insabbiamento **fanno cadere l'oggetto** invece di cancellare il segno — e
+  cosi' l'opera smette anche di contare per chi la teneva.
+
+Resta fuori solo `structure:sealed`, che e' una **chiusura** e non un edificio:
+murare una miniera non da' niente a nessuno, ed e' giusto che non abbia un
+padrone.
+
+**La misura, e il trend si e' girato.**
+
+| | D-160 | D-161 | ora |
+|---|---|---|---|
+| playtest, Consigli falliti | 204 | 204 | **201** |
+| tavolo misto, seggi bloccati | 0/8 | 0/8 | **0/8** |
+| caselle tenute a fine anno (su 180) | 143 | 143 | **150** |
+| passaggi di mano per contesa | 74 | 74 | **73** |
+
+I Consigli falliti erano 185 → 191 → 196 → 203 → 204, e adesso **201**: e' la
+prima volta che scendono da quando e' cominciata la strada C. Non e' una cura —
+sono tre punti — ma la direzione unica si e' interrotta, e la lettura di D-160
+regge: non era una tassa sistemica, erano le policy che votavano diverso, e
+adesso hanno piu' cose vere su cui votare.
+
+**I gradini, e la mappa piena:**
+
+| | prima della strada C | ora |
+|---|---|---|
+| supera il Minimo | 47% | **58%** |
+| caselle con un padrone | 56% | **84%** |
+| seggi con **due** Regioni | 12% | **32%** |
+| seggi a **zero** Regioni | 30% | **11%** |
+
+**Nel tempo lungo** (12 saghe da 8 anni): grado I **44**, grado II **13**, grado
+III **4**. Le regge erano zero quando c'era una sola scala, due con
+l'insediamento, quattro adesso. Nessuna e' scritta a mano: sono case che hanno
+vinto tre volte.
+
+Misure: suite **334 test / 5988 asserzioni** verde; `run_sims.sh` identico su
+due giri; `dead_code.py` pulito su 151 file; job «Dati e schemi» verde.
+
+**Adesso lo strato si muove dentro l'anno**, e le clausole di D-161 —
+`structure_count`, `scar_count`, `some_of` — hanno finalmente qualcosa da
+leggere. Scriverle e' il prossimo passo, con la regola di D-161: misurarle sui
+gradini **prima** di lasciarle.
+
+**Restano di §8**: i **luoghi del mondo** — foresta, fiume, sito antico, palude
+— col **passo che frana** per ultimo.
+
+---
+
 ## D-161 — Le clausole che leggono le pietre, e la lezione di D-151 ripresa da me
 **implemented in 0.1.128** (richiesta del committente sui Destini)
 

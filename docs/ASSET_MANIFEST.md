@@ -173,7 +173,7 @@ family, 22 copies per family deck, 132 cards in the box (D-040).
 | TEN_THIRST | I Pozzi Bassi | SURVIVAL | 1 | 5 | VEILED | 2 |
 | TEN_WATER | L'Acqua Ferma | SURVIVAL | 3 | 6 | OPEN | 1 |
 
-## Map overlays (29)
+## Map overlays (26)
 Ogni tag di Regione che il gioco puo mostrare sulla mappa. `domain:` marca il dominio di Tensione usato da INFLUENCE; `structure:`, `condition:` e `scar:` sono livelli grafici distinti (spec §19.5).
 
 | tag | layer |
@@ -201,9 +201,6 @@ Ogni tag di Regione che il gioco puo mostrare sulla mappa. `domain:` marca il do
 | `settlement:$proponent` | settlement |
 | `settlement:march` | settlement |
 | `settlement:market` | settlement |
-| `structure:canal` | structure |
-| `structure:granary` | structure |
 | `structure:sealed` | structure |
-| `structure:tollgate` | structure |
 | `trade` | base |
 | `wild` | base |

@@ -46,15 +46,15 @@
         {
           "kind": "EFFECT",
           "effect": {
-            "type": "REMOVE_REGION_TAG",
+            "type": "RAZE_STRUCTURE",
             "target": {
               "kind": "region",
               "id": "REG_VALLE_VERDE"
             },
             "payload": {
-              "tag": "structure:granary",
-              "optional": true
-            }
+              "structure_type": "STR_GRANARY"
+            },
+            "note": "D-162: l'opera cade come oggetto, non si cancella come segno — cosi' smette anche di contare per chi la teneva."
           }
         }
       ],

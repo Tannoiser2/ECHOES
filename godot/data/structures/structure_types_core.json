@@ -79,6 +79,102 @@
         "scar": "scar:emptied",
         "description": "Le case restano in piedi per un po', e poi anche quelle no. Resta il nome sulla carta, e nessuno che lo dica ad alta voce."
       }
+    },
+    {
+      "id": "STR_GRANARY",
+      "name": "Granaio",
+      "family": "OPERA",
+      "owned": true,
+      "description": "Il posto dove si mette da parte. Non produce niente: decide chi mangia a marzo.",
+      "biomes": [
+        "CITY",
+        "VALLEY",
+        "STEPPE",
+        "ROAD"
+      ],
+      "grades": [
+        {
+          "name": "Granaio",
+          "value": 1,
+          "tag": "structure:granary",
+          "description": "Muri spessi e un registro all'ingresso."
+        },
+        {
+          "name": "Il Grande Granaio",
+          "value": 2,
+          "tag": "structure:granary",
+          "description": "Tre stagioni di scorta invece di una, e una fila che non finisce mai davanti alla porta."
+        }
+      ],
+      "ruin": {
+        "name": "Il Granaio Vuoto",
+        "scar": "scar:emptied",
+        "description": "Le porte restano aperte perche' non c'e' piu' niente da chiudere dentro."
+      }
+    },
+    {
+      "id": "STR_CANAL",
+      "name": "Canale",
+      "family": "OPERA",
+      "owned": true,
+      "description": "L'acqua portata dove non arrivava. E' la sola opera che cambia cosa cresce.",
+      "biomes": [
+        "VALLEY",
+        "STEPPE",
+        "CITY",
+        "ROAD"
+      ],
+      "grades": [
+        {
+          "name": "Canale",
+          "value": 1,
+          "tag": "structure:canal",
+          "description": "Un solco dritto dove il terreno non lo era."
+        },
+        {
+          "name": "La Grande Opera d'Acqua",
+          "value": 2,
+          "tag": "structure:canal",
+          "description": "Chiuse, paratie e un uomo pagato per aprirle: l'acqua smette di essere stagione e diventa decisione."
+        }
+      ],
+      "ruin": {
+        "name": "L'Insabbiamento",
+        "scar": "scar:broken_bridge",
+        "description": "Il solco c'e' ancora e non porta piu' niente. Ci cresce l'erba, che e' il modo in cui la terra dice di no."
+      }
+    },
+    {
+      "id": "STR_TOLLGATE",
+      "name": "Pedaggio",
+      "family": "OPERA",
+      "owned": true,
+      "description": "Una sbarra e un uomo che conta. Non ferma nessuno: fa pagare tutti.",
+      "biomes": [
+        "ROAD",
+        "CITY",
+        "VALLEY",
+        "STEPPE"
+      ],
+      "grades": [
+        {
+          "name": "Pedaggio",
+          "value": 1,
+          "tag": "structure:tollgate",
+          "description": "Una sbarra, un banco, e una tariffa scritta abbastanza in alto da non poterla discutere."
+        },
+        {
+          "name": "La Dogana",
+          "value": 2,
+          "tag": "structure:tollgate",
+          "description": "Non piu' una sbarra ma un edificio, con registri che durano piu' di chi li tiene."
+        }
+      ],
+      "ruin": {
+        "name": "La Sbarra Rotta",
+        "scar": "scar:plundered",
+        "description": "Il legno e' a terra e nessuno lo ha rimesso su. Si passa gratis, e non e' una buona notizia per nessuno."
+      }
     }
   ]
 }

@@ -46,15 +46,15 @@
         {
           "kind": "EFFECT",
           "effect": {
-            "type": "REMOVE_REGION_TAG",
+            "type": "RAZE_STRUCTURE",
             "target": {
               "kind": "region",
               "id": "REG_VALLE_VERDE"
             },
             "payload": {
-              "tag": "structure:canal",
-              "optional": true
-            }
+              "structure_type": "STR_CANAL"
+            },
+            "note": "D-162: l'opera cade come oggetto, non si cancella come segno — cosi' smette anche di contare per chi la teneva."
           }
         }
       ],
@@ -530,14 +530,17 @@
         {
           "kind": "EFFECT",
           "effect": {
-            "type": "SET_REGION_TAG",
+            "type": "BUILD_STRUCTURE",
             "target": {
               "kind": "region",
               "id": "REG_VALLE_VERDE"
             },
             "payload": {
-              "tag": "structure:canal"
-            }
+              "structure_type": "STR_CANAL",
+              "grade": 1,
+              "owner": "$proponent"
+            },
+            "note": "D-162: chi cala la carta scava il canale, e il canale e' suo."
           }
         },
         {

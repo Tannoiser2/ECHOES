@@ -9,14 +9,17 @@
       "description": "Il grano della Valle passa dalle mani del trono prima di arrivare a una tavola. Chi lo distribuisce decide chi mangia.",
       "effects": [
         {
-          "type": "SET_REGION_TAG",
+          "type": "BUILD_STRUCTURE",
           "target": {
             "kind": "region",
             "id": "$region_with:granary"
           },
           "payload": {
-            "tag": "structure:granary"
-          }
+            "structure_type": "STR_GRANARY",
+            "grade": 1,
+            "owner": "$proponent"
+          },
+          "note": "L'opera come oggetto (D-162): ha un padrone, entra nel conto del controllo, puo' diventare una grande opera e puo' cadere."
         },
         {
           "type": "ADJUST_TENSION",
@@ -810,14 +813,17 @@
           }
         },
         {
-          "type": "SET_REGION_TAG",
+          "type": "BUILD_STRUCTURE",
           "target": {
             "kind": "region",
             "id": "$region_with:trade"
           },
           "payload": {
-            "tag": "structure:tollgate"
-          }
+            "structure_type": "STR_TOLLGATE",
+            "grade": 1,
+            "owner": "$proponent"
+          },
+          "note": "L'opera come oggetto (D-162): ha un padrone, entra nel conto del controllo, puo' diventare una grande opera e puo' cadere."
         },
         {
           "type": "ADJUST_TENSION",

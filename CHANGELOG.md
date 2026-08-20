@@ -5,6 +5,54 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.129] — Le opere, e il segno che adesso ha un oggetto sotto
+
+Passo 4 del catalogo ([D-162](docs/DECISIONS.md#d-162)).
+
+### Added
+
+- **Tre opere**, due gradi ciascuna: `STR_GRANARY` (Granaio → **Il Grande
+  Granaio**), `STR_CANAL` (Canale → **La Grande Opera d'Acqua**), `STR_TOLLGATE`
+  (Pedaggio → **La Dogana**).
+- **I due gradi portano lo stesso segno**: una grande opera non e' un'opera
+  diversa, e' la stessa **che pesa di piu'**. Le tre regole dei segni gia'
+  scritte valgono a tutti e due i gradi senza riscriverle; la differenza sta nel
+  conto del controllo, 1 contro 2.
+
+### Fixed
+
+- **Sette carte posavano un segno senza oggetto sotto.** Un tag senza struttura
+  si vede sulla mappa, fa scattare le regole, e **non conta per nessuno** nella
+  contesa: la mappa diceva una cosa e il conto un'altra. Convertite tutte e
+  sette — tre Conseguenze, un Asset (padrone: **chi ha messo la carta sul
+  tavolo**), tre carte del Narratore, di cui due adesso **fanno cadere
+  l'oggetto** invece di cancellare il segno.
+- Resta fuori solo `structure:sealed`, che e' una **chiusura**: murare una
+  miniera non da' niente a nessuno.
+
+### Measured
+
+| | D-161 | ora |
+|---|---|---|
+| Consigli falliti | 204 | **201** |
+| tavolo misto | 0/8 | **0/8** |
+| caselle tenute a fine anno (su 180) | 143 | **150** |
+
+I Consigli falliti erano 185 → 191 → 196 → 203 → 204: **e' la prima volta che
+scendono** da quando e' cominciata la strada C. La lettura di D-160 regge — non
+era una tassa, erano le policy, e adesso hanno piu' cose vere su cui votare.
+
+Gradini: supera il Minimo **58%** (era 47%), caselle con un padrone **84%** (era
+56%), seggi con due Regioni **32%** (era 12%), a zero **11%** (era 30%).
+
+Nel tempo lungo (12 saghe da 8 anni): grado I **44**, grado II **13**, grado III
+**4**. Le regge erano **zero** con una sola scala, due con l'insediamento,
+quattro adesso — e nessuna e' scritta a mano.
+
+Suite **334 test / 5988 asserzioni** verde, sims deterministiche.
+
+---
+
 ## [0.1.128] — Le clausole che leggono le pietre
 
 Richiesta del committente sui Destini ([D-161](docs/DECISIONS.md#d-161)). Meta'
