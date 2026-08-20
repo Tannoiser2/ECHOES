@@ -129,12 +129,6 @@
         "label": "E vale lo stesso",
         "conditions": [
           {
-            "type": "state_tag_present",
-            "scope": "GLOBAL",
-            "tag": "water_moves",
-            "label": "L'acqua torna a muoversi, e i lavori li ha pagati lei"
-          },
-          {
             "type": "region_presence",
             "entity_id": "ENT_SALE",
             "region_id": "REG_STRADA_MERCANTI",
@@ -142,11 +136,37 @@
             "label": "Presenza sulla Strada dei Mercanti"
           },
           {
-            "type": "state_tag_present",
-            "scope": "ENTITY",
-            "entity_id": "ENT_SALE",
-            "tag": "discovery:legend",
-            "label": "E la vecchia pagina è stata riletta e trascritta nel registro"
+            "type": "some_of",
+            "min": 2,
+            "label": "E due segni che un registro aperto pesa uguale",
+            "conditions": [
+              {
+                "type": "state_tag_present",
+                "scope": "GLOBAL",
+                "tag": "water_moves",
+                "label": "L'acqua torna a muoversi, e i lavori li ha pagati lei"
+              },
+              {
+                "type": "structure_count",
+                "entity_id": "ENT_SALE",
+                "grade": 2,
+                "min": 1,
+                "label": "E c'è una sbarra che porta il suo nome"
+              },
+              {
+                "type": "scar_count",
+                "region_id": "REG_STRADA_MERCANTI",
+                "max": 0,
+                "label": "La Strada dei Mercanti è uscita pulita"
+              },
+              {
+                "type": "structure_count",
+                "entity_id": "ENT_SALE",
+                "structure_family": "OPERA",
+                "min": 1,
+                "label": "Un'opera che la Gilda ha pagato e tiene"
+              }
+            ]
           }
         ]
       }
@@ -429,11 +449,11 @@
         "label": "E hanno visto cosa c'è sotto",
         "conditions": [
           {
-            "type": "state_tag_present",
-            "scope": "ENTITY",
+            "type": "region_presence",
             "entity_id": "ENT_CENERE",
-            "tag": "discovery:relic",
-            "label": "Hanno visto la reliquia con i propri occhi"
+            "region_id": "REG_MINIERE_ANTICHE",
+            "min": 1,
+            "label": "Qualcuno di loro è sceso"
           },
           {
             "type": "state_tag_absent",
@@ -441,6 +461,27 @@
             "region_id": "REG_MINIERE_ANTICHE",
             "tag": "structure:sealed",
             "label": "E le gallerie non sono state murate"
+          },
+          {
+            "type": "some_of",
+            "min": 1,
+            "label": "E un segno di cosa hanno trovato",
+            "conditions": [
+              {
+                "type": "state_tag_present",
+                "scope": "ENTITY",
+                "entity_id": "ENT_CENERE",
+                "tag": "discovery:relic",
+                "label": "Hanno visto la reliquia con i propri occhi"
+              },
+              {
+                "type": "region_presence",
+                "entity_id": "ENT_CENERE",
+                "region_id": "REG_MINIERE_ANTICHE",
+                "min": 2,
+                "label": "O sono scesi in due, e non hanno solo guardato"
+              }
+            ]
           }
         ]
       },
@@ -448,16 +489,48 @@
         "label": "E non devono più niente a nessuno",
         "conditions": [
           {
-            "type": "promise_broken",
-            "entity_id": "ENT_CENERE",
-            "other_entity_id": "ENT_SALE",
-            "label": "Il patto con la Gilda è saltato"
-          },
-          {
-            "type": "control_count",
-            "entity_id": "ENT_CENERE",
-            "min": 2,
-            "label": "Controllo di almeno 2 Regioni"
+            "type": "some_of",
+            "min": 3,
+            "label": "Tre segni che quello che hanno trovato è loro",
+            "conditions": [
+              {
+                "type": "state_tag_present",
+                "scope": "ENTITY",
+                "entity_id": "ENT_CENERE",
+                "tag": "discovery:relic",
+                "label": "Hanno visto la reliquia con i propri occhi"
+              },
+              {
+                "type": "promise_broken",
+                "entity_id": "ENT_CENERE",
+                "other_entity_id": "ENT_SALE",
+                "label": "Il patto con la Gilda è saltato"
+              },
+              {
+                "type": "structure_count",
+                "entity_id": "ENT_CENERE",
+                "grade": 2,
+                "min": 1,
+                "label": "E sulla montagna c'è qualcosa di murato che è loro"
+              },
+              {
+                "type": "scar_count",
+                "max": 2,
+                "label": "L'anno non ha lasciato più di due segni sul mondo"
+              },
+              {
+                "type": "scar_count",
+                "region_id": "REG_MINIERE_ANTICHE",
+                "max": 0,
+                "label": "Le gallerie sono uscite dall'anno senza un segno"
+              },
+              {
+                "type": "scar_count",
+                "region_id": "REG_MONTAGNE_ROSSE",
+                "max": 0,
+                "label": "E la montagna anche"
+              }
+            ]
           }
         ]
       }
@@ -603,10 +676,35 @@
             "label": "L'acqua non è stata messa a prezzo"
           },
           {
-            "type": "control_count",
-            "entity_id": "ENT_LIBERE",
-            "min": 1,
-            "label": "Almeno una Regione controllata"
+            "type": "some_of",
+            "min": 2,
+            "label": "E due segni che l'hanno tenuta aperta per tutti",
+            "conditions": [
+              {
+                "type": "control_count",
+                "entity_id": "ENT_LIBERE",
+                "min": 2,
+                "label": "Due Regioni rispondono a loro"
+              },
+              {
+                "type": "structure_count",
+                "entity_id": "ENT_LIBERE",
+                "structure_family": "OPERA",
+                "min": 1,
+                "label": "Un canale che le città mantengono"
+              },
+              {
+                "type": "scar_count",
+                "region_id": "REG_VALLE_VERDE",
+                "max": 0,
+                "label": "La Valle Verde è uscita pulita"
+              },
+              {
+                "type": "scar_count",
+                "max": 2,
+                "label": "L'anno non ha lasciato più di due segni sul mondo"
+              }
+            ]
           }
         ]
       }

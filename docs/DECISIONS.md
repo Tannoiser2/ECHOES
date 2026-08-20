@@ -10,6 +10,85 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-170 — Gli undici Destini mai giocati, guardati per la prima volta
+**implemented in 0.1.138** (ISSUES 43 misurata, e **il pool resta spento**)
+
+ISSUES 43 diceva: `_deal_destiny` pesca da `chronicle["destiny_pool"]`, i pool
+sono scritti sulle Entita', nessuna Chronicle ne dichiara uno, quindi **undici
+Destini su venti non si giocano mai all'apertura**. E diceva anche che accenderli
+alla cieca costa una misura vera. Questa e' la misura.
+
+### Accendere il pool oggi peggiora il gioco
+
+Fatto pescare dalla lista dell'Entita' quando la Chronicle non ne dichiara una —
+tre righe — e misurato su 80 Chronicle:
+
+| | pool spento | pool acceso |
+|---|---|---|
+| supera il Minimo | **62%** | **50%** |
+| seggi a NONE | **0%** | **8%** |
+| TRIONFO | 20% | 18% |
+
+**Un seggio su dodici finisce l'anno senza nemmeno il Minimo**, cosa che oggi non
+succede mai. Il meccanismo e' giusto e la misura dice che il contenuto non e'
+pronto: gli undici non sono mai stati bilanciati, perche' nessuna sonda li aveva
+mai visti.
+
+### Cinque muri al 100%, e tre Destini fermi
+
+| Destino | com'era |
+|---|---|
+| `DST_CENERE_DEEP` | **16 su 16 al Minimo**, zero Vittorie: tre clausole mancate al 100% — la reliquia, il patto saltato, due Regioni |
+| `DST_NAHR_ROOTED` | 12 su 12 alla Vittoria, **zero Trionfi**: `discovery:legend`, mai guadagnato |
+| `DST_SALE_OPEN` | 10 su 13 al Minimo, **zero Trionfi**: lo stesso tag |
+| `DST_SHARED_RENOWN` | **20 NONE su 41**: il Minimo chiedeva la fama, che i suoi tre portatori hanno il 35-50% delle volte |
+| `DST_SHARED_ACCOUNTS` | 7 NONE su 23, e un **Trionfo piu' facile della Vittoria** — un gradino che non e' un gradino |
+| `DST_LIBERE_WATER` | Trionfo al **75%** |
+
+Le sei sono state riscritte nella forma di D-167 — spina piu' scelta — con le
+strade misurate prima sul banco della sonda (quaranta candidate, due giri). I
+muri non ci sono piu': `CENERE_DEEP` passa da 16/0/0 a **10/1/4**, `NAHR_ROOTED`
+da 12 Vittorie e zero Trionfi a **2/3/7**, `SALE_OPEN` da zero Trionfi a 7/5/1.
+
+**E non basta.** Col pool acceso e le sei riscritte: supera il Minimo **53%**,
+NONE **7%**. Meglio di 50/8, lontano da 62/0. Restano fuori banda
+`DST_ALDRIC_RECORD` (15 su 17 al Minimo) e le due condivisibili, che continuano
+a mandare a NONE un seggio su tre.
+
+**Quindi il pool resta spento**, le sei riscritture restano — un Destino senza
+muri e' meglio di uno con tre, anche mentre nessuno lo pesca — e ISSUES 43 resta
+aperta con dentro il numero che le mancava.
+
+### Il limite della sonda delle clausole, trovato usandola
+
+La sonda di D-167 misura **quanto e' vera una clausola a fine anno**, e lo fa
+mentre ogni seggio gioca il **proprio** Destino. Per una clausola scritta in un
+Destino che il seggio gia' insegue, e' la misura giusta. Per una scritta in un
+Destino che il seggio **non** insegue, no: cambiare Destino cambia cosa quel
+seggio propone, e quindi cambia il numero.
+
+Si vede in chiaro su `DST_SHARED_RENOWN`. Il banco diceva «una Regione
+controllata» al 100% per Aldric, 100% per le Citta', 80% per il Vetro — quindi
+un Minimo sicuro. Coi seggi che la giurano davvero: **13 NONE su 41**.
+
+Non e' un difetto della sonda, e' il suo perimetro, e adesso e' scritto sul
+manico: *la sonda dice cosa e' vero nel mondo che c'e'; un Destino nuovo fa un
+mondo diverso.* Un Destino che cambia come una casa gioca si misura solo
+giocandolo.
+
+### Misure
+
+Col pool spento — cioe' la configurazione che resta — **tutto invariato**:
+playtest FAIL 203 · SUCC 77 · SUCC 109 · DECI 187, mediana 6, tavolo misto **0
+su 8**, uniforme **0 su 8**, sonda dei gradini 62% sopra il Minimo e 0 NONE.
+Le sei riscritture costano **zero** perche' nessuno le pesca, ed e' esattamente
+il punto di ISSUES 43.
+
+Suite **343 test / 6548 asserzioni** verde; sims deterministici; `dead_code.py`
+pulito su 154 file.
+
+---
+
 ## D-169 — Lyra apre, e la banda dei Consigli si sposta con una ragione
 **implemented in 0.1.137** (decisione del committente su ISSUES 44: «apri Lyra, la banda si puo' rivedere dopo»)
 

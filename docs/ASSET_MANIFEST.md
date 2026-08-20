@@ -150,7 +150,7 @@ family, 22 copies per family deck, 132 cards in the box (D-040).
 | DST_SALE_OPEN | Il Registro Aperto | ENT_SALE | La Gilda esiste ancora | E il registro si può leggere | E vale lo stesso |
 | DST_SHARED_ACCOUNTS | I Conti Chiusi | $self | Il proprio registro è pulito | Una firma che vale, e nessuna domanda aperta | Un mondo che non deve niente a nessuno |
 | DST_SHARED_LAND | La Terra che Risponde | $self | Un posto che risponde | Due terre, una voce | La mappa parla la tua lingua |
-| DST_SHARED_RENOWN | Il Nome che Pesa | $self | Il nome è conosciuto | Il nome ha una casa | Un nome che nessuno ha visto fallire |
+| DST_SHARED_RENOWN | Il Nome che Pesa | $self | Il nome ha una casa | Il nome è conosciuto | Un nome che nessuno ha visto fallire |
 | DST_VAERAX | Cio che Dorme Resti Addormentato | ENT_VAERAX | La montagna è ancora sua | Le gallerie sono chiuse, e il Cristallo non è uscito | E nessuno ci arriva più |
 | DST_VAERAX_LEGEND | La Storia che si Racconta | ENT_VAERAX | La storia si racconta ancora | La montagna tiene lontani gli uomini | Nessuno ricorda com'era davvero |
 | DST_VAERAX_WATCHED | Il Sonno Sorvegliato | ENT_VAERAX | La montagna è ancora sua | Nessuno scava più | Guardato da qualcuno che non lo vuole |

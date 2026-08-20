@@ -473,17 +473,38 @@
         "label": "La terra risponde a chi la lavora",
         "conditions": [
           {
-            "type": "control_count",
-            "entity_id": "ENT_NAHR",
-            "min": 1,
-            "label": "Almeno una Regione controllata"
-          },
-          {
             "type": "region_presence",
             "entity_id": "ENT_NAHR",
             "region_id": "REG_VALLE_VERDE",
             "min": 1,
             "label": "Presenza nella Valle Verde"
+          },
+          {
+            "type": "some_of",
+            "min": 1,
+            "label": "E un segno che non sono di passaggio",
+            "conditions": [
+              {
+                "type": "control_count",
+                "entity_id": "ENT_NAHR",
+                "min": 2,
+                "label": "Due Regioni rispondono a loro"
+              },
+              {
+                "type": "structure_count",
+                "entity_id": "ENT_NAHR",
+                "min": 3,
+                "label": "Tre cose che restano"
+              },
+              {
+                "type": "structure_count",
+                "entity_id": "ENT_NAHR",
+                "structure_family": "INSEDIAMENTO",
+                "grade": 2,
+                "min": 1,
+                "label": "Il villaggio è diventato un borgo"
+              }
+            ]
           }
         ]
       },
@@ -491,30 +512,50 @@
         "label": "Radicati senza aver chiuso la porta a nessuno",
         "conditions": [
           {
-            "type": "state_tag_present",
-            "scope": "GLOBAL",
-            "tag": "nahr_settled",
-            "label": "L'insediamento è riconosciuto"
-          },
-          {
-            "type": "state_tag_absent",
-            "scope": "REGION",
-            "region_id": "REG_TERRE_NAHR",
-            "tag": "condition:emptied",
-            "label": "Le Terre Nahr non si sono svuotate"
-          },
-          {
             "type": "state_tag_absent",
             "scope": "GLOBAL",
             "tag": "valley_sealed",
             "label": "La Valle non è stata chiusa"
           },
           {
-            "type": "state_tag_present",
-            "scope": "ENTITY",
-            "entity_id": "ENT_NAHR",
-            "tag": "discovery:legend",
-            "label": "E la storia del popolo è stata messa per iscritto, com'è' raccontata"
+            "type": "some_of",
+            "min": 2,
+            "label": "E due segni che la terra li ha accettati",
+            "conditions": [
+              {
+                "type": "state_tag_present",
+                "scope": "GLOBAL",
+                "tag": "nahr_settled",
+                "label": "L'insediamento è riconosciuto"
+              },
+              {
+                "type": "state_tag_absent",
+                "scope": "REGION",
+                "region_id": "REG_TERRE_NAHR",
+                "tag": "condition:emptied",
+                "label": "Le Terre Nahr non si sono svuotate"
+              },
+              {
+                "type": "structure_count",
+                "entity_id": "ENT_NAHR",
+                "min": 3,
+                "label": "Tre cose che restano"
+              },
+              {
+                "type": "scar_count",
+                "region_id": "REG_VALLE_VERDE",
+                "max": 0,
+                "label": "La Valle Verde è uscita pulita"
+              },
+              {
+                "type": "structure_count",
+                "entity_id": "ENT_NAHR",
+                "structure_family": "INSEDIAMENTO",
+                "grade": 2,
+                "min": 1,
+                "label": "Il villaggio è diventato un borgo"
+              }
+            ]
           }
         ]
       },

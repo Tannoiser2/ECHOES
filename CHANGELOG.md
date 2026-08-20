@@ -5,6 +5,26 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.138 — Gli undici Destini mai giocati (D-170)
+
+- **ISSUES 43 misurata**: acceso il pool, supera il Minimo scende da **62% a
+  50%** e un seggio su dodici finisce a **NONE** (oggi: mai). Il meccanismo e'
+  giusto, il contenuto no — gli undici non erano mai stati guardati da nessuna
+  sonda. **Il pool resta spento.**
+- **Sei Destini riscritti** nella forma spina + scelta, con le strade misurate
+  prima: `DST_CENERE_DEEP` (16 su 16 fermo al Minimo, tre clausole al 100%),
+  `DST_NAHR_ROOTED` e `DST_SALE_OPEN` (zero Trionfi, lo stesso tag mai
+  guadagnato), `DST_SHARED_RENOWN` (il Minimo chiedeva la fama), 
+  `DST_SHARED_ACCOUNTS` (Trionfo piu' facile della Vittoria), `DST_LIBERE_WATER`
+  (Trionfo al 75%). Col pool acceso si passa a 53% / 7%: meglio, non abbastanza.
+- **Il perimetro della sonda delle clausole**, trovato usandola: misura cosa e'
+  vero **nel mondo che c'e'**, coi seggi che giocano il proprio Destino. Un
+  Destino nuovo fa un mondo diverso — «una Regione controllata» dava 80-100% sul
+  banco e 13 NONE su 41 ai seggi che la giuravano davvero.
+- Col pool spento **tutto invariato**: playtest FAIL 203, mediana 6, misto 0 su
+  8, gradini 62% e 0 NONE. Le riscritture costano zero perche' nessuno le pesca,
+  ed e' esattamente il punto della issue.
+
 ## 0.1.137 — Lyra apre (D-169)
 
 - **La Vittoria di Lyra non e' piu' una porta sola**: spina (presenza nelle

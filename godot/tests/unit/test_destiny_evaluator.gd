@@ -258,17 +258,21 @@ func test_discovery_count_drives_lyra() -> void:
 ## e le clausole si risolvono su chi lo giura. La stessa carta, giurata da due
 ## seggi diversi, legge due mondi diversi.
 func test_shared_destiny_resolves_on_the_holder() -> void:
+	# Da D-170 il Minimo di questa carta e' una Regione, non la fama: chiedere la
+	# fama per esistere lasciava a NONE un terzo dei seggi che la giuravano, e un
+	# Minimo e' una soglia di sopravvivenza. La fama e' salita alla Vittoria.
 	var result: Dictionary = session.destinies.evaluate("DST_SHARED_RENOWN", "ENT_ALDRIC")
 	assert_eq(str(result["entity_id"]), "ENT_ALDRIC", "la carta appartiene a chi la giura")
-	assert_false(bool(result["levels"]["MINIMUM"]), "senza fama il Minimo non c'e'")
+	assert_true(bool(result["levels"]["MINIMUM"]), "una Regione: il Minimo tiene")
+	assert_false(bool(result["levels"]["VICTORY"]), "ma senza fama la Vittoria no")
 
 	_apply("SET_ENTITY_TAG", "entity", "ENT_ALDRIC", {"tag": "renowned"})
 	result = session.destinies.evaluate("DST_SHARED_RENOWN", "ENT_ALDRIC")
-	assert_true(bool(result["levels"]["MINIMUM"]), "la fama di Aldric apre il suo Minimo")
+	assert_true(bool(result["levels"]["VICTORY"]), "la fama di Aldric apre la sua Vittoria")
 	# La stessa carta in mano ai Nahr non legge Aldric: legge i Nahr.
 	var other: Dictionary = session.destinies.evaluate("DST_SHARED_RENOWN", "ENT_NAHR")
 	assert_eq(str(other["entity_id"]), "ENT_NAHR", "il risultato porta il nome del giurante")
-	assert_false(bool(other["levels"]["MINIMUM"]), "la fama di Aldric non e' fama dei Nahr")
+	assert_false(bool(other["levels"]["VICTORY"]), "la fama di Aldric non e' fama dei Nahr")
 	_apply("REMOVE_ENTITY_TAG", "entity", "ENT_ALDRIC", {"tag": "renowned"})
 
 
