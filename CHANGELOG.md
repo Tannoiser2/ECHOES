@@ -5,6 +5,55 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.124] — La terra si costruisce
+
+Primo passo della strada C ([D-157](docs/DECISIONS.md#d-157)): **una struttura
+smette di essere un tag e diventa un oggetto**. E' il livello su cui sta tutto
+il resto del catalogo.
+
+### Added
+
+- **`schema/structure_type.schema.json`**: il catalogo. Un tipo dichiara la
+  famiglia (PRESIDIO · INSEDIAMENTO · OPERA · LUOGO · CHIUSURA), se ha un
+  padrone, in quali biomi puo' stare, i **gradi** — ognuno con nome, **valore** e
+  il segno che posa — e come finisce in rovina.
+- **`world.regions[id].structures`**: una lista di `{structure_type, grade,
+  owner}`.
+- **Tre Effect nuovi**, coi loro inversi: `BUILD_STRUCTURE` ↔ `RAZE_STRUCTURE`,
+  e `SET_STRUCTURE_GRADE` che si inverte su se stesso col grado di prima.
+  L'enum chiuso passa da **22 a 25**.
+- **Le pietre attraversano gli anni**: l'eredita' le riporta com'erano — una
+  reggia resta una reggia — e il padrone segue `lapse_without_presence`: senza
+  nessuno dentro, restano di nessuno.
+- **Il catalogo parte col Presidio**: Torre di veglia (2) → Castello (3) →
+  Reggia (5), e la Rovina che lascia `scar:abandoned`.
+- **`tests/unit/test_structures.gd`**, otto test sul meccanismo.
+
+### Changed
+
+- **L'oggetto e' la verita', il tag e' derivato**: ogni grado dichiara il proprio
+  `structure:`, e alzarlo o abbatterlo posa e toglie quel segno. Le **cinque
+  regole dei segni** gia' scritte continuano a funzionare senza sapere che sotto
+  e' cambiato tutto.
+
+### Measured
+
+- **Nessun dato del gioco costruisce niente**, e il playtest e' **identico** a
+  0.1.122: **FAIL 191 · SUCC 69 · SUCC 116 · DECI 190**, tavolo misto **0 su 8**.
+  Un livello nuovo che non muove un numero e' un livello che non ha ancora
+  opinioni.
+- Suite **327 test / 5996 asserzioni** verde, `run_sims.sh` identico su due
+  giri, `dead_code.py` pulito su 150 file.
+
+### Fixed
+
+- Due difetti presi dalla suite e non a mano: una `x-echoes-kind` inventata
+  faceva **sparire lo schema dal registro di Godot** (288 test rossi in un
+  colpo), e il guardiano di D-003 ha rifiutato i tre Effect nuovi finche' non
+  hanno avuto il loro test di andata e ritorno.
+
+---
+
 ## [0.1.123] — Il catalogo delle strutture
 
 «Le strutture pero' come ti ho detto mi sembrano pochi e solo 5.» Contate bene

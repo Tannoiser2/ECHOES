@@ -10,6 +10,69 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-157 — La terra si costruisce: la struttura diventa un oggetto
+**implemented in 0.1.124** (§7.1 della [seduta sulla terra](SEDUTA_TERRA.md), strada C scelta dal committente)
+
+Il primo passo della strada C, e quello su cui sta tutto il resto: **una
+struttura smette di essere un tag e diventa un oggetto**.
+
+**Perche' un tag non basta.** `structure:granary` e' un booleano: c'e' o non
+c'e'. Le risposte del committente chiedono altre tre cose che un booleano non
+sa dire — **un grado** (torre → castello → reggia), **un padrone** (per la
+contesa del controllo), e **un valore** (il castello vale 3, l'esercito 4, e
+vince chi somma di piu'). Servono tutti e tre insieme, quindi serve un record.
+
+**Cosa c'e' adesso.**
+
+- `schema/structure_type.schema.json`: un **catalogo**. Un tipo dichiara la
+  famiglia (PRESIDIO · INSEDIAMENTO · OPERA · LUOGO · CHIUSURA), se ha un
+  padrone, in quali biomi puo' stare, i suoi **gradi** — ognuno con nome,
+  **valore** e il segno che posa — e come finisce in rovina.
+- `world.regions[id].structures`: una lista di `{structure_type, grade, owner}`.
+- Tre Effect nuovi, con i loro inversi: **`BUILD_STRUCTURE`** ↔
+  **`RAZE_STRUCTURE`**, e **`SET_STRUCTURE_GRADE`** che si inverte su se stesso
+  col grado di prima. L'enum chiuso passa da 22 a **25**.
+- **Le pietre attraversano gli anni**: l'eredita' le riporta *com'erano* — una
+  reggia resta una reggia — e il padrone segue la stessa regola del controllo
+  (`lapse_without_presence`): senza nessuno dentro, le pietre restano di
+  nessuno.
+
+**La scelta che tiene insieme il vecchio e il nuovo: l'oggetto e' la verita', il
+tag e' derivato.** Ogni grado dichiara il proprio `structure:`, e alzarlo o
+abbatterlo posa e toglie quel segno. Cosi' le **cinque regole dei segni** gia'
+scritte — il granaio parla, al pedaggio girano i denari, sotto la torre si pesca
+forza — continuano a funzionare senza sapere che sotto e' cambiato tutto. Non
+c'e' un momento in cui il gioco ha due verita'.
+
+**Il catalogo parte con una scala sola**, il **Presidio**: Torre di veglia (2) →
+Castello (3) → Reggia (5), e la Rovina che lascia `scar:abandoned`. Riusa la
+torre di veglia che esisteva gia' come tag, ed e' il caso piu' semplice della
+contesa a valori — che e' esattamente l'ordine dichiarato in SEDUTA_TERRA §8.6.
+
+**Nessun dato del gioco costruisce niente.** Nessuna carta, nessuna Conseguenza
+posa un presidio: il livello c'e', il contenuto no. E infatti il playtest e'
+**identico** a quello di 0.1.122 — **FAIL 191 · SUCC 69 · SUCC 116 · DECI 190**,
+tavolo misto **0 su 8**. E' il modo in cui questo passo si dichiara riuscito:
+un livello nuovo che non muove un solo numero e' un livello che non ha ancora
+opinioni.
+
+**Due difetti presi per strada, tutti e due dalla suite e non a mano.**
+`x-echoes-kind` accettava tre valori e io ne ho scritto un quarto: lo schema
+passava la validazione Python e **spariva dal registro di Godot**, che ha
+bocciato 288 test in un colpo. E il guardiano di D-003 — «ogni EffectType
+reversibile ha un test di andata e ritorno» — ha rifiutato i tre nuovi finche'
+non li ho scritti. Sono le due reti che questo repository si e' costruito
+apposta, e hanno funzionato.
+
+Misure: suite **327 test / 5996 asserzioni** verde (otto test nuovi); playtest
+invariato; `run_sims.sh` identico su due giri; `dead_code.py` pulito su 150
+file; il job «Dati e schemi» verde per intero.
+
+**Il prossimo passo e' §7.2**, la contesa del controllo — ed e' il primo che
+muovera' i numeri.
+
+---
+
 ## D-001 — Godot 4.7.1 confirmed, headless build used throughout
 **implemented**
 

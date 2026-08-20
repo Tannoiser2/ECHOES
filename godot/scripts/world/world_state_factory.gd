@@ -100,6 +100,9 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 			"id": region_id,
 			"control": control,
 			"tags": (definition["tags"] as Array).duplicate(),
+			# Cosa ci sta sopra (D-157): un tipo, un grado, e un padrone se e'
+			# opera di una casa. Vuoto finche' qualcuno non costruisce.
+			"structures": [],
 		}
 
 	for tension_id in resolve_tensions(chronicle, rng):
@@ -695,6 +698,31 @@ static func inheritance_effects(
 						Effect.make("SET_REGION_TAG", "region", str(region_id), {"tag": str(tag)}, source)
 					)
 					break
+
+		# Le pietre attraversano gli anni (D-157). Una struttura non e' un segno
+		# ma un oggetto — tipo, grado, padrone — e passa **com'era**: il
+		# castello resta un castello, e la reggia resta una reggia finche'
+		# qualcosa non la fa scendere. Il padrone segue la stessa regola del
+		# controllo (`lapse_without_presence`): senza nessuno dentro, la casa
+		# non la governa piu' e le pietre restano di nessuno.
+		for structure in before.get("structures", []):
+			var record: Dictionary = structure as Dictionary
+			var holder: Variant = record.get("owner", null)
+			if lapse and holder != null and not _had_presence(previous, str(holder), str(region_id)):
+				holder = null
+			effects.append(
+				Effect.make(
+					"BUILD_STRUCTURE",
+					"region",
+					str(region_id),
+					{
+						"structure_type": str(record["structure_type"]),
+						"grade": int(record["grade"]),
+						"owner": holder,
+					},
+					source
+				)
+			)
 
 	# What people felt about each other outlives them - but not undimmed. Across
 	# a long jump every relation moves one step towards NEUTRAL: a war is

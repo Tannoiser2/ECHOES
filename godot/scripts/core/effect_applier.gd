@@ -214,6 +214,12 @@ func _mutate(effect_type: String, target: Dictionary, payload: Dictionary) -> Va
 			return _remove_scar(payload)
 		"SET_ENTITY_ACTIVE":
 			return _set_entity_active(target, payload)
+		"BUILD_STRUCTURE":
+			return _build_structure(target, payload)
+		"RAZE_STRUCTURE":
+			return _raze_structure(target, payload)
+		"SET_STRUCTURE_GRADE":
+			return _set_structure_grade(target, payload)
 		"CREATE_ECHO":
 			world["echo_log"].append(payload.duplicate(true))
 			return {}
@@ -304,6 +310,107 @@ func _set_control(target: Dictionary, payload: Dictionary) -> Variant:
 	if str(before) == str(next) or (before == null and next == null):
 		return {"entity_id": before, "noop": true}
 	return {"entity_id": before}
+
+
+## La terra che si costruisce (D-157). Una struttura vive **dentro** una Regione:
+## il bersaglio resta la Regione, e il payload dice quale tipo, con che grado e
+## di chi e'. Una Regione ne porta al massimo una per tipo — un secondo castello
+## nello stesso posto non e' un castello piu' grande, e' un errore di chi scrive
+## i dati.
+##
+## Il segno `structure:` del grado si posa insieme all'oggetto, cosi' le regole
+## dei segni gia' scritte continuano a leggerlo: **l'oggetto e' la verita', il
+## tag e' derivato**.
+func _build_structure(target: Dictionary, payload: Dictionary) -> Variant:
+	var region: Variant = world["regions"].get(str(target.get("id", "")))
+	if region == null:
+		return _fail("unknown region '%s'" % target.get("id", ""))
+	var type_id: String = str(payload.get("structure_type", ""))
+	var definition: Variant = data.structure_types.get(type_id)
+	if definition == null:
+		return _fail("unknown structure type '%s'" % type_id)
+	if _structure_at(region, type_id) >= 0:
+		return {"noop": true}
+
+	var grade: int = clampi(
+		int(payload.get("grade", 1)), 1, (definition["grades"] as Array).size()
+	)
+	var owner: Variant = payload.get("owner", null)
+	if bool(definition["owned"]) and owner != null and not world["entities"].has(str(owner)):
+		return _fail("unknown entity '%s'" % owner)
+	if not bool(definition["owned"]):
+		owner = null
+
+	(region["structures"] as Array).append({
+		"structure_type": type_id, "grade": grade, "owner": owner,
+	})
+	_apply_grade_tag(region, definition, 0, grade)
+	return {"structure_type": type_id}
+
+
+func _raze_structure(target: Dictionary, payload: Dictionary) -> Variant:
+	var region: Variant = world["regions"].get(str(target.get("id", "")))
+	if region == null:
+		return _fail("unknown region '%s'" % target.get("id", ""))
+	var type_id: String = str(payload.get("structure_type", ""))
+	var index: int = _structure_at(region, type_id)
+	if index < 0:
+		return {"noop": true}
+	var gone: Dictionary = (region["structures"] as Array)[index]
+	var definition: Dictionary = data.structure_types[type_id]
+	_apply_grade_tag(region, definition, int(gone["grade"]), 0)
+	(region["structures"] as Array).remove_at(index)
+	# L'inverso di un abbattimento e' rialzarla **com'era**: grado e padrone
+	# vengono da quello che c'era, non dai valori di partenza.
+	return {
+		"structure_type": type_id, "grade": int(gone["grade"]), "owner": gone.get("owner", null),
+	}
+
+
+func _set_structure_grade(target: Dictionary, payload: Dictionary) -> Variant:
+	var region: Variant = world["regions"].get(str(target.get("id", "")))
+	if region == null:
+		return _fail("unknown region '%s'" % target.get("id", ""))
+	var type_id: String = str(payload.get("structure_type", ""))
+	var index: int = _structure_at(region, type_id)
+	if index < 0:
+		return _fail("no '%s' in region '%s'" % [type_id, target.get("id", "")])
+	var definition: Dictionary = data.structure_types[type_id]
+	var structure: Dictionary = (region["structures"] as Array)[index]
+	var before: int = int(structure["grade"])
+	var after: int = clampi(
+		int(payload.get("grade", before)), 1, (definition["grades"] as Array).size()
+	)
+	if after == before:
+		return {"structure_type": type_id, "grade": before, "noop": true}
+	structure["grade"] = after
+	_apply_grade_tag(region, definition, before, after)
+	return {"structure_type": type_id, "grade": before}
+
+
+## Dove sta quel tipo dentro la Regione, o -1.
+func _structure_at(region: Dictionary, type_id: String) -> int:
+	var structures: Array = region.get("structures", [])
+	for i in range(structures.size()):
+		if str((structures[i] as Dictionary)["structure_type"]) == type_id:
+			return i
+	return -1
+
+
+## Il segno del grado, tolto quello di prima. Grado 0 vuol dire «non c'e'».
+func _apply_grade_tag(
+	region: Dictionary, definition: Dictionary, before: int, after: int
+) -> void:
+	var grades: Array = definition["grades"]
+	var tags: Array = region["tags"]
+	if before > 0:
+		var old_tag: String = str((grades[before - 1] as Dictionary).get("tag", ""))
+		if old_tag != "":
+			tags.erase(old_tag)
+	if after > 0:
+		var new_tag: String = str((grades[after - 1] as Dictionary).get("tag", ""))
+		if new_tag != "" and not tags.has(new_tag):
+			tags.append(new_tag)
 
 
 func _set_relation(target: Dictionary, payload: Dictionary) -> Variant:

@@ -630,6 +630,9 @@ const DEFS := {
 					"SET_ENTITY_TAG",
 					"REMOVE_ENTITY_TAG",
 					"SET_ENTITY_ACTIVE",
+					"BUILD_STRUCTURE",
+					"RAZE_STRUCTURE",
+					"SET_STRUCTURE_GRADE",
 					"CREATE_ECHO",
 					"APPEND_TRUTH",
 				],
@@ -669,6 +672,9 @@ const DEFS := {
 					"SET_ENTITY_TAG",
 					"REMOVE_ENTITY_TAG",
 					"SET_ENTITY_ACTIVE",
+					"BUILD_STRUCTURE",
+					"RAZE_STRUCTURE",
+					"SET_STRUCTURE_GRADE",
 					"CREATE_ECHO",
 					"APPEND_TRUTH",
 				],
@@ -1008,6 +1014,67 @@ const DEFS := {
 				},
 			},
 			"expected": {
+				"type": "Dictionary",
+			},
+		},
+	},
+	"structure_type": {
+		"kind": "collection",
+		"required": [
+			"id",
+			"name",
+			"family",
+			"owned",
+			"grades",
+		],
+		"additional_properties": false,
+		"properties": {
+			"id": {
+				"type": "String",
+				"pattern": "^STR_[A-Z0-9_]+$",
+			},
+			"name": {
+				"type": "String",
+			},
+			"description": {
+				"type": "String",
+			},
+			"family": {
+				"type": "String",
+				"enum": [
+					"PRESIDIO",
+					"INSEDIAMENTO",
+					"OPERA",
+					"LUOGO",
+					"CHIUSURA",
+				],
+			},
+			"owned": {
+				"type": "bool",
+			},
+			"biomes": {
+				"type": "Array",
+				"element": {
+					"type": "String",
+					"enum": [
+						"CITY",
+						"VALLEY",
+						"STEPPE",
+						"MOUNTAIN",
+						"UNDERGROUND",
+						"ROAD",
+					],
+				},
+			},
+			"grades": {
+				"type": "Array",
+				"min_items": 1,
+				"max_items": 4,
+				"element": {
+					"type": "Dictionary",
+				},
+			},
+			"ruin": {
 				"type": "Dictionary",
 			},
 		},
@@ -1486,6 +1553,7 @@ const COLLECTION_SCHEMA_IDS := [
 	"entity",
 	"region",
 	"sim_plan",
+	"structure_type",
 	"tag_rule",
 	"tension",
 ]
@@ -1512,6 +1580,9 @@ const EFFECT_TYPES := [
 	"SET_ENTITY_TAG",
 	"REMOVE_ENTITY_TAG",
 	"SET_ENTITY_ACTIVE",
+	"BUILD_STRUCTURE",
+	"RAZE_STRUCTURE",
+	"SET_STRUCTURE_GRADE",
 	"CREATE_ECHO",
 	"APPEND_TRUTH",
 ]

@@ -1,0 +1,39 @@
+{
+  "schema_id": "structure_type",
+  "version": "0.2.0",
+  "items": [
+    {
+      "id": "STR_KEEP",
+      "name": "Presidio",
+      "family": "PRESIDIO",
+      "owned": true,
+      "description": "La forza che si vede da lontano. Comincia come una veglia e finisce come una corte: la stessa pietra, e ogni volta una promessa più grande.",
+      "biomes": ["CITY", "VALLEY", "STEPPE", "MOUNTAIN", "UNDERGROUND", "ROAD"],
+      "grades": [
+        {
+          "name": "Torre di veglia",
+          "value": 2,
+          "tag": "structure:watchtower",
+          "description": "Si vede chi arriva, e chi arriva sa di essere visto."
+        },
+        {
+          "name": "Castello",
+          "value": 3,
+          "tag": "structure:castle",
+          "description": "Non è più una veglia: è una porta, e la tiene qualcuno."
+        },
+        {
+          "name": "Reggia",
+          "value": 5,
+          "tag": "structure:palace",
+          "description": "Ci si viene a chiedere, non a guardare. Chi la tiene non deve più alzare la voce."
+        }
+      ],
+      "ruin": {
+        "name": "Rovina",
+        "scar": "scar:abandoned",
+        "description": "Le pietre restano, e restano di nessuno. Da lontano si vede lo stesso profilo, e non c'è più niente dentro."
+      }
+    }
+  ]
+}

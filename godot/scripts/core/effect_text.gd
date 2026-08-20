@@ -133,6 +133,19 @@ static func say(effect: Dictionary, data: RefCounted) -> String:
 			return "" if tag.begins_with(HIDDEN_TAG_PREFIX) else "Nel mondo: %s" % tag_words(tag)
 		"REMOVE_GLOBAL_TAG":
 			return "Nel mondo: %s" % tag_gone(str(payload.get("tag", "")))
+		"BUILD_STRUCTURE":
+			return "%s: %s" % [
+				_region(target, data),
+				_structure_words(payload, data, "vi sorge"),
+			]
+		"RAZE_STRUCTURE":
+			return "%s: %s va giu" % [
+				_region(target, data), _structure_words(payload, data, ""),
+			]
+		"SET_STRUCTURE_GRADE":
+			return "%s: %s" % [
+				_region(target, data), _structure_words(payload, data, "adesso e"),
+			]
 		"SET_ENTITY_TAG":
 			return "%s: %s" % [_name(target, data), tag_words(str(payload.get("tag", "")))]
 		"REMOVE_ENTITY_TAG":
@@ -208,6 +221,21 @@ static func _slot(value: String) -> String:
 	if SLOTS.has(value):
 		return str(SLOTS[value])
 	return "" if not value.begins_with("$") else value.substr(1).replace("_", " ")
+
+
+## Il nome del grado di una struttura, non il suo identificativo. Senza grado
+## nel payload (un abbattimento non lo porta) si dice il tipo.
+static func _structure_words(payload: Dictionary, data: RefCounted, verb: String) -> String:
+	var type_id: String = str(payload.get("structure_type", ""))
+	var definition: Variant = data.structure_types.get(type_id)
+	if definition == null:
+		return type_id if verb == "" else "%s %s" % [verb, type_id]
+	var grades: Array = definition["grades"]
+	var said: String = str(definition["name"]).to_lower()
+	if payload.has("grade"):
+		var grade: int = clampi(int(payload["grade"]), 1, grades.size())
+		said = str((grades[grade - 1] as Dictionary)["name"]).to_lower()
+	return said if verb == "" else "%s %s" % [verb, said]
 
 
 static func _tension(tension_id: String, data: RefCounted) -> String:

@@ -29,6 +29,9 @@
         "SET_ENTITY_TAG",
         "REMOVE_ENTITY_TAG",
         "SET_ENTITY_ACTIVE",
+        "BUILD_STRUCTURE",
+        "RAZE_STRUCTURE",
+        "SET_STRUCTURE_GRADE",
         "CREATE_ECHO",
         "APPEND_TRUTH"
       ]
