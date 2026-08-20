@@ -1308,73 +1308,73 @@ una misura viene respinta da **un solo seggio** e per **una sola partita**, la
 domanda giusta non e' «la regola e' sbagliata?» ma «quel seggio riesce ad
 assorbire qualcosa?».
 
-### 40. Il grado non si muove dentro l'anno: una clausola sulle pietre alte e' un muro fuori dalla saga
+### 40. Il grado non si muove dentro l'anno — **deciso: è materia di saga**
 
-`regola` · `da-misurare` · da [D-167](DECISIONS.md#d-167)
+`regola` · **decisa in 0.1.142** · [D-167](DECISIONS.md#d-167) → [D-174](DECISIONS.md#d-174)
 
-`_settle_structures` gira **dopo** la valutazione del Destino, ed e' giusto:
-[D-159](DECISIONS.md#d-159) vuole che sia l'esito a decidere se una reggia
-diventa rovina. La conseguenza pero' e' che in una Chronicle sola **il grado non
-sale quasi mai**: una pietra di grado 2 esiste solo se ereditata o alzata da una
-Conseguenza, e la sonda la trova nel **15% degli anni per Aldric e nello 0% per
-cinque case su otto**. Grado 3: **zero, sempre**.
+`_settle_structures` gira **dopo** la valutazione del Destino, quindi in una
+Chronicle sola il grado non sale quasi mai: grado 2 nel 15% degli anni per
+Aldric e nello 0% per cinque case su otto, grado 3 **mai**.
 
-Quindi «un castello» e «una reggia» sono clausole scrivibili **solo in una saga**
-— e nel gioco di una sera sono muri. Oggi nessun Destino le usa, e va bene cosi';
-la voce esiste perche' la prossima volta che verra' la tentazione di scriverle,
-questo numero sia gia' sul tavolo.
+La voce chiedeva di scegliere fra due strade. **Scelta la prima: il grado alto
+resta materia di saga.** La scala che segue il Destino ([D-159](DECISIONS.md#d-159))
+vale proprio perché una reggia non si compra in una sera — è il sedimento di tre
+anni buoni, e la [saga del Regno che si è seduto](SAGA_NAHR.md) lo mostra meglio
+di qualsiasi misura: villaggio 812, borgo 813, granaio 814, città 815, castello
+816, **reggia 818**.
 
-**Le due strade.** O si accetta che il grado sia materia di saga e si scrivono le
-clausole sul grado **solo nei Destini di una Chronicle successiva**; oppure si
-apre un secondo momento in cui una pietra puo' salire dentro l'anno — un'azione,
-o una Conseguenza che costruisce *sopra* invece che accanto — e allora si
-rimisura.
+**La regola che ne segue:** una clausola sul grado 2 o 3 si scrive **solo nei
+Destini di una Chronicle successiva**, mai in quelli d'apertura. Chi la scrive
+altrove sta scrivendo un muro.
 
-**Fatto quando** una delle due e' stata scelta a verbale, e nel secondo caso la
-sonda delle clausole mostra il grado 2 fra il 20% e il 50% per almeno tre case.
+### 41. Il sito antico, una volta aperto, veniva sempre saccheggiato
 
-### 41. Il sito antico, una volta aperto, viene sempre saccheggiato
+`contenuto` · **chiusa in 0.1.142** · [D-167](DECISIONS.md#d-167) → [D-174](DECISIONS.md#d-174)
 
-`contenuto` · `debito` · da [D-167](DECISIONS.md#d-167)
+Due righe della sonda con lo stesso numero — sito **aperto** 25%, sito
+**saccheggiato** 25%, gli stessi anni — volevano dire che il grado di mezzo non
+era uno stato ma un fotogramma fra due Consigli.
 
-Nella tabella della sonda delle clausole due righe hanno lo stesso numero, e non
-per caso:
+La colpevole non era nessuna delle due Conseguenze che ci si aspetta.
+`CNS_MINE_REOPENED` (grado 2) e `CNS_CRYSTAL_EXPLOITED` (grado 3) sono giuste, e
+che un anno che fa tutte e due finisca col sito svuotato è onesto. Era
+**`CNS_MINE_SEALED`**, che riportava il sito a **grado 1**: murare un sito
+saccheggiato lo rimandava a «dormiente», cioè cancellava il fatto che fosse mai
+stato aperto e svuotato. Un sigillo nasconde, non restituisce.
 
-| | |
-|---|---|
-| il sito antico e' stato **aperto** (grado ≥ 2) | 25% |
-| il sito antico e' stato **saccheggiato** (grado 3) | 25% |
+Adesso il sigillo porta il sito al **grado di mezzo** — aperto, e da oggi
+irraggiungibile:
 
-Gli stessi anni. **Non esiste un anno in cui il sito viene aperto e non viene
-svuotato**, il che vuol dire che «Sito aperto» — il grado di mezzo, quello che
-insegna — non e' uno stato in cui il mondo si ferma: e' un fotogramma fra due
-Consigli. Una clausola che chiede «aperto e ancora intero» sarebbe uno zero che
-nessuno ha scritto apposta.
+| | prima | dopo |
+|---|---|---|
+| il sito è stato aperto | 25% | **80%** |
+| il sito è stato saccheggiato | 25% | **60%** |
+| **aperto e ancora intero** | **0%** | **20%** |
 
-Non e' detto sia sbagliato — puo' essere il senso della cosa, che chi scende con
-le lampade risale con i carri. Ma non e' stato deciso: e' successo.
+Un anno su cinque il mondo si ferma sul gradino di mezzo, e «aperto e ancora
+intero» è diventata una clausola scrivibile.
 
-**Fatto quando** si e' guardato quali Conseguenze portano i due gradi e si e'
-deciso a verbale se il grado di mezzo debba poter durare un anno intero.
+### 42. La seconda saga sembrava più generosa della prima
 
-### 42. La seconda saga e' piu' generosa della prima
+`bilanciamento` · **chiusa in 0.1.142** · [D-167](DECISIONS.md#d-167) → [D-174](DECISIONS.md#d-174)
 
-`contenuto` · `da-misurare` · da [D-167](DECISIONS.md#d-167)
+CHR_03 portava **49 Trionfi contro i 30** di CHR_01. La voce elencava tre cause
+possibili e chiedeva di misurarle a parità di tavolo. Misurate tutte e tre, e
+**nessuna regge**:
 
-Dopo la riscrittura dei Trionfi, su 120 seggi-partita per saga: **CHR_01 porta 30
-Trionfi, CHR_03 ne porta 49**. La differenza c'era anche prima e col segno
-opposto (20 contro 1), quindi non e' nata qui — ma adesso che tutti i gradini
-sono raggiungibili si vede pulita.
+| ipotesi | misura | verdetto |
+|---|---|---|
+| i Destini della seconda saga chiedono meno | clausole mancate: CHR_01 **38%**, CHR_03 **41%** | falsa — sono più dure |
+| le sue Tensioni si muovono di più | Consigli per partita: CHR_01 **5,83**, CHR_03 **5,33** | falsa — ne ha meno |
+| ha una casa che parte senza Regioni | ne hanno una a testa (Lyra, il Vetro), e i seggi di CHR_01 finiscono con **più** terra: 1,28 contro 1,17 | falsa |
 
-**Non l'ho toccata di proposito.** Le cause possibili sono almeno tre e si
-confondono fra loro: i Destini della seconda saga chiedono meno; le sue Tensioni
-si muovono di piu'; il suo tavolo ha una casa (il Vetro) che parte senza Regioni
-e quindi ha piu' da guadagnare. Tarare tre manopole su un giro solo di sonda e'
-esattamente il modo in cui si peggiora una cosa credendo di aggiustarla.
+La ragione vera si è vista aprendo il pool ([D-173](DECISIONS.md#d-173)): **il
+divario non era delle saghe, era degli otto Destini che si giocavano.** Con venti
+in gioco il carico si distribuisce e le due convergono — CHR_01 **19%**, CHR_03
+**23%**, condivisi 16%.
 
-**Fatto quando** la sonda delle clausole ha misurato le clausole delle due saghe
-**a parita' di tavolo** — cioe' con lo stesso quartetto di caratteri e gli stessi
-semi — e si sa quale delle tre cause pesa.
+*Prima di tarare tre manopole, vale la pena guardare se il difetto non sia un
+effetto di quello che si sta già cambiando altrove.*
 
 ### 43. Undici Destini su venti non si giocano mai all'apertura
 

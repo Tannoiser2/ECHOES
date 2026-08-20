@@ -269,10 +269,10 @@
           },
           "payload": {
             "structure_type": "STR_OLD_SITE",
-            "grade": 1,
+            "grade": 2,
             "optional": true
           },
-          "note": "D-165: murare le gallerie rimanda il sito a dormire. Quello che insegnava torna a non insegnare, e resta li'."
+          "note": "D-174: murare le gallerie chiude la porta, non rimette a posto quello che e' stato portato via. Il sito torna al grado di mezzo — aperto, e adesso irraggiungibile — invece che a dormiente: un sigillo nasconde un sito saccheggiato, non lo dissaccheggia. Prima di qui il sigillo riscriveva la storia, ed era l'unico modo in cui «aperto e ancora intero» poteva capitare — cioe' mai, perche' capitava solo insieme al saccheggio (ISSUES 41)."
         }
       ]
     },

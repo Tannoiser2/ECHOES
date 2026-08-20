@@ -10,6 +10,95 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-174 — Tre voci chiuse: il sigillo che riscriveva la storia, il grado che è materia di saga, e un divario che non c'era
+**implemented in 0.1.142** (ISSUES 41 e 42 chiuse, ISSUES 40 decisa)
+
+### ISSUES 41 — il sito antico non era mai «aperto e ancora intero»
+
+La sonda dava due righe con lo stesso numero: sito **aperto** 25%, sito
+**saccheggiato** 25%. Gli stessi anni. Il grado di mezzo — quello che insegna —
+non era uno stato: era un fotogramma fra due Consigli.
+
+Guardate le tre Conseguenze che lo muovono, la colpevole non era nessuna delle
+due che ci si aspetta:
+
+| | |
+|---|---|
+| `CNS_MINE_REOPENED` | *«Si toglie la pietra... Sotto, tutto è come lo si era lasciato»* → grado 2 |
+| `CNS_CRYSTAL_EXPLOITED` | *«Il Cristallo Rosso esce dalle gallerie a peso»* → grado 3 |
+| `CNS_MINE_SEALED` | *«Le gallerie vengono chiuse»* → **grado 1** |
+
+Le prime due sono giuste, e che un anno che fa tutte e due finisca col sito
+svuotato e' onesto. La terza no: **murare un sito saccheggiato lo rimandava a
+«dormiente»**, cioe' cancellava il fatto che fosse mai stato aperto e svuotato.
+Un sigillo nasconde, non restituisce.
+
+Adesso il sigillo porta il sito al **grado di mezzo**: aperto, e da oggi
+irraggiungibile. Misurato subito dopo, sulla riga di Lyra:
+
+| | prima | dopo |
+|---|---|---|
+| il sito e' stato aperto | 25% | **80%** |
+| il sito e' stato saccheggiato | 25% | **60%** |
+| **aperto e ancora intero** | **0%** | **20%** |
+
+Un anno su cinque il mondo si ferma sul gradino di mezzo. Adesso «aperto e
+ancora intero» e' una clausola scrivibile.
+
+### ISSUES 40 — il grado alto e' materia di saga, e resta tale
+
+La voce chiedeva di scegliere fra due strade: accettare che il grado sia roba da
+saga, oppure aprire un secondo momento in cui una pietra sale dentro l'anno.
+
+**Scelgo la prima, e la scrivo perche' non venga riaperta per distrazione.** La
+scala che segue il Destino (D-159) e' il cuore del meccanismo: una reggia e' il
+sedimento di tre anni buoni, e vale proprio perche' non si compra in una sera. La
+saga del Regno che si e' seduto lo mostra meglio di qualsiasi misura — villaggio
+812, borgo 813, granaio 814, citta' 815, castello 816, **reggia 818**.
+
+La regola che ne segue: **una clausola sul grado 2 o 3 si scrive solo nei Destini
+di una Chronicle successiva**, mai in quelli d'apertura. Chi la scrive altrove
+sta scrivendo un muro, e adesso c'e' un verbale che lo dice.
+
+### ISSUES 42 — il divario fra le due saghe non era delle saghe
+
+CHR_03 portava 49 Trionfi contro i 30 di CHR_01. La voce elencava tre cause
+possibili e chiedeva di misurarle a parita' di tavolo. Misurate tutte e tre:
+
+| ipotesi | misura | verdetto |
+|---|---|---|
+| i Destini della seconda saga **chiedono meno** | clausole mancate: CHR_01 **38%**, CHR_03 **41%** | **falsa** — sono piu' dure |
+| le sue Tensioni **si muovono di piu'** | Consigli per partita: CHR_01 **5,83**, CHR_03 **5,33** | **falsa** — ne ha meno |
+| ha una casa che **parte senza Regioni** | ne hanno una a testa (Lyra, il Vetro), e i seggi di CHR_01 finiscono con **piu'** terra (1,28 contro 1,17) | **falsa** |
+
+Nessuna delle tre. E la ragione vera si e' vista da sola aprendo il pool
+(D-173): **il divario non era delle saghe, era degli otto Destini che si
+giocavano.** Con venti in gioco invece di otto, il carico si distribuisce e le
+due convergono:
+
+| | prima | ora |
+|---|---|---|
+| CHR_01 | 30 | **22 su 113 seggi-partita (19%)** |
+| CHR_03 | 49 | **25 su 107 seggi-partita (23%)** |
+| condivisi | — | 16 su 100 (16%) |
+
+Quattro punti di scarto. **Chiusa** — e con una lezione che vale oltre questa
+voce: *prima di tarare tre manopole, vale la pena guardare se il difetto non sia
+un effetto di quello che si sta gia' cambiando altrove.*
+
+### Misure
+
+Playtest 100 semi invariato rispetto a D-173: **FAIL 246 · SUCC 73 · SUCC 100 ·
+DECI 144**, mediana 6, misto e uniforme **0 su 8**, nessun seggio a NONE, nessuno
+a zero Trionfi. Sonda dei gradini 80 Chronicle: **0 NONE**, TRIONFO 20%.
+Suite **349 test / 6443 asserzioni** verde; sims deterministici; `dead_code.py`
+pulito su 155 file.
+
+La sonda dei gradini adesso stampa anche i **Consigli chiusi per saga**: era la
+misura che ISSUES 42 chiedeva e non c'era.
+
+---
+
 ## D-173 — Il pool si accende: venti Destini invece di otto
 **implemented in 0.1.141** (ISSUES 43 chiusa)
 

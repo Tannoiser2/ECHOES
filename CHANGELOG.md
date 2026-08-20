@@ -5,6 +5,23 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.142 — Tre voci chiuse (D-174)
+
+- **ISSUES 41 chiusa.** Il sito antico non era mai «aperto e ancora intero», e la
+  colpevole era il **sigillo**: `CNS_MINE_SEALED` riportava il sito a grado 1,
+  cioè cancellava il fatto che fosse mai stato aperto e svuotato. Un sigillo
+  nasconde, non restituisce. Ora lo lascia al grado di mezzo: «aperto e ancora
+  intero» passa da **0% a 20%** degli anni.
+- **ISSUES 42 chiusa**, e nessuna delle tre cause che la voce elencava regge:
+  i Destini di CHR_03 sono **più duri** (41% di clausole mancate contro 38%), le
+  sue Tensioni si muovono **meno** (5,33 Consigli contro 5,83), e le due saghe
+  hanno una casa senza terra a testa. Il divario era **degli otto Destini che si
+  giocavano**: aperto il pool, CHR_01 va al 19% e CHR_03 al 23%.
+- **ISSUES 40 decisa**: il grado alto resta **materia di saga**. Una clausola sul
+  grado 2 o 3 si scrive solo nei Destini di una Chronicle successiva.
+- La sonda dei gradini stampa i **Consigli chiusi per saga** — la misura che
+  ISSUES 42 chiedeva e non c'era.
+
 ## 0.1.141 — Il pool si accende: venti Destini invece di otto (D-173)
 
 - **ISSUES 43 chiusa.** Le tre che restavano sono riscritte: i due Destini
