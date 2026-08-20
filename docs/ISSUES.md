@@ -891,10 +891,18 @@ debito viene rimesso, l'acqua contrattata, i Senza Città sistemati — le
 stesse quattro frasi che tornano ogni secolo con un firmatario diverso.
 Riescono, e non portano nessuno da nessuna parte.
 
-L'ipotesi: le clausole delle istituzioni parlano di **continuità e registri**,
-e la continuità si ottiene senza fare niente di nuovo. La policy gioca il
-proprio Destino nel modo migliore che sa; se il Destino chiede di non
-muoversi, non si muove.
+**L'ipotesi è stata corretta da una misura** ([D-150](DECISIONS.md#d-150)): il
+**Minimo di ogni Destino è «esistere»** — la casa è viva e sta da qualche
+parte — e due coppie ce l'hanno identico parola per parola. Il Minimo non è un
+obiettivo, è una **soglia di sopravvivenza**, e «sedici Destini su venti al
+Minimo» non vuol dire «nessuno vuole niente»: vuol dire che **restano vivi e
+non arrivano al secondo gradino**.
+
+Quindi il numero da guardare non è la colonna MINIMUM ma **quanti la
+superano**, ed è fermo al **30%** su trenta Chronicle — col pool dei Destini
+acceso e spento allo stesso modo. Il pool non era la cura: la malattia è che
+il salto dal primo gradino al secondo è troppo alto, o che il secondo chiede
+cose che una policy non sa cercare.
 
 **Da misurare prima di toccare**: la stessa saga a tavolo misto (i quattro
 caratteri di D-053) invece che a policy identiche, e il conto dei livelli per
