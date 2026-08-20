@@ -419,6 +419,14 @@ Misure: suite **319 test / 5959 asserzioni** verde; playtest **FAIL 191 · SUCC
 Minimo. **ISSUES 38 e 38bis chiuse**, e la strada C della
 [seduta sulla terra](SEDUTA_TERRA.md) e' sbloccata.
 
+**Poscritto: la CI ha trovato un passo che avevo saltato.** `docs/ASSET_MANIFEST.md`
+e' **generato** e porta anche le etichette dei tre gradini di ogni Destino:
+cambiare la Vittoria della Cenere lo ha disallineato, e
+`tools/build_manifest.py --check` ha bocciato il commit. La regola di casa
+diceva «dopo ogni modifica a `/schema` rilancia `gen_gd_schema.py`»; era
+incompleta. **Dopo una modifica alle etichette di un Destino va rigenerato anche
+il manifesto** — sono due artefatti derivati, non uno.
+
 ---
 
 ## D-155 — Le carte parlano: cosa fa una carta, prima di calarla

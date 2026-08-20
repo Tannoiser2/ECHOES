@@ -54,6 +54,13 @@ davvero contesa era **`ash_watch`, la veglia sulla montagna, al 45%**.
 **ISSUES 38 e 38bis chiuse**, e la strada C della seduta sulla terra e'
 sbloccata.
 
+### Fixed
+
+- **`docs/ASSET_MANIFEST.md` rigenerato.** E' un artefatto derivato e porta le
+  etichette dei gradini di ogni Destino: la nuova Vittoria della Cenere lo aveva
+  disallineato e la CI lo ha bocciato. La regola di casa parlava solo di
+  `gen_gd_schema.py`: gli artefatti generati sono **due**.
+
 ---
 
 ## [0.1.121] — Le carte parlano

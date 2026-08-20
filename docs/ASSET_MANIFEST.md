@@ -138,7 +138,7 @@ family, 22 copies per family deck, 132 cards in the box (D-040).
 |---|---|---|---|---|---|
 | DST_ALDRIC | Il Regno che Resta | ENT_ALDRIC | Il trono regge | Il regno decide | Un regno che non ha pagato il pane con il sangue |
 | DST_ALDRIC_RECORD | Il Regno che Ricorda | ENT_ALDRIC | La casa siede ancora | Nessuno rilegge la stessa domanda | Un regno che non ha dovuto dividersi per reggere |
-| DST_CENERE | La Montagna è Nostra | ENT_CENERE | Restano sulla montagna | Tengono la montagna, e non solo quella | E la veglia sulla montagna è loro |
+| DST_CENERE | La Montagna è Nostra | ENT_CENERE | Restano sulla montagna | Chi scava lo dicono loro | E non solo quella |
 | DST_CENERE_DEEP | Più a Fondo | ENT_CENERE | Restano sulla montagna | E hanno visto cosa c'è sotto | E non devono più niente a nessuno |
 | DST_LIBERE | Una Legge Senza Corona | ENT_LIBERE | Le città esistono ancora | E c'è una Carta, e l'acqua non è di nessuno | E nessuno l'ha pagata più degli altri |
 | DST_LIBERE_WATER | L'Acqua Torna a Muoversi | ENT_LIBERE | Le città esistono ancora | E l'acqua si muove | E non è di nessuno |
