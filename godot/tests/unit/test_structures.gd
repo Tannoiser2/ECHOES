@@ -14,18 +14,31 @@ const Effect := preload("res://scripts/core/effect.gd")
 const WorldStateFactory := preload("res://scripts/world/world_state_factory.gd")
 
 const KEEP: String = "STR_KEEP"
-## Una Regione che l'anno **non** apre gia' costruita: da 0.1.126 le tre Regioni
-## che partono con un padrone partono anche con una torre (`starting_structures`),
-## e un test che vuole vedere la prima pietra deve posarla lui.
+## La Regione di questi test. Da 0.1.126 la mappa si apre **gia' costruita**, e
+## quali Regioni siano gia' occupate e' contenuto che cambia: invece di
+## inseguire una casella libera a ogni semina nuova, questi test **sgomberano**
+## la loro (`before_each`). Un test che vuole vedere la prima pietra se la posa.
 const HERE: String = "REG_VALLE_VERDE"
 
 
 func before_each() -> void:
 	new_session()
+	_clear(HERE)
 
 
 func _source() -> Dictionary:
 	return {"kind": "TEST", "id": "structures"}
+
+
+## Sgombera la Regione da quello che l'apertura ci ha seminato, cosi' questi
+## test misurano la **prima** pietra e non la seconda.
+func _clear(region_id: String) -> void:
+	var region: Dictionary = session.world["regions"][region_id]
+	for structure in (region["structures"] as Array).duplicate():
+		session.applier.apply(Effect.make(
+			"RAZE_STRUCTURE", "region", region_id,
+			{"structure_type": str((structure as Dictionary)["structure_type"])}, _source()
+		))
 
 
 func _build(region_id: String, grade: int, owner: Variant) -> Dictionary:

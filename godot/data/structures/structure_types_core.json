@@ -8,7 +8,14 @@
       "family": "PRESIDIO",
       "owned": true,
       "description": "La forza che si vede da lontano. Comincia come una veglia e finisce come una corte: la stessa pietra, e ogni volta una promessa più grande.",
-      "biomes": ["CITY", "VALLEY", "STEPPE", "MOUNTAIN", "UNDERGROUND", "ROAD"],
+      "biomes": [
+        "CITY",
+        "VALLEY",
+        "STEPPE",
+        "MOUNTAIN",
+        "UNDERGROUND",
+        "ROAD"
+      ],
       "grades": [
         {
           "name": "Torre di veglia",
@@ -33,6 +40,44 @@
         "name": "Rovina",
         "scar": "scar:abandoned",
         "description": "Le pietre restano, e restano di nessuno. Da lontano si vede lo stesso profilo, e non c'è più niente dentro."
+      }
+    },
+    {
+      "id": "STR_SETTLEMENT",
+      "name": "Insediamento",
+      "family": "INSEDIAMENTO",
+      "owned": true,
+      "description": "La gente che si ferma. Comincia con qualcuno che non riparte, e finisce con una piazza dove si viene da fuori a discutere.",
+      "biomes": [
+        "CITY",
+        "VALLEY",
+        "STEPPE",
+        "ROAD"
+      ],
+      "grades": [
+        {
+          "name": "Villaggio",
+          "value": 1,
+          "tag": "settlement:village",
+          "description": "Case abbastanza vicine da sentirsi gridare. Nessuno l'ha fondato: si è smesso di andarsene."
+        },
+        {
+          "name": "Borgo",
+          "value": 2,
+          "tag": "settlement:town",
+          "description": "C'è un mercato il giovedì e una strada che ha un nome. Si tiene più di quanto si portava."
+        },
+        {
+          "name": "Città",
+          "value": 4,
+          "tag": "settlement:city",
+          "description": "Ci si viene da fuori per una ragione, e chi ci abita non sa più il nome di tutti."
+        }
+      ],
+      "ruin": {
+        "name": "Abbandono",
+        "scar": "scar:emptied",
+        "description": "Le case restano in piedi per un po', e poi anche quelle no. Resta il nome sulla carta, e nessuno che lo dica ad alta voce."
       }
     }
   ]

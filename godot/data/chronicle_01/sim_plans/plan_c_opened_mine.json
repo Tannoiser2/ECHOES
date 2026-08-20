@@ -5,7 +5,7 @@
     {
       "id": "SIM_PLAN_C",
       "title": "La miniera aperta",
-      "description": "Lyra scava, Vaerax si oppone, e la prima proposta sul Cristallo cade con S 1 contro O 5: le Miniere restano chiuse per un anno intero. Poi l'anno si apre - il Grano passa in modo decisivo, il Risveglio torna e questa volta passa pagando, le Vie e la Successione si chiudono con accordi normali - e alla fine il Cristallo si può misurare, ma davanti a un custode. Per Lyra non basta: lo studio sotto guardia e' esattamente cio' che il suo Destino non voleva, e l'anno si chiude per lei sul Minimo. Cinque domande, tutte e quattro le bande di esito del §12.3 in una partita sola.",
+      "description": "Lyra scava, Vaerax si oppone, e la prima proposta sul Cristallo cade con S 1 contro O 5: le Miniere restano chiuse per un anno intero. Poi l'anno si apre - il Grano passa in modo decisivo, il Risveglio torna e questa volta passa pagando, le Vie e la Successione si chiudono con accordi normali - e il Cristallo si puo' misurare, ma davanti a un custode. Per Lyra non basta: lo studio sotto guardia e' esattamente cio' che il suo Destino non voleva, e l'anno si chiude per lei sul Minimo. All'ultimo giro le Vie tornano sul tavolo e cadono per un punto solo (S 2 contro O 4, M -1): una domanda che sembrava chiusa si riapre e resta aperta. Sei domande, tutte e quattro le bande di esito del §12.3 in una partita sola.",
       "chronicle_id": "CHR_01",
       "seed": 20260812,
       "seats": [
@@ -238,7 +238,7 @@
           "SUCCESS",
           "SUCCESS",
           "DECISIVE_SUCCESS",
-          "SUCCESS"
+          "FAILURE"
         ],
         "min_echoes": 4,
         "min_truths": 4

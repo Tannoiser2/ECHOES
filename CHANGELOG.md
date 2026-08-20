@@ -5,6 +5,57 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.127] — L'insediamento
+
+La seconda scala del catalogo ([D-160](docs/DECISIONS.md#d-160)), e il trend dei
+Consigli falliti guardato per primo come promesso in D-159.
+
+### Measured — il trend, prima di aggiungere
+
+- **Non e' una tassa sistemica**: la sovraestensione morde **11 volte in 30
+  partite**. I Consigli aperti sono passati da 5,63 a 5,75 di media — dentro la
+  banda (mediana 5-6) — e la quota di fallimenti e' salita di **1,6 punti**.
+  La causa e' che le policy **votano diverso** da quando il controllo si conta.
+
+### Added
+
+- **`STR_SETTLEMENT`**: Villaggio (1) → Borgo (2) → Citta' (4) → Abbandono, con
+  tre regole dei segni — il villaggio **piega la pesca della gente**, il borgo
+  **tiene una carta in piu'**, la citta' piega il **Fattore Mondo**. Riusa il
+  prefisso `settlement:` che c'era gia'.
+- Un villaggio semina la Valle Verde in tutte e due le linee.
+
+### Measured — e la seconda scala cambia la prima
+
+Dodici saghe da otto anni:
+
+| | solo presidi | col villaggio |
+|---|---|---|
+| grado II (castelli e borghi) | 3 | **13** |
+| grado III (regge e citta') | 0 | **2** |
+
+**Con due strutture, chi perde lascia andare il villaggio e tiene il castello**:
+il grado cade sulla piu' bassa e sale sulla piu' alta, quindi i presidi non sono
+piu' i primi a cadere e arrivano in fondo alla scala. Le prime **due regge**
+compaiono qui, e nessuno le aveva scritte a mano.
+
+Playtest **FAIL 204 · SUCC 73 · SUCC 113 · DECI 186**, mediana **6**, tavolo
+misto **0 su 8**. Gradini: supera il Minimo **59%** (era 47%), caselle con un
+padrone **81%**, seggi con due Regioni **30%**.
+
+### Changed
+
+- **`SIM_PLAN_C` aggiornato**: il sesto Consiglio passa a FAILURE per **un punto
+  solo**. Il Cristallo, cuore narrativo del piano, sta al terzo e non si e'
+  mosso; la descrizione e' stata riscritta per dire il vero.
+- **I test delle strutture sgomberano la propria Regione** invece di dare per
+  scontata una mappa vuota: quali Regioni siano costruite e' contenuto, e un
+  test non deve dipenderne per misurare un meccanismo.
+
+Suite **334 test / 5992 asserzioni** verde, sims deterministiche.
+
+---
+
 ## [0.1.126] — La scala che si muove col Destino
 
 «Se la reggia appartiene all'entita' che ha perso va in rovina, se invece

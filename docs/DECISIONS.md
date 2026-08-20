@@ -10,6 +10,97 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-160 — L'insediamento: la seconda scala, e il trend guardato per primo
+**implemented in 0.1.127** (§8.6 passo 3 della [seduta sulla terra](SEDUTA_TERRA.md))
+
+**Prima la promessa mantenuta.** D-159 chiudeva dicendo che i Consigli falliti si
+muovevano sempre nella stessa direzione — 185, 191, 196, 203 — e che alla
+prossima modifica andava guardato per primo. Guardato:
+
+| | |
+|---|---|
+| Consigli aperti, 30 Chronicle | **174** (5,8 a partita, in banda) |
+| **sovraestensioni** (la tassa di D-027) | **11** |
+| passaggi di mano per contesa | 63 |
+
+**Non e' una tassa sistemica.** La sovraestensione morde undici volte in trenta
+partite: non e' lei ad alzare i fallimenti. I Consigli aperti sono cresciuti da
+5,63 a 5,75 di media — dentro la banda dichiarata (mediana 5-6) — e la quota di
+fallimenti e' salita di **1,6 punti**, dal 33,7% al 35,3%. La causa e' che le
+policy **votano diverso**: con il controllo contato, una Conseguenza che
+consegna una Regione vale meno di prima, e le proposte che si fanno e come si
+vota sono cambiate. Il numero da tenere resta la banda dei Consigli e lo 0/8,
+e tutti e due reggono.
+
+**La seconda scala.** `STR_SETTLEMENT`, accanto al presidio:
+
+| grado | nome | valore | cosa fa |
+|---|---|---|---|
+| I | Villaggio | 1 | chi ha presenza li' **pesca gente migliore** |
+| II | Borgo | 2 | e **tiene una carta in piu'** — l'inverso esatto della fame, che una la toglie |
+| III | Citta' | 4 | e il **Fattore Mondo** pende dalla parte di chi propone |
+| ↓ | Abbandono | — | lascia `scar:emptied` |
+
+Riusa il prefisso `settlement:` che c'era gia' invece di inventarne uno, e i tre
+gradi sono tre regole dei segni scritte come tutte le altre. La citta' non da'
+un bonus a **chi la tiene**: piega il **mondo**, perche' dove c'e' una citta'
+una decisione e' piu' facile da far applicare — ed e' l'unico grado del catalogo
+che aiuta anche un rivale che proponga li'.
+
+Un villaggio semina la Valle Verde in tutte e due le linee: i Nahr nell'812, le
+Citta' Libere nel 1640 — case che hanno gia' presenza li', in una Regione che
+non e' di nessuno.
+
+**La misura, e la seconda scala cambia la prima.** Dodici saghe da otto anni:
+
+| | solo presidi (D-159) | col villaggio |
+|---|---|---|
+| in piedi al grado I | 32 | 33 |
+| **grado II — castelli e borghi** | **3** | **13** |
+| **grado III — regge e citta'** | **0** | **2** |
+| gradi persi (senza andare in rovina) | 0 | 1 |
+
+E' l'effetto che si sperava e non era ovvio: **con due strutture, chi perde
+lascia andare il villaggio e tiene il castello**. `_pick_structure` fa cadere la
+piu' bassa e alza la piu' alta, quindi una casa che sbaglia un anno perde i
+margini e conserva il centro — e i presidi, non essendo piu' i primi a cadere,
+arrivano fino in fondo alla scala. Le prime **due regge** compaiono qui, e
+nessuno le aveva scritte a mano.
+
+**Playtest 100 semi: FAIL 204 · SUCC 73 · SUCC 113 · DECI 186**, Consigli mediana
+**6**, tavolo misto **0 su 8**, uniforme **2 su 8**. Un fallimento in piu' di
+D-159: la seconda scala e' **neutra** sulle guardie.
+
+**E i gradini si sono mossi ancora:** supera il Minimo **59%** (era 47% prima di
+tutta la strada C), caselle con un padrone **81%**, seggi con due Regioni
+**30%**.
+
+**Il piano di regressione C e' stato aggiornato, e vale la pena dire come.**
+`SIM_PLAN_C` dichiara gli esiti di un anno scritto a mano: il sesto Consiglio e'
+passato da SUCCESS a **FAILURE**, per **un punto solo** (S 2 contro O 4, M −1).
+La catena e' quella prevista — il villaggio piega la pesca, cambiano le carte in
+mano, cambiano gli impegni. Il Cristallo, che e' il cuore narrativo del piano,
+sta al terzo Consiglio e **non si e' mosso**; a cadere e' l'ultimo giro sulle
+Vie. La descrizione e' stata riscritta per dire il vero: *una domanda che
+sembrava chiusa si riapre e resta aperta*. Un fixture che dichiara aspettative
+si aggiorna quando le regole cambiano di proposito — ma si aggiorna **dopo aver
+guardato cosa e' successo**, non prima.
+
+**E una lezione sui test.** Tre volte di fila i test delle strutture si sono
+rotti perche' davano per scontata una mappa vuota, e ogni semina nuova ne
+rompeva un altro pezzo. Adesso **sgomberano la propria Regione** in
+`before_each` invece di inseguire una casella libera: quali Regioni siano gia'
+costruite e' contenuto, e un test non deve dipendere dal contenuto per misurare
+un meccanismo.
+
+Misure: suite **334 test / 5992 asserzioni** verde; `run_sims.sh` identico su
+due giri; `dead_code.py` pulito su 151 file; job «Dati e schemi» verde.
+
+**Restano di §8**: le opere di grado II (solo dati) e **i luoghi del mondo** —
+foresta, fiume, sito antico, palude — col **passo che frana** per ultimo.
+
+---
+
 ## D-159 — La scala che si muove col Destino, e la mappa che si apre costruita
 **implemented in 0.1.126** (§7.3 della [seduta sulla terra](SEDUTA_TERRA.md))
 

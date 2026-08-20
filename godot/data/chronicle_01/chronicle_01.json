@@ -132,6 +132,12 @@
           "structure_type": "STR_KEEP",
           "grade": 1,
           "owner": "ENT_VAERAX"
+        },
+        {
+          "region_id": "REG_VALLE_VERDE",
+          "structure_type": "STR_SETTLEMENT",
+          "grade": 1,
+          "owner": "ENT_NAHR"
         }
       ],
       "structure_rules": {
@@ -320,6 +326,12 @@
           "structure_type": "STR_KEEP",
           "grade": 1,
           "owner": "ENT_VAERAX"
+        },
+        {
+          "region_id": "REG_VALLE_VERDE",
+          "structure_type": "STR_SETTLEMENT",
+          "grade": 1,
+          "owner": "ENT_NAHR"
         }
       ],
       "structure_rules": {
