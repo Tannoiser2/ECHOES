@@ -7,6 +7,7 @@ extends "res://tests/test_case.gd"
 ## conviene loro?»
 
 const PolicyDecider := preload("res://scripts/seat/policy_decider.gd")
+const Ids := preload("res://scripts/core/ids.gd")
 
 const LYRA := "ENT_LYRA"
 const NAHR := "ENT_NAHR"
@@ -41,39 +42,37 @@ func test_no_two_destinies_want_the_same_sign() -> void:
 	)
 
 
-## Un contrasto dichiarato chiude la porta, e non si riapre contando le domande
-## in comune. Lyra vuole le Miniere **non** sigillate, Vaerax le vuole sigillate:
-## per quanti Consigli aspettino insieme, quei due non si alleano.
-func test_a_declared_conflict_closes_the_door() -> void:
+## Prima del primo Consiglio un seggio **non sa niente di nessuno**, e non compra
+## niente: la memoria dei voti e' vuota, e con quella vuota la regola tace. E' la
+## differenza fra osservare e sbirciare (D-172) — la vecchia forma leggeva il
+## Destino altrui e sapeva tutto dalla prima mano.
+func test_before_the_first_council_nobody_knows_anybody() -> void:
 	var policy: RefCounted = PolicyDecider.new(session.log)
-	var lyra: Dictionary = policy._tag_goals(LYRA, session)
-	var vaerax: Dictionary = policy._tag_goals("ENT_VAERAX", session)
-	assert_true(lyra.has("mine_sealed"), "Lyra ha un'opinione sulle gallerie")
-	assert_true(vaerax.has("mine_sealed"), "e Vaerax pure")
-	assert_ne(
-		int(lyra["mine_sealed"]), int(vaerax["mine_sealed"]),
-		"ed e' l'opinione opposta"
+	assert_true(
+		(session.world["voted_together"] as Dictionary).is_empty(),
+		"si apre senza memoria"
 	)
-	var chosen: Dictionary = policy._ally_of_convenience(LYRA, session)
-	if not chosen.is_empty():
-		assert_ne(
-			str((chosen["params"] as Dictionary)["target_entity_id"]), "ENT_VAERAX",
-			"chi mi si oppone su un segno resta fuori"
+	for seat in [LYRA, NAHR, ALDRIC]:
+		assert_true(
+			policy._ally_of_convenience(str(seat), session).is_empty(),
+			"e senza memoria non si stringe niente"
 		)
 
 
-## E quando sceglie, sceglie **verso l'alto**: scendere e' gratis e unilaterale,
-## salire costa una carta BONDS e il consenso — un'alleanza e' una spesa.
-func test_the_convenient_move_is_always_upward() -> void:
+## E la memoria e' esattamente quello che si vede: stesso fronte piu' uno, fronti
+## opposti meno uno, e chi si astiene non dice niente su nessuno.
+func test_the_memory_is_only_what_the_table_saw() -> void:
+	var memory: Dictionary = session.world["voted_together"]
+	memory[Ids.relation_key(LYRA, NAHR)] = 2
+	memory[Ids.relation_key(LYRA, ALDRIC)] = -1
 	var policy: RefCounted = PolicyDecider.new(session.log)
-	for seat in [LYRA, NAHR, ALDRIC]:
-		var chosen: Dictionary = policy._ally_of_convenience(str(seat), session)
-		if chosen.is_empty():
-			continue
-		var params: Dictionary = chosen["params"]
-		assert_eq(str(chosen["template"]), "FORGE", "e' un legame, non un'altra azione")
-		assert_eq(str(params["direction"]), "UP", "si sale, non si rompe")
-		assert_ne(str(params["target_entity_id"]), str(seat), "e non con se stessi")
+	var chosen: Dictionary = policy._ally_of_convenience(LYRA, session)
+	if chosen.is_empty():
+		return  # niente carta BONDS in mano: la regola tace, ed e' giusto
+	assert_eq(
+		str((chosen["params"] as Dictionary)["target_entity_id"]), NAHR,
+		"si va da chi ha votato con te, non da chi ti ha votato contro"
+	)
 
 
 ## E soprattutto: **spara**. E' il test che vale gli altri tre, perche' la prima
@@ -97,8 +96,7 @@ func test_a_bond_is_forged_that_no_clause_asked_for() -> void:
 	)
 
 
-## Chi non ha piu' niente da vincere non ha niente da comprare: un seggio con
-## tutta la scala chiusa non spende un'Occasione in amicizie.
+## E non ci si allea con chi ha lasciato il tavolo.
 func test_a_finished_seat_buys_nothing() -> void:
 	var policy: RefCounted = PolicyDecider.new(session.log)
 	session.world["entities"][LYRA]["active"] = false

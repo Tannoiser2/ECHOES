@@ -10,6 +10,78 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-172 — Il bot smette di sbirciare e guarda come si e' votato
+**implemented in 0.1.140** (il debito che D-171 aveva dichiarato, pagato subito)
+
+D-171 aveva chiuso con una riga onesta sul manico della funzione: *un bot legge
+il Destino degli altri, e un giocatore vero no.* Al tavolo quell'informazione
+arriva da **come gli altri votano**, non dalla loro carta. Questo e' quel debito
+pagato, e si e' rivelato non un pareggio ma un guadagno su quasi tutto.
+
+### Il registro
+
+`world["voted_together"]`: per ogni coppia, quante volte sono finiti sullo
+stesso fronte del Consiglio meno quante volte su fronti opposti. Contano solo i
+fronti dichiarati — chi si astiene non dice niente su nessuno. Scritto alla
+chiusura di ogni Consiglio, accanto a `confluence_count`, **come contatore
+diretto e non come Effetto**: non e' una mutazione che qualcuno possa voler
+annullare, ed e' lo stesso trattamento che hanno gia' `confluence_count` e
+`resolved_count`.
+
+E' la memoria **dei bot**, non un fatto del mondo: e' quello che chiunque sieda
+al Consiglio vede con i propri occhi, e niente di piu'.
+
+### Cosa cambia rispetto a D-171
+
+| | `main` | D-171 (sbircia il Destino) | **D-172 (guarda i voti)** |
+|---|---|---|---|
+| Trionfi del tavolo | 86 | **74** | **83** |
+| seggi a NONE | 4 | 1 | 3 |
+| FAIL | 203 | 207 | 206 |
+
+**Il prezzo scende da dodici Trionfi a tre.** E il motivo non e' che si allea di
+meno: e' che si allea **meglio**. Sbirciando il Destino, due seggi si trovavano
+subito e ci restavano; guardando i voti, un legame si stringe dopo che il tavolo
+ha gia' deciso qualcosa, cioe' quando l'Occasione spesa serve ancora a qualcosa.
+
+E si distribuisce:
+
+| seggio | `main` | D-171 | **D-172** |
+|---|---|---|---|
+| Re Aldric | 0% | 10% | **20%** |
+| Lyra | 0% | **45%** | 15% |
+| Popolo Nahr | 0% | **45%** | 30% |
+| Vaerax | 0% | 5% | **35%** |
+| Kessa | 25% | 50% | 35% |
+
+D-171 accendeva due seggi molto e lasciava fuori Aldric e Vaerax, che avevano
+un'opposizione **dichiarata** addosso e quindi erano esclusi per regola. I voti
+non conoscono quella regola: due che si oppongono su un segno possono benissimo
+essersi trovati dalla stessa parte su tre domande diverse, ed e' vero — al
+tavolo succede continuamente. La banda passa da 5-50% a **15-35%**.
+
+### E si sbaglia, che e' il punto
+
+Un legame stretto su tre Consigli condivisi puo' rompersi al quarto, e la
+memoria non lo prevede: la aggiorna dopo. Un bot che sbircia non sbaglia mai un
+alleato; uno che osserva si fida di chi lo ha aiutato finora, che e' la cosa che
+un giocatore fa davvero — e la sola su cui si possa costruire un tradimento.
+
+**Prima del primo Consiglio nessuno sa niente di nessuno**, e la regola tace:
+c'e' un test che tiene fermo anche quello.
+
+### Misure
+
+Playtest 100 semi, tavolo misto: **FAIL 206 · SUCC 74 · SUCC 107 · DECI 187**,
+mediana **6**, misto **0 su 8**, uniforme **0 su 8**. Trionfi **83** (main: 86),
+nessun seggio a zero, nessuno bloccato su un gradino.
+
+Suite **348 test / 6486 asserzioni** verde; `run_sims.sh` e `run_export.sh`
+identici su due giri; `dead_code.py` pulito su 155 file; schemi e manifest
+allineati.
+
+---
+
 ## D-171 — L'alleanza che conviene, e il prezzo che non si puo' non pagare
 **implemented in 0.1.139** (domanda del committente: «i bot non puoi fare un modo che stringano anche alleanze se conviene loro?»)
 

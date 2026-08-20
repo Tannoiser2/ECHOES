@@ -1519,6 +1519,9 @@ const DEFS := {
 				"type": "int",
 				"min": 0,
 			},
+			"voted_together": {
+				"type": "Dictionary",
+			},
 			"effect_sequence": {
 				"type": "int",
 				"min": 0,

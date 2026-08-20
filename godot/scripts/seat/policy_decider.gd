@@ -394,47 +394,38 @@ func _tag_goals(entity_id: String, session: RefCounted) -> Dictionary:
 	return goals
 
 
-## L'alleanza che conviene (D-171).
+## L'alleanza che conviene (D-171), decisa su quello che si e' visto (D-172).
 ##
-## Fino a qui un seggio stringeva un legame **solo** se una clausola del suo
-## Destino nominava quella relazione — `_relations_of` legge esattamente quelle
-## tre. Mai perche' gli tornava utile. E dal D-139 tornare utile e' una cosa
-## misurabile: un alleato che sostiene il proponente porta **+1** sul fronte del
-## Consiglio, +2 se BOUND, col tetto a 2 e almeno due carte impegnate.
+## Fino a D-171 un seggio stringeva un legame **solo** se una clausola del suo
+## Destino nominava quella relazione. Mai perche' gli tornava utile — e dal
+## D-139 tornare utile e' misurabile: un alleato che sostiene il proponente
+## porta **+1** sul fronte, +2 se BOUND, col tetto a 2 e almeno due carte
+## impegnate.
 ##
 ## **Con chi conviene non e' «chi vuole i miei stessi segni».** La prima forma
-## scritta contava i segni voluti in comune, e non ha sparato una volta: fra gli
-## otto Destini del gioco **non esiste una coppia che voglia lo stesso segno
-## nello stesso verso**. Ogni sovrapposizione e' un'opposizione — Aldric contro
-## Nahr sulla corona spezzata, Lyra contro Vaerax sulle Miniere sigillate — e il
-## resto e' indifferenza. Il contenuto e' scritto come una rete di contrasti, e
-## un'alleanza costruita sugli obiettivi comuni non ha niente su cui mordere.
+## contava gli obiettivi in comune e non ha sparato una volta: fra gli otto
+## Destini del gioco non esiste una coppia che voglia lo stesso segno nello
+## stesso verso. Ogni sovrapposizione e' un'opposizione, il resto e'
+## indifferenza — il contenuto e' una rete di contrasti (D-171).
 ##
-## Conviene invece **a chi aspetta lo stesso Consiglio**. `_needed_confluences`
-## dice gia' quali Tensioni un seggio ha bisogno che arrivino al voto, perche'
-## la sola cosa che chiude una sua clausola sta dietro quella domanda. Due
-## seggi che aspettano la stessa domanda staranno sullo stesso fronte quando si
-## apre, e li' il legame vale il peso in piu'. Chi mi si oppone su un segno resta
-## fuori comunque, per quanti Consigli condividiamo.
+## E non e' nemmeno «chi aspetta le mie stesse domande», che funzionava ma
+## **leggeva il Destino altrui**: un giocatore vero quella carta non la vede.
+## Al tavolo si capisce chi ti e' vicino **da come vota**, e `voted_together`
+## tiene esattamente quel registro — chi e' finito sul tuo fronte meno chi ti
+## e' finito contro. E' quello che chiunque sieda al Consiglio vede con i propri
+## occhi, e niente di piu': si sbaglia, si aggiorna, e non sa niente prima che
+## il primo Consiglio si sia chiuso.
 ##
 ## Si paga: salire di un grado costa una carta BONDS e un'Occasione. Per questo
-## sta **dopo** tutto quello che il Destino chiede esplicitamente e dietro la
-## stessa soglia di mano dello steering — un seggio che brucia l'ultima carta
-## per un'amicizia non sta giocando bene, sta solo facendo amicizia.
-##
-## **Dichiarato**: leggere il Destino altrui e' piu' di quello che un giocatore
-## vero sa. Al tavolo l'informazione arriva da come gli altri votano, non dalla
-## loro carta. E' una semplificazione del bot, non una regola del gioco, e va
-## rifatta quando i seggi impareranno a dedurre invece che a sbirciare.
+## sta dietro tutto quello che il Destino chiede esplicitamente e dietro la
+## soglia di mano dello steering.
 func _ally_of_convenience(entity_id: String, session: RefCounted) -> Dictionary:
 	# Chi non ha piu' niente da vincere non ha niente da comprare.
-	var open_levels: Array = _open_levels(entity_id, session)
-	if open_levels.is_empty():
+	if _open_levels(entity_id, session).is_empty():
 		return {}
-	var mine_waiting: Array = _needed_confluences(entity_id, session, open_levels[0] as Array)
-	if mine_waiting.is_empty():
-		return {}
-	var mine_tags: Dictionary = _tag_goals(entity_id, session)
+	var memory: Dictionary = session.world.get("voted_together", {})
+	if memory.is_empty():
+		return {}   # nessun Consiglio chiuso: non si sa ancora niente di nessuno
 	var best: String = ""
 	var best_score: int = 0
 	for other in _sorted((session.world["entities"] as Dictionary).keys()):
@@ -443,23 +434,7 @@ func _ally_of_convenience(entity_id: String, session: RefCounted) -> Dictionary:
 			continue
 		if not bool((session.world["entities"][other_id] as Dictionary)["active"]):
 			continue
-		var their_levels: Array = _open_levels(other_id, session)
-		if their_levels.is_empty():
-			continue
-		# Un contrasto dichiarato su un segno chiude la porta, e non si riapre
-		# contando le domande in comune: e' quello che il Destino dice di volere.
-		var their_tags: Dictionary = _tag_goals(other_id, session)
-		var opposed: bool = false
-		for tag in mine_tags:
-			if their_tags.has(tag) and int(their_tags[tag]) != int(mine_tags[tag]):
-				opposed = true
-				break
-		if opposed:
-			continue
-		var score: int = 0
-		for tension_id in _needed_confluences(other_id, session, their_levels[0] as Array):
-			if mine_waiting.has(tension_id):
-				score += 1
+		var score: int = int(memory.get(Ids.relation_key(entity_id, other_id), 0))
 		if score > best_score:
 			best_score = score
 			best = other_id

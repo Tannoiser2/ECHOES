@@ -45,6 +45,7 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 		"questions_asked": {},
 		"forced_confluence": null,
 		"confluence_count": 0,
+		"voted_together": {},
 		"effect_sequence": 0,
 		"turn_order": seats.duplicate(),
 		"influence_used": {},

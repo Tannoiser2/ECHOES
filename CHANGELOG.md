@@ -5,6 +5,23 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.140 — Il bot smette di sbirciare (D-172)
+
+- **`world["voted_together"]`**: per ogni coppia, quante volte sono finiti sullo
+  stesso fronte del Consiglio meno quante volte su fronti opposti. E' la memoria
+  dei bot, non un fatto del mondo — quello che chiunque sieda al tavolo vede con
+  i propri occhi.
+- **L'alleanza si decide su quello**, non piu' leggendo il Destino altrui: un
+  giocatore vero quella carta non la vede. Prima del primo Consiglio nessuno sa
+  niente di nessuno, e la regola tace.
+- **Il prezzo scende da dodici Trionfi a tre** (86 → **83**, contro i 74 di
+  D-171), e le alleanze si distribuiscono: la banda passa da 5-50% a **15-35%**,
+  e Aldric e Vaerax — che l'opposizione dichiarata escludeva per regola —
+  entrano al 20% e al 35%. Due che si oppongono su un segno possono benissimo
+  essersi trovati dalla stessa parte su tre domande diverse.
+- E adesso **si puo' sbagliare un alleato**, che e' la sola cosa su cui si possa
+  costruire un tradimento.
+
 ## 0.1.139 — L'alleanza che conviene (D-171)
 
 - **Un seggio adesso stringe un legame perche' gli conviene**, non solo perche'
