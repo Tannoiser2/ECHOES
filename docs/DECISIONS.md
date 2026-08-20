@@ -10,6 +10,78 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-158 — La contesa del controllo: il padrone si conta, non si scrive
+**implemented in 0.1.125** (§7.2 della [seduta sulla terra](SEDUTA_TERRA.md))
+
+«Se una entita' ha un castello (che magari vale 3) ma un'altra ha un esercito
+che occupa la regione (che vale 4) la regione viene controllata da chi ha di
+piu'.»
+
+Fino a 0.1.124 il padrone di una Regione era **scritto**: una Conseguenza metteva
+un nome, e quel nome restava finche' un'altra non lo cambiava. Da qui e'
+**contato**, a ogni fine round: chi somma di piu' fra il valore delle proprie
+strutture e le proprie pedine.
+
+**Le due monete si sommano nella stessa colonna**, ed e' il punto: *un castello
+e' una presenza che non se ne va, una pedina e' un castello che si puo'
+spostare.* I **luoghi del mondo** (`owned: false`: foreste, passi, fiumi) non
+contano per nessuno — non sono di nessuno per costruzione.
+
+**A parita' non cambia niente.** Per togliere una Regione bisogna **superare**
+chi la tiene, non pareggiarlo: altrimenti il padrone di una casella contesa
+cambierebbe a ogni pedina che passa. E il passaggio resta un `SET_CONTROL` come
+tutti gli altri — stesso Effect, stesso inverso, stessa riga nel registro.
+Cambia **chi lo decide**, non come si scrive.
+
+**La misura, e la mappa si e' mossa.** Sessanta Chronicle a tavolo misto:
+
+| | 0.1.124 | ora |
+|---|---|---|
+| caselle con un padrone | 56% | **76%** |
+| seggi che finiscono a **zero** Regioni | 30% | **15%** |
+| seggi con **due** Regioni | 12% | **25%** |
+| supera il Minimo | 54% | **55%** |
+
+E casa per casa, la riga che vale piu' di tutte: **il Vetro passa da 0,00 a
+1,00**. La casa che in trenta partite non aveva mai tenuto una Regione adesso ne
+tiene una — non perche' gliel'abbiano data, ma perche' sta da qualche parte. Le
+Citta' Libere da 0,67 a 1,67, i Nahr da 1,20 a 1,70.
+
+**Playtest sui 100 semi: FAIL 196 · SUCC 68 · SUCC 116 · DECI 186**, tavolo
+misto **0 su 8** — il vincolo di casa regge — e tavolo uniforme **3/8 → 2/8**.
+
+**Tre cose cambiano al tavolo, e vanno dette perche' si vedono.**
+
+1. **Una Regione si perde senza che nessuno la prenda**: basta andarsene.
+   `lapse_without_presence` smette di essere una regola a parte e diventa un
+   caso particolare del conto — chi non ha niente li' somma zero, e zero non
+   tiene niente.
+2. **Il Consiglio non consegna piu' un possesso definitivo.** Le 14 Conseguenze
+   che scrivono un nome valgono finche' quel nome regge il conto: il Consiglio
+   da' un **titolo**, tenerlo e' un'altra cosa. Non le ho riscritte — la misura
+   dice che cosi' funzionano, e riscriverle sarebbe stato cambiare due cose
+   insieme.
+3. **La clausola della Cenere non e' piu' il suo problema.** `control_count >= 2`
+   sparisce dalla lista delle clausole mancate; adesso il suo ostacolo e' la
+   seconda clausola scritta in D-156 (la veglia affidata per atto, mancata nel
+   37%), che e' esattamente il mestiere che le avevo dato.
+
+E in cima alla lista di quello che non si avvera restano le **clausole sociali**
+— «qualcuno ha giurato» al 70%, «l'insediamento e' riconosciuto» al 57%, «la
+Carta e' stata scritta» al 53%. E' la seconda famiglia di D-151, e non si muove
+di qui: quella chiede persone, non regole.
+
+Misure: suite **334 test / 5981 asserzioni** verde (sette test nuovi);
+`run_sims.sh` identico su due giri; `dead_code.py` pulito su 151 file; il job
+«Dati e schemi» verde per intero. La regola sta in
+`control_rules.contested` e si spegne togliendo una chiave.
+
+**Il prossimo passo e' §7.3**: il grado che si muove con l'esito del Destino —
+chi trionfa alza una struttura, chi non arriva al Minimo la vede andare in
+rovina.
+
+---
+
 ## D-157 — La terra si costruisce: la struttura diventa un oggetto
 **implemented in 0.1.124** (§7.1 della [seduta sulla terra](SEDUTA_TERRA.md), strada C scelta dal committente)
 

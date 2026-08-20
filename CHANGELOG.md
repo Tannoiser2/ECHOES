@@ -5,6 +5,56 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.125] — La contesa del controllo
+
+Il padrone di una Regione non e' piu' **scritto** ma **contato**
+([D-158](docs/DECISIONS.md#d-158), §7.2 della seduta sulla terra): chi somma di
+piu' fra il valore delle proprie strutture e le proprie pedine, a ogni fine
+round.
+
+### Added
+
+- **`control_rules.contested`** nella Chronicle: la contesa, con il peso della
+  pedina dichiarato nei dati. Omessa, il gioco e' quello di prima.
+- `control_strength`, `strongest_in` e `rightful_holder` nel servizio del mondo;
+  il riconteggio a fine round nel controller, che passa da un `SET_CONTROL`
+  normale — stesso Effect, stesso inverso, stessa riga nel registro.
+- **`tests/unit/test_control_contest.gd`**, sette test: le due monete che si
+  sommano, il castello che perde contro l'esercito piu' grande, il pareggio che
+  non cambia niente, e la regola che si spegne dai dati.
+
+### Measured
+
+Sessanta Chronicle a tavolo misto — **la mappa si e' mossa**:
+
+| | prima | ora |
+|---|---|---|
+| caselle con un padrone | 56% | **76%** |
+| seggi a **zero** Regioni | 30% | **15%** |
+| seggi con **due** Regioni | 12% | **25%** |
+
+- **Il Vetro passa da 0,00 a 1,00.** La casa che in trenta partite non aveva mai
+  tenuto una Regione adesso ne tiene una — non perche' gliel'abbiano data, ma
+  perche' sta da qualche parte.
+- Playtest **FAIL 196 · SUCC 68 · SUCC 116 · DECI 186**, tavolo misto **0 su 8**,
+  tavolo uniforme **3/8 → 2/8**.
+- **`control_count >= 2` sparisce dalle clausole mancate.** In cima restano le
+  **clausole sociali** — «qualcuno ha giurato» 70%, «l'insediamento e'
+  riconosciuto» 57% — che e' la seconda famiglia di D-151 e chiede persone.
+
+### Changed
+
+- **`lapse_without_presence` diventa un caso particolare del conto**: chi non ha
+  niente li' somma zero, e zero non tiene niente.
+- **Il Consiglio da' un titolo, tenerlo e' un'altra cosa**: le 14 Conseguenze che
+  scrivono un nome valgono finche' quel nome regge il conto. Non riscritte — la
+  misura dice che cosi' funzionano.
+
+Suite **334 test / 5981 asserzioni** verde, sims deterministiche, `dead_code.py`
+pulito su 151 file.
+
+---
+
 ## [0.1.124] — La terra si costruisce
 
 Primo passo della strada C ([D-157](docs/DECISIONS.md#d-157)): **una struttura

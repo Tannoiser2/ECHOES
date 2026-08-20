@@ -28,6 +28,9 @@
         }
       },
       "control_rules": {
+        "contested": {
+          "presence_weight": 1
+        },
         "max_stable_control": 2,
         "overextension_delta": 1,
         "lapse_without_presence": true
@@ -170,6 +173,9 @@
         }
       },
       "control_rules": {
+        "contested": {
+          "presence_weight": 1
+        },
         "max_stable_control": 2,
         "overextension_delta": 1,
         "lapse_without_presence": true

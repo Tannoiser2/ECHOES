@@ -194,6 +194,9 @@ func play_round(act: int, round_number: int, decider: Object) -> void:
 
 	_set_phase(act, round_number, "DRIFT")
 	session.tensions.apply_drift()
+	# Il conto delle forze prima della sovraestensione: chi tiene cosa si decide
+	# adesso, e la fatica si paga su quello che si tiene davvero (D-158).
+	_recount_control(act, round_number)
 	_apply_overextension(act, round_number)
 
 	_set_phase(act, round_number, "THRESHOLD_CHECK")
@@ -201,6 +204,75 @@ func play_round(act: int, round_number: int, decider: Object) -> void:
 
 	for tension_id in world["tensions"]:
 		log.bullet(session.tensions.public_status(str(tension_id)))
+
+
+## La contesa del controllo (D-158). Fino a 0.1.124 il padrone di una Regione
+## era **scritto**: una Conseguenza metteva un nome, e quel nome restava finche'
+## un'altra Conseguenza non lo cambiava. Da qui, se la Chronicle dichiara
+## `control_rules.contested`, il padrone e' **contato**: chi somma di piu' fra
+## pietre e pedine, ogni fine round.
+##
+## Il committente l'ha chiesto cosi': «se una entita' ha un castello (che magari
+## vale 3) ma un'altra ha un esercito che occupa la regione (che vale 4) la
+## regione viene controllata da chi ha di piu'».
+##
+## Tre cose che questo cambia, e che vanno dette perche' si vedono al tavolo:
+##
+## - **una Regione si perde senza che nessuno la prenda**: basta andarsene;
+## - **il Consiglio non consegna piu' un possesso definitivo**. Una Conseguenza
+##   che scrive un nome vale finche' quel nome regge il conto — il Consiglio
+##   da' un titolo, tenerlo e' un'altra cosa;
+## - **`lapse_without_presence` diventa un caso particolare**: chi non ha
+##   niente li' somma zero, e zero non tiene niente.
+##
+## Il passaggio resta un `SET_CONTROL` come tutti gli altri: stesso Effect,
+## stesso inverso, stessa riga nel registro. Cambia chi lo decide, non come si
+## scrive.
+func _recount_control(act: int, round_number: int) -> void:
+	if not session.service.contest_is_on():
+		return
+	for region_id in _chronicle["regions"]:
+		var region: Dictionary = world["regions"][str(region_id)]
+		var before: Variant = region.get("control", null)
+		var after: Variant = session.service.rightful_holder(str(region_id))
+		if str(before if before != null else "") == str(after if after != null else ""):
+			continue
+		var source: Dictionary = Effect.source(
+			"system", "CONTEST", "", act, round_number, int(world["effect_sequence"])
+		)
+		session.applier.apply(Effect.make(
+			"SET_CONTROL", "region", str(region_id), {"entity_id": after}, source
+		))
+		if after == null:
+			log.bullet(
+				"%s non risponde piu' a nessuno: %s non ha piu' la forza per tenerla."
+				% [_region_name(str(region_id)), _name(str(before))]
+			)
+		else:
+			log.bullet(
+				"%s risponde a %s (%d contro %d)."
+				% [
+					_region_name(str(region_id)),
+					_name(str(after)),
+					session.service.control_strength(str(after), str(region_id)),
+					_runner_up(str(region_id), str(after)),
+				]
+			)
+
+
+## La forza del secondo, per poter dire «tre contro due» invece di «tre».
+func _runner_up(region_id: String, winner: String) -> int:
+	var best: int = 0
+	for entity_id in world["turn_order"]:
+		if str(entity_id) == winner:
+			continue
+		best = maxi(best, session.service.control_strength(str(entity_id), region_id))
+	return best
+
+
+func _region_name(region_id: String) -> String:
+	var region: Variant = data.regions.get(region_id)
+	return region_id if region == null else str(region["name"])
 
 
 ## D-027: holding is not free. Every Region an Entity controls beyond

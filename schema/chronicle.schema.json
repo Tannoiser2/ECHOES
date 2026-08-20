@@ -390,7 +390,21 @@
           "description": "How holding territory pushes back (D-027). Omit the whole object and control behaves as in v0.2: whatever you take, you keep.",
           "additionalProperties": false,
           "properties": {
-            "max_stable_control": {
+            "contested": {
+            "type": "object",
+            "additionalProperties": false,
+            "description": "La contesa del controllo (D-158). Omesso, il padrone di una Regione e' quello **scritto** da una Conseguenza e resta finche' un'altra non lo cambia. Dichiarato, il padrone e' **contato** a ogni fine round: chi somma di piu' fra il valore delle proprie strutture e le proprie pedine. A parita' non cambia niente — per togliere una Regione bisogna superare chi la tiene, non pareggiarlo.",
+            "properties": {
+              "presence_weight": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 5,
+                "default": 1,
+                "description": "Quanto vale una pedina nel conto, contro il valore di grado di una struttura. A 1 una torre di veglia (2) vale due pedine."
+              }
+            }
+          },
+          "max_stable_control": {
               "type": "integer",
               "minimum": 0,
               "description": "Regions an Entity can hold without strain. Every Region beyond this raises the Tension of that Region's own domain, once per round."
