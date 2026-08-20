@@ -43,6 +43,8 @@ func _initialize() -> void:
 	var reached: Dictionary = {}  # livello raggiunto -> quante volte
 	var control_hist: Dictionary = {}  # Regioni tenute a fine anno -> quanti seggi
 	var per_seat: Dictionary = {}   # casa -> [Regioni all'inizio, somma a fine anno, partite]
+	var claims_made: int = 0      # ACT_CLAIM in CREATE: la rivendicazione aperta
+	var claims_forced: int = 0    # ACT_CLAIM in FORCE: il Consiglio strappato
 	var granted: Dictionary = {}  # Chronicle -> quante volte una casella e' passata di mano
 	var cleared: Dictionary = {}  # Chronicle -> quante volte una casella e' rimasta a nessuno
 	var owned_regions: int = 0    # caselle con un padrone, sommate su tutte le partite
@@ -81,12 +83,19 @@ func _initialize() -> void:
 			seat_row[1] = int(seat_row[1]) + held
 			seat_row[2] = int(seat_row[2]) + 1
 			per_seat[str(entity_id)] = seat_row
-		# Il controllo non si prende con un'azione: passa solo per una Consequence,
-		# cioe' per un Consiglio che si chiude. Contare i SET_CONTROL applicati
-		# dice se la strettoia e' l'offerta o l'approvazione.
+		# Nessuna azione assegna il controllo di suo: ACT_CLAIM apre una
+		# rivendicazione su un *dominio di Tensione*, e in FORCE la consuma per
+		# strappare un Consiglio da proponente. La Regione arriva solo se quel
+		# Consiglio cade su una delle Consequence che portano un SET_CONTROL a
+		# `$proponent`. Contare le tre cose insieme dice dove si perde la catena.
 		for entry in (session.world["effect_log"] as Array):
 			var effect: Dictionary = (entry as Dictionary).get("effect", entry) as Dictionary
-			if str(effect.get("type", "")) != "SET_CONTROL":
+			var effect_type: String = str(effect.get("type", ""))
+			if effect_type == "CREATE_CLAIM":
+				claims_made += 1
+			elif effect_type == "CONSUME_CLAIM":
+				claims_forced += 1
+			if effect_type != "SET_CONTROL":
 				continue
 			var to: Variant = (effect.get("payload", {}) as Dictionary).get("entity_id", null)
 			if to == null or str(to) == "":
@@ -140,6 +149,10 @@ func _initialize() -> void:
 		print("    %-12s inizio %.2f  ->  fine %.2f" % [
 			str(entity_id), float(row[0]) / games, float(row[1]) / games
 		])
+	print("  La catena per prendere una Regione, su %d partite:" % runs)
+	print("    Rivendicazioni aperte (ACT_CLAIM CREATE):  %d" % claims_made)
+	print("    Consigli strappati    (ACT_CLAIM FORCE):   %d" % claims_forced)
+	print("    Rivendicazioni morte senza essere usate:   %d" % (claims_made - claims_forced))
 	print("  Caselle passate di mano in gioco (solo via Consequence):")
 	for chronicle_id in ["CHR_01", "CHR_03"]:
 		print("    %s: %d prese, %d lasciate a nessuno" % [

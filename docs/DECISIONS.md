@@ -331,6 +331,61 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-153 — «Rivendicare» esiste: la catena per prendere una Regione, e dove si spezza
+**implemented in 0.1.116** (correzione a D-152, sollevata dal committente)
+
+D-152 dice che «il controllo **non si prende con un'azione**». La frase e'
+letteralmente vera e **fuorviante**, ed e' stato il committente ad accorgersene:
+«ma scusa, le Regioni non si prendono con un'azione specifica?».
+
+**Si', c'e' un'azione: `ACT_CLAIM`, «Rivendicare».** Quello che rivendica pero'
+non e' una Regione — e' una **domanda**. In `CREATE` scarta un Asset AUTHORITY
+e apre un Claim su un dominio di Tensione (TERRITORY, RESOURCE, SURVIVAL,
+KNOWLEDGE, ANCIENT); in un round successivo, in `FORCE`, consuma quel Claim e
+un secondo AUTHORITY per **strappare un Consiglio di cui si e' proponenti**. La
+Regione arriva solo se quel Consiglio cade su una delle quattordici Consequence
+che portano un `SET_CONTROL` a `$proponent`.
+
+Quindi la catena e' lunga cinque anelli:
+
+1. avere un Asset AUTHORITY da scartare, e spenderci un'Azione;
+2. che la Tensione bersaglio sia a **3 o piu'**;
+3. avere un **secondo** AUTHORITY, e un'altra Azione, in un round dopo;
+4. che il Consiglio non fallisca (falliscono 177 volte su 100 partite);
+5. che la Consequence uscita sia una delle quattordici giuste.
+
+**Dove si spezza, misurato su 60 Chronicle:**
+
+| | |
+|---|---|
+| Rivendicazioni aperte (`CREATE`) | **63** |
+| Consigli strappati (`FORCE`) | **15** |
+| Rivendicazioni morte senza essere usate | **48** |
+
+Circa **una rivendicazione aperta a partita, e una forzata ogni quattro**. Tre
+su quattro muoiono in mano: si paga il primo anello e il secondo non arriva
+mai. E per confronto, delle azioni giocate in trenta Chronicle 4286 effetti
+vengono da `ACT_ACQUIRE` e 84 da `ACT_CLAIM` — le case passano il tempo a
+raccogliere, non a rivendicare.
+
+**Cosa cambia nella diagnosi.** Non «manca la leva»: la leva c'e', e' scritta,
+ed e' anche una bella idea — *rivendicare non e' prendersi una terra, e'
+costringere il tavolo a discuterne*. Quello che manca e' che sia **percorribile**:
+cinque anelli in serie, due Asset dello stesso tipo, due Azioni in round
+diversi, e un esito che dipende dal mazzo. Il numero da guardare non e' piu'
+«quante Regioni cambiano padrone» ma **48 rivendicazioni morte su 63**.
+
+Il che restringe le tre strade di ISSUES 37 a una domanda piu' precisa: non
+«serve un'azione per prendere le Regioni» — c'e' — ma **quale anello della
+catena si accorcia**. Rimane da decidere, e rimane contenuto d'autore.
+
+**Non e' stato toccato niente del gioco.** La sonda dei gradini adesso conta
+anche i tre numeri della catena; D-152 resta a verbale com'e' scritta, con
+questa correzione sopra. Suite **305 verde**, playtest invariato — **FAIL 177 ·
+SUCC 73 · SUCC 126 · DECI 187**, tavolo misto **0/8**.
+
+---
+
 ## D-152 — La corona tiene la sua terra: una soglia abbassata, una no
 **implemented in 0.1.115** (la prima delle due decisioni che D-151 aveva rimandato al committente)
 

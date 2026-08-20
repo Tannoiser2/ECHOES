@@ -135,9 +135,10 @@ perché dipende da una promessa che nessun bot fa».
 Stampa anche il tabellone a fine anno, che è dove si legge una clausola scritta
 «almeno due Regioni»: il **30%** dei seggi finisce senza nessuna Regione, il
 **12%** ne tiene due, e il **44% delle caselle non è di nessuno**. In un anno
-intero una casa guadagna in media un quarto di Regione, perché il controllo non
-si prende con un'azione — passa solo per una Consequence, cioè per un Consiglio
-che si chiude ([ISSUES 37](docs/ISSUES.md)).
+intero una casa guadagna in media un quarto di Regione — e la sonda conta anche
+perché: `ACT_CLAIM` («Rivendicare») non prende una Regione, apre una domanda e
+poi strappa un Consiglio, e su 60 partite le rivendicazioni aperte sono 63 ma
+quelle **portate fino in fondo 15** ([ISSUES 37](docs/ISSUES.md)).
 
 ## I bot contro il caso
 

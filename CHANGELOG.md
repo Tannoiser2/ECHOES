@@ -5,6 +5,37 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.116] — «Rivendicare» esiste
+
+Correzione a 0.1.115, sollevata dal committente: «ma scusa, le Regioni non si
+prendono con un'azione specifica?». Sì ([D-153](docs/DECISIONS.md#d-153)).
+
+### Fixed
+
+- **La frase di D-152 era fuorviante.** `ACT_CLAIM` («Rivendicare») esiste. Non
+  prende una Regione: apre un Claim su un **dominio di Tensione** scartando un
+  Asset AUTHORITY, e in un round successivo lo consuma con un secondo AUTHORITY
+  per **strappare un Consiglio da proponente**. La Regione arriva se quel
+  Consiglio cade su una delle 14 Consequence con `SET_CONTROL` a `$proponent`.
+- `docs/ISSUES.md` 37 riscritta sulla premessa giusta, README aggiornato.
+
+### Added
+
+- **`cli/run_rung_probe.gd`** conta i tre numeri della catena: rivendicazioni
+  aperte, Consigli strappati, rivendicazioni morte in mano.
+
+### Measured
+
+- Su 60 Chronicle: **63 rivendicazioni aperte, 15 forzate, 48 morte senza
+  essere usate**. Tre su quattro si pagano e non si spendono — la catena si
+  spezza al terzo dei suoi cinque anelli.
+- In trenta Chronicle `ACT_ACQUIRE` produce **4286** effetti e `ACT_CLAIM`
+  **84**: le case raccolgono, non rivendicano.
+- Nessuna modifica al gioco. Playtest invariato — **FAIL 177 · SUCC 73 ·
+  SUCC 126 · DECI 187**, tavolo misto **0/8**. Suite **305 verde**.
+
+---
+
 ## [0.1.115] — La corona tiene la sua terra
 
 La prima delle due decisioni che D-151 aveva rimandato al committente

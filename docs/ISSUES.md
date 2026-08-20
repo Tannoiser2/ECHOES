@@ -1133,24 +1133,35 @@ Sessanta Chronicle, e il tabellone a fine anno e' quasi quello di inizio anno:
 guadagna in media **un quarto di Regione**. Il Vetro non ne tiene **mai** una
 in trenta partite; le Citta' Libere ne perdono.
 
-La ragione e' strutturale e non e' il bilanciamento: **il controllo non si
-prende con un'azione**. Nessuna delle 22 azioni lo assegna. Passa solo per una
-**Consequence** — cioe' per un Consiglio che si chiude su una delle 14 carte
-che portano un `SET_CONTROL` — e i Consigli falliscono 185 volte su 100
-partite. Fra le due Chronicle giocate: CHR_01 ne ha nove, CHR_03 **tre**.
+**L'azione per prenderle esiste** ([D-153](DECISIONS.md#d-153), correzione
+sollevata dal committente): e' `ACT_CLAIM`, «Rivendicare». Solo che non
+rivendica una Regione — rivendica una **domanda**. In `CREATE` scarta un Asset
+AUTHORITY e apre un Claim su un dominio di Tensione; in un round successivo, in
+`FORCE`, lo consuma insieme a un secondo AUTHORITY per **strappare un Consiglio
+da proponente**. La Regione arriva solo se quel Consiglio cade su una delle 14
+Consequence che portano un `SET_CONTROL` a `$proponent`.
 
-Non e' detto che sia un difetto: un gioco dove la terra cambia padrone solo
-per decisione collettiva e' una scelta di design leggibile e forse giusta. Ma
-non e' mai stata **decisa** — e ci sono sei Destini che chiedono Regioni.
+Cinque anelli in serie: un AUTHORITY e un'Azione · la Tensione bersaglio a 3+ ·
+un secondo AUTHORITY e un'altra Azione in un round dopo · un Consiglio che non
+fallisce (falliscono 177 volte su 100 partite) · la carta giusta.
 
-Tre strade, nessuna misurata: **(a)** un'azione che rivendica una Regione dove
-si ha presenza e nessun altro ne ha di piu'; **(b)** piu' Consequence con
-`SET_CONTROL` in CHR_03, che ne ha un terzo di CHR_01; **(c)** lasciare tutto
-com'e' e riscrivere le clausole che chiedono terra in clausole che chiedono
-altro. La (c) e' gia' cominciata con Aldric in D-152.
+E si spezza al terzo. Su 60 Chronicle: **63 rivendicazioni aperte, 15 forzate,
+48 morte senza essere usate**. Tre su quattro si pagano e non si spendono. Per
+confronto, in trenta Chronicle `ACT_ACQUIRE` produce 4286 effetti e `ACT_CLAIM`
+84: le case raccolgono, non rivendicano.
 
-**Fatto quando** una delle tre e' stata provata sui 100 semi e la mappa a fine
-anno e' diversa da quella di inizio, restando **FAIL ~185 · 0/8**.
+L'idea e' bella — *rivendicare non e' prendersi una terra, e' costringere il
+tavolo a discuterne*. La domanda non e' quindi «serve un'azione», ma **quale
+anello si accorcia**. Quattro strade, nessuna misurata: **(a)** un solo Asset
+invece di due, o un solo round invece di due; **(b)** abbassare da 3 la
+Tensione richiesta dal `FORCE`; **(c)** piu' Consequence con `SET_CONTROL` in
+CHR_03, che ne ha tre contro le nove di CHR_01; **(d)** lasciare la catena
+com'e' e riscrivere le clausole che chiedono terra — gia' cominciata con Aldric
+in [D-152](DECISIONS.md#d-152).
+
+**Fatto quando** una delle quattro e' stata provata sui 100 semi, le
+rivendicazioni morte sono scese sotto la meta', e la mappa a fine anno e'
+diversa da quella di inizio restando **FAIL ~180 · 0/8**.
 
 ### 38. La Vittoria della Cenere ha una porta sola
 
