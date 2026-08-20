@@ -1629,7 +1629,10 @@ const CONDITION_TYPES := [
 	"region_presence",
 	"promise_kept",
 	"promise_broken",
+	"structure_count",
+	"scar_count",
 	"any_of",
+	"some_of",
 ]
 
 const ASSET_FAMILIES := [

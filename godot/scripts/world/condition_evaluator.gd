@@ -42,6 +42,32 @@ func holds(condition: Dictionary, context: Dictionary = {}) -> bool:
 				if holds(sub, context):
 					return true
 			return false
+		"some_of":
+			# «Almeno K su N». `any_of` e' il caso K=1; questo e' il caso
+			# generale, e serve a un Destino che vuole dire «tre di queste
+			# cinque cose, e scegli tu quali» invece di elencare una lista che
+			# va soddisfatta per intero (D-161).
+			var needed: int = int(condition.get("min", 1))
+			var met: int = 0
+			for sub in condition.get("conditions", []):
+				if holds(sub, context):
+					met += 1
+					if met >= needed:
+						return true
+			return false
+		"structure_count":
+			# Quante strutture, con i filtri che la clausola dichiara: tipo,
+			# famiglia, grado minimo, Regione, e `anyone` per contare anche
+			# quelle degli altri. Con `min: 1` chiede che ci sia, con `max: 0`
+			# che non ci sia — come ogni altro conteggio del vocabolario.
+			return _within(_structures_held(entity_id, condition), condition)
+		"scar_count":
+			# Le cicatrici erano gia' leggibili come tag di Regione, e **nessun
+			# Destino le usava**. Con un tipo proprio si scrive quello che si
+			# intende: una casa che vuole che la sua terra resti segnata
+			# (`min: 1`), o una che vuole che il segno non ci sia mai stato
+			# (`max: 0`) — D-161.
+			return _within(_scars_on_the_map(condition), condition)
 		"control_count":
 			return _within(service.control_count(entity_id), condition)
 		"state_tag_present":
@@ -161,3 +187,55 @@ func _resolve(value: String, context: Dictionary) -> String:
 	if value.begins_with("$") and context.has(value.substr(1)):
 		return str(context[value.substr(1)])
 	return value
+
+
+## Quante strutture contano per questa clausola. I filtri sono tutti facoltativi
+## e si sommano: il tipo, la famiglia, il grado **minimo**, la Regione, e
+## `anyone` per contare anche quelle degli altri.
+##
+## «Un castello a Eredan» e' tipo + grado + Regione con `min: 1`. «E nessuno ha
+## alzato una reggia sulla montagna» e' grado 3 + Regione + `anyone` con
+## `max: 0`. Lo stesso conto dice tutte e due le cose.
+func _structures_held(entity_id: String, condition: Dictionary) -> int:
+	var wanted_type: String = str(condition.get("structure_type", ""))
+	var family: String = str(condition.get("structure_family", ""))
+	var least: int = int(condition.get("grade", 1))
+	var anyone: bool = bool(condition.get("anyone", false))
+	var only_here: String = str(condition.get("region_id", ""))
+	var count: int = 0
+	for region_id in world["regions"]:
+		if only_here != "" and str(region_id) != only_here:
+			continue
+		for structure in (world["regions"][region_id] as Dictionary).get("structures", []):
+			var record: Dictionary = structure as Dictionary
+			if not anyone and str(record.get("owner", "")) != entity_id:
+				continue
+			if int(record["grade"]) < least:
+				continue
+			if wanted_type != "" and str(record["structure_type"]) != wanted_type:
+				continue
+			if family != "" and not _is_family(str(record["structure_type"]), family):
+				continue
+			count += 1
+	return count
+
+
+## Quante cicatrici stanno sulla mappa. Senza `region_id`, ovunque; senza `tag`,
+## una qualsiasi.
+func _scars_on_the_map(condition: Dictionary) -> int:
+	var wanted_tag: String = str(condition.get("tag", ""))
+	var only_here: String = str(condition.get("region_id", ""))
+	var count: int = 0
+	for scar in world["scars"]:
+		var record: Dictionary = scar as Dictionary
+		if only_here != "" and str(record.get("region_id", "")) != only_here:
+			continue
+		if wanted_tag != "" and str(record.get("tag", "")) != wanted_tag:
+			continue
+		count += 1
+	return count
+
+
+func _is_family(structure_type: String, family: String) -> bool:
+	var definition: Variant = data.structure_types.get(structure_type)
+	return definition != null and str(definition["family"]) == family

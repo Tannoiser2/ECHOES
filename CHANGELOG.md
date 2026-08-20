@@ -5,6 +5,55 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.128] — Le clausole che leggono le pietre
+
+Richiesta del committente sui Destini ([D-161](docs/DECISIONS.md#d-161)). Meta'
+di quello che chiedeva c'era gia': un Destino **e' gia'** una lista di
+condizioni per livello, con dodici tipi e `any_of` per l'oppure.
+
+### Added
+
+- **`structure_count`** — quante strutture, coi filtri: tipo, famiglia, **grado
+  minimo**, Regione, e `anyone` per contare anche quelle degli altri.
+- **`scar_count`** — quante cicatrici, per tag e per Regione. Erano leggibili e
+  **nessun Destino le usava**.
+- **`some_of`** — almeno `min` fra queste condizioni. `any_of` era il caso K=1.
+
+I due conteggi dicono presenza **e** assenza con lo stesso conto: «un castello a
+Eredan» e' `min: 1`, «e nessuno ha alzato una reggia sulla montagna» e'
+`grade: 3` + `anyone` + `max: 0`.
+
+### Changed
+
+- **`CNS_ASH_WATCH` costruisce davvero.** Posava un segno; adesso **alza un
+  presidio che ha un padrone**, che entra nel conto del controllo e puo'
+  crescere. E' la prima Conseguenza che costruisce un oggetto invece di
+  scrivere un tag, ed e' il modello per le altre dieci.
+- Su 30 Chronicle i passaggi di mano per contesa passano da **63 a 74**, e le
+  caselle tenute a fine anno da 138 a **143**.
+
+### Measured — e cinque clausole tolte
+
+Scritte cinque clausole coi tipi nuovi, la sonda ha risposto: **tre mancate al
+100%, due mai mancate. Zero utili** — e il Trionfo sceso dal 5% al 3%.
+
+La causa non era il bilanciamento: **erano clausole su uno strato che dentro
+l'anno nessuno poteva cambiare.** Le strutture si muovevano solo all'apertura e
+alla chiusura; nei nove round non si costruiva niente. E «nessuna cicatrice» e'
+una lotteria: **un anno su quaranta** finisce senza.
+
+Le cinque clausole sono state **tolte**. Il vocabolario resta, il contenuto
+aspetta il pezzo che mancava — che e' arrivato con `CNS_ASH_WATCH`.
+
+**La regola che ne esce:** una clausola che parla di uno strato si scrive
+**dopo** che quello strato ha almeno un modo di cambiare durante l'anno, e si
+misura sui gradini **prima** di restare.
+
+Playtest **FAIL 204 · SUCC 73 · SUCC 113 · DECI 186**, mediana **6**, misto
+**0 su 8**. Suite **334 test / 5991 asserzioni** verde, sims deterministiche.
+
+---
+
 ## [0.1.127] — L'insediamento
 
 La seconda scala del catalogo ([D-160](docs/DECISIONS.md#d-160)), e il trend dei

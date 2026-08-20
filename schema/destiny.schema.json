@@ -49,7 +49,10 @@
             "region_presence",
             "promise_kept",
             "promise_broken",
-            "any_of"
+            "structure_count",
+            "scar_count",
+            "any_of",
+            "some_of"
           ]
         },
         "entity_id": {
@@ -110,10 +113,30 @@
         "label": {
           "type": "string"
         },
+        "structure_type": {
+          "type": "string",
+          "description": "Per `structure_count`: quale tipo del catalogo. Omesso, vale qualunque tipo."
+        },
+        "structure_family": {
+          "type": "string",
+          "enum": ["PRESIDIO", "INSEDIAMENTO", "OPERA", "LUOGO", "CHIUSURA"],
+          "description": "Per `structure_count`: limita il conto a una famiglia — «due presidi» invece di «due strutture qualsiasi». Omessa, contano tutte."
+        },
+        "grade": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4,
+          "description": "Il grado **minimo** che la struttura deve avere. Un Destino che chiede una reggia chiede grado 3; uno che chiede «qualcosa di murato» chiede grado 1."
+        },
+        "anyone": {
+          "type": "boolean",
+          "default": false,
+          "description": "Per `structure_count`: se contino anche le strutture di un altro. Serve alle clausole scritte sul mondo invece che sulla propria casa — «e nessuno ha alzato una reggia sulla montagna» e' `anyone` con `max: 0`."
+        },
         "conditions": {
           "type": "array",
           "minItems": 1,
-          "description": "Only for type 'any_of': holds when at least one of these does. Propp's grammar needs it - a Return follows a Separation OR a Loss - and every other condition list in the schema is an AND.",
+          "description": "Per `any_of`: vale quando almeno una vale. Per `some_of`: quando ne valgono almeno `min`. Ogni altra lista di condizioni nello schema e' una AND.",
           "items": {
             "$ref": "#/$defs/condition"
           }

@@ -10,6 +10,93 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-161 — Le clausole che leggono le pietre, e la lezione di D-151 ripresa da me
+**implemented in 0.1.128** (richiesta del committente sui Destini)
+
+«I Destini li farei diversi, una serie di condizioni che se soddisfatte danno il
+grado di vittoria. E tra le condizioni ci puo' essere le cose piu' disparate
+includendo anche gli edifici e/o il controllo e/o le cicatrici.»
+
+**Meta' di quello che chiede c'era gia', e vale la pena dirlo prima.** Un Destino
+e' gia' esattamente questo: tre livelli, ognuno **una lista di condizioni** che
+devono valere tutte, con dodici tipi disponibili e `any_of` per l'oppure. 135
+clausole scritte, da 1 a 5 per livello. Quello che mancava era piu' stretto:
+
+- **nessuna clausola sapeva leggere le strutture** — che sono nate ieri;
+- **le cicatrici erano leggibili e nessun Destino le usava**: `state_tag_present`
+  con scope REGION avrebbe funzionato, ma scrivere `scar:burned` come un tag
+  qualunque non dice quello che si intende;
+- non si poteva chiedere **«almeno K su N»**: `any_of` e' il caso K=1.
+
+**Il vocabolario nuovo**, tre tipi:
+
+| tipo | dice |
+|---|---|
+| `structure_count` | quante strutture, coi filtri che servono: tipo, famiglia, **grado minimo**, Regione, e `anyone` per contare anche quelle degli altri |
+| `scar_count` | quante cicatrici, per tag e per Regione |
+| `some_of` | almeno `min` fra queste condizioni |
+
+I due conteggi dicono **presenza e assenza con lo stesso conto**: «un castello a
+Eredan» e' `min: 1`, «e nessuno ha alzato una reggia sulla montagna» e'
+`grade: 3` + `anyone` + `max: 0`. E' il motivo per cui ho buttato via i due tipi
+booleani che avevo scritto per primi (`structure_present`, `scar_present`): il
+vocabolario esistente conta gia' cosi' — `control_count`, `discovery_count` — e
+un tipo in piu' che dice meno e' un tipo in meno da avere.
+
+**E qui ho ripreso la lezione di D-151, da solo, sulla mia scrittura.**
+
+Scritte cinque clausole nuove con i tipi nuovi, la sonda dei gradini ha
+risposto:
+
+| clausola | mancata |
+|---|---|
+| Aldric: «E la corona ha una casa, non solo un titolo» (castello a Eredan) | **100%** |
+| la Cenere: «E quello che tengono si vede da lontano» (presidio di grado 2) | **100%** |
+| le Citta': «E l'anno non ha lasciato cicatrici» | **100%** |
+| Nahr: «E il villaggio e' ancora in piedi» | ~mai mancata |
+| Vaerax: «E sulla montagna non si e' fermato nessuno» | ~mai mancata |
+
+Tre impossibili e due gratis. **Zero utili.** E il Trionfo e' sceso dal 5% al
+3%, perche' avevo aggiunto pesi che non si possono sollevare.
+
+La causa e' una sola e non e' il bilanciamento: **ho scritto clausole su uno
+strato che dentro l'anno nessuno puo' cambiare.** Le strutture, fino a
+stamattina, si muovevano in due soli momenti — all'apertura (`starting_structures`)
+e alla chiusura (D-159, il grado che segue il Destino). Dentro i nove round
+**non si costruiva niente**. Una clausola che chiede un castello di grado 2 in
+una Chronicle singola chiede una cosa che il regolamento non permette a nessuno
+di fare: e' la definizione esatta del difetto che D-151 aveva trovato nel
+contenuto di qualcun altro.
+
+E le cicatrici: un anno su quaranta finisce senza nessuna. «Nessuna cicatrice»
+non e' un obiettivo ambizioso, e' una lotteria al 2,5%.
+
+**Cosa ho fatto.** Le cinque clausole sono state **tolte**. Il vocabolario
+resta — e' provato e serve — ma il contenuto aspetta il pezzo che mancava:
+
+**La prima cosa che si costruisce dentro l'anno.** `CNS_ASH_WATCH` — la Veglia
+sulla Montagna — posava un segno `structure:watchtower` sulla Regione. Adesso
+**alza un presidio che ha un padrone**: entra nel conto del controllo dal round
+dopo, e puo' crescere. E' la prima Conseguenza che costruisce un oggetto invece
+di scrivere un tag, ed e' il modello per le altre dieci.
+
+Si vede subito nella misura: i passaggi di mano per contesa passano da **63 a
+74** su trenta Chronicle, e le caselle tenute a fine anno da 138 a **143**. Una
+torre alzata a meta' anno cambia chi tiene la montagna.
+
+**Misure.** Playtest **FAIL 204 · SUCC 73 · SUCC 113 · DECI 186**, Consigli
+mediana **6**, tavolo misto **0 su 8**, uniforme **2 su 8** — invariato rispetto
+a D-160. Suite **334 test / 5991 asserzioni** verde; `run_sims.sh` identico su
+due giri; `dead_code.py` pulito su 151 file; job «Dati e schemi» verde.
+
+**La regola che mi do, e che vale per il resto di §8:** una clausola che parla
+di uno strato del mondo si scrive **dopo** che quello strato ha almeno un modo
+di cambiare durante l'anno — e si misura sulla sonda dei gradini **prima** di
+restare. Il vocabolario per primo, il contenuto per secondo, la misura fra i
+due.
+
+---
+
 ## D-160 — L'insediamento: la seconda scala, e il trend guardato per primo
 **implemented in 0.1.127** (§8.6 passo 3 della [seduta sulla terra](SEDUTA_TERRA.md))
 

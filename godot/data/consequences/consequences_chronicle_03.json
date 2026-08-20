@@ -454,7 +454,7 @@
       "id": "CNS_ASH_WATCH",
       "title": "La Veglia sulla Montagna",
       "category": "FORTIFICATION",
-      "description": "Due torri e un turno di guardia che nessuno salta. Non impedisce niente: fa sapere prima.",
+      "description": "Due torri e un turno di guardia che nessuno salta. Non impedisce niente: fa sapere prima — e da quel momento sulla montagna c'e' qualcosa che ha un nome sopra.",
       "effects": [
         {
           "type": "SET_ENTITY_TAG",
@@ -467,14 +467,17 @@
           }
         },
         {
-          "type": "SET_REGION_TAG",
+          "type": "BUILD_STRUCTURE",
           "target": {
             "kind": "region",
             "id": "REG_MONTAGNE_ROSSE"
           },
           "payload": {
-            "tag": "structure:watchtower"
-          }
+            "structure_type": "STR_KEEP",
+            "grade": 1,
+            "owner": "$proponent"
+          },
+          "note": "La prima cosa che si costruisce dentro l'anno (D-161): la veglia non e' piu' un segno posato sulla Regione ma una torre che ha un padrone, entra nel conto del controllo e puo' crescere."
         },
         {
           "type": "ADJUST_TENSION",
