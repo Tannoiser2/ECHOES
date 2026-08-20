@@ -30,8 +30,8 @@
           {
             "type": "control_count",
             "entity_id": "ENT_ALDRIC",
-            "min": 2,
-            "label": "Controllo di almeno 2 Regioni"
+            "min": 1,
+            "label": "La corona tiene ancora la sua terra"
           },
           {
             "type": "tension_limit",

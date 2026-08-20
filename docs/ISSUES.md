@@ -1116,6 +1116,65 @@ presagi). Sono state scritte insieme al codice e mai rilette di fila.
 **Fatto quando** qualcuno ha letto i testi dall'inizio alla fine e le correzioni
 sono nei JSON.
 
+### 37. La mappa non si muove: il controllo passa solo per un Consiglio
+
+`regole` · `da-misurare` · nata dalla sonda dei gradini ([D-152](DECISIONS.md#d-152))
+
+Sessanta Chronicle, e il tabellone a fine anno e' quasi quello di inizio anno:
+
+| Regioni tenute | seggi |
+|---|---|
+| 0 | **30%** |
+| 1 | 57% |
+| 2 | **12%** |
+| 3 | 1% |
+
+**Il 44% delle caselle non e' di nessuno**, e in un anno intero una casa
+guadagna in media **un quarto di Regione**. Il Vetro non ne tiene **mai** una
+in trenta partite; le Citta' Libere ne perdono.
+
+La ragione e' strutturale e non e' il bilanciamento: **il controllo non si
+prende con un'azione**. Nessuna delle 22 azioni lo assegna. Passa solo per una
+**Consequence** — cioe' per un Consiglio che si chiude su una delle 14 carte
+che portano un `SET_CONTROL` — e i Consigli falliscono 185 volte su 100
+partite. Fra le due Chronicle giocate: CHR_01 ne ha nove, CHR_03 **tre**.
+
+Non e' detto che sia un difetto: un gioco dove la terra cambia padrone solo
+per decisione collettiva e' una scelta di design leggibile e forse giusta. Ma
+non e' mai stata **decisa** — e ci sono sei Destini che chiedono Regioni.
+
+Tre strade, nessuna misurata: **(a)** un'azione che rivendica una Regione dove
+si ha presenza e nessun altro ne ha di piu'; **(b)** piu' Consequence con
+`SET_CONTROL` in CHR_03, che ne ha un terzo di CHR_01; **(c)** lasciare tutto
+com'e' e riscrivere le clausole che chiedono terra in clausole che chiedono
+altro. La (c) e' gia' cominciata con Aldric in D-152.
+
+**Fatto quando** una delle tre e' stata provata sui 100 semi e la mappa a fine
+anno e' diversa da quella di inizio, restando **FAIL ~185 · 0/8**.
+
+### 38. La Vittoria della Cenere ha una porta sola
+
+`contenuto` · nata dalla misura respinta di [D-152](DECISIONS.md#d-152)
+
+La vittoria di `DST_CENERE` ha due clausole: «controllo di almeno 2 Regioni» e
+«le gallerie non sono state murate». La seconda e' quasi sempre vera, quindi la
+prima e' **l'unica porta** — e regge anche il Trionfo che sta sopra, perche' i
+livelli sono cumulativi.
+
+Si vede togliendola: abbassando la soglia a 1, Kessa dei Fuochi passa da
+**1/44/5/0** a **1/0/19/30** su cinquanta partite. Zero Minimi. Non e' un
+gradino che si abbassa, sono due che si aprono insieme.
+
+Quindi la soglia e' rimasta a 2, e il lavoro vero e' un altro: **scrivere una
+seconda clausola con dei denti** per quella Vittoria — qualcosa che la Cenere
+debba fare e che non sia gia' vero per conto suo. E' contenuto d'autore, non
+taratura.
+
+**Fatto quando** la nuova clausola esiste e, con la soglia a 1, Kessa resta
+sotto i dieci Trionfi su cinquanta con almeno dieci Minimi.
+
+---
+
 ---
 
 ## Come si aprono

@@ -5,6 +5,48 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.115] — La corona tiene la sua terra
+
+La prima delle due decisioni che D-151 aveva rimandato al committente
+([D-152](docs/DECISIONS.md#d-152)): abbassare una soglia. La misura ne ha
+approvata una e respinta l'altra.
+
+### Changed
+
+- **`DST_ALDRIC`, vittoria**: `control_count min 2` -> `min 1`, etichetta da
+  «Controllo di almeno 2 Regioni» a **«La corona tiene ancora la sua terra»**.
+  Con `lapse_without_presence` attivo, «almeno una» non e' gratis: il 30% dei
+  seggi finisce l'anno senza nessuna Regione.
+- Re Aldric, 50 partite: da **0/43/5/2** (NONE/MINIMO/VITTORIA/TRIONFO) a
+  **1/24/17/8**. Il suo ostacolo adesso e' la Carestia, non la terra.
+
+### Added
+
+- **`cli/run_rung_probe.gd`** misura anche il tabellone: quante Regioni tiene
+  ogni seggio a fine anno, quante caselle restano senza padrone, e quante
+  passano di mano in gioco.
+
+### Measured
+
+- **La mappa quasi non si muove**: 0 Regioni per il 30% dei seggi, 1 per il
+  57%, 2 per il **12%**, 3 per l'1%. Il **44% delle caselle non e' di
+  nessuno**. Il controllo non si prende con un'azione: passa solo per una
+  Consequence, cioe' per un Consiglio che si chiude.
+- In un anno una casa guadagna in media **un quarto di Regione**. Il Vetro non
+  ne tiene **mai** una in trenta partite; le Citta' Libere scendono da 1,00 a
+  0,67.
+- **Correzione a D-151**: `max_stable_control: 2` non e' un tetto ma una
+  soglia di fatica (D-027), e nessuno la tocca — tre seggi su 240 tengono tre
+  Regioni. Non era quello il vincolo.
+- **Respinta**: la stessa modifica sulla Cenere porta Kessa a **zero Minimi su
+  cinquanta** e 30 Trionfi. La sua soglia reggeva anche il gradino sopra;
+  resta a 2.
+- Playtest 100 semi da 7000: **FAIL 177 · SUCC 73 · SUCC 126 · DECI 187**;
+  tavolo misto **0/8**; tavolo uniforme **3/8 -> 2/8**. Suite **305 verde**,
+  `run_sims.sh` e `run_export.sh` deterministici.
+
+---
+
 ## [0.1.114] — I gradini
 
 La diagnosi per clausola ([D-151](docs/DECISIONS.md#d-151)): non «la Vittoria

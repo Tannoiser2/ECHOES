@@ -331,6 +331,107 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-152 — La corona tiene la sua terra: una soglia abbassata, una no
+**implemented in 0.1.115** (la prima delle due decisioni che D-151 aveva rimandato al committente)
+
+D-151 aveva chiuso con due domande. Il committente ha scelto la prima —
+**abbassare la soglia** — e la misura ha detto sì a meta'.
+
+**Prima: D-151 aveva torto sul meccanismo.** Ci sta scritto che
+`control_count >= 2` «chiede il tetto, perche' `max_stable_control` e' 2».
+Non e' cosi'. `max_stable_control` non e' un tetto: e' una **soglia di
+fatica** (D-027) — si possono tenere tre Regioni, costa un punto di Tensione
+per giro sulla domanda di quella Regione. E infatti nessuno ci arriva mai:
+su 240 seggi misurati, **tre** ne tengono tre. Il soffitto non e' il vincolo,
+perche' nessuno lo tocca.
+
+**Il vincolo vero e' che la mappa non si muove.** La sonda dei gradini ora
+misura anche il tabellone, e il quadro e' questo:
+
+| Regioni tenute a fine anno | seggi |
+|---|---|
+| 0 | **30%** |
+| 1 | 57% |
+| 2 | **12%** |
+| 3 | 1% |
+
+**Il 44% delle caselle non e' di nessuno**, a fine anno come a inizio anno. E
+la ragione e' strutturale: il controllo **non si prende con un'azione**. Passa
+solo per una Consequence, cioe' per un Consiglio che si chiude — e i Consigli
+falliscono 185 volte su 100 partite. Casa per casa, in un anno intero:
+
+| casa | inizio | fine |
+|---|---|---|
+| Aldric | 1,00 | 1,23 |
+| Sale | 1,00 | 1,27 |
+| Nahr | 1,00 | 1,20 |
+| Cenere | 1,00 | 1,17 |
+| Vaerax | 1,00 | **1,00** |
+| Le Citta' Libere | 1,00 | **0,67** |
+| Lyra | 0,00 | 0,17 |
+| Il Vetro | 0,00 | **0,00** |
+
+In trenta partite **il Vetro non tiene mai una Regione**, e le Citta' Libere
+ne perdono. Una clausola scritta «almeno due» non chiede il massimo consentito:
+chiede a una casa di **raddoppiare** in un mondo che le muove un quarto di
+Regione all'anno.
+
+**La modifica, e perche' non e' cancellare la clausola.** Le regole hanno
+`lapse_without_presence`: una Regione tenuta senza starci dentro torna a
+nessuno. Percio' «almeno una» non e' gratis — **il 30% dei seggi finisce a
+zero**. La Vittoria smette di chiedere di crescere e chiede di **tenersi
+quello che si ha**, che in questo mondo e' una domanda vera.
+
+- `DST_ALDRIC` vittoria: `min 2` -> `min 1`, e l'etichetta da «Controllo di
+  almeno 2 Regioni» a **«La corona tiene ancora la sua terra»**.
+
+**Cosa ha fatto, sul seggio:**
+
+| Re Aldric, 50 partite | NONE | MINIMO | VITTORIA | TRIONFO |
+|---|---|---|---|---|
+| prima | 0 | **43** | 5 | 2 |
+| dopo | 1 | 24 | **17** | 8 |
+
+Da un muro al Minimo a una distribuzione. E il suo ostacolo adesso non e' piu'
+la terra ma **la Carestia** («La Carestia non supera 4», mancata nel 30%): il
+re vince se il mondo regge, non se il regno cresce. Che e' meglio come frase e
+meglio come gioco.
+
+**E la seconda soglia e' stata rimessa dov'era.** La stessa modifica sulla
+Cenere e' stata provata e **respinta dalla misura**:
+
+| Kessa dei Fuochi, 50 partite | NONE | MINIMO | VITTORIA | TRIONFO |
+|---|---|---|---|---|
+| prima | 1 | 44 | 5 | 0 |
+| con la soglia a 1 | 1 | **0** | 19 | **30** |
+
+Zero Minimi su cinquanta. Il motivo e' che la vittoria della Cenere ha **due**
+clausole e la seconda («le gallerie non sono state murate») e' quasi sempre
+vera: la soglia sul controllo era l'unica porta, e reggeva anche il Trionfo
+sopra di se'. Toglierla non abbassa un gradino, li apre tutti e due. Il suo
+problema non e' la soglia — e' che a quella Vittoria manca una seconda
+clausola con dei denti, e **scriverla e' contenuto, non taratura**. Resta a 2.
+
+**Misure.** Playtest 100 semi da 7000: **FAIL 177 · SUCC 73 · SUCC 126 ·
+DECI 187** (era 185 · 76 · 123 · 178) — i Consigli si muovono perche' la
+policy legge le clausole del proprio Destino per decidere come votare, quindi
+un re che non insegue piu' la seconda Regione vota diverso. Tavolo misto
+**0 su 8**, invariato; tavolo uniforme **3 su 8 -> 2 su 8**, meglio. Gradini
+su 60 Chronicle: supera il Minimo **47% -> 48%**, e la clausola di Aldric
+passa da **63% a 27%** di volte mancata. Suite **305 test verde**;
+`run_sims.sh` e `run_export.sh` identici su due giri.
+
+Le asserzioni sono passate da 6202 a 5930 senza che un test cambiasse: sei
+suite (`test_chronicle_run`, `test_hotseat`, `test_resume`,
+`test_effect_narrator`, `test_year_end_floor`, `test_chronicle_book`)
+camminano su una partita giocata e contano una asserzione per effetto. Cambia
+il voto, cambia il numero degli effetti. Stessi 305 test, tutti verdi.
+
+**Resta aperta la seconda domanda di D-151**, intatta: le clausole sociali non
+si possono misurare senza persone.
+
+---
+
 ## D-151 — I gradini: quale clausola non si avvera mai
 **implemented in 0.1.114** (la diagnosi che D-150 ha reso necessaria)
 
