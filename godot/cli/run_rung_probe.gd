@@ -292,12 +292,24 @@ func _initialize() -> void:
 	quit(0)
 
 
+## Da D-167 una clausola puo' stare **dentro** una scelta, e i conti aperti
+## portano anche le singole strade cadute: cercarle solo in cima le farebbe
+## comparire tutte come livello «?».
 static func _level_of(destiny: Dictionary, label: String) -> String:
 	for level in LEVELS:
-		for condition in (destiny[level] as Dictionary)["conditions"]:
-			if str((condition as Dictionary).get("label", "")) == label:
-				return level
+		if _names((destiny[level] as Dictionary)["conditions"] as Array, label):
+			return level
 	return "?"
+
+
+static func _names(conditions: Array, label: String) -> bool:
+	for condition in conditions:
+		if str((condition as Dictionary).get("label", "")) == label:
+			return true
+		var nested: Array = (condition as Dictionary).get("conditions", []) as Array
+		if not nested.is_empty() and _names(nested, label):
+			return true
+	return false
 
 
 func _parse_args(args: PackedStringArray) -> Dictionary:

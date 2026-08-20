@@ -97,8 +97,14 @@ diventa due cose:
   e' arrivata. Fra le strade ci sono le Tensioni, il controllo, i rapporti, le
   promesse, e adesso **le pietre e le cicatrici**.
 
-Otto Destini riscritti, uno per casa. Gli otto alternativi del pool restano in
-AND: sono il gruppo di controllo, e si guardano nella stessa tabella.
+Otto Destini riscritti, uno per casa. Gli otto alternativi restano in AND —
+**e non sono il gruppo di controllo che avevo scritto qui la prima volta.** La
+sonda per Destino, aggiunta subito dopo, dice che in queste misure *non vengono
+mai giocati*: `_deal_destiny` pesca da `chronicle["destiny_pool"]` e **nessuna
+delle quattro Chronicle ne dichiara uno**, quindi ogni casa insegue sempre il
+`destiny_id` scritto sull'Entita'. Gli altri undici Destini — otto alternativi e
+tre condivisibili — si vedono solo per successione, dentro una saga. E' ISSUES
+43, e la correzione sta qui perche' il verbale sbagliato l'ho scritto io.
 
 Esempio, il Trionfo di Vaerax: spina «le Miniere non sono state svuotate», e
 **quattro segni su cinque** fra il Risveglio riportato indietro, le Vie
@@ -107,13 +113,21 @@ e **un segno che si vede sulle gallerie**. Il muro di prima — la strada taglia
 — e' uscito; al suo posto c'e' una cosa che sta sulla mappa e che qualcuno puo'
 far succedere.
 
-### La prova si legge
+### La prova si legge, e i conti aperti pure
 
 Una scelta che non si vede non serve a niente: «tre di queste cinque» non dice
 nulla se non si vede quali erano e quali hai preso. `describe_all` apre la
 scelta strada per strada, rientrata, e le evidence di fine anno la portano.
 E' lo stesso difetto che il committente ha trovato nelle carte — «le frasi sono
 belle e non si capisce cosa fanno» — sul foglio che conta di piu'.
+
+E lo stesso vale per i **conti rimasti aperti** (D-087), che non sono prosa: sono
+la meta' strutturata delle evidence, quella che il motore 0.3 legge per far
+nascere l'era dopo. Una scelta che finisce li' dentro come voce sola direbbe
+«tre di queste cinque» senza dire quali due sono cadute — un livello di dettaglio
+in meno proprio dove ne ho spostate meta'. `open_roads` mette accanto alla
+scelta le strade che non hanno retto, e la sonda dei gradini adesso le attribuisce
+al livello giusto invece di stamparle come «?».
 
 ### Il difetto che questa seduta ha quasi introdotto
 

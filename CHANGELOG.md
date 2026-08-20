@@ -33,6 +33,10 @@ vittoria, includendo anche gli edifici e/o il controllo e/o le cicatrici».
 - **`validate_data.py` controlla lo `structure_type`** di una clausola. Un tipo
   sbagliato non era un errore: contava zero, cioe' diventava un muro che nessuno
   aveva deciso di alzare.
+- **`open_roads`**: i conti rimasti aperti ([D-087](docs/DECISIONS.md#d-087))
+  portano **quali strade sono cadute**, non «tre di queste cinque». Sono la
+  meta' strutturata delle evidence, quella che l'era dopo eredita: una scelta
+  opaca l'avrebbe resa cieca proprio dove ne ho spostate meta'.
 
 ### Fixed
 

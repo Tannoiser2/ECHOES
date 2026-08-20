@@ -69,6 +69,13 @@ func evaluate(destiny_id: String, holder: String = "") -> Dictionary:
 				evidence.append("%s %s" % [LEVEL_NAMES[i], str(line)])
 			if not conditions.holds(condition, context):
 				unmet.append((condition as Dictionary).duplicate(true))
+				# E se quello che manca e' una scelta, mancano **delle strade**: il
+				# conto aperto e' quello, non «tre di queste cinque». Senza,
+				# spostare meta' delle clausole dentro le scelte avrebbe tolto un
+				# livello di dettaglio proprio ai conti che l'era dopo eredita
+				# (D-087) — la meta' strutturata delle evidence.
+				for road in conditions.open_roads(condition, context):
+					unmet.append(road)
 		# A higher level only counts while every lower one still holds.
 		cumulative = cumulative and holds
 		if cumulative:

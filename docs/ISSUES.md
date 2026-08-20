@@ -1376,6 +1376,44 @@ esattamente il modo in cui si peggiora una cosa credendo di aggiustarla.
 **a parita' di tavolo** — cioe' con lo stesso quartetto di caratteri e gli stessi
 semi — e si sa quale delle tre cause pesa.
 
+### 43. Undici Destini su venti non si giocano mai all'apertura di una Chronicle
+
+`contenuto` · `motore` · `debito` · da [D-167](DECISIONS.md#d-167)
+
+`_deal_destiny` pesca da **`chronicle["destiny_pool"]`**. I pool pero' sono
+scritti sulle **Entita'** — `ENT_ALDRIC` ha `['DST_ALDRIC', 'DST_ALDRIC_RECORD',
+'DST_SHARED_RENOWN']` — e **nessuna delle quattro Chronicle dichiara un
+`destiny_pool`**. Risultato: all'apertura ogni casa insegue sempre il proprio
+`destiny_id` di default, e su 240 seggi-partita la sonda per Destino trova
+**otto Destini su venti**.
+
+Restano fuori dal gioco di una sera:
+
+| | |
+|---|---|
+| alternativi | `DST_ALDRIC_RECORD`, `DST_NAHR_ROOTED`, `DST_LYRA_TAUGHT`, `DST_VAERAX_WATCHED`, `DST_VAERAX_LEGEND`, `DST_SALE_OPEN`, `DST_CENERE_DEEP`, `DST_LIBERE_WATER` |
+| condivisibili (voce 20, [D-115](DECISIONS.md#d-115)) | `DST_SHARED_RENOWN`, `DST_SHARED_LAND`, `DST_SHARED_ACCOUNTS` |
+
+Si vedono solo per **successione**, dentro una saga: `succession.gd` legge il
+pool dall'Entita' e fa girare l'ambizione quando un seggio ottiene qualcosa o si
+stanca. Quindi il meccanismo funziona — e' il **primo giro** che non lo usa.
+
+Non e' evidentemente un difetto: puo' essere stato deciso che il primo anno sia
+sempre quello scritto, e che l'ambizione cambi solo dopo. Ma [D-150](DECISIONS.md#d-150)
+diceva un'altra cosa — «un obiettivo pescato rompe il Minimo come risposta giusta
+di default, e al tavolo toglie la cosa peggiore che ha oggi: alla terza partita
+tutti sanno cosa vuole l'altro» — e quella ragione vale **dalla prima partita**,
+non dalla seconda era.
+
+**Il costo per accenderlo e' una riga per casa** nelle quattro Chronicle. Il
+costo per **non** accenderlo alla cieca e' misurarlo: undici Destini mai
+osservati entrano in gioco tutti insieme, e tre di loro (i condivisibili) non
+sono mai stati letti da nessuna sonda.
+
+**Fatto quando** si e' deciso a verbale se il primo anno pesca o no, e — se
+pesca — la sonda dei gradini mostra tutti e venti i Destini con i Trionfi fra il
+10% e il 30%, come gli otto di oggi.
+
 ---
 
 ---

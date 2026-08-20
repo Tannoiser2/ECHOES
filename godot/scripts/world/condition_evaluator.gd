@@ -119,6 +119,19 @@ func describe(condition: Dictionary, context: Dictionary = {}) -> String:
 ## quali tre hai preso. E' lo stesso difetto che il committente ha trovato nelle
 ## carte — «le frasi sono belle e non si capisce cosa fanno» — applicato al
 ## foglio che conta di piu', quello che dice come e' finito l'anno.
+## Le strade di una scelta che non hanno retto, come dati. Su una clausola
+## semplice non c'e' niente da aprire, e la lista e' vuota.
+func open_roads(condition: Dictionary, context: Dictionary = {}) -> Array:
+	var kind: String = str(condition.get("type", ""))
+	if kind != "some_of" and kind != "any_of":
+		return []
+	var out: Array = []
+	for sub in condition.get("conditions", []):
+		if not holds(sub as Dictionary, context):
+			out.append((sub as Dictionary).duplicate(true))
+	return out
+
+
 func describe_all(condition: Dictionary, context: Dictionary = {}) -> Array:
 	var lines: Array = [describe(condition, context)]
 	var kind: String = str(condition.get("type", ""))

@@ -107,3 +107,25 @@ func test_a_seat_still_sees_what_it_wants_from_inside_a_choice() -> void:
 		policy._score_effect(push, VAERAX, "ENT_ALDRIC", {}, session, {}), 0,
 		"e vale un'opinione al tavolo, non zero"
 	)
+
+
+## E i conti rimasti aperti (D-087) devono dire **quali strade** sono cadute,
+## non «tre di queste cinque». E' la meta' strutturata delle evidence, quella
+## che l'era dopo eredita: una scelta opaca la renderebbe cieca proprio dove
+## D-167 ha spostato meta' delle clausole.
+func test_the_open_accounts_name_the_roads_that_fell() -> void:
+	_heat("TEN_ROADS", 3)
+	_heat("TEN_FAMINE", 1)
+	var fallen: Array = session.destinies.conditions.open_roads(_choice(2))
+	assert_eq(fallen.size(), 2, "due strade su tre non hanno retto")
+	for road in fallen:
+		assert_ne(
+			str((road as Dictionary).get("label", "")), "strade dure",
+			"e quella che ha retto non e' un conto aperto"
+		)
+	assert_true(
+		session.destinies.conditions.open_roads(
+			{"type": "control_count", "entity_id": VAERAX, "min": 9}
+		).is_empty(),
+		"una clausola semplice non ha strade da aprire"
+	)
