@@ -331,6 +331,75 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-150 — Il pool dei Destini: il meccanismo sì, il contenuto non ancora
+**implemented in 0.1.113** (strada A della [seduta sulle linee](SEDUTA_LINEE.md), scelta dal committente)
+
+Il meccanismo c'e' ed e' provato; **nelle Chronicle e' spento**, e la ragione
+e' una misura che ha detto di no. Vale la pena scrivere per intero come si e'
+arrivati qui, perche' e' andata diversamente da come sembrava a meta' strada.
+
+**Il meccanismo.** `destiny_pool` sulla Chronicle: per ogni casa, i Destini fra
+cui l'anno pesca. E' `tension_pool` applicato agli obiettivi — omesso, ogni
+casa insegue il `destiny_id` scritto sull'Entita' e non cambia niente. Nessun
+Destino si permuta fra le case: ognuno resta scritto per la sua
+(SEDUTA_LINEE §2).
+
+**La scoperta che ha accorciato il lavoro.** Stavo per scrivere otto Destini
+nuovi; ne esistevano gia' **otto orfani**, uno per casa —
+`DST_ALDRIC_RECORD`, `DST_NAHR_ROOTED`, `DST_LYRA_TAUGHT`,
+`DST_VAERAX_WATCHED`, `DST_SALE_OPEN`, `DST_VETRO_SHOWN`, `DST_CENERE_DEEP`,
+`DST_LIBERE_WATER` — scritti ai tempi dei valori per vita (D-111) e mai
+attaccati a niente. Nove Destini su venti erano in uso; undici no.
+
+**Il dado a parte, che e' un difetto vero preso per strada.** Accendendo i pool
+i tre piani di simulazione sono usciti **diversi a Destini identici**: la pesca
+attingeva al caso della partita, quindi spostava mazzi, deriva e domande. E' lo
+stesso errore che D-051 aveva gia' evitato coi caratteri («chi siede dove lo
+decide un RNG a parte»). Adesso il dado dei Destini e' suo, e un test lo prova:
+accendere il pool cambia **cosa la gente vuole**, non che mondo trova.
+
+**E la misura ha detto no.** Coi pool accesi sulle quattro Chronicle:
+
+| | senza pool | con pool |
+|---|---|---|
+| playtest, Consigli falliti | **185** | **222** |
+| tavolo misto, seggi bloccati | **0 su 8** | **2 su 8** |
+
+Il vincolo di casa e' 0/8, e 222 e' fuori banda. Gli otto Destini orfani non
+sono pronti: **sono contenuto scritto e mai giocato**, e nessuno li ha mai
+misurati contro la policy. Averli trovati gia' fatti mi ha fatto saltare il
+passo che questo progetto non salta mai — accendere **uno per volta** e
+misurare (D-104, D-117). Restano spenti finche' non lo si fa.
+
+**Quello che la sonda della varieta' ha detto lo stesso**, e vale piu' del no:
+con i pool accesi la prima linea e' andata a **distanza 0,89** (da 0,81), 84
+frasi distinte (da 74), Trionfi 15 (da 11) — il pool *funziona*, fa quello che
+deve. Sulla seconda linea invece non e' cambiato quasi niente, e il perche' e'
+la cosa piu' importante uscita da tutta questa giornata:
+
+**Il Minimo di ogni Destino e' «esistere».** Guardati in fila, i primi gradini
+sono tutti la stessa cosa — la casa e' viva e sta da qualche parte — e due
+coppie ce l'hanno **identico parola per parola** (Vetro, Cenere). Il Minimo non
+e' un obiettivo: e' una **soglia di sopravvivenza**.
+
+Questo corregge la lettura che avevo dato a D-149. «Il 64% dei Destini finisce
+al Minimo» non vuol dire «i giocatori vogliono sempre la stessa cosa»: vuol
+dire che **restano vivi e non arrivano al secondo gradino**. La misura giusta
+per [ISSUES 35](ISSUES.md) non e' la colonna MINIMUM, e' **quanti superano il
+Minimo** — e quella e' ferma al 30% col pool e senza. Il pool non era la cura,
+perche' la malattia era un'altra.
+
+**Come si riprende, quando si riprende**: un Destino alternativo per volta,
+acceso su una casa sola, playtest a ogni passo, e si tiene solo se resta
+185 · 0/8. Il meccanismo, la sonda della varieta' e i quattro test sono gia'
+li' e non chiedono niente a nessuno.
+
+Misure: suite **305/6202** verde; playtest **FAIL 185 · SUCC 76 · SUCC 123 ·
+DECI 178**, tavolo misto **0/8** — la baseline esatta, coi pool spenti; sims
+deterministici; 22 documenti validi.
+
+---
+
 ## D-149 — La distanza fra due saghe
 **implemented in 0.1.112** (la misura che mancava per rispondere al committente: «linee sempre diverse»)
 

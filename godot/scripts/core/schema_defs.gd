@@ -329,6 +329,9 @@ const DEFS := {
 			"years_after_previous": {
 				"type": "Variant",
 			},
+			"destiny_pool": {
+				"type": "Dictionary",
+			},
 		},
 	},
 	"confluence_template": {

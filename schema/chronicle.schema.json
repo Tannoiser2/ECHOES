@@ -486,6 +486,19 @@
               }
             }
           ]
+        },
+        "destiny_pool": {
+          "type": "object",
+          "description": "Che cosa vuole ogni casa quest'anno (D-150). Per ogni entità, i Destini fra cui l'anno pesca — tutti scritti per quella casa: non si permuta niente fra le case, perché una clausola nomina Regioni, rivali e segni della sua epoca, e la prosa è scritta per chi la porta. Omesso, ogni casa insegue il `destiny_id` scritto sull'Entità, com'era prima di D-150. È il meccanismo di `tension_pool` applicato agli obiettivi, e serve a rompere il Minimo come risposta giusta di default: la sonda della varietà (D-149) dice che le storie sono già diverse (distanza 0,8) e che a ripetersi è cosa i giocatori vogliono.",
+          "additionalProperties": {
+            "type": "array",
+            "minItems": 2,
+            "items": {
+              "type": "string",
+              "pattern": "^DST_[A-Z0-9_]+$"
+            },
+            "description": "I Destini possibili per quella casa. Almeno due: uno solo sarebbe il campo che c'è già sull'Entità."
+          }
         }
       }
     }

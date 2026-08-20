@@ -10,6 +10,7 @@ extends RefCounted
 const Effect := preload("res://scripts/core/effect.gd")
 const Ids := preload("res://scripts/core/ids.gd")
 const Succession := preload("res://scripts/chronicle/succession.gd")
+const RngService := preload("res://scripts/core/rng_service.gd")
 
 const DEFAULT_DECK_COPIES: int = 3
 
@@ -53,6 +54,13 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 		"open_failures": [],
 	}
 
+	# Il dado dei Destini e' **a parte** (D-150), come quello che assegna i
+	# caratteri ai seggi nel playtest (D-051): una pesca che attinge al caso
+	# della partita sposta i mazzi, la deriva e le domande anche quando esce lo
+	# stesso Destino — e infatti i tre piani di simulazione sono usciti diversi
+	# il giorno in cui il pool si e' acceso, con i Destini identici. Accendere
+	# il pool deve cambiare **cosa la gente vuole**, non che mondo trova.
+	var destiny_rng: RefCounted = RngService.new(rng.get_seed() * 31 + 11)
 	for entity_id in chronicle["entities"]:
 		var definition: Dictionary = data.entities[entity_id]
 		world["entities"][entity_id] = {
@@ -62,7 +70,7 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 			# can change between Chronicles while every Scar and relation the
 			# world wrote keeps pointing at something that exists (D-045).
 			"name": str(definition["name"]),
-			"destiny_id": str(definition["destiny_id"]),
+			"destiny_id": _deal_destiny(entity_id, definition, chronicle, destiny_rng),
 			"generation": 0,
 			# La vita del seggio al tavolo (D-108): si parte dalla prima, e la
 			# successione la fa avanzare quando una linea si esaurisce.
@@ -113,6 +121,37 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 
 ## Which Tensions this Chronicle actually runs.
 ##
+## Che cosa vuole questa casa, quest'anno (D-150).
+##
+## Il `destiny_id` scritto sull'Entita' e' quello che ha sempre voluto: resta
+## il suo, e senza pool non cambia niente. Ma una Chronicle puo' dichiarare un
+## `destiny_pool` — per casa, una lista di Destini fra cui pescare — e allora
+## l'anno decide cosa quella casa insegue *stavolta*.
+##
+## E' lo stesso meccanismo delle domande, applicato agli obiettivi, per la
+## stessa ragione: quello che si ripete non sono le storie — la sonda della
+## varieta' le da' a 0,8 di distanza (D-149) — ma cosa i giocatori vogliono, e
+## il risultato e' che due Destini su tre finiscono al Minimo. Un obiettivo
+## pescato rompe il Minimo come risposta giusta di default, e al tavolo toglie
+## la cosa peggiore che ha oggi: alla terza partita tutti sanno cosa vuole
+## l'altro.
+##
+## Ogni Destino del pool e' scritto **per la sua casa** — non si permuta niente
+## fra le case (SEDUTA_LINEE §2: una clausola nomina Regioni, rivali e segni di
+## quell'epoca, e la prosa e' scritta per chi la porta).
+static func _deal_destiny(
+	entity_id: String, definition: Dictionary, chronicle: Dictionary, rng: RefCounted
+) -> String:
+	var pool: Array = (chronicle.get("destiny_pool", {}) as Dictionary).get(entity_id, [])
+	if pool.is_empty():
+		return str(definition["destiny_id"])
+	var candidates: Array = []
+	for destiny_id in pool:
+		candidates.append(str(destiny_id))
+	candidates.sort()
+	return str(rng.shuffle(candidates)[0])
+
+
 ## `tensions` written out is the authored form. `tension_pool` is the library
 ## form: the Chronicle names what it *could* be about and the seeded RNG deals
 ## the year. That is what lets Chronicle N+1 exist without anyone writing it -

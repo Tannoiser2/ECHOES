@@ -5,6 +5,48 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.113] — Il pool dei Destini (meccanismo acceso, contenuto spento)
+
+La strada A della seduta sulle linee ([D-150](docs/DECISIONS.md#d-150)): il
+meccanismo c'e' e si prova, **nelle Chronicle e' spento** perche' la misura ha
+detto di no.
+
+### Added
+
+- **`destiny_pool`** sulla Chronicle: per ogni casa, i Destini fra cui l'anno
+  pesca. E' `tension_pool` applicato agli obiettivi; omesso, non cambia niente.
+- **Il dado dei Destini e' a parte** (come i caratteri in D-051): accendere il
+  pool cambia cosa la gente vuole, **non che mondo trova**.
+- Quattro test, e uno prova proprio quello: coi pool accesi le domande e i
+  mazzi restano identici.
+
+### Changed
+
+- Il banco di prova **neutralizza la pesca**: `new_session` rimette a ogni casa
+  il Destino scritto. Dieci test erano diventati rossi il giorno in cui il pool
+  si e' acceso, tutti perche' davano per scontato cosa una casa volesse.
+
+### Measured
+
+- **Coi pool accesi il playtest esce di banda**: Consigli falliti **222**
+  (contro 185) e **2 su 8** seggi bloccati al tavolo misto (contro 0). Gli otto
+  Destini alternativi sono contenuto scritto ai tempi di D-111 e **mai
+  giocato**: vanno accesi uno per volta, misurando.
+- La varieta' pero' risponde: prima linea a **distanza 0,89** (da 0,81), 84
+  frasi distinte (da 74), Trionfi **15** (da 11).
+- Coi pool spenti: playtest **FAIL 185 · SUCC 76 · SUCC 123 · DECI 178**,
+  tavolo misto **0 su 8**; suite **305 test / 6202 asserzioni** verde; sims
+  deterministici.
+
+### Notes
+
+- **Il Minimo di ogni Destino e' «esistere»** — due coppie ce l'hanno identico
+  parola per parola. Non e' un obiettivo, e' una soglia di sopravvivenza: la
+  misura giusta per ISSUES 35 non e' la colonna MINIMUM ma **quanti la
+  superano**, ferma al 30% col pool e senza.
+
+---
+
 ## [0.1.112] — La distanza fra due saghe
 
 La misura che mancava prima di aggiungere varieta'

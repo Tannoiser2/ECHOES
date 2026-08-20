@@ -108,6 +108,16 @@ func new_session(seed_value: int = 4242, apply_setup: bool = true) -> RefCounted
 	if not session.setup("CHR_01", ["ENT_ALDRIC", "ENT_NAHR", "ENT_LYRA", "ENT_VAERAX"], seed_value):
 		_fail("setup fallito: %s" % session.last_error)
 		return session
+	# Il Destino pescato (D-150) e' una variabile in piu' sul banco: una suite
+	# che non la neutralizza misura la pesca invece del codice — dieci test
+	# sono diventati rossi il giorno in cui il pool si e' acceso, tutti perche'
+	# davano per scontato che una casa volesse quello che ha sempre voluto.
+	# Qui ogni casa torna al Destino scritto sull'Entita'; chi vuole provare il
+	# pool lo assegna a mano (test_destiny_pool).
+	for entity_id in session.world["entities"]:
+		var written: Variant = session.data.entities.get(str(entity_id))
+		if written != null:
+			session.world["entities"][str(entity_id)]["destiny_id"] = str(written["destiny_id"])
 	if apply_setup:
 		for effect in session.factory_setup_effects():
 			session.applier.apply(effect)
