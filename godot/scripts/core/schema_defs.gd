@@ -308,6 +308,15 @@ const DEFS := {
 			"confluence_rules": {
 				"type": "Dictionary",
 			},
+			"starting_structures": {
+				"type": "Array",
+				"element": {
+					"type": "Dictionary",
+				},
+			},
+			"structure_rules": {
+				"type": "Dictionary",
+			},
 			"control_rules": {
 				"type": "Dictionary",
 			},

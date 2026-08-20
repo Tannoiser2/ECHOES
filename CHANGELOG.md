@@ -5,6 +5,58 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.126] — La scala che si muove col Destino
+
+«Se la reggia appartiene all'entita' che ha perso va in rovina, se invece
+trionfa diventa una reggia» ([D-159](docs/DECISIONS.md#d-159), §7.3 della seduta
+sulla terra).
+
+### Added
+
+- **`structure_rules`** sulla Chronicle: chi trionfa **alza di un grado la sua
+  struttura piu' alta**, chi non arriva al Minimo **ne perde uno sulla piu'
+  bassa**. Sotto il primo grado non si scende: si va in **rovina**, e la rovina
+  lascia una cicatrice.
+- **`starting_structures`**: la mappa si apre gia' costruita. Le tre Regioni che
+  partono con un padrone partono con una **torre di veglia**. Sta sulla
+  Chronicle e non sulla Regione per la stessa ragione di `starting_control`.
+
+### Measured
+
+Dodici saghe da otto anni:
+
+| | |
+|---|---|
+| gradi saliti (Trionfo) | **24** |
+| strutture andate in rovina | **19** |
+| castelli in piedi all'ottavo anno | **3** |
+| regge | 0 |
+
+In otto anni tre torri diventano castelli e nessuno arriva a una reggia: e' il
+ritmo giusto, una reggia deve restare un fatto raro.
+
+Playtest **FAIL 203 · SUCC 76 · SUCC 108 · DECI 188**, tavolo misto **0 su 8**,
+uniforme **2 su 8**; mappa al **76%** di caselle con un padrone.
+
+**Da dichiarare:** i Consigli falliti sono passati da 185 a 191, 196, **203** in
+tre modifiche di fila. Il vincolo 0/8 regge, ma il numero si muove sempre nella
+stessa direzione e alla prossima va guardato per primo.
+
+### Fixed
+
+- **La torre di partenza copriva la reggia ereditata.** `BUILD_STRUCTURE` e' un
+  no-op se il tipo c'e' gia' e il setup gira prima dell'eredita': una reggia
+  dell'anno prima tornava una torre. L'eredita' adesso abbatte e rialza.
+- Due test misuravano una mappa vuota che non esiste piu' (uno cercava «la prima
+  `BUILD_STRUCTURE`», l'altro incontrava `TGR_WATCHTOWER_FORCE` e la chiamava
+  telaio). Nessuno dei due era un difetto del gioco.
+- Di nuovo il passo dei due artefatti generati: schema aggiornato,
+  `gen_gd_schema.py` dimenticato, playtest morto con «unexpected field».
+
+Suite **334 test / 5977 asserzioni** verde, sims deterministiche.
+
+---
+
 ## [0.1.125] — La contesa del controllo
 
 Il padrone di una Regione non e' piu' **scritto** ma **contato**

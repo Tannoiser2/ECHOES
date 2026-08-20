@@ -145,7 +145,35 @@
           "region_id": "REG_MINIERE_ANTICHE",
           "entity_id": null
         }
-      ]
+      ],
+      "starting_structures": [
+        {
+          "region_id": "REG_EREDAN",
+          "structure_type": "STR_KEEP",
+          "grade": 1,
+          "owner": "ENT_LIBERE"
+        },
+        {
+          "region_id": "REG_STRADA_MERCANTI",
+          "structure_type": "STR_KEEP",
+          "grade": 1,
+          "owner": "ENT_SALE"
+        },
+        {
+          "region_id": "REG_MONTAGNE_ROSSE",
+          "structure_type": "STR_KEEP",
+          "grade": 1,
+          "owner": "ENT_CENERE"
+        }
+      ],
+      "structure_rules": {
+        "rise_on": [
+          "TRIUMPH"
+        ],
+        "fall_on": [
+          "NONE"
+        ]
+      }
     },
     {
       "world_id": "WORLD_ECHOES",
@@ -313,7 +341,35 @@
         "water_priced",
         "relic_buried",
         "faith_established"
-      ]
+      ],
+      "starting_structures": [
+        {
+          "region_id": "REG_EREDAN",
+          "structure_type": "STR_KEEP",
+          "grade": 1,
+          "owner": "ENT_LIBERE"
+        },
+        {
+          "region_id": "REG_STRADA_MERCANTI",
+          "structure_type": "STR_KEEP",
+          "grade": 1,
+          "owner": "ENT_SALE"
+        },
+        {
+          "region_id": "REG_MONTAGNE_ROSSE",
+          "structure_type": "STR_KEEP",
+          "grade": 1,
+          "owner": "ENT_CENERE"
+        }
+      ],
+      "structure_rules": {
+        "rise_on": [
+          "TRIUMPH"
+        ],
+        "fall_on": [
+          "NONE"
+        ]
+      }
     }
   ]
 }

@@ -10,6 +10,79 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-159 — La scala che si muove col Destino, e la mappa che si apre costruita
+**implemented in 0.1.126** (§7.3 della [seduta sulla terra](SEDUTA_TERRA.md))
+
+«Il cambio puo' dipendere da come vanno le cose: **se la reggia appartiene
+all'entita' che ha perso va in rovina, se invece trionfa diventa una reggia**.»
+
+A fine Chronicle, e solo se la Chronicle dichiara `structure_rules`:
+
+- chi ha raggiunto un livello di `rise_on` **alza di un grado la sua struttura
+  piu' alta** — una casa che vince costruisce sopra quello che ha gia', non
+  altrove: e' cosi' che nasce una capitale;
+- chi si e' fermato a un livello di `fall_on` **perde un grado sulla piu'
+  bassa** — si perdono prima i margini, come gia' fa il controllo che decade
+  dove non c'e' nessuno. Sotto il primo grado non si scende: **si va in rovina**,
+  e la rovina lascia una cicatrice.
+
+Deterministico: le Regioni si guardano nell'ordine della Chronicle.
+
+**E la mappa si apre gia' costruita.** Senza una pietra sul tabellone la scala
+non ha niente da muovere, quindi arriva `starting_structures` sulla Chronicle —
+accanto a `starting_control`, e per la stessa ragione di D-049: le Regioni sono
+condivise fra saghe distanti secoli, e una pietra scritta sulla Regione
+sederebbe le case della prima saga al tavolo della seconda. Le tre Regioni che
+partono con un padrone partono anche con **una torre di veglia**.
+
+**La misura sul tempo — dodici saghe da otto anni:**
+
+| | |
+|---|---|
+| gradi saliti (Trionfo) | **24** |
+| strutture andate in rovina | **19** |
+| in piedi all'ottavo anno, grado I | 32 |
+| in piedi all'ottavo anno, **grado II (castelli)** | **3** |
+| grado III (regge) | 0 |
+
+Le pietre si muovono, e si muovono **poco**: in otto anni tre torri diventano
+castelli e nessuno arriva a una reggia. E' il ritmo giusto — una reggia deve
+essere un fatto raro, non il quarto anno di chiunque vinca due volte.
+
+**Playtest sui 100 semi: FAIL 203 · SUCC 76 · SUCC 108 · DECI 188**, tavolo
+misto **0 su 8**, tavolo uniforme **2 su 8**. La mappa resta al **76%** di
+caselle con un padrone, e il Vetro resta intorno a 1,00.
+
+**Il numero da dichiarare, perche' si sta muovendo:** i Consigli falliti sono
+passati da **185** (prima di tutta la strada C) a 191, poi 196, ora **203**. Il
+vincolo di casa e' 0/8 e regge; ma tre modifiche di fila hanno spinto lo stesso
+numero nella stessa direzione, e alla prossima va guardato per primo.
+
+**Tre difetti trovati mentre si misurava, e uno era vero.**
+
+1. **La torre di partenza copriva la reggia ereditata.** `BUILD_STRUCTURE` e' un
+   no-op se quel tipo c'e' gia', e il setup gira **prima** dell'eredita': una
+   reggia dell'anno prima tornava una torre. Adesso l'eredita' abbatte e
+   rialza — `starting_structures` descrive un anno che comincia da zero, un
+   anno che eredita comincia da quello che c'era.
+2. **Due test misuravano una mappa vuota che non esiste piu'.** Uno cercava «la
+   prima `BUILD_STRUCTURE`» e ne trovava un'altra; l'altro misurava il telaio
+   dei ganci nuovi «senza regole» e incontrava `TGR_WATCHTOWER_FORCE`, che e'
+   una regola **vera** e faceva il suo mestiere. Nessuno dei due era un difetto
+   del gioco: erano test scritti quando la mappa si apriva spoglia.
+3. **Il passo dei due artefatti, di nuovo.** Aggiunto `starting_structures` allo
+   schema e dimenticato `gen_gd_schema.py`: il playtest e' morto al primo giro
+   con «unexpected field». E' la stessa lezione di D-156, presa due volte.
+
+Misure: suite **334 test / 5977 asserzioni** verde; `run_sims.sh` identico su
+due giri; `dead_code.py` pulito su 151 file; job «Dati e schemi» verde per
+intero.
+
+**Restano di §7**: le 14 Conseguenze che scrivono un nome (7.2, deliberatamente
+non riscritte) e il catalogo §8, che e' contenuto d'autore.
+
+---
+
 ## D-158 — La contesa del controllo: il padrone si conta, non si scrive
 **implemented in 0.1.125** (§7.2 della [seduta sulla terra](SEDUTA_TERRA.md))
 

@@ -14,7 +14,10 @@ const Effect := preload("res://scripts/core/effect.gd")
 const WorldStateFactory := preload("res://scripts/world/world_state_factory.gd")
 
 const KEEP: String = "STR_KEEP"
-const HERE: String = "REG_MONTAGNE_ROSSE"
+## Una Regione che l'anno **non** apre gia' costruita: da 0.1.126 le tre Regioni
+## che partono con un padrone partono anche con una torre (`starting_structures`),
+## e un test che vuole vedere la prima pietra deve posarla lui.
+const HERE: String = "REG_VALLE_VERDE"
 
 
 func before_each() -> void:
@@ -118,11 +121,18 @@ func test_stones_cross_the_years() -> void:
 	var chronicle: Dictionary = data().chronicles["CHR_01"]
 	var carried: Array = WorldStateFactory.inheritance_effects(previous, chronicle, data(), 1)
 
+	# Cercare «la prima BUILD_STRUCTURE» non basta piu': da 0.1.126 la mappa si
+	# apre con tre torri, e quelle passano all'anno dopo insieme a questa. Si
+	# guarda la Regione di questo test.
 	var found: Dictionary = {}
 	for effect in carried:
-		if str((effect as Dictionary)["type"]) == "BUILD_STRUCTURE":
-			found = effect as Dictionary
-			break
+		var candidate: Dictionary = effect as Dictionary
+		if str(candidate["type"]) != "BUILD_STRUCTURE":
+			continue
+		if str((candidate["target"] as Dictionary)["id"]) != HERE:
+			continue
+		found = candidate
+		break
 	assert_false(found.is_empty(), "la struttura passa all'anno dopo")
 	assert_eq(
 		int((found["payload"] as Dictionary)["grade"]), 3, "e passa com'era: una reggia resta reggia"

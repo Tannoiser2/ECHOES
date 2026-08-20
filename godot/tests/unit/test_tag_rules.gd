@@ -176,6 +176,15 @@ func test_relation_cap_holds_the_ceiling() -> void:
 ## Con zero regole dei tipi nuovi, ogni gancio nuovo resta neutro: il telaio
 ## si misura vuoto prima che i denti veri si accendano (stesso rito di D-104).
 func test_new_hooks_are_neutral_without_rules() -> void:
+	# Da 0.1.126 la mappa si apre gia' costruita: Aldric ha una torre di veglia
+	# a Eredan, e `TGR_WATCHTOWER_FORCE` e' una regola **vera** che la legge.
+	# Il telaio va misurato vuoto, quindi la pietra si toglie prima — se non lo
+	# facessimo, questo test misurerebbe un dente acceso e lo chiamerebbe
+	# telaio.
+	session.applier.apply(Effect.make(
+		"RAZE_STRUCTURE", "region", "REG_EREDAN", {"structure_type": "STR_KEEP"},
+		{"kind": "TEST", "id": "clear"}
+	))
 	assert_eq(
 		TagRules.action_gate(session.data, session.world, "ENT_ALDRIC", "FORGE"),
 		"", "nessun divieto"

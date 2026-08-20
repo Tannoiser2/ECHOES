@@ -710,6 +710,20 @@ static func inheritance_effects(
 			var holder: Variant = record.get("owner", null)
 			if lapse and holder != null and not _had_presence(previous, str(holder), str(region_id)):
 				holder = null
+			# Prima si toglie quello che l'apertura ha seminato, poi si rialza
+			# com'era: `starting_structures` descrive un anno che comincia da
+			# zero, e un anno che eredita comincia da quello che c'era.
+			# Senza questo, la torre di partenza copriva la reggia dell'anno
+			# prima — `BUILD_STRUCTURE` su un tipo gia' presente e' un no-op.
+			effects.append(
+				Effect.make(
+					"RAZE_STRUCTURE",
+					"region",
+					str(region_id),
+					{"structure_type": str(record["structure_type"])},
+					source
+				)
+			)
 			effects.append(
 				Effect.make(
 					"BUILD_STRUCTURE",
@@ -842,4 +856,19 @@ static func setup_effects(chronicle: Dictionary, data: RefCounted, world: Dictio
 					source
 				)
 			)
+	# Cosa c'e' gia' costruito quando l'anno si apre (D-159). Passa da un
+	# BUILD_STRUCTURE come tutto il resto: stesso Effect, stesso inverso, e la
+	# pietra entra nel conto del controllo dal primo round.
+	for entry in chronicle.get("starting_structures", []):
+		var built: Dictionary = entry as Dictionary
+		effects.append(Effect.make(
+			"BUILD_STRUCTURE", "region", str(built["region_id"]),
+			{
+				"structure_type": str(built["structure_type"]),
+				"grade": int(built.get("grade", 1)),
+				"owner": built.get("owner", null),
+			},
+			source
+		))
+
 	return effects

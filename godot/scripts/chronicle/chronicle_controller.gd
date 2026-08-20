@@ -655,6 +655,11 @@ func chronicle_end() -> Dictionary:
 		for truth in world["truth_log"]:
 			log.bullet(str(truth["text"]))
 
+	# La scala che si muove col Destino (D-159): chi ha trionfato alza una
+	# pietra, chi non e' arrivato al Minimo ne perde una. Dopo la valutazione,
+	# perche' e' l'esito a decidere.
+	_settle_structures(results)
+
 	session.destiny_results = results
 	return {
 		"chronicle_id": str(_chronicle["id"]),
@@ -664,6 +669,133 @@ func chronicle_end() -> Dictionary:
 		"echoes": (world["echo_log"] as Array).size(),
 		"truths": (world["truth_log"] as Array).size(),
 	}
+
+
+## Il grado che si muove con l'esito (D-159), §7.3 della seduta sulla terra.
+##
+## «Il cambio puo' dipendere da come vanno le cose: se la reggia appartiene
+## all'entita' che ha perso va in rovina, se invece trionfa diventa una reggia.»
+##
+## A fine Chronicle, e solo se la Chronicle dichiara `structure_rules`:
+##
+## - chi ha raggiunto un livello fra quelli di `rise_on` **alza di un grado la
+##   sua struttura piu' alta** — una casa che vince costruisce sopra quello che
+##   ha gia', non altrove: e' cosi' che nasce una capitale;
+## - chi si e' fermato a un livello di `fall_on` **perde un grado sulla piu'
+##   bassa** — si perdono prima i margini, come gia' fa il controllo che decade
+##   dove non c'e' nessuno. Sotto il primo grado la struttura non scende: **va
+##   in rovina**, e la rovina lascia una cicatrice.
+##
+## Deterministico: le Regioni si guardano nell'ordine della Chronicle, quindi a
+## parita' di grado vince sempre la stessa.
+func _settle_structures(results: Dictionary) -> void:
+	var rules: Dictionary = _chronicle.get("structure_rules", {})
+	if rules.is_empty():
+		return
+	var rise_on: Array = rules.get("rise_on", [])
+	var fall_on: Array = rules.get("fall_on", [])
+	for entity_id in world["turn_order"]:
+		var seat: String = str(entity_id)
+		var result: Variant = results.get(seat)
+		if result == null:
+			continue
+		var level: String = str((result as Dictionary)["level"])
+		if rise_on.has(level):
+			_raise_one(seat)
+		elif fall_on.has(level):
+			_lower_one(seat)
+
+
+## La piu' alta che puo' ancora salire.
+func _raise_one(seat: String) -> void:
+	var found: Dictionary = _pick_structure(seat, true)
+	if found.is_empty():
+		return
+	var definition: Dictionary = data.structure_types[str(found["structure_type"])]
+	var grade: int = int(found["grade"]) + 1
+	session.applier.apply(Effect.make(
+		"SET_STRUCTURE_GRADE", "region", str(found["region_id"]),
+		{"structure_type": str(found["structure_type"]), "grade": grade},
+		Effect.source("system", "DESTINY_RISE", seat, 0, 0, int(world["effect_sequence"]))
+	))
+	log.bullet(
+		"%s ha ottenuto quello che voleva, e %s adesso e' %s."
+		% [
+			_name(seat),
+			_region_name(str(found["region_id"])),
+			str(((definition["grades"] as Array)[grade - 1] as Dictionary)["name"]).to_lower(),
+		]
+	)
+
+
+## La piu' bassa. Sotto il primo grado non si scende: si cade.
+func _lower_one(seat: String) -> void:
+	var found: Dictionary = _pick_structure(seat, false)
+	if found.is_empty():
+		return
+	var type_id: String = str(found["structure_type"])
+	var region_id: String = str(found["region_id"])
+	var definition: Dictionary = data.structure_types[type_id]
+	var source: Dictionary = Effect.source(
+		"system", "DESTINY_FALL", seat, 0, 0, int(world["effect_sequence"])
+	)
+	if int(found["grade"]) > 1:
+		session.applier.apply(Effect.make(
+			"SET_STRUCTURE_GRADE", "region", region_id,
+			{"structure_type": type_id, "grade": int(found["grade"]) - 1}, source
+		))
+		log.bullet(
+			"%s non ha ottenuto niente, e %s in %s ha perso un piano."
+			% [_name(seat), str(definition["name"]).to_lower(), _region_name(region_id)]
+		)
+		return
+
+	session.applier.apply(Effect.make(
+		"RAZE_STRUCTURE", "region", region_id, {"structure_type": type_id}, source
+	))
+	var ruin: Dictionary = definition.get("ruin", {})
+	if not ruin.is_empty() and str(ruin.get("scar", "")) != "":
+		session.applier.apply(Effect.make(
+			"ADD_SCAR", "scar", "SCAR_RUIN_%s_%s" % [type_id, region_id],
+			{
+				"scar_id": "SCAR_RUIN_%s_%s" % [type_id, region_id],
+				"region_id": region_id,
+				"tag": str(ruin["scar"]),
+				"description": str(ruin.get("description", "")),
+			},
+			source
+		))
+	log.bullet(
+		"%s non ha ottenuto niente, e %s in %s e' andata in %s."
+		% [
+			_name(seat), str(definition["name"]).to_lower(), _region_name(region_id),
+			str(ruin.get("name", "rovina")).to_lower(),
+		]
+	)
+
+
+## La struttura di quel seggio da muovere: la piu' alta che puo' salire, o la
+## piu' bassa che puo' scendere. Vuoto se non ne ha nessuna.
+func _pick_structure(seat: String, rising: bool) -> Dictionary:
+	var best: Dictionary = {}
+	for region_id in _chronicle["regions"]:
+		for structure in (world["regions"][str(region_id)] as Dictionary).get("structures", []):
+			var record: Dictionary = structure as Dictionary
+			if str(record.get("owner", "")) != seat:
+				continue
+			var definition: Variant = data.structure_types.get(str(record["structure_type"]))
+			if definition == null or not bool(definition["owned"]):
+				continue
+			var grade: int = int(record["grade"])
+			if rising and grade >= (definition["grades"] as Array).size():
+				continue
+			if best.is_empty() or (grade > int(best["grade"]) if rising else grade < int(best["grade"])):
+				best = {
+					"region_id": str(region_id),
+					"structure_type": str(record["structure_type"]),
+					"grade": grade,
+				}
+	return best
 
 
 func _set_phase(act: int, round_number: int, phase: String) -> void:
