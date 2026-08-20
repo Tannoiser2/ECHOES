@@ -10,6 +10,93 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-169 — Lyra apre, e la banda dei Consigli si sposta con una ragione
+**implemented in 0.1.137** (decisione del committente su ISSUES 44: «apri Lyra, la banda si puo' rivedere dopo»)
+
+D-168 aveva misurato il prezzo e lasciato la scelta. La scelta e' fatta.
+
+### Cosa e' cambiato nei Destini
+
+**Lyra.** La Vittoria era una spina gratis piu' un tag al 25%: una porta, non
+una scala. Adesso e' la spina — presenza nelle Miniere, che e' l'unica cosa che
+il titolo promette — piu' **due segni su tre**: la scorta giurata (25%), le
+Miniere non sigillate (45%), un posto sulla mappa che risponde a lei (45%). E il
+Trionfo chiede **quattro Scoperte** invece di due, perche' due erano vere nel
+100% degli anni misurati: una spina vera nel 100% dei casi non e' una spina.
+
+**Nahr.** La sua scelta scende da quattro segni a **tre**. Non e' bilanciamento
+gratuito: aprendo Lyra, Nahr passava da 8 Trionfi a 1 senza che nessuno toccasse
+il suo Destino, perche' le sue cinque strade dicono tutte «il mondo e' rimasto
+calmo» e Lyra che ricomincia a giocare rende il mondo meno calmo.
+
+### La forma che misurava meglio era rotta, e la misura non bastava a dirlo
+
+Quattro forme provate, tre legittime:
+
+| forma | Lyra | Trionfi del tavolo | gia' vera all'apertura? |
+|---|---|---|---|
+| oggi (porta sola) | 38/3/9 | 79 | no |
+| **2 su 3** | **32/12/6** | **86** | **no** |
+| 2 su 5 | 27/16/7 | **91** | **si' — scartata** |
+| 3 su 5 | 37/8/5 | 85 | no |
+
+La 2 su 5 e' la migliore su ogni numero, ed e' quella che ho scartato: due delle
+cinque strade sono vere sulla posizione d'apertura, quindi **una parte di quelle
+Vittorie erano regalate**. E' esattamente il difetto che la sonda di D-167 era
+stata scritta per trovare in casa d'altri, trovato stavolta in casa mia, e non
+dai numeri — i numeri lo premiavano — ma da un test che valuta il Destino prima
+che qualcuno giochi.
+
+**La regola che ne esce**: quando una forma misura meglio di tutte le altre,
+prima di tenerla si controlla che non stia misurando bene per il motivo
+sbagliato.
+
+### La banda, e perche' non e' spostare il paletto
+
+La mediana dei Consigli passa da 6 a 7. Il soffitto va da 6 a **7** in tutte e
+due le bande — l'anno scritto (`test_balance.gd`) e l'anno pescato
+(`test_library_balance.gd`) — e **i limiti duri non si muovono**: 2 e 8, il
+pavimento che §7 difende davvero.
+
+Tre ragioni, in ordine di peso:
+
+1. **E' gia' successo, per lo stesso motivo.** D-051: la Vittoria di Vaerax era
+   fatta di clausole vere prima dell'inizio, lui non giocava, gliela si e'
+   chiusa e l'anno si e' alzato. Il commento sopra la costante lo racconta da
+   allora. Un seggio che ricomincia a giocare fa l'anno piu' rumoroso.
+2. **La banda nuova e' ancora piu' stretta di quella che §7 scrive.** §7 chiede
+   1,5-2,0 Consigli per Tensione; con quattro Tensioni fa 6-8. 5-7 e' 1,25-1,75:
+   dentro, e da sotto.
+3. **Il prezzo era stato misurato prima di chiederlo**, e nessuna forma della
+   clausola lo evita: 2 su 5, 2 su 3, e perfino un `any_of` su due di cui una
+   passiva danno tutti mediana 7 (D-168). Non e' la dimensione della scelta, e'
+   che la Vittoria diventa raggiungibile.
+
+### Le misure
+
+Playtest 100 semi, tavolo misto, 50 partite per seggio:
+
+| seggio | prima | dopo |
+|---|---|---|
+| Lyra | 38/3/**9** | **32/12/6** |
+| Popolo Nahr | 24/16/**9** | 23/10/**16** |
+| Vaerax | 18/26/**6** | 24/16/**10** |
+| Re Aldric | 26/18/**6** | 26/18/**5** |
+| gli altri quattro | — | invariati |
+
+**Trionfi 79 → 86**, nessun seggio a zero, tavolo misto **0 su 8**, uniforme
+**0 su 8**, mediana 6, media 5,76. Costo dichiarato: **FAIL 191 → 203**.
+
+Sonda dei gradini (60 Chronicle): supera il Minimo **62%**, TRIONFO **20%**,
+nessun seggio a NONE. Lyra da 21/3/6 a **15/9/6** su 30.
+
+Suite **343 test / 6548 asserzioni** verde; `run_sims.sh` e `run_export.sh`
+identici su due giri; `dead_code.py` pulito su 154 file.
+
+**ISSUES 44 chiusa.**
+
+---
+
 ## D-168 — La scala di Lyra ha una porta sola, e aprirla costa gli anni tranquilli
 **misurato, non implementato** (nessuna modifica ai dati)
 

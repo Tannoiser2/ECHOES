@@ -143,8 +143,8 @@
           },
           {
             "type": "some_of",
-            "min": 4,
-            "label": "E quattro segni che fermarsi non è stato arrendersi",
+            "min": 3,
+            "label": "E tre segni che fermarsi non è stato arrendersi",
             "conditions": [
               {
                 "type": "tension_limit",
@@ -219,11 +219,30 @@
             "label": "Presenza nelle Miniere Antiche"
           },
           {
-            "type": "state_tag_present",
-            "scope": "ENTITY",
-            "entity_id": "ENT_LYRA",
-            "tag": "escort_sworn",
-            "label": "Qualcuno ha giurato di tenerle aperta la strada"
+            "type": "some_of",
+            "min": 2,
+            "label": "E due segni che la strada per tornarci è ancora sua",
+            "conditions": [
+              {
+                "type": "state_tag_present",
+                "scope": "ENTITY",
+                "entity_id": "ENT_LYRA",
+                "tag": "escort_sworn",
+                "label": "Qualcuno ha giurato di tenerle aperta la strada"
+              },
+              {
+                "type": "state_tag_absent",
+                "scope": "GLOBAL",
+                "tag": "mine_sealed",
+                "label": "Le Miniere non sono state sigillate"
+              },
+              {
+                "type": "control_count",
+                "entity_id": "ENT_LYRA",
+                "min": 1,
+                "label": "E un posto sulla mappa risponde a lei"
+              }
+            ]
           }
         ]
       },
@@ -233,8 +252,8 @@
           {
             "type": "discovery_count",
             "entity_id": "ENT_LYRA",
-            "min": 2,
-            "label": "Due Scoperte"
+            "min": 4,
+            "label": "Quattro Scoperte"
           },
           {
             "type": "some_of",
@@ -264,12 +283,6 @@
                 "region_id": "REG_MINIERE_ANTICHE",
                 "max": 0,
                 "label": "Le Miniere sono uscite dall'anno senza un segno"
-              },
-              {
-                "type": "control_count",
-                "entity_id": "ENT_LYRA",
-                "min": 1,
-                "label": "E un posto sulla mappa risponde a lei"
               },
               {
                 "type": "scar_count",

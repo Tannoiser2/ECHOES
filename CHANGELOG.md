@@ -5,6 +5,24 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.137 — Lyra apre (D-169)
+
+- **La Vittoria di Lyra non e' piu' una porta sola**: spina (presenza nelle
+  Miniere) piu' **due segni su tre** — la scorta giurata, le Miniere non
+  sigillate, un posto sulla mappa. Il Trionfo chiede **quattro Scoperte**
+  invece di due: due erano vere nel 100% degli anni misurati.
+- **La scelta di Nahr scende da quattro segni a tre**, perche' aprire Lyra le
+  costava sette Trionfi senza che nessuno toccasse il suo Destino.
+- **La banda dei Consigli sale a 5-7** nell'anno scritto e nell'anno pescato,
+  coi limiti duri fermi a 2-8. Un seggio che ricomincia a giocare fa l'anno piu'
+  rumoroso: e' la seconda volta, dopo D-051.
+- **Una forma scartata benche' misurasse meglio**: la scelta 2 su 5 dava a Lyra
+  27/16/7 e al tavolo 91 Trionfi, e due delle cinque strade erano vere prima che
+  qualcuno giocasse. *Quando una forma misura meglio di tutte le altre, si
+  controlla che non stia misurando bene per il motivo sbagliato.*
+- Trionfi del tavolo **79 → 86**, tavolo misto 0 su 8, mediana 6. Costo
+  dichiarato: **FAIL 191 → 203**. ISSUES 44 chiusa.
+
 ## 0.1.136 — Il giro su Lyra, misurato e non committato
 
 - **[D-168](docs/DECISIONS.md#d-168)**: la scala di Lyra non e' debole, e'

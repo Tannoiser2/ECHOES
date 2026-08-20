@@ -29,8 +29,16 @@ const CEILING: int = 8
 
 ## La banda della mediana, dichiarata dalla misura di nascita e non dal
 ## desiderio: 4 (corona) e 5 (citta') su 12 semi ciascuna.
+##
+## Il soffitto sale a 7 con D-169, per la stessa ragione dell'anno scritto e
+## nello stesso commit: aperta la Vittoria di Lyra, un seggio che per tre anni
+## su quattro non aveva obiettivi ha ricominciato a proporre, e l'anno pescato
+## si e' alzato con quello scritto — 12 anni della corona, mediana da 6 a 7.
+## L'anno di libreria resta piu' largo di quello scritto perche' eredita conti
+## gia' chiusi, ed e' l'unica cosa che questa banda ha sempre detto. Il
+## pavimento non si e' mosso.
 const BAND_LOW: int = 3
-const BAND_HIGH: int = 6
+const BAND_HIGH: int = 7
 
 
 func test_a_library_year_still_decides_things() -> void:

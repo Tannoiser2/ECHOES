@@ -108,6 +108,21 @@ func test_victory_needs_the_consequence_that_grants_it() -> void:
 	# the Valley: that is the Victory. The Triumph now also asks that the crown
 	# be divided (O-12) - a people can only stop somewhere while the throne is
 	# busy with itself - so settling alone no longer reaches it.
+	# Tre segni sul mondo chiudono le due strade che parlano di un anno calmo:
+	# senza, la scelta del Trionfo sarebbe gia' soddisfatta all'apertura, e un
+	# gradino vero non si regala prima che qualcuno giochi (D-167).
+	for i in range(3):
+		_apply(
+			"ADD_SCAR",
+			"world",
+			"WORLD",
+			{
+				"scar_id": "SCR_TEST_NAHR_%d" % i,
+				"region_id": "REG_VALLE_VERDE",
+				"tag": "scar:burned",
+				"description": "il segno numero %d della prova" % i,
+			}
+		)
 	_apply("SET_GLOBAL_TAG", "world", "WORLD", {"tag": "nahr_settled"})
 	result = session.destinies.evaluate("DST_NAHR")
 	assert_eq(str(result["level"]), "VICTORY", "insediamento riconosciuto: Victory")
@@ -167,15 +182,28 @@ func test_discovery_count_drives_lyra() -> void:
 		"e nemmeno due"
 	)
 
-	# The escort is the Victory: somebody had to swear it, in a Council.
+	# La Vittoria non e' piu' una porta sola (D-169). Le Miniere non sigillate
+	# valgono gia' una strada all'apertura; la scorta e' la seconda, e **due su
+	# tre** aprono il gradino. Prima di D-169 questa riga saliva dritta al
+	# Trionfo, e quello era il difetto: sotto la porta non c'era altro da pagare.
 	_apply("SET_ENTITY_TAG", "entity", "ENT_LYRA", {"tag": "escort_sworn"})
 	assert_eq(
-		str(session.destinies.evaluate("DST_LYRA")["level"]), "TRIUMPH",
-		"con la scorta giurata la scala si apre fino in fondo"
+		str(session.destinies.evaluate("DST_LYRA")["level"]), "VICTORY",
+		"con la scorta giurata la Vittoria si apre, e si ferma li'"
 	)
 
-	# E il gradino sopra e' una scelta, non una lista: tre strade su sei (D-167).
-	# All'apertura ne ha quattro, e **le cicatrici ne chiudono due**.
+	# E il Trionfo adesso chiede **quattro** Scoperte, non due: la spina di prima
+	# era vera nel 100% degli anni misurati, cioe' non era una spina (D-168).
+	for name in ["depth", "old_road", "water"]:
+		_apply("SET_ENTITY_TAG", "entity", "ENT_LYRA", {"tag": "discovery:%s" % name})
+	assert_eq(
+		str(session.destinies.evaluate("DST_LYRA")["level"]), "TRIUMPH",
+		"quattro Scoperte e le strade ancora aperte: la scala arriva in fondo"
+	)
+
+	# E il gradino sopra e' una scelta, non una lista: tre strade su cinque
+	# (D-167, D-169). All'apertura ne ha quattro, e **le cicatrici ne chiudono
+	# due**.
 	_apply(
 		"ADD_SCAR",
 		"world",
