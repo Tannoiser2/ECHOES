@@ -1308,6 +1308,74 @@ una misura viene respinta da **un solo seggio** e per **una sola partita**, la
 domanda giusta non e' «la regola e' sbagliata?» ma «quel seggio riesce ad
 assorbire qualcosa?».
 
+### 40. Il grado non si muove dentro l'anno: una clausola sulle pietre alte e' un muro fuori dalla saga
+
+`regola` · `da-misurare` · da [D-167](DECISIONS.md#d-167)
+
+`_settle_structures` gira **dopo** la valutazione del Destino, ed e' giusto:
+[D-159](DECISIONS.md#d-159) vuole che sia l'esito a decidere se una reggia
+diventa rovina. La conseguenza pero' e' che in una Chronicle sola **il grado non
+sale quasi mai**: una pietra di grado 2 esiste solo se ereditata o alzata da una
+Conseguenza, e la sonda la trova nel **15% degli anni per Aldric e nello 0% per
+cinque case su otto**. Grado 3: **zero, sempre**.
+
+Quindi «un castello» e «una reggia» sono clausole scrivibili **solo in una saga**
+— e nel gioco di una sera sono muri. Oggi nessun Destino le usa, e va bene cosi';
+la voce esiste perche' la prossima volta che verra' la tentazione di scriverle,
+questo numero sia gia' sul tavolo.
+
+**Le due strade.** O si accetta che il grado sia materia di saga e si scrivono le
+clausole sul grado **solo nei Destini di una Chronicle successiva**; oppure si
+apre un secondo momento in cui una pietra puo' salire dentro l'anno — un'azione,
+o una Conseguenza che costruisce *sopra* invece che accanto — e allora si
+rimisura.
+
+**Fatto quando** una delle due e' stata scelta a verbale, e nel secondo caso la
+sonda delle clausole mostra il grado 2 fra il 20% e il 50% per almeno tre case.
+
+### 41. Il sito antico, una volta aperto, viene sempre saccheggiato
+
+`contenuto` · `debito` · da [D-167](DECISIONS.md#d-167)
+
+Nella tabella della sonda delle clausole due righe hanno lo stesso numero, e non
+per caso:
+
+| | |
+|---|---|
+| il sito antico e' stato **aperto** (grado ≥ 2) | 25% |
+| il sito antico e' stato **saccheggiato** (grado 3) | 25% |
+
+Gli stessi anni. **Non esiste un anno in cui il sito viene aperto e non viene
+svuotato**, il che vuol dire che «Sito aperto» — il grado di mezzo, quello che
+insegna — non e' uno stato in cui il mondo si ferma: e' un fotogramma fra due
+Consigli. Una clausola che chiede «aperto e ancora intero» sarebbe uno zero che
+nessuno ha scritto apposta.
+
+Non e' detto sia sbagliato — puo' essere il senso della cosa, che chi scende con
+le lampade risale con i carri. Ma non e' stato deciso: e' successo.
+
+**Fatto quando** si e' guardato quali Conseguenze portano i due gradi e si e'
+deciso a verbale se il grado di mezzo debba poter durare un anno intero.
+
+### 42. La seconda saga e' piu' generosa della prima
+
+`contenuto` · `da-misurare` · da [D-167](DECISIONS.md#d-167)
+
+Dopo la riscrittura dei Trionfi, su 120 seggi-partita per saga: **CHR_01 porta 30
+Trionfi, CHR_03 ne porta 49**. La differenza c'era anche prima e col segno
+opposto (20 contro 1), quindi non e' nata qui — ma adesso che tutti i gradini
+sono raggiungibili si vede pulita.
+
+**Non l'ho toccata di proposito.** Le cause possibili sono almeno tre e si
+confondono fra loro: i Destini della seconda saga chiedono meno; le sue Tensioni
+si muovono di piu'; il suo tavolo ha una casa (il Vetro) che parte senza Regioni
+e quindi ha piu' da guadagnare. Tarare tre manopole su un giro solo di sonda e'
+esattamente il modo in cui si peggiora una cosa credendo di aggiustarla.
+
+**Fatto quando** la sonda delle clausole ha misurato le clausole delle due saghe
+**a parita' di tavolo** — cioe' con lo stesso quartetto di caratteri e gli stessi
+semi — e si sa quale delle tre cause pesa.
+
 ---
 
 ---

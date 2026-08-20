@@ -112,6 +112,22 @@ func describe(condition: Dictionary, context: Dictionary = {}) -> String:
 	return "%s %s" % ["[x]" if holds(condition, context) else "[ ]", label]
 
 
+## Le righe di prova per una clausola: una per quelle semplici, una **piu' una
+## per strada** per quelle che offrono una scelta.
+##
+## «Tre di queste cinque» non si legge se non si vede quali sono le cinque e
+## quali tre hai preso. E' lo stesso difetto che il committente ha trovato nelle
+## carte — «le frasi sono belle e non si capisce cosa fanno» — applicato al
+## foglio che conta di piu', quello che dice come e' finito l'anno.
+func describe_all(condition: Dictionary, context: Dictionary = {}) -> Array:
+	var lines: Array = [describe(condition, context)]
+	var kind: String = str(condition.get("type", ""))
+	if kind == "some_of" or kind == "any_of":
+		for sub in condition.get("conditions", []):
+			lines.append("  %s" % describe(sub as Dictionary, context))
+	return lines
+
+
 func _within(value: int, condition: Dictionary) -> bool:
 	if condition.has("min") and value < int(condition["min"]):
 		return false

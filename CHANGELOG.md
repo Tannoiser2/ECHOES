@@ -5,6 +5,74 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.134] — La spina e la scelta
+
+Il Trionfo smette di essere una lista da soddisfare per intero
+([D-167](docs/DECISIONS.md#d-167)). Richiesta del committente: «i destini li
+farei diversi, una serie di condizioni che se soddisfatte danno il grado di
+vittoria, includendo anche gli edifici e/o il controllo e/o le cicatrici».
+
+### Added
+
+- **`cli/run_clause_probe.gd`** — quanto costa una clausola **prima** di
+  scriverla in un Destino. Legge `tools/clause_candidates.json` e riporta, per
+  ogni casa, la quota di anni in cui sarebbe vera a fine anno. E' lo strumento
+  che mancava a [D-161](docs/DECISIONS.md#d-161), che aveva scritto cinque
+  clausole a occhio: tre muri, due regali, zero utili.
+- **La spina e la scelta.** Otto Trionfi riscritti, uno per casa: una o due
+  clausole in AND — quello che quella casa voleva davvero — piu' una `some_of`
+  su quattro, cinque o sei strade. Fra le strade, per la prima volta, **le
+  pietre e le cicatrici**: «la corona ha piu' di una casa di pietra», «il passo
+  e' franato», «le Miniere sono uscite pulite», «e le citta' hanno costruito,
+  non solo discusso».
+- **`describe_all`** apre una scelta strada per strada nelle evidence di fine
+  anno. «Tre di queste cinque» non si legge se non si vede quali erano.
+- **La sonda dei gradini conta le pietre**: quante ne tiene ogni casa a fine
+  anno, per famiglia e per grado, quante se ne alzano giocando, dove cadono le
+  cicatrici, e **dove arriva ogni Destino** invece del solo totale.
+- **`validate_data.py` controlla lo `structure_type`** di una clausola. Un tipo
+  sbagliato non era un errore: contava zero, cioe' diventava un muro che nessuno
+  aveva deciso di alzare.
+
+### Fixed
+
+- **Quattro seggi su otto avevano zero Trionfi su cinquanta partite.** Due per
+  una clausola mancata il **100%** delle volte: Vaerax chiedeva un tag che
+  niente scrive mai, la Gilda chiedeva due Regioni a una casa che ne tiene 0,90.
+  Una lista in AND con dentro un muro e' un gradino tolto dal gioco, e nessuno
+  se ne accorgeva perche' il seggio riportava comunque VITTORIA.
+- **Le clausole annidate erano invisibili a quattro controlli su quattro.**
+  `PolicyDecider` — dove il difetto sarebbe costato di piu': un seggio legge il
+  proprio Destino per sapere cosa vuole, e una clausola dentro una scelta ha per
+  tipo `some_of`. Spostandone meta' dentro le scelte, meta' delle ambizioni del
+  tavolo sarebbero sparite in silenzio (e' [D-066](docs/DECISIONS.md#d-066), che
+  aveva trovato l'80% dei seggi a valutare una proposta zero). L'hanno visto due
+  test, non io. Appiattite anche in `validate_data.py`, nel controllo sui tag
+  irraggiungibili e in quello che verifica che una Chronicle nomini le proprie
+  Tensioni.
+
+### Measured
+
+| | prima | dopo |
+|---|---|---|
+| Trionfi, tavolo misto su 400 seggi-partita | **21** | **79** |
+| seggi con zero Trionfi | **4 su 8** | **0 su 8** |
+| Esiti | FAIL 207 · 77 · 112 · 189 | **FAIL 191** · 69 · 116 · 196 |
+| sonda dei gradini: TRIONFO | 6% | **20%** |
+| supera il Minimo | 54% | **63%** |
+| clausole mancate il 100% delle volte | 2 | **0** |
+
+Trionfi per Destino, su 30 partite ciascuno: 3 · 4 · 7 · 6 · 8 · 7 · 6 · 7 —
+nessuno murato, nessuno regalato. Ci sono voluti quattro giri di misura: la
+prima scrittura mandava Kessa al 75%, la seconda schiacciava le Citta' Libere a
+1 su 30.
+
+Tavolo misto **0 su 8**, Consigli mediana 6. Suite **342 test / 6472
+asserzioni** verde; sims ed export identici su due giri; `dead_code.py` pulito
+su 154 file.
+
+---
+
 ## [0.1.133] — Il passo che frana
 
 L'ultimo pezzo del catalogo ([D-166](docs/DECISIONS.md#d-166)), tenuto per ultimo

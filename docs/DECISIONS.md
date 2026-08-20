@@ -10,6 +10,174 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-167 — La spina e la scelta: il Trionfo smette di essere una lista
+**implemented in 0.1.134** (richiesta del committente sui Destini, ripresa da D-161)
+
+«Le condizioni di vittoria, i destini li farei diversi, una serie di condizioni
+che se soddisfatte danno il grado di vittoria. E tra le condizioni ci puo'
+essere le cose piu' disparate includendo anche gli edifici e/o il controllo e/o
+le cicatrici.»
+
+D-161 aveva costruito il vocabolario — `structure_count`, `scar_count`,
+`some_of` — e poi **l'aveva lasciato spento**, perche' le clausole scritte a
+occhio erano tre muri e due regali. La regola che mi ero dato allora era: *una
+clausola su uno strato si scrive dopo che quello strato puo' cambiare dentro
+l'anno, e si misura sui gradini prima di restare.* Da D-161 a D-166 lo strato e'
+nato davvero: dentro i nove round si alzano **80 pietre su 40 Chronicle**, se ne
+cambiano di grado 37, e le cicatrici cadono da 1 a 6 per partita.
+
+Quindi prima la misura, poi la scrittura.
+
+### La cosa che nessuno aveva guardato
+
+La sonda dei gradini dice quanto manca una clausola **gia' scritta**. Non
+esisteva niente che dicesse quanto mancherebbe una clausola **che non lo e'
+ancora**, ed e' esattamente il buco in cui D-161 e' caduto. Ora c'e':
+**`cli/run_clause_probe.gd`** legge un file di candidati e riporta, per ogni
+casa, la quota di anni in cui quella clausola sarebbe vera a fine anno. Costa un
+file di prova invece di un commit da rifare.
+
+La prima tabella che ha stampato (40 Chronicle, tavolo misto, semi da 7000):
+
+| clausola | ALDRIC | CENERE | LIBERE | LYRA | NAHR | SALE | VAERAX | VETRO |
+|---|---|---|---|---|---|---|---|---|
+| almeno una pietra sua | 100% | 100% | 100% | 30% | 100% | 100% | 100% | 15% |
+| almeno due pietre | 50% | 10% | 100% | 15% | 100% | 15% | 10% | 0% |
+| almeno tre pietre | 15% | 0% | 60% | 5% | 25% | 5% | 0% | 0% |
+| **una pietra di grado 2** | 15% | 5% | 0% | 0% | 10% | 0% | 0% | 0% |
+| almeno un'opera | 50% | 10% | 60% | 30% | 25% | 15% | 10% | 15% |
+| nessuna cicatrice sul mondo | 0% | 0% | 0% | 0% | 0% | 0% | 0% | 0% |
+| almeno tre cicatrici | 75% | 55% | 55% | 75% | 75% | 55% | 75% | 55% |
+| Eredan uscita pulita | 25% | 75% | 75% | 25% | 25% | 75% | 25% | 75% |
+| due Regioni | 45% | 15% | 100% | 5% | 90% | 20% | 20% | 0% |
+
+Tre letture che valgono piu' della tabella:
+
+1. **Il grado non si muove dentro l'anno.** `_settle_structures` gira *dopo* la
+   valutazione del Destino — e' giusto che sia cosi', l'esito decide la scala —
+   quindi in una Chronicle sola una pietra di grado 2 esiste solo se e' stata
+   ereditata. Una clausola sul grado e' un muro fuori dalla saga: e' ISSUES 40.
+2. **Zero cicatrici non capita mai.** Non e' un obiettivo ambizioso, e' una
+   lotteria che nessuno ha mai vinto in 40 anni. «Al piu' due» invece e' 25-45%.
+3. **Il sito antico, una volta aperto, viene sempre saccheggiato**: aperto 25%,
+   saccheggiato 25%, gli stessi anni. «Aperto e non saccheggiato» e' uno zero
+   che nessuno ha scritto apposta — ISSUES 41.
+
+### E la cosa peggiore, che la misura ha trovato per prima
+
+Il playtest a tavolo misto, 50 partite per seggio, **prima** di questa seduta:
+
+| seggio | NONE | MINIMO | VITTORIA | TRIONFO |
+|---|---|---|---|---|
+| Re Aldric | 0 | 26 | 18 | 6 |
+| Kessa dei Fuochi | 0 | 19 | 30 | **1** |
+| Le Citta' Libere | 2 | 23 | 25 | **0** |
+| Lyra | 0 | 35 | 7 | 8 |
+| Popolo Nahr | 1 | 25 | 18 | 6 |
+| Maestra Ilve | 0 | 10 | 40 | **0** |
+| Vaerax | 0 | 21 | 29 | **0** |
+| Priore Anselmo | 0 | 16 | 34 | **0** |
+
+**Quattro seggi su otto: zero Trionfi su cinquanta partite.** Due dei quattro
+per una ragione sola e verificabile — una clausola mancata il **100%** delle
+volte: Vaerax chiedeva `condition:cut_off` sulla Strada dei Mercanti, che niente
+scrive mai, e la Gilda chiedeva due Regioni a una casa che ne tiene 0,90 di
+media. Una lista in AND con dentro un muro non e' un obiettivo difficile: e' un
+gradino tolto dal gioco, e nessuno se ne accorgeva perche' il seggio riportava
+comunque VITTORIA.
+
+### La forma nuova
+
+Il MINIMO e la VITTORIA restano liste da soddisfare per intero. Il **TRIONFO**
+diventa due cose:
+
+- **la spina** — una o due clausole in AND: quello che quella casa voleva
+  davvero. Senza, non e' quel Trionfo;
+- **la scelta** — `some_of` con `min` su quattro, cinque o sei strade: come ci
+  e' arrivata. Fra le strade ci sono le Tensioni, il controllo, i rapporti, le
+  promesse, e adesso **le pietre e le cicatrici**.
+
+Otto Destini riscritti, uno per casa. Gli otto alternativi del pool restano in
+AND: sono il gruppo di controllo, e si guardano nella stessa tabella.
+
+Esempio, il Trionfo di Vaerax: spina «le Miniere non sono state svuotate», e
+**quattro segni su cinque** fra il Risveglio riportato indietro, le Vie
+Interrotte alte, la fame che tiene gli uomini nelle valli, **il passo franato**,
+e **un segno che si vede sulle gallerie**. Il muro di prima — la strada tagliata
+— e' uscito; al suo posto c'e' una cosa che sta sulla mappa e che qualcuno puo'
+far succedere.
+
+### La prova si legge
+
+Una scelta che non si vede non serve a niente: «tre di queste cinque» non dice
+nulla se non si vede quali erano e quali hai preso. `describe_all` apre la
+scelta strada per strada, rientrata, e le evidence di fine anno la portano.
+E' lo stesso difetto che il committente ha trovato nelle carte — «le frasi sono
+belle e non si capisce cosa fanno» — sul foglio che conta di piu'.
+
+### Il difetto che questa seduta ha quasi introdotto
+
+Un seggio legge il proprio Destino per sapere cosa vuole, e quella lettura
+guarda **il tipo** della clausola. Una clausola dentro una scelta ha per tipo
+`some_of`: spostandone meta' dentro le scelte, **meta' delle ambizioni del
+tavolo sarebbero sparite in silenzio** — che e' precisamente D-066, dove l'80%
+dei seggi valutava una proposta zero.
+
+Non l'ho visto scrivendo: **l'hanno visto due test** di `test_stance_scoring`,
+caduti al primo giro della suite. `PolicyDecider` adesso appiattisce le scelte
+per la lettura degli obiettivi, e **non** per il giudizio del livello — «tre di
+queste cinque» e' vero anche quando due sono false, e appiattito diventerebbe
+una AND. Lo stesso appiattimento mancava in altri tre punti che nessun test
+copriva: la ricorsione di `validate_data.py`, quella del controllo sui tag
+irraggiungibili in `test_data_boot.gd`, e il controllo che una Chronicle nomini
+le proprie Tensioni. Tutti e tre si fermavano al primo livello. Aggiunto anche
+un controllo che mancava del tutto: **uno `structure_type` sbagliato** non era
+un errore rumoroso, contava zero — cioe' diventava un muro che nessuno aveva
+deciso di alzare.
+
+### Le misure
+
+Playtest 100 semi da 7000, tavolo misto, **prima → dopo**:
+
+| seggio | prima | dopo |
+|---|---|---|
+| Re Aldric | 26/18/**6** | 26/18/**6** |
+| Kessa dei Fuochi | 19/30/**1** | 19/23/**8** |
+| Le Citta' Libere | 23/25/**0** | 10/27/**12** |
+| Lyra | 35/7/**8** | 38/3/**9** |
+| Popolo Nahr | 25/18/**6** | 24/16/**9** |
+| Maestra Ilve | 10/40/**0** | 7/30/**13** |
+| Vaerax | 21/29/**0** | 18/26/**6** |
+| Priore Anselmo | 16/34/**0** | 6/27/**16** |
+
+**Trionfi 21 → 79, e nessun seggio a zero.** Esiti **FAIL 207 → 191** ·
+SUCC 77 → 69 · SUCC 112 → 116 · DECI 189 → 196. Consigli mediana **6**. Tavolo
+misto **0 su 8**, uniforme 1 su 8.
+
+Sonda dei gradini, 60 Chronicle: TRIONFO **6% → 20%**, supera il Minimo
+**54% → 63%**, e nessuna clausola mancata al 100%. Destino per Destino i Trionfi
+stanno fra 3 e 8 su 30 — nessuno murato, nessuno regalato:
+
+| | ALDRIC | CENERE | LIBERE | LYRA | NAHR | SALE | VAERAX | VETRO |
+|---|---|---|---|---|---|---|---|---|
+| Trionfi su 30 | 3 | 4 | 7 | 6 | 8 | 7 | 6 | 7 |
+
+Ci sono voluti **quattro giri di misura** per arrivarci: la prima scrittura
+mandava Cenere al 75% e le Citta' Libere al 37%, la seconda schiacciava le
+Citta' Libere a 1 su 30. Il numero non si indovina — si stringe.
+
+Suite **342 test / 6472 asserzioni** verde; `run_sims.sh` e `run_export.sh`
+identici su due giri; `validate_data`, `gen_gd_schema --check`,
+`build_manifest --check` verdi; `dead_code.py` pulito su 154 file.
+
+**Quello che resta fuori, e lo dico invece di nasconderlo.** I quattro Destini
+di CHR_01 portano 30 Trionfi su 120 e i quattro di CHR_03 ne portano 49: la
+seconda saga e' piu' generosa della prima, e non ho toccato la differenza in
+questa seduta perche' avrei tarato tre manopole su un giro solo di sonda senza
+sapere se la causa sia il contenuto o il tavolo. E' ISSUES 42.
+
+---
+
 ## D-166 — Il passo che frana: la sola cosa che cambia la forma del mondo
 **implemented in 0.1.133** (§8.6 passo 5, l'ultimo — tenuto per ultimo di proposito)
 

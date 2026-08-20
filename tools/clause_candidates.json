@@ -1,0 +1,30 @@
+{
+  "note": "Il banco di prova di `cli/run_clause_probe.gd`. Non e' contenuto e non passa dagli schemi: e' la lista di clausole che si vuole misurare **prima** di scriverle in un Destino (D-161, D-167). `$self` e' il seggio a cui la clausola viene letta, quindi la stessa riga si legge su otto case in un giro solo. Si sovrascrive liberamente: quello che resta qui e' la base di partenza — la raggiungibilita' dei tre strati nuovi, pietre, cicatrici e controllo.",
+  "items": [
+    {"id": "PIETRE_1", "note": "almeno una pietra sua", "condition": {"type": "structure_count", "entity_id": "$self", "min": 1}},
+    {"id": "PIETRE_2", "note": "almeno due pietre sue", "condition": {"type": "structure_count", "entity_id": "$self", "min": 2}},
+    {"id": "PIETRE_3", "note": "almeno tre pietre sue", "condition": {"type": "structure_count", "entity_id": "$self", "min": 3}},
+    {"id": "PRESIDIO_1", "note": "almeno un presidio", "condition": {"type": "structure_count", "entity_id": "$self", "structure_family": "PRESIDIO", "min": 1}},
+    {"id": "PRESIDIO_2", "note": "almeno due presidi", "condition": {"type": "structure_count", "entity_id": "$self", "structure_family": "PRESIDIO", "min": 2}},
+    {"id": "OPERA_1", "note": "almeno un'opera", "condition": {"type": "structure_count", "entity_id": "$self", "structure_family": "OPERA", "min": 1}},
+    {"id": "INSEDIAMENTO_1", "note": "almeno un insediamento", "condition": {"type": "structure_count", "entity_id": "$self", "structure_family": "INSEDIAMENTO", "min": 1}},
+    {"id": "GRADO_2", "note": "almeno una pietra di grado 2", "condition": {"type": "structure_count", "entity_id": "$self", "grade": 2, "min": 1}},
+    {"id": "GRADO_3", "note": "almeno una pietra di grado 3", "condition": {"type": "structure_count", "entity_id": "$self", "grade": 3, "min": 1}},
+    {"id": "MONTE_VUOTO", "note": "nessuno ha alzato niente sulle Montagne Rosse", "condition": {"type": "structure_count", "entity_id": "$self", "region_id": "REG_MONTAGNE_ROSSE", "anyone": true, "max": 0}},
+    {"id": "PASSO_FRANATO", "note": "il passo e' franato", "condition": {"type": "structure_count", "entity_id": "$self", "structure_type": "STR_PASS", "grade": 2, "anyone": true, "min": 1}},
+    {"id": "SELVA_MALEDETTA", "note": "la foresta e' diventata selva maledetta", "condition": {"type": "structure_count", "entity_id": "$self", "structure_type": "STR_FOREST", "grade": 3, "anyone": true, "min": 1}},
+    {"id": "SITO_APERTO", "note": "il sito antico e' stato aperto", "condition": {"type": "structure_count", "entity_id": "$self", "structure_type": "STR_OLD_SITE", "grade": 2, "anyone": true, "min": 1}},
+    {"id": "SITO_SACCHEGGIATO", "note": "il sito antico e' stato saccheggiato", "condition": {"type": "structure_count", "entity_id": "$self", "structure_type": "STR_OLD_SITE", "grade": 3, "anyone": true, "min": 1}},
+    {"id": "SORGENTE_SECCA", "note": "la sorgente si e' seccata", "condition": {"type": "structure_count", "entity_id": "$self", "structure_type": "STR_SPRING", "grade": 3, "anyone": true, "min": 1}},
+    {"id": "CICATRICI_0", "note": "l'anno non ha lasciato cicatrici", "condition": {"type": "scar_count", "max": 0}},
+    {"id": "CICATRICI_MAX2", "note": "al piu' due cicatrici", "condition": {"type": "scar_count", "max": 2}},
+    {"id": "CICATRICI_3", "note": "almeno tre cicatrici", "condition": {"type": "scar_count", "min": 3}},
+    {"id": "CICATRICI_4", "note": "almeno quattro cicatrici", "condition": {"type": "scar_count", "min": 4}},
+    {"id": "CIC_STRADA_NO", "note": "la Strada dei Mercanti e' uscita pulita", "condition": {"type": "scar_count", "region_id": "REG_STRADA_MERCANTI", "max": 0}},
+    {"id": "CIC_EREDAN_NO", "note": "Eredan e' uscita pulita", "condition": {"type": "scar_count", "region_id": "REG_EREDAN", "max": 0}},
+    {"id": "CIC_MINIERE_NO", "note": "le Miniere sono uscite pulite", "condition": {"type": "scar_count", "region_id": "REG_MINIERE_ANTICHE", "max": 0}},
+    {"id": "CIC_VALLE_NO", "note": "la Valle Verde e' uscita pulita", "condition": {"type": "scar_count", "region_id": "REG_VALLE_VERDE", "max": 0}},
+    {"id": "CONTROLLO_2", "note": "due Regioni", "condition": {"type": "control_count", "entity_id": "$self", "min": 2}},
+    {"id": "CONTROLLO_3", "note": "tre Regioni", "condition": {"type": "control_count", "entity_id": "$self", "min": 3}}
+  ]
+}

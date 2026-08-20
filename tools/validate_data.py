@@ -79,6 +79,7 @@ def check_references(
     known_regions = ids.get("region", set())
     known_entities = ids.get("entity", set())
     known_tensions = ids.get("tension", set())
+    known_structure_types = ids.get("structure_type", set())
     known_destinies = ids.get("destiny", set())
     known_consequences = ids.get("consequence", set())
     known_echoes = ids.get("echo_card", set())
@@ -209,7 +210,15 @@ def check_references(
             require(known_entities, destiny["entity_id"], "entity", where)
         for level_name in ("minimum", "victory", "triumph"):
             for condition in destiny[level_name]["conditions"]:
-                _check_condition(condition, known_entities, known_regions, known_tensions, report, f"{where}.{level_name}")
+                _check_condition(
+                    condition,
+                    known_entities,
+                    known_regions,
+                    known_tensions,
+                    report,
+                    f"{where}.{level_name}",
+                    known_structure_types,
+                )
 
     for card in documents.get("echo_card", []):
         where = f"{origins['echo_card']} [{card['id']}]"
@@ -369,11 +378,7 @@ def check_references(
                     continue
                 for level in ("minimum", "victory", "triumph"):
                     for condition in destiny.get(level, {}).get("conditions", []):
-                        for one in (
-                            condition.get("conditions", [])
-                            if condition.get("type") == "any_of"
-                            else [condition]
-                        ):
+                        for one in _flatten_condition(condition):
                             if one.get("type") == "tension_limit":
                                 named.add(one.get("tension_id"))
             for tension_id in chronicle_tensions:
@@ -480,6 +485,21 @@ def check_bindings(
             walk(clause.get("effects", []), where)
 
 
+def _flatten_condition(condition: Dict[str, Any]) -> List[Dict[str, Any]]:
+    """Le clausole annidate contano quanto quelle in cima.
+
+    `any_of` e `some_of` sono le due che portano dentro altre condizioni, e un
+    controllo che si ferma al primo livello lascia passare proprio le clausole
+    scritte per ultime — quelle dentro una scelta.
+    """
+    if condition.get("type") in ("any_of", "some_of", "all_of"):
+        out: List[Dict[str, Any]] = []
+        for sub in condition.get("conditions", []):
+            out.extend(_flatten_condition(sub))
+        return out
+    return [condition]
+
+
 def _check_condition(
     condition: Dict[str, Any],
     entities: Set[str],
@@ -487,11 +507,19 @@ def _check_condition(
     tensions: Set[str],
     report: Report,
     where: str,
+    structure_types: Set[str] = frozenset(),
 ) -> None:
-    if condition.get("type") == "any_of":
+    if condition.get("type") in ("any_of", "some_of", "all_of"):
         for sub in condition.get("conditions", []):
-            _check_condition(sub, entities, regions, tensions, report, where)
+            _check_condition(
+                sub, entities, regions, tensions, report, where, structure_types
+            )
         return
+    # Un `structure_type` sbagliato non e' un errore rumoroso: conta zero, e la
+    # clausola diventa un muro che nessuno ha deciso di alzare.
+    wanted = condition.get("structure_type")
+    if wanted and structure_types and wanted not in structure_types:
+        report.fail(where, f"condition references unknown structure_type '{wanted}'")
     for key, container, kind in (
         ("entity_id", entities, "entity"),
         ("other_entity_id", entities, "entity"),

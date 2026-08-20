@@ -517,6 +517,29 @@ fine anno. I tipi di clausola disponibili:
 | `entity_alive` | qualcuno è ancora al tavolo |
 | `discovery_count` | hai fatto almeno N scoperte |
 | `promise_kept / promise_broken` | una promessa ha tenuto, o no |
+| `structure_count` | quante costruzioni tieni, per tipo, famiglia, grado e Regione |
+| `scar_count` | quante cicatrici porta il mondo, o una Regione in particolare |
+| `any_of` / `some_of` | almeno una — o almeno K — fra le clausole annidate |
+
+### La spina e la scelta
+
+Il MINIMO e la VITTORIA sono liste da soddisfare per intero. Il **TRIONFO** no:
+è fatto di due parti.
+
+```
+  la SPINA      una o due clausole in AND
+                quello che quella casata voleva davvero — senza, non è quel Trionfo
+
+  la SCELTA     «almeno K di queste N strade»
+                come ci è arrivata: Tensioni, controllo, costruzioni,
+                cicatrici, promesse, rapporti. Le strade non si sommano
+                a un punteggio: se ne contano.
+```
+
+Una casata che ha perso una strada può prenderne un'altra, e due Trionfi dello
+stesso Destino in due anni diversi possono essere fatti di cose diverse. La
+scheda di fine anno apre la scelta strada per strada — quali erano, quali hai
+preso — perché «tre di queste cinque» non si legge se non si vede quali.
 
 **Esempio reale — Re Aldric:**
 
@@ -524,7 +547,7 @@ fine anno. I tipi di clausola disponibili:
 |---|---|---|
 | MINIMO | *Il trono regge* | Aldric è ancora sul trono · presenza a Eredan |
 | VITTORIA | *Il regno decide* | la corona tiene ancora la sua terra (≥ 1 Regione) · la Carestia non supera 4 |
-| TRIONFO | *Un regno che non ha pagato il pane con il sangue* | Eredan non è in rivolta · nessuna questione lasciata aperta · la corona non è stata spezzata · nessuno ha ancora chiesto chi siede dopo |
+| TRIONFO | *Un regno che non ha pagato il pane con il sangue* | **spina:** Eredan non è in rivolta — **e tre segni su cinque:** nessuna questione lasciata aperta · la corona non è stata spezzata · nessuno ha ancora chiesto chi siede dopo · la corona ha più di una casa di pietra · Eredan è uscita dall'anno senza un segno |
 
 Il risultato conserva anche **come** ci si è arrivati: le clausole verificate, le
 clausole mancate, e gli Eco a cui la casata ha partecipato. Le clausole mancate

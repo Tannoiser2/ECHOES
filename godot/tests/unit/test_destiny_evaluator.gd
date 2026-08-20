@@ -70,17 +70,26 @@ func test_three_levels_for_vaerax() -> void:
 	)
 	_apply("REMOVE_GLOBAL_TAG", "world", "WORLD", {"tag": "crystal_exploited"})
 
-	# The Awakening pushed back down and the road that would carry anyone up
-	# there cut: Triumph. The road is the O-12 clause - his Destiny is that the
-	# sleep stays safe, and a safe sleep is one nobody can easily reach.
+	# Il Trionfo non e' piu' una lista da soddisfare per intero: e' una spina —
+	# le gallerie non svuotate — e **quattro strade su cinque** (D-167). Qui se
+	# ne prendono tre, e non bastano.
 	_apply("ADJUST_TENSION", "tension", "TEN_AWAKENING", {"delta": -1})
-	_apply("SET_REGION_TAG", "region", "REG_STRADA_MERCANTI", {"tag": "condition:cut_off"})
-	# E le Vie Interrotte abbastanza alte da non far salire nessuno con comodo:
-	# la clausola aggiunta in 0.1.25, che e' la stessa cosa detta con un numero
-	# invece che con un tag, e tira contro Lyra invece che contro nessuno (D-066).
 	_apply("ADJUST_TENSION", "tension", "TEN_ROADS", {"delta": 3})
+	_apply("ADJUST_TENSION", "tension", "TEN_FAMINE", {"delta": 3})
 	result = session.destinies.evaluate("DST_VAERAX")
-	assert_eq(str(result["level"]), "TRIUMPH", "Risveglio sotto 4 e strada interrotta: Triumph")
+	assert_eq(str(result["level"]), "VICTORY", "tre strade su quattro non sono un Trionfo")
+
+	# La quarta e' una pietra, e questo e' il punto della seduta sulla terra: il
+	# passo frana, il giro lungo lo fa chi vuole, e la montagna e' di nuovo
+	# lontana. Un Trionfo deciso da una cosa che sta sulla mappa.
+	_apply(
+		"SET_STRUCTURE_GRADE",
+		"region",
+		"REG_MONTAGNE_ROSSE",
+		{"structure_type": "STR_PASS", "grade": 2}
+	)
+	result = session.destinies.evaluate("DST_VAERAX")
+	assert_eq(str(result["level"]), "TRIUMPH", "col passo franato la quarta strada c'e': Triumph")
 
 	# Losing the mountain drops him to nothing at all, whatever else is true.
 	_apply("REMOVE_PRESENCE", "entity", "ENT_VAERAX", {"region_id": "REG_MONTAGNE_ROSSE"})
@@ -163,6 +172,49 @@ func test_discovery_count_drives_lyra() -> void:
 	assert_eq(
 		str(session.destinies.evaluate("DST_LYRA")["level"]), "TRIUMPH",
 		"con la scorta giurata la scala si apre fino in fondo"
+	)
+
+	# E il gradino sopra e' una scelta, non una lista: tre strade su sei (D-167).
+	# All'apertura ne ha quattro, e **le cicatrici ne chiudono due**.
+	_apply(
+		"ADD_SCAR",
+		"world",
+		"WORLD",
+		{
+			"scar_id": "SCR_TEST_ROAD",
+			"region_id": "REG_STRADA_MERCANTI",
+			"tag": "scar:broken_bridge",
+			"description": "il ponte rotto della prova",
+		}
+	)
+	_apply(
+		"ADD_SCAR",
+		"world",
+		"WORLD",
+		{
+			"scar_id": "SCR_TEST_MINE",
+			"region_id": "REG_MINIERE_ANTICHE",
+			"tag": "scar:open_wound",
+			"description": "la galleria aperta della prova",
+		}
+	)
+	assert_eq(
+		str(session.destinies.evaluate("DST_LYRA")["level"]), "VICTORY",
+		"due segni sulla strada e sulle gallerie chiudono due strade"
+	)
+
+	# E una pietra ne rimette una: lo studio con un tetto suo vale quanto una
+	# strada pulita. E' il punto della seduta sulla terra — un livello che si
+	# decide con qualcosa che sta sulla mappa.
+	_apply(
+		"BUILD_STRUCTURE",
+		"region",
+		"REG_MINIERE_ANTICHE",
+		{"structure_type": "STR_KEEP", "grade": 1, "owner": "ENT_LYRA"}
+	)
+	assert_eq(
+		str(session.destinies.evaluate("DST_LYRA")["level"]), "TRIUMPH",
+		"con un tetto sullo studio la terza strada torna"
 	)
 
 	# And the Triumph on top of it is a stake, not a purchase: put a guard on the

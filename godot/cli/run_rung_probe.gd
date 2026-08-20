@@ -40,6 +40,7 @@ func _initialize() -> void:
 
 	var missed: Dictionary = {}   # "livello|destino|etichetta" -> volte non soddisfatta
 	var played: Dictionary = {}   # destino -> quante volte giocato
+	var per_destiny: Dictionary = {}  # "destino|livello" -> quante volte
 	var reached: Dictionary = {}  # livello raggiunto -> quante volte
 	var control_hist: Dictionary = {}  # Regioni tenute a fine anno -> quanti seggi
 	var per_seat: Dictionary = {}   # casa -> [Regioni all'inizio, somma a fine anno, partite]
@@ -49,6 +50,18 @@ func _initialize() -> void:
 	var cleared: Dictionary = {}  # Chronicle -> quante volte una casella e' rimasta a nessuno
 	var owned_regions: int = 0    # caselle con un padrone, sommate su tutte le partite
 	var total_regions: int = 0    # caselle esistite, sommate su tutte le partite
+	# Le pietre, contate come si conta il controllo. Una clausola che chiede un
+	# presidio di grado 2 e' impossibile o gratis a seconda di questi numeri, e
+	# D-161 ha gia' pagato una volta il prezzo di scriverla senza guardarli.
+	var stones: Dictionary = {}   # casa -> [strutture a fine anno, grado>=2, grado>=3, partite]
+	var by_family: Dictionary = {}  # famiglia -> quante possedute a fine anno
+	var raised_in_year: int = 0   # BUILD_STRUCTURE dentro i round
+	var raised_at_setup: int = 0  # BUILD_STRUCTURE all'apertura
+	var regraded: int = 0         # SET_STRUCTURE_GRADE dentro i round
+	var razed: int = 0            # RAZE_STRUCTURE, ovunque
+	var scar_hist: Dictionary = {}  # cicatrici sulla mappa a fine anno -> quante partite
+	var stone_hist: Dictionary = {}  # "casa|quante" -> quante partite
+	var scars_by_region: Dictionary = {}  # Regione -> quante volte segnata
 	for index in range(runs):
 		var chronicle_id: String = "CHR_01" if index % 2 == 0 else "CHR_03"
 		var seed_value: int = first_seed + index
@@ -70,6 +83,8 @@ func _initialize() -> void:
 			var destiny_id: String = str(result["destiny_id"])
 			played[destiny_id] = int(played.get(destiny_id, 0)) + 1
 			reached[str(result["level"])] = int(reached.get(str(result["level"]), 0)) + 1
+			var lane: String = "%s|%s" % [destiny_id, str(result["level"])]
+			per_destiny[lane] = int(per_destiny.get(lane, 0)) + 1
 			var destiny: Dictionary = data.destinies[destiny_id]
 			for condition in result["unmet"]:
 				var label: String = str((condition as Dictionary).get("label", "?"))
@@ -83,6 +98,29 @@ func _initialize() -> void:
 			seat_row[1] = int(seat_row[1]) + held
 			seat_row[2] = int(seat_row[2]) + 1
 			per_seat[str(entity_id)] = seat_row
+			# Lo stesso conto, sulle pietre: quante ne tiene, e quante di quelle
+			# hanno passato il primo e il secondo gradino.
+			var stone_row: Array = stones.get(str(entity_id), [0, 0, 0, 0]) as Array
+			var mine_now: int = 0
+			for region_id in (session.world["regions"] as Dictionary):
+				for structure in ((session.world["regions"] as Dictionary)[region_id] as Dictionary).get("structures", []):
+					var record: Dictionary = structure as Dictionary
+					if str(record.get("owner", "")) != str(entity_id):
+						continue
+					mine_now += 1
+					stone_row[0] = int(stone_row[0]) + 1
+					if int(record["grade"]) >= 2:
+						stone_row[1] = int(stone_row[1]) + 1
+					if int(record["grade"]) >= 3:
+						stone_row[2] = int(stone_row[2]) + 1
+					var definition: Variant = data.structure_types.get(str(record["structure_type"]))
+					if definition != null:
+						var family: String = str((definition as Dictionary)["family"])
+						by_family[family] = int(by_family.get(family, 0)) + 1
+			stone_row[3] = int(stone_row[3]) + 1
+			stones[str(entity_id)] = stone_row
+			var stone_key: String = "%s|%d" % [str(entity_id), mine_now]
+			stone_hist[stone_key] = int(stone_hist.get(stone_key, 0)) + 1
 		# Nessuna azione assegna il controllo di suo: ACT_CLAIM apre una
 		# rivendicazione su un *dominio di Tensione*, e in FORCE la consuma per
 		# strappare un Consiglio da proponente. La Regione arriva solo se quel
@@ -95,6 +133,16 @@ func _initialize() -> void:
 				claims_made += 1
 			elif effect_type == "CONSUME_CLAIM":
 				claims_forced += 1
+			elif effect_type == "BUILD_STRUCTURE":
+				var when: int = int((effect.get("source", {}) as Dictionary).get("round", 0))
+				if when > 0:
+					raised_in_year += 1
+				else:
+					raised_at_setup += 1
+			elif effect_type == "SET_STRUCTURE_GRADE":
+				regraded += 1
+			elif effect_type == "RAZE_STRUCTURE":
+				razed += 1
 			if effect_type != "SET_CONTROL":
 				continue
 			var to: Variant = (effect.get("payload", {}) as Dictionary).get("entity_id", null)
@@ -102,6 +150,11 @@ func _initialize() -> void:
 				cleared[chronicle_id] = int(cleared.get(chronicle_id, 0)) + 1
 			else:
 				granted[chronicle_id] = int(granted.get(chronicle_id, 0)) + 1
+		var scars_here: int = (session.world["scars"] as Array).size()
+		scar_hist[scars_here] = int(scar_hist.get(scars_here, 0)) + 1
+		for scar in (session.world["scars"] as Array):
+			var where: String = str((scar as Dictionary).get("region_id", "?"))
+			scars_by_region[where] = int(scars_by_region.get(where, 0)) + 1
 		for region_id in (session.world["regions"] as Dictionary):
 			total_regions += 1
 			var owner: Variant = (session.world["regions"] as Dictionary)[region_id].get("control", null)
@@ -121,6 +174,19 @@ func _initialize() -> void:
 		print("  %-8s %3d  (%.0f%%)" % [level, count, 100.0 * float(count) / maxf(1.0, float(total))])
 	var above: int = int(reached.get("VICTORY", 0)) + int(reached.get("TRIUMPH", 0))
 	print("  Supera il Minimo: %.0f%%" % (100.0 * float(above) / maxf(1.0, float(total))))
+
+	# Dove finiscono le partite, Destino per Destino. Il totale non dice quale
+	# carta del pool porta i Trionfi, e due Destini della stessa casa possono
+	# essere uno un muro e l'altro una porta aperta.
+	print("")
+	print("  Dove arriva ogni Destino (NONE / MINIMUM / VICTORY / TRIUMPH):")
+	var destinies: Array = played.keys()
+	destinies.sort()
+	for destiny_id in destinies:
+		var row: String = ""
+		for level in ["NONE", "MINIMUM", "VICTORY", "TRIUMPH"]:
+			row += "%4d" % int(per_destiny.get("%s|%s" % [str(destiny_id), level], 0))
+		print("    %-24s %s   su %d" % [str(destiny_id), row, int(played[destiny_id])])
 
 	# La mappa a fine anno: quante Regioni tiene un seggio, e quante ne restano
 	# senza padrone. Una clausola che chiede due Regioni si legge solo qui.
@@ -158,6 +224,48 @@ func _initialize() -> void:
 		print("    %s: %d prese, %d lasciate a nessuno" % [
 			chronicle_id, int(granted.get(chronicle_id, 0)), int(cleared.get(chronicle_id, 0))
 		])
+
+	# Le pietre: quello che una clausola puo' davvero chiedere. Si legge come la
+	# tabella del controllo — se una colonna e' quasi zero la clausola che la
+	# nomina e' un muro, se e' quasi uno e' un regalo.
+	print("")
+	print("  Pietre tenute a fine anno (media per partita):")
+	var stone_houses: Array = stones.keys()
+	stone_houses.sort()
+	for entity_id in stone_houses:
+		var row: Array = stones[entity_id] as Array
+		var games: float = maxf(1.0, float(row[3]))
+		print("    %-12s tutte %.2f   grado>=2 %.2f   grado>=3 %.2f" % [
+			str(entity_id), float(row[0]) / games, float(row[1]) / games, float(row[2]) / games
+		])
+	print("  Per famiglia, su tutti i seggi e tutte le partite:")
+	var families: Array = by_family.keys()
+	families.sort()
+	for family in families:
+		print("    %-14s %d" % [str(family), int(by_family[family])])
+	print("  Cosa succede alle pietre dentro l'anno, su %d partite:" % runs)
+	print("    Alzate all'apertura:      %d" % raised_at_setup)
+	print("    Alzate giocando:          %d" % raised_in_year)
+	print("    Cambiate di grado:        %d" % regraded)
+	print("    Abbattute:                %d" % razed)
+	print("  Quante pietre tiene una casa, partita per partita:")
+	var hist_keys: Array = stone_hist.keys()
+	hist_keys.sort()
+	for key in hist_keys:
+		print("    %-20s %3d partite" % [str(key).replace("|", ": "), int(stone_hist[key])])
+	print("  Cicatrici sulla mappa a fine anno:")
+	var scar_keys: Array = scar_hist.keys()
+	scar_keys.sort()
+	for count in scar_keys:
+		print("    %d cicatrici: %3d partite  (%.0f%%)" % [
+			int(count), int(scar_hist[count]),
+			100.0 * float(scar_hist[count]) / maxf(1.0, float(runs))
+		])
+	print("  Dove cadono, su %d partite:" % runs)
+	var scarred: Array = scars_by_region.keys()
+	scarred.sort()
+	for where in scarred:
+		print("    %-22s %d" % [str(where), int(scars_by_region[where])])
 
 	# Le clausole che nessuno vede mai, in ordine di quanto spesso mancano.
 	for level in ["victory", "triumph"]:

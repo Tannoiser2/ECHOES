@@ -47,27 +47,46 @@
           {
             "type": "state_tag_absent",
             "scope": "REGION",
-            "region_id": "REG_EREDAN",
             "tag": "condition:unrest",
+            "region_id": "REG_EREDAN",
             "label": "Eredan non è in rivolta"
           },
           {
-            "type": "state_tag_absent",
-            "scope": "GLOBAL",
-            "tag": "question_unresolved",
-            "label": "Nessuna questione lasciata aperta"
-          },
-          {
-            "type": "state_tag_absent",
-            "scope": "GLOBAL",
-            "tag": "crown_divided",
-            "label": "La corona non è stata spezzata"
-          },
-          {
-            "type": "tension_limit",
-            "tension_id": "TEN_SUCCESSION",
-            "max": 4,
-            "label": "E nessuno ha ancora chiesto chi siede dopo"
+            "type": "some_of",
+            "min": 3,
+            "label": "E tre segni che la corona ha retto senza stringere",
+            "conditions": [
+              {
+                "type": "state_tag_absent",
+                "scope": "GLOBAL",
+                "tag": "question_unresolved",
+                "label": "Nessuna questione lasciata aperta"
+              },
+              {
+                "type": "state_tag_absent",
+                "scope": "GLOBAL",
+                "tag": "crown_divided",
+                "label": "La corona non è stata spezzata"
+              },
+              {
+                "type": "tension_limit",
+                "tension_id": "TEN_SUCCESSION",
+                "max": 4,
+                "label": "E nessuno ha ancora chiesto chi siede dopo"
+              },
+              {
+                "type": "structure_count",
+                "entity_id": "ENT_ALDRIC",
+                "min": 2,
+                "label": "La corona ha più di una casa di pietra"
+              },
+              {
+                "type": "scar_count",
+                "region_id": "REG_EREDAN",
+                "max": 0,
+                "label": "Eredan è uscita dall'anno senza un segno"
+              }
+            ]
           }
         ]
       },
@@ -123,22 +142,46 @@
             "label": "La Valle non è stata chiusa"
           },
           {
-            "type": "tension_limit",
-            "tension_id": "TEN_FAMINE",
-            "max": 3,
-            "label": "La Carestia è sotto controllo"
-          },
-          {
-            "type": "state_tag_present",
-            "scope": "GLOBAL",
-            "tag": "crown_divided",
-            "label": "La corona ha smesso di essere una sola"
-          },
-          {
-            "type": "tension_limit",
-            "tension_id": "TEN_SUCCESSION",
-            "min": 3,
-            "label": "E finché si discute chi siede, nessuno ha tempo di mandarci via"
+            "type": "some_of",
+            "min": 4,
+            "label": "E quattro segni che fermarsi non è stato arrendersi",
+            "conditions": [
+              {
+                "type": "tension_limit",
+                "tension_id": "TEN_FAMINE",
+                "max": 3,
+                "label": "La Carestia è sotto controllo"
+              },
+              {
+                "type": "state_tag_present",
+                "scope": "GLOBAL",
+                "tag": "crown_divided",
+                "label": "La corona ha smesso di essere una sola"
+              },
+              {
+                "type": "tension_limit",
+                "tension_id": "TEN_SUCCESSION",
+                "min": 3,
+                "label": "E finché si discute chi siede, nessuno ha tempo di mandarci via"
+              },
+              {
+                "type": "structure_count",
+                "entity_id": "ENT_NAHR",
+                "min": 3,
+                "label": "Il popolo ha alzato tre cose che restano"
+              },
+              {
+                "type": "scar_count",
+                "region_id": "REG_VALLE_VERDE",
+                "max": 0,
+                "label": "La Valle Verde è uscita pulita"
+              },
+              {
+                "type": "scar_count",
+                "max": 2,
+                "label": "E l'anno non ha lasciato più di due segni sul mondo"
+              }
+            ]
           }
         ]
       },
@@ -194,30 +237,47 @@
             "label": "Due Scoperte"
           },
           {
-            "type": "tension_limit",
-            "tension_id": "TEN_AWAKENING",
-            "min": 0,
-            "max": 6,
-            "label": "Il Risveglio non è esploso"
-          },
-          {
-            "type": "state_tag_absent",
-            "scope": "REGION",
-            "region_id": "REG_STRADA_MERCANTI",
-            "tag": "condition:cut_off",
-            "label": "La strada per le gallerie è ancora aperta"
-          },
-          {
-            "type": "state_tag_absent",
-            "scope": "GLOBAL",
-            "tag": "study_supervised",
-            "label": "Nessuno ha messo una guardia allo studio"
-          },
-          {
-            "type": "tension_limit",
-            "tension_id": "TEN_ROADS",
-            "max": 4,
-            "label": "E la strada per le gallerie non è allo stremo"
+            "type": "some_of",
+            "min": 3,
+            "label": "E tre segni che si può ancora tornare a guardare",
+            "conditions": [
+              {
+                "type": "state_tag_absent",
+                "scope": "GLOBAL",
+                "tag": "study_supervised",
+                "label": "Nessuno ha messo una guardia allo studio"
+              },
+              {
+                "type": "tension_limit",
+                "tension_id": "TEN_ROADS",
+                "max": 4,
+                "label": "E la strada per le gallerie non è allo stremo"
+              },
+              {
+                "type": "structure_count",
+                "entity_id": "ENT_LYRA",
+                "min": 1,
+                "label": "Lo studio ha un tetto suo"
+              },
+              {
+                "type": "scar_count",
+                "region_id": "REG_MINIERE_ANTICHE",
+                "max": 0,
+                "label": "Le Miniere sono uscite dall'anno senza un segno"
+              },
+              {
+                "type": "control_count",
+                "entity_id": "ENT_LYRA",
+                "min": 1,
+                "label": "E un posto sulla mappa risponde a lei"
+              },
+              {
+                "type": "scar_count",
+                "region_id": "REG_STRADA_MERCANTI",
+                "max": 0,
+                "label": "E la strada per le gallerie è uscita pulita"
+              }
+            ]
           }
         ]
       },
@@ -266,36 +326,51 @@
         "label": "E nessuno ci arriva più",
         "conditions": [
           {
-            "type": "tension_limit",
-            "tension_id": "TEN_AWAKENING",
-            "max": 4,
-            "label": "Il Risveglio è stato riportato indietro"
-          },
-          {
-            "type": "tension_limit",
-            "tension_id": "TEN_FAMINE",
-            "min": 3,
-            "label": "E la fame tiene gli uomini nelle valli, lontani dalla montagna"
-          },
-          {
-            "type": "state_tag_present",
-            "scope": "REGION",
-            "region_id": "REG_STRADA_MERCANTI",
-            "tag": "condition:cut_off",
-            "label": "Nessuno arriva facilmente fin lassù"
-          },
-          {
             "type": "state_tag_absent",
             "scope": "REGION",
-            "region_id": "REG_MINIERE_ANTICHE",
             "tag": "condition:exploited",
+            "region_id": "REG_MINIERE_ANTICHE",
             "label": "E le Miniere non sono state svuotate"
           },
           {
-            "type": "tension_limit",
-            "tension_id": "TEN_ROADS",
-            "min": 3,
-            "label": "E salire fin lassù non è facile per nessuno"
+            "type": "some_of",
+            "min": 4,
+            "label": "E quattro segni che la montagna è tornata lontana",
+            "conditions": [
+              {
+                "type": "tension_limit",
+                "tension_id": "TEN_AWAKENING",
+                "max": 4,
+                "label": "Il Risveglio è stato riportato indietro"
+              },
+              {
+                "type": "tension_limit",
+                "tension_id": "TEN_ROADS",
+                "min": 3,
+                "label": "E salire fin lassù non è facile per nessuno"
+              },
+              {
+                "type": "tension_limit",
+                "tension_id": "TEN_FAMINE",
+                "min": 3,
+                "label": "E la fame tiene gli uomini nelle valli, lontani dalla montagna"
+              },
+              {
+                "type": "structure_count",
+                "entity_id": "ENT_VAERAX",
+                "structure_type": "STR_PASS",
+                "grade": 2,
+                "anyone": true,
+                "min": 1,
+                "label": "Il passo è franato, e il giro lungo lo fa chi vuole"
+              },
+              {
+                "type": "scar_count",
+                "region_id": "REG_MINIERE_ANTICHE",
+                "min": 1,
+                "label": "E le gallerie portano un segno che si vede da fuori"
+              }
+            ]
           }
         ]
       },

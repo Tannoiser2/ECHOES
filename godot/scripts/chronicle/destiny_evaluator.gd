@@ -63,7 +63,10 @@ func evaluate(destiny_id: String, holder: String = "") -> Dictionary:
 		var holds: bool = conditions.all_hold(level["conditions"], context)
 		achieved[LEVEL_NAMES[i]] = holds
 		for condition in level["conditions"]:
-			evidence.append("%s %s" % [LEVEL_NAMES[i], conditions.describe(condition, context)])
+			# Una clausola che offre una scelta porta con se' le sue strade
+			# (D-167): la prova dice quante ne servivano e quali sono cadute.
+			for line in conditions.describe_all(condition, context):
+				evidence.append("%s %s" % [LEVEL_NAMES[i], str(line)])
 			if not conditions.holds(condition, context):
 				unmet.append((condition as Dictionary).duplicate(true))
 		# A higher level only counts while every lower one still holds.
