@@ -205,6 +205,20 @@ func test_round_trip_every_reversible_type() -> void:
 			{"structure_type": "STR_KEEP", "grade": 3}
 		)
 	)
+	# Il varco che si chiude e si riapre (D-166): l'unica coppia di Effect che
+	# cambia la **forma** del mondo. REG_TERRE_NAHR e REG_MONTAGNE_ROSSE si
+	# toccano, e la montagna resta raggiungibile dalle Miniere anche senza
+	# quell'arco — quindi il taglio e' concesso e si annulla pulito.
+	_round_trip(
+		"CLOSE_PASSAGE",
+		_make(
+			"CLOSE_PASSAGE", "region", "REG_TERRE_NAHR", {"region_id": "REG_MONTAGNE_ROSSE"}
+		)
+	)
+	_round_trip(
+		"OPEN_PASSAGE",
+		_make("OPEN_PASSAGE", "region", "REG_EREDAN", {"region_id": "REG_MONTAGNE_ROSSE"})
+	)
 	_round_trip(
 		"RAZE_STRUCTURE",
 		_make("RAZE_STRUCTURE", "region", "REG_EREDAN", {"structure_type": "STR_KEEP"})
@@ -218,6 +232,7 @@ func test_round_trip_every_reversible_type() -> void:
 		"CREATE_CLAIM", "CONSUME_CLAIM", "ADD_SCAR", "REMOVE_SCAR", "SET_ENTITY_TAG",
 		"REMOVE_ENTITY_TAG", "SET_ENTITY_ACTIVE",
 		"BUILD_STRUCTURE", "RAZE_STRUCTURE", "SET_STRUCTURE_GRADE",
+		"CLOSE_PASSAGE", "OPEN_PASSAGE",
 	]
 	for effect_type in SchemaDefs.EFFECT_TYPES:
 		if Effect.IRREVERSIBLE.has(str(effect_type)):

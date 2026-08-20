@@ -32,6 +32,8 @@
         "BUILD_STRUCTURE",
         "RAZE_STRUCTURE",
         "SET_STRUCTURE_GRADE",
+        "CLOSE_PASSAGE",
+        "OPEN_PASSAGE",
         "CREATE_ECHO",
         "APPEND_TRUTH"
       ]

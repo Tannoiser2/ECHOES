@@ -220,6 +220,10 @@ func _mutate(effect_type: String, target: Dictionary, payload: Dictionary) -> Va
 			return _raze_structure(target, payload)
 		"SET_STRUCTURE_GRADE":
 			return _set_structure_grade(target, payload)
+		"CLOSE_PASSAGE":
+			return _close_passage(target, payload)
+		"OPEN_PASSAGE":
+			return _open_passage(target, payload)
 		"CREATE_ECHO":
 			world["echo_log"].append(payload.duplicate(true))
 			return {}
@@ -393,6 +397,96 @@ func _set_structure_grade(target: Dictionary, payload: Dictionary) -> Variant:
 	structure["grade"] = after
 	_apply_grade_tag(region, definition, before, after)
 	return {"structure_type": type_id, "grade": before}
+
+
+## Il varco che si chiude (D-166): due Regioni smettono di toccarsi.
+##
+## E' l'unica cosa della mappa che cambia la **forma** del mondo invece di cosa
+## ci sta sopra, ed e' anche l'unica che puo' rendere un Destino impossibile:
+## una Regione irraggiungibile e' una clausola che nessuno potra' mai
+## soddisfare. Per questo il taglio si prova e **si annulla se spezza il
+## mondo** — nessuna frase d'autore vale una partita rotta.
+##
+## Il grafo resta simmetrico: si toglie l'arco da tutte e due le parti.
+func _close_passage(target: Dictionary, payload: Dictionary) -> Variant:
+	var here: String = str(target.get("id", ""))
+	var there: String = str(payload.get("region_id", ""))
+	var graph: Dictionary = world.get("adjacency", {})
+	if not graph.has(here) or not graph.has(there):
+		if bool(payload.get("optional", false)):
+			return {"noop": true}
+		return _fail("unknown region in passage '%s' - '%s'" % [here, there])
+	if not (graph[here] as Array).has(there):
+		return {"noop": true}
+
+	(graph[here] as Array).erase(there)
+	(graph[there] as Array).erase(here)
+	# La prova: se il mondo si e' spezzato, il varco si riapre e non e'
+	# successo niente. Meglio una frana che non frana di una Regione dove
+	# nessuno potra' mai arrivare.
+	if not _every_region_reachable():
+		(graph[here] as Array).append(there)
+		(graph[there] as Array).append(here)
+		return {"noop": true, "refused": "isolerebbe una Regione"}
+	return {"region_id": there}
+
+
+func _open_passage(target: Dictionary, payload: Dictionary) -> Variant:
+	var here: String = str(target.get("id", ""))
+	var there: String = str(payload.get("region_id", ""))
+	var graph: Dictionary = world.get("adjacency", {})
+	if not graph.has(here) or not graph.has(there):
+		if bool(payload.get("optional", false)):
+			return {"noop": true}
+		return _fail("unknown region in passage '%s' - '%s'" % [here, there])
+	if (graph[here] as Array).has(there):
+		return {"noop": true}
+	(graph[here] as Array).append(there)
+	(graph[there] as Array).append(here)
+	# Rimesso **al posto suo**, non in fondo: l'ordine dei vicini e' quello
+	# scritto nel dato, e il gioco lo legge (`$adjacent` ci pesca dentro). Un
+	# varco riaperto deve lasciare il mondo identico a com'era, byte per byte.
+	_reorder_neighbours(graph, here)
+	_reorder_neighbours(graph, there)
+	return {"region_id": there}
+
+
+## Rimette i vicini nell'ordine d'autore, tenendo solo quelli che ci sono adesso.
+func _reorder_neighbours(graph: Dictionary, region_id: String) -> void:
+	var definition: Variant = data.regions.get(region_id)
+	if definition == null:
+		return
+	var current: Array = graph[region_id]
+	var ordered: Array = []
+	for neighbour in (definition["adjacency"] as Array):
+		if current.has(str(neighbour)):
+			ordered.append(str(neighbour))
+	# Un vicino che il dato non conosce (non dovrebbe esistere) resta in coda
+	# invece di sparire: perdere un arco in silenzio sarebbe peggio.
+	for neighbour in current:
+		if not ordered.has(str(neighbour)):
+			ordered.append(str(neighbour))
+	graph[region_id] = ordered
+
+
+## Se da una Regione qualsiasi si arriva a tutte le altre. Vive qui e non nel
+## servizio perche' l'applicatore non lo conosce, e perche' e' una guardia
+## dell'Effect: la prova va fatta **prima** che il taglio resti.
+func _every_region_reachable() -> bool:
+	var graph: Dictionary = world.get("adjacency", {})
+	var all_regions: Array = graph.keys()
+	if all_regions.size() <= 1:
+		return true
+	var seen: Dictionary = {str(all_regions[0]): true}
+	var queue: Array = [str(all_regions[0])]
+	while not queue.is_empty():
+		var here: String = str(queue.pop_back())
+		for neighbour in (graph.get(here, []) as Array):
+			if seen.has(str(neighbour)):
+				continue
+			seen[str(neighbour)] = true
+			queue.append(str(neighbour))
+	return seen.size() == all_regions.size()
 
 
 ## Dove sta quel tipo dentro la Regione, o -1.

@@ -5,6 +5,47 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.133] — Il passo che frana
+
+L'ultimo pezzo del catalogo ([D-166](docs/DECISIONS.md#d-166)), tenuto per ultimo
+di proposito: **la sola cosa che cambia la forma del mondo**.
+
+### Added
+
+- **`CLOSE_PASSAGE` / `OPEN_PASSAGE`**, l'uno l'inverso dell'altro: tolgono un
+  arco da tutte e due le parti. Le **adiacenze diventano stato del mondo** —
+  erano l'unica cosa della mappa che non cambiava mai.
+- **`STR_PASS`**: Passo aperto → Passo franato. *La Via delle Miniere Tagliata*
+  lo fa cadere: due Effect per un fatto solo, il luogo che cambia stato e l'arco
+  che si chiude.
+- **La guardia**: una Regione irraggiungibile e' **un Destino impossibile**. Il
+  taglio si prova, si visita il grafo, e **se il mondo si e' spezzato si rimette
+  a posto**. Il test lo prova col solo caso che romperebbe davvero — due tagli
+  sulle Miniere, e il secondo viene rifiutato.
+
+### Fixed
+
+- **Riaprire un varco rimetteva il vicino in fondo alla lista.** Il round-trip
+  l'ha visto: lo stato non tornava byte per byte. E non e' stile — **l'ordine
+  dei vicini lo legge il gioco** (`$adjacent` ci pesca dentro). Adesso si
+  ricostruisce nell'ordine d'autore.
+
+### Measured
+
+Su quaranta Chronicle: **1 varco chiuso**, 1 passo franato, **0 tagli
+rifiutati**. Una volta ogni quarant'anni meta' della montagna scende a valle in
+una notte — la frequenza giusta per un fatto che riscrive la mappa. Non forzata.
+
+Playtest **FAIL 207 · SUCC 77 · SUCC 112 · DECI 189** — identico a 0.1.132:
+l'ultimo pezzo costa **zero**. Tavolo misto **0 su 8**, mediana **6**.
+
+Suite **339 test / 6051 asserzioni** verde, sims ed export deterministici.
+
+**Il catalogo e' chiuso**: nove tipi in cinque famiglie. Resta fuori solo la
+palude, che chiede motore e non contenuto.
+
+---
+
 ## [0.1.132] — Il sito antico e la sorgente
 
 Gli altri due luoghi del mondo ([D-165](docs/DECISIONS.md#d-165)), scritti sotto

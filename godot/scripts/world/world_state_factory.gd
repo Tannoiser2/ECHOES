@@ -105,6 +105,19 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 			"structures": [],
 		}
 
+	# La **forma** del mondo (D-166). Fino a 0.1.132 le adiacenze si leggevano
+	# dal dato della Regione ed erano l'unica cosa della mappa che non cambiava
+	# mai. Adesso sono stato: un passo che frana toglie un arco, e da quel
+	# momento due Regioni smettono di essere vicine.
+	world["adjacency"] = {}
+	for region_id in chronicle["regions"]:
+		var links: Array = []
+		for neighbour in (data.regions[region_id]["adjacency"] as Array):
+			# Solo i vicini che questa Chronicle porta davvero al tavolo.
+			if (chronicle["regions"] as Array).has(str(neighbour)):
+				links.append(str(neighbour))
+		world["adjacency"][str(region_id)] = links
+
 	for tension_id in resolve_tensions(chronicle, rng):
 		var definition: Dictionary = data.tensions[tension_id]
 		world["tensions"][tension_id] = {

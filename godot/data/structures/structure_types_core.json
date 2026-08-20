@@ -285,6 +285,38 @@
         "scar": "scar:emptied",
         "description": "Resta il nome del posto, che parla d'acqua, e non c'e' acqua."
       }
+    },
+    {
+      "id": "STR_PASS",
+      "name": "Passo",
+      "family": "LUOGO",
+      "owned": false,
+      "description": "La via che tiene insieme due terre. Non e' di nessuno e serve a tutti, e questo la rende la cosa piu' facile da non riparare.",
+      "biomes": [
+        "MOUNTAIN",
+        "VALLEY",
+        "STEPPE",
+        "ROAD"
+      ],
+      "grades": [
+        {
+          "name": "Passo aperto",
+          "value": 0,
+          "tag": "place:pass",
+          "description": "Stretto, in salita e percorribile. Ci passano i carri se sono pazienti."
+        },
+        {
+          "name": "Passo franato",
+          "value": 0,
+          "tag": "place:collapsed_pass",
+          "description": "Meta' della montagna e' scesa a valle in una notte. Da qui non si passa piu', e per andare dall'altra parte si fa il giro lungo."
+        }
+      ],
+      "ruin": {
+        "name": "La Via Dimenticata",
+        "scar": "scar:broken_bridge",
+        "description": "Nelle carte vecchie c'e' ancora una linea, e chi la segue arriva a una parete."
+      }
     }
   ]
 }

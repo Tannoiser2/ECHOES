@@ -10,6 +10,58 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-166 — Il passo che frana: la sola cosa che cambia la forma del mondo
+**implemented in 0.1.133** (§8.6 passo 5, l'ultimo — tenuto per ultimo di proposito)
+
+Fino a 0.1.132 le **adiacenze** erano l'unica cosa della mappa che non cambiava
+mai: sei Regioni, otto archi, scritti nel dato e letti da li' per sempre. Tutto
+il resto — controllo, pietre, condizioni, cicatrici — era gia' stato del mondo.
+Il grafo no.
+
+**Adesso e' stato anche lui**, e si taglia con una coppia di Effect
+(`CLOSE_PASSAGE` / `OPEN_PASSAGE`, l'uno l'inverso dell'altro) che tolgono un
+arco da tutte e due le parti. Il *Passo* e' il luogo che lo racconta — aperto,
+franato — e *La Via delle Miniere Tagliata* e' la Conseguenza che lo fa cadere:
+due Effect per un fatto solo, il luogo che cambia stato e l'arco che si chiude.
+
+**La guardia, che era il rischio dichiarato in D-160.** Una Regione
+irraggiungibile e' **un Destino impossibile**: una clausola che nessuno potra'
+mai soddisfare, e la mappa non lo direbbe a nessuno. Quindi il taglio si
+**prova**: si toglie l'arco, si visita il grafo, e **se il mondo si e' spezzato
+si rimette a posto e non e' successo niente**. Nessuna frase d'autore vale una
+partita rotta.
+
+Su questa mappa la guardia e' assicurazione e non necessita': otto archi su sei
+nodi hanno abbastanza ridondanza che **nessun taglio singolo isola niente** — la
+montagna che perde la steppa resta attaccata alle Miniere. Il test lo prova
+prendendo l'unico caso che romperebbe davvero: **due** tagli sulle Miniere, e il
+secondo viene rifiutato.
+
+**Un difetto vero, e sottile.** Riaprire un varco rimetteva il vicino **in fondo
+alla lista** invece che al posto suo. Il round-trip lo ha visto subito: lo stato
+non tornava byte per byte. E non e' un dettaglio di stile — **l'ordine dei
+vicini lo legge il gioco**: `$adjacent` ci pesca dentro per decidere dove
+finisce chi viene cacciato. Adesso riaprire ricostruisce la lista nell'ordine
+d'autore, tenendo solo gli archi che ci sono davvero.
+
+**Quanto succede.** Su quaranta Chronicle: **un varco chiuso**, un passo franato
+a fine anno, **zero tagli rifiutati**. Una volta ogni quaranta anni «meta' della
+montagna scende a valle in una notte» — che e' esattamente la frequenza che un
+fatto del genere deve avere. Non l'ho forzata e non la forzero': un evento che
+riscrive la mappa e' memorabile perche' e' raro.
+
+**Misure.** Playtest **FAIL 207 · SUCC 77 · SUCC 112 · DECI 189** — identico a
+D-165: l'ultimo pezzo del catalogo costa **zero**. Tavolo misto **0 su 8**,
+mediana **6**. Suite **339 test / 6051 asserzioni** verde; `run_sims.sh` e
+`run_export.sh` identici su due giri; `dead_code.py` pulito su 152 file.
+
+**Il catalogo e' chiuso**, per quello che si era deciso di scrivere: **nove tipi
+in cinque famiglie** — presidio, insediamento, tre opere, quattro luoghi del
+mondo. Resta fuori solo **la palude**, che chiede gli slot di presenza variabili
+e quindi motore, non contenuto.
+
+---
+
 ## D-165 — Il sito antico e la sorgente, e il degrado che non aggiunge peso
 **implemented in 0.1.132** (§8.6 passo 5, gli altri due luoghi del mondo)
 

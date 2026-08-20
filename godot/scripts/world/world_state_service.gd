@@ -131,10 +131,41 @@ func can_move_to(entity_id: String, region_id: String) -> bool:
 	if definition != null and (definition["presence"] as Array).has(region_id):
 		return true
 	for held in regions_with_presence(entity_id):
-		var neighbours: Array = data.regions[held]["adjacency"]
-		if neighbours.has(region_id):
+		if neighbours_of(held).has(region_id):
 			return true
 	return gate == "ALLOW"
+
+
+## I vicini di una Regione **adesso** (D-166). Il grafo e' stato del mondo: un
+## passo franato toglie un arco, e da li' in poi quelle due Regioni non si
+## toccano piu'. Senza il grafo nel mondo — un salvataggio vecchio, una sonda
+## che non l'ha costruito — si ripiega sul dato, che e' la forma di partenza.
+func neighbours_of(region_id: String) -> Array:
+	var graph: Dictionary = world.get("adjacency", {})
+	if graph.has(region_id):
+		return graph[region_id]
+	var definition: Variant = data.regions.get(region_id)
+	return [] if definition == null else (definition["adjacency"] as Array)
+
+
+## Se da questa Regione si arriva a tutte le altre in gioco. E' la guardia che
+## impedisce a un varco chiuso di spezzare il mondo in due: una Regione
+## irraggiungibile e' un Destino impossibile, e nessuna frase d'autore vale
+## quel prezzo.
+func every_region_reachable() -> bool:
+	var all_regions: Array = (world["regions"] as Dictionary).keys()
+	if all_regions.size() <= 1:
+		return true
+	var seen: Dictionary = {str(all_regions[0]): true}
+	var queue: Array = [str(all_regions[0])]
+	while not queue.is_empty():
+		var here: String = str(queue.pop_back())
+		for neighbour in neighbours_of(here):
+			if seen.has(str(neighbour)):
+				continue
+			seen[str(neighbour)] = true
+			queue.append(str(neighbour))
+	return seen.size() == all_regions.size()
 
 
 func region_free_slots(region_id: String) -> int:

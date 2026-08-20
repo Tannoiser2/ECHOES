@@ -990,6 +990,31 @@
           "payload": {
             "delta": 1
           }
+        },
+        {
+          "type": "SET_STRUCTURE_GRADE",
+          "target": {
+            "kind": "region",
+            "id": "REG_MONTAGNE_ROSSE"
+          },
+          "payload": {
+            "structure_type": "STR_PASS",
+            "grade": 2,
+            "optional": true
+          },
+          "note": "D-166: tagliare la via delle miniere fa franare il passo. Il luogo cambia stato, e l'arco si chiude nell'Effect dopo."
+        },
+        {
+          "type": "CLOSE_PASSAGE",
+          "target": {
+            "kind": "region",
+            "id": "REG_MONTAGNE_ROSSE"
+          },
+          "payload": {
+            "region_id": "REG_TERRE_NAHR",
+            "optional": true
+          },
+          "note": "D-166: e da qui la montagna e la steppa smettono di toccarsi. Per andare dall'altra parte si fa il giro dalle Miniere. Se il taglio isolasse una Regione l'applicatore lo rifiuta: nessuna frase vale una partita rotta."
         }
       ]
     },
