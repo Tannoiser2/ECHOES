@@ -331,6 +331,71 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-155 — Le carte parlano: cosa fa una carta, prima di calarla
+**implemented in 0.1.121** (difetto trovato dal committente giocando)
+
+«Le carte che vengono giocate ora non si capisce quale effetto hanno, le frasi
+sono belle ma non si capiscono e alla fine **non hanno effetti sul gioco**.»
+
+La seconda meta' della frase e' falsa e la prima la spiega: **39 carte del
+Narratore su 39 portano almeno un effetto**, e 47 Asset su 48. Gli effetti
+c'erano. Era la carta a essere muta.
+
+**Il difetto, in una riga.** Le carte Asset dichiarano il proprio mestiere da
+D-042 — accanto a ogni opzione di impegno c'e' quanto vale *qui* e cosa costa al
+mondo. Le carte del Narratore no: si sceglievano da
+
+> «Cala la carta del Narratore: Mancanza»
+
+e basta. Titolo bellissimo, zero informazione. Una carta che non dichiara cosa
+fa e' **indistinguibile da una che non fa niente** — che e' esattamente la
+conclusione a cui il committente e' arrivato giocando, ed era la conclusione
+ragionevole.
+
+**Cosa dice adesso.** `scripts/core/echo_text.gd`, gemello di `asset_text.gd` e
+costruito con lo stesso criterio: il riassunto si compone **dai campi che il
+motore legge davvero**, cosi' una carta non puo' dire una cosa e farne un'altra.
+
+> Cala la carta del Narratore: **Mancanza** — *stringe*
+> La Carestia sale di 1 · Valle Verde: il raccolto non basta · Valle Verde: il
+> granaio non c'e' piu
+
+> Cala la carta del Narratore: **Tradimento** — *rompe*
+> Nel mondo: betrayal spoken · La Carestia sale di 1 · **apre subito un
+> Consiglio su La Carestia**
+
+Il tono («stringe, rompe, svolta, chiude, ricorda») dice al tavolo che cosa
+aspettarsi dalla famiglia drammatica senza spiegare Propp.
+
+**E per strada e' venuto fuori un difetto piu' largo: la mappa parlava in
+identificativi.** Il registro pubblico, la console e la vetrina dicevano
+`Valle Verde: condition:lean`. Un tag e' un identificativo: sta bene nei dati e
+non si legge al tavolo. Quello che gli manca e' un verbo.
+
+- **31 segni** hanno adesso una frase — le tredici condizioni, le cinque
+  strutture, le tredici cicatrici;
+- e una **seconda** frase per quando spariscono, perche' «non piu si muore di
+  fame» non e' italiano: `condition:starving` va via come «la fame e' passata»,
+  `structure:granary` come «il granaio non c'e' piu»;
+- `SET_ENTITY_TAG` e `REMOVE_ENTITY_TAG` non stampano piu' il tipo grezzo;
+- le **caselle da riempire** (`$rival`, `$proponent`, `$region_focus`) in
+  anteprima diventano parole — «un rivale», «chi la cala», «la Regione della
+  domanda». Prima, guardare una carta prima di calarla mostrava `$rival`.
+
+**Un difetto l'ha trovato il test, non io.** `SET_RELATION` stampava la coppia
+come `$proponent / $rival` senza risolvere nessuno dei due lati: sfuggiva perche'
+al momento di applicare l'Effect le caselle sono gia' piene, e nessuno guardava
+mai la stessa frase *in anteprima*. Il test che vieta gli identificativi al
+tavolo l'ha visto al primo giro. (Ne ha trovato anche uno mio: `str(null)` non
+e' la stringa vuota, e il ciclo che cercava «una carta che apre un Consiglio»
+prendeva la prima carta qualsiasi.)
+
+Misure: suite **319 test / 5959 asserzioni** verde, sette test nuovi;
+`dead_code.py` pulito su 149 file. Nessuna regola cambiata — **il gioco fa
+esattamente quello che faceva prima, e adesso lo dice**.
+
+---
+
 ## D-154 — Il peso della terra: meccanismo acceso, contenuto spento
 **implemented in 0.1.119** (deciso dal committente, respinto dalla misura)
 

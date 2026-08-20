@@ -5,6 +5,40 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.121] — Le carte parlano
+
+Difetto trovato dal committente giocando ([D-155](docs/DECISIONS.md#d-155)):
+«le frasi sono belle ma non si capiscono e alla fine non hanno effetti sul
+gioco». Gli effetti c'erano — **39 carte del Narratore su 39** ne portano almeno
+uno. Era la carta a essere muta.
+
+### Added
+
+- **`scripts/core/echo_text.gd`**: cosa fa una carta del Narratore, prima di
+  calarla. Titolo, tono della famiglia drammatica («stringe, rompe, svolta,
+  chiude, ricorda») e gli effetti uno per uno, compreso **se apre un Consiglio**.
+  Composto dai campi che il motore legge davvero, come `asset_text.gd`.
+- **`tests/unit/test_card_speech.gd`**: nessuna carta muta, nessun
+  identificativo grezzo davanti a chi gioca, e i segni detti in italiano.
+
+### Fixed
+
+- **La mappa parlava in identificativi.** `Valle Verde: condition:lean` diventa
+  «Valle Verde: il raccolto non basta». **31 segni** hanno una frase, e una
+  **seconda** per quando spariscono («la fame e' passata», «il granaio non c'e'
+  piu») perche' «non piu si muore di fame» non e' italiano.
+- `SET_ENTITY_TAG` e `REMOVE_ENTITY_TAG` non stampano piu' il tipo grezzo.
+- **Le caselle da riempire** in anteprima diventano parole: `$rival` e' «un
+  rivale», `$region_focus` «la Regione della domanda».
+- **`SET_RELATION` non risolveva nessuno dei due lati** della coppia: diceva
+  `$proponent / $rival`. Trovato dal test nuovo, non a mano — sfuggiva perche'
+  nessuno guardava mai quella frase in anteprima.
+
+Suite **319 test / 5959 asserzioni** verde, `dead_code.py` pulito su 149 file.
+Nessuna regola cambiata: il gioco fa quello che faceva prima, e adesso lo dice.
+
+---
+
 ## [0.1.120] — La seduta sulla terra
 
 Tre idee del committente arrivate una dopo l'altra sono la stessa domanda vista
