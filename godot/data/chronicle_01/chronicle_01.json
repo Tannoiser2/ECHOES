@@ -138,6 +138,24 @@
           "structure_type": "STR_SETTLEMENT",
           "grade": 1,
           "owner": "ENT_NAHR"
+        },
+        {
+          "region_id": "REG_VALLE_VERDE",
+          "structure_type": "STR_FOREST",
+          "grade": 1,
+          "owner": null
+        },
+        {
+          "region_id": "REG_TERRE_NAHR",
+          "structure_type": "STR_FOREST",
+          "grade": 1,
+          "owner": null
+        },
+        {
+          "region_id": "REG_MONTAGNE_ROSSE",
+          "structure_type": "STR_FOREST",
+          "grade": 1,
+          "owner": null
         }
       ],
       "structure_rules": {
@@ -332,6 +350,24 @@
           "structure_type": "STR_SETTLEMENT",
           "grade": 1,
           "owner": "ENT_NAHR"
+        },
+        {
+          "region_id": "REG_VALLE_VERDE",
+          "structure_type": "STR_FOREST",
+          "grade": 1,
+          "owner": null
+        },
+        {
+          "region_id": "REG_TERRE_NAHR",
+          "structure_type": "STR_FOREST",
+          "grade": 1,
+          "owner": null
+        },
+        {
+          "region_id": "REG_MONTAGNE_ROSSE",
+          "structure_type": "STR_FOREST",
+          "grade": 1,
+          "owner": null
         }
       ],
       "structure_rules": {

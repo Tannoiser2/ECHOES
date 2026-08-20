@@ -541,6 +541,19 @@
           "payload": {
             "delta": 1
           }
+        },
+        {
+          "type": "SET_STRUCTURE_GRADE",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "structure_type": "STR_FOREST",
+            "grade": 3,
+            "optional": true
+          },
+          "note": "D-163: quando le gallerie si lasciano, quello che resta sopra smette di essere un bosco. Nessuno lo ha maledetto: e' successo, e da li' in poi chi ci sta dentro tiene una carta in meno."
         }
       ]
     },

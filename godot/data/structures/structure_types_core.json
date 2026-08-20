@@ -175,6 +175,43 @@
         "scar": "scar:plundered",
         "description": "Il legno e' a terra e nessuno lo ha rimesso su. Si passa gratis, e non e' una buona notizia per nessuno."
       }
+    },
+    {
+      "id": "STR_FOREST",
+      "name": "Foresta",
+      "family": "LUOGO",
+      "owned": false,
+      "description": "Il bosco non e' di nessuno, e questo non vuol dire che non conti. Da' legna, riparo e una scusa per non passare di li'; e quando smette di darli, non li toglie a qualcuno in particolare — li toglie a tutti.",
+      "biomes": [
+        "VALLEY",
+        "MOUNTAIN",
+        "STEPPE"
+      ],
+      "grades": [
+        {
+          "name": "Foresta",
+          "value": 0,
+          "tag": "place:forest",
+          "description": "Alta abbastanza da fare ombra a mezzogiorno. Ci si prende legna e ci si nasconde, spesso le stesse persone."
+        },
+        {
+          "name": "Bosco diradato",
+          "value": 0,
+          "tag": "place:thinned_wood",
+          "description": "Si vede attraverso. Nessuno ha deciso di tagliarla tutta: e' stata tagliata un carro per volta."
+        },
+        {
+          "name": "Selva maledetta",
+          "value": 0,
+          "tag": "place:cursed_wood",
+          "description": "Ci si entra ancora, e si esce con meno di quello con cui si e' entrati. Nessuno sa dire da quando, e tutti sanno da quando."
+        }
+      ],
+      "ruin": {
+        "name": "La Radura Spoglia",
+        "scar": "scar:emptied",
+        "description": "Ceppi fino all'orizzonte. Da qui in avanti il vento arriva fino alle case, e nessuno lo aveva messo in conto."
+      }
     }
   ]
 }

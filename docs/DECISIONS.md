@@ -10,6 +10,75 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-163 — La foresta: il primo luogo che non e' di nessuno
+**implemented in 0.1.130** (§8.6 passo 5 della [seduta sulla terra](SEDUTA_TERRA.md))
+
+La quarta famiglia del catalogo, e la prima di **natura diversa**: un `LUOGO` non
+ha padrone, non entra nel conto del controllo, e non sale ne' scende col Destino
+(`_pick_structure` salta tutto cio' che ha `owned: false` — era scritto cosi'
+dall'inizio e adesso ha un caso vero). Cambia **cosa vale una Regione**, non
+**chi la tiene**.
+
+| grado | | cosa fa |
+|---|---|---|
+| I | **Foresta** | chi ha presenza li' pesca forza migliore — e vale **per chiunque**, non e' di nessuno |
+| II | **Bosco diradato** | niente: si vede attraverso, e basta |
+| III | **Selva maledetta** | chi ci sta tiene **una carta in meno**, e finche' c'e' i Consigli partono col mondo un po' contro |
+| ↓ | La Radura Spoglia | lascia `scar:emptied` |
+
+Il prefisso dei segni dice di che natura sono: `structure:` e `settlement:` sono
+opere delle case, **`place:` e' del mondo**. Tre foreste aperte sulla mappa, dove
+i biomi le permettono: la Valle, la steppa, la montagna.
+
+**E si guasta per mano di qualcuno, senza che sia colpa di nessuno.** Due
+Conseguenze la fanno scendere: *La Valle Sgomberata* la dirada — sgomberare una
+valle vuol dire anche tagliarla — e *Il Luogo Abbandonato* e *Le Gallerie
+Lasciate* la fanno diventare selva. Nessuno la maledice: e' successo.
+
+**Un difetto vero, trovato misurando.** `SET_STRUCTURE_GRADE` su una Regione
+senza quella struttura **falliva con un errore**. Una Conseguenza scritta a mano
+nomina `$region_focus`, e la Regione a fuoco cambia di anno in anno: diradare un
+bosco dove non c'e' un bosco non e' un errore di dati, e' una frase che non aveva
+niente da dire. Adesso rispetta `optional`, come `REMOVE_PRESENCE` e
+`REMOVE_REGION_TAG` fanno da sempre. In venti Chronicle l'errore compariva a
+ogni partita.
+
+**E il numero che va dichiarato, perche' e' scomodo.** Su venti Chronicle:
+
+| | |
+|---|---|
+| foreste intere a fine anno | **59** |
+| **boschi diradati** | **1** |
+| **selve maledette** | **0** |
+
+Il luogo **c'e' e funziona** — la regola della legna scatta, e scatta per
+chiunque ci stia. Il **degrado quasi no**: un diradamento in venti partite, e la
+selva maledetta **non si e' mai vista**. Due delle tre regole che ho scritto
+sono attaccate a uno stato che non si raggiunge.
+
+E' la stessa forma dell'errore di D-161, in un posto diverso, e la differenza
+conta: li' erano **clausole di Destino**, e una clausola che non si avvera rompe
+l'ambizione di una casa; qui sono **regole dei segni**, e una regola dormiente
+non rompe niente — semplicemente non fa. Non le tolgo, ma non fingo che siano
+vive: **la selva maledetta e' contenuto scritto e non raggiunto**, e quello che
+le manca e' una carta del Narratore che la causi. E' il prossimo passo del
+catalogo, non questo.
+
+**Misure.** Playtest **FAIL 201 · SUCC 74 · SUCC 114 · DECI 192**, Consigli
+mediana **6**, tavolo misto **0 su 8**, uniforme **2 su 8** — identico a D-162:
+la foresta non sposta l'equilibrio, e non doveva. Suite **334 test / 6003
+asserzioni** verde; `run_sims.sh` identico su due giri; `dead_code.py` pulito su
+151 file; job «Dati e schemi» verde.
+
+Due test hanno dovuto imparare che la mappa non e' piu' spoglia: quello che
+conta le regole (48 → 51) e quello che misura il telaio vuoto, che adesso
+sgombera anche il bosco perche' la legna gli piegava la pesca.
+
+**Restano di §8**: il fiume, il sito antico, la palude — e **il passo che frana**,
+l'unico che riscrive il grafo delle adiacenze.
+
+---
+
 ## D-162 — Le opere, e la fine del segno che non ha un oggetto sotto
 **implemented in 0.1.129** (§8.6 passo 4 della [seduta sulla terra](SEDUTA_TERRA.md))
 

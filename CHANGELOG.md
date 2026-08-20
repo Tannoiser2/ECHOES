@@ -5,6 +5,52 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.130] — La foresta
+
+Passo 5 del catalogo ([D-163](docs/DECISIONS.md#d-163)): il primo **luogo del
+mondo**, che non e' di nessuno.
+
+### Added
+
+- **`STR_FOREST`**: Foresta → Bosco diradato → **Selva maledetta** → La Radura
+  Spoglia. Un `LUOGO` non ha padrone, non entra nel conto del controllo e non
+  sale ne' scende col Destino: cambia **cosa vale** una Regione, non **chi la
+  tiene**.
+- Tre regole: la foresta intera **da' legna a chiunque ci stia**; la selva
+  maledetta toglie **una carta in mano** e fa partire i Consigli col mondo un
+  po' contro.
+- Il prefisso `place:` per i segni del mondo, accanto a `structure:` e
+  `settlement:` che sono opere delle case.
+- Tre foreste sulla mappa, dove i biomi le permettono; due Conseguenze le
+  diradano o le fanno diventare selva.
+
+### Fixed
+
+- **`SET_STRUCTURE_GRADE` falliva con un errore** su una Regione senza quella
+  struttura. Una Conseguenza nomina `$region_focus` e la Regione a fuoco cambia:
+  diradare un bosco dove non c'e' un bosco non e' un errore di dati. Adesso
+  rispetta `optional`, come `REMOVE_PRESENCE` da sempre. L'errore compariva a
+  **ogni partita**.
+
+### Measured — e da dichiarare
+
+Su venti Chronicle: **59** foreste intere a fine anno, **1** bosco diradato,
+**0** selve maledette.
+
+Il luogo **c'e' e funziona**; il **degrado quasi no**. Due delle tre regole sono
+attaccate a uno stato che non si raggiunge. E' la forma dell'errore di D-161 in
+un posto diverso — ma li' erano clausole di Destino, e una clausola che non si
+avvera rompe un'ambizione; qui sono regole dei segni, e una regola dormiente non
+rompe niente. **La selva maledetta e' contenuto scritto e non raggiunto**, e le
+manca una carta del Narratore che la causi.
+
+Playtest **FAIL 201 · SUCC 74 · SUCC 114 · DECI 192**, misto **0 su 8** —
+identico a D-162: la foresta non sposta l'equilibrio, e non doveva.
+
+Suite **334 test / 6003 asserzioni** verde, sims deterministiche.
+
+---
+
 ## [0.1.129] — Le opere, e il segno che adesso ha un oggetto sotto
 
 Passo 4 del catalogo ([D-162](docs/DECISIONS.md#d-162)).

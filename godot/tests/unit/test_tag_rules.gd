@@ -35,8 +35,8 @@ func test_with_no_signs_on_the_board_every_hook_is_neutral() -> void:
 	# (granaio, fame, razzia, giuramento, fama) non esistono a inizio
 	# partita - quindi ogni gancio resta neutro finché il gioco non li posa.
 	assert_eq(
-		session.data.tag_rules.size(), 48,
-		"le regole di D-105, i poteri di vita di D-109/D-124/D-126/D-129/D-130/D-131/D-133, i denti di D-117, le cicatrici di D-122 e i tre gradi dell'insediamento di D-160"
+		session.data.tag_rules.size(), 51,
+		"le regole di D-105, i poteri di vita di D-109/D-124/D-126/D-129/D-130/D-131/D-133, i denti di D-117, le cicatrici di D-122, i tre gradi dell'insediamento di D-160 e i tre della foresta di D-163"
 	)
 	var bonus: Dictionary = TagRules.action_bonus(
 		session.data, session.world, "ENT_ALDRIC", "INFLUENCE", "TEN_FAMINE"
@@ -181,10 +181,16 @@ func test_new_hooks_are_neutral_without_rules() -> void:
 	# Il telaio va misurato vuoto, quindi la pietra si toglie prima — se non lo
 	# facessimo, questo test misurerebbe un dente acceso e lo chiamerebbe
 	# telaio.
-	session.applier.apply(Effect.make(
-		"RAZE_STRUCTURE", "region", "REG_EREDAN", {"structure_type": "STR_KEEP"},
-		{"kind": "TEST", "id": "clear"}
-	))
+	# La mappa si apre costruita: qui si sgombera quello che fa scattare una
+	# regola **vera** su Aldric, cosi' il telaio si misura vuoto. La torre gli
+	# piega la pesca (TGR_WATCHTOWER_FORCE) e il bosco pure
+	# (TGR_FOREST_TIMBER): tutti e due vanno tolti.
+	for region_id in ["REG_EREDAN", "REG_VALLE_VERDE"]:
+		for type_id in ["STR_KEEP", "STR_FOREST", "STR_SETTLEMENT"]:
+			session.applier.apply(Effect.make(
+				"RAZE_STRUCTURE", "region", region_id, {"structure_type": type_id},
+				{"kind": "TEST", "id": "clear"}
+			))
 	assert_eq(
 		TagRules.action_gate(session.data, session.world, "ENT_ALDRIC", "FORGE"),
 		"", "nessun divieto"

@@ -374,6 +374,13 @@ func _set_structure_grade(target: Dictionary, payload: Dictionary) -> Variant:
 	var type_id: String = str(payload.get("structure_type", ""))
 	var index: int = _structure_at(region, type_id)
 	if index < 0:
+		# Una Conseguenza scritta a mano nomina `$region_focus`, e la Regione a
+		# fuoco cambia di anno in anno: diradare un bosco dove non c'e' un bosco
+		# non e' un errore di dati, e' una frase che non aveva niente da dire.
+		# Marcata `optional`, e' un no-op — la stessa convenzione di
+		# REMOVE_PRESENCE e REMOVE_REGION_TAG.
+		if bool(payload.get("optional", false)):
+			return {"noop": true}
 		return _fail("no '%s' in region '%s'" % [type_id, target.get("id", "")])
 	var definition: Dictionary = data.structure_types[type_id]
 	var structure: Dictionary = (region["structures"] as Array)[index]

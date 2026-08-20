@@ -66,8 +66,8 @@
         },
         "tag": {
           "type": "string",
-          "pattern": "^(structure|settlement):[a-z_]+$",
-          "description": "Il segno che questo grado posa sulla Regione, cosi' le regole dei segni gia' scritte continuano a leggerlo. L'oggetto e' la verita'; il tag e' derivato."
+          "pattern": "^(structure|settlement|place):[a-z_]+$",
+          "description": "Il segno che questo grado posa sulla Regione, cosi' le regole dei segni gia' scritte continuano a leggerlo. L'oggetto e' la verita'; il tag e' derivato. Il prefisso dice di che natura e': `structure:` e `settlement:` sono opere delle case, `place:` e' un luogo del mondo e non e' di nessuno."
         },
         "description": { "type": "string" }
       }

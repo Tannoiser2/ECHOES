@@ -635,6 +635,43 @@
       "world_factor_delta": 1,
       "active": true,
       "note": "Il terzo grado (D-160): dove c'e' una citta', il mondo ascolta. Non e' un bonus a chi la tiene — e' il Fattore Mondo che pende dalla parte di chi propone, perche' una citta' rende una decisione piu' facile da far applicare."
+    },
+    {
+      "id": "TGR_FOREST_TIMBER",
+      "title": "Il bosco da' legna e riparo",
+      "when": {
+        "scope": "REGION",
+        "tag": "place:forest"
+      },
+      "kind": "DRAW_BIAS",
+      "family": "FORCE",
+      "bias": "BONUS",
+      "active": true,
+      "note": "Il primo dei luoghi del mondo (D-163): chi ha presenza dove il bosco e' ancora intero pesca forza migliore. Non e' di nessuno: vale per chiunque ci stia."
+    },
+    {
+      "id": "TGR_CURSED_WOOD_HAND",
+      "title": "Dalla selva si torna con meno",
+      "when": {
+        "scope": "REGION",
+        "tag": "place:cursed_wood"
+      },
+      "kind": "HAND_LIMIT",
+      "hand_limit_delta": -1,
+      "active": true,
+      "note": "Il luogo che si guasta (D-163): chi ha presenza nella selva maledetta tiene una carta in meno. Una foresta maledetta non e' una perdita per qualcuno — e' una perdita per chiunque ci stia dentro, e nessuno l'ha fatto apposta."
+    },
+    {
+      "id": "TGR_CURSED_WOOD_COUNCIL",
+      "title": "La selva siede al tavolo",
+      "when": {
+        "scope": "REGION",
+        "tag": "place:cursed_wood"
+      },
+      "kind": "COUNCIL_MODIFIER",
+      "world_factor_delta": -1,
+      "active": true,
+      "note": "Il luogo che si guasta (D-163): finche' da qualche parte c'e' una selva maledetta, i Consigli partono col mondo un po' contro. E' lo stesso mestiere della fame in D-105: un guasto che non ha un colpevole pesa su tutti."
     }
   ]
 }

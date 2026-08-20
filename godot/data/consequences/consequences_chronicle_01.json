@@ -373,6 +373,19 @@
           "payload": {
             "tag": "condition:requisitioned"
           }
+        },
+        {
+          "type": "SET_STRUCTURE_GRADE",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "structure_type": "STR_FOREST",
+            "grade": 2,
+            "optional": true
+          },
+          "note": "D-163: sgomberare una valle vuol dire anche tagliarla. Il bosco passa a diradato — non e' di nessuno, quindi non e' una perdita per qualcuno: e' una perdita per chi ci passera'."
         }
       ]
     },
@@ -1123,6 +1136,19 @@
             "optional": true
           },
           "note": "optional: il posto accanto può essere pieno."
+        },
+        {
+          "type": "SET_STRUCTURE_GRADE",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "structure_type": "STR_FOREST",
+            "grade": 3,
+            "optional": true
+          },
+          "note": "D-163: un posto lasciato non torna com'era. Il bosco diventa selva, e da li' in poi chi ci sta dentro tiene una carta in meno — chiunque sia."
         }
       ]
     },
