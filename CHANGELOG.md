@@ -5,6 +5,24 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.117] — La meccanica, tutta in un foglio
+
+### Added
+
+- **`docs/MECCANICA.md`**: la spiegazione completa e autosufficiente di come si
+  gioca — struttura del tempo, mappa, casate, Tensioni, le sette azioni, il
+  Consiglio A→K con la matematica, le carte, i Destini, la saga. Scritta perche'
+  chi non ha mai visto il gioco lo capisca, e perche' si possa passare a un
+  altro strumento per farne un'infografica: chiude con una sezione di note su
+  cosa merita un riquadro e cosa si puo' omettere.
+- Tutti i numeri sono letti dai dati e dal codice, non ricordati: 6 Regioni con
+  8 adiacenze, 4 Tensioni su 6 per mondo, 132 carte Asset in 48 tipi, 39 carte
+  Narratore in 5 famiglie e 24 funzioni, 52 Conseguenze (14 cambiano padrone a
+  una Regione), 10 modelli di Consiglio, 45 regole dei segni, 22 tipi di
+  effetto.
+
+---
+
 ## [0.1.116] — «Rivendicare» esiste
 
 Correzione a 0.1.115, sollevata dal committente: «ma scusa, le Regioni non si

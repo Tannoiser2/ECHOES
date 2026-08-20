@@ -22,6 +22,13 @@ dagli stessi dati. Prossima: la 0.2, bilanciamento — cosa resta è scritto in
 
 ---
 
+## Come funziona il gioco
+
+[docs/MECCANICA.md](docs/MECCANICA.md) — la meccanica per intero in un foglio
+solo: il tempo, la mappa, le casate, le Tensioni, le sette azioni, il Consiglio
+passo per passo con la matematica, le carte, i Destini e cosa attraversa gli
+anni. È il posto da cui partire se non hai mai visto ECHOES.
+
 ## Requisiti
 
 - **Godot 4.7.1 stable** — per giocare da terminale basta il build headless
