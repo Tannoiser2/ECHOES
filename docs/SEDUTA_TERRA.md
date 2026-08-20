@@ -267,10 +267,135 @@ dare per buone:
 raggiunto il Trionfo alza di un grado una sua struttura, chi non ha raggiunto il
 Minimo ne perde uno. La rovina lascia una `scar:`, come la demolizione.
 
-**7.4 — Il catalogo.** Ogni tipo di struttura vuole: un nome, un valore, cosa
-fa (una regola dei segni, come le 5 di adesso), come nasce, come sale, come
-cade. E' contenuto d'autore, ed e' la parte piu' lunga — ma anche quella che si
-puo' scrivere un pezzo per volta e misurare a ogni passo.
+**7.4 — Il catalogo.** Ogni tipo vuole: un nome, un **valore**, cosa fa (una
+regola dei segni, come le 5 di adesso), dove puo' stare, come nasce, come sale e
+come cade. E' contenuto d'autore, ed e' la parte piu' lunga — ma si scrive un
+pezzo per volta e si misura a ogni passo. Il paragrafo 8 lo mette giu' per
+intero.
+
+---
+
+## 8. Il catalogo — «mi sembrano pochi e solo 5»
+
+Sono meno di cinque. Contati bene, oggi sulla mappa ci sono:
+
+| famiglia | quanti | quali |
+|---|---|---|
+| costruzioni | **4** | granaio · canale · barriera di pedaggio · torre di veglia |
+| chiusure | 1 | murato (`structure:sealed`) — che non e' un edificio, e' **il contrario** di un edificio |
+| insediamenti | 2 | marca · mercato (`settlement:`, una famiglia parallela quasi inutilizzata) |
+| **naturali** | **0** | — |
+
+E i sei biomi (citta', valle, steppa, montagna, sottosuolo, strada) non hanno
+**niente** che li distingua se non un tag decorativo.
+
+### 8.1 Il principio che rende il catalogo interessante
+
+Non e' «piu' edifici». E' che **non tutto quello che sta su una mappa appartiene
+a qualcuno**. Le cose che il committente ha nominato si dividono in due nature,
+e vanno trattate diversamente:
+
+- **Le opere delle case** — castelli, villaggi, canali, pedaggi. Hanno un
+  **padrone**, portano un valore nella contesa del controllo (§7.2), salgono e
+  scendono con l'esito del Destino.
+- **I luoghi del mondo** — foreste, passi, fiumi, siti antichi. **Non sono di
+  nessuno.** Hanno un valore e un effetto, ma cambiano *cosa vale una Regione*
+  senza cambiare *chi la tiene*. Una foresta maledetta non e' una perdita per
+  qualcuno: e' una perdita per tutti.
+
+E' questa seconda natura la parte nuova, ed e' quella che fa sembrare la mappa
+un mondo invece che un tabellone di caselle.
+
+### 8.2 Le opere delle case
+
+Tre scale a tre gradi, coerenti con le risposte del committente: il grado si
+muove **con l'esito del Destino** — chi trionfa sale, chi non arriva al Minimo
+cade — e ogni grado porta un valore nella contesa del controllo.
+
+**Presidio** — *la forza che si vede da lontano.*
+
+| grado | nome | valore | cosa fa |
+|---|---|---|---|
+| I | Torre di veglia | 2 | chi ci sta pesca FORZA con vantaggio *(regola gia' scritta)* |
+| II | Castello | **3** | e non si entra nella Regione senza passare da chi lo tiene |
+| III | Reggia | **5** | e la casa parla piu' forte in ogni Consiglio sulla Regione |
+| ↓ | Rovina | 0 | lascia `scar:` — e la rovina resta a raccontarlo |
+
+**Insediamento** — *la gente che si ferma.* Solo dove si puo' vivere: valle,
+steppa, strada, citta'.
+
+| grado | nome | valore | cosa fa |
+|---|---|---|---|
+| I | Villaggio | 1 | una carta GENTE in piu' quando si pesca li' |
+| II | Borgo | **2** | e il limite di mano sale di uno per chi lo tiene |
+| III | Citta' | **4** | e una Regione con una citta' non finisce mai `condition:emptied` |
+| ↓ | Abbandonato | 0 | lascia `scar:abandoned` |
+
+**Opera** — *il lavoro che cambia la terra.* Due gradi soltanto: un'opera o
+regge o si insabbia.
+
+| grado | nome | valore | cosa fa |
+|---|---|---|---|
+| I | Canale · Granaio · Pedaggio · Ponte | 1 | le quattro regole gia' scritte *(il granaio parla, al pedaggio girano i denari, …)* |
+| II | Grande opera | **2** | l'effetto vale anche nelle Regioni adiacenti |
+| ↓ | Insabbiata · Crollata | 0 | lascia `scar:broken_bridge` o simile |
+
+### 8.3 I luoghi del mondo — di nessuno
+
+Non hanno padrone e non si costruiscono: **cambiano da soli**, per una
+Conseguenza o una carta del Narratore. Il loro valore non entra nella contesa
+del controllo: entra in **cosa vale tenere quella Regione**.
+
+| luogo | dove | stati | cosa fa |
+|---|---|---|---|
+| **Foresta** | valle, montagna, steppa | integra → **diradata** → **maledetta** → sparita | integra: legna e riparo · maledetta: chi ha presenza li' perde una carta a fine Atto |
+| **Passo** | montagna | aperto → **franato** → chiuso | chiuso, due Regioni **smettono di essere adiacenti**: e' il cambiamento piu' pesante che una mappa possa subire |
+| **Fiume / sorgente** | valle, steppa | vivo → **basso** → secco | secco, la Regione non puo' ospitare un insediamento oltre il primo grado |
+| **Sito antico** | montagna, sottosuolo | dormiente → **aperto** → **saccheggiato** | aperto: SAPERE con vantaggio · saccheggiato: alza la domanda dell'Antico ogni giro |
+| **Palude / brughiera** | valle, steppa | — | slot di presenza ridotti: si sta in pochi |
+
+**Il passo che frana e' il pezzo piu' forte del catalogo** e va detto a parte:
+oggi le adiacenze sono immutabili, e sono la sola cosa della mappa che non
+cambia mai. Un passo che crolla riscrive **il grafo** — la Strada dei Mercanti
+diventa l'unica via, oppure la montagna resta isolata per un secolo. E' il tipo
+di fatto che una saga di dieci Chronicle si ricorda.
+
+### 8.4 Il conto
+
+| | oggi | col catalogo |
+|---|---|---|
+| costruzioni delle case | 4 | **10** (3 presidi + 3 insediamenti + 4 opere di grado I) |
+| gradi in cui possono stare | 1 | **3 per scala** |
+| luoghi del mondo | 0 | **5 famiglie**, con 2–4 stati ciascuna |
+| chiusure | 1 | 1 *(resta com'e')* |
+
+Da **cinque tag** a **una ventina di cose che possono stare in una Regione**, e
+ognuna con un numero, un effetto e un modo di finire.
+
+### 8.5 Cosa questo chiede al motore, in piu' di §7
+
+- **Il bioma diventa un vincolo vero**: una foresta non nasce in una citta', un
+  passo esiste solo in montagna. Oggi il bioma e' decorativo.
+- **Le adiacenze devono poter cambiare** (il passo). E' l'unica cosa in §8 che
+  tocca una struttura dati che nessuno ha mai mosso, e va misurata con
+  attenzione: un grafo che si spezza puo' rendere una Regione irraggiungibile e
+  quindi un Destino impossibile.
+- **Il valore va nella contesa**, e i luoghi del mondo **non** ci vanno: la
+  divisione fra le due nature (§8.1) e' anche una divisione nel codice.
+
+### 8.6 L'ordine con cui si scrive
+
+1. **la scala del presidio** (torre → castello → reggia), che riusa la torre gia'
+   esistente ed e' il caso piu' semplice della contesa a valori;
+2. **il grado che si muove con l'esito del Destino**, misurato su una saga
+   intera — e' li' che si vede se il meccanismo racconta qualcosa;
+3. **gli insediamenti**, che riusano `settlement:` invece di inventarlo;
+4. **le opere di grado II**, che sono solo dati;
+5. **i luoghi del mondo**, cominciando dalla foresta (nessun rischio) e
+   lasciando **il passo per ultimo** (il grafo).
+
+Ogni passo si misura sui 100 semi e deve restare **0/8 al tavolo misto**. E come
+sempre: cio' che non e' misurato si dichiara.
 
 **7.5 — Quello che va deciso ancora**, e che queste risposte non coprono:
 

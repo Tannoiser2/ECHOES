@@ -5,6 +5,44 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.123] — Il catalogo delle strutture
+
+«Le strutture pero' come ti ho detto mi sembrano pochi e solo 5.» Contate bene
+sono meno.
+
+### Measured
+
+- **Quattro costruzioni**, non cinque: granaio, canale, barriera di pedaggio,
+  torre di veglia. La quinta, `structure:sealed`, non e' un edificio — e' il
+  **contrario** di un edificio.
+- **Due insediamenti** (`settlement:march`, `settlement:market`) in una famiglia
+  parallela quasi inutilizzata, piu' uno che e' solo una casella da riempire.
+- **Zero luoghi naturali**, e sei biomi (citta', valle, steppa, montagna,
+  sottosuolo, strada) che non hanno niente che li distingua se non un tag
+  decorativo.
+
+### Added
+
+- **`docs/SEDUTA_TERRA.md` §8, il catalogo.** Da cinque tag a **una ventina di
+  cose** che possono stare in una Regione, ognuna con un numero, un effetto e un
+  modo di finire.
+- **Il principio che lo tiene insieme**: non tutto quello che sta su una mappa
+  appartiene a qualcuno. **Le opere delle case** (presidio: torre → castello →
+  reggia · insediamento: villaggio → borgo → citta' · opere: canale, granaio,
+  pedaggio, ponte) hanno un padrone e un valore nella contesa del controllo.
+  **I luoghi del mondo** (foresta, passo, fiume, sito antico, palude) non sono di
+  nessuno: cambiano *cosa vale* una Regione senza cambiare *chi la tiene*.
+- **Il passo che frana** e' segnalato come il pezzo piu' pesante: le adiacenze
+  sono oggi l'unica cosa della mappa che non cambia mai, e un passo chiuso
+  riscrive il grafo. Va scritto per ultimo, e misurato con attenzione — un grafo
+  spezzato puo' rendere un Destino impossibile.
+- **L'ordine di scrittura** in cinque passi, ognuno misurato sui 100 semi e
+  vincolato a **0/8** al tavolo misto.
+
+Nessuna modifica al gioco: e' un dossier.
+
+---
+
 ## [0.1.122] — La porta sola della Cenere
 
 ISSUES 38, che il committente ha chiesto di chiudere prima della strada C

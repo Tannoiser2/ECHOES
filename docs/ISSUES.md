@@ -1225,6 +1225,17 @@ le tre strade accanto — **A** le carte che posano una pedina, **B** la carta c
 la rovina) — coi prezzi e i numeri. Raccomandata **C**, dopo aver aperto
 ISSUES 38.
 
+**E sono poche, contate bene meno di quanto sembri** (osservazione del
+committente): quattro costruzioni vere — granaio, canale, pedaggio, torre di
+veglia — piu' `structure:sealed`, che non e' un edificio ma **il contrario** di
+un edificio, e due insediamenti in una famiglia parallela quasi inutilizzata.
+**Zero luoghi naturali**, e sei biomi che non hanno niente che li distingua. Il
+catalogo sta in [SEDUTA_TERRA §8](SEDUTA_TERRA.md): da cinque tag a una ventina
+di cose, divise in **due nature** — le opere delle case, che hanno un padrone e
+un valore nella contesa del controllo, e **i luoghi del mondo** (foreste, passi,
+fiumi, siti antichi) che non sono di nessuno e cambiano cosa vale una Regione
+senza cambiare chi la tiene.
+
 Il fatto che le da' ragione: **le strutture funzionano gia' meglio della
 presenza.** Su 30 Chronicle se ne alzano **74** (2,5 a partita, 2 in piedi a
 fine anno, 29 partite su 30 ne hanno almeno una) contro **poco piu' di una
