@@ -10,6 +10,105 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-171 — L'alleanza che conviene, e il prezzo che non si puo' non pagare
+**implemented in 0.1.139** (domanda del committente: «i bot non puoi fare un modo che stringano anche alleanze se conviene loro?»)
+
+**Prima, una correzione a quello che avevo scritto io.** «Nessun bot stringe
+alleanze» era troppo forte. `ACT_FORGE` esiste — salire costa una carta BONDS e
+il consenso, scendere e' gratis e unilaterale — e la policy la gioca. Il difetto
+era piu' stretto: **un seggio stringeva un legame solo se una clausola del suo
+Destino nominava quella relazione**, mai perche' gli tornava utile. Le due
+clausole che avevo misurato a 0% (Lyra alleata di Aldric, Vaerax non nemico di
+Lyra) le avevo inventate io per il banco: nessun Destino le chiede, quindi
+nessun bot aveva motivo di muoversi. Dove la clausola c'e', la relazione si
+muove — «la Gilda non e' diventata un nemico delle citta'» si avvera un anno su
+tre.
+
+### La prima forma non ha sparato una volta, e ha trovato una cosa sul contenuto
+
+Scritta cosi': **ti allei con chi vuole i tuoi stessi segni**. Semplice, si
+spiega in una frase a un tavolo di persone, e il tornaconto e' gia' in gioco
+(D-139: un alleato che sostiene il proponente porta +1 sul fronte, +2 se BOUND).
+
+Zero legami stretti su quaranta Chronicle. Il motivo non era il codice:
+
+| tavolo | coppie con un segno in comune | punteggio |
+|---|---|---|
+| CHR_01 | Aldric–Nahr su `crown_divided` | **−1** |
+| CHR_01 | Lyra–Vaerax su `mine_sealed` | **−1** |
+| CHR_03 | Sale–Libere su `debt_forgiven` | **−1** |
+
+**Fra gli otto Destini del gioco non esiste una coppia che voglia lo stesso
+segno nello stesso verso.** Ogni sovrapposizione e' un'opposizione, e tutto il
+resto e' indifferenza: il contenuto e' scritto come una rete di contrasti.
+Un'alleanza costruita sugli obiettivi comuni non ha niente su cui mordere. (Le
+alleanze che si vedevano su CHR_03 — il Vetro e le Citta' al 100% — sono
+**relazioni d'apertura scritte a mano** nelle Entita', non forgiate da nessuno.)
+
+C'e' un test che tiene fermo quel fatto, perche' se un domani due Destini
+vorranno la stessa cosa e' un cambio di contenuto da vedere.
+
+### La forma che funziona: si allea chi aspetta lo stesso Consiglio
+
+`_needed_confluences` dice gia' quali Tensioni un seggio ha bisogno che arrivino
+al voto, perche' la sola cosa che chiude una sua clausola sta dietro quella
+domanda. **Due seggi che aspettano la stessa domanda staranno sullo stesso
+fronte quando si apre**, e li' il legame vale il peso in piu'. Chi mi si oppone
+su un segno resta fuori comunque, per quanti Consigli condividiamo.
+
+Il ceto sociale del gioco si accende:
+
+| seggio | prima | dopo |
+|---|---|---|
+| Lyra | **0%** | **45%** |
+| Popolo Nahr | **0%** | **45%** |
+| Kessa dei Fuochi | 25% | 50% |
+| la Gilda | 25% | 30% |
+| Re Aldric | 0% | 10% |
+| Vaerax | 0% | 5% |
+
+(quota di anni in cui il seggio finisce con almeno un alleato). Aldric e Vaerax
+restano bassi ed e' giusto: sono i due che hanno un'opposizione dichiarata
+addosso.
+
+### Il prezzo, e i due quadranti che non lo abbassano
+
+**Trionfi del tavolo da 86 a 74.** Un'alleanza costa un'Occasione e una carta
+BONDS, e l'Occasione e' tutta la moneta dell'anno: il seggio che si allea e' il
+seggio che non ha fatto altro.
+
+Ho provato le due leve ovvie, e **nessuna delle due esiste**:
+
+| leva | risultato |
+|---|---|
+| alzare la soglia a **due** Consigli in comune | non spara **mai** — due seggi non aspettano mai due domande insieme |
+| spostarla **in coda** alle scelte | non spara **mai** — le voci prima trovano sempre qualcosa da fare |
+
+Il quadrante e' binario: o la regola sta al suo posto e costa dodici Trionfi, o
+non c'e'. Che poi e' come dovrebbe essere — **un'alleanza che non costa niente
+non e' una scelta**, ed e' esattamente la ragione per cui D-139 aveva imposto le
+due carte impegnate.
+
+### Le misure
+
+Playtest 100 semi, tavolo misto: **FAIL 207 · SUCC 68 · SUCC 114 · DECI 179**,
+mediana **6**, tavolo misto **0 su 8**, uniforme **0 su 8**. Seggi a NONE da 4 a
+**1**. Trionfi **86 → 74**, nessun seggio a zero, nessuno bloccato su un gradino.
+
+Suite **348 test / 6486 asserzioni** verde; sims deterministici; `dead_code.py`
+pulito su 154 file.
+
+### Dichiarato
+
+**Un bot legge il Destino degli altri**, e un giocatore vero no: al tavolo
+quell'informazione arriva da come gli altri votano, non dalla loro carta. E' una
+semplificazione della policy, non una regola del gioco, ed e' scritta sul manico
+della funzione. Va rifatta quando i seggi impareranno a dedurre invece che a
+sbirciare — ed e' anche la strada che rende la regola piu' interessante: allearsi
+con chi **ha votato** come te e' osservabile, e sbagliabile.
+
+---
+
 ## D-170 — Gli undici Destini mai giocati, guardati per la prima volta
 **implemented in 0.1.138** (ISSUES 43 misurata, e **il pool resta spento**)
 

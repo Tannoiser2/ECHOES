@@ -5,6 +5,26 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.139 — L'alleanza che conviene (D-171)
+
+- **Un seggio adesso stringe un legame perche' gli conviene**, non solo perche'
+  una clausola glielo chiede: si allea con **chi aspetta lo stesso Consiglio**,
+  perche' quando la domanda si apre quel voto pesa sul suo fronte (D-139). Chi
+  gli si oppone su un segno resta fuori comunque.
+- **Correzione**: «nessun bot stringe alleanze» era troppo forte. `ACT_FORGE`
+  c'era e la policy la giocava — ma solo quando una clausola del proprio Destino
+  nominava quella relazione.
+- **La prima forma — «ti allei con chi vuole i tuoi stessi segni» — non ha
+  sparato una volta**, e ha trovato una cosa sul contenuto: fra gli otto Destini
+  **non esiste una coppia che voglia lo stesso segno nello stesso verso**. Ogni
+  sovrapposizione e' un'opposizione. C'e' un test che tiene fermo quel fatto.
+- **Il ceto sociale si accende**: Lyra e Nahr passano da **0% a 45%** di anni
+  con almeno un alleato.
+- **Il prezzo, dichiarato: Trionfi del tavolo da 86 a 74.** Un'alleanza costa
+  un'Occasione, e l'Occasione e' tutta la moneta dell'anno. Le due leve ovvie
+  per abbassarlo — soglia piu' alta, regola piu' in basso — **non sparano mai**:
+  il quadrante e' binario.
+
 ## 0.1.138 — Gli undici Destini mai giocati (D-170)
 
 - **ISSUES 43 misurata**: acceso il pool, supera il Minimo scende da **62% a

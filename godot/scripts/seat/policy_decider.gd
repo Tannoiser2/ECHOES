@@ -394,6 +394,87 @@ func _tag_goals(entity_id: String, session: RefCounted) -> Dictionary:
 	return goals
 
 
+## L'alleanza che conviene (D-171).
+##
+## Fino a qui un seggio stringeva un legame **solo** se una clausola del suo
+## Destino nominava quella relazione — `_relations_of` legge esattamente quelle
+## tre. Mai perche' gli tornava utile. E dal D-139 tornare utile e' una cosa
+## misurabile: un alleato che sostiene il proponente porta **+1** sul fronte del
+## Consiglio, +2 se BOUND, col tetto a 2 e almeno due carte impegnate.
+##
+## **Con chi conviene non e' «chi vuole i miei stessi segni».** La prima forma
+## scritta contava i segni voluti in comune, e non ha sparato una volta: fra gli
+## otto Destini del gioco **non esiste una coppia che voglia lo stesso segno
+## nello stesso verso**. Ogni sovrapposizione e' un'opposizione — Aldric contro
+## Nahr sulla corona spezzata, Lyra contro Vaerax sulle Miniere sigillate — e il
+## resto e' indifferenza. Il contenuto e' scritto come una rete di contrasti, e
+## un'alleanza costruita sugli obiettivi comuni non ha niente su cui mordere.
+##
+## Conviene invece **a chi aspetta lo stesso Consiglio**. `_needed_confluences`
+## dice gia' quali Tensioni un seggio ha bisogno che arrivino al voto, perche'
+## la sola cosa che chiude una sua clausola sta dietro quella domanda. Due
+## seggi che aspettano la stessa domanda staranno sullo stesso fronte quando si
+## apre, e li' il legame vale il peso in piu'. Chi mi si oppone su un segno resta
+## fuori comunque, per quanti Consigli condividiamo.
+##
+## Si paga: salire di un grado costa una carta BONDS e un'Occasione. Per questo
+## sta **dopo** tutto quello che il Destino chiede esplicitamente e dietro la
+## stessa soglia di mano dello steering — un seggio che brucia l'ultima carta
+## per un'amicizia non sta giocando bene, sta solo facendo amicizia.
+##
+## **Dichiarato**: leggere il Destino altrui e' piu' di quello che un giocatore
+## vero sa. Al tavolo l'informazione arriva da come gli altri votano, non dalla
+## loro carta. E' una semplificazione del bot, non una regola del gioco, e va
+## rifatta quando i seggi impareranno a dedurre invece che a sbirciare.
+func _ally_of_convenience(entity_id: String, session: RefCounted) -> Dictionary:
+	# Chi non ha piu' niente da vincere non ha niente da comprare.
+	var open_levels: Array = _open_levels(entity_id, session)
+	if open_levels.is_empty():
+		return {}
+	var mine_waiting: Array = _needed_confluences(entity_id, session, open_levels[0] as Array)
+	if mine_waiting.is_empty():
+		return {}
+	var mine_tags: Dictionary = _tag_goals(entity_id, session)
+	var best: String = ""
+	var best_score: int = 0
+	for other in _sorted((session.world["entities"] as Dictionary).keys()):
+		var other_id: String = str(other)
+		if other_id == entity_id:
+			continue
+		if not bool((session.world["entities"][other_id] as Dictionary)["active"]):
+			continue
+		var their_levels: Array = _open_levels(other_id, session)
+		if their_levels.is_empty():
+			continue
+		# Un contrasto dichiarato su un segno chiude la porta, e non si riapre
+		# contando le domande in comune: e' quello che il Destino dice di volere.
+		var their_tags: Dictionary = _tag_goals(other_id, session)
+		var opposed: bool = false
+		for tag in mine_tags:
+			if their_tags.has(tag) and int(their_tags[tag]) != int(mine_tags[tag]):
+				opposed = true
+				break
+		if opposed:
+			continue
+		var score: int = 0
+		for tension_id in _needed_confluences(other_id, session, their_levels[0] as Array):
+			if mine_waiting.has(tension_id):
+				score += 1
+		if score > best_score:
+			best_score = score
+			best = other_id
+	if best == "":
+		return {}
+	var request: Dictionary = {
+		"target_entity_id": best,
+		"direction": "UP",
+		"consent": true,
+	}
+	if not session.actions.can_execute(entity_id, "FORGE", request):
+		return {}
+	return {"template": "FORGE", "params": request}
+
+
 # --- ordinary actions ------------------------------------------------------
 
 func choose_action(entity_id: String, _ao_index: int, session: RefCounted) -> Dictionary:
@@ -429,6 +510,18 @@ func choose_action(entity_id: String, _ao_index: int, session: RefCounted) -> Di
 	var narrated: Dictionary = _play_narrator(entity_id, session)
 	if not narrated.is_empty():
 		return narrated
+
+	# 4c. L'alleanza che conviene (D-171): con chi aspetta le stesse domande,
+	#     perche' quando si aprono il suo voto pesa sul mio fronte. Dietro la
+	#     soglia di mano, come lo steering — si compra con quello che avanza.
+	#
+	#     Sta qui e non piu' in basso perche' **piu' in basso non spara mai**:
+	#     le voci prima trovano sempre qualcosa da fare. E' l'unica posizione in
+	#     cui questa regola esiste, e il suo prezzo e' misurato in D-171.
+	if service.hand_size(entity_id) >= COMFORTABLE_HAND:
+		var ally: Dictionary = _ally_of_convenience(entity_id, session)
+		if not ally.is_empty():
+			return ally
 
 	# 5. Steer a Tension that is about to decide something, in the direction
 	#    your Destiny needs - but only once you have something to spend.
