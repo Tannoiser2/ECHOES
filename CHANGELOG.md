@@ -5,6 +5,37 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## [0.1.114] — I gradini
+
+La diagnosi per clausola ([D-151](docs/DECISIONS.md#d-151)): non «la Vittoria
+e' difficile» ma **quale clausola** non si avvera.
+
+### Added
+
+- **`cli/run_rung_probe.gd`**: sessanta Chronicle a tavolo misto, e per ogni
+  Destino quante volte ogni singola clausola resta in sospeso.
+
+### Measured
+
+- NONE 0% · MINIMUM **52%** · VICTORY **42%** · TRIUMPH **5%**; supera il
+  Minimo il **47%** (nelle saghe era il 30%: una Chronicle che eredita un
+  mondo segnato e' piu' dura di una sul foglio pulito).
+- **`control_count >= 2` chiede il tetto**: `max_stable_control` e' 2, su sei
+  Regioni divise fra quattro case. La Cenere manca quella clausola nell'87%
+  delle partite, Aldric nel 63%.
+- **Le clausole che dipendono da un altro non si avverano mai**: «qualcuno ha
+  giurato» manca nel 77%, «la Gilda non e' diventata un nemico» nel 90%. Sono
+  5 clausole su 104 — e in venti Chronicle le relazioni si muovono **una volta
+  sola**. Chiude il cerchio di D-139: il peso dell'alleanza e' raro perche'
+  nessun bot stringe alleanze.
+
+### Notes
+
+- **Non e' stato toccato niente**: e' una diagnosi. Abbassare una soglia e'
+  contenuto d'autore; misurare le clausole sociali richiede persone, non semi.
+
+---
+
 ## [0.1.113] — Il pool dei Destini (meccanismo acceso, contenuto spento)
 
 La strada A della seduta sulle linee ([D-150](docs/DECISIONS.md#d-150)): il

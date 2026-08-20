@@ -331,6 +331,67 @@ rewritten — and why — once the second cap landed.
 
 ---
 
+## D-151 — I gradini: quale clausola non si avvera mai
+**implemented in 0.1.114** (la diagnosi che D-150 ha reso necessaria)
+
+D-150 ha corretto una lettura e lasciato una domanda: se il Minimo e' una
+soglia di sopravvivenza, la misura che conta e' **quanti la superano** — e
+quella non si muove. Ma «la Vittoria e' difficile» non e' una diagnosi.
+`cli/run_rung_probe.gd` chiede una cosa piu' stretta: **quale clausola** resta
+in sospeso, e quanto spesso. Il rapporto dei Destini porta gia' `unmet`, quindi
+la sonda non valuta niente — conta.
+
+**Sessanta Chronicle a tavolo misto:** NONE 0% · MINIMUM **52%** · VICTORY
+**42%** · TRIUMPH **5%**. Supera il Minimo il **47%** — piu' del 30% delle
+saghe, e la differenza e' interessante di suo: una Chronicle dentro una saga
+eredita un mondo gia' segnato, e vincere in una terra ferita e' piu' difficile
+che vincere sul foglio pulito.
+
+Le clausole che nessuno vede mai:
+
+| manca | Destino | clausola |
+|---|---|---|
+| **100%** | Vaerax (trionfo) | Nessuno arriva facilmente fin lassu' |
+| **90%** | Le Citta' (trionfo) | E la Gilda non e' diventata un nemico |
+| **87%** | La Cenere (vittoria) | **Controllo di almeno 2 Regioni** |
+| **77%** | Lyra (vittoria) | **Qualcuno ha giurato** di tenerle aperta la strada |
+| **77%** | Nahr (trionfo) | La corona ha smesso di essere una sola |
+| **63%** | Aldric (vittoria) | **Controllo di almeno 2 Regioni** |
+
+Due famiglie, e ognuna dice una cosa diversa.
+
+**La prima: chiedere il tetto.** `control_count >= 2` compare in sei Destini, e
+il tetto del mondo e' **`max_stable_control: 2`** — cioe' la Vittoria chiede
+esattamente il massimo che le regole concedono, su una mappa di sei Regioni
+divisa fra quattro case. Non e' un obiettivo ambizioso: e' il soffitto. La
+Cenere lo manca nell'87% delle partite, Aldric nel 63%.
+
+**La seconda, e piu' seria: le clausole che dipendono da un altro.** «Qualcuno
+ha giurato», «la Gilda non e' diventata un nemico», i patti che reggono —
+**cinque clausole su centoquattro** parlano di promesse e relazioni, e sono
+proprio quelle che mancano piu' spesso. La ragione la sapevamo gia' da
+stamattina senza collegarla: **in venti Chronicle le relazioni si muovono una
+volta sola**, e le policy non promettono mai. Tutto cio' che chiede *un altro*
+e' irraggiungibile per costruzione con questi giocatori.
+
+Il che chiude il cerchio aperto in D-139. Il peso dell'alleanza non e' raro
+perche' e' tarato stretto: e' raro perche' **nessun bot stringe alleanze**. Le
+stesse clausole sociali che non si avverano sono la meta' del gioco che nessuna
+simulazione ha mai visitato — e sono anche, quasi certamente, la meta' che al
+tavolo vero si accende da sola: le persone promettono, si alleano e si
+tradiscono senza che nessuno glielo chieda.
+
+**Non e' stato toccato niente.** Questa e' una diagnosi, e le due famiglie
+chiedono decisioni diverse — abbassare una soglia e' contenuto d'autore, e
+misurare le clausole sociali richiede persone, non semi. Le due domande vanno
+al committente cosi' come sono.
+
+Misure: sonda nuova, nessuna modifica al motore o ai dati; suite **305/6202**
+verde; playtest **FAIL 185 · SUCC 76 · SUCC 123 · DECI 178**, tavolo misto
+**0/8**, invariato.
+
+---
+
 ## D-150 — Il pool dei Destini: il meccanismo sì, il contenuto non ancora
 **implemented in 0.1.113** (strada A della [seduta sulle linee](SEDUTA_LINEE.md), scelta dal committente)
 

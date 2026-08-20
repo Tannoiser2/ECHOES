@@ -120,6 +120,18 @@ Opzioni: `--seed=<n>` stesso seme stesso mondo · `--chronicle=CHR_02` la
 Chronicle di libreria · `--quiet` toglie la traccia delle regole round per round
 e lascia solo i Consigli, le carte Echo e il finale.
 
+## Perché non si supera il Minimo
+
+```bash
+godot --headless --path godot --script res://cli/run_rung_probe.gd -- \
+    --runs=60 --seed=7000
+```
+
+Sessanta Chronicle a tavolo misto, e per ogni Destino **quale clausola** resta
+in sospeso e quanto spesso. Non «la Vittoria è difficile» — quella non è una
+diagnosi — ma «questa condizione non si avvera mai, e nel 77% dei casi è
+perché dipende da una promessa che nessun bot fa».
+
 ## I bot contro il caso
 
 ```bash
