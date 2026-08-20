@@ -12,6 +12,8 @@ ripresa; una partita headless gira in meno di un secondo; e i pezzi si stampano
 dagli stessi dati. Prossima: la 0.2, bilanciamento — cosa resta è scritto in
 [ISSUES.md](docs/ISSUES.md).
 
+- [**Passaggio di consegne**](docs/CONSEGNE.md) — se apri una sessione nuova, parti da qui
+- [Meccanica per intero](docs/MECCANICA.md) — il gioco spiegato dall'inizio, dai dati
 - [Game Design](docs/GAME_DESIGN.md) — perché il gioco è fatto così
 - [Regole v0.2](docs/RULES_V0_2.md) — cosa fa il codice, numeri compresi
 - [Componenti](docs/COMPONENTS.md) — cosa si stampa e cosa sta sullo schermo
@@ -19,6 +21,8 @@ dagli stessi dati. Prossima: la 0.2, bilanciamento — cosa resta è scritto in
   [Piano di test](docs/TEST_PLAN.md) · [Roadmap](docs/ROADMAP.md) ·
   [Da fare](docs/ISSUES.md) · [Changelog](CHANGELOG.md) ·
   [Art Bible](docs/ART_BIBLE.md) · [Asset Manifest](docs/ASSET_MANIFEST.md)
+- Saghe giocate e raccontate: [il Regno che si è seduto](docs/SAGA_NAHR.md) ·
+  [l'812](docs/SAGA_812.md) · [il Sale](docs/SAGA_SALE.md)
 
 ---
 
