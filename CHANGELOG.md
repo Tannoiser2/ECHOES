@@ -5,6 +5,23 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.144 — Le istituzioni non governano diversamente (D-176)
+
+- **ISSUES 35 chiusa, e l'ipotesi era falsa.** Misurata come la voce chiedeva —
+  dodici saghe a tavolo misto, livelli per incarnazione — le **otto istituzioni**
+  superano il Minimo il **41%** delle volte e le **quindici persone** il **42%**.
+  Un punto: chi siede non c'entra niente.
+- **Quello che c'entra è la casa.** Un'istituzione al 68% (La Compagnia del Sale)
+  e una al 14% (Le Custodi della Cenere) sono lontane fra loro quanto le due
+  persone agli estremi, e la linea che va male va male con chiunque la porti: i
+  cinque volti dei Fuochi stanno fra l'8% e il 46%, i cinque Maestri fra il 46%
+  e il 67%.
+- La forma si vedeva lo stesso perché nella saga del Sale le istituzioni siedono
+  **dopo**, e dopo il mondo è più segnato: la correlazione c'era, la causa era il
+  momento e non il soggetto.
+- La **sonda delle ere** stampa il conto dei livelli per incarnazione: era la
+  misura che la voce chiedeva e non c'era.
+
 ## 0.1.143 — Tre Conseguenze che costruiscono (D-175)
 
 - **`CNS_NAHR_SETTLEMENT`, `CNS_MARCH_GRANTED` e `CNS_MARKET_MOVED`** non

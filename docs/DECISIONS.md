@@ -10,6 +10,65 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-176 — Le istituzioni non governano diversamente dalle persone
+**implemented in 0.1.144** (ISSUES 35 chiusa, e l'ipotesi era falsa)
+
+La saga del Sale mostrava una forma netta: finche' sedevano **persone** —
+Maestra Ilve, Priora Ilaria, Maestro Ruel — c'erano Vittorie e due Trionfi; dal
+1981, con le **istituzioni** al tavolo, sedici Destini su venti finivano al
+Minimo. L'ipotesi scritta era che le istituzioni governassero bene e non
+volessero niente.
+
+La voce chiedeva, prima di toccare qualsiasi cosa, una misura precisa: la stessa
+saga **a tavolo misto** invece che a policy identiche, e il conto dei livelli
+**per incarnazione**. La sonda delle ere adesso lo stampa. Dodici saghe da dieci
+Chronicle:
+
+| | supera il Minimo |
+|---|---|
+| le **otto istituzioni** | **41%** |
+| le **quindici persone** | **42%** |
+
+**Un punto.** Chi siede non c'entra niente, e l'ipotesi era sbagliata.
+
+### Quello che c'entra e' la casa
+
+La distanza vera sta **dentro** le due categorie, non fra loro:
+
+| chi siede | supera il Minimo |
+|---|---|
+| La Compagnia del Sale | **68%** |
+| Il Banco Nero | 64% |
+| Maestra Ilve, Maestra Sadin, Maestro Ordan | **67%** |
+| Maestro Ruel | 62% |
+| I Frati del Vetro | 48% |
+| Le Citta' Libere | 35% |
+| La Lega delle Sette | 32% |
+| L'Egemonia di Eredan | 31% |
+| Kessa dei Fuochi | 17% |
+| **Le Custodi della Cenere** | **14%** |
+| **Neve dei Fuochi** | **8%** |
+
+Un'istituzione al 68% e una al 14% sono lontane fra loro quanto le due persone
+agli estremi. E la linea che va male va male **con chiunque la porti**: i cinque
+volti dei Fuochi stanno fra l'8% e il 46%, i cinque Maestri fra il 46% e il 67%.
+
+**Non e' un problema delle vite tardive, e' il Destino di una casa.**
+
+### Perche' la forma si vedeva lo stesso
+
+Perche' nella saga del Sale l'ordine delle incarnazioni mette le istituzioni
+**dopo**, e dopo il mondo e' piu' segnato: piu' cicatrici, piu' Tensioni alte,
+piu' conti aperti. La correlazione c'era; la causa era il **momento**, non il
+soggetto. E' un errore che vale la pena tenere a mente, perche' e' esattamente
+il modo in cui una saga racconta una cosa e i numeri ne dicono un'altra.
+
+**Resta una voce nuova** per chi la vorra' aprire: la linea della Cenere/Fuochi
+arriva al secondo gradino la meta' delle volte delle altre, in ogni sua
+incarnazione. E' li' che va guardata.
+
+---
+
 ## D-175 — Tre Conseguenze che costruiscono, e mezza ISSUES 37 chiusa
 **implemented in 0.1.143**
 

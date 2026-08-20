@@ -875,43 +875,50 @@ FAIL 185 · 0/8. Servirebbe la **distanza fra due saghe**.
 **Fatto quando** il committente ha risposto alle cinque domande secche e la
 strada scelta è stata percorsa e misurata.
 
-### 35. Le istituzioni governano bene e non vogliono niente
+### 35. Le istituzioni **non** governano diversamente dalle persone
 
-`contenuto` · `da-misurare` · nata dalla saga del Sale ([SAGA_SALE.md](SAGA_SALE.md))
+`contenuto` · **chiusa in 0.1.144** · [SAGA_SALE.md](SAGA_SALE.md) → [D-176](DECISIONS.md#d-176)
 
-Dieci Chronicle sulla linea delle città (1640–2355) mostrano una forma netta:
-finché al tavolo siedono **persone** — Maestra Ilve, Priora Ilaria, Maestro
-Ruel — ci sono Vittorie e due Trionfi; dal 1981, quando le incarnazioni
-tardive sostituiscono i titolari con le **istituzioni** (La Compagnia del
-Sale, Le Custodi della Cenere, I Frati del Vetro, La Lega delle Sette),
-**sedici Destini su venti finiscono al Minimo** in cinque Chronicle.
+La voce nasceva da una forma vista nella saga del Sale: finché sedevano
+**persone** c'erano Vittorie e due Trionfi; dal 1981, con le **istituzioni** al
+tavolo, sedici Destini su venti finivano al Minimo. L'ipotesi era che le
+istituzioni governassero bene e non volessero niente.
 
-E non perché il tavolo si blocchi: i Consigli continuano a riuscire. Il
-debito viene rimesso, l'acqua contrattata, i Senza Città sistemati — le
-stesse quattro frasi che tornano ogni secolo con un firmatario diverso.
-Riescono, e non portano nessuno da nessuna parte.
+**Misurata come la voce chiedeva** — dodici saghe da dieci Chronicle a tavolo
+misto, livelli contati per incarnazione — l'ipotesi è **falsa**:
 
-**L'ipotesi è stata corretta da una misura** ([D-150](DECISIONS.md#d-150)): il
-**Minimo di ogni Destino è «esistere»** — la casa è viva e sta da qualche
-parte — e due coppie ce l'hanno identico parola per parola. Il Minimo non è un
-obiettivo, è una **soglia di sopravvivenza**, e «sedici Destini su venti al
-Minimo» non vuol dire «nessuno vuole niente»: vuol dire che **restano vivi e
-non arrivano al secondo gradino**.
+| | supera il Minimo |
+|---|---|
+| **le otto istituzioni** | **41%** |
+| **le quindici persone** | **42%** |
 
-Quindi il numero da guardare non è la colonna MINIMUM ma **quanti la
-superano**, ed è fermo al **30%** su trenta Chronicle — col pool dei Destini
-acceso e spento allo stesso modo. Il pool non era la cura: la malattia è che
-il salto dal primo gradino al secondo è troppo alto, o che il secondo chiede
-cose che una policy non sa cercare.
+Un punto di differenza. Chi siede non c'entra niente.
 
-**Da misurare prima di toccare**: la stessa saga a tavolo misto (i quattro
-caratteri di D-053) invece che a policy identiche, e il conto dei livelli per
-incarnazione su 40 Chronicle. Se la forma regge anche lì, è il contenuto
-delle vite tardive; se sparisce, era l'ottimizzatore — la stessa domanda di
-D-051, un'incarnazione più tardi.
+**Quello che c'entra è la casa.** La distanza vera è dentro le due categorie, non
+fra loro:
 
-**Fatto quando** si sa se le istituzioni sono difficili da giocare o solo
-scritte per non muoversi.
+| | |
+|---|---|
+| La Compagnia del Sale | **68%** |
+| Il Banco Nero | 64% |
+| Maestra Ilve / Sadin / Ordan | **67%** |
+| … | |
+| L'Egemonia di Eredan | 31% |
+| Kessa dei Fuochi | 17% |
+| **Le Custodi della Cenere** | **14%** |
+| **Neve dei Fuochi** | **8%** |
+
+Un'istituzione al 68% e una al 14% sono lontane fra loro quanto le due persone
+agli estremi. E la linea che va male va male **con chiunque la porti**: i cinque
+volti dei Fuochi stanno fra l'8% e il 46%, i cinque Maestri fra il 46% e il 67%.
+
+**Non è un problema delle vite tardive: è il Destino di una casa.** La linea
+della Cenere/Fuochi è debole in ogni sua incarnazione, ed è lì che va guardata —
+non nelle istituzioni.
+
+**Resta come voce nuova**, se si vorrà: *la linea dei Fuochi arriva al secondo
+gradino la metà delle volte delle altre*, con la sonda delle ere che adesso
+stampa il conto per incarnazione.
 
 ### 28. ✅ Le alleanze devono pesare al Consiglio — fatta in 0.1.102
 
