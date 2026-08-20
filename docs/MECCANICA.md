@@ -4,7 +4,7 @@
 di come funziona ECHOES, scritta per essere data in pasto a un modello che deve
 produrre **un'infografica**. Non presuppone niente: chi legge non ha mai visto
 il gioco. Tutti i numeri qui dentro sono quelli veri, letti dai dati e dal
-codice della versione 0.1.116 — non sono esempi inventati.
+codice della versione 0.1.140 — non sono esempi inventati.
 
 In fondo c'è una sezione **«Note per chi disegna»** con i suggerimenti su cosa
 merita un riquadro, cosa merita una freccia e cosa si può omettere.
@@ -166,49 +166,108 @@ come Conseguenza di un Consiglio (vedi §6.3 e §7).
 ### Presenza e controllo: la distinzione che conta
 
 Sono due cose diverse e si confondono facilmente. **La presenza fa, il controllo
-conta.**
+si conta.**
 
-**Che cosa comanda la presenza** — cioè: tutto quello che *fai* durante l'anno:
+**Che cosa comanda la presenza** — cioè tutto quello che *fai* durante l'anno:
 
 | | |
 |---|---|
-| **chi propone al Consiglio** | chi ha **più presenza** nelle Regioni del dominio. Il controllo non entra nella scelta |
+| **chi propone al Consiglio** | chi ha **più presenza** nelle Regioni del dominio |
 | **INFLUENZARE gratis** | serve presenza in una Regione taggata col dominio di quella Tensione, altrimenti paghi una carta |
 | **ACQUISIRE potenziato** | presenza in una Regione che elenca quella famiglia → peschi 2 e ne tieni 1 |
-| **dove puoi MUOVERE** | solo verso Regioni adiacenti a una dove sei già |
+| **dove puoi MUOVERE** | solo verso Regioni **adiacenti** a una dove sei già |
 | **le regole dei segni** | quelle con `scope: REGION` valgono per chi ha presenza lì |
 | **le clausole di Destino** | 16 chiedono di **essere** in un posto (`region_presence`) |
 
-**Che cosa comanda il controllo** — tre cose, e due sono costi:
+**Il controllo non si scrive: si conta.** Alla fine di ogni round, per ogni
+Regione, il tavolo fa una somma per ciascuna casata:
+
+```
+FORZA = (pedine × 1) + (valore delle proprie strutture in quella Regione)
+```
+
+Chi ha la forza **strettamente maggiore** tiene la Regione. A parità non cambia
+niente: chi la teneva la tiene, e una Regione contesa alla pari resta contesa.
+Non c'è un'azione «conquista»: il controllo è **il risultato di dove stai e di
+cosa hai costruito**, ricalcolato ogni round.
+
+È il punto in cui la mappa ha cominciato a muoversi davvero: un castello vale 3,
+un esercito di tre pedine vale 3, e chi ne mette una quarta prende la Regione.
+
+**Che cosa comanda il controllo:**
 
 | | |
 |---|---|
 | **le clausole di Destino** | 14 chiedono di **avere** un posto (`control_count`) |
 | **la sovraestensione** | oltre 2 Regioni, **+1 di Tensione a round** per ognuna in più: un costo, non un vantaggio |
-| **il passaggio all'anno dopo** | quello che tieni resta tuo — ma solo se ci stai dentro |
+| **il passaggio all'anno dopo** | quello che tieni resta tuo — ma **solo se ci stai dentro**: una Regione tenuta senza nessun gettone torna a non essere di nessuno |
 
-E poi due usi che non sono regole: riempie il nome del padrone in un paio di
-frasi (`$controller`) e colora la casella sul tabellone.
-
-**Quindi: dentro l'anno, controllare una Regione non dà nessun vantaggio
-meccanico.** Non ti fa proporre, non ti fa pescare meglio, non ti fa influenzare
-gratis, non vale un punto al Consiglio. È un **titolo**: conta a fine anno, e se
-ne accumuli troppi ti costa.
-
-È coerente col tema — questo è un gioco sulla legittimità, e un titolo che non
-puoi esercitare è esattamente il problema di un re che non basta. Ma è anche il
-motivo per cui la mappa quasi non si muove: a parte i Destini che la chiedono,
-**nessuno ha una ragione, dentro l'anno, per andarsi a prendere una Regione**
-(vedi [ISSUES 37](ISSUES.md)).
-
-**Non si governa dove non si è.** Fra una Chronicle e la successiva, una Regione
-tenuta senza nessun gettone dentro torna a non essere di nessuno.
+**C'è una leva scritta e spenta, e vale la pena saperlo.** `focus_weight`
+darebbe voce al Consiglio a chi tiene o presidia la Regione *di cui si discute*.
+È costruita e provata, e **nessuna delle quattro Chronicle la accende**: alla
+misura sui 100 semi bloccava un seggio su un livello solo. Il meccanismo aspetta
+un contenuto che regga.
 
 **I tag della mappa** sono il vocabolario con cui il mondo si segna:
-`condition:starving`, `condition:unrest`, `condition:cut_off`,
-`structure:granary`, `structure:canal`, `structure:sealed`, `scar:burned`…
-Ci sono **45 regole** che leggono questi tag e cambiano il gioco di conseguenza
+`condition:starving`, `condition:unrest`, `condition:cut_off`, `scar:burned`…
+Ci sono **52 regole** che leggono questi tag e cambiano il gioco di conseguenza
 (vedi §9).
+
+---
+
+## 3bis. La terra che si costruisce
+
+Sulla mappa non ci sono solo pedine: ci sono **cose**, e le cose hanno un tipo,
+un grado, un padrone e un valore. Sono l'unico strato del gioco che **passa da
+una partita all'altra** senza che nessuno lo scriva a mano.
+
+### I nove tipi, in cinque famiglie
+
+**Le opere delle case** — hanno un padrone e **pesano nel conto del controllo**:
+
+| famiglia | tipo | i gradi (e quanto valgono) |
+|---|---|---|
+| PRESIDIO | il presidio | Torre di veglia **2** → Castello **3** → Reggia **5** |
+| INSEDIAMENTO | l'insediamento | Villaggio **1** → Borgo **2** → Città **4** |
+| OPERA | granaio, canale, pedaggio | grado I **1** → grado II **2** |
+
+**I luoghi del mondo** — non sono di nessuno, e cambiano *cosa vale* una
+Regione, non *chi la tiene*:
+
+| famiglia | tipo | i gradi |
+|---|---|---|
+| LUOGO | la foresta | Foresta → Bosco diradato → **Selva maledetta** |
+| LUOGO | il sito antico | Sito dormiente → Sito aperto → **Sito saccheggiato** |
+| LUOGO | la sorgente | Sorgente viva → Sorgente bassa → **Sorgente secca** |
+| CHIUSURA | il passo | Passo aperto → **Passo franato** |
+
+### La scala segue il Destino
+
+Alla chiusura dell'anno, una struttura per casata si muove di un grado, **e la
+direzione la decide come è andato quell'anno**:
+
+- chi ha ottenuto il **Trionfo** vede una delle sue cose **salire** — la torre
+  diventa castello, il castello diventa reggia;
+- chi non ha raggiunto nemmeno il **Minimo** ne vede una **scendere** — e sotto
+  il primo grado c'è la rovina, che lascia una cicatrice sulla Regione.
+
+Nessuno scrive «qui c'è una reggia»: la reggia è il sedimento di tre anni buoni
+di fila. Su dodici saghe da otto anni ne restano in piedi **tredici castelli e
+due regge** che nessun autore ha messo lì.
+
+### Il passo che frana
+
+Le adiacenze non sono una tabella: sono **stato del mondo**, e si possono
+tagliare. Quando un passo frana, quel varco si chiude e chi voleva passare di lì
+fa il giro lungo — o non passa.
+
+C'è una guardia, ed è la regola più importante di tutto lo strato: il taglio si
+tenta, si verifica che ogni Regione resti raggiungibile, e **se il mondo si
+spezzerebbe l'arco si rimette e non è successo niente.** Una Regione
+irraggiungibile è un Destino impossibile per chiunque la nomini.
+
+Succede **una volta ogni quarant'anni** circa. È la frequenza giusta per un
+fatto che riscrive la mappa.
 
 ---
 
@@ -283,6 +342,19 @@ NEMICO  ←→  OSTILE  ←→  NEUTRALE  ←→  ALLEATO  ←→  VINCOLATO
 
 I marchi speciali — PATTO, DEBITO, PROMESSA, VENDETTA, SANGUE — non si mettono
 con FORGIARE: arrivano dalle carte e dalle Conseguenze.
+
+**Un'alleanza è una spesa, e rende al Consiglio.** Salire costa un'Occasione
+*e* una carta: chi si allea è chi non ha fatto altro con quel turno. In cambio,
+un alleato che ti sostiene al Consiglio **parla più forte** — un passo sopra
+NEUTRALE vale +1, VINCOLATO +2, con il tetto a 2 per seggio e solo se quel
+seggio ha messo almeno **due carte** sul tavolo. Un'alleanza che aiuta senza
+costare sarebbe un bonus passivo; una che chiede di metterci del proprio è una
+scelta, e quella scelta è il gioco.
+
+**Con chi conviene allearsi si capisce guardando come si vota.** Il tavolo tiene
+il conto di chi è finito sullo stesso fronte e chi sul fronte opposto: ci si
+allea con chi ti ha sostenuto finora. Il che vuol dire che ci si può
+**sbagliare** — ed è la sola cosa su cui si possa costruire un tradimento.
 
 ---
 
@@ -647,22 +719,37 @@ l'inizio, trova il proprio seggio già in mano a un bot e ne riprende il posto.
 | Gettoni di presenza | **3** per casata (2 posati all'inizio, 1 in riserva) |
 | Limite di mano | **7** Asset |
 | Regioni | **6** (3 con un padrone all'inizio, 3 di nessuno) |
-| Regioni tenibili senza sforzo | **2** |
-| Tensioni in gioco | **4** per anno (su 6 disponibili per mondo) |
+| Regioni tenibili senza sforzo | **2** (oltre, si paga Tensione a ogni round) |
+| Tensioni in gioco | **4** per anno (su 12 scritte) |
 | Soglie | fra **4 e 7** |
 | Deriva | **+1** a una Tensione ogni round, 9 gettoni mescolati |
-| Consigli in un anno | mediana **5–6**, limiti duri 2–8 |
+| Consigli in un anno | mediana **5–7**, limiti duri **2–8** |
 | Asset impegnabili | **0–3** (0–2 con una Condizione) |
 | Fattore Mondo | 1d6 → **−2 −1 0 0 +1 +2** |
 | Soglia di qualifica di una Condizione | **2** |
+| Peso di un alleato al Consiglio | **+1** per grado sopra NEUTRALE, tetto **2**, servono **2 carte** impegnate |
 | Carte Asset | **132** stampate, **48** tipi, 6 famiglie |
 | Carte Narratore | **39**, 5 famiglie drammatiche, 24 funzioni · 2 pescate a testa per Atto |
 | Conseguenze scritte | **52** (di cui **14** cambiano il padrone di una Regione) |
 | Modelli di Consiglio | **10** |
-| Regole dei segni | **45** |
-| Destini | **20** scritti, 3 gradini ciascuno |
-| Tipi di effetto sul mondo | **22** (20 reversibili, 2 no: creare un Eco e scrivere una Verità) |
+| Regole dei segni | **52** |
+| **Tipi di struttura** | **9**, in **5 famiglie** — 5 con un padrone, 4 di nessuno |
+| Destini | **20** scritti, 3 gradini ciascuno — **9 giocati** all'apertura |
+| Tipi di effetto sul mondo | **25** (23 reversibili, 2 no: creare un Eco e scrivere una Verità) |
 | Salto fra due Chronicle | da **1** a **200** anni |
+
+**Come finisce un anno, misurato su 100 partite a tavolo misto** (50 partite per
+seggio, quattro caratteri diversi):
+
+| gradino | quota |
+|---|---|
+| nessun gradino | ~1% |
+| Minimo | ~40% |
+| Vittoria | ~40% |
+| **Trionfo** | ~19% |
+
+Nessun seggio resta a zero Trionfi, e nessuno è bloccato su un solo gradino: è
+il vincolo che il gioco si è dato ed è quello che tiene onesto il bilanciamento.
 
 ---
 
@@ -673,51 +760,74 @@ gioco dove si conquista una mappa. È un gioco dove **quattro casate discutono**
 e la mappa è il verbale di quelle discussioni. Le azioni sono la preparazione;
 il Consiglio è il gioco.
 
-**Quattro riquadri che meritano di stare grandi:**
+### Cinque riquadri che meritano di stare grandi
 
 1. **La piramide del tempo** (§1) — Saga › Chronicle › Atto › Round › Azione,
    con il ciclo AZIONI → DERIVA → SOGLIA che gira dentro il round.
-2. **Il Consiglio A→K** (§6) — meglio come **binario orizzontale** con undici
+2. **Il turno in una riga** — le sette azioni come sette icone su una barra, con
+   sopra scritto **«2 per round, 18 in tutto l'anno»**. È il numero che fa capire
+   quanto costa ogni scelta.
+3. **Il Consiglio A→K** (§6) — meglio come **binario orizzontale** con undici
    fermate, colorando in modo diverso i passi *pubblici* e quello *segreto*
    (E. Impegno). Il contrasto pubblico/segreto è la firma visiva del gioco.
-3. **La formula** (§6.2) — `S + C − O + W = MARGINE` con sotto la fascia dei
+4. **La formula** (§6.2) — `S + C − O + W = MARGINE` con sotto la fascia dei
    quattro esiti. È l'unico numero che un giocatore deve tenere a mente.
-4. **Il Destino a tre gradini** (§10) — una scala, non un podio: si sale la
-   propria, non si corre contro gli altri.
+5. **Il Destino a tre gradini** (§10) — una scala, non un podio: si sale la
+   propria, non si corre contro gli altri. E il gradino alto è **una spina più
+   una scelta**, non una lista: disegnarlo come «questa cosa qui, *e* tre di
+   queste cinque» rende l'idea meglio di qualsiasi spiegazione.
 
-**Due mappe utili:**
+### Due mappe utili
 
 - il **grafo delle 6 Regioni** (§3) con le adiacenze — è piccolo e si disegna
-  bene;
+  bene, e **una delle linee può spezzarsi** (il passo che frana): vale la pena
+  disegnarne una tratteggiata;
 - la **ruota delle Tensioni**, quattro spicchi con il valore corrente e la
   soglia, e le frecce dei collegamenti fra loro (il Ripple): serve a mostrare
   che spegnere una domanda ne accende un'altra.
 
-**Un diagramma che vale la pena fare anche se è di nicchia:** la **catena per
-prendere una Regione** (§7), disegnata come cinque anelli in fila. Racconta la
-filosofia del gioco meglio di qualsiasi frase.
+### Il diagramma che racconta il gioco meglio di una frase
 
-**L'errore che un'infografica fa da sola** è disegnare la mappa come una mappa di
-conquista, con quattro colori che si contendono il territorio. Non è quello: le
-**pedine** (presenza) sono ciò che dà potere, e il **colore della casella**
-(controllo) è solo un titolo che conta a fine anno. Vanno disegnati come due
-strati distinti — pedine sopra, colore sotto — e la legenda deve dire quale dei
-due fa cosa (§3).
+**Come si conta il controllo** (§3). Una Regione vista da vicino, con:
 
-**Cosa si può tranquillamente omettere** in una prima infografica: i nomi
-propri delle 48 carte Asset, l'elenco delle 45 regole dei segni, i nomi delle 52
-Conseguenze, e i dettagli dell'ereditarietà fra Chronicle. Bastano come
-etichette («45 regole che i segni sul mondo accendono»).
+- le **pedine** di due casate diverse, una pila da 3 e una da 1;
+- un **castello** disegnato accanto alla pila piccola, con scritto **3**;
+- la somma sotto: `3 pedine = 3` contro `1 pedina + castello 3 = 4`;
+- e la freccia che dice **chi tiene la Regione**.
 
-**Registro e tono.** Il gioco è scritto in italiano, con un tono asciutto e
-concreto — *«Non è ancora fame. È il calcolo, fatto a voce bassa, di quanto
-manchi alla fame.»* Niente fantasy epico: la magia esiste (Vaerax dorme sotto la
-montagna, il Cristallo si sveglia) ma è trattata come un problema di governo, non
-come uno spettacolo. Una tavolozza sobria, terrosa, da documento d'archivio, sta
-al gioco meglio di una da poster fantasy.
+Racconta in un colpo che la terra si tiene con la gente *e* con le pietre, e che
+un castello vale quanto un esercito ma non più di un esercito più grande.
+
+### L'errore che un'infografica fa da sola
+
+Disegnare la mappa come una mappa di conquista, con quattro colori che si
+contendono il territorio. Non è quello: le **pedine** (presenza) sono ciò che dà
+potere durante l'anno, il **colore della casella** (controllo) è il risultato di
+un conto rifatto a ogni round, e le **strutture** sono un terzo strato che entra
+in quel conto e sopravvive alla partita. Vanno disegnati come tre strati
+distinti — pedine e strutture sopra, colore sotto — e la legenda deve dire quale
+dei tre fa cosa.
+
+### Cosa si può tranquillamente omettere
+
+I nomi propri delle 48 carte Asset, l'elenco delle 52 regole dei segni, i nomi
+delle 52 Conseguenze, i dettagli dell'ereditarietà fra Chronicle. Bastano come
+etichette («52 regole che i segni sul mondo accendono»).
+
+### Registro e tono
+
+Il gioco è scritto in italiano, con un tono asciutto e concreto — *«Non è ancora
+fame. È il calcolo, fatto a voce bassa, di quanto manchi alla fame.»* Niente
+fantasy epico: la magia esiste (Vaerax dorme sotto la montagna, il Cristallo si
+sveglia) ma è trattata come un problema di governo, non come uno spettacolo. Una
+tavolozza sobria, terrosa, da documento d'archivio, sta al gioco meglio di una da
+poster fantasy.
+
+**Tre parole da non tradurre in inglese nell'infografica:** Chronicle, Confluence
+(il Consiglio), Echo (la carta del Narratore). Sono i termini del progetto.
 
 ---
 
-*Documento generato dai dati e dal codice di ECHOES 0.1.116. Le regole vivono
+*Documento generato dai dati e dal codice di ECHOES 0.1.140. Le regole vivono
 nei file JSON di `godot/data/` e nel motore in `godot/scripts/`: se un numero qui
 diverge da lì, ha ragione il codice.*
