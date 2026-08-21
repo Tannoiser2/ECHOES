@@ -1450,7 +1450,7 @@ verbale:
 **Fatto quando** la linea dei Fuochi sta nella stessa banda delle altre in ogni
 sua incarnazione — o il motivo per cui non ci sta è scritto con i numeri accanto.
 
-### 46. La campagna del Sale ha un vincitore già scritto
+### 46. La campagna del Sale ha un vincitore già scritto ([#69](https://github.com/Tannoiser2/ECHOES/issues/69))
 
 `contenuto` · `bilanciamento` · nata da [D-180](DECISIONS.md#d-180) · **aperta in 0.1.148**
 
