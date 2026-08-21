@@ -1753,6 +1753,25 @@ racconta.
 valori sono coperti per costruzione, «velata» smette di essere una categoria
 speciale — sono tutte velate, e TRAMARE diventa «sbircio un segnalino».
 
+**Fase 1 ✅ — il calore lo pescano i giocatori** — fatta in 0.1.160
+([D-192](DECISIONS.md#d-192)), sulla scelta **b** del committente: *una soglia
+sola per il tavolo, non una per domanda*. Ogni azione riuscita posa un gettone
+scelto dal sacchetto; la Deriva a orologio si spegne.
+
+**E il preventivo qui sopra era sbagliato di due volte**, corretto in D-192: la
+sonda ombra contava ogni firma d'azione distinta (una carta ne produce più
+d'una), e soprattutto paragonava i gettoni ai 9 della Deriva **come se fosse
+tutto il calore del mondo** — CHR_01 ne posa **35,9 l'anno**. Il sacchetto ne
+aggiunge dieci e ne toglie nove: **+7%, non +210%**. Quindi le soglie salgono di
+**1**, misurato (5,93 Consigli l'anno contro i 5,97 di prima); il raddoppio li
+dimezzava.
+
+**Restano le fasi 2 e 3:** coprire i mucchi (e lì il velo di
+[D-187](DECISIONS.md#d-187) diventa inutile, perché tutto è coperto per
+costruzione) e l'**innesco a chiamata** con la soglia sola per il tavolo — il
+numero misurato è **tre gettoni**. Il primo mattone dell'innesco è già posato in
+[D-191](DECISIONS.md#d-191).
+
 **Fatto quando** un anno si gioca coi mucchi coperti, il playtest resta **0/8** a
 tavolo misto e uniforme, e lo scarto fra il mucchio più alto e il più basso
 **non cresce** di atto in atto.

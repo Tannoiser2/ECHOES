@@ -203,6 +203,11 @@
         "cap": 6,
         "hand_cap": 7
       },
+      "tension_tokens": {
+        "per_action": 1,
+        "threshold_bonus": 1,
+        "replaces_drift": true
+      },
       "claim_rules": {
         "same_round_when_ready": true,
         "ready_at": 3
@@ -463,6 +468,11 @@
         "floor": 2,
         "cap": 6,
         "hand_cap": 7
+      },
+      "tension_tokens": {
+        "per_action": 1,
+        "threshold_bonus": 1,
+        "replaces_drift": true
       },
       "claim_rules": {
         "same_round_when_ready": true,

@@ -388,8 +388,24 @@ func visible_tension_value(tension_id: String, viewer_id: String) -> int:
 ## Torna -1 quando resta coperta.
 func visible_tension_threshold(tension_id: String, viewer_id: String) -> int:
 	if is_tension_open(tension_id) or knows_tension(viewer_id, tension_id):
-		return int(data.tensions[tension_id]["threshold"])
+		return tension_threshold(tension_id)
 	return -1
+
+
+## La soglia vera: quella scritta piu' il ritocco del sacchetto (D-192). Chi
+## legge la soglia da qui e da `TensionSystem.threshold()` deve leggere lo stesso
+## numero — un seggio che decide su una soglia diversa da quella che apre il
+## Consiglio gioca un altro gioco.
+func tension_threshold(tension_id: String) -> int:
+	var bonus: int = 0
+	var chronicle: Variant = data.chronicles.get(str(world.get("chronicle_id", "")))
+	if chronicle != null:
+		var rules: Dictionary = (chronicle as Dictionary).get(
+			"tension_tokens", {}
+		) as Dictionary
+		if not rules.is_empty():
+			bonus = int(rules.get("threshold_bonus", 0))
+	return int(data.tensions[tension_id]["threshold"]) + bonus
 
 
 func knows_tension(entity_id: String, tension_id: String) -> bool:

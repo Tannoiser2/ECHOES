@@ -1,4 +1,4 @@
-# Passaggio di consegne — stato al 0.1.159
+# Passaggio di consegne — stato al 0.1.160
 
 *Scritto per chi apre una sessione nuova su questo repository. Dice dov'è il
 lavoro, cosa regge, cosa no, e quali sono le regole di casa che non vanno
@@ -12,9 +12,9 @@ riscoperte da capo.*
 |---|---|
 | ramo di sviluppo | `claude/echoes-boardgame-dev-cmu444` |
 | PR aperta | nessuna |
-| ultimo commit su `main` | 0.1.157 |
-| sul ramo | 0.1.158-0.1.159 — il preventivo dei segnalini, e la presa di parola in un colpo |
-| ultimo merge su `main` | `248f5cd` — PR #70, 0.1.150–0.1.157 |
+| ultimo commit su `main` | 0.1.159 |
+| sul ramo | 0.1.160 — il calore lo pescano i giocatori |
+| ultimo merge su `main` | `a474741` — PR #71, 0.1.158–0.1.159 |
 
 La PR #70 è stata mergiata: **il gioco a sole carte è su `main`**. Questo ramo
 riparte da lì, ed è vuoto — il prossimo lavoro apre una PR nuova.
@@ -110,14 +110,14 @@ acceso in CHR_01 e CHR_02):
 ```
 FAIL 235 · SUCC 99 · SUCC 122 · DECI 121 · mediana 6
 0 su 8 bloccati (misto e uniforme) · nessun seggio a NONE · nessuno a zero Trionfi
-suite 374 test / 6555 asserzioni
+suite 379 test / 6760 asserzioni
 ```
 
 ## 4. Le due cose che vanno guardate per prime
 
-### a) I Consigli falliti sono a 235
+### a) I Consigli falliti sono a 249
 
-Il trend: **185 → 207 → 191 → 203 → 206 → 246 → 248 → 256 → 248 → 241 → 239 → 235**.
+Il trend: **185 → 207 → 191 → 203 → 206 → 246 → 248 → 256 → 248 → 241 → 239 → 235 → 249**.
 Il massimo storico è stato 256, e in 0.1.150 il numero è **tornato indietro per
 la prima volta**: una casa che non arriva più al Trionfo per inerzia propone e si
 oppone meno a lungo. Da 0.1.154 scende ancora, e la causa è nota e dichiarata:
@@ -208,12 +208,11 @@ Scritto dopo il merge di #70, quando il gioco a sole carte è diventato il gioco
    §10 di prima e lo dichiarano nel dato. Il gioco nuovo non ha una storia
    raccontata: è provato dal cancello e dai test.
 5. **ISSUES 49 — le Tensioni come mucchi di segnalini coperti**, voluta dal
-   committente e **misurata in preventivo** (D-190). Il sacchetto esiste già (la
-   Deriva); la proposta cambia chi pesca e quando si guarda. Funziona **solo nel
-   gioco a carte** (2,1× la Deriva contro 8,0× nel §10 di prima), l'innesco «ogni
-   3 segnalini» riproduce il ritmo di oggi, e il numero che decide è che il
-   mucchio coperto sceglierebbe **un'altra domanda 7 volte su 10**. Servono
-   quattro decisioni del committente, scritte lì.
+   committente. **Fase 1 fatta** in 0.1.160 (D-192): il calore lo pescano i
+   giocatori, la Deriva a orologio è spenta, le soglie salgono di **1** — e il
+   preventivo di D-190 era sbagliato di due volte, corretto lì. **Restano fase 2**
+   (coprire i mucchi, e il velo di D-187 diventa inutile) **e fase 3** (l'innesco
+   a chiamata con una soglia sola per il tavolo, misurata a **tre gettoni**).
 6. **Le due domande del committente ancora aperte sulle Tensioni**: che nella
    prima partita non siano sempre le stesse quattro, e che partano tutte da
    **0**. La seconda non è gratis — con nove gettoni di Deriva su quattro

@@ -10,6 +10,106 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-192 — Il calore lo pescano i giocatori
+**implemented in 0.1.160** (ISSUES 49, fase 1 — la scelta **b** del committente)
+
+Il committente ha scelto: **una soglia sola per il tavolo**, non una per domanda.
+Ma prima di poter chiedere «quanto deve essere caldo il mondo» serve che il mondo
+si scaldi come lui ha detto — *«ogni carta o azione fa pescare un segnalino che
+da' un valore a una tensione»*. Questa e' quella meta'.
+
+### Come e' fatto
+
+Ogni azione **riuscita** pesca un gettone dal sacchetto e lo posa: la domanda la
+sceglie la stessa distribuzione della Deriva (`drift_distribution`, D-047), che
+il committente ha gia' tarato, e il seme, quindi la partita resta rigiocabile. La
+Deriva a orologio si spegne: i due insieme sarebbero un terzo gioco.
+
+Vive solo se la Chronicle dichiara `tension_tokens`. Senza, non succede niente.
+
+### Il preventivo di D-190 era sbagliato di due volte, e lo correggo
+
+D-190 aveva misurato **18,7 gettoni l'anno** e ne aveva concluso «il mondo si
+scalda 2,1 volte piu' in fretta». Sono **due errori**, e il primo li spiega
+entrambi.
+
+**Primo**: la sonda ombra contava *ogni firma d'azione distinta* nel registro
+degli Effetti — e una carta giocata ne produce piu' d'una (l'azione interna, lo
+spostamento di INFLUENZARE). La regola vera pesca **un gettone per azione**, e
+sono **~10 l'anno**, non 18,7.
+
+**Secondo, e piu' grosso**: paragonavo i gettoni ai **9 della Deriva**, come se
+la Deriva fosse tutto il calore del mondo. Non lo e'. Misurato sul registro,
+CHR_01 posa **35,9 punti di calore l'anno** — la Deriva ne mette 9, il resto
+viene dai segni che sfogano, dagli effetti delle carte impegnate e dalle
+Conseguenze. Il sacchetto ne aggiunge dieci e ne toglie nove: **il calore totale
+cambia del 7%**, non del 210%.
+
+Ecco perche' *«col sacchetto devi rivedere le soglie»* e' vero, ma **di uno, non
+del doppio**.
+
+### La taratura, misurata
+
+| soglie | calore posato | Consigli in un anno (CHR_01) |
+|---|---|---|
+| il gioco di prima, senza sacchetto | 35,9 | **5,97** |
+| col sacchetto, soglie invariate | 47,2 | 7,27 |
+| col sacchetto, **+1** | 44,0 | **5,93** |
+| col sacchetto, +2 | 45,7 | 5,67 |
+| col sacchetto, ×2 | 38,3 | 3,33 |
+
+**+1 riporta il ritmo esattamente dov'era** (5,93 contro 5,97). Il raddoppio —
+che era la mia prima mossa, fatta sul numero sbagliato — dimezzava i Consigli.
+
+**Il ritocco sta sulla regola, non sulla Tensione** (`threshold_bonus`): la stessa
+Tensione gioca anche dove il sacchetto e' spento, e li' una soglia alzata non si
+raggiungerebbe mai. Con le soglie riscritte nel dato, il gioco classico faceva
+**zero Consigli** — l'ha trovato subito il test che prova che ogni Tensione possa
+raggiungere la propria soglia.
+
+### Le misure del cancello
+
+```
+FAIL 249 · SUCC 122 · SUCC 138 · DECI 126 · Consigli media 6,35 · mediana 6
+0 su 8 bloccati (misto e uniforme)
+suite 379 test / 6760 asserzioni · sim plans e determinismo verdi
+```
+
+### Due difetti miei, trovati dai test
+
+- **Il gettone si firmava con la mano che aveva agito.** Riusando la firma
+  dell'azione, un gettone posato da un INFLUENZARE si contava come un secondo
+  INFLUENZARE, e **il tetto di §10 saltava**. L'ha trovato il test che
+  ricostruisce i conti dal registro degli Effetti. Adesso il gettone porta una
+  firma sua, `system/TENSION_TOKEN` — ed e' anche piu' vero: il calore e' del
+  mondo, non della mano.
+- **Il seggio e il Consiglio leggevano due soglie diverse.** Il ritocco lo
+  applicava `TensionSystem.threshold()`, ma il seggio leggeva la soglia scritta
+  dal dato: decideva su 6 mentre il Consiglio si apriva a 7. Adesso passano
+  dallo stesso numero, e c'e' un test che lo prova.
+
+### Quello che si dichiara
+
+- **La scelta b non e' ancora costruita.** Questa e' la meta' del calore; la
+  soglia sola per il tavolo — «finche' non sono scesi N gettoni nessuno puo'
+  chiamare» — arriva quando i mucchi saranno coperti e l'innesco sara' a
+  chiamata. Il numero misurato resta **tre gettoni**.
+- **I gettoni non sono ancora coperti.** Il valore di una domanda si vede come
+  sempre; il velo di D-187 copre la soglia. Coprire i mucchi e' fase 2, e li' il
+  velo diventa inutile perche' tutto e' coperto per costruzione.
+- **I 21 presagi e le 19 clausole dei Destini non sono stati toccati.** Col
+  calore che cambia del 7% non era necessario — ma e' una decisione presa sul
+  numero corretto, non un dimenticanza: se il sacchetto crescera' (piu' gettoni
+  per azione, o gettoni da 2 e 3), vanno riscalati insieme.
+- **CHR_03 non e' toccata**: li' il calore lo mette ancora l'orologio. E' il
+  termine di paragone, e passera' al sacchetto solo dopo essere passata alle
+  carte.
+- **I Consigli falliti salgono da 239 a 249.** Il calore che arriva a raffiche
+  invece che a orologio apre piu' tavoli nei round affollati, e li' si oppone
+  piu' gente.
+
+---
+
 ## D-191 — Non si prenota una domanda che e' gia' matura
 **implemented in 0.1.159** (ISSUES 37, meta' aperta — decisione del committente su §10)
 

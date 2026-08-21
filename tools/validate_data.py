@@ -667,21 +667,28 @@ def check_sim_plans_declare_their_economy(
                 "o lo dichiara false (e' una storia del §10 di prima), o le sue "
                 "mosse vanno riscritte come carte",
             )
-    # Stessa ragione per la presa di parola (D-191): una storia scritta in due
-    # tempi non si rilegge in un tempo solo.
+    # Stessa ragione per la presa di parola (D-191) e per il sacchetto (D-192):
+    # una storia scritta in due tempi non si rilegge in un tempo solo, e una
+    # scritta con nove gettoni non si rilegge con venti.
+    gates = [
+        ("claim_rules", lambda c: c.get("claim_rules", {}).get("same_round_when_ready", False),
+         "concede la presa di parola in un colpo"),
+        ("tension_tokens", lambda c: bool(c.get("tension_tokens", {})),
+         "fa pescare il calore ai giocatori"),
+    ]
     for plan in plans:
         chronicle = chronicles.get(str(plan.get("chronicle_id", "")))
-        if chronicle is None or not chronicle.get("claim_rules", {}).get(
-            "same_round_when_ready", False
-        ):
+        if chronicle is None:
             continue
-        if "claim_rules" not in plan.get("chronicle_overrides", {}):
-            report.fail(
-                f"sim_plan [{plan.get('id')}]",
-                f"la Chronicle {plan.get('chronicle_id')} concede la presa di "
-                "parola in un colpo, ma il piano non dichiara "
-                "`chronicle_overrides.claim_rules`",
-            )
+        for key, is_on, what in gates:
+            if not is_on(chronicle):
+                continue
+            if key not in plan.get("chronicle_overrides", {}):
+                report.fail(
+                    f"sim_plan [{plan.get('id')}]",
+                    f"la Chronicle {plan.get('chronicle_id')} {what}, ma il piano "
+                    f"non dichiara `chronicle_overrides.{key}`",
+                )
 
 
 def check_destiny_token_budget(

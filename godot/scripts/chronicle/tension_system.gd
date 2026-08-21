@@ -22,6 +22,11 @@ func _init(p_world: Dictionary, p_data: RefCounted, p_applier: RefCounted, p_log
 ## §11.2: at the end of every round the world pushes one Tension up by 1,
 ## following the drift track shuffled at setup.
 func apply_drift() -> String:
+	# D-192: quando il calore lo pescano i giocatori, l'orologio si ferma. I due
+	# insieme farebbero 27,7 gettoni l'anno contro i 9 di oggi — un terzo gioco
+	# che nessuno ha chiesto.
+	if _tokens_replace_drift():
+		return ""
 	var track: Array = world["drift_track"]
 	var index: int = int(world["drift_index"])
 	if index >= track.size():
@@ -79,7 +84,7 @@ func tensions_at_threshold() -> Array:
 	var ready: Array = []
 	for tension_id in world["tensions"]:
 		var value: int = int(world["tensions"][tension_id]["current_value"])
-		if value >= int(data.tensions[tension_id]["threshold"]):
+		if value >= threshold(str(tension_id)):
 			ready.append(str(tension_id))
 	# Draw order for a library Chronicle, written order for an authored one:
 	# world["tensions"] holds whichever applies (D-028).
@@ -98,12 +103,37 @@ func value(tension_id: String) -> int:
 	return int(world["tensions"][tension_id]["current_value"])
 
 
+## La soglia scritta sulla Tensione, piu' il ritocco che la Chronicle dichiara.
+##
+## Il ritocco esiste perche' le soglie sono **dato della Tensione, condiviso dai
+## due lati dell'interruttore** (D-192): col sacchetto acceso il mondo si scalda
+## di piu' e le soglie vanno alzate, ma la stessa Tensione gioca anche dove il
+## sacchetto e' spento, e li' una soglia alzata non si raggiunge mai. Il numero
+## scritto resta quello del gioco di sempre; il ritocco vive con la regola che lo
+## rende necessario.
 func threshold(tension_id: String) -> int:
-	return int(data.tensions[tension_id]["threshold"])
+	return int(data.tensions[tension_id]["threshold"]) + _threshold_bonus()
+
+
+func _threshold_bonus() -> int:
+	var chronicle: Variant = data.chronicles.get(str(world.get("chronicle_id", "")))
+	if chronicle == null:
+		return 0
+	var rules: Dictionary = (chronicle as Dictionary).get("tension_tokens", {}) as Dictionary
+	return 0 if rules.is_empty() else int(rules.get("threshold_bonus", 0))
 
 
 func is_veiled(tension_id: String) -> bool:
 	return str(world["tensions"][tension_id]["visibility"]) != "OPEN"
+
+
+## La Deriva a orologio si spegne quando il sacchetto dei giocatori la sostituisce.
+func _tokens_replace_drift() -> bool:
+	var chronicle: Variant = data.chronicles.get(str(world.get("chronicle_id", "")))
+	if chronicle == null:
+		return false
+	var rules: Dictionary = (chronicle as Dictionary).get("tension_tokens", {}) as Dictionary
+	return not rules.is_empty() and bool(rules.get("replaces_drift", true))
 
 
 ## La Chronicle dice cosa nasconde il velo (D-187): tutto, o solo la soglia.
