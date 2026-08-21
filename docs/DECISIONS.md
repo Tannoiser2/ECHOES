@@ -10,6 +10,51 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-189 — Un piano scriptato dice in che economia e' stato scritto
+**implemented in 0.1.157** (riparazione di D-188, trovata dalla CI)
+
+D-188 ha acceso le carte come unica moneta in CHR_01 e ha dichiarato che i tre
+piani scriptati «sono storie del §10 di prima e restano tali». **Era una frase,
+non una regola**: i piani leggono la Chronicle spedita, e la Chronicle spedita
+adesso gioca a carte. `tools/run_sims.sh` e' uscito con **exit 4** su tutti e
+tre, e la CI e' andata rossa.
+
+### E la suite diceva verde
+
+La distanza fra le due strade e' il vero difetto. La suite passa dal
+`play_classic()` che D-188 ha messo in `new_session()`, quindi provava il gioco
+vecchio; la sonda da riga di comando legge il dato spedito, quindi provava
+quello nuovo. **Due strade che provano due giochi diversi e si chiamano
+entrambe «i piani passano».**
+
+### Come e' fatto adesso
+
+Un piano dichiara la propria economia nel dato: `chronicle_overrides`, con
+`actions_from_cards` e `hand_refill`. I tre piani di CHR_01 dichiarano
+`actions_from_cards: false` — sono storie del §10 di prima, e adesso lo dicono
+loro invece che un verbale.
+
+Le due strade passano dalla **stessa funzione**, `GameSession.apply_plan_overrides`,
+statica apposta: la suite e la sonda applicano le stesse righe. E una guardia in
+`validate_data.py` chiude la porta: se la Chronicle gioca a carte e il piano non
+dichiara niente, la CI e' rossa **prima** di giocare.
+
+### Quello che si dichiara
+
+- **Il difetto e' mio, e la CI l'ha trovato al posto mio.** Avevo lanciato
+  `tools/run_sims.sh` mandando l'output a `/dev/null` e avevo guardato **solo se
+  i file cambiavano**, non l'exit code. Il comando diceva «FALLITO (exit 4)» tre
+  volte e io non l'ho letto. La regola di casa che ne esce e' scritta in
+  CONSEGNE: dei comandi del cancello si guarda **l'exit code**, non l'output.
+- **Resta vero che manca un piano scriptato del gioco a carte** (D-188). Adesso
+  la mancanza e' dichiarata *nel dato*, non solo in un verbale: i tre piani
+  dicono di essere storie vecchie, e nessuno dice di essere una storia nuova.
+- **`chronicle_overrides` e' una porta che si puo' abusare**: un piano puo'
+  riscrivere qualunque regola della Chronicle e poi dire che il gioco funziona.
+  Lo schema la tiene stretta a due chiavi apposta.
+
+---
+
 ## D-188 — Le quarantotto carte parlano: le azioni passano sulla mano
 **implemented in 0.1.156** (ISSUES 47, fase 4 — il gioco nuovo si accende)
 

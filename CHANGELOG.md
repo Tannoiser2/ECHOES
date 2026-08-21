@@ -5,6 +5,38 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.157 — Un piano dice in che economia è stato scritto (D-189)
+
+- **Riparazione di 0.1.156, trovata dalla CI.** Accendere le carte in CHR_01 ha
+  reso ingiocabili i tre piani scriptati: `tools/run_sims.sh` usciva con **exit
+  4** su tutti e tre. Dire in un verbale che «restano storie del §10 di prima»
+  non bastava — i piani leggono la Chronicle spedita.
+- **E la suite diceva verde**: passava dal `play_classic()` di 0.1.156 e provava
+  il gioco vecchio, mentre la sonda da riga di comando provava quello nuovo. Due
+  strade che provano due giochi diversi e si chiamano entrambe «i piani passano».
+- **`chronicle_overrides` sul piano**: `actions_from_cards` e `hand_refill`. I
+  tre piani dichiarano `false` — sono storie del §10 di prima, e ora lo dicono
+  loro invece di un verbale.
+- Le due strade passano dalla **stessa funzione** (`GameSession.apply_plan_overrides`),
+  e una **guardia in `validate_data.py`** fa rosso la CI se una Chronicle gioca a
+  carte e il piano non dichiara niente.
+- CI locale intera rifatta guardando **gli exit code**: validate, self-test, i due
+  drift check, dead_code, 372 test / 6722 asserzioni, sim plans, balance probe,
+  determinismo di sims ed export. Tutto verde.
+
+### Dichiarato
+
+- **Il difetto è mio e la CI l'ha trovato al posto mio**: avevo lanciato
+  `run_sims.sh` con l'output a `/dev/null` guardando solo se i file cambiavano.
+  Il comando diceva «FALLITO (exit 4)» tre volte. La regola che ne esce è in
+  CONSEGNE: dei comandi del cancello si guarda **l'exit code**.
+- Resta vero che **manca un piano scriptato del gioco a carte**: adesso la
+  mancanza è dichiarata nel dato, non solo in un verbale.
+- `chronicle_overrides` è una porta che si può abusare: lo schema la tiene
+  stretta a due chiavi apposta.
+
+---
+
 ## 0.1.156 — Le quarantotto carte parlano (D-188)
 
 - **ISSUES 47 fase 4**: le azioni passano sulla mano, e **l'interruttore si

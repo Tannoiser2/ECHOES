@@ -42,6 +42,7 @@ func _initialize() -> void:
 		quit(EXIT_PLAN)
 		return
 
+	GameSession.apply_plan_overrides(data, plan)
 	var session: RefCounted = GameSession.new(data)
 	var seed_value: int = int(options.get("seed", plan["seed"]))
 	if not session.setup(str(plan["chronicle_id"]), plan["seats"], seed_value):

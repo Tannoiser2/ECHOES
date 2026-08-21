@@ -312,6 +312,10 @@
         ],
         "min_echoes": 1,
         "min_truths": 1
+      },
+      "chronicle_overrides": {
+        "actions_from_cards": false,
+        "hand_refill": {}
       }
     }
   ]

@@ -636,6 +636,39 @@ def check_asset_sources_are_true(
             )
 
 
+def check_sim_plans_declare_their_economy(
+    documents: Dict[str, List[Dict[str, Any]]],
+    origins: Dict[str, str],
+    report: "Report",
+) -> None:
+    """Un piano scriptato deve dire in quale economia e' stato scritto.
+
+    Un piano e' una storia scritta a mano: le sue mosse sono azioni dirette, e
+    le sue attese sono il risultato di quelle mosse. Il giorno in cui la
+    Chronicle e' passata alle carte come unica moneta (D-188) le tre storie di
+    CHR_01 sono diventate ingiocabili — e la suite ha detto **verde**, perche' i
+    test forzano il lato classico, mentre `tools/run_sims.sh` ha detto rosso in
+    CI. Questa guardia chiude quella distanza: se la Chronicle gioca con le
+    carte, il piano lo deve dichiarare (o accettarlo, e allora le sue mosse
+    saranno carte).
+    """
+    plans = documents.get("sim_plan", [])
+    chronicles = {str(c.get("id")): c for c in documents.get("chronicle", [])}
+    for plan in plans:
+        chronicle = chronicles.get(str(plan.get("chronicle_id", "")))
+        if chronicle is None or not chronicle.get("actions_from_cards", False):
+            continue
+        overrides = plan.get("chronicle_overrides", {})
+        if "actions_from_cards" not in overrides:
+            report.fail(
+                f"sim_plan [{plan.get('id')}]",
+                f"la Chronicle {plan.get('chronicle_id')} gioca con le carte, "
+                "ma il piano non dichiara `chronicle_overrides.actions_from_cards`: "
+                "o lo dichiara false (e' una storia del §10 di prima), o le sue "
+                "mosse vanno riscritte come carte",
+            )
+
+
 def check_destiny_token_budget(
     documents: Dict[str, List[Dict[str, Any]]],
     origins: Dict[str, str],
@@ -891,6 +924,7 @@ def main() -> int:
         check_destiny_token_budget(documents, origins, report)
         check_destiny_free_roads(documents, origins, report)
         check_asset_sources_are_true(documents, origins, report)
+        check_sim_plans_declare_their_economy(documents, origins, report)
 
     # Duplicate ids across the whole data set are always a bug.
     seen: Dict[str, str] = {}

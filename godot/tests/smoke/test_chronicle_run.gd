@@ -37,6 +37,12 @@ func _run(file_name: String) -> Dictionary:
 	if plan.is_empty():
 		return {}
 	new_session(int(plan["seed"]), false)
+	# La stessa strada della sonda da riga di comando (D-188): il piano dichiara
+	# in quale economia e' stato scritto, e qui si applica. Senza questa riga la
+	# suite provava un gioco e `tools/run_sims.sh` ne provava un altro — verde
+	# qui, rosso in CI, ed e' successo davvero.
+	GameSession.apply_plan_overrides(session.data, plan)
+	session.actions.set("_chronicle", session.data.chronicles[str(plan["chronicle_id"])])
 	var report: Dictionary = await session.run(ScriptedDecider.new(plan, session.log))
 	report["plan"] = plan
 	return report
@@ -214,3 +220,20 @@ func test_the_public_log_keeps_veiled_values_private() -> void:
 	var text: String = session.log.text()
 	assert_false(text.contains("Il Risveglio: 2/7"), "il valore velato non compare nel log")
 	assert_true(text.contains("velata"), "il log dice che e velata, e basta")
+
+
+## Ogni piano spedito dice in quale economia e' stato scritto (D-188). E' la
+## meta' leggibile della guardia in `validate_data.py`: quella impedisce di
+## dimenticarsene, questa dice **perche'** conta.
+func test_every_plan_declares_its_economy() -> void:
+	for file_name in _plan_files():
+		var plan: Dictionary = _plan(str(file_name))
+		var overrides: Dictionary = plan.get("chronicle_overrides", {}) as Dictionary
+		assert_true(
+			overrides.has("actions_from_cards"),
+			"%s dice se gioca con le carte o con le Occasioni" % str(file_name)
+		)
+		assert_false(
+			bool(overrides["actions_from_cards"]),
+			"%s e una storia del §10 di prima, e lo dichiara" % str(file_name)
+		)

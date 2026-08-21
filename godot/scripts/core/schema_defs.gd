@@ -1032,6 +1032,9 @@ const DEFS := {
 					"pattern": "^ENT_[A-Z0-9_]+$",
 				},
 			},
+			"chronicle_overrides": {
+				"type": "Dictionary",
+			},
 			"fallback_action": {
 				"type": "Dictionary",
 			},

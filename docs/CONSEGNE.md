@@ -1,4 +1,4 @@
-# Passaggio di consegne — stato al 0.1.156
+# Passaggio di consegne — stato al 0.1.157
 
 *Scritto per chi apre una sessione nuova su questo repository. Dice dov'è il
 lavoro, cosa regge, cosa no, e quali sono le regole di casa che non vanno
@@ -12,7 +12,7 @@ riscoperte da capo.*
 |---|---|
 | ramo di sviluppo | `claude/echoes-boardgame-dev-cmu444` |
 | PR aperta | in bozza, su `main` |
-| ultimo commit | 0.1.156 |
+| ultimo commit | 0.1.157 |
 | ultimo merge su `main` | `175d58d` — PR #68, 0.1.145–0.1.149 |
 
 La PR #68 è stata mergiata: questo ramo riparte da `main` e raccoglie da 0.1.150
@@ -29,19 +29,23 @@ Queste non sono preferenze: sono state pagate con difetti veri.
    dichiarate. Un numero peggiorato e scritto vale più di un numero nascosto.
 3. **Determinismo**: due giri di `tools/run_sims.sh` e `tools/run_export.sh`
    devono dare file identici.
-4. **Dopo ogni modifica a `/schema`**: `python3 tools/gen_gd_schema.py`.
+4. **Dei comandi del cancello si guarda l'exit code, non l'output.**
+   `tools/run_sims.sh` e `tools/run_export.sh` *scrivono* i loro file anche
+   quando falliscono: guardare se i file cambiano non dice se il comando è
+   andato. Costato una CI rossa in 0.1.156.
+5. **Dopo ogni modifica a `/schema`**: `python3 tools/gen_gd_schema.py`.
    **Se cambiano le etichette dei Destini o i dati**: `python3 tools/build_manifest.py`.
    Il secondo è stato dimenticato tre volte e ogni volta ha fatto rosso la CI.
-5. **Verbale in `docs/DECISIONS.md`** (il più recente in cima), `docs/ISSUES.md` e
+6. **Verbale in `docs/DECISIONS.md`** (il più recente in cima), `docs/ISSUES.md` e
    `CHANGELOG.md` aggiornati **nello stesso commit**.
-6. **GDScript tipizzato, senza `class_name`**: `const X := preload(...)`.
-7. **La riga stampata sulla carta deve dire il vero sulla mappa**: `acquisition_rule` nomina le Regioni da cui si pesca quella famiglia, e una guardia in `validate_data.py` lo verifica (0.1.156). Quaranta carte su quarantotto hanno mentito per un giorno intero senza che nessun test lo notasse.
-8. **Effect-sourcing**: ogni mutazione del mondo è un Effetto con un inverso. Le
+7. **GDScript tipizzato, senza `class_name`**: `const X := preload(...)`.
+8. **La riga stampata sulla carta deve dire il vero sulla mappa**: `acquisition_rule` nomina le Regioni da cui si pesca quella famiglia, e una guardia in `validate_data.py` lo verifica (0.1.156). Quaranta carte su quarantotto hanno mentito per un giorno intero senza che nessun test lo notasse.
+9. **Effect-sourcing**: ogni mutazione del mondo è un Effetto con un inverso. Le
    uniche eccezioni sono i contatori (`confluence_count`, `resolved_count`,
    `voted_together`), e sono deliberate.
-9. **Le PR si aprono in bozza.** I commenti su GitHub portano il footer di
+10. **Le PR si aprono in bozza.** I commenti su GitHub portano il footer di
    attribuzione.
-10. **Il committente parla italiano e le risposte vanno in italiano.**
+11. **Il committente parla italiano e le risposte vanno in italiano.**
 
 ### Il binario di prova
 
@@ -92,6 +96,7 @@ solo.
 | **0.1.154** | **la mappa che distribuisce** (ISSUES 47 fase 3): due Regioni per famiglia, il fabbisogno misurato (11,80 carte l'anno) — e la Strada dei Mercanti è morta (ISSUES 48) |
 | **0.1.155** | **il velo copre la soglia, non il numero**: l'asimmetria che il tavolo fisico non poteva riprodurre — e due viste che stampavano la soglia vera |
 | **0.1.156** | **le quarantotto carte parlano** (ISSUES 47 fase 4): le azioni passano sulla mano e **l'interruttore si accende**. La divergenza è chiusa: scarto 1,58 contro 4,90 |
+| **0.1.157** | un piano scriptato **dichiara la propria economia** — e la lezione: dei comandi del cancello si guarda l'**exit code** |
 
 Più due documenti: **`docs/MECCANICA.md`** — riportato a **0.1.149**, ed è il
 testo da dare a chi disegna l'infografica *e* a chi vuole sapere come si gioca
@@ -102,7 +107,7 @@ bene (§15) — e **`docs/SAGA_NAHR.md`**, dieci anni giocati e raccontati.
 ```
 FAIL 235 · SUCC 99 · SUCC 122 · DECI 121 · mediana 6
 0 su 8 bloccati (misto e uniforme) · nessun seggio a NONE · nessuno a zero Trionfi
-suite 371 test / 6716 asserzioni
+suite 372 test / 6722 asserzioni
 ```
 
 ## 4. Le due cose che vanno guardate per prime

@@ -1630,8 +1630,9 @@ contro 4,90 del gioco di prima.
 - **CHR_03 gioca ancora il §10 di prima**, deliberatamente: la sua mappa non è
   stata guardata. Accenderla senza sarebbe ripetere il difetto di D-186.
 - **Manca un piano scriptato del gioco a carte**: i tre esistenti sono storie
-  del §10 di prima. Il gioco nuovo è provato dal cancello e dai test, non da una
-  storia raccontata.
+  del §10 di prima, e da 0.1.157 ([D-189](DECISIONS.md#d-189)) lo **dichiarano
+  nel dato** (`chronicle_overrides`), non solo in un verbale. Il gioco nuovo è
+  provato dal cancello e dai test, non da una storia raccontata.
 - **Il 58% delle Occasioni resta muto**, e 194 volte su 720 perché *la mano non
   sa dire* ciò che il seggio vuole. È la prima misura che ne esista e non è
   stata tarata: si abbassa con più carte, o con una distribuzione diversa delle
