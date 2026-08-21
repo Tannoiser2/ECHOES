@@ -51,7 +51,14 @@ func test_with_cards_the_page_never_promises_acquire() -> void:
 		"hand_refill": {"per_token": 2, "hand_cap": 7},
 	})
 	assert_false(page.contains("Acquisire"), "col gioco a carte ACQUISIRE non si offre")
-	assert_true(page.contains("CARTA CALATA"), "il titolo dice come si agisce adesso")
+	assert_true(
+		page.contains("NON SI SCEGLIE UN'AZIONE"),
+		"il titolo dice che le azioni non si scelgono piu"
+	)
+	assert_true(
+		page.contains("la tua mano"),
+		"e che al posto della lista c'e la mano"
+	)
 	assert_true(
 		page.contains("non votera piu"),
 		"e spiega la spesa, che e il cuore del gioco nuovo"
@@ -79,6 +86,25 @@ func test_the_page_says_when_the_word_is_taken_in_one_move() -> void:
 		"claim_rules": {"same_round_when_ready": true, "ready_at": 3}
 	})
 	assert_true(
-		page.contains("apri tu il Consiglio, adesso"),
+		page.contains("il Consiglio lo apri tu"),
 		"la pagina spiega che una domanda matura si prende in un colpo"
+	)
+
+
+## E i mestieri delle famiglie si **contano dalle carte**: se domani una carta
+## cambia mestiere, la pagina cambia con lei senza che nessuno la riscriva.
+func test_the_page_counts_the_families_from_the_cards() -> void:
+	var page: String = _page({"actions_from_cards": true})
+	assert_true(page.contains("COSA SANNO FARE LE FAMIGLIE"), "c'e la tabella dei mestieri")
+	# Il conto vero, letto dagli stessi dati che legge la pagina.
+	var influencing: int = 0
+	for asset_id in session.data.assets:
+		var card: Dictionary = session.data.assets[str(asset_id)] as Dictionary
+		var action: Dictionary = card.get("card_action", {}) as Dictionary
+		if str(card["family"]) == "FORCE" and str(action.get("kind", "")) == "MOVE":
+			influencing += 1
+	assert_true(influencing > 0, "la FORZA sa muovere, e sono i dati a dirlo")
+	assert_true(
+		page.contains("%d muovere" % influencing),
+		"e la pagina scrive quel numero, non uno battuto a macchina"
 	)

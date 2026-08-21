@@ -81,63 +81,96 @@ func _lines(data: RefCounted, chronicle_id: String) -> Array:
 		)
 	out.append("")
 
-	# **Questa parte si scrive dalle regole, non a mano** (D-194). Era un elenco
-	# battuto a macchina, ed e' rimasto a descrivere il gioco di prima per tre
-	# versioni: prometteva un ACQUISIRE che non esiste piu' e un TRAMARE che
-	# leggeva il numero invece della soglia. Il commento in cima a questo file lo
-	# diceva gia' — «una pagina di regole che puo' sfasarsi dalle regole e'
-	# peggio di niente» — e la parte battuta a macchina e' esattamente quella che
-	# si e' sfasata.
+	# **Questa parte si scrive dalle regole e dalle carte, non a mano** (D-194,
+	# D-195). Era un elenco battuto a macchina — «un'azione e una di queste sei
+	# cose» — ed e' rimasto a descrivere il gioco di prima per tre versioni. Poi
+	# l'ho rattoppato invece di riscriverlo, e il committente ha dovuto dirlo due
+	# volte: **le azioni non si scelgono piu', le portano le carte**. Adesso la
+	# pagina parte dalla mano, e i mestieri delle famiglie li conta dai dati.
 	var rules: Dictionary = {} if chronicle == null else (chronicle as Dictionary)
 	var with_cards: bool = bool(rules.get("actions_from_cards", false))
-	out.append(SECTION % ("UN'AZIONE E UNA CARTA CALATA" if with_cards else "UN'AZIONE E UNA DI QUESTE SEI COSE"))
-	if with_cards:
-		out.append(
-			"Ogni carta e [b]tre cose insieme[/b]: un'azione, un valore al Consiglio "
-			+ "e un effetto suo. Calarla per agire la spende, e quella carta [b]non "
-			+ "votera piu[/b]. E li che sta il gioco: la spendo per fare, o la tengo "
-			+ "per votare?"
-		)
-		out.append("")
-	out.append("[b]Muovere[/b] — metti una presenza: clicchi una Regione cerchiata d'oro.")
-	if not with_cards:
-		out.append("[b]Acquisire[/b] — peschi una carta di una famiglia (ne escono due, ne tieni una).")
-	out.append("[b]Influenzare[/b] — alzi o abbassi di 1 una domanda dell'anno. Una sola volta per round, e ti serve una presenza in una Regione di quel dominio (o la carta stessa paga).")
-	out.append(
-		"[b]Tramare[/b] — %s. Lo sai solo tu."
-		% (
-			"leggi a quanto esplode una domanda velata"
-			if str(rules.get("veiled_tensions", "HIDES_ALL")) == "HIDES_THRESHOLD"
-			else "leggi il numero di una domanda velata"
-		)
-	)
-	out.append("[b]Forgiare[/b] — muovi di un passo il rapporto con un altro giocatore.")
-	var ready_at: int = int((rules.get("claim_rules", {}) as Dictionary).get("ready_at", 3))
-	if bool((rules.get("claim_rules", {}) as Dictionary).get("same_round_when_ready", false)):
-		out.append(
-			"[b]Rivendicare[/b] — se una domanda e gia a [b]%d[/b] o piu, scarti una "
-			% ready_at
-			+ "carta AUTORITA e [b]apri tu il Consiglio, adesso[/b]. Se non ci e ancora "
-			+ "arrivata, te la prenoti e la riscuoti quando matura."
-		)
-	else:
-		out.append("[b]Rivendicare[/b] — scarti una carta AUTHORITY per prenotarti il diritto di aprire tu il prossimo Consiglio su un tema.")
 	var refill: Dictionary = rules.get("hand_refill", {}) as Dictionary
-	if not refill.is_empty():
+
+	if not with_cards:
+		out.append(SECTION % "UN'AZIONE E UNA DI QUESTE SEI COSE")
+		out.append("[b]Muovere[/b] — metti una presenza: clicchi una Regione cerchiata d'oro.")
+		out.append("[b]Acquisire[/b] — peschi una carta di una famiglia (ne escono due, ne tieni una).")
+		out.append("[b]Influenzare[/b] — alzi o abbassi di 1 una domanda dell'anno. Una sola volta per round, e ti serve una presenza in una Regione di quel dominio.")
+		out.append(
+			"[b]Tramare[/b] — %s. Lo sai solo tu."
+			% (
+				"leggi a quanto esplode una domanda velata"
+				if str(rules.get("veiled_tensions", "HIDES_ALL")) == "HIDES_THRESHOLD"
+				else "leggi il numero di una domanda velata"
+			)
+		)
+		out.append("[b]Forgiare[/b] — muovi di un passo il rapporto con un altro giocatore.")
+		# La deroga a §10 (D-191) non dipende dalle carte: vale anche di qua.
+		var same_round: Dictionary = rules.get("claim_rules", {}) as Dictionary
+		if bool(same_round.get("same_round_when_ready", false)):
+			out.append(
+				"[b]Rivendicare[/b] — se la domanda e gia a [b]%d[/b] o piu la prendi "
+				% int(same_round.get("ready_at", 3))
+				+ "adesso e [b]il Consiglio lo apri tu[/b]; se non ci e ancora arrivata, "
+				+ "te la prenoti per quando maturera."
+			)
+		else:
+			out.append("[b]Rivendicare[/b] — scarti una carta AUTHORITY per prenotarti il diritto di aprire tu il prossimo Consiglio su un tema.")
+	else:
+		out.append(SECTION % "NON SI SCEGLIE UN'AZIONE: SI CALA UNA CARTA")
+		out.append(
+			"Non c'e una lista di cose che puoi fare. C'e [b]la tua mano[/b], e ogni "
+			+ "carta porta scritta l'unica cosa che sa fare."
+		)
 		out.append("")
 		out.append(
-			"[b]Le carte te le da la mappa.[/b] A inizio di ogni Atto peschi %d "
-			% int(refill.get("per_token", 1))
-			+ "cart%s per ogni gettone di presenza, fino a %d in mano — e [b]la Regione "
-			% ["a" if int(refill.get("per_token", 1)) == 1 else "e", int(refill.get("hand_cap", 7))]
-			+ "dove tieni la pedina decide di che famiglia[/b]."
+			"Ogni carta e [b]tre cose insieme[/b]: [b]un'azione[/b], [b]un valore al "
+			+ "Consiglio[/b] (la sua famiglia e la sua forza) e [b]un effetto suo[/b], "
+			+ "che scatta quando la impegni al voto."
 		)
-	if not (rules.get("tension_tokens", {}) as Dictionary).is_empty():
 		out.append(
-			"[b]E ogni cosa che fai scalda il mondo:[/b] a ogni azione riuscita cade "
-			+ "un gettone su una delle domande dell'anno. Non e il tempo a scaldarle: "
-			+ "siete voi."
+			"Calarla per agire [b]la spende[/b], e quella carta non votera piu. Ogni "
+			+ "turno e la stessa domanda: [i]la spendo per fare, o la tengo per "
+			+ "votare?[/i]"
 		)
+		out.append("")
+		if refill.is_empty():
+			out.append("Le carte si pescano con ACQUISIRE, come prima.")
+		else:
+			out.append(
+				"[b]Le carte te le da la mappa.[/b] A inizio di ogni Atto peschi %d "
+				% int(refill.get("per_token", 1))
+				+ "cart%s per ogni gettone di presenza, fino a %d in mano. E [b]la "
+				% ["a" if int(refill.get("per_token", 1)) == 1 else "e", int(refill.get("hand_cap", 7))]
+				+ "Regione dove tieni la pedina decide di che famiglia[/b]: quindi la "
+				+ "mappa non dice solo [i]quante[/i] carte hai, dice [i]che cose sai "
+				+ "fare[/i]."
+			)
+		out.append("")
+		out.append(SECTION % "COSA SANNO FARE LE FAMIGLIE")
+		for line in _families_can_do(data):
+			out.append(line)
+		var claim: Dictionary = rules.get("claim_rules", {}) as Dictionary
+		if bool(claim.get("same_round_when_ready", false)):
+			out.append("")
+			out.append(
+				"Una carta che [b]rivendica[/b]: se la domanda e gia a [b]%d[/b] o piu "
+				% int(claim.get("ready_at", 3))
+				+ "la prendi adesso e [b]il Consiglio lo apri tu[/b]; se non ci e ancora "
+				+ "arrivata, te la prenoti per quando maturera."
+			)
+		if str(rules.get("veiled_tensions", "HIDES_ALL")) == "HIDES_THRESHOLD":
+			out.append(
+				"Una carta che [b]trama[/b] gira la carta coperta di una domanda: "
+				+ "scopri [b]a quanto esplode[/b], e lo sai solo tu."
+			)
+		if not (rules.get("tension_tokens", {}) as Dictionary).is_empty():
+			out.append("")
+			out.append(
+				"[b]E ogni cosa che fai scalda il mondo:[/b] a ogni azione riuscita cade "
+				+ "un gettone su una delle domande dell'anno. Non e il tempo a "
+				+ "scaldarle: siete voi."
+			)
 	out.append("")
 
 	if data != null and chronicle != null:
@@ -271,3 +304,50 @@ func _deck_size(data: RefCounted, chronicle_id: String) -> int:
 		if not out_of_year:
 			total += 1
 	return total
+
+## I mestieri delle famiglie, **contati dalle carte** e non elencati a mano.
+##
+## E' il punto di D-195: se domani una carta cambia mestiere, questa riga cambia
+## con lei. La mappa decide che famiglia peschi, quindi questa tabella e' la
+## risposta vera alla domanda «cosa posso fare, stando qui?».
+func _families_can_do(data: RefCounted) -> Array:
+	if data == null:
+		return []
+	const VERBS: Dictionary = {
+		"MOVE": "muovere", "INFLUENCE": "influenzare", "SCHEME": "tramare",
+		"FORGE": "forgiare", "CLAIM": "rivendicare", "ACQUIRE": "acquisire",
+	}
+	const FAMILIES: Array = ["FORCE", "AUTHORITY", "PEOPLE", "KNOWLEDGE", "WEALTH", "BONDS"]
+	const NAMES: Dictionary = {
+		"FORCE": "FORZA", "AUTHORITY": "AUTORITA", "PEOPLE": "GENTE",
+		"KNOWLEDGE": "SAPERE", "WEALTH": "RICCHEZZA", "BONDS": "LEGAMI",
+	}
+	var counted: Dictionary = {}
+	for asset_id in data.assets:
+		var card: Dictionary = data.assets[str(asset_id)] as Dictionary
+		var action: Dictionary = card.get("card_action", {}) as Dictionary
+		if action.is_empty():
+			continue
+		var family: String = str(card["family"])
+		var kind: String = str(action["kind"])
+		var per: Dictionary = counted.get(family, {}) as Dictionary
+		per[kind] = int(per.get(kind, 0)) + 1
+		counted[family] = per
+	var out: Array = []
+	for family in FAMILIES:
+		var per: Dictionary = counted.get(family, {}) as Dictionary
+		if per.is_empty():
+			continue
+		var kinds: Array = per.keys()
+		kinds.sort_custom(func(a: String, b: String) -> bool:
+			if int(per[a]) == int(per[b]):
+				return str(a) < str(b)
+			return int(per[a]) > int(per[b])
+		)
+		var parts: Array = []
+		for kind in kinds:
+			parts.append("%d %s" % [int(per[str(kind)]), str(VERBS.get(str(kind), kind))])
+		out.append("[b]%s[/b] — %s" % [
+			str(NAMES.get(family, family)), ", ".join(PackedStringArray(parts))
+		])
+	return out
