@@ -417,6 +417,24 @@
             }
           }
         },
+        "claim_rules": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "La deroga a §10 sulla presa di parola (ISSUES 37, D-191). Omessa - il default - RIVENDICARE e' quella del regolamento: si prenota un dominio in un round e si riscuote in un round successivo. Misurato, tre prenotazioni su quattro muoiono in mano, perche' chi rivendica deve indovinare un round prima che la domanda sara' matura, che nessun altro avra' gia' forzato, e di avere ancora un secondo AUTORITA'.",
+          "properties": {
+            "same_round_when_ready": {
+              "type": "boolean",
+              "default": false,
+              "description": "Acceso, prendere la parola su una domanda **gia' matura** e' un'azione sola: non si prenota cio' che e' gia' pronto. La prenotazione resta per il caso vero - la domanda che non e' ancora matura e che ci si vuole accaparrare prima che lo diventi."
+            },
+            "ready_at": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 3,
+              "description": "Quanto deve valere una Tensione per essere «matura», cioe' forzabile. §10 dice 3."
+            }
+          }
+        },
         "veiled_tensions": {
           "type": "string",
           "enum": ["HIDES_ALL", "HIDES_THRESHOLD"],

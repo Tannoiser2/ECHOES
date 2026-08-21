@@ -1,4 +1,4 @@
-# Passaggio di consegne — stato al 0.1.157
+# Passaggio di consegne — stato al 0.1.159
 
 *Scritto per chi apre una sessione nuova su questo repository. Dice dov'è il
 lavoro, cosa regge, cosa no, e quali sono le regole di casa che non vanno
@@ -11,12 +11,13 @@ riscoperte da capo.*
 | | |
 |---|---|
 | ramo di sviluppo | `claude/echoes-boardgame-dev-cmu444` |
-| PR aperta | in bozza, su `main` |
-| ultimo commit | 0.1.157 |
-| ultimo merge su `main` | `175d58d` — PR #68, 0.1.145–0.1.149 |
+| PR aperta | nessuna |
+| ultimo commit su `main` | 0.1.157 |
+| sul ramo | 0.1.158-0.1.159 — il preventivo dei segnalini, e la presa di parola in un colpo |
+| ultimo merge su `main` | `248f5cd` — PR #70, 0.1.150–0.1.157 |
 
-La PR #68 è stata mergiata: questo ramo riparte da `main` e raccoglie da 0.1.150
-in poi.
+La PR #70 è stata mergiata: **il gioco a sole carte è su `main`**. Questo ramo
+riparte da lì, ed è vuoto — il prossimo lavoro apre una PR nuova.
 
 ## 2. Come si lavora qui — le regole di casa
 
@@ -68,6 +69,7 @@ Asserzioni disponibili: `assert_true`, `assert_false`, `assert_eq`, `assert_ne`.
 | `run_clause_probe.gd` | quanto costa una clausola **prima** di scriverla (banco in `tools/clause_candidates.json`) |
 | `run_era_probe.gd` | cosa fa il tempo a una saga, chi siede e dove arriva, **quale clausola manca quando un anno si perde** (0.1.145), e **quanto resta viva una campagna** (0.1.149: cambi di testa, anno dell'ultimo sorpasso) |
 | `run_saga.gd` | racconta una saga anno per anno |
+| `run_token_probe.gd` | **il preventivo di ISSUES 49**: quanti segnalini coperti scenderebbero se il calore lo pescassero i giocatori, quanti Consigli darebbe ogni innesco, e **se sarebbe un altro gioco** |
 | `run_hand_probe.gd` | **il preventivo di ISSUES 47** — da 0.1.154 anche **dove stanno davvero le pedine** e **il fabbisogno**: quante carte servono per giocare come adesso, quanto si stringe il gioco, e **la mano vera** col rubinetto acceso |
 | `tools/dead_code.py` · `tools/validate_data.py` | codice irraggiungibile · dati contro schemi, **e i Destini che si combattono da soli** (D-178: `--self-test` prova che le guardie mordano) |
 
@@ -102,12 +104,13 @@ Più due documenti: **`docs/MECCANICA.md`** — riportato a **0.1.149**, ed è i
 testo da dare a chi disegna l'infografica *e* a chi vuole sapere come si gioca
 bene (§15) — e **`docs/SAGA_NAHR.md`**, dieci anni giocati e raccontati.
 
-**Le misure di adesso** (playtest 100 semi, tavolo misto):
+**Le misure di adesso** (playtest 100 semi, tavolo misto, col gioco a carte
+acceso in CHR_01 e CHR_02):
 
 ```
 FAIL 235 · SUCC 99 · SUCC 122 · DECI 121 · mediana 6
 0 su 8 bloccati (misto e uniforme) · nessun seggio a NONE · nessuno a zero Trionfi
-suite 372 test / 6722 asserzioni
+suite 374 test / 6555 asserzioni
 ```
 
 ## 4. Le due cose che vanno guardate per prime
@@ -183,6 +186,38 @@ precedente — non un difetto del codice. Cambiarlo è cambiare il regolamento:
 - **0.6** il tavolo sullo schermo grande e le console in tasca (ISSUES 27). La
   metà difficile è fatta: tutto il codice disegna già *per spettatore*.
 - **0.5** computer vision sui marker · **1.0** la campagna Legacy
+
+## 5bis. Da dove ripartire, in ordine
+
+Scritto dopo il merge di #70, quando il gioco a sole carte è diventato il gioco.
+
+1. **Il 58% delle Occasioni resta muto** — di 720 turni, 222 volte il seggio non
+   voleva niente e **194 volte voleva qualcosa che la mano non sapeva dire**. È
+   la texture del gioco nuovo, è la prima misura che ne esista, e non è tarata.
+   Si abbassa con più carte per Atto o con una distribuzione diversa delle
+   azioni fra le famiglie: si trova il ginocchio in un pomeriggio di misure.
+   **È la prima cosa da fare.**
+2. **ISSUES 37 — metà chiusa in 0.1.159** (D-191), su decisione del committente:
+   non si prenota una domanda già matura, la si prende in un colpo. Morte in mano
+   su CHR_01 **da 78% a 41%**; il criterio chiede sotto il 33%, quindi **resta
+   aperta**. Due strade più aggressive sono state respinte coi numeri.
+3. **Il mondo del Sale** — CHR_03 gioca ancora il §10 di prima. Portarcelo vuol
+   dire prima guardare la sua mappa come è stata guardata quella della Carestia
+   (D-186). Lavoro pulito, nessuna decisione richiesta.
+4. **Un piano scriptato del gioco a carte** — i tre esistenti sono storie del
+   §10 di prima e lo dichiarano nel dato. Il gioco nuovo non ha una storia
+   raccontata: è provato dal cancello e dai test.
+5. **ISSUES 49 — le Tensioni come mucchi di segnalini coperti**, voluta dal
+   committente e **misurata in preventivo** (D-190). Il sacchetto esiste già (la
+   Deriva); la proposta cambia chi pesca e quando si guarda. Funziona **solo nel
+   gioco a carte** (2,1× la Deriva contro 8,0× nel §10 di prima), l'innesco «ogni
+   3 segnalini» riproduce il ritmo di oggi, e il numero che decide è che il
+   mucchio coperto sceglierebbe **un'altra domanda 7 volte su 10**. Servono
+   quattro decisioni del committente, scritte lì.
+6. **Le due domande del committente ancora aperte sulle Tensioni**: che nella
+   prima partita non siano sempre le stesse quattro, e che partano tutte da
+   **0**. La seconda non è gratis — con nove gettoni di Deriva su quattro
+   domande, partire da zero obbliga a rifare le soglie.
 
 ## 6. La cosa che non si risolve misurando
 

@@ -148,4 +148,7 @@ func play_classic() -> void:
 	# il rubinetto sopra ACQUISIRE non e' ne' il gioco vecchio ne' quello nuovo,
 	# e misurarlo vuol dire misurare un terzo gioco che nessuno gioca.
 	chronicle["hand_refill"] = {}
+	# E il §10 di sempre e' anche la presa di parola in due tempi (D-191): si
+	# prenota in un round, si riscuote in un altro.
+	chronicle["claim_rules"] = {}
 	session.actions.set("_chronicle", chronicle)

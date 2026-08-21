@@ -10,6 +10,182 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-191 — Non si prenota una domanda che e' gia' matura
+**implemented in 0.1.159** (ISSUES 37, meta' aperta — decisione del committente su §10)
+
+Il committente ha deciso tre cose: **gioco a carte**, **l'innesco lo apre un
+giocatore**, e **col sacchetto le soglie vanno riviste**. La prima e' fatta
+(D-188), la terza e' il lavoro grosso di ISSUES 49. La seconda non esiste finche'
+RIVENDICARE muore in mano tre volte su quattro: **un innesco a chiamata non e'
+un innesco se la chiamata non riesce mai.**
+
+### La deroga
+
+§10 vuole due tempi: si prenota un dominio in un round (CREATE, scartando un
+AUTORITA') e si riscuote in un round successivo (FORCE, scartandone un secondo).
+Chi rivendica deve quindi indovinare, un round prima, che la domanda sara'
+matura, che nessun altro avra' gia' forzato, e di avere ancora una carta.
+
+Da qui: se la Tensione e' **gia' matura** — al valore che §10 chiama forzabile,
+3 — prendere la parola e' **un'azione sola**. Non si prenota cio' che e' gia'
+pronto. La prenotazione resta per il caso vero: la domanda che *non* e' ancora
+matura e che ci si vuole accaparrare prima che lo diventi.
+
+E' dichiarata sulla Chronicle (`claim_rules.same_round_when_ready`, con
+`ready_at`), non scritta nel codice: il §10 di sempre resta provato dai test e si
+riaccende cambiando una riga.
+
+### Il collo di bottiglia si e' spostato due volte, e l'ho misurato ogni volta
+
+**Prima misura, la regola sola.** Su 720 turni il cervello vuole prendere la
+parola **153 volte**, e con la deroga l'azione diretta sarebbe legale **153 volte
+su 153** — la regola non rifiuta piu' niente. Ma i Consigli strappati non si
+muovevano.
+
+**Il secondo collo: le carte.** In mano c'era una carta RIVENDICARE 106 volte su
+153, ma la mano sapeva dire **esattamente quella cosa** solo 51 volte: le quattro
+carte AUTORITA' fissavano il modo, due CREATE e due FORCE. **Il modo e' stato
+liberato**: e' D-184 applicato — *«i parametri scritti sulla carta vincono, quelli
+che la carta lascia aperti restano una scelta di chi la gioca»*. Prenotare o
+strappare lo decide chi cala la carta.
+
+**Il terzo collo: la cautela del bot.** D-069 gli aveva insegnato a forzare solo
+in un round che sarebbe rimasto muto, per non rubare il posto al Consiglio a
+soglia. Quella cautela proteggeva **una prenotazione**, e con la deroga non c'e'
+piu' niente da proteggere. Adesso, quando la Chronicle concede il colpo solo, il
+seggio strappa una domanda matura senza aspettare — ed e' esattamente cio' che il
+committente ha chiesto — e **non prenota piu' cio' che e' gia' maturo**.
+
+### Le misure
+
+Su CHR_01, 40 partite, contando i Claim nel registro degli Effetti:
+
+| | prima | dopo |
+|---|---|---|
+| prenotazioni aperte | 73 | **27** |
+| prenotazioni riscosse | 16 | **16** |
+| **morte in mano** | 57 (**78%**) | **11 (41%)** |
+
+Il cancello regge: `FAIL 239 · 100 · 134 · 126`, Consigli media 5,99, mediana 6,
+**0 su 8** a tavolo misto e uniforme. Suite **374 test / 6555 asserzioni**.
+
+### Quello che si dichiara
+
+- **Il criterio di ISSUES 37 non e' raggiunto.** Chiedeva le morte **sotto una su
+  tre**; siamo a **41%**, da 78%. Quasi dimezzate, non abbastanza. La meta' resta
+  aperta.
+- **Ho provato a chiuderlo togliendo del tutto la prenotazione** al bot quando la
+  deroga e' accesa: le morte vanno a **zero**, ma **zero e' anche il numero di
+  prenotazioni**. Non e' una regola risanata, e' una regola sparita — e i Consigli
+  falliti salivano da 239 a 252. Respinta coi numeri.
+- **Ho provato anche a impedire al ripiego di giocare una carta RIVENDICARE alla
+  cieca** (senza bersaglio prenota un dominio a caso): comprava due punti
+  percentuali di morte in meno e costava **19 Consigli falliti in piu'**.
+  Respinta coi numeri.
+- **CHR_03 non e' toccata**: li' §10 e' quello di sempre e le prenotazioni
+  muoiono ancora al 78%. E' il termine di paragone.
+- **La misura precedente era contaminata e l'ho corretta.** La sonda dei gradini
+  alterna CHR_01 e CHR_03, quindi meta' del campione veniva dal mondo dove la
+  regola e' spenta: i primi numeri che avevo letto (80 aperte, 21 forzate)
+  mescolavano due giochi. I numeri qui sopra sono **CHR_01 da sola**.
+- **Forzare un Consiglio non e' un Effetto**: `world["forced_confluence"]` si
+  scrive a mano, ed e' una delle poche mutazioni senza inverso. Non l'ho toccata,
+  ma con l'innesco a chiamata diventera' il cuore del turno, e li' andra' fatta
+  come si deve.
+- **Il passo dopo e' ISSUES 49**, e questa deroga ne e' il primo mattone: quando
+  saranno i mucchi coperti a dire quale domanda si dibatte, sara' **questa**
+  l'azione che li gira.
+
+---
+
+## D-190 — Il prezzo del sacchetto dei segnalini coperti
+**misurata in 0.1.158** (nessuna regola cambiata: e' il preventivo di ISSUES 49)
+
+Il committente ha proposto di rifare le Tensioni: *«ogni carta o azione fa
+pescare uno o piu' segnalini coperti che danno un valore a una tensione. A un
+certo punto, quando parte la Confluence, si girano, e la tensione col punteggio
+piu' alto viene dibattuta nel Consiglio.»*
+
+### La prima cosa da dire: il sacchetto esiste gia'
+
+La Deriva **e' gia' un sacchetto**: nove gettoni mescolati col seme
+(`drift_distribution`, D-047), pescati uno per round. La proposta non introduce
+un oggetto nuovo — cambia **chi pesca** (i giocatori agendo, non il mondo a
+orologio) e **quando si guarda** (al Consiglio, non subito). La sonda misura
+tutte e due le cose senza toccare una regola.
+
+### a) Quanto si scalderebbe il mondo
+
+| | CHR_01 (gioco a carte) | CHR_03 (§10 di prima) |
+|---|---|---|
+| segnalini in un anno, tutto il tavolo | **18,7** | **72,4** |
+| il mondo si scalda, col sacchetto piatto | **2,1 volte** piu' in fretta | **8,0 volte** |
+| ...col sacchetto misto (1/2/3) | **3,6 volte** | **14,1 volte** |
+
+**E' la misura che decide la regola.** Il sacchetto funziona **solo nel gioco a
+carte**: li' le azioni sono poche e ognuna pesa, quindi 18,7 segnalini contro i
+9 della Deriva e' un raddoppio governabile. Nel §10 di prima ogni ACQUISIRE
+scalderebbe il mondo, e ACQUISIRE era **due terzi di tutto**: settantadue
+segnalini in un anno, otto volte la Deriva. Le due riprogettazioni — le carte e
+i segnalini — **hanno bisogno l'una dell'altra**.
+
+Il sacchetto misto e' fuori scala in entrambi i mondi: 3,6 volte in CHR_01
+significa rifare tutte le soglie, non ritoccarle.
+
+### b) Su quali domande finiscono, e quanto e' storto il mucchio
+
+Il Risveglio prende 6,68 segnalini l'anno contro i 3,83 della Carestia — ed e'
+**giusto cosi'**: e' la composizione del sacchetto che il committente ha gia'
+tarato (3 gettoni su 9 sono suoi). Ma lo scarto fra il mucchio piu' alto e il
+piu' basso cresce: **3,07 -> 4,15 -> 5,02** di Atto in Atto. Girare i segnalini
+all'Atto 3 sarebbe spesso una formalita': una domanda ha gia' vinto.
+
+### c) I tre inneschi, in numeri
+
+| innesco | Consigli in un anno (CHR_01) |
+|---|---|
+| a orologio, fine Atto | 3,00 |
+| a orologio, fine round | 9,00 |
+| a quantita', ogni **3** segnalini | **5,95** |
+| a quantita', ogni 4 segnalini | 4,27 |
+| a quantita', ogni 6 segnalini | 2,67 |
+| **il gioco di oggi (a soglia)** | **5,90** |
+
+**Un segnalino ogni tre riproduce esattamente il ritmo di adesso** — 5,95 contro
+5,90 — e lo fa con una regola che al tavolo si conta a occhio: tre gettoni
+scesi, si gira. E' il candidato migliore fra quelli misurati.
+
+### d) E la domanda che conta: sarebbe un gioco diverso?
+
+Su **354 Consigli veri**, il mucchio coperto avrebbe scelto **la stessa domanda
+il 31% delle volte** (il 23% in CHR_03). Sette volte su dieci si dibatterebbe
+qualcos'altro.
+
+**Non e' colore: e' un altro gioco.** Non dice che sia peggiore — dice che non
+si puo' accendere «per vedere come va», perche' cambia quali storie il mondo
+racconta.
+
+### Quello che si dichiara
+
+- **La sonda non cambia niente**, come il preventivo di D-183: gioca le partite
+  come sono e tiene un mondo ombra a fianco. I numeri sono quindi *quanti
+  segnalini scenderebbero*, non *come andrebbe la partita*: con la regola accesa
+  i seggi agirebbero diversamente, e questa sonda non lo sa.
+- **L'innesco «a chiamata» non e' misurato**, ed e' quello che mi sembra
+  migliore: il Consiglio lo apre un giocatore. Non e' misurabile con una sonda
+  ombra perche' dipende da una decisione che oggi nessun bot puo' prendere —
+  serve prima la regola. Nota che salderebbe ISSUES 37: RIVENDICARE, che oggi
+  muore in mano tre volte su quattro, diventerebbe **il motore delle Tensioni**.
+- **Il sacchetto ombra pesca a caso, uniformemente.** La proposta dice «ogni
+  carta o azione fa pescare»: se invece e' **la carta** a dire quale domanda si
+  scalda, il mucchio smette di essere casuale e diventa una scelta — un gioco
+  ancora diverso, e non misurato qui.
+- **Niente e' stato provato con quattro persone.** Questa regola vive o muore
+  sulla sensazione di guardare un mucchio che cresce senza poterlo contare, e
+  quella e' esattamente la cosa che un bot non prova.
+
+---
+
 ## D-189 — Un piano scriptato dice in che economia e' stato scritto
 **implemented in 0.1.157** (riparazione di D-188, trovata dalla CI)
 

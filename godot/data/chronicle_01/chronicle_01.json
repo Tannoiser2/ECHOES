@@ -203,6 +203,10 @@
         "cap": 6,
         "hand_cap": 7
       },
+      "claim_rules": {
+        "same_round_when_ready": true,
+        "ready_at": 3
+      },
       "veiled_tensions": "HIDES_THRESHOLD",
       "saga_scoring": {
         "none": -1,
@@ -459,6 +463,10 @@
         "floor": 2,
         "cap": 6,
         "hand_cap": 7
+      },
+      "claim_rules": {
+        "same_round_when_ready": true,
+        "ready_at": 3
       },
       "veiled_tensions": "HIDES_THRESHOLD",
       "saga_scoring": {

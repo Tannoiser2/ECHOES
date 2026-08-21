@@ -320,6 +320,9 @@ const DEFS := {
 			"structure_rules": {
 				"type": "Dictionary",
 			},
+			"claim_rules": {
+				"type": "Dictionary",
+			},
 			"veiled_tensions": {
 				"type": "String",
 				"enum": [

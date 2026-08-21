@@ -667,6 +667,21 @@ def check_sim_plans_declare_their_economy(
                 "o lo dichiara false (e' una storia del §10 di prima), o le sue "
                 "mosse vanno riscritte come carte",
             )
+    # Stessa ragione per la presa di parola (D-191): una storia scritta in due
+    # tempi non si rilegge in un tempo solo.
+    for plan in plans:
+        chronicle = chronicles.get(str(plan.get("chronicle_id", "")))
+        if chronicle is None or not chronicle.get("claim_rules", {}).get(
+            "same_round_when_ready", False
+        ):
+            continue
+        if "claim_rules" not in plan.get("chronicle_overrides", {}):
+            report.fail(
+                f"sim_plan [{plan.get('id')}]",
+                f"la Chronicle {plan.get('chronicle_id')} concede la presa di "
+                "parola in un colpo, ma il piano non dichiara "
+                "`chronicle_overrides.claim_rules`",
+            )
 
 
 def check_destiny_token_budget(

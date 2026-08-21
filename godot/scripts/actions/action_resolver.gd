@@ -320,6 +320,21 @@ func _check_scheme(entity_id: String, params: Dictionary) -> String:
 	return "modo sconosciuto '%s'" % params.get("mode", "")
 
 
+## §10 e' materia del committente, quindi la deroga sta nella Chronicle e non nel
+## codice (D-191). `same_round_when_ready` acceso, prendere la parola su una
+## domanda gia' matura e' **un'azione sola**; spento, il gioco e' quello di §10 —
+## si prenota in un round e si riscuote in un altro.
+func _claim_in_one_move() -> bool:
+	return bool(
+		(_chronicle.get("claim_rules", {}) as Dictionary).get("same_round_when_ready", false)
+	)
+
+
+## Quanto deve valere una domanda per essere «matura». §10 dice 3.
+func _claim_ready_at() -> int:
+	return int((_chronicle.get("claim_rules", {}) as Dictionary).get("ready_at", 3))
+
+
 func _check_claim(entity_id: String, params: Dictionary) -> String:
 	var mode: String = str(params.get("mode", "CREATE"))
 	if mode == "CREATE":
@@ -338,14 +353,22 @@ func _check_claim(entity_id: String, params: Dictionary) -> String:
 	var tension_id: String = str(params.get("tension_id", ""))
 	if not world["tensions"].has(tension_id):
 		return "tensione sconosciuta '%s'" % tension_id
+	if tensions.value(tension_id) < _claim_ready_at():
+		return "la Tensione deve valere almeno %d per essere forzata" % _claim_ready_at()
 	var claim: Dictionary = service.claim_for_domain(entity_id, service.tension_domain(tension_id))
+	# ISSUES 37 (D-191): **non si prenota una domanda che e' gia' matura.** Se la
+	# Tensione ha gia' raggiunto la maturita', prendere la parola e' un'azione
+	# sola; la prenotazione resta per il caso vero — la domanda che *non* e'
+	# ancora matura e che ci si vuole accaparrare prima che lo diventi.
 	if claim.is_empty():
-		return "nessun Claim di %s sul dominio %s" % [entity_id, service.tension_domain(tension_id)]
-	# §10: the Claim has to have been laid down in an earlier round.
-	if int(claim["act"]) == int(world["act"]) and int(claim["round"]) == int(world["round"]):
+		if not _claim_in_one_move():
+			return "nessun Claim di %s sul dominio %s" % [
+				entity_id, service.tension_domain(tension_id)
+			]
+	elif int(claim["act"]) == int(world["act"]) and int(claim["round"]) == int(world["round"]) \
+			and not _claim_in_one_move():
+		# §10: the Claim has to have been laid down in an earlier round.
 		return "il Claim e stato creato in questo round"
-	if tensions.value(tension_id) < 3:
-		return "la Tensione deve valere almeno 3 per essere forzata"
 	if world.get("forced_confluence", null) != null:
 		return "una Confluence e gia stata forzata per questo round"
 	if _pick_authority(entity_id, params) == "" \
@@ -914,17 +937,20 @@ func _claim(entity_id: String, params: Dictionary, source: Dictionary) -> Dictio
 	var forced_waiver: String = TagRules.action_discount(data, world, entity_id, "CLAIM")
 	var second: String = "" if forced_waiver != "" else _pick_authority(entity_id, params)
 	effects.append_array(_discard(entity_id, second, source))
-	effects.append(
-		applier.apply(
-			Effect.make(
-				"CONSUME_CLAIM",
-				"claim",
-				str(claim["claim_id"]),
-				{"claim_id": str(claim["claim_id"])},
-				source
+	# Senza prenotazione non c'e' niente da consumare: la parola si e' presa in
+	# un colpo su una domanda gia' matura (D-191).
+	if not claim.is_empty():
+		effects.append(
+			applier.apply(
+				Effect.make(
+					"CONSUME_CLAIM",
+					"claim",
+					str(claim["claim_id"]),
+					{"claim_id": str(claim["claim_id"])},
+					source
+				)
 			)
 		)
-	)
 	world["forced_confluence"] = {"tension_id": tension_id, "entity_id": entity_id}
 	if second == "":
 		log.bullet(
