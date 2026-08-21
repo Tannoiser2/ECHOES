@@ -27,6 +27,12 @@ jobs:
       - name: Validate godot/data against /schema
         run: python3 tools/validate_data.py
 
+      # Una guardia che nessuno ha mai visto mordere non e' una guardia: il
+      # conto dei gettoni gira su un difetto piantato apposta prima di girare
+      # sui dati veri (D-177).
+      - name: La guardia dei gettoni morde
+        run: python3 tools/validate_data.py --self-test
+
       # schema_defs.gd is generated. If it no longer matches the schemas, the
       # Godot-side validation and the Python-side validation have diverged.
       - name: Drift check - generated GDScript schema

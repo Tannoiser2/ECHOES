@@ -195,6 +195,13 @@
         "fall_on": [
           "NONE"
         ]
+      },
+      "saga_scoring": {
+        "none": -1,
+        "minimum": 1,
+        "victory": 3,
+        "triumph": 6,
+        "decides_after": 10
       }
     },
     {
@@ -437,6 +444,13 @@
         "fall_on": [
           "NONE"
         ]
+      },
+      "saga_scoring": {
+        "none": -1,
+        "minimum": 1,
+        "victory": 3,
+        "triumph": 6,
+        "decides_after": 10
       }
     }
   ]

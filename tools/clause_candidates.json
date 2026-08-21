@@ -1,171 +1,29 @@
 {
-  "note": "Il banco di prova di `cli/run_clause_probe.gd`. Non e' contenuto e non passa dagli schemi: e' la lista di clausole che si vuole misurare **prima** di scriverle in un Destino (D-161, D-167). `$self` e' il seggio a cui la clausola viene letta, quindi la stessa riga si legge su otto case in un giro solo. Si sovrascrive liberamente: quello che c'e' adesso e' il banco di D-170, le strade dei sei Destini mai giocati, tenuto insieme a quello di D-168 su Lyra. Una clausola nominata su una casa da 0% ai seggi dell'altra Chronicle, che non giocano quelle partite: si legge la riga della casa che la porta.\n\nATTENZIONE al perimetro (D-170): la sonda misura cosa e' vero **nel mondo che c'e'**, coi seggi che giocano il proprio Destino. Una clausola scritta in un Destino che quel seggio non insegue si misura diversa quando lo insegue davvero — «una Regione controllata» dava 80-100% qui e 13 NONE su 41 ai seggi che la giuravano.",
+  "note": "Il banco di prova di `cli/run_clause_probe.gd`. Non e' contenuto e non passa dagli schemi: e' la lista di clausole che si vuole misurare **prima** di scriverle in un Destino (D-161, D-167). `$self` e' il seggio a cui la clausola viene letta, quindi la stessa riga si legge su otto case in un giro solo. Si sovrascrive liberamente: quello che c'e' adesso e' il banco della linea della Cenere/Fuochi, la voce lasciata aperta da D-176.\n\nATTENZIONE al perimetro (D-170): la sonda misura cosa e' vero **nel mondo che c'e'**, coi seggi che giocano il proprio Destino. Una clausola scritta in un Destino che quel seggio non insegue si misura diversa quando lo insegue davvero - «una Regione controllata» dava 80-100% qui e 13 NONE su 41 ai seggi che la giuravano.\n\nLa domanda di questo banco: il Minimo della Cenere inchioda due gettoni su tre sulle Montagne Rosse, e ogni gradino sopra la chiama altrove. Le righe che seguono misurano quanto costa ognuno di quei richiami, e quali alternative reggerebbero al loro posto.",
   "items": [
     {
-      "id": "LY_SCORTA",
-      "note": "la scorta giurata (la porta di oggi)",
-      "condition": {
-        "type": "state_tag_present",
-        "scope": "ENTITY",
-        "entity_id": "ENT_LYRA",
-        "tag": "escort_sworn"
-      }
-    },
-    {
-      "id": "LY_NON_SIGILLATE",
-      "note": "le Miniere non sono state sigillate",
-      "condition": {
-        "type": "state_tag_absent",
-        "scope": "GLOBAL",
-        "tag": "mine_sealed"
-      }
-    },
-    {
-      "id": "LY_TIENE_MINIERE",
-      "note": "tiene le Miniere Antiche",
-      "condition": {
-        "type": "control_count",
-        "entity_id": "ENT_LYRA",
-        "min": 1
-      }
-    },
-    {
-      "id": "LY_STRADA_APERTA",
-      "note": "la Strada dei Mercanti non e' tagliata",
-      "condition": {
-        "type": "state_tag_absent",
-        "scope": "REGION",
-        "region_id": "REG_STRADA_MERCANTI",
-        "tag": "condition:cut_off"
-      }
-    },
-    {
-      "id": "LY_STRADE_5",
-      "note": "la Tensione delle strade non oltre 5",
-      "condition": {
-        "type": "tension_limit",
-        "tension_id": "TEN_ROADS",
-        "max": 5
-      }
-    },
-    {
-      "id": "LY_STRADE_6",
-      "note": "la Tensione delle strade non oltre 6",
-      "condition": {
-        "type": "tension_limit",
-        "tension_id": "TEN_ROADS",
-        "max": 6
-      }
-    },
-    {
-      "id": "LY_TETTO_MINIERE",
-      "note": "una pietra sua nelle Miniere",
-      "condition": {
-        "type": "structure_count",
-        "entity_id": "ENT_LYRA",
-        "region_id": "REG_MINIERE_ANTICHE",
-        "min": 1
-      }
-    },
-    {
-      "id": "LY_SULLA_STRADA",
-      "note": "una pedina sua sulla Strada dei Mercanti",
+      "id": "CE_MONTAGNE_2",
+      "note": "il Minimo di oggi: due gettoni sulle Montagne Rosse",
       "condition": {
         "type": "region_presence",
-        "entity_id": "ENT_LYRA",
-        "region_id": "REG_STRADA_MERCANTI",
-        "min": 1
-      }
-    },
-    {
-      "id": "LY_ALLEATA_ALDRIC",
-      "note": "Aldric le e' alleato o meglio",
-      "condition": {
-        "type": "relation_state",
-        "entity_id": "ENT_LYRA",
-        "other_entity_id": "ENT_ALDRIC",
-        "level": "ALLY",
-        "at_least": true
-      }
-    },
-    {
-      "id": "LY_NON_NEMICA_VAERAX",
-      "note": "Vaerax non le e' nemico",
-      "condition": {
-        "type": "relation_state",
-        "entity_id": "ENT_LYRA",
-        "other_entity_id": "ENT_VAERAX",
-        "level": "NEUTRAL",
-        "at_least": true
-      }
-    },
-    {
-      "id": "LY_DUE_SCOPERTE",
-      "note": "due Scoperte",
-      "condition": {
-        "type": "discovery_count",
-        "entity_id": "ENT_LYRA",
+        "entity_id": "ENT_CENERE",
+        "region_id": "REG_MONTAGNE_ROSSE",
         "min": 2
       }
     },
     {
-      "id": "LY_CRISTALLO_NON_SFRUTTATO",
-      "note": "il Cristallo non e' stato sfruttato",
-      "condition": {
-        "type": "state_tag_absent",
-        "scope": "GLOBAL",
-        "tag": "crystal_exploited"
-      }
-    },
-    {
-      "id": "LY_PRESENZA_MINIERE",
-      "note": "la spina della Vittoria: una pedina sua nelle Miniere",
+      "id": "CE_MINIERE_2",
+      "note": "il ramo sospetto: «O sono scesi in due» - due gettoni sulle Miniere, mentre il Minimo ne chiede due sulle Montagne, con un tetto di tre",
       "condition": {
         "type": "region_presence",
-        "entity_id": "ENT_LYRA",
+        "entity_id": "ENT_CENERE",
         "region_id": "REG_MINIERE_ANTICHE",
-        "min": 1
-      }
-    },
-    {
-      "id": "LY_SCOP_2",
-      "note": "due Scoperte (la spina del Trionfo di oggi)",
-      "condition": {
-        "type": "discovery_count",
-        "entity_id": "ENT_LYRA",
         "min": 2
-      }
-    },
-    {
-      "id": "LY_SCOP_4",
-      "note": "quattro Scoperte",
-      "condition": {
-        "type": "discovery_count",
-        "entity_id": "ENT_LYRA",
-        "min": 4
-      }
-    },
-    {
-      "id": "LY_DUE_REGIONI",
-      "note": "due Regioni",
-      "condition": {
-        "type": "control_count",
-        "entity_id": "ENT_LYRA",
-        "min": 2
-      }
-    },
-    {
-      "id": "LY_PIETRA_QUALSIASI",
-      "note": "una pietra sua ovunque",
-      "condition": {
-        "type": "structure_count",
-        "entity_id": "ENT_LYRA",
-        "min": 1
       }
     },
     {
       "id": "CE_RELIQUIA",
-      "note": "Cenere: la reliquia vista",
+      "note": "la porta che regge da sola la Vittoria di DST_CENERE_DEEP",
       "condition": {
         "type": "state_tag_present",
         "scope": "ENTITY",
@@ -174,381 +32,52 @@
       }
     },
     {
-      "id": "CE_MINIERE",
-      "note": "Cenere: presenza nelle Miniere",
+      "id": "CE_OPERA_MINIERE",
+      "note": "candidata: quello che hanno trovato l'hanno messo al sicuro - un'opera loro nelle gallerie",
       "condition": {
-        "type": "region_presence",
+        "type": "structure_count",
         "entity_id": "ENT_CENERE",
         "region_id": "REG_MINIERE_ANTICHE",
         "min": 1
       }
     },
     {
-      "id": "CE_PIETRA",
-      "note": "Cenere: una pietra sua",
+      "id": "CE_OPERA_MONTAGNA",
+      "note": "candidata: un'opera loro sulla montagna - si costruisce dove si sta gia'",
       "condition": {
         "type": "structure_count",
         "entity_id": "ENT_CENERE",
-        "min": 1
-      }
-    },
-    {
-      "id": "CE_PRESIDIO2",
-      "note": "Cenere: un presidio di grado 2",
-      "condition": {
-        "type": "structure_count",
-        "entity_id": "ENT_CENERE",
-        "structure_family": "PRESIDIO",
-        "grade": 2,
-        "min": 1
-      }
-    },
-    {
-      "id": "CE_CTRL1",
-      "note": "Cenere: una Regione",
-      "condition": {
-        "type": "control_count",
-        "entity_id": "ENT_CENERE",
-        "min": 1
-      }
-    },
-    {
-      "id": "CE_PATTO",
-      "note": "Cenere: il patto con la Gilda saltato",
-      "condition": {
-        "type": "promise_broken",
-        "entity_id": "ENT_CENERE",
-        "other_entity_id": "ENT_SALE"
-      }
-    },
-    {
-      "id": "CE_NON_MURATE",
-      "note": "Cenere: gallerie non murate",
-      "condition": {
-        "type": "state_tag_absent",
-        "scope": "REGION",
-        "region_id": "REG_MINIERE_ANTICHE",
-        "tag": "structure:sealed"
-      }
-    },
-    {
-      "id": "CE_MONTE_PULITO",
-      "note": "Cenere: Montagne senza segno",
-      "condition": {
-        "type": "scar_count",
         "region_id": "REG_MONTAGNE_ROSSE",
-        "max": 0
-      }
-    },
-    {
-      "id": "NA_LEGGENDA",
-      "note": "Nahr: la storia per iscritto",
-      "condition": {
-        "type": "state_tag_present",
-        "scope": "ENTITY",
-        "entity_id": "ENT_NAHR",
-        "tag": "discovery:legend"
-      }
-    },
-    {
-      "id": "NA_INSEDIATI",
-      "note": "Nahr: insediamento riconosciuto",
-      "condition": {
-        "type": "state_tag_present",
-        "scope": "GLOBAL",
-        "tag": "nahr_settled"
-      }
-    },
-    {
-      "id": "NA_DUE_PIETRE",
-      "note": "Nahr: due pietre sue",
-      "condition": {
-        "type": "structure_count",
-        "entity_id": "ENT_NAHR",
-        "min": 2
-      }
-    },
-    {
-      "id": "NA_CTRL1",
-      "note": "Nahr: una Regione",
-      "condition": {
-        "type": "control_count",
-        "entity_id": "ENT_NAHR",
         "min": 1
       }
     },
     {
-      "id": "NA_VALLE_PULITA",
-      "note": "Nahr: Valle senza segno",
+      "id": "CE_RELIC_CALDA",
+      "note": "candidata: la domanda di cosa c'e' sotto e' rimasta aperta",
       "condition": {
-        "type": "scar_count",
-        "region_id": "REG_VALLE_VERDE",
-        "max": 0
-      }
-    },
-    {
-      "id": "SA_LEGGENDA",
-      "note": "Sale: la vecchia pagina riletta",
-      "condition": {
-        "type": "state_tag_present",
-        "scope": "ENTITY",
-        "entity_id": "ENT_SALE",
-        "tag": "discovery:legend"
-      }
-    },
-    {
-      "id": "SA_REGISTRO",
-      "note": "Sale: registro aperto",
-      "condition": {
-        "type": "state_tag_present",
-        "scope": "GLOBAL",
-        "tag": "ledger_public"
-      }
-    },
-    {
-      "id": "SA_ACQUA",
-      "note": "Sale: l'acqua si muove",
-      "condition": {
-        "type": "state_tag_present",
-        "scope": "GLOBAL",
-        "tag": "water_moves"
-      }
-    },
-    {
-      "id": "SA_STRADA",
-      "note": "Sale: presenza sulla Strada",
-      "condition": {
-        "type": "region_presence",
-        "entity_id": "ENT_SALE",
-        "region_id": "REG_STRADA_MERCANTI",
-        "min": 1
-      }
-    },
-    {
-      "id": "SA_OPERA",
-      "note": "Sale: un'opera sua",
-      "condition": {
-        "type": "structure_count",
-        "entity_id": "ENT_SALE",
-        "structure_family": "OPERA",
-        "min": 1
-      }
-    },
-    {
-      "id": "SH_FAMA",
-      "note": "condiviso: il segno della fama",
-      "condition": {
-        "type": "state_tag_present",
-        "scope": "ENTITY",
-        "entity_id": "$self",
-        "tag": "renowned"
-      }
-    },
-    {
-      "id": "SH_CTRL1",
-      "note": "condiviso: una Regione",
-      "condition": {
-        "type": "control_count",
-        "entity_id": "$self",
-        "min": 1
-      }
-    },
-    {
-      "id": "SH_PIETRA",
-      "note": "condiviso: una pietra sua",
-      "condition": {
-        "type": "structure_count",
-        "entity_id": "$self",
-        "min": 1
-      }
-    },
-    {
-      "id": "SH_PRESENZA2",
-      "note": "condiviso: due pedine in una Regione qualsiasi",
-      "condition": {
-        "type": "structure_count",
-        "entity_id": "$self",
-        "grade": 2,
-        "min": 1
-      }
-    },
-    {
-      "id": "SH_POCHI_SEGNI",
-      "note": "condiviso: al piu' due cicatrici",
-      "condition": {
-        "type": "scar_count",
-        "max": 2
-      }
-    },
-    {
-      "id": "CE_MIN_PULITE",
-      "note": "Cenere: Miniere senza segno",
-      "condition": {
-        "type": "scar_count",
-        "region_id": "REG_MINIERE_ANTICHE",
-        "max": 0
-      }
-    },
-    {
-      "id": "CE_GRADO2",
-      "note": "Cenere: una pietra di grado 2",
-      "condition": {
-        "type": "structure_count",
-        "entity_id": "ENT_CENERE",
-        "grade": 2,
-        "min": 1
-      }
-    },
-    {
-      "id": "CE_DUE_PIETRE",
-      "note": "Cenere: due pietre sue",
-      "condition": {
-        "type": "structure_count",
-        "entity_id": "ENT_CENERE",
-        "min": 2
-      }
-    },
-    {
-      "id": "CE_MINIERE2",
-      "note": "Cenere: due pedine nelle Miniere",
-      "condition": {
-        "type": "region_presence",
-        "entity_id": "ENT_CENERE",
-        "region_id": "REG_MINIERE_ANTICHE",
-        "min": 2
-      }
-    },
-    {
-      "id": "CE_NON_NEMICA",
-      "note": "Cenere: la Gilda non le e' nemica",
-      "condition": {
-        "type": "relation_state",
-        "entity_id": "ENT_CENERE",
-        "other_entity_id": "ENT_SALE",
-        "level": "NEUTRAL",
-        "at_least": true
-      }
-    },
-    {
-      "id": "CE_POCHI_SEGNI",
-      "note": "Cenere: al piu' due cicatrici",
-      "condition": {
-        "type": "scar_count",
-        "max": 2
-      }
-    },
-    {
-      "id": "NA_TRE_PIETRE",
-      "note": "Nahr: tre pietre sue",
-      "condition": {
-        "type": "structure_count",
-        "entity_id": "ENT_NAHR",
+        "type": "tension_limit",
+        "tension_id": "TEN_RELIC",
         "min": 3
       }
     },
     {
-      "id": "NA_INSEDIAMENTO2",
-      "note": "Nahr: un insediamento di grado 2",
+      "id": "CE_PRESIDIO",
+      "note": "candidata: un presidio loro, ovunque",
       "condition": {
         "type": "structure_count",
-        "entity_id": "ENT_NAHR",
-        "structure_family": "INSEDIAMENTO",
-        "grade": 2,
-        "min": 1
-      }
-    },
-    {
-      "id": "NA_CTRL2",
-      "note": "Nahr: due Regioni",
-      "condition": {
-        "type": "control_count",
-        "entity_id": "ENT_NAHR",
-        "min": 2
-      }
-    },
-    {
-      "id": "NA_TERRE_PIENE",
-      "note": "Nahr: le Terre non si sono svuotate",
-      "condition": {
-        "type": "state_tag_absent",
-        "scope": "REGION",
-        "region_id": "REG_TERRE_NAHR",
-        "tag": "condition:emptied"
-      }
-    },
-    {
-      "id": "SA_CTRL2",
-      "note": "Sale: due Regioni",
-      "condition": {
-        "type": "control_count",
-        "entity_id": "ENT_SALE",
-        "min": 2
-      }
-    },
-    {
-      "id": "SA_PIETRA2",
-      "note": "Sale: una pietra di grado 2",
-      "condition": {
-        "type": "structure_count",
-        "entity_id": "ENT_SALE",
-        "grade": 2,
-        "min": 1
-      }
-    },
-    {
-      "id": "SA_STRADA_PULITA",
-      "note": "Sale: la Strada senza segno",
-      "condition": {
-        "type": "scar_count",
-        "region_id": "REG_STRADA_MERCANTI",
-        "max": 0
-      }
-    },
-    {
-      "id": "SA_DUE_PIETRE",
-      "note": "Sale: due pietre sue",
-      "condition": {
-        "type": "structure_count",
-        "entity_id": "ENT_SALE",
-        "min": 2
-      }
-    },
-    {
-      "id": "SH_CTRL2",
-      "note": "condiviso: due Regioni",
-      "condition": {
-        "type": "control_count",
-        "entity_id": "$self",
-        "min": 2
-      }
-    },
-    {
-      "id": "SH_DUE_PIETRE",
-      "note": "condiviso: due pietre sue",
-      "condition": {
-        "type": "structure_count",
-        "entity_id": "$self",
-        "min": 2
-      }
-    },
-    {
-      "id": "SH_OPERA",
-      "note": "condiviso: un'opera sua",
-      "condition": {
-        "type": "structure_count",
-        "entity_id": "$self",
-        "structure_family": "OPERA",
-        "min": 1
-      }
-    },
-    {
-      "id": "SH_PRESIDIO",
-      "note": "condiviso: un presidio suo",
-      "condition": {
-        "type": "structure_count",
-        "entity_id": "$self",
+        "entity_id": "ENT_CENERE",
         "structure_family": "PRESIDIO",
         "min": 1
+      }
+    },
+    {
+      "id": "CE_NESSUNO_ALTRO_SOTTO",
+      "note": "candidata: nessun altro ha messo un'opera nelle gallerie",
+      "condition": {
+        "type": "structure_count",
+        "region_id": "REG_MINIERE_ANTICHE",
+        "anyone": true,
+        "max": 0
       }
     }
   ]

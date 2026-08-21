@@ -36,7 +36,12 @@
         "year": {
           "type": "integer"
         },
-        "chronicle_id": {
+        "chronicles_played": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Quante Chronicle ha gia' giocato questa saga, contando quella in corso (D-181). Serve a sapere se la campagna puo' dichiarare un vincitore: e' l'unico numero che dice quanto e' lunga una saga, perche' `year` conta gli anni del mondo e fra due Chronicle ne possono passare duecento."
+    },
+    "chronicle_id": {
           "type": "string"
         },
         "act": {
@@ -409,6 +414,10 @@
         "ao_remaining": {
           "type": "integer",
           "minimum": 0
+        },
+        "saga_score": {
+          "type": "integer",
+          "description": "Il punteggio della campagna (D-180): la somma dei valori dei livelli raggiunti nelle Chronicle di questa saga. Resta a zero se nessuna Chronicle dichiara `saga_scoring`. Puo' essere negativo, perche' un anno chiuso senza il Minimo toglie punti."
         },
         "name": {
           "type": "string"

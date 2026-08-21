@@ -173,6 +173,13 @@ func _initialize() -> void:
 			"truths": new_truths,
 			"scars": new_scars,
 			"destinies": destinies,
+			"standing": _standing(world),
+			"played": int(world.get("chronicles_played", index + 1)),
+			"decides_after": int(
+				(data.chronicles[chronicle_id if index == 0 else later_id].get(
+					"saga_scoring", {}
+				) as Dictionary).get("decides_after", 10)
+			),
 			"map": _map_state(world, data),
 		})
 
@@ -198,6 +205,19 @@ func _initialize() -> void:
 			print("")
 			print("Scritto: %s/saga.json e un log per Chronicle." % out_dir)
 	quit(0)
+
+
+## La classifica della campagna (D-180), se la Chronicle la tiene. Ordinata, e
+## col nome corrente del seggio: in una saga lunga chi siede cambia, il conto no.
+func _standing(world: Dictionary) -> Array:
+	var rows: Array = []
+	for entity_id in world["turn_order"]:
+		var seat: Dictionary = (world["entities"] as Dictionary)[str(entity_id)] as Dictionary
+		if not seat.has("saga_score"):
+			continue
+		rows.append([int(seat["saga_score"]), str(seat["name"])])
+	rows.sort_custom(func(a, b): return int(a[0]) > int(b[0]))
+	return rows
 
 
 func _map_state(world: Dictionary, data: RefCounted) -> Array:
@@ -315,6 +335,18 @@ func _print_saga(saga: Array) -> void:
 		for destiny in year["destinies"]:
 			levels.append("%s %s" % [str(destiny["name"]), str(destiny["level"])])
 		print("Destini: %s" % " | ".join(PackedStringArray(levels)))
+		if not (year["standing"] as Array).is_empty():
+			var board: Array = []
+			for row in year["standing"]:
+				board.append("%s %d" % [str((row as Array)[1]), int((row as Array)[0])])
+			var needed: int = int(year["decides_after"])
+			var played: int = int(year["played"])
+			var verdict: String = ""
+			if needed > 0 and played < needed:
+				verdict = "  (non ancora decisa: %d su %d)" % [played, needed]
+			elif needed > 0:
+				verdict = "  <- la campagna si decide"
+			print("La saga:  %s%s" % [" | ".join(PackedStringArray(board)), verdict])
 
 	print("")
 	print("=========================================================")

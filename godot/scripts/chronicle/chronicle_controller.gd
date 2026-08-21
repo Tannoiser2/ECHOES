@@ -659,6 +659,7 @@ func chronicle_end() -> Dictionary:
 	# pietra, chi non e' arrivato al Minimo ne perde una. Dopo la valutazione,
 	# perche' e' l'esito a decidere.
 	_settle_structures(results)
+	_score_the_saga(results, log)
 
 	session.destiny_results = results
 	return {
@@ -669,6 +670,75 @@ func chronicle_end() -> Dictionary:
 		"echoes": (world["echo_log"] as Array).size(),
 		"truths": (world["truth_log"] as Array).size(),
 	}
+
+
+## Il vincitore della saga (D-180), su richiesta del committente.
+##
+## «Per vincere la saga ci vuole un contatore di vittorie nelle singole partite.
+## Dare un valore ai livelli di vittoria che si sommano alla fine della saga
+## decretando il vincitore.»
+##
+## La Chronicle resta senza punteggio — nessuna classifica dentro l'anno, come
+## e' sempre stato — ed e' la **campagna** ad averne uno: ogni anno chiuso somma
+## al seggio il valore del suo livello, e il totale attraversa le ere insieme
+## alla mappa.
+##
+## Vive solo se la Chronicle dichiara `saga_scoring`. Senza, non succede niente
+## e nemmeno una riga finisce a verbale.
+func _score_the_saga(results: Dictionary, log: RefCounted) -> void:
+	var rules: Dictionary = _chronicle.get("saga_scoring", {}) as Dictionary
+	if rules.is_empty():
+		return
+	var value_of: Dictionary = {
+		"NONE": int(rules.get("none", -1)),
+		"MINIMUM": int(rules.get("minimum", 1)),
+		"VICTORY": int(rules.get("victory", 3)),
+		"TRIUMPH": int(rules.get("triumph", 6)),
+	}
+	var standing: Array = []
+	for entity_id in world["turn_order"]:
+		if not results.has(entity_id):
+			continue
+		var level: String = str((results[entity_id] as Dictionary).get("level", "NONE"))
+		if level == "":
+			level = "NONE"
+		var gained: int = int(value_of.get(level, 0))
+		var seat: Dictionary = world["entities"][str(entity_id)] as Dictionary
+		seat["saga_score"] = int(seat.get("saga_score", 0)) + gained
+		standing.append([int(seat["saga_score"]), gained, str(entity_id), str(seat["name"])])
+	if standing.is_empty():
+		return
+	standing.sort_custom(func(a, b): return int(a[0]) > int(b[0]))
+	log.section("LA SAGA")
+	for row in standing:
+		var gained: int = int((row as Array)[1])
+		log.bullet("%s: %d punti (%s%d quest'anno)" % [
+			str((row as Array)[3]), int((row as Array)[0]),
+			"+" if gained >= 0 else "", gained,
+		])
+	# Quando una campagna puo' dire di avere un vincitore (D-181). Il committente
+	# l'ha fissata a dieci Chronicle: prima di allora il conto si tiene ma nessuno
+	# ha vinto, perche' una manciata di anni non e' una campagna. La soglia apre
+	# la porta e non la chiude - da li' in poi il tavolo smette quando vuole.
+	var played: int = int(world.get("chronicles_played", 1))
+	var needed: int = int(rules.get("decides_after", 10))
+	if played < needed:
+		log.bullet("La campagna non e' ancora decisa: %d %s su %d." % [
+			played, "anno giocato" if played == 1 else "anni giocati", needed,
+		])
+		return
+	var leaders: Array = []
+	for row in standing:
+		if int((row as Array)[0]) == int((standing[0] as Array)[0]):
+			leaders.append(str((row as Array)[3]))
+	if leaders.size() > 1:
+		log.bullet("Dopo %d anni la campagna e' in parita' fra %s: si va avanti." % [
+			played, " e ".join(PackedStringArray(leaders)),
+		])
+	else:
+		log.bullet("Dopo %d anni la campagna la vince %s, con %d punti." % [
+			played, str((standing[0] as Array)[3]), int((standing[0] as Array)[0]),
+		])
 
 
 ## Il grado che si muove con l'esito (D-159), §7.3 della seduta sulla terra.

@@ -317,6 +317,9 @@ const DEFS := {
 			"structure_rules": {
 				"type": "Dictionary",
 			},
+			"saga_scoring": {
+				"type": "Dictionary",
+			},
 			"control_rules": {
 				"type": "Dictionary",
 			},
@@ -1401,6 +1404,10 @@ const DEFS := {
 			},
 			"year": {
 				"type": "int",
+			},
+			"chronicles_played": {
+				"type": "int",
+				"min": 1,
 			},
 			"chronicle_id": {
 				"type": "String",

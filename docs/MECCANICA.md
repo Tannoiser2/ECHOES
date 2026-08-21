@@ -4,17 +4,19 @@
 di come funziona ECHOES, scritta per essere data in pasto a un modello che deve
 produrre **un'infografica**. Non presuppone niente: chi legge non ha mai visto
 il gioco. Tutti i numeri qui dentro sono quelli veri, letti dai dati e dal
-codice della versione 0.1.140 — non sono esempi inventati.
+codice della versione 0.1.149 — non sono esempi inventati.
 
-In fondo c'è una sezione **«Note per chi disegna»** con i suggerimenti su cosa
-merita un riquadro, cosa merita una freccia e cosa si può omettere.
+In fondo ci sono due sezioni che non servono a disegnare: **«Come si gioca
+bene»** (§15), che dice cosa conviene fare al tavolo con i numeri accanto, e
+**«Note per chi disegna»** (§16), con i suggerimenti su cosa merita un riquadro,
+cosa merita una freccia e cosa si può omettere.
 
 ---
 
 ## 0. In una frase
 
 > ECHOES è un boardgame narrativo-strategico per **4 giocatori**, in cui quattro
-> casate attraversano **un anno di crisi**: nessuno vince prendendo punti —
+> casate attraversano **un anno di crisi**: dentro l'anno nessuno vince prendendo punti —
 > ognuno insegue un **Destino** privato, e le decisioni si prendono in
 > **Consigli** dove si vota una proposta e si impegnano carte in segreto. Quello
 > che il Consiglio decide resta scritto sul mondo, e il mondo passa alla
@@ -24,7 +26,7 @@ Le tre idee che lo distinguono da un gioco di conquista:
 
 | idea | cosa vuol dire |
 |---|---|
-| **Nessun punteggio** | Non c'è un vincitore unico. Ogni casata ha un Destino a tre gradini e li raggiunge o no per conto proprio. Più giocatori possono vincere; tutti possono fallire. |
+| **Nessun punteggio dentro l'anno** | Ogni casata ha un Destino a tre gradini e li raggiunge o no per conto proprio. Più giocatori possono vincere; tutti possono fallire. Un punteggio esiste **solo a livello di saga** (§10bis), e serve a decretare chi ha vinto la campagna — non chi ha vinto la serata. |
 | **Il Consiglio è il cuore** | Le azioni servono a prepararsi. È al Consiglio che il mondo cambia davvero — e non con un tiro di dado, ma con carte impegnate al buio e rivelate insieme. |
 | **Il mondo ricorda** | Una partita (una *Chronicle*) è **un anno**. Una **saga** ne incatena molte, a decenni o secoli di distanza: la mappa, le ferite e i rancori attraversano il salto, le persone no. |
 
@@ -221,7 +223,7 @@ Sulla mappa non ci sono solo pedine: ci sono **cose**, e le cose hanno un tipo,
 un grado, un padrone e un valore. Sono l'unico strato del gioco che **passa da
 una partita all'altra** senza che nessuno lo scriva a mano.
 
-### I nove tipi, in cinque famiglie
+### I nove tipi, in quattro famiglie
 
 **Le opere delle case** — hanno un padrone e **pesano nel conto del controllo**:
 
@@ -239,7 +241,7 @@ Regione, non *chi la tiene*:
 | LUOGO | la foresta | Foresta → Bosco diradato → **Selva maledetta** |
 | LUOGO | il sito antico | Sito dormiente → Sito aperto → **Sito saccheggiato** |
 | LUOGO | la sorgente | Sorgente viva → Sorgente bassa → **Sorgente secca** |
-| CHIUSURA | il passo | Passo aperto → **Passo franato** |
+| LUOGO | il passo | Passo aperto → **Passo franato** |
 
 ### La scala segue il Destino
 
@@ -459,7 +461,11 @@ L'ordine di applicazione è fisso perché è osservabile al tavolo:
 - è un **fallimento con O ≥ 6** — una sconfitta memorabile è storia.
 
 **Le Conseguenze** sono 52 carte scritte a mano. Sono loro, e solo loro, che
-assegnano il controllo di una Regione: **14** portano un cambio di padrone. Fra
+assegnano il controllo di una Regione: **14** portano un cambio di padrone, e
+altre **7** costruiscono qualcosa che resta — il granaio, il pedaggio, il
+canale, la torre di veglia, un villaggio dove la gente si è fermata. Un Consiglio
+non lascia solo una decisione a verbale: lascia una cosa sulla mappa, che dal
+round dopo pesa nel conto del controllo e sopravvive all'anno. Fra
 gli esempi: *Il Granaio del Trono · La Valle Chiusa · La Miniera di Stato · La
 Corona Divisa · Il Debito Chiamato · Il Seggio Preso · Il Luogo Abbandonato.*
 
@@ -537,22 +543,22 @@ piatto:
 
 ---
 
-## 9. Il mondo che risponde: le 45 regole dei segni
+## 9. Il mondo che risponde: le 52 regole dei segni
 
 Ogni tag scritto sulla mappa, su una casata o su una coppia di casate può
 **cambiare le regole**. Non sono effetti una tantum: finché il segno c'è, la
-regola vale. Le 45 regole si dividono così:
+regola vale. Le 52 regole si dividono così:
 
 | tipo | quante | esempio |
 |---|---|---|
-| **COUNCIL_MODIFIER** | 16 | *finché una Regione muore di fame, i Consigli sulla Carestia partono col mondo contro* |
-| **DRAW_BIAS** | 10 | *finché il Banco ha chiamato il debito, chi pesca ricchezza guarda due carte e prende la peggiore* |
-| **GATE** | 3 | *dove è passata la razzia non si entra, finché qualcuno non toglie il segno* |
-| **ACTION_GATE** | 2 | *chi ha presenza in una Regione affamata non stringe alleanze: i patti non si firmano a stomaco vuoto* |
-| **RELATION_CAP / FLOOR** | 4 | *dopo un giuramento spezzato, quella coppia non risale sopra OSTILE* — e *il segno SANGUE non lascia scendere sotto NEUTRALE* |
-| **STANCE_MODIFIER** | 2 | *quando la Repubblica si oppone con almeno una carta, il suo fronte vale +1* |
+| **COUNCIL_MODIFIER** | 17 | *finché una Regione muore di fame, i Consigli sulla Carestia partono col mondo contro* |
+| **DRAW_BIAS** | 14 | *finché il Banco ha chiamato il debito, chi pesca ricchezza guarda due carte e prende la peggiore* |
 | **ACTION_MODIFIER / GRANT / DISCOUNT / RIPPLE** | 5 | *chi sta nella Regione del granaio pesa di più sulla Carestia* |
-| **HAND_LIMIT** | 1 | *chi ha presenza in una Regione affamata tiene una carta in meno: la fame consuma* |
+| **RELATION_CAP / FLOOR** | 4 | *dopo un giuramento spezzato, quella coppia non risale sopra OSTILE* — e *il segno SANGUE non lascia scendere sotto NEUTRALE* |
+| **GATE** | 3 | *dove è passata la razzia non si entra, finché qualcuno non toglie il segno* |
+| **HAND_LIMIT** | 3 | *chi ha presenza in una Regione affamata tiene una carta in meno: la fame consuma* |
+| **ACTION_GATE** | 2 | *chi ha presenza in una Regione affamata non stringe alleanze: i patti non si firmano a stomaco vuoto* |
+| **STANCE_MODIFIER** | 2 | *quando la Repubblica si oppone con almeno una carta, il suo fronte vale +1* |
 | **CONDITION_THRESHOLD** | 1 | *per la Lega delle Sette una Condizione qualifica con un impegno in meno* |
 | **GRANT_ON_SET** | 1 | *chi riapre i canali riceve la Riserva di Grano* |
 
@@ -570,6 +576,19 @@ VITTORIA    «contare»             quello che la casata voleva davvero
    ↓
 TRIONFO     «e nessuno può dire il contrario»
 ```
+
+**Il Destino non è fisso: si pesca.** Ogni casata ha un **pool di tre**, e quale
+le tocchi lo decide il seme — due ambizioni scritte per lei più una
+*condivisibile*, cioè una carta scritta una volta e messa nel pool di più case,
+le cui clausole si risolvono su chi la giura. Sono **19 Destini in gioco** dalla
+prima partita invece degli otto di una volta (il ventesimo appartiene a un seggio
+che entra solo in saga), ed è quello che fa sì che lo stesso tavolo con lo stesso
+anno non giochi la stessa partita.
+
+Costo dichiarato di quella scelta: undici ambizioni in più al tavolo si oppongono
+fra loro molto più spesso, e accendere il pool ha portato i Consigli falliti da
+**206 a 246** su cento partite — il tasso di successo dal 64% al 56%. È la causa
+principale del 44% di Consigli che oggi falliscono.
 
 **Cumulativi**: un Trionfo richiede che valgano anche Vittoria e Minimo. Più
 giocatori possono ottenere una Vittoria nello stesso anno. Tutti possono
@@ -625,6 +644,75 @@ Il risultato conserva anche **come** ci si è arrivati: le clausole verificate, 
 clausole mancate, e gli Eco a cui la casata ha partecipato. Le clausole mancate
 non sono decorazione: sono quello che l'anno successivo eredita come **conti
 rimasti aperti**.
+
+---
+
+## 10bis. Chi vince la saga
+
+Dentro l'anno non c'è nessuna classifica, e non ce n'è mai stata. Ma una
+**campagna** un vincitore ce l'ha: ogni Chronicle chiusa somma al seggio il
+valore del livello che ha raggiunto, il totale attraversa le ere insieme alla
+mappa, e alla fine vince chi ha di più.
+
+| livello | vale |
+|---|---|
+| nessun gradino | **−1** |
+| Minimo | **+1** |
+| Vittoria | **+3** |
+| **Trionfo** | **+6** |
+
+Tre cose spiegano questi quattro numeri:
+
+- **Esistere vale poco.** Il Minimo è una soglia di sopravvivenza, non un
+  obiettivo: una scala che lo pagasse bene farebbe vincere la campagna a chi non
+  ha mai rischiato niente.
+- **Un anno perso costa.** Chiudere senza nemmeno il Minimo toglie un punto —
+  perdere è possibile da quando esiste la regola della porta sbarrata, e in una
+  campagna deve pesare.
+- **Il Trionfo vale il doppio della Vittoria.** Due anni riusciti non pagano
+  quanto uno audace: è così che la scala premia chi si è spinto in alto invece di
+  amministrare.
+
+I valori stanno nella Chronicle (`saga_scoring`) e si cambiano senza toccare il
+codice. **Omessi, il punteggio non esiste**: una Chronicle può restare un anno che
+sta in piedi da solo.
+
+**Il conto segue il seggio, non la persona.** In una saga lunga chi siede cambia —
+il Popolo Nahr diventa Il Regno di Nahr, Vaerax diventa Vaerax Ridestato — e il
+punteggio prosegue: è la casa a giocare la campagna, non chi la porta in quel
+secolo. Una saga vera, cinque anni, coi nomi che cambiano e il conto che no:
+
+```
+anno 1   Re Aldric 3 | Popolo Nahr 3 | Vaerax 3 | Lyra 1
+anno 2   Il Regno di Nahr 9 | Vaerax 9 | Re Aldric 6 | Lyra 2
+anno 3   Il Regno di Nahr 15 | Vaerax 10 | Re Aldric 7 | Lyra 3
+anno 4   Il Regno di Nahr 18 | Vaerax Ridestato 13 | Re Aldric 8 | Lyra 4
+anno 5   Il Regno di Nahr 24 | Re Aldric 14 | Vaerax Ridestato 14 | Lyra 7
+```
+
+**Quello che il contatore ha fatto vedere.** Sommare i risultati non è una regola
+neutra: è un **amplificatore**. Finché ogni anno sta in piedi da solo, una casa
+debole ha comunque i suoi anni buoni e al tavolo non si nota; appena si somma, la
+differenza diventa il risultato. Misurato su dodici saghe per tavolo: nella
+Carestia le campagne le vincono tre case su quattro, nell'anno del Sale **la
+stessa casa dodici volte su dodici**. Non è il punteggio a essere sbagliato — è
+uno squilibrio di contenuto che prima si spalmava. Chi lavora al bilanciamento
+guardi lì per primo.
+
+**Una campagna è almeno dieci anni.** Sotto le dieci Chronicle il conto si tiene
+ma nessuno ha vinto — una manciata di anni non è una campagna — e il verbale lo
+dice a ogni chiusura: *«La campagna non è ancora decisa: 3 anni giocati su 10»*.
+Dalla decima in poi dichiara il vincitore. La soglia **apre la porta e non la
+chiude**: se il tavolo continua, il conto prosegue e il verdetto si aggiorna.
+
+**E la campagna resta contendibile più a lungo di quanto un punteggio cumulativo
+faccia temere.** Misurato su dodici saghe da dieci anni: il testimone passa **1,8
+volte** per campagna e l'ultimo sorpasso arriva in media all'**anno 5 su 10** —
+metà strada. Solo tre campagne su dodici sono decise entro il terzo anno.
+
+Nell'anno del Sale però quel numero peggiora — ultimo sorpasso all'anno 3,5, e
+**sei campagne su dodici decise entro il terzo** — ed è la stessa casa forte di
+cui sopra: chi prende la testa presto, lì, non la molla.
 
 ---
 
@@ -733,27 +821,131 @@ l'inizio, trova il proprio seggio già in mano a un bot e ne riprende il posto.
 | Conseguenze scritte | **52** (di cui **14** cambiano il padrone di una Regione) |
 | Modelli di Consiglio | **10** |
 | Regole dei segni | **52** |
-| **Tipi di struttura** | **9**, in **5 famiglie** — 5 con un padrone, 4 di nessuno |
-| Destini | **20** scritti, 3 gradini ciascuno — **9 giocati** all'apertura |
+| **Tipi di struttura** | **9**, in **4 famiglie** — 5 con un padrone, 4 di nessuno |
+| Destini | **20** scritti, 3 gradini ciascuno — **19 in gioco** dall'apertura, il ventesimo solo in saga |
 | Tipi di effetto sul mondo | **25** (23 reversibili, 2 no: creare un Eco e scrivere una Verità) |
 | Salto fra due Chronicle | da **1** a **200** anni |
+| **Punteggio di saga** | **−1 / +1 / +3 / +6** per nessun gradino / Minimo / Vittoria / Trionfo — solo di campagna, mai dentro l'anno |
+| **Durata di una campagna** | almeno **10** Chronicle perché un vincitore sia dichiarato |
 
 **Come finisce un anno, misurato su 100 partite a tavolo misto** (50 partite per
 seggio, quattro caratteri diversi):
 
-| gradino | quota |
-|---|---|
-| nessun gradino | ~1% |
-| Minimo | ~40% |
-| Vittoria | ~40% |
-| **Trionfo** | ~19% |
+| gradino | tavolo misto | quattro ottimizzatori |
+|---|---|---|
+| nessun gradino | **0%** | ~1% |
+| Minimo | 44% | 28% |
+| Vittoria | 36% | 41% |
+| **Trionfo** | **20%** | 30% |
+
+Le due colonne sono la stessa partita giocata da gente diversa, e la differenza
+è il dato più interessante del gioco: **quattro ottimizzatori identici arrivano
+molto più in alto di quattro caratteri diversi.** Non perché barino — è la
+stessa policy — ma perché nessuno di loro spreca un turno. La colonna di
+sinistra è quella che somiglia a un tavolo vero.
 
 Nessun seggio resta a zero Trionfi, e nessuno è bloccato su un solo gradino: è
 il vincolo che il gioco si è dato ed è quello che tiene onesto il bilanciamento.
 
 ---
 
-## 15. Note per chi disegna l'infografica
+## 15. Come si gioca bene, misurato
+
+Le sezioni precedenti dicono **cosa** si può fare. Questa dice **cosa conviene**,
+e non è opinione: sono i numeri delle stesse 100 partite del §14. Vale
+l'avvertenza in fondo alla sezione, che è importante quanto i numeri.
+
+### I quattro modi di stare al tavolo
+
+Il gioco misura sé stesso con quattro caratteri che sono **la stessa policy con
+una cosa diversa** — nessuno bara, nessuno sa niente che un giocatore non
+saprebbe. Su 100 partite, ognuno seduto a turno in ogni seggio:
+
+| carattere | come gioca | Minimo | Vittoria | Trionfo | supera il Minimo |
+|---|---|---|---|---|---|
+| **prudente** | non alza la voce, si oppone di rado, tiene le carte in mano | 60 | 29 | 11 | **40%** |
+| **distratto** | un giro su quattro non fa la mossa migliore | 41 | 39 | 20 | 59% |
+| **aggressivo** | blocca tutto quello che non lo aiuta, impegna tutto | 38 | 40 | 22 | 62% |
+| **ostinato** | gioca per il Trionfo dal primo round, non per il gradino vicino | 37 | 36 | **27** | **63%** |
+
+**Il risultato più netto del gioco è che la prudenza è la strategia peggiore**, e
+di venti punti. Il prudente finisce l'anno con una mano bellissima e niente di
+deciso — e le carte a fine anno non valgono niente: vale solo quello che hanno
+cambiato.
+
+Il secondo risultato è meno ovvio. L'**ostinato** punta al gradino più alto
+invece che al più vicino, e non paga questo rischio da nessuna parte: ha **più
+Trionfi di tutti e meno Minimi di tutti**. Giocare basso non protegge. Un
+Destino si insegue intero o non si insegue.
+
+### Nove cose che i numeri dicono
+
+**1. Prepararsi batte reagire.** Un Asset vale la sua forza piena (fino a 3) solo
+se la famiglia è rilevante per la Tensione in discussione, altrimenti vale **1**.
+La stessa carta vale 3 al Consiglio giusto e 1 a quello sbagliato: guardare quale
+Tensione sta per maturare e acquisire *prima* è la leva più economica che c'è.
+
+**2. Opporsi funziona, e non è gratis.** Su 579 Consigli, **256 falliscono**: il
+44%. Bloccare quello che non ti serve è efficace — ma chi si oppone e perde non
+recupera le carte impegnate, e questa regola esiste apposta perché senza il
+blocco era troppo conveniente.
+
+**3. La presenza è la risorsa più scarsa.** Tre gettoni, due già posati. Comandano
+tutto quello che *fai*: chi propone al Consiglio, influenzare senza pagare,
+pescare due carte invece di una, e **16 clausole di Destino** chiedono di essere
+in un posto preciso. Ogni spostamento è una rinuncia altrove.
+
+**4. Non allargarti.** Oltre due Regioni si paga **+1 di Tensione a round** per
+ognuna in più. A fine anno il 53% dei seggi ne tiene una e il 32% due: tre è
+quasi sempre un errore, e il 12% che non ne tiene nessuna sta perdendo qualcosa
+di più grande.
+
+**5. La terra si tiene con la gente *e* con le pietre.** Il controllo non si
+prende con un'azione: si conta a ogni fine round come `pedine + valore delle tue
+strutture`. Una torre vale 2, un castello 3, una reggia 5. Costruire è l'unico
+investimento che sopravvive all'anno — e che sale di grado da solo, se ottieni
+il Trionfo.
+
+**6. Rivendicare, così com'è, è una trappola.** Su 80 partite ne sono state
+aperte **128** e usate **17**: centoundici muoiono in mano. Servono due Asset
+AUTORITÀ in round diversi, la Tensione già matura, e che nessun altro abbia già
+strappato il Consiglio. Vale la pena solo se il Consiglio che ti prendi è
+decisivo per il tuo Destino.
+
+**7. Negoziare a vuoto è peggio che tacere.** Una Condizione qualifica solo se ci
+metti **almeno 2 carte**: sotto quella soglia non allega niente e non sposta
+niente, e le carte sono spese lo stesso.
+
+**8. Un'alleanza rende solo se la paghi.** Un alleato che sostiene il proponente
+vale +1 (+2 se VINCOLATO) **ma solo se mette almeno 2 carte sul tavolo**. E si
+sale di un gradino spendendo un'Occasione *e* una carta LEGAMI: allearsi è il
+turno che non hai usato per altro. Scendere invece è gratis e unilaterale — il
+che rende la rottura sempre disponibile, e per questo credibile.
+
+**9. L'errore più costoso è spegnersi il Destino da soli.** È successo in una
+partita vera — un giocatore ha spostato l'ultimo gettone via dalle Montagne
+Rosse nell'ultimo round e ha chiuso a NONE una cronaca che stava vincendo — ed è
+successo **anche nei dati**: un Destino chiedeva al Minimo di presidiare un posto
+e alla Vittoria di essere altrove, con un gettone di troppo
+([D-177](DECISIONS.md#d-177)). Prima di ogni mossa dell'ultimo Atto, rileggersi
+il **proprio Minimo**: l'app avverte, il tavolo fisico no.
+
+### Quello che questi numeri non sanno
+
+**Vengono tutti da bot che giocano contro bot.** I bot giocano bene, ma **non
+tradiscono, non mentono, non fanno promesse che non intendono mantenere e non
+cambiano idea per dispetto**. Dalla 0.1.140 un bot si fida di chi lo ha sostenuto
+finora — quindi *può* essere ingannato — ma nessuno lo inganna.
+
+Quindi tutto quello che sta qui sopra è solido sulla parte meccanica e **muto su
+metà del gioco**: la trattativa prima del voto, la promessa che compra un
+sostegno, il conto che si salda tre Consigli dopo. Le posizioni si dichiarano in
+pubblico *prima* di impegnare le carte al buio: quella finestra è fatta apposta
+perché ci si parli, e nessuna misura in questo repository la vede.
+
+---
+
+## 16. Note per chi disegna l'infografica
 
 **La cosa più importante da far capire, se ne passa una sola:** questo non è un
 gioco dove si conquista una mappa. È un gioco dove **quattro casate discutono**,
@@ -828,6 +1020,6 @@ poster fantasy.
 
 ---
 
-*Documento generato dai dati e dal codice di ECHOES 0.1.140. Le regole vivono
+*Documento generato dai dati e dal codice di ECHOES 0.1.149. Le regole vivono
 nei file JSON di `godot/data/` e nel motore in `godot/scripts/`: se un numero qui
 diverge da lì, ha ragione il codice.*

@@ -19,6 +19,9 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 	var world: Dictionary = {
 		"world_id": str(chronicle["world_id"]),
 		"year": int(chronicle["start_year"]),
+		# Quante Chronicle ha gia' giocato questa saga, questa compresa (D-181).
+		# `year` non lo dice: fra due Chronicle possono passare duecento anni.
+		"chronicles_played": 1,
 		"chronicle_id": str(chronicle["id"]),
 		"act": 0,
 		"round": 0,
@@ -82,6 +85,12 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 			"tags": (definition["tags"] as Array).duplicate(),
 			"active": bool(definition["active"]),
 			"ao_remaining": 0,
+			# Il punteggio della campagna (D-180). Resta a zero e non si legge
+			# mai, se la Chronicle non dichiara `saga_scoring`: e' un contatore,
+			# come `confluence_count`, ed e' fra le eccezioni dichiarate
+			# all'effect-sourcing perche' non e' uno stato del mondo che qualcuno
+			# possa disfare - e' il verbale di quello che e' gia' successo.
+			"saga_score": 0,
 		}
 
 	# Who holds what at the opening. The Region says what it says, and the

@@ -151,6 +151,22 @@ func inherit_from(previous: Dictionary, results: Dictionary = {}) -> void:
 		world, _chronicle_def, data, previous, _years_passed
 	)
 
+	# Un anno in piu' di campagna (D-181): la saga sa quanto e' lunga, ed e'
+	# quello che le permette di dire se un vincitore c'e' gia' o no.
+	world["chronicles_played"] = int(previous.get("chronicles_played", 0)) + 1
+	# Il punteggio della campagna attraversa le ere (D-180). Non e' un Effetto:
+	# e' un contatore, come `confluence_count`, e sta fra le eccezioni dichiarate
+	# all'effect-sourcing. Passa **sempre**, anche se questa Chronicle non
+	# dichiara `saga_scoring`: un anno che non tiene il conto non e' un anno che
+	# lo azzera.
+	for entity_id in world["entities"]:
+		var before: Dictionary = (previous.get("entities", {}) as Dictionary).get(
+			str(entity_id), {}
+		) as Dictionary
+		(world["entities"][str(entity_id)] as Dictionary)["saga_score"] = int(
+			before.get("saga_score", 0)
+		)
+
 	_handover = Succession.plan(previous, results, _chronicle_def, data, _years_passed)
 	var mutations: Array = []
 	for entity_id in _handover:

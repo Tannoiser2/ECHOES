@@ -10,6 +10,499 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-181 — Una campagna e' almeno dieci anni
+**implemented in 0.1.149** (decisa dal committente)
+
+D-180 aveva lasciato scritto che «la lunghezza della saga resta indefinita,
+quindi il vincitore e' chi sta in testa quando il tavolo smette». Il committente
+ha deciso: **«direi la saga almeno 10 partite»**.
+
+### Come e' scritta
+
+`saga_scoring.decides_after`, con **10** nelle due saghe in gioco. Prima della
+soglia il conto si tiene ma nessuno ha vinto, e il verbale lo dice a ogni anno
+(*«La campagna non e' ancora decisa: 3 anni giocati su 10»*); dalla decima in poi
+dichiara il vincitore, o la parita' se c'e'.
+
+**«Almeno» vuol dire che la soglia apre la porta e non la chiude**: al decimo
+anno la campagna *puo'* finire, e se il tavolo continua il conto prosegue e il
+verdetto si aggiorna. Una campagna piu' lunga e' ancora una campagna; una piu'
+corta non lo e'.
+
+Serviva un numero che non c'era: **quante Chronicle ha giocato questa saga**
+(`world.chronicles_played`). Non si poteva ricavare da `year`, perche' fra due
+Chronicle passano da 1 a 200 anni: cento anni di mondo possono essere due partite
+o dieci.
+
+### La domanda che la soglia rende concreta, e la sua risposta
+
+D-180 aveva dichiarato di non sapere «se il conto renda ininfluenti gli ultimi
+anni quando qualcuno ha accumulato troppo». Con una soglia si puo' chiedere, e la
+misura e' **l'anno dell'ultimo cambio di testa**: se la campagna cambia padrone
+per l'ultima volta al secondo anno su dieci, gli altri otto sono un'attesa.
+
+| su 12 saghe da 10 Chronicle | la Carestia | il Sale |
+|---|---|---|
+| cambi di testa per saga | **1,8** | 1,3 |
+| ultimo cambio di testa | anno **5,0** su 10 | anno **3,5** su 10 |
+| campagne decise entro il terzo anno | **3 su 12** | **6 su 12** |
+
+**Nella Carestia la campagna regge**: cambia padrone quasi due volte, e l'ultimo
+sorpasso arriva a meta' strada — cinque anni dopo c'e' ancora partita per
+qualcuno. **Nel Sale no**: meta' delle campagne e' decisa entro il terzo anno su
+dieci.
+
+E la causa non e' la soglia ne' la scala: e' **ISSUES 46**. Una casa che supera
+il Minimo il 68% delle volte prende la testa presto e non la molla piu'. Lo stesso
+squilibrio, visto da un terzo lato — prima come gradini per incarnazione (D-176),
+poi come vincitore di campagna (D-180), adesso come **noia**: sette anni giocati
+sapendo gia' come finisce.
+
+### Le misure
+
+- **Il playtest e' identico riga per riga** a quello di 0.1.147, per la terza
+  versione di fila: la campagna non entra in nessuna decisione.
+- Suite **355 test / 6490 asserzioni** (due test nuovi: la soglia, e il conto
+  degli anni che attraversa le ere), sim ed export identici su due giri.
+
+### Quello che si dichiara
+
+- **Dieci e' il numero del committente, non un numero misurato.** La misura dice
+  che a dieci la Carestia regge e il Sale no; non dice che dieci sia il valore
+  giusto. Se ISSUES 46 si chiude, il Sale reggera' con la stessa soglia.
+- **La soglia non impedisce di smettere prima**: niente nel motore obbliga a
+  giocare dieci Chronicle. Dice solo che sotto dieci nessun vincitore viene
+  dichiarato, e sta al tavolo decidere se una campagna interrotta valga qualcosa.
+- **Il pareggio non ha uno spareggio.** Se al decimo anno due case sono a pari
+  punti il verbale dice «si va avanti», e la campagna continua: e' la scelta piu'
+  semplice, e nessuno ha ancora chiesto un criterio di spareggio.
+
+---
+
+## D-180 — Il vincitore della saga, e cosa il contatore ha rivelato
+**implemented in 0.1.148** (voluta dal committente)
+
+«Per vincere la saga ci vuole un contatore di vittorie nelle singole partite.
+Dare un valore ai livelli di vittoria che si sommano alla fine della saga
+decretando il vincitore.»
+
+### Perche' non contraddice il principio
+
+Il gioco ripete ovunque che **non c'e' un punteggio e non c'e' un vincitore
+unico**, ed e' la sua idea fondante. La richiesta lo mette pero' **a livello di
+saga, non di partita**, e la distinzione la salva: dentro l'anno non cambia
+niente — nessuna classifica, piu' case possono vincere, tutte possono fallire —
+ed e' la **campagna** ad avere un vincitore. E' il modello dei giochi a campagna,
+e lascia intatto quello che succede al tavolo in una sera.
+
+### Il rischio che si temeva, e che la misura ha smentito
+
+Se il Minimo paga, si accumulano punti **esistendo**, e la campagna la vince il
+prudente — l'opposto di cio' che il gioco premia (D-053: il prudente e' il
+carattere che arriva piu' in basso). Cinque scale candidate, misurate sulle
+stesse saghe **prima** di scriverne una:
+
+| | pareggi su 24 saghe | vincitore = chi ha piu' Trionfi | **= chi ha piu' Minimi** |
+|---|---|---|---|
+| A 0/1/2/3 lineare | 5 | 15/24 | **0/24** |
+| B 0/1/3/6 crescente | 5 | 16/24 | **0/24** |
+| C 0/1/3/5 | 3 | 15/24 | **0/24** |
+| **D -1/1/3/6** | **3** | **18/24** | **0/24** |
+| E 0/0/1/3 esistere non paga | 5 | 17/24 | **0/24** |
+
+**Il timore era infondato**: con nessuna scala, in nessuna saga, vince chi ha
+accumulato piu' Minimi. Il Minimo e' talmente comune che non discrimina — e chi
+ne ha di piu' e' semplicemente chi ha osato di meno.
+
+Scelta la **D**: meno pareggi e l'accordo piu' alto con i Trionfi. Il NONE che
+**toglie** un punto e' la conseguenza naturale di D-067 — dal 0.1.26 perdere e'
+possibile, e in una campagna deve costare — e il Trionfo che vale il **doppio**
+della Vittoria e' quello che fa si' che due anni prudenti non paghino quanto uno
+audace. La scala sta nella Chronicle (`saga_scoring`), quindi si cambia senza
+toccare il codice, e **omessa spegne tutto**: una Chronicle puo' restare un anno
+che sta in piedi da solo, come in v0.2.
+
+### Quello che il contatore ha rivelato, ed e' la cosa piu' importante
+
+| | chi vince la campagna, su 12 saghe |
+|---|---|
+| **CHR_01** — la Carestia | NAHR 5, LYRA 2, VAERAX 2, **Aldric mai** · 3 pareggi |
+| **CHR_03** — il Sale | **SALE 12 su 12** |
+
+**Nella saga del Sale la campagna la vince sempre la stessa casa, con qualunque
+scala.** Non e' un difetto del punteggio: e' lo squilibrio di contenuto gia' noto
+(il Sale supera il Minimo il 68% delle volte contro il 24%–31% delle altre) che
+oggi si **spalma** anno per anno e che un totale cumulativo rende **definitivo**.
+
+E' la scoperta che vale piu' della regola: **un contatore di campagna non e' una
+regola neutra, e' un amplificatore.** Finche' ogni anno sta in piedi da solo, una
+casa debole ha comunque i suoi anni buoni e il tavolo non se ne accorge; appena
+si somma, la differenza diventa il risultato. Aperta come **ISSUES 46**.
+
+### Le misure
+
+- **Il playtest e' identico riga per riga** a quello di 0.1.147: il punteggio non
+  entra in nessuna decisione, nessuna policy lo legge, ed e' puro verbale. FAIL
+  256 · 78 · 100 · 145, mediana 6, **0 su 8** misto e uniforme.
+- Suite **353 test / 6480 asserzioni** (quattro test nuovi), sim ed export
+  identici su due giri.
+
+### Quello che si dichiara
+
+- **Il punteggio e' un contatore, non un Effetto.** Sta fra le eccezioni
+  dichiarate all'effect-sourcing insieme a `confluence_count` e `voted_together`,
+  e per la stessa ragione: non e' uno stato del mondo che qualcuno possa disfare,
+  e' il verbale di quello che e' gia' successo. Attraversa le ere in
+  `inherit_from`, e **passa anche se la Chronicle nuova non tiene il conto**: un
+  anno che non conta non e' un anno che azzera.
+- **Segue il seggio, non la persona.** In una saga lunga chi siede cambia — il
+  Popolo Nahr diventa Il Regno di Nahr — e il conto prosegue: e' la casa a
+  giocare la campagna.
+- **La lunghezza della saga resta indefinita.** Il gioco non dichiara quando una
+  campagna finisce, quindi «il vincitore» e' chi sta in testa quando il tavolo
+  smette. Chi vorra' una campagna a lunghezza fissa dovra' scriverlo.
+- **Nessuna sonda misura ancora se la campagna sia *bella*.** Sappiamo chi vince
+  e con quale margine; non sappiamo se il conto renda gli ultimi anni ininfluenti
+  quando qualcuno ha accumulato troppo. E' la stessa lacuna dichiarata in
+  ISSUES 36, e vale la pena guardarla prima di dichiarare chiusa la 0.3.
+
+---
+
+## D-179 — La meccanica riportata al vero, e come si gioca bene
+**implemented in 0.1.147** (documentazione: nessun dato di gioco toccato)
+
+`docs/MECCANICA.md` e' il testo che si da' a chi deve disegnare l'infografica, e
+il suo principio dichiarato e' che **tutti i numeri dentro sono quelli veri,
+letti dai dati e dal codice**. Era fermo a 0.1.140, cioe' a prima del pool acceso
+(D-170/D-173), delle Conseguenze che costruiscono (D-175) e di tutto il resto.
+
+### I numeri che erano diventati falsi
+
+Passati uno per uno contro i dati. La maggior parte reggeva — 132 carte Asset su
+48 tipi, 39 carte Narratore con 24 funzioni, 52 Conseguenze di cui 14 cambiano
+padrone, 10 modelli di Consiglio, 12 Tensioni scritte, 20 Destini, 9 tipi di
+struttura, i valori 2/3/5 del presidio. Cinque no:
+
+| | diceva | e' |
+|---|---|---|
+| regole dei segni (§9) | **45** | **52** — e §3 e §14 dicevano gia' 52: il documento **contraddiceva se stesso** |
+| la ripartizione per tipo | COUNCIL_MODIFIER 16, DRAW_BIAS 10, HAND_LIMIT 1 | **17**, **14**, **3** |
+| famiglie di struttura | **5**, con `CHIUSURA` per il passo | **4**: il passo e' un `LUOGO`, `CHIUSURA` non esiste nei dati |
+| Destini in gioco | **9** all'apertura | **19** dei 20 (il ventesimo e' della Leggenda, che siede solo in saga) |
+| come finisce un anno | ~1% / ~40% / ~40% / ~19% | **0% / 44% / 36% / 20%** a tavolo misto |
+
+L'ultima riga ha guadagnato una colonna invece di cambiare numero: accanto al
+tavolo misto c'e' adesso quello dei **quattro ottimizzatori** (1% / 28% / 41% /
+30%), perche' il divario fra le due e' esso stesso un fatto sul gioco — la stessa
+policy, nessuno che bara, e venti punti di Trionfo di differenza fra chi non
+spreca un turno e chi ogni tanto lo spreca.
+
+### Tre cose che il documento non diceva affatto
+
+- **Il Destino si pesca da un pool di tre** (due identitari piu' un
+  condivisibile). E' la novita' che un giocatore nota per prima — lo stesso
+  tavolo nello stesso anno non gioca la stessa partita — e mancava del tutto,
+  col suo costo dichiarato accanto (i Consigli falliti da 206 a 246).
+- **Sette Conseguenze costruiscono qualcosa che resta.** Il documento diceva solo
+  che 14 cambiano il padrone: mancava che un Consiglio lasci una cosa *sulla
+  mappa*, che pesa nel conto del controllo e sopravvive all'anno.
+- **Come si gioca bene.** Il documento spiegava le regole e non diceva a nessuno
+  cosa convenisse fare.
+
+### La sezione nuova, e perche' e' misurata invece che opinata
+
+§15 «Come si gioca bene, misurato» tiene i numeri dei quattro caratteri sulle
+stesse 100 partite del §14:
+
+| | supera il Minimo | Trionfi |
+|---|---|---|
+| **prudente** | **40%** | 11 |
+| distratto | 59% | 20 |
+| aggressivo | 62% | 22 |
+| **ostinato** | **63%** | **27** |
+
+**La prudenza e' la strategia peggiore del gioco, e di venti punti.** E
+l'ostinato — che punta al gradino alto dal primo round invece che al piu' vicino
+— ha piu' Trionfi di tutti *e* meno Minimi di tutti: giocare basso non protegge.
+Sono i due risultati che un manuale non avrebbe potuto indovinare.
+
+Attorno a quelli, nove regole pratiche con il numero accanto: la carta che vale 3
+al Consiglio giusto e 1 a quello sbagliato · il 44% di Consigli che falliscono ·
+i tre gettoni che comandano tutto · la sovraestensione oltre due Regioni · il
+controllo che si conta invece di prendersi · **le 111 rivendicazioni morte su
+128** · la Condizione che sotto due carte non qualifica · l'alleanza che rende
+solo se ci metti due carte · e l'errore di spegnersi il Destino da soli, che e'
+successo in una partita vera **e** nei dati (D-177).
+
+### Quello che si dichiara
+
+- **La sezione si chiude con cio' che non sa.** Tutti i numeri vengono da bot
+  contro bot: nessuno tradisce, nessuno mente, nessuno promette senza mantenere.
+  Le strategie sono solide sulla meccanica e **mute sulla meta' negoziata del
+  gioco** — la finestra fra le posizioni dichiarate in pubblico e le carte
+  impegnate al buio e' fatta apposta perche' ci si parli, e nessuna misura in
+  questo repository la vede.
+- **Non e' stato toccato nessun dato di gioco**: playtest, suite e sonde sono
+  quelli di 0.1.146.
+- **Restano fuori** le novita' minori di 0.1.142 (il sigillo che porta il sito
+  antico al grado di mezzo) e il dettaglio delle vite in §11, che il documento
+  copre gia' a un livello che regge.
+
+---
+
+## D-178 — Il difetto di D-177 si vedeva senza giocare una partita
+**implemented in 0.1.146** (due guardie nella CI, e la seconda ha morso subito)
+
+D-177 e' costato una sessione di sonde: la sonda delle ere estesa a contare le
+clausole, il conto dei gettoni per Regione negli anni persi, il banco delle
+clausole, due ipotesi scritte e demolite. Alla fine la causa era **un conto di
+somme sui dati**: due gettoni obbligatori su una Regione, una strada che ne
+vuole due su un'altra, e un tetto di tre.
+
+Quel conto non ha bisogno di una partita. Ha bisogno di leggere venti Destini.
+
+### La classe di difetto, non il caso
+
+I livelli sono **cumulativi** — `destiny_evaluator.gd`, e un test lo inchioda da
+tempo («senza Minimum non c'e livello, anche col Triumph vero»). Quindi le
+presenze che un Destino chiede si **sommano** dal Minimo in su, e la somma va
+confrontata col tetto della Chronicle. Da qui due esiti diversi:
+
+| | |
+|---|---|
+| gli **obblighi** superano il tetto | il livello e' irraggiungibile, punto |
+| gli obblighi ci stanno, ma una **strada** dentro un `some_of` li porta oltre | la strada non e' impossibile — le Conseguenze aggiungono presenze senza passare dal tetto del MOVE — ma percorrerla **spegne una clausola di un livello sotto** |
+
+Il secondo e' il difetto della Cenere, ed e' il piu' insidioso dei due: non
+produce un muro visibile, produce un seggio che **perde inseguendo il proprio
+Destino**, e nel conto finisce come debolezza della casa.
+
+### Il censimento, e cosa ha trovato
+
+Passati tutti e venti i Destini: sui dati di 0.1.145 **zero**. Sui dati di
+0.1.144, prima della correzione, esattamente due righe — la Vittoria e il
+Trionfo di `DST_CENERE_DEEP`, che e' il caso vero e l'unico che ci fosse.
+
+**Il difetto era unico in tutto il gioco, e il conto lo trova in un istante.**
+
+### La guardia
+
+Il controllo vive in `tools/validate_data.py` (`check_destiny_token_budget`),
+gia' nella CI col resto dei controlli sui dati. Non e' una sonda che si lancia
+quando viene in mente: e' un pavimento, come `dead_code.py` dopo il bottone
+della stanza (D-140). La lezione e' la stessa di allora — *il rimedio non e' un
+test sul caso, e' un controllo che legge tutto*.
+
+E le guardie hanno la loro prova che mordono: `--self-test` le fa girare su tre
+Destini sintetici — uno sano, uno col difetto della Cenere ridotto all'osso, uno
+con quattro gettoni obbligatori su tre — e pretende che taccia sul primo e parli
+sugli altri due. Gira nella CI **prima** dei dati veri, perche' una guardia che
+nessuno ha mai visto mordere non e' una guardia (D-144).
+
+### E l'altra faccia della stessa moneta, che ha morso subito
+
+Scritta la prima guardia, la domanda successiva veniva da se': se un livello
+sotto puo' **falsificare** una clausola di sopra, puo' anche **regalarla**?
+
+`check_destiny_free_roads` fa quel conto: per ogni `some_of`, quante delle sue
+strade sono gia' vere per obbligo di un livello inferiore. Se il Trionfo chiede
+«tre segni fra questi sei» e uno dei sei e' obbligatorio nella Vittoria, allora
+il `min: 3` e' in realta' un `min: 2` su cinque, **e nessuno l'ha deciso**.
+
+Su venti Destini ha trovato una riga sola, e non era vecchia: era **mia, di
+ieri**. Rendendo la reliquia obbligatoria nella Vittoria di `DST_CENERE_DEEP`
+(D-177) avevo acceso da solo il primo ramo del suo Trionfo.
+
+**Ed e' la spiegazione della bimodalita' che D-177 aveva dichiarato senza
+saperla spiegare**: 8 Minimi, **1** Vittoria, 7 Trionfi. Il Trionfo era diventato
+quasi gratuito per chiunque avesse passato la Vittoria.
+
+Tolto il ramo ridondante — resta `min: 3` su cinque strade vere:
+
+| `DST_CENERE_DEEP` | N / M / V / T su 16 | supera |
+|---|---|---|
+| base 0.1.144 | 0 / 9 / 3 / 4 | 44% |
+| 0.1.145 | 0 / 8 / **1** / 7 | 50% — bimodale |
+| **0.1.146** | 0 / 8 / **5** / 3 | 50% — una scala |
+
+Stesso 50% sopra il Minimo, distribuito come una scala invece che come un salto.
+Playtest **FAIL 256 · 78 · 100 · 145**, mediana 6, **0 su 8** misto e uniforme;
+Kessa a tavolo misto da 0/29/9/12 a **0/29/13/8**.
+
+### Quello che si dichiara
+
+- **Il conto guarda solo i gettoni e le strade regalate.** Un Destino puo'
+  combattersi da solo in altri modi che nessuna delle due guardie vede: una
+  clausola che chiede un tag e una che lo vieta, un livello che vuole una
+  cicatrice e quello sopra che la proibisce. Non ce ne sono oggi, e non c'e' un
+  controllo che lo dica.
+- **Le asserzioni della suite scendono da 6445 a 6444**, e il motivo e' innocuo:
+  `test_data_boot` ne fa una per ogni `state_tag_present` di ogni Destino — per
+  pretendere che qualcosa al mondo sappia scrivere quel tag — e una condizione
+  in meno e' un controllo in meno. La copertura resta: `discovery:relic` e'
+  ancora nella Vittoria dello stesso Destino. I test restano **349**.
+- **Il tetto usato e' il piu' stretto fra le Chronicle** (oggi tre ovunque), per
+  via dei Destini condivisibili che vivono in piu' di una. Se una Chronicle
+  nascesse con un tetto diverso, il conto resterebbe corretto ma prudente.
+- **Non cambia niente in gioco**: nessun dato toccato, solo strumenti e CI. Il
+  playtest e la suite sono quelli di 0.1.145 per costruzione.
+- **Un difetto trovato per strada e non corretto**: i messaggi del validatore
+  nominano il file sbagliato quando un tipo di documento vive in piu' file
+  (`origins` tiene il **primo**, e i Destini stanno in tre file). Il controllo
+  nuovo lo aggira nominando l'id invece del percorso; gli altri no. E' piccolo e
+  preesistente, ma chi tocchera' quel file adesso lo sa.
+
+---
+
+## D-177 — Il Destino che si combatteva da solo
+**implemented in 0.1.145** (la voce nuova di D-176, aperta come ISSUES 45)
+
+D-176 aveva chiuso ISSUES 35 e lasciato una voce: *la linea della Cenere/Fuochi
+arriva al secondo gradino la meta' delle volte delle altre, in ogni sua
+incarnazione*. Questa e' la voce, e la causa non e' quella che sembrava.
+
+### Quello che la misura ha trovato, e non era una debolezza
+
+La sonda delle ere contava i livelli per incarnazione, non le **clausole**. Le e'
+stato aggiunto il conto di cosa manca quando un anno chiude a NONE, e la prima
+riga era gia' una risposta: su 120 anni della saga del Sale, **tutti e tredici i
+NONE sono della Cenere, e le altre tre case non perdono mai**.
+
+| | NONE | supera il Minimo |
+|---|---|---|
+| **ENT_CENERE** | **13** | 26% |
+| ENT_LIBERE | 0 | 24% |
+| ENT_SALE | 0 | 58% |
+| ENT_VETRO | 0 | 43% |
+
+E tutti e tredici per la stessa clausola: «Le Montagne Rosse sono presidiate, non
+solo abitate» — il Minimo, `region_presence min: 2`.
+
+### Due ipotesi scritte e demolite dalla misura
+
+**La prima**: 2 gettoni su Montagne piu' 2 su Miniere fanno 4, e il tetto e' 3 —
+quindi la clausola e' impossibile e il Destino ha una porta sola. **Falsa**: la
+sonda delle clausole la da' **vera il 35% delle volte**, perche' le Conseguenze
+aggiungono presenze senza passare dal tetto del MOVE (la media dei gettoni della
+Cenere a fine anno e' 3,46, non 3).
+
+**La seconda**: le Montagne Rosse sono l'unica Regione a **tre** slot invece di
+quattro, quindi la casa viene soffocata da chi ci entra. **Falsa**: le pedine
+altrui a fine anno sono **0,15** negli anni persi e 0,07 negli altri. Nessuno ci
+va. La Regione e' vuota.
+
+### La causa, che nessuna delle due ipotesi vedeva
+
+| | pedine altrui | **sue sulle Montagne** | **sue sulle Miniere** | gettoni |
+|---|---|---|---|---|
+| negli anni a NONE | 0,15 | **1,00** | **1,92** | 3,46 |
+| in tutti gli altri | 0,07 | 1,67 | 1,04 | 3,49 |
+
+**Lo stesso numero di gettoni. Cambia solo dove stanno.** Negli anni che
+finiscono a NONE la Cenere e' scesa nelle Miniere in due — «O sono scesi in due,
+e non hanno solo guardato», una clausola della **sua stessa Vittoria** — e cosi'
+facendo ha lasciato le Montagne con un gettone solo, spegnendo il proprio Minimo.
+I livelli sono cumulativi: inseguire quella Vittoria significa perdere il Minimo
+che la regge.
+
+**La casa non perdeva perche' era debole. Perdeva perche' inseguiva il proprio
+Destino.** E' la forma del difetto del seme 15308 (ISSUES 21, l'avviso «questa
+mossa spegne»), ma scritta nei dati invece che giocata da un distratto — e i bot
+l'avviso non ce l'hanno.
+
+Il testo lo diceva gia', e nessuno l'aveva letto come un conto: *«E' lo stesso
+desiderio di prima, con meno margine.»* Il margine non era meno: era **negativo**.
+`DST_CENERE_DEEP` («Piu' a Fondo») aveva ereditato pari pari il Minimo di
+`DST_CENERE` («La Montagna e' Nostra»), dove presidiare in due ha senso. In un
+Destino che chiede di **scendere**, chiedere di restare su in due e' una
+contraddizione.
+
+### La correzione: il Minimo che il Destino voleva
+
+Il Minimo di `DST_CENERE_DEEP` diventa «**Non hanno lasciato la montagna**» —
+`entity_alive` (che la Cenere era l'unica delle quattro case a non avere) piu'
+**un** gettone sulle Montagne Rosse. Un gettone resta su, due scendono: e' esatta-
+mente l'immagine del Destino, e con tre gettoni ci sta.
+
+E la Vittoria, che era fatta di due regali (`region_presence min: 1` sulle
+Miniere e «le gallerie non sono murate», tutt'e due al 100%) piu' una porta,
+chiede adesso **la discesa in due e la reliquia**: la pedina il seggio la muove
+da solo, la reliquia gliela deve dare il tavolo.
+
+### Le quattro forme, misurate una alla volta
+
+Sonda dei gradini, 80 Chronicle a tavolo misto, semi da 7000:
+
+| | `DST_CENERE_DEEP` (N/M/V/T su 16) | supera | il gioco |
+|---|---|---|---|
+| **base** — Minimo a 2 gettoni | 0 / 9 / 3 / 4 | 44% | 54% |
+| Minimo a 1, Vittoria invariata | 0 / **0** / 10 / 6 | **100%** — regalo | 56% |
+| id., tolta la clausola al 100% | 0 / 0 / 10 / 6 | 100% — era un no-op | 56% |
+| **scelta** — Minimo a 1, discesa **e** reliquia | 0 / 8 / 1 / 7 | **50%** | 55% |
+| discesa + [reliquia **o** veglia] | 0 / 10 / 2 / 4 | 37% | 53% |
+
+La seconda forma e' il motivo per cui si misura ogni passo: spostare il Minimo
+senza toccare la Vittoria non chiudeva il difetto, **lo capovolgeva** — da Destino
+che si combatte a Destino regalato, zero Minimi su sedici.
+
+### Le misure
+
+**Playtest 100 semi, il cancello:**
+
+| | base | dopo |
+|---|---|---|
+| Esiti (misto) | FAIL 248 · 71 · 100 · 144 | **FAIL 256 · 78 · 99 · 146** |
+| Consigli (misto) | 5,63 · mediana 6 | 5,79 · mediana 6 |
+| Kessa, tavolo misto | 0 / 32 / 10 / 8 | **0 / 29 / 9 / 12** |
+| Kessa, tavolo uniforme | 1 / 33 / 13 / 3 | **1 / 21 / 17 / 11** |
+| **seggi bloccati** | 0 su 8 | **0 su 8** |
+
+**Saga del Sale, 12 saghe da 10 Chronicle:**
+
+| | base | dopo |
+|---|---|---|
+| ENT_CENERE | **13** NONE · 76 · 25 · 6 · supera 26% | **0** NONE · 80 · 25 · **15** · supera **33%** |
+| ENT_SALE | 0 · 50 · 25 · 45 · 58% | 0 · 39 · 38 · 43 · 68% |
+| ENT_VETRO | 0 · 69 · 39 · 12 · 43% | **2** · 59 · 46 · 13 · 49% |
+| ENT_LIBERE | 0 · 91 · 16 · 13 · 24% | 0 · 91 · 17 · 12 · 24% |
+
+I volti dei Fuochi passano da **8%–33%** a **22%–50%**; i Maestri stanno fra il
+33% e l'83%. La prima saga (CHR_01) e' **identica riga per riga**: il cambiamento
+non esce dalla sua Chronicle. Suite **349 test / 6445 asserzioni** verde, sim ed
+export identici su due giri.
+
+### Quello che si dichiara
+
+- **I Consigli falliti salgono da 248 a 256.** Il trend diventa 206 → 246 → 248 →
+  **256**. Una casa che arriva viva alla fine dell'anno propone e si oppone piu' a
+  lungo. E' il costo, ed e' scritto.
+- **Il perdere non e' sparito dalla saga: ha cambiato posto.** I 13 NONE della
+  Cenere diventano 0, e ne compaiono **2 del Vetro**, per la sua stessa clausola
+  («Le gallerie sono presidiate, non solo abitate»). E' una conseguenza vera e
+  non un effetto collaterale: le Miniere Antiche hanno quattro slot, e da adesso
+  la Cenere ne occupa due per la propria Vittoria. Due case che vogliono le
+  stesse gallerie se le contendono. Un NONE che nasce da una contesa vale piu'
+  di tredici che nascevano da un Destino che si combatteva da solo — ma il conto
+  totale del perdere in questa saga **scende da 13 a 2**, e chi verra' dopo deve
+  saperlo.
+- **La forma scelta e' bimodale**: 8 Minimi, **1** Vittoria, 7 Trionfi. Chi supera
+  il Minimo arriva quasi sempre in cima, perche' il Trionfo e' un `some_of` a 3 su
+  6 che la Vittoria nuova quasi gia' contiene. E' il difetto di forma di ISSUES 44
+  (Lyra), misurato e non corretto: correggerlo e' tarare il Trionfo, e non e' la
+  voce di oggi.
+- **La voce di D-176 e' ridotta, non chiusa.** Il divario fra le due linee passa
+  da 8–33% contro 50–75% a 22–50% contro 33–83%. Le Custodi della Cenere restano
+  la vita piu' debole della saga (22%). Quello che si e' chiuso e' il **difetto
+  strutturale**; la debolezza residua della linea resta aperta in ISSUES 45.
+- **Nessuna clausola pronta esisteva.** Il banco ha misurato dodici candidate
+  (`tools/clause_candidates.json`): tutte quelle che la Cenere poteva ottenere
+  restando sulla montagna sono uscite **0%** (il cristallo, la montagna lavorata,
+  un'opera nelle gallerie) o **100%** (un'opera sulla montagna, un presidio). Nel
+  mondo com'e', quella casa ha poche leve — ed e' un numero che vale per chi
+  scrivera' il prossimo Destino dei Fuochi.
+
+---
+
 ## D-176 — Le istituzioni non governano diversamente dalle persone
 **implemented in 0.1.144** (ISSUES 35 chiusa, e l'ipotesi era falsa)
 

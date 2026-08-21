@@ -916,9 +916,10 @@ volti dei Fuochi stanno fra l'8% e il 46%, i cinque Maestri fra il 46% e il 67%.
 della Cenere/Fuochi è debole in ogni sua incarnazione, ed è lì che va guardata —
 non nelle istituzioni.
 
-**Resta come voce nuova**, se si vorrà: *la linea dei Fuochi arriva al secondo
-gradino la metà delle volte delle altre*, con la sonda delle ere che adesso
-stampa il conto per incarnazione.
+**La voce nuova è stata aperta** come la 45 qui sotto, e la sua metà strutturale
+è chiusa in 0.1.145 ([D-177](DECISIONS.md#d-177)): la Cenere non arrivava meno in
+alto perché fosse debole, ma perché il suo Destino le chiedeva due cose che con
+tre gettoni non stanno insieme.
 
 ### 28. ✅ Le alleanze devono pesare al Consiglio — fatta in 0.1.102
 
@@ -1160,6 +1161,10 @@ avvengono nella stessa azione — non si prenota una domanda che è già matura.
 **Fatto quando** la decisione è a verbale e, se la regola cambia, le
 rivendicazioni morte scendono sotto una su tre.
 
+*Misura di 0.1.147, per il confronto di domani: **128 aperte, 17 forzate, 111
+morte** su 80 Chronicle — la proporzione non si è mossa, ed è scritta anche in
+[MECCANICA §15](MECCANICA.md), fra le nove cose che i numeri dicono a chi gioca.*
+
 ### 38. ✅ La Vittoria della Cenere ha una porta sola — fatta in 0.1.122
 
 `contenuto` · nata dalla misura respinta di [D-152](DECISIONS.md#d-152)
@@ -1399,6 +1404,98 @@ quattro Tensioni, ed e' la seconda volta che succede per lo stesso motivo
 (D-051, Vaerax).
 
 Costo dichiarato: **FAIL 191 → 203**.
+
+### 45. La linea dei Fuochi: metà chiusa, e quello che resta
+
+`contenuto` · `bilanciamento` · **metà chiusa in 0.1.145** · nata da
+[D-176](DECISIONS.md#d-176) → [D-177](DECISIONS.md#d-177)
+
+**La metà chiusa.** La voce diceva che la linea della Cenere/Fuochi arriva al
+secondo gradino la metà delle volte delle altre, in ogni sua incarnazione. La
+causa non era la debolezza: su 120 anni della saga del Sale **tutti e tredici i
+NONE erano suoi** — le altre tre case zero — e tutti per la stessa clausola. Negli
+anni persi la Cenere teneva **1,00** gettoni sulle Montagne Rosse e **1,92** nelle
+Miniere; negli altri 1,67 e 1,04. Lo stesso numero di gettoni, il posto diverso:
+`DST_CENERE_DEEP` chiedeva al Minimo di presidiare la montagna in due e alla
+Vittoria di scendere sotto in due, con tre gettoni e i livelli cumulativi.
+**Inseguire la propria Vittoria costava il proprio Minimo.** Corretto dando a «Più
+a Fondo» il Minimo che il suo testo già descriveva (un gettone su, due sotto) e
+togliendo alla sua Vittoria i due regali al 100%: 13 NONE → 0, la casa dal 26% al
+33% sopra il Minimo, i volti dei Fuochi da 8%–33% a **22%–50%**.
+
+**Quello che resta, ed è il residuo vero.** Il divario con la linea dei Maestri
+(33%–83%) si è ridotto, non chiuso. **Le Custodi della Cenere restano la vita più
+debole della saga al 22%**, e la Lega delle Sette è più giù di tutti al 13%. E il
+banco delle clausole dice perché è difficile intervenire: delle dodici candidate
+misurate, tutto ciò che la Cenere può ottenere **restando sulla montagna** esce
+0% (il cristallo, la montagna lavorata, un'opera nelle gallerie) o 100% (un'opera
+sulla montagna, un presidio). **Nel mondo com'è, quella casa ha poche leve** — non
+è una taratura mancata, è contenuto che non esiste ancora.
+
+**Due cose misurate e non corrette**, che chi apre questa voce trova già a
+verbale:
+
+- ~~**La forma di `DST_CENERE_DEEP` è bimodale**: 8 Minimi, 1 Vittoria, 7
+  Trionfi su 16.~~ **Chiusa in 0.1.146** ([D-178](DECISIONS.md#d-178)): la causa
+  non era la taratura del Trionfo ma una **strada regalata** — la reliquia resa
+  obbligatoria dalla Vittoria accendeva da sola il primo dei sei rami, e quel
+  `min: 3` era in realtà un `min: 2` su cinque. Tolto il ramo ridondante:
+  **0/8/5/3**, lo stesso 50% distribuito come una scala. L'ha trovata la guardia
+  nuova, non una sonda.
+- **Il perdere ha cambiato posto**: i 2 NONE nuovi sono del Vetro, che adesso
+  contende alla Cenere gli slot delle stesse gallerie. Il conto totale del
+  perdere nella saga del Sale scende da 13 a 2, e va guardato insieme a
+  [D-067](DECISIONS.md#d-067).
+
+**Fatto quando** la linea dei Fuochi sta nella stessa banda delle altre in ogni
+sua incarnazione — o il motivo per cui non ci sta è scritto con i numeri accanto.
+
+### 46. La campagna del Sale ha un vincitore già scritto
+
+`contenuto` · `bilanciamento` · nata da [D-180](DECISIONS.md#d-180) · **aperta in 0.1.148**
+
+Il contatore di saga ha reso visibile una cosa che c'era già e che nessuno poteva
+vedere finché ogni anno stava in piedi da solo:
+
+| | chi vince la campagna, su 12 saghe da 10 Chronicle |
+|---|---|
+| **CHR_01** — la Carestia | NAHR 5, LYRA 2, VAERAX 2, **Aldric mai** · 3 pareggi |
+| **CHR_03** — il Sale | **SALE 12 su 12** |
+
+**Nella saga del Sale vince sempre la stessa casa, con qualunque scala di
+punteggio** — provate tutte e cinque, il vincitore non cambia. La causa non è il
+punteggio ma lo squilibrio di contenuto già misurato in
+[D-176](DECISIONS.md#d-176): il Sale supera il Minimo il **68%** delle volte, il
+Vetro il 49%, le Città Libere il 24% e la Cenere il 33%.
+
+**Il punto di metodo, che vale oltre questa voce:** finché ogni Chronicle sta in
+piedi da sola, una casa debole ha comunque i suoi anni buoni e lo squilibrio si
+spalma; appena si somma, la differenza *diventa il risultato*. Un contatore di
+campagna non è una regola neutra: è un amplificatore di tutto quello che il
+bilanciamento non ha ancora chiuso.
+
+Due cose da guardare, e sono diverse:
+
+- **Il Sale è troppo forte** (68%), e va guardato dal lato suo: quali clausole
+  gli riescono quasi sempre. È il lavoro speculare a quello fatto sulla Cenere in
+  [D-177](DECISIONS.md#d-177), che partiva dalla casa più debole.
+- **Aldric non vince mai una campagna** in CHR_01 pur non essendo il più debole
+  per gradini (69 Minimi, 41 Vittorie, 9 Trionfi su 120 anni): ha le Vittorie ma
+  non i Trionfi, e con una scala che paga il gradino alto il doppio, chi non
+  trionfa mai non vince la campagna. Va deciso se è un difetto o se è il suo
+  carattere.
+
+**E c'è un terzo lato, misurato in 0.1.149** ([D-181](DECISIONS.md#d-181)): con la
+campagna fissata a dieci anni, nel Sale **metà delle campagne è già decisa entro
+il terzo anno** (l'ultimo cambio di testa cade in media all'anno 3,5 su 10),
+mentre nella Carestia il testimone passa quasi due volte e l'ultimo sorpasso
+arriva a metà strada. Una casa che supera il Minimo il 68% delle volte prende la
+testa presto e non la molla: lo squilibrio non è solo *chi vince*, è **sette anni
+giocati sapendo già come finisce**.
+
+**Fatto quando** su dodici saghe per tavolo nessuna casa vince più della metà
+delle campagne — o il motivo per cui una lo fa è scritto con i numeri accanto —
+e l'ultimo cambio di testa non cade prima di metà campagna.
 
 ---
 
