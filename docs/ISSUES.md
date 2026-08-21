@@ -1682,6 +1682,61 @@ Terre Nahr (**almeno il 5%**), senza che il playtest esca da **0/8**.
 **Da non confondere con la palude**: quella chiede slot variabili ed è motore.
 Questa, se l'ipotesi 1 o 3 regge, si chiude **con i dati**.
 
+### 49. Le Tensioni come mucchi di segnalini coperti
+
+`regole` · `motore` · voluta dal committente · **preventivo misurato in 0.1.158** ([D-190](DECISIONS.md#d-190))
+
+«Ogni carta o azione fa pescare uno o più segnalini coperti che danno un valore
+a una tensione. A un certo punto, quando parte la Confluence, si girano, e la
+tensione col punteggio più alto viene dibattuta nel Consiglio.»
+
+**Il sacchetto esiste già**: la Deriva è nove gettoni mescolati col seme
+([D-047](DECISIONS.md#d-047)), pescati uno per round. La proposta cambia **chi
+pesca** (i giocatori agendo) e **quando si guarda** (al Consiglio).
+
+**Il preventivo**, misurato senza cambiare nessuna regola:
+
+| | CHR_01 (a carte) | CHR_03 (§10 di prima) |
+|---|---|---|
+| segnalini in un anno | **18,7** | **72,4** |
+| il mondo si scalda | **2,1×** | **8,0×** |
+| ...col sacchetto misto 1/2/3 | 3,6× | 14,1× |
+| scarto fra il mucchio più alto e il più basso, atto I → III | 3,07 → **5,02** | 5,15 → **11,77** |
+| la domanda più calda è quella davvero dibattuta | **31%** | 23% |
+
+**Le quattro cose da decidere prima di scrivere:**
+
+1. **Serve il gioco a carte.** Nel §10 di prima ogni ACQUISIRE scalderebbe il
+   mondo, e ACQUISIRE era due terzi di tutto: otto volte la Deriva. Le due
+   riprogettazioni hanno bisogno l'una dell'altra, e questa non si può accendere
+   in CHR_03 finché quel mondo non passa alle carte.
+2. **L'innesco.** Un segnalino ogni **3** riproduce esattamente il ritmo di oggi
+   (5,95 Consigli l'anno contro 5,90) e al tavolo si conta a occhio. A orologio
+   dà 3 (fine Atto) o 9 (fine round). **L'innesco «a chiamata» — lo apre un
+   giocatore — non è misurabile con una sonda ombra**, ma è quello che salderebbe
+   [ISSUES 37](#37): RIVENDICARE diventerebbe il motore delle Tensioni invece di
+   un'azione che muore in mano tre volte su quattro.
+3. **Il sacchetto misto è fuori scala**: 3,6× vuol dire rifare tutte le soglie,
+   non ritoccarle. Se i segnalini devono pesare 1, 2 o 3, le soglie non sono più
+   4–7.
+4. **Chi sceglie la domanda.** La sonda pesca a caso e uniformemente. Se invece è
+   **la carta** a dire quale domanda si scalda, il mucchio smette di essere un
+   caso e diventa una scelta — è un terzo gioco, e non è misurato.
+
+**Il numero che decide se vale la pena**: su 354 Consigli veri, il mucchio
+coperto avrebbe scelto la stessa domanda il **31%** delle volte. Sette volte su
+dieci si dibatterebbe qualcos'altro. **Non è colore: è un altro gioco** — e non
+si può accendere «per vedere come va», perché cambia quali storie il mondo
+racconta.
+
+**E rende inutile il velo di [D-187](DECISIONS.md#d-187), in meglio**: se tutti i
+valori sono coperti per costruzione, «velata» smette di essere una categoria
+speciale — sono tutte velate, e TRAMARE diventa «sbircio un segnalino».
+
+**Fatto quando** un anno si gioca coi mucchi coperti, il playtest resta **0/8** a
+tavolo misto e uniforme, e lo scarto fra il mucchio più alto e il più basso
+**non cresce** di atto in atto.
+
 ---
 
 ---

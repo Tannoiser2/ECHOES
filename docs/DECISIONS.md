@@ -10,6 +10,94 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-190 — Il prezzo del sacchetto dei segnalini coperti
+**misurata in 0.1.158** (nessuna regola cambiata: e' il preventivo di ISSUES 49)
+
+Il committente ha proposto di rifare le Tensioni: *«ogni carta o azione fa
+pescare uno o piu' segnalini coperti che danno un valore a una tensione. A un
+certo punto, quando parte la Confluence, si girano, e la tensione col punteggio
+piu' alto viene dibattuta nel Consiglio.»*
+
+### La prima cosa da dire: il sacchetto esiste gia'
+
+La Deriva **e' gia' un sacchetto**: nove gettoni mescolati col seme
+(`drift_distribution`, D-047), pescati uno per round. La proposta non introduce
+un oggetto nuovo — cambia **chi pesca** (i giocatori agendo, non il mondo a
+orologio) e **quando si guarda** (al Consiglio, non subito). La sonda misura
+tutte e due le cose senza toccare una regola.
+
+### a) Quanto si scalderebbe il mondo
+
+| | CHR_01 (gioco a carte) | CHR_03 (§10 di prima) |
+|---|---|---|
+| segnalini in un anno, tutto il tavolo | **18,7** | **72,4** |
+| il mondo si scalda, col sacchetto piatto | **2,1 volte** piu' in fretta | **8,0 volte** |
+| ...col sacchetto misto (1/2/3) | **3,6 volte** | **14,1 volte** |
+
+**E' la misura che decide la regola.** Il sacchetto funziona **solo nel gioco a
+carte**: li' le azioni sono poche e ognuna pesa, quindi 18,7 segnalini contro i
+9 della Deriva e' un raddoppio governabile. Nel §10 di prima ogni ACQUISIRE
+scalderebbe il mondo, e ACQUISIRE era **due terzi di tutto**: settantadue
+segnalini in un anno, otto volte la Deriva. Le due riprogettazioni — le carte e
+i segnalini — **hanno bisogno l'una dell'altra**.
+
+Il sacchetto misto e' fuori scala in entrambi i mondi: 3,6 volte in CHR_01
+significa rifare tutte le soglie, non ritoccarle.
+
+### b) Su quali domande finiscono, e quanto e' storto il mucchio
+
+Il Risveglio prende 6,68 segnalini l'anno contro i 3,83 della Carestia — ed e'
+**giusto cosi'**: e' la composizione del sacchetto che il committente ha gia'
+tarato (3 gettoni su 9 sono suoi). Ma lo scarto fra il mucchio piu' alto e il
+piu' basso cresce: **3,07 -> 4,15 -> 5,02** di Atto in Atto. Girare i segnalini
+all'Atto 3 sarebbe spesso una formalita': una domanda ha gia' vinto.
+
+### c) I tre inneschi, in numeri
+
+| innesco | Consigli in un anno (CHR_01) |
+|---|---|
+| a orologio, fine Atto | 3,00 |
+| a orologio, fine round | 9,00 |
+| a quantita', ogni **3** segnalini | **5,95** |
+| a quantita', ogni 4 segnalini | 4,27 |
+| a quantita', ogni 6 segnalini | 2,67 |
+| **il gioco di oggi (a soglia)** | **5,90** |
+
+**Un segnalino ogni tre riproduce esattamente il ritmo di adesso** — 5,95 contro
+5,90 — e lo fa con una regola che al tavolo si conta a occhio: tre gettoni
+scesi, si gira. E' il candidato migliore fra quelli misurati.
+
+### d) E la domanda che conta: sarebbe un gioco diverso?
+
+Su **354 Consigli veri**, il mucchio coperto avrebbe scelto **la stessa domanda
+il 31% delle volte** (il 23% in CHR_03). Sette volte su dieci si dibatterebbe
+qualcos'altro.
+
+**Non e' colore: e' un altro gioco.** Non dice che sia peggiore — dice che non
+si puo' accendere «per vedere come va», perche' cambia quali storie il mondo
+racconta.
+
+### Quello che si dichiara
+
+- **La sonda non cambia niente**, come il preventivo di D-183: gioca le partite
+  come sono e tiene un mondo ombra a fianco. I numeri sono quindi *quanti
+  segnalini scenderebbero*, non *come andrebbe la partita*: con la regola accesa
+  i seggi agirebbero diversamente, e questa sonda non lo sa.
+- **L'innesco «a chiamata» non e' misurato**, ed e' quello che mi sembra
+  migliore: il Consiglio lo apre un giocatore. Non e' misurabile con una sonda
+  ombra perche' dipende da una decisione che oggi nessun bot puo' prendere —
+  serve prima la regola. Nota che salderebbe ISSUES 37: RIVENDICARE, che oggi
+  muore in mano tre volte su quattro, diventerebbe **il motore delle Tensioni**.
+- **Il sacchetto ombra pesca a caso, uniformemente.** La proposta dice «ogni
+  carta o azione fa pescare»: se invece e' **la carta** a dire quale domanda si
+  scalda, il mucchio smette di essere casuale e diventa una scelta — un gioco
+  ancora diverso, e non misurato qui.
+- **Niente e' stato provato con quattro persone.** Questa regola vive o muore
+  sulla sensazione di guardare un mucchio che cresce senza poterlo contare, e
+  quella e' esattamente la cosa che un bot non prova.
+
+---
+
 ## D-189 — Un piano scriptato dice in che economia e' stato scritto
 **implemented in 0.1.157** (riparazione di D-188, trovata dalla CI)
 

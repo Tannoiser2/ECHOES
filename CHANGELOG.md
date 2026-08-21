@@ -5,6 +5,42 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.158 — Il prezzo del sacchetto dei segnalini coperti (D-190)
+
+- **Nessuna regola cambiata**: è il preventivo di **ISSUES 49**, la
+  riprogettazione delle Tensioni voluta dal committente — «ogni carta o azione fa
+  pescare uno o più segnalini coperti che danno un valore a una tensione».
+- **Il sacchetto esiste già**: la Deriva è nove gettoni mescolati col seme. La
+  proposta cambia **chi pesca** (i giocatori agendo) e **quando si guarda** (al
+  Consiglio). Sonda nuova, `run_token_probe.gd`.
+- **Il sacchetto funziona solo nel gioco a carte**: **18,7** segnalini l'anno in
+  CHR_01 (2,1× la Deriva) contro **72,4** in CHR_03 (8,0×), dove ogni ACQUISIRE
+  scalderebbe il mondo. Le due riprogettazioni hanno bisogno l'una dell'altra.
+- **L'innesco che riproduce il ritmo di oggi**: un segnalino ogni **3** dà 5,95
+  Consigli l'anno contro i 5,90 di adesso — e al tavolo si conta a occhio. A
+  orologio darebbe 3 (fine Atto) o 9 (fine round).
+- **Il numero che decide**: su 354 Consigli veri, il mucchio coperto avrebbe
+  scelto la stessa domanda il **31%** delle volte. Sette su dieci si dibatterebbe
+  altro. **Non è colore: è un altro gioco.**
+
+### Dichiarato
+
+- La sonda tiene un **mondo ombra** e non cambia niente: dice quanti segnalini
+  scenderebbero, non come andrebbe la partita — con la regola accesa i seggi
+  agirebbero diversamente, e questo la sonda non lo sa.
+- **L'innesco «a chiamata» non è misurato** ed è quello che mi sembra migliore:
+  non è misurabile con una sonda ombra perché dipende da una decisione che oggi
+  nessun bot può prendere. Salderebbe **ISSUES 37**: RIVENDICARE diventerebbe il
+  motore delle Tensioni invece di morire in mano tre volte su quattro.
+- **Il sacchetto misto (1/2/3) è fuori scala**: 3,6× vuol dire rifare le soglie,
+  non ritoccarle.
+- La sonda pesca **a caso e uniformemente**: se è la carta a dire quale domanda
+  si scalda, è un terzo gioco e non è misurato.
+- Renderebbe inutile il velo di D-187, **in meglio**: tutte le domande sarebbero
+  velate per costruzione, e TRAMARE diventerebbe «sbircio un segnalino».
+
+---
+
 ## 0.1.157 — Un piano dice in che economia è stato scritto (D-189)
 
 - **Riparazione di 0.1.156, trovata dalla CI.** Accendere le carte in CHR_01 ha
