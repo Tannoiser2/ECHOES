@@ -434,14 +434,19 @@
       "description": "Chi ha ottenuto la montagna scopre di volere quello che c'è sotto la montagna. È lo stesso desiderio di prima, con meno margine.",
       "art_prompt_key": "destiny.cenere.deep",
       "minimum": {
-        "label": "Restano sulla montagna",
+        "label": "Non hanno lasciato la montagna",
         "conditions": [
+          {
+            "type": "entity_alive",
+            "entity_id": "ENT_CENERE",
+            "label": "I Fuochi non si sono spenti"
+          },
           {
             "type": "region_presence",
             "entity_id": "ENT_CENERE",
             "region_id": "REG_MONTAGNE_ROSSE",
-            "min": 2,
-            "label": "Le Montagne Rosse sono presidiate, non solo abitate"
+            "min": 1,
+            "label": "E qualcuno di loro è rimasto sulle Montagne Rosse"
           }
         ]
       },
@@ -449,39 +454,25 @@
         "label": "E hanno visto cosa c'è sotto",
         "conditions": [
           {
-            "type": "region_presence",
-            "entity_id": "ENT_CENERE",
-            "region_id": "REG_MINIERE_ANTICHE",
-            "min": 1,
-            "label": "Qualcuno di loro è sceso"
-          },
-          {
             "type": "state_tag_absent",
             "scope": "REGION",
             "region_id": "REG_MINIERE_ANTICHE",
             "tag": "structure:sealed",
-            "label": "E le gallerie non sono state murate"
+            "label": "Le gallerie non sono state murate"
           },
           {
-            "type": "some_of",
-            "min": 1,
-            "label": "E un segno di cosa hanno trovato",
-            "conditions": [
-              {
-                "type": "state_tag_present",
-                "scope": "ENTITY",
-                "entity_id": "ENT_CENERE",
-                "tag": "discovery:relic",
-                "label": "Hanno visto la reliquia con i propri occhi"
-              },
-              {
-                "type": "region_presence",
-                "entity_id": "ENT_CENERE",
-                "region_id": "REG_MINIERE_ANTICHE",
-                "min": 2,
-                "label": "O sono scesi in due, e non hanno solo guardato"
-              }
-            ]
+            "type": "region_presence",
+            "entity_id": "ENT_CENERE",
+            "region_id": "REG_MINIERE_ANTICHE",
+            "min": 2,
+            "label": "E sono scesi in due, non hanno solo guardato"
+          },
+          {
+            "type": "state_tag_present",
+            "scope": "ENTITY",
+            "entity_id": "ENT_CENERE",
+            "tag": "discovery:relic",
+            "label": "E quello che c'è sotto l'hanno visto coi propri occhi"
           }
         ]
       },

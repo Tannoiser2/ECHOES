@@ -916,9 +916,10 @@ volti dei Fuochi stanno fra l'8% e il 46%, i cinque Maestri fra il 46% e il 67%.
 della Cenere/Fuochi è debole in ogni sua incarnazione, ed è lì che va guardata —
 non nelle istituzioni.
 
-**Resta come voce nuova**, se si vorrà: *la linea dei Fuochi arriva al secondo
-gradino la metà delle volte delle altre*, con la sonda delle ere che adesso
-stampa il conto per incarnazione.
+**La voce nuova è stata aperta** come la 45 qui sotto, e la sua metà strutturale
+è chiusa in 0.1.145 ([D-177](DECISIONS.md#d-177)): la Cenere non arrivava meno in
+alto perché fosse debole, ma perché il suo Destino le chiedeva due cose che con
+tre gettoni non stanno insieme.
 
 ### 28. ✅ Le alleanze devono pesare al Consiglio — fatta in 0.1.102
 
@@ -1399,6 +1400,48 @@ quattro Tensioni, ed e' la seconda volta che succede per lo stesso motivo
 (D-051, Vaerax).
 
 Costo dichiarato: **FAIL 191 → 203**.
+
+### 45. La linea dei Fuochi: metà chiusa, e quello che resta
+
+`contenuto` · `bilanciamento` · **metà chiusa in 0.1.145** · nata da
+[D-176](DECISIONS.md#d-176) → [D-177](DECISIONS.md#d-177)
+
+**La metà chiusa.** La voce diceva che la linea della Cenere/Fuochi arriva al
+secondo gradino la metà delle volte delle altre, in ogni sua incarnazione. La
+causa non era la debolezza: su 120 anni della saga del Sale **tutti e tredici i
+NONE erano suoi** — le altre tre case zero — e tutti per la stessa clausola. Negli
+anni persi la Cenere teneva **1,00** gettoni sulle Montagne Rosse e **1,92** nelle
+Miniere; negli altri 1,67 e 1,04. Lo stesso numero di gettoni, il posto diverso:
+`DST_CENERE_DEEP` chiedeva al Minimo di presidiare la montagna in due e alla
+Vittoria di scendere sotto in due, con tre gettoni e i livelli cumulativi.
+**Inseguire la propria Vittoria costava il proprio Minimo.** Corretto dando a «Più
+a Fondo» il Minimo che il suo testo già descriveva (un gettone su, due sotto) e
+togliendo alla sua Vittoria i due regali al 100%: 13 NONE → 0, la casa dal 26% al
+33% sopra il Minimo, i volti dei Fuochi da 8%–33% a **22%–50%**.
+
+**Quello che resta, ed è il residuo vero.** Il divario con la linea dei Maestri
+(33%–83%) si è ridotto, non chiuso. **Le Custodi della Cenere restano la vita più
+debole della saga al 22%**, e la Lega delle Sette è più giù di tutti al 13%. E il
+banco delle clausole dice perché è difficile intervenire: delle dodici candidate
+misurate, tutto ciò che la Cenere può ottenere **restando sulla montagna** esce
+0% (il cristallo, la montagna lavorata, un'opera nelle gallerie) o 100% (un'opera
+sulla montagna, un presidio). **Nel mondo com'è, quella casa ha poche leve** — non
+è una taratura mancata, è contenuto che non esiste ancora.
+
+**Due cose misurate e non corrette**, che chi apre questa voce trova già a
+verbale:
+
+- **La forma di `DST_CENERE_DEEP` è bimodale**: 8 Minimi, **1** Vittoria, 7
+  Trionfi su 16. Chi supera il Minimo arriva quasi sempre in cima, perché il
+  Trionfo è un `some_of` a 3 su 6 che la Vittoria nuova quasi già contiene. È il
+  difetto di forma di ISSUES 44, e correggerlo è tarare quel Trionfo.
+- **Il perdere ha cambiato posto**: i 2 NONE nuovi sono del Vetro, che adesso
+  contende alla Cenere gli slot delle stesse gallerie. Il conto totale del
+  perdere nella saga del Sale scende da 13 a 2, e va guardato insieme a
+  [D-067](DECISIONS.md#d-067).
+
+**Fatto quando** la linea dei Fuochi sta nella stessa banda delle altre in ogni
+sua incarnazione — o il motivo per cui non ci sta è scritto con i numeri accanto.
 
 ---
 

@@ -57,6 +57,18 @@ func _initialize() -> void:
 	# contenuto delle vite tardive; se ci arriva uguale, era il Minimo letto male.
 	var levels_by_life: Dictionary = {}
 	var levels_by_seat: Dictionary = {}
+	# D-176 ha lasciato aperta una voce: la linea della Cenere/Fuochi arriva al
+	# secondo gradino la meta' delle volte delle altre. Il conto per incarnazione
+	# dice *quanto*, non *cosa manca*: la sonda dei gradini lo sa fare, ma solo su
+	# una Chronicle sola, e il NONE della Cenere si vede solo nelle saghe. Qui si
+	# contano le clausole rimaste in sospeso quando l'anno chiude a NONE.
+	var none_causes: Dictionary = {}
+	# E l'ipotesi che ne segue: le Montagne Rosse sono l'unica Regione a tre
+	# slot invece di quattro, e il Minimo della Cenere ne chiede due. Se
+	# l'occupazione altrui negli anni chiusi a NONE e' piu' alta che negli
+	# altri, la casa non fallisce: viene soffocata.
+	var slots_none: Array = []
+	var slots_other: Array = []
 	var years_played: int = 0
 	var hands: Dictionary = {}
 	var echoed_candidates: int = 0
@@ -200,6 +212,30 @@ func _initialize() -> void:
 				var life: Dictionary = levels_by_life.get(who, {})
 				life[level] = int(life.get(level, 0)) + 1
 				levels_by_life[who] = life
+				if level == "NONE":
+					for condition in (previous_results[entity_id] as Dictionary)["unmet"]:
+						var key: String = "%s|%s" % [
+							str(entity_id), str((condition as Dictionary).get("label", "?"))
+						]
+						none_causes[key] = int(none_causes.get(key, 0)) + 1
+				if str(entity_id) == "ENT_CENERE":
+					var taken: int = 0
+					for other_id in (session.world["entities"] as Dictionary):
+						if str(other_id) == "ENT_CENERE":
+							continue
+						taken += session.service.presence_count(
+							str(other_id), "REG_MONTAGNE_ROSSE"
+						)
+					var row: Array = [
+						taken,
+						session.service.presence_count("ENT_CENERE", "REG_MONTAGNE_ROSSE"),
+						session.service.presence_count("ENT_CENERE", "REG_MINIERE_ANTICHE"),
+						session.service.tokens_placed("ENT_CENERE"),
+					]
+					if level == "NONE":
+						slots_none.append(row)
+					else:
+						slots_other.append(row)
 
 		spans.append(final_year - start_year)
 		var survived: int = 0
@@ -236,6 +272,32 @@ func _initialize() -> void:
 			str(seat_id), int(ladder.get("NONE", 0)), int(ladder.get("MINIMUM", 0)),
 			int(ladder.get("VICTORY", 0)), int(ladder.get("TRIUMPH", 0)),
 		])
+	if not none_causes.is_empty():
+		print("  Perche' un anno chiude a NONE - le clausole del Minimo rimaste in sospeso:")
+		var causes: Array = none_causes.keys()
+		causes.sort_custom(func(a, b): return int(none_causes[a]) > int(none_causes[b]))
+		for key in causes:
+			var parts: PackedStringArray = str(key).split("|")
+			print("    %-14s %4d   %s" % [parts[0], int(none_causes[key]), parts[1]])
+	if not slots_none.is_empty():
+		print("  Dove tiene i gettoni la Cenere a fine anno (Montagne Rosse: 3 slot):")
+		print("    %-26s %8s %8s %8s %8s" % [
+			"", "altrui", "sue", "miniere", "gettoni"
+		])
+		for group in [["negli anni a NONE", slots_none], ["in tutti gli altri", slots_other]]:
+			var rows: Array = group[1] as Array
+			if rows.is_empty():
+				continue
+			var sums: Array = [0.0, 0.0, 0.0, 0.0]
+			for row in rows:
+				for i in range(4):
+					sums[i] = float(sums[i]) + float((row as Array)[i])
+			var count: float = float(rows.size())
+			print("    %-26s %8.2f %8.2f %8.2f %8.2f   su %d anni" % [
+				str(group[0]),
+				float(sums[0]) / count, float(sums[1]) / count,
+				float(sums[2]) / count, float(sums[3]) / count, rows.size(),
+			])
 	# ISSUES 35, la misura che mancava: chi siede, e a che gradino arriva.
 	print("  Chi siede e dove arriva (ISSUES 35), a tavolo misto:")
 	var who_names: Array = levels_by_life.keys()

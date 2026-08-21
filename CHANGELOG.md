@@ -5,6 +5,46 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.145 — Il Destino che si combatteva da solo (D-177)
+
+- **La linea della Cenere/Fuochi aveva una causa, e non era la debolezza.** Su
+  120 anni della saga del Sale **tutti e tredici i NONE erano della Cenere** (le
+  altre tre case: zero), e tutti per la stessa clausola del suo Minimo. Negli
+  anni persi la casa teneva **1,00** gettoni sulle Montagne Rosse e **1,92** nelle
+  Miniere; negli altri anni 1,67 e 1,04. Stesso numero di gettoni, posto diverso:
+  la Cenere **scendeva sotto per la propria Vittoria** e cosi' spegneva il proprio
+  Minimo. I livelli sono cumulativi, quindi inseguire quel gradino costava quello
+  che lo regge.
+- **`DST_CENERE_DEEP` aveva ereditato il Minimo del Destino sbagliato** — quello
+  di `DST_CENERE`, dove presidiare la montagna in due ha senso. Adesso il suo
+  Minimo e' «**Non hanno lasciato la montagna**»: la casa esiste ancora e **un**
+  gettone e' rimasto su. Un gettone resta, due scendono.
+- **E la Vittoria ha perso i suoi due regali**: chiedeva una presenza nelle
+  gallerie e che non fossero murate, tutt'e due vere al 100%. Adesso chiede la
+  discesa in due **e** la reliquia — la pedina la muove il seggio, la reliquia
+  gliela deve dare il tavolo.
+- **Kessa dei Fuochi** passa da 0/32/10/8 a **0/29/9/12** a tavolo misto e da
+  1/33/13/3 a **1/21/17/11** a tavolo uniforme; nelle saghe la Cenere va da **13
+  NONE** a **0** e dal 26% al **33%** sopra il Minimo, coi Trionfi da 6 a 15. I
+  volti dei Fuochi da 8%–33% a **22%–50%**.
+- **La sonda delle ere** dice adesso *quale clausola* manca quando un anno chiude
+  a NONE, e dove la Cenere tiene i gettoni: era la misura che mancava, perche' il
+  NONE di quella casa si vedeva solo nelle saghe e la sonda dei gradini guarda una
+  Chronicle sola.
+
+### Dichiarato
+
+- **Consigli falliti da 248 a 256**: una casa che arriva viva a fine anno propone
+  e si oppone piu' a lungo.
+- **Il perdere ha cambiato posto invece di sparire**: i 13 NONE della Cenere
+  diventano 0 e ne compaiono **2 del Vetro**, che adesso contende alla Cenere gli
+  slot delle stesse gallerie. Il conto totale del perdere in questa saga scende
+  pero' da 13 a 2.
+- La forma scelta e' **bimodale** (8 Minimi, 1 Vittoria, 7 Trionfi) e due ipotesi
+  scritte sono state **demolite dalla misura** prima di arrivare alla causa vera:
+  la clausola creduta impossibile e' vera il 35% delle volte, e le Montagne Rosse
+  non erano affollate ma vuote. Tutto in [D-177](docs/DECISIONS.md#d-177).
+
 ## 0.1.144 — Le istituzioni non governano diversamente (D-176)
 
 - **ISSUES 35 chiusa, e l'ipotesi era falsa.** Misurata come la voce chiedeva —

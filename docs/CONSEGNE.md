@@ -1,4 +1,4 @@
-# Passaggio di consegne — stato al 0.1.144
+# Passaggio di consegne — stato al 0.1.145
 
 *Scritto per chi apre una sessione nuova su questo repository. Dice dov'è il
 lavoro, cosa regge, cosa no, e quali sono le regole di casa che non vanno
@@ -10,13 +10,13 @@ riscoperte da capo.*
 
 | | |
 |---|---|
-| ramo di sviluppo | `claude/audit-destini-issues-voce-23-0cnlmd` |
-| PR aperta | **#67**, in bozza, su `main` |
-| ultimo commit | `1d1f52c` — 0.1.144 |
-| ultimo merge su `main` | `b2ab5649` — PR #66, 0.1.111–0.1.138 |
+| ramo di sviluppo | `claude/echoes-boardgame-dev-cmu444` |
+| PR aperta | in bozza, su `main` |
+| ultimo commit | 0.1.145 |
+| ultimo merge su `main` | `e26b2b2` — PR #67, 0.1.139–0.1.144 |
 
-**Il ramo si chiama così per motivi storici e va bene com'è.** La PR #66 è stata
-mergiata; la #67 raccoglie da 0.1.139 in poi.
+La PR #67 è stata mergiata: questo ramo riparte da `main` e raccoglie da 0.1.145
+in poi.
 
 ## 2. Come si lavora qui — le regole di casa
 
@@ -61,14 +61,15 @@ Asserzioni disponibili: `assert_true`, `assert_false`, `assert_eq`, `assert_ne`.
 | `run_playtest.gd` | come finisce un anno, per seggio e per carattere — **è il cancello** |
 | `run_rung_probe.gd` | quale clausola non si avvera mai, la mappa, le pietre, i Consigli per saga |
 | `run_clause_probe.gd` | quanto costa una clausola **prima** di scriverla (banco in `tools/clause_candidates.json`) |
-| `run_era_probe.gd` | cosa fa il tempo a una saga, e da 0.1.144 chi siede e dove arriva |
+| `run_era_probe.gd` | cosa fa il tempo a una saga, chi siede e dove arriva, e da 0.1.145 **quale clausola manca quando un anno si perde** |
 | `run_saga.gd` | racconta una saga anno per anno |
 | `tools/dead_code.py` · `tools/validate_data.py` | codice irraggiungibile · dati contro schemi |
 
-## 3. Cosa è stato fatto in questa sessione
+## 3. Cosa è stato fatto nelle ultime sessioni
 
 **Il filo**: dai Destini che nessuno saliva, alla terra che si costruisce, a come
-si vince, a come i bot si alleano.
+si vince, a come i bot si alleano — e infine a un Destino che si combatteva da
+solo.
 
 | | |
 |---|---|
@@ -77,6 +78,7 @@ si vince, a come i bot si alleano.
 | **0.1.142** | il sigillo che riscriveva la storia del sito antico; il grado alto è materia di saga; il divario fra le due saghe non c'era |
 | **0.1.143** | tre Conseguenze costruiscono un oggetto invece di scrivere un segno |
 | **0.1.144** | le istituzioni **non** governano diversamente dalle persone: l'ipotesi di ISSUES 35 era falsa |
+| **0.1.145** | la Cenere non era debole: il suo Destino le chiedeva due cose che con tre gettoni non stanno insieme (ISSUES 45) |
 
 Più due documenti: **`docs/MECCANICA.md`** riportato a 0.1.140 (è il testo da dare
 a chi disegna l'infografica) e **`docs/SAGA_NAHR.md`**, dieci anni giocati e
@@ -85,19 +87,21 @@ raccontati.
 **Le misure di adesso** (playtest 100 semi, tavolo misto):
 
 ```
-FAIL 248 · SUCC 71 · SUCC 100 · DECI 144 · mediana 6
+FAIL 256 · SUCC 78 · SUCC 99 · DECI 146 · mediana 6
 0 su 8 bloccati (misto e uniforme) · nessun seggio a NONE · nessuno a zero Trionfi
 suite 349 test / 6445 asserzioni
 ```
 
 ## 4. Le due cose che vanno guardate per prime
 
-### a) I Consigli falliti sono a 248, ed è il massimo storico
+### a) I Consigli falliti sono a 256, ed è il massimo storico
 
-Il trend: **185 → 207 → 191 → 203 → 206 → 246 → 248**. L'ultimo salto grosso
+Il trend: **185 → 207 → 191 → 203 → 206 → 246 → 248 → 256**. Il salto grosso
 (206 → 246) è **dichiarato e ha una causa nota**: accendere il pool mette al
 tavolo undici ambizioni in più, e le proposte si oppongono fra loro molto più
-spesso. Il tasso di successo passa dal 64% al 56%.
+spesso. Il tasso di successo passa dal 64% al 56%. Gli ultimi otto sono di
+0.1.145, e hanno la stessa forma: una casa che arriva viva a fine anno propone e
+si oppone più a lungo.
 
 **Si spegne in una riga**, se il committente decide che è troppo:
 `world_state_factory.gd`, `_deal_destiny`, togliere il ripiego sulla lista
@@ -120,9 +124,12 @@ precedente — non un difetto del codice. Cambiarlo è cambiare il regolamento:
 - **Le 14 Conseguenze che assegnano il controllo** direttamente. Deliberatamente
   non riscritte: la misura dice che funzionano. Sono l'ultimo posto dove il
   padrone si *scrive* invece di contarsi.
-- **La linea della Cenere/Fuochi** arriva al secondo gradino la metà delle volte
-  delle altre, in ogni sua incarnazione (8%–46% contro 46%–67%). Voce nuova,
-  trovata chiudendo ISSUES 35.
+- **ISSUES 45** (metà) — la linea della Cenere/Fuochi. La metà strutturale è
+  chiusa in 0.1.145: la casa non era debole, il suo Destino le chiedeva due cose
+  che con tre gettoni non stanno insieme. Resta il residuo — i Fuochi al 22%–50%
+  contro i Maestri al 33%–83%, e **nessuna clausola pronta** con cui intervenire:
+  delle dodici misurate al banco, tutto ciò che la Cenere può fare restando sulla
+  montagna esce 0% o 100%.
 - **La palude** — l'unica cosa fuori dal catalogo delle strutture. Chiede slot di
   presenza variabili per Regione: **motore, non contenuto**.
 

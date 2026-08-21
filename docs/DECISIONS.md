@@ -10,6 +10,155 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-177 — Il Destino che si combatteva da solo
+**implemented in 0.1.145** (la voce nuova di D-176, aperta come ISSUES 45)
+
+D-176 aveva chiuso ISSUES 35 e lasciato una voce: *la linea della Cenere/Fuochi
+arriva al secondo gradino la meta' delle volte delle altre, in ogni sua
+incarnazione*. Questa e' la voce, e la causa non e' quella che sembrava.
+
+### Quello che la misura ha trovato, e non era una debolezza
+
+La sonda delle ere contava i livelli per incarnazione, non le **clausole**. Le e'
+stato aggiunto il conto di cosa manca quando un anno chiude a NONE, e la prima
+riga era gia' una risposta: su 120 anni della saga del Sale, **tutti e tredici i
+NONE sono della Cenere, e le altre tre case non perdono mai**.
+
+| | NONE | supera il Minimo |
+|---|---|---|
+| **ENT_CENERE** | **13** | 26% |
+| ENT_LIBERE | 0 | 24% |
+| ENT_SALE | 0 | 58% |
+| ENT_VETRO | 0 | 43% |
+
+E tutti e tredici per la stessa clausola: «Le Montagne Rosse sono presidiate, non
+solo abitate» — il Minimo, `region_presence min: 2`.
+
+### Due ipotesi scritte e demolite dalla misura
+
+**La prima**: 2 gettoni su Montagne piu' 2 su Miniere fanno 4, e il tetto e' 3 —
+quindi la clausola e' impossibile e il Destino ha una porta sola. **Falsa**: la
+sonda delle clausole la da' **vera il 35% delle volte**, perche' le Conseguenze
+aggiungono presenze senza passare dal tetto del MOVE (la media dei gettoni della
+Cenere a fine anno e' 3,46, non 3).
+
+**La seconda**: le Montagne Rosse sono l'unica Regione a **tre** slot invece di
+quattro, quindi la casa viene soffocata da chi ci entra. **Falsa**: le pedine
+altrui a fine anno sono **0,15** negli anni persi e 0,07 negli altri. Nessuno ci
+va. La Regione e' vuota.
+
+### La causa, che nessuna delle due ipotesi vedeva
+
+| | pedine altrui | **sue sulle Montagne** | **sue sulle Miniere** | gettoni |
+|---|---|---|---|---|
+| negli anni a NONE | 0,15 | **1,00** | **1,92** | 3,46 |
+| in tutti gli altri | 0,07 | 1,67 | 1,04 | 3,49 |
+
+**Lo stesso numero di gettoni. Cambia solo dove stanno.** Negli anni che
+finiscono a NONE la Cenere e' scesa nelle Miniere in due — «O sono scesi in due,
+e non hanno solo guardato», una clausola della **sua stessa Vittoria** — e cosi'
+facendo ha lasciato le Montagne con un gettone solo, spegnendo il proprio Minimo.
+I livelli sono cumulativi: inseguire quella Vittoria significa perdere il Minimo
+che la regge.
+
+**La casa non perdeva perche' era debole. Perdeva perche' inseguiva il proprio
+Destino.** E' la forma del difetto del seme 15308 (ISSUES 21, l'avviso «questa
+mossa spegne»), ma scritta nei dati invece che giocata da un distratto — e i bot
+l'avviso non ce l'hanno.
+
+Il testo lo diceva gia', e nessuno l'aveva letto come un conto: *«E' lo stesso
+desiderio di prima, con meno margine.»* Il margine non era meno: era **negativo**.
+`DST_CENERE_DEEP` («Piu' a Fondo») aveva ereditato pari pari il Minimo di
+`DST_CENERE` («La Montagna e' Nostra»), dove presidiare in due ha senso. In un
+Destino che chiede di **scendere**, chiedere di restare su in due e' una
+contraddizione.
+
+### La correzione: il Minimo che il Destino voleva
+
+Il Minimo di `DST_CENERE_DEEP` diventa «**Non hanno lasciato la montagna**» —
+`entity_alive` (che la Cenere era l'unica delle quattro case a non avere) piu'
+**un** gettone sulle Montagne Rosse. Un gettone resta su, due scendono: e' esatta-
+mente l'immagine del Destino, e con tre gettoni ci sta.
+
+E la Vittoria, che era fatta di due regali (`region_presence min: 1` sulle
+Miniere e «le gallerie non sono murate», tutt'e due al 100%) piu' una porta,
+chiede adesso **la discesa in due e la reliquia**: la pedina il seggio la muove
+da solo, la reliquia gliela deve dare il tavolo.
+
+### Le quattro forme, misurate una alla volta
+
+Sonda dei gradini, 80 Chronicle a tavolo misto, semi da 7000:
+
+| | `DST_CENERE_DEEP` (N/M/V/T su 16) | supera | il gioco |
+|---|---|---|---|
+| **base** — Minimo a 2 gettoni | 0 / 9 / 3 / 4 | 44% | 54% |
+| Minimo a 1, Vittoria invariata | 0 / **0** / 10 / 6 | **100%** — regalo | 56% |
+| id., tolta la clausola al 100% | 0 / 0 / 10 / 6 | 100% — era un no-op | 56% |
+| **scelta** — Minimo a 1, discesa **e** reliquia | 0 / 8 / 1 / 7 | **50%** | 55% |
+| discesa + [reliquia **o** veglia] | 0 / 10 / 2 / 4 | 37% | 53% |
+
+La seconda forma e' il motivo per cui si misura ogni passo: spostare il Minimo
+senza toccare la Vittoria non chiudeva il difetto, **lo capovolgeva** — da Destino
+che si combatte a Destino regalato, zero Minimi su sedici.
+
+### Le misure
+
+**Playtest 100 semi, il cancello:**
+
+| | base | dopo |
+|---|---|---|
+| Esiti (misto) | FAIL 248 · 71 · 100 · 144 | **FAIL 256 · 78 · 99 · 146** |
+| Consigli (misto) | 5,63 · mediana 6 | 5,79 · mediana 6 |
+| Kessa, tavolo misto | 0 / 32 / 10 / 8 | **0 / 29 / 9 / 12** |
+| Kessa, tavolo uniforme | 1 / 33 / 13 / 3 | **1 / 21 / 17 / 11** |
+| **seggi bloccati** | 0 su 8 | **0 su 8** |
+
+**Saga del Sale, 12 saghe da 10 Chronicle:**
+
+| | base | dopo |
+|---|---|---|
+| ENT_CENERE | **13** NONE · 76 · 25 · 6 · supera 26% | **0** NONE · 80 · 25 · **15** · supera **33%** |
+| ENT_SALE | 0 · 50 · 25 · 45 · 58% | 0 · 39 · 38 · 43 · 68% |
+| ENT_VETRO | 0 · 69 · 39 · 12 · 43% | **2** · 59 · 46 · 13 · 49% |
+| ENT_LIBERE | 0 · 91 · 16 · 13 · 24% | 0 · 91 · 17 · 12 · 24% |
+
+I volti dei Fuochi passano da **8%–33%** a **22%–50%**; i Maestri stanno fra il
+33% e l'83%. La prima saga (CHR_01) e' **identica riga per riga**: il cambiamento
+non esce dalla sua Chronicle. Suite **349 test / 6445 asserzioni** verde, sim ed
+export identici su due giri.
+
+### Quello che si dichiara
+
+- **I Consigli falliti salgono da 248 a 256.** Il trend diventa 206 → 246 → 248 →
+  **256**. Una casa che arriva viva alla fine dell'anno propone e si oppone piu' a
+  lungo. E' il costo, ed e' scritto.
+- **Il perdere non e' sparito dalla saga: ha cambiato posto.** I 13 NONE della
+  Cenere diventano 0, e ne compaiono **2 del Vetro**, per la sua stessa clausola
+  («Le gallerie sono presidiate, non solo abitate»). E' una conseguenza vera e
+  non un effetto collaterale: le Miniere Antiche hanno quattro slot, e da adesso
+  la Cenere ne occupa due per la propria Vittoria. Due case che vogliono le
+  stesse gallerie se le contendono. Un NONE che nasce da una contesa vale piu'
+  di tredici che nascevano da un Destino che si combatteva da solo — ma il conto
+  totale del perdere in questa saga **scende da 13 a 2**, e chi verra' dopo deve
+  saperlo.
+- **La forma scelta e' bimodale**: 8 Minimi, **1** Vittoria, 7 Trionfi. Chi supera
+  il Minimo arriva quasi sempre in cima, perche' il Trionfo e' un `some_of` a 3 su
+  6 che la Vittoria nuova quasi gia' contiene. E' il difetto di forma di ISSUES 44
+  (Lyra), misurato e non corretto: correggerlo e' tarare il Trionfo, e non e' la
+  voce di oggi.
+- **La voce di D-176 e' ridotta, non chiusa.** Il divario fra le due linee passa
+  da 8–33% contro 50–75% a 22–50% contro 33–83%. Le Custodi della Cenere restano
+  la vita piu' debole della saga (22%). Quello che si e' chiuso e' il **difetto
+  strutturale**; la debolezza residua della linea resta aperta in ISSUES 45.
+- **Nessuna clausola pronta esisteva.** Il banco ha misurato dodici candidate
+  (`tools/clause_candidates.json`): tutte quelle che la Cenere poteva ottenere
+  restando sulla montagna sono uscite **0%** (il cristallo, la montagna lavorata,
+  un'opera nelle gallerie) o **100%** (un'opera sulla montagna, un presidio). Nel
+  mondo com'e', quella casa ha poche leve — ed e' un numero che vale per chi
+  scrivera' il prossimo Destino dei Fuochi.
+
+---
+
 ## D-176 — Le istituzioni non governano diversamente dalle persone
 **implemented in 0.1.144** (ISSUES 35 chiusa, e l'ipotesi era falsa)
 
