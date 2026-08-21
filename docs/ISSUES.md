@@ -1778,6 +1778,80 @@ numero misurato è **tre gettoni**. Il primo mattone dell'innesco è già posato
 tavolo misto e uniforme, e lo scarto fra il mucchio più alto e il più basso
 **non cresce** di atto in atto.
 
+### 50. Quattro obiettivi al posto dei tre gradini
+
+`regole` · `motore` · voluta dal committente · **preventivo misurato in 0.1.164** ([D-196](DECISIONS.md#d-196))
+
+«Gli obiettivi sono tre o quattro, pescati all'inizio della partita: uno è
+palese ed è legato all'entità, gli altri si scelgono da un pool o con un draft e
+sono nascosti agli altri. **Gli obiettivi sostituiscono i gradini**: se si
+ottengono tutti e 4 è un trionfo, se non se ne raggiunge nessuno è un NONE, gli
+altri sono successi parziali, e vittorie che danno numeri alla fine della saga.»
+
+Oggi ogni casa ha **un** Destino con **tre gradini cumulativi** (§14): Minimo,
+Vittoria, Trionfo, e il Trionfo contiene sempre gli altri due. La proposta
+sostituisce la scala con un **conto**: quanti dei quattro obiettivi si sono
+avverati.
+
+**Il preventivo**, misurato su 100 Chronicle (semi 7000–7099, 400 seggi, tavolo
+misto) senza cambiare nessuna regola — le partite sono quelle di oggi, e a fine
+anno il mondo viene letto una seconda volta chiedendogli cose che il gioco non
+gli chiede:
+
+| dove si arriva | oggi, tre gradini | domani, quattro obiettivi |
+|---|---|---|
+| niente (NONE / 0 su 4) | **0,8%** | **27,2%** |
+| il primo scalino | 48,2% | 36,2% (1 su 4) |
+| in mezzo | 34,2% | 21,5% + 12,8% (2 e 3 su 4) |
+| tutto (TRIUMPH / 4 su 4) | **16,8%** | **2,2%** |
+| punteggio di saga per seggio | +2,51 | +1,17 |
+
+**Le tre cose che i numeri dicono:**
+
+1. **Il NONE diventa vero.** Oggi «non raggiungere niente» capita a 3 seggi su
+   400: il Minimo è sopravvivere ([D-150](DECISIONS.md#d-150)) e sopravvivere è
+   quasi automatico. Coi quattro obiettivi capita a un seggio su quattro. È
+   quello che il committente ha chiesto, ed è il cambiamento più grosso di tutta
+   la proposta — più del trionfo.
+2. **Il trionfo diventa raro sul serio**: 2,2%, cioè **circa uno per saga a
+   tavolo**, contro un seggio su sei di oggi. Difendibile, ma è una decisione, non
+   un effetto collaterale.
+3. **Il palese non è uguale per tutti.** Letto come Vittoria del Destino scritto,
+   si avvera nel 51,5% dei seggi *in media* — ma la media nasconde il vero
+   problema: **dal 41% di Aldric al 91% delle Libere**. Se il palese vale un
+   quarto del risultato, quello scarto è un vantaggio distribuito alla nascita.
+
+**Il pool non c'è ancora.** I candidati esistenti sono i tre Destini
+condivisibili ([D-115](DECISIONS.md#d-115)), letti come sei obiettivi
+(Vittoria + Trionfo di ciascuno). Tassi misurati: 39,0% · 37,2% · 35,8% · 29,8% ·
+13,5% · **1,8%** — e l'ultimo (`DST_SHARED_LAND/triumph`, «la mappa parla la tua
+lingua») è **arredo**: nessuno l'ha mai visto da vicino. Sei sono pochi per
+pescarne tre: se il pool è di sei e se ne pescano tre, metà del pool esce ogni
+partita e il draft non sceglie niente. Ne servono **almeno dodici**.
+
+**Quello che la sonda non può misurare**: il draft. Scegliere un obiettivo
+guardando gli altri scegliere è una decisione umana, e nessuna sonda che gioca
+con `PolicyDecider` la produce ([CONSEGNE §5ter](CONSEGNE.md)).
+
+**Le quattro cose da decidere prima di scrivere:**
+
+1. **Cosa diventa il palese.** La Vittoria del Destino scritto (51,5%, ma 41–91%
+   a seconda della casa), il Trionfo (26,5%, più uniforme), o un obiettivo nuovo
+   scritto apposta perché il palese di ogni casa costi uguale.
+2. **Se lo scarto fra case è un difetto o è ECHOES.** Le case sono asimmetriche
+   per progetto: la domanda è se l'asimmetria può stare *nel punteggio*.
+3. **Quanti obiettivi**: il committente ha detto «tre o quattro» e poi ha
+   contato su quattro. Con tre, la distribuzione si sposta e va rimisurata.
+4. **La mappa dei numeri.** La proposta della sonda (0 → −1, 1 → 1, 2 → 2,
+   3 → 4, 4 → 6) tiene i due estremi di `saga_scoring` e riempie in mezzo: dà
+   +1,17 per seggio contro i +2,51 di oggi. Se una saga deve valere quanto prima,
+   i numeri in mezzo salgono.
+
+**Fatto quando** un anno si chiude contando obiettivi invece di gradini, il pool
+ha almeno dodici carte e nessuna sotto il 10% o sopra l'80%, il palese costa
+uguale a tutte le case (o l'asimmetria è dichiarata e misurata), e il playtest
+resta **0/8** a tavolo misto e uniforme.
+
 ---
 
 ---

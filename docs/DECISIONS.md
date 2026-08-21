@@ -10,6 +10,66 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-196 — Il prezzo dei quattro obiettivi al posto dei tre gradini
+**measured in 0.1.164** (preventivo: nessuna regola cambiata)
+
+Il committente ha chiuso la domanda che avevo lasciato aperta: **gli obiettivi
+sostituiscono i gradini**. «Se si ottengono tutti e 4 è un trionfo, se non se ne
+raggiunge nessuno è un NONE, gli altri sono successi parziali, e vittorie che
+danno numeri alla fine della saga.»
+
+Come per il sacchetto (D-190), prima di riscrivere §14 ho misurato: una sonda
+ombra, `godot/cli/run_objective_probe.gd`, che **non cambia nessuna regola**.
+Gioca le partite come sono e a fine anno legge il mondo una seconda volta,
+chiedendogli cose che il gioco non gli chiede: quante volte si sarebbe avverato
+ciascun obiettivo candidato, seggio per seggio.
+
+**Come ho tradotto i dati di oggi in obiettivi, e perché.** Un Destino oggi ha
+tre gradini; se i gradini spariscono, il suo contenuto deve collassare in *un*
+traguardo. Il candidato per il **palese** è la **Vittoria** — quello per cui la
+casa è venuta al tavolo. Il Minimo no: D-150 ha già stabilito che il Minimo è
+sopravvivere, non un obiettivo, e infatti lo raggiungono tutti. Il **pool
+nascosto** sono i Destini condivisibili di D-115 (`$self`, scritti apposta per
+essere giurati da chiunque), letti come due obiettivi ciascuno.
+
+**Su 100 Chronicle, 400 seggi, semi 7000–7099, tavolo misto:**
+
+| dove si arriva | oggi | coi quattro obiettivi |
+|---|---|---|
+| niente | 0,8% | **27,2%** |
+| primo scalino | 48,2% | 36,2% |
+| in mezzo | 34,2% | 34,3% |
+| tutto | 16,8% | **2,2%** |
+| punteggio di saga | +2,51 | +1,17 |
+
+**Il numero che decide**: il NONE passa da 3 seggi su 400 a **109**. Non è un
+ritocco al punteggio, è il ritorno della possibilità di perdere — che oggi, di
+fatto, non c'è.
+
+**E la sonda ha trovato un difetto che non stavo cercando**: il palese non costa
+uguale a tutte le case. Letto come Vittoria del Destino scritto va dal **41% di
+Aldric al 91% delle Libere**. Se il palese vale un quarto del risultato, quello
+scarto è un vantaggio distribuito alla nascita — e va deciso se è un difetto o se
+è l'asimmetria di ECHOES che arriva fino al punteggio (ISSUES 50, punto 2).
+
+**Quello che il pool non può ancora fare**: i candidati esistenti sono sei, e uno
+(`DST_SHARED_LAND/triumph`) si avvera nell'**1,8%** dei seggi — è arredo. Sei
+sono pochi per pescarne tre: metà del pool uscirebbe ogni partita e il draft non
+sceglierebbe niente. Ne servono almeno dodici, e nessuno sotto il 10% o sopra
+l'80%.
+
+**Dichiarato non misurato** (§5ter): il draft. Scegliere un obiettivo guardando
+gli altri scegliere è una decisione umana, e il cancello gioca solo con
+`PolicyDecider`. La sonda pesca a caso — che è il caso peggiore per la varietà e
+il migliore per l'onestà del numero.
+
+La mappa dei numeri proposta dalla sonda (0 → −1, 1 → 1, 2 → 2, 3 → 4, 4 → 6)
+tiene i due estremi di `saga_scoring` e riempie in mezzo. **È una proposta da
+bocciare o correggere, non un dato**: è scritta nel codice della sonda, non nei
+dati del gioco, proprio perché nessuno la scambi per una regola.
+
+---
+
 ## D-195 — Quello che una persona legge, riscritto dalle regole
 **implemented in 0.1.163** (§5ter: il seguito di D-194, cercato invece che aspettato)
 

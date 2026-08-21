@@ -5,6 +5,26 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.164 — Il preventivo dei quattro obiettivi (D-196)
+
+- Il committente ha chiuso la domanda rimasta aperta: **gli obiettivi
+  sostituiscono i gradini**, quattro se ne pescano e quattro se ne contano.
+- **Nessuna regola cambiata.** Come per il sacchetto, prima si misura: nuova
+  sonda ombra `godot/cli/run_objective_probe.gd`, che gioca le partite come sono
+  e a fine anno rilegge il mondo chiedendogli cose che il gioco non gli chiede.
+- **Su 100 Chronicle, 400 seggi, tavolo misto**: il NONE passa da **0,8% a
+  27,2%**, il trionfo da **16,8% a 2,2%**, il punteggio di saga da **+2,51 a
+  +1,17** per seggio. Il ritorno della possibilità di perdere è il cambiamento
+  più grosso della proposta — più del trionfo.
+- **Un difetto trovato per strada**: il palese non costa uguale a tutte le case
+  (dal **41%** di Aldric al **91%** delle Libere). Se vale un quarto del
+  risultato, è un vantaggio distribuito alla nascita.
+- **Il pool non c'è ancora**: sei candidati, uno dei quali si avvera nell'1,8%
+  dei seggi. Ne servono almeno dodici, nessuno sotto il 10% o sopra l'80%.
+- Verbale: [D-196](docs/DECISIONS.md#d-196), [ISSUES 50](docs/ISSUES.md).
+
+---
+
 ## 0.1.163 — Quello che una persona legge, riscritto dalle regole (D-195)
 
 - Il seguito di D-194, **cercato invece che aspettato**: nessuna misura copre il
