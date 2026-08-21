@@ -10,6 +10,88 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-185 — Il rubinetto: la mano viene dalla mappa
+**implemented in 0.1.153** (ISSUES 47, fase 2: la pesca dalla presenza)
+
+*«La presenza nelle regioni deve essere fondamentale nella pesca delle carte,
+tipo due presenze, due carte.»* Il committente ha chiesto di partire da qui.
+
+### Come e' fatto
+
+A inizio di ogni Atto, prima del primo round, ogni seggio pesca guardando **dove
+tiene le pedine**: quante carte lo dicono i gettoni, **di che famiglia** lo dice
+la Regione, perche' ogni Regione dichiara le proprie `asset_sources`. La mappa
+smette di essere un punteggio e diventa il rubinetto.
+
+I freni stanno nella Chronicle e non nel codice, perche' sono taratura:
+
+| chiave | cosa fa |
+|---|---|
+| `per_token` | carte per gettone. A 1 vale «due presenze, due carte» |
+| `floor` | il pavimento: chi non ha piu' pedine pesca lo stesso, dal mazzo piu' pieno |
+| `cap` | il tetto **per Atto**: quante al massimo in un colpo |
+| `hand_cap` | il tetto sulla **mano**: si riempie fino a quel numero e non oltre |
+
+Vive solo se la Chronicle dichiara `hand_refill`. Senza — ed e' il default —
+non succede niente e le carte si pescano ancora con ACQUISIRE.
+
+### La misura che conta: quale tetto frena davvero
+
+D-183 aveva misurato la divergenza — piu' presenza da' piu' carte, piu' carte
+danno piu' presenza — e io avevo scritto che il freno era il **tetto per Atto**.
+**Era sbagliato, e la misura lo ha detto subito.** Scarto fra la mano piu' piena
+e la piu' vuota, sonda della mano, 60 semi:
+
+| | Atto 1 | Atto 2 | Atto 3 |
+|---|---|---|---|
+| rubinetto acceso, solo `cap: 3` | 0,00 | 3,18 | **5,48** |
+| rubinetto acceso, `hand_cap: 5` | 0,00 | 1,68 | **3,33** |
+| **rubinetto spento (il gioco di oggi)** | 0,00 | 2,77 | **4,90** |
+
+Il tetto per Atto limita la **pesca**, non la **mano**: le carte non spese
+restano li' e lo scarto si accumula lo stesso. Il tetto sulla mano invece morde
+dove serve — chi ha ancora carte pesca meno, chi le ha spese pesca pieno.
+
+E la riga che non mi aspettavo: **col tetto sulla mano il gioco diverge meno di
+oggi** (3,33 contro 4,90). ACQUISIRE, che nessuno frena, e' una sorgente di
+divergenza piu' forte del rubinetto frenato. Provati anche `hand_cap` 4 e 6:
+lo scarto ad Atto 3 resta 3,32 e 3,70 — il tetto sceglie **quante** carte
+girano, non quanto sono sbilanciate. Scelto **5**, che a parita' di scarto ne
+lascia in mano di piu'.
+
+### Le misure del cancello
+
+Il rubinetto e' **spento nei dati**, quindi il playtest e' identico riga per riga
+a 0.1.150: `FAIL 248 · 78 · 99 · 154`, Consigli media 5,79, **0 su 8 bloccati**.
+Suite **366 test / 6514 asserzioni** (sette per il rubinetto: lo spento, le due
+pedine, il tetto per Atto, il pavimento, la Regione che sceglie la famiglia, il
+tetto sulla mano, la mano gia' piena).
+
+### Quello che si dichiara
+
+- **Acceso da solo, il rubinetto peggiora il gioco.** Con `hand_cap: 5`, tavolo
+  misto: Consigli da 5,79 a **6,13**, banda da 2–7 a 3–8, e i Consigli falliti
+  da 248 a **272** — il massimo mai misurato (il record era 256). E' atteso, non
+  sorprendente: finche' `actions_from_cards` e' spento, le carte del rubinetto si
+  **sommano** ad ACQUISIRE invece di sostituirlo, e con piu' carte in mano si
+  propone e ci si oppone di piu'. **Le due meta' vanno accese insieme**, ed e'
+  la stessa cosa scritta in D-184 e in ISSUES 47.
+- **Il vincolo regge lo stesso**: 0 su 8 anche col rubinetto acceso, misto e
+  uniforme. La regressione e' sui Consigli, non sui seggi.
+- **Correggo un numero che avevo detto storto in sessione**: che 9 Consigli in un
+  anno «sfondassero un limite duro di §7». Non c'e' nessun tetto nel codice:
+  9 e' il massimo **strutturale** (3 Atti × 3 round, un Consiglio per round), e
+  la banda 2–8 di `MECCANICA.md` §21 e' un estremo **misurato**, non una regola.
+  Restare a 9 non rompe niente; toccare la mediana si'.
+- **Il pavimento non e' mai stato esercitato da una partita vera**: D-183 dice
+  che nessun seggio resta senza pedine, quindi il ramo e' provato solo dai test.
+- **`hand_cap` non e' stato tarato col gioco vero.** I tre valori sono stati
+  misurati col rubinetto **sopra** ACQUISIRE. Quando ACQUISIRE sparira', il
+  numero giusto va rimisurato da capo: quello scritto qui e' un punto di
+  partenza, non una taratura.
+
+---
+
 ## D-184 — Il telaio delle azioni sulle carte
 **implemented in 0.1.152** (ISSUES 47, fase 1: il gancio a vuoto)
 

@@ -5,6 +5,44 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.153 — Il rubinetto: la mano viene dalla mappa (D-185)
+
+- **ISSUES 47 fase 2**, chiesta dal committente: «la presenza nelle regioni deve
+  essere fondamentale nella pesca delle carte, tipo due presenze, due carte».
+- A inizio di ogni Atto ogni seggio pesca guardando **dove tiene le pedine**:
+  quante carte lo dicono i gettoni, **di che famiglia** lo dice la Regione
+  (`asset_sources`). La mappa smette di essere un punteggio e diventa il rubinetto.
+- **`hand_refill` sulla Chronicle** — `per_token`, `floor` (il pavimento per chi
+  resta senza mappa), `cap` (tetto per Atto), `hand_cap` (tetto sulla mano).
+  Omesso — il default — non succede niente.
+- **Il freno che credevo giusto era quello sbagliato.** Scarto fra la mano più
+  piena e la più vuota all'Atto 3: col solo tetto per Atto **5,48**, col tetto
+  sulla mano **3,33**. Il tetto per Atto limita la pesca, non la mano: le carte
+  non spese restano lì e lo scarto si accumula lo stesso.
+- **E il gioco di oggi diverge di più**: 4,90 col rubinetto spento. ACQUISIRE, che
+  nessuno frena, sbilancia più del rubinetto frenato.
+- **Rubinetto spento nei dati**: playtest identico riga per riga a 0.1.150 —
+  `FAIL 248 · 78 · 99 · 154`, **0 su 8 bloccati**. Suite **366 test / 6514
+  asserzioni**.
+
+### Dichiarato
+
+- **Acceso da solo peggiora il gioco**: Consigli da 5,79 a 6,13 e i falliti da
+  248 a **272**, il massimo mai misurato. Atteso — finché `actions_from_cards` è
+  spento le carte del rubinetto si **sommano** ad ACQUISIRE invece di
+  sostituirlo. Le due metà vanno accese **insieme**.
+- Il vincolo regge lo stesso: **0 su 8** anche col rubinetto acceso.
+- **Correggo un numero detto storto in sessione**: 9 Consigli in un anno non
+  sfondano nessun «limite duro di §7». Non c'è tetto nel codice: 9 è il massimo
+  strutturale (3 Atti × 3 round) e la banda 2–8 di MECCANICA è un estremo
+  misurato, non una regola.
+- `hand_cap: 5` è un punto di partenza, non una taratura: è stato misurato col
+  rubinetto **sopra** ACQUISIRE. Quando ACQUISIRE sparirà va rimisurato.
+- Il **pavimento** non è mai stato esercitato da una partita vera (nessun seggio
+  resta senza pedine): è provato solo dai test.
+
+---
+
 ## 0.1.152 — Il telaio delle azioni sulle carte (D-184)
 
 - **ISSUES 47 fase 1**, sul via libera del committente: «ogni carta ha una azione

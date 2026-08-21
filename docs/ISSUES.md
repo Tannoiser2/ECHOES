@@ -1583,6 +1583,22 @@ e **consuma la carta**, e l'interruttore `actions_from_cards` sulla Chronicle.
 Zero carte convertite, playtest identico riga per riga. Da qui le 48 carte si
 scrivono **una famiglia alla volta**, misurando, invece che tutte insieme.
 
+**Fase 2 ✅ — il rubinetto** — fatta in 0.1.153 ([D-185](DECISIONS.md#d-185)):
+`hand_refill` sulla Chronicle, la pesca a inizio Atto guarda le pedine e la
+Regione decide la famiglia. **Il punto 2 di qui sopra ha una risposta misurata**:
+il freno non è il tetto per Atto — che limita la pesca e non la mano — ma il
+tetto sulla **mano** (`hand_cap`). Scarto all'Atto 3: **5,48** col solo tetto per
+Atto, **3,33** col tetto sulla mano, **4,90** col rubinetto spento, cioè nel
+gioco di oggi. Frenato, il rubinetto sbilancia **meno di ACQUISIRE**.
+
+Resta però che, **acceso da solo**, peggiora: i Consigli falliti passano da 248 a
+272, il massimo mai misurato, perché le carte si sommano ad ACQUISIRE invece di
+sostituirlo. Nei dati è **spento**: si accende insieme a `actions_from_cards`.
+
+**Il punto 1 (il volume) e il punto 3 (la mappa) restano da decidere**, e il
+punto 3 è quello che blocca la fase 3: finché `FORCE` sta in una Regione sola,
+scrivere le 48 carte significa scrivere azioni che qualcuno non potrà mai fare.
+
 **Fatto quando** un anno si gioca per intero con le carte come unica moneta, il
 playtest resta **0/8** a tavolo misto e uniforme, e lo scarto fra il primo e
 l'ultimo seggio **non cresce** di atto in atto.

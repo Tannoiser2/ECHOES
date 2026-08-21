@@ -436,6 +436,18 @@ func _has_source_for(entity_id: String, family: String) -> bool:
 ## Draw the top card of a family deck, reshuffling the discard pile in with the
 ## seeded RNG when the pile runs out (§9). The reshuffled order travels inside
 ## the Effect so the applier stays free of randomness.
+## La pesca del rubinetto (ISSUES 47, D-185). Non e' un'azione: e' il mondo che
+## a inizio Atto da' le carte in base alla mappa, e passa di qui per una ragione
+## sola — cosi' la pesca piegata dai segni (`DRAW_BIAS`, D-116) e il rimescolo
+## degli scarti valgono anche per lei, invece di essere riscritti altrove.
+func draw_for_refill(entity_id: String, family: String, source: Dictionary) -> String:
+	if not (world["decks"] as Dictionary).has(family):
+		return ""
+	var effects: Array = []
+	var card: String = _draw_one(family, entity_id, source, effects)
+	return card
+
+
 func _draw_one(family: String, entity_id: String, source: Dictionary, effects: Array) -> String:
 	var deck: Dictionary = world["decks"][family]
 	var payload: Dictionary = {"source": "DECK"}

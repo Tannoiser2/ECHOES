@@ -63,6 +63,11 @@ func _initialize() -> void:
 		spread_by_act.append(0.0)
 	var year_totals: Array = []       # carte in un anno, per seggio-partita
 	var reach: Dictionary = {}        # famiglia -> quante volte raggiungibile
+	# La mano **vera**, quando la Chronicle il rubinetto ce l'ha davvero acceso:
+	# e' li' che si vede se il tetto comprime lo scarto o no (D-185).
+	var real_hand: Array = []
+	for _i in range(acts):
+		real_hand.append([0.0, 0.0, 0])
 	var seat_reach: Array = []        # quante famiglie distinte raggiunge un seggio
 
 	for run in range(runs):
@@ -103,6 +108,24 @@ func _initialize() -> void:
 					by_act[act - 1] = row
 					counts.append(tokens)
 					year[str(entity_id)] = int(year.get(str(entity_id), 0)) + tokens
+				var hands: Array = []
+				for entity_id in seats:
+					hands.append(
+						((session.world["entities"] as Dictionary)[str(entity_id)] as Dictionary).get(
+							"hand", []
+						).size()
+					)
+				hands.sort()
+				var hand_row: Array = real_hand[act - 1] as Array
+				var hand_sum: float = 0.0
+				for value in hands:
+					hand_sum += float(value)
+				hand_row[0] = float(hand_row[0]) + hand_sum / float(hands.size())
+				hand_row[1] = (
+					float(hand_row[1]) + float(int(hands[hands.size() - 1]) - int(hands[0]))
+				)
+				hand_row[2] = int(hand_row[2]) + 1
+				real_hand[act - 1] = hand_row
 				counts.sort()
 				spread_by_act[act - 1] = (
 					float(spread_by_act[act - 1])
@@ -148,6 +171,16 @@ func _initialize() -> void:
 		])
 	print("  (se lo scarto cresce di atto in atto, chi parte avanti si allontana)")
 
+	print("")
+	print("== 2bis. LA MANO VERA, se il rubinetto e' acceso ==")
+	print("  atto    carte in mano (media)    scarto fra la piu' piena e la piu' vuota")
+	for i in range(acts):
+		var row: Array = real_hand[i] as Array
+		var samples: int = maxi(1, int(row[2]))
+		print("   %d          %.2f                     %.2f" % [
+			i + 1, float(row[0]) / float(samples), float(row[1]) / float(samples),
+		])
+	print("  (col rubinetto spento e' la mano di ACQUISIRE, e serve da metro di paragone)")
 	print("")
 	print("== 3. CHI RESTA A SECCO ==")
 	for i in range(acts):

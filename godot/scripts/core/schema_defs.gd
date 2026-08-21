@@ -320,6 +320,9 @@ const DEFS := {
 			"structure_rules": {
 				"type": "Dictionary",
 			},
+			"hand_refill": {
+				"type": "Dictionary",
+			},
 			"actions_from_cards": {
 				"type": "bool",
 				"default": false,
