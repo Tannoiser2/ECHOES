@@ -417,6 +417,30 @@
             }
           }
         },
+        "tension_tokens": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Il calore lo pescano i giocatori (ISSUES 49, D-192). Omesso - il default - il mondo si scalda con la sola Deriva, uno per round a orologio. Dichiarato, **ogni azione riuscita fa scendere un gettone** su una domanda scelta dal sacchetto: la stessa distribuzione della Deriva, quindi la stessa personalita' del mondo. Misurato (D-190), nel gioco a carte fa 18,7 gettoni l'anno contro i 9 della Deriva: **le soglie vanno riviste insieme**, e con loro i presagi e le clausole dei Destini che leggono un valore.",
+          "properties": {
+            "per_action": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 1,
+              "description": "Gettoni per azione riuscita."
+            },
+            "threshold_bonus": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0,
+              "description": "Quanto si alza ogni soglia quando il sacchetto e' acceso. Sta qui e non sulla Tensione perche' la stessa Tensione gioca anche dove il sacchetto e' spento, e li' una soglia alzata non si raggiunge mai. Misurato (D-192): **+1** riporta i Consigli al ritmo di prima (5,93 l'anno contro 5,97); +2 li porta a 5,67, e senza ritocco salgono a 7,27."
+            },
+            "replaces_drift": {
+              "type": "boolean",
+              "default": true,
+              "description": "Acceso, la Deriva a orologio si spegne: il calore viene solo da cio' che i giocatori fanno. Spento, i due si sommano - ed e' il terzo gioco che nessuno gioca."
+            }
+          }
+        },
         "claim_rules": {
           "type": "object",
           "additionalProperties": false,

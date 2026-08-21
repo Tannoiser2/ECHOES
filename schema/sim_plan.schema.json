@@ -84,6 +84,11 @@
               "additionalProperties": true,
               "description": "Come `hand_refill` sulla Chronicle. Vuoto spegne il rubinetto: si spegne insieme alle azioni sulle carte, o si misura un terzo gioco che nessuno gioca."
             },
+            "tension_tokens": {
+              "type": "object",
+              "additionalProperties": true,
+              "description": "Come `tension_tokens` sulla Chronicle (D-192). Vuoto rimette il calore in mano alla Deriva a orologio: una storia scritta con nove gettoni non si rilegge con venti."
+            },
             "claim_rules": {
               "type": "object",
               "additionalProperties": true,

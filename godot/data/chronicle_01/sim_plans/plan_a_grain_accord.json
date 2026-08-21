@@ -242,7 +242,8 @@
       "chronicle_overrides": {
         "actions_from_cards": false,
         "hand_refill": {},
-        "claim_rules": {}
+        "claim_rules": {},
+        "tension_tokens": {}
       }
     }
   ]

@@ -151,4 +151,6 @@ func play_classic() -> void:
 	# E il §10 di sempre e' anche la presa di parola in due tempi (D-191): si
 	# prenota in un round, si riscuote in un altro.
 	chronicle["claim_rules"] = {}
+	# ...e il calore lo mette la Deriva a orologio, non i giocatori (D-192).
+	chronicle["tension_tokens"] = {}
 	session.actions.set("_chronicle", chronicle)

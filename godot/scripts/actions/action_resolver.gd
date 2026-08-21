@@ -156,6 +156,14 @@ func execute(entity_id: String, request: Dictionary) -> Dictionary:
 		_:
 			return _error(template, "template non implementato")
 
+	# ISSUES 49 (D-192): **il calore lo pescano i giocatori.** Ogni azione
+	# riuscita pesca un gettone dal sacchetto e lo posa su una domanda: il mondo
+	# si scalda perche' qualcuno ha fatto qualcosa, non perche' e' passato il
+	# tempo. Il sacchetto e' quello della Deriva (D-047), che il committente ha
+	# gia' tarato; a rubinetto spento non succede niente.
+	if bool(outcome.get("ok", false)):
+		_draw_heat(source, outcome)
+
 	# ACTION_RIPPLE (D-129): l'azione che sfoga su una domanda. Dopo un'azione
 	# riuscita, i segni di chi ha agito possono muovere una Tensione - i forni
 	# producono, e il grano lo paga la valle. Ogni sfogo si firma a verbale.
@@ -179,6 +187,50 @@ func execute(entity_id: String, request: Dictionary) -> Dictionary:
 		if rippled:
 			tensions.fire_omens(source)
 	return outcome
+
+
+## Il gettone che l'azione fa scendere (D-192). Quale domanda si scalda lo decide
+## il sacchetto — la stessa distribuzione della Deriva, quindi la stessa
+## personalita' del mondo — e il seme, quindi la partita resta rigiocabile.
+##
+## Vive solo se la Chronicle dichiara `tension_tokens`. Senza, non succede
+## niente e il calore lo mette la Deriva come sempre.
+func _draw_heat(source: Dictionary, outcome: Dictionary) -> void:
+	var rules: Dictionary = _chronicle.get("tension_tokens", {}) as Dictionary
+	if rules.is_empty():
+		return
+	var per_action: int = int(rules.get("per_action", 1))
+	if per_action <= 0:
+		return
+	var bag: Array = []
+	for entry in (_chronicle.get("drift_distribution", []) as Array):
+		for _i in range(int((entry as Dictionary)["count"])):
+			bag.append(str((entry as Dictionary)["tension_id"]))
+	if bag.is_empty():
+		return
+	# Il gettone porta **una firma sua**, non quella dell'azione: il calore e'
+	# del mondo, non della mano che ha agito. Riusare la firma dell'azione
+	# faceva contare un gettone come un INFLUENZARE — e il tetto di §10 saltava.
+	# L'ha trovato un test che ricostruisce i conti dal registro degli Effetti.
+	var mine: Dictionary = Effect.source(
+		"system",
+		"TENSION_TOKEN",
+		str(source.get("actor", "")),
+		int(world["act"]),
+		int(world["round"]),
+		int(world["effect_sequence"])
+	)
+	for _i in range(per_action):
+		var tension_id: String = str(bag[rng.range_int(0, bag.size() - 1)])
+		if not (world["tensions"] as Dictionary).has(tension_id):
+			continue
+		var applied: Dictionary = applier.apply(Effect.make(
+			"ADJUST_TENSION", "tension", tension_id, {"delta": 1}, mine
+		))
+		if applied.is_empty():
+			continue
+		(outcome.get("effects", []) as Array).append(applied)
+	tensions.fire_omens(mine)
 
 
 # --- preconditions ---------------------------------------------------------

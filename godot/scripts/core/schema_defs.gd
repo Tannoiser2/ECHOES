@@ -320,6 +320,9 @@ const DEFS := {
 			"structure_rules": {
 				"type": "Dictionary",
 			},
+			"tension_tokens": {
+				"type": "Dictionary",
+			},
 			"claim_rules": {
 				"type": "Dictionary",
 			},

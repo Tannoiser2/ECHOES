@@ -6,7 +6,8 @@ produrre **un'infografica**. Non presuppone niente: chi legge non ha mai visto
 il gioco. Tutti i numeri qui dentro sono quelli veri, letti dai dati e dal
 codice della versione 0.1.149 — non sono esempi inventati. **Le fonti di Asset di §3 sono
 quelle di 0.1.154; §5 (il turno) è stato riscritto a 0.1.156, quando le azioni
-sono passate sulle carte; §11 (le Tensioni velate) e §12 a 0.1.155**, quando il velo ha smesso di
+sono passate sulle carte; §11 (le Tensioni velate) e §12 a 0.1.155; §4 (da dove
+viene il calore) e §5 (RIVENDICARE) a 0.1.160**, quando il velo ha smesso di
 coprire il numero e ha cominciato a coprire la soglia; la riga dei Consigli in
 §14 è ripresa dalla misura di 0.1.155. Il resto dei numeri è quello di 0.1.149.
 
@@ -332,6 +333,13 @@ sapendo quanto manca mentre gli altri tirano a indovinare.
 domanda. È stato cambiato perché al tavolo fisico era ingiocabile: il mondo
 conosceva un valore che nessun giocatore poteva conoscere, e nessuno poteva
 sapere quando una velata stesse per attivarsi.*
+
+**Da dove viene il calore.** Non dal tempo: **da quello che fate**. Ogni azione
+riuscita fa pescare un segnalino da un sacchetto, e quel segnalino alza di 1 la
+domanda che nomina. Il sacchetto è tarato — nella Carestia Rossa ci sono nove
+gettoni: 3 del Risveglio, 2 della Carestia, 2 della Successione, 2 delle Vie —
+quindi ogni domanda ha una sua impazienza, e nessuno può decidere quale si
+scalda. *Fino a 0.1.159 era un orologio: una domanda saliva a fine di ogni round.*
 
 **Presagi.** A certe soglie il mondo dice una frase in pubblico, scritta a mano
 nei dati, che non rivela mai il numero: *«I granai di Eredan si aprono un giorno
@@ -876,8 +884,8 @@ l'inizio, trova il proprio seggio già in mano a un bot e ne riprende il posto.
 | Regioni | **6** (3 con un padrone all'inizio, 3 di nessuno) |
 | Regioni tenibili senza sforzo | **2** (oltre, si paga Tensione a ogni round) |
 | Tensioni in gioco | **4** per anno (su 12 scritte) |
-| Soglie | fra **4 e 7** · una domanda è **matura** (strappabile) a **3** |
-| Deriva | **+1** a una Tensione ogni round, 9 gettoni mescolati |
+| Soglie | fra **5 e 8** (col sacchetto acceso: la soglia scritta più 1) · una domanda è **matura** (strappabile) a **3** |
+| Il calore | **+1** a una Tensione per ogni azione riuscita, dal sacchetto di 9 gettoni mescolati |
 | Consigli in un anno | mediana **6**, estremi misurati **2–9** (tavolo misto, 0.1.156) |
 | Asset impegnabili | **0–3** (0–2 con una Condizione) |
 | Fattore Mondo | 1d6 → **−2 −1 0 0 +1 +2** |

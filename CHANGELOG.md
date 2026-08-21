@@ -5,6 +5,52 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.160 — Il calore lo pescano i giocatori (D-192)
+
+- **ISSUES 49 fase 1**, sulla scelta **b** del committente. Ogni azione riuscita
+  pesca un gettone dal sacchetto e lo posa su una domanda: il mondo si scalda
+  perché qualcuno ha fatto qualcosa, non perché è passato il tempo. La Deriva a
+  orologio si spegne.
+- Il sacchetto è quello che c'era già — la distribuzione della Deriva (D-047),
+  tarata dal committente. Dichiarato sulla Chronicle (`tension_tokens`).
+- **Il preventivo di D-190 era sbagliato di due volte, ed è corretto qui.** La
+  sonda ombra contava ogni firma d'azione distinta (una carta ne produce più
+  d'una): i gettoni veri sono **~10 l'anno**, non 18,7. E soprattutto
+  paragonavo i gettoni ai 9 della Deriva come se fosse tutto il calore del
+  mondo: **CHR_01 ne posa 35,9 l'anno**, e la Deriva ne mette 9. Il sacchetto ne
+  aggiunge dieci e ne toglie nove — **il calore totale cambia del 7%**, non del
+  210%.
+- **Le soglie salgono di 1, non del doppio**: misurato, +1 riporta i Consigli
+  esattamente al ritmo di prima (5,93 l'anno contro 5,97); il raddoppio li
+  dimezzava a 3,33.
+- **Il ritocco sta sulla regola, non sulla Tensione** (`threshold_bonus`): la
+  stessa Tensione gioca anche dove il sacchetto è spento, e lì una soglia alzata
+  non si raggiunge mai — col dato riscritto il gioco classico faceva **zero
+  Consigli**.
+- **0 su 8** misto e uniforme, Consigli media 6,35, mediana 6. Suite **379 test
+  / 6760 asserzioni**, sim plans e determinismo verdi.
+
+### Dichiarato
+
+- **Due difetti miei, trovati dai test.** Il gettone si firmava con la mano che
+  aveva agito, e un gettone posato da un INFLUENZARE si contava come un secondo
+  INFLUENZARE: **il tetto di §10 saltava**. E il seggio leggeva la soglia scritta
+  mentre il Consiglio si apriva su quella ritoccata — decidevano su due numeri
+  diversi. Corretti entrambi, con un test ciascuno.
+- **La scelta b non è ancora costruita**: questa è la metà del calore. La soglia
+  sola per il tavolo arriva quando i mucchi saranno coperti e l'innesco a
+  chiamata. Il numero misurato resta **tre gettoni**.
+- **I gettoni non sono ancora coperti**: coprirli è fase 2, e lì il velo di
+  D-187 diventa inutile perché tutto è coperto per costruzione.
+- **I 21 presagi e le 19 clausole dei Destini non sono stati toccati**: col
+  calore che cambia del 7% non serviva. È una decisione presa sul numero
+  corretto, non una dimenticanza.
+- **CHR_03 non è toccata**: lì il calore lo mette ancora l'orologio.
+- **I Consigli falliti salgono da 239 a 249**: il calore a raffiche apre più
+  tavoli nei round affollati, e lì si oppone più gente.
+
+---
+
 ## 0.1.159 — Non si prenota una domanda che è già matura (D-191)
 
 - **Decisione del committente su §10**, la metà aperta di **ISSUES 37**: se la
