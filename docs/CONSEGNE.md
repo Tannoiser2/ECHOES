@@ -1,4 +1,4 @@
-# Passaggio di consegne — stato al 0.1.150
+# Passaggio di consegne — stato al 0.1.151
 
 *Scritto per chi apre una sessione nuova su questo repository. Dice dov'è il
 lavoro, cosa regge, cosa no, e quali sono le regole di casa che non vanno
@@ -12,7 +12,7 @@ riscoperte da capo.*
 |---|---|
 | ramo di sviluppo | `claude/echoes-boardgame-dev-cmu444` |
 | PR aperta | in bozza, su `main` |
-| ultimo commit | 0.1.150 |
+| ultimo commit | 0.1.151 |
 | ultimo merge su `main` | `175d58d` — PR #68, 0.1.145–0.1.149 |
 
 La PR #68 è stata mergiata: questo ramo riparte da `main` e raccoglie da 0.1.150
@@ -63,6 +63,7 @@ Asserzioni disponibili: `assert_true`, `assert_false`, `assert_eq`, `assert_ne`.
 | `run_clause_probe.gd` | quanto costa una clausola **prima** di scriverla (banco in `tools/clause_candidates.json`) |
 | `run_era_probe.gd` | cosa fa il tempo a una saga, chi siede e dove arriva, **quale clausola manca quando un anno si perde** (0.1.145), e **quanto resta viva una campagna** (0.1.149: cambi di testa, anno dell'ultimo sorpasso) |
 | `run_saga.gd` | racconta una saga anno per anno |
+| `run_hand_probe.gd` | **il preventivo di ISSUES 47**: quante carte darebbe la mappa se le azioni si facessero con le carte, e se il ciclo diverge |
 | `tools/dead_code.py` · `tools/validate_data.py` | codice irraggiungibile · dati contro schemi, **e i Destini che si combattono da soli** (D-178: `--self-test` prova che le guardie mordano) |
 
 ## 3. Cosa è stato fatto nelle ultime sessioni
@@ -84,6 +85,7 @@ solo.
 | **0.1.148** | **il vincitore della saga**, voluto dal committente — e il contatore ha rivelato che nella saga del Sale la campagna la vince sempre la stessa casa (ISSUES 46) |
 | **0.1.149** | una campagna è **almeno dieci anni**, deciso dal committente — e con la soglia si misura quanto resta viva: ultimo sorpasso all'anno 5 su 10 nella Carestia, 3,5 nel Sale |
 | **0.1.150** | **il Sale non vinceva: gli succedeva di vincere** — tre clausole su cinque erano fatti del mondo. Campagne sue da 12/12 a 9/12 (ISSUES 46 ridotta, non chiusa) |
+| **0.1.151** | il **preventivo** della riprogettazione voluta dal committente (ISSUES 47): il gioco si stringerebbe al 36-40% e lo scarto fra i seggi raddoppia ogni atto |
 
 Più due documenti: **`docs/MECCANICA.md`** — riportato a **0.1.149**, ed è il
 testo da dare a chi disegna l'infografica *e* a chi vuole sapere come si gioca
@@ -145,6 +147,11 @@ precedente — non un difetto del codice. Cambiarlo è cambiare il regolamento:
   guardare — mai misurate come cause — sono i **Trionfi nelle saghe** (Sale 25,
   Libere 19, Vetro 11, Cenere 8) e il fatto che il **Minimo delle quattro case
   non costa uguale**.
+- **ISSUES 47** — le carte come unica moneta, voluta dal committente. Il
+  preventivo è misurato (D-183) e le tre cose da decidere prima di scrivere sono
+  scritte lì: il volume che si stringe al 36-40%, il ciclo che diverge, e la
+  mappa che non distribuisce le famiglie. **Il lavoro di contenuto più grosso mai
+  fatto qui**: 48 carte da riscrivere.
 - **La palude** — l'unica cosa fuori dal catalogo delle strutture. Chiede slot di
   presenza variabili per Regione: **motore, non contenuto**.
 

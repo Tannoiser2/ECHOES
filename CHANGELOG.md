@@ -5,6 +5,27 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.151 — Il preventivo della mano che viene dalla mappa (D-183)
+
+- **`run_hand_probe.gd`**, sonda nuova: il committente ha proposto che tutte le
+  azioni si facciano con le carte e che le carte le dia la presenza sulla mappa.
+  Prima di riscrivere 48 carte, il **preventivo** — la sonda gioca le partite
+  come sono e scrive quante carte quel rubinetto darebbe.
+- **Il numero che dà ragione alla proposta**: su 72 azioni disponibili in un
+  anno, i seggi giocano **47 ACQUISIRE** e **1 solo MUOVERE**. Due terzi del
+  gioco sono già «pesca una carta».
+- **Il gioco si stringerebbe al 36–40%** di adesso (6,6–7,2 carte contro 18
+  azioni), e **lo scarto fra il primo e l'ultimo seggio raddoppia ogni atto**
+  (0,00 → 1,25 → 1,92): la divergenza non viene dal setup, la produce il gioco.
+- **Nessun seggio resta senza pedine** in 480 campioni: la spirale della morte
+  non si materializza.
+- **La mappa non distribuisce le famiglie**: `WEALTH` sta in quattro Regioni su
+  sei, `FORCE` in una sola. Un seggio raggiunge 3,3 famiglie su 6.
+- Aperta come **ISSUES 47**. Nessuna regola cambiata: dati, playtest e suite
+  restano quelli di 0.1.150.
+- La sonda dei gradini risponde anche a **«essere il proponente conviene?»**: sì,
+  e il gradino medio cresce col numero di proposte (1,33 con zero, 1,93 con tre).
+
 ## 0.1.150 — Il Sale non vinceva: gli succedeva di vincere (D-182)
 
 - **ISSUES 46, sulla direzione data dal committente**: «il Sale è troppo forte».

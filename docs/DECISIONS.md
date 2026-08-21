@@ -10,6 +10,97 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-183 — Il prezzo della mano che viene dalla mappa
+**misurata in 0.1.151** (nessuna regola cambiata: e' il preventivo di ISSUES 47)
+
+Il committente ha proposto una riprogettazione: *«tutte le azioni si fanno con
+le carte, e le carte si pescano a inizio atto a seconda della presenza in una
+regione, tipo due presenze due carte; con le carte in mano si fanno le azioni o
+si giocano nel consiglio»*.
+
+Prima di riscrivere quarantotto carte, il preventivo. `run_hand_probe.gd` gioca
+le partite **come sono adesso** e, a inizio di ogni Atto, guarda dove stanno le
+pedine e scrive quante carte quel rubinetto darebbe.
+
+### Il numero che da' ragione alla proposta
+
+Contate le azioni davvero giocate in un anno intero, su 72 disponibili al tavolo:
+**47 ACQUISIRE**, 7 INFLUENZARE, 6 TRAMARE, 5 FORGIARE, 3 RIVENDICARE, 2 carte
+del Narratore calate, e **1 solo MUOVERE**.
+
+**Due terzi del gioco sono gia' «pesca una carta», e la mappa si muove una volta
+per partita.** La proposta non introduce un'economia nuova: riconosce quella che
+c'e' gia' e la rende deliberata.
+
+### 1. Quanto si stringe
+
+| | CHR_01 | CHR_03 |
+|---|---|---|
+| carte in un anno, per seggio | **6,6** | **7,2** |
+| contro le azioni di oggi | 18 | 18 |
+| il gioco resta al | **36%** | **40%** |
+| dal seggio piu' povero al piu' ricco | 5 → 11 | 5 → 11 |
+
+Il gioco si riduce a **poco piu' di un terzo**. Non e' un difetto della proposta —
+puo' essere esattamente cio' che si vuole, ogni scelta pesa il triplo — ma va
+scelto, non subito.
+
+### 2. Il ciclo diverge, ed e' misurato
+
+| atto | carte medie | **scarto fra primo e ultimo** (CHR_01) | (CHR_03) |
+|---|---|---|---|
+| I | 2,00 | **0,00** | **0,00** |
+| II | 2,17 | 0,65 | 1,32 |
+| III | 2,39 | **1,25** | **1,92** |
+
+**Lo scarto parte da zero e raddoppia ogni atto.** Parte da zero perche' tutti i
+seggi cominciano con due pedine: la divergenza non viene dal setup, **la produce
+il gioco**. In tre atti il primo prende una carta e mezza in piu' dell'ultimo; su
+una campagna di dieci anni quel divario si somma, ed e' esattamente la forma che
+D-180 ha visto col contatore di saga — un piccolo vantaggio che diventa un
+risultato.
+
+### 3. Nessuno resta a secco, e questa e' la sorpresa buona
+
+**0 seggi senza pedine, in tutti e tre gli Atti, su 240 campioni per tavolo.** La
+spirale della morte temuta — chi perde la presenza non pesca e non si rialza —
+**non si materializza**, perche' le pedine iniziali non si perdono quasi mai. Un
+pavimento resta prudente, ma non e' il problema che sembrava.
+
+### 4. E la mappa deciderebbe anche *quali* carte
+
+Se la Regione dice la famiglia, un seggio raggiunge in un anno **3,3 famiglie su
+6**: metta' del mazzo gli resta fuori. E le sei non sono pari, perche' la mappa
+non e' stata disegnata per questo:
+
+| | CHR_01 | CHR_03 |
+|---|---|---|
+| **WEALTH** | **1219** | **1496** |
+| PEOPLE | 591 | 198 |
+| AUTHORITY | 415 | 557 |
+| KNOWLEDGE | 374 | 526 |
+| BONDS | 371 | 443 |
+| **FORCE** | **180** | 228 |
+
+`WEALTH` sta in **quattro Regioni su sei** e diventerebbe la moneta comune;
+`FORCE` sta in una sola ed e' la piu' rara di tutte. Con RIVENDICARE che chiede
+due AUTORITA', chi non passa da Eredan non rivendica mai.
+
+### Quello che si dichiara
+
+- **La sonda misura il rubinetto, non il gioco nuovo.** Le partite girano con le
+  regole di adesso, dove muovere le pedine non serve quasi a niente: **se muovere
+  desse le carte, i seggi si muoverebbero molto di piu'**, e sia il totale sia la
+  divergenza sarebbero diversi. Questi numeri sono il **pavimento** del volume e
+  probabilmente il **pavimento** anche della divergenza.
+- **Un gettone = una carta** e' la lettura misurata; «due presenze due carte» si
+  puo' leggere anche come *Regioni distinte* (max 3) — la sonda conta tutt'e due,
+  e nel gioco di oggi coincidono quasi sempre perche' le pedine stanno separate.
+- **Non e' stata cambiata nessuna regola**: playtest, suite e dati sono quelli di
+  0.1.150.
+
+---
+
 ## D-182 — Il Sale non vinceva: gli succedeva di vincere
 **implemented in 0.1.150** (ISSUES 46, voluta dal committente: «il Sale e' troppo forte»)
 

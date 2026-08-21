@@ -1523,6 +1523,64 @@ il Vetro ne ha uno da due gettoni, il Sale uno da uno.
 delle campagne — o il motivo per cui una lo fa è scritto con i numeri accanto —
 e l'ultimo cambio di testa non cade prima di metà campagna.
 
+### 47. Le carte come unica moneta: azioni, mano e mappa in un sistema solo
+
+`regole` · `motore` · `contenuto` · voluta dal committente · **preventivo misurato in 0.1.151** ([D-183](DECISIONS.md#d-183))
+
+«Tutte le azioni si fanno con le carte, e le carte si pescano a inizio atto a
+seconda della presenza in una regione, tipo due presenze due carte; con le carte
+in mano si fanno le azioni o si giocano nel consiglio.»
+
+**Il numero che le dà ragione.** Su 72 azioni disponibili al tavolo in un anno, i
+seggi giocano **47 ACQUISIRE**, 7 INFLUENZARE, 6 TRAMARE, 5 FORGIARE, 3
+RIVENDICARE, 2 carte del Narratore e **1 solo MUOVERE**. Due terzi del gioco sono
+già «pesca una carta» e la mappa si muove una volta per partita: la proposta non
+introduce un'economia nuova, riconosce quella che c'è e la rende deliberata. E
+mette il dilemma che oggi manca — **questa carta la spendo per agire o per
+votare?** — al centro di ogni turno.
+
+**Il preventivo**, misurato senza cambiare nessuna regola:
+
+| | CHR_01 | CHR_03 |
+|---|---|---|
+| carte in un anno per seggio | **6,6** | **7,2** |
+| il gioco resta al | **36%** | **40%** di adesso |
+| scarto primo/ultimo, atto I → III | 0,00 → **1,25** | 0,00 → **1,92** |
+| seggi rimasti senza pedine | **0 su 240** | **0 su 240** |
+| famiglie raggiungibili da un seggio | **3,3 su 6** | **3,3 su 6** |
+
+**Le tre cose da decidere prima di scrivere:**
+
+1. **Il volume.** Il gioco si stringe a poco più di un terzo. Va scelto apposta,
+   e con esso vanno rivisti il limite di mano (7 oggi) e la lunghezza dell'anno.
+2. **Il ciclo che diverge.** Lo scarto parte da zero — tutti cominciano con due
+   pedine — e **raddoppia ogni atto**: la divergenza la produce il gioco, non il
+   setup. Su una campagna di dieci anni si somma, ed è la stessa forma che il
+   contatore di saga ha mostrato in [D-180](DECISIONS.md#d-180). Serve un freno
+   deciso in partenza: un tetto, o una pesca che cresce meno che linearmente.
+3. **La mappa non è disegnata per distribuire le famiglie.** `WEALTH` sta in
+   quattro Regioni su sei, `FORCE` in una sola: se la Regione decide la famiglia,
+   la ricchezza diventa la moneta comune e la forza quasi introvabile — e chi non
+   passa da Eredan non rivendica mai, perché RIVENDICARE chiede due AUTORITÀ. O
+   si ridisegnano le `asset_sources`, o la famiglia non può dipendere solo dal
+   posto.
+
+**La sorpresa buona:** nessun seggio resta senza pedine in 480 campioni. La
+spirale della morte — chi perde la presenza non pesca più e non si rialza — non
+si materializza.
+
+**Il costo di scrittura**, dichiarato: **48 carte** vanno riscritte con un'azione
+ciascuna oltre all'effetto di Consiglio che già hanno. È il pezzo di contenuto
+più grosso mai fatto sul progetto.
+
+**Da fare nello stesso lavoro**: TRAMARE e INFLUENZARE spariscono come azioni e
+diventano effetti di carte — il committente le vuole togliere, e la misura gli dà
+ragione (6 e 7 usi in un anno intero).
+
+**Fatto quando** un anno si gioca per intero con le carte come unica moneta, il
+playtest resta **0/8** a tavolo misto e uniforme, e lo scarto fra il primo e
+l'ultimo seggio **non cresce** di atto in atto.
+
 ---
 
 ---
