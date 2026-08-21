@@ -10,6 +10,128 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-186 — La mappa che distribuisce, e quante carte servono davvero
+**implemented in 0.1.154** (ISSUES 47, fase 3: il punto che bloccava le 48 carte)
+
+Il committente: *«Vai con la mappa, poi le carte per ogni atto devono essere
+pescate in numero sufficiente per fare le stesse azioni e per influenzare i
+concili come adesso.»* Due lavori, e il secondo e' una misura.
+
+### a) La mappa non distribuiva
+
+D-183 aveva scritto il difetto senza risolverlo: `WEALTH` stava in **quattro**
+Regioni su sei, `FORCE` in **una sola**. Se la Regione decide che carte peschi,
+quello non e' colore: e' un'azione che qualcuno non potra' mai fare.
+
+Sei Regioni, due famiglie ciascuna, dodici posti, sei famiglie: la
+distribuzione giusta e' **due Regioni per famiglia**, e adesso lo e'.
+
+| Regione | offre | perche' |
+|---|---|---|
+| Eredan | AUTORITA', FORZA | il trono e la guarnigione |
+| Valle Verde | GENTE, RICCHEZZA | i contadini e il grano |
+| Terre Nahr | AUTORITA', GENTE | il popolo e la parola degli anziani |
+| Montagne Rosse | FORZA, LEGAMI | i clan armati e i loro giuramenti |
+| Miniere Antiche | SAPERE, LEGAMI | il sito antico e i patti dei minatori |
+| Strada dei Mercanti | RICCHEZZA, SAPERE | il commercio e le notizie che viaggiano |
+
+Quante volte una famiglia e' a portata di mano in un anno, su 60 partite:
+
+| | prima | dopo |
+|---|---|---|
+| RICCHEZZA | **1219** | 427 |
+| GENTE | 591 | 592 |
+| AUTORITA' | 415 | 600 |
+| SAPERE | 374 | 383 |
+| LEGAMI | 371 | 553 |
+| FORZA | **180** | 605 |
+| divario fra la prima e l'ultima | **6,8 a 1** | **1,6 a 1** |
+
+### b) E la misura che ha deciso quale mappa
+
+La prima mappa che ho scritto era piu' varia per il singolo seggio (3,8 famiglie
+diverse in un anno contro 3,5) ma peggio distribuita (2,2 a 1). Ho scelto la
+seconda: **una famiglia irraggiungibile per tutti e' un difetto, mezza famiglia
+in meno per uno e' una sfumatura.** Il numero peggiorato e' questo, ed e' scritto.
+
+Per scegliere serviva sapere **dove stanno davvero le pedine**, che nessuno
+aveva mai misurato. La sonda della mano adesso lo dice, ed e' la sorpresa del
+giorno:
+
+| Regione | pedine viste | |
+|---|---|---|
+| Eredan | 425 | 26,9% |
+| Valle Verde | 417 | 26,4% |
+| Miniere Antiche | 373 | 23,6% |
+| Montagne Rosse | 180 | 11,4% |
+| Terre Nahr | 175 | 11,1% |
+| **Strada dei Mercanti** | **10** | **0,6%** |
+
+**La Strada dei Mercanti e' una Regione morta**: praticamente nessuno ci mette
+una pedina. Le due famiglie che le si danno valgono quasi zero — per questo le
+ho messe RICCHEZZA e SAPERE, che una casa forte ce l'hanno gia' altrove. E'
+aperta come ISSUES 48: e' un difetto suo, non della distribuzione.
+
+### c) Il fabbisogno: quante carte servono per giocare come adesso
+
+La richiesta del committente e' diventata un numero. Per seggio, in un anno:
+
+| | |
+|---|---|
+| azioni che col nuovo sistema costerebbero una carta | **3,20** (tutte tranne ACQUISIRE) |
+| carte impegnate ai Consigli | **8,59** |
+| **fabbisogno** | **11,80 l'anno**, cioe' **3,93 per Atto** |
+
+Il rubinetto a `per_token: 1` ne dava 2 per Atto: **meta' del necessario**. La
+taratura che regge il fabbisogno e' **`per_token: 2, floor: 2, cap: 6,
+hand_cap: 7`** — due carte per gettone, e il tetto sulla mano al limite di mano
+che il regolamento ha gia'. Misurata col rubinetto acceso:
+
+| | Atto 1 | Atto 2 | Atto 3 |
+|---|---|---|---|
+| carte in mano | 6,00 | 6,85 | 6,67 |
+| scarto fra la piu' piena e la piu' vuota | 0,00 | 0,53 | **1,18** |
+
+**Il punto 2 di ISSUES 47 e' risolto**: la divergenza che raddoppiava ogni Atto
+adesso e' 1,18 — contro **4,90** del gioco di oggi. La mano che viene dalla mappa,
+col tetto giusto, e' piu' equa di ACQUISIRE.
+
+### Le misure del cancello
+
+Rubinetto **spento** (si accende con `actions_from_cards`), mappa nuova accesa:
+**0 su 8 bloccati** a tavolo misto e uniforme. Consigli falliti **248 -> 241**.
+Suite **366 test / 6453 asserzioni**, tutto verde.
+
+### Quello che si dichiara
+
+- **L'anno si e' fatto piu' quieto**: Consigli medi da **5,79 a 5,44**, e il
+  minimo della banda da 2 a **1**. La causa e' la stessa distribuzione: prima
+  quasi tutti avevano RICCHEZZA in mano e le carte rilevanti si trovavano
+  sempre; adesso una mano e' piu' varia e piu' spesso non ha la famiglia che
+  quel Consiglio premia. E' il prezzo, ed e' pagato apposta.
+- **Due piani scriptati sono cambiati e sono stati riregistrati.** «Il consiglio
+  spezzato» passa da sei Consigli a tre — e la storia nuova e' **migliore**:
+  la domanda affondata torna al round dopo e a proporla e' *chi l'aveva
+  affondata*, col registro che scrive «la spirale si chiude». E' D-098 vista a
+  occhio nudo. «La miniera aperta» perde i suoi due Decisivi (margine 4 invece
+  di 5) e resta a sei Consigli.
+- **Un errore trovato per strada, e non e' mio**: la descrizione di «la miniera
+  aperta» diceva *«tutte e quattro le bande di esito del §12.3 in una partita
+  sola»* e *«passa pagando»*, ma i suoi stessi esiti registrati erano
+  `FAILURE, DECISIVE, SUCCESS, SUCCESS, DECISIVE, FAILURE` — **tre bande, e
+  nessun SUCCESS_WITH_COST**. La prosa descriveva una versione precedente e non
+  era mai stata aggiornata. Adesso le due cose dicono la stessa cosa.
+- **La suite ha 61 asserzioni in meno** (6514 -> 6453): sono i tre Consigli che
+  «il consiglio spezzato» non gioca piu'. Nessun test e' stato tolto.
+- **La taratura del rubinetto e' un preventivo, non una taratura.** E' misurata
+  col rubinetto **sopra** ACQUISIRE, che nel gioco finale non ci sara'. Acceso
+  cosi' oggi, i Consigli falliti salgono a **304**: e' il prezzo del doppio
+  canale, non della taratura.
+- **Le altre Chronicle non sono state toccate.** CHR_03 tiene la sua mappa: se
+  la fase 3 va avanti, va ridistribuita anche quella.
+
+---
+
 ## D-185 — Il rubinetto: la mano viene dalla mappa
 **implemented in 0.1.153** (ISSUES 47, fase 2: la pesca dalla presenza)
 

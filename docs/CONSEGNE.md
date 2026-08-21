@@ -1,4 +1,4 @@
-# Passaggio di consegne — stato al 0.1.153
+# Passaggio di consegne — stato al 0.1.154
 
 *Scritto per chi apre una sessione nuova su questo repository. Dice dov'è il
 lavoro, cosa regge, cosa no, e quali sono le regole di casa che non vanno
@@ -12,7 +12,7 @@ riscoperte da capo.*
 |---|---|
 | ramo di sviluppo | `claude/echoes-boardgame-dev-cmu444` |
 | PR aperta | in bozza, su `main` |
-| ultimo commit | 0.1.153 |
+| ultimo commit | 0.1.154 |
 | ultimo merge su `main` | `175d58d` — PR #68, 0.1.145–0.1.149 |
 
 La PR #68 è stata mergiata: questo ramo riparte da `main` e raccoglie da 0.1.150
@@ -63,7 +63,7 @@ Asserzioni disponibili: `assert_true`, `assert_false`, `assert_eq`, `assert_ne`.
 | `run_clause_probe.gd` | quanto costa una clausola **prima** di scriverla (banco in `tools/clause_candidates.json`) |
 | `run_era_probe.gd` | cosa fa il tempo a una saga, chi siede e dove arriva, **quale clausola manca quando un anno si perde** (0.1.145), e **quanto resta viva una campagna** (0.1.149: cambi di testa, anno dell'ultimo sorpasso) |
 | `run_saga.gd` | racconta una saga anno per anno |
-| `run_hand_probe.gd` | **il preventivo di ISSUES 47**: quante carte darebbe la mappa se le azioni si facessero con le carte, e se il ciclo diverge — e da 0.1.153 **la mano vera**, col rubinetto acceso |
+| `run_hand_probe.gd` | **il preventivo di ISSUES 47** — da 0.1.154 anche **dove stanno davvero le pedine** e **il fabbisogno**: quante carte servono per giocare come adesso, quanto si stringe il gioco, e **la mano vera** col rubinetto acceso |
 | `tools/dead_code.py` · `tools/validate_data.py` | codice irraggiungibile · dati contro schemi, **e i Destini che si combattono da soli** (D-178: `--self-test` prova che le guardie mordano) |
 
 ## 3. Cosa è stato fatto nelle ultime sessioni
@@ -88,6 +88,7 @@ solo.
 | **0.1.151** | il **preventivo** della riprogettazione voluta dal committente (ISSUES 47): il gioco si stringerebbe al 36-40% e lo scarto fra i seggi raddoppia ogni atto |
 | **0.1.152** | **il telaio delle azioni sulle carte** (ISSUES 47 fase 1): `card_action`, `PLAY_CARD` e l'interruttore. Zero carte convertite, playtest identico |
 | **0.1.153** | **il rubinetto** (ISSUES 47 fase 2): la mano viene dalla mappa — e il freno che credevo giusto era quello sbagliato, il tetto va sulla **mano** |
+| **0.1.154** | **la mappa che distribuisce** (ISSUES 47 fase 3): due Regioni per famiglia, il fabbisogno misurato (11,80 carte l'anno) — e la Strada dei Mercanti è morta (ISSUES 48) |
 
 Più due documenti: **`docs/MECCANICA.md`** — riportato a **0.1.149**, ed è il
 testo da dare a chi disegna l'infografica *e* a chi vuole sapere come si gioca
@@ -96,9 +97,9 @@ bene (§15) — e **`docs/SAGA_NAHR.md`**, dieci anni giocati e raccontati.
 **Le misure di adesso** (playtest 100 semi, tavolo misto):
 
 ```
-FAIL 248 · SUCC 78 · SUCC 99 · DECI 154 · mediana 6
+FAIL 241 · SUCC 79 · SUCC 99 · DECI 125 · mediana 6
 0 su 8 bloccati (misto e uniforme) · nessun seggio a NONE · nessuno a zero Trionfi
-suite 366 test / 6514 asserzioni
+suite 366 test / 6453 asserzioni
 ```
 
 ## 4. Le due cose che vanno guardate per prime
@@ -141,6 +142,10 @@ precedente — non un difetto del codice. Cambiarlo è cambiare il regolamento:
   contro i Maestri al 33%–83%, e **nessuna clausola pronta** con cui intervenire:
   delle dodici misurate al banco, tutto ciò che la Cenere può fare restando sulla
   montagna esce 0% o 100%.
+- **ISSUES 48** — la **Strada dei Mercanti è una Regione morta**: 0,6% delle
+  pedine in 60 anni, contro l'11% di Montagne e Terre Nahr. È centrale e ha
+  quattro slot, e nessuno ci va. Tre ipotesi scritte lì, e due si provano
+  **leggendo i dati**, senza giocare.
 - **ISSUES 46** (ridotta in 0.1.150, non chiusa) — il Sale era troppo forte
   perché **tre clausole su cinque erano fatti del mondo**, non cose che facesse.
   Corretti i suoi due Destini: campagne sue da **12/12 a 9/12**, supera il Minimo
@@ -149,15 +154,14 @@ precedente — non un difetto del codice. Cambiarlo è cambiare il regolamento:
   guardare — mai misurate come cause — sono i **Trionfi nelle saghe** (Sale 25,
   Libere 19, Vetro 11, Cenere 8) e il fatto che il **Minimo delle quattro case
   non costa uguale**.
-- **ISSUES 47** — le carte come unica moneta, voluta dal committente. Due fasi
-  fatte: il **telaio** (D-184: `card_action`, `PLAY_CARD`, l'interruttore) e il
+- **ISSUES 47** — le carte come unica moneta, voluta dal committente. **Tre fasi
+  fatte**: il **telaio** (D-184: `card_action`, `PLAY_CARD`, l'interruttore), il
   **rubinetto** (D-185: la mano viene dalla mappa, col tetto sulla **mano** come
-  freno misurato). Entrambi **spenti nei dati**: si accendono insieme, o le due
-  metà non si reggono. Restano da decidere **il volume** (il gioco si stringe al
-  36-40%) e **la mappa che non distribuisce le famiglie** — `FORCE` sta in una
-  Regione sola, e finché è così scrivere le 48 carte vuol dire scrivere azioni
-  che qualcuno non potrà mai fare. Poi **48 carte da riscrivere**: il lavoro di
-  contenuto più grosso mai fatto qui.
+  freno) e **la mappa + il fabbisogno** (D-186: due Regioni per famiglia; 11,80
+  carte l'anno per seggio, e la taratura che le regge). Telaio e rubinetto sono
+  **spenti nei dati**: si accendono insieme, o le due metà non si reggono. Resta
+  la **fase 4**, che è tutto il contenuto: **48 `card_action` da scrivere**, una
+  famiglia alla volta, misurando — più la mappa di **CHR_03**, non toccata.
 - **La palude** — l'unica cosa fuori dal catalogo delle strutture. Chiede slot di
   presenza variabili per Regione: **motore, non contenuto**.
 

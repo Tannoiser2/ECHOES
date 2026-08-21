@@ -5,6 +5,50 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.154 — La mappa che distribuisce, e quante carte servono (D-186)
+
+- **ISSUES 47 fase 3**, chiesta dal committente: «vai con la mappa, poi le carte
+  per ogni atto devono essere pescate in numero sufficiente per fare le stesse
+  azioni e per influenzare i concili come adesso».
+- **Sei Regioni, due famiglie ciascuna, due Regioni per famiglia.** Prima
+  `WEALTH` stava in quattro Regioni e `FORCE` in una sola; il divario fra la
+  famiglia più a portata e la meno passa da **6,8 a 1** a **1,6 a 1**.
+- **Dove stanno davvero le pedine**, misurato per la prima volta: Eredan 26,9%,
+  Valle Verde 26,4%, Miniere 23,6%, Montagne 11,4%, Terre Nahr 11,1% — e la
+  **Strada dei Mercanti allo 0,6%**. È una Regione morta (ISSUES 48).
+- **Il fabbisogno**, che è la richiesta del committente diventata numero: per
+  seggio e per anno, **3,20** azioni che costerebbero una carta + **8,59** carte
+  impegnate ai Consigli = **11,80 l'anno, 3,93 per Atto**. Il rubinetto a
+  `per_token: 1` ne dava 2: metà.
+- **La taratura che regge il fabbisogno**: `per_token: 2, floor: 2, cap: 6,
+  hand_cap: 7`. Misurata, la mano sta a 6–6,9 carte e **lo scarto fra la più
+  piena e la più vuota all'Atto 3 è 1,18** — contro 4,90 del gioco di oggi. **Il
+  punto 2 di ISSUES 47 è risolto.**
+- Rubinetto spento, mappa nuova accesa: **0 su 8**, Consigli falliti **248 →
+  241**. Suite **366 test / 6453 asserzioni**.
+
+### Dichiarato
+
+- **L'anno si è fatto più quieto**: Consigli medi da 5,79 a **5,44**, minimo
+  della banda da 2 a **1**. Stessa causa: una mano più varia più spesso non ha
+  la famiglia che quel Consiglio premia. È il prezzo, pagato apposta.
+- **Due piani scriptati riregistrati.** «Il consiglio spezzato» da sei Consigli
+  a tre — e la storia nuova è migliore: la domanda affondata torna al round dopo
+  e a proporla è chi l'aveva affondata, col registro che scrive «la spirale si
+  chiude». «La miniera aperta» perde i due Decisivi (margine 4 invece di 5).
+- **Un errore preesistente trovato per strada**: la descrizione di «la miniera
+  aperta» prometteva «tutte e quattro le bande di esito del §12.3» e un «passa
+  pagando» che nei suoi stessi esiti registrati non c'erano. La prosa era ferma
+  a una versione precedente. Ora combaciano.
+- **61 asserzioni in meno** (6514 → 6453): sono i tre Consigli che «il consiglio
+  spezzato» non gioca più. Nessun test tolto.
+- La taratura del rubinetto è un **preventivo**: misurata col rubinetto *sopra*
+  ACQUISIRE. Accesa oggi porterebbe i Consigli falliti a 304 — prezzo del doppio
+  canale, non della taratura.
+- **CHR_03 non è stata toccata**: tiene la sua mappa vecchia.
+
+---
+
 ## 0.1.153 — Il rubinetto: la mano viene dalla mappa (D-185)
 
 - **ISSUES 47 fase 2**, chiesta dal committente: «la presenza nelle regioni deve

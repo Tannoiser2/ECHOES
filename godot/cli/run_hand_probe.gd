@@ -69,6 +69,20 @@ func _initialize() -> void:
 	for _i in range(acts):
 		real_hand.append([0.0, 0.0, 0])
 	var seat_reach: Array = []        # quante famiglie distinte raggiunge un seggio
+	# Dove stanno davvero le pedine: se una Regione non ne vede mai, le famiglie
+	# che offre valgono come se non ci fossero (D-186).
+	var tokens_by_region: Dictionary = {}
+	# Il fabbisogno (richiesta del committente): «le carte per ogni atto devono
+	# essere pescate in numero sufficiente per fare le stesse azioni e per
+	# influenzare i concili come adesso». Due voci, per seggio e per anno:
+	# le azioni che col nuovo sistema costerebbero una carta - cioe' tutte
+	# tranne ACQUISIRE, che sparisce perche' la sostituisce il rubinetto - e le
+	# carte impegnate ai Consigli, che gia' oggi costano.
+	var acts_by_template: Dictionary = {}
+	var actions_seen: Dictionary = {}
+	# I contatori stanno in un Dizionario perche' le lambda di GDScript catturano
+	# gli interi **per valore**: un `var` catturato non torna indietro.
+	var tally: Dictionary = {"acted": 0, "committed": 0, "seat_years": 0}
 
 	for run in range(runs):
 		var session: RefCounted = GameSession.new(data)
@@ -93,6 +107,9 @@ func _initialize() -> void:
 					var mine: Dictionary = families_seen.get(str(entity_id), {})
 					for region_id in presence:
 						regions[str(region_id)] = true
+						tokens_by_region[str(region_id)] = (
+							int(tokens_by_region.get(str(region_id), 0)) + 1
+						)
 						for family in (data.regions[str(region_id)] as Dictionary).get(
 							"asset_sources", []
 						):
@@ -132,6 +149,34 @@ func _initialize() -> void:
 					+ float(int(counts[counts.size() - 1]) - int(counts[0]))
 				)
 		)
+		session.effect_applied.connect(
+			func(effect: Dictionary) -> void:
+				var source: Dictionary = effect.get("source", {}) as Dictionary
+				if str(source.get("kind", "")) != "action":
+					return
+				var template_id: String = str(source.get("id", ""))
+				var key: String = "%s|%s|%d" % [
+					template_id, str(source.get("actor", "")), int(source.get("sequence", 0))
+				]
+				if actions_seen.has(key):
+					return
+				actions_seen[key] = true
+				acts_by_template[template_id] = int(acts_by_template.get(template_id, 0)) + 1
+				# ACQUISIRE sparisce (lo sostituisce il rubinetto) e DISPLACED non
+				# e' un'azione giocata: e' il contraccolpo di INFLUENZARE.
+				if template_id != "ACT_ACQUIRE" and template_id != "ACT_INFLUENCE_DISPLACED":
+					tally["acted"] = int(tally["acted"]) + 1
+		)
+		session.confluence.step_changed.connect(
+			func(step: String, context: Dictionary) -> void:
+				if step != "RESOLVED":
+					return
+				for entity_id in (context.get("commits", {}) as Dictionary):
+					tally["committed"] = int(tally["committed"]) + (
+						(context["commits"][entity_id] as Array).size()
+					)
+		)
+		tally["seat_years"] = int(tally["seat_years"]) + seats.size()
 		await session.run(table)
 		for entity_id in year:
 			year_totals.append(int(year[entity_id]))
@@ -199,6 +244,45 @@ func _initialize() -> void:
 	])
 	for family in FAMILIES:
 		print("    %-12s raggiunta %d volte" % [family, int(reach.get(family, 0))])
+
+	print("")
+	print("== 5. DOVE STANNO DAVVERO LE PEDINE ==")
+	var placed: float = 0.0
+	for region_id in tokens_by_region:
+		placed += float(int(tokens_by_region[str(region_id)]))
+	var region_ids: Array = data.regions.keys()
+	region_ids.sort()
+	var ranked: Array = []
+	for region_id in region_ids:
+		ranked.append([int(tokens_by_region.get(str(region_id), 0)), str(region_id)])
+	ranked.sort_custom(func(a: Array, b: Array) -> bool: return int(a[0]) > int(b[0]))
+	for row in ranked:
+		print("    %-24s %5d pedine  (%4.1f%%)  offre %s" % [
+			str(row[1]), int(row[0]),
+			100.0 * float(int(row[0])) / maxf(1.0, placed),
+			(data.regions[str(row[1])] as Dictionary).get("asset_sources", [])
+		])
+	print("  (una Regione che non vede pedine non e' una sorgente: le sue famiglie non escono)")
+
+	print("")
+	print("== 6. IL FABBISOGNO: quante carte servono per giocare come adesso ==")
+	var years: float = float(maxi(1, int(tally["seat_years"])))
+	var per_seat_actions: float = float(int(tally["acted"])) / years
+	var per_seat_commits: float = float(int(tally["committed"])) / years
+	print("  Per seggio, in un anno:")
+	print("    azioni che costerebbero una carta   %5.2f   (tutte tranne ACQUISIRE)" % [
+		per_seat_actions
+	])
+	print("    carte impegnate ai Consigli         %5.2f" % [per_seat_commits])
+	print("    ------------------------------------------")
+	print("    fabbisogno                          %5.2f  carte l'anno, %.2f per Atto" % [
+		per_seat_actions + per_seat_commits, (per_seat_actions + per_seat_commits) / float(acts)
+	])
+	var templates: Array = acts_by_template.keys()
+	templates.sort()
+	print("  Le azioni giocate, per tipo (tutto il tavolo, %d anni):" % [runs])
+	for template_id in templates:
+		print("    %-24s %d" % [str(template_id), int(acts_by_template[str(template_id)])])
 	quit(0)
 
 

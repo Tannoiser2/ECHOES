@@ -13,7 +13,7 @@
       ],
       "asset_sources": [
         "AUTHORITY",
-        "WEALTH"
+        "FORCE"
       ],
       "tags": [
         "domain:SURVIVAL",
@@ -80,8 +80,8 @@
         "REG_STRADA_MERCANTI"
       ],
       "asset_sources": [
-        "PEOPLE",
-        "BONDS"
+        "AUTHORITY",
+        "PEOPLE"
       ],
       "tags": [
         "domain:SURVIVAL",
@@ -146,7 +146,7 @@
       ],
       "asset_sources": [
         "KNOWLEDGE",
-        "WEALTH"
+        "BONDS"
       ],
       "tags": [
         "domain:ANCIENT",
@@ -181,7 +181,7 @@
       ],
       "asset_sources": [
         "WEALTH",
-        "BONDS"
+        "KNOWLEDGE"
       ],
       "tags": [
         "domain:SURVIVAL",

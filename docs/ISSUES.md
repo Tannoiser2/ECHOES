@@ -1599,9 +1599,63 @@ sostituirlo. Nei dati è **spento**: si accende insieme a `actions_from_cards`.
 punto 3 è quello che blocca la fase 3: finché `FORCE` sta in una Regione sola,
 scrivere le 48 carte significa scrivere azioni che qualcuno non potrà mai fare.
 
+**Fase 3 ✅ — la mappa e il fabbisogno** — fatta in 0.1.154
+([D-186](DECISIONS.md#d-186)). **Il punto 3 è chiuso**: sei Regioni, due famiglie
+ciascuna, due Regioni per famiglia; il divario fra la famiglia più a portata e la
+meno passa da **6,8 a 1** a **1,6 a 1**, e nessuna azione è preclusa a nessuno.
+**Il punto 1 (il volume) ha un numero**: il fabbisogno per seggio è **11,80 carte
+l'anno, 3,93 per Atto** (3,20 azioni + 8,59 impegni ai Consigli), e la taratura
+che lo regge è `per_token: 2, floor: 2, cap: 6, hand_cap: 7`. Con quella, **lo
+scarto all'Atto 3 è 1,18** contro 4,90 del gioco di oggi: **anche il punto 2 è
+chiuso**, e il criterio «lo scarto non cresce» è soddisfatto in preventivo.
+
+Resta la **fase 4**, che è tutto il contenuto: **48 `card_action` da scrivere**,
+una famiglia alla volta, misurando. E resta da ridistribuire la mappa di
+**CHR_03**, che non è stata toccata.
+
 **Fatto quando** un anno si gioca per intero con le carte come unica moneta, il
 playtest resta **0/8** a tavolo misto e uniforme, e lo scarto fra il primo e
 l'ultimo seggio **non cresce** di atto in atto.
+
+### 48. La Strada dei Mercanti è una Regione morta
+
+`regole` · `contenuto` · **misurata in 0.1.154** ([D-186](DECISIONS.md#d-186))
+
+Misurando dove finiscono le pedine per scegliere la mappa nuova, è saltato fuori
+un numero che nessuno aveva mai guardato:
+
+| Regione | pedine viste | |
+|---|---|---|
+| Eredan | 425 | 26,9% |
+| Valle Verde | 417 | 26,4% |
+| Miniere Antiche | 373 | 23,6% |
+| Montagne Rosse | 180 | 11,4% |
+| Terre Nahr | 175 | 11,1% |
+| **Strada dei Mercanti** | **10** | **0,6%** |
+
+La Strada è **centrale** — confina con quattro Regioni su cinque, più di
+chiunque altra — e ha **quattro slot di presenza**. Eppure in 60 anni ci
+finiscono dieci pedine in tutto. Una Regione che non vede pedine non è una
+sorgente: col rubinetto acceso, le famiglie che offre non escono quasi mai, e le
+sue `asset_sources` sono decorazione.
+
+**Le tre ipotesi da provare, in ordine di costo:**
+
+1. **Nessun Destino la chiede.** Se nessuna clausola `region_presence` la nomina
+   e nessuna Tensione la usa come dominio, i bot non hanno motivo di andarci: si
+   verifica leggendo i dati, senza giocare.
+2. **Non ci si arriva.** L'adiacenza dice di sì, ma MUOVERE si gioca **una volta
+   per partita** su tutto il tavolo: se nessuno ci comincia, nessuno ci arriva.
+   Delle otto case, **una sola** ci comincia — Maestra Ilve (il Sale), che gioca
+   in CHR_03, non in CHR_01: nella Chronicle misurata **nessuno parte di lì**.
+3. **Non rende.** Non è capitale, non è granaio, non ha struttura: tenerla non
+   dà voce al Consiglio e non chiude nessun Destino.
+
+**Fatto quando** la Strada vede una quota di pedine confrontabile con Montagne e
+Terre Nahr (**almeno il 5%**), senza che il playtest esca da **0/8**.
+
+**Da non confondere con la palude**: quella chiede slot variabili ed è motore.
+Questa, se l'ipotesi 1 o 3 regge, si chiude **con i dati**.
 
 ---
 
