@@ -22,6 +22,10 @@ func _source() -> Dictionary:
 ## La domanda coperta mostra il dorso al tavolo — anche se un seggio l'ha
 ## sbirciata con lo SCHEME: il numero vive solo sulla console di chi sa.
 func test_the_veiled_question_shows_its_back_to_the_table() -> void:
+	# La DataSet e' condivisa: si prova la regola vecchia e la si rimette.
+	var chronicle: Dictionary = session.data.chronicles["CHR_01"] as Dictionary
+	var before_rule: String = str(chronicle.get("veiled_tensions", ""))
+	chronicle["veiled_tensions"] = "HIDES_ALL"
 	var seats: Array = session.world["turn_order"]
 	var scout: String = str(seats[0])
 	var blind: String = str(seats[1])
@@ -53,6 +57,7 @@ func test_the_veiled_question_shows_its_back_to_the_table() -> void:
 			hidden = int((tension as Dictionary)["value"])
 	assert_eq(seen, real, "chi ha sbirciato legge il numero sulla sua console")
 	assert_eq(hidden, -1, "chi non sa vede il dorso anche sulla propria")
+	chronicle["veiled_tensions"] = before_rule
 
 
 ## Il modello del tavolo, serializzato e perquisito: nessuna carta di nessuna

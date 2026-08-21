@@ -515,7 +515,12 @@ func _tension_reading(tension_id: String, viewer_id: String, session: RefCounted
 	var value: int = session.service.visible_tension_value(tension_id, viewer_id)
 	if value < 0:
 		return "(velata)"
-	return "%d/%d" % [value, session.tensions.threshold(tension_id)]
+	var threshold: int = session.service.visible_tension_threshold(tension_id, viewer_id)
+	# La soglia coperta si dice con un punto interrogativo, non con un numero
+	# inventato: al tavolo vero e' la carta girata a faccia in giu' (D-187).
+	if threshold < 0:
+		return "%d/?" % value
+	return "%d/%d" % [value, threshold]
 
 
 func _name(entity_id: String, session: RefCounted) -> String:

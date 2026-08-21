@@ -417,6 +417,12 @@
             }
           }
         },
+        "veiled_tensions": {
+          "type": "string",
+          "enum": ["HIDES_ALL", "HIDES_THRESHOLD"],
+          "default": "HIDES_ALL",
+          "description": "Che cosa nasconde il velo su una Tensione (D-187). `HIDES_ALL` - il default, ed e' il gioco fino a 0.1.154 - copre il numero **e** vieta di agire sulla domanda finche' non la si scopre. `HIDES_THRESHOLD` lascia il valore pubblico come per una domanda aperta e copre **la soglia**: si vede dove sta il segnalino, non dove sia il traguardo, e sulla domanda si spinge lo stesso. Chiesta dal committente perche' al tavolo vero nessuno puo' sapere quando una velata si attiva; e' la carta girata a faccia in giu' accanto al segnalino. SCOPRIRE resta l'azione che la gira, per chi la gioca."
+        },
         "hand_refill": {
           "type": "object",
           "additionalProperties": false,

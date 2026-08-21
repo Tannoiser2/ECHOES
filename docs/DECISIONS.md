@@ -10,6 +10,84 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-187 — Il velo copre la soglia, non il numero
+**implemented in 0.1.155** (chiesta dal committente)
+
+*«Le domande velate vanno risistemate, perche' il mondo lo sa quale e' il valore
+ma i giocatori nel gioco fisico no e quindi nessuno sa quando le velate si
+attivano.»*
+
+Il difetto era vero e non era di taratura: era un'**asimmetria che il tavolo
+fisico non puo' riprodurre**. Il motore teneva un numero che nessun giocatore
+poteva conoscere e faceva scattare un Consiglio quando quel numero arrivava a
+soglia. In digitale funziona; con quattro persone e un segnalino di legno, no.
+
+### La regola nuova
+
+| | prima | adesso |
+|---|---|---|
+| il valore | coperto | **pubblico**, come su una domanda aperta |
+| la soglia | pubblica (stava nel dato, e le viste la stampavano) | **coperta** |
+| agire sulla domanda | **vietato** finche' non la scopri | **permesso** |
+| SCOPRIRE | rivela il valore, e solo a te | rivela **la soglia**, e solo a te |
+| il registro scrive | `Il Risveglio: velata` | `Il Risveglio: 4/?` |
+
+Al tavolo vero e' una **carta girata a faccia in giu' accanto al segnalino**: si
+vede dove sta la domanda, non dove sia il traguardo. Non sapere quando esplodera'
+diventa il rischio invece del divieto — ed e' un rischio che si puo' correre,
+perche' adesso su quella domanda si puo' spingere.
+
+E' dichiarata sulla Chronicle (`veiled_tensions: HIDES_ALL | HIDES_THRESHOLD`),
+non scritta nel codice: la regola vecchia resta provata dai test e si riaccende
+cambiando una stringa.
+
+### Il difetto che e' saltato fuori strada facendo
+
+Le due viste — il tavolo grande e la console in tasca — **stampavano la soglia
+vera** leggendola dal dato, senza passare da nessun filtro di visibilita'. Con la
+regola vecchia non si notava, perche' era il *valore* il segreto. Con la regola
+nuova sarebbe stata la falla che svuota la regola il giorno stesso: adesso
+passano da `visible_tension_threshold`, e una soglia coperta esce **-1** come
+esce il dorso di una carta.
+
+### Le misure
+
+**0 su 8 bloccati** a tavolo misto e uniforme. E il numero onesto e' che **non
+cambia quasi niente**:
+
+| | prima (0.1.154) | dopo |
+|---|---|---|
+| Consigli falliti, tavolo misto | 241 | **239** |
+| Consigli medi | 5,44 | **5,43** |
+| TRAMARE giocati in 60 anni | 130 | **134** |
+| INFLUENZARE giocati in 60 anni | 360 | **367** |
+
+Suite **369 test / 6476 asserzioni** (tre nuovi: la domanda che si spinge senza
+averla scoperta, il valore pubblico con la soglia coperta, e SCOPRIRE che gira
+la carta).
+
+### Quello che si dichiara
+
+- **Le sonde non possono misurare la cosa per cui e' stata fatta.** I bot non
+  provano attesa: uno che non sa la soglia stima la media di quelle in gioco e
+  gioca. Il valore del cambiamento e' che **quattro persone possono giocare la
+  regola**, e quello si vede in una serata, non in cento semi.
+- **Il velo di D-125 e' piu' debole.** Calare il velo copriva un numero; adesso
+  copre solo il quando. E' una perdita reale per la casa che ha quell'arte, non
+  ancora misurata, e il registro non promette piu' di quanto copra davvero.
+- **La stima del bot e' una scelta, non una misura**: chi non ha girato la carta
+  usa la soglia **media** della Chronicle. Deterministica e onesta — non guarda
+  il dato vero — ma non e' stata tarata contro alternative (la piu' bassa quando
+  difendi, la piu' alta quando spingi).
+- **Non e' stato provato con un Consiglio che scatta a sorpresa**: la suite prova
+  chi vede cosa, non l'effetto drammatico di una soglia che si rivela girandosi.
+- **Le altre due domande del committente restano aperte**: che nella prima
+  partita le quattro domande non siano sempre le stesse, e che partano tutte da
+  **0** invece che da 3, 2, 2, 1. La seconda non e' gratis — con nove gettoni di
+  Deriva su quattro domande, partire da zero significa rifare le soglie.
+
+---
+
 ## D-186 — La mappa che distribuisce, e quante carte servono davvero
 **implemented in 0.1.154** (ISSUES 47, fase 3: il punto che bloccava le 48 carte)
 

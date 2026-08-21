@@ -320,6 +320,14 @@ const DEFS := {
 			"structure_rules": {
 				"type": "Dictionary",
 			},
+			"veiled_tensions": {
+				"type": "String",
+				"enum": [
+					"HIDES_ALL",
+					"HIDES_THRESHOLD",
+				],
+				"default": "HIDES_ALL",
+			},
 			"hand_refill": {
 				"type": "Dictionary",
 			},

@@ -37,7 +37,10 @@ static func build(session: RefCounted) -> Dictionary:
 			"title": str(data.tensions[str(tension_id)]["title"]),
 			"domain": SignLabels.domain(str(data.tensions[str(tension_id)]["domain"])),
 			"value": session.service.visible_tension_value(str(tension_id), ""),
-			"threshold": int(data.tensions[str(tension_id)]["threshold"]),
+			# E la soglia col dorso a sua volta (-1), quando la Chronicle copre
+			# quella invece del numero (D-187): il tavolo grande non puo' sapere
+			# cio' che al tavolo vero sta sotto una carta girata.
+			"threshold": session.service.visible_tension_threshold(str(tension_id), ""),
 			"open": session.service.is_tension_open(str(tension_id)),
 		})
 

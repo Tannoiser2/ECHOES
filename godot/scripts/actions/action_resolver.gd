@@ -210,8 +210,10 @@ func _check_influence(entity_id: String, params: Dictionary) -> String:
 	var delta: int = int(params.get("delta", 1))
 	if delta != 1 and delta != -1:
 		return "delta deve essere +1 o -1"
-	# §10: a veiled Tension is out of reach until this Entity has uncovered it.
-	if tensions.is_veiled(tension_id) and not service.knows_tension(entity_id, tension_id):
+	# §10: a veiled Tension is out of reach until this Entity has uncovered it —
+	# a meno che il velo copra la sola soglia (D-187), e allora la domanda si
+	# spinge come ogni altra, senza sapere quando esplodera'.
+	if tensions.out_of_reach(tension_id, service.knows_tension(entity_id, tension_id)):
 		return "la Tensione '%s' e velata per %s" % [tension_id, entity_id]
 
 	# §10 as tuned in DECISIONS D-021: how often one Entity may lean on the
@@ -822,9 +824,15 @@ func _scheme(entity_id: String, params: Dictionary, source: Dictionary) -> Dicti
 					)
 				)
 			)
+			# Cosa copre il velo lo dice la Chronicle (D-187): il numero intero,
+			# oppure la sola soglia. Il registro non promette piu' di quanto sia
+			# stato coperto davvero.
 			log.bullet(
-				"%s cala il velo: %s non ha piu' un numero sul tavolo."
-				% [_name(entity_id), str(data.tensions[veiled_id]["title"])]
+				(
+					"%s cala il velo: di %s non si sa piu' quando esplodera'."
+					if tensions.hides_threshold_only()
+					else "%s cala il velo: %s non ha piu' un numero sul tavolo."
+				) % [_name(entity_id), str(data.tensions[veiled_id]["title"])]
 			)
 			return _ok("SCHEME", effects, {"tension_id": veiled_id, "veiled": true})
 	return _error("SCHEME", "modo sconosciuto '%s'" % mode)

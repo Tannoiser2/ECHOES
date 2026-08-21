@@ -348,14 +348,47 @@ func is_tension_open(tension_id: String) -> bool:
 	return tension_visibility(tension_id) == "OPEN"
 
 
+## Che cosa nasconde una Tensione velata, deciso dalla Chronicle e non dal
+## codice (D-187). Due regole:
+##
+##   `HIDES_ALL` - il default, e il gioco fino a 0.1.154: velata vuol dire che
+##     il numero non si vede e sulla domanda non si puo' agire, finche' non la
+##     si scopre.
+##   `HIDES_THRESHOLD` - il valore e' pubblico come per una domanda aperta, ed
+##     e' **la soglia** a stare coperta. Chiesta dal committente: «il mondo lo
+##     sa quale e' il valore ma i giocatori nel gioco fisico no, e quindi
+##     nessuno sa quando le velate si attivano». Al tavolo vero e' una carta
+##     girata a faccia in giu' accanto al segnalino.
+static func veil_hides_threshold_only(p_world: Dictionary, p_data: RefCounted) -> bool:
+	var chronicle: Variant = p_data.chronicles.get(str(p_world.get("chronicle_id", "")))
+	if chronicle == null:
+		return false
+	return str((chronicle as Dictionary).get("veiled_tensions", "HIDES_ALL")) == "HIDES_THRESHOLD"
+
+
+func hides_threshold_only() -> bool:
+	return veil_hides_threshold_only(world, data)
+
+
 ## What `viewer_id` is allowed to know. Returns -1 when the value is hidden from
 ## them: a veiled Tension only shows its number to Entities that have scouted it
-## with SCHEME (§10, §11.1).
+## with SCHEME (§10, §11.1) — a meno che la Chronicle non nasconda **solo la
+## soglia**, e allora il numero lo vedono tutti.
 func visible_tension_value(tension_id: String, viewer_id: String) -> int:
 	if is_tension_open(tension_id):
 		return tension_value(tension_id)
+	if hides_threshold_only():
+		return tension_value(tension_id)
 	if knows_tension(viewer_id, tension_id):
 		return tension_value(tension_id)
+	return -1
+
+
+## E la soglia: si vede se la domanda e' aperta, o se questa casa l'ha scoperta.
+## Torna -1 quando resta coperta.
+func visible_tension_threshold(tension_id: String, viewer_id: String) -> int:
+	if is_tension_open(tension_id) or knows_tension(viewer_id, tension_id):
+		return int(data.tensions[tension_id]["threshold"])
 	return -1
 
 

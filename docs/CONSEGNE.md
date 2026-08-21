@@ -1,4 +1,4 @@
-# Passaggio di consegne — stato al 0.1.154
+# Passaggio di consegne — stato al 0.1.155
 
 *Scritto per chi apre una sessione nuova su questo repository. Dice dov'è il
 lavoro, cosa regge, cosa no, e quali sono le regole di casa che non vanno
@@ -12,7 +12,7 @@ riscoperte da capo.*
 |---|---|
 | ramo di sviluppo | `claude/echoes-boardgame-dev-cmu444` |
 | PR aperta | in bozza, su `main` |
-| ultimo commit | 0.1.154 |
+| ultimo commit | 0.1.155 |
 | ultimo merge su `main` | `175d58d` — PR #68, 0.1.145–0.1.149 |
 
 La PR #68 è stata mergiata: questo ramo riparte da `main` e raccoglie da 0.1.150
@@ -89,6 +89,7 @@ solo.
 | **0.1.152** | **il telaio delle azioni sulle carte** (ISSUES 47 fase 1): `card_action`, `PLAY_CARD` e l'interruttore. Zero carte convertite, playtest identico |
 | **0.1.153** | **il rubinetto** (ISSUES 47 fase 2): la mano viene dalla mappa — e il freno che credevo giusto era quello sbagliato, il tetto va sulla **mano** |
 | **0.1.154** | **la mappa che distribuisce** (ISSUES 47 fase 3): due Regioni per famiglia, il fabbisogno misurato (11,80 carte l'anno) — e la Strada dei Mercanti è morta (ISSUES 48) |
+| **0.1.155** | **il velo copre la soglia, non il numero**: l'asimmetria che il tavolo fisico non poteva riprodurre — e due viste che stampavano la soglia vera |
 
 Più due documenti: **`docs/MECCANICA.md`** — riportato a **0.1.149**, ed è il
 testo da dare a chi disegna l'infografica *e* a chi vuole sapere come si gioca
@@ -97,19 +98,22 @@ bene (§15) — e **`docs/SAGA_NAHR.md`**, dieci anni giocati e raccontati.
 **Le misure di adesso** (playtest 100 semi, tavolo misto):
 
 ```
-FAIL 241 · SUCC 79 · SUCC 99 · DECI 125 · mediana 6
+FAIL 239 · SUCC 82 · SUCC 94 · DECI 128 · mediana 6
 0 su 8 bloccati (misto e uniforme) · nessun seggio a NONE · nessuno a zero Trionfi
-suite 366 test / 6453 asserzioni
+suite 369 test / 6476 asserzioni
 ```
 
 ## 4. Le due cose che vanno guardate per prime
 
-### a) I Consigli falliti sono a 248
+### a) I Consigli falliti sono a 239
 
-Il trend: **185 → 207 → 191 → 203 → 206 → 246 → 248 → 256 → 248**. Il massimo
-storico è stato 256, e in 0.1.150 il numero è **tornato indietro per la prima
-volta**: una casa che non arriva più al Trionfo per inerzia propone e si oppone
-meno a lungo.
+Il trend: **185 → 207 → 191 → 203 → 206 → 246 → 248 → 256 → 248 → 241 → 239**.
+Il massimo storico è stato 256, e in 0.1.150 il numero è **tornato indietro per
+la prima volta**: una casa che non arriva più al Trionfo per inerzia propone e si
+oppone meno a lungo. Da 0.1.154 scende ancora, e la causa è nota e dichiarata:
+la mappa ridistribuita rende le mani più varie, quindi più spesso a un Consiglio
+manca la famiglia che quel Consiglio premia — l'anno si è fatto più quieto
+(Consigli medi da 5,79 a 5,43).
 
 Il salto grosso (206 → 246) è **dichiarato e ha una causa nota**: accendere il
 pool mette al tavolo undici ambizioni in più, e le proposte si oppongono fra loro

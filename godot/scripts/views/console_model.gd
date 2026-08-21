@@ -43,7 +43,9 @@ static func build(session: RefCounted, seat_id: String) -> Dictionary:
 		(out["tensions"] as Array).append({
 			"title": str(data.tensions[str(tension_id)]["title"]),
 			"value": session.service.visible_tension_value(str(tension_id), seat_id),
-			"threshold": int(data.tensions[str(tension_id)]["threshold"]),
+			# La soglia la vede chi ha girato la carta con lo SCOPRIRE, o
+			# nessuno: -1 e' il dorso (D-187).
+			"threshold": session.service.visible_tension_threshold(str(tension_id), seat_id),
 		})
 
 	# La mano: titoli, famiglie e l'id con cui la console chiede la faccia

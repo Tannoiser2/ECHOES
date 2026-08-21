@@ -5,6 +5,42 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.155 — Il velo copre la soglia, non il numero (D-187)
+
+- Chiesta dal committente: «il mondo lo sa quale è il valore ma i giocatori nel
+  gioco fisico no, e quindi nessuno sa quando le velate si attivano». Era
+  un'**asimmetria che il tavolo fisico non può riprodurre**, non una taratura.
+- **Il valore di una velata è pubblico**; è la **soglia** a stare coperta. Al
+  tavolo vero è una carta girata a faccia in giù accanto al segnalino, e il
+  registro scrive `Il Risveglio: 4/?`.
+- **Sulla domanda si agisce lo stesso**: non sapere quando esploderà è il
+  rischio, non un divieto. TRAMARE resta l'azione che gira la carta, e saperlo
+  resta personale.
+- Dichiarata sulla Chronicle (`veiled_tensions: HIDES_ALL | HIDES_THRESHOLD`),
+  non scritta nel codice: la regola vecchia resta provata e si riaccende
+  cambiando una stringa.
+- **Un difetto trovato per strada**: il tavolo grande e la console **stampavano
+  la soglia vera**, letta dal dato senza passare da nessun filtro. Con la regola
+  vecchia non si notava; con la nuova avrebbe svuotato la regola il primo
+  giorno. Ora una soglia coperta esce **−1**, come il dorso di una carta.
+- **0 su 8** misto e uniforme. Suite **369 test / 6476 asserzioni**.
+
+### Dichiarato
+
+- **Non cambia quasi niente per i bot**: Consigli falliti 241 → **239**, medi
+  5,44 → **5,43**, TRAMARE 130 → 134, INFLUENZARE 360 → 367. Le sonde non
+  possono misurare la cosa per cui la regola è stata fatta — i bot non provano
+  attesa. Il valore si vede in una serata con quattro persone.
+- **Il velo di D-125 è più debole**: copriva un numero, ora copre solo il
+  quando. Perdita reale per la casa che ha quell'arte, non ancora misurata.
+- **La stima del bot è una scelta, non una misura**: chi non ha girato la carta
+  usa la soglia media della Chronicle. Deterministica e onesta, ma non tarata
+  contro le alternative.
+- **Le altre due domande sulle Tensioni restano aperte**: la varietà nella prima
+  partita, e il partire tutte da 0 (che obbliga a rifare le soglie).
+
+---
+
 ## 0.1.154 — La mappa che distribuisce, e quante carte servono (D-186)
 
 - **ISSUES 47 fase 3**, chiesta dal committente: «vai con la mappa, poi le carte

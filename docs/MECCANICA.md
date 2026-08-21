@@ -4,7 +4,11 @@
 di come funziona ECHOES, scritta per essere data in pasto a un modello che deve
 produrre **un'infografica**. Non presuppone niente: chi legge non ha mai visto
 il gioco. Tutti i numeri qui dentro sono quelli veri, letti dai dati e dal
-codice della versione 0.1.149 — non sono esempi inventati.
+codice della versione 0.1.149 — non sono esempi inventati. **Le fonti di Asset di §5 sono
+quelle di 0.1.154, e §11 (le Tensioni velate) e §12 sono stati riscritti a
+0.1.155**, quando il velo ha smesso di
+coprire il numero e ha cominciato a coprire la soglia; la riga dei Consigli in
+§14 è ripresa dalla misura di 0.1.155. Il resto dei numeri è quello di 0.1.149.
 
 In fondo ci sono due sezioni che non servono a disegnare: **«Come si gioca
 bene»** (§15), che dice cosa conviene fare al tavolo con i numeri accanto, e
@@ -146,12 +150,17 @@ Adiacenze esatte:
 
 | Regione | bioma | slot | adiacente a | fonti di Asset |
 |---|---|---|---|---|
-| **Eredan** | città | 4 | Valle Verde, Strada dei Mercanti | AUTORITÀ, RICCHEZZA |
+| **Eredan** | città | 4 | Valle Verde, Strada dei Mercanti | AUTORITÀ, FORZA |
 | **Valle Verde** | valle | 4 | Eredan, Terre Nahr, Strada dei Mercanti | GENTE, RICCHEZZA |
-| **Terre Nahr** | steppa | 4 | Valle Verde, Montagne Rosse, Strada dei Mercanti | GENTE, LEGAMI |
+| **Terre Nahr** | steppa | 4 | Valle Verde, Montagne Rosse, Strada dei Mercanti | AUTORITÀ, GENTE |
 | **Montagne Rosse** | montagna | **3** | Terre Nahr, Miniere Antiche | FORZA, LEGAMI |
-| **Miniere Antiche** | sottosuolo | 4 | Montagne Rosse, Strada dei Mercanti | SAPERE, RICCHEZZA |
-| **Strada dei Mercanti** | strada | 4 | Eredan, Valle Verde, Terre Nahr, Miniere Antiche | RICCHEZZA, LEGAMI |
+| **Miniere Antiche** | sottosuolo | 4 | Montagne Rosse, Strada dei Mercanti | SAPERE, LEGAMI |
+| **Strada dei Mercanti** | strada | 4 | Eredan, Valle Verde, Terre Nahr, Miniere Antiche | RICCHEZZA, SAPERE |
+
+*Due Regioni per ogni famiglia, e nessuna famiglia in più di due: la
+distribuzione è stata rifatta a 0.1.154, quando si è visto che RICCHEZZA stava
+in quattro Regioni e FORZA in una sola. Se la Regione decide che carte peschi,
+quello non è colore: è un'azione che qualcuno non potrebbe mai fare.*
 
 **Presenza.** Ogni casata ha **3 gettoni di presenza**, di cui **2 già posati
 all'inizio** — il terzo si mette in gioco con la prima MUOVERE, e da lì in poi
@@ -280,12 +289,15 @@ Ogni anno il mondo porta **4 Tensioni**: non "problemi da risolvere" ma
 
 Le quattro dell'anno 812 (Chronicle I, «La Carestia Rossa»):
 
-| Tensione | dominio | parte da | soglia | visibile? | famiglie di Asset che contano |
+| Tensione | dominio | parte da | soglia | la soglia si vede? | famiglie di Asset che contano |
 |---|---|---|---|---|---|
-| **La Carestia** | SOPRAVVIVENZA | 3 | 6 | aperta | RICCHEZZA, GENTE, AUTORITÀ |
-| **Il Risveglio** | ANTICO | 2 | 6 | **velata** | SAPERE, FORZA, LEGAMI |
-| **La Successione** | TERRITORIO | 2 | 6 | aperta | AUTORITÀ, LEGAMI, FORZA |
-| **Le Vie Interrotte** | RISORSA | 1 | 5 | **velata** | RICCHEZZA, SAPERE, GENTE |
+| **La Carestia** | SOPRAVVIVENZA | 3 | 6 | sì, aperta | RICCHEZZA, GENTE, AUTORITÀ |
+| **Il Risveglio** | ANTICO | 2 | 6 | **no, velata** | SAPERE, FORZA, LEGAMI |
+| **La Successione** | TERRITORIO | 2 | 6 | sì, aperta | AUTORITÀ, LEGAMI, FORZA |
+| **Le Vie Interrotte** | RISORSA | 1 | 5 | **no, velata** | RICCHEZZA, SAPERE, GENTE |
+
+*Il numero di partenza e quello corrente si vedono sempre, anche sulle velate:
+è la soglia che sta sotto una carta girata (§11).*
 
 Un secondo mondo (Chronicle III, «l'anno del Sale», secoli dopo) ne ha quattro
 diverse: L'Acqua Ferma, Il Debito, La Reliquia, La Carta — più due di riserva,
@@ -306,10 +318,20 @@ Come si muove una Tensione:
 una crisi: si sceglie quale avere. Spingere **su** non sposta niente: alimentare
 un incendio non è uno scambio.
 
-**Velata.** Una Tensione velata non mostra il proprio numero nel registro
-pubblico. Sale lo stesso e raggiunge la soglia lo stesso: il mondo reagisce
-anche a ciò che il tavolo non ha ancora misurato. Per vedere il numero serve
-l'azione TRAMARE — e saperlo è **personale**: scoprirlo non lo rivela agli altri.
+**Velata.** Una Tensione velata mostra il proprio numero come tutte le altre —
+è la **soglia** a stare coperta. Al tavolo vero è una carta girata a faccia in
+giù accanto al segnalino: si vede dove sta la domanda, non dove sia il traguardo.
+Il registro la scrive così: `Il Risveglio: 4/?`.
+
+Sulla domanda si agisce come su ogni altra: non sapere quando esploderà è il
+rischio, non un divieto. Per girare la carta serve l'azione TRAMARE — e saperlo
+è **personale**: scoprirlo non lo rivela agli altri, e chi ha guardato gioca
+sapendo quanto manca mentre gli altri tirano a indovinare.
+
+*Fino a 0.1.154 il velo copriva il numero intero e vietava di toccare la
+domanda. È stato cambiato perché al tavolo fisico era ingiocabile: il mondo
+conosceva un valore che nessun giocatore poteva conoscere, e nessuno poteva
+sapere quando una velata stesse per attivarsi.*
 
 **Presagi.** A certe soglie il mondo dice una frase in pubblico, scritta a mano
 nei dati, che non rivela mai il numero: *«I granai di Eredan si aprono un giorno
@@ -331,7 +353,7 @@ Ogni Opportunità d'Azione compra esattamente una di queste. Costano tutte **1 A
 | 2 | **MUOVERE** | Aggiungi o sposta 1 gettone di presenza in una Regione **adiacente** a una dove sei già, o in una delle tue Regioni iniziali. Se la Regione è piena, l'azione è rifiutata senza danno |
 | 3 | **INFLUENZARE** | Sposta di ±1 una Tensione. Serve **una** fra: presenza in una Regione del dominio di quella Tensione (gratis), oppure scartare 1 Asset di una famiglia rilevante |
 | 4 | **FORGIARE** | Sposta di 1 passo una relazione. **Verso l'alto**: serve il consenso dell'altro giocatore e 1 Asset LEGAMI scartato. **Verso il basso**: unilaterale, gratuito, e finisce nel registro pubblico |
-| 5 | **TRAMARE** | Uno fra: leggere in privato il valore di una Tensione velata · guardare le prime 2 carte del mazzo Eco · leggere l'informazione privata di una Regione. Il risultato è **privato** |
+| 5 | **TRAMARE** | Uno fra: leggere in privato la **soglia** di una Tensione velata · guardare le prime 2 carte del mazzo Eco · leggere l'informazione privata di una Regione. Il risultato è **privato** |
 | 6 | **RIVENDICARE** | **CREATE**: scarta 1 Asset AUTORITÀ e apri una rivendicazione su un dominio di Tensione. **FORCE**: in un round successivo, con quella Tensione a 3 o più, consuma la rivendicazione e scarta un **secondo** AUTORITÀ per **strappare un Consiglio di cui sei tu il proponente** |
 | 7 | **CALARE UNA CARTA NARRATORE** | Gioca una delle carte Eco che hai in mano: la sua funzione narrativa diventa un fatto del mondo, i suoi effetti si applicano, e alcune carte **aprono un Consiglio** |
 
@@ -769,7 +791,7 @@ il muro ha causato.
 
 Quattro cose non stanno mai nel registro pubblico:
 
-1. il **valore di una Tensione velata**;
+1. la **soglia di una Tensione velata** (il valore invece è pubblico);
 2. il risultato di uno **TRAMARE** (torna solo a chi l'ha fatto);
 3. le **carte in mano**;
 4. gli **impegni**, finché non si rivelano tutti insieme.
@@ -811,7 +833,7 @@ l'inizio, trova il proprio seggio già in mano a un bot e ne riprende il posto.
 | Tensioni in gioco | **4** per anno (su 12 scritte) |
 | Soglie | fra **4 e 7** |
 | Deriva | **+1** a una Tensione ogni round, 9 gettoni mescolati |
-| Consigli in un anno | mediana **5–7**, limiti duri **2–8** |
+| Consigli in un anno | mediana **6**, estremi misurati **1–7** (tavolo misto, 0.1.155) |
 | Asset impegnabili | **0–3** (0–2 con una Condizione) |
 | Fattore Mondo | 1d6 → **−2 −1 0 0 +1 +2** |
 | Soglia di qualifica di una Condizione | **2** |

@@ -298,7 +298,7 @@ func _claim_the_word(entity_id: String, session: RefCounted) -> Dictionary:
 	for tension_id in _tensions_needing_the_word(entity_id, session):
 		var id: String = str(tension_id)
 		var value: int = session.tensions.value(id)
-		var threshold: int = session.tensions.threshold(id)
+		var threshold: int = _assumed_threshold(id, entity_id, session)
 		if value < threshold - 2 * DANGER_MARGIN:
 			continue  # la domanda non si e' ancora scaldata
 		# Si forza in un round che sarebbe rimasto muto: un Claim forzato ha la
@@ -562,12 +562,15 @@ func _steer(entity_id: String, session: RefCounted) -> Dictionary:
 		var id: String = str(tension_id)
 		var direction: int = int(goals[id])
 		var value: int = session.tensions.value(id)
-		var threshold: int = session.tensions.threshold(id)
+		# Quando il velo copre la sola soglia (D-187) il seggio spinge lo stesso,
+		# ma decide su una soglia **supposta**: sa dov'e' il segnalino, non dove
+		# sia il traguardo.
+		var threshold: int = _assumed_threshold(id, entity_id, session)
 		if direction < 0 and value < threshold - DANGER_MARGIN:
 			continue  # not urgent yet
 		if direction > 0 and value >= threshold:
 			continue  # already there
-		if session.tensions.is_veiled(id) and not session.service.knows_tension(entity_id, id):
+		if session.tensions.out_of_reach(id, session.service.knows_tension(entity_id, id)):
 			continue
 		if not _can_influence(entity_id, id, direction, session):
 			continue
@@ -639,10 +642,21 @@ func _relevant_families_by_urgency(entity_id: String, session: RefCounted) -> Ar
 func _urgency(tension_id: String, entity_id: String, goals: Dictionary, session: RefCounted) -> int:
 	# A Tension you have an opinion about, and that is close to going off, is the
 	# one worth holding cards for.
-	var closeness: int = session.tensions.value(tension_id) - session.tensions.threshold(tension_id)
+	var closeness: int = (
+		session.tensions.value(tension_id) - _assumed_threshold(tension_id, entity_id, session)
+	)
 	if session.tensions.is_veiled(tension_id) and not session.service.knows_tension(entity_id, tension_id):
-		closeness -= 4
+		# Un numero che non si vede vale poco (-4); una soglia che non si vede
+		# lascia comunque leggere il segnalino, e l'incertezza costa meno (-1).
+		closeness -= 1 if session.tensions.hides_threshold_only() else 4
 	return closeness + (3 if goals.has(tension_id) else 0)
+
+
+## La soglia su cui questo seggio decide: quella vera se puo' vederla, quella
+## tipica della Chronicle se il velo la copre (D-187).
+func _assumed_threshold(tension_id: String, entity_id: String, session: RefCounted) -> int:
+	var known: int = session.service.visible_tension_threshold(tension_id, entity_id)
+	return known if known >= 0 else session.tensions.typical_threshold()
 
 
 func _deck_has_cards(family: String, session: RefCounted) -> bool:

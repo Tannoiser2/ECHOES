@@ -3,9 +3,17 @@ extends "res://tests/test_case.gd"
 
 const Effect := preload("res://scripts/core/effect.gd")
 
+# La DataSet e' condivisa da tutta la suite: chi tocca la regola del velo la
+# rimette com'era, o il test dopo misura il test prima.
+var _veil_default: Variant = null
+
 
 func before_each() -> void:
 	new_session()
+	var chronicle: Dictionary = session.data.chronicles["CHR_01"] as Dictionary
+	if _veil_default == null:
+		_veil_default = chronicle.get("veiled_tensions", "")
+	chronicle["veiled_tensions"] = str(_veil_default)
 
 
 ## §11.2: the drift bag is the Chronicle's fixed distribution, shuffled once
@@ -89,7 +97,13 @@ func test_omens_fire_once_and_come_from_the_data() -> void:
 	assert_eq(session.log.lines.size(), lines_after, "un presagio non si ripete")
 
 
+func _veil_rule(rule: String) -> void:
+	(session.data.chronicles["CHR_01"] as Dictionary)["veiled_tensions"] = rule
+
+
+## Col velo che copre tutto, il numero non compare nel registro pubblico.
 func test_public_status_hides_a_veiled_value() -> void:
+	_veil_rule("HIDES_ALL")
 	var status: String = session.tensions.public_status("TEN_AWAKENING")
 	assert_true(status.contains("velata"), "una Tensione velata non mostra il numero: '%s'" % status)
 	assert_false(status.contains("2"), "il valore non compare nel log pubblico")
@@ -110,7 +124,9 @@ func test_public_status_hides_a_veiled_value() -> void:
 
 
 ## Only an Entity that has scouted a veiled Tension may read its value (§10, §11.1).
+## E il numero lo legge solo chi ha indagato.
 func test_veiled_value_is_private_until_scouted() -> void:
+	_veil_rule("HIDES_ALL")
 	assert_eq(
 		session.service.visible_tension_value("TEN_AWAKENING", "ENT_ALDRIC"),
 		-1,
@@ -145,4 +161,41 @@ func test_threshold_ranking() -> void:
 		session.tensions.tensions_at_threshold(),
 		["TEN_FAMINE", "TEN_AWAKENING"],
 		"a parita vince l'ordine di definizione della Chronicle"
+	)
+
+
+## D-187, la regola che il committente ha chiesto: il valore e' pubblico, la
+## soglia sta sotto una carta girata. Il registro scrive «2/?».
+func test_when_only_the_threshold_is_veiled_the_value_is_public() -> void:
+	_veil_rule("HIDES_THRESHOLD")
+	var status: String = session.tensions.public_status("TEN_AWAKENING")
+	assert_true(status.contains("2/?"), "il valore si vede e la soglia no: '%s'" % status)
+	assert_eq(
+		session.service.visible_tension_value("TEN_AWAKENING", "ENT_ALDRIC"),
+		2,
+		"chi non ha indagato vede comunque il numero"
+	)
+	assert_eq(
+		session.service.visible_tension_threshold("TEN_AWAKENING", "ENT_ALDRIC"),
+		-1,
+		"ma non la soglia"
+	)
+
+
+## E SCOPRIRE resta l'azione che gira la carta: chi indaga vede la soglia.
+func test_scouting_turns_the_threshold_card_face_up() -> void:
+	_veil_rule("HIDES_THRESHOLD")
+	session.actions.execute(
+		"ENT_LYRA",
+		{"template": "SCHEME", "params": {"mode": "TENSION", "tension_id": "TEN_AWAKENING"}}
+	)
+	assert_eq(
+		session.service.visible_tension_threshold("TEN_AWAKENING", "ENT_LYRA"),
+		6,
+		"chi ha indagato legge la soglia"
+	)
+	assert_eq(
+		session.service.visible_tension_threshold("TEN_AWAKENING", "ENT_ALDRIC"),
+		-1,
+		"e resta coperta per gli altri"
 	)
