@@ -114,12 +114,12 @@ family, 22 copies per family deck, 132 cards in the box (D-040).
 ## Region tiles (6)
 | id | nome | biome | ruolo | slot | fonti Asset | art_prompt_key |
 |---|---|---|---|---|---|---|
-| REG_EREDAN | Eredan | CITY | PRIMARY | 4 | AUTHORITY, WEALTH | `region.eredan` |
-| REG_MINIERE_ANTICHE | Miniere Antiche | UNDERGROUND | PRIMARY | 4 | KNOWLEDGE, WEALTH | `region.miniere_antiche` |
+| REG_EREDAN | Eredan | CITY | PRIMARY | 4 | AUTHORITY, FORCE | `region.eredan` |
+| REG_MINIERE_ANTICHE | Miniere Antiche | UNDERGROUND | PRIMARY | 4 | KNOWLEDGE, BONDS | `region.miniere_antiche` |
 | REG_MONTAGNE_ROSSE | Montagne Rosse | MOUNTAIN | PRIMARY | 3 | FORCE, BONDS | `region.montagne_rosse` |
-| REG_TERRE_NAHR | Terre Nahr | STEPPE | PRIMARY | 4 | PEOPLE, BONDS | `region.terre_nahr` |
+| REG_TERRE_NAHR | Terre Nahr | STEPPE | PRIMARY | 4 | AUTHORITY, PEOPLE | `region.terre_nahr` |
 | REG_VALLE_VERDE | Valle Verde | VALLEY | PRIMARY | 4 | PEOPLE, WEALTH | `region.valle_verde` |
-| REG_STRADA_MERCANTI | Strada dei Mercanti | ROAD | SECONDARY | 4 | WEALTH, BONDS | `region.strada_mercanti` |
+| REG_STRADA_MERCANTI | Strada dei Mercanti | ROAD | SECONDARY | 4 | WEALTH, KNOWLEDGE | `region.strada_mercanti` |
 
 ## Entity cards (8)
 | id | nome | archetipo | bisogno | destiny | art_prompt_key |

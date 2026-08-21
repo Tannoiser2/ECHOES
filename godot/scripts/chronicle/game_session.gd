@@ -54,6 +54,21 @@ func _init(p_data: RefCounted) -> void:
 
 
 ## Build a fresh Chronicle. `seats` is the seating order, seat 0 goes first.
+## Un piano scriptato puo' riscrivere le regole della Chronicle per la durata
+## della propria partita (D-188). Sta qui, statica, perche' la usano **sia** la
+## sonda da riga di comando **sia** la suite: quando le due strade divergono, la
+## suite dice verde e la CI dice rosso — ed e' successo.
+static func apply_plan_overrides(p_data: RefCounted, plan: Dictionary) -> void:
+	var overrides: Dictionary = plan.get("chronicle_overrides", {}) as Dictionary
+	if overrides.is_empty():
+		return
+	var chronicle: Variant = p_data.chronicles.get(str(plan.get("chronicle_id", "")))
+	if chronicle == null:
+		return
+	for key in overrides:
+		(chronicle as Dictionary)[str(key)] = overrides[key]
+
+
 func setup(chronicle_id: String, seats: Array, seed_value: int) -> bool:
 	last_error = ""
 	if not data.chronicles.has(chronicle_id):

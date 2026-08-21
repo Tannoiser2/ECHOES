@@ -228,6 +228,7 @@
           "NONE"
         ]
       },
+      "veiled_tensions": "HIDES_THRESHOLD",
       "saga_scoring": {
         "none": -1,
         "minimum": 1,
@@ -485,6 +486,7 @@
           "NONE"
         ]
       },
+      "veiled_tensions": "HIDES_THRESHOLD",
       "saga_scoring": {
         "none": -1,
         "minimum": 1,

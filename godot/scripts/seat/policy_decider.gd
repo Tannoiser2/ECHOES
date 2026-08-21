@@ -298,7 +298,7 @@ func _claim_the_word(entity_id: String, session: RefCounted) -> Dictionary:
 	for tension_id in _tensions_needing_the_word(entity_id, session):
 		var id: String = str(tension_id)
 		var value: int = session.tensions.value(id)
-		var threshold: int = session.tensions.threshold(id)
+		var threshold: int = _assumed_threshold(id, entity_id, session)
 		if value < threshold - 2 * DANGER_MARGIN:
 			continue  # la domanda non si e' ancora scaldata
 		# Si forza in un round che sarebbe rimasto muto: un Claim forzato ha la
@@ -452,7 +452,24 @@ func _ally_of_convenience(entity_id: String, session: RefCounted) -> Dictionary:
 
 # --- ordinary actions ------------------------------------------------------
 
-func choose_action(entity_id: String, _ao_index: int, session: RefCounted) -> Dictionary:
+## ISSUES 47: quando le carte sono l'unica moneta, l'intenzione del seggio resta
+## quella di sempre — cambia **chi puo' pronunciarla**. Il cervello sceglie cosa
+## vuole fare; questo strato cerca in mano la carta che lo dice.
+func choose_action(entity_id: String, ao_index: int, session: RefCounted) -> Dictionary:
+	var intent: Dictionary = _choose_intent(entity_id, ao_index, session)
+	if not _cards_are_the_coin(session):
+		return intent
+	return _as_card_play(entity_id, intent, session)
+
+
+func _cards_are_the_coin(session: RefCounted) -> bool:
+	var chronicle: Dictionary = session.data.chronicles[
+		str(session.world["chronicle_id"])
+	] as Dictionary
+	return bool(chronicle.get("actions_from_cards", false))
+
+
+func _choose_intent(entity_id: String, _ao_index: int, session: RefCounted) -> Dictionary:
 	var service: RefCounted = session.service
 
 	# 1. Knowledge first: a veiled Tension you cannot see is one you cannot act
@@ -505,15 +522,192 @@ func choose_action(entity_id: String, _ao_index: int, session: RefCounted) -> Di
 		if not steer.is_empty():
 			return steer
 
-	# 6. Otherwise prepare: stock the family that will matter.
-	var acquire: Dictionary = _acquire(entity_id, session)
-	if not acquire.is_empty():
-		return acquire
+	# 6. Otherwise prepare: stock the family that will matter. Quando le carte
+	#    sono l'unica moneta la scorta non si fa piu' con un'Occasione — la fa
+	#    il rubinetto — e questo ramo tacerebbe comunque: nessuna carta porta
+	#    ACQUISIRE. Saltarlo lascia parlare lo steering, che una carta ce l'ha.
+	if not _cards_are_the_coin(session):
+		var acquire: Dictionary = _acquire(entity_id, session)
+		if not acquire.is_empty():
+			return acquire
 
 	var steer_anyway: Dictionary = _steer(entity_id, session)
 	if not steer_anyway.is_empty():
 		return steer_anyway
 	return {"template": "PASS", "params": {}}
+
+
+
+## L'intenzione diventa una carta. La regola di spesa e' quella che il
+## committente ha chiesto — «un bilanciamento di come usare le cose che la carta
+## ti permette di fare» — e qui prende la forma piu' semplice che si possa
+## misurare: **si spende la piu' debole che sa fare quella cosa**, perche' la
+## forte serve al voto. Se in mano non c'e' niente che dica quell'intenzione, si
+## fa quello che la mano permette invece di passare: un'Occasione muta e' persa.
+func _as_card_play(
+	entity_id: String, intent: Dictionary, session: RefCounted
+) -> Dictionary:
+	var template: String = str(intent.get("template", "PASS"))
+	# PASS non costa carte, e la carta del Narratore e' un mazzo a parte.
+	if template == "PASS" or template == "PLAY_ECHO" or template == "PLAY_CARD":
+		return intent
+	# La prima intenzione e' quella buona; le altre sono le seconde scelte dello
+	# stesso cervello. Senza questa fila un'intenzione che la mano non sa dire
+	# faceva passare il turno: misurato, **496 Occasioni mute su 720**.
+	var wishes: Array = [intent]
+	for other in [
+		_steer(entity_id, session),
+		_widen_the_tap(entity_id, session),
+		_forge(entity_id, session),
+		_claim_required_region(entity_id, session),
+		_scout(entity_id, session),
+	]:
+		if not (other as Dictionary).is_empty():
+			wishes.append(other)
+	for wish in wishes:
+		var kind: String = str((wish as Dictionary).get("template", ""))
+		if kind == "PASS" or kind == "PLAY_ECHO" or kind == "PLAY_CARD":
+			continue
+		var wanted: Dictionary = (wish as Dictionary).get("params", {}) as Dictionary
+		var card: String = _card_that_says(entity_id, kind, wanted, session)
+		if card == "":
+			continue
+		var params: Dictionary = wanted.duplicate()
+		params["asset_id"] = card
+		return {"template": "PLAY_CARD", "params": params}
+	var fallback: Dictionary = _whatever_the_hand_allows(entity_id, session)
+	return fallback if not fallback.is_empty() else {"template": "PASS", "params": {}}
+
+
+## La presenza e' il rubinetto (D-185): un gettone in piu' su una Regione che
+## offre una famiglia che non si raggiunge e' una carta in piu' ogni Atto, e di
+## un tipo che prima non usciva. Questa e' la sola voce nuova che il cervello ha
+## imparato con le carte, ed e' la conseguenza diretta della regola.
+func _widen_the_tap(entity_id: String, session: RefCounted) -> Dictionary:
+	var reachable: Dictionary = {}
+	var presence: Array = (
+		(session.world["entities"] as Dictionary)[entity_id] as Dictionary
+	).get("presence", []) as Array
+	# **Solo col gettone di riserva.** Con tre pedine gia' sul tavolo MUOVERE
+	# sposta invece di aggiungere, e allargare il rubinetto vorrebbe dire
+	# togliere una pedina da dove sta: misurato, Re Aldric si portava via da solo
+	# la presenza a Eredan che il suo Minimo chiede, e i suoi NONE passavano da 0
+	# a 8 su 50 partite. Una casa non abbandona il posto in cui vive per una
+	# carta in piu'.
+	var chronicle: Dictionary = session.data.chronicles[
+		str(session.world["chronicle_id"])
+	] as Dictionary
+	if presence.size() >= int(chronicle.get("presence_tokens", 3)):
+		return {}
+	for region_id in presence:
+		for family in (session.data.regions[str(region_id)] as Dictionary).get(
+			"asset_sources", []
+		):
+			reachable[str(family)] = true
+	var best: String = ""
+	var best_gain: int = 0
+	for region_id in _sorted(session.data.regions.keys()):
+		if session.service.region_free_slots(str(region_id)) <= 0:
+			continue
+		if not session.service.can_move_to(entity_id, str(region_id)):
+			continue
+		var gain: int = 0
+		for family in (session.data.regions[str(region_id)] as Dictionary).get(
+			"asset_sources", []
+		):
+			if not reachable.has(str(family)):
+				gain += 1
+		if gain > best_gain:
+			best_gain = gain
+			best = str(region_id)
+	if best == "":
+		return {}
+	return {"template": "MOVE", "params": {"region_id": best}}
+
+
+## La mano, dalla carta piu' debole alla piu' forte: si spende quella che costa
+## meno al Consiglio.
+func _hand_weakest_first(entity_id: String, session: RefCounted) -> Array:
+	var hand: Array = (session.service.hand(entity_id) as Array).duplicate()
+	hand.sort_custom(func(a: String, b: String) -> bool:
+		var left: Variant = session.data.assets.get(str(a))
+		var right: Variant = session.data.assets.get(str(b))
+		var ls: int = 0 if left == null else int(left["strength"])
+		var rs: int = 0 if right == null else int(right["strength"])
+		if ls == rs:
+			return str(a) < str(b)
+		return ls < rs
+	)
+	return hand
+
+
+func _card_that_says(
+	entity_id: String, kind: String, wanted: Dictionary, session: RefCounted
+) -> String:
+	for asset_id in _hand_weakest_first(entity_id, session):
+		var card: Variant = session.data.assets.get(str(asset_id))
+		if card == null:
+			continue
+		var action: Dictionary = (card as Dictionary).get("card_action", {}) as Dictionary
+		if action.is_empty() or str(action.get("kind", "")) != kind:
+			continue
+		# Cio' che la carta fissa non si contratta: se dice -1 e il seggio
+		# voleva +1, quella carta non dice quell'intenzione.
+		var fixed: Dictionary = action.get("params", {}) as Dictionary
+		var clashes: bool = false
+		for key in fixed:
+			if wanted.has(key) and str(wanted[key]) != str(fixed[key]):
+				clashes = true
+				break
+		if clashes:
+			continue
+		var params: Dictionary = wanted.duplicate()
+		params["asset_id"] = str(asset_id)
+		if session.actions.can_execute(entity_id, "PLAY_CARD", params):
+			return str(asset_id)
+	return ""
+
+
+## Nessuna carta per quell'intenzione: si guarda cosa la mano sa fare comunque.
+## Una INFLUENZARE si gioca **solo nel verso che il Destino vuole** — spingere
+## una domanda dalla parte sbagliata e' peggio che passare; le altre azioni si
+## giocano se sono legali.
+func _whatever_the_hand_allows(entity_id: String, session: RefCounted) -> Dictionary:
+	var plays: Array = hand_plays(entity_id, session)
+	return plays[0] if not plays.is_empty() else {}
+
+
+## Tutte le carte che la mano puo' giocare adesso, dalla piu' debole alla piu'
+## forte. Il cervello prende la prima; il **distratto** ne prende una a caso, ed
+## e' cosi' che «fa un'altra cosa» senza mai chiedere una mossa illegale.
+func hand_plays(entity_id: String, session: RefCounted) -> Array:
+	var out: Array = []
+	var goals: Dictionary = _tension_goals(entity_id, session)
+	for asset_id in _hand_weakest_first(entity_id, session):
+		var card: Variant = session.data.assets.get(str(asset_id))
+		if card == null:
+			continue
+		var action: Dictionary = (card as Dictionary).get("card_action", {}) as Dictionary
+		if action.is_empty():
+			continue
+		var kind: String = str(action.get("kind", ""))
+		if kind == "ACQUIRE":
+			continue
+		var fixed: Dictionary = action.get("params", {}) as Dictionary
+		var params: Dictionary = {"asset_id": str(asset_id)}
+		if kind == "INFLUENCE":
+			var delta: int = int(fixed.get("delta", 1))
+			var target: String = ""
+			for tension_id in _sorted(goals.keys()):
+				if int(goals[str(tension_id)]) == delta:
+					target = str(tension_id)
+					break
+			if target == "":
+				continue
+			params["tension_id"] = target
+		if session.actions.can_execute(entity_id, "PLAY_CARD", params):
+			out.append({"template": "PLAY_CARD", "params": params})
+	return out
 
 
 func _scout(entity_id: String, session: RefCounted) -> Dictionary:
@@ -528,7 +722,17 @@ func _scout(entity_id: String, session: RefCounted) -> Dictionary:
 			continue
 		# Scout it if the Destiny needs Discoveries, or if this is a Tension the
 		# Entity has an opinion about and currently cannot touch.
-		if wants_discovery or _tension_goals(entity_id, session).has(str(tension_id)):
+		#
+		# Quando il velo copre la sola soglia (D-187) la seconda meta' non vale
+		# piu': il numero si vede gia' e sulla domanda si agisce lo stesso, quindi
+		# scoprire e' un lusso — resta solo per chi il Destino manda a scoprire.
+		# Senza questa riga il cervello chiedeva SCOPRIRE per meta' delle
+		# Occasioni, e con otto carte su quarantotto che sanno dirlo, passava.
+		var worth_it: bool = wants_discovery or (
+			not session.tensions.hides_threshold_only()
+			and _tension_goals(entity_id, session).has(str(tension_id))
+		)
+		if worth_it:
 			return {
 				"template": "SCHEME",
 				"params": {"mode": "TENSION", "tension_id": str(tension_id)},
@@ -562,12 +766,15 @@ func _steer(entity_id: String, session: RefCounted) -> Dictionary:
 		var id: String = str(tension_id)
 		var direction: int = int(goals[id])
 		var value: int = session.tensions.value(id)
-		var threshold: int = session.tensions.threshold(id)
+		# Quando il velo copre la sola soglia (D-187) il seggio spinge lo stesso,
+		# ma decide su una soglia **supposta**: sa dov'e' il segnalino, non dove
+		# sia il traguardo.
+		var threshold: int = _assumed_threshold(id, entity_id, session)
 		if direction < 0 and value < threshold - DANGER_MARGIN:
 			continue  # not urgent yet
 		if direction > 0 and value >= threshold:
 			continue  # already there
-		if session.tensions.is_veiled(id) and not session.service.knows_tension(entity_id, id):
+		if session.tensions.out_of_reach(id, session.service.knows_tension(entity_id, id)):
 			continue
 		if not _can_influence(entity_id, id, direction, session):
 			continue
@@ -639,10 +846,21 @@ func _relevant_families_by_urgency(entity_id: String, session: RefCounted) -> Ar
 func _urgency(tension_id: String, entity_id: String, goals: Dictionary, session: RefCounted) -> int:
 	# A Tension you have an opinion about, and that is close to going off, is the
 	# one worth holding cards for.
-	var closeness: int = session.tensions.value(tension_id) - session.tensions.threshold(tension_id)
+	var closeness: int = (
+		session.tensions.value(tension_id) - _assumed_threshold(tension_id, entity_id, session)
+	)
 	if session.tensions.is_veiled(tension_id) and not session.service.knows_tension(entity_id, tension_id):
-		closeness -= 4
+		# Un numero che non si vede vale poco (-4); una soglia che non si vede
+		# lascia comunque leggere il segnalino, e l'incertezza costa meno (-1).
+		closeness -= 1 if session.tensions.hides_threshold_only() else 4
 	return closeness + (3 if goals.has(tension_id) else 0)
+
+
+## La soglia su cui questo seggio decide: quella vera se puo' vederla, quella
+## tipica della Chronicle se il velo la copre (D-187).
+func _assumed_threshold(tension_id: String, entity_id: String, session: RefCounted) -> int:
+	var known: int = session.service.visible_tension_threshold(tension_id, entity_id)
+	return known if known >= 0 else session.tensions.typical_threshold()
 
 
 func _deck_has_cards(family: String, session: RefCounted) -> bool:

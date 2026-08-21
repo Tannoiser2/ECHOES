@@ -14,6 +14,7 @@ Exit code 0 = clean, 1 = at least one error.
 from __future__ import annotations
 
 import argparse
+import re
 import json
 import sys
 from collections import defaultdict
@@ -589,6 +590,85 @@ def check_destiny_free_roads(
                 granted.setdefault(_condition_shape(condition), level)
 
 
+def check_asset_sources_are_true(
+    documents: Dict[str, List[Dict[str, Any]]],
+    origins: Dict[str, str],
+    report: "Report",
+) -> None:
+    """La riga stampata sulla carta deve dire la verita' sulla mappa.
+
+    `acquisition_rule` e' prosa — finisce sulla carta fisica e nel manifesto —
+    ma nomina un fatto che sta nei dati: **da quali Regioni** si pesca quella
+    famiglia. Le due cose non erano legate da niente, e il giorno in cui la
+    mappa e' stata ridistribuita (D-186) **quaranta carte su quarantotto** hanno
+    cominciato a mentire senza che nessun test se ne accorgesse.
+
+    Questa guardia le rilega: se una Regione cambia `asset_sources`, le carte
+    che nominano la vecchia sorgente fanno rosso la CI.
+    """
+    regions = documents.get("region", [])
+    assets = documents.get("asset", [])
+    if not regions or not assets:
+        return
+    sources: Dict[str, List[str]] = {}
+    for region in regions:
+        for family in region.get("asset_sources", []):
+            sources.setdefault(str(family), []).append(str(region["name"]))
+    for asset in assets:
+        family = str(asset.get("family", ""))
+        expected = sources.get(family, [])
+        rule = str(asset.get("acquisition_rule", ""))
+        match = re.search(r"Font[ei]: (.+?)\.\s*$", rule)
+        where = f"asset [{asset.get('id')}]"
+        if not match:
+            report.fail(
+                where,
+                "acquisition_rule non dice da dove si pesca "
+                f"(attese: {', '.join(expected) or 'nessuna Regione'})",
+            )
+            continue
+        named = sorted(part.strip() for part in match.group(1).split(","))
+        if named != sorted(expected):
+            report.fail(
+                where,
+                f"acquisition_rule dice «{', '.join(named)}» ma {family} "
+                f"si pesca da «{', '.join(expected) or 'nessuna Regione'}»",
+            )
+
+
+def check_sim_plans_declare_their_economy(
+    documents: Dict[str, List[Dict[str, Any]]],
+    origins: Dict[str, str],
+    report: "Report",
+) -> None:
+    """Un piano scriptato deve dire in quale economia e' stato scritto.
+
+    Un piano e' una storia scritta a mano: le sue mosse sono azioni dirette, e
+    le sue attese sono il risultato di quelle mosse. Il giorno in cui la
+    Chronicle e' passata alle carte come unica moneta (D-188) le tre storie di
+    CHR_01 sono diventate ingiocabili — e la suite ha detto **verde**, perche' i
+    test forzano il lato classico, mentre `tools/run_sims.sh` ha detto rosso in
+    CI. Questa guardia chiude quella distanza: se la Chronicle gioca con le
+    carte, il piano lo deve dichiarare (o accettarlo, e allora le sue mosse
+    saranno carte).
+    """
+    plans = documents.get("sim_plan", [])
+    chronicles = {str(c.get("id")): c for c in documents.get("chronicle", [])}
+    for plan in plans:
+        chronicle = chronicles.get(str(plan.get("chronicle_id", "")))
+        if chronicle is None or not chronicle.get("actions_from_cards", False):
+            continue
+        overrides = plan.get("chronicle_overrides", {})
+        if "actions_from_cards" not in overrides:
+            report.fail(
+                f"sim_plan [{plan.get('id')}]",
+                f"la Chronicle {plan.get('chronicle_id')} gioca con le carte, "
+                "ma il piano non dichiara `chronicle_overrides.actions_from_cards`: "
+                "o lo dichiara false (e' una storia del §10 di prima), o le sue "
+                "mosse vanno riscritte come carte",
+            )
+
+
 def check_destiny_token_budget(
     documents: Dict[str, List[Dict[str, Any]]],
     origins: Dict[str, str],
@@ -843,6 +923,8 @@ def main() -> int:
         check_references(documents, origins, report)
         check_destiny_token_budget(documents, origins, report)
         check_destiny_free_roads(documents, origins, report)
+        check_asset_sources_are_true(documents, origins, report)
+        check_sim_plans_declare_their_economy(documents, origins, report)
 
     # Duplicate ids across the whole data set are always a bug.
     seen: Dict[str, str] = {}

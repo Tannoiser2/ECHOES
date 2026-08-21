@@ -4,7 +4,11 @@
 di come funziona ECHOES, scritta per essere data in pasto a un modello che deve
 produrre **un'infografica**. Non presuppone niente: chi legge non ha mai visto
 il gioco. Tutti i numeri qui dentro sono quelli veri, letti dai dati e dal
-codice della versione 0.1.149 — non sono esempi inventati.
+codice della versione 0.1.149 — non sono esempi inventati. **Le fonti di Asset di §3 sono
+quelle di 0.1.154; §5 (il turno) è stato riscritto a 0.1.156, quando le azioni
+sono passate sulle carte; §11 (le Tensioni velate) e §12 a 0.1.155**, quando il velo ha smesso di
+coprire il numero e ha cominciato a coprire la soglia; la riga dei Consigli in
+§14 è ripresa dalla misura di 0.1.155. Il resto dei numeri è quello di 0.1.149.
 
 In fondo ci sono due sezioni che non servono a disegnare: **«Come si gioca
 bene»** (§15), che dice cosa conviene fare al tavolo con i numeri accanto, e
@@ -65,7 +69,7 @@ Cinque parole coprono tutto lo stato del gioco. Se l'infografica ha un riquadro
 |---|---|---|
 | **Regione** | una casella della mappa. 6 in tutto. Ha *slot di presenza*, *adiacenze*, *tag*, e forse un *padrone*. **Esserci** (presenza) e **averla** (controllo) sono due cose diverse — vedi §3 | presenza con MUOVERE · controllo solo tramite una Conseguenza di Consiglio |
 | **Tensione** | una domanda aperta del mondo, con un numero da 0 in su. 4 in gioco per anno | sale con la Deriva e con le carte, scende quando un Consiglio la risolve |
-| **Asset** | una carta in mano: uomini, titoli, gente, sapere, ricchezza, legami | si pesca con ACQUISIRE, si spende impegnandola al Consiglio |
+| **Asset** | una carta in mano: uomini, titoli, gente, sapere, ricchezza, legami. Porta **un'azione**, un valore al Consiglio e un effetto suo | la dà la mappa a inizio Atto, secondo dove tieni le pedine; si spende **o** per agire **o** impegnandola al Consiglio |
 | **Relazione** | il rapporto fra due casate, su 5 gradini | si sposta di 1 passo con FORGIARE |
 | **Destino** | l'ambizione privata della tua casata, a 3 gradini | non si "muove": si avvera o no, e si controlla a fine anno |
 
@@ -146,12 +150,17 @@ Adiacenze esatte:
 
 | Regione | bioma | slot | adiacente a | fonti di Asset |
 |---|---|---|---|---|
-| **Eredan** | città | 4 | Valle Verde, Strada dei Mercanti | AUTORITÀ, RICCHEZZA |
+| **Eredan** | città | 4 | Valle Verde, Strada dei Mercanti | AUTORITÀ, FORZA |
 | **Valle Verde** | valle | 4 | Eredan, Terre Nahr, Strada dei Mercanti | GENTE, RICCHEZZA |
-| **Terre Nahr** | steppa | 4 | Valle Verde, Montagne Rosse, Strada dei Mercanti | GENTE, LEGAMI |
+| **Terre Nahr** | steppa | 4 | Valle Verde, Montagne Rosse, Strada dei Mercanti | AUTORITÀ, GENTE |
 | **Montagne Rosse** | montagna | **3** | Terre Nahr, Miniere Antiche | FORZA, LEGAMI |
-| **Miniere Antiche** | sottosuolo | 4 | Montagne Rosse, Strada dei Mercanti | SAPERE, RICCHEZZA |
-| **Strada dei Mercanti** | strada | 4 | Eredan, Valle Verde, Terre Nahr, Miniere Antiche | RICCHEZZA, LEGAMI |
+| **Miniere Antiche** | sottosuolo | 4 | Montagne Rosse, Strada dei Mercanti | SAPERE, LEGAMI |
+| **Strada dei Mercanti** | strada | 4 | Eredan, Valle Verde, Terre Nahr, Miniere Antiche | RICCHEZZA, SAPERE |
+
+*Due Regioni per ogni famiglia, e nessuna famiglia in più di due: la
+distribuzione è stata rifatta a 0.1.154, quando si è visto che RICCHEZZA stava
+in quattro Regioni e FORZA in una sola. Se la Regione decide che carte peschi,
+quello non è colore: è un'azione che qualcuno non potrebbe mai fare.*
 
 **Presenza.** Ogni casata ha **3 gettoni di presenza**, di cui **2 già posati
 all'inizio** — il terzo si mette in gioco con la prima MUOVERE, e da lì in poi
@@ -280,12 +289,15 @@ Ogni anno il mondo porta **4 Tensioni**: non "problemi da risolvere" ma
 
 Le quattro dell'anno 812 (Chronicle I, «La Carestia Rossa»):
 
-| Tensione | dominio | parte da | soglia | visibile? | famiglie di Asset che contano |
+| Tensione | dominio | parte da | soglia | la soglia si vede? | famiglie di Asset che contano |
 |---|---|---|---|---|---|
-| **La Carestia** | SOPRAVVIVENZA | 3 | 6 | aperta | RICCHEZZA, GENTE, AUTORITÀ |
-| **Il Risveglio** | ANTICO | 2 | 6 | **velata** | SAPERE, FORZA, LEGAMI |
-| **La Successione** | TERRITORIO | 2 | 6 | aperta | AUTORITÀ, LEGAMI, FORZA |
-| **Le Vie Interrotte** | RISORSA | 1 | 5 | **velata** | RICCHEZZA, SAPERE, GENTE |
+| **La Carestia** | SOPRAVVIVENZA | 3 | 6 | sì, aperta | RICCHEZZA, GENTE, AUTORITÀ |
+| **Il Risveglio** | ANTICO | 2 | 6 | **no, velata** | SAPERE, FORZA, LEGAMI |
+| **La Successione** | TERRITORIO | 2 | 6 | sì, aperta | AUTORITÀ, LEGAMI, FORZA |
+| **Le Vie Interrotte** | RISORSA | 1 | 5 | **no, velata** | RICCHEZZA, SAPERE, GENTE |
+
+*Il numero di partenza e quello corrente si vedono sempre, anche sulle velate:
+è la soglia che sta sotto una carta girata (§11).*
 
 Un secondo mondo (Chronicle III, «l'anno del Sale», secoli dopo) ne ha quattro
 diverse: L'Acqua Ferma, Il Debito, La Reliquia, La Carta — più due di riserva,
@@ -306,10 +318,20 @@ Come si muove una Tensione:
 una crisi: si sceglie quale avere. Spingere **su** non sposta niente: alimentare
 un incendio non è uno scambio.
 
-**Velata.** Una Tensione velata non mostra il proprio numero nel registro
-pubblico. Sale lo stesso e raggiunge la soglia lo stesso: il mondo reagisce
-anche a ciò che il tavolo non ha ancora misurato. Per vedere il numero serve
-l'azione TRAMARE — e saperlo è **personale**: scoprirlo non lo rivela agli altri.
+**Velata.** Una Tensione velata mostra il proprio numero come tutte le altre —
+è la **soglia** a stare coperta. Al tavolo vero è una carta girata a faccia in
+giù accanto al segnalino: si vede dove sta la domanda, non dove sia il traguardo.
+Il registro la scrive così: `Il Risveglio: 4/?`.
+
+Sulla domanda si agisce come su ogni altra: non sapere quando esploderà è il
+rischio, non un divieto. Per girare la carta serve l'azione TRAMARE — e saperlo
+è **personale**: scoprirlo non lo rivela agli altri, e chi ha guardato gioca
+sapendo quanto manca mentre gli altri tirano a indovinare.
+
+*Fino a 0.1.154 il velo copriva il numero intero e vietava di toccare la
+domanda. È stato cambiato perché al tavolo fisico era ingiocabile: il mondo
+conosceva un valore che nessun giocatore poteva conoscere, e nessuno poteva
+sapere quando una velata stesse per attivarsi.*
 
 **Presagi.** A certe soglie il mondo dice una frase in pubblico, scritta a mano
 nei dati, che non rivela mai il numero: *«I granai di Eredan si aprono un giorno
@@ -321,19 +343,63 @@ altre restano in coda per il round dopo. Al massimo un Consiglio per round.
 
 ---
 
-## 5. Il turno: le sette azioni
+## 5. Il turno: le azioni, e da dove vengono
 
-Ogni Opportunità d'Azione compra esattamente una di queste. Costano tutte **1 AO**.
+**Le azioni si fanno con le carte.** A inizio di ogni Atto la mappa riempie la
+mano — **due carte per gettone di presenza**, fino a un massimo di **7**, e la
+Regione dove tiene la pedina decide *di che famiglia* — e da lì in poi ogni cosa
+che si fa si fa calando una carta.
+
+Ogni carta è **tre cose insieme**:
+
+| | |
+|---|---|
+| **un'azione** | quella scritta sulla carta: MUOVERE, INFLUENZARE, TRAMARE, FORGIARE, RIVENDICARE |
+| **un valore al Consiglio** | la sua famiglia e la sua forza (1, 2 o 3) |
+| **un effetto suo** | ciò che succede quando la si impegna a un Consiglio |
+
+E qui sta il gioco: **una carta spesa per agire non voterà più**. Ogni turno è
+la stessa domanda — *questa la spendo per fare, o la tengo per votare?*
+
+La carta paga anche il costo della propria azione: INFLUENZARE senza presenza,
+RIVENDICARE e FORGIARE in su chiedono di scartare un Asset, e l'Asset è la
+carta stessa. Si spende una volta sola.
+
+**ACQUISIRE non esiste più come azione**: era due terzi di tutto ciò che si
+faceva, e adesso la fa la mappa.
+
+*Questo è il mondo della Carestia Rossa (Chronicle I). Il mondo del Sale
+(Chronicle III) gioca ancora col §10 di prima — un'Occasione compra un'azione,
+le carte si pescano con ACQUISIRE — perché la sua mappa non è ancora stata
+ridistribuita, e senza quella metà delle azioni sarebbe irraggiungibile per
+qualcuno.*
+
+**Quale azione porta quale famiglia.** Non è casuale: la Regione decide che
+carte peschi, quindi la mappa decide che *cose* puoi fare. Chi sta sulle
+montagne muove eserciti; chi sta nelle miniere sa; chi siede a Eredan prende la
+parola.
+
+| famiglia | le sue otto carte portano | il suo mestiere |
+|---|---|---|
+| **FORZA** | 5 × MUOVERE, 3 × INFLUENZARE | prende terra, e quando non la prende scalda |
+| **AUTORITÀ** | 4 × RIVENDICARE, 3 × INFLUENZARE, 1 × FORGIARE | è l'unica che sa **prendere la parola** |
+| **GENTE** | 4 × INFLUENZARE, 3 × MUOVERE, 1 × TRAMARE | si sposta, e preme |
+| **SAPERE** | 5 × TRAMARE, 2 × INFLUENZARE, 1 × MUOVERE | gli occhi |
+| **RICCHEZZA** | 3 × FORGIARE (in giù), 3 × INFLUENZARE, 2 × MUOVERE | compra, e rompe |
+| **LEGAMI** | 4 × FORGIARE (in su), 2 × TRAMARE, 2 × INFLUENZARE | l'unica che sa **stringere** |
+
+In tutto: **17 INFLUENZARE, 11 MUOVERE, 8 TRAMARE, 8 FORGIARE, 4 RIVENDICARE**.
+
+Le cinque azioni che una carta può portare, tutte per **1 AO**:
 
 | # | azione | cosa fa |
 |---|---|---|
-| 1 | **ACQUISIRE** | Pesca 1 Asset dal mazzo di una famiglia a scelta. Con presenza in una Regione che elenca quella famiglia fra le proprie fonti: pesca 2 e ne tieni 1. Limite di mano **7** carte |
-| 2 | **MUOVERE** | Aggiungi o sposta 1 gettone di presenza in una Regione **adiacente** a una dove sei già, o in una delle tue Regioni iniziali. Se la Regione è piena, l'azione è rifiutata senza danno |
-| 3 | **INFLUENZARE** | Sposta di ±1 una Tensione. Serve **una** fra: presenza in una Regione del dominio di quella Tensione (gratis), oppure scartare 1 Asset di una famiglia rilevante |
-| 4 | **FORGIARE** | Sposta di 1 passo una relazione. **Verso l'alto**: serve il consenso dell'altro giocatore e 1 Asset LEGAMI scartato. **Verso il basso**: unilaterale, gratuito, e finisce nel registro pubblico |
-| 5 | **TRAMARE** | Uno fra: leggere in privato il valore di una Tensione velata · guardare le prime 2 carte del mazzo Eco · leggere l'informazione privata di una Regione. Il risultato è **privato** |
-| 6 | **RIVENDICARE** | **CREATE**: scarta 1 Asset AUTORITÀ e apri una rivendicazione su un dominio di Tensione. **FORCE**: in un round successivo, con quella Tensione a 3 o più, consuma la rivendicazione e scarta un **secondo** AUTORITÀ per **strappare un Consiglio di cui sei tu il proponente** |
-| 7 | **CALARE UNA CARTA NARRATORE** | Gioca una delle carte Eco che hai in mano: la sua funzione narrativa diventa un fatto del mondo, i suoi effetti si applicano, e alcune carte **aprono un Consiglio** |
+| 1 | **MUOVERE** | Aggiungi o sposta 1 gettone di presenza in una Regione **adiacente** a una dove sei già, o in una delle tue Regioni iniziali. Se la Regione è piena, l'azione è rifiutata senza danno |
+| 2 | **INFLUENZARE** | Sposta di ±1 una Tensione. Serve **una** fra: presenza in una Regione del dominio di quella Tensione (gratis), oppure scartare 1 Asset di una famiglia rilevante |
+| 3 | **FORGIARE** | Sposta di 1 passo una relazione. **Verso l'alto**: serve il consenso dell'altro giocatore e 1 Asset LEGAMI scartato. **Verso il basso**: unilaterale, gratuito, e finisce nel registro pubblico |
+| 4 | **TRAMARE** | Uno fra: leggere in privato la **soglia** di una Tensione velata · guardare le prime 2 carte del mazzo Eco · leggere l'informazione privata di una Regione. Il risultato è **privato** |
+| 5 | **RIVENDICARE** | **CREATE**: scarta 1 Asset AUTORITÀ e apri una rivendicazione su un dominio di Tensione. **FORCE**: in un round successivo, con quella Tensione a 3 o più, consuma la rivendicazione e scarta un **secondo** AUTORITÀ per **strappare un Consiglio di cui sei tu il proponente** |
+| 6 | **CALARE UNA CARTA NARRATORE** | Gioca una delle carte Eco che hai in mano: la sua funzione narrativa diventa un fatto del mondo, i suoi effetti si applicano, e alcune carte **aprono un Consiglio**. Le carte del Narratore sono **un mazzo a parte**: non sono la mano, e non si pescano dalla mappa |
 
 **La scala delle relazioni** (per FORGIARE):
 
@@ -769,7 +835,7 @@ il muro ha causato.
 
 Quattro cose non stanno mai nel registro pubblico:
 
-1. il **valore di una Tensione velata**;
+1. la **soglia di una Tensione velata** (il valore invece è pubblico);
 2. il risultato di uno **TRAMARE** (torna solo a chi l'ha fatto);
 3. le **carte in mano**;
 4. gli **impegni**, finché non si rivelano tutti insieme.
@@ -803,7 +869,8 @@ l'inizio, trova il proprio seggio già in mano a un bot e ne riprende il posto.
 |---|---|
 | Giocatori | **4** |
 | Durata di una Chronicle | **1 anno** = 3 Atti × 3 round |
-| Azioni per giocatore per round | **2** (18 in tutto l'anno) |
+| Azioni per giocatore per round | **2** (18 in tutto l'anno), e ognuna costa **una carta** |
+| Carte che la mappa dà a inizio Atto | **2 per gettone** di presenza, pavimento **2**, tetto per Atto **6**, tetto sulla mano **7** |
 | Gettoni di presenza | **3** per casata (2 posati all'inizio, 1 in riserva) |
 | Limite di mano | **7** Asset |
 | Regioni | **6** (3 con un padrone all'inizio, 3 di nessuno) |
@@ -811,7 +878,7 @@ l'inizio, trova il proprio seggio già in mano a un bot e ne riprende il posto.
 | Tensioni in gioco | **4** per anno (su 12 scritte) |
 | Soglie | fra **4 e 7** |
 | Deriva | **+1** a una Tensione ogni round, 9 gettoni mescolati |
-| Consigli in un anno | mediana **5–7**, limiti duri **2–8** |
+| Consigli in un anno | mediana **6**, estremi misurati **2–9** (tavolo misto, 0.1.156) |
 | Asset impegnabili | **0–3** (0–2 con una Condizione) |
 | Fattore Mondo | 1d6 → **−2 −1 0 0 +1 +2** |
 | Soglia di qualifica di una Condizione | **2** |

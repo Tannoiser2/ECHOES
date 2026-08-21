@@ -5,6 +5,302 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.157 — Un piano dice in che economia è stato scritto (D-189)
+
+- **Riparazione di 0.1.156, trovata dalla CI.** Accendere le carte in CHR_01 ha
+  reso ingiocabili i tre piani scriptati: `tools/run_sims.sh` usciva con **exit
+  4** su tutti e tre. Dire in un verbale che «restano storie del §10 di prima»
+  non bastava — i piani leggono la Chronicle spedita.
+- **E la suite diceva verde**: passava dal `play_classic()` di 0.1.156 e provava
+  il gioco vecchio, mentre la sonda da riga di comando provava quello nuovo. Due
+  strade che provano due giochi diversi e si chiamano entrambe «i piani passano».
+- **`chronicle_overrides` sul piano**: `actions_from_cards` e `hand_refill`. I
+  tre piani dichiarano `false` — sono storie del §10 di prima, e ora lo dicono
+  loro invece di un verbale.
+- Le due strade passano dalla **stessa funzione** (`GameSession.apply_plan_overrides`),
+  e una **guardia in `validate_data.py`** fa rosso la CI se una Chronicle gioca a
+  carte e il piano non dichiara niente.
+- CI locale intera rifatta guardando **gli exit code**: validate, self-test, i due
+  drift check, dead_code, 372 test / 6722 asserzioni, sim plans, balance probe,
+  determinismo di sims ed export. Tutto verde.
+
+### Dichiarato
+
+- **Il difetto è mio e la CI l'ha trovato al posto mio**: avevo lanciato
+  `run_sims.sh` con l'output a `/dev/null` guardando solo se i file cambiavano.
+  Il comando diceva «FALLITO (exit 4)» tre volte. La regola che ne esce è in
+  CONSEGNE: dei comandi del cancello si guarda **l'exit code**.
+- Resta vero che **manca un piano scriptato del gioco a carte**: adesso la
+  mancanza è dichiarata nel dato, non solo in un verbale.
+- `chronicle_overrides` è una porta che si può abusare: lo schema la tiene
+  stretta a due chiavi apposta.
+
+---
+
+## 0.1.156 — Le quarantotto carte parlano (D-188)
+
+- **ISSUES 47 fase 4**: le azioni passano sulla mano, e **l'interruttore si
+  accende**. Il telaio era di D-184, il rubinetto di D-185, la mappa di D-186.
+- **Tutte e 48 le carte portano un'azione**: 17 INFLUENZARE, 11 MUOVERE, 8
+  TRAMARE, 8 FORGIARE, 4 RIVENDICARE. **ACQUISIRE sparisce** — era due terzi del
+  gioco, e adesso la fa la mappa.
+- La distribuzione non è casuale: la Regione decide che carte peschi, quindi
+  **la mappa decide che cose puoi fare**. Chi sta sulle montagne muove eserciti,
+  chi sta nelle miniere sa, chi siede a Eredan prende la parola.
+- **La carta è la propria spesa**: le tre azioni che chiedono di scartare un
+  Asset lo trovano nella carta stessa. Senza questa regola giocarne una ne
+  costava due.
+- **Il divieto stava nel posto sbagliato**: `check()` risponde a «sarebbe
+  legale?», ed è la domanda che un seggio si fa *prima* di sapere con che carta
+  lo dirà. Col divieto lì, **496 Occasioni su 720 restavano mute**. Ora vive in
+  `execute()`.
+- **Una guardia nuova**: `acquisition_rule` è prosa che nomina un fatto della
+  mappa, e le due cose non erano legate da niente — il giorno della
+  ridistribuzione **40 carte su 48 hanno cominciato a mentire** senza che nessun
+  test se ne accorgesse. Adesso fanno rosso la CI.
+- **0 su 8** misto e uniforme, nessuna azione rifiutata. `FAIL 235 · 99 · 122 ·
+  121`, Consigli media 5,77, mediana 6. Suite **371 test / 6716 asserzioni**.
+- **La divergenza di ISSUES 47 è chiusa a gioco acceso**: scarto fra la mano più
+  piena e la più vuota all'Atto 3 **1,58**, contro 4,90 del gioco di prima.
+
+### Dichiarato
+
+- **Due difetti trovati misurando**: il *distratto* chiedeva un ACQUISIRE che non
+  esiste più (93 rifiuti su 20 partite, i suoi NONE da 1 a 8); **Re Aldric si
+  portava via da solo la presenza a Eredan** che il suo Minimo chiede, perché la
+  voce nuova «allarga il rubinetto» spostava una pedina invece di posare la
+  riserva (NONE da 1 a 8). Corretti entrambi.
+- **CHR_03 gioca ancora il §10 di prima**, deliberatamente: la sua mappa non è
+  stata guardata, e accendere lì le carte ripeterebbe il difetto che D-186 ha
+  appena chiuso.
+- **Le prove unitarie stanno sul lato classico e lo dichiarano** (`play_classic()`):
+  usavano le azioni dirette per mettere il mondo in posizione, non per misurare
+  l'economia. Che i dati spediti stiano dall'altra parte lo prova un test che
+  rilegge il dato dal disco.
+- **Manca un piano scriptato del gioco a carte**: i tre esistenti sono storie del
+  §10 di prima. Il gioco nuovo è provato dal cancello e dai test, non da una
+  storia raccontata.
+- **Il 58% delle Occasioni resta muto**: 222 volte su 720 il cervello non voleva
+  niente, **194 volte voleva qualcosa che la mano non sapeva dire**. È il costo
+  vero della regola, ed è la prima misura che ne esista.
+- Le quattro RIVENDICARE ereditano il difetto di **ISSUES 37**.
+- **Maestra Ilve** perde Trionfi nel playtest (8 → 2 su 50 anni) per la modifica
+  al cervello di D-187, non per l'economia. In campagna il Sale resta a **8 su
+  12** (ISSUES 46), ma il divario merita una misura sua.
+
+---
+
+## 0.1.155 — Il velo copre la soglia, non il numero (D-187)
+
+- Chiesta dal committente: «il mondo lo sa quale è il valore ma i giocatori nel
+  gioco fisico no, e quindi nessuno sa quando le velate si attivano». Era
+  un'**asimmetria che il tavolo fisico non può riprodurre**, non una taratura.
+- **Il valore di una velata è pubblico**; è la **soglia** a stare coperta. Al
+  tavolo vero è una carta girata a faccia in giù accanto al segnalino, e il
+  registro scrive `Il Risveglio: 4/?`.
+- **Sulla domanda si agisce lo stesso**: non sapere quando esploderà è il
+  rischio, non un divieto. TRAMARE resta l'azione che gira la carta, e saperlo
+  resta personale.
+- Dichiarata sulla Chronicle (`veiled_tensions: HIDES_ALL | HIDES_THRESHOLD`),
+  non scritta nel codice: la regola vecchia resta provata e si riaccende
+  cambiando una stringa.
+- **Un difetto trovato per strada**: il tavolo grande e la console **stampavano
+  la soglia vera**, letta dal dato senza passare da nessun filtro. Con la regola
+  vecchia non si notava; con la nuova avrebbe svuotato la regola il primo
+  giorno. Ora una soglia coperta esce **−1**, come il dorso di una carta.
+- **0 su 8** misto e uniforme. Suite **369 test / 6476 asserzioni**.
+
+### Dichiarato
+
+- **Non cambia quasi niente per i bot**: Consigli falliti 241 → **239**, medi
+  5,44 → **5,43**, TRAMARE 130 → 134, INFLUENZARE 360 → 367. Le sonde non
+  possono misurare la cosa per cui la regola è stata fatta — i bot non provano
+  attesa. Il valore si vede in una serata con quattro persone.
+- **Il velo di D-125 è più debole**: copriva un numero, ora copre solo il
+  quando. Perdita reale per la casa che ha quell'arte, non ancora misurata.
+- **La stima del bot è una scelta, non una misura**: chi non ha girato la carta
+  usa la soglia media della Chronicle. Deterministica e onesta, ma non tarata
+  contro le alternative.
+- **Le altre due domande sulle Tensioni restano aperte**: la varietà nella prima
+  partita, e il partire tutte da 0 (che obbliga a rifare le soglie).
+
+---
+
+## 0.1.154 — La mappa che distribuisce, e quante carte servono (D-186)
+
+- **ISSUES 47 fase 3**, chiesta dal committente: «vai con la mappa, poi le carte
+  per ogni atto devono essere pescate in numero sufficiente per fare le stesse
+  azioni e per influenzare i concili come adesso».
+- **Sei Regioni, due famiglie ciascuna, due Regioni per famiglia.** Prima
+  `WEALTH` stava in quattro Regioni e `FORCE` in una sola; il divario fra la
+  famiglia più a portata e la meno passa da **6,8 a 1** a **1,6 a 1**.
+- **Dove stanno davvero le pedine**, misurato per la prima volta: Eredan 26,9%,
+  Valle Verde 26,4%, Miniere 23,6%, Montagne 11,4%, Terre Nahr 11,1% — e la
+  **Strada dei Mercanti allo 0,6%**. È una Regione morta (ISSUES 48).
+- **Il fabbisogno**, che è la richiesta del committente diventata numero: per
+  seggio e per anno, **3,20** azioni che costerebbero una carta + **8,59** carte
+  impegnate ai Consigli = **11,80 l'anno, 3,93 per Atto**. Il rubinetto a
+  `per_token: 1` ne dava 2: metà.
+- **La taratura che regge il fabbisogno**: `per_token: 2, floor: 2, cap: 6,
+  hand_cap: 7`. Misurata, la mano sta a 6–6,9 carte e **lo scarto fra la più
+  piena e la più vuota all'Atto 3 è 1,18** — contro 4,90 del gioco di oggi. **Il
+  punto 2 di ISSUES 47 è risolto.**
+- Rubinetto spento, mappa nuova accesa: **0 su 8**, Consigli falliti **248 →
+  241**. Suite **366 test / 6453 asserzioni**.
+
+### Dichiarato
+
+- **L'anno si è fatto più quieto**: Consigli medi da 5,79 a **5,44**, minimo
+  della banda da 2 a **1**. Stessa causa: una mano più varia più spesso non ha
+  la famiglia che quel Consiglio premia. È il prezzo, pagato apposta.
+- **Due piani scriptati riregistrati.** «Il consiglio spezzato» da sei Consigli
+  a tre — e la storia nuova è migliore: la domanda affondata torna al round dopo
+  e a proporla è chi l'aveva affondata, col registro che scrive «la spirale si
+  chiude». «La miniera aperta» perde i due Decisivi (margine 4 invece di 5).
+- **Un errore preesistente trovato per strada**: la descrizione di «la miniera
+  aperta» prometteva «tutte e quattro le bande di esito del §12.3» e un «passa
+  pagando» che nei suoi stessi esiti registrati non c'erano. La prosa era ferma
+  a una versione precedente. Ora combaciano.
+- **61 asserzioni in meno** (6514 → 6453): sono i tre Consigli che «il consiglio
+  spezzato» non gioca più. Nessun test tolto.
+- La taratura del rubinetto è un **preventivo**: misurata col rubinetto *sopra*
+  ACQUISIRE. Accesa oggi porterebbe i Consigli falliti a 304 — prezzo del doppio
+  canale, non della taratura.
+- **CHR_03 non è stata toccata**: tiene la sua mappa vecchia.
+
+---
+
+## 0.1.153 — Il rubinetto: la mano viene dalla mappa (D-185)
+
+- **ISSUES 47 fase 2**, chiesta dal committente: «la presenza nelle regioni deve
+  essere fondamentale nella pesca delle carte, tipo due presenze, due carte».
+- A inizio di ogni Atto ogni seggio pesca guardando **dove tiene le pedine**:
+  quante carte lo dicono i gettoni, **di che famiglia** lo dice la Regione
+  (`asset_sources`). La mappa smette di essere un punteggio e diventa il rubinetto.
+- **`hand_refill` sulla Chronicle** — `per_token`, `floor` (il pavimento per chi
+  resta senza mappa), `cap` (tetto per Atto), `hand_cap` (tetto sulla mano).
+  Omesso — il default — non succede niente.
+- **Il freno che credevo giusto era quello sbagliato.** Scarto fra la mano più
+  piena e la più vuota all'Atto 3: col solo tetto per Atto **5,48**, col tetto
+  sulla mano **3,33**. Il tetto per Atto limita la pesca, non la mano: le carte
+  non spese restano lì e lo scarto si accumula lo stesso.
+- **E il gioco di oggi diverge di più**: 4,90 col rubinetto spento. ACQUISIRE, che
+  nessuno frena, sbilancia più del rubinetto frenato.
+- **Rubinetto spento nei dati**: playtest identico riga per riga a 0.1.150 —
+  `FAIL 248 · 78 · 99 · 154`, **0 su 8 bloccati**. Suite **366 test / 6514
+  asserzioni**.
+
+### Dichiarato
+
+- **Acceso da solo peggiora il gioco**: Consigli da 5,79 a 6,13 e i falliti da
+  248 a **272**, il massimo mai misurato. Atteso — finché `actions_from_cards` è
+  spento le carte del rubinetto si **sommano** ad ACQUISIRE invece di
+  sostituirlo. Le due metà vanno accese **insieme**.
+- Il vincolo regge lo stesso: **0 su 8** anche col rubinetto acceso.
+- **Correggo un numero detto storto in sessione**: 9 Consigli in un anno non
+  sfondano nessun «limite duro di §7». Non c'è tetto nel codice: 9 è il massimo
+  strutturale (3 Atti × 3 round) e la banda 2–8 di MECCANICA è un estremo
+  misurato, non una regola.
+- `hand_cap: 5` è un punto di partenza, non una taratura: è stato misurato col
+  rubinetto **sopra** ACQUISIRE. Quando ACQUISIRE sparirà va rimisurato.
+- Il **pavimento** non è mai stato esercitato da una partita vera (nessun seggio
+  resta senza pedine): è provato solo dai test.
+
+---
+
+## 0.1.152 — Il telaio delle azioni sulle carte (D-184)
+
+- **ISSUES 47 fase 1**, sul via libera del committente: «ogni carta ha una azione
+  di gioco, un valore per il consiglio, e effetti specifici della carta».
+- **Due dei tre pezzi c'erano già**: il valore è `family`+`strength`, gli effetti
+  sono `on_commit_effects` (47 carte su 48 ne hanno uno). Mancava l'azione.
+- **`card_action` sull'Asset** — `{kind, params}` con `kind` fra le sei azioni di
+  §10: il telaio non inventa verbi, sposta chi può pronunciarli.
+- **`PLAY_CARD` nel resolver**: passa dal **medesimo `check()`** dell'azione
+  corrispondente e poi **consuma la carta**. Nessuna regola scritta due volte, e
+  un test lo prova chiedendo a una carta un MUOVERE illegale.
+- **`actions_from_cards` sulla Chronicle**: spento (default) il gioco è quello di
+  sempre; acceso, le sei azioni non si prendono più con un'Opportunità e la mano
+  diventa l'unica moneta.
+- **La spesa è il punto**: giocare una carta la scarta, quindi non voterà più. È
+  lì che nasce il bilanciamento — *o la spendi per fare, o la tieni per votare*.
+- **Zero carte convertite, playtest identico riga per riga** a 0.1.150. Suite
+  **359 test / 6503 asserzioni**.
+
+### Dichiarato
+
+- Il gioco nuovo non esiste finché non si scrivono le **48 `card_action`**: la
+  fase 1 serve a poterle scrivere una famiglia alla volta, misurando.
+- **Il rubinetto della mano non è collegato**: le due metà (azioni dalle carte, e
+  carte dalla presenza) vanno accese **insieme**, o un seggio resterebbe senza
+  carte e senza poter agire.
+- `TRAMARE` e `INFLUENZARE` spariranno quando esisteranno le carte che li portano.
+
+## 0.1.151 — Il preventivo della mano che viene dalla mappa (D-183)
+
+- **`run_hand_probe.gd`**, sonda nuova: il committente ha proposto che tutte le
+  azioni si facciano con le carte e che le carte le dia la presenza sulla mappa.
+  Prima di riscrivere 48 carte, il **preventivo** — la sonda gioca le partite
+  come sono e scrive quante carte quel rubinetto darebbe.
+- **Il numero che dà ragione alla proposta**: su 72 azioni disponibili in un
+  anno, i seggi giocano **47 ACQUISIRE** e **1 solo MUOVERE**. Due terzi del
+  gioco sono già «pesca una carta».
+- **Il gioco si stringerebbe al 36–40%** di adesso (6,6–7,2 carte contro 18
+  azioni), e **lo scarto fra il primo e l'ultimo seggio raddoppia ogni atto**
+  (0,00 → 1,25 → 1,92): la divergenza non viene dal setup, la produce il gioco.
+- **Nessun seggio resta senza pedine** in 480 campioni: la spirale della morte
+  non si materializza.
+- **La mappa non distribuisce le famiglie**: `WEALTH` sta in quattro Regioni su
+  sei, `FORCE` in una sola. Un seggio raggiunge 3,3 famiglie su 6.
+- Aperta come **ISSUES 47**. Nessuna regola cambiata: dati, playtest e suite
+  restano quelli di 0.1.150.
+- La sonda dei gradini risponde anche a **«essere il proponente conviene?»**: sì,
+  e il gradino medio cresce col numero di proposte (1,33 con zero, 1,93 con tre).
+
+## 0.1.150 — Il Sale non vinceva: gli succedeva di vincere (D-182)
+
+- **ISSUES 46, sulla direzione data dal committente**: «il Sale è troppo forte».
+  Guardato dal lato suo, il difetto aveva **tre teste**, tutte misurate col banco
+  delle clausole: il Minimo vero al **100%**, la seconda clausola della Vittoria
+  («e nessuno lo ha cancellato») vera al **100%**, e la **spina del Trionfo** («il
+  patto con la Cenere regge») vera al **100%**.
+- **`DST_SALE` superava il Minimo 12 volte su 13.** E non perché la Gilda giocasse
+  meglio: la sua Vittoria la decideva il **calendario** — `debt_called` matura da
+  sé quando la Tensione arriva a soglia, e le altre due clausole non falliscono
+  mai. Al Sale non riusciva di vincere: **gli succedeva**.
+- **Quattro passi misurati uno alla volta**, e il primo insegna qualcosa: chiedere
+  il debito chiamato **e** un alleato rimasto tale sono due cose **anti-correlate**
+  (riscuotere allontana chi paga), e il Destino è crollato dal 92% al **15%** —
+  l'errore di D-177 arrivato dal lato opposto. A NEUTRALE la richiesta diventa
+  «riscuotere senza rompere», che è quello che una Gilda sa fare.
+- **La promessa è stata spostata, non cancellata**: `promise_kept` compare una
+  volta sola in tutto il gioco, e toglierla l'avrebbe resa contenuto che non
+  esiste. Ora è una delle cinque strade del Trionfo.
+- **E il secondo Destino era diventato il colpevole**: `DST_SALE_OPEN` faceva **6
+  Trionfi su 13**, il massimo del gioco. La sua scelta passa da una strada su
+  quattro a due: da 0/6/**1**/6 a **0/6/6/1**.
+
+| | prima | dopo |
+|---|---|---|
+| `DST_SALE` (N/M/V/T su 13) | 0 / **1** / 8 / 4 — supera il **92%** | **0 / 7 / 4 / 2** — supera il 46% |
+| campagne vinte dal Sale | **12 su 12** | **9 su 12** |
+| il Sale supera il Minimo, nelle saghe | 68% | **54%** (le altre 33–34%) |
+| ultimo cambio di testa | anno **3,5** su 10 | anno **5,5** su 10 |
+| campagne decise entro il terzo anno | 6 su 12 | **4 su 12** |
+
+- Playtest **FAIL 248 · 78 · 99 · 154**, mediana 6, **0 su 8**. I **Consigli
+  falliti scendono da 256 a 248**, ed è la prima volta che quel numero torna
+  indietro. Suite **355 test / 6490 asserzioni**.
+
+### Dichiarato
+
+- **La voce è ridotta, non chiusa**: il criterio che si era data — nessuna casa
+  sopra la metà delle campagne — non è raggiunto (**9 su 12 è il 75%**). Mi fermo
+  perché continuare senza una diagnosi nuova sarebbe tarare a occhio.
+- Restano da guardare i **Trionfi nelle saghe** (Sale 25, Libere 19, Vetro 11,
+  Cenere 8) e il fatto che il **Minimo delle quattro case non costa uguale**.
+- Kessa prende 1 NONE a tavolo misto dove prima ne aveva 0: dentro il vincolo.
+
 ## 0.1.149 — Una campagna è almeno dieci anni (D-181)
 
 - **Deciso dal committente**: «direi la saga almeno 10 partite». Sta in

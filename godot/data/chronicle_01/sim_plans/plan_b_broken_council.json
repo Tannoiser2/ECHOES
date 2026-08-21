@@ -5,7 +5,7 @@
     {
       "id": "SIM_PLAN_B",
       "title": "Il consiglio spezzato",
-      "description": "I Nahr chiedono la terra a chi la lavora e il tavolo dice di no due volte di fila: la prima all'unanimita, la seconda con S 2 contro O 2 e il Fattore Mondo a -2. Due fallimenti non lasciano storia - e dalla D-098 nemmeno quiete: la questione bocciata resta vicina alla soglia e torna ai voti una quarta volta, che stavolta passa - e mentre il Grano si impantana Aldric porta a casa la Successione con un Decisive. E la Chronicle di chi insiste sulla domanda sbagliata: un solo Echo in tutto l'anno, e non e suo.",
+      "description": "Il Consiglio del Grano si spezza al primo colpo: i Nahr propongono e restano soli, S 0 contro O 4 con il Fattore Mondo a -2, margine -6 - il fallimento piu' netto che questa Chronicle sappia produrre. Resta una Cicatrice, «la domanda a cui il consiglio non ha risposto», e sul Popolo Nahr il segno della proposta caduta. Poi succede la cosa che D-098 aveva promesso e che qui si vede a occhio nudo: la domanda bocciata non compra quiete, torna al round dopo - e a proporla e' Re Aldric, cioe' proprio chi l'aveva affondata. Passa pagando (S 2 O 4, W +2, M 0), la Valle Verde va a chi la lavora e il titolo di chi la teneva resta scritto solo sulla carta; il registro annota «la spirale si chiude». La Successione si decide nello stesso Atto, sempre con un costo. L'Atto 3 e' muto: Vaerax passa l'anno intero a tenere giu' Il Risveglio e nessuno ha piu' forze per aprire un tavolo. Tre Consigli, due Verita', e la lezione e' che dire di no non chiude niente.",
       "chronicle_id": "CHR_01",
       "seed": 20260811,
       "seats": [
@@ -271,7 +271,7 @@
         {
           "index": 1,
           "tension_id": "TEN_FAMINE",
-          "note": "Il consiglio si riunisce di nuovo sulla stessa domanda. Lyra non dice no: dice si, a condizione che la distribuzione sia contata davanti a testimoni. La clausola vale la Confluence.",
+          "note": "La domanda torna al round dopo, e il proponente non e' piu' chi l'aveva posta: e' Re Aldric, che al primo giro l'aveva affondata (D-036: propone chi ha piu' presenza nella Regione di cui si discute). Lyra non dice no: dice si', a condizione che la distribuzione sia contata davanti a testimoni. La clausola vale la Confluence.",
           "question_id": "Q_FAMINE_LAND",
           "proposition_id": "P_LAND_TO_WORKERS",
           "stances": {
@@ -304,17 +304,18 @@
         }
       ],
       "expected": {
-        "confluence_count": 6,
+        "confluence_count": 3,
         "outcomes": [
           "FAILURE",
-          "SUCCESS_WITH_COST",
-          "FAILURE",
-          "SUCCESS",
           "SUCCESS_WITH_COST",
           "SUCCESS_WITH_COST"
         ],
         "min_echoes": 1,
         "min_truths": 1
+      },
+      "chronicle_overrides": {
+        "actions_from_cards": false,
+        "hand_refill": {}
       }
     }
   ]

@@ -110,6 +110,18 @@ class Distratto extends PolicyDecider:
 			return best
 		# Qualcosa d'altro, purché si possa fare: la famiglia sbagliata, un giro
 		# a vuoto, una presenza messa dove non serviva.
+		#
+		# Quando le carte sono l'unica moneta (D-188) la distrazione cambia
+		# forma: non si pesca la famiglia sbagliata, si **spende la carta
+		# sbagliata** — una a caso fra quelle che la mano puo' giocare. Prima di
+		# questa riga il distratto chiedeva un ACQUISIRE che non esiste piu', e
+		# se lo vedeva rifiutare: 93 Occasioni buttate su 20 partite, e i suoi
+		# NONE passati da 2 a 8.
+		if _cards_are_the_coin(session):
+			var plays: Array = hand_plays(entity_id, session)
+			if plays.is_empty():
+				return best
+			return plays[session.rng.range_int(0, plays.size() - 1)]
 		var families: Array = ["FORCE", "AUTHORITY", "PEOPLE", "KNOWLEDGE", "WEALTH", "BONDS"]
 		var family: String = str(families[session.rng.range_int(0, families.size() - 1)])
 		var other: Dictionary = {"template": "ACQUIRE", "params": {"family": family}}

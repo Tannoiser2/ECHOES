@@ -196,6 +196,14 @@
           "NONE"
         ]
       },
+      "actions_from_cards": true,
+      "hand_refill": {
+        "per_token": 2,
+        "floor": 2,
+        "cap": 6,
+        "hand_cap": 7
+      },
+      "veiled_tensions": "HIDES_THRESHOLD",
       "saga_scoring": {
         "none": -1,
         "minimum": 1,
@@ -445,6 +453,14 @@
           "NONE"
         ]
       },
+      "actions_from_cards": true,
+      "hand_refill": {
+        "per_token": 2,
+        "floor": 2,
+        "cap": 6,
+        "hand_cap": 7
+      },
+      "veiled_tensions": "HIDES_THRESHOLD",
       "saga_scoring": {
         "none": -1,
         "minimum": 1,

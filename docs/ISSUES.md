@@ -1450,7 +1450,7 @@ verbale:
 **Fatto quando** la linea dei Fuochi sta nella stessa banda delle altre in ogni
 sua incarnazione — o il motivo per cui non ci sta è scritto con i numeri accanto.
 
-### 46. La campagna del Sale ha un vincitore già scritto
+### 46. La campagna del Sale ha un vincitore già scritto ([#69](https://github.com/Tannoiser2/ECHOES/issues/69))
 
 `contenuto` · `bilanciamento` · nata da [D-180](DECISIONS.md#d-180) · **aperta in 0.1.148**
 
@@ -1493,9 +1493,194 @@ arriva a metà strada. Una casa che supera il Minimo il 68% delle volte prende l
 testa presto e non la molla: lo squilibrio non è solo *chi vince*, è **sette anni
 giocati sapendo già come finisce**.
 
+## Lavorata in 0.1.150, e ridotta ([D-182](DECISIONS.md#d-182))
+
+Il committente ha dato la direzione — «il Sale è troppo forte» — e guardando la
+casa dal lato suo il difetto aveva **tre teste**: il Minimo vero al 100%, la
+seconda clausola della Vittoria vera al 100%, e la **spina del Trionfo** vera al
+100%. `DST_SALE` superava il Minimo **12 volte su 13**, e non perché la Gilda
+giocasse meglio: la sua Vittoria la decideva il **calendario**. Corretti tutt'e
+due i suoi Destini, in quattro passi misurati uno alla volta:
+
+| | prima | dopo |
+|---|---|---|
+| campagne vinte dal Sale | **12 su 12** | **9 su 12** |
+| il Sale supera il Minimo | 68% | **54%** (le altre 33–34%) |
+| cambi di testa per saga | 1,3 | **1,8** |
+| ultimo cambio di testa | anno 3,5 su 10 | anno **5,5** su 10 |
+| decise entro il terzo anno | 6 su 12 | **4 su 12** |
+
+**Non è chiusa**: 9 su 12 è il 75%, sopra il criterio che questa voce si era
+data. Il lavoro si è fermato lì perché continuare senza una diagnosi nuova
+sarebbe tarare a occhio.
+
+**Dove guardare la prossima volta**, e sono due cose non ancora misurate come
+cause: i **Trionfi nelle saghe** restano sbilanciati (Sale 25, Libere 19, Vetro
+11, Cenere 8 su 120 anni), e il **Minimo delle quattro case non costa uguale** —
+il Vetro ne ha uno da due gettoni, il Sale uno da uno.
+
 **Fatto quando** su dodici saghe per tavolo nessuna casa vince più della metà
 delle campagne — o il motivo per cui una lo fa è scritto con i numeri accanto —
 e l'ultimo cambio di testa non cade prima di metà campagna.
+
+### 47. Le carte come unica moneta: azioni, mano e mappa in un sistema solo
+
+`regole` · `motore` · `contenuto` · voluta dal committente · **preventivo misurato in 0.1.151** ([D-183](DECISIONS.md#d-183))
+
+«Tutte le azioni si fanno con le carte, e le carte si pescano a inizio atto a
+seconda della presenza in una regione, tipo due presenze due carte; con le carte
+in mano si fanno le azioni o si giocano nel consiglio.»
+
+**Il numero che le dà ragione.** Su 72 azioni disponibili al tavolo in un anno, i
+seggi giocano **47 ACQUISIRE**, 7 INFLUENZARE, 6 TRAMARE, 5 FORGIARE, 3
+RIVENDICARE, 2 carte del Narratore e **1 solo MUOVERE**. Due terzi del gioco sono
+già «pesca una carta» e la mappa si muove una volta per partita: la proposta non
+introduce un'economia nuova, riconosce quella che c'è e la rende deliberata. E
+mette il dilemma che oggi manca — **questa carta la spendo per agire o per
+votare?** — al centro di ogni turno.
+
+**Il preventivo**, misurato senza cambiare nessuna regola:
+
+| | CHR_01 | CHR_03 |
+|---|---|---|
+| carte in un anno per seggio | **6,6** | **7,2** |
+| il gioco resta al | **36%** | **40%** di adesso |
+| scarto primo/ultimo, atto I → III | 0,00 → **1,25** | 0,00 → **1,92** |
+| seggi rimasti senza pedine | **0 su 240** | **0 su 240** |
+| famiglie raggiungibili da un seggio | **3,3 su 6** | **3,3 su 6** |
+
+**Le tre cose da decidere prima di scrivere:**
+
+1. **Il volume.** Il gioco si stringe a poco più di un terzo. Va scelto apposta,
+   e con esso vanno rivisti il limite di mano (7 oggi) e la lunghezza dell'anno.
+2. **Il ciclo che diverge.** Lo scarto parte da zero — tutti cominciano con due
+   pedine — e **raddoppia ogni atto**: la divergenza la produce il gioco, non il
+   setup. Su una campagna di dieci anni si somma, ed è la stessa forma che il
+   contatore di saga ha mostrato in [D-180](DECISIONS.md#d-180). Serve un freno
+   deciso in partenza: un tetto, o una pesca che cresce meno che linearmente.
+3. **La mappa non è disegnata per distribuire le famiglie.** `WEALTH` sta in
+   quattro Regioni su sei, `FORCE` in una sola: se la Regione decide la famiglia,
+   la ricchezza diventa la moneta comune e la forza quasi introvabile — e chi non
+   passa da Eredan non rivendica mai, perché RIVENDICARE chiede due AUTORITÀ. O
+   si ridisegnano le `asset_sources`, o la famiglia non può dipendere solo dal
+   posto.
+
+**La sorpresa buona:** nessun seggio resta senza pedine in 480 campioni. La
+spirale della morte — chi perde la presenza non pesca più e non si rialza — non
+si materializza.
+
+**Il costo di scrittura**, dichiarato: **48 carte** vanno riscritte con un'azione
+ciascuna oltre all'effetto di Consiglio che già hanno. È il pezzo di contenuto
+più grosso mai fatto sul progetto.
+
+**Da fare nello stesso lavoro**: TRAMARE e INFLUENZARE spariscono come azioni e
+diventano effetti di carte — il committente le vuole togliere, e la misura gli dà
+ragione (6 e 7 usi in un anno intero).
+
+**Fase 1 ✅ — il telaio** — fatta in 0.1.152 ([D-184](DECISIONS.md#d-184)):
+`card_action` sull'Asset, `PLAY_CARD` che passa dal medesimo `check()` dell'azione
+e **consuma la carta**, e l'interruttore `actions_from_cards` sulla Chronicle.
+Zero carte convertite, playtest identico riga per riga. Da qui le 48 carte si
+scrivono **una famiglia alla volta**, misurando, invece che tutte insieme.
+
+**Fase 2 ✅ — il rubinetto** — fatta in 0.1.153 ([D-185](DECISIONS.md#d-185)):
+`hand_refill` sulla Chronicle, la pesca a inizio Atto guarda le pedine e la
+Regione decide la famiglia. **Il punto 2 di qui sopra ha una risposta misurata**:
+il freno non è il tetto per Atto — che limita la pesca e non la mano — ma il
+tetto sulla **mano** (`hand_cap`). Scarto all'Atto 3: **5,48** col solo tetto per
+Atto, **3,33** col tetto sulla mano, **4,90** col rubinetto spento, cioè nel
+gioco di oggi. Frenato, il rubinetto sbilancia **meno di ACQUISIRE**.
+
+Resta però che, **acceso da solo**, peggiora: i Consigli falliti passano da 248 a
+272, il massimo mai misurato, perché le carte si sommano ad ACQUISIRE invece di
+sostituirlo. Nei dati è **spento**: si accende insieme a `actions_from_cards`.
+
+**Il punto 1 (il volume) e il punto 3 (la mappa) restano da decidere**, e il
+punto 3 è quello che blocca la fase 3: finché `FORCE` sta in una Regione sola,
+scrivere le 48 carte significa scrivere azioni che qualcuno non potrà mai fare.
+
+**Fase 3 ✅ — la mappa e il fabbisogno** — fatta in 0.1.154
+([D-186](DECISIONS.md#d-186)). **Il punto 3 è chiuso**: sei Regioni, due famiglie
+ciascuna, due Regioni per famiglia; il divario fra la famiglia più a portata e la
+meno passa da **6,8 a 1** a **1,6 a 1**, e nessuna azione è preclusa a nessuno.
+**Il punto 1 (il volume) ha un numero**: il fabbisogno per seggio è **11,80 carte
+l'anno, 3,93 per Atto** (3,20 azioni + 8,59 impegni ai Consigli), e la taratura
+che lo regge è `per_token: 2, floor: 2, cap: 6, hand_cap: 7`. Con quella, **lo
+scarto all'Atto 3 è 1,18** contro 4,90 del gioco di oggi: **anche il punto 2 è
+chiuso**, e il criterio «lo scarto non cresce» è soddisfatto in preventivo.
+
+Resta la **fase 4**, che è tutto il contenuto: **48 `card_action` da scrivere**,
+una famiglia alla volta, misurando. E resta da ridistribuire la mappa di
+**CHR_03**, che non è stata toccata.
+
+**Fase 4 ✅ — le quarantotto parlano, e l'interruttore è acceso** — fatta in
+0.1.156 ([D-188](DECISIONS.md#d-188)). Ogni carta porta una delle cinque azioni
+che restano (ACQUISIRE sparisce, la fa la mappa): **17 INFLUENZARE, 11 MUOVERE,
+8 TRAMARE, 8 FORGIARE, 4 RIVENDICARE**, distribuite per famiglia così che *la
+mappa decida che cose puoi fare*. CHR_01 e CHR_02 giocano con le carte come
+unica moneta.
+
+**I tre criteri di chiusura sono soddisfatti**: un anno si gioca per intero con
+le carte, il playtest resta **0/8** a tavolo misto e uniforme, e lo scarto fra
+il primo e l'ultimo seggio **non cresce** — 0,00 → 1,10 → **1,58** all'Atto 3,
+contro 4,90 del gioco di prima.
+
+**Quello che resta, e che non è questa issue:**
+
+- **CHR_03 gioca ancora il §10 di prima**, deliberatamente: la sua mappa non è
+  stata guardata. Accenderla senza sarebbe ripetere il difetto di D-186.
+- **Manca un piano scriptato del gioco a carte**: i tre esistenti sono storie
+  del §10 di prima, e da 0.1.157 ([D-189](DECISIONS.md#d-189)) lo **dichiarano
+  nel dato** (`chronicle_overrides`), non solo in un verbale. Il gioco nuovo è
+  provato dal cancello e dai test, non da una storia raccontata.
+- **Il 58% delle Occasioni resta muto**, e 194 volte su 720 perché *la mano non
+  sa dire* ciò che il seggio vuole. È la prima misura che ne esista e non è
+  stata tarata: si abbassa con più carte, o con una distribuzione diversa delle
+  azioni fra le famiglie.
+
+**Fatto quando** un anno si gioca per intero con le carte come unica moneta, il
+playtest resta **0/8** a tavolo misto e uniforme, e lo scarto fra il primo e
+l'ultimo seggio **non cresce** di atto in atto.
+
+### 48. La Strada dei Mercanti è una Regione morta
+
+`regole` · `contenuto` · **misurata in 0.1.154** ([D-186](DECISIONS.md#d-186))
+
+Misurando dove finiscono le pedine per scegliere la mappa nuova, è saltato fuori
+un numero che nessuno aveva mai guardato:
+
+| Regione | pedine viste | |
+|---|---|---|
+| Eredan | 425 | 26,9% |
+| Valle Verde | 417 | 26,4% |
+| Miniere Antiche | 373 | 23,6% |
+| Montagne Rosse | 180 | 11,4% |
+| Terre Nahr | 175 | 11,1% |
+| **Strada dei Mercanti** | **10** | **0,6%** |
+
+La Strada è **centrale** — confina con quattro Regioni su cinque, più di
+chiunque altra — e ha **quattro slot di presenza**. Eppure in 60 anni ci
+finiscono dieci pedine in tutto. Una Regione che non vede pedine non è una
+sorgente: col rubinetto acceso, le famiglie che offre non escono quasi mai, e le
+sue `asset_sources` sono decorazione.
+
+**Le tre ipotesi da provare, in ordine di costo:**
+
+1. **Nessun Destino la chiede.** Se nessuna clausola `region_presence` la nomina
+   e nessuna Tensione la usa come dominio, i bot non hanno motivo di andarci: si
+   verifica leggendo i dati, senza giocare.
+2. **Non ci si arriva.** L'adiacenza dice di sì, ma MUOVERE si gioca **una volta
+   per partita** su tutto il tavolo: se nessuno ci comincia, nessuno ci arriva.
+   Delle otto case, **una sola** ci comincia — Maestra Ilve (il Sale), che gioca
+   in CHR_03, non in CHR_01: nella Chronicle misurata **nessuno parte di lì**.
+3. **Non rende.** Non è capitale, non è granaio, non ha struttura: tenerla non
+   dà voce al Consiglio e non chiude nessun Destino.
+
+**Fatto quando** la Strada vede una quota di pedine confrontabile con Montagne e
+Terre Nahr (**almeno il 5%**), senza che il playtest esca da **0/8**.
+
+**Da non confondere con la palude**: quella chiede slot variabili ed è motore.
+Questa, se l'ipotesi 1 o 3 regge, si chiude **con i dati**.
 
 ---
 

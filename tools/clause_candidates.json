@@ -1,83 +1,128 @@
 {
-  "note": "Il banco di prova di `cli/run_clause_probe.gd`. Non e' contenuto e non passa dagli schemi: e' la lista di clausole che si vuole misurare **prima** di scriverle in un Destino (D-161, D-167). `$self` e' il seggio a cui la clausola viene letta, quindi la stessa riga si legge su otto case in un giro solo. Si sovrascrive liberamente: quello che c'e' adesso e' il banco della linea della Cenere/Fuochi, la voce lasciata aperta da D-176.\n\nATTENZIONE al perimetro (D-170): la sonda misura cosa e' vero **nel mondo che c'e'**, coi seggi che giocano il proprio Destino. Una clausola scritta in un Destino che quel seggio non insegue si misura diversa quando lo insegue davvero - «una Regione controllata» dava 80-100% qui e 13 NONE su 41 ai seggi che la giuravano.\n\nLa domanda di questo banco: il Minimo della Cenere inchioda due gettoni su tre sulle Montagne Rosse, e ogni gradino sopra la chiama altrove. Le righe che seguono misurano quanto costa ognuno di quei richiami, e quali alternative reggerebbero al loro posto.",
+  "note": "Il banco di prova di `cli/run_clause_probe.gd`. Non e' contenuto e non passa dagli schemi: e' la lista di clausole che si vuole misurare **prima** di scriverle in un Destino (D-161, D-167). `$self` e' il seggio a cui la clausola viene letta, quindi la stessa riga si legge su otto case in un giro solo. Si sovrascrive liberamente: quello che c'e' adesso e' il banco di **ISSUES 46 — il Sale e' troppo forte**.\n\nATTENZIONE al perimetro (D-170): la sonda misura cosa e' vero **nel mondo che c'e'**, coi seggi che giocano il proprio Destino.\n\nLa domanda di questo banco: il Sale supera il Minimo il 68% delle volte contro il 24-33% delle altre case, e vince la campagna 12 saghe su 12. Le righe che seguono sono **le sue clausole vere**, una per una: quella che esce vicino a 100 e' un gradino che non e' un gradino.",
   "items": [
     {
-      "id": "CE_MONTAGNE_2",
-      "note": "il Minimo di oggi: due gettoni sulle Montagne Rosse",
-      "condition": {
-        "type": "region_presence",
-        "entity_id": "ENT_CENERE",
-        "region_id": "REG_MONTAGNE_ROSSE",
-        "min": 2
-      }
-    },
-    {
-      "id": "CE_MINIERE_2",
-      "note": "il ramo sospetto: «O sono scesi in due» - due gettoni sulle Miniere, mentre il Minimo ne chiede due sulle Montagne, con un tetto di tre",
-      "condition": {
-        "type": "region_presence",
-        "entity_id": "ENT_CENERE",
-        "region_id": "REG_MINIERE_ANTICHE",
-        "min": 2
-      }
-    },
-    {
-      "id": "CE_RELIQUIA",
-      "note": "la porta che regge da sola la Vittoria di DST_CENERE_DEEP",
+      "id": "SA_DEBITO_CHIAMATO",
+      "note": "Vittoria di DST_SALE, prima clausola",
       "condition": {
         "type": "state_tag_present",
-        "scope": "ENTITY",
-        "entity_id": "ENT_CENERE",
-        "tag": "discovery:relic"
+        "scope": "GLOBAL",
+        "tag": "debt_called"
       }
     },
     {
-      "id": "CE_OPERA_MINIERE",
-      "note": "candidata: quello che hanno trovato l'hanno messo al sicuro - un'opera loro nelle gallerie",
+      "id": "SA_DEBITO_NON_CANCELLATO",
+      "note": "Vittoria di DST_SALE, seconda clausola",
+      "condition": {
+        "type": "state_tag_absent",
+        "scope": "GLOBAL",
+        "tag": "debt_forgiven"
+      }
+    },
+    {
+      "id": "SA_PATTO_REGGE",
+      "note": "la spina del Trionfo di DST_SALE",
+      "condition": {
+        "type": "promise_kept",
+        "entity_id": "ENT_SALE",
+        "other_entity_id": "ENT_CENERE"
+      }
+    },
+    {
+      "id": "SA_CONTROLLO_2",
+      "note": "per confronto: due Regioni, che alle altre case costa",
+      "condition": {
+        "type": "control_count",
+        "entity_id": "ENT_SALE",
+        "min": 2
+      }
+    },
+    {
+      "id": "SA_REGISTRO_SUO",
+      "note": "un ramo del Trionfo di DST_SALE: il registro non e' diventato pubblico",
+      "condition": {
+        "type": "state_tag_absent",
+        "scope": "GLOBAL",
+        "tag": "ledger_public"
+      }
+    },
+    {
+      "id": "SA_OPERA",
+      "note": "candidata: un'opera pagata dalla Gilda, ovunque",
       "condition": {
         "type": "structure_count",
-        "entity_id": "ENT_CENERE",
-        "region_id": "REG_MINIERE_ANTICHE",
+        "entity_id": "ENT_SALE",
+        "structure_family": "OPERA",
         "min": 1
       }
     },
     {
-      "id": "CE_OPERA_MONTAGNA",
-      "note": "candidata: un'opera loro sulla montagna - si costruisce dove si sta gia'",
+      "id": "SA_PEDAGGIO",
+      "note": "candidata: la sbarra che porta il suo nome",
       "condition": {
         "type": "structure_count",
-        "entity_id": "ENT_CENERE",
-        "region_id": "REG_MONTAGNE_ROSSE",
+        "entity_id": "ENT_SALE",
+        "structure_type": "STR_TOLLGATE",
         "min": 1
       }
     },
     {
-      "id": "CE_RELIC_CALDA",
-      "note": "candidata: la domanda di cosa c'e' sotto e' rimasta aperta",
+      "id": "SA_STRADA_PULITA",
+      "note": "candidata: la Strada dei Mercanti e' uscita dall'anno senza un segno",
+      "condition": {
+        "type": "scar_count",
+        "region_id": "REG_STRADA_MERCANTI",
+        "max": 0
+      }
+    },
+    {
+      "id": "SA_DEBITO_FREDDO",
+      "note": "candidata: il Debito non ha spaccato la Strada (gia' nel Trionfo, per confronto)",
       "condition": {
         "type": "tension_limit",
-        "tension_id": "TEN_RELIC",
-        "min": 3
+        "tension_id": "TEN_DEBT",
+        "max": 4
       }
     },
     {
-      "id": "CE_PRESIDIO",
-      "note": "candidata: un presidio loro, ovunque",
+      "id": "SA_RICCHEZZA",
+      "note": "candidata: la Gilda chiude l'anno con di che pagare",
       "condition": {
-        "type": "structure_count",
-        "entity_id": "ENT_CENERE",
-        "structure_family": "PRESIDIO",
-        "min": 1
+        "type": "asset_threshold",
+        "entity_id": "ENT_SALE",
+        "family": "WEALTH",
+        "min": 2
       }
     },
     {
-      "id": "CE_NESSUNO_ALTRO_SOTTO",
-      "note": "candidata: nessun altro ha messo un'opera nelle gallerie",
+      "id": "SA_ALLEATA_CENERE",
+      "note": "candidata al posto della spina: il rapporto con la Cenere e' almeno ALLEATO",
+      "condition": {
+        "type": "relation_state",
+        "entity_id": "ENT_SALE",
+        "other_entity_id": "ENT_CENERE",
+        "level": "ALLY",
+        "at_least": true
+      }
+    },
+    {
+      "id": "SA_NON_OSTILE_LIBERE",
+      "note": "candidata: e le Citta' non le sono nemiche",
+      "condition": {
+        "type": "relation_state",
+        "entity_id": "ENT_SALE",
+        "other_entity_id": "ENT_LIBERE",
+        "level": "NEUTRAL",
+        "at_least": true
+      }
+    },
+    {
+      "id": "SA_DUE_OPERE",
+      "note": "candidata: due cose in piedi che la Gilda ha pagato",
       "condition": {
         "type": "structure_count",
-        "region_id": "REG_MINIERE_ANTICHE",
-        "anyone": true,
-        "max": 0
+        "entity_id": "ENT_SALE",
+        "min": 2
       }
     }
   ]

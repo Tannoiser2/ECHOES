@@ -4,6 +4,7 @@ extends RefCounted
 const Effect := preload("res://scripts/core/effect.gd")
 const Ids := preload("res://scripts/core/ids.gd")
 const EffectNarrator := preload("res://scripts/chronicle/effect_narrator.gd")
+const WorldStateService := preload("res://scripts/world/world_state_service.gd")
 
 var world: Dictionary
 var data: RefCounted
@@ -105,9 +106,38 @@ func is_veiled(tension_id: String) -> bool:
 	return str(world["tensions"][tension_id]["visibility"]) != "OPEN"
 
 
+## La Chronicle dice cosa nasconde il velo (D-187): tutto, o solo la soglia.
+func hides_threshold_only() -> bool:
+	return WorldStateService.veil_hides_threshold_only(world, data)
+
+
+## Una velata e' fuori portata solo finche' il velo copre **tutto**: se copre la
+## sola soglia, sulla domanda si agisce come su ogni altra — non sapere quando
+## esplodera' e' il rischio, non un divieto.
+func out_of_reach(tension_id: String, knows: bool) -> bool:
+	return is_veiled(tension_id) and not hides_threshold_only() and not knows
+
+
+## La soglia che ci si aspetta quando non si sa: la media di quelle in gioco,
+## arrotondata. Serve ai seggi quando il velo copre la soglia (D-187) — non
+## sapere non vuol dire non avere un'idea, e un'idea deterministica e' l'unica
+## che una macchina puo' avere senza barare guardando il dato.
+func typical_threshold() -> int:
+	var total: int = 0
+	var count: int = 0
+	for tension_id in world["tensions"]:
+		total += int(data.tensions[str(tension_id)]["threshold"])
+		count += 1
+	if count == 0:
+		return 0
+	return int(round(float(total) / float(count)))
+
+
 ## What the public log is allowed to say about a Tension.
 func public_status(tension_id: String) -> String:
 	if is_veiled(tension_id):
+		if hides_threshold_only():
+			return "%s: %d/?" % [_public_name(tension_id), value(tension_id)]
 		return "%s: velata" % _public_name(tension_id)
 	return "%s: %d/%d" % [
 		_public_name(tension_id), value(tension_id), threshold(tension_id)

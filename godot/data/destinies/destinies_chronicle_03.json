@@ -35,10 +35,12 @@
             "label": "Il debito è stato chiamato per intero"
           },
           {
-            "type": "state_tag_absent",
-            "scope": "GLOBAL",
-            "tag": "debt_forgiven",
-            "label": "E nessuno lo ha cancellato"
+            "type": "relation_state",
+            "entity_id": "ENT_SALE",
+            "other_entity_id": "ENT_CENERE",
+            "level": "NEUTRAL",
+            "at_least": true,
+            "label": "E chi lo doveva non le è diventato nemico"
           }
         ]
       },
@@ -46,21 +48,21 @@
         "label": "E la firma vale ancora",
         "conditions": [
           {
-            "type": "promise_kept",
-            "entity_id": "ENT_SALE",
-            "other_entity_id": "ENT_CENERE",
-            "label": "Il patto con i Signori della Cenere regge"
+            "type": "state_tag_absent",
+            "scope": "GLOBAL",
+            "tag": "ledger_public",
+            "label": "Il registro non è finito sul muro: è ancora suo"
           },
           {
             "type": "some_of",
-            "min": 3,
-            "label": "E tre segni che il registro pesa più della spada",
+            "min": 4,
+            "label": "E quattro segni che il registro pesa più della spada",
             "conditions": [
               {
-                "type": "state_tag_absent",
-                "scope": "GLOBAL",
-                "tag": "ledger_public",
-                "label": "E il registro resta suo"
+                "type": "promise_kept",
+                "entity_id": "ENT_SALE",
+                "other_entity_id": "ENT_CENERE",
+                "label": "Il patto con i Signori della Cenere regge"
               },
               {
                 "type": "tension_limit",
@@ -137,8 +139,8 @@
           },
           {
             "type": "some_of",
-            "min": 1,
-            "label": "E un segno che un registro aperto pesa uguale",
+            "min": 2,
+            "label": "E due segni che un registro aperto pesa uguale",
             "conditions": [
               {
                 "type": "state_tag_present",

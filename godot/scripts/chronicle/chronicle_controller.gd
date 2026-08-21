@@ -144,6 +144,7 @@ func play_act(act: int, decider: Object, from_round: int = 1) -> void:
 	if from_round == 1:
 		_lift_evictions(act)
 		_deal_narrator_hands(act)
+		_refill_hands(act)
 	for round_number in range(from_round, int(_chronicle["rounds_per_act"]) + 1):
 		await play_round(act, round_number, decider)
 	await end_of_act(act, decider)
@@ -531,6 +532,93 @@ func _deal_narrator_hands(act: int) -> void:
 			dealt += 1
 		if dealt > 0:
 			log.bullet("%s riceve %d carte del Narratore." % [_name(str(entity_id)), dealt])
+
+
+## Il rubinetto della mano (ISSUES 47, D-185): a inizio Atto la mappa da' le
+## carte.
+##
+## «La presenza nelle regioni deve essere fondamentale nella pesca delle carte,
+## tipo due presenze due carte.» Quante ne pesca un seggio lo dicono le sue
+## pedine; **di che famiglia** lo dice la Regione dove stanno, perche' ogni
+## Regione dichiara le proprie `asset_sources`. La mappa smette di essere un
+## punteggio e diventa il rubinetto.
+##
+## I tre freni sono nella Chronicle e non nel codice, perche' sono taratura:
+## il **pavimento** (`floor`) tiene in gioco chi resta senza pedine; il **tetto
+## per Atto** (`cap`) limita quante se ne pescano in un colpo; il **tetto sulla
+## mano** (`hand_cap`) e' il vero freno alla divergenza che D-183 ha misurato —
+## piu' presenza da' piu' carte, piu' carte danno piu' presenza. D-185 ha
+## misurato che il solo `cap` **non frena**: le carte non spese restano in mano
+## e lo scarto cresce lo stesso.
+##
+## Vive solo se la Chronicle dichiara `hand_refill`. Senza, non succede niente.
+func _refill_hands(act: int) -> void:
+	var rules: Dictionary = _chronicle.get("hand_refill", {}) as Dictionary
+	if rules.is_empty():
+		return
+	var per_token: int = int(rules.get("per_token", 1))
+	var floor_cards: int = int(rules.get("floor", 1))
+	var cap: int = int(rules.get("cap", 3))
+	var hand_cap: int = int(rules.get("hand_cap", 0))
+	for entity_id in session.service.active_entities():
+		var presence: Array = (
+			(world["entities"] as Dictionary)[str(entity_id)] as Dictionary
+		).get("presence", []) as Array
+		# Le famiglie che la mappa gli offre, una per gettone: la stessa Regione
+		# due volte offre due volte le sue.
+		var offered: Array = []
+		for region_id in presence:
+			for family in (data.regions[str(region_id)] as Dictionary).get(
+				"asset_sources", []
+			):
+				offered.append(str(family))
+		var wanted: int = clampi(presence.size() * per_token, floor_cards, cap)
+		# Il tetto sulla **mano**, non sulla pesca: D-185 ha misurato che un
+		# tetto per Atto non frena niente, perche' le carte non spese restano
+		# in mano e lo scarto si accumula lo stesso. Chi ha ancora carte pesca
+		# meno; chi le ha spese pesca pieno.
+		if hand_cap > 0:
+			var held: int = (
+				(world["entities"] as Dictionary)[str(entity_id)] as Dictionary
+			)["hand"].size()
+			wanted = mini(wanted, hand_cap - held)
+		if wanted <= 0:
+			continue
+		var source: Dictionary = Effect.source(
+			"system", "HAND_REFILL", str(entity_id), act, 1, int(world["effect_sequence"])
+		)
+		var drawn: Array = []
+		for _i in range(wanted):
+			# Senza pedine la mappa non offre niente e il pavimento pesca dove
+			# il mazzo e' piu' pieno: chi e' a terra non sceglie, ma pesca.
+			var family: String = (
+				str(offered[drawn.size() % offered.size()]) if not offered.is_empty()
+				else _fullest_deck()
+			)
+			var card: String = session.actions.draw_for_refill(
+				str(entity_id), family, source
+			)
+			if card == "":
+				continue
+			drawn.append(card)
+		if not drawn.is_empty():
+			log.bullet("%s pesca %d carte da dove tiene le pedine." % [
+				_name(str(entity_id)), drawn.size()
+			])
+
+
+## Il mazzo con piu' carte, per il pavimento di chi non ha piu' mappa.
+func _fullest_deck() -> String:
+	var best: String = ""
+	var most: int = -1
+	var families: Array = (world["decks"] as Dictionary).keys()
+	families.sort()
+	for family in families:
+		var pile: int = ((world["decks"][str(family)] as Dictionary)["draw"] as Array).size()
+		if pile > most:
+			most = pile
+			best = str(family)
+	return best
 
 
 ## Una carta dal sacchetto: le famiglie mescolate col seme, la prima famiglia

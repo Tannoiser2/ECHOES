@@ -417,6 +417,48 @@
             }
           }
         },
+        "veiled_tensions": {
+          "type": "string",
+          "enum": ["HIDES_ALL", "HIDES_THRESHOLD"],
+          "default": "HIDES_ALL",
+          "description": "Che cosa nasconde il velo su una Tensione (D-187). `HIDES_ALL` - il default, ed e' il gioco fino a 0.1.154 - copre il numero **e** vieta di agire sulla domanda finche' non la si scopre. `HIDES_THRESHOLD` lascia il valore pubblico come per una domanda aperta e copre **la soglia**: si vede dove sta il segnalino, non dove sia il traguardo, e sulla domanda si spinge lo stesso. Chiesta dal committente perche' al tavolo vero nessuno puo' sapere quando una velata si attiva; e' la carta girata a faccia in giu' accanto al segnalino. SCOPRIRE resta l'azione che la gira, per chi la gioca."
+        },
+        "hand_refill": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Il rubinetto della mano (ISSUES 47): a inizio di ogni Atto la mappa da' le carte. Omesso - il default - le carte si pescano solo con ACQUISIRE, come in v0.2. Dichiarato, ogni seggio pesca in base a **dove tiene le pedine**, e la famiglia esce dalle `asset_sources` della Regione: la mappa decide quante carte hai *e* di che tipo. Va acceso insieme a `actions_from_cards`, o le due meta' non si reggono - carte senza azioni sono una scorta, azioni senza carte sono una mano che si svuota.",
+          "properties": {
+            "per_token": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 1,
+              "description": "Carte per gettone di presenza. A 1 vale «due presenze, due carte»."
+            },
+            "floor": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 1,
+              "description": "Il pavimento: quante carte pesca comunque chi non ha piu' niente sulla mappa. A 0 chi resta senza pedine non pesca e non si rialza; il preventivo (D-183) dice che oggi non succede mai, ma il pavimento e' il freno che costa meno."
+            },
+            "cap": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 3,
+              "description": "Il tetto per Atto: quante carte al massimo da' il rubinetto in un colpo, per quanta presenza si abbia. Da solo **non frena la divergenza** (D-185): limita la pesca, non la mano."
+            },
+            "hand_cap": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0,
+              "description": "Il tetto sulla **mano**: il rubinetto riempie fino a questo numero e non oltre, quindi chi ha ancora carte pesca meno e chi le ha spese pesca pieno. A 0 - il default - non c'e' tetto. E' il freno alla divergenza misurata in D-183 e in D-185: il `cap` per Atto non basta, perche' le carte non spese restano in mano e lo scarto si accumula lo stesso."
+            }
+          }
+        },
+        "actions_from_cards": {
+          "type": "boolean",
+          "default": false,
+          "description": "Se le azioni si fanno solo con le carte (ISSUES 47). Falso - il default - le sei azioni di §10 si prendono con un'Opportunita' come in v0.2. Vero, l'unico modo di agire e' giocare una carta dalla mano che porti una `card_action`, e la mano diventa l'unica moneta del gioco: quella carta o la spendi per fare, o la tieni per votare."
+        },
         "saga_scoring": {
           "type": "object",
           "additionalProperties": false,

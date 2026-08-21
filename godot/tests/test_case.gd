@@ -118,6 +118,11 @@ func new_session(seed_value: int = 4242, apply_setup: bool = true) -> RefCounted
 		var written: Variant = session.data.entities.get(str(entity_id))
 		if written != null:
 			session.world["entities"][str(entity_id)]["destiny_id"] = str(written["destiny_id"])
+	# Le prove unitarie stanno sul §10 di sempre, e lo dichiarano: vedi
+	# `play_classic()`. Chi vuole il lato nuovo dell'interruttore lo accende a
+	# mano (test_card_actions), e che i dati spediti ce l'abbiano acceso lo prova
+	# un test suo.
+	play_classic()
 	if apply_setup:
 		for effect in session.factory_setup_effects():
 			session.applier.apply(effect)
@@ -125,3 +130,22 @@ func new_session(seed_value: int = 4242, apply_setup: bool = true) -> RefCounted
 		session.world["round"] = 1
 		session.world["phase"] = "ACTIONS"
 	return session
+
+
+## Il §10 di sempre, per le prove che guardano **le azioni** e non l'economia.
+##
+## Da 0.1.156 CHR_01 gioca con le carte come unica moneta (D-188): prendere
+## un'INFLUENZARE con un'Occasione non si puo' piu'. Trentasette prove usavano
+## le azioni dirette **per mettere il mondo nella posizione da provare**, non per
+## misurare l'economia, e restano vere: l'azione esiste ancora, cambia chi la
+## pronuncia. Ogni sessione di prova nasce quindi dal lato classico
+## dell'interruttore; il lato nuovo si accende a mano, e che i **dati spediti**
+## ce l'abbiano acceso lo prova `test_card_actions`.
+func play_classic() -> void:
+	var chronicle: Dictionary = session.data.chronicles["CHR_01"] as Dictionary
+	chronicle["actions_from_cards"] = false
+	# Le due meta' si spengono insieme come si accendono insieme (D-184, D-185):
+	# il rubinetto sopra ACQUISIRE non e' ne' il gioco vecchio ne' quello nuovo,
+	# e misurarlo vuol dire misurare un terzo gioco che nessuno gioca.
+	chronicle["hand_refill"] = {}
+	session.actions.set("_chronicle", chronicle)

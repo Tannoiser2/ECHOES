@@ -70,6 +70,22 @@
             "pattern": "^ENT_[A-Z0-9_]+$"
           }
         },
+        "chronicle_overrides": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Le regole della Chronicle che questo piano riscrive per la durata della propria partita. Serve a una cosa sola: un piano e' una **storia scritta a mano** in una certa economia, e quando l'economia della Chronicle cambia la storia non cambia con lei. I tre piani di CHR_01 raccontano il gioco di §10 - un'Occasione compra un'azione - e restano leggibili dichiarandolo, invece di diventare falsi il giorno in cui le carte sono diventate l'unica moneta (D-188).",
+          "properties": {
+            "actions_from_cards": {
+              "type": "boolean",
+              "description": "Come `actions_from_cards` sulla Chronicle. A `false` il piano gioca le azioni dirette anche se la Chronicle e' passata alle carte."
+            },
+            "hand_refill": {
+              "type": "object",
+              "additionalProperties": true,
+              "description": "Come `hand_refill` sulla Chronicle. Vuoto spegne il rubinetto: si spegne insieme alle azioni sulle carte, o si misura un terzo gioco che nessuno gioca."
+            }
+          }
+        },
         "fallback_action": {
           "$ref": "#/$defs/turn_action",
           "description": "Used when a seat has no scripted action left for the current AO."

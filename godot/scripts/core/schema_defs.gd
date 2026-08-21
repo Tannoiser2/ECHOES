@@ -151,6 +151,9 @@ const DEFS := {
 			"rules_text": {
 				"type": "String",
 			},
+			"card_action": {
+				"type": "Dictionary",
+			},
 			"on_commit_effects": {
 				"type": "Array",
 				"element": {
@@ -316,6 +319,21 @@ const DEFS := {
 			},
 			"structure_rules": {
 				"type": "Dictionary",
+			},
+			"veiled_tensions": {
+				"type": "String",
+				"enum": [
+					"HIDES_ALL",
+					"HIDES_THRESHOLD",
+				],
+				"default": "HIDES_ALL",
+			},
+			"hand_refill": {
+				"type": "Dictionary",
+			},
+			"actions_from_cards": {
+				"type": "bool",
+				"default": false,
 			},
 			"saga_scoring": {
 				"type": "Dictionary",
@@ -1013,6 +1031,9 @@ const DEFS := {
 					"type": "String",
 					"pattern": "^ENT_[A-Z0-9_]+$",
 				},
+			},
+			"chronicle_overrides": {
+				"type": "Dictionary",
 			},
 			"fallback_action": {
 				"type": "Dictionary",

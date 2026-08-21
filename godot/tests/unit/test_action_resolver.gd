@@ -109,7 +109,12 @@ func test_influence_by_discard_spends_a_relevant_asset() -> void:
 	assert_eq(session.service.hand_size("ENT_VAERAX"), hand_before - 1, "una carta e stata spesa")
 
 
+## Col velo che copre **tutto** (`HIDES_ALL`): la domanda e' fuori portata
+## finche' non la si scopre.
 func test_influence_refuses_a_veiled_tension() -> void:
+	var chronicle: Dictionary = session.data.chronicles["CHR_01"] as Dictionary
+	var before_rule: Variant = chronicle.get("veiled_tensions")
+	chronicle["veiled_tensions"] = "HIDES_ALL"
 	var result: Dictionary = _do(
 		"ENT_VAERAX", "INFLUENCE", {"tension_id": "TEN_AWAKENING", "delta": -1}
 	)
@@ -120,6 +125,26 @@ func test_influence_refuses_a_veiled_tension() -> void:
 		"ENT_VAERAX", "INFLUENCE", {"tension_id": "TEN_AWAKENING", "delta": -1, "via": "PRESENCE"}
 	)
 	assert_true(bool(after["ok"]), "dopo lo SCHEME diventa raggiungibile: %s" % str(after["error"]))
+	if before_rule == null:
+		chronicle.erase("veiled_tensions")
+	else:
+		chronicle["veiled_tensions"] = before_rule
+
+
+## Col velo che copre **la sola soglia** (`HIDES_THRESHOLD`, D-187): sulla
+## domanda si spinge subito. Non sapere quando esplodera' e' il rischio che il
+## committente voleva, non un divieto.
+func test_influence_reaches_a_tension_whose_only_secret_is_the_threshold() -> void:
+	var chronicle: Dictionary = session.data.chronicles["CHR_01"] as Dictionary
+	assert_eq(
+		str(chronicle.get("veiled_tensions", "HIDES_ALL")),
+		"HIDES_THRESHOLD",
+		"CHR_01 gioca con la soglia coperta"
+	)
+	var result: Dictionary = _do(
+		"ENT_VAERAX", "INFLUENCE", {"tension_id": "TEN_AWAKENING", "delta": -1, "via": "PRESENCE"}
+	)
+	assert_true(bool(result["ok"]), "si spinge senza aver scoperto: %s" % str(result["error"]))
 
 
 func test_influence_refuses_a_delta_other_than_one() -> void:
