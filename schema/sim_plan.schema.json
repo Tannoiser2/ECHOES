@@ -83,6 +83,11 @@
               "type": "object",
               "additionalProperties": true,
               "description": "Come `hand_refill` sulla Chronicle. Vuoto spegne il rubinetto: si spegne insieme alle azioni sulle carte, o si misura un terzo gioco che nessuno gioca."
+            },
+            "claim_rules": {
+              "type": "object",
+              "additionalProperties": true,
+              "description": "Come `claim_rules` sulla Chronicle (D-191). Vuoto riporta la presa di parola a §10: si prenota in un round e si riscuote in un altro. Una storia scritta in due tempi non si rilegge in un tempo solo."
             }
           }
         },

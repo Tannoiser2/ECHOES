@@ -294,6 +294,23 @@ func _tensions_needing_the_word(entity_id: String, session: RefCounted) -> Array
 ## Quindi: si prenota quando la domanda si sta scaldando, si forza quando
 ## stava comunque per porsi - cosi' il Consiglio forzato *sostituisce* quello a
 ## soglia invece di aggiungersi - e con una mano con cui giocarselo.
+## La deroga a §10 la dichiara la Chronicle (D-191), non il codice.
+func _claim_in_one_move(session: RefCounted) -> bool:
+	var chronicle: Dictionary = session.data.chronicles[
+		str(session.world["chronicle_id"])
+	] as Dictionary
+	return bool(
+		(chronicle.get("claim_rules", {}) as Dictionary).get("same_round_when_ready", false)
+	)
+
+
+func _claim_ready_at(session: RefCounted) -> int:
+	var chronicle: Dictionary = session.data.chronicles[
+		str(session.world["chronicle_id"])
+	] as Dictionary
+	return int((chronicle.get("claim_rules", {}) as Dictionary).get("ready_at", 3))
+
+
 func _claim_the_word(entity_id: String, session: RefCounted) -> Dictionary:
 	for tension_id in _tensions_needing_the_word(entity_id, session):
 		var id: String = str(tension_id)
@@ -306,13 +323,33 @@ func _claim_the_word(entity_id: String, session: RefCounted) -> Dictionary:
 		# qualcun altro - misurato, e' il seggio dalla soglia piu' bassa a
 		# pagarlo, ogni volta (D-069). Cosi' il Consiglio forzato si aggiunge
 		# all'anno invece di rubare il posto a quello che stava arrivando.
-		if value >= threshold - DANGER_MARGIN \
-				and session.service.hand_size(entity_id) >= COMFORTABLE_HAND \
-				and (session.tensions.tensions_at_threshold() as Array).is_empty():
+		# Col colpo solo (D-191) la cautela di D-069 non serve piu': non c'e'
+		# nessuna prenotazione da proteggere, e strappare una domanda matura e'
+		# esattamente cio' che il committente vuole che un giocatore possa fare
+		# — «l'innesco lo apre un giocatore».
+		var ready: bool = (
+			value >= _claim_ready_at(session) if _claim_in_one_move(session)
+			else (
+				value >= threshold - DANGER_MARGIN
+				and session.service.hand_size(entity_id) >= COMFORTABLE_HAND
+				and (session.tensions.tensions_at_threshold() as Array).is_empty()
+			)
+		)
+		if ready:
 			var force: Dictionary = {"mode": "FORCE", "tension_id": id}
 			if session.actions.can_execute(entity_id, "CLAIM", force):
 				return {"template": "CLAIM", "params": force}
 		var domain: String = session.service.tension_domain(id)
+		# **Non si prenota cio' che e' gia' maturo** (D-191). Quando la Chronicle
+		# concede la presa di parola in un colpo, una domanda gia' a maturita' o
+		# si strappa adesso o si lascia stare: prenotarla e' bruciare una carta
+		# per comprare un diritto che si ha gia'. Misurato, era la sola ragione
+		# per cui la deroga a §10 non mordeva - 85 prenotazioni morte su 98.
+		# **Non si prenota cio' che e' gia' maturo** (D-191): su una domanda a
+		# maturita' il diritto di parlare ce l'hanno tutti, e comprarlo con una
+		# carta AUTORITA' e' spenderla per niente.
+		if _claim_in_one_move(session) and value >= _claim_ready_at(session):
+			continue
 		# Si prenota solo con in mano anche la carta per riscuotere: senza
 		# questo, meta' dei Claim creati non veniva mai forzata - 124 creati e
 		# 45 forzati in 40 Chronicle - e ogni prenotazione a vuoto e' una carta

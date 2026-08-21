@@ -10,6 +10,94 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-191 — Non si prenota una domanda che e' gia' matura
+**implemented in 0.1.159** (ISSUES 37, meta' aperta — decisione del committente su §10)
+
+Il committente ha deciso tre cose: **gioco a carte**, **l'innesco lo apre un
+giocatore**, e **col sacchetto le soglie vanno riviste**. La prima e' fatta
+(D-188), la terza e' il lavoro grosso di ISSUES 49. La seconda non esiste finche'
+RIVENDICARE muore in mano tre volte su quattro: **un innesco a chiamata non e'
+un innesco se la chiamata non riesce mai.**
+
+### La deroga
+
+§10 vuole due tempi: si prenota un dominio in un round (CREATE, scartando un
+AUTORITA') e si riscuote in un round successivo (FORCE, scartandone un secondo).
+Chi rivendica deve quindi indovinare, un round prima, che la domanda sara'
+matura, che nessun altro avra' gia' forzato, e di avere ancora una carta.
+
+Da qui: se la Tensione e' **gia' matura** — al valore che §10 chiama forzabile,
+3 — prendere la parola e' **un'azione sola**. Non si prenota cio' che e' gia'
+pronto. La prenotazione resta per il caso vero: la domanda che *non* e' ancora
+matura e che ci si vuole accaparrare prima che lo diventi.
+
+E' dichiarata sulla Chronicle (`claim_rules.same_round_when_ready`, con
+`ready_at`), non scritta nel codice: il §10 di sempre resta provato dai test e si
+riaccende cambiando una riga.
+
+### Il collo di bottiglia si e' spostato due volte, e l'ho misurato ogni volta
+
+**Prima misura, la regola sola.** Su 720 turni il cervello vuole prendere la
+parola **153 volte**, e con la deroga l'azione diretta sarebbe legale **153 volte
+su 153** — la regola non rifiuta piu' niente. Ma i Consigli strappati non si
+muovevano.
+
+**Il secondo collo: le carte.** In mano c'era una carta RIVENDICARE 106 volte su
+153, ma la mano sapeva dire **esattamente quella cosa** solo 51 volte: le quattro
+carte AUTORITA' fissavano il modo, due CREATE e due FORCE. **Il modo e' stato
+liberato**: e' D-184 applicato — *«i parametri scritti sulla carta vincono, quelli
+che la carta lascia aperti restano una scelta di chi la gioca»*. Prenotare o
+strappare lo decide chi cala la carta.
+
+**Il terzo collo: la cautela del bot.** D-069 gli aveva insegnato a forzare solo
+in un round che sarebbe rimasto muto, per non rubare il posto al Consiglio a
+soglia. Quella cautela proteggeva **una prenotazione**, e con la deroga non c'e'
+piu' niente da proteggere. Adesso, quando la Chronicle concede il colpo solo, il
+seggio strappa una domanda matura senza aspettare — ed e' esattamente cio' che il
+committente ha chiesto — e **non prenota piu' cio' che e' gia' maturo**.
+
+### Le misure
+
+Su CHR_01, 40 partite, contando i Claim nel registro degli Effetti:
+
+| | prima | dopo |
+|---|---|---|
+| prenotazioni aperte | 73 | **27** |
+| prenotazioni riscosse | 16 | **16** |
+| **morte in mano** | 57 (**78%**) | **11 (41%)** |
+
+Il cancello regge: `FAIL 239 · 100 · 134 · 126`, Consigli media 5,99, mediana 6,
+**0 su 8** a tavolo misto e uniforme. Suite **374 test / 6555 asserzioni**.
+
+### Quello che si dichiara
+
+- **Il criterio di ISSUES 37 non e' raggiunto.** Chiedeva le morte **sotto una su
+  tre**; siamo a **41%**, da 78%. Quasi dimezzate, non abbastanza. La meta' resta
+  aperta.
+- **Ho provato a chiuderlo togliendo del tutto la prenotazione** al bot quando la
+  deroga e' accesa: le morte vanno a **zero**, ma **zero e' anche il numero di
+  prenotazioni**. Non e' una regola risanata, e' una regola sparita — e i Consigli
+  falliti salivano da 239 a 252. Respinta coi numeri.
+- **Ho provato anche a impedire al ripiego di giocare una carta RIVENDICARE alla
+  cieca** (senza bersaglio prenota un dominio a caso): comprava due punti
+  percentuali di morte in meno e costava **19 Consigli falliti in piu'**.
+  Respinta coi numeri.
+- **CHR_03 non e' toccata**: li' §10 e' quello di sempre e le prenotazioni
+  muoiono ancora al 78%. E' il termine di paragone.
+- **La misura precedente era contaminata e l'ho corretta.** La sonda dei gradini
+  alterna CHR_01 e CHR_03, quindi meta' del campione veniva dal mondo dove la
+  regola e' spenta: i primi numeri che avevo letto (80 aperte, 21 forzate)
+  mescolavano due giochi. I numeri qui sopra sono **CHR_01 da sola**.
+- **Forzare un Consiglio non e' un Effetto**: `world["forced_confluence"]` si
+  scrive a mano, ed e' una delle poche mutazioni senza inverso. Non l'ho toccata,
+  ma con l'innesco a chiamata diventera' il cuore del turno, e li' andra' fatta
+  come si deve.
+- **Il passo dopo e' ISSUES 49**, e questa deroga ne e' il primo mattone: quando
+  saranno i mucchi coperti a dire quale domanda si dibatte, sara' **questa**
+  l'azione che li gira.
+
+---
+
 ## D-190 — Il prezzo del sacchetto dei segnalini coperti
 **misurata in 0.1.158** (nessuna regola cambiata: e' il preventivo di ISSUES 49)
 

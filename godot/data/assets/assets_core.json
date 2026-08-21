@@ -332,10 +332,7 @@
       "rules_text": "Una riga scritta bene vale quanto chi la fa rispettare — e dove si discute, la legge calma la piazza: l'inquietudine si cancella.",
       "card_action": {
         "kind": "CLAIM",
-        "params": {
-          "mode": "CREATE"
-        },
-        "note": "L'editto e' la carta con cui ci si prenota la parola su un dominio."
+        "note": "L'editto prende la parola: si prenota un dominio, o si strappa il Consiglio se la domanda e' gia' matura. Lo decide chi la gioca."
       },
       "on_commit_effects": [
         {
@@ -455,10 +452,7 @@
       "rules_text": "Si scarta sempre: un diritto invocato due volte non è più un diritto, è una pretesa — e la pretesa divide: la Regione della domanda resta contesa.",
       "card_action": {
         "kind": "CLAIM",
-        "params": {
-          "mode": "FORCE"
-        },
-        "note": "Il diritto di corona non aspetta la soglia: strappa il Consiglio adesso."
+        "note": "Il diritto di corona non chiede il permesso: apre il Consiglio, o se lo prenota."
       },
       "on_commit_effects": [
         {
@@ -536,10 +530,7 @@
       "rules_text": "+1 sempre, su qualsiasi fronte. Si scarta sempre: si concede una volta sola, e tutti se ne ricordano — perché la nomina scrive un nome nella linea: il mondo ricorda l'erede nominato.",
       "card_action": {
         "kind": "CLAIM",
-        "params": {
-          "mode": "CREATE"
-        },
-        "note": "Investire qualcuno e' dire in anticipo di chi sara' la domanda."
+        "note": "Investire qualcuno e' dire di chi sara' la domanda - prima che maturi, o adesso."
       },
       "on_commit_effects": [
         {
@@ -618,10 +609,7 @@
       "rules_text": "Forza 3. Si scarta sempre, e chi ti sta di fronte guadagna una presenza nella Regione di cui si discute: nominare un erede fa arrivare tutti quelli che non sono stati nominati.",
       "card_action": {
         "kind": "CLAIM",
-        "params": {
-          "mode": "FORCE"
-        },
-        "note": "L'atto di successione apre il tavolo da se': e' scritto, e va letto."
+        "note": "L'atto di successione e' scritto e va letto: apre il tavolo quando chi lo tiene decide."
       },
       "on_commit_effects": [
         {

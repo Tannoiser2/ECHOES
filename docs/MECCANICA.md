@@ -398,7 +398,7 @@ Le cinque azioni che una carta può portare, tutte per **1 AO**:
 | 2 | **INFLUENZARE** | Sposta di ±1 una Tensione. Serve **una** fra: presenza in una Regione del dominio di quella Tensione (gratis), oppure scartare 1 Asset di una famiglia rilevante |
 | 3 | **FORGIARE** | Sposta di 1 passo una relazione. **Verso l'alto**: serve il consenso dell'altro giocatore e 1 Asset LEGAMI scartato. **Verso il basso**: unilaterale, gratuito, e finisce nel registro pubblico |
 | 4 | **TRAMARE** | Uno fra: leggere in privato la **soglia** di una Tensione velata · guardare le prime 2 carte del mazzo Eco · leggere l'informazione privata di una Regione. Il risultato è **privato** |
-| 5 | **RIVENDICARE** | **CREATE**: scarta 1 Asset AUTORITÀ e apri una rivendicazione su un dominio di Tensione. **FORCE**: in un round successivo, con quella Tensione a 3 o più, consuma la rivendicazione e scarta un **secondo** AUTORITÀ per **strappare un Consiglio di cui sei tu il proponente** |
+| 5 | **RIVENDICARE** | Se la Tensione è **già a 3 o più**, la prendi in un colpo: scarti 1 AUTORITÀ e **strappi un Consiglio di cui sei tu il proponente**. Se non lo è ancora, la **prenoti** (CREATE) e la riscuoti quando matura. Non si prenota ciò che è già pronto |
 | 6 | **CALARE UNA CARTA NARRATORE** | Gioca una delle carte Eco che hai in mano: la sua funzione narrativa diventa un fatto del mondo, i suoi effetti si applicano, e alcune carte **aprono un Consiglio**. Le carte del Narratore sono **un mazzo a parte**: non sono la mano, e non si pescano dalla mappa |
 
 **La scala delle relazioni** (per FORGIARE):
@@ -876,7 +876,7 @@ l'inizio, trova il proprio seggio già in mano a un bot e ne riprende il posto.
 | Regioni | **6** (3 con un padrone all'inizio, 3 di nessuno) |
 | Regioni tenibili senza sforzo | **2** (oltre, si paga Tensione a ogni round) |
 | Tensioni in gioco | **4** per anno (su 12 scritte) |
-| Soglie | fra **4 e 7** |
+| Soglie | fra **4 e 7** · una domanda è **matura** (strappabile) a **3** |
 | Deriva | **+1** a una Tensione ogni round, 9 gettoni mescolati |
 | Consigli in un anno | mediana **6**, estremi misurati **2–9** (tavolo misto, 0.1.156) |
 | Asset impegnabili | **0–3** (0–2 con una Condizione) |

@@ -5,6 +5,43 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.159 — Non si prenota una domanda che è già matura (D-191)
+
+- **Decisione del committente su §10**, la metà aperta di **ISSUES 37**: se la
+  Tensione è **già matura** (valore ≥ 3), prendere la parola è **un'azione sola**.
+  La prenotazione resta per il caso vero — la domanda che *non* è ancora matura.
+- Nasce dalla scelta «**l'innesco lo apre un giocatore**»: un innesco a chiamata
+  non è un innesco se la chiamata non riesce mai.
+- Dichiarata sulla Chronicle (`claim_rules.same_round_when_ready`, `ready_at`):
+  il §10 di sempre resta provato e si riaccende cambiando una riga.
+- **Il modo delle quattro carte RIVENDICARE è stato liberato**: prenotare o
+  strappare lo decide chi cala la carta, non la carta. È D-184 applicato.
+- **Le morte in mano su CHR_01, in 40 partite: da 57 su 73 (78%) a 11 su 27 (41%).**
+- Cancello: `FAIL 239 · 100 · 134 · 126`, Consigli 5,99, mediana 6, **0 su 8**.
+  Suite **374 test / 6555 asserzioni**.
+
+### Dichiarato
+
+- **Il criterio di ISSUES 37 non è raggiunto**: chiedeva le morte sotto una su
+  tre, siamo a 41% da 78%. Quasi dimezzate, non abbastanza. La metà resta aperta.
+- **Due strade più aggressive sono state respinte coi numeri**: togliere del
+  tutto la prenotazione al bot azzera le morte ma azzera anche le prenotazioni
+  (e porta i Consigli falliti da 239 a 252); impedire al ripiego di giocare una
+  carta RIVENDICARE alla cieca compra 2 punti di morte in meno e costa **19
+  Consigli falliti**.
+- **Una misura precedente era contaminata e l'ho corretta**: la sonda dei gradini
+  alterna CHR_01 e CHR_03, e metà del campione veniva dal mondo dove la regola è
+  spenta. I numeri qui sopra sono CHR_01 da sola.
+- **CHR_03 non è toccata**: lì §10 è quello di sempre, morte al 78%. È il termine
+  di paragone.
+- **Forzare un Consiglio non è un Effetto** (`world["forced_confluence"]` si
+  scrive a mano): una delle poche mutazioni senza inverso. Con l'innesco a
+  chiamata diventerà il cuore del turno, e lì andrà fatta come si deve.
+- I tre piani scriptati dichiarano ora anche `claim_rules` fra i propri
+  `chronicle_overrides`, e una guardia lo verifica: è la stessa lezione di D-189.
+
+---
+
 ## 0.1.158 — Il prezzo del sacchetto dei segnalini coperti (D-190)
 
 - **Nessuna regola cambiata**: è il preventivo di **ISSUES 49**, la

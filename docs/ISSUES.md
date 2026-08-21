@@ -1153,13 +1153,33 @@ precedente**. Chi rivendica deve quindi indovinare, un round prima, che quella
 domanda sarà matura *e* che nessun altro avrà già forzato un Consiglio *e* di
 avere ancora un secondo AUTORITÀ in mano.
 
-**Non la tocco da solo, perché cambiarla è cambiare il regolamento.** La strada
-più piccola che si vede: se la Tensione è **già** a 3 o più, CREATE e FORCE
-avvengono nella stessa azione — non si prenota una domanda che è già matura. Ma
-è §10, e §10 lo decide il committente.
+**La decisione è arrivata** (0.1.159, [D-191](DECISIONS.md#d-191)): il committente
+ha scelto «**l'innesco lo apre un giocatore**», e la strada più piccola è stata
+presa — se la Tensione è **già** a 3 o più, CREATE e FORCE avvengono nella stessa
+azione: non si prenota una domanda che è già matura. Sta nella Chronicle
+(`claim_rules.same_round_when_ready`), quindi il §10 di sempre resta provato e
+riaccendibile.
 
-**Fatto quando** la decisione è a verbale e, se la regola cambia, le
-rivendicazioni morte scendono sotto una su tre.
+Il collo di bottiglia si è spostato due volte, e ogni volta è stato misurato: la
+**regola** (153 intenzioni su 153 ora legali), le **carte** (il modo fissato su
+due CREATE e due FORCE — liberato), la **cautela del bot** (D-069 proteggeva una
+prenotazione che non c'è più).
+
+| su CHR_01, 40 partite | prima | dopo |
+|---|---|---|
+| prenotazioni aperte | 73 | **27** |
+| riscosse | 16 | **16** |
+| **morte in mano** | 57 (**78%**) | **11 (41%)** |
+
+**Resta aperta.** Il criterio chiede le morte **sotto una su tre**: siamo a 41%.
+Due strade più aggressive sono state provate e **respinte coi numeri** (togliere
+del tutto la prenotazione azzera anche le prenotazioni e costa 13 Consigli
+falliti; bloccare il ripiego costa 19). CHR_03 resta al 78% ed è il termine di
+paragone.
+
+**Fatto quando** le rivendicazioni morte scendono sotto una su tre — o quando
+ISSUES 49 arriva e questa azione diventa quella che gira i mucchi coperti, e
+allora la domanda cambia forma.
 
 *Misura di 0.1.147, per il confronto di domani: **128 aperte, 17 forzate, 111
 morte** su 80 Chronicle — la proporzione non si è mossa, ed è scritta anche in

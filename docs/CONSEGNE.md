@@ -1,4 +1,4 @@
-# Passaggio di consegne — stato al 0.1.158
+# Passaggio di consegne — stato al 0.1.159
 
 *Scritto per chi apre una sessione nuova su questo repository. Dice dov'è il
 lavoro, cosa regge, cosa no, e quali sono le regole di casa che non vanno
@@ -13,7 +13,7 @@ riscoperte da capo.*
 | ramo di sviluppo | `claude/echoes-boardgame-dev-cmu444` |
 | PR aperta | nessuna |
 | ultimo commit su `main` | 0.1.157 |
-| sul ramo | 0.1.158 — il preventivo dei segnalini |
+| sul ramo | 0.1.158-0.1.159 — il preventivo dei segnalini, e la presa di parola in un colpo |
 | ultimo merge su `main` | `248f5cd` — PR #70, 0.1.150–0.1.157 |
 
 La PR #70 è stata mergiata: **il gioco a sole carte è su `main`**. Questo ramo
@@ -110,7 +110,7 @@ acceso in CHR_01 e CHR_02):
 ```
 FAIL 235 · SUCC 99 · SUCC 122 · DECI 121 · mediana 6
 0 su 8 bloccati (misto e uniforme) · nessun seggio a NONE · nessuno a zero Trionfi
-suite 372 test / 6722 asserzioni
+suite 374 test / 6555 asserzioni
 ```
 
 ## 4. Le due cose che vanno guardate per prime
@@ -197,11 +197,10 @@ Scritto dopo il merge di #70, quando il gioco a sole carte è diventato il gioco
    Si abbassa con più carte per Atto o con una distribuzione diversa delle
    azioni fra le famiglie: si trova il ginocchio in un pomeriggio di misure.
    **È la prima cosa da fare.**
-2. **ISSUES 37, che adesso morde davvero** — le quattro carte RIVENDICARE
-   ereditano il difetto: `FORCE` chiede un Claim posato in un round precedente,
-   quindi due delle quarantotto sono quasi ingiocabili. Prima era statistica,
-   adesso è contenuto morto in mano. **Serve una decisione del committente su
-   §10**: non farlo senza chiedere.
+2. **ISSUES 37 — metà chiusa in 0.1.159** (D-191), su decisione del committente:
+   non si prenota una domanda già matura, la si prende in un colpo. Morte in mano
+   su CHR_01 **da 78% a 41%**; il criterio chiede sotto il 33%, quindi **resta
+   aperta**. Due strade più aggressive sono state respinte coi numeri.
 3. **Il mondo del Sale** — CHR_03 gioca ancora il §10 di prima. Portarcelo vuol
    dire prima guardare la sua mappa come è stata guardata quella della Carestia
    (D-186). Lavoro pulito, nessuna decisione richiesta.

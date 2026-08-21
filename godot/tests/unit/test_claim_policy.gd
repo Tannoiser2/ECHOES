@@ -125,3 +125,49 @@ func test_the_natural_proponent_does_not_claim() -> void:
 		PolicyDecider.new(null)._claim_the_word("ENT_VAERAX", session), {},
 		"il proponente naturale non prenota quello che ha gia'"
 	)
+
+
+## D-191, la deroga a §10 chiesta dal committente: **non si prenota una domanda
+## che e' gia' matura**. Con `claim_rules.same_round_when_ready` acceso,
+## strappare il Consiglio e' un'azione sola, senza prenotazione.
+func test_a_ripe_question_is_taken_in_one_move() -> void:
+	var chronicle: Dictionary = session.data.chronicles["CHR_01"] as Dictionary
+	var before: Variant = chronicle.get("claim_rules")
+	chronicle.erase("claim_rules")
+	session.actions.set("_chronicle", chronicle)
+	# La Carestia parte a 3: matura per §10, ma senza prenotazione non si tocca.
+	var force: Dictionary = {"mode": "FORCE", "tension_id": "TEN_FAMINE"}
+	var refused: String = session.actions.check("ENT_ALDRIC", "CLAIM", force)
+	assert_ne(refused, "", "col §10 di sempre serve un Claim posato prima")
+	assert_true(refused.contains("nessun Claim"), "e il motivo lo dice: «%s»" % refused)
+
+	chronicle["claim_rules"] = {"same_round_when_ready": true, "ready_at": 3}
+	session.actions.set("_chronicle", chronicle)
+	assert_eq(
+		session.actions.check("ENT_ALDRIC", "CLAIM", force), "",
+		"con la deroga, una domanda matura si strappa in un colpo"
+	)
+	if before == null:
+		chronicle.erase("claim_rules")
+	else:
+		chronicle["claim_rules"] = before
+
+
+## E la maturita' resta una condizione: una domanda fredda non si strappa,
+## deroga o no. E' quello che tiene in vita la prenotazione.
+func test_a_cold_question_still_needs_the_booking() -> void:
+	var chronicle: Dictionary = session.data.chronicles["CHR_01"] as Dictionary
+	var before: Variant = chronicle.get("claim_rules")
+	chronicle["claim_rules"] = {"same_round_when_ready": true, "ready_at": 3}
+	session.actions.set("_chronicle", chronicle)
+	# Il Risveglio parte a 2: sotto la maturita'.
+	var force: Dictionary = {"mode": "FORCE", "tension_id": "TEN_AWAKENING"}
+	var refused: String = session.actions.check("ENT_ALDRIC", "CLAIM", force)
+	assert_ne(refused, "", "una domanda fredda non si strappa")
+	assert_true(
+		refused.contains("almeno 3"), "e il motivo e la maturita: «%s»" % refused
+	)
+	if before == null:
+		chronicle.erase("claim_rules")
+	else:
+		chronicle["claim_rules"] = before
