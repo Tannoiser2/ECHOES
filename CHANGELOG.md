@@ -5,6 +5,34 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.152 — Il telaio delle azioni sulle carte (D-184)
+
+- **ISSUES 47 fase 1**, sul via libera del committente: «ogni carta ha una azione
+  di gioco, un valore per il consiglio, e effetti specifici della carta».
+- **Due dei tre pezzi c'erano già**: il valore è `family`+`strength`, gli effetti
+  sono `on_commit_effects` (47 carte su 48 ne hanno uno). Mancava l'azione.
+- **`card_action` sull'Asset** — `{kind, params}` con `kind` fra le sei azioni di
+  §10: il telaio non inventa verbi, sposta chi può pronunciarli.
+- **`PLAY_CARD` nel resolver**: passa dal **medesimo `check()`** dell'azione
+  corrispondente e poi **consuma la carta**. Nessuna regola scritta due volte, e
+  un test lo prova chiedendo a una carta un MUOVERE illegale.
+- **`actions_from_cards` sulla Chronicle**: spento (default) il gioco è quello di
+  sempre; acceso, le sei azioni non si prendono più con un'Opportunità e la mano
+  diventa l'unica moneta.
+- **La spesa è il punto**: giocare una carta la scarta, quindi non voterà più. È
+  lì che nasce il bilanciamento — *o la spendi per fare, o la tieni per votare*.
+- **Zero carte convertite, playtest identico riga per riga** a 0.1.150. Suite
+  **359 test / 6503 asserzioni**.
+
+### Dichiarato
+
+- Il gioco nuovo non esiste finché non si scrivono le **48 `card_action`**: la
+  fase 1 serve a poterle scrivere una famiglia alla volta, misurando.
+- **Il rubinetto della mano non è collegato**: le due metà (azioni dalle carte, e
+  carte dalla presenza) vanno accese **insieme**, o un seggio resterebbe senza
+  carte e senza poter agire.
+- `TRAMARE` e `INFLUENZARE` spariranno quando esisteranno le carte che li portano.
+
 ## 0.1.151 — Il preventivo della mano che viene dalla mappa (D-183)
 
 - **`run_hand_probe.gd`**, sonda nuova: il committente ha proposto che tutte le

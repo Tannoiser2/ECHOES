@@ -112,6 +112,27 @@
         "rules_text": {
           "type": "string"
         },
+        "card_action": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind"],
+          "description": "L'azione di gioco che questa carta permette, se la si gioca dalla mano invece di impegnarla al Consiglio (ISSUES 47). Omessa, la carta non fa niente da sola: e' solo un valore e un effetto di Consiglio, come in v0.2. Il gioco che ne nasce e' il bilanciamento fra le tre cose che una carta e': un'azione, un peso al voto, e un effetto suo.",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "enum": ["ACQUIRE", "MOVE", "INFLUENCE", "FORGE", "SCHEME", "CLAIM"],
+              "description": "Quale delle azioni del gioco la carta mette in mano. Sono le stesse di §10: il telaio non inventa verbi nuovi, sposta chi li puo' pronunciare."
+            },
+            "params": {
+              "type": "object",
+              "description": "I parametri fissati dalla carta. Quelli non scritti restano una scelta di chi la gioca: una carta puo' dire *dove* si muove, oppure lasciarlo aperto.",
+              "additionalProperties": true
+            },
+            "note": {
+              "type": "string"
+            }
+          }
+        },
         "on_commit_effects": {
           "type": "array",
           "items": {

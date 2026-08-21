@@ -1577,6 +1577,12 @@ più grosso mai fatto sul progetto.
 diventano effetti di carte — il committente le vuole togliere, e la misura gli dà
 ragione (6 e 7 usi in un anno intero).
 
+**Fase 1 ✅ — il telaio** — fatta in 0.1.152 ([D-184](DECISIONS.md#d-184)):
+`card_action` sull'Asset, `PLAY_CARD` che passa dal medesimo `check()` dell'azione
+e **consuma la carta**, e l'interruttore `actions_from_cards` sulla Chronicle.
+Zero carte convertite, playtest identico riga per riga. Da qui le 48 carte si
+scrivono **una famiglia alla volta**, misurando, invece che tutte insieme.
+
 **Fatto quando** un anno si gioca per intero con le carte come unica moneta, il
 playtest resta **0/8** a tavolo misto e uniforme, e lo scarto fra il primo e
 l'ultimo seggio **non cresce** di atto in atto.

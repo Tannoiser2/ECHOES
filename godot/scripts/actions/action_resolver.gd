@@ -14,7 +14,13 @@ const WorldStateService := preload("res://scripts/world/world_state_service.gd")
 const TagRules := preload("res://scripts/world/tag_rules.gd")
 const ConditionEvaluator := preload("res://scripts/world/condition_evaluator.gd")
 
-const TEMPLATES: Array = ["ACQUIRE", "MOVE", "INFLUENCE", "FORGE", "SCHEME", "CLAIM", "PLAY_ECHO"]
+const TEMPLATES: Array = [
+	"ACQUIRE", "MOVE", "INFLUENCE", "FORGE", "SCHEME", "CLAIM", "PLAY_ECHO", "PLAY_CARD"
+]
+
+## Le sei azioni di §10: quelle che una carta puo' mettere in mano, e quelle che
+## `actions_from_cards` toglie dal tavolo quando la mano diventa l'unica moneta.
+const CARD_KINDS: Array = ["ACQUIRE", "MOVE", "INFLUENCE", "FORGE", "SCHEME", "CLAIM"]
 
 var world: Dictionary
 var data: RefCounted
@@ -69,6 +75,13 @@ func check(entity_id: String, template: String, params: Dictionary) -> String:
 	var gate: String = TagRules.action_gate(data, world, entity_id, template)
 	if gate != "":
 		return "il segno lo vieta: %s" % gate
+	# ISSUES 47: quando la Chronicle dichiara che le azioni si fanno con le carte,
+	# le sei di §10 non si prendono piu' con un'Opportunita' - si giocano dalla
+	# mano, e quella carta smette di poter votare. Il divieto vive qui perche' qui
+	# vive ogni precondizione: la sedia non la propone, l'app la spegne, e
+	# execute() la rifiuta, scritto una volta sola.
+	if bool(_chronicle.get("actions_from_cards", false)) and CARD_KINDS.has(template):
+		return "qui le azioni si fanno con le carte: gioca una carta che porti %s" % template
 	match template:
 		"ACQUIRE":
 			return _check_acquire(entity_id, params)
@@ -84,6 +97,8 @@ func check(entity_id: String, template: String, params: Dictionary) -> String:
 			return _check_claim(entity_id, params)
 		"PLAY_ECHO":
 			return _check_play_echo(entity_id, params)
+		"PLAY_CARD":
+			return _check_play_card(entity_id, params)
 	return "template non implementato"
 
 
@@ -128,6 +143,8 @@ func execute(entity_id: String, request: Dictionary) -> Dictionary:
 			outcome = _claim(entity_id, params, source)
 		"PLAY_ECHO":
 			outcome = _play_echo(entity_id, params, source)
+		"PLAY_CARD":
+			outcome = _play_asset_card(entity_id, params, source)
 		_:
 			return _error(template, "template non implementato")
 
@@ -919,6 +936,103 @@ func _pick_authority(entity_id: String, params: Dictionary) -> String:
 
 
 # --- helpers ---------------------------------------------------------------
+
+## --- PLAY_CARD: l'azione che sta sulla carta (ISSUES 47) --------------------
+##
+## «Ogni carta ha una azione di gioco, un valore per il consiglio, e effetti
+## specifici della carta»: il valore e gli effetti c'erano gia' (`strength` e
+## `on_commit_effects`), l'azione e' `card_action`. Giocarla la **consuma**, ed
+## e' li' che sta il gioco - quella carta non votera' piu'.
+##
+## Il telaio non duplica nessuna regola: legge la `card_action`, fonde i suoi
+## parametri con quelli che chi la gioca ha scelto, e passa dal medesimo
+## `check()` e dal medesimo eseguore dell'azione corrispondente. Una carta non
+## puo' fare cio' che l'azione non permetterebbe.
+func _card_request(entity_id: String, params: Dictionary) -> Dictionary:
+	var asset_id: String = str(params.get("asset_id", ""))
+	if asset_id == "":
+		return {"error": "manca la carta da giocare"}
+	if not (service.hand(entity_id) as Array).has(asset_id):
+		return {"error": "'%s' non e in mano a %s" % [asset_id, entity_id]}
+	var card: Variant = data.assets.get(asset_id)
+	if card == null:
+		return {"error": "carta sconosciuta '%s'" % asset_id}
+	var action: Dictionary = (card as Dictionary).get("card_action", {}) as Dictionary
+	if action.is_empty():
+		return {"error": "«%s» non porta nessuna azione" % str((card as Dictionary)["title"])}
+	# I parametri della carta vengono prima; quelli di chi la gioca riempiono
+	# solo cio' che la carta lascia aperto.
+	var merged: Dictionary = {}
+	for key in params:
+		if key != "asset_id":
+			merged[key] = params[key]
+	for key in (action.get("params", {}) as Dictionary):
+		merged[key] = (action["params"] as Dictionary)[key]
+	return {"kind": str(action["kind"]), "params": merged, "asset_id": asset_id}
+
+
+func _check_play_card(entity_id: String, params: Dictionary) -> String:
+	var request: Dictionary = _card_request(entity_id, params)
+	if request.has("error"):
+		return str(request["error"])
+	# La stessa domanda che si farebbe all'azione, perche' e' la stessa azione.
+	var gate: String = TagRules.action_gate(data, world, entity_id, str(request["kind"]))
+	if gate != "":
+		return "il segno lo vieta: %s" % gate
+	match str(request["kind"]):
+		"ACQUIRE":
+			return _check_acquire(entity_id, request["params"])
+		"MOVE":
+			return _check_move(entity_id, request["params"])
+		"INFLUENCE":
+			return _check_influence(entity_id, request["params"])
+		"FORGE":
+			return _check_forge(entity_id, request["params"])
+		"SCHEME":
+			return _check_scheme(entity_id, request["params"])
+		"CLAIM":
+			return _check_claim(entity_id, request["params"])
+	return "la carta porta un'azione che non esiste"
+
+
+func _play_asset_card(
+	entity_id: String, params: Dictionary, source: Dictionary
+) -> Dictionary:
+	var request: Dictionary = _card_request(entity_id, params)
+	if request.has("error"):
+		return _error("PLAY_CARD", str(request["error"]))
+	var kind: String = str(request["kind"])
+	var inner: Dictionary = request["params"]
+	var outcome: Dictionary = {}
+	match kind:
+		"ACQUIRE":
+			outcome = _acquire(entity_id, inner, source)
+		"MOVE":
+			outcome = _move(entity_id, inner, source)
+		"INFLUENCE":
+			outcome = _influence(entity_id, inner, source)
+		"FORGE":
+			outcome = _forge(entity_id, inner, source)
+		"SCHEME":
+			outcome = _scheme(entity_id, inner, source)
+		"CLAIM":
+			outcome = _claim(entity_id, inner, source)
+		_:
+			return _error("PLAY_CARD", "la carta porta un'azione che non esiste")
+	if not bool(outcome.get("ok", false)):
+		return outcome
+	# La carta si spende: e' questo che rende la mano una scelta e non una scorta.
+	var spent: Array = _discard(entity_id, str(request["asset_id"]), source)
+	var effects: Array = (outcome.get("effects", []) as Array).duplicate()
+	effects.append_array(spent)
+	log.bullet("%s gioca «%s» per %s." % [
+		_name(entity_id), _title(str(request["asset_id"])), kind
+	])
+	var info: Dictionary = (outcome.get("info", {}) as Dictionary).duplicate()
+	info["asset_id"] = str(request["asset_id"])
+	info["kind"] = kind
+	return _ok("PLAY_CARD", effects, info)
+
 
 func _discard(entity_id: String, asset_id: String, source: Dictionary) -> Array:
 	if asset_id == "":

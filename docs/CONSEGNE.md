@@ -1,4 +1,4 @@
-# Passaggio di consegne — stato al 0.1.151
+# Passaggio di consegne — stato al 0.1.152
 
 *Scritto per chi apre una sessione nuova su questo repository. Dice dov'è il
 lavoro, cosa regge, cosa no, e quali sono le regole di casa che non vanno
@@ -12,7 +12,7 @@ riscoperte da capo.*
 |---|---|
 | ramo di sviluppo | `claude/echoes-boardgame-dev-cmu444` |
 | PR aperta | in bozza, su `main` |
-| ultimo commit | 0.1.151 |
+| ultimo commit | 0.1.152 |
 | ultimo merge su `main` | `175d58d` — PR #68, 0.1.145–0.1.149 |
 
 La PR #68 è stata mergiata: questo ramo riparte da `main` e raccoglie da 0.1.150
@@ -86,6 +86,7 @@ solo.
 | **0.1.149** | una campagna è **almeno dieci anni**, deciso dal committente — e con la soglia si misura quanto resta viva: ultimo sorpasso all'anno 5 su 10 nella Carestia, 3,5 nel Sale |
 | **0.1.150** | **il Sale non vinceva: gli succedeva di vincere** — tre clausole su cinque erano fatti del mondo. Campagne sue da 12/12 a 9/12 (ISSUES 46 ridotta, non chiusa) |
 | **0.1.151** | il **preventivo** della riprogettazione voluta dal committente (ISSUES 47): il gioco si stringerebbe al 36-40% e lo scarto fra i seggi raddoppia ogni atto |
+| **0.1.152** | **il telaio delle azioni sulle carte** (ISSUES 47 fase 1): `card_action`, `PLAY_CARD` e l'interruttore. Zero carte convertite, playtest identico |
 
 Più due documenti: **`docs/MECCANICA.md`** — riportato a **0.1.149**, ed è il
 testo da dare a chi disegna l'infografica *e* a chi vuole sapere come si gioca
@@ -96,7 +97,7 @@ bene (§15) — e **`docs/SAGA_NAHR.md`**, dieci anni giocati e raccontati.
 ```
 FAIL 248 · SUCC 78 · SUCC 99 · DECI 154 · mediana 6
 0 su 8 bloccati (misto e uniforme) · nessun seggio a NONE · nessuno a zero Trionfi
-suite 355 test / 6490 asserzioni
+suite 359 test / 6503 asserzioni
 ```
 
 ## 4. Le due cose che vanno guardate per prime

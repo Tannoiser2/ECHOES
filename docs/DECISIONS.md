@@ -10,6 +10,70 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-184 — Il telaio delle azioni sulle carte
+**implemented in 0.1.152** (ISSUES 47, fase 1: il gancio a vuoto)
+
+Il committente ha dato il via: *«togliamo tutte le azioni e le mettiamo sulle
+carte. Ogni carta ha una azione di gioco, un valore per il consiglio, e effetti
+specifici della carta, il gioco deve essere un bilanciamento di come usare le
+cose che la carta ti permette di fare.»*
+
+### Due dei tre pezzi c'erano gia'
+
+| cosa chiede | dove sta oggi |
+|---|---|
+| un **valore per il Consiglio** | `family` + `strength` (1, 2 o 3) |
+| **effetti specifici della carta** | `on_commit_effects` — 47 carte su 48 ne hanno uno (D-106…D-114) |
+| **un'azione di gioco** | **non c'era** |
+
+Il telaio quindi non costruisce un sistema nuovo: aggiunge il terzo lato a un
+oggetto che ne aveva gia' due.
+
+### Come e' fatto
+
+- **`card_action` sull'Asset**: `{kind, params}`, dove `kind` e' una delle **sei
+  azioni di §10**. Il telaio non inventa verbi nuovi — sposta chi puo'
+  pronunciarli. I parametri scritti sulla carta vincono; quelli che la carta
+  lascia aperti restano una scelta di chi la gioca, quindi una carta puo' dire
+  *dove* si muove oppure lasciarlo decidere.
+- **`PLAY_CARD` nel resolver**: legge la `card_action`, passa dal **medesimo
+  `check()`** e dal medesimo esecutore dell'azione corrispondente, e poi
+  **consuma la carta**. Nessuna regola e' scritta due volte: una carta non puo'
+  fare cio' che l'azione non permetterebbe, e c'e' un test che lo prova
+  chiedendo a una carta un MUOVERE illegale.
+- **`actions_from_cards` sulla Chronicle**: spento — il default — il gioco e'
+  quello di sempre. Acceso, le sei azioni non si prendono piu' con
+  un'Opportunita' e la mano diventa l'unica moneta. Le carte del Narratore
+  restano fuori: sono un mazzo a parte, non la mano.
+
+**La spesa e' il punto.** Giocare una carta la scarta, quindi quella carta non
+votera' piu': e' li' che nasce il bilanciamento che il committente chiede — *o la
+spendi per fare, o la tieni per votare*.
+
+### Le misure
+
+**Zero carte convertite, e il playtest e' identico riga per riga** a quello di
+0.1.150. E' il pattern di D-104 e D-116, che qui vale doppio: il telaio piu'
+grosso mai aggiunto al gioco entra senza spostare un numero. Suite **359 test /
+6503 asserzioni** (quattro nuovi: la carta muta, la carta che agisce e si spende,
+la carta che non aggira un divieto, l'interruttore).
+
+### Quello che si dichiara
+
+- **Nessuna carta porta ancora un'azione.** Il gioco nuovo non esiste finche' non
+  si scrivono le 48 `card_action`, ed e' il pezzo di contenuto piu' grosso mai
+  fatto qui. La fase 1 serve a poterle scrivere **una famiglia alla volta**,
+  misurando, invece che tutte insieme.
+- **Il rubinetto della mano non e' ancora collegato**: le carte si pescano ancora
+  con ACQUISIRE. Quando `actions_from_cards` sara' acceso senza una pesca legata
+  alla presenza, un seggio finirebbe le carte e non potrebbe piu' agire — le due
+  meta' vanno accese **insieme**, ed e' scritto in ISSUES 47.
+- **`TRAMARE` e `INFLUENZARE` non sono ancora spariti** come azioni: il
+  committente li vuole togliere e la misura gli da' ragione (6 e 7 usi in un anno
+  intero), ma vanno tolti quando esistono le carte che li portano.
+
+---
+
 ## D-183 — Il prezzo della mano che viene dalla mappa
 **misurata in 0.1.151** (nessuna regola cambiata: e' il preventivo di ISSUES 47)
 

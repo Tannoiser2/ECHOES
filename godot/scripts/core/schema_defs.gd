@@ -151,6 +151,9 @@ const DEFS := {
 			"rules_text": {
 				"type": "String",
 			},
+			"card_action": {
+				"type": "Dictionary",
+			},
 			"on_commit_effects": {
 				"type": "Array",
 				"element": {
@@ -316,6 +319,10 @@ const DEFS := {
 			},
 			"structure_rules": {
 				"type": "Dictionary",
+			},
+			"actions_from_cards": {
+				"type": "bool",
+				"default": false,
 			},
 			"saga_scoring": {
 				"type": "Dictionary",

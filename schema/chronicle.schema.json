@@ -417,6 +417,11 @@
             }
           }
         },
+        "actions_from_cards": {
+          "type": "boolean",
+          "default": false,
+          "description": "Se le azioni si fanno solo con le carte (ISSUES 47). Falso - il default - le sei azioni di §10 si prendono con un'Opportunita' come in v0.2. Vero, l'unico modo di agire e' giocare una carta dalla mano che porti una `card_action`, e la mano diventa l'unica moneta del gioco: quella carta o la spendi per fare, o la tieni per votare."
+        },
         "saga_scoring": {
           "type": "object",
           "additionalProperties": false,
