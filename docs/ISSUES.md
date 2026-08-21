@@ -1161,6 +1161,10 @@ avvengono nella stessa azione — non si prenota una domanda che è già matura.
 **Fatto quando** la decisione è a verbale e, se la regola cambia, le
 rivendicazioni morte scendono sotto una su tre.
 
+*Misura di 0.1.147, per il confronto di domani: **128 aperte, 17 forzate, 111
+morte** su 80 Chronicle — la proporzione non si è mossa, ed è scritta anche in
+[MECCANICA §15](MECCANICA.md), fra le nove cose che i numeri dicono a chi gioca.*
+
 ### 38. ✅ La Vittoria della Cenere ha una porta sola — fatta in 0.1.122
 
 `contenuto` · nata dalla misura respinta di [D-152](DECISIONS.md#d-152)

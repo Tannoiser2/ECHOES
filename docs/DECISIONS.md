@@ -10,6 +10,88 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-179 — La meccanica riportata al vero, e come si gioca bene
+**implemented in 0.1.147** (documentazione: nessun dato di gioco toccato)
+
+`docs/MECCANICA.md` e' il testo che si da' a chi deve disegnare l'infografica, e
+il suo principio dichiarato e' che **tutti i numeri dentro sono quelli veri,
+letti dai dati e dal codice**. Era fermo a 0.1.140, cioe' a prima del pool acceso
+(D-170/D-173), delle Conseguenze che costruiscono (D-175) e di tutto il resto.
+
+### I numeri che erano diventati falsi
+
+Passati uno per uno contro i dati. La maggior parte reggeva — 132 carte Asset su
+48 tipi, 39 carte Narratore con 24 funzioni, 52 Conseguenze di cui 14 cambiano
+padrone, 10 modelli di Consiglio, 12 Tensioni scritte, 20 Destini, 9 tipi di
+struttura, i valori 2/3/5 del presidio. Cinque no:
+
+| | diceva | e' |
+|---|---|---|
+| regole dei segni (§9) | **45** | **52** — e §3 e §14 dicevano gia' 52: il documento **contraddiceva se stesso** |
+| la ripartizione per tipo | COUNCIL_MODIFIER 16, DRAW_BIAS 10, HAND_LIMIT 1 | **17**, **14**, **3** |
+| famiglie di struttura | **5**, con `CHIUSURA` per il passo | **4**: il passo e' un `LUOGO`, `CHIUSURA` non esiste nei dati |
+| Destini in gioco | **9** all'apertura | **19** dei 20 (il ventesimo e' della Leggenda, che siede solo in saga) |
+| come finisce un anno | ~1% / ~40% / ~40% / ~19% | **0% / 44% / 36% / 20%** a tavolo misto |
+
+L'ultima riga ha guadagnato una colonna invece di cambiare numero: accanto al
+tavolo misto c'e' adesso quello dei **quattro ottimizzatori** (1% / 28% / 41% /
+30%), perche' il divario fra le due e' esso stesso un fatto sul gioco — la stessa
+policy, nessuno che bara, e venti punti di Trionfo di differenza fra chi non
+spreca un turno e chi ogni tanto lo spreca.
+
+### Tre cose che il documento non diceva affatto
+
+- **Il Destino si pesca da un pool di tre** (due identitari piu' un
+  condivisibile). E' la novita' che un giocatore nota per prima — lo stesso
+  tavolo nello stesso anno non gioca la stessa partita — e mancava del tutto,
+  col suo costo dichiarato accanto (i Consigli falliti da 206 a 246).
+- **Sette Conseguenze costruiscono qualcosa che resta.** Il documento diceva solo
+  che 14 cambiano il padrone: mancava che un Consiglio lasci una cosa *sulla
+  mappa*, che pesa nel conto del controllo e sopravvive all'anno.
+- **Come si gioca bene.** Il documento spiegava le regole e non diceva a nessuno
+  cosa convenisse fare.
+
+### La sezione nuova, e perche' e' misurata invece che opinata
+
+§15 «Come si gioca bene, misurato» tiene i numeri dei quattro caratteri sulle
+stesse 100 partite del §14:
+
+| | supera il Minimo | Trionfi |
+|---|---|---|
+| **prudente** | **40%** | 11 |
+| distratto | 59% | 20 |
+| aggressivo | 62% | 22 |
+| **ostinato** | **63%** | **27** |
+
+**La prudenza e' la strategia peggiore del gioco, e di venti punti.** E
+l'ostinato — che punta al gradino alto dal primo round invece che al piu' vicino
+— ha piu' Trionfi di tutti *e* meno Minimi di tutti: giocare basso non protegge.
+Sono i due risultati che un manuale non avrebbe potuto indovinare.
+
+Attorno a quelli, nove regole pratiche con il numero accanto: la carta che vale 3
+al Consiglio giusto e 1 a quello sbagliato · il 44% di Consigli che falliscono ·
+i tre gettoni che comandano tutto · la sovraestensione oltre due Regioni · il
+controllo che si conta invece di prendersi · **le 111 rivendicazioni morte su
+128** · la Condizione che sotto due carte non qualifica · l'alleanza che rende
+solo se ci metti due carte · e l'errore di spegnersi il Destino da soli, che e'
+successo in una partita vera **e** nei dati (D-177).
+
+### Quello che si dichiara
+
+- **La sezione si chiude con cio' che non sa.** Tutti i numeri vengono da bot
+  contro bot: nessuno tradisce, nessuno mente, nessuno promette senza mantenere.
+  Le strategie sono solide sulla meccanica e **mute sulla meta' negoziata del
+  gioco** — la finestra fra le posizioni dichiarate in pubblico e le carte
+  impegnate al buio e' fatta apposta perche' ci si parli, e nessuna misura in
+  questo repository la vede.
+- **Non e' stato toccato nessun dato di gioco**: playtest, suite e sonde sono
+  quelli di 0.1.146.
+- **Restano fuori** le novita' minori di 0.1.142 (il sigillo che porta il sito
+  antico al grado di mezzo) e il dettaglio delle vite in §11, che il documento
+  copre gia' a un livello che regge.
+
+---
+
 ## D-178 — Il difetto di D-177 si vedeva senza giocare una partita
 **implemented in 0.1.146** (due guardie nella CI, e la seconda ha morso subito)
 

@@ -1,4 +1,4 @@
-# Passaggio di consegne — stato al 0.1.146
+# Passaggio di consegne — stato al 0.1.147
 
 *Scritto per chi apre una sessione nuova su questo repository. Dice dov'è il
 lavoro, cosa regge, cosa no, e quali sono le regole di casa che non vanno
@@ -12,7 +12,7 @@ riscoperte da capo.*
 |---|---|
 | ramo di sviluppo | `claude/echoes-boardgame-dev-cmu444` |
 | PR aperta | in bozza, su `main` |
-| ultimo commit | 0.1.146 |
+| ultimo commit | 0.1.147 |
 | ultimo merge su `main` | `e26b2b2` — PR #67, 0.1.139–0.1.144 |
 
 La PR #67 è stata mergiata: questo ramo riparte da `main` e raccoglie da 0.1.145
@@ -80,10 +80,11 @@ solo.
 | **0.1.144** | le istituzioni **non** governano diversamente dalle persone: l'ipotesi di ISSUES 35 era falsa |
 | **0.1.145** | la Cenere non era debole: il suo Destino le chiedeva due cose che con tre gettoni non stanno insieme (ISSUES 45) |
 | **0.1.146** | quel difetto si vedeva **senza giocare**: due guardie nella CI, e la seconda ha trovato subito un errore introdotto il giorno prima |
+| **0.1.147** | `MECCANICA.md` riportato al vero (cinque numeri falsi, uno che si contraddiceva) e la sezione **«come si gioca bene»**, misurata |
 
-Più due documenti: **`docs/MECCANICA.md`** riportato a 0.1.140 (è il testo da dare
-a chi disegna l'infografica) e **`docs/SAGA_NAHR.md`**, dieci anni giocati e
-raccontati.
+Più due documenti: **`docs/MECCANICA.md`** — riportato a **0.1.147**, ed è il
+testo da dare a chi disegna l'infografica *e* a chi vuole sapere come si gioca
+bene (§15) — e **`docs/SAGA_NAHR.md`**, dieci anni giocati e raccontati.
 
 **Le misure di adesso** (playtest 100 semi, tavolo misto):
 
@@ -110,7 +111,7 @@ dell'Entità. Ma prima di toccarlo, chiedere: è una decisione sua.
 
 ### b) `ACT_CLAIM` muore in mano tre volte su quattro
 
-128 rivendicazioni aperte, 18 forzate, **110 morte** su 80 Chronicle. Il punto di
+128 rivendicazioni aperte, 17 forzate, **111 morte** su 80 Chronicle. Il punto di
 rottura è **§10 del regolamento** — il Claim deve essere posato in un round
 precedente — non un difetto del codice. Cambiarlo è cambiare il regolamento:
 **non farlo senza chiedere**. La strada più piccola è scritta in ISSUES 37.

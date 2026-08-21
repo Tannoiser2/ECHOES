@@ -5,6 +5,42 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.147 — La meccanica al vero, e come si gioca bene (D-179)
+
+- **`docs/MECCANICA.md` era fermo a 0.1.140**, e il suo principio dichiarato è che
+  ogni numero dentro sia quello vero letto dai dati. Passati uno per uno: la
+  maggior parte reggeva (132 carte su 48 tipi, 39 carte Narratore, 52 Conseguenze
+  di cui 14 cambiano padrone, 10 modelli di Consiglio, 20 Destini, 9 tipi di
+  struttura), **cinque no**.
+- **Le regole dei segni sono 52, non 45** — e il documento **contraddiceva sé
+  stesso**, perché §3 e §14 dicevano già 52 mentre §9 diceva 45. Rifatta anche la
+  ripartizione per tipo (COUNCIL_MODIFIER 16→**17**, DRAW_BIAS 10→**14**,
+  HAND_LIMIT 1→**3**).
+- **Le famiglie di struttura sono 4, non 5**: il passo è un `LUOGO`, e la famiglia
+  `CHIUSURA` non esiste nei dati.
+- **I Destini in gioco all'apertura sono 19 dei 20**, non 9: il pool è acceso da
+  0.1.141. Il ventesimo appartiene a un seggio che siede solo in saga.
+- **Come finisce un anno** è ora misurato sulle partite di oggi — 0% / 44% / 36% /
+  **20%** a tavolo misto — con accanto la colonna dei quattro ottimizzatori
+  (1% / 28% / 41% / 30%): la stessa policy, e venti punti di Trionfo di
+  differenza fra chi non spreca un turno e chi ogni tanto lo spreca.
+- **Tre cose che mancavano del tutto**: che il Destino **si pesca da un pool di
+  tre** (col suo costo dichiarato, i Consigli falliti da 206 a 246); che **sette
+  Conseguenze costruiscono** qualcosa che resta sulla mappa e pesa nel controllo;
+  e come si gioca bene.
+- **Sezione nuova §15 «Come si gioca bene, misurato»**: i quattro caratteri sugli
+  stessi 100 semi — **la prudenza è la strategia peggiore del gioco** (40% contro
+  62–63%), e l'**ostinato**, che punta al gradino alto dal primo round, ha più
+  Trionfi *e* meno Minimi di tutti. Più nove regole pratiche col numero accanto,
+  fra cui le **111 rivendicazioni morte su 128** e l'errore di spegnersi il
+  Destino da soli.
+
+### Dichiarato
+
+- La sezione si chiude con **quello che non sa**: i numeri vengono da bot contro
+  bot, che non tradiscono e non mentono. Sono muti sulla metà negoziata del gioco.
+- Nessun dato di gioco toccato: playtest, suite e sonde restano quelli di 0.1.146.
+
 ## 0.1.146 — Due guardie, e la seconda ha morso subito (D-178)
 
 - **Il difetto di D-177 si vedeva senza giocare una partita.** Trovarlo era
