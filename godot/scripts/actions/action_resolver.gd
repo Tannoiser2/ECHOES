@@ -233,6 +233,14 @@ func _draw_heat(source: Dictionary, outcome: Dictionary) -> void:
 		if applied.is_empty():
 			continue
 		(outcome.get("effects", []) as Array).append(applied)
+		# **Il mondo non cambia in silenzio** (D-030). Il gettone si vede
+		# cadere: senza questa riga una persona giocava una carta e una domanda
+		# si scaldava senza che niente lo dicesse — la Deriva lo ha sempre
+		# detto, e il sacchetto che la sostituisce deve dirlo uguale.
+		var tension: Variant = data.tensions.get(tension_id)
+		log.bullet("  Il gettone cade su %s: sale di 1." % [
+			tension_id if tension == null else str((tension as Dictionary)["title"])
+		])
 	tensions.fire_omens(mine)
 
 

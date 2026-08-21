@@ -10,6 +10,75 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-195 — Quello che una persona legge, riscritto dalle regole
+**implemented in 0.1.163** (§5ter: il seguito di D-194, cercato invece che aspettato)
+
+D-194 aveva trovato **un** posto in cui l'interfaccia era rimasta al gioco di
+prima. La lezione era che nessuna misura copre quel lato, quindi il seguito non
+poteva essere una sonda: e' stato guardare, uno per uno, i posti dove una regola
+nuova cambia **cio' che una persona legge**. Ce n'erano altri tre.
+
+### a) Il menu offriva di scoprire una cosa gia' visibile
+
+*«Scopri il numero di Il Risveglio»* — ma da D-187 il velo copre la **soglia**,
+e il numero e' sul tavolo. Il menu invitava a buttare un'Occasione per sapere
+una cosa gia' saputa. Adesso dice *«Scopri a quanto esplode»*, e *«Copri la
+soglia»* al posto di *«Cala il velo»*, quando e' quello che il velo fa.
+
+### b) Il sacchetto cambiava il mondo in silenzio
+
+Il gettone di D-192 applicava il suo Effetto e **non diceva niente**. Una persona
+calava una carta e una domanda si scaldava senza una riga a verbale — mentre la
+Deriva, che il sacchetto sostituisce, lo ha sempre detto. Adesso: *«Il gettone
+cade su La Carestia: sale di 1.»* E' D-030 — ogni mutazione si racconta — e
+l'avevo rotta senza accorgermene.
+
+### c) La pagina delle regole prometteva il gioco di tre versioni fa
+
+E' la piu' grossa. `help_panel.gd` e' **la pagina che un giocatore legge dentro
+l'app**, e diceva:
+
+- *«Un'azione e una di queste sei cose»* — no, e' una carta calata;
+- *«Acquisire — peschi una carta di una famiglia»* — non esiste piu';
+- *«Tramare — leggi il numero di una domanda velata»* — e' la soglia;
+- *«Rivendicare — ti prenoti il diritto»* — su una domanda matura la prendi adesso.
+
+**In cima a quel file c'era gia' scritto perche' e' successo**: *«una pagina di
+regole che puo' sfasarsi dalle regole e' peggio di niente, e le parti che possono
+sfasarsi sono quelle che vengono dai dati»*. Meta' della pagina si scriveva dai
+dati e non e' sfasata di una virgola. L'elenco delle azioni era **battuto a
+macchina**, ed e' esattamente quello che ha mentito.
+
+Adesso si scrive dalle regole anche quello: legge `actions_from_cards`,
+`hand_refill`, `claim_rules`, `veiled_tensions`, `tension_tokens`, e dice cio'
+che quella Chronicle fa davvero — compreso il cuore del gioco nuovo, *«calarla
+per agire la spende, e quella carta non votera' piu'»*.
+
+### Le misure
+
+Playtest **identico riga per riga**: `FAIL 253 · 111 · 127 · 113`, Consigli 6,04,
+mediana 6, **0 su 8**. Nessuna di queste e' una regola: sono le parole con cui il
+gioco si spiega. Suite **384 test / 6713 asserzioni**, con quattro prove nuove
+che leggono la pagina **dai due lati dell'interruttore**.
+
+### Quello che si dichiara
+
+- **Ho guardato tre posti, non tutti.** Ho seguito le tre regole nuove — velo,
+  rubinetto, sacchetto — dentro `seat_decider`, le viste e la pagina delle
+  regole. Non ho riletto l'intero testo dell'app: **e' un campione ragionato,
+  non un inventario**.
+- **La pagina delle regole ora ha una prova, il registro no.** Le quattro prove
+  nuove tengono la pagina attaccata alle regole; che il registro racconti ogni
+  mutazione resta affidato alla disciplina, come prima.
+- **`MECCANICA.md` e la pagina dell'app dicono adesso la stessa cosa**, ma per
+  due strade diverse: il documento e' scritto a mano, la pagina si genera. Il
+  documento puo' ancora sfasarsi.
+- **Il committente ha trovato in un minuto quello che tre versioni di misure non
+  hanno visto.** Vale la pena riscriverlo: le sonde guardano cosa fa il gioco,
+  non cosa dice.
+
+---
+
 ## D-194 — I bot erano passati alle carte, le mani no
 **implemented in 0.1.162** (trovato dal committente guardando l'app)
 

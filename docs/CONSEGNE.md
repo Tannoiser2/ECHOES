@@ -1,4 +1,4 @@
-# Passaggio di consegne — stato al 0.1.162
+# Passaggio di consegne — stato al 0.1.163
 
 *Scritto per chi apre una sessione nuova su questo repository. Dice dov'è il
 lavoro, cosa regge, cosa no, e quali sono le regole di casa che non vanno
@@ -233,8 +233,14 @@ playtest era verde, la suite era verde, la CI era verde.
 che una persona vede e tocca — non è coperto da nessuna misura.
 
 Chi lavora qui dovrebbe, dopo ogni cambiamento di regola: chiedersi **cosa vede
-adesso una persona**, e provarlo dal lato di `SeatDecider`. Velo, rubinetto e
-sacchetto non sono ancora stati riguardati così.
+adesso una persona**, e provarlo dal lato di `SeatDecider`.
+
+In 0.1.163 (D-195) velo, rubinetto e sacchetto sono stati riguardati così, e
+hanno reso altri **tre** posti: il menu che offriva di scoprire una cosa già
+visibile, il gettone che cambiava il mondo senza dirlo, e **la pagina delle
+regole dentro l'app**, che prometteva il gioco di tre versioni prima. Quella
+adesso si scrive dalle regole e ha quattro prove; il resto del testo dell'app
+**non è stato riletto**.
 
 ## 6. La cosa che non si risolve misurando
 

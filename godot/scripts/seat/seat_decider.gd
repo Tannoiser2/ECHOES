@@ -262,8 +262,17 @@ func _action_options(entity_id: String, session: RefCounted) -> Array:
 			continue
 		var request: Dictionary = {"mode": "TENSION", "tension_id": str(tension_id)}
 		if session.actions.can_execute(entity_id, "SCHEME", request):
+			# **Cosa si scopre lo dice la regola, non l'abitudine** (D-194).
+			# Da D-187 il velo copre la **soglia** e lascia il numero in chiaro:
+			# offrire «scopri il numero» di una domanda il cui numero e' sul
+			# tavolo e' invitare qualcuno a buttare un'Occasione per sapere una
+			# cosa che sa gia'.
 			out.append({
-				"label": "Scopri il numero di %s" % _tension(str(tension_id), session),
+				"label": (
+					"Scopri a quanto esplode %s"
+					if session.tensions.hides_threshold_only()
+					else "Scopri il numero di %s"
+				) % _tension(str(tension_id), session),
 				"template": "SCHEME", "params": request,
 			})
 
@@ -273,7 +282,11 @@ func _action_options(entity_id: String, session: RefCounted) -> Array:
 		var veil: Dictionary = {"mode": "VEIL", "tension_id": str(tension_id)}
 		if session.actions.can_execute(entity_id, "SCHEME", veil):
 			out.append({
-				"label": "Cala il velo su %s" % _tension(str(tension_id), session),
+				"label": (
+					"Copri la soglia di %s"
+					if session.tensions.hides_threshold_only()
+					else "Cala il velo su %s"
+				) % _tension(str(tension_id), session),
 				"template": "SCHEME", "params": veil,
 			})
 
