@@ -4,7 +4,7 @@
 di come funziona ECHOES, scritta per essere data in pasto a un modello che deve
 produrre **un'infografica**. Non presuppone niente: chi legge non ha mai visto
 il gioco. Tutti i numeri qui dentro sono quelli veri, letti dai dati e dal
-codice della versione 0.1.146 — non sono esempi inventati.
+codice della versione 0.1.148 — non sono esempi inventati.
 
 In fondo ci sono due sezioni che non servono a disegnare: **«Come si gioca
 bene»** (§15), che dice cosa conviene fare al tavolo con i numeri accanto, e
@@ -16,7 +16,7 @@ cosa merita una freccia e cosa si può omettere.
 ## 0. In una frase
 
 > ECHOES è un boardgame narrativo-strategico per **4 giocatori**, in cui quattro
-> casate attraversano **un anno di crisi**: nessuno vince prendendo punti —
+> casate attraversano **un anno di crisi**: dentro l'anno nessuno vince prendendo punti —
 > ognuno insegue un **Destino** privato, e le decisioni si prendono in
 > **Consigli** dove si vota una proposta e si impegnano carte in segreto. Quello
 > che il Consiglio decide resta scritto sul mondo, e il mondo passa alla
@@ -26,7 +26,7 @@ Le tre idee che lo distinguono da un gioco di conquista:
 
 | idea | cosa vuol dire |
 |---|---|
-| **Nessun punteggio** | Non c'è un vincitore unico. Ogni casata ha un Destino a tre gradini e li raggiunge o no per conto proprio. Più giocatori possono vincere; tutti possono fallire. |
+| **Nessun punteggio dentro l'anno** | Ogni casata ha un Destino a tre gradini e li raggiunge o no per conto proprio. Più giocatori possono vincere; tutti possono fallire. Un punteggio esiste **solo a livello di saga** (§10bis), e serve a decretare chi ha vinto la campagna — non chi ha vinto la serata. |
 | **Il Consiglio è il cuore** | Le azioni servono a prepararsi. È al Consiglio che il mondo cambia davvero — e non con un tiro di dado, ma con carte impegnate al buio e rivelate insieme. |
 | **Il mondo ricorda** | Una partita (una *Chronicle*) è **un anno**. Una **saga** ne incatena molte, a decenni o secoli di distanza: la mappa, le ferite e i rancori attraversano il salto, le persone no. |
 
@@ -647,6 +647,63 @@ rimasti aperti**.
 
 ---
 
+## 10bis. Chi vince la saga
+
+Dentro l'anno non c'è nessuna classifica, e non ce n'è mai stata. Ma una
+**campagna** un vincitore ce l'ha: ogni Chronicle chiusa somma al seggio il
+valore del livello che ha raggiunto, il totale attraversa le ere insieme alla
+mappa, e alla fine vince chi ha di più.
+
+| livello | vale |
+|---|---|
+| nessun gradino | **−1** |
+| Minimo | **+1** |
+| Vittoria | **+3** |
+| **Trionfo** | **+6** |
+
+Tre cose spiegano questi quattro numeri:
+
+- **Esistere vale poco.** Il Minimo è una soglia di sopravvivenza, non un
+  obiettivo: una scala che lo pagasse bene farebbe vincere la campagna a chi non
+  ha mai rischiato niente.
+- **Un anno perso costa.** Chiudere senza nemmeno il Minimo toglie un punto —
+  perdere è possibile da quando esiste la regola della porta sbarrata, e in una
+  campagna deve pesare.
+- **Il Trionfo vale il doppio della Vittoria.** Due anni riusciti non pagano
+  quanto uno audace: è così che la scala premia chi si è spinto in alto invece di
+  amministrare.
+
+I valori stanno nella Chronicle (`saga_scoring`) e si cambiano senza toccare il
+codice. **Omessi, il punteggio non esiste**: una Chronicle può restare un anno che
+sta in piedi da solo.
+
+**Il conto segue il seggio, non la persona.** In una saga lunga chi siede cambia —
+il Popolo Nahr diventa Il Regno di Nahr, Vaerax diventa Vaerax Ridestato — e il
+punteggio prosegue: è la casa a giocare la campagna, non chi la porta in quel
+secolo. Una saga vera, cinque anni, coi nomi che cambiano e il conto che no:
+
+```
+anno 1   Re Aldric 3 | Popolo Nahr 3 | Vaerax 3 | Lyra 1
+anno 2   Il Regno di Nahr 9 | Vaerax 9 | Re Aldric 6 | Lyra 2
+anno 3   Il Regno di Nahr 15 | Vaerax 10 | Re Aldric 7 | Lyra 3
+anno 4   Il Regno di Nahr 18 | Vaerax Ridestato 13 | Re Aldric 8 | Lyra 4
+anno 5   Il Regno di Nahr 24 | Re Aldric 14 | Vaerax Ridestato 14 | Lyra 7
+```
+
+**Quello che il contatore ha fatto vedere.** Sommare i risultati non è una regola
+neutra: è un **amplificatore**. Finché ogni anno sta in piedi da solo, una casa
+debole ha comunque i suoi anni buoni e al tavolo non si nota; appena si somma, la
+differenza diventa il risultato. Misurato su dodici saghe per tavolo: nella
+Carestia le campagne le vincono tre case su quattro, nell'anno del Sale **la
+stessa casa dodici volte su dodici**. Non è il punteggio a essere sbagliato — è
+uno squilibrio di contenuto che prima si spalmava. Chi lavora al bilanciamento
+guardi lì per primo.
+
+**La lunghezza della saga non è scritta.** Il gioco non dichiara quando una
+campagna finisce: il vincitore è chi sta in testa quando il tavolo smette.
+
+---
+
 ## 11. La saga: cosa attraversa gli anni
 
 Una Chronicle è un anno. Una **saga** è una catena di Chronicle separate da un
@@ -756,6 +813,7 @@ l'inizio, trova il proprio seggio già in mano a un bot e ne riprende il posto.
 | Destini | **20** scritti, 3 gradini ciascuno — **19 in gioco** dall'apertura, il ventesimo solo in saga |
 | Tipi di effetto sul mondo | **25** (23 reversibili, 2 no: creare un Eco e scrivere una Verità) |
 | Salto fra due Chronicle | da **1** a **200** anni |
+| **Punteggio di saga** | **−1 / +1 / +3 / +6** per nessun gradino / Minimo / Vittoria / Trionfo — solo di campagna, mai dentro l'anno |
 
 **Come finisce un anno, misurato su 100 partite a tavolo misto** (50 partite per
 seggio, quattro caratteri diversi):
@@ -949,6 +1007,6 @@ poster fantasy.
 
 ---
 
-*Documento generato dai dati e dal codice di ECHOES 0.1.146. Le regole vivono
+*Documento generato dai dati e dal codice di ECHOES 0.1.148. Le regole vivono
 nei file JSON di `godot/data/` e nel motore in `godot/scripts/`: se un numero qui
 diverge da lì, ha ragione il codice.*

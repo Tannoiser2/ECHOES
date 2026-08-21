@@ -1,4 +1,4 @@
-# Passaggio di consegne — stato al 0.1.147
+# Passaggio di consegne — stato al 0.1.148
 
 *Scritto per chi apre una sessione nuova su questo repository. Dice dov'è il
 lavoro, cosa regge, cosa no, e quali sono le regole di casa che non vanno
@@ -12,7 +12,7 @@ riscoperte da capo.*
 |---|---|
 | ramo di sviluppo | `claude/echoes-boardgame-dev-cmu444` |
 | PR aperta | in bozza, su `main` |
-| ultimo commit | 0.1.147 |
+| ultimo commit | 0.1.148 |
 | ultimo merge su `main` | `e26b2b2` — PR #67, 0.1.139–0.1.144 |
 
 La PR #67 è stata mergiata: questo ramo riparte da `main` e raccoglie da 0.1.145
@@ -81,6 +81,7 @@ solo.
 | **0.1.145** | la Cenere non era debole: il suo Destino le chiedeva due cose che con tre gettoni non stanno insieme (ISSUES 45) |
 | **0.1.146** | quel difetto si vedeva **senza giocare**: due guardie nella CI, e la seconda ha trovato subito un errore introdotto il giorno prima |
 | **0.1.147** | `MECCANICA.md` riportato al vero (cinque numeri falsi, uno che si contraddiceva) e la sezione **«come si gioca bene»**, misurata |
+| **0.1.148** | **il vincitore della saga**, voluto dal committente — e il contatore ha rivelato che nella saga del Sale la campagna la vince sempre la stessa casa (ISSUES 46) |
 
 Più due documenti: **`docs/MECCANICA.md`** — riportato a **0.1.147**, ed è il
 testo da dare a chi disegna l'infografica *e* a chi vuole sapere come si gioca
@@ -91,7 +92,7 @@ bene (§15) — e **`docs/SAGA_NAHR.md`**, dieci anni giocati e raccontati.
 ```
 FAIL 256 · SUCC 78 · SUCC 100 · DECI 145 · mediana 6
 0 su 8 bloccati (misto e uniforme) · nessun seggio a NONE · nessuno a zero Trionfi
-suite 349 test / 6444 asserzioni
+suite 353 test / 6480 asserzioni
 ```
 
 ## 4. Le due cose che vanno guardate per prime
@@ -132,6 +133,10 @@ precedente — non un difetto del codice. Cambiarlo è cambiare il regolamento:
   contro i Maestri al 33%–83%, e **nessuna clausola pronta** con cui intervenire:
   delle dodici misurate al banco, tutto ciò che la Cenere può fare restando sulla
   montagna esce 0% o 100%.
+- **ISSUES 46** — la campagna del Sale ha un vincitore già scritto: SALE 12 su 12
+  con qualunque scala. Il contatore di saga (0.1.148) non ha creato lo squilibrio,
+  l'ha reso **definitivo** invece che spalmato. È il lavoro speculare a quello
+  fatto sulla Cenere: lì si partiva dalla casa più debole, qui dalla più forte.
 - **La palude** — l'unica cosa fuori dal catalogo delle strutture. Chiede slot di
   presenza variabili per Regione: **motore, non contenuto**.
 

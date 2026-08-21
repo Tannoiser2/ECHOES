@@ -5,6 +5,42 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.148 — Il vincitore della saga (D-180)
+
+- **Voluta dal committente**: «per vincere la saga ci vuole un contatore di
+  vittorie nelle singole partite». Ogni Chronicle chiusa somma al seggio il
+  valore del livello raggiunto, il totale attraversa le ere insieme alla mappa, e
+  alla fine della campagna vince chi ha di più.
+- **Non contraddice il principio del gioco** perché sta a livello di **saga**:
+  dentro l'anno non cambia niente — nessuna classifica, più case possono vincere,
+  tutte possono fallire — ed è la campagna ad avere un vincitore.
+- **Cinque scale misurate prima di sceglierne una.** Il rischio temuto era che
+  pagare il Minimo facesse vincere la campagna a chi non ha mai rischiato: **la
+  misura lo ha smentito**, con nessuna scala e in nessuna saga vince chi ha più
+  Minimi. Scelta la **−1 / 1 / 3 / 6**: meno pareggi (3 su 24 saghe) e l'accordo
+  più alto con i Trionfi (18 su 24). Il NONE che toglie un punto è la conseguenza
+  di [D-067](docs/DECISIONS.md#d-067) — perdere è possibile, e in una campagna
+  deve costare.
+- **Sta nella Chronicle** (`saga_scoring`), quindi si cambia senza toccare il
+  codice, e **omessa spegne tutto**: una Chronicle può restare un anno che sta in
+  piedi da solo, come in v0.2.
+- **Il punteggio segue il seggio, non la persona**: in una saga lunga il Popolo
+  Nahr diventa Il Regno di Nahr e il conto prosegue. È un contatore, non un
+  Effetto, fra le eccezioni dichiarate all'effect-sourcing.
+- **Il playtest è identico riga per riga** a quello di 0.1.147: nessuna policy
+  legge il punteggio, è puro verbale. Suite **353 test / 6480 asserzioni**.
+
+### E quello che il contatore ha rivelato
+
+- **Nella saga del Sale la campagna la vince sempre la stessa casa** — SALE 12 su
+  12, con qualunque scala — mentre in quella della Carestia i vincitori sono tre
+  su quattro. Non è un difetto del punteggio: è lo squilibrio di contenuto già
+  noto (Sale al 68% sopra il Minimo contro 24–33% delle altre) che finora si
+  **spalmava** anno per anno e che un totale cumulativo rende **definitivo**.
+- **Un contatore di campagna non è una regola neutra: è un amplificatore** di
+  tutto quello che il bilanciamento non ha ancora chiuso. Aperta come
+  **ISSUES 46**.
+
 ## 0.1.147 — La meccanica al vero, e come si gioca bene (D-179)
 
 - **`docs/MECCANICA.md` era fermo a 0.1.140**, e il suo principio dichiarato è che

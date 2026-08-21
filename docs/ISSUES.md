@@ -1450,6 +1450,44 @@ verbale:
 **Fatto quando** la linea dei Fuochi sta nella stessa banda delle altre in ogni
 sua incarnazione — o il motivo per cui non ci sta è scritto con i numeri accanto.
 
+### 46. La campagna del Sale ha un vincitore già scritto
+
+`contenuto` · `bilanciamento` · nata da [D-180](DECISIONS.md#d-180) · **aperta in 0.1.148**
+
+Il contatore di saga ha reso visibile una cosa che c'era già e che nessuno poteva
+vedere finché ogni anno stava in piedi da solo:
+
+| | chi vince la campagna, su 12 saghe da 10 Chronicle |
+|---|---|
+| **CHR_01** — la Carestia | NAHR 5, LYRA 2, VAERAX 2, **Aldric mai** · 3 pareggi |
+| **CHR_03** — il Sale | **SALE 12 su 12** |
+
+**Nella saga del Sale vince sempre la stessa casa, con qualunque scala di
+punteggio** — provate tutte e cinque, il vincitore non cambia. La causa non è il
+punteggio ma lo squilibrio di contenuto già misurato in
+[D-176](DECISIONS.md#d-176): il Sale supera il Minimo il **68%** delle volte, il
+Vetro il 49%, le Città Libere il 24% e la Cenere il 33%.
+
+**Il punto di metodo, che vale oltre questa voce:** finché ogni Chronicle sta in
+piedi da sola, una casa debole ha comunque i suoi anni buoni e lo squilibrio si
+spalma; appena si somma, la differenza *diventa il risultato*. Un contatore di
+campagna non è una regola neutra: è un amplificatore di tutto quello che il
+bilanciamento non ha ancora chiuso.
+
+Due cose da guardare, e sono diverse:
+
+- **Il Sale è troppo forte** (68%), e va guardato dal lato suo: quali clausole
+  gli riescono quasi sempre. È il lavoro speculare a quello fatto sulla Cenere in
+  [D-177](DECISIONS.md#d-177), che partiva dalla casa più debole.
+- **Aldric non vince mai una campagna** in CHR_01 pur non essendo il più debole
+  per gradini (69 Minimi, 41 Vittorie, 9 Trionfi su 120 anni): ha le Vittorie ma
+  non i Trionfi, e con una scala che paga il gradino alto il doppio, chi non
+  trionfa mai non vince la campagna. Va deciso se è un difetto o se è il suo
+  carattere.
+
+**Fatto quando** su dodici saghe per tavolo nessuna casa vince più della metà
+delle campagne — o il motivo per cui una lo fa è scritto con i numeri accanto.
+
 ---
 
 ---

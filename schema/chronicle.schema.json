@@ -417,6 +417,33 @@
             }
           }
         },
+        "saga_scoring": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Il vincitore della saga (D-180). Omesso, non esiste nessun punteggio: ogni anno sta in piedi da solo, come in v0.2. Dichiarato, ogni Chronicle chiusa somma al seggio il valore del livello raggiunto, il totale attraversa le ere insieme alla mappa, e alla fine della saga vince chi ha di piu'. La Chronicle resta senza punteggio: e' la **campagna** ad averne uno.",
+          "properties": {
+            "none": {
+              "type": "integer",
+              "default": -1,
+              "description": "Quanto vale un anno chiuso senza nemmeno il Minimo. Negativo di default: dal 0.1.26 perdere e' possibile, e in una campagna deve costare."
+            },
+            "minimum": {
+              "type": "integer",
+              "default": 1,
+              "description": "Quanto vale essere sopravvissuti. Basso di proposito: il Minimo e' una soglia, non un obiettivo (D-150), e una scala che lo paga bene fa vincere la campagna a chi non ha mai rischiato niente."
+            },
+            "victory": {
+              "type": "integer",
+              "default": 3,
+              "description": "Quanto vale avere ottenuto quello che si voleva."
+            },
+            "triumph": {
+              "type": "integer",
+              "default": 6,
+              "description": "Quanto vale il gradino alto. Il doppio della Vittoria: due Vittorie non valgono un Trionfo piu' un anno perso, ed e' cosi' che la scala premia chi osa."
+            }
+          }
+        },
         "control_rules": {
           "type": "object",
           "description": "How holding territory pushes back (D-027). Omit the whole object and control behaves as in v0.2: whatever you take, you keep.",

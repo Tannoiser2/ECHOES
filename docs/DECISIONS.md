@@ -10,6 +10,95 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-180 — Il vincitore della saga, e cosa il contatore ha rivelato
+**implemented in 0.1.148** (voluta dal committente)
+
+«Per vincere la saga ci vuole un contatore di vittorie nelle singole partite.
+Dare un valore ai livelli di vittoria che si sommano alla fine della saga
+decretando il vincitore.»
+
+### Perche' non contraddice il principio
+
+Il gioco ripete ovunque che **non c'e' un punteggio e non c'e' un vincitore
+unico**, ed e' la sua idea fondante. La richiesta lo mette pero' **a livello di
+saga, non di partita**, e la distinzione la salva: dentro l'anno non cambia
+niente — nessuna classifica, piu' case possono vincere, tutte possono fallire —
+ed e' la **campagna** ad avere un vincitore. E' il modello dei giochi a campagna,
+e lascia intatto quello che succede al tavolo in una sera.
+
+### Il rischio che si temeva, e che la misura ha smentito
+
+Se il Minimo paga, si accumulano punti **esistendo**, e la campagna la vince il
+prudente — l'opposto di cio' che il gioco premia (D-053: il prudente e' il
+carattere che arriva piu' in basso). Cinque scale candidate, misurate sulle
+stesse saghe **prima** di scriverne una:
+
+| | pareggi su 24 saghe | vincitore = chi ha piu' Trionfi | **= chi ha piu' Minimi** |
+|---|---|---|---|
+| A 0/1/2/3 lineare | 5 | 15/24 | **0/24** |
+| B 0/1/3/6 crescente | 5 | 16/24 | **0/24** |
+| C 0/1/3/5 | 3 | 15/24 | **0/24** |
+| **D -1/1/3/6** | **3** | **18/24** | **0/24** |
+| E 0/0/1/3 esistere non paga | 5 | 17/24 | **0/24** |
+
+**Il timore era infondato**: con nessuna scala, in nessuna saga, vince chi ha
+accumulato piu' Minimi. Il Minimo e' talmente comune che non discrimina — e chi
+ne ha di piu' e' semplicemente chi ha osato di meno.
+
+Scelta la **D**: meno pareggi e l'accordo piu' alto con i Trionfi. Il NONE che
+**toglie** un punto e' la conseguenza naturale di D-067 — dal 0.1.26 perdere e'
+possibile, e in una campagna deve costare — e il Trionfo che vale il **doppio**
+della Vittoria e' quello che fa si' che due anni prudenti non paghino quanto uno
+audace. La scala sta nella Chronicle (`saga_scoring`), quindi si cambia senza
+toccare il codice, e **omessa spegne tutto**: una Chronicle puo' restare un anno
+che sta in piedi da solo, come in v0.2.
+
+### Quello che il contatore ha rivelato, ed e' la cosa piu' importante
+
+| | chi vince la campagna, su 12 saghe |
+|---|---|
+| **CHR_01** — la Carestia | NAHR 5, LYRA 2, VAERAX 2, **Aldric mai** · 3 pareggi |
+| **CHR_03** — il Sale | **SALE 12 su 12** |
+
+**Nella saga del Sale la campagna la vince sempre la stessa casa, con qualunque
+scala.** Non e' un difetto del punteggio: e' lo squilibrio di contenuto gia' noto
+(il Sale supera il Minimo il 68% delle volte contro il 24%–31% delle altre) che
+oggi si **spalma** anno per anno e che un totale cumulativo rende **definitivo**.
+
+E' la scoperta che vale piu' della regola: **un contatore di campagna non e' una
+regola neutra, e' un amplificatore.** Finche' ogni anno sta in piedi da solo, una
+casa debole ha comunque i suoi anni buoni e il tavolo non se ne accorge; appena
+si somma, la differenza diventa il risultato. Aperta come **ISSUES 46**.
+
+### Le misure
+
+- **Il playtest e' identico riga per riga** a quello di 0.1.147: il punteggio non
+  entra in nessuna decisione, nessuna policy lo legge, ed e' puro verbale. FAIL
+  256 · 78 · 100 · 145, mediana 6, **0 su 8** misto e uniforme.
+- Suite **353 test / 6480 asserzioni** (quattro test nuovi), sim ed export
+  identici su due giri.
+
+### Quello che si dichiara
+
+- **Il punteggio e' un contatore, non un Effetto.** Sta fra le eccezioni
+  dichiarate all'effect-sourcing insieme a `confluence_count` e `voted_together`,
+  e per la stessa ragione: non e' uno stato del mondo che qualcuno possa disfare,
+  e' il verbale di quello che e' gia' successo. Attraversa le ere in
+  `inherit_from`, e **passa anche se la Chronicle nuova non tiene il conto**: un
+  anno che non conta non e' un anno che azzera.
+- **Segue il seggio, non la persona.** In una saga lunga chi siede cambia — il
+  Popolo Nahr diventa Il Regno di Nahr — e il conto prosegue: e' la casa a
+  giocare la campagna.
+- **La lunghezza della saga resta indefinita.** Il gioco non dichiara quando una
+  campagna finisce, quindi «il vincitore» e' chi sta in testa quando il tavolo
+  smette. Chi vorra' una campagna a lunghezza fissa dovra' scriverlo.
+- **Nessuna sonda misura ancora se la campagna sia *bella*.** Sappiamo chi vince
+  e con quale margine; non sappiamo se il conto renda gli ultimi anni ininfluenti
+  quando qualcuno ha accumulato troppo. E' la stessa lacuna dichiarata in
+  ISSUES 36, e vale la pena guardarla prima di dichiarare chiusa la 0.3.
+
+---
+
 ## D-179 — La meccanica riportata al vero, e come si gioca bene
 **implemented in 0.1.147** (documentazione: nessun dato di gioco toccato)
 

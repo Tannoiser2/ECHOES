@@ -99,11 +99,28 @@ func _initialize() -> void:
 				if str((condition as Dictionary).get("tag", "")).begins_with("legend:"):
 					legend_propositions.append(str(proposition["id"]))
 	var memory_read: Dictionary = {}
+	# La proposta del committente: dare un valore ai livelli e sommarli lungo la
+	# saga, per avere un vincitore di campagna. Prima di scriverla come regola si
+	# misura **quale scala** produce un vincitore sensato: una che paghi il Minimo
+	# quanto basta fa vincere chi e' sopravvissuto, che e' l'opposto di cio' che il
+	# gioco premia (D-150: il Minimo e' una soglia, non un obiettivo).
+	var scales: Dictionary = {
+		"A 0/1/2/3  lineare": [0, 1, 2, 3],
+		"B 0/1/3/6  crescente": [0, 1, 3, 6],
+		"C 0/1/3/5": [0, 1, 3, 5],
+		"D -1/1/3/6 il NONE punisce": [-1, 1, 3, 6],
+		"E 0/0/1/3  esistere non paga": [0, 0, 1, 3],
+	}
+	var scale_wins: Dictionary = {}      # scala -> {seggio: saghe vinte}
+	var scale_ties: Dictionary = {}      # scala -> pareggi
+	var scale_agree_top: Dictionary = {} # scala -> vincitore = chi ha piu' Trionfi
+	var scale_agree_min: Dictionary = {} # scala -> vincitore = chi ha piu' Minimi
 
 	for saga_index in range(sagas):
 		var seed_base: int = first_seed + saga_index * 1009
 		var previous: Dictionary = {}
 		var previous_results: Dictionary = {}
+		var saga_levels: Dictionary = {}
 		var first_end_tags: Array = []
 		var final_tags: Array = []
 		var final_year: int = start_year
@@ -212,6 +229,9 @@ func _initialize() -> void:
 				var life: Dictionary = levels_by_life.get(who, {})
 				life[level] = int(life.get(level, 0)) + 1
 				levels_by_life[who] = life
+				var tally: Array = saga_levels.get(str(entity_id), [0, 0, 0, 0]) as Array
+				tally[["NONE", "MINIMUM", "VICTORY", "TRIUMPH"].find(level)] += 1
+				saga_levels[str(entity_id)] = tally
 				if level == "NONE":
 					for condition in (previous_results[entity_id] as Dictionary)["unmet"]:
 						var key: String = "%s|%s" % [
@@ -236,6 +256,48 @@ func _initialize() -> void:
 						slots_none.append(row)
 					else:
 						slots_other.append(row)
+
+		# Fine saga: chi vincerebbe, con ognuna delle scale candidate.
+		for label in scales:
+			var values: Array = scales[label] as Array
+			var best: int = -999999
+			var winners: Array = []
+			var by_score: Dictionary = {}
+			for entity_id in saga_levels:
+				var tally: Array = saga_levels[entity_id] as Array
+				var score: int = 0
+				for i in range(4):
+					score += int(tally[i]) * int(values[i])
+				by_score[str(entity_id)] = score
+				if score > best:
+					best = score
+					winners = [str(entity_id)]
+				elif score == best:
+					winners.append(str(entity_id))
+			if winners.size() > 1:
+				scale_ties[label] = int(scale_ties.get(label, 0)) + 1
+				continue
+			var winner: String = str(winners[0])
+			var table: Dictionary = scale_wins.get(label, {})
+			table[winner] = int(table.get(winner, 0)) + 1
+			scale_wins[label] = table
+			# Il vincitore e' anche chi ha piu' Trionfi? E chi ha piu' Minimi?
+			var top_seat: String = ""
+			var top_count: int = -1
+			var min_seat: String = ""
+			var min_count: int = -1
+			for entity_id in saga_levels:
+				var tally: Array = saga_levels[entity_id] as Array
+				if int(tally[3]) > top_count:
+					top_count = int(tally[3])
+					top_seat = str(entity_id)
+				if int(tally[1]) > min_count:
+					min_count = int(tally[1])
+					min_seat = str(entity_id)
+			if winner == top_seat:
+				scale_agree_top[label] = int(scale_agree_top.get(label, 0)) + 1
+			if winner == min_seat:
+				scale_agree_min[label] = int(scale_agree_min.get(label, 0)) + 1
 
 		spans.append(final_year - start_year)
 		var survived: int = 0
@@ -263,6 +325,26 @@ func _initialize() -> void:
 	print("  Le vite mutate sedute nelle saghe:")
 	for life in life_names:
 		print("    %-34s %4d" % [str(life), int(lives_seated[life])])
+	print("")
+	print("  IL VINCITORE DELLA SAGA - quale scala di punteggio, su %d saghe" % sagas)
+	print("     (il vincitore dovrebbe somigliare a chi ha piu' Trionfi, non a chi ha piu' Minimi)")
+	var scale_names: Array = scales.keys()
+	scale_names.sort()
+	for label in scale_names:
+		var table: Dictionary = scale_wins.get(label, {})
+		var spread: Array = []
+		var seat_ids2: Array = table.keys()
+		seat_ids2.sort()
+		for seat_id in seat_ids2:
+			spread.append("%s %d" % [str(seat_id).replace("ENT_", ""), int(table[seat_id])])
+		print("    %-28s  come i Trionfi %2d/%d   come i Minimi %2d/%d   pareggi %d" % [
+			label,
+			int(scale_agree_top.get(label, 0)), sagas,
+			int(scale_agree_min.get(label, 0)), sagas,
+			int(scale_ties.get(label, 0)),
+		])
+		print("        chi vince: %s" % ", ".join(PackedStringArray(spread)))
+	print("")
 	print("  I NONE per seggio, su %d anni giocati (la leva di D-067 deve restare vera):" % years_played)
 	var seat_ids: Array = levels_by_seat.keys()
 	seat_ids.sort()

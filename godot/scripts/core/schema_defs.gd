@@ -317,6 +317,9 @@ const DEFS := {
 			"structure_rules": {
 				"type": "Dictionary",
 			},
+			"saga_scoring": {
+				"type": "Dictionary",
+			},
 			"control_rules": {
 				"type": "Dictionary",
 			},
