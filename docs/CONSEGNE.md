@@ -11,12 +11,12 @@ riscoperte da capo.*
 | | |
 |---|---|
 | ramo di sviluppo | `claude/echoes-boardgame-dev-cmu444` |
-| PR aperta | in bozza, su `main` |
-| ultimo commit | 0.1.157 |
-| ultimo merge su `main` | `175d58d` — PR #68, 0.1.145–0.1.149 |
+| PR aperta | nessuna |
+| ultimo commit su `main` | 0.1.157 |
+| ultimo merge su `main` | `248f5cd` — PR #70, 0.1.150–0.1.157 |
 
-La PR #68 è stata mergiata: questo ramo riparte da `main` e raccoglie da 0.1.150
-in poi.
+La PR #70 è stata mergiata: **il gioco a sole carte è su `main`**. Questo ramo
+riparte da lì, ed è vuoto — il prossimo lavoro apre una PR nuova.
 
 ## 2. Come si lavora qui — le regole di casa
 
@@ -102,7 +102,8 @@ Più due documenti: **`docs/MECCANICA.md`** — riportato a **0.1.149**, ed è i
 testo da dare a chi disegna l'infografica *e* a chi vuole sapere come si gioca
 bene (§15) — e **`docs/SAGA_NAHR.md`**, dieci anni giocati e raccontati.
 
-**Le misure di adesso** (playtest 100 semi, tavolo misto):
+**Le misure di adesso** (playtest 100 semi, tavolo misto, col gioco a carte
+acceso in CHR_01 e CHR_02):
 
 ```
 FAIL 235 · SUCC 99 · SUCC 122 · DECI 121 · mediana 6
@@ -183,6 +184,32 @@ precedente — non un difetto del codice. Cambiarlo è cambiare il regolamento:
 - **0.6** il tavolo sullo schermo grande e le console in tasca (ISSUES 27). La
   metà difficile è fatta: tutto il codice disegna già *per spettatore*.
 - **0.5** computer vision sui marker · **1.0** la campagna Legacy
+
+## 5bis. Da dove ripartire, in ordine
+
+Scritto dopo il merge di #70, quando il gioco a sole carte è diventato il gioco.
+
+1. **Il 58% delle Occasioni resta muto** — di 720 turni, 222 volte il seggio non
+   voleva niente e **194 volte voleva qualcosa che la mano non sapeva dire**. È
+   la texture del gioco nuovo, è la prima misura che ne esista, e non è tarata.
+   Si abbassa con più carte per Atto o con una distribuzione diversa delle
+   azioni fra le famiglie: si trova il ginocchio in un pomeriggio di misure.
+   **È la prima cosa da fare.**
+2. **ISSUES 37, che adesso morde davvero** — le quattro carte RIVENDICARE
+   ereditano il difetto: `FORCE` chiede un Claim posato in un round precedente,
+   quindi due delle quarantotto sono quasi ingiocabili. Prima era statistica,
+   adesso è contenuto morto in mano. **Serve una decisione del committente su
+   §10**: non farlo senza chiedere.
+3. **Il mondo del Sale** — CHR_03 gioca ancora il §10 di prima. Portarcelo vuol
+   dire prima guardare la sua mappa come è stata guardata quella della Carestia
+   (D-186). Lavoro pulito, nessuna decisione richiesta.
+4. **Un piano scriptato del gioco a carte** — i tre esistenti sono storie del
+   §10 di prima e lo dichiarano nel dato. Il gioco nuovo non ha una storia
+   raccontata: è provato dal cancello e dai test.
+5. **Le due domande del committente ancora aperte sulle Tensioni**: che nella
+   prima partita non siano sempre le stesse quattro, e che partano tutte da
+   **0**. La seconda non è gratis — con nove gettoni di Deriva su quattro
+   domande, partire da zero obbliga a rifare le soglie.
 
 ## 6. La cosa che non si risolve misurando
 
