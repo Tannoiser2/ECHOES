@@ -36,7 +36,12 @@
         "year": {
           "type": "integer"
         },
-        "chronicle_id": {
+        "chronicles_played": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Quante Chronicle ha gia' giocato questa saga, contando quella in corso (D-181). Serve a sapere se la campagna puo' dichiarare un vincitore: e' l'unico numero che dice quanto e' lunga una saga, perche' `year` conta gli anni del mondo e fra due Chronicle ne possono passare duecento."
+    },
+    "chronicle_id": {
           "type": "string"
         },
         "act": {

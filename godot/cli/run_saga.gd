@@ -174,6 +174,12 @@ func _initialize() -> void:
 			"scars": new_scars,
 			"destinies": destinies,
 			"standing": _standing(world),
+			"played": int(world.get("chronicles_played", index + 1)),
+			"decides_after": int(
+				(data.chronicles[chronicle_id if index == 0 else later_id].get(
+					"saga_scoring", {}
+				) as Dictionary).get("decides_after", 10)
+			),
 			"map": _map_state(world, data),
 		})
 
@@ -333,7 +339,14 @@ func _print_saga(saga: Array) -> void:
 			var board: Array = []
 			for row in year["standing"]:
 				board.append("%s %d" % [str((row as Array)[1]), int((row as Array)[0])])
-			print("La saga:  %s" % " | ".join(PackedStringArray(board)))
+			var needed: int = int(year["decides_after"])
+			var played: int = int(year["played"])
+			var verdict: String = ""
+			if needed > 0 and played < needed:
+				verdict = "  (non ancora decisa: %d su %d)" % [played, needed]
+			elif needed > 0:
+				verdict = "  <- la campagna si decide"
+			print("La saga:  %s%s" % [" | ".join(PackedStringArray(board)), verdict])
 
 	print("")
 	print("=========================================================")

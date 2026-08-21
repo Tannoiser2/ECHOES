@@ -19,6 +19,9 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 	var world: Dictionary = {
 		"world_id": str(chronicle["world_id"]),
 		"year": int(chronicle["start_year"]),
+		# Quante Chronicle ha gia' giocato questa saga, questa compresa (D-181).
+		# `year` non lo dice: fra due Chronicle possono passare duecento anni.
+		"chronicles_played": 1,
 		"chronicle_id": str(chronicle["id"]),
 		"act": 0,
 		"round": 0,

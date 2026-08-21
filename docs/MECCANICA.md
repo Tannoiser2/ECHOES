@@ -4,7 +4,7 @@
 di come funziona ECHOES, scritta per essere data in pasto a un modello che deve
 produrre **un'infografica**. Non presuppone niente: chi legge non ha mai visto
 il gioco. Tutti i numeri qui dentro sono quelli veri, letti dai dati e dal
-codice della versione 0.1.148 — non sono esempi inventati.
+codice della versione 0.1.149 — non sono esempi inventati.
 
 In fondo ci sono due sezioni che non servono a disegnare: **«Come si gioca
 bene»** (§15), che dice cosa conviene fare al tavolo con i numeri accanto, e
@@ -699,8 +699,20 @@ stessa casa dodici volte su dodici**. Non è il punteggio a essere sbagliato —
 uno squilibrio di contenuto che prima si spalmava. Chi lavora al bilanciamento
 guardi lì per primo.
 
-**La lunghezza della saga non è scritta.** Il gioco non dichiara quando una
-campagna finisce: il vincitore è chi sta in testa quando il tavolo smette.
+**Una campagna è almeno dieci anni.** Sotto le dieci Chronicle il conto si tiene
+ma nessuno ha vinto — una manciata di anni non è una campagna — e il verbale lo
+dice a ogni chiusura: *«La campagna non è ancora decisa: 3 anni giocati su 10»*.
+Dalla decima in poi dichiara il vincitore. La soglia **apre la porta e non la
+chiude**: se il tavolo continua, il conto prosegue e il verdetto si aggiorna.
+
+**E la campagna resta contendibile più a lungo di quanto un punteggio cumulativo
+faccia temere.** Misurato su dodici saghe da dieci anni: il testimone passa **1,8
+volte** per campagna e l'ultimo sorpasso arriva in media all'**anno 5 su 10** —
+metà strada. Solo tre campagne su dodici sono decise entro il terzo anno.
+
+Nell'anno del Sale però quel numero peggiora — ultimo sorpasso all'anno 3,5, e
+**sei campagne su dodici decise entro il terzo** — ed è la stessa casa forte di
+cui sopra: chi prende la testa presto, lì, non la molla.
 
 ---
 
@@ -814,6 +826,7 @@ l'inizio, trova il proprio seggio già in mano a un bot e ne riprende il posto.
 | Tipi di effetto sul mondo | **25** (23 reversibili, 2 no: creare un Eco e scrivere una Verità) |
 | Salto fra due Chronicle | da **1** a **200** anni |
 | **Punteggio di saga** | **−1 / +1 / +3 / +6** per nessun gradino / Minimo / Vittoria / Trionfo — solo di campagna, mai dentro l'anno |
+| **Durata di una campagna** | almeno **10** Chronicle perché un vincitore sia dichiarato |
 
 **Come finisce un anno, misurato su 100 partite a tavolo misto** (50 partite per
 seggio, quattro caratteri diversi):
@@ -1007,6 +1020,6 @@ poster fantasy.
 
 ---
 
-*Documento generato dai dati e dal codice di ECHOES 0.1.148. Le regole vivono
+*Documento generato dai dati e dal codice di ECHOES 0.1.149. Le regole vivono
 nei file JSON di `godot/data/` e nel motore in `godot/scripts/`: se un numero qui
 diverge da lì, ha ragione il codice.*

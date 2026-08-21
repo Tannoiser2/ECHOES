@@ -441,6 +441,12 @@
               "type": "integer",
               "default": 6,
               "description": "Quanto vale il gradino alto. Il doppio della Vittoria: due Vittorie non valgono un Trionfo piu' un anno perso, ed e' cosi' che la scala premia chi osa."
+            },
+            "decides_after": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 10,
+              "description": "Dopo quante Chronicle una campagna puo' dichiarare un vincitore. Prima di questa soglia il conto si tiene ma nessuno ha vinto: una saga corta e' una manciata di anni, non una campagna. Raggiunta la soglia, il tavolo puo' chiudere quando vuole e vince chi sta in testa - il decimo anno apre la porta, non la chiude."
             }
           }
         },

@@ -716,6 +716,29 @@ func _score_the_saga(results: Dictionary, log: RefCounted) -> void:
 			str((row as Array)[3]), int((row as Array)[0]),
 			"+" if gained >= 0 else "", gained,
 		])
+	# Quando una campagna puo' dire di avere un vincitore (D-181). Il committente
+	# l'ha fissata a dieci Chronicle: prima di allora il conto si tiene ma nessuno
+	# ha vinto, perche' una manciata di anni non e' una campagna. La soglia apre
+	# la porta e non la chiude - da li' in poi il tavolo smette quando vuole.
+	var played: int = int(world.get("chronicles_played", 1))
+	var needed: int = int(rules.get("decides_after", 10))
+	if played < needed:
+		log.bullet("La campagna non e' ancora decisa: %d %s su %d." % [
+			played, "anno giocato" if played == 1 else "anni giocati", needed,
+		])
+		return
+	var leaders: Array = []
+	for row in standing:
+		if int((row as Array)[0]) == int((standing[0] as Array)[0]):
+			leaders.append(str((row as Array)[3]))
+	if leaders.size() > 1:
+		log.bullet("Dopo %d anni la campagna e' in parita' fra %s: si va avanti." % [
+			played, " e ".join(PackedStringArray(leaders)),
+		])
+	else:
+		log.bullet("Dopo %d anni la campagna la vince %s, con %d punti." % [
+			played, str((standing[0] as Array)[3]), int((standing[0] as Array)[0]),
+		])
 
 
 ## Il grado che si muove con l'esito (D-159), §7.3 della seduta sulla terra.

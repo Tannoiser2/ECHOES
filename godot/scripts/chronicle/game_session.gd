@@ -151,6 +151,9 @@ func inherit_from(previous: Dictionary, results: Dictionary = {}) -> void:
 		world, _chronicle_def, data, previous, _years_passed
 	)
 
+	# Un anno in piu' di campagna (D-181): la saga sa quanto e' lunga, ed e'
+	# quello che le permette di dire se un vincitore c'e' gia' o no.
+	world["chronicles_played"] = int(previous.get("chronicles_played", 0)) + 1
 	# Il punteggio della campagna attraversa le ere (D-180). Non e' un Effetto:
 	# e' un contatore, come `confluence_count`, e sta fra le eccezioni dichiarate
 	# all'effect-sourcing. Passa **sempre**, anche se questa Chronicle non

@@ -10,6 +10,75 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-181 — Una campagna e' almeno dieci anni
+**implemented in 0.1.149** (decisa dal committente)
+
+D-180 aveva lasciato scritto che «la lunghezza della saga resta indefinita,
+quindi il vincitore e' chi sta in testa quando il tavolo smette». Il committente
+ha deciso: **«direi la saga almeno 10 partite»**.
+
+### Come e' scritta
+
+`saga_scoring.decides_after`, con **10** nelle due saghe in gioco. Prima della
+soglia il conto si tiene ma nessuno ha vinto, e il verbale lo dice a ogni anno
+(*«La campagna non e' ancora decisa: 3 anni giocati su 10»*); dalla decima in poi
+dichiara il vincitore, o la parita' se c'e'.
+
+**«Almeno» vuol dire che la soglia apre la porta e non la chiude**: al decimo
+anno la campagna *puo'* finire, e se il tavolo continua il conto prosegue e il
+verdetto si aggiorna. Una campagna piu' lunga e' ancora una campagna; una piu'
+corta non lo e'.
+
+Serviva un numero che non c'era: **quante Chronicle ha giocato questa saga**
+(`world.chronicles_played`). Non si poteva ricavare da `year`, perche' fra due
+Chronicle passano da 1 a 200 anni: cento anni di mondo possono essere due partite
+o dieci.
+
+### La domanda che la soglia rende concreta, e la sua risposta
+
+D-180 aveva dichiarato di non sapere «se il conto renda ininfluenti gli ultimi
+anni quando qualcuno ha accumulato troppo». Con una soglia si puo' chiedere, e la
+misura e' **l'anno dell'ultimo cambio di testa**: se la campagna cambia padrone
+per l'ultima volta al secondo anno su dieci, gli altri otto sono un'attesa.
+
+| su 12 saghe da 10 Chronicle | la Carestia | il Sale |
+|---|---|---|
+| cambi di testa per saga | **1,8** | 1,3 |
+| ultimo cambio di testa | anno **5,0** su 10 | anno **3,5** su 10 |
+| campagne decise entro il terzo anno | **3 su 12** | **6 su 12** |
+
+**Nella Carestia la campagna regge**: cambia padrone quasi due volte, e l'ultimo
+sorpasso arriva a meta' strada — cinque anni dopo c'e' ancora partita per
+qualcuno. **Nel Sale no**: meta' delle campagne e' decisa entro il terzo anno su
+dieci.
+
+E la causa non e' la soglia ne' la scala: e' **ISSUES 46**. Una casa che supera
+il Minimo il 68% delle volte prende la testa presto e non la molla piu'. Lo stesso
+squilibrio, visto da un terzo lato — prima come gradini per incarnazione (D-176),
+poi come vincitore di campagna (D-180), adesso come **noia**: sette anni giocati
+sapendo gia' come finisce.
+
+### Le misure
+
+- **Il playtest e' identico riga per riga** a quello di 0.1.147, per la terza
+  versione di fila: la campagna non entra in nessuna decisione.
+- Suite **355 test / 6490 asserzioni** (due test nuovi: la soglia, e il conto
+  degli anni che attraversa le ere), sim ed export identici su due giri.
+
+### Quello che si dichiara
+
+- **Dieci e' il numero del committente, non un numero misurato.** La misura dice
+  che a dieci la Carestia regge e il Sale no; non dice che dieci sia il valore
+  giusto. Se ISSUES 46 si chiude, il Sale reggera' con la stessa soglia.
+- **La soglia non impedisce di smettere prima**: niente nel motore obbliga a
+  giocare dieci Chronicle. Dice solo che sotto dieci nessun vincitore viene
+  dichiarato, e sta al tavolo decidere se una campagna interrotta valga qualcosa.
+- **Il pareggio non ha uno spareggio.** Se al decimo anno due case sono a pari
+  punti il verbale dice «si va avanti», e la campagna continua: e' la scelta piu'
+  semplice, e nessuno ha ancora chiesto un criterio di spareggio.
+
+---
+
 ## D-180 — Il vincitore della saga, e cosa il contatore ha rivelato
 **implemented in 0.1.148** (voluta dal committente)
 

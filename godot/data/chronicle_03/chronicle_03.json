@@ -232,7 +232,8 @@
         "none": -1,
         "minimum": 1,
         "victory": 3,
-        "triumph": 6
+        "triumph": 6,
+        "decides_after": 10
       }
     },
     {
@@ -488,7 +489,8 @@
         "none": -1,
         "minimum": 1,
         "victory": 3,
-        "triumph": 6
+        "triumph": 6,
+        "decides_after": 10
       }
     }
   ]

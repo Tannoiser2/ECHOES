@@ -78,6 +78,50 @@ func test_the_count_crosses_the_eras() -> void:
 	next.dispose()
 
 
+## La soglia della campagna (D-181), decisa dal committente: «direi la saga
+## almeno 10 partite». Prima di dieci Chronicle il conto si tiene ma nessuno ha
+## vinto; dalla decima in poi il tavolo puo' chiudere quando vuole.
+func test_the_campaign_is_not_decided_before_the_tenth_year() -> void:
+	var rules: Dictionary = data().chronicles["CHR_01"].get("saga_scoring", {})
+	assert_eq(int(rules["decides_after"]), 10, "una campagna e' almeno dieci anni")
+	assert_eq(
+		int(session.world["chronicles_played"]), 1,
+		"la prima Chronicle e' il primo anno della saga"
+	)
+	var controller: RefCounted = session.chronicle
+	controller.call("_score_the_saga", {"ENT_ALDRIC": {"level": "TRIUMPH"}}, session.log)
+	var said: String = "\n".join(PackedStringArray(session.log.lines))
+	assert_true(
+		said.contains("non e' ancora decisa"),
+		"al primo anno la campagna non ha un vincitore"
+	)
+	assert_false(said.contains("la vince"), "e non lo dichiara")
+
+	# Al decimo, invece, si'.
+	session.world["chronicles_played"] = 10
+	controller.call("_score_the_saga", {"ENT_ALDRIC": {"level": "TRIUMPH"}}, session.log)
+	var later: String = "\n".join(PackedStringArray(session.log.lines))
+	assert_true(later.contains("la vince Re Aldric"), "al decimo anno la campagna si decide")
+
+
+## E il conto degli anni di campagna cresce attraversando le ere, che e' l'unico
+## modo di sapere quanto e' lunga una saga: `year` conta gli anni del mondo, e
+## fra due Chronicle ne possono passare duecento.
+func test_the_years_of_the_campaign_are_counted() -> void:
+	var previous: Dictionary = session.world.duplicate(true)
+	var next: RefCounted = GameSession.new(data())
+	next.setup("CHR_01", SEATS, 99)
+	next.inherit_from(previous, {})
+	assert_eq(int(next.world["chronicles_played"]), 2, "il secondo anno di campagna")
+	var third: Dictionary = next.world.duplicate(true)
+	var last: RefCounted = GameSession.new(data())
+	last.setup("CHR_01", SEATS, 101)
+	last.inherit_from(third, {})
+	assert_eq(int(last.world["chronicles_played"]), 3, "e il terzo")
+	next.dispose()
+	last.dispose()
+
+
 ## La guardia che tiene onesta la regola: senza `saga_scoring` nella Chronicle
 ## non si conta niente. Il punteggio e' contenuto, non motore - una Chronicle
 ## puo' essere un anno che sta in piedi da solo, come in v0.2.

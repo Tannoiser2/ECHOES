@@ -1405,6 +1405,10 @@ const DEFS := {
 			"year": {
 				"type": "int",
 			},
+			"chronicles_played": {
+				"type": "int",
+				"min": 1,
+			},
 			"chronicle_id": {
 				"type": "String",
 			},

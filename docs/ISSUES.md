@@ -1485,8 +1485,17 @@ Due cose da guardare, e sono diverse:
   trionfa mai non vince la campagna. Va deciso se è un difetto o se è il suo
   carattere.
 
+**E c'è un terzo lato, misurato in 0.1.149** ([D-181](DECISIONS.md#d-181)): con la
+campagna fissata a dieci anni, nel Sale **metà delle campagne è già decisa entro
+il terzo anno** (l'ultimo cambio di testa cade in media all'anno 3,5 su 10),
+mentre nella Carestia il testimone passa quasi due volte e l'ultimo sorpasso
+arriva a metà strada. Una casa che supera il Minimo il 68% delle volte prende la
+testa presto e non la molla: lo squilibrio non è solo *chi vince*, è **sette anni
+giocati sapendo già come finisce**.
+
 **Fatto quando** su dodici saghe per tavolo nessuna casa vince più della metà
-delle campagne — o il motivo per cui una lo fa è scritto con i numeri accanto.
+delle campagne — o il motivo per cui una lo fa è scritto con i numeri accanto —
+e l'ultimo cambio di testa non cade prima di metà campagna.
 
 ---
 

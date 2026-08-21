@@ -1,4 +1,4 @@
-# Passaggio di consegne — stato al 0.1.148
+# Passaggio di consegne — stato al 0.1.149
 
 *Scritto per chi apre una sessione nuova su questo repository. Dice dov'è il
 lavoro, cosa regge, cosa no, e quali sono le regole di casa che non vanno
@@ -12,7 +12,7 @@ riscoperte da capo.*
 |---|---|
 | ramo di sviluppo | `claude/echoes-boardgame-dev-cmu444` |
 | PR aperta | in bozza, su `main` |
-| ultimo commit | 0.1.148 |
+| ultimo commit | 0.1.149 |
 | ultimo merge su `main` | `e26b2b2` — PR #67, 0.1.139–0.1.144 |
 
 La PR #67 è stata mergiata: questo ramo riparte da `main` e raccoglie da 0.1.145
@@ -61,7 +61,7 @@ Asserzioni disponibili: `assert_true`, `assert_false`, `assert_eq`, `assert_ne`.
 | `run_playtest.gd` | come finisce un anno, per seggio e per carattere — **è il cancello** |
 | `run_rung_probe.gd` | quale clausola non si avvera mai, la mappa, le pietre, i Consigli per saga |
 | `run_clause_probe.gd` | quanto costa una clausola **prima** di scriverla (banco in `tools/clause_candidates.json`) |
-| `run_era_probe.gd` | cosa fa il tempo a una saga, chi siede e dove arriva, e da 0.1.145 **quale clausola manca quando un anno si perde** |
+| `run_era_probe.gd` | cosa fa il tempo a una saga, chi siede e dove arriva, **quale clausola manca quando un anno si perde** (0.1.145), e **quanto resta viva una campagna** (0.1.149: cambi di testa, anno dell'ultimo sorpasso) |
 | `run_saga.gd` | racconta una saga anno per anno |
 | `tools/dead_code.py` · `tools/validate_data.py` | codice irraggiungibile · dati contro schemi, **e i Destini che si combattono da soli** (D-178: `--self-test` prova che le guardie mordano) |
 
@@ -82,8 +82,9 @@ solo.
 | **0.1.146** | quel difetto si vedeva **senza giocare**: due guardie nella CI, e la seconda ha trovato subito un errore introdotto il giorno prima |
 | **0.1.147** | `MECCANICA.md` riportato al vero (cinque numeri falsi, uno che si contraddiceva) e la sezione **«come si gioca bene»**, misurata |
 | **0.1.148** | **il vincitore della saga**, voluto dal committente — e il contatore ha rivelato che nella saga del Sale la campagna la vince sempre la stessa casa (ISSUES 46) |
+| **0.1.149** | una campagna è **almeno dieci anni**, deciso dal committente — e con la soglia si misura quanto resta viva: ultimo sorpasso all'anno 5 su 10 nella Carestia, 3,5 nel Sale |
 
-Più due documenti: **`docs/MECCANICA.md`** — riportato a **0.1.147**, ed è il
+Più due documenti: **`docs/MECCANICA.md`** — riportato a **0.1.149**, ed è il
 testo da dare a chi disegna l'infografica *e* a chi vuole sapere come si gioca
 bene (§15) — e **`docs/SAGA_NAHR.md`**, dieci anni giocati e raccontati.
 
@@ -92,7 +93,7 @@ bene (§15) — e **`docs/SAGA_NAHR.md`**, dieci anni giocati e raccontati.
 ```
 FAIL 256 · SUCC 78 · SUCC 100 · DECI 145 · mediana 6
 0 su 8 bloccati (misto e uniforme) · nessun seggio a NONE · nessuno a zero Trionfi
-suite 353 test / 6480 asserzioni
+suite 355 test / 6490 asserzioni
 ```
 
 ## 4. Le due cose che vanno guardate per prime
@@ -134,9 +135,11 @@ precedente — non un difetto del codice. Cambiarlo è cambiare il regolamento:
   delle dodici misurate al banco, tutto ciò che la Cenere può fare restando sulla
   montagna esce 0% o 100%.
 - **ISSUES 46** — la campagna del Sale ha un vincitore già scritto: SALE 12 su 12
-  con qualunque scala. Il contatore di saga (0.1.148) non ha creato lo squilibrio,
-  l'ha reso **definitivo** invece che spalmato. È il lavoro speculare a quello
-  fatto sulla Cenere: lì si partiva dalla casa più debole, qui dalla più forte.
+  con qualunque scala, e **metà delle campagne decise entro il terzo anno su
+  dieci**. Il contatore di saga (0.1.148-149) non ha creato lo squilibrio: l'ha
+  reso **definitivo** invece che spalmato, e poi **noioso**. È il lavoro speculare
+  a quello fatto sulla Cenere: lì si partiva dalla casa più debole, qui dalla più
+  forte.
 - **La palude** — l'unica cosa fuori dal catalogo delle strutture. Chiede slot di
   presenza variabili per Regione: **motore, non contenuto**.
 

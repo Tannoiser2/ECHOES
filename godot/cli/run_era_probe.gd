@@ -111,6 +111,12 @@ func _initialize() -> void:
 		"D -1/1/3/6 il NONE punisce": [-1, 1, 3, 6],
 		"E 0/0/1/3  esistere non paga": [0, 0, 1, 3],
 	}
+	# D-181: la soglia delle dieci Chronicle rende concreta una domanda che D-180
+	# aveva dichiarato senza risposta - se il conto renda ininfluenti gli ultimi
+	# anni. La misura e' **l'ultimo anno in cui la testa cambia**: se in media e'
+	# il secondo su dieci, la campagna e' decisa da un pezzo quando si dichiara.
+	var lead_changes: Array = []
+	var last_change: Array = []
 	var scale_wins: Dictionary = {}      # scala -> {seggio: saghe vinte}
 	var scale_ties: Dictionary = {}      # scala -> pareggi
 	var scale_agree_top: Dictionary = {} # scala -> vincitore = chi ha piu' Trionfi
@@ -121,6 +127,7 @@ func _initialize() -> void:
 		var previous: Dictionary = {}
 		var previous_results: Dictionary = {}
 		var saga_levels: Dictionary = {}
+		var leaders_by_year: Array = []
 		var first_end_tags: Array = []
 		var final_tags: Array = []
 		var final_year: int = start_year
@@ -210,6 +217,15 @@ func _initialize() -> void:
 					func(tag: Variant) -> bool: return not str(tag).begins_with("legend:")
 				).size())
 
+			var top_score: int = -999999
+			var top_who: String = ""
+			for entity_id in (session.world["entities"] as Dictionary):
+				var seat_now: Dictionary = session.world["entities"][str(entity_id)] as Dictionary
+				if int(seat_now.get("saga_score", 0)) > top_score:
+					top_score = int(seat_now.get("saga_score", 0))
+					top_who = str(entity_id)
+			leaders_by_year.append(top_who)
+
 			previous = session.world
 			previous_results = report["destiny_results"]
 			# Niente dispose: `previous` e' il mondo che il prossimo anno eredita.
@@ -256,6 +272,19 @@ func _initialize() -> void:
 						slots_none.append(row)
 					else:
 						slots_other.append(row)
+
+		# Chi era in testa dopo ogni anno, col punteggio vero tenuto dal motore.
+		var changes: int = 0
+		var last: int = 0
+		var leader_before: String = ""
+		for i in range(leaders_by_year.size()):
+			var who_leads: String = str(leaders_by_year[i])
+			if who_leads != leader_before and leader_before != "":
+				changes += 1
+				last = i + 1
+			leader_before = who_leads
+		lead_changes.append(changes)
+		last_change.append(last)
 
 		# Fine saga: chi vincerebbe, con ognuna delle scale candidate.
 		for label in scales:
@@ -325,6 +354,25 @@ func _initialize() -> void:
 	print("  Le vite mutate sedute nelle saghe:")
 	for life in life_names:
 		print("    %-34s %4d" % [str(life), int(lives_seated[life])])
+	if not last_change.is_empty():
+		var sum_changes: float = 0.0
+		for value in lead_changes:
+			sum_changes += float(value)
+		var sum_last: float = 0.0
+		var decided_early: int = 0
+		for value in last_change:
+			sum_last += float(value)
+			if int(value) <= 3:
+				decided_early += 1
+		print("")
+		print("  LA CAMPAGNA E' ANCORA VIVA? (D-181)")
+		print("    cambi di testa per saga            %.1f" % (sum_changes / float(lead_changes.size())))
+		print("    ultimo cambio di testa, anno       %.1f su %d" % [
+			sum_last / float(last_change.size()), chronicles,
+		])
+		print("    saghe decise entro il terzo anno   %d su %d" % [
+			decided_early, last_change.size(),
+		])
 	print("")
 	print("  IL VINCITORE DELLA SAGA - quale scala di punteggio, su %d saghe" % sagas)
 	print("     (il vincitore dovrebbe somigliare a chi ha piu' Trionfi, non a chi ha piu' Minimi)")

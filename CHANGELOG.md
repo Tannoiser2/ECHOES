@@ -5,6 +5,43 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.149 — Una campagna è almeno dieci anni (D-181)
+
+- **Deciso dal committente**: «direi la saga almeno 10 partite». Sta in
+  `saga_scoring.decides_after`, con **10** nelle due saghe in gioco. Prima della
+  soglia il conto si tiene ma nessuno ha vinto, e il verbale lo dice ogni anno
+  (*«La campagna non è ancora decisa: 3 anni giocati su 10»*); dalla decima in poi
+  dichiara il vincitore, o la parità se c'è.
+- **«Almeno» vuol dire che la soglia apre la porta e non la chiude**: al decimo
+  anno la campagna può finire, e se il tavolo continua il conto prosegue.
+- **Un numero nuovo nel mondo**: `chronicles_played`, quante Chronicle ha giocato
+  questa saga. Non si poteva ricavare da `year`, perché fra due Chronicle passano
+  da 1 a 200 anni — cento anni di mondo possono essere due partite o dieci.
+- **E la soglia rende concreta la domanda che D-180 aveva dichiarato senza
+  risposta**: il conto rende ininfluenti gli ultimi anni? La misura è l'anno
+  dell'**ultimo cambio di testa**:
+
+| su 12 saghe da 10 Chronicle | la Carestia | il Sale |
+|---|---|---|
+| cambi di testa per saga | **1,8** | 1,3 |
+| ultimo cambio di testa | anno **5,0** su 10 | anno **3,5** su 10 |
+| campagne decise entro il terzo anno | **3 su 12** | **6 su 12** |
+
+- **Nella Carestia la campagna regge** — cambia padrone quasi due volte e
+  l'ultimo sorpasso arriva a metà strada. **Nel Sale no**: metà delle campagne è
+  decisa entro il terzo anno su dieci. La causa non è la soglia né la scala, è
+  **ISSUES 46**: una casa che supera il Minimo il 68% delle volte prende la testa
+  presto e non la molla. Lo stesso squilibrio visto da un terzo lato — prima come
+  gradini, poi come vincitore, adesso come **noia**.
+- Il playtest è **identico riga per riga** a quello di 0.1.147 per la terza
+  versione di fila. Suite **355 test / 6490 asserzioni**.
+
+### Dichiarato
+
+- **Dieci è il numero del committente, non un numero misurato**: la misura dice
+  che a dieci la Carestia regge e il Sale no, non che dieci sia il valore giusto.
+- Il pareggio al decimo anno non ha uno spareggio: il verbale dice «si va avanti».
+
 ## 0.1.148 — Il vincitore della saga (D-180)
 
 - **Voluta dal committente**: «per vincere la saga ci vuole un contatore di
