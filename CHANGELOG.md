@@ -5,6 +5,43 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.162 — I bot erano passati alle carte, le mani no (D-194)
+
+- **Trovato dal committente guardando l'app**: «su Pages non è cambiato nulla,
+  mi sembra una vecchia versione».
+- **Pages era aggiornato** — il workflow ha pubblicato dopo ogni merge, l'ultimo
+  alle 21:33 con esito verde. Quello che sembrava vecchio **era il gioco**: il
+  menu proponeva ancora «Acquisisci una carta AUTORITÀ», e sceglierla la faceva
+  rifiutare un istante dopo.
+- **La causa**: D-188 ha spostato il divieto delle sei azioni dirette da
+  `check()` a `execute()` — per la ragione giusta — ma il menu umano si
+  costruisce proprio con `check()`. Migrato il cervello dei bot, lasciate
+  indietro le mani.
+- **Adesso il menu offre le carte**: ogni azione compare una volta per ogni carta
+  in mano che sa dirla — *«Mercenari» — Metti una presenza in Valle Verde* — e
+  quelle che nessuna carta sa dire spariscono. Un punto solo, e copre schermo del
+  tavolo, terminale e console del telefono.
+- **Il test che doveva proteggere quella promessa è rimasto verde per tre
+  versioni**: chiedeva `can_execute`, cioè `check()`, ed era `check()` ad aver
+  smesso di rifiutare. Quello nuovo guarda dal lato giusto e, tolta la
+  correzione, morde con lo stesso messaggio visto sull'app.
+- Playtest **identico riga per riga**: `FAIL 253 · 111 · 127 · 113`, Consigli
+  6,04, mediana 6, **0 su 8**. Suite **380 test / 6674 asserzioni**.
+
+### Dichiarato
+
+- **Nessuno se n'era accorto perché nessun bot usa quel menu**: il playtest, che
+  è il cancello di casa, gioca solo con `PolicyDecider`. Non c'è sonda che copra
+  quello che il committente guarda — l'ha trovato aprendo l'app.
+- **Il rischio è strutturale**: ogni volta che una regola si sposta fra `check()`
+  ed `execute()`, il menu umano cambia senza che nessuna misura lo dica. La
+  guardia nuova copre il caso delle carte, non il prossimo.
+- **Velo, rubinetto e sacchetto non sono stati riguardati dallo stesso punto di
+  vista**: cambiano cosa una persona vede, e sono stati provati solo dal lato
+  dei bot.
+
+---
+
 ## 0.1.161 — La mano non sapeva dire metà di quello che il seggio voleva (D-193)
 
 - La prima voce di CONSEGNE §5bis, scomposta: dei 720 turni misurati, **235** il

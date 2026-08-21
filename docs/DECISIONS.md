@@ -10,6 +10,78 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-194 — I bot erano passati alle carte, le mani no
+**implemented in 0.1.162** (trovato dal committente guardando l'app)
+
+*«Ma su Pages non e' cambiato nulla, mi sembra una vecchia versione.»*
+
+**Pages era aggiornato.** Il workflow ha pubblicato dopo ogni merge — l'ultimo,
+run 280, ha deployato `e790485` alle 21:33 con esito verde. Quello che il
+committente vedeva vecchio **era il gioco**: il menu delle azioni proponeva
+ancora *«Acquisisci una carta AUTORITA'»*, *«Metti una presenza in…»*, e se le
+si sceglieva il resolver le rifiutava un istante dopo.
+
+### La causa, ed e' mia
+
+D-188 ha spostato il divieto delle sei azioni dirette **da `check()` a
+`execute()`**, per la ragione giusta: `check()` risponde a *«sarebbe legale?»*,
+la domanda che un seggio si fa prima di sapere con quale carta lo dira'.
+
+Ma il menu umano si costruisce **proprio con `check()`**, e da quel giorno
+`check()` ha smesso di dire di no. Ho migrato il cervello dei bot
+(`policy_decider`) e ho lasciato indietro le mani: `seat_decider._action_options`
+offriva il gioco di prima a chiunque giocasse davvero.
+
+Il commento sopra quella funzione prometteva: *«ogni azione legale, gia'
+verificata contro le regole, cosi' una persona non si vede mai offrire qualcosa
+che il resolver rifiutera'»*. La promessa era rotta da tre versioni.
+
+### Come e' fatto adesso
+
+Le sei azioni restano il vocabolario — sono cio' che un seggio *puo' voler fare*
+— e l'elenco si costruisce come sempre. Poi, se la Chronicle dice che si fanno
+con le carte, ogni voce viene offerta **una volta per ogni carta in mano che sa
+dirla**, e quelle che nessuna carta sa dire spariscono:
+
+```
+«Mercenari» — Metti una presenza in Valle Verde
+«Editto» — Rivendica il dominio TERRITORIO
+```
+
+Un punto solo, e copre tutte e tre le superfici: lo schermo del tavolo, il
+terminale e la console del telefono passano tutti da `SeatDecider`.
+
+### Il test che non poteva accorgersene
+
+Ne esisteva gia' uno per questa promessa — *«il menu non offre mai cio' che le
+regole rifiutano»* — e **e' rimasto verde per tre versioni**: chiede
+`can_execute`, cioe' `check()`, ed era proprio `check()` ad aver smesso di
+rifiutare. Il test nuovo guarda dal lato giusto: sotto l'economia delle carte
+**nessuna voce del menu porta un template diretto**, e ogni voce offerta viene
+davvero eseguita. Tolta la correzione, morde: nove asserzioni rosse con lo stesso
+messaggio che il committente ha visto sull'app.
+
+### Le misure
+
+Playtest **identico riga per riga**: `FAIL 253 · 111 · 127 · 113`, Consigli 6,04,
+mediana 6, **0 su 8**. E' giusto che lo sia — i bot non passano da questo menu.
+Suite **380 test / 6674 asserzioni**.
+
+### Quello che si dichiara
+
+- **Nessuno se n'era accorto perche' nessun bot usa quel menu.** Il playtest,
+  che e' il cancello di casa, gioca solo con `PolicyDecider`. La misura non
+  copriva la cosa che il committente guarda, e non c'e' sonda che lo faccia:
+  l'ha trovato aprendo l'app, come i nove difetti piu' grossi di questo progetto.
+- **Il rischio e' strutturale, non un caso**: ogni volta che una regola si sposta
+  fra `check()` ed `execute()`, il menu umano cambia senza che nessuna misura lo
+  dica. La guardia nuova copre il caso delle carte; **non copre il prossimo**.
+- **Il velo, il rubinetto e il sacchetto non sono stati riguardati** dallo stesso
+  punto di vista: sono regole che cambiano cosa una persona vede, e sono state
+  provate solo dal lato dei bot.
+
+---
+
 ## D-193 — La mano non sapeva dire meta' di quello che il seggio voleva
 **implemented in 0.1.161** (la prima voce di CONSEGNE §5bis)
 

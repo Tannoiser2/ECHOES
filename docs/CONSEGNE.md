@@ -1,4 +1,4 @@
-# Passaggio di consegne — stato al 0.1.161
+# Passaggio di consegne — stato al 0.1.162
 
 *Scritto per chi apre una sessione nuova su questo repository. Dice dov'è il
 lavoro, cosa regge, cosa no, e quali sono le regole di casa che non vanno
@@ -221,6 +221,20 @@ Scritto dopo il merge di #70, quando il gioco a sole carte è diventato il gioco
    prima partita non siano sempre le stesse quattro, e che partano tutte da
    **0**. La seconda non è gratis — con nove gettoni di Deriva su quattro
    domande, partire da zero obbliga a rifare le soglie.
+
+## 5ter. La misura non copre quello che il committente guarda
+
+In 0.1.162 il committente ha aperto l'app e ha visto **il gioco di tre versioni
+fa**: il menu proponeva le azioni dirette, e sceglierle le faceva rifiutare. Il
+playtest era verde, la suite era verde, la CI era verde.
+
+**Nessun bot usa quel menu.** Il cancello di casa gioca solo con
+`PolicyDecider`, quindi tutto ciò che riguarda `SeatDecider` — cioè tutto ciò
+che una persona vede e tocca — non è coperto da nessuna misura.
+
+Chi lavora qui dovrebbe, dopo ogni cambiamento di regola: chiedersi **cosa vede
+adesso una persona**, e provarlo dal lato di `SeatDecider`. Velo, rubinetto e
+sacchetto non sono ancora stati riguardati così.
 
 ## 6. La cosa che non si risolve misurando
 

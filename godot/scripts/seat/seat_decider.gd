@@ -294,6 +294,53 @@ func _action_options(entity_id: String, session: RefCounted) -> Array:
 				],
 				"template": "FORGE", "params": request,
 			})
+	return _through_the_hand(entity_id, out, session)
+
+
+## **Quando le carte sono l'unica moneta, il menu deve offrire le carte** (D-194).
+##
+## Le sei azioni di §10 restano il vocabolario del gioco, e questo elenco le
+## costruisce come sempre: sono cio' che un seggio *puo' voler fare*. Ma se la
+## Chronicle dice che si fanno con le carte, ognuna va offerta **una volta per
+## ogni carta in mano che sa dirla** — e quelle che nessuna carta sa dire non si
+## offrono affatto.
+##
+## Senza questo, l'interfaccia umana e' rimasta al gioco di prima: proponeva
+## «Acquisisci una carta AUTORITA'» e il resolver la rifiutava un istante dopo,
+## perche' D-188 ha spostato il divieto da `check()` a `execute()`. I bot erano
+## passati alle carte, le mani no.
+func _through_the_hand(entity_id: String, offers: Array, session: RefCounted) -> Array:
+	var chronicle: Dictionary = session.data.chronicles[
+		str(session.world["chronicle_id"])
+	] as Dictionary
+	if not bool(chronicle.get("actions_from_cards", false)):
+		return offers
+	var hand: Array = session.service.hand(entity_id)
+	var out: Array = []
+	for offer in offers:
+		var template: String = str((offer as Dictionary)["template"])
+		# Le carte del Narratore sono un mazzo a parte, e PASS non costa niente.
+		if template == "PLAY_ECHO" or template == "PASS":
+			out.append(offer)
+			continue
+		for asset_id in hand:
+			var card: Variant = session.data.assets.get(str(asset_id))
+			if card == null:
+				continue
+			var action: Dictionary = (card as Dictionary).get("card_action", {}) as Dictionary
+			if action.is_empty() or str(action.get("kind", "")) != template:
+				continue
+			var params: Dictionary = ((offer as Dictionary)["params"] as Dictionary).duplicate()
+			params["asset_id"] = str(asset_id)
+			if not session.actions.can_execute(entity_id, "PLAY_CARD", params):
+				continue
+			out.append({
+				"label": "«%s» — %s" % [
+					str((card as Dictionary)["title"]),
+					str((offer as Dictionary)["label"]),
+				],
+				"template": "PLAY_CARD", "params": params,
+			})
 	return out
 
 
