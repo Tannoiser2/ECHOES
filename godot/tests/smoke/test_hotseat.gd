@@ -248,3 +248,47 @@ func test_a_seat_nobody_plays_is_left_to_the_policy() -> void:
 			session.actions.check("ENT_ALDRIC", str(request["template"]), request["params"]),
 			"", "e l'azione che sceglie e legale"
 		)
+
+
+## D-194: **quando le carte sono l'unica moneta, il menu offre le carte.**
+##
+## E' la stessa promessa del test qui sopra — «mai offrire cio' che le regole
+## rifiutano» — ma quel test non poteva accorgersi della sua rottura: chiede
+## `can_execute`, cioe' `check()`, e D-188 ha spostato il divieto delle sei
+## azioni dirette in `execute()`. Il menu proponeva «Acquisisci una carta
+## AUTORITA'» e il resolver la rifiutava un istante dopo. Questo lo prova dal
+## lato giusto: sotto l'economia delle carte **nessuna voce del menu porta un
+## template diretto**.
+func test_with_cards_the_menu_offers_cards_and_not_the_six_actions() -> void:
+	var decider: RefCounted = SeatDecider.new(SEATS, null)
+	new_session(4242)
+	var chronicle: Dictionary = session.data.chronicles["CHR_01"] as Dictionary
+	chronicle["actions_from_cards"] = true
+	session.actions.set("_chronicle", chronicle)
+
+	var direct: Array = ["ACQUIRE", "MOVE", "INFLUENCE", "FORGE", "SCHEME", "CLAIM"]
+	var seen: Dictionary = {}
+	for entity_id in SEATS:
+		for option in decider._action_options(str(entity_id), session):
+			var template: String = str(option["template"])
+			seen[template] = int(seen.get(template, 0)) + 1
+			assert_false(
+				direct.has(template),
+				"il menu offre a %s un %s diretto, che execute() rifiutera'"
+				% [str(entity_id), template]
+			)
+			# E resta vero che cio' che si offre si puo' fare.
+			var outcome: Dictionary = session.actions.execute(
+				str(entity_id), {"template": template, "params": option["params"]}
+			)
+			assert_true(
+				bool(outcome["ok"]),
+				"il menu offre a %s qualcosa che le regole rifiutano: %s"
+				% [str(entity_id), str(outcome.get("error", ""))]
+			)
+			break  # una voce per seggio: eseguirle tutte cambierebbe il mondo
+	assert_true(
+		int(seen.get("PLAY_CARD", 0)) > 0,
+		"col gioco a carte il menu propone carte da calare: %s" % str(seen)
+	)
+	chronicle.erase("actions_from_cards")

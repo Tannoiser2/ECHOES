@@ -5,6 +5,80 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.162 — I bot erano passati alle carte, le mani no (D-194)
+
+- **Trovato dal committente guardando l'app**: «su Pages non è cambiato nulla,
+  mi sembra una vecchia versione».
+- **Pages era aggiornato** — il workflow ha pubblicato dopo ogni merge, l'ultimo
+  alle 21:33 con esito verde. Quello che sembrava vecchio **era il gioco**: il
+  menu proponeva ancora «Acquisisci una carta AUTORITÀ», e sceglierla la faceva
+  rifiutare un istante dopo.
+- **La causa**: D-188 ha spostato il divieto delle sei azioni dirette da
+  `check()` a `execute()` — per la ragione giusta — ma il menu umano si
+  costruisce proprio con `check()`. Migrato il cervello dei bot, lasciate
+  indietro le mani.
+- **Adesso il menu offre le carte**: ogni azione compare una volta per ogni carta
+  in mano che sa dirla — *«Mercenari» — Metti una presenza in Valle Verde* — e
+  quelle che nessuna carta sa dire spariscono. Un punto solo, e copre schermo del
+  tavolo, terminale e console del telefono.
+- **Il test che doveva proteggere quella promessa è rimasto verde per tre
+  versioni**: chiedeva `can_execute`, cioè `check()`, ed era `check()` ad aver
+  smesso di rifiutare. Quello nuovo guarda dal lato giusto e, tolta la
+  correzione, morde con lo stesso messaggio visto sull'app.
+- Playtest **identico riga per riga**: `FAIL 253 · 111 · 127 · 113`, Consigli
+  6,04, mediana 6, **0 su 8**. Suite **380 test / 6674 asserzioni**.
+
+### Dichiarato
+
+- **Nessuno se n'era accorto perché nessun bot usa quel menu**: il playtest, che
+  è il cancello di casa, gioca solo con `PolicyDecider`. Non c'è sonda che copra
+  quello che il committente guarda — l'ha trovato aprendo l'app.
+- **Il rischio è strutturale**: ogni volta che una regola si sposta fra `check()`
+  ed `execute()`, il menu umano cambia senza che nessuna misura lo dica. La
+  guardia nuova copre il caso delle carte, non il prossimo.
+- **Velo, rubinetto e sacchetto non sono stati riguardati dallo stesso punto di
+  vista**: cambiano cosa una persona vede, e sono stati provati solo dal lato
+  dei bot.
+
+---
+
+## 0.1.161 — La mano non sapeva dire metà di quello che il seggio voleva (D-193)
+
+- La prima voce di CONSEGNE §5bis, scomposta: dei 720 turni misurati, **235** il
+  cervello non voleva niente, **214** voleva qualcosa che la mano non sapeva
+  dire, **271** hanno prodotto qualcosa.
+- **Il modo di TRAMARE è libero**: le otto carte fissavano `REGION`, `TENSION` o
+  `ECHO_DECK`, e chi voleva scoprire una domanda con in mano una carta da «leggi
+  una Regione» passava il turno. **Mute di TRAMARE da 56 a 15.** È D-184
+  riapplicato, e la terza volta che lo stesso difetto torna su una famiglia
+  diversa.
+- **La FORZA aveva un solo verso**: tre INFLUENZARE su tre, tutte +1. Una casa su
+  Eredan e Montagne poteva solo scaldare il mondo. Il Posto di Blocco ora fa −1.
+- **Un difetto vero trovato da un test**: la Chronicle di **libreria** faceva 2
+  Consigli mediani invece di 3–7. Il sacchetto di D-192 leggeva la
+  `drift_distribution` **scritta nella Chronicle**, che una Chronicle di libreria
+  non ha — sacchetto vuoto, Deriva spenta perché il sacchetto la sostituisce, e
+  l'anno non si scaldava mai. Ora il sacchetto è la traccia già mescolata.
+- `FAIL 253 · 111 · 127 · 113`, Consigli 6,04, mediana 6, **0 su 8**. Suite
+  **379 test / 6665 asserzioni**.
+
+### Dichiarato
+
+- **Il totale delle Occasioni mute non si è mosso**: 62% prima, 62% dopo. Le
+  mute di TRAMARE sono crollate e i seggi hanno usato le Occasioni liberate per
+  fare altro. **Non è un difetto da riparare**: è la forma del gioco senza
+  ACQUISIRE.
+- **Il paragone onesto**: nel gioco di prima le azioni diverse da ACQUISIRE erano
+  3,2 per seggio all'anno su 18 Occasioni — il **18%**. Adesso succede qualcosa
+  nel **37%**. Il gioco a carte è più attivo di quello che ha sostituito.
+- **Gli 80 «la carta spinge dalla parte sbagliata» non sono un difetto**: la
+  Folla non argomenta, sale di 1. Liberare anche il verso farebbe di ogni carta
+  un jolly e toglierebbe il carattere.
+- La FORZA resta sbilanciata (due su tre spingono in su): è voluto, non è
+  misurato quanto costi a chi tiene solo Regioni di FORZA.
+
+---
+
 ## 0.1.160 — Il calore lo pescano i giocatori (D-192)
 
 - **ISSUES 49 fase 1**, sulla scelta **b** del committente. Ogni azione riuscita
