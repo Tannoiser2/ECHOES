@@ -31,8 +31,9 @@ func _presence(regions: Array) -> void:
 ## Spento - il default - il rubinetto non esiste e le carte si pescano solo
 ## con ACQUISIRE, come in v0.2.
 func test_without_the_rule_the_map_gives_nothing() -> void:
-	assert_false(
-		_chronicle().has("hand_refill"), "di default la Chronicle non tiene rubinetto"
+	assert_true(
+		(_chronicle().get("hand_refill", {}) as Dictionary).is_empty(),
+		"sul lato classico dell'interruttore la Chronicle non tiene rubinetto"
 	)
 	var before: int = _hand_size()
 	session.chronicle.call("_refill_hands", 1)
@@ -46,7 +47,7 @@ func test_two_tokens_two_cards() -> void:
 	var before: int = _hand_size()
 	session.chronicle.call("_refill_hands", 1)
 	assert_eq(_hand_size(), before + 2, "due pedine danno due carte")
-	_chronicle().erase("hand_refill")
+	_chronicle()["hand_refill"] = {}
 
 
 ## Il tetto: e' il freno alla divergenza, e deve mordere prima delle pedine.
@@ -56,7 +57,7 @@ func test_the_cap_is_the_brake() -> void:
 	var before: int = _hand_size()
 	session.chronicle.call("_refill_hands", 1)
 	assert_eq(_hand_size(), before + 2, "tre pedine, ma il tetto e due")
-	_chronicle().erase("hand_refill")
+	_chronicle()["hand_refill"] = {}
 
 
 ## Il pavimento: chi non ha piu' niente sulla mappa pesca lo stesso, o non si
@@ -67,7 +68,7 @@ func test_the_floor_keeps_the_landless_in_the_game() -> void:
 	var before: int = _hand_size()
 	session.chronicle.call("_refill_hands", 1)
 	assert_eq(_hand_size(), before + 1, "senza pedine si pesca il pavimento")
-	_chronicle().erase("hand_refill")
+	_chronicle()["hand_refill"] = {}
 
 
 ## E la famiglia la sceglie la mappa: chi tiene solo le Montagne Rosse pesca
@@ -92,7 +93,7 @@ func test_the_region_decides_the_family() -> void:
 		sources.has(family),
 		"la carta viene da cio' che la Regione da' (%s, e la Regione da' %s)" % [family, sources]
 	)
-	_chronicle().erase("hand_refill")
+	_chronicle()["hand_refill"] = {}
 
 
 ## Il tetto sulla **mano**: il rubinetto riempie fino a un numero e non oltre.
@@ -106,7 +107,7 @@ func test_the_hand_cap_fills_up_to_a_number() -> void:
 	assert_eq(before, 2, "la mano di partenza e due carte")
 	session.chronicle.call("_refill_hands", 1)
 	assert_eq(_hand_size(), 4, "tre pedine, ma si riempie fino a quattro")
-	_chronicle().erase("hand_refill")
+	_chronicle()["hand_refill"] = {}
 
 
 ## E chi e' gia' al tetto non pesca niente, per quante pedine abbia.
@@ -116,4 +117,4 @@ func test_a_full_hand_draws_nothing() -> void:
 	var before: int = _hand_size()
 	session.chronicle.call("_refill_hands", 1)
 	assert_eq(_hand_size(), before, "chi e' al tetto non pesca, e nemmeno il pavimento lo scavalca")
-	_chronicle().erase("hand_refill")
+	_chronicle()["hand_refill"] = {}

@@ -11,7 +11,7 @@
         "army",
         "common"
       ],
-      "acquisition_rule": "ACQUIRE su FORCE. Fonte: Montagne Rosse.",
+      "acquisition_rule": "ACQUIRE su FORCE. Fonti: Eredan, Montagne Rosse.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -21,6 +21,10 @@
       "deck_copies": 4,
       "art_prompt_key": "asset.force.levy",
       "rules_text": "Uomini con attrezzi da lavoro tenuti come lance. Bastano finché nessuno li conta — ma i campi restano soli: la Carestia sale di 1.",
+      "card_action": {
+        "kind": "MOVE",
+        "note": "Si chiama la leva e i contadini si spostano: e' gente che diventa presenza."
+      },
       "on_commit_effects": [
         {
           "type": "ADJUST_TENSION",
@@ -44,7 +48,7 @@
         "garrison",
         "border"
       ],
-      "acquisition_rule": "ACQUIRE su FORCE. Fonte: Montagne Rosse.",
+      "acquisition_rule": "ACQUIRE su FORCE. Fonti: Eredan, Montagne Rosse.",
       "confluence_modifier": {
         "kind": "RELEVANT_BONUS",
         "value": 1
@@ -54,6 +58,10 @@
       "deck_copies": 4,
       "art_prompt_key": "asset.force.border_watch",
       "rules_text": "+1 quando FORCE è rilevante per la Tensione. Contano i carri che passano, e sanno quali contare — e ogni conta ferma la strada: Le Vie Interrotte salgono di 1.",
+      "card_action": {
+        "kind": "MOVE",
+        "note": "La guardia va dove le si dice, e dove sta la guardia la casa c'e'."
+      },
       "on_commit_effects": [
         {
           "type": "ADJUST_TENSION",
@@ -77,7 +85,7 @@
         "roads",
         "control"
       ],
-      "acquisition_rule": "ACQUIRE su FORCE. Fonte: Montagne Rosse.",
+      "acquisition_rule": "ACQUIRE su FORCE. Fonti: Eredan, Montagne Rosse.",
       "confluence_modifier": {
         "kind": "OPPOSE_BONUS",
         "value": 1
@@ -87,6 +95,13 @@
       "deck_copies": 4,
       "art_prompt_key": "asset.force.roadblock",
       "rules_text": "+1 sul fronte Oppose. Fermare un carro costa sempre meno che farlo partire — e la Regione della domanda resta tagliata fuori dal mondo.",
+      "card_action": {
+        "kind": "INFLUENCE",
+        "params": {
+          "delta": 1
+        },
+        "note": "Chiudere una strada non calma niente: la domanda si scalda di 1."
+      },
       "on_commit_effects": [
         {
           "type": "SET_REGION_TAG",
@@ -111,7 +126,7 @@
         "terror",
         "risky"
       ],
-      "acquisition_rule": "ACQUIRE su FORCE. Fonte: Montagne Rosse.",
+      "acquisition_rule": "ACQUIRE su FORCE. Fonti: Eredan, Montagne Rosse.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -121,6 +136,10 @@
       "deck_copies": 2,
       "art_prompt_key": "asset.force.warband",
       "rules_text": "Si scarta sempre, e la Tensione in gioco sale di 1: la paura non si spegne insieme alla questione.",
+      "card_action": {
+        "kind": "MOVE",
+        "note": "La banda si sposta da sola: basta indicarle la Regione."
+      },
       "on_commit_effects": [
         {
           "type": "ADJUST_TENSION",
@@ -144,7 +163,7 @@
         "hired",
         "risky"
       ],
-      "acquisition_rule": "ACQUIRE su FORCE. Fonte: Montagne Rosse.",
+      "acquisition_rule": "ACQUIRE su FORCE. Fonti: Eredan, Montagne Rosse.",
       "confluence_modifier": {
         "kind": "FLAT_BONUS",
         "value": 1
@@ -154,6 +173,10 @@
       "deck_copies": 4,
       "art_prompt_key": "asset.force.mercenaries",
       "rules_text": "+1 sempre, su qualsiasi fronte: fuori tema vale quanto in tema. Dove passano, però, resta l'inquietudine.",
+      "card_action": {
+        "kind": "MOVE",
+        "note": "Si pagano e si mandano. Non chiedono dove."
+      },
       "on_commit_effects": [
         {
           "type": "SET_REGION_TAG",
@@ -177,7 +200,7 @@
         "siege",
         "pressure"
       ],
-      "acquisition_rule": "ACQUIRE su FORCE. Fonte: Montagne Rosse.",
+      "acquisition_rule": "ACQUIRE su FORCE. Fonti: Eredan, Montagne Rosse.",
       "confluence_modifier": {
         "kind": "OPPOSE_BONUS",
         "value": 2
@@ -187,6 +210,13 @@
       "deck_copies": 2,
       "art_prompt_key": "asset.force.siege",
       "rules_text": "+2 sul fronte Oppose. Non serve prendere una cosa per impedire che sia di qualcun altro — ma l'assedio affama anche la terra intorno: la Carestia sale di 1.",
+      "card_action": {
+        "kind": "INFLUENCE",
+        "params": {
+          "delta": 1
+        },
+        "note": "L'assedio e' una domanda posta con le armi: sale di 1."
+      },
       "on_commit_effects": [
         {
           "type": "ADJUST_TENSION",
@@ -211,7 +241,7 @@
         "legacy",
         "risky"
       ],
-      "acquisition_rule": "ACQUIRE su FORCE. Fonte: Montagne Rosse.",
+      "acquisition_rule": "ACQUIRE su FORCE. Fonti: Eredan, Montagne Rosse.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -221,6 +251,10 @@
       "deck_copies": 1,
       "art_prompt_key": "asset.force.old_army",
       "rules_text": "Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: richiamare i vecchi reggimenti dice al mondo che la cosa è seria.",
+      "card_action": {
+        "kind": "MOVE",
+        "note": "Il vecchio esercito si muove lento e si vede da lontano - ed e' quello il punto."
+      },
       "on_commit_effects": [
         {
           "type": "ADJUST_TENSION",
@@ -245,7 +279,7 @@
         "irreversible",
         "risky"
       ],
-      "acquisition_rule": "ACQUIRE su FORCE. Fonte: Montagne Rosse.",
+      "acquisition_rule": "ACQUIRE su FORCE. Fonti: Eredan, Montagne Rosse.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -255,6 +289,13 @@
       "deck_copies": 1,
       "art_prompt_key": "asset.force.burned_gate",
       "rules_text": "Forza 3. Si scarta sempre, e chi la gioca perde la propria presenza nella Regione di cui si discute: chi apre una porta così non resta li a difenderla.",
+      "card_action": {
+        "kind": "INFLUENCE",
+        "params": {
+          "delta": 1
+        },
+        "note": "Le porte bruciate non si richiudono: la questione sale di 1."
+      },
       "on_commit_effects": [
         {
           "type": "REMOVE_PRESENCE",
@@ -279,7 +320,7 @@
         "law",
         "common"
       ],
-      "acquisition_rule": "ACQUIRE su AUTHORITY. Fonte: Eredan.",
+      "acquisition_rule": "ACQUIRE su AUTHORITY. Fonti: Eredan, Terre Nahr.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -289,6 +330,13 @@
       "deck_copies": 4,
       "art_prompt_key": "asset.authority.edict",
       "rules_text": "Una riga scritta bene vale quanto chi la fa rispettare — e dove si discute, la legge calma la piazza: l'inquietudine si cancella.",
+      "card_action": {
+        "kind": "CLAIM",
+        "params": {
+          "mode": "CREATE"
+        },
+        "note": "L'editto e' la carta con cui ci si prenota la parola su un dominio."
+      },
       "on_commit_effects": [
         {
           "type": "REMOVE_REGION_TAG",
@@ -313,7 +361,7 @@
         "law",
         "symbol"
       ],
-      "acquisition_rule": "ACQUIRE su AUTHORITY. Fonte: Eredan.",
+      "acquisition_rule": "ACQUIRE su AUTHORITY. Fonti: Eredan, Terre Nahr.",
       "confluence_modifier": {
         "kind": "OPPOSE_BONUS",
         "value": 1
@@ -323,6 +371,13 @@
       "deck_copies": 4,
       "art_prompt_key": "asset.authority.seal",
       "rules_text": "+1 sul fronte Oppose. Il sigillo che manca ferma più cose del sigillo che c'è — e quello impegnato raffredda la questione: la Tensione in gioco scende di 1.",
+      "card_action": {
+        "kind": "INFLUENCE",
+        "params": {
+          "delta": 1
+        },
+        "note": "Il sigillo mette la questione per iscritto, e cio' che e' scritto pesa di 1."
+      },
       "on_commit_effects": [
         {
           "type": "ADJUST_TENSION",
@@ -346,7 +401,7 @@
         "record",
         "administration"
       ],
-      "acquisition_rule": "ACQUIRE su AUTHORITY. Fonte: Eredan.",
+      "acquisition_rule": "ACQUIRE su AUTHORITY. Fonti: Eredan, Terre Nahr.",
       "confluence_modifier": {
         "kind": "RELEVANT_BONUS",
         "value": 1
@@ -356,6 +411,13 @@
       "deck_copies": 4,
       "art_prompt_key": "asset.authority.census",
       "rules_text": "+1 quando AUTHORITY è rilevante per la Tensione. Una lista di nomi è la forma più semplice del potere — e la lista chiarisce: la Regione della domanda smette di essere contesa.",
+      "card_action": {
+        "kind": "INFLUENCE",
+        "params": {
+          "delta": -1
+        },
+        "note": "Contare la gente toglie 1 alla paura: si sa quanti sono."
+      },
       "on_commit_effects": [
         {
           "type": "REMOVE_REGION_TAG",
@@ -381,7 +443,7 @@
         "tradition",
         "risky"
       ],
-      "acquisition_rule": "ACQUIRE su AUTHORITY. Fonte: Eredan.",
+      "acquisition_rule": "ACQUIRE su AUTHORITY. Fonti: Eredan, Terre Nahr.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -391,6 +453,13 @@
       "deck_copies": 2,
       "art_prompt_key": "asset.authority.crown_right",
       "rules_text": "Si scarta sempre: un diritto invocato due volte non è più un diritto, è una pretesa — e la pretesa divide: la Regione della domanda resta contesa.",
+      "card_action": {
+        "kind": "CLAIM",
+        "params": {
+          "mode": "FORCE"
+        },
+        "note": "Il diritto di corona non aspetta la soglia: strappa il Consiglio adesso."
+      },
       "on_commit_effects": [
         {
           "type": "SET_REGION_TAG",
@@ -414,7 +483,7 @@
         "law",
         "judgement"
       ],
-      "acquisition_rule": "ACQUIRE su AUTHORITY. Fonte: Eredan.",
+      "acquisition_rule": "ACQUIRE su AUTHORITY. Fonti: Eredan, Terre Nahr.",
       "confluence_modifier": {
         "kind": "OPPOSE_BONUS",
         "value": 2
@@ -424,6 +493,13 @@
       "deck_copies": 2,
       "art_prompt_key": "asset.authority.magistrate",
       "rules_text": "+2 sul fronte Oppose. Se la proposta passa lo stesso resta in mano: un giudice che ha avuto ragione serve ancora — e il giudice risponde: la domanda rimasta scritta sul muro si cancella.",
+      "card_action": {
+        "kind": "FORGE",
+        "params": {
+          "direction": "DOWN"
+        },
+        "note": "Il magistrato non chiede il permesso: manda giu' un rapporto di un grado."
+      },
       "on_commit_effects": [
         {
           "type": "REMOVE_REGION_TAG",
@@ -448,7 +524,7 @@
         "title",
         "grant"
       ],
-      "acquisition_rule": "ACQUIRE su AUTHORITY. Fonte: Eredan.",
+      "acquisition_rule": "ACQUIRE su AUTHORITY. Fonti: Eredan, Terre Nahr.",
       "confluence_modifier": {
         "kind": "FLAT_BONUS",
         "value": 1
@@ -458,6 +534,13 @@
       "deck_copies": 4,
       "art_prompt_key": "asset.authority.investiture",
       "rules_text": "+1 sempre, su qualsiasi fronte. Si scarta sempre: si concede una volta sola, e tutti se ne ricordano — perché la nomina scrive un nome nella linea: il mondo ricorda l'erede nominato.",
+      "card_action": {
+        "kind": "CLAIM",
+        "params": {
+          "mode": "CREATE"
+        },
+        "note": "Investire qualcuno e' dire in anticipo di chi sara' la domanda."
+      },
       "on_commit_effects": [
         {
           "type": "SET_GLOBAL_TAG",
@@ -482,7 +565,7 @@
         "prohibition",
         "risky"
       ],
-      "acquisition_rule": "ACQUIRE su AUTHORITY. Fonte: Eredan.",
+      "acquisition_rule": "ACQUIRE su AUTHORITY. Fonti: Eredan, Terre Nahr.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -492,6 +575,13 @@
       "deck_copies": 1,
       "art_prompt_key": "asset.authority.interdict",
       "rules_text": "Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: vietare una cosa a tutti alza la posta per tutti.",
+      "card_action": {
+        "kind": "INFLUENCE",
+        "params": {
+          "delta": -1
+        },
+        "note": "L'interdetto spegne: -1, e nessuno discute."
+      },
       "on_commit_effects": [
         {
           "type": "ADJUST_TENSION",
@@ -516,7 +606,7 @@
         "succession",
         "risky"
       ],
-      "acquisition_rule": "ACQUIRE su AUTHORITY. Fonte: Eredan.",
+      "acquisition_rule": "ACQUIRE su AUTHORITY. Fonti: Eredan, Terre Nahr.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -526,6 +616,13 @@
       "deck_copies": 1,
       "art_prompt_key": "asset.authority.succession_act",
       "rules_text": "Forza 3. Si scarta sempre, e chi ti sta di fronte guadagna una presenza nella Regione di cui si discute: nominare un erede fa arrivare tutti quelli che non sono stati nominati.",
+      "card_action": {
+        "kind": "CLAIM",
+        "params": {
+          "mode": "FORCE"
+        },
+        "note": "L'atto di successione apre il tavolo da se': e' scritto, e va letto."
+      },
       "on_commit_effects": [
         {
           "type": "ADD_PRESENCE",
@@ -559,6 +656,13 @@
       "deck_copies": 4,
       "art_prompt_key": "asset.people.crowd",
       "rules_text": "Nessuno l'ha convocata. È arrivata lo stesso — in capitale: e la capitale resta inquieta.",
+      "card_action": {
+        "kind": "INFLUENCE",
+        "params": {
+          "delta": 1
+        },
+        "note": "La folla non argomenta: sale di 1."
+      },
       "on_commit_effects": [
         {
           "type": "SET_REGION_TAG",
@@ -592,6 +696,13 @@
       "deck_copies": 4,
       "art_prompt_key": "asset.people.elders",
       "rules_text": "+1 sul fronte Oppose. Parlano piano, dicono di no, e vengono ripetuti per tre villaggi — e sanno accompagnare: il lutto della Regione della domanda si elabora.",
+      "card_action": {
+        "kind": "SCHEME",
+        "params": {
+          "mode": "TENSION"
+        },
+        "note": "Gli anziani hanno gia' visto questo anno: sanno quanto manca."
+      },
       "on_commit_effects": [
         {
           "type": "REMOVE_REGION_TAG",
@@ -626,6 +737,10 @@
       "deck_copies": 4,
       "art_prompt_key": "asset.people.harvest_hands",
       "rules_text": "+1 quando PEOPLE è rilevante per la Tensione. Non sono un esercito: ma senza di loro non si mangia — e dove arrivano, la fame della Regione della domanda si spegne.",
+      "card_action": {
+        "kind": "MOVE",
+        "note": "Le braccia vanno dove c'e' da raccogliere, e restano dove hanno raccolto."
+      },
       "on_commit_effects": [
         {
           "type": "REMOVE_REGION_TAG",
@@ -661,6 +776,13 @@
       "deck_copies": 2,
       "art_prompt_key": "asset.people.mobilization",
       "rules_text": "+2 sul fronte Oppose: è più facile fermare qualcosa in molti che costruirla. Si scarta sempre — e la piazza resta calda: la Tensione in gioco sale di 1.",
+      "card_action": {
+        "kind": "INFLUENCE",
+        "params": {
+          "delta": 1
+        },
+        "note": "Mobilitare vuol dire mettere la questione in piazza: +1."
+      },
       "on_commit_effects": [
         {
           "type": "ADJUST_TENSION",
@@ -694,6 +816,13 @@
       "deck_copies": 2,
       "art_prompt_key": "asset.people.spokesman",
       "rules_text": "Qualcuno che dice ad alta voce quello che già pensano in molti, e che dopo non può più tornare indietro — la parola detta è una promessa fra le due case.",
+      "card_action": {
+        "kind": "INFLUENCE",
+        "params": {
+          "delta": -1
+        },
+        "note": "Il portavoce parla al posto della folla, e parlare raffredda di 1."
+      },
       "on_commit_effects": [
         {
           "type": "SET_RELATION",
@@ -727,6 +856,10 @@
       "deck_copies": 4,
       "art_prompt_key": "asset.people.march",
       "rules_text": "Poca gente, ma in strada e alla stessa ora. Il punto non è quanti sono: è che si sono trovati — e le razioni imposte sulla Regione della domanda si rompono.",
+      "card_action": {
+        "kind": "MOVE",
+        "note": "Una marcia e' presenza che cammina."
+      },
       "on_commit_effects": [
         {
           "type": "REMOVE_REGION_TAG",
@@ -762,6 +895,10 @@
       "deck_copies": 1,
       "art_prompt_key": "asset.people.exodus",
       "rules_text": "Forza 3. Si scarta sempre, e chi la gioca perde la propria presenza nella Regione di cui si discute: chi parte non torna al tavolo.",
+      "card_action": {
+        "kind": "MOVE",
+        "note": "Se ne vanno tutti insieme, e il posto dove arrivano cambia padrone."
+      },
       "on_commit_effects": [
         {
           "type": "REMOVE_PRESENCE",
@@ -797,6 +934,13 @@
       "deck_copies": 1,
       "art_prompt_key": "asset.people.still_hands",
       "rules_text": "Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: un paese che si ferma non si rimette in moto dove l'avevi lasciato.",
+      "card_action": {
+        "kind": "INFLUENCE",
+        "params": {
+          "delta": 1
+        },
+        "note": "Braccia ferme: non si lavora, e la domanda sale di 1."
+      },
       "on_commit_effects": [
         {
           "type": "ADJUST_TENSION",
@@ -820,7 +964,7 @@
         "secret",
         "common"
       ],
-      "acquisition_rule": "ACQUIRE su KNOWLEDGE. Fonte: Miniere Antiche.",
+      "acquisition_rule": "ACQUIRE su KNOWLEDGE. Fonti: Miniere Antiche, Strada dei Mercanti.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -830,6 +974,13 @@
       "deck_copies": 4,
       "art_prompt_key": "asset.knowledge.rumor",
       "rules_text": "Non è vera. Non è ancora falsa — e finché gira, la questione in gioco torna velata: i numeri si nascondono dietro le voci.",
+      "card_action": {
+        "kind": "SCHEME",
+        "params": {
+          "mode": "ECHO_DECK"
+        },
+        "note": "Le voci di corridoio arrivano prima dei fatti: si guarda cosa sta per succedere."
+      },
       "on_commit_effects": [
         {
           "type": "SET_TENSION_VISIBILITY",
@@ -853,7 +1004,7 @@
         "record",
         "roads"
       ],
-      "acquisition_rule": "ACQUIRE su KNOWLEDGE. Fonte: Miniere Antiche.",
+      "acquisition_rule": "ACQUIRE su KNOWLEDGE. Fonti: Miniere Antiche, Strada dei Mercanti.",
       "confluence_modifier": {
         "kind": "RELEVANT_BONUS",
         "value": 1
@@ -863,6 +1014,10 @@
       "deck_copies": 4,
       "art_prompt_key": "asset.knowledge.old_map",
       "rules_text": "+1 quando KNOWLEDGE è rilevante per la Tensione. I confini sono sbagliati; le strade no — e una strada giusta ricuce il ponte rotto sulla Regione della domanda.",
+      "card_action": {
+        "kind": "MOVE",
+        "note": "Una mappa vecchia mostra una strada che gli altri non sanno di avere."
+      },
       "on_commit_effects": [
         {
           "type": "REMOVE_REGION_TAG",
@@ -887,7 +1042,7 @@
         "record",
         "trade"
       ],
-      "acquisition_rule": "ACQUIRE su KNOWLEDGE. Fonte: Miniere Antiche.",
+      "acquisition_rule": "ACQUIRE su KNOWLEDGE. Fonti: Miniere Antiche, Strada dei Mercanti.",
       "confluence_modifier": {
         "kind": "OPPOSE_BONUS",
         "value": 1
@@ -897,6 +1052,13 @@
       "deck_copies": 4,
       "art_prompt_key": "asset.knowledge.ledger",
       "rules_text": "+1 sul fronte Oppose. Chi tiene i conti sa cosa manca, e lo dice nel momento peggiore — e da quel momento i conti sono di tutti: il registro è pubblico.",
+      "card_action": {
+        "kind": "SCHEME",
+        "params": {
+          "mode": "REGION"
+        },
+        "note": "Il registro dei conti dice di una terra piu' di chi ci abita."
+      },
       "on_commit_effects": [
         {
           "type": "SET_GLOBAL_TAG",
@@ -920,7 +1082,7 @@
         "proof",
         "discovery"
       ],
-      "acquisition_rule": "ACQUIRE su KNOWLEDGE. Fonte: Miniere Antiche.",
+      "acquisition_rule": "ACQUIRE su KNOWLEDGE. Fonti: Miniere Antiche, Strada dei Mercanti.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -930,6 +1092,13 @@
       "deck_copies": 2,
       "art_prompt_key": "asset.knowledge.proof",
       "rules_text": "Se la proposta passa, resta in mano: una prova dimostrata non si consuma — e dimostra: la questione in gioco si apre a tutti i presenti.",
+      "card_action": {
+        "kind": "SCHEME",
+        "params": {
+          "mode": "TENSION"
+        },
+        "note": "Una prova gira la carta coperta: si legge la soglia."
+      },
       "on_commit_effects": [
         {
           "type": "SET_TENSION_VISIBILITY",
@@ -953,7 +1122,7 @@
         "record",
         "memory"
       ],
-      "acquisition_rule": "ACQUIRE su KNOWLEDGE. Fonte: Miniere Antiche.",
+      "acquisition_rule": "ACQUIRE su KNOWLEDGE. Fonti: Miniere Antiche, Strada dei Mercanti.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -962,7 +1131,14 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.knowledge.archive",
-      "rules_text": "Se la proposta passa resta in mano. Le carte non si consumano: si consuma chi le sa leggere."
+      "rules_text": "Se la proposta passa resta in mano. Le carte non si consumano: si consuma chi le sa leggere.",
+      "card_action": {
+        "kind": "SCHEME",
+        "params": {
+          "mode": "REGION"
+        },
+        "note": "Negli archivi c'e' scritto quello che una Regione non dice."
+      }
     },
     {
       "id": "AST_KNOWLEDGE_WITNESS",
@@ -974,7 +1150,7 @@
         "voice",
         "risky"
       ],
-      "acquisition_rule": "ACQUIRE su KNOWLEDGE. Fonte: Miniere Antiche.",
+      "acquisition_rule": "ACQUIRE su KNOWLEDGE. Fonti: Miniere Antiche, Strada dei Mercanti.",
       "confluence_modifier": {
         "kind": "OPPOSE_BONUS",
         "value": 2
@@ -984,6 +1160,13 @@
       "deck_copies": 2,
       "art_prompt_key": "asset.knowledge.witness",
       "rules_text": "+2 sul fronte Oppose. Si scarta sempre: un testimone si spende una volta sola — e la deposizione agita la casa accusata: la sua sede resta inquieta.",
+      "card_action": {
+        "kind": "INFLUENCE",
+        "params": {
+          "delta": -1
+        },
+        "note": "Un testimone toglie 1: davanti a qualcuno che ha visto si urla di meno."
+      },
       "on_commit_effects": [
         {
           "type": "SET_REGION_TAG",
@@ -1008,7 +1191,7 @@
         "awakening",
         "risky"
       ],
-      "acquisition_rule": "ACQUIRE su KNOWLEDGE. Fonte: Miniere Antiche.",
+      "acquisition_rule": "ACQUIRE su KNOWLEDGE. Fonti: Miniere Antiche, Strada dei Mercanti.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -1018,6 +1201,13 @@
       "deck_copies": 1,
       "art_prompt_key": "asset.knowledge.red_crystal",
       "rules_text": "Forza 3. Si scarta sempre, e la Tensione in gioco diventa aperta a tutti: mostrarlo chiude ogni dubbio e apre la domanda a chiunque fosse nella stanza.",
+      "card_action": {
+        "kind": "SCHEME",
+        "params": {
+          "mode": "TENSION"
+        },
+        "note": "Il Cristallo misura cio' che il mondo tiene nascosto."
+      },
       "on_commit_effects": [
         {
           "type": "SET_TENSION_VISIBILITY",
@@ -1042,7 +1232,7 @@
         "secret",
         "risky"
       ],
-      "acquisition_rule": "ACQUIRE su KNOWLEDGE. Fonte: Miniere Antiche.",
+      "acquisition_rule": "ACQUIRE su KNOWLEDGE. Fonti: Miniere Antiche, Strada dei Mercanti.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -1052,6 +1242,13 @@
       "deck_copies": 1,
       "art_prompt_key": "asset.knowledge.sealed_testimony",
       "rules_text": "Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: quello che era scritto per un solo lettore adesso lo hanno sentito tutti.",
+      "card_action": {
+        "kind": "INFLUENCE",
+        "params": {
+          "delta": 1
+        },
+        "note": "Aprire una deposizione sigillata scalda la questione di 1."
+      },
       "on_commit_effects": [
         {
           "type": "ADJUST_TENSION",
@@ -1075,7 +1272,7 @@
         "food",
         "common"
       ],
-      "acquisition_rule": "ACQUIRE su WEALTH. Fonti: Eredan, Valle Verde, Miniere Antiche, Strada dei Mercanti.",
+      "acquisition_rule": "ACQUIRE su WEALTH. Fonti: Valle Verde, Strada dei Mercanti.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -1085,6 +1282,13 @@
       "deck_copies": 4,
       "art_prompt_key": "asset.wealth.grain",
       "rules_text": "Conta più di un titolo, per il tempo in cui dura — e dura quanto basta: la Carestia scende di 1.",
+      "card_action": {
+        "kind": "INFLUENCE",
+        "params": {
+          "delta": -1
+        },
+        "note": "Aprire la riserva toglie 1: si mangia, e si smette di gridare."
+      },
       "on_commit_effects": [
         {
           "type": "ADJUST_TENSION",
@@ -1108,7 +1312,7 @@
         "trade",
         "food"
       ],
-      "acquisition_rule": "ACQUIRE su WEALTH. Fonti: Eredan, Valle Verde, Miniere Antiche, Strada dei Mercanti.",
+      "acquisition_rule": "ACQUIRE su WEALTH. Fonti: Valle Verde, Strada dei Mercanti.",
       "confluence_modifier": {
         "kind": "RELEVANT_BONUS",
         "value": 1
@@ -1118,6 +1322,13 @@
       "deck_copies": 4,
       "art_prompt_key": "asset.wealth.salt",
       "rules_text": "+1 quando WEALTH è rilevante per la Tensione. Non nutre nessuno: senza, quello che nutre non arriva — e dove arriva, la magra si supera.",
+      "card_action": {
+        "kind": "INFLUENCE",
+        "params": {
+          "delta": -1
+        },
+        "note": "Il sale conserva, e cio' che si conserva non scotta: -1."
+      },
       "on_commit_effects": [
         {
           "type": "REMOVE_REGION_TAG",
@@ -1142,7 +1353,7 @@
         "roads",
         "trade"
       ],
-      "acquisition_rule": "ACQUIRE su WEALTH. Fonti: Eredan, Valle Verde, Miniere Antiche, Strada dei Mercanti.",
+      "acquisition_rule": "ACQUIRE su WEALTH. Fonti: Valle Verde, Strada dei Mercanti.",
       "confluence_modifier": {
         "kind": "OPPOSE_BONUS",
         "value": 1
@@ -1152,6 +1363,13 @@
       "deck_copies": 4,
       "art_prompt_key": "asset.wealth.toll",
       "rules_text": "+1 sul fronte Oppose. Una corda tesa fra due pali, e il diritto di non alzarla — e il diritto si scrive: sulla Regione della domanda resta il pedaggio.",
+      "card_action": {
+        "kind": "INFLUENCE",
+        "params": {
+          "delta": 1
+        },
+        "note": "Un pedaggio nuovo scalda la questione di 1: chi paga se lo ricorda."
+      },
       "on_commit_effects": [
         {
           "type": "BUILD_STRUCTURE",
@@ -1177,7 +1395,7 @@
         "trade",
         "risky"
       ],
-      "acquisition_rule": "ACQUIRE su WEALTH. Fonti: Eredan, Valle Verde, Miniere Antiche, Strada dei Mercanti.",
+      "acquisition_rule": "ACQUIRE su WEALTH. Fonti: Valle Verde, Strada dei Mercanti.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -1187,6 +1405,10 @@
       "deck_copies": 2,
       "art_prompt_key": "asset.wealth.caravan",
       "rules_text": "Si scarta sempre: una carovana spesa è una carovana partita — e una carovana che parte riapre la via: la Regione tagliata fuori si ricollega.",
+      "card_action": {
+        "kind": "MOVE",
+        "note": "La carovana porta la casa dove arriva."
+      },
       "on_commit_effects": [
         {
           "type": "REMOVE_REGION_TAG",
@@ -1211,7 +1433,7 @@
         "debt",
         "trade"
       ],
-      "acquisition_rule": "ACQUIRE su WEALTH. Fonti: Eredan, Valle Verde, Miniere Antiche, Strada dei Mercanti.",
+      "acquisition_rule": "ACQUIRE su WEALTH. Fonti: Valle Verde, Strada dei Mercanti.",
       "confluence_modifier": {
         "kind": "FLAT_BONUS",
         "value": 1
@@ -1221,6 +1443,13 @@
       "deck_copies": 4,
       "art_prompt_key": "asset.wealth.credit",
       "rules_text": "+1 sempre, su qualsiasi fronte. Vale nel momento in cui lo chiedi, e non un minuto dopo — perché chiederlo chiama tutti i debiti: il mondo ricorda che il debito fu chiamato.",
+      "card_action": {
+        "kind": "FORGE",
+        "params": {
+          "direction": "DOWN"
+        },
+        "note": "Chiamare il credito e' rompere: il rapporto scende di un grado."
+      },
       "on_commit_effects": [
         {
           "type": "SET_GLOBAL_TAG",
@@ -1244,7 +1473,7 @@
         "food",
         "control"
       ],
-      "acquisition_rule": "ACQUIRE su WEALTH. Fonti: Eredan, Valle Verde, Miniere Antiche, Strada dei Mercanti.",
+      "acquisition_rule": "ACQUIRE su WEALTH. Fonti: Valle Verde, Strada dei Mercanti.",
       "confluence_modifier": {
         "kind": "OPPOSE_BONUS",
         "value": 2
@@ -1254,6 +1483,13 @@
       "deck_copies": 2,
       "art_prompt_key": "asset.wealth.granary_keys",
       "rules_text": "+2 sul fronte Oppose. Non possiedi il grano: possiedi la serratura — e la serratura raziona: sulla Regione della domanda resta il segno della razione.",
+      "card_action": {
+        "kind": "FORGE",
+        "params": {
+          "direction": "DOWN"
+        },
+        "note": "Chi tiene le chiavi decide chi mangia, e chi decide perde un amico."
+      },
       "on_commit_effects": [
         {
           "type": "SET_REGION_TAG",
@@ -1278,7 +1514,7 @@
         "crown",
         "risky"
       ],
-      "acquisition_rule": "ACQUIRE su WEALTH. Fonti: Eredan, Valle Verde, Miniere Antiche, Strada dei Mercanti.",
+      "acquisition_rule": "ACQUIRE su WEALTH. Fonti: Valle Verde, Strada dei Mercanti.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -1288,6 +1524,10 @@
       "deck_copies": 1,
       "art_prompt_key": "asset.wealth.treasury",
       "rules_text": "Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: aprire il tesoro dice a tutti quanto vale davvero la questione.",
+      "card_action": {
+        "kind": "MOVE",
+        "note": "Col tesoro si compra un posto sulla mappa, senza chiedere a nessuno."
+      },
       "on_commit_effects": [
         {
           "type": "ADJUST_TENSION",
@@ -1312,7 +1552,7 @@
         "land",
         "risky"
       ],
-      "acquisition_rule": "ACQUIRE su WEALTH. Fonti: Eredan, Valle Verde, Miniere Antiche, Strada dei Mercanti.",
+      "acquisition_rule": "ACQUIRE su WEALTH. Fonti: Valle Verde, Strada dei Mercanti.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -1322,6 +1562,13 @@
       "deck_copies": 1,
       "art_prompt_key": "asset.wealth.land_mortgage",
       "rules_text": "Forza 3. Si scarta sempre, e chi ti sta di fronte guadagna una presenza nella Regione di cui si discute: impegnare una terra fa arrivare chi la vuole.",
+      "card_action": {
+        "kind": "FORGE",
+        "params": {
+          "direction": "DOWN"
+        },
+        "note": "L'ipoteca e' un rapporto che diventa un conto: giu' di un grado."
+      },
       "on_commit_effects": [
         {
           "type": "ADD_PRESENCE",
@@ -1345,7 +1592,7 @@
         "debt",
         "common"
       ],
-      "acquisition_rule": "ACQUIRE su BONDS. Fonti: Terre Nahr, Montagne Rosse, Strada dei Mercanti.",
+      "acquisition_rule": "ACQUIRE su BONDS. Fonti: Montagne Rosse, Miniere Antiche.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -1355,6 +1602,13 @@
       "deck_copies": 4,
       "art_prompt_key": "asset.bonds.favor",
       "rules_text": "Piccolo, ricordato con precisione — e restituito al momento giusto: fra chi lo impegna e il rivale, una vendetta si spegne.",
+      "card_action": {
+        "kind": "FORGE",
+        "params": {
+          "direction": "UP"
+        },
+        "note": "Un favore vale un grado - se l'altro lo accetta."
+      },
       "on_commit_effects": [
         {
           "type": "SET_RELATION",
@@ -1378,7 +1632,7 @@
         "custom",
         "kinship"
       ],
-      "acquisition_rule": "ACQUIRE su BONDS. Fonti: Terre Nahr, Montagne Rosse, Strada dei Mercanti.",
+      "acquisition_rule": "ACQUIRE su BONDS. Fonti: Montagne Rosse, Miniere Antiche.",
       "confluence_modifier": {
         "kind": "RELEVANT_BONUS",
         "value": 1
@@ -1388,6 +1642,13 @@
       "deck_copies": 4,
       "art_prompt_key": "asset.bonds.guest_right",
       "rules_text": "+1 quando BONDS è rilevante per la Tensione. Chi ha mangiato al tuo tavolo non può dire di no davanti a tutti. Può dirlo dopo — e chi lo impegna torna ospite: la cacciata dalla Regione della domanda si cancella.",
+      "card_action": {
+        "kind": "FORGE",
+        "params": {
+          "direction": "UP"
+        },
+        "note": "Chi ti ospita non ti puo' piu' trattare da estraneo."
+      },
       "on_commit_effects": [
         {
           "type": "REMOVE_ENTITY_TAG",
@@ -1411,7 +1672,7 @@
         "debt",
         "memory"
       ],
-      "acquisition_rule": "ACQUIRE su BONDS. Fonti: Terre Nahr, Montagne Rosse, Strada dei Mercanti.",
+      "acquisition_rule": "ACQUIRE su BONDS. Fonti: Montagne Rosse, Miniere Antiche.",
       "confluence_modifier": {
         "kind": "OPPOSE_BONUS",
         "value": 1
@@ -1421,6 +1682,13 @@
       "deck_copies": 4,
       "art_prompt_key": "asset.bonds.old_debt",
       "rules_text": "+1 sul fronte Oppose. Nessuno se lo ricorda tranne le due persone che contano, e una delle due lo tira fuori adesso — e da adesso è pubblico: la sede del debitore resta segnata come indebitata.",
+      "card_action": {
+        "kind": "SCHEME",
+        "params": {
+          "mode": "REGION"
+        },
+        "note": "Un debito vecchio conosce le stanze in cui e' stato contratto."
+      },
       "on_commit_effects": [
         {
           "type": "SET_REGION_TAG",
@@ -1444,7 +1712,7 @@
         "pact",
         "kinship"
       ],
-      "acquisition_rule": "ACQUIRE su BONDS. Fonti: Terre Nahr, Montagne Rosse, Strada dei Mercanti.",
+      "acquisition_rule": "ACQUIRE su BONDS. Fonti: Montagne Rosse, Miniere Antiche.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -1454,6 +1722,13 @@
       "deck_copies": 4,
       "art_prompt_key": "asset.bonds.oath",
       "rules_text": "Non si scarta mai. Un giuramento impegnato resta impegnato anche dopo, ed è la sua unica forza — e un giuramento rifatto scioglie quello spezzato: fra chi lo impegna e il rivale, il tradimento si cancella.",
+      "card_action": {
+        "kind": "FORGE",
+        "params": {
+          "direction": "UP"
+        },
+        "note": "Il giuramento e' la carta con cui si sale, e si spende dicendolo."
+      },
       "on_commit_effects": [
         {
           "type": "SET_RELATION",
@@ -1477,7 +1752,7 @@
         "pact",
         "kinship"
       ],
-      "acquisition_rule": "ACQUIRE su BONDS. Fonti: Terre Nahr, Montagne Rosse, Strada dei Mercanti.",
+      "acquisition_rule": "ACQUIRE su BONDS. Fonti: Montagne Rosse, Miniere Antiche.",
       "confluence_modifier": {
         "kind": "OPPOSE_BONUS",
         "value": 2
@@ -1487,6 +1762,13 @@
       "deck_copies": 2,
       "art_prompt_key": "asset.bonds.betrothal",
       "rules_text": "+2 sul fronte Oppose: una promessa serve più a impedire un'alleanza che a farne una. Si scarta sempre — e resta scritta: fra le due case nasce un patto, e i patti si giudicano.",
+      "card_action": {
+        "kind": "FORGE",
+        "params": {
+          "direction": "UP"
+        },
+        "note": "Una promessa di nozze lega due case di un grado, col consenso di entrambe."
+      },
       "on_commit_effects": [
         {
           "type": "SET_RELATION",
@@ -1510,7 +1792,7 @@
         "kinship",
         "pact"
       ],
-      "acquisition_rule": "ACQUIRE su BONDS. Fonti: Terre Nahr, Montagne Rosse, Strada dei Mercanti.",
+      "acquisition_rule": "ACQUIRE su BONDS. Fonti: Montagne Rosse, Miniere Antiche.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -1520,6 +1802,13 @@
       "deck_copies": 2,
       "art_prompt_key": "asset.bonds.blood_tie",
       "rules_text": "Non è un accordo: e una cosa che c'era prima dell'accordo, e che nessuno ha firmato. Impegnata, scrive il vincolo di sangue sulla coppia: da lì in poi, quella relazione non scende sotto il neutrale.",
+      "card_action": {
+        "kind": "SCHEME",
+        "params": {
+          "mode": "TENSION"
+        },
+        "note": "Il sangue sa quanto manca prima che lo sappia il tavolo."
+      },
       "on_commit_effects": [
         {
           "type": "SET_RELATION",
@@ -1544,7 +1833,7 @@
         "coercion",
         "risky"
       ],
-      "acquisition_rule": "ACQUIRE su BONDS. Fonti: Terre Nahr, Montagne Rosse, Strada dei Mercanti.",
+      "acquisition_rule": "ACQUIRE su BONDS. Fonti: Montagne Rosse, Miniere Antiche.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -1554,6 +1843,13 @@
       "deck_copies": 1,
       "art_prompt_key": "asset.bonds.hostage",
       "rules_text": "Forza 3. Si scarta sempre, e chi ti sta di fronte guadagna una presenza nella Regione di cui si discute: chi consegna un figlio compra una parola, e la paga a casa propria.",
+      "card_action": {
+        "kind": "INFLUENCE",
+        "params": {
+          "delta": -1
+        },
+        "note": "Finche' l'ostaggio e' vivo si tratta: -1."
+      },
       "on_commit_effects": [
         {
           "type": "ADD_PRESENCE",
@@ -1578,7 +1874,7 @@
         "betrayal",
         "risky"
       ],
-      "acquisition_rule": "ACQUIRE su BONDS. Fonti: Terre Nahr, Montagne Rosse, Strada dei Mercanti.",
+      "acquisition_rule": "ACQUIRE su BONDS. Fonti: Montagne Rosse, Miniere Antiche.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -1588,6 +1884,13 @@
       "deck_copies": 1,
       "art_prompt_key": "asset.bonds.broken_pact",
       "rules_text": "Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: rompere un patto davanti al tavolo scalda ogni domanda ancora aperta.",
+      "card_action": {
+        "kind": "INFLUENCE",
+        "params": {
+          "delta": 1
+        },
+        "note": "Un patto rotto sale di 1 e non torna piu' giu' da solo."
+      },
       "on_commit_effects": [
         {
           "type": "ADJUST_TENSION",

@@ -10,6 +10,126 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-188 — Le quarantotto carte parlano: le azioni passano sulla mano
+**implemented in 0.1.156** (ISSUES 47, fase 4 — il gioco nuovo si accende)
+
+*«Togliamo tutte le azioni e le mettiamo sulle carte. Ogni carta ha una azione
+di gioco, un valore per il consiglio, e effetti specifici della carta: il gioco
+deve essere un bilanciamento di come usare le cose che la carta ti permette di
+fare.»* Il telaio era di D-184, il rubinetto di D-185, la mappa di D-186.
+Qui si scrive il contenuto e **si gira l'interruttore**.
+
+### Le quarantotto
+
+Ogni carta porta una delle cinque azioni che restano — ACQUISIRE sparisce,
+perche' era due terzi del gioco e adesso la fa la mappa. La distribuzione non e'
+casuale: la Regione decide che carte peschi, quindi **la mappa decide che cose
+puoi fare**.
+
+| famiglia | porta | il suo mestiere |
+|---|---|---|
+| FORZA | 5 MUOVERE, 3 INFLUENZARE | prende terra |
+| AUTORITA' | 4 RIVENDICARE, 3 INFLUENZARE, 1 FORGIARE | l'unica che prende **la parola** |
+| GENTE | 4 INFLUENZARE, 3 MUOVERE, 1 TRAMARE | si sposta e preme |
+| SAPERE | 5 TRAMARE, 2 INFLUENZARE, 1 MUOVERE | gli occhi |
+| RICCHEZZA | 3 FORGIARE giu', 3 INFLUENZARE, 2 MUOVERE | compra e rompe |
+| LEGAMI | 4 FORGIARE su, 2 TRAMARE, 2 INFLUENZARE | l'unica che **stringe** |
+
+**17 INFLUENZARE, 11 MUOVERE, 8 TRAMARE, 8 FORGIARE, 4 RIVENDICARE.** Le quattro
+RIVENDICARE stanno tutte su AUTORITA' perche' quell'azione *chiede* di scartare
+un AUTORITA': la carta e' la propria spesa, e il conto torna solo li'.
+
+### Le tre cose che il motore ha dovuto imparare
+
+**a) La carta e' la propria spesa.** Tre azioni su cinque chiedono di scartare
+un Asset. Senza una regola, giocare una carta per farle ne costava **due**:
+quella giocata e quella scartata. Adesso la carta paga se stessa, e resta vero
+che una carta spesa non votera' piu'.
+
+**b) Il divieto stava nel posto sbagliato.** D-184 aveva messo il rifiuto delle
+azioni dirette in `check()`. Ma `check()` risponde a *«questa azione sarebbe
+legale?»*, ed e' la domanda che un seggio si fa **prima** di sapere con quale
+carta la dira': col divieto li', i seggi smettevano di volere qualcosa e
+**496 Occasioni su 720 restavano mute**. Il divieto vive ora in `execute()`.
+
+**c) Il cervello resta lo stesso, cambia chi pronuncia.** Il decider sceglie
+l'intenzione come sempre; uno strato nuovo cerca in mano la carta che la dice,
+e spende **la piu' debole che sa farlo** — la forte serve al voto. Se
+l'intenzione non e' dicibile prova le seconde scelte dello stesso cervello prima
+di passare. E ha imparato una voce nuova, che e' la conseguenza diretta di
+D-185: **allargare il rubinetto**, cioe' posare il gettone di riserva dove la
+mappa offre una famiglia che non si raggiunge.
+
+### Le misure
+
+Interruttore acceso su CHR_01 e CHR_02, col rubinetto tarato in D-186
+(`per_token: 2, floor: 2, cap: 6, hand_cap: 7`):
+
+```
+FAIL 235 · SUCC 99 · SUCC 122 · DECI 121 · Consigli media 5,77 · mediana 6
+0 su 8 bloccati (misto e uniforme) · nessuna azione rifiutata
+suite 371 test / 6716 asserzioni
+```
+
+E la cosa per cui tutto questo e' stato fatto — **la divergenza di ISSUES 47
+punto 2 e' chiusa a gioco acceso**, non piu' solo in preventivo:
+
+| scarto fra la mano piu' piena e la piu' vuota | Atto 1 | Atto 2 | Atto 3 |
+|---|---|---|---|
+| il gioco di oggi (ACQUISIRE) | 0,00 | 2,77 | **4,90** |
+| **il gioco a carte** | 0,00 | 1,10 | **1,58** |
+
+Fabbisogno misurato a gioco acceso: **9,81 carte l'anno** per seggio, contro le
+11,80 del preventivo. Il rubinetto ne da' abbastanza.
+
+### Due difetti trovati misurando, non leggendo
+
+- **Il distratto chiedeva un'azione che non esiste piu'.** Il suo «ogni tanto fa
+  un'altra cosa» era scritto come un ACQUISIRE a caso: acceso l'interruttore, se
+  lo vedeva rifiutare **93 volte su 20 partite**, e i suoi NONE passavano da 1 a
+  **8**. Adesso la distrazione ha la forma giusta per questo gioco: spende **la
+  carta sbagliata**, non pesca la famiglia sbagliata.
+- **Re Aldric si portava via da solo la presenza a Eredan.** La voce nuova
+  «allarga il rubinetto» spostava una pedina per raggiungere una famiglia in
+  piu' — e con tre gettoni gia' posati MUOVERE *sposta* invece di aggiungere.
+  Il suo Minimo chiede presenza a Eredan: **NONE da 1 a 8 su 50 partite**, con
+  «Presenza a Eredan» come prima causa. Adesso il rubinetto si allarga **solo
+  col gettone di riserva**: una casa non abbandona il posto in cui vive per una
+  carta in piu'.
+
+### Quello che si dichiara
+
+- **CHR_03 gioca ancora il §10 di prima**, ed e' deliberato: la sua mappa non e'
+  stata ridistribuita (D-186 ha toccato solo le sei Regioni di CHR_01, che pero'
+  CHR_03 condivide — quindi il lavoro e' capire cosa serve al mondo del Sale, non
+  rifare le Regioni). Accendere li' le carte senza guardare vorrebbe dire
+  ripetere il difetto che D-186 ha appena chiuso.
+- **Le prove unitarie stanno sul lato classico dell'interruttore, e lo
+  dichiarano.** Trentasette prove usavano le azioni dirette **per mettere il
+  mondo nella posizione da provare**, non per misurare l'economia: `play_classic()`
+  le tiene li'. Che i dati spediti stiano dall'altra parte lo prova un test suo,
+  che rilegge il dato dal disco.
+- **I tre piani scriptati sono storie del §10 di prima** e restano tali: le loro
+  mosse sono azioni dirette. **Manca un piano scriptato del gioco a carte**, ed
+  e' la coperture che questo lavoro non ha: il gioco nuovo e' provato dal
+  cancello (100 semi) e dalle prove unitarie, non da una storia raccontata.
+- **Il 58% delle Occasioni resta muto.** Di 720 campioni: 222 volte il cervello
+  non voleva niente, 194 volte voleva qualcosa **che la mano non sapeva dire**.
+  Il secondo numero e' il costo vero della regola, e si abbassa in due modi —
+  piu' carte, o una distribuzione diversa delle azioni fra le famiglie. Non e'
+  stato tarato: e' la prima misura che esista.
+- **Le quattro RIVENDICARE ereditano il difetto di ISSUES 37**: `FORCE` chiede
+  un Claim posato in un round precedente, quindi due delle quarantotto carte
+  sono quasi ingiocabili finche' §10 non cambia.
+- **Maestra Ilve perde Trionfi nel playtest** (8 -> 2 su 50 anni) senza che il
+  suo mondo abbia cambiato economia: la causa e' la modifica al cervello di
+  D-187 (non si scopre piu' una velata solo perche' e' un obiettivo), che vale
+  anche per CHR_03. In **campagna** — il criterio di ISSUES 46 — il Sale resta
+  a **8 su 12**, dove stava. Il numero da guardare e' quello di campagna, ma il
+  divario merita una misura sua.
+
+---
+
 ## D-187 — Il velo copre la soglia, non il numero
 **implemented in 0.1.155** (chiesta dal committente)
 

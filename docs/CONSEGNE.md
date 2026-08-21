@@ -1,4 +1,4 @@
-# Passaggio di consegne — stato al 0.1.155
+# Passaggio di consegne — stato al 0.1.156
 
 *Scritto per chi apre una sessione nuova su questo repository. Dice dov'è il
 lavoro, cosa regge, cosa no, e quali sono le regole di casa che non vanno
@@ -12,7 +12,7 @@ riscoperte da capo.*
 |---|---|
 | ramo di sviluppo | `claude/echoes-boardgame-dev-cmu444` |
 | PR aperta | in bozza, su `main` |
-| ultimo commit | 0.1.155 |
+| ultimo commit | 0.1.156 |
 | ultimo merge su `main` | `175d58d` — PR #68, 0.1.145–0.1.149 |
 
 La PR #68 è stata mergiata: questo ramo riparte da `main` e raccoglie da 0.1.150
@@ -35,12 +35,13 @@ Queste non sono preferenze: sono state pagate con difetti veri.
 5. **Verbale in `docs/DECISIONS.md`** (il più recente in cima), `docs/ISSUES.md` e
    `CHANGELOG.md` aggiornati **nello stesso commit**.
 6. **GDScript tipizzato, senza `class_name`**: `const X := preload(...)`.
-7. **Effect-sourcing**: ogni mutazione del mondo è un Effetto con un inverso. Le
+7. **La riga stampata sulla carta deve dire il vero sulla mappa**: `acquisition_rule` nomina le Regioni da cui si pesca quella famiglia, e una guardia in `validate_data.py` lo verifica (0.1.156). Quaranta carte su quarantotto hanno mentito per un giorno intero senza che nessun test lo notasse.
+8. **Effect-sourcing**: ogni mutazione del mondo è un Effetto con un inverso. Le
    uniche eccezioni sono i contatori (`confluence_count`, `resolved_count`,
    `voted_together`), e sono deliberate.
-8. **Le PR si aprono in bozza.** I commenti su GitHub portano il footer di
+9. **Le PR si aprono in bozza.** I commenti su GitHub portano il footer di
    attribuzione.
-9. **Il committente parla italiano e le risposte vanno in italiano.**
+10. **Il committente parla italiano e le risposte vanno in italiano.**
 
 ### Il binario di prova
 
@@ -90,6 +91,7 @@ solo.
 | **0.1.153** | **il rubinetto** (ISSUES 47 fase 2): la mano viene dalla mappa — e il freno che credevo giusto era quello sbagliato, il tetto va sulla **mano** |
 | **0.1.154** | **la mappa che distribuisce** (ISSUES 47 fase 3): due Regioni per famiglia, il fabbisogno misurato (11,80 carte l'anno) — e la Strada dei Mercanti è morta (ISSUES 48) |
 | **0.1.155** | **il velo copre la soglia, non il numero**: l'asimmetria che il tavolo fisico non poteva riprodurre — e due viste che stampavano la soglia vera |
+| **0.1.156** | **le quarantotto carte parlano** (ISSUES 47 fase 4): le azioni passano sulla mano e **l'interruttore si accende**. La divergenza è chiusa: scarto 1,58 contro 4,90 |
 
 Più due documenti: **`docs/MECCANICA.md`** — riportato a **0.1.149**, ed è il
 testo da dare a chi disegna l'infografica *e* a chi vuole sapere come si gioca
@@ -98,16 +100,16 @@ bene (§15) — e **`docs/SAGA_NAHR.md`**, dieci anni giocati e raccontati.
 **Le misure di adesso** (playtest 100 semi, tavolo misto):
 
 ```
-FAIL 239 · SUCC 82 · SUCC 94 · DECI 128 · mediana 6
+FAIL 235 · SUCC 99 · SUCC 122 · DECI 121 · mediana 6
 0 su 8 bloccati (misto e uniforme) · nessun seggio a NONE · nessuno a zero Trionfi
-suite 369 test / 6476 asserzioni
+suite 371 test / 6716 asserzioni
 ```
 
 ## 4. Le due cose che vanno guardate per prime
 
-### a) I Consigli falliti sono a 239
+### a) I Consigli falliti sono a 235
 
-Il trend: **185 → 207 → 191 → 203 → 206 → 246 → 248 → 256 → 248 → 241 → 239**.
+Il trend: **185 → 207 → 191 → 203 → 206 → 246 → 248 → 256 → 248 → 241 → 239 → 235**.
 Il massimo storico è stato 256, e in 0.1.150 il numero è **tornato indietro per
 la prima volta**: una casa che non arriva più al Trionfo per inerzia propone e si
 oppone meno a lungo. Da 0.1.154 scende ancora, e la causa è nota e dichiarata:
@@ -158,14 +160,15 @@ precedente — non un difetto del codice. Cambiarlo è cambiare il regolamento:
   guardare — mai misurate come cause — sono i **Trionfi nelle saghe** (Sale 25,
   Libere 19, Vetro 11, Cenere 8) e il fatto che il **Minimo delle quattro case
   non costa uguale**.
-- **ISSUES 47** — le carte come unica moneta, voluta dal committente. **Tre fasi
-  fatte**: il **telaio** (D-184: `card_action`, `PLAY_CARD`, l'interruttore), il
-  **rubinetto** (D-185: la mano viene dalla mappa, col tetto sulla **mano** come
-  freno) e **la mappa + il fabbisogno** (D-186: due Regioni per famiglia; 11,80
-  carte l'anno per seggio, e la taratura che le regge). Telaio e rubinetto sono
-  **spenti nei dati**: si accendono insieme, o le due metà non si reggono. Resta
-  la **fase 4**, che è tutto il contenuto: **48 `card_action` da scrivere**, una
-  famiglia alla volta, misurando — più la mappa di **CHR_03**, non toccata.
+- **ISSUES 47 — chiusa nei suoi tre criteri** (0.1.156, D-188). Le carte sono
+  l'unica moneta in CHR_01 e CHR_02: telaio (D-184), rubinetto (D-185), mappa e
+  fabbisogno (D-186), le 48 azioni e l'interruttore acceso (D-188). Lo scarto fra
+  il primo e l'ultimo seggio **non cresce più**: 1,58 all'Atto 3 contro 4,90.
+  Restano tre code, e non sono la issue:
+  **(a)** CHR_03 gioca ancora il §10 di prima — la sua mappa non è stata
+  guardata; **(b)** manca un piano scriptato del gioco a carte; **(c)** il 58%
+  delle Occasioni resta muto, 194 volte su 720 perché *la mano non sa dire* ciò
+  che il seggio vuole — prima misura, mai tarata.
 - **La palude** — l'unica cosa fuori dal catalogo delle strutture. Chiede slot di
   presenza variabili per Regione: **motore, non contenuto**.
 

@@ -75,13 +75,6 @@ func check(entity_id: String, template: String, params: Dictionary) -> String:
 	var gate: String = TagRules.action_gate(data, world, entity_id, template)
 	if gate != "":
 		return "il segno lo vieta: %s" % gate
-	# ISSUES 47: quando la Chronicle dichiara che le azioni si fanno con le carte,
-	# le sei di §10 non si prendono piu' con un'Opportunita' - si giocano dalla
-	# mano, e quella carta smette di poter votare. Il divieto vive qui perche' qui
-	# vive ogni precondizione: la sedia non la propone, l'app la spegne, e
-	# execute() la rifiuta, scritto una volta sola.
-	if bool(_chronicle.get("actions_from_cards", false)) and CARD_KINDS.has(template):
-		return "qui le azioni si fanno con le carte: gioca una carta che porti %s" % template
 	match template:
 		"ACQUIRE":
 			return _check_acquire(entity_id, params)
@@ -110,6 +103,21 @@ func can_execute(entity_id: String, template: String, params: Dictionary) -> boo
 func execute(entity_id: String, request: Dictionary) -> Dictionary:
 	var template: String = str(request.get("template", ""))
 	var params: Dictionary = request.get("params", {})
+
+	# ISSUES 47: quando la Chronicle dichiara che le azioni si fanno con le carte,
+	# le sei di §10 non si prendono piu' con un'Opportunita' - si giocano dalla
+	# mano, e quella carta smette di poter votare.
+	#
+	# Il divieto vive **qui e non in `check()`** (corretto in D-188): `check()`
+	# risponde a «questa azione sarebbe legale?», ed e' la domanda che una sedia
+	# si fa *prima* di sapere con quale carta la dira'. Metterlo nel check
+	# spegneva anche quella domanda, e i seggi smettevano di volere qualcosa:
+	# misurato, il 90% delle Occasioni restava muto.
+	if bool(_chronicle.get("actions_from_cards", false)) and CARD_KINDS.has(template):
+		return _error(
+			template,
+			"qui le azioni si fanno con le carte: gioca una carta che porti %s" % template
+		)
 
 	var refusal: String = check(entity_id, template, params)
 	if refusal != "":
@@ -988,6 +996,13 @@ func _card_request(entity_id: String, params: Dictionary) -> Dictionary:
 			merged[key] = params[key]
 	for key in (action.get("params", {}) as Dictionary):
 		merged[key] = (action["params"] as Dictionary)[key]
+	# **La carta e' la propria spesa** (D-188). Tre delle sei azioni chiedono di
+	# scartare un Asset — INFLUENZARE senza presenza, RIVENDICARE, FORGIARE in
+	# su — e senza questa riga giocare una carta per farle ne costerebbe due:
+	# quella giocata piu' quella scartata. Qui il conto torna: la carta paga se
+	# stessa, e resta vero che una carta spesa non votera' piu'.
+	if not merged.has("discard_asset_id"):
+		merged["discard_asset_id"] = asset_id
 	return {"kind": str(action["kind"]), "params": merged, "asset_id": asset_id}
 
 
@@ -1041,8 +1056,13 @@ func _play_asset_card(
 			return _error("PLAY_CARD", "la carta porta un'azione che non esiste")
 	if not bool(outcome.get("ok", false)):
 		return outcome
-	# La carta si spende: e' questo che rende la mano una scelta e non una scorta.
-	var spent: Array = _discard(entity_id, str(request["asset_id"]), source)
+	# La carta si spende: e' questo che rende la mano una scelta e non una
+	# scorta. Se l'azione l'ha gia' consumata come proprio scarto (D-188) qui
+	# non c'e' piu' niente da spendere, e spenderla due volte sarebbe un Effetto
+	# senza inverso.
+	var spent: Array = []
+	if (service.hand(entity_id) as Array).has(str(request["asset_id"])):
+		spent = _discard(entity_id, str(request["asset_id"]), source)
 	var effects: Array = (outcome.get("effects", []) as Array).duplicate()
 	effects.append_array(spent)
 	log.bullet("%s gioca «%s» per %s." % [

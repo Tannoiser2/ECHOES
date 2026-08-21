@@ -1613,6 +1613,30 @@ Resta la **fase 4**, che è tutto il contenuto: **48 `card_action` da scrivere**
 una famiglia alla volta, misurando. E resta da ridistribuire la mappa di
 **CHR_03**, che non è stata toccata.
 
+**Fase 4 ✅ — le quarantotto parlano, e l'interruttore è acceso** — fatta in
+0.1.156 ([D-188](DECISIONS.md#d-188)). Ogni carta porta una delle cinque azioni
+che restano (ACQUISIRE sparisce, la fa la mappa): **17 INFLUENZARE, 11 MUOVERE,
+8 TRAMARE, 8 FORGIARE, 4 RIVENDICARE**, distribuite per famiglia così che *la
+mappa decida che cose puoi fare*. CHR_01 e CHR_02 giocano con le carte come
+unica moneta.
+
+**I tre criteri di chiusura sono soddisfatti**: un anno si gioca per intero con
+le carte, il playtest resta **0/8** a tavolo misto e uniforme, e lo scarto fra
+il primo e l'ultimo seggio **non cresce** — 0,00 → 1,10 → **1,58** all'Atto 3,
+contro 4,90 del gioco di prima.
+
+**Quello che resta, e che non è questa issue:**
+
+- **CHR_03 gioca ancora il §10 di prima**, deliberatamente: la sua mappa non è
+  stata guardata. Accenderla senza sarebbe ripetere il difetto di D-186.
+- **Manca un piano scriptato del gioco a carte**: i tre esistenti sono storie
+  del §10 di prima. Il gioco nuovo è provato dal cancello e dai test, non da una
+  storia raccontata.
+- **Il 58% delle Occasioni resta muto**, e 194 volte su 720 perché *la mano non
+  sa dire* ciò che il seggio vuole. È la prima misura che ne esista e non è
+  stata tarata: si abbassa con più carte, o con una distribuzione diversa delle
+  azioni fra le famiglie.
+
 **Fatto quando** un anno si gioca per intero con le carte come unica moneta, il
 playtest resta **0/8** a tavolo misto e uniforme, e lo scarto fra il primo e
 l'ultimo seggio **non cresce** di atto in atto.

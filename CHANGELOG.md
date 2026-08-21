@@ -5,6 +5,59 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.156 — Le quarantotto carte parlano (D-188)
+
+- **ISSUES 47 fase 4**: le azioni passano sulla mano, e **l'interruttore si
+  accende**. Il telaio era di D-184, il rubinetto di D-185, la mappa di D-186.
+- **Tutte e 48 le carte portano un'azione**: 17 INFLUENZARE, 11 MUOVERE, 8
+  TRAMARE, 8 FORGIARE, 4 RIVENDICARE. **ACQUISIRE sparisce** — era due terzi del
+  gioco, e adesso la fa la mappa.
+- La distribuzione non è casuale: la Regione decide che carte peschi, quindi
+  **la mappa decide che cose puoi fare**. Chi sta sulle montagne muove eserciti,
+  chi sta nelle miniere sa, chi siede a Eredan prende la parola.
+- **La carta è la propria spesa**: le tre azioni che chiedono di scartare un
+  Asset lo trovano nella carta stessa. Senza questa regola giocarne una ne
+  costava due.
+- **Il divieto stava nel posto sbagliato**: `check()` risponde a «sarebbe
+  legale?», ed è la domanda che un seggio si fa *prima* di sapere con che carta
+  lo dirà. Col divieto lì, **496 Occasioni su 720 restavano mute**. Ora vive in
+  `execute()`.
+- **Una guardia nuova**: `acquisition_rule` è prosa che nomina un fatto della
+  mappa, e le due cose non erano legate da niente — il giorno della
+  ridistribuzione **40 carte su 48 hanno cominciato a mentire** senza che nessun
+  test se ne accorgesse. Adesso fanno rosso la CI.
+- **0 su 8** misto e uniforme, nessuna azione rifiutata. `FAIL 235 · 99 · 122 ·
+  121`, Consigli media 5,77, mediana 6. Suite **371 test / 6716 asserzioni**.
+- **La divergenza di ISSUES 47 è chiusa a gioco acceso**: scarto fra la mano più
+  piena e la più vuota all'Atto 3 **1,58**, contro 4,90 del gioco di prima.
+
+### Dichiarato
+
+- **Due difetti trovati misurando**: il *distratto* chiedeva un ACQUISIRE che non
+  esiste più (93 rifiuti su 20 partite, i suoi NONE da 1 a 8); **Re Aldric si
+  portava via da solo la presenza a Eredan** che il suo Minimo chiede, perché la
+  voce nuova «allarga il rubinetto» spostava una pedina invece di posare la
+  riserva (NONE da 1 a 8). Corretti entrambi.
+- **CHR_03 gioca ancora il §10 di prima**, deliberatamente: la sua mappa non è
+  stata guardata, e accendere lì le carte ripeterebbe il difetto che D-186 ha
+  appena chiuso.
+- **Le prove unitarie stanno sul lato classico e lo dichiarano** (`play_classic()`):
+  usavano le azioni dirette per mettere il mondo in posizione, non per misurare
+  l'economia. Che i dati spediti stiano dall'altra parte lo prova un test che
+  rilegge il dato dal disco.
+- **Manca un piano scriptato del gioco a carte**: i tre esistenti sono storie del
+  §10 di prima. Il gioco nuovo è provato dal cancello e dai test, non da una
+  storia raccontata.
+- **Il 58% delle Occasioni resta muto**: 222 volte su 720 il cervello non voleva
+  niente, **194 volte voleva qualcosa che la mano non sapeva dire**. È il costo
+  vero della regola, ed è la prima misura che ne esista.
+- Le quattro RIVENDICARE ereditano il difetto di **ISSUES 37**.
+- **Maestra Ilve** perde Trionfi nel playtest (8 → 2 su 50 anni) per la modifica
+  al cervello di D-187, non per l'economia. In campagna il Sale resta a **8 su
+  12** (ISSUES 46), ma il divario merita una misura sua.
+
+---
+
 ## 0.1.155 — Il velo copre la soglia, non il numero (D-187)
 
 - Chiesta dal committente: «il mondo lo sa quale è il valore ma i giocatori nel
