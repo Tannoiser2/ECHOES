@@ -49,6 +49,7 @@ func _initialize() -> void:
 	var granted: Dictionary = {}  # Chronicle -> quante volte una casella e' passata di mano
 	var cleared: Dictionary = {}  # Chronicle -> quante volte una casella e' rimasta a nessuno
 	var owned_regions: int = 0    # caselle con un padrone, sommate su tutte le partite
+	var councils: Dictionary = {}  # Chronicle -> Consigli chiusi (ISSUES 42)
 	var total_regions: int = 0    # caselle esistite, sommate su tutte le partite
 	# Le pietre, contate come si conta il controllo. Una clausola che chiede un
 	# presidio di grado 2 e' impossibile o gratis a seconda di questi numeri, e
@@ -160,6 +161,9 @@ func _initialize() -> void:
 			var owner: Variant = (session.world["regions"] as Dictionary)[region_id].get("control", null)
 			if owner != null and str(owner) != "":
 				owned_regions += 1
+		councils[chronicle_id] = int(councils.get(chronicle_id, 0)) + int(
+			session.world["confluence_count"]
+		)
 		session.dispose()
 		if (index + 1) % 10 == 0:
 			print("  %d/%d partite" % [index + 1, runs])
@@ -219,6 +223,13 @@ func _initialize() -> void:
 	print("    Rivendicazioni aperte (ACT_CLAIM CREATE):  %d" % claims_made)
 	print("    Consigli strappati    (ACT_CLAIM FORCE):   %d" % claims_forced)
 	print("    Rivendicazioni morte senza essere usate:   %d" % (claims_made - claims_forced))
+	# ISSUES 42: la seconda saga porta piu' Trionfi della prima. Una delle tre
+	# cause possibili e' che le sue domande arrivino al voto piu' spesso — piu'
+	# Consigli, piu' occasioni di chiudere una clausola.
+	print("  Consigli chiusi per saga (media per partita):")
+	for chronicle_id in ["CHR_01", "CHR_03"]:
+		var games: float = maxf(1.0, float(runs) / 2.0)
+		print("    %s: %.2f" % [chronicle_id, float(councils.get(chronicle_id, 0)) / games])
 	print("  Caselle passate di mano in gioco (solo via Consequence):")
 	for chronicle_id in ["CHR_01", "CHR_03"]:
 		print("    %s: %d prese, %d lasciate a nessuno" % [

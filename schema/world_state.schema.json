@@ -185,6 +185,13 @@
           "type": "integer",
           "minimum": 0
         },
+        "voted_together": {
+          "type": "object",
+          "description": "Quante volte due seggi sono finiti sullo stesso fronte al Consiglio, meno quante volte su fronti opposti (D-172). Chiave: la coppia ordinata, come le relazioni. E' la **memoria dei bot**, non un fatto del mondo: serve a decidere con chi conviene allearsi guardando come si e' votato, invece di sbirciare il Destino altrui. Contatore diretto come `confluence_count` e `resolved_count`, non effect-sourced: non e' una mutazione che qualcuno possa voler annullare.",
+          "additionalProperties": {
+            "type": "integer"
+          }
+        },
         "effect_sequence": {
           "type": "integer",
           "minimum": 0

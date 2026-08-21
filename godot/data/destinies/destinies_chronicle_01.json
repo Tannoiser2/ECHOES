@@ -415,16 +415,44 @@
         "label": "Nessuno rilegge la stessa domanda",
         "conditions": [
           {
-            "type": "control_count",
-            "entity_id": "ENT_ALDRIC",
-            "min": 2,
-            "label": "Controllo di almeno 2 Regioni"
-          },
-          {
             "type": "state_tag_absent",
             "scope": "GLOBAL",
             "tag": "question_unresolved",
             "label": "Nessuna questione lasciata aperta"
+          },
+          {
+            "type": "some_of",
+            "min": 1,
+            "label": "E un segno che la corona tiene il suo registro",
+            "conditions": [
+              {
+                "type": "control_count",
+                "entity_id": "ENT_ALDRIC",
+                "min": 2,
+                "label": "Controllo di almeno 2 Regioni"
+              },
+              {
+                "type": "region_presence",
+                "entity_id": "ENT_ALDRIC",
+                "region_id": "REG_EREDAN",
+                "min": 2,
+                "label": "Eredan è presidiata, non solo tenuta"
+              },
+              {
+                "type": "structure_count",
+                "entity_id": "ENT_ALDRIC",
+                "grade": 2,
+                "min": 1,
+                "label": "E c'è qualcosa di murato che porta il suo nome"
+              },
+              {
+                "type": "state_tag_absent",
+                "scope": "REGION",
+                "region_id": "REG_EREDAN",
+                "tag": "condition:unrest",
+                "label": "Eredan non è in rivolta"
+              }
+            ]
           }
         ]
       },
@@ -438,17 +466,36 @@
             "label": "La corona non è stata spezzata"
           },
           {
-            "type": "state_tag_present",
-            "scope": "GLOBAL",
-            "tag": "succession_by_law",
-            "label": "La successione è passata per la legge"
-          },
-          {
-            "type": "state_tag_absent",
-            "scope": "REGION",
-            "region_id": "REG_EREDAN",
-            "tag": "condition:unrest",
-            "label": "Eredan non è in rivolta"
+            "type": "some_of",
+            "min": 2,
+            "label": "E due segni che si è retto per legge e non per forza",
+            "conditions": [
+              {
+                "type": "state_tag_present",
+                "scope": "GLOBAL",
+                "tag": "succession_by_law",
+                "label": "La successione è passata per la legge"
+              },
+              {
+                "type": "state_tag_absent",
+                "scope": "REGION",
+                "region_id": "REG_EREDAN",
+                "tag": "condition:unrest",
+                "label": "Eredan non è in rivolta"
+              },
+              {
+                "type": "scar_count",
+                "region_id": "REG_EREDAN",
+                "max": 0,
+                "label": "Eredan è uscita dall'anno senza un segno"
+              },
+              {
+                "type": "tension_limit",
+                "tension_id": "TEN_SUCCESSION",
+                "max": 3,
+                "label": "E chi siede non è più una domanda aperta"
+              }
+            ]
           }
         ]
       },

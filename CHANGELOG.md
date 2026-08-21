@@ -5,6 +5,113 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.144 — Le istituzioni non governano diversamente (D-176)
+
+- **ISSUES 35 chiusa, e l'ipotesi era falsa.** Misurata come la voce chiedeva —
+  dodici saghe a tavolo misto, livelli per incarnazione — le **otto istituzioni**
+  superano il Minimo il **41%** delle volte e le **quindici persone** il **42%**.
+  Un punto: chi siede non c'entra niente.
+- **Quello che c'entra è la casa.** Un'istituzione al 68% (La Compagnia del Sale)
+  e una al 14% (Le Custodi della Cenere) sono lontane fra loro quanto le due
+  persone agli estremi, e la linea che va male va male con chiunque la porti: i
+  cinque volti dei Fuochi stanno fra l'8% e il 46%, i cinque Maestri fra il 46%
+  e il 67%.
+- La forma si vedeva lo stesso perché nella saga del Sale le istituzioni siedono
+  **dopo**, e dopo il mondo è più segnato: la correlazione c'era, la causa era il
+  momento e non il soggetto.
+- La **sonda delle ere** stampa il conto dei livelli per incarnazione: era la
+  misura che la voce chiedeva e non c'era.
+
+## 0.1.143 — Tre Conseguenze che costruiscono (D-175)
+
+- **`CNS_NAHR_SETTLEMENT`, `CNS_MARCH_GRANTED` e `CNS_MARKET_MOVED`** non
+  scrivono più solo un segno: costruiscono un **villaggio**, una **torre di
+  veglia** e un **villaggio**. I segni restano — le regole li leggono — ma sotto
+  adesso c'è qualcosa che pesa nel conto del controllo e sopravvive all'anno.
+  La più interessante è la marca: una concessione senza niente sopra poteva
+  tornare indietro il round dopo, la torre è quello che la tiene.
+- `CNS_RELIC_BURIED` resta un segno: la cella murata non è nessuna delle nove
+  cose del catalogo, e inventarne una decima per una Conseguenza sola sarebbe la
+  tentazione che D-164 aveva già pagato.
+- Pietre **alzate giocando: 174** su 80 partite. Gradini e playtest invariati.
+- **Mezza ISSUES 37 chiusa**: la mappa si muove — 82% di caselle con un padrone
+  contro il 56%, seggi a zero Regioni dal 30% all'11% — e non per una correzione
+  mirata ma perché il padrone si conta invece di scriverlo. Resta l'altra metà,
+  con un nome preciso: **`ACT_CLAIM` muore in mano 110 volte su 128**, e il punto
+  di rottura è §10 del regolamento, non il codice.
+
+## 0.1.142 — Tre voci chiuse (D-174)
+
+- **ISSUES 41 chiusa.** Il sito antico non era mai «aperto e ancora intero», e la
+  colpevole era il **sigillo**: `CNS_MINE_SEALED` riportava il sito a grado 1,
+  cioè cancellava il fatto che fosse mai stato aperto e svuotato. Un sigillo
+  nasconde, non restituisce. Ora lo lascia al grado di mezzo: «aperto e ancora
+  intero» passa da **0% a 20%** degli anni.
+- **ISSUES 42 chiusa**, e nessuna delle tre cause che la voce elencava regge:
+  i Destini di CHR_03 sono **più duri** (41% di clausole mancate contro 38%), le
+  sue Tensioni si muovono **meno** (5,33 Consigli contro 5,83), e le due saghe
+  hanno una casa senza terra a testa. Il divario era **degli otto Destini che si
+  giocavano**: aperto il pool, CHR_01 va al 19% e CHR_03 al 23%.
+- **ISSUES 40 decisa**: il grado alto resta **materia di saga**. Una clausola sul
+  grado 2 o 3 si scrive solo nei Destini di una Chronicle successiva.
+- La sonda dei gradini stampa i **Consigli chiusi per saga** — la misura che
+  ISSUES 42 chiedeva e non c'era.
+
+## 0.1.141 — Il pool si accende: venti Destini invece di otto (D-173)
+
+- **ISSUES 43 chiusa.** Le tre che restavano sono riscritte: i due Destini
+  condivisibili chiedevano al **Minimo** una cosa che si ottiene giocando — la
+  fama, il registro pulito — e lasciavano fuori dal gioco al primo colpo un
+  seggio su tre; `DST_ALDRIC_RECORD` chiedeva alla Vittoria due Regioni, mancate
+  all'88%.
+- **Il pool e' acceso**: `_deal_destiny` pesca dalla lista dell'Entita' quando la
+  Chronicle non ne dichiara una. **Venti Destini su venti** si giocano
+  all'apertura, contro otto.
+- **Zero seggi a NONE** (erano 4 su 800), nessuno a zero Trionfi, tavolo misto e
+  uniforme **0 su 8**, mediana dei Consigli **6**.
+- **Costo dichiarato: Consigli falliti da 206 a 246.** E' il numero piu' alto mai
+  misurato, e la causa non e' oscura — undici ambizioni in piu' al tavolo si
+  oppongono fra loro molto piu' spesso. Si spegne in una riga.
+- *Un Minimo non e' un obiettivo, e' una soglia di sopravvivenza* — e le carte
+  scritte per otto case diverse sono il posto dove sbagliarlo costa di piu'.
+
+## 0.1.140 — Il bot smette di sbirciare (D-172)
+
+- **`world["voted_together"]`**: per ogni coppia, quante volte sono finiti sullo
+  stesso fronte del Consiglio meno quante volte su fronti opposti. E' la memoria
+  dei bot, non un fatto del mondo — quello che chiunque sieda al tavolo vede con
+  i propri occhi.
+- **L'alleanza si decide su quello**, non piu' leggendo il Destino altrui: un
+  giocatore vero quella carta non la vede. Prima del primo Consiglio nessuno sa
+  niente di nessuno, e la regola tace.
+- **Il prezzo scende da dodici Trionfi a tre** (86 → **83**, contro i 74 di
+  D-171), e le alleanze si distribuiscono: la banda passa da 5-50% a **15-35%**,
+  e Aldric e Vaerax — che l'opposizione dichiarata escludeva per regola —
+  entrano al 20% e al 35%. Due che si oppongono su un segno possono benissimo
+  essersi trovati dalla stessa parte su tre domande diverse.
+- E adesso **si puo' sbagliare un alleato**, che e' la sola cosa su cui si possa
+  costruire un tradimento.
+
+## 0.1.139 — L'alleanza che conviene (D-171)
+
+- **Un seggio adesso stringe un legame perche' gli conviene**, non solo perche'
+  una clausola glielo chiede: si allea con **chi aspetta lo stesso Consiglio**,
+  perche' quando la domanda si apre quel voto pesa sul suo fronte (D-139). Chi
+  gli si oppone su un segno resta fuori comunque.
+- **Correzione**: «nessun bot stringe alleanze» era troppo forte. `ACT_FORGE`
+  c'era e la policy la giocava — ma solo quando una clausola del proprio Destino
+  nominava quella relazione.
+- **La prima forma — «ti allei con chi vuole i tuoi stessi segni» — non ha
+  sparato una volta**, e ha trovato una cosa sul contenuto: fra gli otto Destini
+  **non esiste una coppia che voglia lo stesso segno nello stesso verso**. Ogni
+  sovrapposizione e' un'opposizione. C'e' un test che tiene fermo quel fatto.
+- **Il ceto sociale si accende**: Lyra e Nahr passano da **0% a 45%** di anni
+  con almeno un alleato.
+- **Il prezzo, dichiarato: Trionfi del tavolo da 86 a 74.** Un'alleanza costa
+  un'Occasione, e l'Occasione e' tutta la moneta dell'anno. Le due leve ovvie
+  per abbassarlo — soglia piu' alta, regola piu' in basso — **non sparano mai**:
+  il quadrante e' binario.
+
 ## 0.1.138 — Gli undici Destini mai giocati (D-170)
 
 - **ISSUES 43 misurata**: acceso il pool, supera il Minimo scende da **62% a

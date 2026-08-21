@@ -875,43 +875,50 @@ FAIL 185 · 0/8. Servirebbe la **distanza fra due saghe**.
 **Fatto quando** il committente ha risposto alle cinque domande secche e la
 strada scelta è stata percorsa e misurata.
 
-### 35. Le istituzioni governano bene e non vogliono niente
+### 35. Le istituzioni **non** governano diversamente dalle persone
 
-`contenuto` · `da-misurare` · nata dalla saga del Sale ([SAGA_SALE.md](SAGA_SALE.md))
+`contenuto` · **chiusa in 0.1.144** · [SAGA_SALE.md](SAGA_SALE.md) → [D-176](DECISIONS.md#d-176)
 
-Dieci Chronicle sulla linea delle città (1640–2355) mostrano una forma netta:
-finché al tavolo siedono **persone** — Maestra Ilve, Priora Ilaria, Maestro
-Ruel — ci sono Vittorie e due Trionfi; dal 1981, quando le incarnazioni
-tardive sostituiscono i titolari con le **istituzioni** (La Compagnia del
-Sale, Le Custodi della Cenere, I Frati del Vetro, La Lega delle Sette),
-**sedici Destini su venti finiscono al Minimo** in cinque Chronicle.
+La voce nasceva da una forma vista nella saga del Sale: finché sedevano
+**persone** c'erano Vittorie e due Trionfi; dal 1981, con le **istituzioni** al
+tavolo, sedici Destini su venti finivano al Minimo. L'ipotesi era che le
+istituzioni governassero bene e non volessero niente.
 
-E non perché il tavolo si blocchi: i Consigli continuano a riuscire. Il
-debito viene rimesso, l'acqua contrattata, i Senza Città sistemati — le
-stesse quattro frasi che tornano ogni secolo con un firmatario diverso.
-Riescono, e non portano nessuno da nessuna parte.
+**Misurata come la voce chiedeva** — dodici saghe da dieci Chronicle a tavolo
+misto, livelli contati per incarnazione — l'ipotesi è **falsa**:
 
-**L'ipotesi è stata corretta da una misura** ([D-150](DECISIONS.md#d-150)): il
-**Minimo di ogni Destino è «esistere»** — la casa è viva e sta da qualche
-parte — e due coppie ce l'hanno identico parola per parola. Il Minimo non è un
-obiettivo, è una **soglia di sopravvivenza**, e «sedici Destini su venti al
-Minimo» non vuol dire «nessuno vuole niente»: vuol dire che **restano vivi e
-non arrivano al secondo gradino**.
+| | supera il Minimo |
+|---|---|
+| **le otto istituzioni** | **41%** |
+| **le quindici persone** | **42%** |
 
-Quindi il numero da guardare non è la colonna MINIMUM ma **quanti la
-superano**, ed è fermo al **30%** su trenta Chronicle — col pool dei Destini
-acceso e spento allo stesso modo. Il pool non era la cura: la malattia è che
-il salto dal primo gradino al secondo è troppo alto, o che il secondo chiede
-cose che una policy non sa cercare.
+Un punto di differenza. Chi siede non c'entra niente.
 
-**Da misurare prima di toccare**: la stessa saga a tavolo misto (i quattro
-caratteri di D-053) invece che a policy identiche, e il conto dei livelli per
-incarnazione su 40 Chronicle. Se la forma regge anche lì, è il contenuto
-delle vite tardive; se sparisce, era l'ottimizzatore — la stessa domanda di
-D-051, un'incarnazione più tardi.
+**Quello che c'entra è la casa.** La distanza vera è dentro le due categorie, non
+fra loro:
 
-**Fatto quando** si sa se le istituzioni sono difficili da giocare o solo
-scritte per non muoversi.
+| | |
+|---|---|
+| La Compagnia del Sale | **68%** |
+| Il Banco Nero | 64% |
+| Maestra Ilve / Sadin / Ordan | **67%** |
+| … | |
+| L'Egemonia di Eredan | 31% |
+| Kessa dei Fuochi | 17% |
+| **Le Custodi della Cenere** | **14%** |
+| **Neve dei Fuochi** | **8%** |
+
+Un'istituzione al 68% e una al 14% sono lontane fra loro quanto le due persone
+agli estremi. E la linea che va male va male **con chiunque la porti**: i cinque
+volti dei Fuochi stanno fra l'8% e il 46%, i cinque Maestri fra il 46% e il 67%.
+
+**Non è un problema delle vite tardive: è il Destino di una casa.** La linea
+della Cenere/Fuochi è debole in ogni sua incarnazione, ed è lì che va guardata —
+non nelle istituzioni.
+
+**Resta come voce nuova**, se si vorrà: *la linea dei Fuochi arriva al secondo
+gradino la metà delle volte delle altre*, con la sonda delle ere che adesso
+stampa il conto per incarnazione.
 
 ### 28. ✅ Le alleanze devono pesare al Consiglio — fatta in 0.1.102
 
@@ -1116,70 +1123,42 @@ presagi). Sono state scritte insieme al codice e mai rilette di fila.
 **Fatto quando** qualcuno ha letto i testi dall'inizio alla fine e le correzioni
 sono nei JSON.
 
-### 37. La mappa non si muove: il controllo passa solo per un Consiglio
+### 37. La mappa si muove — ma `ACT_CLAIM` muore in mano tre volte su quattro
 
-`regole` · `da-misurare` · nata dalla sonda dei gradini ([D-152](DECISIONS.md#d-152))
+`regole` · **metà chiusa in 0.1.121, metà aperta** · [D-152](DECISIONS.md#d-152) → [D-158](DECISIONS.md#d-158) → [D-175](DECISIONS.md#d-175)
 
-Sessanta Chronicle, e il tabellone a fine anno e' quasi quello di inizio anno:
+**La prima metà è chiusa.** La voce nasceva da un tabellone che a fine anno era
+quasi quello d'inizio: 44% di caselle senza padrone, una casa che guadagnava in
+media un quarto di Regione, il Vetro a zero in trenta partite. Da quando il
+padrone **si conta invece di scriverlo** ([D-158](DECISIONS.md#d-158) — pedine
+più il valore delle strutture, ricalcolato a ogni fine round) la mappa si muove
+da sola, senza bisogno che un Consiglio la muova:
 
-| Regioni tenute | seggi |
-|---|---|
-| 0 | **30%** |
-| 1 | 57% |
-| 2 | **12%** |
-| 3 | 1% |
+| | allora | ora |
+|---|---|---|
+| caselle con un padrone | 56% | **82%** |
+| seggi a **zero** Regioni | 30% | **11%** |
+| seggi a **due** Regioni | 12% | **31%** |
 
-**Il 44% delle caselle non e' di nessuno**, e in un anno intero una casa
-guadagna in media **un quarto di Regione**. Il Vetro non ne tiene **mai** una
-in trenta partite; le Citta' Libere ne perdono.
+**La seconda metà è aperta, ed è più stretta di come era scritta.** Non è che
+manchi un modo di prendere una Regione: è che **l'azione fatta apposta non
+funziona**. Su 80 Chronicle: **128 rivendicazioni aperte, 18 forzate, 110 morte
+senza essere usate.** Tre su quattro si pagano — un Asset AUTORITÀ e
+un'Opportunità — e non si spendono mai.
 
-**L'azione per prenderle esiste** ([D-153](DECISIONS.md#d-153), correzione
-sollevata dal committente): e' `ACT_CLAIM`, «Rivendicare». Solo che non
-rivendica una Regione — rivendica una **domanda**. In `CREATE` scarta un Asset
-AUTHORITY e apre un Claim su un dominio di Tensione; in un round successivo, in
-`FORCE`, lo consuma insieme a un secondo AUTHORITY per **strappare un Consiglio
-da proponente**. La Regione arriva solo se quel Consiglio cade su una delle 14
-Consequence che portano un `SET_CONTROL` a `$proponent`.
+Il punto di rottura ha un nome, ed è una **regola del regolamento**, non un
+difetto del codice: §10 vuole che il Claim sia stato posato **in un round
+precedente**. Chi rivendica deve quindi indovinare, un round prima, che quella
+domanda sarà matura *e* che nessun altro avrà già forzato un Consiglio *e* di
+avere ancora un secondo AUTORITÀ in mano.
 
-Cinque anelli in serie: un AUTHORITY e un'Azione · la Tensione bersaglio a 3+ ·
-un secondo AUTHORITY e un'altra Azione in un round dopo · un Consiglio che non
-fallisce (falliscono 177 volte su 100 partite) · la carta giusta.
+**Non la tocco da solo, perché cambiarla è cambiare il regolamento.** La strada
+più piccola che si vede: se la Tensione è **già** a 3 o più, CREATE e FORCE
+avvengono nella stessa azione — non si prenota una domanda che è già matura. Ma
+è §10, e §10 lo decide il committente.
 
-E si spezza al terzo. Su 60 Chronicle: **63 rivendicazioni aperte, 15 forzate,
-48 morte senza essere usate**. Tre su quattro si pagano e non si spendono. Per
-confronto, in trenta Chronicle `ACT_ACQUIRE` produce 4286 effetti e `ACT_CLAIM`
-84: le case raccolgono, non rivendicano.
-
-**E c'e' una seconda meta' della diagnosi, che il committente ha visto guardando
-la mappa: dentro l'anno il controllo non serve a niente.** Cercando ogni punto
-del codice che lo legge, i consumatori sono tre — `control_count` (14 clausole
-di Destino), la sovraestensione (oltre 2 Regioni **costa** Tensione ogni round)
-e il passaggio all'anno dopo — piu' due frasi di prosa e il colore sul
-tabellone. Il controllo **non** decide chi propone al Consiglio (quella e' la
-presenza), non sblocca azioni, non piega la pesca, non vale un punto nel
-margine.
-
-Quindi la catena non e' solo lunga: **e' lunga e non porta a niente di
-immediato**. Una policy che sceglie la mossa migliore per quest'anno non ha
-nessuna ragione di percorrerla, e infatti non la percorre. Delle 63
-rivendicazioni aperte, 48 muoiono in mano.
-
-L'idea e' bella — *rivendicare non e' prendersi una terra, e' costringere il
-tavolo a discuterne*. La domanda non e' quindi «serve un'azione», ma **quale
-anello si accorcia** — o, prima ancora, **se il titolo debba dare qualcosa
-dentro l'anno**: e' una scelta di design, non una taratura. Un controllo che
-non paga mai e' coerente col tema (un gioco sulla legittimita', dove un titolo
-che non puoi esercitare e' il problema) ma lascia sei Destini a chiedere una
-cosa che nessuno ha motivo di inseguire. Quattro strade, nessuna misurata: **(a)** un solo Asset
-invece di due, o un solo round invece di due; **(b)** abbassare da 3 la
-Tensione richiesta dal `FORCE`; **(c)** piu' Consequence con `SET_CONTROL` in
-CHR_03, che ne ha tre contro le nove di CHR_01; **(d)** lasciare la catena
-com'e' e riscrivere le clausole che chiedono terra — gia' cominciata con Aldric
-in [D-152](DECISIONS.md#d-152).
-
-**Fatto quando** una delle quattro e' stata provata sui 100 semi, le
-rivendicazioni morte sono scese sotto la meta', e la mappa a fine anno e'
-diversa da quella di inizio restando **FAIL ~180 · 0/8**.
+**Fatto quando** la decisione è a verbale e, se la regola cambia, le
+rivendicazioni morte scendono sotto una su tre.
 
 ### 38. ✅ La Vittoria della Cenere ha una porta sola — fatta in 0.1.122
 
@@ -1308,113 +1287,98 @@ una misura viene respinta da **un solo seggio** e per **una sola partita**, la
 domanda giusta non e' «la regola e' sbagliata?» ma «quel seggio riesce ad
 assorbire qualcosa?».
 
-### 40. Il grado non si muove dentro l'anno: una clausola sulle pietre alte e' un muro fuori dalla saga
+### 40. Il grado non si muove dentro l'anno — **deciso: è materia di saga**
 
-`regola` · `da-misurare` · da [D-167](DECISIONS.md#d-167)
+`regola` · **decisa in 0.1.142** · [D-167](DECISIONS.md#d-167) → [D-174](DECISIONS.md#d-174)
 
-`_settle_structures` gira **dopo** la valutazione del Destino, ed e' giusto:
-[D-159](DECISIONS.md#d-159) vuole che sia l'esito a decidere se una reggia
-diventa rovina. La conseguenza pero' e' che in una Chronicle sola **il grado non
-sale quasi mai**: una pietra di grado 2 esiste solo se ereditata o alzata da una
-Conseguenza, e la sonda la trova nel **15% degli anni per Aldric e nello 0% per
-cinque case su otto**. Grado 3: **zero, sempre**.
+`_settle_structures` gira **dopo** la valutazione del Destino, quindi in una
+Chronicle sola il grado non sale quasi mai: grado 2 nel 15% degli anni per
+Aldric e nello 0% per cinque case su otto, grado 3 **mai**.
 
-Quindi «un castello» e «una reggia» sono clausole scrivibili **solo in una saga**
-— e nel gioco di una sera sono muri. Oggi nessun Destino le usa, e va bene cosi';
-la voce esiste perche' la prossima volta che verra' la tentazione di scriverle,
-questo numero sia gia' sul tavolo.
+La voce chiedeva di scegliere fra due strade. **Scelta la prima: il grado alto
+resta materia di saga.** La scala che segue il Destino ([D-159](DECISIONS.md#d-159))
+vale proprio perché una reggia non si compra in una sera — è il sedimento di tre
+anni buoni, e la [saga del Regno che si è seduto](SAGA_NAHR.md) lo mostra meglio
+di qualsiasi misura: villaggio 812, borgo 813, granaio 814, città 815, castello
+816, **reggia 818**.
 
-**Le due strade.** O si accetta che il grado sia materia di saga e si scrivono le
-clausole sul grado **solo nei Destini di una Chronicle successiva**; oppure si
-apre un secondo momento in cui una pietra puo' salire dentro l'anno — un'azione,
-o una Conseguenza che costruisce *sopra* invece che accanto — e allora si
-rimisura.
+**La regola che ne segue:** una clausola sul grado 2 o 3 si scrive **solo nei
+Destini di una Chronicle successiva**, mai in quelli d'apertura. Chi la scrive
+altrove sta scrivendo un muro.
 
-**Fatto quando** una delle due e' stata scelta a verbale, e nel secondo caso la
-sonda delle clausole mostra il grado 2 fra il 20% e il 50% per almeno tre case.
+### 41. Il sito antico, una volta aperto, veniva sempre saccheggiato
 
-### 41. Il sito antico, una volta aperto, viene sempre saccheggiato
+`contenuto` · **chiusa in 0.1.142** · [D-167](DECISIONS.md#d-167) → [D-174](DECISIONS.md#d-174)
 
-`contenuto` · `debito` · da [D-167](DECISIONS.md#d-167)
+Due righe della sonda con lo stesso numero — sito **aperto** 25%, sito
+**saccheggiato** 25%, gli stessi anni — volevano dire che il grado di mezzo non
+era uno stato ma un fotogramma fra due Consigli.
 
-Nella tabella della sonda delle clausole due righe hanno lo stesso numero, e non
-per caso:
+La colpevole non era nessuna delle due Conseguenze che ci si aspetta.
+`CNS_MINE_REOPENED` (grado 2) e `CNS_CRYSTAL_EXPLOITED` (grado 3) sono giuste, e
+che un anno che fa tutte e due finisca col sito svuotato è onesto. Era
+**`CNS_MINE_SEALED`**, che riportava il sito a **grado 1**: murare un sito
+saccheggiato lo rimandava a «dormiente», cioè cancellava il fatto che fosse mai
+stato aperto e svuotato. Un sigillo nasconde, non restituisce.
 
-| | |
-|---|---|
-| il sito antico e' stato **aperto** (grado ≥ 2) | 25% |
-| il sito antico e' stato **saccheggiato** (grado 3) | 25% |
+Adesso il sigillo porta il sito al **grado di mezzo** — aperto, e da oggi
+irraggiungibile:
 
-Gli stessi anni. **Non esiste un anno in cui il sito viene aperto e non viene
-svuotato**, il che vuol dire che «Sito aperto» — il grado di mezzo, quello che
-insegna — non e' uno stato in cui il mondo si ferma: e' un fotogramma fra due
-Consigli. Una clausola che chiede «aperto e ancora intero» sarebbe uno zero che
-nessuno ha scritto apposta.
+| | prima | dopo |
+|---|---|---|
+| il sito è stato aperto | 25% | **80%** |
+| il sito è stato saccheggiato | 25% | **60%** |
+| **aperto e ancora intero** | **0%** | **20%** |
 
-Non e' detto sia sbagliato — puo' essere il senso della cosa, che chi scende con
-le lampade risale con i carri. Ma non e' stato deciso: e' successo.
+Un anno su cinque il mondo si ferma sul gradino di mezzo, e «aperto e ancora
+intero» è diventata una clausola scrivibile.
 
-**Fatto quando** si e' guardato quali Conseguenze portano i due gradi e si e'
-deciso a verbale se il grado di mezzo debba poter durare un anno intero.
+### 42. La seconda saga sembrava più generosa della prima
 
-### 42. La seconda saga e' piu' generosa della prima
+`bilanciamento` · **chiusa in 0.1.142** · [D-167](DECISIONS.md#d-167) → [D-174](DECISIONS.md#d-174)
 
-`contenuto` · `da-misurare` · da [D-167](DECISIONS.md#d-167)
+CHR_03 portava **49 Trionfi contro i 30** di CHR_01. La voce elencava tre cause
+possibili e chiedeva di misurarle a parità di tavolo. Misurate tutte e tre, e
+**nessuna regge**:
 
-Dopo la riscrittura dei Trionfi, su 120 seggi-partita per saga: **CHR_01 porta 30
-Trionfi, CHR_03 ne porta 49**. La differenza c'era anche prima e col segno
-opposto (20 contro 1), quindi non e' nata qui — ma adesso che tutti i gradini
-sono raggiungibili si vede pulita.
+| ipotesi | misura | verdetto |
+|---|---|---|
+| i Destini della seconda saga chiedono meno | clausole mancate: CHR_01 **38%**, CHR_03 **41%** | falsa — sono più dure |
+| le sue Tensioni si muovono di più | Consigli per partita: CHR_01 **5,83**, CHR_03 **5,33** | falsa — ne ha meno |
+| ha una casa che parte senza Regioni | ne hanno una a testa (Lyra, il Vetro), e i seggi di CHR_01 finiscono con **più** terra: 1,28 contro 1,17 | falsa |
 
-**Non l'ho toccata di proposito.** Le cause possibili sono almeno tre e si
-confondono fra loro: i Destini della seconda saga chiedono meno; le sue Tensioni
-si muovono di piu'; il suo tavolo ha una casa (il Vetro) che parte senza Regioni
-e quindi ha piu' da guadagnare. Tarare tre manopole su un giro solo di sonda e'
-esattamente il modo in cui si peggiora una cosa credendo di aggiustarla.
+La ragione vera si è vista aprendo il pool ([D-173](DECISIONS.md#d-173)): **il
+divario non era delle saghe, era degli otto Destini che si giocavano.** Con venti
+in gioco il carico si distribuisce e le due convergono — CHR_01 **19%**, CHR_03
+**23%**, condivisi 16%.
 
-**Fatto quando** la sonda delle clausole ha misurato le clausole delle due saghe
-**a parita' di tavolo** — cioe' con lo stesso quartetto di caratteri e gli stessi
-semi — e si sa quale delle tre cause pesa.
+*Prima di tarare tre manopole, vale la pena guardare se il difetto non sia un
+effetto di quello che si sta già cambiando altrove.*
 
 ### 43. Undici Destini su venti non si giocano mai all'apertura
 
-`contenuto` · `motore` · `debito` · da [D-167](DECISIONS.md#d-167) · **misurata in** [D-170](DECISIONS.md#d-170)
+`contenuto` · `motore` · **chiusa in 0.1.141** · [D-167](DECISIONS.md#d-167) → [D-170](DECISIONS.md#d-170) → [D-173](DECISIONS.md#d-173)
 
-`_deal_destiny` pesca da **`chronicle["destiny_pool"]`**; i pool sono scritti
-sulle **Entita'**; nessuna delle quattro Chronicle ne dichiara uno. All'apertura
-ogni casa insegue sempre il proprio `destiny_id`, e su 240 seggi-partita si
-vedono **otto Destini su venti**. Gli altri undici — otto alternativi e i tre
-condivisibili della voce 20 — si vedono solo per successione, dentro una saga.
+`_deal_destiny` pescava da **`chronicle["destiny_pool"]`**; i pool erano scritti
+sulle **Entita'**; nessuna Chronicle ne dichiarava uno. Su 240 seggi-partita si
+vedevano **otto Destini su venti**, e i tre condivisibili della voce 20 non
+erano mai stati letti da nessuna sonda.
 
-**D-170 ha acceso il pool e misurato, e il numero e' chiaro:**
+**D-170** ha acceso il pool per misurarlo: supera il Minimo dal 62% al 50%, un
+seggio su dodici a NONE. Cinque clausole mancate al 100%, tre Destini con zero
+Trionfi, uno fermo 16 volte su 16 al Minimo, un condivisibile col Trionfo piu'
+facile della Vittoria. Sei riscritti, si arrivava a 53% e 7%.
 
-| | pool spento | pool acceso |
-|---|---|---|
-| supera il Minimo | **62%** | **50%** |
-| seggi a NONE | **0%** | **8%** |
+**D-173** ha fatto le tre che restavano — i due condivisibili chiedevano al
+**Minimo** una cosa che si ottiene giocando (la fama, il registro pulito), e
+Aldric chiedeva alla Vittoria due Regioni mancate all'88% — e il pool e'
+**acceso**: venti Destini su venti si giocano all'apertura, **zero seggi a
+NONE**, nessuno a zero Trionfi, tavolo misto e uniforme **0 su 8**, mediana 6.
 
-Un seggio su dodici finirebbe l'anno senza nemmeno il Minimo. Il meccanismo e'
-giusto; **il contenuto non e' pronto**, e non lo era perche' nessuna sonda
-l'aveva mai guardato: cinque clausole mancate al 100%, tre Destini con zero
-Trionfi, uno fermo 16 volte su 16 al Minimo, e un condivisibile col Trionfo piu'
-facile della Vittoria.
-
-**Sei sono state riscritte** (D-170, forma spina + scelta, strade misurate sul
-banco): i muri non ci sono piu' e col pool acceso si passa a **53% / 7%**.
-Meglio, e ancora lontano.
-
-**Cosa manca per chiuderla**, in ordine:
-
-1. **`DST_ALDRIC_RECORD`** — 15 su 17 al Minimo, mai toccato.
-2. **Le due condivisibili** — `DST_SHARED_RENOWN` e `DST_SHARED_ACCOUNTS`
-   mandano a NONE un seggio su tre anche riscritte. Sono le uniche carte del
-   gioco che devono funzionare su **otto case diverse**, ed e' un problema
-   diverso dal bilanciare un Destino di casa.
-3. **Rimisurare col pool acceso**, non sul banco: D-170 ha trovato che la sonda
-   delle clausole non predice un Destino che *cambia come quel seggio gioca*.
-
-**Fatto quando** col pool acceso la sonda dei gradini dice **0 NONE** e almeno
-**60% sopra il Minimo**, come oggi col pool spento.
+Costo dichiarato: **Consigli falliti da 206 a 246** su cento partite. Undici
+ambizioni in piu' al tavolo si oppongono fra loro molto piu' spesso, e il tasso
+di successo passa dal 64% al 56%. Si spegne in una riga (`_deal_destiny`, il
+ripiego sulla lista dell'Entita'), se quaranta Consigli sono troppi.
 
 ### 44. La scala di Lyra ha una porta sola, e aprirla costa gli anni tranquilli
 

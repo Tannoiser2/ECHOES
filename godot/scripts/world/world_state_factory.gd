@@ -45,6 +45,7 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 		"questions_asked": {},
 		"forced_confluence": null,
 		"confluence_count": 0,
+		"voted_together": {},
 		"effect_sequence": 0,
 		"turn_order": seats.duplicate(),
 		"influence_used": {},
@@ -158,7 +159,15 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 static func _deal_destiny(
 	entity_id: String, definition: Dictionary, chronicle: Dictionary, rng: RefCounted
 ) -> String:
+	# Il pool della Chronicle e' un **restringimento**: «quest'anno, fra questi».
+	# Senza, si pesca da quello scritto sull'Entita', che e' dove la stessa lista
+	# vive gia' per la successione (`succession.gd`). Prima di D-173 esisteva solo
+	# il primo, e nessuna delle quattro Chronicle ne dichiarava uno: undici Destini
+	# su venti non venivano mai giocati all'apertura, e i tre condivisibili della
+	# voce 20 non erano mai stati letti da nessuna sonda (ISSUES 43).
 	var pool: Array = (chronicle.get("destiny_pool", {}) as Dictionary).get(entity_id, [])
+	if pool.is_empty():
+		pool = definition.get("destiny_pool", []) as Array
 	if pool.is_empty():
 		return str(definition["destiny_id"])
 	var candidates: Array = []

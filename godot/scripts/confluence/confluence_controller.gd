@@ -605,6 +605,7 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 		int(world["tensions"][tension_id]["resolved_count"]) + 1
 	)
 	world["confluence_count"] = int(world["confluence_count"]) + 1
+	_record_who_stood_together()
 	world["forced_confluence"] = null
 	# La spirale del fallimento si chiude ri-decidendo (D-094). Quando una
 	# proposta cade, CNS_FAILURE_SPIRAL scrive `question_unresolved` sul mondo
@@ -821,6 +822,40 @@ func _bar_return(applied: Array, effect: Dictionary, source: Dictionary) -> void
 			"SET_ENTITY_TAG", "entity", victim, {"tag": "twice_uprooted"}, source
 		))
 		log.bullet("H. Due volte sradicato in un anno: %s non ha piu' un centro da difendere." % _name(victim))
+
+
+## Chi e' stato dalla stessa parte, e chi dalla parte opposta (D-172).
+##
+## E' la **memoria dei bot**, non un fatto del mondo. `_ally_of_convenience`
+## nasceva leggendo il Destino degli altri per capire con chi convenisse
+## allearsi, e un giocatore vero quel Destino non lo vede: al tavolo si capisce
+## chi ti e' vicino **da come vota**. Questo registro e' quello che chiunque
+## sieda al Consiglio puo' vedere con i propri occhi, e niente di piu'.
+##
+## Contatore diretto come `confluence_count` e `resolved_count`: non e' una
+## mutazione che qualcuno possa voler annullare, e non passa dagli Effetti.
+## Contano solo i fronti dichiarati - chi si astiene non dice niente su nessuno.
+func _record_who_stood_together() -> void:
+	var fronts: Dictionary = {str(current["proponent"]): "SUPPORT"}
+	for entity_id in current["stances"]:
+		if str(entity_id) == str(current["proponent"]):
+			continue
+		fronts[str(entity_id)] = str(
+			(current["stances"][entity_id] as Dictionary).get("stance", "ABSTAIN")
+		)
+	var seats: Array = fronts.keys()
+	seats.sort()
+	var memory: Dictionary = world["voted_together"]
+	for i in range(seats.size()):
+		var a: String = str(seats[i])
+		if fronts[a] != "SUPPORT" and fronts[a] != "OPPOSE":
+			continue
+		for j in range(i + 1, seats.size()):
+			var b: String = str(seats[j])
+			if fronts[b] != "SUPPORT" and fronts[b] != "OPPOSE":
+				continue
+			var key: String = Ids.relation_key(a, b)
+			memory[key] = int(memory.get(key, 0)) + (1 if fronts[a] == fronts[b] else -1)
 
 
 ## Quanto pesa un'alleanza al Consiglio (D-139): un alleato che ti sostiene

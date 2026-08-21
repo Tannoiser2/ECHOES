@@ -10,6 +10,460 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-176 — Le istituzioni non governano diversamente dalle persone
+**implemented in 0.1.144** (ISSUES 35 chiusa, e l'ipotesi era falsa)
+
+La saga del Sale mostrava una forma netta: finche' sedevano **persone** —
+Maestra Ilve, Priora Ilaria, Maestro Ruel — c'erano Vittorie e due Trionfi; dal
+1981, con le **istituzioni** al tavolo, sedici Destini su venti finivano al
+Minimo. L'ipotesi scritta era che le istituzioni governassero bene e non
+volessero niente.
+
+La voce chiedeva, prima di toccare qualsiasi cosa, una misura precisa: la stessa
+saga **a tavolo misto** invece che a policy identiche, e il conto dei livelli
+**per incarnazione**. La sonda delle ere adesso lo stampa. Dodici saghe da dieci
+Chronicle:
+
+| | supera il Minimo |
+|---|---|
+| le **otto istituzioni** | **41%** |
+| le **quindici persone** | **42%** |
+
+**Un punto.** Chi siede non c'entra niente, e l'ipotesi era sbagliata.
+
+### Quello che c'entra e' la casa
+
+La distanza vera sta **dentro** le due categorie, non fra loro:
+
+| chi siede | supera il Minimo |
+|---|---|
+| La Compagnia del Sale | **68%** |
+| Il Banco Nero | 64% |
+| Maestra Ilve, Maestra Sadin, Maestro Ordan | **67%** |
+| Maestro Ruel | 62% |
+| I Frati del Vetro | 48% |
+| Le Citta' Libere | 35% |
+| La Lega delle Sette | 32% |
+| L'Egemonia di Eredan | 31% |
+| Kessa dei Fuochi | 17% |
+| **Le Custodi della Cenere** | **14%** |
+| **Neve dei Fuochi** | **8%** |
+
+Un'istituzione al 68% e una al 14% sono lontane fra loro quanto le due persone
+agli estremi. E la linea che va male va male **con chiunque la porti**: i cinque
+volti dei Fuochi stanno fra l'8% e il 46%, i cinque Maestri fra il 46% e il 67%.
+
+**Non e' un problema delle vite tardive, e' il Destino di una casa.**
+
+### Perche' la forma si vedeva lo stesso
+
+Perche' nella saga del Sale l'ordine delle incarnazioni mette le istituzioni
+**dopo**, e dopo il mondo e' piu' segnato: piu' cicatrici, piu' Tensioni alte,
+piu' conti aperti. La correlazione c'era; la causa era il **momento**, non il
+soggetto. E' un errore che vale la pena tenere a mente, perche' e' esattamente
+il modo in cui una saga racconta una cosa e i numeri ne dicono un'altra.
+
+**Resta una voce nuova** per chi la vorra' aprire: la linea della Cenere/Fuochi
+arriva al secondo gradino la meta' delle volte delle altre, in ogni sua
+incarnazione. E' li' che va guardata.
+
+---
+
+## D-175 — Tre Conseguenze che costruiscono, e mezza ISSUES 37 chiusa
+**implemented in 0.1.143**
+
+### Le Conseguenze che scrivevano un segno senza niente sotto
+
+D-162 aveva chiuso «la fine del segno che non ha un oggetto sotto» per le opere.
+Ne restavano quattro fuori. Guardate una per una, tre andavano convertite e una
+no:
+
+| | il segno | adesso costruisce |
+|---|---|---|
+| `CNS_NAHR_SETTLEMENT` «Chi Lavora Mangia» | `settlement:$proponent` | un **villaggio** che ha un padrone e puo' diventare borgo e citta' |
+| `CNS_MARCH_GRANTED` «La Marca Concessa» | `settlement:march` | una **torre di veglia** — due punti di forza sulla Regione data |
+| `CNS_MARKET_MOVED` «Il Mercato Spostato» | `settlement:market` | un **villaggio**: la gente che si mette intorno al mercato resta anche quando il mercato riparte |
+| `CNS_RELIC_BURIED` «La Teca Murata» | `structure:sealed` | **niente** — la cella murata non e' nessuna delle nove cose del catalogo, e inventarne una decima per una Conseguenza sola sarebbe la tentazione di D-164 |
+
+I segni restano: le regole li leggono, e dicono una cosa diversa dall'oggetto
+(«qui vive questa gente» non e' «c'e' un villaggio»). Quello che cambia e' che
+adesso sotto c'e' qualcosa che pesa nel conto del controllo e che sopravvive
+all'anno.
+
+**La piu' interessante e' la marca.** `CNS_MARCH_GRANTED` assegnava il controllo
+di una Regione e ci scriveva sopra un segno — e dal round dopo il conto del
+controllo poteva ridarla a chi ci aveva piu' pedine. Una concessione che non si
+difende non e' una concessione. La torre e' quello che la tiene.
+
+Misurato: le pietre **alzate giocando** salgono a **174 su 80 partite**, contro le
+poche di prima; i gradini restano dove stavano (supera il Minimo 54%, TRIONFO
+19%), il playtest e' invariato.
+
+### Mezza ISSUES 37 si chiude da sola
+
+La voce diceva «la mappa non si muove». Non e' piu' vero, e non l'ha risolto una
+correzione mirata: l'ha risolto **il padrone che si conta invece di scriverlo**
+(D-158). Caselle con un padrone dal 56% all'**82%**, seggi a zero Regioni dal 30%
+all'**11%**, seggi con due dal 12% al **31%**.
+
+Resta l'altra meta', e adesso ha un nome preciso: **`ACT_CLAIM` muore in mano
+tre volte su quattro** — 128 aperte, 18 forzate, **110 morte** su 80 Chronicle.
+Il punto di rottura non e' un difetto del codice, e' **§10 del regolamento**: il
+Claim deve essere stato posato in un round precedente, quindi chi rivendica deve
+indovinare un round prima che la domanda sara' matura, che nessuno avra' gia'
+forzato un Consiglio, e di avere ancora un secondo AUTORITA' in mano.
+
+**Non l'ho toccata**, e la ragione e' la stessa per cui non ho allargato la banda
+dei Consigli senza chiedere: cambiare §10 e' cambiare il regolamento, non
+bilanciare un numero. La strada piu' piccola che si vede e' scritta nella voce.
+
+### Misure
+
+Playtest 100 semi: **FAIL 248 · SUCC 71 · SUCC 100 · DECI 144**, mediana 6,
+misto e uniforme **0 su 8**, nessun seggio a NONE ne' a zero Trionfi. Sonda dei
+gradini: 0 NONE, TRIONFO 19%, supera il Minimo 54%. Suite **349 test / 6445
+asserzioni** verde.
+
+---
+
+## D-174 — Tre voci chiuse: il sigillo che riscriveva la storia, il grado che è materia di saga, e un divario che non c'era
+**implemented in 0.1.142** (ISSUES 41 e 42 chiuse, ISSUES 40 decisa)
+
+### ISSUES 41 — il sito antico non era mai «aperto e ancora intero»
+
+La sonda dava due righe con lo stesso numero: sito **aperto** 25%, sito
+**saccheggiato** 25%. Gli stessi anni. Il grado di mezzo — quello che insegna —
+non era uno stato: era un fotogramma fra due Consigli.
+
+Guardate le tre Conseguenze che lo muovono, la colpevole non era nessuna delle
+due che ci si aspetta:
+
+| | |
+|---|---|
+| `CNS_MINE_REOPENED` | *«Si toglie la pietra... Sotto, tutto è come lo si era lasciato»* → grado 2 |
+| `CNS_CRYSTAL_EXPLOITED` | *«Il Cristallo Rosso esce dalle gallerie a peso»* → grado 3 |
+| `CNS_MINE_SEALED` | *«Le gallerie vengono chiuse»* → **grado 1** |
+
+Le prime due sono giuste, e che un anno che fa tutte e due finisca col sito
+svuotato e' onesto. La terza no: **murare un sito saccheggiato lo rimandava a
+«dormiente»**, cioe' cancellava il fatto che fosse mai stato aperto e svuotato.
+Un sigillo nasconde, non restituisce.
+
+Adesso il sigillo porta il sito al **grado di mezzo**: aperto, e da oggi
+irraggiungibile. Misurato subito dopo, sulla riga di Lyra:
+
+| | prima | dopo |
+|---|---|---|
+| il sito e' stato aperto | 25% | **80%** |
+| il sito e' stato saccheggiato | 25% | **60%** |
+| **aperto e ancora intero** | **0%** | **20%** |
+
+Un anno su cinque il mondo si ferma sul gradino di mezzo. Adesso «aperto e
+ancora intero» e' una clausola scrivibile.
+
+### ISSUES 40 — il grado alto e' materia di saga, e resta tale
+
+La voce chiedeva di scegliere fra due strade: accettare che il grado sia roba da
+saga, oppure aprire un secondo momento in cui una pietra sale dentro l'anno.
+
+**Scelgo la prima, e la scrivo perche' non venga riaperta per distrazione.** La
+scala che segue il Destino (D-159) e' il cuore del meccanismo: una reggia e' il
+sedimento di tre anni buoni, e vale proprio perche' non si compra in una sera. La
+saga del Regno che si e' seduto lo mostra meglio di qualsiasi misura — villaggio
+812, borgo 813, granaio 814, citta' 815, castello 816, **reggia 818**.
+
+La regola che ne segue: **una clausola sul grado 2 o 3 si scrive solo nei Destini
+di una Chronicle successiva**, mai in quelli d'apertura. Chi la scrive altrove
+sta scrivendo un muro, e adesso c'e' un verbale che lo dice.
+
+### ISSUES 42 — il divario fra le due saghe non era delle saghe
+
+CHR_03 portava 49 Trionfi contro i 30 di CHR_01. La voce elencava tre cause
+possibili e chiedeva di misurarle a parita' di tavolo. Misurate tutte e tre:
+
+| ipotesi | misura | verdetto |
+|---|---|---|
+| i Destini della seconda saga **chiedono meno** | clausole mancate: CHR_01 **38%**, CHR_03 **41%** | **falsa** — sono piu' dure |
+| le sue Tensioni **si muovono di piu'** | Consigli per partita: CHR_01 **5,83**, CHR_03 **5,33** | **falsa** — ne ha meno |
+| ha una casa che **parte senza Regioni** | ne hanno una a testa (Lyra, il Vetro), e i seggi di CHR_01 finiscono con **piu'** terra (1,28 contro 1,17) | **falsa** |
+
+Nessuna delle tre. E la ragione vera si e' vista da sola aprendo il pool
+(D-173): **il divario non era delle saghe, era degli otto Destini che si
+giocavano.** Con venti in gioco invece di otto, il carico si distribuisce e le
+due convergono:
+
+| | prima | ora |
+|---|---|---|
+| CHR_01 | 30 | **22 su 113 seggi-partita (19%)** |
+| CHR_03 | 49 | **25 su 107 seggi-partita (23%)** |
+| condivisi | — | 16 su 100 (16%) |
+
+Quattro punti di scarto. **Chiusa** — e con una lezione che vale oltre questa
+voce: *prima di tarare tre manopole, vale la pena guardare se il difetto non sia
+un effetto di quello che si sta gia' cambiando altrove.*
+
+### Misure
+
+Playtest 100 semi invariato rispetto a D-173: **FAIL 246 · SUCC 73 · SUCC 100 ·
+DECI 144**, mediana 6, misto e uniforme **0 su 8**, nessun seggio a NONE, nessuno
+a zero Trionfi. Sonda dei gradini 80 Chronicle: **0 NONE**, TRIONFO 20%.
+Suite **349 test / 6443 asserzioni** verde; sims deterministici; `dead_code.py`
+pulito su 155 file.
+
+La sonda dei gradini adesso stampa anche i **Consigli chiusi per saga**: era la
+misura che ISSUES 42 chiedeva e non c'era.
+
+---
+
+## D-173 — Il pool si accende: venti Destini invece di otto
+**implemented in 0.1.141** (ISSUES 43 chiusa)
+
+D-170 aveva acceso il pool per misurarlo e l'aveva rispento: supera il Minimo
+dal 62% al 50%, un seggio su dodici a NONE. Le sei riscritture di allora avevano
+portato a 53% e 7%, e la issue era rimasta aperta con dentro la lista di cosa
+mancava. Questa e' quella lista, fatta.
+
+### Le tre che restavano
+
+| Destino | il difetto | cosa e' diventato |
+|---|---|---|
+| `DST_SHARED_RENOWN` | il **Minimo** chiedeva la fama, che i suoi portatori hanno il 35-50% delle volte: 20 seggi su 41 non arrivavano al primo gradino | Minimo «la casa e' ancora al tavolo», la fama sale alla Vittoria |
+| `DST_SHARED_ACCOUNTS` | il **Minimo** chiedeva che nessuna proposta fosse caduta — una moneta lanciata | stesso Minimo, e la Vittoria e' la domanda chiusa |
+| `DST_ALDRIC_RECORD` | la Vittoria chiedeva **due Regioni**, mancate all'88% | spina «nessuna questione aperta» piu' un segno su quattro |
+
+**La lezione, ed e' la seconda volta che la incontro:** un Minimo non e' un
+obiettivo, e' una soglia di sopravvivenza. Le due carte condivisibili chiedevano
+al primo gradino una cosa che si ottiene giocando — la fama, il registro pulito
+— e un seggio che non ce la faceva restava fuori dal gioco al primo colpo. Le
+carte scritte per **otto case diverse** sono il posto dove questo errore costa
+di piu': una casa di casa sua puo' avere un Minimo esigente perche' e' scritto
+addosso a lei, una carta condivisibile no.
+
+### Cosa costa accendere
+
+| | pool spento (`main`) | **pool acceso** |
+|---|---|---|
+| Destini giocati all'apertura | 8 su 20 | **20 su 20** |
+| seggi a **NONE** | 4 su 800 | **0** |
+| Trionfi del tavolo | 86 | **82** |
+| seggi con zero Trionfi | 0 | 0 |
+| tavolo misto / uniforme | 0 su 8 | **0 su 8** |
+| mediana dei Consigli | 6 | **6** |
+| **Consigli falliti** | 206 | **246** |
+| Consigli decisivi | 187 | **144** |
+
+**Il costo dichiarato sono quaranta Consigli falliti in piu' su cento partite**,
+ed e' il numero piu' alto che questo progetto abbia mai misurato. La causa non e'
+oscura: **undici ambizioni in piu' al tavolo vogliono undici cose in piu'**, e le
+proposte si oppongono fra loro molto piu' spesso. Il tasso di successo passa dal
+64% al 56%.
+
+Non e' una tassa nascosta: e' quello che succede quando quattro case che
+inseguono sempre le stesse quattro cose diventano quattro case che potrebbero
+inseguirne venti. Tutte le guardie che il progetto si e' dato reggono — **0 su 8**
+su tutti e due i tavoli, mediana 6, nessun seggio a zero Trionfi, nessun seggio
+a NONE — e la varieta' e' l'intera ragione per cui D-150 aveva costruito il
+meccanismo: *«alla terza partita tutti sanno cosa vuole l'altro»*.
+
+**Si spegne in una riga**, se il committente decide che quaranta Consigli sono
+troppi: in `world_state_factory.gd`, `_deal_destiny`, togliere il ripiego sulla
+lista dell'Entita' e il pool torna a esistere solo se una Chronicle lo dichiara —
+cioe' mai.
+
+### Misure
+
+Playtest 100 semi, tavolo misto, per seggio (NONE/MIN/VIC/TRI su 50):
+
+| seggio | prima | dopo |
+|---|---|---|
+| Re Aldric | 1 · 26/18/5 | **0** · 29/16/5 |
+| Kessa dei Fuochi | 0 · 19/23/8 | 0 · 32/10/8 |
+| Le Citta' Libere | 1 · 10/27/12 | **0** · 19/14/**17** |
+| Lyra | 0 · 32/12/6 | 0 · **17/28**/5 |
+| Popolo Nahr | 1 · 23/10/16 | **0** · 15/16/**19** |
+| Maestra Ilve | 0 · 7/30/13 | 0 · 19/15/16 |
+| Vaerax | 0 · 24/16/10 | 0 · 27/17/6 |
+| Priore Anselmo | 1 · 6/27/16 | **0** · 20/24/6 |
+
+Sonda dei gradini su 80 Chronicle: **0 NONE**, TRIONFO **20%**, supera il Minimo
+**54%**. Suite **349 test / 6438 asserzioni** verde; sims deterministici;
+`dead_code.py` pulito su 155 file; schemi e manifest allineati.
+
+**ISSUES 43 chiusa.**
+
+---
+
+## D-172 — Il bot smette di sbirciare e guarda come si e' votato
+**implemented in 0.1.140** (il debito che D-171 aveva dichiarato, pagato subito)
+
+D-171 aveva chiuso con una riga onesta sul manico della funzione: *un bot legge
+il Destino degli altri, e un giocatore vero no.* Al tavolo quell'informazione
+arriva da **come gli altri votano**, non dalla loro carta. Questo e' quel debito
+pagato, e si e' rivelato non un pareggio ma un guadagno su quasi tutto.
+
+### Il registro
+
+`world["voted_together"]`: per ogni coppia, quante volte sono finiti sullo
+stesso fronte del Consiglio meno quante volte su fronti opposti. Contano solo i
+fronti dichiarati — chi si astiene non dice niente su nessuno. Scritto alla
+chiusura di ogni Consiglio, accanto a `confluence_count`, **come contatore
+diretto e non come Effetto**: non e' una mutazione che qualcuno possa voler
+annullare, ed e' lo stesso trattamento che hanno gia' `confluence_count` e
+`resolved_count`.
+
+E' la memoria **dei bot**, non un fatto del mondo: e' quello che chiunque sieda
+al Consiglio vede con i propri occhi, e niente di piu'.
+
+### Cosa cambia rispetto a D-171
+
+| | `main` | D-171 (sbircia il Destino) | **D-172 (guarda i voti)** |
+|---|---|---|---|
+| Trionfi del tavolo | 86 | **74** | **83** |
+| seggi a NONE | 4 | 1 | 3 |
+| FAIL | 203 | 207 | 206 |
+
+**Il prezzo scende da dodici Trionfi a tre.** E il motivo non e' che si allea di
+meno: e' che si allea **meglio**. Sbirciando il Destino, due seggi si trovavano
+subito e ci restavano; guardando i voti, un legame si stringe dopo che il tavolo
+ha gia' deciso qualcosa, cioe' quando l'Occasione spesa serve ancora a qualcosa.
+
+E si distribuisce:
+
+| seggio | `main` | D-171 | **D-172** |
+|---|---|---|---|
+| Re Aldric | 0% | 10% | **20%** |
+| Lyra | 0% | **45%** | 15% |
+| Popolo Nahr | 0% | **45%** | 30% |
+| Vaerax | 0% | 5% | **35%** |
+| Kessa | 25% | 50% | 35% |
+
+D-171 accendeva due seggi molto e lasciava fuori Aldric e Vaerax, che avevano
+un'opposizione **dichiarata** addosso e quindi erano esclusi per regola. I voti
+non conoscono quella regola: due che si oppongono su un segno possono benissimo
+essersi trovati dalla stessa parte su tre domande diverse, ed e' vero — al
+tavolo succede continuamente. La banda passa da 5-50% a **15-35%**.
+
+### E si sbaglia, che e' il punto
+
+Un legame stretto su tre Consigli condivisi puo' rompersi al quarto, e la
+memoria non lo prevede: la aggiorna dopo. Un bot che sbircia non sbaglia mai un
+alleato; uno che osserva si fida di chi lo ha aiutato finora, che e' la cosa che
+un giocatore fa davvero — e la sola su cui si possa costruire un tradimento.
+
+**Prima del primo Consiglio nessuno sa niente di nessuno**, e la regola tace:
+c'e' un test che tiene fermo anche quello.
+
+### Misure
+
+Playtest 100 semi, tavolo misto: **FAIL 206 · SUCC 74 · SUCC 107 · DECI 187**,
+mediana **6**, misto **0 su 8**, uniforme **0 su 8**. Trionfi **83** (main: 86),
+nessun seggio a zero, nessuno bloccato su un gradino.
+
+Suite **348 test / 6486 asserzioni** verde; `run_sims.sh` e `run_export.sh`
+identici su due giri; `dead_code.py` pulito su 155 file; schemi e manifest
+allineati.
+
+---
+
+## D-171 — L'alleanza che conviene, e il prezzo che non si puo' non pagare
+**implemented in 0.1.139** (domanda del committente: «i bot non puoi fare un modo che stringano anche alleanze se conviene loro?»)
+
+**Prima, una correzione a quello che avevo scritto io.** «Nessun bot stringe
+alleanze» era troppo forte. `ACT_FORGE` esiste — salire costa una carta BONDS e
+il consenso, scendere e' gratis e unilaterale — e la policy la gioca. Il difetto
+era piu' stretto: **un seggio stringeva un legame solo se una clausola del suo
+Destino nominava quella relazione**, mai perche' gli tornava utile. Le due
+clausole che avevo misurato a 0% (Lyra alleata di Aldric, Vaerax non nemico di
+Lyra) le avevo inventate io per il banco: nessun Destino le chiede, quindi
+nessun bot aveva motivo di muoversi. Dove la clausola c'e', la relazione si
+muove — «la Gilda non e' diventata un nemico delle citta'» si avvera un anno su
+tre.
+
+### La prima forma non ha sparato una volta, e ha trovato una cosa sul contenuto
+
+Scritta cosi': **ti allei con chi vuole i tuoi stessi segni**. Semplice, si
+spiega in una frase a un tavolo di persone, e il tornaconto e' gia' in gioco
+(D-139: un alleato che sostiene il proponente porta +1 sul fronte, +2 se BOUND).
+
+Zero legami stretti su quaranta Chronicle. Il motivo non era il codice:
+
+| tavolo | coppie con un segno in comune | punteggio |
+|---|---|---|
+| CHR_01 | Aldric–Nahr su `crown_divided` | **−1** |
+| CHR_01 | Lyra–Vaerax su `mine_sealed` | **−1** |
+| CHR_03 | Sale–Libere su `debt_forgiven` | **−1** |
+
+**Fra gli otto Destini del gioco non esiste una coppia che voglia lo stesso
+segno nello stesso verso.** Ogni sovrapposizione e' un'opposizione, e tutto il
+resto e' indifferenza: il contenuto e' scritto come una rete di contrasti.
+Un'alleanza costruita sugli obiettivi comuni non ha niente su cui mordere. (Le
+alleanze che si vedevano su CHR_03 — il Vetro e le Citta' al 100% — sono
+**relazioni d'apertura scritte a mano** nelle Entita', non forgiate da nessuno.)
+
+C'e' un test che tiene fermo quel fatto, perche' se un domani due Destini
+vorranno la stessa cosa e' un cambio di contenuto da vedere.
+
+### La forma che funziona: si allea chi aspetta lo stesso Consiglio
+
+`_needed_confluences` dice gia' quali Tensioni un seggio ha bisogno che arrivino
+al voto, perche' la sola cosa che chiude una sua clausola sta dietro quella
+domanda. **Due seggi che aspettano la stessa domanda staranno sullo stesso
+fronte quando si apre**, e li' il legame vale il peso in piu'. Chi mi si oppone
+su un segno resta fuori comunque, per quanti Consigli condividiamo.
+
+Il ceto sociale del gioco si accende:
+
+| seggio | prima | dopo |
+|---|---|---|
+| Lyra | **0%** | **45%** |
+| Popolo Nahr | **0%** | **45%** |
+| Kessa dei Fuochi | 25% | 50% |
+| la Gilda | 25% | 30% |
+| Re Aldric | 0% | 10% |
+| Vaerax | 0% | 5% |
+
+(quota di anni in cui il seggio finisce con almeno un alleato). Aldric e Vaerax
+restano bassi ed e' giusto: sono i due che hanno un'opposizione dichiarata
+addosso.
+
+### Il prezzo, e i due quadranti che non lo abbassano
+
+**Trionfi del tavolo da 86 a 74.** Un'alleanza costa un'Occasione e una carta
+BONDS, e l'Occasione e' tutta la moneta dell'anno: il seggio che si allea e' il
+seggio che non ha fatto altro.
+
+Ho provato le due leve ovvie, e **nessuna delle due esiste**:
+
+| leva | risultato |
+|---|---|
+| alzare la soglia a **due** Consigli in comune | non spara **mai** — due seggi non aspettano mai due domande insieme |
+| spostarla **in coda** alle scelte | non spara **mai** — le voci prima trovano sempre qualcosa da fare |
+
+Il quadrante e' binario: o la regola sta al suo posto e costa dodici Trionfi, o
+non c'e'. Che poi e' come dovrebbe essere — **un'alleanza che non costa niente
+non e' una scelta**, ed e' esattamente la ragione per cui D-139 aveva imposto le
+due carte impegnate.
+
+### Le misure
+
+Playtest 100 semi, tavolo misto: **FAIL 207 · SUCC 68 · SUCC 114 · DECI 179**,
+mediana **6**, tavolo misto **0 su 8**, uniforme **0 su 8**. Seggi a NONE da 4 a
+**1**. Trionfi **86 → 74**, nessun seggio a zero, nessuno bloccato su un gradino.
+
+Suite **348 test / 6486 asserzioni** verde; sims deterministici; `dead_code.py`
+pulito su 154 file.
+
+### Dichiarato
+
+**Un bot legge il Destino degli altri**, e un giocatore vero no: al tavolo
+quell'informazione arriva da come gli altri votano, non dalla loro carta. E' una
+semplificazione della policy, non una regola del gioco, ed e' scritta sul manico
+della funzione. Va rifatta quando i seggi impareranno a dedurre invece che a
+sbirciare — ed e' anche la strada che rende la regola piu' interessante: allearsi
+con chi **ha votato** come te e' osservabile, e sbagliabile.
+
+---
+
 ## D-170 — Gli undici Destini mai giocati, guardati per la prima volta
 **implemented in 0.1.138** (ISSUES 43 misurata, e **il pool resta spento**)
 

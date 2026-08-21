@@ -51,6 +51,11 @@ func _initialize() -> void:
 	# le ere. La Diaspora spunta la leva dell'espulsione: se il NONE di Nahr
 	# sparisce dalle saghe, la vita va ritoccata - questa riga e' la sentinella.
 	var lives_seated: Dictionary = {}
+	# ISSUES 35: le istituzioni governano bene e non vogliono niente. La voce
+	# chiedeva il conto dei livelli **per incarnazione** a tavolo misto: se una
+	# Compagnia arriva al secondo gradino meno spesso di una Maestra, e' il
+	# contenuto delle vite tardive; se ci arriva uguale, era il Minimo letto male.
+	var levels_by_life: Dictionary = {}
 	var levels_by_seat: Dictionary = {}
 	var years_played: int = 0
 	var hands: Dictionary = {}
@@ -189,6 +194,12 @@ func _initialize() -> void:
 				var ladder: Dictionary = levels_by_seat.get(str(entity_id), {})
 				ladder[level] = int(ladder.get(level, 0)) + 1
 				levels_by_seat[str(entity_id)] = ladder
+				var who: String = str(
+					(session.world["entities"][str(entity_id)] as Dictionary).get("name", entity_id)
+				)
+				var life: Dictionary = levels_by_life.get(who, {})
+				life[level] = int(life.get(level, 0)) + 1
+				levels_by_life[who] = life
 
 		spans.append(final_year - start_year)
 		var survived: int = 0
@@ -225,6 +236,22 @@ func _initialize() -> void:
 			str(seat_id), int(ladder.get("NONE", 0)), int(ladder.get("MINIMUM", 0)),
 			int(ladder.get("VICTORY", 0)), int(ladder.get("TRIUMPH", 0)),
 		])
+	# ISSUES 35, la misura che mancava: chi siede, e a che gradino arriva.
+	print("  Chi siede e dove arriva (ISSUES 35), a tavolo misto:")
+	var who_names: Array = levels_by_life.keys()
+	who_names.sort()
+	for who in who_names:
+		var life: Dictionary = levels_by_life[who]
+		var played: int = 0
+		for key in life:
+			played += int(life[key])
+		if played < 8:
+			continue
+		var above: int = int(life.get("VICTORY", 0)) + int(life.get("TRIUMPH", 0))
+		print("    %-34s %4d anni   supera il Minimo %3d%%" % [
+			str(who), played, int(round(100.0 * float(above) / float(played)))
+		])
+	print("")
 	print("  Destini cambiati perche' il precedente era ottenuto: %d (%.1f per saga)" % [
 		rotations, float(rotations) / maxf(sagas, 1)
 	])
