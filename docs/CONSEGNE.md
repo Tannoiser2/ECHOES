@@ -59,7 +59,7 @@ Asserzioni disponibili: `assert_true`, `assert_false`, `assert_eq`, `assert_ne`.
 | sonda | risponde a |
 |---|---|
 | `run_playtest.gd` | come finisce un anno, per seggio e per carattere — **è il cancello** |
-| `run_rung_probe.gd` | quale clausola non si avvera mai, la mappa, le pietre, i Consigli per saga |
+| `run_rung_probe.gd` | quale clausola non si avvera mai, la mappa, le pietre, i Consigli per saga, e **se convenga proporre** (0.1.151) |
 | `run_clause_probe.gd` | quanto costa una clausola **prima** di scriverla (banco in `tools/clause_candidates.json`) |
 | `run_era_probe.gd` | cosa fa il tempo a una saga, chi siede e dove arriva, **quale clausola manca quando un anno si perde** (0.1.145), e **quanto resta viva una campagna** (0.1.149: cambi di testa, anno dell'ultimo sorpasso) |
 | `run_saga.gd` | racconta una saga anno per anno |

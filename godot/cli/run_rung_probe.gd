@@ -42,6 +42,13 @@ func _initialize() -> void:
 	var played: Dictionary = {}   # destino -> quante volte giocato
 	var per_destiny: Dictionary = {}  # "destino|livello" -> quante volte
 	var reached: Dictionary = {}  # livello raggiunto -> quante volte
+	# «Essere il proponente conviene?» - domanda del committente. Il proponente
+	# entra sempre nel fronte del sostegno, quindi la sua proposta o passa o
+	# gli cade in mano: qui si contano le due cose per seggio, e dove arriva chi
+	# propone piu' spesso.
+	var proposed: Dictionary = {}      # seggio -> quante volte ha proposto
+	var proposed_ok: Dictionary = {}   # seggio -> quante di quelle sono passate
+	var by_proposals: Dictionary = {}  # quante proposte -> [quanti seggi, somma dei livelli]
 	var control_hist: Dictionary = {}  # Regioni tenute a fine anno -> quanti seggi
 	var per_seat: Dictionary = {}   # casa -> [Regioni all'inizio, somma a fine anno, partite]
 	var claims_made: int = 0      # ACT_CLAIM in CREATE: la rivendicazione aperta
@@ -79,6 +86,13 @@ func _initialize() -> void:
 			row[0] = int(row[0]) + int(session.service.control_count(str(entity_id)))
 			per_seat[str(entity_id)] = row
 		var report: Dictionary = await session.run(decider)
+		var mine_this_year: Dictionary = {}
+		for result in report["confluences"]:
+			var who: String = str((result as Dictionary)["proponent"])
+			proposed[who] = int(proposed.get(who, 0)) + 1
+			mine_this_year[who] = int(mine_this_year.get(who, 0)) + 1
+			if not str((result as Dictionary)["outcome"]).begins_with("FAIL"):
+				proposed_ok[who] = int(proposed_ok.get(who, 0)) + 1
 		for entity_id in seats:
 			var result: Dictionary = (report["destiny_results"] as Dictionary)[str(entity_id)]
 			var destiny_id: String = str(result["destiny_id"])
@@ -86,6 +100,12 @@ func _initialize() -> void:
 			reached[str(result["level"])] = int(reached.get(str(result["level"]), 0)) + 1
 			var lane: String = "%s|%s" % [destiny_id, str(result["level"])]
 			per_destiny[lane] = int(per_destiny.get(lane, 0)) + 1
+			var made: int = int(mine_this_year.get(str(entity_id), 0))
+			var rung: int = ["NONE", "MINIMUM", "VICTORY", "TRIUMPH"].find(str(result["level"]))
+			var bucket: Array = by_proposals.get(made, [0, 0]) as Array
+			bucket[0] = int(bucket[0]) + 1
+			bucket[1] = int(bucket[1]) + maxi(0, rung)
+			by_proposals[made] = bucket
 			var destiny: Dictionary = data.destinies[destiny_id]
 			for condition in result["unmet"]:
 				var label: String = str((condition as Dictionary).get("label", "?"))
@@ -195,6 +215,26 @@ func _initialize() -> void:
 	# La mappa a fine anno: quante Regioni tiene un seggio, e quante ne restano
 	# senza padrone. Una clausola che chiede due Regioni si legge solo qui.
 	print("")
+	print("  Essere il proponente conviene? (domanda del committente)")
+	var pro_seats: Array = proposed.keys()
+	pro_seats.sort()
+	var all_made: int = 0
+	var all_ok: int = 0
+	for seat_id in pro_seats:
+		all_made += int(proposed[seat_id])
+		all_ok += int(proposed_ok.get(seat_id, 0))
+	if all_made > 0:
+		print("    proposte totali %d, passate %d  (%d%%)" % [
+			all_made, all_ok, int(round(100.0 * float(all_ok) / float(all_made))),
+		])
+	var counts: Array = by_proposals.keys()
+	counts.sort()
+	print("    quante ne ha proposte    seggi   gradino medio (0=NONE, 3=TRIONFO)")
+	for made in counts:
+		var bucket: Array = by_proposals[made] as Array
+		print("      %d proposte             %5d          %.2f" % [
+			int(made), int(bucket[0]), float(bucket[1]) / float(maxi(1, int(bucket[0]))),
+		])
 	print("  Regioni tenute a fine anno (per seggio):")
 	var seats_seen: int = 0
 	for held in control_hist:
