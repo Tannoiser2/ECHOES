@@ -1,4 +1,4 @@
-# Passaggio di consegne — stato al 0.1.145
+# Passaggio di consegne — stato al 0.1.146
 
 *Scritto per chi apre una sessione nuova su questo repository. Dice dov'è il
 lavoro, cosa regge, cosa no, e quali sono le regole di casa che non vanno
@@ -12,7 +12,7 @@ riscoperte da capo.*
 |---|---|
 | ramo di sviluppo | `claude/echoes-boardgame-dev-cmu444` |
 | PR aperta | in bozza, su `main` |
-| ultimo commit | 0.1.145 |
+| ultimo commit | 0.1.146 |
 | ultimo merge su `main` | `e26b2b2` — PR #67, 0.1.139–0.1.144 |
 
 La PR #67 è stata mergiata: questo ramo riparte da `main` e raccoglie da 0.1.145
@@ -63,7 +63,7 @@ Asserzioni disponibili: `assert_true`, `assert_false`, `assert_eq`, `assert_ne`.
 | `run_clause_probe.gd` | quanto costa una clausola **prima** di scriverla (banco in `tools/clause_candidates.json`) |
 | `run_era_probe.gd` | cosa fa il tempo a una saga, chi siede e dove arriva, e da 0.1.145 **quale clausola manca quando un anno si perde** |
 | `run_saga.gd` | racconta una saga anno per anno |
-| `tools/dead_code.py` · `tools/validate_data.py` | codice irraggiungibile · dati contro schemi |
+| `tools/dead_code.py` · `tools/validate_data.py` | codice irraggiungibile · dati contro schemi, **e i Destini che si combattono da soli** (D-178: `--self-test` prova che le guardie mordano) |
 
 ## 3. Cosa è stato fatto nelle ultime sessioni
 
@@ -79,6 +79,7 @@ solo.
 | **0.1.143** | tre Conseguenze costruiscono un oggetto invece di scrivere un segno |
 | **0.1.144** | le istituzioni **non** governano diversamente dalle persone: l'ipotesi di ISSUES 35 era falsa |
 | **0.1.145** | la Cenere non era debole: il suo Destino le chiedeva due cose che con tre gettoni non stanno insieme (ISSUES 45) |
+| **0.1.146** | quel difetto si vedeva **senza giocare**: due guardie nella CI, e la seconda ha trovato subito un errore introdotto il giorno prima |
 
 Più due documenti: **`docs/MECCANICA.md`** riportato a 0.1.140 (è il testo da dare
 a chi disegna l'infografica) e **`docs/SAGA_NAHR.md`**, dieci anni giocati e
@@ -87,9 +88,9 @@ raccontati.
 **Le misure di adesso** (playtest 100 semi, tavolo misto):
 
 ```
-FAIL 256 · SUCC 78 · SUCC 99 · DECI 146 · mediana 6
+FAIL 256 · SUCC 78 · SUCC 100 · DECI 145 · mediana 6
 0 su 8 bloccati (misto e uniforme) · nessun seggio a NONE · nessuno a zero Trionfi
-suite 349 test / 6445 asserzioni
+suite 349 test / 6444 asserzioni
 ```
 
 ## 4. Le due cose che vanno guardate per prime

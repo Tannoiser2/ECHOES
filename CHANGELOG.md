@@ -5,6 +5,43 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.146 — Due guardie, e la seconda ha morso subito (D-178)
+
+- **Il difetto di D-177 si vedeva senza giocare una partita.** Trovarlo era
+  costato una sessione di sonde; la causa era un conto di somme sui dati. I
+  livelli sono cumulativi, quindi le presenze che un Destino chiede si sommano
+  dal Minimo in su e vanno confrontate col tetto dei gettoni della Chronicle.
+- **`check_destiny_token_budget`** fa quel conto su tutti e venti i Destini e
+  distingue due esiti: gli **obblighi** che superano il tetto (livello
+  irraggiungibile) e la **strada** dentro un `some_of` che li porta oltre —
+  percorribile, ma solo spegnendo una clausola di un livello sotto. È il difetto
+  della Cenere, e sui dati di 0.1.144 la guardia lo ritrova in un istante; sui
+  dati di oggi, zero. **Era l'unico caso in tutto il gioco.**
+- **`check_destiny_free_roads`** è l'altra faccia della stessa moneta: se un
+  livello sotto può *falsificare* una clausola di sopra, può anche *regalarla*.
+  Ha trovato una riga sola, e non era vecchia — era di ieri: rendendo la
+  reliquia obbligatoria nella Vittoria di `DST_CENERE_DEEP`, D-177 aveva acceso
+  da solo il primo dei sei rami del suo Trionfo, che di fatto chiedeva **due
+  segni su cinque** invece di tre su sei.
+- **Ed è la spiegazione della bimodalità che D-177 aveva dichiarato senza
+  saperla spiegare.** Tolto il ramo ridondante, `DST_CENERE_DEEP` passa da
+  0/8/**1**/7 a **0/8/5/3**: lo stesso 50% sopra il Minimo, distribuito come una
+  scala invece che come un salto. Kessa a tavolo misto da 0/29/9/12 a
+  **0/29/13/8**; playtest **FAIL 256 · 78 · 100 · 145**, mediana 6, **0 su 8**.
+- **Le due guardie girano nella CI**, e prima dei dati veri gira
+  `validate_data.py --self-test`, che le mette su tre Destini sintetici e
+  pretende che tacciano su quello sano e parlino sugli altri: una guardia che
+  nessuno ha mai visto mordere non è una guardia (D-144).
+
+### Dichiarato
+
+- Le guardie vedono i gettoni e le strade regalate, **non** ogni modo in cui un
+  Destino può combattersi da solo (un tag chiesto da un livello e vietato da un
+  altro non lo prende nessuno).
+- Le asserzioni della suite scendono da 6445 a **6444**: `test_data_boot` ne fa
+  una per ogni `state_tag_present` di ogni Destino, e c'è una condizione in meno.
+  I test restano **349** e la copertura del tag resta.
+
 ## 0.1.145 — Il Destino che si combatteva da solo (D-177)
 
 - **La linea della Cenere/Fuochi aveva una causa, e non era la debolezza.** Su

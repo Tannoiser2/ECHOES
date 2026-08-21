@@ -14,6 +14,7 @@ Exit code 0 = clean, 1 = at least one error.
 from __future__ import annotations
 
 import argparse
+import json
 import sys
 from collections import defaultdict
 from pathlib import Path
@@ -500,6 +501,265 @@ def _flatten_condition(condition: Dict[str, Any]) -> List[Dict[str, Any]]:
     return [condition]
 
 
+DESTINY_LEVELS = ("minimum", "victory", "triumph")
+
+
+def _presence_demands(
+    condition: Dict[str, Any], optional: bool
+) -> List[tuple]:
+    """(entita', Regione, gettoni, se e' una strada invece di un obbligo).
+
+    Dentro un `some_of` o un `any_of` la clausola e' **una strada fra le
+    altre**: non chiede quei gettoni, li chiede solo a chi prende quella
+    strada. La differenza e' tutto il senso del controllo qui sotto.
+    """
+    out: List[tuple] = []
+    kind = condition.get("type")
+    if kind == "region_presence" and condition.get("min"):
+        out.append((
+            condition.get("entity_id", ""),
+            condition.get("region_id", ""),
+            int(condition["min"]),
+            optional,
+            condition.get("label", ""),
+        ))
+    nested = optional or kind in ("any_of", "some_of")
+    for sub in condition.get("conditions", []):
+        out.extend(_presence_demands(sub, nested))
+    return out
+
+
+def _condition_shape(condition: Dict[str, Any]) -> str:
+    """La condizione senza la sua prosa: due clausole con la stessa forma
+    chiedono la stessa cosa, comunque siano scritte le etichette."""
+    return json.dumps(
+        {k: v for k, v in sorted(condition.items()) if k not in ("label", "note")},
+        sort_keys=True,
+        ensure_ascii=False,
+    )
+
+
+def check_destiny_free_roads(
+    documents: Dict[str, List[Dict[str, Any]]],
+    origins: Dict[str, str],
+    report: Report,
+) -> None:
+    """Nessun `some_of` puo' contare una strada che un livello sotto ha gia'
+    reso vera (D-178).
+
+    L'altra faccia della cumulativita'. Se il Trionfo chiede «tre segni fra
+    questi sei» e uno dei sei e' gia' obbligatorio nella Vittoria, allora chi
+    arriva al Trionfo lo trova **regalato**: il `min: 3` e' in realta' un
+    `min: 2` su cinque, e nessuno l'ha deciso.
+
+    Successo in 0.1.145: rendendo la reliquia obbligatoria nella Vittoria di
+    `DST_CENERE_DEEP` si e' acceso da solo un ramo del suo Trionfo, e il
+    Destino e' diventato bimodale — 8 Minimi, **1** Vittoria, 7 Trionfi.
+    """
+    for destiny in documents.get("destiny", []):
+        where = f"destiny [{destiny['id']}]"
+        granted: Dict[str, str] = {}
+        for level in DESTINY_LEVELS:
+            block = destiny.get(level) or {}
+            # Prima si guardano le scelte di questo livello contro tutto quello
+            # che i livelli sotto hanno gia' reso vero...
+            for condition in block.get("conditions", []):
+                if condition.get("type") not in ("some_of", "any_of"):
+                    continue
+                roads = condition.get("conditions", [])
+                free = [
+                    road for road in roads if _condition_shape(road) in granted
+                ]
+                if not free:
+                    continue
+                wanted = int(condition.get("min", 1))
+                report.fail(
+                    where,
+                    f"{level} chiede {wanted} strade su {len(roads)}, ma "
+                    f"{len(free)} sono gia' vere per il livello "
+                    f"'{granted[_condition_shape(free[0])]}': in pratica ne "
+                    f"chiede {max(0, wanted - len(free))} su "
+                    f"{len(roads) - len(free)} (D-178)",
+                )
+            # ...poi quello che questo livello rende obbligatorio scende ai
+            # livelli sopra, perche' i livelli sono cumulativi.
+            for condition in block.get("conditions", []):
+                if condition.get("type") in ("some_of", "any_of"):
+                    continue
+                granted.setdefault(_condition_shape(condition), level)
+
+
+def check_destiny_token_budget(
+    documents: Dict[str, List[Dict[str, Any]]],
+    origins: Dict[str, str],
+    report: Report,
+) -> None:
+    """Nessun Destino puo' chiedere piu' gettoni di quanti ne esistano (D-177).
+
+    I livelli sono **cumulativi** (`destiny_evaluator.gd`: il Trionfo pretende
+    anche la Vittoria e il Minimo), quindi le presenze richieste da tutti i
+    livelli fino a quello si sommano per entita' e vanno confrontate col tetto
+    della Chronicle.
+
+    Due esiti diversi, e il secondo e' quello che e' costato una versione:
+
+    * gli **obblighi** superano il tetto: il livello e' irraggiungibile, punto.
+    * gli obblighi ci stanno, ma una **strada** dentro un `some_of` li porta
+      oltre: la strada non e' impossibile — le Conseguenze aggiungono presenze
+      senza passare dal tetto del MOVE — ma percorrerla **spegne una clausola
+      di un livello sotto**, e chi la insegue perde il gradino che la regge.
+      E' il difetto di `DST_CENERE_DEEP` in 0.1.144: tredici NONE su 120 anni,
+      tutti di quella casa, che le sonde hanno impiegato una sessione a
+      trovare e che questo conto vede senza giocare una partita.
+    """
+    caps = [
+        int(chronicle["presence_tokens"])
+        for chronicle in documents.get("chronicle", [])
+        if chronicle.get("presence_tokens")
+    ]
+    if not caps:
+        return
+    # I Destini condivisibili (`$self`) vivono in piu' Chronicle: il tetto che
+    # conta e' il piu' stretto in cui possono finire.
+    cap = min(caps)
+
+    for destiny in documents.get("destiny", []):
+        # Senza il percorso di proposito: `origins` tiene il **primo** file di
+        # ogni schema_id, e i Destini stanno in tre file. Un id e' univoco su
+        # tutto il data set (la guardia sui duplicati lo pretende) e si trova
+        # con un grep; un percorso sbagliato manderebbe a cercare altrove.
+        where = f"destiny [{destiny['id']}]"
+        demands: List[tuple] = []
+        for index, level in enumerate(DESTINY_LEVELS):
+            for condition in (destiny.get(level) or {}).get("conditions", []):
+                for row in _presence_demands(condition, False):
+                    demands.append((index,) + row)
+        if not demands:
+            continue
+        for top in range(len(DESTINY_LEVELS)):
+            required: Dict[str, Dict[str, int]] = defaultdict(dict)
+            roads: Dict[str, Dict[str, int]] = defaultdict(dict)
+            for index, entity, region, need, optional, _label in demands:
+                if index > top:
+                    continue
+                bucket = roads if optional else required
+                bucket[entity][region] = max(bucket[entity].get(region, 0), need)
+            for entity in set(list(required) + list(roads)):
+                owed = sum(required[entity].values())
+                # La strada piu' cara, al netto di quello che l'entita' deve
+                # gia' tenere in quella stessa Regione.
+                widest = 0
+                for region, need in roads[entity].items():
+                    widest = max(widest, max(0, need - required[entity].get(region, 0)))
+                level_name = DESTINY_LEVELS[top]
+                if owed > cap:
+                    report.fail(
+                        where,
+                        f"{level_name} chiede {owed} gettoni a '{entity}' e il tetto "
+                        f"e' {cap}: il livello non si puo' raggiungere",
+                    )
+                elif owed + widest > cap:
+                    report.fail(
+                        where,
+                        f"{level_name} obbliga '{entity}' a {owed} gettoni e offre una "
+                        f"strada che ne vuole {widest} in piu', col tetto a {cap}: "
+                        f"percorrerla spegne una clausola di un livello sotto (D-177)",
+                    )
+
+
+def self_test_token_budget() -> int:
+    """La guardia dei gettoni con un difetto piantato apposta (D-144, D-177).
+
+    Una guardia che non e' mai stata vista mordere non e' una guardia. Qui il
+    caso e' quello vero, ridotto all'osso: `DST_CENERE_DEEP` com'era in
+    0.1.144 — due gettoni obbligatori in una Regione, e una strada che ne
+    vuole due in un'altra, con un tetto di tre.
+    """
+    chronicles = [{"id": "CHR_TEST", "presence_tokens": 3}]
+    healthy = {
+        "id": "DST_SANO",
+        "minimum": {"conditions": [
+            {"type": "region_presence", "entity_id": "E", "region_id": "SU", "min": 1},
+        ]},
+        "victory": {"conditions": [
+            {"type": "some_of", "min": 1, "conditions": [
+                {"type": "region_presence", "entity_id": "E", "region_id": "GIU", "min": 2},
+                {"type": "state_tag_present", "scope": "ENTITY", "entity_id": "E", "tag": "x"},
+            ]},
+        ]},
+        "triumph": {"conditions": []},
+    }
+    broken = {
+        "id": "DST_ROTTO",
+        "minimum": {"conditions": [
+            {"type": "region_presence", "entity_id": "E", "region_id": "SU", "min": 2},
+        ]},
+        "victory": {"conditions": [
+            {"type": "some_of", "min": 1, "conditions": [
+                {"type": "region_presence", "entity_id": "E", "region_id": "GIU", "min": 2},
+                {"type": "state_tag_present", "scope": "ENTITY", "entity_id": "E", "tag": "x"},
+            ]},
+        ]},
+        "triumph": {"conditions": []},
+    }
+    impossible = {
+        "id": "DST_MURO",
+        "minimum": {"conditions": [
+            {"type": "region_presence", "entity_id": "E", "region_id": "SU", "min": 2},
+            {"type": "region_presence", "entity_id": "E", "region_id": "GIU", "min": 2},
+        ]},
+        "victory": {"conditions": []},
+        "triumph": {"conditions": []},
+    }
+
+    # E la seconda guardia: una strada che un livello sotto ha gia' acceso.
+    # E' il caso vero di 0.1.145 — la reliquia obbligatoria nella Vittoria che
+    # regalava il primo dei sei rami del Trionfo.
+    free_road = {
+        "id": "DST_REGALATO",
+        "minimum": {"conditions": []},
+        "victory": {"conditions": [
+            {"type": "state_tag_present", "scope": "ENTITY", "entity_id": "E", "tag": "r",
+             "label": "la trovano"},
+        ]},
+        "triumph": {"conditions": [
+            {"type": "some_of", "min": 2, "conditions": [
+                {"type": "state_tag_present", "scope": "ENTITY", "entity_id": "E",
+                 "tag": "r", "label": "l'hanno trovata"},
+                {"type": "scar_count", "max": 2},
+                {"type": "structure_count", "entity_id": "E", "min": 1},
+            ]},
+        ]},
+    }
+
+    failures = 0
+    for check, destiny, expected, what in (
+        (check_destiny_token_budget, healthy, 0,
+         "un gettone su e due sotto stanno in tre: nessun errore"),
+        (check_destiny_token_budget, broken, 1,
+         "due su piu' una strada da due sotto: la guardia deve mordere"),
+        (check_destiny_token_budget, impossible, 1,
+         "quattro gettoni obbligatori su tre: livello irraggiungibile"),
+        (check_destiny_free_roads, healthy, 0,
+         "nessuna strada gia' accesa da un livello sotto"),
+        (check_destiny_free_roads, free_road, 1,
+         "una strada del Trionfo obbligatoria nella Vittoria: e' regalata"),
+    ):
+        report = Report()
+        check({"destiny": [destiny], "chronicle": chronicles}, {}, report)
+        ok = (len(report.errors) > 0) == (expected > 0)
+        print(f"{'ok  ' if ok else 'FAIL'}  {check.__name__:<28} {destiny['id']:<14} {what}")
+        for error in report.errors:
+            print(f"        {error}")
+        if not ok:
+            failures += 1
+    if failures:
+        sys.stderr.write(f"\n{failures} caso/i non si comporta come deve\n")
+        return 1
+    print("\nle due guardie mordono dove devono e tacciono dove devono")
+    return 0
+
+
 def _check_condition(
     condition: Dict[str, Any],
     entities: Set[str],
@@ -535,7 +795,14 @@ def _check_condition(
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--quiet", action="store_true", help="only print failures")
+    parser.add_argument(
+        "--self-test",
+        action="store_true",
+        help="prova che la guardia dei gettoni morda, su un caso piantato apposta",
+    )
     args = parser.parse_args()
+    if args.self_test:
+        return self_test_token_budget()
 
     schemas = load_schemas()
     registry = build_registry(schemas)
@@ -574,6 +841,8 @@ def main() -> int:
 
     if not report.errors:
         check_references(documents, origins, report)
+        check_destiny_token_budget(documents, origins, report)
+        check_destiny_free_roads(documents, origins, report)
 
     # Duplicate ids across the whole data set are always a bug.
     seen: Dict[str, str] = {}

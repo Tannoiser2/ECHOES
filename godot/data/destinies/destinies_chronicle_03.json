@@ -485,13 +485,6 @@
             "label": "Tre segni che quello che hanno trovato è loro",
             "conditions": [
               {
-                "type": "state_tag_present",
-                "scope": "ENTITY",
-                "entity_id": "ENT_CENERE",
-                "tag": "discovery:relic",
-                "label": "Hanno visto la reliquia con i propri occhi"
-              },
-              {
                 "type": "promise_broken",
                 "entity_id": "ENT_CENERE",
                 "other_entity_id": "ENT_SALE",

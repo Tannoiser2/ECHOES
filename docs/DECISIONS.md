@@ -10,6 +10,110 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-178 — Il difetto di D-177 si vedeva senza giocare una partita
+**implemented in 0.1.146** (due guardie nella CI, e la seconda ha morso subito)
+
+D-177 e' costato una sessione di sonde: la sonda delle ere estesa a contare le
+clausole, il conto dei gettoni per Regione negli anni persi, il banco delle
+clausole, due ipotesi scritte e demolite. Alla fine la causa era **un conto di
+somme sui dati**: due gettoni obbligatori su una Regione, una strada che ne
+vuole due su un'altra, e un tetto di tre.
+
+Quel conto non ha bisogno di una partita. Ha bisogno di leggere venti Destini.
+
+### La classe di difetto, non il caso
+
+I livelli sono **cumulativi** — `destiny_evaluator.gd`, e un test lo inchioda da
+tempo («senza Minimum non c'e livello, anche col Triumph vero»). Quindi le
+presenze che un Destino chiede si **sommano** dal Minimo in su, e la somma va
+confrontata col tetto della Chronicle. Da qui due esiti diversi:
+
+| | |
+|---|---|
+| gli **obblighi** superano il tetto | il livello e' irraggiungibile, punto |
+| gli obblighi ci stanno, ma una **strada** dentro un `some_of` li porta oltre | la strada non e' impossibile — le Conseguenze aggiungono presenze senza passare dal tetto del MOVE — ma percorrerla **spegne una clausola di un livello sotto** |
+
+Il secondo e' il difetto della Cenere, ed e' il piu' insidioso dei due: non
+produce un muro visibile, produce un seggio che **perde inseguendo il proprio
+Destino**, e nel conto finisce come debolezza della casa.
+
+### Il censimento, e cosa ha trovato
+
+Passati tutti e venti i Destini: sui dati di 0.1.145 **zero**. Sui dati di
+0.1.144, prima della correzione, esattamente due righe — la Vittoria e il
+Trionfo di `DST_CENERE_DEEP`, che e' il caso vero e l'unico che ci fosse.
+
+**Il difetto era unico in tutto il gioco, e il conto lo trova in un istante.**
+
+### La guardia
+
+Il controllo vive in `tools/validate_data.py` (`check_destiny_token_budget`),
+gia' nella CI col resto dei controlli sui dati. Non e' una sonda che si lancia
+quando viene in mente: e' un pavimento, come `dead_code.py` dopo il bottone
+della stanza (D-140). La lezione e' la stessa di allora — *il rimedio non e' un
+test sul caso, e' un controllo che legge tutto*.
+
+E le guardie hanno la loro prova che mordono: `--self-test` le fa girare su tre
+Destini sintetici — uno sano, uno col difetto della Cenere ridotto all'osso, uno
+con quattro gettoni obbligatori su tre — e pretende che taccia sul primo e parli
+sugli altri due. Gira nella CI **prima** dei dati veri, perche' una guardia che
+nessuno ha mai visto mordere non e' una guardia (D-144).
+
+### E l'altra faccia della stessa moneta, che ha morso subito
+
+Scritta la prima guardia, la domanda successiva veniva da se': se un livello
+sotto puo' **falsificare** una clausola di sopra, puo' anche **regalarla**?
+
+`check_destiny_free_roads` fa quel conto: per ogni `some_of`, quante delle sue
+strade sono gia' vere per obbligo di un livello inferiore. Se il Trionfo chiede
+«tre segni fra questi sei» e uno dei sei e' obbligatorio nella Vittoria, allora
+il `min: 3` e' in realta' un `min: 2` su cinque, **e nessuno l'ha deciso**.
+
+Su venti Destini ha trovato una riga sola, e non era vecchia: era **mia, di
+ieri**. Rendendo la reliquia obbligatoria nella Vittoria di `DST_CENERE_DEEP`
+(D-177) avevo acceso da solo il primo ramo del suo Trionfo.
+
+**Ed e' la spiegazione della bimodalita' che D-177 aveva dichiarato senza
+saperla spiegare**: 8 Minimi, **1** Vittoria, 7 Trionfi. Il Trionfo era diventato
+quasi gratuito per chiunque avesse passato la Vittoria.
+
+Tolto il ramo ridondante — resta `min: 3` su cinque strade vere:
+
+| `DST_CENERE_DEEP` | N / M / V / T su 16 | supera |
+|---|---|---|
+| base 0.1.144 | 0 / 9 / 3 / 4 | 44% |
+| 0.1.145 | 0 / 8 / **1** / 7 | 50% — bimodale |
+| **0.1.146** | 0 / 8 / **5** / 3 | 50% — una scala |
+
+Stesso 50% sopra il Minimo, distribuito come una scala invece che come un salto.
+Playtest **FAIL 256 · 78 · 100 · 145**, mediana 6, **0 su 8** misto e uniforme;
+Kessa a tavolo misto da 0/29/9/12 a **0/29/13/8**.
+
+### Quello che si dichiara
+
+- **Il conto guarda solo i gettoni e le strade regalate.** Un Destino puo'
+  combattersi da solo in altri modi che nessuna delle due guardie vede: una
+  clausola che chiede un tag e una che lo vieta, un livello che vuole una
+  cicatrice e quello sopra che la proibisce. Non ce ne sono oggi, e non c'e' un
+  controllo che lo dica.
+- **Le asserzioni della suite scendono da 6445 a 6444**, e il motivo e' innocuo:
+  `test_data_boot` ne fa una per ogni `state_tag_present` di ogni Destino — per
+  pretendere che qualcosa al mondo sappia scrivere quel tag — e una condizione
+  in meno e' un controllo in meno. La copertura resta: `discovery:relic` e'
+  ancora nella Vittoria dello stesso Destino. I test restano **349**.
+- **Il tetto usato e' il piu' stretto fra le Chronicle** (oggi tre ovunque), per
+  via dei Destini condivisibili che vivono in piu' di una. Se una Chronicle
+  nascesse con un tetto diverso, il conto resterebbe corretto ma prudente.
+- **Non cambia niente in gioco**: nessun dato toccato, solo strumenti e CI. Il
+  playtest e la suite sono quelli di 0.1.145 per costruzione.
+- **Un difetto trovato per strada e non corretto**: i messaggi del validatore
+  nominano il file sbagliato quando un tipo di documento vive in piu' file
+  (`origins` tiene il **primo**, e i Destini stanno in tre file). Il controllo
+  nuovo lo aggira nominando l'id invece del percorso; gli altri no. E' piccolo e
+  preesistente, ma chi tocchera' quel file adesso lo sa.
+
+---
+
 ## D-177 — Il Destino che si combatteva da solo
 **implemented in 0.1.145** (la voce nuova di D-176, aperta come ISSUES 45)
 

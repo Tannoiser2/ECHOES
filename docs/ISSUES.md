@@ -1431,10 +1431,13 @@ sulla montagna, un presidio). **Nel mondo com'è, quella casa ha poche leve** �
 **Due cose misurate e non corrette**, che chi apre questa voce trova già a
 verbale:
 
-- **La forma di `DST_CENERE_DEEP` è bimodale**: 8 Minimi, **1** Vittoria, 7
-  Trionfi su 16. Chi supera il Minimo arriva quasi sempre in cima, perché il
-  Trionfo è un `some_of` a 3 su 6 che la Vittoria nuova quasi già contiene. È il
-  difetto di forma di ISSUES 44, e correggerlo è tarare quel Trionfo.
+- ~~**La forma di `DST_CENERE_DEEP` è bimodale**: 8 Minimi, 1 Vittoria, 7
+  Trionfi su 16.~~ **Chiusa in 0.1.146** ([D-178](DECISIONS.md#d-178)): la causa
+  non era la taratura del Trionfo ma una **strada regalata** — la reliquia resa
+  obbligatoria dalla Vittoria accendeva da sola il primo dei sei rami, e quel
+  `min: 3` era in realtà un `min: 2` su cinque. Tolto il ramo ridondante:
+  **0/8/5/3**, lo stesso 50% distribuito come una scala. L'ha trovata la guardia
+  nuova, non una sonda.
 - **Il perdere ha cambiato posto**: i 2 NONE nuovi sono del Vetro, che adesso
   contende alla Cenere gli slot delle stesse gallerie. Il conto totale del
   perdere nella saga del Sale scende da 13 a 2, e va guardato insieme a
