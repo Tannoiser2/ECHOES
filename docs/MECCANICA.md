@@ -389,10 +389,10 @@ parola.
 
 | famiglia | le sue otto carte portano | il suo mestiere |
 |---|---|---|
-| **FORZA** | 5 × MUOVERE, 3 × INFLUENZARE | prende terra, e quando non la prende scalda |
+| **FORZA** | 5 × MUOVERE, 3 × INFLUENZARE (due in su, una in giù) | prende terra, e quando non la prende scalda — o mette un blocco |
 | **AUTORITÀ** | 4 × RIVENDICARE, 3 × INFLUENZARE, 1 × FORGIARE | è l'unica che sa **prendere la parola** |
 | **GENTE** | 4 × INFLUENZARE, 3 × MUOVERE, 1 × TRAMARE | si sposta, e preme |
-| **SAPERE** | 5 × TRAMARE, 2 × INFLUENZARE, 1 × MUOVERE | gli occhi |
+| **SAPERE** | 5 × TRAMARE, 2 × INFLUENZARE, 1 × MUOVERE | gli occhi — e *cosa* si va a guardare lo sceglie chi cala la carta |
 | **RICCHEZZA** | 3 × FORGIARE (in giù), 3 × INFLUENZARE, 2 × MUOVERE | compra, e rompe |
 | **LEGAMI** | 4 × FORGIARE (in su), 2 × TRAMARE, 2 × INFLUENZARE | l'unica che sa **stringere** |
 

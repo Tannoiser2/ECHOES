@@ -1,4 +1,4 @@
-# Passaggio di consegne — stato al 0.1.160
+# Passaggio di consegne — stato al 0.1.161
 
 *Scritto per chi apre una sessione nuova su questo repository. Dice dov'è il
 lavoro, cosa regge, cosa no, e quali sono le regole di casa che non vanno
@@ -191,12 +191,16 @@ precedente — non un difetto del codice. Cambiarlo è cambiare il regolamento:
 
 Scritto dopo il merge di #70, quando il gioco a sole carte è diventato il gioco.
 
-1. **Il 58% delle Occasioni resta muto** — di 720 turni, 222 volte il seggio non
-   voleva niente e **194 volte voleva qualcosa che la mano non sapeva dire**. È
-   la texture del gioco nuovo, è la prima misura che ne esista, e non è tarata.
-   Si abbassa con più carte per Atto o con una distribuzione diversa delle
-   azioni fra le famiglie: si trova il ginocchio in un pomeriggio di misure.
-   **È la prima cosa da fare.**
+1. ~~Il 58% delle Occasioni resta muto~~ — **scomposto in 0.1.161** (D-193).
+   Dei 720 turni misurati: **235** il cervello non voleva niente, **214** voleva
+   qualcosa che la mano non sapeva dire, **271** hanno prodotto qualcosa. La
+   causa più grossa era il **modo di TRAMARE fissato sulla carta**: liberato, le
+   mute di quella famiglia passano da 56 a 15. Il totale resta al 62% **e non è
+   un difetto**: nel gioco di prima succedeva qualcosa nel **18%** delle
+   Occasioni, adesso nel **37%**. Quello che è sparito è il riempitivo di
+   ACQUISIRE. Resta non misurato quanto costi a una casa che tiene solo Regioni
+   di FORZA, dove due carte INFLUENZARE su tre spingono in su.
+
 2. **ISSUES 37 — metà chiusa in 0.1.159** (D-191), su decisione del committente:
    non si prenota una domanda già matura, la si prende in un colpo. Morte in mano
    su CHR_01 **da 78% a 41%**; il criterio chiede sotto il 33%, quindi **resta

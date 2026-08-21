@@ -10,6 +10,84 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-193 — La mano non sapeva dire meta' di quello che il seggio voleva
+**implemented in 0.1.161** (la prima voce di CONSEGNE §5bis)
+
+Da quando le carte sono l'unica moneta, il **62% delle Occasioni resta muto**.
+Il numero era scritto ma non scomposto, e scomporlo era tutto il lavoro.
+
+### Dove finiscono 720 turni
+
+| | |
+|---|---|
+| il cervello non voleva niente | **235** (33%) |
+| voleva qualcosa **che la mano non sapeva dire** | **214** (30%) |
+| qualcosa e' successo | **271** (37%) |
+
+E dentro i 214, la causa vera:
+
+| | |
+|---|---|
+| INFLUENZARE, la carta spinge dalla parte sbagliata | 80 |
+| INFLUENZARE, nessuna carta in mano | 60 |
+| **TRAMARE, la carta fissa un modo diverso da quello che serve** | **38** |
+| TRAMARE, nessuna carta in mano | 32 |
+| RIVENDICARE / FORGIARE / MUOVERE | 4 |
+
+### Le due cose fatte
+
+**a) Il modo di TRAMARE e' libero.** Le otto carte SAPERE/LEGAMI fissavano
+`REGION`, `TENSION` o `ECHO_DECK`, e un seggio che voleva scoprire una domanda
+con in mano una carta da «leggi una Regione» passava il turno. E' D-184
+riapplicato — *i parametri che la carta lascia aperti sono una scelta di chi la
+gioca* — ed e' la terza volta che lo stesso difetto si ripresenta su una famiglia
+diversa (le RIVENDICARE in D-191). **Mute di TRAMARE: da 56 a 15.**
+
+**b) La FORZA aveva un solo verso.** Tre carte INFLUENZARE su tre, tutte **+1**:
+una casa che tiene Eredan e le Montagne poteva solo scaldare il mondo, mai
+raffreddarlo — e la mappa decide cosa peschi, quindi decideva anche che quella
+casa non sapeva dire «no». Il Posto di Blocco adesso fa **-1**: *«la questione
+si ferma dov'e'»*.
+
+### Il difetto vero, trovato da un test
+
+Le due modifiche hanno fatto rosso `test_library_balance`: **la Chronicle di
+libreria faceva 2 Consigli mediani invece di 3-7.** La causa non erano le carte:
+era il sacchetto di D-192, che leggeva la `drift_distribution` **scritta nella
+Chronicle**. Una Chronicle di libreria pesca le sue domande da un pool e quella
+distribuzione **non ce l'ha**: sacchetto vuoto, Deriva spenta perche' il
+sacchetto la sostituisce, e l'anno non si scaldava mai.
+
+Adesso il sacchetto e' la **traccia gia' mescolata** (`drift_track`), che esiste
+in entrambi i casi perche' la costruisce il setup. E' anche piu' giusto: il
+sacchetto e' quello del tavolo, non quello scritto sul libro.
+
+### Le misure
+
+`FAIL 253 · SUCC 111 · SUCC 127 · DECI 113`, Consigli media 6,04, mediana 6,
+**0 su 8** a tavolo misto e uniforme. Suite **379 test / 6665 asserzioni**.
+
+### Quello che si dichiara
+
+- **Il totale delle Occasioni mute non si e' mosso**: 62% prima, 62% dopo. Le
+  mute di TRAMARE sono crollate, ma i seggi hanno usato le Occasioni liberate per
+  fare altro, e altre categorie si sono alzate. **Il numero grosso non e' un
+  difetto da riparare**: e' la forma del gioco senza ACQUISIRE.
+- **E il paragone onesto lo dice**: nel gioco di prima le azioni diverse da
+  ACQUISIRE erano **3,2 per seggio all'anno su 18 Occasioni — il 18%**. Adesso
+  succede qualcosa nel **37%** delle Occasioni. Il gioco a carte e' **piu'
+  attivo** di quello che ha sostituito; quello che e' sparito e' il riempitivo.
+- **Gli 80 «la carta spinge dalla parte sbagliata» non sono un difetto.** La
+  Folla non argomenta: sale di 1. Se vuoi far scendere quella domanda, quella
+  carta non e' la risposta — e passare e' la giocata giusta. Liberare anche il
+  verso trasformerebbe ogni carta in un jolly e toglierebbe il carattere.
+- **La FORZA resta sbilanciata**: due carte su tre spingono in su. E' voluto (e'
+  la famiglia che scalda), ma non e' misurato quanto costi a una casa che tiene
+  solo Regioni di FORZA.
+- **CHR_03 non e' toccata.**
+
+---
+
 ## D-192 — Il calore lo pescano i giocatori
 **implemented in 0.1.160** (ISSUES 49, fase 1 — la scelta **b** del committente)
 

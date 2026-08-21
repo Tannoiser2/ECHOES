@@ -202,10 +202,13 @@ func _draw_heat(source: Dictionary, outcome: Dictionary) -> void:
 	var per_action: int = int(rules.get("per_action", 1))
 	if per_action <= 0:
 		return
-	var bag: Array = []
-	for entry in (_chronicle.get("drift_distribution", []) as Array):
-		for _i in range(int((entry as Dictionary)["count"])):
-			bag.append(str((entry as Dictionary)["tension_id"]))
+	# Il sacchetto e' la **traccia della Deriva gia' mescolata** (`drift_track`),
+	# non la distribuzione scritta nella Chronicle: le due coincidono per una
+	# Chronicle d'autore, ma una Chronicle di libreria pesca le proprie domande
+	# da un pool e la distribuzione scritta **non c'e'**. Leggendo quella, il
+	# sacchetto restava vuoto, la Deriva era spenta, e l'anno di libreria non si
+	# scaldava mai: mediana 2 Consigli contro i 3-7 attesi. L'ha trovato un test.
+	var bag: Array = world.get("drift_track", []) as Array
 	if bag.is_empty():
 		return
 	# Il gettone porta **una firma sua**, non quella dell'azione: il calore e'

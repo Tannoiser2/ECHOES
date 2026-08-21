@@ -1653,10 +1653,12 @@ contro 4,90 del gioco di prima.
   del §10 di prima, e da 0.1.157 ([D-189](DECISIONS.md#d-189)) lo **dichiarano
   nel dato** (`chronicle_overrides`), non solo in un verbale. Il gioco nuovo è
   provato dal cancello e dai test, non da una storia raccontata.
-- **Il 58% delle Occasioni resta muto**, e 194 volte su 720 perché *la mano non
-  sa dire* ciò che il seggio vuole. È la prima misura che ne esista e non è
-  stata tarata: si abbassa con più carte, o con una distribuzione diversa delle
-  azioni fra le famiglie.
+- ~~Il 58% delle Occasioni resta muto~~ — **scomposto in 0.1.161**
+  ([D-193](DECISIONS.md#d-193)): la causa più grossa era il modo di TRAMARE
+  fissato sulla carta, e liberandolo le mute di quella famiglia passano da 56 a
+  15. Il totale resta al 62% e **non è un difetto**: nel gioco di prima succedeva
+  qualcosa nel 18% delle Occasioni, adesso nel 37%. Quello che è sparito è il
+  riempitivo di ACQUISIRE.
 
 **Fatto quando** un anno si gioca per intero con le carte come unica moneta, il
 playtest resta **0/8** a tavolo misto e uniforme, e lo scarto fra il primo e
