@@ -81,13 +81,63 @@ func _lines(data: RefCounted, chronicle_id: String) -> Array:
 		)
 	out.append("")
 
-	out.append(SECTION % "UN'AZIONE E UNA DI QUESTE SEI COSE")
+	# **Questa parte si scrive dalle regole, non a mano** (D-194). Era un elenco
+	# battuto a macchina, ed e' rimasto a descrivere il gioco di prima per tre
+	# versioni: prometteva un ACQUISIRE che non esiste piu' e un TRAMARE che
+	# leggeva il numero invece della soglia. Il commento in cima a questo file lo
+	# diceva gia' — «una pagina di regole che puo' sfasarsi dalle regole e'
+	# peggio di niente» — e la parte battuta a macchina e' esattamente quella che
+	# si e' sfasata.
+	var rules: Dictionary = {} if chronicle == null else (chronicle as Dictionary)
+	var with_cards: bool = bool(rules.get("actions_from_cards", false))
+	out.append(SECTION % ("UN'AZIONE E UNA CARTA CALATA" if with_cards else "UN'AZIONE E UNA DI QUESTE SEI COSE"))
+	if with_cards:
+		out.append(
+			"Ogni carta e [b]tre cose insieme[/b]: un'azione, un valore al Consiglio "
+			+ "e un effetto suo. Calarla per agire la spende, e quella carta [b]non "
+			+ "votera piu[/b]. E li che sta il gioco: la spendo per fare, o la tengo "
+			+ "per votare?"
+		)
+		out.append("")
 	out.append("[b]Muovere[/b] — metti una presenza: clicchi una Regione cerchiata d'oro.")
-	out.append("[b]Acquisire[/b] — peschi una carta di una famiglia (ne escono due, ne tieni una).")
-	out.append("[b]Influenzare[/b] — alzi o abbassi di 1 una domanda dell'anno. Una sola volta per round, e ti serve una presenza in una Regione di quel dominio.")
-	out.append("[b]Tramare[/b] — leggi il numero di una domanda velata. Lo sai solo tu.")
+	if not with_cards:
+		out.append("[b]Acquisire[/b] — peschi una carta di una famiglia (ne escono due, ne tieni una).")
+	out.append("[b]Influenzare[/b] — alzi o abbassi di 1 una domanda dell'anno. Una sola volta per round, e ti serve una presenza in una Regione di quel dominio (o la carta stessa paga).")
+	out.append(
+		"[b]Tramare[/b] — %s. Lo sai solo tu."
+		% (
+			"leggi a quanto esplode una domanda velata"
+			if str(rules.get("veiled_tensions", "HIDES_ALL")) == "HIDES_THRESHOLD"
+			else "leggi il numero di una domanda velata"
+		)
+	)
 	out.append("[b]Forgiare[/b] — muovi di un passo il rapporto con un altro giocatore.")
-	out.append("[b]Rivendicare[/b] — scarti una carta AUTHORITY per prenotarti il diritto di aprire tu il prossimo Consiglio su un tema.")
+	var ready_at: int = int((rules.get("claim_rules", {}) as Dictionary).get("ready_at", 3))
+	if bool((rules.get("claim_rules", {}) as Dictionary).get("same_round_when_ready", false)):
+		out.append(
+			"[b]Rivendicare[/b] — se una domanda e gia a [b]%d[/b] o piu, scarti una "
+			% ready_at
+			+ "carta AUTORITA e [b]apri tu il Consiglio, adesso[/b]. Se non ci e ancora "
+			+ "arrivata, te la prenoti e la riscuoti quando matura."
+		)
+	else:
+		out.append("[b]Rivendicare[/b] — scarti una carta AUTHORITY per prenotarti il diritto di aprire tu il prossimo Consiglio su un tema.")
+	var refill: Dictionary = rules.get("hand_refill", {}) as Dictionary
+	if not refill.is_empty():
+		out.append("")
+		out.append(
+			"[b]Le carte te le da la mappa.[/b] A inizio di ogni Atto peschi %d "
+			% int(refill.get("per_token", 1))
+			+ "cart%s per ogni gettone di presenza, fino a %d in mano — e [b]la Regione "
+			% ["a" if int(refill.get("per_token", 1)) == 1 else "e", int(refill.get("hand_cap", 7))]
+			+ "dove tieni la pedina decide di che famiglia[/b]."
+		)
+	if not (rules.get("tension_tokens", {}) as Dictionary).is_empty():
+		out.append(
+			"[b]E ogni cosa che fai scalda il mondo:[/b] a ogni azione riuscita cade "
+			+ "un gettone su una delle domande dell'anno. Non e il tempo a scaldarle: "
+			+ "siete voi."
+		)
 	out.append("")
 
 	if data != null and chronicle != null:

@@ -5,6 +5,41 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.163 — Quello che una persona legge, riscritto dalle regole (D-195)
+
+- Il seguito di D-194, **cercato invece che aspettato**: nessuna misura copre il
+  lato umano, quindi ho guardato uno per uno i posti dove una regola nuova cambia
+  ciò che una persona **legge**. Ce n'erano altri tre.
+- **Il menu offriva di scoprire una cosa già visibile**: «Scopri il numero di…»
+  quando da D-187 il velo copre la **soglia** e il numero è sul tavolo. Ora dice
+  «Scopri a quanto esplode», e «Copri la soglia» al posto di «Cala il velo».
+- **Il sacchetto cambiava il mondo in silenzio**: il gettone applicava il suo
+  Effetto senza una riga a verbale, mentre la Deriva che sostituisce lo ha sempre
+  detto. Ora: «Il gettone cade su La Carestia: sale di 1». Era D-030 rotta.
+- **La pagina delle regole dentro l'app prometteva il gioco di tre versioni fa**:
+  «un'azione è una di queste sei cose», «Acquisire — peschi una carta», «Tramare
+  — leggi il numero». In cima a quel file c'era già scritto perché è successo:
+  *«le parti che possono sfasarsi sono quelle che vengono dai dati»* — e metà
+  pagina, quella generata, non è sfasata di una virgola. **L'elenco delle azioni
+  era battuto a macchina.** Adesso si scrive anche lui dalle regole.
+- Playtest **identico riga per riga**: `FAIL 253 · 111 · 127 · 113`, Consigli
+  6,04, mediana 6, **0 su 8**. Suite **384 test / 6713 asserzioni**, con quattro
+  prove che leggono la pagina dai due lati dell'interruttore.
+
+### Dichiarato
+
+- **Ho guardato tre posti, non tutti**: ho seguito velo, rubinetto e sacchetto
+  dentro `seat_decider`, le viste e la pagina delle regole. È un campione
+  ragionato, non un inventario.
+- **La pagina ora ha una prova, il registro no**: che ogni mutazione si racconti
+  resta affidato alla disciplina.
+- **`MECCANICA.md` e la pagina dell'app dicono la stessa cosa per due strade
+  diverse**: il documento è scritto a mano e può ancora sfasarsi.
+- Il committente ha trovato in un minuto quello che tre versioni di misure non
+  hanno visto: **le sonde guardano cosa fa il gioco, non cosa dice.**
+
+---
+
 ## 0.1.162 — I bot erano passati alle carte, le mani no (D-194)
 
 - **Trovato dal committente guardando l'app**: «su Pages non è cambiato nulla,
