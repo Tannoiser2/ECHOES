@@ -10,6 +10,114 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-182 — Il Sale non vinceva: gli succedeva di vincere
+**implemented in 0.1.150** (ISSUES 46, voluta dal committente: «il Sale e' troppo forte»)
+
+D-180 aveva scoperto che nella saga del Sale la campagna la vince sempre la
+stessa casa, e D-181 che meta' di quelle campagne era decisa entro il terzo anno
+su dieci. Il committente ha dato la direzione: **guardare il Sale dal lato suo**.
+
+### Le tre teste del difetto
+
+Misurate una per una col banco delle clausole (`run_clause_probe`), le clausole
+vere del Sale:
+
+| clausola | dove sta | quanto e' vera |
+|---|---|---|
+| `entity_alive` + presenza sulla Strada | il Minimo | **100%** |
+| «Il debito e' stato chiamato per intero» | Vittoria, 1ª | 75% (92% quando lo insegue) |
+| **«E nessuno lo ha cancellato»** | Vittoria, 2ª | **100%** |
+| **«Il patto con la Cenere regge»** | **la spina del Trionfo** | **100%** |
+| (per confronto: due Regioni tenute) | — | 15% |
+
+`DST_SALE` chiudeva **0/1/8/4 su 13**: superava il Minimo **12 volte su tredici**.
+
+E il motivo non era che il Sale giocasse meglio. **La sua Vittoria la decideva il
+calendario**: `debt_called` matura da se' quando la Tensione del Debito arriva a
+soglia, `debt_forgiven` non lo scrive quasi nessuno, e il patto con la Cenere non
+si rompe mai. Tre clausole su cinque erano fatti del mondo, non cose che la Gilda
+facesse.
+
+**Al Sale non riusciva di vincere: gli succedeva.**
+
+### Quattro passi, misurati uno alla volta
+
+| | `DST_SALE` (N/M/V/T su 13) | supera |
+|---|---|---|
+| **base** | 0 / **1** / 8 / 4 | **92%** |
+| 1 — la 2ª clausola diventa «e chi lo doveva e' ancora al suo fianco» (ALLEATO) | 0 / **11** / 1 / 1 | **15%** |
+| 1b — la stessa, ma a NEUTRALE | 0 / 7 / **1** / 5 | 46% — bimodale |
+| 2 — la spina e la promessa si scambiano di posto | 0 / 7 / **1** / 5 | 46% — invariato |
+| **3 — la scelta del Trionfo da 3 a 4 strade su 5** | 0 / 7 / **4** / 2 | **46%** — una scala |
+
+**Il passo 1 e' quello che insegna qualcosa**, e ripete l'errore di D-177 al
+contrario: chiedere il debito chiamato **e** un alleato rimasto tale e' chiedere
+due cose **anti-correlate** — riscuotere allontana chi paga — e il Destino e'
+crollato dal 92% al 15% in un colpo. La stessa forma del Destino che si combatte
+da solo, arrivata dal lato opposto. A NEUTRALE la richiesta diventa «riscuotere
+senza rompere», che e' esattamente cio' che una Gilda sa fare.
+
+Il passo 2 non ha spostato niente ed e' a verbale perche' spiega perche': rendere
+la spina piu' dura e la scelta piu' facile si compensa. La bimodalita' non si cura
+spostando clausole, si cura alzando il Trionfo **rispetto** alla Vittoria.
+
+**La promessa non e' stata cancellata ma spostata**: `promise_kept` compare **una
+volta sola in tutto il gioco**, e toglierla l'avrebbe resa contenuto che non
+esiste (D-035). Adesso e' una delle cinque strade, dove valere il 100% non regala
+un livello.
+
+### E il secondo Destino, che era diventato il colpevole
+
+Corretto `DST_SALE`, la casa vinceva ancora **10 campagne su 12**. La sonda ha
+spostato il dito: **`DST_SALE_OPEN` faceva 6 Trionfi su 13**, il massimo del
+gioco, con un Trionfo fatto di una spina al 100% e «almeno **una** strada su
+quattro». Portata a due:
+
+| | N / M / V / T su 13 |
+|---|---|
+| `DST_SALE_OPEN` base | 0 / 6 / **1** / 6 |
+| **dopo** | 0 / 6 / **6** / 1 |
+
+### Le misure
+
+**La campagna, che e' la domanda di ISSUES 46:**
+
+| su 12 saghe da 10 Chronicle | prima | dopo |
+|---|---|---|
+| campagne vinte dal Sale | **12 su 12** | **9 su 12** |
+| il Sale supera il Minimo | 68% | **54%** |
+| le altre tre case | 24%–33% | **33%–34%** |
+| cambi di testa per saga | 1,3 | **1,8** |
+| ultimo cambio di testa | anno **3,5** su 10 | anno **5,5** su 10 |
+| campagne decise entro il terzo anno | **6 su 12** | **4 su 12** |
+
+**Il cancello:** playtest 100 semi **FAIL 248 · 78 · 99 · 154**, mediana 6,
+**0 su 8** a tavolo misto e uniforme. Maestra Ilve passa da 0/19/15/16 a
+**0/26/16/8** a tavolo misto e da 0/16/15/19 a 0/20/20/10 a tavolo uniforme.
+Suite **355 test / 6490 asserzioni**, sim deterministiche.
+
+I **Consigli falliti scendono da 256 a 248**, ed e' la prima volta che quel
+numero torna indietro: una casa che non arriva piu' al Trionfo per inerzia
+propone e si oppone meno a lungo.
+
+### Quello che si dichiara
+
+- **La voce e' ridotta, non chiusa.** Il criterio che ISSUES 46 si era dato —
+  nessuna casa sopra la meta' delle campagne — non e' raggiunto: **9 su 12 e'
+  il 75%**. Il Sale resta la casa piu' forte del suo tavolo (54% contro 33-34%),
+  e mi fermo qui perche' continuare senza una diagnosi nuova sarebbe tarare a
+  occhio, che e' esattamente cio' che questo progetto ha imparato a non fare.
+- **Dove guardare la prossima volta**: i Trionfi nelle saghe restano sbilanciati
+  (Sale 25, Libere 19, Vetro 11, Cenere 8 su 120 anni), e il Minimo delle quattro
+  case non costa uguale — il Vetro ne ha uno da due gettoni, il Sale uno da uno.
+  Nessuna delle due cose e' stata misurata come causa.
+- **Kessa prende 1 NONE a tavolo misto** dove prima ne aveva 0. E' dentro il
+  vincolo (nessun seggio bloccato) ed e' un anno perso in piu', non uno di meno.
+- **Il tavolo della prima saga non e' toccato**: le modifiche stanno tutte in
+  `destinies_chronicle_03.json`.
+
+---
+
 ## D-181 — Una campagna e' almeno dieci anni
 **implemented in 0.1.149** (decisa dal committente)
 

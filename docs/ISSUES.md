@@ -1493,6 +1493,32 @@ arriva a metà strada. Una casa che supera il Minimo il 68% delle volte prende l
 testa presto e non la molla: lo squilibrio non è solo *chi vince*, è **sette anni
 giocati sapendo già come finisce**.
 
+## Lavorata in 0.1.150, e ridotta ([D-182](DECISIONS.md#d-182))
+
+Il committente ha dato la direzione — «il Sale è troppo forte» — e guardando la
+casa dal lato suo il difetto aveva **tre teste**: il Minimo vero al 100%, la
+seconda clausola della Vittoria vera al 100%, e la **spina del Trionfo** vera al
+100%. `DST_SALE` superava il Minimo **12 volte su 13**, e non perché la Gilda
+giocasse meglio: la sua Vittoria la decideva il **calendario**. Corretti tutt'e
+due i suoi Destini, in quattro passi misurati uno alla volta:
+
+| | prima | dopo |
+|---|---|---|
+| campagne vinte dal Sale | **12 su 12** | **9 su 12** |
+| il Sale supera il Minimo | 68% | **54%** (le altre 33–34%) |
+| cambi di testa per saga | 1,3 | **1,8** |
+| ultimo cambio di testa | anno 3,5 su 10 | anno **5,5** su 10 |
+| decise entro il terzo anno | 6 su 12 | **4 su 12** |
+
+**Non è chiusa**: 9 su 12 è il 75%, sopra il criterio che questa voce si era
+data. Il lavoro si è fermato lì perché continuare senza una diagnosi nuova
+sarebbe tarare a occhio.
+
+**Dove guardare la prossima volta**, e sono due cose non ancora misurate come
+cause: i **Trionfi nelle saghe** restano sbilanciati (Sale 25, Libere 19, Vetro
+11, Cenere 8 su 120 anni), e il **Minimo delle quattro case non costa uguale** —
+il Vetro ne ha uno da due gettoni, il Sale uno da uno.
+
 **Fatto quando** su dodici saghe per tavolo nessuna casa vince più della metà
 delle campagne — o il motivo per cui una lo fa è scritto con i numeri accanto —
 e l'ultimo cambio di testa non cade prima di metà campagna.

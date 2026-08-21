@@ -1,4 +1,4 @@
-# Passaggio di consegne — stato al 0.1.149
+# Passaggio di consegne — stato al 0.1.150
 
 *Scritto per chi apre una sessione nuova su questo repository. Dice dov'è il
 lavoro, cosa regge, cosa no, e quali sono le regole di casa che non vanno
@@ -12,10 +12,10 @@ riscoperte da capo.*
 |---|---|
 | ramo di sviluppo | `claude/echoes-boardgame-dev-cmu444` |
 | PR aperta | in bozza, su `main` |
-| ultimo commit | 0.1.149 |
-| ultimo merge su `main` | `e26b2b2` — PR #67, 0.1.139–0.1.144 |
+| ultimo commit | 0.1.150 |
+| ultimo merge su `main` | `175d58d` — PR #68, 0.1.145–0.1.149 |
 
-La PR #67 è stata mergiata: questo ramo riparte da `main` e raccoglie da 0.1.145
+La PR #68 è stata mergiata: questo ramo riparte da `main` e raccoglie da 0.1.150
 in poi.
 
 ## 2. Come si lavora qui — le regole di casa
@@ -83,6 +83,7 @@ solo.
 | **0.1.147** | `MECCANICA.md` riportato al vero (cinque numeri falsi, uno che si contraddiceva) e la sezione **«come si gioca bene»**, misurata |
 | **0.1.148** | **il vincitore della saga**, voluto dal committente — e il contatore ha rivelato che nella saga del Sale la campagna la vince sempre la stessa casa (ISSUES 46) |
 | **0.1.149** | una campagna è **almeno dieci anni**, deciso dal committente — e con la soglia si misura quanto resta viva: ultimo sorpasso all'anno 5 su 10 nella Carestia, 3,5 nel Sale |
+| **0.1.150** | **il Sale non vinceva: gli succedeva di vincere** — tre clausole su cinque erano fatti del mondo. Campagne sue da 12/12 a 9/12 (ISSUES 46 ridotta, non chiusa) |
 
 Più due documenti: **`docs/MECCANICA.md`** — riportato a **0.1.149**, ed è il
 testo da dare a chi disegna l'infografica *e* a chi vuole sapere come si gioca
@@ -91,21 +92,23 @@ bene (§15) — e **`docs/SAGA_NAHR.md`**, dieci anni giocati e raccontati.
 **Le misure di adesso** (playtest 100 semi, tavolo misto):
 
 ```
-FAIL 256 · SUCC 78 · SUCC 100 · DECI 145 · mediana 6
+FAIL 248 · SUCC 78 · SUCC 99 · DECI 154 · mediana 6
 0 su 8 bloccati (misto e uniforme) · nessun seggio a NONE · nessuno a zero Trionfi
 suite 355 test / 6490 asserzioni
 ```
 
 ## 4. Le due cose che vanno guardate per prime
 
-### a) I Consigli falliti sono a 256, ed è il massimo storico
+### a) I Consigli falliti sono a 248
 
-Il trend: **185 → 207 → 191 → 203 → 206 → 246 → 248 → 256**. Il salto grosso
-(206 → 246) è **dichiarato e ha una causa nota**: accendere il pool mette al
-tavolo undici ambizioni in più, e le proposte si oppongono fra loro molto più
-spesso. Il tasso di successo passa dal 64% al 56%. Gli ultimi otto sono di
-0.1.145, e hanno la stessa forma: una casa che arriva viva a fine anno propone e
-si oppone più a lungo.
+Il trend: **185 → 207 → 191 → 203 → 206 → 246 → 248 → 256 → 248**. Il massimo
+storico è stato 256, e in 0.1.150 il numero è **tornato indietro per la prima
+volta**: una casa che non arriva più al Trionfo per inerzia propone e si oppone
+meno a lungo.
+
+Il salto grosso (206 → 246) è **dichiarato e ha una causa nota**: accendere il
+pool mette al tavolo undici ambizioni in più, e le proposte si oppongono fra loro
+molto più spesso. Il tasso di successo sta intorno al 57%.
 
 **Si spegne in una riga**, se il committente decide che è troppo:
 `world_state_factory.gd`, `_deal_destiny`, togliere il ripiego sulla lista
@@ -134,12 +137,14 @@ precedente — non un difetto del codice. Cambiarlo è cambiare il regolamento:
   contro i Maestri al 33%–83%, e **nessuna clausola pronta** con cui intervenire:
   delle dodici misurate al banco, tutto ciò che la Cenere può fare restando sulla
   montagna esce 0% o 100%.
-- **ISSUES 46** — la campagna del Sale ha un vincitore già scritto: SALE 12 su 12
-  con qualunque scala, e **metà delle campagne decise entro il terzo anno su
-  dieci**. Il contatore di saga (0.1.148-149) non ha creato lo squilibrio: l'ha
-  reso **definitivo** invece che spalmato, e poi **noioso**. È il lavoro speculare
-  a quello fatto sulla Cenere: lì si partiva dalla casa più debole, qui dalla più
-  forte.
+- **ISSUES 46** (ridotta in 0.1.150, non chiusa) — il Sale era troppo forte
+  perché **tre clausole su cinque erano fatti del mondo**, non cose che facesse.
+  Corretti i suoi due Destini: campagne sue da **12/12 a 9/12**, supera il Minimo
+  dal 68% al **54%** (le altre 33–34%), ultimo cambio di testa dall'anno 3,5 al
+  **5,5** su 10. Resta sopra il criterio (9 su 12 è il 75%), e le due cose da
+  guardare — mai misurate come cause — sono i **Trionfi nelle saghe** (Sale 25,
+  Libere 19, Vetro 11, Cenere 8) e il fatto che il **Minimo delle quattro case
+  non costa uguale**.
 - **La palude** — l'unica cosa fuori dal catalogo delle strutture. Chiede slot di
   presenza variabili per Regione: **motore, non contenuto**.
 

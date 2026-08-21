@@ -5,6 +5,50 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.150 — Il Sale non vinceva: gli succedeva di vincere (D-182)
+
+- **ISSUES 46, sulla direzione data dal committente**: «il Sale è troppo forte».
+  Guardato dal lato suo, il difetto aveva **tre teste**, tutte misurate col banco
+  delle clausole: il Minimo vero al **100%**, la seconda clausola della Vittoria
+  («e nessuno lo ha cancellato») vera al **100%**, e la **spina del Trionfo** («il
+  patto con la Cenere regge») vera al **100%**.
+- **`DST_SALE` superava il Minimo 12 volte su 13.** E non perché la Gilda giocasse
+  meglio: la sua Vittoria la decideva il **calendario** — `debt_called` matura da
+  sé quando la Tensione arriva a soglia, e le altre due clausole non falliscono
+  mai. Al Sale non riusciva di vincere: **gli succedeva**.
+- **Quattro passi misurati uno alla volta**, e il primo insegna qualcosa: chiedere
+  il debito chiamato **e** un alleato rimasto tale sono due cose **anti-correlate**
+  (riscuotere allontana chi paga), e il Destino è crollato dal 92% al **15%** —
+  l'errore di D-177 arrivato dal lato opposto. A NEUTRALE la richiesta diventa
+  «riscuotere senza rompere», che è quello che una Gilda sa fare.
+- **La promessa è stata spostata, non cancellata**: `promise_kept` compare una
+  volta sola in tutto il gioco, e toglierla l'avrebbe resa contenuto che non
+  esiste. Ora è una delle cinque strade del Trionfo.
+- **E il secondo Destino era diventato il colpevole**: `DST_SALE_OPEN` faceva **6
+  Trionfi su 13**, il massimo del gioco. La sua scelta passa da una strada su
+  quattro a due: da 0/6/**1**/6 a **0/6/6/1**.
+
+| | prima | dopo |
+|---|---|---|
+| `DST_SALE` (N/M/V/T su 13) | 0 / **1** / 8 / 4 — supera il **92%** | **0 / 7 / 4 / 2** — supera il 46% |
+| campagne vinte dal Sale | **12 su 12** | **9 su 12** |
+| il Sale supera il Minimo, nelle saghe | 68% | **54%** (le altre 33–34%) |
+| ultimo cambio di testa | anno **3,5** su 10 | anno **5,5** su 10 |
+| campagne decise entro il terzo anno | 6 su 12 | **4 su 12** |
+
+- Playtest **FAIL 248 · 78 · 99 · 154**, mediana 6, **0 su 8**. I **Consigli
+  falliti scendono da 256 a 248**, ed è la prima volta che quel numero torna
+  indietro. Suite **355 test / 6490 asserzioni**.
+
+### Dichiarato
+
+- **La voce è ridotta, non chiusa**: il criterio che si era data — nessuna casa
+  sopra la metà delle campagne — non è raggiunto (**9 su 12 è il 75%**). Mi fermo
+  perché continuare senza una diagnosi nuova sarebbe tarare a occhio.
+- Restano da guardare i **Trionfi nelle saghe** (Sale 25, Libere 19, Vetro 11,
+  Cenere 8) e il fatto che il **Minimo delle quattro case non costa uguale**.
+- Kessa prende 1 NONE a tavolo misto dove prima ne aveva 0: dentro il vincolo.
+
 ## 0.1.149 — Una campagna è almeno dieci anni (D-181)
 
 - **Deciso dal committente**: «direi la saga almeno 10 partite». Sta in
