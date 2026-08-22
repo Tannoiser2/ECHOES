@@ -1893,14 +1893,22 @@ andati sul terzo e sul quarto obiettivo, i due che quasi nessuno prende. La
 **distribuzione non è cambiata**: 0 su 4 resta al 20,8%, 4 su 4 all'1,8% — è la
 scala dei numeri ad essere cambiata, non la difficoltà.
 
-**E CHR_03 non è ancora passata**: il mondo del Sale non gioca nemmeno a carte, e
-accendergli il punteggio nuovo prima dell'economia nuova vorrebbe dire misurare
-un terzo gioco che nessuno gioca ([D-184](DECISIONS.md#d-184)).
+**Fase 4 ✅ — il mondo del Sale** — CHR_03 e CHR_04 sono passate alle carte in
+0.1.169 ([D-201](DECISIONS.md#d-201)) e agli obiettivi in 0.1.170
+([D-202](DECISIONS.md#d-202)), dopo aver messo a posto i loro Destini: lo scarto
+del palese per casa passa da **31,0 a 13,7 punti**, meglio del 19,6 con cui è
+rimasta la prima saga.
+
+**Adesso tutte e quattro le Chronicle contano.** Sugli 800 seggi: 0 su 4 nel
+**18,5%**, 4 su 4 nell'**1,9%**, media **1,45**, punteggio di saga **+1,56**.
 
 **Fatto quando** un anno si chiude contando obiettivi invece di gradini ✅, il
 pool ha almeno dodici carte e nessuna sotto il 10% o sopra l'80% ✅, il palese
-costa uguale a tutte le case (o l'asimmetria è dichiarata e misurata), e il
-playtest resta **0/8** a tavolo misto e uniforme ✅.
+costa uguale a tutte le case ✅ (scarto 19,6 punti nella prima saga e 13,7 nella
+seconda, con i due residui nominati), e il playtest resta **0/8** a tavolo misto
+e uniforme ✅.
+
+**Chiusa in 0.1.170.**
 
 ---
 

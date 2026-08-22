@@ -725,6 +725,56 @@ def check_condition_vocabularies_agree(
 
 
 
+def check_a_saga_plays_one_game(
+    documents: Dict[str, List[Dict[str, Any]]],
+    origins: Dict[str, str],
+    report: "Report",
+) -> None:
+    """Gli anni di una stessa saga devono giocare allo stesso gioco.
+
+    Una saga e' un primo anno scritto piu' un anno di biblioteca ripetuto
+    (D-045), e i due condividono i seggi. Ogni regola nuova e' arrivata
+    dichiarandosi sulla Chronicle — le carte, il rubinetto, la presa di parola,
+    il sacchetto, gli obiettivi — e ogni volta c'era **una seconda Chronicle** da
+    accendere insieme alla prima. Una e' rimasta indietro davvero: CHR_02 e'
+    andata avanti per due versioni contando i gradini mentre CHR_01 contava gli
+    obiettivi, e il punteggio di campagna sommava due scale diverse **senza
+    dirlo**, perche' il livello si deriva e sembra sempre lo stesso.
+
+    Qui le Chronicle vengono appaiate per **lista dei seggi** — gli stessi seggi
+    sono la stessa saga — e le regole confrontate. Non serve che i numeri
+    coincidano: serve che una regola accesa da una parte non sia spenta
+    dall'altra.
+    """
+    chronicles = documents.get("chronicle", [])
+    if len(chronicles) < 2:
+        return
+    RULES = ["actions_from_cards", "hand_refill", "claim_rules",
+             "tension_tokens", "objectives", "veiled_tensions"]
+    sagas: Dict[str, List[Dict[str, Any]]] = {}
+    for chronicle in chronicles:
+        key = "|".join(sorted(str(seat) for seat in chronicle.get("entities", [])))
+        sagas.setdefault(key, []).append(chronicle)
+    for _key, group in sorted(sagas.items()):
+        if len(group) < 2:
+            continue
+        first = group[0]
+        for other in group[1:]:
+            for rule in RULES:
+                on_here = bool(first.get(rule))
+                on_there = bool(other.get(rule))
+                if on_here == on_there:
+                    continue
+                lit, dark = (first, other) if on_here else (other, first)
+                report.fail(
+                    f"chronicle [{dark.get('id')}]",
+                    f"`{rule}` e' acceso in {lit.get('id')} e spento qui, ma i "
+                    "due anni hanno gli stessi seggi: una saga che cambia gioco "
+                    "a meta' somma due scale diverse senza dirlo",
+                )
+
+
+
 def check_objective_scales_are_sane(
     documents: Dict[str, List[Dict[str, Any]]],
     origins: Dict[str, str],
@@ -1088,6 +1138,7 @@ def main() -> int:
         check_objectives_are_shareable(documents, origins, report)
         check_condition_vocabularies_agree(documents, origins, report)
         check_objective_scales_are_sane(documents, origins, report)
+        check_a_saga_plays_one_game(documents, origins, report)
 
     # Duplicate ids across the whole data set are always a bug.
     seen: Dict[str, str] = {}

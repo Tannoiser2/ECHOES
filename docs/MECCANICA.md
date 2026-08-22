@@ -719,7 +719,9 @@ Il livello (MINIMO / VITTORIA / TRIONFO) non è sparito: si **deriva** dal conto
 così il verbale, il pannello e il punteggio di campagna continuano a leggere
 quello che hanno sempre letto.
 
-**Il mondo del Sale gioca ancora a gradini**: prima deve passare alle carte.
+**Anche il mondo del Sale conta**, dalla 0.1.170: tutte e quattro le Chronicle
+giocano a obiettivi. Sugli 800 seggi misurati, nessun obiettivo capita nel
+**18,5%** dei casi e tutti e quattro nell'**1,9%**.
 
 ### La spina e la scelta
 

@@ -5,6 +5,72 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.170 — Il Sale conta anche lui, e la carta della terra torna a costare qualcosa (D-202)
+
+- **Il mondo del Sale passa agli obiettivi**, dopo aver messo a posto i suoi
+  Destini: il palese per casa passa da uno scarto di **31,0 a 13,7 punti** —
+  meglio del 19,6 con cui è rimasta la prima saga.
+- **Il primo cambiamento è un errore mio di due voci fa.** `DST_SHARED_LAND`
+  costava alla Cenere il **100%**: non era così prima, era all'11,5%, e l'ho
+  portata lì **io** in 0.1.167 allargando quella carta per aiutare Vaerax, che
+  l'aveva al 16,7%. Ho aggiustato un estremo e ne ho creato uno peggiore
+  dall'altra parte — la prova più netta della regola che avevo appena scritto:
+  una carta che conta *il tuo tavolo* non si rende equa allargandola, si sposta.
+- **`DST_LIBERE_WATER`** da 96,3% a **48,1%**: chiedeva un segno globale e la
+  presenza dove le città stanno già. Ora chiede anche che il mondo non sia stato
+  aperto in più di due punti — l'acqua non torna dove si è combattuto.
+- **`DST_SALE_OPEN`** da 67,9% a **42,9%**: «il registro si può leggere» e non
+  chiedeva che i conti fossero chiusi.
+- **Una guardia ha morso mentre lavoravo**: alzando la Vittoria dell'Acqua avevo
+  reso vera una delle strade del suo Trionfo, e `check_destiny_free_roads` l'ha
+  detto subito. Senza, il Trionfo sarebbe diventato più facile mentre rendevo la
+  Vittoria più dura, in silenzio.
+- **Il tavolo intero, con tutte e quattro le Chronicle che contano** (800 seggi):
+  0 su 4 nel **18,5%**, 4 su 4 nell'**1,9%**, media **1,45**, saga **+1,56**.
+- **Un numero di contenuto è sceso, dichiarato**: la seconda saga pesca **10**
+  Destini invece di 11, perché «La Terra che Risponde» ha lasciato il pool della
+  Cenere. Ho preferito scrivere il numero più basso che inventare una carta per
+  far tornare un conteggio.
+- Cancello: **401 test in 55 suite, 6887 asserzioni**; playtest **0 su 8** a
+  tavolo misto e uniforme (Consigli 6,03 e 6,01); sims exit 0; toolchain e
+  `--self-test` puliti.
+- Verbale: [D-202](docs/DECISIONS.md#d-202), [ISSUES 50](docs/ISSUES.md).
+
+---
+
+## 0.1.169 — Il mondo del Sale passa alle carte, e una saga smette di giocare a due giochi (D-201)
+
+- **Un buco che stava lì da due versioni**: CHR_02 contava i gradini mentre
+  CHR_01 contava gli obiettivi. Sono i due anni della **stessa saga**, e il
+  punteggio di campagna sommava due scale **senza dirlo**, perché con gli
+  obiettivi il livello si deriva e a valle sembra identico.
+- **`check_a_saga_plays_one_game`**: le Chronicle si appaiano per lista dei seggi
+  e sei regole si confrontano. Una regola accesa da una parte non può essere
+  spenta dall'altra. Provata a morso sul caso vero.
+- **CHR_03 e CHR_04 passano alle carte**: azioni dalle carte, rubinetto, presa di
+  parola in un colpo, sacchetto dei gettoni. Tutto insieme, perché le metà si
+  accendono insieme o si misura un terzo gioco che nessuno gioca.
+- **La misura intermedia, scritta perché vale**: con le sole carte i Consigli
+  erano crollati a **5,01 e 4,81** l'anno. Il sacchetto è la metà che rimette il
+  calore.
+- **E il +1 alle soglie che CHR_01 aveva chiesto è sbagliato per CHR_03**: 3,90
+  Consigli l'anno con il bonus, **5,55 senza**. Due mondi che postano calore
+  diverso non vogliono la stessa soglia — ed è esattamente il numero che una
+  dichiarazione per Chronicle esiste per portare.
+- **La mano del Sale**: 6,00 → 6,66 → **6,79** carte, e lo scarto fra la più
+  piena e la più vuota **non cresce** (0,00 → 1,07 → 0,60), meglio dell'1,58 di
+  CHR_01.
+- **Non accesi gli obiettivi nel Sale**, di proposito: i suoi Destini sono i più
+  facili di tutti (Libere-Acqua al **96,3%**) e accenderli adesso rimetterebbe in
+  campo il difetto che 0.1.167 ha appena chiuso. Prima i Destini, poi il
+  punteggio.
+- Cancello: **401 test in 55 suite, 6887 asserzioni**; playtest **6,05 e 6,04**
+  Consigli, **0 su 8** a tavolo misto e uniforme; sims exit 0; toolchain e
+  `--self-test` puliti.
+- Verbale: [D-201](docs/DECISIONS.md#d-201).
+
+---
+
 ## 0.1.168 — Il quarto obiettivo pagato come una cosa rara (D-200)
 
 - D-199 aveva reso il palese più equo e, per farlo, più caro: il punteggio di

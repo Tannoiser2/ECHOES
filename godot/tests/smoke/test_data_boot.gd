@@ -31,7 +31,12 @@ func test_reduced_content_matches_the_milestone() -> void:
 	# Grown past §18.2's reduced set on purpose, and measured: D-024 records why
 	# 2 Tensions and 8 Consequences could not move the world enough to matter.
 	_saga_has("prima", loaded, ["CHR_01", "CHR_02"], 6, 5, 4, 11)
-	_saga_has("seconda", loaded, ["CHR_03", "CHR_04"], 6, 6, 4, 11)
+	# Dieci, non undici: la Cenere ha lasciato «La Terra che Risponde» per «Il
+	# Nome che Pesa» (D-202), perche' quella carta le costava il **100%** — e una
+	# carta condivisibile costa uguale a tutti solo se parla del mondo invece che
+	# del tuo tavolo. Restano quattro Destini identitari, quattro varianti e due
+	# condivisibili giurate qui.
+	_saga_has("seconda", loaded, ["CHR_03", "CHR_04"], 6, 6, 4, 10)
 
 
 ## What one saga is made of: its questions, the Councils that can be held about
