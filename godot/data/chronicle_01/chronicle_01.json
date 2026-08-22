@@ -219,6 +219,24 @@
         "victory": 3,
         "triumph": 6,
         "decides_after": 10
+      },
+      "objectives": {
+        "hidden": 3,
+        "public_from": "victory",
+        "levels": [
+          "NONE",
+          "MINIMUM",
+          "VICTORY",
+          "VICTORY",
+          "TRIUMPH"
+        ],
+        "saga_points": [
+          -1,
+          1,
+          2,
+          4,
+          6
+        ]
       }
     },
     {

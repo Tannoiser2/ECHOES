@@ -65,6 +65,11 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 	# il giorno in cui il pool si e' acceso, con i Destini identici. Accendere
 	# il pool deve cambiare **cosa la gente vuole**, non che mondo trova.
 	var destiny_rng: RefCounted = RngService.new(rng.get_seed() * 31 + 11)
+	# E il dado degli obiettivi e' a parte dal dado dei Destini, per la stessa
+	# ragione al piano di sotto: se pescasse dallo stesso, accendere gli
+	# obiettivi cambierebbe **quale Destino** ogni casa giura, e i due
+	# esperimenti non sarebbero piu' confrontabili.
+	var objective_rng: RefCounted = RngService.new(rng.get_seed() * 37 + 17)
 	for entity_id in chronicle["entities"]:
 		var definition: Dictionary = data.entities[entity_id]
 		world["entities"][entity_id] = {
@@ -91,6 +96,12 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 			# all'effect-sourcing perche' non e' uno stato del mondo che qualcuno
 			# possa disfare - e' il verbale di quello che e' gia' successo.
 			"saga_score": 0,
+			# Gli obiettivi **nascosti** pescati all'apertura (D-198). Il palese
+			# non sta qui: e' il Destino giurato letto al gradino dichiarato,
+			# quindi non c'e' una seconda verita' da tenere allineata. Resta
+			# vuoto, e non lo legge nessuno, se la Chronicle non dichiara
+			# `objectives`.
+			"objectives": _deal_objectives(chronicle, data, objective_rng),
 		}
 
 	# Who holds what at the opening. The Region says what it says, and the
@@ -149,6 +160,37 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 ##
 ## Che cosa vuole questa casa, quest'anno (D-150).
 ##
+## I tre nascosti che ogni seggio si porta dietro senza dirlo (D-198).
+##
+## Si pescano dal pool condivisibile — dodici carte misurate una per una in
+## D-197 — e **senza rimpiazzo dentro il singolo seggio**: nessuno gioca due
+## volte lo stesso obiettivo. Fra seggi diversi il rimpiazzo c'e', ed e' voluto:
+## due case che inseguono la stessa cosa e non lo sanno e' la partita che il
+## committente ha chiesto.
+##
+## Il pool si pesca **da una lista ordinata** e poi mescolata col seme: un
+## Dictionary in GDScript non promette l'ordine, e una pesca che dipende
+## dall'ordine di caricamento dei file non e' riproducibile.
+static func _deal_objectives(
+	chronicle: Dictionary, data: RefCounted, rng: RefCounted
+) -> Array:
+	var rules: Dictionary = chronicle.get("objectives", {}) as Dictionary
+	if rules.is_empty():
+		return []
+	var wanted: int = int(rules.get("hidden", 0))
+	if wanted <= 0:
+		return []
+	var pool: Array = []
+	for objective_id in data.objectives:
+		pool.append(str(objective_id))
+	pool.sort()
+	var drawn: Array = rng.shuffle(pool)
+	var out: Array = []
+	for i in range(mini(wanted, drawn.size())):
+		out.append(str(drawn[i]))
+	return out
+
+
 ## Il `destiny_id` scritto sull'Entita' e' quello che ha sempre voluto: resta
 ## il suo, e senza pool non cambia niente. Ma una Chronicle puo' dichiarare un
 ## `destiny_pool` — per casa, una lista di Destini fra cui pescare — e allora

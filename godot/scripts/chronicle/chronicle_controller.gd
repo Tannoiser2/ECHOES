@@ -791,6 +791,15 @@ func _score_the_saga(results: Dictionary, log: RefCounted) -> void:
 		if level == "":
 			level = "NONE"
 		var gained: int = int(value_of.get(level, 0))
+		# Con gli obiettivi, due successi parziali che il livello confonde
+		# possono valere numeri diversi (D-198): se la Chronicle scrive
+		# `objectives.saga_points`, il conto vince sulla scala dei livelli.
+		var points: Array = (
+			(_chronicle.get("objectives", {}) as Dictionary).get("saga_points", []) as Array
+		)
+		if not points.is_empty() and (results[entity_id] as Dictionary).has("objectives_met"):
+			var met: int = int((results[entity_id] as Dictionary)["objectives_met"])
+			gained = int(points[mini(met, points.size() - 1)])
 		var seat: Dictionary = world["entities"][str(entity_id)] as Dictionary
 		seat["saga_score"] = int(seat.get("saga_score", 0)) + gained
 		standing.append([int(seat["saga_score"]), gained, str(entity_id), str(seat["name"])])

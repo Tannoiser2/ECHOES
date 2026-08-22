@@ -67,10 +67,31 @@ static func build(session: RefCounted, seat_id: String) -> Dictionary:
 				"title": str(card["title"]),
 			})
 
+	# I quattro obiettivi, se la Chronicle li dichiara (D-198): il palese per
+	# primo, poi i tre che ha pescato e che nessun altro conosce. E' la stessa
+	# casella `destiny` — chi legge il modello guarda `rungs` e trova quattro
+	# righe invece di tre — perche' la scala **e'** quella, quando la regola e'
+	# accesa: il pannello non deve sapere che regola sta girando.
+	var taken: Array = session.destinies.objectives_of(seat_id)
+	if not taken.is_empty():
+		var lines: Array = []
+		for entry in taken:
+			var record: Dictionary = entry as Dictionary
+			lines.append({
+				"label": "%s%s" % [
+					"" if bool(record["public"]) else "(coperto) ", str(record["label"])
+				],
+				"holds": bool(record["met"]),
+			})
+		out["destiny"] = {
+			"title": "I tuoi quattro obiettivi",
+			"rungs": lines,
+		}
+
 	# La scala del Destino, coi gradini gia' spuntati (D-101: la vede solo
-	# chi la giura).
+	# chi la giura). Non si legge quando gli obiettivi hanno preso il suo posto.
 	var destiny: Variant = data.destinies.get(session.service.destiny_of(seat_id))
-	if destiny != null:
+	if destiny != null and taken.is_empty():
 		var rungs: Array = []
 		for level in ["minimum", "victory", "triumph"]:
 			rungs.append({

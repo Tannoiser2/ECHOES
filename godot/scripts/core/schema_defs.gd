@@ -368,6 +368,9 @@ const DEFS := {
 			"destiny_pool": {
 				"type": "Dictionary",
 			},
+			"objectives": {
+				"type": "Dictionary",
+			},
 		},
 	},
 	"confluence_template": {

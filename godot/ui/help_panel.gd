@@ -242,17 +242,55 @@ func _lines(data: RefCounted, chronicle_id: String) -> Array:
 		out.append("")
 
 	out.append(SECTION % "COME SI VINCE")
-	out.append(
-		"Ognuno ha un [b]Destino[/b] a tre gradini, in basso a destra, e nessun altro "
-		+ "sa qual e il tuo. Le caselle spuntate valgono adesso: se una si spegne, "
-		+ "l'hai persa. Si guarda alla fine dell'anno."
-	)
-	out.append("")
-	out.append(
-		"[color=#8a8172]Quindi: piazzati dove si decidera la domanda che ti serve, "
-		+ "arrivaci con le carte della famiglia giusta, e fai passare — o cadere — la "
-		+ "proposta che ti sposta di un gradino.[/color]"
-	)
+	var goals: Dictionary = rules.get("objectives", {}) as Dictionary
+	if not goals.is_empty():
+		var hidden: int = int(goals.get("hidden", 3))
+		out.append(
+			("[b]NON SI SALE UNA SCALA: SI CONTANO GLI OBIETTIVI.[/b] All'inizio "
+			+ "dell'anno te ne tocca uno [b]palese[/b] — quello per cui la tua casa e "
+			+ "venuta al tavolo, e lo sanno tutti — e ne peschi %d [b]coperti[/b], che "
+			+ "non vede nessun altro. In basso a destra ci sono tutti e %d, coi coperti "
+			+ "segnati come tali: sono i tuoi, quindi tu li vedi.") % [hidden, hidden + 1]
+		)
+		out.append("")
+		out.append(
+			("Alla fine dell'anno si contano quelli che si sono avverati. [b]Tutti e "
+			+ "%d e un trionfo. Nessuno e un anno perso.[/b] In mezzo ci sono i "
+			+ "successi parziali, e ognuno vale un numero diverso alla fine della "
+			+ "saga.") % (hidden + 1)
+		)
+		out.append("")
+		out.append(
+			"Le caselle spuntate valgono [b]adesso[/b]: se una si spegne, l'hai persa. "
+			+ "Si guarda solo alla fine dell'anno."
+		)
+		if data != null and not data.objectives.is_empty():
+			out.append("")
+			out.append(
+				("[color=#8a8172]I coperti si pescano da %d obiettivi condivisi: "
+				+ "chiedono cose che valgono in qualunque mondo — Regioni che "
+				+ "rispondono, pietre in piedi, cicatrici che non ci sono, carte "
+				+ "ancora in mano. Nessuno di loro nomina una casa o un posto, "
+				+ "perche' li puo pescare chiunque.[/color]") % data.objectives.size()
+			)
+		out.append("")
+		out.append(
+			"[color=#8a8172]Quindi: dei quattro, uno lo sanno tutti e tre no. Chi "
+			+ "ti guarda inseguire il palese non sa cos'altro stai contando — ed e "
+			+ "quello, il gioco.[/color]"
+		)
+	else:
+		out.append(
+			"Ognuno ha un [b]Destino[/b] a tre gradini, in basso a destra, e nessun altro "
+			+ "sa qual e il tuo. Le caselle spuntate valgono adesso: se una si spegne, "
+			+ "l'hai persa. Si guarda alla fine dell'anno."
+		)
+		out.append("")
+		out.append(
+			"[color=#8a8172]Quindi: piazzati dove si decidera la domanda che ti serve, "
+			+ "arrivaci con le carte della famiglia giusta, e fai passare — o cadere — la "
+			+ "proposta che ti sposta di un gradino.[/color]"
+		)
 
 	if data != null:
 		out.append("")

@@ -1860,16 +1860,34 @@ identitari lo scarto è **35,7%–80,0%** (il 91% citato sopra è
 `DST_LIBERE_WATER`, una variante). Resta un difetto, e resta il punto 1 da
 decidere.
 
-**Resta la fase 2: il motore.** Nessuna partita pesca ancora obiettivi, nessun
-anno si chiude contandoli, i tre gradini sono ancora la scala di §14. Serve la
-dichiarazione di regola a livello di Chronicle (reversibile, come `hand_refill` e
-`tension_tokens`), la pescata all'apertura, il conto alla chiusura e la mappa dei
-numeri della saga.
+**Fase 2 ✅ — il motore** — fatta in 0.1.166 ([D-198](DECISIONS.md#d-198)).
+CHR_01 non sale più una scala: conta. Regola dichiarata dalla Chronicle e
+reversibile; il livello si **deriva** dal conto, così il verbale, il pannello, il
+libro della saga, il salvataggio e il punteggio di campagna continuano a leggere
+quello che hanno sempre letto.
 
-**Fatto quando** un anno si chiude contando obiettivi invece di gradini, il pool
-ha almeno dodici carte e nessuna sotto il 10% o sopra l'80% ✅, il palese costa
-uguale a tutte le case (o l'asimmetria è dichiarata e misurata), e il playtest
-resta **0/8** a tavolo misto e uniforme.
+**Quello che il gioco conta davvero** (100 Chronicle, i 200 seggi di CHR_01):
+0 su 4 nel **19,0%**, tutti e quattro nel **2,5%**, media **1,44**, saga **+1,42**
+per seggio. L'ombra prometteva 1,58: **era ottimista del 9%**, e il verso
+dell'errore è quello buono da sapere.
+
+**E il lato umano è stato cercato, non aspettato** (§5ter): pannello, console,
+riga del verbale e pagina delle regole, tutti da una funzione sola. Guardando la
+pagina ho trovato un errore di formattazione che girava a ogni apertura con la
+suite verde — la seconda volta di fila che quella regola si paga.
+
+**Resta la fase 3: i Destini.** Il palese costa dal **35,7% all'80,0%** a seconda
+della casa, ed è il punto 1 qui sotto. È un lavoro sui dati — riscrivere le
+clausole di otto Destini — e si misura meglio con la regola accesa.
+
+**E CHR_03 non è ancora passata**: il mondo del Sale non gioca nemmeno a carte, e
+accendergli il punteggio nuovo prima dell'economia nuova vorrebbe dire misurare
+un terzo gioco che nessuno gioca ([D-184](DECISIONS.md#d-184)).
+
+**Fatto quando** un anno si chiude contando obiettivi invece di gradini ✅, il
+pool ha almeno dodici carte e nessuna sotto il 10% o sopra l'80% ✅, il palese
+costa uguale a tutte le case (o l'asimmetria è dichiarata e misurata), e il
+playtest resta **0/8** a tavolo misto e uniforme ✅.
 
 ---
 

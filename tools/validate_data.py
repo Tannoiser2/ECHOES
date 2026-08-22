@@ -675,6 +675,8 @@ def check_sim_plans_declare_their_economy(
          "concede la presa di parola in un colpo"),
         ("tension_tokens", lambda c: bool(c.get("tension_tokens", {})),
          "fa pescare il calore ai giocatori"),
+        ("objectives", lambda c: bool(c.get("objectives", {})),
+         "si vince contando obiettivi invece di salire gradini"),
     ]
     for plan in plans:
         chronicle = chronicles.get(str(plan.get("chronicle_id", "")))

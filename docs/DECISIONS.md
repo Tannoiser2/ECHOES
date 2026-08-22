@@ -10,6 +10,123 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-198 — Gli obiettivi al posto dei gradini, accesi
+**implemented in 0.1.166** (la regola vive, ed e' una dichiarazione della Chronicle)
+
+D-196 ha misurato il prezzo, D-197 ha scritto il pool. Questa e' la regola che
+gira: CHR_01 non sale piu' una scala, **conta**.
+
+**La dichiarazione, come tutte le altre** (`hand_refill`, `tension_tokens`,
+`claim_rules`): sta nella Chronicle, e una Chronicle che non la scrive gioca coi
+tre gradini di sempre.
+
+```json
+"objectives": {
+  "hidden": 3,
+  "public_from": "victory",
+  "levels": ["NONE", "MINIMUM", "VICTORY", "VICTORY", "TRIUMPH"],
+  "saga_points": [-1, 1, 2, 4, 6]
+}
+```
+
+**`levels` e' la scelta che tiene in piedi tutto il resto.** Il livello non
+sparisce: si **deriva** dal conto. Toglierlo sarebbe stato il modo piu' rapido
+per rompere il verbale, il pannello del giocatore, il libro della saga, il
+salvataggio e il punteggio di campagna — leggono tutti un livello, e cinque
+consumatori riscritti in un colpo sono cinque posti dove sbagliare. Cosi'
+invece la parola resta quella che ha sempre voluto dire (chi arriva a VICTORY ha
+tenuto anche MINIMUM), e cambia solo **come ci si arriva**.
+
+**`saga_points` e' la meta' che il livello non sa dire.** Il committente ha
+chiesto che i successi parziali diano *numeri* diversi: due obiettivi e tre
+obiettivi sono entrambi VICTORY, ma valgono 2 e 4. Dichiarati, i punti vincono
+su `saga_scoring`.
+
+**Il palese non e' salvato da nessuna parte, ed e' voluto**: e' il Destino
+giurato letto al gradino che la Chronicle dichiara. Salvarlo avrebbe creato una
+seconda verita' da tenere allineata al `destiny_id`, che la successione cambia
+fra un anno e l'altro (D-045). Sul seggio stanno solo i **tre coperti**.
+
+**Il dado degli obiettivi e' a parte** da quello dei Destini, che era gia' a
+parte da quello della partita (D-150): se pescasse dallo stesso, accendere gli
+obiettivi cambierebbe *quale Destino* ogni casa giura, e i due esperimenti non
+sarebbero piu' confrontabili.
+
+**Quello che il gioco conta davvero**, misurato su 100 Chronicle (i 200 seggi di
+CHR_01, semi 7000–7099):
+
+| obiettivi presi | l'ombra prevedeva | il gioco conta |
+|---|---|---|
+| 0 su 4 | 16,2% | **19,0%** |
+| 1 su 4 | 32,0% | 34,5% |
+| 2 su 4 | 31,5% | 32,5% |
+| 3 su 4 | 17,5% | 11,5% |
+| 4 su 4 | 2,8% | **2,5%** |
+| media | 1,58 | **1,44** |
+| saga per seggio | +1,65 | **+1,42** |
+
+**La previsione era ottimista del 9%**, e la differenza e' dichiarata: la sonda
+misurava i seggi di **tutte e due** le Chronicle e pescava i coperti da un dado
+suo, mentre qui gioca solo CHR_01 col dado del mondo. Il verso dell'errore e'
+quello buono da sapere — il gioco vero e' un po' piu' duro di quanto il
+preventivo prometteva, non piu' facile.
+
+**E la scala di oggi, come effetto**: NONE 10,0% · MINIMUM 41,8% · VICTORY 38,8%
+· TRIUMPH 9,5% sui 400 seggi delle due Chronicle insieme (contro 0,8 · 48,2 ·
+34,2 · 16,8 di prima). Il cancello tiene: **0 su 8** a tavolo misto e uniforme,
+Consigli 6,04 e 6,06.
+
+**Il lato umano, cercato invece che aspettato** (§5ter, la lezione di D-195). Tre
+posti dove una persona legge:
+
+* **il pannello del seggio** e **la console** mostravano tre gradini. Ora
+  mostrano i quattro obiettivi, coi coperti segnati `(coperto)` — sono i *suoi*,
+  quindi li vede (D-101: la scala la vede solo chi la giura).
+* **la riga del verbale** diceva l'etichetta di un gradino. Con gli obiettivi
+  sarebbe stata la bugia piu' facile di tutta la regola — stampare «Il regno
+  decide» a chi quel Destino non l'ha chiuso — quindi dice il conto e quali:
+  *«Re Aldric — VICTORY: 3 obiettivi su 4 (…)»*.
+* **la pagina delle regole** prometteva una scala. Ora dice che non si sale, si
+  conta, e il numero degli obiettivi condivisi lo prende dal pool.
+
+E i tre punti li decide **una funzione sola**, `objectives_of()`: due letture
+diverse dello stesso seggio erano il difetto piu' facile da introdurre qui, ed e'
+esattamente quello che D-194 aveva gia' pagato una volta con la mano.
+
+**Un errore trovato solo guardando la pagina.** La prima stesura del paragrafo
+nuovo aveva un errore di precedenza fra `+` e `%`: la formattazione andava in
+errore a **ogni apertura della pagina**, e la suite era **verde**, perche'
+nessun test leggeva quel testo. Tre test nuovi lo coprono adesso. E' §5ter alla
+lettera, la seconda volta di fila: *nessuna misura copre quello che una persona
+vede, se non si guarda quello che vede*.
+
+**Il lato classico si spegne intero.** `play_classic()` non poteva limitarsi a
+cancellare la dichiarazione: `setup()` era gia' passato e aveva gia' pescato i
+coperti sul seggio. Una regola spenta e tre obiettivi scritti nel mondo sono
+**due meta' di due giochi diversi** — lo stesso errore che D-184 aveva gia'
+pagato col rubinetto — e la prova e' arrivata subito: due test di determinismo
+sono diventati rossi perche' la prima sessione pescava e la seconda no.
+
+**I tre piani scriptati dichiarano su quale scala si leggono** (`objectives: {}`,
+la scala di sempre), come gia' dichiarano l'economia: una storia scritta a mano
+finisce dove finisce, e rileggerla contando obiettivi vorrebbe dire darle un
+esito che il suo autore non ha scritto. La guardia
+`check_sim_plans_declare_their_economy` lo pretende.
+
+**Difetto aperto e dichiarato**: il palese non costa uguale a tutte le case
+(35,7%–80,0% fra gli otto Destini identitari, D-197). Ho acceso la regola con
+questo difetto dentro invece di aspettare, perche' riscrivere otto Destini e'
+un lavoro sui **dati** che si misura meglio con la regola accesa — e perche'
+tenerla spenta avrebbe lasciato dodici obiettivi validi e irraggiungibili. Resta
+il punto 1 di ISSUES 50.
+
+**Non fatto**: CHR_03 non dichiara ancora `objectives`. Il mondo del Sale non e'
+ancora passato nemmeno alle carte, e accendergli il punteggio nuovo prima
+dell'economia nuova vorrebbe dire misurare un terzo gioco che nessuno gioca —
+la stessa ragione di D-184.
+
+---
+
 ## D-197 — Il pool degli obiettivi, dodici carte misurate una per una
 **implemented in 0.1.165** (i dati e le guardie; il motore non e' ancora cambiato)
 

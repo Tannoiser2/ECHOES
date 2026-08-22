@@ -93,6 +93,11 @@
               "type": "object",
               "additionalProperties": true,
               "description": "Come `claim_rules` sulla Chronicle (D-191). Vuoto riporta la presa di parola a §10: si prenota in un round e si riscuote in un altro. Una storia scritta in due tempi non si rilegge in un tempo solo."
+            },
+            "objectives": {
+              "type": "object",
+              "additionalProperties": true,
+              "description": "Come `objectives` sulla Chronicle (D-198). Vuoto rimette la scala dei tre gradini cumulativi: una storia scritta a mano finisce dove finisce, e leggerla contando quattro obiettivi vorrebbe dire darle un esito che il suo autore non ha scritto."
             }
           }
         },
