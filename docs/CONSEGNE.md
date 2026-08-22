@@ -215,9 +215,14 @@ Scritto dopo il merge di #70, quando il gioco a sole carte è diventato il gioco
    Consigli l'anno contro 5,55 senza), e una **saga può giocare a due giochi**
    senza dirlo — CHR_02 contava i gradini mentre CHR_01 contava gli obiettivi,
    adesso c'è una guardia che lo impedisce.
-4. **Un piano scriptato del gioco a carte** — i tre esistenti sono storie del
-   §10 di prima e lo dichiarano nel dato. Il gioco nuovo non ha una storia
-   raccontata: è provato dal cancello e dai test.
+4. ~~**Un piano scriptato del gioco a carte**~~ — **fatto in 0.1.174**
+   ([D-206](DECISIONS.md#d-206)): `plan_d_crown_calls`, «La corona chiama
+   subito». E non era «lavoro pulito» come diceva questa riga: erano **tre cose
+   rotte** e nessuna era il piano — il formato non sapeva dire «cala una carta»,
+   una guardia pretendeva che ogni piano fosse una storia vecchia, e soprattutto
+   il **riempitivo** delle occasioni non scritte chiedeva ACQUISIRE e MUOVERE,
+   che nel gioco a carte non si pronunciano: 68 scelte illegali in una partita
+   sola.
 5. **ISSUES 49 — le Tensioni come mucchi di segnalini coperti**, voluta dal
    committente. **Fase 1 fatta** in 0.1.160 (D-192): il calore lo pescano i
    giocatori, la Deriva a orologio è spenta, le soglie salgono di **1** — e il

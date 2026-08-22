@@ -1,0 +1,116 @@
+{
+  "schema_id": "sim_plan",
+  "version": "0.2.0",
+  "items": [
+    {
+      "id": "SIM_PLAN_D",
+      "title": "La corona chiama subito",
+      "description": "La prima storia scritta a mano nell'economia di adesso. Aldric apre l'anno con il Diritto di Corona in mano e la Carestia già a tre: non aspetta i gettoni del tavolo, cala la carta e strappa il Consiglio nello stesso gesto — è il primo dell'anno, e lo decide lui. Gli altri non hanno nessuna carta che sappia prendere la parola e giocano quello che hanno: i Nahr spingono, Lyra e Vaerax guardano. Poi il sacchetto fa il suo lavoro e l'anno ne porta altri tre, di cui uno cade. Alla fine nessuno prende più di due obiettivi su quattro: è l'anno di chi ha parlato per primo, non di chi ha vinto.",
+      "chronicle_id": "CHR_01",
+      "seed": 20260822,
+      "seats": [
+        "ENT_ALDRIC",
+        "ENT_NAHR",
+        "ENT_LYRA",
+        "ENT_VAERAX"
+      ],
+      "turns": [
+        {
+          "act": 1,
+          "round": 1,
+          "actor": "ENT_ALDRIC",
+          "template": "PLAY_CARD",
+          "params": {
+            "asset_id": "AST_AUTHORITY_CROWN_RIGHT",
+            "mode": "FORCE",
+            "tension_id": "TEN_FAMINE"
+          },
+          "note": "La Carestia e' gia' a tre: si prende in un colpo (D-191). La carta e' la spesa, e chi la cala non votera' piu' con quella."
+        },
+        {
+          "act": 1,
+          "round": 1,
+          "actor": "ENT_NAHR",
+          "template": "PLAY_CARD",
+          "params": {
+            "asset_id": "AST_PEOPLE_MOBILIZATION",
+            "tension_id": "TEN_FAMINE"
+          },
+          "note": "I Nahr non hanno di che chiamare: spingono la domanda con la Mobilitazione, e intanto un gettone cade dove vuole il sacchetto."
+        },
+        {
+          "act": 1,
+          "round": 1,
+          "actor": "ENT_LYRA",
+          "template": "PLAY_CARD",
+          "params": {
+            "asset_id": "AST_KNOWLEDGE_PROOF",
+            "mode": "TENSION",
+            "tension_id": "TEN_AWAKENING"
+          },
+          "note": "Lyra guarda invece di spingere: TRAMARE legge in privato, e il modo lo sceglie chi cala la carta (D-193)."
+        },
+        {
+          "act": 1,
+          "round": 1,
+          "actor": "ENT_VAERAX",
+          "template": "PLAY_CARD",
+          "params": {
+            "asset_id": "AST_KNOWLEDGE_RUMOR",
+            "mode": "TENSION",
+            "tension_id": "TEN_AWAKENING"
+          },
+          "note": "Anche Vaerax guarda: il Risveglio e' la sua domanda, e sapere a che punto e' vale piu' di un passo."
+        }
+      ],
+      "confluences": [],
+      "expected": {
+        "confluence_count": 4,
+        "outcomes": [
+          "SUCCESS_WITH_COST",
+          "FAILURE",
+          "SUCCESS",
+          "SUCCESS"
+        ],
+        "min_echoes": 2,
+        "min_truths": 2
+      },
+      "chronicle_overrides": {
+        "actions_from_cards": true,
+        "hand_refill": {
+          "per_token": 2,
+          "floor": 2,
+          "cap": 6,
+          "hand_cap": 7
+        },
+        "claim_rules": {
+          "same_round_when_ready": true,
+          "ready_at": 3
+        },
+        "tension_tokens": {
+          "per_action": 1,
+          "replaces_drift": true,
+          "table_gate": 2
+        },
+        "objectives": {
+          "hidden": 3,
+          "public_from": "victory",
+          "levels": [
+            "NONE",
+            "MINIMUM",
+            "VICTORY",
+            "VICTORY",
+            "TRIUMPH"
+          ],
+          "saga_points": [
+            -1,
+            1,
+            2,
+            5,
+            8
+          ]
+        }
+      }
+    }
+  ]
+}

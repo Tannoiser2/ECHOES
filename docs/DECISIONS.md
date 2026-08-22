@@ -10,6 +10,61 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-206 — Il gioco a carte non aveva una storia perche' il riempitivo parlava il gioco di prima
+**implemented in 0.1.174**
+
+Da 0.1.156 il gioco si spedisce a carte, e i tre piani scriptati sono rimasti
+tutti storie del §10 di prima — dichiarandolo nel dato (D-188), quindi
+onestamente, ma lasciando il gioco vero **senza nessun racconto scritto a mano**.
+Stava nella lista da sei versioni come «lavoro pulito, nessuna decisione
+richiesta». Non era pulito: erano tre cose rotte, e nessuna era il piano.
+
+**Uno: il formato non sapeva dire «cala una carta».** L'enum di
+`sim_plan.schema.json` conosceva le sei azioni dirette e basta. Un piano nel
+gioco a carte era **inesprimibile**.
+
+**Due: la guardia chiedeva a ogni piano di essere una storia vecchia.**
+`check_sim_plans_declare_their_economy` pretendeva la dichiarazione, e un test
+pretendeva che il valore fosse `false` — «ogni piano e' una storia del §10 di
+prima, e lo dichiara». Scritto quando era vero di tutti, era diventato una legge.
+Ora ognuno **dice la sua**, e un piano nell'economia di adesso dichiara le regole
+con cui e' stato scritto: cosi' il giorno che la Chronicle cambia ancora, la
+storia continua a raccontare quella che raccontava.
+
+**Tre, ed e' la ragione vera: il riempitivo parlava il gioco di prima.** Un piano
+scrive le mosse che contano; le occasioni non scritte le riempie
+`_fallback_action`, che provava **ACQUISIRE, poi MUOVERE, poi passo**. Nel gioco
+a carte le prime due non si pronunciano, quindi ogni occasione non scritta
+diventava una scelta illegale: **68 in una partita sola** — tante quante le
+occasioni libere. Nessun piano nuovo poteva reggere, e il conto lo diceva senza
+che nessuno lo leggesse.
+
+Adesso, quando la Chronicle gioca a carte, il riempitivo **cala una carta**:
+prova quelle in mano nell'ordine e gioca la prima che il resolver accetta. Se una
+carta chiede un bersaglio le da' **la domanda piu' fredda**, perche' un
+riempitivo non deve decidere l'anno — e col cancello del tavolo (D-203) scaldare
+la piu' calda sarebbe esattamente decidere quale va al Consiglio.
+
+**La storia, `plan_d_crown_calls` — «La corona chiama subito».** Aldric apre
+l'anno col Diritto di Corona in mano e la Carestia gia' a tre: non aspetta i
+gettoni, cala la carta e strappa il Consiglio **nello stesso gesto** (D-191). E'
+il primo dell'anno e lo decide lui. Gli altri non hanno nessuna carta che sappia
+prendere la parola — le quattro RIVENDICARE non sono ancora sparse, in quel
+seme — e giocano quello che hanno: i Nahr spingono, Lyra e Vaerax guardano.
+
+Il resto dell'anno lo fa il sacchetto: quattro Consigli in tutto, uno cade, due
+lasciano un'Eco. E nessuno prende piu' di **due obiettivi su quattro**: e' l'anno
+di chi ha parlato per primo, non di chi ha vinto.
+
+**Zero scelte illegali**, e le attese scritte nel dato: quattro Consigli,
+`SUCCESS_WITH_COST · FAILURE · SUCCESS · SUCCESS`, almeno due Eco e due Verita'.
+
+**E una guardia in piu'**: il test dei piani adesso pretende **almeno una storia
+per economia**. Senza, il gioco che si spedisce puo' tornare a non averne
+nessuna, e come la prima volta non se ne accorgerebbe nessuno.
+
+---
+
 ## D-205 — La Regione morta e' quella dove non comincia nessuno
 **measured in 0.1.173** (due rimedi provati e respinti; una riga in piu' nella sonda)
 

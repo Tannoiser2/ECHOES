@@ -61,9 +61,22 @@ func test_every_plan_runs_to_the_end() -> void:
 		)
 		assert_eq(int(session.world["act"]), 3, "%s: arriva all'Atto 3" % file_name)
 		assert_eq(str(session.world["phase"]), "CHRONICLE_END", "%s: chiude la Chronicle" % file_name)
-		assert_eq(
-			int(session.world["drift_index"]), 9, "%s: tutti e 9 i Drift applicati" % file_name
-		)
+		# La Deriva a orologio gira solo dove il sacchetto non l'ha sostituita
+		# (D-192): un piano scritto nell'economia di adesso non ne applica
+		# nessuna, e pretenderne nove vorrebbe dire pretendere il gioco di
+		# prima da una storia che dichiara di non giocarlo.
+		var tokens: Dictionary = (
+			(report["plan"] as Dictionary).get("chronicle_overrides", {}) as Dictionary
+		).get("tension_tokens", {}) as Dictionary
+		if tokens.is_empty():
+			assert_eq(
+				int(session.world["drift_index"]), 9, "%s: tutti e 9 i Drift applicati" % file_name
+			)
+		else:
+			assert_eq(
+				int(session.world["drift_index"]), 0,
+				"%s: col sacchetto la Deriva a orologio non gira" % file_name
+			)
 		assert_eq(
 			(report["destiny_results"] as Dictionary).size(), 4, "%s: 4 Destiny valutati" % file_name
 		)
@@ -233,7 +246,31 @@ func test_every_plan_declares_its_economy() -> void:
 			overrides.has("actions_from_cards"),
 			"%s dice se gioca con le carte o con le Occasioni" % str(file_name)
 		)
-		assert_false(
-			bool(overrides["actions_from_cards"]),
-			"%s e una storia del §10 di prima, e lo dichiara" % str(file_name)
+		# Non «tutti i piani sono storie di prima»: **ognuno dice la sua**. Un
+		# piano scritto nell'economia di adesso dichiara le regole con cui e'
+		# stato scritto, cosi' il giorno che la Chronicle cambia ancora la storia
+		# continua a raccontare quella che raccontava.
+		if bool(overrides["actions_from_cards"]):
+			for rule in ["hand_refill", "claim_rules", "tension_tokens", "objectives"]:
+				assert_true(
+					overrides.has(rule),
+					"%s gioca a carte e dichiara anche `%s`" % [str(file_name), rule]
+				)
+				assert_false(
+					(overrides[rule] as Dictionary).is_empty(),
+					"%s: `%s` acceso, non svuotato" % [str(file_name), rule]
+				)
+	# E almeno una storia per economia: senza, il gioco che si spedisce non ha
+	# nessun racconto scritto a mano che lo provi.
+	var old_ones: int = 0
+	var new_ones: int = 0
+	for file_name in _plan_files():
+		var overrides: Dictionary = (
+			_plan(str(file_name)).get("chronicle_overrides", {}) as Dictionary
 		)
+		if bool(overrides.get("actions_from_cards", false)):
+			new_ones += 1
+		else:
+			old_ones += 1
+	assert_true(old_ones >= 1, "almeno una storia del §10 di prima")
+	assert_true(new_ones >= 1, "e almeno una scritta nell'economia di adesso")

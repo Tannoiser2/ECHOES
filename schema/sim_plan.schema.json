@@ -160,8 +160,10 @@
             "FORGE",
             "SCHEME",
             "CLAIM",
+            "PLAY_CARD",
             "PASS"
-          ]
+          ],
+          "description": "L'azione scritta nel piano. `PLAY_CARD` e' quella del gioco a carte (D-188): `params.asset_id` dice **quale carta si cala**, e l'azione la porta la carta — quello che il piano aggiunge riempie solo cio' che la carta lascia aperto. Le altre sei sono il §10 di prima, e un piano che le usa deve dichiararlo in `chronicle_overrides`."
         },
         "params": {
           "type": "object"
@@ -199,8 +201,10 @@
             "FORGE",
             "SCHEME",
             "CLAIM",
+            "PLAY_CARD",
             "PASS"
-          ]
+          ],
+          "description": "L'azione scritta nel piano. `PLAY_CARD` e' quella del gioco a carte (D-188): `params.asset_id` dice **quale carta si cala**, e l'azione la porta la carta — quello che il piano aggiunge riempie solo cio' che la carta lascia aperto. Le altre sei sono il §10 di prima, e un piano che le usa deve dichiararlo in `chronicle_overrides`."
         },
         "params": {
           "type": "object"
