@@ -5,6 +5,30 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.168 — Il quarto obiettivo pagato come una cosa rara (D-200)
+
+- D-199 aveva reso il palese più equo e, per farlo, più caro: il punteggio di
+  saga era sceso da +1,51 a +1,30. Ho scritto il numero peggiorato invece di
+  compensarlo da solo, e il committente ha deciso: **compensare un po'**.
+- `objectives.saga_points` per CHR_01: **−1 · 1 · 2 · 5 · 8** (era −1 · 1 · 2 ·
+  4 · 6). Misurato: **+1,45 per seggio** — **recuperati tre quarti**, e il quarto
+  che manca resta il prezzo dichiarato di un palese che costa uguale a tutti.
+- **I punti sono andati sul terzo e sul quarto obiettivo**: sono i due che quasi
+  nessuno prende (10,8% e 1,8%), e un trionfo che capita a un seggio su
+  cinquantacinque deve valere più del doppio di «due su quattro». I due estremi
+  restano dove erano: un anno senza niente toglie, e prenderne uno vale poco.
+- **Due guardie**, perché la scala è un posto dove si sbaglia in silenzio:
+  `levels` e `saga_points` sono indicizzate dal conto e il motore satura
+  sull'ultima casella, quindi una scala più corta farebbe valere **uguale due
+  risultati diversi** senza nessun errore. Ora la CI pretende che siano lunghe
+  quanto il conto e che i punti salgano. Provate a morso, più un test sui dati
+  spediti.
+- Cancello: **401 test in 55 suite, 6889 asserzioni**; playtest **0 su 8** a
+  tavolo misto e uniforme; sims exit 0; toolchain e `--self-test` puliti.
+- Verbale: [D-200](docs/DECISIONS.md#d-200), [ISSUES 50](docs/ISSUES.md).
+
+---
+
 ## 0.1.167 — Il palese pagato quasi uguale da tutte le case (D-199)
 
 - Il difetto che D-196 aveva trovato per strada e che D-198 ha acceso lo stesso,

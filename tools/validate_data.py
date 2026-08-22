@@ -725,6 +725,60 @@ def check_condition_vocabularies_agree(
 
 
 
+def check_objective_scales_are_sane(
+    documents: Dict[str, List[Dict[str, Any]]],
+    origins: Dict[str, str],
+    report: "Report",
+) -> None:
+    """Le due scale degli obiettivi devono essere lunghe uguale e salire.
+
+    `levels` e `saga_points` sono indicizzate dal **conto** degli obiettivi
+    avverati (D-198), e il conto arriva sempre a `hidden + 1`. Una delle due
+    scritta piu' corta non fa errore: il motore la satura sull'ultimo valore, e
+    allora due risultati diversi diventano lo stesso risultato **in silenzio** —
+    prendere tre obiettivi e prenderli tutti e quattro varrebbero uguale, e
+    nessuno se ne accorgerebbe leggendo il verbale.
+
+    E i punti devono salire: un obiettivo in piu' non puo' valere di meno. Una
+    scala che scende sarebbe un refuso che paga chi fa peggio, ed e' il genere
+    di refuso che si vede solo a fine saga.
+    """
+    for chronicle in documents.get("chronicle", []):
+        rules = chronicle.get("objectives", {})
+        if not rules:
+            continue
+        where = f"chronicle [{chronicle.get('id')}]"
+        # Il conto va da zero a «tutti»: uno palese piu' i coperti, e lo zero
+        # e' una casella come le altre.
+        wanted = int(rules.get("hidden", 0)) + 2
+        levels = rules.get("levels", [])
+        if len(levels) != wanted:
+            report.fail(
+                where,
+                f"`objectives.levels` ha {len(levels)} voci ma ne servono "
+                f"{wanted}: da 0 a {wanted - 1} obiettivi avverati "
+                f"(uno palese piu' {rules.get('hidden')} coperti)",
+            )
+        points = rules.get("saga_points", [])
+        if not points:
+            continue
+        if len(points) != wanted:
+            report.fail(
+                where,
+                f"`objectives.saga_points` ha {len(points)} voci ma ne servono "
+                f"{wanted}: due risultati diversi varrebbero uguale",
+            )
+        for i in range(1, len(points)):
+            if int(points[i]) < int(points[i - 1]):
+                report.fail(
+                    where,
+                    f"`objectives.saga_points` scende fra {i - 1} e {i} "
+                    f"({points[i - 1]} -> {points[i]}): un obiettivo in piu' "
+                    "non puo' valere di meno",
+                )
+
+
+
 def check_objectives_are_shareable(
     documents: Dict[str, List[Dict[str, Any]]],
     origins: Dict[str, str],
@@ -1033,6 +1087,7 @@ def main() -> int:
         check_sim_plans_declare_their_economy(documents, origins, report)
         check_objectives_are_shareable(documents, origins, report)
         check_condition_vocabularies_agree(documents, origins, report)
+        check_objective_scales_are_sane(documents, origins, report)
 
     # Duplicate ids across the whole data set are always a bug.
     seen: Dict[str, str] = {}

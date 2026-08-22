@@ -10,6 +10,38 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-200 — Il quarto obiettivo pagato come una cosa rara
+**implemented in 0.1.168** (una riga di dati, e due guardie perche' resti vera)
+
+D-199 ha reso il palese piu' equo e, per farlo, piu' caro: il punteggio di saga
+era sceso da +1,51 a +1,30 per seggio. Ho scritto il numero peggiorato invece di
+compensarlo di mia iniziativa, e il committente ha deciso: **compensare un po'**.
+
+`objectives.saga_points` per CHR_01: **−1 · 1 · 2 · 5 · 8** (era −1 · 1 · 2 · 4 ·
+6). Misurato su 200 Chronicle: **+1,45 per seggio**, contro i +1,30 di prima e i
++1,51 di prima ancora. **Recuperati tre quarti**, e il quarto che manca resta il
+prezzo dichiarato di un palese che costa uguale a tutti.
+
+**Dove ho messo i punti, e perche' li'.** La distribuzione non e' cambiata di un
+seggio — questa e' solo la scala dei numeri — quindi si trattava di scegliere
+*quali* risultati pagare meglio. Ho pagato **il terzo e il quarto obiettivo**:
+sono i due che quasi nessuno prende (10,8% e 1,8%), e un trionfo che capita a un
+seggio su cinquantacinque deve valere piu' del doppio di «due su quattro», o non
+vale la pena inseguirlo. I due estremi restano dove il committente li aveva
+messi: un anno senza niente **toglie**, e prenderne uno vale poco.
+
+**Due guardie, perche' la scala e' un posto dove si sbaglia in silenzio.**
+`levels` e `saga_points` sono indicizzate dal conto, e il motore satura
+sull'ultima casella: una delle due scritta piu' corta non fa nessun errore —
+fa valere **uguale due risultati diversi**, e nessuno se ne accorge leggendo il
+verbale. `check_objective_scales_are_sane` pretende che siano lunghe quanto il
+conto (zero compreso) e che i punti **salgano**: una scala che scende sarebbe un
+refuso che paga chi fa peggio, e si vedrebbe solo a fine saga. Provate a morso
+tutte e due, piu' un test che legge i **dati spediti** e chiede che ogni
+obiettivo in piu' valga piu' del precedente.
+
+---
+
 ## D-199 — Il palese pagato quasi uguale da tutte le case
 **implemented in 0.1.167** (dati: quattro Destini, un pool, una carta condivisibile)
 

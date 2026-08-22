@@ -1886,9 +1886,12 @@ cambiamenti nei dati, due residui nominati (`DST_NAHR` a 72,5% e
 `DST_SHARED_LAND` giurata da Vaerax a 16,7%), e il prezzo dichiarato: più equo
 vuol dire più caro, la media scende da 1,51 a 1,37 obiettivi per seggio.
 
-**Resta da decidere se è la durezza giusta**: 0 su 4 capita nel 20,8% dei seggi e
-4 su 4 nell'1,8%. Compensare è una riga (`saga_points`), ma è una scelta di
-gioco, non un aggiustamento.
+**Compensata un po'** in 0.1.168 ([D-200](DECISIONS.md#d-200)), su decisione del
+committente: `saga_points` passa a −1 · 1 · 2 · 5 · 8 e il punteggio risale a
+**+1,45** per seggio (era +1,51 prima della fase 3, +1,30 dopo). I punti sono
+andati sul terzo e sul quarto obiettivo, i due che quasi nessuno prende. La
+**distribuzione non è cambiata**: 0 su 4 resta al 20,8%, 4 su 4 all'1,8% — è la
+scala dei numeri ad essere cambiata, non la difficoltà.
 
 **E CHR_03 non è ancora passata**: il mondo del Sale non gioca nemmeno a carte, e
 accendergli il punteggio nuovo prima dell'economia nuova vorrebbe dire misurare

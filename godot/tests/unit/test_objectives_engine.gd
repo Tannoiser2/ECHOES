@@ -157,3 +157,33 @@ func test_without_the_rule_the_ladder_is_the_one_of_always() -> void:
 		((shipped.chronicles["CHR_01"] as Dictionary).get("objectives", {}) as Dictionary).is_empty(),
 		"ma CHR_01, come spedita, gioca a obiettivi"
 	)
+
+
+## I numeri della saga, come spediti: ogni obiettivo in più vale di più, e il
+## quarto vale il salto più grosso (D-200). Il conto lo tiene `saga_points`,
+## indicizzato dal numero di obiettivi avverati.
+func test_the_shipped_points_pay_every_extra_objective() -> void:
+	var shipped: RefCounted = DataSet.new()
+	shipped.load_from("res://data")
+	var rules: Dictionary = (shipped.chronicles["CHR_01"] as Dictionary)["objectives"]
+	var points: Array = rules["saga_points"] as Array
+	var levels: Array = rules["levels"] as Array
+	assert_eq(
+		points.size(), levels.size(),
+		"le due scale sono lunghe uguale, o due risultati diversi valgono uguale"
+	)
+	assert_eq(points.size(), int(rules["hidden"]) + 2, "una casella per ogni conto, zero compreso")
+	assert_true(int(points[0]) < 0, "un anno senza niente toglie punti")
+	for i in range(1, points.size()):
+		assert_true(
+			int(points[i]) > int(points[i - 1]),
+			"il %d° obiettivo vale più del precedente (%d > %d)" % [
+				i, int(points[i]), int(points[i - 1])
+			]
+		)
+	var last: int = int(points[points.size() - 1]) - int(points[points.size() - 2])
+	var first: int = int(points[1]) - int(points[0])
+	assert_true(
+		last >= first,
+		"e l'ultimo passo non vale meno del primo: %d contro %d" % [last, first]
+	)
