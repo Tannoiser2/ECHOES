@@ -10,6 +10,70 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-201 — Il mondo del Sale passa alle carte, e una saga smette di giocare a due giochi
+**implemented in 0.1.169**
+
+Due cose, e la prima e' un buco che stava li' da due versioni.
+
+### Una saga giocava a due giochi
+
+**CHR_02 contava i gradini mentre CHR_01 contava gli obiettivi.** Sono i due anni
+della stessa saga, con gli stessi seggi, e il punteggio di campagna sommava le
+due scale **senza dirlo** — perche' il livello con gli obiettivi si *deriva*
+(D-198) e a valle sembra identico. Una campagna di dieci anni avrebbe alternato
+un anno dove non prendere niente e' possibile e un anno dove il Minimo lo
+raggiungono tutti, e il totale non l'avrebbe mai raccontato.
+
+Ogni regola nuova e' arrivata dichiarandosi sulla Chronicle, e ogni volta c'era
+**una seconda Chronicle** da accendere insieme alla prima. Le carte, il
+rubinetto, la presa di parola e il sacchetto erano stati accesi in tutte e due;
+gli obiettivi no, e nessuna guardia lo chiedeva.
+
+**`check_a_saga_plays_one_game`**: le Chronicle vengono appaiate per **lista dei
+seggi** — gli stessi seggi sono la stessa saga — e sei regole confrontate. Non
+serve che i numeri coincidano: serve che una regola accesa da una parte non sia
+spenta dall'altra. Provata a morso sul caso vero.
+
+### Il mondo del Sale passa alle carte
+
+CHR_03 e CHR_04 erano gli ultimi due anni al §10 di prima, e la cosa bloccava
+tutto il resto: il sacchetto non si poteva accendere li' perche' ACQUISIRE era
+due terzi delle azioni e avrebbe scaldato il mondo otto volte la Deriva (D-190).
+
+Acceso tutto insieme — carte, rubinetto, presa di parola in un colpo, sacchetto —
+perche' le meta' si accendono insieme o si misura un terzo gioco che nessuno
+gioca (D-184). E la misura intermedia vale la pena di scriverla: **con le sole
+carte i Consigli erano crollati a 5,01 e 4,81** l'anno (da 6,15 e 6,30), perche'
+meno azioni vuol dire meno INFLUENZARE e meno soglie superate. Il sacchetto e' la
+meta' che rimette il calore.
+
+**E il +1 alle soglie che CHR_01 aveva chiesto e' sbagliato per CHR_03.**
+D-192 aveva misurato che il sacchetto aggiunge il 7% del calore in CHR_01, e
+aveva alzato le soglie di 1. Nel mondo del Sale lo stesso +1 soffoca l'anno:
+
+| `tension_tokens.threshold_bonus` | Consigli in CHR_03 |
+|---|---|
+| 1 (come CHR_01) | **3,90** l'anno |
+| 0 | **5,55** l'anno |
+
+Con lo zero il tavolo torna dov'era: **6,05 e 6,04** Consigli l'anno contro i
+6,15 e 6,30 di prima, **0 su 8** su tutti e due i tavoli. E' esattamente il
+genere di numero che una dichiarazione per Chronicle esiste per portare: due
+mondi che postano calore diverso non vogliono la stessa soglia.
+
+**La mano del Sale, col rubinetto acceso**: 6,00 → 6,66 → **6,79** carte di atto
+in atto, e lo scarto fra la mano piu' piena e la piu' vuota **non cresce** (0,00 →
+1,07 → 0,60) — meglio dell'1,58 di CHR_01. Il freno di D-185 e' sulla mano, e
+funziona anche qui.
+
+**Quello che manca ancora al Sale**: gli obiettivi. Non li ho accesi di
+proposito, perche' i suoi Destini sono i piu' facili di tutti (Cenere 65,8% ·
+Vetro 71,8% · **Libere-Acqua 96,3%**) e accenderli adesso rimetterebbe in campo
+il difetto che D-199 ha appena chiuso — il palese come vantaggio distribuito alla
+nascita. Prima i Destini, poi il punteggio.
+
+---
+
 ## D-200 — Il quarto obiettivo pagato come una cosa rara
 **implemented in 0.1.168** (una riga di dati, e due guardie perche' resti vera)
 

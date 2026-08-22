@@ -1893,9 +1893,11 @@ andati sul terzo e sul quarto obiettivo, i due che quasi nessuno prende. La
 **distribuzione non è cambiata**: 0 su 4 resta al 20,8%, 4 su 4 all'1,8% — è la
 scala dei numeri ad essere cambiata, non la difficoltà.
 
-**E CHR_03 non è ancora passata**: il mondo del Sale non gioca nemmeno a carte, e
-accendergli il punteggio nuovo prima dell'economia nuova vorrebbe dire misurare
-un terzo gioco che nessuno gioca ([D-184](DECISIONS.md#d-184)).
+**E CHR_03 è passata alle carte** in 0.1.169 ([D-201](DECISIONS.md#d-201)) ma
+**non agli obiettivi**, di proposito: i suoi Destini sono i più facili di tutti
+(Cenere 65,8% · Vetro 71,8% · Libere-Acqua **96,3%**) e accenderli adesso
+rimetterebbe in campo il difetto che la fase 3 ha appena chiuso. Prima i suoi
+Destini, poi il punteggio — ed è la **fase 4**.
 
 **Fatto quando** un anno si chiude contando obiettivi invece di gradini ✅, il
 pool ha almeno dodici carte e nessuna sotto il 10% o sopra l'80% ✅, il palese

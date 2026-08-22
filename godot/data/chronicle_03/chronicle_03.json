@@ -235,6 +235,22 @@
         "victory": 3,
         "triumph": 6,
         "decides_after": 10
+      },
+      "actions_from_cards": true,
+      "hand_refill": {
+        "per_token": 2,
+        "floor": 2,
+        "cap": 6,
+        "hand_cap": 7
+      },
+      "claim_rules": {
+        "same_round_when_ready": true,
+        "ready_at": 3
+      },
+      "tension_tokens": {
+        "per_action": 1,
+        "threshold_bonus": 0,
+        "replaces_drift": true
       }
     },
     {
@@ -493,6 +509,22 @@
         "victory": 3,
         "triumph": 6,
         "decides_after": 10
+      },
+      "actions_from_cards": true,
+      "hand_refill": {
+        "per_token": 2,
+        "floor": 2,
+        "cap": 6,
+        "hand_cap": 7
+      },
+      "claim_rules": {
+        "same_round_when_ready": true,
+        "ready_at": 3
+      },
+      "tension_tokens": {
+        "per_action": 1,
+        "threshold_bonus": 0,
+        "replaces_drift": true
       }
     }
   ]

@@ -5,6 +5,39 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.169 — Il mondo del Sale passa alle carte, e una saga smette di giocare a due giochi (D-201)
+
+- **Un buco che stava lì da due versioni**: CHR_02 contava i gradini mentre
+  CHR_01 contava gli obiettivi. Sono i due anni della **stessa saga**, e il
+  punteggio di campagna sommava due scale **senza dirlo**, perché con gli
+  obiettivi il livello si deriva e a valle sembra identico.
+- **`check_a_saga_plays_one_game`**: le Chronicle si appaiano per lista dei seggi
+  e sei regole si confrontano. Una regola accesa da una parte non può essere
+  spenta dall'altra. Provata a morso sul caso vero.
+- **CHR_03 e CHR_04 passano alle carte**: azioni dalle carte, rubinetto, presa di
+  parola in un colpo, sacchetto dei gettoni. Tutto insieme, perché le metà si
+  accendono insieme o si misura un terzo gioco che nessuno gioca.
+- **La misura intermedia, scritta perché vale**: con le sole carte i Consigli
+  erano crollati a **5,01 e 4,81** l'anno. Il sacchetto è la metà che rimette il
+  calore.
+- **E il +1 alle soglie che CHR_01 aveva chiesto è sbagliato per CHR_03**: 3,90
+  Consigli l'anno con il bonus, **5,55 senza**. Due mondi che postano calore
+  diverso non vogliono la stessa soglia — ed è esattamente il numero che una
+  dichiarazione per Chronicle esiste per portare.
+- **La mano del Sale**: 6,00 → 6,66 → **6,79** carte, e lo scarto fra la più
+  piena e la più vuota **non cresce** (0,00 → 1,07 → 0,60), meglio dell'1,58 di
+  CHR_01.
+- **Non accesi gli obiettivi nel Sale**, di proposito: i suoi Destini sono i più
+  facili di tutti (Libere-Acqua al **96,3%**) e accenderli adesso rimetterebbe in
+  campo il difetto che 0.1.167 ha appena chiuso. Prima i Destini, poi il
+  punteggio.
+- Cancello: **401 test in 55 suite, 6887 asserzioni**; playtest **6,05 e 6,04**
+  Consigli, **0 su 8** a tavolo misto e uniforme; sims exit 0; toolchain e
+  `--self-test` puliti.
+- Verbale: [D-201](docs/DECISIONS.md#d-201).
+
+---
+
 ## 0.1.168 — Il quarto obiettivo pagato come una cosa rara (D-200)
 
 - D-199 aveva reso il palese più equo e, per farlo, più caro: il punteggio di
