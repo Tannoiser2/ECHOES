@@ -5,6 +5,46 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.175 — Anche l'anno d'apertura pesca le sue domande (D-207)
+
+- «Le domande non dovevano essere pescate random all'inizio di una saga?» Metà
+  della risposta era **sì, lo fanno**: su 12 saghe la biblioteca tira fuori **14
+  mani diverse su 15 possibili**, e due saghe finiscono a **distanza 0,86** l'una
+  dall'altra. L'altra metà dava ragione al committente: la pesca cominciava
+  dall'**anno 2**, e ogni saga del Grano partiva dalle stesse quattro domande.
+- **Nessuna sonda lo diceva, perché nessuna guardava l'apertura.** Il metro nuovo
+  la nomina — mani d'apertura diverse, e distanza al primo anno — ed è così che
+  «**1 mano su 12 saghe**» è diventato leggibile invece che vero e invisibile.
+- **Adesso pescano tutte e quattro.** `CHR_01` tira 4 candidate su 6, `CHR_03`
+  cinque su sei: pescarne quattro anche lì darebbe più combinazioni, ma
+  cambierebbe la forma dell'anno del Sale per guadagnarle, e nessuno l'ha chiesto.
+- **L'apertura si compone.** Il paragrafo scritto a mano nominava quattro domande
+  e dava la Carestia per certa: dare la biblioteca senza spezzarlo avrebbe fatto
+  leggere al tavolo un anno che non stava giocando. La Chronicle tiene la
+  cornice, ogni domanda porta la propria riga, e una guardia impedisce che una
+  candidata resti senza.
+- **Il trabocchetto che stava per passare:** `library_sequel_of` deduceva «questa
+  Chronicle continua se stessa» dall'**avere una biblioteca**. Vero per caso
+  finché solo gli anni di seguito ne avevano una — con la biblioteca
+  sull'apertura, una saga avrebbe **rigiocato la Carestia per dieci secoli**.
+  Adesso il seguito si dichiara nel dato.
+- **I numeri**: aperture diverse **1 → 6** (Grano) e **1 → 4** (Sale), distanza
+  al primo anno **0,91 → 0,98** e **0,93 → 0,98**, distanza sulla saga intera
+  **0,86 invariata**, playtest **0/8** a tavolo misto e uniforme.
+- **Il prezzo, scritto**: i Consigli l'anno calano da 3,59 a **3,37** (uniforme) e
+  da 3,97 a **3,73** (misto); nella linea del Grano i NONE salgono da 107 a 132 e
+  i Trionfi scendono da 9 a 6. Il Sale non lo paga — Trionfi da 5 a **9**. La
+  causa ha un nome ed è aperta come [ISSUES 51](docs/ISSUES.md).
+- **Tre difetti trovati facendo**, tutti «una dichiarazione applicata nel momento
+  sbagliato»: la biblioteca spenta *dopo* la pesca rompeva il **determinismo**
+  (due esecuzioni dello stesso seme, due partite); i piani scriptati si
+  dichiaravano dopo il setup mentre la sonda lo fa prima — la stessa distanza fra
+  prova e spedizione di D-188; e il criterio «Deriva più Ripple bastano ad
+  arrivare a soglia» era vero **di una Chronicle sola**, quella tarata a mano.
+- **Due voci nuove**: [ISSUES 51](docs/ISSUES.md) — sei domande su dodici non
+  arrivano a soglia da sole, e non ci arrivavano già prima; [ISSUES
+  52](docs/ISSUES.md) — Lyra, **0 Trionfi e 37 NONE su 120 seggi-anno**.
+
 ## 0.1.174 — Il gioco a carte non aveva una storia perché il riempitivo parlava il gioco di prima (D-206)
 
 - Da sei versioni il gioco si spedisce a carte e i tre piani scriptati sono

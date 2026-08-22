@@ -49,6 +49,22 @@ func _heat(tension_id: String, value: int) -> void:
 	))
 
 
+## Il resto del tavolo spento.
+##
+## Da D-207 CHR_01 porta anche `CNF_ANY_SURVIVAL`, perche' la sua biblioteca
+## puo' pescare la Febbre Bassa e i Pozzi Bassi, che un Consiglio proprio non
+## ce l'hanno. L'effetto collaterale e' che **la Carestia diventa una strada**
+## per una clausola che prima poteva passare solo dal Risveglio: questi test
+## trovavano `{}` perche' Lyra non aveva altro da chiedere, non perche' la
+## regola dicesse di no. Adesso lo dicono spegnendo il resto del tavolo, che e'
+## quello che intendevano da sempre.
+func _cool_the_table(except_id: String) -> void:
+	for tension_id in session.world["tensions"]:
+		if str(tension_id) == except_id:
+			continue
+		_heat(str(tension_id), 0)
+
+
 ## Armata e con la domanda che scotta, Lyra prenota il dominio che il suo
 ## Destino aspetta e di cui non avrebbe mai la parola.
 func test_a_wordless_seat_books_the_domain_it_needs() -> void:
@@ -64,6 +80,7 @@ func test_a_wordless_seat_books_the_domain_it_needs() -> void:
 ## un Consiglio che il tavolo non voleva (prima stesura: FAIL 219 -> 339).
 func test_a_cold_question_is_not_worth_the_card() -> void:
 	_arm("ENT_LYRA", 4)
+	_cool_the_table("TEN_AWAKENING")
 	_heat("TEN_AWAKENING", 1)
 	assert_eq(
 		PolicyDecider.new(null)._claim_the_word("ENT_LYRA", session), {},
@@ -86,6 +103,7 @@ func test_booking_needs_the_card_to_cash_it() -> void:
 ## arriva in un round che sarebbe rimasto muto.
 func test_the_claim_is_cashed_the_round_after() -> void:
 	_arm("ENT_LYRA", 4)
+	_cool_the_table("TEN_AWAKENING")
 	_heat("TEN_AWAKENING", 5)
 	var policy: RefCounted = PolicyDecider.new(null)
 	var create: Dictionary = policy._claim_the_word("ENT_LYRA", session)
@@ -109,6 +127,7 @@ func test_the_claim_is_cashed_the_round_after() -> void:
 ## chi li aspettava per posizione.
 func test_the_word_rotates() -> void:
 	_arm("ENT_LYRA", 4)
+	_cool_the_table("TEN_AWAKENING")
 	_heat("TEN_AWAKENING", 5)
 	session.world["last_proponent"] = {"TEN_AWAKENING": "ENT_LYRA"}
 	assert_eq(

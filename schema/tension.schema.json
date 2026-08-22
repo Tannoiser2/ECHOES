@@ -161,6 +161,11 @@
           "items": {
             "type": "string"
           }
+        },
+        "opening_line": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The sentence the world says about this question when it is on the table at a Chronicle's opening. A Chronicle that draws its questions composes its opening from these instead of writing one paragraph that would name questions it might not have drawn (D-207)."
         }
       }
     }

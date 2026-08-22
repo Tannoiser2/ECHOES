@@ -71,13 +71,24 @@ func test_the_tension_draw_is_deterministic_and_varies_by_seed() -> void:
 	)
 
 
-## An authored Chronicle still behaves exactly as before.
-func test_an_authored_chronicle_still_lists_its_own_tensions() -> void:
-	var chronicle: Dictionary = data().chronicles["CHR_01"]
+## Una biblioteca vuota **e'** l'assenza di biblioteca (D-207).
+##
+## Da 0.1.175 anche l'anno d'apertura pesca, e questo test diceva il contrario
+## perche' era vero quando fu scritto. Quello che resta da provare e' il
+## ripiego: un piano scriptato che dichiara `tension_pool: {}` gioca la mano
+## scritta a mano, ed e' l'unico modo che una storia che nomina i propri
+## Consigli ha di restare la stessa storia.
+func test_an_emptied_library_falls_back_to_the_written_hand() -> void:
+	var chronicle: Dictionary = (data().chronicles["CHR_01"] as Dictionary).duplicate(true)
+	assert_false(
+		(chronicle.get("tension_pool", {}) as Dictionary).is_empty(),
+		"CHR_01 pesca le sue domande"
+	)
+	chronicle["tension_pool"] = {}
 	assert_eq(
 		WorldStateFactory.resolve_tensions(chronicle, RngService.new(1)),
 		chronicle["tensions"],
-		"CHR_01 usa la lista scritta a mano, non una pescata"
+		"con la biblioteca spenta si torna alla lista scritta a mano"
 	)
 
 
@@ -86,8 +97,10 @@ func test_an_authored_chronicle_still_lists_its_own_tensions() -> void:
 ## otherwise half the library breaks the moment it is not all in play.
 func test_an_effect_on_a_tension_not_in_play_is_a_noop() -> void:
 	new_session()
+	# `new_session()` spegne la biblioteca prima di pescare (D-207), quindi la
+	# mano e' sempre le quattro scritte a mano e la Febbre Bassa non c'e'.
 	var absent: String = "TEN_PLAGUE"
-	assert_false(session.world["tensions"].has(absent), "TEN_PLAGUE non e in CHR_01")
+	assert_false(session.world["tensions"].has(absent), "TEN_PLAGUE non e in mano")
 	var before: int = (session.world["effect_log"] as Array).size()
 	var stored: Dictionary = session.applier.apply(
 		load("res://scripts/core/effect.gd").make(
@@ -280,12 +293,15 @@ func test_the_opening_record_says_why_each_question_is_on_the_table() -> void:
 		"il calore ereditato (D-088) sta nel verbale con i suoi numeri"
 	)
 
-	# E un anno scritto non verbalizza: le sue domande non sono pescate.
+	# E un anno con la biblioteca spenta non verbalizza: le sue domande non
+	# sono pescate, quindi non c'e' niente da spiegare.
+	var written: Dictionary = (loaded.chronicles["CHR_01"] as Dictionary).duplicate(true)
+	written["tension_pool"] = {}
 	assert_true(
 		WorldStateFactory.opening_record(
-			world, loaded.chronicles["CHR_01"], loaded, previous, results
+			world, written, loaded, previous, results
 		).is_empty(),
-		"CHR_01 non ha pool: niente verbale"
+		"biblioteca spenta: niente verbale"
 	)
 
 

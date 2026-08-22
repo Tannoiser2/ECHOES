@@ -796,6 +796,11 @@
               "description": "I numeri della saga contati per obiettivo invece che per livello, indicizzati come `levels`. Dichiarati, vincono su `saga_scoring`: servono a dare un numero diverso a due successi parziali che il livello confonde."
             }
           }
+        },
+        "sequel_id": {
+          "type": "string",
+          "pattern": "^CHR_[A-Z0-9_]+$",
+          "description": "Which Chronicle a saga plays after this one. A Chronicle that continues itself names itself. Written out rather than inferred from having a tension_pool: once the opening Chronicles draw from the library too, that inference would make a saga replay its own first year forever (D-207)."
         }
       }
     }

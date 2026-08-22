@@ -21,6 +21,13 @@ extends SceneTree
 ##     torna sempre, qualunque seme;
 ##   · **la distanza** — la media, su ogni coppia di saghe, di quanto le loro
 ##     frasi NON si sovrappongono (Jaccard: 0 = identiche, 1 = niente in comune).
+##
+## E due numeri sull'**apertura**, che la distanza media non sa dire perche' un
+## primo anno identico si perde in dieci: quante **mani di domande diverse**
+## escono all'anno d'apertura, e la stessa distanza calcolata sulle sole frasi
+## del **primo anno**. Una saga puo' finire lontanissima da un'altra e aver
+## cominciato dallo stesso identico tavolo — e' esattamente quello che
+## succedeva finche' `CHR_01` e `CHR_03` avevano le domande scritte a mano.
 
 const DataSet := preload("res://scripts/core/data_set.gd")
 const GameSession := preload("res://scripts/chronicle/game_session.gd")
@@ -52,10 +59,13 @@ func _initialize() -> void:
 		return
 
 	var per_saga: Array = []
+	var per_saga_opening: Array = []
+	var opening_hands: Dictionary = {}
 	var levels: Dictionary = {}
 	var lives: Dictionary = {}
 	for saga in range(sagas):
 		var said: Dictionary = {}
+		var opened: Dictionary = {}
 		var carried: Dictionary = {}
 		var results: Dictionary = {}
 		var year: int = 0
@@ -72,9 +82,15 @@ func _initialize() -> void:
 				Characters.deal(seats, RngService.new(seed_value * 31 + 7), session.log) if mixed
 				else PolicyDecider.new(session.log)
 			)
+			if index == 0:
+				var hand: Array = (session.world["tensions"] as Dictionary).keys()
+				hand.sort()
+				opening_hands["|".join(PackedStringArray(hand))] = true
 			var report: Dictionary = await session.run(decider)
 			for entry in session.world["truth_log"]:
 				said[_bare(str(entry["text"]))] = true
+				if index == 0:
+					opened[_bare(str(entry["text"]))] = true
 			for entity_id in seats:
 				var level: String = str(report["destiny_results"][str(entity_id)]["level"])
 				levels[level] = int(levels.get(level, 0)) + 1
@@ -91,6 +107,7 @@ func _initialize() -> void:
 			year = int(session.world["year"])
 			session.dispose()
 		per_saga.append(said.keys())
+		per_saga_opening.append(opened.keys())
 		print("  saga %d/%d (semi da %d): %d frasi distinte, fino all'anno %d" % [
 			saga + 1, sagas, first_seed + saga * 1000, (said.keys() as Array).size(), year
 		])
@@ -107,19 +124,8 @@ func _initialize() -> void:
 			core[str(text)] = true
 
 	# La distanza media fra due saghe qualsiasi.
-	var total: float = 0.0
-	var pairs: int = 0
-	for i in range(sagas):
-		for j in range(i + 1, sagas):
-			var a: Array = per_saga[i]
-			var b: Array = per_saga[j]
-			var shared: int = 0
-			for text in a:
-				if b.has(text):
-					shared += 1
-			var union: int = a.size() + b.size() - shared
-			total += 0.0 if union == 0 else 1.0 - float(shared) / float(union)
-			pairs += 1
+	var distance: float = _mean_distance(per_saga)
+	var opening_distance: float = _mean_distance(per_saga_opening)
 
 	var distinct: int = 0
 	var seen: Dictionary = {}
@@ -136,15 +142,36 @@ func _initialize() -> void:
 	print("  Il nocciolo (in tutte le saghe): %d frasi — il %.0f%% di una saga media" % [
 		core.size(), 100.0 * float(core.size()) / maxf(1.0, float(distinct) / float(sagas))
 	])
-	print("  DISTANZA MEDIA: %.2f  (0 = saghe identiche, 1 = niente in comune)" % (
-		total / maxf(1.0, float(pairs))
-	))
+	print("  DISTANZA MEDIA: %.2f  (0 = saghe identiche, 1 = niente in comune)" % distance)
+	print("  L'APERTURA: %d mani di domande diverse su %d saghe, distanza al primo anno %.2f" % [
+		opening_hands.size(), sagas, opening_distance
+	])
 	var line: Array = []
 	for level in LEVELS:
 		line.append("%s %d" % [level, int(levels.get(level, 0))])
 	print("  Destini raggiunti: %s" % "  ".join(PackedStringArray(line)))
 	print("  Vite viste al tavolo: %d" % lives.size())
 	quit(0)
+
+
+## La distanza media fra due insiemi di frasi qualsiasi (Jaccard, su ogni
+## coppia). Fuori dal corpo principale perche' si misura due volte: sulla saga
+## intera e sul solo anno d'apertura.
+static func _mean_distance(sets: Array) -> float:
+	var total: float = 0.0
+	var pairs: int = 0
+	for i in range(sets.size()):
+		for j in range(i + 1, sets.size()):
+			var a: Array = sets[i]
+			var b: Array = sets[j]
+			var shared: int = 0
+			for text in a:
+				if b.has(text):
+					shared += 1
+			var union: int = a.size() + b.size() - shared
+			total += 0.0 if union == 0 else 1.0 - float(shared) / float(union)
+			pairs += 1
+	return total / maxf(1.0, float(pairs))
 
 
 ## La frase nuda. Una Truth nasce con l'anno davanti («Anno 1640, Atto 2: …»)

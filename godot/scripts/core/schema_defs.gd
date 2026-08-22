@@ -371,6 +371,10 @@ const DEFS := {
 			"objectives": {
 				"type": "Dictionary",
 			},
+			"sequel_id": {
+				"type": "String",
+				"pattern": "^CHR_[A-Z0-9_]+$",
+			},
 		},
 	},
 	"confluence_template": {
@@ -1441,6 +1445,10 @@ const DEFS := {
 				"element": {
 					"type": "String",
 				},
+			},
+			"opening_line": {
+				"type": "String",
+				"min_length": 1,
 			},
 		},
 	},

@@ -155,10 +155,15 @@ func _check_references() -> void:
 			if not entities.has(entity_id):
 				errors.append("%s: unknown entity '%s'" % [chronicle["id"], entity_id])
 		var declared: Array = chronicle.get("tensions", [])
-		if chronicle.has("tension_pool"):
+		if not (chronicle.get("tension_pool", {}) as Dictionary).is_empty():
 			declared = (chronicle["tension_pool"]["candidates"] as Array) + (
 				chronicle["tension_pool"].get("always", []) as Array
 			)
+			for tension_id in chronicle.get("tensions", []):
+				if not declared.has(str(tension_id)):
+					declared.append(str(tension_id))
+		if chronicle.has("sequel_id") and not chronicles.has(str(chronicle["sequel_id"])):
+			errors.append("%s: unknown sequel '%s'" % [chronicle["id"], chronicle["sequel_id"]])
 		for tension_id in declared:
 			if not tensions.has(tension_id):
 				errors.append("%s: unknown tension '%s'" % [chronicle["id"], tension_id])
@@ -201,6 +206,14 @@ func library_sequel_of(chronicle_id: String) -> String:
 	var current: Variant = chronicles.get(chronicle_id)
 	if current == null:
 		return ""
+	# **Il seguito si dichiara.** Fino a 0.1.175 il criterio era «ha una
+	# biblioteca», e finche' solo le Chronicle di seguito ne avevano una era
+	# vero per caso. Dando la biblioteca anche all'anno d'apertura (D-207)
+	# diventava falso nel modo peggiore: `library_sequel_of("CHR_01")` avrebbe
+	# risposto `CHR_01`, e una saga avrebbe rigiocato la Carestia per dieci
+	# secoli senza che niente segnalasse l'errore. Adesso il dato lo dice.
+	if (current as Dictionary).has("sequel_id"):
+		return str((current as Dictionary)["sequel_id"])
 	if (current as Dictionary).has("tension_pool"):
 		return chronicle_id
 	var table: Array = ((current as Dictionary)["entities"] as Array).duplicate()
