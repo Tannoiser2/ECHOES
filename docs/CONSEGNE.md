@@ -70,6 +70,7 @@ Asserzioni disponibili: `assert_true`, `assert_false`, `assert_eq`, `assert_ne`.
 | `run_era_probe.gd` | cosa fa il tempo a una saga, chi siede e dove arriva, **quale clausola manca quando un anno si perde** (0.1.145), e **quanto resta viva una campagna** (0.1.149: cambi di testa, anno dell'ultimo sorpasso) |
 | `run_saga.gd` | racconta una saga anno per anno |
 | `run_token_probe.gd` | **il preventivo di ISSUES 49**: quanti segnalini coperti scenderebbero se il calore lo pescassero i giocatori, quanti Consigli darebbe ogni innesco, e **se sarebbe un altro gioco** |
+| `run_objective_probe.gd` | **il preventivo di ISSUES 50**: se quattro obiettivi sostituiscono i tre gradini, quanti se ne porta a casa un seggio, quanto costa ciascuno, e cosa diventa il punteggio di saga |
 | `run_hand_probe.gd` | **il preventivo di ISSUES 47** — da 0.1.154 anche **dove stanno davvero le pedine** e **il fabbisogno**: quante carte servono per giocare come adesso, quanto si stringe il gioco, e **la mano vera** col rubinetto acceso |
 | `tools/dead_code.py` · `tools/validate_data.py` | codice irraggiungibile · dati contro schemi, **e i Destini che si combattono da soli** (D-178: `--self-test` prova che le guardie mordano) |
 

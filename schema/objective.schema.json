@@ -1,0 +1,194 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://echoes.local/schema/objective.schema.json",
+  "title": "Objective collection",
+  "x-echoes-def": "objective",
+  "x-echoes-kind": "collection",
+  "type": "object",
+  "required": [
+    "schema_id",
+    "version",
+    "items"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_id": {
+      "const": "objective"
+    },
+    "version": {
+      "type": "string"
+    },
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/objective"
+      }
+    }
+  },
+  "$defs": {
+    "condition": {
+      "type": "object",
+      "description": "Reusable WorldState predicate (§14). Evaluated by DestinyEvaluator / ConditionEvaluator.",
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "control_count",
+            "state_tag_present",
+            "state_tag_absent",
+            "asset_threshold",
+            "entity_alive",
+            "relation_state",
+            "tension_limit",
+            "discovery_count",
+            "region_presence",
+            "promise_kept",
+            "promise_broken",
+            "structure_count",
+            "scar_count",
+            "any_of",
+            "some_of"
+          ]
+        },
+        "entity_id": {
+          "type": "string"
+        },
+        "other_entity_id": {
+          "type": "string"
+        },
+        "region_id": {
+          "type": "string"
+        },
+        "tension_id": {
+          "type": "string"
+        },
+        "family": {
+          "type": "string",
+          "enum": [
+            "FORCE",
+            "AUTHORITY",
+            "PEOPLE",
+            "KNOWLEDGE",
+            "WEALTH",
+            "BONDS"
+          ]
+        },
+        "tag": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "string",
+          "enum": [
+            "GLOBAL",
+            "REGION",
+            "ENTITY"
+          ]
+        },
+        "min": {
+          "type": "integer"
+        },
+        "max": {
+          "type": "integer"
+        },
+        "level": {
+          "type": "string",
+          "enum": [
+            "ENEMY",
+            "HOSTILE",
+            "NEUTRAL",
+            "ALLY",
+            "BOUND"
+          ]
+        },
+        "at_least": {
+          "type": "boolean",
+          "default": true,
+          "description": "relation_state: true = level or better; false = exactly this level."
+        },
+        "label": {
+          "type": "string"
+        },
+        "structure_type": {
+          "type": "string",
+          "description": "Per `structure_count`: quale tipo del catalogo. Omesso, vale qualunque tipo."
+        },
+        "structure_family": {
+          "type": "string",
+          "enum": [
+            "PRESIDIO",
+            "INSEDIAMENTO",
+            "OPERA",
+            "LUOGO",
+            "CHIUSURA"
+          ],
+          "description": "Per `structure_count`: limita il conto a una famiglia — «due presidi» invece di «due strutture qualsiasi». Omessa, contano tutte."
+        },
+        "grade": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4,
+          "description": "Il grado **minimo** che la struttura deve avere. Un Destino che chiede una reggia chiede grado 3; uno che chiede «qualcosa di murato» chiede grado 1."
+        },
+        "anyone": {
+          "type": "boolean",
+          "default": false,
+          "description": "Per `structure_count`: se contino anche le strutture di un altro. Serve alle clausole scritte sul mondo invece che sulla propria casa — «e nessuno ha alzato una reggia sulla montagna» e' `anyone` con `max: 0`."
+        },
+        "conditions": {
+          "type": "array",
+          "minItems": 1,
+          "description": "Per `any_of`: vale quando almeno una vale. Per `some_of`: quando ne valgono almeno `min`. Ogni altra lista di condizioni nello schema e' una AND.",
+          "items": {
+            "$ref": "#/$defs/condition"
+          }
+        }
+      }
+    },
+    "objective": {
+      "type": "object",
+      "description": "Un obiettivo: un traguardo piatto, senza gradini (D-197). Si avvera o no, e a fine anno si contano quanti se ne sono avverati - non fino a dove si e' saliti.",
+      "required": [
+        "id",
+        "title",
+        "description",
+        "label",
+        "conditions"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^OBJ_[A-Z0-9_]+$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "description": "La riga che va a verbale a fine anno quando l'obiettivo si e' avverato."
+        },
+        "conditions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/condition"
+          }
+        },
+        "art_prompt_key": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

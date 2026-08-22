@@ -30,7 +30,7 @@ except ImportError:  # pragma: no cover - environment guard
     )
     raise SystemExit(2)
 
-from echoes_schema import DATA_DIR, iter_data_files, load_schemas, rel
+from echoes_schema import DATA_DIR, SCHEMA_DIR, iter_data_files, load_schemas, rel
 
 # Documents that are runtime shapes, not authored collections. They live in
 # /schema but never appear as files under godot/data.
@@ -691,6 +691,88 @@ def check_sim_plans_declare_their_economy(
                 )
 
 
+def check_condition_vocabularies_agree(
+    documents: Dict[str, List[Dict[str, Any]]],
+    origins: Dict[str, str],
+    report: "Report",
+) -> None:
+    """Il vocabolario delle clausole e' scritto due volte: che dica la stessa cosa.
+
+    `ConditionEvaluator` e' uno solo (§14), ma gli schemi sono file
+    autoconsistenti: `destiny.schema.json` e `objective.schema.json` portano
+    ciascuno la propria copia di `$defs/condition`. Il giorno in cui una delle
+    due impara un predicato nuovo e l'altra no, meta' dei dati puo' scrivere una
+    clausola che l'altra meta' rifiuta — e il messaggio d'errore parlerebbe di
+    schemi, non di gioco. Qui le due copie vengono confrontate e basta.
+    """
+    import json as _json
+
+    first = SCHEMA_DIR / "destiny.schema.json"
+    second = SCHEMA_DIR / "objective.schema.json"
+    if not first.exists() or not second.exists():
+        return
+    a = _json.loads(first.read_text(encoding="utf-8"))["$defs"]["condition"]
+    b = _json.loads(second.read_text(encoding="utf-8"))["$defs"]["condition"]
+    if a != b:
+        report.fail(
+            "schema",
+            "`$defs/condition` di destiny.schema.json e objective.schema.json "
+            "non coincidono piu': il vocabolario delle clausole e' uno solo, "
+            "quindi le due copie vanno riallineate",
+        )
+
+
+
+def check_objectives_are_shareable(
+    documents: Dict[str, List[Dict[str, Any]]],
+    origins: Dict[str, str],
+    report: "Report",
+) -> None:
+    """Un obiettivo del pool si pesca a qualunque tavolo, o non e' del pool.
+
+    Il pool nascosto (D-197) e' pescato all'inizio della partita da qualunque
+    casa, in qualunque Chronicle. Una clausola che nomina `ENT_ALDRIC`, o
+    `REG_EREDAN`, o `TEN_FAMINE` non e' un obiettivo condivisibile: e' un
+    Destino travestito, e nel mondo del Sale sarebbe **falso per costruzione** —
+    si avvererebbe mai, e nessuno se ne accorgerebbe perche' un obiettivo che
+    non si avvera assomiglia a un obiettivo difficile.
+
+    Quindi: dentro un obiettivo, `entity_id` puo' essere solo `$self`, e nessuna
+    clausola puo' nominare una Regione o una Tensione. Il vocabolario che resta
+    (Regioni contate, pietre, cicatrici, segni, mano, scoperte) e' quello che
+    D-197 ha misurato.
+    """
+    objectives = documents.get("objective", [])
+    if not objectives:
+        return
+
+    def walk(condition: Dict[str, Any], where: str) -> None:
+        entity_id = condition.get("entity_id")
+        if entity_id is not None and str(entity_id) != "$self":
+            report.fail(
+                where,
+                f"la clausola nomina «{entity_id}»: un obiettivo del pool "
+                "si risolve su chi lo pesca, quindi `entity_id` puo' essere "
+                "solo `$self`",
+            )
+        for key in ("region_id", "tension_id", "other_entity_id"):
+            if key in condition:
+                report.fail(
+                    where,
+                    f"la clausola nomina `{key}` = «{condition[key]}»: un "
+                    "obiettivo del pool deve valere in ogni Chronicle, e quel "
+                    "nome esiste solo in una",
+                )
+        for sub in condition.get("conditions", []):
+            walk(sub, where)
+
+    for objective in objectives:
+        where = f"objective [{objective.get('id')}]"
+        for condition in objective.get("conditions", []):
+            walk(condition, where)
+
+
+
 def check_destiny_token_budget(
     documents: Dict[str, List[Dict[str, Any]]],
     origins: Dict[str, str],
@@ -947,6 +1029,8 @@ def main() -> int:
         check_destiny_free_roads(documents, origins, report)
         check_asset_sources_are_true(documents, origins, report)
         check_sim_plans_declare_their_economy(documents, origins, report)
+        check_objectives_are_shareable(documents, origins, report)
+        check_condition_vocabularies_agree(documents, origins, report)
 
     # Duplicate ids across the whole data set are always a bug.
     seen: Dict[str, str] = {}

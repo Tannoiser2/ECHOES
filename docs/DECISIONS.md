@@ -10,6 +10,155 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-197 — Il pool degli obiettivi, dodici carte misurate una per una
+**implemented in 0.1.165** (i dati e le guardie; il motore non e' ancora cambiato)
+
+D-196 aveva detto che il pool non c'era: sei candidati, uno dei quali si avvera
+nell'1,8% dei seggi, e sei sono pochi per pescarne tre — uscirebbe mezzo pool
+ogni partita e il draft non sceglierebbe niente. Questa e' la prima meta' del
+lavoro: **il pool, scritto come dato e misurato una carta per volta**.
+
+**Un obiettivo non e' un Destino, e ora non lo e' nemmeno nei dati.** Nuovo
+schema `objective`: id, titolo, descrizione, **la riga che va a verbale**, e una
+lista di clausole. Nessun gradino. Un Destino dice fin dove si sale; un
+obiettivo si avvera o no, e a fine anno si contano.
+
+**Dodici obiettivi, tassi misurati su 100 Chronicle (400 seggi, semi
+7000–7099), tavolo misto:**
+
+| obiettivo | cosa chiede | si avvera |
+|---|---|---|
+| Qualcosa che Resta in Piedi | una pietra sua | 79,0% |
+| Il Muro che Tiene | un presidio | 74,8% |
+| Le Mani Piene | 5 carte a fine anno | 44,0% |
+| Nessuna Domanda Lasciata Aperta | il mondo senza questioni aperte | 39,0% |
+| Due Terre, una Voce | 2 Regioni controllate | 37,2% |
+| Il Nome che Pesa | il segno della fama | 29,8% |
+| Le Cose Scritte | 2 carte Sapere a fine anno | 25,2% |
+| Un Mondo che si Può Ancora Usare | non più di 2 cicatrici | 22,0% |
+| L'Opera che Porta il Nome | un'opera | 21,0% |
+| Pietra sopra Pietra | una struttura di grado 2 | 14,2% |
+| Le Cose che si Sanno | 2 scoperte | 11,8% |
+| Le Corde che Tengono | 2 Legami a fine anno | 10,2% |
+
+Nessuno sotto il 10%, nessuno sopra l'80%: il criterio che D-196 aveva posto.
+Media 34,0%.
+
+**E la distribuzione cambia di brutto rispetto al preventivo.** Con un palese e
+tre pescati da questo pool invece che dai sei vecchi candidati:
+
+| obiettivi presi | col vecchio pool (D-196) | con questi dodici |
+|---|---|---|
+| 0 su 4 | 27,2% | **16,2%** |
+| 1 su 4 | 36,2% | 32,0% |
+| 2 su 4 | 21,5% | 31,5% |
+| 3 su 4 | 12,8% | 17,5% |
+| 4 su 4 | 2,2% | **2,8%** |
+| media | 1,26 | **1,58** |
+| punteggio di saga | +1,17 | +1,65 |
+
+Il NONE resta vero (16,2% contro lo 0,8% dei gradini di oggi) ma smette di
+essere il caso piu' probabile dopo l'uno; il trionfo resta raro. **Non ho
+toccato nessuna soglia per ottenerlo**: sono cambiate solo le carte del pool.
+
+**Due obiettivi bocciati coi numeri**, e vale la pena scriverlo perche' sono
+esattamente i due che sembravano piu' belli:
+
+* *«La Parola Data»* (nessun giuramento spezzato nel mondo) — **100%**. Il segno
+  `oath_broken` non lo posa quasi nessuno: era un regalo travestito da scrupolo.
+* *«Il Mondo Intatto»* (zero cicatrici) — **2,0%**. Arredo: nessuno l'ha mai
+  visto da vicino. La stessa idea a due cicatrici sta al 22%, e quella e' entrata.
+
+**Il vocabolario e' ristretto per forza, e la guardia lo dice.** Un obiettivo del
+pool lo pesca chiunque in qualunque Chronicle: se una clausola nomina
+`ENT_ALDRIC`, `REG_EREDAN` o `TEN_FAMINE`, nel mondo del Sale e' **falsa per
+costruzione** — e un obiettivo che non si avvera mai assomiglia in tutto a un
+obiettivo difficile. `check_objectives_are_shareable` fa rosso la CI; il test
+`test_objective_pool.gd` prova la stessa cosa dal lato del motore, piu' che ogni
+predicato sia uno che `ConditionEvaluator` sa davvero valutare. Restano fuori
+`relation_state` e le promesse, che hanno bisogno di nominare l'altro.
+
+**Una seconda guardia, per un difetto che non e' ancora successo**: il
+vocabolario delle clausole ora e' scritto **due volte** (in `destiny.schema.json`
+e in `objective.schema.json`, perche' gli schemi sono file autoconsistenti).
+`check_condition_vocabularies_agree` confronta le due copie: il giorno in cui una
+impara un predicato e l'altra no, la CI lo dice prima dei dati.
+
+**Correzione a D-196.** Avevo scritto che il palese va «dal 41% di Aldric al 91%
+delle Libere». Il 91% e' `DST_LIBERE_WATER`, un Destino **variante**; fra gli
+otto Destini identitari lo scarto e' **35,7%–80,0%** (Lyra 35,7 · Libere 38,9 ·
+Aldric e Sale 41,2 · Vaerax 43,8 · Cenere 70,0 · Vetro 77,8 · Nahr 80,0). La
+frase era difendibile — un seggio puo' giurare una variante, e allora quello *e'*
+il suo palese — ma il numero che conta per riscrivere i Destini e' il secondo.
+
+**Quello che questa voce non fa**: il motore. Nessuna partita pesca ancora
+obiettivi, nessun anno si chiude contandoli, i tre gradini sono ancora la scala
+di §14. I dodici obiettivi esistono, sono validi, sono misurati e non sono
+raggiungibili da nessuna regola — di proposito: **il pool e' il preventivo che
+diventa dato**, e il motore e' la voce dopo.
+
+---
+
+## D-196 — Il prezzo dei quattro obiettivi al posto dei tre gradini
+**measured in 0.1.164** (preventivo: nessuna regola cambiata)
+
+Il committente ha chiuso la domanda che avevo lasciato aperta: **gli obiettivi
+sostituiscono i gradini**. «Se si ottengono tutti e 4 è un trionfo, se non se ne
+raggiunge nessuno è un NONE, gli altri sono successi parziali, e vittorie che
+danno numeri alla fine della saga.»
+
+Come per il sacchetto (D-190), prima di riscrivere §14 ho misurato: una sonda
+ombra, `godot/cli/run_objective_probe.gd`, che **non cambia nessuna regola**.
+Gioca le partite come sono e a fine anno legge il mondo una seconda volta,
+chiedendogli cose che il gioco non gli chiede: quante volte si sarebbe avverato
+ciascun obiettivo candidato, seggio per seggio.
+
+**Come ho tradotto i dati di oggi in obiettivi, e perché.** Un Destino oggi ha
+tre gradini; se i gradini spariscono, il suo contenuto deve collassare in *un*
+traguardo. Il candidato per il **palese** è la **Vittoria** — quello per cui la
+casa è venuta al tavolo. Il Minimo no: D-150 ha già stabilito che il Minimo è
+sopravvivere, non un obiettivo, e infatti lo raggiungono tutti. Il **pool
+nascosto** sono i Destini condivisibili di D-115 (`$self`, scritti apposta per
+essere giurati da chiunque), letti come due obiettivi ciascuno.
+
+**Su 100 Chronicle, 400 seggi, semi 7000–7099, tavolo misto:**
+
+| dove si arriva | oggi | coi quattro obiettivi |
+|---|---|---|
+| niente | 0,8% | **27,2%** |
+| primo scalino | 48,2% | 36,2% |
+| in mezzo | 34,2% | 34,3% |
+| tutto | 16,8% | **2,2%** |
+| punteggio di saga | +2,51 | +1,17 |
+
+**Il numero che decide**: il NONE passa da 3 seggi su 400 a **109**. Non è un
+ritocco al punteggio, è il ritorno della possibilità di perdere — che oggi, di
+fatto, non c'è.
+
+**E la sonda ha trovato un difetto che non stavo cercando**: il palese non costa
+uguale a tutte le case. Letto come Vittoria del Destino scritto va dal **41% di
+Aldric al 91% delle Libere**. Se il palese vale un quarto del risultato, quello
+scarto è un vantaggio distribuito alla nascita — e va deciso se è un difetto o se
+è l'asimmetria di ECHOES che arriva fino al punteggio (ISSUES 50, punto 2).
+
+**Quello che il pool non può ancora fare**: i candidati esistenti sono sei, e uno
+(`DST_SHARED_LAND/triumph`) si avvera nell'**1,8%** dei seggi — è arredo. Sei
+sono pochi per pescarne tre: metà del pool uscirebbe ogni partita e il draft non
+sceglierebbe niente. Ne servono almeno dodici, e nessuno sotto il 10% o sopra
+l'80%.
+
+**Dichiarato non misurato** (§5ter): il draft. Scegliere un obiettivo guardando
+gli altri scegliere è una decisione umana, e il cancello gioca solo con
+`PolicyDecider`. La sonda pesca a caso — che è il caso peggiore per la varietà e
+il migliore per l'onestà del numero.
+
+La mappa dei numeri proposta dalla sonda (0 → −1, 1 → 1, 2 → 2, 3 → 4, 4 → 6)
+tiene i due estremi di `saga_scoring` e riempie in mezzo. **È una proposta da
+bocciare o correggere, non un dato**: è scritta nel codice della sonda, non nei
+dati del gioco, proprio perché nessuno la scambi per una regola.
+
+---
+
 ## D-195 — Quello che una persona legge, riscritto dalle regole
 **implemented in 0.1.163** (§5ter: il seguito di D-194, cercato invece che aspettato)
 

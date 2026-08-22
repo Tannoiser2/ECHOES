@@ -686,6 +686,23 @@ fine anno. I tipi di clausola disponibili:
 | `scar_count` | quante cicatrici porta il mondo, o una Regione in particolare |
 | `any_of` / `some_of` | almeno una — o almeno K — fra le clausole annidate |
 
+### Quello che sostituirà i gradini (scritto, non ancora acceso)
+
+Il committente ha deciso che i tre gradini cumulativi lasceranno il posto a
+**quattro obiettivi**: uno palese, legato all'entità, e tre nascosti pescati da
+un pool. Tutti e quattro è un trionfo, nessuno è un NONE, in mezzo ci sono i
+successi parziali — e sono quelli che danno i numeri alla fine della saga.
+
+Il **pool esiste già come dato**: dodici obiettivi, misurati uno per uno su cento
+Chronicle, dal 79,0% («una pietra sua») al 10,2% («due Legami a fine anno»). Un
+obiettivo non ha gradini: si avvera o no. Con un palese e tre pescati, un seggio
+se ne porta a casa **1,58** in media; nessuno in **16,2%** dei casi, tutti e
+quattro nel **2,8%**.
+
+**Niente di tutto questo è ancora giocabile**: nessuna partita pesca obiettivi e
+la scala di §14 è ancora quella dei tre gradini. Il pool è il preventivo che è
+diventato dato ([D-197](DECISIONS.md#d-197)).
+
 ### La spina e la scelta
 
 Il MINIMO e la VITTORIA sono liste da soddisfare per intero. Il **TRIONFO** no:

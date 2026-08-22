@@ -1,0 +1,191 @@
+{
+  "schema_id": "objective",
+  "version": "0.2.0",
+  "items": [
+    {
+      "id": "OBJ_A_GARRISON",
+      "title": "Il Muro che Tiene",
+      "description": "C'è chi costruisce per essere ricordato e chi costruisce per non essere cacciato. Questo obiettivo è del secondo tipo.",
+      "label": "Un presidio suo tiene la terra",
+      "conditions": [
+        {
+          "type": "structure_count",
+          "entity_id": "$self",
+          "structure_family": "PRESIDIO",
+          "min": 1,
+          "label": "Almeno un presidio suo"
+        }
+      ],
+      "art_prompt_key": "objective.a_garrison"
+    },
+    {
+      "id": "OBJ_A_HIGH_HOUSE",
+      "title": "Pietra sopra Pietra",
+      "description": "Alzare qualcosa è facile: alzarlo due volte, no. Chi porta una casa al secondo grado ha speso un anno per farlo.",
+      "label": "Una sua pietra è salita di grado",
+      "conditions": [
+        {
+          "type": "structure_count",
+          "entity_id": "$self",
+          "grade": 2,
+          "min": 1,
+          "label": "Almeno una struttura sua di grado 2 o più"
+        }
+      ],
+      "art_prompt_key": "objective.a_high_house"
+    },
+    {
+      "id": "OBJ_A_LEARNED_HOUSE",
+      "title": "Le Cose che si Sanno",
+      "description": "Sapere non si vede sul tavolo e non si conta in Regioni. Ma alla fine dell'anno, chi ha guardato più a fondo ha guardato più a fondo.",
+      "label": "Ha imparato almeno due cose che il mondo sa indicare",
+      "conditions": [
+        {
+          "type": "discovery_count",
+          "entity_id": "$self",
+          "min": 2,
+          "label": "Almeno due scoperte"
+        }
+      ],
+      "art_prompt_key": "objective.a_learned_house"
+    },
+    {
+      "id": "OBJ_A_STONE",
+      "title": "Qualcosa che Resta in Piedi",
+      "description": "Le parole si scordano, le pietre no. Un anno che non lascia niente di murato è un anno che il mondo dimentica.",
+      "label": "Ha lasciato almeno una pietra sua",
+      "conditions": [
+        {
+          "type": "structure_count",
+          "entity_id": "$self",
+          "min": 1,
+          "label": "Almeno una struttura sua in piedi"
+        }
+      ],
+      "art_prompt_key": "objective.a_stone"
+    },
+    {
+      "id": "OBJ_A_WORK",
+      "title": "L'Opera che Porta il Nome",
+      "description": "Non un presidio, non un insediamento: un'opera. Qualcosa che serve a tutti e che tutti sanno di chi è.",
+      "label": "Un'opera porta il suo nome",
+      "conditions": [
+        {
+          "type": "structure_count",
+          "entity_id": "$self",
+          "structure_family": "OPERA",
+          "min": 1,
+          "label": "Almeno un'opera sua"
+        }
+      ],
+      "art_prompt_key": "objective.a_work"
+    },
+    {
+      "id": "OBJ_BOUND_HOUSE",
+      "title": "Le Corde che Tengono",
+      "description": "Chi arriva alla fine dell'anno con i legami ancora in mano non ha vinto niente da solo, e lo sa.",
+      "label": "Chiude l'anno con due Legami in mano",
+      "conditions": [
+        {
+          "type": "asset_threshold",
+          "entity_id": "$self",
+          "family": "BONDS",
+          "min": 2,
+          "label": "Almeno 2 carte Legami in mano"
+        }
+      ],
+      "art_prompt_key": "objective.bound_house"
+    },
+    {
+      "id": "OBJ_FULL_HANDS",
+      "title": "Le Mani Piene",
+      "description": "Finire l'anno con qualcosa ancora da giocare. Non è prudenza: è avere sempre avuto una carta più degli altri.",
+      "label": "Chiude l'anno con almeno cinque carte in mano",
+      "conditions": [
+        {
+          "type": "asset_threshold",
+          "entity_id": "$self",
+          "min": 5,
+          "label": "Almeno 5 carte in mano a fine anno"
+        }
+      ],
+      "art_prompt_key": "objective.full_hands"
+    },
+    {
+      "id": "OBJ_NO_OPEN_QUESTION",
+      "title": "Nessuna Domanda Lasciata Aperta",
+      "description": "Si può vincere prendendo, o si può vincere finendo. Questo obiettivo è di chi non sopporta i conti in sospeso — e non gli importa chi li ha chiusi.",
+      "label": "L'anno si chiude senza questioni aperte",
+      "conditions": [
+        {
+          "type": "state_tag_absent",
+          "scope": "GLOBAL",
+          "tag": "question_unresolved",
+          "label": "Nessuna questione lasciata aperta"
+        }
+      ],
+      "art_prompt_key": "objective.no_open_question"
+    },
+    {
+      "id": "OBJ_QUIET_WORLD",
+      "title": "Un Mondo che si Può Ancora Usare",
+      "description": "Il mondo si porta addosso quello che gli fai. Questo obiettivo chiede un anno che non lasci più di due cicatrici — e non chiede di chi sia la mano.",
+      "label": "Il mondo esce dall'anno con non più di due segni",
+      "conditions": [
+        {
+          "type": "scar_count",
+          "max": 2,
+          "label": "Non più di due cicatrici sulla mappa"
+        }
+      ],
+      "art_prompt_key": "objective.quiet_world"
+    },
+    {
+      "id": "OBJ_THE_NAME",
+      "title": "Il Nome che Pesa",
+      "description": "Non importa da dove vieni: importa che quando parli, il tavolo ascolta. La fama è un segno che il mondo scrive addosso, e non si compra.",
+      "label": "Il suo nome porta il segno della fama",
+      "conditions": [
+        {
+          "type": "state_tag_present",
+          "scope": "ENTITY",
+          "entity_id": "$self",
+          "tag": "renowned",
+          "label": "La casa porta il segno della fama"
+        }
+      ],
+      "art_prompt_key": "objective.the_name"
+    },
+    {
+      "id": "OBJ_TWO_LANDS",
+      "title": "Due Terre, una Voce",
+      "description": "Non basta esserci: bisogna che due posti rispondano quando chiami. È l'ambizione più semplice del tavolo, e la più difficile da nascondere.",
+      "label": "Due Regioni rispondono al suo nome",
+      "conditions": [
+        {
+          "type": "control_count",
+          "entity_id": "$self",
+          "min": 2,
+          "label": "Controllo di almeno 2 Regioni"
+        }
+      ],
+      "art_prompt_key": "objective.two_lands"
+    },
+    {
+      "id": "OBJ_WRITTEN_THINGS",
+      "title": "Le Cose Scritte",
+      "description": "Non quello che hai capito: quello che tieni in mano e puoi rileggere. Chiudere l'anno con due carte di Sapere è una scelta, perché ognuna era anche un'azione che non hai fatto.",
+      "label": "Chiude l'anno con due carte di Sapere in mano",
+      "conditions": [
+        {
+          "type": "asset_threshold",
+          "entity_id": "$self",
+          "family": "KNOWLEDGE",
+          "min": 2,
+          "label": "Almeno 2 carte Sapere in mano"
+        }
+      ],
+      "art_prompt_key": "objective.written_things"
+    }
+  ]
+}

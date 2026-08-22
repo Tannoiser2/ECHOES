@@ -855,6 +855,45 @@ const DEFS := {
 			},
 		},
 	},
+	"objective": {
+		"kind": "collection",
+		"required": [
+			"id",
+			"title",
+			"description",
+			"label",
+			"conditions",
+		],
+		"additional_properties": false,
+		"properties": {
+			"id": {
+				"type": "String",
+				"pattern": "^OBJ_[A-Z0-9_]+$",
+			},
+			"title": {
+				"type": "String",
+				"min_length": 1,
+			},
+			"description": {
+				"type": "String",
+				"min_length": 1,
+			},
+			"label": {
+				"type": "String",
+				"min_length": 1,
+			},
+			"conditions": {
+				"type": "Array",
+				"min_items": 1,
+				"element": {
+					"type": "Dictionary",
+				},
+			},
+			"art_prompt_key": {
+				"type": "String",
+			},
+		},
+	},
 	"region": {
 		"kind": "collection",
 		"required": [
@@ -1601,6 +1640,7 @@ const COLLECTION_SCHEMA_IDS := [
 	"destiny",
 	"echo_card",
 	"entity",
+	"objective",
 	"region",
 	"sim_plan",
 	"structure_type",
