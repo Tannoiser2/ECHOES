@@ -5,6 +5,63 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.168 — Il quarto obiettivo pagato come una cosa rara (D-200)
+
+- D-199 aveva reso il palese più equo e, per farlo, più caro: il punteggio di
+  saga era sceso da +1,51 a +1,30. Ho scritto il numero peggiorato invece di
+  compensarlo da solo, e il committente ha deciso: **compensare un po'**.
+- `objectives.saga_points` per CHR_01: **−1 · 1 · 2 · 5 · 8** (era −1 · 1 · 2 ·
+  4 · 6). Misurato: **+1,45 per seggio** — **recuperati tre quarti**, e il quarto
+  che manca resta il prezzo dichiarato di un palese che costa uguale a tutti.
+- **I punti sono andati sul terzo e sul quarto obiettivo**: sono i due che quasi
+  nessuno prende (10,8% e 1,8%), e un trionfo che capita a un seggio su
+  cinquantacinque deve valere più del doppio di «due su quattro». I due estremi
+  restano dove erano: un anno senza niente toglie, e prenderne uno vale poco.
+- **Due guardie**, perché la scala è un posto dove si sbaglia in silenzio:
+  `levels` e `saga_points` sono indicizzate dal conto e il motore satura
+  sull'ultima casella, quindi una scala più corta farebbe valere **uguale due
+  risultati diversi** senza nessun errore. Ora la CI pretende che siano lunghe
+  quanto il conto e che i punti salgano. Provate a morso, più un test sui dati
+  spediti.
+- Cancello: **401 test in 55 suite, 6889 asserzioni**; playtest **0 su 8** a
+  tavolo misto e uniforme; sims exit 0; toolchain e `--self-test` puliti.
+- Verbale: [D-200](docs/DECISIONS.md#d-200), [ISSUES 50](docs/ISSUES.md).
+
+---
+
+## 0.1.167 — Il palese pagato quasi uguale da tutte le case (D-199)
+
+- Il difetto che D-196 aveva trovato per strada e che D-198 ha acceso lo stesso,
+  dichiarandolo: **il palese vale un quarto del risultato e non costava uguale a
+  tutti** — un vantaggio distribuito alla nascita.
+- **La misura che conta è per casa, non per Destino**, perché una casa non
+  sceglie quale dei tre le tocchi. Su 200 Chronicle, stessi semi: Nahr da
+  **80,9% a 54,2%**, Lyra da 52,5% a 34,6%, Aldric e Vaerax fermi. **Lo scarto
+  fra la casa più cara e la più facile passa da 43,2 a 19,6 punti** — meno della
+  metà.
+- **Quattro cambiamenti, tutti nei dati**: `DST_NAHR_ROOTED` chiede due segni di
+  non essere di passaggio invece di uno; `DST_LYRA_TAUGHT` — che si chiama «Il
+  sapere ha un posto suo» — adesso **il posto lo chiede**; `DST_SHARED_LAND`
+  accetta due Regioni tenute **o** due cose in piedi; e Nahr, che aveva tre
+  Destini di terra su tre, scambia il condivisibile con «I Conti Chiusi».
+- **La regola generale imparata misurando**: una carta condivisibile costa
+  uguale a tutti **solo se parla del mondo, non del tuo tavolo**. «I Conti
+  Chiusi» guarda i segni globali e costa 42–45% a chiunque; «La Terra che
+  Risponde» conta le *tue* Regioni, e allora il prezzo è la posizione di
+  partenza travestita da ambizione.
+- **Due residui, scritti invece che nascosti**: `DST_NAHR` resta a 72,5% (ci ho
+  provato due volte e il numero non si è mosso: quello che costa sono le sue
+  prime due clausole, e cambiarle vorrebbe dire riscrivere cosa significa) e
+  `DST_SHARED_LAND` giurata da Vaerax resta a 16,7%.
+- **Il prezzo, dichiarato**: più equo vuol dire più caro. 0 su 4 da 16,5% a
+  **20,8%**, media da 1,51 a **1,37**, saga da +1,51 a **+1,30**. Non ho
+  compensato con `saga_points`: prima va deciso se è la durezza giusta.
+- Cancello: **400 test in 55 suite, 6881 asserzioni**; playtest **0 su 8** a
+  tavolo misto e uniforme (Consigli 6,15 e 6,30); sims exit 0; toolchain pulita.
+- Verbale: [D-199](docs/DECISIONS.md#d-199), [ISSUES 50](docs/ISSUES.md).
+
+---
+
 ## 0.1.166 — Gli obiettivi al posto dei gradini, accesi (D-198)
 
 - **CHR_01 non sale più una scala: conta.** Uno palese — il Destino giurato, che

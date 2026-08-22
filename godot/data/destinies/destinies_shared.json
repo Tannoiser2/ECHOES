@@ -91,13 +91,26 @@
         ]
       },
       "victory": {
-        "label": "Due terre, una voce",
+        "label": "La terra risponde, e non importa come",
         "conditions": [
           {
-            "type": "control_count",
-            "entity_id": "$self",
-            "min": 2,
-            "label": "Controllo di almeno 2 Regioni"
+            "type": "some_of",
+            "min": 1,
+            "label": "Due Regioni che rispondono, o due cose che stanno in piedi",
+            "conditions": [
+              {
+                "type": "control_count",
+                "entity_id": "$self",
+                "min": 2,
+                "label": "Controllo di almeno 2 Regioni"
+              },
+              {
+                "type": "structure_count",
+                "entity_id": "$self",
+                "min": 2,
+                "label": "O due strutture sue"
+              }
+            ]
           }
         ]
       },

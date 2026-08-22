@@ -10,6 +10,114 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-200 — Il quarto obiettivo pagato come una cosa rara
+**implemented in 0.1.168** (una riga di dati, e due guardie perche' resti vera)
+
+D-199 ha reso il palese piu' equo e, per farlo, piu' caro: il punteggio di saga
+era sceso da +1,51 a +1,30 per seggio. Ho scritto il numero peggiorato invece di
+compensarlo di mia iniziativa, e il committente ha deciso: **compensare un po'**.
+
+`objectives.saga_points` per CHR_01: **−1 · 1 · 2 · 5 · 8** (era −1 · 1 · 2 · 4 ·
+6). Misurato su 200 Chronicle: **+1,45 per seggio**, contro i +1,30 di prima e i
++1,51 di prima ancora. **Recuperati tre quarti**, e il quarto che manca resta il
+prezzo dichiarato di un palese che costa uguale a tutti.
+
+**Dove ho messo i punti, e perche' li'.** La distribuzione non e' cambiata di un
+seggio — questa e' solo la scala dei numeri — quindi si trattava di scegliere
+*quali* risultati pagare meglio. Ho pagato **il terzo e il quarto obiettivo**:
+sono i due che quasi nessuno prende (10,8% e 1,8%), e un trionfo che capita a un
+seggio su cinquantacinque deve valere piu' del doppio di «due su quattro», o non
+vale la pena inseguirlo. I due estremi restano dove il committente li aveva
+messi: un anno senza niente **toglie**, e prenderne uno vale poco.
+
+**Due guardie, perche' la scala e' un posto dove si sbaglia in silenzio.**
+`levels` e `saga_points` sono indicizzate dal conto, e il motore satura
+sull'ultima casella: una delle due scritta piu' corta non fa nessun errore —
+fa valere **uguale due risultati diversi**, e nessuno se ne accorge leggendo il
+verbale. `check_objective_scales_are_sane` pretende che siano lunghe quanto il
+conto (zero compreso) e che i punti **salgano**: una scala che scende sarebbe un
+refuso che paga chi fa peggio, e si vedrebbe solo a fine saga. Provate a morso
+tutte e due, piu' un test che legge i **dati spediti** e chiede che ogni
+obiettivo in piu' valga piu' del precedente.
+
+---
+
+## D-199 — Il palese pagato quasi uguale da tutte le case
+**implemented in 0.1.167** (dati: quattro Destini, un pool, una carta condivisibile)
+
+Il difetto che D-196 aveva trovato per strada e che D-198 ha acceso lo stesso,
+dichiarandolo: **il palese vale un quarto del risultato, e non costava uguale a
+tutti**. Un vantaggio distribuito alla nascita, prima che qualcuno giochi.
+
+**La misura che conta non e' per Destino, e' per casa.** Una casa non sceglie
+quale dei tre Destini del suo pool le tocchi, quindi il numero onesto e' la
+**media del suo pool** — quanto le costa il palese, in media, quest'anno.
+Misurato su 200 Chronicle, stessi semi, prima e dopo:
+
+| casa | prima | dopo |
+|---|---|---|
+| Aldric | 40,2% | **41,8%** |
+| Nahr | **80,9%** | 54,2% |
+| Lyra | 52,5% | **34,6%** |
+| Vaerax | 37,7% | 34,7% |
+| **scarto fra la piu' cara e la piu' facile** | **43,2 punti** | **19,6 punti** |
+
+**Meno della meta'.** Sul singolo Destino lo scarto va da 66,8 a 55,8 punti: meno,
+ma resta grande, e i due estremi sono nominati piu' sotto.
+
+**Le quattro cose cambiate, e perche' quelle:**
+
+1. **`DST_NAHR_ROOTED`** (86,2% → 44,8%). Chiedeva **un** segno di non essere di
+   passaggio, fra tre. Ora ne chiede due. Un solo segno non e' radicarsi.
+2. **`DST_LYRA_TAUGHT`** (84,6% → 35,9%). Si chiama *«Quello che Resta
+   Insegnato»*, la sua Vittoria si chiama *«Il sapere ha un posto suo»*, e **il
+   posto non lo chiedeva**: una scoperta e le gallerie aperte, nient'altro. Ora
+   chiede anche un posto — una pietra sua o una terra che le risponde.
+   *(La prima stesura chiedeva solo la pietra e l'ha portato al 20,5%: troppo. La
+   scelta fra le due strade e' la correzione di quella correzione.)*
+3. **`DST_SHARED_LAND`** e' una carta che giurano tre case diverse, e costava
+   **83,9% a Nahr, 27,8% a Vaerax, 11,5% a Cenere**: sette volte tanto. Ora la
+   terra puo' rispondere in due modi — due Regioni tenute **o** due cose in piedi
+   — perche' «controllare due Regioni» non e' una difficolta', e' una posizione
+   di partenza.
+4. **Il pool di Nahr**: `DST_SHARED_LAND` → `DST_SHARED_ACCOUNTS`. Nahr aveva tre
+   Destini di terra su tre, e il terzo era il piu' facile dei tre. E qui c'e' la
+   regola generale che ho imparato misurando: **una carta condivisibile costa
+   uguale a tutti solo se parla del mondo, non del tuo tavolo**. I Conti Chiusi
+   guarda i segni globali e infatti costa 42,3% a Lyra e 45,2% a Nahr; La Terra
+   che Risponde conta le *tue* Regioni, e allora il prezzo e' la tua posizione di
+   partenza travestita da ambizione.
+
+**`DST_NAHR` resta a 72,5%, e non l'ho aggiustato.** Ci ho provato due volte —
+chiedendo un insediamento costruito, poi un borgo o due pietre — e il numero non
+si e' mosso di un punto: quello che costa in quel Destino sono le sue **prime due
+clausole** (il segno `nahr_settled` e la presenza nella Valle Verde), e cambiarle
+vorrebbe dire riscrivere cosa quel Destino *significa*, non quanto costa. Preferisco
+lasciarlo scritto qui che spostarlo con una clausola che non c'entra niente.
+Stessa cosa per **`DST_SHARED_LAND` giurata da Vaerax, al 16,7%**: e' l'estremo
+basso, e Vaerax non tiene Regioni per come e' fatto.
+
+**Il prezzo, dichiarato.** Rendere il palese piu' equo lo ha reso in media piu'
+caro, e il gioco piu' duro:
+
+| | prima | dopo |
+|---|---|---|
+| 0 obiettivi su 4 | 16,5% | **20,8%** |
+| 4 su 4 | 2,2% | **1,8%** |
+| media obiettivi per seggio | 1,51 | **1,37** |
+| punteggio di saga | +1,51 | **+1,30** |
+
+Non ho compensato con `saga_points`, che sarebbe stato facile: prima va deciso se
+questa e' la durezza giusta. Il cancello tiene comunque — **0 su 8** a tavolo
+misto e uniforme, Consigli 6,15 e 6,30.
+
+**Quello che non e' stato toccato**: i Destini di CHR_03 (Cenere 65,8% · Vetro
+71,8% · Libere-Acqua **96,3%**). Quel mondo gioca ancora a gradini, dove il
+prezzo della Vittoria significa un'altra cosa: si tocca quando passa agli
+obiettivi, non prima.
+
+---
+
 ## D-198 — Gli obiettivi al posto dei gradini, accesi
 **implemented in 0.1.166** (la regola vive, ed e' una dichiarazione della Chronicle)
 

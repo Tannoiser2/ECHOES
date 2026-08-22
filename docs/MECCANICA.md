@@ -701,7 +701,9 @@ Dalla 0.1.166 **CHR_01 non sale più i tre gradini: conta**
 
 A fine anno si contano quelli che si sono avverati. **Tutti e quattro è un
 trionfo, nessuno è un anno perso**; in mezzo ci sono i successi parziali, e ognuno
-vale un numero diverso alla fine della saga (−1 · 1 · 2 · 4 · 6).
+vale un numero diverso alla fine della saga (**−1 · 1 · 2 · 5 · 8**): il terzo
+e il quarto obiettivo pagano il salto più grosso, perché sono i due che quasi
+nessuno prende.
 
 I dodici del pool sono misurati uno per uno su cento Chronicle, dal 79,0% («una
 pietra sua») al 10,2% («due Legami a fine anno»), e nessuno nomina una casa o un
