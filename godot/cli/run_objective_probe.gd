@@ -65,23 +65,33 @@ func _initialize() -> void:
 		quit(1)
 		return
 
-	# Il pool nascosto: i Destini condivisibili, un obiettivo per gradino.
+	# Il pool nascosto: gli obiettivi scritti come obiettivi (D-197). Finche' il
+	# file non esiste, la sonda ricade sui Destini condivisibili letti a gradini
+	# — cosi' il preventivo di D-196 resta riproducibile.
 	var pool: Array = []
-	for destiny_id in _sorted(data.destinies.keys()):
-		var destiny: Dictionary = data.destinies[str(destiny_id)] as Dictionary
-		if str(destiny["entity_id"]) != "$self":
-			continue
-		for level in AS_OBJECTIVE:
-			pool.append({
-				"key": "%s/%s" % [str(destiny_id), level],
-				"title": str((destiny[level] as Dictionary)["label"]),
-				"conditions": (destiny[level] as Dictionary)["conditions"],
-			})
+	for objective_id in _sorted(data.objectives.keys()):
+		var objective: Dictionary = data.objectives[str(objective_id)] as Dictionary
+		pool.append({
+			"key": str(objective_id),
+			"title": str(objective["title"]),
+			"conditions": objective["conditions"],
+		})
+	if pool.is_empty():
+		for destiny_id in _sorted(data.destinies.keys()):
+			var destiny: Dictionary = data.destinies[str(destiny_id)] as Dictionary
+			if str(destiny["entity_id"]) != "$self":
+				continue
+			for level in AS_OBJECTIVE:
+				pool.append({
+					"key": "%s/%s" % [str(destiny_id), level],
+					"title": str((destiny[level] as Dictionary)["label"]),
+					"conditions": (destiny[level] as Dictionary)["conditions"],
+				})
 
 	print("SONDA DEGLI OBIETTIVI - %d Chronicle, semi da %d" % [runs, first_seed])
 	print("  Oggi: tre gradini cumulativi per Destino. Domani: quattro obiettivi,")
 	print("  uno palese e tre nascosti, e il conto di quanti se ne portano a casa.")
-	print("  Pool nascosto disponibile: %d obiettivi (dai Destini condivisibili)." % [pool.size()])
+	print("  Pool nascosto disponibile: %d obiettivi." % [pool.size()])
 	print("")
 
 	var reached: Dictionary = {}        # livello di oggi -> quanti seggi

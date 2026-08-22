@@ -14,6 +14,7 @@ var actions: Dictionary = {}
 var echo_cards: Dictionary = {}
 var consequences: Dictionary = {}
 var destinies: Dictionary = {}
+var objectives: Dictionary = {}
 var confluence_templates: Dictionary = {}
 var chronicles: Dictionary = {}
 var sim_plans: Dictionary = {}
@@ -32,6 +33,7 @@ const _TARGETS: Dictionary = {
 	"echo_card": "echo_cards",
 	"consequence": "consequences",
 	"destiny": "destinies",
+	"objective": "objectives",
 	"confluence_template": "confluence_templates",
 	"chronicle": "chronicles",
 	"sim_plan": "sim_plans",

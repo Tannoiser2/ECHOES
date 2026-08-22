@@ -1847,8 +1847,27 @@ con `PolicyDecider` la produce ([CONSEGNE §5ter](CONSEGNE.md)).
    +1,17 per seggio contro i +2,51 di oggi. Se una saga deve valere quanto prima,
    i numeri in mezzo salgono.
 
+**Fase 1 ✅ — il pool** — fatta in 0.1.165 ([D-197](DECISIONS.md#d-197)). Nuovo
+schema `objective` (un traguardo piatto, senza gradini) e **dodici obiettivi**
+misurati uno per uno: dal **79,0%** al **10,2%**, nessuno fuori banda, media
+34,0%. La distribuzione dei quattro migliora **senza toccare una soglia** — 0 su
+4 da 27,2% a **16,2%**, media da 1,26 a **1,58** — perché sono cambiate solo le
+carte del pool. Due candidati bocciati coi numeri: «La Parola Data» al 100% e
+«Il Mondo Intatto» al 2,0%.
+
+**E il palese è più stretto di come l'avevo scritto**: fra gli otto Destini
+identitari lo scarto è **35,7%–80,0%** (il 91% citato sopra è
+`DST_LIBERE_WATER`, una variante). Resta un difetto, e resta il punto 1 da
+decidere.
+
+**Resta la fase 2: il motore.** Nessuna partita pesca ancora obiettivi, nessun
+anno si chiude contandoli, i tre gradini sono ancora la scala di §14. Serve la
+dichiarazione di regola a livello di Chronicle (reversibile, come `hand_refill` e
+`tension_tokens`), la pescata all'apertura, il conto alla chiusura e la mappa dei
+numeri della saga.
+
 **Fatto quando** un anno si chiude contando obiettivi invece di gradini, il pool
-ha almeno dodici carte e nessuna sotto il 10% o sopra l'80%, il palese costa
+ha almeno dodici carte e nessuna sotto il 10% o sopra l'80% ✅, il palese costa
 uguale a tutte le case (o l'asimmetria è dichiarata e misurata), e il playtest
 resta **0/8** a tavolo misto e uniforme.
 

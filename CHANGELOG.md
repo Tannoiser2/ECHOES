@@ -5,6 +5,34 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.165 — Il pool degli obiettivi, dodici carte misurate una per una (D-197)
+
+- D-196 aveva detto che il pool non c'era. Ora c'è: **nuovo schema `objective`**
+  — un traguardo piatto, senza gradini, con la riga che va a verbale — e
+  **dodici obiettivi** in `godot/data/objectives/objectives_shared.json`.
+- **Ogni carta misurata da sola** su 100 Chronicle: dal **79,0%** («Qualcosa che
+  Resta in Piedi») al **10,2%** («Le Corde che Tengono»). Nessuno sotto il 10%,
+  nessuno sopra l'80% — il criterio che D-196 aveva posto. Media 34,0%.
+- **Due bocciati coi numeri**, i due che sembravano più belli: *«La Parola
+  Data»* al **100%** (un regalo travestito da scrupolo) e *«Il Mondo Intatto»* al
+  **2,0%** (arredo). La stessa idea a due cicatrici sta al 22%, e quella è
+  entrata.
+- **La distribuzione migliora senza toccare una soglia**: 0 su 4 passa da 27,2%
+  a **16,2%**, la media da 1,26 a **1,58**, il punteggio di saga da +1,17 a
+  **+1,65**. Sono cambiate solo le carte del pool.
+- **Due guardie nuove**: `check_objectives_are_shareable` (un obiettivo che
+  nomina una casa, una Regione o una Tensione è falso per costruzione nell'altro
+  mondo) e `check_condition_vocabularies_agree` (il vocabolario delle clausole è
+  ora scritto in due schemi: che dicano la stessa cosa). Più cinque test in
+  `test_objective_pool.gd`, provati a morso.
+- **Correzione a D-196**: il palese va dal **35,7% all'80,0%** fra gli otto
+  Destini identitari; il 91% citato era `DST_LIBERE_WATER`, una variante.
+- **Il motore non è ancora cambiato**: nessuna partita pesca obiettivi, i tre
+  gradini sono ancora la scala di §14. Il pool è il preventivo che diventa dato.
+- Verbale: [D-197](docs/DECISIONS.md#d-197), [ISSUES 50](docs/ISSUES.md).
+
+---
+
 ## 0.1.164 — Il preventivo dei quattro obiettivi (D-196)
 
 - Il committente ha chiuso la domanda rimasta aperta: **gli obiettivi
