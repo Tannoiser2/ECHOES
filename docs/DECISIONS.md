@@ -11,7 +11,7 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 ---
 
 ## D-209 — Tre case aprono l'anno con due obiettivi gia' in tasca
-**misurato in 0.1.177** — nessuna regola cambiata, due strade prezzate
+**misurato in 0.1.177, esteso in 0.1.178** — nessuna regola cambiata, tre strade prezzate
 
 ISSUES 52 chiedeva **quali** obiettivi Lyra manca, e se sono sempre gli stessi:
 «un seggio che manca sempre le stesse due carte e' una taratura; un seggio che
@@ -55,12 +55,35 @@ guardato separatamente.**
 - **Il palese di Vaerax, «La Terra che Risponde»: 0 su 20.** Un palese che non
   si avvera mai e' una casa che gioca con tre carte invece che con quattro.
 
+### E non e' un problema di Lyra: e' una regola dell'apertura
+
+La stessa forma si ripete **nell'altra linea, con un'altra casa**. In CHR_03
+`starting_structures` posa uno `STR_KEEP` alle Citta' Libere, alla Gilda del
+Sale e alla Cenere. **All'Ordine del Vetro niente.**
+
+| linea | la casa senza presidio d'apertura | NONE su 120 anni | TRIONFI |
+|---|---|---|---|
+| il Grano | **Lyra** | **44** | **0** |
+| il Sale | **l'Ordine del Vetro** | **43** | 1 |
+| (le altre tre, Grano) | Aldric / Nahr / Vaerax | 28 / 26 / 24 | 1 / 0 / 2 |
+| (le altre tre, Sale) | Cenere / Libere / Sale | 14 / 20 / 29 | 1 / 2 / 1 |
+
+E in tutte e due, fra le clausole del Minimo piu' spesso mancate c'e'
+letteralmente **«Almeno un presidio suo»** — Lyra 18 volte, il Vetro 17.
+
+**In tutte e due le linee, la casa che apre senza presidio e' la casa che non
+vince mai.** Non e' una taratura di Lyra: e' il setup d'apertura che distribuisce
+tre presidi su quattro e lascia scoperta la stessa casella in tutte e due le ere.
+
 ### Cosa non e' acceso
 
-**Niente.** Le due strade — dare a Lyra una struttura d'apertura che la
-racconti, o togliere ai due obiettivi la gratuita' alzando la soglia — sono
-decisioni di contenuto, e il numero e' scritto prima perche' si possa scegliere
-guardandolo.
+**Niente.** Le tre strade — dare alla casa scoperta una struttura d'apertura che
+la racconti, togliere ai due obiettivi la gratuita' alzando la soglia, o
+spostarla dove possa costruirsela ([D-208](#d-208)) — sono decisioni di
+contenuto, e il numero e' scritto prima perche' si possa scegliere guardandolo.
+
+E vale per **due** case, non per una: qualunque cosa si decida per Lyra va
+decisa anche per l'Ordine del Vetro.
 
 ---
 

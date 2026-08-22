@@ -1565,14 +1565,57 @@ due i suoi Destini, in quattro passi misurati uno alla volta:
 | ultimo cambio di testa | anno 3,5 su 10 | anno **5,5** su 10 |
 | decise entro il terzo anno | 6 su 12 | **4 su 12** |
 
-**Non è chiusa**: 9 su 12 è il 75%, sopra il criterio che questa voce si era
-data. Il lavoro si è fermato lì perché continuare senza una diagnosi nuova
-sarebbe tarare a occhio.
+**Non era chiusa**: 9 su 12 è il 75%, sopra il criterio che questa voce si era
+data. Il lavoro si era fermato lì perché continuare senza una diagnosi nuova
+sarebbe stato tarare a occhio.
 
-**Dove guardare la prossima volta**, e sono due cose non ancora misurate come
-cause: i **Trionfi nelle saghe** restano sbilanciati (Sale 25, Libere 19, Vetro
-11, Cenere 8 su 120 anni), e il **Minimo delle quattro case non costa uguale** —
-il Vetro ne ha uno da due gettoni, il Sale uno da uno.
+---
+
+## Rimisurata in 0.1.177: il vincitore scritto non è più il Sale — ed è cambiato il nome, non il difetto
+
+Dodici saghe da dieci Chronicle, tavolo misto, seme 812:
+
+| | allora | **adesso** |
+|---|---|---|
+| chi vince la campagna | **SALE 12 su 12** | CENERE **7**, LIBERE 2, SALE **1**, pareggi 2 |
+| cambi di testa per saga | 1,3 | **1,2** |
+| ultimo cambio di testa | anno 3,5 su 10 | anno **3,6** su 10 |
+
+**La Gilda del Sale è passata da 12 vittorie su 12 a una.** Il difetto per cui
+questa voce è nata non esiste più. Ma il posto è stato preso dalla **Cenere, 7
+su 12** — il 58%, sotto il 75% di prima e sopra il 33% che sarebbe pari.
+
+E il confronto con l'altra linea dice che il problema non è chi vince, è **come**
+la campagna si decide:
+
+| | Grano | Sale |
+|---|---|---|
+| chi vince più spesso | VAERAX 5 su 12 (42%) | **CENERE 7 su 12 (58%)** |
+| cambi di testa per saga | **1,8** | 1,2 |
+| ultimo cambio di testa | anno **4,4** | anno 3,6 |
+| Consigli l'anno | **3,80** | **2,85** |
+| scarto delle domande dalla soglia a fine anno | da −0,18 a −1,71 | da +0,27 a **−3,12** |
+
+### La causa nuova, e sta a monte delle altre due
+
+**La linea del Sale è più fredda.** Un Consiglio in meno l'anno, e domande che
+finiscono l'anno molto più lontane dalla soglia — il Debito a −3,12, la Carta a
+−2,82. Con meno Consigli si decide meno, e quello che è già deciso all'inizio
+resta deciso: da lì i cambi di testa a 1,2 invece di 1,8, e la campagna chiusa
+all'anno 3,6 invece che al 4,4.
+
+**E c'è una seconda causa, che è la stessa di [ISSUES 52](#52-lyra-non-ha-mai-trionfato-in-centoventi-anni)**:
+l'Ordine del Vetro apre senza presidio come Lyra nell'altra linea, e chiude con
+**43 NONE e 1 Trionfo su 120 anni**. Una casa su quattro fuori gioco rende la
+campagna una gara a tre, e una gara a tre si decide prima.
+
+**Le due cause vecchie restano da misurare** (i Trionfi per saga, e il Minimo che
+non costa uguale) ma passano in seconda fila: il freddo della linea e la quarta
+casa scoperta le spiegano tutte e due in parte.
+
+**E la proposta del committente le tocca entrambe**: un Consiglio automatico a
+fine Atto garantirebbe tre Consigli l'anno, che nel Sale è **uno in più di
+adesso**.
 
 **Fatto quando** su dodici saghe per tavolo nessuna casa vince più della metà
 delle campagne — o il motivo per cui una lo fa è scritto con i numeri accanto —
@@ -2073,7 +2116,7 @@ e uniforme ✅.
 
 ---
 
-### 51. Sei domande su dodici non arrivano a soglia da sole
+### 51. ✅ Sei domande su dodici non arrivano a soglia da sole — chiusa in 0.1.178
 
 `bilanciamento` · `contenuto` · **aperta in 0.1.175** · nata da [D-207](DECISIONS.md#d-207)
 
@@ -2109,15 +2152,68 @@ passano da **3,59 a 3,37** (uniforme) e da **3,97 a 3,73** (misto), e nella line
 del Grano i NONE salgono da 107 a 132 su 480 seggi-anno. Il Sale non lo paga —
 Trionfi da 5 a **9** — perche' le sue sei candidate sono tarate piu' vicine.
 
-**Da misurare, e non e' dedotto da qui:** quante volte ciascuna delle dodici
-domande arriva **davvero** al Consiglio in partita, col calore pescato dai
-giocatori. Solo quel numero dice se le sei sono domande quiete per scelta o
-domande morte per taratura.
+## Misurata in 0.1.178: nessuna domanda è muta, e l'aritmetica sbagliava strumento
 
-**Fatto quando** ogni domanda della biblioteca apre almeno un Consiglio in una
-partita su quattro, oppure e' dichiarato quali sono quiete di proposito — e il
-test che oggi chiede solo «qualcosa la muove» torna a chiedere il criterio forte
-su tutta la biblioteca invece che su una Chronicle sola.
+`run_question_ledger` conta, per ogni domanda, quante volte è stata pescata e in
+quanti di quegli anni ha aperto **almeno un Consiglio**. Su 60 partite per era,
+a tavolo misto:
+
+| CHR_01 — la Carestia | pescata | Consigli | anni con |
+|---|---|---|---|
+| I Pozzi Bassi | 38 | 11 | **26,3%** |
+| Le Vie Interrotte | 48 | 25 | 47,9% |
+| La Febbre Bassa | 40 | 30 | 57,5% |
+| Il Risveglio | 40 | 56 | 90,0% |
+| La Carestia | 33 | 46 | 93,9% |
+| La Successione | 41 | 60 | **95,1%** |
+
+| CHR_03 — il Sale | pescata | Consigli | anni con |
+|---|---|---|---|
+| I Senza Città | 51 | 16 | **31,4%** |
+| La Cenere che Sale | 49 | 18 | 34,7% |
+| L'Acqua Ferma | 50 | 24 | 46,0% |
+| Il Debito | 52 | 37 | 51,9% |
+| La Carta | 44 | 35 | 61,4% |
+| La Reliquia | 54 | 41 | **66,7%** |
+
+**Nessuna delle dodici è muta, e tutte e dodici superano il criterio** che questa
+voce si era data (un Consiglio in una partita su quattro). La Febbre Bassa e i
+Pozzi Bassi, le due che l'aritmetica dava per irraggiungibili, aprono un
+Consiglio nel 57,5% e nel 26,3% degli anni in cui escono.
+
+**L'aritmetica non era sbagliata: era lo strumento sbagliato.** Contava valore
+iniziale + Deriva + Ripple, e da [D-192](DECISIONS.md#d-192) **la Deriva non è
+nemmeno in gioco** — il calore lo pescano i giocatori. Un test che somma un
+sacchetto che nessuno usa non misura il gioco spedito.
+
+### Ma la misura ha trovato un'altra cosa, e più grossa
+
+Le due linee non hanno lo stesso clima:
+
+| | Grano | Sale |
+|---|---|---|
+| Consigli l'anno | **3,80** | **2,85** |
+| domande sopra il 90% | **3** | **0** |
+| domanda più calda | 95,1% | 66,7% |
+| scarto medio dalla soglia a fine anno | da −0,18 a −1,71 | da +0,27 a **−3,12** |
+
+**Nel Sale le domande finiscono l'anno molto più lontane dalla soglia** — il
+Debito a −3,12, la Carta a −2,82, l'Acqua Ferma a −2,66 — e il tavolo tiene un
+Consiglio in meno l'anno. Non è una linea più difficile: è una linea più
+**fredda**, dove le domande non maturano.
+
+Questo appartiene a [ISSUES 46](#46-la-campagna-del-sale-ha-un-vincitore-già-scritto-69),
+che cercava le cause dello squilibrio del Sale e ne aveva due non misurate. Ne
+ha una terza adesso, ed è a monte delle altre.
+
+**E dà un numero alla proposta del committente** — un Consiglio automatico a
+fine Atto, la domanda più alta dibattuta. Garantirebbe tre Consigli l'anno: nel
+Grano è quasi il numero di oggi, **nel Sale sarebbe un Consiglio in più ogni
+anno**.
+
+**Chiusa in 0.1.178**: nessuna domanda è muta. Il criterio forte torna nel test
+quando la Deriva torna in gioco — o non torna mai, e allora quel test ha finito
+il suo lavoro.
 
 **Si intreccia con il ritmo dell'anno**, che e' la domanda gia' aperta col
 committente: sei Consigli l'anno erano troppi, tre e mezzo forse sono pochi, e
@@ -2206,10 +2302,34 @@ E c'è una terza cosa che aiuta senza toccare gli obiettivi: **spostare Lyra
 sulla Strada dei Mercanti** ([D-208](DECISIONS.md#d-208)) le fa crollare i NONE
 da 21 a 8 e salire le Vittorie da 11 a 27.
 
-**Fatto quando** nessun seggio sta a zero Trionfi su 120 seggi-anno, nessuna
-coppia seggio × obiettivo sta sotto il 10% mentre le altre tre stanno sopra il
-90%, e lo scarto fra il seggio più premiato e il meno premiato sta dentro un
-fattore tre.
+### E non è un problema di Lyra: è una regola dell'apertura
+
+La stessa forma si ripete **nell'altra linea, con un'altra casa**. In CHR_03
+`starting_structures` posa uno `STR_KEEP` alle Città Libere, alla Gilda del Sale
+e alla Cenere. **All'Ordine del Vetro niente.**
+
+| linea | la casa senza presidio d'apertura | NONE su 120 anni | TRIONFI |
+|---|---|---|---|
+| il Grano | **Lyra** | **44** | **0** |
+| il Sale | **l'Ordine del Vetro** | **43** | 1 |
+| le altre tre, Grano | Aldric / Nahr / Vaerax | 28 / 26 / 24 | 1 / 0 / 2 |
+| le altre tre, Sale | Cenere / Libere / Sale | 14 / 20 / 29 | 1 / 2 / 1 |
+
+E in tutte e due, fra le clausole del Minimo più spesso mancate c'è letteralmente
+**«Almeno un presidio suo»** — Lyra 18 volte, il Vetro 17.
+
+**In tutte e due le linee, la casa che apre senza presidio è la casa che non
+vince mai.** Non è una taratura di Lyra: è il setup d'apertura che distribuisce
+tre presidi su quattro e lascia scoperta la stessa casella in tutte e due le ere.
+
+Quindi qualunque cosa si decida per Lyra **va decisa anche per l'Ordine del
+Vetro**, e la voce cambia titolo di fatto: non «Lyra non trionfa» ma **«la
+quarta casa non trionfa, in nessuna era»**.
+
+**Fatto quando** nessun seggio sta a zero Trionfi su 120 seggi-anno **in
+nessuna delle due linee**, nessuna coppia seggio × obiettivo sta sotto il 10%
+mentre le altre tre stanno sopra il 90%, e lo scarto fra il seggio più premiato
+e il meno premiato sta dentro un fattore tre.
 
 ---
 

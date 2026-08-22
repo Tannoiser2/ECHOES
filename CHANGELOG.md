@@ -5,6 +5,40 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.178 — La quarta casa non trionfa, in nessuna era (D-209) · ISSUES 51 e 46 rimisurate
+
+- **ISSUES 51 chiusa, e l'aritmetica sbagliava strumento.** `run_question_ledger`
+  conta per ogni domanda quante volte è pescata e in quanti di quegli anni apre
+  almeno un Consiglio. **Nessuna delle dodici è muta**, e tutte superano il
+  criterio della voce: la Febbre Bassa apre nel **57,5%** degli anni in cui esce,
+  i Pozzi Bassi nel **26,3%**. Il test che le dava per irraggiungibili sommava
+  valore + Deriva + Ripple, e da D-192 **la Deriva non è nemmeno in gioco**.
+- **Ma la misura ha trovato di meglio: le due linee non hanno lo stesso clima.**
+  Consigli l'anno **3,80 nel Grano contro 2,85 nel Sale**; tre domande sopra il
+  90% nel Grano, **zero** nel Sale; e nel Sale le domande finiscono l'anno molto
+  più lontane dalla soglia (il Debito a **−3,12**).
+- **ISSUES 46 rimisurata: il vincitore scritto non è più il Sale.** Da **12 su
+  12** a **1 su 12**. Il posto l'ha preso la **Cenere, 7 su 12**. E il confronto
+  fra le linee dice che il difetto non è chi vince ma come si decide: cambi di
+  testa **1,2 nel Sale contro 1,8 nel Grano**, ultimo cambio all'anno **3,6
+  contro 4,4**. La linea più fredda decide prima.
+- **E il difetto di Lyra non è di Lyra: è una regola dell'apertura.** In CHR_03
+  `starting_structures` posa uno `STR_KEEP` a tre case su quattro e lascia
+  scoperto **l'Ordine del Vetro** — che chiude con **43 NONE e 1 Trionfo su 120
+  anni**, come Lyra con 44 e 0.
+
+  | linea | casa senza presidio | NONE su 120 | TRIONFI |
+  |---|---|---|---|
+  | il Grano | **Lyra** | 44 | **0** |
+  | il Sale | **l'Ordine del Vetro** | 43 | 1 |
+
+  E in tutte e due, fra le clausole del Minimo più mancate c'è letteralmente
+  **«Almeno un presidio suo»** — Lyra 18 volte, il Vetro 17. **La casa che apre
+  senza presidio è la casa che non vince mai**, e qualunque cosa si decida per
+  Lyra va decisa anche per il Vetro.
+- Nessuna regola accesa: sono decisioni di contenuto, e il numero è scritto prima
+  perché si possa scegliere guardandolo.
+
 ## 0.1.177 — Tre case aprono l'anno con due obiettivi già in tasca (D-209)
 
 - ISSUES 52 chiedeva **quali** obiettivi Lyra manca. `run_objective_ledger`
