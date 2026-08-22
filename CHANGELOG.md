@@ -5,6 +5,39 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.167 — Il palese pagato quasi uguale da tutte le case (D-199)
+
+- Il difetto che D-196 aveva trovato per strada e che D-198 ha acceso lo stesso,
+  dichiarandolo: **il palese vale un quarto del risultato e non costava uguale a
+  tutti** — un vantaggio distribuito alla nascita.
+- **La misura che conta è per casa, non per Destino**, perché una casa non
+  sceglie quale dei tre le tocchi. Su 200 Chronicle, stessi semi: Nahr da
+  **80,9% a 54,2%**, Lyra da 52,5% a 34,6%, Aldric e Vaerax fermi. **Lo scarto
+  fra la casa più cara e la più facile passa da 43,2 a 19,6 punti** — meno della
+  metà.
+- **Quattro cambiamenti, tutti nei dati**: `DST_NAHR_ROOTED` chiede due segni di
+  non essere di passaggio invece di uno; `DST_LYRA_TAUGHT` — che si chiama «Il
+  sapere ha un posto suo» — adesso **il posto lo chiede**; `DST_SHARED_LAND`
+  accetta due Regioni tenute **o** due cose in piedi; e Nahr, che aveva tre
+  Destini di terra su tre, scambia il condivisibile con «I Conti Chiusi».
+- **La regola generale imparata misurando**: una carta condivisibile costa
+  uguale a tutti **solo se parla del mondo, non del tuo tavolo**. «I Conti
+  Chiusi» guarda i segni globali e costa 42–45% a chiunque; «La Terra che
+  Risponde» conta le *tue* Regioni, e allora il prezzo è la posizione di
+  partenza travestita da ambizione.
+- **Due residui, scritti invece che nascosti**: `DST_NAHR` resta a 72,5% (ci ho
+  provato due volte e il numero non si è mosso: quello che costa sono le sue
+  prime due clausole, e cambiarle vorrebbe dire riscrivere cosa significa) e
+  `DST_SHARED_LAND` giurata da Vaerax resta a 16,7%.
+- **Il prezzo, dichiarato**: più equo vuol dire più caro. 0 su 4 da 16,5% a
+  **20,8%**, media da 1,51 a **1,37**, saga da +1,51 a **+1,30**. Non ho
+  compensato con `saga_points`: prima va deciso se è la durezza giusta.
+- Cancello: **400 test in 55 suite, 6881 asserzioni**; playtest **0 su 8** a
+  tavolo misto e uniforme (Consigli 6,15 e 6,30); sims exit 0; toolchain pulita.
+- Verbale: [D-199](docs/DECISIONS.md#d-199), [ISSUES 50](docs/ISSUES.md).
+
+---
+
 ## 0.1.166 — Gli obiettivi al posto dei gradini, accesi (D-198)
 
 - **CHR_01 non sale più una scala: conta.** Uno palese — il Destino giurato, che

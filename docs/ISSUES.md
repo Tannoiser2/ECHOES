@@ -1835,11 +1835,13 @@ con `PolicyDecider` la produce ([CONSEGNE §5ter](CONSEGNE.md)).
 
 **Le quattro cose da decidere prima di scrivere:**
 
-1. **Cosa diventa il palese.** La Vittoria del Destino scritto (51,5%, ma 41–91%
-   a seconda della casa), il Trionfo (26,5%, più uniforme), o un obiettivo nuovo
-   scritto apposta perché il palese di ogni casa costi uguale.
-2. **Se lo scarto fra case è un difetto o è ECHOES.** Le case sono asimmetriche
-   per progetto: la domanda è se l'asimmetria può stare *nel punteggio*.
+1. ✅ **Cosa diventa il palese** — la Vittoria del Destino scritto
+   ([D-198](DECISIONS.md#d-198)).
+2. ✅ **Se lo scarto fra case è un difetto o è ECHOES** — deciso in
+   [D-199](DECISIONS.md#d-199): è un difetto, perché il palese vale un quarto del
+   risultato e l'asimmetria di ECHOES deve stare in **come** ci si arriva, non in
+   quanto costa un quarto del punteggio. Ridotto da 43,2 a 19,6 punti di scarto
+   fra le case.
 3. **Quanti obiettivi**: il committente ha detto «tre o quattro» e poi ha
    contato su quattro. Con tre, la distribuzione si sposta e va rimisurata.
 4. **La mappa dei numeri.** La proposta della sonda (0 → −1, 1 → 1, 2 → 2,
@@ -1876,9 +1878,17 @@ riga del verbale e pagina delle regole, tutti da una funzione sola. Guardando la
 pagina ho trovato un errore di formattazione che girava a ogni apertura con la
 suite verde — la seconda volta di fila che quella regola si paga.
 
-**Resta la fase 3: i Destini.** Il palese costa dal **35,7% all'80,0%** a seconda
-della casa, ed è il punto 1 qui sotto. È un lavoro sui dati — riscrivere le
-clausole di otto Destini — e si misura meglio con la regola accesa.
+**Fase 3 ✅ — il palese** — fatta in 0.1.167 ([D-199](DECISIONS.md#d-199)). La
+misura che conta è **per casa**, non per Destino, perché una casa non sceglie
+quale dei tre le tocchi: **lo scarto fra la casa più cara e la più facile passa
+da 43,2 a 19,6 punti**, misurato su 200 Chronicle con gli stessi semi. Quattro
+cambiamenti nei dati, due residui nominati (`DST_NAHR` a 72,5% e
+`DST_SHARED_LAND` giurata da Vaerax a 16,7%), e il prezzo dichiarato: più equo
+vuol dire più caro, la media scende da 1,51 a 1,37 obiettivi per seggio.
+
+**Resta da decidere se è la durezza giusta**: 0 su 4 capita nel 20,8% dei seggi e
+4 su 4 nell'1,8%. Compensare è una riga (`saga_points`), ma è una scelta di
+gioco, non un aggiustamento.
 
 **E CHR_03 non è ancora passata**: il mondo del Sale non gioca nemmeno a carte, e
 accendergli il punteggio nuovo prima dell'economia nuova vorrebbe dire misurare

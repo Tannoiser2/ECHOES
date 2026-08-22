@@ -129,6 +129,27 @@
             "region_id": "REG_VALLE_VERDE",
             "min": 1,
             "label": "Presenza nella Valle Verde"
+          },
+          {
+            "type": "some_of",
+            "min": 1,
+            "label": "E un segno che fermarsi è costato qualcosa",
+            "conditions": [
+              {
+                "type": "structure_count",
+                "entity_id": "ENT_NAHR",
+                "structure_family": "INSEDIAMENTO",
+                "grade": 2,
+                "min": 1,
+                "label": "Il villaggio è diventato un borgo"
+              },
+              {
+                "type": "structure_count",
+                "entity_id": "ENT_NAHR",
+                "min": 2,
+                "label": "O due cose loro che stanno in piedi"
+              }
+            ]
           }
         ]
       },
@@ -528,8 +549,8 @@
           },
           {
             "type": "some_of",
-            "min": 1,
-            "label": "E un segno che non sono di passaggio",
+            "min": 2,
+            "label": "E due segni che non sono di passaggio",
             "conditions": [
               {
                 "type": "control_count",
@@ -637,6 +658,25 @@
             "scope": "GLOBAL",
             "tag": "mine_sealed",
             "label": "Le gallerie non sono state sigillate"
+          },
+          {
+            "type": "some_of",
+            "min": 1,
+            "label": "E un posto dove quel sapere sta",
+            "conditions": [
+              {
+                "type": "structure_count",
+                "entity_id": "ENT_LYRA",
+                "min": 1,
+                "label": "Una pietra sua"
+              },
+              {
+                "type": "control_count",
+                "entity_id": "ENT_LYRA",
+                "min": 1,
+                "label": "O una terra che le risponde"
+              }
+            ]
           }
         ]
       },
