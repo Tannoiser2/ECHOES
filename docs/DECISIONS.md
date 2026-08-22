@@ -10,6 +10,76 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-204 — Due case su otto non potevano chiamare il Consiglio
+**implemented in 0.1.172** (ISSUES 37, nella forma nuova che ISSUES 49 le ha dato)
+
+ISSUES 37 lo aveva scritto in anticipo: *«fatto quando le rivendicazioni morte
+scendono sotto una su tre — **o quando ISSUES 49 arriva e questa azione diventa
+quella che gira i mucchi coperti, e allora la domanda cambia forma**»*.
+
+E' arrivata, e la forma e' cambiata. Col cancello del tavolo (D-203) il Consiglio
+si apre a gettoni: **RIVENDICARE e' l'unico modo che un giocatore ha di aprirlo
+quando vuole lui**. Quindi la prima domanda non e' piu' «quante prenotazioni
+muoiono in mano»: e' **chi ha mai avuto in mano il diritto di chiamare**.
+
+**La misura, che non avevo mai preso**, su 40 Chronicle — carte RIVENDICARE
+arrivate in mano, per seggio e per partita:
+
+| casa | prima | dopo |
+|---|---|---|
+| Aldric | 2,80 | 3,30 |
+| Sale | 1,95 | 2,60 |
+| Lyra | 1,45 | 2,50 |
+| Nahr | 1,25 | 2,05 |
+| Città Libere | 1,50 | 1,65 |
+| Vaerax | **0,25** | 1,50 |
+| Cenere | **0,00** | **1,05** |
+
+**La Cenere non l'aveva mai avuta. Zero volte in venti partite.** E il Vaerax una
+ogni quattro. Le due case della montagna non potevano, materialmente, chiedere al
+tavolo di riunirsi — in un gioco dove quella e' la sola leva che un giocatore ha
+sull'orologio.
+
+**Perche'**: RIVENDICARE stava su **4 carte delle 48, tutte AUTORITA'**, e
+l'AUTORITA' si pesca solo da Eredan e dalle Terre Nahr (D-186). Chi tiene le
+montagne e le miniere pesca FORZA, LEGAMI, SAPERE — e nessuna delle tre sapeva
+prendere la parola. Non era una scelta di progetto: era il residuo di quando
+l'azione si comprava con un Asset invece di stare su una carta.
+
+**Il rimedio, quattro carte spostate**, scelte perche' la finzione ci stava gia'
+dentro:
+
+| carta | famiglia | era | ed e' |
+|---|---|---|---|
+| **Assedio** | FORZA | INFLUENZARE +1 | *«un assedio non chiede il permesso di parlare»* |
+| **Debito Vecchio** | LEGAMI | TRAMARE | *«conosce le stanze in cui e' stato contratto»* |
+| **Deposizione Sigillata** | SAPERE | INFLUENZARE +1 | *«aperta, obbliga il tavolo a riunirsi»* |
+| **Portavoce** | GENTE | INFLUENZARE −1 | *«prende la parola al posto della folla»* |
+
+Otto carte RIVENDICARE in **cinque famiglie**, e **ogni Regione della mappa** ne
+pesca almeno una. Il mazzo passa da 17/11/8/8/4 a **14 INFLUENZARE, 11 MUOVERE, 8
+RIVENDICARE, 8 FORGIARE, 7 TRAMARE**.
+
+**E le prenotazioni morte scendono, ma non abbastanza**: da 18 aperte / 6 forzate
+/ 12 morte (**67%**) a 18 / 8 / 10 (**56%**). Il criterio di ISSUES 37 chiede
+sotto il 33%, quindi quella meta' **resta aperta** — e va detto che il 67% di
+partenza era gia' peggio del 41% di 0.1.159, perche' col cancello del tavolo i
+Consigli sono meno e una prenotazione ha meno occasioni di essere riscossa.
+
+**Il numero che vale la pena guardare non e' quello.** Lo scarto fra la casa che
+puo' chiamare piu' spesso e quella che puo' meno passa da **infinito** (0,00
+contro 2,80) a **3,1 volte** (1,05 contro 3,30). Prima c'erano due case escluse
+da una regola del gioco; adesso ce ne sono otto che la possono usare, alcune piu'
+di altre.
+
+**Cancello**: 408 test verdi, playtest **0 su 8** a tavolo misto e uniforme,
+Consigli 3,59 e 3,97 (erano 3,46 e 4,00: il rimedio non ha spostato il ritmo).
+
+**E la sonda adesso conta le carte invece di crederci**: `run_rung_probe` leggeva
+«4 carte, tutte AUTORITA'» da una riga battuta a macchina. Ora legge il mazzo.
+
+---
+
 ## D-203 — Una soglia sola per il tavolo, e il tre che non vale piu' tre
 **implemented in 0.1.171** (ISSUES 49 fase 2, scelta **b** del committente)
 

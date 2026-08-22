@@ -5,6 +5,42 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.172 — Due case su otto non potevano chiamare il Consiglio (D-204)
+
+- ISSUES 37 lo aveva scritto in anticipo: *«o quando ISSUES 49 arriva e questa
+  azione diventa quella che gira i mucchi coperti, e allora la domanda cambia
+  forma»*. È arrivata. Col cancello del tavolo **RIVENDICARE è l'unico modo che
+  un giocatore ha di aprire un Consiglio quando vuole lui**, quindi la prima
+  domanda non è più «quante prenotazioni muoiono»: è **chi ha mai avuto in mano
+  il diritto di chiamare**.
+- **La misura, che non avevo mai preso**: su 40 Chronicle, la Cenere non aveva
+  **mai** avuto una carta RIVENDICARE — **zero volte in venti partite** — e il
+  Vaerax una ogni quattro. Le due case della montagna non potevano,
+  materialmente, chiedere al tavolo di riunirsi.
+- **Perché**: RIVENDICARE stava su **4 carte delle 48, tutte AUTORITÀ**, e
+  l'AUTORITÀ si pesca solo da Eredan e dalle Terre Nahr. Chi tiene le montagne
+  pesca FORZA, LEGAMI, SAPERE, e nessuna sapeva prendere la parola.
+- **Quattro carte spostate**, scelte perché la finzione ci stava già dentro:
+  **Assedio** (FORZA), **Debito Vecchio** (LEGAMI), **Deposizione Sigillata**
+  (SAPERE), **Portavoce** (GENTE) — *«prende la parola al posto della folla»*, che
+  è esattamente cosa vuol dire RIVENDICARE. Otto carte in **cinque famiglie**, e
+  **ogni Regione della mappa** ne pesca almeno una.
+- **Il risultato**: Cenere da 0,00 a **1,05** carte per partita, Vaerax da 0,25 a
+  **1,50**. Lo scarto fra chi può chiamare di più e chi di meno passa da
+  **infinito** a **3,1 volte**.
+- **Le prenotazioni morte scendono ma non abbastanza**: dal **67%** al **56%**,
+  contro un criterio del 33%. Quella metà di ISSUES 37 **resta aperta** — e il
+  67% di partenza era già peggio del 41% di 0.1.159, perché con meno Consigli una
+  prenotazione ha meno occasioni di essere riscossa.
+- **E la sonda conta le carte invece di crederci**: `run_rung_probe` leggeva «4
+  carte, tutte AUTORITÀ» da una riga battuta a macchina. Ora legge il mazzo.
+- Cancello: **408 test in 56 suite, 6738 asserzioni**; playtest **0 su 8** a
+  tavolo misto e uniforme (Consigli 3,59 e 3,97); sims exit 0; toolchain pulita.
+- Verbale: [D-204](docs/DECISIONS.md#d-204), [ISSUES 37](docs/ISSUES.md),
+  MECCANICA §5.
+
+---
+
 ## 0.1.171 — Una soglia sola per il tavolo, e il tre che non vale più tre (D-203)
 
 - **ISSUES 49 fase 2**, sulla scelta **b** del committente: il Consiglio non lo

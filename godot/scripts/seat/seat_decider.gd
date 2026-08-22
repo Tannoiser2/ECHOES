@@ -575,6 +575,13 @@ func _tension_reading(tension_id: String, viewer_id: String, session: RefCounted
 	var value: int = session.service.visible_tension_value(tension_id, viewer_id)
 	if value < 0:
 		return "(velata)"
+	# Col cancello del tavolo non c'e' nessun numero da raggiungere (D-203):
+	# scrivere «4/?» farebbe cercare una soglia che non esiste. Quello che conta
+	# e' l'altezza del mucchio, e se e' il piu' alto.
+	if session.tensions.table_gate() > 0:
+		return "%d%s" % [
+			value, " ← il più alto" if session.tensions.hottest_pile() == tension_id else ""
+		]
 	var threshold: int = session.service.visible_tension_threshold(tension_id, viewer_id)
 	# La soglia coperta si dice con un punto interrogativo, non con un numero
 	# inventato: al tavolo vero e' la carta girata a faccia in giu' (D-187).

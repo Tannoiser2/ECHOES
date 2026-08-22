@@ -52,6 +52,12 @@ func _initialize() -> void:
 	var control_hist: Dictionary = {}  # Regioni tenute a fine anno -> quanti seggi
 	var per_seat: Dictionary = {}   # casa -> [Regioni all'inizio, somma a fine anno, partite]
 	var claims_made: int = 0      # ACT_CLAIM in CREATE: la rivendicazione aperta
+	# Da quando il Consiglio si apre a gettoni (D-203), RIVENDICARE e' l'unico
+	# modo che un giocatore ha di aprirlo **quando vuole lui**. Quindi la domanda
+	# non e' piu' solo «quante muoiono in mano»: e' **quante mani l'hanno mai
+	# avuta in mano**. Sono 4 carte su 48, tutte AUTORITA'.
+	var claim_cards_held: Dictionary = {}   # seggio -> quante volte ne ha tenuta una
+	var claim_seats: Dictionary = {}        # seggio -> quante partite giocate
 	var claims_forced: int = 0    # ACT_CLAIM in FORCE: il Consiglio strappato
 	var granted: Dictionary = {}  # Chronicle -> quante volte una casella e' passata di mano
 	var cleared: Dictionary = {}  # Chronicle -> quante volte una casella e' rimasta a nessuno
@@ -147,9 +153,26 @@ func _initialize() -> void:
 		# strappare un Consiglio da proponente. La Regione arriva solo se quel
 		# Consiglio cade su una delle Consequence che portano un SET_CONTROL a
 		# `$proponent`. Contare le tre cose insieme dice dove si perde la catena.
+		for entity_id in seats:
+			claim_seats[str(entity_id)] = int(claim_seats.get(str(entity_id), 0)) + 1
 		for entry in (session.world["effect_log"] as Array):
 			var effect: Dictionary = (entry as Dictionary).get("effect", entry) as Dictionary
 			var effect_type: String = str(effect.get("type", ""))
+			# Chi ha mai avuto in mano il diritto di chiamare un Consiglio: si
+			# legge dalle carte consegnate, che e' l'unico posto dove la mano di
+			# un anno intero resta scritta.
+			if effect_type == "GRANT_ASSET" or effect_type == "DRAW_ASSET":
+				var asset_id: String = str(
+					(effect.get("payload", {}) as Dictionary).get("asset_id", "")
+				)
+				var card: Variant = data.assets.get(asset_id)
+				if card != null and str(
+					((card as Dictionary).get("card_action", {}) as Dictionary).get("kind", "")
+				) == "CLAIM":
+					var who: String = str(
+						(effect.get("target", {}) as Dictionary).get("id", "")
+					)
+					claim_cards_held[who] = int(claim_cards_held.get(who, 0)) + 1
 			if effect_type == "CREATE_CLAIM":
 				claims_made += 1
 			elif effect_type == "CONSUME_CLAIM":
@@ -263,6 +286,29 @@ func _initialize() -> void:
 	print("    Rivendicazioni aperte (ACT_CLAIM CREATE):  %d" % claims_made)
 	print("    Consigli strappati    (ACT_CLAIM FORCE):   %d" % claims_forced)
 	print("    Rivendicazioni morte senza essere usate:   %d" % (claims_made - claims_forced))
+	var claim_cards: int = 0
+	var claim_families: Dictionary = {}
+	for asset_id in data.assets:
+		var card: Dictionary = data.assets[str(asset_id)] as Dictionary
+		if str((card.get("card_action", {}) as Dictionary).get("kind", "")) != "CLAIM":
+			continue
+		claim_cards += 1
+		claim_families[str(card["family"])] = true
+	var family_names: Array = claim_families.keys()
+	family_names.sort()
+	print("  E prima ancora: **chi ha mai avuto in mano il diritto di chiamare**")
+	print("  (RIVENDICARE sta su %d carte delle %d, in %d famiglie: %s):" % [
+		claim_cards, data.assets.size(), family_names.size(),
+		", ".join(PackedStringArray(family_names))
+	])
+	var seat_ids: Array = claim_seats.keys()
+	seat_ids.sort()
+	for entity_id in seat_ids:
+		var games: int = maxi(1, int(claim_seats[str(entity_id)]))
+		var had: int = int(claim_cards_held.get(str(entity_id), 0))
+		print("    %-16s %.2f carte RIVENDICARE per partita" % [
+			str(entity_id), float(had) / float(games)
+		])
 	# ISSUES 42: la seconda saga porta piu' Trionfi della prima. Una delle tre
 	# cause possibili e' che le sue domande arrivino al voto piu' spesso — piu'
 	# Consigli, piu' occasioni di chiudere una clausola.

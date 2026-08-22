@@ -895,7 +895,18 @@ func _urgency(tension_id: String, entity_id: String, goals: Dictionary, session:
 
 ## La soglia su cui questo seggio decide: quella vera se puo' vederla, quella
 ## tipica della Chronicle se il velo la copre (D-187).
+##
+## Col cancello del tavolo (D-203) non c'e' nessuna soglia da raggiungere: quello
+## che decide e' **essere il mucchio piu' alto**. La distanza da battere e'
+## quindi l'altezza del piu' alto, e per lui stesso e' zero — cosi' «quanto sono
+## vicino» continua a voler dire quello che ha sempre voluto dire, misurato sulla
+## regola che c'e' adesso. Senza questa riga il seggio si misurava su un numero
+## che non succede mai, e ha smesso di prenotare: 27 rivendicazioni aperte
+## diventate 18, e le morte dal 41% al 67%.
 func _assumed_threshold(tension_id: String, entity_id: String, session: RefCounted) -> int:
+	if session.tensions.table_gate() > 0:
+		var tallest: String = session.tensions.hottest_pile()
+		return 0 if tallest == "" else session.tensions.value(tallest)
 	var known: int = session.service.visible_tension_threshold(tension_id, entity_id)
 	return known if known >= 0 else session.tensions.typical_threshold()
 

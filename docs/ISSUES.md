@@ -1171,11 +1171,25 @@ prenotazione che non c'è più).
 | riscosse | 16 | **16** |
 | **morte in mano** | 57 (**78%**) | **11 (41%)** |
 
-**Resta aperta.** Il criterio chiede le morte **sotto una su tre**: siamo a 41%.
-Due strade più aggressive sono state provate e **respinte coi numeri** (togliere
-del tutto la prenotazione azzera anche le prenotazioni e costa 13 Consigli
-falliti; bloccare il ripiego costa 19). CHR_03 resta al 78% ed è il termine di
-paragone.
+**E poi la domanda ha cambiato forma, come questa voce aveva previsto.** Con il
+cancello del tavolo ([D-203](DECISIONS.md#d-203)) RIVENDICARE è diventata l'unico
+modo che un giocatore ha di aprire un Consiglio *quando vuole lui* — e allora la
+prima domanda non è più quante prenotazioni muoiono, ma **chi ha mai avuto in
+mano il diritto di chiamare**. Misurato in 0.1.172
+([D-204](DECISIONS.md#d-204)): **la Cenere zero volte in venti partite**, il
+Vaerax una ogni quattro, perché le 4 carte RIVENDICARE erano tutte AUTORITÀ e
+l'AUTORITÀ si pesca solo da due Regioni. Ora sono **otto carte in cinque
+famiglie** e ogni Regione ne pesca almeno una: Cenere a 1,05 e Vaerax a 1,50, con
+lo scarto fra la casa più servita e la meno servita che passa da **infinito a 3,1
+volte**.
+
+**Resta aperta la metà vecchia.** Il criterio chiede le morte **sotto una su
+tre**: siamo al **56%** (era 67% col cancello acceso e prima del rimedio; era 41%
+in 0.1.159, quando i Consigli erano sei l'anno invece di quattro — con meno
+Consigli una prenotazione ha meno occasioni di essere riscossa). Due strade più
+aggressive erano già state provate e **respinte coi numeri** (togliere del tutto
+la prenotazione azzera anche le prenotazioni e costa 13 Consigli falliti;
+bloccare il ripiego costa 19).
 
 **Fatto quando** le rivendicazioni morte scendono sotto una su tre — o quando
 ISSUES 49 arriva e questa azione diventa quella che gira i mucchi coperti, e
