@@ -291,19 +291,40 @@ func _update_destiny(session: RefCounted, viewer_id: String) -> void:
 	_destiny_card.texture = CardArt.texture_for(
 		"destiny", session.service.destiny_of(viewer_id), session.data
 	)
+	# I quattro obiettivi hanno preso il posto dei tre gradini, se la Chronicle
+	# li dichiara (D-198). La lista la fa `objectives_of`, la stessa che scrive
+	# il verbale di fine anno: due letture diverse dello stesso seggio erano il
+	# difetto piu' facile da introdurre qui.
+	var taken: Array = session.destinies.objectives_of(viewer_id)
+	if not taken.is_empty():
+		for entry in taken:
+			var record: Dictionary = entry as Dictionary
+			_rung_line(
+				"%s%s" % [
+					"" if bool(record["public"]) else "(coperto) ", str(record["label"])
+				],
+				bool(record["met"])
+			)
+		return
 	for level in ["minimum", "victory", "triumph"]:
-		var holds: bool = session.destinies.conditions.all_hold(destiny[level]["conditions"], {"self": viewer_id})
-		var line := Label.new()
-		# ASCII on purpose: the fallback font a Web export ships has no check mark,
-		# and a missing glyph renders as a tofu box - which reads as a bug in the
-		# game rather than a gap in the font.
-		line.text = "%s %s" % ["[x]" if holds else "[ ]", str(destiny[level]["label"])]
-		line.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-		line.add_theme_font_size_override("font_size", 12)
-		line.add_theme_color_override(
-			"font_color", Color("#6fa88a") if holds else Color("#5f584c")
+		_rung_line(
+			str(destiny[level]["label"]),
+			session.destinies.conditions.all_hold(destiny[level]["conditions"], {"self": viewer_id})
 		)
-		_destiny.add_child(line)
+
+
+## Una riga della scala. ASCII on purpose: the fallback font a Web export ships
+## has no check mark, and a missing glyph renders as a tofu box - which reads as
+## a bug in the game rather than a gap in the font.
+func _rung_line(text: String, holds: bool) -> void:
+	var line := Label.new()
+	line.text = "%s %s" % ["[x]" if holds else "[ ]", text]
+	line.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	line.add_theme_font_size_override("font_size", 12)
+	line.add_theme_color_override(
+		"font_color", Color("#6fa88a") if holds else Color("#5f584c")
+	)
+	_destiny.add_child(line)
 
 
 func _tarot() -> TextureRect:

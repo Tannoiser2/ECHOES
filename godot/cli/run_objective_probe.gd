@@ -104,6 +104,11 @@ func _initialize() -> void:
 	var score_now: int = 0
 	var score_then: int = 0
 	var seats_total: int = 0
+	# E quando la regola e' accesa davvero (D-198), il conto vero: quello che il
+	# gioco ha contato, non quello che la sonda avrebbe contato.
+	var live: Dictionary = {}
+	var live_seats: int = 0
+	var live_score: int = 0
 
 	for index in range(runs):
 		var chronicle_id: String = "CHR_01" if index % 2 == 0 else "CHR_03"
@@ -128,6 +133,16 @@ func _initialize() -> void:
 			var result: Dictionary = (report["destiny_results"] as Dictionary)[str(entity_id)]
 			reached[str(result["level"])] = int(reached.get(str(result["level"]), 0)) + 1
 			score_now += int(scoring.get(str(result["level"]).to_lower(), 0))
+
+			if result.has("objectives_met"):
+				var real: int = int(result["objectives_met"])
+				live[real] = int(live.get(real, 0)) + 1
+				live_seats += 1
+				var points: Array = (
+					(data.chronicles[chronicle_id] as Dictionary).get("objectives", {}) as Dictionary
+				).get("saga_points", []) as Array
+				if not points.is_empty():
+					live_score += int(points[mini(real, points.size() - 1)])
 
 			var context: Dictionary = {"self": str(entity_id)}
 			var destiny: Dictionary = data.destinies[str(result["destiny_id"])] as Dictionary
@@ -230,6 +245,25 @@ func _initialize() -> void:
 	print("    mappa a obiettivo (0 -> -1, 1 -> 1, 2 -> 2, 3 -> 4, 4 -> 6):")
 	print("      %+.2f per seggio" % [float(score_then) / seats])
 	print("    (la seconda mappa e' una proposta da bocciare o correggere, non un dato)")
+	if live_seats > 0:
+		print("")
+		print("== 5. E QUANDO LA REGOLA E' ACCESA DAVVERO ==")
+		print("  Non l'ombra: il conto che il gioco ha davvero fatto, sui seggi")
+		print("  delle Chronicle che dichiarano `objectives`.")
+		var carried_live: int = 0
+		for got in [0, 1, 2, 3, 4]:
+			var many: int = int(live.get(got, 0))
+			carried_live += got * many
+			print("    %d su 4   %4d seggi  %5.1f%%" % [
+				got, many, 100.0 * float(many) / float(live_seats)
+			])
+		print("    media: %.2f obiettivi per seggio, su %d seggi" % [
+			float(carried_live) / float(live_seats), live_seats
+		])
+		print("    punteggio di saga: %+.2f per seggio" % [
+			float(live_score) / float(live_seats)
+		])
+
 	print("")
 	print("  %d Chronicle, %d seggi, semi %d-%d." % [
 		runs, seats_total, first_seed, first_seed + runs - 1

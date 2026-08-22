@@ -48,6 +48,12 @@ func evaluate(destiny_id: String, holder: String = "") -> Dictionary:
 		entity_id = holder
 	var context: Dictionary = {"self": entity_id}
 
+	# La Chronicle puo' dichiarare che i gradini non ci sono piu' (D-198): allora
+	# non si guarda fin dove si e' saliti, si contano gli obiettivi avverati.
+	var rules: Dictionary = _objective_rules()
+	if not rules.is_empty():
+		return _by_objectives(destiny_id, destiny, entity_id, context, rules)
+
 	var achieved: Dictionary = {}
 	var reached: String = "NONE"
 	var evidence: Array = []
@@ -95,11 +101,162 @@ func evaluate(destiny_id: String, holder: String = "") -> Dictionary:
 	}
 
 
+## Le regole degli obiettivi, se la Chronicle le dichiara. Vuote, e tutto il
+## resto del file non le vede nemmeno: la scala cumulativa resta quella di sempre.
+func _objective_rules() -> Dictionary:
+	var chronicle: Variant = data.chronicles.get(str(world.get("chronicle_id", "")))
+	if chronicle == null:
+		return {}
+	return (chronicle as Dictionary).get("objectives", {}) as Dictionary
+
+
+## Gli obiettivi di un seggio, con quelli che tengono gia' spuntati: il palese
+## per primo, poi i suoi nascosti. Lista vuota se la Chronicle non li dichiara.
+##
+## E' l'unico posto dove si decide **quali sono i quattro**: il verbale di fine
+## anno, il pannello del giocatore e la console leggono tutti di qui. Due letture
+## diverse dello stesso seggio erano il difetto piu' facile da introdurre, ed e'
+## esattamente quello che D-194 ha gia' pagato una volta con la mano.
+func objectives_of(entity_id: String) -> Array:
+	var rules: Dictionary = _objective_rules()
+	if rules.is_empty():
+		return []
+	var seat: Dictionary = (world["entities"] as Dictionary).get(entity_id, {}) as Dictionary
+	var destiny_id: String = str(seat.get("destiny_id", ""))
+	if destiny_id == "" or not data.destinies.has(destiny_id):
+		return []
+	return _taken_by(destiny_id, entity_id, {"self": entity_id}, rules)
+
+
+func _taken_by(
+	destiny_id: String, entity_id: String, context: Dictionary, rules: Dictionary
+) -> Array:
+	var destiny: Dictionary = data.destinies[destiny_id]
+	var public_level: String = str(rules.get("public_from", "victory"))
+	var out: Array = [{
+		"id": destiny_id,
+		"title": str(destiny["title"]),
+		"label": str((destiny[public_level] as Dictionary)["label"]),
+		"public": true,
+		"met": conditions.all_hold((destiny[public_level] as Dictionary)["conditions"], context),
+	}]
+	var seat: Dictionary = (world["entities"] as Dictionary).get(entity_id, {}) as Dictionary
+	for objective_id in seat.get("objectives", []):
+		var objective: Variant = data.objectives.get(str(objective_id))
+		if objective == null:
+			continue
+		var record: Dictionary = objective as Dictionary
+		out.append({
+			"id": str(objective_id),
+			"title": str(record["title"]),
+			"label": str(record["label"]),
+			"public": false,
+			"met": conditions.all_hold(record["conditions"], context),
+		})
+	return out
+
+
+## Quattro obiettivi al posto di tre gradini (D-198).
+##
+## Uno **palese**, che e' il Destino giurato letto al gradino che la Chronicle
+## dichiara — la casa e' venuta al tavolo per quello, e lo sanno tutti. Tre
+## **nascosti**, pescati all'apertura e scritti sul seggio.
+##
+## Il livello non sparisce: sarebbe stato il modo piu' rapido per rompere il
+## verbale, il pannello, il libro della saga e il punteggio di campagna, che
+## leggono tutti un livello. Si **deriva** dal conto, con la tabella che la
+## Chronicle scrive (`levels`), e resta cumulativo verso il basso: chi arriva a
+## VICTORY ha tenuto anche MINIMUM, perche' e' quello che quella parola ha
+## sempre voluto dire.
+func _by_objectives(
+	destiny_id: String,
+	destiny: Dictionary,
+	entity_id: String,
+	context: Dictionary,
+	rules: Dictionary
+) -> Dictionary:
+	var public_level: String = str(rules.get("public_from", "victory"))
+	var taken: Array = []
+	var evidence: Array = []
+	var unmet: Array = []
+
+	var public_conditions: Array = (destiny[public_level] as Dictionary)["conditions"]
+	taken = _taken_by(destiny_id, entity_id, context, rules)
+	for condition in public_conditions:
+		for line in conditions.describe_all(condition, context):
+			evidence.append("PALESE %s" % [str(line)])
+		if not conditions.holds(condition, context):
+			unmet.append((condition as Dictionary).duplicate(true))
+			for road in conditions.open_roads(condition, context):
+				unmet.append(road)
+
+	var seat: Dictionary = (world["entities"] as Dictionary).get(entity_id, {}) as Dictionary
+	for objective_id in seat.get("objectives", []):
+		var objective: Variant = data.objectives.get(str(objective_id))
+		if objective == null:
+			continue
+		var record: Dictionary = objective as Dictionary
+		for condition in record["conditions"]:
+			for line in conditions.describe_all(condition, context):
+				evidence.append("NASCOSTO %s" % [str(line)])
+			if not conditions.holds(condition, context):
+				unmet.append((condition as Dictionary).duplicate(true))
+				for road in conditions.open_roads(condition, context):
+					unmet.append(road)
+
+	var met: int = 0
+	for entry in taken:
+		if bool((entry as Dictionary)["met"]):
+			met += 1
+
+	var ladder: Array = rules.get("levels", ["NONE"]) as Array
+	var reached: String = str(ladder[mini(met, ladder.size() - 1)])
+	# Il livello raggiunto contiene quelli sotto: e' cosi' che lo legge tutto
+	# quello che gia' esiste, e cambiarlo qui avrebbe cambiato il significato
+	# della parola invece della regola.
+	var achieved: Dictionary = {}
+	var rung: int = LEVEL_NAMES.find(reached)
+	for i in range(LEVEL_NAMES.size()):
+		achieved[LEVEL_NAMES[i]] = rung >= i
+
+	for echo in world["echo_log"]:
+		if (echo["participants"] as Array).has(entity_id):
+			evidence.append("ECHO %s: %s" % [str(echo["echo_id"]), str(echo["summary"])])
+
+	return {
+		"destiny_id": destiny_id,
+		"entity_id": entity_id,
+		"level": reached,
+		"levels": achieved,
+		"evidence": evidence,
+		"unmet": unmet,
+		"objectives": taken,
+		"objectives_met": met,
+	}
+
+
 ## One-line summary for the Chronicle End log.
 func describe(result: Dictionary) -> String:
 	var destiny: Dictionary = data.destinies[str(result["destiny_id"])]
 	var seat: Dictionary = (world["entities"] as Dictionary).get(str(result["entity_id"]), {})
 	var who: String = str(seat.get("name", data.entities[str(result["entity_id"])]["name"]))
+	# Con gli obiettivi la riga non puo' essere l'etichetta di un gradino: il
+	# livello e' **derivato** da un conto, e stampare «Il regno decide» a chi
+	# quel Destino non l'ha chiuso sarebbe la bugia piu' facile di tutta la
+	# regola (D-198). Si dice il conto, e quali.
+	if result.has("objectives"):
+		var taken: Array = result["objectives"] as Array
+		var names: Array = []
+		for entry in taken:
+			var record: Dictionary = entry as Dictionary
+			if bool(record["met"]):
+				names.append(str(record["label"]))
+		var how: String = " · ".join(names) if not names.is_empty() else "niente"
+		var many: int = int(result["objectives_met"])
+		return "%s - %s: %d %s su %d (%s)" % [
+			who, str(result["level"]), many,
+			"obiettivo" if many == 1 else "obiettivi", taken.size(), how
+		]
 	var label: String = "nessun livello raggiunto"
 	match str(result["level"]):
 		"MINIMUM":

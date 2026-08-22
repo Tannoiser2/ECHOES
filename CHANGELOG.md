@@ -5,6 +5,42 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.166 — Gli obiettivi al posto dei gradini, accesi (D-198)
+
+- **CHR_01 non sale più una scala: conta.** Uno palese — il Destino giurato, che
+  sanno tutti — e tre coperti pescati all'apertura dal pool dei dodici. Tutti e
+  quattro è un trionfo, nessuno è un anno perso, in mezzo ci sono i successi
+  parziali, e ognuno vale un numero diverso alla fine della saga.
+- **Regola dichiarata dalla Chronicle**, reversibile come tutte le altre: una
+  Chronicle che non scrive `objectives` gioca coi tre gradini di sempre.
+- **Il livello non sparisce: si deriva dal conto** (`levels`). Toglierlo avrebbe
+  rotto in un colpo il verbale, il pannello, il libro della saga, il salvataggio
+  e il punteggio di campagna, che leggono tutti un livello.
+- **Quello che il gioco conta davvero** su 100 Chronicle: 0 su 4 nel **19,0%**
+  dei seggi, tutti e quattro nel **2,5%**, media **1,44**. La sonda ombra
+  prometteva 1,58 — **era ottimista del 9%**, e la differenza è dichiarata.
+- **Il lato umano, cercato invece che aspettato** (§5ter): pannello del seggio e
+  console mostrano i quattro obiettivi coi coperti segnati; la riga del verbale
+  dice il conto e quali, invece dell'etichetta di un gradino che il giocatore
+  non ha chiuso; la pagina delle regole dice che non si sale, si conta. Tutti e
+  tre leggono **una funzione sola**, `objectives_of()`.
+- **Un errore trovato solo guardando la pagina**: un `+` e un `%` in ordine
+  sbagliato mandavano la formattazione in errore a **ogni apertura**, con la
+  suite verde perché nessun test leggeva quel testo. Ora tre test lo coprono.
+- **Il lato classico si spegne intero**: cancellare la dichiarazione non bastava,
+  perché `setup()` aveva già pescato i coperti sul seggio — due metà di due
+  giochi diversi, lo stesso errore che D-184 aveva già pagato col rubinetto. Due
+  test di determinismo l'hanno detto subito.
+- **I tre piani scriptati dichiarano su quale scala si leggono**: una storia
+  scritta a mano finisce dove finisce.
+- Difetto aperto e dichiarato: il palese costa dal **35,7% all'80,0%** a seconda
+  della casa. CHR_03 non è ancora passata: prima l'economia, poi il punteggio.
+- Cancello: **400 test in 55 suite, 6882 asserzioni**; playtest **0 su 8** a
+  tavolo misto e uniforme; sims exit 0; toolchain e `--self-test` puliti.
+- Verbale: [D-198](docs/DECISIONS.md#d-198), [ISSUES 50](docs/ISSUES.md).
+
+---
+
 ## 0.1.165 — Il pool degli obiettivi, dodici carte misurate una per una (D-197)
 
 - D-196 aveva detto che il pool non c'era. Ora c'è: **nuovo schema `objective`**

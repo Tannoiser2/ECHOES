@@ -108,3 +108,58 @@ func test_the_page_counts_the_families_from_the_cards() -> void:
 		page.contains("%d muovere" % influencing),
 		"e la pagina scrive quel numero, non uno battuto a macchina"
 	)
+
+
+## Con gli obiettivi accesi la pagina non puo' parlare di tre gradini (D-198).
+##
+## E questo test esiste per una ragione precisa: la prima stesura di quel
+## paragrafo aveva un errore di precedenza fra `+` e `%` che mandava in errore
+## la formattazione a ogni apertura della pagina — e la suite era **verde**,
+## perche' nessuno leggeva quel testo. E' §5ter alla lettera: nessuna misura
+## copre quello che una persona vede, se non si guarda quello che vede.
+func test_with_objectives_the_page_counts_instead_of_climbing() -> void:
+	var page: String = _page({
+		"objectives": {
+			"hidden": 3,
+			"public_from": "victory",
+			"levels": ["NONE", "MINIMUM", "VICTORY", "VICTORY", "TRIUMPH"],
+		}
+	})
+	assert_true(
+		page.contains("NON SI SALE UNA SCALA"),
+		"il titolo dice che la scala non c'e piu"
+	)
+	assert_true(page.contains("palese"), "la pagina distingue il palese")
+	assert_true(page.contains("coperti"), "e i coperti")
+	assert_true(page.contains("3 [b]coperti[/b]"), "e dice quanti se ne pescano")
+	assert_true(page.contains("Tutti e 4 e un trionfo"), "e cosa vuol dire prenderli tutti")
+	assert_false(
+		page.contains("Destino[/b] a tre gradini"),
+		"e non promette piu la scala di prima"
+	)
+
+
+## Il numero degli obiettivi condivisi lo dice il pool, non una riga battuta a
+## macchina: se domani ne scrivo quindici, la pagina lo dice da sola.
+func test_the_page_counts_the_pool_from_the_data() -> void:
+	var page: String = _page({
+		"objectives": {
+			"hidden": 3,
+			"public_from": "victory",
+			"levels": ["NONE", "MINIMUM", "VICTORY", "VICTORY", "TRIUMPH"],
+		}
+	})
+	assert_true(
+		page.contains("%d obiettivi condivisi" % session.data.objectives.size()),
+		"la pagina conta il pool vero (%d)" % session.data.objectives.size()
+	)
+
+
+## E senza la regola, la pagina resta quella di sempre.
+func test_without_objectives_the_page_still_teaches_the_ladder() -> void:
+	var page: String = _page({"objectives": {}})
+	assert_true(
+		page.contains("Destino[/b] a tre gradini"),
+		"senza obiettivi si sale ancora la scala"
+	)
+	assert_false(page.contains("NON SI SALE UNA SCALA"), "e non si parla di conti")

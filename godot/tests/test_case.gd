@@ -153,4 +153,14 @@ func play_classic() -> void:
 	chronicle["claim_rules"] = {}
 	# ...e il calore lo mette la Deriva a orologio, non i giocatori (D-192).
 	chronicle["tension_tokens"] = {}
+	# ...e si vince salendo tre gradini, non contando quattro obiettivi (D-198).
+	#
+	# Qui non basta spegnere la regola: `setup()` e' gia' passato, e ha gia'
+	# pescato i nascosti sul seggio. Una dichiarazione spenta e tre obiettivi
+	# scritti nel mondo sono **due meta' di due giochi diversi**, ed e' lo stesso
+	# errore che D-184 aveva gia' pagato una volta col rubinetto. Si spengono
+	# insieme, e allora la prova successiva parte davvero dal lato classico.
+	chronicle["objectives"] = {}
+	for entity_id in session.world["entities"]:
+		(session.world["entities"][str(entity_id)] as Dictionary)["objectives"] = []
 	session.actions.set("_chronicle", chronicle)

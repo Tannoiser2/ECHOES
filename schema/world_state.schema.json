@@ -37,11 +37,11 @@
           "type": "integer"
         },
         "chronicles_played": {
-      "type": "integer",
-      "minimum": 1,
-      "description": "Quante Chronicle ha gia' giocato questa saga, contando quella in corso (D-181). Serve a sapere se la campagna puo' dichiarare un vincitore: e' l'unico numero che dice quanto e' lunga una saga, perche' `year` conta gli anni del mondo e fra due Chronicle ne possono passare duecento."
-    },
-    "chronicle_id": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Quante Chronicle ha gia' giocato questa saga, contando quella in corso (D-181). Serve a sapere se la campagna puo' dichiarare un vincitore: e' l'unico numero che dice quanto e' lunga una saga, perche' `year` conta gli anni del mondo e fra due Chronicle ne possono passare duecento."
+        },
+        "chronicle_id": {
           "type": "string"
         },
         "act": {
@@ -437,6 +437,14 @@
           "type": "integer",
           "minimum": 0,
           "description": "Quale vita del seggio è al tavolo (indice in entity.incarnations, D-108): la persona, poi quello che nasce da lei quando la linea si esaurisce."
+        },
+        "objectives": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^OBJ_[A-Z0-9_]+$"
+          },
+          "description": "Gli obiettivi **nascosti** pescati all'apertura (D-198). Il palese non sta qui: e' il Destino giurato, letto al gradino che la Chronicle dichiara in `objectives.public_from`, quindi non c'e' una seconda verita' da tenere allineata. Vuoto, e non letto mai, se la Chronicle non dichiara `objectives`."
         }
       }
     },

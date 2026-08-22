@@ -686,22 +686,38 @@ fine anno. I tipi di clausola disponibili:
 | `scar_count` | quante cicatrici porta il mondo, o una Regione in particolare |
 | `any_of` / `some_of` | almeno una — o almeno K — fra le clausole annidate |
 
-### Quello che sostituirà i gradini (scritto, non ancora acceso)
+### E nel primo anno la scala non c'è più: si contano quattro obiettivi
 
-Il committente ha deciso che i tre gradini cumulativi lasceranno il posto a
-**quattro obiettivi**: uno palese, legato all'entità, e tre nascosti pescati da
-un pool. Tutti e quattro è un trionfo, nessuno è un NONE, in mezzo ci sono i
-successi parziali — e sono quelli che danno i numeri alla fine della saga.
+Dalla 0.1.166 **CHR_01 non sale più i tre gradini: conta**
+([D-198](DECISIONS.md#d-198)). Ogni casa ne ha quattro.
 
-Il **pool esiste già come dato**: dodici obiettivi, misurati uno per uno su cento
-Chronicle, dal 79,0% («una pietra sua») al 10,2% («due Legami a fine anno»). Un
-obiettivo non ha gradini: si avvera o no. Con un palese e tre pescati, un seggio
-se ne porta a casa **1,58** in media; nessuno in **16,2%** dei casi, tutti e
-quattro nel **2,8%**.
+```
+  IL PALESE     il Destino giurato, letto alla Vittoria
+                quello per cui la casa è venuta al tavolo — lo sanno tutti
 
-**Niente di tutto questo è ancora giocabile**: nessuna partita pesca obiettivi e
-la scala di §14 è ancora quella dei tre gradini. Il pool è il preventivo che è
-diventato dato ([D-197](DECISIONS.md#d-197)).
+  TRE COPERTI   pescati all'apertura da un pool di dodici
+                li vedi solo tu, e nessuno sa cos'altro stai contando
+```
+
+A fine anno si contano quelli che si sono avverati. **Tutti e quattro è un
+trionfo, nessuno è un anno perso**; in mezzo ci sono i successi parziali, e ognuno
+vale un numero diverso alla fine della saga (−1 · 1 · 2 · 4 · 6).
+
+I dodici del pool sono misurati uno per uno su cento Chronicle, dal 79,0% («una
+pietra sua») al 10,2% («due Legami a fine anno»), e nessuno nomina una casa o un
+posto: li può pescare chiunque, in qualunque mondo.
+
+**Come va a finire davvero**, sui 200 seggi di CHR_01: nessun obiettivo nel
+**19,0%** dei casi, uno nel 34,5%, due nel 32,5%, tre nell'11,5%, tutti e quattro
+nel **2,5%**. In media **1,44** obiettivi a testa. Il confronto che conta è col
+gioco di prima, dove «non raggiungere niente» capitava a 3 seggi su 400: **perdere
+è tornato possibile.**
+
+Il livello (MINIMO / VITTORIA / TRIONFO) non è sparito: si **deriva** dal conto,
+così il verbale, il pannello e il punteggio di campagna continuano a leggere
+quello che hanno sempre letto.
+
+**Il mondo del Sale gioca ancora a gradini**: prima deve passare alle carte.
 
 ### La spina e la scelta
 

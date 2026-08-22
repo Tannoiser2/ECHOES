@@ -318,47 +318,53 @@
               "description": "Di quanto un Failure sfoga la Tensione (appendice A6: -2). A -1 la proposta bocciata non compra quiete: la domanda resta piu' vicina alla soglia e torna prima - la seconda leva contro l'Oppose come strategia dominante, misurata in D-098."
             },
             "focus_weight": {
-    "type": "object",
-    "additionalProperties": false,
-    "description": "Quanto pesa, al Consiglio, stare nella Regione di cui si discute (D-154). Omesso, non pesa niente e vale il comportamento fino a 0.1.118: il titolo conta solo a fine anno. Il peso si somma al fronte di chi lo porta, e solo se quel seggio ha impegnato almeno una carta - un bonus dal nulla sarebbe un voto gratis.",
-    "properties": {
-     "control": {
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 3,
-      "description": "Quanto vale essere il padrone della Regione a fuoco: il titolo che pesa dentro l'anno e non solo nel Destino."
-     },
-     "majority": {
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 3,
-      "description": "Quanto vale avere strettamente piu' presenza di chiunque altro nella Regione a fuoco. A parita' non lo prende nessuno."
-     },
-     "max": {
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 4,
-      "description": "Il tetto per seggio, sommando titolo e maggioranza."
-     },
-     "commits_at_least": {
-      "type": "integer",
-      "minimum": 1,
-      "maximum": 3,
-      "description": "Quante carte bisogna aver impegnato perche' il peso conti."
-     },
-     "sides": {
-      "type": "array",
-      "items": {"type": "string", "enum": ["SUPPORT", "OPPOSE"]},
-      "description": "Su quali fronti il peso si applica. Stare in un posto e' neutro rispetto al lato: «e' terra mia e dico di no» pesa quanto «e' terra mia e dico di si'»."
-     },
-     "includes_proponent": {
-      "type": "boolean",
-      "default": true,
-      "description": "Se il proponente prenda il peso della terra. A true il bonus finisce quasi sempre a chi propone - che e' gia' scelto *per* la presenza - e i Consigli passano troppo: misurato, FAIL 164 e un seggio bloccato. A false il peso va solo a chi la terra ce l'ha ma il Consiglio non l'ha chiamato: «non si decide di casa mia senza di me»."
-     }
-    }
-   },
-   "alliance_weight": {
+              "type": "object",
+              "additionalProperties": false,
+              "description": "Quanto pesa, al Consiglio, stare nella Regione di cui si discute (D-154). Omesso, non pesa niente e vale il comportamento fino a 0.1.118: il titolo conta solo a fine anno. Il peso si somma al fronte di chi lo porta, e solo se quel seggio ha impegnato almeno una carta - un bonus dal nulla sarebbe un voto gratis.",
+              "properties": {
+                "control": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 3,
+                  "description": "Quanto vale essere il padrone della Regione a fuoco: il titolo che pesa dentro l'anno e non solo nel Destino."
+                },
+                "majority": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 3,
+                  "description": "Quanto vale avere strettamente piu' presenza di chiunque altro nella Regione a fuoco. A parita' non lo prende nessuno."
+                },
+                "max": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 4,
+                  "description": "Il tetto per seggio, sommando titolo e maggioranza."
+                },
+                "commits_at_least": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 3,
+                  "description": "Quante carte bisogna aver impegnato perche' il peso conti."
+                },
+                "sides": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "SUPPORT",
+                      "OPPOSE"
+                    ]
+                  },
+                  "description": "Su quali fronti il peso si applica. Stare in un posto e' neutro rispetto al lato: «e' terra mia e dico di no» pesa quanto «e' terra mia e dico di si'»."
+                },
+                "includes_proponent": {
+                  "type": "boolean",
+                  "default": true,
+                  "description": "Se il proponente prenda il peso della terra. A true il bonus finisce quasi sempre a chi propone - che e' gia' scelto *per* la presenza - e i Consigli passano troppo: misurato, FAIL 164 e un seggio bloccato. A false il peso va solo a chi la terra ce l'ha ma il Consiglio non l'ha chiamato: «non si decide di casa mia senza di me»."
+                }
+              }
+            },
+            "alliance_weight": {
               "type": "object",
               "additionalProperties": false,
               "properties": {
@@ -390,13 +396,30 @@
           "description": "Cosa c'e' gia' costruito quando l'anno si apre. Sta sulla Chronicle e non sulla Regione per la stessa ragione di `starting_control` (D-049): le Regioni sono condivise fra saghe distanti secoli, e una pietra scritta sulla Regione seduterebbe le case della prima saga al tavolo della seconda.",
           "items": {
             "type": "object",
-            "required": ["region_id", "structure_type"],
+            "required": [
+              "region_id",
+              "structure_type"
+            ],
             "additionalProperties": false,
             "properties": {
-              "region_id": { "type": "string" },
-              "structure_type": { "type": "string" },
-              "grade": { "type": "integer", "minimum": 1, "maximum": 4, "default": 1 },
-              "owner": { "type": ["string", "null"] }
+              "region_id": {
+                "type": "string"
+              },
+              "structure_type": {
+                "type": "string"
+              },
+              "grade": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 4,
+                "default": 1
+              },
+              "owner": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
             }
           }
         },
@@ -407,12 +430,26 @@
           "properties": {
             "rise_on": {
               "type": "array",
-              "items": { "type": "string", "enum": ["MINIMUM", "VICTORY", "TRIUMPH"] },
+              "items": {
+                "type": "string",
+                "enum": [
+                  "MINIMUM",
+                  "VICTORY",
+                  "TRIUMPH"
+                ]
+              },
               "description": "I livelli che fanno salire un grado."
             },
             "fall_on": {
               "type": "array",
-              "items": { "type": "string", "enum": ["NONE", "MINIMUM", "VICTORY"] },
+              "items": {
+                "type": "string",
+                "enum": [
+                  "NONE",
+                  "MINIMUM",
+                  "VICTORY"
+                ]
+              },
               "description": "I livelli che ne fanno perdere uno. Sotto il primo grado la struttura non scende: va in rovina, e la rovina lascia una cicatrice."
             }
           }
@@ -461,7 +498,10 @@
         },
         "veiled_tensions": {
           "type": "string",
-          "enum": ["HIDES_ALL", "HIDES_THRESHOLD"],
+          "enum": [
+            "HIDES_ALL",
+            "HIDES_THRESHOLD"
+          ],
           "default": "HIDES_ALL",
           "description": "Che cosa nasconde il velo su una Tensione (D-187). `HIDES_ALL` - il default, ed e' il gioco fino a 0.1.154 - copre il numero **e** vieta di agire sulla domanda finche' non la si scopre. `HIDES_THRESHOLD` lascia il valore pubblico come per una domanda aperta e copre **la soglia**: si vede dove sta il segnalino, non dove sia il traguardo, e sulla domanda si spinge lo stesso. Chiesta dal committente perche' al tavolo vero nessuno puo' sapere quando una velata si attiva; e' la carta girata a faccia in giu' accanto al segnalino. SCOPRIRE resta l'azione che la gira, per chi la gioca."
         },
@@ -540,20 +580,20 @@
           "additionalProperties": false,
           "properties": {
             "contested": {
-            "type": "object",
-            "additionalProperties": false,
-            "description": "La contesa del controllo (D-158). Omesso, il padrone di una Regione e' quello **scritto** da una Conseguenza e resta finche' un'altra non lo cambia. Dichiarato, il padrone e' **contato** a ogni fine round: chi somma di piu' fra il valore delle proprie strutture e le proprie pedine. A parita' non cambia niente — per togliere una Regione bisogna superare chi la tiene, non pareggiarlo.",
-            "properties": {
-              "presence_weight": {
-                "type": "integer",
-                "minimum": 0,
-                "maximum": 5,
-                "default": 1,
-                "description": "Quanto vale una pedina nel conto, contro il valore di grado di una struttura. A 1 una torre di veglia (2) vale due pedine."
+              "type": "object",
+              "additionalProperties": false,
+              "description": "La contesa del controllo (D-158). Omesso, il padrone di una Regione e' quello **scritto** da una Conseguenza e resta finche' un'altra non lo cambia. Dichiarato, il padrone e' **contato** a ogni fine round: chi somma di piu' fra il valore delle proprie strutture e le proprie pedine. A parita' non cambia niente — per togliere una Regione bisogna superare chi la tiene, non pareggiarlo.",
+              "properties": {
+                "presence_weight": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 5,
+                  "default": 1,
+                  "description": "Quanto vale una pedina nel conto, contro il valore di grado di una struttura. A 1 una torre di veglia (2) vale due pedine."
+                }
               }
-            }
-          },
-          "max_stable_control": {
+            },
+            "max_stable_control": {
               "type": "integer",
               "minimum": 0,
               "description": "Regions an Entity can hold without strain. Every Region beyond this raises the Tension of that Region's own domain, once per round."
@@ -702,6 +742,54 @@
               "pattern": "^DST_[A-Z0-9_]+$"
             },
             "description": "I Destini possibili per quella casa. Almeno due: uno solo sarebbe il campo che c'è già sull'Entità."
+          }
+        },
+        "objectives": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "hidden",
+            "public_from",
+            "levels"
+          ],
+          "description": "Gli obiettivi al posto dei gradini (D-198). Dichiarata, questa regola spegne la scala cumulativa di §14: a fine anno non si guarda fin dove si e' saliti, si contano gli obiettivi avverati. Assente, la Chronicle gioca coi tre gradini di sempre.",
+          "properties": {
+            "hidden": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 8,
+              "description": "Quanti obiettivi nascosti pesca ogni seggio all'apertura, dal pool condivisibile. Col palese fanno il totale."
+            },
+            "public_from": {
+              "type": "string",
+              "enum": [
+                "minimum",
+                "victory",
+                "triumph"
+              ],
+              "description": "Quale gradino del Destino giurato diventa l'obiettivo palese. `victory` e' quello misurato (D-196): il Minimo e' sopravvivere, non un traguardo."
+            },
+            "levels": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "NONE",
+                  "MINIMUM",
+                  "VICTORY",
+                  "TRIUMPH"
+                ]
+              },
+              "description": "La traduzione dal conto al livello, indicizzata dal numero di obiettivi avverati: `levels[0]` e' dove arriva chi non ne prende nessuno, `levels[n]` chi li prende tutti. Tiene in piedi tutto quello che gia' legge un livello - il verbale, il pannello, il punteggio di saga."
+            },
+            "saga_points": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              },
+              "description": "I numeri della saga contati per obiettivo invece che per livello, indicizzati come `levels`. Dichiarati, vincono su `saga_scoring`: servono a dare un numero diverso a due successi parziali che il livello confonde."
+            }
           }
         }
       }
