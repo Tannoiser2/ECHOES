@@ -402,14 +402,22 @@ parola.
 
 | famiglia | le sue otto carte portano | il suo mestiere |
 |---|---|---|
-| **FORZA** | 5 × MUOVERE, 3 × INFLUENZARE (due in su, una in giù) | prende terra, e quando non la prende scalda — o mette un blocco |
-| **AUTORITÀ** | 4 × RIVENDICARE, 3 × INFLUENZARE, 1 × FORGIARE | è l'unica che sa **prendere la parola** |
-| **GENTE** | 4 × INFLUENZARE, 3 × MUOVERE, 1 × TRAMARE | si sposta, e preme |
-| **SAPERE** | 5 × TRAMARE, 2 × INFLUENZARE, 1 × MUOVERE | gli occhi — e *cosa* si va a guardare lo sceglie chi cala la carta |
+| **FORZA** | 5 × MUOVERE, 2 × INFLUENZARE, 1 × RIVENDICARE *(l'Assedio)* | prende terra, e quando non la prende scalda |
+| **AUTORITÀ** | 4 × RIVENDICARE, 3 × INFLUENZARE, 1 × FORGIARE | la casa della **parola**: ne ha quattro su otto |
+| **GENTE** | 3 × INFLUENZARE, 3 × MUOVERE, 1 × TRAMARE, 1 × RIVENDICARE *(il Portavoce)* | si sposta, e preme |
+| **SAPERE** | 5 × TRAMARE, 1 × INFLUENZARE, 1 × MUOVERE, 1 × RIVENDICARE *(la Deposizione Sigillata)* | gli occhi — e *cosa* si va a guardare lo sceglie chi cala la carta |
 | **RICCHEZZA** | 3 × FORGIARE (in giù), 3 × INFLUENZARE, 2 × MUOVERE | compra, e rompe |
-| **LEGAMI** | 4 × FORGIARE (in su), 2 × TRAMARE, 2 × INFLUENZARE | l'unica che sa **stringere** |
+| **LEGAMI** | 4 × FORGIARE (in su), 2 × INFLUENZARE, 1 × TRAMARE, 1 × RIVENDICARE *(il Debito Vecchio)* | l'unica che sa **stringere** |
 
-In tutto: **17 INFLUENZARE, 11 MUOVERE, 8 TRAMARE, 8 FORGIARE, 4 RIVENDICARE**.
+In tutto: **14 INFLUENZARE, 11 MUOVERE, 8 RIVENDICARE, 8 FORGIARE, 7 TRAMARE**.
+
+**Perché RIVENDICARE non è più solo dell'AUTORITÀ.** Da quando il Consiglio si
+apre a gettoni ([D-203](DECISIONS.md#d-203)), rivendicare è l'unico modo che un
+giocatore ha di aprirlo **quando vuole lui**. Con tutte e quattro le carte in
+AUTORITÀ, e l'AUTORITÀ che si pesca solo da Eredan e dalle Terre Nahr, due case su
+otto non l'hanno **mai** avuta in mano: la Cenere zero volte in venti partite, il
+Vaerax una ogni quattro. Ora sono otto carte in cinque famiglie, e ogni Regione
+della mappa ne pesca almeno una ([D-204](DECISIONS.md#d-204)).
 
 Le cinque azioni che una carta può portare, tutte per **1 AO**:
 
@@ -419,7 +427,7 @@ Le cinque azioni che una carta può portare, tutte per **1 AO**:
 | 2 | **INFLUENZARE** | Sposta di ±1 una Tensione. Serve **una** fra: presenza in una Regione del dominio di quella Tensione (gratis), oppure scartare 1 Asset di una famiglia rilevante |
 | 3 | **FORGIARE** | Sposta di 1 passo una relazione. **Verso l'alto**: serve il consenso dell'altro giocatore e 1 Asset LEGAMI scartato. **Verso il basso**: unilaterale, gratuito, e finisce nel registro pubblico |
 | 4 | **TRAMARE** | Uno fra: leggere in privato la **soglia** di una Tensione velata · guardare le prime 2 carte del mazzo Eco · leggere l'informazione privata di una Regione. Il risultato è **privato** |
-| 5 | **RIVENDICARE** | Se la Tensione è **già a 3 o più**, la prendi in un colpo: scarti 1 AUTORITÀ e **strappi un Consiglio di cui sei tu il proponente**. Se non lo è ancora, la **prenoti** (CREATE) e la riscuoti quando matura. Non si prenota ciò che è già pronto |
+| 5 | **RIVENDICARE** | Se la Tensione è **già a 3 o più**, la prendi in un colpo: scarti una carta e **strappi un Consiglio di cui sei tu il proponente**, senza aspettare i gettoni. Se non lo è ancora, la **prenoti** (CREATE) e la riscuoti quando matura. Non si prenota ciò che è già pronto |
 | 6 | **CALARE UNA CARTA NARRATORE** | Gioca una delle carte Eco che hai in mano: la sua funzione narrativa diventa un fatto del mondo, i suoi effetti si applicano, e alcune carte **aprono un Consiglio**. Le carte del Narratore sono **un mazzo a parte**: non sono la mano, e non si pescano dalla mappa |
 
 **La scala delle relazioni** (per FORGIARE):
@@ -565,9 +573,9 @@ non è ovvia: **non esiste un'azione che ti dà una Regione.** Esiste un'azione 
 ti dà il *diritto di aprire la discussione*.
 
 ```
-1. hai 1 Asset AUTORITÀ  →  RIVENDICARE (CREATE): apri il Claim        [1 AO]
+1. hai 1 carta RIVENDICARE  →  CREATE: apri il Claim                   [1 AO]
 2. la Tensione bersaglio deve essere a 3 o più
-3. hai un SECONDO Asset AUTORITÀ  →  RIVENDICARE (FORCE)               [1 AO]
+3. hai una SECONDA carta RIVENDICARE  →  FORCE                         [1 AO]
         ↓
 4. si apre un Consiglio dove IL PROPONENTE SEI TU
 5. il Consiglio non deve fallire

@@ -61,6 +61,15 @@ func _fallback_action(entity_id: String, session: RefCounted) -> Dictionary:
 			"params": plan["fallback_action"].get("params", {}),
 		}
 
+	# **Il riempitivo parla l'economia della Chronicle.** Con le carte come unica
+	# moneta (D-188) ACQUISIRE non esiste e MUOVERE non si pronuncia: chiedere
+	# quelle due riempiva il verbale di scelte illegali — **68 su una partita
+	# sola**, tante quante le occasioni non scritte — e nessun piano nuovo poteva
+	# reggere. Era la ragione vera per cui il gioco a carte non aveva ancora una
+	# storia raccontata a mano.
+	if bool(session.chronicle_def().get("actions_from_cards", false)):
+		return _spend_a_card(entity_id, session)
+
 	var hand_limit: int = int(session.chronicle_def()["hand_limit"])
 	if session.service.hand_size(entity_id) < hand_limit:
 		var family: String = _drawable_family(entity_id, session)
@@ -72,6 +81,48 @@ func _fallback_action(entity_id: String, session: RefCounted) -> Dictionary:
 		return {"template": "MOVE", "params": {"region_id": destination}}
 
 	return {"template": "PASS", "params": {}}
+
+
+## La carta piu' a portata di mano, giocata per quello che porta.
+##
+## Come il riempitivo di prima, non guida la storia: occupa l'occasione che
+## nessuno ha scritto. Prova le carte nell'ordine in cui stanno in mano e cala la
+## prima che il resolver accetta — se non ne accetta nessuna, passa.
+func _spend_a_card(entity_id: String, session: RefCounted) -> Dictionary:
+	for asset_id in session.service.hand(entity_id):
+		var params: Dictionary = {"asset_id": str(asset_id)}
+		# Le due azioni che chiedono un bersaglio lo ricevono qui: la carta dice
+		# **cosa** fa, non su cosa.
+		var card: Dictionary = session.data.assets[str(asset_id)] as Dictionary
+		var kind: String = str((card.get("card_action", {}) as Dictionary).get("kind", ""))
+		if kind == "INFLUENCE" or kind == "SCHEME" or kind == "CLAIM":
+			var target: String = _quietest_tension(session)
+			if target == "":
+				continue
+			params["tension_id"] = target
+			if kind == "SCHEME":
+				params["mode"] = "TENSION"
+			elif kind == "CLAIM":
+				params["mode"] = "CREATE"
+		if session.actions.can_execute(entity_id, "PLAY_CARD", params):
+			return {"template": "PLAY_CARD", "params": params}
+	return {"template": "PASS", "params": {}}
+
+
+## La domanda piu' fredda: il riempitivo non deve decidere l'anno, e scaldare la
+## piu' calda lo deciderebbe — col cancello del tavolo (D-203) e' proprio il
+## mucchio piu' alto ad andare al Consiglio.
+func _quietest_tension(session: RefCounted) -> String:
+	var best: String = ""
+	var lowest: int = 1 << 30
+	var ids: Array = (session.world["tensions"] as Dictionary).keys()
+	ids.sort()
+	for tension_id in ids:
+		var here: int = int(session.world["tensions"][str(tension_id)]["current_value"])
+		if here < lowest:
+			lowest = here
+			best = str(tension_id)
+	return best
 
 
 ## A family this Entity has a source Region for and that still has cards to give,

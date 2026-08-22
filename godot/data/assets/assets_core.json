@@ -211,11 +211,8 @@
       "art_prompt_key": "asset.force.siege",
       "rules_text": "+2 sul fronte Oppose. Non serve prendere una cosa per impedire che sia di qualcun altro — ma l'assedio affama anche la terra intorno: la Carestia sale di 1.",
       "card_action": {
-        "kind": "INFLUENCE",
-        "params": {
-          "delta": 1
-        },
-        "note": "L'assedio e' una domanda posta con le armi: sale di 1."
+        "kind": "CLAIM",
+        "note": "Un assedio non chiede il permesso di parlare: mette la questione davanti al tavolo. Si prenota un dominio, o si strappa il Consiglio se la domanda è già matura."
       },
       "on_commit_effects": [
         {
@@ -802,11 +799,8 @@
       "art_prompt_key": "asset.people.spokesman",
       "rules_text": "Qualcuno che dice ad alta voce quello che già pensano in molti, e che dopo non può più tornare indietro — la parola detta è una promessa fra le due case.",
       "card_action": {
-        "kind": "INFLUENCE",
-        "params": {
-          "delta": -1
-        },
-        "note": "Il portavoce parla al posto della folla, e parlare raffredda di 1."
+        "kind": "CLAIM",
+        "note": "Il portavoce prende la parola al posto della folla — ed è esattamente questo che RIVENDICARE vuol dire."
       },
       "on_commit_effects": [
         {
@@ -1213,11 +1207,8 @@
       "art_prompt_key": "asset.knowledge.sealed_testimony",
       "rules_text": "Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: quello che era scritto per un solo lettore adesso lo hanno sentito tutti.",
       "card_action": {
-        "kind": "INFLUENCE",
-        "params": {
-          "delta": 1
-        },
-        "note": "Aprire una deposizione sigillata scalda la questione di 1."
+        "kind": "CLAIM",
+        "note": "Una deposizione sigillata, aperta, obbliga il tavolo a riunirsi: si prenota un dominio, o si strappa il Consiglio se la domanda è già matura."
       },
       "on_commit_effects": [
         {
@@ -1653,8 +1644,8 @@
       "art_prompt_key": "asset.bonds.old_debt",
       "rules_text": "+1 sul fronte Oppose. Nessuno se lo ricorda tranne le due persone che contano, e una delle due lo tira fuori adesso — e da adesso è pubblico: la sede del debitore resta segnata come indebitata.",
       "card_action": {
-        "kind": "SCHEME",
-        "note": "Un debito vecchio conosce le stanze in cui e' stato contratto, e le persone che ci stavano."
+        "kind": "CLAIM",
+        "note": "Un debito vecchio conosce le stanze in cui è stato contratto: chiamarlo dà il diritto di aprire la questione, adesso o al round dopo."
       },
       "on_commit_effects": [
         {

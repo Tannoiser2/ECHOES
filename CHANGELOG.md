@@ -5,6 +5,101 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.174 — Il gioco a carte non aveva una storia perché il riempitivo parlava il gioco di prima (D-206)
+
+- Da sei versioni il gioco si spedisce a carte e i tre piani scriptati sono
+  rimasti tutte storie del §10 di prima. Stava in lista come «lavoro pulito,
+  nessuna decisione richiesta»: **non era pulito, erano tre cose rotte, e nessuna
+  era il piano**.
+- **Il formato non sapeva dire «cala una carta»**: l'enum dello schema conosceva
+  le sei azioni dirette e basta. Un piano nel gioco a carte era *inesprimibile*.
+- **La guardia chiedeva a ogni piano di essere una storia vecchia**: un test
+  pretendeva `actions_from_cards: false` per tutti. Scritto quando era vero di
+  tutti, era diventato una legge. Ora ognuno **dice la sua**.
+- **E la ragione vera: il riempitivo parlava il gioco di prima.** Le occasioni
+  non scritte le riempiva ACQUISIRE → MUOVERE → passo, e nel gioco a carte le
+  prime due non si pronunciano: **68 scelte illegali in una partita sola**, tante
+  quante le occasioni libere. Adesso il riempitivo **cala una carta**, e a una
+  carta che chiede un bersaglio dà la **domanda più fredda** — un riempitivo non
+  deve decidere l'anno.
+- **La storia**: `plan_d_crown_calls`, «La corona chiama subito». Aldric apre
+  l'anno col Diritto di Corona in mano e la Carestia già a tre: non aspetta i
+  gettoni, cala la carta e strappa il Consiglio nello stesso gesto. Quattro
+  Consigli, uno cade, due Eco — e nessuno prende più di due obiettivi su quattro:
+  è l'anno di chi ha parlato per primo, non di chi ha vinto.
+- **Una guardia in più**: il test dei piani pretende adesso **almeno una storia
+  per economia**. Senza, il gioco spedito può tornare a non averne nessuna, e
+  come la prima volta non se ne accorgerebbe nessuno.
+- Cancello: **408 test in 56 suite, 6770 asserzioni**; playtest **0 su 8**; sims
+  exit 0 (quattro piani); toolchain e `--self-test` puliti.
+- Verbale: [D-206](docs/DECISIONS.md#d-206), CONSEGNE §5bis.
+
+---
+
+## 0.1.173 — La Regione morta è quella dove non comincia nessuno (D-205)
+
+- ISSUES 48 diceva «la Strada dei Mercanti è una Regione morta» e proponeva tre
+  ipotesi. Rimisurando col gioco di adesso, **tutte e tre sbagliano bersaglio**.
+- **La Strada è passata da 0,6% a 3,3%** delle pedine senza che nessuno la
+  toccasse: l'ha alzata il gioco a carte. Ma il numero che spiega tutto è un
+  altro: nel **Sale** la Strada sta al **13,8%** — terza più affollata — e la
+  Regione morta sono le **Terre Nahr, all'1,7%**.
+- **La Strada non è morta: è morta in un'era sola.** La causa è che le pedine si
+  posano all'apertura e durante l'anno si muovono pochissimo: **la Regione vuota
+  è quella in cui non comincia nessuno**, e cambia da un'era all'altra perché a
+  cambiare sono le case.
+- **Due rimedi provati, misurati, respinti**, tutti e due a zero: un **Pedaggio**
+  sulla Strada (la struttura esisteva già nel catalogo e non stava su nessuna
+  mappa) e un **cervello che conta anche i domini** oltre alle famiglie. 3,3%
+  prima, 3,3% dopo, in entrambi i casi — perché quel ramo vive solo col gettone
+  di riserva, e si gioca una volta per partita.
+- **Tutti e due tolti**: un cambiamento che non muove nessun numero, tenuto, è
+  peggio di una misura scritta — il prossimo lettore lo trova e crede che serva.
+- **Quello che resta è una riga nella sonda**: `run_hand_probe` adesso **nomina**
+  la Regione in cui non comincia nessuno invece di lasciarla dedurre.
+- La voce cambia forma: non «la Strada è morta», ma «ogni era ha una Regione dove
+  non vive nessuno». Da decidere se è un difetto o se è la mappa che racconta chi
+  c'era in quel secolo.
+- Verbale: [D-205](docs/DECISIONS.md#d-205), [ISSUES 48](docs/ISSUES.md).
+
+---
+
+## 0.1.172 — Due case su otto non potevano chiamare il Consiglio (D-204)
+
+- ISSUES 37 lo aveva scritto in anticipo: *«o quando ISSUES 49 arriva e questa
+  azione diventa quella che gira i mucchi coperti, e allora la domanda cambia
+  forma»*. È arrivata. Col cancello del tavolo **RIVENDICARE è l'unico modo che
+  un giocatore ha di aprire un Consiglio quando vuole lui**, quindi la prima
+  domanda non è più «quante prenotazioni muoiono»: è **chi ha mai avuto in mano
+  il diritto di chiamare**.
+- **La misura, che non avevo mai preso**: su 40 Chronicle, la Cenere non aveva
+  **mai** avuto una carta RIVENDICARE — **zero volte in venti partite** — e il
+  Vaerax una ogni quattro. Le due case della montagna non potevano,
+  materialmente, chiedere al tavolo di riunirsi.
+- **Perché**: RIVENDICARE stava su **4 carte delle 48, tutte AUTORITÀ**, e
+  l'AUTORITÀ si pesca solo da Eredan e dalle Terre Nahr. Chi tiene le montagne
+  pesca FORZA, LEGAMI, SAPERE, e nessuna sapeva prendere la parola.
+- **Quattro carte spostate**, scelte perché la finzione ci stava già dentro:
+  **Assedio** (FORZA), **Debito Vecchio** (LEGAMI), **Deposizione Sigillata**
+  (SAPERE), **Portavoce** (GENTE) — *«prende la parola al posto della folla»*, che
+  è esattamente cosa vuol dire RIVENDICARE. Otto carte in **cinque famiglie**, e
+  **ogni Regione della mappa** ne pesca almeno una.
+- **Il risultato**: Cenere da 0,00 a **1,05** carte per partita, Vaerax da 0,25 a
+  **1,50**. Lo scarto fra chi può chiamare di più e chi di meno passa da
+  **infinito** a **3,1 volte**.
+- **Le prenotazioni morte scendono ma non abbastanza**: dal **67%** al **56%**,
+  contro un criterio del 33%. Quella metà di ISSUES 37 **resta aperta** — e il
+  67% di partenza era già peggio del 41% di 0.1.159, perché con meno Consigli una
+  prenotazione ha meno occasioni di essere riscossa.
+- **E la sonda conta le carte invece di crederci**: `run_rung_probe` leggeva «4
+  carte, tutte AUTORITÀ» da una riga battuta a macchina. Ora legge il mazzo.
+- Cancello: **408 test in 56 suite, 6738 asserzioni**; playtest **0 su 8** a
+  tavolo misto e uniforme (Consigli 3,59 e 3,97); sims exit 0; toolchain pulita.
+- Verbale: [D-204](docs/DECISIONS.md#d-204), [ISSUES 37](docs/ISSUES.md),
+  MECCANICA §5.
+
+---
+
 ## 0.1.171 — Una soglia sola per il tavolo, e il tre che non vale più tre (D-203)
 
 - **ISSUES 49 fase 2**, sulla scelta **b** del committente: il Consiglio non lo

@@ -10,6 +10,191 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-206 — Il gioco a carte non aveva una storia perche' il riempitivo parlava il gioco di prima
+**implemented in 0.1.174**
+
+Da 0.1.156 il gioco si spedisce a carte, e i tre piani scriptati sono rimasti
+tutti storie del §10 di prima — dichiarandolo nel dato (D-188), quindi
+onestamente, ma lasciando il gioco vero **senza nessun racconto scritto a mano**.
+Stava nella lista da sei versioni come «lavoro pulito, nessuna decisione
+richiesta». Non era pulito: erano tre cose rotte, e nessuna era il piano.
+
+**Uno: il formato non sapeva dire «cala una carta».** L'enum di
+`sim_plan.schema.json` conosceva le sei azioni dirette e basta. Un piano nel
+gioco a carte era **inesprimibile**.
+
+**Due: la guardia chiedeva a ogni piano di essere una storia vecchia.**
+`check_sim_plans_declare_their_economy` pretendeva la dichiarazione, e un test
+pretendeva che il valore fosse `false` — «ogni piano e' una storia del §10 di
+prima, e lo dichiara». Scritto quando era vero di tutti, era diventato una legge.
+Ora ognuno **dice la sua**, e un piano nell'economia di adesso dichiara le regole
+con cui e' stato scritto: cosi' il giorno che la Chronicle cambia ancora, la
+storia continua a raccontare quella che raccontava.
+
+**Tre, ed e' la ragione vera: il riempitivo parlava il gioco di prima.** Un piano
+scrive le mosse che contano; le occasioni non scritte le riempie
+`_fallback_action`, che provava **ACQUISIRE, poi MUOVERE, poi passo**. Nel gioco
+a carte le prime due non si pronunciano, quindi ogni occasione non scritta
+diventava una scelta illegale: **68 in una partita sola** — tante quante le
+occasioni libere. Nessun piano nuovo poteva reggere, e il conto lo diceva senza
+che nessuno lo leggesse.
+
+Adesso, quando la Chronicle gioca a carte, il riempitivo **cala una carta**:
+prova quelle in mano nell'ordine e gioca la prima che il resolver accetta. Se una
+carta chiede un bersaglio le da' **la domanda piu' fredda**, perche' un
+riempitivo non deve decidere l'anno — e col cancello del tavolo (D-203) scaldare
+la piu' calda sarebbe esattamente decidere quale va al Consiglio.
+
+**La storia, `plan_d_crown_calls` — «La corona chiama subito».** Aldric apre
+l'anno col Diritto di Corona in mano e la Carestia gia' a tre: non aspetta i
+gettoni, cala la carta e strappa il Consiglio **nello stesso gesto** (D-191). E'
+il primo dell'anno e lo decide lui. Gli altri non hanno nessuna carta che sappia
+prendere la parola — le quattro RIVENDICARE non sono ancora sparse, in quel
+seme — e giocano quello che hanno: i Nahr spingono, Lyra e Vaerax guardano.
+
+Il resto dell'anno lo fa il sacchetto: quattro Consigli in tutto, uno cade, due
+lasciano un'Eco. E nessuno prende piu' di **due obiettivi su quattro**: e' l'anno
+di chi ha parlato per primo, non di chi ha vinto.
+
+**Zero scelte illegali**, e le attese scritte nel dato: quattro Consigli,
+`SUCCESS_WITH_COST · FAILURE · SUCCESS · SUCCESS`, almeno due Eco e due Verita'.
+
+**E una guardia in piu'**: il test dei piani adesso pretende **almeno una storia
+per economia**. Senza, il gioco che si spedisce puo' tornare a non averne
+nessuna, e come la prima volta non se ne accorgerebbe nessuno.
+
+---
+
+## D-205 — La Regione morta e' quella dove non comincia nessuno
+**measured in 0.1.173** (due rimedi provati e respinti; una riga in piu' nella sonda)
+
+ISSUES 48 diceva «la Strada dei Mercanti e' una Regione morta» e proponeva tre
+ipotesi: nessun Destino la chiede, non ci si arriva, non rende. Rimisurando col
+gioco di adesso, **tutte e tre sbagliano bersaglio**.
+
+**Il primo numero**: la Strada e' passata da **0,6% a 3,3%** delle pedine senza
+che nessuno la toccasse — l'ha alzata il gioco a carte, dove stare in una Regione
+decide cosa peschi.
+
+**Il secondo numero e' quello che spiega tutto:**
+
+| | Carestia (CHR_01) | Sale (CHR_03) |
+|---|---|---|
+| Strada dei Mercanti | **3,3%** | **13,8%** |
+| Terre Nahr | 13,5% | **1,7%** |
+
+**La Strada non e' morta: e' morta in un'era sola.** Nel Sale e' la terza piu'
+affollata, e li' la Regione morta sono le **Terre Nahr**, all'1,7% — peggio di
+quanto la Strada sia mai stata.
+
+**La causa**: le pedine si posano all'apertura e durante l'anno si muovono
+pochissimo, quindi la mappa di fine anno e' quasi quella di partenza. La Regione
+vuota e' **quella in cui non comincia nessuno**, e cambia da un'era all'altra
+perche' a cambiare sono le case. Non e' una proprieta' della Strada: e' una
+proprieta' del **posto libero**.
+
+**Due rimedi provati, misurati, respinti.**
+
+1. **Un Pedaggio sulla Strada.** La struttura giusta esisteva gia' nel catalogo
+   (`STR_TOLLGATE`, «Pedaggio», famiglia OPERA) e **non stava su nessuna mappa** —
+   la strada dei mercanti non aveva un pedaggio, il che era anche un buco di
+   finzione. Messo: **3,3% prima, 3,3% dopo**.
+2. **Un cervello che conta anche i domini.** `_widen_the_tap` sceglieva dove
+   andare contando solo le **famiglie nuove**, cioe' meta' del valore di un
+   posto: stare in una Regione serve anche a influenzare gratis le domande del
+   suo dominio, e la Strada ne ha tre. Contati: **3,3% prima, 3,3% dopo**.
+
+Il perche' del doppio zero e' lo stesso: quel ramo vive **solo col gettone di
+riserva** (D-185), quindi si gioca una volta per partita e per seggio. Qualunque
+cosa gli si insegni, sposta una pedina su tre.
+
+**Tutti e due tolti.** Un cambiamento che non muove nessun numero, tenuto, e'
+peggio di una misura scritta: il prossimo lettore lo trova e crede che serva a
+qualcosa. Il Pedaggio tornera' il giorno che la mappa si riscrive per davvero.
+
+**Quello che resta e' una riga nella sonda**: `run_hand_probe` adesso **nomina**
+la Regione in cui non comincia nessuno, invece di lasciarla dedurre da una
+classifica. Sulla Carestia dice la Strada dei Mercanti; sul Sale dice le Terre
+Nahr.
+
+**E la voce cambia forma**: non «la Strada e' morta», ma «ogni era ha una Regione
+dove non vive nessuno, e quella resta vuota». Da decidere se e' un difetto o se
+e' la mappa che racconta chi c'era in quel secolo — la strada fra le case deserta
+nell'anno della Carestia e piena nell'anno del Sale e' una cosa che il mondo
+dice, non un buco.
+
+---
+
+## D-204 — Due case su otto non potevano chiamare il Consiglio
+**implemented in 0.1.172** (ISSUES 37, nella forma nuova che ISSUES 49 le ha dato)
+
+ISSUES 37 lo aveva scritto in anticipo: *«fatto quando le rivendicazioni morte
+scendono sotto una su tre — **o quando ISSUES 49 arriva e questa azione diventa
+quella che gira i mucchi coperti, e allora la domanda cambia forma**»*.
+
+E' arrivata, e la forma e' cambiata. Col cancello del tavolo (D-203) il Consiglio
+si apre a gettoni: **RIVENDICARE e' l'unico modo che un giocatore ha di aprirlo
+quando vuole lui**. Quindi la prima domanda non e' piu' «quante prenotazioni
+muoiono in mano»: e' **chi ha mai avuto in mano il diritto di chiamare**.
+
+**La misura, che non avevo mai preso**, su 40 Chronicle — carte RIVENDICARE
+arrivate in mano, per seggio e per partita:
+
+| casa | prima | dopo |
+|---|---|---|
+| Aldric | 2,80 | 3,30 |
+| Sale | 1,95 | 2,60 |
+| Lyra | 1,45 | 2,50 |
+| Nahr | 1,25 | 2,05 |
+| Città Libere | 1,50 | 1,65 |
+| Vaerax | **0,25** | 1,50 |
+| Cenere | **0,00** | **1,05** |
+
+**La Cenere non l'aveva mai avuta. Zero volte in venti partite.** E il Vaerax una
+ogni quattro. Le due case della montagna non potevano, materialmente, chiedere al
+tavolo di riunirsi — in un gioco dove quella e' la sola leva che un giocatore ha
+sull'orologio.
+
+**Perche'**: RIVENDICARE stava su **4 carte delle 48, tutte AUTORITA'**, e
+l'AUTORITA' si pesca solo da Eredan e dalle Terre Nahr (D-186). Chi tiene le
+montagne e le miniere pesca FORZA, LEGAMI, SAPERE — e nessuna delle tre sapeva
+prendere la parola. Non era una scelta di progetto: era il residuo di quando
+l'azione si comprava con un Asset invece di stare su una carta.
+
+**Il rimedio, quattro carte spostate**, scelte perche' la finzione ci stava gia'
+dentro:
+
+| carta | famiglia | era | ed e' |
+|---|---|---|---|
+| **Assedio** | FORZA | INFLUENZARE +1 | *«un assedio non chiede il permesso di parlare»* |
+| **Debito Vecchio** | LEGAMI | TRAMARE | *«conosce le stanze in cui e' stato contratto»* |
+| **Deposizione Sigillata** | SAPERE | INFLUENZARE +1 | *«aperta, obbliga il tavolo a riunirsi»* |
+| **Portavoce** | GENTE | INFLUENZARE −1 | *«prende la parola al posto della folla»* |
+
+Otto carte RIVENDICARE in **cinque famiglie**, e **ogni Regione della mappa** ne
+pesca almeno una. Il mazzo passa da 17/11/8/8/4 a **14 INFLUENZARE, 11 MUOVERE, 8
+RIVENDICARE, 8 FORGIARE, 7 TRAMARE**.
+
+**E le prenotazioni morte scendono, ma non abbastanza**: da 18 aperte / 6 forzate
+/ 12 morte (**67%**) a 18 / 8 / 10 (**56%**). Il criterio di ISSUES 37 chiede
+sotto il 33%, quindi quella meta' **resta aperta** — e va detto che il 67% di
+partenza era gia' peggio del 41% di 0.1.159, perche' col cancello del tavolo i
+Consigli sono meno e una prenotazione ha meno occasioni di essere riscossa.
+
+**Il numero che vale la pena guardare non e' quello.** Lo scarto fra la casa che
+puo' chiamare piu' spesso e quella che puo' meno passa da **infinito** (0,00
+contro 2,80) a **3,1 volte** (1,05 contro 3,30). Prima c'erano due case escluse
+da una regola del gioco; adesso ce ne sono otto che la possono usare, alcune piu'
+di altre.
+
+**Cancello**: 408 test verdi, playtest **0 su 8** a tavolo misto e uniforme,
+Consigli 3,59 e 3,97 (erano 3,46 e 4,00: il rimedio non ha spostato il ritmo).
+
+**E la sonda adesso conta le carte invece di crederci**: `run_rung_probe` leggeva
+«4 carte, tutte AUTORITA'» da una riga battuta a macchina. Ora legge il mazzo.
+
+---
+
 ## D-203 — Una soglia sola per il tavolo, e il tre che non vale piu' tre
 **implemented in 0.1.171** (ISSUES 49 fase 2, scelta **b** del committente)
 

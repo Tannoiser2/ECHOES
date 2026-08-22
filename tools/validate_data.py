@@ -725,6 +725,48 @@ def check_condition_vocabularies_agree(
 
 
 
+def check_every_region_can_call_the_council(
+    documents: Dict[str, List[Dict[str, Any]]],
+    origins: Dict[str, str],
+    report: "Report",
+) -> None:
+    """Da ogni Regione si deve poter pescare una carta che prende la parola.
+
+    Col cancello del tavolo (D-203) il Consiglio si apre a gettoni, e
+    RIVENDICARE e' **l'unico modo che un giocatore ha di aprirlo quando vuole
+    lui**. La mappa decide che carte peschi: se una Regione non e' sorgente di
+    nessuna famiglia che sappia rivendicare, chi ci sta sopra non ha quella leva
+    — e non se ne accorge, perche' non manca niente sul tavolo, manca una
+    possibilita'.
+
+    E' successo davvero: quattro carte RIVENDICARE su quarantotto, tutte
+    AUTORITA', e l'AUTORITA' si pesca da due Regioni. La Cenere non ne ha avuta
+    **nessuna in venti partite** (D-204).
+    """
+    regions = documents.get("region", [])
+    assets = documents.get("asset", [])
+    if not regions or not assets:
+        return
+    speaking = {
+        str(asset.get("family", ""))
+        for asset in assets
+        if str((asset.get("card_action", {}) or {}).get("kind", "")) == "CLAIM"
+    }
+    if not speaking:
+        return
+    for region in regions:
+        sources = {str(family) for family in region.get("asset_sources", [])}
+        if sources & speaking:
+            continue
+        report.fail(
+            f"region [{region.get('id')}]",
+            f"pesca {', '.join(sorted(sources)) or 'niente'} e nessuna di quelle "
+            f"famiglie sa RIVENDICARE ({', '.join(sorted(speaking))}): chi sta "
+            "qui non puo' chiamare un Consiglio, e non se ne accorge",
+        )
+
+
+
 def check_the_gate_and_the_thresholds_do_not_overlap(
     documents: Dict[str, List[Dict[str, Any]]],
     origins: Dict[str, str],
@@ -1168,6 +1210,7 @@ def main() -> int:
         check_objective_scales_are_sane(documents, origins, report)
         check_a_saga_plays_one_game(documents, origins, report)
         check_the_gate_and_the_thresholds_do_not_overlap(documents, origins, report)
+        check_every_region_can_call_the_council(documents, origins, report)
 
     # Duplicate ids across the whole data set are always a bug.
     seen: Dict[str, str] = {}

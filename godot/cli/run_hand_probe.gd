@@ -263,6 +263,25 @@ func _initialize() -> void:
 			(data.regions[str(row[1])] as Dictionary).get("asset_sources", [])
 		])
 	print("  (una Regione che non vede pedine non e' una sorgente: le sue famiglie non escono)")
+	# E la ragione, che ISSUES 48 aveva cercato nel posto sbagliato: la Regione
+	# vuota e' **quella in cui non comincia nessuno**. Le pedine si posano
+	# all'apertura e durante l'anno si muovono pochissimo, quindi la mappa che si
+	# vede a fine anno e' quasi quella di partenza. Cambia da un'era all'altra:
+	# nella Carestia e' la Strada dei Mercanti, nel Sale sono le Terre Nahr.
+	var lived_in: Dictionary = {}
+	for entity_id in (data.chronicles[chronicle_id] as Dictionary)["entities"]:
+		for region_id in (data.entities[str(entity_id)] as Dictionary).get("presence", []):
+			lived_in[str(region_id)] = true
+	var empty: Array = []
+	for region_id in region_ids:
+		if not lived_in.has(str(region_id)):
+			empty.append(str(region_id))
+	if empty.is_empty():
+		print("  In questa Chronicle ogni Regione ha almeno una casa che ci comincia.")
+	else:
+		print("  Nessuno comincia qui: %s — ed e' li' che le pedine non arrivano." % [
+			", ".join(PackedStringArray(empty))
+		])
 
 	print("")
 	print("== 6. IL FABBISOGNO: quante carte servono per giocare come adesso ==")
