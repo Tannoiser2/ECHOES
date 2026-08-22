@@ -241,6 +241,10 @@ func _draw_heat(source: Dictionary, outcome: Dictionary) -> void:
 		log.bullet("  Il gettone cade su %s: sale di 1." % [
 			tension_id if tension == null else str((tension as Dictionary)["title"])
 		])
+		# Il cancello del tavolo conta **i gettoni**, non le domande (D-203):
+		# quando ne sono scesi abbastanza si apre un Consiglio, e quale domanda
+		# si dibatte lo decide il mucchio piu' alto — non la soglia di ciascuna.
+		world["tokens_in_bag"] = int(world.get("tokens_in_bag", 0)) + 1
 	tensions.fire_omens(mine)
 
 

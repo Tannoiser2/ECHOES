@@ -205,8 +205,8 @@
       },
       "tension_tokens": {
         "per_action": 1,
-        "threshold_bonus": 1,
-        "replaces_drift": true
+        "replaces_drift": true,
+        "table_gate": 2
       },
       "claim_rules": {
         "same_round_when_ready": true,
@@ -489,8 +489,8 @@
       },
       "tension_tokens": {
         "per_action": 1,
-        "threshold_bonus": 1,
-        "replaces_drift": true
+        "replaces_drift": true,
+        "table_gate": 2
       },
       "claim_rules": {
         "same_round_when_ready": true,

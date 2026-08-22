@@ -163,3 +163,30 @@ func test_without_objectives_the_page_still_teaches_the_ladder() -> void:
 		"senza obiettivi si sale ancora la scala"
 	)
 	assert_false(page.contains("NON SI SALE UNA SCALA"), "e non si parla di conti")
+
+
+## Col cancello del tavolo la pagina non può promettere una soglia per domanda
+## (D-203): quel numero non apre più niente, e farlo aspettare è la stessa
+## bugia delle sei azioni promesse quando le azioni erano già le carte.
+func test_with_the_table_gate_the_page_stops_promising_a_threshold() -> void:
+	var page: String = _page({
+		"tension_tokens": {"per_action": 1, "replaces_drift": true, "table_gate": 3}
+	})
+	assert_true(
+		page.contains("NON C'È UNA SOGLIA PER DOMANDA"),
+		"il titolo dice che la soglia per domanda non c'è"
+	)
+	assert_true(page.contains("3 gettoni"), "e dice quanti gettoni apre il Consiglio")
+	assert_true(page.contains("mucchio più alto"), "e chi si dibatte")
+	assert_false(page.contains("— soglia "), "e nessuna domanda porta più un numero da aspettare")
+	assert_true(
+		page.contains("rivendicazione matura"),
+		"e dice che un Consiglio lo può aprire anche un giocatore"
+	)
+
+
+## Senza il cancello la pagina resta quella di sempre, soglie comprese.
+func test_without_the_table_gate_the_page_still_teaches_the_thresholds() -> void:
+	var page: String = _page({"tension_tokens": {}})
+	assert_true(page.contains("— soglia "), "senza cancello le soglie si leggono")
+	assert_false(page.contains("NON C'È UNA SOGLIA PER DOMANDA"), "e non si parla di gettoni")

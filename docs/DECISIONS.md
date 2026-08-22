@@ -10,6 +10,95 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-203 — Una soglia sola per il tavolo, e il tre che non vale piu' tre
+**implemented in 0.1.171** (ISSUES 49 fase 2, scelta **b** del committente)
+
+«Una soglia sola per il tavolo, non una per domanda.» Il Consiglio non lo chiama
+piu' la singola Tensione che supera il proprio numero: si apre quando sul tavolo
+sono scesi **tanti gettoni in tutto**, e a dibattersi va **il mucchio piu' alto**.
+Poi il conto riparte da zero.
+
+**La regola, dichiarata come tutte le altre**: `tension_tokens.table_gate`. A
+zero, o assente, decide la soglia di ciascuna come sempre. Il contatore
+`world["tokens_in_bag"]` sta fra le eccezioni all'effect-sourcing insieme a
+`confluence_count`: e' il verbale di quello che e' gia' successo, non uno stato
+da disfare.
+
+### Il numero che il committente aveva scelto non vale piu' quel numero
+
+Il preventivo di D-190 aveva misurato **«un segnalino ogni 3 riproduce il ritmo
+di oggi: 5,95 Consigli l'anno contro 5,90»**, e il committente aveva scelto 3.
+Quella misura era stata presa nel **gioco di prima**, con 18 azioni l'anno per
+seggio. Adesso si gioca a carte e le azioni sono un terzo: i gettoni che cadono
+in un anno sono dieci, non trenta.
+
+| cancello | Consigli l'anno |
+|---|---|
+| 1 | 4,85 · 5,15 |
+| 2 | **3,46 · 4,00** |
+| 3 (il numero scelto) | 3,02 · 3,50 |
+| 4 | 2,75 · 3,18 |
+| 5 | 2,62 · 3,03 |
+| *oggi, a soglie* | *6,03 · 6,01* |
+
+**E il tre non passa le guardie.** `test_library_balance` chiede che un anno di
+biblioteca stia fra 2 e 8 Consigli: col tre, due anni su dodici in CHR_02 e tre
+su dodici in CHR_04 finiscono a **uno**. `test_year_end_floor` trova un seme che
+chiude l'anno con un Consiglio solo. Col due passano tutte.
+
+**Quindi ho spedito il due**, e scrivo il numero invece di nasconderlo: non e' il
+numero che il committente aveva scelto, ed e' scelto perche' il suo non regge le
+guardie che il gioco ha gia'. La sostanza della scelta **b** — un cancello solo
+per il tavolo, il mucchio piu' alto che vince — resta intera.
+
+**Il prezzo, dichiarato**: il Consiglio passa da **6,03 e 6,01** l'anno a **3,46 e
+4,00**. Da due per Atto a poco piu' di uno. E' il cambiamento piu' grosso al
+ritmo dell'anno da quando le carte sono diventate l'unica moneta, e si torna
+indietro con **una chiave** (`table_gate: 0`). Il cancello tiene: **0 su 8** a
+tavolo misto e uniforme.
+
+**Perche' e' meno, e non e' un difetto**: a soglie possono essere mature piu'
+domande insieme e le altre si mettono in coda; col cancello del tavolo ogni
+apertura consuma **tutto** il calore accumulato. Il Consiglio smette di essere
+routine e torna a essere un evento — che e' quello che la proposta del
+committente diceva fin dall'inizio: *«a un certo punto, quando parte la
+Confluence, si girano»*.
+
+**E l'innesco a chiamata c'e' gia'**: chi ha una rivendicazione matura la spende
+e apre il Consiglio sulla domanda che vuole, senza aspettare i gettoni
+([D-191](#d-191)). Anche quello svuota il sacchetto, ed e' giusto: il tavolo si
+raffredda quando qualcuno lo fa parlare.
+
+### Quello che una persona legge, cercato invece che aspettato (§5ter)
+
+Col cancello del tavolo **la soglia della singola domanda non apre piu' niente**,
+e stamparla sarebbe la bugia piu' semplice del gioco: si legge «4/7» e si aspetta
+il sette, che non succede. Tre posti sistemati:
+
+* **il verbale pubblico** diceva `Carestia: 4/7`. Ora dice `Carestia: 4` e segna
+  **quale mucchio e' il piu' alto** — l'unica informazione che decide qualcosa.
+* **`visible_tension_threshold`** torna **−1** col cancello acceso, cosi' nessun
+  pannello puo' scrivere quel numero anche volendo. Pannello del seggio, console
+  e tavolo passano tutti di li'.
+* **la pagina delle regole** prometteva *«quando una arriva alla sua soglia si
+  apre un Consiglio»* ed elencava le domande con la soglia scritta accanto. Ora
+  dice che la soglia per domanda non c'e', quanti gettoni aprono il Consiglio, che
+  si dibatte il mucchio piu' alto, e che **un Consiglio lo puoi aprire anche tu**.
+
+**E una guardia perche' non resti un numero morto**:
+`check_the_gate_and_the_thresholds_do_not_overlap` rifiuta una Chronicle che
+dichiari `table_gate` e `threshold_bonus` insieme. Il ritocco di D-192 esisteva
+per alzare una soglia che adesso non apre nessun Consiglio: tenerlo sarebbe un
+numero che non fa niente e che il prossimo lettore proverebbe a tarare — l'ora
+peggio spesa di tutte. Tolto da tutte e quattro le Chronicle.
+
+**Non fatto**: i mucchi **coperti**. Il cancello e' la meta' che cambia *chi
+decide quando*; coprire i valori cambia *cosa si sa*, e va misurato a parte —
+soprattutto adesso che il verbale dice il mucchio piu' alto, che e' proprio
+l'informazione che coprire toglierebbe.
+
+---
+
 ## D-202 — Il Sale conta anche lui, e la carta della terra torna a costare qualcosa
 **implemented in 0.1.170**
 

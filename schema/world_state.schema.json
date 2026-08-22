@@ -240,6 +240,11 @@
             "type": "string"
           },
           "description": "Le Tensioni le cui questioni sono cadute in quest'era e non sono ancora state ri-decise (D-094). Quando l'ultima si decide, la spirale del fallimento si chiude e `question_unresolved` viene tolto; il segno ereditato da un'era prima resta finche' la via del riprendere non lo scioglie."
+        },
+        "tokens_in_bag": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Quanti gettoni sono scesi da quando si e' chiuso l'ultimo Consiglio (D-203). E' il cancello del tavolo: quando arriva a `tension_tokens.table_gate` si apre un Consiglio sul mucchio piu' alto, e il conto riparte. E' un **contatore**, come `confluence_count`, ed e' fra le eccezioni dichiarate all'effect-sourcing: non e' uno stato del mondo che qualcuno possa disfare, e' il verbale di quello che e' gia' successo. Resta a zero, e non lo legge nessuno, se la Chronicle non dichiara il cancello."
         }
       }
     },

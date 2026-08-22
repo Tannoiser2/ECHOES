@@ -48,6 +48,10 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 		"questions_asked": {},
 		"forced_confluence": null,
 		"confluence_count": 0,
+		# Il cancello del tavolo (D-203): quanti gettoni sono scesi da quando si e'
+		# chiuso l'ultimo Consiglio. Contatore, come quello sopra, e come quello
+		# fra le eccezioni dichiarate all'effect-sourcing.
+		"tokens_in_bag": 0,
 		"voted_together": {},
 		"effect_sequence": 0,
 		"turn_order": seats.duplicate(),

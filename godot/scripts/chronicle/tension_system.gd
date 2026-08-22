@@ -80,7 +80,46 @@ func fire_omens(source: Dictionary) -> void:
 
 ## §7: at most one Confluence opens per round. Tensions at or over threshold are
 ## ranked by value, then by the Chronicle's definition order; the rest queue up.
+## Il cancello del tavolo (D-203), scelta **b** del committente: «una soglia sola
+## per il tavolo, non una per domanda».
+##
+## Dichiarato `tension_tokens.table_gate`, non e' piu' la singola Tensione a
+## chiamare il Consiglio quando supera la propria soglia: il Consiglio si apre
+## quando sono scesi **tanti gettoni in tutto**, e la domanda che si dibatte e'
+## **il mucchio piu' alto**. E' la differenza fra un mondo dove ogni domanda ha
+## il suo orologio e un mondo dove il tavolo ne ha uno solo — e la sonda ombra
+## di D-190 diceva che sette volte su dieci la domanda scelta e' un'altra.
+##
+## A zero, o senza la dichiarazione, decide la soglia di ciascuna come sempre.
+func table_gate() -> int:
+	var chronicle: Variant = data.chronicles.get(str(world.get("chronicle_id", "")))
+	if chronicle == null:
+		return 0
+	var rules: Dictionary = (chronicle as Dictionary).get("tension_tokens", {}) as Dictionary
+	return 0 if rules.is_empty() else int(rules.get("table_gate", 0))
+
+
+## Il mucchio piu' alto: la domanda che il tavolo ha scaldato di piu'. A parita'
+## vince quella che viene prima nell'ordine del mondo, cosi' il seme decide e non
+## l'ordine con cui un Dictionary si lascia leggere.
+func hottest_pile() -> String:
+	var best: String = ""
+	var most: int = -1
+	for tension_id in world["tensions"]:
+		var here: int = int(world["tensions"][tension_id]["current_value"])
+		if here > most:
+			most = here
+			best = str(tension_id)
+	return best
+
+
 func tensions_at_threshold() -> Array:
+	var gate: int = table_gate()
+	if gate > 0:
+		if int(world.get("tokens_in_bag", 0)) < gate:
+			return []
+		var hottest: String = hottest_pile()
+		return [] if hottest == "" else [hottest]
 	var ready: Array = []
 	for tension_id in world["tensions"]:
 		var value: int = int(world["tensions"][tension_id]["current_value"])
@@ -164,7 +203,18 @@ func typical_threshold() -> int:
 
 
 ## What the public log is allowed to say about a Tension.
+##
+## Col cancello del tavolo la soglia della singola domanda **non decide piu'
+## niente** (D-203), e stamparla sarebbe la bugia piu' semplice del gioco: una
+## persona leggerebbe «4/7» e aspetterebbe il sette, mentre il Consiglio si apre
+## quando il tavolo ha posato tre gettoni e a dibattersi va il mucchio piu' alto.
+## Quindi si dice il mucchio, e si dice **se e' il piu' alto**.
 func public_status(tension_id: String) -> String:
+	if table_gate() > 0:
+		if is_veiled(tension_id) and not hides_threshold_only():
+			return "%s: velata" % _public_name(tension_id)
+		var mark: String = " (il più alto)" if hottest_pile() == tension_id else ""
+		return "%s: %d%s" % [_public_name(tension_id), value(tension_id), mark]
 	if is_veiled(tension_id):
 		if hides_threshold_only():
 			return "%s: %d/?" % [_public_name(tension_id), value(tension_id)]

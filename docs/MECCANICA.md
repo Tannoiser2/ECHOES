@@ -345,9 +345,22 @@ scalda. *Fino a 0.1.159 era un orologio: una domanda saliva a fine di ogni round
 nei dati, che non rivela mai il numero: *«I granai di Eredan si aprono un giorno
 su tre. Nessuno lo ha annunciato: si vede dalle code.»*
 
-**Soglia.** A fine round, le Tensioni che hanno raggiunto la propria soglia
-vengono ordinate per valore decrescente: **la prima apre un Consiglio**, le
-altre restano in coda per il round dopo. Al massimo un Consiglio per round.
+**Il cancello del tavolo.** Dalla 0.1.171 non c'è più una soglia per domanda:
+ce n'è **una per il tavolo**. Ogni carta calata fa cadere un gettone su una
+domanda, i mucchi crescono, e quando sul tavolo sono scesi **due gettoni** si
+apre un Consiglio: la domanda che si dibatte è il **mucchio più alto**, e poi il
+conto riparte da zero. Al massimo un Consiglio per round.
+
+Un Consiglio lo può aprire anche un giocatore, spendendo una rivendicazione
+matura: anche quello svuota il sacchetto.
+
+Il numero che le Tensioni portano scritto (la vecchia soglia) **non apre più
+niente**, e infatti non si stampa da nessuna parte: quello che si legge è
+l'altezza del mucchio, col più alto segnalato.
+
+**Costo dichiarato**: i Consigli passano da 6,0 a **3,5–4,0 l'anno** — da due per
+Atto a poco più di uno. Il Consiglio smette di essere routine e torna a essere un
+evento ([D-203](DECISIONS.md#d-203)).
 
 ---
 
@@ -436,14 +449,14 @@ allea con chi ti ha sostenuto finora. Il che vuol dire che ci si può
 
 ## 6. Il Consiglio (Confluence) — il cuore del gioco
 
-Quando una Tensione tocca la soglia, il tavolo si ferma e si riunisce. È qui che
+Quando il tavolo ha posato abbastanza gettoni, si ferma e si riunisce. È qui che
 il mondo cambia. La sequenza è fissa e ha undici passi, **A → K**.
 
 ### 6.1 La sequenza
 
 | passo | cosa succede | pubblico o segreto |
 |---|---|---|
-| **A. Innesco** | Una Tensione ha toccato la soglia, oppure qualcuno ha forzato con RIVENDICARE, oppure una carta Narratore lo ha aperto | pubblico |
+| **A. Innesco** | Sul tavolo sono scesi due gettoni (e si dibatte il mucchio più alto), oppure qualcuno ha forzato con RIVENDICARE, oppure una carta Narratore lo ha aperto | pubblico |
 | **B. Domanda** | Si sceglie la domanda dell'anno fra quelle del modello. Una domanda già decisa quest'anno **non torna** finché ne resta una nuova da fare | pubblico |
 | **C. Proposta** | Il **proponente** sceglie una proposta fra quelle strutturate del modello | pubblico |
 | **D. Posizione** | In ordine di turno, ognuno dichiara: **Sostengo · Mi oppongo · A una condizione · Mi astengo**. Chi pone una condizione dichiara subito quale | **pubblico** |
