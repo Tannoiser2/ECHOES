@@ -10,6 +10,60 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-209 — Tre case aprono l'anno con due obiettivi gia' in tasca
+**misurato in 0.1.177** — nessuna regola cambiata, due strade prezzate
+
+ISSUES 52 chiedeva **quali** obiettivi Lyra manca, e se sono sempre gli stessi:
+«un seggio che manca sempre le stesse due carte e' una taratura; un seggio che
+ne manca ogni volta di diverse e' un problema di posizione». La risposta e' la
+prima, ed e' piu' netta di come era stata immaginata.
+
+`run_objective_ledger` conta per ogni coppia **seggio x obiettivo** quante volte
+e' stato pescato e quante preso — il consuntivo, dove `run_objective_probe`
+misurava il preventivo. Su 60 partite a tavolo misto:
+
+| obiettivo | Aldric | Nahr | Vaerax | **Lyra** |
+|---|---|---|---|---|
+| Qualcosa che Resta in Piedi — una struttura sua | 100% | 100% | 100% | **4,5%** |
+| Il Muro che Tiene — un presidio suo | 100% | 100% | 100% | **0%** |
+
+I **due obiettivi piu' facili del pool** sono un regalo dell'apertura per tre
+case e un muro per la quarta. La causa sta in una riga di dati:
+`starting_structures` posa uno `STR_KEEP` — famiglia PRESIDIO, quindi struttura
+*e* presidio insieme — per Aldric, per Nahr e per Vaerax. **A Lyra niente.**
+
+### Perche' nessuna sonda l'aveva visto
+
+Il preventivo di [D-197](#d-197) misurava A_STONE al **79%** e A_GARRISON al
+**74,8%**, e quei numeri erano giusti: 100 + 100 + 100 + 4,5 fa 76. **La media
+era vera e nascondeva che una casa su quattro e' fuori.**
+
+E' la stessa forma di [D-207](#d-207) — un primo anno identico che si perde
+dentro dieci — e la stessa di [ISSUES 51](ISSUES.md), dove un criterio vero di
+una Chronicle sola passava per vero di tutte. Tre volte in due versioni: **un
+numero aggregato non e' una misura, e' una media di misure che nessuno ha
+guardato separatamente.**
+
+### Tre difetti trovati per strada
+
+- **«Pietra sopra Pietra»: 0 su 64 pescate**, tutte e quattro le case. Chiede
+  una struttura di **grado 2 o piu'**. Il grado 2 esiste nei dati — Castello,
+  Borgo, il Grande Granaio, la Dogana — ma **niente in partita ci arriva**.
+  L'obiettivo e' scritto e aspetta una regola che non c'e': e' precisamente il
+  buco che ISSUES 39 opzione **C** riempirebbe.
+- **«L'Opera che Porta il Nome»: 4 su 68, il 5,9%.**
+- **Il palese di Vaerax, «La Terra che Risponde»: 0 su 20.** Un palese che non
+  si avvera mai e' una casa che gioca con tre carte invece che con quattro.
+
+### Cosa non e' acceso
+
+**Niente.** Le due strade — dare a Lyra una struttura d'apertura che la
+racconti, o togliere ai due obiettivi la gratuita' alzando la soglia — sono
+decisioni di contenuto, e il numero e' scritto prima perche' si possa scegliere
+guardandolo.
+
+---
+
 ## D-208 — La mappa e' ferma perche' non ci sono pedine da muovere
 **preventivo misurato in 0.1.176** — nessuna regola accesa, tre rimedi prezzati
 

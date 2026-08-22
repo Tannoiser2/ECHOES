@@ -666,7 +666,7 @@ ogni passo.
 **Fatto quando** almeno un dente per tipo vive nei dati, misurato, e il
 playtest resta 0/8. ✓
 
-### 26. Le carte con un mestiere
+### 26. ✅ Le carte con un mestiere — chiusa in 0.1.76, riverificata in 0.1.177
 
 `contenuto` · `regole` · voluta dal committente, nata dalla domanda giusta
 
@@ -712,6 +712,13 @@ una carta è una scelta, non un conteggio. — ✅ **Chiusa in 0.1.76**: 46
 carte su 48 lavorano; l'Archivio ha già il suo mestiere (restare in
 mano) e il Legame di Sangue aspetta, dichiarato, il pavimento di
 relazione della voce 25.
+
+**Ricontata in 0.1.177**, perché l'indice non portava la spunta e la voce
+risultava aperta a chi leggeva solo il titolo: **47 su 48** hanno un
+`on_commit_effects`. Il Legame di Sangue nel frattempo ha ricevuto il suo, e
+l'unica senza è `AST_KNOWLEDGE_ARCHIVE` — che il mestiere ce l'ha, ed è restare
+in mano. Il numero che apre questa voce («35 su 48 sono solo un numero») è
+vecchio di cento versioni: non ricopiarlo.
 
 ### 29. ✅ La stanza non aveva più il bottone «Si comincia» — fatta in 0.1.103
 
@@ -2144,13 +2151,65 @@ uguale a tutte le case ([D-199](DECISIONS.md#d-199) le ha pareggiate a 19,6
 punti di scarto). Se il pool e' pari e il seggio no, la causa sta altrove — nella
 mappa che pesca, nelle carte che puo' avere, o in chi ha la parola.
 
-**Prima cosa da misurare**, e non e' ancora fatto: **quali** obiettivi Lyra
-manca, e se sono gli stessi ogni volta. Un seggio che manca sempre le stesse due
-carte e' una taratura; un seggio che ne manca ogni volta di diverse e' un
-problema di posizione.
+## Misurata in 0.1.177: sono sempre le stesse due carte, e sono le più facili
 
-**Fatto quando** nessun seggio sta a zero Trionfi su 120 seggi-anno, e lo scarto
-fra il seggio piu' premiato e il meno premiato sta dentro un fattore tre.
+`run_objective_ledger` conta, per ogni coppia **seggio × obiettivo**, quante
+volte è stato pescato e quante preso. Su 60 partite a tavolo misto, due righe
+spiegano tutto:
+
+| obiettivo | Aldric | Nahr | Vaerax | **Lyra** |
+|---|---|---|---|---|
+| **Qualcosa che Resta in Piedi** — una struttura sua | 100% | 100% | 100% | **4,5%** |
+| **Il Muro che Tiene** — un presidio suo | 100% | 100% | 100% | **0%** |
+
+**I due obiettivi più facili del pool sono un regalo dell'apertura per tre case
+e un muro per la quarta.** La causa sta in una riga di dati:
+`starting_structures` posa uno `STR_KEEP` — famiglia PRESIDIO, quindi struttura
+*e* presidio insieme — a Eredan per Aldric, alle Terre Nahr per Nahr, sulle
+Montagne Rosse per Vaerax. **A Lyra niente.** Tre case aprono l'anno con due
+obiettivi su dodici già in tasca; Lyra deve costruirseli, e in un anno non ce la
+fa quasi mai.
+
+Il preventivo di [D-197](DECISIONS.md#d-197) diceva A_STONE **79%** e A_GARRISON
+**74,8%**, e la media era giusta: 100 + 100 + 100 + 4,5 fa 76. **La media
+nascondeva che una casa su quattro è fuori.** È esattamente il difetto per cui
+questa sonda è stata scritta.
+
+E l'istogramma lo conferma: Lyra chiude con **0 obiettivi 16 volte su 60, 1
+obiettivo 31 volte, e 4 obiettivi mai**. Parte ogni anno con due carte morte in
+mano su quattro.
+
+### Tre difetti trovati per strada, che non riguardano Lyra
+
+- **«Pietra sopra Pietra» non si avvera mai: 0 su 64 pescate**, tutte e quattro
+  le case. Chiede una struttura di **grado 2 o più**. Il grado 2 esiste nei dati
+  — Castello, Borgo, il Grande Granaio, la Dogana — ma **niente in partita ci
+  arriva**. L'obiettivo è già scritto e aspetta una regola che non c'è: è il
+  buco che [ISSUES 39](#39-la-terra-che-si-vede-pedine-di-carta-o-strutture-con-una-vita)
+  opzione **C** — torre → castello → reggia — riempirebbe da sola.
+- **«L'Opera che Porta il Nome»: 4 su 68, il 5,9%.** Chiede un'opera — granaio,
+  canale, pedaggio — e nessuna di quelle è sulla mappa all'apertura.
+- **Il palese di Vaerax, «La Terra che Risponde»: 0 su 20.** Un obiettivo palese
+  che non si avvera mai è una casa che gioca con tre carte invece che con
+  quattro.
+
+### Le due strade per Lyra, e sono decisioni di contenuto
+
+1. **Lyra apre con una struttura sua**, come le altre tre. Non un presidio — non
+   è una casa di mura — ma qualcosa che la racconti: una biblioteca, un
+   osservatorio. Costa una riga di `starting_structures` e un tipo nuovo.
+2. **I due obiettivi smettono di essere gratis per chi apre col presidio**:
+   alzando la soglia a due strutture diventano un traguardo per tutti invece di
+   una spunta per tre.
+
+E c'è una terza cosa che aiuta senza toccare gli obiettivi: **spostare Lyra
+sulla Strada dei Mercanti** ([D-208](DECISIONS.md#d-208)) le fa crollare i NONE
+da 21 a 8 e salire le Vittorie da 11 a 27.
+
+**Fatto quando** nessun seggio sta a zero Trionfi su 120 seggi-anno, nessuna
+coppia seggio × obiettivo sta sotto il 10% mentre le altre tre stanno sopra il
+90%, e lo scarto fra il seggio più premiato e il meno premiato sta dentro un
+fattore tre.
 
 ---
 

@@ -5,6 +5,31 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.177 — Tre case aprono l'anno con due obiettivi già in tasca (D-209)
+
+- ISSUES 52 chiedeva **quali** obiettivi Lyra manca. `run_objective_ledger`
+  conta per ogni coppia **seggio × obiettivo** quante volte è pescato e quante
+  preso — il consuntivo, dove la sonda vecchia misurava il preventivo.
+- **«Qualcosa che Resta in Piedi»** e **«Il Muro che Tiene»**, i due obiettivi
+  più facili del pool: **100% per Aldric, Nahr e Vaerax — 4,5% e 0% per Lyra.**
+- La causa è una riga di dati: `starting_structures` posa uno `STR_KEEP`
+  (famiglia PRESIDIO, quindi struttura *e* presidio insieme) alle altre tre
+  case. **A Lyra niente.** Parte ogni anno con due carte morte su quattro, e
+  chiude con **zero obiettivi 16 volte su 60 e quattro obiettivi mai**.
+- **Perché nessuna sonda l'aveva visto**: il preventivo diceva 79% e 74,8%, ed
+  erano numeri giusti — 100+100+100+4,5 fa 76. La media era vera e nascondeva
+  che una casa su quattro è fuori. Terza volta in due versioni che un numero
+  aggregato copre una misura che nessuno aveva guardato separatamente.
+- **Tre difetti per strada**: «Pietra sopra Pietra» **0 su 64** perché chiede il
+  grado 2 e *niente in partita arriva al grado 2* — è il buco che ISSUES 39
+  opzione C riempirebbe; «L'Opera che Porta il Nome» al 5,9%; e il palese di
+  Vaerax **0 su 20**.
+- **E l'indice mentiva su ISSUES 26**: la voce era chiusa da 0.1.76 ma il titolo
+  non portava la spunta. Ricontata: **47 carte su 48** hanno un mestiere, non 35
+  su 48 come diceva la riga d'apertura.
+- Nessuna regola accesa: sono decisioni di contenuto, e il numero è scritto
+  prima perché si possa scegliere guardandolo.
+
 ## 0.1.176 — La mappa è ferma perché non ci sono pedine da muovere (D-208)
 
 - Due rimedi per ISSUES 48 erano già stati misurati **a zero**. Il committente
