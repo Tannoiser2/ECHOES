@@ -124,6 +124,12 @@
             "entity_id": "ENT_SALE",
             "min": 1,
             "label": "Almeno una Regione controllata"
+          },
+          {
+            "type": "state_tag_absent",
+            "scope": "GLOBAL",
+            "tag": "question_unresolved",
+            "label": "E i conti che il registro tiene sono chiusi tutti"
           }
         ]
       },
@@ -649,6 +655,11 @@
             "region_id": "REG_VALLE_VERDE",
             "min": 1,
             "label": "Presenza nella Valle Verde"
+          },
+          {
+            "type": "scar_count",
+            "max": 2,
+            "label": "E il mondo non è stato aperto in più di due punti: l'acqua non torna dove si è combattuto"
           }
         ]
       },
@@ -687,8 +698,8 @@
               },
               {
                 "type": "scar_count",
-                "max": 2,
-                "label": "L'anno non ha lasciato più di due segni sul mondo"
+                "max": 1,
+                "label": "L'anno non ha lasciato più di un segno sul mondo"
               }
             ]
           }

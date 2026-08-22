@@ -251,6 +251,24 @@
         "per_action": 1,
         "threshold_bonus": 0,
         "replaces_drift": true
+      },
+      "objectives": {
+        "hidden": 3,
+        "public_from": "victory",
+        "levels": [
+          "NONE",
+          "MINIMUM",
+          "VICTORY",
+          "VICTORY",
+          "TRIUMPH"
+        ],
+        "saga_points": [
+          -1,
+          1,
+          2,
+          5,
+          8
+        ]
       }
     },
     {
@@ -525,6 +543,24 @@
         "per_action": 1,
         "threshold_bonus": 0,
         "replaces_drift": true
+      },
+      "objectives": {
+        "hidden": 3,
+        "public_from": "victory",
+        "levels": [
+          "NONE",
+          "MINIMUM",
+          "VICTORY",
+          "VICTORY",
+          "TRIUMPH"
+        ],
+        "saga_points": [
+          -1,
+          1,
+          2,
+          5,
+          8
+        ]
       }
     }
   ]

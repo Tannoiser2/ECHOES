@@ -442,7 +442,7 @@
       "destiny_pool": [
         "DST_CENERE",
         "DST_CENERE_DEEP",
-        "DST_SHARED_LAND"
+        "DST_SHARED_RENOWN"
       ],
       "name_grammar": {
         "pattern": "{given} dei Fuochi{ordinal}",
