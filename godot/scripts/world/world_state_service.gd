@@ -385,11 +385,25 @@ func visible_tension_value(tension_id: String, viewer_id: String) -> int:
 
 
 ## E la soglia: si vede se la domanda e' aperta, o se questa casa l'ha scoperta.
-## Torna -1 quando resta coperta.
+## Torna -1 quando resta coperta — **e sempre col cancello del tavolo acceso**
+## (D-203), perche' li' la soglia della singola domanda non apre piu' niente:
+## mostrarla vorrebbe dire far aspettare un numero che non succede. Chi legge di
+## qui e trova -1 non deve scrivere nessuna soglia.
 func visible_tension_threshold(tension_id: String, viewer_id: String) -> int:
+	if table_gate() > 0:
+		return -1
 	if is_tension_open(tension_id) or knows_tension(viewer_id, tension_id):
 		return tension_threshold(tension_id)
 	return -1
+
+
+## Il cancello del tavolo dichiarato dalla Chronicle, zero se non c'e' (D-203).
+func table_gate() -> int:
+	var chronicle: Variant = data.chronicles.get(str(world.get("chronicle_id", "")))
+	if chronicle == null:
+		return 0
+	var rules: Dictionary = (chronicle as Dictionary).get("tension_tokens", {}) as Dictionary
+	return 0 if rules.is_empty() else int(rules.get("table_gate", 0))
 
 
 ## La soglia vera: quella scritta piu' il ritocco del sacchetto (D-192). Chi

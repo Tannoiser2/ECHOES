@@ -475,6 +475,11 @@
               "type": "boolean",
               "default": true,
               "description": "Acceso, la Deriva a orologio si spegne: il calore viene solo da cio' che i giocatori fanno. Spento, i due si sommano - ed e' il terzo gioco che nessuno gioca."
+            },
+            "table_gate": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Il cancello **del tavolo** invece di uno per domanda (D-203, scelta b del committente): un Consiglio si apre quando sono scesi tanti gettoni **in tutto**, e la domanda che si dibatte e' il mucchio piu' alto. A zero, o assente, decide come sempre la soglia della singola Tensione. Il numero misurato e' 3."
             }
           }
         },

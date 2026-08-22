@@ -1629,6 +1629,10 @@ const DEFS := {
 					"type": "String",
 				},
 			},
+			"tokens_in_bag": {
+				"type": "int",
+				"min": 0,
+			},
 		},
 	},
 }

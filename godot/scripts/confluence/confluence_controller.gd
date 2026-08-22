@@ -605,6 +605,11 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 		int(world["tensions"][tension_id]["resolved_count"]) + 1
 	)
 	world["confluence_count"] = int(world["confluence_count"]) + 1
+	# Il sacchetto riparte da vuoto (D-203): il cancello del tavolo conta i
+	# gettoni **da un Consiglio all'altro**, non da inizio anno. Senza questo
+	# azzeramento il primo Consiglio aprirebbe tutti quelli successivi di fila,
+	# perche' il conto resterebbe sempre sopra il cancello.
+	world["tokens_in_bag"] = 0
 	_record_who_stood_together()
 	world["forced_confluence"] = null
 	# La spirale del fallimento si chiude ri-decidendo (D-094). Quando una

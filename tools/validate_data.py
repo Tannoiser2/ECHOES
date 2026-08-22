@@ -725,6 +725,34 @@ def check_condition_vocabularies_agree(
 
 
 
+def check_the_gate_and_the_thresholds_do_not_overlap(
+    documents: Dict[str, List[Dict[str, Any]]],
+    origins: Dict[str, str],
+    report: "Report",
+) -> None:
+    """Col cancello del tavolo il ritocco alle soglie non ha piu' un lavoro.
+
+    `threshold_bonus` esiste perche' il sacchetto scalda il mondo e la soglia
+    della singola domanda va alzata (D-192). Col cancello del tavolo (D-203)
+    quella soglia **non apre piu' niente**: il Consiglio si apre a gettoni, e la
+    domanda e' il mucchio piu' alto. Tenere il ritocco sarebbe un numero che non
+    fa nulla e che il prossimo lettore proverebbe a tarare — l'ora peggio spesa
+    di tutte.
+    """
+    for chronicle in documents.get("chronicle", []):
+        rules = chronicle.get("tension_tokens", {})
+        if not rules:
+            continue
+        if int(rules.get("table_gate", 0)) > 0 and int(rules.get("threshold_bonus", 0)) != 0:
+            report.fail(
+                f"chronicle [{chronicle.get('id')}]",
+                "dichiara `table_gate` e `threshold_bonus` insieme: col cancello "
+                "del tavolo la soglia della singola Tensione non apre piu' nessun "
+                "Consiglio, quindi ritoccarla non fa niente",
+            )
+
+
+
 def check_a_saga_plays_one_game(
     documents: Dict[str, List[Dict[str, Any]]],
     origins: Dict[str, str],
@@ -1139,6 +1167,7 @@ def main() -> int:
         check_condition_vocabularies_agree(documents, origins, report)
         check_objective_scales_are_sane(documents, origins, report)
         check_a_saga_plays_one_game(documents, origins, report)
+        check_the_gate_and_the_thresholds_do_not_overlap(documents, origins, report)
 
     # Duplicate ids across the whole data set are always a bug.
     seen: Dict[str, str] = {}

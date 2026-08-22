@@ -249,8 +249,8 @@
       },
       "tension_tokens": {
         "per_action": 1,
-        "threshold_bonus": 0,
-        "replaces_drift": true
+        "replaces_drift": true,
+        "table_gate": 2
       },
       "objectives": {
         "hidden": 3,
@@ -541,8 +541,8 @@
       },
       "tension_tokens": {
         "per_action": 1,
-        "threshold_bonus": 0,
-        "replaces_drift": true
+        "replaces_drift": true,
+        "table_gate": 2
       },
       "objectives": {
         "hidden": 3,

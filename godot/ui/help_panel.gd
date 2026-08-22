@@ -182,10 +182,33 @@ func _lines(data: RefCounted, chronicle_id: String) -> Array:
 		if drawn:
 			questions = (chronicle.get("tension_pool", {}) as Dictionary).get("candidates", [])
 		out.append(SECTION % ("LE DOMANDE DI QUEST'ANNO" if not drawn else "LE DOMANDE POSSIBILI"))
-		out.append(
-			"Salgono da sole ogni round. [b]Quando una arriva alla sua soglia si apre "
-			+ "un Consiglio[/b], ed e li che il gioco decide qualcosa."
-		)
+		var gate: int = int((rules.get("tension_tokens", {}) as Dictionary).get("table_gate", 0))
+		if gate > 0:
+			out.append(
+				("[b]NON C'È UNA SOGLIA PER DOMANDA: CE N'È UNA PER IL TAVOLO.[/b] "
+				+ "Ogni carta che qualcuno cala fa cadere un gettone su una domanda, "
+				+ "e i mucchi crescono. Quando sul tavolo sono scesi [b]%d gettoni[/b] "
+				+ "si apre un Consiglio, e la domanda che si dibatte è il "
+				+ "[b]mucchio più alto[/b] — non quella che ha superato un numero suo. "
+				+ "Poi il conto riparte da zero.") % gate
+			)
+			out.append("")
+			out.append(
+				"Quindi le domande non hanno un numero da raggiungere: hanno un'altezza, "
+				+ "e quella che conta è chi sta più in alto quando il Consiglio si apre. "
+				+ "Scaldarne una vuol dire portarla davanti al tavolo."
+			)
+			out.append("")
+			out.append(
+				"[color=#8a8172]E un Consiglio lo puoi aprire anche tu: chi ha una "
+				+ "rivendicazione matura la spende e chiama la domanda che vuole, "
+				+ "senza aspettare i gettoni.[/color]"
+			)
+		else:
+			out.append(
+				"Salgono da sole ogni round. [b]Quando una arriva alla sua soglia si apre "
+				+ "un Consiglio[/b], ed e li che il gioco decide qualcosa."
+			)
 		if drawn:
 			out.append(
 				"Questa Chronicle ne pesca %d fra queste: due partite non fanno la stessa storia."
@@ -195,13 +218,25 @@ func _lines(data: RefCounted, chronicle_id: String) -> Array:
 			var tension: Variant = data.tensions.get(str(tension_id))
 			if tension == null:
 				continue
-			out.append(
-				"  · [b]%s[/b] — soglia %d, ascolta %s"
-				% [
-					str(tension["title"]), int(tension["threshold"]),
-					", ".join(PackedStringArray(tension["relevant_asset_families"])).to_lower(),
-				]
-			)
+			# Col cancello del tavolo la soglia scritta non apre piu' niente:
+			# stamparla qui vorrebbe dire far aspettare un numero che non
+			# succede — lo stesso errore delle sei azioni promesse (D-195).
+			if gate > 0:
+				out.append(
+					"  · [b]%s[/b] — ascolta %s"
+					% [
+						str(tension["title"]),
+						", ".join(PackedStringArray(tension["relevant_asset_families"])).to_lower(),
+					]
+				)
+			else:
+				out.append(
+					"  · [b]%s[/b] — soglia %d, ascolta %s"
+					% [
+						str(tension["title"]), int(tension["threshold"]),
+						", ".join(PackedStringArray(tension["relevant_asset_families"])).to_lower(),
+					]
+				)
 		out.append("")
 
 	out.append(SECTION % "IL CONSIGLIO")

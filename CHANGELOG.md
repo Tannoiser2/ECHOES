@@ -5,6 +5,42 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.171 — Una soglia sola per il tavolo, e il tre che non vale più tre (D-203)
+
+- **ISSUES 49 fase 2**, sulla scelta **b** del committente: il Consiglio non lo
+  chiama più la singola domanda che supera il proprio numero. Si apre quando sul
+  tavolo sono scesi **tanti gettoni in tutto**, e a dibattersi va il **mucchio
+  più alto**. Poi il conto riparte da zero.
+- **Il numero scelto non vale più quel numero.** Il preventivo diceva «ogni 3
+  segnalini riproduce il ritmo di oggi», ma era misurato nel gioco di prima, con
+  18 azioni l'anno invece di sei. **E il tre non passa le guardie**: due anni su
+  dodici in CHR_02 e tre su dodici in CHR_04 chiudono con **un** Consiglio, sotto
+  il limite duro di 2. Ho spedito il **due**, e scrivo perché non è il tre.
+- **Il prezzo, dichiarato**: il Consiglio passa da **6,03 e 6,01** l'anno a
+  **3,46 e 4,00**. Da due per Atto a poco più di uno. È il cambiamento più grosso
+  al ritmo dell'anno da quando le carte sono l'unica moneta, e si torna indietro
+  con **una chiave**. Non è un difetto: a soglie più domande maturano insieme e le
+  altre si accodano, col cancello del tavolo ogni apertura consuma **tutto** il
+  calore. Il Consiglio smette di essere routine.
+- **L'innesco a chiamata c'era già**: chi ha una rivendicazione matura la spende e
+  apre il Consiglio sulla domanda che vuole. Anche quello svuota il sacchetto.
+- **Tre posti dove una persona leggeva un numero che non succede più** (§5ter): il
+  verbale diceva `Carestia: 4/7` e ora dice `Carestia: 4` segnando **quale mucchio
+  è il più alto**; `visible_tension_threshold` torna **−1** col cancello acceso,
+  così nessun pannello può scriverlo; la pagina delle regole prometteva «quando
+  una arriva alla sua soglia» ed elencava le soglie — ora dice come funziona
+  davvero, e che un Consiglio lo puoi aprire anche tu.
+- **Una guardia perché non resti un numero morto**: `table_gate` e
+  `threshold_bonus` insieme fanno rosso la CI. Il ritocco di D-192 alzava una
+  soglia che adesso non apre niente; tolto da tutte e quattro le Chronicle.
+- **Non fatti i mucchi coperti**: il cancello cambia *chi decide quando*, coprire
+  i valori cambia *cosa si sa*, e va misurato a parte.
+- Cancello: **408 test in 56 suite, 6737 asserzioni**; playtest **0 su 8** a
+  tavolo misto e uniforme; sims exit 0; toolchain e `--self-test` puliti.
+- Verbale: [D-203](docs/DECISIONS.md#d-203), [ISSUES 49](docs/ISSUES.md).
+
+---
+
 ## 0.1.170 — Il Sale conta anche lui, e la carta della terra torna a costare qualcosa (D-202)
 
 - **Il mondo del Sale passa agli obiettivi**, dopo aver messo a posto i suoi

@@ -1768,11 +1768,22 @@ aggiunge dieci e ne toglie nove: **+7%, non +210%**. Quindi le soglie salgono di
 **1**, misurato (5,93 Consigli l'anno contro i 5,97 di prima); il raddoppio li
 dimezzava.
 
-**Restano le fasi 2 e 3:** coprire i mucchi (e lì il velo di
-[D-187](DECISIONS.md#d-187) diventa inutile, perché tutto è coperto per
-costruzione) e l'**innesco a chiamata** con la soglia sola per il tavolo — il
-numero misurato è **tre gettoni**. Il primo mattone dell'innesco è già posato in
-[D-191](DECISIONS.md#d-191).
+**Fase 2 ✅ — la soglia sola per il tavolo** — fatta in 0.1.171
+([D-203](DECISIONS.md#d-203)). Il Consiglio si apre a gettoni e si dibatte il
+mucchio più alto; l'innesco a chiamata c'era già in
+[D-191](DECISIONS.md#d-191), e anche lui svuota il sacchetto.
+
+**E il numero scelto non valeva più quel numero**: i «tre gettoni» erano misurati
+nel gioco di prima, con 18 azioni l'anno. Col gioco a carte il tre dà 3,02 e 3,50
+Consigli e **non passa le guardie** (due anni su dodici in CHR_02 e tre su dodici
+in CHR_04 chiudono con uno solo). Spedito il **due**: 3,46 e 4,00 l'anno, contro
+i 6,03 e 6,01 di prima. Da due Consigli per Atto a poco più di uno — dichiarato,
+e reversibile con una chiave.
+
+**Resta la fase 3: i mucchi coperti.** Il cancello cambia *chi decide quando*,
+coprire i valori cambia *cosa si sa* — e adesso il verbale dice quale mucchio è
+il più alto, che è proprio l'informazione che coprire toglierebbe. Va misurato a
+parte.
 
 **Fatto quando** un anno si gioca coi mucchi coperti, il playtest resta **0/8** a
 tavolo misto e uniforme, e lo scarto fra il mucchio più alto e il più basso
