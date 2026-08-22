@@ -5,6 +5,39 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.176 — La mappa è ferma perché non ci sono pedine da muovere (D-208)
+
+- Due rimedi per ISSUES 48 erano già stati misurati **a zero**. Il committente
+  ha rifiutato la lettura consolatoria — «ogni era ha la sua Regione
+  disabitata, è il mondo che racconta il secolo» — e ha spostato la domanda dove
+  andava: **perché le pedine non si muovono?**
+- Nessuna sonda lo sapeva dire. `run_move_probe` lo dice, e per ogni casa a fine
+  anno nomina **quale porta era chiusa**: il gettone, la carta, la porta, o la
+  voglia.
+- **La risposta non è nessuna delle tre ipotesi della voce.** Ogni casa comincia
+  con 2 pedine e il tetto è 3: ha **un** gettone di riserva per tutto l'anno. Lo
+  posa, e da lì non ha più niente da muovere — a fine anno il **73%** dei seggi
+  ha tutte le pedine sul tavolo.
+- **Le carte abbondano** (12,57 MUOVERE viste in mano, 3,23 giocate) e la porta
+  non è **mai** sbarrata: quello **0%** chiude da solo le tre ipotesi originali,
+  adiacenza compresa.
+- **E spostare non succede mai: 0,03 volte l'anno.** Non è un difetto nuovo, è
+  D-185 che funziona — il cervello non toglie una pedina da dove la casa vive.
+  Ma vuol dire che il gioco ha **due azioni diverse sotto lo stesso nome**, e la
+  seconda è morta.
+- **La Strada non è povera: è la Regione più ricca della mappa** — quattro
+  vicini su cinque, 4 slot, WEALTH + KNOWLEDGE, tre tag di dominio più `trade`.
+  Perde la corsa all'unico gettone perché nessuno ci comincia.
+- **Tre rimedi prezzati, nessuno acceso**: il tetto a 4, gli studiosi che
+  cominciano sulla Strada, e i due insieme. La combinazione è la sola che vince
+  su ogni riga — la Strada diventa la **seconda** Regione più abitata (0,65 →
+  **2,15**), nessuna scende sotto 1,60, i Consigli tornano dove stavano, e il
+  playtest resta **0/8**.
+- **L'effetto che nessuno cercava**: spostare Lyra sulla Strada **cura mezza
+  ISSUES 52**. I suoi NONE crollano da 21 a 8 e le Vittorie salgono da 11 a 27.
+  Il seggio che in dodici saghe non aveva mai trionfato non era debole: era nel
+  **posto sbagliato**, a Eredan, dove Re Aldric ha già la parola.
+
 ## 0.1.175 — Anche l'anno d'apertura pesca le sue domande (D-207)
 
 - «Le domande non dovevano essere pescate random all'inizio di una saga?» Metà

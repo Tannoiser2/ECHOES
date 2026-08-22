@@ -1758,12 +1758,94 @@ difetto o se è la mappa che racconta chi c'era in quel secolo — la strada fra
 case è deserta nell'anno della Carestia e piena nell'anno del Sale, e detta così
 è una cosa che il mondo dice, non un buco.
 
-**Fatto quando** o ogni Regione ha una casa che ci comincia in ogni era, oppure
-la voce viene chiusa dichiarando che la Regione disabitata è voluta — con la
-sonda che la nomina, così nessuno se la ritrova per caso.
-
 **Da non confondere con la palude**: quella chiede slot variabili ed è motore.
-Questa, se l'ipotesi 1 o 3 regge, si chiude **con i dati**.
+
+---
+
+## Il committente ha deciso, e ha spostato la domanda (0.1.176)
+
+> «No, non ci può essere una regione senza nessuno, e anzi la Strada dei
+> Mercanti dovrebbe essere uno snodo vitale. Quindi la domanda è anche
+> **perché le pedine non si muovono?**»
+
+Non è colore: è un difetto. E la domanda giusta non era «perché la Strada è
+vuota» ma «perché la mappa è ferma» — che nessuno aveva mai misurato. La sonda
+nuova `run_move_probe` la misura, e per ogni casa a fine anno dice **quale
+porta era chiusa**.
+
+### La causa, su 40 partite a tavolo misto
+
+| | CHR_01 | CHR_03 |
+|---|---|---|
+| pedine per casa all'apertura | 2 | 2 |
+| tetto (`presence_tokens`) | 3 | 3 |
+| **di riserva** | **1,00** | **1,00** |
+| MUOVERE giocate l'anno | 3,23 | 2,88 |
+| — di cui **posano** | 3,20 | 2,85 |
+| — di cui **spostano** | **0,03** | **0,03** |
+| carte MUOVERE viste in mano | 12,57 | 9,97 |
+
+E le porte, a fine anno, su 160 occasioni di seggio:
+
+| porta chiusa | CHR_01 | CHR_03 |
+|---|---|---|
+| **il gettone** — sono già tutte sul tavolo | **73,1%** | 71,9% |
+| la carta — nessuna MUOVERE in mano | 12,5% | 7,5% |
+| la porta — cacciata, segno, adiacenza, pieno | **0%** | **0%** |
+| la voglia — poteva, ha scelto altro | 14,4% | 20,6% |
+
+**La mappa non è ferma per cattiveria del cervello né per mancanza di carte.**
+È ferma per costruzione: il gioco posa **otto pedine all'apertura** e ne concede
+**quattro in tutto l'anno**, una per casa. Finita quella, tre case su quattro
+non hanno più niente da muovere. Le carte abbondano (12,57 viste, 3,23 giocate)
+e la porta non è **mai** sbarrata: lo 0% di quella riga chiude le tre ipotesi
+originali di questa voce, adiacenza compresa.
+
+**E spostare non succede: 0,03 volte l'anno.** Non è un caso, è una scelta
+misurata ([D-185](DECISIONS.md#d-185)): il cervello non toglie una pedina da
+dove la casa vive, perché farlo costava a Re Aldric 8 NONE su 50 partite. Con
+tutte le pedine posate, MUOVERE **è** uno spostamento — e quindi non si gioca.
+
+**La Strada non offre poco: è la Regione più ricca della mappa.** Quattro
+vicini su cinque (l'unico vero incrocio), 4 slot, WEALTH + KNOWLEDGE, e tre tag
+di dominio più `trade`. Perde la corsa all'unico gettone perché **nessuno ci
+comincia**, e nessun obiettivo ci punta.
+
+### I tre rimedi, misurati
+
+| | oggi | tetto a 4 | Lyra sulla Strada | tutti e due |
+|---|---|---|---|---|
+| Strada, apertura → fine | 0,00 → 0,65 | 0,00 → 1,23 | 1,00 → 1,57 | **1,00 → 2,15** |
+| la Regione più povera a fine anno | **0,65** | 1,23 | 1,50 | **1,60** |
+| MUOVERE l'anno | 3,23 | 4,58 | 3,23 | **4,65** |
+| Consigli l'anno (unif. / misto) | 3,37 / 3,73 | 3,63 / 3,93 | **3,13 / 3,44** | 3,58 / 3,73 |
+| Lyra NONE (unif. / misto) | 14 / 21 | non misurato | 9 / 8 | **8 / 9** |
+| Lyra VITTORIE (unif. / misto) | 11 / 11 | non misurato | **27 / 27** | 25 / 28 |
+| playtest 100 semi | 0/8 | 0/8 | 0/8 | **0/8** |
+
+- **Il tetto a 4** dà a ogni casa due gettoni di riserva invece di uno: le pose
+  passano da 3,23 a 4,58 e i Consigli **salgono**, il che aiuta anche
+  [ISSUES 51](#51-sei-domande-su-dodici-non-arrivano-a-soglia-da-sole). Ma la
+  Strada resta l'ultima, perché continua a partire da zero.
+- **Lyra sulla Strada** (Eredan → Strada dei Mercanti) riempie la Regione
+  all'apertura e appiattisce la mappa da (0,65 … 2,77) a (1,50 … 2,00). E come
+  effetto secondario **cura mezza [ISSUES 52](#52-lyra-non-ha-mai-trionfato-in-centoventi-anni)**:
+  i NONE di Lyra crollano da 21 a 8 e le Vittorie salgono da 11 a 27. Gli
+  studiosi sulla strada dove viaggia il sapere è anche la cosa che ha più senso
+  da leggere. **Il prezzo:** i Consigli scendono a 3,13 / 3,44.
+- **Tutti e due insieme** è la sola combinazione che vince su ogni riga: la
+  Strada diventa la **seconda** Regione più abitata, nessuna scende sotto 1,60,
+  i Consigli tornano dov'erano, Lyra resta curata, e il vincolo 0/8 regge.
+
+**Il cambio dei tre non ancora misurato**, e va detto: **spostare** resta a 0,03
+in tutte e tre le configurazioni. Nessuno di questi rimedi fa muovere una pedina
+già posata — allargano il rubinetto, non sbloccano la mappa. Se «la mappa si
+muove» vuol dire anche *ritirarsi da un posto*, serve una quarta leva che questa
+misura non copre.
+
+**Fatto quando** nessuna Regione sta sotto una pedina a fine anno in nessuna
+era, e la sonda continua a nominare la più povera così nessuno se la ritrova per
+caso.
 
 ### 49. Le Tensioni come mucchi di segnalini coperti
 

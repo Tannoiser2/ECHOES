@@ -10,6 +10,88 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-208 — La mappa e' ferma perche' non ci sono pedine da muovere
+**preventivo misurato in 0.1.176** — nessuna regola accesa, tre rimedi prezzati
+
+Due rimedi per ISSUES 48 erano gia' stati misurati **a zero** — un Pedaggio
+sulla Strada dei Mercanti e un cervello che conta anche i domini
+([D-186](#d-186), [D-205](#d-205)). Due zeri di fila vogliono dire che la causa
+non stava dove la si cercava. Il committente ha rifiutato la lettura
+consolatoria («ogni era ha la sua Regione disabitata, e' il mondo che racconta
+il secolo») e ha spostato la domanda dove andava: **perche' le pedine non si
+muovono?**
+
+Nessuna sonda lo sapeva dire. `run_move_probe` lo dice, e per ogni casa a fine
+anno nomina **quale porta era chiusa**: il gettone, la carta, la porta, o la
+voglia.
+
+### La risposta, e non e' nessuna delle tre ipotesi della voce
+
+Ogni casa comincia con **2 pedine** e il tetto e' **3**: ha **un** gettone di
+riserva per tutto l'anno. Lo posa - 3,23 pose l'anno su quattro case - e da
+quel momento non ha piu' niente da muovere. A fine anno **il 73% dei seggi ha
+tutte le pedine sul tavolo**.
+
+Le altre porte non sono il problema:
+
+| porta chiusa | CHR_01 | CHR_03 |
+|---|---|---|
+| **il gettone** | **73,1%** | 71,9% |
+| la carta | 12,5% | 7,5% |
+| **la porta** (cacciata, segno, adiacenza, pieno) | **0%** | **0%** |
+| la voglia | 14,4% | 20,6% |
+
+Le carte MUOVERE abbondano: **12,57 viste in mano, 3,23 giocate**. E la riga
+allo **0%** chiude da sola le tre ipotesi originali della voce, adiacenza
+compresa: nessun seggio, in 80 partite, e' rimasto fermo perche' una porta era
+sbarrata.
+
+**E spostare non succede mai: 0,03 volte l'anno**, in ogni configurazione
+provata. Non e' un difetto nuovo, e' [D-185](#d-185) che funziona: il cervello
+non toglie una pedina da dove la casa vive, perche' misurato costava a Re
+Aldric 8 NONE su 50. Con tutte le pedine posate MUOVERE **e'** uno spostamento,
+quindi non si gioca. Il gioco ha due azioni diverse sotto lo stesso nome, e la
+seconda e' morta.
+
+**La Strada non e' povera: e' la Regione piu' ricca della mappa** - quattro
+vicini su cinque, 4 slot, WEALTH + KNOWLEDGE, tre tag di dominio piu' `trade`.
+Perde la corsa all'unico gettone perche' nessuno ci comincia.
+
+### I tre rimedi, prezzati
+
+| | oggi | tetto a 4 | Lyra sulla Strada | tutti e due |
+|---|---|---|---|---|
+| Strada, apertura → fine | 0,00 → 0,65 | 0,00 → 1,23 | 1,00 → 1,57 | **1,00 → 2,15** |
+| Regione piu' povera a fine anno | 0,65 | 1,23 | 1,50 | **1,60** |
+| MUOVERE l'anno | 3,23 | 4,58 | 3,23 | **4,65** |
+| Consigli l'anno (unif. / misto) | 3,37 / 3,73 | 3,63 / 3,93 | 3,13 / 3,44 | 3,58 / 3,73 |
+| Lyra NONE (unif. / misto) | 14 / 21 | non misurato | 9 / 8 | **8 / 9** |
+| Lyra VITTORIE (unif. / misto) | 11 / 11 | non misurato | 27 / 27 | **25 / 28** |
+| playtest 100 semi | 0/8 | 0/8 | 0/8 | **0/8** |
+
+**Raccomandati tutti e due insieme**: e' la sola combinazione che vince su ogni
+riga - la Strada diventa la seconda Regione piu' abitata, nessuna scende sotto
+1,60, i Consigli tornano dove stavano, e il vincolo 0/8 regge.
+
+E c'e' un effetto che non era stato cercato: **spostare Lyra sulla Strada cura
+mezza [ISSUES 52](ISSUES.md)**. I suoi NONE crollano da 21 a 8 e le Vittorie
+salgono da 11 a 27. Il seggio che in dodici saghe non aveva mai trionfato non
+era debole: era **nel posto sbagliato**, e viveva a Eredan dove Re Aldric ha
+gia' la parola.
+
+### Cosa non e' acceso
+
+**Niente.** Questo e' un preventivo: sposta la casa degli studiosi e cambia il
+tetto delle pedine, e tutte e due sono decisioni di contenuto che il committente
+deve prendere. Il numero e' scritto prima perche' possa deciderle guardandolo.
+
+E una cosa che nessuno dei tre rimedi fa: **la mappa continua a non
+disfarsi**. Allargano il rubinetto, non insegnano a ritirarsi da un posto. Se
+«la mappa si muove» deve voler dire anche *lasciare*, serve una quarta leva che
+questa misura non copre.
+
+---
+
 ## D-207 — Anche l'anno d'apertura pesca le sue domande
 **implemented in 0.1.175**
 
