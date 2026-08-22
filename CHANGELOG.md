@@ -5,6 +5,36 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.179 — I mucchi coperti, e il pavimento che non sapeva del cancello (D-210)
+
+- **ISSUES 49 è chiusa.** L'ultima fase: «i segnalini coperti danno un valore a
+  una tensione, e quando parte la Confluence si girano».
+- **Coprire vuol dire due cose, non una.** Un mucchio in cui ogni gettone vale 1
+  si conta a occhio: coprirlo non nasconderebbe niente. Quindi il gettone pesca
+  un **valore** dal sacchetto — `covered: [0, 1, 1, 2]`, media **1,00**, il
+  calore totale non cambia in attesa ma cambia la varianza — e il punteggio
+  smette di essere pubblico. Lo zero è il **gettone bianco**: non muove niente
+  ma è sceso, quindi conta per il cancello e si vede cadere.
+- **Tre finestre, non una**: il verbale pubblico, la scheda del seggio e la
+  pagina d'aiuto. Bastava lasciarne aperta una perché coprire fosse teatro — la
+  lezione di §5ter presa in anticipo invece che dopo. Otto prove nuove, tre delle
+  quali mordono se una finestra resta aperta.
+- **Il criterio di chiusura della voce era impossibile, e l'ha detto la misura.**
+  «Lo scarto fra i mucchi non cresce di atto in atto» era **già falso senza
+  coprire**: 3,95 → 6,42. Coprire aggiunge **+0,28** su tre atti. Il criterio
+  giusto è *non cresce più di quanto già cresceva*, ed è scritto così invece che
+  dichiarato raggiunto.
+- **E ha scoperto un difetto vecchio.** Il pavimento di fine anno portava una
+  domanda **alla propria soglia** — ma col cancello del tavolo la soglia non apre
+  più niente, e se quella domanda era già sopra soglia il pavimento **usciva
+  zitto senza fare nulla**. Latente da D-203; la copertura ha alzato i valori
+  quel tanto che bastava e un anno è sceso a **un Consiglio solo**. Adesso il
+  pavimento fa cadere i gettoni che mancano, come Effetti reversibili: alzare il
+  contatore e basta avrebbe aperto un Consiglio che il registro non sa spiegare,
+  e un test ha rifiutato quella prima toppa.
+- **Il gate**: Consigli l'anno 3,37 → **3,40** (uniforme) e 3,73 → **3,57**
+  (misto), playtest **0/8** a tavolo misto e uniforme.
+
 ## 0.1.178 — La quarta casa non trionfa, in nessuna era (D-209) · ISSUES 51 e 46 rimisurate
 
 - **ISSUES 51 chiusa, e l'aritmetica sbagliava strumento.** `run_question_ledger`

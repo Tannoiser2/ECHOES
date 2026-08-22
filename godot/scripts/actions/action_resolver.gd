@@ -223,24 +223,44 @@ func _draw_heat(source: Dictionary, outcome: Dictionary) -> void:
 		int(world["round"]),
 		int(world["effect_sequence"])
 	)
+	# **Il valore del gettone** (ISSUES 49 fase 3). Senza `covered` vale 1 e il
+	# mucchio si conta a occhio, quindi coprirlo non nasconderebbe niente:
+	# coprire ha senso solo se il valore varia. Il sacchetto dei valori e'
+	# dichiarato dalla Chronicle e mescolato dallo stesso seme di tutto il resto.
+	var values: Array = rules.get("covered", []) as Array
+	var covered: bool = not values.is_empty()
+
 	for _i in range(per_action):
 		var tension_id: String = str(bag[rng.range_int(0, bag.size() - 1)])
 		if not (world["tensions"] as Dictionary).has(tension_id):
 			continue
+		var worth: int = 1
+		if covered:
+			worth = int(values[rng.range_int(0, values.size() - 1)])
 		var applied: Dictionary = applier.apply(Effect.make(
-			"ADJUST_TENSION", "tension", tension_id, {"delta": 1}, mine
+			"ADJUST_TENSION", "tension", tension_id, {"delta": worth}, mine
 		))
-		if applied.is_empty():
+		# Un gettone che vale zero non muove niente e l'applicatore lo rifiuta:
+		# ma **e' sceso lo stesso**, quindi conta per il cancello e si vede
+		# cadere. E' il gettone bianco, ed e' meta' del punto di coprire.
+		if not applied.is_empty():
+			(outcome.get("effects", []) as Array).append(applied)
+		elif worth != 0:
 			continue
-		(outcome.get("effects", []) as Array).append(applied)
 		# **Il mondo non cambia in silenzio** (D-030). Il gettone si vede
 		# cadere: senza questa riga una persona giocava una carta e una domanda
 		# si scaldava senza che niente lo dicesse — la Deriva lo ha sempre
 		# detto, e il sacchetto che la sostituisce deve dirlo uguale.
+		#
+		# Coperto, si vede **cadere** e non **quanto vale**: e' il gesto che sta
+		# sul tavolo, e il numero si gira al Consiglio.
 		var tension: Variant = data.tensions.get(tension_id)
-		log.bullet("  Il gettone cade su %s: sale di 1." % [
-			tension_id if tension == null else str((tension as Dictionary)["title"])
-		])
+		var title: String = tension_id if tension == null \
+			else str((tension as Dictionary)["title"])
+		if covered:
+			log.bullet("  Un gettone coperto cade su %s." % title)
+		else:
+			log.bullet("  Il gettone cade su %s: sale di 1." % title)
 		# Il cancello del tavolo conta **i gettoni**, non le domande (D-203):
 		# quando ne sono scesi abbastanza si apre un Consiglio, e quale domanda
 		# si dibatte lo decide il mucchio piu' alto — non la soglia di ciascuna.

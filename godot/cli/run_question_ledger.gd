@@ -42,6 +42,12 @@ func _initialize() -> void:
 	# domanda -> {"dealt", "councils", "years_with_a_council", "reached", "end_gap"}
 	var ledger: Dictionary = {}
 	var councils_total: int = 0
+	# Lo scarto fra il mucchio piu' alto e il piu' basso, a fine di ogni Atto:
+	# e' il criterio di chiusura della fase 3 di ISSUES 49, e si ricostruisce dal
+	# registro degli Effetti — l'unica fonte che sa **quando** ogni punto e'
+	# sceso (§6.3).
+	var spread: Array = [0.0, 0.0, 0.0]
+	var spread_seen: Array = [0, 0, 0]
 
 	for run in range(runs):
 		var seed_value: int = first_seed + run
@@ -84,6 +90,31 @@ func _initialize() -> void:
 		for id in here:
 			if int(here[str(id)]) > 0:
 				ledger[str(id)]["years"] = int(ledger[str(id)]["years"]) + 1
+
+		var acts: int = int(data.chronicles[chronicle_id]["acts"])
+		for act in range(1, mini(acts, 3) + 1):
+			var values: Dictionary = {}
+			for tension_id in session.world["tensions"]:
+				values[str(tension_id)] = int(data.tensions[str(tension_id)]["current_value"])
+			for entry in (session.world["effect_log"] as Array):
+				var effect: Dictionary = (entry as Dictionary).get("effect", entry) as Dictionary
+				if str(effect.get("type", "")) != "ADJUST_TENSION":
+					continue
+				if int((effect.get("source", {}) as Dictionary).get("act", 0)) > act:
+					continue
+				var target: String = str((effect.get("target", {}) as Dictionary).get("id", ""))
+				if not values.has(target):
+					continue
+				values[target] = int(values[target]) + int(
+					(effect.get("payload", {}) as Dictionary).get("delta", 0)
+				)
+			var highest: int = -(1 << 30)
+			var lowest: int = 1 << 30
+			for key in values:
+				highest = maxi(highest, int(values[str(key)]))
+				lowest = mini(lowest, int(values[str(key)]))
+			spread[act - 1] = float(spread[act - 1]) + float(highest - lowest)
+			spread_seen[act - 1] = int(spread_seen[act - 1]) + 1
 		session.dispose()
 
 	print("")
@@ -109,6 +140,14 @@ func _initialize() -> void:
 			dealt, int(cell["councils"]), 100.0 * _rate(cell),
 			float(cell["gap"]) / float(maxi(1, dealt)),
 			"MUTA" if int(cell["councils"]) == 0 else "",
+		])
+	print("")
+	print("  Scarto fra il mucchio piu' alto e il piu' basso, a fine Atto:")
+	for act in range(3):
+		if int(spread_seen[act]) == 0:
+			continue
+		print("    atto %d   %.2f" % [
+			act + 1, float(spread[act]) / float(spread_seen[act])
 		])
 	print("")
 	print("  «anni con» = quante volte, sulle partite in cui era in gioco, ha")

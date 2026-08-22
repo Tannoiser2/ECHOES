@@ -99,6 +99,38 @@ func table_gate() -> int:
 	return 0 if rules.is_empty() else int(rules.get("table_gate", 0))
 
 
+## I mucchi sono coperti? (ISSUES 49 fase 3) La Chronicle lo dichiara col
+## sacchetto dei valori: se un gettone puo' valere 0, 1 o 2, il mucchio non si
+## legge piu' contando i gettoni, e allora vale la pena coprirlo.
+func piles_are_covered() -> bool:
+	var chronicle: Variant = data.chronicles.get(str(world.get("chronicle_id", "")))
+	if chronicle == null:
+		return false
+	var rules: Dictionary = (chronicle as Dictionary).get("tension_tokens", {}) as Dictionary
+	return not (rules.get("covered", []) as Array).is_empty()
+
+
+## Quanti gettoni sono caduti su una domanda: quello che al tavolo si **vede**
+## quando i mucchi sono coperti. Contati dal registro degli Effetti, che e'
+## l'unica fonte di verita' su cosa e' successo (§6.3) — e che registra anche il
+## gettone bianco, perche' cadere e valere sono due cose diverse.
+func tokens_on(tension_id: String) -> int:
+	var seen: int = 0
+	for entry in (world.get("effect_log", []) as Array):
+		var effect: Dictionary = (entry as Dictionary).get("effect", entry) as Dictionary
+		if str(effect.get("type", "")) != "ADJUST_TENSION":
+			continue
+		if str((effect.get("target", {}) as Dictionary).get("id", "")) != tension_id:
+			continue
+		# `Effect.source("system", "TENSION_TOKEN", ...)`: il tipo sta in `kind`,
+		# il **motivo** in `id`. Guardare `kind` avrebbe contato ogni Effetto di
+		# sistema, Deriva compresa.
+		if str((effect.get("source", {}) as Dictionary).get("id", "")) != "TENSION_TOKEN":
+			continue
+		seen += 1
+	return seen
+
+
 ## Il mucchio piu' alto: la domanda che il tavolo ha scaldato di piu'. A parita'
 ## vince quella che viene prima nell'ordine del mondo, cosi' il seme decide e non
 ## l'ordine con cui un Dictionary si lascia leggere.
@@ -213,6 +245,15 @@ func public_status(tension_id: String) -> String:
 	if table_gate() > 0:
 		if is_veiled(tension_id) and not hides_threshold_only():
 			return "%s: velata" % _public_name(tension_id)
+		# **Coperto si vede il mucchio, non il punteggio** (ISSUES 49 fase 3).
+		# E non si dice nemmeno quale sia il piu' alto: quella riga e'
+		# esattamente l'informazione che coprire toglie, e stamparla renderebbe
+		# la copertura una decorazione.
+		if piles_are_covered():
+			var pile: int = tokens_on(tension_id)
+			return "%s: %d %s coperti" % [
+				_public_name(tension_id), pile, "gettone" if pile == 1 else "gettoni"
+			]
 		var mark: String = " (il più alto)" if hottest_pile() == tension_id else ""
 		return "%s: %d%s" % [_public_name(tension_id), value(tension_id), mark]
 	if is_veiled(tension_id):

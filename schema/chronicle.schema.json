@@ -480,6 +480,15 @@
               "type": "integer",
               "minimum": 0,
               "description": "Il cancello **del tavolo** invece di uno per domanda (D-203, scelta b del committente): un Consiglio si apre quando sono scesi tanti gettoni **in tutto**, e la domanda che si dibatte e' il mucchio piu' alto. A zero, o assente, decide come sempre la soglia della singola Tensione. Il numero misurato e' 3."
+            },
+            "covered": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "description": "I mucchi coperti (ISSUES 49 fase 3). Il sacchetto dei **valori** che un gettone puo' portare: senza, ogni gettone vale 1 e il mucchio si legge a occhio, quindi coprirlo non nasconderebbe niente. Dichiarato, ogni gettone pesca un valore da qui e il verbale pubblico smette di dire quanto vale un mucchio - dice **quanti gettoni** ci sono sopra, che e' quello che al tavolo si vede davvero. I valori si girano quando il Consiglio si apre. Il cancello continua a contare i **gettoni**, non i valori: coprire cambia quale domanda vince, non quanto spesso si parla."
             }
           }
         },

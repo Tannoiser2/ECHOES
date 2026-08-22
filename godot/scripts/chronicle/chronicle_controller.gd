@@ -425,6 +425,47 @@ func _bring_the_year_to_a_head() -> String:
 	if int(world["confluence_count"]) >= owed:
 		return ""
 
+	# **Col cancello del tavolo il pavimento riempie il sacchetto, non spinge una
+	# domanda** (D-203). Sotto il cancello un Consiglio si apre a **gettoni**: la
+	# soglia della singola Tensione non apre piu' niente, quindi portarne una al
+	# proprio numero non produce nessun Consiglio — e se la domanda piu' vicina
+	# era gia' sopra la sua soglia (cosa normale, coi gettoni che alzano i
+	# valori) il pavimento usciva zitto senza fare niente.
+	#
+	# Era un difetto latente da D-203, e l'ha scoperto la fase 3: i mucchi
+	# coperti alzano un po' i valori, piu' domande si trovano sopra soglia, e il
+	# pavimento smetteva di scattare abbastanza spesso da far scendere un anno a
+	# un Consiglio solo. L'ha trovato `test_year_end_floor`.
+	var gate: int = session.tensions.table_gate()
+	if gate > 0:
+		var hottest: String = session.tensions.hottest_pile()
+		if hottest == "" or not session.confluence.has_fresh_question(hottest):
+			return ""
+		var missing: int = gate - int(world.get("tokens_in_bag", 0))
+		if missing > 0:
+			# Le parentesi non sono decorazione: in GDScript `%` lega piu'
+			# stretto di `+`, quindi senza formatterebbe solo l'ultimo pezzo
+			# (D-195, e la pagina d'aiuto che errava a ogni apertura).
+			log.bullet(
+				("L'anno non si chiude con la domanda ancora aperta: %s trova "
+				+ "i gettoni che le mancano.") % str(data.tensions[hottest]["title"])
+			)
+			var gate_source: Dictionary = Effect.source(
+				"system", "YEAR_END", "", int(world["act"]), int(world["round"]), 0
+			)
+			# **I gettoni cadono davvero.** Alzare `tokens_in_bag` e basta
+			# aprirebbe un Consiglio che il registro non sa spiegare, ed e'
+			# l'unico posto del motore in cui il verbale smetterebbe di
+			# raccontare il tavolo. Cadono come Effetti, uno per volta,
+			# reversibili come tutto il resto.
+			for _i in range(missing):
+				session.applier.apply(Effect.make(
+					"ADJUST_TENSION", "tension", hottest, {"delta": 1}, gate_source
+				))
+				world["tokens_in_bag"] = int(world.get("tokens_in_bag", 0)) + 1
+			session.tensions.fire_omens(gate_source)
+		return hottest
+
 	# The question that came closest, ties broken by the Chronicle's own order -
 	# the same rule `tensions_at_threshold` uses, so a forced Council and a
 	# threshold one never disagree about which question was the loudest.

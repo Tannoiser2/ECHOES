@@ -1897,7 +1897,7 @@ misura non copre.
 era, e la sonda continua a nominare la più povera così nessuno se la ritrova per
 caso.
 
-### 49. Le Tensioni come mucchi di segnalini coperti
+### 49. ✅ Le Tensioni come mucchi di segnalini coperti — chiusa in 0.1.179
 
 `regole` · `motore` · voluta dal committente · **preventivo misurato in 0.1.158** ([D-190](DECISIONS.md#d-190))
 
@@ -1973,14 +1973,43 @@ in CHR_04 chiudono con uno solo). Spedito il **due**: 3,46 e 4,00 l'anno, contro
 i 6,03 e 6,01 di prima. Da due Consigli per Atto a poco più di uno — dichiarato,
 e reversibile con una chiave.
 
-**Resta la fase 3: i mucchi coperti.** Il cancello cambia *chi decide quando*,
-coprire i valori cambia *cosa si sa* — e adesso il verbale dice quale mucchio è
-il più alto, che è proprio l'informazione che coprire toglierebbe. Va misurato a
-parte.
+**Fase 3 ✅ — i mucchi coperti** — fatta in 0.1.179
+([D-210](DECISIONS.md#d-210)).
 
-**Fatto quando** un anno si gioca coi mucchi coperti, il playtest resta **0/8** a
-tavolo misto e uniforme, e lo scarto fra il mucchio più alto e il più basso
-**non cresce** di atto in atto.
+**Coprire un mucchio in cui ogni gettone vale 1 non nasconde niente**: si conta
+a occhio. Quindi la regola è una cosa sola in due metà — il gettone pesca un
+**valore** dal sacchetto (`covered: [0, 1, 1, 2]`, media 1,00, e lo zero è il
+gettone bianco), e il punteggio smette di essere pubblico. Sul tavolo si vede
+**quanti gettoni** sono caduti, non quanto pesano; si girano quando il Consiglio
+si apre.
+
+E si copre in **tre finestre**, non una: il verbale pubblico, la scheda del
+seggio, e la pagina d'aiuto. Bastava lasciarne aperta una perché coprire fosse
+teatro — la lezione di §5ter, presa in anticipo invece che dopo.
+
+| | prima | dopo |
+|---|---|---|
+| Consigli l'anno, uniforme | 3,37 | **3,40** |
+| Consigli l'anno, misto | 3,73 | **3,57** |
+| scarto fra i mucchi, atti I→III | 3,95 → 5,95 → 6,42 | 4,17 → 5,90 → **6,92** |
+| playtest 100 semi | 0/8 | **0/8** |
+
+**Il criterio di chiusura era impossibile, e l'ha detto la misura.** «Lo scarto
+non cresce di atto in atto» **era già falso senza coprire**: 3,95 → 6,42. I
+mucchi crescono per costruzione — accumulano, e che uno diventi il più alto è
+tutto il punto del cancello. Coprire aggiunge **+0,28** su tre atti, cioè
+niente. Il criterio giusto è quello riscritto: *non cresce più di quanto già
+cresceva*, ed è soddisfatto.
+
+**E ha scoperto un difetto vecchio.** Il pavimento di fine anno
+(`minimum_confluences`) portava una domanda **alla propria soglia** — ma col
+cancello del tavolo la soglia non apre più niente, e se la domanda più vicina
+era già sopra soglia il pavimento usciva zitto senza fare nulla. Era latente da
+[D-203](DECISIONS.md#d-203); la copertura, alzando un po' i valori, l'ha reso
+visibile e un anno è sceso a un Consiglio solo. Adesso, sotto il cancello, il
+pavimento **fa cadere i gettoni che mancano** — come Effetti, uno per volta,
+reversibili: alzare il contatore e basta avrebbe aperto un Consiglio che il
+registro non sa spiegare.
 
 ### 50. Quattro obiettivi al posto dei tre gradini
 

@@ -198,6 +198,24 @@ func _lines(data: RefCounted, chronicle_id: String) -> Array:
 				+ "e quella che conta è chi sta più in alto quando il Consiglio si apre. "
 				+ "Scaldarne una vuol dire portarla davanti al tavolo."
 			)
+			# I mucchi coperti (ISSUES 49 fase 3): se la Chronicle dichiara il
+			# sacchetto dei valori, la pagina lo deve dire — una persona che
+			# conta i gettoni e crede di sapere l'altezza sta giocando un altro
+			# gioco.
+			var covered: Array = (rules.get("tension_tokens", {}) as Dictionary).get("covered", [])
+			if not covered.is_empty():
+				var faces: Array = []
+				for face in covered:
+					faces.append(str(face))
+				out.append("")
+				out.append(
+					("[b]E I MUCCHI SONO COPERTI.[/b] Un gettone non vale sempre "
+					+ "uno: vale %s, e lo sa solo il sacchetto. Sul tavolo vedi "
+					+ "[b]quanti gettoni[/b] sono caduti su ogni domanda, non "
+					+ "quanto pesano. Si girano quando il Consiglio si apre — e "
+					+ "il mucchio più alto non è per forza quello più grosso.")
+					% " / ".join(PackedStringArray(faces))
+				)
 			out.append("")
 			out.append(
 				"[color=#8a8172]E un Consiglio lo puoi aprire anche tu: chi ha una "

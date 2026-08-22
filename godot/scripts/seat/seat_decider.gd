@@ -579,6 +579,12 @@ func _tension_reading(tension_id: String, viewer_id: String, session: RefCounted
 	# scrivere «4/?» farebbe cercare una soglia che non esiste. Quello che conta
 	# e' l'altezza del mucchio, e se e' il piu' alto.
 	if session.tensions.table_gate() > 0:
+		# **Coperto, nemmeno il seggio vede il punteggio** (ISSUES 49 fase 3).
+		# Questa e' la scheda che una persona ha in mano: se qui il numero
+		# restasse scritto, coprire il verbale pubblico sarebbe teatro.
+		if session.tensions.piles_are_covered():
+			var pile: int = session.tensions.tokens_on(tension_id)
+			return "%d %s coperti" % [pile, "gettone" if pile == 1 else "gettoni"]
 		return "%d%s" % [
 			value, " ← il più alto" if session.tensions.hottest_pile() == tension_id else ""
 		]

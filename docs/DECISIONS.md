@@ -10,6 +10,80 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-210 — I mucchi coperti, e il pavimento che non sapeva del cancello
+**implemented in 0.1.179** — ISSUES 49 fase 3, chiusa
+
+«Ogni carta o azione fa pescare uno o piu' segnalini coperti che **danno un
+valore** a una tensione. A un certo punto, quando parte la Confluence, **si
+girano**, e la tensione col punteggio piu' alto viene dibattuta.»
+
+Le prime due fasi erano fatte: i giocatori pescano il calore
+([D-192](#d-192)), e una soglia sola per il tavolo decide quando si parla
+([D-203](#d-203)). Restava la terza, ed e' quella che cambia **cosa si sa**.
+
+### Coprire vuol dire due cose, non una
+
+**Un mucchio in cui ogni gettone vale 1 si conta a occhio**: coprirlo non
+nasconderebbe niente. Quindi la regola e' una cosa sola in due meta':
+
+- il gettone pesca un **valore** dal sacchetto dichiarato dalla Chronicle —
+  `covered: [0, 1, 1, 2]`, media **1,00**, quindi il calore totale non cambia in
+  attesa, cambia la **varianza**. Lo zero e' il **gettone bianco**: non muove
+  niente ma **e' sceso**, quindi conta per il cancello e si vede cadere. Senza
+  di lui, contare i gettoni tornerebbe a dire il punteggio;
+- il punteggio smette di essere pubblico. Si vede **quanti gettoni** sono
+  caduti su ogni domanda, non quanto pesano.
+
+Il cancello continua a contare i **gettoni**, non i valori: coprire cambia
+**quale domanda vince**, non quanto spesso si parla.
+
+### Tre finestre, non una
+
+Il numero era scritto in tre posti — il verbale pubblico, la scheda del seggio,
+la pagina d'aiuto — e bastava lasciarne aperto uno perche' coprire fosse teatro.
+E' la lezione di §5ter (*nessuna misura copre quello che una persona legge*),
+presa in anticipo invece che dopo: otto prove nuove, e tre di loro mordono
+davvero se una finestra resta aperta.
+
+### I numeri
+
+| | prima | dopo |
+|---|---|---|
+| Consigli l'anno, uniforme | 3,37 | **3,40** |
+| Consigli l'anno, misto | 3,73 | **3,57** |
+| scarto fra i mucchi, atti I→III | 3,95 → 5,95 → 6,42 | 4,17 → 5,90 → **6,92** |
+| playtest 100 semi, misto e uniforme | 0/8 | **0/8** |
+
+**Il criterio di chiusura della voce era impossibile, e l'ha detto la misura.**
+«Lo scarto fra il mucchio piu' alto e il piu' basso non cresce di atto in atto»
+**era gia' falso senza coprire**: 3,95 → 6,42. I mucchi crescono per
+costruzione — accumulano, e che uno diventi il piu' alto e' tutto il punto del
+cancello. Coprire aggiunge **+0,28** su tre atti. Il criterio giusto e' *non
+cresce piu' di quanto gia' cresceva*, ed e' soddisfatto — scritto cosi' invece
+che dichiarato raggiunto.
+
+### Il difetto vecchio che ha scoperto
+
+Il pavimento di fine anno (`minimum_confluences`) portava la domanda piu' vicina
+**alla propria soglia**. Ma col cancello del tavolo **la soglia non apre piu'
+niente**: il Consiglio si apre a gettoni. E se la domanda piu' vicina era gia'
+sopra la sua soglia — cosa normale, coi gettoni che alzano i valori — il
+pavimento trovava `smallest_gap <= 0` e **usciva zitto senza fare nulla**.
+
+Latente da D-203, invisibile finche' i valori restavano bassi. La copertura li
+ha alzati quel tanto che bastava, un anno e' sceso a **un Consiglio solo**, e
+`test_year_end_floor` l'ha trovato. Non era il gettone bianco: rimesso il bianco
+**dopo** la correzione, la suite e' verde.
+
+Adesso, sotto il cancello, il pavimento **fa cadere i gettoni che mancano** — e
+li fa cadere come Effetti, uno per volta, firmati `YEAR_END` e reversibili.
+Alzare il contatore e basta avrebbe aperto un Consiglio che il registro non sa
+spiegare, e sarebbe stato l'unico posto del motore in cui il verbale smette di
+raccontare il tavolo. Quel principio ce l'aveva gia' un test, ed e' stato lui a
+rifiutare la prima toppa.
+
+---
+
 ## D-209 — Tre case aprono l'anno con due obiettivi gia' in tasca
 **misurato in 0.1.177, esteso in 0.1.178** — nessuna regola cambiata, tre strade prezzate
 
