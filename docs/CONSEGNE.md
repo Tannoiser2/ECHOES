@@ -174,8 +174,9 @@ precedente — non un difetto del codice. Cambiarlo è cambiare il regolamento:
   fabbisogno (D-186), le 48 azioni e l'interruttore acceso (D-188). Lo scarto fra
   il primo e l'ultimo seggio **non cresce più**: 1,58 all'Atto 3 contro 4,90.
   Restano tre code, e non sono la issue:
-  **(a)** CHR_03 gioca ancora il §10 di prima — la sua mappa non è stata
-  guardata; **(b)** manca un piano scriptato del gioco a carte; **(c)** il 58%
+  **(a)** ~~CHR_03 gioca ancora il §10 di prima~~ — **passata in 0.1.169**
+  (D-201): la mappa è la stessa per tutte le Chronicle da D-186, quindi non c'era
+  niente da guardare; **(b)** manca un piano scriptato del gioco a carte; **(c)** il 58%
   delle Occasioni resta muto, 194 volte su 720 perché *la mano non sa dire* ciò
   che il seggio vuole — prima misura, mai tarata.
 - **La palude** — l'unica cosa fuori dal catalogo delle strutture. Chiede slot di
@@ -206,9 +207,14 @@ Scritto dopo il merge di #70, quando il gioco a sole carte è diventato il gioco
    non si prenota una domanda già matura, la si prende in un colpo. Morte in mano
    su CHR_01 **da 78% a 41%**; il criterio chiede sotto il 33%, quindi **resta
    aperta**. Due strade più aggressive sono state respinte coi numeri.
-3. **Il mondo del Sale** — CHR_03 gioca ancora il §10 di prima. Portarcelo vuol
-   dire prima guardare la sua mappa come è stata guardata quella della Carestia
-   (D-186). Lavoro pulito, nessuna decisione richiesta.
+3. ~~**Il mondo del Sale**~~ — **fatto in 0.1.169–0.1.170** (D-201, D-202).
+   CHR_03 e CHR_04 giocano a carte, col sacchetto e con gli obiettivi. La mappa
+   non è stata «guardata» perché **è la stessa** di CHR_01 da D-186: le sei
+   Regioni sono condivise fra tutte le Chronicle. Due cose imparate per strada:
+   il **+1 alle soglie** che CHR_01 aveva chiesto è sbagliato per il Sale (3,90
+   Consigli l'anno contro 5,55 senza), e una **saga può giocare a due giochi**
+   senza dirlo — CHR_02 contava i gradini mentre CHR_01 contava gli obiettivi,
+   adesso c'è una guardia che lo impedisce.
 4. **Un piano scriptato del gioco a carte** — i tre esistenti sono storie del
    §10 di prima e lo dichiarano nel dato. Il gioco nuovo non ha una storia
    raccontata: è provato dal cancello e dai test.
