@@ -10,6 +10,66 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-205 — La Regione morta e' quella dove non comincia nessuno
+**measured in 0.1.173** (due rimedi provati e respinti; una riga in piu' nella sonda)
+
+ISSUES 48 diceva «la Strada dei Mercanti e' una Regione morta» e proponeva tre
+ipotesi: nessun Destino la chiede, non ci si arriva, non rende. Rimisurando col
+gioco di adesso, **tutte e tre sbagliano bersaglio**.
+
+**Il primo numero**: la Strada e' passata da **0,6% a 3,3%** delle pedine senza
+che nessuno la toccasse — l'ha alzata il gioco a carte, dove stare in una Regione
+decide cosa peschi.
+
+**Il secondo numero e' quello che spiega tutto:**
+
+| | Carestia (CHR_01) | Sale (CHR_03) |
+|---|---|---|
+| Strada dei Mercanti | **3,3%** | **13,8%** |
+| Terre Nahr | 13,5% | **1,7%** |
+
+**La Strada non e' morta: e' morta in un'era sola.** Nel Sale e' la terza piu'
+affollata, e li' la Regione morta sono le **Terre Nahr**, all'1,7% — peggio di
+quanto la Strada sia mai stata.
+
+**La causa**: le pedine si posano all'apertura e durante l'anno si muovono
+pochissimo, quindi la mappa di fine anno e' quasi quella di partenza. La Regione
+vuota e' **quella in cui non comincia nessuno**, e cambia da un'era all'altra
+perche' a cambiare sono le case. Non e' una proprieta' della Strada: e' una
+proprieta' del **posto libero**.
+
+**Due rimedi provati, misurati, respinti.**
+
+1. **Un Pedaggio sulla Strada.** La struttura giusta esisteva gia' nel catalogo
+   (`STR_TOLLGATE`, «Pedaggio», famiglia OPERA) e **non stava su nessuna mappa** —
+   la strada dei mercanti non aveva un pedaggio, il che era anche un buco di
+   finzione. Messo: **3,3% prima, 3,3% dopo**.
+2. **Un cervello che conta anche i domini.** `_widen_the_tap` sceglieva dove
+   andare contando solo le **famiglie nuove**, cioe' meta' del valore di un
+   posto: stare in una Regione serve anche a influenzare gratis le domande del
+   suo dominio, e la Strada ne ha tre. Contati: **3,3% prima, 3,3% dopo**.
+
+Il perche' del doppio zero e' lo stesso: quel ramo vive **solo col gettone di
+riserva** (D-185), quindi si gioca una volta per partita e per seggio. Qualunque
+cosa gli si insegni, sposta una pedina su tre.
+
+**Tutti e due tolti.** Un cambiamento che non muove nessun numero, tenuto, e'
+peggio di una misura scritta: il prossimo lettore lo trova e crede che serva a
+qualcosa. Il Pedaggio tornera' il giorno che la mappa si riscrive per davvero.
+
+**Quello che resta e' una riga nella sonda**: `run_hand_probe` adesso **nomina**
+la Regione in cui non comincia nessuno, invece di lasciarla dedurre da una
+classifica. Sulla Carestia dice la Strada dei Mercanti; sul Sale dice le Terre
+Nahr.
+
+**E la voce cambia forma**: non «la Strada e' morta», ma «ogni era ha una Regione
+dove non vive nessuno, e quella resta vuota». Da decidere se e' un difetto o se
+e' la mappa che racconta chi c'era in quel secolo — la strada fra le case deserta
+nell'anno della Carestia e piena nell'anno del Sale e' una cosa che il mondo
+dice, non un buco.
+
+---
+
 ## D-204 — Due case su otto non potevano chiamare il Consiglio
 **implemented in 0.1.172** (ISSUES 37, nella forma nuova che ISSUES 49 le ha dato)
 

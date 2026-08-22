@@ -1712,8 +1712,41 @@ sue `asset_sources` sono decorazione.
 3. **Non rende.** Non è capitale, non è granaio, non ha struttura: tenerla non
    dà voce al Consiglio e non chiude nessun Destino.
 
-**Fatto quando** la Strada vede una quota di pedine confrontabile con Montagne e
-Terre Nahr (**almeno il 5%**), senza che il playtest esca da **0/8**.
+**La voce cercava nel posto sbagliato, e si vede rimisurando** (0.1.173,
+[D-205](DECISIONS.md#d-205)). Col gioco a carte la Strada è passata da **0,6% a
+3,3%** da sola — nessuno l'ha toccata. Ma il numero che spiega tutto è un altro:
+
+| | Carestia (CHR_01) | Sale (CHR_03) |
+|---|---|---|
+| Strada dei Mercanti | **3,3%** | **13,8%** |
+| Terre Nahr | 13,5% | **1,7%** |
+
+**La Strada non è una Regione morta: è morta in un'era sola.** Nel Sale è la
+terza più affollata. E nel Sale la Regione morta sono le **Terre Nahr**, all'1,7%
+— peggio di quanto la Strada sia mai stata.
+
+**La causa è una sola, e non è quella che le tre ipotesi cercavano**: le pedine
+si posano **all'apertura** e durante l'anno si muovono pochissimo, quindi la
+mappa di fine anno è quasi quella di partenza. **La Regione vuota è quella in cui
+non comincia nessuno** — e cambia da un'era all'altra, perché a cambiare sono le
+case. La sonda della mano adesso la **nomina** invece di lasciarla dedurre.
+
+**Due rimedi provati e respinti coi numeri**, tutti e due misurati e tutti e due
+a zero: un **Pedaggio** sulla Strada (la struttura giusta esiste già nel
+catalogo, `STR_TOLLGATE`, e non era su nessuna mappa) e un **cervello che conta
+anche i domini** oltre alle famiglie quando sceglie dove andare — 3,3% prima,
+3,3% dopo, tutti e due. Chi non ha una pedina di riserva non si sposta comunque, e
+chi ce l'ha la spende una volta sola.
+
+**Quindi la voce cambia forma.** Non «la Strada è morta», ma: **ogni era ha una
+Regione dove non vive nessuno, e quella resta vuota**. Da decidere se è un
+difetto o se è la mappa che racconta chi c'era in quel secolo — la strada fra le
+case è deserta nell'anno della Carestia e piena nell'anno del Sale, e detta così
+è una cosa che il mondo dice, non un buco.
+
+**Fatto quando** o ogni Regione ha una casa che ci comincia in ogni era, oppure
+la voce viene chiusa dichiarando che la Regione disabitata è voluta — con la
+sonda che la nomina, così nessuno se la ritrova per caso.
 
 **Da non confondere con la palude**: quella chiede slot variabili ed è motore.
 Questa, se l'ipotesi 1 o 3 regge, si chiude **con i dati**.

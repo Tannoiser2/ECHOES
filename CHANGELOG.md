@@ -5,6 +5,34 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.173 — La Regione morta è quella dove non comincia nessuno (D-205)
+
+- ISSUES 48 diceva «la Strada dei Mercanti è una Regione morta» e proponeva tre
+  ipotesi. Rimisurando col gioco di adesso, **tutte e tre sbagliano bersaglio**.
+- **La Strada è passata da 0,6% a 3,3%** delle pedine senza che nessuno la
+  toccasse: l'ha alzata il gioco a carte. Ma il numero che spiega tutto è un
+  altro: nel **Sale** la Strada sta al **13,8%** — terza più affollata — e la
+  Regione morta sono le **Terre Nahr, all'1,7%**.
+- **La Strada non è morta: è morta in un'era sola.** La causa è che le pedine si
+  posano all'apertura e durante l'anno si muovono pochissimo: **la Regione vuota
+  è quella in cui non comincia nessuno**, e cambia da un'era all'altra perché a
+  cambiare sono le case.
+- **Due rimedi provati, misurati, respinti**, tutti e due a zero: un **Pedaggio**
+  sulla Strada (la struttura esisteva già nel catalogo e non stava su nessuna
+  mappa) e un **cervello che conta anche i domini** oltre alle famiglie. 3,3%
+  prima, 3,3% dopo, in entrambi i casi — perché quel ramo vive solo col gettone
+  di riserva, e si gioca una volta per partita.
+- **Tutti e due tolti**: un cambiamento che non muove nessun numero, tenuto, è
+  peggio di una misura scritta — il prossimo lettore lo trova e crede che serva.
+- **Quello che resta è una riga nella sonda**: `run_hand_probe` adesso **nomina**
+  la Regione in cui non comincia nessuno invece di lasciarla dedurre.
+- La voce cambia forma: non «la Strada è morta», ma «ogni era ha una Regione dove
+  non vive nessuno». Da decidere se è un difetto o se è la mappa che racconta chi
+  c'era in quel secolo.
+- Verbale: [D-205](docs/DECISIONS.md#d-205), [ISSUES 48](docs/ISSUES.md).
+
+---
+
 ## 0.1.172 — Due case su otto non potevano chiamare il Consiglio (D-204)
 
 - ISSUES 37 lo aveva scritto in anticipo: *«o quando ISSUES 49 arriva e questa
