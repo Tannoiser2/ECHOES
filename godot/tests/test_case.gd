@@ -105,6 +105,18 @@ func new_session(seed_value: int = 4242, apply_setup: bool = true) -> RefCounted
 	if session != null:
 		session.dispose()
 	session = GameSession.new(data())
+	# **La biblioteca si spegne prima che si peschi** (D-207). Da quando anche
+	# l'anno d'apertura pesca le sue domande, spegnerla dopo `setup()` non
+	# basta: la pesca consuma l'RNG, quindi la prima sessione di un test
+	# pescava e la seconda - trovando la dichiarazione gia' spenta - no. Due
+	# esecuzioni dello stesso seme davano due partite diverse, ed e' cosi' che
+	# si e' visto. Le prove unitarie giocano le quattro domande scritte a mano.
+	(session.data.chronicles["CHR_01"] as Dictionary)["tension_pool"] = {}
+	# E il sacchetto scritto a mano non resta appeso da un piano all'altro:
+	# `apply_plan_overrides` scrive sulla definizione **condivisa**, quindi
+	# senza questa riga la Chronicle spedita - che il sacchetto non lo scrive
+	# piu' - se lo ritroverebbe addosso nella prova dopo.
+	(session.data.chronicles["CHR_01"] as Dictionary).erase("drift_distribution")
 	if not session.setup("CHR_01", ["ENT_ALDRIC", "ENT_NAHR", "ENT_LYRA", "ENT_VAERAX"], seed_value):
 		_fail("setup fallito: %s" % session.last_error)
 		return session
@@ -129,6 +141,35 @@ func new_session(seed_value: int = 4242, apply_setup: bool = true) -> RefCounted
 		session.world["act"] = 1
 		session.world["round"] = 1
 		session.world["phase"] = "ACTIONS"
+	return session
+
+
+## Una sessione per un piano scriptato, con le dichiarazioni al posto giusto.
+##
+## `run_chronicle_sim` applica gli override **prima** di `setup()`; questa
+## suite li applicava dopo, e fino a 0.1.174 non faceva differenza perche'
+## nessun override toccava la pesca. Da D-207 due la toccano - le domande e il
+## sacchetto - e applicarli dopo vuol dire due cose insieme: il piano gioca un
+## anno diverso da quello che dichiara, e la **seconda** esecuzione dello
+## stesso seme trova la definizione gia' riscritta dalla prima e ne gioca un
+## terzo. E' la stessa distanza fra la prova e la spedizione che questa suite
+## aveva gia' pagato una volta (D-188): qui si chiude prendendo la strada
+## della sonda.
+func new_session_for_plan(plan: Dictionary, seed_value: int) -> RefCounted:
+	if session != null:
+		session.dispose()
+	session = GameSession.new(data())
+	var chronicle_id: String = str(plan["chronicle_id"])
+	(session.data.chronicles[chronicle_id] as Dictionary).erase("drift_distribution")
+	GameSession.apply_plan_overrides(session.data, plan)
+	if not session.setup(chronicle_id, plan["seats"], seed_value):
+		_fail("setup fallito: %s" % session.last_error)
+		return session
+	for entity_id in session.world["entities"]:
+		var written: Variant = session.data.entities.get(str(entity_id))
+		if written != null:
+			session.world["entities"][str(entity_id)]["destiny_id"] = str(written["destiny_id"])
+	session.actions.set("_chronicle", session.data.chronicles[chronicle_id])
 	return session
 
 
@@ -163,4 +204,9 @@ func play_classic() -> void:
 	chronicle["objectives"] = {}
 	for entity_id in session.world["entities"]:
 		(session.world["entities"][str(entity_id)] as Dictionary)["objectives"] = []
+	# ...e le domande sono le quattro scritte a mano (D-207). Qui la
+	# dichiarazione basta, perche' `new_session()` ha gia' spento la biblioteca
+	# **prima** di `setup()`: se la spegnesse solo qui, la mano pescata
+	# resterebbe sul tavolo e l'RNG sarebbe gia' stato consumato.
+	chronicle["tension_pool"] = {}
 	session.actions.set("_chronicle", chronicle)

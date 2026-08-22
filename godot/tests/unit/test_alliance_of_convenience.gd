@@ -79,20 +79,31 @@ func test_the_memory_is_only_what_the_table_saw() -> void:
 ## forma di questa regola passava ogni asserzione e non stringeva un legame in
 ## tutta la partita. Su una Chronicle intera, almeno un seggio deve salire di
 ## grado con qualcuno che nessuna sua clausola nomina.
+## Su un anno solo era una prova a un seme, e il seme e' cambiato sotto: da
+## D-207 CHR_01 non scrive piu' il proprio sacchetto della Deriva, quindi la
+## partita 4242 non e' la partita 4242 di ieri e **in quell'anno, da solo, non
+## si scalda niente**. La regola non e' spenta: su cinque anni scalda **5**
+## legami. Era il test a dirlo con una moneta sola. Adesso chiede quello che
+## intendeva - che su una manciata di anni la regola spari - e il messaggio
+## porta il numero, cosi' il giorno che scende si legge di quanto.
 func test_a_bond_is_forged_that_no_clause_asked_for() -> void:
-	var report: Dictionary = await session.run(PolicyDecider.new(session.log))
-	assert_false(report.is_empty(), "la Chronicle e' arrivata in fondo")
 	var warmed: int = 0
-	for entry in (session.world["effect_log"] as Array):
-		var effect: Dictionary = (entry as Dictionary).get("effect", entry) as Dictionary
-		if str(effect.get("type", "")) != "SET_RELATION":
-			continue
-		var level: String = str((effect.get("payload", {}) as Dictionary).get("level", ""))
-		if level == "ALLY" or level == "BOUND":
-			warmed += 1
+	var years: int = 0
+	for seed_value in [4242, 4243, 4244, 4245, 4246]:
+		new_session(seed_value, false)
+		var report: Dictionary = await session.run(PolicyDecider.new(session.log))
+		assert_false(report.is_empty(), "seme %d: la Chronicle e' arrivata in fondo" % seed_value)
+		years += 1
+		for entry in (session.world["effect_log"] as Array):
+			var effect: Dictionary = (entry as Dictionary).get("effect", entry) as Dictionary
+			if str(effect.get("type", "")) != "SET_RELATION":
+				continue
+			var level: String = str((effect.get("payload", {}) as Dictionary).get("level", ""))
+			if level == "ALLY" or level == "BOUND":
+				warmed += 1
 	assert_true(
 		warmed > 0,
-		"in un anno intero nessun legame si e' scaldato: la regola non sta sparando"
+		"legami scaldati: %d in %d anni" % [warmed, years]
 	)
 
 

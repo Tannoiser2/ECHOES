@@ -667,6 +667,7 @@ def check_sim_plans_declare_their_economy(
                 "o lo dichiara false (e' una storia del §10 di prima), o le sue "
                 "mosse vanno riscritte come carte",
             )
+
     # Stessa ragione per la presa di parola (D-191) e per il sacchetto (D-192):
     # una storia scritta in due tempi non si rilegge in un tempo solo, e una
     # scritta con nove gettoni non si rilegge con venti.
@@ -693,6 +694,76 @@ def check_sim_plans_declare_their_economy(
                 )
 
 
+def check_sim_plans_know_which_questions_they_get(
+    documents: Dict[str, List[Dict[str, Any]]],
+    origins: Dict[str, str],
+    report: "Report",
+) -> None:
+    """Un piano scriptato non puo' aspettare una domanda che il seme non pesca.
+
+    Stessa lezione della guardia sopra, un anno dopo. Da quando anche l'anno
+    d'apertura pesca dalla biblioteca (D-207), una storia scritta sulla
+    Carestia gira su un seme che potrebbe aver pescato la Febbre Bassa al suo
+    posto: le direttive per Tensione non troverebbero il loro Consiglio e il
+    piano racconterebbe un altro anno senza dirlo. O il piano dichiara la mano
+    scritta a mano (`tension_pool: {}`), o accetta la pesca — e allora non puo'
+    nominare Tensioni nelle sue direttive.
+    """
+    plans = documents.get("sim_plan", [])
+    chronicles = {str(c.get("id")): c for c in documents.get("chronicle", [])}
+    for plan in plans:
+        chronicle = chronicles.get(str(plan.get("chronicle_id", "")))
+        if chronicle is None or not chronicle.get("tension_pool"):
+            continue
+        overrides = plan.get("chronicle_overrides", {})
+        if "tension_pool" in overrides:
+            continue
+        named = sorted(
+            {
+                str(entry["tension_id"])
+                for entry in plan.get("confluences", [])
+                if "tension_id" in entry
+            }
+        )
+        if not named:
+            continue
+        report.fail(
+            f"sim_plan [{plan.get('id')}]",
+            f"la Chronicle {plan.get('chronicle_id')} pesca le sue domande dalla "
+            f"biblioteca, ma il piano indirizza {', '.join(named)} senza dichiarare "
+            "`chronicle_overrides.tension_pool`: su un altro seme quelle domande "
+            "potrebbero non essere in gioco",
+        )
+
+
+def check_a_drawn_question_can_be_narrated(
+    documents: Dict[str, List[Dict[str, Any]]],
+    origins: Dict[str, str],
+    report: "Report",
+) -> None:
+    """Ogni domanda pescabile deve saper dire la sua riga d'apertura (D-030).
+
+    L'apertura di una Chronicle che pesca e' composta: la cornice piu' una riga
+    per domanda in gioco. Una candidata senza `opening_line` viene pescata,
+    giocata e discussa al Consiglio senza che il tavolo abbia mai letto che era
+    successa — l'anno comincia con un buco esattamente dove sta la novita'.
+    """
+    lines = {
+        str(t.get("id")): t.get("opening_line")
+        for t in documents.get("tension", [])
+    }
+    for chronicle in documents.get("chronicle", []):
+        pool = chronicle.get("tension_pool")
+        if not pool:
+            continue
+        where = f"chronicle [{chronicle.get('id')}]"
+        for tension_id in list(pool["candidates"]) + list(pool.get("always", [])):
+            if not lines.get(str(tension_id)):
+                report.fail(
+                    where,
+                    f"la biblioteca puo' pescare '{tension_id}', che non ha "
+                    "`opening_line`: verrebbe giocata senza che l'apertura la nomini",
+                )
 def check_condition_vocabularies_agree(
     documents: Dict[str, List[Dict[str, Any]]],
     origins: Dict[str, str],
@@ -1205,6 +1276,8 @@ def main() -> int:
         check_destiny_free_roads(documents, origins, report)
         check_asset_sources_are_true(documents, origins, report)
         check_sim_plans_declare_their_economy(documents, origins, report)
+        check_sim_plans_know_which_questions_they_get(documents, origins, report)
+        check_a_drawn_question_can_be_narrated(documents, origins, report)
         check_objectives_are_shareable(documents, origins, report)
         check_condition_vocabularies_agree(documents, origins, report)
         check_objective_scales_are_sane(documents, origins, report)

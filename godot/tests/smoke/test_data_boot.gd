@@ -172,35 +172,73 @@ func test_chronicle_matches_the_baseline_numbers() -> void:
 	assert_eq(int(chronicle["max_commit_assets"]), 3, "massimo 3 Asset impegnati")
 	assert_eq(int(chronicle["max_condition_commit_assets"]), 2, "massimo 2 per una Condition")
 
-	var drift: int = 0
-	for entry in chronicle["drift_distribution"]:
-		drift += int(entry["count"])
-	assert_eq(drift, 9, "la traccia di Drift copre tutti i 9 round")
+	# Da D-207 CHR_01 pesca le sue domande, quindi non puo' piu' scrivere un
+	# sacchetto per nome: il sacchetto lo compone il motore sulla mano pescata.
+	# Quello che resta vero, e che conta, e' che copra tutti i round.
+	assert_false(
+		chronicle.has("drift_distribution"),
+		"una Chronicle che pesca non scrive il proprio sacchetto"
+	)
+	assert_eq(
+		(session.world["drift_track"] as Array).size(), 9,
+		"la traccia di Drift copre tutti i 9 round"
+	)
 
 
 ## A Tension has to be able to reach its threshold at all, or the Confluence it
 ## guards could never open. Drift alone is not required: the Ripple of a linked
 ## Tension's Confluence counts too, which is exactly how TEN_AWAKENING is meant
 ## to become urgent (see docs/DECISIONS.md D-009).
+## Il criterio forte - «sacchetto piu' Ripple bastano da soli ad arrivare a
+## soglia» - **era vero di una Chronicle sola**, quella scritta a mano, e questo
+## test guardava solo quella. Misurato su tutta la biblioteca (0.1.175): la
+## Febbre Bassa, i Pozzi Bassi, il Risveglio, il Debito, la Reliquia e la Carta
+## non ci arrivano, e non ci arrivavano gia' prima in CHR_02 e CHR_04. Non e'
+## un difetto nuovo: e' che quelle domande salgono **per mano dei giocatori**,
+## e da D-192 il calore lo pescano loro (`replaces_drift`), quindi il sacchetto
+## non e' nemmeno in gioco.
+##
+## Resta vero, e va difeso, il difetto che questo test cercava davvero: una
+## domanda che **niente al mondo puo' muovere**. Quella e' una scena senza
+## leva, e valida in silenzio.
+##
+## Il numero vero - quante volte ogni domanda arriva davvero al Consiglio - sta
+## in ISSUES 51, misurato invece che dedotto.
 func test_every_tension_can_reach_its_threshold() -> void:
 	var loaded: RefCounted = data()
-	var chronicle: Dictionary = loaded.chronicles["CHR_01"]
-	var drift_by_tension: Dictionary = {}
-	for entry in chronicle.get("drift_distribution", []):
-		drift_by_tension[str(entry["tension_id"])] = int(entry["count"])
+	for chronicle_id in loaded.chronicles:
+		var chronicle: Dictionary = loaded.chronicles[str(chronicle_id)]
+		var rounds: int = int(chronicle["acts"]) * int(chronicle["rounds_per_act"])
+		var pool: Dictionary = chronicle.get("tension_pool", {})
+		var playing: Array = (chronicle.get("tensions", []) as Array).duplicate()
+		var floor_chips: int = 0
+		if not pool.is_empty():
+			playing = (pool["candidates"] as Array).duplicate()
+			# Il sacchetto della biblioteca gira round-robin sulle pescate: la
+			# domanda meno servita ne prende `round / pescate`.
+			floor_chips = rounds / int(pool["count"])
+		else:
+			var declared: Dictionary = {}
+			for entry in chronicle.get("drift_distribution", []):
+				declared[str(entry["tension_id"])] = int(entry["count"])
+			floor_chips = -1  # per-domanda, letto sotto
 
-	for tension_id in chronicle.get("tensions", []):
-		var tension: Dictionary = loaded.tensions[str(tension_id)]
-		var reachable: int = int(tension["current_value"]) + int(drift_by_tension.get(tension_id, 0))
-		# One Ripple per Confluence opened on a template that points here.
-		for template in loaded.confluence_templates.values():
-			if (template["ripple"]["targets"] as Array).has(str(tension_id)):
-				reachable += int(template["ripple"]["delta"])
-		assert_true(
-			reachable >= int(tension["threshold"]),
-			"%s: da %d, con Drift e Ripple, non arriva mai a %d"
-			% [tension_id, int(tension["current_value"]), int(tension["threshold"])]
-		)
+		for tension_id in playing:
+			var tension: Dictionary = loaded.tensions[str(tension_id)]
+			var pushes: int = floor_chips
+			if pushes < 0:
+				pushes = 0
+				for entry in chronicle.get("drift_distribution", []):
+					if str(entry["tension_id"]) == str(tension_id):
+						pushes = int(entry["count"])
+			for template in loaded.confluence_templates.values():
+				if (template["ripple"]["targets"] as Array).has(str(tension_id)):
+					pushes += int(template["ripple"]["delta"])
+			assert_true(
+				pushes > 0,
+				"%s in %s: niente al mondo la spinge — ne' sacchetto ne' Ripple"
+				% [str(tension_id), str(chronicle_id)]
+			)
 
 
 ## A Destiny clause nobody can ever make true.

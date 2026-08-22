@@ -10,6 +10,97 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-207 — Anche l'anno d'apertura pesca le sue domande
+**implemented in 0.1.175**
+
+«Le domande non dovevano essere pescate random all'inizio di una saga? Ogni
+saga doveva partire in modo diverso.»
+
+**Meta' della risposta era «lo fanno gia'», e l'altra meta' dava ragione al
+committente.** La pesca esiste da D-028 e funziona: su 12 saghe da 10 Chronicle
+la biblioteca tira fuori **14 mani di domande diverse su 15 possibili**, la
+pesca che ascolta (D-079) porta al tavolo l'81% delle candidate richiamate da un
+segno, e le saghe finiscono a **distanza 0,86** l'una dall'altra sulle frasi che
+scrivono. Ma la pesca cominciava dall'**anno 2**: `CHR_01` e `CHR_03` avevano le
+domande scritte a mano, quindi **ogni saga del Grano cominciava dalle stesse
+quattro domande e ogni saga del Sale dalle stesse cinque**, per sempre.
+
+Le sonde non lo dicevano perche' nessuna guardava l'apertura: un primo anno
+identico si perde dentro dieci, e la distanza media resta alta comunque. Il
+metro nuovo lo nomina — **mani d'apertura diverse** e **distanza al primo anno**
+— ed e' cosi' che «1 mano su 12 saghe» e' diventato leggibile.
+
+### Cosa cambia
+
+- `CHR_01` pesca **4 candidate su 6**, `CHR_03` **5 su 6**. Il Sale ne pesca
+  cinque e non quattro di proposito: pescarne quattro darebbe 15 aperture invece
+  di 6, ma **cambierebbe la forma del suo anno per guadagnare combinazioni**, e
+  quella e' una decisione di gioco che nessuno ha chiesto.
+- **L'apertura si compone.** `opening_text` era un paragrafo scritto a mano che
+  nominava le quattro domande: dare la biblioteca senza spezzarlo avrebbe fatto
+  leggere al tavolo un anno che non stava giocando (D-030). Adesso la Chronicle
+  tiene la **cornice** — l'anno, e cosa vale comunque — e ogni domanda porta la
+  propria `opening_line`. Una domanda senza riga tace invece di mentire, e una
+  guardia nuova impedisce che ne esista una.
+- **Il sacchetto non si scrive piu' per nome.** Una `drift_distribution` scritta
+  sulle quattro d'autore spingerebbe, in un anno che pesca la Febbre Bassa, una
+  domanda che non e' sul tavolo. Le due Chronicle d'apertura lo lasciano
+  comporre al motore sulla mano pescata, com'era gia' per le due di seguito.
+- **Una biblioteca vuota e' l'assenza di biblioteca**, come `hand_refill: {}` e'
+  l'assenza di ripescaggio (D-189): e' cosi' che i quattro piani scriptati
+  dichiarano di essere storie della mano scritta a mano, insieme al sacchetto con
+  cui sono stati scritti.
+- **Il seguito di una Chronicle si dichiara** (`sequel_id`). Fino a ieri il
+  criterio era «ha una biblioteca», vero per caso finche' solo le Chronicle di
+  seguito ne avevano una. Con la biblioteca anche sull'apertura,
+  `library_sequel_of("CHR_01")` avrebbe risposto `CHR_01`: **una saga avrebbe
+  rigiocato la Carestia per dieci secoli** senza che niente segnalasse l'errore.
+
+### I numeri
+
+| | prima | dopo |
+|---|---|---|
+| aperture diverse, Grano (12 saghe) | **1** | **6** |
+| aperture diverse, Sale (12 saghe) | **1** | **4** (su 6 possibili) |
+| distanza al primo anno, Grano | 0,91 | **0,98** |
+| distanza al primo anno, Sale | 0,93 | **0,98** |
+| distanza media sulla saga intera | 0,86 | 0,86 — **invariata** |
+| Consigli l'anno, tavolo uniforme | 3,59 | **3,37** |
+| Consigli l'anno, tavolo misto | 3,97 | **3,73** |
+| playtest 100 semi, misto e uniforme | 0/8 | **0/8** |
+
+**Il prezzo, scritto:** i Consigli calano del 6%, e nella linea del Grano i NONE
+salgono da 107 a 132 su 480 seggi-anno mentre i Trionfi scendono da 9 a 6. La
+causa e' nominata: la Febbre Bassa e i Pozzi Bassi, quando escono, **non
+arrivano a soglia con la sola Deriva** e producono meno Consigli delle quattro
+d'autore. Il Sale non lo paga (NONE 103 → 102, Trionfi 5 → **9**), perche' le sue
+sei candidate sono tarate piu' vicine fra loro. Il vincolo 0/8 regge su tutti e
+due i tavoli, e il ritmo dell'anno resta la domanda aperta che era gia'
+([ISSUES 51](ISSUES.md)).
+
+### Quello che i test hanno insegnato, e che vale piu' del cambio
+
+Tre difetti trovati facendo, tutti e tre della stessa famiglia — **una
+dichiarazione applicata nel momento sbagliato**:
+
+1. **La biblioteca si spegne prima che si peschi.** `play_classic()` la
+   spegneva dopo `setup()`: la prima sessione di un test pescava, la seconda —
+   trovando la dichiarazione gia' spenta — no, e **due esecuzioni dello stesso
+   seme davano due partite diverse**. E' la terza volta che questa famiglia si
+   presenta (D-184, D-198) e la prima in cui ha rotto il determinismo.
+2. **Il piano si dichiara prima del setup, come fa la sonda.** La suite
+   applicava gli override **dopo** `new_session()`, la sonda da riga di comando
+   prima. Finche' nessun override toccava la pesca era invisibile; da oggi due
+   la toccano, ed e' di nuovo la distanza fra la prova e la spedizione che
+   D-188 aveva gia' pagato.
+3. **Il criterio forte sulle soglie era vero di una Chronicle sola.** Il test
+   che chiedeva «sacchetto piu' Ripple bastano ad arrivare a soglia» guardava
+   solo l'anno scritto a mano. Misurato su tutta la biblioteca: sei domande su
+   dodici non ci arrivano, **e non ci arrivavano gia' prima** in CHR_02 e
+   CHR_04. Non era un difetto nuovo: era un test che non aveva mai guardato.
+
+---
+
 ## D-206 — Il gioco a carte non aveva una storia perche' il riempitivo parlava il gioco di prima
 **implemented in 0.1.174**
 

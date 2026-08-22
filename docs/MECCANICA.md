@@ -890,10 +890,18 @@ Ogni vita ha una **persistenza** (MORTALE, COLLETTIVA, ETERNA), un carattere
 proprio — *quanto le piace acquisire, muovere, influenzare, forgiare, tramare,
 rivendicare* — e spesso una regola speciale tutta sua (§9).
 
-**E le domande cambiano.** Alcuni anni non elencano le proprie Tensioni: le
-pescano da una biblioteca in base a **come è finito l'anno prima**. Se qualcuno
-ha murato la miniera, l'anno dopo non parla del Risveglio: parla di quello che
-il muro ha causato.
+**E le domande cambiano.** Nessun anno elenca le proprie Tensioni: le pesca da
+una biblioteca. Gli anni dopo il primo pescano in base a **come è finito l'anno
+prima** — se qualcuno ha murato la miniera, l'anno dopo non parla del Risveglio:
+parla di quello che il muro ha causato. **Anche il primo anno pesca**, alla
+cieca, perché non ha un ieri da ascoltare: la Carestia Rossa tira 4 domande da
+6, le Città Libere 5 da 6, e due saghe che cominciano dallo stesso secolo non
+cominciano dallo stesso tavolo.
+
+Perciò **l'apertura si compone**: la Chronicle dice l'anno e cosa vale comunque,
+e poi ogni domanda in gioco dice la propria riga. Quello che si legge ad alta
+voce al primo giro è il ritratto delle domande che sono uscite davvero — mai di
+quelle che sarebbero potute uscire.
 
 ---
 

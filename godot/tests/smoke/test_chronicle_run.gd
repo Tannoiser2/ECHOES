@@ -36,13 +36,12 @@ func _run(file_name: String) -> Dictionary:
 	var plan: Dictionary = _plan(file_name)
 	if plan.is_empty():
 		return {}
-	new_session(int(plan["seed"]), false)
-	# La stessa strada della sonda da riga di comando (D-188): il piano dichiara
-	# in quale economia e' stato scritto, e qui si applica. Senza questa riga la
-	# suite provava un gioco e `tools/run_sims.sh` ne provava un altro — verde
-	# qui, rosso in CI, ed e' successo davvero.
-	GameSession.apply_plan_overrides(session.data, plan)
-	session.actions.set("_chronicle", session.data.chronicles[str(plan["chronicle_id"])])
+	# La stessa strada della sonda da riga di comando (D-188, D-207): il piano
+	# dichiara in quale economia e' stato scritto, e si applica **prima** del
+	# setup, perche' due dichiarazioni cambiano la pesca. Senza, la suite prova
+	# un gioco e `tools/run_sims.sh` ne prova un altro — verde qui, rosso in
+	# CI, ed e' successo davvero.
+	new_session_for_plan(plan, int(plan["seed"]))
 	var report: Dictionary = await session.run(ScriptedDecider.new(plan, session.log))
 	report["plan"] = plan
 	return report

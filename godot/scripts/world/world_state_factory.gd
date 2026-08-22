@@ -249,7 +249,10 @@ static func resolve_tensions(
 	chronicle: Dictionary, rng: RefCounted, previous: Dictionary = {},
 	previous_results: Dictionary = {}
 ) -> Array:
-	if not chronicle.has("tension_pool"):
+	# Una biblioteca vuota **e'** l'assenza di biblioteca, come `hand_refill: {}`
+	# e' l'assenza di ripescaggio: e' cosi' che un piano scriptato dichiara di
+	# essere stato scritto per la mano scritta a mano (D-189).
+	if (chronicle.get("tension_pool", {}) as Dictionary).is_empty():
 		return (chronicle["tensions"] as Array).duplicate()
 
 	var pool: Dictionary = chronicle["tension_pool"]
@@ -361,7 +364,7 @@ static func opening_record(
 	previous: Dictionary, previous_results: Dictionary
 ) -> Array:
 	var record: Array = []
-	if previous.is_empty() or not chronicle.has("tension_pool"):
+	if previous.is_empty() or (chronicle.get("tension_pool", {}) as Dictionary).is_empty():
 		return record
 	var echoes: Dictionary = (chronicle["tension_pool"] as Dictionary).get("echoes", {})
 	var accounts: Dictionary = _open_accounts(previous_results)
@@ -661,7 +664,7 @@ static func redeal_tensions(
 	world: Dictionary, chronicle: Dictionary, data: RefCounted, rng: RefCounted,
 	previous: Dictionary, previous_results: Dictionary = {}, years: int = 1
 ) -> void:
-	if previous.is_empty() or not chronicle.has("tension_pool"):
+	if previous.is_empty() or (chronicle.get("tension_pool", {}) as Dictionary).is_empty():
 		return
 	if (chronicle["tension_pool"] as Dictionary).get("echoes", {}).is_empty() \
 			and _open_accounts(previous_results).is_empty():

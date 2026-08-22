@@ -109,10 +109,30 @@ func run(decider: Object) -> Dictionary:
 	return chronicle_end()
 
 
+## Le righe che il mondo dice all'apertura, una per domanda in gioco (D-207).
+##
+## `opening_text` e' la cornice - l'anno, e cosa vale comunque - e le domande
+## si raccontano da sole, perche' **quali domande siano non si sa finche' non
+## sono pescate**. Prima di 0.1.175 l'apertura era un paragrafo scritto a mano
+## che nominava quattro domande, e dava la Carestia per certa: darle la
+## biblioteca senza spezzarlo avrebbe fatto leggere al tavolo un anno che non
+## stava giocando. Una domanda senza riga tace invece di mentire.
+func opening_question_lines() -> Array:
+	var out: Array = []
+	for tension_id in world["tensions"]:
+		var definition: Dictionary = session.data.tensions[str(tension_id)]
+		var line: String = str(definition.get("opening_line", ""))
+		if line != "":
+			out.append(line)
+	return out
+
+
 func setup() -> void:
 	_set_phase(0, 0, "SETUP")
 	log.section("CHRONICLE %s - %s" % [str(_chronicle["id"]), str(_chronicle["title"])])
 	log.line(str(_chronicle["opening_text"]))
+	for line in opening_question_lines():
+		log.line(str(line))
 	log.line("")
 	for effect in session.factory_setup_effects():
 		session.applier.apply(effect)

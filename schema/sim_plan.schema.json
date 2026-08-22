@@ -98,6 +98,33 @@
               "type": "object",
               "additionalProperties": true,
               "description": "Come `objectives` sulla Chronicle (D-198). Vuoto rimette la scala dei tre gradini cumulativi: una storia scritta a mano finisce dove finisce, e leggerla contando quattro obiettivi vorrebbe dire darle un esito che il suo autore non ha scritto."
+            },
+            "tension_pool": {
+              "type": "object",
+              "additionalProperties": true,
+              "description": "Come `tension_pool` sulla Chronicle. Vuoto spegne la biblioteca: il piano gioca le Tensioni scritte a mano, che e' l'unico modo per una storia che nomina i suoi Consigli di restare la stessa storia su ogni seme (D-207)."
+            },
+            "drift_distribution": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "tension_id",
+                  "count"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "tension_id": {
+                    "type": "string",
+                    "pattern": "^TEN_[A-Z0-9_]+$"
+                  },
+                  "count": {
+                    "type": "integer",
+                    "minimum": 1
+                  }
+                }
+              },
+              "description": "Come `drift_distribution` sulla Chronicle. Una storia scritta a mano e' anche il sacchetto con cui e' stata scritta: da quando la Chronicle pesca le domande il sacchetto lo compone il motore sulla mano pescata, e un piano che non lo dichiara racconta lo stesso anno con un'altra Deriva (D-207)."
             }
           }
         },

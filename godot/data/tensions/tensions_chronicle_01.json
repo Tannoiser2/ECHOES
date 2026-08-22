@@ -45,7 +45,8 @@
         "condition:requisitioned",
         "condition:unrest",
         "granary"
-      ]
+      ],
+      "opening_line": "La Valle Verde ha reso un terzo meno dell'anno scorso, e a Eredan il trono conta le riserve due volte al giorno ottenendo lo stesso numero."
     },
     {
       "id": "TEN_AWAKENING",
@@ -93,7 +94,8 @@
         "condition:exploited",
         "structure:sealed",
         "crystal_site"
-      ]
+      ],
+      "opening_line": "Nelle Miniere Antiche qualcuno ha trovato una pietra rossa che non si comporta come una pietra, e sulle Montagne Rosse qualcosa che dormiva da molto tempo si e' girato nel sonno."
     },
     {
       "id": "TEN_SUCCESSION",
@@ -142,7 +144,8 @@
         "scar:burned",
         "capital"
       ],
-      "description": "Aperta: tutti sanno che Aldric non ha erede. Nessuno sa ancora chi lo dirà per primo."
+      "description": "Aperta: tutti sanno che Aldric non ha erede. Nessuno sa ancora chi lo dirà per primo.",
+      "opening_line": "Aldric non ha erede. Lo sanno tutti da anni, e quest'anno per la prima volta qualcuno ha lasciato che si sentisse mentre lo diceva."
     },
     {
       "id": "TEN_ROADS",
@@ -191,7 +194,8 @@
         "trade",
         "crystal_site"
       ],
-      "description": "Si vede il prezzo del sale, non chi lo fa salire."
+      "description": "Si vede il prezzo del sale, non chi lo fa salire.",
+      "opening_line": "I Nahr hanno cominciato a spostarsi verso ovest, e sulla Strada dei Mercanti il sale costa il doppio senza che nessuno sappia dire chi lo fa costare."
     },
     {
       "id": "TEN_PLAGUE",
@@ -237,7 +241,8 @@
         "condition:abandoned",
         "nomad_range"
       ],
-      "description": "Nessun Consiglio proprio: se ne occupa quello di dominio SURVIVAL (D-028)."
+      "description": "Nessun Consiglio proprio: se ne occupa quello di dominio SURVIVAL (D-028).",
+      "opening_line": "Nei villaggi bassi si scavano piu' fosse che solchi, e i guaritori discutono ancora se sia una cosa sola o tre cose diverse."
     },
     {
       "id": "TEN_THIRST",
@@ -283,7 +288,8 @@
         "granary",
         "trade"
       ],
-      "description": "Nessun Consiglio proprio: se ne occupa quello di dominio SURVIVAL (D-028)."
+      "description": "Nessun Consiglio proprio: se ne occupa quello di dominio SURVIVAL (D-028).",
+      "opening_line": "I pozzi si abbassano di un palmo a settimana e nessuno dei vivi ricorda un'estate in cui l'avessero fatto due volte di fila."
     }
   ]
 }

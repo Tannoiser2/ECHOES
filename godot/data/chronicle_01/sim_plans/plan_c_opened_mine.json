@@ -248,7 +248,26 @@
         "hand_refill": {},
         "claim_rules": {},
         "tension_tokens": {},
-        "objectives": {}
+        "objectives": {},
+        "tension_pool": {},
+        "drift_distribution": [
+          {
+            "tension_id": "TEN_FAMINE",
+            "count": 2
+          },
+          {
+            "tension_id": "TEN_AWAKENING",
+            "count": 3
+          },
+          {
+            "tension_id": "TEN_SUCCESSION",
+            "count": 2
+          },
+          {
+            "tension_id": "TEN_ROADS",
+            "count": 2
+          }
+        ]
       }
     }
   ]

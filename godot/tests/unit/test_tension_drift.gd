@@ -29,15 +29,28 @@ func test_drift_track_is_deterministic_for_a_seed() -> void:
 	assert_ne(session.world["drift_track"], first, "un seed diverso da una traccia diversa")
 
 
-## The bag holds exactly what the Chronicle declares: 5 x FAMINE, 4 x AWAKENING.
-func test_drift_track_matches_the_declared_distribution() -> void:
+## Il sacchetto della biblioteca: una gettone per round, distribuito sulle
+## domande **pescate**, e ogni domanda in gioco ne prende almeno uno.
+##
+## Fino a 0.1.174 questo test contava 2/3/2/2 per nome, perche' CHR_01
+## scriveva il proprio sacchetto. Da D-207 pesca le domande, e un sacchetto
+## scritto per nome pescherebbe il calore di una domanda che quest'anno non e'
+## sul tavolo. Il numero per nome era la forma vecchia della stessa verita':
+## il mondo spinge ogni domanda in gioco, e nessun'altra.
+func test_the_bag_pushes_every_question_in_play_and_no_other() -> void:
 	var counts: Dictionary = {}
 	for tension_id in session.world["drift_track"]:
 		counts[tension_id] = int(counts.get(tension_id, 0)) + 1
-	assert_eq(counts.get("TEN_FAMINE", 0), 2, "2 voci per la Carestia")
-	assert_eq(counts.get("TEN_AWAKENING", 0), 3, "3 voci per il Risveglio")
-	assert_eq(counts.get("TEN_SUCCESSION", 0), 2, "2 voci per la Successione")
-	assert_eq(counts.get("TEN_ROADS", 0), 2, "2 voci per le Vie Interrotte")
+	for tension_id in session.world["tensions"]:
+		assert_true(
+			int(counts.get(str(tension_id), 0)) > 0,
+			"%s e' in gioco e il sacchetto non la spinge mai" % str(tension_id)
+		)
+	for tension_id in counts:
+		assert_true(
+			(session.world["tensions"] as Dictionary).has(str(tension_id)),
+			"il sacchetto spinge %s, che non e' al tavolo" % str(tension_id)
+		)
 	assert_eq(
 		(session.world["drift_track"] as Array).size(),
 		9,

@@ -855,10 +855,22 @@ giocano davvero. ✓
 sempre diverse, un randomizzatore di obiettivi, entità e incarnazioni che
 cambiano a ogni partita.»
 
-Metà del principio **esiste già**: le domande si pescano da una biblioteca
-(`tension_pool` in CHR_02/CHR_04), le vite scattano su tag invece che da una
-lista, e i caratteri di D-053 si permutano fra i seggi. Quello che non cambia
-mai sono le quattro case e **cosa ciascuna vuole**.
+Metà del principio **esiste già**: le domande si pescano da una biblioteca —
+da 0.1.175 anche all'**anno d'apertura** ([D-207](DECISIONS.md#d-207)), quindi
+`tension_pool` sta su tutte e quattro le Chronicle e non più solo su CHR_02 e
+CHR_04 — le vite scattano su tag invece che da una lista, e i caratteri di D-053
+si permutano fra i seggi. E da [D-197](DECISIONS.md#d-197) **anche cosa vuole
+ciascuna casa si pesca**: quattro obiettivi da un pool di dodici condivisi.
+
+**Quello che non cambia mai sono le quattro case della linea**, e il fatto che
+una saga resti dentro la propria linea per tutti i suoi secoli: nessuna partita
+pesca la Sete sulla mappa delle Città Libere. Le due biblioteche restano due, ed
+è quello il residuo vero di questa voce.
+
+Il metro per dire se una strada ha funzionato adesso esiste — `run_variety_probe`
+misura la **distanza fra due saghe** (0,86 oggi) e, da 0.1.175, le **mani
+d'apertura diverse** e la **distanza al primo anno**. Il dossier diceva «oggi non
+sapremmo misurare se ha funzionato»: adesso si saprebbe.
 
 Il dossier misura le quattro strade e i loro prezzi: **A** il pool dei Destini
 (2–3 per casa, come le domande — poco motore, molta scrittura, e probabile
@@ -869,8 +881,10 @@ qualcuno ha scritto); **D** più vite per casa con ingressi più fini (solo
 scrittura, nessun rischio).
 
 Dichiarato nel dossier: **oggi non sapremmo misurare se ha funzionato**. Le
-sonde misurano il motore, e «le partite sono diverse fra loro?» non è
-FAIL 185 · 0/8. Servirebbe la **distanza fra due saghe**.
+sonde misuravano il motore, e «le partite sono diverse fra loro?» non è
+FAIL 185 · 0/8. Serviva la **distanza fra due saghe** — che nel frattempo è
+stata scritta ([D-149](DECISIONS.md#d-149)) e in 0.1.175 ha imparato a guardare
+anche l'apertura. Questa mezza obiezione è caduta: il metro c'è.
 
 **Fatto quando** il committente ha risposto alle cinque domande secche e la
 strada scelta è stata percorsa e misurata.
@@ -1967,6 +1981,94 @@ seconda, con i due residui nominati), e il playtest resta **0/8** a tavolo misto
 e uniforme ✅.
 
 **Chiusa in 0.1.170.**
+
+---
+
+### 51. Sei domande su dodici non arrivano a soglia da sole
+
+`bilanciamento` · `contenuto` · **aperta in 0.1.175** · nata da [D-207](DECISIONS.md#d-207)
+
+Dando la biblioteca anche all'anno d'apertura e' saltato fuori un numero che un
+test guardava da sempre **su una Chronicle sola**. Il criterio era: valore
+iniziale + Deriva + Ripple deve bastare ad arrivare a soglia. Misurato su tutta
+la biblioteca:
+
+| domanda | da | soglia | con Deriva e Ripple | |
+|---|---|---|---|---|
+| La Carestia | 3 | 6 | 9 | ✅ |
+| La Successione | 2 | 6 | 6 | ✅ |
+| Le Vie Interrotte | 1 | 5 | 5 | ✅ |
+| I Senza Citta' | 2 | 5 | 5 | ✅ |
+| La Cenere che Sale | 2 | 4 | 4 | ✅ |
+| **Il Risveglio** | 2 | 6 | **5** | ❌ |
+| **La Febbre Bassa** | 2 | 5 | **4** | ❌ |
+| **I Pozzi Bassi** | 1 | 5 | **3** | ❌ |
+| **Il Debito** | 2 | 7 | **6** | ❌ |
+| **La Reliquia** | 2 | 6 | **5** | ❌ |
+| **La Carta** | 2 | 7 | **6** | ❌ |
+| L'Acqua Ferma | 3 | 6 | 6 | ✅ (in CHR_04; 5 in CHR_03) |
+
+**Non e' un difetto nuovo.** Le sei erano gia' cosi' in CHR_02 e CHR_04: il test
+non le ha mai guardate perche' leggeva solo l'anno scritto a mano, che era stato
+tarato a mano. E non e' nemmeno detto che sia un difetto: quelle domande salgono
+**per mano dei giocatori**, e da [D-192](DECISIONS.md#d-192) il calore lo pescano
+loro (`replaces_drift`), quindi il sacchetto non e' in gioco nella partita
+spedita.
+
+**Il costo pero' si e' visto.** Con l'apertura che pesca, i Consigli l'anno
+passano da **3,59 a 3,37** (uniforme) e da **3,97 a 3,73** (misto), e nella linea
+del Grano i NONE salgono da 107 a 132 su 480 seggi-anno. Il Sale non lo paga —
+Trionfi da 5 a **9** — perche' le sue sei candidate sono tarate piu' vicine.
+
+**Da misurare, e non e' dedotto da qui:** quante volte ciascuna delle dodici
+domande arriva **davvero** al Consiglio in partita, col calore pescato dai
+giocatori. Solo quel numero dice se le sei sono domande quiete per scelta o
+domande morte per taratura.
+
+**Fatto quando** ogni domanda della biblioteca apre almeno un Consiglio in una
+partita su quattro, oppure e' dichiarato quali sono quiete di proposito — e il
+test che oggi chiede solo «qualcosa la muove» torna a chiedere il criterio forte
+su tutta la biblioteca invece che su una Chronicle sola.
+
+**Si intreccia con il ritmo dell'anno**, che e' la domanda gia' aperta col
+committente: sei Consigli l'anno erano troppi, tre e mezzo forse sono pochi, e
+questa voce sposta il numero verso il basso.
+
+---
+
+### 52. Lyra non ha mai trionfato in centoventi anni
+
+`bilanciamento` · `contenuto` · **aperta in 0.1.175** · nata dal resoconto della saga 812
+
+Il resoconto narrativo di una saga intera ha regalato un numero che nessuna
+sonda chiedeva. Su **120 seggi-anno** (12 saghe da 10 Chronicle, linea del
+Grano, tavolo misto), contando per seggio:
+
+| seggio | TRIONFI | NONE |
+|---|---|---|
+| **Lyra** | **0** | **37** |
+| Vaerax | — | 19 |
+| Aldric | 3 | — |
+
+Zero Trionfi su dodici saghe, e quasi un terzo dei suoi secoli chiusi senza
+prendere **nemmeno un obiettivo**. Nella saga raccontata, la Leggenda della
+Montagna arriva in testa all'anno 9 — ed e' l'eccezione: lo stesso seggio, in
+un'altra saga, chiude dieci secoli con **1 punto**.
+
+**Da non confondere con ISSUES 44**, che era la scala di Lyra col Destino a tre
+gradini e fu aperta e chiusa in 0.1.137. Questa e' Lyra **col gioco degli
+obiettivi**: quattro carte pescate da un pool condiviso, che in teoria costano
+uguale a tutte le case ([D-199](DECISIONS.md#d-199) le ha pareggiate a 19,6
+punti di scarto). Se il pool e' pari e il seggio no, la causa sta altrove — nella
+mappa che pesca, nelle carte che puo' avere, o in chi ha la parola.
+
+**Prima cosa da misurare**, e non e' ancora fatto: **quali** obiettivi Lyra
+manca, e se sono gli stessi ogni volta. Un seggio che manca sempre le stesse due
+carte e' una taratura; un seggio che ne manca ogni volta di diverse e' un
+problema di posizione.
+
+**Fatto quando** nessun seggio sta a zero Trionfi su 120 seggi-anno, e lo scarto
+fra il seggio piu' premiato e il meno premiato sta dentro un fattore tre.
 
 ---
 

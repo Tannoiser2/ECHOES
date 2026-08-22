@@ -82,7 +82,8 @@
         "CNF_DEBT_03",
         "CNF_RELIC_03",
         "CNF_CHARTER_03",
-        "CNF_ANY_ANCIENT"
+        "CNF_ANY_ANCIENT",
+        "CNF_ANY_SURVIVAL"
       ],
       "starting_relations": [],
       "global_tags": [],
@@ -97,29 +98,7 @@
         "TEN_CHARTER",
         "TEN_ASH"
       ],
-      "drift_distribution": [
-        {
-          "tension_id": "TEN_WATER",
-          "count": 2
-        },
-        {
-          "tension_id": "TEN_DEBT",
-          "count": 2
-        },
-        {
-          "tension_id": "TEN_RELIC",
-          "count": 2
-        },
-        {
-          "tension_id": "TEN_CHARTER",
-          "count": 2
-        },
-        {
-          "tension_id": "TEN_ASH",
-          "count": 1
-        }
-      ],
-      "opening_text": "Ottocento anni dopo Aldric non c'è più una corona, e per otto secoli non è servita. Le sette città si governano da sole, la Gilda del Sale tiene il registro di tutti, l'Ordine del Vetro custodisce un frammento che nessuno dei vivi ha visto, e sulle Montagne Rosse si scava più in basso di quanto sia mai stato scavato. La Valle non da più da mangiare a tutti: i canali ci sono ancora, sono pieni di terra, e nessuno è obbligato a toglierla.",
+      "opening_text": "Ottocento anni dopo Aldric non c'e' piu' una corona, e per otto secoli non e' servita. Le sette citta' si governano da sole, e quest'anno per la prima volta non bastano a se stesse.",
       "starting_control": [
         {
           "region_id": "REG_EREDAN",
@@ -269,7 +248,47 @@
           5,
           8
         ]
-      }
+      },
+      "tension_pool": {
+        "candidates": [
+          "TEN_WATER",
+          "TEN_DEBT",
+          "TEN_RELIC",
+          "TEN_CHARTER",
+          "TEN_NAMELESS",
+          "TEN_ASH"
+        ],
+        "count": 5,
+        "always": [],
+        "echoes": {
+          "TEN_WATER": [
+            "water_priced",
+            "condition:starving"
+          ],
+          "TEN_DEBT": [
+            "debt_called",
+            "condition:indebted"
+          ],
+          "TEN_RELIC": [
+            "relic_shown",
+            "relic_buried",
+            "structure:sealed"
+          ],
+          "TEN_CHARTER": [
+            "charter_written",
+            "no_charter"
+          ],
+          "TEN_NAMELESS": [
+            "faith_established",
+            "condition:unrest"
+          ],
+          "TEN_ASH": [
+            "condition:emptied",
+            "structure:watchtower"
+          ]
+        }
+      },
+      "sequel_id": "CHR_04"
     },
     {
       "world_id": "WORLD_ECHOES",
@@ -561,7 +580,8 @@
           5,
           8
         ]
-      }
+      },
+      "sequel_id": "CHR_04"
     }
   ]
 }
