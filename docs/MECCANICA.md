@@ -86,10 +86,13 @@ E tre cose che il gioco **scrive** e non si possono cancellare:
 
 ### Le quattro casate
 
-Un tavolo è **quattro casate**, e non sono simmetriche: hanno bisogni diversi,
-partono in posti diversi, e si detestano già prima che il gioco cominci.
+Un tavolo è **quattro casate su otto**, pescate a caso all'inizio della saga, e
+non sono simmetriche: hanno bisogni diversi, partono in posti diversi, e alcune
+si detestano già prima che il gioco cominci. Casate lontane secoli possono
+sedersi insieme — è la stessa terra, e il gioco non racconta *un* secolo ma
+*quel* secolo che il seme ha apparecchiato.
 
-**Chronicle I — l'anno 812, «La Carestia Rossa»:**
+**Le prime quattro casate:**
 
 | casata | che cosa è | bisogno | parte da | rapporti d'apertura |
 |---|---|---|---|---|
@@ -98,7 +101,7 @@ partono in posti diversi, e si detestano già prima che il gioco cominci.
 | **Lyra** | studiosa senza patrono. È scesa nelle Miniere per misurare una pietra e ne è risalita con una domanda | SAPERE | Miniere Antiche, Strada dei Mercanti | **ostile** a Vaerax |
 | **Vaerax** | dorme sotto le Montagne Rosse da prima che Eredan avesse un nome. Si sveglia raramente, e mai per una ragione piccola | PROTEZIONE | Montagne Rosse, Miniere Antiche | **ostile** a Lyra |
 
-**Chronicle III — secoli dopo, «l'anno del Sale»:** stessa mappa, gente nuova.
+**Le altre quattro:** stessa mappa, gente d'altri secoli.
 
 | casata | che cosa è | bisogno | parte da | rapporti d'apertura |
 |---|---|---|---|---|
@@ -107,10 +110,15 @@ partono in posti diversi, e si detestano già prima che il gioco cominci.
 | **Priore Anselmo** | l'Ordine del Vetro: discende da una scuola e si comporta da fede. Custodisce quello che fu misurato | FEDE | Miniere Antiche, Eredan | **nemico** della Cenere, alleato alle Città |
 | **Le Città Libere** | sette città che si governano da sole e si riuniscono solo quando non possono evitarlo | LIBERTÀ | Eredan, Valle Verde | alleate al Vetro, **ostili** al Sale |
 
-Nota per l'infografica: i due tavoli hanno **forme di conflitto diverse**. Nel
-primo anno ci sono due ostilità incrociate e nessuna alleanza — tutti soli. Nel
-terzo ci sono già **due coppie alleate** che si guardano storto, che è una
-partita completamente diversa a parità di regole.
+I rapporti d'apertura sono scritti **fra le quattro del proprio gruppo**: le
+prime quattro si conoscono fra loro, le altre quattro fra loro. Una coppia
+mista — Aldric e il Sale, Lyra e il Vetro — parte **neutrale**, perché non si
+sono mai incontrate. Questo cambia la forma della partita: un tavolo tutto dello
+stesso gruppo apre con ostilità e alleanze già in campo, un tavolo misto apre
+piatto e deve costruirsi i suoi rancori.
+
+Nota per l'infografica: **su 8 case si formano 70 tavoli diversi**, e a cento
+partite se ne vedono quasi tutti. Ogni casa si siede circa una volta su due.
 
 Ogni casata comincia con **2 carte in mano** e **2 gettoni di presenza già
 posati** (le altre **due** restano in riserva), e ogni *vita* (§11) ha un proprio
@@ -290,7 +298,7 @@ fatto che riscrive la mappa.
 Ogni anno il mondo porta **4 Tensioni**: non "problemi da risolvere" ma
 **domande aperte**, ciascuna con un numero che dice quanto è calda.
 
-Le quattro dell'anno 812 (Chronicle I, «La Carestia Rossa»):
+Quattro delle dodici — la mano che l'anno 812 aveva pescato:
 
 | Tensione | dominio | parte da | soglia | la soglia si vede? | famiglie di Asset che contano |
 |---|---|---|---|---|---|
@@ -302,9 +310,10 @@ Le quattro dell'anno 812 (Chronicle I, «La Carestia Rossa»):
 *Il numero di partenza e quello corrente si vedono sempre, anche sulle velate:
 è la soglia che sta sotto una carta girata (§11).*
 
-Un secondo mondo (Chronicle III, «l'anno del Sale», secoli dopo) ne ha quattro
-diverse: L'Acqua Ferma, Il Debito, La Reliquia, La Carta — più due di riserva,
-I Senza Città e La Cenere che Sale.
+La biblioteca ne ha **altre sei** che escono dallo stesso mazzo: L'Acqua Ferma,
+Il Debito, La Reliquia, La Carta, I Senza Città, La Cenere che Sale. **Dodici in
+tutto, e ogni anno ne pesca quattro** — la tabella qui sopra è una delle mani
+possibili, non l'elenco.
 
 Come si muove una Tensione:
 
@@ -391,11 +400,9 @@ carta stessa. Si spende una volta sola.
 **ACQUISIRE non esiste più come azione**: era due terzi di tutto ciò che si
 faceva, e adesso la fa la mappa.
 
-*Questo è il mondo della Carestia Rossa (Chronicle I). Il mondo del Sale
-(Chronicle III) gioca ancora col §10 di prima — un'Occasione compra un'azione,
-le carte si pescano con ACQUISIRE — perché la sua mappa non è ancora stata
-ridistribuita, e senza quella metà delle azioni sarebbe irraggiungibile per
-qualcuno.*
+*Vale per ogni anno: la mappa è una sola e le regole sono le stesse. (Questa
+nota diceva ancora che «il mondo del Sale gioca col §10 di prima»; era falsa da
+prima dell'unificazione — tutte le Chronicle spedite giocano a carte.)*
 
 **Quale azione porta quale famiglia.** Non è casuale: la Regione decide che
 carte peschi, quindi la mappa decide che *cose* puoi fare. Chi sta sulle
@@ -896,9 +903,9 @@ rivendicare* — e spesso una regola speciale tutta sua (§9).
 una biblioteca. Gli anni dopo il primo pescano in base a **come è finito l'anno
 prima** — se qualcuno ha murato la miniera, l'anno dopo non parla del Risveglio:
 parla di quello che il muro ha causato. **Anche il primo anno pesca**, alla
-cieca, perché non ha un ieri da ascoltare: la Carestia Rossa tira 4 domande da
-6, le Città Libere 5 da 6, e due saghe che cominciano dallo stesso secolo non
-cominciano dallo stesso tavolo.
+cieca, perché non ha un ieri da ascoltare: si tirano **4 domande da 12**, e due
+saghe che cominciano dallo stesso secolo non cominciano dallo stesso tavolo. Su
+dodici saghe misurate, **dodici aperture diverse**.
 
 Perciò **l'apertura si compone**: la Chronicle dice l'anno e cosa vale comunque,
 e poi ogni domanda in gioco dice la propria riga. Quello che si legge ad alta

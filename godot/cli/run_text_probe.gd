@@ -40,7 +40,8 @@ func _initialize() -> void:
 
 	var seats: Array = SEATS
 	if data.chronicles.has(chronicle_id):
-		seats = (data.chronicles[chronicle_id]["entities"] as Array).duplicate()
+		# Il tavolo del primo seme, tenuto per tutte le partite (D-213).
+		seats = GameSession.seats_for(data, chronicle_id, first_seed)
 
 	var truths: Dictionary = {}
 	var questions: Dictionary = {}

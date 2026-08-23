@@ -55,7 +55,6 @@ func _initialize() -> void:
 		quit(4)
 		return
 
-	var seats: Array = (data.chronicles[chronicle_id]["entities"] as Array).duplicate()
 	var asked: Dictionary = {}     # question_id -> volte posta
 	var open_questions: Dictionary = {}  # question_id -> volte sul tavolo
 	var offered: Dictionary = {}   # proposition_id -> volte disponibile
@@ -66,6 +65,7 @@ func _initialize() -> void:
 	var claims_forced: Dictionary = {}  # entity_id -> Consigli forzati
 
 	for i in range(runs):
+		var seats: Array = GameSession.seats_for(data, chronicle_id, first_seed + i)
 		var session: RefCounted = GameSession.new(data)
 		if not session.setup(chronicle_id, seats, first_seed + i):
 			printerr("setup fallito: %s" % session.last_error)

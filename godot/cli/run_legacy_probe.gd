@@ -41,7 +41,7 @@ func _initialize() -> void:
 		var chronicle_id: String = "CHR_01" if index % 2 == 0 else "CHR_03"
 		var seed_value: int = first_seed + index
 		var session: RefCounted = GameSession.new(data)
-		var seats: Array = (data.chronicles[chronicle_id]["entities"] as Array).duplicate()
+		var seats: Array = GameSession.seats_for(data, chronicle_id, seed_value)
 		session.setup(chronicle_id, seats, seed_value)
 		var table: RefCounted = Characters.deal(
 			seats, RngService.new(seed_value * 31 + 7), session.log

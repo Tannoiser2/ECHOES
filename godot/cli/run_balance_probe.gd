@@ -19,14 +19,12 @@ const PolicyDecider := preload("res://scripts/seat/policy_decider.gd")
 
 
 
-## Chi siede al tavolo lo dice la Chronicle, non questo file: dalla 0.1.12 il
-## gioco porta due saghe sulla stessa mappa, e una lista scritta qui sarebbe la
-## lista di una sola delle due (D-049).
-func _seats(data: RefCounted, chronicle_id: String) -> Array:
-	var chronicle: Variant = data.chronicles.get(chronicle_id)
-	if chronicle == null:
-		return []
-	return (chronicle["entities"] as Array).duplicate()
+## Chi siede al tavolo lo pesca il seme, non questo file (D-213): la
+## biblioteca delle case apparecchia, e questa sonda tiene **il tavolo del
+## primo seme** per tutte le sue partite - misura altro, e cambiare tavolo a
+## ogni run vorrebbe dire misurare la pesca invece di quello che cerca.
+func _seats(data: RefCounted, chronicle_id: String, seed_value: int) -> Array:
+	return GameSession.seats_for(data, chronicle_id, seed_value)
 
 
 func _initialize() -> void:
@@ -45,7 +43,7 @@ func _initialize() -> void:
 
 	# Sweep the balance knobs without editing the data: --influence-cap=1
 	# --presence-directions=UP tries a candidate rule set for this run only.
-	var SEATS: Array = _seats(data, chronicle_id)
+	var SEATS: Array = _seats(data, chronicle_id, first_seed)
 	var chronicle: Dictionary = data.chronicles[chronicle_id]
 	if options.has("influence-cap") or options.has("presence-directions") or options.has("tension-cap"):
 		var rules: Dictionary = (chronicle.get("influence_rules", {}) as Dictionary).duplicate(true)
@@ -178,7 +176,7 @@ func _report(
 
 	print("")
 	print("Livelli Destiny raggiunti")
-	for entity_id in _seats(data, chronicle_id):
+	for entity_id in _seats(data, chronicle_id, first_seed):
 		var parts: Array = []
 		for level in ["NONE", "MINIMUM", "VICTORY", "TRIUMPH"]:
 			var value: int = int(levels.get("%s/%s" % [entity_id, level], 0))

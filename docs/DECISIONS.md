@@ -10,6 +10,141 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-213 — Un setup solo: le case si pescano come le domande
+**implemented in 0.1.182** — ISSUES 48/52 cambiano forma, e tre difetti nascosti vengono fuori
+
+*«Ma io continuo a non capire perche' abbiamo due ere. Ti avevo detto che c'e'
+un'unica linea, e Cenere, Sale possono coesistere con i Nahr, le entita' vengono
+pescate casualmente all'inizio della saga. [...] Stai girando in tondo.»*
+
+Il committente ha ragione, e la parte piu' onesta di questo verbale e' dire
+quanto: il gioco aveva **quattro Chronicle in due linee chiuse** — Grano
+(CHR_01→CHR_02) e Sale (CHR_03→CHR_04) — ognuna con **quattro case scritte a
+mano** e **sei domande sue**. Le domande si pescavano gia' ([D-207](#d-207)), ma
+da una biblioteca per linea. Chi si sedeva non si pescava affatto.
+
+### Cosa c'era gia', e cosa mancava davvero
+
+Guardato invece che ricordato, il lavoro era meno di quanto sembrasse:
+
+| | prima | serviva |
+|---|---|---|
+| **Obiettivi** | gia' un mazzo solo, 12 carte, nessuno scope d'era | niente |
+| **Regioni** | gia' condivise, le stesse 6 | niente |
+| **Domande** | pescate, ma da **6 candidate per linea** | una biblioteca da 12 |
+| **Case** | `entities: [4 id fissi]` per Chronicle | `entity_pool`, 8 → 4 |
+
+### `entity_pool`, e perche' e' la stessa forma di `tension_pool`
+
+La Chronicle dice **chi puo' esserci** e l'RNG a seme apparecchia. Vuoto o
+omesso, il tavolo e' quello scritto — una dichiarazione vuota vuol dire assenza,
+come ovunque nel progetto.
+
+La pesca sta in `GameSession.seats_for()`, **statica e fuori da `setup`**, per
+una ragione: il tavolo va saputo *prima* che il mondo esista — chi apparecchia i
+caratteri, chi stampa una scheda, chi scrive una riga di resoconto lo chiede
+prima. E stando fuori non consuma l'RNG della partita: c'e' una strada sola, e
+il seme che apparecchia e' lo stesso che gioca.
+
+Dentro `setup`, se la Chronicle pesca, `_chronicle_def` viene **duplicata** e le
+sue `entities` diventano i seduti: il resto del mondo — pedine, mazzi,
+successione, relazioni — legge quella lista, e senza la copia il gioco
+apparecchierebbe otto case e ne farebbe giocare quattro.
+
+### La pietra segue la casa
+
+`starting_structures` stava sulla Chronicle e mescolava due cose diverse: il
+**paesaggio** (bosco, sorgente, valico, sito antico) e il **presidio della
+casa**. Finche' il tavolo era scritto a mano la differenza non si vedeva; col
+tavolo pescato una pietra intestata a chi non gioca e' la pietra di un assente.
+
+Quindi il presidio e' passato **sull'Entita'**, con `at` che indicizza la
+presenza di partenza — cosi' se la casa si sposta, la sua pietra si sposta con
+lei (e [D-212](#d-212) ne e' la prova: Lyra si e' spostata ieri). Il paesaggio
+resta sulla Chronicle, perche' e' la mappa. La rifattorizzazione e' stata
+misurata da sola: **playtest byte-identico**, come deve essere una mossa che non
+cambia il gioco.
+
+### Tre difetti che nessuno vedeva, e che il tavolo pescato ha scoperto
+
+Sono la parte importante di questo verbale. Nessuno dei tre era nuovo: erano
+**invisibili perche' il tavolo non cambiava mai**.
+
+1. **L'eredita' portava relazioni fra case che non siedono.** `SET_RELATION` su
+   una coppia senza record e' un Effetto senza inverso — la cosa che
+   l'effect-sourcing non ammette. Ora l'eredita' filtra su chi e' al tavolo.
+2. **E portava il controllo e le pietre di case assenti.** Un mondo che dice
+   «Eredan e' di Aldric» quando Aldric non gioca fa provare al Consiglio di
+   cacciare qualcuno che non c'e'. Stessa guardia, due righe.
+3. **Due clausole di Consiglio nominavano Lyra per nome.** «...e allora Lyra ha
+   il registro»: con Lyra assente l'Effetto cadeva in un `push_error` dentro un
+   log che nessuno legge — cioe' **contenuto che non succede e non si lamenta**.
+   Ora usano `$conditioner`, un segnaposto nuovo che lega **chi ha posto la
+   condizione**: piu' giusto anche a leggerlo, perche' quello che la condizione
+   ottiene lo ottiene chi l'ha chiesto.
+
+E una Conseguenza che parla davvero di una casa — «Il Drago Abbattuto» spegne
+Vaerax — adesso lo **dichiara** (`requires_entity`) e si salta quando quella casa
+non siede, dicendolo nel verbale: D-030 vale anche per cio' che *non* succede.
+
+**Due guardie nuove** in `validate_data.py` chiudono la porta: con le case
+pescate nessun Effetto scritto a mano puo' puntare a un `ENT_` (se non quello
+che la Conseguenza dichiara), e la prova del traguardo adesso verifica che ogni
+anno peschi **dalla stessa biblioteca** invece di contare due biblioteche
+separate — contarle separate *era* la voce.
+
+### I numeri: la varieta', che e' la cosa per cui il cambio esiste
+
+12 saghe da 6 Chronicle, seme 812, tavolo misto:
+
+| | Grano | Sale | **unificato** |
+|---|---|---|---|
+| aperture diverse su 12 saghe | 6 | 4 | **12** |
+| distanza media fra saghe | 0,88 | 0,83 | **0,97** |
+| frasi distinte in tutto | 96 | 52 | **106** |
+| vite viste al tavolo | 6 | 6 | **13** |
+| distanza al primo anno | 0,97 | 0,97 | **0,99** |
+
+**Ogni saga adesso apre diversa da ogni altra**, e al tavolo si vedono tredici
+vite invece di sei. Su 200 semi escono **67 tavoli diversi su 70 possibili**, e
+le otto case si siedono fra il 45,0% e il 54,5% delle volte — il pool e' pari.
+
+### I numeri peggiorati, che si scrivono
+
+| 100 semi, seme 7000 | prima (Grano+Sale) | **unificato** |
+|---|---|---|
+| Consigli l'anno, misto | 3,53 | **3,09** |
+| Consigli l'anno, uniforme | 3,64 | **3,20** |
+| Verita' scritte, misto | 295 | **254** |
+| playtest | 0/8 | **0/8** |
+
+- **Si parla meno**: mezzo Consiglio in meno all'anno. Con dodici domande in
+  biblioteca e quattro pescate, il calore si sparpaglia su un mazzo doppio.
+- **Il tavolo e' piu' irregolare per seggio**, ed e' voluto: una casa che gioca
+  la meta' degli anni ha meta' dei dati, e i suoi numeri ballano. Ma le colonne
+  restano tutte popolate e **nessun seggio e' bloccato su un solo livello**, che
+  e' il vincolo mai negoziato.
+- **I TRIONFI restano rari**: 3 su 288 seggi-anno nella saga lunga, come prima.
+  L'unificazione non ha toccato la scala, e [ISSUES 52](ISSUES.md#52-lyra-non-ha-mai-trionfato-in-centoventi-anni)
+  resta aperta con la sua causa: due case su otto — Lyra e il Vetro — aprono
+  ancora senza una pietra.
+
+### Cosa non e' stato fatto, e si dichiara
+
+- **Le 16 relazioni incrociate non esistono.** Su 28 coppie possibili ne sono
+  scritte 12, tutte dentro la vecchia linea: Aldric↔Sale, Lyra↔Vetro,
+  Nahr↔Cenere e le altre partono a NEUTRAL. Il gioco funziona — ogni coppia
+  parte neutrale per costruzione — ma un tavolo misto e' **piu' piatto** di uno
+  storico, e questo spiega parte del mezzo Consiglio perduto.
+- **Le quattro Chronicle sono ancora quattro**, con quattro titoli. Adesso sono
+  *anni*, non *ere*: pescano dalla stessa biblioteca e apparecchiano dalle
+  stesse case. Ridurne il numero e' contenuto, non regola.
+- **Il Consiglio a fine Atto non c'e' ancora**, e il cancello a due gettoni e'
+  ancora acceso. E' la prossima voce, ed e' stata rimandata da me senza dirlo —
+  il committente ha dovuto chiedere due volte.
+
+---
+
 ## D-212 — Lyra sulla Strada dei Mercanti, e la mappa che un piano dichiara
 **implemented in 0.1.181** — l'altra meta' di ISSUES 48, quella che costa storie
 

@@ -5,6 +5,52 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.182 — Un setup solo: le case si pescano come le domande (D-213)
+
+- Il committente: «*non voglio due ere, voglio un unico setup dove si pescano
+  entità e obiettivi e anche le domande*». Il gioco aveva **quattro Chronicle in
+  due linee chiuse**, ognuna con quattro case scritte a mano e sei domande sue.
+- **Cosa c'era già**: gli obiettivi erano già un mazzo solo da 12 e le Regioni
+  già condivise. Mancavano le **case** (fisse) e una **biblioteca unica** di
+  domande (6+6 separate).
+- **`entity_pool`** sulla Chronicle, stessa forma di `tension_pool`: 8 candidate,
+  se ne siedono 4. La pesca sta in `GameSession.seats_for()`, statica e fuori da
+  `setup`, così il tavolo si sa prima che il mondo esista e non consuma l'RNG
+  della partita. Vuoto = assente, come ovunque.
+- **La pietra segue la casa**: `starting_structures` si sdoppia — il paesaggio
+  (bosco, sorgente, valico) resta sulla Chronicle, il presidio passa
+  sull'Entità con `at` sulla presenza di partenza. Rifattorizzazione misurata da
+  sola: **playtest byte-identico**.
+- **La varietà, che è il motivo del cambio** (12 saghe da 6 anni, seme 812):
+  aperture diverse **6 e 4 → 12 su 12**, distanza media fra saghe **0,88 e 0,83
+  → 0,97**, frasi distinte **96 e 52 → 106**, vite viste al tavolo **6 → 13**.
+  Su 200 semi escono **67 tavoli diversi su 70**, e le otto case si siedono fra
+  il 45,0% e il 54,5%.
+- **Tre difetti nascosti che il tavolo pescato ha scoperto**, tutti invisibili
+  finché le case non cambiavano mai: l'eredità portava **relazioni**, **controlli
+  di Regione** e **pietre** di case non più al tavolo (SET_RELATION senza record
+  = Effetto senza inverso); e **due clausole di Consiglio nominavano Lyra per
+  nome**, cadendo in un `push_error` dentro un log che nessuno legge. Ora c'è il
+  segnaposto **`$conditioner`** — chi ha posto la condizione — che è anche più
+  giusto a leggersi.
+- **`requires_entity`** sulle Conseguenze: «Il Drago Abbattuto» spegne Vaerax e
+  adesso lo dichiara, quindi si salta quando Vaerax non siede — **dicendolo nel
+  verbale**, perché D-030 vale anche per ciò che non succede.
+- **Due guardie nuove**: con le case pescate nessun Effetto scritto a mano può
+  puntare a un `ENT_`; e la prova del traguardo verifica che ogni anno peschi
+  **dalla stessa biblioteca** invece di contare due biblioteche separate.
+- **I numeri peggiorati, che si scrivono**: Consigli l'anno **3,53 → 3,09**
+  (misto) e **3,64 → 3,20** (uniforme), Verità scritte **295 → 254**. Con dodici
+  domande e quattro pescate il calore si sparpaglia. Playtest **0/8** su tutti e
+  due i tavoli.
+- **Non fatto, e dichiarato**: **16 relazioni incrociate su 28 non esistono**
+  (partono a NEUTRAL) — un tavolo misto è più piatto di uno storico, e spiega
+  parte del Consiglio perduto. Le Chronicle sono ancora quattro, ma adesso sono
+  *anni* e non *ere*. Il Consiglio a fine Atto e il cancello a due gettoni sono
+  la prossima voce.
+
+---
+
 ## 0.1.181 — Lyra sulla Strada dei Mercanti (D-212)
 
 - Il committente ha deciso l'altra metà di ISSUES 48: **«Lyra sulla Strada dei

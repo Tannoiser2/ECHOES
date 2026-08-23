@@ -378,6 +378,9 @@ const DEFS := {
 				"type": "String",
 				"pattern": "^CHR_[A-Z0-9_]+$",
 			},
+			"entity_pool": {
+				"type": "Dictionary",
+			},
 		},
 	},
 	"confluence_template": {
@@ -504,6 +507,10 @@ const DEFS := {
 				"element": {
 					"type": "Dictionary",
 				},
+			},
+			"requires_entity": {
+				"type": "String",
+				"pattern": "^ENT_[A-Z0-9_]+$",
 			},
 		},
 	},
@@ -859,6 +866,12 @@ const DEFS := {
 			"incarnations": {
 				"type": "Array",
 				"min_items": 1,
+				"element": {
+					"type": "Dictionary",
+				},
+			},
+			"starting_structures": {
+				"type": "Array",
 				"element": {
 					"type": "Dictionary",
 				},

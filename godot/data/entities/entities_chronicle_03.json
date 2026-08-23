@@ -186,6 +186,11 @@
           "art_prompt_key": "entity.sale_company",
           "entry": "LINE_EXHAUSTED"
         }
+      ],
+      "starting_structures": [
+        {
+          "structure_type": "STR_KEEP"
+        }
       ]
     },
     {
@@ -547,6 +552,11 @@
           "art_prompt_key": "entity.cenere_keepers",
           "entry": "LINE_EXHAUSTED"
         }
+      ],
+      "starting_structures": [
+        {
+          "structure_type": "STR_KEEP"
+        }
       ]
     },
     {
@@ -654,6 +664,15 @@
           "entry": "ON_TAG",
           "entry_tag": "scar:emptied@REG_VALLE_VERDE",
           "entry_forbidden_tag": "scar:emptied@REG_EREDAN"
+        }
+      ],
+      "starting_structures": [
+        {
+          "structure_type": "STR_KEEP"
+        },
+        {
+          "structure_type": "STR_SETTLEMENT",
+          "at": 1
         }
       ]
     }

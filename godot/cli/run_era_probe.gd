@@ -135,7 +135,7 @@ func _initialize() -> void:
 		for index in range(chronicles):
 			var chronicle_id: String = first_id if index == 0 else later_id
 			var session: RefCounted = GameSession.new(data)
-			var seats: Array = (data.chronicles[chronicle_id]["entities"] as Array).duplicate()
+			var seats: Array = GameSession.seats_for(data, chronicle_id, seed_value)
 			var seed_value: int = seed_base + index * 97
 			session.setup(chronicle_id, seats, seed_value)
 			session.inherit_from(previous, previous_results)

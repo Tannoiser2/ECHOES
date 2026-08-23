@@ -41,6 +41,9 @@ var destinies: RefCounted
 var chronicle: RefCounted
 
 var assignments: Dictionary = {}
+## Chi si e' seduto davvero. Con la biblioteca delle case (D-213) chi chiama
+## non lo sa prima: passa una lista vuota e lo legge qui dopo `setup`.
+var seats: Array = []
 var destiny_results: Dictionary = {}
 var snapshots: Array = []
 var last_error: String = ""
@@ -58,6 +61,21 @@ func _init(p_data: RefCounted) -> void:
 ## della propria partita (D-188). Sta qui, statica, perche' la usano **sia** la
 ## sonda da riga di comando **sia** la suite: quando le due strade divergono, la
 ## suite dice verde e la CI dice rosso — ed e' successo.
+## Chi si siede, prima che la partita cominci (D-213).
+##
+## Sta **fuori** da `setup` per una ragione sola: il tavolo va saputo prima -
+## chi apparecchia i caratteri, chi stampa una scheda, chi scrive una riga di
+## resoconto lo chiede prima che il mondo esista. E stando fuori la pesca non
+## consuma l'RNG della partita: c'e' una strada sola, e il seme che apparecchia
+## e' lo stesso che gioca.
+static func seats_for(p_data: RefCounted, chronicle_id: String, seed_value: int) -> Array:
+	if not p_data.chronicles.has(chronicle_id):
+		return []
+	return WorldStateFactory.resolve_seats(
+		p_data.chronicles[chronicle_id] as Dictionary, RngService.new(seed_value)
+	)
+
+
 static func apply_plan_overrides(p_data: RefCounted, plan: Dictionary) -> void:
 	var overrides: Dictionary = plan.get("chronicle_overrides", {}) as Dictionary
 	if overrides.is_empty():
@@ -75,16 +93,34 @@ func setup(chronicle_id: String, seats: Array, seed_value: int) -> bool:
 		last_error = "Chronicle sconosciuta '%s'" % chronicle_id
 		return false
 	_chronicle_def = data.chronicles[chronicle_id]
+	var pool: Dictionary = _chronicle_def.get("entity_pool", {}) as Dictionary
 	for entity_id in seats:
-		if not (_chronicle_def["entities"] as Array).has(str(entity_id)):
+		var table: Array = (
+			(pool["candidates"] as Array) if not pool.is_empty()
+			else (_chronicle_def["entities"] as Array)
+		)
+		if not table.has(str(entity_id)):
 			last_error = "'%s' non fa parte della Chronicle '%s'" % [entity_id, chronicle_id]
 			return false
 
+	if seats.is_empty():
+		last_error = "nessun seggio: chiedere il tavolo a `seats_for` prima di `setup`"
+		return false
+
 	rng = RngService.new(seed_value)
+	# Il resto del mondo legge `entities` dalla Chronicle - le pedine di
+	# partenza, i mazzi, la successione. Con un tavolo pescato quella lista dice
+	# **le candidate**, non i seduti: senza questa copia il gioco
+	# apparecchierebbe otto case e ne farebbe giocare quattro.
+	if not pool.is_empty():
+		_chronicle_def = _chronicle_def.duplicate(true)
+		_chronicle_def["entities"] = seats.duplicate()
+
 	log = GameLog.new()
 	log.line_added.connect(func(text: String) -> void: log_line.emit(text))
 
 	world = WorldStateFactory.build(_chronicle_def, data, rng, seats)
+	self.seats = seats.duplicate()
 	for index in range(seats.size()):
 		assignments[str(index)] = str(seats[index])
 	_wire_systems()

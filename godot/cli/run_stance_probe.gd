@@ -45,7 +45,8 @@ func _initialize() -> void:
 		printerr("nessuna Chronicle '%s'" % chronicle_id)
 		quit(4)
 		return
-	seats = (data.chronicles[chronicle_id]["entities"] as Array).duplicate()
+	# Il tavolo del primo seme, tenuto per tutte le partite (D-213).
+	seats = GameSession.seats_for(data, chronicle_id, first_seed)
 
 	# stance -> count, score -> count, effect type -> [seen, moved the score]
 	var stances: Dictionary = {}

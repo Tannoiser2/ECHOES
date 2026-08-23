@@ -160,8 +160,18 @@ func test_a_chronicle_can_opt_out_of_the_floor() -> void:
 func test_the_forced_push_goes_through_the_effect_log() -> void:
 	await _run_chronicle("CHR_02", 1868, Idle.new())
 	var forced: Array = []
+	var revealed: Array = []
 	for effect in session.world["effect_log"]:
-		if str(effect["source"]["id"]) == "YEAR_END":
+		if str(effect["source"]["id"]) != "YEAR_END":
+			continue
+		# La spinta chiama i presagi con la propria firma, quindi sotto
+		# YEAR_END finisce anche la rivelazione che un presagio provoca. Sono
+		# due cose diverse e si controllano separate: contarle insieme faceva
+		# passare questa prova solo finche' le domande pescate erano sempre le
+		# stesse (D-213).
+		if str(effect["type"]) == "SET_TENSION_VISIBILITY":
+			revealed.append(effect)
+		else:
 			forced.append(effect)
 	assert_false(forced.is_empty(), "la spinta di fine anno e nel registro degli Effect")
 	for effect in forced:
@@ -171,3 +181,9 @@ func test_the_forced_push_goes_through_the_effect_log() -> void:
 		assert_true(
 			int(effect["payload"]["delta"]) > 0, "e porta la domanda al punto, non oltre"
 		)
+	for effect in revealed:
+		assert_eq(
+			str(effect["source"]["kind"]), "system",
+			"e anche cio che il presagio svela lo svela il mondo"
+		)
+		assert_true(bool(effect["reversible"]), "e si puo disfare come tutto il resto")

@@ -1873,8 +1873,26 @@ in difficoltà. Regge anche la lettura: le città che si sono liberate stanno
 nelle terre di un popolo che non c'è più, mentre l'Ordine del Vetro *«custodisce
 quello che fu misurato»* — le Miniere e la capitale.
 
-**Fatto quando** nessuna Regione apre a zero pedine **in nessuna delle due
-linee**.
+## E poi le due linee non ci sono più (0.1.182, [D-213](DECISIONS.md#d-213))
+
+Il committente ha spostato di nuovo la domanda, e stavolta ha tolto il terreno
+sotto la voce: *«non voglio due ere, voglio un unico setup»*. Le case adesso si
+pescano — 8 candidate, 4 si siedono — quindi **non esiste più «la linea del
+Sale»** in cui le Terre Nahr sono vuote. Ogni tavolo è diverso, e quale Regione
+apre deserta dipende dal seme.
+
+Il preventivo qui sopra resta scritto perché il suo numero utile sopravvive:
+**quattro case su otto aprono su Eredan o accanto** (Aldric, Vetro, Sale,
+Libere), e questo squilibrio è ancora nel dato. Ma la domanda «quale casa mettere
+sulle Terre Nahr» non ha più una risposta sola: dipende da chi siede.
+
+**La voce cambia criterio.** Non più «nessuna Regione apre a zero in nessuna
+delle due linee», ma: **nessuna Regione resta deserta più spesso di quanto sia
+plausibile che nessuno ci abiti**, misurato su cento tavoli pescati invece che su
+due tavoli scritti.
+
+**Fatto quando** nessuna Regione sta sotto una pedina a fine anno, in media, su
+100 semi a tavolo pescato.
 
 ---
 
@@ -2493,6 +2511,28 @@ non le mette in mano le due carte che le altre tre trovano già in tasca.
 **E l'Ordine del Vetro non è stato toccato**: nella linea del Sale la quarta
 casa è ancora senza presidio d'apertura, e il rimedio della posizione lì non è
 nemmeno stato deciso — è la stessa domanda aperta di ISSUES 48.
+
+## La causa è sopravvissuta all'unificazione (0.1.182, [D-213](DECISIONS.md#d-213))
+
+Con le case pescate da un mazzo solo, «la quarta casa» non è più una posizione
+al tavolo — ma la causa non era il tavolo, era il **dato d'apertura**, e quella
+è rimasta identica: `starting_structures` è passato dalla Chronicle all'Entità
+(così la pietra segue la casa), e **sei case su otto ce l'hanno**. Lyra e
+l'Ordine del Vetro no.
+
+| casa | pietra d'apertura |
+|---|---|
+| Aldric, Nahr, Vaerax, Sale, Cenere, Città Libere | **sì** (presidio, e per due anche un insediamento) |
+| **Lyra, Vetro** | **niente** |
+
+Adesso però il rimedio costa **una riga per casa** invece di una riga per
+Chronicle, ed è la stessa riga per tutte e due: la strada 1 qui sopra — «Lyra
+apre con una struttura sua, non un presidio ma qualcosa che la racconti» — si
+scrive sull'Entità e vale in ogni tavolo che la peschi.
+
+Nella saga lunga i TRIONFI restano **3 su 288 seggi-anno**, come prima
+dell'unificazione: il cambio non ha toccato la scala, e questa voce è ancora
+quella che deve toccarla.
 
 ---
 

@@ -44,7 +44,7 @@ func _initialize() -> void:
 		quit(3)
 		return
 
-	var seats: Array = (data.chronicles[chronicle_id]["entities"] as Array).duplicate()
+	var seats: Array = GameSession.seats_for(data, chronicle_id, seed_value)
 
 	# seggio -> obiettivo -> {"dealt": n, "taken": n}
 	var ledger: Dictionary = {}

@@ -46,7 +46,6 @@ func _initialize() -> void:
 		quit(3)
 		return
 
-	var seats: Array = (data.chronicles[chronicle_id]["entities"] as Array).duplicate()
 	var cap: int = int(data.chronicles[chronicle_id]["presence_tokens"])
 
 	var placed_open: Dictionary = {}
@@ -64,6 +63,7 @@ func _initialize() -> void:
 	var occasions: int = 0
 
 	for run in range(runs):
+		var seats: Array = GameSession.seats_for(data, chronicle_id, seed_value)
 		var seed_value: int = first_seed + run
 		var session: RefCounted = GameSession.new(data)
 		if not session.setup(chronicle_id, seats, seed_value):

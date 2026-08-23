@@ -820,6 +820,39 @@
           "type": "string",
           "pattern": "^CHR_[A-Z0-9_]+$",
           "description": "Which Chronicle a saga plays after this one. A Chronicle that continues itself names itself. Written out rather than inferred from having a tension_pool: once the opening Chronicles draw from the library too, that inference would make a saga replay its own first year forever (D-207)."
+        },
+        "entity_pool": {
+          "type": "object",
+          "description": "Le case che potrebbero sedersi, invece di quelle che si siedono (D-213). Stessa forma di `tension_pool` e stessa ragione: un tavolo scritto a mano e' un'era chiusa, e due ere chiuse sono due giochi. La Chronicle dice **chi puo' esserci** e l'RNG a seme apparecchia — cosi' ogni saga parte diversa e le case di secoli lontani possono sedersi insieme. Vuoto o omesso, il tavolo e' quello scritto in `entities`.",
+          "additionalProperties": false,
+          "required": [
+            "candidates",
+            "count"
+          ],
+          "properties": {
+            "candidates": {
+              "type": "array",
+              "minItems": 2,
+              "items": {
+                "type": "string",
+                "pattern": "^ENT_[A-Z0-9_]+$"
+              },
+              "description": "Le case pescabili."
+            },
+            "count": {
+              "type": "integer",
+              "minimum": 2,
+              "description": "Quante se ne siedono."
+            },
+            "always": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^ENT_[A-Z0-9_]+$"
+              },
+              "description": "Pescate per prime, sempre: le case di cui questa Chronicle parla per definizione."
+            }
+          }
         }
       }
     }

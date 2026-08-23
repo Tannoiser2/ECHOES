@@ -29,7 +29,7 @@ func _initialize() -> void:
 			printerr("  %s" % error)
 		quit(3)
 		return
-	var seats: Array = (data.chronicles[chronicle_id]["entities"] as Array).duplicate()
+	var seats: Array = GameSession.seats_for(data, chronicle_id, seed_value)
 	var humans: Array = [str(seats[0]), str(seats[1])]
 
 	# La partita senza rete: gli io copione rispondono in casa.

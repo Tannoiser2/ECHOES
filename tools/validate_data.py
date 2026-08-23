@@ -439,6 +439,10 @@ KNOWN_BINDINGS = {
     "rival_seat",
     "capital",
     "actor",
+    # Chi ha posto la condizione (D-213). Vive solo dentro gli effetti di una
+    # `condition_clause`, che e' l'unico posto in cui il motore sa chi ha
+    # chiesto cosa - altrove non c'e' nessuno da legarci.
+    "conditioner",
 }
 
 
@@ -734,6 +738,62 @@ def check_sim_plans_know_which_questions_they_get(
             "`chronicle_overrides.tension_pool`: su un altro seme quelle domande "
             "potrebbero non essere in gioco",
         )
+
+
+def check_drawn_tables_do_not_name_a_house(
+    documents: Dict[str, List[Dict[str, Any]]],
+    origins: Dict[str, str],
+    report: "Report",
+) -> None:
+    """Se le case si pescano, il contenuto non puo' nominarne una per nome.
+
+    E' il difetto che l'unificazione ha scoperto (D-213), e nessuno lo vedeva:
+    due clausole di Consiglio dicevano «e allora **Lyra** ha il registro».
+    Finche' Lyra sedeva sempre andava bene; col tavolo pescato quella riga
+    parlava di un'assente, e l'Effetto cadeva in un `push_error` dentro un log
+    che nessuno legge — cioe' contenuto che non succede e non si lamenta.
+
+    La regola e' semplice: con `entity_pool` acceso, un Effetto scritto a mano
+    punta a un **segnaposto** ($proponent, $rival, $conditioner), mai a un id.
+    Quello che vale per un'era chiusa non vale per un tavolo che cambia.
+    """
+    draws = any(
+        chronicle.get("entity_pool")
+        for chronicle in documents.get("chronicle", [])
+    )
+    if not draws:
+        return
+
+    def walk(node: Any, doc_id: str, where: str, allowed: str = "") -> None:
+        if isinstance(node, dict):
+            if "type" in node and "target" in node:
+                target = node.get("target") or {}
+                if str(target.get("kind", "")) == "entity":
+                    named = str(target.get("id", ""))
+                    if named.startswith("ENT_") and named != allowed:
+                        report.fail(
+                            f"{where} [{doc_id}]",
+                            f"l'Effetto {node['type']} punta a {named}, ma le case si "
+                            "pescano: usare un segnaposto ($proponent, $rival, "
+                            "$conditioner), o dichiarare `requires_entity` se la "
+                            "Conseguenza parla proprio di quella casa",
+                        )
+            for value in node.values():
+                walk(value, doc_id, where, allowed)
+        elif isinstance(node, list):
+            for value in node:
+                walk(value, doc_id, where, allowed)
+
+    for kind in ("confluence_template", "consequence", "echo_card"):
+        for document in documents.get(kind, []):
+            # Una Conseguenza che dichiara la casa di cui parla puo' nominarla:
+            # il motore la salta quando quella casa non siede.
+            walk(
+                document,
+                str(document.get("id", "?")),
+                origins.get(str(document.get("id", "")), kind),
+                str(document.get("requires_entity", "")),
+            )
 
 
 def check_a_declared_map_still_says_something(
@@ -1315,6 +1375,7 @@ def main() -> int:
         check_asset_sources_are_true(documents, origins, report)
         check_sim_plans_declare_their_economy(documents, origins, report)
         check_sim_plans_know_which_questions_they_get(documents, origins, report)
+        check_drawn_tables_do_not_name_a_house(documents, origins, report)
         check_a_declared_map_still_says_something(documents, origins, report)
         check_a_drawn_question_can_be_narrated(documents, origins, report)
         check_objectives_are_shareable(documents, origins, report)
