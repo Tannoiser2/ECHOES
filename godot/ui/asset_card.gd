@@ -18,7 +18,11 @@ const CardFace := preload("res://scripts/core/card_face.gd")
 const CardArt := preload("res://ui/card_art.gd")
 
 ## Alta come la fila della mano: 63x88 in proporzione, ~79x110.
-const CARD_H: float = 110.0
+# **Quanto e' grande una carta in mano** (D-242). Centodieci pixel erano una
+# figurina: su un tablet *«le carte sono minuscole e non si capisce cosa
+# fanno»*. Una carta in mano si legge, e per leggersi deve avere lo spazio di
+# due righe di testo sotto l'immagine.
+const CARD_H: float = 150.0
 
 var asset: Dictionary = {}
 
@@ -51,11 +55,13 @@ signal chosen(asset_id: String)
 
 var _held: bool = false
 var _picture: TextureRect
+var _name: Label
+var _verb: Label
 var _footer: Label
 
 
 func _ready() -> void:
-	custom_minimum_size = Vector2(CARD_H * 63.0 / 88.0 + 6.0, CARD_H + 22.0)
+	custom_minimum_size = Vector2(CARD_H * 63.0 / 88.0 + 10.0, CARD_H + 46.0)
 	mouse_filter = Control.MOUSE_FILTER_STOP
 	# Godot only asks for a tooltip when there is one to ask about.
 	tooltip_text = " "
@@ -90,12 +96,38 @@ func render(p_asset: Dictionary, relevant: Array, council_open: bool, data: RefC
 		_picture.custom_minimum_size = Vector2(CARD_H * 63.0 / 88.0, CARD_H)
 		_picture.size_flags_vertical = Control.SIZE_EXPAND_FILL
 		box.add_child(_picture)
+		# **Il nome e il verbo sulla faccia, non nel tooltip** (D-242).
+		#
+		# Tutto quello che spiegava una carta — il titolo, cosa fa se la cali,
+		# cosa costa — viveva nel suggerimento che compare passandoci sopra col
+		# mouse. Su un tablet **il passaggio del mouse non esiste**: restavano
+		# una figurina e un numero. E' lo stesso difetto di D-240 sui pezzi
+		# della mappa, in un altro posto: il testo c'era e non lo vedeva
+		# nessuno.
+		_name = Label.new()
+		_name.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		_name.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		_name.add_theme_font_size_override("font_size", 11)
+		box.add_child(_name)
+		_verb = Label.new()
+		_verb.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		_verb.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		_verb.add_theme_font_size_override("font_size", 10)
+		_verb.add_theme_color_override("font_color", Color("#8a8172"))
+		box.add_child(_verb)
 		_footer = Label.new()
 		_footer.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		_footer.add_theme_font_size_override("font_size", 10)
 		box.add_child(_footer)
 
 	_picture.texture = CardArt.texture_for("asset", str(asset["id"]), data)
+	_name.text = str(asset["title"])
+	_name.add_theme_color_override(
+		"font_color", Color("#efe7d8") if is_relevant else Color("#c9bfae")
+	)
+	# Il verbo per primo: la domanda di chi ha la carta in mano non e' «quanto
+	# vale», e' «cosa succede se la calo» (D-228).
+	_verb.text = AssetText.action_note(asset)
 
 	# What this card will actually add to the sum, in this Council, right now -
 	# asked of the resolver rather than recomputed here, so a card with a bonus

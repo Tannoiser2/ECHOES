@@ -5,6 +5,28 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.211 — La pagina si legge col dito (D-242, D-243, D-244)
+
+- **D-242 — «le carte sono minuscole e non si capisce cosa fanno.»** Una carta
+  era 110 pixel di figurina con un numero sotto: nome, verbo, costo e frase
+  d'autore vivevano tutti nel **suggerimento del mouse**, che su un tablet non
+  esiste. Ora la carta è 150 pixel e porta **sulla faccia** il proprio nome e il
+  proprio verbo; presa in mano, la colonna accanto ne scrive la lettura intera.
+- **D-243 — «le domande dell'anno sono ancora con le vecchie regole.»** Alla
+  lettera: la riga scriveva `12/18` verso una **soglia che da D-214 non apre più
+  niente** — e tutte e quattro le Chronicle della scatola tengono il Consiglio a
+  fine Atto. Ora il conto è **relativo**: la barra si misura sul mucchio più
+  alto e la domanda davanti scrive *«va al Consiglio»*. Dove la soglia è ancora
+  viva, la riga la dice: la pagina segue i dati.
+- **D-244 — «le due carte destino cosa servono?»** Erano due figure grandi e
+  mute. Ora dicono **CHI SEI** e **COSA VUOI**, col nome sotto.
+- **Il filo comune**, scritto a verbale: il tooltip è un posto dove il testo va a
+  morire su metà dei dispositivi che esistono. Tre difetti, una sola forma.
+- **Misurato**: 482 prove / 10.724 asserzioni verdi (da 477 / 10.560), cancelli
+  verdi, sim verdi, export e catalogo allineati, playtest 100 semi **0 su 8**.
+
+---
+
 ## 0.1.210 — Il tavolo su un tablet (D-239, D-240, D-241)
 
 Tre correzioni, tutte e tre trovate giocando davvero — l'unico modo in cui

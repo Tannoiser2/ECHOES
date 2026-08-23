@@ -10,6 +10,94 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-244 — Le due carte del Destino dicono cosa sono
+
+**implemented in 0.1.211**
+
+> «Le due carte destino cosa servono?»
+
+La domanda e' arrivata perche' erano **due figure grandi e mute**. Stavano li'
+da [D-101](#d-101), e nessuno le aveva mai spiegate: al tavolo fisico la
+risposta e' nella forma del cartoncino e in dove sta posato, sullo schermo non
+c'e' ne' l'una ne' l'altro.
+
+Adesso la prima dice **CHI SEI** e la seconda **COSA VUOI**, e sotto ognuna c'e'
+il suo nome — la casa che giochi e il Destino che ha giurato. Sono le due
+domande su cui gira tutto il gioco, e leggerle affiancate e' il modo piu' rapido
+di capirlo.
+
+---
+
+## D-243 — La traccia delle domande dice la regola di adesso
+
+**implemented in 0.1.211**
+
+> «Le domande dell'anno sono ancora con le vecchie regole.»
+
+Ed era vero, alla lettera. La riga di ogni domanda scriveva **`12/18`** con una
+barra che si riempiva verso la soglia — e da [D-214](#d-214) **la soglia non apre
+piu' niente**. Tutte e quattro le Chronicle della scatola dichiarano
+`at_end_of_act`: il Consiglio si tiene a fine Atto, sulla domanda **piu' calda**,
+e non c'e' nessun numero da raggiungere.
+
+E' esattamente il difetto che [D-224](#d-224) ha corretto sulla pagina d'aiuto,
+in un altro posto e sopravvissuto per la stessa ragione: **nessuna misura guarda
+lo schermo**.
+
+**Il conto ora e' relativo.** La barra si misura sul mucchio piu' alto, cosi' le
+quattro righe insieme dicono **la classifica** invece di quattro percentuali di
+un traguardo che non esiste; e la domanda davanti lo scrive — *«va al
+Consiglio»*, o *«a pari»* quando sono due.
+
+**La soglia non e' stata tolta dal codice**, e non doveva: una Chronicle che non
+dichiara `at_end_of_act` gioca ancora a soglia, e allora la riga torna a dire
+`12/18`. La pagina segue i dati invece di avere un'opinione propria, ed e' la
+stessa regola di D-224. Due prove, una per lato.
+
+---
+
+## D-242 — La carta si legge senza passarci sopra
+
+**implemented in 0.1.211**
+
+> «Le carte sono minuscole e non si capisce cosa fanno, non c'e' il testo che lo
+> spiega.»
+
+Una carta in mano era **110 pixel** di figurina con sotto un numero. Tutto quello
+che la spiegava — il titolo, il verbo che porta, cosa costa, la frase d'autore —
+viveva nel **suggerimento del mouse**.
+
+Su un tablet il passaggio del mouse **non esiste**. E' lo stesso difetto di
+[D-240](#d-240) sui pezzi della mappa, nello stesso giorno e in un altro posto:
+il testo c'era, era scritto bene, e non lo vedeva nessuno. Vale la pena
+nominarlo per quello che e': **il tooltip e' un posto dove il testo va a
+morire**, su meta' dei dispositivi che esistono.
+
+Adesso la carta e' 150 pixel e porta **sulla faccia** il proprio nome e il
+proprio verbo — «muovo una presenza», «costruisco» — che e' la domanda vera di
+chi ce l'ha in mano: non *«quanto vale»*, ma *«cosa succede se la calo»*
+([D-228](#d-228)).
+
+E quando una carta viene **presa in mano** ([D-239](#d-239)), la colonna accanto
+ne scrive la lettura intera: nome, famiglia, forza, verbo, cosa lascia al mondo,
+la frase d'autore. E' il momento in cui serve — si e' scelto *cosa*, si sta
+decidendo *come*.
+
+**Tre prove**: ogni carta della scatola porta il proprio nome sulla faccia;
+nessuna riga di quella faccia contiene un buco o un id; e il verbo c'e' su tutte.
+
+**Misurato:** suite 482 prove / 10.724 asserzioni verdi (era 477 / 10.560), i
+cancelli degli strumenti verdi, i piani di simulazione verdi, export e catalogo
+allineati, `run_playtest.gd --runs=100 --seed=7000` **0 seggi bloccati su 8**.
+
+**E una cosa che non ho fatto**, perche' non e' una correzione: *«tutta la pagina
+dell'app va rivista»* e' vero e non si chiude con tre riparazioni. Sta scritto
+come [ISSUES 65](ISSUES.md#65), con dentro quello che questo giro ha insegnato —
+che i difetti di questa pagina hanno tutti la stessa forma, e nessuno di loro
+puo' essere trovato da un cancello.
+
+---
+
 ## D-241 — Una saga si comincia, non si sceglie l'anno
 
 **implemented in 0.1.210**

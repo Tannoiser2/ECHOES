@@ -24,6 +24,7 @@ const StatusPanel := preload("res://ui/status_panel.gd")
 const HandView := preload("res://ui/hand_view.gd")
 const ConfluenceBoard := preload("res://ui/confluence_board.gd")
 const CouncilSheet := preload("res://ui/council_sheet.gd")
+const AssetText := preload("res://scripts/core/asset_text.gd")
 const HelpPanel := preload("res://ui/help_panel.gd")
 const SaveSerializer := preload("res://scripts/core/save_serializer.gd")
 const DevDashboard := preload("res://ui/dev_dashboard.gd")
@@ -429,7 +430,7 @@ func _build() -> void:
 	tools.add_child(_save_button)
 
 	_hand = HandView.new()
-	_hand.custom_minimum_size = Vector2(0, 140)
+	_hand.custom_minimum_size = Vector2(0, 200)
 	_hand.card_chosen.connect(_on_card_chosen)
 	rows.add_child(_hand)
 
@@ -896,7 +897,7 @@ func _on_card_chosen(asset_id: String) -> void:
 	_hand.hold(asset_id)
 	_prompt.text = "%s in mano. Tocca dove la vuoi usare." % _asset_title(asset_id)
 	_hint.text = "Tocca di nuovo la carta per rimetterla giu'."
-	_narrow_to(indices)
+	_narrow_to(indices, _asset_reading(asset_id))
 
 
 ## La carta rimessa giu': lo schermo torna a com'era quando la domanda e' stata
@@ -939,9 +940,29 @@ func _on_subject_dropped(indices: Array) -> void:
 
 
 ## Restringe la colonna alle sole scelte rimaste dopo la caduta.
-func _narrow_to(indices: Array) -> void:
+## Cosa dice la carta, per intero.
+##
+## E' il testo che fino a D-242 viveva solo nel suggerimento del mouse — cioe'
+## da nessuna parte, per chi gioca col dito. Quando una carta e' in mano, questo
+## e' il momento in cui serve: **si e' scelto cosa, si sta decidendo come.**
+func _asset_reading(asset_id: String) -> String:
+	if _session == null:
+		return ""
+	var asset: Variant = _session.data.assets.get(asset_id)
+	return "" if asset == null else AssetText.tooltip(asset as Dictionary, _session.data)
+
+
+func _narrow_to(indices: Array, reading: String = "") -> void:
 	_clear_buttons()
 	_prompt.text = "La carta e' li. Cosa ne fai?"
+	if reading != "":
+		var page := Label.new()
+		page.text = reading
+		page.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		page.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		page.add_theme_font_size_override("font_size", 11)
+		page.add_theme_color_override("font_color", Color("#c9bfae"))
+		_buttons.add_child(page)
 	for index in indices:
 		var label: String = str(_labels[int(index)]) if int(index) < _labels.size() else "?"
 		var button := Button.new()
