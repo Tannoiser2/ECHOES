@@ -2763,6 +2763,50 @@ e' in gioco.
 
 ---
 
+### 59. Dieci segni sul mondo che nessuno legge
+
+`contenuto` · `regole` · **misurata in 0.1.194** ([D-225](DECISIONS.md#d-225))
+
+Il registro dei segni ([REGISTRO_SEGNI.md](REGISTRO_SEGNI.md)) conta **71 segni
+scritti sul mondo**; **10 non li legge niente**:
+
+| segno | chi lo scrive |
+|---|---|
+| `dragon_slain` | «Il Drago Abbattuto» |
+| `heir_named` | una Conseguenza e una carta |
+| `succession_settled`, `account_settled`, `burden_shared`, `water_rights` | Conseguenze |
+| `condition:lean`, `condition:contested`, `condition:requisitioned` | Conseguenze e carte |
+| `settlement:$proponent` | una Conseguenza — si stampa e basta |
+
+Ognuno è una carta o una Conseguenza che **promette un cambiamento che il gioco
+non registra**. Un giocatore legge «il Drago è abbattuto», lo vede scritto nella
+Cronaca, e non cambia niente: non una regola del segno, non un obiettivo, non la
+pesca delle domande dell'anno dopo.
+
+**Tre rimedi diversi, e vanno scelti uno per uno.** Non è detto che la risposta
+sia sempre la stessa:
+
+1. **farlo mordere** — una regola del segno (come `condition:starving`, che
+   toglie una carta di mano, vieta FORGE e peggiora i Consigli sulla Carestia),
+   una clausola di obiettivo, o un `echoes` nella pesca delle domande;
+2. **toglierlo**, se la Conseguenza racconta già abbastanza senza;
+3. **lasciarlo dichiarato**, se serve solo al libro della Cronaca — ma allora va
+   scritto perché, e sta in `MUTI_NOTI`.
+
+`condition:lean` è il caso più chiaro: lo posa l'Eco dell'interramento sulla
+Valle Verde insieme a `TEN_WATER +1` e all'abbattimento del canale. Due dei tre
+effetti mordono; il terzo è muto, e il giocatore non ha modo di saperlo.
+
+**Da misurare prima di decidere**: per ognuno dei dieci, quante volte esce in
+100 anni. Un segno muto che compare due volte in un secolo è un problema minore
+di uno che compare duecento.
+
+**Fatto quando** ogni segno scritto sul mondo o morde, o è stato tolto, o è
+dichiarato con la sua ragione — e `build_sign_registry.py --check` resta verde
+da solo.
+
+---
+
 ### 58. Gli obiettivi coperti si pescano ogni anno, non a inizio saga
 
 `regole` · `da-misurare` · voluta dal committente · **trovata nel confronto con

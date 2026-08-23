@@ -1,0 +1,432 @@
+#!/usr/bin/env python3
+"""Generate docs/REGISTRO_SEGNI.md from godot/data and godot/scripts.
+
+Un segno sulla mappa ha senso solo se qualcosa lo legge: se cambia cosa puoi
+fare adesso, se cambia un Consiglio, se decide quali domande nascono l'anno
+dopo, se conta per un obiettivo, o se attraversa le ere. Un segno che nessuno
+legge non e' una regola: e' colore travestito da regola, ed e' la stessa frase
+che D-035 e ISSUES 56 hanno gia' scritto due volte su altro contenuto.
+
+Questo strumento fa il conto e non lo lascia invecchiare:
+
+    python3 tools/build_sign_registry.py           # riscrive il registro
+    python3 tools/build_sign_registry.py --check   # esce 1 se e' fuori passo
+
+`--check` va rosso in tre casi, e sono tre difetti diversi:
+
+  1. il documento non e' piu' quello che i dati producono;
+  2. e' comparso un segno muto che non e' fra quelli dichiarati qui sotto;
+  3. un segno dichiarato muto ha smesso di esserlo — cosi' l'elenco non marcisce.
+
+I muti noti stanno in MUTI_NOTI, ognuno con la sua ragione. E' la regola di casa:
+un numero peggiorato e scritto vale piu' di un numero nascosto. L'elenco si
+accorcia quando qualcuno li fa mordere, o quando si tolgono.
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import re
+import sys
+from collections import defaultdict
+from pathlib import Path
+from typing import Any, Dict, Iterable, List, Set
+
+from echoes_schema import DATA_DIR, REPO_ROOT
+
+REGISTRY = REPO_ROOT / "docs" / "REGISTRO_SEGNI.md"
+SCRIPTS = REPO_ROOT / "godot" / "scripts"
+
+# I livelli di rapporto viaggiano nella stessa chiave `tag` delle regole del
+# segno, ma non sono segni: sono i gradini di `RELATION_ORDER`. Senza questa
+# riga il registro li elencava come clausole impossibili.
+LIVELLI_DI_RAPPORTO = {"ENEMY", "HOSTILE", "NEUTRAL", "ALLY", "BOUND", "BLOOD", "PACT"}
+
+WRITE_TYPES = {"SET_REGION_TAG", "SET_GLOBAL_TAG", "SET_ENTITY_TAG"}
+CLEAR_TYPES = {"REMOVE_REGION_TAG", "REMOVE_GLOBAL_TAG", "REMOVE_ENTITY_TAG"}
+
+# I segni che oggi nessuno legge, con la ragione per cui sono ancora qui.
+# Toglierne uno da questa lista senza farlo mordere fa andare rossa la prova.
+MUTI_NOTI: Dict[str, str] = {
+    "account_settled": "«Il Conto Saldato» chiude un debito e nessuna regola lo sa",
+    "burden_shared": "il peso diviso non alleggerisce niente",
+    "condition:contested": "una Regione contesa non cambia nulla di quello che ci si puo' fare",
+    "condition:lean": "la Regione magra: la scrive l'Eco dell'interramento e non la legge nessuno",
+    "condition:requisitioned": "requisire lascia un segno che non morde",
+    "dragon_slain": "«Il Drago Abbattuto» — e il mondo non se ne accorge",
+    "heir_named": "un erede nominato non conta per nessuna successione",
+    "settlement:$proponent": "l'insediamento del proponente si stampa e basta",
+    "succession_settled": "la successione risolta non entra in nessuna condizione",
+    "water_rights": "i diritti sull'acqua non sono un requisito di niente",
+}
+
+
+# --- lettura dei dati -------------------------------------------------------
+
+def items(pattern: str) -> List[Dict[str, Any]]:
+    out: List[Dict[str, Any]] = []
+    for path in sorted(DATA_DIR.glob(pattern)):
+        with path.open(encoding="utf-8") as handle:
+            out.extend(json.load(handle).get("items", []))
+    return out
+
+
+def tags_in_effects(effects: Iterable[Any]) -> Iterable[tuple]:
+    for effect in effects or []:
+        if not isinstance(effect, dict):
+            continue
+        kind = str(effect.get("type", ""))
+        tag = str((effect.get("payload") or {}).get("tag", ""))
+        if not tag:
+            continue
+        if kind in WRITE_TYPES:
+            yield ("scrive", tag)
+        elif kind in CLEAR_TYPES:
+            yield ("cancella", tag)
+
+
+def walk_conditions(conditions: Iterable[Any], sink: Set[str]) -> None:
+    """Ogni stringa che una condizione confronta con un segno."""
+    for condition in conditions or []:
+        if not isinstance(condition, dict):
+            continue
+        for key in ("tag", "state_tag"):
+            value = condition.get(key)
+            if (isinstance(value, str) and value and not value.startswith("$")
+                    and value not in LIVELLI_DI_RAPPORTO):
+                sink.add(value)
+        for nested in ("conditions", "all", "any", "clauses"):
+            if isinstance(condition.get(nested), list):
+                walk_conditions(condition[nested], sink)
+
+
+# I segni che il **codice** scrive, non i dati. Senza questa riga il registro
+# direbbe che `function:LACK` o `life:INC_ALDRIC_02` sono chiesti da qualcuno e
+# scritti da niente — e sarebbero dodici falsi allarmi su una sezione che serve
+# a trovare le clausole impossibili.
+SCRITTI_DAL_CODICE: Dict[str, str] = {
+    "legend:": "world_state_factory.gd — un fatto che sbiadisce diventa leggenda",
+    "evicted:": "confluence_controller.gd — la cacciata da una Regione",
+    "function:": "chronicle_controller.gd — la funzione di Propp della carta Echo uscita",
+    "life:": "succession.gd — l'incarnazione che siede quest'anno",
+}
+
+
+# I prefissi che il **codice** legge, e se quella lettura morde o no.
+#
+# Una scansione automatica dei `begins_with("x:")` non basta, perche' leggere un
+# segno e agire su un segno sono due cose diverse. Qui il giudizio e' scritto a
+# mano, una riga per prefisso, e la ragione sta accanto: se domani il codice
+# cambia, la prova `--check` se ne accorge dal conto dei muti e questa tabella
+# va riletta.
+PREFISSI: Dict[str, tuple] = {
+    "discovery:": (True,
+        "`condition_evaluator` li conta tutti insieme per `discovery_count`, "
+        "e quella condizione la chiedono Destini e obiettivi"),
+    "evicted:": (True,
+        "`world_state_service` lo controlla per impedire il rientro nella Regione"),
+    "legend:": (True,
+        "`world_state_factory` trasforma in leggenda un fatto che sbiadisce, "
+        "e la pesca delle domande legge le leggende"),
+    "condition:": (False,
+        "il prefisso lo guarda solo la traversata delle ere, per decidere se il "
+        "segno sbiadisce: e' quanto dura, non cosa fa. Una singola `condition:` "
+        "morde se una regola, un obiettivo o la pesca la nominano"),
+    "function:": (False,
+        "contabilita' del libro della Cronaca: non tocca nessuna partita"),
+    "settlement:": (False,
+        "lo leggono solo `effect_text` e `sign_labels`: disegnano una parola"),
+    "life:": (False,
+        "solo `effect_text`: disegna una parola"),
+}
+
+
+def prefix_readers() -> Dict[str, List[str]]:
+    """I prefissi che il codice legge davvero, con i file che li leggono.
+
+    Serve a due cose insieme: dare al registro il nome dei lettori, e accorgersi
+    se un prefisso compare nel codice senza che PREFISSI dica cosa farne.
+    """
+    printers = {"effect_text.gd", "sign_labels.gd", "effect_narrator.gd", "narrative_text.gd"}
+    found: Dict[str, List[str]] = defaultdict(list)
+    for path in sorted(SCRIPTS.rglob("*.gd")):
+        if path.name in printers:
+            continue
+        text = path.read_text(encoding="utf-8")
+        for line in text.splitlines():
+            code = line.split("#", 1)[0]
+            for match in re.finditer(r'begins_with\("([a-z_]+:)"\)', code):
+                found[match.group(1)].append(path.name)
+    return {prefix: sorted(set(names)) for prefix, names in found.items()}
+
+
+def collect() -> Dict[str, Dict[str, Set[str]]]:
+    signs: Dict[str, Dict[str, Set[str]]] = defaultdict(
+        lambda: {"scrive": set(), "posa": set(), "cancella": set(), "legge": set()}
+    )
+
+    def note(tag: str, role: str, who: str) -> None:
+        signs[tag][role].add(who)
+
+    for consequence in items("consequences/*.json"):
+        for role, tag in tags_in_effects(consequence.get("effects")):
+            note(tag, role, "Conseguenza")
+        # Una cicatrice non e' un Effetto come gli altri: la Conseguenza la
+        # dichiara a parte, e il suo tag finisce sulla Regione lo stesso.
+        # Una cicatrice non e' un Effetto come gli altri: la Conseguenza la
+        # dichiara a parte, finisce in `world.scars`, e **morde per il fatto di
+        # esistere** — `scar_count` la conta, e ventidue clausole fra obiettivi e
+        # Destini chiedono quel conto. Il suo nome invece non lo legge nessuno,
+        # ed e' voluto: una cicatrice pesa come cicatrice, non per come si chiama.
+        scar = str((consequence.get("scar") or {}).get("tag", ""))
+        if scar:
+            note(scar, "scrive", "Conseguenza (cicatrice)")
+            note(scar, "legge", "conteggio delle cicatrici (`scar_count`)")
+    for card in items("assets/*.json"):
+        for role, tag in tags_in_effects(card.get("on_commit_effects")):
+            note(tag, role, "carta Asset")
+    for echo in items("echoes/*.json"):
+        for hook in echo.get("effect_hooks", []) or []:
+            payload = hook.get("effects") if isinstance(hook, dict) and "effects" in hook else [hook]
+            for role, tag in tags_in_effects(payload):
+                note(tag, role, "carta Echo")
+
+    def readers(conditions: Any, who: str) -> None:
+        sink: Set[str] = set()
+        walk_conditions(conditions, sink)
+        for tag in sink:
+            note(tag, "legge", who)
+
+    for objective in items("objectives/*.json"):
+        readers(objective.get("conditions"), "obiettivo")
+    for destiny in items("destinies/*.json"):
+        for level in ("minimum", "victory", "triumph"):
+            readers((destiny.get(level) or {}).get("conditions"), "Destino")
+    for rule in items("tag_rules/*.json"):
+        when = rule.get("when")
+        readers([when] if isinstance(when, dict) else when, "regola del segno")
+    for echo in items("echoes/*.json"):
+        readers(echo.get("eligibility"), "carta Echo")
+    for consequence in items("consequences/*.json"):
+        readers(consequence.get("eligibility"), "Conseguenza")
+    for path in sorted(DATA_DIR.glob("chronicle_*/confluences/*.json")):
+        with path.open(encoding="utf-8") as handle:
+            for template in json.load(handle).get("items", []):
+                for proposition in template.get("propositions", []) or []:
+                    readers(proposition.get("eligibility"), "proposta")
+                    readers(proposition.get("conditions"), "proposta")
+    # Le altre tre penne che scrivono sul mondo, e che una scansione dei soli
+    # Effetti non vede: l'apertura della Chronicle, le Regioni come nascono, e
+    # le **catene** — un fatto che si ripete di era in era avanza di un gradino
+    # e posa un segno nuovo. `mountain_forgotten` arriva da li', e senza questa
+    # riga il registro lo chiamava una clausola impossibile.
+    # **Le pietre scrivono i propri segni, grado per grado.** Un Presidio di
+    # primo grado posa `structure:watchtower`, e alzato di un grado posa
+    # `settlement:city`: e' cosi' che undici regole del segno trovano il segno
+    # che aspettano. Senza questa penna il registro le dichiarava tutte
+    # impossibili, che sarebbe stato un allarme falso su contenuto sano.
+    for structure in items("structures/*.json"):
+        for grade in structure.get("grades", []) or []:
+            tag = str((grade or {}).get("tag", ""))
+            if tag:
+                note(tag, "posa", "pietra «%s» al grado «%s»" % (
+                    structure.get("name", structure.get("id", "?")), grade.get("name", "?")
+                ))
+        ruin = str((structure.get("ruin") or {}).get("tag", ""))
+        if ruin:
+            note(ruin, "posa", "pietra «%s» in rovina" % structure.get("name", "?"))
+    for region in items("regions/*.json"):
+        for tag in region.get("tags", []) or []:
+            note(str(tag), "posa", "Regione all'apertura")
+    for path in sorted(DATA_DIR.glob("chronicle_*/chronicle_*.json")):
+        with path.open(encoding="utf-8") as handle:
+            for chronicle in json.load(handle).get("items", []):
+                for tag in chronicle.get("global_tags", []) or []:
+                    note(str(tag), "posa", "Chronicle all'apertura")
+                for tally in chronicle.get("era_tallies", []) or []:
+                    for tag in tally.get("chain", []) or []:
+                        note(str(tag), "posa", "catena delle ere")
+    for path in sorted(DATA_DIR.glob("chronicle_*/chronicle_*.json")):
+        with path.open(encoding="utf-8") as handle:
+            for chronicle in json.load(handle).get("items", []):
+                for fact in chronicle.get("enduring_facts", []) or []:
+                    note(str(fact), "legge", "fatto che dura")
+                echoes = (chronicle.get("tension_pool") or {}).get("echoes") or {}
+                for signals in echoes.values():
+                    for signal in signals:
+                        signal = str(signal)
+                        if signal.startswith("structure:"):
+                            continue
+                        note(signal, "legge", "pesca delle domande")
+
+    # I prefissi letti dal codice: quello che una scansione dei nomi non vede.
+    # Solo quelli che PREFISSI dichiara mordenti — leggere non e' agire.
+    # **Una leggenda e' il segno di prima, un'era dopo.** `world_state_factory`
+    # trasforma in `legend:<fatto>` ogni fatto globale che sbiadisce, e se
+    # qualcuno chiede quella leggenda allora il fatto morde — non quest'anno,
+    # nel prossimo. Senza questa riga il registro chiamava muto
+    # `order_restored`, che invece torna come leggenda ed e' letto da una carta
+    # Echo e da una proposta.
+    for tag in list(signs):
+        if signs["legend:%s" % tag]["legge"] if ("legend:%s" % tag) in signs else False:
+            note(tag, "legge", "leggenda (un'era dopo)")
+
+    readers_by_prefix = prefix_readers()
+    for prefix, files in readers_by_prefix.items():
+        bites, _why = PREFISSI.get(prefix, (False, ""))
+        if not bites:
+            continue
+        for tag in list(signs):
+            if tag.startswith(prefix):
+                note(tag, "legge", "codice (%s)" % ", ".join(files))
+
+    return signs
+
+
+# --- il documento -----------------------------------------------------------
+
+HEADER = """# ECHOES — il registro dei segni
+
+<!-- FILE GENERATO — si rifa' con `python3 tools/build_sign_registry.py`. -->
+
+Ogni segno che le Conseguenze, le carte Asset e le carte Echo scrivono sul
+mondo, e **chi lo legge**.
+
+Un segno ha senso solo se qualcosa se ne accorge: se cambia cosa puoi fare
+adesso (una *regola del segno*), se cambia un Consiglio (una *proposta*), se
+decide quali domande nascono l'anno dopo (la *pesca delle domande*), se conta
+per un *obiettivo* o per un *Destino*, o se attraversa le ere (un *fatto che
+dura*). Un segno che nessuno legge non e' una regola: e' colore travestito da
+regola.
+
+Le colonne dicono chi scrive, chi cancella e chi legge. «codice» vuol dire che
+il segno e' letto **per prefisso** da una regola del motore — `discovery:` per
+esempio si conta tutto insieme, e i nomi singoli non compaiono in nessun dato.
+Le viste che si limitano a **stampare** un segno sullo schermo non contano come
+lettori: disegnare non e' mordere.
+"""
+
+
+def render(signs: Dict[str, Dict[str, Set[str]]]) -> str:
+    written = {t: r for t, r in signs.items() if r["scrive"] or r["cancella"]}
+    mute = sorted(t for t, r in written.items() if not r["legge"])
+    speaking = sorted(t for t, r in written.items() if r["legge"])
+    # Il difetto specchio: una condizione che nomina un segno che niente scrive
+    # non e' una condizione difficile, e' una condizione **impossibile**.
+    asked = sorted(
+        t for t, r in signs.items()
+        if r["legge"] and not (r["scrive"] or r["cancella"])
+        and not r["posa"]
+        and not any(t.startswith(prefix) for prefix in SCRITTI_DAL_CODICE)
+    )
+
+    lines: List[str] = [HEADER, ""]
+    lines.append("**%d segni scritti sul mondo: %d li legge qualcosa, %d no.**"
+                 % (len(written), len(speaking), len(mute)))
+    lines.append("")
+    lines.append("**E %d segni li chiede qualcuno senza che niente li scriva.**"
+                 % len(asked))
+    lines.append("")
+    lines.append("---")
+    lines.append("")
+    lines.append("## I segni muti")
+    lines.append("")
+    if not mute:
+        lines.append("Nessuno: ogni segno scritto sul mondo viene letto da qualcosa.")
+    else:
+        lines.append("Scritti da qualcosa, letti da niente. Ognuno e' una carta o una")
+        lines.append("Conseguenza che promette un cambiamento che il gioco non registra.")
+        lines.append("")
+        lines.append("| segno | chi lo scrive | perche' e' ancora qui |")
+        lines.append("|---|---|---|")
+        for tag in mute:
+            who = sorted(signs[tag]["scrive"] | signs[tag]["cancella"])
+            lines.append("| `%s` | %s | %s |" % (
+                tag, ", ".join(who), MUTI_NOTI.get(tag, "**non dichiarato**")
+            ))
+    lines.append("")
+    lines.append("---")
+    lines.append("")
+    lines.append("## I segni che nessuno scrive")
+    lines.append("")
+    if not asked:
+        lines.append("Nessuno: tutto quello che una condizione chiede, qualcosa lo puo' scrivere.")
+    else:
+        lines.append("Una condizione li nomina, e nessun Effetto li mette sul mondo. Alcuni")
+        lines.append("arrivano dall'apertura di una Chronicle o dal mondo ereditato — e allora")
+        lines.append("sono legittimi; altri sono clausole che **nessuno puo' soddisfare**.")
+        lines.append("")
+        lines.append("I segni che scrive il **codice** e non i dati non compaiono qui: %s."
+                     % ", ".join("`%s` (%s)" % (p, why) for p, why in sorted(SCRITTI_DAL_CODICE.items())))
+        lines.append("")
+        lines.append("| segno | chi lo chiede |")
+        lines.append("|---|---|")
+        for tag in asked:
+            lines.append("| `%s` | %s |" % (tag, ", ".join(sorted(signs[tag]["legge"]))))
+    lines.append("")
+    lines.append("---")
+    lines.append("")
+    lines.append("## I segni che mordono")
+    lines.append("")
+    lines.append("| segno | chi lo scrive | chi lo cancella | chi lo legge |")
+    lines.append("|---|---|---|---|")
+    for tag in speaking:
+        roles = signs[tag]
+        lines.append("| `%s` | %s | %s | %s |" % (
+            tag,
+            ", ".join(sorted(roles["scrive"])) or "—",
+            ", ".join(sorted(roles["cancella"])) or "—",
+            ", ".join(sorted(roles["legge"])),
+        ))
+    lines.append("")
+    return "\n".join(lines)
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--check", action="store_true",
+                        help="esce 1 se il registro e' fuori passo o un muto non e' dichiarato")
+    args = parser.parse_args()
+
+    signs = collect()
+    text = render(signs)
+    mute = {tag for tag, roles in signs.items()
+            if (roles["scrive"] or roles["cancella"]) and not roles["legge"]}
+
+    if not args.check:
+        REGISTRY.write_text(text, encoding="utf-8")
+        written = sum(1 for r in signs.values() if r["scrive"] or r["cancella"])
+        print("scritto %s — %d segni scritti sul mondo, %d muti" % (REGISTRY.name, written, len(mute)))
+        return 0
+
+    problems: List[str] = []
+    for tag in sorted(mute - set(MUTI_NOTI)):
+        problems.append(
+            "segno muto non dichiarato: `%s` — lo scrive %s e non lo legge nessuno.\n"
+            "  Fallo mordere (una regola del segno, un obiettivo, la pesca delle domande),\n"
+            "  toglilo, oppure dichiaralo in MUTI_NOTI dentro tools/build_sign_registry.py."
+            % (tag, ", ".join(sorted(signs[tag]["scrive"] | signs[tag]["cancella"])))
+        )
+    for tag in sorted(set(MUTI_NOTI) - mute):
+        problems.append(
+            "`%s` e' dichiarato muto ma adesso qualcosa lo legge: togli la riga da MUTI_NOTI."
+            % tag
+        )
+    if not REGISTRY.exists():
+        problems.append("manca docs/REGISTRO_SEGNI.md: gira `python3 tools/build_sign_registry.py`.")
+    elif REGISTRY.read_text(encoding="utf-8") != text:
+        problems.append("docs/REGISTRO_SEGNI.md non e' piu' quello che i dati producono:\n"
+                        "  gira `python3 tools/build_sign_registry.py` e committa il risultato.")
+
+    if problems:
+        for problem in problems:
+            print("FAIL  %s" % problem, file=sys.stderr)
+        return 1
+    print("ok    il registro dei segni e' allineato — %d segni, %d muti dichiarati"
+          % (sum(1 for r in signs.values() if r["scrive"] or r["cancella"]), len(mute)))
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

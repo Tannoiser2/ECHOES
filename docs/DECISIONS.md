@@ -10,6 +10,95 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-225 — Un segno che nessuno legge non e' una regola
+
+**implemented in 0.1.194** — il registro dei segni, e le sette penne che
+scrivono sul mondo
+
+Il committente ha portato uno scambio con un altro modello che conteneva una
+frase giusta: *«un segno sulla mappa ha senso solo se cambia cosa puoi fare, se
+cambia un Consiglio, se decide quali domande nascono dopo, se conta per un
+obiettivo, o se trasforma il setup futuro. Se non fa nessuna di queste cose, e'
+colore travestito da regola.»*
+
+Quella frase e' misurabile, quindi e' stata misurata. **71 segni scritti sul
+mondo, 10 che nessuno legge.**
+
+### Perche' non si trova a occhio
+
+L'elenco dei muti che accompagnava la frase era **quasi tutto sbagliato**: dei
+undici nomi proposti, nove non esistono nei dati e due erano giusti. Non e' una
+critica al metodo — e' la prova che questo conto **non si fa a mente**. Il
+difetto e' invisibile in due direzioni insieme: un segno muto non rompe niente
+(la partita gira lo stesso) e un segno che sembra muto spesso non lo e'.
+
+Costruendo lo strumento sono emerse **sette penne** che scrivono sul mondo, e
+solo tre erano quelle ovvie:
+
+| penna | dove |
+|---|---|
+| gli Effetti di Conseguenze, carte Asset e carte Echo | `effects`, `on_commit_effects`, `effect_hooks` |
+| le **cicatrici**, dichiarate a parte | `consequence.scar.tag` |
+| le **pietre**, un segno per grado | `structures/*.json` → `grades[].tag` |
+| le **catene delle ere** | `chronicle.era_tallies[].chain` |
+| l'apertura della Chronicle e delle Regioni | `global_tags`, `regions[].tags` |
+| il codice, per `legend:` `evicted:` `function:` `life:` | quattro file |
+
+Le pietre da sole spiegano **undici regole del segno** che una scansione
+ingenua dichiarava impossibili: «Il granaio parla», «Sotto la torre di veglia la
+forza si trova», «La citta' parla piu' forte al Consiglio». Sono sane, e la
+prima stesura del registro le accusava tutte.
+
+### E cinque modi di leggere, uno dei quali arriva un anno dopo
+
+Il piu' sottile: **una leggenda e' il segno di prima, un'era dopo.**
+`world_state_factory` trasforma in `legend:<fatto>` ogni fatto globale che
+sbiadisce sul salto lungo, e se qualcuno chiede quella leggenda allora il fatto
+morde — non quest'anno, nel prossimo. `order_restored` risultava muto in ogni
+lettura statica, e non lo e'.
+
+### La regola che lo strumento incarna: leggere non e' agire
+
+Un `begins_with("x:")` nel codice non basta a dire che un segno morde, e il
+registro lo dichiara prefisso per prefisso invece di indovinare:
+
+- `discovery:` **morde** — `condition_evaluator` li conta tutti insieme per
+  `discovery_count`, che Destini e obiettivi chiedono quattro volte;
+- `evicted:` **morde** — `world_state_service` lo controlla per impedire il
+  rientro;
+- `legend:` **morde** — vedi sopra;
+- `condition:` **no** — il prefisso lo guarda solo la traversata delle ere, per
+  decidere se il segno sbiadisce. E' *quanto dura*, non *cosa fa*: una singola
+  `condition:` morde se una regola, un obiettivo o la pesca la nominano;
+- `settlement:` e `life:` **no** — li leggono solo `effect_text` e
+  `sign_labels`. **Disegnare non e' mordere**, ed e' la stessa distinzione di
+  [D-224](#d-224): un testo che nomina una regola non la rende viva.
+
+Stessa logica per le cicatrici: una cicatrice morde **per il fatto di
+esistere** — `scar_count` la conta, e ventidue clausole chiedono quel conto — ma
+il suo nome non lo legge nessuno, ed e' voluto. Una cicatrice pesa come
+cicatrice, non per come si chiama.
+
+### I dieci muti sono dichiarati, non nascosti
+
+Stanno in `MUTI_NOTI` con la ragione accanto, ed e' la regola di casa: **un
+numero peggiorato e scritto vale piu' di un numero nascosto**. `--check` va
+rosso in tre casi, e sono tre difetti diversi: un muto nuovo non dichiarato, un
+muto dichiarato che ha smesso di esserlo (cosi' l'elenco non marcisce), e il
+documento fuori passo coi dati. L'elenco puo' solo accorciarsi.
+
+I nomi sono grossi: `dragon_slain` — «Il Drago Abbattuto» — e il mondo non se ne
+accorge. Vedi ISSUES 59 per i tre rimedi possibili, che non sono lo stesso per
+tutti e dieci.
+
+### Costo
+
+Nessuna regola cambiata: uno strumento, un documento generato e un passo di CI.
+Playtest non ri-misurato perche' non c'e' niente da ri-misurare — nessun dato di
+gioco e' stato toccato.
+
+---
+
 ## D-224 — La pagina delle regole si misura, come tutto il resto
 
 **implemented in 0.1.192** — la GUI contro le regole nuove, e il punto cieco del

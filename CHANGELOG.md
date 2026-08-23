@@ -45,6 +45,42 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.194 — Il registro dei segni: dieci promesse che il mondo non registra (D-225)
+
+- **`tools/build_sign_registry.py` + `docs/REGISTRO_SEGNI.md`**, generato e in
+  CI. Per ogni segno che il gioco scrive sul mondo dice **chi lo scrive, chi lo
+  cancella e chi lo legge** — e il criterio è uno: un segno che nessuno legge
+  non è una regola, è colore travestito da regola.
+- **71 segni scritti sul mondo. 10 non li legge nessuno.** `dragon_slain` («Il
+  Drago Abbattuto»), `heir_named`, `succession_settled`, `water_rights`,
+  `account_settled`, `burden_shared`, `condition:lean`, `condition:contested`,
+  `condition:requisitioned`, `settlement:$proponent`. Sono carte e Conseguenze
+  che promettono un cambiamento che il gioco non registra, e **non si vedono
+  giocando**: la partita gira lo stesso.
+- **Il difetto non si trova a occhio, e nemmeno con un grep.** Costruendo lo
+  strumento sono emerse **sette penne diverse** che scrivono sul mondo: gli
+  Effetti delle Conseguenze, delle carte Asset e delle Echo; le cicatrici, che
+  si dichiarano a parte; le **pietre**, che posano un segno per grado; le
+  **catene delle ere**, che dopo tre ripetizioni posano un segno nuovo
+  (`mountain_forgotten` arriva da lì); e il codice, per `legend:`, `evicted:`,
+  `function:`, `life:`.
+- **E cinque modi di leggere.** Il più sottile: **una leggenda è il segno di
+  prima, un'era dopo** — un fatto globale che sbiadisce diventa `legend:<fatto>`,
+  e se qualcuno chiede quella leggenda allora il fatto morde, nel prossimo anno.
+  `order_restored` sembrava muto e non lo è.
+- **Leggere non è agire**, e lo strumento lo dichiara prefisso per prefisso:
+  `discovery:` morde (`discovery_count`, chiesto da Destini e obiettivi),
+  `evicted:` morde (impedisce il rientro), `legend:` morde; `condition:` no — il
+  prefisso lo guarda solo la traversata delle ere, che è *quanto dura* un segno,
+  non *cosa fa*. E `settlement:`/`life:` li legge solo chi disegna una parola
+  sullo schermo.
+- **I dieci muti sono dichiarati**, non nascosti: stanno in `MUTI_NOTI` con la
+  ragione accanto. `--check` va rosso se ne compare uno nuovo **e** se uno
+  dichiarato smette di esserlo, così l'elenco non marcisce e può solo accorciarsi.
+- Nessuna regola cambiata: strumento, documento e un passo di CI.
+
+---
+
 ## 0.1.193 — L'idea di partenza contro il gioco che c'è
 
 - **`docs/VISIONE.md`**: il confronto punto per punto fra ECHOES come il
