@@ -10,6 +10,97 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-229 — I pezzi sulla mappa: una forma si riconosce, una parola si legge
+
+**implemented in 0.1.200** — secondo passo di ISSUES 63
+
+Il committente: *«non ci sono pedine che rappresentano edifici, condizioni,
+cicatrici e tutto quello che dovrebbe apparire in una copia fisica del gioco»*.
+
+Era vero alla lettera. `_draw_marks` scriveva i segni come **una fila di parole
+in grigio** sotto il nome della Regione, ognuna preceduta dal glifo del proprio
+*livello* — e i livelli sono quattro. Un granaio, una torre di veglia e una
+biblioteca portavano **lo stesso identico segno**, con tre parole diverse
+accanto. Per sapere cosa c'era su una Regione bisognava leggere; su un tavolo un
+pezzo si riconosce dalla forma, da lontano, senza leggere niente.
+
+### Cinque famiglie, cinque forme
+
+Le pietre hanno gia' una famiglia nei dati, e sono cinque: **PRESIDIO,
+INSEDIAMENTO, OPERA, STUDIO, LUOGO**. Adesso ognuna ha il suo glifo — una torre
+coi merli, tre tetti in fila, un arco su due piedi, un libro aperto, un albero —
+e la mappa passa dalla famiglia alla forma **leggendo i dati**, senza una tabella
+da tenere allineata a mano: se domani nasce una famiglia, il pezzo arriva da
+solo, e se nasce senza glifo una prova lo dice.
+
+I sette guardiani dei glifi valgono anche per questi: stanno nel quadrato, non
+sono due volte la stessa forma, non si sovrappongono, reggono in monocromatico,
+e finiscono sul foglio di prova.
+
+### Il grado e il padrone si leggono dal mondo, non dal tag
+
+**Una cosa che ho sbagliato e la prova ha preso.** La prima stesura ricavava il
+grado dal tag, e non si puo': un tag di pietra copre piu' gradi —
+`structure:granary` e' **sia il Granaio sia il Grande Granaio**. Grado e padrone
+stanno nel record del mondo, `{structure_type, grade, owner}`, ed e' l'unica
+verita' su cosa c'e' e di chi e'.
+
+Quindi la mappa disegna le pietre da `region.structures` e non dai tag:
+
+- la **forma** e' la famiglia;
+- il **grado** sono i punti sotto il pezzo — un punto una torre di veglia, tre
+  una reggia, e si contano con gli occhi come i piani di una cosa che cresce;
+- il **padrone** e' il colore, lo stesso della sua pedina. Chi tiene una reggia
+  la tiene davvero, e da lontano si vede di chi e'.
+
+Condizioni e cicatrici restano dai tag, perche' non sono oggetti: sono quello che
+*succede* a una Regione e quello che le e' successo e non viene piu' via.
+
+### E la parola solo sotto il mouse
+
+Al tavolo una carta si legge quando la prendi in mano, non mentre guardi la
+plancia. La Regione sotto il cursore nomina i suoi pezzi; le altre li mostrano e
+basta.
+
+### Tre nomi che uscivano in inglese
+
+Cercando i nomi dei pezzi e' venuto fuori che `SignLabels` non copriva i gradi
+delle pietre: sulla mappa si leggeva **«palace»**, **«archive»**, **«forest»**, e
+per `settlement:` faceva di peggio — cercava una *casa* con quel nome e stampava
+«insediamento: city».
+
+Il nome giusto era gia' nei dati (`grades[].name`: «Reggia», «Archivio»,
+«Foresta»), quindi si legge da li' come ripiego dopo le parole scritte a mano —
+**dopo** e non prima, perche' un tag copre piu' gradi e la parola scritta a mano
+e' quella giusta per il tag.
+
+### Le prove
+
+- **ogni segno che puo' finire su una Regione ha un pezzo**: un segno senza pezzo
+  non e' brutto, e' **invisibile** — `_draw_marks` lo salta e chi guarda la
+  plancia non sa che c'e';
+- **ogni famiglia di pietra ha un glifo**, e ogni grado si legge col nome che i
+  dati gli danno;
+- **nessun segno di Regione si legge col suo suffisso inglese.**
+
+E la prima stesura della prima prova raccoglieva i segni **solo dagli Effetti**,
+mancando la penna che li scrive davvero — i gradi delle pietre — e contava zero
+segni passando lo stesso. Adesso conta ventitre'.
+
+### Costo
+
+Nessuna regola: cinque glifi, un disegno e tre prove. Suite **440 test e 8.027
+asserzioni**. La plancia d'apertura di CHR_01 mostra tre torri di veglia coi
+colori di Aldric, Vaerax e Ilve, e otto luoghi naturali in verde — dove prima
+c'era una fila di parole grigie.
+
+### Cosa non risolve
+
+Restano **il drag & drop** — in `godot/ui/` non c'e' ancora un solo
+`_get_drag_data` — e **il Consiglio giocabile** (ISSUES 62).
+
+---
+
 ## D-228 — Una carta dice cosa fa: il verbo, e i segni con la loro parola
 
 **implemented in 0.1.199** — primo passo di ISSUES 63, e mezza ISSUES 62

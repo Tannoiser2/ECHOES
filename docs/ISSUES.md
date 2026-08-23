@@ -2797,9 +2797,10 @@ giocare.** Il cancello gioca solo con `PolicyDecider`, che non ha mani.
 1. ✅ **La carta dice cosa fa** — [D-228](DECISIONS.md#d-228), 0.1.199. Il verbo
    sulla faccia (schermo e cartone), i segni con la loro parola, tre prove che lo
    tengono.
-2. **I pezzi sulla mappa.** Strutture, condizioni, cicatrici e insediamenti
-   diventano **oggetti disegnati** — una torre, un covone, uno strappo — invece
-   di etichette in fila. La mappa comincia a somigliare a un tavolo.
+2. ✅ **I pezzi sulla mappa** — [D-229](DECISIONS.md#d-229), 0.1.200. Cinque
+   famiglie di pietra, cinque forme; il grado sono i punti sotto il pezzo, il
+   padrone e' il colore. La parola solo sotto il mouse. Tre prove, fra cui «un
+   segno senza pezzo e' invisibile».
 3. **Il drag & drop.** Si prende la carta, la si trascina su una Regione, e
    l'effetto parte: la presenza si sposta, la torre appare, la fame cade sulla
    zona. Il bottone sparisce.

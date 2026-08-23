@@ -5,6 +5,38 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.200 — I pezzi sulla mappa: una forma si riconosce, una parola si legge (D-229)
+
+- **Secondo dei quattro passi di ISSUES 63.** La mappa scriveva i segni come una
+  fila di **parole in grigio** sotto il nome della Regione: un granaio, una torre
+  di veglia e una biblioteca portavano **lo stesso identico glifo**, perché il
+  glifo diceva il *livello* e i livelli sono quattro.
+- **Cinque famiglie di pietra, cinque forme**: PRESIDIO una torre coi merli,
+  INSEDIAMENTO tre tetti in fila, OPERA un arco su due piedi, STUDIO un libro
+  aperto, LUOGO un albero. La mappa passa dalla famiglia alla forma **leggendo i
+  dati**: se nasce una famiglia nuova il pezzo arriva da solo.
+- **Il grado sono i punti sotto il pezzo** — uno una torre di veglia, tre una
+  reggia — **e il padrone è il colore**, lo stesso della sua pedina.
+- **Una cosa che ho sbagliato e la prova ha preso**: la prima stesura ricavava il
+  grado dal tag, e non si può — `structure:granary` è **sia il Granaio sia il
+  Grande Granaio**. Grado e padrone stanno in `region.structures`, ed è l'unica
+  verità su cosa c'è e di chi è.
+- **La parola solo sotto il mouse**: al tavolo una carta si legge quando la
+  prendi in mano, non mentre guardi la plancia.
+- **Tre nomi uscivano in inglese** — sulla mappa si leggeva «palace», «archive»,
+  «forest», e per `settlement:` si stampava «insediamento: city» perché cercava
+  una *casa* con quel nome. Il nome giusto era già nei dati (`grades[].name`).
+- **Tre prove**: ogni segno di Regione ha un pezzo (un segno senza pezzo non è
+  brutto, è **invisibile**), ogni famiglia ha un glifo e ogni grado il suo nome,
+  nessun segno si legge col suffisso inglese. E la prima stesura della prima
+  raccoglieva i segni solo dagli Effetti, mancando la penna che li scrive davvero
+  — i gradi delle pietre — e **contava zero passando lo stesso**.
+- Suite **440 test e 8.027 asserzioni**. La plancia d'apertura di CHR_01 mostra
+  tre torri di veglia coi colori di Aldric, Vaerax e Ilve, e otto luoghi naturali
+  in verde. Nessuna regola toccata.
+
+---
+
 ## 0.1.199 — Una carta dice cosa fa: il verbo, e i segni con la loro parola (D-228)
 
 - **Il committente ha guardato l'app**: *«così com'è fatto è ingiocabile, lo è
