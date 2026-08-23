@@ -2651,6 +2651,48 @@ mondo e per le guardie; nessuna interfaccia oggi la mostra.
 
 ---
 
+### 58. Gli obiettivi coperti si pescano ogni anno, non a inizio saga
+
+`regole` · `da-misurare` · voluta dal committente · **trovata nel confronto con
+l'idea di partenza** ([VISIONE.md](VISIONE.md))
+
+> «Ogni entità ha un obiettivo palese e tre segreti che si pescano **all'inizio
+> della saga**.»
+
+`WorldStateFactory._deal_objectives` gira dentro il setup **di ogni Chronicle**:
+i tre coperti si ripescano ogni anno.
+
+Metà del modello c'è già — il **palese** attraversa gli anni con la regola di
+[D-081](DECISIONS.md#d-081), *chi ha ottenuto quello che voleva ne vuole un
+altro, chi non l'ha ottenuto riprova* — ma i tre coperti no.
+
+**Perché non è un dettaglio.** Sposta l'unità dell'ambizione dalla **saga**
+all'**anno**. Con obiettivi di saga, al terzo anno stai costruendo verso qualcosa
+che nessuno ha visto, e una mossa che sembra sbagliata oggi può essere il quarto
+passo di un piano di otto. Con obiettivi d'anno ogni Chronicle è un contenitore
+chiuso, e la campagna è **una somma di partite invece di una storia sola**.
+
+**Da misurare prima di decidere**, perché la mossa ovvia ha due costi leggibili:
+
+- un obiettivo pescato a inizio saga può risultare **impossibile** nel mondo che
+  la Chronicle 4 ha prodotto — un obiettivo che nomina una Regione svuotata, o
+  una casa che non si siede più. Servono obiettivi che valgano in qualunque
+  mondo (i quindici condivisi lo sono già, D-221) **o** una regola di
+  sostituzione dichiarata;
+- il conteggio a fine anno (`objectives_met` → `saga_points`) presuppone che
+  l'obiettivo sia dell'anno. Con obiettivi di saga i punti si contano **una volta
+  sola alla fine**, e la curva della campagna cambia forma.
+
+Da misurare: su dieci Chronicle, quanti obiettivi pescati a inizio saga
+resterebbero **raggiungibili** all'anno 5 e all'anno 10, e quanti si spengono per
+sempre.
+
+**Fatto quando** i tre coperti si pescano una volta per saga, nessuno di loro può
+diventare impossibile senza una regola scritta che lo sostituisca, e il playtest
+resta **0/8**.
+
+---
+
 ### 57. ✅ La GUI raccontava il gioco di due versioni fa — chiusa in 0.1.192
 
 `ux` · `debito` · voluta dal committente · **chiusa** ([D-224](DECISIONS.md#d-224))
@@ -2783,6 +2825,34 @@ azioni, non dà niente che si veda al tavolo.
 E le Conseguenze toccano la mappa nel 48% dei casi, ma **`ADD_PRESENCE` compare
 una volta sola** in cinquantadue: i Consigli cacciano e assegnano, non mandano
 nessuno da nessuna parte.
+
+### La radice, trovata dopo (0.1.192)
+
+Le quattro mosse qui sotto attaccano il problema **dal lato dell'offerta**: più
+Conseguenze che spostano pedine, più carte che costruiscono, più obiettivi
+contesi. [D-222](DECISIONS.md#d-222) e [D-223](DECISIONS.md#d-223) le hanno
+provate e misurate, e hanno mosso poco: il padrone cambia mano 2,32 → 2,49 volte
+l'anno.
+
+Il confronto con l'idea di partenza ([VISIONE.md](VISIONE.md)) dice perché. La
+matematica del Concilio è `M = Sostegno + Condizione − Opposizione + 1d6`, e
+Sostegno e Opposizione sono **solo somme di forza delle carte impegnate**:
+nessuna pietra, nessuna maggioranza, nessuna cicatrice entra in quel conto. La
+mappa conta sempre **di lato** — chi propone, quante e che carte peschi, e quali
+proposte sono ammissibili — e anche l'ultima è più sottile di quanto sembri: su
+**43 proposizioni** in dieci template ci sono **10 condizioni di idoneità in
+tutto**, quindi trentatré su quarantatré sono ammissibili comunque sia messa la
+mappa.
+
+**La mappa non si muove perché non paga nella stanza dove il gioco si decide.**
+Il committente aveva scritto, fin dall'inizio, che al Concilio si può essere
+*«aiutati da quello che si è creato nella mappa durante la partita»*: è la sola
+riga della sua descrizione che non è mai stata costruita.
+
+**La mossa 0, prima delle quattro:** quello che tieni sulla mappa entra nel
+conto del voto. Da misurare prima di scriverla — un bonus di controllo troppo
+grosso trasforma il Concilio in un referendum sul padrone, e chi è avanti resta
+avanti.
 
 ### Le quattro mosse, in ordine di radice
 

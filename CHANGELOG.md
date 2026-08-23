@@ -5,6 +5,40 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.193 — L'idea di partenza contro il gioco che c'è
+
+- **`docs/VISIONE.md`**: il confronto punto per punto fra ECHOES come il
+  committente l'ha descritto prima che esistesse e ECHOES a 0.1.192, **letto dai
+  dati e dal codice** e non dalla memoria. Venti punti, ognuno con dove si
+  verifica.
+- **Diciotto su venti sono in piedi.** La saga di dieci anni, l'anno che eredita
+  il mondo di prima (strutture con tipo, grado e padrone; le condizioni sociali
+  che sbiadiscono dopo cinquant'anni; le Regioni tenute senza nessuno dentro che
+  decadono da sole), le entità che si trasformano di vita in vita, il tavolo e le
+  domande pescati, il Concilio a fine Atto, le carte che sono tre cose insieme, i
+  gradi di vittoria sommati sulla campagna.
+- **Due divergenze, e in tutti e due i casi l'idea di partenza è più ambiziosa
+  del costruito.**
+- **Aperta ISSUES 58**: i tre obiettivi coperti si ripescano **ogni anno**, mentre
+  l'idea li vuole pescati **a inizio saga**. Sposta l'unità dell'ambizione
+  dall'anno alla campagna: oggi ogni Chronicle è un contenitore chiuso e la saga è
+  una somma di partite invece di una storia sola. Metà del modello c'è già — il
+  palese attraversa gli anni con la regola di D-081.
+- **ISSUES 55 ha finalmente una radice.** Le quattro mosse scritte finora
+  attaccavano il problema dal lato dell'offerta e hanno mosso poco (2,32 → 2,49
+  passaggi di mano l'anno). Il motivo si legge nella matematica del Concilio:
+  `M = Sostegno + Condizione − Opposizione + 1d6`, e Sostegno e Opposizione sono
+  **solo carte**. Nessuna pietra, nessuna maggioranza, nessuna cicatrice entra nel
+  voto — e su **43 proposizioni** ci sono **10 condizioni di idoneità in tutto**,
+  quindi 33 su 43 sono ammissibili comunque sia messa la mappa. **La mappa non si
+  muove perché non paga nella stanza dove il gioco si decide**, ed è la sola riga
+  della descrizione originale che non è mai stata costruita.
+- **Segnata anche la piccola**: i salti temporali arrivano a 200 anni, non a
+  «secoli».
+- Solo documenti: nessuna regola, nessun dato, nessun codice toccato.
+
+---
+
 ## 0.1.192 — La pagina delle regole si misura, come tutto il resto (D-224)
 
 - **La GUI non era allineata, e adesso non può più sfasarsi in silenzio.** La
