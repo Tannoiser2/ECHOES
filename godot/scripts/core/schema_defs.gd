@@ -1745,6 +1745,7 @@ const CONDITION_TYPES := [
 	"promise_kept",
 	"promise_broken",
 	"structure_count",
+	"leads_in",
 	"scar_count",
 	"any_of",
 	"some_of",

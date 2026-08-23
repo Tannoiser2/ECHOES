@@ -561,6 +561,12 @@
               "minimum": 0,
               "default": 0,
               "description": "Il tetto sulla **mano**: il rubinetto riempie fino a questo numero e non oltre, quindi chi ha ancora carte pesca meno e chi le ha spese pesca pieno. A 0 - il default - non c'e' tetto. E' il freno alla divergenza misurata in D-183 e in D-185: il `cap` per Atto non basta, perche' le carte non spese restano in mano e lo scarto si accumula lo stesso."
+            },
+            "per_control": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0,
+              "description": "Carte in piu' per **Regione controllata**, e altrettanto tetto sulla mano (D-220). Il rubinetto conta le pedine; il possesso non contava niente, quindi tenere una Regione non pagava piu' che starci dentro. Con questa riga la maggioranza diventa una moneta: chi controlla pesca di piu' **e puo' tenere di piu'**, e alzare una pietra smette di essere solo un numero nella contesa. A 0 - il default - il possesso non tocca la mano, com'era prima."
             }
           }
         },

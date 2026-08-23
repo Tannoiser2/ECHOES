@@ -24,7 +24,7 @@ const KNOWN: Array = [
 	"control_count", "state_tag_present", "state_tag_absent", "asset_threshold",
 	"entity_alive", "relation_state", "tension_limit", "discovery_count",
 	"region_presence", "promise_kept", "promise_broken", "structure_count",
-	"scar_count", "any_of", "some_of",
+	"scar_count", "any_of", "some_of", "leads_in",
 ]
 
 
@@ -110,3 +110,47 @@ func _known_predicate(condition: Dictionary, objective_id: String) -> void:
 	)
 	for sub in condition.get("conditions", []):
 		_known_predicate(sub as Dictionary, objective_id)
+
+
+## Un obiettivo conteso non si puo' spartire, ed e' l'unica cosa che lo rende
+## conteso ([D-221](DECISIONS.md#d-221)).
+##
+## Su dodici obiettivi **uno solo** metteva due case l'una contro l'altra: gli
+## altri contavano roba propria, quindi quattro seggi potevano soddisfarli tutti
+## e quattro senza mai toccarsi. Questa prova chiede la cosa che la parola
+## «conteso» vuol dire: **al massimo un seggio alla volta**.
+func test_a_contested_objective_can_be_taken_by_one_seat_at_a_time() -> void:
+	var conditions: RefCounted = ConditionEvaluator.new(session.world, data())
+	var contested: Array = []
+	for objective_id in data().objectives:
+		var objective: Dictionary = data().objectives[str(objective_id)]
+		for condition in objective["conditions"]:
+			if str((condition as Dictionary).get("type", "")) == "leads_in":
+				contested.append(objective)
+				break
+	assert_true(contested.size() >= 3, "il pool porta obiettivi contesi: %d" % contested.size())
+
+	# Si sporca il tavolo perche' la domanda non sia vuota: se nessuno ha
+	# niente, «piu' di tutti» e' falso per tutti e la prova non proverebbe.
+	var effect: GDScript = load("res://scripts/core/effect.gd")
+	session.applier.apply(effect.make(
+		"ADD_PRESENCE", "entity", "ENT_ALDRIC", {"region_id": "REG_VALLE_VERDE"},
+		effect.source("system", "TEST", "", 1, 1, 0)
+	))
+	session.applier.apply(effect.make(
+		"BUILD_STRUCTURE", "region", "REG_VALLE_VERDE",
+		{"structure_type": "STR_KEEP", "grade": 1, "owner": "ENT_ALDRIC"},
+		effect.source("system", "TEST", "", 1, 1, 0)
+	))
+
+	for objective in contested:
+		var takers: Array = []
+		for entity_id in session.world["entities"]:
+			if conditions.all_hold(objective["conditions"], {"self": str(entity_id)}):
+				takers.append(str(entity_id))
+		assert_true(
+			takers.size() <= 1,
+			"«%s» lo prende al massimo uno: %s" % [
+				str(objective["title"]), ", ".join(PackedStringArray(takers))
+			]
+		)

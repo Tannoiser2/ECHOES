@@ -2727,6 +2727,64 @@ di quanto non cambi oggi, e gli obiettivi contesi sono almeno un terzo del mazzo
 
 ---
 
+## Provate le prime due mosse, e la causa era un'altra (0.1.189)
+
+### Il preventivo della mossa 1 era sbagliato ([D-220](DECISIONS.md#d-220))
+
+Il collo di bottiglia **non è** il tetto per Atto. Alzato `cap` da 6 a 8 non
+cambia niente: le carte pescate a ogni rifornimento restano 3,3–3,4 per chiunque.
+Il tetto vero è quello sulla **mano** — tutti convergono alla stessa mano piena,
+e la presenza decide solo quanto in fretta.
+
+**E la sonda aveva sbagliato la domanda due volte**, cambiando conclusione ogni
+volta. La coppia giusta — con quante pedine si è pescato quanto, ricostruita dal
+registro in ordine — dice una cosa peggiore di «piatto»:
+
+| pedine al rifornimento | carte pescate |
+|---|---|
+| 3 | **3,44** |
+| 4 | 3,30 |
+| 5 | **3,12** |
+
+**Invertito.** Spedito `per_control` (tenere una Regione dà una carta e alza il
+tetto): il padrone passa di mano **2,32 → 2,42** volte l'anno. Piccolo.
+
+### La mossa 3 è spedita e non ha mosso niente ([D-221](DECISIONS.md#d-221))
+
+`leads_in` — «più di chiunque altro» — e tre obiettivi nuovi: i contesi passano
+da **1 a 4** su 15. Si avverano fra lo 0% e il 46,2%, e una prova dimostra che li
+prende **un seggio alla volta**. La mappa: **2,42 → 2,42**.
+
+### La causa vera, e sta in una riga
+
+```
+grep -c "objective" godot/scripts/seat/policy_decider.gd   →   0
+```
+
+**Il cervello che gioca il cancello non legge gli obiettivi. Mai.** Insegue le
+condizioni del **Destino** — le tre strade — mentre da
+[D-198](DECISIONS.md#d-198) la vittoria si conta **contando quattro obiettivi**.
+
+> Chi gioca insegue una cosa, e il punteggio ne conta un'altra.
+
+**Cosa vuol dire per quello che è già scritto**: ogni misura sugli obiettivi —
+il libro mastro compreso, quindi anche i numeri di
+[ISSUES 52](#52-lyra-non-ha-mai-trionfato-in-centoventi-anni) — dice *cosa
+capita* a un seggio che non li persegue, non quanto siano difficili da
+perseguire. Restano vere come descrizione di ciò che il cancello misura oggi; non
+dicono quanto valga un obiettivo per una persona che lo vuole.
+
+**Quindi l'ordine delle mosse cambia, e la mossa 0 è nuova:**
+
+0. **Il cervello insegue quello per cui si vince.** Finché non lo fa, ogni leva
+   su obiettivi e mappa si misura contro un giocatore che non la sta usando —
+   e le due mosse già spedite lo dimostrano.
+
+È anche il cambio più costoso: **muove ogni numero di ogni verbale che nomini gli
+obiettivi**, e va deciso apposta invece che di sfuggita dentro un'altra voce.
+
+---
+
 ### 53. RIVENDICARE può forzare un Consiglio che poi non si apre
 
 `regole` · `difetto` · **misurata in 0.1.183** ([D-214](DECISIONS.md#d-214))

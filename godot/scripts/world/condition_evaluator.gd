@@ -70,6 +70,19 @@ func holds(condition: Dictionary, context: Dictionary = {}) -> bool:
 			return _within(_scars_on_the_map(condition), condition)
 		"control_count":
 			return _within(service.control_count(entity_id), condition)
+		"leads_in":
+			# **Piu' di chiunque altro** (D-221).
+			#
+			# Ogni altra condizione del vocabolario conta roba propria: due case
+			# possono soddisfarla tutte e due, e allora l'obiettivo non le mette
+			# l'una contro l'altra — ci giocano accanto. Su dodici obiettivi
+			# **uno solo** era conteso, e il tavolo era quattro solitari.
+			#
+			# Questa condizione e' vera per **un seggio alla volta**, per
+			# costruzione: chiede di stare davanti a tutti gli altri di almeno
+			# `by`. Un obiettivo che la usa non si puo' spartire, e due case che
+			# lo pescano devono togliersi qualcosa a vicenda.
+			return _leads(entity_id, condition)
 		"state_tag_present":
 			return _has_tag(condition, context)
 		"state_tag_absent":
@@ -225,6 +238,40 @@ func _resolve(value: String, context: Dictionary) -> String:
 ## «Un castello a Eredan» e' tipo + grado + Regione con `min: 1`. «E nessuno ha
 ## alzato una reggia sulla montagna» e' grado 3 + Regione + `anyone` con
 ## `max: 0`. Lo stesso conto dice tutte e due le cose.
+## Quanto vale la metrica dichiarata, per un seggio. Le tre monete che si
+## possono contendere sulla mappa e in mano: le pietre, le Regioni, le carte.
+func _lead_value(entity_id: String, condition: Dictionary) -> int:
+	match str(condition.get("what", "control")):
+		"structures":
+			return _structures_held(entity_id, condition)
+		"presence":
+			var standing: int = 0
+			for region_id in world["regions"]:
+				standing += service.presence_count(entity_id, str(region_id))
+			return standing
+		"hand":
+			return service.hand_size(entity_id)
+		_:
+			return service.control_count(entity_id)
+
+
+## Davanti a **tutti** gli altri, di almeno `by`. A parita' non conta: per stare
+## davanti bisogna superare, come per togliere una Regione a chi la tiene
+## ([D-158](DECISIONS.md#d-158)) — e a zero non si guida niente, altrimenti
+## quattro case a zero pietre sarebbero tutte in testa.
+func _leads(entity_id: String, condition: Dictionary) -> bool:
+	var by: int = int(condition.get("by", 1))
+	var mine: int = _lead_value(entity_id, condition)
+	if mine <= 0:
+		return false
+	for other in service.active_entities():
+		if str(other) == entity_id:
+			continue
+		if mine - _lead_value(str(other), condition) < by:
+			return false
+	return true
+
+
 func _structures_held(entity_id: String, condition: Dictionary) -> int:
 	var wanted_type: String = str(condition.get("structure_type", ""))
 	var family: String = str(condition.get("structure_family", ""))

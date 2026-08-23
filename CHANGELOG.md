@@ -5,6 +5,44 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.189 — Tenere paga, gli obiettivi si contendono, e il cervello non li guarda (D-220, D-221)
+
+- Prima mossa su ISSUES 55. **`hand_refill.per_control`**: carte in più per
+  Regione **controllata**, e altrettanto tetto sulla mano. Il possesso non
+  pagava più che starci dentro.
+- **Il preventivo era sbagliato e la misura l'ha detto.** Avevo scritto che il
+  collo di bottiglia era il tetto per Atto (`cap: 6`); l'ho alzato a 8 e non è
+  cambiato **niente**. Il tetto vero è quello sulla **mano**: tutti convergono
+  alla stessa mano piena. Il cap è tornato a 6 — un cambio che non fa niente non
+  resta.
+- **E la sonda ha sbagliato la domanda due volte**, cambiando conclusione ogni
+  volta: «carte in mano a fine anno» (chi ha più pedine pesca *e spende* di più),
+  poi «carte pescate raggruppate per le pedine di fine anno» (chi finisce con
+  cinque le ha posate tardi). La coppia giusta — con quante pedine si è pescato
+  quanto, ricostruita dal registro in ordine — dice che con **3 pedine si
+  pescano 3,44 carte e con 5 se ne pescano 3,12**: non piatto, **invertito**.
+- **`leads_in`**, tipo di condizione nuovo: «più di chiunque altro» su una delle
+  quattro monete. È vera per **un seggio alla volta per costruzione** — alzare
+  una soglia rende un obiettivo più difficile, non più conteso. Tre obiettivi
+  nuovi la usano; il pool passa da 12 a 15 e i contesi da **1 a 4**.
+- **Il ritrovamento, più importante delle due decisioni**: aggiunti gli obiettivi
+  contesi, la mappa **non si è mossa**. Il motivo sta in una riga —
+  `grep -c "objective" policy_decider.gd` → **0**. Il cervello che gioca il
+  cancello **non legge gli obiettivi**: insegue le condizioni del Destino, mentre
+  da D-198 la vittoria si conta **contando obiettivi**. Chi gioca insegue una
+  cosa e il punteggio ne conta un'altra.
+- **Cosa vuol dire per i verbali già scritti**: ogni misura sugli obiettivi —
+  il libro mastro compreso — dice *cosa capita* a un seggio che non li persegue,
+  non quanto siano difficili da perseguire. Restano vere come descrizione di ciò
+  che il cancello misura; non dicono quanto valga un obiettivo per chi lo vuole.
+- **I numeri**: il padrone passa di mano **2,32 → 2,42** volte l'anno, Regioni
+  contese **2,60 → 2,66** su 6, Verità scritte **336 → 348**. Playtest **0/8**.
+- **Non ho toccato il cervello**: insegnargli a inseguire gli obiettivi cambia
+  ogni numero di ogni verbale che li nomina, ed è una decisione che va presa
+  apposta.
+
+---
+
 ## 0.1.188 — Il brief d'arte era vecchio, e il cancello locale non lo sapeva
 
 - **Difetto mio, trovato dalla CI.** D-218 ha cambiato il testo stampato di due

@@ -162,7 +162,8 @@
         "per_token": 2,
         "floor": 2,
         "cap": 6,
-        "hand_cap": 7
+        "hand_cap": 7,
+        "per_control": 1
       },
       "tension_tokens": {
         "per_action": 1,
@@ -549,7 +550,8 @@
         "per_token": 2,
         "floor": 2,
         "cap": 6,
-        "hand_cap": 7
+        "hand_cap": 7,
+        "per_control": 1
       },
       "tension_tokens": {
         "per_action": 1,
