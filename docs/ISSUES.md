@@ -2785,6 +2785,50 @@ obiettivi**, e va deciso apposta invece che di sfuggita dentro un'altra voce.
 
 ---
 
+## La mossa 0 è spedita, e la mappa non si è mossa lo stesso (0.1.190, [D-222](DECISIONS.md#d-222))
+
+Il cervello adesso legge gli obiettivi che ha in mano, in **un solo punto** —
+`_conditions()`, che ha nove chiamanti — e li insegue in ogni scelta.
+
+| 100 semi, cambia solo questa riga | prima | dopo |
+|---|---|---|
+| **obiettivi presi in tutto** | 397 | **446** |
+| anni chiusi con quattro su quattro | 2 | **7** |
+| «Due Terre, una Voce» (conteso) | 32,1% | **39,5%** |
+| NONE, tavolo misto | 93 | **80** |
+| VITTORIE, tavolo misto | 147 | **175** |
+| TRIONFI, tavolo misto | 4 | **7** |
+| **il padrone passa di mano** | **2,42** | **2,49** |
+| Regioni contese a fine anno | 2,66 su 6 | 2,62 su 6 |
+
+**Un cervello che insegue quello per cui si vince, vince di più.** Ma le due
+righe in fondo sono quelle che contano per questa voce, e **non si sono mosse**.
+
+### Quindi la causa è un'altra ancora, e adesso è isolata
+
+Il cervello *vorrebbe* la mappa — «Due Terre, una Voce» sale di sette punti — ma
+**non ha con cosa prenderla**:
+
+- **MUOVERE si gioca 3,79 volte l'anno** e le pedine sono **quattro**: finite
+  quelle, l'unico modo di crescere è togliere una pedina da dove si è già;
+- **`ADD_PRESENCE` compare una volta sola** in cinquantadue Conseguenze: un
+  Consiglio caccia e assegna, non manda nessuno da nessuna parte;
+- **costruire non è una scelta**: una carta sola su 48 lo permette, e infatti
+  «Più Pietra di Tutti» non si muove di un punto (19,8% prima e dopo).
+
+Non è più una questione di *volere*: è che **il gioco non offre abbastanza modi
+di andare da qualche parte**. Le mosse 2 e 4 del piano qui sopra sono adesso le
+uniche rimaste, e in quest'ordine:
+
+1. **Le domande spostano la mappa** — Conseguenze che *mettono* pedine, non solo
+   che le tolgono. È la più economica: è contenuto, non regole.
+2. **Costruire diventa una scelta reale** — più carte con un mestiere di pietra.
+
+**Fatto quando** le Regioni contese a fine anno sono più di tre su sei e il
+padrone cambia mano più di tre volte l'anno, col playtest ancora **0/8**.
+
+---
+
 ### 53. RIVENDICARE può forzare un Consiglio che poi non si apre
 
 `regole` · `difetto` · **misurata in 0.1.183** ([D-214](DECISIONS.md#d-214))

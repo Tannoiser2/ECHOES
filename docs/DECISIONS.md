@@ -10,6 +10,76 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-222 — Il cervello insegue quello per cui si vince
+**implemented in 0.1.190** — ISSUES 55, la mossa 0
+
+[D-221](#d-221) ha trovato la distanza e questa la chiude. Da
+[D-198](#d-198) la partita si vince **contando quattro obiettivi**; il
+`PolicyDecider` — il cervello che gioca il cancello — leggeva soltanto le
+condizioni del **Destino**, e la parola «objective» non compariva **nemmeno una
+volta** in tutto quel file.
+
+> Chi gioca inseguiva una cosa, e il punteggio ne contava un'altra.
+
+### Una funzione sola, e nove posti che la leggono
+
+`_conditions()` e' il punto unico da cui il decider ricava cosa vuole: nove
+chiamanti, che sono la scelta dell'azione, delle Regioni, delle carte da
+acquisire, delle Tensioni da spingere e del voto al Consiglio. Aggiungere li' le
+clausole degli obiettivi in mano li fa inseguire **ovunque**, senza scrivere
+un'euristica nuova per ognuno.
+
+Due dettagli che non sono dettagli:
+
+- **il Destino resta.** E' ancora lui a dire il livello, ed e' quello che fa
+  somigliare una casa a se stessa: togliere il Destino avrebbe fatto quattro
+  ottimizzatori identici con quattro mazzi diversi.
+- **un obiettivo gia' preso smette di essere un movente.** E' un punto in
+  cassaforte, e continuare a giocarci contro toglierebbe azioni a quelli che
+  mancano ancora.
+
+### I numeri, 100 semi — e il confronto e' pulito
+
+Le due misure differiscono **solo** per questa riga: stesso pool di 15
+obiettivi, stesso `per_control`, stesso tutto.
+
+| | cervello cieco | **cervello che vede** |
+|---|---|---|
+| **obiettivi presi in tutto** | 397 | **446** (+12,3%) |
+| anni chiusi con **quattro su quattro** | 2 | **7** |
+| «Due Terre, una Voce» (conteso) | 32,1% | **39,5%** |
+| NONE in tutto, tavolo misto | 93 | **80** |
+| VITTORIE, tavolo misto | 147 | **175** |
+| TRIONFI, tavolo misto | 4 | **7** |
+| Consigli l'anno, misto | 4,55 | **4,66** |
+| playtest 100 semi | 0/8 | **0/8** |
+
+**Un cervello che insegue quello per cui si vince, vince di piu'** — ovvio a
+dirsi, e non era vero fino a ieri. Il vincolo mai negoziato regge: **0 su 8** a
+tavolo misto e uniforme.
+
+### Quello che si dichiara, ed e' la parte che conta
+
+- **La mappa non si e' mossa lo stesso.** Il padrone passa di mano 2,42 → 2,49
+  volte l'anno, le Regioni contese restano 2,6 su 6. Era la ragione per cui il
+  committente ha chiesto tutto questo, e **non e' risolta**: il cervello adesso
+  *vorrebbe* la mappa, ma non ha con cosa prenderla — MUOVERE si gioca 3,79
+  volte l'anno e le pedine sono quattro. Il collo di bottiglia e' li', non nella
+  testa di chi gioca.
+- **«Piu' Pietra di Tutti» non si muove di un punto** (19,8% prima e dopo): il
+  cervello non puo' decidere di costruire, puo' solo impegnare la carta giusta
+  se ce l'ha ([D-218](#d-218) gliene ha data una).
+- **Tutti i numeri sugli obiettivi scritti prima di oggi misuravano un cervello
+  cieco.** Restano veri come descrizione di quello che il cancello faceva; non
+  dicono quanto valga un obiettivo per chi lo persegue. I due piu' esposti sono
+  quelli di [ISSUES 52](ISSUES.md#52-lyra-non-ha-mai-trionfato-in-centoventi-anni),
+  e vanno riletti con questo in mente.
+- **Il tavolo misto e' cambiato meno di quello uniforme**, perche' i caratteri
+  di `TableOfCharacters` pesano le azioni a modo loro e smorzano la spinta. Non
+  l'ho toccato: e' un secondo cervello, e un cambio per volta.
+
+---
+
 ## D-220 — Tenere una Regione paga, e il tetto non era la leva
 **implemented in 0.1.189** — ISSUES 55, prima mossa
 

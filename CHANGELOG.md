@@ -5,6 +5,34 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.190 — Il cervello insegue quello per cui si vince (D-222)
+
+- **La mossa 0 di ISSUES 55.** Da D-198 si vince contando quattro obiettivi; il
+  `PolicyDecider` leggeva solo le condizioni del **Destino**, e la parola
+  «objective» non compariva **nemmeno una volta** in quel file.
+- **Una funzione sola.** `_conditions()` è il punto da cui il decider ricava cosa
+  vuole, e ha **nove** chiamanti: azione, Regioni, carte, Tensioni, voto al
+  Consiglio. Aggiungere lì le clausole degli obiettivi in mano le fa inseguire
+  ovunque, senza un'euristica nuova per ognuno.
+- **Il Destino resta** — è lui a dire il livello, ed è quello che fa somigliare
+  una casa a se stessa — e **un obiettivo già preso smette di essere un
+  movente**: è un punto in cassaforte, e giocarci contro toglierebbe azioni a
+  quelli che mancano.
+- **I numeri** (100 semi, confronto pulito: cambia solo questa riga):
+  obiettivi presi **397 → 446**, anni chiusi con quattro su quattro **2 → 7**,
+  «Due Terre, una Voce» **32,1% → 39,5%**, e al tavolo misto NONE **93 → 80**,
+  VITTORIE **147 → 175**, TRIONFI **4 → 7**. Playtest **0/8**.
+- **Quello che si dichiara, ed è la parte che conta**: **la mappa non si è mossa
+  lo stesso** (2,42 → 2,49 passaggi di mano). Il cervello adesso *vorrebbe* la
+  mappa ma non ha con cosa prenderla — MUOVERE si gioca 3,79 volte l'anno e le
+  pedine sono quattro. Il collo di bottiglia è lì, non nella testa di chi gioca.
+- **E tutti i numeri sugli obiettivi scritti prima di oggi misuravano un cervello
+  cieco**: restano veri come descrizione di ciò che il cancello faceva, non
+  dicono quanto valga un obiettivo per chi lo persegue. I più esposti sono quelli
+  di ISSUES 52.
+
+---
+
 ## 0.1.189 — Tenere paga, gli obiettivi si contendono, e il cervello non li guarda (D-220, D-221)
 
 - Prima mossa su ISSUES 55. **`hand_refill.per_control`**: carte in più per
