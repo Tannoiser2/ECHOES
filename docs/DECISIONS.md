@@ -10,6 +10,107 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-216 — Le sedici coppie che non si conoscevano
+**implemented in 0.1.185** — il debito dichiarato da D-213, pagato
+
+[D-213](#d-213) ha messo le case in un mazzo solo e ha chiuso il verbale con una
+riga onesta: *«le 16 relazioni incrociate non esistono. Su 28 coppie possibili ne
+sono scritte 12, tutte dentro la vecchia linea [...] un tavolo misto e' **piu'
+piatto** di uno storico»*. Il committente ha detto di sistemarle.
+
+### «Piatto» non e' un aggettivo: e' un numero, ed era il 14%
+
+La prima cosa da fare era smettere di stimarlo. `run_table_probe` conta, per
+ogni tavolo che il seme apparecchia, **quante delle sei coppie sedute sono
+calde** — cioe' quante non sono NEUTRAL.
+
+| 200 semi | prima | **dopo** |
+|---|---|---|
+| coppie scritte nel dato | 12 su 28 | **28 su 28** |
+| di cui calde | 6 | **14** |
+| **tavoli piatti** (nessuno si conosce) | **28 — il 14,0%** | **0 — lo 0,0%** |
+| coppie calde per tavolo | 1,22 su 6 | **2,94 su 6** |
+| — di cui alleanze | 0,41 | **1,22** |
+| — di cui ostilita' | 0,80 | **1,72** |
+| il tavolo piu' comune | **1 coppia calda su 6** (51,5%) | **3 su 6** (45,0%) |
+
+Un tavolo piatto non e' un tavolo tranquillo: e' **un tavolo senza storia**.
+Nessuna clausola che legge un legame si qualifica, il peso dell'alleanza al
+Consiglio ([D-139](#d-139)) non si applica mai, e FORGIARE parte da zero per
+tutti. Uno su sette.
+
+### Quante scriverne calde, e perche' otto
+
+Il criterio non e' stato «quante ne servono» ma **la densita' che i due tavoli
+d'autore avevano gia'**: nel Grano 2 coppie calde su 6, nel Sale 4 su 6. Meta'
+esatta sulle dodici scritte. Quindi delle sedici mancanti, **otto calde e otto
+neutrali** — e le neutrali sono scritte lo stesso, perche' un neutrale
+dichiarato e un neutrale per dimenticanza si comportano uguale al tavolo ma
+dicono due cose diverse a chi legge il dato.
+
+La media pescata torna a **2,94 su 6**: la stessa temperatura dei tavoli scritti
+a mano, che e' il numero che il criterio prometteva.
+
+### Le otto calde, e da dove vengono
+
+Nessuna e' stata scelta per far tornare i conti. Ognuna era gia' scritta nelle
+descrizioni, e non se ne era accorto nessuno:
+
+| coppia | | perche' |
+|---|---|---|
+| Lyra ↔ l'Ordine del Vetro | **HOSTILE** | l'Ordine *«custodisce quello che fu misurato, e la regola dice che misurarlo di nuovo e' peccato»*. Lyra **e' quella che l'ha misurato** |
+| Vaerax ↔ la Cenere | **HOSTILE** | la Cenere *«tiene le Montagne Rosse e campa di quello che l'antica miniera ha lasciato indietro»*. Vaerax **dorme sotto le Montagne Rosse** |
+| Aldric ↔ la Cenere | **HOSTILE** | due case di POTERE sulla stessa terra |
+| Aldric ↔ le Citta' Libere | **HOSTILE** | un re, e sette citta' che si governano da sole |
+| Vaerax ↔ il Vetro | **ALLY** | l'Ordine custodisce cio' che fu misurato: custodisce anche il suo sonno |
+| il Popolo Nahr ↔ la Gilda del Sale | **ALLY**, PACT | undicimila persone che si spostano, e una Gilda i cui carichi devono muoversi |
+| il Popolo Nahr ↔ le Citta' Libere | **ALLY** | chi non ha padrone riconosce chi non ha padrone |
+| Aldric ↔ la Gilda del Sale | **ALLY**, DEBT | il trono ha bisogno di grano, e la Gilda di una corona che garantisca le firme |
+
+### Un'asimmetria che c'era gia', e nessuno l'aveva vista
+
+La Cenere diceva «alleata al Sale». Il Sale diceva «alleata alla Cenere, **per
+patto**». Il patto valeva lo stesso — i tag si sommano — ma **il dato diceva due
+cose diverse**, e sul livello non sarebbe andata cosi': nel mondo `relations` e'
+una **coppia**, e il motore la costruisce leggendo le Entita' in ordine
+alfabetico, quindi chi scrive per ultimo decide. Due case che si dichiarano
+livelli diversi non litigano: **una delle due frasi sparisce**, e quale dipende
+dall'ordine degli id. Nessun errore, nessun log.
+
+`check_relations_are_written_both_ways` chiude tutte e tre le porte: livelli o
+tag discordi, una relazione con una casa inesistente, e — con `entity_pool`
+acceso — **una coppia di case pescabili che non e' scritta da nessuna parte**.
+Provata su tutte e tre.
+
+### E una prova che guarda il tavolo, non il dato
+
+`test_the_table_has_a_history` gira su cinquanta tavoli pescati e chiede che
+nessuno apra piatto, piu' un tavolo interamente misto che deve portare almeno un
+legame **incrociato**. Sta accanto alla guardia e non al suo posto, perche' le
+due dicono cose diverse: la guardia dice **che ogni coppia e' scritta**, la prova
+dice **che quello che e' scritto arriva al tavolo che il seme apparecchia** — e
+sono affermazioni che si sono gia' staccate una volta, quando due clausole
+nominavano una casa che poteva non sedersi ([D-213](#d-213)). Provata: senza le
+sedici coppie va rossa su cinque semi.
+
+### Quello che si dichiara
+
+- **Il playtest quasi non si muove**: Consigli l'anno 4,49 → 4,49 (misto) e
+  4,60 → 4,57 (uniforme), Verita' 333 → 335 e 308 → 307, playtest **0/8**. Le
+  relazioni pesano al **Consiglio** — nel peso dell'alleato che impegna carte, e
+  nelle clausole che leggono un legame — non nella scelta delle azioni, e il
+  cervello di misura non tratta ancora un alleato diversamente da uno
+  sconosciuto quando decide cosa fare.
+- **Quindi il numero che conta e' quello della sonda nuova, non quello del
+  cancello.** Il cancello dice che non ho rotto niente; `run_table_probe` dice
+  che il tavolo ha una storia. Sono due cose diverse e serve dirle separate.
+- **Le otto neutrali restano una scelta da rivedere.** Lyra e la Gilda del Sale
+  — una che legge registri e una che li tiene — sono la piu' evidente: e'
+  rimasta neutrale per tenere la densita' a otto, non perche' non ci sia niente
+  da dire.
+
+---
+
 ## D-215 — Nessuna famiglia senza un'azione
 **implemented in 0.1.184** — la risposta a «le azioni sono equamente distribuite nelle carte?»
 

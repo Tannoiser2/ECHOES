@@ -22,16 +22,11 @@
       ],
       "relations": [
         {
-          "with": "ENT_LIBERE",
-          "level": "HOSTILE",
+          "with": "ENT_ALDRIC",
+          "level": "ALLY",
           "tags": [
             "DEBT"
           ]
-        },
-        {
-          "with": "ENT_VETRO",
-          "level": "NEUTRAL",
-          "tags": []
         },
         {
           "with": "ENT_CENERE",
@@ -39,6 +34,35 @@
           "tags": [
             "PACT"
           ]
+        },
+        {
+          "with": "ENT_LIBERE",
+          "level": "HOSTILE",
+          "tags": [
+            "DEBT"
+          ]
+        },
+        {
+          "with": "ENT_LYRA",
+          "level": "NEUTRAL",
+          "tags": []
+        },
+        {
+          "with": "ENT_NAHR",
+          "level": "ALLY",
+          "tags": [
+            "PACT"
+          ]
+        },
+        {
+          "with": "ENT_VAERAX",
+          "level": "NEUTRAL",
+          "tags": []
+        },
+        {
+          "with": "ENT_VETRO",
+          "level": "NEUTRAL",
+          "tags": []
         }
       ],
       "presence": [
@@ -213,6 +237,11 @@
       ],
       "relations": [
         {
+          "with": "ENT_ALDRIC",
+          "level": "NEUTRAL",
+          "tags": []
+        },
+        {
           "with": "ENT_CENERE",
           "level": "ENEMY",
           "tags": [
@@ -220,12 +249,27 @@
           ]
         },
         {
+          "with": "ENT_LIBERE",
+          "level": "ALLY",
+          "tags": []
+        },
+        {
+          "with": "ENT_LYRA",
+          "level": "HOSTILE",
+          "tags": []
+        },
+        {
+          "with": "ENT_NAHR",
+          "level": "NEUTRAL",
+          "tags": []
+        },
+        {
           "with": "ENT_SALE",
           "level": "NEUTRAL",
           "tags": []
         },
         {
-          "with": "ENT_LIBERE",
+          "with": "ENT_VAERAX",
           "level": "ALLY",
           "tags": []
         }
@@ -397,21 +441,43 @@
       ],
       "relations": [
         {
-          "with": "ENT_VETRO",
-          "level": "ENEMY",
-          "tags": [
-            "VENDETTA"
-          ]
-        },
-        {
-          "with": "ENT_SALE",
-          "level": "ALLY",
+          "with": "ENT_ALDRIC",
+          "level": "HOSTILE",
           "tags": []
         },
         {
           "with": "ENT_LIBERE",
           "level": "NEUTRAL",
           "tags": []
+        },
+        {
+          "with": "ENT_LYRA",
+          "level": "NEUTRAL",
+          "tags": []
+        },
+        {
+          "with": "ENT_NAHR",
+          "level": "NEUTRAL",
+          "tags": []
+        },
+        {
+          "with": "ENT_SALE",
+          "level": "ALLY",
+          "tags": [
+            "PACT"
+          ]
+        },
+        {
+          "with": "ENT_VAERAX",
+          "level": "HOSTILE",
+          "tags": []
+        },
+        {
+          "with": "ENT_VETRO",
+          "level": "ENEMY",
+          "tags": [
+            "VENDETTA"
+          ]
         }
       ],
       "presence": [
@@ -579,6 +645,26 @@
       ],
       "relations": [
         {
+          "with": "ENT_ALDRIC",
+          "level": "HOSTILE",
+          "tags": []
+        },
+        {
+          "with": "ENT_CENERE",
+          "level": "NEUTRAL",
+          "tags": []
+        },
+        {
+          "with": "ENT_LYRA",
+          "level": "NEUTRAL",
+          "tags": []
+        },
+        {
+          "with": "ENT_NAHR",
+          "level": "ALLY",
+          "tags": []
+        },
+        {
           "with": "ENT_SALE",
           "level": "HOSTILE",
           "tags": [
@@ -586,13 +672,13 @@
           ]
         },
         {
-          "with": "ENT_VETRO",
-          "level": "ALLY",
+          "with": "ENT_VAERAX",
+          "level": "NEUTRAL",
           "tags": []
         },
         {
-          "with": "ENT_CENERE",
-          "level": "NEUTRAL",
+          "with": "ENT_VETRO",
+          "level": "ALLY",
           "tags": []
         }
       ],
