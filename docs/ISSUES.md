@@ -2651,6 +2651,47 @@ mondo e per le guardie; nessuna interfaccia oggi la mostra.
 
 ---
 
+### 56. Dieci Conseguenze su cinquantadue non escono mai
+
+`contenuto` · `bilanciamento` · **misurata in 0.1.191** ([D-223](DECISIONS.md#d-223))
+
+Trovata cercando perché le Conseguenze che spostano pedine non muovevano la
+mappa. Non era quello che facevano: era **quante volte venivano fuori**.
+
+Su **931 Consigli in 200 anni** (le due linee, 100 semi ciascuna), **42
+Conseguenze su 52** escono almeno una volta. Le altre **dieci non escono mai**:
+
+| | |
+|---|---|
+| `CNS_DRAGON_SLAIN` | «Il Drago Abbattuto» |
+| `CNS_CROWN_REUNITED` | «La Corona Riunita» |
+| `CNS_OATH_BROKEN` | «Il Giuramento Rotto» |
+| `CNS_HARVEST_RETURNS` | «Il Raccolto che Torna» |
+| `CNS_CAPITAL_TAKEN` | «La Capitale Presa» |
+| `CNS_EXODUS` | «L'Esodo» |
+| `CNS_LEDGER_OPENED`, `CNS_ACCOUNT_SETTLED`, `CNS_LEGEND_RETOLD`, `CNS_MINE_REOPENED` | |
+
+Sono i nomi grossi del catalogo: il drago che muore, la corona che si ricompone,
+il giuramento che si rompe. **Contenuto scritto con cura che nessuno vede mai**,
+e che nessuna misura aveva mai contato — le sonde guardano cosa succede, non
+cosa *non* succede.
+
+**Perché conta più di quanto sembri.** Una Conseguenza esce se una proposizione
+la elenca e quella proposizione viene scelta e passa. Dieci che non escono
+significano che alcune proposizioni sono irraggiungibili, e allora il problema
+non è il catalogo: è **quali domande arrivano al tavolo e cosa si può proporre
+quando ci arrivano**. È la stessa forma di ISSUES 53 (RIVENDICARE forza un
+Consiglio che poi non si apre).
+
+**Da misurare prima di decidere**: per ognuna delle dieci, se la proposizione che
+la elenca sia mai stata scelta, e se no perché — non idonea, mai proposta, o
+sempre perdente. Sono tre difetti diversi con tre rimedi diversi.
+
+**Fatto quando** ogni Conseguenza del catalogo esce almeno una volta su 200 anni,
+o è stata tolta perché non serviva.
+
+---
+
 ### 55. Il ciclo del gioco è rotto in tre punti: spostarsi non paga, la maggioranza non si contende, gli obiettivi non si incrociano
 
 `regole` · `bilanciamento` · voluta dal committente · **misurata in 0.1.187**
@@ -2826,6 +2867,38 @@ uniche rimaste, e in quest'ordine:
 
 **Fatto quando** le Regioni contese a fine anno sono più di tre su sei e il
 padrone cambia mano più di tre volte l'anno, col playtest ancora **0/8**.
+
+---
+
+## Provata anche la mossa «le domande spostano la mappa», e respinta (0.1.191, [D-223](DECISIONS.md#d-223))
+
+Cinque Conseguenze hanno avuto un `ADD_PRESENCE`, ognuna con la ragione già
+scritta nel proprio testo. Tre forme diverse, **lo stesso numero**, e tutte
+peggiori del punto di partenza:
+
+| il padrone passa di mano | |
+|---|---|
+| prima | **2,49 volte l'anno** |
+| tutte e cinque | 2,39 |
+| solo le tre migrazioni | 2,39 |
+| migrazioni mandate dove sta il rivale | 2,39 |
+
+**Il perché sta in un numero che non avevo mai guardato**: quelle Conseguenze
+escono **21 volte in 100 anni** su ~470 Consigli — il 4,5% — e due di loro **mai**.
+Non è che spostare la gente non funziona: è che l'Effetto era su carte che non si
+giocano. E allargando il conto, **dieci Conseguenze su 52 non escono mai**: è
+[ISSUES 56](#56-dieci-conseguenze-su-cinquantadue-non-escono-mai).
+
+**Quindi questa voce ha esaurito le sue mosse** senza risolvere la domanda che
+l'ha aperta. Restano tre fatti, e tutti e tre puntano altrove:
+
+1. il cervello **vuole** la mappa e non ha con cosa prenderla (MUOVERE 3,79
+   volte l'anno, quattro pedine);
+2. il Consiglio **potrebbe** spostare gente ma le carte che lo fanno non escono;
+3. costruire non è una scelta: una carta su 48.
+
+La mappa non è ferma per una regola sbagliata. È ferma perché **il gioco offre
+pochi modi di andare da qualche parte, e quelli che offre escono di rado**.
 
 ---
 

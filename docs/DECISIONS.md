@@ -10,6 +10,83 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-223 — Il tetto vale anche per il mondo, e le domande che spostano non escono mai
+**implemented in 0.1.191** — ISSUES 55, la mossa che non ha funzionato e il perche'
+
+[D-222](#d-222) aveva lasciato la mappa ferma con una diagnosi precisa: il
+cervello *vuole* la mappa ma non ha con cosa prenderla, e **`ADD_PRESENCE`
+compare una volta sola in cinquantadue Conseguenze**. La mossa era darne di piu':
+un Consiglio che caccia e assegna ma non manda mai nessuno da nessuna parte non
+puo' muovere niente.
+
+### Un difetto vero, trovato prima di introdurlo
+
+`_add_presence` **non controllava il tetto delle pedine**. L'azione MUOVERE lo
+fa da sempre; l'applier no, quindi una Conseguenza poteva posare la quinta
+pedina di una casa che ne ha quattro. Non si era mai visto perche' una sola
+Conseguenza metteva presenza — il giorno in cui sono diventate sei, il Consiglio
+avrebbe sforato in silenzio una regola che i giocatori rispettano.
+
+Adesso il tetto vale anche per il mondo. L'inverso e' escluso apposta: arriva con
+`at` e rimette una pedina gia' contata, e **disfare deve sempre poter disfare**.
+
+Il difetto ha fatto rosse due prove che costruivano uno stato **impossibile** —
+quattro pedine di Vaerax in una Regione, quando ne ha quattro in tutto e due
+altrove. Adesso `_stand` le richiama da dove stanno, che e' anche quello che una
+casa farebbe davvero.
+
+### Poi la mossa, e tre misure che dicono di no
+
+Cinque Conseguenze hanno avuto un `ADD_PRESENCE`, ognuna con la ragione gia'
+scritta nel proprio testo — «i carri rimessi in strada» arrivano da qualche
+parte, chi prende una capitale ci entra.
+
+| 100 semi, il padrone passa di mano | |
+|---|---|
+| prima (D-222) | **2,49 volte l'anno** |
+| tutte e cinque | 2,39 |
+| solo le tre migrazioni | 2,39 |
+| migrazioni mandate **dove sta il rivale** | 2,39 |
+
+Tre forme diverse, lo stesso numero, e tutte **peggiori** del punto di partenza.
+Le due `CONTROL` peggioravano per una ragione leggibile — mettere il proponente
+dove ha appena vinto **consolida** invece di contendere — e sono state tolte. Ma
+le migrazioni da sole non spostavano niente lo stesso.
+
+### Il numero che chiude la questione
+
+Le Conseguenze che spostano gente, su **100 anni**:
+
+| | |
+|---|---|
+| CNS_ASH_ABANDONED | 8 volte |
+| CNS_ABANDONED | 7 |
+| CNS_SEALED_VALLEY | 4 |
+| CNS_VALLEY_CLEARED | 2 |
+| **CNS_EXODUS** | **0** |
+| **CNS_CAPITAL_TAKEN** | **0** |
+
+**Ventuno attivazioni in cento anni**, su circa **470 Consigli**. Il 4,5%. E due
+di quelle carte non escono **mai**.
+
+Non e' che spostare la gente non funziona: e' che **ho messo l'Effetto su carte
+che non si giocano**. Qualunque cosa scriva li' dentro e' contenuto che il tavolo
+non vede.
+
+### Cosa resta, e cosa si dichiara
+
+- **Le tre migrazioni tengono l'`ADD_PRESENCE`**, non per bilanciamento ma
+  perche' e' **vero**: «qualcosa parte e non torna quell'anno» vuol dire che
+  parte *verso*. Costo misurato: 2,49 → 2,39 passaggi di mano, dentro il rumore
+  di ventuno attivazioni. Il playtest resta **0/8**.
+- **Le due `CONTROL` no.** Chi prende una capitale dovrebbe entrarci, ed e' vero
+  anche quello — ma li' l'effetto misurato ha un segno, e il segno e' contro
+  quello che la voce cerca.
+- **La mossa 4 e' respinta come leva**, e la voce cambia domanda: non «cosa fanno
+  le Conseguenze alla mappa» ma **quali Conseguenze escono**. E' [ISSUES 56](ISSUES.md#56-meta-delle-conseguenze-non-esce-mai-e-due-non-escono-affatto).
+
+---
+
 ## D-222 — Il cervello insegue quello per cui si vince
 **implemented in 0.1.190** — ISSUES 55, la mossa 0
 

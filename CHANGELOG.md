@@ -5,6 +5,40 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.191 — Il tetto vale anche per il mondo, e le domande che spostano non escono mai (D-223)
+
+- **Un difetto vero, trovato prima di introdurlo.** `_add_presence` non
+  controllava il tetto delle pedine: l'azione MUOVERE lo fa da sempre, l'applier
+  no. Una Conseguenza poteva posare la **quinta** pedina di una casa che ne ha
+  quattro — non si era mai visto perché una sola Conseguenza metteva presenza.
+  Adesso il tetto vale anche per il mondo; l'inverso è escluso apposta, perché
+  disfare deve sempre poter disfare.
+- **Sei carte promettevano una pedina anche a chi non ne ha più** (tre Asset, tre
+  Eco) e prima sforavano in silenzio. Adesso lo dicono: `optional`, cioè un
+  no-op dichiarato.
+- **E due prove costruivano uno stato impossibile** — quattro pedine di Vaerax in
+  una Regione, quando ne ha quattro in tutto e due altrove. Adesso `_stand` le
+  richiama da dove stanno.
+- **La mossa «le domande spostano la mappa» è respinta, misurata.** Cinque
+  Conseguenze con `ADD_PRESENCE`, tre forme diverse (tutte, solo le migrazioni,
+  migrazioni verso il rivale): **lo stesso numero ogni volta**, 2,49 → 2,39
+  passaggi di mano. Le due `CONTROL` peggioravano per una ragione leggibile —
+  mettere il proponente dove ha appena vinto **consolida** invece di contendere —
+  e sono state tolte.
+- **Il numero che chiude la questione**: quelle Conseguenze escono **21 volte in
+  100 anni** su ~470 Consigli, e due di loro **mai**. L'Effetto era su carte che
+  non si giocano.
+- **Aperta ISSUES 56**: allargando il conto, **10 Conseguenze su 52 non escono
+  mai** in 931 Consigli su 200 anni — «Il Drago Abbattuto», «La Corona Riunita»,
+  «Il Giuramento Rotto». Il 19% del catalogo è contenuto che nessuno vede, e
+  nessuna misura l'aveva mai contato: le sonde guardano cosa succede, non cosa
+  **non** succede.
+- **Le tre migrazioni tengono l'`ADD_PRESENCE`**, non per bilanciamento ma perché
+  è vero: «qualcosa parte e non torna quell'anno» vuol dire che parte *verso*.
+  Playtest **0/8**.
+
+---
+
 ## 0.1.190 — Il cervello insegue quello per cui si vince (D-222)
 
 - **La mossa 0 di ISSUES 55.** Da D-198 si vince contando quattro obiettivi; il
