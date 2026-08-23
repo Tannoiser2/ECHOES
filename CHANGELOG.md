@@ -5,6 +5,102 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.188 — Il brief d'arte era vecchio, e il cancello locale non lo sapeva
+
+- **Difetto mio, trovato dalla CI.** D-218 ha cambiato il testo stampato di due
+  carte — l'Assedio e l'Archivio — e `docs/BRIEF_ARTE.md` è **generato
+  dall'export e committato**: è il documento che si manda a chi disegna. Non
+  l'ho rigenerato, e il brief prometteva due carte che non esistono più.
+- **Perché il cancello locale diceva verde**: `tools/run_export.sh` *genera* il
+  brief, non lo confronta col committato. Il confronto lo faceva **solo la CI**.
+  È la stessa distanza fra le due strade che D-189 aveva già pagato una volta.
+- **Adesso confronta lui**: il brief disallineato produce un avviso con il
+  comando per rimediare, e `--check-brief` lo fa uscire **1**. Provato sporcando
+  il brief committato.
+- **Aggiunta la riga alla regola 5 di CONSEGNE**: se cambia il testo stampato di
+  una carta, si passa da `--check-brief`.
+
+---
+
+## 0.1.187 — Ogni relazione dice perché (D-219)
+
+- ISSUES 54 chiedeva una cosa sola: **ogni coppia neutrale lo è per una ragione
+  scritta, non per aritmetica**. Serviva un posto dove metterla.
+- **`relations[].note`, obbligatoria**, e scritta per tutte e **28** le coppie —
+  non solo le sedici nuove: le dodici d'autore avevano la loro ragione nelle
+  descrizioni delle case, e lasciarle mute avrebbe fatto sembrare *loro* quelle
+  di comodo.
+- **Uno scambio, col motivo. Lyra ↔ la Gilda del Sale** passa a alleata: tengono
+  tutte e due dei registri, per ragioni opposte — la Gilda per contare, Lyra per
+  capire. **Aldric ↔ la Cenere** torna neutrale: era la più generica delle otto
+  calde, e adesso il silenzio è una scelta («la corona non è mai salita sulle
+  montagne»).
+- **La guardia** confronta la nota fra le due scritture insieme al livello e ai
+  tag: le due metà di una coppia devono dire la stessa cosa anche sul perché.
+- **I numeri** (200 semi): tavoli piatti **0,0%**, coppie calde per tavolo
+  **2,94 → 2,88**, e le due facce si pareggiano — alleanze/ostilità da 1,22/1,72
+  a **1,42/1,47**. Playtest **0/8**.
+- **Dichiarato**: la nota **non arriva al tavolo**. È dato per chi scrive il mondo
+  e per le guardie; nessuna interfaccia oggi la mostra.
+
+---
+
+## 0.1.186 — L'Archivio, e le pietre che hanno una vita (D-217, D-218)
+
+**ISSUES 52 — la casa che non trionfa mai**
+
+- `starting_structures` dava un presidio a sei case su otto. Lyra e l'Ordine del
+  Vetro mancavano **sempre le stesse carte**: «Qualcosa che Resta in Piedi» al
+  6,7% e 23,1% contro il 100% delle altre.
+- **`STR_ARCHIVE`** — Archivio → La Grande Biblioteca — con una **famiglia sua,
+  `STUDIO`**. La prima versione lo metteva fra le OPERA, ed era lo stesso difetto
+  ribaltato: avrebbe reso «L'Opera che Porta il Nome» gratis per due e impossibile
+  per sei. E sta nella **seconda** Regione, perché nella prima avrebbe dato a Lyra
+  anche il controllo delle Miniere — una strada del suo Destino in regalo.
+- **I numeri**: anni chiusi con zero obiettivi, il Vetro **18 → 12** e Lyra
+  **7 → 6**; anni con due obiettivi, Lyra **13 → 19** e il Vetro **9 → 16**.
+  «Qualcosa che Resta in Piedi» passa da **6,7–100%** a **68,8–100%**: la carta
+  che divideva il tavolo in due non lo divide più.
+- **Due difetti veri trovati per strada.** Una prova che diceva di svuotare una
+  Regione e ne svuotava metà (`_clear` toglieva le pedine, lasciava le pietre) —
+  otto prove sono andate rosse e avevano ragione. E **un numero falso in una
+  sonda**: `run_objective_ledger` chiedeva gli obiettivi *dopo* `run()`, quando
+  le pietre erano già salite, e diceva che «Pietra sopra Pietra» si avvera nel
+  27–46% dei casi. In partita non si avvera mai. Adesso il consuntivo si
+  **congela** insieme ai livelli.
+
+**ISSUES 39 — le pietre hanno una vita**
+
+- Rimisurato con una sonda nuova (`run_stone_probe`): **13,02 pietre su 14,53 le
+  posa l'apertura**, dal gioco ne arrivano 1,51, e in cento anni **non ne viene
+  giù nessuna**. Le salite di grado erano **0,04 a partita**.
+- **Tre righe, ognuna misurata**: le pietre salgono su VICTORY e non solo su
+  TRIUMPH; **l'Archivio si può costruire** (`AST_KNOWLEDGE_ARCHIVE` era l'unica
+  delle 48 carte senza un mestiere, e adesso è l'unico modo che una casa ha di
+  *decidere* di costruire); **l'Assedio butta giù** il presidio della Regione
+  della domanda.
+- **I numeri**: alzate dal gioco **1,51 → 2,41**, abbattute **0,00 → 0,43**,
+  salite di grado **0,04 → 1,82**, grado 2+ a fine anno **0,56 → 2,34**. La mappa
+  adesso **si può anche svuotare**. Playtest **0/8**.
+- **Sei clausole di Destino** che l'apertura soddisfaceva da sola salgono a due.
+  Non è la stessa mossa provata e **ritirata** sugli obiettivi: lì non c'era modo
+  di costruire e la soglia la decideva il setup (il Muro passava a 0–11%, una
+  carta morta); qui il modo c'è.
+
+**Quello che resta aperto, dichiarato**
+
+- **«Il Muro che Tiene» è ancora una spunta** (0–100%): chiede un presidio, e
+  l'Archivio non lo è. Alzarne la soglia è stato provato e misurato come
+  peggiore.
+- **«Pietra sopra Pietra» resta 0 su 100**: la salita di grado arriva *dopo* il
+  conteggio degli obiettivi, quindi vale per l'anno dopo. Serve un modo di alzare
+  un grado **durante** l'anno, e non c'è.
+- **La strada A di ISSUES 39 era già fatta e nessuno l'aveva chiusa**: il criterio
+  chiedeva «ben sopra una pedina mossa per scelta a partita», e dopo D-215
+  MUOVERE si gioca **3,79 volte l'anno**.
+
+---
+
 ## 0.1.185 — Le sedici coppie che non si conoscevano (D-216)
 
 - Il debito dichiarato da D-213, pagato: su 28 coppie di case ne erano scritte

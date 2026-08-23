@@ -177,6 +177,39 @@
       }
     },
     {
+      "id": "STR_ARCHIVE",
+      "name": "Archivio",
+      "family": "STUDIO",
+      "owned": true,
+      "description": "Il posto dove si tiene quello che e' stato scritto. Non difende niente e non nutre nessuno: decide **cosa il mondo potra' ancora rileggere**, che e' un potere lento e non se ne accorge nessuno finche' non serve.",
+      "biomes": [
+        "UNDERGROUND",
+        "CITY",
+        "ROAD",
+        "MOUNTAIN",
+        "VALLEY"
+      ],
+      "grades": [
+        {
+          "name": "Archivio",
+          "value": 1,
+          "tag": "structure:archive",
+          "description": "Una stanza asciutta, uno scaffale e una persona che sa dov'e' ogni cosa."
+        },
+        {
+          "name": "La Grande Biblioteca",
+          "value": 2,
+          "tag": "structure:library",
+          "description": "Non e' piu' una stanza: ci si viene da lontano, e chi ci viene lascia qualcosa in cambio di quello che porta via."
+        }
+      ],
+      "ruin": {
+        "name": "L'Archivio Bruciato",
+        "scar": "scar:burned_records",
+        "description": "Restano gli scaffali e l'odore. Quello che c'era scritto adesso e' solo quello che qualcuno ricorda di aver letto."
+      }
+    },
+    {
       "id": "STR_FOREST",
       "name": "Foresta",
       "family": "LUOGO",

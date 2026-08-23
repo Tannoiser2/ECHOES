@@ -296,8 +296,8 @@
               {
                 "type": "structure_count",
                 "entity_id": "ENT_LYRA",
-                "min": 1,
-                "label": "Lo studio ha un tetto suo"
+                "min": 2,
+                "label": "Lo studio ha un tetto suo, e non e' solo l'Archivio d'apertura"
               },
               {
                 "type": "scar_count",
@@ -667,8 +667,8 @@
               {
                 "type": "structure_count",
                 "entity_id": "ENT_LYRA",
-                "min": 1,
-                "label": "Una pietra sua"
+                "min": 2,
+                "label": "Due pietre sue: l'Archivio e qualcosa che ha alzato lei"
               },
               {
                 "type": "control_count",

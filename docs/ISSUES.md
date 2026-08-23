@@ -1330,6 +1330,44 @@ interfacce. **Va disegnata in una seduta prima di essere scritta.**
 **Fatto quando** una delle due e' stata percorsa e misurata: le pedine mosse per
 scelta salgono ben sopra una a partita, e il playtest resta **FAIL ~180 · 0/8**.
 
+---
+
+## La strada A era già percorsa, e nessuno l'aveva chiusa (0.1.186)
+
+Il criterio qui sopra chiedeva «le pedine mosse per scelta ben sopra una a
+partita». Dopo che le azioni sono passate sulle carte ([D-188](DECISIONS.md#d-188))
+e sono state pareggiate fra le famiglie ([D-215](DECISIONS.md#d-215)), **MUOVERE
+si gioca 3,79 volte l'anno**. Il criterio è superato da due decisioni che non
+erano state scritte come risposta a questa voce.
+
+## La strada C, misurata e spedita ([D-218](DECISIONS.md#d-218))
+
+`run_stone_probe` ha rimisurato «74 costruite, zero abbattute» su 100 partite:
+
+| | prima | **dopo** |
+|---|---|---|
+| pietre alzate in tutto | 14,53 a partita | 15,43 |
+| — **dall'apertura** | **13,02** | 13,02 |
+| — **dal gioco** | **1,51** | **2,41** |
+| **abbattute** | **0,00** | **0,43** |
+| salite di grado | **0,04** | **1,82** |
+| grado 2+ in piedi a fine anno | 0,56 | **2,34** |
+
+**Il 90% delle pietre le posava il setup, e in cento anni non ne veniva giù
+nessuna.** Tre righe l'hanno cambiato: le pietre salgono su VICTORY e non solo
+su TRIUMPH; l'Archivio si può **costruire** impegnando la carta omonima — che era
+l'unica delle 48 senza un mestiere, e adesso è l'unico modo che una casa ha di
+*decidere* di costruire; e l'Assedio **butta giù** il presidio della Regione
+della domanda.
+
+**Resta aperto un punto solo, e ha una causa precisa**: «Pietra sopra Pietra»
+è ancora 0 su 100, perché la salita di grado arriva **dopo** il conteggio degli
+obiettivi — vale per l'anno successivo, non per quello in cui è successa. Serve
+un modo di alzare un grado **durante** l'anno.
+
+**Fatto quando** una struttura può salire di grado dentro l'anno per una scelta
+di chi gioca, e «Pietra sopra Pietra» smette di stare a zero.
+
 ### 38bis. ✅ Nota di metodo: il vincolo 0/8 lo fa rispettare il seggio piu' fragile — chiusa in 0.1.122
 
 `debito` · da [D-154](DECISIONS.md#d-154)
@@ -2534,9 +2572,38 @@ Nella saga lunga i TRIONFI restano **3 su 288 seggi-anno**, come prima
 dell'unificazione: il cambio non ha toccato la scala, e questa voce è ancora
 quella che deve toccarla.
 
+## Metà chiusa in 0.1.186: l'Archivio ([D-217](DECISIONS.md#d-217))
+
+Lyra e il Vetro aprono con **`STR_ARCHIVE`** — famiglia `STUDIO`, che è nuova e
+sta da sola apposta: metterlo fra le OPERA avrebbe ribaltato il difetto invece
+di toglierlo.
+
+| 100 semi | prima | dopo |
+|---|---|---|
+| anni con **zero** obiettivi, il Vetro | **18** | **12** |
+| anni con **zero** obiettivi, Lyra | 7 | **6** |
+| anni con due obiettivi, Lyra | 13 | **19** |
+| anni con due obiettivi, il Vetro | 9 | **16** |
+| «Qualcosa che Resta in Piedi», la casa peggiore | **6,7%** | **68,8%** |
+
+**La carta che divideva il tavolo in due non lo divide più.** Ma la voce resta
+aperta, e su tre punti precisi:
+
+1. **«Il Muro che Tiene» è ancora 0–100%.** Chiede un **presidio**, e l'Archivio
+   non lo è. Alzare la soglia a due è stato provato e **misurato come peggiore**:
+   0–11%, cioè una carta morta invece di una spunta.
+2. **«Pietra sopra Pietra» resta 0 su 100**, ora con la causa precisa: le pietre
+   salgono di grado **dopo** che gli obiettivi sono contati.
+3. **I TRIONFI restano rari.** L'Archivio alza il pavimento, non il tetto.
+
+**Fatto quando** nessuna coppia seggio × obiettivo sta sotto il 10% mentre le
+altre stanno sopra il 90%.
+
 ---
 
-### 54. Otto coppie di case restano neutrali per quota, non per scelta
+---
+
+### 54. ✅ Otto coppie di case restano neutrali per quota, non per scelta — chiusa in 0.1.187
 
 `contenuto` · **aperta in 0.1.185** ([D-216](DECISIONS.md#d-216))
 
@@ -2561,6 +2628,102 @@ scrive il mondo.
 
 **Fatto quando** ogni coppia neutrale lo è per una ragione scritta — «queste due
 non si sono mai incontrate», «si ignorano per scelta» — e non per aritmetica.
+
+## Chiusa in 0.1.187 ([D-219](DECISIONS.md#d-219))
+
+Serviva un posto dove metterla: **`relations[].note`**, obbligatoria, scritta per
+tutte e **28** le coppie — non solo le sedici nuove, perché le dodici d'autore
+avevano la loro ragione nelle descrizioni delle case e lasciarle mute avrebbe
+fatto sembrare *loro* quelle di comodo. La guardia la confronta fra le due
+scritture insieme al livello e ai tag.
+
+**Uno scambio, e col motivo.** Lyra ↔ la Gilda del Sale diventa **alleata** —
+tengono tutte e due dei registri, per ragioni opposte — e Aldric ↔ la Cenere
+torna **neutrale**, perché «due case di POTERE sulla stessa terra» è una
+categoria e non una storia; adesso il silenzio è una scelta.
+
+**I numeri reggono** (200 semi): tavoli piatti **0,0%**, coppie calde per tavolo
+**2,94 → 2,88**, e le due facce si pareggiano — alleanze/ostilità da **1,22/1,72**
+a **1,42/1,47**. Playtest **0/8**.
+
+**Resta dichiarato**: la nota **non arriva al tavolo**. È dato per chi scrive il
+mondo e per le guardie; nessuna interfaccia oggi la mostra.
+
+---
+
+### 55. Il ciclo del gioco è rotto in tre punti: spostarsi non paga, la maggioranza non si contende, gli obiettivi non si incrociano
+
+`regole` · `bilanciamento` · voluta dal committente · **misurata in 0.1.187**
+
+> «Dobbiamo fare in modo che la cosa sia più "mossa": costruire porta vantaggi,
+> avere maggioranza dà vantaggi (ricorda che peschi una carta per ogni presenza
+> che hai a inizio atto), spostarsi conviene quindi. Modificare la mappa dovrebbe
+> essere la priorità del gioco e una maggioranza dovrebbe essere una lotta tra
+> entità. Le domande dovrebbero smuovere la partita e anche gli obiettivi
+> dovrebbero incrociarsi per dare battaglia tra entità.»
+
+Il ciclo che il committente descrive — **presenza → carte → azioni → più mappa →
+più carte** — esiste nel dato ma è tagliato. `run_contest_probe` lo misura per la
+prima volta, su 100 partite a tavolo misto.
+
+### 1. Spostarsi costa e non rende
+
+Il rifornimento è `presenze × 2`, con un **tetto a 6**. Le pedine arrivano a 4.
+
+| pedine sul tavolo | carte che spettano | carte in mano a fine anno |
+|---|---|---|
+| 2 | 4 | — |
+| **3** | **6 (tetto)** | 4,80 |
+| **4** | **6 (tetto)** | 4,99 |
+| 5 | 6 (tetto) | **4,46** |
+
+**Oltre tre pedine, una presenza in più vale zero** — e la quarta pedina di
+[D-211](DECISIONS.md#d-211) non paga niente. Chi si espande a cinque finisce con
+**meno** carte di chi resta a quattro, perché ha speso i MUOVERE per arrivarci.
+
+### 2. La maggioranza non è una lotta
+
+| su 6 Regioni | |
+|---|---|
+| con dentro **più di una casa**, all'apertura | 2,41 |
+| con dentro più di una casa, a fine anno | **2,60** |
+| il padrone cambia mano | **2,32 volte l'anno** |
+
+**Tre Regioni e mezzo su sei hanno una casa sola dentro**: non sono maggioranze,
+sono proprietà. E il tavolo non si stringe in nove round.
+
+### 3. Tenere non paga più che stare
+
+Una struttura pesa nel conteggio del controllo e **basta**. `hand_refill` conta le
+**presenze**, non il possesso: il controllo di una Regione non dà carte, non dà
+azioni, non dà niente che si veda al tavolo.
+
+### 4. Gli obiettivi non si incrociano: uno su dodici
+
+| | |
+|---|---|
+| **conteso** (due case non possono averlo entrambe) | **1** — «Due Terre, una Voce» |
+| globali (stesso esito per tutti) | 2 |
+| **solitari** (ognuno conta roba sua) | **9** |
+
+E le Conseguenze toccano la mappa nel 48% dei casi, ma **`ADD_PRESENCE` compare
+una volta sola** in cinquantadue: i Consigli cacciano e assegnano, non mandano
+nessuno da nessuna parte.
+
+### Le quattro mosse, in ordine di radice
+
+1. **Il ciclo economico.** Il tetto delle carte sale a `pedine × 2` vere, e **il
+   controllo di una Regione paga**. Senza questa, le altre tre non hanno con cosa
+   combattersi.
+2. **Costruire diventa una scelta reale**: più carte con un mestiere di pietra,
+   non una sola ([D-218](DECISIONS.md#d-218) ne ha data una).
+3. **Obiettivi contesi**: carte che due case non possono prendere entrambe.
+4. **Le domande spostano la mappa**: Conseguenze che *mettono* pedine.
+
+**Fatto quando** una presenza in più dà carte in più fino al tetto delle pedine,
+le Regioni contese sono più di tre su sei a fine anno, il padrone cambia mano più
+di quanto non cambi oggi, e gli obiettivi contesi sono almeno un terzo del mazzo
+— col playtest ancora **0/8**.
 
 ---
 

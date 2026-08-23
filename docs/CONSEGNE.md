@@ -36,7 +36,12 @@ Queste non sono preferenze: sono state pagate con difetti veri.
    andato. Costato una CI rossa in 0.1.156.
 5. **Dopo ogni modifica a `/schema`**: `python3 tools/gen_gd_schema.py`.
    **Se cambiano le etichette dei Destini o i dati**: `python3 tools/build_manifest.py`.
-   Il secondo è stato dimenticato tre volte e ogni volta ha fatto rosso la CI.
+   **Se cambia il testo stampato di una carta**: `tools/run_export.sh --check-brief`,
+   perché `docs/BRIEF_ARTE.md` è generato *e committato* — è il documento che si
+   manda a chi disegna. Il secondo è stato dimenticato tre volte; il terzo una
+   (l'Assedio e l'Archivio in 0.1.186), e in quel caso il cancello locale diceva
+   verde perché `run_export.sh` **genera** e non confronta. Adesso confronta lui,
+   e avvisa anche senza il flag.
 6. **Verbale in `docs/DECISIONS.md`** (il più recente in cima), `docs/ISSUES.md` e
    `CHANGELOG.md` aggiornati **nello stesso commit**.
 7. **GDScript tipizzato, senza `class_name`**: `const X := preload(...)`.

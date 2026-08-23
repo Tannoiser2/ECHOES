@@ -9,26 +9,59 @@
   "$defs": {
     "document": {
       "type": "object",
-      "required": ["schema_id", "version", "items"],
+      "required": [
+        "schema_id",
+        "version",
+        "items"
+      ],
       "additionalProperties": false,
       "properties": {
-        "schema_id": { "const": "structure_type" },
-        "version": { "type": "string" },
-        "items": { "type": "array", "items": { "$ref": "#/$defs/structure_type" } }
+        "schema_id": {
+          "const": "structure_type"
+        },
+        "version": {
+          "type": "string"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/structure_type"
+          }
+        }
       }
     },
     "structure_type": {
       "type": "object",
-      "required": ["id", "name", "family", "owned", "grades"],
+      "required": [
+        "id",
+        "name",
+        "family",
+        "owned",
+        "grades"
+      ],
       "additionalProperties": false,
       "properties": {
-        "id": { "type": "string", "pattern": "^STR_[A-Z0-9_]+$" },
-        "name": { "type": "string" },
-        "description": { "type": "string" },
+        "id": {
+          "type": "string",
+          "pattern": "^STR_[A-Z0-9_]+$"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
         "family": {
           "type": "string",
-          "enum": ["PRESIDIO", "INSEDIAMENTO", "OPERA", "LUOGO", "CHIUSURA"],
-          "description": "Le prime tre sono opere delle case e hanno un padrone; LUOGO e' del mondo e non e' di nessuno; CHIUSURA e' il contrario di un edificio."
+          "enum": [
+            "PRESIDIO",
+            "INSEDIAMENTO",
+            "OPERA",
+            "STUDIO",
+            "LUOGO",
+            "CHIUSURA"
+          ],
+          "description": "Le prime quattro sono opere delle case e hanno un padrone; LUOGO e' del mondo e non e' di nessuno; CHIUSURA e' il contrario di un edificio. STUDIO e' arrivata con l'Archivio (D-217): non e' un'OPERA — un'opera serve a tutti e si vede da fuori — e non e' un presidio. Sta da sola apposta, perche' una pietra d'apertura che cadesse dentro una famiglia gia' richiesta da un obiettivo lo renderebbe gratis per chi ce l'ha e impossibile per chi no: e' esattamente il difetto che ISSUES 52 stava curando."
         },
         "owned": {
           "type": "boolean",
@@ -38,7 +71,14 @@
           "type": "array",
           "items": {
             "type": "string",
-            "enum": ["CITY", "VALLEY", "STEPPE", "MOUNTAIN", "UNDERGROUND", "ROAD"]
+            "enum": [
+              "CITY",
+              "VALLEY",
+              "STEPPE",
+              "MOUNTAIN",
+              "UNDERGROUND",
+              "ROAD"
+            ]
           },
           "description": "Dove puo' stare. Omesso, ovunque: una foresta non nasce in una citta' e un passo esiste solo in montagna."
         },
@@ -46,18 +86,27 @@
           "type": "array",
           "minItems": 1,
           "maxItems": 4,
-          "items": { "$ref": "#/$defs/grade" },
+          "items": {
+            "$ref": "#/$defs/grade"
+          },
           "description": "Dal primo all'ultimo. L'indice e' il grado, contato da 1."
         },
-        "ruin": { "$ref": "#/$defs/ruin" }
+        "ruin": {
+          "$ref": "#/$defs/ruin"
+        }
       }
     },
     "grade": {
       "type": "object",
-      "required": ["name", "value"],
+      "required": [
+        "name",
+        "value"
+      ],
       "additionalProperties": false,
       "properties": {
-        "name": { "type": "string" },
+        "name": {
+          "type": "string"
+        },
         "value": {
           "type": "integer",
           "minimum": 0,
@@ -69,21 +118,29 @@
           "pattern": "^(structure|settlement|place):[a-z_]+$",
           "description": "Il segno che questo grado posa sulla Regione, cosi' le regole dei segni gia' scritte continuano a leggerlo. L'oggetto e' la verita'; il tag e' derivato. Il prefisso dice di che natura e': `structure:` e `settlement:` sono opere delle case, `place:` e' un luogo del mondo e non e' di nessuno."
         },
-        "description": { "type": "string" }
+        "description": {
+          "type": "string"
+        }
       }
     },
     "ruin": {
       "type": "object",
-      "required": ["name"],
+      "required": [
+        "name"
+      ],
       "additionalProperties": false,
       "properties": {
-        "name": { "type": "string" },
+        "name": {
+          "type": "string"
+        },
         "scar": {
           "type": "string",
           "pattern": "^scar:[a-z_]+$",
           "description": "La cicatrice che resta quando cade sotto il primo grado. Come la demolizione: la mappa ricorda."
         },
-        "description": { "type": "string" }
+        "description": {
+          "type": "string"
+        }
       }
     }
   }

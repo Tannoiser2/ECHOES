@@ -779,7 +779,18 @@ def check_relations_are_written_both_ways(
                 )
                 continue
             key = tuple(sorted((entity_id, other)))
-            value = (str(relation.get("level", "")), tuple(sorted(relation.get("tags", []))))
+            value = (
+                str(relation.get("level", "")),
+                tuple(sorted(relation.get("tags", []))),
+                str(relation.get("note", "")),
+            )
+            if not str(relation.get("note", "")).strip():
+                report.fail(
+                    f"entity [{entity_id}]",
+                    f"la relazione con {other} non dice **perche'** (D-219): un "
+                    "neutrale scritto e un neutrale per dimenticanza si comportano "
+                    "uguale al tavolo e dicono due cose diverse a chi legge il dato",
+                )
             if key in seen and seen[key] != value:
                 report.fail(
                     f"entity [{entity_id}]",
