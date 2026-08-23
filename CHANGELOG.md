@@ -5,6 +5,116 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.197 — Il peso della terra riacceso e respinto: il Consiglio non è dove la mappa cambia padrone (D-226)
+
+- **La mossa 0 di ISSUES 55 è stata fatta, e la misura l'ha respinta.**
+  `focus_weight` (D-154) riaccesa su tutte e quattro le Chronicle.
+- **Il cancello lo passa**: **0 su 8** seggi bloccati, tavolo uniforme e misto,
+  100 semi dal 7000. Quindi D-154 aveva ragione sulla diagnosi — era la porta
+  sola di Kessa (ISSUES 38, chiusa in 0.1.122), non il peso della terra.
+- **Ma sulla cosa per cui serviva, no.** Il padrone di una Regione passa di mano:
+  **2,39** volte l'anno da spenta, **2,29** con titolo+maggioranza, **2,37** con
+  la sola maggioranza. Peggiora o non cambia niente — e il prima è stato misurato
+  **sullo stesso albero**, non ripreso da un verbale vecchio.
+- **La prima forma peggiora per una ragione che avevo scritto come rischio prima
+  di misurarla**: dare voce a chi la Regione *la tiene* rende più difficile
+  toglierargliela. È un referendum sul padrone.
+- **E il presupposto era sbagliato, per due cicli.** `_recount_control`: **il
+  padrone lo decide la contesa di presenza, round per round, non il Consiglio.**
+  `rightful_holder` riconta il titolo dalle pedine; i `SET_CONTROL` scritti a
+  mano sono 14 su 52 e arrivano dopo. «La mappa non si muove al Consiglio» è vero
+  e non è un difetto: al Consiglio non si è mai mossa.
+- **La domanda nuova, che non era mai stata posta**: con 4 pedine a testa, 4
+  case, 6 Regioni e il titolo che segue la maggioranza stretta, **quante volte al
+  massimo potrebbe passare di mano?** Se il tetto è vicino a 2,4 la mappa si
+  muove già quanto le regole permettono, e ISSUES 55 va riscritta.
+- I dati tornano com'erano: `focus_weight` resta spenta nei dati e accesa nel
+  motore, con sette test e adesso **due** misure invece di una.
+- **Rimessa in ordine la numerazione**, che avevo rotto io in tre punti nella
+  stessa serata: c'erano **due ISSUES 59**, **due ISSUES 60** e **due 0.1.194**,
+  e le versioni erano fuori ordine. Le due voci aggiunte per ultime prendono i
+  numeri liberi — «Dieci segni sul mondo che nessuno legge» è **ISSUES 61**, «Il
+  Consiglio non si può giocare sul tavolo fisico» è **ISSUES 62** — e il
+  registro dei segni, la correzione e il peso della terra scalano a 0.1.195,
+  0.1.196 e 0.1.197. Aggiornati anche i rimandi dentro D-225, D-226, `ISSUES 55`
+  e `VISIONE.md`. I messaggi di commit già scritti portano i numeri vecchi: non
+  si riscrivono, e questa riga è il ponte.
+
+---
+
+## 0.1.196 — Una correzione mia, e la leva che era già lì spenta
+
+- **Correzione.** In 0.1.193 avevo scritto, in `docs/VISIONE.md` e in ISSUES 55,
+  che al Consiglio «Sostegno e Opposizione sono solo somme di forza delle carte:
+  nessuna pietra, nessuna maggioranza, nessuna cicatrice entra in quel conto».
+  **Era sbagliato**, e per il motivo peggiore: avevo letto
+  `confluence_resolution.gd` e non `confluence_controller.gd`, dove i bonus si
+  calcolano. Nel conto ci sono già i **legami** (`alliance_weight`, D-139),
+  **diciassette regole `COUNCIL_MODIFIER`** che spostano il Fattore Mondo — fra
+  cui tre cicatrici, la Regione affamata e `settlement:city`, cioè una pietra
+  alzata a città — e due `STANCE_MODIFIER`. Corretto in tutti e due i documenti.
+- **Ma la conclusione regge, e adesso è più precisa**: quello che non entra è
+  **il titolo e la maggioranza nella Regione di cui si discute**, che è
+  esattamente ciò che il committente chiede da tre cicli.
+- **E la leva esiste già, spenta.** `confluence_rules.focus_weight` (D-154) fa
+  quello, è scritta, la reggono sette test — e **nessuna delle quattro Chronicle
+  spedite la dichiara**.
+- **Perché fu spenta, e perché quel motivo non vale più.** Misurata a 0.1.119:
+  Consigli falliti 177 → 175, ma il playtest da **0/8 a 1/8**, e il seggio che si
+  rompeva era sempre Kessa dei Fuochi. D-154 concluse che non era il peso della
+  terra ma che **la Vittoria di Kessa aveva una porta sola**, e scrisse «ISSUES
+  38 viene prima». **ISSUES 38 è chiusa da 0.1.122**, e da D-198 i gradini sono
+  quattro obiettivi di cui tre pescati: oggi quella Vittoria ha tre clausole.
+  **Il motivo per cui la leva è spenta ha smesso di valere settantadue versioni
+  fa, e nessuno l'ha riaccesa.**
+- **Aperta ISSUES 62**: il Consiglio non si può giocare sul tavolo fisico. 10
+  template, **43 proposte**, 19 clausole e 52 conseguenze, e **0 dei 39 fogli di
+  stampa** ne porta una. La carta Domanda esiste e porta la crisi, non le
+  proposte.
+- **E un difetto dentro il difetto**: la carta Domanda stampata porta ancora **la
+  soglia**, in un cerchio all'angolo. Da D-214 quel numero non apre più niente —
+  lo stesso errore che D-224 ha corretto sulla pagina d'aiuto, e che il cancello
+  del testo non poteva vedere perché guarda lo schermo e non la stampa.
+- Solo documenti: nessuna regola, nessun dato di gioco toccato.
+
+---
+
+## 0.1.195 — Il registro dei segni: dieci promesse che il mondo non registra (D-225)
+
+- **`tools/build_sign_registry.py` + `docs/REGISTRO_SEGNI.md`**, generato e in
+  CI. Per ogni segno che il gioco scrive sul mondo dice **chi lo scrive, chi lo
+  cancella e chi lo legge** — e il criterio è uno: un segno che nessuno legge
+  non è una regola, è colore travestito da regola.
+- **71 segni scritti sul mondo. 10 non li legge nessuno.** `dragon_slain` («Il
+  Drago Abbattuto»), `heir_named`, `succession_settled`, `water_rights`,
+  `account_settled`, `burden_shared`, `condition:lean`, `condition:contested`,
+  `condition:requisitioned`, `settlement:$proponent`. Sono carte e Conseguenze
+  che promettono un cambiamento che il gioco non registra, e **non si vedono
+  giocando**: la partita gira lo stesso.
+- **Il difetto non si trova a occhio, e nemmeno con un grep.** Costruendo lo
+  strumento sono emerse **sette penne diverse** che scrivono sul mondo: gli
+  Effetti delle Conseguenze, delle carte Asset e delle Echo; le cicatrici, che
+  si dichiarano a parte; le **pietre**, che posano un segno per grado; le
+  **catene delle ere**, che dopo tre ripetizioni posano un segno nuovo
+  (`mountain_forgotten` arriva da lì); e il codice, per `legend:`, `evicted:`,
+  `function:`, `life:`.
+- **E cinque modi di leggere.** Il più sottile: **una leggenda è il segno di
+  prima, un'era dopo** — un fatto globale che sbiadisce diventa `legend:<fatto>`,
+  e se qualcuno chiede quella leggenda allora il fatto morde, nel prossimo anno.
+  `order_restored` sembrava muto e non lo è.
+- **Leggere non è agire**, e lo strumento lo dichiara prefisso per prefisso:
+  `discovery:` morde (`discovery_count`, chiesto da Destini e obiettivi),
+  `evicted:` morde (impedisce il rientro), `legend:` morde; `condition:` no — il
+  prefisso lo guarda solo la traversata delle ere, che è *quanto dura* un segno,
+  non *cosa fa*. E `settlement:`/`life:` li legge solo chi disegna una parola
+  sullo schermo.
+- **I dieci muti sono dichiarati**, non nascosti: stanno in `MUTI_NOTI` con la
+  ragione accanto. `--check` va rosso se ne compare uno nuovo **e** se uno
+  dichiarato smette di esserlo, così l'elenco non marcisce e può solo accorciarsi.
+- Nessuna regola cambiata: strumento, documento e un passo di CI.
+
+---
+
 ## 0.1.194 — Il libro mastro delle carte: niente è morto, ma due verbi non si giocano
 
 - **Nuova sonda `cli/run_card_ledger.gd`.** Conta, carta per carta su cento anni,
@@ -42,107 +152,6 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
   cui nessuno li gioca. Tararli prima che la mappa paghi al Concilio vorrebbe dire
   tararli contro un'economia che sta per cambiare.
 - Nessuna regola toccata: una sonda e due misure.
-
----
-
-## 0.1.196 — Il peso della terra riacceso e respinto: il Consiglio non è dove la mappa cambia padrone (D-226)
-
-- **La mossa 0 di ISSUES 55 è stata fatta, e la misura l'ha respinta.**
-  `focus_weight` (D-154) riaccesa su tutte e quattro le Chronicle.
-- **Il cancello lo passa**: **0 su 8** seggi bloccati, tavolo uniforme e misto,
-  100 semi dal 7000. Quindi D-154 aveva ragione sulla diagnosi — era la porta
-  sola di Kessa (ISSUES 38, chiusa in 0.1.122), non il peso della terra.
-- **Ma sulla cosa per cui serviva, no.** Il padrone di una Regione passa di mano:
-  **2,39** volte l'anno da spenta, **2,29** con titolo+maggioranza, **2,37** con
-  la sola maggioranza. Peggiora o non cambia niente — e il prima è stato misurato
-  **sullo stesso albero**, non ripreso da un verbale vecchio.
-- **La prima forma peggiora per una ragione che avevo scritto come rischio prima
-  di misurarla**: dare voce a chi la Regione *la tiene* rende più difficile
-  toglierargliela. È un referendum sul padrone.
-- **E il presupposto era sbagliato, per due cicli.** `_recount_control`: **il
-  padrone lo decide la contesa di presenza, round per round, non il Consiglio.**
-  `rightful_holder` riconta il titolo dalle pedine; i `SET_CONTROL` scritti a
-  mano sono 14 su 52 e arrivano dopo. «La mappa non si muove al Consiglio» è vero
-  e non è un difetto: al Consiglio non si è mai mossa.
-- **La domanda nuova, che non era mai stata posta**: con 4 pedine a testa, 4
-  case, 6 Regioni e il titolo che segue la maggioranza stretta, **quante volte al
-  massimo potrebbe passare di mano?** Se il tetto è vicino a 2,4 la mappa si
-  muove già quanto le regole permettono, e ISSUES 55 va riscritta.
-- I dati tornano com'erano: `focus_weight` resta spenta nei dati e accesa nel
-  motore, con sette test e adesso **due** misure invece di una.
-
----
-
-## 0.1.195 — Una correzione mia, e la leva che era già lì spenta
-
-- **Correzione.** In 0.1.193 avevo scritto, in `docs/VISIONE.md` e in ISSUES 55,
-  che al Consiglio «Sostegno e Opposizione sono solo somme di forza delle carte:
-  nessuna pietra, nessuna maggioranza, nessuna cicatrice entra in quel conto».
-  **Era sbagliato**, e per il motivo peggiore: avevo letto
-  `confluence_resolution.gd` e non `confluence_controller.gd`, dove i bonus si
-  calcolano. Nel conto ci sono già i **legami** (`alliance_weight`, D-139),
-  **diciassette regole `COUNCIL_MODIFIER`** che spostano il Fattore Mondo — fra
-  cui tre cicatrici, la Regione affamata e `settlement:city`, cioè una pietra
-  alzata a città — e due `STANCE_MODIFIER`. Corretto in tutti e due i documenti.
-- **Ma la conclusione regge, e adesso è più precisa**: quello che non entra è
-  **il titolo e la maggioranza nella Regione di cui si discute**, che è
-  esattamente ciò che il committente chiede da tre cicli.
-- **E la leva esiste già, spenta.** `confluence_rules.focus_weight` (D-154) fa
-  quello, è scritta, la reggono sette test — e **nessuna delle quattro Chronicle
-  spedite la dichiara**.
-- **Perché fu spenta, e perché quel motivo non vale più.** Misurata a 0.1.119:
-  Consigli falliti 177 → 175, ma il playtest da **0/8 a 1/8**, e il seggio che si
-  rompeva era sempre Kessa dei Fuochi. D-154 concluse che non era il peso della
-  terra ma che **la Vittoria di Kessa aveva una porta sola**, e scrisse «ISSUES
-  38 viene prima». **ISSUES 38 è chiusa da 0.1.122**, e da D-198 i gradini sono
-  quattro obiettivi di cui tre pescati: oggi quella Vittoria ha tre clausole.
-  **Il motivo per cui la leva è spenta ha smesso di valere settantadue versioni
-  fa, e nessuno l'ha riaccesa.**
-- **Aperta ISSUES 60**: il Consiglio non si può giocare sul tavolo fisico. 10
-  template, **43 proposte**, 19 clausole e 52 conseguenze, e **0 dei 39 fogli di
-  stampa** ne porta una. La carta Domanda esiste e porta la crisi, non le
-  proposte.
-- **E un difetto dentro il difetto**: la carta Domanda stampata porta ancora **la
-  soglia**, in un cerchio all'angolo. Da D-214 quel numero non apre più niente —
-  lo stesso errore che D-224 ha corretto sulla pagina d'aiuto, e che il cancello
-  del testo non poteva vedere perché guarda lo schermo e non la stampa.
-- Solo documenti: nessuna regola, nessun dato di gioco toccato.
-
----
-
-## 0.1.194 — Il registro dei segni: dieci promesse che il mondo non registra (D-225)
-
-- **`tools/build_sign_registry.py` + `docs/REGISTRO_SEGNI.md`**, generato e in
-  CI. Per ogni segno che il gioco scrive sul mondo dice **chi lo scrive, chi lo
-  cancella e chi lo legge** — e il criterio è uno: un segno che nessuno legge
-  non è una regola, è colore travestito da regola.
-- **71 segni scritti sul mondo. 10 non li legge nessuno.** `dragon_slain` («Il
-  Drago Abbattuto»), `heir_named`, `succession_settled`, `water_rights`,
-  `account_settled`, `burden_shared`, `condition:lean`, `condition:contested`,
-  `condition:requisitioned`, `settlement:$proponent`. Sono carte e Conseguenze
-  che promettono un cambiamento che il gioco non registra, e **non si vedono
-  giocando**: la partita gira lo stesso.
-- **Il difetto non si trova a occhio, e nemmeno con un grep.** Costruendo lo
-  strumento sono emerse **sette penne diverse** che scrivono sul mondo: gli
-  Effetti delle Conseguenze, delle carte Asset e delle Echo; le cicatrici, che
-  si dichiarano a parte; le **pietre**, che posano un segno per grado; le
-  **catene delle ere**, che dopo tre ripetizioni posano un segno nuovo
-  (`mountain_forgotten` arriva da lì); e il codice, per `legend:`, `evicted:`,
-  `function:`, `life:`.
-- **E cinque modi di leggere.** Il più sottile: **una leggenda è il segno di
-  prima, un'era dopo** — un fatto globale che sbiadisce diventa `legend:<fatto>`,
-  e se qualcuno chiede quella leggenda allora il fatto morde, nel prossimo anno.
-  `order_restored` sembrava muto e non lo è.
-- **Leggere non è agire**, e lo strumento lo dichiara prefisso per prefisso:
-  `discovery:` morde (`discovery_count`, chiesto da Destini e obiettivi),
-  `evicted:` morde (impedisce il rientro), `legend:` morde; `condition:` no — il
-  prefisso lo guarda solo la traversata delle ere, che è *quanto dura* un segno,
-  non *cosa fa*. E `settlement:`/`life:` li legge solo chi disegna una parola
-  sullo schermo.
-- **I dieci muti sono dichiarati**, non nascosti: stanno in `MUTI_NOTI` con la
-  ragione accanto. `--check` va rosso se ne compare uno nuovo **e** se uno
-  dichiarato smette di esserlo, così l'elenco non marcisce e può solo accorciarsi.
-- Nessuna regola cambiata: strumento, documento e un passo di CI.
 
 ---
 

@@ -2763,9 +2763,9 @@ e' in gioco.
 
 ---
 
-### 60. Il Consiglio non si può giocare sul tavolo fisico
+### 62. Il Consiglio non si può giocare sul tavolo fisico
 
-`ux` · `contenuto` · **misurata in 0.1.195**
+`ux` · `contenuto` · **misurata in 0.1.196**
 
 Il committente l'ha vista arrivare da un'altra parte, ed è vera. Il materiale che
 fa **la cosa centrale del gioco** non esiste come componente:
@@ -2813,9 +2813,9 @@ oppure quando è scritto a verbale che non lo può fare e perché.
 
 ---
 
-### 59. Dieci segni sul mondo che nessuno legge
+### 61. Dieci segni sul mondo che nessuno legge
 
-`contenuto` · `regole` · **misurata in 0.1.194** ([D-225](DECISIONS.md#d-225))
+`contenuto` · `regole` · **misurata in 0.1.195** ([D-225](DECISIONS.md#d-225))
 
 Il registro dei segni ([REGISTRO_SEGNI.md](REGISTRO_SEGNI.md)) conta **71 segni
 scritti sul mondo**; **10 non li legge niente**:
@@ -3040,7 +3040,7 @@ contesi. [D-222](DECISIONS.md#d-222) e [D-223](DECISIONS.md#d-223) le hanno
 provate e misurate, e hanno mosso poco: il padrone cambia mano 2,32 → 2,49 volte
 l'anno.
 
-**Correzione (0.1.195).** La prima stesura di questa sezione diceva che al
+**Correzione (0.1.196).** La prima stesura di questa sezione diceva che al
 Consiglio entrano «solo le carte». **Era sbagliata sul meccanismo.** Nel conto ci
 sono già i **legami** (`alliance_weight`, [D-139](DECISIONS.md#d-139), dichiarato
 in tutte e quattro le Chronicle), diciassette regole `COUNCIL_MODIFIER` che
@@ -3075,7 +3075,7 @@ oggi ha tre clausole, non una. **Il motivo per cui la leva è spenta ha smesso d
 valere settantadue versioni fa, e nessuno l'ha riaccesa.**
 
 **La mossa 0 è stata fatta, e la misura l'ha respinta** ([D-226](DECISIONS.md#d-226),
-0.1.196). `focus_weight` riaccesa passa il cancello — **0/8 su tutti e due i
+0.1.197). `focus_weight` riaccesa passa il cancello — **0/8 su tutti e due i
 tavoli**, quindi D-154 aveva ragione: era la porta sola di Kessa, non il peso
 della terra. Ma sulla cosa per cui serviva:
 

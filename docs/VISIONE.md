@@ -144,7 +144,7 @@ nella mappa»*. La matematica del voto è:
 M = Sostegno + Condizione − Opposizione + 1d6
 ```
 
-**Correzione (0.1.195).** La prima stesura di questa sezione diceva che «nessuna
+**Correzione (0.1.196).** La prima stesura di questa sezione diceva che «nessuna
 pietra, nessuna maggioranza, nessuna cicatrice entra in quel conto». **Era
 sbagliato, e nel modo peggiore: sbagliato sul meccanismo.** Rileggendo
 `confluence_controller.gd` fino in fondo — non solo `confluence_resolution.gd` —

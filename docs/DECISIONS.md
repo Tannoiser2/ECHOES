@@ -12,7 +12,7 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ## D-226 — Il peso della terra, riacceso e respinto di nuovo: il Consiglio non e' dove la mappa cambia padrone
 
-**measured in 0.1.196, non implementato** — ISSUES 55, la mossa 0 e il numero che
+**measured in 0.1.197, non implementato** — ISSUES 55, la mossa 0 e il numero che
 la rifiuta
 
 [D-154](#d-154) aveva costruito `focus_weight` — al Consiglio, la Regione di cui
@@ -97,7 +97,7 @@ c'erano, e una diagnosi che sposta ISSUES 55 su una domanda diversa.
 
 ## D-225 — Un segno che nessuno legge non e' una regola
 
-**implemented in 0.1.194** — il registro dei segni, e le sette penne che
+**implemented in 0.1.195** — il registro dei segni, e le sette penne che
 scrivono sul mondo
 
 Il committente ha portato uno scambio con un altro modello che conteneva una
@@ -173,7 +173,7 @@ muto dichiarato che ha smesso di esserlo (cosi' l'elenco non marcisce), e il
 documento fuori passo coi dati. L'elenco puo' solo accorciarsi.
 
 I nomi sono grossi: `dragon_slain` — «Il Drago Abbattuto» — e il mondo non se ne
-accorge. Vedi ISSUES 59 per i tre rimedi possibili, che non sono lo stesso per
+accorge. Vedi ISSUES 61 per i tre rimedi possibili, che non sono lo stesso per
 tutti e dieci.
 
 ### Costo
