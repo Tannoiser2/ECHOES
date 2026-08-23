@@ -10,6 +10,120 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-215 — Nessuna famiglia senza un'azione
+**implemented in 0.1.184** — la risposta a «le azioni sono equamente distribuite nelle carte?»
+
+Il committente ha chiesto un numero che non era mai stato misurato. Le
+**famiglie** erano pari — 22 copie ciascuna, esatte. Le **azioni** no, e
+l'incrocio aveva nove zeri:
+
+| copie in mazzo | CLAIM | FORGE | INFLUENCE | MOVE | SCHEME | |
+|---|---|---|---|---|---|---|
+| AUTHORITY | 11 | 2 | 9 | **0** | **0** | 22 |
+| BONDS | 4 | 14 | 2 | **0** | 2 | 22 |
+| FORCE | 2 | **0** | 5 | 15 | **0** | 22 |
+| KNOWLEDGE | 1 | **0** | 2 | 4 | 15 | 22 |
+| PEOPLE | 2 | **0** | 7 | 9 | 4 | 22 |
+| WEALTH | **0** | 7 | 12 | 3 | **0** | 22 |
+| **in tutto** | 20 | 23 | **37** | 31 | 21 | 132 |
+
+### Perche' uno zero li' e' peggio di uno squilibrio
+
+Le azioni passano sulle carte ([D-188](#d-188)) e **la mappa decide che carte
+peschi**. Quindi la mappa decide che *cose puoi fare* — ed era gia' scritto in
+MECCANICA come una virtu' del disegno: «chi sta sulle montagne muove eserciti;
+chi sta nelle miniere sa».
+
+Ma con uno zero non e' un accento: e' **una porta chiusa senza dirlo**. Chi gioca
+RICCHEZZA non poteva rivendicare mai. Chi gioca AUTORITA' non poteva muovere mai.
+E Lyra, che vive di SAPERE, aveva **4 copie di MUOVERE su 132**: quando
+[D-208](#d-208) ha misurato che la mappa e' ferma e ha trovato il 30% dei seggi
+bloccati dalla riga «nessuna carta MUOVERE in mano», la causa era gia' qui e
+nessuno l'aveva guardata.
+
+### Come e' fatto adesso
+
+Dieci carte cambiano azione. **Nessuna cambia mestiere**: il criterio e' che il
+nuovo verbo fosse gia' dentro il titolo, non che i conti tornassero.
+
+| carta | prima | dopo | perche' |
+|---|---|---|---|
+| Censimento | INFLUENCE | **SCHEME** | contare la gente e' il modo piu' vecchio di guardare le carte degli altri |
+| Magistrato | FORGE | **MOVE** | un magistrato lo si manda, e dove siede la corona c'e' |
+| Investitura | CLAIM | **FORGE** | investire qualcuno e' legarlo |
+| Favore | FORGE | **INFLUENCE** | un favore chiesto al momento giusto sposta una questione |
+| Diritto di Ospitalita' | FORGE | **MOVE** | essere ospiti e' essere la' |
+| Guardia di Confine | MOVE | **SCHEME** | chi guarda il confine vede passare tutto |
+| Mercenari | MOVE | **FORGE** | la lealta' pagata e' pur sempre un legame |
+| Le Porte Bruciate | INFLUENCE | **CLAIM** | si e' gia' preso, e adesso lo si dice |
+| Registro | SCHEME | **FORGE** | due case che tengono lo stesso registro hanno gia' cominciato a fidarsi |
+| Braccia per il Raccolto | MOVE | **FORGE** | dal raccolto di un altro nasce un debito che somiglia a un'amicizia |
+| Pedaggio | INFLUENCE | **CLAIM** | una corda su una strada e' una rivendicazione col prezzo scritto sopra |
+| Sale | INFLUENCE | **SCHEME** | con i carri del sale viaggiano le notizie |
+
+| copie in mazzo | CLAIM | FORGE | INFLUENCE | MOVE | SCHEME | |
+|---|---|---|---|---|---|---|
+| AUTHORITY | 7 | 4 | 5 | 2 | 4 | 22 |
+| BONDS | 4 | 6 | 6 | 4 | 2 | 22 |
+| FORCE | 3 | 4 | 4 | 7 | 4 | 22 |
+| KNOWLEDGE | 1 | 4 | 2 | 4 | 11 | 22 |
+| PEOPLE | 2 | 4 | 7 | 5 | 4 | 22 |
+| WEALTH | 4 | 7 | 4 | 3 | 4 | 22 |
+| **in tutto** | 21 | 29 | 28 | 25 | 29 | 132 |
+
+**Nessuno zero**, e lo scarto fra l'azione piu' comune e la piu' rara scende da
+**1,85× a 1,38×**. Le identita' restano dove erano — SAPERE trama (11 su 22),
+LEGAMI forgia, FORZA muove, AUTORITA' rivendica — ma adesso sono **accenti**,
+non muri.
+
+### La guardia
+
+`check_every_family_can_do_everything` in `validate_data.py`. Non chiede che le
+azioni siano pari — l'identita' di una famiglia sta proprio in cio' che fa piu'
+spesso — ma che **nessuna sia a zero**, e che la piu' rara non stia sotto meta'
+della piu' frequente. Provata: rimettendo il Magistrato a FORGE, AUTORITA' torna
+senza MUOVERE e la guardia va rossa.
+
+### I numeri
+
+| 100 semi, seme 7000 | prima | **dopo** |
+|---|---|---|
+| Verita' scritte, misto | 317 | **333** |
+| Verita' scritte, uniforme | 319 | **308** |
+| Consigli l'anno, misto | 4,49 | 4,49 |
+| MUOVERE giocate l'anno | 4,64 | **3,79** |
+| bloccati da «nessuna MUOVERE in mano» | 30,5% | **38,0%** |
+| Regione piu' magra a fine anno | 1,26 | **1,26** |
+| playtest 100 semi | 0/8 | **0/8** |
+
+**MUOVERE si gioca meno, ed e' voluto**: era il 23,5% del mazzo per una sola
+azione su cinque. Il costo si vede tutto nella riga «nessuna carta in mano», che
+sale — ma sale per **tutti allo stesso modo**, invece di essere il 100% per una
+casa e lo 0% per un'altra. Il punto non era muovere di piu': era che ogni casa
+potesse.
+
+### Quello che si dichiara
+
+- **Il piano D si e' ribasato**, ed e' l'unico. Era «la prima storia scritta a
+  mano nell'economia di adesso», quindi non poteva dichiarare un mazzo di prima:
+  il suo gesto d'apertura — Aldric che strappa il primo Consiglio col Diritto di
+  Corona — regge intatto, e la sua morale pure («e' l'anno di chi ha parlato per
+  primo, non di chi ha vinto»: il trono chiude con due obiettivi, i Nahr con
+  tre). Cambia il finale: l'ultima domanda, che cadeva, adesso passa.
+  **Ho scelto male la prima volta**: avevo spostato proprio il Diritto di Corona,
+  cioe' la carta di cui quella storia parla. Il piano e' andato rosso e ha avuto
+  ragione lui.
+- **KNOWLEDGE resta la piu' sbilanciata** (11 SCHEME su 22, e 1 sola CLAIM). E'
+  l'identita' piu' forte del mazzo, e per ora resta com'e'.
+- **Cinque sonde erano rotte e nessuno lo sapeva.** Le sonde di `godot/cli/` non
+  stanno nel cancello, quindi un cambio di firma in `GameSession`
+  ([D-213](#d-213)) le ha lasciate con un identificatore fuori posto e la CI e'
+  restata verde. Una sonda che non parte non e' uno strumento rotto: e' **una
+  misura che non si puo' piu' fare**, e questo progetto sta in piedi sulle
+  misure. Adesso `test_probes_compile` le carica tutte.
+
+---
+
 ## D-214 — Il Consiglio chiude l'Atto, e il cancello si spegne
 **implemented in 0.1.183** — la voce che avevo rimandato senza dirlo
 

@@ -5,6 +5,47 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.184 — Nessuna famiglia senza un'azione (D-215)
+
+- Il committente ha chiesto un numero mai misurato: «*le azioni sono equamente
+  distribuite nelle carte?*». Le **famiglie** erano pari (22 copie ciascuna,
+  esatte). Le **azioni** no, e l'incrocio aveva **nove zeri**: AUTORITÀ non
+  poteva muovere né tramare, RICCHEZZA non poteva rivendicare, FORZA non poteva
+  forgiare.
+- **Uno zero lì non è uno squilibrio: è una porta chiusa senza dirlo.** Le
+  azioni passano sulle carte e la mappa decide che carte peschi, quindi la mappa
+  decide che *cose puoi fare*. Lyra, che vive di SAPERE, aveva **4 copie di
+  MUOVERE su 132** — ed è la causa vera del 30% di seggi che D-208 aveva trovato
+  bloccati da «nessuna carta MUOVERE in mano».
+- **Dieci carte cambiano azione, nessuna cambia mestiere**: il criterio era che
+  il nuovo verbo fosse già dentro il titolo. Il Censimento trama (contare la
+  gente è guardare le carte degli altri), il Pedaggio rivendica (una corda su una
+  strada), il Diritto di Ospitalità muove (essere ospiti è essere là), i
+  Mercenari forgiano (la lealtà pagata è pur sempre un legame).
+- **Nessuno zero**, e lo scarto fra l'azione più comune e la più rara scende da
+  **1,85× a 1,38×**. Le identità restano — SAPERE trama 11 su 22, LEGAMI forgia,
+  FORZA muove — ma sono accenti, non muri.
+- **Una guardia** in `validate_data.py`: nessuna famiglia a zero su un'azione, e
+  la più rara del mazzo non sotto metà della più frequente. Provata rimettendo
+  il Magistrato a FORGE.
+- **I numeri**: Verità scritte **317 → 333** (misto), MUOVERE giocate l'anno
+  **4,64 → 3,79** e bloccati da «nessuna MUOVERE in mano» **30,5% → 38,0%** —
+  voluto: MUOVERE era il 23,5% del mazzo per una sola azione su cinque, e adesso
+  il costo lo pagano tutti allo stesso modo invece del 100% per una casa e lo 0%
+  per un'altra. Playtest **0/8**.
+- **Il piano D si è ribasato** (l'unico): è la storia scritta nell'economia di
+  adesso, quindi non poteva dichiarare un mazzo di prima. Gesto d'apertura e
+  morale intatti; cambia il finale. La prima scelta era sbagliata — avevo
+  spostato proprio la carta di cui quella storia parla, e il piano è andato rosso
+  e aveva ragione.
+- **Cinque sonde erano rotte e nessuno lo sapeva**: non stanno nel cancello, e un
+  cambio di firma in `GameSession` (D-213) le aveva lasciate con un
+  identificatore fuori posto mentre la CI restava verde. Una sonda che non parte
+  è **una misura che non si può più fare**. Adesso `test_probes_compile` le
+  carica tutte.
+
+---
+
 ## 0.1.183 — Il Consiglio chiude l'Atto, e il cancello si spegne (D-214)
 
 - Decisione del committente, già presa una volta e da me rimandata **senza

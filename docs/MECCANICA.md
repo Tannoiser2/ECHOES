@@ -411,24 +411,35 @@ carte peschi, quindi la mappa decide che *cose* puoi fare. Chi sta sulle
 montagne muove eserciti; chi sta nelle miniere sa; chi siede a Eredan prende la
 parola.
 
-| famiglia | le sue otto carte portano | il suo mestiere |
-|---|---|---|
-| **FORZA** | 5 × MUOVERE, 2 × INFLUENZARE, 1 × RIVENDICARE *(l'Assedio)* | prende terra, e quando non la prende scalda |
-| **AUTORITÀ** | 4 × RIVENDICARE, 3 × INFLUENZARE, 1 × FORGIARE | la casa della **parola**: ne ha quattro su otto |
-| **GENTE** | 3 × INFLUENZARE, 3 × MUOVERE, 1 × TRAMARE, 1 × RIVENDICARE *(il Portavoce)* | si sposta, e preme |
-| **SAPERE** | 5 × TRAMARE, 1 × INFLUENZARE, 1 × MUOVERE, 1 × RIVENDICARE *(la Deposizione Sigillata)* | gli occhi — e *cosa* si va a guardare lo sceglie chi cala la carta |
-| **RICCHEZZA** | 3 × FORGIARE (in giù), 3 × INFLUENZARE, 2 × MUOVERE | compra, e rompe |
-| **LEGAMI** | 4 × FORGIARE (in su), 2 × INFLUENZARE, 1 × TRAMARE, 1 × RIVENDICARE *(il Debito Vecchio)* | l'unica che sa **stringere** |
+**Ogni famiglia sa fare tutte e cinque le cose.** Quello che cambia è *quanto
+spesso*: l'identità di una famiglia sta nelle ripetizioni, non nei buchi.
 
-In tutto: **14 INFLUENZARE, 11 MUOVERE, 8 RIVENDICARE, 8 FORGIARE, 7 TRAMARE**.
+| famiglia | le sue otto carte portano (copie nel mazzo) | il suo mestiere |
+|---|---|---|
+| **FORZA** | 3 × MUOVERE *(7)*, 1 × FORGIARE *(4)*, 1 × INFLUENZARE *(4)*, 1 × TRAMARE *(4)*, 2 × RIVENDICARE *(3)* | prende terra |
+| **AUTORITÀ** | 3 × RIVENDICARE *(7)*, 2 × INFLUENZARE *(5)*, 1 × FORGIARE *(4)*, 1 × TRAMARE *(4)*, 1 × MUOVERE *(2)* | la casa della **parola** |
+| **GENTE** | 3 × INFLUENZARE *(7)*, 2 × MUOVERE *(5)*, 1 × FORGIARE *(4)*, 1 × TRAMARE *(4)*, 1 × RIVENDICARE *(2)* | preme, e si sposta |
+| **SAPERE** | 4 × TRAMARE *(11)*, 1 × FORGIARE *(4)*, 1 × MUOVERE *(4)*, 1 × INFLUENZARE *(2)*, 1 × RIVENDICARE *(1)* | gli occhi — l'identità più forte del mazzo |
+| **RICCHEZZA** | 3 × FORGIARE *(7)*, 1 × RIVENDICARE *(4)*, 1 × INFLUENZARE *(4)*, 1 × TRAMARE *(4)*, 2 × MUOVERE *(3)* | compra, e rompe |
+| **LEGAMI** | 3 × INFLUENZARE *(6)*, 2 × FORGIARE *(6)*, 1 × RIVENDICARE *(4)*, 1 × MUOVERE *(4)*, 1 × TRAMARE *(2)* | l'unica che sa **stringere** in su |
+
+In tutto, sulle 132 copie del mazzo: **29 TRAMARE, 29 FORGIARE, 28 INFLUENZARE,
+25 MUOVERE, 21 RIVENDICARE**.
+
+**Fino alla 0.1.183 questa tabella aveva nove zeri**, e uno zero lì non è un
+accento: è una porta chiusa senza dirlo. Chi giocava RICCHEZZA non poteva
+rivendicare *mai*; Lyra, che vive di SAPERE, aveva quattro copie di MUOVERE su
+centotrentadue. Adesso una guardia dei dati impedisce che ricapiti
+([D-215](DECISIONS.md#d-215)).
 
 **Perché RIVENDICARE non è più solo dell'AUTORITÀ.** Da quando il Consiglio si
-apre a gettoni ([D-203](DECISIONS.md#d-203)), rivendicare è l'unico modo che un
-giocatore ha di aprirlo **quando vuole lui**. Con tutte e quattro le carte in
-AUTORITÀ, e l'AUTORITÀ che si pesca solo da Eredan e dalle Terre Nahr, due case su
-otto non l'hanno **mai** avuta in mano: la Cenere zero volte in venti partite, il
-Vaerax una ogni quattro. Ora sono otto carte in cinque famiglie, e ogni Regione
-della mappa ne pesca almeno una ([D-204](DECISIONS.md#d-204)).
+tiene a fine Atto ([D-214](DECISIONS.md#d-214)), rivendicare è l'unico modo che un
+giocatore ha di portare al tavolo una **seconda** domanda. Con tutte e quattro le
+carte in AUTORITÀ, e l'AUTORITÀ che si pesca solo da Eredan e dalle Terre Nahr,
+due case su otto non l'hanno **mai** avuta in mano: la Cenere zero volte in venti
+partite, il Vaerax una ogni quattro. Ora sono in **tutte e sei** le famiglie, e
+ogni Regione della mappa ne pesca almeno una ([D-204](DECISIONS.md#d-204),
+[D-215](DECISIONS.md#d-215)).
 
 Le cinque azioni che una carta può portare, tutte per **1 AO**:
 

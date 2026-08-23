@@ -45,7 +45,7 @@ func _initialize() -> void:
 		quit(3)
 		return
 
-	_free_at_the_start(data, chronicle_id)
+	_free_at_the_start(data, chronicle_id, first_seed)
 	await _when_the_ladder_closes(data, chronicle_id, runs, first_seed)
 	await _what_a_seat_can_actually_get(data, chronicle_id, runs, first_seed)
 	quit(0)
@@ -101,7 +101,7 @@ func _what_a_seat_can_actually_get(
 
 ## Every clause of every Destiny, checked against the opening position - the
 ## table as it is dealt, before a single Action Opportunity is spent.
-func _free_at_the_start(data: RefCounted, chronicle_id: String) -> void:
+func _free_at_the_start(data: RefCounted, chronicle_id: String, first_seed: int) -> void:
 	var SEATS: Array = _seats(data, chronicle_id, first_seed)
 	var session: RefCounted = GameSession.new(data)
 	session.setup(chronicle_id, SEATS, 1)

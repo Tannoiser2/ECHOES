@@ -49,8 +49,8 @@ func _initialize() -> void:
 	var spread_seen: Array = [0, 0, 0]
 
 	for run in range(runs):
-		var seats: Array = GameSession.seats_for(data, chronicle_id, seed_value)
 		var seed_value: int = first_seed + run
+		var seats: Array = GameSession.seats_for(data, chronicle_id, seed_value)
 		var session: RefCounted = GameSession.new(data)
 		if not session.setup(chronicle_id, seats, seed_value):
 			printerr("setup fallito: %s" % session.last_error)

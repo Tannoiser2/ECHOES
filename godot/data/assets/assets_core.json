@@ -59,8 +59,8 @@
       "art_prompt_key": "asset.force.border_watch",
       "rules_text": "+1 quando FORCE è rilevante per la Tensione. Contano i carri che passano, e sanno quali contare — e ogni conta ferma la strada: Le Vie Interrotte salgono di 1.",
       "card_action": {
-        "kind": "MOVE",
-        "note": "La guardia va dove le si dice, e dove sta la guardia la casa c'e'."
+        "kind": "SCHEME",
+        "note": "Chi guarda il confine vede passare tutto, e non lo dice a nessuno."
       },
       "on_commit_effects": [
         {
@@ -174,8 +174,8 @@
       "art_prompt_key": "asset.force.mercenaries",
       "rules_text": "+1 sempre, su qualsiasi fronte: fuori tema vale quanto in tema. Dove passano, però, resta l'inquietudine.",
       "card_action": {
-        "kind": "MOVE",
-        "note": "Si pagano e si mandano. Non chiedono dove."
+        "kind": "FORGE",
+        "note": "Si comprano, e chi si compra una volta si puo' tenere: la lealta' pagata e' pur sempre un legame."
       },
       "on_commit_effects": [
         {
@@ -287,11 +287,11 @@
       "art_prompt_key": "asset.force.burned_gate",
       "rules_text": "Forza 3. Si scarta sempre, e chi la gioca perde la propria presenza nella Regione di cui si discute: chi apre una porta così non resta li a difenderla.",
       "card_action": {
-        "kind": "INFLUENCE",
+        "kind": "CLAIM",
         "params": {
           "delta": 1
         },
-        "note": "Le porte bruciate non si richiudono: la questione sale di 1."
+        "note": "Bruciate le porte non c'e' piu' niente da discutere: si e' gia' preso, e adesso lo si dice."
       },
       "on_commit_effects": [
         {
@@ -406,11 +406,11 @@
       "art_prompt_key": "asset.authority.census",
       "rules_text": "+1 quando AUTHORITY è rilevante per la Tensione. Una lista di nomi è la forma più semplice del potere — e la lista chiarisce: la Regione della domanda smette di essere contesa.",
       "card_action": {
-        "kind": "INFLUENCE",
+        "kind": "SCHEME",
         "params": {
           "delta": -1
         },
-        "note": "Contare la gente toglie 1 alla paura: si sa quanti sono."
+        "note": "Contare la gente e' il modo piu' vecchio di guardare le carte degli altri: si sa chi c'e', e quindi cosa manca."
       },
       "on_commit_effects": [
         {
@@ -485,11 +485,11 @@
       "art_prompt_key": "asset.authority.magistrate",
       "rules_text": "+2 sul fronte Oppose. Se la proposta passa lo stesso resta in mano: un giudice che ha avuto ragione serve ancora — e il giudice risponde: la domanda rimasta scritta sul muro si cancella.",
       "card_action": {
-        "kind": "FORGE",
+        "kind": "MOVE",
         "params": {
           "direction": "DOWN"
         },
-        "note": "Il magistrato non chiede il permesso: manda giu' un rapporto di un grado."
+        "note": "Un magistrato lo si manda, e dove il magistrato siede la corona c'e'."
       },
       "on_commit_effects": [
         {
@@ -526,8 +526,8 @@
       "art_prompt_key": "asset.authority.investiture",
       "rules_text": "+1 sempre, su qualsiasi fronte. Si scarta sempre: si concede una volta sola, e tutti se ne ricordano — perché la nomina scrive un nome nella linea: il mondo ricorda l'erede nominato.",
       "card_action": {
-        "kind": "CLAIM",
-        "note": "Investire qualcuno e' dire di chi sara' la domanda - prima che maturi, o adesso."
+        "kind": "FORGE",
+        "note": "Investire qualcuno e' legarlo: si accetta la terra e con la terra chi la concede."
       },
       "on_commit_effects": [
         {
@@ -720,8 +720,8 @@
       "art_prompt_key": "asset.people.harvest_hands",
       "rules_text": "+1 quando PEOPLE è rilevante per la Tensione. Non sono un esercito: ma senza di loro non si mangia — e dove arrivano, la fame della Regione della domanda si spegne.",
       "card_action": {
-        "kind": "MOVE",
-        "note": "Le braccia vanno dove c'e' da raccogliere, e restano dove hanno raccolto."
+        "kind": "FORGE",
+        "note": "Si va a raccogliere nei campi di un altro, e da quel raccolto nasce un debito che somiglia a un'amicizia."
       },
       "on_commit_effects": [
         {
@@ -1029,8 +1029,8 @@
       "art_prompt_key": "asset.knowledge.ledger",
       "rules_text": "+1 sul fronte Oppose. Chi tiene i conti sa cosa manca, e lo dice nel momento peggiore — e da quel momento i conti sono di tutti: il registro è pubblico.",
       "card_action": {
-        "kind": "SCHEME",
-        "note": "Il registro dei conti dice di una terra piu' di chi ci abita - e sa contare anche altro."
+        "kind": "FORGE",
+        "note": "Due case che tengono lo stesso registro hanno gia' cominciato a fidarsi."
       },
       "on_commit_effects": [
         {
@@ -1284,11 +1284,11 @@
       "art_prompt_key": "asset.wealth.salt",
       "rules_text": "+1 quando WEALTH è rilevante per la Tensione. Non nutre nessuno: senza, quello che nutre non arriva — e dove arriva, la magra si supera.",
       "card_action": {
-        "kind": "INFLUENCE",
+        "kind": "SCHEME",
         "params": {
           "delta": -1
         },
-        "note": "Il sale conserva, e cio' che si conserva non scotta: -1."
+        "note": "Il sale passa dappertutto, e con i carri del sale viaggiano le notizie."
       },
       "on_commit_effects": [
         {
@@ -1325,11 +1325,11 @@
       "art_prompt_key": "asset.wealth.toll",
       "rules_text": "+1 sul fronte Oppose. Una corda tesa fra due pali, e il diritto di non alzarla — e il diritto si scrive: sulla Regione della domanda resta il pedaggio.",
       "card_action": {
-        "kind": "INFLUENCE",
+        "kind": "CLAIM",
         "params": {
           "delta": 1
         },
-        "note": "Un pedaggio nuovo scalda la questione di 1: chi paga se lo ricorda."
+        "note": "Chi mette una corda su una strada sta dicendo che la strada e' sua: e' una rivendicazione con un prezzo scritto sopra."
       },
       "on_commit_effects": [
         {
@@ -1564,11 +1564,11 @@
       "art_prompt_key": "asset.bonds.favor",
       "rules_text": "Piccolo, ricordato con precisione — e restituito al momento giusto: fra chi lo impegna e il rivale, una vendetta si spegne.",
       "card_action": {
-        "kind": "FORGE",
+        "kind": "INFLUENCE",
         "params": {
           "direction": "UP"
         },
-        "note": "Un favore vale un grado - se l'altro lo accetta."
+        "note": "Un favore chiesto al momento giusto sposta una questione piu' di un argomento."
       },
       "on_commit_effects": [
         {
@@ -1604,11 +1604,11 @@
       "art_prompt_key": "asset.bonds.guest_right",
       "rules_text": "+1 quando BONDS è rilevante per la Tensione. Chi ha mangiato al tuo tavolo non può dire di no davanti a tutti. Può dirlo dopo — e chi lo impegna torna ospite: la cacciata dalla Regione della domanda si cancella.",
       "card_action": {
-        "kind": "FORGE",
+        "kind": "MOVE",
         "params": {
           "direction": "UP"
         },
-        "note": "Chi ti ospita non ti puo' piu' trattare da estraneo."
+        "note": "Essere ospiti e' essere la': si entra in casa d'altri con il permesso di restarci."
       },
       "on_commit_effects": [
         {

@@ -86,8 +86,8 @@ func _initialize() -> void:
 
 	for run in range(runs):
 		var session: RefCounted = GameSession.new(data)
-		var seats: Array = GameSession.seats_for(data, chronicle_id, seed_value)
 		var seed_value: int = first_seed + run
+		var seats: Array = GameSession.seats_for(data, chronicle_id, seed_value)
 		session.setup(chronicle_id, seats, seed_value)
 		var table: RefCounted = Characters.deal(seats, session.rng, session.log)
 

@@ -97,7 +97,10 @@ func _initialize() -> void:
 			print("seed %d -> %d Confluence, %d Echo" % [seed_value, count, int(report["echoes"])])
 		session.dispose()
 
-	_report(runs, confluences, outcomes, levels, echoes, illegal, influence_actions, tension_finals, data, chronicle_id)
+	_report(
+		runs, confluences, outcomes, levels, echoes, illegal, influence_actions,
+		tension_finals, data, chronicle_id, first_seed
+	)
 	quit(0)
 
 
@@ -111,7 +114,8 @@ func _report(
 	influence_actions: int,
 	tension_finals: Dictionary,
 	data: RefCounted,
-	chronicle_id: String
+	chronicle_id: String,
+	first_seed: int
 ) -> void:
 	var sorted_counts: Array = confluences.duplicate()
 	sorted_counts.sort()

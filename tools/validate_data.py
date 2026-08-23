@@ -740,6 +740,68 @@ def check_sim_plans_know_which_questions_they_get(
         )
 
 
+def check_every_family_can_do_everything(
+    documents: Dict[str, List[Dict[str, Any]]],
+    origins: Dict[str, str],
+    report: "Report",
+) -> None:
+    """Nessuna famiglia puo' restare senza un'azione (D-215).
+
+    Le azioni passano sulle carte (D-188) e la mappa decide che carte peschi,
+    quindi **la mappa decide che cose puoi fare**. Finche' una famiglia non ha
+    nessuna carta MUOVERE, chi vive in quelle Regioni non muove: non e' una
+    scelta del giocatore ne' del cervello, e' una porta che il mazzo gli ha
+    chiuso senza dirglielo. Lyra ne aveva 4 copie su 132.
+
+    Questa guardia non chiede che le azioni siano *pari* — l'identita' di una
+    famiglia sta proprio in quello che fa piu' spesso — ma che nessuna sia a
+    **zero**, e che la piu' rara del mazzo non stia sotto meta' della piu'
+    frequente: da li' in giu' non e' piu' un accento, e' un'azione che quasi
+    non esiste.
+    """
+    assets = documents.get("asset", [])
+    if not assets:
+        return
+    per_family: Dict[str, Dict[str, int]] = {}
+    totals: Dict[str, int] = {}
+    kinds = set()
+    for asset in assets:
+        kind = str((asset.get("card_action") or {}).get("kind", ""))
+        if not kind:
+            continue
+        kinds.add(kind)
+        copies = int(asset.get("deck_copies", 1))
+        per_family.setdefault(str(asset["family"]), {})
+        totals[kind] = totals.get(kind, 0) + copies
+    for asset in assets:
+        kind = str((asset.get("card_action") or {}).get("kind", ""))
+        if not kind:
+            continue
+        family = per_family[str(asset["family"])]
+        family[kind] = family.get(kind, 0) + int(asset.get("deck_copies", 1))
+
+    for family in sorted(per_family):
+        missing = sorted(kinds - set(per_family[family]))
+        if missing:
+            report.fail(
+                f"asset [{family}]",
+                "la famiglia non ha nessuna carta "
+                + ", ".join(missing)
+                + ": chi pesca solo da qui non potra' mai farlo",
+            )
+
+    if totals:
+        rarest = min(totals, key=lambda k: totals[k])
+        commonest = max(totals, key=lambda k: totals[k])
+        if totals[rarest] * 2 < totals[commonest]:
+            report.fail(
+                "asset [mazzo]",
+                f"{rarest} vale {totals[rarest]} copie su {sum(totals.values())} "
+                f"mentre {commonest} ne vale {totals[commonest]}: piu' del doppio, "
+                "e l'azione rara smette di essere un accento",
+            )
+
+
 def check_drawn_tables_do_not_name_a_house(
     documents: Dict[str, List[Dict[str, Any]]],
     origins: Dict[str, str],
@@ -1375,6 +1437,7 @@ def main() -> int:
         check_asset_sources_are_true(documents, origins, report)
         check_sim_plans_declare_their_economy(documents, origins, report)
         check_sim_plans_know_which_questions_they_get(documents, origins, report)
+        check_every_family_can_do_everything(documents, origins, report)
         check_drawn_tables_do_not_name_a_house(documents, origins, report)
         check_a_declared_map_still_says_something(documents, origins, report)
         check_a_drawn_question_can_be_narrated(documents, origins, report)
