@@ -10,6 +10,83 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-234 — Quattro dei dieci segni muti non lo erano mai stati, e una clausola era impossibile
+
+**implemented in 0.1.205** — chiude ISSUES 61
+
+ISSUES 61 chiedeva una misura prima di decidere: *«per ognuno dei dieci, quante
+volte esce in 100 anni. Un segno muto che compare due volte in un secolo e' un
+problema minore di uno che compare duecento.»* La sonda
+`godot/cli/run_mute_signs.gd` la fa, e la prima risposta e' arrivata prima
+ancora dei numeri.
+
+**La sonda cercava un nome che sul mondo non esiste.** `settlement:$proponent`
+e' la forma **scritta**; il compilatore delle Conseguenze sostituisce anche il
+payload, quindi sul mondo finisce `settlement:ENT_NAHR`. La prima lettura diceva
+**0 volte in 100 anni**, e zero e' la risposta piu' pericolosa che una sonda
+possa dare: dice «non succede mai» quando la verita' e' «non l'hai cercato». Un
+buco vale come prefisso, e il numero vero e' **50 volte, in un anno su due**.
+
+**E poi il registro stesso aveva un buco.** [D-225](#d-225) contava i segni nei
+dati e non guardava **tre penne che leggono**:
+
+| dove | cosa decide |
+|---|---|
+| `focus_region_tags` di una Tensione | **di quale Regione parla il Consiglio** |
+| `entry_tag` / `entry_forbidden_tag` di una vita | **chi siede l'anno prossimo** |
+| `if_tag` / `if_not_tag` di una catena delle ere | se la catena avanza |
+
+Sono i morsi piu' forti che questo gioco abbia — il secondo cambia il giocatore,
+non un modificatore — e il registro li chiamava silenzio. **Quattro dei dieci
+muti non lo erano mai stati:**
+
+- `condition:contested` (132 scritture, 63% degli anni) tira il Consiglio sulla
+  Successione e sulla Carta su di se';
+- `heir_named` (98, 65%) e' la porta di **Aldric Restaurato**: nomini un erede e
+  l'anno prossimo al tavolo siede un altro re;
+- `condition:lean` (12, 9%) porta il Consiglio dell'Acqua sulla Regione magra;
+- `condition:requisitioned` (7, 7%) fa lo stesso con la Carestia.
+
+**I sei che restano sono davvero muti**, e adesso ognuno porta accanto quante
+volte esce in 100 anni: `settlement:<casa>` 50, `water_rights` 18,
+`succession_settled` 14, `account_settled` 4, `burden_shared` 2, `dragon_slain`
+**mai** — la Conseguenza del Drago non e' mai stata scelta, ed e' ISSUES 56 che
+parla, non questa. Nessuno dei sei viene tolto: sono fatti che il libro della
+Cronaca registra, e la riga che diceva il falso era una sola — la nota di
+`CNS_NAHR_SETTLEMENT` sosteneva che *«le regole lo leggono»*. Adesso dice quello
+che e': **chi ci vive, scritto sulla mappa**; la regola e' la pietra che la
+Conseguenza alza accanto, e quella si legge davvero.
+
+**Il difetto specchio, trovato dalle penne nuove.** Guardare dove il gioco legge
+i segni ha fatto comparire quattro segni **che nessuno scrive**. Tre erano falsi
+allarmi e il registro ha imparato a riconoscerli — `twice_uprooted` lo scrive il
+codice alla seconda cacciata, e `scar:emptied@REG_EREDAN` e' la forma
+qualificata di [D-131](#d-131), che chiede lo stesso segno su una Regione sola.
+
+Il quarto era vero: **`scar:burned`**. La Tensione della Successione preferiva
+una Regione bruciata, e **nessuna Regione poteva bruciare**: nessun Effetto,
+nessuna cicatrice, nessuna rovina scrive quel segno. Una preferenza morta in un
+elenco ordinato non e' innocua — sposta il bersaglio del Consiglio senza che
+nessuno lo sappia. Adesso la Successione preferisce `scar:the_empty_chair`, che
+«La Sedia Rivendicata» scrive davvero.
+
+**Zero clausole impossibili, e un cancello che le tiene a zero.** Il conto era 0
+prima e 0 dopo per ragioni diverse: prima perche' il registro non guardava,
+adesso perche' non ce ne sono. `--check` va rosso su una clausola impossibile
+come gia' faceva su un muto non dichiarato, con `CHIESTI_NOTI` come via d'uscita
+dichiarata. Provato al contrario: rimettendo `scar:burned` il cancello lo nomina.
+
+**Misurato:** suite 457 prove / 8.531 asserzioni verdi, i cancelli degli
+strumenti verdi, i piani di simulazione verdi, export e catalogo allineati,
+`run_playtest.gd --runs=100 --seed=7000` **0 seggi bloccati su 8** a tavolo
+misto e uniforme.
+
+**Quello che resta d'autore:** far mordere `water_rights` o `succession_settled`
+— 18 e 14 volte in 100 anni — e' contenuto nuovo, non una correzione. Sono
+dichiarati; se il committente li vuole in una regola, il posto c'e'.
+
+---
+
 ## D-233 — La proposta dice cosa lascia al mondo, e si legge come una carta
 
 **implemented in 0.1.204** — quarto passo di ISSUES 63, meta' schermo di ISSUES 62

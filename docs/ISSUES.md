@@ -2895,7 +2895,31 @@ oppure quando è scritto a verbale che non lo può fare e perché.
 
 ---
 
-### 61. Dieci segni sul mondo che nessuno legge
+### 61. ✅ Dieci segni sul mondo che nessuno legge — erano sei, chiusa in 0.1.205
+
+**Chiusa da [D-234](DECISIONS.md#d-234).** La voce chiedeva di misurare prima di
+decidere, e la misura ha spostato la voce stessa: **quattro dei dieci non erano
+mai stati muti.** Il registro non guardava tre penne che leggono — di quale
+Regione parla il Consiglio (`focus_region_tags`), **chi siede l'anno prossimo**
+(`entry_tag`), la catena delle ere (`if_tag`) — cioè i morsi più forti del gioco.
+`condition:contested` (132 scritture in 100 anni) tira il Consiglio su di sé;
+`heir_named` (98) è la porta di Aldric Restaurato.
+
+I **sei** che restano sono dichiarati in `MUTI_NOTI` con la loro ragione **e la
+loro frequenza**: `settlement:<casa>` 50, `water_rights` 18,
+`succession_settled` 14, `account_settled` 4, `burden_shared` 2, `dragon_slain`
+mai — e quest'ultimo è ISSUES 56 che parla, non questa voce.
+
+**In più, il difetto specchio**: guardare dove il gioco legge ha fatto comparire
+una **clausola impossibile** — la Successione preferiva `scar:burned` e nessuna
+Regione poteva bruciare. Adesso preferisce `scar:the_empty_chair`, e
+`build_sign_registry.py --check` va rosso se ne ricompare una.
+
+**Resta d'autore**, e non è una correzione: far mordere `water_rights` o
+`succession_settled` è contenuto nuovo.
+
+<details>
+<summary>La voce come era scritta</summary>
 
 `contenuto` · `regole` · **misurata in 0.1.195** ([D-225](DECISIONS.md#d-225))
 
@@ -2936,6 +2960,8 @@ di uno che compare duecento.
 **Fatto quando** ogni segno scritto sul mondo o morde, o è stato tolto, o è
 dichiarato con la sua ragione — e `build_sign_registry.py --check` resta verde
 da solo.
+
+</details>
 
 ---
 

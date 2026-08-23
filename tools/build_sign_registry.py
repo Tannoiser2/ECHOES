@@ -48,17 +48,24 @@ CLEAR_TYPES = {"REMOVE_REGION_TAG", "REMOVE_GLOBAL_TAG", "REMOVE_ENTITY_TAG"}
 
 # I segni che oggi nessuno legge, con la ragione per cui sono ancora qui.
 # Toglierne uno da questa lista senza farlo mordere fa andare rossa la prova.
+#
+# **Erano dieci, e quattro non lo erano mai stati** (D-234). Il registro non
+# guardava tre penne che leggono — la Regione di cui si discute
+# (`focus_region_tags`), chi siede l'anno prossimo (`entry_tag`), e la catena
+# delle ere (`if_tag`) — e dichiarava muti dei segni che decidono il bersaglio
+# di un Consiglio e perfino chi si siede al tavolo.
+#
+# Dei sei che restano, accanto alla ragione c'e' **quante volte escono in 100
+# anni**, misurato da `godot/cli/run_mute_signs.gd`. ISSUES 61 lo chiedeva:
+# «un segno muto che compare due volte in un secolo e' un problema minore di uno
+# che compare duecento».
 MUTI_NOTI: Dict[str, str] = {
-    "account_settled": "«Il Conto Saldato» chiude un debito e nessuna regola lo sa",
-    "burden_shared": "il peso diviso non alleggerisce niente",
-    "condition:contested": "una Regione contesa non cambia nulla di quello che ci si puo' fare",
-    "condition:lean": "la Regione magra: la scrive l'Eco dell'interramento e non la legge nessuno",
-    "condition:requisitioned": "requisire lascia un segno che non morde",
-    "dragon_slain": "«Il Drago Abbattuto» — e il mondo non se ne accorge",
-    "heir_named": "un erede nominato non conta per nessuna successione",
-    "settlement:$proponent": "l'insediamento del proponente si stampa e basta",
-    "succession_settled": "la successione risolta non entra in nessuna condizione",
-    "water_rights": "i diritti sull'acqua non sono un requisito di niente",
+    "account_settled": "«Il Conto Saldato» chiude un debito e nessuna regola lo sa — 4 volte in 100 anni",
+    "burden_shared": "il peso diviso non alleggerisce niente — 2 volte in 100 anni",
+    "dragon_slain": "«Il Drago Abbattuto» — e il mondo non se ne accorge. Non esce mai in 100 anni: la Conseguenza non e' mai stata scelta (ISSUES 56)",
+    "settlement:$proponent": "chi ci vive, scritto sulla mappa: la regola e' la pietra che la Conseguenza alza accanto — 50 volte in 100 anni",
+    "succession_settled": "la successione risolta non entra in nessuna condizione — 14 volte in 100 anni",
+    "water_rights": "i diritti sull'acqua non sono un requisito di niente — 18 volte in 100 anni",
 }
 
 
@@ -105,6 +112,14 @@ def walk_conditions(conditions: Iterable[Any], sink: Set[str]) -> None:
 # direbbe che `function:LACK` o `life:INC_ALDRIC_02` sono chiesti da qualcuno e
 # scritti da niente — e sarebbero dodici falsi allarmi su una sezione che serve
 # a trovare le clausole impossibili.
+# E i segni che il codice scrive **col loro nome intero**, non per prefisso.
+# `twice_uprooted` lo posa `confluence_controller` alla seconda cacciata, ed e'
+# la porta della Diaspora: senza questa riga il registro lo chiamava una
+# clausola impossibile e diceva che quella vita non si puo' raggiungere.
+SCRITTI_DAL_CODICE_ESATTI: Dict[str, str] = {
+    "twice_uprooted": "confluence_controller.gd — la seconda cacciata diventa una natura",
+}
+
 SCRITTI_DAL_CODICE: Dict[str, str] = {
     "legend:": "world_state_factory.gd — un fatto che sbiadisce diventa leggenda",
     "evicted:": "confluence_controller.gd — la cacciata da una Regione",
@@ -247,6 +262,42 @@ def collect() -> Dict[str, Dict[str, Set[str]]]:
                 for tally in chronicle.get("era_tallies", []) or []:
                     for tag in tally.get("chain", []) or []:
                         note(str(tag), "posa", "catena delle ere")
+    # **Tre penne che leggono, e che una scansione delle sole condizioni non
+    # vede.** Sono la ragione per cui questo registro ha detto per due versioni
+    # che dieci segni erano muti: non guardava dove il gioco li legge davvero.
+    #
+    # 1. `focus_region_tags` di una Tensione decide **di quale Regione parla il
+    #    Consiglio**. Non e' colore: e' il bersaglio. Una Regione contesa tira
+    #    su di se' il Consiglio sulla Successione, e chi la rende contesa lo sa.
+    for tension in items("tensions/*.json"):
+        for tag in tension.get("focus_region_tags", []) or []:
+            note(str(tag), "legge", "la Regione di cui si discute")
+    # 2. `entry_tag` e `entry_forbidden_tag` di una vita decidono **chi siede
+    #    l'anno prossimo**: e' il morso piu' forte che ci sia in questo gioco,
+    #    perche' cambia il giocatore e non una modifica. `heir_named` sta li'.
+    for entity in items("entities/*.json"):
+        for life in entity.get("incarnations", []) or []:
+            for key, why in (
+                ("entry_tag", "chi siede l'anno prossimo"),
+                ("entry_forbidden_tag", "chi **non** siede l'anno prossimo"),
+            ):
+                tag = str((life or {}).get(key, ""))
+                if tag:
+                    # La forma qualificata `segno@REG_ID` (D-131) chiede lo
+                    # stesso segno, ma solo su quella Regione: chi lo scrive e'
+                    # sempre chi scrive il segno nudo. Senza questa riga il
+                    # registro contava due clausole impossibili che non lo sono.
+                    note(tag.split("@", 1)[0], "legge", why)
+    # 3. `if_tag` e `if_not_tag` di una catena delle ere decidono se la catena
+    #    avanza: il segno di quest'anno sceglie il segno di fra dieci.
+    for path in sorted(DATA_DIR.glob("chronicle_*/chronicle_*.json")):
+        with path.open(encoding="utf-8") as handle:
+            for chronicle in json.load(handle).get("items", []):
+                for tally in chronicle.get("era_tallies", []) or []:
+                    for key in ("if_tag", "if_not_tag"):
+                        tag = str((tally or {}).get(key, ""))
+                        if tag:
+                            note(tag, "legge", "catena delle ere")
     for path in sorted(DATA_DIR.glob("chronicle_*/chronicle_*.json")):
         with path.open(encoding="utf-8") as handle:
             for chronicle in json.load(handle).get("items", []):
@@ -308,18 +359,34 @@ lettori: disegnare non e' mordere.
 """
 
 
+# Le clausole impossibili ancora tollerate, con la ragione. Oggi non ce ne sono,
+# e quello zero e' un cancello: vedi `impossibili()`.
+CHIESTI_NOTI: Dict[str, str] = {}
+
+
+def impossibili(signs: Dict[str, Dict[str, Set[str]]]) -> List[str]:
+    """Il difetto specchio del segno muto.
+
+    Una condizione che nomina un segno che **niente scrive** non e' una
+    condizione difficile: e' una condizione impossibile, e chi la legge al
+    tavolo non ha modo di saperlo. `scar:burned` e' stata cosi' per due
+    versioni — la Tensione della Successione preferiva una Regione bruciata, e
+    nessuna Regione poteva bruciare (D-234).
+    """
+    return sorted(
+        t for t, r in signs.items()
+        if r["legge"] and not (r["scrive"] or r["cancella"])
+        and not r["posa"]
+        and t not in SCRITTI_DAL_CODICE_ESATTI
+        and not any(t.startswith(prefix) for prefix in SCRITTI_DAL_CODICE)
+    )
+
+
 def render(signs: Dict[str, Dict[str, Set[str]]]) -> str:
     written = {t: r for t, r in signs.items() if r["scrive"] or r["cancella"]}
     mute = sorted(t for t, r in written.items() if not r["legge"])
     speaking = sorted(t for t, r in written.items() if r["legge"])
-    # Il difetto specchio: una condizione che nomina un segno che niente scrive
-    # non e' una condizione difficile, e' una condizione **impossibile**.
-    asked = sorted(
-        t for t, r in signs.items()
-        if r["legge"] and not (r["scrive"] or r["cancella"])
-        and not r["posa"]
-        and not any(t.startswith(prefix) for prefix in SCRITTI_DAL_CODICE)
-    )
+    asked = impossibili(signs)
 
     lines: List[str] = [HEADER, ""]
     lines.append("**%d segni scritti sul mondo: %d li legge qualcosa, %d no.**"
@@ -407,6 +474,17 @@ def main() -> int:
             "  Fallo mordere (una regola del segno, un obiettivo, la pesca delle domande),\n"
             "  toglilo, oppure dichiaralo in MUTI_NOTI dentro tools/build_sign_registry.py."
             % (tag, ", ".join(sorted(signs[tag]["scrive"] | signs[tag]["cancella"])))
+        )
+    # Una clausola impossibile e' un difetto, non una curiosita': oggi sono
+    # zero, e questo cancello e' quello che le tiene a zero.
+    for tag in impossibili(signs):
+        if tag in CHIESTI_NOTI:
+            continue
+        problems.append(
+            "clausola impossibile: `%s` — lo chiede %s e **niente lo scrive**.\n"
+            "  Fallo scrivere da qualcosa, cambia la clausola, oppure dichiaralo in\n"
+            "  CHIESTI_NOTI dentro tools/build_sign_registry.py con la sua ragione."
+            % (tag, ", ".join(sorted(signs[tag]["legge"])))
         )
     for tag in sorted(set(MUTI_NOTI) - mute):
         problems.append(

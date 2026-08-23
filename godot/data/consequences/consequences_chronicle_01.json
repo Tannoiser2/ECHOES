@@ -81,7 +81,7 @@
             "grade": 1,
             "owner": "$proponent"
           },
-          "note": "D-175: fermarsi e' una cosa che si vede. Il segno «qui vive questa gente» resta - le regole lo leggono - ma sotto adesso c'e' un villaggio che ha un padrone, pesa nel conto del controllo, puo' diventare borgo e citta' negli anni buoni e puo' essere abbandonato in quelli cattivi."
+          "note": "D-175: fermarsi e' una cosa che si vede. Il segno «qui vive questa gente» resta - e' chi ci vive, scritto sulla mappa, non una regola (D-234) - ma sotto adesso c'e' un villaggio che ha un padrone, pesa nel conto del controllo, puo' diventare borgo e citta' negli anni buoni e puo' essere abbandonato in quelli cattivi."
         },
         {
           "type": "SET_GLOBAL_TAG",

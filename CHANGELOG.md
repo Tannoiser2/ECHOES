@@ -5,6 +5,34 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.205 — Quattro dei dieci segni muti non lo erano mai stati (D-234)
+
+- **Chiude ISSUES 61.** La voce chiedeva di misurare prima di decidere: la sonda
+  `run_mute_signs.gd` conta quante volte ogni segno muto esce in 100 anni.
+- **La sonda cercava un nome che sul mondo non esiste**: `settlement:$proponent`
+  è la forma *scritta*, sul mondo finisce `settlement:ENT_NAHR`. La prima
+  lettura diceva 0 — e zero è la risposta più pericolosa che una sonda possa
+  dare. Il numero vero è **50 volte, in un anno su due**.
+- **Il registro aveva un buco**: non guardava tre penne che leggono — di quale
+  Regione parla il Consiglio (`focus_region_tags`), **chi siede l'anno prossimo**
+  (`entry_tag`), e la catena delle ere (`if_tag`). Sono i morsi più forti del
+  gioco, e li chiamava silenzio.
+- **Quattro dei dieci mordevano già**: `condition:contested` (132 scritture),
+  `heir_named` (98 — è la porta di Aldric Restaurato), `condition:lean` (12),
+  `condition:requisitioned` (7).
+- **I sei che restano sono dichiarati con la loro frequenza**: `settlement:<casa>`
+  50, `water_rights` 18, `succession_settled` 14, `account_settled` 4,
+  `burden_shared` 2, `dragon_slain` **mai** (è ISSUES 56 che parla).
+- **Una clausola impossibile trovata e chiusa**: `scar:burned` — la Successione
+  preferiva una Regione bruciata e **nessuna Regione poteva bruciare**. Adesso
+  preferisce `scar:the_empty_chair`, che una Conseguenza scrive davvero.
+- **Un cancello nuovo**: `--check` va rosso su una clausola impossibile come già
+  faceva su un muto non dichiarato. Provato al contrario.
+- **Misurato**: 457 prove / 8.531 asserzioni verdi, cancelli verdi, sim verdi,
+  export e catalogo allineati, playtest 100 semi **0 seggi bloccati su 8**.
+
+---
+
 ## 0.1.204 — La proposta dice cosa lascia al mondo (D-233)
 
 - **Chiude il quarto passo di ISSUES 63** e la metà-schermo di ISSUES 62. Chi
