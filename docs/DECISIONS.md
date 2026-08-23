@@ -10,6 +10,67 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-233 — La proposta dice cosa lascia al mondo, e si legge come una carta
+
+**implemented in 0.1.204** — quarto passo di ISSUES 63, meta' schermo di ISSUES 62
+
+**La decisione centrale del gioco si prendeva al buio.** Chi propone sceglie fra
+tre o quattro frasi d'autore, e sono scritte bene: si somigliano. Cosa lasciano
+sul mondo — una torre che si alza, una Regione che cambia padrone, una cicatrice
+che resta — stava in `success_consequences`, cioe' in un file di dati che chi
+gioca non apre. Lo stesso valeva per le clausole: si qualificava una proposta
+senza sapere cosa si stava scrivendo.
+
+Da [D-232](#d-232) quel materiale esiste in italiano. Mancava di **arrivare a
+chi sta scegliendo**, ed e' un tratto solo: `SeatDecider.choose_proposition`
+chiede la riga a `CouncilText` invece di stampare la frase e basta.
+
+**Due letture, una sorgente.** La scheda stampata e la riga sullo schermo
+parlano della stessa proposta e non possono dire due cose diverse, perche'
+escono dalla stessa funzione. Cambia solo **la voce**: fuori dal tavolo un buco
+si spiega (*«la Regione di cui si discute»*), al tavolo lo riempie la partita
+con il nome vero. `CouncilText._voice()` e' quel passaggio, e le funzioni che lo
+prendono continuano a spiegare se nessuno gliela passa — il catalogo non ha
+dovuto cambiare una riga, e il cancello di deriva lo conferma.
+
+**Una scelta si disegna come una carta**, non come un bottone con dentro una
+frase: la prima riga e' quello che si dice, sotto in grigio piu' piccolo quello
+che resta. E' la gerarchia di una carta di cartone — il titolo da lontano, la
+lettera piccola quando la prendi in mano. Sotto resta un `Button`, che sa gia'
+cosa vuol dire avere il fuoco della tastiera ed essere premuto con Invio; le
+etichette sopra non intercettano il mouse, quindi il clic ci arriva sempre.
+
+**Il silenzio non e' una terza possibilita'.** Se una proposta non lascia niente
+lo dice (*«Non lascia segni sul mondo»*), perche' una riga vuota si legge come
+«non lo so». Misurato adesso: **43 proposte su 43 lasciano qualcosa**, e la
+prova va rossa se un quarto di loro smette di lasciarlo.
+
+**Tre prove, e coprono i tre tratti** — perche' due tratti su tre coperti sono
+lo stesso buco di [D-224](#d-224):
+
+- ogni proposta della scatola arriva con la sua seconda riga, senza buchi e
+  senza id (guarda la funzione che scrive la riga);
+- la seconda riga e' disegnata **piu' piccola** e non ruba il clic (guarda il
+  pezzo di schermo che la disegna);
+- e chi siede viene interrogato con quelle righe (guarda il filo in mezzo, con
+  un io con le risposte in fila).
+
+Provate al contrario: togliendo la seconda riga da `_proposition_label` la prima
+e la terza diventano rosse su `P_REQUISITION`.
+
+**Misurato:** suite 457 prove / 8.530 asserzioni verdi (era 454 / 8.299), i
+cancelli degli strumenti verdi, i piani di simulazione verdi, l'export
+deterministico col brief allineato, il catalogo dei Consigli allineato,
+`run_playtest.gd --runs=100 --seed=7000` **0 seggi bloccati su 8** a tavolo
+misto e uniforme.
+
+**Quello che questo non fa**, e resta scritto in ISSUES 62: il Consiglio si
+gioca meglio **sullo schermo**, non ancora sul cartone. La forma fisica —
+scheda per Tensione, libretto, o app dichiarata arbitro — resta la decisione
+d'autore, e il catalogo e' li' che aspetta.
+
+---
+
 ## D-232 — Il Consiglio esce dal database: le proposte in italiano, e un cancello che le tiene aggiornate
 
 **implemented in 0.1.203** — il pezzo che serve a tutte e tre le forme di ISSUES 62

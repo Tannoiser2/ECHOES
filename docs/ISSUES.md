@@ -2808,8 +2808,13 @@ giocare.** Il cancello gioca solo con `PolicyDecider`, che non ha mani.
    sa fare una cosa sola, posarla è già la mossa; quando ne sa fare due opposte,
    la caduta **restringe** e la scelta resta a chi gioca. Dieci prove, fra cui
    «ogni soggetto di cui una carta può parlare ha il suo posto».
-4. **Il Consiglio giocabile** — è [ISSUES 62](#62), e le due si chiudono insieme:
-   *il gioco non esiste come componenti, né di cartone né sullo schermo.*
+4. 🔸 **Il Consiglio giocabile** — [D-232](DECISIONS.md#d-232) e
+   [D-233](DECISIONS.md#d-233), 0.1.203–0.1.204. **Sullo schermo è fatto:** una
+   proposta arriva a chi sceglie dicendo *cosa lascia al mondo* — 43 su 43 ne
+   lasciano qualcosa — e si legge come una carta, titolo sopra e lettera piccola
+   sotto. Lo stesso per le clausole. Tre prove, una per ciascuno dei tre tratti
+   (la riga, il disegno, il filo in mezzo). **Sul cartone no**: resta
+   [ISSUES 62](#62), e la forma è una decisione d'autore.
 
 **Da tenere presente mentre si costruisce:** niente di tutto questo lo copre il
 cancello. Le regole restano verdi qualunque cosa succeda alla GUI, ed è
@@ -2876,6 +2881,11 @@ riempiti con un valore che una scheda non può conoscere. È generato dai dati e
 la CI lo confronta, quindi non può invecchiare in silenzio. Una prova ha trovato
 subito una condizione che parlava al programmatore (*«...la carta di Propp e' la
 porta (D-127)»*), ed è stata riscritta.
+
+**E in 0.1.204 ([D-233](DECISIONS.md#d-233)) quel materiale è arrivato a chi
+sceglie**, almeno sullo schermo: la proposta porta sotto di sé cosa lascia al
+mondo, la clausola cosa scrive se qualificata. È la stessa sorgente della
+scheda, con una voce diversa — al tavolo i buchi li riempie la partita.
 
 Resta d'autore **quale delle tre**, e resta aperto il difetto della soglia sulla
 carta Domanda stampata.

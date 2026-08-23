@@ -33,6 +33,7 @@ const AssetText := preload("res://scripts/core/asset_text.gd")
 const EchoText := preload("res://scripts/core/echo_text.gd")
 const GameSession := preload("res://scripts/chronicle/game_session.gd")
 const SignLabels := preload("res://scripts/core/sign_labels.gd")
+const CouncilText := preload("res://scripts/core/council_text.gd")
 
 ## Entity ids a person is playing.
 var humans: Dictionary = {}
@@ -406,13 +407,45 @@ func choose_proposition(context: Dictionary, options: Array, session: RefCounted
 	if not _is_human(proponent):
 		return fallback.choose_proposition(context, options, session)
 	_speaking_to = proponent
+	# **Cosa lascia al mondo**, non solo cosa dice (ISSUES 62/63, D-233).
+	#
+	# Fino a qui la proposta era una riga sola: la frase d'autore. Cosa scriveva
+	# sulla mappa se passava stava in `success_consequences`, cioe' in un file che
+	# chi gioca non apre. Si sceglieva fra tre frasi belle senza sapere quale
+	# alzava una torre e quale lasciava una cicatrice — ed e' **la decisione
+	# centrale del gioco**.
+	#
+	# La riga la scrive `CouncilText`, lo stesso posto che scrive la scheda: con
+	# la voce del Consiglio i buchi li riempie la partita, sulla scheda si
+	# spiegano. Due letture, una sorgente.
+	var template: Dictionary = session.data.confluence_templates[str(context["template_id"])]
+	var voice: Callable = Callable(session.confluence, "say")
 	var labels: Array = []
 	for proposition in options:
-		labels.append(session.confluence.say(str(proposition["text"])))
+		var said: Dictionary = CouncilText.proposition(
+			template, str(proposition["id"]), session.data, voice
+		)
+		labels.append(_proposition_label(said, session.confluence.say(str(proposition["text"]))))
 	var choice: int = await _choose("  Cosa proponi?", labels)
 	if choice < 0:
 		return fallback.choose_proposition(context, options, session)
 	return str(options[choice]["id"])
+
+
+## Una proposta come si legge prima di sceglierla: la frase, e sotto cosa resta
+## al mondo se passa. Se una proposta non lascia niente lo **dice**, invece di
+## tacere: il silenzio si legge come «non lo so», e qui e' un fatto.
+static func _proposition_label(said: Dictionary, fallback_text: String) -> String:
+	if said.is_empty():
+		return fallback_text
+	var leaves: Array = []
+	for record in said["consequences"]:
+		var line: String = str((record as Dictionary)["leaves"])
+		if line != "" and not leaves.has(line):
+			leaves.append(line)
+	if leaves.is_empty():
+		return "%s\nNon lascia segni sul mondo." % str(said["text"])
+	return "%s\nSe passa: %s" % [str(said["text"]), " · ".join(PackedStringArray(leaves))]
 
 
 func choose_stance(entity_id: String, context: Dictionary, session: RefCounted) -> Dictionary:
@@ -424,9 +457,21 @@ func choose_stance(entity_id: String, context: Dictionary, session: RefCounted) 
 
 	var labels: Array = ["Sostieni", "Opponiti", "Astieniti"]
 	var clause_ids: Array = []
-	for clause in clauses:
+	# Anche una clausola lascia qualcosa dietro, e anche quello stava solo nel
+	# database: si sceglieva di qualificare senza sapere cosa si scriveva.
+	var said_clauses: Array = CouncilText.clauses(
+		template, session.data, Callable(session.confluence, "say")
+	)
+	for i in range(clauses.size()):
+		var clause: Dictionary = clauses[i] as Dictionary
 		clause_ids.append(str(clause["id"]))
-		labels.append("Sostieni a condizione che: %s" % session.confluence.say(str(clause["text"])))
+		var leaves: String = "" if i >= said_clauses.size() else str(
+			(said_clauses[i] as Dictionary)["leaves"]
+		)
+		labels.append("Sostieni a condizione che: %s%s" % [
+			session.confluence.say(str(clause["text"])),
+			"" if leaves == "" else "\nSe qualificata: %s" % leaves,
+		])
 	var choice: int = await _choose("  %s, cosa dici?" % _name(entity_id, session), labels)
 	if choice < 0:
 		return fallback.choose_stance(entity_id, context, session)

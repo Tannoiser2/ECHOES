@@ -60,31 +60,52 @@ static func speak(text: String) -> String:
 	return out
 
 
+## La stessa frase, detta da chi la sta dicendo.
+##
+## Fuori dalla partita un buco **si spiega** (`speak`). Al tavolo invece la
+## partita lo sa riempire, e sarebbe assurdo leggere «la Regione di cui si
+## discute» quando quella Regione ha un nome e sta sullo schermo. Chi chiama
+## passa la propria voce — `ConfluenceController.say` — e ottiene la stessa
+## struttura con dentro i nomi veri.
+##
+## Le due letture restano **una sola sorgente**: la scheda stampata e la riga
+## sullo schermo nascono dalla stessa funzione, quindi non possono dire due cose
+## diverse della stessa proposta. E' lo stesso motivo per cui `consequence_note`
+## chiede a `AssetText` invece di riscrivere gli Effetti.
+static func _voice(text: String, voice: Callable) -> String:
+	if voice.is_valid():
+		return str(voice.call(text))
+	return speak(text)
+
+
 ## Cosa lascia al mondo una Conseguenza, in una riga.
 ##
 ## Gli Effetti li racconta gia' `AssetText`, che e' il posto dove un Effetto
 ## diventa italiano (D-228): qui non si riscrive niente, si chiede a lui. Una
 ## Conseguenza che dice una cosa e ne fa un'altra non e' possibile, perche' la
 ## frase nasce dagli stessi campi che il motore applica.
-static func consequence_note(consequence: Dictionary, data = null) -> String:
+static func consequence_note(
+	consequence: Dictionary, data = null, voice: Callable = Callable()
+) -> String:
 	var said: Array = []
 	for effect in consequence.get("effects", []):
 		# Il buco puo' stare **dentro il segno**, non solo nella frase d'autore:
 		# `settlement:$proponent` diventa «insediamento: $proponent» e il `$`
 		# arriva fino alla scheda. Si spiega qui, dove si spiega tutto il resto.
-		var line: String = speak(AssetText.effect_note(effect as Dictionary, data))
+		var line: String = _voice(AssetText.effect_note(effect as Dictionary, data), voice)
 		if line != "" and not said.has(line):
 			said.append(line)
 	var scar: Dictionary = consequence.get("scar", {}) as Dictionary
 	if not scar.is_empty():
-		said.append("e resta una cicatrice: %s" % speak(str(scar.get("description", ""))))
+		said.append("e resta una cicatrice: %s" % _voice(str(scar.get("description", "")), voice))
 	return " · ".join(PackedStringArray(said))
 
 
 ## Una proposta, come si legge su una scheda: la domanda a cui risponde, quello
 ## che chiede, e cosa lascia al mondo se passa.
 static func proposition(
-	template: Dictionary, proposition_id: String, data = null
+	template: Dictionary, proposition_id: String, data = null,
+	voice: Callable = Callable()
 ) -> Dictionary:
 	for entry in template.get("propositions", []):
 		var found: Dictionary = entry as Dictionary
@@ -99,39 +120,41 @@ static func proposition(
 				continue
 			leaves.append({
 				"title": str((consequence as Dictionary)["title"]),
-				"leaves": consequence_note(consequence as Dictionary, data),
+				"leaves": consequence_note(consequence as Dictionary, data, voice),
 			})
 		return {
 			"id": proposition_id,
-			"question": speak(_question_of(template, str(found.get("question_id", "")))),
-			"text": speak(str(found["text"])),
-			"needs": _needs(found.get("eligibility", [])),
+			"question": _voice(_question_of(template, str(found.get("question_id", ""))), voice),
+			"text": _voice(str(found["text"]), voice),
+			"needs": _needs(found.get("eligibility", []), voice),
 			"consequences": leaves,
 		}
 	return {}
 
 
 ## Le clausole che gli altri possono attaccare a una proposta.
-static func clauses(template: Dictionary, data = null) -> Array:
+static func clauses(
+	template: Dictionary, data = null, voice: Callable = Callable()
+) -> Array:
 	var out: Array = []
 	for entry in template.get("condition_clauses", []):
 		var clause: Dictionary = entry as Dictionary
 		out.append({
 			"id": str(clause["id"]),
-			"text": speak(str(clause["text"])),
-			"leaves": consequence_note(clause, data),
+			"text": _voice(str(clause["text"]), voice),
+			"leaves": consequence_note(clause, data, voice),
 		})
 	return out
 
 
 ## Quando una proposta si puo' fare, in parole. Le condizioni portano gia' la
 ## propria `label` d'autore: e' scritta per chi gioca, e qui si usa quella.
-static func _needs(eligibility: Array) -> Array:
+static func _needs(eligibility: Array, voice: Callable = Callable()) -> Array:
 	var out: Array = []
 	for condition in eligibility:
 		var said: String = str((condition as Dictionary).get("label", ""))
 		if said != "":
-			out.append(speak(said))
+			out.append(_voice(said, voice))
 	return out
 
 

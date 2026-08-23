@@ -5,6 +5,30 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.204 — La proposta dice cosa lascia al mondo (D-233)
+
+- **Chiude il quarto passo di ISSUES 63** e la metà-schermo di ISSUES 62. Chi
+  propone sceglieva fra tre frasi d'autore che si somigliano, e **cosa
+  scrivevano sul mondo stava in un file di dati**: una torre, un padrone che
+  cambia, una cicatrice. È la decisione centrale del gioco, e si prendeva al
+  buio. Lo stesso per le clausole.
+- **Due letture, una sorgente**: la scheda stampata e la riga sullo schermo
+  escono dalla stessa funzione di D-232 e cambia solo **la voce** — fuori dal
+  tavolo un buco si spiega, al tavolo lo riempie la partita col nome vero. Il
+  catalogo non è cambiato di una riga, e il cancello di deriva lo conferma.
+- **Una scelta si disegna come una carta**: la prima riga è quello che si dice,
+  sotto in grigio più piccolo quello che resta. Sotto rimane un `Button`, che sa
+  già cosa vuol dire il fuoco della tastiera e Invio.
+- **Il silenzio non è una terza possibilità**: se una proposta non lascia niente
+  lo dice. Misurato: **43 proposte su 43 lasciano qualcosa**.
+- **Tre prove per i tre tratti** — la riga, il disegno, e il filo in mezzo che
+  li unisce: due su tre sarebbe lo stesso buco di D-224. Provate al contrario.
+- **Misurato**: 457 prove / 8.530 asserzioni verdi (da 454 / 8.299), cancelli
+  verdi, sim verdi, export e catalogo allineati, playtest 100 semi **0 seggi
+  bloccati su 8** a tavolo misto e uniforme.
+
+---
+
 ## 0.1.203 — Il Consiglio esce dal database: le proposte in italiano (D-232)
 
 - **Il pezzo che serve a tutte e tre le forme di ISSUES 62.** Scheda per

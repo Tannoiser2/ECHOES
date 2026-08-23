@@ -88,3 +88,132 @@ func test_a_proposition_says_what_it_leaves_behind() -> void:
 	)
 	var first: Dictionary = (said["consequences"] as Array)[0] as Dictionary
 	assert_ne(str(first["leaves"]), "", "con parole, non con tipi: %s" % str(first["leaves"]))
+
+
+## --- e quello che arriva a chi sta scegliendo (D-233) -----------------------
+
+const SeatDecider := preload("res://scripts/seat/seat_decider.gd")
+const ConfluenceBoard := preload("res://ui/confluence_board.gd")
+
+
+## **La decisione centrale del gioco si prendeva al buio.**
+##
+## Chi propone sceglie fra tre o quattro frasi d'autore. Cosa scrivevano sul
+## mondo — una torre, una cicatrice, una Regione che cambia padrone — stava in
+## `success_consequences`, cioe' in un file che chi gioca non apre. Le frasi sono
+## belle e si somigliano; quello che lasciano dietro no.
+##
+## Adesso l'etichetta porta la seconda riga, e questa prova la tiene per **ogni**
+## proposta della scatola: o dice cosa resta, o dichiara che non resta niente.
+## Il silenzio non e' una terza possibilita': si legge come «non lo so».
+func test_a_proposition_offered_says_what_it_leaves() -> void:
+	var loaded: RefCounted = data()
+	var said_nothing: int = 0
+	var checked: int = 0
+	for template_id in loaded.confluence_templates:
+		var template: Dictionary = loaded.confluence_templates[str(template_id)] as Dictionary
+		for entry in template.get("propositions", []):
+			var said: Dictionary = CouncilText.proposition(
+				template, str((entry as Dictionary)["id"]), loaded
+			)
+			var label: String = SeatDecider._proposition_label(said, str((entry as Dictionary)["text"]))
+			var parts: PackedStringArray = label.split("\n", false)
+			assert_true(
+				parts.size() >= 2,
+				"«%s» arriva a chi sceglie senza dire cosa lascia" % str((entry as Dictionary)["id"])
+			)
+			var small: String = str(parts[1])
+			assert_true(
+				small.begins_with("Se passa: ") or small == "Non lascia segni sul mondo.",
+				"e lo dice in un modo solo: %s" % small
+			)
+			assert_false(small.contains("$"), "senza buchi: %s" % small)
+			assert_false(small.contains("_"), "e senza id: %s" % small)
+			if small != "Non lascia segni sul mondo.":
+				assert_true(small.length() > 12, "e con qualcosa dentro: %s" % small)
+			else:
+				said_nothing += 1
+			checked += 1
+	assert_true(checked >= 40, "per ogni proposta della scatola: %d" % checked)
+	# Un numero scritto vale piu' di un numero nascosto: se domani meta' delle
+	# proposte non lascia piu' niente, questo non e' un dettaglio d'interfaccia.
+	assert_true(
+		said_nothing <= checked / 4,
+		"e la maggioranza lascia davvero qualcosa: %d su %d non lasciano niente" % [
+			said_nothing, checked,
+		]
+	)
+
+
+## E la seconda riga si **vede** che e' lettera piccola.
+##
+## Una scelta del Consiglio e' disegnata come una carta: il titolo si legge da
+## lontano, quello che costa quando la prendi in mano. Se domani qualcuno rimette
+## tutto in un unico `Button.text`, la riga esiste ancora nei dati e sparisce
+## dagli occhi — che e' esattamente il difetto che ISSUES 63 descrive.
+func test_the_small_print_is_drawn_smaller() -> void:
+	var board: Node = ConfluenceBoard.new()
+	var card: Button = board._choice_card("Alziamo la torre\nSe passa: si alza una costruzione")
+	var lines: Array = []
+	for child in card.get_child(0).get_children():
+		if child is Label:
+			lines.append(child)
+	assert_eq(lines.size(), 2, "due righe: quello che si dice e quello che resta")
+	assert_eq(str((lines[0] as Label).text), "Alziamo la torre", "la prima e' la proposta")
+	var big: int = (lines[0] as Label).get_theme_font_size("font_size")
+	var small: int = (lines[1] as Label).get_theme_font_size("font_size")
+	assert_true(small < big, "e la seconda e' piu' piccola: %d contro %d" % [small, big])
+	assert_true(
+		(lines[1] as Label).mouse_filter == Control.MOUSE_FILTER_IGNORE,
+		"e non ruba il clic al bottone che c'e' sotto"
+	)
+	card.free()
+	board.free()
+
+
+## Un io con le risposte in fila, che si ricorda cosa gli e' stato offerto.
+class ScriptedIo extends RefCounted:
+	var asks: Array = []
+
+	func say(_text: String) -> void:
+		pass
+
+	func choose(_prompt: String, labels: Array, _subjects: Array = []) -> int:
+		asks.append(labels.duplicate())
+		return 0
+
+
+## E il filo regge fino a chi sta seduto.
+##
+## Le due prove sopra guardano la funzione che scrive la riga e il pezzo di
+## schermo che la disegna. Restava scoperto il tratto in mezzo — che
+## `SeatDecider` la chiami davvero — e un tratto scoperto in mezzo e' come non
+## averlo fatto: e' il buco di [D-224](DECISIONS.md#d-224) ripetuto.
+func test_the_seat_is_offered_what_it_leaves() -> void:
+	new_session()
+	var seat: String = str(session.world["turn_order"][0])
+	var template_id: String = ""
+	for candidate in session.data.confluence_templates:
+		template_id = str(candidate)
+		break
+	var template: Dictionary = session.data.confluence_templates[template_id] as Dictionary
+
+	var io := ScriptedIo.new()
+	var decider: RefCounted = SeatDecider.new([seat], null)
+	decider.io = io
+	var chosen: String = await decider.choose_proposition(
+		{"template_id": template_id, "proponent": seat, "tension_id": str(template["tension_id"])},
+		template["propositions"],
+		session
+	)
+	assert_eq(chosen, str((template["propositions"][0] as Dictionary)["id"]), "la scelta torna intera")
+	assert_eq(io.asks.size(), 1, "e chi siede e' stato interrogato una volta")
+	for label in (io.asks[0] as Array):
+		var parts: PackedStringArray = str(label).split("\n", false)
+		assert_true(parts.size() >= 2, "ogni proposta offerta porta la sua seconda riga: %s" % str(label))
+		assert_true(
+			str(parts[1]).begins_with("Se passa: ")
+			or str(parts[1]) == "Non lascia segni sul mondo.",
+			"che dice cosa resta al mondo: %s" % str(parts[1])
+		)
+
