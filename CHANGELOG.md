@@ -5,6 +5,23 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.188 — Il brief d'arte era vecchio, e il cancello locale non lo sapeva
+
+- **Difetto mio, trovato dalla CI.** D-218 ha cambiato il testo stampato di due
+  carte — l'Assedio e l'Archivio — e `docs/BRIEF_ARTE.md` è **generato
+  dall'export e committato**: è il documento che si manda a chi disegna. Non
+  l'ho rigenerato, e il brief prometteva due carte che non esistono più.
+- **Perché il cancello locale diceva verde**: `tools/run_export.sh` *genera* il
+  brief, non lo confronta col committato. Il confronto lo faceva **solo la CI**.
+  È la stessa distanza fra le due strade che D-189 aveva già pagato una volta.
+- **Adesso confronta lui**: il brief disallineato produce un avviso con il
+  comando per rimediare, e `--check-brief` lo fa uscire **1**. Provato sporcando
+  il brief committato.
+- **Aggiunta la riga alla regola 5 di CONSEGNE**: se cambia il testo stampato di
+  una carta, si passa da `--check-brief`.
+
+---
+
 ## 0.1.187 — Ogni relazione dice perché (D-219)
 
 - ISSUES 54 chiedeva una cosa sola: **ogni coppia neutrale lo è per una ragione

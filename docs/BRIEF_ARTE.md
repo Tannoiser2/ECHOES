@@ -407,11 +407,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.force.siege` — Assedio
 
-- **soggetto**: Assedio — +2 sul fronte Oppose. Non serve prendere una cosa per impedire che sia di qualcun altro — ma l'assedio affama anche la terra intorno: la Carestia sale di 1
+- **soggetto**: Assedio — +2 sul fronte Oppose. Non serve prendere una cosa per impedire che sia di qualcun altro — ma l'assedio affama anche la terra intorno: la Carestia sale di 1, e il presidio della Regione della domanda viene giu'
 - **id**: `AST_FORCE_SIEGE`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Assedio — +2 sul fronte Oppose. Non serve prendere una cosa per impedire che sia di qualcun altro — ma l'assedio affama anche la terra intorno: la Carestia sale di 1.
+Historical dark-fantasy painting, single evocative scene depicting Assedio — +2 sul fronte Oppose. Non serve prendere una cosa per impedire che sia di qualcun altro — ma l'assedio affama anche la terra intorno: la Carestia sale di 1, e il presidio della Regione della domanda viene giu'.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 rosso ossido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -443,11 +443,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.knowledge.archive` — Archivio
 
-- **soggetto**: Archivio — Se la proposta passa resta in mano. Le carte non si consumano: si consuma chi le sa leggere
+- **soggetto**: Archivio — Se la proposta passa resta in mano. Le carte non si consumano: si consuma chi le sa leggere — e quello che si e' letto resta: sulla Regione della domanda si apre un archivio suo
 - **id**: `AST_KNOWLEDGE_ARCHIVE`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Archivio — Se la proposta passa resta in mano. Le carte non si consumano: si consuma chi le sa leggere.
+Historical dark-fantasy painting, single evocative scene depicting Archivio — Se la proposta passa resta in mano. Le carte non si consumano: si consuma chi le sa leggere — e quello che si e' letto resta: sulla Regione della domanda si apre un archivio suo.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 verde-azzurro pallido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
