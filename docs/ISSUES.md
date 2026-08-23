@@ -2836,8 +2836,13 @@ giocare.** Il cancello gioca solo con `PolicyDecider`, che non ha mani.
    famiglie di pietra, cinque forme; il grado sono i punti sotto il pezzo, il
    padrone e' il colore. La parola solo sotto il mouse. Tre prove, fra cui «un
    segno senza pezzo e' invisibile».
-3. ✅ **Il drag & drop** — [D-230](DECISIONS.md#d-230) e
-   [D-231](DECISIONS.md#d-231), 0.1.201–0.1.202. Si prende una carta e la si
+3. ✅ **Il drag & drop** — [D-230](DECISIONS.md#d-230),
+   [D-231](DECISIONS.md#d-231) e [D-238](DECISIONS.md#d-238), 0.1.201–0.1.209.
+   **Riaperto e richiuso**: il trascinamento c'era da 0.1.201, ma la colonna
+   stampava comunque un bottone per ogni scelta, e da fuori lo schermo era
+   identico a prima — *«sembra tutto uguale a prima»*, e lo era. Ora una scelta
+   che ha un posto dove cadere **non è anche un bottone**, e il clic sulla carta
+   è l'altra strada. Si prende una carta e la si
    lascia dove la si vuole usare: una **Regione** sulla mappa, una **domanda**
    sulla traccia, una **casa** nella colonna dei rapporti. Quando quella carta lì
    sa fare una cosa sola, posarla è già la mossa; quando ne sa fare due opposte,

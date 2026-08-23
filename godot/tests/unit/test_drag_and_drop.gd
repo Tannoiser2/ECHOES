@@ -253,3 +253,81 @@ func test_every_subject_a_card_speaks_to_has_a_place() -> void:
 			"la casa %s ha un posto dove far cadere una carta" % str(entity_id)
 		)
 	panel.free()
+
+
+## --- e la colonna non rifà quello che la mano già fa (D-238) ----------------
+
+const GameScreen := preload("res://ui/game_screen.gd")
+
+
+## **Il difetto che rendeva invisibile tutto questo lavoro.**
+##
+## Il trascinamento c'era da D-230, ma la colonna delle scelte continuava a
+## stampare un bottone per ognuna: si toglievano solo quelle che vivevano su una
+## Regione. Da fuori lo schermo era identico a prima — una lista di pulsanti che
+## dicono cosa fare, che e' esattamente cio' che il committente aveva chiesto di
+## non avere. Il trascinamento esisteva e non serviva a niente, perche' accanto
+## c'era sempre il modo vecchio.
+##
+## Adesso una scelta che ha un posto dove cadere **non e' anche un bottone**.
+func test_a_choice_with_a_place_is_not_also_a_button() -> void:
+	var carried_to_a_question: Dictionary = {"asset": CARD, "tension": "TEN_FAMINE"}
+	var carried_to_a_house: Dictionary = {"asset": CARD, "entity": "ENT_ALDRIC"}
+	var on_the_map: Dictionary = {"region": HERE}
+	for subject in [carried_to_a_question, carried_to_a_house, on_the_map]:
+		assert_true(
+			GameScreen._has_a_landing_place(subject as Dictionary),
+			"questa scelta si posa da qualche parte: %s" % str(subject)
+		)
+
+
+## E quello che **non** ha un posto resta un bottone, perche' altrimenti sarebbe
+## irraggiungibile. Passare non si trascina da nessuna parte, e una trama che non
+## parla di niente di visibile nemmeno.
+func test_a_choice_with_nowhere_to_go_stays_a_button() -> void:
+	for subject in [
+		{},
+		{"asset": CARD},
+		{"tension": "TEN_FAMINE"},
+	]:
+		assert_false(
+			GameScreen._has_a_landing_place(subject as Dictionary),
+			"questa scelta non ha un posto dove cadere: %s" % str(subject)
+		)
+
+
+## Una carta senza soggetto non ha un posto **anche se** porta un asset: e' il
+## caso di una scelta che nomina la carta e nient'altro. Il bottone e' la sua
+## unica strada, e toglierlo la cancellerebbe dal gioco.
+func test_the_card_alone_is_not_a_place() -> void:
+	assert_false(
+		GameScreen._has_a_landing_place({"asset": CARD}),
+		"nominare la carta non dice **dove**"
+	)
+
+
+## E il clic sulla carta e' l'altra strada, quella che il committente ha
+## descritto in due movimenti: *«si seleziona una carta, si decide come usarla»*.
+## Serve anche da porta di servizio — un trascinamento che non riesce non deve
+## lasciare una mossa legale senza modo di farla.
+func test_a_card_can_be_chosen_with_a_click() -> void:
+	var card: Control = AssetCard.new()
+	card.render(session.data.assets[CARD], [], false, session.data)
+	card.offers = [{"tension": "TEN_FAMINE", "index": 2}]
+	var heard: Array = []
+	card.chosen.connect(func(asset_id: String) -> void: heard.append(asset_id))
+
+	var click := InputEventMouseButton.new()
+	click.button_index = MOUSE_BUTTON_LEFT
+	click.pressed = true
+	card._gui_input(click)
+	assert_eq(heard, [CARD], "il clic sceglie la carta")
+
+	# E una carta che non porta scelte non si sceglie: e' la stessa regola del
+	# trascinamento (D-039), detta per il clic.
+	heard.clear()
+	card.offers = []
+	card._gui_input(click)
+	assert_true(heard.is_empty(), "una carta senza scelte non risponde al clic")
+	card.free()
+

@@ -417,6 +417,7 @@ func _build() -> void:
 
 	_hand = HandView.new()
 	_hand.custom_minimum_size = Vector2(0, 140)
+	_hand.card_chosen.connect(_on_card_chosen)
 	rows.add_child(_hand)
 
 	_help.render(_load_help_data())
@@ -779,10 +780,26 @@ func ask(prompt: String, labels: Array, subjects: Array = []) -> int:
 		else ("" if on_map.is_empty()
 			else "Le Regioni cerchiate d'oro sono raggiungibili: cliccane una per metterci una presenza.")
 	)
+	# **Una scelta che ha un posto dove cadere non e' anche un bottone** (D-238).
+	#
+	# Fino a qui lo era: si toglievano dalla colonna solo le scelte che vivevano
+	# su una Regione, e tutto il resto — influenzare una domanda, tramare su una
+	# domanda, forgiare con una casa — restava una riga di testo premibile
+	# accanto alla mappa. Da fuori l'interfaccia era identica a prima di tutto
+	# questo lavoro, ed e' esattamente cio' che il committente aveva chiesto di
+	# non avere: *«la gui deve prevedere movimenti drag & drop, non pulsanti che
+	# dicono cosa fare»*. Il trascinamento c'era; il bottone che lo rendeva
+	# inutile, pure.
+	#
+	# Adesso la colonna tiene solo quello che **non ha un posto** — passare,
+	# lasciar decidere alla policy, una trama che non parla di niente di
+	# visibile. Il resto si prende in mano: si trascina, oppure si clicca la
+	# carta e la colonna si restringe a quello che quella carta li' sa fare.
+	# Una prova tiene il patto: nessuna scelta legale resta irraggiungibile.
 	_clear_buttons()
 	for i in range(labels.size()):
 		var subject: Dictionary = subjects[i] if i < subjects.size() else {}
-		if str(subject.get("region", "")) != "":
+		if _has_a_landing_place(subject):
 			continue
 		var button := Button.new()
 		button.text = str(labels[i])
@@ -804,6 +821,40 @@ func ask(prompt: String, labels: Array, subjects: Array = []) -> int:
 	_prompt.text = ""
 	_hint.text = ""
 	return chosen
+
+
+## Questa scelta ha un posto sullo schermo dove si puo' posare una carta?
+##
+## Una Regione sulla mappa, una domanda sulla traccia, una casa nella colonna
+## dei rapporti — sono i tre posti che D-230 e D-231 hanno aperto. Le Regioni
+## valgono anche senza carta: si cliccano e basta.
+static func _has_a_landing_place(subject: Dictionary) -> bool:
+	if str(subject.get("region", "")) != "":
+		return true
+	if str(subject.get("asset", "")) == "":
+		return false
+	for field in ["tension", "entity"]:
+		if str(subject.get(field, "")) != "":
+			return true
+	return false
+
+
+## La carta scelta col clic: la colonna si restringe a quello che sa fare.
+##
+## E' il primo dei due movimenti che il committente ha descritto — *«si
+## seleziona una carta, si decide come usarla»* — e la porta di servizio del
+## trascinamento: se prendere e lasciare non riesce, la mossa resta a un clic.
+func _on_card_chosen(asset_id: String) -> void:
+	var carried: Array = _offers.get(asset_id, []) as Array
+	if carried.is_empty():
+		return
+	var indices: Array = []
+	for entry in carried:
+		indices.append(int((entry as Dictionary)["index"]))
+	if indices.size() == 1:
+		picked.emit(int(indices[0]))
+		return
+	_narrow_to(indices)
 
 
 ## Una carta caduta su una domanda o su una casa.

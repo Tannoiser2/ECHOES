@@ -31,6 +31,10 @@ func _ready() -> void:
 ## carte si guardano e basta. **E' quello che le rende trascinabili** (D-230):
 ## una carta senza offerte non si puo' prendere, esattamente come una Regione
 ## senza cerchio d'oro non si puo' cliccare.
+## Una carta della mano e' stata scelta col clic (D-238).
+signal card_chosen(asset_id: String)
+
+
 func render(
 	session: RefCounted, viewer_id: String, tension_id: String = "",
 	offers: Dictionary = {}
@@ -56,6 +60,7 @@ func render(
 		add_child(card)
 		card.render(asset, relevant, council_open, session.data)
 		card.offers = offers.get(str(asset_id), [])
+		card.chosen.connect(func(chosen_id: String) -> void: card_chosen.emit(chosen_id))
 
 	# La mano del Narratore (ISSUES 23, D-118): le carte di Propp accanto agli
 	# Asset, spente quando la storia non le accetta ancora - il motivo sta

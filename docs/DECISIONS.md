@@ -10,6 +10,62 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-238 — Il bottone che rendeva invisibile il trascinamento
+
+**implemented in 0.1.209** — riapre e chiude il terzo passo di ISSUES 63
+
+> «L'interfaccia non e' cambiata, sembra tutto uguale a prima.» — il committente,
+> guardando la build appena pubblicata
+
+Aveva ragione, e la ragione non era la cache del browser: **era il codice**.
+
+Da [D-230](#d-230) e [D-231](#d-231) una carta si prende e si lascia cadere su
+una Regione, su una domanda o su una casa. Ma la colonna delle scelte continuava
+a stampare **un bottone per ognuna**: l'unica esclusione era la scelta che
+viveva su una Regione. Influenzare una domanda, tramare su una domanda,
+forgiare con una casa — tutte e tre trascinabili da D-231 — restavano anche una
+riga di testo premibile accanto alla mappa.
+
+Il risultato e' che il trascinamento **esisteva e non serviva a niente**: chi
+apriva l'app vedeva la stessa lista di pulsanti di prima, e non aveva nessuna
+ragione di scoprire che si potesse fare altro. Tre decisioni di lavoro, misurate
+e provate, invisibili per una riga di filtro scritta troppo stretta — ed erano
+nate proprio contro questo: *«la gui deve prevedere movimenti drag & drop, **non
+pulsanti che dicono cosa fare**»*.
+
+**Adesso la colonna tiene solo quello che non ha un posto dove cadere**: passare,
+lasciar decidere alla policy, una trama che non parla di niente di visibile. Il
+resto si prende in mano.
+
+**E la porta di servizio, che e' anche il primo dei due movimenti che il
+committente aveva descritto.** *«Si seleziona una carta, si decide come usarla»*
+sono due gesti, e il trascinamento li fa insieme. Il **clic** sulla carta fa il
+primo: la colonna si restringe a quello che quella carta li' sa fare — e se sa
+fare una cosa sola, sceglierla *e'* la mossa. Serve anche a non lasciare un
+vicolo cieco: un trascinamento che non riesce — un dito su un telefono, un mouse
+che scappa — non deve rendere irraggiungibile una mossa legale.
+
+**Quattro prove**, e la prima e' quella che il difetto non aveva:
+
+- una scelta che ha un posto dove cadere **non e' anche un bottone**;
+- una che non ce l'ha **resta** un bottone, perche' altrimenti sparirebbe dal
+  gioco;
+- nominare la carta non dice *dove*: `{"asset": X}` da solo non e' un posto;
+- il clic sceglie la carta, e una carta senza scelte non risponde al clic — la
+  stessa regola del trascinamento ([D-039](#d-039)), detta per il dito.
+
+Provate al contrario: rimettendo il filtro vecchio, due diventano rosse.
+
+**Misurato:** suite 469 prove / 10.541 asserzioni verdi (era 465 / 10.532), i
+cancelli degli strumenti verdi, i piani di simulazione verdi,
+`run_playtest.gd --runs=100 --seed=7000` **0 seggi bloccati su 8** a tavolo
+misto e uniforme — e vale la pena ripeterlo, perche' e' la lezione di questa
+decisione: **il cancello era verde anche prima**, e sarebbe rimasto verde per
+sempre con una GUI che non si poteva usare. Nessuna misura copre quello che una
+persona vede (§5ter); questo difetto l'ha trovato il committente aprendo l'app.
+
+---
+
 ## D-237 — I tre coperti sono della saga, non dell'anno
 
 **implemented in 0.1.208** — chiude ISSUES 58
