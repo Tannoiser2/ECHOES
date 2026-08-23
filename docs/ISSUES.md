@@ -2763,6 +2763,31 @@ e' in gioco.
 
 ---
 
+### 66. La seconda saga non si raggiunge più
+
+`contenuto` · `da-decidere` · **aperta in 0.1.212** ([D-245](DECISIONS.md#d-245))
+
+Il menu non chiede più da dove cominciare: si apre l'app e si gioca il primo
+anno. Il prezzo è che **CHR_03 — anno 1640, le altre quattro case — non si apre
+da nessuna parte.**
+
+È contenuto scritto, validato e giocabile che nessuno può raggiungere: quello
+che [D-035](DECISIONS.md#d-035) chiama contenuto che non esiste.
+
+**Tre strade, e sono d'autore:**
+
+1. **la seconda saga arriva giocando** — la si raggiunge dopo aver chiuso la
+   prima, come l'era successiva arriva a fine Chronicle. È la più coerente con
+   «l'app si apre e si gioca», e vuol dire scrivere la regola di quando;
+2. **sta altrove** — dietro il pulsante che già esiste per riprendere una
+   partita, o in una voce che non è una domanda all'apertura;
+3. **non serve** — la si toglie, e la scatola ha una saga sola. Sono venti
+   Destini e quattro case in meno, e va detto ad alta voce prima di farlo.
+
+**Fatto quando** o CHR_03 si raggiunge, o è stato tolto perché non serviva.
+
+---
+
 ### 65. Tutta la pagina dell'app va rivista
 
 `ux` · voluta dal committente · **aperta in 0.1.211**

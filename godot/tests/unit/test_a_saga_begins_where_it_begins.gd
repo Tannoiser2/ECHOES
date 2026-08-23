@@ -1,19 +1,20 @@
 extends "res://tests/test_case.gd"
-## Da quale saga si comincia (D-241).
+## Da dove comincia una partita, e che non lo chiede a nessuno (D-241, D-245).
 ##
 ## *«Chiede ancora quale anno voglio giocare.»* Il menu offriva **tutte** le
-## Chronicle della scatola come punto di partenza, e due delle quattro non lo
-## sono: sono il **seguito** di un'altra — la biblioteca della stessa eta', che
-## eredita il mondo dell'anno prima e si raggiunge giocando. Cominciare da li'
-## vuol dire aprire il secondo capitolo senza il primo.
+## Chronicle come punto di partenza, e due delle quattro non lo sono: sono il
+## **seguito** di un'altra — la biblioteca della stessa eta', che eredita il
+## mondo dell'anno prima e si raggiunge giocando.
 ##
-## Una saga si comincia, e poi gli anni vengono da soli: a fine Chronicle il
-## gioco offre gia' l'era successiva ([D-095](DECISIONS.md#d-095)).
+## D-241 aveva ridotto la domanda a due voci. **Era ancora una domanda di
+## troppo**: *«non deve chiedere nessuna saga»*. Adesso l'app si apre e si
+## gioca, e queste prove tengono l'unica cosa che resta da tenere — che il posto
+## da cui parte sia un **inizio** e non il secondo capitolo di qualcos'altro.
 
 const GameScreen := preload("res://ui/game_screen.gd")
 
 
-## Il menu non offre mai il seguito di qualcun altro.
+## Il posto da cui si parte non e' mai il seguito di qualcun altro.
 func test_the_menu_never_offers_a_sequel() -> void:
 	var loaded: RefCounted = data()
 	var sequels: Dictionary = {}
@@ -64,3 +65,20 @@ func test_the_openings_come_in_year_order() -> void:
 		var year: int = int((loaded.chronicles[str(chronicle_id)] as Dictionary)["start_year"])
 		assert_true(year >= last, "«%s» viene dopo quella di prima" % str(chronicle_id))
 		last = year
+
+
+## E non chiede: la partita comincia da sola, dalla prima apertura in ordine
+## d'anno. Se domani qualcuno rimettesse una domanda all'apertura, questa prova
+## non se ne accorgerebbe — ma il punto da cui si parte resta scritto qui, ed e'
+## quello che una domanda tornerebbe a mettere in dubbio.
+func test_the_game_starts_without_asking() -> void:
+	var loaded: RefCounted = data()
+	var start: String = GameScreen.first_chronicle(loaded)
+	assert_true(loaded.chronicles.has(start), "il posto da cui si parte esiste: %s" % start)
+	assert_eq(
+		start, str(GameScreen.openings(loaded)[0]),
+		"ed e' la prima apertura in ordine d'anno"
+	)
+	# Senza dati non si pianta: il menu ha una risposta anche quando la scatola
+	# non si e' letta, ed e' la stessa che l'app ha sempre avuto.
+	assert_eq(GameScreen.first_chronicle(null), "CHR_01", "e senza dati non resta muto")

@@ -5,6 +5,22 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.212 — L'app si apre e si gioca (D-245)
+
+- **«Non deve chiedere nessuna saga.»** D-241 aveva ridotto la domanda da
+  quattro voci a due invece di toglierla: una domanda meno sbagliata scambiata
+  per una domanda risolta. Ora il menu non chiede niente — si apre l'app e si
+  gioca.
+- Il tempo che passa si racconta **dove è passato**: a fine Chronicle, dove il
+  gioco offre già l'era successiva (D-095).
+- **Il prezzo, scritto perché è reale**: la seconda saga (CHR_03) non si
+  raggiunge più dal menu. È [ISSUES 66](docs/ISSUES.md#66), e la decisione è
+  d'autore.
+- **Misurato**: 483 prove / 10.727 asserzioni verdi, cancelli verdi, sim verdi,
+  playtest 100 semi **0 su 8**.
+
+---
+
 ## 0.1.211 — La pagina si legge col dito (D-242, D-243, D-244)
 
 - **D-242 — «le carte sono minuscole e non si capisce cosa fanno.»** Una carta

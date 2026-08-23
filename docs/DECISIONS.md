@@ -10,6 +10,41 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-245 — L'app si apre e si gioca: nessuna domanda
+
+**implemented in 0.1.212** — sostituisce [D-241](#d-241), che aveva ridotto la
+domanda invece di toglierla
+
+> «Non deve chiedere nessuna saga.»
+
+[D-241](#d-241) aveva sistemato la cosa sbagliata. La domanda del menu era
+*«quale anno giochi?»* con quattro voci, due delle quali non sono inizi; l'ho
+ridotta a *«da quale saga cominci?»* con due voci corrette, e ho scambiato una
+domanda meno sbagliata per una domanda risolta. **Era ancora una domanda di
+troppo**, ed e' la seconda volta in due giri che la stessa correzione arriva
+mezza.
+
+Adesso si apre l'app, e si gioca. Il primo anno e' il primo, e il resto viene da
+se': a fine Chronicle il gioco offre gia' l'era successiva ([D-095](#d-095)), che
+e' il posto giusto per parlare del tempo che passa — quando **e' passato**, non
+prima di cominciare.
+
+**Il prezzo, scritto perche' e' reale**: la seconda saga (CHR_03, anno 1640, le
+altre quattro case) adesso **non si raggiunge dal menu**. E' contenuto scritto e
+non piu' apribile, che e' esattamente quello che [D-035](#d-035) chiama
+contenuto che non esiste. Non lo risolvo inventando una seconda domanda travestita:
+sta scritto in [ISSUES 66](ISSUES.md#66), ed e' una decisione d'autore — se e
+dove quella saga si apre.
+
+**Una prova**, e tiene l'unica cosa che resta da tenere: che il posto da cui si
+parte sia un **inizio** e non il seguito di qualcos'altro.
+
+**Misurato:** suite 483 prove / 10.727 asserzioni verdi, i cancelli degli
+strumenti verdi, i piani di simulazione verdi, `run_playtest.gd --runs=100
+--seed=7000` **0 seggi bloccati su 8**.
+
+---
+
 ## D-244 — Le due carte del Destino dicono cosa sono
 
 **implemented in 0.1.211**

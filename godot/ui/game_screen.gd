@@ -1049,17 +1049,16 @@ func _menu() -> void:
 	say("scala diversa preparano la propria posizione e poi si siedono a un Consiglio,")
 	say("dove una domanda viene decisa e quello che si decide resta scritto.")
 	say("")
-	# Who those four are depends on the year, and there is more than one age to
-	# choose from: the map is the same six places, and the people on it are not.
-	say("La mappa e sempre la stessa. Le persone che ci stanno sopra no: fra un'epoca")
-	say("e l'altra cambiano le case, le domande e quello che ognuno vuole.")
+	# La mappa non cambia, le persone si'. Non e' piu' una scelta da fare
+	# all'apertura: e' quello che succede giocando, quando un anno finisce e il
+	# tempo passa (D-245).
+	say("La mappa e sempre la stessa. Le persone che ci stanno sopra no: fra un anno")
+	say("e l'altro cambiano le case, le domande e quello che ognuno vuole.")
 	say("")
-	# The year is chosen before the seat, and it has to be: who is at the table
-	# is what the Chronicle says it is, and the two sagas seat nobody in common.
 	while true:
 		if await _offer_to_resume():
 			continue
-		var chronicle_id: String = await _ask_chronicle()
+		var chronicle_id: String = first_chronicle(_load_help_data())
 		_seats = _seats_of(chronicle_id)
 		# Redrawn here and not after the seat is picked: the rules page names the
 		# people at the table and the year's questions, and it is on screen while
@@ -1116,43 +1115,28 @@ func _seats_of(chronicle_id: String) -> Array:
 	return (data.chronicles[chronicle_id]["entities"] as Array).duplicate()
 
 
-## Which year. Every Chronicle in the data is offered, oldest first, because
-## there is more than one saga now and the browser was showing one of them.
+## Da dove si comincia. Nessuna domanda (D-245).
 ##
-## A Chronicle that writes its questions out is always the same four; one that
-## declares a `tension_pool` draws them from the library, so it is a different
-## year every time (D-028). The opening year of a saga is the written one - that
-## is the one to start from, and the list says so by putting the year on it.
-func _ask_chronicle() -> String:
-	var data: RefCounted = _load_help_data()
+## > «Non deve chiedere nessuna saga.»
+##
+## Il menu chiedeva prima *quale anno* e poi, per un giro, *quale saga*: due
+## forme della stessa domanda, e la domanda non doveva esserci. Si apre l'app e
+## si gioca; il resto degli anni viene da se', perche' a fine Chronicle il gioco
+## offre gia' l'era successiva (D-095).
+static func first_chronicle(data: RefCounted) -> String:
 	if data == null:
 		return "CHR_01"
 	var ids: Array = openings(data)
-	if ids.size() < 2:
-		return "CHR_01" if ids.is_empty() else str(ids[0])
-
-	var labels: Array = []
-	for chronicle_id in ids:
-		var chronicle: Dictionary = data.chronicles[str(chronicle_id)]
-		labels.append("%s — anno %d, e gli anni dopo vengono da qui" % [
-			str(chronicle["title"]), int(chronicle["start_year"]),
-		])
-	var choice: int = await ask("Da quale saga cominci?", labels)
-	return str(ids[clampi(choice, 0, ids.size() - 1)])
+	return "CHR_01" if ids.is_empty() else str(ids[0])
 
 
-## Le Chronicle da cui una saga **comincia**, in ordine di anno (D-241).
+## Le Chronicle da cui una saga **comincia**, in ordine di anno.
 ##
-## Non tutte lo sono, e il menu le offriva tutte: *«chiede ancora quale anno
-## voglio giocare»*. Delle quattro della scatola, **due sono il seguito** di
+## Non tutte lo sono: delle quattro della scatola, **due sono il seguito** di
 ## un'altra — la biblioteca della stessa eta', che eredita il mondo dell'anno
-## prima e si raggiunge giocando, non scegliendola da fermi. Cominciare da li'
-## vuol dire aprire un secondo capitolo senza il primo.
-##
-## Una saga si comincia, e poi gli anni vengono da soli: a fine Chronicle il
-## gioco offre gia' l'era successiva (D-095). La domanda giusta all'inizio non
-## e' «quale anno», e' **quale saga** — e se ce n'e' una sola, non e' nemmeno una
-## domanda.
+## prima e si raggiunge giocando. Cominciare da li' vorrebbe dire aprire il
+## secondo capitolo senza il primo, e per questo la prima di questa lista e'
+## quella da cui si parte.
 static func openings(data: RefCounted) -> Array:
 	var sequels: Dictionary = {}
 	for chronicle_id in data.chronicles:
