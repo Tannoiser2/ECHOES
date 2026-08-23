@@ -326,13 +326,7 @@ func ask(prompt: String, labels: Array) -> int:
 
 	for i in range(labels.size()):
 		var index: int = i
-		var card := Button.new()
-		card.text = str(labels[i])
-		card.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-		card.alignment = HORIZONTAL_ALIGNMENT_LEFT
-		# Wide enough for a proposition, narrow enough that three fit in a row.
-		card.custom_minimum_size = Vector2(260, 62)
-		card.add_theme_font_size_override("font_size", 13)
+		var card := _choice_card(str(labels[i]))
 		card.pressed.connect(func() -> void: picked.emit(index))
 		_choices.add_child(card)
 
@@ -342,3 +336,50 @@ func ask(prompt: String, labels: Array) -> int:
 		child.queue_free()
 		_choices.remove_child(child)
 	return chosen
+
+
+## Una scelta del Consiglio disegnata come una carta, non come un bottone con
+## dentro una frase (ISSUES 63, D-233).
+##
+## La prima riga e' **quello che si dice** — la proposta, la posizione, la carta
+## che si impegna; le righe dopo sono **quello che costa o che resta**, in grigio
+## e piu' piccole. E' la stessa gerarchia che ha una carta di cartone: il titolo
+## si legge da lontano, la lettera piccola quando la prendi in mano.
+##
+## Resta un `Button` sotto, e non per pigrizia: e' quello che sa gia' cosa
+## significa avere il fuoco della tastiera, essere premuto con Invio e apparire
+## a chi legge lo schermo con un lettore. Le etichette sopra non intercettano il
+## mouse (`MOUSE_FILTER_IGNORE`), quindi il clic arriva sempre al bottone.
+func _choice_card(label: String) -> Button:
+	var card := Button.new()
+	card.text = ""
+	# Larga abbastanza per una proposta, stretta abbastanza che tre stiano in
+	# riga; alta abbastanza per due righe di lettera piccola.
+	card.custom_minimum_size = Vector2(260, 78)
+	card.clip_text = false
+	card.tooltip_text = label
+
+	var box := VBoxContainer.new()
+	box.set_anchors_preset(Control.PRESET_FULL_RECT)
+	box.offset_left = 8
+	box.offset_right = -8
+	box.offset_top = 6
+	box.offset_bottom = -6
+	box.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	box.add_theme_constant_override("separation", 3)
+	card.add_child(box)
+
+	var parts: PackedStringArray = label.split("\n", false)
+	for line_index in range(parts.size()):
+		var line := Label.new()
+		line.text = str(parts[line_index])
+		line.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		line.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		line.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		if line_index == 0:
+			line.add_theme_font_size_override("font_size", 13)
+		else:
+			line.add_theme_font_size_override("font_size", 11)
+			line.add_theme_color_override("font_color", Color("#9b9382"))
+		box.add_child(line)
+	return card

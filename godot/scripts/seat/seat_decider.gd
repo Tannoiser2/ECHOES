@@ -33,6 +33,7 @@ const AssetText := preload("res://scripts/core/asset_text.gd")
 const EchoText := preload("res://scripts/core/echo_text.gd")
 const GameSession := preload("res://scripts/chronicle/game_session.gd")
 const SignLabels := preload("res://scripts/core/sign_labels.gd")
+const CouncilText := preload("res://scripts/core/council_text.gd")
 
 ## Entity ids a person is playing.
 var humans: Dictionary = {}
@@ -251,6 +252,9 @@ func _action_options(entity_id: String, session: RefCounted) -> Array:
 					_tension_reading(str(tension_id), entity_id, session),
 				],
 				"template": "INFLUENCE", "params": request,
+				# Di cosa parla: la domanda. Un front-end che disegna la traccia
+				# puo' offrirla li' invece che in una riga di testo (D-231).
+				"subject": {"tension": str(tension_id)},
 			})
 
 	for tension_id in _sorted(session.world["tensions"].keys()):
@@ -274,6 +278,7 @@ func _action_options(entity_id: String, session: RefCounted) -> Array:
 					else "Scopri il numero di %s"
 				) % _tension(str(tension_id), session),
 				"template": "SCHEME", "params": request,
+				"subject": {"tension": str(tension_id)},
 			})
 
 	# Il velo (D-125): l'arte inversa, per chi ha il segno che la concede.
@@ -288,6 +293,7 @@ func _action_options(entity_id: String, session: RefCounted) -> Array:
 					else "Cala il velo su %s"
 				) % _tension(str(tension_id), session),
 				"template": "SCHEME", "params": veil,
+				"subject": {"tension": str(tension_id)},
 			})
 
 	for other_id in session.world["turn_order"]:
@@ -306,6 +312,9 @@ func _action_options(entity_id: String, session: RefCounted) -> Array:
 					service.relation_level(entity_id, str(other_id)),
 				],
 				"template": "FORGE", "params": request,
+				# Di chi parla: l'altra casa. Sta nella colonna dei rapporti, ed
+				# e' li' che una carta che forgia deve poter cadere (D-231).
+				"subject": {"entity": str(other_id)},
 			})
 	return _through_the_hand(entity_id, out, session)
 
@@ -353,8 +362,24 @@ func _through_the_hand(entity_id: String, offers: Array, session: RefCounted) ->
 					str((offer as Dictionary)["label"]),
 				],
 				"template": "PLAY_CARD", "params": params,
+				# **Di cosa parla la scelta, e con che carta** (D-230). Il
+				# bersaglio dell'offerta si perdeva qui: una MUOVERE nata con
+				# `{"region": ...}` usciva avvolta in una carta e senza piu' un
+				# posto, quindi lo schermo non poteva offrirla sulla mappa e
+				# restava un bottone. `asset_id` viaggia accanto perche' un
+				# front-end che disegna le carte deve sapere **quale** carta
+				# porta quale scelta: e' quello che rende possibile prenderla e
+				# lasciarla cadere invece di leggerne il nome in una lista.
+				"subject": _subject_with_card(offer as Dictionary, str(asset_id)),
 			})
 	return out
+
+
+## Il bersaglio di un'offerta, con dentro la carta che la porta.
+static func _subject_with_card(offer: Dictionary, asset_id: String) -> Dictionary:
+	var subject: Dictionary = (offer.get("subject", {}) as Dictionary).duplicate()
+	subject["asset"] = asset_id
+	return subject
 
 
 # --- the Council ------------------------------------------------------------
@@ -382,13 +407,45 @@ func choose_proposition(context: Dictionary, options: Array, session: RefCounted
 	if not _is_human(proponent):
 		return fallback.choose_proposition(context, options, session)
 	_speaking_to = proponent
+	# **Cosa lascia al mondo**, non solo cosa dice (ISSUES 62/63, D-233).
+	#
+	# Fino a qui la proposta era una riga sola: la frase d'autore. Cosa scriveva
+	# sulla mappa se passava stava in `success_consequences`, cioe' in un file che
+	# chi gioca non apre. Si sceglieva fra tre frasi belle senza sapere quale
+	# alzava una torre e quale lasciava una cicatrice — ed e' **la decisione
+	# centrale del gioco**.
+	#
+	# La riga la scrive `CouncilText`, lo stesso posto che scrive la scheda: con
+	# la voce del Consiglio i buchi li riempie la partita, sulla scheda si
+	# spiegano. Due letture, una sorgente.
+	var template: Dictionary = session.data.confluence_templates[str(context["template_id"])]
+	var voice: Callable = Callable(session.confluence, "say")
 	var labels: Array = []
 	for proposition in options:
-		labels.append(session.confluence.say(str(proposition["text"])))
+		var said: Dictionary = CouncilText.proposition(
+			template, str(proposition["id"]), session.data, voice
+		)
+		labels.append(_proposition_label(said, session.confluence.say(str(proposition["text"]))))
 	var choice: int = await _choose("  Cosa proponi?", labels)
 	if choice < 0:
 		return fallback.choose_proposition(context, options, session)
 	return str(options[choice]["id"])
+
+
+## Una proposta come si legge prima di sceglierla: la frase, e sotto cosa resta
+## al mondo se passa. Se una proposta non lascia niente lo **dice**, invece di
+## tacere: il silenzio si legge come «non lo so», e qui e' un fatto.
+static func _proposition_label(said: Dictionary, fallback_text: String) -> String:
+	if said.is_empty():
+		return fallback_text
+	var leaves: Array = []
+	for record in said["consequences"]:
+		var line: String = str((record as Dictionary)["leaves"])
+		if line != "" and not leaves.has(line):
+			leaves.append(line)
+	if leaves.is_empty():
+		return "%s\nNon lascia segni sul mondo." % str(said["text"])
+	return "%s\nSe passa: %s" % [str(said["text"]), " · ".join(PackedStringArray(leaves))]
 
 
 func choose_stance(entity_id: String, context: Dictionary, session: RefCounted) -> Dictionary:
@@ -400,9 +457,21 @@ func choose_stance(entity_id: String, context: Dictionary, session: RefCounted) 
 
 	var labels: Array = ["Sostieni", "Opponiti", "Astieniti"]
 	var clause_ids: Array = []
-	for clause in clauses:
+	# Anche una clausola lascia qualcosa dietro, e anche quello stava solo nel
+	# database: si sceglieva di qualificare senza sapere cosa si scriveva.
+	var said_clauses: Array = CouncilText.clauses(
+		template, session.data, Callable(session.confluence, "say")
+	)
+	for i in range(clauses.size()):
+		var clause: Dictionary = clauses[i] as Dictionary
 		clause_ids.append(str(clause["id"]))
-		labels.append("Sostieni a condizione che: %s" % session.confluence.say(str(clause["text"])))
+		var leaves: String = "" if i >= said_clauses.size() else str(
+			(said_clauses[i] as Dictionary)["leaves"]
+		)
+		labels.append("Sostieni a condizione che: %s%s" % [
+			session.confluence.say(str(clause["text"])),
+			"" if leaves == "" else "\nSe qualificata: %s" % leaves,
+		])
 	var choice: int = await _choose("  %s, cosa dici?" % _name(entity_id, session), labels)
 	if choice < 0:
 		return fallback.choose_stance(entity_id, context, session)

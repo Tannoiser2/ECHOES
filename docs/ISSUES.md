@@ -2651,6 +2651,386 @@ mondo e per le guardie; nessuna interfaccia oggi la mostra.
 
 ---
 
+### 59. Due verbi su cinque non si giocano, e una famiglia su sei e' inerte
+
+`regole` · `bilanciamento` · **misurata in 0.1.194** (`cli/run_card_ledger.gd`)
+
+Il committente ha chiesto se le carte «fanno qualcosa» e se azioni ed effetti
+sono ben bilanciati. Il libro mastro delle carte lo misura per la prima volta:
+**100 anni, tavolo misto, 5.793 carte pescate.**
+
+**Quello che sta bene, e va detto per primo.** Nessuna carta e' contenuto morto:
+zero mai in mano, **zero mai impegnate al voto**, quindi tutti e quarantotto gli
+effetti propri girano almeno una volta — molto meglio delle Conseguenze, dove
+dieci su cinquantadue non escono mai (voce 56). E la scelta al centro del gioco
+funziona, con una curva pulita:
+
+| forza | calata per agire | impegnata al voto | impegnate per ogni calata |
+|---|---|---|---|
+| 1 | 20,0% | 38,2% | **1,91** |
+| 2 | 16,8% | 58,7% | 3,49 |
+| 3 | 13,9% | 59,4% | **4,26** |
+
+Le carte deboli si spendono, le forti si tengono per il voto. *«La spendo per
+fare o la tengo per votare»* non e' una frase sul regolamento: si vede.
+
+**Il difetto.** [D-215](DECISIONS.md#d-215) aveva bilanciato **quante carte
+portano ogni verbo nel mazzo** (scarto 1,85× → 1,38×). Nessuno aveva mai
+misurato quanto ogni verbo viene **usato**:
+
+| azione | volte in mano | calata | % |
+|---|---|---|---|
+| **MOVE** | 1.072 | 407 | **38,0%** |
+| INFLUENCE | 1.212 | 273 | 22,5% |
+| CLAIM | 975 | 177 | 18,2% |
+| **SCHEME** | 1.339 | 133 | **9,9%** |
+| **FORGE** | 1.195 | 100 | **8,4%** |
+
+**4,5× di scarto.** FORGE e SCHEME insieme sono 2.534 carte passate per una mano
+e 233 azioni. Il mazzo e' bilanciato; **l'uso no**.
+
+Da li' scende il resto:
+
+- **WEALTH e' la famiglia inerte**: 8,7% di carte calate contro il 26,7% di
+  BONDS, cioe' 3,1×. Non e' un caso — **quattro delle otto carte WEALTH portano
+  FORGE o SCHEME**.
+- **Quattro carte non vengono mai calate per agire in cento anni**: «Ostaggio»,
+  «Credito», «Chiavi del Granaio», «Ipoteca sulle Terre». Non e' che non
+  arrivino: **«Credito» e' stata in mano 140 volte**. La loro azione non e' mai
+  valsa la spesa.
+- **Il 41,9% delle carte di forza 1 non fa mai niente**, ne' calata ne'
+  impegnata: resta in mano e scade.
+
+**La causa, per come si legge.** FORGE muove di un passo una relazione, SCHEME
+legge un'informazione privata. **Nessuno dei due tocca la mappa, e nessuno dei
+due entra nel voto** — e il cervello ([D-222](DECISIONS.md#d-222)) insegue gli
+obiettivi, che parlano di Regioni, pietre e cicatrici.
+
+E' la voce 55 vista da un'altra finestra, e va decisa insieme a quella: **se la
+mappa pagasse al Concilio, tenere una relazione o sapere una cosa varrebbero
+qualcosa.** Ritoccare FORGE e SCHEME da soli, prima di quella mossa, vorrebbe
+dire tarare due verbi contro un'economia che sta per cambiare.
+
+**Fatto quando** nessun verbo si gioca meno della meta' del piu' giocato, nessuna
+famiglia e' calata meno della meta' della piu' calata, e ogni carta viene calata
+per agire almeno una volta su cento anni — col playtest ancora **0/8**.
+
+---
+
+### 60. Una domanda su dodici resta zitta meta' delle volte che esce
+
+`contenuto` · `bilanciamento` · **misurata in 0.1.194** (`cli/run_question_ledger.gd`)
+
+Stesso giro, dal lato delle domande: **100 anni, 446 Concili.**
+
+**Quello che sta bene:** tutte e dodici vengono pescate e **tutte e dodici aprono
+almeno un Concilio.** Nessuna domanda e' irraggiungibile — la voce 51 e' chiusa
+davvero.
+
+**Il difetto e' il peso, non l'esistenza:**
+
+| domanda | pescata | Consigli | anni in cui apre qualcosa |
+|---|---|---|---|
+| La Successione | 44 | **76** | **97,7%** |
+| La Carestia | 33 | 50 | 97,0% |
+| Il Risveglio | 25 | 47 | 88,0% |
+| La Carta | 24 | 18 | 58,3% |
+| Le Vie Interrotte | 30 | 24 | 53,3% |
+| I Pozzi Bassi | 24 | **12** | **45,8%** |
+
+La Successione apre **1,73 Concili per ogni anno in cui e' in gioco**; I Pozzi
+Bassi **0,50**. Un fattore **3,5**.
+
+E la riga che pesa di piu': **piu' della meta' delle volte che «I Pozzi Bassi»
+viene pescata, non viene mai dibattuta.** Occupa uno dei quattro posti dell'anno
+e non ci arriva.
+
+**Due sbilanci si sommano invece di compensarsi.** La pesca stessa non e'
+uniforme — 24 volte contro 44, cioe' 1,83× — per il peso ×3 dell'eco
+([D-079](DECISIONS.md#d-079)): una domanda i cui segni sono sul tavolo torna piu'
+spesso. Ed e' anche quella che poi si scalda di piu'. **Chi e' avanti resta
+avanti, anche fra le domande.**
+
+**Da misurare prima di decidere:** se la disparita' venga dal **dominio** (quante
+Regioni ascoltano quella domanda, e quanto traffico ci passa) o dalle **famiglie
+rilevanti** (se una domanda ascolta famiglie che si giocano poco, si scalda
+poco). Sono due difetti diversi con due rimedi diversi, e il secondo si lega alla
+voce 59.
+
+**Fatto quando** nessuna domanda apre meno della meta' dei Concili della piu'
+ascoltata, e nessuna resta senza Concilio in piu' di un quarto degli anni in cui
+e' in gioco.
+
+---
+
+### 63. L'app non è un prototipo giocabile: è un'ispezione di stato con dei bottoni
+
+`ux` · voluta dal committente · **misurata in 0.1.199** · primo passo fatto
+([D-228](DECISIONS.md#d-228))
+
+> «La GUI non è più gestibile con le nuove regole. Non ci sono carte chiare, non
+> ci sono pedine che rappresentano edifici, condizioni, cicatrici e tutto quello
+> che dovrebbe apparire in una copia fisica del gioco. L'app dovrebbe essere
+> giocabile come un vero prototipo, con carte che spiegano esattamente cosa fanno
+> e non tag o testi tecnici; la GUI deve prevedere movimenti drag & drop, non
+> pulsanti che dicono cosa fare. Si seleziona una carta, si decide come usarla e
+> si deve poter generare il suo effetto. Così com'è fatto è ingiocabile (lo è
+> sempre stato).»
+
+**Misurato, non supposto:**
+
+| | |
+|---|---|
+| file in `godot/ui/` che implementano il drag & drop | **0 su 21** |
+| come si sceglie un'azione | `Button.new()` da una lista di stringhe, si torna un indice |
+| cosa si clicca sulla mappa | solo la Regione bersaglio di un MUOVERE **già scelto col bottone** |
+| come la mappa disegna strutture, condizioni, cicatrici | **parole in grigio** sotto il nome della Regione |
+| effetti di carta che stampavano il tipo grezzo | **28 su 49** |
+| carte che dicevano il proprio verbo | **0 su 48** |
+
+La ragione è strutturale, e ogni misura di questo ciclo la conferma dal suo lato:
+**la GUI è stata costruita per far vedere che il motore funziona, non per farci
+giocare.** Il cancello gioca solo con `PolicyDecider`, che non ha mani.
+
+### Le quattro mosse
+
+1. ✅ **La carta dice cosa fa** — [D-228](DECISIONS.md#d-228), 0.1.199. Il verbo
+   sulla faccia (schermo e cartone), i segni con la loro parola, tre prove che lo
+   tengono.
+2. ✅ **I pezzi sulla mappa** — [D-229](DECISIONS.md#d-229), 0.1.200. Cinque
+   famiglie di pietra, cinque forme; il grado sono i punti sotto il pezzo, il
+   padrone e' il colore. La parola solo sotto il mouse. Tre prove, fra cui «un
+   segno senza pezzo e' invisibile».
+3. ✅ **Il drag & drop** — [D-230](DECISIONS.md#d-230) e
+   [D-231](DECISIONS.md#d-231), 0.1.201–0.1.202. Si prende una carta e la si
+   lascia dove la si vuole usare: una **Regione** sulla mappa, una **domanda**
+   sulla traccia, una **casa** nella colonna dei rapporti. Quando quella carta lì
+   sa fare una cosa sola, posarla è già la mossa; quando ne sa fare due opposte,
+   la caduta **restringe** e la scelta resta a chi gioca. Dieci prove, fra cui
+   «ogni soggetto di cui una carta può parlare ha il suo posto».
+4. ✅ **Il Consiglio giocabile** — [D-232](DECISIONS.md#d-232),
+   [D-233](DECISIONS.md#d-233) e [D-236](DECISIONS.md#d-236), 0.1.203–0.1.207.
+   **Sullo schermo è fatto**, e dal 0.1.207 anche *prima* che il Consiglio si
+   apra: la scheda di una domanda si legge con un clic sulla sua riga. Una
+   proposta arriva a chi sceglie dicendo *cosa lascia al mondo* — 43 su 43 ne
+   lasciano qualcosa — e si legge come una carta, titolo sopra e lettera piccola
+   sotto. Lo stesso per le clausole. Tre prove, una per ciascuno dei tre tratti
+   (la riga, il disegno, il filo in mezzo). **Sul cartone no**: resta
+   [ISSUES 62](#62), e la forma è una decisione d'autore.
+
+**Da tenere presente mentre si costruisce:** niente di tutto questo lo copre il
+cancello. Le regole restano verdi qualunque cosa succeda alla GUI, ed è
+esattamente il buco di [D-224](DECISIONS.md#d-224). Ogni mossa porta la sua
+misura, o non è fatta.
+
+**Fatto quando** una persona può giocare un anno intero senza che nessuno le
+spieghi cosa fanno i bottoni, perché non ci sono bottoni da spiegare.
+
+---
+
+### 62. ✅ Il Consiglio non si può giocare sul tavolo fisico — deciso in 0.1.207
+
+**Deciso dal committente** ([D-236](DECISIONS.md#d-236)): *«per il momento
+dobbiamo usare la versione digitale, poi penseremo alla versione fisica.»* È la
+terza delle tre — **l'app resta l'arbitro** — con una scadenza aperta invece che
+con una rinuncia, ed è registrata come dichiarazione reversibile: il giorno che
+si torna al cartone il materiale c'è già
+([CATALOGO_CONSIGLI.md](CATALOGO_CONSIGLI.md)).
+
+**E la decisione ha portato lavoro invece di chiuderne.** Se lo schermo è il
+tavolo, la scheda della domanda deve stare sullo schermo: da 0.1.207 un clic
+sulla riga di una domanda la apre, e dice cosa si potrà proporre e cosa lascia
+al mondo — *prima* che il Consiglio si apra, che è quando serve. Mettere le
+clausole sotto gli occhi ha fatto emergere **diciannove segni del mondo senza
+una parola** e quattro «scoperte» che uscivano col proprio id.
+
+**Resta aperto, e va con la versione fisica**: la carta Domanda stampata porta
+ancora la soglia che da [D-214](DECISIONS.md#d-214) non apre più niente. È
+parcheggiata qui, non dimenticata.
+
+<details>
+<summary>La voce come era scritta</summary>
+
+`ux` · `contenuto` · **misurata in 0.1.196** · il materiale è uscito dal
+database in 0.1.203 ([D-232](DECISIONS.md#d-232))
+
+Il committente l'ha vista arrivare da un'altra parte, ed è vera. Il materiale che
+fa **la cosa centrale del gioco** non esiste come componente:
+
+| | |
+|---|---|
+| template di Consiglio | 10 |
+| proposte fra cui sceglie il proponente | 43 |
+| clausole di condizione | 19 |
+| conseguenze sul mondo | 52 |
+| **fogli di stampa che ne portano una** | **0 su 39** |
+
+L'export produce trentanove fogli — Asset, Echo, Domande, Destini, Casate,
+Regioni, segnalini, tracce. La carta **Domanda** c'è, e porta titolo, velo,
+dominio, cosa la fa salire e scendere, le famiglie che valgono. **Non porta le
+proposte**, perché le proposte non stanno sulla domanda: stanno nei template di
+Confluence, con variabili (`$rival`, `$region_focus`), condizioni di idoneità e
+rimandi a `consequences/*.json`.
+
+Quindi al tavolo fisico si vede la crisi e **non si può tenere il Consiglio**.
+Serve l'app come arbitro, e il Consiglio — «la decisione», nelle parole del
+committente — è l'unico pezzo che non è mai uscito dal database.
+
+**E c'è un difetto dentro il difetto.** La carta Domanda stampata porta ancora
+**la soglia**, in un cerchio grande all'angolo (`card_face.gd`, `face["corner"]`).
+Da [D-214](DECISIONS.md#d-214) quel numero non apre più niente. È esattamente
+l'errore che [D-224](DECISIONS.md#d-224) ha corretto sulla pagina d'aiuto, e che
+il cancello del testo non poteva vedere perché **guarda lo schermo e non la
+stampa**: nessuna misura copre quello che una persona **tiene in mano**.
+
+**Da decidere prima di costruire**, ed è una scelta d'autore:
+
+1. **scheda Consiglio per Tensione** — una scheda A5 o un tarocco grande per
+   ogni template, con domanda, 3-4 proposte, le clausole e cosa lascia al mondo,
+   in italiano da giocatore invece che in `SET_REGION_TAG`;
+2. **libretto dei Consigli** — dieci pagine, meno componenti e più consultazione;
+3. **l'app resta arbitro**, e si accetta che il gioco fisico sia ibrido.
+
+Le prime due chiedono che le proposte diventino leggibili senza le variabili, il
+che vuol dire riscrivere `$rival` e `$region_focus` in un modo che un umano
+risolve al tavolo. Non è un lavoro di formattazione: è design.
+
+**Fatto in 0.1.203 ([D-232](DECISIONS.md#d-232)): la parte che non era una
+decisione.** Tutte e tre le forme chiedono lo stesso materiale a monte, e adesso
+esiste — [CATALOGO_CONSIGLI.md](CATALOGO_CONSIGLI.md), 10 Consigli, 43 proposte,
+19 clausole, con i buchi **spiegati** nel ruolo che avranno al tavolo invece che
+riempiti con un valore che una scheda non può conoscere. È generato dai dati e
+la CI lo confronta, quindi non può invecchiare in silenzio. Una prova ha trovato
+subito una condizione che parlava al programmatore (*«...la carta di Propp e' la
+porta (D-127)»*), ed è stata riscritta.
+
+**E in 0.1.204 ([D-233](DECISIONS.md#d-233)) quel materiale è arrivato a chi
+sceglie**, almeno sullo schermo: la proposta porta sotto di sé cosa lascia al
+mondo, la clausola cosa scrive se qualificata. È la stessa sorgente della
+scheda, con una voce diversa — al tavolo i buchi li riempie la partita.
+
+Resta d'autore **quale delle tre**, e resta aperto il difetto della soglia sulla
+carta Domanda stampata.
+
+</details>
+
+**Fatto quando** un tavolo può tenere un Consiglio intero senza aprire l'app,
+oppure quando è scritto a verbale che non lo può fare e perché.
+
+---
+
+### 61. ✅ Dieci segni sul mondo che nessuno legge — erano sei, chiusa in 0.1.205
+
+**Chiusa da [D-234](DECISIONS.md#d-234).** La voce chiedeva di misurare prima di
+decidere, e la misura ha spostato la voce stessa: **quattro dei dieci non erano
+mai stati muti.** Il registro non guardava tre penne che leggono — di quale
+Regione parla il Consiglio (`focus_region_tags`), **chi siede l'anno prossimo**
+(`entry_tag`), la catena delle ere (`if_tag`) — cioè i morsi più forti del gioco.
+`condition:contested` (132 scritture in 100 anni) tira il Consiglio su di sé;
+`heir_named` (98) è la porta di Aldric Restaurato.
+
+I **sei** che restano sono dichiarati in `MUTI_NOTI` con la loro ragione **e la
+loro frequenza**: `settlement:<casa>` 50, `water_rights` 18,
+`succession_settled` 14, `account_settled` 4, `burden_shared` 2, `dragon_slain`
+mai — e quest'ultimo è ISSUES 56 che parla, non questa voce.
+
+**In più, il difetto specchio**: guardare dove il gioco legge ha fatto comparire
+una **clausola impossibile** — la Successione preferiva `scar:burned` e nessuna
+Regione poteva bruciare. Adesso preferisce `scar:the_empty_chair`, e
+`build_sign_registry.py --check` va rosso se ne ricompare una.
+
+**Resta d'autore**, e non è una correzione: far mordere `water_rights` o
+`succession_settled` è contenuto nuovo.
+
+<details>
+<summary>La voce come era scritta</summary>
+
+`contenuto` · `regole` · **misurata in 0.1.195** ([D-225](DECISIONS.md#d-225))
+
+Il registro dei segni ([REGISTRO_SEGNI.md](REGISTRO_SEGNI.md)) conta **71 segni
+scritti sul mondo**; **10 non li legge niente**:
+
+| segno | chi lo scrive |
+|---|---|
+| `dragon_slain` | «Il Drago Abbattuto» |
+| `heir_named` | una Conseguenza e una carta |
+| `succession_settled`, `account_settled`, `burden_shared`, `water_rights` | Conseguenze |
+| `condition:lean`, `condition:contested`, `condition:requisitioned` | Conseguenze e carte |
+| `settlement:$proponent` | una Conseguenza — si stampa e basta |
+
+Ognuno è una carta o una Conseguenza che **promette un cambiamento che il gioco
+non registra**. Un giocatore legge «il Drago è abbattuto», lo vede scritto nella
+Cronaca, e non cambia niente: non una regola del segno, non un obiettivo, non la
+pesca delle domande dell'anno dopo.
+
+**Tre rimedi diversi, e vanno scelti uno per uno.** Non è detto che la risposta
+sia sempre la stessa:
+
+1. **farlo mordere** — una regola del segno (come `condition:starving`, che
+   toglie una carta di mano, vieta FORGE e peggiora i Consigli sulla Carestia),
+   una clausola di obiettivo, o un `echoes` nella pesca delle domande;
+2. **toglierlo**, se la Conseguenza racconta già abbastanza senza;
+3. **lasciarlo dichiarato**, se serve solo al libro della Cronaca — ma allora va
+   scritto perché, e sta in `MUTI_NOTI`.
+
+`condition:lean` è il caso più chiaro: lo posa l'Eco dell'interramento sulla
+Valle Verde insieme a `TEN_WATER +1` e all'abbattimento del canale. Due dei tre
+effetti mordono; il terzo è muto, e il giocatore non ha modo di saperlo.
+
+**Da misurare prima di decidere**: per ognuno dei dieci, quante volte esce in
+100 anni. Un segno muto che compare due volte in un secolo è un problema minore
+di uno che compare duecento.
+
+**Fatto quando** ogni segno scritto sul mondo o morde, o è stato tolto, o è
+dichiarato con la sua ragione — e `build_sign_registry.py --check` resta verde
+da solo.
+
+</details>
+
+---
+
+### 58. Gli obiettivi coperti si pescano ogni anno, non a inizio saga
+
+`regole` · `da-misurare` · voluta dal committente · **trovata nel confronto con
+l'idea di partenza** ([VISIONE.md](VISIONE.md))
+
+> «Ogni entità ha un obiettivo palese e tre segreti che si pescano **all'inizio
+> della saga**.»
+
+`WorldStateFactory._deal_objectives` gira dentro il setup **di ogni Chronicle**:
+i tre coperti si ripescano ogni anno.
+
+Metà del modello c'è già — il **palese** attraversa gli anni con la regola di
+[D-081](DECISIONS.md#d-081), *chi ha ottenuto quello che voleva ne vuole un
+altro, chi non l'ha ottenuto riprova* — ma i tre coperti no.
+
+**Perché non è un dettaglio.** Sposta l'unità dell'ambizione dalla **saga**
+all'**anno**. Con obiettivi di saga, al terzo anno stai costruendo verso qualcosa
+che nessuno ha visto, e una mossa che sembra sbagliata oggi può essere il quarto
+passo di un piano di otto. Con obiettivi d'anno ogni Chronicle è un contenitore
+chiuso, e la campagna è **una somma di partite invece di una storia sola**.
+
+**Da misurare prima di decidere**, perché la mossa ovvia ha due costi leggibili:
+
+- un obiettivo pescato a inizio saga può risultare **impossibile** nel mondo che
+  la Chronicle 4 ha prodotto — un obiettivo che nomina una Regione svuotata, o
+  una casa che non si siede più. Servono obiettivi che valgano in qualunque
+  mondo (i quindici condivisi lo sono già, D-221) **o** una regola di
+  sostituzione dichiarata;
+- il conteggio a fine anno (`objectives_met` → `saga_points`) presuppone che
+  l'obiettivo sia dell'anno. Con obiettivi di saga i punti si contano **una volta
+  sola alla fine**, e la curva della campagna cambia forma.
+
+Da misurare: su dieci Chronicle, quanti obiettivi pescati a inizio saga
+resterebbero **raggiungibili** all'anno 5 e all'anno 10, e quanti si spengono per
+sempre.
+
+**Fatto quando** i tre coperti si pescano una volta per saga, nessuno di loro può
+diventare impossibile senza una regola scritta che lo sostituisca, e il playtest
+resta **0/8**.
+
+---
+
 ### 57. ✅ La GUI raccontava il gioco di due versioni fa — chiusa in 0.1.192
 
 `ux` · `debito` · voluta dal committente · **chiusa** ([D-224](DECISIONS.md#d-224))
@@ -2684,7 +3064,46 @@ ogni vista è disegnata almeno una volta da una prova.
 
 ---
 
-### 56. Dieci Conseguenze su cinquantadue non escono mai
+### 56. Tre Conseguenze su cinquantadue non escono mai — erano dieci
+
+`contenuto` · `bilanciamento` · **rimisurata in 0.1.206**
+([D-235](DECISIONS.md#d-235)) · **da dieci a tre**
+
+**Il numero di prima era misurato male, e in due modi.** Quattro delle dieci non
+passano da un Consiglio: arrivano da una **carta Echo**, e una Conseguenza
+scattata da una carta non compare in `confluence_results`. E il resto era
+misurato su **anni scollegati**, mentre tre proposte chiedono una *leggenda* —
+che nasce solo quando fra due anni giocati passano decenni. Cento anni giocati
+uno per volta non ne producono nessuna: quelle proposte erano morte per
+costruzione della misura.
+
+| | Conseguenze mai uscite |
+|---|---|
+| 200 anni **scollegati** | 7 su 52 |
+| 200 anni **in saga** (20 × 10 Chronicle) | **3 su 52** |
+
+**Le tre che restano, con tre cause diverse:**
+
+| Conseguenza | perché | rimedio possibile |
+|---|---|---|
+| `CNS_DRAGON_SLAIN` | la sua domanda è arrivata **19 volte** e la proposta è stata esclusa tutte e 19: chiede `function:REVELATION`, e in tutto il mazzo **una sola carta** lo scrive — deve essere calata nello stesso anno, prima del Consiglio del Risveglio | una seconda porta, o una Rivelazione più probabile |
+| `CNS_HARVEST_RETURNS` | la carta è stata **pescata 173 volte e calata zero**: toglie la fame e raffredda la Carestia, cioè fa bene **al mondo** e a chi la cala niente | una ragione per giocarla |
+| `CNS_OATH_BROKEN` | **pescata 183 volte, calata zero**: cicatrice, inquietudine e il proprio rapporto chiuso a HOSTILE — chi la gioca paga tre volte e non incassa mai | idem |
+
+**Le prime due categorie della voce originale sono vuote.** «Mai scelta» e
+«sempre perdente» non esistono più in saga: ogni proposta che arriva sul tavolo
+prima o poi viene presa, e presa prima o poi passa. Ne è comparsa una che la
+voce non prevedeva, perché non guardava le carte: **la carta che nessuno ha una
+ragione di giocare**.
+
+**Resta d'autore** e non è una correzione: dare una ragione per calare quelle
+due carte, o far incontrare più spesso la Rivelazione e il Risveglio.
+
+**Fatto quando** ogni Conseguenza del catalogo esce almeno una volta su 200 anni
+di saga, o è stata tolta perché non serviva.
+
+<details>
+<summary>La voce come era scritta, misurata in 0.1.191</summary>
 
 `contenuto` · `bilanciamento` · **misurata in 0.1.191** ([D-223](DECISIONS.md#d-223))
 
@@ -2723,9 +3142,36 @@ sempre perdente. Sono tre difetti diversi con tre rimedi diversi.
 **Fatto quando** ogni Conseguenza del catalogo esce almeno una volta su 200 anni,
 o è stata tolta perché non serviva.
 
+</details>
+
 ---
 
-### 55. Il ciclo del gioco è rotto in tre punti: spostarsi non paga, la maggioranza non si contende, gli obiettivi non si incrociano
+### 55. ✅ Il ciclo del gioco è rotto in tre punti — chiusa in 0.1.198 per tre quarti
+
+**Chiusa da [D-227](DECISIONS.md#d-227)** sui primi tre criteri; il quarto — gli
+obiettivi contesi — resta ed è contenuto d'autore (3 su 15).
+
+| criterio scritto in questa voce | com'era | adesso | |
+|---|---|---|---|
+| una presenza in più dà carte in più | — | 3,50 → **4,14** al rifornimento | ✅ |
+| Regioni contese a fine anno > 3 su 6 | 2,46 | **3,72** | ✅ |
+| il padrone cambia mano più di prima | 2,39 | **2,85** | ✅ |
+| playtest 0 su 8 | 0/8 | **0/8** | ✅ |
+| obiettivi contesi ≥ un terzo del mazzo | 1 su 15 | **3 su 15** | ❌ |
+
+**La risposta non era dove l'abbiamo cercata per due cicli.** Il tetto delle
+pedine da 4 a 5: la contesa sale del **51%**, e il ricambio del padrone tocca il
+suo massimo (a 6 pedine *scende*, perché tutti trincerati dappertutto rendono una
+maggioranza più difficile da sfilare).
+
+Erano **due domande dietro la stessa parola**. «La mappa è ferma» voleva dire due
+cose: *il padrone cambia poco* — e lì eravamo già all'84% del massimo che le
+regole permettono — e *poche Regioni sono contese*, che era a metà strada e si è
+mosso con una pedina.
+
+---
+
+
 
 `regole` · `bilanciamento` · voluta dal committente · **misurata in 0.1.187**
 
@@ -2783,6 +3229,83 @@ azioni, non dà niente che si veda al tavolo.
 E le Conseguenze toccano la mappa nel 48% dei casi, ma **`ADD_PRESENCE` compare
 una volta sola** in cinquantadue: i Consigli cacciano e assegnano, non mandano
 nessuno da nessuna parte.
+
+### La radice, trovata dopo (0.1.192)
+
+Le quattro mosse qui sotto attaccano il problema **dal lato dell'offerta**: più
+Conseguenze che spostano pedine, più carte che costruiscono, più obiettivi
+contesi. [D-222](DECISIONS.md#d-222) e [D-223](DECISIONS.md#d-223) le hanno
+provate e misurate, e hanno mosso poco: il padrone cambia mano 2,32 → 2,49 volte
+l'anno.
+
+**Correzione (0.1.196).** La prima stesura di questa sezione diceva che al
+Consiglio entrano «solo le carte». **Era sbagliata sul meccanismo.** Nel conto ci
+sono già i **legami** (`alliance_weight`, [D-139](DECISIONS.md#d-139), dichiarato
+in tutte e quattro le Chronicle), diciassette regole `COUNCIL_MODIFIER` che
+spostano il **Fattore Mondo** — tre cicatrici, la Regione affamata, la fama, e
+`settlement:city`, cioè una pietra alzata a città — e due `STANCE_MODIFIER` sulle
+incarnazioni.
+
+Resta vero il conto sulle proposte: su **43 proposizioni** in dieci template ci
+sono **10 condizioni di idoneità in tutto**, quindi trentatré su quarantatré sono
+ammissibili comunque sia messa la mappa.
+
+**Quello che manca è un pezzo preciso: il titolo e la maggioranza nella Regione
+di cui si discute** — ed è precisamente quello che il committente chiede.
+
+**E la leva esiste già, spenta.** `confluence_rules.focus_weight`
+([D-154](DECISIONS.md#d-154)): al Consiglio la Regione a fuoco dà voce a chi la
+**tiene** e a chi ci sta **in forze**. È scritta, la reggono sette test, e
+**nessuna delle quattro Chronicle spedite la dichiara** — e una dichiarazione
+vuota vuol dire assenza.
+
+**Perché fu spenta, e perché quel motivo non vale più.** Misurata a 0.1.119: i
+Consigli falliti 177 → 175, ma il playtest passava da **0/8 a 1/8**, e il seggio
+che si rompeva era sempre lo stesso, Kessa dei Fuochi. D-154 concluse che non era
+il peso della terra: era che **la Vittoria di Kessa aveva una porta sola**
+(`control_count >= 2`, ISSUES 38), e scrisse *«ISSUES 38 viene prima: fino a che
+resta aperta, qualunque modifica alle regole del Consiglio ha una probabilità
+alta di essere respinta da Kessa e non dal proprio merito».*
+
+**ISSUES 38 è chiusa da 0.1.122**, e da [D-198](DECISIONS.md#d-198) i tre gradini
+sono diventati quattro obiettivi, tre dei quali pescati. La Vittoria di Kessa
+oggi ha tre clausole, non una. **Il motivo per cui la leva è spenta ha smesso di
+valere settantadue versioni fa, e nessuno l'ha riaccesa.**
+
+**La mossa 0 è stata fatta, e la misura l'ha respinta** ([D-226](DECISIONS.md#d-226),
+0.1.197). `focus_weight` riaccesa passa il cancello — **0/8 su tutti e due i
+tavoli**, quindi D-154 aveva ragione: era la porta sola di Kessa, non il peso
+della terra. Ma sulla cosa per cui serviva:
+
+| | il padrone passa di mano |
+|---|---|
+| spenta (com'è spedita) | **2,39** volte l'anno |
+| titolo +1, maggioranza +1 | **2,29** |
+| solo maggioranza +1 | **2,37** |
+
+**Peggiora o non cambia niente.** La prima forma peggiora per il motivo scritto
+qui sopra come rischio: dare voce a chi la Regione **la tiene** rende più
+difficile toglierargliela.
+
+### E allora il presupposto era sbagliato
+
+`_recount_control`: **il padrone di una Regione lo decide la contesa di presenza,
+round per round, non il Consiglio.** `rightful_holder` riconta il titolo dalle
+pedine; i `SET_CONTROL` scritti a mano sono quattordici su cinquantadue e
+arrivano dopo.
+
+Quindi «la mappa non si muove al Consiglio» è vero e non è un difetto: **al
+Consiglio non si è mai mossa.** Si muove con le pedine, e MUOVERE è già l'azione
+più giocata del mazzo (38%).
+
+**La domanda giusta, che non è ancora stata posta:** con quattro pedine a testa,
+quattro case, sei Regioni e il titolo che segue la maggioranza stretta, **quante
+volte al massimo potrebbe passare di mano in un anno?** Se il tetto teorico è
+vicino a 2,4, la mappa si muove già quanto le regole permettono, e questa issue
+va riscritta: la leva non è il Consiglio, sono le pedine, le Regioni, o la regola
+del titolo.
+
+**Il prossimo passo è quel tetto**, e si misura prima di disegnare qualunque cosa.
 
 ### Le quattro mosse, in ordine di radice
 

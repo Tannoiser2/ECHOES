@@ -36,9 +36,20 @@ const MARKERS: Array = ["tension", "echo"]
 ## occhi come si contano i pezzi veri.
 const PIECES: Array = ["pawn", "banner"]
 
+## **Le cinque famiglie di pietra** (D-229). `structure` da solo diceva «qui c'e'
+## una costruzione» e nient'altro: un granaio, una torre e una biblioteca erano
+## lo stesso segno con tre parole diverse accanto. Al tavolo un pezzo si
+## riconosce dalla **forma**, non dall'etichetta — quindi ogni famiglia ha la
+## sua, e il grado si legge dai punti che le stanno accanto.
+##
+## I nomi sono quelli dei dati (`structures/*.json`, campo `family`), in
+## minuscolo: cosi' la mappa passa dalla famiglia al glifo senza una tabella da
+## tenere allineata a mano.
+const STONES: Array = ["presidio", "insediamento", "opera", "studio", "luogo"]
+
 
 static func names() -> Array:
-	return FAMILIES + LEVELS + MARKERS + PIECES
+	return FAMILIES + LEVELS + MARKERS + PIECES + STONES
 
 
 ## I tratti di un glifo, in ordine di disegno. Un nome che non esiste torna un
@@ -58,6 +69,11 @@ static func glyph(name: String) -> Array:
 		"scar": return _scar()
 		"tension": return _tension()
 		"echo": return _echo()
+		"presidio": return _presidio()
+		"insediamento": return _insediamento()
+		"opera": return _opera()
+		"studio": return _studio()
+		"luogo": return _luogo()
 		"pawn": return _pawn()
 		"banner": return _banner()
 	return _unknown()
@@ -191,6 +207,54 @@ static func _scar() -> Array:
 			Vector2(0.30, 0.06), Vector2(0.58, 0.34), Vector2(0.36, 0.52),
 			Vector2(0.70, 0.94),
 		], 0.12),
+	]
+
+
+# --- le cinque famiglie di pietra --------------------------------------------
+
+## Una torre con i merli: la forza che si vede da lontano.
+static func _presidio() -> Array:
+	return [
+		_poly([Vector2(0.34, 0.94), Vector2(0.34, 0.30), Vector2(0.66, 0.30), Vector2(0.66, 0.94)]),
+		_poly([
+			Vector2(0.28, 0.30), Vector2(0.28, 0.12), Vector2(0.40, 0.12), Vector2(0.40, 0.22),
+			Vector2(0.60, 0.22), Vector2(0.60, 0.12), Vector2(0.72, 0.12), Vector2(0.72, 0.30),
+		]),
+	]
+
+
+## Tre tetti stretti in fila: dove la gente sta, e sta insieme.
+static func _insediamento() -> Array:
+	return [
+		_poly([Vector2(0.04, 0.92), Vector2(0.22, 0.58), Vector2(0.40, 0.92)]),
+		_poly([Vector2(0.32, 0.92), Vector2(0.50, 0.42), Vector2(0.68, 0.92)]),
+		_poly([Vector2(0.60, 0.92), Vector2(0.78, 0.58), Vector2(0.96, 0.92)]),
+	]
+
+
+## Un arco su due piedi: quello che si costruisce perche' serva a tutti — il
+## granaio, il canale, il pedaggio. Un'opera regge un peso.
+static func _opera() -> Array:
+	return [
+		_poly([Vector2(0.10, 0.94), Vector2(0.10, 0.40), Vector2(0.26, 0.40), Vector2(0.26, 0.94)]),
+		_poly([Vector2(0.74, 0.94), Vector2(0.74, 0.40), Vector2(0.90, 0.40), Vector2(0.90, 0.94)]),
+		_poly([Vector2(0.06, 0.40), Vector2(0.06, 0.20), Vector2(0.94, 0.20), Vector2(0.94, 0.40)]),
+	]
+
+
+## Un libro aperto: il sapere ha un tetto suo.
+static func _studio() -> Array:
+	return [
+		_poly([Vector2(0.06, 0.34), Vector2(0.48, 0.22), Vector2(0.48, 0.88), Vector2(0.06, 0.76)]),
+		_poly([Vector2(0.52, 0.22), Vector2(0.94, 0.34), Vector2(0.94, 0.76), Vector2(0.52, 0.88)]),
+	]
+
+
+## Un albero: il posto che c'era prima di noi e non l'ha costruito nessuno.
+static func _luogo() -> Array:
+	return [
+		_poly([Vector2(0.50, 0.08), Vector2(0.84, 0.62), Vector2(0.16, 0.62)]),
+		_poly([Vector2(0.43, 0.62), Vector2(0.57, 0.62), Vector2(0.57, 0.94), Vector2(0.43, 0.94)]),
 	]
 
 

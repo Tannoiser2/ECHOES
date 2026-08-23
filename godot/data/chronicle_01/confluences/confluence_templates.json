@@ -279,7 +279,7 @@
               "type": "state_tag_present",
               "scope": "GLOBAL",
               "tag": "function:REVELATION",
-              "label": "Si caccia solo cio' che una Rivelazione ha mostrato: la carta di Propp e' la porta (D-127)"
+              "label": "Solo cio' che una Rivelazione ha gia' mostrato si puo' cacciare"
             }
           ],
           "success_consequences": [

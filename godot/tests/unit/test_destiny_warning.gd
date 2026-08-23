@@ -58,9 +58,20 @@ func _seat_vaerax_on_the_mountain() -> void:
 	#     in mano toccava a loro, e l'avviso taceva per la ragione giusta.
 	var limit: int = int(session.data.chronicles["CHR_01"]["presence_tokens"])
 	_apply("ADD_PRESENCE", "entity", "ENT_VAERAX", {"region_id": MOUNTAIN})
+	# Le tre Regioni si ripetono a giro invece di prenderne altre: le altre due
+	# della mappa — Eredan e le Miniere — stanno **prima** di «MONTAGNE» in
+	# alfabeto, e metterci una pedina sposterebbe la partenza di
+	# `_pick_source_region` altrove, che e' esattamente cio' che questa prova non
+	# vuole. Due pedine sulla stessa Regione sono legali e contano (§10), quindi
+	# il giro riempie il tetto senza toccare l'ordine. Con D-227 il tetto e'
+	# cinque e le tre Regioni non bastavano piu': la prova posava quattro pedine
+	# invece di cinque, Vaerax non era al limite, e l'avviso taceva per la
+	# ragione sbagliata.
 	var elsewhere: Array = ["REG_STRADA_MERCANTI", "REG_TERRE_NAHR", "REG_VALLE_VERDE"]
-	for i in range(mini(limit - 1, elsewhere.size())):
-		_apply("ADD_PRESENCE", "entity", "ENT_VAERAX", {"region_id": str(elsewhere[i])})
+	for i in range(limit - 1):
+		_apply("ADD_PRESENCE", "entity", "ENT_VAERAX", {
+			"region_id": str(elsewhere[i % elsewhere.size()])
+		})
 	assert_eq(
 		session.service.presence_count("ENT_VAERAX", MOUNTAIN), 1,
 		"una sola pedina sulla montagna: e' la forma della mossa del seme 15308"

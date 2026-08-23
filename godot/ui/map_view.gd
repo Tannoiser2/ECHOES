@@ -36,6 +36,15 @@ var _hovered: String = ""
 ## accept, so a Region is pressable exactly when the action is legal (D-039).
 var highlighted: Dictionary = {}
 
+## **La Regione dove una carta trascinata cadrebbe adesso**, o "". Serve solo a
+## disegnare: l'anello si accende sotto il pezzo che sta arrivando, cosi' chi
+## trascina vede *dove* sta per lasciarlo prima di lasciarlo.
+var _landing: String = ""
+
+## Emesso quando una carta viene lasciata cadere su una Regione che l'accetta.
+## Porta l'indice della scelta, che e' quello che `ask()` sta aspettando.
+signal card_dropped(index: int)
+
 ## L'eco del cambiamento (l'inventario dell'app, ISSUES 22): al tavolo fisico
 ## vedi la mano che sposta il pezzo, sullo schermo il pezzo e' gia' spostato.
 ## Quando un effetto tocca una Regione, un anello ambra le si accende intorno
@@ -278,7 +287,7 @@ func _draw_region(region_id: String) -> void:
 	var lift: float = 0.0
 	if offered:
 		lift += 0.10
-	if _hovered == region_id:
+	if _hovered == region_id or _landing == region_id:
 		lift += 0.12
 	# La tessera dipinta, se e' stata consegnata: ritagliata dentro l'esagono
 	# invece che appoggiata sopra, cosi' la Regione resta una Regione e non
@@ -304,10 +313,14 @@ func _draw_region(region_id: String) -> void:
 	# the inner ring already means something else - who holds the place - and the
 	# two facts have to stay separable at a glance.
 	if offered:
+		# L'anello si accende anche sotto la carta che **sta arrivando**
+		# (D-230): chi trascina deve vedere dove sta per lasciare il pezzo
+		# prima di lasciarlo, come la mano che esita sopra il tavolo.
+		var lit: bool = _hovered == region_id or _landing == region_id
 		_draw_outline(
 			art["outline"], box.grow(7.0),
-			Color("#e8b563") if _hovered == region_id else Color("#7a6338"),
-			3.0 if _hovered == region_id else 2.0
+			Color("#e8b563") if lit else Color("#7a6338"),
+			3.0 if lit else 2.0
 		)
 
 	var font: Font = ThemeDB.fallback_font
@@ -320,7 +333,7 @@ func _draw_region(region_id: String) -> void:
 
 	_draw_echo(centre, region_id)
 	_draw_presence(centre, region_id)
-	_draw_marks(centre, region)
+	_draw_marks(centre, region_id, region)
 
 
 ## Quello che il quadro non sa.
@@ -363,7 +376,7 @@ func _draw_over_board(region_id: String, centre: Vector2, control: Variant, offe
 
 	_draw_echo(centre, region_id)
 	_draw_presence(centre, region_id)
-	_draw_marks(centre, _session.world["regions"][region_id])
+	_draw_marks(centre, region_id, _session.world["regions"][region_id])
 
 
 ## L'anello che sfuma: qualcosa e' appena successo qui. Fuori da tutti gli
@@ -500,49 +513,128 @@ func _draw_piece(glyph: String, at: Vector2, side: float, colour: Color) -> void
 	Glyph.paint(self, glyph, box, colour)
 
 
-## Conditions, structures and Scars, as small marks under the name. A Scar is
-## drawn differently because it is the one mark that never comes off.
-func _draw_marks(centre: Vector2, region: Dictionary) -> void:
+## **I pezzi sulla Regione** (D-229).
+##
+## Prima erano una fila di parole in grigio sotto il nome: un granaio, una
+## carestia e una cicatrice si leggevano tutti uguali, e per sapere cosa c'era
+## bisognava leggere. Il committente l'ha detto per intero — *«non ci sono pedine
+## che rappresentano edifici, condizioni, cicatrici e tutto quello che dovrebbe
+## apparire in una copia fisica del gioco»* — e aveva ragione: su un tavolo un
+## pezzo si riconosce dalla **forma**, da lontano, senza leggere niente.
+##
+## Adesso ogni segno e' un gettone: un tondo col suo glifo, colorato per livello,
+## e per le pietre i **punti del grado** accanto — un punto una torre di veglia,
+## tre una reggia. La parola resta, ma solo sotto il mouse: al tavolo la carta si
+## legge quando la prendi in mano, non mentre guardi la plancia.
+const PIECE_COLOURS: Dictionary = {
+	"scar": "#c8553d",
+	"condition": "#c99a4e",
+	"presidio": "#a8a294",
+	"insediamento": "#a8a294",
+	"opera": "#a8a294",
+	"studio": "#a8a294",
+	"luogo": "#7f9a7f",
+}
+
+const PIECE: float = 17.0
+const PIECE_GAP: float = 5.0
+
+
+func _draw_marks(centre: Vector2, region_id: String, region: Dictionary) -> void:
+	var data: RefCounted = _session.data if _session != null else null
+	var pieces: Array = []
+
+	# **Le pietre si leggono dal mondo, non dai tag.** `region.structures` porta
+	# `{structure_type, grade, owner}`: il tag dice soltanto *che tipo* c'e', e
+	# uno stesso tag copre piu' gradi — `structure:granary` e' sia il Granaio sia
+	# il Grande Granaio. Il grado e il padrone stanno nel record, ed e' li' che
+	# vanno presi: una reggia disegnata come una torre sarebbe una plancia che
+	# mente.
+	for record in region.get("structures", []):
+		var stone: Dictionary = record as Dictionary
+		var kind: String = str(stone.get("structure_type", ""))
+		var family: String = SignLabels.family_of(kind, data)
+		if family == "":
+			continue
+		var holder: Variant = stone.get("owner", null)
+		pieces.append({
+			"glyph": family,
+			"grade": int(stone.get("grade", 1)),
+			# **Di chi e' la pietra si vede dal colore**, come la pedina: chi
+			# tiene una reggia la tiene davvero, e da lontano si conta.
+			"tint": _entity_colour(str(holder)) if holder != null else Color(str(PIECE_COLOURS.get(family, "#a8a294"))),
+			"word": SignLabels.grade_name(kind, int(stone.get("grade", 1)), data),
+		})
+
+	# E i segni che non sono pietre: quello che *succede* a una Regione e quello
+	# che le e' successo e non viene piu' via.
 	var marks: Array = []
 	for tag in region["tags"]:
 		var text: String = str(tag)
-		for prefix in ["condition:", "structure:", "settlement:", "scar:"]:
-			if text.begins_with(prefix):
-				marks.append(text)
-				break
-	if marks.is_empty():
-		return
+		if text.begins_with("condition:") or text.begins_with("scar:"):
+			marks.append(text)
 	marks.sort()
+	for tag in marks:
+		var piece: String = SignLabels.piece(str(tag), data)
+		if piece == "":
+			continue
+		pieces.append({
+			"glyph": piece, "grade": 0,
+			"tint": Color(str(PIECE_COLOURS.get(piece, "#8a8172"))),
+			"word": SignLabels.label(str(tag), data),
+		})
+
+	if pieces.is_empty():
+		return
+
+	var row: float = float(pieces.size()) * (PIECE + PIECE_GAP) - PIECE_GAP
+	var left: float = centre.x - row * 0.5
+	var top: float = centre.y + _radius + 10.0
+
+	for i in range(pieces.size()):
+		var piece_data: Dictionary = pieces[i] as Dictionary
+		var tint: Color = piece_data["tint"]
+		var at: Vector2 = Vector2(left + float(i) * (PIECE + PIECE_GAP), top)
+		var middle: Vector2 = at + Vector2(PIECE, PIECE) * 0.5
+
+		# Il tondo scuro sotto e il bordo: serve a staccare il pezzo dal terreno
+		# dipinto, che sotto un glifo sottile lo mangia.
+		draw_circle(middle, PIECE * 0.62, Color("#16130f"))
+		draw_arc(middle, PIECE * 0.62, 0.0, TAU, 20, tint, 1.4, true)
+		Glyph.paint(self, str(piece_data["glyph"]), Rect2(at, Vector2(PIECE, PIECE)).grow(-3.0), tint)
+
+		# I punti del grado, sotto il pezzo: si contano con gli occhi, come i
+		# piani di una torre che diventa castello e poi reggia.
+		var grade: int = int(piece_data["grade"])
+		if grade > 1:
+			var pips: float = float(grade) * 4.0 - 1.0
+			for pip in range(grade):
+				draw_circle(
+					Vector2(middle.x - pips * 0.5 + float(pip) * 4.0 + 1.0, at.y + PIECE + 4.0),
+					1.4, tint
+				)
+
+	# La parola solo sotto il mouse: la plancia mostra i pezzi, la Regione che
+	# stai guardando li nomina. Al tavolo la carta si legge quando la prendi in
+	# mano, non mentre guardi il tavolo.
+	if _hovered != region_id:
+		return
+	var words: Array = []
+	for piece_data in pieces:
+		var word: String = str((piece_data as Dictionary)["word"])
+		if word != "":
+			words.append(word)
+	if words.is_empty():
+		return
 	var font: Font = ThemeDB.fallback_font
-	var y: float = _radius + 32.0
-	for mark in marks:
-		var level: String = str(mark).split(":")[0]
-		# La parola del segno viene dal dizionario condiviso (D-107): la stessa
-		# che sta sul segnalino di cartone, non il suffisso inglese del tag.
-		var label: String = SignLabels.label(str(mark), _session.data if _session != null else null)
-		var tint: Color = Color("#c8553d") if level == "scar" else Color("#8a8172")
-		# Il glifo dice di che *livello* e' il segno - una struttura, una
-		# condizione, un insediamento, una Cicatrice - e la parola dice quale.
-		# Prima c'era solo la parola, e quattro cose diverse si leggevano tutte
-		# uguali: una fila di parole in grigio (ISSUES 6).
-		var size: Vector2 = font.get_string_size(label, HORIZONTAL_ALIGNMENT_LEFT, -1, 11)
-		# Sotto **questa** Regione: `y` e' la distanza dal centro, non una
-		# posizione sullo schermo. Aggiungendo il glifo si e' persa la somma con
-		# `centre` sull'asse verticale, e per un anno intero i segni di tutte e
-		# sei le Regioni sono finiti in cima alla mappa, uno sull'altro. Non si
-		# vedeva a inizio partita, perche' le Regioni cominciano senza segni.
-		var at: Vector2 = Vector2(centre.x - (size.x + 14.0) * 0.5, centre.y + y)
-		Glyph.paint(self, level, Rect2(at - Vector2(0.0, 9.0), Vector2(10.0, 10.0)), tint)
-		# Sul quadro dipinto un grigio su terra bruciata non si legge: la stessa
-		# ombra di un pixel che porta il nome della Regione.
-		draw_string(
-			font, at + Vector2(15.0, 1.0), label, HORIZONTAL_ALIGNMENT_LEFT, -1, 11,
-			Color(0, 0, 0, 0.75)
-		)
-		draw_string(
-			font, at + Vector2(14.0, 0.0), label, HORIZONTAL_ALIGNMENT_LEFT, -1, 11, tint
-		)
-		y += 14.0
+	var line: String = " · ".join(PackedStringArray(words))
+	var size: Vector2 = font.get_string_size(line, HORIZONTAL_ALIGNMENT_LEFT, -1, 11)
+	var word_at: Vector2 = Vector2(centre.x - size.x * 0.5, top + PIECE + 18.0)
+	draw_string(
+		font, word_at + Vector2(1.0, 1.0), line, HORIZONTAL_ALIGNMENT_LEFT, -1, 11,
+		Color(0, 0, 0, 0.75)
+	)
+	draw_string(font, word_at, line, HORIZONTAL_ALIGNMENT_LEFT, -1, 11, Color("#c9bfae"))
 
 
 ## Four colours, readable next to each other, handed out by seat rather than by
@@ -563,3 +655,55 @@ func _entity_colour(entity_id: String) -> Color:
 	if at < 0:
 		return Color("#8a8172")
 	return Color(str(SEAT_COLOURS[at % SEAT_COLOURS.size()]))
+
+
+## --- prendere una carta e lasciarla sulla mappa (D-230) ----------------------
+##
+## Il committente: *«la GUI deve prevedere movimenti drag & drop, non pulsanti
+## che dicono cosa fare»*. La mappa non decide niente di nuovo — accetta una
+## carta esattamente sulle Regioni che `highlighted` gia' dichiara raggiungibili,
+## cioe' quelle per cui le regole hanno gia' detto di si' (D-039). Il
+## trascinamento e' un altro modo di dire la stessa cosa, non un'altra regola.
+
+func _can_drop_data(at: Vector2, payload: Variant) -> bool:
+	var index: int = _offer_at(at, payload)
+	var region: String = _region_at(at)
+	if index < 0:
+		if _landing != "":
+			_landing = ""
+			queue_redraw()
+		return false
+	if _landing != region:
+		_landing = region
+		queue_redraw()
+	return true
+
+
+func _drop_data(at: Vector2, payload: Variant) -> void:
+	var index: int = _offer_at(at, payload)
+	_landing = ""
+	queue_redraw()
+	if index >= 0:
+		card_dropped.emit(index)
+
+
+## La scelta che questa carta, lasciata qui, farebbe — o -1.
+##
+## Due filtri, e sono lo stesso filtro visto da due parti: la Regione dev'essere
+## fra le raggiungibili, e la carta deve portare una scelta *per quella Regione*.
+## Una carta che sa muovere non puo' cadere dove nessuna sua mossa arriva.
+func _offer_at(at: Vector2, payload: Variant) -> int:
+	if typeof(payload) != TYPE_DICTIONARY:
+		return -1
+	var carried: Dictionary = payload as Dictionary
+	if str(carried.get("kind", "")) != "asset":
+		return -1
+	var region: String = _region_at(at)
+	if region == "" or not highlighted.has(region):
+		return -1
+	for offer in carried.get("offers", []):
+		var entry: Dictionary = offer as Dictionary
+		if str(entry.get("region", "")) == region:
+			return int(entry.get("index", -1))
+	return -1
+

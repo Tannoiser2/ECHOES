@@ -23,6 +23,7 @@ const MapView := preload("res://ui/map_view.gd")
 const StatusPanel := preload("res://ui/status_panel.gd")
 const HandView := preload("res://ui/hand_view.gd")
 const ConfluenceBoard := preload("res://ui/confluence_board.gd")
+const CouncilSheet := preload("res://ui/council_sheet.gd")
 const HelpPanel := preload("res://ui/help_panel.gd")
 const SaveSerializer := preload("res://scripts/core/save_serializer.gd")
 const DevDashboard := preload("res://ui/dev_dashboard.gd")
@@ -61,6 +62,20 @@ var _context: Label
 var _help: PanelContainer
 var _help_button: Button
 var _help_data: RefCounted
+## La scheda di una domanda (D-236): cosa si potra' proporre e cosa lascia al
+## mondo, leggibile **prima** che il Consiglio si apra. Stessa meta' di schermo
+## di mappa, Consiglio e regole: chi la legge non sta guardando il tavolo.
+var _sheet: PanelContainer
+
+## **Le scelte che ogni carta porta adesso**: `asset_id -> [{region, index}]`.
+## Vive solo dentro una `ask()`, si svuota appena la domanda e' finita. E' il
+## ponte fra le scelte che le regole hanno gia' approvato e la mano che si puo'
+## prendere e trascinare (D-230).
+var _offers: Dictionary = {}
+
+## Le etichette della domanda in corso: servono a rimostrare **solo** le scelte
+## rimaste quando una carta cade su un soggetto che ne accetta piu' di una.
+var _labels: Array = []
 ## The seed of the last Chronicle played, so the menu can offer it back.
 var _last_seed: int = -1
 ## E quale Chronicle era, e in che anno: il log si scarica quasi sempre a partita
@@ -255,6 +270,10 @@ func _build() -> void:
 	# Pressing a Region *is* choosing an action, so the map answers the question
 	# on screen. Which Regions may be pressed is set by whoever asked it.
 	_map.region_clicked.connect(_on_region_clicked)
+	# E lasciarci cadere una carta e' la stessa risposta, data con la mano
+	# invece che col dito (D-230): la mappa manda gia' l'indice della scelta,
+	# perche' l'ha trovato fra le offerte che quella carta portava.
+	_map.card_dropped.connect(func(index: int) -> void: picked.emit(index))
 	_centre.add_child(_map)
 
 	_board = ConfluenceBoard.new()
@@ -267,6 +286,12 @@ func _build() -> void:
 	_help = HelpPanel.new()
 	_help.set_anchors_preset(Control.PRESET_FULL_RECT)
 	_centre.add_child(_help)
+
+	_sheet = CouncilSheet.new()
+	_sheet.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_sheet.visible = false
+	_sheet.closed.connect(func() -> void: _sheet.visible = false)
+	_centre.add_child(_sheet)
 
 	_echo = EchoCardView.new()
 	_echo.set_anchors_preset(Control.PRESET_FULL_RECT)
@@ -301,6 +326,12 @@ func _build() -> void:
 	columns.add_child(right)
 
 	_status = StatusPanel.new()
+	# Le domande e le case sono posti dove una carta puo' cadere, come le Regioni
+	# sulla mappa (D-231). Su un soggetto una carta puo' saper fare due cose
+	# opposte — alzare e abbassare una domanda, avvicinare e rompere un rapporto —
+	# e allora la caduta **restringe** e la scelta resta a chi gioca.
+	_status.card_dropped.connect(_on_subject_dropped)
+	_status.tension_opened.connect(_on_tension_opened)
 	right.add_child(_status)
 
 	_context = Label.new()
@@ -412,7 +443,7 @@ func _refresh() -> void:
 		_board.render(_session, _viewer)
 	_map.render(_session, _viewer)
 	_status.render(_session, _viewer)
-	_hand.render(_session, _viewer, _focus_tension)
+	_hand.render(_session, _viewer, _focus_tension, _offers)
 	_context.text = _context_line()
 
 
@@ -714,9 +745,40 @@ func ask(prompt: String, labels: Array, subjects: Array = []) -> int:
 	_map.highlighted = on_map
 	_map.queue_redraw()
 
+	# **Cosa porta ogni carta, e dove.** Le scelte sono gia' passate dalle
+	# regole: qui si raggruppano per carta, cosi' la mano sa quali si possono
+	# prendere e la mappa sa dove accettarle (D-230).
+	_offers = {}
+	_labels = labels
+	for i in range(subjects.size()):
+		var about: Dictionary = subjects[i] as Dictionary
+		var carried: String = str(about.get("asset", ""))
+		if carried == "":
+			continue
+		# Un'offerta porta **di cosa parla**: una Regione sulla mappa, una domanda
+		# sulla traccia, una casa nella colonna dei rapporti. Chi non parla di
+		# niente di visibile — TRAMARE su niente, PASSA — resta un bottone, ed e'
+		# giusto: non c'e' un posto dove posarla (D-231).
+		var entry: Dictionary = {"index": i}
+		var somewhere: bool = false
+		for field in ["region", "tension", "entity"]:
+			var about_what: String = str(about.get(field, ""))
+			if about_what != "":
+				entry[field] = about_what
+				somewhere = true
+		if not somewhere:
+			continue
+		var list: Array = _offers.get(carried, []) as Array
+		list.append(entry)
+		_offers[carried] = list
+
 	_prompt.text = prompt
-	_hint.text = "" if on_map.is_empty() else \
-		"Le Regioni cerchiate d'oro sono raggiungibili: cliccane una per metterci una presenza."
+	_hint.text = (
+		"Trascina una carta dove vuoi usarla — una Regione, una domanda, una casa — o scegli qui accanto."
+		if not _offers.is_empty()
+		else ("" if on_map.is_empty()
+			else "Le Regioni cerchiate d'oro sono raggiungibili: cliccane una per metterci una presenza.")
+	)
 	_clear_buttons()
 	for i in range(labels.size()):
 		var subject: Dictionary = subjects[i] if i < subjects.size() else {}
@@ -735,6 +797,8 @@ func ask(prompt: String, labels: Array, subjects: Array = []) -> int:
 	# Cleared before returning, so a stray click on the map between two questions
 	# cannot answer the next one.
 	_map.highlighted = {}
+	_offers = {}
+	_labels = []
 	_map.queue_redraw()
 	_clear_buttons()
 	_prompt.text = ""
@@ -742,9 +806,58 @@ func ask(prompt: String, labels: Array, subjects: Array = []) -> int:
 	return chosen
 
 
+## Una carta caduta su una domanda o su una casa.
+##
+## Se quella carta li' sa fare **una** cosa sola, e' gia' una risposta: al tavolo
+## posare la carta *e'* la mossa. Se ne sa fare due, la caduta ha comunque tolto
+## di mezzo tutto il resto, e restano da scegliere solo quelle — che e' esattamente
+## come funziona con le mani: posi la carta sulla domanda, e poi dici se la alzi
+## o la abbassi.
+func _on_subject_dropped(indices: Array) -> void:
+	if indices.is_empty():
+		return
+	if indices.size() == 1:
+		picked.emit(int(indices[0]))
+		return
+	_narrow_to(indices)
+
+
+## Restringe la colonna alle sole scelte rimaste dopo la caduta.
+func _narrow_to(indices: Array) -> void:
+	_clear_buttons()
+	_prompt.text = "La carta e' li. Cosa ne fai?"
+	for index in indices:
+		var label: String = str(_labels[int(index)]) if int(index) < _labels.size() else "?"
+		var button := Button.new()
+		button.text = label
+		button.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
+		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		var chosen: int = int(index)
+		button.pressed.connect(func() -> void: picked.emit(chosen))
+		_buttons.add_child(button)
+
+
 func _on_region_clicked(region_id: String) -> void:
 	if _map.highlighted.has(region_id):
 		picked.emit(int(_map.highlighted[region_id]))
+
+
+## La scheda di una domanda si apre e si chiude, e non e' una mossa (D-236).
+##
+## Non tocca `picked`: leggere non risponde a niente. Se il Consiglio e' aperto
+## la scheda non si mette in mezzo — li' le proposte sono gia' sul tavolo con
+## quello che lasciano, ed e' quella la pagina da guardare.
+func _on_tension_opened(tension_id: String) -> void:
+	if _session == null or _session.confluence.is_open():
+		return
+	if _sheet.visible:
+		_sheet.visible = false
+		return
+	_sheet.show_tension(tension_id, _session.data, _session)
+	_sheet.visible = true
+	_help.visible = false
+	_help_button.button_pressed = false
 
 
 func _clear_buttons() -> void:

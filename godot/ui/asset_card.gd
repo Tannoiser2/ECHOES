@@ -22,6 +22,23 @@ const CARD_H: float = 110.0
 
 var asset: Dictionary = {}
 
+## Il DataSet, tenuto perche' il tooltip si costruisce **dopo** `render()` —
+## quando il mouse si ferma — e li' i segni vanno tradotti in parole.
+var _data: RefCounted = null
+
+## **Si prende in mano** (D-230). Vuota, la carta si guarda e basta; quando lo
+## schermo sta chiedendo un'azione ci mette dentro le scelte che quella carta
+## porta — `{"region": "REG_X", "index": 3}` — e da quel momento la si puo'
+## trascinare dove quelle scelte vivono. E' il committente che l'ha chiesto per
+## intero: *«si seleziona una carta, si decide come usarla e si deve poter
+## generare il suo effetto»*.
+##
+## Lo schermo la riempie e la svuota; la carta non sa cosa siano quelle voci e
+## non deve saperlo. Come per le Regioni cerchiate d'oro, **una carta e'
+## trascinabile esattamente quando la mossa e' legale** (D-039): la lista arriva
+## gia' passata dalle regole.
+var offers: Array = []
+
 var _picture: TextureRect
 var _footer: Label
 
@@ -37,6 +54,7 @@ func _ready() -> void:
 ## no Council, and then a card shows its printed strength instead of its value.
 func render(p_asset: Dictionary, relevant: Array, council_open: bool, data: RefCounted) -> void:
 	asset = p_asset
+	_data = data
 	var family: String = str(asset["family"])
 	var is_relevant: bool = relevant.has(family)
 
@@ -96,7 +114,7 @@ func _make_custom_tooltip(_for_text: String) -> Object:
 	panel.add_theme_stylebox_override("panel", style)
 
 	var label := Label.new()
-	label.text = AssetText.tooltip(asset)
+	label.text = AssetText.tooltip(asset, _data)
 	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	label.custom_minimum_size = Vector2(300, 0)
 	label.add_theme_font_size_override("font_size", 12)
@@ -110,3 +128,36 @@ func _make_custom_tooltip(_for_text: String) -> Object:
 ## dire la stessa cosa sulla stessa famiglia.
 func _family_colour(family: String) -> Color:
 	return Color(CardFace.family_colour(family))
+
+
+## Il carico che viaggia col trascinamento: quale carta, e cosa sa fare adesso.
+##
+## L'anteprima e' la carta stessa, ridotta: al tavolo la mano che porta il pezzo
+## si vede, e sullo schermo deve vedersi la stessa cosa — trascinare un rettangolo
+## grigio non e' prendere una carta.
+func _get_drag_data(_at: Vector2) -> Variant:
+	if offers.is_empty() or asset.is_empty():
+		return null
+	# L'anteprima e' presentazione, non decisione: il carico si costruisce
+	# comunque. Fuori da un albero `set_drag_preview` non ha dove appendere il
+	# fantasma e scrive un errore in un log che nessuno legge — cioe' la
+	# suite resterebbe verde mentre la CI va rossa sul grep di D-224.
+	if not is_inside_tree():
+		return {"kind": "asset", "asset_id": str(asset.get("id", "")), "offers": offers}
+	var ghost := Panel.new()
+	var style := StyleBoxFlat.new()
+	style.bg_color = Color("#0d0b09")
+	style.border_color = _family_colour(str(asset.get("family", "")))
+	style.set_border_width_all(2)
+	style.set_corner_radius_all(4)
+	ghost.add_theme_stylebox_override("panel", style)
+	ghost.custom_minimum_size = size * 0.8
+	var name := Label.new()
+	name.text = str(asset.get("title", ""))
+	name.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	name.add_theme_font_size_override("font_size", 10)
+	name.add_theme_color_override("font_color", Color("#efe7d8"))
+	name.set_anchors_preset(Control.PRESET_FULL_RECT)
+	ghost.add_child(name)
+	set_drag_preview(ghost)
+	return {"kind": "asset", "asset_id": str(asset.get("id", "")), "offers": offers}

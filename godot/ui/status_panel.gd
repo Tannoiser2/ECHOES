@@ -15,6 +15,7 @@ const RELATIONS: Dictionary = {
 }
 
 const CardArt := preload("res://ui/card_art.gd")
+const DropSlot := preload("res://ui/drop_slot.gd")
 const SignLabels := preload("res://scripts/core/sign_labels.gd")
 
 var _rows: Dictionary = {}
@@ -22,6 +23,21 @@ var _destiny: VBoxContainer
 var _casata_card: TextureRect
 var _destiny_card: TextureRect
 var _relations: VBoxContainer
+
+## I posti dove una carta puo' cadere: `"tension:ID"` e `"entity:ID"` ->
+## `DropSlot`. Lo schermo li collega una volta sola, quando nascono (D-231).
+var slots: Dictionary = {}
+
+## Emesso quando una carta cade su una domanda o su una casa, con le scelte che
+## quella carta porta per quel soggetto.
+signal card_dropped(indices: Array)
+
+## Qualcuno vuole leggere la scheda di questa domanda (D-236).
+##
+## Non e' una mossa: e' guardare. Al tavolo la scheda della Tensione la prendi
+## in mano quando vuoi, e la rimetti giu'; da quando si gioca all'app e non al
+## cartone, quel gesto deve esistere sullo schermo o non esiste affatto.
+signal tension_opened(tension_id: String)
 var _claims: VBoxContainer
 var _claims_header: Label
 var _signs: VBoxContainer
@@ -39,7 +55,7 @@ func render(session: RefCounted, viewer_id: String) -> void:
 	for tension_id in _sorted(session.world["tensions"].keys()):
 		var id: String = str(tension_id)
 		if not _rows.has(id):
-			_rows[id] = _add_row(str(session.data.tensions[id]["title"]))
+			_rows[id] = _add_row(str(session.data.tensions[id]["title"]), "tension", id)
 		_update_row(_rows[id], session, id, viewer_id)
 	_update_relations(session, viewer_id)
 	_update_claims(session, viewer_id)
@@ -55,10 +71,12 @@ func _build() -> void:
 	add_child(_title)
 
 
-func _add_row(title: String) -> Dictionary:
+## La riga di una domanda, dentro il suo posto: da D-231 una carta che
+## influenza o trama ci puo' cadere sopra, invece di essere un bottone.
+func _add_row(title: String, field: String = "", key: String = "") -> Dictionary:
 	var box := VBoxContainer.new()
 	box.add_theme_constant_override("separation", 1)
-	add_child(box)
+	add_child(_wrapped(box, field, key))
 
 	var header := HBoxContainer.new()
 	box.add_child(header)
@@ -136,7 +154,9 @@ func _update_relations(session: RefCounted, viewer_id: String) -> void:
 			continue
 		var level: String = session.service.relation_level(viewer_id, other)
 		var row := HBoxContainer.new()
-		_relations.add_child(row)
+		# Anche la riga di un rapporto e' un posto: FORGIARE parla a una casa,
+		# e questa e' la casa (D-231).
+		_relations.add_child(_wrapped(row, "entity", other))
 
 		var name := Label.new()
 		name.text = session.service.name_of(other)
@@ -340,3 +360,31 @@ func _sorted(keys: Array) -> Array:
 	var out: Array = keys.duplicate()
 	out.sort()
 	return out
+
+
+## Mette un pezzo di pannello dentro un posto dove una carta puo' cadere, e lo
+## registra. Senza `field` non incarta niente: le sezioni che non sono bersaglio
+## di nessuna carta restano quello che erano.
+func _wrapped(inner: Control, field: String, key: String) -> Control:
+	if field == "" or key == "":
+		return inner
+	var slot: PanelContainer = DropSlot.new()
+	slot.field = field
+	slot.key = key
+	if field == "tension":
+		# Un clic sulla riga apre la scheda. Il trascinamento resta quello che
+		# era: chi prende una carta e la lascia cadere qui fa una mossa, chi
+		# clicca e basta sta leggendo. Sono due gesti diversi e non si pestano
+		# i piedi, perche' il trascinamento non passa mai da `gui_input`.
+		slot.gui_input.connect(func(event: InputEvent) -> void:
+			if event is InputEventMouseButton \
+					and (event as InputEventMouseButton).pressed \
+					and (event as InputEventMouseButton).button_index == MOUSE_BUTTON_LEFT:
+				tension_opened.emit(key)
+		)
+	slot.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	inner.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	slot.add_child(inner)
+	slot.card_dropped.connect(func(indices: Array) -> void: card_dropped.emit(indices))
+	slots["%s:%s" % [field, key]] = slot
+	return slot

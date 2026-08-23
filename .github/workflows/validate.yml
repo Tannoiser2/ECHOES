@@ -41,6 +41,15 @@ jobs:
       - name: Drift check - asset manifest
         run: python3 tools/build_manifest.py --check
 
+      # Il registro dei segni (D-225). Un segno che le Conseguenze o le carte
+      # scrivono sul mondo e che **nessuno legge** non e' una regola: e' colore
+      # travestito da regola, e non lo si vede giocando — la partita gira lo
+      # stesso. Questo passo va rosso se ne compare uno non dichiarato, se uno
+      # dichiarato ha smesso di essere muto, o se il documento non e' piu' quello
+      # che i dati producono.
+      - name: Drift check - registro dei segni
+        run: python3 tools/build_sign_registry.py --check
+
       # Un blocco finito dopo un `return` non e' un errore per GDScript: e'
       # silenzio. Il bottone «Si comincia» della stanza e' vissuto una versione
       # intera dietro un return, e nessun test poteva vederlo (D-140).
@@ -93,6 +102,14 @@ jobs:
             grep -n "SCRIPT ERROR" -A4 /tmp/tests.log
             exit 1
           fi
+
+      # Il catalogo dei Consigli (D-232). Le proposte, le clausole e le
+      # Conseguenze vivono nel database: chi vuole leggerle deve aprire Godot.
+      # Il catalogo e' quel materiale scritto in italiano, generato e committato
+      # come il brief d'arte — e quindi puo' invecchiare in silenzio il giorno
+      # che qualcuno cambia una proposta. Questo passo va rosso quel giorno.
+      - name: Drift check - catalogo dei Consigli
+        run: GODOT=~/godot/godot tools/run_council_catalogue.sh --check
 
       - name: Play every sim plan
         run: GODOT=~/godot/godot tools/run_sims.sh
