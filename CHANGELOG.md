@@ -5,6 +5,30 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.206 — Le Conseguenze mute erano dieci, sono tre (D-235)
+
+- **ISSUES 56 misurata di nuovo** con `run_consequence_probe.gd`: un testimone
+  si siede in mezzo al Consiglio, inoltra ogni domanda a chi decide e scrive
+  cosa gli è stato offerto e cosa ha scelto.
+- **Due errori di misura corretti**, tutti e due nella direzione che fa sembrare
+  il gioco più rotto di quanto sia: contavo in Consigli quattro Conseguenze che
+  **arrivano da una carta Echo** e non passano da lì; e misuravo **anni
+  scollegati** mentre tre proposte chiedono una **leggenda**, che nasce solo
+  quando fra due anni giocati passano decenni.
+- **Il numero vero**: 7 su 52 in 200 anni scollegati, **3 su 52** in 200 anni di
+  saga (20 saghe da 10 Chronicle).
+- **Le tre restanti, con tre cause diverse**: il Drago ha la porta in una sola
+  carta del mazzo e in 200 anni non si è mai allineata (19 esclusioni su 19); «Il
+  Raccolto Torna» è stato pescato 173 volte e calato zero (fa bene al mondo e
+  niente a chi lo cala); «La Parola Data» 183 volte e zero (chi la gioca paga
+  tre volte e non incassa).
+- **Due categorie della voce sono vuote**: «mai scelta» e «sempre perdente» non
+  esistono più in saga. Ne compare una che la voce non prevedeva: **la carta che
+  nessuno ha una ragione di giocare**.
+- Nessun dato e nessuna regola cambiati: questa è una misura.
+
+---
+
 ## 0.1.205 — Quattro dei dieci segni muti non lo erano mai stati (D-234)
 
 - **Chiude ISSUES 61.** La voce chiedeva di misurare prima di decidere: la sonda

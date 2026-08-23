@@ -3040,7 +3040,46 @@ ogni vista è disegnata almeno una volta da una prova.
 
 ---
 
-### 56. Dieci Conseguenze su cinquantadue non escono mai
+### 56. Tre Conseguenze su cinquantadue non escono mai — erano dieci
+
+`contenuto` · `bilanciamento` · **rimisurata in 0.1.206**
+([D-235](DECISIONS.md#d-235)) · **da dieci a tre**
+
+**Il numero di prima era misurato male, e in due modi.** Quattro delle dieci non
+passano da un Consiglio: arrivano da una **carta Echo**, e una Conseguenza
+scattata da una carta non compare in `confluence_results`. E il resto era
+misurato su **anni scollegati**, mentre tre proposte chiedono una *leggenda* —
+che nasce solo quando fra due anni giocati passano decenni. Cento anni giocati
+uno per volta non ne producono nessuna: quelle proposte erano morte per
+costruzione della misura.
+
+| | Conseguenze mai uscite |
+|---|---|
+| 200 anni **scollegati** | 7 su 52 |
+| 200 anni **in saga** (20 × 10 Chronicle) | **3 su 52** |
+
+**Le tre che restano, con tre cause diverse:**
+
+| Conseguenza | perché | rimedio possibile |
+|---|---|---|
+| `CNS_DRAGON_SLAIN` | la sua domanda è arrivata **19 volte** e la proposta è stata esclusa tutte e 19: chiede `function:REVELATION`, e in tutto il mazzo **una sola carta** lo scrive — deve essere calata nello stesso anno, prima del Consiglio del Risveglio | una seconda porta, o una Rivelazione più probabile |
+| `CNS_HARVEST_RETURNS` | la carta è stata **pescata 173 volte e calata zero**: toglie la fame e raffredda la Carestia, cioè fa bene **al mondo** e a chi la cala niente | una ragione per giocarla |
+| `CNS_OATH_BROKEN` | **pescata 183 volte, calata zero**: cicatrice, inquietudine e il proprio rapporto chiuso a HOSTILE — chi la gioca paga tre volte e non incassa mai | idem |
+
+**Le prime due categorie della voce originale sono vuote.** «Mai scelta» e
+«sempre perdente» non esistono più in saga: ogni proposta che arriva sul tavolo
+prima o poi viene presa, e presa prima o poi passa. Ne è comparsa una che la
+voce non prevedeva, perché non guardava le carte: **la carta che nessuno ha una
+ragione di giocare**.
+
+**Resta d'autore** e non è una correzione: dare una ragione per calare quelle
+due carte, o far incontrare più spesso la Rivelazione e il Risveglio.
+
+**Fatto quando** ogni Conseguenza del catalogo esce almeno una volta su 200 anni
+di saga, o è stata tolta perché non serviva.
+
+<details>
+<summary>La voce come era scritta, misurata in 0.1.191</summary>
 
 `contenuto` · `bilanciamento` · **misurata in 0.1.191** ([D-223](DECISIONS.md#d-223))
 
@@ -3078,6 +3117,8 @@ sempre perdente. Sono tre difetti diversi con tre rimedi diversi.
 
 **Fatto quando** ogni Conseguenza del catalogo esce almeno una volta su 200 anni,
 o è stata tolta perché non serviva.
+
+</details>
 
 ---
 

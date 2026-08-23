@@ -10,6 +10,69 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-235 — Le Conseguenze mute erano dieci, sono tre: la misura sbagliava unita'
+
+**implemented in 0.1.206** — ISSUES 56 misurata di nuovo, e ridotta a un terzo
+
+ISSUES 56 chiedeva, per ognuna delle dieci Conseguenze che non escono mai, *se
+la proposizione che la elenca sia mai stata scelta, e se no perche' — non
+idonea, mai proposta, o sempre perdente*. La sonda
+`godot/cli/run_consequence_probe.gd` risponde mettendo un **testimone** in mezzo
+al Consiglio: inoltra ogni domanda a chi decide davvero e scrive cosa gli e'
+stato offerto e cosa ha scelto. Non decide niente, e la stessa partita con e
+senza testimone finisce uguale.
+
+**Due errori di misura, tutti e due miei, tutti e due nella direzione che fa
+sembrare il gioco piu' rotto di quanto sia.**
+
+*Il primo: contavo in Consigli quello che non passa dai Consigli.* Quattro delle
+dieci non le elenca nessuna proposta — arrivano da una **carta Echo**, e una
+Conseguenza scattata da una carta non compare in `confluence_results`. Le
+chiamavo morte guardando nel posto sbagliato. Adesso il testimone ascolta anche
+`act_echo_drawn`, e due delle quattro escono.
+
+*Il secondo, piu' grosso: misuravo anni scollegati, e certo contenuto vive nella
+saga.* Tre proposte chiedono una **leggenda** (`legend:order_restored`,
+`legend:debt_called`), e una leggenda nasce solo quando fra due anni giocati
+passano abbastanza decenni. Cento anni giocati **uno per volta** non ne
+producono nessuna: quelle proposte erano morte **per costruzione della sonda**,
+non per un difetto del gioco. Con `--saga=N` la sonda gioca N Chronicle di fila,
+e il salto vero (20-200 anni) le accende: `P_ANY_AS_STORY` esce 23 volte su 20
+saghe, e `CNS_LEGEND_RETOLD` scatta.
+
+**Il numero, misurato bene:**
+
+| | Conseguenze mai uscite |
+|---|---|
+| 200 anni **scollegati** (100 semi × 2 linee) | **7 su 52** |
+| 200 anni **in saga** (20 saghe da 10 Chronicle) | **3 su 52** |
+
+E le tre che restano hanno tre cause diverse, ognuna con un rimedio diverso:
+
+| Conseguenza | perche' non esce |
+|---|---|
+| `CNS_DRAGON_SLAIN` | la sua domanda e' arrivata al tavolo **19 volte** e la proposta e' stata esclusa tutte e 19. La porta e' `function:REVELATION`, e in tutto il mazzo **una sola carta** la scrive: perche' il drago muoia serve che quella carta sia calata nello stesso anno, prima che si apra il Consiglio del Risveglio. In 200 anni non e' mai capitato. |
+| `CNS_HARVEST_RETURNS` | la sua carta e' stata **pescata 173 volte e calata zero**. Toglie la fame e raffredda la Carestia: fa bene **al mondo**, e a chi la cala non fa niente. |
+| `CNS_OATH_BROKEN` | pescata **183 volte, calata zero**. Lascia una cicatrice, mette inquietudine e chiude il proprio rapporto a HOSTILE: chi la gioca paga tre volte e non incassa mai. |
+
+**Le prime due categorie della voce sono vuote.** «Mai scelta» e «sempre
+perdente» non esistono piu' in saga: ogni proposta che arriva sul tavolo viene
+presa prima o poi, e quando e' presa prima o poi passa. Restano **la porta che
+non si allinea mai** e **la carta che nessuno ha ragione di giocare** — e la
+seconda e' una categoria che la voce non aveva previsto, perche' non guardava le
+carte.
+
+**Quello che non ho deciso.** Dare a qualcuno una ragione per calare «Il
+Raccolto Torna» e «La Parola Data», o rendere piu' probabile che la Rivelazione
+e il Risveglio si incontrino, e' contenuto nuovo: e' una scelta d'autore, e sta
+scritta in ISSUES 56 con i numeri accanto invece che con un'ipotesi.
+
+**Misurato:** suite 457 prove / 8.532 asserzioni verdi, cancelli degli strumenti
+verdi. Nessun dato e nessuna regola cambiati: questa e' una misura, e le misure
+non spostano il gioco.
+
+---
+
 ## D-234 — Quattro dei dieci segni muti non lo erano mai stati, e una clausola era impossibile
 
 **implemented in 0.1.205** — chiude ISSUES 61
