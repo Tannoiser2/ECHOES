@@ -824,8 +824,10 @@
               "id": "$proponent"
             },
             "payload": {
-              "region_id": "$region_focus"
-            }
+              "region_id": "$region_focus",
+              "optional": true
+            },
+            "note": " Il tetto delle pedine vale anche per il mondo (D-223): chi le ha gia' tutte sul tavolo non ne ha una da posare, e la carta lo dice invece di sforare in silenzio."
           }
         }
       ],

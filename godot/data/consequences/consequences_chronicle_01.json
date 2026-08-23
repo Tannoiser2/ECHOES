@@ -425,6 +425,18 @@
             "optional": true
           },
           "note": "D-163: sgomberare una valle vuol dire anche tagliarla. Il bosco passa a diradato — non e' di nessuno, quindi non e' una perdita per qualcuno: e' una perdita per chi ci passera'."
+        },
+        {
+          "type": "ADD_PRESENCE",
+          "target": {
+            "kind": "entity",
+            "id": "$rival"
+          },
+          "payload": {
+            "region_id": "$adjacent",
+            "optional": true
+          },
+          "note": "Le domande spostano la mappa (D-223). «I carri che erano fermi nella Valle vengono rimessi in strada»: rimessi in strada vuol dire che arrivano da qualche parte. Toglierli e basta era uno spopolamento, non una requisizione. `optional` perche' il tetto delle pedine vale anche per il mondo: chi le ha gia' tutte sul tavolo non ne ha una da mandare."
         }
       ]
     },
@@ -1363,6 +1375,18 @@
           "payload": {
             "tag": "condition:emptied"
           }
+        },
+        {
+          "type": "ADD_PRESENCE",
+          "target": {
+            "kind": "entity",
+            "id": "$proponent"
+          },
+          "payload": {
+            "region_id": "$adjacent",
+            "optional": true
+          },
+          "note": "Le domande spostano la mappa (D-223). «Qualcosa parte e non torna quell'anno»: parte **verso**. Il popolo che se ne va e' altrove, non sparito. `optional` perche' il tetto delle pedine vale anche per il mondo: chi le ha gia' tutte sul tavolo non ne ha una da mandare."
         }
       ]
     },

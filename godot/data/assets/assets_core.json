@@ -628,9 +628,10 @@
             "id": "$rival"
           },
           "payload": {
-            "region_id": "$region_focus"
+            "region_id": "$region_focus",
+            "optional": true
           },
-          "note": "Il costo della carta: chi ti sta di fronte mette piede dove si discute."
+          "note": "Il costo della carta: chi ti sta di fronte mette piede dove si discute. Il tetto delle pedine vale anche per il mondo (D-223): chi le ha gia' tutte sul tavolo non ne ha una da posare, e la carta lo dice invece di sforare in silenzio."
         }
       ]
     },
@@ -1565,9 +1566,10 @@
             "id": "$rival"
           },
           "payload": {
-            "region_id": "$region_focus"
+            "region_id": "$region_focus",
+            "optional": true
           },
-          "note": "Il costo della carta: chi ti sta di fronte mette piede dove si discute."
+          "note": "Il costo della carta: chi ti sta di fronte mette piede dove si discute. Il tetto delle pedine vale anche per il mondo (D-223): chi le ha gia' tutte sul tavolo non ne ha una da posare, e la carta lo dice invece di sforare in silenzio."
         }
       ]
     },
@@ -1840,9 +1842,10 @@
             "id": "$rival"
           },
           "payload": {
-            "region_id": "$region_focus"
+            "region_id": "$region_focus",
+            "optional": true
           },
-          "note": "Il costo della carta: chi ti sta di fronte mette piede dove si discute."
+          "note": "Il costo della carta: chi ti sta di fronte mette piede dove si discute. Il tetto delle pedine vale anche per il mondo (D-223): chi le ha gia' tutte sul tavolo non ne ha una da posare, e la carta lo dice invece di sforare in silenzio."
         }
       ]
     },

@@ -567,6 +567,18 @@
             "optional": true
           },
           "note": "D-163: quando le gallerie si lasciano, quello che resta sopra smette di essere un bosco. Nessuno lo ha maledetto: e' successo, e da li' in poi chi ci sta dentro tiene una carta in meno."
+        },
+        {
+          "type": "ADD_PRESENCE",
+          "target": {
+            "kind": "entity",
+            "id": "$rival"
+          },
+          "payload": {
+            "region_id": "$adjacent",
+            "optional": true
+          },
+          "note": "Le domande spostano la mappa (D-223). «Si smette di scendere»: chi non scende piu' resta di sopra. La miniera si svuota e la superficie si riempie. `optional` perche' il tetto delle pedine vale anche per il mondo: chi le ha gia' tutte sul tavolo non ne ha una da mandare."
         }
       ]
     },

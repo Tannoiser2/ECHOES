@@ -290,11 +290,43 @@ func _add_presence(target: Dictionary, payload: Dictionary) -> Variant:
 	# L'ha trovato il round trip il giorno in cui la Regione di prova ha smesso
 	# di essere l'ultima della lista.
 	var at: int = int(payload.get("at", -1))
+	# **Il tetto vale anche per il mondo** (D-223).
+	#
+	# L'azione MUOVERE controlla `presence_tokens` da sempre; qui non lo faceva
+	# nessuno, quindi una Conseguenza poteva posare la quinta pedina di una casa
+	# che ne ha quattro. Non si era mai visto perche' **una sola** Conseguenza su
+	# cinquantadue metteva presenza; il giorno in cui sono diventate sei, il
+	# Consiglio avrebbe sforato in silenzio una regola che i giocatori
+	# rispettano.
+	#
+	# L'inverso e' escluso apposta: arriva con `at` e rimette una pedina che era
+	# gia' contata, quindi non sfora niente — e disfare deve sempre poter
+	# disfare, o l'effect-sourcing smette di essere una promessa.
+	if at < 0:
+		var cap: int = _presence_cap()
+		if cap > 0 and (entity["presence"] as Array).size() >= cap:
+			if bool(payload.get("optional", false)):
+				return {"region_id": region_id, "noop": true}
+			return _fail(
+				"'%s' ha gia' %d pedine sul tavolo: non ne ha una da posare"
+				% [target.get("id"), cap]
+			)
 	if at >= 0 and at <= (entity["presence"] as Array).size():
 		(entity["presence"] as Array).insert(at, region_id)
 	else:
 		entity["presence"].append(region_id)
 	return {"region_id": region_id}
+
+
+## Quante pedine ha una casa in tutto, se la Chronicle lo dichiara. Senza dato
+## non c'e' tetto: e' il caso delle prove che costruiscono un mondo a mano.
+func _presence_cap() -> int:
+	if data == null:
+		return 0
+	var chronicle: Variant = data.chronicles.get(str(world.get("chronicle_id", "")))
+	if chronicle == null:
+		return 0
+	return int((chronicle as Dictionary).get("presence_tokens", 0))
 
 
 func _remove_presence(target: Dictionary, payload: Dictionary) -> Variant:

@@ -51,7 +51,21 @@ func _clear(region_id: String) -> void:
 		))
 
 
+## Piantare `tokens` pedine qui, **richiamandole da dove stanno**.
+##
+## Il tetto delle pedine vale anche per il mondo (D-223), e da allora questa
+## funzione non poteva piu' fingere: chiedere quattro pedine a una casa che ne
+## ha quattro in tutto e due altrove costruiva uno stato che nessuna partita
+## puo' raggiungere, e la prova misurava una contesa impossibile. Adesso le
+## richiama prima — che e' anche quello che una casa farebbe davvero.
 func _stand(seat: String, region_id: String, tokens: int) -> void:
+	for other in session.world["regions"]:
+		if str(other) == region_id:
+			continue
+		for _i in range(session.service.presence_count(seat, str(other))):
+			session.applier.apply(Effect.make(
+				"REMOVE_PRESENCE", "entity", seat, {"region_id": str(other)}, _source()
+			))
 	for _i in range(tokens):
 		session.applier.apply(Effect.make(
 			"ADD_PRESENCE", "entity", seat, {"region_id": region_id}, _source()
