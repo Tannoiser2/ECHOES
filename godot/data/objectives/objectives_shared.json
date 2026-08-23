@@ -112,6 +112,22 @@
       "art_prompt_key": "objective.full_hands"
     },
     {
+      "id": "OBJ_MOST_STONE",
+      "title": "Più Pietra di Tutti",
+      "description": "Chi costruisce di più non costruisce di più in assoluto: costruisce di più **degli altri**. Un anno in cui tutti alzano qualcosa non premia nessuno, e uno in cui nessuno alza niente nemmeno.",
+      "label": "Più cose in piedi di chiunque altro",
+      "conditions": [
+        {
+          "type": "leads_in",
+          "entity_id": "$self",
+          "what": "structures",
+          "by": 1,
+          "label": "Più strutture sue in piedi di ogni altra casa"
+        }
+      ],
+      "art_prompt_key": "objective.most_stone"
+    },
+    {
       "id": "OBJ_NO_OPEN_QUESTION",
       "title": "Nessuna Domanda Lasciata Aperta",
       "description": "Si può vincere prendendo, o si può vincere finendo. Questo obiettivo è di chi non sopporta i conti in sospeso — e non gli importa chi li ha chiusi.",
@@ -141,6 +157,22 @@
       "art_prompt_key": "objective.quiet_world"
     },
     {
+      "id": "OBJ_THE_LONGEST_REACH",
+      "title": "La Mano Più Lunga",
+      "description": "Non «due Regioni»: **più di chiunque altro**. È l'unico modo di scriverlo che costringe a guardare il tavolo invece della propria scheda — perché il numero che serve non lo decidi tu, lo decide chi ti sta davanti.",
+      "label": "Tiene più Regioni di chiunque altro",
+      "conditions": [
+        {
+          "type": "leads_in",
+          "entity_id": "$self",
+          "what": "control",
+          "by": 1,
+          "label": "Più Regioni di ogni altra casa"
+        }
+      ],
+      "art_prompt_key": "objective.the_longest_reach"
+    },
+    {
       "id": "OBJ_THE_NAME",
       "title": "Il Nome che Pesa",
       "description": "Non importa da dove vieni: importa che quando parli, il tavolo ascolta. La fama è un segno che il mondo scrive addosso, e non si compra.",
@@ -155,6 +187,22 @@
         }
       ],
       "art_prompt_key": "objective.the_name"
+    },
+    {
+      "id": "OBJ_THE_WIDEST_SPREAD",
+      "title": "La Gente più Sparsa",
+      "description": "Essere in più posti degli altri non è tenere: è **esserci**. Si paga in pedine che non tornano indietro, e si perde nel momento in cui qualcun altro ne posa una in più.",
+      "label": "Più pedine sul tavolo di chiunque altro",
+      "conditions": [
+        {
+          "type": "leads_in",
+          "entity_id": "$self",
+          "what": "presence",
+          "by": 1,
+          "label": "Più pedine di ogni altra casa"
+        }
+      ],
+      "art_prompt_key": "objective.the_widest_spread"
     },
     {
       "id": "OBJ_TWO_LANDS",

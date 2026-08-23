@@ -10,6 +10,203 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-222 — Il cervello insegue quello per cui si vince
+**implemented in 0.1.190** — ISSUES 55, la mossa 0
+
+[D-221](#d-221) ha trovato la distanza e questa la chiude. Da
+[D-198](#d-198) la partita si vince **contando quattro obiettivi**; il
+`PolicyDecider` — il cervello che gioca il cancello — leggeva soltanto le
+condizioni del **Destino**, e la parola «objective» non compariva **nemmeno una
+volta** in tutto quel file.
+
+> Chi gioca inseguiva una cosa, e il punteggio ne contava un'altra.
+
+### Una funzione sola, e nove posti che la leggono
+
+`_conditions()` e' il punto unico da cui il decider ricava cosa vuole: nove
+chiamanti, che sono la scelta dell'azione, delle Regioni, delle carte da
+acquisire, delle Tensioni da spingere e del voto al Consiglio. Aggiungere li' le
+clausole degli obiettivi in mano li fa inseguire **ovunque**, senza scrivere
+un'euristica nuova per ognuno.
+
+Due dettagli che non sono dettagli:
+
+- **il Destino resta.** E' ancora lui a dire il livello, ed e' quello che fa
+  somigliare una casa a se stessa: togliere il Destino avrebbe fatto quattro
+  ottimizzatori identici con quattro mazzi diversi.
+- **un obiettivo gia' preso smette di essere un movente.** E' un punto in
+  cassaforte, e continuare a giocarci contro toglierebbe azioni a quelli che
+  mancano ancora.
+
+### I numeri, 100 semi — e il confronto e' pulito
+
+Le due misure differiscono **solo** per questa riga: stesso pool di 15
+obiettivi, stesso `per_control`, stesso tutto.
+
+| | cervello cieco | **cervello che vede** |
+|---|---|---|
+| **obiettivi presi in tutto** | 397 | **446** (+12,3%) |
+| anni chiusi con **quattro su quattro** | 2 | **7** |
+| «Due Terre, una Voce» (conteso) | 32,1% | **39,5%** |
+| NONE in tutto, tavolo misto | 93 | **80** |
+| VITTORIE, tavolo misto | 147 | **175** |
+| TRIONFI, tavolo misto | 4 | **7** |
+| Consigli l'anno, misto | 4,55 | **4,66** |
+| playtest 100 semi | 0/8 | **0/8** |
+
+**Un cervello che insegue quello per cui si vince, vince di piu'** — ovvio a
+dirsi, e non era vero fino a ieri. Il vincolo mai negoziato regge: **0 su 8** a
+tavolo misto e uniforme.
+
+### Quello che si dichiara, ed e' la parte che conta
+
+- **La mappa non si e' mossa lo stesso.** Il padrone passa di mano 2,42 → 2,49
+  volte l'anno, le Regioni contese restano 2,6 su 6. Era la ragione per cui il
+  committente ha chiesto tutto questo, e **non e' risolta**: il cervello adesso
+  *vorrebbe* la mappa, ma non ha con cosa prenderla — MUOVERE si gioca 3,79
+  volte l'anno e le pedine sono quattro. Il collo di bottiglia e' li', non nella
+  testa di chi gioca.
+- **«Piu' Pietra di Tutti» non si muove di un punto** (19,8% prima e dopo): il
+  cervello non puo' decidere di costruire, puo' solo impegnare la carta giusta
+  se ce l'ha ([D-218](#d-218) gliene ha data una).
+- **Tutti i numeri sugli obiettivi scritti prima di oggi misuravano un cervello
+  cieco.** Restano veri come descrizione di quello che il cancello faceva; non
+  dicono quanto valga un obiettivo per chi lo persegue. I due piu' esposti sono
+  quelli di [ISSUES 52](ISSUES.md#52-lyra-non-ha-mai-trionfato-in-centoventi-anni),
+  e vanno riletti con questo in mente.
+- **Il tavolo misto e' cambiato meno di quello uniforme**, perche' i caratteri
+  di `TableOfCharacters` pesano le azioni a modo loro e smorzano la spinta. Non
+  l'ho toccato: e' un secondo cervello, e un cambio per volta.
+
+---
+
+## D-220 — Tenere una Regione paga, e il tetto non era la leva
+**implemented in 0.1.189** — ISSUES 55, prima mossa
+
+Il committente: *«costruire porta vantaggi, avere maggioranza da' vantaggi
+[...] spostarsi conviene quindi»*. Il rubinetto della mano contava **le pedine**
+e basta: il possesso di una Regione non pagava piu' che starci dentro, quindi
+alzare una pietra era un numero nella contesa e niente altro.
+
+### Il preventivo sbagliato, e come si e' visto
+
+Avevo scritto che il collo di bottiglia era il **tetto per Atto** (`cap: 6`, con
+quattro pedine che ne varrebbero otto). L'ho alzato a 8 e ho misurato:
+**niente**. Le carte pescate a ogni rifornimento restavano 3,3–3,4 per chiunque.
+
+Il tetto vero e' quello sulla **mano** (`hand_cap: 7`): `min(dovuto, hand_cap -
+mano)`. Tutti convergono alla stessa mano piena, e la presenza decide soltanto
+quanto in fretta. Il cap e' tornato a 6, perche' un cambio che non fa niente non
+resta.
+
+### La sonda ha sbagliato la domanda due volte
+
+E ogni volta il numero cambiava **conclusione**, il che e' peggio che sbagliarlo.
+
+1. **Carte in mano a fine anno**: diceva che una presenza in piu' non rende. Ma
+   chi ha piu' pedine pesca di piu' *e spende di piu'*, e le due cose si
+   annullano nel numero sbagliato.
+2. **Carte pescate, raggruppate per le pedine di fine anno**: diceva che
+   espandersi rende **meno** (3 pedine → 9,18 carte, 5 pedine → 8,85). Era un
+   artefatto: chi finisce con cinque pedine le ha posate tardi, quindi per due
+   Atti su tre ha pescato da due.
+3. **La coppia giusta** — con quante pedine si e' pescato quanto, ricostruita dal
+   registro degli Effetti in ordine, l'unica fonte che sa *quando* (§6.3):
+
+| pedine al rifornimento | carte pescate |
+|---|---|
+| 3 | **3,44** |
+| 4 | **3,30** |
+| 5 | **3,12** |
+
+**Piu' pedine hai, meno peschi.** Non piatto: **invertito**.
+
+### Come e' fatto adesso
+
+`hand_refill.per_control`: carte in piu' per Regione **controllata**, e
+altrettanto tetto sulla mano. Il tetto che sale e' la meta' che conta — senza,
+il possesso non si vedrebbe comunque, perche' chiunque converge alla stessa mano.
+
+| 100 semi | prima | **dopo** |
+|---|---|---|
+| il padrone passa di mano | 2,32 volte l'anno | **2,42** |
+| Regioni contese a fine anno | 2,60 su 6 | **2,66** |
+| Regioni con un padrone | 4,65 su 6 | **4,73** |
+| carte pescate con 4 pedine | 3,30 | **3,52** |
+
+### Quello che si dichiara, e non e' poco
+
+**L'effetto sulla mappa e' piccolo: 2,32 → 2,42 passaggi di mano.** Il possesso
+adesso paga, ma non basta a rendere la mappa contesa, e il motivo l'ha trovato
+[D-221](#d-221).
+
+---
+
+## D-221 — Un obiettivo che non si puo' spartire, e il cervello che non lo insegue
+**implemented in 0.1.189** — ISSUES 55, e il ritrovamento che cambia il piano
+
+*«Anche gli obiettivi dovrebbero incrociarsi per dare battaglia tra entita'.»*
+Contati: su dodici, **uno solo** — «Due Terre, una Voce» — metteva due case
+l'una contro l'altra. Due erano globali (stesso esito per tutti) e **nove
+contavano roba propria**: quattro seggi potevano soddisfarli tutti e quattro
+senza mai toccarsi.
+
+### `leads_in`, e perche' e' un tipo nuovo e non un numero piu' alto
+
+Ogni condizione del vocabolario conta **quanto hai**. Alzare una soglia rende un
+obiettivo piu' difficile, non piu' conteso: due case possono comunque prenderlo
+tutte e due. `leads_in` chiede di stare davanti a **tutti gli altri** di almeno
+`by`, su una delle quattro monete — Regioni tenute, pietre in piedi, pedine sul
+tavolo, carte in mano. E' vera per **un seggio alla volta per costruzione**, e a
+parita' non conta: per stare davanti bisogna superare, come per togliere una
+Regione a chi la tiene ([D-158](#d-158)).
+
+Tre obiettivi nuovi la usano: **La Mano Piu' Lunga** (Regioni), **Piu' Pietra di
+Tutti** (strutture), **La Gente piu' Sparsa** (pedine). Il pool passa da 12 a 15,
+e i contesi da **1 a 4**.
+
+Si avverano fra lo **0% e il 46,2%** a seconda del seggio: vivi, non gratis e non
+morti. Una prova nuova chiede la cosa che la parola «conteso» vuol dire — **al
+massimo un seggio alla volta** — e sporca il tavolo prima di chiedere, perche' se
+nessuno ha niente «piu' di tutti» e' falso per tutti e la prova non proverebbe.
+
+### E poi il ritrovamento, che e' piu' importante della decisione
+
+Aggiunti gli obiettivi contesi, **la mappa non si e' mossa**: 2,32 → 2,42
+passaggi di mano, e quel poco veniva da [D-220](#d-220). Ho cercato il perche' e
+l'ho trovato in una riga:
+
+> `grep -c "objective" godot/scripts/seat/policy_decider.gd` → **0**
+
+**Il cervello che gioca il cancello non legge gli obiettivi. Mai.** Legge le
+condizioni del **Destino** — le tre strade — e insegue quelle. Ma da
+[D-198](#d-198) la vittoria si conta **contando quattro obiettivi**, non salendo
+i gradini del Destino.
+
+Quindi: **chi gioca insegue una cosa, e il punteggio ne conta un'altra.**
+
+Non e' una taratura. E' che tutte le misure sugli obiettivi fatte finora — il
+libro mastro compreso, quindi [D-217](#d-217) e [ISSUES 52](ISSUES.md#52-lyra-non-ha-mai-trionfato-in-centoventi-anni) — dicono **cosa capita** a un
+seggio che non li persegue, non quanto sono difficili da perseguire. Restano
+veri come descrizione di quello che il cancello misura oggi; non dicono niente
+su quanto valga un obiettivo per una persona che lo vuole.
+
+E spiega perche' le due leve di ISSUES 55 hanno mosso cosi' poco: **il gioco
+offre la lotta e nessuno la combatte.**
+
+### Quello che si dichiara
+
+- **Non ho toccato il cervello.** Insegnargli a inseguire gli obiettivi cambia
+  ogni numero di ogni verbale che li nomina, ed e' una decisione di scala che
+  vuole essere presa apposta e non di sfuggita dentro un'altra. E' scritta in
+  ISSUES 55 come la cosa da fare prima delle altre.
+- **I tre obiettivi contesi restano**, anche se oggi nessuno li insegue: la prova
+  dimostra che sono contesi davvero, e il giorno in cui il cervello li guardera'
+  saranno gia' li'. Ma non posso dire che «rendono la partita piu' mossa» —
+  posso dire soltanto che **si possono contendere**.
+
+---
+
 ## D-219 — Ogni relazione dice perche'
 **implemented in 0.1.187** — ISSUES 54, chiusa sul suo criterio
 

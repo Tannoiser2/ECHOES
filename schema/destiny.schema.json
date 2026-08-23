@@ -50,6 +50,7 @@
             "promise_kept",
             "promise_broken",
             "structure_count",
+            "leads_in",
             "scar_count",
             "any_of",
             "some_of"
@@ -119,7 +120,13 @@
         },
         "structure_family": {
           "type": "string",
-          "enum": ["PRESIDIO", "INSEDIAMENTO", "OPERA", "LUOGO", "CHIUSURA"],
+          "enum": [
+            "PRESIDIO",
+            "INSEDIAMENTO",
+            "OPERA",
+            "LUOGO",
+            "CHIUSURA"
+          ],
           "description": "Per `structure_count`: limita il conto a una famiglia — «due presidi» invece di «due strutture qualsiasi». Omessa, contano tutte."
         },
         "grade": {
@@ -140,6 +147,22 @@
           "items": {
             "$ref": "#/$defs/condition"
           }
+        },
+        "what": {
+          "type": "string",
+          "enum": [
+            "control",
+            "structures",
+            "presence",
+            "hand"
+          ],
+          "description": "leads_in: quale moneta si contende — le Regioni tenute, le pietre in piedi, le pedine sul tavolo, le carte in mano."
+        },
+        "by": {
+          "type": "integer",
+          "minimum": 1,
+          "default": 1,
+          "description": "leads_in: di quanto bisogna stare davanti a **tutti** gli altri. A parita' non si guida: per stare davanti bisogna superare, come per togliere una Regione a chi la tiene (D-158)."
         }
       }
     },

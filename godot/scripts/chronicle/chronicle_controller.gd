@@ -696,6 +696,7 @@ func _refill_hands(act: int) -> void:
 	var floor_cards: int = int(rules.get("floor", 1))
 	var cap: int = int(rules.get("cap", 3))
 	var hand_cap: int = int(rules.get("hand_cap", 0))
+	var per_control: int = int(rules.get("per_control", 0))
 	for entity_id in session.service.active_entities():
 		var presence: Array = (
 			(world["entities"] as Dictionary)[str(entity_id)] as Dictionary
@@ -708,16 +709,28 @@ func _refill_hands(act: int) -> void:
 				"asset_sources", []
 			):
 				offered.append(str(family))
-		var wanted: int = clampi(presence.size() * per_token, floor_cards, cap)
+		# Quello che **tiene**, non solo dove sta (D-220). Il rubinetto contava
+		# le pedine e basta, quindi il possesso di una Regione non pagava piu'
+		# che starci dentro: la maggioranza era un numero nella contesa e niente
+		# altro, e alzare una pietra non cambiava una carta in mano a nessuno.
+		var held_regions: int = session.service.control_count(str(entity_id)) if per_control > 0 else 0
+		var wanted: int = clampi(
+			presence.size() * per_token + held_regions * per_control, floor_cards, cap
+		)
 		# Il tetto sulla **mano**, non sulla pesca: D-185 ha misurato che un
 		# tetto per Atto non frena niente, perche' le carte non spese restano
 		# in mano e lo scarto si accumula lo stesso. Chi ha ancora carte pesca
 		# meno; chi le ha spese pesca pieno.
+		#
+		# E il tetto **sale con quello che si tiene**: senza, il possesso non si
+		# vedrebbe comunque — chiunque converge alla stessa mano piena, e la
+		# presenza decide soltanto quanto in fretta. Misurato: col tetto fisso,
+		# chi aveva cinque pedine pescava **meno** di chi ne aveva tre.
 		if hand_cap > 0:
 			var held: int = (
 				(world["entities"] as Dictionary)[str(entity_id)] as Dictionary
 			)["hand"].size()
-			wanted = mini(wanted, hand_cap - held)
+			wanted = mini(wanted, hand_cap + held_regions * per_control - held)
 		if wanted <= 0:
 			continue
 		var source: Dictionary = Effect.source(

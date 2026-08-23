@@ -35,14 +35,49 @@ func _init(p_log: RefCounted = null) -> void:
 
 # --- goals -----------------------------------------------------------------
 
-## Every condition in the Entity's Destiny, across all three levels.
+## Every condition in the Entity's Destiny, across all three levels — **e gli
+## obiettivi che ha in mano** (D-222).
+##
+## Fino alla 0.1.189 questa funzione tornava soltanto il Destino, e la parola
+## «objective» non compariva **nemmeno una volta** in tutto questo file. Ma da
+## [D-198](DECISIONS.md#d-198) la partita si vince **contando quattro
+## obiettivi**, non salendo i gradini del Destino: il cervello inseguiva una
+## cosa e il punteggio ne contava un'altra.
+##
+## Si e' visto aggiungendo tre obiettivi contesi ([D-221](DECISIONS.md#d-221)) e
+## non vedendo muovere niente: il gioco offriva la lotta e nessuno la
+## combatteva. Questa e' la riga che glielo fa vedere, ed e' l'unico punto da
+## toccare — nove posti leggono di qui, quindi da qui l'obiettivo entra nella
+## scelta dell'azione, delle Regioni, delle carte e del voto al Consiglio.
+##
+## Il Destino **resta**: e' ancora lui a dire il livello, e una casa che vuole
+## quello che ha sempre voluto e' quello che la fa somigliare a se stessa.
 func _conditions(entity_id: String, session: RefCounted) -> Array:
-	var destiny: Dictionary = _destiny(entity_id, session)
-	if destiny.is_empty():
-		return []
 	var out: Array = []
-	for level in ["minimum", "victory", "triumph"]:
-		out.append_array(_flat(destiny[level]["conditions"]))
+	var destiny: Dictionary = _destiny(entity_id, session)
+	if not destiny.is_empty():
+		for level in ["minimum", "victory", "triumph"]:
+			out.append_array(_flat(destiny[level]["conditions"]))
+	out.append_array(_objective_conditions(entity_id, session))
+	return out
+
+
+## Le clausole degli obiettivi che il seggio ha pescato, quelle **non ancora
+## prese**. Un obiettivo gia' vero non e' piu' un movente: e' un punto in
+## cassaforte, e giocarci contro toglierebbe azioni a quelli che mancano.
+func _objective_conditions(entity_id: String, session: RefCounted) -> Array:
+	var seat: Dictionary = (session.world["entities"] as Dictionary).get(
+		entity_id, {}
+	) as Dictionary
+	var out: Array = []
+	for objective_id in seat.get("objectives", []):
+		var objective: Variant = session.data.objectives.get(str(objective_id))
+		if objective == null:
+			continue
+		var conditions: Array = (objective as Dictionary)["conditions"]
+		if session.destinies.conditions.all_hold(conditions, {"self": entity_id}):
+			continue
+		out.append_array(_flat(conditions))
 	return out
 
 

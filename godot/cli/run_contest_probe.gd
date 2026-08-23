@@ -49,7 +49,8 @@ func _initialize() -> void:
 	var contested_close: float = 0.0
 	var held_at_end: float = 0.0
 	var regions_seen: int = 0
-	var hand_sizes: Dictionary = {} # gettoni posati -> [carte pescate, volte]
+	var hand_sizes: Dictionary = {} # gettoni posati -> [carte pescate, rifornimenti]
+	var by_control: Dictionary = {}  # Regioni tenute -> [carte pescate, rifornimenti]
 
 	for run in range(runs):
 		var seed_value: int = first_seed + run
@@ -93,15 +94,84 @@ func _initialize() -> void:
 			if (session.world["regions"][region_id] as Dictionary).get("control", null) != null:
 				held_at_end += 1.0
 
-		for entity_id in seats:
-			var tokens: int = 0
-			for region_id in session.world["regions"]:
-				tokens += session.service.presence_count(str(entity_id), str(region_id))
-			var key: String = str(tokens)
-			var cell: Array = hand_sizes.get(key, [0, 0])
-			cell[0] = int(cell[0]) + (session.world["entities"][str(entity_id)]["hand"] as Array).size()
-			cell[1] = int(cell[1]) + 1
-			hand_sizes[key] = cell
+		# Le pedine **al momento del rifornimento**, non a fine anno.
+		#
+		# Questa sonda ha sbagliato la domanda due volte, e ogni volta il numero
+		# cambiava conclusione. Prima contava le carte **in mano a fine anno**:
+		# ma chi ha piu' pedine pesca di piu' *e spende di piu'*, e le due cose
+		# si annullano. Poi contava le carte **pescate**, ma raggruppate per le
+		# pedine di fine anno: chi finisce con cinque pedine le ha posate tardi,
+		# quindi per due Atti su tre ha pescato da due. Il numero diceva che
+		# espandersi rende **meno**, che e' un artefatto del raggruppamento.
+		#
+		# La domanda vera e' una coppia: **con quante pedine sul tavolo si e'
+		# pescato quanto**, e si ricostruisce dal registro degli Effetti in
+		# ordine — l'unica fonte che sa *quando* ogni cosa e' successa (§6.3).
+		var standing: Dictionary = {}
+		for entry in (session.world["effect_log"] as Array):
+			var effect: Dictionary = (entry as Dictionary).get("effect", entry) as Dictionary
+			var kind: String = str(effect.get("type", ""))
+			var who: String = str((effect.get("target", {}) as Dictionary).get("id", ""))
+			if kind == "ADD_PRESENCE":
+				standing[who] = int(standing.get(who, 0)) + 1
+			elif kind == "REMOVE_PRESENCE":
+				standing[who] = maxi(0, int(standing.get(who, 0)) - 1)
+			elif kind == "GRANT_ASSET":
+				if str((effect.get("source", {}) as Dictionary).get("id", "")) != "HAND_REFILL":
+					continue
+				var key: String = str(int(standing.get(who, 0)))
+				var cell: Array = hand_sizes.get(key, [0, 0])
+				cell[0] = int(cell[0]) + 1
+				hand_sizes[key] = cell
+		# E quante volte il rubinetto e' stato aperto con quella presenza, per
+		# poter dire **carte per rifornimento** invece di un totale che dipende
+		# da quanti seggi ci sono passati.
+		# E la stessa coppia per il **possesso**: con quante Regioni in mano si e'
+		# pescato quanto. Sono due monete diverse e vanno lette separate — stare
+		# dentro e tenere non sono la stessa cosa.
+		var owns: Dictionary = {}
+		for entry in (session.world["effect_log"] as Array):
+			var effect: Dictionary = (entry as Dictionary).get("effect", entry) as Dictionary
+			var kind: String = str(effect.get("type", ""))
+			if kind == "SET_CONTROL":
+				var to: Variant = (effect.get("payload", {}) as Dictionary).get("entity_id", null)
+				var back: Variant = (effect.get("inverse_payload", {}) as Dictionary).get("entity_id", null)
+				if back != null:
+					owns[str(back)] = maxi(0, int(owns.get(str(back), 0)) - 1)
+				if to != null:
+					owns[str(to)] = int(owns.get(str(to), 0)) + 1
+			elif kind == "GRANT_ASSET":
+				if str((effect.get("source", {}) as Dictionary).get("id", "")) != "HAND_REFILL":
+					continue
+				var who2: String = str((effect.get("target", {}) as Dictionary).get("id", ""))
+				var key3: String = str(int(owns.get(who2, 0)))
+				var cell3: Array = by_control.get(key3, [0, 0])
+				cell3[0] = int(cell3[0]) + 1
+				by_control[key3] = cell3
+
+		var seen: Dictionary = {}
+		var again: Dictionary = {}
+		for entry in (session.world["effect_log"] as Array):
+			var effect: Dictionary = (entry as Dictionary).get("effect", entry) as Dictionary
+			var kind: String = str(effect.get("type", ""))
+			var who: String = str((effect.get("target", {}) as Dictionary).get("id", ""))
+			if kind == "ADD_PRESENCE":
+				again[who] = int(again.get(who, 0)) + 1
+			elif kind == "REMOVE_PRESENCE":
+				again[who] = maxi(0, int(again.get(who, 0)) - 1)
+			elif kind == "GRANT_ASSET":
+				if str((effect.get("source", {}) as Dictionary).get("id", "")) != "HAND_REFILL":
+					continue
+				var mark: String = "%s|%d|%d" % [
+					who, int(effect.get("source", {}).get("act", 0)), int(again.get(who, 0))
+				]
+				if seen.has(mark):
+					continue
+				seen[mark] = true
+				var key2: String = str(int(again.get(who, 0)))
+				var cell2: Array = hand_sizes.get(key2, [0, 0])
+				cell2[1] = int(cell2[1]) + 1
+				hand_sizes[key2] = cell2
 		session.dispose()
 
 	var years: float = float(runs)
@@ -122,14 +192,21 @@ func _initialize() -> void:
 		held_at_end / years
 	])
 	print("")
-	print("  Quanto rende una presenza in piu' (carte in mano a fine anno):")
+	print("  Quanto rende una presenza in piu' (carte pescate a ogni rifornimento):")
 	var keys: Array = hand_sizes.keys()
 	keys.sort_custom(func(a: String, b: String) -> bool: return int(a) < int(b))
 	for key in keys:
 		var cell: Array = hand_sizes[str(key)]
-		print("    %s pedine sul tavolo: %5.2f carte   (%d casi)" % [
+		print("    %2s pedine sul tavolo: %5.2f carte   (%d rifornimenti)" % [
 			str(key), float(int(cell[0])) / float(maxi(1, int(cell[1]))), int(cell[1])
 		])
+	print("")
+	print("  E quanto rende **tenere** una Regione (carte pescate al rifornimento):")
+	var owned_keys: Array = by_control.keys()
+	owned_keys.sort_custom(func(a: String, b: String) -> bool: return int(a) < int(b))
+	for key in owned_keys:
+		var cell: Array = by_control[str(key)]
+		print("    %2s Regioni tenute: %5d carte in tutto" % [str(key), int(cell[0])])
 	quit(0)
 
 

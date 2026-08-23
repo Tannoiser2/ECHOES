@@ -31,7 +31,10 @@ func test_reduced_content_matches_the_milestone() -> void:
 		assert_true(loaded.chronicles.has(str(chronicle_id)), "%s esiste" % chronicle_id)
 
 	_library_is_shared(loaded, ["CHR_01", "CHR_02", "CHR_03", "CHR_04"], 12, 8)
-	assert_eq(loaded.objectives.size(), 12, "12 obiettivi, pescati dallo stesso mazzo da tutti")
+	# Quindici da 0.1.189: i tre nuovi sono **contesi** (D-221), cioe' li puo'
+	# prendere un seggio alla volta. Prima era uno su dodici, e un tavolo di
+	# quattro solitari non e' un tavolo.
+	assert_eq(loaded.objectives.size(), 15, "15 obiettivi, pescati dallo stesso mazzo da tutti")
 
 
 ## Cosa c'e' in biblioteca, e che **e' la stessa per ogni anno**. Contarlo per
