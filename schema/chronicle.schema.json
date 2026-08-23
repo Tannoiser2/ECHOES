@@ -823,6 +823,14 @@
                 "type": "integer"
               },
               "description": "I numeri della saga contati per obiettivo invece che per livello, indicizzati come `levels`. Dichiarati, vincono su `saga_scoring`: servono a dare un numero diverso a due successi parziali che il livello confonde."
+            },
+            "drawn": {
+              "type": "string",
+              "enum": [
+                "per_chronicle",
+                "per_saga"
+              ],
+              "description": "Quando si pescano i coperti (D-237). `per_chronicle` — l'assenza — li ripesca al setup di ogni anno: ogni Chronicle e' un contenitore chiuso. `per_saga` li fa pescare una volta sola e poi ereditare: al terzo anno stai costruendo verso qualcosa che nessuno ha visto. Una casa che si siede adesso e non c'era prima pesca comunque i propri: non ha una saga alle spalle da cui ereditare."
             }
           }
         },

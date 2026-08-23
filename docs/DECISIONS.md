@@ -10,6 +10,78 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-237 — I tre coperti sono della saga, non dell'anno
+
+**implemented in 0.1.208** — chiude ISSUES 58
+
+> «Ogni entita' ha un obiettivo palese e **tre segreti che si pescano
+> all'inizio della saga**.» — l'idea di partenza
+
+`_deal_objectives` girava nel setup di **ogni** Chronicle, e i tre coperti si
+ripescavano ogni anno. Non e' una sfumatura: sposta l'unita' dell'ambizione
+dalla saga all'anno. Con obiettivi d'anno ogni Chronicle e' un contenitore
+chiuso e la campagna e' **una somma di partite invece di una storia sola**; con
+obiettivi di saga, al terzo anno stai costruendo verso qualcosa che nessuno ha
+visto, e una mossa che sembra sbagliata oggi puo' essere il quarto passo di un
+piano di otto.
+
+**La voce chiedeva di misurare prima, e nominava il costo con precisione:** *un
+obiettivo pescato a inizio saga puo' risultare **impossibile** nel mondo che la
+Chronicle 4 ha prodotto.* Cosi' `run_objectives_probe.gd` gioca **le stesse
+saghe due volte**, coi coperti dell'anno e coi coperti della saga. La regola sta
+nei dati (`objectives.drawn`), quindi il confronto e' fra due dichiarazioni e
+non fra due versioni del codice: si accende e si spegne senza ricompilare
+niente.
+
+**20 saghe da 10 Chronicle:**
+
+| | coperti dell'anno | coperti della saga |
+|---|---|---|
+| obiettivi coperti diversi visti da un seggio | 9,9 | **6,6** |
+| dei tre d'apertura, avverati all'anno 1 | 39,6% | 39,6% |
+| ...all'anno 5 | 23,5% | 21,3% |
+| ...all'anno 10 | 23,8% | **34,5%** |
+| coperti d'apertura mai avverati in tutta la saga | 51% | **43%** |
+| livelli a fine anno (NONE/MIN/VIC/TRI) | 26/39/34/1 | 28/37/34/1 |
+
+**Il costo temuto non si verifica**, e la ragione e' strutturale: **nessuno dei
+quindici obiettivi condivisi nomina una Regione o una casa** — sono scritti su
+*quanto* e non su *dove* ([D-221](#d-221)). All'anno 10 i tre d'apertura si
+avverano **piu'** spesso, non meno: non si spengono, si maturano.
+
+La voce offriva due strade — obiettivi che valgano in qualunque mondo **oppure**
+una regola di sostituzione dichiarata. Il gioco aveva gia' preso la prima senza
+saperlo: la premessa era vera e **non la teneva niente**, e una premessa che
+nessuno sorveglia e' una premessa che scade. Adesso c'e' una prova che va rossa
+il giorno che qualcuno scrive «tieni la Valle Verde» fra gli obiettivi
+condivisi — **prima** che una saga scopra al quinto anno di inseguire un posto
+che non c'e' piu'.
+
+**E la misura ha trovato un limite che non cercavo.** Solo il **51%** dei seggi
+seduti dopo l'apertura sono le case che hanno aperto la saga: una Chronicle
+pesca quattro case su otto, e ogni anno ripesca. Gli obiettivi di saga valgono
+quindi per **circa meta' tavolo**; l'altra meta' sono case che si siedono dopo,
+e pescano i propri perche' non hanno una saga alle spalle da cui ereditare. Non
+e' un difetto di questa regola ed e' scritto qui invece che scoperto dopo: e'
+[ISSUES 64](ISSUES.md#64).
+
+**Dichiarata, non implicita.** `objectives.drawn` vale `per_chronicle` — cioe'
+l'assenza, il comportamento di prima — oppure `per_saga`. Il passaggio avviene
+in `inherit_from`, accanto a `saga_score`, ed e' fra le eccezioni gia'
+dichiarate all'effect-sourcing (§6.3): succede **prima** che la partita cominci,
+sullo stesso mondo che sta nascendo, e non e' una mossa che qualcuno possa
+disfare.
+
+**Misurato:** suite 465 prove / 10.532 asserzioni verdi (era 462 / 10.496), i
+cancelli degli strumenti verdi, i piani di simulazione verdi, export e catalogo
+allineati, `run_playtest.gd --runs=100 --seed=7000` **0 seggi bloccati su 8** a
+tavolo misto e uniforme — e qui il cancello va detto per quello che e': il
+playtest gioca **una Chronicle sola**, dove non c'e' un anno prima da cui
+ereditare, quindi passa **per costruzione**. La misura che conta e' quella delle
+saghe, qui sopra.
+
+---
+
 ## D-236 — Si gioca all'app: allora la scheda della domanda sta sullo schermo
 
 **implemented in 0.1.207** — decisione del committente, e cosa ne segue subito
