@@ -144,9 +144,32 @@ nella mappa»*. La matematica del voto è:
 M = Sostegno + Condizione − Opposizione + 1d6
 ```
 
-Sostegno e Opposizione sono **solo somme di forza delle carte impegnate**. Nessuna
-pietra, nessuna maggioranza, nessuna cicatrice entra in quel conto
-(`confluence_resolution.gd`, strategia `baseline_v0`).
+**Correzione (0.1.195).** La prima stesura di questa sezione diceva che «nessuna
+pietra, nessuna maggioranza, nessuna cicatrice entra in quel conto». **Era
+sbagliato, e nel modo peggiore: sbagliato sul meccanismo.** Rileggendo
+`confluence_controller.gd` fino in fondo — non solo `confluence_resolution.gd` —
+il conto vero e':
+
+```
+M = Sostegno + Condizione − Opposizione + Fattore Mondo
+```
+
+e dentro ci entrano gia' tre cose che non sono carte:
+
+- **i legami** (`alliance_weight`, [D-139](DECISIONS.md#d-139)): un alleato che
+  sostiene e ci mette del proprio parla piu' forte. **Dichiarato in tutte e
+  quattro le Chronicle.**
+- **i segni, sul Fattore Mondo** (`COUNCIL_MODIFIER`): diciassette regole
+  attive, fra cui tre cicatrici (`scar:broken_bridge`, `scar:changed_hands`,
+  `scar:the_empty_chair`), una Regione affamata, la fama, e
+  `settlement:city` — cioe' **una pietra alzata a citta'**.
+- **due incarnazioni, sul fronte** (`STANCE_MODIFIER`).
+
+Quindi la mappa il Consiglio lo tocca. Quello che **non** entra e' il pezzo
+preciso che il committente chiede da tre cicli: **il titolo e la maggioranza
+nella Regione di cui si discute.**
+
+E il motivo e' molto piu' interessante di «non e' stato costruito».
 
 La mappa conta, ma **sempre di lato**:
 
@@ -161,12 +184,28 @@ E l'ultima riga è più sottile di quanto sembri: su **43 proposizioni** in diec
 template di Concilio ci sono **10 condizioni di idoneità in tutto**. Trentatré
 proposizioni su quarantatré sono ammissibili **comunque sia messa la mappa**.
 
-**Perché conta.** È [ISSUES 55](ISSUES.md) vista dalla sua radice. Inseguiamo da
-tre cicli il fatto che *la mappa non si muove*, e abbiamo provato a muoverla dal
-lato dell'offerta — più Conseguenze che spostano pedine, più carte che
-costruiscono. Ha funzionato poco, e adesso si legge perché: **la mappa non si
-muove perché non paga nella stanza dove il gioco si decide.** Modificare la mappa
-dovrebbe essere la priorità, e la mappa non entra nel Concilio.
+**La leva esiste, ed è spenta.** `confluence_rules.focus_weight`
+([D-154](DECISIONS.md#d-154)) fa esattamente quello: al Consiglio, la Regione di
+cui si discute dà voce a chi la **tiene** e a chi ci sta **in forze**. È scritta,
+provata da sette test, e **nessuna delle quattro Chronicle spedite la dichiara**
+— e una dichiarazione vuota vuol dire assenza.
+
+**Perché fu spenta, e perché quel motivo non vale più.** D-154 la misurò a
+0.1.119: i Consigli falliti scendevano da 177 a 175, ma il playtest passava da
+**0/8 a 1/8**, e il seggio che si rompeva era sempre lo stesso — Kessa dei
+Fuochi. D-154 stesso concluse che non era il peso della terra a romperla, ma che
+**la sua Vittoria aveva una porta sola** (`control_count >= 2`), e scrisse:
+*«ISSUES 38 viene prima. Fino a che resta aperta, qualunque modifica alle regole
+del Consiglio ha una probabilità alta di essere respinta da Kessa e non dal
+proprio merito.»*
+
+**ISSUES 38 è chiusa da 0.1.122**, e da [D-198](DECISIONS.md#d-198) i gradini
+sono diventati quattro obiettivi, tre dei quali pescati. La Vittoria di Kessa
+oggi ha tre clausole, non una. **Il motivo per cui la leva è spenta ha smesso di
+valere settantadue versioni fa, e nessuno l'ha riaccesa.**
+
+Questa è la vera radice di [ISSUES 55](ISSUES.md), ed è una buona notizia: non è
+un progetto di design, è **una riga di dato e una misura**.
 
 ### C. E una piccola: i secoli sono due
 

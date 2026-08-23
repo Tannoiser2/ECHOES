@@ -2763,6 +2763,56 @@ e' in gioco.
 
 ---
 
+### 60. Il Consiglio non si può giocare sul tavolo fisico
+
+`ux` · `contenuto` · **misurata in 0.1.195**
+
+Il committente l'ha vista arrivare da un'altra parte, ed è vera. Il materiale che
+fa **la cosa centrale del gioco** non esiste come componente:
+
+| | |
+|---|---|
+| template di Consiglio | 10 |
+| proposte fra cui sceglie il proponente | 43 |
+| clausole di condizione | 19 |
+| conseguenze sul mondo | 52 |
+| **fogli di stampa che ne portano una** | **0 su 39** |
+
+L'export produce trentanove fogli — Asset, Echo, Domande, Destini, Casate,
+Regioni, segnalini, tracce. La carta **Domanda** c'è, e porta titolo, velo,
+dominio, cosa la fa salire e scendere, le famiglie che valgono. **Non porta le
+proposte**, perché le proposte non stanno sulla domanda: stanno nei template di
+Confluence, con variabili (`$rival`, `$region_focus`), condizioni di idoneità e
+rimandi a `consequences/*.json`.
+
+Quindi al tavolo fisico si vede la crisi e **non si può tenere il Consiglio**.
+Serve l'app come arbitro, e il Consiglio — «la decisione», nelle parole del
+committente — è l'unico pezzo che non è mai uscito dal database.
+
+**E c'è un difetto dentro il difetto.** La carta Domanda stampata porta ancora
+**la soglia**, in un cerchio grande all'angolo (`card_face.gd`, `face["corner"]`).
+Da [D-214](DECISIONS.md#d-214) quel numero non apre più niente. È esattamente
+l'errore che [D-224](DECISIONS.md#d-224) ha corretto sulla pagina d'aiuto, e che
+il cancello del testo non poteva vedere perché **guarda lo schermo e non la
+stampa**: nessuna misura copre quello che una persona **tiene in mano**.
+
+**Da decidere prima di costruire**, ed è una scelta d'autore:
+
+1. **scheda Consiglio per Tensione** — una scheda A5 o un tarocco grande per
+   ogni template, con domanda, 3-4 proposte, le clausole e cosa lascia al mondo,
+   in italiano da giocatore invece che in `SET_REGION_TAG`;
+2. **libretto dei Consigli** — dieci pagine, meno componenti e più consultazione;
+3. **l'app resta arbitro**, e si accetta che il gioco fisico sia ibrido.
+
+Le prime due chiedono che le proposte diventino leggibili senza le variabili, il
+che vuol dire riscrivere `$rival` e `$region_focus` in un modo che un umano
+risolve al tavolo. Non è un lavoro di formattazione: è design.
+
+**Fatto quando** un tavolo può tenere un Consiglio intero senza aprire l'app,
+oppure quando è scritto a verbale che non lo può fare e perché.
+
+---
+
 ### 59. Dieci segni sul mondo che nessuno legge
 
 `contenuto` · `regole` · **misurata in 0.1.194** ([D-225](DECISIONS.md#d-225))
@@ -2990,25 +3040,45 @@ contesi. [D-222](DECISIONS.md#d-222) e [D-223](DECISIONS.md#d-223) le hanno
 provate e misurate, e hanno mosso poco: il padrone cambia mano 2,32 → 2,49 volte
 l'anno.
 
-Il confronto con l'idea di partenza ([VISIONE.md](VISIONE.md)) dice perché. La
-matematica del Concilio è `M = Sostegno + Condizione − Opposizione + 1d6`, e
-Sostegno e Opposizione sono **solo somme di forza delle carte impegnate**:
-nessuna pietra, nessuna maggioranza, nessuna cicatrice entra in quel conto. La
-mappa conta sempre **di lato** — chi propone, quante e che carte peschi, e quali
-proposte sono ammissibili — e anche l'ultima è più sottile di quanto sembri: su
-**43 proposizioni** in dieci template ci sono **10 condizioni di idoneità in
-tutto**, quindi trentatré su quarantatré sono ammissibili comunque sia messa la
-mappa.
+**Correzione (0.1.195).** La prima stesura di questa sezione diceva che al
+Consiglio entrano «solo le carte». **Era sbagliata sul meccanismo.** Nel conto ci
+sono già i **legami** (`alliance_weight`, [D-139](DECISIONS.md#d-139), dichiarato
+in tutte e quattro le Chronicle), diciassette regole `COUNCIL_MODIFIER` che
+spostano il **Fattore Mondo** — tre cicatrici, la Regione affamata, la fama, e
+`settlement:city`, cioè una pietra alzata a città — e due `STANCE_MODIFIER` sulle
+incarnazioni.
 
-**La mappa non si muove perché non paga nella stanza dove il gioco si decide.**
-Il committente aveva scritto, fin dall'inizio, che al Concilio si può essere
-*«aiutati da quello che si è creato nella mappa durante la partita»*: è la sola
-riga della sua descrizione che non è mai stata costruita.
+Resta vero il conto sulle proposte: su **43 proposizioni** in dieci template ci
+sono **10 condizioni di idoneità in tutto**, quindi trentatré su quarantatré sono
+ammissibili comunque sia messa la mappa.
 
-**La mossa 0, prima delle quattro:** quello che tieni sulla mappa entra nel
-conto del voto. Da misurare prima di scriverla — un bonus di controllo troppo
-grosso trasforma il Concilio in un referendum sul padrone, e chi è avanti resta
-avanti.
+**Quello che manca è un pezzo preciso: il titolo e la maggioranza nella Regione
+di cui si discute** — ed è precisamente quello che il committente chiede.
+
+**E la leva esiste già, spenta.** `confluence_rules.focus_weight`
+([D-154](DECISIONS.md#d-154)): al Consiglio la Regione a fuoco dà voce a chi la
+**tiene** e a chi ci sta **in forze**. È scritta, la reggono sette test, e
+**nessuna delle quattro Chronicle spedite la dichiara** — e una dichiarazione
+vuota vuol dire assenza.
+
+**Perché fu spenta, e perché quel motivo non vale più.** Misurata a 0.1.119: i
+Consigli falliti 177 → 175, ma il playtest passava da **0/8 a 1/8**, e il seggio
+che si rompeva era sempre lo stesso, Kessa dei Fuochi. D-154 concluse che non era
+il peso della terra: era che **la Vittoria di Kessa aveva una porta sola**
+(`control_count >= 2`, ISSUES 38), e scrisse *«ISSUES 38 viene prima: fino a che
+resta aperta, qualunque modifica alle regole del Consiglio ha una probabilità
+alta di essere respinta da Kessa e non dal proprio merito».*
+
+**ISSUES 38 è chiusa da 0.1.122**, e da [D-198](DECISIONS.md#d-198) i tre gradini
+sono diventati quattro obiettivi, tre dei quali pescati. La Vittoria di Kessa
+oggi ha tre clausole, non una. **Il motivo per cui la leva è spenta ha smesso di
+valere settantadue versioni fa, e nessuno l'ha riaccesa.**
+
+**La mossa 0, prima delle quattro:** riaccendere `focus_weight` e rimisurare i
+100 semi sotto le regole di adesso. Non è design, è **un dato e una misura**. Da
+tarare con prudenza — un bonus di controllo troppo grosso trasforma il Consiglio
+in un referendum sul padrone, e chi è avanti resta avanti — e col vincolo di casa
+in mano: **0 su 8, o non passa**.
 
 ### Le quattro mosse, in ordine di radice
 

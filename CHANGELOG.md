@@ -45,6 +45,43 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.195 — Una correzione mia, e la leva che era già lì spenta
+
+- **Correzione.** In 0.1.193 avevo scritto, in `docs/VISIONE.md` e in ISSUES 55,
+  che al Consiglio «Sostegno e Opposizione sono solo somme di forza delle carte:
+  nessuna pietra, nessuna maggioranza, nessuna cicatrice entra in quel conto».
+  **Era sbagliato**, e per il motivo peggiore: avevo letto
+  `confluence_resolution.gd` e non `confluence_controller.gd`, dove i bonus si
+  calcolano. Nel conto ci sono già i **legami** (`alliance_weight`, D-139),
+  **diciassette regole `COUNCIL_MODIFIER`** che spostano il Fattore Mondo — fra
+  cui tre cicatrici, la Regione affamata e `settlement:city`, cioè una pietra
+  alzata a città — e due `STANCE_MODIFIER`. Corretto in tutti e due i documenti.
+- **Ma la conclusione regge, e adesso è più precisa**: quello che non entra è
+  **il titolo e la maggioranza nella Regione di cui si discute**, che è
+  esattamente ciò che il committente chiede da tre cicli.
+- **E la leva esiste già, spenta.** `confluence_rules.focus_weight` (D-154) fa
+  quello, è scritta, la reggono sette test — e **nessuna delle quattro Chronicle
+  spedite la dichiara**.
+- **Perché fu spenta, e perché quel motivo non vale più.** Misurata a 0.1.119:
+  Consigli falliti 177 → 175, ma il playtest da **0/8 a 1/8**, e il seggio che si
+  rompeva era sempre Kessa dei Fuochi. D-154 concluse che non era il peso della
+  terra ma che **la Vittoria di Kessa aveva una porta sola**, e scrisse «ISSUES
+  38 viene prima». **ISSUES 38 è chiusa da 0.1.122**, e da D-198 i gradini sono
+  quattro obiettivi di cui tre pescati: oggi quella Vittoria ha tre clausole.
+  **Il motivo per cui la leva è spenta ha smesso di valere settantadue versioni
+  fa, e nessuno l'ha riaccesa.**
+- **Aperta ISSUES 60**: il Consiglio non si può giocare sul tavolo fisico. 10
+  template, **43 proposte**, 19 clausole e 52 conseguenze, e **0 dei 39 fogli di
+  stampa** ne porta una. La carta Domanda esiste e porta la crisi, non le
+  proposte.
+- **E un difetto dentro il difetto**: la carta Domanda stampata porta ancora **la
+  soglia**, in un cerchio all'angolo. Da D-214 quel numero non apre più niente —
+  lo stesso errore che D-224 ha corretto sulla pagina d'aiuto, e che il cancello
+  del testo non poteva vedere perché guarda lo schermo e non la stampa.
+- Solo documenti: nessuna regola, nessun dato di gioco toccato.
+
+---
+
 ## 0.1.194 — Il registro dei segni: dieci promesse che il mondo non registra (D-225)
 
 - **`tools/build_sign_registry.py` + `docs/REGISTRO_SEGNI.md`**, generato e in
