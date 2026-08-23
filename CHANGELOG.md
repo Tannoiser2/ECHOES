@@ -5,6 +5,46 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.194 — Il libro mastro delle carte: niente è morto, ma due verbi non si giocano
+
+- **Nuova sonda `cli/run_card_ledger.gd`.** Conta, carta per carta su cento anni,
+  quante volte è finita in mano, quante è stata **calata per agire** e quante
+  **impegnata al voto** — che è l'unico momento in cui il suo effetto proprio
+  gira. Il conto si prende dove i fatti succedono: un decisore che avvolge quello
+  vero, delega ogni scelta e segna cosa ha scelto. Nessuna regola cambia e il seme
+  resta quello.
+- **Nessuna carta è contenuto morto**: 0 mai in mano, **0 mai impegnate al voto**
+  su 5.793 carte pescate. Tutti e 48 gli effetti propri girano. Molto meglio delle
+  Conseguenze (10 su 52 mai, ISSUES 56).
+- **E la scelta al centro del gioco funziona, misurata:** forza 1 → **1,91**
+  impegnate per ogni calata; forza 3 → **4,26**. Le carte deboli si spendono, le
+  forti si tengono per il voto. *«La spendo per fare o la tengo per votare»* non è
+  una frase sul regolamento: si vede nei numeri.
+- **Aperta ISSUES 59.** D-215 aveva bilanciato *quante carte portano ogni verbo
+  nel mazzo*; nessuno aveva misurato quanto ogni verbo viene **usato**. MOVE si
+  gioca il **38,0%** delle volte che è in mano, FORGE l'**8,4%**: **4,5× di
+  scarto**. FORGE e SCHEME insieme sono 2.534 carte in mano e 233 azioni.
+  **Il mazzo è bilanciato, l'uso no.**
+- **WEALTH è la famiglia inerte** (8,7% contro il 26,7% di BONDS, 3,1×), e non è
+  un caso: quattro delle sue otto carte portano FORGE o SCHEME. **Quattro carte
+  non vengono mai calate per agire** — «Credito» è stata in mano **140 volte** e
+  non è mai valsa la spesa. E il **41,9%** delle carte di forza 1 non fa mai
+  niente: resta in mano e scade.
+- **Aperta ISSUES 60.** Tutte e dodici le domande vengono pescate e **tutte e
+  dodici aprono almeno un Concilio** — la voce 51 è chiusa davvero. Ma il peso no:
+  La Successione apre **1,73** Concili per anno in gioco, I Pozzi Bassi **0,50**,
+  un fattore **3,5**. E più della metà delle volte che «I Pozzi Bassi» esce, non
+  viene mai dibattuta. Due sbilanci si sommano invece di compensarsi: la pesca
+  stessa è 1,83× per il peso ×3 dell'eco (D-079), ed è la stessa domanda a
+  scaldarsi di più. **Chi è avanti resta avanti, anche fra le domande.**
+- **Le due voci si leggono insieme a ISSUES 55**: FORGE e SCHEME sono i due verbi
+  che non toccano la mappa e non entrano nel voto, ed è esattamente il motivo per
+  cui nessuno li gioca. Tararli prima che la mappa paghi al Concilio vorrebbe dire
+  tararli contro un'economia che sta per cambiare.
+- Nessuna regola toccata: una sonda e due misure.
+
+---
+
 ## 0.1.193 — L'idea di partenza contro il gioco che c'è
 
 - **`docs/VISIONE.md`**: il confronto punto per punto fra ECHOES come il

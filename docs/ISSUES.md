@@ -2651,6 +2651,118 @@ mondo e per le guardie; nessuna interfaccia oggi la mostra.
 
 ---
 
+### 59. Due verbi su cinque non si giocano, e una famiglia su sei e' inerte
+
+`regole` · `bilanciamento` · **misurata in 0.1.194** (`cli/run_card_ledger.gd`)
+
+Il committente ha chiesto se le carte «fanno qualcosa» e se azioni ed effetti
+sono ben bilanciati. Il libro mastro delle carte lo misura per la prima volta:
+**100 anni, tavolo misto, 5.793 carte pescate.**
+
+**Quello che sta bene, e va detto per primo.** Nessuna carta e' contenuto morto:
+zero mai in mano, **zero mai impegnate al voto**, quindi tutti e quarantotto gli
+effetti propri girano almeno una volta — molto meglio delle Conseguenze, dove
+dieci su cinquantadue non escono mai (voce 56). E la scelta al centro del gioco
+funziona, con una curva pulita:
+
+| forza | calata per agire | impegnata al voto | impegnate per ogni calata |
+|---|---|---|---|
+| 1 | 20,0% | 38,2% | **1,91** |
+| 2 | 16,8% | 58,7% | 3,49 |
+| 3 | 13,9% | 59,4% | **4,26** |
+
+Le carte deboli si spendono, le forti si tengono per il voto. *«La spendo per
+fare o la tengo per votare»* non e' una frase sul regolamento: si vede.
+
+**Il difetto.** [D-215](DECISIONS.md#d-215) aveva bilanciato **quante carte
+portano ogni verbo nel mazzo** (scarto 1,85× → 1,38×). Nessuno aveva mai
+misurato quanto ogni verbo viene **usato**:
+
+| azione | volte in mano | calata | % |
+|---|---|---|---|
+| **MOVE** | 1.072 | 407 | **38,0%** |
+| INFLUENCE | 1.212 | 273 | 22,5% |
+| CLAIM | 975 | 177 | 18,2% |
+| **SCHEME** | 1.339 | 133 | **9,9%** |
+| **FORGE** | 1.195 | 100 | **8,4%** |
+
+**4,5× di scarto.** FORGE e SCHEME insieme sono 2.534 carte passate per una mano
+e 233 azioni. Il mazzo e' bilanciato; **l'uso no**.
+
+Da li' scende il resto:
+
+- **WEALTH e' la famiglia inerte**: 8,7% di carte calate contro il 26,7% di
+  BONDS, cioe' 3,1×. Non e' un caso — **quattro delle otto carte WEALTH portano
+  FORGE o SCHEME**.
+- **Quattro carte non vengono mai calate per agire in cento anni**: «Ostaggio»,
+  «Credito», «Chiavi del Granaio», «Ipoteca sulle Terre». Non e' che non
+  arrivino: **«Credito» e' stata in mano 140 volte**. La loro azione non e' mai
+  valsa la spesa.
+- **Il 41,9% delle carte di forza 1 non fa mai niente**, ne' calata ne'
+  impegnata: resta in mano e scade.
+
+**La causa, per come si legge.** FORGE muove di un passo una relazione, SCHEME
+legge un'informazione privata. **Nessuno dei due tocca la mappa, e nessuno dei
+due entra nel voto** — e il cervello ([D-222](DECISIONS.md#d-222)) insegue gli
+obiettivi, che parlano di Regioni, pietre e cicatrici.
+
+E' la voce 55 vista da un'altra finestra, e va decisa insieme a quella: **se la
+mappa pagasse al Concilio, tenere una relazione o sapere una cosa varrebbero
+qualcosa.** Ritoccare FORGE e SCHEME da soli, prima di quella mossa, vorrebbe
+dire tarare due verbi contro un'economia che sta per cambiare.
+
+**Fatto quando** nessun verbo si gioca meno della meta' del piu' giocato, nessuna
+famiglia e' calata meno della meta' della piu' calata, e ogni carta viene calata
+per agire almeno una volta su cento anni — col playtest ancora **0/8**.
+
+---
+
+### 60. Una domanda su dodici resta zitta meta' delle volte che esce
+
+`contenuto` · `bilanciamento` · **misurata in 0.1.194** (`cli/run_question_ledger.gd`)
+
+Stesso giro, dal lato delle domande: **100 anni, 446 Concili.**
+
+**Quello che sta bene:** tutte e dodici vengono pescate e **tutte e dodici aprono
+almeno un Concilio.** Nessuna domanda e' irraggiungibile — la voce 51 e' chiusa
+davvero.
+
+**Il difetto e' il peso, non l'esistenza:**
+
+| domanda | pescata | Consigli | anni in cui apre qualcosa |
+|---|---|---|---|
+| La Successione | 44 | **76** | **97,7%** |
+| La Carestia | 33 | 50 | 97,0% |
+| Il Risveglio | 25 | 47 | 88,0% |
+| La Carta | 24 | 18 | 58,3% |
+| Le Vie Interrotte | 30 | 24 | 53,3% |
+| I Pozzi Bassi | 24 | **12** | **45,8%** |
+
+La Successione apre **1,73 Concili per ogni anno in cui e' in gioco**; I Pozzi
+Bassi **0,50**. Un fattore **3,5**.
+
+E la riga che pesa di piu': **piu' della meta' delle volte che «I Pozzi Bassi»
+viene pescata, non viene mai dibattuta.** Occupa uno dei quattro posti dell'anno
+e non ci arriva.
+
+**Due sbilanci si sommano invece di compensarsi.** La pesca stessa non e'
+uniforme — 24 volte contro 44, cioe' 1,83× — per il peso ×3 dell'eco
+([D-079](DECISIONS.md#d-079)): una domanda i cui segni sono sul tavolo torna piu'
+spesso. Ed e' anche quella che poi si scalda di piu'. **Chi e' avanti resta
+avanti, anche fra le domande.**
+
+**Da misurare prima di decidere:** se la disparita' venga dal **dominio** (quante
+Regioni ascoltano quella domanda, e quanto traffico ci passa) o dalle **famiglie
+rilevanti** (se una domanda ascolta famiglie che si giocano poco, si scalda
+poco). Sono due difetti diversi con due rimedi diversi, e il secondo si lega alla
+voce 59.
+
+**Fatto quando** nessuna domanda apre meno della meta' dei Concili della piu'
+ascoltata, e nessuna resta senza Concilio in piu' di un quarto degli anni in cui
+e' in gioco.
+
+---
+
 ### 58. Gli obiettivi coperti si pescano ogni anno, non a inizio saga
 
 `regole` · `da-misurare` · voluta dal committente · **trovata nel confronto con
