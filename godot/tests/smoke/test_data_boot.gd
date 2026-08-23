@@ -178,6 +178,12 @@ func test_chronicle_matches_the_baseline_numbers() -> void:
 		chronicle.has("drift_distribution"),
 		"una Chronicle che pesca non scrive il proprio sacchetto"
 	)
+	# **E qui serviva un mondo.** Questa prova non ne apriva nessuno, quindi
+	# `session` era null e la riga sotto interrompeva la funzione: l'errore
+	# finiva in un log, la suite restava verde, e la traccia di Drift non era
+	# misurata da nessuno. Trovato guardando gli errori di script di una
+	# esecuzione verde, che e' l'unico modo di trovarli.
+	new_session()
 	assert_eq(
 		(session.world["drift_track"] as Array).size(), 9,
 		"la traccia di Drift copre tutti i 9 round"

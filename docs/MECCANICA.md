@@ -9,7 +9,11 @@ quelle di 0.1.154; §5 (il turno) è stato riscritto a 0.1.156, quando le azioni
 sono passate sulle carte; §11 (le Tensioni velate) e §12 a 0.1.155; §4 (da dove
 viene il calore) e §5 (RIVENDICARE) a 0.1.160**, quando il velo ha smesso di
 coprire il numero e ha cominciato a coprire la soglia; la riga dei Consigli in
-§14 è ripresa dalla misura di 0.1.155. Il resto dei numeri è quello di 0.1.149.
+§14 è ripresa dalla misura di 0.1.155. **§4 (come si muove una Tensione) è stato
+corretto a 0.1.192**: diceva ancora che la Deriva alza +1 ogni round da un
+sacchetto di nove gettoni, quando `replaces_drift` l'ha spenta e quel sacchetto
+non esiste più. Il resto dei numeri è quello di 0.1.149, e **non è stato
+ri-derivato da allora** — vedi ISSUES 57.
 
 In fondo ci sono due sezioni che non servono a disegnare: **«Come si gioca
 bene»** (§15), che dice cosa conviene fare al tavolo con i numeri accanto, e
@@ -70,7 +74,7 @@ Cinque parole coprono tutto lo stato del gioco. Se l'infografica ha un riquadro
 | pezzo | cos'è | come si muove |
 |---|---|---|
 | **Regione** | una casella della mappa. 6 in tutto. Ha *slot di presenza*, *adiacenze*, *tag*, e forse un *padrone*. **Esserci** (presenza) e **averla** (controllo) sono due cose diverse — vedi §3 | presenza con MUOVERE · controllo solo tramite una Conseguenza di Consiglio |
-| **Tensione** | una domanda aperta del mondo, con un numero da 0 in su. 4 in gioco per anno | sale con la Deriva e con le carte, scende quando un Consiglio la risolve |
+| **Tensione** | una domanda aperta del mondo, con un numero da 0 in su. 4 in gioco per anno, pescate fra 12 | sale con **i gettoni che cadono a ogni azione** e con le carte, scende quando un Consiglio la risolve |
 | **Asset** | una carta in mano: uomini, titoli, gente, sapere, ricchezza, legami. Porta **un'azione**, un valore al Consiglio e un effetto suo | la dà la mappa a inizio Atto, secondo dove tieni le pedine; si spende **o** per agire **o** impegnandola al Consiglio |
 | **Relazione** | il rapporto fra due casate, su 5 gradini | si sposta di 1 passo con FORGIARE |
 | **Destino** | l'ambizione privata della tua casata, a 3 gradini | non si "muove": si avvera o no, e si controlla a fine anno |
@@ -324,11 +328,17 @@ Come si muove una Tensione:
 
 | forza | effetto |
 |---|---|
-| **Deriva** | ogni round il mondo alza **+1** a una Tensione. L'ordine è un sacchetto di 9 gettoni (2 Carestia, 3 Risveglio, 2 Successione, 2 Vie) mescolato a inizio partita |
+| **I gettoni** | **ogni azione riuscita fa cadere un gettone** su una Tensione: quella del dominio dove l'azione è avvenuta. È da qui che viene quasi tutto il calore, e viene **da voi** |
+| **Deriva** | **spenta.** Il mondo non alza più niente da solo: i gettoni hanno preso il suo posto (`tension_tokens.replaces_drift`). Non c'è nessun sacchetto di 9 gettoni a orologio |
 | **INFLUENZARE** | un giocatore la sposta di ±1 (una volta per giocatore per round, e una volta per Tensione per round) |
 | **Carte** | Asset impegnati e carte Narratore la alzano o abbassano |
 | **Consiglio risolto** | un successo la porta **a 1**; un fallimento la abbassa di 2 e lascia la domanda aperta |
 | **Ripple** | un Consiglio chiuso alza di +1 le Tensioni collegate: risolvere una domanda ne scalda un'altra |
+
+**E i gettoni sono coperti.** Un gettone non vale sempre uno: vale **0, 1, 1 o 2**,
+e lo sa solo il sacchetto. Sul tavolo si vede **quanti** ne sono caduti su ogni
+domanda, non quanto pesano — si girano quando il Consiglio si apre, e il mucchio
+più alto non è per forza quello più grosso.
 
 **La pressione si sposta, non sparisce.** Spingere **giù** una Tensione alza di
 1 una delle sue Tensioni collegate — quella al valore più basso. Non si spegne

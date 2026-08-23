@@ -453,6 +453,19 @@ func _context_line() -> String:
 			PackedStringArray(families)
 		).to_lower()
 
+	# **Col Consiglio di chiusura la soglia non apre piu' niente** (D-214), e
+	# questa riga continuava a contare i passi che mancavano a una: «ha raggiunto
+	# la soglia: il Consiglio si apre» era falso a ogni round di ogni partita
+	# spedita, sulla riga che chi gioca legge piu' spesso di qualunque altra. La
+	# pagina delle regole aveva lo stesso difetto, e per la stessa ragione: il
+	# testo non sta nel cancello, quindi nessuno l'ha misurato mentre la regola
+	# cambiava sotto.
+	#
+	# Quello che serve sapere adesso non e' *quanto manca*: e' **quale domanda
+	# arrivera' al tavolo** quando l'Atto si chiude, e fra quanto.
+	if _council_at_end_of_act():
+		return _line_about_the_closing_council()
+
 	var closest: String = ""
 	var margin: int = 99
 	var veiled: int = 0
@@ -476,6 +489,63 @@ func _context_line() -> String:
 	if margin == 1:
 		return "%s e a un passo dalla soglia: un'altra spinta e si apre il Consiglio.%s" % [title, tail]
 	return "La domanda piu vicina a scoppiare e %s, a %d passi.%s" % [title, margin, tail]
+
+
+func _council_at_end_of_act() -> bool:
+	if _session == null:
+		return false
+	var chronicle: Variant = _session.data.chronicles.get(str(_session.world.get("chronicle_id", "")))
+	if chronicle == null:
+		return false
+	return bool(
+		((chronicle as Dictionary).get("confluence_rules", {}) as Dictionary).get("at_end_of_act", false)
+	)
+
+
+## Quale domanda arrivera' al tavolo, e fra quanti round.
+##
+## Parla nella moneta che il giocatore **ha**: coi mucchi coperti si vedono i
+## gettoni caduti, non quanto pesano, quindi la riga nomina il mucchio piu' alto
+## *a occhio* e dice che il conto non e' il peso. Promettere una certezza che il
+## sacchetto non concede sarebbe la stessa bugia in un'altra forma.
+func _line_about_the_closing_council() -> String:
+	var chronicle: Dictionary = _session.data.chronicles[
+		str(_session.world["chronicle_id"])
+	] as Dictionary
+	var rounds_left: int = int(chronicle["rounds_per_act"]) - int(_session.world["round"])
+	var when: String = (
+		"a fine round si tiene il Consiglio" if rounds_left <= 0
+		else "il Consiglio e fra %d round" % rounds_left if rounds_left > 1
+		else "il Consiglio e il round prossimo"
+	)
+
+	var covered: bool = _session.tensions.piles_are_covered()
+	var tallest: String = ""
+	var most: int = -1
+	var tied: bool = false
+	for tension_id in _session.world["tensions"]:
+		var id: String = str(tension_id)
+		var here: int = (
+			_session.tensions.tokens_on(id) if covered
+			else int(_session.world["tensions"][id]["current_value"])
+		)
+		if here > most:
+			most = here
+			tallest = id
+			tied = false
+		elif here == most:
+			tied = true
+
+	if tallest == "" or most <= 0:
+		return "%s, e nessun mucchio e ancora salito: chi cala carte decide di cosa si parla." % when.capitalize()
+	var title: String = str(_session.data.tensions[tallest]["title"])
+	if covered:
+		return "%s: il mucchio piu alto e %s (%d gettoni)%s, ma i gettoni sono coperti e il conto non e il peso." % [
+			when.capitalize(), title, most, " a pari con un altro" if tied else ""
+		]
+	return "%s, e si parlera di %s: e il mucchio piu alto%s." % [
+		when.capitalize(), title, " a pari con un altro" if tied else ""
+	]
 
 
 func _on_help_toggled(pressed: bool) -> void:

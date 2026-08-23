@@ -179,10 +179,44 @@ func test_with_the_table_gate_the_page_stops_promising_a_threshold() -> void:
 	assert_true(page.contains("3 gettoni"), "e dice quanti gettoni apre il Consiglio")
 	assert_true(page.contains("mucchio più alto"), "e chi si dibatte")
 	assert_false(page.contains("— soglia "), "e nessuna domanda porta più un numero da aspettare")
+	# **Quale** presa di parola dipende da `claim_rules`, non dal cancello. Questa
+	# riga chiedeva la presa immediata mentre la prova non la dichiarava, e
+	# passava soltanto perche' la nota stava annidata dentro il cancello e usciva
+	# comunque: la pagina prometteva a chiunque una regola di qualcun altro.
 	assert_true(
-		page.contains("rivendicazione matura"),
+		page.contains("Consiglio lo puoi chiamare anche tu"),
 		"e dice che un Consiglio lo può aprire anche un giocatore"
 	)
+	assert_false(
+		page.contains("rivendicazione matura"),
+		"ma non la presa immediata, che questa Chronicle non dichiara"
+	)
+
+
+## E col Consiglio di chiusura (D-214) non c'e' nemmeno il cancello: il tavolo
+## si siede a fine Atto, e il minimo di Consigli dell'anno smette di essere
+## un'incognita.
+func test_with_the_closing_council_the_page_promises_the_end_of_the_act() -> void:
+	var page: String = _page({
+		# Coi gettoni accesi si gioca a carte: il paragrafo su **chi** scalda le
+		# domande sta di la' dall'interruttore, e chiederlo al lato classico
+		# vorrebbe dire misurare un gioco che nessuno gioca.
+		"actions_from_cards": true,
+		"confluence_rules": {"at_end_of_act": true},
+		"tension_tokens": {"per_action": 1, "replaces_drift": true},
+	})
+	assert_true(
+		page.contains("IL CONSIGLIO SI TIENE ALLA FINE DI OGNI ATTO"),
+		"il titolo dice quando il tavolo si siede"
+	)
+	assert_true(page.contains("almeno 3 Consigli"), "e quanti ne garantisce l'anno")
+	assert_false(page.contains("— soglia "), "e nessuna domanda porta un numero da aspettare")
+	assert_false(page.contains("gettoni[/b] si apre"), "e il cancello del tavolo non c'e piu")
+	assert_true(
+		page.contains("Non è il tempo a scaldarle: siete voi"),
+		"e a scaldare le domande sono i giocatori"
+	)
+	assert_false(page.contains("Salgono da sole"), "quindi non salgono da sole")
 
 
 ## Senza il cancello la pagina resta quella di sempre, soglie comprese.

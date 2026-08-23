@@ -10,6 +10,21 @@ extends PanelContainer
 ## to, the shape of the year. A rules page that can fall out of step with the
 ## rules is worse than none, and the parts that can drift are the parts that
 ## come from `DataSet` (D-041).
+##
+## E scriverla dai dati non basta, perche' **da quale** dichiarazione la si scrive
+## e' a sua volta una cosa che si puo' sbagliare. La sezione dei Consigli pendeva
+## da `tension_tokens.table_gate`; D-214 ha tolto quella chiave dai dati spediti e
+## la sezione e' caduta nel ramo di due versioni prima, portandosi via anche i
+## mucchi coperti che ci stavano annidati dentro. Per tre commit questa pagina ha
+## detto a chi la legge sei cose false, con la suite verde e il playtest a 0/8.
+##
+## Quindi da D-224 vale una regola in piu', e c'e' una prova che la tiene:
+## **ogni frase pende dalla dichiarazione che la rende vera, e da nessun'altra**.
+## `test_the_page_says_only_what_the_data_says` disegna questa pagina su tutte le
+## Chronicle spedite, e poi la ridisegna **togliendo una dichiarazione alla
+## volta**: se una frase resta quando la sua regola non c'e' piu', o sparisce
+## quando c'e', la suite va rossa. Chi aggiunge un paragrafo qui aggiunge una
+## clausola li'.
 
 const SECTION: String = "[color=#e8b563][b]%s[/b][/color]"
 
@@ -49,18 +64,36 @@ func _lines(data: RefCounted, chronicle_id: String) -> Array:
 	var out: Array = []
 	out.append(SECTION % "COME SI GIOCA")
 	out.append("")
-	# Who is at the table comes from the Chronicle: there is more than one age in
-	# the box now, and they seat nobody in common (D-050).
+	# Chi siede al tavolo lo dice la Chronicle, e da D-213 **quasi mai per nome**:
+	# `entities` scritto e' il tavolo d'autore, `entity_pool` e' la biblioteca, e
+	# quando c'e' la biblioteca vince lei (`WorldStateFactory.resolve_seats`).
+	# Questa pagina si apre **prima** che il tavolo sia pescato — la si legge dalla
+	# schermata di stanza, con i dati e nessun mondo — quindi non puo' dire chi
+	# siede: puo' dire soltanto **che si pesca, e fra quanti**. Elencare le quattro
+	# case scritte era raccontare l'era chiusa che D-213 ha smontato.
+	var table: Dictionary = {} if data == null or not data.chronicles.has(chronicle_id) \
+		else (data.chronicles[chronicle_id].get("entity_pool", {}) as Dictionary)
 	var seated: Array = []
-	if data != null and data.chronicles.has(chronicle_id):
+	if data != null and data.chronicles.has(chronicle_id) and table.is_empty():
 		for entity_id in data.chronicles[chronicle_id]["entities"]:
 			if data.entities.has(str(entity_id)):
 				seated.append(str(data.entities[str(entity_id)]["name"]))
-	out.append(
-		"Sei una delle Entita sedute allo stesso tavolo%s. Una Chronicle e [b]un anno[/b], "
-		% ("" if seated.is_empty() else ": %s" % ", ".join(PackedStringArray(seated)))
-		+ "e alla fine di quell'anno quello che avete deciso resta scritto."
-	)
+	if not table.is_empty():
+		out.append(
+			"Sei una delle [b]%d Entita[/b] sedute allo stesso tavolo, e chi siede non "
+			% int(table.get("count", 4))
+			+ "e scritto da nessuna parte: [b]si pescano a inizio saga[/b] fra %d case. "
+			% (table["candidates"] as Array).size()
+			+ "Non ci sono due ere separate — secoli lontani possono trovarsi seduti "
+			+ "insieme. Una Chronicle e [b]un anno[/b], e alla fine di quell'anno quello "
+			+ "che avete deciso resta scritto."
+		)
+	else:
+		out.append(
+			"Sei una delle Entita sedute allo stesso tavolo%s. Una Chronicle e [b]un anno[/b], "
+			% ("" if seated.is_empty() else ": %s" % ", ".join(PackedStringArray(seated)))
+			+ "e alla fine di quell'anno quello che avete deciso resta scritto."
+		)
 	out.append("")
 
 	out.append(SECTION % "L'ANNO")
@@ -137,15 +170,43 @@ func _lines(data: RefCounted, chronicle_id: String) -> Array:
 		if refill.is_empty():
 			out.append("Le carte si pescano con ACQUISIRE, come prima.")
 		else:
+			# Il rubinetto per intero, **tutti e cinque i numeri**. Ne stampava due
+			# — quante per pedina e il tetto — e taceva pavimento, soffitto e la
+			# carta del possesso: chi leggeva sapeva la regola sbagliata a meta',
+			# che e' il modo piu' lungo di dire che non la sapeva.
+			var per_token: int = int(refill.get("per_token", 1))
+			var per_control: int = int(refill.get("per_control", 0))
 			out.append(
-				"[b]Le carte te le da la mappa.[/b] A inizio di ogni Atto peschi %d "
-				% int(refill.get("per_token", 1))
-				+ "cart%s per ogni gettone di presenza, fino a %d in mano. E [b]la "
-				% ["a" if int(refill.get("per_token", 1)) == 1 else "e", int(refill.get("hand_cap", 7))]
-				+ "Regione dove tieni la pedina decide di che famiglia[/b]: quindi la "
-				+ "mappa non dice solo [i]quante[/i] carte hai, dice [i]che cose sai "
-				+ "fare[/i]."
+				"[b]Le carte te le dà la mappa.[/b] A inizio di ogni Atto peschi %d "
+				% per_token
+				+ "cart%s per ogni gettone di presenza"
+				% ("a" if per_token == 1 else "e")
+				+ (
+					", e %d [b]per ogni Regione che controlli[/b]" % per_control
+					if per_control > 0 else ""
+				)
+				+ (
+					" — mai meno di %d, mai più di %d" % [
+						int(refill["floor"]), int(refill["cap"])
+					] if refill.has("floor") and refill.has("cap") else ""
+				)
+				+ ", fino a %d in mano%s. E [b]la Regione dove tieni la pedina decide "
+				% [
+					int(refill.get("hand_cap", 7)),
+					(" (e ogni Regione che controlli alza anche quel tetto di %d)" % per_control)
+						if per_control > 0 else "",
+				]
+				+ "di che famiglia[/b]: quindi la mappa non dice solo [i]quante[/i] "
+				+ "carte hai, dice [i]che cose sai fare[/i]."
 			)
+			if per_control > 0:
+				out.append("")
+				out.append(
+					"[color=#8a8172]Ed e per questo che [b]tenere[/b] una Regione non e "
+					+ "lo stesso che starci dentro: la presenza dice dove sei, il "
+					+ "possesso paga una carta in piu e un posto in piu dove tenerla. "
+					+ "Prendere la maggioranza a qualcuno gliela toglie.[/color]"
+				)
 		out.append("")
 		out.append(SECTION % "COSA SANNO FARE LE FAMIGLIE")
 		for line in _families_can_do(data):
@@ -164,26 +225,78 @@ func _lines(data: RefCounted, chronicle_id: String) -> Array:
 				"Una carta che [b]trama[/b] gira la carta coperta di una domanda: "
 				+ "scopri [b]a quanto esplode[/b], e lo sai solo tu."
 			)
-		if not (rules.get("tension_tokens", {}) as Dictionary).is_empty():
+		var tokens: Dictionary = rules.get("tension_tokens", {}) as Dictionary
+		if not tokens.is_empty():
 			out.append("")
+			# **Chi** scalda le domande e' una dichiarazione a se': `replaces_drift`
+			# spegne la Deriva a orologio (D-192). Questa riga la dava per accesa
+			# comunque, e tre paragrafi piu' giu' la pagina diceva l'opposto — la
+			# stessa pagina, due regole diverse, e nessuno che le leggesse insieme.
 			out.append(
 				"[b]E ogni cosa che fai scalda il mondo:[/b] a ogni azione riuscita cade "
-				+ "un gettone su una delle domande dell'anno. Non e il tempo a "
-				+ "scaldarle: siete voi."
+				+ "un gettone su una delle domande dell'anno. "
+				+ (
+					"Non è il tempo a scaldarle: siete voi."
+					if bool(tokens.get("replaces_drift", false))
+					else "E intanto il tempo le scalda per conto suo, round dopo round."
+				)
 			)
 	out.append("")
 
 	if data != null and chronicle != null:
-		# A Chronicle either names its questions or draws them from a pool: the
-		# library Chronicles do the second, and a rules page that assumed the
-		# first would crash on exactly the Chronicle a returning player picks.
-		var questions: Array = chronicle.get("tensions", [])
-		var drawn: bool = questions.is_empty()
-		if drawn:
-			questions = (chronicle.get("tension_pool", {}) as Dictionary).get("candidates", [])
-		out.append(SECTION % ("LE DOMANDE DI QUEST'ANNO" if not drawn else "LE DOMANDE POSSIBILI"))
+		# **La biblioteca vince sul tavolo d'autore**, qui come in
+		# `WorldStateFactory.resolve_tensions`: una Chronicle che dichiara tutte e
+		# due gioca il pool, e la sua lista scritta e' un residuo. Questa pagina
+		# aveva la precedenza al contrario — leggeva `tensions` per prima — e
+		# quindi su CHR_01 e CHR_03 annunciava quattro domande fisse in un anno
+		# che ne pesca quattro su dodici. Una pagina che legge i dati in un ordine
+		# e il motore nell'altro non e' meno battuta a macchina delle altre.
+		var pool: Dictionary = chronicle.get("tension_pool", {}) as Dictionary
+		var drawn: bool = not pool.is_empty()
+		var questions: Array = pool.get("candidates", []) if drawn \
+			else chronicle.get("tensions", [])
+		out.append(SECTION % ("LE DOMANDE POSSIBILI" if drawn else "LE DOMANDE DI QUEST'ANNO"))
+
+		# **Quando si apre un Consiglio.** Fino a D-214 lo diceva un cancello sul
+		# tavolo, `tension_tokens.table_gate`; D-214 l'ha tolto dai dati e questa
+		# sezione — appesa a quella chiave — e' caduta di colpo nel ramo di due
+		# versioni prima. Adesso e' appesa alla dichiarazione che decide davvero
+		# (`confluence_rules.at_end_of_act`), ed e' misurata nei due sensi.
+		#
+		# E sono **tre**, non due: il Consiglio di chiusura (D-214), il cancello
+		# sul tavolo (D-203, ancora vivo nel motore e giocato da un piano) e la
+		# soglia per domanda di sempre. La pagina le sapeva dire tutte e tre e ne
+		# ha perse due in un colpo perche' pendevano dalla chiave sbagliata.
+		# L'ordine e' quello del motore: `_end_of_round_confluence` guarda prima
+		# il fine Atto, poi il cancello.
+		var at_end: bool = bool(
+			(rules.get("confluence_rules", {}) as Dictionary).get("at_end_of_act", false)
+		)
 		var gate: int = int((rules.get("tension_tokens", {}) as Dictionary).get("table_gate", 0))
-		if gate > 0:
+		if at_end:
+			out.append(
+				"[b]NON C'È UN NUMERO DA RAGGIUNGERE: IL CONSIGLIO SI TIENE ALLA FINE DI "
+				+ "OGNI ATTO.[/b] Ogni carta che qualcuno cala fa cadere un gettone su una "
+				+ "domanda, e i mucchi crescono. Quando l'Atto si chiude il tavolo si "
+				+ "siede comunque, e la domanda che si dibatte è il [b]mucchio più "
+				+ "alto[/b] — non quella che ha superato un numero suo. Poi i mucchi "
+				+ "ripartono da zero."
+			)
+			out.append("")
+			out.append(
+				"Quindi le domande non hanno una soglia da aspettare: hanno un'altezza, e "
+				+ "quella che conta è chi sta più in alto quando l'Atto finisce. Scaldarne "
+				+ "una non serve a farla [i]esplodere[/i]: serve a portarla [b]davanti al "
+				+ "tavolo[/b] invece di un'altra."
+			)
+			out.append("")
+			out.append(
+				"%d Atti vuol dire [b]almeno %d Consigli[/b] in un anno: nessuna partita "
+				% [int(chronicle["acts"]), int(chronicle["acts"])]
+				+ "si chiude senza che il tavolo abbia deciso qualcosa, e i gettoni non "
+				+ "dicono più [i]se[/i] si parla — dicono soltanto [i]di cosa[/i]."
+			)
+		elif gate > 0:
 			out.append(
 				("[b]NON C'È UNA SOGLIA PER DOMANDA: CE N'È UNA PER IL TAVOLO.[/b] "
 				+ "Ogni carta che qualcuno cala fa cadere un gettone su una domanda, "
@@ -198,48 +311,83 @@ func _lines(data: RefCounted, chronicle_id: String) -> Array:
 				+ "e quella che conta è chi sta più in alto quando il Consiglio si apre. "
 				+ "Scaldarne una vuol dire portarla davanti al tavolo."
 			)
-			# I mucchi coperti (ISSUES 49 fase 3): se la Chronicle dichiara il
-			# sacchetto dei valori, la pagina lo deve dire — una persona che
-			# conta i gettoni e crede di sapere l'altezza sta giocando un altro
-			# gioco.
-			var covered: Array = (rules.get("tension_tokens", {}) as Dictionary).get("covered", [])
-			if not covered.is_empty():
-				var faces: Array = []
-				for face in covered:
-					faces.append(str(face))
-				out.append("")
-				out.append(
-					("[b]E I MUCCHI SONO COPERTI.[/b] Un gettone non vale sempre "
-					+ "uno: vale %s, e lo sa solo il sacchetto. Sul tavolo vedi "
-					+ "[b]quanti gettoni[/b] sono caduti su ogni domanda, non "
-					+ "quanto pesano. Si girano quando il Consiglio si apre — e "
-					+ "il mucchio più alto non è per forza quello più grosso.")
-					% " / ".join(PackedStringArray(faces))
-				)
-			out.append("")
-			out.append(
-				"[color=#8a8172]E un Consiglio lo puoi aprire anche tu: chi ha una "
-				+ "rivendicazione matura la spende e chiama la domanda che vuole, "
-				+ "senza aspettare i gettoni.[/color]"
-			)
 		else:
 			out.append(
 				"Salgono da sole ogni round. [b]Quando una arriva alla sua soglia si apre "
 				+ "un Consiglio[/b], ed e li che il gioco decide qualcosa."
 			)
-		if drawn:
+
+		# I mucchi coperti (ISSUES 49 fase 3): se la Chronicle dichiara il
+		# sacchetto dei valori, la pagina lo deve dire — una persona che conta i
+		# gettoni e crede di sapere l'altezza sta giocando un altro gioco.
+		#
+		# Stava annidato dentro il cancello del tavolo, quindi il giorno che il
+		# cancello e' sparito dai dati e' sparito anche questo: la regola era
+		# ancora accesa e la pagina non la nominava piu'. Adesso pende dalla
+		# propria dichiarazione, che e' l'unica cosa da cui debba pendere.
+		var covered: Array = (rules.get("tension_tokens", {}) as Dictionary).get("covered", [])
+		if not covered.is_empty():
+			# JSON legge `[0, 1, 1, 2]` come numeri in virgola mobile, e stampati
+			# cosi' diventano «vale 0.0 / 1.0 / 1.0 / 2.0» — un valore di gettone
+			# con la virgola non vuol dire niente a chi legge. Si e' visto solo
+			# guardando la pagina disegnata, che e' il punto di §5ter.
+			var faces: Array = []
+			for face in covered:
+				faces.append(str(int(face)))
+			out.append("")
+			# La coda della frase dipende da **come si apre il Consiglio**, non
+			# dal sacchetto: col Consiglio a fine Atto il coperto nasconde chi
+			# sale sul tavolo, a soglia nasconde quanto manca. Tenerne una sola
+			# vorrebbe dire dirne una falsa in meta' dei casi.
 			out.append(
-				"Questa Chronicle ne pesca %d fra queste: due partite non fanno la stessa storia."
-				% int((chronicle.get("tension_pool", {}) as Dictionary).get("count", 4))
+				("[b]E I MUCCHI SONO COPERTI.[/b] Un gettone non vale sempre "
+				+ "uno: vale %s, e lo sa solo il sacchetto. Sul tavolo vedi "
+				+ "[b]quanti gettoni[/b] sono caduti su ogni domanda, non "
+				+ "quanto pesano. Si girano quando il Consiglio si apre")
+				% " / ".join(PackedStringArray(faces))
+				+ (
+					" — e il mucchio più alto non è per forza quello più grosso."
+					if at_end or gate > 0
+					else " — e una domanda che sembra lontana può essere già arrivata."
+				)
+			)
+		# E la presa di parola vale **comunque**: RIVENDICARE esiste in tutti e tre
+		# i modi di aprire un Consiglio, cambia solo quanto si aspetta. Questa nota
+		# stava annidata dentro il cancello del tavolo e prometteva la presa
+		# immediata anche a chi non l'aveva dichiarata — un giocatore che ci
+		# contava scopriva al tavolo di essersi soltanto prenotato.
+		out.append("")
+		if bool((rules.get("claim_rules", {}) as Dictionary).get("same_round_when_ready", false)):
+			out.append(
+				"[color=#8a8172]E un Consiglio in più lo puoi aprire tu: chi ha una "
+				+ "rivendicazione matura la spende e chiama la domanda che vuole, senza "
+				+ "aspettare%s. È il modo di portare al tavolo una [b]seconda[/b] "
+				% (" la fine dell'Atto" if at_end else " i gettoni")
+				+ "domanda.[/color]"
+			)
+		else:
+			out.append(
+				"[color=#8a8172]E un Consiglio lo puoi chiamare anche tu: chi rivendica "
+				+ "una domanda se la prenota, e quando maturerà il tavolo si siede su "
+				+ "quella e non su un'altra.[/color]"
+			)
+
+		if drawn:
+			out.append("")
+			out.append(
+				"Questa Chronicle ne pesca %d fra queste %d: due partite non fanno la "
+				% [int(pool.get("count", 4)), questions.size()]
+				+ "stessa storia, e le domande di quest'anno le sapete solo dopo che sono "
+				+ "uscite."
 			)
 		for tension_id in questions:
 			var tension: Variant = data.tensions.get(str(tension_id))
 			if tension == null:
 				continue
-			# Col cancello del tavolo la soglia scritta non apre piu' niente:
+			# Col Consiglio a fine Atto la soglia scritta non apre piu' niente:
 			# stamparla qui vorrebbe dire far aspettare un numero che non
 			# succede — lo stesso errore delle sei azioni promesse (D-195).
-			if gate > 0:
+			if at_end or gate > 0:
 				out.append(
 					"  · [b]%s[/b] — ascolta %s"
 					% [
@@ -351,14 +499,30 @@ func _lines(data: RefCounted, chronicle_id: String) -> Array:
 		var places: Array = []
 		for region_id in _sorted(data.regions.keys()):
 			places.append(str(data.regions[str(region_id)]["name"]))
+		# Con `[...]` una chiave mancante non e' un valore assente: e' un errore
+		# che interrompe il disegno a meta' pagina e finisce in un log che nessuno
+		# legge — la pagina si accorcia e basta. La prova l'ha trovato togliendo
+		# la dichiarazione, che e' il motivo per cui la prova la toglie.
+		var tokens: int = 3 if chronicle == null else int(chronicle.get("presence_tokens", 3))
 		out.append(
-			"%d Regioni: %s. Hai %s token presenza. Dove stai decide che carte puoi "
-			% [
-				places.size(), ", ".join(PackedStringArray(places)),
-				"3" if chronicle == null else str(int(chronicle["presence_tokens"])),
-			]
+			"%d Regioni: %s. Hai %d token presenza. Dove stai decide che carte puoi "
+			% [places.size(), ", ".join(PackedStringArray(places)), tokens]
 			+ "pescare e che domande puoi spingere."
 		)
+		# **E quel numero e' un tetto, non una dotazione** (D-223). Fino ad allora
+		# valeva per i giocatori e non per il mondo: un Consiglio poteva posare la
+		# quinta pedina di una casa che ne ha quattro. Adesso il tetto vale per
+		# tutti, e allora e' una regola che chi gioca deve sapere — perche' e'
+		# quella che rende **muoversi** una scelta invece di un accumulo.
+		if (chronicle as Dictionary).has("presence_tokens"):
+			out.append("")
+			out.append(
+				"E [b]%d è il tetto[/b], non una dotazione: la %da pedina non si posa, la "
+				% [tokens, tokens + 1]
+				+ "si sposta. Vale anche per quello che decide un Consiglio. Per essere "
+				+ "in un posto nuovo devi [b]lasciarne uno vecchio[/b], e lasciarlo vuol "
+				+ "dire perdere quello che ci tenevi."
+			)
 	return out
 
 

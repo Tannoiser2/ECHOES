@@ -58,7 +58,15 @@ func test_the_house_card_never_prints_its_destiny() -> void:
 		var item: Dictionary = face
 		assert_false(bool(item["secret"]), "%s si tiene scoperta" % str(item["id"]))
 		var printed: String = " ".join(PackedStringArray(item["body"] + item["notes"]))
-		var destiny_id: String = str(data().entities[str(item["id"])]["destiny_id"])
+		# **Il mazzo Casata porta anche le incarnazioni** (D-111), e il loro id non
+		# e' una chiave di `entities`. Cercarlo li' interrompeva la prova alla
+		# prima incarnazione: da INC_ALDRIC_02 in poi nessuna carta veniva piu'
+		# guardata, e nemmeno il mazzo Destino qui sotto. La prova diceva ok
+		# avendo controllato una casa e mezza — e il segreto che regge il gioco
+		# era coperto da un controllo che non girava.
+		var destiny_id: String = str(
+			data().entities[_house_of(str(item["id"]))]["destiny_id"]
+		)
 		var destiny: Dictionary = data().destinies[destiny_id]
 		assert_false(
 			printed.contains(str(destiny["title"])),
@@ -245,3 +253,16 @@ func test_a_single_card_renders_standalone_for_the_screen() -> void:
 		var image := Image.new()
 		assert_eq(image.load_svg_from_string(svg, 3.0), OK, "%s: la carta si rasterizza" % str(deck))
 		assert_true(image.get_width() > 0, "%s: e ha dei pixel" % str(deck))
+
+
+## L'Entita' a cui appartiene una faccia del mazzo Casata: la carta base porta
+## gia' l'id dell'Entita', una vita successiva porta il proprio.
+func _house_of(face_id: String) -> String:
+	if data().entities.has(face_id):
+		return face_id
+	for entity_id in data().entities:
+		for incarnation in (data().entities[str(entity_id)] as Dictionary).get("incarnations", []):
+			if str((incarnation as Dictionary)["id"]) == face_id:
+				return str(entity_id)
+	_fail("la faccia %s non appartiene a nessuna Casata" % face_id)
+	return ""

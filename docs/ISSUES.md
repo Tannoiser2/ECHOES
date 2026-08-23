@@ -2651,6 +2651,39 @@ mondo e per le guardie; nessuna interfaccia oggi la mostra.
 
 ---
 
+### 57. ✅ La GUI raccontava il gioco di due versioni fa — chiusa in 0.1.192
+
+`ux` · `debito` · voluta dal committente · **chiusa** ([D-224](DECISIONS.md#d-224))
+
+> «La GUI dell'App è corretta? Dovrebbe essere allineata con le nuove regole.»
+
+No. La pagina d'aiuto diceva **cinque cose false** e la riga sopra le scelte una
+sesta, tutte nate da regole cambiate fra 0.1.185 e 0.1.191. Chiusa scrivendo
+prima la misura — `test_the_page_says_only_what_the_data_says` — e poi il testo
+che la rende verde.
+
+**Quello che resta aperto da qui**, e che non è un difetto ma un debito:
+
+- **La suite conta i test che fa partire, non quelli che arrivano in fondo.** Il
+  cancello ora va rosso su `SCRIPT ERROR`, che prende il caso in cui una funzione
+  muore a metà. Non prende il caso in cui una prova **non asserisce niente**: un
+  test vuoto, o uno che esce presto per un `return` legittimo, resta invisibile.
+  Un conto delle asserzioni per prova, con un pavimento, lo prenderebbe.
+- **`docs/MECCANICA.md` porta la stessa bugia**, corretta qui solo dove era
+  falsa in modo netto (la Deriva a orologio, che `replaces_drift` ha spento). Il
+  documento dichiara in testa che i suoi numeri sono di 0.1.149 con quattro
+  sezioni ristampate fino a 0.1.160: **non è stato ri-derivato da allora**, e
+  rileggerlo per intero contro i dati è un ciclo suo, non una riga.
+- **Le altre sedici viste non parlano di regole**, quindi non possono sfasarsi —
+  ma nessuna di loro è disegnata da una prova. `game_screen.gd` non lo era fino a
+  oggi, ed è lì che stava la sesta bugia. Non sappiamo se le altre siano corrette:
+  sappiamo che **nessuno le ha misurate**.
+
+**Fatto quando** ogni vista che stampa prosa la stampa da una dichiarazione, e
+ogni vista è disegnata almeno una volta da una prova.
+
+---
+
 ### 56. Dieci Conseguenze su cinquantadue non escono mai
 
 `contenuto` · `bilanciamento` · **misurata in 0.1.191** ([D-223](DECISIONS.md#d-223))
