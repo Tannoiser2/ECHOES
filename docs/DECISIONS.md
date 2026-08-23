@@ -10,6 +10,123 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-224 — La pagina delle regole si misura, come tutto il resto
+
+**implemented in 0.1.192** — la GUI contro le regole nuove, e il punto cieco del
+§5ter chiuso con una prova invece che con una rilettura
+
+Il committente ha chiesto una cosa sola: *«La GUI dell'App e' corretta? Dovrebbe
+essere allineata con le nuove regole»*. No, non lo era. La pagina d'aiuto diceva
+a chi legge **cinque cose false**, e la riga di stato sopra le scelte — quella
+che un giocatore legge piu' spesso di ogni altra — ne diceva una sesta.
+
+### Perche' nessuno se n'era accorto
+
+Il cancello gioca solo con `PolicyDecider`, che la pagina d'aiuto non la apre
+mai. Cento semi verdi, 0/8 sedie bloccate, tutti gli strumenti a posto — e
+intanto il testo raccontava il gioco di due versioni prima. E' il §5ter alla
+lettera: **nessuna misura copre quello che una persona legge**.
+
+La causa immediata era una riga sola. La sezione dei Consigli pendeva da
+`tension_tokens.table_gate`; [D-214](#d-214) ha tolto quella chiave dai dati
+spediti, quindi `gate == 0`, e la pagina e' caduta di colpo nel ramo `else` — il
+testo di prima ancora, intatto e sbagliato. Con la sezione sono spariti anche i
+mucchi coperti, che ci stavano annidati dentro: **una regola ancora accesa di cui
+la pagina aveva smesso di parlare**.
+
+### Le sei bugie
+
+1. *«Salgono da sole ogni round»* — falso da `replaces_drift`, e la pagina **si
+   contraddiceva da sola**: tre paragrafi sopra diceva gia' *«non e' il tempo a
+   scaldarle: siete voi»*.
+2. *«Quando una arriva alla sua soglia si apre un Consiglio»* — il Consiglio si
+   tiene alla fine di ogni Atto ([D-214](#d-214)).
+3. **«soglia 6», «soglia 5»** stampate accanto a ogni domanda: numeri che non
+   aprono piu' niente. Lo stesso errore che [D-195](#d-195) aveva gia' corretto
+   una volta, rientrato dalla porta di servizio.
+4. **Il tavolo scritto per nome** — «Re Aldric, Popolo Nahr, Lyra, Vaerax» —
+   quando [D-213](#d-213) lo fa pescare fra otto case. La pagina leggeva
+   `entities` per primo e `entity_pool` come ripiego: **la precedenza al
+   contrario** rispetto a `resolve_seats`. Stesso difetto sulle domande.
+5. **`per_control` taciuto** ([D-220](#d-220)), insieme a pavimento e soffitto
+   del rubinetto: la pagina stampava due dei cinque numeri e chi leggeva sapeva
+   la regola sbagliata a meta'.
+6. E fuori dalla pagina, in `game_screen.gd`: *«ha raggiunto la soglia: il
+   Consiglio si apre»*, falso a ogni round di ogni partita spedita.
+
+### La mossa: prima la misura
+
+La riscrittura da sola sarebbe scaduta di nuovo fra tre commit, quindi la mossa
+scelta e' stata **la prova**, e la pagina e' venuta dietro per farla verde.
+
+`test_the_page_says_only_what_the_data_says.gd` disegna la pagina sui dati
+**spediti**, per ogni Chronicle nella scatola, e la confronta con una tabella di
+clausole. Ogni clausola lega una dichiarazione alle parole che le appartengono, e
+la lega **nei due sensi**: se la regola c'e' le sue parole devono esserci, se non
+c'e' non possono esserci e devono esserci quelle del gioco di prima.
+
+Il secondo senso non si prova a parole: si prova **togliendo la dichiarazione
+dalla Chronicle e ridisegnando**. Cosi' i due lati di ogni clausola sono provati
+a ogni esecuzione, e il ramo «la regola non c'e'» — che e' esattamente il posto
+dove il difetto si era annidato — non resta mai prosa non misurata.
+
+E' l'idioma del progetto applicato al testo: **una dichiarazione vuota vuol dire
+assenza**, quindi la pagina non parla di quello che non e' dichiarato.
+
+Prima esecuzione: **55 asserzioni rosse** su quattro Chronicle.
+
+### Quello che la prova ha trovato da sola
+
+Togliere `presence_tokens` mandava `_lines()` **in errore a meta' pagina** — e la
+prova restava verde, perche' in GDScript una chiave mancante non alza niente che
+si possa prendere: interrompe la funzione, scrive nel log e restituisce quello
+che aveva. La pagina si accorciava e basta. Adesso `_page()` verifica che il
+disegno arrivi in fondo, e la chiave si legge con `get`.
+
+Guardando il log di quella esecuzione verde sono usciti **altri due errori**, in
+prove che nessuno aveva toccato:
+
+- `test_data_boot` chiedeva `session.world` senza aver aperto un mondo: la
+  funzione moriva li' e **la traccia di Drift non era misurata da mesi**.
+- `test_print_export` cercava `INC_ALDRIC_02` fra le Entita', dove non c'e'
+  ([D-111](#d-111)): la prova si fermava alla prima incarnazione, e **ne' le
+  Casate dopo ne' il mazzo Destino venivano piu' guardati**. Il controllo che
+  tiene in piedi il segreto del gioco non girava.
+
+Rimesse in funzione, le asserzioni della suite sono passate da **7.414 a 7.470**:
+cinquantasei misure che c'erano sulla carta e non nei fatti.
+
+E questo e' il difetto sistemico, non l'aneddoto: **la suite conta i test che fa
+partire, non quelli che arrivano in fondo**. Adesso il cancello legge il log e va
+rosso su `SCRIPT ERROR`, che e' l'unica cosa che poteva prendere quei tre casi.
+
+### Il resto della GUI
+
+Cercato, non supposto: delle diciassette viste, **solo `help_panel.gd` parla di
+regole**; le altre disegnano lo **stato del mondo**, che per costruzione e'
+sempre aggiornato. L'unica eccezione era `_context_line()` in `game_screen.gd`,
+che contava i passi mancanti a una soglia che non apre piu' niente — riscritta
+per dire quello che serve adesso (**quale mucchio arrivera' al tavolo, e fra
+quanti round**) e, coi mucchi coperti, per dirlo nella moneta che il giocatore
+**ha**: i gettoni caduti, non il peso. Anche quella riga ora e' misurata: prima
+di oggi `game_screen.gd` non era toccato da nessuna prova.
+
+### Cosa e' stato aggiunto alla pagina, non solo corretto
+
+Il tetto delle pedine ([D-223](#d-223)) non era scritto da nessuna parte, ed e'
+la regola che rende **muoversi** una scelta invece di un accumulo: «quattro e' il
+tetto, non una dotazione — la quinta pedina non si posa, la si sposta». E la
+riga sul possesso, che e' il senso di [D-220](#d-220): tenere una Regione non e'
+lo stesso che starci dentro.
+
+### Costo
+
+Nessuna regola cambiata: sono testo e prove. Playtest **0/8** su tavolo misto e
+uniforme, 100 semi dal 7000, come prima e per lo stesso motivo. Piani, export e
+`BRIEF_ARTE.md` allineati.
+
+---
+
 ## D-223 — Il tetto vale anche per il mondo, e le domande che spostano non escono mai
 **implemented in 0.1.191** — ISSUES 55, la mossa che non ha funzionato e il perche'
 

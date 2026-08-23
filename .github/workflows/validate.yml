@@ -75,8 +75,24 @@ jobs:
       - name: Version
         run: ~/godot/godot --headless --version
 
+      # Il codice d'uscita non basta. In GDScript un errore a runtime — una
+      # chiave che non c'e', una proprieta' su un null — non alza niente che una
+      # prova possa prendere: **interrompe la funzione**, scrive una riga di log
+      # e lascia il resto delle asserzioni non eseguite. La suite conta i test
+      # che ha fatto partire, non quelli che sono arrivati in fondo, e riporta
+      # verde. Due prove erano morte cosi' da mesi, e sono tornate a misurare
+      # cinquantasei asserzioni il giorno che qualcuno ha letto il log di una
+      # esecuzione verde. Adesso lo legge il cancello.
       - name: Unit and smoke tests
-        run: ~/godot/godot --headless --path godot --script res://tests/run_tests.gd
+        run: |
+          set -o pipefail
+          ~/godot/godot --headless --path godot --script res://tests/run_tests.gd \
+            2>&1 | tee /tmp/tests.log
+          if grep -q "SCRIPT ERROR" /tmp/tests.log; then
+            echo "::error::una prova e' andata in errore a meta' e le asserzioni dopo non sono girate"
+            grep -n "SCRIPT ERROR" -A4 /tmp/tests.log
+            exit 1
+          fi
 
       - name: Play every sim plan
         run: GODOT=~/godot/godot tools/run_sims.sh

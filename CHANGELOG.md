@@ -5,6 +5,48 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.192 — La pagina delle regole si misura, come tutto il resto (D-224)
+
+- **La GUI non era allineata, e adesso non può più sfasarsi in silenzio.** La
+  pagina d'aiuto diceva **cinque cose false** a chi la legge: che le domande
+  salgono da sole, che una soglia apre un Consiglio, le soglie stampate accanto a
+  ogni domanda, il tavolo scritto per nome invece che pescato fra otto case, e il
+  rubinetto raccontato con due numeri su cinque.
+- **La causa era una riga.** La sezione dei Consigli pendeva da `table_gate`, che
+  D-214 ha tolto dai dati: il ramo giusto ha smesso di prendersi e la pagina è
+  caduta nel testo di due versioni prima. Con la sezione erano spariti anche **i
+  mucchi coperti**, che ci stavano annidati dentro — una regola accesa di cui la
+  pagina aveva smesso di parlare.
+- **Una sesta bugia fuori dalla pagina**: `_context_line()` in `game_screen.gd`,
+  la riga sopra le scelte, prometteva «ha raggiunto la soglia: il Consiglio si
+  apre» a ogni round di ogni partita spedita. Adesso dice quale mucchio arriverà
+  al tavolo e fra quanti round — e coi mucchi coperti lo dice **nella moneta che
+  il giocatore ha**: i gettoni caduti, non il peso.
+- **Prima la misura, poi il testo.** `test_the_page_says_only_what_the_data_says`
+  disegna la pagina sui dati **spediti**, per ogni Chronicle, contro una tabella
+  di clausole che lega ogni dichiarazione alle sue parole **nei due sensi** — e
+  il secondo senso lo prova **togliendo la dichiarazione e ridisegnando**. Prima
+  esecuzione: **55 asserzioni rosse**.
+- **La prova ha trovato un crash che la suite non vedeva**: senza
+  `presence_tokens` la pagina andava in errore a metà e restava verde, perché in
+  GDScript una chiave mancante interrompe la funzione e scrive in un log.
+- **E leggendo quel log ne sono usciti altri due**, in prove che nessuno aveva
+  toccato: `test_data_boot` non misurava la traccia di Drift **da mesi**, e
+  `test_print_export` si fermava alla prima incarnazione — quindi il controllo
+  che tiene in piedi il segreto del Destino **non girava**. Asserzioni della
+  suite da **7.414 a 7.470**.
+- **Il difetto sistemico, non l'aneddoto**: la suite conta i test che fa partire,
+  non quelli che arrivano in fondo. Il cancello adesso va rosso su `SCRIPT
+  ERROR`.
+- **Cercato il resto della GUI, non supposto**: delle diciassette viste solo
+  `help_panel.gd` parla di regole; le altre disegnano lo stato del mondo, che per
+  costruzione è aggiornato.
+- **Aggiunte due regole che la pagina non aveva mai detto**: il tetto delle
+  pedine (D-223) e cosa paga il **possesso** rispetto alla presenza (D-220).
+- Nessuna regola cambiata: testo e prove. Playtest **0/8**.
+
+---
+
 ## 0.1.191 — Il tetto vale anche per il mondo, e le domande che spostano non escono mai (D-223)
 
 - **Un difetto vero, trovato prima di introdurlo.** `_add_presence` non
