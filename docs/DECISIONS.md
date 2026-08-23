@@ -10,6 +10,68 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-232 — Il Consiglio esce dal database: le proposte in italiano, e un cancello che le tiene aggiornate
+
+**implemented in 0.1.203** — il pezzo che serve a tutte e tre le forme di ISSUES 62
+
+ISSUES 62 chiede una scelta d'autore — scheda per Tensione, libretto dei
+Consigli, o app dichiarata arbitro — e quella scelta non l'ho presa io. Ma tutte
+e tre chiedono **la stessa cosa a monte**, e quella si poteva fare subito: il
+materiale del Consiglio **tirato fuori dal database e scritto in italiano**.
+
+Prima di questa decisione le 10 domande, le 43 proposte, le 19 clausole e le 52
+Conseguenze esistevano solo come JSON. Chi voleva leggerle apriva Godot; zero
+fogli di stampa su 39 ne portavano una; e sullo schermo la proposta si legge una
+riga alla volta **mentre il Consiglio è già aperto** — cioè quando è tardi per
+decidere se ti conviene.
+
+**I buchi si spiegano, non si riempiono.** Le frasi d'autore hanno dentro
+`$proponent`, `$rival`, `$region_focus`: al tavolo li riempie la partita. Una
+scheda però si legge **prima** di giocare, quando non c'è ancora una Regione a
+cui riferirsi. `council_text.gd` non li sostituisce con un valore: li traduce
+nel ruolo che avranno («la Regione di cui si discute», «il rivale»). Sono 13
+legami, e ognuno è spiegato dove è scritto.
+
+**Il ricalco più lungo prima.** `speak()` sostituisce le chiavi in ordine di
+lunghezza decrescente, perché `$region` è un prefisso di `$region_focus` e un
+ordine qualunque avrebbe prodotto «la Regione\_focus».
+
+**Una Conseguenza dice cosa lascia al mondo**, e lo dice con le parole che
+[D-228](#d-228) aveva già scritto per le carte: `consequence_note()` delega ad
+`AssetText.effect_note()` invece di aprire una seconda traduzione che domani
+divergerebbe dalla prima. Per farlo `AssetText.COSTS` ha dovuto imparare i
+cinque tipi di Effetto che **solo** le Conseguenze usano — `SET_ENTITY_TAG`,
+`SET_CONTROL`, `SET_STRUCTURE_GRADE`, `SET_ENTITY_ACTIVE`, `CLOSE_PASSAGE`.
+E la nota esce comunque dentro `speak()`, perché una variabile può stare
+**dentro un tag** (`settlement:$proponent`) e non solo dentro una frase.
+
+**Quello che le prove sorvegliano** non è il testo: è che il testo **non torni a
+parlare al programmatore**. Quattro prove: nessuna frase porta ancora un `$`;
+nessuna Conseguenza si racconta con un tipo di Effetto; nessuna etichetta parla
+al programmatore (`(D-` o `ISSUES`); e una proposta dice cosa lascia dietro.
+
+La terza ha morso subito, ed è il motivo per cui vale: una condizione nel
+database diceva *«Si caccia solo cio' che una Rivelazione ha mostrato: la carta
+di Propp e' la porta (D-127)»*. È una nota di lavorazione stampata su un
+componente. Adesso dice quello che un giocatore deve sapere, e basta.
+
+**Generato e committato**, come `BRIEF_ARTE.md` e `REGISTRO_SEGNI.md`:
+[CATALOGO_CONSIGLI.md](CATALOGO_CONSIGLI.md) — 10 Consigli, 43 proposte, 19
+clausole — si rifà con `tools/run_council_catalogue.sh` e la CI lo confronta.
+Un documento generato che nessuno ricontrolla è peggio di nessun documento:
+invecchia **dicendo il falso con l'aria di essere aggiornato**.
+
+**Misurato:** suite 454 prove / 8.299 asserzioni verdi (era 450 / 8.064), i sei
+cancelli degli strumenti verdi, i piani di simulazione verdi, l'export
+deterministico e il brief allineato, `run_playtest.gd --runs=100 --seed=7000`
+**0 seggi bloccati su 8** a tavolo misto e uniforme.
+
+**Quello che resta d'autore**, e resta scritto in ISSUES 62: che forma prenda
+questo materiale — scheda, libretto o app-arbitro. Il catalogo non decide al
+posto del committente; gli toglie di mezzo la parte che non era una decisione.
+
+---
+
 ## D-231 — I posti che non sono la mappa: una domanda e una casa diventano bersagli
 
 **implemented in 0.1.202** — chiude il terzo passo di ISSUES 63

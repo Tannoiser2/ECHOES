@@ -5,6 +5,33 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.203 — Il Consiglio esce dal database: le proposte in italiano (D-232)
+
+- **Il pezzo che serve a tutte e tre le forme di ISSUES 62.** Scheda per
+  Tensione, libretto o app-arbitro: la scelta resta d'autore, ma tutte e tre
+  chiedono prima **lo stesso materiale leggibile**, e quello si poteva fare.
+- **`council_text.gd`**: 13 legami che traducono i buchi delle frasi d'autore —
+  `$proponent`, `$rival`, `$region_focus` — nel **ruolo** che avranno al tavolo,
+  invece di riempirli con un valore che una scheda non può conoscere.
+- **Il ricalco più lungo prima**: `$region` è un prefisso di `$region_focus`, e
+  un ordine qualunque avrebbe scritto «la Regione\_focus».
+- **Una Conseguenza dice cosa lascia al mondo** riusando le parole che D-228
+  aveva già scritto per le carte, invece di aprire una seconda traduzione. Per
+  farlo `AssetText.COSTS` ha imparato i cinque tipi di Effetto che **solo** le
+  Conseguenze usano.
+- **La prova che ha morso**: una condizione nel database diceva *«...la carta di
+  Propp e' la porta (D-127)»* — una nota di lavorazione stampata su un
+  componente. Adesso quella riga dice quello che serve a chi gioca.
+- **[CATALOGO_CONSIGLI.md](docs/CATALOGO_CONSIGLI.md)**: 10 Consigli, 43
+  proposte, 19 clausole. Generato e committato come il brief d'arte, con
+  `tools/run_council_catalogue.sh` e un passo di CI che va rosso il giorno che
+  qualcuno cambia una proposta e non rifà il documento.
+- **Misurato**: 454 prove / 8.299 asserzioni verdi (da 450 / 8.064), cancelli
+  degli strumenti verdi, export deterministico e brief allineato, playtest 100
+  semi **0 seggi bloccati su 8** a tavolo misto e uniforme.
+
+---
+
 ## 0.1.202 — I posti che non sono la mappa: una domanda e una casa diventano bersagli (D-231)
 
 - **Chiude il terzo passo di ISSUES 63.** D-230 aveva dato al trascinamento un

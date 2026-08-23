@@ -103,6 +103,14 @@ jobs:
             exit 1
           fi
 
+      # Il catalogo dei Consigli (D-232). Le proposte, le clausole e le
+      # Conseguenze vivono nel database: chi vuole leggerle deve aprire Godot.
+      # Il catalogo e' quel materiale scritto in italiano, generato e committato
+      # come il brief d'arte — e quindi puo' invecchiare in silenzio il giorno
+      # che qualcuno cambia una proposta. Questo passo va rosso quel giorno.
+      - name: Drift check - catalogo dei Consigli
+        run: GODOT=~/godot/godot tools/run_council_catalogue.sh --check
+
       - name: Play every sim plan
         run: GODOT=~/godot/godot tools/run_sims.sh
 

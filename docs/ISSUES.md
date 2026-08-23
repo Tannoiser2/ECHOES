@@ -2823,7 +2823,9 @@ spieghi cosa fanno i bottoni, perché non ci sono bottoni da spiegare.
 
 ### 62. Il Consiglio non si può giocare sul tavolo fisico
 
-`ux` · `contenuto` · **misurata in 0.1.196**
+`ux` · `contenuto` · **misurata in 0.1.196** · il materiale è uscito dal
+database in 0.1.203 ([D-232](DECISIONS.md#d-232)) · **la forma resta da
+decidere**
 
 Il committente l'ha vista arrivare da un'altra parte, ed è vera. Il materiale che
 fa **la cosa centrale del gioco** non esiste come componente:
@@ -2865,6 +2867,18 @@ stampa**: nessuna misura copre quello che una persona **tiene in mano**.
 Le prime due chiedono che le proposte diventino leggibili senza le variabili, il
 che vuol dire riscrivere `$rival` e `$region_focus` in un modo che un umano
 risolve al tavolo. Non è un lavoro di formattazione: è design.
+
+**Fatto in 0.1.203 ([D-232](DECISIONS.md#d-232)): la parte che non era una
+decisione.** Tutte e tre le forme chiedono lo stesso materiale a monte, e adesso
+esiste — [CATALOGO_CONSIGLI.md](CATALOGO_CONSIGLI.md), 10 Consigli, 43 proposte,
+19 clausole, con i buchi **spiegati** nel ruolo che avranno al tavolo invece che
+riempiti con un valore che una scheda non può conoscere. È generato dai dati e
+la CI lo confronta, quindi non può invecchiare in silenzio. Una prova ha trovato
+subito una condizione che parlava al programmatore (*«...la carta di Propp e' la
+porta (D-127)»*), ed è stata riscritta.
+
+Resta d'autore **quale delle tre**, e resta aperto il difetto della soglia sulla
+carta Domanda stampata.
 
 **Fatto quando** un tavolo può tenere un Consiglio intero senza aprire l'app,
 oppure quando è scritto a verbale che non lo può fare e perché.

@@ -44,6 +44,15 @@ const COSTS: Dictionary = {
 	"BUILD_STRUCTURE": "si alza una costruzione dove si discute",
 	"RAZE_STRUCTURE": "viene giu' una costruzione dove si discute",
 	"REMOVE_ENTITY_TAG": "una casa perde un segno che portava addosso",
+	# **Gli Effetti che solo le Conseguenze usano** (D-232). Nessuna carta li
+	# porta, quindi non erano mai serviti — e quando il catalogo dei Consigli ha
+	# cominciato a leggere le Conseguenze, cinque tipi su sedici sono usciti col
+	# proprio nome in maiuscolo. Il vocabolario e' condiviso, e adesso e' intero.
+	"SET_ENTITY_TAG": "una casa porta addosso un segno nuovo",
+	"SET_CONTROL": "la Regione discussa cambia padrone",
+	"SET_STRUCTURE_GRADE": "una costruzione sale o scende di grado",
+	"SET_ENTITY_ACTIVE": "una casa esce dal tavolo, o ci rientra",
+	"CLOSE_PASSAGE": "una strada fra due Regioni si chiude",
 }
 
 ## E i quattro che posano o tolgono un segno si dicono **col nome del segno
