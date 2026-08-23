@@ -2801,12 +2801,13 @@ giocare.** Il cancello gioca solo con `PolicyDecider`, che non ha mani.
    famiglie di pietra, cinque forme; il grado sono i punti sotto il pezzo, il
    padrone e' il colore. La parola solo sotto il mouse. Tre prove, fra cui «un
    segno senza pezzo e' invisibile».
-3. 🟡 **Il drag & drop** — [D-230](DECISIONS.md#d-230), 0.1.201. **Fatto per
-   MUOVERE**: si prende la carta, la si lascia su una Regione cerchiata d'oro, e
-   la presenza si sposta. Sei prove sulle tre decisioni che lo governano.
-   **Resta**: INFLUENZARE parla a una domanda, FORGIARE a una casa, TRAMARE a
-   niente di visibile — quelle carte sono ancora bottoni finche' la traccia delle
-   domande e i seggi non diventano bersagli anche loro.
+3. ✅ **Il drag & drop** — [D-230](DECISIONS.md#d-230) e
+   [D-231](DECISIONS.md#d-231), 0.1.201–0.1.202. Si prende una carta e la si
+   lascia dove la si vuole usare: una **Regione** sulla mappa, una **domanda**
+   sulla traccia, una **casa** nella colonna dei rapporti. Quando quella carta lì
+   sa fare una cosa sola, posarla è già la mossa; quando ne sa fare due opposte,
+   la caduta **restringe** e la scelta resta a chi gioca. Dieci prove, fra cui
+   «ogni soggetto di cui una carta può parlare ha il suo posto».
 4. **Il Consiglio giocabile** — è [ISSUES 62](#62), e le due si chiudono insieme:
    *il gioco non esiste come componenti, né di cartone né sullo schermo.*
 

@@ -5,6 +5,36 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.202 — I posti che non sono la mappa: una domanda e una casa diventano bersagli (D-231)
+
+- **Chiude il terzo passo di ISSUES 63.** D-230 aveva dato al trascinamento un
+  solo posto: le Regioni. Restava vero che **MUOVERE era l'unico verbo giocabile
+  con la mano**.
+- **Il pezzo mancante era di nuovo a monte**: solo MUOVERE dichiarava di cosa
+  parlava. INFLUENZARE, TRAMARE e FORGIARE uscivano dal decisore **senza
+  `subject`**, quindi lo schermo non poteva sapere che quella scelta riguardava
+  *quella* domanda o *quella* casa.
+- **`DropSlot`**: un `Control` che si mette intorno a una riga della traccia o
+  della colonna dei rapporti, e da quel momento quella riga è un bersaglio. Non
+  decide niente — accetta una carta esattamente quando quella carta porta una
+  scelta per quel soggetto (D-039).
+- **La caduta restringe, non sceglie.** Su una domanda una carta può sapere fare
+  due cose opposte, alzarla e abbassarla: il posto restituisce **tutte** le sue
+  scelte e la colonna si riduce a quelle. Al tavolo è così — posi la carta sulla
+  domanda, e *poi* dici se la alzi. Quando invece lì sa fare una cosa sola,
+  posarla **è già la mossa**.
+- **La prova che tiene insieme le due metà**: *ogni soggetto di cui una carta può
+  parlare ha il suo posto sullo schermo*. Se domani nasce un verbo che parla a
+  una domanda e nessuno apre il posto, la carta torna a essere un bottone **in
+  silenzio** — ed è il modo esatto in cui questa mossa si disferebbe.
+- **Una lambda che catturava per valore**: `answered = indices` dentro una lambda
+  non esce: GDScript cattura per valore. La prova era rossa per la ragione
+  sbagliata — meglio di verde per la ragione sbagliata, ma costa lo stesso un
+  giro.
+- Suite **450 test e 8.064 asserzioni**. Nessuna regola toccata.
+
+---
+
 ## 0.1.201 — Si prende la carta e la si lascia cadere (D-230)
 
 - **Terzo dei quattro passi di ISSUES 63.** In `godot/ui/` non c'era un solo

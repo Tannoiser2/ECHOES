@@ -10,6 +10,78 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-231 — I posti che non sono la mappa: una domanda e una casa diventano bersagli
+
+**implemented in 0.1.202** — chiude il terzo passo di ISSUES 63
+
+[D-230](#d-230) aveva dato al trascinamento un solo posto dove atterrare: le
+Regioni. Restava vero che **MUOVERE era l'unico verbo giocabile con la mano** —
+INFLUENZARE parla a una domanda, TRAMARE a una domanda, FORGIARE a una casa, e
+nessuna delle tre aveva un posto sullo schermo dove posarci una carta.
+
+### Il pezzo mancante era di nuovo a monte
+
+Come in D-230: **solo MUOVERE dichiarava di cosa parlava.** Le altre tre
+uscivano dal decisore senza `subject`, quindi lo schermo non aveva modo di
+sapere che quella scelta riguardava *quella* domanda o *quella* casa. Adesso lo
+dicono tutte e quattro.
+
+### `DropSlot`: un posto del tavolo
+
+Un `Control` che si mette intorno a una riga — della traccia delle domande, della
+colonna dei rapporti — e da quel momento quella riga **e' un bersaglio**. Non
+decide niente, come la mappa: accetta una carta esattamente quando quella carta
+porta una scelta **per quel soggetto**, e le scelte le hanno gia' approvate le
+regole ([D-039](#d-039)).
+
+### La caduta restringe, non sceglie
+
+Su una domanda una carta puo' sapere fare **due cose opposte**: alzarla e
+abbassarla. Su una casa: avvicinare e rompere. Il posto non decide per chi
+gioca — restituisce **tutte** le scelte che ha, e la colonna si riduce a quelle.
+
+Al tavolo e' esattamente cosi': posi la carta sulla domanda, e *poi* dici se la
+alzi o la abbassi. Quando invece la carta li' sa fare una cosa sola, posarla
+**e' gia' la mossa** — che e' il caso di MUOVERE, e per questo D-230 rispondeva
+subito.
+
+Restano bottoni le scelte che non parlano di niente di visibile — TRAMARE senza
+un bersaglio in vista, PASSA — ed e' giusto: non c'e' un posto dove posarle.
+
+### La prova che tiene insieme le due meta'
+
+Le tre prove sul posto sono ovvie. La quarta e' quella che conta:
+
+> **ogni soggetto di cui una carta puo' parlare ha il suo posto sullo schermo.**
+
+Il decisore dice di cosa parla una scelta; il pannello apre un posto per ogni
+domanda e per ogni casa. Se domani nasce un verbo che parla a una domanda e
+nessuno apre il posto, la carta torna a essere un bottone **in silenzio** — ed e'
+il modo esatto in cui questa mossa si disferebbe senza che nessuno se ne accorga.
+E' la stessa forma di guardia di [D-224](#d-224) e [D-229](#d-229): non «il
+codice funziona», ma «il contenuto e' raggiungibile».
+
+### Una lambda che catturava per valore
+
+`answered = indices` dentro una lambda non esce dalla lambda: GDScript cattura
+per valore, e la prima stesura della prova leggeva sempre una lista vuota. Si
+muta l'array, non lo si sostituisce. La prova era **rossa per la ragione
+sbagliata**, che e' meglio di verde per la ragione sbagliata ma costa lo stesso
+un giro.
+
+### Costo
+
+Nessuna regola: tre `subject` che prima non c'erano, un `Control` nuovo, quattro
+prove. Suite **450 test e 8.064 asserzioni**.
+
+### Cosa non risolve
+
+Il quarto passo: **il Consiglio giocabile** (ISSUES 62). Li' non e' questione di
+bersagli — le proposte non esistono come componente, ne' sullo schermo ne' in
+stampa.
+
+---
+
 ## D-230 — Si prende la carta e la si lascia cadere: il trascinamento come seconda voce, non come seconda regola
 
 **implemented in 0.1.201** — terzo passo di ISSUES 63

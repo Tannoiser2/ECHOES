@@ -147,3 +147,109 @@ func test_the_map_ignores_what_is_not_a_card() -> void:
 			"«%s» non e' una carta e non cade" % str(junk)
 		)
 	map.free()
+
+
+## --- i posti che non sono la mappa (D-231) -----------------------------------
+##
+## Le Regioni ce l'avevano; le domande e le case no, e finche' non ce l'hanno le
+## carte che parlano a loro — INFLUENZARE, TRAMARE, FORGIARE — restano bottoni.
+
+const DropSlot := preload("res://ui/drop_slot.gd")
+
+
+func _slot(field: String, key: String) -> Node:
+	var slot: Node = DropSlot.new()
+	slot.field = field
+	slot.key = key
+	return slot
+
+
+## Un posto accetta una carta solo se quella carta porta una scelta **per questo
+## soggetto**. La domanda accanto non c'entra.
+func test_a_slot_takes_only_what_speaks_to_it() -> void:
+	var slot: Node = _slot("tension", "TEN_FAMINE")
+	var mine: Dictionary = {
+		"kind": "asset", "asset_id": CARD,
+		"offers": [{"tension": "TEN_FAMINE", "index": 2}],
+	}
+	var other: Dictionary = {
+		"kind": "asset", "asset_id": CARD,
+		"offers": [{"tension": "TEN_ROADS", "index": 5}],
+	}
+	assert_true(slot.call("_can_drop_data", Vector2.ZERO, mine), "la sua domanda si'")
+	assert_false(slot.call("_can_drop_data", Vector2.ZERO, other), "un'altra domanda no")
+	assert_false(
+		slot.call("_can_drop_data", Vector2.ZERO, {
+			"kind": "asset", "asset_id": CARD, "offers": [{"region": HERE, "index": 1}],
+		}),
+		"e una scelta che parla di una Regione nemmeno"
+	)
+	slot.free()
+
+
+## **Su un soggetto una carta puo' saper fare due cose opposte**, alzare e
+## abbassare. La caduta non sceglie per il giocatore: restringe, e le manda
+## tutte e due. Al tavolo e' cosi' — posi la carta sulla domanda, e *poi* dici
+## se la alzi o la abbassi.
+func test_a_slot_hands_back_every_choice_it_holds() -> void:
+	var slot: Node = _slot("tension", "TEN_FAMINE")
+	# Una lambda in GDScript cattura **per valore**: riassegnare il nome catturato
+	# non esce dalla lambda. Si muta l'array, non lo si sostituisce — la prima
+	# stesura riassegnava e leggeva sempre una lista vuota.
+	var answered: Array = []
+	slot.connect(
+		"card_dropped",
+		func(indices: Array) -> void: answered.append_array(indices)
+	)
+	slot.call("_drop_data", Vector2.ZERO, {
+		"kind": "asset", "asset_id": CARD,
+		"offers": [
+			{"tension": "TEN_FAMINE", "index": 2},
+			{"tension": "TEN_FAMINE", "index": 3},
+			{"tension": "TEN_ROADS", "index": 9},
+		],
+	})
+	assert_eq(answered, [2, 3], "le sue due, e non quella dell'altra domanda")
+	slot.free()
+
+
+## E un posto senza soggetto non prende niente: e' il caso di ogni sezione del
+## pannello che non e' bersaglio di nessuna carta.
+func test_a_slot_without_a_subject_takes_nothing() -> void:
+	var slot: Node = _slot("", "")
+	assert_false(
+		slot.call("_can_drop_data", Vector2.ZERO, {
+			"kind": "asset", "asset_id": CARD, "offers": [{"tension": "TEN_FAMINE", "index": 2}],
+		}),
+		"senza soggetto non e' un bersaglio"
+	)
+	slot.free()
+
+
+## **E ogni scelta che parla di qualcosa di visibile deve avere il suo posto.**
+##
+## E' la prova che tiene insieme le due meta': il decisore dice di cosa parla
+## una scelta (`subject`), il pannello apre un posto per ogni domanda e per ogni
+## casa. Se domani nasce un verbo che parla a una domanda e nessuno apre il
+## posto, la carta torna a essere un bottone **in silenzio** — ed e' il modo in
+## cui questa mossa si disferebbe senza che nessuno se ne accorga.
+func test_every_subject_a_card_speaks_to_has_a_place() -> void:
+	var StatusPanel := preload("res://ui/status_panel.gd")
+	var panel: Node = StatusPanel.new()
+	var viewer: String = str(session.world["turn_order"][0])
+	panel.render(session, viewer)
+
+	var places: Dictionary = panel.get("slots")
+	for tension_id in session.world["tensions"]:
+		assert_true(
+			places.has("tension:%s" % str(tension_id)),
+			"la domanda %s ha un posto dove far cadere una carta" % str(tension_id)
+		)
+	for entity_id in session.world["turn_order"]:
+		if str(entity_id) == viewer:
+			continue
+		assert_true(
+			places.has("entity:%s" % str(entity_id)),
+			"la casa %s ha un posto dove far cadere una carta" % str(entity_id)
+		)
+	panel.free()

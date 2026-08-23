@@ -251,6 +251,9 @@ func _action_options(entity_id: String, session: RefCounted) -> Array:
 					_tension_reading(str(tension_id), entity_id, session),
 				],
 				"template": "INFLUENCE", "params": request,
+				# Di cosa parla: la domanda. Un front-end che disegna la traccia
+				# puo' offrirla li' invece che in una riga di testo (D-231).
+				"subject": {"tension": str(tension_id)},
 			})
 
 	for tension_id in _sorted(session.world["tensions"].keys()):
@@ -274,6 +277,7 @@ func _action_options(entity_id: String, session: RefCounted) -> Array:
 					else "Scopri il numero di %s"
 				) % _tension(str(tension_id), session),
 				"template": "SCHEME", "params": request,
+				"subject": {"tension": str(tension_id)},
 			})
 
 	# Il velo (D-125): l'arte inversa, per chi ha il segno che la concede.
@@ -288,6 +292,7 @@ func _action_options(entity_id: String, session: RefCounted) -> Array:
 					else "Cala il velo su %s"
 				) % _tension(str(tension_id), session),
 				"template": "SCHEME", "params": veil,
+				"subject": {"tension": str(tension_id)},
 			})
 
 	for other_id in session.world["turn_order"]:
@@ -306,6 +311,9 @@ func _action_options(entity_id: String, session: RefCounted) -> Array:
 					service.relation_level(entity_id, str(other_id)),
 				],
 				"template": "FORGE", "params": request,
+				# Di chi parla: l'altra casa. Sta nella colonna dei rapporti, ed
+				# e' li' che una carta che forgia deve poter cadere (D-231).
+				"subject": {"entity": str(other_id)},
 			})
 	return _through_the_hand(entity_id, out, session)
 

@@ -67,6 +67,10 @@ var _help_data: RefCounted
 ## ponte fra le scelte che le regole hanno gia' approvato e la mano che si puo'
 ## prendere e trascinare (D-230).
 var _offers: Dictionary = {}
+
+## Le etichette della domanda in corso: servono a rimostrare **solo** le scelte
+## rimaste quando una carta cade su un soggetto che ne accetta piu' di una.
+var _labels: Array = []
 ## The seed of the last Chronicle played, so the menu can offer it back.
 var _last_seed: int = -1
 ## E quale Chronicle era, e in che anno: il log si scarica quasi sempre a partita
@@ -311,6 +315,11 @@ func _build() -> void:
 	columns.add_child(right)
 
 	_status = StatusPanel.new()
+	# Le domande e le case sono posti dove una carta puo' cadere, come le Regioni
+	# sulla mappa (D-231). Su un soggetto una carta puo' saper fare due cose
+	# opposte — alzare e abbassare una domanda, avvicinare e rompere un rapporto —
+	# e allora la caduta **restringe** e la scelta resta a chi gioca.
+	_status.card_dropped.connect(_on_subject_dropped)
 	right.add_child(_status)
 
 	_context = Label.new()
@@ -728,21 +737,35 @@ func ask(prompt: String, labels: Array, subjects: Array = []) -> int:
 	# regole: qui si raggruppano per carta, cosi' la mano sa quali si possono
 	# prendere e la mappa sa dove accettarle (D-230).
 	_offers = {}
+	_labels = labels
 	for i in range(subjects.size()):
 		var about: Dictionary = subjects[i] as Dictionary
 		var carried: String = str(about.get("asset", ""))
-		var place: String = str(about.get("region", ""))
-		if carried == "" or place == "":
+		if carried == "":
+			continue
+		# Un'offerta porta **di cosa parla**: una Regione sulla mappa, una domanda
+		# sulla traccia, una casa nella colonna dei rapporti. Chi non parla di
+		# niente di visibile — TRAMARE su niente, PASSA — resta un bottone, ed e'
+		# giusto: non c'e' un posto dove posarla (D-231).
+		var entry: Dictionary = {"index": i}
+		var somewhere: bool = false
+		for field in ["region", "tension", "entity"]:
+			var about_what: String = str(about.get(field, ""))
+			if about_what != "":
+				entry[field] = about_what
+				somewhere = true
+		if not somewhere:
 			continue
 		var list: Array = _offers.get(carried, []) as Array
-		list.append({"region": place, "index": i})
+		list.append(entry)
 		_offers[carried] = list
 
 	_prompt.text = prompt
-	_hint.text = "" if on_map.is_empty() else (
-		"Trascina una carta su una Regione cerchiata d'oro, o cliccala."
+	_hint.text = (
+		"Trascina una carta dove vuoi usarla — una Regione, una domanda, una casa — o scegli qui accanto."
 		if not _offers.is_empty()
-		else "Le Regioni cerchiate d'oro sono raggiungibili: cliccane una per metterci una presenza."
+		else ("" if on_map.is_empty()
+			else "Le Regioni cerchiate d'oro sono raggiungibili: cliccane una per metterci una presenza.")
 	)
 	_clear_buttons()
 	for i in range(labels.size()):
@@ -763,11 +786,44 @@ func ask(prompt: String, labels: Array, subjects: Array = []) -> int:
 	# cannot answer the next one.
 	_map.highlighted = {}
 	_offers = {}
+	_labels = []
 	_map.queue_redraw()
 	_clear_buttons()
 	_prompt.text = ""
 	_hint.text = ""
 	return chosen
+
+
+## Una carta caduta su una domanda o su una casa.
+##
+## Se quella carta li' sa fare **una** cosa sola, e' gia' una risposta: al tavolo
+## posare la carta *e'* la mossa. Se ne sa fare due, la caduta ha comunque tolto
+## di mezzo tutto il resto, e restano da scegliere solo quelle — che e' esattamente
+## come funziona con le mani: posi la carta sulla domanda, e poi dici se la alzi
+## o la abbassi.
+func _on_subject_dropped(indices: Array) -> void:
+	if indices.is_empty():
+		return
+	if indices.size() == 1:
+		picked.emit(int(indices[0]))
+		return
+	_narrow_to(indices)
+
+
+## Restringe la colonna alle sole scelte rimaste dopo la caduta.
+func _narrow_to(indices: Array) -> void:
+	_clear_buttons()
+	_prompt.text = "La carta e' li. Cosa ne fai?"
+	for index in indices:
+		var label: String = str(_labels[int(index)]) if int(index) < _labels.size() else "?"
+		var button := Button.new()
+		button.text = label
+		button.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
+		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		var chosen: int = int(index)
+		button.pressed.connect(func() -> void: picked.emit(chosen))
+		_buttons.add_child(button)
 
 
 func _on_region_clicked(region_id: String) -> void:
