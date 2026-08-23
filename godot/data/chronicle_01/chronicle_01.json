@@ -150,6 +150,7 @@
       ],
       "structure_rules": {
         "rise_on": [
+          "VICTORY",
           "TRIUMPH"
         ],
         "fall_on": [
@@ -536,6 +537,7 @@
       ],
       "structure_rules": {
         "rise_on": [
+          "VICTORY",
           "TRIUMPH"
         ],
         "fall_on": [

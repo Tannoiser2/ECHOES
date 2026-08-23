@@ -1330,6 +1330,44 @@ interfacce. **Va disegnata in una seduta prima di essere scritta.**
 **Fatto quando** una delle due e' stata percorsa e misurata: le pedine mosse per
 scelta salgono ben sopra una a partita, e il playtest resta **FAIL ~180 · 0/8**.
 
+---
+
+## La strada A era già percorsa, e nessuno l'aveva chiusa (0.1.186)
+
+Il criterio qui sopra chiedeva «le pedine mosse per scelta ben sopra una a
+partita». Dopo che le azioni sono passate sulle carte ([D-188](DECISIONS.md#d-188))
+e sono state pareggiate fra le famiglie ([D-215](DECISIONS.md#d-215)), **MUOVERE
+si gioca 3,79 volte l'anno**. Il criterio è superato da due decisioni che non
+erano state scritte come risposta a questa voce.
+
+## La strada C, misurata e spedita ([D-218](DECISIONS.md#d-218))
+
+`run_stone_probe` ha rimisurato «74 costruite, zero abbattute» su 100 partite:
+
+| | prima | **dopo** |
+|---|---|---|
+| pietre alzate in tutto | 14,53 a partita | 15,43 |
+| — **dall'apertura** | **13,02** | 13,02 |
+| — **dal gioco** | **1,51** | **2,41** |
+| **abbattute** | **0,00** | **0,43** |
+| salite di grado | **0,04** | **1,82** |
+| grado 2+ in piedi a fine anno | 0,56 | **2,34** |
+
+**Il 90% delle pietre le posava il setup, e in cento anni non ne veniva giù
+nessuna.** Tre righe l'hanno cambiato: le pietre salgono su VICTORY e non solo
+su TRIUMPH; l'Archivio si può **costruire** impegnando la carta omonima — che era
+l'unica delle 48 senza un mestiere, e adesso è l'unico modo che una casa ha di
+*decidere* di costruire; e l'Assedio **butta giù** il presidio della Regione
+della domanda.
+
+**Resta aperto un punto solo, e ha una causa precisa**: «Pietra sopra Pietra»
+è ancora 0 su 100, perché la salita di grado arriva **dopo** il conteggio degli
+obiettivi — vale per l'anno successivo, non per quello in cui è successa. Serve
+un modo di alzare un grado **durante** l'anno.
+
+**Fatto quando** una struttura può salire di grado dentro l'anno per una scelta
+di chi gioca, e «Pietra sopra Pietra» smette di stare a zero.
+
 ### 38bis. ✅ Nota di metodo: il vincolo 0/8 lo fa rispettare il seggio piu' fragile — chiusa in 0.1.122
 
 `debito` · da [D-154](DECISIONS.md#d-154)
@@ -2533,6 +2571,35 @@ scrive sull'Entità e vale in ogni tavolo che la peschi.
 Nella saga lunga i TRIONFI restano **3 su 288 seggi-anno**, come prima
 dell'unificazione: il cambio non ha toccato la scala, e questa voce è ancora
 quella che deve toccarla.
+
+## Metà chiusa in 0.1.186: l'Archivio ([D-217](DECISIONS.md#d-217))
+
+Lyra e il Vetro aprono con **`STR_ARCHIVE`** — famiglia `STUDIO`, che è nuova e
+sta da sola apposta: metterlo fra le OPERA avrebbe ribaltato il difetto invece
+di toglierlo.
+
+| 100 semi | prima | dopo |
+|---|---|---|
+| anni con **zero** obiettivi, il Vetro | **18** | **12** |
+| anni con **zero** obiettivi, Lyra | 7 | **6** |
+| anni con due obiettivi, Lyra | 13 | **19** |
+| anni con due obiettivi, il Vetro | 9 | **16** |
+| «Qualcosa che Resta in Piedi», la casa peggiore | **6,7%** | **68,8%** |
+
+**La carta che divideva il tavolo in due non lo divide più.** Ma la voce resta
+aperta, e su tre punti precisi:
+
+1. **«Il Muro che Tiene» è ancora 0–100%.** Chiede un **presidio**, e l'Archivio
+   non lo è. Alzare la soglia a due è stato provato e **misurato come peggiore**:
+   0–11%, cioè una carta morta invece di una spunta.
+2. **«Pietra sopra Pietra» resta 0 su 100**, ora con la causa precisa: le pietre
+   salgono di grado **dopo** che gli obiettivi sono contati.
+3. **I TRIONFI restano rari.** L'Archivio alza il pavimento, non il tetto.
+
+**Fatto quando** nessuna coppia seggio × obiettivo sta sotto il 10% mentre le
+altre stanno sopra il 90%.
+
+---
 
 ---
 

@@ -10,6 +10,163 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-217 — L'Archivio, e il consuntivo che guardava un istante troppo tardi
+**implemented in 0.1.186** — ISSUES 52, la meta' che si poteva fare
+
+[ISSUES 52](ISSUES.md#52-lyra-non-ha-mai-trionfato-in-centoventi-anni) ha una
+causa in una riga di dati: `starting_structures` dava un presidio a sei case su
+otto. A Lyra e all'Ordine del Vetro niente, e quelle due mancavano **sempre le
+stesse carte** — «Qualcosa che Resta in Piedi» al 6,7% e al 23,1% contro il 100%
+delle altre.
+
+### L'Archivio, e perche' ha una famiglia sua
+
+La strada 1 della voce diceva *«non un presidio — non e' una casa di mura — ma
+qualcosa che la racconti»*. `STR_ARCHIVE`: Archivio (grado 1) → **La Grande
+Biblioteca** (grado 2). Va bene a tutte e due — una studiosa senza patrono e un
+Ordine che custodisce quello che fu misurato.
+
+**La famiglia e' nuova, `STUDIO`, e sta da sola apposta.** La prima versione lo
+metteva fra le OPERA, ed era lo stesso difetto ribaltato: «L'Opera che Porta il
+Nome» sarebbe diventata gratis per Lyra e il Vetro e impossibile per gli altri
+sei. Una pietra d'apertura che cade dentro una famiglia gia' richiesta da un
+obiettivo non pareggia niente, sposta il regalo.
+
+**E sta nella seconda Regione, non nella prima.** Con l'Archivio alle Miniere,
+Lyra ne prendeva anche il **controllo**, che e' una strada del suo Destino: il
+rimedio le avrebbe regalato due cose invece di una. L'ha trovato
+`test_destiny_evaluator`, andando rosso con TRIUMPH dove aspettava VICTORY.
+
+### Due difetti veri trovati per strada
+
+**Una prova che diceva di svuotare una Regione e ne svuotava meta'.** `_clear()`
+in `test_control_contest` toglieva le pedine e lasciava le pietre. Andava bene
+per una ragione che nessuno aveva scritto — sulle Miniere non apriva nessuno con
+una struttura — e il giorno in cui Lyra ci ha aperto un Archivio otto prove sono
+andate rosse contando **uno in piu'**. Avevano ragione: dichiaravano di partire
+da una Regione vuota e partivano da una Regione con dentro qualcosa. E' la
+lezione di [D-184](#d-184) un'altra volta.
+
+**E un numero falso in una sonda, che stavo per scrivere in questo verbale.**
+`run_objective_ledger` chiedeva gli obiettivi con `objectives_of()` **dopo**
+`run()`. Ma `objectives_of` ricalcola dal mondo corrente, e subito prima di
+tornare `chronicle_end` fa salire una pietra a chi ha ottenuto quello che voleva
+([D-159](#d-159)). Quindi la sonda leggeva un tavolo di un istante piu' tardi di
+quello che aveva deciso l'anno, e diceva che **«Pietra sopra Pietra» si avvera
+nel 27–46% dei casi**. In partita non si avvera mai: 0 su 100, tutte e otto le
+case.
+
+Adesso il consuntivo si **congela** dentro `chronicle_end`, accanto ai livelli, e
+la sonda lo legge dal report invece di ricalcolarlo. E' §5ter in un'altra forma:
+una misura presa un momento dopo non e' la stessa misura.
+
+### I numeri, 100 semi, seme 7000
+
+| anni chiusi con **zero** obiettivi | prima | **dopo** |
+|---|---|---|
+| **Lyra** | 7 | **6** |
+| **Priore Anselmo (il Vetro)** | **18** | **12** |
+| anni con due obiettivi, Lyra | 13 | **19** |
+| anni con due obiettivi, il Vetro | 9 | **16** |
+
+| «Qualcosa che Resta in Piedi» | prima | **dopo** |
+|---|---|---|
+| la casa peggiore | **6,7%** | **68,8%** |
+| la migliore | 100% | 100% |
+
+**La carta che divideva il tavolo in due non lo divide piu'**: da 6,7–100% a
+68,8–100%.
+
+### Quello che si dichiara, e non e' poco
+
+- **«Il Muro che Tiene» e' ancora una spunta**, e resta 0–100%: chiede un
+  **presidio**, e l'Archivio non lo e'. Alzarne la soglia a due e' stato provato
+  e **misurato come peggiore**: 0–11%, cioe' una carta morta invece che una
+  spunta. Il rimedio vero e' [ISSUES 39](ISSUES.md#39-la-terra-che-si-vede-pedine-di-carta-o-strutture-con-una-vita),
+  e sta in [D-218](#d-218).
+- **«Pietra sopra Pietra» resta 0 su 100**, e adesso si sa perche': le pietre
+  salgono di grado a **fine anno**, dopo che gli obiettivi sono stati contati.
+  Quella salita serve all'anno dopo, in una saga; nella partita in cui e'
+  successa non vale niente.
+
+---
+
+## D-218 — Le pietre hanno una vita: si alzano per scelta, e vengono giu'
+**implemented in 0.1.186** — ISSUES 39, strada C
+
+La voce si apriva con un numero: *«74 costruite, zero abbattute [...] in una saga
+la mappa **puo' solo riempirsi**»*. Rimisurato con una sonda nuova
+(`run_stone_probe`), su 100 partite:
+
+| | prima |
+|---|---|
+| pietre alzate | 14,53 a partita |
+| — **dall'apertura** | **13,02** |
+| — dal gioco | 1,51 |
+| **abbattute** | **0,00** |
+| salite di grado | **0,04** |
+| grado 2+ in piedi a fine anno | 0,56 |
+
+**Il 90% delle pietre le posa il setup**, e in cento anni non ne viene giu'
+nessuna. Non e' una mappa che si riempie: e' una mappa che **non e' mai
+cambiata**.
+
+### Tre righe, e ognuna misurata da sola
+
+**1. Le pietre salgono quando una casa ottiene quello che voleva**, non solo
+quando trionfa: `structure_rules.rise_on` passa da `["TRIUMPH"]` a
+`["VICTORY","TRIUMPH"]`. Le salite vanno da **0,04 a 1,79** a partita, il grado
+2+ a fine anno da **0,56 a 2,31**.
+
+**2. L'Archivio si puo' costruire.** `AST_KNOWLEDGE_ARCHIVE` era **l'unica delle
+quarantotto carte senza un mestiere** — `on_commit_effects` vuoto. Adesso ce
+l'ha, ed e' quello che il titolo prometteva: impegnata in un Consiglio, apre un
+archivio suo sulla Regione della domanda. E' **l'unico modo che una casa ha di
+decidere di costruire**: prima le pietre arrivavano solo dall'apertura o da una
+Conseguenza, cioe' mai per scelta.
+
+**3. L'Assedio butta giu'.** Era la sola carta del mazzo che potesse togliere una
+pietra dal tavolo, e non lo faceva: affamava e basta. Adesso il presidio della
+Regione della domanda viene giu' — con `optional`, quindi se non c'e' niente e'
+un no-op dichiarato.
+
+| | prima | **dopo** |
+|---|---|---|
+| alzate dal gioco | 1,51 | **2,41** |
+| **abbattute** | **0,00** | **0,43** |
+| salite di grado | 0,04 | **1,82** |
+| grado 2+ a fine anno | 0,56 | **2,34** |
+| playtest 100 semi | 0/8 | **0/8** |
+
+**La mappa adesso si puo' anche svuotare.** Era la meta' che mancava.
+
+### E le clausole che l'apertura regalava salgono, adesso che si puo' costruire
+
+Sei clausole di Destino chiedevano `structure_count >= 1` senza famiglia ne'
+grado — cioe' erano gia' vere all'apertura per chiunque avesse una pietra, che
+dopo [D-217](#d-217) sono tutte e otto. Passano a **2**. Non e' la stessa mossa
+che ho provato e ritirato sugli obiettivi: **li' non c'era modo di costruire e la
+soglia era decisa dal setup; qui il modo c'e'**, e la differenza sono le 2,41
+pietre che il gioco alza ogni anno.
+
+### Quello che si dichiara
+
+- **«Pietra sopra Pietra» resta 0 su 100.** La salita di grado arriva **dopo** il
+  conteggio degli obiettivi, quindi vale per l'anno dopo e non per quello in cui
+  e' successa. Non l'ho spostata prima: il criterio della salita e' *«chi ha
+  ottenuto quello che voleva»*, e farla contare per lo stesso conteggio che la
+  decide sarebbe un cerchio. Serve un modo di alzare un grado **durante** l'anno,
+  e non c'e'. Resta in ISSUES 39.
+- **La strada A di ISSUES 39 era gia' fatta e nessuno l'aveva chiuso**: il
+  criterio era «le pedine mosse per scelta salgono ben sopra una a partita», e
+  dopo [D-215](#d-215) MUOVERE si gioca **3,79 volte l'anno**.
+- **Due carte su quarantotto cambiano mestiere**, e non e' molto. Ho preferito
+  quelle due — l'unica libera, e l'unica che poteva abbattere — invece di
+  riscriverne dieci: sono le due che spostano il numero, e il resto e' scrittura
+  che si puo' fare quando si sa che serve.
+
+---
+
 ## D-216 — Le sedici coppie che non si conoscevano
 **implemented in 0.1.185** — il debito dichiarato da D-213, pagato
 

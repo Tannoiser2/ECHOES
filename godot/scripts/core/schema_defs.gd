@@ -1150,6 +1150,7 @@ const DEFS := {
 					"PRESIDIO",
 					"INSEDIAMENTO",
 					"OPERA",
+					"STUDIO",
 					"LUOGO",
 					"CHIUSURA",
 				],

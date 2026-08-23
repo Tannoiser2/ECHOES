@@ -419,6 +419,12 @@
           "art_prompt_key": "entity.vetro_friars",
           "entry": "LINE_EXHAUSTED"
         }
+      ],
+      "starting_structures": [
+        {
+          "structure_type": "STR_ARCHIVE",
+          "at": 1
+        }
       ]
     },
     {

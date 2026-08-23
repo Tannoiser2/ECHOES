@@ -86,8 +86,8 @@
                 "type": "structure_count",
                 "entity_id": "ENT_SALE",
                 "structure_type": "STR_TOLLGATE",
-                "min": 1,
-                "label": "E c'è una sbarra che porta il suo nome"
+                "min": 2,
+                "label": "E ci sono due cose murate che portano il suo nome"
               }
             ]
           }
@@ -269,8 +269,8 @@
               {
                 "type": "structure_count",
                 "entity_id": "ENT_VETRO",
-                "min": 1,
-                "label": "E l'Ordine ha qualcosa di suo che sta in piedi"
+                "min": 2,
+                "label": "E l'Ordine ha alzato qualcosa oltre all'Archivio"
               }
             ]
           }

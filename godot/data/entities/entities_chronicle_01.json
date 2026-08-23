@@ -604,6 +604,12 @@
           "art_prompt_key": "entity.lyra_cult",
           "entry": "LINE_EXHAUSTED"
         }
+      ],
+      "starting_structures": [
+        {
+          "structure_type": "STR_ARCHIVE",
+          "at": 1
+        }
       ]
     },
     {

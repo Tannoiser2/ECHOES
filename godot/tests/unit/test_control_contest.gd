@@ -24,6 +24,16 @@ func _source() -> Dictionary:
 	return {"kind": "TEST", "id": "contest"}
 
 
+## Svuotare vuol dire **svuotare**: le pedine e le pietre.
+##
+## Fino alla 0.1.185 questa funzione toglieva solo le pedine, e andava bene per
+## un motivo che nessuno aveva scritto — sulle Miniere Antiche non apriva
+## nessuno con una struttura. Il giorno in cui Lyra ha aperto con un Archivio
+## (D-217) otto prove di questo file sono andate rosse contando **uno in piu'**,
+## e avevano ragione: dichiaravano di partire da una Regione vuota e partivano
+## da una Regione con dentro qualcosa. E' la lezione di D-184 un'altra volta —
+## una prova deve azzerare quello che il setup ha gia' distribuito, non solo la
+## meta' che si ricorda.
 func _clear(region_id: String) -> void:
 	for entity_id in session.world["turn_order"]:
 		var seat: String = str(entity_id)
@@ -31,6 +41,14 @@ func _clear(region_id: String) -> void:
 			session.applier.apply(Effect.make(
 				"REMOVE_PRESENCE", "entity", seat, {"region_id": region_id}, _source()
 			))
+	var standing: Array = (
+		(session.world["regions"][region_id] as Dictionary).get("structures", []) as Array
+	).duplicate(true)
+	for structure in standing:
+		session.applier.apply(Effect.make(
+			"RAZE_STRUCTURE", "region", region_id,
+			{"structure_type": str((structure as Dictionary)["structure_type"])}, _source()
+		))
 
 
 func _stand(seat: String, region_id: String, tokens: int) -> void:

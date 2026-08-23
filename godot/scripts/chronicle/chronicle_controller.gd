@@ -870,6 +870,16 @@ func chronicle_end() -> Dictionary:
 
 	log.section("DESTINY")
 	var results: Dictionary = session.destinies.evaluate_all()
+	# Il consuntivo degli obiettivi si congela **qui**, insieme ai livelli
+	# (D-217). `objectives_of` ricalcola dal mondo corrente, e subito sotto
+	# `_settle_structures` alza una pietra a chi ha ottenuto quello che voleva:
+	# chi chiedesse gli obiettivi dopo `run()` leggerebbe un tavolo di un
+	# istante piu' tardi di quello che ha deciso l'anno. Il libro mastro lo
+	# faceva, e diceva che «Pietra sopra Pietra» si avvera nel 27% dei casi
+	# quando in partita non si avvera mai.
+	var objectives_taken: Dictionary = {}
+	for entity_id in world["turn_order"]:
+		objectives_taken[str(entity_id)] = session.destinies.objectives_of(str(entity_id))
 	for entity_id in world["turn_order"]:
 		if results.has(entity_id):
 			log.bullet(session.destinies.describe(results[entity_id]))
@@ -893,6 +903,7 @@ func chronicle_end() -> Dictionary:
 		"illegal_actions": illegal_actions,
 		"echoes": (world["echo_log"] as Array).size(),
 		"truths": (world["truth_log"] as Array).size(),
+		"objectives": objectives_taken,
 	}
 
 

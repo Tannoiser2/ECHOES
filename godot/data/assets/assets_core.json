@@ -209,7 +209,7 @@
       "rarity": "UNCOMMON",
       "deck_copies": 2,
       "art_prompt_key": "asset.force.siege",
-      "rules_text": "+2 sul fronte Oppose. Non serve prendere una cosa per impedire che sia di qualcun altro — ma l'assedio affama anche la terra intorno: la Carestia sale di 1.",
+      "rules_text": "+2 sul fronte Oppose. Non serve prendere una cosa per impedire che sia di qualcun altro — ma l'assedio affama anche la terra intorno: la Carestia sale di 1, e il presidio della Regione della domanda viene giu'.",
       "card_action": {
         "kind": "CLAIM",
         "note": "Un assedio non chiede il permesso di parlare: mette la questione davanti al tavolo. Si prenota un dominio, o si strappa il Consiglio se la domanda è già matura."
@@ -225,6 +225,18 @@
             "delta": 1
           },
           "note": "Il mestiere della carta (D-106): chi assedia affama. Nelle Cronache senza Carestia non accade nulla."
+        },
+        {
+          "type": "RAZE_STRUCTURE",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "structure_type": "STR_KEEP",
+            "optional": true
+          },
+          "note": "La seconda meta' del mestiere (D-218): un assedio non affama soltanto, **butta giu'**. Era l'unica carta del mazzo che poteva togliere una pietra dal tavolo e non lo faceva: in cento anni non veniva abbattuto niente."
         }
       ]
     },
@@ -1101,11 +1113,26 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.knowledge.archive",
-      "rules_text": "Se la proposta passa resta in mano. Le carte non si consumano: si consuma chi le sa leggere.",
+      "rules_text": "Se la proposta passa resta in mano. Le carte non si consumano: si consuma chi le sa leggere — e quello che si e' letto resta: sulla Regione della domanda si apre un archivio suo.",
       "card_action": {
         "kind": "SCHEME",
         "note": "Negli archivi c'e' scritto quello che qualcuno non dice: una Regione, una domanda coperta, o cosa sta per arrivare. Sceglie chi legge."
-      }
+      },
+      "on_commit_effects": [
+        {
+          "type": "BUILD_STRUCTURE",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "structure_type": "STR_ARCHIVE",
+            "grade": 1,
+            "owner": "$actor"
+          },
+          "note": "Il mestiere della carta (D-106), l'unica delle quarantotto che non ne aveva uno: un archivio impegnato in un Consiglio smette di essere una carta in mano e diventa una stanza con dentro qualcosa. Ed e' l'unico modo che una casa ha di **decidere** di costruire (D-218)."
+        }
+      ]
     },
     {
       "id": "AST_KNOWLEDGE_WITNESS",

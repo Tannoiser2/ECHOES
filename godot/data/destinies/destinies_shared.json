@@ -53,8 +53,8 @@
               {
                 "type": "structure_count",
                 "entity_id": "$self",
-                "min": 1,
-                "label": "Qualcosa di suo che sta in piedi"
+                "min": 2,
+                "label": "Due cose sue che stanno in piedi"
               },
               {
                 "type": "structure_count",
@@ -177,8 +177,8 @@
               {
                 "type": "structure_count",
                 "entity_id": "$self",
-                "min": 1,
-                "label": "Qualcosa di suo che sta in piedi"
+                "min": 2,
+                "label": "Due cose sue che stanno in piedi"
               },
               {
                 "type": "scar_count",

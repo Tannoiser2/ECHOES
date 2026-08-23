@@ -76,7 +76,12 @@ func _initialize() -> void:
 				ledger[id] = {}
 				counts[id] = [0, 0, 0, 0, 0]
 			var taken_now: int = 0
-			for entry in session.destinies.objectives_of(id):
+			# Dal **report**, non dal mondo (D-217): `objectives_of` ricalcola, e
+			# dopo `run()` il mondo ha gia' visto salire le pietre di chi ha
+			# ottenuto quello che voleva. Chiedendolo dopo, questa sonda diceva
+			# che «Pietra sopra Pietra» si avvera nel 27% dei casi — un numero
+			# che nessun giocatore vede mai.
+			for entry in ((report["objectives"] as Dictionary).get(id, []) as Array):
 				var card: Dictionary = entry as Dictionary
 				var key: String = ("PALESE %s" % str(card["title"])) if bool(card["public"]) \
 					else str(card["title"])

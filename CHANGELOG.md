@@ -5,6 +5,62 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.186 — L'Archivio, e le pietre che hanno una vita (D-217, D-218)
+
+**ISSUES 52 — la casa che non trionfa mai**
+
+- `starting_structures` dava un presidio a sei case su otto. Lyra e l'Ordine del
+  Vetro mancavano **sempre le stesse carte**: «Qualcosa che Resta in Piedi» al
+  6,7% e 23,1% contro il 100% delle altre.
+- **`STR_ARCHIVE`** — Archivio → La Grande Biblioteca — con una **famiglia sua,
+  `STUDIO`**. La prima versione lo metteva fra le OPERA, ed era lo stesso difetto
+  ribaltato: avrebbe reso «L'Opera che Porta il Nome» gratis per due e impossibile
+  per sei. E sta nella **seconda** Regione, perché nella prima avrebbe dato a Lyra
+  anche il controllo delle Miniere — una strada del suo Destino in regalo.
+- **I numeri**: anni chiusi con zero obiettivi, il Vetro **18 → 12** e Lyra
+  **7 → 6**; anni con due obiettivi, Lyra **13 → 19** e il Vetro **9 → 16**.
+  «Qualcosa che Resta in Piedi» passa da **6,7–100%** a **68,8–100%**: la carta
+  che divideva il tavolo in due non lo divide più.
+- **Due difetti veri trovati per strada.** Una prova che diceva di svuotare una
+  Regione e ne svuotava metà (`_clear` toglieva le pedine, lasciava le pietre) —
+  otto prove sono andate rosse e avevano ragione. E **un numero falso in una
+  sonda**: `run_objective_ledger` chiedeva gli obiettivi *dopo* `run()`, quando
+  le pietre erano già salite, e diceva che «Pietra sopra Pietra» si avvera nel
+  27–46% dei casi. In partita non si avvera mai. Adesso il consuntivo si
+  **congela** insieme ai livelli.
+
+**ISSUES 39 — le pietre hanno una vita**
+
+- Rimisurato con una sonda nuova (`run_stone_probe`): **13,02 pietre su 14,53 le
+  posa l'apertura**, dal gioco ne arrivano 1,51, e in cento anni **non ne viene
+  giù nessuna**. Le salite di grado erano **0,04 a partita**.
+- **Tre righe, ognuna misurata**: le pietre salgono su VICTORY e non solo su
+  TRIUMPH; **l'Archivio si può costruire** (`AST_KNOWLEDGE_ARCHIVE` era l'unica
+  delle 48 carte senza un mestiere, e adesso è l'unico modo che una casa ha di
+  *decidere* di costruire); **l'Assedio butta giù** il presidio della Regione
+  della domanda.
+- **I numeri**: alzate dal gioco **1,51 → 2,41**, abbattute **0,00 → 0,43**,
+  salite di grado **0,04 → 1,82**, grado 2+ a fine anno **0,56 → 2,34**. La mappa
+  adesso **si può anche svuotare**. Playtest **0/8**.
+- **Sei clausole di Destino** che l'apertura soddisfaceva da sola salgono a due.
+  Non è la stessa mossa provata e **ritirata** sugli obiettivi: lì non c'era modo
+  di costruire e la soglia la decideva il setup (il Muro passava a 0–11%, una
+  carta morta); qui il modo c'è.
+
+**Quello che resta aperto, dichiarato**
+
+- **«Il Muro che Tiene» è ancora una spunta** (0–100%): chiede un presidio, e
+  l'Archivio non lo è. Alzarne la soglia è stato provato e misurato come
+  peggiore.
+- **«Pietra sopra Pietra» resta 0 su 100**: la salita di grado arriva *dopo* il
+  conteggio degli obiettivi, quindi vale per l'anno dopo. Serve un modo di alzare
+  un grado **durante** l'anno, e non c'è.
+- **La strada A di ISSUES 39 era già fatta e nessuno l'aveva chiusa**: il criterio
+  chiedeva «ben sopra una pedina mossa per scelta a partita», e dopo D-215
+  MUOVERE si gioca **3,79 volte l'anno**.
+
+---
+
 ## 0.1.185 — Le sedici coppie che non si conoscevano (D-216)
 
 - Il debito dichiarato da D-213, pagato: su 28 coppie di case ne erano scritte
