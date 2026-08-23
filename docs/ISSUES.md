@@ -666,7 +666,7 @@ ogni passo.
 **Fatto quando** almeno un dente per tipo vive nei dati, misurato, e il
 playtest resta 0/8. ✓
 
-### 26. Le carte con un mestiere
+### 26. ✅ Le carte con un mestiere — chiusa in 0.1.76, riverificata in 0.1.177
 
 `contenuto` · `regole` · voluta dal committente, nata dalla domanda giusta
 
@@ -712,6 +712,13 @@ una carta è una scelta, non un conteggio. — ✅ **Chiusa in 0.1.76**: 46
 carte su 48 lavorano; l'Archivio ha già il suo mestiere (restare in
 mano) e il Legame di Sangue aspetta, dichiarato, il pavimento di
 relazione della voce 25.
+
+**Ricontata in 0.1.177**, perché l'indice non portava la spunta e la voce
+risultava aperta a chi leggeva solo il titolo: **47 su 48** hanno un
+`on_commit_effects`. Il Legame di Sangue nel frattempo ha ricevuto il suo, e
+l'unica senza è `AST_KNOWLEDGE_ARCHIVE` — che il mestiere ce l'ha, ed è restare
+in mano. Il numero che apre questa voce («35 su 48 sono solo un numero») è
+vecchio di cento versioni: non ricopiarlo.
 
 ### 29. ✅ La stanza non aveva più il bottone «Si comincia» — fatta in 0.1.103
 
@@ -1558,14 +1565,57 @@ due i suoi Destini, in quattro passi misurati uno alla volta:
 | ultimo cambio di testa | anno 3,5 su 10 | anno **5,5** su 10 |
 | decise entro il terzo anno | 6 su 12 | **4 su 12** |
 
-**Non è chiusa**: 9 su 12 è il 75%, sopra il criterio che questa voce si era
-data. Il lavoro si è fermato lì perché continuare senza una diagnosi nuova
-sarebbe tarare a occhio.
+**Non era chiusa**: 9 su 12 è il 75%, sopra il criterio che questa voce si era
+data. Il lavoro si era fermato lì perché continuare senza una diagnosi nuova
+sarebbe stato tarare a occhio.
 
-**Dove guardare la prossima volta**, e sono due cose non ancora misurate come
-cause: i **Trionfi nelle saghe** restano sbilanciati (Sale 25, Libere 19, Vetro
-11, Cenere 8 su 120 anni), e il **Minimo delle quattro case non costa uguale** —
-il Vetro ne ha uno da due gettoni, il Sale uno da uno.
+---
+
+## Rimisurata in 0.1.177: il vincitore scritto non è più il Sale — ed è cambiato il nome, non il difetto
+
+Dodici saghe da dieci Chronicle, tavolo misto, seme 812:
+
+| | allora | **adesso** |
+|---|---|---|
+| chi vince la campagna | **SALE 12 su 12** | CENERE **7**, LIBERE 2, SALE **1**, pareggi 2 |
+| cambi di testa per saga | 1,3 | **1,2** |
+| ultimo cambio di testa | anno 3,5 su 10 | anno **3,6** su 10 |
+
+**La Gilda del Sale è passata da 12 vittorie su 12 a una.** Il difetto per cui
+questa voce è nata non esiste più. Ma il posto è stato preso dalla **Cenere, 7
+su 12** — il 58%, sotto il 75% di prima e sopra il 33% che sarebbe pari.
+
+E il confronto con l'altra linea dice che il problema non è chi vince, è **come**
+la campagna si decide:
+
+| | Grano | Sale |
+|---|---|---|
+| chi vince più spesso | VAERAX 5 su 12 (42%) | **CENERE 7 su 12 (58%)** |
+| cambi di testa per saga | **1,8** | 1,2 |
+| ultimo cambio di testa | anno **4,4** | anno 3,6 |
+| Consigli l'anno | **3,80** | **2,85** |
+| scarto delle domande dalla soglia a fine anno | da −0,18 a −1,71 | da +0,27 a **−3,12** |
+
+### La causa nuova, e sta a monte delle altre due
+
+**La linea del Sale è più fredda.** Un Consiglio in meno l'anno, e domande che
+finiscono l'anno molto più lontane dalla soglia — il Debito a −3,12, la Carta a
+−2,82. Con meno Consigli si decide meno, e quello che è già deciso all'inizio
+resta deciso: da lì i cambi di testa a 1,2 invece di 1,8, e la campagna chiusa
+all'anno 3,6 invece che al 4,4.
+
+**E c'è una seconda causa, che è la stessa di [ISSUES 52](#52-lyra-non-ha-mai-trionfato-in-centoventi-anni)**:
+l'Ordine del Vetro apre senza presidio come Lyra nell'altra linea, e chiude con
+**43 NONE e 1 Trionfo su 120 anni**. Una casa su quattro fuori gioco rende la
+campagna una gara a tre, e una gara a tre si decide prima.
+
+**Le due cause vecchie restano da misurare** (i Trionfi per saga, e il Minimo che
+non costa uguale) ma passano in seconda fila: il freddo della linea e la quarta
+casa scoperta le spiegano tutte e due in parte.
+
+**E la proposta del committente le tocca entrambe**: un Consiglio automatico a
+fine Atto garantirebbe tre Consigli l'anno, che nel Sale è **uno in più di
+adesso**.
 
 **Fatto quando** su dodici saghe per tavolo nessuna casa vince più della metà
 delle campagne — o il motivo per cui una lo fa è scritto con i numeri accanto —
@@ -1758,14 +1808,96 @@ difetto o se è la mappa che racconta chi c'era in quel secolo — la strada fra
 case è deserta nell'anno della Carestia e piena nell'anno del Sale, e detta così
 è una cosa che il mondo dice, non un buco.
 
-**Fatto quando** o ogni Regione ha una casa che ci comincia in ogni era, oppure
-la voce viene chiusa dichiarando che la Regione disabitata è voluta — con la
-sonda che la nomina, così nessuno se la ritrova per caso.
-
 **Da non confondere con la palude**: quella chiede slot variabili ed è motore.
-Questa, se l'ipotesi 1 o 3 regge, si chiude **con i dati**.
 
-### 49. Le Tensioni come mucchi di segnalini coperti
+---
+
+## Il committente ha deciso, e ha spostato la domanda (0.1.176)
+
+> «No, non ci può essere una regione senza nessuno, e anzi la Strada dei
+> Mercanti dovrebbe essere uno snodo vitale. Quindi la domanda è anche
+> **perché le pedine non si muovono?**»
+
+Non è colore: è un difetto. E la domanda giusta non era «perché la Strada è
+vuota» ma «perché la mappa è ferma» — che nessuno aveva mai misurato. La sonda
+nuova `run_move_probe` la misura, e per ogni casa a fine anno dice **quale
+porta era chiusa**.
+
+### La causa, su 40 partite a tavolo misto
+
+| | CHR_01 | CHR_03 |
+|---|---|---|
+| pedine per casa all'apertura | 2 | 2 |
+| tetto (`presence_tokens`) | 3 | 3 |
+| **di riserva** | **1,00** | **1,00** |
+| MUOVERE giocate l'anno | 3,23 | 2,88 |
+| — di cui **posano** | 3,20 | 2,85 |
+| — di cui **spostano** | **0,03** | **0,03** |
+| carte MUOVERE viste in mano | 12,57 | 9,97 |
+
+E le porte, a fine anno, su 160 occasioni di seggio:
+
+| porta chiusa | CHR_01 | CHR_03 |
+|---|---|---|
+| **il gettone** — sono già tutte sul tavolo | **73,1%** | 71,9% |
+| la carta — nessuna MUOVERE in mano | 12,5% | 7,5% |
+| la porta — cacciata, segno, adiacenza, pieno | **0%** | **0%** |
+| la voglia — poteva, ha scelto altro | 14,4% | 20,6% |
+
+**La mappa non è ferma per cattiveria del cervello né per mancanza di carte.**
+È ferma per costruzione: il gioco posa **otto pedine all'apertura** e ne concede
+**quattro in tutto l'anno**, una per casa. Finita quella, tre case su quattro
+non hanno più niente da muovere. Le carte abbondano (12,57 viste, 3,23 giocate)
+e la porta non è **mai** sbarrata: lo 0% di quella riga chiude le tre ipotesi
+originali di questa voce, adiacenza compresa.
+
+**E spostare non succede: 0,03 volte l'anno.** Non è un caso, è una scelta
+misurata ([D-185](DECISIONS.md#d-185)): il cervello non toglie una pedina da
+dove la casa vive, perché farlo costava a Re Aldric 8 NONE su 50 partite. Con
+tutte le pedine posate, MUOVERE **è** uno spostamento — e quindi non si gioca.
+
+**La Strada non offre poco: è la Regione più ricca della mappa.** Quattro
+vicini su cinque (l'unico vero incrocio), 4 slot, WEALTH + KNOWLEDGE, e tre tag
+di dominio più `trade`. Perde la corsa all'unico gettone perché **nessuno ci
+comincia**, e nessun obiettivo ci punta.
+
+### I tre rimedi, misurati
+
+| | oggi | tetto a 4 | Lyra sulla Strada | tutti e due |
+|---|---|---|---|---|
+| Strada, apertura → fine | 0,00 → 0,65 | 0,00 → 1,23 | 1,00 → 1,57 | **1,00 → 2,15** |
+| la Regione più povera a fine anno | **0,65** | 1,23 | 1,50 | **1,60** |
+| MUOVERE l'anno | 3,23 | 4,58 | 3,23 | **4,65** |
+| Consigli l'anno (unif. / misto) | 3,37 / 3,73 | 3,63 / 3,93 | **3,13 / 3,44** | 3,58 / 3,73 |
+| Lyra NONE (unif. / misto) | 14 / 21 | non misurato | 9 / 8 | **8 / 9** |
+| Lyra VITTORIE (unif. / misto) | 11 / 11 | non misurato | **27 / 27** | 25 / 28 |
+| playtest 100 semi | 0/8 | 0/8 | 0/8 | **0/8** |
+
+- **Il tetto a 4** dà a ogni casa due gettoni di riserva invece di uno: le pose
+  passano da 3,23 a 4,58 e i Consigli **salgono**, il che aiuta anche
+  [ISSUES 51](#51-sei-domande-su-dodici-non-arrivano-a-soglia-da-sole). Ma la
+  Strada resta l'ultima, perché continua a partire da zero.
+- **Lyra sulla Strada** (Eredan → Strada dei Mercanti) riempie la Regione
+  all'apertura e appiattisce la mappa da (0,65 … 2,77) a (1,50 … 2,00). E come
+  effetto secondario **cura mezza [ISSUES 52](#52-lyra-non-ha-mai-trionfato-in-centoventi-anni)**:
+  i NONE di Lyra crollano da 21 a 8 e le Vittorie salgono da 11 a 27. Gli
+  studiosi sulla strada dove viaggia il sapere è anche la cosa che ha più senso
+  da leggere. **Il prezzo:** i Consigli scendono a 3,13 / 3,44.
+- **Tutti e due insieme** è la sola combinazione che vince su ogni riga: la
+  Strada diventa la **seconda** Regione più abitata, nessuna scende sotto 1,60,
+  i Consigli tornano dov'erano, Lyra resta curata, e il vincolo 0/8 regge.
+
+**Il cambio dei tre non ancora misurato**, e va detto: **spostare** resta a 0,03
+in tutte e tre le configurazioni. Nessuno di questi rimedi fa muovere una pedina
+già posata — allargano il rubinetto, non sbloccano la mappa. Se «la mappa si
+muove» vuol dire anche *ritirarsi da un posto*, serve una quarta leva che questa
+misura non copre.
+
+**Fatto quando** nessuna Regione sta sotto una pedina a fine anno in nessuna
+era, e la sonda continua a nominare la più povera così nessuno se la ritrova per
+caso.
+
+### 49. ✅ Le Tensioni come mucchi di segnalini coperti — chiusa in 0.1.179
 
 `regole` · `motore` · voluta dal committente · **preventivo misurato in 0.1.158** ([D-190](DECISIONS.md#d-190))
 
@@ -1841,14 +1973,43 @@ in CHR_04 chiudono con uno solo). Spedito il **due**: 3,46 e 4,00 l'anno, contro
 i 6,03 e 6,01 di prima. Da due Consigli per Atto a poco più di uno — dichiarato,
 e reversibile con una chiave.
 
-**Resta la fase 3: i mucchi coperti.** Il cancello cambia *chi decide quando*,
-coprire i valori cambia *cosa si sa* — e adesso il verbale dice quale mucchio è
-il più alto, che è proprio l'informazione che coprire toglierebbe. Va misurato a
-parte.
+**Fase 3 ✅ — i mucchi coperti** — fatta in 0.1.179
+([D-210](DECISIONS.md#d-210)).
 
-**Fatto quando** un anno si gioca coi mucchi coperti, il playtest resta **0/8** a
-tavolo misto e uniforme, e lo scarto fra il mucchio più alto e il più basso
-**non cresce** di atto in atto.
+**Coprire un mucchio in cui ogni gettone vale 1 non nasconde niente**: si conta
+a occhio. Quindi la regola è una cosa sola in due metà — il gettone pesca un
+**valore** dal sacchetto (`covered: [0, 1, 1, 2]`, media 1,00, e lo zero è il
+gettone bianco), e il punteggio smette di essere pubblico. Sul tavolo si vede
+**quanti gettoni** sono caduti, non quanto pesano; si girano quando il Consiglio
+si apre.
+
+E si copre in **tre finestre**, non una: il verbale pubblico, la scheda del
+seggio, e la pagina d'aiuto. Bastava lasciarne aperta una perché coprire fosse
+teatro — la lezione di §5ter, presa in anticipo invece che dopo.
+
+| | prima | dopo |
+|---|---|---|
+| Consigli l'anno, uniforme | 3,37 | **3,40** |
+| Consigli l'anno, misto | 3,73 | **3,57** |
+| scarto fra i mucchi, atti I→III | 3,95 → 5,95 → 6,42 | 4,17 → 5,90 → **6,92** |
+| playtest 100 semi | 0/8 | **0/8** |
+
+**Il criterio di chiusura era impossibile, e l'ha detto la misura.** «Lo scarto
+non cresce di atto in atto» **era già falso senza coprire**: 3,95 → 6,42. I
+mucchi crescono per costruzione — accumulano, e che uno diventi il più alto è
+tutto il punto del cancello. Coprire aggiunge **+0,28** su tre atti, cioè
+niente. Il criterio giusto è quello riscritto: *non cresce più di quanto già
+cresceva*, ed è soddisfatto.
+
+**E ha scoperto un difetto vecchio.** Il pavimento di fine anno
+(`minimum_confluences`) portava una domanda **alla propria soglia** — ma col
+cancello del tavolo la soglia non apre più niente, e se la domanda più vicina
+era già sopra soglia il pavimento usciva zitto senza fare nulla. Era latente da
+[D-203](DECISIONS.md#d-203); la copertura, alzando un po' i valori, l'ha reso
+visibile e un anno è sceso a un Consiglio solo. Adesso, sotto il cancello, il
+pavimento **fa cadere i gettoni che mancano** — come Effetti, uno per volta,
+reversibili: alzare il contatore e basta avrebbe aperto un Consiglio che il
+registro non sa spiegare.
 
 ### 50. Quattro obiettivi al posto dei tre gradini
 
@@ -1984,7 +2145,7 @@ e uniforme ✅.
 
 ---
 
-### 51. Sei domande su dodici non arrivano a soglia da sole
+### 51. ✅ Sei domande su dodici non arrivano a soglia da sole — chiusa in 0.1.178
 
 `bilanciamento` · `contenuto` · **aperta in 0.1.175** · nata da [D-207](DECISIONS.md#d-207)
 
@@ -2020,15 +2181,68 @@ passano da **3,59 a 3,37** (uniforme) e da **3,97 a 3,73** (misto), e nella line
 del Grano i NONE salgono da 107 a 132 su 480 seggi-anno. Il Sale non lo paga —
 Trionfi da 5 a **9** — perche' le sue sei candidate sono tarate piu' vicine.
 
-**Da misurare, e non e' dedotto da qui:** quante volte ciascuna delle dodici
-domande arriva **davvero** al Consiglio in partita, col calore pescato dai
-giocatori. Solo quel numero dice se le sei sono domande quiete per scelta o
-domande morte per taratura.
+## Misurata in 0.1.178: nessuna domanda è muta, e l'aritmetica sbagliava strumento
 
-**Fatto quando** ogni domanda della biblioteca apre almeno un Consiglio in una
-partita su quattro, oppure e' dichiarato quali sono quiete di proposito — e il
-test che oggi chiede solo «qualcosa la muove» torna a chiedere il criterio forte
-su tutta la biblioteca invece che su una Chronicle sola.
+`run_question_ledger` conta, per ogni domanda, quante volte è stata pescata e in
+quanti di quegli anni ha aperto **almeno un Consiglio**. Su 60 partite per era,
+a tavolo misto:
+
+| CHR_01 — la Carestia | pescata | Consigli | anni con |
+|---|---|---|---|
+| I Pozzi Bassi | 38 | 11 | **26,3%** |
+| Le Vie Interrotte | 48 | 25 | 47,9% |
+| La Febbre Bassa | 40 | 30 | 57,5% |
+| Il Risveglio | 40 | 56 | 90,0% |
+| La Carestia | 33 | 46 | 93,9% |
+| La Successione | 41 | 60 | **95,1%** |
+
+| CHR_03 — il Sale | pescata | Consigli | anni con |
+|---|---|---|---|
+| I Senza Città | 51 | 16 | **31,4%** |
+| La Cenere che Sale | 49 | 18 | 34,7% |
+| L'Acqua Ferma | 50 | 24 | 46,0% |
+| Il Debito | 52 | 37 | 51,9% |
+| La Carta | 44 | 35 | 61,4% |
+| La Reliquia | 54 | 41 | **66,7%** |
+
+**Nessuna delle dodici è muta, e tutte e dodici superano il criterio** che questa
+voce si era data (un Consiglio in una partita su quattro). La Febbre Bassa e i
+Pozzi Bassi, le due che l'aritmetica dava per irraggiungibili, aprono un
+Consiglio nel 57,5% e nel 26,3% degli anni in cui escono.
+
+**L'aritmetica non era sbagliata: era lo strumento sbagliato.** Contava valore
+iniziale + Deriva + Ripple, e da [D-192](DECISIONS.md#d-192) **la Deriva non è
+nemmeno in gioco** — il calore lo pescano i giocatori. Un test che somma un
+sacchetto che nessuno usa non misura il gioco spedito.
+
+### Ma la misura ha trovato un'altra cosa, e più grossa
+
+Le due linee non hanno lo stesso clima:
+
+| | Grano | Sale |
+|---|---|---|
+| Consigli l'anno | **3,80** | **2,85** |
+| domande sopra il 90% | **3** | **0** |
+| domanda più calda | 95,1% | 66,7% |
+| scarto medio dalla soglia a fine anno | da −0,18 a −1,71 | da +0,27 a **−3,12** |
+
+**Nel Sale le domande finiscono l'anno molto più lontane dalla soglia** — il
+Debito a −3,12, la Carta a −2,82, l'Acqua Ferma a −2,66 — e il tavolo tiene un
+Consiglio in meno l'anno. Non è una linea più difficile: è una linea più
+**fredda**, dove le domande non maturano.
+
+Questo appartiene a [ISSUES 46](#46-la-campagna-del-sale-ha-un-vincitore-già-scritto-69),
+che cercava le cause dello squilibrio del Sale e ne aveva due non misurate. Ne
+ha una terza adesso, ed è a monte delle altre.
+
+**E dà un numero alla proposta del committente** — un Consiglio automatico a
+fine Atto, la domanda più alta dibattuta. Garantirebbe tre Consigli l'anno: nel
+Grano è quasi il numero di oggi, **nel Sale sarebbe un Consiglio in più ogni
+anno**.
+
+**Chiusa in 0.1.178**: nessuna domanda è muta. Il criterio forte torna nel test
+quando la Deriva torna in gioco — o non torna mai, e allora quel test ha finito
+il suo lavoro.
 
 **Si intreccia con il ritmo dell'anno**, che e' la domanda gia' aperta col
 committente: sei Consigli l'anno erano troppi, tre e mezzo forse sono pochi, e
@@ -2062,13 +2276,89 @@ uguale a tutte le case ([D-199](DECISIONS.md#d-199) le ha pareggiate a 19,6
 punti di scarto). Se il pool e' pari e il seggio no, la causa sta altrove — nella
 mappa che pesca, nelle carte che puo' avere, o in chi ha la parola.
 
-**Prima cosa da misurare**, e non e' ancora fatto: **quali** obiettivi Lyra
-manca, e se sono gli stessi ogni volta. Un seggio che manca sempre le stesse due
-carte e' una taratura; un seggio che ne manca ogni volta di diverse e' un
-problema di posizione.
+## Misurata in 0.1.177: sono sempre le stesse due carte, e sono le più facili
 
-**Fatto quando** nessun seggio sta a zero Trionfi su 120 seggi-anno, e lo scarto
-fra il seggio piu' premiato e il meno premiato sta dentro un fattore tre.
+`run_objective_ledger` conta, per ogni coppia **seggio × obiettivo**, quante
+volte è stato pescato e quante preso. Su 60 partite a tavolo misto, due righe
+spiegano tutto:
+
+| obiettivo | Aldric | Nahr | Vaerax | **Lyra** |
+|---|---|---|---|---|
+| **Qualcosa che Resta in Piedi** — una struttura sua | 100% | 100% | 100% | **4,5%** |
+| **Il Muro che Tiene** — un presidio suo | 100% | 100% | 100% | **0%** |
+
+**I due obiettivi più facili del pool sono un regalo dell'apertura per tre case
+e un muro per la quarta.** La causa sta in una riga di dati:
+`starting_structures` posa uno `STR_KEEP` — famiglia PRESIDIO, quindi struttura
+*e* presidio insieme — a Eredan per Aldric, alle Terre Nahr per Nahr, sulle
+Montagne Rosse per Vaerax. **A Lyra niente.** Tre case aprono l'anno con due
+obiettivi su dodici già in tasca; Lyra deve costruirseli, e in un anno non ce la
+fa quasi mai.
+
+Il preventivo di [D-197](DECISIONS.md#d-197) diceva A_STONE **79%** e A_GARRISON
+**74,8%**, e la media era giusta: 100 + 100 + 100 + 4,5 fa 76. **La media
+nascondeva che una casa su quattro è fuori.** È esattamente il difetto per cui
+questa sonda è stata scritta.
+
+E l'istogramma lo conferma: Lyra chiude con **0 obiettivi 16 volte su 60, 1
+obiettivo 31 volte, e 4 obiettivi mai**. Parte ogni anno con due carte morte in
+mano su quattro.
+
+### Tre difetti trovati per strada, che non riguardano Lyra
+
+- **«Pietra sopra Pietra» non si avvera mai: 0 su 64 pescate**, tutte e quattro
+  le case. Chiede una struttura di **grado 2 o più**. Il grado 2 esiste nei dati
+  — Castello, Borgo, il Grande Granaio, la Dogana — ma **niente in partita ci
+  arriva**. L'obiettivo è già scritto e aspetta una regola che non c'è: è il
+  buco che [ISSUES 39](#39-la-terra-che-si-vede-pedine-di-carta-o-strutture-con-una-vita)
+  opzione **C** — torre → castello → reggia — riempirebbe da sola.
+- **«L'Opera che Porta il Nome»: 4 su 68, il 5,9%.** Chiede un'opera — granaio,
+  canale, pedaggio — e nessuna di quelle è sulla mappa all'apertura.
+- **Il palese di Vaerax, «La Terra che Risponde»: 0 su 20.** Un obiettivo palese
+  che non si avvera mai è una casa che gioca con tre carte invece che con
+  quattro.
+
+### Le due strade per Lyra, e sono decisioni di contenuto
+
+1. **Lyra apre con una struttura sua**, come le altre tre. Non un presidio — non
+   è una casa di mura — ma qualcosa che la racconti: una biblioteca, un
+   osservatorio. Costa una riga di `starting_structures` e un tipo nuovo.
+2. **I due obiettivi smettono di essere gratis per chi apre col presidio**:
+   alzando la soglia a due strutture diventano un traguardo per tutti invece di
+   una spunta per tre.
+
+E c'è una terza cosa che aiuta senza toccare gli obiettivi: **spostare Lyra
+sulla Strada dei Mercanti** ([D-208](DECISIONS.md#d-208)) le fa crollare i NONE
+da 21 a 8 e salire le Vittorie da 11 a 27.
+
+### E non è un problema di Lyra: è una regola dell'apertura
+
+La stessa forma si ripete **nell'altra linea, con un'altra casa**. In CHR_03
+`starting_structures` posa uno `STR_KEEP` alle Città Libere, alla Gilda del Sale
+e alla Cenere. **All'Ordine del Vetro niente.**
+
+| linea | la casa senza presidio d'apertura | NONE su 120 anni | TRIONFI |
+|---|---|---|---|
+| il Grano | **Lyra** | **44** | **0** |
+| il Sale | **l'Ordine del Vetro** | **43** | 1 |
+| le altre tre, Grano | Aldric / Nahr / Vaerax | 28 / 26 / 24 | 1 / 0 / 2 |
+| le altre tre, Sale | Cenere / Libere / Sale | 14 / 20 / 29 | 1 / 2 / 1 |
+
+E in tutte e due, fra le clausole del Minimo più spesso mancate c'è letteralmente
+**«Almeno un presidio suo»** — Lyra 18 volte, il Vetro 17.
+
+**In tutte e due le linee, la casa che apre senza presidio è la casa che non
+vince mai.** Non è una taratura di Lyra: è il setup d'apertura che distribuisce
+tre presidi su quattro e lascia scoperta la stessa casella in tutte e due le ere.
+
+Quindi qualunque cosa si decida per Lyra **va decisa anche per l'Ordine del
+Vetro**, e la voce cambia titolo di fatto: non «Lyra non trionfa» ma **«la
+quarta casa non trionfa, in nessuna era»**.
+
+**Fatto quando** nessun seggio sta a zero Trionfi su 120 seggi-anno **in
+nessuna delle due linee**, nessuna coppia seggio × obiettivo sta sotto il 10%
+mentre le altre tre stanno sopra il 90%, e lo scarto fra il seggio più premiato
+e il meno premiato sta dentro un fattore tre.
 
 ---
 

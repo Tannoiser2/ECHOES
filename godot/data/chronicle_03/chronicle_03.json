@@ -229,7 +229,13 @@
       "tension_tokens": {
         "per_action": 1,
         "replaces_drift": true,
-        "table_gate": 2
+        "table_gate": 2,
+        "covered": [
+          0,
+          1,
+          1,
+          2
+        ]
       },
       "objectives": {
         "hidden": 3,
@@ -561,7 +567,13 @@
       "tension_tokens": {
         "per_action": 1,
         "replaces_drift": true,
-        "table_gate": 2
+        "table_gate": 2,
+        "covered": [
+          0,
+          1,
+          1,
+          2
+        ]
       },
       "objectives": {
         "hidden": 3,

@@ -5,6 +5,128 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.179 — I mucchi coperti, e il pavimento che non sapeva del cancello (D-210)
+
+- **ISSUES 49 è chiusa.** L'ultima fase: «i segnalini coperti danno un valore a
+  una tensione, e quando parte la Confluence si girano».
+- **Coprire vuol dire due cose, non una.** Un mucchio in cui ogni gettone vale 1
+  si conta a occhio: coprirlo non nasconderebbe niente. Quindi il gettone pesca
+  un **valore** dal sacchetto — `covered: [0, 1, 1, 2]`, media **1,00**, il
+  calore totale non cambia in attesa ma cambia la varianza — e il punteggio
+  smette di essere pubblico. Lo zero è il **gettone bianco**: non muove niente
+  ma è sceso, quindi conta per il cancello e si vede cadere.
+- **Tre finestre, non una**: il verbale pubblico, la scheda del seggio e la
+  pagina d'aiuto. Bastava lasciarne aperta una perché coprire fosse teatro — la
+  lezione di §5ter presa in anticipo invece che dopo. Otto prove nuove, tre delle
+  quali mordono se una finestra resta aperta.
+- **Il criterio di chiusura della voce era impossibile, e l'ha detto la misura.**
+  «Lo scarto fra i mucchi non cresce di atto in atto» era **già falso senza
+  coprire**: 3,95 → 6,42. Coprire aggiunge **+0,28** su tre atti. Il criterio
+  giusto è *non cresce più di quanto già cresceva*, ed è scritto così invece che
+  dichiarato raggiunto.
+- **E ha scoperto un difetto vecchio.** Il pavimento di fine anno portava una
+  domanda **alla propria soglia** — ma col cancello del tavolo la soglia non apre
+  più niente, e se quella domanda era già sopra soglia il pavimento **usciva
+  zitto senza fare nulla**. Latente da D-203; la copertura ha alzato i valori
+  quel tanto che bastava e un anno è sceso a **un Consiglio solo**. Adesso il
+  pavimento fa cadere i gettoni che mancano, come Effetti reversibili: alzare il
+  contatore e basta avrebbe aperto un Consiglio che il registro non sa spiegare,
+  e un test ha rifiutato quella prima toppa.
+- **Il gate**: Consigli l'anno 3,37 → **3,40** (uniforme) e 3,73 → **3,57**
+  (misto), playtest **0/8** a tavolo misto e uniforme.
+
+## 0.1.178 — La quarta casa non trionfa, in nessuna era (D-209) · ISSUES 51 e 46 rimisurate
+
+- **ISSUES 51 chiusa, e l'aritmetica sbagliava strumento.** `run_question_ledger`
+  conta per ogni domanda quante volte è pescata e in quanti di quegli anni apre
+  almeno un Consiglio. **Nessuna delle dodici è muta**, e tutte superano il
+  criterio della voce: la Febbre Bassa apre nel **57,5%** degli anni in cui esce,
+  i Pozzi Bassi nel **26,3%**. Il test che le dava per irraggiungibili sommava
+  valore + Deriva + Ripple, e da D-192 **la Deriva non è nemmeno in gioco**.
+- **Ma la misura ha trovato di meglio: le due linee non hanno lo stesso clima.**
+  Consigli l'anno **3,80 nel Grano contro 2,85 nel Sale**; tre domande sopra il
+  90% nel Grano, **zero** nel Sale; e nel Sale le domande finiscono l'anno molto
+  più lontane dalla soglia (il Debito a **−3,12**).
+- **ISSUES 46 rimisurata: il vincitore scritto non è più il Sale.** Da **12 su
+  12** a **1 su 12**. Il posto l'ha preso la **Cenere, 7 su 12**. E il confronto
+  fra le linee dice che il difetto non è chi vince ma come si decide: cambi di
+  testa **1,2 nel Sale contro 1,8 nel Grano**, ultimo cambio all'anno **3,6
+  contro 4,4**. La linea più fredda decide prima.
+- **E il difetto di Lyra non è di Lyra: è una regola dell'apertura.** In CHR_03
+  `starting_structures` posa uno `STR_KEEP` a tre case su quattro e lascia
+  scoperto **l'Ordine del Vetro** — che chiude con **43 NONE e 1 Trionfo su 120
+  anni**, come Lyra con 44 e 0.
+
+  | linea | casa senza presidio | NONE su 120 | TRIONFI |
+  |---|---|---|---|
+  | il Grano | **Lyra** | 44 | **0** |
+  | il Sale | **l'Ordine del Vetro** | 43 | 1 |
+
+  E in tutte e due, fra le clausole del Minimo più mancate c'è letteralmente
+  **«Almeno un presidio suo»** — Lyra 18 volte, il Vetro 17. **La casa che apre
+  senza presidio è la casa che non vince mai**, e qualunque cosa si decida per
+  Lyra va decisa anche per il Vetro.
+- Nessuna regola accesa: sono decisioni di contenuto, e il numero è scritto prima
+  perché si possa scegliere guardandolo.
+
+## 0.1.177 — Tre case aprono l'anno con due obiettivi già in tasca (D-209)
+
+- ISSUES 52 chiedeva **quali** obiettivi Lyra manca. `run_objective_ledger`
+  conta per ogni coppia **seggio × obiettivo** quante volte è pescato e quante
+  preso — il consuntivo, dove la sonda vecchia misurava il preventivo.
+- **«Qualcosa che Resta in Piedi»** e **«Il Muro che Tiene»**, i due obiettivi
+  più facili del pool: **100% per Aldric, Nahr e Vaerax — 4,5% e 0% per Lyra.**
+- La causa è una riga di dati: `starting_structures` posa uno `STR_KEEP`
+  (famiglia PRESIDIO, quindi struttura *e* presidio insieme) alle altre tre
+  case. **A Lyra niente.** Parte ogni anno con due carte morte su quattro, e
+  chiude con **zero obiettivi 16 volte su 60 e quattro obiettivi mai**.
+- **Perché nessuna sonda l'aveva visto**: il preventivo diceva 79% e 74,8%, ed
+  erano numeri giusti — 100+100+100+4,5 fa 76. La media era vera e nascondeva
+  che una casa su quattro è fuori. Terza volta in due versioni che un numero
+  aggregato copre una misura che nessuno aveva guardato separatamente.
+- **Tre difetti per strada**: «Pietra sopra Pietra» **0 su 64** perché chiede il
+  grado 2 e *niente in partita arriva al grado 2* — è il buco che ISSUES 39
+  opzione C riempirebbe; «L'Opera che Porta il Nome» al 5,9%; e il palese di
+  Vaerax **0 su 20**.
+- **E l'indice mentiva su ISSUES 26**: la voce era chiusa da 0.1.76 ma il titolo
+  non portava la spunta. Ricontata: **47 carte su 48** hanno un mestiere, non 35
+  su 48 come diceva la riga d'apertura.
+- Nessuna regola accesa: sono decisioni di contenuto, e il numero è scritto
+  prima perché si possa scegliere guardandolo.
+
+## 0.1.176 — La mappa è ferma perché non ci sono pedine da muovere (D-208)
+
+- Due rimedi per ISSUES 48 erano già stati misurati **a zero**. Il committente
+  ha rifiutato la lettura consolatoria — «ogni era ha la sua Regione
+  disabitata, è il mondo che racconta il secolo» — e ha spostato la domanda dove
+  andava: **perché le pedine non si muovono?**
+- Nessuna sonda lo sapeva dire. `run_move_probe` lo dice, e per ogni casa a fine
+  anno nomina **quale porta era chiusa**: il gettone, la carta, la porta, o la
+  voglia.
+- **La risposta non è nessuna delle tre ipotesi della voce.** Ogni casa comincia
+  con 2 pedine e il tetto è 3: ha **un** gettone di riserva per tutto l'anno. Lo
+  posa, e da lì non ha più niente da muovere — a fine anno il **73%** dei seggi
+  ha tutte le pedine sul tavolo.
+- **Le carte abbondano** (12,57 MUOVERE viste in mano, 3,23 giocate) e la porta
+  non è **mai** sbarrata: quello **0%** chiude da solo le tre ipotesi originali,
+  adiacenza compresa.
+- **E spostare non succede mai: 0,03 volte l'anno.** Non è un difetto nuovo, è
+  D-185 che funziona — il cervello non toglie una pedina da dove la casa vive.
+  Ma vuol dire che il gioco ha **due azioni diverse sotto lo stesso nome**, e la
+  seconda è morta.
+- **La Strada non è povera: è la Regione più ricca della mappa** — quattro
+  vicini su cinque, 4 slot, WEALTH + KNOWLEDGE, tre tag di dominio più `trade`.
+  Perde la corsa all'unico gettone perché nessuno ci comincia.
+- **Tre rimedi prezzati, nessuno acceso**: il tetto a 4, gli studiosi che
+  cominciano sulla Strada, e i due insieme. La combinazione è la sola che vince
+  su ogni riga — la Strada diventa la **seconda** Regione più abitata (0,65 →
+  **2,15**), nessuna scende sotto 1,60, i Consigli tornano dove stavano, e il
+  playtest resta **0/8**.
+- **L'effetto che nessuno cercava**: spostare Lyra sulla Strada **cura mezza
+  ISSUES 52**. I suoi NONE crollano da 21 a 8 e le Vittorie salgono da 11 a 27.
+  Il seggio che in dodici saghe non aveva mai trionfato non era debole: era nel
+  **posto sbagliato**, a Eredan, dove Re Aldric ha già la parola.
+
 ## 0.1.175 — Anche l'anno d'apertura pesca le sue domande (D-207)
 
 - «Le domande non dovevano essere pescate random all'inizio di una saga?» Metà
