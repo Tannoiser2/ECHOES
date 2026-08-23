@@ -168,7 +168,7 @@ func test_chronicle_matches_the_baseline_numbers() -> void:
 	assert_eq(int(chronicle["rounds_per_act"]), 3, "3 round per Atto")
 	assert_eq(int(chronicle["action_opportunities_per_round"]), 2, "2 AO per round")
 	assert_eq(int(chronicle["hand_limit"]), 7, "limite di mano 7")
-	assert_eq(int(chronicle["presence_tokens"]), 3, "3 token presenza")
+	assert_eq(int(chronicle["presence_tokens"]), 4, "4 token presenza (D-211: due di riserva, non uno)")
 	assert_eq(int(chronicle["max_commit_assets"]), 3, "massimo 3 Asset impegnati")
 	assert_eq(int(chronicle["max_condition_commit_assets"]), 2, "massimo 2 per una Condition")
 

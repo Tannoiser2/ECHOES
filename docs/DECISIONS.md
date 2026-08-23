@@ -10,6 +10,99 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-211 — Due pedine di riserva invece di una
+**implemented in 0.1.180** — meta' di ISSUES 48, e la meta' che non costa storie
+
+[D-208](#d-208) aveva misurato perche' la mappa e' ferma: ogni casa comincia con
+**2 pedine** e il tetto e' **3**, quindi ha **un** gettone di riserva per tutto
+l'anno. Lo posa, e da li' non ha piu' niente da muovere — il 71% dei seggi
+finisce l'anno con tutte le pedine sul tavolo.
+
+Il committente ha deciso il risultato: «**non ci puo' essere una regione senza
+nessuno**, e anzi la Strada dei Mercanti dovrebbe essere uno snodo vitale». I
+tre rimedi prezzati erano il tetto a 4, gli studiosi che cominciano sulla
+Strada, e i due insieme.
+
+### Perche' e' passato solo il tetto
+
+Provati **separatamente**, i due rimedi costano cose diverse:
+
+- **il tetto a 4** rompe due prove che descrivevano il setup invece
+  dell'intenzione, e **nessuna storia**;
+- **spostare la casa di Lyra** rompe **tutte e quattro** le storie scritte a
+  mano: cambia la posizione d'apertura, e con quella i Consigli di ogni piano.
+
+E la seconda non e' una manopola: e' **dove vive una casa**, cioe' contenuto. Il
+committente ha scelto il risultato, non quel mezzo — e adesso il mezzo ha un
+prezzo scritto. Va deciso da lui, non dedotto da me.
+
+### I numeri, misurati col gioco di adesso
+
+| | tetto 3 | **tetto 4** |
+|---|---|---|
+| gettoni di riserva per casa | 1,00 | **2,00** |
+| MUOVERE l'anno, Grano | 3,02 | **4,70** |
+| MUOVERE l'anno, Sale | 2,88 | **4,20** |
+| bloccati dal gettone, Grano | 71,2% | **40,6%** |
+| bloccati dal gettone, Sale | 74,4% | **47,5%** |
+| Strada dei Mercanti (Grano), apertura → fine | 0,00 → 0,65 | 0,00 → **1,20** |
+| Terre Nahr (Sale), apertura → fine | 0,00 → 0,55 | 0,00 → **0,88** |
+| Consigli l'anno, uniforme | 3,40 | **3,57** |
+| Consigli l'anno, misto | 3,57 | **3,86** |
+| playtest 100 semi | 0/8 | **0/8** |
+
+**Meta' della decisione e' soddisfatta, meta' no, ed e' scritto quale.** Nel
+Grano nessuna Regione finisce l'anno sotto **1,20** pedine: la Strada non e' piu'
+deserta. Nel Sale le **Terre Nahr restano a 0,88**, sotto una pedina — perche'
+li' non comincia nessuno, ed e' esattamente la causa che D-208 aveva nominato.
+Il tetto allarga il rubinetto; non fa cominciare qualcuno dove non comincia
+nessuno.
+
+E **spostare non succede ancora mai**: 0,03 volte l'anno nel Grano, 0,00 nel
+Sale. Il tetto da' piu' pedine da **posare**, non insegna a **ritirarsi**.
+
+### Le quattro storie: due passano, una migliora, una si dichiara
+
+Provato **senza** lo spostamento di Lyra, il tetto da solo tocca due piani su
+quattro, e solo l'ultimo esito — i Consigli restano gli stessi:
+
+- **B e D** passano invariati: sono storie del gioco spedito, e la guardia di
+  [D-206](#d-206) («almeno una storia per economia») e' soddisfatta;
+- **A, «L'accordo del grano»**, si **ribasa**: l'ultima domanda si chiude
+  DECISIVE invece che con un costo. La sua descrizione dice «la Chronicle di chi
+  ha preparato meglio», e con due gettoni di riserva Aldric arriva all'ultima
+  domanda con la mano ancora piena — il finale nuovo dice meglio quello che la
+  storia gia' diceva. Riscritta la frase, non solo il numero;
+- **C, «La miniera aperta»**, **dichiara il tetto 3**. Il suo finale *e'* la
+  storia: «una domanda che sembrava chiusa si riapre e resta aperta», e col
+  quarto gettone quelle Vie passano invece di cadere. Ribasarla avrebbe reso
+  falsa la sua descrizione; dichiararlo la lascia vera e dice perche'.
+
+E' la differenza fra un numero che si aggiorna e una storia che si perde.
+
+### Due difetti trovati per strada
+
+- **L'inverso di `REMOVE_PRESENCE` rimetteva la pedina in fondo**, non dove
+  stava. Il round trip promette *identico*, non *equivalente*, e questo dava
+  equivalente: il carico dell'inverso non portava il posto. Era invisibile
+  perche' la Regione di prova era l'ultima della lista. Adesso porta `at`.
+  **Non e' un difetto di gioco**: chi sceglie la pedina da spostare passa da
+  `regions_with_presence`, che ordina — ma la promessa dell'effect-sourcing va
+  tenuta com'e' scritta.
+- **Due prove descrivevano il setup invece dell'intenzione.** `test_data_boot`
+  scriveva «3 token presenza» col numero dentro; `test_action_resolver`
+  posava esattamente tre pedine; `test_destiny_warning` ne distribuiva a giro
+  su tre Regioni — e col tetto a 4 ne posava **due** sulla montagna, dove la
+  clausola chiede `min: 1`, quindi l'avviso taceva **per la ragione giusta**.
+  Adesso leggono il tetto dal dato.
+
+  E quel test ha insegnato una cosa che non era scritta da nessuna parte: la
+  pedina che parte non e' una qualsiasi, e' la **prima in ordine alfabetico**
+  fra le Regioni tenute, perche' `_pick_source_region` legge
+  `regions_with_presence` e quella ordina. Il test adesso lo dice e lo verifica.
+
+---
+
 ## D-210 — I mucchi coperti, e il pavimento che non sapeva del cancello
 **implemented in 0.1.179** — ISSUES 49 fase 3, chiusa
 

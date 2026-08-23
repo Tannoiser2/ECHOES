@@ -44,10 +44,31 @@ func _seat_vaerax_on_the_mountain() -> void:
 	var presence: Array = (session.world["entities"]["ENT_VAERAX"]["presence"] as Array).duplicate()
 	for region_id in presence:
 		_apply("REMOVE_PRESENCE", "entity", "ENT_VAERAX", {"region_id": str(region_id)})
+	# **Una sola pedina sulla montagna, e la montagna prima in ordine.** Due
+	# cose, e tutte e due contano:
+	#
+	#   · una sola, perche' la clausola chiede `min: 1` e con due toglierne una
+	#     non spegne niente. La prima stesura distribuiva a giro su tre Regioni:
+	#     col tetto a 3 tornava una ciascuna, ma D-211 l'ha portato a 4 e il
+	#     giro ne posava **due** sulla montagna;
+	#   · prima in ordine, perche' la pedina che parte la sceglie
+	#     `_pick_source_region`, che legge `regions_with_presence` — e quella
+	#     **ordina**. Le altre Regioni stanno tutte dopo «MONTAGNE» in
+	#     alfabeto, cosi' qualunque mossa altrove parte da li'. Con le Miniere
+	#     in mano toccava a loro, e l'avviso taceva per la ragione giusta.
 	var limit: int = int(session.data.chronicles["CHR_01"]["presence_tokens"])
-	var seats: Array = [MOUNTAIN, "REG_TERRE_NAHR", "REG_STRADA_MERCANTI"]
-	for i in range(limit):
-		_apply("ADD_PRESENCE", "entity", "ENT_VAERAX", {"region_id": str(seats[i % seats.size()])})
+	_apply("ADD_PRESENCE", "entity", "ENT_VAERAX", {"region_id": MOUNTAIN})
+	var elsewhere: Array = ["REG_STRADA_MERCANTI", "REG_TERRE_NAHR", "REG_VALLE_VERDE"]
+	for i in range(mini(limit - 1, elsewhere.size())):
+		_apply("ADD_PRESENCE", "entity", "ENT_VAERAX", {"region_id": str(elsewhere[i])})
+	assert_eq(
+		session.service.presence_count("ENT_VAERAX", MOUNTAIN), 1,
+		"una sola pedina sulla montagna: e' la forma della mossa del seme 15308"
+	)
+	assert_eq(
+		str((session.service.regions_with_presence("ENT_VAERAX") as Array)[0]), MOUNTAIN,
+		"e la montagna e' la prima in ordine: e' da li' che parte chi si sposta"
+	)
 
 
 func _decider_with(io: RefCounted) -> RefCounted:

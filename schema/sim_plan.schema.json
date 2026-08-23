@@ -125,6 +125,11 @@
                 }
               },
               "description": "Come `drift_distribution` sulla Chronicle. Una storia scritta a mano e' anche il sacchetto con cui e' stata scritta: da quando la Chronicle pesca le domande il sacchetto lo compone il motore sulla mano pescata, e un piano che non lo dichiara racconta lo stesso anno con un'altra Deriva (D-207)."
+            },
+            "presence_tokens": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Come `presence_tokens` sulla Chronicle. Una storia scritta a mano e' anche il numero di pedine con cui e' stata scritta: cambiare il tetto cambia quante MUOVERE il tavolo puo' pronunciare, e con quelle l'anno intero (D-211)."
             }
           }
         },

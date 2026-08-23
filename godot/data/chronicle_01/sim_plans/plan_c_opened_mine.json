@@ -5,7 +5,7 @@
     {
       "id": "SIM_PLAN_C",
       "title": "La miniera aperta",
-      "description": "Lyra scava, Vaerax si oppone, e la prima proposta sul Cristallo cade con S 2 contro O 5: le Miniere restano chiuse per un anno intero. Poi l'anno si apre - il Grano passa, il Risveglio torna e questa volta passa, le Vie e la Successione si chiudono con accordi normali - e il Cristallo si puo' misurare, ma davanti a un custode. Per Lyra non basta: lo studio sotto guardia e' esattamente cio' che il suo Destino non voleva, e l'anno si chiude per lei sul Minimo, mentre il Popolo Nahr arriva al Trionfo. All'ultimo giro le Vie tornano sul tavolo e cadono per un punto solo (S 3 contro O 2, W -2, M -1): una domanda che sembrava chiusa si riapre e resta aperta. Sei domande, quattro Echi, quattro Verita'.",
+      "description": "Lyra scava, Vaerax si oppone, e la prima proposta sul Cristallo cade con S 2 contro O 5: le Miniere restano chiuse per un anno intero. Poi l'anno si apre - il Grano passa, il Risveglio torna e questa volta passa, le Vie e la Successione si chiudono con accordi normali - e il Cristallo si puo' misurare, ma davanti a un custode. Per Lyra non basta: lo studio sotto guardia e' esattamente cio' che il suo Destino non voleva, e l'anno si chiude per lei sul Minimo, mentre il Popolo Nahr arriva al Trionfo. All'ultimo giro le Vie tornano sul tavolo e cadono per un punto solo (S 3 contro O 2, W -2, M -1): una domanda che sembrava chiusa si riapre e resta aperta. Sei domande, quattro Echi, quattro Verita'. (Scritta col tetto di tre pedine, e lo dichiara: col quarto gettone di D-211 le Vie all'ultimo giro passano invece di cadere, e questa storia - che e' tutta in quella caduta - non sarebbe piu' questa storia.)",
       "chronicle_id": "CHR_01",
       "seed": 20260812,
       "seats": [
@@ -267,7 +267,8 @@
             "tension_id": "TEN_ROADS",
             "count": 2
           }
-        ]
+        ],
+        "presence_tokens": 3
       }
     }
   ]

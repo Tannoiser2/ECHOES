@@ -5,6 +5,40 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.180 — Due pedine di riserva invece di una (D-211)
+
+- Il committente aveva deciso il risultato: «non ci può essere una regione senza
+  nessuno». D-208 aveva prezzato tre rimedi; provati **separatamente**, costano
+  cose molto diverse.
+- **Il tetto a 4** rompe due prove che descrivevano il setup, e **nessuna
+  storia**. **Spostare la casa di Lyra** rompe **tutte e quattro** le storie
+  scritte a mano. Spedito il primo; il secondo è *dove vive una casa*, cioè
+  contenuto, e torna al committente col prezzo scritto.
+- **I numeri**: gettoni di riserva per casa **1 → 2**, MUOVERE l'anno **3,02 →
+  4,70** (Grano) e **2,88 → 4,20** (Sale), bloccati dal gettone **71% → 41%** e
+  **74% → 48%**, Consigli l'anno **3,40 → 3,57** e **3,57 → 3,86**, playtest
+  **0/8**.
+- **Metà voce soddisfatta, e si dice quale.** Nel Grano nessuna Regione finisce
+  sotto **1,20** pedine e la Strada non è più deserta; nel Sale le Terre Nahr
+  restano a **0,88** — lì non comincia nessuno, e il tetto non fa cominciare
+  nessuno.
+- **E spostare continua a non succedere**: 0,03 l'anno nel Grano, 0,00 nel Sale.
+  Più pedine da posare non sono una mappa che si disfa.
+- **Le quattro storie**: B e D passano invariate; **A si ribasa** (l'ultima
+  domanda si chiude decisiva, e con due gettoni di riserva è il finale che la sua
+  descrizione già prometteva); **C dichiara il tetto 3**, perché il suo finale
+  *è* la storia — «una domanda che sembrava chiusa si riapre e resta aperta» — e
+  col quarto gettone quelle Vie passano invece di cadere.
+- **Due difetti per strada.** L'inverso di `REMOVE_PRESENCE` rimetteva la pedina
+  **in fondo** invece che dove stava: il round trip promette *identico* e dava
+  *equivalente*, ed era invisibile perché la Regione di prova era l'ultima della
+  lista. E tre prove descrivevano il setup invece dell'intenzione — una di
+  queste, col tetto a 4, posava **due** pedine sulla montagna dove la clausola
+  ne chiede una, e l'avviso taceva **per la ragione giusta**.
+- Quel test ha anche fatto emergere una regola che non era scritta da nessuna
+  parte: la pedina che parte è la **prima in ordine alfabetico** fra le Regioni
+  tenute. Ora il test lo dice e lo verifica.
+
 ## 0.1.179 — I mucchi coperti, e il pavimento che non sapeva del cancello (D-210)
 
 - **ISSUES 49 è chiusa.** L'ultima fase: «i segnalini coperti danno un valore a

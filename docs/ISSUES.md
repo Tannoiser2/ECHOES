@@ -1893,9 +1893,48 @@ già posata — allargano il rubinetto, non sbloccano la mappa. Se «la mappa si
 muove» vuol dire anche *ritirarsi da un posto*, serve una quarta leva che questa
 misura non copre.
 
-**Fatto quando** nessuna Regione sta sotto una pedina a fine anno in nessuna
-era, e la sonda continua a nominare la più povera così nessuno se la ritrova per
-caso.
+## Metà fatta in 0.1.180: il tetto a 4 ([D-211](DECISIONS.md#d-211))
+
+Provati **separatamente**, i due rimedi costano cose diverse — e questo il
+preventivo non lo diceva:
+
+- **il tetto a 4** rompe due prove che descrivevano il setup, e **nessuna
+  storia**;
+- **spostare la casa di Lyra** rompe **tutte e quattro** le storie scritte a
+  mano, perché cambia la posizione d'apertura e con quella i Consigli di ogni
+  piano.
+
+Spedito il tetto. L'altra metà è **dove vive una casa**, cioè contenuto, e
+aspetta il committente col prezzo ora scritto.
+
+| | tetto 3 | **tetto 4** |
+|---|---|---|
+| gettoni di riserva per casa | 1,00 | **2,00** |
+| MUOVERE l'anno (Grano / Sale) | 3,02 / 2,88 | **4,70 / 4,20** |
+| bloccati dal gettone (Grano / Sale) | 71,2% / 74,4% | **40,6% / 47,5%** |
+| Strada dei Mercanti (Grano) | 0,00 → 0,65 | 0,00 → **1,20** |
+| Terre Nahr (Sale) | 0,00 → 0,55 | 0,00 → **0,88** |
+| Consigli l'anno (unif. / misto) | 3,40 / 3,57 | **3,57 / 3,86** |
+| playtest 100 semi | 0/8 | **0/8** |
+
+**Nel Grano la voce è soddisfatta**: nessuna Regione finisce l'anno sotto 1,20
+pedine, e la Strada non è più deserta. **Nel Sale no**: le Terre Nahr restano a
+**0,88**, sotto una pedina, perché lì non comincia nessuno — la causa che D-208
+aveva nominato e che il tetto non tocca.
+
+E **spostare continua a non succedere**: 0,03 l'anno nel Grano, 0,00 nel Sale.
+Più pedine da posare non sono una mappa che si disfa.
+
+**Resta da decidere**, e sono due decisioni di contenuto gemelle:
+
+1. **chi comincia sulla Strada dei Mercanti** nel Grano — misurato: Lyra ci
+   porta la Regione a 1,00 → 1,57, e cura mezza ISSUES 52; costa le quattro
+   storie;
+2. **chi comincia sulle Terre Nahr** nel Sale — non ancora misurato.
+
+**Fatto quando** nessuna Regione sta sotto una pedina a fine anno **in nessuna
+delle due ere**, e la sonda continua a nominare la più povera così nessuno se la
+ritrova per caso.
 
 ### 49. ✅ Le Tensioni come mucchi di segnalini coperti — chiusa in 0.1.179
 

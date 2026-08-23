@@ -46,9 +46,15 @@ func test_round_trip_every_reversible_type() -> void:
 	_round_trip(
 		"ADD_PRESENCE", _make("ADD_PRESENCE", "entity", "ENT_LYRA", {"region_id": "REG_EREDAN"})
 	)
+	# Dove Lyra vive lo dice il dato, non questa riga: D-211 l'ha spostata da
+	# Eredan alla Strada dei Mercanti, e un `REMOVE_PRESENCE` scritto col nome
+	# della Regione dentro falliva per la ragione sbagliata — «non ha pedine
+	# li'» invece di «l'inverso non torna».
 	_round_trip(
 		"REMOVE_PRESENCE",
-		_make("REMOVE_PRESENCE", "entity", "ENT_LYRA", {"region_id": "REG_EREDAN"})
+		_make("REMOVE_PRESENCE", "entity", "ENT_LYRA", {
+			"region_id": str((session.data.entities["ENT_LYRA"]["presence"] as Array)[0])
+		})
 	)
 	_round_trip(
 		"SET_CONTROL", _make("SET_CONTROL", "region", "REG_VALLE_VERDE", {"entity_id": "ENT_NAHR"})
