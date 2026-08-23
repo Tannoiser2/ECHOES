@@ -49,6 +49,14 @@ func _run_chronicle(chronicle_id: String, seed_value: int, decider: RefCounted) 
 	if session != null:
 		session.dispose()
 	session = GameSession.new(data())
+	# Il pavimento e' la regola di **prima** del Consiglio di chiusura (D-214):
+	# esisteva per garantire che un anno non finisse muto, e con un Consiglio a
+	# fine di ogni Atto quella garanzia e' strutturale. Qui si prova il pavimento,
+	# quindi si gioca il regime che ce l'ha - come `play_classic()` fa altrove.
+	var chronicle: Dictionary = session.data.chronicles[chronicle_id] as Dictionary
+	var rules: Dictionary = (chronicle.get("confluence_rules", {}) as Dictionary).duplicate()
+	rules.erase("at_end_of_act")
+	chronicle["confluence_rules"] = rules
 	session.setup(chronicle_id, SEATS, seed_value)
 	return await session.run(decider)
 
@@ -95,8 +103,13 @@ func test_no_chronicle_in_a_run_of_seeds_ends_in_silence() -> void:
 ## The floor is a floor and not a thumb on the scale: a year that decides its own
 ## questions never notices it is there. CHR_01 at this seed is a loud year, and
 ## its Councils are the ones the table opened - none of them forced.
+##
+## Il seme era 4242 e adesso e' 4246: con la biblioteca unica (D-213) CHR_01
+## pesca quattro domande su dodici invece delle quattro scritte, quindi lo
+## stesso seme apparecchia un altro anno. Il 4242 ne fa due, che non basta a
+## provare niente; il 4246 ne fa sei.
 func test_a_loud_year_is_left_exactly_as_it_was() -> void:
-	var report: Dictionary = await _run_chronicle("CHR_01", 4242, PolicyDecider.new(null))
+	var report: Dictionary = await _run_chronicle("CHR_01", 4246, PolicyDecider.new(null))
 	assert_true(
 		(report["confluences"] as Array).size() > 2,
 		"il seme scelto e un anno rumoroso, altrimenti il test non prova niente"

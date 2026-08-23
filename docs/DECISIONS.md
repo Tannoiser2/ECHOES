@@ -10,6 +10,100 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-214 — Il Consiglio chiude l'Atto, e il cancello si spegne
+**implemented in 0.1.183** — la voce che avevo rimandato senza dirlo
+
+*«Inoltre scaldare il mondo con due pedine non lo avevamo tolto? Il concilio c'e'
+alla fine di ogni atto, non servono due gettoni per farlo partire.»*
+
+Il committente l'aveva gia' deciso una volta: *«il consiglio si puo' aprire alla
+fine di ogni atto in automatico e la domanda con piu' valore sara' quella
+dibattuta, cosi' e' sicuro che almeno tre consigli ci saranno sempre»*. Io
+l'avevo prezzato, l'avevo chiamato «il cambio piu' grosso di tutti quelli in
+lista», e l'avevo messo in coda — **senza piu' dirlo**. Ha dovuto chiedere due
+volte, e la seconda per sapere se il cancello a due gettoni era ancora acceso.
+Lo era.
+
+### Come e' fatto adesso
+
+`confluence_rules.at_end_of_act` sulla Chronicle. Acceso:
+
+- **a fine di ogni Atto si tiene un Consiglio**, sulla domanda col mucchio piu'
+  alto — che e' esattamente cio' che i gettoni coperti costruiscono per tutto
+  l'Atto ([D-210](#d-210)): si girano, si contano, e vince chi ha scaldato di
+  piu';
+- **il round non ne apre piu' nessuno da solo**: ne' per soglia, ne' per
+  gettoni nel sacchetto. `tension_tokens.table_gate` e' stato **tolto dai dati
+  spediti** — non dal motore, perche' resta una regola che una Chronicle puo'
+  dichiarare, e una prova la copre;
+- **resta RIVENDICARE**, che e' il modo di portare al tavolo una **seconda**
+  domanda. Senza quello la regola sarebbe un Consiglio *in piu'* invece di un
+  Consiglio *al posto* degli altri.
+
+**I gettoni smettono di dire *se* si parla e dicono soltanto *di cosa*.** Che e'
+il lavoro che [D-210](#d-210) gli aveva dato e che il cancello gli toglieva a
+meta'.
+
+### Il difetto che ha scoperto: due prove che non erano la stessa prova
+
+Alla prima misura la promessa **non era mantenuta**: su cento anni, tre
+chiudevano con meno di un Consiglio per Atto, e uno rifiutava **otto aperture di
+fila** sullo stesso template.
+
+La causa e' che il codice aveva due domande diverse e le trattava da sinonimi.
+`has_fresh_question` chiede «resta un quesito mai posto?». Ma il template apre un
+quesito solo se e' **idoneo** — la Tensione abbastanza alta, il mondo con un
+certo segno. Un quesito puo' essere freschissimo e non aprirsi.
+
+Finche' il Consiglio si apriva a soglia la differenza non si vedeva, perche'
+arrivare a soglia rendeva idoneo quasi tutto. Il Consiglio di fine Atto si apre
+**quando l'Atto finisce**, calda o no, e la crepa e' venuta fuori al primo
+tentativo. Ora c'e' `can_open()`, che fa la prova vera, e la chiusura scende al
+mucchio successivo invece di perdere il Consiglio.
+
+### I numeri, 100 semi, seme 7000
+
+| | prima | **dopo** |
+|---|---|---|
+| Consigli l'anno, misto | 3,09 | **4,49** |
+| Consigli l'anno, uniforme | 3,20 | **4,64** |
+| il minimo su 100 anni | **1** | **3** |
+| Verita' scritte, misto | 254 | **317** |
+| Verita' scritte, uniforme | 229 | **319** |
+| Atti chiusi senza Consiglio | — | **0 su 300** |
+| playtest 100 semi | 0/8 | **0/8** |
+
+**Il minimo e' tre, e non e' una media: e' un pavimento.** Su trecento Atti
+misurati nessuno si chiude muto, e il tavolo piu' silenzioso possibile — quattro
+seggi che passano ogni round — ne prende tre lo stesso. Il gioco e' tornato a
+scrivere piu' Verita' di prima dell'unificazione (317 contro 295), con dodici
+domande in biblioteca invece di sei.
+
+### Il pavimento di fine anno non serve piu'
+
+[D-047](#d-047) aveva messo un pavimento perche' un anno poteva chiudersi con
+**zero** Consigli. Con un Consiglio per Atto la garanzia e' strutturale, e il
+pavimento e' una seconda cintura su una che tiene gia'. Non e' stato tolto dal
+motore — una Chronicle che non tiene il Consiglio di chiusura lo vuole ancora, e
+`test_year_end_floor` gira su quel regime dichiarandolo — ma sui dati spediti
+**non scatta mai**.
+
+### Quello che si dichiara
+
+- **43 aperture su cento anni vengono ancora rifiutate**, e adesso sono tutte
+  Consigli **forzati da RIVENDICARE**: il Claim non passa da `can_open`, quindi
+  si puo' spendere un'azione per forzare un Consiglio che poi non si apre. E'
+  un difetto vero e **preesistente**, che questa misura ha portato alla luce; non
+  e' stato toccato qui.
+- **Le quattro storie scritte a mano dichiarano il regime in cui sono nate**
+  (`chronicle_overrides.confluence_rules`), come gia' dichiarano l'economia
+  ([D-189](#d-189)) e la mappa ([D-212](#d-212)).
+- **Il lato classico della suite spegne anche questo interruttore.** E' la
+  quarta volta che `play_classic()` cresce di una riga, ed e' la stessa lezione
+  di D-184: due meta' di due giochi diversi non si provano insieme.
+
+---
+
 ## D-213 — Un setup solo: le case si pescano come le domande
 **implemented in 0.1.182** — ISSUES 48/52 cambiano forma, e tre difetti nascosti vengono fuori
 

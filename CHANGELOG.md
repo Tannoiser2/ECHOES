@@ -5,6 +5,40 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.183 — Il Consiglio chiude l'Atto, e il cancello si spegne (D-214)
+
+- Decisione del committente, già presa una volta e da me rimandata **senza
+  dirlo**: «*il concilio c'è alla fine di ogni atto, non servono due gettoni per
+  farlo partire*». Ha dovuto chiedere due volte.
+- **`confluence_rules.at_end_of_act`**: a fine di ogni Atto si tiene un
+  Consiglio sulla domanda col **mucchio più alto** — cioè su ciò che i gettoni
+  coperti costruiscono per tutto l'Atto (D-210). Il round non ne apre più
+  nessuno da solo, né per soglia né per gettoni: **`table_gate` è tolto dai dati
+  spediti** (non dal motore, che resta a disposizione di una Chronicle che lo
+  dichiari). Resta RIVENDICARE per portare al tavolo una seconda domanda.
+- **I gettoni smettono di dire *se* si parla e dicono soltanto *di cosa*.**
+- **I numeri** (100 semi, seme 7000): Consigli l'anno **3,09 → 4,49** (misto) e
+  **3,20 → 4,64** (uniforme), Verità scritte **254 → 317** e **229 → 319**, e il
+  minimo su cento anni **1 → 3**. Su **300 Atti misurati, 0 chiusi senza
+  Consiglio**; anche un tavolo che passa ogni round ne prende tre. Playtest
+  **0/8**.
+- **Il difetto che la regola ha scoperto**: il codice aveva due domande diverse
+  trattate da sinonimi. `has_fresh_question` chiede «resta un quesito mai
+  posto?», ma il template apre solo un quesito **idoneo**. A soglia la
+  differenza non si vedeva; a fine Atto sì — tre anni su cento chiudevano sotto
+  la promessa e uno rifiutava otto aperture di fila. Ora c'è `can_open()`, e la
+  chiusura scende al mucchio successivo invece di perdere il Consiglio.
+- **Il pavimento di fine anno (D-047) non scatta più** sui dati spediti: con un
+  Consiglio per Atto la garanzia è strutturale. Resta nel motore per le
+  Chronicle che non tengono il Consiglio di chiusura.
+- **Dichiarato e non risolto**: 43 aperture su cento anni vengono ancora
+  rifiutate, e sono tutte Consigli **forzati da RIVENDICARE** — il Claim non
+  passa da `can_open`, quindi si può spendere un'azione per forzare un Consiglio
+  che poi non si apre. Difetto vero e preesistente, portato alla luce da questa
+  misura.
+
+---
+
 ## 0.1.182 — Un setup solo: le case si pescano come le domande (D-213)
 
 - Il committente: «*non voglio due ere, voglio un unico setup dove si pescano

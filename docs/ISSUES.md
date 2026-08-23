@@ -2536,6 +2536,42 @@ quella che deve toccarla.
 
 ---
 
+### 53. RIVENDICARE può forzare un Consiglio che poi non si apre
+
+`regole` · `difetto` · **misurata in 0.1.183** ([D-214](DECISIONS.md#d-214))
+
+Trovata misurando il Consiglio di fine Atto: su cento anni ci sono **43 aperture
+rifiutate**, e adesso che la chiusura d'Atto sceglie con `can_open()` sono
+**tutte** Consigli forzati da RIVENDICARE.
+
+Il Claim non passa da quella prova. Un seggio può quindi:
+
+1. spendere un'azione per creare un Claim,
+2. spendere una seconda azione per forzare il Consiglio,
+3. e vedersi rifiutare l'apertura perché nessun quesito del template è idoneo —
+   la Tensione non è abbastanza alta, o il mondo non porta il segno che serve.
+
+**Due azioni su diciotto, e in cambio una riga di log.** È il difetto peggiore
+di tutti quelli aperti, perché non è uno squilibrio: è un'azione legale che non
+fa niente e non avvisa.
+
+**È preesistente**, non l'ha introdotto D-214: prima si nascondeva perché quasi
+tutti i Consigli si aprivano a soglia, e a soglia i quesiti sono quasi sempre
+idonei. La chiusura d'Atto l'ha isolato.
+
+**Le due strade:**
+
+1. **RIVENDICARE non si può creare su una domanda che non ha un quesito idoneo**
+   — la prova esiste già, si tratta di chiamarla anche lì. Il rischio è che una
+   casa impari a leggere il rifiuto e ne deduca informazione privata.
+2. **Il Claim forzato non si consuma se il Consiglio non si apre** — l'azione
+   torna disponibile. Più semplice, e non dice niente a nessuno.
+
+**Fatto quando** nessuna apertura viene rifiutata su 100 anni, o quando un
+rifiuto non costa niente a chi l'ha chiesto.
+
+---
+
 ---
 
 ## Come si aprono

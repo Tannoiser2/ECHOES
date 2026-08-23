@@ -140,6 +140,11 @@
               "type": "integer",
               "minimum": 1,
               "description": "Come `presence_tokens` sulla Chronicle. Una storia scritta a mano e' anche il numero di pedine con cui e' stata scritta: cambiare il tetto cambia quante MUOVERE il tavolo puo' pronunciare, e con quelle l'anno intero (D-211)."
+            },
+            "confluence_rules": {
+              "type": "object",
+              "additionalProperties": true,
+              "description": "Come `confluence_rules` sulla Chronicle (D-214). Serve a dichiarare **quando** il Consiglio si apre: una storia scritta quando i Consigli si aprivano a soglia, round per round, non e' la stessa storia se adesso se ne tiene uno a fine Atto — cambia quanti sono e quali domande arrivano al tavolo."
             }
           }
         },

@@ -43,12 +43,11 @@ Le tre idee che lo distinguono da un gioco di conquista:
 SAGA            più Chronicle, a distanza di 1 → 200 anni
  └─ CHRONICLE   un anno · 3 Atti
      └─ ATTO    3 round · a inizio Atto ogni giocatore pesca 2 carte Narratore
-         └─ ROUND
-             ├─ 1. AZIONI      ogni giocatore spende 2 Opportunità d'Azione,
-             │                 e ogni azione riuscita fa cadere un gettone
-             │                 coperto su una domanda
-             └─ 2. CANCELLO    quando sul tavolo sono scesi 2 gettoni si apre
-                               UN Consiglio, e si dibatte il mucchio più alto
+     │   └─ ROUND
+     │       └─ AZIONI     ogni giocatore spende 2 Opportunità d'Azione,
+     │                     e ogni azione riuscita fa cadere un gettone
+     │                     coperto su una domanda
+     └─ e alla fine dell'Atto: IL CONSIGLIO, sul mucchio più alto
 ```
 
 **Una Chronicle = 3 Atti × 3 round = 9 round.** Ogni giocatore ha 2 Opportunità
@@ -356,22 +355,25 @@ scalda. *Fino a 0.1.159 era un orologio: una domanda saliva a fine di ogni round
 nei dati, che non rivela mai il numero: *«I granai di Eredan si aprono un giorno
 su tre. Nessuno lo ha annunciato: si vede dalle code.»*
 
-**Il cancello del tavolo.** Dalla 0.1.171 non c'è più una soglia per domanda:
-ce n'è **una per il tavolo**. Ogni carta calata fa cadere un gettone su una
-domanda, i mucchi crescono, e quando sul tavolo sono scesi **due gettoni** si
-apre un Consiglio: la domanda che si dibatte è il **mucchio più alto**, e poi il
-conto riparte da zero. Al massimo un Consiglio per round.
+**Quando si tiene il Consiglio.** Alla **fine di ogni Atto**, sempre. Tre Atti,
+tre Consigli garantiti. La domanda che si dibatte è quella col **mucchio più
+alto**: ogni carta calata durante l'Atto fa cadere un gettone coperto su una
+domanda, i mucchi crescono a faccia in giù, e alla chiusura si girano e si
+contano.
 
-Un Consiglio lo può aprire anche un giocatore, spendendo una rivendicazione
-matura: anche quello svuota il sacchetto.
+Un Consiglio in più lo può aprire un giocatore, spendendo una rivendicazione
+matura — ed è l'unico modo di portare al tavolo una **seconda** domanda dentro
+lo stesso Atto.
 
-Il numero che le Tensioni portano scritto (la vecchia soglia) **non apre più
-niente**, e infatti non si stampa da nessuna parte: quello che si legge è
-l'altezza del mucchio, col più alto segnalato.
+Quindi **i gettoni non dicono *se* si parla: dicono *di cosa*.** Il numero che le
+Tensioni portano scritto (la vecchia soglia) non apre più niente e non si stampa
+da nessuna parte; quello che si legge è quanti gettoni sono caduti, mai quanto
+valgono.
 
-**Costo dichiarato**: i Consigli passano da 6,0 a **3,5–4,0 l'anno** — da due per
-Atto a poco più di uno. Il Consiglio smette di essere routine e torna a essere un
-evento ([D-203](DECISIONS.md#d-203)).
+**Misurato**: **4,5 Consigli l'anno**, da un minimo di **3** a un massimo di 8 su
+cento partite. Su trecento Atti misurati, nessuno si chiude senza Consiglio — e
+un tavolo che passa ogni round ne prende tre lo stesso
+([D-214](DECISIONS.md#d-214)).
 
 ---
 
@@ -473,7 +475,7 @@ il mondo cambia. La sequenza è fissa e ha undici passi, **A → K**.
 
 | passo | cosa succede | pubblico o segreto |
 |---|---|---|
-| **A. Innesco** | Sul tavolo sono scesi due gettoni (e si dibatte il mucchio più alto), oppure qualcuno ha forzato con RIVENDICARE, oppure una carta Narratore lo ha aperto | pubblico |
+| **A. Innesco** | L'Atto si chiude (e si dibatte il mucchio più alto), oppure qualcuno ha forzato con RIVENDICARE, oppure una carta Narratore lo ha aperto | pubblico |
 | **B. Domanda** | Si sceglie la domanda dell'anno fra quelle del modello. Una domanda già decisa quest'anno **non torna** finché ne resta una nuova da fare | pubblico |
 | **C. Proposta** | Il **proponente** sceglie una proposta fra quelle strutturate del modello | pubblico |
 | **D. Posizione** | In ordine di turno, ognuno dichiara: **Sostengo · Mi oppongo · A una condizione · Mi astengo**. Chi pone una condizione dichiara subito quale | **pubblico** |
@@ -1105,8 +1107,10 @@ il Consiglio è il gioco.
 ### Cinque riquadri che meritano di stare grandi
 
 1. **La piramide del tempo** (§1) — Saga › Chronicle › Atto › Round › Azione,
-   con il ciclo **AZIONI → CANCELLO** che gira dentro il round: ogni azione fa
-   cadere un gettone coperto, e a due gettoni il tavolo si ferma.
+   con **il Consiglio che chiude ogni Atto**: dentro il round ogni azione fa
+   cadere un gettone coperto su una domanda, i mucchi crescono a faccia in giù
+   per tutto l'Atto, e alla fine si girano — il più alto è quello che si
+   dibatte.
 2. **Il turno in una riga** — le **cinque azioni che una carta può portare** come
    cinque icone su una barra, con sopra scritto **«2 per round, 18 in tutto
    l'anno»**. È il numero che fa capire quanto costa ogni scelta — e sotto la

@@ -388,6 +388,10 @@
                 }
               },
               "description": "Quanto pesa un legame al Consiglio (D-139). Un alleato che sostiene il proponente, e che impegna carte per farlo, parla piu' forte di uno sconosciuto: il bonus va al fronte SUPPORT e solo al legame caldo (ALLY un passo, BOUND due). La forma simmetrica - il nemico che osteggia pesa quanto l'alleato che sostiene - e' stata scritta, misurata e scartata: il tavolo di partenza ha ostilita' e non ha alleanze, quindi un dente simmetrico pesa da un lato solo (D-139). Chi tradisce il proprio legame non pesa di piu' ne' di meno: parla da solo. Omesso, i legami non toccano il tavolo - com'era prima di D-139."
+            },
+            "at_end_of_act": {
+              "type": "boolean",
+              "description": "Il Consiglio si tiene alla fine di ogni Atto, sulla domanda col mucchio piu' alto (D-214). Decisione del committente: «il concilio c'e' alla fine di ogni atto, non servono due gettoni per farlo partire». Acceso, il Consiglio non si apre piu' a fine round — ne' per soglia ne' per gettoni nel sacchetto — e restano solo i Consigli **forzati** da RIVENDICARE, che e' il modo di dibattere una seconda domanda. Cosi' il numero di Consigli non e' piu' un'incognita del sistema: sono almeno quanti sono gli Atti."
             }
           }
         },

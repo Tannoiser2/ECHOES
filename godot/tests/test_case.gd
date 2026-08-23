@@ -209,4 +209,11 @@ func play_classic() -> void:
 	# **prima** di `setup()`: se la spegnesse solo qui, la mano pescata
 	# resterebbe sul tavolo e l'RNG sarebbe gia' stato consumato.
 	chronicle["tension_pool"] = {}
+	# ...e il Consiglio si apre a soglia, round per round, non a fine Atto
+	# (D-214). E' l'ultima meta' dell'interruttore: con il Consiglio di chiusura
+	# acceso il numero di Consigli di un anno e' un altro, e mezza suite
+	# misurerebbe un terzo gioco.
+	var rules: Dictionary = (chronicle.get("confluence_rules", {}) as Dictionary).duplicate()
+	rules.erase("at_end_of_act")
+	chronicle["confluence_rules"] = rules
 	session.actions.set("_chronicle", chronicle)

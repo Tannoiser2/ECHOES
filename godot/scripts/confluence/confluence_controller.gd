@@ -210,6 +210,26 @@ func has_fresh_question(tension_id: String) -> bool:
 	return false
 
 
+## La prova vera: **questa domanda si aprirebbe adesso?**
+##
+## `has_fresh_question` risponde a una domanda piu' debole — «resta un quesito
+## mai posto?» — e le due cose divergono, perche' un quesito puo' essere fresco
+## e **non idoneo**: il template lo apre solo se la Tensione e' abbastanza alta o
+## se il mondo porta un certo segno. Finche' il Consiglio si apriva a soglia la
+## differenza non si vedeva, perche' arrivare a soglia rendeva idoneo quasi
+## tutto; col Consiglio di fine Atto (D-214) si e' vista subito: su cento anni,
+## tre chiudevano con meno di un Consiglio per Atto, e uno ne rifiutava otto di
+## fila sullo stesso template.
+func can_open(tension_id: String) -> bool:
+	var template: Dictionary = data.confluence_template_for(tension_id)
+	if template.is_empty():
+		return false
+	var proponent: String = service.determine_proponent(
+		tension_id, narrative.focus_region(tension_id)
+	)
+	return _select_question(template, proponent, tension_id) != ""
+
+
 func _asked(tension_id: String) -> Array:
 	return (world.get("questions_asked", {}) as Dictionary).get(tension_id, []) as Array
 

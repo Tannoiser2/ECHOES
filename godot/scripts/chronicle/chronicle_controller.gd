@@ -363,6 +363,24 @@ func _end_of_round_confluence(decider: Object) -> void:
 	var tension_id: String = ""
 	var trigger: Dictionary = {}
 
+	# Col Consiglio a fine Atto (D-214) il round non ne apre piu' nessuno da
+	# solo: restano i forzati da RIVENDICARE, che sono il modo di portare al
+	# tavolo una **seconda** domanda. Il numero di Consigli smette di essere
+	# un'incognita del sistema — sono almeno quanti sono gli Atti — e i gettoni
+	# smettono di dire *se* si parla per dire soltanto *di cosa*.
+	if _council_at_end_of_act():
+		if forced == null:
+			world["confluence_queue"] = []
+			return
+		_set_phase(int(world["act"]), int(world["round"]), "CONFLUENCE")
+		world["confluence_queue"] = []
+		await run_confluence(
+			str(forced["tension_id"]),
+			{"kind": "CLAIM", "entity_id": str(forced["entity_id"])},
+			decider
+		)
+		return
+
 	if forced != null:
 		tension_id = str(forced["tension_id"])
 		trigger = {"kind": "CLAIM", "entity_id": str(forced["entity_id"])}
@@ -562,12 +580,69 @@ func run_confluence(tension_id: String, trigger: Dictionary, decider: Object) ->
 ## la cala un giocatore, nel suo turno, pagandola. Qui resta solo il sipario:
 ## se in tutto l'atto nessuno ha parlato, il silenzio e' una scelta del tavolo
 ## (decisione del committente: nessuna rete di sicurezza).
-func end_of_act(act: int, _decider: Object) -> void:
+func end_of_act(act: int, decider: Object) -> void:
 	_set_phase(act, int(_chronicle["rounds_per_act"]), "ACT_ECHO")
 	var played: int = int(world.get("echoes_played_in_act", 0))
 	world["echoes_played_in_act"] = 0
 	if played == 0:
 		log.bullet("L'Atto %d si chiude senza una carta del Narratore: il silenzio resta scritto." % act)
+	await _council_closing_the_act(act, decider)
+
+
+## Il Consiglio di fine Atto (D-214).
+##
+## *«Il consiglio si puo' aprire alla fine di ogni atto in automatico e la
+## domanda con piu' valore sara' quella dibattuta, cosi' e' sicuro che almeno
+## tre consigli ci saranno sempre.»*
+##
+## Quale domanda: **il mucchio piu' alto**, che e' esattamente cio' che i
+## gettoni coperti costruiscono per tutto l'Atto ([D-210](DECISIONS.md#d-210)) —
+## si girano, si contano, e vince chi ha scaldato di piu'. Se quel mucchio ha
+## gia' detto tutto quello che sapeva dire, si scende al successivo invece di
+## riaprire una domanda gia' chiusa (D-077).
+func _council_closing_the_act(act: int, decider: Object) -> void:
+	if not _council_at_end_of_act():
+		return
+	var tension_id: String = _hottest_with_something_to_say()
+	if tension_id == "":
+		log.bullet(
+			"L'Atto %d si chiude senza Consiglio: nessuna domanda ha ancora qualcosa di nuovo da decidere."
+			% act
+		)
+		return
+	log.section("IL CONSIGLIO DI FINE ATTO %d" % act)
+	_set_phase(act, int(_chronicle["rounds_per_act"]), "CONFLUENCE")
+	await run_confluence(tension_id, {"kind": "THRESHOLD", "entity_id": ""}, decider)
+
+
+func _council_at_end_of_act() -> bool:
+	return bool(
+		(_chronicle.get("confluence_rules", {}) as Dictionary).get("at_end_of_act", false)
+	)
+
+
+## Il mucchio piu' alto fra quelli che hanno ancora una domanda fresca. In
+## ordine di altezza, a parita' l'ordine in cui le domande sono state pescate -
+## la stessa regola di `tensions_at_threshold`, cosi' un Consiglio forzato e uno
+## di fine Atto scelgono allo stesso modo.
+func _hottest_with_something_to_say() -> String:
+	var order: Array = (world["tensions"] as Dictionary).keys()
+	var ranked: Array = order.duplicate()
+	ranked.sort_custom(func(a: String, b: String) -> bool:
+		var value_a: int = session.tensions.value(a)
+		var value_b: int = session.tensions.value(b)
+		if value_a == value_b:
+			return order.find(a) < order.find(b)
+		return value_a > value_b
+	)
+	for tension_id in ranked:
+		# `can_open` e non `has_fresh_question`: la seconda dice se resta un
+		# quesito mai posto, la prima se ce n'e' uno che **si aprirebbe adesso**.
+		# Scegliere sulla seconda faceva rifiutare l'apertura e perdere il
+		# Consiglio dell'Atto, invece di scendere al mucchio successivo.
+		if session.confluence.can_open(str(tension_id)):
+			return str(tension_id)
+	return ""
 
 
 ## La mano del Narratore (ISSUES 23, D-118): all'apertura dell'atto ogni seggio
