@@ -69,11 +69,14 @@ func _initialize() -> void:
 		var carried: Dictionary = {}
 		var results: Dictionary = {}
 		var year: int = 0
+		# Il tavolo si pesca **una volta per saga** (D-213): sono le stesse case
+		# che invecchiano insieme, e ripescarle a ogni anno racconterebbe dieci
+		# storie diverse invece di una lunga.
+		var seats: Array = GameSession.seats_for(data, first_id, first_seed + saga * 1000)
 		for index in range(chronicles):
 			var chronicle_id: String = first_id if index == 0 else later_id
 			var seed_value: int = first_seed + saga * 1000 + index
 			var session: RefCounted = GameSession.new(data)
-			var seats: Array = (data.chronicles[first_id]["entities"] as Array).duplicate()
 			session.setup(chronicle_id, seats, seed_value)
 			# L'eredita' e' la stessa di `run_saga`: il mondo di prima e i Destini
 			# di prima, applicati dentro `run()`.

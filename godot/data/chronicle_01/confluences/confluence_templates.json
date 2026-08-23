@@ -332,7 +332,7 @@
               "type": "SET_ENTITY_TAG",
               "target": {
                 "kind": "entity",
-                "id": "ENT_LYRA"
+                "id": "$conditioner"
               },
               "payload": {
                 "tag": "discovery:shared_record"
@@ -692,7 +692,7 @@
               "type": "SET_ENTITY_TAG",
               "target": {
                 "kind": "entity",
-                "id": "ENT_LYRA"
+                "id": "$conditioner"
               },
               "payload": {
                 "tag": "discovery:trade_ledger"

@@ -43,10 +43,11 @@ Le tre idee che lo distinguono da un gioco di conquista:
 SAGA            più Chronicle, a distanza di 1 → 200 anni
  └─ CHRONICLE   un anno · 3 Atti
      └─ ATTO    3 round · a inizio Atto ogni giocatore pesca 2 carte Narratore
-         └─ ROUND
-             ├─ 1. AZIONI      ogni giocatore spende 2 Opportunità d'Azione
-             ├─ 2. DERIVA      il mondo alza da solo +1 a una Tensione
-             └─ 3. SOGLIA      si apre al massimo UN Consiglio
+     │   └─ ROUND
+     │       └─ AZIONI     ogni giocatore spende 2 Opportunità d'Azione,
+     │                     e ogni azione riuscita fa cadere un gettone
+     │                     coperto su una domanda
+     └─ e alla fine dell'Atto: IL CONSIGLIO, sul mucchio più alto
 ```
 
 **Una Chronicle = 3 Atti × 3 round = 9 round.** Ogni giocatore ha 2 Opportunità
@@ -84,19 +85,22 @@ E tre cose che il gioco **scrive** e non si possono cancellare:
 
 ### Le quattro casate
 
-Un tavolo è **quattro casate**, e non sono simmetriche: hanno bisogni diversi,
-partono in posti diversi, e si detestano già prima che il gioco cominci.
+Un tavolo è **quattro casate su otto**, pescate a caso all'inizio della saga, e
+non sono simmetriche: hanno bisogni diversi, partono in posti diversi, e alcune
+si detestano già prima che il gioco cominci. Casate lontane secoli possono
+sedersi insieme — è la stessa terra, e il gioco non racconta *un* secolo ma
+*quel* secolo che il seme ha apparecchiato.
 
-**Chronicle I — l'anno 812, «La Carestia Rossa»:**
+**Le prime quattro casate:**
 
 | casata | che cosa è | bisogno | parte da | rapporti d'apertura |
 |---|---|---|---|---|
 | **Re Aldric** | il sovrano. Terzo della sua casa, primo a regnare su un raccolto che non basta | POTERE | Eredan, Valle Verde | **ostile** ai Nahr |
 | **Popolo Nahr** | non un esercito e non una folla: una lingua, un calendario e undicimila persone che si spostano quando la terra smette di rispondere | SOPRAVVIVENZA | Terre Nahr, Valle Verde | **ostile** ad Aldric |
-| **Lyra** | studiosa senza patrono. È scesa nelle Miniere per misurare una pietra e ne è risalita con una domanda | SAPERE | Miniere Antiche, Eredan | **ostile** a Vaerax |
+| **Lyra** | studiosa senza patrono. È scesa nelle Miniere per misurare una pietra e ne è risalita con una domanda | SAPERE | Miniere Antiche, Strada dei Mercanti | **ostile** a Vaerax |
 | **Vaerax** | dorme sotto le Montagne Rosse da prima che Eredan avesse un nome. Si sveglia raramente, e mai per una ragione piccola | PROTEZIONE | Montagne Rosse, Miniere Antiche | **ostile** a Lyra |
 
-**Chronicle III — secoli dopo, «l'anno del Sale»:** stessa mappa, gente nuova.
+**Le altre quattro:** stessa mappa, gente d'altri secoli.
 
 | casata | che cosa è | bisogno | parte da | rapporti d'apertura |
 |---|---|---|---|---|
@@ -105,13 +109,18 @@ partono in posti diversi, e si detestano già prima che il gioco cominci.
 | **Priore Anselmo** | l'Ordine del Vetro: discende da una scuola e si comporta da fede. Custodisce quello che fu misurato | FEDE | Miniere Antiche, Eredan | **nemico** della Cenere, alleato alle Città |
 | **Le Città Libere** | sette città che si governano da sole e si riuniscono solo quando non possono evitarlo | LIBERTÀ | Eredan, Valle Verde | alleate al Vetro, **ostili** al Sale |
 
-Nota per l'infografica: i due tavoli hanno **forme di conflitto diverse**. Nel
-primo anno ci sono due ostilità incrociate e nessuna alleanza — tutti soli. Nel
-terzo ci sono già **due coppie alleate** che si guardano storto, che è una
-partita completamente diversa a parità di regole.
+I rapporti d'apertura sono scritti **fra le quattro del proprio gruppo**: le
+prime quattro si conoscono fra loro, le altre quattro fra loro. Una coppia
+mista — Aldric e il Sale, Lyra e il Vetro — parte **neutrale**, perché non si
+sono mai incontrate. Questo cambia la forma della partita: un tavolo tutto dello
+stesso gruppo apre con ostilità e alleanze già in campo, un tavolo misto apre
+piatto e deve costruirsi i suoi rancori.
+
+Nota per l'infografica: **su 8 case si formano 70 tavoli diversi**, e a cento
+partite se ne vedono quasi tutti. Ogni casa si siede circa una volta su due.
 
 Ogni casata comincia con **2 carte in mano** e **2 gettoni di presenza già
-posati** (il terzo resta in riserva), e ogni *vita* (§11) ha un proprio
+posati** (le altre **due** restano in riserva), e ogni *vita* (§11) ha un proprio
 carattere: quanto le viene naturale acquisire, muoversi, influenzare, forgiare,
 tramare o rivendicare.
 
@@ -163,8 +172,8 @@ distribuzione è stata rifatta a 0.1.154, quando si è visto che RICCHEZZA stava
 in quattro Regioni e FORZA in una sola. Se la Regione decide che carte peschi,
 quello non è colore: è un'azione che qualcuno non potrebbe mai fare.*
 
-**Presenza.** Ogni casata ha **3 gettoni di presenza**, di cui **2 già posati
-all'inizio** — il terzo si mette in gioco con la prima MUOVERE, e da lì in poi
+**Presenza.** Ogni casata ha **4 gettoni di presenza**, di cui **2 già posati
+all'inizio** — gli altri due si mettono in gioco con le prime MUOVERE, e da lì in poi
 MUOVERE sposta invece di aggiungere. Più gettoni nella stessa Regione sono
 ammessi e contano: la presenza è un numero, non una bandierina. È quel numero a
 decidere chi propone al Consiglio. Una Regione non può ospitare più gettoni dei
@@ -288,7 +297,7 @@ fatto che riscrive la mappa.
 Ogni anno il mondo porta **4 Tensioni**: non "problemi da risolvere" ma
 **domande aperte**, ciascuna con un numero che dice quanto è calda.
 
-Le quattro dell'anno 812 (Chronicle I, «La Carestia Rossa»):
+Quattro delle dodici — la mano che l'anno 812 aveva pescato:
 
 | Tensione | dominio | parte da | soglia | la soglia si vede? | famiglie di Asset che contano |
 |---|---|---|---|---|---|
@@ -300,9 +309,10 @@ Le quattro dell'anno 812 (Chronicle I, «La Carestia Rossa»):
 *Il numero di partenza e quello corrente si vedono sempre, anche sulle velate:
 è la soglia che sta sotto una carta girata (§11).*
 
-Un secondo mondo (Chronicle III, «l'anno del Sale», secoli dopo) ne ha quattro
-diverse: L'Acqua Ferma, Il Debito, La Reliquia, La Carta — più due di riserva,
-I Senza Città e La Cenere che Sale.
+La biblioteca ne ha **altre sei** che escono dallo stesso mazzo: L'Acqua Ferma,
+Il Debito, La Reliquia, La Carta, I Senza Città, La Cenere che Sale. **Dodici in
+tutto, e ogni anno ne pesca quattro** — la tabella qui sopra è una delle mani
+possibili, non l'elenco.
 
 Come si muove una Tensione:
 
@@ -345,22 +355,25 @@ scalda. *Fino a 0.1.159 era un orologio: una domanda saliva a fine di ogni round
 nei dati, che non rivela mai il numero: *«I granai di Eredan si aprono un giorno
 su tre. Nessuno lo ha annunciato: si vede dalle code.»*
 
-**Il cancello del tavolo.** Dalla 0.1.171 non c'è più una soglia per domanda:
-ce n'è **una per il tavolo**. Ogni carta calata fa cadere un gettone su una
-domanda, i mucchi crescono, e quando sul tavolo sono scesi **due gettoni** si
-apre un Consiglio: la domanda che si dibatte è il **mucchio più alto**, e poi il
-conto riparte da zero. Al massimo un Consiglio per round.
+**Quando si tiene il Consiglio.** Alla **fine di ogni Atto**, sempre. Tre Atti,
+tre Consigli garantiti. La domanda che si dibatte è quella col **mucchio più
+alto**: ogni carta calata durante l'Atto fa cadere un gettone coperto su una
+domanda, i mucchi crescono a faccia in giù, e alla chiusura si girano e si
+contano.
 
-Un Consiglio lo può aprire anche un giocatore, spendendo una rivendicazione
-matura: anche quello svuota il sacchetto.
+Un Consiglio in più lo può aprire un giocatore, spendendo una rivendicazione
+matura — ed è l'unico modo di portare al tavolo una **seconda** domanda dentro
+lo stesso Atto.
 
-Il numero che le Tensioni portano scritto (la vecchia soglia) **non apre più
-niente**, e infatti non si stampa da nessuna parte: quello che si legge è
-l'altezza del mucchio, col più alto segnalato.
+Quindi **i gettoni non dicono *se* si parla: dicono *di cosa*.** Il numero che le
+Tensioni portano scritto (la vecchia soglia) non apre più niente e non si stampa
+da nessuna parte; quello che si legge è quanti gettoni sono caduti, mai quanto
+valgono.
 
-**Costo dichiarato**: i Consigli passano da 6,0 a **3,5–4,0 l'anno** — da due per
-Atto a poco più di uno. Il Consiglio smette di essere routine e torna a essere un
-evento ([D-203](DECISIONS.md#d-203)).
+**Misurato**: **4,5 Consigli l'anno**, da un minimo di **3** a un massimo di 8 su
+cento partite. Su trecento Atti misurati, nessuno si chiude senza Consiglio — e
+un tavolo che passa ogni round ne prende tre lo stesso
+([D-214](DECISIONS.md#d-214)).
 
 ---
 
@@ -389,35 +402,44 @@ carta stessa. Si spende una volta sola.
 **ACQUISIRE non esiste più come azione**: era due terzi di tutto ciò che si
 faceva, e adesso la fa la mappa.
 
-*Questo è il mondo della Carestia Rossa (Chronicle I). Il mondo del Sale
-(Chronicle III) gioca ancora col §10 di prima — un'Occasione compra un'azione,
-le carte si pescano con ACQUISIRE — perché la sua mappa non è ancora stata
-ridistribuita, e senza quella metà delle azioni sarebbe irraggiungibile per
-qualcuno.*
+*Vale per ogni anno: la mappa è una sola e le regole sono le stesse. (Questa
+nota diceva ancora che «il mondo del Sale gioca col §10 di prima»; era falsa da
+prima dell'unificazione — tutte le Chronicle spedite giocano a carte.)*
 
 **Quale azione porta quale famiglia.** Non è casuale: la Regione decide che
 carte peschi, quindi la mappa decide che *cose* puoi fare. Chi sta sulle
 montagne muove eserciti; chi sta nelle miniere sa; chi siede a Eredan prende la
 parola.
 
-| famiglia | le sue otto carte portano | il suo mestiere |
-|---|---|---|
-| **FORZA** | 5 × MUOVERE, 2 × INFLUENZARE, 1 × RIVENDICARE *(l'Assedio)* | prende terra, e quando non la prende scalda |
-| **AUTORITÀ** | 4 × RIVENDICARE, 3 × INFLUENZARE, 1 × FORGIARE | la casa della **parola**: ne ha quattro su otto |
-| **GENTE** | 3 × INFLUENZARE, 3 × MUOVERE, 1 × TRAMARE, 1 × RIVENDICARE *(il Portavoce)* | si sposta, e preme |
-| **SAPERE** | 5 × TRAMARE, 1 × INFLUENZARE, 1 × MUOVERE, 1 × RIVENDICARE *(la Deposizione Sigillata)* | gli occhi — e *cosa* si va a guardare lo sceglie chi cala la carta |
-| **RICCHEZZA** | 3 × FORGIARE (in giù), 3 × INFLUENZARE, 2 × MUOVERE | compra, e rompe |
-| **LEGAMI** | 4 × FORGIARE (in su), 2 × INFLUENZARE, 1 × TRAMARE, 1 × RIVENDICARE *(il Debito Vecchio)* | l'unica che sa **stringere** |
+**Ogni famiglia sa fare tutte e cinque le cose.** Quello che cambia è *quanto
+spesso*: l'identità di una famiglia sta nelle ripetizioni, non nei buchi.
 
-In tutto: **14 INFLUENZARE, 11 MUOVERE, 8 RIVENDICARE, 8 FORGIARE, 7 TRAMARE**.
+| famiglia | le sue otto carte portano (copie nel mazzo) | il suo mestiere |
+|---|---|---|
+| **FORZA** | 3 × MUOVERE *(7)*, 1 × FORGIARE *(4)*, 1 × INFLUENZARE *(4)*, 1 × TRAMARE *(4)*, 2 × RIVENDICARE *(3)* | prende terra |
+| **AUTORITÀ** | 3 × RIVENDICARE *(7)*, 2 × INFLUENZARE *(5)*, 1 × FORGIARE *(4)*, 1 × TRAMARE *(4)*, 1 × MUOVERE *(2)* | la casa della **parola** |
+| **GENTE** | 3 × INFLUENZARE *(7)*, 2 × MUOVERE *(5)*, 1 × FORGIARE *(4)*, 1 × TRAMARE *(4)*, 1 × RIVENDICARE *(2)* | preme, e si sposta |
+| **SAPERE** | 4 × TRAMARE *(11)*, 1 × FORGIARE *(4)*, 1 × MUOVERE *(4)*, 1 × INFLUENZARE *(2)*, 1 × RIVENDICARE *(1)* | gli occhi — l'identità più forte del mazzo |
+| **RICCHEZZA** | 3 × FORGIARE *(7)*, 1 × RIVENDICARE *(4)*, 1 × INFLUENZARE *(4)*, 1 × TRAMARE *(4)*, 2 × MUOVERE *(3)* | compra, e rompe |
+| **LEGAMI** | 3 × INFLUENZARE *(6)*, 2 × FORGIARE *(6)*, 1 × RIVENDICARE *(4)*, 1 × MUOVERE *(4)*, 1 × TRAMARE *(2)* | l'unica che sa **stringere** in su |
+
+In tutto, sulle 132 copie del mazzo: **29 TRAMARE, 29 FORGIARE, 28 INFLUENZARE,
+25 MUOVERE, 21 RIVENDICARE**.
+
+**Fino alla 0.1.183 questa tabella aveva nove zeri**, e uno zero lì non è un
+accento: è una porta chiusa senza dirlo. Chi giocava RICCHEZZA non poteva
+rivendicare *mai*; Lyra, che vive di SAPERE, aveva quattro copie di MUOVERE su
+centotrentadue. Adesso una guardia dei dati impedisce che ricapiti
+([D-215](DECISIONS.md#d-215)).
 
 **Perché RIVENDICARE non è più solo dell'AUTORITÀ.** Da quando il Consiglio si
-apre a gettoni ([D-203](DECISIONS.md#d-203)), rivendicare è l'unico modo che un
-giocatore ha di aprirlo **quando vuole lui**. Con tutte e quattro le carte in
-AUTORITÀ, e l'AUTORITÀ che si pesca solo da Eredan e dalle Terre Nahr, due case su
-otto non l'hanno **mai** avuta in mano: la Cenere zero volte in venti partite, il
-Vaerax una ogni quattro. Ora sono otto carte in cinque famiglie, e ogni Regione
-della mappa ne pesca almeno una ([D-204](DECISIONS.md#d-204)).
+tiene a fine Atto ([D-214](DECISIONS.md#d-214)), rivendicare è l'unico modo che un
+giocatore ha di portare al tavolo una **seconda** domanda. Con tutte e quattro le
+carte in AUTORITÀ, e l'AUTORITÀ che si pesca solo da Eredan e dalle Terre Nahr,
+due case su otto non l'hanno **mai** avuta in mano: la Cenere zero volte in venti
+partite, il Vaerax una ogni quattro. Ora sono in **tutte e sei** le famiglie, e
+ogni Regione della mappa ne pesca almeno una ([D-204](DECISIONS.md#d-204),
+[D-215](DECISIONS.md#d-215)).
 
 Le cinque azioni che una carta può portare, tutte per **1 AO**:
 
@@ -464,7 +486,7 @@ il mondo cambia. La sequenza è fissa e ha undici passi, **A → K**.
 
 | passo | cosa succede | pubblico o segreto |
 |---|---|---|
-| **A. Innesco** | Sul tavolo sono scesi due gettoni (e si dibatte il mucchio più alto), oppure qualcuno ha forzato con RIVENDICARE, oppure una carta Narratore lo ha aperto | pubblico |
+| **A. Innesco** | L'Atto si chiude (e si dibatte il mucchio più alto), oppure qualcuno ha forzato con RIVENDICARE, oppure una carta Narratore lo ha aperto | pubblico |
 | **B. Domanda** | Si sceglie la domanda dell'anno fra quelle del modello. Una domanda già decisa quest'anno **non torna** finché ne resta una nuova da fare | pubblico |
 | **C. Proposta** | Il **proponente** sceglie una proposta fra quelle strutturate del modello | pubblico |
 | **D. Posizione** | In ordine di turno, ognuno dichiara: **Sostengo · Mi oppongo · A una condizione · Mi astengo**. Chi pone una condizione dichiara subito quale | **pubblico** |
@@ -894,9 +916,9 @@ rivendicare* — e spesso una regola speciale tutta sua (§9).
 una biblioteca. Gli anni dopo il primo pescano in base a **come è finito l'anno
 prima** — se qualcuno ha murato la miniera, l'anno dopo non parla del Risveglio:
 parla di quello che il muro ha causato. **Anche il primo anno pesca**, alla
-cieca, perché non ha un ieri da ascoltare: la Carestia Rossa tira 4 domande da
-6, le Città Libere 5 da 6, e due saghe che cominciano dallo stesso secolo non
-cominciano dallo stesso tavolo.
+cieca, perché non ha un ieri da ascoltare: si tirano **4 domande da 12**, e due
+saghe che cominciano dallo stesso secolo non cominciano dallo stesso tavolo. Su
+dodici saghe misurate, **dodici aperture diverse**.
 
 Perciò **l'apertura si compone**: la Chronicle dice l'anno e cosa vale comunque,
 e poi ogni domanda in gioco dice la propria riga. Quello che si legge ad alta
@@ -1096,27 +1118,34 @@ il Consiglio è il gioco.
 ### Cinque riquadri che meritano di stare grandi
 
 1. **La piramide del tempo** (§1) — Saga › Chronicle › Atto › Round › Azione,
-   con il ciclo AZIONI → DERIVA → SOGLIA che gira dentro il round.
-2. **Il turno in una riga** — le sette azioni come sette icone su una barra, con
-   sopra scritto **«2 per round, 18 in tutto l'anno»**. È il numero che fa capire
-   quanto costa ogni scelta.
+   con **il Consiglio che chiude ogni Atto**: dentro il round ogni azione fa
+   cadere un gettone coperto su una domanda, i mucchi crescono a faccia in giù
+   per tutto l'Atto, e alla fine si girano — il più alto è quello che si
+   dibatte.
+2. **Il turno in una riga** — le **cinque azioni che una carta può portare** come
+   cinque icone su una barra, con sopra scritto **«2 per round, 18 in tutto
+   l'anno»**. È il numero che fa capire quanto costa ogni scelta — e sotto la
+   domanda che è il gioco: *questa carta la spendo per fare, o la tengo per
+   votare?*
 3. **Il Consiglio A→K** (§6) — meglio come **binario orizzontale** con undici
    fermate, colorando in modo diverso i passi *pubblici* e quello *segreto*
    (E. Impegno). Il contrasto pubblico/segreto è la firma visiva del gioco.
 4. **La formula** (§6.2) — `S + C − O + W = MARGINE` con sotto la fascia dei
    quattro esiti. È l'unico numero che un giocatore deve tenere a mente.
-5. **Il Destino a tre gradini** (§10) — una scala, non un podio: si sale la
-   propria, non si corre contro gli altri. E il gradino alto è **una spina più
-   una scelta**, non una lista: disegnarlo come «questa cosa qui, *e* tre di
-   queste cinque» rende l'idea meglio di qualsiasi spiegazione.
+5. **I quattro obiettivi** (§10) — non una scala e non un podio: **una carta
+   scoperta e tre coperte**, e a fine anno si contano quelle avverate. Quattro su
+   quattro è un trionfo, zero è un anno perso, e i numeri di saga (**−1 · 1 · 2 ·
+   5 · 8**) dicono da soli che il terzo e il quarto sono i due che quasi nessuno
+   prende. Disegnare le tre coperte **a faccia in giù** è metà del messaggio.
 
 ### Due mappe utili
 
 - il **grafo delle 6 Regioni** (§3) con le adiacenze — è piccolo e si disegna
   bene, e **una delle linee può spezzarsi** (il passo che frana): vale la pena
   disegnarne una tratteggiata;
-- la **ruota delle Tensioni**, quattro spicchi con il valore corrente e la
-  soglia, e le frecce dei collegamenti fra loro (il Ripple): serve a mostrare
+- la **ruota delle Tensioni**, quattro spicchi con sopra i **gettoni coperti**
+  invece del valore — al tavolo si vede quanti ne sono caduti, non quanto
+  pesano — e le frecce dei collegamenti fra loro (il Ripple): serve a mostrare
   che spegnere una domanda ne accende un'altra.
 
 ### Il diagramma che racconta il gioco meglio di una frase

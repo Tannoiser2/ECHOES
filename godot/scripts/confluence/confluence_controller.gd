@@ -210,6 +210,26 @@ func has_fresh_question(tension_id: String) -> bool:
 	return false
 
 
+## La prova vera: **questa domanda si aprirebbe adesso?**
+##
+## `has_fresh_question` risponde a una domanda piu' debole — «resta un quesito
+## mai posto?» — e le due cose divergono, perche' un quesito puo' essere fresco
+## e **non idoneo**: il template lo apre solo se la Tensione e' abbastanza alta o
+## se il mondo porta un certo segno. Finche' il Consiglio si apriva a soglia la
+## differenza non si vedeva, perche' arrivare a soglia rendeva idoneo quasi
+## tutto; col Consiglio di fine Atto (D-214) si e' vista subito: su cento anni,
+## tre chiudevano con meno di un Consiglio per Atto, e uno ne rifiutava otto di
+## fila sullo stesso template.
+func can_open(tension_id: String) -> bool:
+	var template: Dictionary = data.confluence_template_for(tension_id)
+	if template.is_empty():
+		return false
+	var proponent: String = service.determine_proponent(
+		tension_id, narrative.focus_region(tension_id)
+	)
+	return _select_question(template, proponent, tension_id) != ""
+
+
 func _asked(tension_id: String) -> Array:
 	return (world.get("questions_asked", {}) as Dictionary).get(tension_id, []) as Array
 
@@ -549,6 +569,17 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 	# Verde must be a sentence at the table, not a silent SET_CONTROL.
 	for consequence_id in consequence_ids:
 		var consequence: Dictionary = data.consequences.get(str(consequence_id), {})
+		# Una Conseguenza che parla di una casa precisa si salta quando quella
+		# casa non siede (D-213): abbattere il drago non e' un evento del mondo
+		# se il drago non e' al tavolo. Detto invece che taciuto, perche' D-030
+		# vale anche per cio' che **non** succede.
+		var needs: String = str(consequence.get("requires_entity", ""))
+		if needs != "" and not (world["entities"] as Dictionary).has(needs):
+			log.bullet(
+				"H. %s non accade: parla di una casa che quest'anno non e' al tavolo."
+				% str(consequence.get("title", consequence_id))
+			)
+			continue
 		log.bullet("H. Conseguenza - %s:" % str(consequence.get("title", consequence_id)))
 		var first_effect: int = applied.size()
 		for effect in compiler.compile(str(consequence_id), context, source):
@@ -568,8 +599,16 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 				continue
 			log.bullet("H. Clausola qualificata: %s" % say(str(clause["text"])))
 			var first_clause_effect: int = applied.size()
+			# Chi ha posto la condizione (D-213). Una clausola che nominava una
+			# casa per nome — «e allora Lyra ha il registro» — funzionava finche'
+			# quella casa era sempre al tavolo; col tavolo pescato parlava di
+			# un'assente, e l'Effetto cadeva in un push_error. E' anche piu'
+			# giusto cosi': quello che la condizione ottiene lo ottiene chi
+			# l'ha chiesto.
+			var clause_context: Dictionary = context.duplicate()
+			clause_context["conditioner"] = str(entity_id)
 			for spec in clause["effects"]:
-				_apply(applied, compiler.compile_spec(spec, context, source))
+				_apply(applied, compiler.compile_spec(spec, clause_context, source))
 			_narrate_applied(applied, first_clause_effect)
 
 	# I. Asset disposition.

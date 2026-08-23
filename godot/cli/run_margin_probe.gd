@@ -53,7 +53,6 @@ func _initialize() -> void:
 		printerr("nessuna Chronicle '%s'" % chronicle_id)
 		quit(4)
 		return
-	var seats: Array = (data.chronicles[chronicle_id]["entities"] as Array).duplicate()
 
 	var councils: int = 0
 	var support: int = 0
@@ -62,6 +61,7 @@ func _initialize() -> void:
 	var margins: Dictionary = {}
 	var supports: Dictionary = {}
 	for i in range(runs):
+		var seats: Array = GameSession.seats_for(data, chronicle_id, FIRST_SEED + i)
 		var session: RefCounted = GameSession.new(data)
 		session.setup(chronicle_id, seats, FIRST_SEED + i)
 		var table: RefCounted = PolicyDecider.new(session.log)

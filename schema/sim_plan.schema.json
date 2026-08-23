@@ -104,6 +104,16 @@
               "additionalProperties": true,
               "description": "Come `tension_pool` sulla Chronicle. Vuoto spegne la biblioteca: il piano gioca le Tensioni scritte a mano, che e' l'unico modo per una storia che nomina i suoi Consigli di restare la stessa storia su ogni seme (D-207)."
             },
+            "starting_presence": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "description": "Come `starting_presence` sulla Chronicle (D-212). La mappa di partenza in cui la storia e' stata scritta: quando una pedina si sposta sul dato spedito, un piano che tace cambia storia di nascosto. Vale solo per la prima vita del seggio."
+            },
             "drift_distribution": {
               "type": "array",
               "items": {
@@ -125,6 +135,16 @@
                 }
               },
               "description": "Come `drift_distribution` sulla Chronicle. Una storia scritta a mano e' anche il sacchetto con cui e' stata scritta: da quando la Chronicle pesca le domande il sacchetto lo compone il motore sulla mano pescata, e un piano che non lo dichiara racconta lo stesso anno con un'altra Deriva (D-207)."
+            },
+            "presence_tokens": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Come `presence_tokens` sulla Chronicle. Una storia scritta a mano e' anche il numero di pedine con cui e' stata scritta: cambiare il tetto cambia quante MUOVERE il tavolo puo' pronunciare, e con quelle l'anno intero (D-211)."
+            },
+            "confluence_rules": {
+              "type": "object",
+              "additionalProperties": true,
+              "description": "Come `confluence_rules` sulla Chronicle (D-214). Serve a dichiarare **quando** il Consiglio si apre: una storia scritta quando i Consigli si aprivano a soglia, round per round, non e' la stessa storia se adesso se ne tiene uno a fine Atto — cambia quanti sono e quali domande arrivano al tavolo."
             }
           }
         },

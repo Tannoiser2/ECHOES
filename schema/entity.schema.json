@@ -262,6 +262,35 @@
               }
             }
           }
+        },
+        "starting_structures": {
+          "type": "array",
+          "description": "Cosa la casa ha gia' costruito quando l'anno si apre (D-213). Stava sulla Chronicle insieme al paesaggio, e li' andava bene finche' il tavolo era scritto a mano: con le case pescate, una pietra intestata a chi non gioca e' una pietra di un assente. Il presidio e' **della casa**, quindi segue la casa; il bosco, la sorgente e il valico restano sulla Chronicle, perche' sono la mappa. `at` e' l'indice nella presenza di partenza: cosi' se la casa si sposta, la sua pietra si sposta con lei.",
+          "items": {
+            "type": "object",
+            "required": [
+              "structure_type"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "structure_type": {
+                "type": "string",
+                "pattern": "^STR_[A-Z0-9_]+$"
+              },
+              "at": {
+                "type": "integer",
+                "minimum": 0,
+                "default": 0,
+                "description": "Quale delle Regioni di partenza: 0 la prima, 1 la seconda."
+              },
+              "grade": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 4,
+                "default": 1
+              }
+            }
+          }
         }
       }
     },

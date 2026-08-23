@@ -209,6 +209,11 @@
           "entry": "ON_TAG",
           "entry_tag": "heir_named"
         }
+      ],
+      "starting_structures": [
+        {
+          "structure_type": "STR_KEEP"
+        }
       ]
     },
     {
@@ -332,6 +337,15 @@
           "entry": "ON_TAG",
           "entry_tag": "twice_uprooted"
         }
+      ],
+      "starting_structures": [
+        {
+          "structure_type": "STR_KEEP"
+        },
+        {
+          "structure_type": "STR_SETTLEMENT",
+          "at": 1
+        }
       ]
     },
     {
@@ -371,7 +385,7 @@
       ],
       "presence": [
         "REG_MINIERE_ANTICHE",
-        "REG_EREDAN"
+        "REG_STRADA_MERCANTI"
       ],
       "destiny_id": "DST_LYRA",
       "private_information": "Il Cristallo Rosso pesa meno di quanto dovrebbe. Ogni giorno un poco meno.",
@@ -653,6 +667,11 @@
           "destiny_pool": [
             "DST_VAERAX_LEGEND"
           ]
+        }
+      ],
+      "starting_structures": [
+        {
+          "structure_type": "STR_KEEP"
         }
       ]
     }

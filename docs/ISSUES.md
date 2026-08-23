@@ -1812,6 +1812,90 @@ case è deserta nell'anno della Carestia e piena nell'anno del Sale, e detta cos
 
 ---
 
+## Metà chiusa in 0.1.181: nel Grano non c'è più una Regione vuota ([D-212](DECISIONS.md#d-212))
+
+Il committente ha deciso anche il secondo rimedio: **«Lyra sulla Strada dei
+Mercanti»**. Lyra apre con Miniere Antiche + Strada invece di Miniere Antiche +
+Eredan, e la Strada smette di essere deserta all'apertura.
+
+| Regione (Grano), apertura → fine | 0.1.180 | **0.1.181** |
+|---|---|---|
+| Eredan | 2,00 → 1,96 | 1,00 → 1,63 |
+| Miniere Antiche | 2,00 → 2,69 | 2,00 → 2,66 |
+| Montagne Rosse | 1,00 → 1,73 | 1,00 → **1,78** |
+| **Strada dei Mercanti** | **0,00 → 1,20** | **1,00 → 2,07** |
+| Terre Nahr | 1,00 → 1,61 | 1,00 → 1,86 |
+| Valle Verde | 2,00 → 2,78 | 2,00 → 1,91 |
+
+**Nel Grano nessuna Regione apre a zero e nessuna finisce sotto 1,78**, e la
+Strada è la seconda più affollata a fine anno: è lo snodo che la voce chiedeva.
+Il prezzo sono le quattro storie scritte a mano, che adesso **dichiarano la
+mappa in cui sono state scritte** (`starting_presence`) invece di cambiare in
+silenzio.
+
+**Resta aperta la metà del Sale.** Lì la Regione vuota sono le **Terre Nahr**
+(0,00 all'apertura), e i Nahr non esistono in quella linea: le case sono Sale,
+Cenere, Vetro e Città Libere, e **tre di loro aprono su Eredan**. Chi si sposta
+sulle Terre Nahr è una scelta di contenuto, non una manopola, e va decisa dal
+committente.
+
+### Il preventivo per il Sale, misurato: due candidati, 100 semi, seme 7000
+
+Nessuno dei due è stato spedito — chi vive dove è contenuto. Ma il prezzo è
+misurato, così la decisione si prende su numeri e non su un'idea.
+
+| | oggi | **Vetro → Terre Nahr** | **Città Libere → Terre Nahr** |
+|---|---|---|---|
+| Terre Nahr, apertura → fine | **0,00** → 0,83 | 1,00 → 1,85 | 1,00 → 1,82 |
+| Eredan, apertura | 3,00 | 2,00 | 2,00 |
+| Regione più magra a fine anno | Terre Nahr **0,83** | Valle Verde **1,02** | Strada **1,44** |
+| Priore Anselmo (il Vetro) NONE / TRIONFI | 5 / 0 | **10** / 0 | **12** / **2** |
+| Le Città Libere NONE / TRIONFI | 10 / 1 | 10 / 1 | **5** / **3** |
+| Maestra Ilve NONE / TRIONFI | 14 / 0 | 12 / 0 | **18** / 1 |
+| Kessa (la Cenere) NONE / TRIONFI | 3 / 0 | 5 / 1 | 5 / 1 |
+| playtest 100 semi | 0/8 | **0/8** | **0/8** |
+
+**Tutti e due riempiono le Terre Nahr e nessuno dei due rompe il cancello.** La
+differenza è dove va il conto:
+
+- **Spostare il Vetro cura la mappa e aggrava [ISSUES 52](#52-lyra-non-ha-mai-trionfato-in-centoventi-anni)**: la casa
+  già senza presidio d'apertura passa da 5 a 10 NONE e resta a zero Trionfi, e
+  gli anni chiusi con zero obiettivi salgono da 16 a 22. E svuota la Valle
+  Verde, che scende a 1,02 — la Regione magra si sposta, non sparisce.
+- **Spostare le Città Libere dà la mappa più piatta** — nessuna Regione sotto
+  **1,44** — e regala al Vetro i suoi **primi 2 Trionfi**, ma fa pagare Maestra
+  Ilve (NONE 14 → 18), che resta sola su Eredan.
+
+**La raccomandazione, e il perché.** Le **Città Libere**: è l'unico dei due che
+lascia la mappa senza una Regione magra, ed è anche l'unico che non peggiora la
+casa che [ISSUES 52](#52-lyra-non-ha-mai-trionfato-in-centoventi-anni) dice già
+in difficoltà. Regge anche la lettura: le città che si sono liberate stanno
+nelle terre di un popolo che non c'è più, mentre l'Ordine del Vetro *«custodisce
+quello che fu misurato»* — le Miniere e la capitale.
+
+## E poi le due linee non ci sono più (0.1.182, [D-213](DECISIONS.md#d-213))
+
+Il committente ha spostato di nuovo la domanda, e stavolta ha tolto il terreno
+sotto la voce: *«non voglio due ere, voglio un unico setup»*. Le case adesso si
+pescano — 8 candidate, 4 si siedono — quindi **non esiste più «la linea del
+Sale»** in cui le Terre Nahr sono vuote. Ogni tavolo è diverso, e quale Regione
+apre deserta dipende dal seme.
+
+Il preventivo qui sopra resta scritto perché il suo numero utile sopravvive:
+**quattro case su otto aprono su Eredan o accanto** (Aldric, Vetro, Sale,
+Libere), e questo squilibrio è ancora nel dato. Ma la domanda «quale casa mettere
+sulle Terre Nahr» non ha più una risposta sola: dipende da chi siede.
+
+**La voce cambia criterio.** Non più «nessuna Regione apre a zero in nessuna
+delle due linee», ma: **nessuna Regione resta deserta più spesso di quanto sia
+plausibile che nessuno ci abiti**, misurato su cento tavoli pescati invece che su
+due tavoli scritti.
+
+**Fatto quando** nessuna Regione sta sotto una pedina a fine anno, in media, su
+100 semi a tavolo pescato.
+
+---
+
 ## Il committente ha deciso, e ha spostato la domanda (0.1.176)
 
 > «No, non ci può essere una regione senza nessuno, e anzi la Strada dei
@@ -1893,9 +1977,48 @@ già posata — allargano il rubinetto, non sbloccano la mappa. Se «la mappa si
 muove» vuol dire anche *ritirarsi da un posto*, serve una quarta leva che questa
 misura non copre.
 
-**Fatto quando** nessuna Regione sta sotto una pedina a fine anno in nessuna
-era, e la sonda continua a nominare la più povera così nessuno se la ritrova per
-caso.
+## Metà fatta in 0.1.180: il tetto a 4 ([D-211](DECISIONS.md#d-211))
+
+Provati **separatamente**, i due rimedi costano cose diverse — e questo il
+preventivo non lo diceva:
+
+- **il tetto a 4** rompe due prove che descrivevano il setup, e **nessuna
+  storia**;
+- **spostare la casa di Lyra** rompe **tutte e quattro** le storie scritte a
+  mano, perché cambia la posizione d'apertura e con quella i Consigli di ogni
+  piano.
+
+Spedito il tetto. L'altra metà è **dove vive una casa**, cioè contenuto, e
+aspetta il committente col prezzo ora scritto.
+
+| | tetto 3 | **tetto 4** |
+|---|---|---|
+| gettoni di riserva per casa | 1,00 | **2,00** |
+| MUOVERE l'anno (Grano / Sale) | 3,02 / 2,88 | **4,70 / 4,20** |
+| bloccati dal gettone (Grano / Sale) | 71,2% / 74,4% | **40,6% / 47,5%** |
+| Strada dei Mercanti (Grano) | 0,00 → 0,65 | 0,00 → **1,20** |
+| Terre Nahr (Sale) | 0,00 → 0,55 | 0,00 → **0,88** |
+| Consigli l'anno (unif. / misto) | 3,40 / 3,57 | **3,57 / 3,86** |
+| playtest 100 semi | 0/8 | **0/8** |
+
+**Nel Grano la voce è soddisfatta**: nessuna Regione finisce l'anno sotto 1,20
+pedine, e la Strada non è più deserta. **Nel Sale no**: le Terre Nahr restano a
+**0,88**, sotto una pedina, perché lì non comincia nessuno — la causa che D-208
+aveva nominato e che il tetto non tocca.
+
+E **spostare continua a non succedere**: 0,03 l'anno nel Grano, 0,00 nel Sale.
+Più pedine da posare non sono una mappa che si disfa.
+
+**Resta da decidere**, e sono due decisioni di contenuto gemelle:
+
+1. **chi comincia sulla Strada dei Mercanti** nel Grano — misurato: Lyra ci
+   porta la Regione a 1,00 → 1,57, e cura mezza ISSUES 52; costa le quattro
+   storie;
+2. **chi comincia sulle Terre Nahr** nel Sale — non ancora misurato.
+
+**Fatto quando** nessuna Regione sta sotto una pedina a fine anno **in nessuna
+delle due ere**, e la sonda continua a nominare la più povera così nessuno se la
+ritrova per caso.
 
 ### 49. ✅ Le Tensioni come mucchi di segnalini coperti — chiusa in 0.1.179
 
@@ -2359,6 +2482,93 @@ quarta casa non trionfa, in nessuna era»**.
 nessuna delle due linee**, nessuna coppia seggio × obiettivo sta sotto il 10%
 mentre le altre tre stanno sopra il 90%, e lo scarto fra il seggio più premiato
 e il meno premiato sta dentro un fattore tre.
+
+## Metà rimedio spedito in 0.1.181: Lyra si sposta ([D-212](DECISIONS.md#d-212))
+
+La «terza cosa che aiuta senza toccare gli obiettivi» è stata decisa dal
+committente ed è spedita. Su 100 semi, seme 7000:
+
+| Lyra | a Eredan | **sulla Strada** |
+|---|---|---|
+| NONE, tavolo uniforme | 16 | **8** |
+| VITTORIE, tavolo uniforme | 10 | **28** |
+| NONE, tavolo misto | 17 | **8** |
+| VITTORIE, tavolo misto | 12 | **22** |
+| anni con **zero** obiettivi presi | 35 | **20** |
+| anni con **tre** obiettivi presi | 7 | **19** |
+
+**Lyra smette di essere la quarta casa, ma non trionfa lo stesso**: 0 Trionfi su
+tutti e due i tavoli, contro 1 e 1 di prima. Il pavimento si alza e il tetto si
+abbassa — e i TRIONFI di tutto il tavolo calano da 10 a 8 (uniforme) e da 5 a 2
+(misto). Il criterio di chiusura di questa voce chiede **zero seggi a zero
+Trionfi**, e questo rimedio va nella direzione opposta su quella riga.
+
+**Quindi la voce resta aperta, e con la stessa causa scritta sopra**: le due
+strade vere sono ancora la struttura d'apertura per Lyra e per il Vetro, o la
+soglia alzata sui due obiettivi gratis. Spostare una casa cura la sua posizione;
+non le mette in mano le due carte che le altre tre trovano già in tasca.
+
+**E l'Ordine del Vetro non è stato toccato**: nella linea del Sale la quarta
+casa è ancora senza presidio d'apertura, e il rimedio della posizione lì non è
+nemmeno stato deciso — è la stessa domanda aperta di ISSUES 48.
+
+## La causa è sopravvissuta all'unificazione (0.1.182, [D-213](DECISIONS.md#d-213))
+
+Con le case pescate da un mazzo solo, «la quarta casa» non è più una posizione
+al tavolo — ma la causa non era il tavolo, era il **dato d'apertura**, e quella
+è rimasta identica: `starting_structures` è passato dalla Chronicle all'Entità
+(così la pietra segue la casa), e **sei case su otto ce l'hanno**. Lyra e
+l'Ordine del Vetro no.
+
+| casa | pietra d'apertura |
+|---|---|
+| Aldric, Nahr, Vaerax, Sale, Cenere, Città Libere | **sì** (presidio, e per due anche un insediamento) |
+| **Lyra, Vetro** | **niente** |
+
+Adesso però il rimedio costa **una riga per casa** invece di una riga per
+Chronicle, ed è la stessa riga per tutte e due: la strada 1 qui sopra — «Lyra
+apre con una struttura sua, non un presidio ma qualcosa che la racconti» — si
+scrive sull'Entità e vale in ogni tavolo che la peschi.
+
+Nella saga lunga i TRIONFI restano **3 su 288 seggi-anno**, come prima
+dell'unificazione: il cambio non ha toccato la scala, e questa voce è ancora
+quella che deve toccarla.
+
+---
+
+### 53. RIVENDICARE può forzare un Consiglio che poi non si apre
+
+`regole` · `difetto` · **misurata in 0.1.183** ([D-214](DECISIONS.md#d-214))
+
+Trovata misurando il Consiglio di fine Atto: su cento anni ci sono **43 aperture
+rifiutate**, e adesso che la chiusura d'Atto sceglie con `can_open()` sono
+**tutte** Consigli forzati da RIVENDICARE.
+
+Il Claim non passa da quella prova. Un seggio può quindi:
+
+1. spendere un'azione per creare un Claim,
+2. spendere una seconda azione per forzare il Consiglio,
+3. e vedersi rifiutare l'apertura perché nessun quesito del template è idoneo —
+   la Tensione non è abbastanza alta, o il mondo non porta il segno che serve.
+
+**Due azioni su diciotto, e in cambio una riga di log.** È il difetto peggiore
+di tutti quelli aperti, perché non è uno squilibrio: è un'azione legale che non
+fa niente e non avvisa.
+
+**È preesistente**, non l'ha introdotto D-214: prima si nascondeva perché quasi
+tutti i Consigli si aprivano a soglia, e a soglia i quesiti sono quasi sempre
+idonei. La chiusura d'Atto l'ha isolato.
+
+**Le due strade:**
+
+1. **RIVENDICARE non si può creare su una domanda che non ha un quesito idoneo**
+   — la prova esiste già, si tratta di chiamarla anche lì. Il rischio è che una
+   casa impari a leggere il rifiuto e ne deduca informazione privata.
+2. **Il Claim forzato non si consuma se il Consiglio non si apre** — l'azione
+   torna disponibile. Più semplice, e non dice niente a nessuno.
+
+**Fatto quando** nessuna apertura viene rifiutata su 100 anni, o quando un
+rifiuto non costa niente a chi l'ha chiesto.
 
 ---
 

@@ -5,15 +5,25 @@
   "x-echoes-def": "consequence",
   "x-echoes-kind": "collection",
   "type": "object",
-  "required": ["schema_id", "version", "items"],
+  "required": [
+    "schema_id",
+    "version",
+    "items"
+  ],
   "additionalProperties": false,
   "properties": {
-    "schema_id": { "const": "consequence" },
-    "version": { "type": "string" },
+    "schema_id": {
+      "const": "consequence"
+    },
+    "version": {
+      "type": "string"
+    },
     "items": {
       "type": "array",
       "minItems": 1,
-      "items": { "$ref": "#/$defs/consequence" }
+      "items": {
+        "$ref": "#/$defs/consequence"
+      }
     }
   },
   "$defs": {
@@ -44,29 +54,66 @@
     },
     "consequence": {
       "type": "object",
-      "required": ["id", "title", "category", "description", "effects"],
+      "required": [
+        "id",
+        "title",
+        "category",
+        "description",
+        "effects"
+      ],
       "additionalProperties": false,
       "properties": {
-        "id": { "type": "string", "pattern": "^CNS_[A-Z0-9_]+$" },
-        "title": { "type": "string", "minLength": 1 },
-        "category": { "$ref": "#/$defs/consequence_category" },
-        "description": { "type": "string", "minLength": 1 },
-        "creates_scar": { "type": "boolean", "default": false },
+        "id": {
+          "type": "string",
+          "pattern": "^CNS_[A-Z0-9_]+$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "category": {
+          "$ref": "#/$defs/consequence_category"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "creates_scar": {
+          "type": "boolean",
+          "default": false
+        },
         "scar": {
           "type": "object",
           "description": "Required when creates_scar is true: the persistent mark this Consequence leaves on the map (§16).",
-          "required": ["region_id", "tag", "description"],
+          "required": [
+            "region_id",
+            "tag",
+            "description"
+          ],
           "additionalProperties": false,
           "properties": {
-            "region_id": { "type": "string" },
-            "tag": { "type": "string" },
-            "description": { "type": "string" }
+            "region_id": {
+              "type": "string"
+            },
+            "tag": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            }
           }
         },
         "effects": {
           "type": "array",
           "minItems": 1,
-          "items": { "$ref": "effect.schema.json#/$defs/effect_spec" }
+          "items": {
+            "$ref": "effect.schema.json#/$defs/effect_spec"
+          }
+        },
+        "requires_entity": {
+          "type": "string",
+          "pattern": "^ENT_[A-Z0-9_]+$",
+          "description": "La casa di cui questa Conseguenza parla (D-213). Col tavolo pescato non tutte le case siedono, e una Conseguenza che spegne il drago non ha senso se il drago non e' al tavolo: dichiarandola, la Conseguenza si salta invece di cadere in un push_error. E' anche il permesso per nominare un id nei suoi Effetti: senza questa riga la guardia lo vieta."
         }
       }
     }

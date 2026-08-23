@@ -439,6 +439,10 @@ KNOWN_BINDINGS = {
     "rival_seat",
     "capital",
     "actor",
+    # Chi ha posto la condizione (D-213). Vive solo dentro gli effetti di una
+    # `condition_clause`, che e' l'unico posto in cui il motore sa chi ha
+    # chiesto cosa - altrove non c'e' nessuno da legarci.
+    "conditioner",
 }
 
 
@@ -734,6 +738,162 @@ def check_sim_plans_know_which_questions_they_get(
             "`chronicle_overrides.tension_pool`: su un altro seme quelle domande "
             "potrebbero non essere in gioco",
         )
+
+
+def check_every_family_can_do_everything(
+    documents: Dict[str, List[Dict[str, Any]]],
+    origins: Dict[str, str],
+    report: "Report",
+) -> None:
+    """Nessuna famiglia puo' restare senza un'azione (D-215).
+
+    Le azioni passano sulle carte (D-188) e la mappa decide che carte peschi,
+    quindi **la mappa decide che cose puoi fare**. Finche' una famiglia non ha
+    nessuna carta MUOVERE, chi vive in quelle Regioni non muove: non e' una
+    scelta del giocatore ne' del cervello, e' una porta che il mazzo gli ha
+    chiuso senza dirglielo. Lyra ne aveva 4 copie su 132.
+
+    Questa guardia non chiede che le azioni siano *pari* — l'identita' di una
+    famiglia sta proprio in quello che fa piu' spesso — ma che nessuna sia a
+    **zero**, e che la piu' rara del mazzo non stia sotto meta' della piu'
+    frequente: da li' in giu' non e' piu' un accento, e' un'azione che quasi
+    non esiste.
+    """
+    assets = documents.get("asset", [])
+    if not assets:
+        return
+    per_family: Dict[str, Dict[str, int]] = {}
+    totals: Dict[str, int] = {}
+    kinds = set()
+    for asset in assets:
+        kind = str((asset.get("card_action") or {}).get("kind", ""))
+        if not kind:
+            continue
+        kinds.add(kind)
+        copies = int(asset.get("deck_copies", 1))
+        per_family.setdefault(str(asset["family"]), {})
+        totals[kind] = totals.get(kind, 0) + copies
+    for asset in assets:
+        kind = str((asset.get("card_action") or {}).get("kind", ""))
+        if not kind:
+            continue
+        family = per_family[str(asset["family"])]
+        family[kind] = family.get(kind, 0) + int(asset.get("deck_copies", 1))
+
+    for family in sorted(per_family):
+        missing = sorted(kinds - set(per_family[family]))
+        if missing:
+            report.fail(
+                f"asset [{family}]",
+                "la famiglia non ha nessuna carta "
+                + ", ".join(missing)
+                + ": chi pesca solo da qui non potra' mai farlo",
+            )
+
+    if totals:
+        rarest = min(totals, key=lambda k: totals[k])
+        commonest = max(totals, key=lambda k: totals[k])
+        if totals[rarest] * 2 < totals[commonest]:
+            report.fail(
+                "asset [mazzo]",
+                f"{rarest} vale {totals[rarest]} copie su {sum(totals.values())} "
+                f"mentre {commonest} ne vale {totals[commonest]}: piu' del doppio, "
+                "e l'azione rara smette di essere un accento",
+            )
+
+
+def check_drawn_tables_do_not_name_a_house(
+    documents: Dict[str, List[Dict[str, Any]]],
+    origins: Dict[str, str],
+    report: "Report",
+) -> None:
+    """Se le case si pescano, il contenuto non puo' nominarne una per nome.
+
+    E' il difetto che l'unificazione ha scoperto (D-213), e nessuno lo vedeva:
+    due clausole di Consiglio dicevano «e allora **Lyra** ha il registro».
+    Finche' Lyra sedeva sempre andava bene; col tavolo pescato quella riga
+    parlava di un'assente, e l'Effetto cadeva in un `push_error` dentro un log
+    che nessuno legge — cioe' contenuto che non succede e non si lamenta.
+
+    La regola e' semplice: con `entity_pool` acceso, un Effetto scritto a mano
+    punta a un **segnaposto** ($proponent, $rival, $conditioner), mai a un id.
+    Quello che vale per un'era chiusa non vale per un tavolo che cambia.
+    """
+    draws = any(
+        chronicle.get("entity_pool")
+        for chronicle in documents.get("chronicle", [])
+    )
+    if not draws:
+        return
+
+    def walk(node: Any, doc_id: str, where: str, allowed: str = "") -> None:
+        if isinstance(node, dict):
+            if "type" in node and "target" in node:
+                target = node.get("target") or {}
+                if str(target.get("kind", "")) == "entity":
+                    named = str(target.get("id", ""))
+                    if named.startswith("ENT_") and named != allowed:
+                        report.fail(
+                            f"{where} [{doc_id}]",
+                            f"l'Effetto {node['type']} punta a {named}, ma le case si "
+                            "pescano: usare un segnaposto ($proponent, $rival, "
+                            "$conditioner), o dichiarare `requires_entity` se la "
+                            "Conseguenza parla proprio di quella casa",
+                        )
+            for value in node.values():
+                walk(value, doc_id, where, allowed)
+        elif isinstance(node, list):
+            for value in node:
+                walk(value, doc_id, where, allowed)
+
+    for kind in ("confluence_template", "consequence", "echo_card"):
+        for document in documents.get(kind, []):
+            # Una Conseguenza che dichiara la casa di cui parla puo' nominarla:
+            # il motore la salta quando quella casa non siede.
+            walk(
+                document,
+                str(document.get("id", "?")),
+                origins.get(str(document.get("id", "")), kind),
+                str(document.get("requires_entity", "")),
+            )
+
+
+def check_a_declared_map_still_says_something(
+    documents: Dict[str, List[Dict[str, Any]]],
+    origins: Dict[str, str],
+    report: "Report",
+) -> None:
+    """Una mappa dichiarata che coincide col dato spedito non dichiara niente.
+
+    `starting_presence` esiste per una ragione sola (D-212): quando una pedina
+    si sposta sul dato spedito, una storia scritta a mano deve **dire** su
+    quale mappa e' stata scritta invece di cambiare di nascosto. Ma il giorno
+    in cui il dato spedito torna a coincidere con la dichiarazione, la riga
+    smette di proteggere qualcosa e resta li' a dire il falso: sembra una
+    scelta e non lo e' piu'. E il caso peggiore e' l'opposto - una casa che il
+    piano non nomina e che sul dato si e' spostata: quella la guardia non la
+    puo' vedere, e per questo la dichiarazione va tenuta pulita.
+    """
+    plans = documents.get("sim_plan", [])
+    entities = {str(e.get("id")): e for e in documents.get("entity", [])}
+    for plan in plans:
+        declared = plan.get("chronicle_overrides", {}).get("starting_presence", {})
+        for entity_id, presence in declared.items():
+            entity = entities.get(str(entity_id))
+            if entity is None:
+                report.fail(
+                    f"sim_plan [{plan.get('id')}]",
+                    f"`chronicle_overrides.starting_presence` nomina {entity_id}, "
+                    "che non esiste",
+                )
+                continue
+            if list(entity.get("presence", [])) == list(presence):
+                report.fail(
+                    f"sim_plan [{plan.get('id')}]",
+                    f"`chronicle_overrides.starting_presence.{entity_id}` ripete "
+                    "la presenza gia' scritta sull'Entita': o la mappa spedita e' "
+                    "tornata quella di allora e la riga va tolta, o e' un refuso",
+                )
 
 
 def check_a_drawn_question_can_be_narrated(
@@ -1277,6 +1437,9 @@ def main() -> int:
         check_asset_sources_are_true(documents, origins, report)
         check_sim_plans_declare_their_economy(documents, origins, report)
         check_sim_plans_know_which_questions_they_get(documents, origins, report)
+        check_every_family_can_do_everything(documents, origins, report)
+        check_drawn_tables_do_not_name_a_house(documents, origins, report)
+        check_a_declared_map_still_says_something(documents, origins, report)
         check_a_drawn_question_can_be_narrated(documents, origins, report)
         check_objectives_are_shareable(documents, origins, report)
         check_condition_vocabularies_agree(documents, origins, report)

@@ -32,7 +32,7 @@ func _initialize() -> void:
 		quit(3)
 		return
 
-	var seats: Array = (data.chronicles[chronicle_id]["entities"] as Array).duplicate()
+	var seats: Array = GameSession.seats_for(data, chronicle_id, seed_value)
 	var humans: Array = []
 	for index in range(mini(seats_wanted, seats.size())):
 		humans.append(str(seats[index]))

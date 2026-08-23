@@ -46,7 +46,6 @@ func _initialize() -> void:
 		quit(3)
 		return
 
-	var seats: Array = (data.chronicles[chronicle_id]["entities"] as Array).duplicate()
 	var cap: int = int(data.chronicles[chronicle_id]["presence_tokens"])
 
 	var placed_open: Dictionary = {}
@@ -62,9 +61,13 @@ func _initialize() -> void:
 	var blocked_door: int = 0
 	var chose_other: int = 0
 	var occasions: int = 0
+	# Il tavolo cambia a ogni seme (D-213) ma quanti siedono no: si tiene la
+	# **dimensione**, che e' l'unica cosa che serve per fare le medie per seggio.
+	var seats_per_table: int = 0
 
 	for run in range(runs):
 		var seed_value: int = first_seed + run
+		var seats: Array = GameSession.seats_for(data, chronicle_id, seed_value)
 		var session: RefCounted = GameSession.new(data)
 		if not session.setup(chronicle_id, seats, seed_value):
 			printerr("setup fallito: %s" % session.last_error)
@@ -117,6 +120,7 @@ func _initialize() -> void:
 		blocked_card += int(doors["card"])
 		blocked_door += int(doors["door"])
 		chose_other += int(doors["other"])
+		seats_per_table = seats.size()
 		session.dispose()
 
 	print("")
@@ -124,8 +128,8 @@ func _initialize() -> void:
 		runs, chronicle_id, "misto" if mixed else "uniforme"
 	])
 	print("  Pedine per casa: %d all'apertura, tetto %d — **%.2f di riserva** per seggio" % [
-		cap - (spare_at_open / maxi(1, runs * seats.size())), cap,
-		float(spare_at_open) / float(maxi(1, runs * seats.size()))
+		cap - (spare_at_open / maxi(1, runs * seats_per_table)), cap,
+		float(spare_at_open) / float(maxi(1, runs * seats_per_table))
 	])
 	print("")
 	print("  MUOVERE giocate: %.2f l'anno — %.2f posano, %.2f spostano" % [

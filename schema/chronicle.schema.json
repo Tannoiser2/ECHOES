@@ -388,6 +388,20 @@
                 }
               },
               "description": "Quanto pesa un legame al Consiglio (D-139). Un alleato che sostiene il proponente, e che impegna carte per farlo, parla piu' forte di uno sconosciuto: il bonus va al fronte SUPPORT e solo al legame caldo (ALLY un passo, BOUND due). La forma simmetrica - il nemico che osteggia pesa quanto l'alleato che sostiene - e' stata scritta, misurata e scartata: il tavolo di partenza ha ostilita' e non ha alleanze, quindi un dente simmetrico pesa da un lato solo (D-139). Chi tradisce il proprio legame non pesa di piu' ne' di meno: parla da solo. Omesso, i legami non toccano il tavolo - com'era prima di D-139."
+            },
+            "at_end_of_act": {
+              "type": "boolean",
+              "description": "Il Consiglio si tiene alla fine di ogni Atto, sulla domanda col mucchio piu' alto (D-214). Decisione del committente: «il concilio c'e' alla fine di ogni atto, non servono due gettoni per farlo partire». Acceso, il Consiglio non si apre piu' a fine round — ne' per soglia ne' per gettoni nel sacchetto — e restano solo i Consigli **forzati** da RIVENDICARE, che e' il modo di dibattere una seconda domanda. Cosi' il numero di Consigli non e' piu' un'incognita del sistema: sono almeno quanti sono gli Atti."
+            }
+          }
+        },
+        "starting_presence": {
+          "type": "object",
+          "description": "La mappa di partenza, quando non e' quella scritta sulle Entita' (D-212). La presenza di una casa sta sull'Entita' perche' e' la casa; ma un piano scriptato e' una storia scritta su una mappa precisa, e quando la mappa spedita cambia la storia non deve cambiare di nascosto: il piano dichiara qui la mappa in cui e' stato scritto, come gia' dichiara l'economia in cui gioca (D-189). Vale solo per la prima incarnazione del seggio: dopo una successione la presenza torna a essere quella dell'incarnazione (D-133). Omesso o vuoto, la mappa e' quella delle Entita'.",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
             }
           }
         },
@@ -810,6 +824,39 @@
           "type": "string",
           "pattern": "^CHR_[A-Z0-9_]+$",
           "description": "Which Chronicle a saga plays after this one. A Chronicle that continues itself names itself. Written out rather than inferred from having a tension_pool: once the opening Chronicles draw from the library too, that inference would make a saga replay its own first year forever (D-207)."
+        },
+        "entity_pool": {
+          "type": "object",
+          "description": "Le case che potrebbero sedersi, invece di quelle che si siedono (D-213). Stessa forma di `tension_pool` e stessa ragione: un tavolo scritto a mano e' un'era chiusa, e due ere chiuse sono due giochi. La Chronicle dice **chi puo' esserci** e l'RNG a seme apparecchia — cosi' ogni saga parte diversa e le case di secoli lontani possono sedersi insieme. Vuoto o omesso, il tavolo e' quello scritto in `entities`.",
+          "additionalProperties": false,
+          "required": [
+            "candidates",
+            "count"
+          ],
+          "properties": {
+            "candidates": {
+              "type": "array",
+              "minItems": 2,
+              "items": {
+                "type": "string",
+                "pattern": "^ENT_[A-Z0-9_]+$"
+              },
+              "description": "Le case pescabili."
+            },
+            "count": {
+              "type": "integer",
+              "minimum": 2,
+              "description": "Quante se ne siedono."
+            },
+            "always": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^ENT_[A-Z0-9_]+$"
+              },
+              "description": "Pescate per prime, sempre: le case di cui questa Chronicle parla per definizione."
+            }
+          }
         }
       }
     }

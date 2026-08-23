@@ -311,6 +311,9 @@ const DEFS := {
 			"confluence_rules": {
 				"type": "Dictionary",
 			},
+			"starting_presence": {
+				"type": "Dictionary",
+			},
 			"starting_structures": {
 				"type": "Array",
 				"element": {
@@ -374,6 +377,9 @@ const DEFS := {
 			"sequel_id": {
 				"type": "String",
 				"pattern": "^CHR_[A-Z0-9_]+$",
+			},
+			"entity_pool": {
+				"type": "Dictionary",
 			},
 		},
 	},
@@ -501,6 +507,10 @@ const DEFS := {
 				"element": {
 					"type": "Dictionary",
 				},
+			},
+			"requires_entity": {
+				"type": "String",
+				"pattern": "^ENT_[A-Z0-9_]+$",
 			},
 		},
 	},
@@ -856,6 +866,12 @@ const DEFS := {
 			"incarnations": {
 				"type": "Array",
 				"min_items": 1,
+				"element": {
+					"type": "Dictionary",
+				},
+			},
+			"starting_structures": {
+				"type": "Array",
 				"element": {
 					"type": "Dictionary",
 				},

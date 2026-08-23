@@ -24,10 +24,12 @@ const PolicyDecider := preload("res://scripts/seat/policy_decider.gd")
 const LEVELS: Array = ["minimum", "victory", "triumph"]
 
 
-## Chi siede al tavolo lo dice la Chronicle, non questo file (D-049).
-func _seats(data: RefCounted, chronicle_id: String) -> Array:
-	var chronicle: Variant = data.chronicles.get(chronicle_id)
-	return [] if chronicle == null else (chronicle["entities"] as Array).duplicate()
+## Chi siede al tavolo lo pesca il seme, non questo file (D-213): la
+## biblioteca delle case apparecchia, e questa sonda tiene **il tavolo del
+## primo seme** per tutte le sue partite - misura altro, e cambiare tavolo a
+## ogni run vorrebbe dire misurare la pesca invece di quello che cerca.
+func _seats(data: RefCounted, chronicle_id: String, seed_value: int) -> Array:
+	return GameSession.seats_for(data, chronicle_id, seed_value)
 
 
 func _initialize() -> void:
@@ -43,7 +45,7 @@ func _initialize() -> void:
 		quit(3)
 		return
 
-	_free_at_the_start(data, chronicle_id)
+	_free_at_the_start(data, chronicle_id, first_seed)
 	await _when_the_ladder_closes(data, chronicle_id, runs, first_seed)
 	await _what_a_seat_can_actually_get(data, chronicle_id, runs, first_seed)
 	quit(0)
@@ -59,7 +61,7 @@ func _initialize() -> void:
 func _what_a_seat_can_actually_get(
 	data: RefCounted, chronicle_id: String, runs: int, first_seed: int
 ) -> void:
-	var SEATS: Array = _seats(data, chronicle_id)
+	var SEATS: Array = _seats(data, chronicle_id, first_seed)
 	var proposed: Dictionary = {}
 	var tagged: Dictionary = {}
 	for entity_id in SEATS:
@@ -99,8 +101,8 @@ func _what_a_seat_can_actually_get(
 
 ## Every clause of every Destiny, checked against the opening position - the
 ## table as it is dealt, before a single Action Opportunity is spent.
-func _free_at_the_start(data: RefCounted, chronicle_id: String) -> void:
-	var SEATS: Array = _seats(data, chronicle_id)
+func _free_at_the_start(data: RefCounted, chronicle_id: String, first_seed: int) -> void:
+	var SEATS: Array = _seats(data, chronicle_id, first_seed)
 	var session: RefCounted = GameSession.new(data)
 	session.setup(chronicle_id, SEATS, 1)
 	for effect in session.factory_setup_effects():
@@ -153,7 +155,7 @@ func _print_ladder(session: RefCounted, destiny: Dictionary, context: Dictionary
 func _when_the_ladder_closes(
 	data: RefCounted, chronicle_id: String, runs: int, first_seed: int
 ) -> void:
-	var SEATS: Array = _seats(data, chronicle_id)
+	var SEATS: Array = _seats(data, chronicle_id, first_seed)
 	var closed_at: Dictionary = {}
 	var never: Dictionary = {}
 	# Le scale condivise (voce 20, D-115) si misurano nelle stesse partite: per

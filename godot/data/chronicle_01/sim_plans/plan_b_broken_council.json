@@ -314,6 +314,12 @@
         "min_truths": 1
       },
       "chronicle_overrides": {
+        "starting_presence": {
+          "ENT_LYRA": [
+            "REG_MINIERE_ANTICHE",
+            "REG_EREDAN"
+          ]
+        },
         "actions_from_cards": false,
         "hand_refill": {},
         "claim_rules": {},
@@ -337,7 +343,16 @@
             "tension_id": "TEN_ROADS",
             "count": 2
           }
-        ]
+        ],
+        "confluence_rules": {
+          "opposer_recovers_on_failure": false,
+          "failure_delta": -1,
+          "alliance_weight": {
+            "per_step": 1,
+            "max": 2,
+            "commits_at_least": 2
+          }
+        }
       }
     }
   ]

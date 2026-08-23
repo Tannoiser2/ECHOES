@@ -232,6 +232,38 @@ static func _deal_destiny(
 	return str(rng.shuffle(candidates)[0])
 
 
+## Chi si siede. `entities` scritto e' il tavolo d'autore; `entity_pool` e' la
+## biblioteca, e sta alle case come `tension_pool` sta alle domande (D-213).
+##
+## La ragione e' la stessa che ha portato a `tension_pool`, un passo piu' in la':
+## un tavolo scritto a mano non e' un tavolo, e' **un'era**. Due tavoli scritti
+## a mano sono due ere chiuse, cioe' due giochi che non si incontrano mai. Con
+## la biblioteca la Chronicle dice **chi puo' esserci** e l'RNG a seme
+## apparecchia: ogni saga parte diversa, e case di secoli lontani possono
+## trovarsi allo stesso tavolo.
+##
+## Vuoto o omesso, il tavolo e' quello scritto — **una dichiarazione vuota vuol
+## dire assenza**, come ovunque nel progetto.
+static func resolve_seats(chronicle: Dictionary, rng: RefCounted) -> Array:
+	if (chronicle.get("entity_pool", {}) as Dictionary).is_empty():
+		return (chronicle["entities"] as Array).duplicate()
+
+	var pool: Dictionary = chronicle["entity_pool"]
+	var drawn: Array = (pool.get("always", []) as Array).duplicate()
+	var candidates: Array = []
+	for entity_id in pool["candidates"]:
+		if not drawn.has(str(entity_id)):
+			candidates.append(str(entity_id))
+	# Ordinate prima di mescolare: senza, l'ordine del file deciderebbe la
+	# pesca, e un riordino innocuo del dato cambierebbe ogni saga.
+	candidates.sort()
+	for entity_id in rng.shuffle(candidates):
+		if drawn.size() >= int(pool["count"]):
+			break
+		drawn.append(str(entity_id))
+	return drawn
+
+
 ## `tensions` written out is the authored form. `tension_pool` is the library
 ## form: the Chronicle names what it *could* be about and the seeded RNG deals
 ## the year. That is what lets Chronicle N+1 exist without anyone writing it -
@@ -745,6 +777,14 @@ static func inheritance_effects(
 	var lapse: bool = bool(
 		(chronicle.get("control_rules", {}) as Dictionary).get("lapse_without_presence", false)
 	)
+	# Chi c'e' quest'anno (D-213). Col tavolo pescato la casa che teneva una
+	# Regione, o che aveva costruito una pietra, puo' non sedersi piu': la sua
+	# roba non passa a nessuno, resta della terra. Senza questo conto il mondo
+	# nuovo direbbe che una casa assente governa - e la Confluence proverebbe a
+	# cacciare qualcuno che non c'e'.
+	var seated: Dictionary = {}
+	for entity_id in chronicle["entities"]:
+		seated[str(entity_id)] = true
 
 	for region_id in chronicle["regions"]:
 		var before: Variant = (previous["regions"] as Dictionary).get(str(region_id))
@@ -757,6 +797,8 @@ static func inheritance_effects(
 		# opens - which is how a dynasty that spread too thin loses the edges
 		# first, without anyone having to take them.
 		if lapse and control != null and not _had_presence(previous, str(control), str(region_id)):
+			control = null
+		if control != null and not seated.has(str(control)):
 			control = null
 		if str(control if control != null else "") != str(base.get("control", "") if base.get("control", null) != null else ""):
 			effects.append(
@@ -789,6 +831,8 @@ static func inheritance_effects(
 			var record: Dictionary = structure as Dictionary
 			var holder: Variant = record.get("owner", null)
 			if lapse and holder != null and not _had_presence(previous, str(holder), str(region_id)):
+				holder = null
+			if holder != null and not seated.has(str(holder)):
 				holder = null
 			# Prima si toglie quello che l'apertura ha seminato, poi si rialza
 			# com'era: `starting_structures` descrive un anno che comincia da
@@ -823,7 +867,16 @@ static func inheritance_effects(
 	# remembered as a grudge, an alliance as a courtesy. The tags stay whatever
 	# happens, because those are the things that were written down (D-045).
 	var soften: bool = Succession.decays_after(years)
+	# Solo fra chi e' ancora al tavolo (D-213). Finche' le case erano scritte a
+	# mano l'anno dopo aveva sempre le stesse quattro e questa riga non serviva;
+	# con le case pescate il mondo di prima puo' ricordare due case di cui una
+	# oggi non gioca, e SET_RELATION non troverebbe il record da sovrascrivere -
+	# cioe' un Effetto senza inverso, che e' la cosa che l'effect-sourcing non
+	# ammette.
 	for key in previous.get("relations", {}):
+		var pair: PackedStringArray = str(key).split("|")
+		if pair.size() != 2 or not seated.has(pair[0]) or not seated.has(pair[1]):
+			continue
 		var relation: Dictionary = previous["relations"][key]
 		var level: String = str(relation["level"])
 		effects.append(
@@ -916,16 +969,42 @@ static func _had_presence(previous: Dictionary, entity_id: String, region_id: St
 static func setup_effects(chronicle: Dictionary, data: RefCounted, world: Dictionary = {}) -> Array:
 	var effects: Array = []
 	var source: Dictionary = Effect.source("system", "SETUP", "", 0, 0, 0)
+	# La mappa dichiarata (D-212): un piano scriptato e' una storia scritta su
+	# una mappa precisa, e la dichiara invece di ereditarla. Vale solo per la
+	# prima vita del seggio - dopo una successione comanda l'incarnazione, che
+	# la sua presenza se la porta (D-133).
+	var declared: Dictionary = chronicle.get("starting_presence", {}) as Dictionary
 	for entity_id in chronicle["entities"]:
 		var definition: Dictionary = data.entities[entity_id]
 		var incarnation: int = int((
 			(world.get("entities", {}) as Dictionary).get(str(entity_id), {}) as Dictionary
 		).get("incarnation", 0))
 		var active: Dictionary = Succession.active_view(definition, incarnation)
-		for region_id in active["presence"]:
+		var presence: Array = active["presence"] as Array
+		if incarnation == 0 and declared.has(str(entity_id)):
+			presence = declared[str(entity_id)] as Array
+		for region_id in presence:
 			effects.append(
 				Effect.make("ADD_PRESENCE", "entity", entity_id, {"region_id": region_id}, source)
 			)
+		# La pietra della casa (D-213): sta sull'Entita' e non sulla Chronicle,
+		# perche' con le case pescate una pietra intestata a chi non gioca
+		# sarebbe la pietra di un assente. `at` indicizza la presenza di
+		# partenza, quindi se la casa si sposta la sua pietra la segue.
+		for entry in definition.get("starting_structures", []):
+			var built: Dictionary = entry as Dictionary
+			var at: int = int(built.get("at", 0))
+			if at >= presence.size():
+				continue
+			effects.append(Effect.make(
+				"BUILD_STRUCTURE", "region", str(presence[at]),
+				{
+					"structure_type": str(built["structure_type"]),
+					"grade": int(built.get("grade", 1)),
+					"owner": str(entity_id),
+				},
+				source
+			))
 		for asset_id in definition["starting_assets"]:
 			effects.append(
 				Effect.make(

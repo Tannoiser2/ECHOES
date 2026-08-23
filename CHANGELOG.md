@@ -5,6 +5,191 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.184 — Nessuna famiglia senza un'azione (D-215)
+
+- Il committente ha chiesto un numero mai misurato: «*le azioni sono equamente
+  distribuite nelle carte?*». Le **famiglie** erano pari (22 copie ciascuna,
+  esatte). Le **azioni** no, e l'incrocio aveva **nove zeri**: AUTORITÀ non
+  poteva muovere né tramare, RICCHEZZA non poteva rivendicare, FORZA non poteva
+  forgiare.
+- **Uno zero lì non è uno squilibrio: è una porta chiusa senza dirlo.** Le
+  azioni passano sulle carte e la mappa decide che carte peschi, quindi la mappa
+  decide che *cose puoi fare*. Lyra, che vive di SAPERE, aveva **4 copie di
+  MUOVERE su 132** — ed è la causa vera del 30% di seggi che D-208 aveva trovato
+  bloccati da «nessuna carta MUOVERE in mano».
+- **Dieci carte cambiano azione, nessuna cambia mestiere**: il criterio era che
+  il nuovo verbo fosse già dentro il titolo. Il Censimento trama (contare la
+  gente è guardare le carte degli altri), il Pedaggio rivendica (una corda su una
+  strada), il Diritto di Ospitalità muove (essere ospiti è essere là), i
+  Mercenari forgiano (la lealtà pagata è pur sempre un legame).
+- **Nessuno zero**, e lo scarto fra l'azione più comune e la più rara scende da
+  **1,85× a 1,38×**. Le identità restano — SAPERE trama 11 su 22, LEGAMI forgia,
+  FORZA muove — ma sono accenti, non muri.
+- **Una guardia** in `validate_data.py`: nessuna famiglia a zero su un'azione, e
+  la più rara del mazzo non sotto metà della più frequente. Provata rimettendo
+  il Magistrato a FORGE.
+- **I numeri**: Verità scritte **317 → 333** (misto), MUOVERE giocate l'anno
+  **4,64 → 3,79** e bloccati da «nessuna MUOVERE in mano» **30,5% → 38,0%** —
+  voluto: MUOVERE era il 23,5% del mazzo per una sola azione su cinque, e adesso
+  il costo lo pagano tutti allo stesso modo invece del 100% per una casa e lo 0%
+  per un'altra. Playtest **0/8**.
+- **Il piano D si è ribasato** (l'unico): è la storia scritta nell'economia di
+  adesso, quindi non poteva dichiarare un mazzo di prima. Gesto d'apertura e
+  morale intatti; cambia il finale. La prima scelta era sbagliata — avevo
+  spostato proprio la carta di cui quella storia parla, e il piano è andato rosso
+  e aveva ragione.
+- **Cinque sonde erano rotte e nessuno lo sapeva**: non stanno nel cancello, e un
+  cambio di firma in `GameSession` (D-213) le aveva lasciate con un
+  identificatore fuori posto mentre la CI restava verde. Una sonda che non parte
+  è **una misura che non si può più fare**. Adesso `test_probes_compile` le
+  carica tutte.
+
+---
+
+## 0.1.183 — Il Consiglio chiude l'Atto, e il cancello si spegne (D-214)
+
+- Decisione del committente, già presa una volta e da me rimandata **senza
+  dirlo**: «*il concilio c'è alla fine di ogni atto, non servono due gettoni per
+  farlo partire*». Ha dovuto chiedere due volte.
+- **`confluence_rules.at_end_of_act`**: a fine di ogni Atto si tiene un
+  Consiglio sulla domanda col **mucchio più alto** — cioè su ciò che i gettoni
+  coperti costruiscono per tutto l'Atto (D-210). Il round non ne apre più
+  nessuno da solo, né per soglia né per gettoni: **`table_gate` è tolto dai dati
+  spediti** (non dal motore, che resta a disposizione di una Chronicle che lo
+  dichiari). Resta RIVENDICARE per portare al tavolo una seconda domanda.
+- **I gettoni smettono di dire *se* si parla e dicono soltanto *di cosa*.**
+- **I numeri** (100 semi, seme 7000): Consigli l'anno **3,09 → 4,49** (misto) e
+  **3,20 → 4,64** (uniforme), Verità scritte **254 → 317** e **229 → 319**, e il
+  minimo su cento anni **1 → 3**. Su **300 Atti misurati, 0 chiusi senza
+  Consiglio**; anche un tavolo che passa ogni round ne prende tre. Playtest
+  **0/8**.
+- **Il difetto che la regola ha scoperto**: il codice aveva due domande diverse
+  trattate da sinonimi. `has_fresh_question` chiede «resta un quesito mai
+  posto?», ma il template apre solo un quesito **idoneo**. A soglia la
+  differenza non si vedeva; a fine Atto sì — tre anni su cento chiudevano sotto
+  la promessa e uno rifiutava otto aperture di fila. Ora c'è `can_open()`, e la
+  chiusura scende al mucchio successivo invece di perdere il Consiglio.
+- **Il pavimento di fine anno (D-047) non scatta più** sui dati spediti: con un
+  Consiglio per Atto la garanzia è strutturale. Resta nel motore per le
+  Chronicle che non tengono il Consiglio di chiusura.
+- **Dichiarato e non risolto**: 43 aperture su cento anni vengono ancora
+  rifiutate, e sono tutte Consigli **forzati da RIVENDICARE** — il Claim non
+  passa da `can_open`, quindi si può spendere un'azione per forzare un Consiglio
+  che poi non si apre. Difetto vero e preesistente, portato alla luce da questa
+  misura.
+
+---
+
+## 0.1.182 — Un setup solo: le case si pescano come le domande (D-213)
+
+- Il committente: «*non voglio due ere, voglio un unico setup dove si pescano
+  entità e obiettivi e anche le domande*». Il gioco aveva **quattro Chronicle in
+  due linee chiuse**, ognuna con quattro case scritte a mano e sei domande sue.
+- **Cosa c'era già**: gli obiettivi erano già un mazzo solo da 12 e le Regioni
+  già condivise. Mancavano le **case** (fisse) e una **biblioteca unica** di
+  domande (6+6 separate).
+- **`entity_pool`** sulla Chronicle, stessa forma di `tension_pool`: 8 candidate,
+  se ne siedono 4. La pesca sta in `GameSession.seats_for()`, statica e fuori da
+  `setup`, così il tavolo si sa prima che il mondo esista e non consuma l'RNG
+  della partita. Vuoto = assente, come ovunque.
+- **La pietra segue la casa**: `starting_structures` si sdoppia — il paesaggio
+  (bosco, sorgente, valico) resta sulla Chronicle, il presidio passa
+  sull'Entità con `at` sulla presenza di partenza. Rifattorizzazione misurata da
+  sola: **playtest byte-identico**.
+- **La varietà, che è il motivo del cambio** (12 saghe da 6 anni, seme 812):
+  aperture diverse **6 e 4 → 12 su 12**, distanza media fra saghe **0,88 e 0,83
+  → 0,97**, frasi distinte **96 e 52 → 106**, vite viste al tavolo **6 → 13**.
+  Su 200 semi escono **67 tavoli diversi su 70**, e le otto case si siedono fra
+  il 45,0% e il 54,5%.
+- **Tre difetti nascosti che il tavolo pescato ha scoperto**, tutti invisibili
+  finché le case non cambiavano mai: l'eredità portava **relazioni**, **controlli
+  di Regione** e **pietre** di case non più al tavolo (SET_RELATION senza record
+  = Effetto senza inverso); e **due clausole di Consiglio nominavano Lyra per
+  nome**, cadendo in un `push_error` dentro un log che nessuno legge. Ora c'è il
+  segnaposto **`$conditioner`** — chi ha posto la condizione — che è anche più
+  giusto a leggersi.
+- **`requires_entity`** sulle Conseguenze: «Il Drago Abbattuto» spegne Vaerax e
+  adesso lo dichiara, quindi si salta quando Vaerax non siede — **dicendolo nel
+  verbale**, perché D-030 vale anche per ciò che non succede.
+- **Due guardie nuove**: con le case pescate nessun Effetto scritto a mano può
+  puntare a un `ENT_`; e la prova del traguardo verifica che ogni anno peschi
+  **dalla stessa biblioteca** invece di contare due biblioteche separate.
+- **I numeri peggiorati, che si scrivono**: Consigli l'anno **3,53 → 3,09**
+  (misto) e **3,64 → 3,20** (uniforme), Verità scritte **295 → 254**. Con dodici
+  domande e quattro pescate il calore si sparpaglia. Playtest **0/8** su tutti e
+  due i tavoli.
+- **Non fatto, e dichiarato**: **16 relazioni incrociate su 28 non esistono**
+  (partono a NEUTRAL) — un tavolo misto è più piatto di uno storico, e spiega
+  parte del Consiglio perduto. Le Chronicle sono ancora quattro, ma adesso sono
+  *anni* e non *ere*. Il Consiglio a fine Atto e il cancello a due gettoni sono
+  la prossima voce.
+
+---
+
+## 0.1.181 — Lyra sulla Strada dei Mercanti (D-212)
+
+- Il committente ha deciso l'altra metà di ISSUES 48: **«Lyra sulla Strada dei
+  Mercanti»**. Lyra apre con Miniere Antiche + Strada invece di Miniere Antiche
+  + Eredan.
+- **Nel Grano non c'è più una Regione vuota**: la Strada passa da 0,00 → 1,20 a
+  **1,00 → 2,07** pedine, ed è la seconda più affollata a fine anno. La Regione
+  più magra diventa Montagne Rosse a **1,78**.
+- **Lyra smette di essere la quarta casa**: NONE **16 → 8** (uniforme) e **17 →
+  8** (misto), Vittorie **10 → 28** e **12 → 22**, anni chiusi con zero
+  obiettivi **35 → 20**.
+- **I numeri peggiorati, che si scrivono**: i TRIONFI di tutto il tavolo calano
+  **10 → 8** (uniforme) e **5 → 2** (misto), e Lyra resta a **0**; Re Aldric
+  paga il conto (NONE 7 → 10, Vittorie 23 → 14, uniforme); i gettoni si bloccano
+  prima, **44,0% → 51,0%**. Playtest **0/8** su tutti e due i tavoli.
+- **Le quattro storie scritte a mano dichiarano la mappa in cui sono nate.**
+  Nuova chiave `starting_presence` sulla Chronicle (vuota = assente, come
+  ovunque), scrivibile da `chronicle_overrides` come già l'economia (D-189):
+  ribasare quattro `expected` non le avrebbe aggiornate, le avrebbe timbrate.
+  Vale solo per la prima vita del seggio — dopo una successione comanda
+  l'incarnazione (D-133).
+- **Una guardia nuova** in `validate_data.py`: una mappa dichiarata che coincide
+  col dato spedito non dichiara più niente e va rossa. Provata — rimettendo Lyra
+  a Eredan morde su tutti e quattro i piani.
+- **Quello che non è stato fatto**: «Nahr sulle Terre Nahr» nel Grano è già così.
+  La Regione vuota è **Terre Nahr nella linea del Sale**, dove i Nahr non
+  esistono — chi ci va è contenuto, e torna al committente col prezzo misurato.
+
+---
+
+## 0.1.180 — Due pedine di riserva invece di una (D-211)
+
+- Il committente aveva deciso il risultato: «non ci può essere una regione senza
+  nessuno». D-208 aveva prezzato tre rimedi; provati **separatamente**, costano
+  cose molto diverse.
+- **Il tetto a 4** rompe due prove che descrivevano il setup, e **nessuna
+  storia**. **Spostare la casa di Lyra** rompe **tutte e quattro** le storie
+  scritte a mano. Spedito il primo; il secondo è *dove vive una casa*, cioè
+  contenuto, e torna al committente col prezzo scritto.
+- **I numeri**: gettoni di riserva per casa **1 → 2**, MUOVERE l'anno **3,02 →
+  4,70** (Grano) e **2,88 → 4,20** (Sale), bloccati dal gettone **71% → 41%** e
+  **74% → 48%**, Consigli l'anno **3,40 → 3,57** e **3,57 → 3,86**, playtest
+  **0/8**.
+- **Metà voce soddisfatta, e si dice quale.** Nel Grano nessuna Regione finisce
+  sotto **1,20** pedine e la Strada non è più deserta; nel Sale le Terre Nahr
+  restano a **0,88** — lì non comincia nessuno, e il tetto non fa cominciare
+  nessuno.
+- **E spostare continua a non succedere**: 0,03 l'anno nel Grano, 0,00 nel Sale.
+  Più pedine da posare non sono una mappa che si disfa.
+- **Le quattro storie**: B e D passano invariate; **A si ribasa** (l'ultima
+  domanda si chiude decisiva, e con due gettoni di riserva è il finale che la sua
+  descrizione già prometteva); **C dichiara il tetto 3**, perché il suo finale
+  *è* la storia — «una domanda che sembrava chiusa si riapre e resta aperta» — e
+  col quarto gettone quelle Vie passano invece di cadere.
+- **Due difetti per strada.** L'inverso di `REMOVE_PRESENCE` rimetteva la pedina
+  **in fondo** invece che dove stava: il round trip promette *identico* e dava
+  *equivalente*, ed era invisibile perché la Regione di prova era l'ultima della
+  lista. E tre prove descrivevano il setup invece dell'intenzione — una di
+  queste, col tetto a 4, posava **due** pedine sulla montagna dove la clausola
+  ne chiede una, e l'avviso taceva **per la ragione giusta**.
+- Quel test ha anche fatto emergere una regola che non era scritta da nessuna
+  parte: la pedina che parte è la **prima in ordine alfabetico** fra le Regioni
+  tenute. Ora il test lo dice e lo verifica.
+
 ## 0.1.179 — I mucchi coperti, e il pavimento che non sapeva del cancello (D-210)
 
 - **ISSUES 49 è chiusa.** L'ultima fase: «i segnalini coperti danno un valore a

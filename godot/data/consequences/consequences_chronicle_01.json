@@ -1563,6 +1563,7 @@
     {
       "id": "CNS_DRAGON_SLAIN",
       "title": "Il Drago Abbattuto",
+      "requires_entity": "ENT_VAERAX",
       "category": "WAR",
       "description": "Si scende con ferro e fuoco, e si risale in meno. Quello che dormiva sotto la montagna non si svegliera' piu' - e la montagna, da quel giorno, e' soltanto pietra che ricorda.",
       "creates_scar": true,

@@ -65,15 +65,22 @@ func test_move_requires_adjacency() -> void:
 	assert_eq(session.service.presence_count("ENT_ALDRIC", "REG_STRADA_MERCANTI"), 1, "token posato")
 
 
+## Il tetto lo dice la Chronicle (D-211 l'ha portato da 3 a 4): il test posa le
+## pedine finche' ce ne sono, e **poi** guarda che la successiva sposti. Scritto
+## col numero dentro, cambiare il tetto lo rompeva senza che niente fosse rotto.
 func test_move_relocates_once_all_tokens_are_placed() -> void:
-	_do("ENT_ALDRIC", "MOVE", {"region_id": "REG_STRADA_MERCANTI"})
-	assert_eq(session.service.tokens_placed("ENT_ALDRIC"), 3, "tutti e tre i token sono sul tavolo")
+	var cap: int = int(session.data.chronicles["CHR_01"]["presence_tokens"])
+	for region_id in ["REG_STRADA_MERCANTI", "REG_TERRE_NAHR", "REG_MINIERE_ANTICHE"]:
+		if session.service.tokens_placed("ENT_ALDRIC") >= cap:
+			break
+		_do("ENT_ALDRIC", "MOVE", {"region_id": str(region_id)})
+	assert_eq(session.service.tokens_placed("ENT_ALDRIC"), cap, "tutte le pedine sono sul tavolo")
 
 	var result: Dictionary = _do(
-		"ENT_ALDRIC", "MOVE", {"region_id": "REG_TERRE_NAHR", "from_region_id": "REG_EREDAN"}
+		"ENT_ALDRIC", "MOVE", {"region_id": "REG_MONTAGNE_ROSSE", "from_region_id": "REG_EREDAN"}
 	)
-	assert_true(bool(result["ok"]), "con 3 token si sposta: %s" % str(result["error"]))
-	assert_eq(session.service.tokens_placed("ENT_ALDRIC"), 3, "il totale resta 3")
+	assert_true(bool(result["ok"]), "col tetto raggiunto si sposta: %s" % str(result["error"]))
+	assert_eq(session.service.tokens_placed("ENT_ALDRIC"), cap, "il totale resta il tetto")
 	assert_eq(session.service.presence_count("ENT_ALDRIC", "REG_EREDAN"), 0, "il token ha lasciato Eredan")
 
 

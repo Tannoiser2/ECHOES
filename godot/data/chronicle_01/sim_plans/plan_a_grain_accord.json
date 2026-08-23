@@ -5,7 +5,7 @@
     {
       "id": "SIM_PLAN_A",
       "title": "L'accordo del grano",
-      "description": "Aldric si assicura il seggio di proponente mettendo il terzo token nella Valle Verde - il proponente e chi ha più presenza nella Regione di cui si discute (D-036) - accumula Asset rilevanti e requisisce il grano senza una voce contraria: S 5 contro O 0, Decisive. Con la biblioteca completa (D-040) l'anno e più pieno di prima: la Successione si apre per prima e passa anche lei senza discussione, poi torna e la seconda volta costa, e le Vie si chiudono con un accordo normale. Quattro domande, nessuna persa: e la Chronicle di chi ha preparato meglio.",
+      "description": "Aldric si assicura il seggio di proponente mettendo il terzo token nella Valle Verde - il proponente e chi ha più presenza nella Regione di cui si discute (D-036) - accumula Asset rilevanti e requisisce il grano senza una voce contraria: S 5 contro O 0, Decisive. Con la biblioteca completa (D-040) l'anno e più pieno di prima: la Successione si apre per prima e passa anche lei senza discussione, poi torna e la seconda volta costa, e le Vie si chiudono anche loro senza una voce contraria - con due pedine di riserva a testa (D-211) Aldric arriva all'ultima domanda con la mano ancora piena. Quattro domande, nessuna persa: e la Chronicle di chi ha preparato meglio.",
       "chronicle_id": "CHR_01",
       "seed": 20260810,
       "seats": [
@@ -234,12 +234,18 @@
           "DECISIVE_SUCCESS",
           "DECISIVE_SUCCESS",
           "SUCCESS_WITH_COST",
-          "SUCCESS_WITH_COST"
+          "DECISIVE_SUCCESS"
         ],
         "min_echoes": 4,
         "min_truths": 4
       },
       "chronicle_overrides": {
+        "starting_presence": {
+          "ENT_LYRA": [
+            "REG_MINIERE_ANTICHE",
+            "REG_EREDAN"
+          ]
+        },
         "actions_from_cards": false,
         "hand_refill": {},
         "claim_rules": {},
@@ -263,7 +269,16 @@
             "tension_id": "TEN_ROADS",
             "count": 2
           }
-        ]
+        ],
+        "confluence_rules": {
+          "opposer_recovers_on_failure": false,
+          "failure_delta": -1,
+          "alliance_weight": {
+            "per_step": 1,
+            "max": 2,
+            "commits_at_least": 2
+          }
+        }
       }
     }
   ]

@@ -21,64 +21,60 @@ func test_reduced_content_matches_the_milestone() -> void:
 	assert_eq(loaded.regions.size(), 6, "6 Regioni: le 5 principali piu un raccordo")
 	assert_eq(loaded.actions.size(), 6, "i sei template di azione")
 
-	# And two sagas standing on them (D-049). The map is the world and the world
-	# does not restart: the second saga is the same six places eight centuries
-	# later, with different houses asking different questions.
-	assert_eq(loaded.chronicles.size(), 4, "due saghe, ognuna con l'anno scritto e quello di biblioteca")
+	# Un setup solo (D-213). Fino a 0.1.181 questa prova contava «due saghe»
+	# con due biblioteche separate, e contarle separate **era** la voce: due
+	# tavoli scritti a mano sono due giochi che non si incontrano mai. Adesso
+	# c'e' una biblioteca sola, e le Chronicle sono anni dentro la stessa
+	# storia — quindi il conto e' uno.
+	assert_eq(loaded.chronicles.size(), 4, "quattro anni scritti sulla stessa biblioteca")
 	for chronicle_id in ["CHR_01", "CHR_02", "CHR_03", "CHR_04"]:
 		assert_true(loaded.chronicles.has(str(chronicle_id)), "%s esiste" % chronicle_id)
 
-	# Grown past §18.2's reduced set on purpose, and measured: D-024 records why
-	# 2 Tensions and 8 Consequences could not move the world enough to matter.
-	_saga_has("prima", loaded, ["CHR_01", "CHR_02"], 6, 5, 4, 11)
-	# Dieci, non undici: la Cenere ha lasciato «La Terra che Risponde» per «Il
-	# Nome che Pesa» (D-202), perche' quella carta le costava il **100%** — e una
-	# carta condivisibile costa uguale a tutti solo se parla del mondo invece che
-	# del tuo tavolo. Restano quattro Destini identitari, quattro varianti e due
-	# condivisibili giurate qui.
-	_saga_has("seconda", loaded, ["CHR_03", "CHR_04"], 6, 6, 4, 10)
+	_library_is_shared(loaded, ["CHR_01", "CHR_02", "CHR_03", "CHR_04"], 12, 8)
+	assert_eq(loaded.objectives.size(), 12, "12 obiettivi, pescati dallo stesso mazzo da tutti")
 
 
-## What one saga is made of: its questions, the Councils that can be held about
-## them, who is at the table and what they can want. Counted per saga rather
-## than in total, because a total goes up every time content is added and stops
-## saying anything about either story.
-func _saga_has(
-	name: String,
-	loaded: RefCounted,
-	chronicle_ids: Array,
-	tensions: int,
-	templates: int,
-	seats: int,
-	destinies: int
+## Cosa c'e' in biblioteca, e che **e' la stessa per ogni anno**. Contarlo per
+## Chronicle direbbe soltanto quante righe ha un file; contarlo cosi' dice la
+## cosa che la voce chiedeva: nessun anno pesca da un mazzo suo.
+func _library_is_shared(
+	loaded: RefCounted, chronicle_ids: Array, tensions: int, seats: int
 ) -> void:
-	var questions: Dictionary = {}
-	var councils: Dictionary = {}
-	var table: Dictionary = {}
+	var first_questions: Array = []
+	var first_table: Array = []
 	for chronicle_id in chronicle_ids:
 		var chronicle: Dictionary = loaded.chronicles[str(chronicle_id)]
-		for tension_id in chronicle.get("tensions", []):
-			questions[str(tension_id)] = true
-		for tension_id in (chronicle.get("tension_pool", {}) as Dictionary).get("candidates", []):
-			questions[str(tension_id)] = true
-		for template_id in chronicle["confluence_templates"]:
-			councils[str(template_id)] = true
-		for entity_id in chronicle["entities"]:
-			table[str(entity_id)] = true
-
-	var wanted: Dictionary = {}
-	for entity_id in table:
+		var questions: Array = (
+			(chronicle["tension_pool"] as Dictionary)["candidates"] as Array
+		).duplicate()
+		var table: Array = (
+			(chronicle["entity_pool"] as Dictionary)["candidates"] as Array
+		).duplicate()
+		questions.sort()
+		table.sort()
+		if first_questions.is_empty():
+			first_questions = questions
+			first_table = table
+		assert_eq(
+			questions, first_questions,
+			"%s pesca le domande dalla stessa biblioteca" % chronicle_id
+		)
+		assert_eq(
+			table, first_table, "%s apparecchia dalle stesse case" % chronicle_id
+		)
+	assert_eq(first_questions.size(), tensions, "%d domande in biblioteca" % tensions)
+	assert_eq(first_table.size(), seats, "%d case pescabili" % seats)
+	# E ogni casa pescabile deve sapere cosa vuole, altrimenti un seme la
+	# siederebbe senza Destino.
+	for entity_id in first_table:
 		var definition: Dictionary = loaded.entities[str(entity_id)]
-		for destiny_id in definition.get("destiny_pool", [str(definition["destiny_id"])]):
-			wanted[str(destiny_id)] = true
-
-	assert_eq(questions.size(), tensions, "saga %s: %d domande in biblioteca" % [name, tensions])
-	assert_eq(councils.size(), templates, "saga %s: %d Consigli" % [name, templates])
-	assert_eq(table.size(), seats, "saga %s: %d seggi al tavolo" % [name, seats])
-	# Tre per seggio: quello con cui comincia, quello che vuole dopo averlo
-	# ottenuto (D-045), e una carta condivisibile che legge chi la giura
-	# (voce 20, D-115) - le condivise contano una volta sola per saga.
-	assert_eq(wanted.size(), destinies, "saga %s: %d Destiny nei pool" % [name, destinies])
+		var pool: Array = definition.get("destiny_pool", [str(definition["destiny_id"])])
+		assert_false(pool.is_empty(), "%s ha almeno un Destino" % entity_id)
+		for destiny_id in pool:
+			assert_true(
+				loaded.destinies.has(str(destiny_id)),
+				"il Destino %s di %s esiste" % [destiny_id, entity_id]
+			)
 
 
 ## §19.4: eight cards per family, and the same curve in each - four at 1, two at
@@ -168,7 +164,7 @@ func test_chronicle_matches_the_baseline_numbers() -> void:
 	assert_eq(int(chronicle["rounds_per_act"]), 3, "3 round per Atto")
 	assert_eq(int(chronicle["action_opportunities_per_round"]), 2, "2 AO per round")
 	assert_eq(int(chronicle["hand_limit"]), 7, "limite di mano 7")
-	assert_eq(int(chronicle["presence_tokens"]), 3, "3 token presenza")
+	assert_eq(int(chronicle["presence_tokens"]), 4, "4 token presenza (D-211: due di riserva, non uno)")
 	assert_eq(int(chronicle["max_commit_assets"]), 3, "massimo 3 Asset impegnati")
 	assert_eq(int(chronicle["max_condition_commit_assets"]), 2, "massimo 2 per una Condition")
 

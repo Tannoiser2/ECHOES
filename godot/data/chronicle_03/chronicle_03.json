@@ -9,7 +9,7 @@
       "action_opportunities_per_round": 2,
       "minimum_confluences": 2,
       "hand_limit": 7,
-      "presence_tokens": 3,
+      "presence_tokens": 4,
       "max_commit_assets": 3,
       "max_condition_commit_assets": 2,
       "condition_qualified_threshold": 2,
@@ -25,7 +25,8 @@
           "per_step": 1,
           "max": 2,
           "commits_at_least": 2
-        }
+        },
+        "at_end_of_act": true
       },
       "control_rules": {
         "contested": {
@@ -127,30 +128,6 @@
       ],
       "starting_structures": [
         {
-          "region_id": "REG_EREDAN",
-          "structure_type": "STR_KEEP",
-          "grade": 1,
-          "owner": "ENT_LIBERE"
-        },
-        {
-          "region_id": "REG_STRADA_MERCANTI",
-          "structure_type": "STR_KEEP",
-          "grade": 1,
-          "owner": "ENT_SALE"
-        },
-        {
-          "region_id": "REG_MONTAGNE_ROSSE",
-          "structure_type": "STR_KEEP",
-          "grade": 1,
-          "owner": "ENT_CENERE"
-        },
-        {
-          "region_id": "REG_VALLE_VERDE",
-          "structure_type": "STR_SETTLEMENT",
-          "grade": 1,
-          "owner": "ENT_LIBERE"
-        },
-        {
           "region_id": "REG_VALLE_VERDE",
           "structure_type": "STR_FOREST",
           "grade": 1,
@@ -229,7 +206,6 @@
       "tension_tokens": {
         "per_action": 1,
         "replaces_drift": true,
-        "table_gate": 2,
         "covered": [
           0,
           1,
@@ -257,44 +233,93 @@
       },
       "tension_pool": {
         "candidates": [
-          "TEN_WATER",
-          "TEN_DEBT",
-          "TEN_RELIC",
+          "TEN_ASH",
+          "TEN_AWAKENING",
           "TEN_CHARTER",
+          "TEN_DEBT",
+          "TEN_FAMINE",
           "TEN_NAMELESS",
-          "TEN_ASH"
+          "TEN_PLAGUE",
+          "TEN_RELIC",
+          "TEN_ROADS",
+          "TEN_SUCCESSION",
+          "TEN_THIRST",
+          "TEN_WATER"
         ],
-        "count": 5,
+        "count": 4,
         "always": [],
         "echoes": {
-          "TEN_WATER": [
-            "water_priced",
-            "condition:starving"
+          "TEN_ASH": [
+            "condition:emptied",
+            "structure:watchtower"
+          ],
+          "TEN_AWAKENING": [
+            "mine_sealed",
+            "crystal_exploited",
+            "study_supervised",
+            "condition:exploited"
+          ],
+          "TEN_CHARTER": [
+            "charter_written",
+            "no_charter"
           ],
           "TEN_DEBT": [
             "debt_called",
             "condition:indebted"
+          ],
+          "TEN_FAMINE": [
+            "grain_requisitioned",
+            "condition:starving",
+            "condition:rationed"
+          ],
+          "TEN_NAMELESS": [
+            "faith_established",
+            "condition:unrest"
+          ],
+          "TEN_PLAGUE": [
+            "condition:mourning",
+            "condition:abandoned",
+            "condition:emptied"
           ],
           "TEN_RELIC": [
             "relic_shown",
             "relic_buried",
             "structure:sealed"
           ],
-          "TEN_CHARTER": [
-            "charter_written",
-            "no_charter"
+          "TEN_ROADS": [
+            "condition:cut_off",
+            "condition:plundered",
+            "structure:tollgate"
           ],
-          "TEN_NAMELESS": [
-            "faith_established",
-            "condition:unrest"
+          "TEN_SUCCESSION": [
+            "crown_divided",
+            "crown_dispossessed",
+            "oath_broken"
           ],
-          "TEN_ASH": [
-            "condition:emptied",
-            "structure:watchtower"
+          "TEN_THIRST": [
+            "valley_sealed",
+            "condition:starving"
+          ],
+          "TEN_WATER": [
+            "water_priced",
+            "condition:starving"
           ]
         }
       },
-      "sequel_id": "CHR_04"
+      "sequel_id": "CHR_04",
+      "entity_pool": {
+        "candidates": [
+          "ENT_ALDRIC",
+          "ENT_CENERE",
+          "ENT_LIBERE",
+          "ENT_LYRA",
+          "ENT_NAHR",
+          "ENT_SALE",
+          "ENT_VAERAX",
+          "ENT_VETRO"
+        ],
+        "count": 4
+      }
     },
     {
       "world_id": "WORLD_ECHOES",
@@ -303,7 +328,7 @@
       "action_opportunities_per_round": 2,
       "minimum_confluences": 2,
       "hand_limit": 7,
-      "presence_tokens": 3,
+      "presence_tokens": 4,
       "max_commit_assets": 3,
       "max_condition_commit_assets": 2,
       "condition_qualified_threshold": 2,
@@ -319,7 +344,8 @@
           "per_step": 1,
           "max": 2,
           "commits_at_least": 2
-        }
+        },
+        "at_end_of_act": true
       },
       "control_rules": {
         "contested": {
@@ -392,40 +418,76 @@
       },
       "tension_pool": {
         "candidates": [
-          "TEN_WATER",
-          "TEN_DEBT",
-          "TEN_RELIC",
+          "TEN_ASH",
+          "TEN_AWAKENING",
           "TEN_CHARTER",
+          "TEN_DEBT",
+          "TEN_FAMINE",
           "TEN_NAMELESS",
-          "TEN_ASH"
+          "TEN_PLAGUE",
+          "TEN_RELIC",
+          "TEN_ROADS",
+          "TEN_SUCCESSION",
+          "TEN_THIRST",
+          "TEN_WATER"
         ],
         "count": 4,
         "always": [],
         "echoes": {
-          "TEN_WATER": [
-            "water_priced",
-            "condition:starving"
+          "TEN_ASH": [
+            "condition:emptied",
+            "structure:watchtower"
+          ],
+          "TEN_AWAKENING": [
+            "mine_sealed",
+            "crystal_exploited",
+            "study_supervised",
+            "condition:exploited"
+          ],
+          "TEN_CHARTER": [
+            "charter_written",
+            "no_charter"
           ],
           "TEN_DEBT": [
             "debt_called",
             "condition:indebted"
+          ],
+          "TEN_FAMINE": [
+            "grain_requisitioned",
+            "condition:starving",
+            "condition:rationed"
+          ],
+          "TEN_NAMELESS": [
+            "faith_established",
+            "condition:unrest"
+          ],
+          "TEN_PLAGUE": [
+            "condition:mourning",
+            "condition:abandoned",
+            "condition:emptied"
           ],
           "TEN_RELIC": [
             "relic_shown",
             "relic_buried",
             "structure:sealed"
           ],
-          "TEN_CHARTER": [
-            "charter_written",
-            "no_charter"
+          "TEN_ROADS": [
+            "condition:cut_off",
+            "condition:plundered",
+            "structure:tollgate"
           ],
-          "TEN_NAMELESS": [
-            "faith_established",
-            "condition:unrest"
+          "TEN_SUCCESSION": [
+            "crown_divided",
+            "crown_dispossessed",
+            "oath_broken"
           ],
-          "TEN_ASH": [
-            "condition:emptied",
-            "structure:watchtower"
+          "TEN_THIRST": [
+            "valley_sealed",
+            "condition:starving"
+          ],
+          "TEN_WATER": [
+            "water_priced",
+            "condition:starving"
           ]
         }
       },
@@ -464,30 +526,6 @@
         "faith_established"
       ],
       "starting_structures": [
-        {
-          "region_id": "REG_EREDAN",
-          "structure_type": "STR_KEEP",
-          "grade": 1,
-          "owner": "ENT_LIBERE"
-        },
-        {
-          "region_id": "REG_STRADA_MERCANTI",
-          "structure_type": "STR_KEEP",
-          "grade": 1,
-          "owner": "ENT_SALE"
-        },
-        {
-          "region_id": "REG_MONTAGNE_ROSSE",
-          "structure_type": "STR_KEEP",
-          "grade": 1,
-          "owner": "ENT_CENERE"
-        },
-        {
-          "region_id": "REG_VALLE_VERDE",
-          "structure_type": "STR_SETTLEMENT",
-          "grade": 1,
-          "owner": "ENT_LIBERE"
-        },
         {
           "region_id": "REG_VALLE_VERDE",
           "structure_type": "STR_FOREST",
@@ -567,7 +605,6 @@
       "tension_tokens": {
         "per_action": 1,
         "replaces_drift": true,
-        "table_gate": 2,
         "covered": [
           0,
           1,
@@ -593,7 +630,20 @@
           8
         ]
       },
-      "sequel_id": "CHR_04"
+      "sequel_id": "CHR_04",
+      "entity_pool": {
+        "candidates": [
+          "ENT_ALDRIC",
+          "ENT_CENERE",
+          "ENT_LIBERE",
+          "ENT_LYRA",
+          "ENT_NAHR",
+          "ENT_SALE",
+          "ENT_VAERAX",
+          "ENT_VETRO"
+        ],
+        "count": 4
+      }
     }
   ]
 }

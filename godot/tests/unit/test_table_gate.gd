@@ -99,20 +99,30 @@ func test_without_the_gate_the_thresholds_decide_as_always() -> void:
 	)
 
 
-## E i dati spediti dichiarano il cancello: se domani qualcuno lo spegne, lo si
-## sa qui e non alla prima partita.
-func test_the_shipped_chronicles_declare_the_gate() -> void:
+## E i dati spediti **non** dichiarano piu' il cancello: il Consiglio si tiene a
+## fine Atto (D-214), e due gettoni nel sacchetto non lo fanno piu' partire.
+##
+## Il meccanismo del cancello resta nel motore e resta provato qui sopra —
+## spegnerlo cancellando il codice vorrebbe dire buttare via una regola che una
+## Chronicle puo' ancora dichiarare. Quello che cambia e' cosa dichiarano i dati
+## spediti, ed e' quello che questa prova guarda: se domani qualcuno riaccende
+## il cancello **insieme** al Consiglio di fine Atto, il gioco avrebbe due
+## rubinetti sullo stesso Consiglio e lo si saprebbe qui.
+func test_the_shipped_chronicles_hold_the_council_at_the_end_of_the_act() -> void:
 	var shipped: RefCounted = DataSet.new()
 	shipped.load_from("res://data")
 	for chronicle_id in shipped.chronicles:
-		var rules: Dictionary = (shipped.chronicles[str(chronicle_id)] as Dictionary).get(
-			"tension_tokens", {}
-		) as Dictionary
+		var chronicle: Dictionary = shipped.chronicles[str(chronicle_id)] as Dictionary
+		var closing: bool = bool(
+			(chronicle.get("confluence_rules", {}) as Dictionary).get("at_end_of_act", false)
+		)
+		assert_true(closing, "%s tiene il Consiglio a fine Atto" % chronicle_id)
+		var rules: Dictionary = chronicle.get("tension_tokens", {}) as Dictionary
 		if rules.is_empty():
 			continue
-		assert_true(
-			int(rules.get("table_gate", 0)) > 0,
-			"%s dichiara il cancello del tavolo" % chronicle_id
+		assert_eq(
+			int(rules.get("table_gate", 0)), 0,
+			"%s non tiene anche il cancello: sarebbero due rubinetti" % chronicle_id
 		)
 		assert_eq(
 			int(rules.get("threshold_bonus", 0)), 0,

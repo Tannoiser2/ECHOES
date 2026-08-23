@@ -279,7 +279,21 @@ func _add_presence(target: Dictionary, payload: Dictionary) -> Variant:
 	var region_id: String = str(payload.get("region_id", ""))
 	if not world["regions"].has(region_id):
 		return _fail("unknown region '%s'" % region_id)
-	entity["presence"].append(region_id)
+	# **La pedina torna dove stava.** Il carico dell'inverso porta il posto
+	# (`at`) quando l'Effetto diretto era un REMOVE, cosi' disfare rimette la
+	# lista com'era invece che equivalente. Senza, una pedina tolta di mezzo
+	# tornava in fondo: il mondo aveva le stesse presenze in un ordine diverso,
+	# e la promessa dell'effect-sourcing non e' «equivalente», e' **identico**.
+	# Nessuna regola legge quell'ordine: chi sceglie la pedina da spostare passa
+	# da `regions_with_presence`, che **ordina**. Quindi non e' un difetto di
+	# gioco — e' la promessa dell'effect-sourcing che va tenuta com'e' scritta.
+	# L'ha trovato il round trip il giorno in cui la Regione di prova ha smesso
+	# di essere l'ultima della lista.
+	var at: int = int(payload.get("at", -1))
+	if at >= 0 and at <= (entity["presence"] as Array).size():
+		(entity["presence"] as Array).insert(at, region_id)
+	else:
+		entity["presence"].append(region_id)
 	return {"region_id": region_id}
 
 
@@ -297,7 +311,7 @@ func _remove_presence(target: Dictionary, payload: Dictionary) -> Variant:
 			return {"region_id": region_id, "noop": true}
 		return _fail("'%s' has no presence token in '%s'" % [target.get("id"), region_id])
 	entity["presence"].remove_at(index)
-	return {"region_id": region_id}
+	return {"region_id": region_id, "at": index}
 
 
 func _set_control(target: Dictionary, payload: Dictionary) -> Variant:

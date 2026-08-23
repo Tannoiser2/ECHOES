@@ -10,6 +10,539 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-215 — Nessuna famiglia senza un'azione
+**implemented in 0.1.184** — la risposta a «le azioni sono equamente distribuite nelle carte?»
+
+Il committente ha chiesto un numero che non era mai stato misurato. Le
+**famiglie** erano pari — 22 copie ciascuna, esatte. Le **azioni** no, e
+l'incrocio aveva nove zeri:
+
+| copie in mazzo | CLAIM | FORGE | INFLUENCE | MOVE | SCHEME | |
+|---|---|---|---|---|---|---|
+| AUTHORITY | 11 | 2 | 9 | **0** | **0** | 22 |
+| BONDS | 4 | 14 | 2 | **0** | 2 | 22 |
+| FORCE | 2 | **0** | 5 | 15 | **0** | 22 |
+| KNOWLEDGE | 1 | **0** | 2 | 4 | 15 | 22 |
+| PEOPLE | 2 | **0** | 7 | 9 | 4 | 22 |
+| WEALTH | **0** | 7 | 12 | 3 | **0** | 22 |
+| **in tutto** | 20 | 23 | **37** | 31 | 21 | 132 |
+
+### Perche' uno zero li' e' peggio di uno squilibrio
+
+Le azioni passano sulle carte ([D-188](#d-188)) e **la mappa decide che carte
+peschi**. Quindi la mappa decide che *cose puoi fare* — ed era gia' scritto in
+MECCANICA come una virtu' del disegno: «chi sta sulle montagne muove eserciti;
+chi sta nelle miniere sa».
+
+Ma con uno zero non e' un accento: e' **una porta chiusa senza dirlo**. Chi gioca
+RICCHEZZA non poteva rivendicare mai. Chi gioca AUTORITA' non poteva muovere mai.
+E Lyra, che vive di SAPERE, aveva **4 copie di MUOVERE su 132**: quando
+[D-208](#d-208) ha misurato che la mappa e' ferma e ha trovato il 30% dei seggi
+bloccati dalla riga «nessuna carta MUOVERE in mano», la causa era gia' qui e
+nessuno l'aveva guardata.
+
+### Come e' fatto adesso
+
+Dieci carte cambiano azione. **Nessuna cambia mestiere**: il criterio e' che il
+nuovo verbo fosse gia' dentro il titolo, non che i conti tornassero.
+
+| carta | prima | dopo | perche' |
+|---|---|---|---|
+| Censimento | INFLUENCE | **SCHEME** | contare la gente e' il modo piu' vecchio di guardare le carte degli altri |
+| Magistrato | FORGE | **MOVE** | un magistrato lo si manda, e dove siede la corona c'e' |
+| Investitura | CLAIM | **FORGE** | investire qualcuno e' legarlo |
+| Favore | FORGE | **INFLUENCE** | un favore chiesto al momento giusto sposta una questione |
+| Diritto di Ospitalita' | FORGE | **MOVE** | essere ospiti e' essere la' |
+| Guardia di Confine | MOVE | **SCHEME** | chi guarda il confine vede passare tutto |
+| Mercenari | MOVE | **FORGE** | la lealta' pagata e' pur sempre un legame |
+| Le Porte Bruciate | INFLUENCE | **CLAIM** | si e' gia' preso, e adesso lo si dice |
+| Registro | SCHEME | **FORGE** | due case che tengono lo stesso registro hanno gia' cominciato a fidarsi |
+| Braccia per il Raccolto | MOVE | **FORGE** | dal raccolto di un altro nasce un debito che somiglia a un'amicizia |
+| Pedaggio | INFLUENCE | **CLAIM** | una corda su una strada e' una rivendicazione col prezzo scritto sopra |
+| Sale | INFLUENCE | **SCHEME** | con i carri del sale viaggiano le notizie |
+
+| copie in mazzo | CLAIM | FORGE | INFLUENCE | MOVE | SCHEME | |
+|---|---|---|---|---|---|---|
+| AUTHORITY | 7 | 4 | 5 | 2 | 4 | 22 |
+| BONDS | 4 | 6 | 6 | 4 | 2 | 22 |
+| FORCE | 3 | 4 | 4 | 7 | 4 | 22 |
+| KNOWLEDGE | 1 | 4 | 2 | 4 | 11 | 22 |
+| PEOPLE | 2 | 4 | 7 | 5 | 4 | 22 |
+| WEALTH | 4 | 7 | 4 | 3 | 4 | 22 |
+| **in tutto** | 21 | 29 | 28 | 25 | 29 | 132 |
+
+**Nessuno zero**, e lo scarto fra l'azione piu' comune e la piu' rara scende da
+**1,85× a 1,38×**. Le identita' restano dove erano — SAPERE trama (11 su 22),
+LEGAMI forgia, FORZA muove, AUTORITA' rivendica — ma adesso sono **accenti**,
+non muri.
+
+### La guardia
+
+`check_every_family_can_do_everything` in `validate_data.py`. Non chiede che le
+azioni siano pari — l'identita' di una famiglia sta proprio in cio' che fa piu'
+spesso — ma che **nessuna sia a zero**, e che la piu' rara non stia sotto meta'
+della piu' frequente. Provata: rimettendo il Magistrato a FORGE, AUTORITA' torna
+senza MUOVERE e la guardia va rossa.
+
+### I numeri
+
+| 100 semi, seme 7000 | prima | **dopo** |
+|---|---|---|
+| Verita' scritte, misto | 317 | **333** |
+| Verita' scritte, uniforme | 319 | **308** |
+| Consigli l'anno, misto | 4,49 | 4,49 |
+| MUOVERE giocate l'anno | 4,64 | **3,79** |
+| bloccati da «nessuna MUOVERE in mano» | 30,5% | **38,0%** |
+| Regione piu' magra a fine anno | 1,26 | **1,26** |
+| playtest 100 semi | 0/8 | **0/8** |
+
+**MUOVERE si gioca meno, ed e' voluto**: era il 23,5% del mazzo per una sola
+azione su cinque. Il costo si vede tutto nella riga «nessuna carta in mano», che
+sale — ma sale per **tutti allo stesso modo**, invece di essere il 100% per una
+casa e lo 0% per un'altra. Il punto non era muovere di piu': era che ogni casa
+potesse.
+
+### Quello che si dichiara
+
+- **Il piano D si e' ribasato**, ed e' l'unico. Era «la prima storia scritta a
+  mano nell'economia di adesso», quindi non poteva dichiarare un mazzo di prima:
+  il suo gesto d'apertura — Aldric che strappa il primo Consiglio col Diritto di
+  Corona — regge intatto, e la sua morale pure («e' l'anno di chi ha parlato per
+  primo, non di chi ha vinto»: il trono chiude con due obiettivi, i Nahr con
+  tre). Cambia il finale: l'ultima domanda, che cadeva, adesso passa.
+  **Ho scelto male la prima volta**: avevo spostato proprio il Diritto di Corona,
+  cioe' la carta di cui quella storia parla. Il piano e' andato rosso e ha avuto
+  ragione lui.
+- **KNOWLEDGE resta la piu' sbilanciata** (11 SCHEME su 22, e 1 sola CLAIM). E'
+  l'identita' piu' forte del mazzo, e per ora resta com'e'.
+- **Cinque sonde erano rotte e nessuno lo sapeva.** Le sonde di `godot/cli/` non
+  stanno nel cancello, quindi un cambio di firma in `GameSession`
+  ([D-213](#d-213)) le ha lasciate con un identificatore fuori posto e la CI e'
+  restata verde. Una sonda che non parte non e' uno strumento rotto: e' **una
+  misura che non si puo' piu' fare**, e questo progetto sta in piedi sulle
+  misure. Adesso `test_probes_compile` le carica tutte.
+
+---
+
+## D-214 — Il Consiglio chiude l'Atto, e il cancello si spegne
+**implemented in 0.1.183** — la voce che avevo rimandato senza dirlo
+
+*«Inoltre scaldare il mondo con due pedine non lo avevamo tolto? Il concilio c'e'
+alla fine di ogni atto, non servono due gettoni per farlo partire.»*
+
+Il committente l'aveva gia' deciso una volta: *«il consiglio si puo' aprire alla
+fine di ogni atto in automatico e la domanda con piu' valore sara' quella
+dibattuta, cosi' e' sicuro che almeno tre consigli ci saranno sempre»*. Io
+l'avevo prezzato, l'avevo chiamato «il cambio piu' grosso di tutti quelli in
+lista», e l'avevo messo in coda — **senza piu' dirlo**. Ha dovuto chiedere due
+volte, e la seconda per sapere se il cancello a due gettoni era ancora acceso.
+Lo era.
+
+### Come e' fatto adesso
+
+`confluence_rules.at_end_of_act` sulla Chronicle. Acceso:
+
+- **a fine di ogni Atto si tiene un Consiglio**, sulla domanda col mucchio piu'
+  alto — che e' esattamente cio' che i gettoni coperti costruiscono per tutto
+  l'Atto ([D-210](#d-210)): si girano, si contano, e vince chi ha scaldato di
+  piu';
+- **il round non ne apre piu' nessuno da solo**: ne' per soglia, ne' per
+  gettoni nel sacchetto. `tension_tokens.table_gate` e' stato **tolto dai dati
+  spediti** — non dal motore, perche' resta una regola che una Chronicle puo'
+  dichiarare, e una prova la copre;
+- **resta RIVENDICARE**, che e' il modo di portare al tavolo una **seconda**
+  domanda. Senza quello la regola sarebbe un Consiglio *in piu'* invece di un
+  Consiglio *al posto* degli altri.
+
+**I gettoni smettono di dire *se* si parla e dicono soltanto *di cosa*.** Che e'
+il lavoro che [D-210](#d-210) gli aveva dato e che il cancello gli toglieva a
+meta'.
+
+### Il difetto che ha scoperto: due prove che non erano la stessa prova
+
+Alla prima misura la promessa **non era mantenuta**: su cento anni, tre
+chiudevano con meno di un Consiglio per Atto, e uno rifiutava **otto aperture di
+fila** sullo stesso template.
+
+La causa e' che il codice aveva due domande diverse e le trattava da sinonimi.
+`has_fresh_question` chiede «resta un quesito mai posto?». Ma il template apre un
+quesito solo se e' **idoneo** — la Tensione abbastanza alta, il mondo con un
+certo segno. Un quesito puo' essere freschissimo e non aprirsi.
+
+Finche' il Consiglio si apriva a soglia la differenza non si vedeva, perche'
+arrivare a soglia rendeva idoneo quasi tutto. Il Consiglio di fine Atto si apre
+**quando l'Atto finisce**, calda o no, e la crepa e' venuta fuori al primo
+tentativo. Ora c'e' `can_open()`, che fa la prova vera, e la chiusura scende al
+mucchio successivo invece di perdere il Consiglio.
+
+### I numeri, 100 semi, seme 7000
+
+| | prima | **dopo** |
+|---|---|---|
+| Consigli l'anno, misto | 3,09 | **4,49** |
+| Consigli l'anno, uniforme | 3,20 | **4,64** |
+| il minimo su 100 anni | **1** | **3** |
+| Verita' scritte, misto | 254 | **317** |
+| Verita' scritte, uniforme | 229 | **319** |
+| Atti chiusi senza Consiglio | — | **0 su 300** |
+| playtest 100 semi | 0/8 | **0/8** |
+
+**Il minimo e' tre, e non e' una media: e' un pavimento.** Su trecento Atti
+misurati nessuno si chiude muto, e il tavolo piu' silenzioso possibile — quattro
+seggi che passano ogni round — ne prende tre lo stesso. Il gioco e' tornato a
+scrivere piu' Verita' di prima dell'unificazione (317 contro 295), con dodici
+domande in biblioteca invece di sei.
+
+### Il pavimento di fine anno non serve piu'
+
+[D-047](#d-047) aveva messo un pavimento perche' un anno poteva chiudersi con
+**zero** Consigli. Con un Consiglio per Atto la garanzia e' strutturale, e il
+pavimento e' una seconda cintura su una che tiene gia'. Non e' stato tolto dal
+motore — una Chronicle che non tiene il Consiglio di chiusura lo vuole ancora, e
+`test_year_end_floor` gira su quel regime dichiarandolo — ma sui dati spediti
+**non scatta mai**.
+
+### Quello che si dichiara
+
+- **43 aperture su cento anni vengono ancora rifiutate**, e adesso sono tutte
+  Consigli **forzati da RIVENDICARE**: il Claim non passa da `can_open`, quindi
+  si puo' spendere un'azione per forzare un Consiglio che poi non si apre. E'
+  un difetto vero e **preesistente**, che questa misura ha portato alla luce; non
+  e' stato toccato qui.
+- **Le quattro storie scritte a mano dichiarano il regime in cui sono nate**
+  (`chronicle_overrides.confluence_rules`), come gia' dichiarano l'economia
+  ([D-189](#d-189)) e la mappa ([D-212](#d-212)).
+- **Il lato classico della suite spegne anche questo interruttore.** E' la
+  quarta volta che `play_classic()` cresce di una riga, ed e' la stessa lezione
+  di D-184: due meta' di due giochi diversi non si provano insieme.
+
+---
+
+## D-213 — Un setup solo: le case si pescano come le domande
+**implemented in 0.1.182** — ISSUES 48/52 cambiano forma, e tre difetti nascosti vengono fuori
+
+*«Ma io continuo a non capire perche' abbiamo due ere. Ti avevo detto che c'e'
+un'unica linea, e Cenere, Sale possono coesistere con i Nahr, le entita' vengono
+pescate casualmente all'inizio della saga. [...] Stai girando in tondo.»*
+
+Il committente ha ragione, e la parte piu' onesta di questo verbale e' dire
+quanto: il gioco aveva **quattro Chronicle in due linee chiuse** — Grano
+(CHR_01→CHR_02) e Sale (CHR_03→CHR_04) — ognuna con **quattro case scritte a
+mano** e **sei domande sue**. Le domande si pescavano gia' ([D-207](#d-207)), ma
+da una biblioteca per linea. Chi si sedeva non si pescava affatto.
+
+### Cosa c'era gia', e cosa mancava davvero
+
+Guardato invece che ricordato, il lavoro era meno di quanto sembrasse:
+
+| | prima | serviva |
+|---|---|---|
+| **Obiettivi** | gia' un mazzo solo, 12 carte, nessuno scope d'era | niente |
+| **Regioni** | gia' condivise, le stesse 6 | niente |
+| **Domande** | pescate, ma da **6 candidate per linea** | una biblioteca da 12 |
+| **Case** | `entities: [4 id fissi]` per Chronicle | `entity_pool`, 8 → 4 |
+
+### `entity_pool`, e perche' e' la stessa forma di `tension_pool`
+
+La Chronicle dice **chi puo' esserci** e l'RNG a seme apparecchia. Vuoto o
+omesso, il tavolo e' quello scritto — una dichiarazione vuota vuol dire assenza,
+come ovunque nel progetto.
+
+La pesca sta in `GameSession.seats_for()`, **statica e fuori da `setup`**, per
+una ragione: il tavolo va saputo *prima* che il mondo esista — chi apparecchia i
+caratteri, chi stampa una scheda, chi scrive una riga di resoconto lo chiede
+prima. E stando fuori non consuma l'RNG della partita: c'e' una strada sola, e
+il seme che apparecchia e' lo stesso che gioca.
+
+Dentro `setup`, se la Chronicle pesca, `_chronicle_def` viene **duplicata** e le
+sue `entities` diventano i seduti: il resto del mondo — pedine, mazzi,
+successione, relazioni — legge quella lista, e senza la copia il gioco
+apparecchierebbe otto case e ne farebbe giocare quattro.
+
+### La pietra segue la casa
+
+`starting_structures` stava sulla Chronicle e mescolava due cose diverse: il
+**paesaggio** (bosco, sorgente, valico, sito antico) e il **presidio della
+casa**. Finche' il tavolo era scritto a mano la differenza non si vedeva; col
+tavolo pescato una pietra intestata a chi non gioca e' la pietra di un assente.
+
+Quindi il presidio e' passato **sull'Entita'**, con `at` che indicizza la
+presenza di partenza — cosi' se la casa si sposta, la sua pietra si sposta con
+lei (e [D-212](#d-212) ne e' la prova: Lyra si e' spostata ieri). Il paesaggio
+resta sulla Chronicle, perche' e' la mappa. La rifattorizzazione e' stata
+misurata da sola: **playtest byte-identico**, come deve essere una mossa che non
+cambia il gioco.
+
+### Tre difetti che nessuno vedeva, e che il tavolo pescato ha scoperto
+
+Sono la parte importante di questo verbale. Nessuno dei tre era nuovo: erano
+**invisibili perche' il tavolo non cambiava mai**.
+
+1. **L'eredita' portava relazioni fra case che non siedono.** `SET_RELATION` su
+   una coppia senza record e' un Effetto senza inverso — la cosa che
+   l'effect-sourcing non ammette. Ora l'eredita' filtra su chi e' al tavolo.
+2. **E portava il controllo e le pietre di case assenti.** Un mondo che dice
+   «Eredan e' di Aldric» quando Aldric non gioca fa provare al Consiglio di
+   cacciare qualcuno che non c'e'. Stessa guardia, due righe.
+3. **Due clausole di Consiglio nominavano Lyra per nome.** «...e allora Lyra ha
+   il registro»: con Lyra assente l'Effetto cadeva in un `push_error` dentro un
+   log che nessuno legge — cioe' **contenuto che non succede e non si lamenta**.
+   Ora usano `$conditioner`, un segnaposto nuovo che lega **chi ha posto la
+   condizione**: piu' giusto anche a leggerlo, perche' quello che la condizione
+   ottiene lo ottiene chi l'ha chiesto.
+
+E una Conseguenza che parla davvero di una casa — «Il Drago Abbattuto» spegne
+Vaerax — adesso lo **dichiara** (`requires_entity`) e si salta quando quella casa
+non siede, dicendolo nel verbale: D-030 vale anche per cio' che *non* succede.
+
+**Due guardie nuove** in `validate_data.py` chiudono la porta: con le case
+pescate nessun Effetto scritto a mano puo' puntare a un `ENT_` (se non quello
+che la Conseguenza dichiara), e la prova del traguardo adesso verifica che ogni
+anno peschi **dalla stessa biblioteca** invece di contare due biblioteche
+separate — contarle separate *era* la voce.
+
+### I numeri: la varieta', che e' la cosa per cui il cambio esiste
+
+12 saghe da 6 Chronicle, seme 812, tavolo misto:
+
+| | Grano | Sale | **unificato** |
+|---|---|---|---|
+| aperture diverse su 12 saghe | 6 | 4 | **12** |
+| distanza media fra saghe | 0,88 | 0,83 | **0,97** |
+| frasi distinte in tutto | 96 | 52 | **106** |
+| vite viste al tavolo | 6 | 6 | **13** |
+| distanza al primo anno | 0,97 | 0,97 | **0,99** |
+
+**Ogni saga adesso apre diversa da ogni altra**, e al tavolo si vedono tredici
+vite invece di sei. Su 200 semi escono **67 tavoli diversi su 70 possibili**, e
+le otto case si siedono fra il 45,0% e il 54,5% delle volte — il pool e' pari.
+
+### I numeri peggiorati, che si scrivono
+
+| 100 semi, seme 7000 | prima (Grano+Sale) | **unificato** |
+|---|---|---|
+| Consigli l'anno, misto | 3,53 | **3,09** |
+| Consigli l'anno, uniforme | 3,64 | **3,20** |
+| Verita' scritte, misto | 295 | **254** |
+| playtest | 0/8 | **0/8** |
+
+- **Si parla meno**: mezzo Consiglio in meno all'anno. Con dodici domande in
+  biblioteca e quattro pescate, il calore si sparpaglia su un mazzo doppio.
+- **Il tavolo e' piu' irregolare per seggio**, ed e' voluto: una casa che gioca
+  la meta' degli anni ha meta' dei dati, e i suoi numeri ballano. Ma le colonne
+  restano tutte popolate e **nessun seggio e' bloccato su un solo livello**, che
+  e' il vincolo mai negoziato.
+- **I TRIONFI restano rari**: 3 su 288 seggi-anno nella saga lunga, come prima.
+  L'unificazione non ha toccato la scala, e [ISSUES 52](ISSUES.md#52-lyra-non-ha-mai-trionfato-in-centoventi-anni)
+  resta aperta con la sua causa: due case su otto — Lyra e il Vetro — aprono
+  ancora senza una pietra.
+
+### Cosa non e' stato fatto, e si dichiara
+
+- **Le 16 relazioni incrociate non esistono.** Su 28 coppie possibili ne sono
+  scritte 12, tutte dentro la vecchia linea: Aldric↔Sale, Lyra↔Vetro,
+  Nahr↔Cenere e le altre partono a NEUTRAL. Il gioco funziona — ogni coppia
+  parte neutrale per costruzione — ma un tavolo misto e' **piu' piatto** di uno
+  storico, e questo spiega parte del mezzo Consiglio perduto.
+- **Le quattro Chronicle sono ancora quattro**, con quattro titoli. Adesso sono
+  *anni*, non *ere*: pescano dalla stessa biblioteca e apparecchiano dalle
+  stesse case. Ridurne il numero e' contenuto, non regola.
+- **Il Consiglio a fine Atto non c'e' ancora**, e il cancello a due gettoni e'
+  ancora acceso. E' la prossima voce, ed e' stata rimandata da me senza dirlo —
+  il committente ha dovuto chiedere due volte.
+
+---
+
+## D-212 — Lyra sulla Strada dei Mercanti, e la mappa che un piano dichiara
+**implemented in 0.1.181** — l'altra meta' di ISSUES 48, quella che costa storie
+
+[D-211](#d-211) aveva spedito meta' della decisione del committente e aveva
+lasciato scritto il prezzo dell'altra meta': *«spostare la casa di Lyra rompe
+tutte e quattro le storie scritte a mano [...] non e' una manopola: e' **dove
+vive una casa**, cioe' contenuto. Va deciso da lui, non dedotto da me.»*
+
+Il committente ha deciso: **«Lyra sulla Strada dei Mercanti»**. Lyra apre con
+Miniere Antiche + **Strada dei Mercanti** invece di Miniere Antiche + Eredan.
+
+### Il problema vero non era la riga di dati: erano le quattro storie
+
+La riga di dati e' una parola. Le quattro storie scritte a mano si rompono
+**tutte**, e non di poco: il piano B passa da 3 Consigli a 6, il piano D da 4 a
+5, e A e C cambiano esito nel finale. Le due strade possibili erano:
+
+- **ribasare i quattro `expected`** — cioe' prendere quello che esce e chiamarlo
+  la storia. Ma un piano scriptato **e' una storia disegnata**: le sue mosse
+  sono scritte perche' succeda una cosa precisa. Ribasarlo su un'altra mappa
+  non lo aggiorna, lo **timbra**: resta un elenco di mosse a cui si e' dato
+  ragione a posteriori. Il piano C lo dice da solo — *«una domanda che sembrava
+  chiusa si riapre e resta aperta»* — e su questa mappa quella domanda passa.
+- **far dichiarare al piano la mappa in cui e' stato scritto**, che e' lo stesso
+  idioma che i piani gia' usano per l'economia ([D-189](#d-189)).
+
+E' passata la seconda. `starting_presence` sulla Chronicle: un dizionario
+`entita' -> Regioni` che sostituisce la presenza scritta sull'Entita'. Vuoto o
+omesso, la mappa e' quella delle Entita' — **una dichiarazione vuota vuol dire
+assenza**, come ovunque nel progetto. Vale solo per la **prima vita** del
+seggio: dopo una successione comanda l'incarnazione, che la sua presenza se la
+porta ([D-133](#d-133)).
+
+Non serve macchinario nuovo: `chronicle_overrides` scrive gia' qualunque chiave
+sulla Chronicle, quindi i quattro piani dichiarano `starting_presence` e passano
+dalla **stessa** `GameSession.apply_plan_overrides` che usano la suite e la
+sonda. La porta si allarga di una chiave, e lo schema la tiene stretta come le
+altre.
+
+### La guardia, perche' una dichiarazione marcisce in silenzio
+
+Una mappa dichiarata che **coincide** col dato spedito non dichiara piu' niente:
+sembra una scelta e non lo e'. `check_a_declared_map_still_says_something` in
+`validate_data.py` va rossa se un piano ripete la presenza gia' scritta
+sull'Entita', o se nomina un'Entita' che non esiste. Provata: rimettendo Lyra a
+Eredan, morde su tutti e quattro i piani.
+
+**Quello che la guardia non puo' vedere, e va detto**: una casa che i piani
+**non nominano** e che sul dato si sposta domani. Li' le storie cambierebbero in
+silenzio, come sono cambiate oggi. La guardia tiene pulita la dichiarazione; non
+sa accorgersi di una dichiarazione che manca.
+
+### I numeri, 100 semi, seme 7000
+
+| | Lyra a Eredan | **Lyra sulla Strada** |
+|---|---|---|
+| Strada dei Mercanti, apertura → fine | 0,00 → 1,20 | **1,00 → 2,07** |
+| Regione piu' vuota a fine anno | Strada, 1,20 | **Montagne Rosse, 1,78** |
+| Lyra NONE, uniforme | 16 | **8** |
+| Lyra VITTORIE, uniforme | 10 | **28** |
+| Lyra NONE, misto | 17 | **8** |
+| Lyra VITTORIE, misto | 12 | **22** |
+| Lyra: anni con **zero** obiettivi presi | 35 | **20** |
+| Lyra: anni con **tre** obiettivi presi | 7 | **19** |
+| NONE in tutto, uniforme | 61 | **51** |
+| VITTORIE in tutto, uniforme | 181 | **193** |
+| bloccati dal gettone | 44,0% | 51,0% |
+| playtest 100 semi | 0/8 | **0/8** |
+
+### I numeri peggiorati, che si scrivono
+
+- **I TRIONFI calano**: 10 → **8** a tavolo uniforme, 5 → **2** a tavolo misto.
+  Lyra passa da 1 Trionfo a **0** in tutte e due, e Vaerax pure. Il tetto si
+  abbassa mentre il pavimento si alza — la stessa forma di D-211.
+- **Aldric paga il conto**: NONE 7 → **10** e Vittorie 23 → **14** a tavolo
+  uniforme, NONE 9 → **14** a tavolo misto. Lyra gli lascia Eredan e lui sta
+  peggio, il che vuol dire che non era la concorrenza sulla Regione: e' il
+  flusso delle carte che cambia sotto.
+- **I gettoni si bloccano prima**: 44,0% → 51,0% delle occasioni finiscono
+  «tutte gia' sul tavolo». Una pedina in piu' sulla Strada e' una pedina in meno
+  da posare altrove.
+- **E spostare continua a non succedere**: 0,00 l'anno, come prima. Questa
+  decisione riempie la Regione vuota; **non** rende la mappa mobile. Quella
+  resta [ISSUES 39](ISSUES.md#39-la-terra-che-si-vede-pedine-di-carta-o-strutture-con-una-vita).
+
+### Cosa non e' stato fatto, e perche'
+
+Il committente ha chiesto anche **«Nahr sulle Terre Nahr»**. Nella linea del
+Grano **e' gia' cosi'**: il Popolo Nahr apre con Terre Nahr + Valle Verde, e li'
+non c'e' niente da spostare. La Regione vuota e' **Terre Nahr nella linea del
+Sale**, dove i Nahr non esistono: le case sono Sale, Cenere, Vetro e Citta'
+Libere, e tre di loro aprono su Eredan. Chi ci va e' una scelta di contenuto —
+quale casa vive dove — e torna al committente col prezzo misurato, come e'
+tornata questa.
+
+---
+
+## D-211 — Due pedine di riserva invece di una
+**implemented in 0.1.180** — meta' di ISSUES 48, e la meta' che non costa storie
+
+[D-208](#d-208) aveva misurato perche' la mappa e' ferma: ogni casa comincia con
+**2 pedine** e il tetto e' **3**, quindi ha **un** gettone di riserva per tutto
+l'anno. Lo posa, e da li' non ha piu' niente da muovere — il 71% dei seggi
+finisce l'anno con tutte le pedine sul tavolo.
+
+Il committente ha deciso il risultato: «**non ci puo' essere una regione senza
+nessuno**, e anzi la Strada dei Mercanti dovrebbe essere uno snodo vitale». I
+tre rimedi prezzati erano il tetto a 4, gli studiosi che cominciano sulla
+Strada, e i due insieme.
+
+### Perche' e' passato solo il tetto
+
+Provati **separatamente**, i due rimedi costano cose diverse:
+
+- **il tetto a 4** rompe due prove che descrivevano il setup invece
+  dell'intenzione, e **nessuna storia**;
+- **spostare la casa di Lyra** rompe **tutte e quattro** le storie scritte a
+  mano: cambia la posizione d'apertura, e con quella i Consigli di ogni piano.
+
+E la seconda non e' una manopola: e' **dove vive una casa**, cioe' contenuto. Il
+committente ha scelto il risultato, non quel mezzo — e adesso il mezzo ha un
+prezzo scritto. Va deciso da lui, non dedotto da me.
+
+### I numeri, misurati col gioco di adesso
+
+| | tetto 3 | **tetto 4** |
+|---|---|---|
+| gettoni di riserva per casa | 1,00 | **2,00** |
+| MUOVERE l'anno, Grano | 3,02 | **4,70** |
+| MUOVERE l'anno, Sale | 2,88 | **4,20** |
+| bloccati dal gettone, Grano | 71,2% | **40,6%** |
+| bloccati dal gettone, Sale | 74,4% | **47,5%** |
+| Strada dei Mercanti (Grano), apertura → fine | 0,00 → 0,65 | 0,00 → **1,20** |
+| Terre Nahr (Sale), apertura → fine | 0,00 → 0,55 | 0,00 → **0,88** |
+| Consigli l'anno, uniforme | 3,40 | **3,57** |
+| Consigli l'anno, misto | 3,57 | **3,86** |
+| playtest 100 semi | 0/8 | **0/8** |
+
+**Meta' della decisione e' soddisfatta, meta' no, ed e' scritto quale.** Nel
+Grano nessuna Regione finisce l'anno sotto **1,20** pedine: la Strada non e' piu'
+deserta. Nel Sale le **Terre Nahr restano a 0,88**, sotto una pedina — perche'
+li' non comincia nessuno, ed e' esattamente la causa che D-208 aveva nominato.
+Il tetto allarga il rubinetto; non fa cominciare qualcuno dove non comincia
+nessuno.
+
+E **spostare non succede ancora mai**: 0,03 volte l'anno nel Grano, 0,00 nel
+Sale. Il tetto da' piu' pedine da **posare**, non insegna a **ritirarsi**.
+
+### Le quattro storie: due passano, una migliora, una si dichiara
+
+Provato **senza** lo spostamento di Lyra, il tetto da solo tocca due piani su
+quattro, e solo l'ultimo esito — i Consigli restano gli stessi:
+
+- **B e D** passano invariati: sono storie del gioco spedito, e la guardia di
+  [D-206](#d-206) («almeno una storia per economia») e' soddisfatta;
+- **A, «L'accordo del grano»**, si **ribasa**: l'ultima domanda si chiude
+  DECISIVE invece che con un costo. La sua descrizione dice «la Chronicle di chi
+  ha preparato meglio», e con due gettoni di riserva Aldric arriva all'ultima
+  domanda con la mano ancora piena — il finale nuovo dice meglio quello che la
+  storia gia' diceva. Riscritta la frase, non solo il numero;
+- **C, «La miniera aperta»**, **dichiara il tetto 3**. Il suo finale *e'* la
+  storia: «una domanda che sembrava chiusa si riapre e resta aperta», e col
+  quarto gettone quelle Vie passano invece di cadere. Ribasarla avrebbe reso
+  falsa la sua descrizione; dichiararlo la lascia vera e dice perche'.
+
+E' la differenza fra un numero che si aggiorna e una storia che si perde.
+
+### Due difetti trovati per strada
+
+- **L'inverso di `REMOVE_PRESENCE` rimetteva la pedina in fondo**, non dove
+  stava. Il round trip promette *identico*, non *equivalente*, e questo dava
+  equivalente: il carico dell'inverso non portava il posto. Era invisibile
+  perche' la Regione di prova era l'ultima della lista. Adesso porta `at`.
+  **Non e' un difetto di gioco**: chi sceglie la pedina da spostare passa da
+  `regions_with_presence`, che ordina — ma la promessa dell'effect-sourcing va
+  tenuta com'e' scritta.
+- **Due prove descrivevano il setup invece dell'intenzione.** `test_data_boot`
+  scriveva «3 token presenza» col numero dentro; `test_action_resolver`
+  posava esattamente tre pedine; `test_destiny_warning` ne distribuiva a giro
+  su tre Regioni — e col tetto a 4 ne posava **due** sulla montagna, dove la
+  clausola chiede `min: 1`, quindi l'avviso taceva **per la ragione giusta**.
+  Adesso leggono il tetto dal dato.
+
+  E quel test ha insegnato una cosa che non era scritta da nessuna parte: la
+  pedina che parte non e' una qualsiasi, e' la **prima in ordine alfabetico**
+  fra le Regioni tenute, perche' `_pick_source_region` legge
+  `regions_with_presence` e quella ordina. Il test adesso lo dice e lo verifica.
+
+---
+
 ## D-210 — I mucchi coperti, e il pavimento che non sapeva del cancello
 **implemented in 0.1.179** — ISSUES 49 fase 3, chiusa
 
