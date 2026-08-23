@@ -2763,6 +2763,59 @@ e' in gioco.
 
 ---
 
+### 63. L'app non è un prototipo giocabile: è un'ispezione di stato con dei bottoni
+
+`ux` · voluta dal committente · **misurata in 0.1.199** · primo passo fatto
+([D-228](DECISIONS.md#d-228))
+
+> «La GUI non è più gestibile con le nuove regole. Non ci sono carte chiare, non
+> ci sono pedine che rappresentano edifici, condizioni, cicatrici e tutto quello
+> che dovrebbe apparire in una copia fisica del gioco. L'app dovrebbe essere
+> giocabile come un vero prototipo, con carte che spiegano esattamente cosa fanno
+> e non tag o testi tecnici; la GUI deve prevedere movimenti drag & drop, non
+> pulsanti che dicono cosa fare. Si seleziona una carta, si decide come usarla e
+> si deve poter generare il suo effetto. Così com'è fatto è ingiocabile (lo è
+> sempre stato).»
+
+**Misurato, non supposto:**
+
+| | |
+|---|---|
+| file in `godot/ui/` che implementano il drag & drop | **0 su 21** |
+| come si sceglie un'azione | `Button.new()` da una lista di stringhe, si torna un indice |
+| cosa si clicca sulla mappa | solo la Regione bersaglio di un MUOVERE **già scelto col bottone** |
+| come la mappa disegna strutture, condizioni, cicatrici | **parole in grigio** sotto il nome della Regione |
+| effetti di carta che stampavano il tipo grezzo | **28 su 49** |
+| carte che dicevano il proprio verbo | **0 su 48** |
+
+La ragione è strutturale, e ogni misura di questo ciclo la conferma dal suo lato:
+**la GUI è stata costruita per far vedere che il motore funziona, non per farci
+giocare.** Il cancello gioca solo con `PolicyDecider`, che non ha mani.
+
+### Le quattro mosse
+
+1. ✅ **La carta dice cosa fa** — [D-228](DECISIONS.md#d-228), 0.1.199. Il verbo
+   sulla faccia (schermo e cartone), i segni con la loro parola, tre prove che lo
+   tengono.
+2. **I pezzi sulla mappa.** Strutture, condizioni, cicatrici e insediamenti
+   diventano **oggetti disegnati** — una torre, un covone, uno strappo — invece
+   di etichette in fila. La mappa comincia a somigliare a un tavolo.
+3. **Il drag & drop.** Si prende la carta, la si trascina su una Regione, e
+   l'effetto parte: la presenza si sposta, la torre appare, la fame cade sulla
+   zona. Il bottone sparisce.
+4. **Il Consiglio giocabile** — è [ISSUES 62](#62), e le due si chiudono insieme:
+   *il gioco non esiste come componenti, né di cartone né sullo schermo.*
+
+**Da tenere presente mentre si costruisce:** niente di tutto questo lo copre il
+cancello. Le regole restano verdi qualunque cosa succeda alla GUI, ed è
+esattamente il buco di [D-224](DECISIONS.md#d-224). Ogni mossa porta la sua
+misura, o non è fatta.
+
+**Fatto quando** una persona può giocare un anno intero senza che nessuno le
+spieghi cosa fanno i bottoni, perché non ci sono bottoni da spiegare.
+
+---
+
 ### 62. Il Consiglio non si può giocare sul tavolo fisico
 
 `ux` · `contenuto` · **misurata in 0.1.196**

@@ -46,7 +46,16 @@ func test_presence_and_tags_speak() -> void:
 	var marked: String = _narrated(
 		"SET_REGION_TAG", "region", "REG_VALLE_VERDE", {"tag": "nahr_settled"}
 	)
-	assert_true(marked.contains("nahr_settled"), "il segno si legge: %s" % marked)
+	# **Il segno si legge con la sua parola, non col suo id** (D-228). Questa riga
+	# chiedeva che nella narrazione comparisse `nahr_settled`, cioe' pretendeva il
+	# nome interno: la prova teneva fermo il difetto invece della regola. Adesso
+	# `SignLabels` copre anche i fatti del mondo e la frase e' quella che si legge
+	# al tavolo.
+	assert_true(
+		marked.contains("i Nahr si sono fermati"),
+		"il segno si legge con la sua parola: %s" % marked
+	)
+	assert_false(marked.contains("nahr_settled"), "e non col suo id: %s" % marked)
 	var entity_marked: String = _narrated(
 		"SET_ENTITY_TAG", "entity", "ENT_LYRA", {"tag": "renown"}
 	)

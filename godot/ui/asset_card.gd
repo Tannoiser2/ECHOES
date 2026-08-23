@@ -22,6 +22,10 @@ const CARD_H: float = 110.0
 
 var asset: Dictionary = {}
 
+## Il DataSet, tenuto perche' il tooltip si costruisce **dopo** `render()` —
+## quando il mouse si ferma — e li' i segni vanno tradotti in parole.
+var _data: RefCounted = null
+
 var _picture: TextureRect
 var _footer: Label
 
@@ -37,6 +41,7 @@ func _ready() -> void:
 ## no Council, and then a card shows its printed strength instead of its value.
 func render(p_asset: Dictionary, relevant: Array, council_open: bool, data: RefCounted) -> void:
 	asset = p_asset
+	_data = data
 	var family: String = str(asset["family"])
 	var is_relevant: bool = relevant.has(family)
 
@@ -96,7 +101,7 @@ func _make_custom_tooltip(_for_text: String) -> Object:
 	panel.add_theme_stylebox_override("panel", style)
 
 	var label := Label.new()
-	label.text = AssetText.tooltip(asset)
+	label.text = AssetText.tooltip(asset, _data)
 	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	label.custom_minimum_size = Vector2(300, 0)
 	label.add_theme_font_size_override("font_size", 12)

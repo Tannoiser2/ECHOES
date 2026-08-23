@@ -5,6 +5,39 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.199 — Una carta dice cosa fa: il verbo, e i segni con la loro parola (D-228)
+
+- **Il committente ha guardato l'app**: *«così com'è fatto è ingiocabile, lo è
+  sempre stato»*. Aperta **ISSUES 63** con i numeri: **0 file su 21** in
+  `godot/ui/` implementano il drag & drop, le azioni sono `Button.new()` da una
+  lista di stringhe, e la mappa disegna strutture e cicatrici come **parole in
+  grigio** sotto il nome della Regione.
+- **Primo dei quattro passi, fatto**: la carta dice cosa fa.
+- **Il verbo, che non c'era su nessuna delle 48 carte.** La scheda portava
+  famiglia, forza, modificatore, che fine fa la carta e cosa costa impegnarla — e
+  mai *cosa succede se la cali*. Adesso sta in cima, sullo schermo **e sul
+  cartone stampato**.
+- **28 effetti su 49 parlavano in tecnico.** Sull'«Assedio» un giocatore leggeva
+  davvero «costa: la domanda in gioco sale, **raze_structure**». Un tipo in
+  minuscolo sembra una regola: è il nome interno di un Effetto finito su una
+  carta. Adesso è «viene giù una costruzione dove si discute».
+- **`SignLabels` guadagna i fatti del mondo**: trenta, che prima non aveva
+  nessuno — era il buco per cui «Registro» diceva «un segno cade sul mondo»
+  invece di «il mondo registra: i conti sono pubblici». E le leggende (D-225) si
+  dicono col fatto dentro.
+- **`effect_note` dichiara quello che non sa dire** invece di travestirlo da
+  regola, così un effetto nuovo senza parole si vede subito.
+- **Tre prove nuove** che tengono la prosa attaccata al dato: ogni carta nomina
+  il proprio verbo, nessuna frase contiene un trattino basso (la firma di un nome
+  interno), ogni segno su una carta ha la sua parola.
+- **E una prova teneva fermo il difetto**: `test_effect_narrator` pretendeva che
+  nella narrazione comparisse letteralmente `nahr_settled`. Adesso chiede la
+  parola e **vieta l'id**.
+- Suite **437 test e 7.720 asserzioni**, export a 0, `BRIEF_ARTE.md` allineato.
+  Nessuna regola toccata.
+
+---
+
 ## 0.1.198 — Il tetto delle pedine a cinque: la mappa si contende con le pedine (D-227)
 
 - **`presence_tokens` da 4 a 5** su tutte e quattro le Chronicle. È la risposta

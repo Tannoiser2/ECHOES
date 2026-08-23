@@ -10,6 +10,95 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-228 — Una carta dice cosa fa: il verbo, e i segni con la loro parola
+
+**implemented in 0.1.199** — primo passo di ISSUES 63, e mezza ISSUES 62
+
+Il committente ha guardato l'app e ha detto la cosa piu' dura e piu' giusta di
+tutta la lavorazione: *«cosi' com'e' fatto e' ingiocabile, lo e' sempre stato»*.
+Fra le ragioni ne ha nominata una che si misura subito — **carte che spiegano
+esattamente cosa fanno, e non tag o testi tecnici** — e misurandola sono venuti
+fuori due difetti diversi.
+
+### Primo: la carta non diceva il verbo
+
+La scheda portava famiglia, forza, modificatore al Consiglio, che fine fa la
+carta e cosa costa impegnarla. **Mai cosa succede se la cali.** Il verbo e' il
+dato (`card_action.kind`), c'era, e non arrivava a nessuna faccia: ne' sullo
+schermo ne' sul cartone stampato.
+
+E' la prima domanda di chi ha una carta in mano, non l'ultima. Chi sceglieva
+sceglieva alla cieca su meta' della carta.
+
+### Secondo: 28 effetti su 49 parlavano in tecnico
+
+`AssetText.COSTS` traduceva **quattro** tipi di Effetto su undici; gli altri
+stampavano il proprio tipo in minuscolo. Sull'«Assedio» un giocatore leggeva
+davvero:
+
+> costa: la domanda in gioco sale, **raze_structure**
+
+Un tipo in minuscolo *sembra* una regola. E' il nome interno di un Effetto,
+finito su una carta.
+
+### La mossa
+
+- **`ACTIONS`**: una frase per verbo, e il verbo va **in cima** alla scheda e in
+  cima alle note della carta stampata.
+- **`COSTS` completo**, piu' **`SIGN_COSTS`** per i quattro Effetti che posano o
+  tolgono un segno: quelli non si dicono per tipo ma **col nome del segno**, che
+  lo sa gia' `SignLabels` — l'unico posto dove un tag diventa italiano, lo stesso
+  dizionario della mappa e del segnalino di cartone.
+- **`SignLabels` guadagna i fatti del mondo**: trenta, che prima non aveva
+  nessuno. Erano il buco per cui «Registro» e «Credito» dicevano «un segno cade
+  sul mondo» invece di «il mondo registra: i conti sono pubblici». E le
+  **leggende** (D-225) si dicono col fatto dentro: «si racconta che il debito e'
+  stato chiamato».
+- **`effect_note` dichiara quello che non sa dire** — «un effetto senza parole
+  (TIPO)» — invece di travestirlo da regola. Un effetto nuovo si vede subito.
+
+### Prima e dopo, sulla stessa carta
+
+> **Assedio** — force, forza 2
+> ~~+2 se ti opponi · si scarta se la impegni · costa: la domanda in gioco sale, raze_structure~~
+>
+> **Assedio** — force, forza 2
+> **RIVENDICARE — ti prendi il diritto di aprire il Consiglio**
+> +2 se ti opponi · si scarta se la impegni · costa: la domanda in gioco sale,
+> **viene giu' una costruzione dove si discute**
+
+### E tre prove che tengono la prosa attaccata al dato
+
+Come per la pagina d'aiuto (D-224), il rimedio non e' rileggere: e' misurare.
+
+1. **ogni carta nomina il verbo che porta**, e la scheda lo scrive;
+2. **nessuna carta parla in tipi**: nessuna frase comincia con «un effetto senza
+   parole» e nessuna contiene un trattino basso, che e' la firma di un nome
+   interno;
+3. **ogni segno su una carta ha la sua parola**: il ripiego «un segno cade sul
+   mondo» esiste per non mentire, non per essere usato.
+
+### Una prova teneva fermo il difetto
+
+`test_effect_narrator` chiedeva che nella narrazione comparisse letteralmente
+`nahr_settled`: pretendeva il **nome interno**, cioe' metteva a verbale la cosa
+sbagliata. Adesso chiede la parola — «i Nahr si sono fermati» — e vieta l'id.
+
+### Costo
+
+Nessuna regola: testo, un dizionario e tre prove. Suite **437 test e 7.720
+asserzioni**, export a 0, `BRIEF_ARTE.md` allineato — e le quarantotto carte
+stampate portano il verbo, che prima non c'era.
+
+### Cosa non risolve
+
+Tre quarti di quello che il committente ha chiesto restano: **i pezzi sulla
+mappa** (strutture, condizioni e cicatrici sono ancora parole in fila sotto il
+nome della Regione), **il drag & drop** (in `godot/ui/` non c'e' un solo
+`_get_drag_data`) e **il Consiglio giocabile**. Vedi ISSUES 63.
+
+---
+
 ## D-227 — Il tetto delle pedine a cinque: la mappa si contende con le pedine, non al Consiglio
 
 **implemented in 0.1.198** — ISSUES 55, la domanda giusta e la risposta

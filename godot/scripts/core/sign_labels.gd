@@ -77,6 +77,46 @@ const ENTITY_WORDS: Dictionary = {
 
 ## I domini delle Tensioni, in italiano: un Claim rivendica un dominio, e sul
 ## pannello si legge la parola, non l'enum (ISSUES 22, l'inventario dell'app).
+## **I fatti del mondo** — quelli globali, che non stanno su una Regione ne' su
+## una casa ma sulla Cronaca, e che l'anno dopo richiamano le domande (D-079).
+##
+## Mancavano, e si vedeva sulle carte: «Registro» e «Credito» dicevano al
+## giocatore «un segno cade sul mondo» invece di «il mondo registra: i conti
+## sono pubblici». Trenta fatti, e ognuno e' una cosa successa — quindi si
+## dicono al **passato**, che e' come li legge chi apre la Cronaca l'anno dopo.
+const WORLD_WORDS: Dictionary = {
+	"account_settled": "il conto e' stato saldato",
+	"burden_shared": "il peso e' stato diviso",
+	"charter_written": "la Carta e' stata scritta",
+	"crown_dispossessed": "la corona e' stata spogliata",
+	"crown_divided": "la corona e' stata divisa",
+	"crystal_exploited": "il Cristallo e' stato sfruttato",
+	"debt_called": "il debito e' stato chiamato",
+	"debt_forgiven": "il debito e' stato perdonato",
+	"dragon_slain": "il drago e' stato abbattuto",
+	"faith_established": "la fede ha avuto un posto",
+	"grain_requisitioned": "il grano e' stato requisito",
+	"heir_named": "l'erede e' stato nominato",
+	"ledger_public": "i conti sono pubblici",
+	"mine_sealed": "le Miniere sono state sigillate",
+	"mountain_forgotten": "la montagna e' diventata racconto",
+	"nahr_settled": "i Nahr si sono fermati",
+	"no_charter": "la Carta non e' stata scritta",
+	"oath_broken": "il giuramento e' stato rotto",
+	"order_restored": "l'ordine e' stato ristabilito",
+	"question_unresolved": "una domanda e' rimasta aperta",
+	"relic_buried": "la reliquia e' stata sepolta",
+	"relic_shown": "la reliquia e' stata mostrata",
+	"seal_kept": "il sigillo ha tenuto",
+	"seal_kept_twice": "il sigillo ha tenuto due volte",
+	"study_supervised": "lo studio e' sotto sorveglianza",
+	"succession_by_law": "la successione e' passata per legge",
+	"succession_settled": "la successione e' stata risolta",
+	"valley_sealed": "la Valle e' stata chiusa",
+	"water_moves": "l'acqua ha cambiato strada",
+	"water_priced": "l'acqua ha un prezzo",
+}
+
 const DOMAIN_WORDS: Dictionary = {
 	"SURVIVAL": "la sopravvivenza",
 	"RESOURCE": "le risorse",
@@ -97,6 +137,11 @@ static func label(tag: String, data = null) -> String:
 		return str(REGION_WORDS[tag])
 	if ENTITY_WORDS.has(tag):
 		return str(ENTITY_WORDS[tag])
+	if WORLD_WORDS.has(tag):
+		return str(WORLD_WORDS[tag])
+	# Una leggenda e' il fatto di prima, un'era dopo (D-225): si dice cosi'.
+	if tag.begins_with("legend:") and WORLD_WORDS.has(tag.trim_prefix("legend:")):
+		return "si racconta che %s" % str(WORLD_WORDS[tag.trim_prefix("legend:")])
 	if tag.begins_with("evicted:"):
 		return "cacciata da %s" % _region_name(tag.trim_prefix("evicted:"), data)
 	if tag.begins_with("settlement:"):
@@ -108,7 +153,9 @@ static func label(tag: String, data = null) -> String:
 
 
 static func known(tag: String) -> bool:
-	if REGION_WORDS.has(tag) or ENTITY_WORDS.has(tag):
+	if REGION_WORDS.has(tag) or ENTITY_WORDS.has(tag) or WORLD_WORDS.has(tag):
+		return true
+	if tag.begins_with("legend:") and WORLD_WORDS.has(tag.trim_prefix("legend:")):
 		return true
 	for prefix in ["evicted:", "settlement:", "discovery:"]:
 		if tag.begins_with(prefix):

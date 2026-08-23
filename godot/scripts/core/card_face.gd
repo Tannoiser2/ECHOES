@@ -136,7 +136,7 @@ static func of(deck: String, id: String, data: RefCounted) -> Dictionary:
 	if item.is_empty():
 		return {}
 	match deck:
-		"asset": return _asset(item)
+		"asset": return _asset(item, data)
 		"echo": return _echo(item, data)
 		"tension": return _tension(item)
 		"destiny": return _destiny(item, data)
@@ -169,7 +169,10 @@ static func _face(deck: String, id: String, shape: String) -> Dictionary:
 	}
 
 
-static func _asset(asset: Dictionary) -> Dictionary:
+## `data` serve per la riga meccanica: i segni che una carta posa sul mondo si
+## dicono con la loro parola italiana, e quella la sa `SignLabels` leggendo il
+## set. Lo prendono gia' `_echo` e `_destiny` per la stessa ragione.
+static func _asset(asset: Dictionary, data: RefCounted) -> Dictionary:
 	var family: String = str(asset["family"])
 	var face: Dictionary = _face("asset", str(asset["id"]), "CARD")
 	face["title"] = str(asset["title"])
@@ -182,7 +185,15 @@ static func _asset(asset: Dictionary) -> Dictionary:
 	# La riga meccanica e' quella che il resolver legge davvero, chiesta ad
 	# `AssetText` e non riscritta: una carta non puo' stampare una cosa e farne
 	# un'altra (D-042).
-	face["notes"] = [AssetText.note(asset), str(asset.get("acquisition_rule", ""))]
+	# **Il verbo per primo, anche sul cartone** (D-228). La carta stampata portava
+	# forza, famiglia, modificatore, che fine fa e cosa costa impegnarla — e mai
+	# cosa fa se la cali. Chi la teneva in mano leggeva tutto tranne la prima
+	# cosa che serve sapere.
+	face["notes"] = [
+		AssetText.action_note(asset),
+		AssetText.note(asset, data),
+		str(asset.get("acquisition_rule", "")),
+	]
 	face["family"] = family
 	face["art_prompt_key"] = str(asset["art_prompt_key"])
 	face["copies"] = int(asset.get("deck_copies", 1))
