@@ -231,7 +231,8 @@
           2,
           5,
           8
-        ]
+        ],
+        "drawn": "per_saga"
       },
       "tension_pool": {
         "candidates": [
@@ -632,7 +633,8 @@
           2,
           5,
           8
-        ]
+        ],
+        "drawn": "per_saga"
       },
       "sequel_id": "CHR_04",
       "entity_pool": {

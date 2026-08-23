@@ -218,6 +218,35 @@ func inherit_from(previous: Dictionary, results: Dictionary = {}) -> void:
 			before.get("saga_score", 0)
 		)
 
+	# **I tre coperti sono della saga, non dell'anno** (ISSUES 58,
+	# [D-237](../../../docs/DECISIONS.md#d-237)) — se la Chronicle lo dichiara.
+	#
+	# «Ogni entita' ha un obiettivo palese e tre segreti che si pescano
+	# all'inizio della saga»: e' l'idea di partenza, e il setup di ogni anno li
+	# ripescava. La differenza non e' di sfumatura: con obiettivi d'anno ogni
+	# Chronicle e' un contenitore chiuso e la campagna e' una somma di partite;
+	# con obiettivi di saga, al terzo anno stai costruendo verso qualcosa che
+	# nessuno ha visto, e una mossa che sembra sbagliata oggi puo' essere il
+	# quarto passo di un piano di otto.
+	#
+	# Come `saga_score` qui sopra, e' un **passaggio di setup**, non una mossa:
+	# succede prima che la partita cominci, sullo stesso mondo che sta
+	# nascendo, ed e' fra le eccezioni dichiarate all'effect-sourcing (§6.3).
+	#
+	# Una casa che si siede adesso e non c'era prima pesca i propri: non e'
+	# un'eccezione, e' l'unica risposta possibile — non ha una saga alle spalle
+	# da cui ereditare.
+	if str((_chronicle_def.get("objectives", {}) as Dictionary).get("drawn", "")) == "per_saga":
+		for entity_id in world["entities"]:
+			var seated_before: Dictionary = (previous.get("entities", {}) as Dictionary).get(
+				str(entity_id), {}
+			) as Dictionary
+			var carried: Array = seated_before.get("objectives", []) as Array
+			if not carried.is_empty():
+				(world["entities"][str(entity_id)] as Dictionary)["objectives"] = (
+					carried.duplicate()
+				)
+
 	_handover = Succession.plan(previous, results, _chronicle_def, data, _years_passed)
 	var mutations: Array = []
 	for entity_id in _handover:

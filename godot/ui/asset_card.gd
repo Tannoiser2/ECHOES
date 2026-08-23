@@ -39,6 +39,16 @@ var _data: RefCounted = null
 ## gia' passata dalle regole.
 var offers: Array = []
 
+## La carta e' stata **scelta**, non trascinata (D-238).
+##
+## Il committente l'ha scritto in due movimenti: *«si seleziona una carta, si
+## decide come usarla»*. Il trascinamento fa i due insieme; il clic fa il primo
+## e lascia il secondo alla colonna, che si restringe a quello che **questa**
+## carta sa fare. Serve anche come porta di servizio: un trascinamento che non
+## riesce — un dito su un telefono, un mouse che scappa — non deve lasciare una
+## mossa legale irraggiungibile.
+signal chosen(asset_id: String)
+
 var _picture: TextureRect
 var _footer: Label
 
@@ -135,6 +145,15 @@ func _family_colour(family: String) -> Color:
 ## L'anteprima e' la carta stessa, ridotta: al tavolo la mano che porta il pezzo
 ## si vede, e sullo schermo deve vedersi la stessa cosa — trascinare un rettangolo
 ## grigio non e' prendere una carta.
+func _gui_input(event: InputEvent) -> void:
+	if offers.is_empty() or asset.is_empty():
+		return
+	if event is InputEventMouseButton \
+			and (event as InputEventMouseButton).pressed \
+			and (event as InputEventMouseButton).button_index == MOUSE_BUTTON_LEFT:
+		chosen.emit(str(asset.get("id", "")))
+
+
 func _get_drag_data(_at: Vector2) -> Variant:
 	if offers.is_empty() or asset.is_empty():
 		return null

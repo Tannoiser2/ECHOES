@@ -10,6 +10,134 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-238 — Il bottone che rendeva invisibile il trascinamento
+
+**implemented in 0.1.209** — riapre e chiude il terzo passo di ISSUES 63
+
+> «L'interfaccia non e' cambiata, sembra tutto uguale a prima.» — il committente,
+> guardando la build appena pubblicata
+
+Aveva ragione, e la ragione non era la cache del browser: **era il codice**.
+
+Da [D-230](#d-230) e [D-231](#d-231) una carta si prende e si lascia cadere su
+una Regione, su una domanda o su una casa. Ma la colonna delle scelte continuava
+a stampare **un bottone per ognuna**: l'unica esclusione era la scelta che
+viveva su una Regione. Influenzare una domanda, tramare su una domanda,
+forgiare con una casa — tutte e tre trascinabili da D-231 — restavano anche una
+riga di testo premibile accanto alla mappa.
+
+Il risultato e' che il trascinamento **esisteva e non serviva a niente**: chi
+apriva l'app vedeva la stessa lista di pulsanti di prima, e non aveva nessuna
+ragione di scoprire che si potesse fare altro. Tre decisioni di lavoro, misurate
+e provate, invisibili per una riga di filtro scritta troppo stretta — ed erano
+nate proprio contro questo: *«la gui deve prevedere movimenti drag & drop, **non
+pulsanti che dicono cosa fare**»*.
+
+**Adesso la colonna tiene solo quello che non ha un posto dove cadere**: passare,
+lasciar decidere alla policy, una trama che non parla di niente di visibile. Il
+resto si prende in mano.
+
+**E la porta di servizio, che e' anche il primo dei due movimenti che il
+committente aveva descritto.** *«Si seleziona una carta, si decide come usarla»*
+sono due gesti, e il trascinamento li fa insieme. Il **clic** sulla carta fa il
+primo: la colonna si restringe a quello che quella carta li' sa fare — e se sa
+fare una cosa sola, sceglierla *e'* la mossa. Serve anche a non lasciare un
+vicolo cieco: un trascinamento che non riesce — un dito su un telefono, un mouse
+che scappa — non deve rendere irraggiungibile una mossa legale.
+
+**Quattro prove**, e la prima e' quella che il difetto non aveva:
+
+- una scelta che ha un posto dove cadere **non e' anche un bottone**;
+- una che non ce l'ha **resta** un bottone, perche' altrimenti sparirebbe dal
+  gioco;
+- nominare la carta non dice *dove*: `{"asset": X}` da solo non e' un posto;
+- il clic sceglie la carta, e una carta senza scelte non risponde al clic — la
+  stessa regola del trascinamento ([D-039](#d-039)), detta per il dito.
+
+Provate al contrario: rimettendo il filtro vecchio, due diventano rosse.
+
+**Misurato:** suite 469 prove / 10.541 asserzioni verdi (era 465 / 10.532), i
+cancelli degli strumenti verdi, i piani di simulazione verdi,
+`run_playtest.gd --runs=100 --seed=7000` **0 seggi bloccati su 8** a tavolo
+misto e uniforme — e vale la pena ripeterlo, perche' e' la lezione di questa
+decisione: **il cancello era verde anche prima**, e sarebbe rimasto verde per
+sempre con una GUI che non si poteva usare. Nessuna misura copre quello che una
+persona vede (§5ter); questo difetto l'ha trovato il committente aprendo l'app.
+
+---
+
+## D-237 — I tre coperti sono della saga, non dell'anno
+
+**implemented in 0.1.208** — chiude ISSUES 58
+
+> «Ogni entita' ha un obiettivo palese e **tre segreti che si pescano
+> all'inizio della saga**.» — l'idea di partenza
+
+`_deal_objectives` girava nel setup di **ogni** Chronicle, e i tre coperti si
+ripescavano ogni anno. Non e' una sfumatura: sposta l'unita' dell'ambizione
+dalla saga all'anno. Con obiettivi d'anno ogni Chronicle e' un contenitore
+chiuso e la campagna e' **una somma di partite invece di una storia sola**; con
+obiettivi di saga, al terzo anno stai costruendo verso qualcosa che nessuno ha
+visto, e una mossa che sembra sbagliata oggi puo' essere il quarto passo di un
+piano di otto.
+
+**La voce chiedeva di misurare prima, e nominava il costo con precisione:** *un
+obiettivo pescato a inizio saga puo' risultare **impossibile** nel mondo che la
+Chronicle 4 ha prodotto.* Cosi' `run_objectives_probe.gd` gioca **le stesse
+saghe due volte**, coi coperti dell'anno e coi coperti della saga. La regola sta
+nei dati (`objectives.drawn`), quindi il confronto e' fra due dichiarazioni e
+non fra due versioni del codice: si accende e si spegne senza ricompilare
+niente.
+
+**20 saghe da 10 Chronicle:**
+
+| | coperti dell'anno | coperti della saga |
+|---|---|---|
+| obiettivi coperti diversi visti da un seggio | 9,9 | **6,6** |
+| dei tre d'apertura, avverati all'anno 1 | 39,6% | 39,6% |
+| ...all'anno 5 | 23,5% | 21,3% |
+| ...all'anno 10 | 23,8% | **34,5%** |
+| coperti d'apertura mai avverati in tutta la saga | 51% | **43%** |
+| livelli a fine anno (NONE/MIN/VIC/TRI) | 26/39/34/1 | 28/37/34/1 |
+
+**Il costo temuto non si verifica**, e la ragione e' strutturale: **nessuno dei
+quindici obiettivi condivisi nomina una Regione o una casa** — sono scritti su
+*quanto* e non su *dove* ([D-221](#d-221)). All'anno 10 i tre d'apertura si
+avverano **piu'** spesso, non meno: non si spengono, si maturano.
+
+La voce offriva due strade — obiettivi che valgano in qualunque mondo **oppure**
+una regola di sostituzione dichiarata. Il gioco aveva gia' preso la prima senza
+saperlo: la premessa era vera e **non la teneva niente**, e una premessa che
+nessuno sorveglia e' una premessa che scade. Adesso c'e' una prova che va rossa
+il giorno che qualcuno scrive «tieni la Valle Verde» fra gli obiettivi
+condivisi — **prima** che una saga scopra al quinto anno di inseguire un posto
+che non c'e' piu'.
+
+**E la misura ha trovato un limite che non cercavo.** Solo il **51%** dei seggi
+seduti dopo l'apertura sono le case che hanno aperto la saga: una Chronicle
+pesca quattro case su otto, e ogni anno ripesca. Gli obiettivi di saga valgono
+quindi per **circa meta' tavolo**; l'altra meta' sono case che si siedono dopo,
+e pescano i propri perche' non hanno una saga alle spalle da cui ereditare. Non
+e' un difetto di questa regola ed e' scritto qui invece che scoperto dopo: e'
+[ISSUES 64](ISSUES.md#64).
+
+**Dichiarata, non implicita.** `objectives.drawn` vale `per_chronicle` — cioe'
+l'assenza, il comportamento di prima — oppure `per_saga`. Il passaggio avviene
+in `inherit_from`, accanto a `saga_score`, ed e' fra le eccezioni gia'
+dichiarate all'effect-sourcing (§6.3): succede **prima** che la partita cominci,
+sullo stesso mondo che sta nascendo, e non e' una mossa che qualcuno possa
+disfare.
+
+**Misurato:** suite 465 prove / 10.532 asserzioni verdi (era 462 / 10.496), i
+cancelli degli strumenti verdi, i piani di simulazione verdi, export e catalogo
+allineati, `run_playtest.gd --runs=100 --seed=7000` **0 seggi bloccati su 8** a
+tavolo misto e uniforme — e qui il cancello va detto per quello che e': il
+playtest gioca **una Chronicle sola**, dove non c'e' un anno prima da cui
+ereditare, quindi passa **per costruzione**. La misura che conta e' quella delle
+saghe, qui sopra.
+
+---
+
 ## D-236 — Si gioca all'app: allora la scheda della domanda sta sullo schermo
 
 **implemented in 0.1.207** — decisione del committente, e cosa ne segue subito

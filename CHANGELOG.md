@@ -5,6 +5,55 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.209 — Il bottone che rendeva invisibile il trascinamento (D-238)
+
+- *«L'interfaccia non è cambiata, sembra tutto uguale a prima.»* Il committente
+  aveva ragione, e non era la cache del browser: **era il codice**.
+- Da D-230/D-231 una carta si trascina su una Regione, una domanda o una casa —
+  ma la colonna delle scelte **stampava comunque un bottone per ognuna**, tranne
+  quelle che vivevano su una Regione. Il trascinamento esisteva e non serviva a
+  niente: accanto c'era sempre il modo vecchio.
+- **Adesso la colonna tiene solo quello che non ha un posto dove cadere**:
+  passare, lasciar decidere alla policy, una trama che non parla di niente di
+  visibile.
+- **E il clic sulla carta** fa il primo dei due movimenti che il committente
+  aveva descritto — *«si seleziona una carta, si decide come usarla»* — e serve
+  da porta di servizio: un trascinamento che non riesce non deve rendere
+  irraggiungibile una mossa legale.
+- **Quattro prove**, provate al contrario. E la lezione a verbale: **il cancello
+  era verde anche prima**, e sarebbe rimasto verde per sempre con una GUI che
+  non si poteva usare. Questo difetto l'ha trovato una persona aprendo l'app.
+- **Misurato**: 469 prove / 10.541 asserzioni verdi, cancelli verdi, playtest
+  100 semi **0 su 8**.
+
+---
+
+## 0.1.208 — I tre coperti sono della saga, non dell'anno (D-237)
+
+- **Chiude ISSUES 58**, ed è il punto dell'idea di partenza che il gioco aveva
+  perso: *«tre segreti che si pescano all'inizio della saga»*. Si ripescavano
+  ogni anno, e questo sposta l'unità dell'ambizione dalla saga all'anno — la
+  campagna diventa **una somma di partite invece di una storia sola**.
+- **Misurato prima di decidere**, con `run_objectives_probe.gd` che gioca le
+  stesse 20 saghe da 10 Chronicle **due volte**, coi coperti dell'anno e coi
+  coperti della saga. La regola sta nei dati, quindi il confronto è fra due
+  dichiarazioni, non fra due versioni del codice.
+- **Il costo temuto non si verifica**: all'anno 10 i tre d'apertura si avverano
+  **più** spesso (23,8% → 34,5%), e quelli mai avverati scendono dal 51% al 43%.
+  I livelli non si spostano (26/39/34/1 → 28/37/34/1).
+- **La ragione è strutturale**: nessuno dei quindici obiettivi condivisi nomina
+  una Regione o una casa. La premessa era già vera e **non la teneva niente** —
+  adesso c'è una prova che va rossa il giorno che qualcuno la rompe.
+- **Un limite trovato per strada**: solo il **51%** dei seggi seduti dopo
+  l'apertura sono le case che hanno aperto la saga. Gli obiettivi di saga
+  valgono per circa metà tavolo; l'altra metà pesca i propri. È
+  [ISSUES 64](docs/ISSUES.md#64), scritta invece che scoperta dopo.
+- **Misurato**: 465 prove / 10.532 asserzioni verdi, cancelli verdi, playtest
+  100 semi **0 su 8** — e va detto che il playtest gioca una Chronicle sola,
+  quindi lì passa per costruzione: la misura che conta è quella delle saghe.
+
+---
+
 ## 0.1.207 — Si gioca all'app: la scheda della domanda sta sullo schermo (D-236)
 
 - **Decisione del committente**: per adesso il mezzo è l'app, il cartone si

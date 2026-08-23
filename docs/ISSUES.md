@@ -2763,6 +2763,41 @@ e' in gioco.
 
 ---
 
+### 64. Una saga ricambia metà tavolo, e nessuno ha deciso che dovesse
+
+`regole` · `da-decidere` · **misurata in 0.1.208** ([D-237](DECISIONS.md#d-237))
+
+Trovata misurando [ISSUES 58](#58), e non la stavo cercando.
+
+Una Chronicle pesca **quattro case su otto** (`entity_pool.count`), e ogni anno
+della saga ripesca con un seme nuovo. Su 20 saghe da 10 Chronicle, **solo il
+51% dei seggi seduti dopo l'apertura sono le case che hanno aperto la saga**.
+
+**Perché conta.** L'idea di partenza dice *«i giocatori giocano entità che si
+trasformano nel tempo»*: la casa cambia forma — Re, Reggenza, Restaurato — e
+resta la stessa. Ricambiare metà tavolo a ogni era è una cosa diversa, e non è
+scritto da nessuna parte che sia voluta: è quello che succede quando la sonda
+delle ere chiama `seats_for` con un seme per anno.
+
+Due letture, e non so quale sia quella giusta:
+
+1. **è il tavolo che cambia**, e allora la saga è del *mondo* e non delle case —
+   ma allora il punteggio di campagna sommato per casa (D-180) misura una cosa
+   che si siede a intermittenza;
+2. **è un artefatto della sonda**, e in una campagna vera i quattro seggi
+   restano quelli — ma allora nessun codice lo garantisce, e la prima app che
+   incatena due Chronicle ripescherà.
+
+**Da misurare prima di decidere**: quante volte, su una saga di dieci anni, una
+casa esce dal tavolo e ci rientra; e se il punteggio di campagna dei seggi
+intermittenti sia leggibile accanto a quello dei continui.
+
+**Fatto quando** c'è una regola scritta su chi siede l'anno prossimo — che sia
+«gli stessi», «si ripesca» o «si ripesca ma chi c'era ha precedenza» — e la
+sonda delle ere la applica invece di deciderla per conto proprio.
+
+---
+
 ### 63. L'app non è un prototipo giocabile: è un'ispezione di stato con dei bottoni
 
 `ux` · voluta dal committente · **misurata in 0.1.199** · primo passo fatto
@@ -2801,8 +2836,13 @@ giocare.** Il cancello gioca solo con `PolicyDecider`, che non ha mani.
    famiglie di pietra, cinque forme; il grado sono i punti sotto il pezzo, il
    padrone e' il colore. La parola solo sotto il mouse. Tre prove, fra cui «un
    segno senza pezzo e' invisibile».
-3. ✅ **Il drag & drop** — [D-230](DECISIONS.md#d-230) e
-   [D-231](DECISIONS.md#d-231), 0.1.201–0.1.202. Si prende una carta e la si
+3. ✅ **Il drag & drop** — [D-230](DECISIONS.md#d-230),
+   [D-231](DECISIONS.md#d-231) e [D-238](DECISIONS.md#d-238), 0.1.201–0.1.209.
+   **Riaperto e richiuso**: il trascinamento c'era da 0.1.201, ma la colonna
+   stampava comunque un bottone per ogni scelta, e da fuori lo schermo era
+   identico a prima — *«sembra tutto uguale a prima»*, e lo era. Ora una scelta
+   che ha un posto dove cadere **non è anche un bottone**, e il clic sulla carta
+   è l'altra strada. Si prende una carta e la si
    lascia dove la si vuole usare: una **Regione** sulla mappa, una **domanda**
    sulla traccia, una **casa** nella colonna dei rapporti. Quando quella carta lì
    sa fare una cosa sola, posarla è già la mossa; quando ne sa fare due opposte,
@@ -2989,7 +3029,26 @@ da solo.
 
 ---
 
-### 58. Gli obiettivi coperti si pescano ogni anno, non a inizio saga
+### 58. ✅ Gli obiettivi coperti si pescano ogni anno, non a inizio saga — chiusa in 0.1.208
+
+**Chiusa da [D-237](DECISIONS.md#d-237).** I tre coperti si pescano una volta
+per saga (`objectives.drawn: per_saga`) e poi si ereditano.
+
+**Il costo che questa voce temeva non si verifica.** All'anno 10 i tre
+d'apertura si avverano **più** spesso che ripescandoli (23,8% → 34,5%), e quelli
+mai avverati in tutta la saga scendono dal 51% al 43%; i livelli non si spostano.
+La ragione è strutturale: nessuno dei quindici obiettivi condivisi nomina una
+Regione o una casa ([D-221](DECISIONS.md#d-221)). Delle due strade che questa
+voce offriva — obiettivi universali **oppure** una regola di sostituzione — il
+gioco aveva già preso la prima senza saperlo; mancava che qualcosa la tenesse, e
+adesso c'è una prova.
+
+**Resta aperto quello che la misura ha trovato per strada**: [ISSUES 64](#64) —
+una saga ricambia metà tavolo, e gli obiettivi di saga valgono quindi per circa
+metà dei seggi.
+
+<details>
+<summary>La voce come era scritta</summary>
 
 `regole` · `da-misurare` · voluta dal committente · **trovata nel confronto con
 l'idea di partenza** ([VISIONE.md](VISIONE.md))
@@ -3028,6 +3087,8 @@ sempre.
 **Fatto quando** i tre coperti si pescano una volta per saga, nessuno di loro può
 diventare impossibile senza una regola scritta che lo sostituisca, e il playtest
 resta **0/8**.
+
+</details>
 
 ---
 
