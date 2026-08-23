@@ -44,9 +44,11 @@ SAGA            più Chronicle, a distanza di 1 → 200 anni
  └─ CHRONICLE   un anno · 3 Atti
      └─ ATTO    3 round · a inizio Atto ogni giocatore pesca 2 carte Narratore
          └─ ROUND
-             ├─ 1. AZIONI      ogni giocatore spende 2 Opportunità d'Azione
-             ├─ 2. DERIVA      il mondo alza da solo +1 a una Tensione
-             └─ 3. SOGLIA      si apre al massimo UN Consiglio
+             ├─ 1. AZIONI      ogni giocatore spende 2 Opportunità d'Azione,
+             │                 e ogni azione riuscita fa cadere un gettone
+             │                 coperto su una domanda
+             └─ 2. CANCELLO    quando sul tavolo sono scesi 2 gettoni si apre
+                               UN Consiglio, e si dibatte il mucchio più alto
 ```
 
 **Una Chronicle = 3 Atti × 3 round = 9 round.** Ogni giocatore ha 2 Opportunità
@@ -111,7 +113,7 @@ terzo ci sono già **due coppie alleate** che si guardano storto, che è una
 partita completamente diversa a parità di regole.
 
 Ogni casata comincia con **2 carte in mano** e **2 gettoni di presenza già
-posati** (il terzo resta in riserva), e ogni *vita* (§11) ha un proprio
+posati** (le altre **due** restano in riserva), e ogni *vita* (§11) ha un proprio
 carattere: quanto le viene naturale acquisire, muoversi, influenzare, forgiare,
 tramare o rivendicare.
 
@@ -163,8 +165,8 @@ distribuzione è stata rifatta a 0.1.154, quando si è visto che RICCHEZZA stava
 in quattro Regioni e FORZA in una sola. Se la Regione decide che carte peschi,
 quello non è colore: è un'azione che qualcuno non potrebbe mai fare.*
 
-**Presenza.** Ogni casata ha **3 gettoni di presenza**, di cui **2 già posati
-all'inizio** — il terzo si mette in gioco con la prima MUOVERE, e da lì in poi
+**Presenza.** Ogni casata ha **4 gettoni di presenza**, di cui **2 già posati
+all'inizio** — gli altri due si mettono in gioco con le prime MUOVERE, e da lì in poi
 MUOVERE sposta invece di aggiungere. Più gettoni nella stessa Regione sono
 ammessi e contano: la presenza è un numero, non una bandierina. È quel numero a
 decidere chi propone al Consiglio. Una Regione non può ospitare più gettoni dei
@@ -1096,27 +1098,32 @@ il Consiglio è il gioco.
 ### Cinque riquadri che meritano di stare grandi
 
 1. **La piramide del tempo** (§1) — Saga › Chronicle › Atto › Round › Azione,
-   con il ciclo AZIONI → DERIVA → SOGLIA che gira dentro il round.
-2. **Il turno in una riga** — le sette azioni come sette icone su una barra, con
-   sopra scritto **«2 per round, 18 in tutto l'anno»**. È il numero che fa capire
-   quanto costa ogni scelta.
+   con il ciclo **AZIONI → CANCELLO** che gira dentro il round: ogni azione fa
+   cadere un gettone coperto, e a due gettoni il tavolo si ferma.
+2. **Il turno in una riga** — le **cinque azioni che una carta può portare** come
+   cinque icone su una barra, con sopra scritto **«2 per round, 18 in tutto
+   l'anno»**. È il numero che fa capire quanto costa ogni scelta — e sotto la
+   domanda che è il gioco: *questa carta la spendo per fare, o la tengo per
+   votare?*
 3. **Il Consiglio A→K** (§6) — meglio come **binario orizzontale** con undici
    fermate, colorando in modo diverso i passi *pubblici* e quello *segreto*
    (E. Impegno). Il contrasto pubblico/segreto è la firma visiva del gioco.
 4. **La formula** (§6.2) — `S + C − O + W = MARGINE` con sotto la fascia dei
    quattro esiti. È l'unico numero che un giocatore deve tenere a mente.
-5. **Il Destino a tre gradini** (§10) — una scala, non un podio: si sale la
-   propria, non si corre contro gli altri. E il gradino alto è **una spina più
-   una scelta**, non una lista: disegnarlo come «questa cosa qui, *e* tre di
-   queste cinque» rende l'idea meglio di qualsiasi spiegazione.
+5. **I quattro obiettivi** (§10) — non una scala e non un podio: **una carta
+   scoperta e tre coperte**, e a fine anno si contano quelle avverate. Quattro su
+   quattro è un trionfo, zero è un anno perso, e i numeri di saga (**−1 · 1 · 2 ·
+   5 · 8**) dicono da soli che il terzo e il quarto sono i due che quasi nessuno
+   prende. Disegnare le tre coperte **a faccia in giù** è metà del messaggio.
 
 ### Due mappe utili
 
 - il **grafo delle 6 Regioni** (§3) con le adiacenze — è piccolo e si disegna
   bene, e **una delle linee può spezzarsi** (il passo che frana): vale la pena
   disegnarne una tratteggiata;
-- la **ruota delle Tensioni**, quattro spicchi con il valore corrente e la
-  soglia, e le frecce dei collegamenti fra loro (il Ripple): serve a mostrare
+- la **ruota delle Tensioni**, quattro spicchi con sopra i **gettoni coperti**
+  invece del valore — al tavolo si vede quanti ne sono caduti, non quanto
+  pesano — e le frecce dei collegamenti fra loro (il Ripple): serve a mostrare
   che spegnere una domanda ne accende un'altra.
 
 ### Il diagramma che racconta il gioco meglio di una frase
