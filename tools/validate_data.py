@@ -740,6 +740,74 @@ def check_sim_plans_know_which_questions_they_get(
         )
 
 
+def check_relations_are_written_both_ways(
+    documents: Dict[str, List[Dict[str, Any]]],
+    origins: Dict[str, str],
+    report: "Report",
+) -> None:
+    """Una relazione la scrivono in due, e devono dire la stessa cosa (D-216).
+
+    Nel mondo `relations` e' una **coppia**, non due opinioni: il motore la
+    costruisce leggendo tutte le Entita' in ordine, e chi scrive per ultimo
+    decide il livello. Quindi due case che si dichiarano cose diverse non
+    litigano — una delle due frasi sparisce, e quale dipende dall'ordine
+    alfabetico degli id. Nessun errore, nessun log: **solo dato che non arriva
+    al tavolo**.
+
+    I tag invece si sommano, e li' l'asimmetria e' piu' subdola: la Cenere
+    diceva «alleata al Sale» e il Sale «alleata alla Cenere, per patto». Il
+    patto valeva lo stesso, ma il dato diceva due cose diverse e nessuno lo
+    sapeva.
+
+    E con le case pescate (D-213) serve anche la copertura: **ogni coppia di
+    case pescabili deve essere scritta**, perche' una coppia che nessuno nomina
+    parte a NEUTRAL e quel neutrale non e' una scelta — e' una dimenticanza che
+    somiglia a una scelta.
+    """
+    entities = {str(e.get("id")): e for e in documents.get("entity", [])}
+    if not entities:
+        return
+
+    seen: Dict[Any, Any] = {}
+    for entity_id, entity in entities.items():
+        for relation in entity.get("relations", []):
+            other = str(relation.get("with", ""))
+            if other not in entities:
+                report.fail(
+                    f"entity [{entity_id}]",
+                    f"dichiara una relazione con {other}, che non esiste",
+                )
+                continue
+            key = tuple(sorted((entity_id, other)))
+            value = (str(relation.get("level", "")), tuple(sorted(relation.get("tags", []))))
+            if key in seen and seen[key] != value:
+                report.fail(
+                    f"entity [{entity_id}]",
+                    f"la relazione {key[0]}-{key[1]} e' scritta in due modi: "
+                    f"{seen[key]} e {value} — nel mondo e' una coppia sola, e "
+                    "una delle due frasi sparisce senza dirlo",
+                )
+            seen[key] = value
+
+    drawn: set = set()
+    for chronicle in documents.get("chronicle", []):
+        pool = chronicle.get("entity_pool") or {}
+        drawn.update(str(x) for x in pool.get("candidates", []))
+    if len(drawn) < 2:
+        return
+    for first in sorted(drawn):
+        for second in sorted(drawn):
+            if first >= second:
+                continue
+            if (first, second) not in seen:
+                report.fail(
+                    "entity [tavolo]",
+                    f"{first} e {second} possono sedersi insieme ma non si "
+                    "conoscono: la coppia non e' scritta da nessuna parte, e "
+                    "partirebbe neutrale per dimenticanza",
+                )
+
+
 def check_every_family_can_do_everything(
     documents: Dict[str, List[Dict[str, Any]]],
     origins: Dict[str, str],
@@ -1437,6 +1505,7 @@ def main() -> int:
         check_asset_sources_are_true(documents, origins, report)
         check_sim_plans_declare_their_economy(documents, origins, report)
         check_sim_plans_know_which_questions_they_get(documents, origins, report)
+        check_relations_are_written_both_ways(documents, origins, report)
         check_every_family_can_do_everything(documents, origins, report)
         check_drawn_tables_do_not_name_a_house(documents, origins, report)
         check_a_declared_map_still_says_something(documents, origins, report)

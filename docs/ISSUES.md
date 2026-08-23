@@ -2536,6 +2536,34 @@ quella che deve toccarla.
 
 ---
 
+### 54. Otto coppie di case restano neutrali per quota, non per scelta
+
+`contenuto` · **aperta in 0.1.185** ([D-216](DECISIONS.md#d-216))
+
+Le sedici coppie incrociate sono state scritte **otto calde e otto neutrali**, e
+il criterio era la densità dei due tavoli d'autore (2 coppie calde su 6 nel
+Grano, 4 su 6 nel Sale). Il numero torna — 2,94 calde per tavolo — ma **almeno
+una delle otto neutrali è rimasta neutrale per far quadrare la quota**, non
+perché non ci fosse niente da dire:
+
+| coppia | cosa ci sarebbe da dire |
+|---|---|
+| **Lyra ↔ la Gilda del Sale** | una legge registri, l'altra li tiene. È il legame più evidente dei rimasti |
+| **Lyra ↔ la Cenere** | la Cenere scava la miniera che Lyra è scesa a misurare |
+| **il Popolo Nahr ↔ la Cenere** | due case che vivono di quello che la terra lascia |
+| **Vaerax ↔ le Città Libere** | sette città che si governano da sole, e una cosa antica che non riconosce nessun governo |
+
+**Non è un difetto di bilanciamento**: alzare la quota sopra 2,94 renderebbe un
+tavolo pescato *più caldo* di quelli scritti a mano, che è il contrario di quello
+che D-216 cercava. È una domanda di contenuto: **se una di queste diventa calda,
+un'altra deve raffreddarsi**, e quale coppia merita la storia lo decide chi
+scrive il mondo.
+
+**Fatto quando** ogni coppia neutrale lo è per una ragione scritta — «queste due
+non si sono mai incontrate», «si ignorano per scelta» — e non per aritmetica.
+
+---
+
 ### 53. RIVENDICARE può forzare un Consiglio che poi non si apre
 
 `regole` · `difetto` · **misurata in 0.1.183** ([D-214](DECISIONS.md#d-214))

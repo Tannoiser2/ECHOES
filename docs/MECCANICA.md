@@ -109,15 +109,21 @@ sedersi insieme — è la stessa terra, e il gioco non racconta *un* secolo ma
 | **Priore Anselmo** | l'Ordine del Vetro: discende da una scuola e si comporta da fede. Custodisce quello che fu misurato | FEDE | Miniere Antiche, Eredan | **nemico** della Cenere, alleato alle Città |
 | **Le Città Libere** | sette città che si governano da sole e si riuniscono solo quando non possono evitarlo | LIBERTÀ | Eredan, Valle Verde | alleate al Vetro, **ostili** al Sale |
 
-I rapporti d'apertura sono scritti **fra le quattro del proprio gruppo**: le
-prime quattro si conoscono fra loro, le altre quattro fra loro. Una coppia
-mista — Aldric e il Sale, Lyra e il Vetro — parte **neutrale**, perché non si
-sono mai incontrate. Questo cambia la forma della partita: un tavolo tutto dello
-stesso gruppo apre con ostilità e alleanze già in campo, un tavolo misto apre
-piatto e deve costruirsi i suoi rancori.
+**Tutte e otto si conoscono fra loro** — tutte e ventotto le coppie sono
+scritte — e i legami più duri sono proprio quelli che attraversano i secoli:
 
-Nota per l'infografica: **su 8 case si formano 70 tavoli diversi**, e a cento
-partite se ne vedono quasi tutti. Ogni casa si siede circa una volta su due.
+| | |
+|---|---|
+| **Lyra ↔ l'Ordine del Vetro** | *ostili*. L'Ordine custodisce quello che fu misurato e la sua regola dice che misurarlo di nuovo è peccato. Lyra **è quella che l'ha misurato** |
+| **Vaerax ↔ la Cenere** | *ostili*. I Signori della Cenere campano di quello che l'antica miniera ha lasciato indietro. Vaerax **dorme sotto quelle montagne** |
+| **Vaerax ↔ il Vetro** | *alleati*. L'Ordine custodisce ciò che fu misurato: custodisce anche il suo sonno |
+| **Aldric ↔ la Gilda del Sale** | *alleati, per debito*. Il trono ha bisogno di grano, la Gilda di una corona che garantisca le firme |
+| **il Popolo Nahr ↔ le Città Libere** | *alleati*. Chi non ha padrone riconosce chi non ha padrone |
+
+**Un tavolo apre in media con 3 delle sue 6 coppie già calde**, e non ce n'è
+nessuno in cui i quattro siano estranei fra loro. Su 8 case si formano **70
+tavoli diversi** e a duecento partite se ne vedono 67; ogni casa si siede circa
+una volta su due.
 
 Ogni casata comincia con **2 carte in mano** e **2 gettoni di presenza già
 posati** (le altre **due** restano in riserva), e ogni *vita* (§11) ha un proprio

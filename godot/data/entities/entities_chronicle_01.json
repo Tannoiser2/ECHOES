@@ -22,7 +22,12 @@
       ],
       "relations": [
         {
-          "with": "ENT_NAHR",
+          "with": "ENT_CENERE",
+          "level": "HOSTILE",
+          "tags": []
+        },
+        {
+          "with": "ENT_LIBERE",
           "level": "HOSTILE",
           "tags": []
         },
@@ -32,7 +37,24 @@
           "tags": []
         },
         {
+          "with": "ENT_NAHR",
+          "level": "HOSTILE",
+          "tags": []
+        },
+        {
+          "with": "ENT_SALE",
+          "level": "ALLY",
+          "tags": [
+            "DEBT"
+          ]
+        },
+        {
           "with": "ENT_VAERAX",
+          "level": "NEUTRAL",
+          "tags": []
+        },
+        {
+          "with": "ENT_VETRO",
           "level": "NEUTRAL",
           "tags": []
         }
@@ -241,12 +263,34 @@
           "tags": []
         },
         {
+          "with": "ENT_CENERE",
+          "level": "NEUTRAL",
+          "tags": []
+        },
+        {
+          "with": "ENT_LIBERE",
+          "level": "ALLY",
+          "tags": []
+        },
+        {
           "with": "ENT_LYRA",
           "level": "NEUTRAL",
           "tags": []
         },
         {
+          "with": "ENT_SALE",
+          "level": "ALLY",
+          "tags": [
+            "PACT"
+          ]
+        },
+        {
           "with": "ENT_VAERAX",
+          "level": "NEUTRAL",
+          "tags": []
+        },
+        {
+          "with": "ENT_VETRO",
           "level": "NEUTRAL",
           "tags": []
         }
@@ -373,12 +417,32 @@
           "tags": []
         },
         {
+          "with": "ENT_CENERE",
+          "level": "NEUTRAL",
+          "tags": []
+        },
+        {
+          "with": "ENT_LIBERE",
+          "level": "NEUTRAL",
+          "tags": []
+        },
+        {
           "with": "ENT_NAHR",
           "level": "NEUTRAL",
           "tags": []
         },
         {
+          "with": "ENT_SALE",
+          "level": "NEUTRAL",
+          "tags": []
+        },
+        {
           "with": "ENT_VAERAX",
+          "level": "HOSTILE",
+          "tags": []
+        },
+        {
+          "with": "ENT_VETRO",
           "level": "HOSTILE",
           "tags": []
         }
@@ -567,13 +631,33 @@
           "tags": []
         },
         {
-          "with": "ENT_NAHR",
+          "with": "ENT_CENERE",
+          "level": "HOSTILE",
+          "tags": []
+        },
+        {
+          "with": "ENT_LIBERE",
           "level": "NEUTRAL",
           "tags": []
         },
         {
           "with": "ENT_LYRA",
           "level": "HOSTILE",
+          "tags": []
+        },
+        {
+          "with": "ENT_NAHR",
+          "level": "NEUTRAL",
+          "tags": []
+        },
+        {
+          "with": "ENT_SALE",
+          "level": "NEUTRAL",
+          "tags": []
+        },
+        {
+          "with": "ENT_VETRO",
+          "level": "ALLY",
           "tags": []
         }
       ],

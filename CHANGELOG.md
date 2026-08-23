@@ -5,6 +5,45 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.185 — Le sedici coppie che non si conoscevano (D-216)
+
+- Il debito dichiarato da D-213, pagato: su 28 coppie di case ne erano scritte
+  **12**, tutte dentro la vecchia linea. Aldric non sapeva chi fosse la Gilda del
+  Sale, Lyra non sapeva chi fosse l'Ordine del Vetro.
+- **«Piatto» non è un aggettivo: è un numero, ed era il 14%.** Nuova sonda
+  `run_table_probe`: per ogni tavolo che il seme apparecchia conta quante delle
+  sei coppie sedute sono calde.
+
+| 200 semi | prima | dopo |
+|---|---|---|
+| coppie scritte | 12 su 28 | **28 su 28** |
+| **tavoli piatti** (nessuno si conosce) | **14,0%** | **0,0%** |
+| coppie calde per tavolo | 1,22 su 6 | **2,94 su 6** |
+| il tavolo più comune | 1 coppia calda | **3 coppie calde** |
+
+- **Otto calde e otto neutrali**, e il criterio non era «quante ne servono» ma la
+  densità che i due tavoli d'autore avevano già (2 su 6 nel Grano, 4 su 6 nel
+  Sale). La media pescata torna a **2,94 su 6**: la stessa temperatura.
+- **Nessuna delle otto è stata scelta per far tornare i conti**: erano già
+  scritte nelle descrizioni. L'Ordine del Vetro «custodisce quello che fu
+  misurato» e Lyra **è quella che l'ha misurato**; la Cenere campa di quello che
+  l'antica miniera ha lasciato e Vaerax **dorme sotto quelle montagne**.
+- **Un'asimmetria che c'era già**: la Cenere si diceva alleata al Sale, il Sale
+  alleata alla Cenere *per patto*. I tag si sommano, quindi non faceva danno —
+  ma sul **livello** sarebbe andata diversamente: nel mondo la relazione è una
+  coppia sola, e chi scrive per ultimo (in ordine alfabetico di id) decide. Una
+  delle due frasi sparisce senza dirlo.
+- **Una guardia** che chiude tre porte: livelli o tag discordi fra le due
+  scritture, una relazione con una casa inesistente, e una coppia di case
+  pescabili che non è scritta da nessuna parte. **E una prova** che guarda il
+  tavolo invece del dato — cinquanta tavoli pescati, nessuno apre piatto.
+- **Il playtest quasi non si muove** (Consigli 4,49 → 4,49; Verità 333 → 335;
+  **0/8**), ed è atteso: le relazioni pesano al Consiglio e nelle clausole, non
+  nella scelta delle azioni. Il cancello dice che non ho rotto niente; la sonda
+  nuova dice che il tavolo ha una storia. Sono due cose diverse.
+
+---
+
 ## 0.1.184 — Nessuna famiglia senza un'azione (D-215)
 
 - Il committente ha chiesto un numero mai misurato: «*le azioni sono equamente
