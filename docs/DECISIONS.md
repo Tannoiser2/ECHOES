@@ -10,6 +10,91 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-226 — Il peso della terra, riacceso e respinto di nuovo: il Consiglio non e' dove la mappa cambia padrone
+
+**measured in 0.1.196, non implementato** — ISSUES 55, la mossa 0 e il numero che
+la rifiuta
+
+[D-154](#d-154) aveva costruito `focus_weight` — al Consiglio, la Regione di cui
+si discute da' voce a chi la tiene e a chi ci sta in forze — e l'aveva lasciata
+**spenta nei dati**, perche' il playtest passava da 0/8 a 1/8 e il seggio che si
+rompeva era sempre Kessa dei Fuochi. D-154 scrisse: *«ISSUES 38 viene prima»*.
+
+ISSUES 38 e' chiusa da 0.1.122, e da [D-198](#d-198) i tre gradini sono diventati
+quattro obiettivi di cui tre pescati: la Vittoria di Kessa oggi ha tre clausole,
+non una. **Il motivo per cui la leva era spenta aveva smesso di valere
+settantadue versioni fa.** Quindi si riaccende e si misura.
+
+### Il vincolo di casa tiene
+
+Accesa nella forma che D-154 aveva misurato migliore — titolo +1, maggioranza +1,
+tetto 2, **senza il proponente** — su tutte e quattro le Chronicle:
+
+| | tavolo uniforme | tavolo misto |
+|---|---|---|
+| seggi bloccati su un solo livello | **0 su 8** | **0 su 8** |
+
+D-154 aveva ragione sulla diagnosi: non era il peso della terra a rompere Kessa,
+era la sua porta sola. Chiusa quella, la leva passa il cancello.
+
+### E la misura che conta dice di no
+
+Il punto non era passare il cancello: era **far muovere la mappa**. Misurato con
+`run_contest_probe` sugli stessi 100 semi, e col prima preso **sullo stesso
+albero** invece che da un verbale vecchio:
+
+| | il padrone passa di mano | Regioni contese a fine anno |
+|---|---|---|
+| **spenta** (com'e' spedita) | **2,39** volte l'anno | 2,46 su 6 |
+| titolo +1, maggioranza +1 | **2,29** | 2,46 |
+| solo maggioranza +1 | **2,37** | 2,46 |
+
+**Peggiora, o non cambia niente.** E la prima riga peggiora per una ragione
+leggibile, che avevo scritto io stesso come rischio prima di misurare: dare voce
+a chi la Regione **la tiene** rende piu' difficile toglierargliela. E' un
+referendum sul padrone. La seconda forma toglie il titolo e paga solo la
+maggioranza — cioe' chi ci ha piu' pedine, che e' la cosa contesa — e li' il
+numero non si muove affatto: 2,37 contro 2,39, dentro il rumore.
+
+### Perche', ed e' la cosa da portarsi dietro
+
+Cercando la ragione si trova `_recount_control`, e spiega tutto in una riga:
+
+> **il padrone di una Regione lo decide la contesa di presenza, round per round,
+> non il Consiglio.**
+
+`rightful_holder` riconta il titolo dalle pedine ogni volta che la contesa e'
+accesa; `lapse_without_presence` ne e' il caso particolare. I `SET_CONTROL`
+scritti a mano nelle Conseguenze sono **quattordici in cinquantadue**, e arrivano
+dopo.
+
+Quindi la domanda «perche' la mappa non si muove?» aveva un presupposto
+sbagliato, e l'ho portato avanti per due cicli: **non si muove al Consiglio
+perche' al Consiglio non si e' mai mossa.** Si muove quando le pedine si
+spostano, e MUOVERE e' gia' l'azione piu' giocata del mazzo (38% delle volte che
+e' in mano, contro l'8,4% di FORGE).
+
+**La domanda giusta e' un'altra, e non e' ancora stata posta:** con quattro
+pedine a testa, quattro case e sei Regioni, e il titolo che segue la maggioranza
+stretta, **quante volte al massimo potrebbe passare di mano?** Se il tetto
+teorico e' vicino a 2,4, la mappa si sta gia' muovendo quanto le regole
+permettono, e la leva da spostare non e' il Consiglio: sono le pedine, le
+Regioni, o la regola del titolo.
+
+### Cosa resta
+
+`focus_weight` resta **spenta nei dati e accesa nel motore**, dove D-154 l'aveva
+lasciata, con sette test che la reggono e adesso due misure invece di una. Non e'
+contenuto morto: e' una leva provata due volte e respinta due volte per ragioni
+diverse, e la seconda ragione e' piu' utile della prima.
+
+### Costo
+
+Nessuno: i dati tornano com'erano. Restano tre numeri scritti che prima non
+c'erano, e una diagnosi che sposta ISSUES 55 su una domanda diversa.
+
+---
+
 ## D-225 — Un segno che nessuno legge non e' una regola
 
 **implemented in 0.1.194** — il registro dei segni, e le sette penne che

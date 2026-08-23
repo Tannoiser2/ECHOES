@@ -3074,11 +3074,40 @@ sono diventati quattro obiettivi, tre dei quali pescati. La Vittoria di Kessa
 oggi ha tre clausole, non una. **Il motivo per cui la leva è spenta ha smesso di
 valere settantadue versioni fa, e nessuno l'ha riaccesa.**
 
-**La mossa 0, prima delle quattro:** riaccendere `focus_weight` e rimisurare i
-100 semi sotto le regole di adesso. Non è design, è **un dato e una misura**. Da
-tarare con prudenza — un bonus di controllo troppo grosso trasforma il Consiglio
-in un referendum sul padrone, e chi è avanti resta avanti — e col vincolo di casa
-in mano: **0 su 8, o non passa**.
+**La mossa 0 è stata fatta, e la misura l'ha respinta** ([D-226](DECISIONS.md#d-226),
+0.1.196). `focus_weight` riaccesa passa il cancello — **0/8 su tutti e due i
+tavoli**, quindi D-154 aveva ragione: era la porta sola di Kessa, non il peso
+della terra. Ma sulla cosa per cui serviva:
+
+| | il padrone passa di mano |
+|---|---|
+| spenta (com'è spedita) | **2,39** volte l'anno |
+| titolo +1, maggioranza +1 | **2,29** |
+| solo maggioranza +1 | **2,37** |
+
+**Peggiora o non cambia niente.** La prima forma peggiora per il motivo scritto
+qui sopra come rischio: dare voce a chi la Regione **la tiene** rende più
+difficile toglierargliela.
+
+### E allora il presupposto era sbagliato
+
+`_recount_control`: **il padrone di una Regione lo decide la contesa di presenza,
+round per round, non il Consiglio.** `rightful_holder` riconta il titolo dalle
+pedine; i `SET_CONTROL` scritti a mano sono quattordici su cinquantadue e
+arrivano dopo.
+
+Quindi «la mappa non si muove al Consiglio» è vero e non è un difetto: **al
+Consiglio non si è mai mossa.** Si muove con le pedine, e MUOVERE è già l'azione
+più giocata del mazzo (38%).
+
+**La domanda giusta, che non è ancora stata posta:** con quattro pedine a testa,
+quattro case, sei Regioni e il titolo che segue la maggioranza stretta, **quante
+volte al massimo potrebbe passare di mano in un anno?** Se il tetto teorico è
+vicino a 2,4, la mappa si muove già quanto le regole permettono, e questa issue
+va riscritta: la leva non è il Consiglio, sono le pedine, le Regioni, o la regola
+del titolo.
+
+**Il prossimo passo è quel tetto**, e si misura prima di disegnare qualunque cosa.
 
 ### Le quattro mosse, in ordine di radice
 

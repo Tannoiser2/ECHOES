@@ -45,6 +45,34 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.196 — Il peso della terra riacceso e respinto: il Consiglio non è dove la mappa cambia padrone (D-226)
+
+- **La mossa 0 di ISSUES 55 è stata fatta, e la misura l'ha respinta.**
+  `focus_weight` (D-154) riaccesa su tutte e quattro le Chronicle.
+- **Il cancello lo passa**: **0 su 8** seggi bloccati, tavolo uniforme e misto,
+  100 semi dal 7000. Quindi D-154 aveva ragione sulla diagnosi — era la porta
+  sola di Kessa (ISSUES 38, chiusa in 0.1.122), non il peso della terra.
+- **Ma sulla cosa per cui serviva, no.** Il padrone di una Regione passa di mano:
+  **2,39** volte l'anno da spenta, **2,29** con titolo+maggioranza, **2,37** con
+  la sola maggioranza. Peggiora o non cambia niente — e il prima è stato misurato
+  **sullo stesso albero**, non ripreso da un verbale vecchio.
+- **La prima forma peggiora per una ragione che avevo scritto come rischio prima
+  di misurarla**: dare voce a chi la Regione *la tiene* rende più difficile
+  toglierargliela. È un referendum sul padrone.
+- **E il presupposto era sbagliato, per due cicli.** `_recount_control`: **il
+  padrone lo decide la contesa di presenza, round per round, non il Consiglio.**
+  `rightful_holder` riconta il titolo dalle pedine; i `SET_CONTROL` scritti a
+  mano sono 14 su 52 e arrivano dopo. «La mappa non si muove al Consiglio» è vero
+  e non è un difetto: al Consiglio non si è mai mossa.
+- **La domanda nuova, che non era mai stata posta**: con 4 pedine a testa, 4
+  case, 6 Regioni e il titolo che segue la maggioranza stretta, **quante volte al
+  massimo potrebbe passare di mano?** Se il tetto è vicino a 2,4 la mappa si
+  muove già quanto le regole permettono, e ISSUES 55 va riscritta.
+- I dati tornano com'erano: `focus_weight` resta spenta nei dati e accesa nel
+  motore, con sette test e adesso **due** misure invece di una.
+
+---
+
 ## 0.1.195 — Una correzione mia, e la leva che era già lì spenta
 
 - **Correzione.** In 0.1.193 avevo scritto, in `docs/VISIONE.md` e in ISSUES 55,
