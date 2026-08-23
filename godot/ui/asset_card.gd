@@ -49,6 +49,7 @@ var offers: Array = []
 ## mossa legale irraggiungibile.
 signal chosen(asset_id: String)
 
+var _held: bool = false
 var _picture: TextureRect
 var _footer: Label
 
@@ -145,6 +146,24 @@ func _family_colour(family: String) -> Color:
 ## L'anteprima e' la carta stessa, ridotta: al tavolo la mano che porta il pezzo
 ## si vede, e sullo schermo deve vedersi la stessa cosa — trascinare un rettangolo
 ## grigio non e' prendere una carta.
+## La carta alzata: e' quella che si tiene in mano (D-239).
+##
+## Al tavolo una carta presa si vede perche' e' fuori dal ventaglio; qui si
+## alza di qualche pixel e prende un bordo d'oro. Senza questo i posti che si
+## accendono sul tavolo sembrerebbero accendersi da soli.
+func set_held(held: bool) -> void:
+	if _held == held:
+		return
+	_held = held
+	position.y = -6.0 if held else 0.0
+	var style := StyleBoxFlat.new()
+	style.bg_color = Color("#241f18") if held else Color(0, 0, 0, 0)
+	style.border_color = Color("#e8b563") if held else Color(0, 0, 0, 0)
+	style.set_border_width_all(2 if held else 0)
+	style.set_corner_radius_all(4)
+	add_theme_stylebox_override("panel", style)
+
+
 func _gui_input(event: InputEvent) -> void:
 	if offers.is_empty() or asset.is_empty():
 		return

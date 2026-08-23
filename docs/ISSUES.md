@@ -2863,6 +2863,15 @@ cancello. Le regole restano verdi qualunque cosa succeda alla GUI, ed è
 esattamente il buco di [D-224](DECISIONS.md#d-224). Ogni mossa porta la sua
 misura, o non è fatta.
 
+**Il quinto passo, che non era nel piano** — [D-239](DECISIONS.md#d-239),
+[D-240](DECISIONS.md#d-240), [D-241](DECISIONS.md#d-241), 0.1.210. Le quattro
+mosse erano scritte guardando uno schermo con un mouse. Provata su un iPad, la
+stessa app: il trascinamento non esiste (il dito che preme e scorre fa scorrere
+la pagina), i pezzi sulla mappa erano di 17 pixel e i loro nomi non comparivano
+mai — si scrivevano solo per le Regioni *raggiungibili*, e fuori da una scelta
+non lo è nessuna. **Il gesto ora è in due tempi**: si tocca la carta, si accende
+dove può andare, si tocca il posto.
+
 **Fatto quando** una persona può giocare un anno intero senza che nessuno le
 spieghi cosa fanno i bottoni, perché non ci sono bottoni da spiegare.
 

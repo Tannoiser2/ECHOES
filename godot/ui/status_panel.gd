@@ -38,6 +38,27 @@ signal card_dropped(indices: Array)
 ## in mano quando vuoi, e la rimetti giu'; da quando si gioca all'app e non al
 ## cartone, quel gesto deve esistere sullo schermo o non esiste affatto.
 signal tension_opened(tension_id: String)
+
+## Una carta **tenuta in mano** e' stata posata su questa riga (D-239).
+##
+## Su un tablet non esiste il trascinamento con cui e' nato tutto questo: il dito
+## preme e scorre, e il gesto che sul desktop prende una carta li' fa scorrere la
+## pagina. Il tocco pero' c'e' sempre, e sono due: **prendi** la carta, **posi**
+## dove la vuoi usare. E' lo stesso gesto del tavolo vero, diviso in due tempi.
+signal card_placed(index: int)
+
+## `field:key -> indice della scelta`, riempito da chi tiene la carta in mano.
+## Vuoto quando non c'e' niente in mano, e allora le righe tornano a essere
+## quello che erano: un clic sulla domanda apre la sua scheda.
+var held_places: Dictionary = {}
+
+
+## Accende i posti dove la carta tenuta in mano puo' andare, e spegne gli altri.
+## Chiamata da chi tiene la carta; il pannello non sa cosa sia una carta.
+func hold(places: Dictionary) -> void:
+	held_places = places.duplicate()
+	for where in slots:
+		(slots[where] as Object).call("light", held_places.has(str(where)))
 var _claims: VBoxContainer
 var _claims_header: Label
 var _signs: VBoxContainer
@@ -371,12 +392,27 @@ func _wrapped(inner: Control, field: String, key: String) -> Control:
 	var slot: PanelContainer = DropSlot.new()
 	slot.field = field
 	slot.key = key
+	# Il posto dove **posare** quello che si tiene in mano vale per ogni riga —
+	# una domanda o una casa — e viene prima della scheda: se stai posando una
+	# carta, non stai leggendo.
+	slot.gui_input.connect(func(event: InputEvent) -> void:
+		if not (event is InputEventMouseButton):
+			return
+		var press := event as InputEventMouseButton
+		if not press.pressed or press.button_index != MOUSE_BUTTON_LEFT:
+			return
+		var where: String = "%s:%s" % [field, key]
+		if held_places.has(where):
+			card_placed.emit(int(held_places[where]))
+	)
 	if field == "tension":
 		# Un clic sulla riga apre la scheda. Il trascinamento resta quello che
 		# era: chi prende una carta e la lascia cadere qui fa una mossa, chi
 		# clicca e basta sta leggendo. Sono due gesti diversi e non si pestano
 		# i piedi, perche' il trascinamento non passa mai da `gui_input`.
 		slot.gui_input.connect(func(event: InputEvent) -> void:
+			if held_places.has("%s:%s" % [field, key]):
+				return
 			if event is InputEventMouseButton \
 					and (event as InputEventMouseButton).pressed \
 					and (event as InputEventMouseButton).button_index == MOUSE_BUTTON_LEFT:

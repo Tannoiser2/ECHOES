@@ -5,6 +5,37 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.210 — Il tavolo su un tablet (D-239, D-240, D-241)
+
+Tre correzioni, tutte e tre trovate giocando davvero — l'unico modo in cui
+questa parte del gioco si misura.
+
+- **D-239 — «su iPad il drag & drop non funziona.»** È vero e non è un difetto
+  da sistemare: su un touchscreen il dito che preme e scorre **fa scorrere la
+  pagina**. Il gesto va diviso in due tempi — si tocca la carta (si alza, e si
+  accendono tutti i posti dove può andare), si tocca il posto. È come si fa al
+  tavolo vero. Il trascinamento resta intero per chi ha un mouse.
+  - Il conflitto con D-236 è sciolto: con una carta in mano la riga della
+    domanda **posa**, a mani vuote **apre la scheda**. I due gesti non convivono
+    mai.
+  - `emulate_mouse_from_touch` è ora scritto in `project.godot` invece di essere
+    un valore implicito.
+- **D-240 — «le pedine e cicatrici non si capiscono e sono troppo piccole.»** Due
+  difetti in una frase. Un pezzo era **17 pixel** (ora 26). E la parola che lo
+  nomina si scriveva solo per le Regioni *raggiungibili*: fuori da una scelta
+  **non compariva quasi mai**, e su un tablet — dove non esiste il passaggio del
+  cursore — non sarebbe comparsa mai. Ora il tocco su una Regione vale come
+  guardarla, e la nomina.
+- **D-241 — «chiede ancora quale anno voglio giocare.»** Il menu offriva tutte e
+  quattro le Chronicle, ma **due sono il seguito** di un'altra e si raggiungono
+  giocando. E la domanda era quella sbagliata: una saga si **comincia**, e gli
+  anni vengono da soli. Ora chiede *«Da quale saga cominci?»* e offre le due
+  aperture.
+- **Misurato**: 477 prove / 10.560 asserzioni verdi (da 469 / 10.541), cancelli
+  verdi, sim verdi, export e catalogo allineati, playtest 100 semi **0 su 8**.
+
+---
+
 ## 0.1.209 — Il bottone che rendeva invisibile il trascinamento (D-238)
 
 - *«L'interfaccia non è cambiata, sembra tutto uguale a prima.»* Il committente
