@@ -2651,6 +2651,82 @@ mondo e per le guardie; nessuna interfaccia oggi la mostra.
 
 ---
 
+### 55. Il ciclo del gioco è rotto in tre punti: spostarsi non paga, la maggioranza non si contende, gli obiettivi non si incrociano
+
+`regole` · `bilanciamento` · voluta dal committente · **misurata in 0.1.187**
+
+> «Dobbiamo fare in modo che la cosa sia più "mossa": costruire porta vantaggi,
+> avere maggioranza dà vantaggi (ricorda che peschi una carta per ogni presenza
+> che hai a inizio atto), spostarsi conviene quindi. Modificare la mappa dovrebbe
+> essere la priorità del gioco e una maggioranza dovrebbe essere una lotta tra
+> entità. Le domande dovrebbero smuovere la partita e anche gli obiettivi
+> dovrebbero incrociarsi per dare battaglia tra entità.»
+
+Il ciclo che il committente descrive — **presenza → carte → azioni → più mappa →
+più carte** — esiste nel dato ma è tagliato. `run_contest_probe` lo misura per la
+prima volta, su 100 partite a tavolo misto.
+
+### 1. Spostarsi costa e non rende
+
+Il rifornimento è `presenze × 2`, con un **tetto a 6**. Le pedine arrivano a 4.
+
+| pedine sul tavolo | carte che spettano | carte in mano a fine anno |
+|---|---|---|
+| 2 | 4 | — |
+| **3** | **6 (tetto)** | 4,80 |
+| **4** | **6 (tetto)** | 4,99 |
+| 5 | 6 (tetto) | **4,46** |
+
+**Oltre tre pedine, una presenza in più vale zero** — e la quarta pedina di
+[D-211](DECISIONS.md#d-211) non paga niente. Chi si espande a cinque finisce con
+**meno** carte di chi resta a quattro, perché ha speso i MUOVERE per arrivarci.
+
+### 2. La maggioranza non è una lotta
+
+| su 6 Regioni | |
+|---|---|
+| con dentro **più di una casa**, all'apertura | 2,41 |
+| con dentro più di una casa, a fine anno | **2,60** |
+| il padrone cambia mano | **2,32 volte l'anno** |
+
+**Tre Regioni e mezzo su sei hanno una casa sola dentro**: non sono maggioranze,
+sono proprietà. E il tavolo non si stringe in nove round.
+
+### 3. Tenere non paga più che stare
+
+Una struttura pesa nel conteggio del controllo e **basta**. `hand_refill` conta le
+**presenze**, non il possesso: il controllo di una Regione non dà carte, non dà
+azioni, non dà niente che si veda al tavolo.
+
+### 4. Gli obiettivi non si incrociano: uno su dodici
+
+| | |
+|---|---|
+| **conteso** (due case non possono averlo entrambe) | **1** — «Due Terre, una Voce» |
+| globali (stesso esito per tutti) | 2 |
+| **solitari** (ognuno conta roba sua) | **9** |
+
+E le Conseguenze toccano la mappa nel 48% dei casi, ma **`ADD_PRESENCE` compare
+una volta sola** in cinquantadue: i Consigli cacciano e assegnano, non mandano
+nessuno da nessuna parte.
+
+### Le quattro mosse, in ordine di radice
+
+1. **Il ciclo economico.** Il tetto delle carte sale a `pedine × 2` vere, e **il
+   controllo di una Regione paga**. Senza questa, le altre tre non hanno con cosa
+   combattersi.
+2. **Costruire diventa una scelta reale**: più carte con un mestiere di pietra,
+   non una sola ([D-218](DECISIONS.md#d-218) ne ha data una).
+3. **Obiettivi contesi**: carte che due case non possono prendere entrambe.
+4. **Le domande spostano la mappa**: Conseguenze che *mettono* pedine.
+
+**Fatto quando** una presenza in più dà carte in più fino al tetto delle pedine,
+le Regioni contese sono più di tre su sei a fine anno, il padrone cambia mano più
+di quanto non cambi oggi, e gli obiettivi contesi sono almeno un terzo del mazzo
+— col playtest ancora **0/8**.
+
+---
+
 ### 53. RIVENDICARE può forzare un Consiglio che poi non si apre
 
 `regole` · `difetto` · **misurata in 0.1.183** ([D-214](DECISIONS.md#d-214))
