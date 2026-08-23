@@ -1839,6 +1839,40 @@ Cenere, Vetro e Città Libere, e **tre di loro aprono su Eredan**. Chi si sposta
 sulle Terre Nahr è una scelta di contenuto, non una manopola, e va decisa dal
 committente.
 
+### Il preventivo per il Sale, misurato: due candidati, 100 semi, seme 7000
+
+Nessuno dei due è stato spedito — chi vive dove è contenuto. Ma il prezzo è
+misurato, così la decisione si prende su numeri e non su un'idea.
+
+| | oggi | **Vetro → Terre Nahr** | **Città Libere → Terre Nahr** |
+|---|---|---|---|
+| Terre Nahr, apertura → fine | **0,00** → 0,83 | 1,00 → 1,85 | 1,00 → 1,82 |
+| Eredan, apertura | 3,00 | 2,00 | 2,00 |
+| Regione più magra a fine anno | Terre Nahr **0,83** | Valle Verde **1,02** | Strada **1,44** |
+| Priore Anselmo (il Vetro) NONE / TRIONFI | 5 / 0 | **10** / 0 | **12** / **2** |
+| Le Città Libere NONE / TRIONFI | 10 / 1 | 10 / 1 | **5** / **3** |
+| Maestra Ilve NONE / TRIONFI | 14 / 0 | 12 / 0 | **18** / 1 |
+| Kessa (la Cenere) NONE / TRIONFI | 3 / 0 | 5 / 1 | 5 / 1 |
+| playtest 100 semi | 0/8 | **0/8** | **0/8** |
+
+**Tutti e due riempiono le Terre Nahr e nessuno dei due rompe il cancello.** La
+differenza è dove va il conto:
+
+- **Spostare il Vetro cura la mappa e aggrava [ISSUES 52](#52-lyra-non-ha-mai-trionfato-in-centoventi-anni)**: la casa
+  già senza presidio d'apertura passa da 5 a 10 NONE e resta a zero Trionfi, e
+  gli anni chiusi con zero obiettivi salgono da 16 a 22. E svuota la Valle
+  Verde, che scende a 1,02 — la Regione magra si sposta, non sparisce.
+- **Spostare le Città Libere dà la mappa più piatta** — nessuna Regione sotto
+  **1,44** — e regala al Vetro i suoi **primi 2 Trionfi**, ma fa pagare Maestra
+  Ilve (NONE 14 → 18), che resta sola su Eredan.
+
+**La raccomandazione, e il perché.** Le **Città Libere**: è l'unico dei due che
+lascia la mappa senza una Regione magra, ed è anche l'unico che non peggiora la
+casa che [ISSUES 52](#52-lyra-non-ha-mai-trionfato-in-centoventi-anni) dice già
+in difficoltà. Regge anche la lettura: le città che si sono liberate stanno
+nelle terre di un popolo che non c'è più, mentre l'Ordine del Vetro *«custodisce
+quello che fu misurato»* — le Miniere e la capitale.
+
 **Fatto quando** nessuna Regione apre a zero pedine **in nessuna delle due
 linee**.
 
