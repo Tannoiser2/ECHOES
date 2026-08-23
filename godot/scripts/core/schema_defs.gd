@@ -311,6 +311,9 @@ const DEFS := {
 			"confluence_rules": {
 				"type": "Dictionary",
 			},
+			"starting_presence": {
+				"type": "Dictionary",
+			},
 			"starting_structures": {
 				"type": "Array",
 				"element": {

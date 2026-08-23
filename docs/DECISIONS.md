@@ -10,6 +10,103 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-212 — Lyra sulla Strada dei Mercanti, e la mappa che un piano dichiara
+**implemented in 0.1.181** — l'altra meta' di ISSUES 48, quella che costa storie
+
+[D-211](#d-211) aveva spedito meta' della decisione del committente e aveva
+lasciato scritto il prezzo dell'altra meta': *«spostare la casa di Lyra rompe
+tutte e quattro le storie scritte a mano [...] non e' una manopola: e' **dove
+vive una casa**, cioe' contenuto. Va deciso da lui, non dedotto da me.»*
+
+Il committente ha deciso: **«Lyra sulla Strada dei Mercanti»**. Lyra apre con
+Miniere Antiche + **Strada dei Mercanti** invece di Miniere Antiche + Eredan.
+
+### Il problema vero non era la riga di dati: erano le quattro storie
+
+La riga di dati e' una parola. Le quattro storie scritte a mano si rompono
+**tutte**, e non di poco: il piano B passa da 3 Consigli a 6, il piano D da 4 a
+5, e A e C cambiano esito nel finale. Le due strade possibili erano:
+
+- **ribasare i quattro `expected`** — cioe' prendere quello che esce e chiamarlo
+  la storia. Ma un piano scriptato **e' una storia disegnata**: le sue mosse
+  sono scritte perche' succeda una cosa precisa. Ribasarlo su un'altra mappa
+  non lo aggiorna, lo **timbra**: resta un elenco di mosse a cui si e' dato
+  ragione a posteriori. Il piano C lo dice da solo — *«una domanda che sembrava
+  chiusa si riapre e resta aperta»* — e su questa mappa quella domanda passa.
+- **far dichiarare al piano la mappa in cui e' stato scritto**, che e' lo stesso
+  idioma che i piani gia' usano per l'economia ([D-189](#d-189)).
+
+E' passata la seconda. `starting_presence` sulla Chronicle: un dizionario
+`entita' -> Regioni` che sostituisce la presenza scritta sull'Entita'. Vuoto o
+omesso, la mappa e' quella delle Entita' — **una dichiarazione vuota vuol dire
+assenza**, come ovunque nel progetto. Vale solo per la **prima vita** del
+seggio: dopo una successione comanda l'incarnazione, che la sua presenza se la
+porta ([D-133](#d-133)).
+
+Non serve macchinario nuovo: `chronicle_overrides` scrive gia' qualunque chiave
+sulla Chronicle, quindi i quattro piani dichiarano `starting_presence` e passano
+dalla **stessa** `GameSession.apply_plan_overrides` che usano la suite e la
+sonda. La porta si allarga di una chiave, e lo schema la tiene stretta come le
+altre.
+
+### La guardia, perche' una dichiarazione marcisce in silenzio
+
+Una mappa dichiarata che **coincide** col dato spedito non dichiara piu' niente:
+sembra una scelta e non lo e'. `check_a_declared_map_still_says_something` in
+`validate_data.py` va rossa se un piano ripete la presenza gia' scritta
+sull'Entita', o se nomina un'Entita' che non esiste. Provata: rimettendo Lyra a
+Eredan, morde su tutti e quattro i piani.
+
+**Quello che la guardia non puo' vedere, e va detto**: una casa che i piani
+**non nominano** e che sul dato si sposta domani. Li' le storie cambierebbero in
+silenzio, come sono cambiate oggi. La guardia tiene pulita la dichiarazione; non
+sa accorgersi di una dichiarazione che manca.
+
+### I numeri, 100 semi, seme 7000
+
+| | Lyra a Eredan | **Lyra sulla Strada** |
+|---|---|---|
+| Strada dei Mercanti, apertura → fine | 0,00 → 1,20 | **1,00 → 2,07** |
+| Regione piu' vuota a fine anno | Strada, 1,20 | **Montagne Rosse, 1,78** |
+| Lyra NONE, uniforme | 16 | **8** |
+| Lyra VITTORIE, uniforme | 10 | **28** |
+| Lyra NONE, misto | 17 | **8** |
+| Lyra VITTORIE, misto | 12 | **22** |
+| Lyra: anni con **zero** obiettivi presi | 35 | **20** |
+| Lyra: anni con **tre** obiettivi presi | 7 | **19** |
+| NONE in tutto, uniforme | 61 | **51** |
+| VITTORIE in tutto, uniforme | 181 | **193** |
+| bloccati dal gettone | 44,0% | 51,0% |
+| playtest 100 semi | 0/8 | **0/8** |
+
+### I numeri peggiorati, che si scrivono
+
+- **I TRIONFI calano**: 10 → **8** a tavolo uniforme, 5 → **2** a tavolo misto.
+  Lyra passa da 1 Trionfo a **0** in tutte e due, e Vaerax pure. Il tetto si
+  abbassa mentre il pavimento si alza — la stessa forma di D-211.
+- **Aldric paga il conto**: NONE 7 → **10** e Vittorie 23 → **14** a tavolo
+  uniforme, NONE 9 → **14** a tavolo misto. Lyra gli lascia Eredan e lui sta
+  peggio, il che vuol dire che non era la concorrenza sulla Regione: e' il
+  flusso delle carte che cambia sotto.
+- **I gettoni si bloccano prima**: 44,0% → 51,0% delle occasioni finiscono
+  «tutte gia' sul tavolo». Una pedina in piu' sulla Strada e' una pedina in meno
+  da posare altrove.
+- **E spostare continua a non succedere**: 0,00 l'anno, come prima. Questa
+  decisione riempie la Regione vuota; **non** rende la mappa mobile. Quella
+  resta [ISSUES 39](ISSUES.md#39-la-terra-che-si-vede-pedine-di-carta-o-strutture-con-una-vita).
+
+### Cosa non e' stato fatto, e perche'
+
+Il committente ha chiesto anche **«Nahr sulle Terre Nahr»**. Nella linea del
+Grano **e' gia' cosi'**: il Popolo Nahr apre con Terre Nahr + Valle Verde, e li'
+non c'e' niente da spostare. La Regione vuota e' **Terre Nahr nella linea del
+Sale**, dove i Nahr non esistono: le case sono Sale, Cenere, Vetro e Citta'
+Libere, e tre di loro aprono su Eredan. Chi ci va e' una scelta di contenuto —
+quale casa vive dove — e torna al committente col prezzo misurato, come e'
+tornata questa.
+
+---
+
 ## D-211 — Due pedine di riserva invece di una
 **implemented in 0.1.180** — meta' di ISSUES 48, e la meta' che non costa storie
 

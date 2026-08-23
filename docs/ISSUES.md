@@ -1812,6 +1812,38 @@ case è deserta nell'anno della Carestia e piena nell'anno del Sale, e detta cos
 
 ---
 
+## Metà chiusa in 0.1.181: nel Grano non c'è più una Regione vuota ([D-212](DECISIONS.md#d-212))
+
+Il committente ha deciso anche il secondo rimedio: **«Lyra sulla Strada dei
+Mercanti»**. Lyra apre con Miniere Antiche + Strada invece di Miniere Antiche +
+Eredan, e la Strada smette di essere deserta all'apertura.
+
+| Regione (Grano), apertura → fine | 0.1.180 | **0.1.181** |
+|---|---|---|
+| Eredan | 2,00 → 1,96 | 1,00 → 1,63 |
+| Miniere Antiche | 2,00 → 2,69 | 2,00 → 2,66 |
+| Montagne Rosse | 1,00 → 1,73 | 1,00 → **1,78** |
+| **Strada dei Mercanti** | **0,00 → 1,20** | **1,00 → 2,07** |
+| Terre Nahr | 1,00 → 1,61 | 1,00 → 1,86 |
+| Valle Verde | 2,00 → 2,78 | 2,00 → 1,91 |
+
+**Nel Grano nessuna Regione apre a zero e nessuna finisce sotto 1,78**, e la
+Strada è la seconda più affollata a fine anno: è lo snodo che la voce chiedeva.
+Il prezzo sono le quattro storie scritte a mano, che adesso **dichiarano la
+mappa in cui sono state scritte** (`starting_presence`) invece di cambiare in
+silenzio.
+
+**Resta aperta la metà del Sale.** Lì la Regione vuota sono le **Terre Nahr**
+(0,00 all'apertura), e i Nahr non esistono in quella linea: le case sono Sale,
+Cenere, Vetro e Città Libere, e **tre di loro aprono su Eredan**. Chi si sposta
+sulle Terre Nahr è una scelta di contenuto, non una manopola, e va decisa dal
+committente.
+
+**Fatto quando** nessuna Regione apre a zero pedine **in nessuna delle due
+linee**.
+
+---
+
 ## Il committente ha deciso, e ha spostato la domanda (0.1.176)
 
 > «No, non ci può essere una regione senza nessuno, e anzi la Strada dei
@@ -2398,6 +2430,35 @@ quarta casa non trionfa, in nessuna era»**.
 nessuna delle due linee**, nessuna coppia seggio × obiettivo sta sotto il 10%
 mentre le altre tre stanno sopra il 90%, e lo scarto fra il seggio più premiato
 e il meno premiato sta dentro un fattore tre.
+
+## Metà rimedio spedito in 0.1.181: Lyra si sposta ([D-212](DECISIONS.md#d-212))
+
+La «terza cosa che aiuta senza toccare gli obiettivi» è stata decisa dal
+committente ed è spedita. Su 100 semi, seme 7000:
+
+| Lyra | a Eredan | **sulla Strada** |
+|---|---|---|
+| NONE, tavolo uniforme | 16 | **8** |
+| VITTORIE, tavolo uniforme | 10 | **28** |
+| NONE, tavolo misto | 17 | **8** |
+| VITTORIE, tavolo misto | 12 | **22** |
+| anni con **zero** obiettivi presi | 35 | **20** |
+| anni con **tre** obiettivi presi | 7 | **19** |
+
+**Lyra smette di essere la quarta casa, ma non trionfa lo stesso**: 0 Trionfi su
+tutti e due i tavoli, contro 1 e 1 di prima. Il pavimento si alza e il tetto si
+abbassa — e i TRIONFI di tutto il tavolo calano da 10 a 8 (uniforme) e da 5 a 2
+(misto). Il criterio di chiusura di questa voce chiede **zero seggi a zero
+Trionfi**, e questo rimedio va nella direzione opposta su quella riga.
+
+**Quindi la voce resta aperta, e con la stessa causa scritta sopra**: le due
+strade vere sono ancora la struttura d'apertura per Lyra e per il Vetro, o la
+soglia alzata sui due obiettivi gratis. Spostare una casa cura la sua posizione;
+non le mette in mano le due carte che le altre tre trovano già in tasca.
+
+**E l'Ordine del Vetro non è stato toccato**: nella linea del Sale la quarta
+casa è ancora senza presidio d'apertura, e il rimedio della posizione lì non è
+nemmeno stato deciso — è la stessa domanda aperta di ISSUES 48.
 
 ---
 

@@ -736,6 +736,44 @@ def check_sim_plans_know_which_questions_they_get(
         )
 
 
+def check_a_declared_map_still_says_something(
+    documents: Dict[str, List[Dict[str, Any]]],
+    origins: Dict[str, str],
+    report: "Report",
+) -> None:
+    """Una mappa dichiarata che coincide col dato spedito non dichiara niente.
+
+    `starting_presence` esiste per una ragione sola (D-212): quando una pedina
+    si sposta sul dato spedito, una storia scritta a mano deve **dire** su
+    quale mappa e' stata scritta invece di cambiare di nascosto. Ma il giorno
+    in cui il dato spedito torna a coincidere con la dichiarazione, la riga
+    smette di proteggere qualcosa e resta li' a dire il falso: sembra una
+    scelta e non lo e' piu'. E il caso peggiore e' l'opposto - una casa che il
+    piano non nomina e che sul dato si e' spostata: quella la guardia non la
+    puo' vedere, e per questo la dichiarazione va tenuta pulita.
+    """
+    plans = documents.get("sim_plan", [])
+    entities = {str(e.get("id")): e for e in documents.get("entity", [])}
+    for plan in plans:
+        declared = plan.get("chronicle_overrides", {}).get("starting_presence", {})
+        for entity_id, presence in declared.items():
+            entity = entities.get(str(entity_id))
+            if entity is None:
+                report.fail(
+                    f"sim_plan [{plan.get('id')}]",
+                    f"`chronicle_overrides.starting_presence` nomina {entity_id}, "
+                    "che non esiste",
+                )
+                continue
+            if list(entity.get("presence", [])) == list(presence):
+                report.fail(
+                    f"sim_plan [{plan.get('id')}]",
+                    f"`chronicle_overrides.starting_presence.{entity_id}` ripete "
+                    "la presenza gia' scritta sull'Entita': o la mappa spedita e' "
+                    "tornata quella di allora e la riga va tolta, o e' un refuso",
+                )
+
+
 def check_a_drawn_question_can_be_narrated(
     documents: Dict[str, List[Dict[str, Any]]],
     origins: Dict[str, str],
@@ -1277,6 +1315,7 @@ def main() -> int:
         check_asset_sources_are_true(documents, origins, report)
         check_sim_plans_declare_their_economy(documents, origins, report)
         check_sim_plans_know_which_questions_they_get(documents, origins, report)
+        check_a_declared_map_still_says_something(documents, origins, report)
         check_a_drawn_question_can_be_narrated(documents, origins, report)
         check_objectives_are_shareable(documents, origins, report)
         check_condition_vocabularies_agree(documents, origins, report)

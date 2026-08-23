@@ -314,6 +314,12 @@
         "min_truths": 1
       },
       "chronicle_overrides": {
+        "starting_presence": {
+          "ENT_LYRA": [
+            "REG_MINIERE_ANTICHE",
+            "REG_EREDAN"
+          ]
+        },
         "actions_from_cards": false,
         "hand_refill": {},
         "claim_rules": {},

@@ -916,13 +916,21 @@ static func _had_presence(previous: Dictionary, entity_id: String, region_id: St
 static func setup_effects(chronicle: Dictionary, data: RefCounted, world: Dictionary = {}) -> Array:
 	var effects: Array = []
 	var source: Dictionary = Effect.source("system", "SETUP", "", 0, 0, 0)
+	# La mappa dichiarata (D-212): un piano scriptato e' una storia scritta su
+	# una mappa precisa, e la dichiara invece di ereditarla. Vale solo per la
+	# prima vita del seggio - dopo una successione comanda l'incarnazione, che
+	# la sua presenza se la porta (D-133).
+	var declared: Dictionary = chronicle.get("starting_presence", {}) as Dictionary
 	for entity_id in chronicle["entities"]:
 		var definition: Dictionary = data.entities[entity_id]
 		var incarnation: int = int((
 			(world.get("entities", {}) as Dictionary).get(str(entity_id), {}) as Dictionary
 		).get("incarnation", 0))
 		var active: Dictionary = Succession.active_view(definition, incarnation)
-		for region_id in active["presence"]:
+		var presence: Array = active["presence"] as Array
+		if incarnation == 0 and declared.has(str(entity_id)):
+			presence = declared[str(entity_id)] as Array
+		for region_id in presence:
 			effects.append(
 				Effect.make("ADD_PRESENCE", "entity", entity_id, {"region_id": region_id}, source)
 			)

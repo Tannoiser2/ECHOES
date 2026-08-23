@@ -5,6 +5,36 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.181 — Lyra sulla Strada dei Mercanti (D-212)
+
+- Il committente ha deciso l'altra metà di ISSUES 48: **«Lyra sulla Strada dei
+  Mercanti»**. Lyra apre con Miniere Antiche + Strada invece di Miniere Antiche
+  + Eredan.
+- **Nel Grano non c'è più una Regione vuota**: la Strada passa da 0,00 → 1,20 a
+  **1,00 → 2,07** pedine, ed è la seconda più affollata a fine anno. La Regione
+  più magra diventa Montagne Rosse a **1,78**.
+- **Lyra smette di essere la quarta casa**: NONE **16 → 8** (uniforme) e **17 →
+  8** (misto), Vittorie **10 → 28** e **12 → 22**, anni chiusi con zero
+  obiettivi **35 → 20**.
+- **I numeri peggiorati, che si scrivono**: i TRIONFI di tutto il tavolo calano
+  **10 → 8** (uniforme) e **5 → 2** (misto), e Lyra resta a **0**; Re Aldric
+  paga il conto (NONE 7 → 10, Vittorie 23 → 14, uniforme); i gettoni si bloccano
+  prima, **44,0% → 51,0%**. Playtest **0/8** su tutti e due i tavoli.
+- **Le quattro storie scritte a mano dichiarano la mappa in cui sono nate.**
+  Nuova chiave `starting_presence` sulla Chronicle (vuota = assente, come
+  ovunque), scrivibile da `chronicle_overrides` come già l'economia (D-189):
+  ribasare quattro `expected` non le avrebbe aggiornate, le avrebbe timbrate.
+  Vale solo per la prima vita del seggio — dopo una successione comanda
+  l'incarnazione (D-133).
+- **Una guardia nuova** in `validate_data.py`: una mappa dichiarata che coincide
+  col dato spedito non dichiara più niente e va rossa. Provata — rimettendo Lyra
+  a Eredan morde su tutti e quattro i piani.
+- **Quello che non è stato fatto**: «Nahr sulle Terre Nahr» nel Grano è già così.
+  La Regione vuota è **Terre Nahr nella linea del Sale**, dove i Nahr non
+  esistono — chi ci va è contenuto, e torna al committente col prezzo misurato.
+
+---
+
 ## 0.1.180 — Due pedine di riserva invece di una (D-211)
 
 - Il committente aveva deciso il risultato: «non ci può essere una regione senza

@@ -95,7 +95,7 @@ partono in posti diversi, e si detestano già prima che il gioco cominci.
 |---|---|---|---|---|
 | **Re Aldric** | il sovrano. Terzo della sua casa, primo a regnare su un raccolto che non basta | POTERE | Eredan, Valle Verde | **ostile** ai Nahr |
 | **Popolo Nahr** | non un esercito e non una folla: una lingua, un calendario e undicimila persone che si spostano quando la terra smette di rispondere | SOPRAVVIVENZA | Terre Nahr, Valle Verde | **ostile** ad Aldric |
-| **Lyra** | studiosa senza patrono. È scesa nelle Miniere per misurare una pietra e ne è risalita con una domanda | SAPERE | Miniere Antiche, Eredan | **ostile** a Vaerax |
+| **Lyra** | studiosa senza patrono. È scesa nelle Miniere per misurare una pietra e ne è risalita con una domanda | SAPERE | Miniere Antiche, Strada dei Mercanti | **ostile** a Vaerax |
 | **Vaerax** | dorme sotto le Montagne Rosse da prima che Eredan avesse un nome. Si sveglia raramente, e mai per una ragione piccola | PROTEZIONE | Montagne Rosse, Miniere Antiche | **ostile** a Lyra |
 
 **Chronicle III — secoli dopo, «l'anno del Sale»:** stessa mappa, gente nuova.

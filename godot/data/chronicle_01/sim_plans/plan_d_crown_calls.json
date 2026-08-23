@@ -76,6 +76,12 @@
         "min_truths": 2
       },
       "chronicle_overrides": {
+        "starting_presence": {
+          "ENT_LYRA": [
+            "REG_MINIERE_ANTICHE",
+            "REG_EREDAN"
+          ]
+        },
         "actions_from_cards": true,
         "hand_refill": {
           "per_token": 2,

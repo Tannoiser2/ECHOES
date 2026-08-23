@@ -391,6 +391,16 @@
             }
           }
         },
+        "starting_presence": {
+          "type": "object",
+          "description": "La mappa di partenza, quando non e' quella scritta sulle Entita' (D-212). La presenza di una casa sta sull'Entita' perche' e' la casa; ma un piano scriptato e' una storia scritta su una mappa precisa, e quando la mappa spedita cambia la storia non deve cambiare di nascosto: il piano dichiara qui la mappa in cui e' stato scritto, come gia' dichiara l'economia in cui gioca (D-189). Vale solo per la prima incarnazione del seggio: dopo una successione la presenza torna a essere quella dell'incarnazione (D-133). Omesso o vuoto, la mappa e' quella delle Entita'.",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
         "starting_structures": {
           "type": "array",
           "description": "Cosa c'e' gia' costruito quando l'anno si apre. Sta sulla Chronicle e non sulla Regione per la stessa ragione di `starting_control` (D-049): le Regioni sono condivise fra saghe distanti secoli, e una pietra scritta sulla Regione seduterebbe le case della prima saga al tavolo della seconda.",
