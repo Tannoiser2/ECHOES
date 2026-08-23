@@ -38,6 +38,33 @@ signal card_dropped(indices: Array)
 ## in mano quando vuoi, e la rimetti giu'; da quando si gioca all'app e non al
 ## cartone, quel gesto deve esistere sullo schermo o non esiste affatto.
 signal tension_opened(tension_id: String)
+
+## Una carta **tenuta in mano** e' stata posata su questa riga (D-239).
+##
+## Su un tablet non esiste il trascinamento con cui e' nato tutto questo: il dito
+## preme e scorre, e il gesto che sul desktop prende una carta li' fa scorrere la
+## pagina. Il tocco pero' c'e' sempre, e sono due: **prendi** la carta, **posi**
+## dove la vuoi usare. E' lo stesso gesto del tavolo vero, diviso in due tempi.
+signal card_placed(index: int)
+
+## `field:key -> indice della scelta`, riempito da chi tiene la carta in mano.
+## Vuoto quando non c'e' niente in mano, e allora le righe tornano a essere
+## quello che erano: un clic sulla domanda apre la sua scheda.
+var held_places: Dictionary = {}
+
+## La regola che questa Chronicle gioca, e il mucchio piu alto fra le domande
+## che il seggio puo' leggere. Ricalcolati a ogni `render`.
+var _at_end_of_act: bool = false
+var _hottest: int = 1
+var _leaders: int = 0
+
+
+## Accende i posti dove la carta tenuta in mano puo' andare, e spegne gli altri.
+## Chiamata da chi tiene la carta; il pannello non sa cosa sia una carta.
+func hold(places: Dictionary) -> void:
+	held_places = places.duplicate()
+	for where in slots:
+		(slots[where] as Object).call("light", held_places.has(str(where)))
 var _claims: VBoxContainer
 var _claims_header: Label
 var _signs: VBoxContainer
@@ -52,6 +79,25 @@ func _ready() -> void:
 func render(session: RefCounted, viewer_id: String) -> void:
 	if _title == null:
 		_build()
+	# **Quale regola sta giocando questa Chronicle** (D-243). Col Consiglio a
+	# fine Atto la soglia non apre piu' niente ([D-214](DECISIONS.md#d-214)) e
+	# quello che conta e' **chi e' il mucchio piu alto**: e' quella domanda che
+	# va al tavolo. La traccia continuava a dire «12/18», cioe' insegnava una
+	# regola che questo gioco non ha piu'.
+	_at_end_of_act = bool(
+		((session.data.chronicles.get(
+			str(session.world.get("chronicle_id", "")), {}
+		) as Dictionary).get("confluence_rules", {}) as Dictionary).get("at_end_of_act", false)
+	)
+	_hottest = 1
+	_leaders = 0
+	for tension_id in session.world["tensions"]:
+		var here: int = session.service.visible_tension_value(str(tension_id), viewer_id)
+		if here > _hottest:
+			_hottest = here
+			_leaders = 1
+		elif here == _hottest and here > 0:
+			_leaders += 1
 	for tension_id in _sorted(session.world["tensions"].keys()):
 		var id: String = str(tension_id)
 		if not _rows.has(id):
@@ -110,6 +156,26 @@ func _update_row(row: Dictionary, session: RefCounted, tension_id: String, viewe
 		value.add_theme_color_override("font_color", Color("#5f584c"))
 		return
 	bar.value = float(visible_value)
+	if _at_end_of_act:
+		# **Il conto e' relativo, non assoluto.** Nessun numero da raggiungere:
+		# c'e' una gara fra quattro domande, e a fine Atto va al Consiglio quella
+		# davanti. La barra si misura sul mucchio piu alto, cosi' le quattro
+		# righe insieme dicono *la classifica* invece di quattro percentuali di
+		# una soglia che non apre niente.
+		bar.max_value = float(maxi(_hottest, 1))
+		var leading: bool = visible_value >= _hottest and visible_value > 0
+		value.text = "%d%s" % [
+			visible_value,
+			("  ·  a pari" if _leaders > 1 else "  ·  va al Consiglio") if leading else "",
+		]
+		var hot: Color = Color("#6fa88a")
+		if leading:
+			hot = Color("#e8b563") if _leaders > 1 else Color("#c8553d")
+		elif visible_value >= _hottest - 1 and _hottest > 1:
+			hot = Color("#c9a14a")
+		value.add_theme_color_override("font_color", hot)
+		_paint_bar(bar, hot)
+		return
 	value.text = "%d/%d" % [visible_value, threshold]
 	# The colour is the warning: a question one step from its threshold is the
 	# one worth spending an action on, and it should be findable at a glance.
@@ -120,6 +186,13 @@ func _update_row(row: Dictionary, session: RefCounted, tension_id: String, viewe
 	elif margin <= 1:
 		tint = Color("#e8b563")
 	value.add_theme_color_override("font_color", tint)
+	_paint_bar(bar, tint)
+
+
+## Il colore della barra di una domanda. Estratto perche' adesso lo chiedono in
+## due, e due copie della stessa riga sono due posti dove smettere di essere
+## d'accordo.
+func _paint_bar(bar: ProgressBar, tint: Color) -> void:
 	var fill := StyleBoxFlat.new()
 	fill.bg_color = tint
 	bar.add_theme_stylebox_override("fill", fill)
@@ -270,6 +343,7 @@ func _update_destiny(session: RefCounted, viewer_id: String) -> void:
 		add_child(_spacer())
 		var header := Label.new()
 		header.text = "IL TUO DESTINO"
+		header.tooltip_text = "La casa che giochi, e quello per cui e' venuta al tavolo."
 		header.add_theme_font_size_override("font_size", 12)
 		header.add_theme_color_override("font_color", Color("#8a8172"))
 		add_child(header)
@@ -277,13 +351,18 @@ func _update_destiny(session: RefCounted, viewer_id: String) -> void:
 		# seggio sono le carte 70x120 dei fogli di stampa - il Destino lo vede
 		# solo chi lo giura, come al tavolo, perche' questo pannello e' gia'
 		# disegnato per il solo viewer.
+		# **Due carte senza didascalia non sono due carte: sono due figure**
+		# (D-244). Stavano qui da D-101, grandi e mute, e la domanda che si e'
+		# presa e' quella giusta: *«le due carte destino cosa servono?»*. Al
+		# tavolo fisico la risposta e' nella forma del cartoncino e in dove sta
+		# posato; sullo schermo no, e allora si scrive.
 		var tarots := HBoxContainer.new()
 		tarots.add_theme_constant_override("separation", 6)
 		add_child(tarots)
 		_casata_card = _tarot()
-		tarots.add_child(_casata_card)
+		tarots.add_child(_titled(_casata_card, "CHI SEI"))
 		_destiny_card = _tarot()
-		tarots.add_child(_destiny_card)
+		tarots.add_child(_titled(_destiny_card, "COSA VUOI"))
 		_destiny = VBoxContainer.new()
 		_destiny.add_theme_constant_override("separation", 2)
 		add_child(_destiny)
@@ -311,6 +390,13 @@ func _update_destiny(session: RefCounted, viewer_id: String) -> void:
 	_destiny_card.texture = CardArt.texture_for(
 		"destiny", session.service.destiny_of(viewer_id), session.data
 	)
+	# E sotto ognuna il suo nome: la carta e' un'immagine, il nome e' il fatto.
+	_caption(_casata_card, str(
+		(session.world["entities"].get(viewer_id, {}) as Dictionary).get(
+			"name", (entity as Dictionary)["name"]
+		)
+	))
+	_caption(_destiny_card, str((destiny as Dictionary)["title"]))
 	# I quattro obiettivi hanno preso il posto dei tre gradini, se la Chronicle
 	# li dichiara (D-198). La lista la fa `objectives_of`, la stessa che scrive
 	# il verbale di fine anno: due letture diverse dello stesso seggio erano il
@@ -347,6 +433,41 @@ func _rung_line(text: String, holds: bool) -> void:
 	_destiny.add_child(line)
 
 
+## Una carta con la sua etichetta sopra e il suo nome sotto.
+##
+## L'etichetta dice **a cosa serve** — sono due domande diverse, e leggerle
+## affiancate e' il modo piu' rapido di capire il gioco: chi sei, e cosa vuoi.
+func _titled(picture: TextureRect, label: String) -> Control:
+	var column := VBoxContainer.new()
+	column.add_theme_constant_override("separation", 2)
+	column.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	var top := Label.new()
+	top.text = label
+	top.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	top.add_theme_font_size_override("font_size", 10)
+	top.add_theme_color_override("font_color", Color("#8a8172"))
+	column.add_child(top)
+	column.add_child(picture)
+	var under := Label.new()
+	under.name = "caption"
+	under.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	under.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	under.add_theme_font_size_override("font_size", 11)
+	under.add_theme_color_override("font_color", Color("#c9bfae"))
+	column.add_child(under)
+	return column
+
+
+## Il nome sotto una delle due carte.
+func _caption(picture: TextureRect, text: String) -> void:
+	var column: Node = picture.get_parent()
+	if column == null:
+		return
+	var under: Node = column.get_node_or_null("caption")
+	if under != null:
+		(under as Label).text = text
+
+
 func _tarot() -> TextureRect:
 	var picture := TextureRect.new()
 	picture.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
@@ -371,12 +492,27 @@ func _wrapped(inner: Control, field: String, key: String) -> Control:
 	var slot: PanelContainer = DropSlot.new()
 	slot.field = field
 	slot.key = key
+	# Il posto dove **posare** quello che si tiene in mano vale per ogni riga —
+	# una domanda o una casa — e viene prima della scheda: se stai posando una
+	# carta, non stai leggendo.
+	slot.gui_input.connect(func(event: InputEvent) -> void:
+		if not (event is InputEventMouseButton):
+			return
+		var press := event as InputEventMouseButton
+		if not press.pressed or press.button_index != MOUSE_BUTTON_LEFT:
+			return
+		var where: String = "%s:%s" % [field, key]
+		if held_places.has(where):
+			card_placed.emit(int(held_places[where]))
+	)
 	if field == "tension":
 		# Un clic sulla riga apre la scheda. Il trascinamento resta quello che
 		# era: chi prende una carta e la lascia cadere qui fa una mossa, chi
 		# clicca e basta sta leggendo. Sono due gesti diversi e non si pestano
 		# i piedi, perche' il trascinamento non passa mai da `gui_input`.
 		slot.gui_input.connect(func(event: InputEvent) -> void:
+			if held_places.has("%s:%s" % [field, key]):
+				return
 			if event is InputEventMouseButton \
 					and (event as InputEventMouseButton).pressed \
 					and (event as InputEventMouseButton).button_index == MOUSE_BUTTON_LEFT:

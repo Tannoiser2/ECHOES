@@ -10,6 +10,239 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-245 — L'app si apre e si gioca: nessuna domanda
+
+**implemented in 0.1.212** — sostituisce [D-241](#d-241), che aveva ridotto la
+domanda invece di toglierla
+
+> «Non deve chiedere nessuna saga.»
+
+[D-241](#d-241) aveva sistemato la cosa sbagliata. La domanda del menu era
+*«quale anno giochi?»* con quattro voci, due delle quali non sono inizi; l'ho
+ridotta a *«da quale saga cominci?»* con due voci corrette, e ho scambiato una
+domanda meno sbagliata per una domanda risolta. **Era ancora una domanda di
+troppo**, ed e' la seconda volta in due giri che la stessa correzione arriva
+mezza.
+
+Adesso si apre l'app, e si gioca. Il primo anno e' il primo, e il resto viene da
+se': a fine Chronicle il gioco offre gia' l'era successiva ([D-095](#d-095)), che
+e' il posto giusto per parlare del tempo che passa — quando **e' passato**, non
+prima di cominciare.
+
+**Il prezzo, scritto perche' e' reale**: la seconda saga (CHR_03, anno 1640, le
+altre quattro case) adesso **non si raggiunge dal menu**. E' contenuto scritto e
+non piu' apribile, che e' esattamente quello che [D-035](#d-035) chiama
+contenuto che non esiste. Non lo risolvo inventando una seconda domanda travestita:
+sta scritto in [ISSUES 66](ISSUES.md#66), ed e' una decisione d'autore — se e
+dove quella saga si apre.
+
+**Una prova**, e tiene l'unica cosa che resta da tenere: che il posto da cui si
+parte sia un **inizio** e non il seguito di qualcos'altro.
+
+**Misurato:** suite 483 prove / 10.727 asserzioni verdi, i cancelli degli
+strumenti verdi, i piani di simulazione verdi, `run_playtest.gd --runs=100
+--seed=7000` **0 seggi bloccati su 8**.
+
+---
+
+## D-244 — Le due carte del Destino dicono cosa sono
+
+**implemented in 0.1.211**
+
+> «Le due carte destino cosa servono?»
+
+La domanda e' arrivata perche' erano **due figure grandi e mute**. Stavano li'
+da [D-101](#d-101), e nessuno le aveva mai spiegate: al tavolo fisico la
+risposta e' nella forma del cartoncino e in dove sta posato, sullo schermo non
+c'e' ne' l'una ne' l'altro.
+
+Adesso la prima dice **CHI SEI** e la seconda **COSA VUOI**, e sotto ognuna c'e'
+il suo nome — la casa che giochi e il Destino che ha giurato. Sono le due
+domande su cui gira tutto il gioco, e leggerle affiancate e' il modo piu' rapido
+di capirlo.
+
+---
+
+## D-243 — La traccia delle domande dice la regola di adesso
+
+**implemented in 0.1.211**
+
+> «Le domande dell'anno sono ancora con le vecchie regole.»
+
+Ed era vero, alla lettera. La riga di ogni domanda scriveva **`12/18`** con una
+barra che si riempiva verso la soglia — e da [D-214](#d-214) **la soglia non apre
+piu' niente**. Tutte e quattro le Chronicle della scatola dichiarano
+`at_end_of_act`: il Consiglio si tiene a fine Atto, sulla domanda **piu' calda**,
+e non c'e' nessun numero da raggiungere.
+
+E' esattamente il difetto che [D-224](#d-224) ha corretto sulla pagina d'aiuto,
+in un altro posto e sopravvissuto per la stessa ragione: **nessuna misura guarda
+lo schermo**.
+
+**Il conto ora e' relativo.** La barra si misura sul mucchio piu' alto, cosi' le
+quattro righe insieme dicono **la classifica** invece di quattro percentuali di
+un traguardo che non esiste; e la domanda davanti lo scrive — *«va al
+Consiglio»*, o *«a pari»* quando sono due.
+
+**La soglia non e' stata tolta dal codice**, e non doveva: una Chronicle che non
+dichiara `at_end_of_act` gioca ancora a soglia, e allora la riga torna a dire
+`12/18`. La pagina segue i dati invece di avere un'opinione propria, ed e' la
+stessa regola di D-224. Due prove, una per lato.
+
+---
+
+## D-242 — La carta si legge senza passarci sopra
+
+**implemented in 0.1.211**
+
+> «Le carte sono minuscole e non si capisce cosa fanno, non c'e' il testo che lo
+> spiega.»
+
+Una carta in mano era **110 pixel** di figurina con sotto un numero. Tutto quello
+che la spiegava — il titolo, il verbo che porta, cosa costa, la frase d'autore —
+viveva nel **suggerimento del mouse**.
+
+Su un tablet il passaggio del mouse **non esiste**. E' lo stesso difetto di
+[D-240](#d-240) sui pezzi della mappa, nello stesso giorno e in un altro posto:
+il testo c'era, era scritto bene, e non lo vedeva nessuno. Vale la pena
+nominarlo per quello che e': **il tooltip e' un posto dove il testo va a
+morire**, su meta' dei dispositivi che esistono.
+
+Adesso la carta e' 150 pixel e porta **sulla faccia** il proprio nome e il
+proprio verbo — «muovo una presenza», «costruisco» — che e' la domanda vera di
+chi ce l'ha in mano: non *«quanto vale»*, ma *«cosa succede se la calo»*
+([D-228](#d-228)).
+
+E quando una carta viene **presa in mano** ([D-239](#d-239)), la colonna accanto
+ne scrive la lettura intera: nome, famiglia, forza, verbo, cosa lascia al mondo,
+la frase d'autore. E' il momento in cui serve — si e' scelto *cosa*, si sta
+decidendo *come*.
+
+**Tre prove**: ogni carta della scatola porta il proprio nome sulla faccia;
+nessuna riga di quella faccia contiene un buco o un id; e il verbo c'e' su tutte.
+
+**Misurato:** suite 482 prove / 10.724 asserzioni verdi (era 477 / 10.560), i
+cancelli degli strumenti verdi, i piani di simulazione verdi, export e catalogo
+allineati, `run_playtest.gd --runs=100 --seed=7000` **0 seggi bloccati su 8**.
+
+**E una cosa che non ho fatto**, perche' non e' una correzione: *«tutta la pagina
+dell'app va rivista»* e' vero e non si chiude con tre riparazioni. Sta scritto
+come [ISSUES 65](ISSUES.md#65), con dentro quello che questo giro ha insegnato —
+che i difetti di questa pagina hanno tutti la stessa forma, e nessuno di loro
+puo' essere trovato da un cancello.
+
+---
+
+## D-241 — Una saga si comincia, non si sceglie l'anno
+
+**implemented in 0.1.210**
+
+> «Chiede ancora quale anno voglio giocare.»
+
+Il menu offriva **tutte e quattro** le Chronicle della scatola come punto di
+partenza. Due delle quattro non lo sono: sono il **seguito** di un'altra — la
+biblioteca della stessa eta', che eredita il mondo dell'anno prima e si
+raggiunge **giocando**. Cominciare da li' vuol dire aprire il secondo capitolo
+senza il primo, e nessuno lo aveva mai notato perche' funzionava: partiva, e
+partiva da un mondo che non era successo a nessuno.
+
+E la domanda era anche quella sbagliata. Una saga si **comincia**, e poi gli
+anni vengono da soli: a fine Chronicle il gioco offre gia' l'era successiva
+([D-095](#d-095)) e la catena esiste da allora. All'inizio non c'e' un anno da
+scegliere, c'e' **una saga**. Adesso il menu chiede *«Da quale saga cominci?»*,
+offre solo le due aperture, e se un giorno ne restasse una sola non chiede
+niente.
+
+**Tre prove**: il menu non offre mai il seguito di qualcun altro; offre **tutte**
+le aperture, perche' una saga scritta e mai raggiungibile sarebbe contenuto che
+non esiste ([D-035](#d-035)); e le offre in ordine d'anno.
+
+---
+
+## D-240 — Le pedine sulla mappa, quando la mappa sta in mano
+
+**implemented in 0.1.210**
+
+> «Le pedine e cicatrici sulla mappa non si capiscono e sono troppo piccole.»
+
+Due difetti diversi dentro la stessa frase, e il secondo era il peggiore.
+
+**Troppo piccole**, letteralmente: un pezzo era 17 pixel. Leggibile su un
+monitor a un palmo dagli occhi, illeggibile su un tablet tenuto in mano — e una
+forma dentro diciassette pixel non e' una forma, e' una macchia. Adesso e' 26,
+e i punti del grado sotto il pezzo sono grossi abbastanza da contarsi.
+
+**Non si capiscono**, ed e' la parte che nessuno aveva visto. La parola di un
+pezzo — «torre di guardia», «cicatrice del drago» — si scrive per la Regione
+**guardata**, e `_hovered` valeva solo per le Regioni *raggiungibili*. Fuori da
+una scelta nessuna Regione e' raggiungibile: **quelle parole non comparivano
+quasi mai.** Guardare e poter andare sono due cose diverse, e la seconda ha gia'
+il suo anello d'oro per dirsi.
+
+E su un tablet non esiste affatto un «sopra»: senza mouse non c'e' passaggio del
+cursore, quindi la parola non sarebbe comparsa **mai**. Adesso il tocco su una
+Regione che non e' un bersaglio vale come guardarla, e la nomina — con una
+fascia scura sotto la riga, perche' su una tessera dipinta chiara la parola
+spariva dentro il quadro.
+
+---
+
+## D-239 — Il tavolo su un tablet: due tocchi al posto del trascinamento
+
+**implemented in 0.1.210**
+
+> «Su iPad il drag & drop non funziona.»
+
+E' vero, e **non e' un difetto da sistemare**: su un touchscreen il dito che
+preme e scorre fa scorrere la pagina, ed e' giusto che la faccia scorrere. Il
+trascinamento e' un gesto da mouse, e insistere sarebbe stato rubare a un
+dispositivo il suo gesto piu' comune per farne uno che li' non appartiene a
+niente.
+
+Il gesto va **diviso in due tempi** — si prende la carta, si posa dove la si
+vuole usare — che e' poi come si fa al tavolo vero, e come il committente
+l'aveva descritto fin dall'inizio: *«si seleziona una carta, si decide come
+usarla»*.
+
+**Cosa succede adesso.** Si tocca una carta: si alza dal ventaglio, prende un
+bordo d'oro, e si accendono **tutti i posti dove puo' andare** — le Regioni sulla
+mappa, le domande sulla traccia, le case nella colonna. Si tocca il posto, e la
+mossa parte. Toccare di nuovo la carta la rimette giu': prendere in mano non e'
+una mossa, e da una cosa che non e' una mossa si deve poter tornare indietro.
+
+**Il conflitto da sciogliere** era con [D-236](#d-236): un tocco su una domanda
+apre la sua scheda. Adesso i due gesti non convivono mai — con una carta in mano
+la riga posa, a mani vuote apre — perche' se stai posando una carta non stai
+leggendo, e aprire una pagina sopra il tavolo mentre la mossa parte e' il modo
+piu' rapido di rendere il tocco inaffidabile.
+
+**Il trascinamento resta**, intero: col mouse e' piu' rapido, e chi ce l'ha non
+perde niente. Sono due modi di dire la stessa cosa, come lo erano il bottone e
+la mappa.
+
+**Cinque prove**, e la prima e' quella che conta: tenere una carta in mano
+accende **solo** i posti dove quella carta puo' andare — un posto acceso dove la
+mossa non e' legale sarebbe la stessa bugia di una Regione cerchiata d'oro che
+poi non accetta niente ([D-039](#d-039)). Poi: posarla risponde con l'indice che
+`ask()` aspetta; non apre anche la scheda; a mani vuote la riga torna ad aprire
+la scheda; e la carta in mano **si vede** che e' in mano.
+
+Provate al contrario: togliendo la posa, una diventa rossa.
+
+**E `emulate_mouse_from_touch` e' scritto in `project.godot`.** E' gia' il
+comportamento di fabbrica di Godot, e sta scritto per la stessa ragione per cui
+una regola sta nei dati: da adesso il gioco si gioca anche su un tablet, e una
+cosa da cui dipende il tavolo non puo' restare un valore implicito.
+
+**Misurato:** suite 477 prove / 10.560 asserzioni verdi (era 469 / 10.541), i
+cancelli degli strumenti verdi, i piani di simulazione verdi, export e catalogo
+allineati, `run_playtest.gd --runs=100 --seed=7000` **0 seggi bloccati su 8** a
+tavolo misto e uniforme — e vale ancora quello che D-238 ha messo a verbale: il
+cancello era verde anche quando il gioco su un tablet non si poteva giocare.
+Tutte e tre queste decisioni le ha trovate una persona con l'app in mano.
+
+---
+
 ## D-238 — Il bottone che rendeva invisibile il trascinamento
 
 **implemented in 0.1.209** — riapre e chiude il terzo passo di ISSUES 63

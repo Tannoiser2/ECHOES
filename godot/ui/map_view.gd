@@ -194,11 +194,18 @@ func _relayout() -> void:
 ## broken game, so one that cannot be chosen does not light up at all.
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
+		# **Sotto il dito, non sotto la mossa** (D-240). Fino a qui `_hovered`
+		# valeva solo per le Regioni *raggiungibili*, e siccome i nomi dei pezzi
+		# si scrivono per la Regione guardata, **quei nomi non comparivano quasi
+		# mai**: fuori da una scelta nessuna Regione e' raggiungibile. Guardare e
+		# poter andare sono due cose diverse, e la seconda ha gia' il suo anello
+		# d'oro per dirsi.
 		var was: String = _hovered
-		_hovered = _offered_at((event as InputEventMouseMotion).position)
+		_hovered = _region_at((event as InputEventMouseMotion).position)
 		if was != _hovered:
 			mouse_default_cursor_shape = (
-				Control.CURSOR_POINTING_HAND if _hovered != "" else Control.CURSOR_ARROW
+				Control.CURSOR_POINTING_HAND if highlighted.has(_hovered)
+				else Control.CURSOR_ARROW
 			)
 			queue_redraw()
 	elif event is InputEventMouseButton:
@@ -207,6 +214,15 @@ func _gui_input(event: InputEvent) -> void:
 			var hit: String = _offered_at(button.position)
 			if hit != "":
 				region_clicked.emit(hit)
+				return
+			# **Un tocco su un tablet non ha un «sopra»** (D-240). Senza mouse
+			# non esiste il passaggio del cursore, quindi i nomi dei pezzi non
+			# si vedono mai: il tocco su una Regione che non e' un bersaglio
+			# vale come guardarla, e la nomina.
+			var looked: String = _region_at(button.position)
+			if looked != _hovered:
+				_hovered = looked
+				queue_redraw()
 
 
 func _offered_at(point: Vector2) -> String:
@@ -536,8 +552,13 @@ const PIECE_COLOURS: Dictionary = {
 	"luogo": "#7f9a7f",
 }
 
-const PIECE: float = 17.0
-const PIECE_GAP: float = 5.0
+# **Quanto e' grande un pezzo sulla plancia** (D-240). Diciassette pixel erano
+# leggibili su un monitor a un palmo dagli occhi e illeggibili su un tablet
+# tenuto in mano: *«le pedine e cicatrici sulla mappa non si capiscono e sono
+# troppo piccole»*. Un pezzo di cartone si riconosce dalla forma prima che dal
+# nome, e una forma dentro diciassette pixel non e' una forma: e' una macchia.
+const PIECE: float = 26.0
+const PIECE_GAP: float = 7.0
 
 
 func _draw_marks(centre: Vector2, region_id: String, region: Dictionary) -> void:
@@ -607,11 +628,11 @@ func _draw_marks(centre: Vector2, region_id: String, region: Dictionary) -> void
 		# piani di una torre che diventa castello e poi reggia.
 		var grade: int = int(piece_data["grade"])
 		if grade > 1:
-			var pips: float = float(grade) * 4.0 - 1.0
+			var pips: float = float(grade) * 6.0 - 1.5
 			for pip in range(grade):
 				draw_circle(
-					Vector2(middle.x - pips * 0.5 + float(pip) * 4.0 + 1.0, at.y + PIECE + 4.0),
-					1.4, tint
+					Vector2(middle.x - pips * 0.5 + float(pip) * 6.0 + 1.5, at.y + PIECE + 5.0),
+					2.2, tint
 				)
 
 	# La parola solo sotto il mouse: la plancia mostra i pezzi, la Regione che
@@ -628,13 +649,15 @@ func _draw_marks(centre: Vector2, region_id: String, region: Dictionary) -> void
 		return
 	var font: Font = ThemeDB.fallback_font
 	var line: String = " · ".join(PackedStringArray(words))
-	var size: Vector2 = font.get_string_size(line, HORIZONTAL_ALIGNMENT_LEFT, -1, 11)
-	var word_at: Vector2 = Vector2(centre.x - size.x * 0.5, top + PIECE + 18.0)
-	draw_string(
-		font, word_at + Vector2(1.0, 1.0), line, HORIZONTAL_ALIGNMENT_LEFT, -1, 11,
-		Color(0, 0, 0, 0.75)
+	var size: Vector2 = font.get_string_size(line, HORIZONTAL_ALIGNMENT_LEFT, -1, 13)
+	var word_at: Vector2 = Vector2(centre.x - size.x * 0.5, top + PIECE + 22.0)
+	# Una fascia scura sotto la riga, non solo l'ombra di un pixel: su una
+	# tessera dipinta chiara la parola spariva dentro il quadro.
+	draw_rect(
+		Rect2(word_at + Vector2(-6.0, -13.0), size + Vector2(12.0, 6.0)),
+		Color(0.06, 0.05, 0.04, 0.78)
 	)
-	draw_string(font, word_at, line, HORIZONTAL_ALIGNMENT_LEFT, -1, 11, Color("#c9bfae"))
+	draw_string(font, word_at, line, HORIZONTAL_ALIGNMENT_LEFT, -1, 13, Color("#efe7d8"))
 
 
 ## Four colours, readable next to each other, handed out by seat rather than by

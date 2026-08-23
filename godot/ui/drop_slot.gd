@@ -65,6 +65,14 @@ func _matching(payload: Variant) -> Array:
 	return found
 
 
+## Il posto acceso perche' **si tiene una carta in mano** (D-239), non perche'
+## una carta ci sta passando sopra. Su un tablet il trascinamento non c'e': i
+## posti dove la carta scelta puo' andare si accendono tutti insieme, e si tocca
+## quello che si vuole. E' la stessa luce, chiesta da un gesto diverso.
+func light(on: bool) -> void:
+	_paint(on)
+
+
 ## Il posto si accende sotto la carta che sta arrivando, come l'anello d'oro
 ## sulla mappa: chi trascina vede dove sta per lasciare prima di lasciare.
 func _paint(lit: bool) -> void:

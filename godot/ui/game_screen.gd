@@ -24,6 +24,7 @@ const StatusPanel := preload("res://ui/status_panel.gd")
 const HandView := preload("res://ui/hand_view.gd")
 const ConfluenceBoard := preload("res://ui/confluence_board.gd")
 const CouncilSheet := preload("res://ui/council_sheet.gd")
+const AssetText := preload("res://scripts/core/asset_text.gd")
 const HelpPanel := preload("res://ui/help_panel.gd")
 const SaveSerializer := preload("res://scripts/core/save_serializer.gd")
 const DevDashboard := preload("res://ui/dev_dashboard.gd")
@@ -72,6 +73,18 @@ var _sheet: PanelContainer
 ## ponte fra le scelte che le regole hanno gia' approvato e la mano che si puo'
 ## prendere e trascinare (D-230).
 var _offers: Dictionary = {}
+
+## **La carta che si tiene in mano adesso**, o "" (D-239). Su un tablet e' il
+## primo dei due tocchi che sostituiscono il trascinamento; col mouse e' la via
+## breve accanto a esso. Non e' una mossa: si puo' sempre rimettere giu'.
+var _held: String = ""
+
+## Cosa `ask()` ha chiesto e suggerito, e quali Regioni erano bersaglio. Serve a
+## rimettere lo schermo com'era quando una carta si rimette giu'.
+var _asked: String = ""
+var _hinted: String = ""
+var _subjects: Array = []
+var _map_offers: Dictionary = {}
 
 ## Le etichette della domanda in corso: servono a rimostrare **solo** le scelte
 ## rimaste quando una carta cade su un soggetto che ne accetta piu' di una.
@@ -332,6 +345,7 @@ func _build() -> void:
 	# e allora la caduta **restringe** e la scelta resta a chi gioca.
 	_status.card_dropped.connect(_on_subject_dropped)
 	_status.tension_opened.connect(_on_tension_opened)
+	_status.card_placed.connect(func(index: int) -> void: picked.emit(index))
 	right.add_child(_status)
 
 	_context = Label.new()
@@ -416,7 +430,7 @@ func _build() -> void:
 	tools.add_child(_save_button)
 
 	_hand = HandView.new()
-	_hand.custom_minimum_size = Vector2(0, 140)
+	_hand.custom_minimum_size = Vector2(0, 200)
 	_hand.card_chosen.connect(_on_card_chosen)
 	rows.add_child(_hand)
 
@@ -743,6 +757,7 @@ func ask(prompt: String, labels: Array, subjects: Array = []) -> int:
 	# screen: a rules page covering the answer is worse than no rules page.
 	if not on_map.is_empty() and _help.visible:
 		_help_button.button_pressed = false
+	_map_offers = on_map
 	_map.highlighted = on_map
 	_map.queue_redraw()
 
@@ -773,6 +788,10 @@ func ask(prompt: String, labels: Array, subjects: Array = []) -> int:
 		list.append(entry)
 		_offers[carried] = list
 
+	_held = ""
+	_labels = labels
+	_subjects = subjects.duplicate()
+	_asked = prompt
 	_prompt.text = prompt
 	_hint.text = (
 		"Trascina una carta dove vuoi usarla — una Regione, una domanda, una casa — o scegli qui accanto."
@@ -796,26 +815,22 @@ func ask(prompt: String, labels: Array, subjects: Array = []) -> int:
 	# visibile. Il resto si prende in mano: si trascina, oppure si clicca la
 	# carta e la colonna si restringe a quello che quella carta li' sa fare.
 	# Una prova tiene il patto: nessuna scelta legale resta irraggiungibile.
-	_clear_buttons()
-	for i in range(labels.size()):
-		var subject: Dictionary = subjects[i] if i < subjects.size() else {}
-		if _has_a_landing_place(subject):
-			continue
-		var button := Button.new()
-		button.text = str(labels[i])
-		button.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
-		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		var index: int = i
-		button.pressed.connect(func() -> void: picked.emit(index))
-		_buttons.add_child(button)
+	_hinted = _hint.text
+	_redraw_choices()
 
 	var chosen: int = await picked
 	# Cleared before returning, so a stray click on the map between two questions
 	# cannot answer the next one.
 	_map.highlighted = {}
+	_map_offers = {}
 	_offers = {}
 	_labels = []
+	_subjects = []
+	_held = ""
+	_asked = ""
+	_hinted = ""
+	_status.hold({})
+	_hand.hold("")
 	_map.queue_redraw()
 	_clear_buttons()
 	_prompt.text = ""
@@ -839,22 +854,73 @@ static func _has_a_landing_place(subject: Dictionary) -> bool:
 	return false
 
 
-## La carta scelta col clic: la colonna si restringe a quello che sa fare.
+## La carta presa in mano (D-238, e su un tablet e' l'unica strada — D-239).
 ##
-## E' il primo dei due movimenti che il committente ha descritto — *«si
-## seleziona una carta, si decide come usarla»* — e la porta di servizio del
-## trascinamento: se prendere e lasciare non riesce, la mossa resta a un clic.
+## Sono i due movimenti che il committente ha descritto — *«si seleziona una
+## carta, si decide come usarla»* — e su un touchscreen sono **il gesto intero**:
+## il trascinamento li' non c'e', perche' il dito che preme e scorre fa scorrere
+## la pagina. Si tocca la carta, si accendono tutti i posti dove puo' andare, si
+## tocca quello che si vuole. E' il gesto del tavolo vero, diviso in due tempi.
+##
+## Toccare di nuovo la stessa carta la rimette giu': prendere in mano non e' una
+## mossa, e da una cosa che non e' una mossa si deve poter tornare indietro.
 func _on_card_chosen(asset_id: String) -> void:
+	if _held == asset_id:
+		_release_hold()
+		return
 	var carried: Array = _offers.get(asset_id, []) as Array
 	if carried.is_empty():
 		return
+	_held = asset_id
+
+	# Dove puo' andare **questa** carta: le Regioni sulla mappa, le domande e le
+	# case nella colonna. Sono le stesse scelte che il trascinamento porterebbe
+	# con se', chieste con un gesto diverso.
+	var on_map: Dictionary = {}
+	var places: Dictionary = {}
 	var indices: Array = []
 	for entry in carried:
-		indices.append(int((entry as Dictionary)["index"]))
-	if indices.size() == 1:
-		picked.emit(int(indices[0]))
+		var offer: Dictionary = entry as Dictionary
+		var index: int = int(offer["index"])
+		indices.append(index)
+		var region_id: String = str(offer.get("region", ""))
+		if region_id != "":
+			on_map[region_id] = index
+			continue
+		for field in ["tension", "entity"]:
+			var about: String = str(offer.get(field, ""))
+			if about != "":
+				places["%s:%s" % [field, about]] = index
+	_map.highlighted = on_map
+	_map.queue_redraw()
+	_status.hold(places)
+	_hand.hold(asset_id)
+	_prompt.text = "%s in mano. Tocca dove la vuoi usare." % _asset_title(asset_id)
+	_hint.text = "Tocca di nuovo la carta per rimetterla giu'."
+	_narrow_to(indices, _asset_reading(asset_id))
+
+
+## La carta rimessa giu': lo schermo torna a com'era quando la domanda e' stata
+## fatta. Non risponde niente — prendere in mano non e' una mossa.
+func _release_hold() -> void:
+	if _held == "":
 		return
-	_narrow_to(indices)
+	_held = ""
+	_status.hold({})
+	_hand.hold("")
+	_map.highlighted = _regions_offered()
+	_map.queue_redraw()
+	_prompt.text = _asked
+	_hint.text = _hinted
+	_redraw_choices()
+
+
+## Il titolo di una carta, per la riga che dice cosa si tiene in mano.
+func _asset_title(asset_id: String) -> String:
+	if _session == null:
+		return "La carta"
+	var asset: Variant = _session.data.assets.get(asset_id)
+	return "La carta" if asset == null else str((asset as Dictionary)["title"])
 
 
 ## Una carta caduta su una domanda o su una casa.
@@ -874,9 +940,29 @@ func _on_subject_dropped(indices: Array) -> void:
 
 
 ## Restringe la colonna alle sole scelte rimaste dopo la caduta.
-func _narrow_to(indices: Array) -> void:
+## Cosa dice la carta, per intero.
+##
+## E' il testo che fino a D-242 viveva solo nel suggerimento del mouse — cioe'
+## da nessuna parte, per chi gioca col dito. Quando una carta e' in mano, questo
+## e' il momento in cui serve: **si e' scelto cosa, si sta decidendo come.**
+func _asset_reading(asset_id: String) -> String:
+	if _session == null:
+		return ""
+	var asset: Variant = _session.data.assets.get(asset_id)
+	return "" if asset == null else AssetText.tooltip(asset as Dictionary, _session.data)
+
+
+func _narrow_to(indices: Array, reading: String = "") -> void:
 	_clear_buttons()
 	_prompt.text = "La carta e' li. Cosa ne fai?"
+	if reading != "":
+		var page := Label.new()
+		page.text = reading
+		page.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		page.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		page.add_theme_font_size_override("font_size", 11)
+		page.add_theme_color_override("font_color", Color("#c9bfae"))
+		_buttons.add_child(page)
 	for index in indices:
 		var label: String = str(_labels[int(index)]) if int(index) < _labels.size() else "?"
 		var button := Button.new()
@@ -911,6 +997,31 @@ func _on_tension_opened(tension_id: String) -> void:
 	_help_button.button_pressed = false
 
 
+## La colonna delle scelte, ridisegnata da capo.
+##
+## Una scelta che ha un posto dove cadere non e' anche un bottone (D-238): la
+## colonna tiene solo quello che non si puo' prendere in mano.
+func _redraw_choices() -> void:
+	_clear_buttons()
+	for i in range(_labels.size()):
+		var subject: Dictionary = _subjects[i] if i < _subjects.size() else {}
+		if _has_a_landing_place(subject as Dictionary):
+			continue
+		var button := Button.new()
+		button.text = str(_labels[i])
+		button.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
+		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		var index: int = i
+		button.pressed.connect(func() -> void: picked.emit(index))
+		_buttons.add_child(button)
+
+
+## Le Regioni che erano bersaglio quando la domanda e' stata fatta.
+func _regions_offered() -> Dictionary:
+	return _map_offers.duplicate()
+
+
 func _clear_buttons() -> void:
 	for child in _buttons.get_children():
 		child.queue_free()
@@ -938,17 +1049,16 @@ func _menu() -> void:
 	say("scala diversa preparano la propria posizione e poi si siedono a un Consiglio,")
 	say("dove una domanda viene decisa e quello che si decide resta scritto.")
 	say("")
-	# Who those four are depends on the year, and there is more than one age to
-	# choose from: the map is the same six places, and the people on it are not.
-	say("La mappa e sempre la stessa. Le persone che ci stanno sopra no: fra un'epoca")
-	say("e l'altra cambiano le case, le domande e quello che ognuno vuole.")
+	# La mappa non cambia, le persone si'. Non e' piu' una scelta da fare
+	# all'apertura: e' quello che succede giocando, quando un anno finisce e il
+	# tempo passa (D-245).
+	say("La mappa e sempre la stessa. Le persone che ci stanno sopra no: fra un anno")
+	say("e l'altro cambiano le case, le domande e quello che ognuno vuole.")
 	say("")
-	# The year is chosen before the seat, and it has to be: who is at the table
-	# is what the Chronicle says it is, and the two sagas seat nobody in common.
 	while true:
 		if await _offer_to_resume():
 			continue
-		var chronicle_id: String = await _ask_chronicle()
+		var chronicle_id: String = first_chronicle(_load_help_data())
 		_seats = _seats_of(chronicle_id)
 		# Redrawn here and not after the seat is picked: the rules page names the
 		# people at the table and the year's questions, and it is on screen while
@@ -1005,18 +1115,39 @@ func _seats_of(chronicle_id: String) -> Array:
 	return (data.chronicles[chronicle_id]["entities"] as Array).duplicate()
 
 
-## Which year. Every Chronicle in the data is offered, oldest first, because
-## there is more than one saga now and the browser was showing one of them.
+## Da dove si comincia. Nessuna domanda (D-245).
 ##
-## A Chronicle that writes its questions out is always the same four; one that
-## declares a `tension_pool` draws them from the library, so it is a different
-## year every time (D-028). The opening year of a saga is the written one - that
-## is the one to start from, and the list says so by putting the year on it.
-func _ask_chronicle() -> String:
-	var data: RefCounted = _load_help_data()
+## > «Non deve chiedere nessuna saga.»
+##
+## Il menu chiedeva prima *quale anno* e poi, per un giro, *quale saga*: due
+## forme della stessa domanda, e la domanda non doveva esserci. Si apre l'app e
+## si gioca; il resto degli anni viene da se', perche' a fine Chronicle il gioco
+## offre gia' l'era successiva (D-095).
+static func first_chronicle(data: RefCounted) -> String:
 	if data == null:
 		return "CHR_01"
-	var ids: Array = (data.chronicles as Dictionary).keys()
+	var ids: Array = openings(data)
+	return "CHR_01" if ids.is_empty() else str(ids[0])
+
+
+## Le Chronicle da cui una saga **comincia**, in ordine di anno.
+##
+## Non tutte lo sono: delle quattro della scatola, **due sono il seguito** di
+## un'altra — la biblioteca della stessa eta', che eredita il mondo dell'anno
+## prima e si raggiunge giocando. Cominciare da li' vorrebbe dire aprire il
+## secondo capitolo senza il primo, e per questo la prima di questa lista e'
+## quella da cui si parte.
+static func openings(data: RefCounted) -> Array:
+	var sequels: Dictionary = {}
+	for chronicle_id in data.chronicles:
+		var chronicle: Dictionary = data.chronicles[str(chronicle_id)] as Dictionary
+		var next_id: String = str(chronicle.get("sequel_id", ""))
+		if next_id != "":
+			sequels[next_id] = true
+	var ids: Array = []
+	for chronicle_id in data.chronicles:
+		if not sequels.has(str(chronicle_id)):
+			ids.append(str(chronicle_id))
 	ids.sort_custom(func(a: Variant, b: Variant) -> bool:
 		var year_a: int = int(data.chronicles[str(a)]["start_year"])
 		var year_b: int = int(data.chronicles[str(b)]["start_year"])
@@ -1024,19 +1155,7 @@ func _ask_chronicle() -> String:
 			return str(a) < str(b)
 		return year_a < year_b
 	)
-	if ids.size() < 2:
-		return "CHR_01" if ids.is_empty() else str(ids[0])
-
-	var labels: Array = []
-	for chronicle_id in ids:
-		var chronicle: Dictionary = data.chronicles[str(chronicle_id)]
-		labels.append("%s (anno %d) — %s" % [
-			str(chronicle["title"]), int(chronicle["start_year"]),
-			"quattro domande pescate dalla biblioteca" if chronicle.has("tension_pool")
-			else "le quattro domande scritte a mano",
-		])
-	var choice: int = await ask("Quale anno giochi?", labels)
-	return str(ids[clampi(choice, 0, ids.size() - 1)])
+	return ids
 
 
 ## The seed is the world. It is printed at the top of every Chronicle precisely

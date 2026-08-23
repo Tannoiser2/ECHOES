@@ -331,3 +331,122 @@ func test_a_card_can_be_chosen_with_a_click() -> void:
 	assert_true(heard.is_empty(), "una carta senza scelte non risponde al clic")
 	card.free()
 
+
+## --- il tavolo su un tablet: due tocchi al posto del trascinamento (D-239) ---
+##
+## *«Su iPad il drag & drop non funziona.»* E' vero e non e' un difetto da
+## sistemare: su un touchscreen il dito che preme e scorre **fa scorrere la
+## pagina**, ed e' giusto che la faccia scorrere. Il gesto va diviso in due
+## tempi — si prende la carta, si posa dove la si vuole usare — che e' poi come
+## si fa al tavolo vero.
+
+const StatusPanel := preload("res://ui/status_panel.gd")
+
+
+func _panel() -> Node:
+	var panel: Node = StatusPanel.new()
+	panel.render(session, str(session.world["turn_order"][0]))
+	return panel
+
+
+## Tenere una carta in mano accende **solo** i posti dove quella carta puo'
+## andare. Un posto acceso dove la mossa non e' legale sarebbe la stessa bugia
+## di una Regione cerchiata d'oro che poi non accetta niente (D-039).
+func test_holding_a_card_lights_only_where_it_can_go() -> void:
+	var panel: Node = _panel()
+	var tension_id: String = str(session.world["tensions"].keys()[0])
+	var other: String = ""
+	for id in session.world["tensions"]:
+		if str(id) != tension_id:
+			other = str(id)
+			break
+	panel.call("hold", {"tension:%s" % tension_id: 4})
+
+	var places: Dictionary = panel.get("slots")
+	assert_true(
+		(places["tension:%s" % tension_id] as Object).get("_lit"),
+		"il posto dove la carta puo' andare e' acceso"
+	)
+	if other != "":
+		assert_false(
+			(places["tension:%s" % other] as Object).get("_lit"),
+			"e quello dove non puo' andare no"
+		)
+	panel.free()
+
+
+## E posarla li' **risponde alla domanda**: l'indice che `ask()` sta aspettando,
+## preso dai posti accesi e non indovinato. E' l'equivalente col dito di quello
+## che la caduta fa col mouse.
+func test_placing_a_held_card_answers_the_question() -> void:
+	var panel: Node = _panel()
+	var tension_id: String = str(session.world["tensions"].keys()[0])
+	panel.call("hold", {"tension:%s" % tension_id: 4})
+
+	var answered: Array = []
+	panel.connect("card_placed", func(index: int) -> void: answered.append(index))
+	var opened: Array = []
+	panel.connect("tension_opened", func(id: String) -> void: opened.append(id))
+
+	var tap := InputEventMouseButton.new()
+	tap.button_index = MOUSE_BUTTON_LEFT
+	tap.pressed = true
+	var slot: Object = (panel.get("slots") as Dictionary)["tension:%s" % tension_id]
+	(slot as Node).emit_signal("gui_input", tap)
+
+	assert_eq(answered, [4], "il tocco posa la carta e risponde")
+	# **E non apre la scheda.** Se stai posando una carta non stai leggendo, e
+	# aprire una pagina sopra il tavolo mentre la mossa parte sarebbe il modo
+	# piu' rapido di rendere il tocco inaffidabile.
+	assert_true(opened.is_empty(), "e non apre anche la scheda della domanda")
+	panel.free()
+
+
+## Con niente in mano, la stessa riga torna a essere quello che era: si tocca e
+## si legge la scheda (D-236). I due gesti non si pestano i piedi perche' non
+## esistono mai nello stesso momento.
+func test_with_nothing_held_the_row_opens_the_sheet() -> void:
+	var panel: Node = _panel()
+	var tension_id: String = str(session.world["tensions"].keys()[0])
+	panel.call("hold", {})
+
+	var opened: Array = []
+	panel.connect("tension_opened", func(id: String) -> void: opened.append(id))
+	var answered: Array = []
+	panel.connect("card_placed", func(index: int) -> void: answered.append(index))
+
+	var tap := InputEventMouseButton.new()
+	tap.button_index = MOUSE_BUTTON_LEFT
+	tap.pressed = true
+	var slot: Object = (panel.get("slots") as Dictionary)["tension:%s" % tension_id]
+	(slot as Node).emit_signal("gui_input", tap)
+
+	assert_eq(opened, [tension_id], "senza niente in mano il tocco apre la scheda")
+	assert_true(answered.is_empty(), "e non posa niente")
+	panel.free()
+
+
+## Rimettere giu' la carta spegne tutto. Prendere in mano non e' una mossa, e da
+## una cosa che non e' una mossa si deve poter tornare indietro.
+func test_putting_the_card_down_turns_the_places_off() -> void:
+	var panel: Node = _panel()
+	var tension_id: String = str(session.world["tensions"].keys()[0])
+	panel.call("hold", {"tension:%s" % tension_id: 4})
+	panel.call("hold", {})
+	assert_false(
+		(panel.get("slots") as Dictionary)["tension:%s" % tension_id].get("_lit"),
+		"il posto si spegne quando la carta torna giu'"
+	)
+	panel.free()
+
+
+## E la carta in mano **si vede** che e' in mano.
+func test_the_held_card_looks_held() -> void:
+	var card: Control = _card([{"tension": "TEN_FAMINE", "index": 2}])
+	assert_eq(card.position.y, 0.0, "a riposo sta in fila con le altre")
+	card.call("set_held", true)
+	assert_true(card.position.y < 0.0, "presa in mano si alza")
+	card.call("set_held", false)
+	assert_eq(card.position.y, 0.0, "e rimessa giu' torna in fila")
+	card.free()
+

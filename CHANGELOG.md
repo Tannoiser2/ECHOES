@@ -5,6 +5,75 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.212 — L'app si apre e si gioca (D-245)
+
+- **«Non deve chiedere nessuna saga.»** D-241 aveva ridotto la domanda da
+  quattro voci a due invece di toglierla: una domanda meno sbagliata scambiata
+  per una domanda risolta. Ora il menu non chiede niente — si apre l'app e si
+  gioca.
+- Il tempo che passa si racconta **dove è passato**: a fine Chronicle, dove il
+  gioco offre già l'era successiva (D-095).
+- **Il prezzo, scritto perché è reale**: la seconda saga (CHR_03) non si
+  raggiunge più dal menu. È [ISSUES 66](docs/ISSUES.md#66), e la decisione è
+  d'autore.
+- **Misurato**: 483 prove / 10.727 asserzioni verdi, cancelli verdi, sim verdi,
+  playtest 100 semi **0 su 8**.
+
+---
+
+## 0.1.211 — La pagina si legge col dito (D-242, D-243, D-244)
+
+- **D-242 — «le carte sono minuscole e non si capisce cosa fanno.»** Una carta
+  era 110 pixel di figurina con un numero sotto: nome, verbo, costo e frase
+  d'autore vivevano tutti nel **suggerimento del mouse**, che su un tablet non
+  esiste. Ora la carta è 150 pixel e porta **sulla faccia** il proprio nome e il
+  proprio verbo; presa in mano, la colonna accanto ne scrive la lettura intera.
+- **D-243 — «le domande dell'anno sono ancora con le vecchie regole.»** Alla
+  lettera: la riga scriveva `12/18` verso una **soglia che da D-214 non apre più
+  niente** — e tutte e quattro le Chronicle della scatola tengono il Consiglio a
+  fine Atto. Ora il conto è **relativo**: la barra si misura sul mucchio più
+  alto e la domanda davanti scrive *«va al Consiglio»*. Dove la soglia è ancora
+  viva, la riga la dice: la pagina segue i dati.
+- **D-244 — «le due carte destino cosa servono?»** Erano due figure grandi e
+  mute. Ora dicono **CHI SEI** e **COSA VUOI**, col nome sotto.
+- **Il filo comune**, scritto a verbale: il tooltip è un posto dove il testo va a
+  morire su metà dei dispositivi che esistono. Tre difetti, una sola forma.
+- **Misurato**: 482 prove / 10.724 asserzioni verdi (da 477 / 10.560), cancelli
+  verdi, sim verdi, export e catalogo allineati, playtest 100 semi **0 su 8**.
+
+---
+
+## 0.1.210 — Il tavolo su un tablet (D-239, D-240, D-241)
+
+Tre correzioni, tutte e tre trovate giocando davvero — l'unico modo in cui
+questa parte del gioco si misura.
+
+- **D-239 — «su iPad il drag & drop non funziona.»** È vero e non è un difetto
+  da sistemare: su un touchscreen il dito che preme e scorre **fa scorrere la
+  pagina**. Il gesto va diviso in due tempi — si tocca la carta (si alza, e si
+  accendono tutti i posti dove può andare), si tocca il posto. È come si fa al
+  tavolo vero. Il trascinamento resta intero per chi ha un mouse.
+  - Il conflitto con D-236 è sciolto: con una carta in mano la riga della
+    domanda **posa**, a mani vuote **apre la scheda**. I due gesti non convivono
+    mai.
+  - `emulate_mouse_from_touch` è ora scritto in `project.godot` invece di essere
+    un valore implicito.
+- **D-240 — «le pedine e cicatrici non si capiscono e sono troppo piccole.»** Due
+  difetti in una frase. Un pezzo era **17 pixel** (ora 26). E la parola che lo
+  nomina si scriveva solo per le Regioni *raggiungibili*: fuori da una scelta
+  **non compariva quasi mai**, e su un tablet — dove non esiste il passaggio del
+  cursore — non sarebbe comparsa mai. Ora il tocco su una Regione vale come
+  guardarla, e la nomina.
+- **D-241 — «chiede ancora quale anno voglio giocare.»** Il menu offriva tutte e
+  quattro le Chronicle, ma **due sono il seguito** di un'altra e si raggiungono
+  giocando. E la domanda era quella sbagliata: una saga si **comincia**, e gli
+  anni vengono da soli. Ora chiede *«Da quale saga cominci?»* e offre le due
+  aperture.
+- **Misurato**: 477 prove / 10.560 asserzioni verdi (da 469 / 10.541), cancelli
+  verdi, sim verdi, export e catalogo allineati, playtest 100 semi **0 su 8**.
+
+---
+
 ## 0.1.209 — Il bottone che rendeva invisibile il trascinamento (D-238)
 
 - *«L'interfaccia non è cambiata, sembra tutto uguale a prima.»* Il committente

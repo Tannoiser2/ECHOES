@@ -34,6 +34,19 @@ func _ready() -> void:
 ## Una carta della mano e' stata scelta col clic (D-238).
 signal card_chosen(asset_id: String)
 
+## Quale carta e' in mano adesso, o "": la si vede alzata rispetto alle altre.
+var _held: String = ""
+
+
+## Alza la carta scelta e riabbassa le altre (D-239). Prendere in mano una carta
+## deve **vedersi**, altrimenti i posti accesi sul tavolo sembrano accendersi da
+## soli e non si capisce cosa si sta per fare.
+func hold(asset_id: String) -> void:
+	_held = asset_id
+	for card in _cards:
+		if card.has_method("set_held"):
+			card.call("set_held", str(card.get("asset").get("id", "")) == asset_id)
+
 
 func render(
 	session: RefCounted, viewer_id: String, tension_id: String = "",
@@ -61,6 +74,7 @@ func render(
 		card.render(asset, relevant, council_open, session.data)
 		card.offers = offers.get(str(asset_id), [])
 		card.chosen.connect(func(chosen_id: String) -> void: card_chosen.emit(chosen_id))
+		card.set_held(str(asset_id) == _held)
 
 	# La mano del Narratore (ISSUES 23, D-118): le carte di Propp accanto agli
 	# Asset, spente quando la storia non le accetta ancora - il motivo sta

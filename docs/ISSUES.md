@@ -2763,6 +2763,80 @@ e' in gioco.
 
 ---
 
+### 66. La seconda saga non si raggiunge più
+
+`contenuto` · `da-decidere` · **aperta in 0.1.212** ([D-245](DECISIONS.md#d-245))
+
+Il menu non chiede più da dove cominciare: si apre l'app e si gioca il primo
+anno. Il prezzo è che **CHR_03 — anno 1640, le altre quattro case — non si apre
+da nessuna parte.**
+
+È contenuto scritto, validato e giocabile che nessuno può raggiungere: quello
+che [D-035](DECISIONS.md#d-035) chiama contenuto che non esiste.
+
+**Tre strade, e sono d'autore:**
+
+1. **la seconda saga arriva giocando** — la si raggiunge dopo aver chiuso la
+   prima, come l'era successiva arriva a fine Chronicle. È la più coerente con
+   «l'app si apre e si gioca», e vuol dire scrivere la regola di quando;
+2. **sta altrove** — dietro il pulsante che già esiste per riprendere una
+   partita, o in una voce che non è una domanda all'apertura;
+3. **non serve** — la si toglie, e la scatola ha una saga sola. Sono venti
+   Destini e quattro case in meno, e va detto ad alta voce prima di farlo.
+
+**Fatto quando** o CHR_03 si raggiunge, o è stato tolto perché non serviva.
+
+---
+
+### 65. Tutta la pagina dell'app va rivista
+
+`ux` · voluta dal committente · **aperta in 0.1.211**
+
+> «Tutta la pagina dell'app va rivista.»
+
+Detto dopo aver giocato su un iPad, e dopo che sei difetti diversi erano stati
+riparati uno per uno ([D-239](DECISIONS.md#d-239) → [D-244](DECISIONS.md#d-244)).
+La frase non è una settima riparazione: è l'osservazione che le riparazioni non
+bastano, ed è giusta.
+
+**Quello che questo giro ha insegnato, e che vale come diagnosi.** I sei difetti
+avevano tutti **la stessa forma**:
+
+| | dove viveva il testo | chi non lo vedeva |
+|---|---|---|
+| la carta | tooltip del mouse | chiunque giochi col dito |
+| i pezzi sulla mappa | solo per le Regioni raggiungibili | quasi sempre, e su un tablet mai |
+| le due carte del Destino | in nessun posto | tutti |
+| la traccia delle domande | diceva la regola di due versioni fa | tutti |
+| il trascinamento | un gesto da mouse | chiunque su un touchscreen |
+| il menu | offriva quattro anni di cui due non sono inizi | tutti |
+
+Non sono sei sviste: sono **una pagina disegnata guardando uno schermo con un
+mouse**, misurata solo da un cancello che gioca senza mani (§5ter).
+
+**Cosa vuol dire «rivista», e va deciso prima di toccare altro.** Almeno tre
+letture, e non sono la stessa cosa:
+
+1. **una passata di leggibilità** — dimensioni, contrasto, bersagli grandi
+   abbastanza per un dito, niente che viva in un tooltip. È quello che i sei
+   fix hanno fatto a pezzi, e si può finire;
+2. **un'altra disposizione** — oggi lo schermo è mappa al centro, colonna a
+   destra, mano in basso, verbale a sinistra: quattro cose che si contendono un
+   tablet in verticale. Forse su un tablet la pagina è **una alla volta**;
+3. **un'altra idea di cosa si guarda** — al tavolo fisico guardi la mappa e
+   prendi in mano le carte; l'app fa guardare *un cruscotto*. È la differenza
+   fra un tavolo e un pannello di controllo, ed è quella che il committente
+   nomina da sempre.
+
+**Da misurare, e non c'è ancora modo**: nessuna delle sonde tocca questa pagina.
+Finché una persona con l'app in mano resta l'unico strumento, ogni giro costa un
+suo pomeriggio — ed è successo tre volte di fila.
+
+**Fatto quando** c'è una decisione scritta su *quale* delle tre riviste si sta
+facendo, e la pagina la segue.
+
+---
+
 ### 64. Una saga ricambia metà tavolo, e nessuno ha deciso che dovesse
 
 `regole` · `da-decidere` · **misurata in 0.1.208** ([D-237](DECISIONS.md#d-237))
@@ -2862,6 +2936,15 @@ giocare.** Il cancello gioca solo con `PolicyDecider`, che non ha mani.
 cancello. Le regole restano verdi qualunque cosa succeda alla GUI, ed è
 esattamente il buco di [D-224](DECISIONS.md#d-224). Ogni mossa porta la sua
 misura, o non è fatta.
+
+**Il quinto passo, che non era nel piano** — [D-239](DECISIONS.md#d-239),
+[D-240](DECISIONS.md#d-240), [D-241](DECISIONS.md#d-241), 0.1.210. Le quattro
+mosse erano scritte guardando uno schermo con un mouse. Provata su un iPad, la
+stessa app: il trascinamento non esiste (il dito che preme e scorre fa scorrere
+la pagina), i pezzi sulla mappa erano di 17 pixel e i loro nomi non comparivano
+mai — si scrivevano solo per le Regioni *raggiungibili*, e fuori da una scelta
+non lo è nessuna. **Il gesto ora è in due tempi**: si tocca la carta, si accende
+dove può andare, si tocca il posto.
 
 **Fatto quando** una persona può giocare un anno intero senza che nessuno le
 spieghi cosa fanno i bottoni, perché non ci sono bottoni da spiegare.

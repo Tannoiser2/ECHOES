@@ -45,3 +45,12 @@ renderer/rendering_method.mobile="gl_compatibility"
 ; import; l'export web non le imbarca (le due compressioni VRAM del preset
 ; Web restano spente), quindi la pagina non ingrassa di un byte.
 textures/vram_compression/import_etc2_astc=true
+
+[input_devices]
+
+# **Un tocco vale un clic** (D-239). E' gia' il comportamento di Godot, e sta
+# scritto qui per la stessa ragione per cui una regola sta nei dati: da adesso
+# il gioco si gioca anche su un tablet, e una cosa da cui dipende il tavolo non
+# puo' restare un valore di fabbrica che qualcuno potrebbe cambiare senza
+# sapere cosa rompe.
+pointing/emulate_mouse_from_touch=true
