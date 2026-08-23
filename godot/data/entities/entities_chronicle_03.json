@@ -26,43 +26,50 @@
           "level": "ALLY",
           "tags": [
             "DEBT"
-          ]
+          ],
+          "note": "Il trono ha bisogno di grano e la Gilda di una corona che garantisca le firme. E' un debito reciproco e nessuno dei due sa piu' chi ha cominciato a doverlo."
         },
         {
           "with": "ENT_CENERE",
           "level": "ALLY",
           "tags": [
             "PACT"
-          ]
+          ],
+          "note": "La Cenere estrae e la Gilda vende: un patto vecchio, scritto, e conveniente a tutti e due abbastanza da sopravvivere a chi lo firmo'."
         },
         {
           "with": "ENT_LIBERE",
           "level": "HOSTILE",
           "tags": [
             "DEBT"
-          ]
+          ],
+          "note": "La Gilda ha prestato alle citta' quando avevano fame, e adesso tiene il registro di quanto le hanno chiesto. Le citta' chiamano quel registro un ricatto; la Gilda lo chiama contabilita'."
         },
         {
           "with": "ENT_LYRA",
-          "level": "NEUTRAL",
-          "tags": []
+          "level": "ALLY",
+          "tags": [],
+          "note": "Tengono tutte e due dei registri, e per ragioni opposte: la Gilda per contare, Lyra per capire. Si sono lette a vicenda prima di conoscersi, e quando si sono conosciute avevano gia' deciso di fidarsi."
         },
         {
           "with": "ENT_NAHR",
           "level": "ALLY",
           "tags": [
             "PACT"
-          ]
+          ],
+          "note": "Undicimila persone che si spostano, e una Gilda i cui carichi devono muoversi: il patto si e' scritto da solo, e nessuna delle due parti ha mai avuto voglia di rinegoziarlo."
         },
         {
           "with": "ENT_VAERAX",
           "level": "NEUTRAL",
-          "tags": []
+          "tags": [],
+          "note": "Non c'e' niente da vendere a qualcosa che dorme, e la Gilda non ha mai perso tempo con cio' che non compra. Vaerax, dal canto suo, non sa nemmeno che esista."
         },
         {
           "with": "ENT_VETRO",
           "level": "NEUTRAL",
-          "tags": []
+          "tags": [],
+          "note": "La Gilda scriverebbe volentieri anche il registro di quello che l'Ordine custodisce, e l'Ordine lo sa. Finche' nessuno dei due lo dice ad alta voce, si salutano."
         }
       ],
       "presence": [
@@ -239,39 +246,46 @@
         {
           "with": "ENT_ALDRIC",
           "level": "NEUTRAL",
-          "tags": []
+          "tags": [],
+          "note": "Il trono non ha una fede e l'Ordine non ha una terra: non c'e' niente su cui litigare, e nessuno dei due ha mai avuto motivo di cercare l'altro."
         },
         {
           "with": "ENT_CENERE",
           "level": "ENEMY",
           "tags": [
             "VENDETTA"
-          ]
+          ],
+          "note": "La Cenere scava quello che l'Ordine ha giurato di non far misurare di nuovo. Ogni colpo di piccone e' una bestemmia, e ogni divieto e' un furto: nessuna delle due parti puo' cedere senza smettere di essere se stessa."
         },
         {
           "with": "ENT_LIBERE",
           "level": "ALLY",
-          "tags": []
+          "tags": [],
+          "note": "L'Ordine ha bisogno di posti dove nessuno gli dica cosa custodire, e le citta' libere sono l'unico posto cosi'. Si proteggono a vicenda senza volersi bene."
         },
         {
           "with": "ENT_LYRA",
           "level": "HOSTILE",
-          "tags": []
+          "tags": [],
+          "note": "L'Ordine custodisce quello che fu misurato, e la sua regola dice che misurarlo di nuovo e' peccato. Lyra e' quella che l'ha misurato: la venerano per un gesto che le proibiscono di ripetere, e lei non ha mai saputo cosa farsene di quella devozione."
         },
         {
           "with": "ENT_NAHR",
           "level": "NEUTRAL",
-          "tags": []
+          "tags": [],
+          "note": "L'Ordine ha provato a scrivere il calendario dei Nahr e i Nahr lo hanno lasciato fare, sapendo che sarebbe stato sbagliato. Da allora si trattano con una cortesia che non impegna nessuno."
         },
         {
           "with": "ENT_SALE",
           "level": "NEUTRAL",
-          "tags": []
+          "tags": [],
+          "note": "La Gilda scriverebbe volentieri anche il registro di quello che l'Ordine custodisce, e l'Ordine lo sa. Finche' nessuno dei due lo dice ad alta voce, si salutano."
         },
         {
           "with": "ENT_VAERAX",
           "level": "ALLY",
-          "tags": []
+          "tags": [],
+          "note": "L'Ordine custodisce quello che fu misurato, e quello che fu misurato dorme sotto le montagne. Vegliano sul suo sonno senza averglielo mai chiesto, e lui li lascia fare."
         }
       ],
       "presence": [
@@ -448,42 +462,49 @@
       "relations": [
         {
           "with": "ENT_ALDRIC",
-          "level": "HOSTILE",
-          "tags": []
+          "level": "NEUTRAL",
+          "tags": [],
+          "note": "Due case di potere che non si sono mai incontrate davvero: la corona non e' mai salita sulle montagne e la Cenere non e' mai scesa a Eredan. Si ignorano da abbastanza tempo perche' ignorarsi sia diventato comodo."
         },
         {
           "with": "ENT_LIBERE",
           "level": "NEUTRAL",
-          "tags": []
+          "tags": [],
+          "note": "Le citta' comprano dalla Cenere quando serve e non la nominano mai nei loro consigli. Non e' freddezza: e' che le montagne sono lontane e le sette citta' guardano solo se stesse."
         },
         {
           "with": "ENT_LYRA",
           "level": "NEUTRAL",
-          "tags": []
+          "tags": [],
+          "note": "La Cenere scava la miniera in cui Lyra e' scesa a misurare. Si sono sfiorati nelle stesse gallerie e nessuno dei due ha mai chiesto all'altro cosa cercasse — lei per prudenza, loro per disinteresse."
         },
         {
           "with": "ENT_NAHR",
           "level": "NEUTRAL",
-          "tags": []
+          "tags": [],
+          "note": "Vivono tutti e due di quello che la terra lascia, e per questo non si intralciano: chi scava sotto e chi cammina sopra non si contendono niente."
         },
         {
           "with": "ENT_SALE",
           "level": "ALLY",
           "tags": [
             "PACT"
-          ]
+          ],
+          "note": "La Cenere estrae e la Gilda vende: un patto vecchio, scritto, e conveniente a tutti e due abbastanza da sopravvivere a chi lo firmo'."
         },
         {
           "with": "ENT_VAERAX",
           "level": "HOSTILE",
-          "tags": []
+          "tags": [],
+          "note": "I Signori della Cenere campano di quello che l'antica miniera ha lasciato indietro, e scavano sapendo cosa c'e' sotto. Non e' incoscienza: hanno deciso che la fame di adesso viene prima del risveglio di poi."
         },
         {
           "with": "ENT_VETRO",
           "level": "ENEMY",
           "tags": [
             "VENDETTA"
-          ]
+          ],
+          "note": "La Cenere scava quello che l'Ordine ha giurato di non far misurare di nuovo. Ogni colpo di piccone e' una bestemmia, e ogni divieto e' un furto: nessuna delle due parti puo' cedere senza smettere di essere se stessa."
         }
       ],
       "presence": [
@@ -653,39 +674,46 @@
         {
           "with": "ENT_ALDRIC",
           "level": "HOSTILE",
-          "tags": []
+          "tags": [],
+          "note": "Sette citta' che si governano da sole sono, per una corona, sette esempi. Il trono non le ha mai attaccate e non le ha mai riconosciute: le tratta come un errore geografico."
         },
         {
           "with": "ENT_CENERE",
           "level": "NEUTRAL",
-          "tags": []
+          "tags": [],
+          "note": "Le citta' comprano dalla Cenere quando serve e non la nominano mai nei loro consigli. Non e' freddezza: e' che le montagne sono lontane e le sette citta' guardano solo se stesse."
         },
         {
           "with": "ENT_LYRA",
           "level": "NEUTRAL",
-          "tags": []
+          "tags": [],
+          "note": "Le citta' pagherebbero volentieri una studiosa, e Lyra non ha mai voluto essere pagata da nessuno. La cosa e' finita li', senza rancore da nessuna delle due parti."
         },
         {
           "with": "ENT_NAHR",
           "level": "ALLY",
-          "tags": []
+          "tags": [],
+          "note": "Chi non ha padrone riconosce chi non ha padrone. Le citta' aprono le porte ai Nahr e i Nahr non chiedono di restare: e' il tipo di alleanza che tiene proprio perche' nessuno vuole niente dall'altro."
         },
         {
           "with": "ENT_SALE",
           "level": "HOSTILE",
           "tags": [
             "DEBT"
-          ]
+          ],
+          "note": "La Gilda ha prestato alle citta' quando avevano fame, e adesso tiene il registro di quanto le hanno chiesto. Le citta' chiamano quel registro un ricatto; la Gilda lo chiama contabilita'."
         },
         {
           "with": "ENT_VAERAX",
           "level": "NEUTRAL",
-          "tags": []
+          "tags": [],
+          "note": "Sette citta' che si governano da sole, e una cosa antica che non riconosce nessun governo: si somigliano abbastanza da non doversi parlare."
         },
         {
           "with": "ENT_VETRO",
           "level": "ALLY",
-          "tags": []
+          "tags": [],
+          "note": "L'Ordine ha bisogno di posti dove nessuno gli dica cosa custodire, e le citta' libere sono l'unico posto cosi'. Si proteggono a vicenda senza volersi bene."
         }
       ],
       "presence": [

@@ -23,40 +23,47 @@
       "relations": [
         {
           "with": "ENT_CENERE",
-          "level": "HOSTILE",
-          "tags": []
+          "level": "NEUTRAL",
+          "tags": [],
+          "note": "Due case di potere che non si sono mai incontrate davvero: la corona non e' mai salita sulle montagne e la Cenere non e' mai scesa a Eredan. Si ignorano da abbastanza tempo perche' ignorarsi sia diventato comodo."
         },
         {
           "with": "ENT_LIBERE",
           "level": "HOSTILE",
-          "tags": []
+          "tags": [],
+          "note": "Sette citta' che si governano da sole sono, per una corona, sette esempi. Il trono non le ha mai attaccate e non le ha mai riconosciute: le tratta come un errore geografico."
         },
         {
           "with": "ENT_LYRA",
           "level": "NEUTRAL",
-          "tags": []
+          "tags": [],
+          "note": "Il trono non ha mai avuto motivo di occuparsi di lei, e lei non ha mai chiesto un patrono. Si sono visti e si sono trovati inutili a vicenda — che e' una forma di pace."
         },
         {
           "with": "ENT_NAHR",
           "level": "HOSTILE",
-          "tags": []
+          "tags": [],
+          "note": "Il trono conta le bocche e i Nahr si spostano quando la terra smette di rispondere: una corona non puo' governare chi non sta fermo, e loro non hanno mai chiesto il permesso di partire."
         },
         {
           "with": "ENT_SALE",
           "level": "ALLY",
           "tags": [
             "DEBT"
-          ]
+          ],
+          "note": "Il trono ha bisogno di grano e la Gilda di una corona che garantisca le firme. E' un debito reciproco e nessuno dei due sa piu' chi ha cominciato a doverlo."
         },
         {
           "with": "ENT_VAERAX",
           "level": "NEUTRAL",
-          "tags": []
+          "tags": [],
+          "note": "Eredan e' nata dopo. Il trono sa che c'e' qualcosa sotto le Montagne e ha deciso, tre generazioni fa, che era un problema di chi verra': si tramanda l'abitudine di non guardare."
         },
         {
           "with": "ENT_VETRO",
           "level": "NEUTRAL",
-          "tags": []
+          "tags": [],
+          "note": "Il trono non ha una fede e l'Ordine non ha una terra: non c'e' niente su cui litigare, e nessuno dei due ha mai avuto motivo di cercare l'altro."
         }
       ],
       "presence": [
@@ -260,39 +267,46 @@
         {
           "with": "ENT_ALDRIC",
           "level": "HOSTILE",
-          "tags": []
+          "tags": [],
+          "note": "Il trono conta le bocche e i Nahr si spostano quando la terra smette di rispondere: una corona non puo' governare chi non sta fermo, e loro non hanno mai chiesto il permesso di partire."
         },
         {
           "with": "ENT_CENERE",
           "level": "NEUTRAL",
-          "tags": []
+          "tags": [],
+          "note": "Vivono tutti e due di quello che la terra lascia, e per questo non si intralciano: chi scava sotto e chi cammina sopra non si contendono niente."
         },
         {
           "with": "ENT_LIBERE",
           "level": "ALLY",
-          "tags": []
+          "tags": [],
+          "note": "Chi non ha padrone riconosce chi non ha padrone. Le citta' aprono le porte ai Nahr e i Nahr non chiedono di restare: e' il tipo di alleanza che tiene proprio perche' nessuno vuole niente dall'altro."
         },
         {
           "with": "ENT_LYRA",
           "level": "NEUTRAL",
-          "tags": []
+          "tags": [],
+          "note": "Lei misura, loro camminano. Si incrociano sulle stesse strade e si sono resi qualche favore, ma nessuno dei due ha mai avuto qualcosa che l'altro volesse."
         },
         {
           "with": "ENT_SALE",
           "level": "ALLY",
           "tags": [
             "PACT"
-          ]
+          ],
+          "note": "Undicimila persone che si spostano, e una Gilda i cui carichi devono muoversi: il patto si e' scritto da solo, e nessuna delle due parti ha mai avuto voglia di rinegoziarlo."
         },
         {
           "with": "ENT_VAERAX",
           "level": "NEUTRAL",
-          "tags": []
+          "tags": [],
+          "note": "Passano sotto le Montagne due volte l'anno e lasciano stare quello che dorme. La prudenza di chi cammina somiglia molto al rispetto, e a Vaerax basta."
         },
         {
           "with": "ENT_VETRO",
           "level": "NEUTRAL",
-          "tags": []
+          "tags": [],
+          "note": "L'Ordine ha provato a scrivere il calendario dei Nahr e i Nahr lo hanno lasciato fare, sapendo che sarebbe stato sbagliato. Da allora si trattano con una cortesia che non impegna nessuno."
         }
       ],
       "presence": [
@@ -414,37 +428,44 @@
         {
           "with": "ENT_ALDRIC",
           "level": "NEUTRAL",
-          "tags": []
+          "tags": [],
+          "note": "Il trono non ha mai avuto motivo di occuparsi di lei, e lei non ha mai chiesto un patrono. Si sono visti e si sono trovati inutili a vicenda — che e' una forma di pace."
         },
         {
           "with": "ENT_CENERE",
           "level": "NEUTRAL",
-          "tags": []
+          "tags": [],
+          "note": "La Cenere scava la miniera in cui Lyra e' scesa a misurare. Si sono sfiorati nelle stesse gallerie e nessuno dei due ha mai chiesto all'altro cosa cercasse — lei per prudenza, loro per disinteresse."
         },
         {
           "with": "ENT_LIBERE",
           "level": "NEUTRAL",
-          "tags": []
+          "tags": [],
+          "note": "Le citta' pagherebbero volentieri una studiosa, e Lyra non ha mai voluto essere pagata da nessuno. La cosa e' finita li', senza rancore da nessuna delle due parti."
         },
         {
           "with": "ENT_NAHR",
           "level": "NEUTRAL",
-          "tags": []
+          "tags": [],
+          "note": "Lei misura, loro camminano. Si incrociano sulle stesse strade e si sono resi qualche favore, ma nessuno dei due ha mai avuto qualcosa che l'altro volesse."
         },
         {
           "with": "ENT_SALE",
-          "level": "NEUTRAL",
-          "tags": []
+          "level": "ALLY",
+          "tags": [],
+          "note": "Tengono tutte e due dei registri, e per ragioni opposte: la Gilda per contare, Lyra per capire. Si sono lette a vicenda prima di conoscersi, e quando si sono conosciute avevano gia' deciso di fidarsi."
         },
         {
           "with": "ENT_VAERAX",
           "level": "HOSTILE",
-          "tags": []
+          "tags": [],
+          "note": "Ha misurato la pietra che lo tiene addormentato. Non e' rancore: e' che l'unica domanda che le interessa e' la sola a cui lui non vuole che si risponda."
         },
         {
           "with": "ENT_VETRO",
           "level": "HOSTILE",
-          "tags": []
+          "tags": [],
+          "note": "L'Ordine custodisce quello che fu misurato, e la sua regola dice che misurarlo di nuovo e' peccato. Lyra e' quella che l'ha misurato: la venerano per un gesto che le proibiscono di ripetere, e lei non ha mai saputo cosa farsene di quella devozione."
         }
       ],
       "presence": [
@@ -634,37 +655,44 @@
         {
           "with": "ENT_ALDRIC",
           "level": "NEUTRAL",
-          "tags": []
+          "tags": [],
+          "note": "Eredan e' nata dopo. Il trono sa che c'e' qualcosa sotto le Montagne e ha deciso, tre generazioni fa, che era un problema di chi verra': si tramanda l'abitudine di non guardare."
         },
         {
           "with": "ENT_CENERE",
           "level": "HOSTILE",
-          "tags": []
+          "tags": [],
+          "note": "I Signori della Cenere campano di quello che l'antica miniera ha lasciato indietro, e scavano sapendo cosa c'e' sotto. Non e' incoscienza: hanno deciso che la fame di adesso viene prima del risveglio di poi."
         },
         {
           "with": "ENT_LIBERE",
           "level": "NEUTRAL",
-          "tags": []
+          "tags": [],
+          "note": "Sette citta' che si governano da sole, e una cosa antica che non riconosce nessun governo: si somigliano abbastanza da non doversi parlare."
         },
         {
           "with": "ENT_LYRA",
           "level": "HOSTILE",
-          "tags": []
+          "tags": [],
+          "note": "Ha misurato la pietra che lo tiene addormentato. Non e' rancore: e' che l'unica domanda che le interessa e' la sola a cui lui non vuole che si risponda."
         },
         {
           "with": "ENT_NAHR",
           "level": "NEUTRAL",
-          "tags": []
+          "tags": [],
+          "note": "Passano sotto le Montagne due volte l'anno e lasciano stare quello che dorme. La prudenza di chi cammina somiglia molto al rispetto, e a Vaerax basta."
         },
         {
           "with": "ENT_SALE",
           "level": "NEUTRAL",
-          "tags": []
+          "tags": [],
+          "note": "Non c'e' niente da vendere a qualcosa che dorme, e la Gilda non ha mai perso tempo con cio' che non compra. Vaerax, dal canto suo, non sa nemmeno che esista."
         },
         {
           "with": "ENT_VETRO",
           "level": "ALLY",
-          "tags": []
+          "tags": [],
+          "note": "L'Ordine custodisce quello che fu misurato, e quello che fu misurato dorme sotto le montagne. Vegliano sul suo sonno senza averglielo mai chiesto, e lui li lascia fare."
         }
       ],
       "presence": [

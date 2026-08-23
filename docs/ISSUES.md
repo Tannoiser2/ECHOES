@@ -2603,7 +2603,7 @@ altre stanno sopra il 90%.
 
 ---
 
-### 54. Otto coppie di case restano neutrali per quota, non per scelta
+### 54. ✅ Otto coppie di case restano neutrali per quota, non per scelta — chiusa in 0.1.187
 
 `contenuto` · **aperta in 0.1.185** ([D-216](DECISIONS.md#d-216))
 
@@ -2628,6 +2628,26 @@ scrive il mondo.
 
 **Fatto quando** ogni coppia neutrale lo è per una ragione scritta — «queste due
 non si sono mai incontrate», «si ignorano per scelta» — e non per aritmetica.
+
+## Chiusa in 0.1.187 ([D-219](DECISIONS.md#d-219))
+
+Serviva un posto dove metterla: **`relations[].note`**, obbligatoria, scritta per
+tutte e **28** le coppie — non solo le sedici nuove, perché le dodici d'autore
+avevano la loro ragione nelle descrizioni delle case e lasciarle mute avrebbe
+fatto sembrare *loro* quelle di comodo. La guardia la confronta fra le due
+scritture insieme al livello e ai tag.
+
+**Uno scambio, e col motivo.** Lyra ↔ la Gilda del Sale diventa **alleata** —
+tengono tutte e due dei registri, per ragioni opposte — e Aldric ↔ la Cenere
+torna **neutrale**, perché «due case di POTERE sulla stessa terra» è una
+categoria e non una storia; adesso il silenzio è una scelta.
+
+**I numeri reggono** (200 semi): tavoli piatti **0,0%**, coppie calde per tavolo
+**2,94 → 2,88**, e le due facce si pareggiano — alleanze/ostilità da **1,22/1,72**
+a **1,42/1,47**. Playtest **0/8**.
+
+**Resta dichiarato**: la nota **non arriva al tavolo**. È dato per chi scrive il
+mondo e per le guardie; nessuna interfaccia oggi la mostra.
 
 ---
 

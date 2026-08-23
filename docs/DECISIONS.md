@@ -10,6 +10,69 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-219 — Ogni relazione dice perche'
+**implemented in 0.1.187** — ISSUES 54, chiusa sul suo criterio
+
+[D-216](#d-216) ha scritto le sedici coppie mancanti otto calde e otto neutrali,
+e ha aperto una voce sulla parte debole del proprio lavoro: *«almeno una delle
+otto neutrali e' rimasta neutrale per far quadrare la quota, non perche' non ci
+fosse niente da dire»*. Il criterio di chiusura era preciso — **ogni coppia
+neutrale lo e' per una ragione scritta, non per aritmetica** — e dice cosa
+serviva: non un altro numero, un posto dove mettere la ragione.
+
+### Il campo che mancava
+
+`relations[].note`, obbligatoria. Una riga per coppia, e vale soprattutto per le
+neutrali: **un neutrale scritto e un neutrale per dimenticanza si comportano
+uguale al tavolo** e dicono due cose diverse a chi legge il dato. Con le case
+pescate le coppie sono ventotto — abbastanza perche' una si perda.
+
+Sono scritte tutte e ventotto, non solo le sedici nuove: le dodici d'autore
+avevano la loro ragione nelle descrizioni delle case, e lasciarle mute avrebbe
+fatto sembrare *loro* quelle di comodo.
+
+### Uno scambio solo, e col motivo
+
+- **Lyra ↔ la Gilda del Sale: da neutrale ad ALLEATA.** Era la coppia che
+  gridava: tengono tutte e due dei registri, e per ragioni opposte — la Gilda per
+  contare, Lyra per capire. *«Si sono lette a vicenda prima di conoscersi, e
+  quando si sono conosciute avevano gia' deciso di fidarsi.»*
+- **Aldric ↔ la Cenere: da ostile a neutrale.** Era la piu' generica delle otto
+  calde — «due case di POTERE sulla stessa terra» e' una categoria, non una
+  storia. Adesso il silenzio e' una scelta: *«la corona non e' mai salita sulle
+  montagne e la Cenere non e' mai scesa a Eredan. Si ignorano da abbastanza tempo
+  perche' ignorarsi sia diventato comodo.»*
+
+### La guardia
+
+`check_relations_are_written_both_ways` adesso chiede anche la nota, e la
+confronta fra le due scritture insieme al livello e ai tag: **le due meta' di una
+coppia devono dire la stessa cosa anche sul perche'**. Provata togliendone una.
+
+### I numeri, 200 semi
+
+| | D-216 | **dopo** |
+|---|---|---|
+| coppie calde | 14 su 28 | 14 su 28 |
+| tavoli piatti | 0,0% | **0,0%** |
+| coppie calde per tavolo | 2,94 su 6 | **2,88 su 6** |
+| — alleanze / ostilita' | 1,22 / 1,72 | **1,42 / 1,47** |
+| playtest 100 semi | 0/8 | **0/8** |
+
+La temperatura resta quella dei tavoli d'autore, e lo scambio pareggia le due
+facce: prima il tavolo pescato era piu' ostile che alleato di quasi mezza coppia,
+adesso e' in equilibrio.
+
+### Quello che si dichiara
+
+- **La nota non arriva al tavolo.** E' dato per chi scrive il mondo e per le
+  guardie, non testo che una persona legge in partita. Se un giorno la scheda del
+  seggio dovra' dire *perche'* due case si guardano storto, la riga e' gia'
+  scritta — ma oggi nessuna interfaccia la mostra, e dirlo e' meglio che lasciarlo
+  scoprire.
+
+---
+
 ## D-217 — L'Archivio, e il consuntivo che guardava un istante troppo tardi
 **implemented in 0.1.186** — ISSUES 52, la meta' che si poteva fare
 

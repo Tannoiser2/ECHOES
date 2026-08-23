@@ -128,6 +128,11 @@
                     "KINSHIP"
                   ]
                 }
+              },
+              "note": {
+                "type": "string",
+                "minLength": 8,
+                "description": "Perche' queste due case sono quello che sono l'una per l'altra (D-219). Serve soprattutto alle **neutrali**: un neutrale scritto e un neutrale per dimenticanza si comportano uguale al tavolo e dicono due cose diverse a chi legge il dato, e con le case pescate (D-213) le coppie sono ventotto — abbastanza perche' una si perda. Chi legge questa riga deve capire se il silenzio fra due case e' una scelta o un buco."
               }
             }
           }

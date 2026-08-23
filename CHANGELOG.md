@@ -5,6 +5,29 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.187 — Ogni relazione dice perché (D-219)
+
+- ISSUES 54 chiedeva una cosa sola: **ogni coppia neutrale lo è per una ragione
+  scritta, non per aritmetica**. Serviva un posto dove metterla.
+- **`relations[].note`, obbligatoria**, e scritta per tutte e **28** le coppie —
+  non solo le sedici nuove: le dodici d'autore avevano la loro ragione nelle
+  descrizioni delle case, e lasciarle mute avrebbe fatto sembrare *loro* quelle
+  di comodo.
+- **Uno scambio, col motivo. Lyra ↔ la Gilda del Sale** passa a alleata: tengono
+  tutte e due dei registri, per ragioni opposte — la Gilda per contare, Lyra per
+  capire. **Aldric ↔ la Cenere** torna neutrale: era la più generica delle otto
+  calde, e adesso il silenzio è una scelta («la corona non è mai salita sulle
+  montagne»).
+- **La guardia** confronta la nota fra le due scritture insieme al livello e ai
+  tag: le due metà di una coppia devono dire la stessa cosa anche sul perché.
+- **I numeri** (200 semi): tavoli piatti **0,0%**, coppie calde per tavolo
+  **2,94 → 2,88**, e le due facce si pareggiano — alleanze/ostilità da 1,22/1,72
+  a **1,42/1,47**. Playtest **0/8**.
+- **Dichiarato**: la nota **non arriva al tavolo**. È dato per chi scrive il mondo
+  e per le guardie; nessuna interfaccia oggi la mostra.
+
+---
+
 ## 0.1.186 — L'Archivio, e le pietre che hanno una vita (D-217, D-218)
 
 **ISSUES 52 — la casa che non trionfa mai**
