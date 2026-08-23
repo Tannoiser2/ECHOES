@@ -36,6 +36,15 @@ var _hovered: String = ""
 ## accept, so a Region is pressable exactly when the action is legal (D-039).
 var highlighted: Dictionary = {}
 
+## **La Regione dove una carta trascinata cadrebbe adesso**, o "". Serve solo a
+## disegnare: l'anello si accende sotto il pezzo che sta arrivando, cosi' chi
+## trascina vede *dove* sta per lasciarlo prima di lasciarlo.
+var _landing: String = ""
+
+## Emesso quando una carta viene lasciata cadere su una Regione che l'accetta.
+## Porta l'indice della scelta, che e' quello che `ask()` sta aspettando.
+signal card_dropped(index: int)
+
 ## L'eco del cambiamento (l'inventario dell'app, ISSUES 22): al tavolo fisico
 ## vedi la mano che sposta il pezzo, sullo schermo il pezzo e' gia' spostato.
 ## Quando un effetto tocca una Regione, un anello ambra le si accende intorno
@@ -278,7 +287,7 @@ func _draw_region(region_id: String) -> void:
 	var lift: float = 0.0
 	if offered:
 		lift += 0.10
-	if _hovered == region_id:
+	if _hovered == region_id or _landing == region_id:
 		lift += 0.12
 	# La tessera dipinta, se e' stata consegnata: ritagliata dentro l'esagono
 	# invece che appoggiata sopra, cosi' la Regione resta una Regione e non
@@ -304,10 +313,14 @@ func _draw_region(region_id: String) -> void:
 	# the inner ring already means something else - who holds the place - and the
 	# two facts have to stay separable at a glance.
 	if offered:
+		# L'anello si accende anche sotto la carta che **sta arrivando**
+		# (D-230): chi trascina deve vedere dove sta per lasciare il pezzo
+		# prima di lasciarlo, come la mano che esita sopra il tavolo.
+		var lit: bool = _hovered == region_id or _landing == region_id
 		_draw_outline(
 			art["outline"], box.grow(7.0),
-			Color("#e8b563") if _hovered == region_id else Color("#7a6338"),
-			3.0 if _hovered == region_id else 2.0
+			Color("#e8b563") if lit else Color("#7a6338"),
+			3.0 if lit else 2.0
 		)
 
 	var font: Font = ThemeDB.fallback_font
@@ -642,3 +655,55 @@ func _entity_colour(entity_id: String) -> Color:
 	if at < 0:
 		return Color("#8a8172")
 	return Color(str(SEAT_COLOURS[at % SEAT_COLOURS.size()]))
+
+
+## --- prendere una carta e lasciarla sulla mappa (D-230) ----------------------
+##
+## Il committente: *«la GUI deve prevedere movimenti drag & drop, non pulsanti
+## che dicono cosa fare»*. La mappa non decide niente di nuovo — accetta una
+## carta esattamente sulle Regioni che `highlighted` gia' dichiara raggiungibili,
+## cioe' quelle per cui le regole hanno gia' detto di si' (D-039). Il
+## trascinamento e' un altro modo di dire la stessa cosa, non un'altra regola.
+
+func _can_drop_data(at: Vector2, payload: Variant) -> bool:
+	var index: int = _offer_at(at, payload)
+	var region: String = _region_at(at)
+	if index < 0:
+		if _landing != "":
+			_landing = ""
+			queue_redraw()
+		return false
+	if _landing != region:
+		_landing = region
+		queue_redraw()
+	return true
+
+
+func _drop_data(at: Vector2, payload: Variant) -> void:
+	var index: int = _offer_at(at, payload)
+	_landing = ""
+	queue_redraw()
+	if index >= 0:
+		card_dropped.emit(index)
+
+
+## La scelta che questa carta, lasciata qui, farebbe — o -1.
+##
+## Due filtri, e sono lo stesso filtro visto da due parti: la Regione dev'essere
+## fra le raggiungibili, e la carta deve portare una scelta *per quella Regione*.
+## Una carta che sa muovere non puo' cadere dove nessuna sua mossa arriva.
+func _offer_at(at: Vector2, payload: Variant) -> int:
+	if typeof(payload) != TYPE_DICTIONARY:
+		return -1
+	var carried: Dictionary = payload as Dictionary
+	if str(carried.get("kind", "")) != "asset":
+		return -1
+	var region: String = _region_at(at)
+	if region == "" or not highlighted.has(region):
+		return -1
+	for offer in carried.get("offers", []):
+		var entry: Dictionary = offer as Dictionary
+		if str(entry.get("region", "")) == region:
+			return int(entry.get("index", -1))
+	return -1
+

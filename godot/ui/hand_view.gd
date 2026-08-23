@@ -26,7 +26,15 @@ func _ready() -> void:
 
 ## `tension_id` empty means no Council is open: cards are drawn plain, because
 ## relevance has no meaning outside a question.
-func render(session: RefCounted, viewer_id: String, tension_id: String = "") -> void:
+## `offers` lega ogni carta alle scelte che porta adesso: `asset_id ->
+## [{region, index}]`. Vuoto quando non si sta chiedendo un'azione, e allora le
+## carte si guardano e basta. **E' quello che le rende trascinabili** (D-230):
+## una carta senza offerte non si puo' prendere, esattamente come una Regione
+## senza cerchio d'oro non si puo' cliccare.
+func render(
+	session: RefCounted, viewer_id: String, tension_id: String = "",
+	offers: Dictionary = {}
+) -> void:
 	for card in _cards:
 		card.queue_free()
 		remove_child(card)
@@ -47,6 +55,7 @@ func render(session: RefCounted, viewer_id: String, tension_id: String = "") -> 
 		_cards.append(card)
 		add_child(card)
 		card.render(asset, relevant, council_open, session.data)
+		card.offers = offers.get(str(asset_id), [])
 
 	# La mano del Narratore (ISSUES 23, D-118): le carte di Propp accanto agli
 	# Asset, spente quando la storia non le accetta ancora - il motivo sta

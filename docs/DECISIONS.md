@@ -10,6 +10,88 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-230 — Si prende la carta e la si lascia cadere: il trascinamento come seconda voce, non come seconda regola
+
+**implemented in 0.1.201** — terzo passo di ISSUES 63
+
+Il committente: *«la GUI deve prevedere movimenti drag & drop, non pulsanti che
+dicono cosa fare. Si seleziona una carta, si decide come usarla e si deve poter
+generare il suo effetto (movimento muovo una presenza, costruisco metto una torre
+sulla mappa, la fame appare su una zona ecc...)»*.
+
+In `godot/ui/` non c'era un solo `_get_drag_data`. Le azioni erano
+`Button.new()` costruiti da una lista di stringhe, e si rispondeva con un indice.
+
+### Il principio, che e' quello di sempre
+
+**Il trascinamento non decide niente di nuovo.** La mappa accetta un pezzo
+esattamente sulle Regioni che `highlighted` dichiara raggiungibili — cioe' le
+scelte che le regole hanno gia' approvato ([D-039](#d-039)) — e la carta puo'
+cadere solo dove *quella carta* ha una mossa. E' un'altra **voce** per dire la
+stessa cosa, non un'altra regola: il bottone resta accanto, e le due strade
+finiscono nella stessa `picked.emit(index)`.
+
+Detto altrimenti: se domani il trascinamento sparisse, non si perderebbe una
+mossa. Se decidesse qualcosa da solo, sarebbe un secondo motore.
+
+### Il pezzo che mancava, e stava a monte
+
+`_through_the_hand` **buttava via il bersaglio**. Una MUOVERE nasce con
+`subject: {"region": "REG_X"}`, ma quando veniva avvolta nella carta che la porta
+il nuovo record non lo ricopiava: usciva una scelta senza posto, quindi lo
+schermo non poteva offrirla sulla mappa e restava un bottone. Adesso il bersaglio
+viaggia, **con dentro la carta**: `{"region": ..., "asset": ...}`.
+
+E' il difetto piu' istruttivo dei tre: il drag & drop non mancava per pigrizia
+della GUI, mancava perche' **l'informazione non arrivava fin li'**.
+
+### Le tre decisioni
+
+1. **Cosa viaggia col pezzo.** Una carta senza scelte non si prende — l'altra
+   faccia della Regione senza cerchio d'oro. Con le scelte, il carico porta
+   quale carta e' e dove puo' cadere.
+2. **Dove puo' cadere.** Due filtri, e servono tutti e due: la Regione fra le
+   raggiungibili (lo mette lo schermo) e una mossa *di quella carta* per quella
+   Regione (la mette la carta). Una Regione raggiungibile con un'altra carta non
+   accetta questa.
+3. **Cosa succede quando cade.** La mappa risponde con l'indice della scelta,
+   preso dalle offerte della carta e non indovinato. Una caduta fuori bersaglio
+   non risponde niente: meglio zitti che una mossa che nessuno ha chiesto.
+
+E l'anello d'oro si accende **sotto il pezzo che sta arrivando**, non solo sotto
+il cursore: chi trascina deve vedere dove sta per lasciare prima di lasciare,
+come la mano che esita sopra il tavolo.
+
+### Provato senza un mouse
+
+Il trascinamento non si prova col mouse in una suite headless, ma **le tre
+decisioni si', e sono quelle che possono sbagliare**. Il resto e' Godot che
+sposta pixel. Sei prove: la carta vuota non si prende, il carico porta cosa sa
+fare, la mappa accetta solo dove e' legale, la carta non cade dove non ha mosse,
+la caduta risponde con la scelta giusta, e quello che non e' una carta viene
+ignorato senza rompere niente.
+
+### Un errore preso dal cancello che avevo costruito prima
+
+`set_drag_preview` fuori da un albero scrive un errore e va avanti: la suite
+sarebbe rimasta **verde** e la CI sarebbe andata rossa sul grep di
+[D-224](#d-224). L'anteprima e' presentazione, il carico e' decisione — adesso il
+carico si costruisce comunque e il fantasma solo quando c'e' dove appenderlo.
+
+### Costo
+
+Nessuna regola: un campo che smette di perdersi, due `Control` che imparano a
+dare e a ricevere, sei prove. Suite **446 test e 8.043 asserzioni**.
+
+### Cosa non risolve
+
+**Solo MUOVERE ha un bersaglio sulla mappa.** INFLUENZARE parla a una domanda,
+FORGIARE a una casa, TRAMARE a niente di visibile: quelle carte restano bottoni
+finche' la traccia delle domande e i seggi non diventano bersagli anche loro. E
+il Consiglio (ISSUES 62) e' ancora tutto da giocare.
+
+---
+
 ## D-229 — I pezzi sulla mappa: una forma si riconosce, una parola si legge
 
 **implemented in 0.1.200** — secondo passo di ISSUES 63

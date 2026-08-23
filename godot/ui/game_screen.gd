@@ -61,6 +61,12 @@ var _context: Label
 var _help: PanelContainer
 var _help_button: Button
 var _help_data: RefCounted
+
+## **Le scelte che ogni carta porta adesso**: `asset_id -> [{region, index}]`.
+## Vive solo dentro una `ask()`, si svuota appena la domanda e' finita. E' il
+## ponte fra le scelte che le regole hanno gia' approvato e la mano che si puo'
+## prendere e trascinare (D-230).
+var _offers: Dictionary = {}
 ## The seed of the last Chronicle played, so the menu can offer it back.
 var _last_seed: int = -1
 ## E quale Chronicle era, e in che anno: il log si scarica quasi sempre a partita
@@ -255,6 +261,10 @@ func _build() -> void:
 	# Pressing a Region *is* choosing an action, so the map answers the question
 	# on screen. Which Regions may be pressed is set by whoever asked it.
 	_map.region_clicked.connect(_on_region_clicked)
+	# E lasciarci cadere una carta e' la stessa risposta, data con la mano
+	# invece che col dito (D-230): la mappa manda gia' l'indice della scelta,
+	# perche' l'ha trovato fra le offerte che quella carta portava.
+	_map.card_dropped.connect(func(index: int) -> void: picked.emit(index))
 	_centre.add_child(_map)
 
 	_board = ConfluenceBoard.new()
@@ -412,7 +422,7 @@ func _refresh() -> void:
 		_board.render(_session, _viewer)
 	_map.render(_session, _viewer)
 	_status.render(_session, _viewer)
-	_hand.render(_session, _viewer, _focus_tension)
+	_hand.render(_session, _viewer, _focus_tension, _offers)
 	_context.text = _context_line()
 
 
@@ -714,9 +724,26 @@ func ask(prompt: String, labels: Array, subjects: Array = []) -> int:
 	_map.highlighted = on_map
 	_map.queue_redraw()
 
+	# **Cosa porta ogni carta, e dove.** Le scelte sono gia' passate dalle
+	# regole: qui si raggruppano per carta, cosi' la mano sa quali si possono
+	# prendere e la mappa sa dove accettarle (D-230).
+	_offers = {}
+	for i in range(subjects.size()):
+		var about: Dictionary = subjects[i] as Dictionary
+		var carried: String = str(about.get("asset", ""))
+		var place: String = str(about.get("region", ""))
+		if carried == "" or place == "":
+			continue
+		var list: Array = _offers.get(carried, []) as Array
+		list.append({"region": place, "index": i})
+		_offers[carried] = list
+
 	_prompt.text = prompt
-	_hint.text = "" if on_map.is_empty() else \
-		"Le Regioni cerchiate d'oro sono raggiungibili: cliccane una per metterci una presenza."
+	_hint.text = "" if on_map.is_empty() else (
+		"Trascina una carta su una Regione cerchiata d'oro, o cliccala."
+		if not _offers.is_empty()
+		else "Le Regioni cerchiate d'oro sono raggiungibili: cliccane una per metterci una presenza."
+	)
 	_clear_buttons()
 	for i in range(labels.size()):
 		var subject: Dictionary = subjects[i] if i < subjects.size() else {}
@@ -735,6 +762,7 @@ func ask(prompt: String, labels: Array, subjects: Array = []) -> int:
 	# Cleared before returning, so a stray click on the map between two questions
 	# cannot answer the next one.
 	_map.highlighted = {}
+	_offers = {}
 	_map.queue_redraw()
 	_clear_buttons()
 	_prompt.text = ""

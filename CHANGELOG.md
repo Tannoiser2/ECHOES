@@ -5,6 +5,39 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.201 — Si prende la carta e la si lascia cadere (D-230)
+
+- **Terzo dei quattro passi di ISSUES 63.** In `godot/ui/` non c'era un solo
+  `_get_drag_data`: le azioni erano `Button.new()` da una lista di stringhe.
+  Adesso si prende una carta dalla mano e la si lascia su una Regione cerchiata
+  d'oro, e la presenza si sposta.
+- **Il trascinamento non decide niente di nuovo**: la mappa accetta il pezzo
+  esattamente dove `highlighted` dichiara raggiungibile — le scelte che le regole
+  hanno già approvato (D-039). È un'altra **voce**, non un'altra regola: il
+  bottone resta accanto e le due strade finiscono nello stesso `picked.emit`.
+- **Il pezzo che mancava stava a monte.** `_through_the_hand` **buttava via il
+  bersaglio**: una MUOVERE nasce con `subject: {"region": ...}`, e avvolgendola
+  nella carta che la porta quel campo si perdeva — quindi la scelta usciva senza
+  posto e non poteva stare sulla mappa. Il drag & drop non mancava per pigrizia
+  della GUI: **l'informazione non arrivava fin lì**.
+- **Due filtri, e servono tutti e due**: la Regione fra le raggiungibili (lo mette
+  lo schermo) e una mossa *di quella carta* per quella Regione (la mette la
+  carta). Una Regione raggiungibile con un'altra carta non accetta questa.
+- **L'anello d'oro si accende sotto il pezzo che sta arrivando**, non solo sotto
+  il cursore.
+- **Sei prove senza un mouse**: il trascinamento non si prova headless, ma le tre
+  decisioni che lo governano sì — cosa viaggia, dove può cadere, cosa succede
+  quando cade. Il resto è Godot che sposta pixel.
+- **E un errore preso dal cancello costruito in D-224**: `set_drag_preview` fuori
+  da un albero scrive un errore e va avanti — la suite sarebbe rimasta verde e la
+  CI rossa. L'anteprima è presentazione, il carico è decisione.
+- Suite **446 test e 8.043 asserzioni**, nessun `SCRIPT ERROR`. Nessuna regola
+  toccata.
+- **Resta**: solo MUOVERE ha un bersaglio sulla mappa. INFLUENZARE parla a una
+  domanda, FORGIARE a una casa, TRAMARE a niente di visibile.
+
+---
+
 ## 0.1.200 — I pezzi sulla mappa: una forma si riconosce, una parola si legge (D-229)
 
 - **Secondo dei quattro passi di ISSUES 63.** La mappa scriveva i segni come una

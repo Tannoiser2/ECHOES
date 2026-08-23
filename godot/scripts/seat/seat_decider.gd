@@ -353,8 +353,24 @@ func _through_the_hand(entity_id: String, offers: Array, session: RefCounted) ->
 					str((offer as Dictionary)["label"]),
 				],
 				"template": "PLAY_CARD", "params": params,
+				# **Di cosa parla la scelta, e con che carta** (D-230). Il
+				# bersaglio dell'offerta si perdeva qui: una MUOVERE nata con
+				# `{"region": ...}` usciva avvolta in una carta e senza piu' un
+				# posto, quindi lo schermo non poteva offrirla sulla mappa e
+				# restava un bottone. `asset_id` viaggia accanto perche' un
+				# front-end che disegna le carte deve sapere **quale** carta
+				# porta quale scelta: e' quello che rende possibile prenderla e
+				# lasciarla cadere invece di leggerne il nome in una lista.
+				"subject": _subject_with_card(offer as Dictionary, str(asset_id)),
 			})
 	return out
+
+
+## Il bersaglio di un'offerta, con dentro la carta che la porta.
+static func _subject_with_card(offer: Dictionary, asset_id: String) -> Dictionary:
+	var subject: Dictionary = (offer.get("subject", {}) as Dictionary).duplicate()
+	subject["asset"] = asset_id
+	return subject
 
 
 # --- the Council ------------------------------------------------------------
