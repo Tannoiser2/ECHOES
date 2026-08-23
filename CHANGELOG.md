@@ -5,6 +5,32 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.207 — Si gioca all'app: la scheda della domanda sta sullo schermo (D-236)
+
+- **Decisione del committente**: per adesso il mezzo è l'app, il cartone si
+  vedrà poi. È la risposta che ISSUES 62 aspettava — l'app resta l'arbitro, con
+  una scadenza aperta invece che con una rinuncia.
+- **Quello che ne segue subito**: se lo schermo è il tavolo, la scheda della
+  domanda deve stare sullo schermo. Fino a qui le proposte comparivano una riga
+  alla volta **a Consiglio già aperto**, cioè quando decidere è tardi.
+- **`ui/council_sheet.gd`**: un clic sulla riga di una domanda apre la sua
+  scheda — cosa si potrà proporre, quando, e **cosa lascia al mondo** ogni
+  Conseguenza, una riga per Conseguenza col suo nome.
+- **La voce, che era il punto delicato**: la prima stesura usava le bindings del
+  Consiglio *aperto*, e una scheda si legge proprio quando il Consiglio non è
+  aperto — mostrava `$region_focus`. Adesso riempie con quello che il mondo sa e
+  **spiega** il resto: «Chi manda gli uomini a scavare nella Valle Verde?».
+- **Diciannove segni del mondo senza una parola**, trovati perché la pagina li
+  ha messi sotto gli occhi: il censimento di D-107 guardava Regioni e case, non
+  il mondo, e non guardava le clausole. Adesso li guarda.
+- **Quattro «scoperte» uscivano col proprio id** (`scoperta: trade_ledger`): il
+  ripiego per prefisso le faceva passare per note. Una prova nuova rifiuta una
+  parola che contiene il proprio id.
+- **Misurato**: 462 prove / 10.496 asserzioni verdi (da 457 / 8.532), cancelli
+  verdi, export e catalogo allineati, playtest 100 semi **0 su 8**.
+
+---
+
 ## 0.1.206 — Le Conseguenze mute erano dieci, sono tre (D-235)
 
 - **ISSUES 56 misurata di nuovo** con `run_consequence_probe.gd`: un testimone

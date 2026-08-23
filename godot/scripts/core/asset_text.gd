@@ -48,7 +48,6 @@ const COSTS: Dictionary = {
 	# porta, quindi non erano mai serviti — e quando il catalogo dei Consigli ha
 	# cominciato a leggere le Conseguenze, cinque tipi su sedici sono usciti col
 	# proprio nome in maiuscolo. Il vocabolario e' condiviso, e adesso e' intero.
-	"SET_ENTITY_TAG": "una casa porta addosso un segno nuovo",
 	"SET_CONTROL": "la Regione discussa cambia padrone",
 	"SET_STRUCTURE_GRADE": "una costruzione sale o scende di grado",
 	"SET_ENTITY_ACTIVE": "una casa esce dal tavolo, o ci rientra",
@@ -65,6 +64,11 @@ const SIGN_COSTS: Dictionary = {
 	"REMOVE_REGION_TAG": "la Regione discussa non e' piu' %s",
 	"SET_GLOBAL_TAG": "il mondo registra: %s",
 	"REMOVE_GLOBAL_TAG": "il mondo dimentica: %s",
+	# **Un segno addosso a una casa ha un nome, e il nome e' meta' della
+	# regola.** Diceva «una casa porta addosso un segno nuovo», che e' vero e
+	# inutile: su una scheda del Consiglio quella riga e' esattamente il pezzo
+	# che fa decidere (D-236).
+	"SET_ENTITY_TAG": "una casa porta addosso: %s",
 }
 
 const DISPOSITION: Dictionary = {

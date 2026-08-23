@@ -2808,8 +2808,10 @@ giocare.** Il cancello gioca solo con `PolicyDecider`, che non ha mani.
    sa fare una cosa sola, posarla è già la mossa; quando ne sa fare due opposte,
    la caduta **restringe** e la scelta resta a chi gioca. Dieci prove, fra cui
    «ogni soggetto di cui una carta può parlare ha il suo posto».
-4. 🔸 **Il Consiglio giocabile** — [D-232](DECISIONS.md#d-232) e
-   [D-233](DECISIONS.md#d-233), 0.1.203–0.1.204. **Sullo schermo è fatto:** una
+4. ✅ **Il Consiglio giocabile** — [D-232](DECISIONS.md#d-232),
+   [D-233](DECISIONS.md#d-233) e [D-236](DECISIONS.md#d-236), 0.1.203–0.1.207.
+   **Sullo schermo è fatto**, e dal 0.1.207 anche *prima* che il Consiglio si
+   apra: la scheda di una domanda si legge con un clic sulla sua riga. Una
    proposta arriva a chi sceglie dicendo *cosa lascia al mondo* — 43 su 43 ne
    lasciano qualcosa — e si legge come una carta, titolo sopra e lettera piccola
    sotto. Lo stesso per le clausole. Tre prove, una per ciascuno dei tre tratti
@@ -2826,11 +2828,31 @@ spieghi cosa fanno i bottoni, perché non ci sono bottoni da spiegare.
 
 ---
 
-### 62. Il Consiglio non si può giocare sul tavolo fisico
+### 62. ✅ Il Consiglio non si può giocare sul tavolo fisico — deciso in 0.1.207
+
+**Deciso dal committente** ([D-236](DECISIONS.md#d-236)): *«per il momento
+dobbiamo usare la versione digitale, poi penseremo alla versione fisica.»* È la
+terza delle tre — **l'app resta l'arbitro** — con una scadenza aperta invece che
+con una rinuncia, ed è registrata come dichiarazione reversibile: il giorno che
+si torna al cartone il materiale c'è già
+([CATALOGO_CONSIGLI.md](CATALOGO_CONSIGLI.md)).
+
+**E la decisione ha portato lavoro invece di chiuderne.** Se lo schermo è il
+tavolo, la scheda della domanda deve stare sullo schermo: da 0.1.207 un clic
+sulla riga di una domanda la apre, e dice cosa si potrà proporre e cosa lascia
+al mondo — *prima* che il Consiglio si apra, che è quando serve. Mettere le
+clausole sotto gli occhi ha fatto emergere **diciannove segni del mondo senza
+una parola** e quattro «scoperte» che uscivano col proprio id.
+
+**Resta aperto, e va con la versione fisica**: la carta Domanda stampata porta
+ancora la soglia che da [D-214](DECISIONS.md#d-214) non apre più niente. È
+parcheggiata qui, non dimenticata.
+
+<details>
+<summary>La voce come era scritta</summary>
 
 `ux` · `contenuto` · **misurata in 0.1.196** · il materiale è uscito dal
-database in 0.1.203 ([D-232](DECISIONS.md#d-232)) · **la forma resta da
-decidere**
+database in 0.1.203 ([D-232](DECISIONS.md#d-232))
 
 Il committente l'ha vista arrivare da un'altra parte, ed è vera. Il materiale che
 fa **la cosa centrale del gioco** non esiste come componente:
@@ -2889,6 +2911,8 @@ scheda, con una voce diversa — al tavolo i buchi li riempie la partita.
 
 Resta d'autore **quale delle tre**, e resta aperto il difetto della soglia sulla
 carta Domanda stampata.
+
+</details>
 
 **Fatto quando** un tavolo può tenere un Consiglio intero senza aprire l'app,
 oppure quando è scritto a verbale che non lo può fare e perché.

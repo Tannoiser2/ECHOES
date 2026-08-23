@@ -10,6 +10,82 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-236 — Si gioca all'app: allora la scheda della domanda sta sullo schermo
+
+**implemented in 0.1.207** — decisione del committente, e cosa ne segue subito
+
+> «Per il momento dobbiamo usare la versione digitale. Poi penseremo alla
+> versione fisica.»
+
+E' la risposta d'autore che ISSUES 62 aspettava, ed e' la terza delle tre —
+**l'app resta l'arbitro** — con una data di scadenza aperta invece che con una
+rinuncia. La registro come una dichiarazione reversibile, come ogni altra scelta
+di questo progetto: il giorno che si torna al cartone, il materiale c'e' gia'
+([CATALOGO_CONSIGLI.md](CATALOGO_CONSIGLI.md), [D-232](#d-232)) e non si riparte
+da zero.
+
+**Ma una decisione sul mezzo non e' neutra sul contenuto.** Se lo schermo e' il
+tavolo, allora tutto quello che al tavolo staresti a *guardare mentre pensi*
+deve stare sullo schermo — e c'era una cosa che non ci stava, ed era la piu'
+importante.
+
+Fino a qui le proposte comparivano una riga alla volta **a Consiglio gia'
+aperto**: cioe' quando decidere e' tardi. Chi scalda una domanda per tre round
+non poteva sapere cosa ci sarebbe stato da proporre quando quella domanda
+fosse arrivata al tavolo. Al cartone quella scheda la prendi in mano quando
+vuoi; all'app non esisteva.
+
+**La scheda di una domanda** (`ui/council_sheet.gd`) si apre con un clic sulla
+riga della domanda, e dice le stesse cose che direbbe una scheda stampata: la
+domanda, cosa si potra' proporre, quando lo si potra' proporre, e **cosa lascia
+al mondo** ogni Conseguenza — una riga per Conseguenza, col suo nome, perche'
+una proposta che ne porta due porta **due esiti diversi** e fonderli in una
+filza nascondeva proprio quella distinzione.
+
+**Il punto delicato e' la voce, e la prima stesura l'ha sbagliato.** Avevo usato
+`ConfluenceController.say()`, che riempie i buchi con le bindings del Consiglio
+**aperto**. Ma una scheda si legge proprio quando il Consiglio non e' aperto:
+li' quelle bindings sono vuote, e la pagina mostrava `$region_focus` a chi
+gioca. La prova l'ha preso al primo giro.
+
+Il mondo pero' le risposte ce le ha lo stesso — *di quale Regione parla questa
+domanda adesso* e *chi la porterebbe se si aprisse* si calcolano senza
+Consiglio, ed e' la strada che una carta Echo percorre da sempre. Quindi:
+**prima si riempie con quello che il mondo sa, e quello che resta si spiega.**
+Un nome vero quando c'e', un ruolo quando non c'e', mai un `$`. La scheda della
+Carestia adesso dice *«Chi manda gli uomini a scavare nella Valle Verde?»* e
+*«Li paghi Maestra Ilve»*.
+
+**E la pagina ha fatto vedere quanto silenzio c'era dietro.** Mettere le
+clausole sotto gli occhi ha reso leggibile una cosa che nessuno guardava:
+
+| | prima | adesso |
+|---|---|---|
+| segni del mondo senza una parola | **19** | 0 |
+| «scoperte» che uscivano col proprio id (`scoperta: trade_ledger`) | 4 | 0 |
+| effetti che dicevano «una casa porta addosso un segno nuovo» | tutti | nessuno |
+
+I diciannove non erano invisibili per caso: il censimento di
+[D-107](#d-107) guardava i segni di **Regione** e di **casa**, non quelli del
+**mondo**, e non guardava affatto le **clausole**. Adesso li guarda, e una nuova
+prova rifiuta anche una parola che contiene il proprio id — `scoperta:
+trade_ledger` passava `known()` grazie al ripiego per prefisso, che e' il modo
+piu' silenzioso di sembrare a posto.
+
+**Quattro prove sulla pagina**, perche' il cancello non gioca con le mani
+(§5ter): ogni domanda della scatola ha una scheda e la scheda **arriva in
+fondo**; nessuna riga parla al programmatore; senza partita i buchi si spiegano
+invece di riempirsi; e una proposta dice cosa lascia al mondo.
+
+**Misurato:** suite 462 prove / 10.496 asserzioni verdi (era 457 / 8.532),
+cancelli degli strumenti verdi, piani di simulazione verdi, export
+deterministico col brief allineato, catalogo dei Consigli allineato (il cancello
+di deriva ha morso: le parole nuove cambiano anche la scheda stampata, ed e'
+esattamente quello che deve succedere), `run_playtest.gd --runs=100 --seed=7000`
+**0 seggi bloccati su 8** a tavolo misto e uniforme.
+
+---
+
 ## D-235 — Le Conseguenze mute erano dieci, sono tre: la misura sbagliava unita'
 
 **implemented in 0.1.206** — ISSUES 56 misurata di nuovo, e ridotta a un terzo

@@ -52,6 +52,14 @@ const ENTITY_WORDS: Dictionary = {
 	"discovery:crystal": "scoperta: il cristallo",
 	"discovery:legend": "scoperta: la leggenda",
 	"discovery:relic": "scoperta: la reliquia",
+	# Quattro scoperte uscivano col proprio suffisso in mezzo alla frase —
+	# «scoperta: trade_ledger». Il ripiego per prefisso le faceva passare per
+	# note (`known()` diceva si'), e nessuna prova poteva vedere la differenza
+	# fra una parola e un id vestito da parola (D-236).
+	"discovery:shared_record": "scoperta: il registro condiviso",
+	"discovery:the_measure": "scoperta: la misura",
+	"discovery:the_omen": "scoperta: il presagio",
+	"discovery:trade_ledger": "scoperta: il registro dei traffici",
 	"discovery:supervised_record": "scoperta: lo studio custodito",
 	"discovery:the_charter": "scoperta: la carta",
 	"discovery:the_ledger": "scoperta: il registro",
@@ -86,6 +94,30 @@ const ENTITY_WORDS: Dictionary = {
 ## dicono al **passato**, che e' come li legge chi apre la Cronaca l'anno dopo.
 const WORLD_WORDS: Dictionary = {
 	"account_settled": "il conto e' stato saldato",
+	# **I quattordici che la clausola scrive** (D-236). Erano senza parola, e
+	# fino a ieri non si vedevano: una clausola qualificata applicava i suoi
+	# effetti e basta. Da quando la scheda di una domanda si legge sullo schermo
+	# **prima** del Consiglio, quella riga e' esattamente il pezzo su cui si
+	# decide se attaccare una condizione, e diceva «un segno cade sul mondo».
+	"amnesty_granted": "l'amnistia e' stata concessa",
+	"betrayal_spoken": "il tradimento e' stato detto ad alta voce",
+	"crystal_measured": "il Cristallo e' stato misurato",
+	"parley_held": "ci si e' parlato",
+	"petition_heard": "la richiesta e' stata ascoltata",
+	"someone_paid": "qualcuno ha pagato",
+	"charter_for_all": "la Carta vale per tutti",
+	"charter_temporary": "la Carta vale per un tempo solo",
+	"debt_staggered": "il debito e' stato dilazionato",
+	"descent_witnessed": "la discesa e' stata fatta davanti a testimoni",
+	"distribution_audited": "la distribuzione e' stata contata",
+	"knowledge_shared": "quello che si e' saputo lo sanno tutti",
+	"list_witnessed": "la lista e' stata letta davanti a testimoni",
+	"quota_guaranteed": "una quota e' garantita",
+	"relic_recorded": "la reliquia e' a registro",
+	"return_promised": "il ritorno e' stato promesso",
+	"succession_witnessed": "la successione ha avuto testimoni",
+	"toll_shared": "il pedaggio si divide",
+	"water_shared": "l'acqua si divide",
 	"burden_shared": "il peso e' stato diviso",
 	"charter_written": "la Carta e' stata scritta",
 	"crown_dispossessed": "la corona e' stata spogliata",

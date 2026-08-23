@@ -21,7 +21,7 @@ Ogni generazione trova sotto i piedi qualcosa che non ha messo lei, e deve decid
 
 > Chi tiene d'occhio quello che c'è nella Regione di cui si discute?
 
-- **Se passa — La Veglia sulla Montagna:** una casa porta addosso un segno nuovo · si alza una costruzione dove si discute · la domanda in gioco sale
+- **Se passa — La Veglia sulla Montagna:** una casa porta addosso: la veglia della cenere · si alza una costruzione dove si discute · la domanda in gioco sale
 
 ### Non c'è nulla da guardare. Chi vuole vegliare, paghi le proprie guardie.
 
@@ -32,7 +32,7 @@ Ogni generazione trova sotto i piedi qualcosa che non ha messo lei, e deve decid
 **Le clausole che si possono attaccare:**
 
 - ...purché quello che si vede sia detto anche a il rivale.
-  - se qualificata: una casa porta addosso un segno nuovo
+  - se qualificata: una casa porta addosso: scoperta: la reliquia
 
 ---
 
@@ -63,14 +63,14 @@ Non importa quale sia la cosa che manca. Prima o poi qualcuno chiede, ad alta vo
 > Nella Regione di cui si discute, chi decide a chi non ne tocca?
 
 - **Si puo' proporre solo se:** Si racconta di un anno in cui l'ordine torno davvero
-- **Se passa — La Leggenda Messa per Iscritto:** una casa porta addosso un segno nuovo · la domanda in gioco sale
+- **Se passa — La Leggenda Messa per Iscritto:** una casa porta addosso: scoperta: la leggenda · la domanda in gioco sale
 
 **Le clausole che si possono attaccare:**
 
 - ...purché il rivale veda la lista con i propri occhi.
-  - se qualificata: un segno cade sul mondo · la domanda in gioco sale
+  - se qualificata: il mondo registra: la lista e' stata letta davanti a testimoni · la domanda in gioco sale
 - ...purché chi se ne va possa tornare quando torna l'acqua.
-  - se qualificata: la Regione discussa non e' piu' abbandonata · un segno cade sul mondo
+  - se qualificata: la Regione discussa non e' piu' abbandonata · il mondo registra: il ritorno e' stato promesso
 
 ---
 
@@ -84,20 +84,20 @@ Il Cristallo Rosso non è più una curiosità. Qualcuno deve dire, ad alta voce,
 
 > Che cosa si fa del Cristallo Rosso che esce nella Regione di cui si discute?
 
-- **Se passa — La Miniera Aperta:** la Regione discussa diventa sfruttata · il mondo registra: il Cristallo e' stato sfruttato · la domanda si apre a tutti · una casa porta addosso un segno nuovo · una costruzione sale o scende di grado · e resta una cicatrice: La galleria maestra non si richiude più, e la roccia intorno resta tiepida.
+- **Se passa — La Miniera Aperta:** la Regione discussa diventa sfruttata · il mondo registra: il Cristallo e' stato sfruttato · la domanda si apre a tutti · una casa porta addosso: scoperta: il cristallo · una costruzione sale o scende di grado · e resta una cicatrice: La galleria maestra non si richiude più, e la roccia intorno resta tiepida.
 - **Se passa — La Miniera di Stato:** la Regione discussa cambia padrone
 
 ### Si sigillino le gallerie nella Regione di cui si discute: ciò che dorme resti addormentato.
 
 > Che cosa si fa del Cristallo Rosso che esce nella Regione di cui si discute?
 
-- **Se passa — Le Miniere Sigillate:** la Regione discussa diventa il sigillo · il mondo registra: le Miniere sono state sigillate · una casa porta addosso un segno nuovo · una costruzione sale o scende di grado
+- **Se passa — Le Miniere Sigillate:** la Regione discussa diventa il sigillo · il mondo registra: le Miniere sono state sigillate · una casa porta addosso: scoperta: il cristallo · una costruzione sale o scende di grado
 
 ### Il Cristallo si studi sotto vincolo, e del limite risponda il rivale.
 
 > A chi appartiene ciò che dorme sotto la Regione di cui si discute?
 
-- **Se passa — Studio sotto Custodia:** il mondo registra: lo studio e' sotto sorveglianza · una casa porta addosso un segno nuovo · la domanda in gioco sale
+- **Se passa — Studio sotto Custodia:** il mondo registra: lo studio e' sotto sorveglianza · una casa porta addosso: scoperta: lo studio custodito · la domanda in gioco sale
 
 ### Si tolga la pietra. Quello che fu murato per non dover decidere, si decide adesso, con le lampade accese.
 
@@ -116,9 +116,9 @@ Il Cristallo Rosso non è più una curiosità. Qualcuno deve dire, ad alta voce,
 **Le clausole che si possono attaccare:**
 
 - ...purché il rivale assista a ogni discesa.
-  - se qualificata: un segno cade sul mondo · la domanda in gioco sale
+  - se qualificata: il mondo registra: la discesa e' stata fatta davanti a testimoni · la domanda in gioco sale
 - ...purché ciò che si scopre sia detto a tutti, non a chi paga.
-  - se qualificata: un segno cade sul mondo · una casa porta addosso un segno nuovo
+  - se qualificata: il mondo registra: quello che si e' saputo lo sanno tutti · una casa porta addosso: scoperta: il registro condiviso
 
 ---
 
@@ -132,7 +132,7 @@ Sette città, sette modi di giudicare lo stesso caso. Finche i casi restavano de
 
 > Chi scrive la regola che vale nella Regione di cui si discute?
 
-- **Se passa — La Carta Scritta:** il mondo registra: la Carta e' stata scritta · una casa porta addosso un segno nuovo · la domanda in gioco sale
+- **Se passa — La Carta Scritta:** il mondo registra: la Carta e' stata scritta · una casa porta addosso: scoperta: la carta · la domanda in gioco sale
 
 ### Ogni città tenga la propria legge. Chi vuole commerciare, si adegui.
 
@@ -150,14 +150,14 @@ Sette città, sette modi di giudicare lo stesso caso. Finche i casi restavano de
 
 > E chi si siede, quando non si è d'accordo?
 
-- **Se passa — La Carta Scritta:** il mondo registra: la Carta e' stata scritta · una casa porta addosso un segno nuovo · la domanda in gioco sale
+- **Se passa — La Carta Scritta:** il mondo registra: la Carta e' stata scritta · una casa porta addosso: scoperta: la carta · la domanda in gioco sale
 
 **Le clausole che si possono attaccare:**
 
 - ...purché fra dieci anni si possa riscriverla.
-  - se qualificata: un segno cade sul mondo · la domanda in gioco sale
+  - se qualificata: il mondo registra: la Carta vale per un tempo solo · la domanda in gioco sale
 - ...purché valga anche per chi non ha una città.
-  - se qualificata: la domanda in gioco sale · un segno cade sul mondo
+  - se qualificata: la domanda in gioco sale · il mondo registra: la Carta vale per tutti
 
 ---
 
@@ -171,7 +171,7 @@ Nessuno contesta il debito. Si contesta che a tenere il conto sia una parte sola
 
 > Chi tiene il registro, e chi può leggerlo?
 
-- **Se passa — Il Registro Aperto:** il mondo registra: i conti sono pubblici · una casa porta addosso un segno nuovo · la domanda in gioco sale
+- **Se passa — Il Registro Aperto:** il mondo registra: i conti sono pubblici · una casa porta addosso: scoperta: il registro · la domanda in gioco sale
 
 ### Il registro resti a chi propone, che ne risponda col proprio nome.
 
@@ -197,14 +197,14 @@ Nessuno contesta il debito. Si contesta che a tenere il conto sia una parte sola
 > Chi tiene il registro, e chi può leggerlo?
 
 - **Si puo' proporre solo se:** Si racconta del giorno in cui la Gilda chiese tutto
-- **Se passa — La Leggenda Messa per Iscritto:** una casa porta addosso un segno nuovo · la domanda in gioco sale
+- **Se passa — La Leggenda Messa per Iscritto:** una casa porta addosso: scoperta: la leggenda · la domanda in gioco sale
 
 **Le clausole che si possono attaccare:**
 
 - ...purché il rientro sia in dieci anni e non in uno.
-  - se qualificata: la domanda in gioco sale · un segno cade sul mondo
+  - se qualificata: la domanda in gioco sale · il mondo registra: il debito e' stato dilazionato
 - ...purché a contare sia presente anche il rivale.
-  - se qualificata: una casa porta addosso un segno nuovo
+  - se qualificata: una casa porta addosso: scoperta: il registro
 
 ---
 
@@ -246,9 +246,9 @@ Quando la Carestia raggiunge la soglia, la questione non è più se ci sia abbas
 **Le clausole che si possono attaccare:**
 
 - ...purché una quota fissa resti a il rivale.
-  - se qualificata: la Regione discussa non e' piu' affamata · un segno cade sul mondo
+  - se qualificata: la Regione discussa non e' piu' affamata · il mondo registra: una quota e' garantita
 - ...purché la distribuzione nella Regione di cui si discute sia contata davanti a testimoni.
-  - se qualificata: un segno cade sul mondo · la domanda in gioco sale
+  - se qualificata: il mondo registra: la distribuzione e' stata contata · la domanda in gioco sale
 
 ---
 
@@ -262,7 +262,7 @@ L'Ordine dice che non si guarda. I Signori della Cenere scavano sotto la cella d
 
 > Chi risponde di quello che c'è nella teca?
 
-- **Se passa — La Custodia Riconosciuta:** una casa porta addosso un segno nuovo · il mondo registra: la fede ha avuto un posto · la domanda in gioco sale
+- **Se passa — La Custodia Riconosciuta:** una casa porta addosso: la custodia riconosciuta · il mondo registra: la fede ha avuto un posto · la domanda in gioco sale
 
 ### Sotto la cella si continui a scavare: chi custodisce non comanda alla roccia.
 
@@ -276,13 +276,13 @@ L'Ordine dice che non si guarda. I Signori della Cenere scavano sotto la cella d
 
 > Chi risponde di quello che c'è nella teca?
 
-- **Se passa — La Veglia sulla Montagna:** una casa porta addosso un segno nuovo · si alza una costruzione dove si discute · la domanda in gioco sale
+- **Se passa — La Veglia sulla Montagna:** una casa porta addosso: la veglia della cenere · si alza una costruzione dove si discute · la domanda in gioco sale
 
 ### Si apra la teca davanti a testimoni, e a mostrarla sia chi propone.
 
 > E chi ha diritto di vederlo?
 
-- **Se passa — La Teca Aperta:** il mondo registra: la reliquia e' stata mostrata · una casa porta addosso un segno nuovo · la domanda si apre a tutti
+- **Se passa — La Teca Aperta:** il mondo registra: la reliquia e' stata mostrata · una casa porta addosso: scoperta: la reliquia · la domanda si apre a tutti
 
 ### Si muri la cella, e si metta a verbale che è stata murata.
 
@@ -293,9 +293,9 @@ L'Ordine dice che non si guarda. I Signori della Cenere scavano sotto la cella d
 **Le clausole che si possono attaccare:**
 
 - ...purché quello che si vede sia scritto lo stesso giorno.
-  - se qualificata: una casa porta addosso un segno nuovo · un segno cade sul mondo
+  - se qualificata: una casa porta addosso: scoperta: la reliquia · il mondo registra: la reliquia e' a registro
 - ...purché sulla montagna resti una veglia, chiunque la tenga.
-  - se qualificata: una casa porta addosso un segno nuovo · la domanda in gioco sale
+  - se qualificata: una casa porta addosso: la veglia della cenere · la domanda in gioco sale
 
 ---
 
@@ -321,7 +321,7 @@ Non è una guerra e non è una carestia: è che da qualche mese le cose non arri
 
 > Chi risponde di un carico che non arriva?
 
-- **Se passa — La Scorta Giurata:** una casa porta addosso un segno nuovo · la Regione discussa non e' piu' tagliata fuori · la domanda in gioco sale
+- **Se passa — La Scorta Giurata:** una casa porta addosso: la scorta giurata · la Regione discussa non e' piu' tagliata fuori · la domanda in gioco sale
 - **Se passa — Le Vie Riaperte:** la Regione discussa non e' piu' tagliata fuori · la Regione discussa non e' piu' depredata · la domanda in gioco sale
 
 ### Nessuno risponde di niente. Chi vuole passare nella Regione di cui si discute si paghi le guardie da sé.
@@ -334,9 +334,9 @@ Non è una guerra e non è una carestia: è che da qualche mese le cose non arri
 **Le clausole che si possono attaccare:**
 
 - ...purché una quota resti a chi la strada la percorre e non la possiede.
-  - se qualificata: un segno cade sul mondo · la domanda in gioco sale
+  - se qualificata: il mondo registra: il pedaggio si divide · la domanda in gioco sale
 - ...purché ogni carico sia scritto su un registro che chiunque può leggere.
-  - se qualificata: una casa porta addosso un segno nuovo · il mondo registra: i conti sono pubblici
+  - se qualificata: una casa porta addosso: scoperta: il registro dei traffici · il mondo registra: i conti sono pubblici
 
 ---
 
@@ -350,7 +350,7 @@ Aldric non ha erede e tutti lo sanno da anni. La differenza è che adesso qualcu
 
 > Chi siede sul trono quando questo si alza?
 
-- **Se passa — L'Erede Nominato:** una casa porta addosso un segno nuovo · la domanda in gioco sale · il mondo registra: la successione e' stata risolta
+- **Se passa — L'Erede Nominato:** una casa porta addosso: l'erede nominato · la domanda in gioco sale · il mondo registra: la successione e' stata risolta
 - **Se passa — L'Ordine Rimesso in Piedi:** la Regione discussa non e' piu' inquieta · la Regione discussa non e' piu' contesa · la domanda in gioco sale
 
 ### Si nomini chi la ballata nomina: l'erede che l'anno buono avrebbe voluto. E stavolta lo si scriva.
@@ -358,8 +358,8 @@ Aldric non ha erede e tutti lo sanno da anni. La differenza è che adesso qualcu
 > Chi siede sul trono quando questo si alza?
 
 - **Si puo' proporre solo se:** Si racconta di un anno in cui l'ordine torno davvero
-- **Se passa — L'Erede Nominato:** una casa porta addosso un segno nuovo · la domanda in gioco sale · il mondo registra: la successione e' stata risolta
-- **Se passa — La Leggenda Messa per Iscritto:** una casa porta addosso un segno nuovo · la domanda in gioco sale
+- **Se passa — L'Erede Nominato:** una casa porta addosso: l'erede nominato · la domanda in gioco sale · il mondo registra: la successione e' stata risolta
+- **Se passa — La Leggenda Messa per Iscritto:** una casa porta addosso: scoperta: la leggenda · la domanda in gioco sale
 
 ### Non uno solo: si divida il titolo, e la Regione di cui si discute risponda a chi la tiene davvero.
 
@@ -372,7 +372,7 @@ Aldric non ha erede e tutti lo sanno da anni. La differenza è che adesso qualcu
 
 > Nella Regione di cui si discute, che cosa vale più di un nome: la legge o le spade?
 
-- **Se passa — La Legge Scritta:** il mondo registra: la successione e' passata per legge · una casa porta addosso un segno nuovo · la domanda in gioco sale
+- **Se passa — La Legge Scritta:** il mondo registra: la successione e' passata per legge · una casa porta addosso: scoperta: la legge scritta · la domanda in gioco sale
 
 ### Chi propone prende il posto adesso, e a chi non ci sta risponde il rivale.
 
@@ -387,7 +387,7 @@ Aldric non ha erede e tutti lo sanno da anni. La differenza è che adesso qualcu
 
 - **Si puo' proporre solo se:** La corona è divisa da un'altra era
 - **Se passa — Un Solo Trono:** il mondo dimentica: la corona e' stata divisa · il rapporto con chi tocca cambia di un passo · la domanda in gioco sale
-- **Se passa — L'Erede Nominato:** una casa porta addosso un segno nuovo · la domanda in gioco sale · il mondo registra: la successione e' stata risolta
+- **Se passa — L'Erede Nominato:** una casa porta addosso: l'erede nominato · la domanda in gioco sale · il mondo registra: la successione e' stata risolta
 
 ### Si riprenda la domanda che un consiglio lasciò cadere, e stavolta la risposta si scriva nel registro.
 
@@ -399,9 +399,9 @@ Aldric non ha erede e tutti lo sanno da anni. La differenza è che adesso qualcu
 **Le clausole che si possono attaccare:**
 
 - ...purché il rivale sia fra i testimoni, e la sua firma valga come le altre.
-  - se qualificata: un segno cade sul mondo · la domanda in gioco sale
+  - se qualificata: il mondo registra: la successione ha avuto testimoni · la domanda in gioco sale
 - ...purché chi ha giurato all'altro non ne paghi il prezzo.
-  - se qualificata: la Regione discussa non e' piu' inquieta · un segno cade sul mondo
+  - se qualificata: la Regione discussa non e' piu' inquieta · il mondo registra: l'amnistia e' stata concessa
 
 ---
 
@@ -422,7 +422,7 @@ I canali si possono riaprire in due stagioni. Il problema non è mai stato la te
 > Chi manda gli uomini a scavare nella Regione di cui si discute?
 
 - **Se passa — I Canali Riaperti:** il mondo registra: l'acqua ha cambiato strada · si alza una costruzione dove si discute · la domanda in gioco sale
-- **Se passa — L'Acqua a Prezzo:** il mondo registra: l'acqua ha un prezzo · una casa porta addosso un segno nuovo · la Regione discussa cambia padrone · una costruzione sale o scende di grado
+- **Se passa — L'Acqua a Prezzo:** il mondo registra: l'acqua ha un prezzo · una casa porta addosso: i diritti d'acqua · la Regione discussa cambia padrone · una costruzione sale o scende di grado
 
 ### L'acqua non è di nessuno. Chi la devia risponde a tutti.
 
@@ -433,9 +433,9 @@ I canali si possono riaprire in due stagioni. Il problema non è mai stato la te
 **Le clausole che si possono attaccare:**
 
 - ...purché l'ultima presa sia di chi sta più in basso.
-  - se qualificata: un segno cade sul mondo · la domanda in gioco sale
+  - se qualificata: il mondo registra: l'acqua si divide · la domanda in gioco sale
 - ...purché le braccia mandate da ciascuno siano contate e scritte.
-  - se qualificata: una casa porta addosso un segno nuovo · la domanda in gioco sale
+  - se qualificata: una casa porta addosso: scoperta: il registro · la domanda in gioco sale
 
 ---
 

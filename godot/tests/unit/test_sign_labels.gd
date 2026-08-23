@@ -12,7 +12,7 @@ func before_each() -> void:
 
 
 func _collect_written_tags() -> Dictionary:
-	var found: Dictionary = {"region": {}, "entity": {}}
+	var found: Dictionary = {"region": {}, "entity": {}, "world": {}}
 	var writers: Array = []
 	for consequence_id in session.data.consequences:
 		var consequence: Dictionary = session.data.consequences[consequence_id]
@@ -26,6 +26,14 @@ func _collect_written_tags() -> Dictionary:
 				writers.append([hook.get("effect", {})])
 	for asset_id in session.data.assets:
 		writers.append(session.data.assets[asset_id].get("on_commit_effects", []))
+	# **E le clausole.** Il censimento non le guardava, e quattordici segni del
+	# mondo sono rimasti senza parola fino a D-236 — invisibili finche' una
+	# clausola qualificata applicava i suoi effetti e basta, evidenti il giorno
+	# che la scheda di una domanda ha cominciato a dire cosa lascia al mondo.
+	for template_id in session.data.confluence_templates:
+		var template: Dictionary = session.data.confluence_templates[template_id]
+		for clause in template.get("condition_clauses", []):
+			writers.append((clause as Dictionary).get("effects", []))
 	for effects in writers:
 		for effect in effects:
 			var tag: String = str(effect.get("payload", {}).get("tag", ""))
@@ -36,6 +44,8 @@ func _collect_written_tags() -> Dictionary:
 					found["region"][tag] = true
 				"SET_ENTITY_TAG":
 					found["entity"][tag] = true
+				"SET_GLOBAL_TAG":
+					found["world"][tag] = true
 	return found
 
 
@@ -58,6 +68,42 @@ func test_every_entity_sign_in_data_has_a_word() -> void:
 			SignLabels.known(str(tag)),
 			"il segno di casa '%s' ha la sua parola (D-107)" % tag
 		)
+		if not str(tag).contains("$"):
+			_not_its_own_id(str(tag))
+
+
+## E ogni segno che il mondo intero porta.
+##
+## I segni di Regione e di casa avevano gia' la loro guardia; quelli globali no,
+## e la mancanza si vedeva solo dove nessuno guardava. Un `quota_guaranteed` che
+## esce come «un segno cade sul mondo» non e' una regola che si puo' leggere:
+## e' una condizione che si attacca al buio.
+func test_every_world_sign_in_data_has_a_word() -> void:
+	var written: Dictionary = _collect_written_tags()
+	assert_true(written["world"].size() > 30, "il censimento trova i segni del mondo: %d" % written["world"].size())
+	for tag in written["world"]:
+		if str(tag).contains("$"):
+			continue
+		assert_true(
+			SignLabels.known(str(tag)),
+			"il segno del mondo '%s' ha la sua parola (D-107, D-236)" % tag
+		)
+		_not_its_own_id(str(tag))
+
+
+## Una parola che contiene il proprio suffisso non e' una parola: e' un id
+## vestito. `scoperta: trade_ledger` passava `known()` grazie al ripiego per
+## prefisso, e finiva su una scheda del Consiglio.
+func _not_its_own_id(tag: String) -> void:
+	var suffix: String = tag.substr(tag.rfind(":") + 1)
+	if not suffix.contains("_"):
+		return
+	assert_false(
+		SignLabels.label(tag, session.data).contains(suffix),
+		"la parola di '%s' non e' il suo id: «%s»" % [
+			tag, SignLabels.label(tag, session.data)
+		]
+	)
 
 
 func test_words_are_italian_not_tag_suffixes() -> void:

@@ -31,6 +31,13 @@ var slots: Dictionary = {}
 ## Emesso quando una carta cade su una domanda o su una casa, con le scelte che
 ## quella carta porta per quel soggetto.
 signal card_dropped(indices: Array)
+
+## Qualcuno vuole leggere la scheda di questa domanda (D-236).
+##
+## Non e' una mossa: e' guardare. Al tavolo la scheda della Tensione la prendi
+## in mano quando vuoi, e la rimetti giu'; da quando si gioca all'app e non al
+## cartone, quel gesto deve esistere sullo schermo o non esiste affatto.
+signal tension_opened(tension_id: String)
 var _claims: VBoxContainer
 var _claims_header: Label
 var _signs: VBoxContainer
@@ -364,6 +371,17 @@ func _wrapped(inner: Control, field: String, key: String) -> Control:
 	var slot: PanelContainer = DropSlot.new()
 	slot.field = field
 	slot.key = key
+	if field == "tension":
+		# Un clic sulla riga apre la scheda. Il trascinamento resta quello che
+		# era: chi prende una carta e la lascia cadere qui fa una mossa, chi
+		# clicca e basta sta leggendo. Sono due gesti diversi e non si pestano
+		# i piedi, perche' il trascinamento non passa mai da `gui_input`.
+		slot.gui_input.connect(func(event: InputEvent) -> void:
+			if event is InputEventMouseButton \
+					and (event as InputEventMouseButton).pressed \
+					and (event as InputEventMouseButton).button_index == MOUSE_BUTTON_LEFT:
+				tension_opened.emit(key)
+		)
 	slot.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	inner.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	slot.add_child(inner)

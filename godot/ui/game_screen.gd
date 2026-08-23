@@ -23,6 +23,7 @@ const MapView := preload("res://ui/map_view.gd")
 const StatusPanel := preload("res://ui/status_panel.gd")
 const HandView := preload("res://ui/hand_view.gd")
 const ConfluenceBoard := preload("res://ui/confluence_board.gd")
+const CouncilSheet := preload("res://ui/council_sheet.gd")
 const HelpPanel := preload("res://ui/help_panel.gd")
 const SaveSerializer := preload("res://scripts/core/save_serializer.gd")
 const DevDashboard := preload("res://ui/dev_dashboard.gd")
@@ -61,6 +62,10 @@ var _context: Label
 var _help: PanelContainer
 var _help_button: Button
 var _help_data: RefCounted
+## La scheda di una domanda (D-236): cosa si potra' proporre e cosa lascia al
+## mondo, leggibile **prima** che il Consiglio si apra. Stessa meta' di schermo
+## di mappa, Consiglio e regole: chi la legge non sta guardando il tavolo.
+var _sheet: PanelContainer
 
 ## **Le scelte che ogni carta porta adesso**: `asset_id -> [{region, index}]`.
 ## Vive solo dentro una `ask()`, si svuota appena la domanda e' finita. E' il
@@ -282,6 +287,12 @@ func _build() -> void:
 	_help.set_anchors_preset(Control.PRESET_FULL_RECT)
 	_centre.add_child(_help)
 
+	_sheet = CouncilSheet.new()
+	_sheet.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_sheet.visible = false
+	_sheet.closed.connect(func() -> void: _sheet.visible = false)
+	_centre.add_child(_sheet)
+
 	_echo = EchoCardView.new()
 	_echo.set_anchors_preset(Control.PRESET_FULL_RECT)
 	_echo.visible = false
@@ -320,6 +331,7 @@ func _build() -> void:
 	# opposte — alzare e abbassare una domanda, avvicinare e rompere un rapporto —
 	# e allora la caduta **restringe** e la scelta resta a chi gioca.
 	_status.card_dropped.connect(_on_subject_dropped)
+	_status.tension_opened.connect(_on_tension_opened)
 	right.add_child(_status)
 
 	_context = Label.new()
@@ -829,6 +841,23 @@ func _narrow_to(indices: Array) -> void:
 func _on_region_clicked(region_id: String) -> void:
 	if _map.highlighted.has(region_id):
 		picked.emit(int(_map.highlighted[region_id]))
+
+
+## La scheda di una domanda si apre e si chiude, e non e' una mossa (D-236).
+##
+## Non tocca `picked`: leggere non risponde a niente. Se il Consiglio e' aperto
+## la scheda non si mette in mezzo — li' le proposte sono gia' sul tavolo con
+## quello che lasciano, ed e' quella la pagina da guardare.
+func _on_tension_opened(tension_id: String) -> void:
+	if _session == null or _session.confluence.is_open():
+		return
+	if _sheet.visible:
+		_sheet.visible = false
+		return
+	_sheet.show_tension(tension_id, _session.data, _session)
+	_sheet.visible = true
+	_help.visible = false
+	_help_button.button_pressed = false
 
 
 func _clear_buttons() -> void:
