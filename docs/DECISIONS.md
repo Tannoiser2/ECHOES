@@ -10,6 +10,100 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-227 — Il tetto delle pedine a cinque: la mappa si contende con le pedine, non al Consiglio
+
+**implemented in 0.1.198** — ISSUES 55, la domanda giusta e la risposta
+
+[D-226](#d-226) aveva chiuso la mossa sbagliata con una domanda nuova: se il
+padrone di una Regione lo decide **la contesa di presenza** e non il Consiglio,
+allora **quanto potrebbe muoversi la mappa?** Con quattro pedine a testa, quattro
+case e sei Regioni, il tetto non era mai stato misurato — si era sempre discusso
+di quanto la mappa *si muove*, mai di quanto *potrebbe*.
+
+`run_contest_probe` guadagna `--presence=N`: stessi cento semi, stesso tutto,
+piu' pedine a testa. L'override va **prima** di `setup()`, perche' le pedine si
+posano li' e da [D-223](#d-223) `presence_tokens` e' anche il tetto che l'applier
+fa rispettare.
+
+### Il tetto
+
+| pedine | il padrone passa di mano | Regioni contese a fine anno | con un padrone | cadono vacanti |
+|---|---|---|---|---|
+| **4** (com'era) | 2,39 | 2,46 su 6 | 4,57 | 1,11 |
+| **5** | **2,85** | **3,72 su 6** | 5,09 | 0,82 |
+| 6 | 2,70 | 4,23 su 6 | 5,23 | 0,79 |
+
+**E il tetto non e' dove lo cercavo.** Due cose, e la seconda vale piu' della
+prima:
+
+1. **I passaggi di mano hanno un massimo, e lo toccano a cinque.** 2,39 → 2,85 →
+   2,70: a sei pedine *scendono*. Con tutti dentro dappertutto le posizioni si
+   irrigidiscono — una maggioranza stretta e' piu' difficile da sfilare quando
+   ognuno e' trincerato. Il tetto del ricambio e' **intorno a 2,9**, e a quattro
+   pedine eravamo gia' all'84% di quel numero. Da questo lato la mappa **si
+   muoveva quasi quanto le regole permettono**, e due cicli di lavoro l'hanno
+   trovato per la via lunga.
+2. **La contesa, invece, non era vicina a niente.** 2,46 → 3,72 → 4,23: **+51%
+   con una sola pedina in piu'**. E' il numero che il committente aveva chiesto
+   fin dall'inizio — *«una maggioranza dovrebbe essere una lotta tra entita'»* —
+   e non era il ricambio: era **quante Regioni hanno piu' di una casa dentro**.
+
+Erano due domande diverse dietro la stessa parola, «la mappa e' ferma». Una era
+gia' quasi al massimo; l'altra era a meta' strada.
+
+### La mossa
+
+`presence_tokens` da 4 a 5 su tutte e quattro le Chronicle. Cinque e non sei
+perche' a sei il ricambio **peggiora** e il tavolo si irrigidisce: cinque e' il
+punto in cui la contesa sale e il ricambio e' al massimo.
+
+E non e' un'inversione di [D-211](#d-211): D-211 non aveva scelto «quattro»,
+aveva scelto «**tre affama la mappa**», col committente che aveva deciso il
+risultato — *«non ci puo' essere una regione senza nessuno»*. La stessa linea
+continua di un passo, e il numero che gli da' ragione e' proprio quello: le
+Regioni che finiscono l'anno senza padrone scendono da **1,11 a 0,82**.
+
+L'apertura non cambia: le pedine posate a inizio anno restano due, e le Regioni
+contese *all'apertura* sono 2,41 in tutte e tre le misure. **La quinta pedina e'
+riserva pura** — cioe' esattamente l'asse di D-211.
+
+### Il cancello, per intero
+
+| | |
+|---|---|
+| playtest 100 semi, tavolo uniforme | **0 su 8** |
+| playtest 100 semi, tavolo misto | **0 su 8** |
+| Consigli l'anno (misto) | 4,68 |
+| esiti (misto) | FAIL 227 · 68 · 92 · DECI 81 |
+| esiti (uniforme) | FAIL 166 · 59 · 112 · DECI 141 |
+| carte al rifornimento, chi ha 4 pedine → 5 | 3,50 → **4,14** |
+| suite | 434 test, 7.522 asserzioni |
+| piani scriptati · export · brief | tutti a 0 |
+
+I fallimenti sul tavolo uniforme sono **166, identici** a prima della modifica:
+l'economia del Consiglio non si muove. Sul misto 227 contro 224, dentro il
+rumore.
+
+### Una prova che descriveva il setup invece dell'intenzione
+
+`test_destiny_warning` costruiva la posizione di Vaerax con `limite - 1` pedine
+distribuite su **tre** Regioni: col tetto a cinque ne posava quattro invece di
+cinque, Vaerax non era piu' al limite, e l'avviso taceva **per la ragione
+sbagliata**. Adesso le tre Regioni si ripetono a giro — due pedine sulla stessa
+Regione sono legali e contano — cosi' il tetto si riempie senza toccare l'ordine
+alfabetico da cui dipende `_pick_source_region`. E' lo stesso genere di difetto
+che D-211 aveva gia' incontrato due volte.
+
+### Cosa resta di ISSUES 55
+
+Tre dei quattro criteri scritti nella voce sono soddisfatti: una presenza in piu'
+paga (3,50 → 4,14 carte), le Regioni contese sono **piu' di tre su sei** (3,72),
+il padrone cambia mano piu' di prima (2,85). Il quarto — «gli obiettivi contesi
+sono almeno un terzo del mazzo» — non lo tocca questa mossa: sono **3 su 15**, ed
+e' contenuto d'autore.
+
+---
+
 ## D-226 — Il peso della terra, riacceso e respinto di nuovo: il Consiglio non e' dove la mappa cambia padrone
 
 **measured in 0.1.197, non implementato** — ISSUES 55, la mossa 0 e il numero che

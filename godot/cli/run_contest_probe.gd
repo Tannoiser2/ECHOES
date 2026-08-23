@@ -34,6 +34,13 @@ func _initialize() -> void:
 	var first_seed: int = int(options.get("seed", 7000))
 	var chronicle_id: String = str(options.get("chronicle", "CHR_01"))
 	var mixed: bool = not options.has("uniform")
+	# **Il tetto** (ISSUES 55, dopo [D-226](DECISIONS.md#d-226)). Riaccendere il
+	# peso della terra al Consiglio non ha mosso la mappa, e la ragione e' che il
+	# padrone lo decide la contesa di presenza e non il Consiglio. Allora la
+	# domanda diventa: **quanto potrebbe muoversi?** Con `--presence=N` la sonda
+	# gioca lo stesso seme con piu' pedine a testa, e se il numero non sale
+	# nemmeno li' il collo di bottiglia non e' la quantita' di legno.
+	var presence: int = int(options.get("presence", 0))
 
 	var data: RefCounted = DataSet.new()
 	if not data.load_from("res://data"):
@@ -56,6 +63,10 @@ func _initialize() -> void:
 		var seed_value: int = first_seed + run
 		var seats: Array = GameSession.seats_for(data, chronicle_id, seed_value)
 		var session: RefCounted = GameSession.new(data)
+		# L'override va messo **prima** di `setup()`: le pedine si posano li', e
+		# da D-223 `presence_tokens` e' anche il tetto che l'applier fa rispettare.
+		if presence > 0:
+			(session.data.chronicles[chronicle_id] as Dictionary)["presence_tokens"] = presence
 		if not session.setup(chronicle_id, seats, seed_value):
 			printerr("setup fallito: %s" % session.last_error)
 			quit(3)
@@ -176,8 +187,9 @@ func _initialize() -> void:
 
 	var years: float = float(runs)
 	print("")
-	print("== LA LOTTA PER LA MAPPA - %d partite, %s, tavolo %s ==" % [
-		runs, chronicle_id, "misto" if mixed else "uniforme"
+	print("== LA LOTTA PER LA MAPPA - %d partite, %s, tavolo %s%s ==" % [
+		runs, chronicle_id, "misto" if mixed else "uniforme",
+		"" if presence <= 0 else ", %d pedine a testa" % presence,
 	])
 	print("")
 	print("  Il padrone di una Regione, in un anno:")

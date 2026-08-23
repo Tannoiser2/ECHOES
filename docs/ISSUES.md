@@ -2973,7 +2973,32 @@ o è stata tolta perché non serviva.
 
 ---
 
-### 55. Il ciclo del gioco è rotto in tre punti: spostarsi non paga, la maggioranza non si contende, gli obiettivi non si incrociano
+### 55. ✅ Il ciclo del gioco è rotto in tre punti — chiusa in 0.1.198 per tre quarti
+
+**Chiusa da [D-227](DECISIONS.md#d-227)** sui primi tre criteri; il quarto — gli
+obiettivi contesi — resta ed è contenuto d'autore (3 su 15).
+
+| criterio scritto in questa voce | com'era | adesso | |
+|---|---|---|---|
+| una presenza in più dà carte in più | — | 3,50 → **4,14** al rifornimento | ✅ |
+| Regioni contese a fine anno > 3 su 6 | 2,46 | **3,72** | ✅ |
+| il padrone cambia mano più di prima | 2,39 | **2,85** | ✅ |
+| playtest 0 su 8 | 0/8 | **0/8** | ✅ |
+| obiettivi contesi ≥ un terzo del mazzo | 1 su 15 | **3 su 15** | ❌ |
+
+**La risposta non era dove l'abbiamo cercata per due cicli.** Il tetto delle
+pedine da 4 a 5: la contesa sale del **51%**, e il ricambio del padrone tocca il
+suo massimo (a 6 pedine *scende*, perché tutti trincerati dappertutto rendono una
+maggioranza più difficile da sfilare).
+
+Erano **due domande dietro la stessa parola**. «La mappa è ferma» voleva dire due
+cose: *il padrone cambia poco* — e lì eravamo già all'84% del massimo che le
+regole permettono — e *poche Regioni sono contese*, che era a metà strada e si è
+mosso con una pedina.
+
+---
+
+
 
 `regole` · `bilanciamento` · voluta dal committente · **misurata in 0.1.187**
 

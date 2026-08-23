@@ -182,8 +182,8 @@ distribuzione è stata rifatta a 0.1.154, quando si è visto che RICCHEZZA stava
 in quattro Regioni e FORZA in una sola. Se la Regione decide che carte peschi,
 quello non è colore: è un'azione che qualcuno non potrebbe mai fare.*
 
-**Presenza.** Ogni casata ha **4 gettoni di presenza**, di cui **2 già posati
-all'inizio** — gli altri due si mettono in gioco con le prime MUOVERE, e da lì in poi
+**Presenza.** Ogni casata ha **5 gettoni di presenza**, di cui **2 già posati
+all'inizio** — gli altri tre si mettono in gioco con le prime MUOVERE, e da lì in poi
 MUOVERE sposta invece di aggiungere. Più gettoni nella stessa Regione sono
 ammessi e contano: la presenza è un numero, non una bandierina. È quel numero a
 decidere chi propone al Consiglio. Una Regione non può ospitare più gettoni dei

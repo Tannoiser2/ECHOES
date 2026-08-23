@@ -5,6 +5,45 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.198 — Il tetto delle pedine a cinque: la mappa si contende con le pedine (D-227)
+
+- **`presence_tokens` da 4 a 5** su tutte e quattro le Chronicle. È la risposta
+  alla domanda che D-226 aveva lasciato aperta, e non era dove l'avevamo cercata
+  per due cicli.
+- **`run_contest_probe --presence=N`**: stessi cento semi, più pedine a testa.
+
+| pedine | il padrone passa di mano | Regioni contese a fine anno | cadono vacanti |
+|---|---|---|---|
+| **4** (com'era) | 2,39 | 2,46 su 6 | 1,11 |
+| **5** | **2,85** | **3,72 su 6** | 0,82 |
+| 6 | 2,70 | 4,23 su 6 | 0,79 |
+
+- **Il tetto del ricambio è intorno a 2,9, e a sei pedine *scende*** — con tutti
+  dentro dappertutto le posizioni si irrigidiscono. A quattro pedine eravamo già
+  all'**84%** di quel massimo: da quel lato la mappa si muoveva quasi quanto le
+  regole permettono.
+- **La contesa invece non era vicina a niente: +51% con una sola pedina in più.**
+  Ed è il numero che il committente aveva chiesto dall'inizio — *«una maggioranza
+  dovrebbe essere una lotta tra entità»*. Erano **due domande dietro la stessa
+  parola**: una era già quasi al massimo, l'altra a metà strada.
+- **Non è un'inversione di D-211**, che non aveva scelto «quattro» ma «tre affama
+  la mappa». Il numero che gli dà ragione è proprio quello: le Regioni che
+  finiscono l'anno senza padrone scendono da **1,11 a 0,82**. E l'apertura non
+  cambia — la quinta pedina è **riserva pura**, cioè l'asse di D-211.
+- **Cinque e non sei**: a sei il ricambio peggiora e il tavolo si irrigidisce.
+- **Una prova descriveva il setup invece dell'intenzione**: `test_destiny_warning`
+  posava `limite − 1` pedine su tre Regioni, e col tetto a cinque Vaerax non era
+  più al limite — l'avviso taceva per la ragione sbagliata. Adesso le tre Regioni
+  si ripetono a giro.
+- **ISSUES 55 chiusa per tre quarti.** Il quarto criterio (obiettivi contesi ≥ un
+  terzo del mazzo, oggi 3 su 15) è contenuto d'autore e resta.
+- Cancello per intero: playtest **0/8** su tutti e due i tavoli, suite **434 test
+  e 7.522 asserzioni**, piani scriptati ed export a 0, `BRIEF_ARTE.md` allineato.
+  I fallimenti sul tavolo uniforme sono **166, identici** a prima: l'economia del
+  Consiglio non si muove.
+
+---
+
 ## 0.1.197 — Il peso della terra riacceso e respinto: il Consiglio non è dove la mappa cambia padrone (D-226)
 
 - **La mossa 0 di ISSUES 55 è stata fatta, e la misura l'ha respinta.**
