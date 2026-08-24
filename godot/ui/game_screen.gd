@@ -341,7 +341,21 @@ func _build() -> void:
 	right.add_theme_constant_override("separation", 12)
 	columns.add_child(right)
 
+	# **La colonna deve poter essere piu' alta della finestra** (D-251).
+	#
+	# Non lo era: `_status` cresce con quello che c'e' da dire — quattro domande,
+	# i rapporti, i diritti, i segni, il Destino con le sue due carte — e la sua
+	# altezza minima **spingeva tutta la pagina in giu'**. Su una finestra bassa
+	# la mano finiva **fuori dallo schermo**: le carte non erano piccole, erano
+	# sotto il bordo. Dentro un pannello che scorre, quell'altezza smette di
+	# decidere il resto della pagina.
+	var reading := ScrollContainer.new()
+	reading.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	reading.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	right.add_child(reading)
+
 	_status = StatusPanel.new()
+	_status.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	# Le domande e le case sono posti dove una carta puo' cadere, come le Regioni
 	# sulla mappa (D-231). Su un soggetto una carta puo' saper fare due cose
 	# opposte — alzare e abbassare una domanda, avvicinare e rompere un rapporto —
@@ -349,7 +363,7 @@ func _build() -> void:
 	_status.card_dropped.connect(_on_subject_dropped)
 	_status.tension_opened.connect(_on_tension_opened)
 	_status.card_placed.connect(func(index: int) -> void: picked.emit(index))
-	right.add_child(_status)
+	reading.add_child(_status)
 
 	# **A che punto siamo, e a chi tocca** (D-247).
 	#

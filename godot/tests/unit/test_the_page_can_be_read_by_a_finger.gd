@@ -258,3 +258,61 @@ func test_the_hand_is_as_tall_as_the_card_it_holds() -> void:
 	assert_true(wanted > 0.0, "e la carta sa rispondere: %.0f" % wanted)
 	screen.free()
 
+
+## --- e la colonna di lato non puo' spingere la mano fuori dallo schermo ---
+##
+## *«Le carte sono quasi sparite del tutto.»* Non erano piccole: erano **sotto il
+## bordo della finestra**. La colonna di destra cresce con quello che c'e' da
+## dire — quattro domande, i rapporti, i diritti, i segni, il Destino con le sue
+## due carte — e la sua **altezza minima decideva la pagina**: se chiede piu' di
+## quanto la finestra ha, tutto quello che sta sotto finisce fuori.
+##
+## E' un difetto che nessuno vede su un monitor alto e che si vede sempre su un
+## portatile o un tablet in orizzontale (D-251).
+
+
+## Il numero che rende il rischio un fatto: la colonna **puo'** essere piu' alta
+## di una finestra vera. Finche' e' cosi', non puo' stare in una pagina che non
+## scorre.
+func test_the_side_column_can_be_taller_than_a_window() -> void:
+	var live: RefCounted = _fresh()
+	var panel: Node = StatusPanel.new()
+	# Serve un albero per far calcolare a Godot le misure minime, e questa prova
+	# non e' un Node: il ramo principale si chiede al motore.
+	var tree: SceneTree = Engine.get_main_loop() as SceneTree
+	tree.root.add_child(panel)
+	panel.render(live, str(live.world["turn_order"][0]))
+	var wanted: float = panel.get_combined_minimum_size().y
+	panel.queue_free()
+	assert_true(
+		wanted > 600.0,
+		"la colonna di stato chiede piu' di 600 px: %.0f — e una finestra da tablet ne ha ~700" % wanted
+	)
+
+
+## Quindi la pagina la mette dentro qualcosa che scorre. Letto dal codice: per
+## misurarlo su una schermata montata servirebbe mezza applicazione in piedi, e
+## la riga che conta e' una sola.
+func test_the_side_column_lives_inside_something_that_scrolls() -> void:
+	var source: String = FileAccess.get_file_as_string("res://ui/game_screen.gd")
+	assert_true(
+		source.contains("reading.add_child(_status)"),
+		"la colonna di stato sta dentro un pannello che scorre"
+	)
+	assert_false(
+		source.contains("right.add_child(_status)"),
+		"e non piu' attaccata dritta alla colonna, dove la sua altezza decideva la pagina"
+	)
+
+
+## E quello che resta — la mano piu' una mappa degna di questo nome — ci sta
+## dentro una finestra bassa. Se domani la carta cresce ancora, questa prova lo
+## dice prima che le carte spariscano di nuovo sotto il bordo.
+func test_the_hand_and_a_map_fit_a_short_window() -> void:
+	var hand: float = AssetCard.wanted_height() + 14.0
+	var map: float = 260.0
+	assert_true(
+		hand + map <= 700.0,
+		"mano (%.0f) e mappa (%.0f) stanno in una finestra da 700: %.0f" % [hand, map, hand + map]
+	)
+
