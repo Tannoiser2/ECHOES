@@ -10,6 +10,68 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-259 — I segni diventano un dizionario, e la guardia lo legge
+
+**implemented in 0.1.221** — apre PZ-0 della roadmap e lo chiude
+
+La roadmap del Punto Zero ([ROADMAP_PUNTO_ZERO.md](ROADMAP_PUNTO_ZERO.md), PZ-0)
+parte da qui: *i tag non esistono come dato — si deducono raschiando gli
+effetti, e il validatore indovina l'ambito di ognuno.* Da questa decisione
+esistono: `godot/data/tags/tags_core.json`, **171 voci**, una per ogni segno che
+i dati toccano. Ogni voce dichiara il **nome stampato**, la **categoria**
+(luogo/funzione/stato/memoria/entita'), l'**ambito** (REGIONE/ENTITA'/MONDO),
+**chi lo scrive e chi lo legge**, per collezione. Fuori dal dizionario restano
+solo i livelli di rapporto (ENEMY..PACT): sono gradini di una scala, non segni.
+
+**Il validatore adesso legge l'ambito dal dato invece di dedurlo** — e la
+deduzione non e' sparita: e' diventata la controprova. `validate_physical.py` ha
+sei controlli nuovi: segno usato fuori dal dizionario, voce morta, ambito
+dichiarato che non combacia con l'osservato, mani dichiarate che non combaciano
+con le osservate (`engine` e' l'unica mano senza riscontro possibile, e quindi
+l'unica dichiarabile a parola), segno senza lettori o scrittori **e senza
+ragione scritta**, e #cancelletto stampato su una carta che non e' il nome di
+nessuna voce. E un `--self-test` che pianta **cinque difetti** e pretende il
+rosso su ognuno, in CI — perche' questo progetto ha gia' pagato due volte la
+guardia che nessuno aveva visto mordere.
+
+**Cosa la conversione ha trovato, e che prima non si vedeva:**
+
+1. **Lo stesso segno aveva fino a tre nomi.** Le carte fisiche stampano
+   `#malcontento`, l'app (`sign_labels.gd`) dice «inquieta», e per le pietre i
+   dati dicono un terzo nome per grado. Il dizionario dichiara **un** nome
+   canonico — quello della carta, perche' il tavolo viene prima dell'app — e
+   congela le altre forme in `aliases`: una divergenza dichiarata che puo' solo
+   accorciarsi. Riunificarle e' [ISSUES 70](ISSUES.md#70).
+2. **Ventidue segni avevano un lettore che il censimento non contava**: la
+   Regione di cui si discute (`focus_region_tags` delle Tensioni) — lo stesso
+   buco che D-234 aveva gia' trovato nel registro dei segni, richiuso solo la'.
+   Adesso lo contano tutti e due, insieme al `when_also` delle regole composite.
+3. **Due segni si stampano con la stessa parola**: la vocazione `granary` della
+   Regione e la pietra `structure:granary` sono entrambe `#granaio` sulle
+   carte. Scritto nelle note di entrambe le voci; si scioglie ri-mirando le
+   carte (PZ-3).
+4. **34 voci sono senza lettori e 1 senza scrittori** — ognuna con la sua
+   ragione nella `note`. La vecchia lista `DICHIARATI` del validatore e' andata
+   in pensione: le ragioni vivono nel dato, accanto al segno che giustificano
+   (regola 1.1 della roadmap: un solo insieme di dati, niente liste parallele).
+
+**Il prezzo, dichiarato.** Le parole dei segni vivono ancora anche in
+`sign_labels.gd` (l'app) e i muti noti anche in `MUTI_NOTI` di
+`build_sign_registry.py`: due paralleli che questa decisione **non** ha fuso,
+messi in fila in [ISSUES 70](ISSUES.md#70). E il dizionario copre i segni che i
+**dati** toccano: quelli che solo il motore scrive e legge (`uprooted`,
+`seal_kept`, `scar:burned_records`) restano fuori finche' non esiste un
+censimento del motore. L'**icona** delle voci e' dichiarata nello schema e non
+compilata: l'arte dei segni non esiste, e dichiararla prima sarebbe inventarla.
+
+**I numeri, invariati dove dovevano esserlo.** Suite verde (512 prove, 12.290
+asserzioni — una in piu': lo schema nuovo nel giro di copertura). Playtest su
+100 semi: **0 seggi bloccati su 8**, misto e uniforme; Consigli misto 3-8
+(media 5,05), uniforme 3-9 (media 5,26) — il dizionario e' dato e guardia, non
+una regola: se questi numeri si fossero mossi, sarebbe stato un difetto.
+
+---
+
 ## D-258 — Quarantotto carte su quarantotto, e tre volte cieco
 
 **implemented in 0.1.220** — chiude il grosso di ISSUES 69, che resta aperta

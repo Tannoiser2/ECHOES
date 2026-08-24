@@ -24,6 +24,9 @@ var structure_types: Dictionary = {}
 var themes: Dictionary = {}
 ## Le Domande fisiche (D-256): il mazzo che il Consiglio gira, per Tema.
 var question_cards: Dictionary = {}
+## Il dizionario dei segni (PZ-0): per ogni tag il nome stampato, la categoria,
+## l'ambito e chi lo tocca. La guardia sta in tools/validate_physical.py.
+var tags: Dictionary = {}
 
 var errors: PackedStringArray = PackedStringArray()
 var data_version: String = ""
@@ -45,6 +48,7 @@ const _TARGETS: Dictionary = {
 	"structure_type": "structure_types",
 	"theme": "themes",
 	"question_card": "question_cards",
+	"tag": "tags",
 }
 
 

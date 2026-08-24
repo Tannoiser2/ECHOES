@@ -5,6 +5,32 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.221 — I segni diventano un dizionario, e la guardia lo legge (D-259)
+
+- **PZ-0 della roadmap, aperto e chiuso**: i segni sono una collezione
+  dichiarata — `godot/data/tags/tags_core.json`, **171 voci**, una per ogni tag
+  che i dati toccano. Ogni voce dice il **nome stampato**, la **categoria**
+  (luogo/funzione/stato/memoria/entità), l'**ambito** e **chi la scrive e chi la
+  legge**, per collezione. Fuori restano solo i livelli di rapporto: gradini,
+  non segni.
+- **Il validatore fisico legge l'ambito dal dato invece di dedurlo**, e la
+  deduzione è diventata la controprova: sei controlli nuovi (segno fuori dal
+  dizionario, voce morta, ambito che non combacia, mani non dichiarate o
+  inventate, muto/fantasma senza ragione, #cancelletto senza voce) e un
+  `--self-test` che pianta **cinque difetti** e pretende il rosso, in CI.
+- **Lo stesso segno aveva fino a tre nomi** (carta, app, pietra): il nome
+  canonico è quello della carta fisica, le altre forme sono congelate in
+  `aliases` come divergenza dichiarata. Riunificarle è ISSUES 70.
+- **Ventidue segni guadagnano un lettore che il censimento non contava**
+  (`focus_region_tags` delle Tensioni — il buco di D-234, richiuso anche qui) e
+  il `when_also` delle regole composite adesso conta.
+- **La lista `DICHIARATI` del validatore va in pensione**: le ragioni dei 34
+  segni senza lettori (e 1 senza scrittori) vivono nelle `note` delle voci,
+  accanto al segno che giustificano.
+- **Numeri invariati dove dovevano esserlo**: suite verde (512 prove, 12.290
+  asserzioni), playtest su 100 semi **0 seggi bloccati su 8** a entrambi i
+  tavoli, Consigli misto 3-8 e uniforme 3-9.
+
 ## 0.1.220 — Quarantotto carte su quarantotto, e tre volte cieco (D-258)
 
 - **Tutte le carte hanno una faccia fisica**: 48 su 48, ognuna con bersaglio a

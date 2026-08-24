@@ -50,6 +50,13 @@ jobs:
       - name: La grammatica fisica tiene
         run: python3 tools/validate_physical.py --check
 
+      # PZ-0: i segni sono una collezione dichiarata (godot/data/tags), e la
+      # guardia che la tiene allineata ai dati deve farsi vedere mordere su
+      # difetti piantati apposta — una guardia mai vista rossa non e' una
+      # guardia (lezione di D-256, due volte).
+      - name: La guardia del dizionario dei segni morde
+        run: python3 tools/validate_physical.py --self-test
+
       # Il registro dei segni (D-225). Un segno che le Conseguenze o le carte
       # scrivono sul mondo e che **nessuno legge** non e' una regola: e' colore
       # travestito da regola, e non lo si vede giocando — la partita gira lo

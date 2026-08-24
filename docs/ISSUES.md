@@ -2763,6 +2763,47 @@ e' in gioco.
 
 ---
 
+### 70. Il dizionario dei segni esiste, e due voci parlano ancora per conto loro
+
+`strumenti` · `contenuto` · `debito` · **aperta in 0.1.221** ([D-259](DECISIONS.md#d-259))
+
+Da 0.1.221 i segni sono una collezione dichiarata (`godot/data/tags`, 171 voci:
+nome stampato, categoria, ambito, chi scrive, chi legge) e
+`validate_physical.py` la tiene allineata ai dati, con un self-test che si vede
+mordere in CI. Ma la conversione ha trovato che **lo stesso segno aveva fino a
+tre nomi** — `#malcontento` sulla carta, «inquieta» nell'app, un nome per grado
+sulle pietre — e per adesso le forme divergenti sono solo **congelate** negli
+`aliases` delle voci: dichiarate, non riunificate.
+
+**Cosa resta, in ordine di peso:**
+
+1. **`sign_labels.gd` parla per conto suo.** È «l'unico posto dove un tag
+   diventa una parola» per l'app, ed è una tabella scritta a mano nel codice:
+   o legge dal dizionario a runtime, o viene generata da esso con un drift
+   check. Finché non succede, ogni segno nuovo si battezza due volte.
+2. **`MUTI_NOTI` di `build_sign_registry.py` è un'altra lista parallela.** Le
+   ragioni dei segni muti adesso vivono nelle `note` del dizionario; il
+   registro dovrebbe leggerle da lì invece di tenersi la sua copia (con le
+   conte misurate, che sono la parte sua vera).
+3. **Due segni, una parola**: la vocazione `granary` e la pietra
+   `structure:granary` si stampano entrambe `#granaio`. Al tavolo non si
+   distinguono. Si scioglie ri-mirando i bersagli delle carte (PZ-3), non
+   rinominando di nascosto.
+4. **I segni che solo il motore tocca restano fuori** (`uprooted`,
+   `seal_kept`, `seal_kept_twice`, `scar:burned_records`, `condition:guarded`):
+   il censimento vede i dati, non il codice. Servirebbe un censimento del
+   motore, o la dichiarazione esplicita di queste voci con mano `engine` da
+   entrambi i lati.
+5. **L'icona è dichiarata nello schema e non compilata**: aspetta l'arte dei
+   segni (il BRIEF non la copre ancora).
+
+**Fatto quando** un segno nuovo si battezza **una volta sola**: l'app prende la
+parola dal dizionario (o `sign_labels.gd` è generato e sorvegliato da un drift
+check), il registro dei segni legge le ragioni dalle `note`, e `#granaio` vuol
+dire una cosa sola sul tavolo.
+
+---
+
 ### 69. La Risonanza è scritta e non succede
 
 `contenuto` · `direzione` · **aperta in 0.1.218** ([D-256](DECISIONS.md#d-256)) ·

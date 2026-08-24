@@ -1,0 +1,2809 @@
+{
+  "schema_id": "tag",
+  "version": "1.0.0",
+  "items": [
+    {
+      "id": "account_settled",
+      "title": "il conto e' stato saldato",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "consequence",
+        "question_card"
+      ],
+      "read_by": [
+        "destiny_physical"
+      ]
+    },
+    {
+      "id": "amnesty_granted",
+      "title": "l'amnistia e' stata concessa",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "confluence_template",
+        "echo_card"
+      ],
+      "read_by": [],
+      "note": "memoria del mondo: narrata (D-103), ereditata"
+    },
+    {
+      "id": "ancient",
+      "title": "antica",
+      "category": "ENTITY",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "entity"
+      ],
+      "read_by": [],
+      "note": "etichetta di famiglia: dice chi sei, non cosa puoi fare, e nessuna regola deve leggerla"
+    },
+    {
+      "id": "anointed",
+      "title": "la custodia riconosciuta",
+      "category": "ENTITY",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "consequence"
+      ],
+      "read_by": [
+        "destiny"
+      ]
+    },
+    {
+      "id": "ash",
+      "title": "la cenere",
+      "category": "ENTITY",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "entity"
+      ],
+      "read_by": [],
+      "note": "etichetta di famiglia: dice chi sei, non cosa puoi fare, e nessuna regola deve leggerla"
+    },
+    {
+      "id": "ash_watch",
+      "title": "la veglia della cenere",
+      "category": "ENTITY",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "confluence_template",
+        "consequence",
+        "question_card"
+      ],
+      "read_by": [
+        "destiny"
+      ]
+    },
+    {
+      "id": "betrayal_spoken",
+      "title": "tradimento detto",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "aliases": [
+        "il tradimento e' stato detto ad alta voce"
+      ],
+      "written_by": [
+        "asset_physical",
+        "echo_card",
+        "question_card"
+      ],
+      "read_by": [
+        "asset_physical"
+      ]
+    },
+    {
+      "id": "burden_shared",
+      "title": "il peso e' stato diviso",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "consequence",
+        "question_card"
+      ],
+      "read_by": [],
+      "note": "memoria del mondo: narrata (D-103), ereditata"
+    },
+    {
+      "id": "capital",
+      "title": "capitale",
+      "category": "FUNCTION",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "region"
+      ],
+      "read_by": [
+        "asset_physical",
+        "destiny_physical",
+        "question_card",
+        "tension"
+      ]
+    },
+    {
+      "id": "charter_for_all",
+      "title": "la Carta vale per tutti",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "confluence_template",
+        "question_card"
+      ],
+      "read_by": [],
+      "note": "memoria del mondo: narrata (D-103), ereditata"
+    },
+    {
+      "id": "charter_temporary",
+      "title": "la Carta vale per un tempo solo",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "confluence_template",
+        "echo_card",
+        "question_card"
+      ],
+      "read_by": [
+        "question_card"
+      ]
+    },
+    {
+      "id": "charter_written",
+      "title": "la Carta e' stata scritta",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "consequence",
+        "question_card"
+      ],
+      "read_by": [
+        "asset_physical",
+        "destiny",
+        "entity",
+        "question_card"
+      ]
+    },
+    {
+      "id": "condition:abandoned",
+      "title": "abbandonato",
+      "category": "STATE",
+      "scope": [
+        "REGION"
+      ],
+      "aliases": [
+        "abbandonata"
+      ],
+      "written_by": [
+        "consequence",
+        "question_card"
+      ],
+      "read_by": [
+        "asset_physical",
+        "confluence_template",
+        "destiny_physical",
+        "question_card",
+        "tension"
+      ]
+    },
+    {
+      "id": "condition:contested",
+      "title": "conteso",
+      "category": "STATE",
+      "scope": [
+        "REGION"
+      ],
+      "aliases": [
+        "contesa"
+      ],
+      "written_by": [
+        "asset",
+        "asset_physical",
+        "consequence",
+        "echo_card",
+        "question_card"
+      ],
+      "read_by": [
+        "asset",
+        "asset_physical",
+        "consequence",
+        "destiny_physical",
+        "question_card",
+        "tension"
+      ]
+    },
+    {
+      "id": "condition:cut_off",
+      "title": "tagliato fuori",
+      "category": "STATE",
+      "scope": [
+        "REGION"
+      ],
+      "aliases": [
+        "tagliata fuori"
+      ],
+      "written_by": [
+        "asset",
+        "asset_physical",
+        "consequence",
+        "echo_card",
+        "question_card"
+      ],
+      "read_by": [
+        "asset",
+        "asset_physical",
+        "consequence",
+        "question_card",
+        "tension"
+      ]
+    },
+    {
+      "id": "condition:emptied",
+      "title": "svuotato",
+      "category": "STATE",
+      "scope": [
+        "REGION"
+      ],
+      "aliases": [
+        "svuotata"
+      ],
+      "written_by": [
+        "asset_physical",
+        "consequence",
+        "echo_card",
+        "question_card"
+      ],
+      "read_by": [
+        "asset_physical",
+        "destiny",
+        "destiny_physical",
+        "question_card",
+        "tension"
+      ]
+    },
+    {
+      "id": "condition:exploited",
+      "title": "sfruttato",
+      "category": "STATE",
+      "scope": [
+        "REGION"
+      ],
+      "aliases": [
+        "sfruttata"
+      ],
+      "written_by": [
+        "asset_physical",
+        "consequence",
+        "question_card"
+      ],
+      "read_by": [
+        "destiny",
+        "tension"
+      ]
+    },
+    {
+      "id": "condition:indebted",
+      "title": "indebitata",
+      "category": "STATE",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "asset",
+        "consequence",
+        "echo_card",
+        "question_card"
+      ],
+      "read_by": [
+        "consequence",
+        "destiny_physical",
+        "question_card",
+        "tension"
+      ]
+    },
+    {
+      "id": "condition:lean",
+      "title": "magro",
+      "category": "STATE",
+      "scope": [
+        "REGION"
+      ],
+      "aliases": [
+        "magra"
+      ],
+      "written_by": [
+        "consequence",
+        "echo_card"
+      ],
+      "read_by": [
+        "asset",
+        "asset_physical",
+        "consequence",
+        "question_card",
+        "tension"
+      ]
+    },
+    {
+      "id": "condition:mourning",
+      "title": "lutto",
+      "category": "STATE",
+      "scope": [
+        "REGION"
+      ],
+      "aliases": [
+        "in lutto"
+      ],
+      "written_by": [
+        "echo_card"
+      ],
+      "read_by": [
+        "asset",
+        "asset_physical",
+        "question_card"
+      ]
+    },
+    {
+      "id": "condition:plundered",
+      "title": "saccheggiato",
+      "category": "STATE",
+      "scope": [
+        "REGION"
+      ],
+      "aliases": [
+        "depredata"
+      ],
+      "written_by": [
+        "asset_physical",
+        "consequence"
+      ],
+      "read_by": [
+        "asset_physical",
+        "consequence",
+        "tag_rule",
+        "tension"
+      ]
+    },
+    {
+      "id": "condition:rationed",
+      "title": "razionato",
+      "category": "STATE",
+      "scope": [
+        "REGION"
+      ],
+      "aliases": [
+        "razionata"
+      ],
+      "written_by": [
+        "asset",
+        "asset_physical",
+        "consequence",
+        "question_card"
+      ],
+      "read_by": [
+        "asset",
+        "asset_physical",
+        "consequence",
+        "question_card",
+        "tension"
+      ]
+    },
+    {
+      "id": "condition:requisitioned",
+      "title": "requisito",
+      "category": "STATE",
+      "scope": [
+        "REGION"
+      ],
+      "aliases": [
+        "requisita"
+      ],
+      "written_by": [
+        "consequence"
+      ],
+      "read_by": [
+        "asset_physical",
+        "tension"
+      ]
+    },
+    {
+      "id": "condition:starving",
+      "title": "fame",
+      "category": "STATE",
+      "scope": [
+        "REGION"
+      ],
+      "aliases": [
+        "affamata"
+      ],
+      "written_by": [
+        "asset_physical",
+        "consequence",
+        "echo_card",
+        "question_card"
+      ],
+      "read_by": [
+        "asset",
+        "asset_physical",
+        "confluence_template",
+        "consequence",
+        "destiny_physical",
+        "question_card",
+        "tag_rule",
+        "tension"
+      ]
+    },
+    {
+      "id": "condition:unrest",
+      "title": "malcontento",
+      "category": "STATE",
+      "scope": [
+        "REGION"
+      ],
+      "aliases": [
+        "inquieta"
+      ],
+      "written_by": [
+        "asset",
+        "asset_physical",
+        "consequence",
+        "echo_card",
+        "question_card"
+      ],
+      "read_by": [
+        "asset",
+        "asset_physical",
+        "confluence_template",
+        "consequence",
+        "destiny",
+        "destiny_physical",
+        "echo_card",
+        "question_card",
+        "tension"
+      ]
+    },
+    {
+      "id": "crown_dispossessed",
+      "title": "la corona e' stata spogliata",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "consequence"
+      ],
+      "read_by": [
+        "asset_physical"
+      ]
+    },
+    {
+      "id": "crown_divided",
+      "title": "la corona e' stata divisa",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "consequence"
+      ],
+      "read_by": [
+        "asset_physical",
+        "confluence_template",
+        "consequence",
+        "destiny",
+        "destiny_physical",
+        "question_card"
+      ]
+    },
+    {
+      "id": "crowned",
+      "title": "la corona",
+      "category": "ENTITY",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "entity"
+      ],
+      "read_by": [
+        "confluence_template",
+        "consequence",
+        "destiny_physical",
+        "question_card"
+      ]
+    },
+    {
+      "id": "crystal_exploited",
+      "title": "il Cristallo e' stato sfruttato",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "asset_physical",
+        "consequence",
+        "question_card"
+      ],
+      "read_by": [
+        "asset_physical",
+        "chronicle",
+        "destiny",
+        "destiny_physical",
+        "entity",
+        "question_card"
+      ]
+    },
+    {
+      "id": "crystal_measured",
+      "title": "cristallo misurato",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "aliases": [
+        "il Cristallo e' stato misurato"
+      ],
+      "written_by": [
+        "asset_physical",
+        "echo_card",
+        "question_card"
+      ],
+      "read_by": [
+        "question_card"
+      ]
+    },
+    {
+      "id": "crystal_site",
+      "title": "cristallo",
+      "category": "PLACE",
+      "scope": [
+        "REGION"
+      ],
+      "aliases": [
+        "sito del cristallo"
+      ],
+      "written_by": [
+        "region"
+      ],
+      "read_by": [
+        "asset_physical",
+        "destiny_physical",
+        "question_card",
+        "tension"
+      ]
+    },
+    {
+      "id": "debt_called",
+      "title": "debito chiamato",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "aliases": [
+        "il debito e' stato chiamato"
+      ],
+      "written_by": [
+        "asset",
+        "asset_physical",
+        "consequence",
+        "question_card"
+      ],
+      "read_by": [
+        "asset_physical",
+        "destiny",
+        "destiny_physical",
+        "entity",
+        "question_card",
+        "tag_rule"
+      ]
+    },
+    {
+      "id": "debt_forgiven",
+      "title": "debito rimesso",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "aliases": [
+        "il debito e' stato perdonato"
+      ],
+      "written_by": [
+        "asset_physical",
+        "consequence",
+        "question_card"
+      ],
+      "read_by": [
+        "destiny",
+        "destiny_physical"
+      ]
+    },
+    {
+      "id": "debt_staggered",
+      "title": "il debito e' stato dilazionato",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "confluence_template"
+      ],
+      "read_by": [],
+      "note": "memoria del mondo: narrata (D-103), ereditata"
+    },
+    {
+      "id": "descent_witnessed",
+      "title": "la discesa e' stata fatta davanti a testimoni",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "confluence_template"
+      ],
+      "read_by": [],
+      "note": "memoria del mondo: narrata (D-103), ereditata"
+    },
+    {
+      "id": "discovery:crystal",
+      "title": "scoperta: il cristallo",
+      "category": "MEMORY",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "asset_physical",
+        "consequence"
+      ],
+      "read_by": [
+        "destiny_physical",
+        "engine",
+        "question_card"
+      ],
+      "note": "il motore la conta (discovery_count) oltre a chi la legge per nome"
+    },
+    {
+      "id": "discovery:legend",
+      "title": "scoperta: la leggenda",
+      "category": "MEMORY",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "asset_physical",
+        "consequence"
+      ],
+      "read_by": [
+        "engine"
+      ],
+      "note": "il motore la conta (discovery_count) oltre a chi la legge per nome"
+    },
+    {
+      "id": "discovery:relic",
+      "title": "scoperta: la reliquia",
+      "category": "MEMORY",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "confluence_template",
+        "consequence",
+        "echo_card"
+      ],
+      "read_by": [
+        "destiny",
+        "engine",
+        "question_card"
+      ],
+      "note": "il motore la conta (discovery_count) oltre a chi la legge per nome"
+    },
+    {
+      "id": "discovery:shared_record",
+      "title": "scoperta: il registro condiviso",
+      "category": "MEMORY",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "confluence_template"
+      ],
+      "read_by": [
+        "engine"
+      ],
+      "note": "il motore la conta (discovery_count) oltre a chi la legge per nome"
+    },
+    {
+      "id": "discovery:supervised_record",
+      "title": "scoperta: lo studio custodito",
+      "category": "MEMORY",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "consequence"
+      ],
+      "read_by": [
+        "engine"
+      ],
+      "note": "il motore la conta (discovery_count) oltre a chi la legge per nome"
+    },
+    {
+      "id": "discovery:the_charter",
+      "title": "scoperta: la carta",
+      "category": "MEMORY",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "consequence"
+      ],
+      "read_by": [
+        "engine"
+      ],
+      "note": "il motore la conta (discovery_count) oltre a chi la legge per nome"
+    },
+    {
+      "id": "discovery:the_ledger",
+      "title": "scoperta: il registro",
+      "category": "MEMORY",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "asset_physical",
+        "confluence_template",
+        "consequence"
+      ],
+      "read_by": [
+        "engine",
+        "question_card"
+      ],
+      "note": "il motore la conta (discovery_count) oltre a chi la legge per nome"
+    },
+    {
+      "id": "discovery:the_measure",
+      "title": "scoperta: la misura",
+      "category": "MEMORY",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "echo_card"
+      ],
+      "read_by": [
+        "engine"
+      ],
+      "note": "il motore la conta (discovery_count) oltre a chi la legge per nome"
+    },
+    {
+      "id": "discovery:the_omen",
+      "title": "scoperta: il presagio",
+      "category": "MEMORY",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "asset_physical",
+        "echo_card"
+      ],
+      "read_by": [
+        "engine"
+      ],
+      "note": "il motore la conta (discovery_count) oltre a chi la legge per nome"
+    },
+    {
+      "id": "discovery:trade_ledger",
+      "title": "scoperta: il registro dei traffici",
+      "category": "MEMORY",
+      "scope": [
+        "ENTITY"
+      ],
+      "aliases": [
+        "registro del commercio"
+      ],
+      "written_by": [
+        "asset_physical",
+        "confluence_template"
+      ],
+      "read_by": [
+        "engine"
+      ],
+      "note": "il motore la conta (discovery_count) oltre a chi la legge per nome"
+    },
+    {
+      "id": "discovery:written_law",
+      "title": "scoperta: la legge scritta",
+      "category": "MEMORY",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "asset_physical",
+        "consequence"
+      ],
+      "read_by": [
+        "engine"
+      ],
+      "note": "il motore la conta (discovery_count) oltre a chi la legge per nome"
+    },
+    {
+      "id": "distribution_audited",
+      "title": "la distribuzione e' stata contata",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "confluence_template",
+        "question_card"
+      ],
+      "read_by": [],
+      "note": "memoria del mondo: narrata (D-103), ereditata"
+    },
+    {
+      "id": "domain:ANCIENT",
+      "title": "dominio: l'antico",
+      "category": "PLACE",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "region"
+      ],
+      "read_by": [
+        "engine"
+      ],
+      "note": "il dominio della Regione: lo legge il motore per decidere quale Tensione guarda quale posto"
+    },
+    {
+      "id": "domain:RESOURCE",
+      "title": "dominio: le risorse",
+      "category": "PLACE",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "region"
+      ],
+      "read_by": [
+        "engine"
+      ],
+      "note": "il dominio della Regione: lo legge il motore per decidere quale Tensione guarda quale posto"
+    },
+    {
+      "id": "domain:SURVIVAL",
+      "title": "dominio: la sopravvivenza",
+      "category": "PLACE",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "region"
+      ],
+      "read_by": [
+        "engine"
+      ],
+      "note": "il dominio della Regione: lo legge il motore per decidere quale Tensione guarda quale posto"
+    },
+    {
+      "id": "domain:TERRITORY",
+      "title": "dominio: il territorio",
+      "category": "PLACE",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "region"
+      ],
+      "read_by": [
+        "engine"
+      ],
+      "note": "il dominio della Regione: lo legge il motore per decidere quale Tensione guarda quale posto"
+    },
+    {
+      "id": "dragon_slain",
+      "title": "il drago e' stato abbattuto",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "consequence"
+      ],
+      "read_by": [],
+      "note": "memoria del mondo: narrata (D-103), ereditata"
+    },
+    {
+      "id": "escort_sworn",
+      "title": "scorta giurata",
+      "category": "STATE",
+      "scope": [
+        "ENTITY"
+      ],
+      "aliases": [
+        "la scorta giurata"
+      ],
+      "written_by": [
+        "asset_physical",
+        "consequence"
+      ],
+      "read_by": [
+        "asset_physical",
+        "destiny",
+        "destiny_physical"
+      ]
+    },
+    {
+      "id": "evicted:$region_focus",
+      "title": "cacciata dalla Regione in questione",
+      "category": "STATE",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "engine"
+      ],
+      "read_by": [
+        "asset"
+      ],
+      "note": "porta un id dinamico: la Regione da cui si e' stati cacciati"
+    },
+    {
+      "id": "failed_proposal",
+      "title": "la proposta caduta",
+      "category": "STATE",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "consequence",
+        "engine"
+      ],
+      "read_by": [
+        "destiny",
+        "destiny_physical"
+      ],
+      "note": "lo scrive anche il motore, quando una proposta cade al Consiglio"
+    },
+    {
+      "id": "faith_established",
+      "title": "fede stabilita",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "aliases": [
+        "la fede ha avuto un posto"
+      ],
+      "written_by": [
+        "consequence",
+        "question_card"
+      ],
+      "read_by": [
+        "asset_physical",
+        "question_card"
+      ]
+    },
+    {
+      "id": "free_cities",
+      "title": "le città libere",
+      "category": "ENTITY",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "entity"
+      ],
+      "read_by": [],
+      "note": "etichetta di famiglia: dice chi sei, non cosa puoi fare, e nessuna regola deve leggerla"
+    },
+    {
+      "id": "function:ATTACK",
+      "title": "attacco",
+      "category": "FUNCTION",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "engine"
+      ],
+      "read_by": [
+        "echo_card"
+      ],
+      "note": "la funzione dell'Azione appena compiuta: il motore la posa sul mondo per l'eleggibilita' degli Echo, e la vista la nasconde"
+    },
+    {
+      "id": "function:BETRAYAL",
+      "title": "tradimento",
+      "category": "FUNCTION",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "engine"
+      ],
+      "read_by": [
+        "echo_card"
+      ],
+      "note": "la funzione dell'Azione appena compiuta: il motore la posa sul mondo per l'eleggibilita' degli Echo, e la vista la nasconde"
+    },
+    {
+      "id": "function:CONQUEST",
+      "title": "conquista",
+      "category": "FUNCTION",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "engine"
+      ],
+      "read_by": [
+        "echo_card"
+      ],
+      "note": "la funzione dell'Azione appena compiuta: il motore la posa sul mondo per l'eleggibilita' degli Echo, e la vista la nasconde"
+    },
+    {
+      "id": "function:DISCOVERY",
+      "title": "scoperta",
+      "category": "FUNCTION",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "engine"
+      ],
+      "read_by": [
+        "echo_card"
+      ],
+      "note": "la funzione dell'Azione appena compiuta: il motore la posa sul mondo per l'eleggibilita' degli Echo, e la vista la nasconde"
+    },
+    {
+      "id": "function:LACK",
+      "title": "mancanza",
+      "category": "FUNCTION",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "engine"
+      ],
+      "read_by": [
+        "echo_card"
+      ],
+      "note": "la funzione dell'Azione appena compiuta: il motore la posa sul mondo per l'eleggibilita' degli Echo, e la vista la nasconde"
+    },
+    {
+      "id": "function:PROHIBITION",
+      "title": "divieto",
+      "category": "FUNCTION",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "engine"
+      ],
+      "read_by": [
+        "echo_card"
+      ],
+      "note": "la funzione dell'Azione appena compiuta: il motore la posa sul mondo per l'eleggibilita' degli Echo, e la vista la nasconde"
+    },
+    {
+      "id": "function:REQUEST",
+      "title": "richiesta",
+      "category": "FUNCTION",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "engine"
+      ],
+      "read_by": [
+        "echo_card"
+      ],
+      "note": "la funzione dell'Azione appena compiuta: il motore la posa sul mondo per l'eleggibilita' degli Echo, e la vista la nasconde"
+    },
+    {
+      "id": "function:REVELATION",
+      "title": "rivelazione",
+      "category": "FUNCTION",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "engine"
+      ],
+      "read_by": [
+        "confluence_template"
+      ],
+      "note": "la funzione dell'Azione appena compiuta: il motore la posa sul mondo per l'eleggibilita' degli Echo, e la vista la nasconde"
+    },
+    {
+      "id": "function:SEPARATION",
+      "title": "separazione",
+      "category": "FUNCTION",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "engine"
+      ],
+      "read_by": [
+        "echo_card"
+      ],
+      "note": "la funzione dell'Azione appena compiuta: il motore la posa sul mondo per l'eleggibilita' degli Echo, e la vista la nasconde"
+    },
+    {
+      "id": "function:THREAT",
+      "title": "minaccia",
+      "category": "FUNCTION",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "engine"
+      ],
+      "read_by": [
+        "echo_card"
+      ],
+      "note": "la funzione dell'Azione appena compiuta: il motore la posa sul mondo per l'eleggibilita' degli Echo, e la vista la nasconde"
+    },
+    {
+      "id": "function:USURPATION",
+      "title": "usurpazione",
+      "category": "FUNCTION",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "engine"
+      ],
+      "read_by": [
+        "echo_card"
+      ],
+      "note": "la funzione dell'Azione appena compiuta: il motore la posa sul mondo per l'eleggibilita' degli Echo, e la vista la nasconde"
+    },
+    {
+      "id": "function:VIOLATION",
+      "title": "violazione",
+      "category": "FUNCTION",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "engine"
+      ],
+      "read_by": [
+        "echo_card"
+      ],
+      "note": "la funzione dell'Azione appena compiuta: il motore la posa sul mondo per l'eleggibilita' degli Echo, e la vista la nasconde"
+    },
+    {
+      "id": "grain_requisitioned",
+      "title": "grano requisito",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "aliases": [
+        "il grano e' stato requisito"
+      ],
+      "written_by": [
+        "asset_physical",
+        "consequence",
+        "question_card"
+      ],
+      "read_by": [
+        "asset_physical",
+        "entity"
+      ]
+    },
+    {
+      "id": "granary",
+      "title": "granaio",
+      "category": "FUNCTION",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "region"
+      ],
+      "read_by": [
+        "asset_physical",
+        "destiny_physical",
+        "question_card",
+        "tension"
+      ],
+      "note": "vocazione del luogo, stampata sulla Regione: non e' la pietra structure:granary, ma le carte stampano #granaio per entrambe"
+    },
+    {
+      "id": "guild",
+      "title": "la gilda",
+      "category": "ENTITY",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "entity"
+      ],
+      "read_by": [],
+      "note": "etichetta di famiglia: dice chi sei, non cosa puoi fare, e nessuna regola deve leggerla"
+    },
+    {
+      "id": "heir_named",
+      "title": "erede nominato",
+      "category": "MEMORY",
+      "scope": [
+        "ENTITY",
+        "GLOBAL"
+      ],
+      "aliases": [
+        "l'erede e' stato nominato"
+      ],
+      "written_by": [
+        "asset",
+        "asset_physical",
+        "consequence",
+        "question_card"
+      ],
+      "read_by": [
+        "asset_physical",
+        "entity"
+      ],
+      "note": "vive sia sulla casa (entry_tag della successione) sia sul mondo (fatto ricordato)"
+    },
+    {
+      "id": "knowledge_shared",
+      "title": "sapere condiviso",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "aliases": [
+        "quello che si e' saputo lo sanno tutti"
+      ],
+      "written_by": [
+        "asset_physical",
+        "confluence_template",
+        "question_card"
+      ],
+      "read_by": [
+        "asset_physical",
+        "destiny_physical"
+      ]
+    },
+    {
+      "id": "ledger_public",
+      "title": "registro pubblico",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "aliases": [
+        "i conti sono pubblici"
+      ],
+      "written_by": [
+        "asset",
+        "asset_physical",
+        "confluence_template",
+        "consequence",
+        "question_card"
+      ],
+      "read_by": [
+        "asset_physical",
+        "destiny",
+        "destiny_physical",
+        "question_card"
+      ]
+    },
+    {
+      "id": "legend:crystal_exploited",
+      "title": "si racconta che il Cristallo e' stato sfruttato",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "engine"
+      ],
+      "read_by": [
+        "destiny",
+        "engine"
+      ],
+      "note": "la forma postuma di un fatto: la scrive il motore quando la memoria sfuma"
+    },
+    {
+      "id": "legend:debt_called",
+      "title": "si racconta che il debito e' stato chiamato",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "engine"
+      ],
+      "read_by": [
+        "confluence_template",
+        "echo_card",
+        "engine"
+      ],
+      "note": "la forma postuma di un fatto: la scrive il motore quando la memoria sfuma"
+    },
+    {
+      "id": "legend:oath_broken",
+      "title": "si racconta che il giuramento e' stato rotto",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "engine"
+      ],
+      "read_by": [
+        "echo_card",
+        "engine"
+      ],
+      "note": "la forma postuma di un fatto: la scrive il motore quando la memoria sfuma"
+    },
+    {
+      "id": "legend:order_restored",
+      "title": "si racconta che l'ordine e' stato ristabilito",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "engine"
+      ],
+      "read_by": [
+        "confluence_template",
+        "echo_card",
+        "engine"
+      ],
+      "note": "la forma postuma di un fatto: la scrive il motore quando la memoria sfuma"
+    },
+    {
+      "id": "life:INC_ALDRIC_02",
+      "title": "vita: La Repubblica della Valle",
+      "category": "ENTITY",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "engine"
+      ],
+      "read_by": [
+        "tag_rule"
+      ],
+      "note": "la vita che la casa sta vivendo: la posa il motore alla successione"
+    },
+    {
+      "id": "life:INC_ALDRIC_REGENCY",
+      "title": "vita: La Reggenza del Granaio",
+      "category": "ENTITY",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "engine"
+      ],
+      "read_by": [
+        "tag_rule"
+      ],
+      "note": "la vita che la casa sta vivendo: la posa il motore alla successione"
+    },
+    {
+      "id": "life:INC_ALDRIC_RESTORED",
+      "title": "vita: La Corona Restaurata",
+      "category": "ENTITY",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "engine"
+      ],
+      "read_by": [
+        "tag_rule"
+      ],
+      "note": "la vita che la casa sta vivendo: la posa il motore alla successione"
+    },
+    {
+      "id": "life:INC_CENERE_02",
+      "title": "vita: Le Custodi della Cenere",
+      "category": "ENTITY",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "engine"
+      ],
+      "read_by": [
+        "tag_rule"
+      ],
+      "note": "la vita che la casa sta vivendo: la posa il motore alla successione"
+    },
+    {
+      "id": "life:INC_CENERE_FURNACES",
+      "title": "vita: I Forni Riaccesi",
+      "category": "ENTITY",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "engine"
+      ],
+      "read_by": [
+        "tag_rule"
+      ],
+      "note": "la vita che la casa sta vivendo: la posa il motore alla successione"
+    },
+    {
+      "id": "life:INC_LIBERE_HEGEMONY",
+      "title": "vita: L'Egemonia di Eredan",
+      "category": "ENTITY",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "engine"
+      ],
+      "read_by": [
+        "tag_rule"
+      ],
+      "note": "la vita che la casa sta vivendo: la posa il motore alla successione"
+    },
+    {
+      "id": "life:INC_LIBERE_LEAGUE",
+      "title": "vita: La Lega delle Sette",
+      "category": "ENTITY",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "engine"
+      ],
+      "read_by": [
+        "tag_rule"
+      ],
+      "note": "la vita che la casa sta vivendo: la posa il motore alla successione"
+    },
+    {
+      "id": "life:INC_LYRA_02",
+      "title": "vita: Il Culto della Misura",
+      "category": "ENTITY",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "engine"
+      ],
+      "read_by": [
+        "tag_rule"
+      ],
+      "note": "la vita che la casa sta vivendo: la posa il motore alla successione"
+    },
+    {
+      "id": "life:INC_LYRA_ACADEMY",
+      "title": "vita: L'Accademia delle Misure",
+      "category": "ENTITY",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "engine"
+      ],
+      "read_by": [
+        "tag_rule"
+      ],
+      "note": "la vita che la casa sta vivendo: la posa il motore alla successione"
+    },
+    {
+      "id": "life:INC_NAHR_DIASPORA",
+      "title": "vita: La Diaspora di Nahr",
+      "category": "ENTITY",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "engine"
+      ],
+      "read_by": [
+        "tag_rule"
+      ],
+      "note": "la vita che la casa sta vivendo: la posa il motore alla successione"
+    },
+    {
+      "id": "life:INC_NAHR_KINGDOM",
+      "title": "vita: Il Regno di Nahr",
+      "category": "ENTITY",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "engine"
+      ],
+      "read_by": [
+        "tag_rule"
+      ],
+      "note": "la vita che la casa sta vivendo: la posa il motore alla successione"
+    },
+    {
+      "id": "life:INC_SALE_02",
+      "title": "vita: La Compagnia del Sale",
+      "category": "ENTITY",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "engine"
+      ],
+      "read_by": [
+        "tag_rule"
+      ],
+      "note": "la vita che la casa sta vivendo: la posa il motore alla successione"
+    },
+    {
+      "id": "life:INC_SALE_BANK",
+      "title": "vita: Il Banco Nero",
+      "category": "ENTITY",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "engine"
+      ],
+      "read_by": [
+        "tag_rule"
+      ],
+      "note": "la vita che la casa sta vivendo: la posa il motore alla successione"
+    },
+    {
+      "id": "life:INC_VAERAX_CULT",
+      "title": "vita: Il Culto della Montagna",
+      "category": "ENTITY",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "engine"
+      ],
+      "read_by": [
+        "tag_rule"
+      ],
+      "note": "la vita che la casa sta vivendo: la posa il motore alla successione"
+    },
+    {
+      "id": "life:INC_VAERAX_LEGEND",
+      "title": "vita: La Leggenda della Montagna",
+      "category": "ENTITY",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "engine"
+      ],
+      "read_by": [
+        "tag_rule"
+      ],
+      "note": "la vita che la casa sta vivendo: la posa il motore alla successione"
+    },
+    {
+      "id": "life:INC_VAERAX_RISEN",
+      "title": "vita: Vaerax Ridestato",
+      "category": "ENTITY",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "engine"
+      ],
+      "read_by": [
+        "tag_rule"
+      ],
+      "note": "la vita che la casa sta vivendo: la posa il motore alla successione"
+    },
+    {
+      "id": "life:INC_VETRO_02",
+      "title": "vita: I Frati del Vetro",
+      "category": "ENTITY",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "engine"
+      ],
+      "read_by": [
+        "tag_rule"
+      ],
+      "note": "la vita che la casa sta vivendo: la posa il motore alla successione"
+    },
+    {
+      "id": "life:INC_VETRO_INQUISITION",
+      "title": "vita: L'Inquisizione del Vetro",
+      "category": "ENTITY",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "engine"
+      ],
+      "read_by": [
+        "tag_rule"
+      ],
+      "note": "la vita che la casa sta vivendo: la posa il motore alla successione"
+    },
+    {
+      "id": "list_witnessed",
+      "title": "la lista e' stata letta davanti a testimoni",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "confluence_template"
+      ],
+      "read_by": [],
+      "note": "memoria del mondo: narrata (D-103), ereditata"
+    },
+    {
+      "id": "migrating",
+      "title": "in cammino",
+      "category": "ENTITY",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "entity"
+      ],
+      "read_by": [],
+      "note": "etichetta di famiglia: dice chi sei, non cosa puoi fare, e nessuna regola deve leggerla"
+    },
+    {
+      "id": "mine_sealed",
+      "title": "le Miniere sono state sigillate",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "consequence",
+        "question_card"
+      ],
+      "read_by": [
+        "chronicle",
+        "confluence_template",
+        "consequence",
+        "destiny",
+        "destiny_physical"
+      ],
+      "note": "fatto del mondo; il sigillo sulla mappa e' structure:sealed"
+    },
+    {
+      "id": "mountain_forgotten",
+      "title": "la montagna e' diventata racconto",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [],
+      "read_by": [
+        "destiny",
+        "entity",
+        "tag_rule"
+      ],
+      "note": "nessuno lo scrive piu' (ISSUES 24): il Destino DST_VAERAX_LEGEND lo chiede al vuoto"
+    },
+    {
+      "id": "nahr_settled",
+      "title": "i Nahr si sono fermati",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "consequence",
+        "question_card"
+      ],
+      "read_by": [
+        "asset_physical",
+        "destiny",
+        "destiny_physical",
+        "entity"
+      ]
+    },
+    {
+      "id": "no_charter",
+      "title": "la Carta non e' stata scritta",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "consequence",
+        "question_card"
+      ],
+      "read_by": [
+        "asset_physical",
+        "destiny",
+        "question_card"
+      ]
+    },
+    {
+      "id": "nomad_range",
+      "title": "pascolo",
+      "category": "PLACE",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "region"
+      ],
+      "read_by": [
+        "asset_physical",
+        "destiny_physical",
+        "question_card",
+        "tension"
+      ]
+    },
+    {
+      "id": "oath_broken",
+      "title": "giuramento rotto",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "aliases": [
+        "il giuramento e' stato rotto"
+      ],
+      "written_by": [
+        "asset_physical",
+        "consequence"
+      ],
+      "read_by": [
+        "asset_physical",
+        "consequence",
+        "destiny",
+        "destiny_physical",
+        "tag_rule"
+      ]
+    },
+    {
+      "id": "order",
+      "title": "l'ordine",
+      "category": "ENTITY",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "entity"
+      ],
+      "read_by": [],
+      "note": "etichetta di famiglia: dice chi sei, non cosa puoi fare, e nessuna regola deve leggerla"
+    },
+    {
+      "id": "order_restored",
+      "title": "l'ordine e' stato ristabilito",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "consequence"
+      ],
+      "read_by": [],
+      "note": "vita postuma: vive nella sua forma legend:"
+    },
+    {
+      "id": "parley_held",
+      "title": "ci si e' parlato",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "echo_card"
+      ],
+      "read_by": [
+        "asset_physical"
+      ]
+    },
+    {
+      "id": "petition_heard",
+      "title": "la richiesta e' stata ascoltata",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "echo_card"
+      ],
+      "read_by": [
+        "asset_physical"
+      ]
+    },
+    {
+      "id": "place:collapsed_pass",
+      "title": "passo franato",
+      "category": "PLACE",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "structure_type"
+      ],
+      "read_by": [],
+      "note": "grado di pietra sulla mappa: oggi nessuna regola lo legge — colore dichiarato, in fila per un lettore (ISSUES 24)"
+    },
+    {
+      "id": "place:cursed_wood",
+      "title": "selva maledetta",
+      "category": "PLACE",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "structure_type"
+      ],
+      "read_by": [
+        "question_card",
+        "tag_rule"
+      ]
+    },
+    {
+      "id": "place:dry_spring",
+      "title": "sorgente secca",
+      "category": "PLACE",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "structure_type"
+      ],
+      "read_by": [],
+      "note": "grado di pietra sulla mappa: oggi nessuna regola lo legge — colore dichiarato, in fila per un lettore (ISSUES 24)"
+    },
+    {
+      "id": "place:forest",
+      "title": "foresta",
+      "category": "PLACE",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "structure_type"
+      ],
+      "read_by": [
+        "tag_rule"
+      ]
+    },
+    {
+      "id": "place:low_spring",
+      "title": "sorgente bassa",
+      "category": "PLACE",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "structure_type"
+      ],
+      "read_by": [],
+      "note": "grado di pietra sulla mappa: oggi nessuna regola lo legge — colore dichiarato, in fila per un lettore (ISSUES 24)"
+    },
+    {
+      "id": "place:open_site",
+      "title": "sito aperto",
+      "category": "PLACE",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "structure_type"
+      ],
+      "read_by": [
+        "tag_rule"
+      ]
+    },
+    {
+      "id": "place:pass",
+      "title": "passo aperto",
+      "category": "PLACE",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "structure_type"
+      ],
+      "read_by": [],
+      "note": "grado di pietra sulla mappa: oggi nessuna regola lo legge — colore dichiarato, in fila per un lettore (ISSUES 24)"
+    },
+    {
+      "id": "place:sleeping_site",
+      "title": "sito dormiente",
+      "category": "PLACE",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "structure_type"
+      ],
+      "read_by": [],
+      "note": "grado di pietra sulla mappa: oggi nessuna regola lo legge — colore dichiarato, in fila per un lettore (ISSUES 24)"
+    },
+    {
+      "id": "place:spring",
+      "title": "sorgente viva",
+      "category": "PLACE",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "structure_type"
+      ],
+      "read_by": [
+        "tag_rule"
+      ]
+    },
+    {
+      "id": "place:stripped_site",
+      "title": "sito saccheggiato",
+      "category": "PLACE",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "structure_type"
+      ],
+      "read_by": [],
+      "note": "grado di pietra sulla mappa: oggi nessuna regola lo legge — colore dichiarato, in fila per un lettore (ISSUES 24)"
+    },
+    {
+      "id": "place:thinned_wood",
+      "title": "bosco diradato",
+      "category": "PLACE",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "structure_type"
+      ],
+      "read_by": [],
+      "note": "grado di pietra sulla mappa: oggi nessuna regola lo legge — colore dichiarato, in fila per un lettore (ISSUES 24)"
+    },
+    {
+      "id": "question_unresolved",
+      "title": "una domanda e' rimasta aperta",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "consequence",
+        "question_card"
+      ],
+      "read_by": [
+        "asset_physical",
+        "confluence_template",
+        "consequence",
+        "destiny",
+        "destiny_physical",
+        "objective"
+      ]
+    },
+    {
+      "id": "quota_guaranteed",
+      "title": "una quota e' garantita",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "confluence_template"
+      ],
+      "read_by": [],
+      "note": "memoria del mondo: narrata (D-103), ereditata"
+    },
+    {
+      "id": "relic_buried",
+      "title": "la reliquia e' stata sepolta",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "consequence",
+        "question_card"
+      ],
+      "read_by": [
+        "destiny",
+        "question_card"
+      ]
+    },
+    {
+      "id": "relic_recorded",
+      "title": "la reliquia e' a registro",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "confluence_template",
+        "question_card"
+      ],
+      "read_by": [
+        "question_card"
+      ]
+    },
+    {
+      "id": "relic_shown",
+      "title": "la reliquia e' stata mostrata",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "consequence",
+        "question_card"
+      ],
+      "read_by": [
+        "destiny",
+        "entity",
+        "question_card"
+      ]
+    },
+    {
+      "id": "renowned",
+      "title": "fama",
+      "category": "ENTITY",
+      "scope": [
+        "ENTITY"
+      ],
+      "aliases": [
+        "la fama"
+      ],
+      "written_by": [
+        "asset_physical",
+        "consequence",
+        "echo_card",
+        "question_card"
+      ],
+      "read_by": [
+        "asset_physical",
+        "destiny",
+        "destiny_physical",
+        "objective",
+        "question_card",
+        "tag_rule"
+      ]
+    },
+    {
+      "id": "return_promised",
+      "title": "il ritorno e' stato promesso",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "confluence_template",
+        "question_card"
+      ],
+      "read_by": [],
+      "note": "memoria del mondo: narrata (D-103), ereditata"
+    },
+    {
+      "id": "scar:abandoned",
+      "title": "l'abbandono",
+      "category": "MEMORY",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "consequence"
+      ],
+      "read_by": [
+        "tag_rule"
+      ]
+    },
+    {
+      "id": "scar:broken_bridge",
+      "title": "il ponte rotto",
+      "category": "MEMORY",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "consequence",
+        "question_card"
+      ],
+      "read_by": [
+        "asset",
+        "tag_rule"
+      ]
+    },
+    {
+      "id": "scar:broken_word",
+      "title": "la parola rotta",
+      "category": "MEMORY",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "consequence"
+      ],
+      "read_by": [
+        "tag_rule"
+      ]
+    },
+    {
+      "id": "scar:changed_hands",
+      "title": "passata di mano",
+      "category": "MEMORY",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "consequence"
+      ],
+      "read_by": [
+        "tag_rule"
+      ]
+    },
+    {
+      "id": "scar:divided_seal",
+      "title": "il sigillo diviso",
+      "category": "MEMORY",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "consequence"
+      ],
+      "read_by": [],
+      "note": "il dente vivo e' crown_divided, letto dai Destini e sciolto da CNS_CROWN_REUNITED"
+    },
+    {
+      "id": "scar:dragonfall",
+      "title": "la caduta del drago",
+      "category": "MEMORY",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "consequence"
+      ],
+      "read_by": [
+        "tag_rule"
+      ]
+    },
+    {
+      "id": "scar:emptied",
+      "title": "lo sgombero",
+      "category": "MEMORY",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "asset_physical",
+        "consequence",
+        "question_card"
+      ],
+      "read_by": [
+        "destiny_physical",
+        "entity",
+        "tag_rule"
+      ]
+    },
+    {
+      "id": "scar:open_wound",
+      "title": "la ferita aperta",
+      "category": "MEMORY",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "asset_physical",
+        "consequence"
+      ],
+      "read_by": [
+        "entity",
+        "tag_rule"
+      ]
+    },
+    {
+      "id": "scar:plundered",
+      "title": "la razzia",
+      "category": "MEMORY",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "consequence"
+      ],
+      "read_by": [],
+      "note": "il dente vivo e' il gemello curabile condition:plundered (la porta di D-105)"
+    },
+    {
+      "id": "scar:sealed_border",
+      "title": "il confine sigillato",
+      "category": "MEMORY",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "consequence"
+      ],
+      "read_by": [],
+      "note": "il dente vivo e' valley_sealed, letto dai Destini"
+    },
+    {
+      "id": "scar:the_empty_chair",
+      "title": "il seggio vuoto",
+      "category": "MEMORY",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "consequence",
+        "question_card"
+      ],
+      "read_by": [
+        "question_card",
+        "tag_rule",
+        "tension"
+      ]
+    },
+    {
+      "id": "scar:unanswered",
+      "title": "la domanda sul muro",
+      "category": "MEMORY",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "consequence"
+      ],
+      "read_by": [
+        "asset"
+      ]
+    },
+    {
+      "id": "scholar",
+      "title": "il sapere",
+      "category": "ENTITY",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "entity"
+      ],
+      "read_by": [],
+      "note": "etichetta di famiglia: dice chi sei, non cosa puoi fare, e nessuna regola deve leggerla"
+    },
+    {
+      "id": "settlement:$proponent",
+      "title": "l'insediamento del proponente",
+      "category": "FUNCTION",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "consequence",
+        "question_card"
+      ],
+      "read_by": [
+        "question_card"
+      ],
+      "note": "porta un id dinamico: chi vive li' e' scritto nel segno stesso"
+    },
+    {
+      "id": "settlement:city",
+      "title": "città",
+      "category": "FUNCTION",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "structure_type"
+      ],
+      "read_by": [
+        "asset_physical",
+        "tag_rule"
+      ]
+    },
+    {
+      "id": "settlement:march",
+      "title": "la marca",
+      "category": "FUNCTION",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "consequence"
+      ],
+      "read_by": [
+        "tag_rule"
+      ]
+    },
+    {
+      "id": "settlement:market",
+      "title": "mercato",
+      "category": "FUNCTION",
+      "scope": [
+        "REGION"
+      ],
+      "aliases": [
+        "il mercato"
+      ],
+      "written_by": [
+        "consequence"
+      ],
+      "read_by": [
+        "asset_physical",
+        "tag_rule"
+      ]
+    },
+    {
+      "id": "settlement:town",
+      "title": "borgo",
+      "category": "FUNCTION",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "structure_type"
+      ],
+      "read_by": [
+        "asset_physical",
+        "tag_rule"
+      ]
+    },
+    {
+      "id": "settlement:village",
+      "title": "villaggio",
+      "category": "FUNCTION",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "asset_physical",
+        "question_card",
+        "structure_type"
+      ],
+      "read_by": [
+        "asset_physical",
+        "destiny_physical",
+        "tag_rule"
+      ]
+    },
+    {
+      "id": "sleeping",
+      "title": "dormiente",
+      "category": "ENTITY",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "entity"
+      ],
+      "read_by": [],
+      "note": "etichetta di famiglia: dice chi sei, non cosa puoi fare, e nessuna regola deve leggerla"
+    },
+    {
+      "id": "someone_paid",
+      "title": "qualcuno ha pagato",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "echo_card"
+      ],
+      "read_by": [],
+      "note": "memoria del mondo: narrata (D-103), ereditata"
+    },
+    {
+      "id": "structure:archive",
+      "title": "archivio",
+      "category": "FUNCTION",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "structure_type"
+      ],
+      "read_by": [
+        "asset_physical",
+        "question_card"
+      ]
+    },
+    {
+      "id": "structure:canal",
+      "title": "il canale",
+      "category": "FUNCTION",
+      "scope": [
+        "REGION"
+      ],
+      "aliases": [
+        "canale",
+        "la grande opera d'acqua"
+      ],
+      "written_by": [
+        "structure_type"
+      ],
+      "read_by": [
+        "tag_rule",
+        "tension"
+      ]
+    },
+    {
+      "id": "structure:castle",
+      "title": "castello",
+      "category": "FUNCTION",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "structure_type"
+      ],
+      "read_by": [
+        "asset_physical",
+        "question_card"
+      ]
+    },
+    {
+      "id": "structure:granary",
+      "title": "il granaio",
+      "category": "FUNCTION",
+      "scope": [
+        "REGION"
+      ],
+      "aliases": [
+        "granaio",
+        "il grande granaio"
+      ],
+      "written_by": [
+        "structure_type"
+      ],
+      "read_by": [
+        "asset_physical",
+        "question_card",
+        "tag_rule"
+      ],
+      "note": "la pietra alzata: non e' la vocazione nuda granary, ma le carte stampano #granaio per entrambe"
+    },
+    {
+      "id": "structure:library",
+      "title": "la grande biblioteca",
+      "category": "FUNCTION",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "structure_type"
+      ],
+      "read_by": [
+        "asset_physical",
+        "question_card"
+      ]
+    },
+    {
+      "id": "structure:palace",
+      "title": "reggia",
+      "category": "FUNCTION",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "structure_type"
+      ],
+      "read_by": [
+        "asset_physical",
+        "question_card"
+      ]
+    },
+    {
+      "id": "structure:road",
+      "title": "strada",
+      "category": "FUNCTION",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "engine"
+      ],
+      "read_by": [
+        "asset_physical"
+      ],
+      "note": "la strada non e' un segno: il motore la conta dalle strutture sulla mappa"
+    },
+    {
+      "id": "structure:sealed",
+      "title": "sigillato",
+      "category": "STATE",
+      "scope": [
+        "REGION"
+      ],
+      "aliases": [
+        "il sigillo"
+      ],
+      "written_by": [
+        "consequence",
+        "question_card"
+      ],
+      "read_by": [
+        "asset_physical",
+        "consequence",
+        "destiny",
+        "destiny_physical",
+        "entity",
+        "question_card",
+        "tag_rule",
+        "tension"
+      ]
+    },
+    {
+      "id": "structure:tollgate",
+      "title": "pedaggio",
+      "category": "FUNCTION",
+      "scope": [
+        "REGION"
+      ],
+      "aliases": [
+        "dogana",
+        "il pedaggio",
+        "la dogana"
+      ],
+      "written_by": [
+        "structure_type"
+      ],
+      "read_by": [
+        "asset_physical",
+        "destiny_physical",
+        "question_card",
+        "tag_rule",
+        "tension"
+      ]
+    },
+    {
+      "id": "structure:watchtower",
+      "title": "la torre di veglia",
+      "category": "FUNCTION",
+      "scope": [
+        "REGION"
+      ],
+      "aliases": [
+        "torre di veglia"
+      ],
+      "written_by": [
+        "structure_type"
+      ],
+      "read_by": [
+        "asset_physical",
+        "tag_rule"
+      ]
+    },
+    {
+      "id": "study_supervised",
+      "title": "studio sorvegliato",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "aliases": [
+        "lo studio e' sotto sorveglianza"
+      ],
+      "written_by": [
+        "consequence",
+        "question_card"
+      ],
+      "read_by": [
+        "destiny",
+        "destiny_physical"
+      ]
+    },
+    {
+      "id": "succession_by_law",
+      "title": "successione per legge",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "aliases": [
+        "la successione e' passata per legge"
+      ],
+      "written_by": [
+        "asset_physical",
+        "consequence",
+        "question_card"
+      ],
+      "read_by": [
+        "destiny",
+        "entity"
+      ]
+    },
+    {
+      "id": "succession_settled",
+      "title": "la successione e' stata risolta",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "consequence",
+        "question_card"
+      ],
+      "read_by": [],
+      "note": "memoria del mondo: narrata (D-103), ereditata"
+    },
+    {
+      "id": "succession_witnessed",
+      "title": "la successione ha avuto testimoni",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "confluence_template"
+      ],
+      "read_by": [],
+      "note": "memoria del mondo: narrata (D-103), ereditata"
+    },
+    {
+      "id": "toll_shared",
+      "title": "pedaggio diviso",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "aliases": [
+        "il pedaggio si divide"
+      ],
+      "written_by": [
+        "asset_physical",
+        "confluence_template",
+        "question_card"
+      ],
+      "read_by": [
+        "asset_physical",
+        "question_card"
+      ]
+    },
+    {
+      "id": "trade",
+      "title": "commercio",
+      "category": "FUNCTION",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "region"
+      ],
+      "read_by": [
+        "asset_physical",
+        "destiny_physical",
+        "question_card",
+        "tension"
+      ]
+    },
+    {
+      "id": "twice_uprooted",
+      "title": "due volte sradicato",
+      "category": "ENTITY",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "engine"
+      ],
+      "read_by": [
+        "entity"
+      ],
+      "note": "lo scrive il motore alla seconda cacciata (D-234)"
+    },
+    {
+      "id": "valley_sealed",
+      "title": "la Valle e' stata chiusa",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "consequence"
+      ],
+      "read_by": [
+        "destiny",
+        "destiny_physical"
+      ]
+    },
+    {
+      "id": "water_moves",
+      "title": "l'acqua ha cambiato strada",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "consequence",
+        "echo_card"
+      ],
+      "read_by": [
+        "destiny"
+      ]
+    },
+    {
+      "id": "water_priced",
+      "title": "l'acqua ha un prezzo",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "consequence",
+        "question_card"
+      ],
+      "read_by": [
+        "destiny"
+      ]
+    },
+    {
+      "id": "water_rights",
+      "title": "i diritti d'acqua",
+      "category": "MEMORY",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "consequence"
+      ],
+      "read_by": [],
+      "note": "memoria del mondo: narrata (D-103), ereditata"
+    },
+    {
+      "id": "water_shared",
+      "title": "l'acqua si divide",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "confluence_template"
+      ],
+      "read_by": [],
+      "note": "memoria del mondo: narrata (D-103), ereditata"
+    },
+    {
+      "id": "wild",
+      "title": "selvaggio",
+      "category": "PLACE",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "region"
+      ],
+      "read_by": [
+        "asset_physical",
+        "destiny_physical",
+        "question_card",
+        "tension"
+      ]
+    }
+  ]
+}

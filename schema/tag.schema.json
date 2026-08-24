@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://echoes.local/schema/tag.schema.json",
+  "title": "Tag dictionary collection",
+  "x-echoes-def": "tag",
+  "x-echoes-kind": "collection",
+  "type": "object",
+  "required": ["schema_id", "version", "items"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_id": { "const": "tag" },
+    "version": { "type": "string" },
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/tag" }
+    }
+  },
+  "$defs": {
+    "tag": {
+      "type": "object",
+      "description": "Una voce del dizionario dei segni (PZ-0). Prima di questo dato i tag non esistevano come collezione: si deducevano raschiando gli effetti, e il validatore indovinava l'ambito di ognuno. Qui ogni segno che il gioco tocca dichiara cos'e', dove vive, chi lo scrive e chi lo legge - e tools/validate_physical.py controlla che la dichiarazione combaci con quello che i dati fanno davvero. Fuori dal dizionario restano solo i livelli di rapporto (ENEMY..PACT): sono gradini di una scala, non segni sul tavolo.",
+      "required": ["id", "title", "category", "scope", "written_by", "read_by"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_]*(:[A-Za-z0-9_$]+)?$",
+          "description": "Il segno stesso, nella sua forma nuda: senza la qualifica `@REG_...`, che dice dove sta e non cosa e'."
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Il nome stampato: come il segno si chiama sul tavolo e nei verbali."
+        },
+        "category": {
+          "type": "string",
+          "enum": ["PLACE", "FUNCTION", "STATE", "MEMORY", "ENTITY"],
+          "description": "Le cinque categorie della roadmap. PLACE: un tratto del luogo, stampato o lasciato da una rovina. FUNCTION: cosa un luogo o una carta sa fare (strutture, insediamenti, funzioni degli Echo). STATE: una condizione reversibile, di Regione o di casa. MEMORY: un fatto che il mondo ricorda - fatti nudi, cicatrici, scoperte, leggende. ENTITY: chi sei - etichette di famiglia, vite, stati d'identita'."
+        },
+        "scope": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "enum": ["REGION", "ENTITY", "GLOBAL"] },
+          "description": "Dove il segno vive: sulla mappa, su una casa, o sul mondo. E' l'ambito che prima il validatore deduceva e ora legge da qui - la deduzione resta come controprova, e un ambito dichiarato che non combacia con quello osservato e' un errore."
+        },
+        "aliases": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 },
+          "description": "Le altre parole sotto cui questo segno e' gia' stampato da qualche parte: la parola dell'app in sign_labels.gd quando diverge dal nome della carta, il nome di un grado di pietra, la forma a #cancelletto. Un alias e' una divergenza dichiarata, non una liberta': la lista deve accorciarsi, mai allungarsi in silenzio."
+        },
+        "icon": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Il glifo stampato accanto al nome. Assente finche' l'arte dei segni non esiste: dichiararlo prima sarebbe inventarlo."
+        },
+        "written_by": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/toucher" },
+          "description": "Chi posa il segno. Vuoto solo per un segno che nessuno scrive piu': e' ISSUES 24 detto dal dato, non un caso normale."
+        },
+        "read_by": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/toucher" },
+          "description": "Chi se ne accorge. Vuoto per la memoria del mondo dichiarata (D-103): narrata, ereditata, e di proposito senza denti."
+        },
+        "note": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Quando la voce ha bisogno di una riga di contesto: perche' e' muta, o cosa la legge dal lato del motore."
+        }
+      }
+    },
+    "toucher": {
+      "type": "string",
+      "enum": [
+        "asset",
+        "asset_physical",
+        "chronicle",
+        "confluence_template",
+        "consequence",
+        "destiny",
+        "destiny_physical",
+        "echo_card",
+        "entity",
+        "objective",
+        "question_card",
+        "region",
+        "structure_type",
+        "tag_rule",
+        "tension",
+        "engine"
+      ],
+      "description": "Una mano che tocca il segno, per collezione: gli effetti digitali di una carta (`asset`) e la sua faccia fisica (`asset_physical`) sono due mani diverse, perche' le due grammatiche si controllano a vicenda. `engine` e' il motore: l'unica mano che il censimento dei dati non puo' osservare, e per questo l'unica che si puo' dichiarare senza riscontro."
+    }
+  }
+}
