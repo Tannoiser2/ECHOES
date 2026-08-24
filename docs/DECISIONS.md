@@ -10,6 +10,72 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-253 — Una saga e' di dieci partite, e alla decima si chiude
+
+**implemented in 0.1.215**
+
+> «La saga continua all'infinito, mentre dovrebbe fermarsi a 10 partite.»
+
+`library_sequel_of` risponde con **se stessa** per la biblioteca, ed e' giusto:
+e' l'era che si ripete, per questo esiste. Nessuno pero' contava **fin dove**,
+quindi l'offerta *«Gioca l'era successiva»* tornava per sempre.
+
+Il numero era gia' nei dati e gia' letto da qualcun altro:
+`saga_scoring.decides_after` vale **10**, ed e' quello che il verbale usa da
+[D-181](#d-181) per scrivere *«un anno giocato su dieci»*. La porta non lo
+guardava. Adesso lo guarda, e alla decima la saga si chiude dicendolo.
+
+**Nota su D-181, che avevo letto come un permesso**: quella decisione diceva
+*«la soglia apre la porta e non la chiude — da li' in poi il tavolo smette
+quando vuole»*. Era una scelta ragionevole e non e' quella del committente:
+*«dieci partite che rappresentano una saga»*. Dieci e' una **fine**, non un
+minimo, e resta scritto nei dati, quindi cambiarlo e' cambiare un numero.
+
+---
+
+## D-252 — La cronaca era nera perche' il testo non veniva disegnato
+
+**implemented in 0.1.215** — [D-248](#d-248) aveva curato il sintomo sbagliato
+
+> «Le cronache ancora nere.»
+
+**Mi ero fermato al primo sospetto che tornava.** D-248 aveva trovato una cosa
+vera — la pagina veniva rasterizzata a 3175x4490, oltre il tetto di una texture
+da tablet — e l'ho chiamata *la* causa senza verificare che dopo la correzione ci
+fosse qualcosa da vedere. La schermata del committente lo dice in un colpo: la
+pagina c'e', ha le proporzioni di un A4, porta il suo piede «pagina 1 di 1», ed
+e' **nera**.
+
+**Il numero che chiude la questione**: rasterizzata la pagina e contati i pixel,
+**0 su 200.941** sono diversi dallo sfondo. Zero inchiostro. Il rasterizzatore
+SVG di Godot **non disegna gli elementi `<text>`**, e una cronaca e' sola prosa:
+di quella pagina si disegnava il rettangolo di fondo e nient'altro.
+
+Per la **stampa** l'SVG va benissimo — a disegnarlo e' un browser o una
+tipografia, che il testo lo sanno scrivere. Per lo **schermo** no, e non c'e'
+scala che lo aggiusti: l'unica strada e' che a scrivere sia Godot.
+
+`ChronicleBook` ora sa dire le sue pagine **impaginate e non disegnate** — le
+righe con la loro posizione in millimetri — e la vista le scrive con
+`draw_string` su un foglio proporzionato come un A4. **Stessa impaginazione,
+stessa sorgente**: `laid_out` e `pages` chiamano la stessa divisione in pagine, e
+una prova verifica che contino lo stesso numero di pagine. La cronaca che si
+legge nell'app e quella che esce dalla stampante restano la stessa pagina.
+
+**E la prova che diceva il falso, per la seconda volta.** Guardava il **codice
+d'uscita** del rasterizzatore: tornava OK, l'immagine aveva dei pixel, e tutti i
+pixel erano sfondo. D-248 l'aveva gia' corretta una volta — e l'aveva corretta
+male, perche' ha aggiunto un controllo sulla **dimensione** invece che
+sull'**inchiostro**. Adesso guarda le righe che finiscono sulla pagina: se una
+pagina non ha righe non ha inchiostro, e non importa quanto bene si sia disegnato
+lo sfondo.
+
+**Misurato:** suite 492 prove / 10.758 asserzioni verdi (era 489 / 10.747), i
+cancelli degli strumenti verdi, i piani di simulazione verdi, export e cataloghi
+allineati, `run_playtest.gd --runs=100 --seed=7000` **0 seggi bloccati su 8**.
+
+---
+
 ## D-251 — La colonna di lato spingeva la mano fuori dallo schermo
 
 **implemented in 0.1.214**

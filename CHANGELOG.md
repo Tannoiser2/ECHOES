@@ -5,6 +5,28 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.215 — La cronaca era nera perché il testo non veniva disegnato (D-252, D-253)
+
+- **D-252 — «le cronache ancora nere.»** D-248 aveva curato il sintomo
+  sbagliato: aveva trovato una cosa vera (la pagina rasterizzata a 3175×4490) e
+  l'ho chiamata *la* causa **senza verificare che dopo ci fosse qualcosa da
+  vedere**.
+  - **Il numero**: contati i pixel, **0 su 200.941** sono diversi dallo sfondo.
+    Il rasterizzatore SVG di Godot **non disegna il testo**, e una cronaca è
+    sola prosa.
+  - Ora `ChronicleBook` sa dire le pagine **impaginate e non disegnate**, e lo
+    schermo le scrive con Godot. Stessa impaginazione della stampa: una prova
+    verifica che contino lo stesso numero di pagine.
+  - **E la prova mentiva per la seconda volta**: guardava il codice d'uscita del
+    rasterizzatore, non l'inchiostro. Adesso guarda le righe.
+- **D-253 — «la saga continua all'infinito, dovrebbe fermarsi a 10 partite.»**
+  Il numero era già nei dati (`saga_scoring.decides_after` = 10) e già letto dal
+  verbale; la porta dell'era successiva non lo guardava. Ora sì.
+- **Misurato**: 492 prove / 10.758 asserzioni verdi (da 489 / 10.747), cancelli
+  verdi, sim verdi, export e cataloghi allineati, playtest 100 semi **0 su 8**.
+
+---
+
 ## 0.1.214 — La colonna di lato spingeva la mano fuori dallo schermo (D-251)
 
 - **«Le carte sono quasi sparite del tutto.»** Non erano piccole: erano **sotto

@@ -82,3 +82,46 @@ func test_the_game_starts_without_asking() -> void:
 	# Senza dati non si pianta: il menu ha una risposta anche quando la scatola
 	# non si e' letta, ed e' la stessa che l'app ha sempre avuto.
 	assert_eq(GameScreen.first_chronicle(null), "CHR_01", "e senza dati non resta muto")
+
+
+## --- e finisce dove deve finire (D-253) ---
+##
+## *«La saga continua all'infinito, mentre dovrebbe fermarsi a 10 partite.»*
+## `library_sequel_of` risponde con se stessa per la biblioteca — giusto, e'
+## l'era che si ripete — e nessuno contava fin dove. Il numero era gia' nei
+## dati: il verbale lo legge da D-181 per dire «un anno giocato su dieci».
+
+
+## Ogni Chronicle che gioca a saga dice **dopo quanti anni** si decide.
+func test_every_chronicle_says_how_long_a_saga_is() -> void:
+	var loaded: RefCounted = data()
+	var counted: int = 0
+	for chronicle_id in loaded.chronicles:
+		var rules: Dictionary = (
+			loaded.chronicles[str(chronicle_id)] as Dictionary
+		).get("saga_scoring", {}) as Dictionary
+		if rules.is_empty():
+			continue
+		assert_true(
+			rules.has("decides_after"),
+			"«%s» dice quanto dura una saga" % str(chronicle_id)
+		)
+		assert_eq(int(rules["decides_after"]), 10, "e sono dieci anni, come l'idea di partenza")
+		counted += 1
+	assert_true(counted >= 4, "per ogni Chronicle della scatola: %d" % counted)
+
+
+## E la porta dell'anno dopo legge quel numero, invece di aprirsi per sempre.
+## Letto dal codice: la riga che conta e' una, e montare mezza applicazione per
+## misurarla costerebbe piu' di quanto vale.
+func test_the_door_to_the_next_year_reads_that_number() -> void:
+	var source: String = FileAccess.get_file_as_string("res://ui/game_screen.gd")
+	assert_true(
+		source.contains("decides_after"),
+		"la porta dell'era successiva legge quanti anni dura una saga"
+	)
+	assert_true(
+		source.contains("played >= enough"),
+		"e si chiude quando sono stati giocati"
+	)
+
