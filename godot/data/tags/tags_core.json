@@ -10,8 +10,7 @@
         "GLOBAL"
       ],
       "written_by": [
-        "consequence",
-        "question_card"
+        "consequence"
       ],
       "read_by": [
         "destiny_physical"
@@ -80,8 +79,7 @@
       ],
       "written_by": [
         "confluence_template",
-        "consequence",
-        "question_card"
+        "consequence"
       ],
       "read_by": [
         "destiny"
@@ -99,8 +97,7 @@
       ],
       "written_by": [
         "asset_physical",
-        "echo_card",
-        "question_card"
+        "echo_card"
       ],
       "read_by": [
         "asset_physical"
@@ -114,8 +111,7 @@
         "GLOBAL"
       ],
       "written_by": [
-        "consequence",
-        "question_card"
+        "consequence"
       ],
       "read_by": [],
       "note": "memoria del mondo: narrata (D-103), ereditata"
@@ -133,7 +129,6 @@
       "read_by": [
         "asset_physical",
         "destiny_physical",
-        "question_card",
         "tension",
         "echo_card"
       ]
@@ -146,8 +141,7 @@
         "GLOBAL"
       ],
       "written_by": [
-        "confluence_template",
-        "question_card"
+        "confluence_template"
       ],
       "read_by": [],
       "note": "memoria del mondo: narrata (D-103), ereditata"
@@ -161,12 +155,10 @@
       ],
       "written_by": [
         "confluence_template",
-        "echo_card",
-        "question_card"
+        "echo_card"
       ],
-      "read_by": [
-        "question_card"
-      ]
+      "read_by": [],
+      "note": "Memoria scritta e non ancora riletta: la leggevano le carte Domanda, uscite con D-266 — la Domanda sta sulla carta Tensione, e questo segno aspetta la faccia fisica delle Tensioni (ISSUES 69)."
     },
     {
       "id": "charter_written",
@@ -176,14 +168,12 @@
         "GLOBAL"
       ],
       "written_by": [
-        "consequence",
-        "question_card"
+        "consequence"
       ],
       "read_by": [
         "asset_physical",
         "destiny",
-        "entity",
-        "question_card"
+        "entity"
       ]
     },
     {
@@ -197,14 +187,12 @@
         "abbandonata"
       ],
       "written_by": [
-        "consequence",
-        "question_card"
+        "consequence"
       ],
       "read_by": [
         "asset_physical",
         "confluence_template",
         "destiny_physical",
-        "question_card",
         "tension"
       ]
     },
@@ -222,15 +210,13 @@
         "asset",
         "asset_physical",
         "consequence",
-        "echo_card",
-        "question_card"
+        "echo_card"
       ],
       "read_by": [
         "asset",
         "asset_physical",
         "consequence",
         "destiny_physical",
-        "question_card",
         "tension"
       ]
     },
@@ -248,14 +234,12 @@
         "asset",
         "asset_physical",
         "consequence",
-        "echo_card",
-        "question_card"
+        "echo_card"
       ],
       "read_by": [
         "asset",
         "asset_physical",
         "consequence",
-        "question_card",
         "tension"
       ]
     },
@@ -272,14 +256,12 @@
       "written_by": [
         "asset_physical",
         "consequence",
-        "echo_card",
-        "question_card"
+        "echo_card"
       ],
       "read_by": [
         "asset_physical",
         "destiny",
         "destiny_physical",
-        "question_card",
         "tension"
       ]
     },
@@ -295,8 +277,7 @@
       ],
       "written_by": [
         "asset_physical",
-        "consequence",
-        "question_card"
+        "consequence"
       ],
       "read_by": [
         "destiny",
@@ -313,13 +294,11 @@
       "written_by": [
         "asset",
         "consequence",
-        "echo_card",
-        "question_card"
+        "echo_card"
       ],
       "read_by": [
         "consequence",
         "destiny_physical",
-        "question_card",
         "tension"
       ]
     },
@@ -341,7 +320,6 @@
         "asset",
         "asset_physical",
         "consequence",
-        "question_card",
         "tension"
       ]
     },
@@ -361,7 +339,6 @@
       "read_by": [
         "asset",
         "asset_physical",
-        "question_card",
         "tension"
       ]
     },
@@ -399,14 +376,12 @@
       "written_by": [
         "asset",
         "asset_physical",
-        "consequence",
-        "question_card"
+        "consequence"
       ],
       "read_by": [
         "asset",
         "asset_physical",
         "consequence",
-        "question_card",
         "tension"
       ]
     },
@@ -441,8 +416,7 @@
       "written_by": [
         "asset_physical",
         "consequence",
-        "echo_card",
-        "question_card"
+        "echo_card"
       ],
       "read_by": [
         "asset",
@@ -450,7 +424,6 @@
         "confluence_template",
         "consequence",
         "destiny_physical",
-        "question_card",
         "tag_rule",
         "tension"
       ]
@@ -469,8 +442,7 @@
         "asset",
         "asset_physical",
         "consequence",
-        "echo_card",
-        "question_card"
+        "echo_card"
       ],
       "read_by": [
         "asset",
@@ -480,7 +452,6 @@
         "destiny",
         "destiny_physical",
         "echo_card",
-        "question_card",
         "tension"
       ]
     },
@@ -513,8 +484,7 @@
         "confluence_template",
         "consequence",
         "destiny",
-        "destiny_physical",
-        "question_card"
+        "destiny_physical"
       ]
     },
     {
@@ -530,8 +500,7 @@
       "read_by": [
         "confluence_template",
         "consequence",
-        "destiny_physical",
-        "question_card"
+        "destiny_physical"
       ]
     },
     {
@@ -543,16 +512,14 @@
       ],
       "written_by": [
         "asset_physical",
-        "consequence",
-        "question_card"
+        "consequence"
       ],
       "read_by": [
         "asset_physical",
         "chronicle",
         "destiny",
         "destiny_physical",
-        "entity",
-        "question_card"
+        "entity"
       ]
     },
     {
@@ -567,12 +534,10 @@
       ],
       "written_by": [
         "asset_physical",
-        "echo_card",
-        "question_card"
+        "echo_card"
       ],
-      "read_by": [
-        "question_card"
-      ]
+      "read_by": [],
+      "note": "Memoria scritta e non ancora riletta: la leggevano le carte Domanda, uscite con D-266 — la Domanda sta sulla carta Tensione, e questo segno aspetta la faccia fisica delle Tensioni (ISSUES 69)."
     },
     {
       "id": "crystal_site",
@@ -590,7 +555,6 @@
       "read_by": [
         "asset_physical",
         "destiny_physical",
-        "question_card",
         "tension",
         "consequence"
       ]
@@ -608,15 +572,13 @@
       "written_by": [
         "asset",
         "asset_physical",
-        "consequence",
-        "question_card"
+        "consequence"
       ],
       "read_by": [
         "asset_physical",
         "destiny",
         "destiny_physical",
         "entity",
-        "question_card",
         "tag_rule"
       ]
     },
@@ -632,8 +594,7 @@
       ],
       "written_by": [
         "asset_physical",
-        "consequence",
-        "question_card"
+        "consequence"
       ],
       "read_by": [
         "destiny",
@@ -679,8 +640,7 @@
       ],
       "read_by": [
         "destiny_physical",
-        "engine",
-        "question_card"
+        "engine"
       ],
       "note": "il motore la conta (discovery_count) oltre a chi la legge per nome"
     },
@@ -714,8 +674,7 @@
       ],
       "read_by": [
         "destiny",
-        "engine",
-        "question_card"
+        "engine"
       ],
       "note": "il motore la conta (discovery_count) oltre a chi la legge per nome"
     },
@@ -777,8 +736,7 @@
         "consequence"
       ],
       "read_by": [
-        "engine",
-        "question_card"
+        "engine"
       ],
       "note": "il motore la conta (discovery_count) oltre a chi la legge per nome"
     },
@@ -856,8 +814,7 @@
         "GLOBAL"
       ],
       "written_by": [
-        "confluence_template",
-        "question_card"
+        "confluence_template"
       ],
       "read_by": [],
       "note": "memoria del mondo: narrata (D-103), ereditata"
@@ -998,12 +955,10 @@
         "la fede ha avuto un posto"
       ],
       "written_by": [
-        "consequence",
-        "question_card"
+        "consequence"
       ],
       "read_by": [
-        "asset_physical",
-        "question_card"
+        "asset_physical"
       ]
     },
     {
@@ -1211,8 +1166,7 @@
       ],
       "written_by": [
         "asset_physical",
-        "consequence",
-        "question_card"
+        "consequence"
       ],
       "read_by": [
         "asset_physical",
@@ -1232,7 +1186,6 @@
       "read_by": [
         "asset_physical",
         "destiny_physical",
-        "question_card",
         "tension",
         "consequence",
         "echo_card"
@@ -1343,8 +1296,7 @@
       "written_by": [
         "asset",
         "asset_physical",
-        "consequence",
-        "question_card"
+        "consequence"
       ],
       "read_by": [
         "asset_physical",
@@ -1364,8 +1316,7 @@
       ],
       "written_by": [
         "asset_physical",
-        "confluence_template",
-        "question_card"
+        "confluence_template"
       ],
       "read_by": [
         "asset_physical",
@@ -1386,14 +1337,12 @@
         "asset",
         "asset_physical",
         "confluence_template",
-        "consequence",
-        "question_card"
+        "consequence"
       ],
       "read_by": [
         "asset_physical",
         "destiny",
-        "destiny_physical",
-        "question_card"
+        "destiny_physical"
       ]
     },
     {
@@ -1766,8 +1715,7 @@
         "GLOBAL"
       ],
       "written_by": [
-        "consequence",
-        "question_card"
+        "consequence"
       ],
       "read_by": [
         "chronicle",
@@ -1801,8 +1749,7 @@
         "GLOBAL"
       ],
       "written_by": [
-        "consequence",
-        "question_card"
+        "consequence"
       ],
       "read_by": [
         "asset_physical",
@@ -1819,13 +1766,11 @@
         "GLOBAL"
       ],
       "written_by": [
-        "consequence",
-        "question_card"
+        "consequence"
       ],
       "read_by": [
         "asset_physical",
-        "destiny",
-        "question_card"
+        "destiny"
       ]
     },
     {
@@ -1841,7 +1786,6 @@
       "read_by": [
         "asset_physical",
         "destiny_physical",
-        "question_card",
         "tension",
         "confluence_template",
         "consequence",
@@ -1948,7 +1892,6 @@
         "structure_type"
       ],
       "read_by": [
-        "question_card",
         "tag_rule"
       ]
     },
@@ -2080,8 +2023,7 @@
         "GLOBAL"
       ],
       "written_by": [
-        "consequence",
-        "question_card"
+        "consequence"
       ],
       "read_by": [
         "asset_physical",
@@ -2113,12 +2055,10 @@
         "GLOBAL"
       ],
       "written_by": [
-        "consequence",
-        "question_card"
+        "consequence"
       ],
       "read_by": [
-        "destiny",
-        "question_card"
+        "destiny"
       ]
     },
     {
@@ -2129,12 +2069,10 @@
         "GLOBAL"
       ],
       "written_by": [
-        "confluence_template",
-        "question_card"
+        "confluence_template"
       ],
-      "read_by": [
-        "question_card"
-      ]
+      "read_by": [],
+      "note": "Memoria scritta e non ancora riletta: la leggevano le carte Domanda, uscite con D-266 — la Domanda sta sulla carta Tensione, e questo segno aspetta la faccia fisica delle Tensioni (ISSUES 69)."
     },
     {
       "id": "relic_shown",
@@ -2144,13 +2082,11 @@
         "GLOBAL"
       ],
       "written_by": [
-        "consequence",
-        "question_card"
+        "consequence"
       ],
       "read_by": [
         "destiny",
-        "entity",
-        "question_card"
+        "entity"
       ]
     },
     {
@@ -2166,15 +2102,13 @@
       "written_by": [
         "asset_physical",
         "consequence",
-        "echo_card",
-        "question_card"
+        "echo_card"
       ],
       "read_by": [
         "asset_physical",
         "destiny",
         "destiny_physical",
         "objective",
-        "question_card",
         "tag_rule"
       ]
     },
@@ -2186,8 +2120,7 @@
         "GLOBAL"
       ],
       "written_by": [
-        "confluence_template",
-        "question_card"
+        "confluence_template"
       ],
       "read_by": [],
       "note": "memoria del mondo: narrata (D-103), ereditata"
@@ -2214,8 +2147,7 @@
         "REGION"
       ],
       "written_by": [
-        "consequence",
-        "question_card"
+        "consequence"
       ],
       "read_by": [
         "asset",
@@ -2286,8 +2218,7 @@
       ],
       "written_by": [
         "asset_physical",
-        "consequence",
-        "question_card"
+        "consequence"
       ],
       "read_by": [
         "destiny_physical",
@@ -2345,11 +2276,9 @@
         "REGION"
       ],
       "written_by": [
-        "consequence",
-        "question_card"
+        "consequence"
       ],
       "read_by": [
-        "question_card",
         "tag_rule",
         "tension"
       ]
@@ -2389,12 +2318,9 @@
         "REGION"
       ],
       "written_by": [
-        "consequence",
-        "question_card"
+        "consequence"
       ],
-      "read_by": [
-        "question_card"
-      ],
+      "read_by": [],
       "note": "porta un id dinamico: chi vive li' e' scritto nel segno stesso"
     },
     {
@@ -2468,7 +2394,6 @@
       ],
       "written_by": [
         "asset_physical",
-        "question_card",
         "structure_type"
       ],
       "read_by": [
@@ -2516,8 +2441,7 @@
         "structure_type"
       ],
       "read_by": [
-        "asset_physical",
-        "question_card"
+        "asset_physical"
       ]
     },
     {
@@ -2550,8 +2474,7 @@
         "structure_type"
       ],
       "read_by": [
-        "asset_physical",
-        "question_card"
+        "asset_physical"
       ]
     },
     {
@@ -2570,7 +2493,6 @@
       ],
       "read_by": [
         "asset_physical",
-        "question_card",
         "tag_rule"
       ],
       "note": "la pietra alzata: non e' la vocazione nuda granary, ma le carte stampano #granaio per entrambe"
@@ -2586,8 +2508,7 @@
         "structure_type"
       ],
       "read_by": [
-        "asset_physical",
-        "question_card"
+        "asset_physical"
       ]
     },
     {
@@ -2601,8 +2522,7 @@
         "structure_type"
       ],
       "read_by": [
-        "asset_physical",
-        "question_card"
+        "asset_physical"
       ]
     },
     {
@@ -2631,8 +2551,7 @@
         "il sigillo"
       ],
       "written_by": [
-        "consequence",
-        "question_card"
+        "consequence"
       ],
       "read_by": [
         "asset_physical",
@@ -2640,7 +2559,6 @@
         "destiny",
         "destiny_physical",
         "entity",
-        "question_card",
         "tag_rule",
         "tension"
       ]
@@ -2663,7 +2581,6 @@
       "read_by": [
         "asset_physical",
         "destiny_physical",
-        "question_card",
         "tag_rule",
         "tension"
       ]
@@ -2697,8 +2614,7 @@
         "lo studio e' sotto sorveglianza"
       ],
       "written_by": [
-        "consequence",
-        "question_card"
+        "consequence"
       ],
       "read_by": [
         "destiny",
@@ -2717,8 +2633,7 @@
       ],
       "written_by": [
         "asset_physical",
-        "consequence",
-        "question_card"
+        "consequence"
       ],
       "read_by": [
         "destiny",
@@ -2733,8 +2648,7 @@
         "GLOBAL"
       ],
       "written_by": [
-        "consequence",
-        "question_card"
+        "consequence"
       ],
       "read_by": [],
       "note": "memoria del mondo: narrata (D-103), ereditata"
@@ -2764,12 +2678,10 @@
       ],
       "written_by": [
         "asset_physical",
-        "confluence_template",
-        "question_card"
+        "confluence_template"
       ],
       "read_by": [
-        "asset_physical",
-        "question_card"
+        "asset_physical"
       ]
     },
     {
@@ -2785,7 +2697,6 @@
       "read_by": [
         "asset_physical",
         "destiny_physical",
-        "question_card",
         "tension",
         "echo_card",
         "consequence"
@@ -2844,8 +2755,7 @@
         "GLOBAL"
       ],
       "written_by": [
-        "consequence",
-        "question_card"
+        "consequence"
       ],
       "read_by": [
         "destiny"
@@ -2890,7 +2800,6 @@
       "read_by": [
         "asset_physical",
         "destiny_physical",
-        "question_card",
         "tension",
         "consequence"
       ]

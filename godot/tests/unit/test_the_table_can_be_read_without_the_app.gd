@@ -108,25 +108,23 @@ func test_every_face_offers_a_real_choice() -> void:
 		)
 
 
-## **Ogni Tema ha un mazzo, e ogni Domanda chiede qualcosa al tavolo.**
-func test_every_theme_has_questions_that_ask_something() -> void:
+## **Ogni Tema ha un mazzetto, e ogni Tensione porta le sue domande.** La
+## Domanda non e' una carta a parte (D-266): sta sulla carta Tensione — girata
+## la Tensione, le domande di come comportarsi sono li'.
+func test_every_theme_has_tensions_that_carry_their_questions() -> void:
 	var loaded: RefCounted = _shipped()
 	var per_theme: Dictionary = {}
-	for question_id in loaded.question_cards:
-		var question: Dictionary = loaded.question_cards[str(question_id)]
-		per_theme[str(question["theme"])] = int(per_theme.get(str(question["theme"]), 0)) + 1
+	for tension_id in loaded.tensions:
+		var tension: Dictionary = loaded.tensions[str(tension_id)]
+		per_theme[str(tension["theme"])] = int(per_theme.get(str(tension["theme"]), 0)) + 1
 		assert_true(
-			(question["requires_any_tag"] as Array).size() > 0,
-			"%s chiede almeno un segno al tavolo" % [str(question_id)]
-		)
-		assert_true(
-			(question["outcomes"] as Array).size() >= 2,
-			"%s ha almeno due esiti" % [str(question_id)]
+			(tension.get("possible_questions", []) as Array).size() > 0,
+			"%s porta almeno una domanda sulla carta" % [str(tension_id)]
 		)
 	for theme_id in loaded.themes:
 		assert_true(
 			int(per_theme.get(str(theme_id), 0)) > 0,
-			"il Tema %s ha un mazzo: il Calore che sale deve aprire qualcosa" % [str(theme_id)]
+			"il Tema %s ha un mazzetto: il Calore che sale deve girare qualcosa" % [str(theme_id)]
 		)
 
 

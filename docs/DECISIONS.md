@@ -10,6 +10,49 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-266 — La Domanda sta sulla carta Tensione: niente mazzetti di Domande
+
+**implemented in 0.1.228** — parola del committente, che revoca una strada tentata
+
+La strada tentata, per il verbale: una prima stesura di questa decisione
+(la PR #108, **mai mergiata**) aveva costruito il contrario — 18 carte Domanda
+in mazzetti separati, tre per Tema, pescate a fine Atto, con una generica che
+apriva sempre. Il committente l'ha fermata prima del merge, testuale:
+
+> *«Nella carta Tensione ci sono già le domande collegate ai Tag del mondo: se
+> si gira una Tensione sul Tema caldo, lì ci sono già le domande di come
+> comportarsi — scegliendo dal proponente le opportunità e i bonus, e
+> scegliendo dagli avversari i malus. Non c'è bisogno di fare ulteriori
+> mazzetti.»*
+
+**Quello che cambia, in tre righe:**
+
+1. **Le carte Domanda escono dai dati**: le dodici filtrate, il loro schema
+   (`question_card`), la loro mano nel dizionario dei segni (90 voci ripulite)
+   e i controlli del validatore fisico che le sorvegliavano (Domande che si
+   aprirebbero sempre, Temi senza mazzo Domande — al suo posto: **Tema senza
+   Tensioni**). Il tentativo dei 18 resta nella storia della PR, non nel gioco.
+2. **La Domanda vive sulla Tensione.** Il ponte digitale è `possible_questions`
+   sulla carta Tensione, verso i template di Consiglio: a fine Atto la
+   questione girata apre le **sue** domande, com'è dal giro di D-261. Una
+   prova nuova lo pretende dai dati: ogni Tensione spedita porta almeno una
+   domanda (60 su 60 oggi).
+3. **La forma del dibattito è la direzione di PZ-5**: il proponente sceglie le
+   opportunità e i bonus, gli avversari i malus — insieme alla controproposta
+   del RIVENDICARE (D-261), è il Consiglio da rileggere, non un mazzo da
+   stampare.
+
+**Il costo, dichiarato:** tre segni di memoria (`charter_temporary`,
+`crystal_measured`, `relic_recorded`) li leggevano **solo** le carte Domanda:
+restano scritti-e-non-letti, con la nota nel dizionario che dice cosa
+aspettano — la faccia fisica delle Tensioni (ISSUES 69).
+
+**I numeri non si muovono:** 100 semi, 0 seggi bloccati su 8, tavolo misto *e*
+uniforme, Consigli fermi al decimale dello 0.1.227 (media 4,63 all'uniforme).
+La rimozione è pura: il motore non pescava ancora niente sul main.
+
+---
+
 ## D-265 — Dieci tessere, sessanta Tensioni, e la matematica che tiene i mazzetti vivi
 
 **implemented in 0.1.227** — parola del committente, sulla taglia del mondo

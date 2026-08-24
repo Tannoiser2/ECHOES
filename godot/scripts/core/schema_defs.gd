@@ -935,59 +935,6 @@ const DEFS := {
 			},
 		},
 	},
-	"question_card": {
-		"kind": "collection",
-		"required": [
-			"id",
-			"theme",
-			"title",
-			"question",
-			"requires_any_tag",
-			"outcomes",
-		],
-		"additional_properties": false,
-		"properties": {
-			"id": {
-				"type": "String",
-				"pattern": "^QST_[A-Z0-9_]+$",
-			},
-			"theme": {
-				"type": "String",
-				"pattern": "^THM_[A-Z_]+$",
-			},
-			"title": {
-				"type": "String",
-				"min_length": 1,
-			},
-			"question": {
-				"type": "String",
-				"min_length": 1,
-			},
-			"requires_any_tag": {
-				"type": "Array",
-				"min_items": 1,
-				"element": {
-					"type": "String",
-				},
-			},
-			"outcomes": {
-				"type": "Array",
-				"min_items": 2,
-				"element": {
-					"type": "Dictionary",
-				},
-			},
-			"from_template": {
-				"type": "String",
-			},
-			"from_question": {
-				"type": "String",
-			},
-			"art_prompt_key": {
-				"type": "String",
-			},
-		},
-	},
 	"region": {
 		"kind": "collection",
 		"required": [
@@ -1326,7 +1273,6 @@ const DEFS := {
 						"echo_card",
 						"entity",
 						"objective",
-						"question_card",
 						"region",
 						"structure_type",
 						"tag_rule",
@@ -1350,7 +1296,6 @@ const DEFS := {
 						"echo_card",
 						"entity",
 						"objective",
-						"question_card",
 						"region",
 						"structure_type",
 						"tag_rule",
@@ -1904,7 +1849,6 @@ const COLLECTION_SCHEMA_IDS := [
 	"echo_card",
 	"entity",
 	"objective",
-	"question_card",
 	"region",
 	"sim_plan",
 	"structure_type",

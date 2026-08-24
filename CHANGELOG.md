@@ -5,6 +5,25 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.228 — La Domanda sta sulla carta Tensione: niente mazzetti di Domande (D-266)
+
+- **Revoca del committente** sulla strada delle carte Domanda in mazzetti
+  separati (tentata nella PR #108, mai mergiata): *«nella carta Tensione ci
+  sono già le domande collegate ai Tag del mondo — non c'è bisogno di fare
+  ulteriori mazzetti»*. Le **12 carte Domanda escono dai dati**, con lo schema
+  `question_card`, la loro mano nel dizionario dei segni (90 voci ripulite) e
+  i controlli del validatore fisico dedicati; al loro posto la guardia **Tema
+  senza Tensioni**.
+- **La Domanda vive sulla Tensione girata**: `possible_questions` → template
+  di Consiglio, com'è dal giro di D-261. Prova nuova: ogni Tensione spedita
+  porta almeno una domanda (60/60). La forma del dibattito — proponente →
+  opportunità e bonus, avversari → malus — è la direzione di PZ-5.
+- **Costo dichiarato**: tre segni di memoria (`charter_temporary`,
+  `crystal_measured`, `relic_recorded`) restano scritti-e-non-letti con nota:
+  aspettano la faccia fisica delle Tensioni (ISSUES 69).
+- Suite **535 prove / 14.605 asserzioni**; 100 semi: **0 seggi bloccati su
+  8**, misto e uniforme, Consigli fermi al decimale dello 0.1.227.
+
 ## 0.1.227 — Dieci tessere, sessanta Tensioni, e la matematica che tiene i mazzetti vivi (D-265)
 
 - **10 tessere, se ne pescano 6**: le sei di sempre più le quattro di PZ-2 —
