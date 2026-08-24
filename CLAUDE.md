@@ -45,7 +45,7 @@ Tutti vogliono `export GODOT=~/godot/Godot_v4.7.1-stable_linux.x86_64`.
 |---|---|
 | `python3 tools/validate_data.py` | i dati contro `/schema` |
 | `python3 tools/validate_data.py --self-test` | che la guardia dei gettoni morda |
-| `python3 tools/validate_physical.py --check` | **la grammatica fisica**: il dizionario dei segni (`godot/data/tags`) allineato ai dati — ambiti, mani, #cancelletti, muti con ragione — piu' Domande che si aprirebbero sempre, carte senza Risonanza, Risonanze cieche, Temi senza mazzo |
+| `python3 tools/validate_physical.py --check` | **la grammatica fisica**: il dizionario dei segni (`godot/data/tags`) allineato ai dati — ambiti, mani, #cancelletti, muti con ragione — piu' carte senza Risonanza, Risonanze cieche, Temi senza Tensioni |
 | `python3 tools/validate_physical.py --self-test` | che la guardia del dizionario morda, su cinque difetti piantati |
 | `python3 tools/gen_gd_schema.py --check` | `schema_defs.gd` allineato agli schemi |
 | `python3 tools/build_manifest.py --check` | il manifesto degli asset |
@@ -93,11 +93,14 @@ Il gioco è scritto due volte, e le due si controllano a vicenda.
   i template di Consiglio, le clausole dei Destini.
 - **Fisica** — quella che si legge al tavolo: il blocco `physical` sulle carte
   (bersaglio a segni, due Azioni, **Risonanza obbligatoria**, uso in Consiglio),
-  le carte Domanda per Tema, la faccia fisica dei Destini, i sei **Temi**.
+  le carte Tensione nei sei mazzetti, la faccia fisica dei Destini, i sei **Temi**.
 
-Il ponte: ogni Domanda fisica dichiara `from_template`/`from_question`, e
-`validate_physical.py` controlla che le due parti si tengano. **Il motore esegue già
-la Risonanza**; il resto della faccia fisica non ancora — vedi ISSUES 69.
+**La Domanda non è una carta a parte** (D-266, per volere del committente): sta
+sulla carta Tensione. Girata la Tensione sul Tema caldo, le sue domande — legate
+ai segni del mondo — sono lì: il proponente sceglie le opportunità, gli avversari
+i malus. Il ponte digitale è `possible_questions` sulla Tensione, verso i
+template di Consiglio. **Il motore esegue già la Risonanza**; il resto della
+faccia fisica non ancora — vedi ISSUES 69.
 
 **Regole di scrittura di una carta fisica:**
 - il bersaglio si dice **a segni**, mai col nome di una Regione;

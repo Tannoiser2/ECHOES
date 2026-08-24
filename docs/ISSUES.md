@@ -2869,9 +2869,15 @@ nasce) ma nessuno lo attraversa.
    (0 su 600). Resta da misurare se le carte *scaldano* Terra e Antico più
    di prima: il mazzetto pieno dà loro domande, non ancora Calore.
 7. **Dodici Destini su venti** non hanno ancora faccia fisica.
-8. **Le Domande fisiche non si pescano**: dodici carte Domanda esistono nei dati,
-   ma il Consiglio apre ancora i template digitali. Il ponte è dichiarato e non
-   attraversato.
+8. **La Domanda sta sulla carta Tensione** (0.1.228,
+   [D-266](DECISIONS.md#d-266), revoca del committente): le carte Domanda
+   separate sono uscite dai dati — girata la Tensione sul Tema caldo, le sue
+   domande legate ai segni del mondo sono lì (`possible_questions`, 60/60).
+   Resta da **stampare** la faccia della Tensione con le sue domande, e resta
+   la forma del dibattito da eseguire — proponente → opportunità e bonus,
+   avversari → malus: è il Consiglio di PZ-5. Tre segni di memoria
+   (`charter_temporary`, `crystal_measured`, `relic_recorded`) aspettano
+   quella faccia, dichiarati con nota nel dizionario.
 
 **Il prezzo pagato, dichiarato**: col tavolo uniforme l'anno peggiore dei cento
 passa da **otto Consigli a nove**. Tre tentativi di riportarlo a otto non hanno

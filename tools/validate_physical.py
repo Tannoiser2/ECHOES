@@ -32,12 +32,16 @@ non e' sparita: e' diventata la controprova. Questo strumento controlla:
   6. ogni #cancelletto stampato su una faccia fisica e' il nome (o un alias)
      di una voce del dizionario: una carta non puo' nominare un segno che il
      dizionario non conosce;
-  7. Domande senza segni richiesti (si aprirebbero sempre: non sono domande);
-  8. carte con faccia fisica ma senza Risonanza o senza due Azioni;
-  9. Temi inesistenti nominati da carte, Domande o Tensioni;
- 10. Risonanze cieche: la meta' aggravata puo' temere solo un segno che il
+  7. carte con faccia fisica ma senza Risonanza o senza due Azioni;
+  8. Temi inesistenti nominati da carte o Tensioni;
+  9. Risonanze cieche: la meta' aggravata puo' temere solo un segno che il
      verbo della carta raggiunge, e l'ambito adesso e' quello dichiarato;
- 11. Temi il cui mazzo Domande non si puo' aprire.
+ 10. Temi senza Tensioni: un mazzetto vuoto e' un Tema che non parla mai.
+
+La Domanda non e' una carta a parte: **sta sulla carta Tensione** (decisione
+del committente, D-266) — girata la Tensione, le sue domande sono li', legate
+ai segni del mondo. I controlli sulle carte Domanda separate sono usciti con
+il componente.
 
 `--self-test` pianta cinque difetti, uno per famiglia di controllo, e pretende
 che la guardia vada rossa su ognuno: una guardia che nessuno ha visto mordere
@@ -126,7 +130,7 @@ def _tocchi_espliciti(documenti: Dict[str, List[Dict[str, Any]]]):
     le regole del segno (`when` e `when_also`), la Regione di cui si discute
     (`focus_region_tags`, D-234), il catalogo delle pietre grado per grado,
     i segni stampati sul dato base di Regioni ed Entita', e tutta la faccia
-    fisica — bersagli, Azioni, Risonanze, Domande, Destini.
+    fisica — bersagli, Azioni, Risonanze, Destini.
 
     Torna coppie (fonte, verso, tag): verso e' "scrive" o "legge".
     """
@@ -172,14 +176,6 @@ def _tocchi_espliciti(documenti: Dict[str, List[Dict[str, Any]]]):
             yield "asset_physical", "legge", str(tag)
         for tag in bersaglio.get("forbidden_tag", []):
             yield "asset_physical", "legge", str(tag)
-    for domanda in documenti.get("question_card", []):
-        for tag in domanda.get("requires_any_tag", []):
-            yield "question_card", "legge", str(tag)
-        for esito in domanda.get("outcomes", []):
-            for tag in esito.get("puts_tag", []):
-                yield "question_card", "scrive", str(tag)
-            for tag in esito.get("clears_tag", []):
-                yield "question_card", "legge", str(tag)
     for destino in documenti.get("destiny", []):
         fisica = destino.get("physical")
         if fisica:
@@ -363,13 +359,7 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
             guai.append("cancelletto senza voce: «#%s» — una carta stampa un segno "
                         "che il dizionario non nomina" % parola)
 
-    # 7. Domande senza segni richiesti
-    for domanda in documenti.get("question_card", []):
-        if not domanda.get("requires_any_tag"):
-            guai.append("Domanda senza segni richiesti: %s — si aprirebbe sempre, non e' una domanda"
-                        % domanda.get("id"))
-
-    # 8. carte con faccia fisica ma senza Risonanza (o senza due Azioni)
+    # 7. carte con faccia fisica ma senza Risonanza (o senza due Azioni)
     for asset in documenti.get("asset", []):
         fisica = asset.get("physical")
         if not fisica:
@@ -381,7 +371,7 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
             guai.append("carta senza due Azioni: %s — con una sola la carta e' un evento che accade"
                         % asset.get("id"))
 
-    # 9. Risonanze (e Temi dichiarati) che puntano a un Tema che non esiste
+    # 8. Risonanze (e Temi dichiarati) che puntano a un Tema che non esiste
     for asset in documenti.get("asset", []):
         fisica = asset.get("physical")
         if not fisica:
@@ -393,14 +383,11 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
         if tema_risonanza and tema_risonanza not in temi:
             guai.append("Risonanza che scalda un Tema inesistente su %s: «%s»"
                         % (asset.get("id"), tema_risonanza))
-    for domanda in documenti.get("question_card", []):
-        if str(domanda.get("theme")) not in temi:
-            guai.append("Domanda su un Tema inesistente: %s" % domanda.get("id"))
     for tensione in documenti.get("tension", []):
         if str(tensione.get("theme", "")) not in temi:
             guai.append("Tensione su un Tema inesistente: %s" % tensione.get("id"))
 
-    # 10. La meta' aggravata che guarda dove il verbo non arriva.
+    # 9. La meta' aggravata che guarda dove il verbo non arriva.
     #
     # Delle sei azioni **solo MUOVERE e TRAMARE nominano una Regione**: una carta
     # che INFLUENZA e teme un segno di Regione fa una domanda al vuoto, e la sua
@@ -432,21 +419,15 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
                 % (asset.get("id"), verbo, "/".join(sorted(vive)), guardato)
             )
 
-    # 11. Temi il cui mazzo Domande non si puo' aprire
-    per_tema: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
-    for domanda in documenti.get("question_card", []):
-        per_tema[str(domanda.get("theme"))].append(domanda)
-    producibili = {_nudo(t) for t in conto["scritti"]}
+    # 10. Temi senza Tensioni: la Domanda sta sulla carta Tensione (D-266), e un
+    # Tema senza Tensioni e' un mazzetto vuoto — il Calore sale e a fine Atto
+    # non c'e' niente da girare.
+    per_tema: Dict[str, int] = defaultdict(int)
+    for tensione in documenti.get("tension", []):
+        per_tema[str(tensione.get("theme", ""))] += 1
     for tema in sorted(temi):
-        mazzo = per_tema.get(tema, [])
-        if not mazzo:
-            guai.append("Tema senza Domande: %s — il Calore sale e a fine Atto non si apre niente" % tema)
-            continue
-        apribili = [d for d in mazzo
-                    if any(str(t) in producibili for t in d.get("requires_any_tag", []))]
-        if not apribili:
-            guai.append("Tema il cui mazzo non si apre mai: %s — nessuna delle sue %d Domande chiede "
-                        "un segno che il mondo sappia produrre" % (tema, len(mazzo)))
+        if per_tema.get(tema, 0) == 0:
+            guai.append("Tema senza Tensioni: %s — il Calore sale e a fine Atto non si gira niente" % tema)
     return guai
 
 
@@ -456,7 +437,6 @@ def racconta(documenti: Dict[str, List[Dict[str, Any]]]) -> None:
     letti = {_nudo(t) for t in conto["letti"]} - LIVELLI
     voci = dizionario(documenti)
     fisiche = [a for a in documenti.get("asset", []) if a.get("physical")]
-    domande = documenti.get("question_card", [])
     temi = documenti.get("theme", [])
     destini = [d for d in documenti.get("destiny", []) if d.get("physical")]
     print("")
@@ -464,7 +444,6 @@ def racconta(documenti: Dict[str, List[Dict[str, Any]]]) -> None:
     print("")
     print("  Temi                 %d" % len(temi))
     print("  Carte con faccia     %d su %d" % (len(fisiche), len(documenti.get("asset", []))))
-    print("  Domande fisiche      %d" % len(domande))
     print("  Destini con faccia   %d su %d" % (len(destini), len(documenti.get("destiny", []))))
     print("")
     per_categoria: Dict[str, int] = defaultdict(int)
@@ -479,15 +458,12 @@ def racconta(documenti: Dict[str, List[Dict[str, Any]]]) -> None:
     print("  Senza lettori (dichiarati con ragione): %d · senza scrittori: %d"
           % (len(muti), len(fantasmi)))
     print("")
-    per_tema: Dict[str, int] = defaultdict(int)
-    for domanda in domande:
-        per_tema[str(domanda.get("theme"))] += 1
     tensioni: Dict[str, int] = defaultdict(int)
     for tensione in documenti.get("tension", []):
         tensioni[str(tensione.get("theme", ""))] += 1
-    print("  %-22s %9s %9s" % ("Tema", "Domande", "Tensioni"))
+    print("  %-22s %9s" % ("Tema", "Tensioni"))
     for tema in temi:
-        print("  %-22s %9d %9d" % (tema["title"], per_tema[tema["id"]], tensioni[tema["id"]]))
+        print("  %-22s %9d" % (tema["title"], tensioni[tema["id"]]))
 
 
 def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:

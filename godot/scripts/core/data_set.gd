@@ -22,8 +22,6 @@ var tag_rules: Dictionary = {}
 var structure_types: Dictionary = {}
 ## I sei Temi fisici (D-256): la traccia di Calore che i giocatori guardano.
 var themes: Dictionary = {}
-## Le Domande fisiche (D-256): il mazzo che il Consiglio gira, per Tema.
-var question_cards: Dictionary = {}
 ## Il dizionario dei segni (PZ-0): per ogni tag il nome stampato, la categoria,
 ## l'ambito e chi lo tocca. La guardia sta in tools/validate_physical.py.
 var tags: Dictionary = {}
@@ -47,7 +45,6 @@ const _TARGETS: Dictionary = {
 	"tag_rule": "tag_rules",
 	"structure_type": "structure_types",
 	"theme": "themes",
-	"question_card": "question_cards",
 	"tag": "tags",
 }
 

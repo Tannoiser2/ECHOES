@@ -206,6 +206,16 @@ toglie tag visibili, e dichiara l'effetto sul setup dopo.
 **Fatto quando** il Tema più caldo apre **sempre** almeno una Domanda valida, in
 100 anni, senza eccezioni.
 
+> **Rivisto in 0.1.228** ([D-266](DECISIONS.md#d-266)), parola del committente:
+> **niente mazzetti di Domande** — *«nella carta Tensione ci sono già le
+> domande collegate ai Tag del mondo»*. Le carte Domanda sono uscite dai dati
+> (una strada a 18 carte, tentata nella PR #108, è stata revocata prima del
+> merge). PZ-4 cambia oggetto: non un mazzo da stampare ma **la faccia della
+> Tensione che porta le sue domande**. Il criterio «il Tema più caldo apre
+> sempre» vale già per costruzione dal mazzetto pieno (D-264/D-265: 0 mazzetti
+> vuoti su 600). La forma del dibattito — proponente → opportunità e bonus,
+> avversari → malus — passa a PZ-5.
+
 ### PZ-5 — Il Consiglio leggibile, con la regola anti-passività
 
 Il flusso della RoadMap, e la sua regola: se tutti si astengono, **succede
