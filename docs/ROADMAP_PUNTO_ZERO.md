@@ -135,6 +135,12 @@ ambito (REGIONE | ENTITÀ | MONDO) · icona · chi lo scrive · chi lo legge
 **Fatto quando** il validatore legge l'ambito dal dato invece di dedurlo, e ogni
 tag usato da una carta, Domanda, Destino o regola è nel dizionario.
 
+> **Fatto in 0.1.221** ([D-259](DECISIONS.md#d-259)): `godot/data/tags`, 171
+> voci, e `validate_physical.py` legge l'ambito da lì — la deduzione è la
+> controprova, e il self-test si vede mordere in CI. Restano fuori l'icona
+> (aspetta l'arte) e la riunificazione delle parole doppie con `sign_labels.gd`
+> e il registro: [ISSUES 70](ISSUES.md#70).
+
 ### PZ-1 — I sei Temi con la traccia del Calore
 
 I Temi esistono; **il Calore no**. Oggi la Risonanza scalda «la questione più

@@ -1244,6 +1244,113 @@ const DEFS := {
 			},
 		},
 	},
+	"tag": {
+		"kind": "collection",
+		"required": [
+			"id",
+			"title",
+			"category",
+			"scope",
+			"written_by",
+			"read_by",
+		],
+		"additional_properties": false,
+		"properties": {
+			"id": {
+				"type": "String",
+				"pattern": "^[A-Za-z][A-Za-z0-9_]*(:[A-Za-z0-9_$]+)?$",
+			},
+			"title": {
+				"type": "String",
+				"min_length": 1,
+			},
+			"category": {
+				"type": "String",
+				"enum": [
+					"PLACE",
+					"FUNCTION",
+					"STATE",
+					"MEMORY",
+					"ENTITY",
+				],
+			},
+			"scope": {
+				"type": "Array",
+				"min_items": 1,
+				"element": {
+					"type": "String",
+					"enum": [
+						"REGION",
+						"ENTITY",
+						"GLOBAL",
+					],
+				},
+			},
+			"aliases": {
+				"type": "Array",
+				"min_items": 1,
+				"element": {
+					"type": "String",
+				},
+			},
+			"icon": {
+				"type": "String",
+				"min_length": 1,
+			},
+			"written_by": {
+				"type": "Array",
+				"element": {
+					"type": "String",
+					"enum": [
+						"asset",
+						"asset_physical",
+						"chronicle",
+						"confluence_template",
+						"consequence",
+						"destiny",
+						"destiny_physical",
+						"echo_card",
+						"entity",
+						"objective",
+						"question_card",
+						"region",
+						"structure_type",
+						"tag_rule",
+						"tension",
+						"engine",
+					],
+				},
+			},
+			"read_by": {
+				"type": "Array",
+				"element": {
+					"type": "String",
+					"enum": [
+						"asset",
+						"asset_physical",
+						"chronicle",
+						"confluence_template",
+						"consequence",
+						"destiny",
+						"destiny_physical",
+						"echo_card",
+						"entity",
+						"objective",
+						"question_card",
+						"region",
+						"structure_type",
+						"tag_rule",
+						"tension",
+						"engine",
+					],
+				},
+			},
+			"note": {
+				"type": "String",
+				"min_length": 1,
+			},
+		},
+	},
 	"tag_rule": {
 		"kind": "collection",
 		"required": [
@@ -1775,6 +1882,7 @@ const COLLECTION_SCHEMA_IDS := [
 	"region",
 	"sim_plan",
 	"structure_type",
+	"tag",
 	"tag_rule",
 	"tension",
 	"theme",
