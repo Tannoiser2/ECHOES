@@ -133,14 +133,16 @@ class Distratto extends PolicyDecider:
 ## Gioca per il Trionfo dal primo round, invece che per il gradino piu vicino.
 ## Spesso arriva a mani vuote; ogni tanto arriva dove gli altri non arrivano.
 class Ostinato extends PolicyDecider:
-	func _open_levels(entity_id: String, session: RefCounted) -> Array:
+	func _open_levels(
+		entity_id: String, session: RefCounted, with_objectives: bool = true
+	) -> Array:
 		var destiny: Dictionary = _destiny(entity_id, session)
 		if destiny.is_empty():
 			return []
 		var top: Array = destiny["triumph"]["conditions"]
 		if not session.destinies.conditions.all_hold(top, {"self": entity_id}):
 			return [top]
-		return super._open_levels(entity_id, session)
+		return super._open_levels(entity_id, session, with_objectives)
 
 
 ## Il tavolo vero e proprio: il controller chiede a *un* decider, e questo gira

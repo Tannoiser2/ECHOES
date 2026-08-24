@@ -1741,6 +1741,7 @@ const CONDITION_TYPES := [
 	"relation_state",
 	"tension_limit",
 	"discovery_count",
+	"tension_count",
 	"region_presence",
 	"promise_kept",
 	"promise_broken",

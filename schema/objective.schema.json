@@ -46,6 +46,7 @@
             "relation_state",
             "tension_limit",
             "discovery_count",
+            "tension_count",
             "region_presence",
             "promise_kept",
             "promise_broken",
@@ -95,6 +96,14 @@
         },
         "max": {
           "type": "integer"
+        },
+        "at_or_below": {
+          "type": "integer",
+          "description": "Per `tension_count`: conta le Tensioni che stanno a questo valore o sotto — quelle tenute giu'."
+        },
+        "at_or_above": {
+          "type": "integer",
+          "description": "Per `tension_count`: conta le Tensioni che stanno a questo valore o sopra — quelle lasciate salire."
         },
         "level": {
           "type": "string",

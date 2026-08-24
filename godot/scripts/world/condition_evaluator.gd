@@ -106,6 +106,23 @@ func holds(condition: Dictionary, context: Dictionary = {}) -> bool:
 			if not world["tensions"].has(tension_id):
 				return false
 			return _within(service.tension_value(tension_id), condition)
+		"tension_count":
+			# **Quante Tensioni stanno sotto (o sopra) un valore** (D-255).
+			#
+			# `tension_limit` nomina una Tensione, e un obiettivo condiviso non
+			# puo' nominarne nessuna: la Chronicle pesca il suo mazzo da un pool
+			# e quella Tensione li' potrebbe non esserci. Il risultato misurato
+			# e' che INFLUENZARE — il verbo che i seggi vogliono dire nel 79%
+			# delle intenzioni mute (D-254) — **non compariva in nessuna
+			# clausola di nessun obiettivo**: il gioco chiedeva di costruire, di
+			# sapere e di tenere terra, mai di tenere giu' il mondo.
+			#
+			# Questa clausola conta senza nominare, e per questo si puo'
+			# scrivere una volta per tutte le Chronicle. Ed e' l'unica del
+			# vocabolario che il mondo **peggiora da solo**: le Tensioni salgono
+			# per conto loro, quindi tenerne tre basse per un anno intero non e'
+			# una cosa che capita — e' una cosa che si fa.
+			return _within(_tensions_past(condition), condition)
 		"discovery_count":
 			return _within(_discovery_count(entity_id), condition)
 		"region_presence":
@@ -184,6 +201,27 @@ func _relation_holds(condition: Dictionary, context: Dictionary) -> bool:
 	var a: String = _resolve(str(condition.get("entity_id", "")), context)
 	var b: String = _resolve(str(condition.get("other_entity_id", "")), context)
 	var wanted: int = RELATION_ORDER.find(str(condition.get("level", "NEUTRAL")))
+	# **`$any`: con qualcuno, e non importa con chi** (D-255).
+	#
+	# Ogni clausola di relazione del progetto nomina l'altro, perche' un Destino
+	# scritto per una casa sa chi sono i suoi rivali. Un obiettivo condiviso non
+	# lo sa: lo pesca chiunque, e nominare qualcuno lo renderebbe muto per tutti
+	# gli altri. Senza questa forma **FORGIARE non ha una sola clausola che lo
+	# chieda**, in nessun obiettivo del mazzo.
+	if b == "$any" or b == "":
+		for other in (world["entities"] as Dictionary).keys():
+			var other_id: String = str(other)
+			if other_id == a:
+				continue
+			if not bool((world["entities"][other_id] as Dictionary)["active"]):
+				continue
+			var level: int = RELATION_ORDER.find(service.relation_level(a, other_id))
+			if bool(condition.get("at_least", true)):
+				if level >= wanted:
+					return true
+			elif level == wanted:
+				return true
+		return false
 	var actual: int = RELATION_ORDER.find(service.relation_level(a, b))
 	if bool(condition.get("at_least", true)):
 		return actual >= wanted
@@ -298,6 +336,23 @@ func _structures_held(entity_id: String, condition: Dictionary) -> int:
 
 ## Quante cicatrici stanno sulla mappa. Senza `region_id`, ovunque; senza `tag`,
 ## una qualsiasi.
+## Quante Tensioni stanno da una parte della soglia dichiarata.
+##
+## `at_or_below` conta quelle tenute giu', `at_or_above` quelle lasciate salire.
+## Senza nessuna delle due la clausola conterebbe tutte le Tensioni del tavolo,
+## che e' un numero che non dipende da nessuno: si dichiara sempre.
+func _tensions_past(condition: Dictionary) -> int:
+	var count: int = 0
+	for tension_id in world["tensions"]:
+		var value: int = service.tension_value(str(tension_id))
+		if condition.has("at_or_below") and value > int(condition["at_or_below"]):
+			continue
+		if condition.has("at_or_above") and value < int(condition["at_or_above"]):
+			continue
+		count += 1
+	return count
+
+
 func _scars_on_the_map(condition: Dictionary) -> int:
 	var wanted_tag: String = str(condition.get("tag", ""))
 	var only_here: String = str(condition.get("region_id", ""))

@@ -2765,7 +2765,8 @@ e' in gioco.
 
 ### 68. Otto turni su dieci non succede niente
 
-`bilanciamento` · **misurata in 0.1.216** ([D-254](DECISIONS.md#d-254))
+`bilanciamento` · **misurata in 0.1.216** ([D-254](DECISIONS.md#d-254)) ·
+**prima cura in 0.1.217** ([D-255](DECISIONS.md#d-255)) · **aperta**
 
 Il committente l'ha visto giocando: *«17 turni su 24 sono passa»*. Su 100 anni e
 **7.200 turni** il numero è peggiore ancora, ed è lo stesso a tavolo misto e
@@ -2806,12 +2807,43 @@ intenzioni mute (79%)**. Il cervello vuole scaldare una domanda e non ci riesce.
 ISSUES 60 (una domanda muta) sono **la stessa malattia vista da due lati**: non
 mancano le carte né le regole, manca la ragione. E il 65% non si cura col mazzo.
 
-**Da decidere, ed è d'autore:** cosa rende agire meglio che non agire. Le strade
-sono almeno tre e non sono equivalenti — un costo per il passare, un premio per
-il muovere, o obiettivi che chiedono di più di quanto il mondo dia da solo.
+**Deciso dall'autore**, e non è una delle due strade facili: né un costo per il
+passare né un premio per il muovere, ma **obiettivi che chiedono più di quanto il
+mondo dia da solo** ([D-255](DECISIONS.md#d-255)).
+
+Prima di scriverli serviva un numero che nessuno aveva: **quanto rende giocare**.
+`run_asking_probe.gd` gioca ogni anno **due volte con lo stesso seme** — una col
+tavolo vero e una con un **tavolo di pietra** che non spende mai un'Occasione — e
+conta gli obiettivi avverati dai due lati. La risposta, prima di toccare niente:
+
+| 100 anni, tavolo misto | prima | dopo |
+|---|---|---|
+| obiettivi avverati **giocando** | 465 | 350 |
+| obiettivi avverati **stando fermi** | **470** | 188 |
+| quanto rende giocare | **−1,1%** | **+86,2%** |
+| avverati che erano già veri all'apertura | 43,0% | **14,0%** |
+
+**Il tavolo di pietra ne avverava più di quello che giocava.** Non che agire
+rendesse poco: rendeva **meno di niente**, e il 43% dei punti era in cassaforte
+prima che qualcuno posasse una pedina.
+
+**E i «passa» si sono mossi:**
+
+| | prima | dopo |
+|---|---|---|
+| turni «passa» | 85,7% | **82,8%** |
+| «nessuna mossa gli serviva» | 64,9% | **58,7%** |
+| Atto 1 | 77,9% | 72,6% |
+| Atto 3 | 90,2% | 89,4% |
+
+**Non basta, ed è scritto qui perché non basta.** Il 58,7% resta la fetta
+maggiore, e le due che restano dopo di lei sono cresciute: le intenzioni che la
+mano non sa dire passano da 2.152 a 2.422. È la faccia buona del difetto — il
+cervello adesso **vuole** più spesso — ma dice anche dove finisce questa voce e
+dove comincia la prossima: **il mazzo**. Il verbo muto è sempre INFLUENZARE.
 
 **Fatto quando** i «passa» scendono sotto la metà dei turni, e il playtest resta
-0/8.
+0/8. Oggi sono all'82,8%: la voce resta **aperta**.
 
 ---
 
