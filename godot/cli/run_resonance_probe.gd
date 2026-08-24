@@ -90,8 +90,16 @@ func _initialize() -> void:
 				var theme: String = str(echo.get("theme", ""))
 				per_theme[theme] = int(per_theme.get(theme, 0)) + 1
 				per_card[asset_id] = int(per_card.get(asset_id, 0)) + 1
-			elif str(effect.get("type", "")) == "SET_REGION_TAG":
-				marks += 1
+				# **L'aggravata si riconosce dal Calore, non dal segno.** La prima
+				# stesura la contava dai SET_REGION_TAG, e quasi tutte le carte
+				# aggravano soltanto il Calore: la sonda ha detto **zero** per la
+				# quarta volta di fila su questo stesso numero, e per la quarta
+				# volta era cieca lei. Il verbale porta il delta applicato: se e'
+				# piu' del Calore base scritto sulla carta, la parte aggravata e'
+				# scattata.
+				var delta: int = int((effect.get("payload", {}) as Dictionary).get("delta", 0))
+				if delta > int(echo.get("heat", 1)):
+					marks += 1
 		played += int((session.world.get("cards_played_count", 0)))
 		session.dispose()
 
@@ -108,7 +116,7 @@ func _initialize() -> void:
 	print("  Risonanze avvenute:          %d in %d anni  (%.1f per anno)" % [
 		answered, runs, float(answered) / float(maxi(1, runs)),
 	])
-	print("  Di quelle, aggravate:        %d  (%.1f%%) — lasciano un segno sulla mappa" % [
+	print("  Di quelle, aggravate:        %d  (%.1f%%) — il bersaglio portava gia' il segno temuto" % [
 		marks, 100.0 * float(marks) / float(maxi(1, answered)),
 	])
 	print("")
