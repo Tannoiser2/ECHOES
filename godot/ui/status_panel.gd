@@ -472,7 +472,10 @@ func _tarot() -> TextureRect:
 	var picture := TextureRect.new()
 	picture.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	picture.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	picture.custom_minimum_size = Vector2(70.0, 120.0) * 1.85
+	# Un tarocco grande abbastanza da riconoscersi, non da occupare mezza
+	# colonna: a 1.85 erano 130x222 l'uno, e da soli spingevano la mano fuori
+	# dallo schermo (D-251).
+	picture.custom_minimum_size = Vector2(70.0, 120.0) * 1.15
 	picture.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	return picture
 

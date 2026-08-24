@@ -5,6 +5,22 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.214 — La colonna di lato spingeva la mano fuori dallo schermo (D-251)
+
+- **«Le carte sono quasi sparite del tutto.»** Non erano piccole: erano **sotto
+  il bordo della finestra**.
+- **Misurato**: la colonna di destra chiede **763 px** di altezza minima; la
+  finestra ne aveva **726**. Una colonna che chiede più della pagina non si
+  stringe — spinge giù tutto quello che le sta sotto, e sotto c'è la mano.
+- La colonna di stato ora sta dentro un pannello che **scorre**, e i due
+  tarocchi del Destino passano da 130×222 a 80×138.
+- **Tre prove**, e la prima rende il rischio un fatto: la colonna *può* chiedere
+  più di 600 px, quindi non può stare in una pagina che non scorre.
+- **Misurato**: 489 prove / 10.747 asserzioni verdi (da 486 / 10.741), cancelli
+  verdi, sim verdi, cataloghi allineati, playtest 100 semi **0 su 8**.
+
+---
+
 ## 0.1.213 — Il testo che si tagliava, la pagina troppo grande, e un file per fare le carte
 
 - **D-246 — «le carte sono tagliate e non c'è scritto nulla sopra.»** Erano la

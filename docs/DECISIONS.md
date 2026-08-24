@@ -10,6 +10,48 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-251 — La colonna di lato spingeva la mano fuori dallo schermo
+
+**implemented in 0.1.214**
+
+> «Le carte sono quasi sparite del tutto.»
+
+**Non erano piccole: erano sotto il bordo della finestra.** Nella schermata che
+il committente ha mandato si vede il taglio esatto — dei mazzi in basso si
+vedono solo i primi venti pixel.
+
+**Il numero, misurato**: la colonna di destra chiede **763 pixel** di altezza
+minima. Cresce con quello che ha da dire — quattro domande, i rapporti, i
+diritti, i segni della casa, il Destino con le sue due carte e i quattro
+obiettivi — e la finestra della schermata ne ha **726**. Una colonna che chiede
+piu' della pagina non si stringe: **spinge in giu' tutto quello che le sta
+sotto**, e sotto c'e' la mano.
+
+Ed e' un difetto che **non si vede mai su un monitor alto** e si vede **sempre**
+su un portatile o un tablet in orizzontale. E' la stessa forma delle sei di ieri:
+qualcosa costruito guardando uno schermo grande.
+
+**Due cose:**
+
+- la colonna di stato sta dentro un pannello che **scorre**. Da li' la sua
+  altezza smette di decidere la pagina: puo' crescere quanto vuole senza
+  portarsi via niente;
+- i due tarocchi del Destino erano **130x222 l'uno** — da soli un terzo della
+  colonna. Adesso sono 80x138: grandi abbastanza da riconoscersi, non da
+  occupare la pagina.
+
+**Tre prove**, e la prima e' quella che rende il rischio un fatto invece di
+un'impressione: la colonna **puo'** chiedere piu' di 600 pixel, quindi non puo'
+stare in una pagina che non scorre. Poi che ci stia davvero dentro un pannello
+che scorre, e che mano piu' mappa entrino in una finestra bassa — se domani la
+carta cresce ancora, la prova lo dice **prima** che le carte spariscano di nuovo.
+
+**Misurato:** suite 489 prove / 10.747 asserzioni verdi (era 486 / 10.741), i
+cancelli degli strumenti verdi, i piani di simulazione verdi, i due cataloghi
+allineati, `run_playtest.gd --runs=100 --seed=7000` **0 seggi bloccati su 8**.
+
+---
+
 ## D-250 — Una saga che non prosegue deve dire perche'
 
 **implemented in 0.1.213** — parziale: la causa non e' ancora provata
