@@ -154,7 +154,7 @@
             "id": "$rival"
           },
           "payload": {
-            "region_id": "REG_TERRE_NAHR",
+            "region_id": "$region_with:nomad_range",
             "optional": true
           },
           "note": "Un inverno senza uscita non si aspetta sul posto: chi può andarsene se ne va. Regione nominata, non $region_focus, perché e quella che il Minimo del popolo nomina (AUDIT_DESTINI 7.2); optional copre il rivale che li non sta."
@@ -1033,7 +1033,7 @@
           "type": "SET_STRUCTURE_GRADE",
           "target": {
             "kind": "region",
-            "id": "REG_MONTAGNE_ROSSE"
+            "id": "$region_with:wild"
           },
           "payload": {
             "structure_type": "STR_PASS",
@@ -1046,10 +1046,10 @@
           "type": "CLOSE_PASSAGE",
           "target": {
             "kind": "region",
-            "id": "REG_MONTAGNE_ROSSE"
+            "id": "$region_with:wild"
           },
           "payload": {
-            "region_id": "REG_TERRE_NAHR",
+            "region_id": "$region_with:nomad_range",
             "optional": true
           },
           "note": "D-166: e da qui la montagna e la steppa smettono di toccarsi. Per andare dall'altra parte si fa il giro dalle Miniere. Se il taglio isolasse una Regione l'applicatore lo rifiuta: nessuna frase vale una partita rotta."
@@ -1587,12 +1587,11 @@
     {
       "id": "CNS_DRAGON_SLAIN",
       "title": "Il Drago Abbattuto",
-      "requires_entity": "ENT_VAERAX",
       "category": "WAR",
       "description": "Si scende con ferro e fuoco, e si risale in meno. Quello che dormiva sotto la montagna non si svegliera' piu' - e la montagna, da quel giorno, e' soltanto pietra che ricorda.",
       "creates_scar": true,
       "scar": {
-        "region_id": "REG_MONTAGNE_ROSSE",
+        "region_id": "$region_with:wild",
         "tag": "scar:dragonfall",
         "description": "Il punto dove la montagna smise di respirare. Nessuno ci costruisce sopra."
       },
@@ -1601,7 +1600,7 @@
           "type": "SET_ENTITY_ACTIVE",
           "target": {
             "kind": "entity",
-            "id": "ENT_VAERAX"
+            "id": "$entity_with:sleeping"
           },
           "payload": {
             "active": false
@@ -1627,7 +1626,8 @@
             "tag": "dragon_slain"
           }
         }
-      ]
+      ],
+      "requires_entity_tag": "sleeping"
     }
   ]
 }

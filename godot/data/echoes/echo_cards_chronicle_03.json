@@ -36,7 +36,7 @@
             "type": "SET_REGION_TAG",
             "target": {
               "kind": "region",
-              "id": "REG_VALLE_VERDE"
+              "id": "$region_with:granary"
             },
             "payload": {
               "tag": "condition:lean"
@@ -49,7 +49,7 @@
             "type": "RAZE_STRUCTURE",
             "target": {
               "kind": "region",
-              "id": "REG_VALLE_VERDE"
+              "id": "$region_with:granary"
             },
             "payload": {
               "structure_type": "STR_CANAL"
@@ -95,7 +95,7 @@
             "type": "SET_REGION_TAG",
             "target": {
               "kind": "region",
-              "id": "REG_STRADA_MERCANTI"
+              "id": "$region_with:trade"
             },
             "payload": {
               "tag": "condition:indebted"
@@ -190,7 +190,7 @@
             "type": "SET_REGION_TAG",
             "target": {
               "kind": "region",
-              "id": "REG_EREDAN"
+              "id": "$region_with:capital"
             },
             "payload": {
               "tag": "condition:contested"
@@ -235,7 +235,7 @@
             "type": "SET_REGION_TAG",
             "target": {
               "kind": "region",
-              "id": "REG_MINIERE_ANTICHE"
+              "id": "$region_with:mine"
             },
             "payload": {
               "tag": "condition:unrest"
@@ -251,7 +251,7 @@
               "id": "$rival"
             },
             "payload": {
-              "region_id": "REG_MINIERE_ANTICHE",
+              "region_id": "$region_with:mine",
               "optional": true
             }
           },
@@ -297,7 +297,7 @@
             "type": "SET_REGION_TAG",
             "target": {
               "kind": "region",
-              "id": "REG_TERRE_NAHR"
+              "id": "$region_with:nomad_range"
             },
             "payload": {
               "tag": "condition:emptied"
@@ -310,7 +310,7 @@
             "type": "SET_CONTROL",
             "target": {
               "kind": "region",
-              "id": "REG_TERRE_NAHR"
+              "id": "$region_with:nomad_range"
             },
             "payload": {
               "entity_id": null
@@ -445,7 +445,7 @@
             "type": "SET_REGION_TAG",
             "target": {
               "kind": "region",
-              "id": "REG_VALLE_VERDE"
+              "id": "$region_with:granary"
             },
             "payload": {
               "tag": "condition:starving"
@@ -551,7 +551,7 @@
             "type": "BUILD_STRUCTURE",
             "target": {
               "kind": "region",
-              "id": "REG_VALLE_VERDE"
+              "id": "$region_with:granary"
             },
             "payload": {
               "structure_type": "STR_CANAL",
@@ -686,7 +686,7 @@
               "id": "$proponent"
             },
             "payload": {
-              "region_id": "REG_MINIERE_ANTICHE",
+              "region_id": "$region_with:mine",
               "optional": true
             },
             "note": " Il tetto delle pedine vale anche per il mondo (D-223): chi le ha gia' tutte sul tavolo non ne ha una da posare, e la carta lo dice invece di sforare in silenzio."
@@ -736,7 +736,7 @@
             "type": "SET_REGION_TAG",
             "target": {
               "kind": "region",
-              "id": "REG_STRADA_MERCANTI"
+              "id": "$region_with:trade"
             },
             "payload": {
               "tag": "condition:indebted"

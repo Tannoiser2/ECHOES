@@ -469,6 +469,17 @@ def check_bindings(
                     if wanted not in declared:
                         report.fail(where, f"no Region declares the tag '{wanted}'")
                     continue
+                # `$entity_with:<tag>` nomina un genere di casa (D-262): il segno
+                # deve stare addosso a qualcuno nel dato base, o su qualunque
+                # tavolo pescato la clausola compila a niente per sempre.
+                if token.startswith("$entity_with:"):
+                    wanted = token[len("$entity_with:") :]
+                    declared = {
+                        tag for e in documents.get("entity", []) for tag in e.get("tags", [])
+                    }
+                    if wanted not in declared:
+                        report.fail(where, f"no Entity declares the tag '{wanted}'")
+                    continue
                 if token.startswith("$") and token[1:] not in KNOWN_BINDINGS:
                     report.fail(
                         where,
@@ -902,27 +913,49 @@ def check_drawn_tables_do_not_name_a_house(
         chronicle.get("entity_pool")
         for chronicle in documents.get("chronicle", [])
     )
-    if not draws:
-        return
+    # Il divieto sulle Regioni (D-262) non aspetta il tavolo pescato: vale gia',
+    # perche' un contenuto che nomina un posto per id smette di essere vero il
+    # giorno che la mappa si pesca (Fase C) — meglio che non entri affatto.
+    REGION_ID = re.compile(r"REG_[A-Z0-9_]+")
 
     def walk(node: Any, doc_id: str, where: str, allowed: str = "") -> None:
         if isinstance(node, dict):
             if "type" in node and "target" in node:
                 target = node.get("target") or {}
-                if str(target.get("kind", "")) == "entity":
+                if draws and str(target.get("kind", "")) == "entity":
                     named = str(target.get("id", ""))
                     if named.startswith("ENT_") and named != allowed:
                         report.fail(
                             f"{where} [{doc_id}]",
                             f"l'Effetto {node['type']} punta a {named}, ma le case si "
                             "pescano: usare un segnaposto ($proponent, $rival, "
-                            "$conditioner), o dichiarare `requires_entity` se la "
-                            "Conseguenza parla proprio di quella casa",
+                            "$conditioner, $entity_with:<segno>), o dichiarare "
+                            "`requires_entity` se la Conseguenza parla proprio di "
+                            "quella casa",
                         )
+            # La grammatica adattiva (D-262): il contenuto dei Consigli e degli
+            # Echo non nomina mai una Regione per id — il bersaglio si dice a
+            # segni ($region_with:<segno>) o a ruoli ($region_focus), cosi' la
+            # stessa Conseguenza viaggia su qualunque mappa. Qui non c'e' un
+            # permesso analogo a `requires_entity`: un posto preciso si nomina
+            # col suo segno stampato, che e' unico quanto l'id e resta vero
+            # quando la mappa si peschera' (Fase C).
             for value in node.values():
+                if isinstance(value, str) and REGION_ID.fullmatch(value):
+                    report.fail(
+                        f"{where} [{doc_id}]",
+                        f"'{value}' e' un id di Regione scritto nel contenuto: usare "
+                        "$region_with:<segno> o $region_focus (D-262)",
+                    )
                 walk(value, doc_id, where, allowed)
         elif isinstance(node, list):
             for value in node:
+                if isinstance(value, str) and REGION_ID.fullmatch(value):
+                    report.fail(
+                        f"{where} [{doc_id}]",
+                        f"'{value}' e' un id di Regione scritto nel contenuto: usare "
+                        "$region_with:<segno> o $region_focus (D-262)",
+                    )
                 walk(value, doc_id, where, allowed)
 
     for kind in ("confluence_template", "consequence", "echo_card"):

@@ -114,6 +114,11 @@
           "type": "string",
           "pattern": "^ENT_[A-Z0-9_]+$",
           "description": "La casa di cui questa Conseguenza parla (D-213). Col tavolo pescato non tutte le case siedono, e una Conseguenza che spegne il drago non ha senso se il drago non e' al tavolo: dichiarandola, la Conseguenza si salta invece di cadere in un push_error. E' anche il permesso per nominare un id nei suoi Effetti: senza questa riga la guardia lo vieta."
+        },
+        "requires_entity_tag": {
+          "type": "string",
+          "minLength": 1,
+          "description": "La forma adattiva di requires_entity (D-262): non una casa per nome, ma **chi porta questo segno**. La Conseguenza accade solo se qualcuno al tavolo lo porta addosso — vale il segno vivo, anche guadagnato in partita — e cosi' viaggia su qualunque tavolo pescato. Nei suoi Effetti la stessa casa si nomina con $entity_with:<segno>."
         }
       }
     }

@@ -134,7 +134,8 @@
         "asset_physical",
         "destiny_physical",
         "question_card",
-        "tension"
+        "tension",
+        "echo_card"
       ]
     },
     {
@@ -589,7 +590,8 @@
         "asset_physical",
         "destiny_physical",
         "question_card",
-        "tension"
+        "tension",
+        "consequence"
       ]
     },
     {
@@ -1230,9 +1232,27 @@
         "asset_physical",
         "destiny_physical",
         "question_card",
-        "tension"
+        "tension",
+        "consequence",
+        "echo_card"
       ],
       "note": "vocazione del luogo, stampata sulla Regione: non e' la pietra structure:granary, ma le carte stampano #granaio per entrambe"
+    },
+    {
+      "id": "mine",
+      "title": "miniera",
+      "category": "FUNCTION",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "region"
+      ],
+      "read_by": [
+        "consequence",
+        "echo_card"
+      ],
+      "note": "vocazione del luogo, stampata sulla Regione (D-262): il posto dove si scava, che le Conseguenze nominano col segno invece che con l'id"
     },
     {
       "id": "guild",
@@ -1760,7 +1780,10 @@
         "asset_physical",
         "destiny_physical",
         "question_card",
-        "tension"
+        "tension",
+        "confluence_template",
+        "consequence",
+        "echo_card"
       ]
     },
     {
@@ -2402,8 +2425,10 @@
       "written_by": [
         "entity"
       ],
-      "read_by": [],
-      "note": "etichetta di famiglia: dice chi sei, non cosa puoi fare, e nessuna regola deve leggerla"
+      "read_by": [
+        "consequence"
+      ],
+      "note": "era etichetta di famiglia muta; da D-262 la legge la grammatica adattiva ($entity_with e requires_entity_tag): dice chi sei, e adesso il mondo puo' parlarne senza nominarti"
     },
     {
       "id": "someone_paid",
@@ -2699,7 +2724,9 @@
         "asset_physical",
         "destiny_physical",
         "question_card",
-        "tension"
+        "tension",
+        "echo_card",
+        "consequence"
       ]
     },
     {
@@ -2802,7 +2829,8 @@
         "asset_physical",
         "destiny_physical",
         "question_card",
-        "tension"
+        "tension",
+        "consequence"
       ]
     }
   ]

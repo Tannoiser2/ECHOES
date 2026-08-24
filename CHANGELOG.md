@@ -5,6 +5,29 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.224 — La grammatica adattiva: il contenuto non nomina più un posto per id (D-262)
+
+- **Fase B della direzione a tessere**: le 23 occorrenze di id fissi nel
+  contenuto (8 fra Conseguenze e template, 15 carte Echo) sono riscritte a
+  **segni** — `$region_with:granary`, `$region_with:capital`, … — e ogni
+  tessera ha un segno unico stampato che la nomina (`mine` è il solo nuovo,
+  sulle Miniere Antiche).
+- **`$entity_with:<segno>`** (nuovo, gemello di `$region_with`): la prima casa
+  del tavolo che porta il segno **vivo**; nessuno lo porta → la clausola
+  compila a niente, senza errore (D-106). **`requires_entity_tag`**: il drago
+  non si chiama più `ENT_VAERAX`, si chiama *chi porta #dormiente* — e
+  l'etichetta `sleeping` da colore muto diventa letta, dichiarato nel
+  dizionario.
+- **Guardie viste mordere**: id di Regione vietati nel contenuto (difetto
+  piantato → rosso → ritirato); `$entity_with` validato come binding; i
+  selettori contano come **letture** nel censimento — trovate subito due mani
+  non dichiarate (`crystal_site`, `trade`) su selettori di D-033 mai contati.
+- **La controprova**: playtest 100 semi **identico alla virgola** a D-261
+  (3-6 Consigli, medie 4,59/4,66, Verità 355/348, 0 seggi bloccati su 8): la
+  riscrittura cambia cosa il contenuto dice, non cosa fa — finché la mappa
+  non cambia, che è il punto.
+- Suite: **527 prove / 12.398 asserzioni** (cinque nuove sulla grammatica).
+
 ## 0.1.223 — I sei mazzetti: gettoni coperti, la carta che si gira, e il secondo dibattito (D-261)
 
 - **La regola del committente, per intero**: i sei Temi sono sei **mazzetti di

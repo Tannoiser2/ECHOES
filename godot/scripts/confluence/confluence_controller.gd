@@ -580,6 +580,16 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 				% str(consequence.get("title", consequence_id))
 			)
 			continue
+		# La forma adattiva dello stesso requisito (D-262): non una casa
+		# precisa, ma **chi porta un segno** — cosi' la Conseguenza viaggia su
+		# qualunque tavolo. Stessa regola di D-213: detto invece che taciuto.
+		var needs_tag: String = str(consequence.get("requires_entity_tag", ""))
+		if needs_tag != "" and not _someone_carries(needs_tag):
+			log.bullet(
+				"H. %s non accade: nessuna casa al tavolo porta il segno che chiede."
+				% str(consequence.get("title", consequence_id))
+			)
+			continue
 		log.bullet("H. Conseguenza - %s:" % str(consequence.get("title", consequence_id)))
 		var first_effect: int = applied.size()
 		for effect in compiler.compile(str(consequence_id), context, source):
@@ -800,6 +810,16 @@ func _apply_scar(applied: Array, consequence_id: String, source: Dictionary) -> 
 		)
 	)
 	log.bullet("Scar: %s" % str(scar["description"]))
+
+
+## Qualcuno al tavolo porta questo segno? Vale il segno vivo sull'Entita' in
+## gioco, quindi anche uno guadagnato in partita (D-262).
+func _someone_carries(tag: String) -> bool:
+	for entity_id in world["entities"]:
+		var entity: Dictionary = world["entities"][str(entity_id)]
+		if (entity.get("tags", []) as Array).has(tag):
+			return true
+	return false
 
 
 func _apply(applied: Array, effect: Dictionary) -> void:

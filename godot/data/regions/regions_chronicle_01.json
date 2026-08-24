@@ -151,7 +151,8 @@
       "tags": [
         "domain:ANCIENT",
         "domain:RESOURCE",
-        "crystal_site"
+        "crystal_site",
+        "mine"
       ],
       "presence_slots": 4,
       "control": null,

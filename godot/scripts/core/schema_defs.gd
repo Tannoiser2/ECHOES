@@ -518,6 +518,10 @@ const DEFS := {
 				"type": "String",
 				"pattern": "^ENT_[A-Z0-9_]+$",
 			},
+			"requires_entity_tag": {
+				"type": "String",
+				"min_length": 1,
+			},
 		},
 	},
 	"destiny": {
