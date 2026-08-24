@@ -1468,7 +1468,26 @@ func _drive(data: RefCounted, humans: Array, chronicle_id: String) -> void:
 	# stessa eta', eredita il mondo e i risultati appena chiusi, e il seme
 	# avanza dello stesso passo delle sonde - cosi' una saga giocata a mano e'
 	# riproducibile come una simulata.
+	# **Una saga e' di dieci partite, e alla decima si chiude** (D-253).
+	#
+	# `library_sequel_of` risponde con se stessa per la biblioteca — e' giusto,
+	# perche' e' l'era che si ripete — e nessuno contava fin dove. L'offerta
+	# tornava **all'infinito**, mentre l'idea di partenza dice *«dieci partite
+	# che rappresentano una saga»*. Il numero e' gia' nei dati:
+	# `saga_scoring.decides_after`, che il verbale legge da [D-181](#d-181) per
+	# dire «un anno giocato su dieci». Da adesso lo legge anche la porta.
+	var played: int = int(_session.world.get("chronicles_played", 1))
+	var enough: int = int(
+		((data.chronicles[chronicle_id] as Dictionary).get("saga_scoring", {}) as Dictionary)
+		.get("decides_after", 10)
+	)
 	var sequel: String = data.library_sequel_of(chronicle_id)
+	if sequel != "" and played >= enough:
+		say("")
+		say("[b]La saga e' finita:[/b] %d anni giocati." % played)
+		say("Il conto della campagna e' nel verbale qui sopra, e la cronaca dei")
+		say("dieci anni si apre col bottone «La cronaca».")
+		sequel = ""
 	if sequel != "":
 		var choice: int = await ask(
 			"L'anno e' chiuso, ma il mondo no. Il tempo passa.",

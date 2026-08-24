@@ -30,6 +30,19 @@ const LEVEL_NAMES: Dictionary = {
 ## Le pagine SVG della cronaca di un anno, da un salvataggio.
 ## `save` e' il dizionario di `session.to_save()`; `data` il DataSet.
 static func pages(save: Dictionary, data: RefCounted) -> Array:
+	return _paginate(_blocks_of(save, data), _footer_of(save))
+
+
+## Il piede di pagina di una cronaca d'anno.
+static func _footer_of(save: Dictionary) -> String:
+	return "la cronaca dell'anno %d" % int(
+		(save.get("world_state", {}) as Dictionary).get("year", 0)
+	)
+
+
+## Il contenuto di una cronaca d'anno come righe tipografiche, prima che
+## qualcuno decida se disegnarle in SVG o sullo schermo.
+static func _blocks_of(save: Dictionary, data: RefCounted) -> Array:
 	var world: Dictionary = save.get("world_state", {})
 	var chronicle_id: String = str(save.get("chronicle_id", world.get("chronicle_id", "")))
 	var chronicle: Dictionary = data.chronicles.get(chronicle_id, {})
@@ -80,7 +93,7 @@ static func pages(save: Dictionary, data: RefCounted) -> Array:
 			blocks.append(["%s — %s" % [name, str(LEVEL_NAMES.get(level, level))],
 				BODY_SIZE, PrintSheet.INK, false, 2.5])
 
-	return _paginate(blocks, "la cronaca dell'anno %d" % year)
+	return blocks
 
 
 ## Le forme brevi dei livelli, per le righe strette della Timeline.
@@ -100,6 +113,25 @@ static func saga_pages(saves: Array, data: RefCounted) -> Array:
 	if saves.size() == 1:
 		return pages(saves[0], data)
 
+	var first_year: int = int((saves[0].get("world_state", {}) as Dictionary).get("year", 0))
+	var last_year: int = int(
+		(saves[saves.size() - 1].get("world_state", {}) as Dictionary).get("year", 0)
+	)
+	var blocks: Array = _timeline_blocks(saves, data)
+	return _timeline_pages(blocks, saves, data, first_year, last_year)
+
+
+static func _timeline_pages(
+	blocks: Array, saves: Array, data: RefCounted, first_year: int, last_year: int
+) -> Array:
+	var out: Array = _paginate(blocks, "la saga, anni %d – %d" % [first_year, last_year])
+	for save in saves:
+		out.append_array(pages(save, data))
+	return out
+
+
+## La Timeline dei secoli: un anno per riga, il salto, chi sedeva, com'e' finita.
+static func _timeline_blocks(saves: Array, data: RefCounted) -> Array:
 	var first_year: int = int((saves[0].get("world_state", {}) as Dictionary).get("year", 0))
 	var last_year: int = int(
 		(saves[saves.size() - 1].get("world_state", {}) as Dictionary).get("year", 0)
@@ -142,9 +174,26 @@ static func saga_pages(saves: Array, data: RefCounted) -> Array:
 			):
 				blocks.append([str(line), BODY_SIZE, PrintSheet.DIM, false, 1.5])
 
-	var out: Array = _paginate(blocks, "la saga, anni %d – %d" % [first_year, last_year])
+	return blocks
+
+
+## I capitoli del libro della saga come righe: la Timeline, poi un capitolo per
+## anno. Stessa costruzione di `saga_pages`, ferma un passo prima.
+static func _saga_blocks(saves: Array, data: RefCounted) -> Array:
+	var out: Array = []
+	var first_year: int = int((saves[0].get("world_state", {}) as Dictionary).get("year", 0))
+	var last_year: int = int(
+		(saves[saves.size() - 1].get("world_state", {}) as Dictionary).get("year", 0)
+	)
+	out.append({
+		"blocks": _timeline_blocks(saves, data),
+		"footer": "la saga, anni %d – %d" % [first_year, last_year],
+	})
 	for save in saves:
-		out.append_array(pages(save, data))
+		out.append({
+			"blocks": _blocks_of(save as Dictionary, data),
+			"footer": _footer_of(save as Dictionary),
+		})
 	return out
 
 
@@ -170,6 +219,65 @@ static func _paginate(blocks: Array, footer: String) -> Array:
 	var out: Array = []
 	for index in range(pages_out.size()):
 		out.append(_page_svg(pages_out[index], footer, index + 1, pages_out.size()))
+	return out
+
+
+## Le stesse pagine, ma **impaginate e non disegnate**: per ogni pagina, le
+## righe con la loro posizione, il corpo, il colore e il grassetto.
+##
+## Serve allo schermo, e serve per una ragione precisa (D-252): il rasterizzatore
+## SVG di Godot **non disegna il testo**. Una pagina di sola prosa passata di li'
+## esce nera — sfondo e basta, zero inchiostro, misurato. Per la stampa l'SVG va
+## benissimo, perche' a disegnarlo e' un browser o una tipografia; per lo schermo
+## no, e l'unica strada e' che a scrivere sia Godot.
+##
+## Stessa impaginazione, stessa sorgente: la pagina che si legge nell'app e
+## quella che esce dalla stampante restano la stessa pagina.
+static func laid_out(save: Dictionary, data: RefCounted) -> Array:
+	return _lay_out(_blocks_of(save, data), _footer_of(save))
+
+
+## E lo stesso per il libro di una saga.
+static func saga_laid_out(saves: Array, data: RefCounted) -> Array:
+	if saves.is_empty():
+		return []
+	if saves.size() == 1:
+		return laid_out(saves[0], data)
+	var out: Array = []
+	for entry in _saga_blocks(saves, data):
+		var chapter: Dictionary = entry as Dictionary
+		out.append_array(_lay_out(chapter["blocks"] as Array, str(chapter["footer"])))
+	return out
+
+
+## La stessa divisione in pagine di `_paginate`, che pero' si ferma un passo
+## prima: torna le righe invece dell'SVG. Una copia sarebbe due impaginazioni che
+## domani smettono di essere d'accordo, quindi la divisione sta qui e le due
+## uscite la chiamano.
+static func _lay_out(blocks: Array, footer: String) -> Array:
+	var pages_out: Array = []
+	var current: Array = []
+	var cursor: float = MARGIN + 8.0
+	for block in blocks:
+		var advance: float = float(block[4]) + maxf(float(block[1]) * 1.25, LINE * 0.0) + (
+			LINE - BODY_SIZE if float(block[1]) <= BODY_SIZE + 0.1 else float(block[1]) * 0.6
+		)
+		if cursor + advance > PAGE_H - MARGIN and not current.is_empty():
+			pages_out.append(current)
+			current = []
+			cursor = MARGIN + 8.0
+		cursor += float(block[4])
+		cursor += float(block[1]) * 1.2
+		current.append([block, cursor])
+		cursor += LINE - BODY_SIZE if float(block[1]) <= BODY_SIZE + 0.1 else float(block[1]) * 0.5
+	if not current.is_empty():
+		pages_out.append(current)
+	var out: Array = []
+	for index in range(pages_out.size()):
+		out.append({
+			"lines": pages_out[index],
+			"footer": "ECHOES · %s · pagina %d di %d" % [footer, index + 1, pages_out.size()],
+		})
 	return out
 
 
