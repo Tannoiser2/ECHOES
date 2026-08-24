@@ -117,7 +117,55 @@
           },
           "note": "Il mestiere della carta (D-106): il confine vigilato rallenta anche i carri onesti. Nelle Cronache senza Vie non accade nulla."
         }
-      ]
+      ],
+      "physical": {
+        "themes": [
+          "THM_TERRA",
+          "THM_POTERE"
+        ],
+        "target": {
+          "scope": "REGION",
+          "any_tag": [
+            "capital",
+            "granary",
+            "nomad_range",
+            "condition:contested"
+          ],
+          "text": "Scegli un luogo con #capitale, #granaio, #pascolo o #conteso."
+        },
+        "actions": [
+          {
+            "label": "Guardare chi arriva",
+            "text": "Scopri una questione velata che tocca quel luogo, e pesca 1 Sapere.",
+            "puts_tag": [
+              "discovery:the_omen"
+            ],
+            "template": "SCHEME"
+          },
+          {
+            "label": "Far sapere che si guarda",
+            "text": "Metti #conteso sul luogo: nessuno ci entra senza che si sappia.",
+            "puts_tag": [
+              "condition:contested"
+            ]
+          }
+        ],
+        "resonance": {
+          "theme": "THM_TERRA",
+          "heat": 1,
+          "text": "Scalda Terra +1. Un confine sorvegliato e' un confine che qualcuno ha appena disegnato.",
+          "if_target_tag": "nomad_range",
+          "extra_heat": 1,
+          "extra_tag": "condition:unrest"
+        },
+        "council_use": {
+          "base_strength": 1,
+          "bonus_if_theme": [
+            "THM_TERRA",
+            "THM_POTERE"
+          ]
+        }
+      }
     },
     {
       "id": "AST_FORCE_ROADBLOCK",
@@ -194,9 +242,8 @@
           "theme": "THM_VIE",
           "heat": 1,
           "text": "Scalda Vie +1. Una strada su cui c'e' un posto di blocco non e' piu' una strada: e' una porta, e le porte si contano.",
-          "if_target_tag": "trade",
-          "extra_heat": 1,
-          "extra_tag": "condition:unrest"
+          "if_target_tag": "toll_shared",
+          "extra_heat": 1
         },
         "council_use": {
           "base_strength": 1,
@@ -243,7 +290,55 @@
           },
           "note": "Il costo della carta: usarla lascia la questione più calda di come l'ha trovata."
         }
-      ]
+      ],
+      "physical": {
+        "themes": [
+          "THM_POTERE",
+          "THM_TERRA"
+        ],
+        "target": {
+          "scope": "REGION",
+          "any_tag": [
+            "wild",
+            "nomad_range",
+            "condition:abandoned",
+            "condition:contested"
+          ],
+          "forbidden_tag": [
+            "capital"
+          ],
+          "text": "Scegli un luogo con #selvaggio, #pascolo, #abbandonato o #conteso che non sia una #capitale."
+        },
+        "actions": [
+          {
+            "label": "Prendere il posto",
+            "text": "Sposta una tua presenza li'. Chi c'era si sposta o resta e sta zitto.",
+            "template": "MOVE"
+          },
+          {
+            "label": "Spogliare il posto",
+            "text": "Metti #saccheggiato e prendi una carta a caso dalla mano di chi lo controlla.",
+            "puts_tag": [
+              "condition:plundered"
+            ]
+          }
+        ],
+        "resonance": {
+          "theme": "THM_TERRA",
+          "heat": 2,
+          "text": "Scalda Terra +2. Una banda armata non torna indietro uguale, e nemmeno il posto da cui e' passata.",
+          "if_target_tag": "condition:plundered",
+          "extra_heat": 1,
+          "extra_tag": "condition:unrest"
+        },
+        "council_use": {
+          "base_strength": 2,
+          "bonus_if_theme": [
+            "THM_POTERE",
+            "THM_TERRA"
+          ]
+        }
+      }
     },
     {
       "id": "AST_FORCE_MERCENARIES",
@@ -280,7 +375,43 @@
           },
           "note": "Il mestiere della carta (D-106): i mercenari lasciano il segno dell'inquietudine sulla Regione della domanda."
         }
-      ]
+      ],
+      "physical": {
+        "themes": [
+          "THM_POTERE",
+          "THM_VIE"
+        ],
+        "target": {
+          "scope": "ENTITY",
+          "text": "Scegli un'altra casa al tavolo."
+        },
+        "actions": [
+          {
+            "label": "Prestarli",
+            "text": "Sali di un gradino nel rapporto con lei: chi combatte per te ti deve qualcosa, o viceversa.",
+            "template": "FORGE"
+          },
+          {
+            "label": "Toglierli di mezzo",
+            "text": "Scendi di un gradino con lei e pesca 1 Ricchezza: li hai pagati per non esserci.",
+            "template": "FORGE"
+          }
+        ],
+        "resonance": {
+          "theme": "THM_VIE",
+          "heat": 1,
+          "text": "Scalda Vie +1. Chi si compra si ricompra, e il prezzo lo sa gia' qualcun altro.",
+          "if_target_tag": "debt_called",
+          "extra_heat": 1
+        },
+        "council_use": {
+          "base_strength": 1,
+          "bonus_if_theme": [
+            "THM_POTERE",
+            "THM_VIE"
+          ]
+        }
+      }
     },
     {
       "id": "AST_FORCE_SIEGE",
@@ -329,7 +460,54 @@
           },
           "note": "La seconda meta' del mestiere (D-218): un assedio non affama soltanto, **butta giu'**. Era l'unica carta del mazzo che poteva togliere una pietra dal tavolo e non lo faceva: in cento anni non veniva abbattuto niente."
         }
-      ]
+      ],
+      "physical": {
+        "themes": [
+          "THM_POTERE",
+          "THM_SOPRAVVIVENZA"
+        ],
+        "target": {
+          "scope": "REGION",
+          "any_tag": [
+            "capital",
+            "granary",
+            "structure:watchtower",
+            "structure:castle"
+          ],
+          "text": "Scegli un luogo con #capitale, #granaio o una struttura murata."
+        },
+        "actions": [
+          {
+            "label": "Stringere l'assedio",
+            "text": "Rivendica il luogo: al prossimo Consiglio la sua Domanda si apre e tu parli per primo.",
+            "puts_tag": [
+              "condition:contested"
+            ],
+            "template": "CLAIM"
+          },
+          {
+            "label": "Affamare e aspettare",
+            "text": "Metti #fame sul luogo. Non entri: aspetti che escano loro.",
+            "puts_tag": [
+              "condition:starving"
+            ]
+          }
+        ],
+        "resonance": {
+          "theme": "THM_SOPRAVVIVENZA",
+          "heat": 2,
+          "text": "Scalda Sopravvivenza +2. Un assedio si vede da lontano, e chi ha fame lo racconta prima di chi comanda.",
+          "if_target_tag": "grain_requisitioned",
+          "extra_heat": 1
+        },
+        "council_use": {
+          "base_strength": 2,
+          "bonus_if_theme": [
+            "THM_POTERE",
+            "THM_SOPRAVVIVENZA"
+          ]
+        }
+      }
     },
     {
       "id": "AST_FORCE_OLD_ARMY",
@@ -367,7 +545,48 @@
           },
           "note": "Il costo della carta: usarla lascia la questione più calda di come l'ha trovata."
         }
-      ]
+      ],
+      "physical": {
+        "themes": [
+          "THM_POTERE"
+        ],
+        "target": {
+          "scope": "REGION",
+          "any_tag": [
+            "capital",
+            "condition:contested",
+            "condition:unrest"
+          ],
+          "text": "Scegli un luogo con #capitale, #conteso o #malcontento."
+        },
+        "actions": [
+          {
+            "label": "Richiamarli sotto le armi",
+            "text": "Sposta due tue presenze in quel luogo, anche da lontano. Sanno la strada.",
+            "template": "MOVE"
+          },
+          {
+            "label": "Lasciarli tornare a casa",
+            "text": "Togli #malcontento dal luogo e pesca 1 Autorita': congedarli e' un atto di governo.",
+            "clears_tag": [
+              "condition:unrest"
+            ]
+          }
+        ],
+        "resonance": {
+          "theme": "THM_POTERE",
+          "heat": 2,
+          "text": "Scalda Potere +2. Un esercito che si muove e' una domanda su chi comanda, posta senza parole.",
+          "if_target_tag": "crown_divided",
+          "extra_heat": 1
+        },
+        "council_use": {
+          "base_strength": 3,
+          "bonus_if_theme": [
+            "THM_POTERE"
+          ]
+        }
+      }
     },
     {
       "id": "AST_FORCE_BURNED_GATE",
@@ -409,7 +628,55 @@
           },
           "note": "Il costo della carta: chi la gioca lascia il posto di cui si sta parlando."
         }
-      ]
+      ],
+      "physical": {
+        "themes": [
+          "THM_POTERE",
+          "THM_TERRA"
+        ],
+        "target": {
+          "scope": "REGION",
+          "any_tag": [
+            "capital",
+            "structure:watchtower",
+            "structure:castle",
+            "structure:palace"
+          ],
+          "text": "Scegli un luogo con #capitale o una struttura murata."
+        },
+        "actions": [
+          {
+            "label": "Bruciare la porta",
+            "text": "Rivendica il luogo e metti una Cicatrice: quello che era chiuso non lo sara' mai piu'.",
+            "puts_tag": [
+              "condition:contested",
+              "scar:open_wound"
+            ],
+            "template": "CLAIM"
+          },
+          {
+            "label": "Mostrare la fiaccola",
+            "text": "Non bruci niente. Metti #malcontento su quel luogo e su un altro che confina: ha visto anche lui.",
+            "puts_tag": [
+              "condition:unrest"
+            ]
+          }
+        ],
+        "resonance": {
+          "theme": "THM_POTERE",
+          "heat": 2,
+          "text": "Scalda Potere +2. Le porte bruciate si raccontano per due generazioni, e nessuna versione e' la tua.",
+          "if_target_tag": "question_unresolved",
+          "extra_heat": 1
+        },
+        "council_use": {
+          "base_strength": 3,
+          "bonus_if_theme": [
+            "THM_POTERE",
+            "THM_TERRA"
+          ]
+        }
+      }
     },
     {
       "id": "AST_AUTHORITY_EDICT",
@@ -478,9 +745,8 @@
           "theme": "THM_POTERE",
           "heat": 1,
           "text": "Scalda Potere +1. Un editto e' una promessa che qualcuno dovra' mantenere o rompere.",
-          "if_target_tag": "capital",
-          "extra_heat": 1,
-          "extra_tag": "condition:unrest"
+          "if_target_tag": "question_unresolved",
+          "extra_heat": 1
         },
         "council_use": {
           "base_strength": 1,
@@ -529,7 +795,41 @@
           },
           "note": "Il mestiere della carta (D-112): il sigillo raffredda - l'opposto della Banda Armata."
         }
-      ]
+      ],
+      "physical": {
+        "themes": [
+          "THM_POTERE"
+        ],
+        "target": {
+          "scope": "TENSION",
+          "text": "Scegli una questione aperta sul tavolo."
+        },
+        "actions": [
+          {
+            "label": "Sigillare in basso",
+            "text": "Abbassa quella questione di 1. Il sigillo dice che non c'e' niente da discutere.",
+            "template": "INFLUENCE"
+          },
+          {
+            "label": "Sigillare in alto",
+            "text": "Alzala di 1. Il sigillo dice che invece c'e', e adesso e' ufficiale.",
+            "template": "INFLUENCE"
+          }
+        ],
+        "resonance": {
+          "theme": "THM_POTERE",
+          "heat": 1,
+          "text": "Scalda Potere +1. Un sigillo non convince nessuno: dice solo chi ha il diritto di chiudere il discorso.",
+          "if_target_tag": "no_charter",
+          "extra_heat": 1
+        },
+        "council_use": {
+          "base_strength": 1,
+          "bonus_if_theme": [
+            "THM_POTERE"
+          ]
+        }
+      }
     },
     {
       "id": "AST_AUTHORITY_CENSUS",
@@ -656,7 +956,48 @@
           },
           "note": "Il mestiere della carta (D-112): invocare la corona spacca il posto di cui si discute. La cura è il Censimento."
         }
-      ]
+      ],
+      "physical": {
+        "themes": [
+          "THM_POTERE"
+        ],
+        "target": {
+          "scope": "REGION",
+          "any_tag": [
+            "capital",
+            "condition:contested"
+          ],
+          "text": "Scegli un luogo con #capitale o #conteso."
+        },
+        "actions": [
+          {
+            "label": "Rivendicare per diritto",
+            "text": "Rivendica il luogo. Il diritto non si discute: si esibisce.",
+            "puts_tag": [
+              "condition:contested"
+            ],
+            "template": "CLAIM"
+          },
+          {
+            "label": "Cedere il diritto",
+            "text": "Un'altra casa prende la rivendicazione al posto tuo, e sale di due gradini nel rapporto con te.",
+            "template": "FORGE"
+          }
+        ],
+        "resonance": {
+          "theme": "THM_POTERE",
+          "heat": 2,
+          "text": "Scalda Potere +2. Ogni volta che il diritto viene detto ad alta voce, qualcuno conta chi non l'ha detto.",
+          "if_target_tag": "crown_divided",
+          "extra_heat": 1
+        },
+        "council_use": {
+          "base_strength": 2,
+          "bonus_if_theme": [
+            "THM_POTERE"
+          ]
+        }
+      }
     },
     {
       "id": "AST_AUTHORITY_MAGISTRATE",
@@ -697,7 +1038,54 @@
           },
           "note": "Il mestiere della carta (D-112): il Magistrato chiude la cicatrice del consiglio che non decise. Se non c'è, non accade nulla."
         }
-      ]
+      ],
+      "physical": {
+        "themes": [
+          "THM_POTERE",
+          "THM_VIE"
+        ],
+        "target": {
+          "scope": "REGION",
+          "any_tag": [
+            "capital",
+            "trade",
+            "condition:contested",
+            "condition:unrest"
+          ],
+          "text": "Scegli un luogo con #capitale, #commercio, #conteso o #malcontento."
+        },
+        "actions": [
+          {
+            "label": "Mandarlo a giudicare",
+            "text": "Sposta una tua presenza li', e togli #conteso: dove c'e' un giudice, la lite ha un posto dove finire.",
+            "clears_tag": [
+              "condition:contested"
+            ],
+            "template": "MOVE"
+          },
+          {
+            "label": "Mandarlo a controllare",
+            "text": "Togli #malcontento dal luogo e pesca 1 Sapere: un registro tenuto bene calma piu' di una lancia.",
+            "clears_tag": [
+              "condition:unrest"
+            ]
+          }
+        ],
+        "resonance": {
+          "theme": "THM_POTERE",
+          "heat": 1,
+          "text": "Scalda Potere +1. Un magistrato e' la corona che arriva dove la corona non va di persona.",
+          "if_target_tag": "charter_written",
+          "extra_heat": 1
+        },
+        "council_use": {
+          "base_strength": 2,
+          "bonus_if_theme": [
+            "THM_POTERE",
+            "THM_VIE"
+          ]
+        }
+      }
     },
     {
       "id": "AST_AUTHORITY_INVESTITURE",
@@ -734,7 +1122,49 @@
           },
           "note": "Il mestiere della carta (D-112): investire un erede è un fatto del mondo - lo stesso segno di CNS_HEIR_NAMED, e la porta della Corona Restaurata (D-110) lo legge."
         }
-      ]
+      ],
+      "physical": {
+        "themes": [
+          "THM_POTERE",
+          "THM_FEDE"
+        ],
+        "target": {
+          "scope": "ENTITY",
+          "text": "Scegli un'altra casa al tavolo."
+        },
+        "actions": [
+          {
+            "label": "Investirla",
+            "text": "Sale di due gradini nel rapporto con te, e prende #fama: il titolo lo dai tu, e si sa.",
+            "puts_tag": [
+              "renowned"
+            ],
+            "template": "FORGE"
+          },
+          {
+            "label": "Farsi investire",
+            "text": "Sali tu di un gradino verso di lei e prendi #fama. Chi accetta un titolo accetta anche chi glielo da'.",
+            "puts_tag": [
+              "renowned"
+            ],
+            "template": "FORGE"
+          }
+        ],
+        "resonance": {
+          "theme": "THM_FEDE",
+          "heat": 1,
+          "text": "Scalda Fede +1. Un titolo dato e' una gerarchia detta ad alta voce, e qualcuno la sentira' come un insulto.",
+          "if_target_tag": "renowned",
+          "extra_heat": 1
+        },
+        "council_use": {
+          "base_strength": 1,
+          "bonus_if_theme": [
+            "THM_POTERE",
+            "THM_FEDE"
+          ]
+        }
+      }
     },
     {
       "id": "AST_AUTHORITY_INTERDICT",
@@ -775,7 +1205,46 @@
           },
           "note": "Il costo della carta: usarla lascia la questione più calda di come l'ha trovata."
         }
-      ]
+      ],
+      "physical": {
+        "themes": [
+          "THM_POTERE",
+          "THM_FEDE"
+        ],
+        "target": {
+          "scope": "TENSION",
+          "text": "Scegli una questione aperta sul tavolo."
+        },
+        "actions": [
+          {
+            "label": "Proibire",
+            "text": "Abbassa quella questione di 2. Nessuno puo' influenzarla fino alla fine dell'Atto.",
+            "template": "INFLUENCE"
+          },
+          {
+            "label": "Scomunicare",
+            "text": "Alzala di 1 e metti #tradimento_detto sul mondo: hai messo qualcuno fuori, e tutti sanno chi.",
+            "puts_tag": [
+              "betrayal_spoken"
+            ],
+            "template": "INFLUENCE"
+          }
+        ],
+        "resonance": {
+          "theme": "THM_FEDE",
+          "heat": 2,
+          "text": "Scalda Fede +2. Un interdetto non toglie niente a nessuno: dice solo che d'ora in poi c'e' un dentro e un fuori.",
+          "if_target_tag": "faith_established",
+          "extra_heat": 1
+        },
+        "council_use": {
+          "base_strength": 3,
+          "bonus_if_theme": [
+            "THM_POTERE",
+            "THM_FEDE"
+          ]
+        }
+      }
     },
     {
       "id": "AST_AUTHORITY_SUCCESSION_ACT",
@@ -814,7 +1283,50 @@
           },
           "note": "Il costo della carta: chi ti sta di fronte mette piede dove si discute. Il tetto delle pedine vale anche per il mondo (D-223): chi le ha gia' tutte sul tavolo non ne ha una da posare, e la carta lo dice invece di sforare in silenzio."
         }
-      ]
+      ],
+      "physical": {
+        "themes": [
+          "THM_POTERE"
+        ],
+        "target": {
+          "scope": "REGION",
+          "any_tag": [
+            "capital"
+          ],
+          "text": "Scegli un luogo con #capitale."
+        },
+        "actions": [
+          {
+            "label": "Scrivere il nome",
+            "text": "Rivendica il luogo e metti #erede_nominato sul mondo: il nome adesso e' scritto.",
+            "puts_tag": [
+              "condition:contested",
+              "heir_named"
+            ],
+            "template": "CLAIM"
+          },
+          {
+            "label": "Scrivere la regola",
+            "text": "Metti #successione_per_legge sul mondo. Non un nome: un modo di sceglierlo, che vale anche contro di te.",
+            "puts_tag": [
+              "succession_by_law"
+            ]
+          }
+        ],
+        "resonance": {
+          "theme": "THM_POTERE",
+          "heat": 2,
+          "text": "Scalda Potere +2. Un atto di successione e' la promessa che qualcuno si alzera' — e l'annuncio a tutti gli altri che non saranno loro.",
+          "if_target_tag": "crown_divided",
+          "extra_heat": 1
+        },
+        "council_use": {
+          "base_strength": 3,
+          "bonus_if_theme": [
+            "THM_POTERE"
+          ]
+        }
+      }
     },
     {
       "id": "AST_PEOPLE_CROWD",
@@ -854,7 +1366,43 @@
           },
           "note": "Il mestiere della carta (D-114): la folla arriva dove sta il potere."
         }
-      ]
+      ],
+      "physical": {
+        "themes": [
+          "THM_SOPRAVVIVENZA",
+          "THM_POTERE"
+        ],
+        "target": {
+          "scope": "TENSION",
+          "text": "Scegli una questione aperta sul tavolo."
+        },
+        "actions": [
+          {
+            "label": "Portare la folla sotto le finestre",
+            "text": "Alza quella questione di 1. La folla non chiede: sta li'.",
+            "template": "INFLUENCE"
+          },
+          {
+            "label": "Mandare la folla a casa",
+            "text": "Abbassala di 1. Chi la sa mandare a casa e' chi l'ha chiamata.",
+            "template": "INFLUENCE"
+          }
+        ],
+        "resonance": {
+          "theme": "THM_SOPRAVVIVENZA",
+          "heat": 1,
+          "text": "Scalda Sopravvivenza +1. Una folla che si raduna mangia dove si raduna, e i conti li fa il posto.",
+          "if_target_tag": "grain_requisitioned",
+          "extra_heat": 1
+        },
+        "council_use": {
+          "base_strength": 1,
+          "bonus_if_theme": [
+            "THM_SOPRAVVIVENZA",
+            "THM_POTERE"
+          ]
+        }
+      }
     },
     {
       "id": "AST_PEOPLE_ELDERS",
@@ -892,7 +1440,56 @@
           },
           "note": "Il mestiere della carta (D-114): gli anziani curano il lutto."
         }
-      ]
+      ],
+      "physical": {
+        "themes": [
+          "THM_FEDE",
+          "THM_SOPRAVVIVENZA"
+        ],
+        "target": {
+          "scope": "REGION",
+          "any_tag": [
+            "granary",
+            "nomad_range",
+            "condition:mourning",
+            "settlement:village",
+            "settlement:town"
+          ],
+          "text": "Scegli un luogo con #granaio, #pascolo, #lutto o un insediamento."
+        },
+        "actions": [
+          {
+            "label": "Ascoltarli",
+            "text": "Scopri una questione velata che tocca il luogo, e pesca 1 Legami.",
+            "puts_tag": [
+              "discovery:legend"
+            ],
+            "template": "SCHEME"
+          },
+          {
+            "label": "Farli parlare in pubblico",
+            "text": "Togli #lutto o #malcontento dal luogo: quello che gli anziani dicono ad alta voce smette di covare.",
+            "clears_tag": [
+              "condition:mourning",
+              "condition:unrest"
+            ]
+          }
+        ],
+        "resonance": {
+          "theme": "THM_FEDE",
+          "heat": 1,
+          "text": "Scalda Fede +1. Chi ricorda decide cosa c'era prima, e cosa c'era prima decide cosa e' giusto adesso.",
+          "if_target_tag": "faith_established",
+          "extra_heat": 1
+        },
+        "council_use": {
+          "base_strength": 1,
+          "bonus_if_theme": [
+            "THM_FEDE",
+            "THM_SOPRAVVIVENZA"
+          ]
+        }
+      }
     },
     {
       "id": "AST_PEOPLE_HARVEST_HANDS",
@@ -966,7 +1563,7 @@
           "theme": "THM_SOPRAVVIVENZA",
           "heat": 1,
           "text": "Scalda Sopravvivenza +1. Le braccia che raccolgono qui sono braccia che non arano altrove.",
-          "if_target_tag": "condition:starving",
+          "if_target_tag": "grain_requisitioned",
           "extra_heat": 1
         },
         "council_use": {
@@ -1016,7 +1613,43 @@
           },
           "note": "Il mestiere della carta (D-114): mobilitare ha un prezzo: la questione non si raffredda con la folla in strada."
         }
-      ]
+      ],
+      "physical": {
+        "themes": [
+          "THM_SOPRAVVIVENZA",
+          "THM_TERRA"
+        ],
+        "target": {
+          "scope": "TENSION",
+          "text": "Scegli una questione aperta sul tavolo."
+        },
+        "actions": [
+          {
+            "label": "Chiamare tutti",
+            "text": "Alza quella questione di 2. Quando si muovono tutti insieme, nessuno puo' far finta di niente.",
+            "template": "INFLUENCE"
+          },
+          {
+            "label": "Chiamare solo i tuoi",
+            "text": "Alzala di 1 e pesca 1 Popolo: meno rumore, e ti resta della gente in mano.",
+            "template": "INFLUENCE"
+          }
+        ],
+        "resonance": {
+          "theme": "THM_SOPRAVVIVENZA",
+          "heat": 2,
+          "text": "Scalda Sopravvivenza +2. Chi si mobilita non lavora, e chi non lavora mangia lo stesso.",
+          "if_target_tag": "question_unresolved",
+          "extra_heat": 1
+        },
+        "council_use": {
+          "base_strength": 2,
+          "bonus_if_theme": [
+            "THM_SOPRAVVIVENZA",
+            "THM_TERRA"
+          ]
+        }
+      }
     },
     {
       "id": "AST_PEOPLE_SPOKESMAN",
@@ -1053,7 +1686,52 @@
           },
           "note": "Il mestiere della carta (D-114): il portavoce impegna la parola: PROMISE e' un segno che il giudizio delle promesse legge."
         }
-      ]
+      ],
+      "physical": {
+        "themes": [
+          "THM_POTERE",
+          "THM_FEDE"
+        ],
+        "target": {
+          "scope": "REGION",
+          "any_tag": [
+            "capital",
+            "condition:unrest",
+            "settlement:town",
+            "settlement:city"
+          ],
+          "text": "Scegli un luogo con #capitale, #malcontento o un insediamento cresciuto."
+        },
+        "actions": [
+          {
+            "label": "Prendere la parola",
+            "text": "Rivendica il luogo: al prossimo Consiglio parli per primo, e parli per loro.",
+            "puts_tag": [
+              "condition:contested"
+            ],
+            "template": "CLAIM"
+          },
+          {
+            "label": "Darla a un altro",
+            "text": "Un'altra casa parlera' per prima al prossimo Consiglio, e sale di due gradini nel rapporto con te.",
+            "template": "FORGE"
+          }
+        ],
+        "resonance": {
+          "theme": "THM_POTERE",
+          "heat": 1,
+          "text": "Scalda Potere +1. Un portavoce e' qualcuno che ha deciso di chi e' la voce, e l'ha deciso prima di parlare.",
+          "if_target_tag": "petition_heard",
+          "extra_heat": 1
+        },
+        "council_use": {
+          "base_strength": 2,
+          "bonus_if_theme": [
+            "THM_POTERE",
+            "THM_FEDE"
+          ]
+        }
+      }
     },
     {
       "id": "AST_PEOPLE_MARCH",
@@ -1176,7 +1854,56 @@
           },
           "note": "Il costo della carta: chi la gioca lascia il posto di cui si sta parlando."
         }
-      ]
+      ],
+      "physical": {
+        "themes": [
+          "THM_TERRA",
+          "THM_SOPRAVVIVENZA"
+        ],
+        "target": {
+          "scope": "REGION",
+          "any_tag": [
+            "condition:starving",
+            "condition:emptied",
+            "condition:abandoned",
+            "nomad_range"
+          ],
+          "text": "Scegli un luogo con #fame, #svuotato, #abbandonato o #pascolo."
+        },
+        "actions": [
+          {
+            "label": "Andarsene tutti",
+            "text": "Togli tutte le tue presenze da quel luogo e mettine due in un altro qualsiasi. Metti #svuotato dove sei partito.",
+            "puts_tag": [
+              "condition:emptied"
+            ],
+            "template": "MOVE"
+          },
+          {
+            "label": "Mandare avanti i primi",
+            "text": "Sposta una presenza in un luogo qualsiasi, e li' metti il tuo insediamento.",
+            "puts_tag": [
+              "settlement:village"
+            ],
+            "template": "MOVE"
+          }
+        ],
+        "resonance": {
+          "theme": "THM_TERRA",
+          "heat": 2,
+          "text": "Scalda Terra +2. Un esodo non si annulla: il posto da cui si e' partiti resta com'e' rimasto.",
+          "if_target_tag": "nahr_settled",
+          "extra_heat": 1,
+          "extra_tag": "scar:emptied"
+        },
+        "council_use": {
+          "base_strength": 3,
+          "bonus_if_theme": [
+            "THM_TERRA",
+            "THM_SOPRAVVIVENZA"
+          ]
+        }
+      }
     },
     {
       "id": "AST_PEOPLE_STILL_HANDS",
@@ -1217,7 +1944,43 @@
           },
           "note": "Il costo della carta: usarla lascia la questione più calda di come l'ha trovata."
         }
-      ]
+      ],
+      "physical": {
+        "themes": [
+          "THM_SOPRAVVIVENZA",
+          "THM_VIE"
+        ],
+        "target": {
+          "scope": "TENSION",
+          "text": "Scegli una questione aperta sul tavolo."
+        },
+        "actions": [
+          {
+            "label": "Fermare tutto",
+            "text": "Alza quella questione di 2. Le braccia ferme si vedono meglio delle braccia alzate.",
+            "template": "INFLUENCE"
+          },
+          {
+            "label": "Fermare solo una cosa",
+            "text": "Abbassa quella questione di 1 e pesca 1 Popolo: si tratta, e intanto si lavora.",
+            "template": "INFLUENCE"
+          }
+        ],
+        "resonance": {
+          "theme": "THM_VIE",
+          "heat": 2,
+          "text": "Scalda Vie +2. Quando le braccia si fermano, le prime cose che non arrivano sono quelle che venivano da lontano.",
+          "if_target_tag": "toll_shared",
+          "extra_heat": 1
+        },
+        "council_use": {
+          "base_strength": 3,
+          "bonus_if_theme": [
+            "THM_SOPRAVVIVENZA",
+            "THM_VIE"
+          ]
+        }
+      }
     },
     {
       "id": "AST_KNOWLEDGE_RUMOR",
@@ -1254,7 +2017,54 @@
           },
           "note": "Il mestiere della carta (D-114): la voce vela - l'inverso del Cristallo. La Prova la smentisce."
         }
-      ]
+      ],
+      "physical": {
+        "themes": [
+          "THM_FEDE",
+          "THM_POTERE"
+        ],
+        "target": {
+          "scope": "REGION",
+          "any_tag": [
+            "capital",
+            "trade",
+            "condition:unrest",
+            "settlement:market"
+          ],
+          "text": "Scegli un luogo con #capitale, #commercio, #malcontento o #mercato."
+        },
+        "actions": [
+          {
+            "label": "Ascoltare la voce",
+            "text": "Scopri una questione velata che tocca il luogo.",
+            "puts_tag": [
+              "discovery:the_omen"
+            ],
+            "template": "SCHEME"
+          },
+          {
+            "label": "Mettere in giro la voce",
+            "text": "Metti #malcontento sul luogo. Non serve che sia vera: serve che sia arrivata prima.",
+            "puts_tag": [
+              "condition:unrest"
+            ]
+          }
+        ],
+        "resonance": {
+          "theme": "THM_FEDE",
+          "heat": 1,
+          "text": "Scalda Fede +1. Una voce di corridoio e' una verita' che non ha ancora deciso di chi essere.",
+          "if_target_tag": "betrayal_spoken",
+          "extra_heat": 1
+        },
+        "council_use": {
+          "base_strength": 1,
+          "bonus_if_theme": [
+            "THM_FEDE",
+            "THM_POTERE"
+          ]
+        }
+      }
     },
     {
       "id": "AST_KNOWLEDGE_OLD_MAP",
@@ -1376,7 +2186,48 @@
           },
           "note": "Il mestiere della carta (D-114): il registro aperto e' un fatto del mondo, letto dalle clausole."
         }
-      ]
+      ],
+      "physical": {
+        "themes": [
+          "THM_VIE"
+        ],
+        "target": {
+          "scope": "ENTITY",
+          "text": "Scegli un'altra casa al tavolo."
+        },
+        "actions": [
+          {
+            "label": "Aprire il registro",
+            "text": "Metti #registro_pubblico sul mondo e sali di un gradino con lei: i conti chiari fanno gli amici lunghi.",
+            "puts_tag": [
+              "ledger_public"
+            ],
+            "template": "FORGE"
+          },
+          {
+            "label": "Chiudere il registro",
+            "text": "Scendi di un gradino con lei e metti #debito_chiamato sul mondo: adesso deve, e si sa quanto.",
+            "puts_tag": [
+              "debt_called"
+            ],
+            "template": "FORGE"
+          }
+        ],
+        "resonance": {
+          "theme": "THM_VIE",
+          "heat": 1,
+          "text": "Scalda Vie +1. Un registro non e' un elenco di numeri: e' un elenco di persone, in ordine di quanto devono.",
+          "if_target_tag": "ledger_public",
+          "extra_heat": 1
+        },
+        "council_use": {
+          "base_strength": 1,
+          "bonus_if_theme": [
+            "THM_VIE",
+            "THM_POTERE"
+          ]
+        }
+      }
     },
     {
       "id": "AST_KNOWLEDGE_PROOF",
@@ -1413,7 +2264,56 @@
           },
           "note": "Il mestiere della carta (D-114): la prova svela - la smentita della Voce di Corridoio."
         }
-      ]
+      ],
+      "physical": {
+        "themes": [
+          "THM_FEDE",
+          "THM_POTERE"
+        ],
+        "target": {
+          "scope": "REGION",
+          "any_tag": [
+            "capital",
+            "crystal_site",
+            "structure:archive",
+            "structure:library"
+          ],
+          "text": "Scegli un luogo con #capitale, #cristallo o una stanza dove si tengono le carte."
+        },
+        "actions": [
+          {
+            "label": "Mostrare la prova",
+            "text": "Scopri una questione velata e metti #sapere_condiviso sul mondo: adesso lo sanno tutti.",
+            "puts_tag": [
+              "discovery:written_law",
+              "knowledge_shared"
+            ],
+            "template": "SCHEME"
+          },
+          {
+            "label": "Tenere la prova",
+            "text": "Scopri la questione e basta. Pesca 1 Sapere: quello che sai da solo vale di piu' finche' sei solo a saperlo.",
+            "puts_tag": [
+              "discovery:written_law"
+            ],
+            "template": "SCHEME"
+          }
+        ],
+        "resonance": {
+          "theme": "THM_FEDE",
+          "heat": 1,
+          "text": "Scalda Fede +1. Una prova non chiude una discussione: decide chi dovra' chiamare bugiardo chi.",
+          "if_target_tag": "knowledge_shared",
+          "extra_heat": 1
+        },
+        "council_use": {
+          "base_strength": 2,
+          "bonus_if_theme": [
+            "THM_FEDE",
+            "THM_POTERE"
+          ]
+        }
+      }
     },
     {
       "id": "AST_KNOWLEDGE_ARCHIVE",
@@ -1452,7 +2352,55 @@
           },
           "note": "Il mestiere della carta (D-106), l'unica delle quarantotto che non ne aveva uno: un archivio impegnato in un Consiglio smette di essere una carta in mano e diventa una stanza con dentro qualcosa. Ed e' l'unico modo che una casa ha di **decidere** di costruire (D-218)."
         }
-      ]
+      ],
+      "physical": {
+        "themes": [
+          "THM_VIE",
+          "THM_FEDE"
+        ],
+        "target": {
+          "scope": "REGION",
+          "any_tag": [
+            "capital",
+            "structure:archive",
+            "structure:library",
+            "trade"
+          ],
+          "text": "Scegli un luogo con #capitale, #commercio o una stanza dove si tengono le carte."
+        },
+        "actions": [
+          {
+            "label": "Cercare indietro",
+            "text": "Scopri una questione velata che tocca il luogo, e pesca 1 Sapere.",
+            "puts_tag": [
+              "discovery:the_ledger"
+            ],
+            "template": "SCHEME"
+          },
+          {
+            "label": "Far leggere a tutti",
+            "text": "Metti #registro_pubblico sul mondo: quello che c'e' scritto smette di essere di qualcuno.",
+            "puts_tag": [
+              "ledger_public"
+            ],
+            "template": "SCHEME"
+          }
+        ],
+        "resonance": {
+          "theme": "THM_VIE",
+          "heat": 1,
+          "text": "Scalda Vie +1. Un archivio non conserva il passato: conserva la versione che qualcuno ha avuto il tempo di scrivere.",
+          "if_target_tag": "ledger_public",
+          "extra_heat": 1
+        },
+        "council_use": {
+          "base_strength": 1,
+          "bonus_if_theme": [
+            "THM_VIE",
+            "THM_FEDE"
+          ]
+        }
+      }
     },
     {
       "id": "AST_KNOWLEDGE_WITNESS",
@@ -1493,7 +2441,46 @@
           },
           "note": "Il mestiere della carta (D-114): il testimone accusa: l'inquietudine si posa sulla sede del rivale."
         }
-      ]
+      ],
+      "physical": {
+        "themes": [
+          "THM_FEDE",
+          "THM_POTERE"
+        ],
+        "target": {
+          "scope": "TENSION",
+          "text": "Scegli una questione aperta sul tavolo."
+        },
+        "actions": [
+          {
+            "label": "Farlo parlare",
+            "text": "Alza quella questione di 2 e metti #tradimento_detto sul mondo: qualcuno ha detto un nome.",
+            "puts_tag": [
+              "betrayal_spoken"
+            ],
+            "template": "INFLUENCE"
+          },
+          {
+            "label": "Farlo tacere",
+            "text": "Abbassa quella questione di 2. Un testimone che non parla e' un testimone che ti deve qualcosa.",
+            "template": "INFLUENCE"
+          }
+        ],
+        "resonance": {
+          "theme": "THM_FEDE",
+          "heat": 2,
+          "text": "Scalda Fede +2. Un testimone non porta la verita': porta la propria, e adesso il tavolo deve scegliere.",
+          "if_target_tag": "betrayal_spoken",
+          "extra_heat": 1
+        },
+        "council_use": {
+          "base_strength": 2,
+          "bonus_if_theme": [
+            "THM_FEDE",
+            "THM_POTERE"
+          ]
+        }
+      }
     },
     {
       "id": "AST_KNOWLEDGE_RED_CRYSTAL",
@@ -1621,7 +2608,55 @@
           },
           "note": "Il costo della carta: usarla lascia la questione più calda di come l'ha trovata."
         }
-      ]
+      ],
+      "physical": {
+        "themes": [
+          "THM_POTERE",
+          "THM_FEDE"
+        ],
+        "target": {
+          "scope": "REGION",
+          "any_tag": [
+            "capital",
+            "structure:archive",
+            "condition:contested"
+          ],
+          "text": "Scegli un luogo con #capitale, #conteso o un archivio."
+        },
+        "actions": [
+          {
+            "label": "Aprire la busta",
+            "text": "Rivendica il luogo e metti #tradimento_detto sul mondo. Quello che era sigillato adesso e' pubblico.",
+            "puts_tag": [
+              "condition:contested",
+              "betrayal_spoken"
+            ],
+            "template": "CLAIM"
+          },
+          {
+            "label": "Tenerla sigillata",
+            "text": "Rivendica il luogo e basta. La busta resta chiusa, e tutti sanno che ce l'hai tu.",
+            "puts_tag": [
+              "condition:contested"
+            ],
+            "template": "CLAIM"
+          }
+        ],
+        "resonance": {
+          "theme": "THM_POTERE",
+          "heat": 2,
+          "text": "Scalda Potere +2. Una deposizione sigillata pesa uguale aperta o chiusa: quello che conta e' che esista.",
+          "if_target_tag": "question_unresolved",
+          "extra_heat": 1
+        },
+        "council_use": {
+          "base_strength": 3,
+          "bonus_if_theme": [
+            "THM_POTERE",
+            "THM_FEDE"
+          ]
+        }
+      }
     },
     {
       "id": "AST_WEALTH_GRAIN",
@@ -1698,9 +2733,8 @@
           "theme": "THM_SOPRAVVIVENZA",
           "heat": 1,
           "text": "Scalda Sopravvivenza +1. Il grano che si tocca e' grano che qualcuno ha contato.",
-          "if_target_tag": "condition:requisitioned",
-          "extra_heat": 1,
-          "extra_tag": "condition:unrest"
+          "if_target_tag": "grain_requisitioned",
+          "extra_heat": 1
         },
         "council_use": {
           "base_strength": 1,
@@ -1750,7 +2784,55 @@
           },
           "note": "Il mestiere della carta (D-114): il sale conserva: la Regione della domanda non è più magra."
         }
-      ]
+      ],
+      "physical": {
+        "themes": [
+          "THM_VIE",
+          "THM_SOPRAVVIVENZA"
+        ],
+        "target": {
+          "scope": "REGION",
+          "any_tag": [
+            "trade",
+            "granary",
+            "settlement:market",
+            "condition:lean"
+          ],
+          "text": "Scegli un luogo con #commercio, #granaio, #mercato o #magro."
+        },
+        "actions": [
+          {
+            "label": "Vendere il sale",
+            "text": "Scopri una questione velata che tocca il luogo, e pesca 1 Ricchezza.",
+            "puts_tag": [
+              "discovery:trade_ledger"
+            ],
+            "template": "SCHEME"
+          },
+          {
+            "label": "Salare le riserve",
+            "text": "Togli #magro dal luogo: quello che si conserva non marcisce, e chi conserva decide quando.",
+            "clears_tag": [
+              "condition:lean"
+            ],
+            "template": "SCHEME"
+          }
+        ],
+        "resonance": {
+          "theme": "THM_VIE",
+          "heat": 1,
+          "text": "Scalda Vie +1. Il sale e' l'unica merce che tutti comprano e nessuno vuole nominare.",
+          "if_target_tag": "toll_shared",
+          "extra_heat": 1
+        },
+        "council_use": {
+          "base_strength": 1,
+          "bonus_if_theme": [
+            "THM_VIE",
+            "THM_SOPRAVVIVENZA"
+          ]
+        }
+      }
     },
     {
       "id": "AST_WEALTH_TOLL",
@@ -1829,9 +2911,8 @@
           "theme": "THM_VIE",
           "heat": 1,
           "text": "Scalda Vie +1. Ogni pedaggio e' un prezzo che qualcuno non aveva messo in conto.",
-          "if_target_tag": "condition:indebted",
-          "extra_heat": 1,
-          "extra_tag": "condition:unrest"
+          "if_target_tag": "debt_called",
+          "extra_heat": 1
         },
         "council_use": {
           "base_strength": 1,
@@ -1877,7 +2958,49 @@
           },
           "note": "Il mestiere della carta (D-114): la carovana è la cura del taglio - come la Scorta Giurata."
         }
-      ]
+      ],
+      "physical": {
+        "themes": [
+          "THM_VIE"
+        ],
+        "target": {
+          "scope": "REGION",
+          "any_tag": [
+            "trade",
+            "settlement:market",
+            "condition:cut_off"
+          ],
+          "text": "Scegli un luogo con #commercio, #mercato o #tagliato_fuori."
+        },
+        "actions": [
+          {
+            "label": "Farla arrivare",
+            "text": "Sposta una tua presenza li' e togli #tagliato_fuori: una carovana che arriva riapre la strada da sola.",
+            "clears_tag": [
+              "condition:cut_off"
+            ],
+            "template": "MOVE"
+          },
+          {
+            "label": "Dirottarla",
+            "text": "Sposta la presenza in un altro luogo con #commercio e pesca 1 Ricchezza: la merce va dove rende.",
+            "template": "MOVE"
+          }
+        ],
+        "resonance": {
+          "theme": "THM_VIE",
+          "heat": 1,
+          "text": "Scalda Vie +1. Una carovana che passa dice a tutti quanto vale passare di li'.",
+          "if_target_tag": "debt_called",
+          "extra_heat": 1
+        },
+        "council_use": {
+          "base_strength": 2,
+          "bonus_if_theme": [
+            "THM_VIE"
+          ]
+        }
+      }
     },
     {
       "id": "AST_WEALTH_CREDIT",
@@ -1917,7 +3040,46 @@
           },
           "note": "Il mestiere della carta (D-114): il credito chiesto in pubblico apre i conti - lo stesso segno che apre la porta del Banco Nero (D-110)."
         }
-      ]
+      ],
+      "physical": {
+        "themes": [
+          "THM_VIE",
+          "THM_POTERE"
+        ],
+        "target": {
+          "scope": "ENTITY",
+          "text": "Scegli un'altra casa al tavolo."
+        },
+        "actions": [
+          {
+            "label": "Aprire credito",
+            "text": "Sale di due gradini nel rapporto con te, e metti #indebitata sul mondo: le hai fatto un favore che si ricorda.",
+            "puts_tag": [
+              "debt_called"
+            ],
+            "template": "FORGE"
+          },
+          {
+            "label": "Comprare il suo debito",
+            "text": "Scendi di un gradino con lei e pesca 2 Ricchezza. Adesso quello che deve, lo deve a te.",
+            "template": "FORGE"
+          }
+        ],
+        "resonance": {
+          "theme": "THM_VIE",
+          "heat": 1,
+          "text": "Scalda Vie +1. Il credito e' una corda: la tiene chi presta, e la sente chi la porta al collo.",
+          "if_target_tag": "debt_called",
+          "extra_heat": 1
+        },
+        "council_use": {
+          "base_strength": 1,
+          "bonus_if_theme": [
+            "THM_VIE",
+            "THM_POTERE"
+          ]
+        }
+      }
     },
     {
       "id": "AST_WEALTH_GRANARY_KEYS",
@@ -1957,7 +3119,46 @@
           },
           "note": "Il mestiere della carta (D-114): le chiavi chiudono il granaio; la Marcia rompe le razioni."
         }
-      ]
+      ],
+      "physical": {
+        "themes": [
+          "THM_SOPRAVVIVENZA",
+          "THM_POTERE"
+        ],
+        "target": {
+          "scope": "ENTITY",
+          "text": "Scegli un'altra casa al tavolo."
+        },
+        "actions": [
+          {
+            "label": "Dare le chiavi",
+            "text": "Sale di due gradini nel rapporto con te. Chi ha le chiavi del granaio ha una ragione per non tradirti.",
+            "template": "FORGE"
+          },
+          {
+            "label": "Tenere le chiavi",
+            "text": "Scendi di un gradino con lei e metti #grano_requisito sul mondo: il grano c'e' e non e' suo.",
+            "puts_tag": [
+              "grain_requisitioned"
+            ],
+            "template": "FORGE"
+          }
+        ],
+        "resonance": {
+          "theme": "THM_SOPRAVVIVENZA",
+          "heat": 2,
+          "text": "Scalda Sopravvivenza +2. Le chiavi non fanno il grano: decidono soltanto chi resta fuori dalla porta.",
+          "if_target_tag": "grain_requisitioned",
+          "extra_heat": 1
+        },
+        "council_use": {
+          "base_strength": 2,
+          "bonus_if_theme": [
+            "THM_SOPRAVVIVENZA",
+            "THM_POTERE"
+          ]
+        }
+      }
     },
     {
       "id": "AST_WEALTH_TREASURY",
@@ -1995,7 +3196,50 @@
           },
           "note": "Il costo della carta: usarla lascia la questione più calda di come l'ha trovata."
         }
-      ]
+      ],
+      "physical": {
+        "themes": [
+          "THM_POTERE",
+          "THM_VIE"
+        ],
+        "target": {
+          "scope": "REGION",
+          "any_tag": [
+            "capital",
+            "trade"
+          ],
+          "text": "Scegli un luogo con #capitale o #commercio."
+        },
+        "actions": [
+          {
+            "label": "Aprire il tesoro",
+            "text": "Sposta due tue presenze in quel luogo: il denaro muove gli uomini piu' in fretta degli ordini.",
+            "template": "MOVE"
+          },
+          {
+            "label": "Chiudere il tesoro",
+            "text": "Pesca 2 Ricchezza e metti #malcontento sul luogo: chi non viene pagato lo dice in giro.",
+            "puts_tag": [
+              "condition:unrest"
+            ],
+            "template": "MOVE"
+          }
+        ],
+        "resonance": {
+          "theme": "THM_POTERE",
+          "heat": 2,
+          "text": "Scalda Potere +2. Un tesoro aperto e' una promessa; un tesoro chiuso e' un'accusa. Nessuno dei due resta segreto.",
+          "if_target_tag": "crown_dispossessed",
+          "extra_heat": 1
+        },
+        "council_use": {
+          "base_strength": 3,
+          "bonus_if_theme": [
+            "THM_POTERE",
+            "THM_VIE"
+          ]
+        }
+      }
     },
     {
       "id": "AST_WEALTH_LAND_MORTGAGE",
@@ -2037,7 +3281,49 @@
           },
           "note": "Il costo della carta: chi ti sta di fronte mette piede dove si discute. Il tetto delle pedine vale anche per il mondo (D-223): chi le ha gia' tutte sul tavolo non ne ha una da posare, e la carta lo dice invece di sforare in silenzio."
         }
-      ]
+      ],
+      "physical": {
+        "themes": [
+          "THM_TERRA",
+          "THM_VIE"
+        ],
+        "target": {
+          "scope": "ENTITY",
+          "text": "Scegli un'altra casa al tavolo."
+        },
+        "actions": [
+          {
+            "label": "Prendere la terra in garanzia",
+            "text": "Scendi di un gradino con lei. Se a fine anno controlla meno terre di adesso, ne prendi una tu.",
+            "puts_tag": [
+              "debt_called"
+            ],
+            "template": "FORGE"
+          },
+          {
+            "label": "Rimettere l'ipoteca",
+            "text": "Sali di due gradini con lei e metti #debito_rimesso sul mondo: la terra resta sua, e lo sanno tutti.",
+            "puts_tag": [
+              "debt_forgiven"
+            ],
+            "template": "FORGE"
+          }
+        ],
+        "resonance": {
+          "theme": "THM_TERRA",
+          "heat": 2,
+          "text": "Scalda Terra +2. Un'ipoteca sulla terra e' una domanda su chi ci vive, fatta a chi non e' presente.",
+          "if_target_tag": "debt_called",
+          "extra_heat": 1
+        },
+        "council_use": {
+          "base_strength": 3,
+          "bonus_if_theme": [
+            "THM_TERRA",
+            "THM_VIE"
+          ]
+        }
+      }
     },
     {
       "id": "AST_BONDS_FAVOR",
@@ -2077,7 +3363,43 @@
           },
           "note": "Il mestiere della carta (D-113): il piccolo favore toglie la VENDETTA dalla coppia - il segno che il giudizio delle promesse legge come rottura."
         }
-      ]
+      ],
+      "physical": {
+        "themes": [
+          "THM_FEDE",
+          "THM_VIE"
+        ],
+        "target": {
+          "scope": "TENSION",
+          "text": "Scegli una questione aperta sul tavolo."
+        },
+        "actions": [
+          {
+            "label": "Chiedere il favore",
+            "text": "Abbassa quella questione di 1, e scendi di un gradino con la casa che la stava spingendo.",
+            "template": "INFLUENCE"
+          },
+          {
+            "label": "Fare il favore",
+            "text": "Alza quella questione di 1 per conto di un'altra casa: lei sale di due gradini nel rapporto con te.",
+            "template": "INFLUENCE"
+          }
+        ],
+        "resonance": {
+          "theme": "THM_FEDE",
+          "heat": 1,
+          "text": "Scalda Fede +1. Un favore non si restituisce mai per intero: e' questo che lo tiene in vita.",
+          "if_target_tag": "parley_held",
+          "extra_heat": 1
+        },
+        "council_use": {
+          "base_strength": 1,
+          "bonus_if_theme": [
+            "THM_FEDE",
+            "THM_VIE"
+          ]
+        }
+      }
     },
     {
       "id": "AST_BONDS_GUEST_RIGHT",
@@ -2117,7 +3439,46 @@
           },
           "note": "Il mestiere della carta (D-113): l'ospitalità riapre la porta sbarrata di D-067 per chi la impegna. Se non era cacciato, non accade nulla."
         }
-      ]
+      ],
+      "physical": {
+        "themes": [
+          "THM_FEDE",
+          "THM_TERRA"
+        ],
+        "target": {
+          "scope": "REGION",
+          "forbidden_tag": [
+            "condition:contested"
+          ],
+          "text": "Scegli un luogo che non sia #conteso."
+        },
+        "actions": [
+          {
+            "label": "Entrare come ospite",
+            "text": "Sposta una tua presenza li' anche se e' di un altro: l'ospitalita' non si nega.",
+            "template": "MOVE"
+          },
+          {
+            "label": "Offrire ospitalita'",
+            "text": "Un'altra casa mette una presenza in un luogo tuo, e sale di due gradini nel rapporto con te.",
+            "template": "MOVE"
+          }
+        ],
+        "resonance": {
+          "theme": "THM_FEDE",
+          "heat": 1,
+          "text": "Scalda Fede +1. Il diritto d'ospitalita' regge finche' nessuno lo mette alla prova, e qualcuno lo mettera'.",
+          "if_target_tag": "escort_sworn",
+          "extra_heat": 1
+        },
+        "council_use": {
+          "base_strength": 1,
+          "bonus_if_theme": [
+            "THM_FEDE",
+            "THM_TERRA"
+          ]
+        }
+      }
     },
     {
       "id": "AST_BONDS_OLD_DEBT",
@@ -2186,7 +3547,7 @@
           "theme": "THM_FEDE",
           "heat": 1,
           "text": "Scalda Fede +1. Un debito vecchio non e' una somma: e' una storia che qualcuno raccontera' diversamente.",
-          "if_target_tag": "condition:indebted",
+          "if_target_tag": "debt_called",
           "extra_heat": 1
         },
         "council_use": {
@@ -2318,7 +3679,49 @@
           },
           "note": "Il mestiere della carta (D-113): il PACT è un segno che le promesse leggono - mantenerlo è promise_kept, tradirlo è promise_broken."
         }
-      ]
+      ],
+      "physical": {
+        "themes": [
+          "THM_FEDE",
+          "THM_POTERE"
+        ],
+        "target": {
+          "scope": "ENTITY",
+          "forbidden_tag": [
+            "oath_broken"
+          ],
+          "text": "Scegli un'altra casa che non porti #giuramento_rotto."
+        },
+        "actions": [
+          {
+            "label": "Promettere",
+            "text": "Salite tutti e due di due gradini. Da adesso ogni Consiglio in cui vi opponete vi costa una carta a testa.",
+            "puts_tag": [
+              "escort_sworn"
+            ],
+            "template": "FORGE"
+          },
+          {
+            "label": "Rimandare",
+            "text": "Salite di un gradino e pesca 1 Legami: una promessa non ancora fatta si puo' ancora vendere.",
+            "template": "FORGE"
+          }
+        ],
+        "resonance": {
+          "theme": "THM_FEDE",
+          "heat": 2,
+          "text": "Scalda Fede +2. Una promessa di nozze e' un patto che coinvolge chi non era nella stanza.",
+          "if_target_tag": "renowned",
+          "extra_heat": 1
+        },
+        "council_use": {
+          "base_strength": 2,
+          "bonus_if_theme": [
+            "THM_FEDE",
+            "THM_POTERE"
+          ]
+        }
+      }
     },
     {
       "id": "AST_BONDS_BLOOD_TIE",
@@ -2355,7 +3758,55 @@
           },
           "note": "Il mestiere della carta (D-117): il vincolo che non si sceglie. Il segno BLOOD accende il pavimento di TGR_BLOOD_FLOOR - la coppia non scende sotto NEUTRAL - ed era il potere che D-113 aveva rimandato alla voce 25. Con questo, 48 carte su 48 lavorano."
         }
-      ]
+      ],
+      "physical": {
+        "themes": [
+          "THM_FEDE",
+          "THM_POTERE"
+        ],
+        "target": {
+          "scope": "REGION",
+          "any_tag": [
+            "capital",
+            "settlement:town",
+            "settlement:city",
+            "nomad_range"
+          ],
+          "text": "Scegli un luogo con #capitale, #pascolo o un insediamento cresciuto."
+        },
+        "actions": [
+          {
+            "label": "Cercare il legame",
+            "text": "Scopri una questione velata che tocca il luogo, e pesca 1 Legami.",
+            "puts_tag": [
+              "discovery:legend"
+            ],
+            "template": "SCHEME"
+          },
+          {
+            "label": "Rivendicare il sangue",
+            "text": "Metti #erede_nominato sul mondo. Non e' una prova: e' un nome detto in un posto dove qualcuno ascolta.",
+            "puts_tag": [
+              "heir_named"
+            ],
+            "template": "SCHEME"
+          }
+        ],
+        "resonance": {
+          "theme": "THM_POTERE",
+          "heat": 1,
+          "text": "Scalda Potere +1. Il sangue non e' un argomento: e' un modo di non doverne portare nessuno.",
+          "if_target_tag": "heir_named",
+          "extra_heat": 1
+        },
+        "council_use": {
+          "base_strength": 2,
+          "bonus_if_theme": [
+            "THM_FEDE",
+            "THM_POTERE"
+          ]
+        }
+      }
     },
     {
       "id": "AST_BONDS_HOSTAGE",
@@ -2397,7 +3848,43 @@
           },
           "note": "Il costo della carta: chi ti sta di fronte mette piede dove si discute. Il tetto delle pedine vale anche per il mondo (D-223): chi le ha gia' tutte sul tavolo non ne ha una da posare, e la carta lo dice invece di sforare in silenzio."
         }
-      ]
+      ],
+      "physical": {
+        "themes": [
+          "THM_POTERE",
+          "THM_FEDE"
+        ],
+        "target": {
+          "scope": "TENSION",
+          "text": "Scegli una questione aperta sul tavolo."
+        },
+        "actions": [
+          {
+            "label": "Mostrare l'ostaggio",
+            "text": "Abbassa quella questione di 2. Nessuno alza la voce mentre lo guardi.",
+            "template": "INFLUENCE"
+          },
+          {
+            "label": "Restituire l'ostaggio",
+            "text": "Alza quella questione di 1: la casa che lo rivoleva sale di due gradini nel rapporto con te.",
+            "template": "INFLUENCE"
+          }
+        ],
+        "resonance": {
+          "theme": "THM_FEDE",
+          "heat": 2,
+          "text": "Scalda Fede +2. Un ostaggio tiene fermo il tavolo e intanto insegna a tutti come si tiene fermo un tavolo.",
+          "if_target_tag": "betrayal_spoken",
+          "extra_heat": 1
+        },
+        "council_use": {
+          "base_strength": 3,
+          "bonus_if_theme": [
+            "THM_POTERE",
+            "THM_FEDE"
+          ]
+        }
+      }
     },
     {
       "id": "AST_BONDS_BROKEN_PACT",
@@ -2438,7 +3925,46 @@
           },
           "note": "Il costo della carta: usarla lascia la questione più calda di come l'ha trovata."
         }
-      ]
+      ],
+      "physical": {
+        "themes": [
+          "THM_FEDE",
+          "THM_POTERE"
+        ],
+        "target": {
+          "scope": "TENSION",
+          "text": "Scegli una questione aperta sul tavolo."
+        },
+        "actions": [
+          {
+            "label": "Rompere adesso",
+            "text": "Alza quella questione di 2 e metti #giuramento_rotto sul mondo. Scendi di due gradini con chi aveva il patto.",
+            "puts_tag": [
+              "oath_broken"
+            ],
+            "template": "INFLUENCE"
+          },
+          {
+            "label": "Minacciare di rompere",
+            "text": "Alzala di 1. Chi aveva il patto ti da' una carta a scelta perche' tu non lo faccia.",
+            "template": "INFLUENCE"
+          }
+        ],
+        "resonance": {
+          "theme": "THM_FEDE",
+          "heat": 2,
+          "text": "Scalda Fede +2. Un patto rotto non si dimentica: cambia quello che gli altri sono disposti a promettere a chiunque.",
+          "if_target_tag": "oath_broken",
+          "extra_heat": 1
+        },
+        "council_use": {
+          "base_strength": 3,
+          "bonus_if_theme": [
+            "THM_FEDE",
+            "THM_POTERE"
+          ]
+        }
+      }
     }
   ]
 }

@@ -116,26 +116,82 @@ func test_the_answer_never_opens_a_council_by_itself() -> void:
 		)
 
 
-## **Una carta senza faccia non fa rispondere niente.** Trentasei carte su
-## quarantotto non hanno ancora la faccia fisica, e devono restare mute finche'
-## non ce l'hanno: una reazione inventata dal codice sarebbe la regola invisibile
-## che questa direzione vuole togliere.
+## **Una carta senza faccia non fa rispondere niente.**
+##
+## Da 0.1.220 tutte e quarantotto le carte hanno una faccia, quindi questa prova
+## se ne costruisce una **senza**: prende una carta della scatola e le toglie il
+## blocco `physical` in una DataSet tutta sua. Nella prima stesura cercava una
+## carta spoglia fra quelle spedite e, finita la conversione, non ne trovava piu'
+## nessuna — una prova che smette di provare senza dirlo. Adesso la condizione
+## se la fabbrica, e vale anche il giorno che la scatola cambia.
+##
+## Serve perche' una reazione inventata dal codice sarebbe esattamente la regola
+## invisibile che questa direzione vuole togliere: se la carta non la dichiara,
+## il mondo sta zitto.
 func test_a_card_without_a_face_answers_nothing() -> void:
+	var loaded: RefCounted = DataSet.new()
+	assert_true(loaded.load_from("res://data"), "i dati della scatola si leggono")
 	var plain: String = ""
-	for asset_id in data().assets:
-		var card: Dictionary = data().assets[str(asset_id)]
-		if not card.has("physical") and str(card.get("card_action", {}).get("kind", "")) == "SCHEME":
+	for asset_id in loaded.assets:
+		var card: Dictionary = loaded.assets[str(asset_id)]
+		if str((card.get("card_action", {}) as Dictionary).get("kind", "")) == "SCHEME":
 			plain = str(asset_id)
+			(loaded.assets[plain] as Dictionary).erase("physical")
 			break
-	assert_ne(plain, "", "esiste una carta senza faccia da provare")
-	_give("ENT_ALDRIC", plain)
-	session.actions.execute("ENT_ALDRIC", {
+	assert_ne(plain, "", "una carta da spogliare si trova")
+	assert_false(
+		(loaded.assets[plain] as Dictionary).has("physical"),
+		"e adesso non ha una faccia"
+	)
+
+	var stripped: RefCounted = GameSession.new(loaded)
+	var seats: Array = GameSession.seats_for(loaded, "CHR_01", 4242)
+	assert_true(stripped.setup("CHR_01", seats, 4242), "l'anno si apre")
+	for effect in stripped.factory_setup_effects():
+		stripped.applier.apply(effect)
+	# **Un seggio vero di questa partita.** La prima stesura nominava Aldric, che
+	# in un roster pescato col seme puo' non esserci: l'Effetto falliva, la carta
+	# non si giocava, e le asserzioni passavano su un mondo dove non era successo
+	# niente. Una prova che passa perche' non ha provato niente e' peggio di una
+	# rossa.
+	var who: String = ""
+	for entity_id in (stripped.world["entities"] as Dictionary).keys():
+		if bool(((stripped.world["entities"] as Dictionary)[str(entity_id)] as Dictionary)["active"]):
+			who = str(entity_id)
+			break
+	assert_ne(who, "", "al tavolo c'e' qualcuno")
+	stripped.applier.apply(Effect.make(
+		"GRANT_ASSET", "entity", who, {"asset_id": plain},
+		Effect.source("system", "TEST", "", 1, 1, 0)
+	))
+	var tension_id: String = ""
+	for candidate in (stripped.world["tensions"] as Dictionary).keys():
+		tension_id = str(candidate)
+		break
+	var outcome: Dictionary = stripped.actions.execute(who, {
 		"template": "PLAY_CARD",
-		"params": {"asset_id": plain, "mode": "TENSION", "tension_id": "TEN_FAMINE"},
+		"params": {"asset_id": plain, "mode": "TENSION", "tension_id": tension_id},
 	})
-	for entry in (session.world["effect_log"] as Array):
+	assert_true(
+		bool(outcome.get("ok", false)),
+		"la carta spoglia si gioca davvero: %s" % [str(outcome.get("error", ""))]
+	)
+	for entry in (stripped.world["effect_log"] as Array):
 		var effect: Dictionary = (entry as Dictionary).get("effect", entry) as Dictionary
 		assert_ne(
 			str((effect.get("source", {}) as Dictionary).get("kind", "")), "resonance",
 			"«%s» non ha una faccia, e non risponde" % plain
+		)
+	stripped.dispose()
+
+
+## E la controprova: **tutte le carte spedite ce l'hanno.** La conversione e'
+## finita, e se qualcuno ne aggiunge una spoglia questa riga lo dice.
+func test_every_shipped_card_has_a_face() -> void:
+	var loaded: RefCounted = DataSet.new()
+	assert_true(loaded.load_from("res://data"), "i dati della scatola si leggono")
+	for asset_id in loaded.assets:
+		assert_true(
+			(loaded.assets[str(asset_id)] as Dictionary).has("physical"),
+			"«%s» ha una faccia fisica" % [str(asset_id)]
 		)

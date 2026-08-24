@@ -1230,7 +1230,7 @@ func _resonance(
 	# la reazione e' peggiore, e lascia qualcosa.
 	var aggravated: bool = false
 	var watched: String = str(echo.get("if_target_tag", ""))
-	if watched != "" and _carries(target_region, entity_id, watched):
+	if watched != "" and _carries(played, entity_id, watched):
 		aggravated = true
 		heat += int(echo.get("extra_heat", 0))
 	var effects: Array = []
@@ -1289,9 +1289,21 @@ func _hottest_of_theme(theme_id: String) -> String:
 	return best
 
 
-## Se il bersaglio porta quel segno. La carta puo' guardare una Regione o chi la
-## gioca, e la Risonanza nomina un segno solo: si cerca dove ha senso cercarlo.
-func _carries(region_id: String, entity_id: String, tag: String) -> bool:
+## Se il bersaglio porta quel segno — **e bersaglio vuol dire quello che l'azione
+## ha davvero toccato** ([D-258](DECISIONS.md#d-258)).
+##
+## La prima stesura cercava solo in una Regione, e delle sei azioni **soltanto
+## MUOVERE e TRAMARE portano una Regione nei parametri**: per le altre quattro il
+## posto dove cercare era vuoto, e la meta' aggravata di quelle carte non poteva
+## scattare nemmeno una volta. Misurato: **0 su 163 Risonanze**. Non erano segni
+## rari, era una domanda fatta al vuoto.
+##
+## Quindi si guarda dove il verbo arriva: la Regione se ne nomina una, l'altra
+## casa se ne nomina una, chi gioca, e **il mondo** — perche' «se la questione e'
+## gia' rimasta aperta una volta» e' una cosa che una carta puo' legittimamente
+## temere, e non sta scritta ne' su una Regione ne' su una casa.
+func _carries(played: Dictionary, entity_id: String, tag: String) -> bool:
+	var region_id: String = str(played.get("region_id", ""))
 	if region_id != "":
 		var region: Dictionary = (world["regions"] as Dictionary).get(region_id, {}) as Dictionary
 		if (region.get("tags", []) as Array).has(tag):
@@ -1300,8 +1312,15 @@ func _carries(region_id: String, entity_id: String, tag: String) -> bool:
 			var record: Dictionary = scar as Dictionary
 			if str(record.get("region_id", "")) == region_id and str(record.get("tag", "")) == tag:
 				return true
+	var other_id: String = str(played.get("target_entity_id", ""))
+	if other_id != "":
+		var other: Dictionary = (world["entities"] as Dictionary).get(other_id, {}) as Dictionary
+		if (other.get("tags", []) as Array).has(tag):
+			return true
 	var seat: Dictionary = (world["entities"] as Dictionary).get(entity_id, {}) as Dictionary
-	return (seat.get("tags", []) as Array).has(tag)
+	if (seat.get("tags", []) as Array).has(tag):
+		return true
+	return (world.get("global_tags", []) as Array).has(tag)
 
 
 func _discard(entity_id: String, asset_id: String, source: Dictionary) -> Array:

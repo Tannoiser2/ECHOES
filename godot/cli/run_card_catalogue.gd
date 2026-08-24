@@ -144,9 +144,58 @@ func _assets(lines: Array, data: RefCounted, bible: RefCounted) -> int:
 			if rules != "":
 				lines.append("> %s" % rules)
 				lines.append("")
+			_face(lines, asset, data)
 			_prompt(lines, faces.get(str(asset_id), {}) as Dictionary, data, bible)
 	return counted
 
+
+
+## La faccia fisica: quello che va **stampato sulla carta** (D-256, D-258).
+##
+## E' la parte che un giocatore legge al tavolo, e per questo si stampa come si
+## legge — bersaglio, le due Azioni fra cui sceglie, la Risonanza che avviene
+## comunque, e cosa vale se invece la impegna al Consiglio. Senza questo blocco
+## il catalogo descriveva una carta che al tavolo non esiste.
+func _face(lines: Array, asset: Dictionary, data: RefCounted) -> void:
+	var face: Dictionary = asset.get("physical", {}) as Dictionary
+	if face.is_empty():
+		return
+	var names: Array = []
+	for theme_id in face.get("themes", []):
+		names.append(str((data.themes.get(str(theme_id), {}) as Dictionary).get("title", theme_id)))
+	lines.append("**Temi:** %s" % " · ".join(PackedStringArray(names)))
+	lines.append("")
+	lines.append("**BERSAGLIO** — %s" % str((face["target"] as Dictionary)["text"]))
+	lines.append("")
+	lines.append("**AZIONE — scegli 1**")
+	lines.append("")
+	var letters: Array = ["A", "B"]
+	var index: int = 0
+	for action in face["actions"]:
+		var step: Dictionary = action as Dictionary
+		lines.append("%s. **%s.** %s" % [str(letters[index]), str(step["label"]), str(step["text"])])
+		index += 1
+	lines.append("")
+	var echo: Dictionary = face["resonance"] as Dictionary
+	var theme: String = str((data.themes.get(str(echo["theme"]), {}) as Dictionary).get("title", echo["theme"]))
+	lines.append("**RISONANZA (avviene sempre)** — %s" % str(echo["text"]))
+	if str(echo.get("if_target_tag", "")) != "":
+		lines.append("")
+		lines.append("> Se il bersaglio porta gia' `%s`: %s scalda di %d invece che di %d%s." % [
+			str(echo["if_target_tag"]), theme,
+			int(echo["heat"]) + int(echo.get("extra_heat", 0)), int(echo["heat"]),
+			(", e lascia `%s`" % str(echo["extra_tag"])) if str(echo.get("extra_tag", "")) != "" else "",
+		])
+	lines.append("")
+	var council: Dictionary = face["council_use"] as Dictionary
+	var bonus: Array = []
+	for theme_id in council.get("bonus_if_theme", []):
+		bonus.append(str((data.themes.get(str(theme_id), {}) as Dictionary).get("title", theme_id)))
+	var extra: String = ""
+	if not bonus.is_empty():
+		extra = ", +1 se la Domanda e' %s" % " o ".join(PackedStringArray(bonus))
+	lines.append("**IN CONSIGLIO** — vale %d%s." % [int(council["base_strength"]), extra])
+	lines.append("")
 
 ## Le carte Echo: la funzione di Propp che qualcuno cala sul tavolo.
 func _echoes(lines: Array, data: RefCounted, bible: RefCounted) -> int:

@@ -5,6 +5,41 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.220 — Quarantotto carte su quarantotto, e tre volte cieco (D-258)
+
+- **Tutte le carte hanno una faccia fisica**: 48 su 48, ognuna con bersaglio a
+  segni, due Azioni fra cui scegliere, Risonanza obbligatoria e uso in Consiglio.
+- **Le Risonanze passano da 163 a 364 in 100 anni — da 1,6 a 3,6 per anno.** Il
+  difetto che D-257 aveva dichiarato («1,6 volte l'anno è un episodio, non una
+  regola») era il pilota, non la regola.
+- **Correzione a D-257**: il «la metà condizionale non scatta mai, 0 su 163» era
+  **un numero sbagliato**. La sonda contava le aggravate dai segni lasciati sulla
+  mappa, e quasi tutte le carte aggravano solo il Calore. Contata bene: **10,2%**.
+- **Il difetto vero era più piccolo e più preciso**: delle sei azioni **solo
+  MUOVERE e TRAMARE nominano una Regione**, e sei carte su dodici facevano
+  INFLUENZARE, FORGIARE o RIVENDICARE temendo un segno che vive solo sulla mappa.
+  Domanda fatta al vuoto.
+- **Un controllo nuovo nel validatore** lo dice per nome: *«la carta fa CLAIM, che
+  non nomina REGION, e teme `condition:indebted` che vive solo lì. Non scatterà
+  mai.»* È la differenza fra una regola scritta male e una regola che non c'è.
+- **È la quarta volta di fila che uno zero di questo progetto era la sonda e non
+  il gioco**, ed è a verbale come lezione.
+- **Il Calore, dove finisce**: Potere 28,6%, Vie 28,3%, Fede 21,7%, Sopravvivenza
+  20,1% — e **Terra 1,4%**, che resta il buco aperto.
+- **Il prezzo non è peggiorato**: col tavolo uniforme l'anno peggiore resta a nove
+  Consigli, come in 0.1.219; a tavolo misto la forma dell'anno tiene a 3-8.
+- **`docs/CATALOGO_CARTE.md` stampa adesso la carta vera**: bersaglio, le due
+  Azioni, la Risonanza con la sua parte aggravata, e quanto vale al Consiglio. È
+  il documento che si porta in tipografia.
+- **Una prova che aveva smesso di provare**, corretta: cercava fra le carte
+  spedite una senza faccia e, finita la conversione, passava a vuoto. E un
+  `ENT_ALDRIC` scritto a mano non esisteva nel roster pescato col seme, così le
+  asserzioni passavano su un mondo dove non era successo niente.
+- Suite **512 prove / 12.289 asserzioni** verdi, cancelli verdi, playtest 100 semi
+  **0 seggi bloccati su 8** ai due tavoli.
+
+---
+
 ## 0.1.219 — Il mondo risponde (D-257)
 
 - **La Risonanza succede.** Giocare una carta con una faccia fisica scalda il

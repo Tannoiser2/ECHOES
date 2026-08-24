@@ -10,6 +10,85 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-258 — Quarantotto carte su quarantotto, e tre volte cieco
+
+**implemented in 0.1.220** — chiude il grosso di ISSUES 69, che resta aperta
+
+[D-257](#d-257) aveva fatto succedere la Risonanza e aveva detto il suo difetto:
+**1,6 volte l'anno non e' una regola, e' un episodio.** La causa non era la
+regola ma il pilota — dodici carte su quarantotto. Questa converte le altre
+trentasei: **48 su 48**, ognuna con bersaglio a segni, due Azioni, Risonanza
+obbligatoria e uso in Consiglio.
+
+| | prima | adesso |
+|---|---|---|
+| carte con una faccia | 12 su 48 | **48 su 48** |
+| Risonanze in 100 anni | 163 | **364** |
+| per anno | 1,6 | **3,6** |
+
+**E una correzione a D-257, che va prima di tutto il resto.** Quella decisione ha
+scritto che la meta' condizionale della Risonanza era **morta, 0 su 163**, e l'ha
+chiamata «contenuto morto scritto in bella prosa». **Il numero era sbagliato**, e
+lo era perche' la sonda contava le aggravate dai segni lasciati sulla mappa
+mentre quasi tutte le carte aggravano **soltanto il Calore**. Contata come si
+deve — dal delta applicato, confrontato col Calore base scritto sulla carta —
+oggi la meta' condizionale scatta nel **10,2%** dei casi.
+
+Erano due difetti annodati, e solo uno era vero:
+
+1. **sei carte su dodici erano cieche davvero**: delle sei azioni **solo MUOVERE
+   e TRAMARE nominano una Regione**, e quelle sei facevano INFLUENZARE, FORGIARE
+   o RIVENDICARE temendo un segno che vive solo sulla mappa. Domanda fatta al
+   vuoto, e non poteva scattare nemmeno una volta;
+2. **la sonda era cieca sulle altre sei.**
+
+Il primo e' curato due volte: le carte sono riscritte, e il validatore ha un
+controllo nuovo che lo dice per nome — *«la carta fa CLAIM, che non nomina
+REGION, e teme `condition:indebted` che vive solo li'. Non scattera' mai.»* Il
+secondo e' curato nella sonda, e resta a verbale come lezione: **e' la quarta
+volta di fila che uno zero di questo progetto era la sonda e non il gioco.**
+
+**Cosa impedisce che ricapiti.** `tools/validate_physical.py` ha adesso una
+tabella di cosa ogni verbo raggiunge — MUOVERE e TRAMARE arrivano a una Regione,
+FORGIARE a un'altra casa, INFLUENZARE e RIVENDICARE al mondo e a chi gioca — e va
+rosso se una carta teme un segno fuori dalla portata del suo verbo. E' la
+differenza fra una regola scritta male e una regola che non c'e': la prima si
+vede, la seconda no.
+
+**Il Calore, dove finisce.** Su 100 anni: Potere 28,6%, Vie 28,3%, Fede 21,7%,
+Sopravvivenza 20,1% — e **Terra 1,4%**. Quattro Temi su sei si scaldano davvero;
+la Terra quasi mai, ed e' lo stesso buco di [D-256](#d-256) visto da qui: ha una
+Tensione sola, e le carte che la toccano muovono presenze invece di aprire
+questioni. Scritto, non curato.
+
+**Il prezzo, invariato e dichiarato.** Col tavolo uniforme l'anno peggiore dei
+cento resta a **nove Consigli** — lo stesso numero di D-257, non peggiorato dalle
+trentasei carte in piu'. A tavolo misto la forma dell'anno tiene: **3-8**. Il
+vincolo che non si negozia tiene ai due tavoli: **0 seggi bloccati su 8**.
+
+**La storia scritta a mano e' cambiata di nuovo, e in meglio.** In
+`plan_d_crown_calls` adesso **nessuna delle cinque domande cade**: il Calore
+arriva prima alle soglie e le case ci arrivano con piu' da spendere. Il piano e'
+ribasato la seconda volta, con la ragione dentro. La morale non si e' mossa.
+
+**Una prova che aveva smesso di provare.** `test_a_card_without_a_face_answers_nothing`
+cercava fra le carte spedite una senza faccia: finita la conversione non ne
+trovava piu' nessuna, e passava a vuoto. Adesso se la fabbrica — prende una carta
+e le toglie il blocco in una DataSet sua — cosi' la regola *«se la carta non lo
+dichiara, il mondo sta zitto»* resta sorvegliata. Nella stessa prova un
+`ENT_ALDRIC` scritto a mano non esisteva nel roster pescato col seme: l'Effetto
+falliva, la carta non si giocava, e le asserzioni passavano su un mondo dove non
+era successo niente. Corretto: adesso prende un seggio vero e controlla che la
+carta si sia giocata davvero.
+
+**E il catalogo stampa la carta.** `docs/CATALOGO_CARTE.md` porta adesso la
+faccia fisica di tutte e quarantotto — bersaglio, le due Azioni, la Risonanza con
+la sua parte aggravata, e quanto vale al Consiglio. E' il documento che si porta
+in tipografia: prima descriveva una carta che al tavolo non esisteva.
+
+Suite **512 prove / 12.289 asserzioni** verdi, tutti i cancelli verdi, playtest
+**0 su 8** ai due tavoli.
+
 ## D-257 — Il mondo risponde
 
 **implemented in 0.1.219** — prima cura di ISSUES 69, che resta aperta

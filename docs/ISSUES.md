@@ -2766,7 +2766,8 @@ e' in gioco.
 ### 69. La Risonanza è scritta e non succede
 
 `contenuto` · `direzione` · **aperta in 0.1.218** ([D-256](DECISIONS.md#d-256)) ·
-**prima cura in 0.1.219** ([D-257](DECISIONS.md#d-257)) · **aperta**
+**cure in 0.1.219** ([D-257](DECISIONS.md#d-257)) e **0.1.220**
+([D-258](DECISIONS.md#d-258)) · **aperta**
 
 > **Fatto in 0.1.219: la Risonanza succede.** Giocare una carta con una faccia
 > fisica scalda il Tema che ci sta scritto, come Effetto con inverso e con una
@@ -2775,9 +2776,16 @@ e' in gioco.
 > più del resto: **la Risonanza avvicina, non decide** — non porta mai una
 > questione alla soglia da sola.
 >
-> **E si sente troppo poco**: 163 Risonanze in 100 anni, **1,6 per anno**. Non è
-> la regola, è il pilota — dodici carte su quarantotto. Sotto restano i punti
-> che questa voce tiene aperti.
+> **Fatto in 0.1.220: tutte e quarantotto le carte hanno una faccia.** Le
+> Risonanze passano da 163 a **364 in 100 anni — 3,6 per anno**, e la metà
+> condizionale scatta nel **10,2%** dei casi.
+>
+> **Correzione a quanto scritto sopra in 0.1.219**: il «0 su 163, contenuto
+> morto» era **un numero sbagliato**. La sonda contava le aggravate dai segni
+> lasciati sulla mappa, e quasi tutte le carte aggravano solo il Calore. Il
+> difetto vero era più piccolo e più preciso — **sei carte su dodici temevano un
+> segno che il loro verbo non può raggiungere** — ed è curato, con un controllo
+> nuovo nel validatore che lo dice per nome.
 
 La grammatica fisica esiste nei dati: dodici carte hanno bersaglio a segni, due
 Azioni, una Risonanza obbligatoria e un uso in Consiglio. **Il motore ne legge
@@ -2793,14 +2801,10 @@ nasce) ma nessuno lo attraversa.
 **Cosa manca, in ordine di peso:**
 
 1. ✅ **La Risonanza non avviene** — fatta in 0.1.219 ([D-257](DECISIONS.md#d-257)).
-2. **Trentasei carte su quarantotto non hanno faccia fisica**, ed è la ragione
-   per cui la Risonanza si sente 1,6 volte l'anno invece di ogni turno. È la voce
-   di lavoro più grossa e la più meccanica.
-3. **La metà condizionale della Risonanza non scatta mai: 0 su 163.** Ogni carta
-   porta un «se il bersaglio ha già questo segno, è peggio», e in cento anni non
-   è mai capitato. Le condizioni chiedono segni che il bersaglio quasi mai porta:
-   è contenuto morto scritto in bella prosa, e va riscritto guardando cosa il
-   tavolo produce davvero.
+2. ✅ **Trentasei carte senza faccia fisica** — fatte in 0.1.220
+   ([D-258](DECISIONS.md#d-258)): 48 su 48.
+3. ✅ **La metà condizionale non scatta mai** — era in parte un numero sbagliato
+   e in parte sei carte cieche; entrambe curate in 0.1.220. Oggi: **10,2%**.
 4. **La scelta fra le due Azioni non esiste.** Il cervello sceglie un verbo, non
    una carta con due facce: `_choose_intent` non sa che una carta offre un bivio,
    e il motore esegue la `card_action` di sempre.
@@ -2808,14 +2812,19 @@ nasce) ma nessuno lo attraversa.
    Tema è una classificazione, non un contatore. A fine Atto non si pesca «dal
    mazzo del Tema più caldo» perché quel numero non esiste — oggi la Risonanza
    scalda la questione più vicina alla soglia, che è un ponte e non la cosa.
-6. **Antico e Terra non ricevono Calore**: zero su 163, perché le due carte che
-   li toccano non le gioca quasi nessuno. È [ISSUES 68](#68) da un'altra finestra.
+6. **La Terra quasi non si scalda: 1,4% del Calore** su 364 Risonanze (Antico si
+   è invece rimesso in moto con la conversione). Ha una Tensione sola dietro, e
+   le carte che la toccano muovono presenze invece di aprire questioni.
 7. **Dodici Destini su venti** non hanno ancora faccia fisica.
+8. **Le Domande fisiche non si pescano**: dodici carte Domanda esistono nei dati,
+   ma il Consiglio apre ancora i template digitali. Il ponte è dichiarato e non
+   attraversato.
 
 **Il prezzo pagato, dichiarato**: col tavolo uniforme l'anno peggiore dei cento
 passa da **otto Consigli a nove**. Tre tentativi di riportarlo a otto non hanno
 spostato il numero — il nove non viene da un caso limite, viene dal fatto che il
-mondo adesso è più caldo.
+mondo adesso è più caldo. Le trentasei carte in più **non l'hanno peggiorato**:
+resta nove, e a tavolo misto la forma dell'anno tiene a 3-8.
 
 **Il rischio da nominare adesso**, prima che diventi lavoro buttato: due
 grammatiche che non si toccano divergono. Oggi il ponte è un campo che il

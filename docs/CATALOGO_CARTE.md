@@ -34,6 +34,21 @@ la rarita'.
 
 > Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: vietare una cosa a tutti alza la posta per tutti.
 
+**Temi:** Potere · Fede
+
+**BERSAGLIO** — Scegli una questione aperta sul tavolo.
+
+**AZIONE — scegli 1**
+
+A. **Proibire.** Abbassa quella questione di 2. Nessuno puo' influenzarla fino alla fine dell'Atto.
+B. **Scomunicare.** Alzala di 1 e metti #tradimento_detto sul mondo: hai messo qualcuno fuori, e tutti sanno chi.
+
+**RISONANZA (avviene sempre)** — Scalda Fede +2. Un interdetto non toglie niente a nessuno: dice solo che d'ora in poi c'e' un dentro e un fuori.
+
+> Se il bersaglio porta gia' `faith_established`: Fede scalda di 3 invece che di 2.
+
+**IN CONSIGLIO** — vale 3, +1 se la Domanda e' Potere o Fede.
+
 <details><summary>Prompt per l'immagine</summary>
 
 ```
@@ -65,6 +80,21 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 > Forza 3. Si scarta sempre, e chi ti sta di fronte guadagna una presenza nella Regione di cui si discute: nominare un erede fa arrivare tutti quelli che non sono stati nominati.
 
+**Temi:** Potere
+
+**BERSAGLIO** — Scegli un luogo con #capitale.
+
+**AZIONE — scegli 1**
+
+A. **Scrivere il nome.** Rivendica il luogo e metti #erede_nominato sul mondo: il nome adesso e' scritto.
+B. **Scrivere la regola.** Metti #successione_per_legge sul mondo. Non un nome: un modo di sceglierlo, che vale anche contro di te.
+
+**RISONANZA (avviene sempre)** — Scalda Potere +2. Un atto di successione e' la promessa che qualcuno si alzera' — e l'annuncio a tutti gli altri che non saranno loro.
+
+> Se il bersaglio porta gia' `crown_divided`: Potere scalda di 3 invece che di 2.
+
+**IN CONSIGLIO** — vale 3, +1 se la Domanda e' Potere.
+
 <details><summary>Prompt per l'immagine</summary>
 
 ```
@@ -95,6 +125,21 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | id | `AST_AUTHORITY_CROWN_RIGHT` |
 
 > Si scarta sempre: un diritto invocato due volte non è più un diritto, è una pretesa — e la pretesa divide: la Regione della domanda resta contesa.
+
+**Temi:** Potere
+
+**BERSAGLIO** — Scegli un luogo con #capitale o #conteso.
+
+**AZIONE — scegli 1**
+
+A. **Rivendicare per diritto.** Rivendica il luogo. Il diritto non si discute: si esibisce.
+B. **Cedere il diritto.** Un'altra casa prende la rivendicazione al posto tuo, e sale di due gradini nel rapporto con te.
+
+**RISONANZA (avviene sempre)** — Scalda Potere +2. Ogni volta che il diritto viene detto ad alta voce, qualcuno conta chi non l'ha detto.
+
+> Se il bersaglio porta gia' `crown_divided`: Potere scalda di 3 invece che di 2.
+
+**IN CONSIGLIO** — vale 2, +1 se la Domanda e' Potere.
 
 <details><summary>Prompt per l'immagine</summary>
 
@@ -128,6 +173,21 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 > +2 sul fronte Oppose. Se la proposta passa lo stesso resta in mano: un giudice che ha avuto ragione serve ancora — e il giudice risponde: la domanda rimasta scritta sul muro si cancella.
 
+**Temi:** Potere · Vie
+
+**BERSAGLIO** — Scegli un luogo con #capitale, #commercio, #conteso o #malcontento.
+
+**AZIONE — scegli 1**
+
+A. **Mandarlo a giudicare.** Sposta una tua presenza li', e togli #conteso: dove c'e' un giudice, la lite ha un posto dove finire.
+B. **Mandarlo a controllare.** Togli #malcontento dal luogo e pesca 1 Sapere: un registro tenuto bene calma piu' di una lancia.
+
+**RISONANZA (avviene sempre)** — Scalda Potere +1. Un magistrato e' la corona che arriva dove la corona non va di persona.
+
+> Se il bersaglio porta gia' `charter_written`: Potere scalda di 2 invece che di 1.
+
+**IN CONSIGLIO** — vale 2, +1 se la Domanda e' Potere o Vie.
+
 <details><summary>Prompt per l'immagine</summary>
 
 ```
@@ -160,6 +220,21 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 > +1 quando AUTHORITY è rilevante per la Tensione. Una lista di nomi è la forma più semplice del potere — e la lista chiarisce: la Regione della domanda smette di essere contesa.
 
+**Temi:** Potere · Vie
+
+**BERSAGLIO** — Scegli un luogo con #capitale, #granaio o #commercio.
+
+**AZIONE — scegli 1**
+
+A. **Contare le teste.** Scopri una questione velata che tocca quel luogo, e pesca 1 Sapere.
+B. **Contare i sacchi.** Togli #razionato o #requisito dal luogo: quando i conti sono pubblici, le scuse finiscono.
+
+**RISONANZA (avviene sempre)** — Scalda Potere +1. Contare e' un atto di governo, e chi viene contato lo sa.
+
+> Se il bersaglio porta gia' `nomad_range`: Potere scalda di 2 invece che di 1, e lascia `condition:unrest`.
+
+**IN CONSIGLIO** — vale 1, +1 se la Domanda e' Potere o Vie.
+
 <details><summary>Prompt per l'immagine</summary>
 
 ```
@@ -190,6 +265,21 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | id | `AST_AUTHORITY_EDICT` |
 
 > Una riga scritta bene vale quanto chi la fa rispettare — e dove si discute, la legge calma la piazza: l'inquietudine si cancella.
+
+**Temi:** Potere
+
+**BERSAGLIO** — Scegli un luogo qualsiasi che non sia gia' #conteso.
+
+**AZIONE — scegli 1**
+
+A. **Rivendicare.** Metti la tua rivendicazione sul luogo: al prossimo Consiglio quel luogo apre la sua Domanda, e tu parli per primo.
+B. **Proibire.** Nessuno puo' giocare carte Forza su quel luogo fino alla fine dell'Atto. Chi lo fa lo fa contro la legge, e si vede.
+
+**RISONANZA (avviene sempre)** — Scalda Potere +1. Un editto e' una promessa che qualcuno dovra' mantenere o rompere.
+
+> Se il bersaglio porta gia' `question_unresolved`: Potere scalda di 2 invece che di 1.
+
+**IN CONSIGLIO** — vale 1, +1 se la Domanda e' Potere o Terra.
 
 <details><summary>Prompt per l'immagine</summary>
 
@@ -223,6 +313,21 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 > +1 sempre, su qualsiasi fronte. Si scarta sempre: si concede una volta sola, e tutti se ne ricordano — perché la nomina scrive un nome nella linea: il mondo ricorda l'erede nominato.
 
+**Temi:** Potere · Fede
+
+**BERSAGLIO** — Scegli un'altra casa al tavolo.
+
+**AZIONE — scegli 1**
+
+A. **Investirla.** Sale di due gradini nel rapporto con te, e prende #fama: il titolo lo dai tu, e si sa.
+B. **Farsi investire.** Sali tu di un gradino verso di lei e prendi #fama. Chi accetta un titolo accetta anche chi glielo da'.
+
+**RISONANZA (avviene sempre)** — Scalda Fede +1. Un titolo dato e' una gerarchia detta ad alta voce, e qualcuno la sentira' come un insulto.
+
+> Se il bersaglio porta gia' `renowned`: Fede scalda di 2 invece che di 1.
+
+**IN CONSIGLIO** — vale 1, +1 se la Domanda e' Potere o Fede.
+
 <details><summary>Prompt per l'immagine</summary>
 
 ```
@@ -254,6 +359,21 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | id | `AST_AUTHORITY_SEAL` |
 
 > +1 sul fronte Oppose. Il sigillo che manca ferma più cose del sigillo che c'è — e quello impegnato raffredda la questione: la Tensione in gioco scende di 1.
+
+**Temi:** Potere
+
+**BERSAGLIO** — Scegli una questione aperta sul tavolo.
+
+**AZIONE — scegli 1**
+
+A. **Sigillare in basso.** Abbassa quella questione di 1. Il sigillo dice che non c'e' niente da discutere.
+B. **Sigillare in alto.** Alzala di 1. Il sigillo dice che invece c'e', e adesso e' ufficiale.
+
+**RISONANZA (avviene sempre)** — Scalda Potere +1. Un sigillo non convince nessuno: dice solo chi ha il diritto di chiudere il discorso.
+
+> Se il bersaglio porta gia' `no_charter`: Potere scalda di 2 invece che di 1.
+
+**IN CONSIGLIO** — vale 1, +1 se la Domanda e' Potere.
 
 <details><summary>Prompt per l'immagine</summary>
 
@@ -288,6 +408,21 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 > Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: rompere un patto davanti al tavolo scalda ogni domanda ancora aperta.
 
+**Temi:** Fede · Potere
+
+**BERSAGLIO** — Scegli una questione aperta sul tavolo.
+
+**AZIONE — scegli 1**
+
+A. **Rompere adesso.** Alza quella questione di 2 e metti #giuramento_rotto sul mondo. Scendi di due gradini con chi aveva il patto.
+B. **Minacciare di rompere.** Alzala di 1. Chi aveva il patto ti da' una carta a scelta perche' tu non lo faccia.
+
+**RISONANZA (avviene sempre)** — Scalda Fede +2. Un patto rotto non si dimentica: cambia quello che gli altri sono disposti a promettere a chiunque.
+
+> Se il bersaglio porta gia' `oath_broken`: Fede scalda di 3 invece che di 2.
+
+**IN CONSIGLIO** — vale 3, +1 se la Domanda e' Fede o Potere.
+
 <details><summary>Prompt per l'immagine</summary>
 
 ```
@@ -318,6 +453,21 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | id | `AST_BONDS_HOSTAGE` |
 
 > Forza 3. Si scarta sempre, e chi ti sta di fronte guadagna una presenza nella Regione di cui si discute: chi consegna un figlio compra una parola, e la paga a casa propria.
+
+**Temi:** Potere · Fede
+
+**BERSAGLIO** — Scegli una questione aperta sul tavolo.
+
+**AZIONE — scegli 1**
+
+A. **Mostrare l'ostaggio.** Abbassa quella questione di 2. Nessuno alza la voce mentre lo guardi.
+B. **Restituire l'ostaggio.** Alza quella questione di 1: la casa che lo rivoleva sale di due gradini nel rapporto con te.
+
+**RISONANZA (avviene sempre)** — Scalda Fede +2. Un ostaggio tiene fermo il tavolo e intanto insegna a tutti come si tiene fermo un tavolo.
+
+> Se il bersaglio porta gia' `betrayal_spoken`: Fede scalda di 3 invece che di 2.
+
+**IN CONSIGLIO** — vale 3, +1 se la Domanda e' Potere o Fede.
 
 <details><summary>Prompt per l'immagine</summary>
 
@@ -351,6 +501,21 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 > +2 sul fronte Oppose: una promessa serve più a impedire un'alleanza che a farne una. Si scarta sempre — e resta scritta: fra le due case nasce un patto, e i patti si giudicano.
 
+**Temi:** Fede · Potere
+
+**BERSAGLIO** — Scegli un'altra casa che non porti #giuramento_rotto.
+
+**AZIONE — scegli 1**
+
+A. **Promettere.** Salite tutti e due di due gradini. Da adesso ogni Consiglio in cui vi opponete vi costa una carta a testa.
+B. **Rimandare.** Salite di un gradino e pesca 1 Legami: una promessa non ancora fatta si puo' ancora vendere.
+
+**RISONANZA (avviene sempre)** — Scalda Fede +2. Una promessa di nozze e' un patto che coinvolge chi non era nella stanza.
+
+> Se il bersaglio porta gia' `renowned`: Fede scalda di 3 invece che di 2.
+
+**IN CONSIGLIO** — vale 2, +1 se la Domanda e' Fede o Potere.
+
 <details><summary>Prompt per l'immagine</summary>
 
 ```
@@ -382,6 +547,21 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 > Non è un accordo: e una cosa che c'era prima dell'accordo, e che nessuno ha firmato. Impegnata, scrive il vincolo di sangue sulla coppia: da lì in poi, quella relazione non scende sotto il neutrale.
 
+**Temi:** Fede · Potere
+
+**BERSAGLIO** — Scegli un luogo con #capitale, #pascolo o un insediamento cresciuto.
+
+**AZIONE — scegli 1**
+
+A. **Cercare il legame.** Scopri una questione velata che tocca il luogo, e pesca 1 Legami.
+B. **Rivendicare il sangue.** Metti #erede_nominato sul mondo. Non e' una prova: e' un nome detto in un posto dove qualcuno ascolta.
+
+**RISONANZA (avviene sempre)** — Scalda Potere +1. Il sangue non e' un argomento: e' un modo di non doverne portare nessuno.
+
+> Se il bersaglio porta gia' `heir_named`: Potere scalda di 2 invece che di 1.
+
+**IN CONSIGLIO** — vale 2, +1 se la Domanda e' Fede o Potere.
+
 <details><summary>Prompt per l'immagine</summary>
 
 ```
@@ -412,6 +592,21 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | id | `AST_BONDS_FAVOR` |
 
 > Piccolo, ricordato con precisione — e restituito al momento giusto: fra chi lo impegna e il rivale, una vendetta si spegne.
+
+**Temi:** Fede · Vie
+
+**BERSAGLIO** — Scegli una questione aperta sul tavolo.
+
+**AZIONE — scegli 1**
+
+A. **Chiedere il favore.** Abbassa quella questione di 1, e scendi di un gradino con la casa che la stava spingendo.
+B. **Fare il favore.** Alza quella questione di 1 per conto di un'altra casa: lei sale di due gradini nel rapporto con te.
+
+**RISONANZA (avviene sempre)** — Scalda Fede +1. Un favore non si restituisce mai per intero: e' questo che lo tiene in vita.
+
+> Se il bersaglio porta gia' `parley_held`: Fede scalda di 2 invece che di 1.
+
+**IN CONSIGLIO** — vale 1, +1 se la Domanda e' Fede o Vie.
 
 <details><summary>Prompt per l'immagine</summary>
 
@@ -445,6 +640,21 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 > +1 quando BONDS è rilevante per la Tensione. Chi ha mangiato al tuo tavolo non può dire di no davanti a tutti. Può dirlo dopo — e chi lo impegna torna ospite: la cacciata dalla Regione della domanda si cancella.
 
+**Temi:** Fede · Terra
+
+**BERSAGLIO** — Scegli un luogo che non sia #conteso.
+
+**AZIONE — scegli 1**
+
+A. **Entrare come ospite.** Sposta una tua presenza li' anche se e' di un altro: l'ospitalita' non si nega.
+B. **Offrire ospitalita'.** Un'altra casa mette una presenza in un luogo tuo, e sale di due gradini nel rapporto con te.
+
+**RISONANZA (avviene sempre)** — Scalda Fede +1. Il diritto d'ospitalita' regge finche' nessuno lo mette alla prova, e qualcuno lo mettera'.
+
+> Se il bersaglio porta gia' `escort_sworn`: Fede scalda di 2 invece che di 1.
+
+**IN CONSIGLIO** — vale 1, +1 se la Domanda e' Fede o Terra.
+
 <details><summary>Prompt per l'immagine</summary>
 
 ```
@@ -475,6 +685,21 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | id | `AST_BONDS_OATH` |
 
 > Non si scarta mai. Un giuramento impegnato resta impegnato anche dopo, ed è la sua unica forza — e un giuramento rifatto scioglie quello spezzato: fra chi lo impegna e il rivale, il tradimento si cancella.
+
+**Temi:** Fede · Potere
+
+**BERSAGLIO** — Scegli un'altra casa al tavolo che non porti #giuramento_rotto.
+
+**AZIONE — scegli 1**
+
+A. **Giurare insieme.** Sali di un gradino nel rapporto con lei, e metti #scorta_giurata su tutti e due. Vale finche' uno dei due non lo rompe.
+B. **Farsi giurare.** Lei sale di un gradino verso di te e tu no. Prendi una sua carta a scelta: un giuramento a senso unico si paga subito.
+
+**RISONANZA (avviene sempre)** — Scalda Fede +1. Un giuramento pronunciato e' una cosa che il mondo dovra' ricordare o dimenticare, e nessuna delle due e' gratis.
+
+> Se il bersaglio porta gia' `renowned`: Fede scalda di 2 invece che di 1.
+
+**IN CONSIGLIO** — vale 1, +1 se la Domanda e' Fede o Potere.
 
 <details><summary>Prompt per l'immagine</summary>
 
@@ -507,6 +732,21 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | id | `AST_BONDS_OLD_DEBT` |
 
 > +1 sul fronte Oppose. Nessuno se lo ricorda tranne le due persone che contano, e una delle due lo tira fuori adesso — e da adesso è pubblico: la sede del debitore resta segnata come indebitata.
+
+**Temi:** Vie · Fede
+
+**BERSAGLIO** — Scegli un'altra casa al tavolo.
+
+**AZIONE — scegli 1**
+
+A. **Esigere.** Metti #debito_chiamato su di lei: deve darti una carta adesso, o scendere di un gradino nel rapporto con te davanti a tutti.
+B. **Rimettere.** Metti #debito_rimesso: sali di due gradini nel rapporto con lei, e tutti vedono che potevi non farlo.
+
+**RISONANZA (avviene sempre)** — Scalda Fede +1. Un debito vecchio non e' una somma: e' una storia che qualcuno raccontera' diversamente.
+
+> Se il bersaglio porta gia' `debt_called`: Fede scalda di 2 invece che di 1.
+
+**IN CONSIGLIO** — vale 1, +1 se la Domanda e' Vie o Fede.
 
 <details><summary>Prompt per l'immagine</summary>
 
@@ -541,6 +781,21 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 > Forza 3. Si scarta sempre, e chi la gioca perde la propria presenza nella Regione di cui si discute: chi apre una porta così non resta li a difenderla.
 
+**Temi:** Potere · Terra
+
+**BERSAGLIO** — Scegli un luogo con #capitale o una struttura murata.
+
+**AZIONE — scegli 1**
+
+A. **Bruciare la porta.** Rivendica il luogo e metti una Cicatrice: quello che era chiuso non lo sara' mai piu'.
+B. **Mostrare la fiaccola.** Non bruci niente. Metti #malcontento su quel luogo e su un altro che confina: ha visto anche lui.
+
+**RISONANZA (avviene sempre)** — Scalda Potere +2. Le porte bruciate si raccontano per due generazioni, e nessuna versione e' la tua.
+
+> Se il bersaglio porta gia' `question_unresolved`: Potere scalda di 3 invece che di 2.
+
+**IN CONSIGLIO** — vale 3, +1 se la Domanda e' Potere o Terra.
+
 <details><summary>Prompt per l'immagine</summary>
 
 ```
@@ -571,6 +826,21 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | id | `AST_FORCE_OLD_ARMY` |
 
 > Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: richiamare i vecchi reggimenti dice al mondo che la cosa è seria.
+
+**Temi:** Potere
+
+**BERSAGLIO** — Scegli un luogo con #capitale, #conteso o #malcontento.
+
+**AZIONE — scegli 1**
+
+A. **Richiamarli sotto le armi.** Sposta due tue presenze in quel luogo, anche da lontano. Sanno la strada.
+B. **Lasciarli tornare a casa.** Togli #malcontento dal luogo e pesca 1 Autorita': congedarli e' un atto di governo.
+
+**RISONANZA (avviene sempre)** — Scalda Potere +2. Un esercito che si muove e' una domanda su chi comanda, posta senza parole.
+
+> Se il bersaglio porta gia' `crown_divided`: Potere scalda di 3 invece che di 2.
+
+**IN CONSIGLIO** — vale 3, +1 se la Domanda e' Potere.
 
 <details><summary>Prompt per l'immagine</summary>
 
@@ -604,6 +874,21 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 > +2 sul fronte Oppose. Non serve prendere una cosa per impedire che sia di qualcun altro — ma l'assedio affama anche la terra intorno: la Carestia sale di 1, e il presidio della Regione della domanda viene giu'.
 
+**Temi:** Potere · Sopravvivenza
+
+**BERSAGLIO** — Scegli un luogo con #capitale, #granaio o una struttura murata.
+
+**AZIONE — scegli 1**
+
+A. **Stringere l'assedio.** Rivendica il luogo: al prossimo Consiglio la sua Domanda si apre e tu parli per primo.
+B. **Affamare e aspettare.** Metti #fame sul luogo. Non entri: aspetti che escano loro.
+
+**RISONANZA (avviene sempre)** — Scalda Sopravvivenza +2. Un assedio si vede da lontano, e chi ha fame lo racconta prima di chi comanda.
+
+> Se il bersaglio porta gia' `grain_requisitioned`: Sopravvivenza scalda di 3 invece che di 2.
+
+**IN CONSIGLIO** — vale 2, +1 se la Domanda e' Potere o Sopravvivenza.
+
 <details><summary>Prompt per l'immagine</summary>
 
 ```
@@ -634,6 +919,21 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | id | `AST_FORCE_WARBAND` |
 
 > Si scarta sempre, e la Tensione in gioco sale di 1: la paura non si spegne insieme alla questione.
+
+**Temi:** Potere · Terra
+
+**BERSAGLIO** — Scegli un luogo con #selvaggio, #pascolo, #abbandonato o #conteso che non sia una #capitale.
+
+**AZIONE — scegli 1**
+
+A. **Prendere il posto.** Sposta una tua presenza li'. Chi c'era si sposta o resta e sta zitto.
+B. **Spogliare il posto.** Metti #saccheggiato e prendi una carta a caso dalla mano di chi lo controlla.
+
+**RISONANZA (avviene sempre)** — Scalda Terra +2. Una banda armata non torna indietro uguale, e nemmeno il posto da cui e' passata.
+
+> Se il bersaglio porta gia' `condition:plundered`: Terra scalda di 3 invece che di 2, e lascia `condition:unrest`.
+
+**IN CONSIGLIO** — vale 2, +1 se la Domanda e' Potere o Terra.
 
 <details><summary>Prompt per l'immagine</summary>
 
@@ -667,6 +967,21 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 > +1 quando FORCE è rilevante per la Tensione. Contano i carri che passano, e sanno quali contare — e ogni conta ferma la strada: Le Vie Interrotte salgono di 1.
 
+**Temi:** Terra · Potere
+
+**BERSAGLIO** — Scegli un luogo con #capitale, #granaio, #pascolo o #conteso.
+
+**AZIONE — scegli 1**
+
+A. **Guardare chi arriva.** Scopri una questione velata che tocca quel luogo, e pesca 1 Sapere.
+B. **Far sapere che si guarda.** Metti #conteso sul luogo: nessuno ci entra senza che si sappia.
+
+**RISONANZA (avviene sempre)** — Scalda Terra +1. Un confine sorvegliato e' un confine che qualcuno ha appena disegnato.
+
+> Se il bersaglio porta gia' `nomad_range`: Terra scalda di 2 invece che di 1, e lascia `condition:unrest`.
+
+**IN CONSIGLIO** — vale 1, +1 se la Domanda e' Terra o Potere.
+
 <details><summary>Prompt per l'immagine</summary>
 
 ```
@@ -697,6 +1012,21 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | id | `AST_FORCE_LEVY` |
 
 > Uomini con attrezzi da lavoro tenuti come lance. Bastano finché nessuno li conta — ma i campi restano soli: la Carestia sale di 1.
+
+**Temi:** Potere · Sopravvivenza
+
+**BERSAGLIO** — Scegli un luogo con #granaio, #pascolo o #capitale dove hai gia' una presenza.
+
+**AZIONE — scegli 1**
+
+A. **Chiamare la leva.** Sposta una tua presenza da quel luogo a un luogo confinante. Gli uomini vanno dove li mandi.
+B. **Tenerli a casa.** La presenza resta, ma il luogo si mette in fila: metti #razionato e nessuno puo' requisirgli il grano quest'Atto.
+
+**RISONANZA (avviene sempre)** — Scalda Sopravvivenza +1. I campi restano soli: chi tiene la lancia non tiene la falce.
+
+> Se il bersaglio porta gia' `condition:lean`: Sopravvivenza scalda di 2 invece che di 1, e lascia `condition:starving`.
+
+**IN CONSIGLIO** — vale 1, +1 se la Domanda e' Potere.
 
 <details><summary>Prompt per l'immagine</summary>
 
@@ -730,6 +1060,21 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 > +1 sempre, su qualsiasi fronte: fuori tema vale quanto in tema. Dove passano, però, resta l'inquietudine.
 
+**Temi:** Potere · Vie
+
+**BERSAGLIO** — Scegli un'altra casa al tavolo.
+
+**AZIONE — scegli 1**
+
+A. **Prestarli.** Sali di un gradino nel rapporto con lei: chi combatte per te ti deve qualcosa, o viceversa.
+B. **Toglierli di mezzo.** Scendi di un gradino con lei e pesca 1 Ricchezza: li hai pagati per non esserci.
+
+**RISONANZA (avviene sempre)** — Scalda Vie +1. Chi si compra si ricompra, e il prezzo lo sa gia' qualcun altro.
+
+> Se il bersaglio porta gia' `debt_called`: Vie scalda di 2 invece che di 1.
+
+**IN CONSIGLIO** — vale 1, +1 se la Domanda e' Potere o Vie.
+
 <details><summary>Prompt per l'immagine</summary>
 
 ```
@@ -761,6 +1106,21 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | id | `AST_FORCE_ROADBLOCK` |
 
 > +1 sul fronte Oppose. Fermare un carro costa sempre meno che farlo partire — e la Regione della domanda resta tagliata fuori dal mondo.
+
+**Temi:** Vie · Potere
+
+**BERSAGLIO** — Scegli un luogo con #commercio, #dogana o #capitale che non sia gia' #tagliato_fuori.
+
+**AZIONE — scegli 1**
+
+A. **Sbarrare la strada.** Metti #tagliato_fuori sul luogo. Finche' c'e', nessuno puo' muovere una presenza dentro o fuori da li' senza spendere una carta in piu'.
+B. **Farsi pagare il passaggio.** Non chiudi niente: prendi una carta Ricchezza dal mazzo e la strada resta aperta a tutti, tua compresa.
+
+**RISONANZA (avviene sempre)** — Scalda Vie +1. Una strada su cui c'e' un posto di blocco non e' piu' una strada: e' una porta, e le porte si contano.
+
+> Se il bersaglio porta gia' `toll_shared`: Vie scalda di 2 invece che di 1.
+
+**IN CONSIGLIO** — vale 1, +1 se la Domanda e' Vie o Potere.
 
 <details><summary>Prompt per l'immagine</summary>
 
@@ -795,6 +1155,21 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 > Forza 3. Si scarta sempre, e la Tensione in gioco diventa aperta a tutti: mostrarlo chiude ogni dubbio e apre la domanda a chiunque fosse nella stanza.
 
+**Temi:** Antico · Fede
+
+**BERSAGLIO** — Scegli un luogo con #cristallo, #selvaggio o #sigillato.
+
+**AZIONE — scegli 1**
+
+A. **Aprire la vena.** Togli #sigillato e aggiungi una tua presenza. Quello che dormiva sotto la pietra adesso e' tuo — e sveglio.
+B. **Misurare senza toccare.** Metti #cristallo_misurato e pesca 1 Sapere. Non lo prendi: lo scrivi, e quello che e' scritto lo puo' leggere chiunque.
+
+**RISONANZA (avviene sempre)** — Scalda Antico +1. Il Risveglio non distingue fra chi scava e chi guarda.
+
+> Se il bersaglio porta gia' `crystal_exploited`: Antico scalda di 3 invece che di 1, e lascia `condition:exploited`.
+
+**IN CONSIGLIO** — vale 2, +1 se la Domanda e' Antico o Fede.
+
 <details><summary>Prompt per l'immagine</summary>
 
 ```
@@ -826,6 +1201,21 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 > Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: quello che era scritto per un solo lettore adesso lo hanno sentito tutti.
 
+**Temi:** Potere · Fede
+
+**BERSAGLIO** — Scegli un luogo con #capitale, #conteso o un archivio.
+
+**AZIONE — scegli 1**
+
+A. **Aprire la busta.** Rivendica il luogo e metti #tradimento_detto sul mondo. Quello che era sigillato adesso e' pubblico.
+B. **Tenerla sigillata.** Rivendica il luogo e basta. La busta resta chiusa, e tutti sanno che ce l'hai tu.
+
+**RISONANZA (avviene sempre)** — Scalda Potere +2. Una deposizione sigillata pesa uguale aperta o chiusa: quello che conta e' che esista.
+
+> Se il bersaglio porta gia' `question_unresolved`: Potere scalda di 3 invece che di 2.
+
+**IN CONSIGLIO** — vale 3, +1 se la Domanda e' Potere o Fede.
+
 <details><summary>Prompt per l'immagine</summary>
 
 ```
@@ -856,6 +1246,21 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | id | `AST_KNOWLEDGE_PROOF` |
 
 > Se la proposta passa, resta in mano: una prova dimostrata non si consuma — e dimostra: la questione in gioco si apre a tutti i presenti.
+
+**Temi:** Fede · Potere
+
+**BERSAGLIO** — Scegli un luogo con #capitale, #cristallo o una stanza dove si tengono le carte.
+
+**AZIONE — scegli 1**
+
+A. **Mostrare la prova.** Scopri una questione velata e metti #sapere_condiviso sul mondo: adesso lo sanno tutti.
+B. **Tenere la prova.** Scopri la questione e basta. Pesca 1 Sapere: quello che sai da solo vale di piu' finche' sei solo a saperlo.
+
+**RISONANZA (avviene sempre)** — Scalda Fede +1. Una prova non chiude una discussione: decide chi dovra' chiamare bugiardo chi.
+
+> Se il bersaglio porta gia' `knowledge_shared`: Fede scalda di 2 invece che di 1.
+
+**IN CONSIGLIO** — vale 2, +1 se la Domanda e' Fede o Potere.
 
 <details><summary>Prompt per l'immagine</summary>
 
@@ -889,6 +1294,21 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 > +2 sul fronte Oppose. Si scarta sempre: un testimone si spende una volta sola — e la deposizione agita la casa accusata: la sua sede resta inquieta.
 
+**Temi:** Fede · Potere
+
+**BERSAGLIO** — Scegli una questione aperta sul tavolo.
+
+**AZIONE — scegli 1**
+
+A. **Farlo parlare.** Alza quella questione di 2 e metti #tradimento_detto sul mondo: qualcuno ha detto un nome.
+B. **Farlo tacere.** Abbassa quella questione di 2. Un testimone che non parla e' un testimone che ti deve qualcosa.
+
+**RISONANZA (avviene sempre)** — Scalda Fede +2. Un testimone non porta la verita': porta la propria, e adesso il tavolo deve scegliere.
+
+> Se il bersaglio porta gia' `betrayal_spoken`: Fede scalda di 3 invece che di 2.
+
+**IN CONSIGLIO** — vale 2, +1 se la Domanda e' Fede o Potere.
+
 <details><summary>Prompt per l'immagine</summary>
 
 ```
@@ -919,6 +1339,21 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | id | `AST_KNOWLEDGE_ARCHIVE` |
 
 > Se la proposta passa resta in mano. Le carte non si consumano: si consuma chi le sa leggere — e quello che si e' letto resta: sulla Regione della domanda si apre un archivio suo.
+
+**Temi:** Vie · Fede
+
+**BERSAGLIO** — Scegli un luogo con #capitale, #commercio o una stanza dove si tengono le carte.
+
+**AZIONE — scegli 1**
+
+A. **Cercare indietro.** Scopri una questione velata che tocca il luogo, e pesca 1 Sapere.
+B. **Far leggere a tutti.** Metti #registro_pubblico sul mondo: quello che c'e' scritto smette di essere di qualcuno.
+
+**RISONANZA (avviene sempre)** — Scalda Vie +1. Un archivio non conserva il passato: conserva la versione che qualcuno ha avuto il tempo di scrivere.
+
+> Se il bersaglio porta gia' `ledger_public`: Vie scalda di 2 invece che di 1.
+
+**IN CONSIGLIO** — vale 1, +1 se la Domanda e' Vie o Fede.
 
 <details><summary>Prompt per l'immagine</summary>
 
@@ -952,6 +1387,21 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 > +1 sul fronte Oppose. Chi tiene i conti sa cosa manca, e lo dice nel momento peggiore — e da quel momento i conti sono di tutti: il registro è pubblico.
 
+**Temi:** Vie
+
+**BERSAGLIO** — Scegli un'altra casa al tavolo.
+
+**AZIONE — scegli 1**
+
+A. **Aprire il registro.** Metti #registro_pubblico sul mondo e sali di un gradino con lei: i conti chiari fanno gli amici lunghi.
+B. **Chiudere il registro.** Scendi di un gradino con lei e metti #debito_chiamato sul mondo: adesso deve, e si sa quanto.
+
+**RISONANZA (avviene sempre)** — Scalda Vie +1. Un registro non e' un elenco di numeri: e' un elenco di persone, in ordine di quanto devono.
+
+> Se il bersaglio porta gia' `ledger_public`: Vie scalda di 2 invece che di 1.
+
+**IN CONSIGLIO** — vale 1, +1 se la Domanda e' Vie o Potere.
+
 <details><summary>Prompt per l'immagine</summary>
 
 ```
@@ -984,6 +1434,21 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 > +1 quando KNOWLEDGE è rilevante per la Tensione. I confini sono sbagliati; le strade no — e una strada giusta ricuce il ponte rotto sulla Regione della domanda.
 
+**Temi:** Vie · Terra
+
+**BERSAGLIO** — Scegli un luogo con #tagliato_fuori, #selvaggio o #commercio.
+
+**AZIONE — scegli 1**
+
+A. **Trovare il passaggio.** Togli #tagliato_fuori dal luogo, oppure muovi una tua presenza li' ignorando i confini.
+B. **Tenere la mappa per se'.** Metti #registro_del_commercio: sai una cosa che gli altri non sanno, e al prossimo Consiglio vale +1.
+
+**RISONANZA (avviene sempre)** — Scalda Vie +1. Una strada che qualcuno ha ritrovato e' una strada che qualcun altro vorra' chiudere.
+
+> Se il bersaglio porta gia' `trade`: Vie scalda di 2 invece che di 1.
+
+**IN CONSIGLIO** — vale 1, +1 se la Domanda e' Vie o Antico.
+
 <details><summary>Prompt per l'immagine</summary>
 
 ```
@@ -1014,6 +1479,21 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | id | `AST_KNOWLEDGE_RUMOR` |
 
 > Non è vera. Non è ancora falsa — e finché gira, la questione in gioco torna velata: i numeri si nascondono dietro le voci.
+
+**Temi:** Fede · Potere
+
+**BERSAGLIO** — Scegli un luogo con #capitale, #commercio, #malcontento o #mercato.
+
+**AZIONE — scegli 1**
+
+A. **Ascoltare la voce.** Scopri una questione velata che tocca il luogo.
+B. **Mettere in giro la voce.** Metti #malcontento sul luogo. Non serve che sia vera: serve che sia arrivata prima.
+
+**RISONANZA (avviene sempre)** — Scalda Fede +1. Una voce di corridoio e' una verita' che non ha ancora deciso di chi essere.
+
+> Se il bersaglio porta gia' `betrayal_spoken`: Fede scalda di 2 invece che di 1.
+
+**IN CONSIGLIO** — vale 1, +1 se la Domanda e' Fede o Potere.
 
 <details><summary>Prompt per l'immagine</summary>
 
@@ -1048,6 +1528,21 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 > Forza 3. Si scarta sempre, e chi la gioca perde la propria presenza nella Regione di cui si discute: chi parte non torna al tavolo.
 
+**Temi:** Terra · Sopravvivenza
+
+**BERSAGLIO** — Scegli un luogo con #fame, #svuotato, #abbandonato o #pascolo.
+
+**AZIONE — scegli 1**
+
+A. **Andarsene tutti.** Togli tutte le tue presenze da quel luogo e mettine due in un altro qualsiasi. Metti #svuotato dove sei partito.
+B. **Mandare avanti i primi.** Sposta una presenza in un luogo qualsiasi, e li' metti il tuo insediamento.
+
+**RISONANZA (avviene sempre)** — Scalda Terra +2. Un esodo non si annulla: il posto da cui si e' partiti resta com'e' rimasto.
+
+> Se il bersaglio porta gia' `nahr_settled`: Terra scalda di 3 invece che di 2, e lascia `scar:emptied`.
+
+**IN CONSIGLIO** — vale 3, +1 se la Domanda e' Terra o Sopravvivenza.
+
 <details><summary>Prompt per l'immagine</summary>
 
 ```
@@ -1078,6 +1573,21 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | id | `AST_PEOPLE_STILL_HANDS` |
 
 > Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: un paese che si ferma non si rimette in moto dove l'avevi lasciato.
+
+**Temi:** Sopravvivenza · Vie
+
+**BERSAGLIO** — Scegli una questione aperta sul tavolo.
+
+**AZIONE — scegli 1**
+
+A. **Fermare tutto.** Alza quella questione di 2. Le braccia ferme si vedono meglio delle braccia alzate.
+B. **Fermare solo una cosa.** Abbassa quella questione di 1 e pesca 1 Popolo: si tratta, e intanto si lavora.
+
+**RISONANZA (avviene sempre)** — Scalda Vie +2. Quando le braccia si fermano, le prime cose che non arrivano sono quelle che venivano da lontano.
+
+> Se il bersaglio porta gia' `toll_shared`: Vie scalda di 3 invece che di 2.
+
+**IN CONSIGLIO** — vale 3, +1 se la Domanda e' Sopravvivenza o Vie.
 
 <details><summary>Prompt per l'immagine</summary>
 
@@ -1111,6 +1621,21 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 > +2 sul fronte Oppose: è più facile fermare qualcosa in molti che costruirla. Si scarta sempre — e la piazza resta calda: la Tensione in gioco sale di 1.
 
+**Temi:** Sopravvivenza · Terra
+
+**BERSAGLIO** — Scegli una questione aperta sul tavolo.
+
+**AZIONE — scegli 1**
+
+A. **Chiamare tutti.** Alza quella questione di 2. Quando si muovono tutti insieme, nessuno puo' far finta di niente.
+B. **Chiamare solo i tuoi.** Alzala di 1 e pesca 1 Popolo: meno rumore, e ti resta della gente in mano.
+
+**RISONANZA (avviene sempre)** — Scalda Sopravvivenza +2. Chi si mobilita non lavora, e chi non lavora mangia lo stesso.
+
+> Se il bersaglio porta gia' `question_unresolved`: Sopravvivenza scalda di 3 invece che di 2.
+
+**IN CONSIGLIO** — vale 2, +1 se la Domanda e' Sopravvivenza o Terra.
+
 <details><summary>Prompt per l'immagine</summary>
 
 ```
@@ -1142,6 +1667,21 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 > Qualcuno che dice ad alta voce quello che già pensano in molti, e che dopo non può più tornare indietro — la parola detta è una promessa fra le due case.
 
+**Temi:** Potere · Fede
+
+**BERSAGLIO** — Scegli un luogo con #capitale, #malcontento o un insediamento cresciuto.
+
+**AZIONE — scegli 1**
+
+A. **Prendere la parola.** Rivendica il luogo: al prossimo Consiglio parli per primo, e parli per loro.
+B. **Darla a un altro.** Un'altra casa parlera' per prima al prossimo Consiglio, e sale di due gradini nel rapporto con te.
+
+**RISONANZA (avviene sempre)** — Scalda Potere +1. Un portavoce e' qualcuno che ha deciso di chi e' la voce, e l'ha deciso prima di parlare.
+
+> Se il bersaglio porta gia' `petition_heard`: Potere scalda di 2 invece che di 1.
+
+**IN CONSIGLIO** — vale 2, +1 se la Domanda e' Potere o Fede.
+
 <details><summary>Prompt per l'immagine</summary>
 
 ```
@@ -1172,6 +1712,21 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | id | `AST_PEOPLE_CROWD` |
 
 > Nessuno l'ha convocata. È arrivata lo stesso — in capitale: e la capitale resta inquieta.
+
+**Temi:** Sopravvivenza · Potere
+
+**BERSAGLIO** — Scegli una questione aperta sul tavolo.
+
+**AZIONE — scegli 1**
+
+A. **Portare la folla sotto le finestre.** Alza quella questione di 1. La folla non chiede: sta li'.
+B. **Mandare la folla a casa.** Abbassala di 1. Chi la sa mandare a casa e' chi l'ha chiamata.
+
+**RISONANZA (avviene sempre)** — Scalda Sopravvivenza +1. Una folla che si raduna mangia dove si raduna, e i conti li fa il posto.
+
+> Se il bersaglio porta gia' `grain_requisitioned`: Sopravvivenza scalda di 2 invece che di 1.
+
+**IN CONSIGLIO** — vale 1, +1 se la Domanda e' Sopravvivenza o Potere.
 
 <details><summary>Prompt per l'immagine</summary>
 
@@ -1205,6 +1760,21 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 > +1 sul fronte Oppose. Parlano piano, dicono di no, e vengono ripetuti per tre villaggi — e sanno accompagnare: il lutto della Regione della domanda si elabora.
 
+**Temi:** Fede · Sopravvivenza
+
+**BERSAGLIO** — Scegli un luogo con #granaio, #pascolo, #lutto o un insediamento.
+
+**AZIONE — scegli 1**
+
+A. **Ascoltarli.** Scopri una questione velata che tocca il luogo, e pesca 1 Legami.
+B. **Farli parlare in pubblico.** Togli #lutto o #malcontento dal luogo: quello che gli anziani dicono ad alta voce smette di covare.
+
+**RISONANZA (avviene sempre)** — Scalda Fede +1. Chi ricorda decide cosa c'era prima, e cosa c'era prima decide cosa e' giusto adesso.
+
+> Se il bersaglio porta gia' `faith_established`: Fede scalda di 2 invece che di 1.
+
+**IN CONSIGLIO** — vale 1, +1 se la Domanda e' Fede o Sopravvivenza.
+
 <details><summary>Prompt per l'immagine</summary>
 
 ```
@@ -1237,6 +1807,21 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 > +1 quando PEOPLE è rilevante per la Tensione. Non sono un esercito: ma senza di loro non si mangia — e dove arrivano, la fame della Regione della domanda si spegne.
 
+**Temi:** Sopravvivenza
+
+**BERSAGLIO** — Scegli un luogo con #granaio, #magro o #fame.
+
+**AZIONE — scegli 1**
+
+A. **Portare le braccia.** Togli #magro dal luogo, oppure abbassa di 1 la questione Sopravvivenza piu' calda. Il raccolto si fa in tempo.
+B. **Prestare le braccia.** Un'altra casa toglie #magro da un suo luogo. Sali di un gradino nel rapporto con lei.
+
+**RISONANZA (avviene sempre)** — Scalda Sopravvivenza +1. Le braccia che raccolgono qui sono braccia che non arano altrove.
+
+> Se il bersaglio porta gia' `grain_requisitioned`: Sopravvivenza scalda di 2 invece che di 1.
+
+**IN CONSIGLIO** — vale 1, +1 se la Domanda e' Sopravvivenza.
+
 <details><summary>Prompt per l'immagine</summary>
 
 ```
@@ -1267,6 +1852,21 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | id | `AST_PEOPLE_MARCH` |
 
 > Poca gente, ma in strada e alla stessa ora. Il punto non è quanti sono: è che si sono trovati — e le razioni imposte sulla Regione della domanda si rompono.
+
+**Temi:** Sopravvivenza · Terra
+
+**BERSAGLIO** — Scegli un luogo con #fame, #razionato, #magro o #pascolo.
+
+**AZIONE — scegli 1**
+
+A. **Marciare verso il grano.** Sposta una tua presenza in un luogo con #granaio, anche se non confina. La gente cammina.
+B. **Marciare sulla capitale.** Metti #malcontento su un luogo con #capitale, ovunque sia. Non serve arrivarci: basta partire.
+
+**RISONANZA (avviene sempre)** — Scalda Sopravvivenza +1. Una marcia non torna indietro da sola: qualcuno deve prometterle qualcosa.
+
+> Se il bersaglio porta gia' `condition:starving`: Sopravvivenza scalda di 2 invece che di 1, e lascia `condition:unrest`.
+
+**IN CONSIGLIO** — vale 1, +1 se la Domanda e' Sopravvivenza o Terra.
 
 <details><summary>Prompt per l'immagine</summary>
 
@@ -1301,6 +1901,21 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 > Forza 3. Si scarta sempre, e chi ti sta di fronte guadagna una presenza nella Regione di cui si discute: impegnare una terra fa arrivare chi la vuole.
 
+**Temi:** Terra · Vie
+
+**BERSAGLIO** — Scegli un'altra casa al tavolo.
+
+**AZIONE — scegli 1**
+
+A. **Prendere la terra in garanzia.** Scendi di un gradino con lei. Se a fine anno controlla meno terre di adesso, ne prendi una tu.
+B. **Rimettere l'ipoteca.** Sali di due gradini con lei e metti #debito_rimesso sul mondo: la terra resta sua, e lo sanno tutti.
+
+**RISONANZA (avviene sempre)** — Scalda Terra +2. Un'ipoteca sulla terra e' una domanda su chi ci vive, fatta a chi non e' presente.
+
+> Se il bersaglio porta gia' `debt_called`: Terra scalda di 3 invece che di 2.
+
+**IN CONSIGLIO** — vale 3, +1 se la Domanda e' Terra o Vie.
+
 <details><summary>Prompt per l'immagine</summary>
 
 ```
@@ -1332,6 +1947,21 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 > Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: aprire il tesoro dice a tutti quanto vale davvero la questione.
 
+**Temi:** Potere · Vie
+
+**BERSAGLIO** — Scegli un luogo con #capitale o #commercio.
+
+**AZIONE — scegli 1**
+
+A. **Aprire il tesoro.** Sposta due tue presenze in quel luogo: il denaro muove gli uomini piu' in fretta degli ordini.
+B. **Chiudere il tesoro.** Pesca 2 Ricchezza e metti #malcontento sul luogo: chi non viene pagato lo dice in giro.
+
+**RISONANZA (avviene sempre)** — Scalda Potere +2. Un tesoro aperto e' una promessa; un tesoro chiuso e' un'accusa. Nessuno dei due resta segreto.
+
+> Se il bersaglio porta gia' `crown_dispossessed`: Potere scalda di 3 invece che di 2.
+
+**IN CONSIGLIO** — vale 3, +1 se la Domanda e' Potere o Vie.
+
 <details><summary>Prompt per l'immagine</summary>
 
 ```
@@ -1362,6 +1992,21 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | id | `AST_WEALTH_CARAVAN` |
 
 > Si scarta sempre: una carovana spesa è una carovana partita — e una carovana che parte riapre la via: la Regione tagliata fuori si ricollega.
+
+**Temi:** Vie
+
+**BERSAGLIO** — Scegli un luogo con #commercio, #mercato o #tagliato_fuori.
+
+**AZIONE — scegli 1**
+
+A. **Farla arrivare.** Sposta una tua presenza li' e togli #tagliato_fuori: una carovana che arriva riapre la strada da sola.
+B. **Dirottarla.** Sposta la presenza in un altro luogo con #commercio e pesca 1 Ricchezza: la merce va dove rende.
+
+**RISONANZA (avviene sempre)** — Scalda Vie +1. Una carovana che passa dice a tutti quanto vale passare di li'.
+
+> Se il bersaglio porta gia' `debt_called`: Vie scalda di 2 invece che di 1.
+
+**IN CONSIGLIO** — vale 2, +1 se la Domanda e' Vie.
 
 <details><summary>Prompt per l'immagine</summary>
 
@@ -1395,6 +2040,21 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 > +2 sul fronte Oppose. Non possiedi il grano: possiedi la serratura — e la serratura raziona: sulla Regione della domanda resta il segno della razione.
 
+**Temi:** Sopravvivenza · Potere
+
+**BERSAGLIO** — Scegli un'altra casa al tavolo.
+
+**AZIONE — scegli 1**
+
+A. **Dare le chiavi.** Sale di due gradini nel rapporto con te. Chi ha le chiavi del granaio ha una ragione per non tradirti.
+B. **Tenere le chiavi.** Scendi di un gradino con lei e metti #grano_requisito sul mondo: il grano c'e' e non e' suo.
+
+**RISONANZA (avviene sempre)** — Scalda Sopravvivenza +2. Le chiavi non fanno il grano: decidono soltanto chi resta fuori dalla porta.
+
+> Se il bersaglio porta gia' `grain_requisitioned`: Sopravvivenza scalda di 3 invece che di 2.
+
+**IN CONSIGLIO** — vale 2, +1 se la Domanda e' Sopravvivenza o Potere.
+
 <details><summary>Prompt per l'immagine</summary>
 
 ```
@@ -1427,6 +2087,21 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 > +1 sempre, su qualsiasi fronte. Vale nel momento in cui lo chiedi, e non un minuto dopo — perché chiederlo chiama tutti i debiti: il mondo ricorda che il debito fu chiamato.
 
+**Temi:** Vie · Potere
+
+**BERSAGLIO** — Scegli un'altra casa al tavolo.
+
+**AZIONE — scegli 1**
+
+A. **Aprire credito.** Sale di due gradini nel rapporto con te, e metti #indebitata sul mondo: le hai fatto un favore che si ricorda.
+B. **Comprare il suo debito.** Scendi di un gradino con lei e pesca 2 Ricchezza. Adesso quello che deve, lo deve a te.
+
+**RISONANZA (avviene sempre)** — Scalda Vie +1. Il credito e' una corda: la tiene chi presta, e la sente chi la porta al collo.
+
+> Se il bersaglio porta gia' `debt_called`: Vie scalda di 2 invece che di 1.
+
+**IN CONSIGLIO** — vale 1, +1 se la Domanda e' Vie o Potere.
+
 <details><summary>Prompt per l'immagine</summary>
 
 ```
@@ -1457,6 +2132,21 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | id | `AST_WEALTH_GRAIN` |
 
 > Conta più di un titolo, per il tempo in cui dura — e dura quanto basta: la Carestia scende di 1.
+
+**Temi:** Sopravvivenza
+
+**BERSAGLIO** — Scegli un luogo con #granaio, #fame o #magro.
+
+**AZIONE — scegli 1**
+
+A. **Aprire i granai.** Togli #fame dal luogo e abbassa di 1 la questione Sopravvivenza piu' calda.
+B. **Chiudere i granai.** Metti #razionato. Il grano c'e' e non e' per tutti: alza di 1 la questione Sopravvivenza piu' calda.
+
+**RISONANZA (avviene sempre)** — Scalda Sopravvivenza +1. Il grano che si tocca e' grano che qualcuno ha contato.
+
+> Se il bersaglio porta gia' `grain_requisitioned`: Sopravvivenza scalda di 2 invece che di 1.
+
+**IN CONSIGLIO** — vale 1, +1 se la Domanda e' Sopravvivenza o Vie.
 
 <details><summary>Prompt per l'immagine</summary>
 
@@ -1490,6 +2180,21 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 > +1 quando WEALTH è rilevante per la Tensione. Non nutre nessuno: senza, quello che nutre non arriva — e dove arriva, la magra si supera.
 
+**Temi:** Vie · Sopravvivenza
+
+**BERSAGLIO** — Scegli un luogo con #commercio, #granaio, #mercato o #magro.
+
+**AZIONE — scegli 1**
+
+A. **Vendere il sale.** Scopri una questione velata che tocca il luogo, e pesca 1 Ricchezza.
+B. **Salare le riserve.** Togli #magro dal luogo: quello che si conserva non marcisce, e chi conserva decide quando.
+
+**RISONANZA (avviene sempre)** — Scalda Vie +1. Il sale e' l'unica merce che tutti comprano e nessuno vuole nominare.
+
+> Se il bersaglio porta gia' `toll_shared`: Vie scalda di 2 invece che di 1.
+
+**IN CONSIGLIO** — vale 1, +1 se la Domanda e' Vie o Sopravvivenza.
+
 <details><summary>Prompt per l'immagine</summary>
 
 ```
@@ -1521,6 +2226,21 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | id | `AST_WEALTH_TOLL` |
 
 > +1 sul fronte Oppose. Una corda tesa fra due pali, e il diritto di non alzarla — e il diritto si scrive: sulla Regione della domanda resta il pedaggio.
+
+**Temi:** Vie · Potere
+
+**BERSAGLIO** — Scegli un luogo con #commercio, #dogana o #strada.
+
+**AZIONE — scegli 1**
+
+A. **Alzare la sbarra.** Rivendica il luogo: al prossimo Consiglio la sua Domanda si apre, e la questione e' chi incassa.
+B. **Dividere l'incasso.** Metti #pedaggio_diviso e sali di un gradino nel rapporto con chi controlla il luogo. Si guadagna meno e si dorme meglio.
+
+**RISONANZA (avviene sempre)** — Scalda Vie +1. Ogni pedaggio e' un prezzo che qualcuno non aveva messo in conto.
+
+> Se il bersaglio porta gia' `debt_called`: Vie scalda di 2 invece che di 1.
+
+**IN CONSIGLIO** — vale 1, +1 se la Domanda e' Vie.
 
 <details><summary>Prompt per l'immagine</summary>
 

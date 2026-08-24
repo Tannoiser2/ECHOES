@@ -269,6 +269,61 @@ def censimento(documenti: Dict[str, List[Dict[str, Any]]]) -> Dict[str, Set[str]
     return {"scritti": scritti, "letti": letti}
 
 
+# Dove vive ogni verbo: quali bersagli l'azione nomina davvero nei suoi
+# parametri. Serve al controllo 7 — la meta' aggravata di una Risonanza puo'
+# guardare solo un segno che il verbo della carta sa raggiungere.
+RAGGIUNGE: Dict[str, Set[str]] = {
+    "MOVE": {"REGION", "ENTITY", "GLOBAL"},
+    "SCHEME": {"REGION", "ENTITY", "GLOBAL"},
+    "FORGE": {"ENTITY", "GLOBAL"},
+    "INFLUENCE": {"ENTITY", "GLOBAL"},
+    "CLAIM": {"ENTITY", "GLOBAL"},
+    "ACQUIRE": {"ENTITY", "GLOBAL"},
+}
+
+
+def ambiti(documenti: Dict[str, List[Dict[str, Any]]]) -> Dict[str, Set[str]]:
+    """Dove vive ogni segno: sulla mappa, su una casa, o sul mondo."""
+    dove: Dict[str, Set[str]] = defaultdict(set)
+
+    def scava(nodo: Any) -> None:
+        if isinstance(nodo, dict):
+            tipo = str(nodo.get("type", ""))
+            carico = nodo.get("payload", {})
+            if isinstance(carico, dict) and "tag" in carico:
+                if "REGION" in tipo:
+                    dove[str(carico["tag"])].add("REGION")
+                elif "GLOBAL" in tipo:
+                    dove[str(carico["tag"])].add("GLOBAL")
+                elif "ENTITY" in tipo:
+                    dove[str(carico["tag"])].add("ENTITY")
+            if nodo.get("creates_scar") and isinstance(nodo.get("scar"), dict):
+                marchio = nodo["scar"].get("tag")
+                if isinstance(marchio, str):
+                    dove[marchio].add("REGION")
+            for valore in nodo.values():
+                scava(valore)
+        elif isinstance(nodo, list):
+            for valore in nodo:
+                scava(valore)
+
+    scava(dict(documenti))
+    for regione in documenti.get("region", []):
+        for tag in regione.get("tags", []):
+            dove[str(tag)].add("REGION")
+    for entita in documenti.get("entity", []):
+        for tag in entita.get("tags", []):
+            dove[str(tag)].add("ENTITY")
+    for tipo_struttura in documenti.get("structure_type", []):
+        for grado in tipo_struttura.get("grades", []):
+            if grado.get("tag"):
+                dove[str(grado["tag"])].add("REGION")
+        rovina = tipo_struttura.get("ruin") or {}
+        if isinstance(rovina, dict) and rovina.get("tag"):
+            dove[str(rovina["tag"])].add("REGION")
+    return dove
+
+
 def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
     guai: List[str] = []
     conto = censimento(documenti)
@@ -322,6 +377,33 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
     for tensione in documenti.get("tension", []):
         if str(tensione.get("theme", "")) not in temi:
             guai.append("Tensione su un Tema inesistente: %s" % tensione.get("id"))
+
+    # 7. La meta' aggravata che guarda dove il verbo non arriva.
+    #
+    # Delle sei azioni **solo MUOVERE e TRAMARE nominano una Regione**: una carta
+    # che INFLUENZA e teme un segno di Regione fa una domanda al vuoto, e la sua
+    # meta' aggravata non scatta mai. Non e' un caso raro — misurato, era **0 su
+    # 163 Risonanze**, e sembrava che i segni fossero rari invece che irraggiungibili.
+    dove = ambiti(documenti)
+    for asset in documenti.get("asset", []):
+        fisica = asset.get("physical")
+        if not fisica:
+            continue
+        guardato = str((fisica.get("resonance", {}) or {}).get("if_target_tag", ""))
+        if not guardato:
+            continue
+        verbo = str((asset.get("card_action", {}) or {}).get("kind", ""))
+        arriva = RAGGIUNGE.get(verbo, {"REGION", "ENTITY", "GLOBAL"})
+        vive = dove.get(guardato, set())
+        if not vive:
+            guai.append("Risonanza che teme un segno che nessuno scrive: %s guarda «%s»"
+                        % (asset.get("id"), guardato))
+        elif not (vive & arriva):
+            guai.append(
+                "Risonanza cieca su %s: la carta fa %s, che non nomina %s, e teme «%s» "
+                "che vive solo li'. Non scattera' mai."
+                % (asset.get("id"), verbo, "/".join(sorted(vive)), guardato)
+            )
 
     # 6. Temi il cui mazzo Domande non si puo' aprire
     per_tema: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
