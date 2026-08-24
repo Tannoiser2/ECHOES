@@ -10,6 +10,63 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-267 — La pedina del prezzo: gli avversari scelgono il malus, e il silenzio paga
+
+**implemented in 0.1.229** — apre PZ-5 della roadmap (Fase A)
+
+La forma del dibattito e' parola del committente (D-266): *il proponente
+sceglie le opportunita' e i bonus, **gli avversari scelgono i malus***. La
+meta' del proponente c'era gia' — sceglie la domanda e la proposta. Questa
+decisione costruisce la meta' degli avversari, e la regola anti-passivita'
+che la roadmap chiedeva a PZ-5.
+
+**La pedina del prezzo.** I pool `cost` e `failure` dei dodici template
+diventano **menu di due voci** (riuso puro: il disordine o il debito per il
+costo, il rancore che resta scritto o il patto rotto per lo sfogo;
+CNF_WATER_03 tiene la sua coppia d'autore). A posizioni dichiarate e **prima**
+degli impegni — che restano segreti, e sceglierla su chi ha impegnato di piu'
+li rivelerebbe — **il primo seggio che ha detto OPPOSE** posa la pedina:
+dichiara quale voce paghera' chi vince, il costo se la proposta passa
+pagando, lo sfogo se cade. Dal pool scatta **una voce sola**: quella della
+pedina, o la prima se nessuno si e' opposto — fin qui scattava il pool
+intero, che con una voce era la stessa cosa (l'unico pool a due voci,
+il fallimento di CNF_WATER_03, ora sfoga una voce invece di due: dichiarato).
+Il cervello sceglie come tutto il resto al Consiglio — la voce che serve
+meglio il suo Destino, parita' all'RNG di sessione — e al tavolo umano la
+domanda la fa `seat_decider`, coi titoli e le descrizioni delle Conseguenze.
+
+**Il silenzio paga.** Delle tre vie della roadmap (vantaggio al proponente,
+Cicatrice automatica, Tema che resta caldo) la scelta e' la prima: si legge
+in un gesto solo — silenzio-assenso. Se ogni seggio non proponente si
+astiene, il fronte Support prende `silence_support_bonus` (**1** nei dati di
+tutte e cinque le Chronicle, reversibile). Entra nel fronte come ogni altro
+peso: un proponente che non ha messo carte resta a zero, perche' un bonus dal
+nulla sarebbe un voto gratis (D-125).
+
+**I numeri, 100 semi:**
+
+| | CHR_01 | CHR_00 |
+|---|---|---|
+| Consigli | 451 | 427 |
+| pedine posate | **198 (44%)** | **156 (37%)** |
+| prezzi decisi dal fronte avverso | 162 (34 costi + 128 sfoghi) | 106 (42 + 64) |
+| il tavolo ha taciuto e il silenzio ha pagato | 116 | 99 |
+
+Il cancello di casa tiene: **0 seggi bloccati su 8**, tavolo misto *e*
+uniforme. **Gli anni scritti si muovono, ed e' giusto cosi'**: questa e' una
+regola del gioco, non un'aggiunta al tavolo pescato — come D-261, non come
+D-264/D-266. Al tavolo uniforme: media 4,63 → 4,69, FAIL 136 → 147, DECISIVE
+167 → 198 — il silenzio-assenso spinge i margini in su, e lo sfogo singolo
+lascia i fallimenti piu' asciutti. Costo dichiarato, da guardare in taratura.
+
+**Resta la Fase B, registrata in ISSUES 71**: la controproposta del
+RIVENDICARE — *mettere una pedina su un beneficio o su un costo* (D-261) —
+cioe' il diritto, pagato con l'azione, di prendersi la pedina del prezzo o di
+rivendicare una voce del beneficio. E resta la lettura del «fatto quando» di
+PZ-5: il Consiglio che cambia il significato delle Azioni gia' fatte.
+
+---
+
 ## D-266 — La Domanda sta sulla carta Tensione: niente mazzetti di Domande
 
 **implemented in 0.1.228** — parola del committente, che revoca una strada tentata

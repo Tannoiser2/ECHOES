@@ -29,7 +29,8 @@
           "max": 2,
           "commits_at_least": 2
         },
-        "at_end_of_act": true
+        "at_end_of_act": true,
+        "silence_support_bonus": 1
       },
       "control_rules": {
         "contested": {
@@ -332,7 +333,8 @@
           "max": 2,
           "commits_at_least": 2
         },
-        "at_end_of_act": true
+        "at_end_of_act": true,
+        "silence_support_bonus": 1
       },
       "control_rules": {
         "contested": {

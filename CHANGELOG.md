@@ -5,6 +5,27 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.229 — La pedina del prezzo: gli avversari scelgono il malus, e il silenzio paga (D-267)
+
+- **PZ-5 Fase A, la forma del dibattito** (parola del committente, D-266): il
+  proponente sceglie le opportunità — già così — e **gli avversari scelgono i
+  malus**. I pool `cost`/`failure` dei 12 template diventano **menu di due
+  voci** (riuso: disordine/debito, rancore/patto rotto); il **primo OPPOSE
+  dichiarato** posa la pedina del prezzo — a posizioni note, prima degli
+  impegni segreti — e dal pool scatta **una voce sola**: la sua, o la prima se
+  nessuno si oppone.
+- **Il silenzio paga** (regola anti-passività della roadmap): se tutti i non
+  proponenti si astengono, +`silence_support_bonus` (1 nei dati, reversibile)
+  al fronte Support — solo se il proponente ha messo carte. Silenzio-assenso,
+  detto a verbale nel log.
+- **Misure (100 semi)**: CHR_01 — 198 pedine su 451 Consigli (44%), 162
+  prezzi decisi dal fronte avverso, 116 silenzi pagati; CHR_00 — 156/427
+  (37%), 106, 99. Playtest: **0 seggi bloccati su 8**, misto e uniforme.
+  **Gli anni scritti si muovono** (regola del gioco, come D-261): uniforme
+  media 4,63→4,69, FAIL 136→147, DECISIVE 167→198 — dichiarato.
+- Suite **542 prove / 14.743 asserzioni**; sonda nuova `run_price_probe.gd`.
+  Resta la Fase B (ISSUES 71): la controproposta del RIVENDICARE.
+
 ## 0.1.228 — La Domanda sta sulla carta Tensione: niente mazzetti di Domande (D-266)
 
 - **Revoca del committente** sulla strada delle carte Domanda in mazzetti

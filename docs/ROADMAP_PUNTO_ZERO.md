@@ -225,6 +225,15 @@ resta caldo. Da scegliere e misurare.
 **Fatto quando** il Consiglio cambia il significato delle Azioni già fatte, e
 nessun Consiglio finisce senza lasciare traccia.
 
+> **Fase A in 0.1.229** ([D-267](DECISIONS.md#d-267)): la forma del dibattito
+> voluta dal committente — proponente → opportunità, **avversari → malus**: i
+> pool del prezzo diventano menu di due voci e il primo OPPOSE dichiarato posa
+> la pedina che decide quale scatta (44% dei Consigli su 100 semi). E la
+> regola anti-passività, scelta fra le tre: **il silenzio avvantaggia il
+> proponente** (+1 nei dati, 116 volte in 100 anni). Resta la Fase B
+> ([ISSUES 71](ISSUES.md#71)): la controproposta del RIVENDICARE, e la
+> lettura del «fatto quando».
+
 ### PZ-6 — Echo, Cicatrici, e il setup della Chronicle dopo
 
 La procedura di fine Chronicle come sequenza fisica, eseguibile a mano.

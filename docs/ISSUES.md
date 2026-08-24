@@ -2763,6 +2763,22 @@ e' in gioco.
 
 ---
 
+### 71. La controproposta del RIVENDICARE non esiste ancora (PZ-5, Fase B)
+
+`regole` · `motore` · **aperta in 0.1.229** ([D-267](DECISIONS.md#d-267))
+
+Parola del committente (D-261): il RIVENDICARE *«può servire in primis per
+fare una controproposta sulla Tensione che si va dibattendo — mettere una
+pedina su un beneficio o su un costo — oppure per dibattere una seconda
+tensione»*. Il secondo uso vive da 0.1.223 (il secondo mazzetto più alto a
+fine Atto). Il primo no: da 0.1.229 la **pedina del prezzo** esiste ed è del
+primo OPPOSE dichiarato ([D-267](DECISIONS.md#d-267)) — la Fase B è dare a
+chi spende un RIVENDICARE il diritto di **prendersela** (scavalcando l'ordine
+delle dichiarazioni), o di rivendicare una voce del **beneficio** della
+proposta. Tocca le proposte e le clausole del Consiglio; da disegnare insieme
+alla lettura del «fatto quando» di PZ-5 — il Consiglio che cambia il
+significato delle Azioni già fatte.
+
 ### 70. Il dizionario dei segni esiste, e due voci parlano ancora per conto loro
 
 `strumenti` · `contenuto` · `debito` · **aperta in 0.1.221** ([D-259](DECISIONS.md#d-259))

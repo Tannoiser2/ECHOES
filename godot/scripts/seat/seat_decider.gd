@@ -482,6 +482,40 @@ func choose_stance(entity_id: String, context: Dictionary, session: RefCounted) 
 	return {"stance": "CONDITION", "clause_id": str(clause_ids[choice - 3])}
 
 
+## La pedina del prezzo (PZ-5, D-267): il primo seggio del fronte avverso
+## dichiara, a posizioni note e prima degli impegni, quale voce del menu
+## paghera' chi vince - il costo se la proposta passa pagando, lo sfogo se cade.
+func choose_price(
+	entity_id: String, context: Dictionary, menu: Dictionary, session: RefCounted
+) -> Dictionary:
+	if not _is_human(entity_id):
+		return fallback.choose_price(entity_id, context, menu, session)
+	_speaking_to = entity_id
+	var chosen: Dictionary = {"cost": "", "failure": ""}
+	for side in ["cost", "failure"]:
+		var pool: Array = menu.get(side, []) as Array
+		if pool.size() <= 1:
+			chosen[side] = "" if pool.is_empty() else str(pool[0])
+			continue
+		var labels: Array = []
+		for consequence_id in pool:
+			var consequence: Dictionary = session.data.consequences.get(str(consequence_id), {})
+			labels.append("%s — %s" % [
+				str(consequence.get("title", consequence_id)),
+				str(consequence.get("description", "")),
+			])
+		var prompt: String = (
+			"  %s, se la proposta passa con un costo, il prezzo e':"
+			if side == "cost"
+			else "  %s, se la proposta cade, lo sfogo e':"
+		) % _name(entity_id, session)
+		var picked: int = await _choose(prompt, labels)
+		if picked < 0:
+			return fallback.choose_price(entity_id, context, menu, session)
+		chosen[side] = str(pool[picked])
+	return chosen
+
+
 ## Commit one card at a time until the limit or "basta". The terminal could take
 ## a whole line of numbers and the browser cannot, so this is the shape both can
 ## drive - and it reads closer to what committing is: you put one thing down,
