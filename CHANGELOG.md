@@ -5,6 +5,39 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.219 — Il mondo risponde (D-257)
+
+- **La Risonanza succede.** Giocare una carta con una faccia fisica scalda il
+  Tema scritto sulla carta: sale la questione più vicina alla soglia di quel
+  Tema, come Effetto con inverso. È la regola al centro della direzione fisica —
+  *ogni Azione ha una reazione, e non si sceglie* — e fino a ieri era scritta e
+  non succedeva.
+- **La Risonanza avvicina, non decide**: non tocca una questione già arrivata
+  alla soglia e non le dà mai il punto che la apre. Senza, la reazione del mondo
+  sarebbe il modo più economico di convocare un Consiglio.
+- **La Risonanza si firma** (`kind: "resonance"` con l'id della carta): chi legge
+  il verbale distingue quello che il giocatore ha scelto da quello che il mondo
+  ha risposto. Serve al cronista prima che alle sonde.
+- **Una storia scritta a mano è cambiata**, ed è la prova che la regola si sente:
+  in `plan_d_crown_calls` il Censimento scalda Potere due volte, la Successione
+  arriva al punto prima, e il gesto decisivo si sposta dalla quinta domanda alla
+  quarta. Piano ribasato con la ragione scritta dentro.
+- **Zero, di nuovo, ed era di nuovo la sonda**: `run_resonance_probe.gd` ha
+  contato **0 Risonanze su 20 anni** mentre avvenivano — cercava un `template`
+  che la sorgente di un Effetto non ha mai avuto. La cura non è stata aggiustare
+  la sonda: è stata far firmare la Risonanza.
+- **Quanto si sente**: **163 Risonanze in 100 anni, 1,6 per anno**. Troppo poco,
+  e la causa non è la regola ma il pilota — dodici carte su quarantotto.
+- **Due zeri veri, scritti**: la metà condizionale della Risonanza **non scatta
+  mai (0 su 163)**, e i Temi **Antico e Terra non ricevono Calore**.
+- **Il prezzo, dichiarato**: col tavolo uniforme l'anno peggiore dei cento passa
+  da **otto Consigli a nove**. Tre tentativi di riportarlo a otto non hanno
+  spostato il numero.
+- Suite **511 prove / 11.254 asserzioni** verdi, cancelli verdi, playtest 100 semi
+  **0 seggi bloccati su 8** ai due tavoli.
+
+---
+
 ## 0.1.218 — La grammatica fisica: il ponte, non la riscrittura (D-256)
 
 - **Cambio di direzione**: ECHOES è un gioco da tavolo con un'app di supporto,

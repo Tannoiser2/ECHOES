@@ -5,7 +5,7 @@
     {
       "id": "SIM_PLAN_D",
       "title": "La corona chiama subito",
-      "description": "La prima storia scritta a mano nell'economia di adesso. Aldric apre l'anno con il Diritto di Corona in mano e la Carestia gia' a tre: non aspetta i gettoni del tavolo, cala la carta e strappa il Consiglio nello stesso gesto — e' il primo dell'anno, e lo decide lui, e lo vince. Gli altri non hanno nessuna carta che sappia prendere la parola e giocano quello che hanno: i Nahr spingono, Lyra e Vaerax guardano. Poi il tavolo ne porta altri quattro, e nessuno cade: la Successione torna due volte e la seconda passa in modo decisivo, con la legge scritta prima e un nome detto ad alta voce dopo. Alla fine il trono chiude con due obiettivi su quattro e **il Popolo Nahr con tre**: e' l'anno di chi ha parlato per primo, non di chi ha vinto. (Ribasata in 0.1.184: dieci carte hanno cambiato azione perche' nessuna famiglia restasse senza (D-215), e la mano che il piano non scrive e' un'altra. Il gesto d'apertura e la morale sono gli stessi; l'ultima domanda, che nella versione di prima cadeva, adesso passa.)",
+      "description": "La prima storia scritta a mano nell'economia di adesso. Aldric apre l'anno con il Diritto di Corona in mano e la Carestia gia' a tre: non aspetta i gettoni del tavolo, cala la carta e strappa il Consiglio nello stesso gesto — e' il primo dell'anno, e lo decide lui, e lo vince. Gli altri non hanno nessuna carta che sappia prendere la parola e giocano quello che hanno: i Nahr spingono, Lyra e Vaerax guardano. Poi il tavolo ne porta altri quattro, e nessuno cade: la Successione torna due volte e la seconda passa in modo decisivo, con la legge scritta prima e un nome detto ad alta voce dopo. Alla fine il trono chiude con due obiettivi su quattro e **il Popolo Nahr con tre**: e' l'anno di chi ha parlato per primo, non di chi ha vinto. (Ribasata in 0.1.184: dieci carte hanno cambiato azione perche' nessuna famiglia restasse senza (D-215), e la mano che il piano non scrive e' un'altra. Il gesto d'apertura e la morale sono gli stessi; l'ultima domanda, che nella versione di prima cadeva, adesso passa.) (Ribasata in 0.1.219: adesso il mondo risponde. Il Censimento e' una delle dodici carte con una faccia fisica, e la sua Risonanza scalda Potere ogni volta che qualcuno conta le teste — due volte in questa storia. La Successione arriva al punto prima, e il gesto decisivo si sposta dalla quinta domanda alla quarta: la quinta cade perche' al tavolo non e' rimasta la forza. La morale e' la stessa e piu' netta — e' l'anno di chi ha parlato per primo, e adesso si vede anche perche': parlare per primo scalda il mondo, e il mondo presenta il conto a chi parla per ultimo.)",
       "chronicle_id": "CHR_01",
       "seed": 20260822,
       "seats": [
@@ -70,8 +70,8 @@
           "SUCCESS",
           "SUCCESS_WITH_COST",
           "SUCCESS_WITH_COST",
-          "SUCCESS_WITH_COST",
-          "DECISIVE_SUCCESS"
+          "DECISIVE_SUCCESS",
+          "FAILURE"
         ],
         "min_echoes": 2,
         "min_truths": 2
