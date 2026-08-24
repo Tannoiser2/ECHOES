@@ -5,6 +5,41 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.218 — La grammatica fisica: il ponte, non la riscrittura (D-256)
+
+- **Cambio di direzione**: ECHOES è un gioco da tavolo con un'app di supporto,
+  non un gioco digitale con dei segnalini. Questa versione aggiunge una **faccia
+  fisica** accanto a quella che il motore già legge — non riscrive niente.
+- **Il primo fatto**: la direzione chiede **sei Temi**, i dati ne avevano
+  **quattro**, e non erano quelli. *La Successione era classificata TERRITORY*;
+  **Potere e Fede non esistevano affatto**. Ogni Tensione porta adesso il suo
+  `theme` — e due Temi su sei ne hanno una sola, il che è scritto e non nascosto.
+- **Sei Temi come dato** (`schema/theme.schema.json`), non come raggruppamento
+  del codice.
+- **Dodici carte convertite**, due per famiglia: bersaglio **a segni** (mai il
+  nome di una Regione), **due Azioni** fra cui scegliere, una **Risonanza
+  obbligatoria**, e l'uso in Consiglio.
+- **Dodici Domande fisiche** (`schema/question_card.schema.json`), due per Tema,
+  ognuna legata al Consiglio da cui nasce: **è il ponte** fra le due grammatiche.
+- **Otto Destini** dicono adesso il Tema che inseguono, i segni che guardano e
+  tre righe leggibili al tavolo.
+- **`tools/validate_physical.py`**, in CI: segni muti, segni fantasma, Domande
+  che si aprirebbero sempre, carte senza Risonanza, Temi senza mazzo. Provato su
+  tre difetti piantati apposta, tutti e tre rossi.
+- **Quattro segni davvero muti trovati**: si può alzare una **reggia**, un
+  **castello**, un **archivio** o una **biblioteca** e nessuna carta, Domanda o
+  Destino li guarda. Adesso due Domande li leggono.
+- **Un buco nel cancello, chiuso**: la prima stesura contava «letto» un segno
+  elencato sotto un Tema. Un Tema è una cartella, non un lettore — così com'era,
+  la guardia si sarebbe soddisfatta da sola.
+- **Cosa NON fa**: il motore non legge una riga del blocco `physical`. **La
+  Risonanza è scritta e non succede** — è [ISSUES 69](docs/ISSUES.md), ed è la
+  voce che decide se questa direzione è vera o solo dichiarata.
+- Suite **507 prove / 11.211 asserzioni** verdi, cancelli verdi, playtest 100 semi
+  **0 seggi bloccati su 8**.
+
+---
+
 ## 0.1.217 — Un obiettivo deve chiedere più di quanto il mondo dia da solo (D-255)
 
 - **`run_asking_probe.gd`**: ogni anno giocato **due volte con lo stesso seme** —

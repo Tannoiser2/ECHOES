@@ -72,7 +72,23 @@
           }
         ]
       },
-      "art_prompt_key": "destiny.shared.renown"
+      "art_prompt_key": "destiny.shared.renown",
+      "physical": {
+        "themes": [
+          "THM_FEDE",
+          "THM_POTERE"
+        ],
+        "observes": [
+          "renowned",
+          "failed_proposal",
+          "condition:contested"
+        ],
+        "reads": {
+          "minimum": "Sei ancora al tavolo.",
+          "victory": "Porti il segno della fama.",
+          "triumph": "Nessuna tua proposta è caduta a verbale, e tre segni dicono che il nome pesa: terre, pietra, o un anno pulito."
+        }
+      }
     },
     {
       "id": "DST_SHARED_LAND",
@@ -125,7 +141,23 @@
           }
         ]
       },
-      "art_prompt_key": "destiny.shared.land"
+      "art_prompt_key": "destiny.shared.land",
+      "physical": {
+        "themes": [
+          "THM_TERRA"
+        ],
+        "observes": [
+          "condition:contested",
+          "settlement:village",
+          "condition:abandoned",
+          "nomad_range"
+        ],
+        "reads": {
+          "minimum": "Un posto sulla mappa risponde a te.",
+          "victory": "Due posti che rispondono, oppure due cose tue che stanno in piedi.",
+          "triumph": "Tre posti che rispondono a te, e nessun altro può dire lo stesso."
+        }
+      }
     },
     {
       "id": "DST_SHARED_ACCOUNTS",
@@ -195,7 +227,25 @@
           }
         ]
       },
-      "art_prompt_key": "destiny.shared.accounts"
+      "art_prompt_key": "destiny.shared.accounts",
+      "physical": {
+        "themes": [
+          "THM_VIE",
+          "THM_FEDE"
+        ],
+        "observes": [
+          "question_unresolved",
+          "oath_broken",
+          "account_settled",
+          "debt_forgiven",
+          "renowned"
+        ],
+        "reads": {
+          "minimum": "Sei ancora al tavolo.",
+          "victory": "L'anno finisce senza nessuna Domanda lasciata aperta.",
+          "triumph": "E nessun giuramento spezzato è rimasto scritto: i conti li hai chiusi tu, e si vede."
+        }
+      }
     }
   ]
 }

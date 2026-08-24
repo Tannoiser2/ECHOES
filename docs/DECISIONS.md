@@ -10,6 +10,106 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-256 — La grammatica fisica: il ponte, non la riscrittura
+
+**implemented in 0.1.218** — apre ISSUES 69
+
+Il committente ha cambiato direzione, e la frase che conta e' questa: *«ECHOES
+deve diventare prima di tutto un boardgame fisico-first, con un'app di supporto.
+Non deve diventare un gioco digitale in cui l'app custodisce regole invisibili.»*
+E la richiesta operativa e' precisa: **procedere per prototipo, non per
+riscrittura totale.**
+
+Quindi qui non si riscrive niente. Si aggiunge una **faccia**: la stessa carta
+detta nella grammatica del tavolo, accanto a quella che il motore gia' legge. Le
+due grammatiche convivono, e un campo le lega — cosi' il giorno che divergono lo
+dice un cancello invece di un giocatore.
+
+**Il primo fatto, prima di scrivere una riga.** La direzione chiede **sei Temi
+fisici**; i dati ne avevano **quattro**, e non erano quelli:
+
+| Tema chiesto | Tensioni che ci finiscono |
+|---|---|
+| Potere | 2 — e nessuna era classificata cosi' |
+| Sopravvivenza | 3 |
+| Terra | **1** |
+| Antico | 2 |
+| Fede | **1** |
+| Vie | 3 |
+
+`domain` diceva SURVIVAL, ANCIENT, TERRITORY, RESOURCE. **La Successione era
+TERRITORY**, cioe' la domanda su chi si siede sul trono stava nella cartella dei
+confini; **Potere e Fede non esistevano affatto**. Il `domain` resta — e' la
+parola del motore — e ogni Tensione porta adesso anche il suo `theme`, che e' la
+traccia di Calore che un giocatore guarda. Due Temi su sei restano sottili, e sta
+scritto: un mazzo di Domande con una Tensione sola dietro e' un mazzo che si
+ripete alla seconda partita.
+
+**Cosa e' stato consegnato.**
+
+1. **Sei Temi come dato** (`schema/theme.schema.json`), non come raggruppamento
+   del codice: hanno un titolo, cosa coprono in una riga, e i segni che gli
+   appartengono.
+2. **`physical` sulle carte**: bersaglio **a segni** (mai il nome di una
+   Regione), **due Azioni** fra cui scegliere, una **Risonanza obbligatoria**, e
+   l'uso in Consiglio. Dodici carte convertite, due per famiglia.
+3. **Dodici Domande fisiche** (`schema/question_card.schema.json`), due per Tema:
+   segni richiesti, esiti, segni prodotti e tolti, l'Echo che nasce, e cosa
+   cambia nel setup della Cronaca dopo. Ognuna porta `from_template` e
+   `from_question`: **e' il ponte**, ed e' la ragione per cui questo non e' un
+   secondo gioco scritto a fianco.
+4. **`physical` su otto Destini**: il Tema, i segni che guarda, e tre righe che
+   dicono a un giocatore cosa sta cercando.
+5. **`tools/validate_physical.py`**, che il committente ha chiamato «molto
+   importante» e lo e'.
+
+**Il validatore, e le tre volte che ha corretto me.** Fa i sei controlli chiesti —
+segni scritti e mai letti, segni letti e mai scritti, Domande senza segni
+richiesti, carte senza Risonanza, Risonanze su Temi inesistenti, Temi il cui
+mazzo non si puo' aprire. Alla prima corsa ha dato **28 problemi**, e la meta'
+erano cecita' mie:
+
+- non vedeva le **cicatrici**, perche' non sono un `SET_REGION_TAG` ma un blocco
+  loro: quindici segni «letti e mai scritti» che invece qualcuno scriveva eccome;
+- non vedeva le **strutture**, perche' il segno lo porta il **grado** e non il
+  tipo: mi ero inventato `structure:keep` e non trovavo `structure:watchtower`,
+  che e' il segno vero;
+- contava a parte `scar:emptied@REG_EREDAN`, che e' lo stesso segno con detto
+  **dove**.
+
+**E un buco nel cancello stesso.** La prima stesura contava «letto» anche un
+segno elencato sotto un Tema. Ma un Tema non legge niente: e' una cartella. Se
+contasse, questo cancello si soddisferebbe da solo aggiungendo una riga a un
+elenco — e sarebbe il difetto peggiore possibile per una guardia. Chiuso il buco,
+sono rimasti **quattro segni davvero muti**: `structure:castle`,
+`structure:palace`, `structure:archive`, `structure:library`. **Si puo' alzare
+una reggia e nessuna carta, nessuna Domanda, nessun Destino la guarda.** Adesso
+due Domande li leggono, e non per riempire un elenco: la regola la si scrive dove
+c'e' un tetto abbastanza alto da farla sembrare vera, e la reliquia la si guarda
+da una stanza che qualcuno tiene.
+
+**La guardia morde**, provata su tre difetti piantati apposta: una carta che
+scrive un segno inventato, una Domanda senza segni richiesti, una Risonanza su un
+Tema che non esiste. Tutte e tre rosse, exit 1.
+
+**Cosa questa decisione NON fa, e va detto per primo.** Il motore **non legge una
+riga** del blocco `physical`. Quando una carta si gioca, guarda ancora
+`card_action.kind`: un verbo solo, senza scelta e senza reazione. **La Risonanza
+e' scritta e non succede.** Al tavolo le dodici carte funzionano; nell'app sono
+quelle di prima. E' ISSUES 69, ed e' la voce che decide se questa direzione e'
+vera o solo dichiarata — perche' la Risonanza obbligatoria e' l'unica cosa qui
+dentro che cambierebbe **come si gioca**.
+
+**Il rischio, nominato adesso invece che fra dieci carte:** due grammatiche che
+non si toccano divergono. Oggi il ponte e' un campo che il validatore controlla.
+Se le facce crescono e il motore non le esegue mai, diventano due giochi diversi
+con lo stesso nome.
+
+**Nessun dato che il motore legge e' cambiato.** Suite **507 prove / 11.211
+asserzioni** verdi, tutti i cancelli verdi, `run_playtest.gd --runs=100
+--seed=7000` **0 seggi bloccati su 8** ai due tavoli — che e' quello che ci si
+aspetta da un'aggiunta, ed e' il motivo per cui va misurato lo stesso.
+
 ## D-255 — Un obiettivo deve chiedere piu' di quanto il mondo dia da solo
 
 **implemented in 0.1.217** — prima cura di ISSUES 68, che resta aperta

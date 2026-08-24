@@ -37,7 +37,50 @@
           },
           "note": "Il mestiere della carta (D-106): le braccia tolte ai campi affamano. Nelle Cronache senza Carestia non accade nulla."
         }
-      ]
+      ],
+      "physical": {
+        "themes": [
+          "THM_POTERE",
+          "THM_SOPRAVVIVENZA"
+        ],
+        "target": {
+          "scope": "REGION",
+          "any_tag": [
+            "granary",
+            "nomad_range",
+            "capital"
+          ],
+          "text": "Scegli un luogo con #granaio, #pascolo o #capitale dove hai gia' una presenza."
+        },
+        "actions": [
+          {
+            "label": "Chiamare la leva",
+            "text": "Sposta una tua presenza da quel luogo a un luogo confinante. Gli uomini vanno dove li mandi.",
+            "template": "MOVE"
+          },
+          {
+            "label": "Tenerli a casa",
+            "text": "La presenza resta, ma il luogo si mette in fila: metti #razionato e nessuno puo' requisirgli il grano quest'Atto.",
+            "puts_tag": [
+              "condition:rationed"
+            ]
+          }
+        ],
+        "resonance": {
+          "theme": "THM_SOPRAVVIVENZA",
+          "heat": 1,
+          "text": "Scalda Sopravvivenza +1. I campi restano soli: chi tiene la lancia non tiene la falce.",
+          "if_target_tag": "condition:lean",
+          "extra_heat": 1,
+          "extra_tag": "condition:starving"
+        },
+        "council_use": {
+          "base_strength": 1,
+          "bonus_if_theme": [
+            "THM_POTERE"
+          ]
+        }
+      }
     },
     {
       "id": "AST_FORCE_BORDER_WATCH",
@@ -114,7 +157,55 @@
           },
           "note": "Il mestiere della carta (D-106): il blocco isola il posto di cui si discute. La cura esiste: la Scorta Giurata e Le Vie Riaperte tolgono il segno."
         }
-      ]
+      ],
+      "physical": {
+        "themes": [
+          "THM_VIE",
+          "THM_POTERE"
+        ],
+        "target": {
+          "scope": "REGION",
+          "any_tag": [
+            "trade",
+            "structure:tollgate",
+            "capital"
+          ],
+          "forbidden_tag": [
+            "condition:cut_off"
+          ],
+          "text": "Scegli un luogo con #commercio, #dogana o #capitale che non sia gia' #tagliato_fuori."
+        },
+        "actions": [
+          {
+            "label": "Sbarrare la strada",
+            "text": "Metti #tagliato_fuori sul luogo. Finche' c'e', nessuno puo' muovere una presenza dentro o fuori da li' senza spendere una carta in piu'.",
+            "puts_tag": [
+              "condition:cut_off"
+            ],
+            "template": "INFLUENCE"
+          },
+          {
+            "label": "Farsi pagare il passaggio",
+            "text": "Non chiudi niente: prendi una carta Ricchezza dal mazzo e la strada resta aperta a tutti, tua compresa.",
+            "template": "INFLUENCE"
+          }
+        ],
+        "resonance": {
+          "theme": "THM_VIE",
+          "heat": 1,
+          "text": "Scalda Vie +1. Una strada su cui c'e' un posto di blocco non e' piu' una strada: e' una porta, e le porte si contano.",
+          "if_target_tag": "trade",
+          "extra_heat": 1,
+          "extra_tag": "condition:unrest"
+        },
+        "council_use": {
+          "base_strength": 1,
+          "bonus_if_theme": [
+            "THM_VIE",
+            "THM_POTERE"
+          ]
+        }
+      }
     },
     {
       "id": "AST_FORCE_WARBAND",
@@ -356,7 +447,49 @@
           },
           "note": "Il mestiere della carta (D-112): l'editto è la cura dell'inquietudine che i Mercenari lasciano. Se non c'è, non accade nulla."
         }
-      ]
+      ],
+      "physical": {
+        "themes": [
+          "THM_POTERE"
+        ],
+        "target": {
+          "scope": "REGION",
+          "forbidden_tag": [
+            "condition:contested"
+          ],
+          "text": "Scegli un luogo qualsiasi che non sia gia' #conteso."
+        },
+        "actions": [
+          {
+            "label": "Rivendicare",
+            "text": "Metti la tua rivendicazione sul luogo: al prossimo Consiglio quel luogo apre la sua Domanda, e tu parli per primo.",
+            "puts_tag": [
+              "condition:contested"
+            ],
+            "template": "CLAIM"
+          },
+          {
+            "label": "Proibire",
+            "text": "Nessuno puo' giocare carte Forza su quel luogo fino alla fine dell'Atto. Chi lo fa lo fa contro la legge, e si vede.",
+            "template": "INFLUENCE"
+          }
+        ],
+        "resonance": {
+          "theme": "THM_POTERE",
+          "heat": 1,
+          "text": "Scalda Potere +1. Un editto e' una promessa che qualcuno dovra' mantenere o rompere.",
+          "if_target_tag": "capital",
+          "extra_heat": 1,
+          "extra_tag": "condition:unrest"
+        },
+        "council_use": {
+          "base_strength": 1,
+          "bonus_if_theme": [
+            "THM_POTERE",
+            "THM_TERRA"
+          ]
+        }
+      }
     },
     {
       "id": "AST_AUTHORITY_SEAL",
@@ -437,7 +570,55 @@
           },
           "note": "Il mestiere della carta (D-112): contare chi sta dove toglie il segno della contesa - la cura del Diritto di Corona."
         }
-      ]
+      ],
+      "physical": {
+        "themes": [
+          "THM_POTERE",
+          "THM_VIE"
+        ],
+        "target": {
+          "scope": "REGION",
+          "any_tag": [
+            "capital",
+            "granary",
+            "trade"
+          ],
+          "text": "Scegli un luogo con #capitale, #granaio o #commercio."
+        },
+        "actions": [
+          {
+            "label": "Contare le teste",
+            "text": "Scopri una questione velata che tocca quel luogo, e pesca 1 Sapere.",
+            "puts_tag": [
+              "discovery:the_ledger"
+            ],
+            "template": "SCHEME"
+          },
+          {
+            "label": "Contare i sacchi",
+            "text": "Togli #razionato o #requisito dal luogo: quando i conti sono pubblici, le scuse finiscono.",
+            "clears_tag": [
+              "condition:rationed",
+              "condition:requisitioned"
+            ]
+          }
+        ],
+        "resonance": {
+          "theme": "THM_POTERE",
+          "heat": 1,
+          "text": "Scalda Potere +1. Contare e' un atto di governo, e chi viene contato lo sa.",
+          "if_target_tag": "nomad_range",
+          "extra_heat": 1,
+          "extra_tag": "condition:unrest"
+        },
+        "council_use": {
+          "base_strength": 1,
+          "bonus_if_theme": [
+            "THM_POTERE",
+            "THM_VIE"
+          ]
+        }
+      }
     },
     {
       "id": "AST_AUTHORITY_CROWN_RIGHT",
@@ -749,7 +930,52 @@
           },
           "note": "Il mestiere della carta (D-114): le braccia sono la cura della Regione affamata - e della sua regola (D-105)."
         }
-      ]
+      ],
+      "physical": {
+        "themes": [
+          "THM_SOPRAVVIVENZA"
+        ],
+        "target": {
+          "scope": "REGION",
+          "any_tag": [
+            "granary",
+            "condition:lean",
+            "condition:starving"
+          ],
+          "text": "Scegli un luogo con #granaio, #magro o #fame."
+        },
+        "actions": [
+          {
+            "label": "Portare le braccia",
+            "text": "Togli #magro dal luogo, oppure abbassa di 1 la questione Sopravvivenza piu' calda. Il raccolto si fa in tempo.",
+            "clears_tag": [
+              "condition:lean"
+            ],
+            "template": "INFLUENCE"
+          },
+          {
+            "label": "Prestare le braccia",
+            "text": "Un'altra casa toglie #magro da un suo luogo. Sali di un gradino nel rapporto con lei.",
+            "clears_tag": [
+              "condition:lean"
+            ],
+            "template": "FORGE"
+          }
+        ],
+        "resonance": {
+          "theme": "THM_SOPRAVVIVENZA",
+          "heat": 1,
+          "text": "Scalda Sopravvivenza +1. Le braccia che raccolgono qui sono braccia che non arano altrove.",
+          "if_target_tag": "condition:starving",
+          "extra_heat": 1
+        },
+        "council_use": {
+          "base_strength": 1,
+          "bonus_if_theme": [
+            "THM_SOPRAVVIVENZA"
+          ]
+        }
+      }
     },
     {
       "id": "AST_PEOPLE_MOBILIZATION",
@@ -865,7 +1091,53 @@
           },
           "note": "Il mestiere della carta (D-114): la marcia rompe le serrature delle Chiavi del Granaio."
         }
-      ]
+      ],
+      "physical": {
+        "themes": [
+          "THM_SOPRAVVIVENZA",
+          "THM_TERRA"
+        ],
+        "target": {
+          "scope": "REGION",
+          "any_tag": [
+            "condition:starving",
+            "condition:rationed",
+            "condition:lean",
+            "nomad_range"
+          ],
+          "text": "Scegli un luogo con #fame, #razionato, #magro o #pascolo."
+        },
+        "actions": [
+          {
+            "label": "Marciare verso il grano",
+            "text": "Sposta una tua presenza in un luogo con #granaio, anche se non confina. La gente cammina.",
+            "template": "MOVE"
+          },
+          {
+            "label": "Marciare sulla capitale",
+            "text": "Metti #malcontento su un luogo con #capitale, ovunque sia. Non serve arrivarci: basta partire.",
+            "puts_tag": [
+              "condition:unrest"
+            ],
+            "template": "INFLUENCE"
+          }
+        ],
+        "resonance": {
+          "theme": "THM_SOPRAVVIVENZA",
+          "heat": 1,
+          "text": "Scalda Sopravvivenza +1. Una marcia non torna indietro da sola: qualcuno deve prometterle qualcosa.",
+          "if_target_tag": "condition:starving",
+          "extra_heat": 1,
+          "extra_tag": "condition:unrest"
+        },
+        "council_use": {
+          "base_strength": 1,
+          "bonus_if_theme": [
+            "THM_SOPRAVVIVENZA",
+            "THM_TERRA"
+          ]
+        }
+      }
     },
     {
       "id": "AST_PEOPLE_EXODUS",
@@ -1020,7 +1292,54 @@
           },
           "note": "Il mestiere della carta (D-114): la mappa vecchia cura la cicatrice della via tagliata."
         }
-      ]
+      ],
+      "physical": {
+        "themes": [
+          "THM_VIE",
+          "THM_TERRA"
+        ],
+        "target": {
+          "scope": "REGION",
+          "any_tag": [
+            "condition:cut_off",
+            "wild",
+            "trade"
+          ],
+          "text": "Scegli un luogo con #tagliato_fuori, #selvaggio o #commercio."
+        },
+        "actions": [
+          {
+            "label": "Trovare il passaggio",
+            "text": "Togli #tagliato_fuori dal luogo, oppure muovi una tua presenza li' ignorando i confini.",
+            "clears_tag": [
+              "condition:cut_off"
+            ],
+            "template": "MOVE"
+          },
+          {
+            "label": "Tenere la mappa per se'",
+            "text": "Metti #registro_del_commercio: sai una cosa che gli altri non sanno, e al prossimo Consiglio vale +1.",
+            "puts_tag": [
+              "discovery:trade_ledger"
+            ],
+            "template": "SCHEME"
+          }
+        ],
+        "resonance": {
+          "theme": "THM_VIE",
+          "heat": 1,
+          "text": "Scalda Vie +1. Una strada che qualcuno ha ritrovato e' una strada che qualcun altro vorra' chiudere.",
+          "if_target_tag": "trade",
+          "extra_heat": 1
+        },
+        "council_use": {
+          "base_strength": 1,
+          "bonus_if_theme": [
+            "THM_VIE",
+            "THM_ANTICO"
+          ]
+        }
+      }
     },
     {
       "id": "AST_KNOWLEDGE_LEDGER",
@@ -1212,7 +1531,59 @@
           },
           "note": "Il costo della carta: quello che sapevi da solo adesso lo leggono tutti."
         }
-      ]
+      ],
+      "physical": {
+        "themes": [
+          "THM_ANTICO",
+          "THM_FEDE"
+        ],
+        "target": {
+          "scope": "REGION",
+          "any_tag": [
+            "crystal_site",
+            "wild",
+            "structure:sealed"
+          ],
+          "text": "Scegli un luogo con #cristallo, #selvaggio o #sigillato."
+        },
+        "actions": [
+          {
+            "label": "Aprire la vena",
+            "text": "Togli #sigillato e aggiungi una tua presenza. Quello che dormiva sotto la pietra adesso e' tuo — e sveglio.",
+            "puts_tag": [
+              "crystal_exploited"
+            ],
+            "clears_tag": [
+              "structure:sealed"
+            ],
+            "template": "SCHEME"
+          },
+          {
+            "label": "Misurare senza toccare",
+            "text": "Metti #cristallo_misurato e pesca 1 Sapere. Non lo prendi: lo scrivi, e quello che e' scritto lo puo' leggere chiunque.",
+            "puts_tag": [
+              "crystal_measured",
+              "discovery:crystal"
+            ],
+            "template": "SCHEME"
+          }
+        ],
+        "resonance": {
+          "theme": "THM_ANTICO",
+          "heat": 1,
+          "text": "Scalda Antico +1. Il Risveglio non distingue fra chi scava e chi guarda.",
+          "if_target_tag": "crystal_exploited",
+          "extra_heat": 2,
+          "extra_tag": "condition:exploited"
+        },
+        "council_use": {
+          "base_strength": 2,
+          "bonus_if_theme": [
+            "THM_ANTICO",
+            "THM_FEDE"
+          ]
+        }
+      }
     },
     {
       "id": "AST_KNOWLEDGE_SEALED_TESTIMONY",
@@ -1290,7 +1661,55 @@
           },
           "note": "Il mestiere della carta (D-114): la riserva sfama. Nelle Cronache senza Carestia non accade nulla."
         }
-      ]
+      ],
+      "physical": {
+        "themes": [
+          "THM_SOPRAVVIVENZA"
+        ],
+        "target": {
+          "scope": "REGION",
+          "any_tag": [
+            "granary",
+            "structure:granary",
+            "condition:starving",
+            "condition:lean"
+          ],
+          "text": "Scegli un luogo con #granaio, #fame o #magro."
+        },
+        "actions": [
+          {
+            "label": "Aprire i granai",
+            "text": "Togli #fame dal luogo e abbassa di 1 la questione Sopravvivenza piu' calda.",
+            "clears_tag": [
+              "condition:starving"
+            ],
+            "template": "INFLUENCE"
+          },
+          {
+            "label": "Chiudere i granai",
+            "text": "Metti #razionato. Il grano c'e' e non e' per tutti: alza di 1 la questione Sopravvivenza piu' calda.",
+            "puts_tag": [
+              "condition:rationed"
+            ],
+            "template": "INFLUENCE"
+          }
+        ],
+        "resonance": {
+          "theme": "THM_SOPRAVVIVENZA",
+          "heat": 1,
+          "text": "Scalda Sopravvivenza +1. Il grano che si tocca e' grano che qualcuno ha contato.",
+          "if_target_tag": "condition:requisitioned",
+          "extra_heat": 1,
+          "extra_tag": "condition:unrest"
+        },
+        "council_use": {
+          "base_strength": 1,
+          "bonus_if_theme": [
+            "THM_SOPRAVVIVENZA",
+            "THM_VIE"
+          ]
+        }
+      }
     },
     {
       "id": "AST_WEALTH_SALT",
@@ -1373,7 +1792,54 @@
           },
           "note": "Il mestiere della carta (D-114, riscritto in D-162): il pedaggio impegnato non e' piu' un segno sulla mappa ma un'opera che ha un padrone — chi ha messo la carta sul tavolo — e che entra nel conto del controllo."
         }
-      ]
+      ],
+      "physical": {
+        "themes": [
+          "THM_VIE",
+          "THM_POTERE"
+        ],
+        "target": {
+          "scope": "REGION",
+          "any_tag": [
+            "trade",
+            "structure:tollgate",
+            "structure:road"
+          ],
+          "text": "Scegli un luogo con #commercio, #dogana o #strada."
+        },
+        "actions": [
+          {
+            "label": "Alzare la sbarra",
+            "text": "Rivendica il luogo: al prossimo Consiglio la sua Domanda si apre, e la questione e' chi incassa.",
+            "puts_tag": [
+              "condition:contested"
+            ],
+            "template": "CLAIM"
+          },
+          {
+            "label": "Dividere l'incasso",
+            "text": "Metti #pedaggio_diviso e sali di un gradino nel rapporto con chi controlla il luogo. Si guadagna meno e si dorme meglio.",
+            "puts_tag": [
+              "toll_shared"
+            ],
+            "template": "FORGE"
+          }
+        ],
+        "resonance": {
+          "theme": "THM_VIE",
+          "heat": 1,
+          "text": "Scalda Vie +1. Ogni pedaggio e' un prezzo che qualcuno non aveva messo in conto.",
+          "if_target_tag": "condition:indebted",
+          "extra_heat": 1,
+          "extra_tag": "condition:unrest"
+        },
+        "council_use": {
+          "base_strength": 1,
+          "bonus_if_theme": [
+            "THM_VIE"
+          ]
+        }
+      }
     },
     {
       "id": "AST_WEALTH_CARAVAN",
@@ -1688,7 +2154,49 @@
           },
           "note": "Il mestiere della carta (D-113): il debito chiamato segna la sede del rivale - un segno vivo, letto dalle clausole."
         }
-      ]
+      ],
+      "physical": {
+        "themes": [
+          "THM_VIE",
+          "THM_FEDE"
+        ],
+        "target": {
+          "scope": "ENTITY",
+          "text": "Scegli un'altra casa al tavolo."
+        },
+        "actions": [
+          {
+            "label": "Esigere",
+            "text": "Metti #debito_chiamato su di lei: deve darti una carta adesso, o scendere di un gradino nel rapporto con te davanti a tutti.",
+            "puts_tag": [
+              "debt_called"
+            ],
+            "template": "INFLUENCE"
+          },
+          {
+            "label": "Rimettere",
+            "text": "Metti #debito_rimesso: sali di due gradini nel rapporto con lei, e tutti vedono che potevi non farlo.",
+            "puts_tag": [
+              "debt_forgiven"
+            ],
+            "template": "FORGE"
+          }
+        ],
+        "resonance": {
+          "theme": "THM_FEDE",
+          "heat": 1,
+          "text": "Scalda Fede +1. Un debito vecchio non e' una somma: e' una storia che qualcuno raccontera' diversamente.",
+          "if_target_tag": "condition:indebted",
+          "extra_heat": 1
+        },
+        "council_use": {
+          "base_strength": 1,
+          "bonus_if_theme": [
+            "THM_VIE",
+            "THM_FEDE"
+          ]
+        }
+      }
     },
     {
       "id": "AST_BONDS_OATH",
@@ -1728,7 +2236,49 @@
           },
           "note": "Il mestiere della carta (D-113): la cura del tetto di D-105 - il giuramento rifatto toglie il segno oath_broken dalla coppia, e la relazione può risalire."
         }
-      ]
+      ],
+      "physical": {
+        "themes": [
+          "THM_FEDE",
+          "THM_POTERE"
+        ],
+        "target": {
+          "scope": "ENTITY",
+          "forbidden_tag": [
+            "oath_broken"
+          ],
+          "text": "Scegli un'altra casa al tavolo che non porti #giuramento_rotto."
+        },
+        "actions": [
+          {
+            "label": "Giurare insieme",
+            "text": "Sali di un gradino nel rapporto con lei, e metti #scorta_giurata su tutti e due. Vale finche' uno dei due non lo rompe.",
+            "puts_tag": [
+              "escort_sworn"
+            ],
+            "template": "FORGE"
+          },
+          {
+            "label": "Farsi giurare",
+            "text": "Lei sale di un gradino verso di te e tu no. Prendi una sua carta a scelta: un giuramento a senso unico si paga subito.",
+            "template": "FORGE"
+          }
+        ],
+        "resonance": {
+          "theme": "THM_FEDE",
+          "heat": 1,
+          "text": "Scalda Fede +1. Un giuramento pronunciato e' una cosa che il mondo dovra' ricordare o dimenticare, e nessuna delle due e' gratis.",
+          "if_target_tag": "renowned",
+          "extra_heat": 1
+        },
+        "council_use": {
+          "base_strength": 1,
+          "bonus_if_theme": [
+            "THM_FEDE",
+            "THM_POTERE"
+          ]
+        }
+      }
     },
     {
       "id": "AST_BONDS_BETROTHAL",

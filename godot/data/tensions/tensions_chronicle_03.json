@@ -45,7 +45,8 @@
         "condition:lean",
         "structure:canal"
       ],
-      "opening_line": "I canali che Aldric fece scavare ci sono ancora, pieni di terra, e da otto secoli nessuno e' obbligato a toglierla."
+      "opening_line": "I canali che Aldric fece scavare ci sono ancora, pieni di terra, e da otto secoli nessuno e' obbligato a toglierla.",
+      "theme": "THM_VIE"
     },
     {
       "id": "TEN_DEBT",
@@ -90,7 +91,8 @@
         "condition:indebted",
         "structure:tollgate"
       ],
-      "opening_line": "La Gilda del Sale tiene il registro di tutti, e quest'anno il registro e' stato aperto in pubblico per la prima volta."
+      "opening_line": "La Gilda del Sale tiene il registro di tutti, e quest'anno il registro e' stato aperto in pubblico per la prima volta.",
+      "theme": "THM_VIE"
     },
     {
       "id": "TEN_RELIC",
@@ -140,7 +142,8 @@
         "structure:sealed",
         "condition:unrest"
       ],
-      "opening_line": "L'Ordine del Vetro custodisce un frammento che nessuno dei vivi ha visto, e qualcuno ha cominciato a chiedere come si faccia a custodire una cosa che non si guarda."
+      "opening_line": "L'Ordine del Vetro custodisce un frammento che nessuno dei vivi ha visto, e qualcuno ha cominciato a chiedere come si faccia a custodire una cosa che non si guarda.",
+      "theme": "THM_FEDE"
     },
     {
       "id": "TEN_CHARTER",
@@ -185,7 +188,8 @@
         "condition:contested",
         "condition:unrest"
       ],
-      "opening_line": "Otto secoli senza corona hanno funzionato benissimo, finche' quest'anno due citta' hanno avuto bisogno di sapere chi decide."
+      "opening_line": "Otto secoli senza corona hanno funzionato benissimo, finche' quest'anno due citta' hanno avuto bisogno di sapere chi decide.",
+      "theme": "THM_POTERE"
     },
     {
       "id": "TEN_NAMELESS",
@@ -226,7 +230,8 @@
         "nomad_range",
         "condition:emptied"
       ],
-      "opening_line": "Fuori dalle sette citta' vive gente che non risulta da nessuna parte, e ogni anno sono di piu' senza che nessun registro se ne accorga."
+      "opening_line": "Fuori dalle sette citta' vive gente che non risulta da nessuna parte, e ogni anno sono di piu' senza che nessun registro se ne accorga.",
+      "theme": "THM_TERRA"
     },
     {
       "id": "TEN_ASH",
@@ -265,7 +270,8 @@
         "crystal_site",
         "wild"
       ],
-      "opening_line": "La montagna ha ricominciato a fumare: i vecchi dicono che l'ha sempre fatto, i registri dell'Ordine dicono di no."
+      "opening_line": "La montagna ha ricominciato a fumare: i vecchi dicono che l'ha sempre fatto, i registri dell'Ordine dicono di no.",
+      "theme": "THM_ANTICO"
     }
   ]
 }

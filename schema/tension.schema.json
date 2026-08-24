@@ -41,7 +41,8 @@
         "possible_questions",
         "triggers",
         "decrease_rules",
-        "linked_tensions"
+        "linked_tensions",
+        "theme"
       ],
       "additionalProperties": false,
       "properties": {
@@ -166,6 +167,11 @@
           "type": "string",
           "minLength": 1,
           "description": "The sentence the world says about this question when it is on the table at a Chronicle's opening. A Chronicle that draws its questions composes its opening from these instead of writing one paragraph that would name questions it might not have drawn (D-207)."
+        },
+        "theme": {
+          "type": "string",
+          "pattern": "^THM_[A-Z_]+$",
+          "description": "Il Tema fisico a cui questa Tensione appartiene sul tavolo. `domain` resta la parola del motore; `theme` e' la traccia di Calore che i giocatori guardano, e le due non coincidono: la Successione e' TERRITORY per il motore e Potere per chi gioca."
         }
       }
     }

@@ -90,7 +90,26 @@
           }
         ]
       },
-      "art_prompt_key": "destiny.aldric"
+      "art_prompt_key": "destiny.aldric",
+      "physical": {
+        "themes": [
+          "THM_POTERE",
+          "THM_SOPRAVVIVENZA"
+        ],
+        "observes": [
+          "capital",
+          "crowned",
+          "crown_divided",
+          "condition:unrest",
+          "condition:starving",
+          "question_unresolved"
+        ],
+        "reads": {
+          "minimum": "Sei ancora sul trono e hai una presenza sulla capitale.",
+          "victory": "Controlli ancora la tua terra, e il Tema Sopravvivenza non è mai salito oltre metà traccia.",
+          "triumph": "La capitale esce dall'anno senza #malcontento, la corona non è spezzata, e nessuna Domanda resta aperta."
+        }
+      }
     },
     {
       "id": "DST_NAHR",
@@ -206,7 +225,26 @@
           }
         ]
       },
-      "art_prompt_key": "destiny.nahr"
+      "art_prompt_key": "destiny.nahr",
+      "physical": {
+        "themes": [
+          "THM_TERRA",
+          "THM_SOPRAVVIVENZA"
+        ],
+        "observes": [
+          "nomad_range",
+          "nahr_settled",
+          "settlement:village",
+          "valley_sealed",
+          "granary",
+          "scar:emptied"
+        ],
+        "reads": {
+          "minimum": "Il popolo esiste ancora e ha una presenza sul pascolo.",
+          "victory": "Un Consiglio ha riconosciuto il tuo insediamento, e sei nel luogo del granaio.",
+          "triumph": "L'insediamento regge, la valle non è stata chiusa, e il mondo esce con non più di due Cicatrici."
+        }
+      }
     },
     {
       "id": "DST_LYRA",
@@ -315,7 +353,26 @@
           }
         ]
       },
-      "art_prompt_key": "destiny.lyra"
+      "art_prompt_key": "destiny.lyra",
+      "physical": {
+        "themes": [
+          "THM_ANTICO",
+          "THM_FEDE"
+        ],
+        "observes": [
+          "crystal_site",
+          "discovery:crystal",
+          "mine_sealed",
+          "study_supervised",
+          "knowledge_shared",
+          "escort_sworn"
+        ],
+        "reads": {
+          "minimum": "Hai almeno una Scoperta davanti a te.",
+          "victory": "Sei nelle gallerie, e qualcuno ti ha giurato la strada aperta oppure un posto risponde a te.",
+          "triumph": "Quattro Scoperte, nessuna guardia sullo studio, e le gallerie escono dall'anno senza Cicatrici."
+        }
+      }
     },
     {
       "id": "DST_VAERAX",
@@ -408,7 +465,25 @@
           }
         ]
       },
-      "art_prompt_key": "destiny.vaerax"
+      "art_prompt_key": "destiny.vaerax",
+      "physical": {
+        "themes": [
+          "THM_ANTICO"
+        ],
+        "observes": [
+          "wild",
+          "crystal_site",
+          "mine_sealed",
+          "structure:sealed",
+          "crystal_exploited",
+          "condition:emptied"
+        ],
+        "reads": {
+          "minimum": "Sei ancora sulla montagna.",
+          "victory": "Le gallerie sono sigillate e il Cristallo non è uscito.",
+          "triumph": "Restano sigillate, il Tema Antico è tornato in basso, e salire fin lassù non è facile per nessuno."
+        }
+      }
     },
     {
       "id": "DST_ALDRIC_RECORD",

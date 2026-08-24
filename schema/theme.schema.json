@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://echoes.local/schema/theme.schema.json",
+  "title": "Theme collection",
+  "x-echoes-def": "theme",
+  "x-echoes-kind": "collection",
+  "type": "object",
+  "required": ["schema_id", "version", "items"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_id": { "const": "theme" },
+    "version": { "type": "string" },
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/theme" }
+    }
+  },
+  "$defs": {
+    "theme": {
+      "type": "object",
+      "description": "Uno dei sei Temi fisici. Il Tema e' la traccia di Calore sul tavolo: le Risonanze delle carte lo scaldano, e a fine Atto il piu' caldo apre la sua Domanda. E' la cosa che un giocatore guarda per sapere dove sta andando l'anno, e per questo e' un dato e non un raggruppamento del codice.",
+      "required": ["id", "title", "covers", "tags"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^THM_[A-Z_]+$" },
+        "title": { "type": "string", "minLength": 1 },
+        "covers": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Cosa copre, in una riga leggibile al tavolo."
+        },
+        "tags": {
+          "type": "array",
+          "minItems": 1,
+          "description": "I segni del tavolo che appartengono a questo Tema. Una Domanda del Tema puo' chiedere solo questi; una carta che ne tocca uno puo' scaldarlo.",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "art_prompt_key": { "type": "string" }
+      }
+    }
+  }
+}

@@ -20,6 +20,10 @@ var chronicles: Dictionary = {}
 var sim_plans: Dictionary = {}
 var tag_rules: Dictionary = {}
 var structure_types: Dictionary = {}
+## I sei Temi fisici (D-256): la traccia di Calore che i giocatori guardano.
+var themes: Dictionary = {}
+## Le Domande fisiche (D-256): il mazzo che il Consiglio gira, per Tema.
+var question_cards: Dictionary = {}
 
 var errors: PackedStringArray = PackedStringArray()
 var data_version: String = ""
@@ -39,6 +43,8 @@ const _TARGETS: Dictionary = {
 	"sim_plan": "sim_plans",
 	"tag_rule": "tag_rules",
 	"structure_type": "structure_types",
+	"theme": "themes",
+	"question_card": "question_cards",
 }
 
 
