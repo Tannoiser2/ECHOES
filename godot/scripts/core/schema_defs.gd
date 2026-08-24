@@ -1022,6 +1022,8 @@ const DEFS := {
 					"ROAD",
 					"FOREST",
 					"COAST",
+					"MARSH",
+					"ISLAND",
 				],
 			},
 			"role": {

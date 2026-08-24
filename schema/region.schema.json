@@ -60,7 +60,9 @@
             "UNDERGROUND",
             "ROAD",
             "FOREST",
-            "COAST"
+            "COAST",
+            "MARSH",
+            "ISLAND"
           ]
         },
         "role": {

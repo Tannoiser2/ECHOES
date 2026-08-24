@@ -5,6 +5,26 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.227 — Dieci tessere, sessanta Tensioni, e la matematica che tiene i mazzetti vivi (D-265)
+
+- **10 tessere, se ne pescano 6**: le sei di sempre più le quattro di PZ-2 —
+  Porto Cinerino, Palude dei Canali, Isola Muta, Bosco dei Confini — con biomi
+  e disegni nuovi e un segno unico stampato ciascuna. **Ogni dominio sta su
+  esattamente 5 tessere**: pescandone 6, ogni dominio è sempre sul tavolo, su
+  qualunque mappa — tenuto da una guardia vista mordere.
+- **60 Tensioni, 10 per Tema**: 48 nuove scritte per intero, fuochi distribuiti
+  sulle tessere, e due Consigli generici nuovi (del Confine, del Prezzo).
+  **Ogni Tema ha candidate a fuoco libero** → mazzetti mai vuoti: **0 su 600**
+  (100 semi × 6 Temi), minimo 4 carte. Terra e Fede chiudono il buco della
+  Tensione sola, nei numeri.
+- **Misure CHR_00 (100 semi)**: **82 mappe diverse**, **100 anni su 100
+  diversi per domande**, Consigli 3-6 (media 4,24), 0 partite non concluse.
+  Gli anni scritti tengono la loro mano di 12 e non si muovono di un decimale
+  (0 seggi bloccati su 8).
+- Di contorno: 40 testi di pesca delle carte aggiornati alla verità nuova
+  (la guardia delle fonti ha morso), export a 41 fogli, BRIEF_ARTE con le
+  quattro tavole nuove. Suite: **535 prove / 14.570 asserzioni**.
+
 ## 0.1.226 — Il mazzetto pieno: dentro ci sono tutte le Tensioni, e girare apre la questione (D-264)
 
 - **Sul tavolo pescato il mazzetto è pieno**: tutte le Tensioni del Tema che

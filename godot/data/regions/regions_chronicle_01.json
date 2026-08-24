@@ -9,7 +9,8 @@
       "role": "PRIMARY",
       "adjacency": [
         "REG_VALLE_VERDE",
-        "REG_STRADA_MERCANTI"
+        "REG_STRADA_MERCANTI",
+        "REG_PORTO_CINERINO"
       ],
       "asset_sources": [
         "AUTHORITY",
@@ -43,7 +44,9 @@
       "adjacency": [
         "REG_EREDAN",
         "REG_TERRE_NAHR",
-        "REG_STRADA_MERCANTI"
+        "REG_STRADA_MERCANTI",
+        "REG_PALUDE_CANALI",
+        "REG_BOSCO_CONFINI"
       ],
       "asset_sources": [
         "PEOPLE",
@@ -77,7 +80,8 @@
       "adjacency": [
         "REG_VALLE_VERDE",
         "REG_MONTAGNE_ROSSE",
-        "REG_STRADA_MERCANTI"
+        "REG_STRADA_MERCANTI",
+        "REG_PALUDE_CANALI"
       ],
       "asset_sources": [
         "AUTHORITY",
@@ -109,7 +113,8 @@
       "role": "PRIMARY",
       "adjacency": [
         "REG_TERRE_NAHR",
-        "REG_MINIERE_ANTICHE"
+        "REG_MINIERE_ANTICHE",
+        "REG_BOSCO_CONFINI"
       ],
       "asset_sources": [
         "FORCE",
@@ -178,7 +183,8 @@
         "REG_EREDAN",
         "REG_VALLE_VERDE",
         "REG_TERRE_NAHR",
-        "REG_MINIERE_ANTICHE"
+        "REG_MINIERE_ANTICHE",
+        "REG_PORTO_CINERINO"
       ],
       "asset_sources": [
         "WEALTH",
@@ -202,6 +208,136 @@
       "map_position": {
         "x": 0.5,
         "y": 0.45
+      }
+    },
+    {
+      "id": "REG_PORTO_CINERINO",
+      "name": "Porto Cinerino",
+      "biome": "COAST",
+      "role": "SECONDARY",
+      "adjacency": [
+        "REG_EREDAN",
+        "REG_STRADA_MERCANTI",
+        "REG_ISOLA_MUTA"
+      ],
+      "asset_sources": [
+        "WEALTH",
+        "BONDS"
+      ],
+      "tags": [
+        "domain:TERRITORY",
+        "domain:RESOURCE",
+        "harbor"
+      ],
+      "presence_slots": 4,
+      "control": null,
+      "private_information": "Le maree portano dentro piu' di quanto i registri del molo dichiarino.",
+      "description": "Banchine grigie di sale e cenere. Tutto quello che il mare concede passa da qui, e paga.",
+      "art_prompt_key": "region.porto_cinerino",
+      "name_forms": {
+        "definite": "il Porto Cinerino",
+        "locative": "al Porto Cinerino",
+        "genitive": "del Porto Cinerino"
+      },
+      "map_position": {
+        "x": 0.86,
+        "y": 0.62
+      }
+    },
+    {
+      "id": "REG_PALUDE_CANALI",
+      "name": "La Palude dei Canali",
+      "biome": "MARSH",
+      "role": "SECONDARY",
+      "adjacency": [
+        "REG_VALLE_VERDE",
+        "REG_TERRE_NAHR"
+      ],
+      "asset_sources": [
+        "PEOPLE",
+        "KNOWLEDGE"
+      ],
+      "tags": [
+        "domain:SURVIVAL",
+        "domain:ANCIENT",
+        "marsh"
+      ],
+      "presence_slots": 3,
+      "control": null,
+      "private_information": "Sotto il fango i canali vecchi tengono ancora: chi sa leggerli attraversa in un giorno.",
+      "description": "Acqua ferma e canne. I canali di un'altra eta' affiorano quando la stagione e' secca, e qualcosa affiora con loro.",
+      "art_prompt_key": "region.palude_canali",
+      "name_forms": {
+        "definite": "la Palude dei Canali",
+        "locative": "nella Palude dei Canali",
+        "genitive": "della Palude dei Canali"
+      },
+      "map_position": {
+        "x": 0.62,
+        "y": 0.82
+      }
+    },
+    {
+      "id": "REG_ISOLA_MUTA",
+      "name": "L'Isola Muta",
+      "biome": "ISLAND",
+      "role": "SECONDARY",
+      "adjacency": [
+        "REG_PORTO_CINERINO"
+      ],
+      "asset_sources": [
+        "KNOWLEDGE",
+        "FORCE"
+      ],
+      "tags": [
+        "domain:ANCIENT",
+        "island"
+      ],
+      "presence_slots": 2,
+      "control": null,
+      "private_information": "Nessun uccello nidifica sull'isola. I pescatori lo sanno e non ne parlano.",
+      "description": "Uno scoglio grande, senza porto e senza campane. Chi ci sbarca parla piano, e non sa dire perche'.",
+      "art_prompt_key": "region.isola_muta",
+      "name_forms": {
+        "definite": "l'Isola Muta",
+        "locative": "sull'Isola Muta",
+        "genitive": "dell'Isola Muta"
+      },
+      "map_position": {
+        "x": 0.93,
+        "y": 0.82
+      }
+    },
+    {
+      "id": "REG_BOSCO_CONFINI",
+      "name": "Il Bosco dei Confini",
+      "biome": "FOREST",
+      "role": "SECONDARY",
+      "adjacency": [
+        "REG_VALLE_VERDE",
+        "REG_MONTAGNE_ROSSE"
+      ],
+      "asset_sources": [
+        "FORCE",
+        "PEOPLE"
+      ],
+      "tags": [
+        "domain:ANCIENT",
+        "forest"
+      ],
+      "presence_slots": 3,
+      "control": null,
+      "private_information": "I segni sugli alberi non sono di cacciatori. Sono piu' vecchi dei sentieri.",
+      "description": "Alberi alti e sentieri che non restano dove li lasci. Il confine passa di qui, ma nessuno l'ha mai visto scritto.",
+      "art_prompt_key": "region.bosco_confini",
+      "name_forms": {
+        "definite": "il Bosco dei Confini",
+        "locative": "nel Bosco dei Confini",
+        "genitive": "del Bosco dei Confini"
+      },
+      "map_position": {
+        "x": 0.3,
+        "y": 0.55
       }
     }
   ]

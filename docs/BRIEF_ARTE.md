@@ -1462,6 +1462,21 @@ no frame, no border. Not gory. Boardgame card art.
 
 ## region
 
+### `region.bosco_confini` — Il Bosco dei Confini
+
+- **soggetto**: Il Bosco dei Confini — Alberi alti e sentieri che non restano dove li lasci. Il confine passa di qui, ma nessuno l'ha mai visto scritto
+- **id**: `REG_BOSCO_CONFINI`
+
+```
+Top-down three-quarter painted map tile of Il Bosco dei Confini: chiome, radure, sentieri stretti. Historical
+dark-fantasy cartography crossed with painted landscape, muted earth palette,
+verde profondo accent. Readable terrain silhouette from above, clear edges that can
+tile against neighbouring regions. Composition: the centre is deliberately calm
+and uncluttered so overlay tokens (control, presence, condition, scar) sit legibly
+on top; detail concentrates at the borders. Square framing. No text, no letters,
+no numerals, no map labels, no compass rose, no frame. Boardgame map tile art.
+```
+
 ### `region.eredan` — Eredan
 
 - **soggetto**: Eredan — La città del trono. Vive di leggi, di titoli e del grano che sale dalla Valle
@@ -1471,6 +1486,21 @@ no frame, no border. Not gory. Boardgame card art.
 Top-down three-quarter painted map tile of Eredan: tetti fitti, mura, una piazza, magazzini sul lato. Historical
 dark-fantasy cartography crossed with painted landscape, muted earth palette,
 oro spento accent. Readable terrain silhouette from above, clear edges that can
+tile against neighbouring regions. Composition: the centre is deliberately calm
+and uncluttered so overlay tokens (control, presence, condition, scar) sit legibly
+on top; detail concentrates at the borders. Square framing. No text, no letters,
+no numerals, no map labels, no compass rose, no frame. Boardgame map tile art.
+```
+
+### `region.isola_muta` — L'Isola Muta
+
+- **soggetto**: L'Isola Muta — Uno scoglio grande, senza porto e senza campane. Chi ci sbarca parla piano, e non sa dire perche'
+- **id**: `REG_ISOLA_MUTA`
+
+```
+Top-down three-quarter painted map tile of L'Isola Muta: L'Isola Muta — Uno scoglio grande, senza porto e senza campane. Chi ci sbarca parla piano, e non sa dire perche'. Historical
+dark-fantasy cartography crossed with painted landscape, muted earth palette,
+l'accento della sua famiglia accent. Readable terrain silhouette from above, clear edges that can
 tile against neighbouring regions. Composition: the centre is deliberately calm
 and uncluttered so overlay tokens (control, presence, condition, scar) sit legibly
 on top; detail concentrates at the borders. Square framing. No text, no letters,
@@ -1501,6 +1531,36 @@ no numerals, no map labels, no compass rose, no frame. Boardgame map tile art.
 Top-down three-quarter painted map tile of Montagne Rosse: pietra rossa, creste, neve solo su un versante. Historical
 dark-fantasy cartography crossed with painted landscape, muted earth palette,
 grigio-rosso accent. Readable terrain silhouette from above, clear edges that can
+tile against neighbouring regions. Composition: the centre is deliberately calm
+and uncluttered so overlay tokens (control, presence, condition, scar) sit legibly
+on top; detail concentrates at the borders. Square framing. No text, no letters,
+no numerals, no map labels, no compass rose, no frame. Boardgame map tile art.
+```
+
+### `region.palude_canali` — La Palude dei Canali
+
+- **soggetto**: La Palude dei Canali — Acqua ferma e canne. I canali di un'altra eta' affiorano quando la stagione e' secca, e qualcosa affiora con loro
+- **id**: `REG_PALUDE_CANALI`
+
+```
+Top-down three-quarter painted map tile of La Palude dei Canali: La Palude dei Canali — Acqua ferma e canne. I canali di un'altra eta' affiorano quando la stagione e' secca, e qualcosa affiora con loro. Historical
+dark-fantasy cartography crossed with painted landscape, muted earth palette,
+l'accento della sua famiglia accent. Readable terrain silhouette from above, clear edges that can
+tile against neighbouring regions. Composition: the centre is deliberately calm
+and uncluttered so overlay tokens (control, presence, condition, scar) sit legibly
+on top; detail concentrates at the borders. Square framing. No text, no letters,
+no numerals, no map labels, no compass rose, no frame. Boardgame map tile art.
+```
+
+### `region.porto_cinerino` — Porto Cinerino
+
+- **soggetto**: Porto Cinerino — Banchine grigie di sale e cenere. Tutto quello che il mare concede passa da qui, e paga
+- **id**: `REG_PORTO_CINERINO`
+
+```
+Top-down three-quarter painted map tile of Porto Cinerino: secche, moli, barche in secca. Historical
+dark-fantasy cartography crossed with painted landscape, muted earth palette,
+azzurro spento accent. Readable terrain silhouette from above, clear edges that can
 tile against neighbouring regions. Composition: the centre is deliberately calm
 and uncluttered so overlay tokens (control, presence, condition, scar) sit legibly
 on top; detail concentrates at the borders. Square framing. No text, no letters,

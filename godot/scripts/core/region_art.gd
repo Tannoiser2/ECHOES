@@ -40,6 +40,8 @@ const BIOMES: Dictionary = {
 	"ROAD": {"ground": "#2a2419", "relief": "#4a4030", "accent": "#c9a86a"},
 	"FOREST": {"ground": "#1f2a1f", "relief": "#2f3f2b", "accent": "#6fa88a"},
 	"COAST": {"ground": "#202a2e", "relief": "#2c3c46", "accent": "#7fa6c9"},
+	"MARSH": {"ground": "#20261e", "relief": "#33402f", "accent": "#8fae7a"},
+	"ISLAND": {"ground": "#1d2530", "relief": "#2a3a4a", "accent": "#9db8d2"},
 }
 const UNKNOWN: Dictionary = {"ground": "#241f19", "relief": "#3a332a", "accent": "#8a8172"}
 
@@ -74,6 +76,8 @@ static func plan(region_id: String, biome: String) -> Dictionary:
 		"ROAD": strokes = _road(state, colours)
 		"FOREST": strokes = _forest(state, colours)
 		"COAST": strokes = _coast(state, colours)
+		"MARSH": strokes = _marsh(state, colours)
+		"ISLAND": strokes = _island(state, colours)
 		_: strokes = _steppe(state, colours)
 
 	return {
@@ -276,6 +280,41 @@ static func _coast(state: int, colours: Dictionary) -> Array:
 		], str(colours["relief"]), 0.018))
 	out.append(_line([
 		Vector2(0.10, 0.44), Vector2(0.42, 0.38), Vector2(0.72, 0.46), Vector2(0.92, 0.40),
+	], str(colours["accent"]), 0.02))
+	return out
+
+
+## La palude (D-265): acqua ferma a chiazze, e canne che spuntano dritte —
+## il contrario delle onde della costa, che si muovono.
+static func _marsh(state: int, colours: Dictionary) -> Array:
+	var out: Array = []
+	for i in range(5):
+		var x: float = 0.18 + 0.15 * float(i)
+		var y: float = 0.56 + 0.14 * ArtPlaceholder.unit(state)
+		state = ArtPlaceholder.step(state)
+		out.append(_line([
+			Vector2(x, y), Vector2(x + 0.10, y),
+		], str(colours["relief"]), 0.02))
+		out.append(_line([
+			Vector2(x + 0.05, y), Vector2(x + 0.05, y - 0.12 - 0.05 * ArtPlaceholder.unit(state)),
+		], str(colours["accent"]), 0.012))
+		state = ArtPlaceholder.step(state)
+	return out
+
+
+## L'isola (D-265): un solo rilievo in mezzo all'acqua, e il vuoto attorno —
+## nessun'altra tessera lascia tanto spazio non disegnato, ed e' il punto.
+static func _island(state: int, colours: Dictionary) -> Array:
+	var out: Array = []
+	for i in range(2):
+		var y: float = 0.66 + 0.10 * float(i)
+		var wave: float = 0.03 * ArtPlaceholder.unit(state)
+		state = ArtPlaceholder.step(state)
+		out.append(_line([
+			Vector2(0.16, y), Vector2(0.50, y - wave), Vector2(0.84, y),
+		], str(colours["relief"]), 0.016))
+	out.append(_line([
+		Vector2(0.36, 0.58), Vector2(0.50, 0.34 - 0.05 * ArtPlaceholder.unit(state)), Vector2(0.64, 0.58),
 	], str(colours["accent"]), 0.02))
 	return out
 

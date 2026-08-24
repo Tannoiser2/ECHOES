@@ -1,0 +1,1907 @@
+{
+  "schema_id": "tension",
+  "version": "0.2",
+  "items": [
+    {
+      "id": "TEN_ENCLOSURE",
+      "title": "I Recinti",
+      "domain": "TERRITORY",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "AUTHORITY",
+        "PEOPLE"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "I pali arrivano al bordo della strada. Il prossimo campo recintato ha gia' il nome del padrone inciso.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_WHO_HOLDS",
+        "Q_ANY_WHOSE_LAW"
+      ],
+      "triggers": [
+        "Ogni recinto alzato senza un titolo.",
+        "Ogni raccolto conteso fra chi semina e chi possiede."
+      ],
+      "decrease_rules": [
+        "Un Consiglio che decide di chi e' l'uso della terra.",
+        "Un titolo scritto e letto in piazza."
+      ],
+      "linked_tensions": [
+        "TEN_NAMELESS"
+      ],
+      "description": "I pali nuovi spuntano di notte. La terra che era di tutti, al mattino, ha un padrone.",
+      "focus_region_tags": [
+        "granary",
+        "condition:contested"
+      ],
+      "opening_line": "Qualcuno ha piantato pali attorno ai campi bassi, e nessuno ricorda di averglielo concesso.",
+      "theme": "THM_TERRA"
+    },
+    {
+      "id": "TEN_FALLOW",
+      "title": "La Terra Stanca",
+      "domain": "SURVIVAL",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "PEOPLE",
+        "WEALTH"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "Le spighe dei campi alti si contano a occhio. L'anno prossimo si contano a mano.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_WHO_DECIDES",
+        "Q_ANY_WHO_STAYS"
+      ],
+      "triggers": [
+        "Ogni semina forzata su un campo che chiedeva riposo.",
+        "Ogni anno magro contato come sfortuna."
+      ],
+      "decrease_rules": [
+        "Un anno di maggese deciso e rispettato.",
+        "Una rotazione scritta al Consiglio."
+      ],
+      "linked_tensions": [
+        "TEN_NAMELESS"
+      ],
+      "description": "I campi rendono meno ogni anno, e nessuno vuole essere il primo a lasciarli riposare.",
+      "focus_region_tags": [
+        "granary",
+        "condition:lean"
+      ],
+      "opening_line": "Il grano viene su corto. I vecchi dicono che la terra chiede riposo, e nessuno puo' permetterselo.",
+      "theme": "THM_TERRA"
+    },
+    {
+      "id": "TEN_LANDLESS",
+      "title": "I Braccianti",
+      "domain": "SURVIVAL",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "PEOPLE",
+        "BONDS"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "I braccianti hanno cominciato a contarsi. Sono piu' dei padroni, e adesso lo sanno.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_WHO_DECIDES",
+        "Q_ANY_WHO_STAYS"
+      ],
+      "triggers": [
+        "Ogni stagione lavorata senza un patto scritto.",
+        "Ogni paga data in promesse."
+      ],
+      "decrease_rules": [
+        "Un patto di lavoro deciso al Consiglio.",
+        "Terra concessa a chi la lavora."
+      ],
+      "linked_tensions": [
+        "TEN_NAMELESS"
+      ],
+      "description": "Braccia senza terra, terra senza braccia: il conto non torna, e chi lavora comincia a chiederselo.",
+      "focus_region_tags": [],
+      "opening_line": "Alle porte si presentano braccia che chiedono terra, e la terra ha gia' tutti i padroni che regge.",
+      "theme": "THM_TERRA"
+    },
+    {
+      "id": "TEN_FLOOD",
+      "title": "L'Acqua Alta",
+      "domain": "SURVIVAL",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "PEOPLE",
+        "KNOWLEDGE"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "L'acqua ha toccato la pietra bianca che i vecchi chiamano il limite. Nessuno ricorda di averla mai vista bagnata.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_WHO_DECIDES",
+        "Q_ANY_WHO_STAYS"
+      ],
+      "triggers": [
+        "Ogni stagione di pioggia senza mani sugli argini.",
+        "Ogni canale interrato lasciato interrato."
+      ],
+      "decrease_rules": [
+        "Argini rifatti per decisione del Consiglio.",
+        "I canali vecchi riaperti."
+      ],
+      "linked_tensions": [
+        "TEN_NAMELESS"
+      ],
+      "description": "Gli argini vecchi tengono per abitudine. L'acqua non ha abitudini.",
+      "focus_region_tags": [
+        "marsh"
+      ],
+      "opening_line": "La palude e' salita di un palmo, e il palmo dopo tocca i campi.",
+      "theme": "THM_TERRA"
+    },
+    {
+      "id": "TEN_CLEARING",
+      "title": "Il Disboscamento",
+      "domain": "RESOURCE",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "WEALTH",
+        "FORCE"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "Dal margine si vede il fondo del bosco. L'anno scorso non si vedeva.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_WHO_PAYS",
+        "Q_ANY_WHO_KEEPS"
+      ],
+      "triggers": [
+        "Ogni taglio oltre il segno.",
+        "Ogni fornace accesa col legno dei confini."
+      ],
+      "decrease_rules": [
+        "Un limite di taglio deciso e sorvegliato.",
+        "Una stagione senza fornaci."
+      ],
+      "linked_tensions": [
+        "TEN_NAMELESS"
+      ],
+      "description": "Il bosco rende: legna, carbone, terra nuova. Rende una volta sola.",
+      "focus_region_tags": [
+        "forest"
+      ],
+      "opening_line": "Le asce sono entrate nel bosco dei confini, e il bosco arretra di un campo all'anno.",
+      "theme": "THM_TERRA"
+    },
+    {
+      "id": "TEN_BOUNDARY_STONES",
+      "title": "Le Pietre di Confine",
+      "domain": "TERRITORY",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "AUTHORITY",
+        "KNOWLEDGE"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "Un'altra pietra e' comparsa dove non era. Qualcuno sta scrivendo un confine nuovo, una notte alla volta.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_WHO_HOLDS",
+        "Q_ANY_WHOSE_LAW"
+      ],
+      "triggers": [
+        "Ogni pietra spostata di notte.",
+        "Ogni mappa che non combacia con quella del vicino."
+      ],
+      "decrease_rules": [
+        "Un confine camminato e giurato davanti a testimoni.",
+        "Un catasto riscritto al Consiglio."
+      ],
+      "linked_tensions": [
+        "TEN_NAMELESS"
+      ],
+      "description": "Le pietre che dicono dove finisce il mio e comincia il tuo si sono mosse. Le pietre non si muovono da sole.",
+      "focus_region_tags": [],
+      "opening_line": "Tre pietre di confine sono state trovate spostate, e nessuna delle due parti ammette di averle toccate.",
+      "theme": "THM_TERRA"
+    },
+    {
+      "id": "TEN_PASTURE",
+      "title": "Il Pascolo Conteso",
+      "domain": "TERRITORY",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "PEOPLE",
+        "FORCE"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "I pastori hanno cominciato a portare i cani grossi. Non li portano per i lupi.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_WHO_HOLDS",
+        "Q_ANY_WHOSE_LAW"
+      ],
+      "triggers": [
+        "Ogni gregge oltre il segno.",
+        "Ogni pozzo conteso a bastonate."
+      ],
+      "decrease_rules": [
+        "Un calendario dei pascoli deciso al Consiglio.",
+        "Una stagione divisa senza sangue."
+      ],
+      "linked_tensions": [
+        "TEN_NAMELESS"
+      ],
+      "description": "Le greggi non leggono i confini. I pastori si', e li leggono diversi.",
+      "focus_region_tags": [
+        "nomad_range",
+        "condition:contested"
+      ],
+      "opening_line": "Due greggi sullo stesso pascolo, due pastori con la stessa ragione, e l'erba che non basta per due.",
+      "theme": "THM_TERRA"
+    },
+    {
+      "id": "TEN_SALT_FIELDS",
+      "title": "I Campi di Sale",
+      "domain": "RESOURCE",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "WEALTH",
+        "PEOPLE"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "Il sale ha superato il grano nei registri del porto. Quando lo sapranno i campi, vorranno la loro parte.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_WHO_PAYS",
+        "Q_ANY_WHO_KEEPS"
+      ],
+      "triggers": [
+        "Ogni vasca nuova scavata su terra da pascolo.",
+        "Ogni carico di sale partito senza dazio."
+      ],
+      "decrease_rules": [
+        "Un prezzo del sale deciso al Consiglio.",
+        "Le vasche contate e scritte."
+      ],
+      "linked_tensions": [
+        "TEN_NAMELESS"
+      ],
+      "description": "Dove l'acqua si ritira resta il sale, e il sale vale. La terra che lo da' non da' altro.",
+      "focus_region_tags": [
+        "harbor",
+        "marsh"
+      ],
+      "opening_line": "Le vasche di sale rendono come un raccolto, e chi le governa non ha mai toccato una zappa.",
+      "theme": "THM_TERRA"
+    },
+    {
+      "id": "TEN_LAND_REGISTER",
+      "title": "Il Catasto",
+      "domain": "TERRITORY",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "AUTHORITY",
+        "KNOWLEDGE"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "I misuratori sono arrivati al terzo villaggio. Al quarto li aspettano con i forconi.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_WHO_HOLDS",
+        "Q_ANY_WHOSE_LAW"
+      ],
+      "triggers": [
+        "Ogni misura presa contro la volonta' di chi abita.",
+        "Ogni pagina del registro contestata."
+      ],
+      "decrease_rules": [
+        "Un catasto giurato dalle parti.",
+        "Un Consiglio che decide chi misura."
+      ],
+      "linked_tensions": [
+        "TEN_NAMELESS"
+      ],
+      "description": "Scrivere di chi e' la terra e' un modo di prendersela. Non scriverlo e' un altro.",
+      "focus_region_tags": [
+        "capital"
+      ],
+      "opening_line": "Il trono vuole un registro delle terre, e ogni casa ha una ragione per non farsi scrivere.",
+      "theme": "THM_TERRA"
+    },
+    {
+      "id": "TEN_PILGRIMS",
+      "title": "I Pellegrini",
+      "domain": "SURVIVAL",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "PEOPLE",
+        "BONDS"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "I pellegrini accampati fuori porta sono piu' degli abitanti dentro. Pregano. Per ora.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_WHO_DECIDES",
+        "Q_ANY_WHO_STAYS"
+      ],
+      "triggers": [
+        "Ogni carovana di fedeli senza scorta ne' scorte.",
+        "Ogni villaggio che chiude i pozzi ai pellegrini."
+      ],
+      "decrease_rules": [
+        "Un cammino con tappe e granai decisi al Consiglio.",
+        "Un anno santo dichiarato e organizzato."
+      ],
+      "linked_tensions": [
+        "TEN_RELIC"
+      ],
+      "description": "Arrivano a piedi, mangiano poco, pregano molto. Sono tanti, e continuano ad arrivare.",
+      "focus_region_tags": [],
+      "opening_line": "La strada porta pellegrini come il fiume porta acqua, e i villaggi sul cammino contano le bocche.",
+      "theme": "THM_FEDE"
+    },
+    {
+      "id": "TEN_HERESY",
+      "title": "La Parola Storta",
+      "domain": "TERRITORY",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "KNOWLEDGE",
+        "PEOPLE"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "Il predicatore ha smesso di parlare in piazza. Adesso parla nelle case, ed e' peggio.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_WHO_HOLDS",
+        "Q_ANY_WHOSE_LAW"
+      ],
+      "triggers": [
+        "Ogni predica sulla piazza senza permesso.",
+        "Ogni famiglia divisa dalla parola."
+      ],
+      "decrease_rules": [
+        "Un Consiglio che decide cosa si puo' predicare.",
+        "Una disputa pubblica con un vincitore."
+      ],
+      "linked_tensions": [
+        "TEN_RELIC"
+      ],
+      "description": "Qualcuno predica una fede quasi uguale. Il quasi e' il problema.",
+      "focus_region_tags": [
+        "capital"
+      ],
+      "opening_line": "In citta' si predica una parola nuova, e chi la ascolta smette di ascoltare quella vecchia.",
+      "theme": "THM_FEDE"
+    },
+    {
+      "id": "TEN_VOWS",
+      "title": "I Voti Non Sciolti",
+      "domain": "ANCIENT",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "BONDS",
+        "AUTHORITY"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "La lista dei voti in sospeso e' piu' lunga della lista dei battesimi. Qualcuno ha cominciato a dirlo forte.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_ANCIENT_WATCH"
+      ],
+      "triggers": [
+        "Ogni voto rimandato alla stagione dopo.",
+        "Ogni giuramento fatto in fretta e male."
+      ],
+      "decrease_rules": [
+        "Un rito di scioglimento celebrato per tutti.",
+        "Un Consiglio che dice quali voti valgono ancora."
+      ],
+      "linked_tensions": [
+        "TEN_RELIC"
+      ],
+      "description": "Promesse fatte agli dei in anni cattivi. Gli anni sono passati, le promesse no.",
+      "focus_region_tags": [],
+      "opening_line": "Meta' del paese ha un voto da sciogliere e nessuno ricorda piu' come si scioglie.",
+      "theme": "THM_FEDE"
+    },
+    {
+      "id": "TEN_SILENT_BELLS",
+      "title": "Le Campane Mute",
+      "domain": "TERRITORY",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "AUTHORITY",
+        "BONDS"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "Un bambino ha chiesto a cosa servono le torri. Nessuno dei presenti ha saputo rispondere subito.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_WHO_HOLDS",
+        "Q_ANY_WHOSE_LAW"
+      ],
+      "triggers": [
+        "Ogni funerale senza rintocco.",
+        "Ogni festa passata in silenzio."
+      ],
+      "decrease_rules": [
+        "Un Consiglio che decide chi suona, e per chi.",
+        "Un lutto sciolto con un rito."
+      ],
+      "linked_tensions": [
+        "TEN_RELIC"
+      ],
+      "description": "Le campane non suonano da tre lune. Nessuno ha deciso il silenzio, e nessuno osa romperlo.",
+      "focus_region_tags": [
+        "capital",
+        "condition:mourning"
+      ],
+      "opening_line": "Le campane della citta' tacciono, e ognuno da' al silenzio il significato che teme di piu'.",
+      "theme": "THM_FEDE"
+    },
+    {
+      "id": "TEN_ISLAND_SHRINE",
+      "title": "Il Santuario dell'Isola",
+      "domain": "ANCIENT",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "KNOWLEDGE",
+        "BONDS"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "Il traghettatore ha triplicato il prezzo per l'isola, e le barche partono piene lo stesso.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_ANCIENT_WATCH"
+      ],
+      "triggers": [
+        "Ogni pellegrinaggio all'isola senza guida.",
+        "Ogni offerta lasciata sull'altare vecchio."
+      ],
+      "decrease_rules": [
+        "Una custodia dell'altare decisa al Consiglio.",
+        "Un rito nuovo scritto per il posto vecchio."
+      ],
+      "linked_tensions": [
+        "TEN_RELIC"
+      ],
+      "description": "Sull'isola c'e' un altare piu' vecchio della fede che lo usa. Le barche hanno ripreso ad andarci.",
+      "focus_region_tags": [
+        "island"
+      ],
+      "opening_line": "Le barche tornano dall'isola con gente diversa da quella partita: piu' quieta, o piu' decisa.",
+      "theme": "THM_FEDE"
+    },
+    {
+      "id": "TEN_TITHE",
+      "title": "La Decima",
+      "domain": "RESOURCE",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "WEALTH",
+        "AUTHORITY"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "L'esattore della decima ha comprato la casa grande sulla piazza. I fedeli l'hanno notato.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_WHO_PAYS",
+        "Q_ANY_WHO_KEEPS"
+      ],
+      "triggers": [
+        "Ogni raccolta fatta senza registro.",
+        "Ogni esattore che vive meglio dei fedeli."
+      ],
+      "decrease_rules": [
+        "Registri della decima aperti al Consiglio.",
+        "Una decima sospesa in un anno magro."
+      ],
+      "linked_tensions": [
+        "TEN_RELIC"
+      ],
+      "description": "Una parte del raccolto va agli dei. Chi la raccoglie per loro, intanto, la tiene.",
+      "focus_region_tags": [
+        "granary",
+        "trade"
+      ],
+      "opening_line": "La decima si paga, e la meta' della decima si perde per strada fra il campo e l'altare.",
+      "theme": "THM_FEDE"
+    },
+    {
+      "id": "TEN_BURIALS",
+      "title": "I Sepolti Senza Nome",
+      "domain": "ANCIENT",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "PEOPLE",
+        "KNOWLEDGE"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "Le famiglie hanno smesso di far giocare i bambini verso la palude. Nessuno ha dovuto dirglielo.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_ANCIENT_WATCH"
+      ],
+      "triggers": [
+        "Ogni corpo affiorato e lasciato dov'era.",
+        "Ogni scavo che tocca le sepolture vecchie."
+      ],
+      "decrease_rules": [
+        "Un rito per i senza nome celebrato davanti a tutti.",
+        "Un campo santo nuovo consacrato."
+      ],
+      "linked_tensions": [
+        "TEN_RELIC"
+      ],
+      "description": "La palude restituisce corpi che nessuno ha sepolto secondo il rito. Vecchi. Alcuni, vecchissimi.",
+      "focus_region_tags": [
+        "marsh",
+        "condition:mourning"
+      ],
+      "opening_line": "L'acqua bassa ha scoperto sepolture che nessun registro conosce, e i morti senza nome chiedono un rito.",
+      "theme": "THM_FEDE"
+    },
+    {
+      "id": "TEN_PROPHECY",
+      "title": "La Profezia Contata",
+      "domain": "ANCIENT",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "KNOWLEDGE",
+        "AUTHORITY"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "Qualcuno ha cominciato a vendere i campi per comprare scorte. Qualcun altro compra i campi.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_ANCIENT_WATCH"
+      ],
+      "triggers": [
+        "Ogni segno letto come conferma.",
+        "Ogni decisione rimandata a dopo la data."
+      ],
+      "decrease_rules": [
+        "Una disputa pubblica sulla lettura.",
+        "Il Consiglio che fissa cosa si fa il giorno dopo la data."
+      ],
+      "linked_tensions": [
+        "TEN_RELIC"
+      ],
+      "description": "Qualcuno ha letto nei cristalli una data. Da allora, tutto quello che succede sembra confermarla.",
+      "focus_region_tags": [
+        "crystal_site"
+      ],
+      "opening_line": "Gira una profezia con un numero dentro, e il numero si avvicina.",
+      "theme": "THM_FEDE"
+    },
+    {
+      "id": "TEN_SANCTUARY",
+      "title": "Il Diritto d'Asilo",
+      "domain": "TERRITORY",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "AUTHORITY",
+        "BONDS"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "Dentro il tempio adesso sono in tre. Fuori, il doppio di ieri.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_WHO_HOLDS",
+        "Q_ANY_WHOSE_LAW"
+      ],
+      "triggers": [
+        "Ogni asilo concesso a chi ha un conto aperto.",
+        "Ogni soglia sacra presidiata da armati."
+      ],
+      "decrease_rules": [
+        "Un Consiglio che decide i confini dell'asilo.",
+        "Una consegna negoziata senza sangue."
+      ],
+      "linked_tensions": [
+        "TEN_RELIC"
+      ],
+      "description": "Chi tocca l'altare non si tocca. Era una regola comoda finche' non ci si e' aggrappato qualcuno di scomodo.",
+      "focus_region_tags": [],
+      "opening_line": "Un ricercato ha preso asilo al tempio, e davanti alla porta si accumulano uomini armati e ragioni.",
+      "theme": "THM_FEDE"
+    },
+    {
+      "id": "TEN_REGENCY",
+      "title": "La Reggenza",
+      "domain": "TERRITORY",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "AUTHORITY",
+        "BONDS"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "Il reggente ha ordinato insegne nuove. Non sono quelle della casa che rappresenta.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_WHO_HOLDS",
+        "Q_ANY_WHOSE_LAW"
+      ],
+      "triggers": [
+        "Ogni decreto firmato «in vece di».",
+        "Ogni mese di reggenza oltre il promesso."
+      ],
+      "decrease_rules": [
+        "Un termine scritto e giurato al Consiglio.",
+        "La consegna del sigillo davanti a testimoni."
+      ],
+      "linked_tensions": [
+        "TEN_SUCCESSION"
+      ],
+      "description": "Chi governa in nome di un altro governa comunque. E ci prende gusto.",
+      "focus_region_tags": [],
+      "opening_line": "Il sigillo lo tiene un reggente, e ogni mese trova una ragione nuova per tenerlo ancora.",
+      "theme": "THM_POTERE"
+    },
+    {
+      "id": "TEN_HOSTAGES",
+      "title": "Gli Ostaggi di Corte",
+      "domain": "TERRITORY",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "BONDS",
+        "AUTHORITY"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "L'ospite piu' giovane ha smesso di scrivere a casa. La casa se n'e' accorta.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_WHO_HOLDS",
+        "Q_ANY_WHOSE_LAW"
+      ],
+      "triggers": [
+        "Ogni ospite trattenuto oltre la stagione.",
+        "Ogni lettera di un ostaggio letta prima di partire."
+      ],
+      "decrease_rules": [
+        "Uno scambio di ostaggi deciso al Consiglio.",
+        "Un ritorno a casa concesso e festeggiato."
+      ],
+      "linked_tensions": [
+        "TEN_SUCCESSION"
+      ],
+      "description": "Si chiamano ospiti. Mangiano a corte, dormono a corte, e non possono andarsene.",
+      "focus_region_tags": [
+        "capital"
+      ],
+      "opening_line": "Ogni casa ha un figlio «ospite» alla corte di un'altra, e tutti sorridono a denti stretti.",
+      "theme": "THM_POTERE"
+    },
+    {
+      "id": "TEN_LEVY",
+      "title": "La Leva",
+      "domain": "SURVIVAL",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "FORCE",
+        "PEOPLE"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "Al mercato si vendono certificati di malattia. Il prezzo sale ogni settimana.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_WHO_DECIDES",
+        "Q_ANY_WHO_STAYS"
+      ],
+      "triggers": [
+        "Ogni chiamata fuori stagione.",
+        "Ogni figlio unico preso lo stesso."
+      ],
+      "decrease_rules": [
+        "Una leva con regole scritte al Consiglio.",
+        "Un anno senza chiamate."
+      ],
+      "linked_tensions": [
+        "TEN_SUCCESSION"
+      ],
+      "description": "Servono braccia per le armi. Le stesse braccia servivano per il raccolto.",
+      "focus_region_tags": [],
+      "opening_line": "I banditori chiamano la leva, e ogni villaggio conta chi puo' perdere.",
+      "theme": "THM_POTERE"
+    },
+    {
+      "id": "TEN_SEALS",
+      "title": "I Sigilli Falsi",
+      "domain": "RESOURCE",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "KNOWLEDGE",
+        "WEALTH"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "Due ordini con lo stesso sigillo si contraddicono. Uno dei due e' falso. Forse tutti e due.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_WHO_PAYS",
+        "Q_ANY_WHO_KEEPS"
+      ],
+      "triggers": [
+        "Ogni ordine eseguito senza verifica.",
+        "Ogni sigillo prestato «per una volta sola»."
+      ],
+      "decrease_rules": [
+        "Un registro dei sigilli deciso al Consiglio.",
+        "Un falsario preso e mostrato."
+      ],
+      "linked_tensions": [
+        "TEN_SUCCESSION"
+      ],
+      "description": "Un sigillo vale quanto la cera se nessuno controlla la mano che lo preme.",
+      "focus_region_tags": [
+        "trade",
+        "capital"
+      ],
+      "opening_line": "Girano ordini con sigilli perfetti che nessuno ricorda di aver firmato.",
+      "theme": "THM_POTERE"
+    },
+    {
+      "id": "TEN_MARCHES",
+      "title": "Le Marche di Confine",
+      "domain": "TERRITORY",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "FORCE",
+        "AUTHORITY"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "Il capobanda del bosco si fa chiamare «custode». Ha cominciato a firmare carte.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_WHO_HOLDS",
+        "Q_ANY_WHOSE_LAW"
+      ],
+      "triggers": [
+        "Ogni tributo riscosso da chi non ne ha titolo.",
+        "Ogni giudizio emesso fuori dalla legge."
+      ],
+      "decrease_rules": [
+        "Una marca concessa a un titolare scelto.",
+        "Un giro d'ispezione del trono ai margini."
+      ],
+      "linked_tensions": [
+        "TEN_SUCCESSION"
+      ],
+      "description": "Ai margini il potere arriva stanco. Chi vive sul confine obbedisce a chi e' piu' vicino.",
+      "focus_region_tags": [
+        "forest",
+        "condition:contested"
+      ],
+      "opening_line": "Le terre di margine rispondono ai capibanda locali, e i capibanda cominciano a darsi titoli.",
+      "theme": "THM_POTERE"
+    },
+    {
+      "id": "TEN_COUNCIL_SEATS",
+      "title": "I Seggi del Consiglio",
+      "domain": "TERRITORY",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "AUTHORITY",
+        "BONDS"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "Le case minori si sono riunite in una sala propria. Per ora parlano soltanto.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_WHO_HOLDS",
+        "Q_ANY_WHOSE_LAW"
+      ],
+      "triggers": [
+        "Ogni seduta aperta con una disputa sulle sedie.",
+        "Ogni voce esclusa che si organizza fuori."
+      ],
+      "decrease_rules": [
+        "Una regola dei seggi scritta e giurata.",
+        "Un seggio nuovo assegnato senza sangue."
+      ],
+      "linked_tensions": [
+        "TEN_SUCCESSION"
+      ],
+      "description": "Chi siede decide. Percio' la prima decisione e' sempre chi siede.",
+      "focus_region_tags": [
+        "capital"
+      ],
+      "opening_line": "Si discute di allargare il tavolo del Consiglio, e ogni casa ha un candidato e un veto.",
+      "theme": "THM_POTERE"
+    },
+    {
+      "id": "TEN_OLD_GUARD",
+      "title": "La Vecchia Guardia",
+      "domain": "TERRITORY",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "FORCE",
+        "BONDS"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "I veterani si trovano ogni settima sera alla stessa taverna. Il padrone ha smesso di far pagare il primo giro.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_WHO_HOLDS",
+        "Q_ANY_WHOSE_LAW"
+      ],
+      "triggers": [
+        "Ogni parata con due divise diverse.",
+        "Ogni promozione negata a un veterano."
+      ],
+      "decrease_rules": [
+        "Un giuramento nuovo prestato dai vecchi.",
+        "Una pensione decisa al Consiglio."
+      ],
+      "linked_tensions": [
+        "TEN_SUCCESSION"
+      ],
+      "description": "Hanno servito il potere di prima. Il potere di adesso non si fida, e non puo' congedarli.",
+      "focus_region_tags": [],
+      "opening_line": "I veterani del vecchio ordine portano ancora le insegne, e i giovani ufficiali portano rancore.",
+      "theme": "THM_POTERE"
+    },
+    {
+      "id": "TEN_TRIBUTE",
+      "title": "Il Tributo",
+      "domain": "RESOURCE",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "WEALTH",
+        "AUTHORITY"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "Il porto ha pagato per ultimo, e ha pagato con una lettera di conteggio allegata. La lettera e' gia' famosa.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_WHO_PAYS",
+        "Q_ANY_WHO_KEEPS"
+      ],
+      "triggers": [
+        "Ogni esattore scortato piu' del necessario.",
+        "Ogni villaggio che paga in ritardo due volte."
+      ],
+      "decrease_rules": [
+        "Un tributo ridotto per l'anno magro.",
+        "Un conto pubblico di dove va il tributo."
+      ],
+      "linked_tensions": [
+        "TEN_SUCCESSION"
+      ],
+      "description": "Il tributo si paga a chi protegge. Quando la protezione non si vede, il tributo pesa il doppio.",
+      "focus_region_tags": [
+        "harbor",
+        "trade"
+      ],
+      "opening_line": "Le casse chiedono il tributo intero in un anno che ha reso a meta'.",
+      "theme": "THM_POTERE"
+    },
+    {
+      "id": "TEN_ECHOES_BELOW",
+      "title": "Gli Echi nel Fondo",
+      "domain": "ANCIENT",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "KNOWLEDGE",
+        "FORCE"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "Ieri il fondo ha battuto per primo. Tre colpi. Nessuno e' sceso a rispondere.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_ANCIENT_WATCH"
+      ],
+      "triggers": [
+        "Ogni scavo oltre la galleria segnata.",
+        "Ogni turno di notte nel fondo."
+      ],
+      "decrease_rules": [
+        "Una veglia decisa e mantenuta.",
+        "Il fondo sigillato per decisione del Consiglio."
+      ],
+      "linked_tensions": [
+        "TEN_AWAKENING"
+      ],
+      "description": "In fondo alle gallerie qualcosa risponde ai colpi. Con un ritardo. Sempre lo stesso.",
+      "focus_region_tags": [
+        "mine"
+      ],
+      "opening_line": "I minatori del turno lungo giurano che il fondo risponde battendo tre colpi ai loro tre colpi.",
+      "theme": "THM_ANTICO"
+    },
+    {
+      "id": "TEN_OLD_CHANNELS",
+      "title": "Le Vie di Prima",
+      "domain": "ANCIENT",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "KNOWLEDGE",
+        "PEOPLE"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "Un carro ha seguito la via vecchia per scommessa. E' arrivato in un giorno dove ce ne vogliono tre. Il carrettiere non ci torna.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_ANCIENT_WATCH"
+      ],
+      "triggers": [
+        "Ogni tratto nuovo scoperto e percorso.",
+        "Ogni pietra tolta dal selciato vecchio."
+      ],
+      "decrease_rules": [
+        "Una mappa delle vie vecchie fatta e custodita.",
+        "Un divieto di percorrerle deciso al Consiglio."
+      ],
+      "linked_tensions": [
+        "TEN_AWAKENING"
+      ],
+      "description": "Sotto i sentieri ci sono strade piu' vecchie, dritte come nessuno costruisce piu'. Portano tutte nello stesso posto.",
+      "focus_region_tags": [
+        "marsh",
+        "forest"
+      ],
+      "opening_line": "La stagione secca ha scoperto un selciato sotto la palude, e il selciato non e' opera delle case di adesso.",
+      "theme": "THM_ANTICO"
+    },
+    {
+      "id": "TEN_SLEEPERS",
+      "title": "I Dormienti",
+      "domain": "ANCIENT",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "KNOWLEDGE",
+        "BONDS"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "Il piu' vecchio del villaggio ha rifatto lo stesso sogno tre notti. Non lo racconta, ma ha smesso di dormire.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_ANCIENT_WATCH"
+      ],
+      "triggers": [
+        "Ogni segno di risveglio liquidato come caso.",
+        "Ogni dormiente disturbato per curiosita'."
+      ],
+      "decrease_rules": [
+        "Un censimento dei racconti fatto sul serio.",
+        "Una veglia istituita dove si dorme."
+      ],
+      "linked_tensions": [
+        "TEN_AWAKENING"
+      ],
+      "description": "Non e' solo la montagna a dormire. I racconti contano sette dormienti, e uno si e' gia' svegliato.",
+      "focus_region_tags": [],
+      "opening_line": "I racconti dei vecchi contano sette cose che dormono, e i racconti hanno smesso di sembrare racconti.",
+      "theme": "THM_ANTICO"
+    },
+    {
+      "id": "TEN_ISLAND_SILENCE",
+      "title": "Il Silenzio dell'Isola",
+      "domain": "ANCIENT",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "KNOWLEDGE",
+        "FORCE"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "Il faro spento dell'isola ieri notte era acceso. Il guardiano del porto l'ha visto, e non era il solo.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_ANCIENT_WATCH"
+      ],
+      "triggers": [
+        "Ogni notte passata sull'isola.",
+        "Ogni pietra portata via dallo scoglio."
+      ],
+      "decrease_rules": [
+        "Un presidio stabilito con un rito.",
+        "Un divieto di sbarco deciso al Consiglio."
+      ],
+      "linked_tensions": [
+        "TEN_AWAKENING"
+      ],
+      "description": "Sull'isola i suoni durano meno. Le parole cadono corte. Nessuno ci passa la notte due volte.",
+      "focus_region_tags": [
+        "island"
+      ],
+      "opening_line": "Chi torna dall'isola parla piano per giorni, e nessuno di loro sa spiegare il perche'.",
+      "theme": "THM_ANTICO"
+    },
+    {
+      "id": "TEN_UNEARTHED",
+      "title": "Il Dissotterrato",
+      "domain": "ANCIENT",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "KNOWLEDGE",
+        "WEALTH"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "L'oggetto e' piu' freddo della stanza in cui sta. Chi lo sorveglia ha chiesto il cambio in anticipo.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_ANCIENT_WATCH"
+      ],
+      "triggers": [
+        "Ogni mano che lo tocca senza guanti.",
+        "Ogni offerta d'acquisto arrivata da fuori."
+      ],
+      "decrease_rules": [
+        "Una custodia decisa al Consiglio.",
+        "Uno studio fatto con regole scritte."
+      ],
+      "linked_tensions": [
+        "TEN_AWAKENING"
+      ],
+      "description": "Lo scavo ha trovato qualcosa di fabbricato. Nessuna fucina di adesso sa fabbricarlo.",
+      "focus_region_tags": [
+        "mine",
+        "crystal_site"
+      ],
+      "opening_line": "Dalle gallerie e' salito un oggetto che nessun mastro riconosce, e tutti vogliono vederlo da vicino.",
+      "theme": "THM_ANTICO"
+    },
+    {
+      "id": "TEN_OLD_NAMES",
+      "title": "I Nomi Vecchi",
+      "domain": "ANCIENT",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "KNOWLEDGE",
+        "BONDS"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "Il traghettatore ha chiamato il fiume col nome vecchio, per sbaglio. L'acqua era piu' fredda del solito, dice.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_ANCIENT_WATCH"
+      ],
+      "triggers": [
+        "Ogni nome vecchio detto ad alta voce nei posti sbagliati.",
+        "Ogni scritta nuova comparsa di notte."
+      ],
+      "decrease_rules": [
+        "Una disputa dei dotti che stabilisca cosa significano.",
+        "Un divieto o una riabilitazione decisi al Consiglio."
+      ],
+      "linked_tensions": [
+        "TEN_AWAKENING"
+      ],
+      "description": "I posti hanno due nomi: quello che si usa e quello che si evita. Qualcuno ha ripreso a usare il secondo.",
+      "focus_region_tags": [],
+      "opening_line": "Sui muri compaiono i nomi vecchi dei posti, scritti in una mano che nessuno riconosce.",
+      "theme": "THM_ANTICO"
+    },
+    {
+      "id": "TEN_WARD_STONES",
+      "title": "Le Pietre di Guardia",
+      "domain": "ANCIENT",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "FORCE",
+        "KNOWLEDGE"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "Gli animali grossi non passano piu' dal varco della pietra caduta. Gli animali lo sanno prima di noi.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_ANCIENT_WATCH"
+      ],
+      "triggers": [
+        "Ogni pietra lasciata a terra una stagione.",
+        "Ogni incisione ricopiata per gioco."
+      ],
+      "decrease_rules": [
+        "Le pietre rialzate con il rito giusto.",
+        "Un giro di guardia istituito sul margine."
+      ],
+      "linked_tensions": [
+        "TEN_AWAKENING"
+      ],
+      "description": "Attorno alle terre selvagge ci sono pietre incise, a distanze regolari. Una e' caduta.",
+      "focus_region_tags": [
+        "wild",
+        "forest"
+      ],
+      "opening_line": "Una delle pietre incise del margine e' stata trovata a terra, spezzata, e nessuno vuole essere quello che la rialza.",
+      "theme": "THM_ANTICO"
+    },
+    {
+      "id": "TEN_DEEP_WATER",
+      "title": "L'Acqua Fonda",
+      "domain": "ANCIENT",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "KNOWLEDGE",
+        "PEOPLE"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "Il pescatore piu' vecchio ha regalato la barca al nipote. Ha detto solo: non nell'acqua fonda.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_ANCIENT_WATCH"
+      ],
+      "triggers": [
+        "Ogni rete calata nell'acqua fonda.",
+        "Ogni moneta buttata come pedaggio."
+      ],
+      "decrease_rules": [
+        "Un divieto di pesca deciso e rispettato.",
+        "Una spedizione fatta con giudizio."
+      ],
+      "linked_tensions": [
+        "TEN_AWAKENING"
+      ],
+      "description": "Ci sono acque dove le pertiche non toccano. I pescatori ci buttano una moneta e girano largo.",
+      "focus_region_tags": [
+        "marsh",
+        "island"
+      ],
+      "opening_line": "Nel fondo scuro fra l'isola e la palude le reti tornano strappate, e non dai sassi.",
+      "theme": "THM_ANTICO"
+    },
+    {
+      "id": "TEN_WINTER",
+      "title": "L'Inverno Lungo",
+      "domain": "SURVIVAL",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "WEALTH",
+        "PEOPLE"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "Il fiume ha ghiacciato dove non ghiaccia mai. I vecchi hanno smesso di fare paragoni.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_WHO_DECIDES",
+        "Q_ANY_WHO_STAYS"
+      ],
+      "triggers": [
+        "Ogni settimana di gelo oltre la stagione.",
+        "Ogni catasta di legna venduta fuori."
+      ],
+      "decrease_rules": [
+        "Legna e tetti divisi per decisione del Consiglio.",
+        "Un disgelo arrivato in tempo."
+      ],
+      "linked_tensions": [
+        "TEN_FAMINE"
+      ],
+      "description": "Il freddo non e' una carestia. E' la carestia con la porta chiusa.",
+      "focus_region_tags": [],
+      "opening_line": "Le prime nevi sono arrivate con un mese d'anticipo, e la legna e' quella contata per un inverno normale.",
+      "theme": "THM_SOPRAVVIVENZA"
+    },
+    {
+      "id": "TEN_MARSH_FEVER",
+      "title": "La Febbre delle Paludi",
+      "domain": "SURVIVAL",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "KNOWLEDGE",
+        "PEOPLE"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "La levatrice non entra piu' nei villaggi bassi senza il fazzoletto sul viso. Le mamme la imitano.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_WHO_DECIDES",
+        "Q_ANY_WHO_STAYS"
+      ],
+      "triggers": [
+        "Ogni pozza d'acqua ferma vicino alle case.",
+        "Ogni malato nascosto per non fermare il lavoro."
+      ],
+      "decrease_rules": [
+        "Un cordone e cure decisi al Consiglio.",
+        "I canali riaperti che muovono l'acqua."
+      ],
+      "linked_tensions": [
+        "TEN_FAMINE"
+      ],
+      "description": "Dalla palude sale una febbre lenta che non uccide subito. Prima toglie le forze, poi i nomi.",
+      "focus_region_tags": [
+        "marsh"
+      ],
+      "opening_line": "Nei villaggi bassi la febbre gira di casa in casa, e chi guarisce non ricorda bene.",
+      "theme": "THM_SOPRAVVIVENZA"
+    },
+    {
+      "id": "TEN_EMPTY_NETS",
+      "title": "Le Reti Vuote",
+      "domain": "SURVIVAL",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "WEALTH",
+        "PEOPLE"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "I gabbiani hanno lasciato il porto. I pescatori li guardano andare via, e capiscono.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_WHO_DECIDES",
+        "Q_ANY_WHO_STAYS"
+      ],
+      "triggers": [
+        "Ogni barca tornata leggera.",
+        "Ogni banco di pesca conteso fra equipaggi."
+      ],
+      "decrease_rules": [
+        "Turni e banchi divisi per decisione del Consiglio.",
+        "Il pesce tornato con la stagione."
+      ],
+      "linked_tensions": [
+        "TEN_FAMINE"
+      ],
+      "description": "Il mare ha smesso di dare. Nessuno sa a chi chiedere il perche', e intanto le barche tornano leggere.",
+      "focus_region_tags": [
+        "harbor"
+      ],
+      "opening_line": "Le reti tornano vuote da una luna, e il porto vive di quello che le reti portano.",
+      "theme": "THM_SOPRAVVIVENZA"
+    },
+    {
+      "id": "TEN_REFUGEES",
+      "title": "Chi Arriva da Fuori",
+      "domain": "SURVIVAL",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "PEOPLE",
+        "BONDS"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "Quelli fuori porta hanno acceso il terzo fuoco. Contano di restare, o non hanno dove tornare.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_WHO_DECIDES",
+        "Q_ANY_WHO_STAYS"
+      ],
+      "triggers": [
+        "Ogni famiglia respinta che si accampa fuori.",
+        "Ogni voce su cosa li ha fatti scappare."
+      ],
+      "decrease_rules": [
+        "Un'accoglienza con regole decisa al Consiglio.",
+        "Terra o lavoro dati a chi arriva."
+      ],
+      "linked_tensions": [
+        "TEN_FAMINE"
+      ],
+      "description": "Arrivano con quello che portano addosso. Da qualcosa scappano, e nessuno chiede cosa per non doverci pensare.",
+      "focus_region_tags": [],
+      "opening_line": "Alle porte si presentano famiglie intere venute da fuori mappa, e le porte non sanno se aprirsi.",
+      "theme": "THM_SOPRAVVIVENZA"
+    },
+    {
+      "id": "TEN_WOLVES",
+      "title": "I Lupi al Limitare",
+      "domain": "SURVIVAL",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "FORCE",
+        "PEOPLE"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "Un lupo e' stato visto di giorno, fermo, a guardare il villaggio. Non e' scappato per primo.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_WHO_DECIDES",
+        "Q_ANY_WHO_STAYS"
+      ],
+      "triggers": [
+        "Ogni pecora presa a un tiro di sasso dalle case.",
+        "Ogni battuta rimandata a dopo il raccolto."
+      ],
+      "decrease_rules": [
+        "Una battuta ordinata dal Consiglio.",
+        "Recinti e guardiani pagati in comune."
+      ],
+      "linked_tensions": [
+        "TEN_FAMINE"
+      ],
+      "description": "I lupi hanno smesso di aver paura. Qualcosa nel bosco li ha convinti che di qua si sta meglio.",
+      "focus_region_tags": [
+        "forest",
+        "wild"
+      ],
+      "opening_line": "I branchi scendono fino ai recinti, e i cani da guardia dormono dentro casa.",
+      "theme": "THM_SOPRAVVIVENZA"
+    },
+    {
+      "id": "TEN_BAD_GRAIN",
+      "title": "Il Grano Guasto",
+      "domain": "SURVIVAL",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "KNOWLEDGE",
+        "WEALTH"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "Il mugnaio ha rifiutato una partita senza spiegare. Da allora macina solo per chi conosce.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_WHO_DECIDES",
+        "Q_ANY_WHO_STAYS"
+      ],
+      "triggers": [
+        "Ogni sacco venduto senza aprirlo.",
+        "Ogni razione tagliata col grano del fondo."
+      ],
+      "decrease_rules": [
+        "Una conta pubblica del granaio.",
+        "Il grano guasto bruciato davanti a tutti."
+      ],
+      "linked_tensions": [
+        "TEN_FAMINE"
+      ],
+      "description": "Il grano del fondo ha una muffa scura. Si puo' non vederla, se si ha abbastanza fame.",
+      "focus_region_tags": [
+        "granary"
+      ],
+      "opening_line": "Nel granaio grande la muffa ha preso il fondo, e nessuno sa dire quanto sia salita.",
+      "theme": "THM_SOPRAVVIVENZA"
+    },
+    {
+      "id": "TEN_QUARANTINE",
+      "title": "Il Cordone",
+      "domain": "SURVIVAL",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "AUTHORITY",
+        "FORCE"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "L'equipaggio alla fonda ha appeso una scritta alla murata: SIAMO SANI. Nessuno e' salito a controllare.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_WHO_DECIDES",
+        "Q_ANY_WHO_STAYS"
+      ],
+      "triggers": [
+        "Ogni carico fermo che marcisce in dogana.",
+        "Ogni cordone scavalcato di notte."
+      ],
+      "decrease_rules": [
+        "Un cordone con regole e termini scritti.",
+        "Una quarantena finita senza contagio."
+      ],
+      "linked_tensions": [
+        "TEN_FAMINE"
+      ],
+      "description": "Fermare i malanni vuol dire fermare le strade. Le strade sono quelle che danno da mangiare.",
+      "focus_region_tags": [
+        "trade",
+        "harbor"
+      ],
+      "opening_line": "Una nave e' stata messa alla fonda con l'equipaggio a bordo, e il porto discute se e' prudenza o rovina.",
+      "theme": "THM_SOPRAVVIVENZA"
+    },
+    {
+      "id": "TEN_FERRY",
+      "title": "Il Traghetto",
+      "domain": "RESOURCE",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "WEALTH",
+        "BONDS"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "Il traghettatore ha cominciato a chiedere favori invece che monete. I favori rendono di piu'.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_WHO_PAYS",
+        "Q_ANY_WHO_KEEPS"
+      ],
+      "triggers": [
+        "Ogni traversata negata a chi non piace.",
+        "Ogni prezzo alzato senza preavviso."
+      ],
+      "decrease_rules": [
+        "Una tariffa scritta al Consiglio.",
+        "Una seconda barca messa in acqua."
+      ],
+      "linked_tensions": [
+        "TEN_ROADS"
+      ],
+      "description": "Un'unica barca collega l'isola. Chi la governa, governa l'isola piu' del suo padrone.",
+      "focus_region_tags": [
+        "harbor",
+        "island"
+      ],
+      "opening_line": "Il traghettatore ha alzato il prezzo per la terza volta, e l'isola mangia quello che la barca porta.",
+      "theme": "THM_VIE"
+    },
+    {
+      "id": "TEN_BLACK_TOLLS",
+      "title": "I Pedaggi Neri",
+      "domain": "RESOURCE",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "FORCE",
+        "WEALTH"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "I pedaggeri neri hanno fatto un listino. Scritto. Chi sa scrivere, fra loro, e' la vera notizia.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_WHO_PAYS",
+        "Q_ANY_WHO_KEEPS"
+      ],
+      "triggers": [
+        "Ogni carro che paga senza ricevuta.",
+        "Ogni mercante che cambia strada."
+      ],
+      "decrease_rules": [
+        "Una scorta armata decisa al Consiglio.",
+        "La catena tolta e mostrata in piazza."
+      ],
+      "linked_tensions": [
+        "TEN_ROADS"
+      ],
+      "description": "Sul tratto in ombra qualcuno riscuote un pedaggio che nessun Consiglio ha scritto. I carri pagano: costa meno che discutere.",
+      "focus_region_tags": [
+        "forest",
+        "trade"
+      ],
+      "opening_line": "Fra il bosco e la strada c'e' una catena, e alla catena uomini che chiamano «dazio» quello che prendono.",
+      "theme": "THM_VIE"
+    },
+    {
+      "id": "TEN_WEIGHTS",
+      "title": "I Pesi e le Misure",
+      "domain": "RESOURCE",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "KNOWLEDGE",
+        "WEALTH"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "Al mercato e' comparsa una bilancia doppia: pesa la merce e il peso del venditore. La folla paga per guardare.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_WHO_PAYS",
+        "Q_ANY_WHO_KEEPS"
+      ],
+      "triggers": [
+        "Ogni bilancia senza bollo.",
+        "Ogni disputa sul peso finita a pugni."
+      ],
+      "decrease_rules": [
+        "Un campione dei pesi giurato al Consiglio.",
+        "Un ispettore dei mercati nominato."
+      ],
+      "linked_tensions": [
+        "TEN_ROADS"
+      ],
+      "description": "Il braccio di Eredan non e' il braccio del porto. Su ogni differenza, qualcuno guadagna.",
+      "focus_region_tags": [
+        "trade"
+      ],
+      "opening_line": "Ogni mercato pesa col suo peso, e la differenza finisce sempre nella stessa tasca.",
+      "theme": "THM_VIE"
+    },
+    {
+      "id": "TEN_COURIERS",
+      "title": "Le Staffette",
+      "domain": "TERRITORY",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "BONDS",
+        "KNOWLEDGE"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "La staffetta del nord e' arrivata con due lettere identiche per due case nemiche. Le ha consegnate entrambe, sorridendo.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_WHO_HOLDS",
+        "Q_ANY_WHOSE_LAW"
+      ],
+      "triggers": [
+        "Ogni lettera arrivata gia' letta.",
+        "Ogni notizia arrivata prima al mercato che al destinatario."
+      ],
+      "decrease_rules": [
+        "Un servizio di staffette giurato al Consiglio.",
+        "Una posta sigillata con pene scritte."
+      ],
+      "linked_tensions": [
+        "TEN_ROADS"
+      ],
+      "description": "Le notizie viaggiano a cavallo di chi le porta. Chi paga le staffette sceglie cosa arriva, e quando.",
+      "focus_region_tags": [],
+      "opening_line": "Le lettere arrivano aperte, in ritardo, o non arrivano: le staffette servono piu' padroni di quanti ne dichiarino.",
+      "theme": "THM_VIE"
+    },
+    {
+      "id": "TEN_SILTED_CANALS",
+      "title": "I Canali Interrati",
+      "domain": "RESOURCE",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "PEOPLE",
+        "WEALTH"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "Un barcaiolo ha passato il tratto vecchio con l'acqua alta, per scommessa. Ha vinto, e adesso tutti conoscono la strada.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_WHO_PAYS",
+        "Q_ANY_WHO_KEEPS"
+      ],
+      "triggers": [
+        "Ogni stagione persa a discutere chi paga.",
+        "Ogni tratto scavato che frana per fretta."
+      ],
+      "decrease_rules": [
+        "Un cantiere diviso per decisione del Consiglio.",
+        "Il primo tratto riaperto che paga il secondo."
+      ],
+      "linked_tensions": [
+        "TEN_ROADS"
+      ],
+      "description": "Una volta le barche passavano dalla palude. I canali ci sono ancora, sotto: chiedono solo braccia.",
+      "focus_region_tags": [
+        "marsh"
+      ],
+      "opening_line": "Riaprire i canali della palude accorcerebbe ogni strada, e nessuno vuole pagare le braccia per primo.",
+      "theme": "THM_VIE"
+    },
+    {
+      "id": "TEN_GUILD_WAR",
+      "title": "La Guerra delle Gilde",
+      "domain": "RESOURCE",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "WEALTH",
+        "BONDS"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "Il magazzino della gilda nuova ha preso fuoco di notte. Pioveva. Il fuoco non se n'e' accorto.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_WHO_PAYS",
+        "Q_ANY_WHO_KEEPS"
+      ],
+      "triggers": [
+        "Ogni carico «perso» da una parte sola.",
+        "Ogni artigiano costretto a scegliere la tessera."
+      ],
+      "decrease_rules": [
+        "Un arbitrato del Consiglio fra le gilde.",
+        "Un mercato diviso con confini scritti."
+      ],
+      "linked_tensions": [
+        "TEN_ROADS"
+      ],
+      "description": "Due gilde si contendono le stesse strade. Per ora si rubano i clienti. Le vie sono strette, e prima o poi ci si incontra.",
+      "focus_region_tags": [
+        "trade",
+        "capital"
+      ],
+      "opening_line": "La gilda vecchia e quella nuova si sono divise il mercato a parole, e nessuna delle due rispetta le parole.",
+      "theme": "THM_VIE"
+    },
+    {
+      "id": "TEN_SMUGGLING",
+      "title": "Il Contrabbando",
+      "domain": "RESOURCE",
+      "current_value": 2,
+      "threshold": 6,
+      "visibility": "OPEN",
+      "relevant_asset_families": [
+        "WEALTH",
+        "FORCE"
+      ],
+      "omen_thresholds": [
+        {
+          "at": 5,
+          "message": "Il prezzo del sale di contrabbando e' sceso sotto quello del sale col dazio. Il mercato l'ha capito prima della dogana.",
+          "reveals_value": false
+        }
+      ],
+      "possible_questions": [
+        "Q_ANY_WHO_PAYS",
+        "Q_ANY_WHO_KEEPS"
+      ],
+      "triggers": [
+        "Ogni carico notturno senza dazio.",
+        "Ogni doganiere che guarda il mare sbagliato."
+      ],
+      "decrease_rules": [
+        "Una dogana onesta pagata bene.",
+        "Un condono che fa emergere i traffici."
+      ],
+      "linked_tensions": [
+        "TEN_ROADS"
+      ],
+      "description": "Quello che non passa dal molo passa dalla cala. Il porto vive due volte: di giorno e di notte.",
+      "focus_region_tags": [
+        "harbor"
+      ],
+      "opening_line": "Le barche di notte scaricano nella cala vecchia, e meta' porto lo sa perche' l'altra meta' rema.",
+      "theme": "THM_VIE"
+    }
+  ]
+}

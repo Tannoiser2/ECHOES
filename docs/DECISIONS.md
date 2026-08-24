@@ -10,6 +10,68 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-265 — Dieci tessere, sessanta Tensioni, e la matematica che tiene i mazzetti vivi
+
+**implemented in 0.1.227** — parola del committente, sulla taglia del mondo
+
+Le richieste, testuali: *«Le tessere devono essere molte di più, e se ne
+pescano 6 [la taglia della prima mappa]. Il pool va deciso matematicamente in
+modo che i #tag delle zone siano equamente distribuiti. E i mazzetti delle
+tensioni devono essere molti di più: almeno 10 per tipo (60), in modo che ce
+ne sia almeno 1 per chronicle.»*
+
+**Le tessere: 10, se ne pescano 6.** Le sei di sempre più le **quattro di
+PZ-2** — Porto Cinerino, la Palude dei Canali, l'Isola Muta, il Bosco dei
+Confini — ognuna con biomi nuovi (MARSH, ISLAND), il suo disegno, e un **segno
+unico stampato** (`harbor`, `marsh`, `island`, `forest`) per la grammatica
+adattiva.
+
+**La matematica, che è il cuore:** i segni di zona meccanici sono i quattro
+domini (`domain:SURVIVAL/TERRITORY/RESOURCE/ANCIENT`). Ogni dominio sta su
+**esattamente 5 tessere su 10**: pescandone 6, le tessere che *non* portano un
+dominio sono al massimo 5 < 6, quindi **ogni dominio è sempre sul tavolo, su
+qualunque mappa** — non in media: sempre. L'invariante è tenuto da una guardia
+nuova (`check_a_drawn_map_bears_every_theme`), vista mordere su un difetto
+piantato.
+
+**Le Tensioni: 60, dieci per Tema.** Le 12 di sempre più **48 nuove scritte
+per intero** — titolo, apertura, inneschi, cure, presagio, fuochi — coi
+`focus_region_tags` distribuiti sulle dieci tessere. I Consigli sono coperti
+dai due template generici nuovi (**CNF_ANY_TERRITORY** «Il Consiglio del
+Confine» e **CNF_ANY_RESOURCE** «Il Consiglio del Prezzo», accanto ai due che
+c'erano). La regola che tiene i mazzetti vivi: **ogni Tema ha candidate a
+fuoco libero** — dominio garantito dalla matematica sopra, nessun segno di
+fuoco richiesto — quindi il suo mazzetto non è mai vuoto. Anche questa è
+guardia, non speranza.
+
+**La biblioteca e la mano (D-028, portata in fondo):** gli anni scritti
+(CHR_01-04) tengono la loro mano di 12 candidate e **non si muovono di un
+decimale** (100 semi: 4,62/4,63, 0 seggi bloccati su 8); la Prima Chronicle
+pesca da tutta la biblioteca.
+
+**I numeri, 100 semi di CHR_00:**
+
+| | 4 su 6 tessere, 12 Tensioni (D-264) | 6 su 10, 60 Tensioni |
+|---|---|---|
+| mappe diverse | 15 su 15 | **82** (su 210 possibili) |
+| anni diversi (per domande) | 88 | **100 su 100** |
+| Consigli | 3-6, media 4,61 | 3-6, media 4,24 |
+| mazzetti vuoti (100 semi × 6 Temi) | possibili (Terra) | **0 su 600** — minimo 4 carte |
+| partite non concluse | 0 | **0** |
+
+Nessuna partita uguale a un'altra, e il buco di Terra e Fede — una Tensione
+sola a testa, a verbale dal Punto Zero — **si chiude nei numeri**: dieci a
+testa, mai un mazzetto vuoto. La qualità d'autore delle 48 nuove resta
+materia di lettura del committente: sono scritte per essere riviste una a una,
+e ognuna è un dato che si può cambiare senza toccare il motore.
+
+**Di contorno, e dichiarato:** le carte stampano le fonti di pesca per
+famiglia e le tessere nuove sono fonti (la guardia delle fonti ha morso al
+primo colpo: 40 testi aggiornati alla verità nuova); i fogli d'export salgono
+a 41 con le dieci tessere; il BRIEF_ARTE ha le quattro tavole nuove.
+
+---
+
 ## D-264 — Il mazzetto pieno: dentro ci sono tutte le Tensioni, e girare apre la questione
 
 **implemented in 0.1.226** — completa il disegno di D-261 sul tavolo pescato

@@ -361,7 +361,8 @@
       "read_by": [
         "asset",
         "asset_physical",
-        "question_card"
+        "question_card",
+        "tension"
       ]
     },
     {
@@ -1239,6 +1240,66 @@
       "note": "vocazione del luogo, stampata sulla Regione: non e' la pietra structure:granary, ma le carte stampano #granaio per entrambe"
     },
     {
+      "id": "harbor",
+      "title": "porto",
+      "category": "PLACE",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "region"
+      ],
+      "read_by": [
+        "tension"
+      ],
+      "note": "vocazione della tessera nuova di PZ-2 (D-265): dove il mare concede e fa pagare"
+    },
+    {
+      "id": "marsh",
+      "title": "palude",
+      "category": "PLACE",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "region"
+      ],
+      "read_by": [
+        "tension"
+      ],
+      "note": "tessera nuova di PZ-2 (D-265): acqua ferma, canali vecchi, febbri"
+    },
+    {
+      "id": "island",
+      "title": "isola",
+      "category": "PLACE",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "region"
+      ],
+      "read_by": [
+        "tension"
+      ],
+      "note": "tessera nuova di PZ-2 (D-265): il posto che si raggiunge solo volendo"
+    },
+    {
+      "id": "forest",
+      "title": "bosco",
+      "category": "PLACE",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "region"
+      ],
+      "read_by": [
+        "tension"
+      ],
+      "note": "tessera nuova di PZ-2 (D-265). Non e' la pietra STR_FOREST: come per #granaio, la vocazione del luogo e l'opera si stampano con la stessa parola"
+    },
+    {
       "id": "mine",
       "title": "miniera",
       "category": "FUNCTION",
@@ -1250,7 +1311,8 @@
       ],
       "read_by": [
         "consequence",
-        "echo_card"
+        "echo_card",
+        "tension"
       ],
       "note": "vocazione del luogo, stampata sulla Regione (D-262): il posto dove si scava, che le Conseguenze nominano col segno invece che con l'id"
     },

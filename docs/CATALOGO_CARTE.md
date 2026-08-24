@@ -3327,7 +3327,7 @@ differenza fra «adesso» e «per sempre» e' tutta qui.
 |---|---|
 | pedina di presenza | **5 per casa**, in 8 colori = 40 |
 | vessillo del padrone | uno per Regione, in tutti e 8 i colori |
-| segnalino di domanda | uno per ognuna delle 12 domande |
+| segnalino di domanda | uno per ognuna delle 60 domande |
 
 Le case della scatola sono 8 e a un tavolo ne siedono quattro: i colori
 servono tutti, perche' quali quattro lo decide l'anno.

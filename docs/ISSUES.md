@@ -2864,6 +2864,10 @@ nasce) ma nessuno lo attraversa.
    carte. La Terra ha una Tensione sola dietro; le carte che la toccano
    muovono presenze invece di aprire questioni. Materia d'autore
    (ROADMAP §4.5), qui il numero da guardare.
+   **Mezza cura in 0.1.227** ([D-265](DECISIONS.md#d-265)): la Tensione sola
+   non è più sola — dieci per Tema, mazzetti mai vuoti sul tavolo pescato
+   (0 su 600). Resta da misurare se le carte *scaldano* Terra e Antico più
+   di prima: il mazzetto pieno dà loro domande, non ancora Calore.
 7. **Dodici Destini su venti** non hanno ancora faccia fisica.
 8. **Le Domande fisiche non si pescano**: dodici carte Domanda esistono nei dati,
    ma il Consiglio apre ancora i template digitali. Il ponte è dichiarato e non

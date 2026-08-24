@@ -26,7 +26,7 @@ func test_the_tiles_are_drawn_and_vary() -> void:
 	for seed_value in range(7000, 7010):
 		var opened: RefCounted = _open(seed_value)
 		var map: Array = (opened.world["regions"] as Dictionary).keys()
-		assert_eq(map.size(), 4, "quattro tessere sul tavolo al seme %d" % seed_value)
+		assert_eq(map.size(), 6, "sei tessere sul tavolo al seme %d (D-265)" % seed_value)
 		map.sort()
 		maps["/".join(PackedStringArray(map))] = true
 		opened.dispose()

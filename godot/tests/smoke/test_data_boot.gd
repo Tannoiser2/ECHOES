@@ -18,7 +18,9 @@ func test_reduced_content_matches_the_milestone() -> void:
 	var loaded: RefCounted = data()
 	# Shared by every saga: the rules, the cards you can hold, and the land.
 	assert_eq(loaded.assets.size(), 48, "48 Asset, 8 per famiglia: il traguardo §19.4 (D-040)")
-	assert_eq(loaded.regions.size(), 6, "6 Regioni: le 5 principali piu un raccordo")
+	# Dieci da 0.1.227 (D-265): le sei di sempre piu' le quattro tessere di
+	# PZ-2 — porto, palude, isola, bosco — con i domini bilanciati a 5/5/5/5.
+	assert_eq(loaded.regions.size(), 10, "10 tessere in scatola: le sei di sempre piu' le quattro di PZ-2")
 	assert_eq(loaded.actions.size(), 6, "i sei template di azione")
 
 	# Un setup solo (D-213). Fino a 0.1.181 questa prova contava «due saghe»
@@ -32,7 +34,23 @@ func test_reduced_content_matches_the_milestone() -> void:
 	for chronicle_id in ["CHR_00", "CHR_01", "CHR_02", "CHR_03", "CHR_04"]:
 		assert_true(loaded.chronicles.has(str(chronicle_id)), "%s esiste" % chronicle_id)
 
-	_library_is_shared(loaded, ["CHR_00", "CHR_01", "CHR_02", "CHR_03", "CHR_04"], 12, 8)
+	# Gli anni scritti condividono la stessa **mano** di 12 domande; la Prima
+	# Chronicle (D-265) pesca dalla **biblioteca intera** — 60 Tensioni, 10 per
+	# Tema — che e' la metafora di D-028 portata fino in fondo: le domande sono
+	# biblioteca, la Chronicle e' la mano.
+	_library_is_shared(loaded, ["CHR_01", "CHR_02", "CHR_03", "CHR_04"], 12, 8)
+	assert_eq(loaded.tensions.size(), 60, "60 Tensioni in biblioteca, 10 per Tema (D-265)")
+	var drawn_pool: Array = (
+		(loaded.chronicles["CHR_00"]["tension_pool"] as Dictionary)["candidates"] as Array
+	)
+	assert_eq(drawn_pool.size(), 60, "la Prima Chronicle pesca da tutta la biblioteca")
+	var per_theme: Dictionary = {}
+	for tension_id in loaded.tensions:
+		var theme: String = str((loaded.tensions[str(tension_id)] as Dictionary).get("theme", ""))
+		per_theme[theme] = int(per_theme.get(theme, 0)) + 1
+	for theme_id in loaded.themes:
+		assert_eq(int(per_theme.get(str(theme_id), 0)), 10,
+			"%s ha dieci Tensioni: parola del committente (D-265)" % [str(theme_id)])
 	# Quindici da 0.1.189: i tre nuovi sono **contesi** (D-221), cioe' li puo'
 	# prendere un seggio alla volta. Prima era uno su dodici, e un tavolo di
 	# quattro solitari non e' un tavolo.
