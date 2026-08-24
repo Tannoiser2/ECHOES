@@ -38,6 +38,7 @@ func _initialize() -> void:
 	var played: int = 0        # carte giocate
 	var faced: int = 0         # di quelle, con una faccia fisica
 	var answered: int = 0      # e quante hanno fatto rispondere il mondo
+	var bridged: int = 0       # di quelle, quante hanno anche avvicinato una questione
 	var per_theme: Dictionary = {}
 	var per_card: Dictionary = {}
 	var marks: int = 0         # le Risonanze aggravate, che lasciano un segno
@@ -85,7 +86,12 @@ func _initialize() -> void:
 			var echo: Dictionary = face.get("resonance", {}) as Dictionary
 			if echo.is_empty():
 				continue
-			if str(effect.get("type", "")) == "ADJUST_TENSION":
+			# **La risposta del mondo e' la pista** (PZ-1): da quando il Calore e'
+			# stato del mondo, ogni Risonanza scalda il suo Tema — anche quando
+			# nessuna questione di quel Tema e' in gioco, dove prima cadeva nel
+			# vuoto. Il ponte sulle Tensioni si conta a parte, perche' e' lui
+			# che avvicina i Consigli finche' le Domande vivono li'.
+			if str(effect.get("type", "")) == "ADJUST_THEME_HEAT":
 				answered += 1
 				var theme: String = str(echo.get("theme", ""))
 				per_theme[theme] = int(per_theme.get(theme, 0)) + 1
@@ -100,6 +106,8 @@ func _initialize() -> void:
 				var delta: int = int((effect.get("payload", {}) as Dictionary).get("delta", 0))
 				if delta > int(echo.get("heat", 1)):
 					marks += 1
+			if str(effect.get("type", "")) == "ADJUST_TENSION":
+				bridged += 1
 		played += int((session.world.get("cards_played_count", 0)))
 		session.dispose()
 
@@ -116,6 +124,7 @@ func _initialize() -> void:
 	print("  Risonanze avvenute:          %d in %d anni  (%.1f per anno)" % [
 		answered, runs, float(answered) / float(maxi(1, runs)),
 	])
+	print("  Di quelle, col ponte:        %d — hanno anche avvicinato una questione in gioco" % bridged)
 	print("  Di quelle, aggravate:        %d  (%.1f%%) — il bersaglio portava gia' il segno temuto" % [
 		marks, 100.0 * float(marks) / float(maxi(1, answered)),
 	])

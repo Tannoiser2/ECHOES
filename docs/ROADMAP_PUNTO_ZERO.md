@@ -150,6 +150,14 @@ per Tema, e la regola «a fine Atto il più caldo apre la sua Domanda».
 **Fatto quando** il Calore è uno stato del mondo, e la Domanda di fine Atto si
 pesca dal Tema più caldo invece che dalla Tensione a soglia.
 
+> **Fatto in 0.1.222** ([D-260](DECISIONS.md#d-260)): `theme_heat` 0-6 per Tema,
+> mosso solo per Effect con inverso, e il Consiglio di fine Atto apre la
+> questione del Tema più caldo (mucchio più alto come ripiego dichiarato a
+> pista fredda). La pista sente 1.056 Risonanze dove il ponte ne portava 364.
+> Restano d'autore salita/discesa/fine Chronicle (§4.1), e la pesca della
+> **carta Domanda fisica** resta con ISSUES 69: qui si sceglie il Tema, il
+> testo al tavolo è ancora quello dei template.
+
 ### PZ-2 — I Luoghi: regola, Temi, slot, e da 6 a 10
 
 Per ogni luogo: tag stampati, **regola del luogo**, Temi collegati, fonti carte,

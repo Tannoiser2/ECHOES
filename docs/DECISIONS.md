@@ -10,6 +10,83 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-260 — Il Calore diventa una pista, e la pista sceglie la Domanda dell'Atto
+
+**implemented in 0.1.222** — apre PZ-1 della roadmap e lo chiude
+
+La roadmap ([ROADMAP_PUNTO_ZERO.md](ROADMAP_PUNTO_ZERO.md), PZ-1) lo diceva
+cosi': *i Temi esistono; il Calore no. Oggi la Risonanza scalda «la questione
+piu' vicina alla soglia di quel Tema»: e' un ponte, non la cosa.* Da questa
+decisione il Calore e' **stato del mondo**: `theme_heat` nel WorldState, sei
+Temi, un segnalino 0-6 ciascuno — la cosa che sul tavolo fisico e' una pista
+con sei tacche, leggibile da chiunque.
+
+**Come si muove.** Solo per Effect. `ADJUST_THEME_HEAT` e' il ventottesimo tipo
+dell'enum chiuso, inverte su se stesso col delta davvero applicato — tetto a
+sei e pavimento a zero compresi, come le Tensioni — e la Risonanza lo firma
+`kind: "resonance"` con l'id della carta. Il raffreddamento di fine Atto e' un
+Effect anche lui, firmato `ACT_END`.
+
+**La Risonanza scalda la pista per prima, e il ponte resta.** Il ponte sulle
+Tensioni non e' stato tolto: finche' le Domande vivono sulle questioni, il
+Calore deve anche avvicinarle. Cadra' quando le Domande fisiche si pescheranno
+dal Tema (ISSUES 69, punto 8) — e il giorno che cade, questa e' la riga da
+cancellare in `_resonance`.
+
+**Cosa la pista ha sentito che il ponte non sentiva.** Misurato su 100 anni,
+tavolo misto:
+
+| | col ponte (0.1.220) | con la pista |
+|---|---|---|
+| Risonanze in 100 anni | 364 | **1.056** |
+| per anno | 3,6 | **10,6** |
+| Calore sulla Terra | 1,4% | **3,4%** |
+| Calore sull'**Antico** | — | **0,1%** |
+
+Due Risonanze su tre cadevano nel vuoto: il Tema della carta non aveva
+questioni in gioco quell'anno, e il mondo non rispondeva niente. La pista le
+sente tutte. E ha trovato un numero che nessuno aveva ancora scritto:
+**l'Antico si scalda dalla mano una volta su 1.056** — le sue due Tensioni
+vivono di Drift e Consigli, non di carte. E' la stessa malattia della Terra
+vista da un altro Tema, e va nel mazzo delle decisioni d'autore accanto a lei
+(ROADMAP §4.5).
+
+**A fine Atto la pista sceglie.** Il Consiglio dell'Atto apre la questione del
+Tema piu' caldo — a parita' l'ordine del dato, che e' l'ordine stampato; se il
+Tema piu' caldo non ha niente di apribile si scende al successivo, la stessa
+discesa di prima. **Il mucchio piu' alto resta come ripiego dichiarato** per
+l'Atto in cui nessuna Risonanza ha scaldato niente: un tavolo freddo non e' un
+tavolo senza domande. Dentro il Tema, fra le sue questioni, vince ancora il
+mucchio: la pista cambia *quale Tema parla*, non come si sceglie dentro un Tema.
+
+**Il Tema che ha parlato torna a zero; gli altri tengono il loro.** Un fuoco
+che nessun Consiglio ha guardato non si spegne da solo, e all'Atto dopo parte
+avanti. E' la regola piu' semplice che si possa spiegare al tavolo, scritta per
+essere rivista: quanto sale, quanto scende e cosa fa se resta alto a fine
+Chronicle e' **taratura d'autore** (ROADMAP §4.1), e questi valori — +Calore
+scritto sulla carta, azzeramento su Domanda posta, nessun decadimento — sono la
+configurazione reversibile su cui misurarla.
+
+**Il prezzo, misurato e scritto.** Cambiare chi sceglie la Domanda dell'Atto
+muove i Consigli: a tavolo misto **3-8, media 4,87** (era 5,05 — mezzo
+Consiglio in meno l'anno), uniforme **3-9, media 5,31** (era 5,26). Il nove
+dell'anno peggiore resta nove, non peggiorato. Le Verita' scritte scendono da
+384 a **373** (misto: 373 diverse su 373; uniforme: 365 su 373). Il vincolo che
+non si negozia tiene ai due tavoli: **0 seggi bloccati su 8**.
+
+**Lo schermo non mente.** Il pannello delle domande mostra la riga `CALORE` coi
+Temi caldi e chi apre a fine Atto; il marcatore «va al Consiglio» sul mucchio
+piu' alto — che con la pista calda sarebbe la regola vecchia insegnata come
+nuova — diventa «il mucchio piu' alto». La pista come componente stampabile
+(fogli d'export) aspetta PZ-8 con il resto del tavolo.
+
+**Sonde.** `run_resonance_probe` adesso conta la risposta del mondo dalla
+pista e il ponte a parte — prima avrebbe continuato a leggere 3,6 per anno su
+una regola che ne fa 10,6, che e' esattamente il genere di zero travestito che
+questo progetto ha gia' pagato quattro volte.
+
+---
+
 ## D-259 — I segni diventano un dizionario, e la guardia lo legge
 
 **implemented in 0.1.221** — apre PZ-0 della roadmap e lo chiude

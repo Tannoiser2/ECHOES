@@ -10,6 +10,7 @@
       "type": "string",
       "enum": [
         "ADJUST_TENSION",
+        "ADJUST_THEME_HEAT",
         "SET_TENSION_VISIBILITY",
         "ADD_PRESENCE",
         "REMOVE_PRESENCE",
@@ -45,7 +46,7 @@
       "properties": {
         "kind": {
           "type": "string",
-          "enum": ["tension", "entity", "region", "relation", "world", "claim", "scar", "echo", "truth"]
+          "enum": ["tension", "theme", "entity", "region", "relation", "world", "claim", "scar", "echo", "truth"]
         },
         "id": { "type": "string" }
       }
@@ -98,7 +99,7 @@
           "properties": {
             "kind": {
               "type": "string",
-              "enum": ["tension", "entity", "region", "relation", "world", "claim", "scar", "echo", "truth"]
+              "enum": ["tension", "theme", "entity", "region", "relation", "world", "claim", "scar", "echo", "truth"]
             },
             "id": { "type": "string" }
           }

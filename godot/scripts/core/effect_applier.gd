@@ -176,6 +176,8 @@ func _mutate(effect_type: String, target: Dictionary, payload: Dictionary) -> Va
 	match effect_type:
 		"ADJUST_TENSION":
 			return _adjust_tension(target, payload)
+		"ADJUST_THEME_HEAT":
+			return _adjust_theme_heat(target, payload)
 		"SET_TENSION_VISIBILITY":
 			return _set_tension_visibility(target, payload)
 		"ADD_PRESENCE":
@@ -248,6 +250,29 @@ func _adjust_tension(target: Dictionary, payload: Dictionary) -> Variant:
 	# actually applied so a clamped adjustment still round-trips exactly.
 	var after: int = maxi(0, before + int(payload.get("delta", 0)))
 	tension["current_value"] = after
+	return {"delta": before - after}
+
+
+## La pista del Tema arriva a sei e si ferma: sul tavolo fisico e' un segnalino
+## su sei tacche, e un Calore che salisse oltre non si potrebbe piu' leggere.
+const HEAT_MAX: int = 6
+
+
+## La traccia del Calore (PZ-1). Stessa forma di _adjust_tension: il clamp
+## (0..HEAT_MAX) sta qui, e l'inverso registra il delta davvero applicato,
+## cosi' anche una salita mozzata dal tetto torna indietro esatta.
+func _adjust_theme_heat(target: Dictionary, payload: Dictionary) -> Variant:
+	var theme_id: String = str(target.get("id", ""))
+	if data != null and not data.themes.has(theme_id):
+		return _fail("unknown theme '%s'" % theme_id)
+	# I salvataggi di prima della traccia non hanno la chiave: nasce qui,
+	# fredda, invece di far fallire il primo Effetto che scalda.
+	if not world.has("theme_heat"):
+		world["theme_heat"] = {}
+	var track: Dictionary = world["theme_heat"]
+	var before: int = int(track.get(theme_id, 0))
+	var after: int = clampi(before + int(payload.get("delta", 0)), 0, HEAT_MAX)
+	track[theme_id] = after
 	return {"delta": before - after}
 
 

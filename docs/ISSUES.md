@@ -2807,8 +2807,9 @@ dire una cosa sola sul tavolo.
 ### 69. La Risonanza è scritta e non succede
 
 `contenuto` · `direzione` · **aperta in 0.1.218** ([D-256](DECISIONS.md#d-256)) ·
-**cure in 0.1.219** ([D-257](DECISIONS.md#d-257)) e **0.1.220**
-([D-258](DECISIONS.md#d-258)) · **aperta**
+**cure in 0.1.219** ([D-257](DECISIONS.md#d-257)), **0.1.220**
+([D-258](DECISIONS.md#d-258)) e **0.1.222** ([D-260](DECISIONS.md#d-260)) ·
+**aperta**
 
 > **Fatto in 0.1.219: la Risonanza succede.** Giocare una carta con una faccia
 > fisica scalda il Tema che ci sta scritto, come Effetto con inverso e con una
@@ -2849,13 +2850,18 @@ nasce) ma nessuno lo attraversa.
 4. **La scelta fra le due Azioni non esiste.** Il cervello sceglie un verbo, non
    una carta con due facce: `_choose_intent` non sa che una carta offre un bivio,
    e il motore esegue la `card_action` di sempre.
-5. **Il Calore dei Temi non è una traccia.** Le Tensioni salgono una per una; il
-   Tema è una classificazione, non un contatore. A fine Atto non si pesca «dal
-   mazzo del Tema più caldo» perché quel numero non esiste — oggi la Risonanza
-   scalda la questione più vicina alla soglia, che è un ponte e non la cosa.
-6. **La Terra quasi non si scalda: 1,4% del Calore** su 364 Risonanze (Antico si
-   è invece rimesso in moto con la conversione). Ha una Tensione sola dietro, e
-   le carte che la toccano muovono presenze invece di aprire questioni.
+5. ✅ **Il Calore dei Temi non è una traccia** — fatta in 0.1.222
+   ([D-260](DECISIONS.md#d-260)): `theme_heat` 0-6 per Tema come stato del
+   mondo, e a fine Atto apre il Tema più caldo. La pista sente **1.056
+   Risonanze in 100 anni** dove il ponte ne portava 364. Il ponte sulle
+   Tensioni resta finché le Domande vivono lì (punto 8): il giorno che cade,
+   la riga da togliere è in `_resonance`.
+6. **La Terra quasi non si scalda, e l'Antico peggio.** Col ponte: Terra 1,4%
+   su 364. Con la pista (0.1.222): Terra **3,4%**, e **Antico 0,1%** — una
+   Risonanza su 1.056: le sue Tensioni vivono di Drift e Consigli, non di
+   carte. La Terra ha una Tensione sola dietro; le carte che la toccano
+   muovono presenze invece di aprire questioni. Materia d'autore
+   (ROADMAP §4.5), qui il numero da guardare.
 7. **Dodici Destini su venti** non hanno ancora faccia fisica.
 8. **Le Domande fisiche non si pescano**: dodici carte Domanda esistono nei dati,
    ma il Consiglio apre ancora i template digitali. Il ponte è dichiarato e non

@@ -1234,7 +1234,20 @@ func _resonance(
 		aggravated = true
 		heat += int(echo.get("extra_heat", 0))
 	var effects: Array = []
-	var tension_id: String = _hottest_of_theme(str(echo.get("theme", "")))
+	# **La pista del Tema si scalda per prima** (PZ-1): e' la cosa che sul
+	# tavolo fisico si vede — il segnalino che sale — e da PZ-1 e' lei che il
+	# Consiglio di fine Atto legge. Il ponte sulle Tensioni qui sotto resta:
+	# finche' le Domande vivono sulle questioni, il Calore deve anche
+	# avvicinarle. Cadra' quando le Domande fisiche si pescheranno dal Tema
+	# (ISSUES 69), non prima.
+	var theme_id: String = str(echo.get("theme", ""))
+	if theme_id != "" and heat > 0:
+		var warmed: Dictionary = applier.apply(Effect.make(
+			"ADJUST_THEME_HEAT", "theme", theme_id, {"delta": heat}, mine
+		))
+		if not warmed.is_empty():
+			effects.append(warmed)
+	var tension_id: String = _hottest_of_theme(theme_id)
 	if tension_id != "" and heat > 0:
 		var applied: Dictionary = applier.apply(Effect.make(
 			"ADJUST_TENSION", "tension", tension_id, {"delta": heat}, mine

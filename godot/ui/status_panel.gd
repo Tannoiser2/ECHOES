@@ -57,6 +57,10 @@ var held_places: Dictionary = {}
 var _at_end_of_act: bool = false
 var _hottest: int = 1
 var _leaders: int = 0
+## La pista del Calore (PZ-1): se un Tema e' caldo, e' lei che sceglie la
+## Domanda di fine Atto, e il mucchio piu' alto torna a essere una classifica.
+var _any_theme_hot: bool = false
+var _heat_line: Label
 
 
 ## Accende i posti dove la carta tenuta in mano puo' andare, e spegne gli altri.
@@ -89,6 +93,7 @@ func render(session: RefCounted, viewer_id: String) -> void:
 			str(session.world.get("chronicle_id", "")), {}
 		) as Dictionary).get("confluence_rules", {}) as Dictionary).get("at_end_of_act", false)
 	)
+	_render_heat(session)
 	_hottest = 1
 	_leaders = 0
 	for tension_id in session.world["tensions"]:
@@ -115,6 +120,45 @@ func _build() -> void:
 	_title.add_theme_font_size_override("font_size", 12)
 	_title.add_theme_color_override("font_color", Color("#8a8172"))
 	add_child(_title)
+	# La pista del Calore, come sta sul tavolo: sei Temi, un numero ciascuno.
+	# E' pubblica per costruzione — un segnalino su una pista non si vela.
+	_heat_line = Label.new()
+	_heat_line.add_theme_font_size_override("font_size", 11)
+	_heat_line.add_theme_color_override("font_color", Color("#b06b46"))
+	_heat_line.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_heat_line.visible = false
+	add_child(_heat_line)
+
+
+## La pista del Calore, in una riga: «CALORE · Potere 3 · Vie 1 · …», col Tema
+## piu' caldo per primo a dire che a fine Atto apre lui. I Temi a zero non si
+## elencano: sul tavolo si vede il segnalino fermo, sullo schermo sarebbe solo
+## rumore. Freddo tutto, la riga sparisce e la classifica dei mucchi riprende
+## il suo posto.
+func _render_heat(session: RefCounted) -> void:
+	_any_theme_hot = false
+	if not _at_end_of_act:
+		_heat_line.visible = false
+		return
+	var track: Dictionary = session.world.get("theme_heat", {}) as Dictionary
+	var said: PackedStringArray = PackedStringArray()
+	var hottest_heat: int = 0
+	var hottest_title: String = ""
+	for theme_id in session.data.themes:
+		var heat: int = int(track.get(str(theme_id), 0))
+		if heat <= 0:
+			continue
+		var title: String = str(session.data.themes[str(theme_id)]["title"])
+		said.append("%s %d" % [title, heat])
+		if heat > hottest_heat:
+			hottest_heat = heat
+			hottest_title = title
+	_any_theme_hot = hottest_heat > 0
+	_heat_line.visible = _any_theme_hot
+	if _any_theme_hot:
+		_heat_line.text = "CALORE  %s  ·  a fine Atto apre %s" % [
+			"  ".join(said), hottest_title,
+		]
 
 
 ## La riga di una domanda, dentro il suo posto: da D-231 una carta che
@@ -164,10 +208,13 @@ func _update_row(row: Dictionary, session: RefCounted, tension_id: String, viewe
 		# una soglia che non apre niente.
 		bar.max_value = float(maxi(_hottest, 1))
 		var leading: bool = visible_value >= _hottest and visible_value > 0
-		value.text = "%d%s" % [
-			visible_value,
-			("  ·  a pari" if _leaders > 1 else "  ·  va al Consiglio") if leading else "",
-		]
+		# Con la pista calda la Domanda dell'Atto la sceglie il Tema (PZ-1):
+		# il mucchio piu' alto resta una classifica, e dirgli «va al
+		# Consiglio» sarebbe insegnare la regola vecchia.
+		var crown: String = "  ·  a pari" if _leaders > 1 else "  ·  va al Consiglio"
+		if _any_theme_hot:
+			crown = "  ·  il mucchio piu' alto"
+		value.text = "%d%s" % [visible_value, crown if leading else ""]
 		var hot: Color = Color("#6fa88a")
 		if leading:
 			hot = Color("#e8b563") if _leaders > 1 else Color("#c8553d")

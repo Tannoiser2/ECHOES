@@ -29,6 +29,11 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 		"entities": {},
 		"regions": {},
 		"tensions": {},
+		# La traccia del Calore (PZ-1): ogni Tema parte freddo. E' stato
+		# strutturale come `tensions`: la pista esiste dal primo round, non
+		# dalla prima Risonanza — un Tema mai scaldato si legge a zero, non
+		# manca dal tavolo.
+		"theme_heat": {},
 		"relations": {},
 		"global_tags": (chronicle.get("global_tags", []) as Array).duplicate(),
 		"claims": [],
@@ -152,6 +157,12 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 			"fired_omens": [],
 			"resolved_count": 0,
 		}
+
+	# Tutti e sei i Temi, sempre: la pista del Calore non dipende da quali
+	# Tensioni la Chronicle ha pescato. Un Tema senza questioni quest'anno si
+	# scalda lo stesso — e' il tavolo che dice dove il mondo sta guardando.
+	for theme_id in data.themes:
+		world["theme_heat"][str(theme_id)] = 0
 
 	_build_relations(world, chronicle, data)
 	_build_asset_decks(world, chronicle, data, rng)

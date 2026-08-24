@@ -603,7 +603,15 @@ func end_of_act(act: int, decider: Object) -> void:
 func _council_closing_the_act(act: int, decider: Object) -> void:
 	if not _council_at_end_of_act():
 		return
-	var tension_id: String = _hottest_with_something_to_say()
+	# **La pista sceglie, il mucchio ripiega** (PZ-1). Da questa decisione la
+	# domanda dell'Atto e' quella del Tema piu' caldo sulla traccia del Calore
+	# — che e' quello che il tavolo fisico legge: sei piste, un segnalino
+	# ciascuna. Il mucchio piu' alto resta come ripiego dichiarato per l'anno
+	# in cui nessuna Risonanza ha scaldato niente: un tavolo freddo non e' un
+	# tavolo senza domande.
+	var tension_id: String = _question_of_the_hottest_theme()
+	if tension_id == "":
+		tension_id = _hottest_with_something_to_say()
 	if tension_id == "":
 		log.bullet(
 			"L'Atto %d si chiude senza Consiglio: nessuna domanda ha ancora qualcosa di nuovo da decidere."
@@ -613,12 +621,89 @@ func _council_closing_the_act(act: int, decider: Object) -> void:
 	log.section("IL CONSIGLIO DI FINE ATTO %d" % act)
 	_set_phase(act, int(_chronicle["rounds_per_act"]), "CONFLUENCE")
 	await run_confluence(tension_id, {"kind": "THRESHOLD", "entity_id": ""}, decider)
+	_cool_theme_after_council(str(data.tensions[tension_id].get("theme", "")), act)
 
 
 func _council_at_end_of_act() -> bool:
 	return bool(
 		(_chronicle.get("confluence_rules", {}) as Dictionary).get("at_end_of_act", false)
 	)
+
+
+## La domanda del Tema piu' caldo (PZ-1): si scorre la pista dal Tema piu'
+## caldo in giu' — a parita' vince l'ordine in cui i Temi stanno nel dato, che
+## e' l'ordine stampato sul tavolo — e per ognuno si cerca una sua questione
+## che si aprirebbe adesso. La discesa e' la stessa regola di
+## `_hottest_with_something_to_say`: un Tema caldo le cui domande hanno gia'
+## detto tutto lascia il posto al successivo, invece di far saltare il
+## Consiglio dell'Atto. I Temi a zero non scelgono niente: sotto il freddo
+## decide il mucchio, e la regola vecchia resta scritta come ripiego.
+func _question_of_the_hottest_theme() -> String:
+	var track: Dictionary = world.get("theme_heat", {}) as Dictionary
+	var order: Array = data.themes.keys()
+	var ranked: Array = order.duplicate()
+	ranked.sort_custom(func(a: String, b: String) -> bool:
+		var heat_a: int = int(track.get(a, 0))
+		var heat_b: int = int(track.get(b, 0))
+		if heat_a == heat_b:
+			return order.find(a) < order.find(b)
+		return heat_a > heat_b
+	)
+	for theme_id in ranked:
+		if int(track.get(str(theme_id), 0)) <= 0:
+			break
+		var tension_id: String = _openable_tension_of_theme(str(theme_id))
+		if tension_id != "":
+			return tension_id
+	return ""
+
+
+## Fra le questioni in gioco di questo Tema, la piu' alta che si aprirebbe
+## adesso — mucchio piu' alto prima, a parita' l'ordine di pesca, la stessa
+## coppia di regole di `_hottest_with_something_to_say`, cosi' la pista cambia
+## **quale Tema parla**, non come si sceglie dentro un Tema.
+func _openable_tension_of_theme(theme_id: String) -> String:
+	var order: Array = (world["tensions"] as Dictionary).keys()
+	var ranked: Array = order.filter(func(id: Variant) -> bool:
+		var definition: Variant = data.tensions.get(str(id))
+		if definition == null:
+			return false
+		return str((definition as Dictionary).get("theme", "")) == theme_id
+	)
+	ranked.sort_custom(func(a: String, b: String) -> bool:
+		var value_a: int = session.tensions.value(str(a))
+		var value_b: int = session.tensions.value(str(b))
+		if value_a == value_b:
+			return order.find(a) < order.find(b)
+		return value_a > value_b
+	)
+	for tension_id in ranked:
+		if session.confluence.can_open(str(tension_id)):
+			return str(tension_id)
+	return ""
+
+
+## Il Tema che ha parlato torna a zero (PZ-1): la sua Domanda e' stata posta,
+## il Calore e' speso. Gli altri Temi **tengono** il loro — un fuoco che nessun
+## Consiglio ha guardato non si spegne da solo, e all'Atto dopo parte avanti.
+## Quanto sia giusto che tenga e' taratura d'autore (ROADMAP §4.1): questa e'
+## la regola piu' semplice che si possa spiegare al tavolo, scritta per essere
+## rivista. Il raffreddamento e' un Effect col suo inverso, come tutto.
+func _cool_theme_after_council(theme_id: String, act: int) -> void:
+	if theme_id == "":
+		return
+	var heat: int = int((world.get("theme_heat", {}) as Dictionary).get(theme_id, 0))
+	if heat <= 0:
+		return
+	var source: Dictionary = Effect.source(
+		"system", "ACT_END", "", act, int(world["round"]), 0
+	)
+	session.applier.apply(Effect.make(
+		"ADJUST_THEME_HEAT", "theme", theme_id, {"delta": -heat}, source
+	))
+	log.bullet("Il Tema %s ha avuto la sua Domanda: la pista torna fredda." % str(
+		(data.themes.get(theme_id, {}) as Dictionary).get("title", theme_id)
+	))
 
 
 ## Il mucchio piu' alto fra quelli che hanno ancora una domanda fresca. In

@@ -39,6 +39,11 @@ func test_round_trip_every_reversible_type() -> void:
 	var applier: RefCounted = session.applier
 
 	_round_trip("ADJUST_TENSION", _make("ADJUST_TENSION", "tension", "TEN_FAMINE", {"delta": 2}))
+	# La pista del Calore (PZ-1): stesso contratto delle Tensioni, tetto a sei.
+	# Il round-trip del clamp per lei sta in test_theme_heat.
+	_round_trip(
+		"ADJUST_THEME_HEAT", _make("ADJUST_THEME_HEAT", "theme", "THM_POTERE", {"delta": 2})
+	)
 	_round_trip(
 		"SET_TENSION_VISIBILITY",
 		_make("SET_TENSION_VISIBILITY", "tension", "TEN_AWAKENING", {"visibility": "OPEN"})
@@ -232,7 +237,7 @@ func test_round_trip_every_reversible_type() -> void:
 
 	# Guard: every reversible type in the generated enum is covered above.
 	var covered: Array = [
-		"ADJUST_TENSION", "SET_TENSION_VISIBILITY", "ADD_PRESENCE", "REMOVE_PRESENCE",
+		"ADJUST_TENSION", "ADJUST_THEME_HEAT", "SET_TENSION_VISIBILITY", "ADD_PRESENCE", "REMOVE_PRESENCE",
 		"SET_CONTROL", "SET_REGION_TAG", "REMOVE_REGION_TAG", "SET_GLOBAL_TAG",
 		"REMOVE_GLOBAL_TAG", "SET_RELATION", "GRANT_ASSET", "REMOVE_ASSET", "TRANSFER_ASSET",
 		"CREATE_CLAIM", "CONSUME_CLAIM", "ADD_SCAR", "REMOVE_SCAR", "SET_ENTITY_TAG",
