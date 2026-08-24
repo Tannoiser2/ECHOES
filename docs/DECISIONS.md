@@ -10,6 +10,60 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-262 — La grammatica adattiva: il contenuto non nomina più un posto per id
+
+**implemented in 0.1.224** — Fase B della direzione a tessere (dopo D-261)
+
+Le parole del committente: *«Le Tensioni hanno una grammatica che si adatta a
+ogni situazione usando i #TAG che ci sono sulla mappa, le cicatrici, le
+condizioni o le strutture.»* Il censimento ha detto che le Tensioni erano gia'
+quasi pulite — vivono di `domain` e `focus_region_tags`, che sono segni — e che
+gli id fissi stavano nel contenuto **attaccato** a loro: 8 punti fra Conseguenze
+e template, piu' 15 carte Echo che nominavano una Regione per nome.
+
+**Adesso: zero.** Ogni bersaglio si dice a segni:
+
+- `$region_with:<segno>` c'era gia' (D-033) e risolve sul segno **vivo** della
+  mappa — cicatrici, condizioni e pietre comprese, che e' esattamente la
+  richiesta. Ci sono passate le 23 riscritture: `REG_VALLE_VERDE` →
+  `$region_with:granary`, `REG_EREDAN` → `$region_with:capital`, e cosi' via.
+- `$entity_with:<segno>` e' nuovo e gemello: la prima casa nell'ordine del
+  tavolo che porta il segno addosso, vivo anche lui. Nessuno lo porta: la
+  clausola **compila a niente, senza errore** — D-106 esteso ai selettori.
+- `requires_entity_tag` e' la forma adattiva di `requires_entity` (D-213): il
+  drago non si chiama piu' `ENT_VAERAX`, si chiama *chi porta #dormiente* — e
+  l'etichetta di famiglia `sleeping`, che era colore dichiarato, adesso e'
+  **letta**: il dizionario lo dice, con la ragione nella nota.
+- Ogni tessera ha ora un **segno unico stampato** che la nomina: `capital`,
+  `granary`, `nomad_range`, `wild`, `trade`, e il nuovo **`mine`** sulle
+  Miniere Antiche (unica riscrittura che ha chiesto un segno nuovo).
+
+**Le guardie, viste mordere:**
+
+1. `validate_data` vieta gli id di Regione nel contenuto di Conseguenze,
+   template ed Echo — provato su un difetto piantato, rosso, poi ritirato. Il
+   divieto **non** aspetta il tavolo pescato: un contenuto che nomina un posto
+   per id smette di essere vero il giorno che la mappa si pesca.
+2. `$entity_with:` e' un binding validato come `$region_with:`: il segno deve
+   stare addosso a qualcuno nel dato base.
+3. Il censimento del dizionario conta i selettori come **letture**: la
+   conversione ha subito trovato due mani non dichiarate (`crystal_site` e
+   `trade`, letti da Conseguenze pre-esistenti di D-033 che nessuno aveva mai
+   contato) — la guardia di D-259 che morde su lavoro di tre giorni dopo.
+
+**La controprova che non ha prezzo:** il playtest sui 100 semi e' **identico
+alla virgola** alla base di D-261 — Consigli 3-6, medie 4,59/4,66, Verita'
+355/348, 0 seggi bloccati su 8. Sulla mappa di oggi i segni unici risolvono
+agli stessi posti degli id: la riscrittura cambia cosa il contenuto *dice*,
+non cosa *fa*. Cambiera' cosa fa il giorno che la mappa cambia — ed e' il punto.
+
+**Aperto, e di chi:** la faccia fisica delle carte Tensione (il testo che si
+legge girando la carta del mazzetto) non esiste ancora — va disegnata con le
+Domande di PZ-4; le tessere vere con pesca arrivano con la Fase C, e li' i
+mazzetti diventeranno *tutte* le Tensioni del Tema, non solo quelle in gioco.
+
+---
+
 ## D-261 — I sei mazzetti: gettoni coperti, la carta che si gira, e il secondo dibattito
 
 **implemented in 0.1.223** — decisione del committente, che supera la forma di D-260

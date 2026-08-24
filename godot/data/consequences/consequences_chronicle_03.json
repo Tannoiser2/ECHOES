@@ -486,7 +486,7 @@
           "type": "BUILD_STRUCTURE",
           "target": {
             "kind": "region",
-            "id": "REG_MONTAGNE_ROSSE"
+            "id": "$region_with:wild"
           },
           "payload": {
             "structure_type": "STR_KEEP",
@@ -517,7 +517,7 @@
           "type": "SET_REGION_TAG",
           "target": {
             "kind": "region",
-            "id": "REG_MINIERE_ANTICHE"
+            "id": "$region_with:mine"
           },
           "payload": {
             "tag": "condition:emptied"
@@ -530,7 +530,7 @@
             "id": "$rival"
           },
           "payload": {
-            "region_id": "REG_MINIERE_ANTICHE",
+            "region_id": "$region_with:mine",
             "optional": true
           },
           "note": "Gallerie lasciate vuol dire che chi le presidiava smette di presidiarle: la Regione e nominata come nel resto della carta, ed e quella che il Minimo dell'Ordine nomina a soglia 2 (AUDIT_DESTINI 7.2)."
@@ -589,7 +589,7 @@
       "description": "Sotto la cella i puntelli trovano il vuoto: la galleria maestra si riapre, e la roccia intorno resta tiepida. Quello che l'Ordine custodiva adesso è una porta.",
       "creates_scar": true,
       "scar": {
-        "region_id": "REG_MINIERE_ANTICHE",
+        "region_id": "$region_with:mine",
         "tag": "scar:open_wound",
         "description": "La galleria maestra non si richiude più, e la roccia intorno resta tiepida."
       },
@@ -598,7 +598,7 @@
           "type": "SET_REGION_TAG",
           "target": {
             "kind": "region",
-            "id": "REG_MINIERE_ANTICHE"
+            "id": "$region_with:mine"
           },
           "payload": {
             "tag": "condition:exploited"
@@ -613,7 +613,7 @@
       "description": "L'acqua non è arrivata, e i campi hanno risposto a modo loro. Chi poteva partire è partito prima del secondo inverno.",
       "creates_scar": true,
       "scar": {
-        "region_id": "REG_VALLE_VERDE",
+        "region_id": "$region_with:granary",
         "tag": "scar:emptied",
         "description": "Le case basse con le porte aperte, e i canali asciutti che nessuno riscava."
       },
@@ -622,7 +622,7 @@
           "type": "SET_REGION_TAG",
           "target": {
             "kind": "region",
-            "id": "REG_VALLE_VERDE"
+            "id": "$region_with:granary"
           },
           "payload": {
             "tag": "condition:lean"

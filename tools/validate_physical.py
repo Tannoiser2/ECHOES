@@ -102,7 +102,8 @@ def _scava(nodo: Any, scritti: Set[str], letti: Set[str]) -> None:
 
         if tipo in ("state_tag_present", "state_tag_absent") and "tag" in nodo:
             letti.add(str(nodo["tag"]))
-        for chiave in ("entry_tag", "entry_forbidden_tag", "if_tag", "if_not_tag"):
+        for chiave in ("entry_tag", "entry_forbidden_tag", "if_tag", "if_not_tag",
+                       "requires_entity_tag"):
             if chiave in nodo and isinstance(nodo[chiave], str):
                 letti.add(str(nodo[chiave]))
         for valore in nodo.values():
@@ -110,6 +111,12 @@ def _scava(nodo: Any, scritti: Set[str], letti: Set[str]) -> None:
     elif isinstance(nodo, list):
         for valore in nodo:
             _scava(valore, scritti, letti)
+    elif isinstance(nodo, str):
+        # La grammatica adattiva (D-262): un bersaglio detto a segni e' una
+        # lettura del segno — «la Regione col #granaio», «chi porta #dormiente».
+        for prefisso in ("$region_with:", "$entity_with:"):
+            if nodo.startswith(prefisso):
+                letti.add(nodo[len(prefisso):])
 
 
 def _tocchi_espliciti(documenti: Dict[str, List[Dict[str, Any]]]):

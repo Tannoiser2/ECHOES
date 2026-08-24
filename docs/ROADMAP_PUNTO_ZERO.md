@@ -181,6 +181,12 @@ nuove solo per i verbi che i luoghi nuovi chiedono.
 **Fatto quando** nessuna carta nomina un id, ogni bersaglio esiste sulla mappa
 nuova, e il validatore delle Risonanze cieche resta verde.
 
+> **Mezzo passo in 0.1.224** ([D-262](DECISIONS.md#d-262)): il contenuto dei
+> Consigli e degli Echo non nomina più nessun posto per id — bersagli a segni
+> (`$region_with`/`$entity_with`), tessere con segno unico stampato, guardia
+> che vieta gli id nuovi. Le 48 carte Asset restano da ri-mirare sulla mappa
+> nuova quando esisterà (Fase C).
+
 ### PZ-4 — Le Domande: da 12 a 18
 
 Tre per Tema: una generica sempre valida, due filtrate dai tag. Ognuna produce e

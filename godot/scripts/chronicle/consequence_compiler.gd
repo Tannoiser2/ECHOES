@@ -49,6 +49,12 @@ func compile_spec(spec: Dictionary, context: Dictionary, source: Dictionary) -> 
 	if target_id.begins_with("$"):
 		push_error("ConsequenceCompiler: unresolved variable '%s'" % target_id)
 		return {}
+	# Un selettore a segni che non trova nessuno ($entity_with su un tavolo
+	# dove nessuno porta il segno) compila a niente, senza errore: e' la
+	# regola di D-106 — il mestiere della carta parla solo dove ha di che
+	# parlare — estesa alla grammatica adattiva di D-262.
+	if target_id == "":
+		return {}
 	# A relation is keyed by its two ids in ascending order. Authored data may say
 	# "$proponent|$rival", which substitutes to whichever order the table happens
 	# to be sitting in, so the key is normalised here rather than in the data.
@@ -123,4 +129,25 @@ func _substitute_string(value: String, context: Dictionary) -> String:
 		out = out.replace("$%s" % key, str(context[key]))
 	if out.begins_with("$region_with:"):
 		out = _resolve_region_with(out.substr("$region_with:".length()), context)
+	if out.begins_with("$entity_with:"):
+		out = _resolve_entity_with(out.substr("$entity_with:".length()))
 	return out
+
+
+## `$entity_with:<tag>` nomina **un genere di casa**, non una casa (D-262):
+## la prima nell'ordine del tavolo che porta quel segno addosso — vale il
+## segno vivo, quindi anche uno guadagnato in partita. Nessuno lo porta:
+## torna vuoto, e la clausola compila a niente — il mondo non parla di chi
+## non siede (D-213, detto dalla stessa regola che salta la Conseguenza).
+func _resolve_entity_with(tag: String) -> String:
+	var seats: Array = (world.get("turn_order", []) as Array).duplicate()
+	for entity_id in world.get("entities", {}):
+		if not seats.has(str(entity_id)):
+			seats.append(str(entity_id))
+	for entity_id in seats:
+		var entity: Variant = (world.get("entities", {}) as Dictionary).get(str(entity_id))
+		if entity == null:
+			continue
+		if ((entity as Dictionary).get("tags", []) as Array).has(tag):
+			return str(entity_id)
+	return ""

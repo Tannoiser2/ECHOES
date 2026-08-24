@@ -2324,7 +2324,7 @@ no frame, no border. Not gory. Boardgame card art.
 | famiglia | pressure |
 | funzione | request |
 | convoca un Consiglio | su Il Debito |
-| cosa fa | Il Debito sale di 1 · Strada dei Mercanti: e' pieno di debiti · apre subito un Consiglio su Il Debito |
+| cosa fa | Il Debito sale di 1 · region with:trade: e' pieno di debiti · apre subito un Consiglio su Il Debito |
 | id | `ECH_CALL_OF_ACCOUNTS` |
 
 > La Gilda scrive a tre città lo stesso giorno. Non chiede di pagare: chiede di confermare la cifra.
@@ -2425,7 +2425,7 @@ no frame, no border. Not gory. Boardgame card art.
 | famiglia | pressure |
 | funzione | threat |
 | convoca un Consiglio | su La Successione |
-| cosa fa | La Successione sale di 2 · Eredan: e' conteso · apre subito un Consiglio su La Successione |
+| cosa fa | La Successione sale di 2 · region with:capital: e' conteso · apre subito un Consiglio su La Successione |
 | id | `ECH_EMPTY_THRONE` |
 
 > Il re manca a un consiglio. Poi a un secondo. Alla terza volta la stanza ha smesso di aspettarlo.
@@ -2500,7 +2500,7 @@ no frame, no border. Not gory. Boardgame card art.
 |---|---|
 | famiglia | pressure |
 | funzione | lack |
-| cosa fa | La Carestia sale di 1 · Valle Verde: il raccolto non basta · Valle Verde: granaio va giu |
+| cosa fa | La Carestia sale di 1 · region with:granary: il raccolto non basta · region with:granary: granaio va giu |
 | id | `ECH_LACK` |
 
 > Qualcosa che c'era non c'è più, e la sua assenza comincia a organizzare le giornate di tutti.
@@ -2552,7 +2552,7 @@ no frame, no border. Not gory. Boardgame card art.
 | famiglia | memoria |
 | funzione | threat |
 | convoca un Consiglio | su Il Debito |
-| cosa fa | Il Debito sale di 1 · Strada dei Mercanti: e' pieno di debiti · apre subito un Consiglio su Il Debito |
+| cosa fa | Il Debito sale di 1 · region with:trade: e' pieno di debiti · apre subito un Consiglio su Il Debito |
 | id | `ECH_LEGEND_CALLED_DAY` |
 
 > La storia si racconta a ogni firma: una Gilda morta da secoli che un mattino chiese tutto insieme. Il debito di adesso comincia a pesare come quello antico.
@@ -2577,7 +2577,7 @@ no frame, no border. Not gory. Boardgame card art.
 |---|---|
 | famiglia | memoria |
 | funzione | return |
-| cosa fa | La Successione scende di 1 · Eredan: il malcontento si e' spento |
+| cosa fa | La Successione scende di 1 · region with:capital: il malcontento si e' spento |
 | id | `ECH_LEGEND_GOOD_YEAR` |
 
 > Un cantastorie riporta in giro la ballata dell'anno in cui l'ordine torno davvero. Nessuno dei presenti c'era, e tutti giurano di ricordarselo.
@@ -2602,7 +2602,7 @@ no frame, no border. Not gory. Boardgame card art.
 |---|---|
 | famiglia | rupture |
 | funzione | loss |
-| cosa fa | La Carestia sale di 1 · Terre Nahr: e' in lutto · un rivale lascia Terre Nahr |
+| cosa fa | La Carestia sale di 1 · region with:nomad range: e' in lutto · un rivale lascia region with:nomad range |
 | id | `ECH_LOSS` |
 
 > Qualcuno non c'è più, e la sua parte di lavoro resta scoperta.
@@ -2803,7 +2803,7 @@ no frame, no border. Not gory. Boardgame card art.
 |---|---|
 | famiglia | resolution |
 | funzione | reconciliation |
-| cosa fa | La Carestia scende di 1 · Il Risveglio scende di 1 · Eredan: il malcontento si e' spento |
+| cosa fa | La Carestia scende di 1 · Il Risveglio scende di 1 · region with:capital: il malcontento si e' spento |
 | id | `ECH_RECONCILIATION` |
 
 > Due parti che si erano contate come nemiche trovano un motivo pratico per smettere.
@@ -2879,7 +2879,7 @@ no frame, no border. Not gory. Boardgame card art.
 |---|---|
 | famiglia | pressure |
 | funzione | prohibition |
-| cosa fa | Le Vie Interrotte sale di 2 · Strada dei Mercanti: resta tagliato fuori |
+| cosa fa | Le Vie Interrotte sale di 2 · region with:trade: resta tagliato fuori |
 | id | `ECH_ROAD_CLOSED` |
 
 > Una frana, o qualcuno che l'ha fatta sembrare una frana. Il risultato non cambia: da est non arriva più niente.
@@ -2954,7 +2954,7 @@ no frame, no border. Not gory. Boardgame card art.
 |---|---|
 | famiglia | pressure |
 | funzione | lack |
-| cosa fa | L'Acqua Ferma sale di 1 · Valle Verde: il raccolto non basta · Valle Verde: canale va giu |
+| cosa fa | L'Acqua Ferma sale di 1 · region with:granary: il raccolto non basta · region with:granary: canale va giu |
 | id | `ECH_SILT` |
 
 > Un canale che si chiude non fa rumore. Se ne accorge chi sta in fondo, un anno dopo tutti gli altri.
@@ -3004,7 +3004,7 @@ no frame, no border. Not gory. Boardgame card art.
 |---|---|
 | famiglia | rupture |
 | funzione | threat |
-| cosa fa | La Reliquia sale di 2 · Miniere Antiche: monta il malcontento · un rivale lascia Miniere Antiche |
+| cosa fa | La Reliquia sale di 2 · region with:mine: monta il malcontento · un rivale lascia region with:mine |
 | id | `ECH_THE_CRACK` |
 
 > Nella galleria bassa si apre una crepa da cui esce aria calda. I Signori della Cenere la puntellano e non lo scrivono da nessuna parte.
@@ -3029,7 +3029,7 @@ no frame, no border. Not gory. Boardgame card art.
 |---|---|
 | famiglia | resolution |
 | funzione | gift |
-| cosa fa | L'Acqua Ferma scende di 2 · Valle Verde: vi sorge canale · Nel mondo: water moves |
+| cosa fa | L'Acqua Ferma scende di 2 · region with:granary: vi sorge canale · Nel mondo: water moves |
 | id | `ECH_THE_DUG_SEASON` |
 
 > Due stagioni di braccia, e l'acqua arriva dove arrivava prima. Non è un miracolo: è terra tolta.
@@ -3054,7 +3054,7 @@ no frame, no border. Not gory. Boardgame card art.
 |---|---|
 | famiglia | rupture |
 | funzione | separation |
-| cosa fa | L'Acqua Ferma sale di 1 · Terre Nahr: si e' svuotato · Terre Nahr non e piu di nessuno · la Regione della domanda: adesso e selva maledetta |
+| cosa fa | L'Acqua Ferma sale di 1 · region with:nomad range: si e' svuotato · region with:nomad range non e piu di nessuno · la Regione della domanda: adesso e selva maledetta |
 | id | `ECH_THE_FIRES_OUTSIDE` |
 
 > Fuori dalle mura i fuochi sono gli stessi di ottobre. Dentro le mura si smette di contarli.
@@ -3104,7 +3104,7 @@ no frame, no border. Not gory. Boardgame card art.
 |---|---|
 | famiglia | turn |
 | funzione | return |
-| cosa fa | La Cenere che Sale scende di 1 · La Reliquia sale di 1 · chi la cala mette una presenza in Miniere Antiche |
+| cosa fa | La Cenere che Sale scende di 1 · La Reliquia sale di 1 · chi la cala mette una presenza in region with:mine |
 | id | `ECH_THE_QUIET_SHAFT` |
 
 > La crepa smette di soffiare da sola. I Signori della Cenere tornano a scendere, e stavolta lo scrivono.
@@ -3129,7 +3129,7 @@ no frame, no border. Not gory. Boardgame card art.
 |---|---|
 | famiglia | turn |
 | funzione | transformation |
-| cosa fa | L'Acqua Ferma sale di 2 · Il Debito sale di 1 · Valle Verde: si muore di fame |
+| cosa fa | L'Acqua Ferma sale di 2 · Il Debito sale di 1 · region with:granary: si muore di fame |
 | id | `ECH_THE_SHORT_YEAR` |
 
 > Il fiume arriva sei settimane in ritardo e riparte in anticipo. Nessuno lo chiama siccita: si dice che è stato un anno corto.
@@ -3155,7 +3155,7 @@ no frame, no border. Not gory. Boardgame card art.
 | famiglia | rupture |
 | funzione | violation |
 | convoca un Consiglio | su La Carta |
-| cosa fa | La Carta sale di 2 · Eredan: e' conteso · apre subito un Consiglio su La Carta |
+| cosa fa | La Carta sale di 2 · region with:capital: e' conteso · apre subito un Consiglio su La Carta |
 | id | `ECH_TWO_VERDICTS` |
 
 > Lo stesso caso, due città, due sentenze opposte. Entrambe applicate, entrambe legittime.

@@ -116,7 +116,7 @@
               "type": "REMOVE_REGION_TAG",
               "target": {
                 "kind": "region",
-                "id": "REG_TERRE_NAHR"
+                "id": "$region_with:nomad_range"
               },
               "payload": {
                 "tag": "condition:starving"
