@@ -173,6 +173,21 @@ func flip_theme_front(theme_id: String) -> String:
 		str((data.themes.get(theme_id, {}) as Dictionary).get("title", theme_id)),
 		_public_name(tension_id),
 	])
+	# **Girare apre la questione** (D-264). Col mazzetto pieno la carta girata
+	# puo' essere una domanda che l'anno non aveva ancora aperto: da questo
+	# momento e' in gioco — stato strutturale con la forma del setup, come una
+	# questione pescata all'apertura. Non entra nel sacchetto della Deriva
+	# dell'anno: si scalda coi mazzetti e coi Consigli, ed e' dichiarato.
+	if not (world["tensions"] as Dictionary).has(tension_id) and data.tensions.has(tension_id):
+		var definition: Dictionary = data.tensions[tension_id]
+		world["tensions"][tension_id] = {
+			"id": tension_id,
+			"current_value": int(definition["current_value"]),
+			"visibility": str(definition["visibility"]),
+			"fired_omens": [],
+			"resolved_count": 0,
+		}
+		log.bullet("«%s» entra in gioco: il tavolo adesso se lo chiede." % _public_name(tension_id))
 	return tension_id
 
 

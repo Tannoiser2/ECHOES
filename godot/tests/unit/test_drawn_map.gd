@@ -127,6 +127,56 @@ func test_the_saga_keeps_its_map() -> void:
 	second.dispose()
 
 
+## **Sul tavolo pescato il mazzetto e' pieno** (D-264): dentro ci sono tutte
+## le Tensioni del Tema che la mappa regge, non solo le aperte — e ognuna sta
+## nel mazzetto del suo Tema.
+func test_the_drawn_decks_hold_every_question_the_map_bears() -> void:
+	var opened: RefCounted = _open(7000)
+	var in_decks: int = 0
+	for theme_id in opened.world["theme_decks"]:
+		for tension_id in (opened.world["theme_decks"][theme_id] as Array):
+			in_decks += 1
+			assert_eq(
+				str((data().tensions[str(tension_id)] as Dictionary).get("theme", "")),
+				str(theme_id), "«%s» sta nel mazzetto del suo Tema" % [str(tension_id)]
+			)
+	assert_true(
+		in_decks > (opened.world["tensions"] as Dictionary).size(),
+		"il mazzetto tiene piu' carte delle questioni aperte (%d > %d)"
+		% [in_decks, (opened.world["tensions"] as Dictionary).size()]
+	)
+	opened.dispose()
+
+
+## **Girare apre la questione.** La carta del mazzetto che non era in gioco
+## entra con la forma del setup, e da li' il Consiglio la puo' dibattere.
+func test_flipping_a_new_card_opens_its_question() -> void:
+	var opened: RefCounted = _open(7000)
+	var fresh: String = ""
+	var theme: String = ""
+	for theme_id in opened.world["theme_decks"]:
+		for tension_id in (opened.world["theme_decks"][theme_id] as Array):
+			if not (opened.world["tensions"] as Dictionary).has(str(tension_id)):
+				fresh = str(tension_id)
+				theme = str(theme_id)
+				break
+		if fresh != "":
+			break
+	assert_ne(fresh, "", "nel mazzetto c'e' una questione non ancora aperta")
+	while str(opened.tensions.theme_front(theme)) != fresh:
+		assert_ne(str(opened.tensions.flip_theme_front(theme)), "", "il mazzetto gira")
+	assert_true(
+		(opened.world["tensions"] as Dictionary).has(fresh),
+		"la questione girata e' entrata in gioco"
+	)
+	assert_eq(
+		int(opened.world["tensions"][fresh]["current_value"]),
+		int((data().tensions[fresh] as Dictionary)["current_value"]),
+		"col valore d'apertura scritto sul dato"
+	)
+	opened.dispose()
+
+
 ## **Nessuna tessera governata da un assente, al primo giro.** Col tavolo
 ## pescato il padrone scritto sulla tessera puo' non sedersi: la tessera
 ## comincia di nessuno.

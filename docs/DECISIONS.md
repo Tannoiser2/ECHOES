@@ -10,6 +10,48 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-264 — Il mazzetto pieno: dentro ci sono tutte le Tensioni, e girare apre la questione
+
+**implemented in 0.1.226** — completa il disegno di D-261 sul tavolo pescato
+
+Le parole del committente in D-261 dicevano *«i mazzetti dei temi sono
+composti dalle tensioni»* — per intero, non solo dalle quattro aperte
+all'inizio. La Fase A l'aveva rimandato con la ragione scritta; il tavolo
+pescato di D-263 e' il posto dove il rinvio finisce.
+
+**La regola:** su una Chronicle che pesca le tessere (`region_pool`), il
+mazzetto di ogni Tema contiene **tutte le Tensioni del Tema che la mappa sa
+reggere** — il filtro e' lo stesso di D-263: dominio e segni di fuoco su una
+tessera uscita. **Girare la prima carta apre la questione**: se non era in
+gioco, entra — stato strutturale con la forma del setup, col valore
+d'apertura scritto sul dato, e una riga nel verbale («entra in gioco: il
+tavolo adesso se lo chiede»). Sul tavolo fisico e' esattamente quello che
+succede: la carta del mazzetto **e'** la scheda della questione, e girarla
+la mette sul tavolo.
+
+**Dichiarato, con la ragione:** la questione entrata a partita in corso non
+entra nel sacchetto della Deriva dell'anno — si scalda coi mazzetti e coi
+Consigli. E le **Chronicle scritte restano al mazzetto delle questioni in
+gioco**: il loro anno e' un anno d'autore, e i loro numeri non si sono mossi
+di un decimale (verificato sui 100 semi).
+
+**I numeri, 100 semi di CHR_00:**
+
+| | mazzetto delle aperte (D-263) | mazzetto pieno |
+|---|---|---|
+| carte nei mazzetti (seme 7000) | 4 | **10** |
+| Consigli | 3-6, media 4,32 | 3-6, media **4,61** |
+| partite non concluse | 0 | **0** |
+| mappe/tavoli/anni diversi | 15/52/88 | 15/52/88 |
+
+Le questioni che entrano girando danno all'anno piu' da dibattere — nella
+partita campione ne sono entrate tre — e il tetto dei due Consigli per Atto
+tiene la forma. Un Tema il cui mazzetto e' vuoto su questa mappa (la Terra,
+sul seme campione) non gira niente: e' il buco noto di Terra e Fede
+(ROADMAP §4.5) visto dal tavolo pescato, e resta materia d'autore.
+
+---
+
 ## D-263 — La Prima Chronicle: le tessere si pescano, e nessuno scrive lo scenario
 
 **implemented in 0.1.225** — Fase C della direzione del committente

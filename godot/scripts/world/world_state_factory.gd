@@ -142,7 +142,7 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 		world["theme_heat"][str(theme_id)] = 0
 		world["theme_tokens"][str(theme_id)] = 0
 
-	deal_theme_decks(world, data, rng)
+	deal_theme_decks(world, chronicle, data, rng)
 
 	_build_relations(world, chronicle, data)
 	_build_asset_decks(world, chronicle, data, rng)
@@ -843,7 +843,7 @@ static func redeal_tensions(
 	# Temi vanno rimontati sulle nuove, o il tavolo girerebbe carte di domande
 	# che quest'era non sta facendo. Trovato da test_library_balance: il
 	# Consiglio si apriva su una Tensione che il mondo non aveva.
-	deal_theme_decks(world, data, rng)
+	deal_theme_decks(world, chronicle, data, rng)
 
 
 ## La mappa e' della saga (D-263): un'era ereditata che pesca le tessere
@@ -865,22 +865,47 @@ static func rebuild_drawn_map(
 			"resolved_count": 0,
 		}
 	_build_drift_track(world, chronicle, rng)
-	deal_theme_decks(world, data, rng)
+	deal_theme_decks(world, chronicle, data, rng)
 
 
-## I mazzetti dei Temi (D-261, parola del committente): le Tensioni in gioco
-## di ogni Tema, mischiate e coperte. Il dado e' **derivato dal seme**, non
-## quello della partita, per la lezione di D-150: un mazzetto che consumasse
-## il caso condiviso sposterebbe mazzi, deriva e domande di tutto l'anno.
-## Chiamata dal setup, e di nuovo dalla ripesca di D-079 quando un'era di
-## libreria cambia le questioni dell'anno.
-static func deal_theme_decks(world: Dictionary, data: RefCounted, rng: RefCounted) -> void:
+## I mazzetti dei Temi (D-261, parola del committente): le Tensioni del Tema,
+## mischiate e coperte. Il dado e' **derivato dal seme**, non quello della
+## partita, per la lezione di D-150: un mazzetto che consumasse il caso
+## condiviso sposterebbe mazzi, deriva e domande di tutto l'anno. Chiamata dal
+## setup, e di nuovo dalla ripesca di D-079 quando un'era di libreria cambia
+## le questioni dell'anno.
+##
+## **Sul tavolo pescato il mazzetto e' pieno** (D-264): dentro ci sono tutte
+## le Tensioni del Tema che la mappa sa reggere, non solo quelle aperte
+## all'inizio — «i mazzetti dei temi sono composti dalle tensioni», per
+## intero. Girare una carta fara' entrare in gioco la sua questione (vedi
+## `TensionSystem.flip_theme_front`). Sulle Chronicle scritte il mazzetto
+## resta quello delle questioni in gioco: il loro anno e' un anno d'autore.
+static func deal_theme_decks(
+	world: Dictionary, chronicle: Dictionary, data: RefCounted, rng: RefCounted
+) -> void:
+	var full: bool = not (chronicle.get("region_pool", {}) as Dictionary).is_empty()
+	var on_map: Dictionary = {}
+	if full:
+		for region_id in world.get("regions", {}):
+			for tag in (world["regions"][str(region_id)].get("tags", []) as Array):
+				on_map[str(tag)] = true
 	var deck_rng: RefCounted = RngService.new(rng.get_seed() * 41 + 13)
 	for theme_id in data.themes:
 		var pile: Array = []
-		for tension_id in world["tensions"]:
-			if str(data.tensions[str(tension_id)].get("theme", "")) == str(theme_id):
-				pile.append(str(tension_id))
+		if full:
+			var ids: Array = data.tensions.keys()
+			ids.sort()
+			for tension_id in ids:
+				var definition: Dictionary = data.tensions[str(tension_id)]
+				if str(definition.get("theme", "")) != str(theme_id):
+					continue
+				if _tension_fits_map(definition, on_map):
+					pile.append(str(tension_id))
+		else:
+			for tension_id in world["tensions"]:
+				if str(data.tensions[str(tension_id)].get("theme", "")) == str(theme_id):
+					pile.append(str(tension_id))
 		world["theme_decks"][str(theme_id)] = deck_rng.shuffle(pile)
 		world["theme_front"][str(theme_id)] = ""
 

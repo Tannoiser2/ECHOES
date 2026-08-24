@@ -5,6 +5,20 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.226 — Il mazzetto pieno: dentro ci sono tutte le Tensioni, e girare apre la questione (D-264)
+
+- **Sul tavolo pescato il mazzetto è pieno**: tutte le Tensioni del Tema che
+  la mappa sa reggere, non solo le aperte (seme campione: 10 carte contro 4).
+  **Girare la prima carta apre la questione**: se non era in gioco entra, con
+  la forma e il valore d'apertura del setup, e il verbale lo dice.
+- Dichiarato: la questione entrata in corsa non entra nel sacchetto della
+  Deriva dell'anno; le **Chronicle scritte restano al mazzetto delle aperte**
+  e i loro numeri non si muovono di un decimale (verificato sui 100 semi).
+- **Misure CHR_00, 100 semi**: Consigli 3-6, media 4,32 → **4,61** (le
+  questioni entrate danno più da dibattere), 0 partite non concluse, stessa
+  varietà (15 mappe / 52 tavoli / 88 anni).
+- Suite: **535 prove / 12.596 asserzioni** (due nuove sul mazzetto pieno).
+
 ## 0.1.225 — La Prima Chronicle: le tessere si pescano, e nessuno scrive lo scenario (D-263)
 
 - **CHR_00 — La Prima Chronicle**, e l'app si apre da lì: niente scenario. Le
