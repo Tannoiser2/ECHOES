@@ -1181,10 +1181,127 @@ func _play_asset_card(
 	log.bullet("%s gioca «%s» per %s." % [
 		_name(entity_id), _title(str(request["asset_id"])), kind
 	])
+	# **La Risonanza** ([D-257](DECISIONS.md#d-257)): il mondo risponde, e non si
+	# sceglie. E' la regola che il committente ha messo al centro della direzione
+	# fisica — *ogni Azione ha una reazione* — ed e' l'unica riga di questo file
+	# che il tavolo puo' leggere sulla carta invece che dedurla.
+	effects.append_array(_resonance(entity_id, str(request["asset_id"]), inner, source))
 	var info: Dictionary = (outcome.get("info", {}) as Dictionary).duplicate()
 	info["asset_id"] = str(request["asset_id"])
 	info["kind"] = kind
 	return _ok("PLAY_CARD", effects, info)
+
+
+## La reazione del mondo alla carta appena giocata.
+##
+## Sulla carta c'e' scritto **quale Tema si scalda**; qui si traduce in quello
+## che il mondo sa fare: sale la questione **piu' calda di quel Tema fra quelle
+## in gioco**. Non tutte — alzarle tutte sarebbe una carta che apre tre Consigli
+## — e non una a caso: la piu' vicina alla soglia, perche' il Calore che si
+## sente e' quello che avvicina una decisione.
+##
+## Una Cronaca che non ha nessuna questione di quel Tema non scalda niente, e va
+## bene: e' la stessa regola degli `on_commit_effects` da [D-106](#d-106) — il
+## mestiere della carta parla solo dove ha di che parlare.
+func _resonance(
+	entity_id: String, asset_id: String, played: Dictionary, source: Dictionary
+) -> Array:
+	var card: Variant = data.assets.get(asset_id)
+	if card == null:
+		return []
+	var face: Dictionary = (card as Dictionary).get("physical", {}) as Dictionary
+	var echo: Dictionary = face.get("resonance", {}) as Dictionary
+	if echo.is_empty():
+		return []
+	# **La Risonanza si firma.** La sorgente di un'azione dice «ACT_PLAY_CARD» e
+	# nient'altro: chi legge il verbale non sa distinguere quello che il
+	# giocatore ha scelto da quello che il mondo ha risposto, e la prima stesura
+	# della sonda ha contato **zero Risonanze su venti anni** mentre avvenivano —
+	# muta invece che rossa, la stessa trappola di D-254. Una reazione che non si
+	# puo' nominare non e' nemmeno raccontabile, e questo gioco vuole raccontarsi.
+	var mine: Dictionary = Effect.source(
+		"resonance", asset_id, entity_id,
+		int(source.get("act", 0)), int(source.get("round", 0)),
+		int(world["effect_sequence"])
+	)
+	var target_region: String = str(played.get("region_id", ""))
+	var heat: int = int(echo.get("heat", 1))
+	# La parte aggravata: se il bersaglio porta gia' il segno che la carta teme,
+	# la reazione e' peggiore, e lascia qualcosa.
+	var aggravated: bool = false
+	var watched: String = str(echo.get("if_target_tag", ""))
+	if watched != "" and _carries(target_region, entity_id, watched):
+		aggravated = true
+		heat += int(echo.get("extra_heat", 0))
+	var effects: Array = []
+	var tension_id: String = _hottest_of_theme(str(echo.get("theme", "")))
+	if tension_id != "" and heat > 0:
+		var applied: Dictionary = applier.apply(Effect.make(
+			"ADJUST_TENSION", "tension", tension_id, {"delta": heat}, mine
+		))
+		effects.append(applied)
+	if aggravated and target_region != "" and str(echo.get("extra_tag", "")) != "":
+		var marked: Dictionary = applier.apply(Effect.make(
+			"SET_REGION_TAG", "region", target_region,
+			{"tag": str(echo["extra_tag"])}, mine
+		))
+		effects.append(marked)
+	if not effects.is_empty():
+		log.bullet("Il mondo risponde: %s" % str(echo.get("text", "")))
+	return effects
+
+
+## La questione piu' vicina alla soglia, fra quelle di questo Tema che stanno in
+## gioco **e non hanno ancora chiesto**. A parita' vince la prima in ordine di
+## id, perche' un pareggio sciolto dall'ordine di un Dictionary non e'
+## riproducibile.
+##
+## **La Risonanza avvicina, non decide.** Non tocca una questione gia' arrivata
+## alla soglia — quella non si scalda, si risponde — e non le da' mai il punto
+## che la apre: il Consiglio lo convoca qualcuno, con un'azione che ha scelto.
+##
+## E' una regola di disegno, non una limatura per far tornare un numero — e va
+## detto perche' **il numero non e' tornato**: col tavolo uniforme l'anno peggiore
+## dei cento passa da otto Consigli a nove lo stesso, con o senza questa riga.
+## Resta perche' senza di lei la reazione del mondo sarebbe il modo piu'
+## economico di convocare un Consiglio, cioe' l'esatto contrario di una reazione.
+## Il nove e' scritto in [D-257](DECISIONS.md#d-257): e' il prezzo dichiarato di
+## un mondo che risponde.
+func _hottest_of_theme(theme_id: String) -> String:
+	if theme_id == "":
+		return ""
+	var ids: Array = (world["tensions"] as Dictionary).keys()
+	ids.sort()
+	var best: String = ""
+	var best_gap: int = 1 << 30
+	for tension_id in ids:
+		var definition: Variant = data.tensions.get(str(tension_id))
+		if definition == null:
+			continue
+		if str((definition as Dictionary).get("theme", "")) != theme_id:
+			continue
+		var gap: int = int((definition as Dictionary)["threshold"]) - tensions.value(str(tension_id))
+		if gap <= 1:
+			continue
+		if gap < best_gap:
+			best_gap = gap
+			best = str(tension_id)
+	return best
+
+
+## Se il bersaglio porta quel segno. La carta puo' guardare una Regione o chi la
+## gioca, e la Risonanza nomina un segno solo: si cerca dove ha senso cercarlo.
+func _carries(region_id: String, entity_id: String, tag: String) -> bool:
+	if region_id != "":
+		var region: Dictionary = (world["regions"] as Dictionary).get(region_id, {}) as Dictionary
+		if (region.get("tags", []) as Array).has(tag):
+			return true
+		for scar in world["scars"]:
+			var record: Dictionary = scar as Dictionary
+			if str(record.get("region_id", "")) == region_id and str(record.get("tag", "")) == tag:
+				return true
+	var seat: Dictionary = (world["entities"] as Dictionary).get(entity_id, {}) as Dictionary
+	return (seat.get("tags", []) as Array).has(tag)
 
 
 func _discard(entity_id: String, asset_id: String, source: Dictionary) -> Array:

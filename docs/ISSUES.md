@@ -2765,11 +2765,23 @@ e' in gioco.
 
 ### 69. La Risonanza è scritta e non succede
 
-`contenuto` · `direzione` · **aperta in 0.1.218** ([D-256](DECISIONS.md#d-256))
+`contenuto` · `direzione` · **aperta in 0.1.218** ([D-256](DECISIONS.md#d-256)) ·
+**prima cura in 0.1.219** ([D-257](DECISIONS.md#d-257)) · **aperta**
+
+> **Fatto in 0.1.219: la Risonanza succede.** Giocare una carta con una faccia
+> fisica scalda il Tema che ci sta scritto, come Effetto con inverso e con una
+> firma sua (`kind: "resonance"`) così che il verbale distingua quello che hai
+> scelto da quello che il mondo ha risposto. Con una regola di contorno che vale
+> più del resto: **la Risonanza avvicina, non decide** — non porta mai una
+> questione alla soglia da sola.
+>
+> **E si sente troppo poco**: 163 Risonanze in 100 anni, **1,6 per anno**. Non è
+> la regola, è il pilota — dodici carte su quarantotto. Sotto restano i punti
+> che questa voce tiene aperti.
 
 La grammatica fisica esiste nei dati: dodici carte hanno bersaglio a segni, due
-Azioni, una Risonanza obbligatoria e un uso in Consiglio. **Il motore non ne
-legge una riga.**
+Azioni, una Risonanza obbligatoria e un uso in Consiglio. **Il motore ne legge
+adesso una parte: la Risonanza. Il resto no.**
 
 Quando una carta si gioca, il motore guarda `card_action.kind` — un verbo solo,
 senza scelta e senza reazione — e il blocco `physical` non lo apre nessuno. Al
@@ -2780,17 +2792,30 @@ nasce) ma nessuno lo attraversa.
 
 **Cosa manca, in ordine di peso:**
 
-1. **La Risonanza non avviene.** È la regola che dà il carattere al gioco nuovo —
-   *ogni Azione ha una reazione del mondo* — ed è l'unica cosa qui dentro che
-   cambierebbe come si gioca. Finché il motore non la esegue, la direzione è
-   dichiarata e non provata.
-2. **La scelta fra le due Azioni non esiste.** Il cervello sceglie un verbo, non
-   una carta con due facce: `_choose_intent` non sa che una carta offre un bivio.
-3. **Il Calore dei Temi non è una traccia.** Le Tensioni salgono una per una; il
+1. ✅ **La Risonanza non avviene** — fatta in 0.1.219 ([D-257](DECISIONS.md#d-257)).
+2. **Trentasei carte su quarantotto non hanno faccia fisica**, ed è la ragione
+   per cui la Risonanza si sente 1,6 volte l'anno invece di ogni turno. È la voce
+   di lavoro più grossa e la più meccanica.
+3. **La metà condizionale della Risonanza non scatta mai: 0 su 163.** Ogni carta
+   porta un «se il bersaglio ha già questo segno, è peggio», e in cento anni non
+   è mai capitato. Le condizioni chiedono segni che il bersaglio quasi mai porta:
+   è contenuto morto scritto in bella prosa, e va riscritto guardando cosa il
+   tavolo produce davvero.
+4. **La scelta fra le due Azioni non esiste.** Il cervello sceglie un verbo, non
+   una carta con due facce: `_choose_intent` non sa che una carta offre un bivio,
+   e il motore esegue la `card_action` di sempre.
+5. **Il Calore dei Temi non è una traccia.** Le Tensioni salgono una per una; il
    Tema è una classificazione, non un contatore. A fine Atto non si pesca «dal
-   mazzo del Tema più caldo» perché quel numero non esiste.
-4. **Trentasei carte su quarantotto non hanno faccia fisica**, e i dodici Destini
-   restanti nemmeno.
+   mazzo del Tema più caldo» perché quel numero non esiste — oggi la Risonanza
+   scalda la questione più vicina alla soglia, che è un ponte e non la cosa.
+6. **Antico e Terra non ricevono Calore**: zero su 163, perché le due carte che
+   li toccano non le gioca quasi nessuno. È [ISSUES 68](#68) da un'altra finestra.
+7. **Dodici Destini su venti** non hanno ancora faccia fisica.
+
+**Il prezzo pagato, dichiarato**: col tavolo uniforme l'anno peggiore dei cento
+passa da **otto Consigli a nove**. Tre tentativi di riportarlo a otto non hanno
+spostato il numero — il nove non viene da un caso limite, viene dal fatto che il
+mondo adesso è più caldo.
 
 **Il rischio da nominare adesso**, prima che diventi lavoro buttato: due
 grammatiche che non si toccano divergono. Oggi il ponte è un campo che il

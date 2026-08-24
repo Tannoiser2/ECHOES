@@ -10,6 +10,89 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-257 — Il mondo risponde
+
+**implemented in 0.1.219** — prima cura di ISSUES 69, che resta aperta
+
+[D-256](#d-256) ha scritto la grammatica fisica e ha dichiarato per primo cosa
+non faceva: **la Risonanza era scritta e non succedeva.** Questa la fa succedere,
+ed e' l'unica riga di quel disegno che cambia *come si gioca*.
+
+La regola, come sta sulla carta: *ogni Azione ha una reazione del mondo, e non si
+sceglie.* Nel motore diventa cinque righe dentro `_play_asset_card`: dopo che
+l'azione e' riuscita, si legge il `physical.resonance` della carta e si scalda il
+Tema che ci sta scritto — cioe' sale la questione **piu' vicina alla soglia fra
+quelle di quel Tema**. Effetto con inverso, come tutto il resto.
+
+**Due regole di contorno, e la seconda e' quella che conta.**
+
+- Un Tema senza questioni in gioco non scalda niente, e va bene: e' la stessa
+  regola del mestiere della carta da [D-106](#d-106).
+- **La Risonanza avvicina, non decide.** Non tocca una questione gia' arrivata
+  alla soglia, e non le da' mai il punto che la apre. Senza, la reazione del
+  mondo sarebbe il modo piu' economico di convocare un Consiglio — l'esatto
+  contrario di una reazione.
+
+**Il prezzo, misurato e dichiarato.** Col tavolo uniforme l'anno peggiore dei
+cento passa da **otto Consigli a nove**, ed e' fuori dalla forma dell'anno. Ho
+provato tre modi di riportarlo a otto — non scaldare una questione gia' aperta,
+non darle mai l'ultimo punto, togliere il Calore aggravato — e **nessuno dei tre
+ha spostato il numero**: il nove non viene da un caso limite, viene dal fatto che
+il mondo adesso e' piu' caldo. Le due regole di contorno restano perche' sono
+giuste, non perche' abbiano funzionato. Il vincolo che non si negozia tiene:
+`run_playtest.gd --runs=100 --seed=7000` **0 seggi bloccati su 8** ai due tavoli.
+
+**Una storia scritta a mano e' cambiata**, ed e' la prova migliore che la regola
+si sente. In `plan_d_crown_calls` il Censimento viene giocato due volte, e ogni
+volta che qualcuno conta le teste il Potere si scalda: la Successione arriva al
+punto prima, il gesto decisivo si sposta dalla quinta domanda alla quarta, e la
+quinta cade perche' al tavolo non e' rimasta la forza. Il piano e' ribasato con
+la ragione scritta dentro. La morale non e' cambiata — e' l'anno di chi ha
+parlato per primo — ed e' piu' netta: parlare per primo scalda il mondo, e il
+mondo presenta il conto a chi parla per ultimo.
+
+**Zero, di nuovo, e di nuovo era la sonda.** `run_resonance_probe.gd` ha contato
+**zero Risonanze su venti anni** mentre avvenivano. La sorgente di un Effetto
+d'azione dice «ACT_PLAY_CARD» e nient'altro: la sonda cercava un `template` e un
+`asset_id` che quella sorgente non ha mai avuto. E' la stessa trappola di
+[D-254](#d-254) — muta invece che rossa — e la cura non e' stata aggiustare la
+sonda: **la Risonanza adesso si firma.** La sua sorgente e' `kind: "resonance"`
+con l'id della carta, e questo serve prima di tutto al cronista: chi legge il
+verbale distingue quello che il giocatore ha scelto da quello che il mondo ha
+risposto.
+
+**Quanto si sente, in numeri.** Su 100 anni, tavolo misto:
+
+| | |
+|---|---|
+| Risonanze avvenute | **163**, cioe' **1,6 per anno** |
+| di quelle, aggravate | **0 su 163** |
+| Calore su Sopravvivenza / Vie / Potere | 35% / 31% / 28% |
+| Calore su **Antico e Terra** | **zero** |
+
+E sono tre difetti, non tre statistiche:
+
+1. **1,6 volte l'anno non e' una regola, e' un episodio.** La causa non e' la
+   regola ma il pilota: dodici carte su quarantotto hanno una faccia. Si cura
+   convertendo le altre trentasei, non cambiando la Risonanza.
+2. **La meta' condizionale non scatta mai.** Ogni Risonanza porta un «se il
+   bersaglio ha gia' questo segno, e' peggio» — e in 163 occasioni non e' mai
+   capitato. Le condizioni che ho scritto chiedono segni che il bersaglio quasi
+   mai porta: e' contenuto morto, scritto in bella prosa.
+3. **Antico e Terra non ricevono Calore**, perche' le due carte che li toccano —
+   il Cristallo Rosso e le Braccia per il Raccolto — non le gioca quasi nessuno.
+   E' [ISSUES 68](ISSUES.md) vista da un'altra finestra: i verbi che nessuno
+   pronuncia.
+
+**Cosa resta aperto.** La scelta fra le **due Azioni** non esiste ancora: il
+cervello sceglie un verbo, non una carta con due facce, e il motore esegue la
+`card_action` di sempre. Il Calore dei Temi non ha una traccia propria — sale
+sulle questioni, che e' un ponte, non la cosa. ISSUES 69 resta aperta con questi
+due punti e con la conversione delle trentasei carte.
+
+Suite **511 prove / 11.254 asserzioni** verdi, tutti i cancelli verdi, playtest
+**0 su 8** ai due tavoli.
+
 ## D-256 — La grammatica fisica: il ponte, non la riscrittura
 
 **implemented in 0.1.218** — apre ISSUES 69
