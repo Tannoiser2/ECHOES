@@ -554,6 +554,21 @@ func run_confluence(tension_id: String, trigger: Dictionary, decider: Object) ->
 			illegal_actions += 1
 			controller.declare_stance(str(entity_id), "ABSTAIN")
 
+	# La pedina del prezzo (PZ-5, D-267): a posizioni dichiarate e **prima**
+	# degli impegni - che restano segreti - il primo seggio del fronte avverso
+	# sceglie dal menu quale voce paghera' chi vince. Un cervello che non sa
+	# scegliere (has_method) lascia decidere il mondo: la prima voce, com'era.
+	var opposer: String = controller.first_opposer()
+	if opposer != "" and decider.has_method("choose_price"):
+		var menu: Dictionary = controller.price_menu()
+		if (menu["cost"] as Array).size() > 1 or (menu["failure"] as Array).size() > 1:
+			var price: Dictionary = await decider.choose_price(opposer, context, menu, session)
+			if not price.is_empty() and not controller.place_price(
+				opposer, str(price.get("cost", "")), str(price.get("failure", ""))
+			):
+				log.bullet("Pedina del prezzo rifiutata (%s): decide il mondo." % controller.last_error)
+				illegal_actions += 1
+
 	for entity_id in world["turn_order"]:
 		var limit: int = controller.max_commit_for(str(entity_id))
 		if limit <= 0:

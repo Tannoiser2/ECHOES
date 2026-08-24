@@ -206,7 +206,14 @@ func test_a_chained_chronicle_keeps_the_world_and_changes_the_table() -> void:
 		second.service.name_of("ENT_ALDRIC"), "Re Aldric",
 		"al trono non c'e piu la stessa persona"
 	)
-	assert_eq(second.service.name_of("ENT_VAERAX"), "Vaerax", "sotto la montagna si")
+	# L'invariante e' la persona, non il nome: il drago non ha eredi, quindi la
+	# successione non lo tocca. Fissare la stringa «Vaerax» faceva dipendere la
+	# prova dalla storia dell'anno - bastava che il seme risvegliasse il drago
+	# («Vaerax Ridestato») per farla cadere su una cosa vera del mondo.
+	assert_eq(
+		int(second.world["entities"]["ENT_VAERAX"]["generation"]), 0,
+		"sotto la montagna non c'e' successione"
+	)
 
 	await second.run(PolicyDecider.new(second.log))
 	# The map survived the century: whatever was held at the end of the first

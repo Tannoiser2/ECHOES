@@ -1477,6 +1477,49 @@ func choose_recovery(_context: Dictionary, _session: RefCounted) -> Dictionary:
 	return {}
 
 
+## La pedina del prezzo (PZ-5, D-267): il primo seggio del fronte avverso
+## sceglie dal menu il costo (se la proposta passera' pagando) e lo sfogo (se
+## cadra'). Si sceglie come tutto il resto al Consiglio: la voce i cui Effect
+## servono meglio il proprio Destino; a parita' decide l'RNG di sessione, per
+## la stessa ragione di choose_proposition.
+func choose_price(
+	entity_id: String, context: Dictionary, menu: Dictionary, session: RefCounted
+) -> Dictionary:
+	return {
+		"cost": _best_priced(menu.get("cost", []) as Array, entity_id, context, session),
+		"failure": _best_priced(menu.get("failure", []) as Array, entity_id, context, session),
+	}
+
+
+func _best_priced(
+	pool: Array, entity_id: String, context: Dictionary, session: RefCounted
+) -> String:
+	if pool.size() <= 1:
+		return "" if pool.is_empty() else str(pool[0])
+	var goals: Dictionary = _tag_goals(entity_id, session)
+	var bindings: Dictionary = session.confluence.effect_context()
+	var proponent: String = str(context["proponent"])
+	var best_score: int = -999
+	var tied: Array = []
+	for consequence_id in pool:
+		var consequence: Variant = session.data.consequences.get(str(consequence_id))
+		if consequence == null:
+			continue
+		var score: int = 0
+		for effect in consequence["effects"]:
+			score += _score_effect(effect, entity_id, proponent, goals, session, bindings)
+		if score > best_score:
+			best_score = score
+			tied = [str(consequence_id)]
+		elif score == best_score:
+			tied.append(str(consequence_id))
+	if tied.is_empty():
+		return ""
+	if tied.size() == 1:
+		return str(tied[0])
+	return str(tied[session.rng.range_int(0, tied.size() - 1)])
+
+
 func _current_proposition(context: Dictionary, session: RefCounted) -> Dictionary:
 	var template: Variant = session.data.confluence_templates.get(str(context["template_id"]))
 	if template == null:

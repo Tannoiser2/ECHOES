@@ -332,6 +332,81 @@ func _find_clause(clause_id: String) -> Dictionary:
 	return {}
 
 
+# --- D-bis: la pedina del prezzo (PZ-5, D-267) ------------------------------
+
+## Il menu del prezzo: fra quali voci il fronte avverso puo' scegliere. Sono i
+## pool del template - il costo se la proposta passa pagando, lo sfogo se cade.
+func price_menu() -> Dictionary:
+	if current.is_empty():
+		return {"cost": [], "failure": []}
+	var pools: Dictionary = (
+		data.confluence_templates[str(current["template_id"])]["consequence_pools"]
+	)
+	return {
+		"cost": (pools["cost"] as Array).duplicate(),
+		"failure": (pools["failure"] as Array).duplicate(),
+	}
+
+
+## Chi parla per il fronte avverso: il primo seggio, nell'ordine delle
+## dichiarazioni, che ha detto OPPOSE. E' informazione pubblica - la pedina si
+## posa a posizioni dichiarate e **prima** degli impegni, che restano segreti:
+## sceglierla su chi ha impegnato di piu' rivelerebbe gli impegni.
+func first_opposer() -> String:
+	if current.is_empty():
+		return ""
+	for entity_id in stance_order():
+		if str((current["stances"] as Dictionary).get(str(entity_id), {}).get("stance", "")) == "OPPOSE":
+			return str(entity_id)
+	return ""
+
+
+## La pedina del prezzo (D-267, parola del committente: «scegliendo dagli
+## avversari i malus»): il fronte avverso dichiara prima del dado quale voce
+## del menu paghera' chi vince - il costo se la proposta passa con un costo,
+## lo sfogo se cade. Senza pedina decide il mondo: la prima voce del pool.
+func place_price(entity_id: String, cost_id: String, failure_id: String) -> bool:
+	last_error = ""
+	if current.is_empty() or str(current["step"]) not in ["STANCE", "COMMIT"]:
+		last_error = "non e' il momento di posare la pedina del prezzo"
+		return false
+	if entity_id == "" or entity_id != first_opposer():
+		last_error = "la pedina del prezzo spetta al primo seggio del fronte avverso"
+		return false
+	var menu: Dictionary = price_menu()
+	if cost_id != "" and not (menu["cost"] as Array).has(cost_id):
+		last_error = "'%s' non e' nel menu del costo" % cost_id
+		return false
+	if failure_id != "" and not (menu["failure"] as Array).has(failure_id):
+		last_error = "'%s' non e' nel menu dello sfogo" % failure_id
+		return false
+	current["price_pedina"] = {"by": entity_id, "cost": cost_id, "failure": failure_id}
+	var said: PackedStringArray = PackedStringArray()
+	if cost_id != "":
+		said.append("se passa con un costo, %s" % _consequence_title(cost_id))
+	if failure_id != "":
+		said.append("se cade, %s" % _consequence_title(failure_id))
+	if not said.is_empty():
+		log.bullet("D. La pedina del prezzo - %s: %s." % [
+			_name(entity_id), "; ".join(said)
+		])
+	return true
+
+
+## Una voce sola dal pool (D-267): quella della pedina, o la prima. Il mondo
+## decide solo quando il fronte avverso non ha posato niente.
+func _priced(pool: Array, chosen: String) -> String:
+	if pool.is_empty():
+		return ""
+	if chosen != "" and pool.has(chosen):
+		return chosen
+	return str(pool[0])
+
+
+func _consequence_title(consequence_id: String) -> String:
+	return str((data.consequences.get(consequence_id, {}) as Dictionary).get("title", consequence_id))
+
+
 # --- E: Commit -------------------------------------------------------------
 
 func max_commit_for(entity_id: String) -> int:
@@ -453,6 +528,25 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 				"%s %s (+%d)" % [_name(seat), str(ground["why"]), int(ground["delta"])]
 			)
 
+	# La regola anti-passivita' (PZ-5, D-267): se ogni seggio non proponente si
+	# astiene, il silenzio avvantaggia chi propone. Un Consiglio dove nessuno
+	# parla non e' neutro: la roadmap chiedeva che «se tutti si astengono,
+	# succede qualcosa comunque», e delle tre vie (vantaggio al proponente,
+	# Cicatrice automatica, Tema che resta caldo) questa e' quella che si legge
+	# in un gesto solo al tavolo: silenzio-assenso. Numero nei dati, reversibile.
+	var silence_bonus: int = int(
+		(_chronicle.get("confluence_rules", {}) as Dictionary).get("silence_support_bonus", 0)
+	)
+	var table_is_silent: bool = true
+	for entity_id in current["stances"]:
+		if str(entity_id) == str(current["proponent"]):
+			continue
+		if str(current["stances"][entity_id].get("stance", "ABSTAIN")) != "ABSTAIN":
+			table_is_silent = false
+			break
+	if silence_bonus > 0 and table_is_silent:
+		support_bonus += silence_bonus
+
 	# La soglia della Condition che si sposta (D-125), mai sotto 1.
 	var condition_entities: Array = []
 	for entity_id in current["stances"]:
@@ -481,6 +575,8 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 		log.bullet("  Il segno pesa sul Consiglio: %s." % str(title))
 	for title in stance_titles:
 		log.bullet("  Il segno pesa sul fronte: %s." % str(title))
+	if silence_bonus > 0 and table_is_silent:
+		log.bullet("  Il tavolo tace: il silenzio avvantaggia il proponente (+%d)." % silence_bonus)
 	for title in shifted["titles"]:
 		log.bullet("  Il segno sposta la soglia della Condition: %s." % str(title))
 	# A qualified Condition is part of the margin (D-055), so it is part of the one
@@ -554,16 +650,32 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 				for said in spoken:
 					log.bullet("  %s" % said)
 
-	# H.3-H.5 Outcome consequences.
+	# H.3-H.5 Outcome consequences. Dal pool del prezzo scatta **una voce sola**
+	# (D-267): quella su cui il fronte avverso ha posato la pedina, o la prima
+	# se nessuno ha parlato. Fino a 0.1.228 scattava il pool intero - con una
+	# voce sola era la stessa cosa, e il pool era quasi sempre una voce sola.
+	var pedina: Dictionary = current.get("price_pedina", {})
 	var consequence_ids: Array = []
 	if ConfluenceResolution.is_success(outcome):
 		consequence_ids.append_array(_proposition()["success_consequences"])
 		if outcome == ConfluenceResolution.SUCCESS_WITH_COST:
-			consequence_ids.append_array(template["consequence_pools"]["cost"])
+			var cost_id: String = _priced(
+				template["consequence_pools"]["cost"], str(pedina.get("cost", ""))
+			)
+			if cost_id != "":
+				consequence_ids.append(cost_id)
+				if cost_id == str(pedina.get("cost", "")):
+					log.bullet("H. Il costo e' quello della pedina del fronte avverso.")
 		elif outcome == ConfluenceResolution.DECISIVE:
 			consequence_ids.append_array(template["consequence_pools"]["decisive_bonus"])
 	else:
-		consequence_ids.append_array(template["consequence_pools"]["failure"])
+		var failure_id: String = _priced(
+			template["consequence_pools"]["failure"], str(pedina.get("failure", ""))
+		)
+		if failure_id != "":
+			consequence_ids.append(failure_id)
+			if failure_id == str(pedina.get("failure", "")):
+				log.bullet("H. Lo sfogo e' quello della pedina del fronte avverso.")
 	# ISSUES 22 (Fase 1): the Consequence speaks with its title, and every
 	# Effect it lands gets its own spoken line — the crown losing the Valle
 	# Verde must be a sentence at the table, not a silent SET_CONTROL.

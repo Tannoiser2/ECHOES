@@ -317,6 +317,13 @@
               "maximum": 0,
               "description": "Di quanto un Failure sfoga la Tensione (appendice A6: -2). A -1 la proposta bocciata non compra quiete: la domanda resta piu' vicina alla soglia e torna prima - la seconda leva contro l'Oppose come strategia dominante, misurata in D-098."
             },
+            "silence_support_bonus": {
+              "type": "integer",
+              "default": 0,
+              "minimum": 0,
+              "maximum": 2,
+              "description": "La regola anti-passivita' (PZ-5, D-267): se ogni seggio non proponente si astiene, il fronte Support prende questo bonus - il silenzio avvantaggia chi propone, e un Consiglio dove nessuno parla non e' mai neutro. Omesso o 0, il silenzio non pesa: il comportamento fino a 0.1.228."
+            },
             "focus_weight": {
               "type": "object",
               "additionalProperties": false,

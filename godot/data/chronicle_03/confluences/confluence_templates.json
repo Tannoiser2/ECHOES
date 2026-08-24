@@ -118,7 +118,8 @@
       ],
       "consequence_pools": {
         "cost": [
-          "CNS_COST_DEBT"
+          "CNS_COST_DEBT",
+          "CNS_COST_UNREST"
         ],
         "failure": [
           "CNS_FAILURE_SPIRAL",
@@ -273,10 +274,12 @@
       ],
       "consequence_pools": {
         "cost": [
-          "CNS_COST_DEBT"
+          "CNS_COST_DEBT",
+          "CNS_COST_UNREST"
         ],
         "failure": [
-          "CNS_FAILURE_SPIRAL"
+          "CNS_FAILURE_SPIRAL",
+          "CNS_OATH_BROKEN"
         ],
         "decisive_bonus": [
           "CNS_DECISIVE_RENOWN"
@@ -434,10 +437,12 @@
       ],
       "consequence_pools": {
         "cost": [
-          "CNS_COST_UNREST"
+          "CNS_COST_UNREST",
+          "CNS_COST_DEBT"
         ],
         "failure": [
-          "CNS_FAILURE_SPIRAL"
+          "CNS_FAILURE_SPIRAL",
+          "CNS_OATH_BROKEN"
         ],
         "decisive_bonus": [
           "CNS_DECISIVE_RENOWN"
@@ -577,10 +582,12 @@
       ],
       "consequence_pools": {
         "cost": [
-          "CNS_COST_UNREST"
+          "CNS_COST_UNREST",
+          "CNS_COST_DEBT"
         ],
         "failure": [
-          "CNS_FAILURE_SPIRAL"
+          "CNS_FAILURE_SPIRAL",
+          "CNS_OATH_BROKEN"
         ],
         "decisive_bonus": [
           "CNS_DECISIVE_RENOWN"
@@ -649,10 +656,12 @@
       ],
       "consequence_pools": {
         "cost": [
-          "CNS_COST_UNREST"
+          "CNS_COST_UNREST",
+          "CNS_COST_DEBT"
         ],
         "failure": [
-          "CNS_FAILURE_SPIRAL"
+          "CNS_FAILURE_SPIRAL",
+          "CNS_OATH_BROKEN"
         ],
         "decisive_bonus": [
           "CNS_DECISIVE_RENOWN"
