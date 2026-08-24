@@ -1243,6 +1243,12 @@ def check_objectives_are_shareable(
             )
         for key in ("region_id", "tension_id", "other_entity_id"):
             if key in condition:
+                # `$any` non nomina nessuno: e' la forma generica che permette a
+                # un obiettivo condiviso di chiedere un'alleanza senza sapere
+                # con chi (D-255). Ogni altro nome resta vietato per la ragione
+                # di sempre: esiste solo in una Chronicle.
+                if key == "other_entity_id" and str(condition[key]) == "$any":
+                    continue
                 report.fail(
                     where,
                     f"la clausola nomina `{key}` = «{condition[key]}»: un "

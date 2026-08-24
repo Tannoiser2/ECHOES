@@ -123,7 +123,9 @@ func _destiny(entity_id: String, session: RefCounted) -> Dictionary:
 ## Victory, Victory before Triumph - which is why this is a list in order and not
 ## a pile. Everything already held is dropped: there is nothing to play for in a
 ## clause that is already true.
-func _open_levels(entity_id: String, session: RefCounted) -> Array:
+func _open_levels(
+	entity_id: String, session: RefCounted, with_objectives: bool = true
+) -> Array:
 	var destiny: Dictionary = _destiny(entity_id, session)
 	if destiny.is_empty():
 		return []
@@ -133,6 +135,22 @@ func _open_levels(entity_id: String, session: RefCounted) -> Array:
 		# Il livello si giudica sulla lista vera e si gioca su quella appiattita.
 		if not session.destinies.conditions.all_hold(conditions, {"self": entity_id}):
 			out.append(_flat(conditions))
+	# **E in fondo alla scala, gli obiettivi** ([D-255](DECISIONS.md#d-255)).
+	#
+	# D-222 aveva messo gli obiettivi dentro `_conditions()` — nove letture
+	# passano di li' — e la nota diceva «da qui l'obiettivo entra nella scelta
+	# dell'azione». Non era vero: la scelta dell'azione non legge `_conditions`,
+	# legge **questa** funzione, e questa funzione tornava soltanto i gradini del
+	# Destino. Gli obiettivi entravano nel voto al Consiglio e nella scelta delle
+	# carte, e restavano fuori dall'unico posto che decide se un seggio si alza.
+	#
+	# Stanno in fondo e non in cima perche' il Destino e' cio' che rende una casa
+	# se stessa: si gioca il primo gradino che chiede qualcosa, e se non chiede
+	# niente si va oltre — che e' il contratto di `_nearest_demanding` da D-047.
+	# Prima di questa riga, «si va oltre» finiva nel vuoto.
+	var wanted: Array = _objective_conditions(entity_id, session)
+	if with_objectives and not wanted.is_empty():
+		out.append(wanted)
 	# Everything already holds: defend the whole ladder.
 	return [_conditions(entity_id, session)] if out.is_empty() else out
 
@@ -150,9 +168,11 @@ func _open_levels(entity_id: String, session: RefCounted) -> Array:
 ## So the rule is: play the nearest rung that gives you something to do, and if
 ## it gives you nothing, reach past it. `wants` is the test - it takes a rung and
 ## returns what that rung asks for.
-func _nearest_demanding(entity_id: String, session: RefCounted, wants: Callable) -> Dictionary:
+func _nearest_demanding(
+	entity_id: String, session: RefCounted, wants: Callable, ladder: Array = []
+) -> Dictionary:
 	var fallback: Dictionary = {}
-	for conditions in _open_levels(entity_id, session):
+	for conditions in (ladder if not ladder.is_empty() else _open_levels(entity_id, session)):
 		var asked: Dictionary = wants.call(conditions as Array)
 		if not asked.is_empty():
 			return asked
@@ -169,18 +189,41 @@ func _nearest_demanding(entity_id: String, session: RefCounted, wants: Callable)
 ##     "I need that Confluence to actually happen", which means pushing the
 ##     Tension that opens it *up* to its threshold.
 func _tension_goals(entity_id: String, session: RefCounted) -> Dictionary:
-	return _nearest_demanding(
+	var goals: Dictionary = _nearest_demanding(
 		entity_id,
 		session,
-		func(live: Array) -> Dictionary: return _goals_of(entity_id, session, live)
+		func(live: Array) -> Dictionary: return _goals_of(entity_id, session, live),
+		_open_levels(entity_id, session, false)
 	)
+	# **Un obiettivo non convoca il mondo** ([D-255](DECISIONS.md#d-255)).
+	#
+	# Gli obiettivi entrano nella scala per far muovere, rivendicare e forgiare,
+	# e per quelli la scala basta. Sulle Tensioni no: `_needed_confluences`
+	# spinge in alto **qualunque** questione il cui Consiglio potrebbe produrre
+	# la Conseguenza che serve, e un obiettivo privato che apre Consigli cambia
+	# la forma dell'anno per tutti. Misurato: la Chronicle 4 passava a nove
+	# Consigli in due anni su dodici, sopra il limite duro di otto.
+	#
+	# Quindi dagli obiettivi si leggono le Tensioni **nominate**, non quelle
+	# dedotte: `tension_count` dice «tienine due alte» e si obbedisce; una
+	# clausola sulle pietre non diventa una convocazione.
+	var from_objectives: Dictionary = _goals_of(
+		entity_id, session, _objective_conditions(entity_id, session), false
+	)
+	for tension_id in from_objectives:
+		if not goals.has(str(tension_id)):
+			goals[str(tension_id)] = int(from_objectives[str(tension_id)])
+	return goals
 
 
 ## What one rung of the ladder asks of the Tensions.
-func _goals_of(entity_id: String, session: RefCounted, live: Array) -> Dictionary:
+func _goals_of(
+	entity_id: String, session: RefCounted, live: Array, may_convene: bool = true
+) -> Dictionary:
 	var goals: Dictionary = {}
-	for tension_id in _needed_confluences(entity_id, session, live):
-		goals[str(tension_id)] = 1
+	if may_convene:
+		for tension_id in _needed_confluences(entity_id, session, live):
+			goals[str(tension_id)] = 1
 
 	for condition in live:
 		if str(condition.get("type", "")) != "tension_limit":
@@ -194,7 +237,83 @@ func _goals_of(entity_id: String, session: RefCounted, live: Array) -> Dictionar
 			goals[tension_id] = -1
 		elif condition.has("min"):
 			goals[tension_id] = 1
+
+	# **La clausola che non nomina nessuno** ([D-255](DECISIONS.md#d-255)).
+	#
+	# `tension_limit` dice *quale* questione, e un obiettivo del mazzo comune non
+	# lo puo' sapere. `tension_count` dice soltanto **quante**, e sta al seggio
+	# scegliere su quali spendere le Occasioni: le piu' vicine al traguardo, che
+	# sono anche le piu' economiche.
+	#
+	# Senza questa lettura la clausola sarebbe muta due volte: il dato la
+	# chiede, il punteggio la conta a fine anno, e nessuno al tavolo si alza per
+	# prenderla. E' il difetto misurato in D-254 riprodotto in piccolo — mosse
+	# legali, e nessuna che serva.
+	for condition in live:
+		if str(condition.get("type", "")) != "tension_count":
+			continue
+		if session.destinies.conditions.holds(condition, {}):
+			continue
+		for tension_id in _tensions_to_shift(condition, session):
+			var wanted: int = int((tension_id as Array)[1])
+			var id: String = str((tension_id as Array)[0])
+			if not goals.has(id):
+				goals[id] = wanted
 	return goals
+
+
+## Quali questioni muovere, e da che parte, perche' una `tension_count` diventi
+## vera — le piu' vicine alla soglia per prime.
+##
+## Ne nomina **esattamente quante ne mancano**, non una di piu'.
+##
+## La prima stesura ne nominava una di scorta, per non lasciare il piano in mano
+## a chi spinge dall'altra parte. Misurato: la Chronicle 4 passava da otto
+## Consigli a nove in due anni su dodici, cioe' fuori dal limite duro che il
+## committente ha messo alla forma dell'anno. La scorta la paga il tavolo.
+func _tensions_to_shift(condition: Dictionary, session: RefCounted) -> Array:
+	var above: bool = condition.has("at_or_above")
+	var bar: int = int(condition.get("at_or_above", condition.get("at_or_below", 0)))
+	var direction: int = 1 if above else -1
+	var missing: Array = []   # [id, valore] di quelle che non contano ancora
+	var counted: int = 0
+	for tension_id in _sorted(session.world["tensions"].keys()):
+		var id: String = str(tension_id)
+		var value: int = session.tensions.value(id)
+		var inside: bool = value >= bar if above else value <= bar
+		if inside:
+			counted += 1
+		else:
+			missing.append([id, value])
+	# Se la clausola chiede un tetto invece di un minimo, il verso si rovescia:
+	# «non piu' di due alte» si serve abbassando quelle alte.
+	if condition.has("max") and not condition.has("min"):
+		var over: Array = []
+		if counted <= int(condition["max"]):
+			return []
+		for tension_id in _sorted(session.world["tensions"].keys()):
+			var id: String = str(tension_id)
+			var value: int = session.tensions.value(id)
+			var inside: bool = value >= bar if above else value <= bar
+			if inside:
+				over.append([id, -direction])
+		return over
+	var short: int = int(condition.get("min", 1)) - counted
+	if short <= 0:
+		return []
+	# Le piu' vicine per prime: salendo, la piu' alta fra quelle basse; scendendo,
+	# la piu' bassa fra quelle alte.
+	missing.sort_custom(func(a: Variant, b: Variant) -> bool:
+		if direction > 0:
+			return int((a as Array)[1]) > int((b as Array)[1])
+		return int((a as Array)[1]) < int((b as Array)[1])
+	)
+	var out: Array = []
+	for entry in missing:
+		out.append([str((entry as Array)[0]), direction])
+		if out.size() >= short:
+			break
+	return out
 
 
 ## Which Tensions this Entity needs to bring to a head, because the only thing

@@ -24,7 +24,7 @@ const KNOWN: Array = [
 	"control_count", "state_tag_present", "state_tag_absent", "asset_threshold",
 	"entity_alive", "relation_state", "tension_limit", "discovery_count",
 	"region_presence", "promise_kept", "promise_broken", "structure_count",
-	"scar_count", "any_of", "some_of", "leads_in",
+	"scar_count", "any_of", "some_of", "leads_in", "tension_count",
 ]
 
 
@@ -93,6 +93,11 @@ func _no_local_names(condition: Dictionary, objective_id: String) -> void:
 			"%s: una clausola del pool si risolve su chi la pesca" % [objective_id]
 		)
 	for key in ["region_id", "tension_id", "other_entity_id"]:
+		# `$any` non nomina nessuno: e' la forma generica che lascia a un
+		# obiettivo condiviso di chiedere un'alleanza senza sapere con chi
+		# ([D-255](DECISIONS.md#d-255)). Ogni altro nome resta vietato.
+		if key == "other_entity_id" and str(condition.get(key, "")) == "$any":
+			continue
 		assert_false(
 			condition.has(key),
 			"%s: la clausola nomina `%s`, che esiste in una Chronicle sola" % [objective_id, key]

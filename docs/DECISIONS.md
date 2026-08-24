@@ -10,6 +10,140 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-255 — Un obiettivo deve chiedere piu' di quanto il mondo dia da solo
+
+**implemented in 0.1.217** — prima cura di ISSUES 68, che resta aperta
+
+[D-254](#d-254) ha isolato la causa maggiore dei «passa» e non l'ha curata: il
+**64,9%** di chi non faceva niente aveva **quindici mosse legali e sei carte in
+mano**. Non gli mancava il permesso, gli mancava la ragione. Le strade erano tre
+— un costo per il passare, un premio per il muovere, obiettivi che chiedano piu'
+di quanto il mondo dia da solo — e l'autore ha scelto la terza.
+
+**Il numero che mancava.** La ragione, in questo gioco, sta scritta in un posto
+solo: gli obiettivi pescati, perche' l'anno si vince contandoli
+([D-198](#d-198)). Nessuna sonda pero' misurava **quanto rende giocare**.
+`godot/cli/run_asking_probe.gd` gioca ogni anno **due volte con lo stesso seme**:
+una col tavolo vero, una con un **tavolo di pietra** che non spende mai
+un'Occasione — delega tutto il resto, cosi' il Consiglio si apre lo stesso,
+perche' il Consiglio non e' un'Occasione ma l'orologio del mondo.
+
+Su 100 anni, prima di toccare niente:
+
+| | |
+|---|---|
+| obiettivi avverati **giocando** | 465 su 1.200 |
+| obiettivi avverati **stando fermi** | **470 su 1.200** |
+| quanto rende giocare | **−1,1%** |
+| avverati che erano gia' veri all'apertura | **43,0%** |
+
+**Il tavolo di pietra ne avverava piu' di quello che giocava.** Dodici obiettivi
+su quindici rendevano quanto o piu' stando fermi, e non per caso: erano scritti
+in tre forme che il mondo serve da solo.
+
+1. **Assenze.** «Non piu' di due cicatrici», «nessuna domanda lasciata aperta»:
+   **vere all'apertura nel 100% dei casi**, e ogni azione poteva solo romperle.
+   Non erano traguardi, erano multe.
+2. **Scorte.** «Cinque carte in mano», «due Sapere», «due Legami»: il rubinetto
+   riempie la mano e spendere la svuota, quindi accumulare **e'** passare. «Le
+   Mani Piene» si avverava 79 volte su 81 col tavolo di pietra.
+3. **Roba gia' in piedi.** «Almeno una struttura sua»: vera all'apertura nel
+   **95%** dei casi, perche' le case partono murate.
+
+**Cosa e' cambiato nei dati.** Sei obiettivi riscritti e uno nuovo, e ogni
+riscrittura aggiunge una clausola che il mondo non muove da solo:
+
+| obiettivo | prima | adesso |
+|---|---|---|
+| Un Mondo che si Puo' Ancora Usare | ≤2 cicatrici | ≤2 cicatrici **e almeno una scoperta** |
+| Nessuna Domanda Lasciata Aperta | nessuna aperta | nessuna aperta **e non piu' di 5 carte in mano** |
+| Le Mani Piene | ≥5 carte in mano | **piu' carte di ogni altra casa** — che e' quello che la sua prosa diceva gia' |
+| Le Cose Scritte | 2 Sapere in mano | 2 Sapere **e almeno una scoperta** |
+| Qualcosa che Resta in Piedi | ≥1 struttura | **≥2 strutture** |
+| Il Muro che Tiene | ≥1 presidio | ≥1 presidio **e 2 Regioni controllate** |
+| Le Corde che Tengono | 2 Legami in mano | 1 Legame **e un'alleanza con qualcuno** |
+| **Qualcosa Deve Rompersi** *(nuovo)* | — | **due questioni portate a 4 o piu'** |
+
+**Due clausole nuove nel vocabolario**, e nascono dalla stessa mancanza. Contando
+le clausole di tutti gli obiettivi si vedeva il buco a occhio nudo: **INFLUENZARE
+non compariva in nessuna**, e FORGIARE nemmeno. Il verbo che i seggi volevano
+dire nel 79% delle intenzioni mute non aveva **un solo obiettivo che lo
+chiedesse**.
+
+- **`tension_count`** — «quante questioni stanno sopra (o sotto) un valore».
+  `tension_limit` nomina la Tensione, e un obiettivo del mazzo comune non la puo'
+  nominare: la Chronicle pesca le sue da un pool. Contare senza nominare si
+  scrive una volta per tutte le Chronicle.
+- **`relation_state` con `other_entity_id: "$any"`** — «alleato con qualcuno, non
+  importa con chi». Stessa ragione, stesso buco.
+
+**La sonda ha corretto due volte l'autore, e questo e' il punto della sonda.** La
+prima stesura dell'obiettivo nuovo chiedeva di **tenere basse** tre questioni:
+sembrava la cosa che INFLUENZARE serve, ed era **al contrario** — le questioni
+partono basse, e a tenerle basse basta che nessuno giochi. Misurato: **91% vero
+all'apertura, 38 su 43 col tavolo di pietra contro 12 giocando**. Il verso giusto
+e' l'altro. Alla seconda stesura «due presidi» e «mano quasi vuota» sono usciti
+**0 su 39** e **0 su 50**: non piu' regali, ma impossibili, che e' la malattia
+opposta e altrettanto muta.
+
+**E il cervello non sentiva niente di tutto questo.** [D-222](#d-222) aveva messo
+gli obiettivi in `_conditions()` — nove letture passano di li' — e la sua nota
+diceva «da qui l'obiettivo entra nella scelta dell'azione». **Non era vero.** La
+scelta dell'azione non legge `_conditions()`: legge `_open_levels()`, che tornava
+soltanto i gradini del Destino. Gli obiettivi entravano nel voto al Consiglio e
+nella scelta delle carte, e restavano fuori dall'unico posto che decide se un
+seggio si alza. Adesso stanno **in fondo alla scala**: si gioca il primo gradino
+che chiede qualcosa, e se il Destino non chiede niente si arriva agli obiettivi —
+che e' il contratto di `_nearest_demanding` da [D-047](#d-047), rimasto fino a
+oggi senza l'ultimo scalino.
+
+**Con un limite, e misurato.** Gli obiettivi fanno muovere, rivendicare e
+forgiare, ma **non convocano il mondo**: `_needed_confluences` spinge in alto
+qualunque questione il cui Consiglio potrebbe produrre la Conseguenza che serve,
+e un obiettivo privato che apre Consigli cambia la forma dell'anno per tutti. Con
+quella lettura accesa la Chronicle 4 passava a **nove Consigli in due anni su
+dodici**, sopra il limite duro di otto. Dagli obiettivi si leggono quindi le
+Tensioni **nominate**, non quelle dedotte.
+
+**La trappola di GDScript, per la terza volta.** Aggiungere un parametro con
+valore di default a `_open_levels` ha rotto la firma dell'override in
+`table_of_characters.gd`: il file non compila, `Characters.deal` non esiste piu',
+e la sonda **si e' bloccata invece di fallire** — cinque minuti di orologio e
+cinque secondi di CPU. Due misure prese in quello stato erano da buttare, e le ho
+rifatte. Il cancello `SCRIPT ERROR` di [D-224](#d-224) l'avrebbe presa; la sonda
+non ci passa.
+
+**I numeri, dopo.**
+
+| 100 semi, tavolo misto | prima | dopo |
+|---|---|---|
+| quanto rende giocare | −1,1% | **+86,2%** |
+| avverati gia' veri all'apertura | 43,0% | **14,0%** |
+| turni «passa» | 85,7% | **82,8%** |
+| «nessuna mossa gli serviva» | 64,9% | **58,7%** |
+
+A tavolo uniforme: **+72,4%**, 12,0% veri all'apertura.
+
+**Cosa resta negativo, e perche' non e' un difetto.** Tre obiettivi rendono
+ancora meno giocando: sono i **contesi** (`leads_in`), e lo sono **per
+costruzione** — li prende un seggio alla volta, quindi il totale e' fisso e con
+quattro seggi fermi lo vince chi partiva avanti. Il metro del tavolo di pietra
+misura una popolazione, e su una somma fissa non ha niente da misurare. Scritto
+qui perche' la tabella non venga letta come una lista di cose da aggiustare.
+
+**Non basta, ed e' scritto.** Il 58,7% resta la fetta maggiore, e le intenzioni
+che la mano non sa dire **crescono** da 2.152 a 2.422: e' la faccia buona del
+difetto — il cervello vuole piu' spesso — ma dice anche dove finisce questa
+decisione e dove comincia la prossima, che e' **il mazzo**. ISSUES 68 resta
+aperta.
+
+**Il cancello nuovo.** `test_every_verb_has_a_reason.gd` va rosso il giorno che
+un verbo del gioco resta senza nessun obiettivo che lo chieda. Non misura niente
+— i numeri stanno nella sonda — ma la riga del confine la tiene.
+
+Suite **500 prove / 10.809 asserzioni** verdi, cancelli verdi, `run_playtest.gd
+--runs=100 --seed=7000` **0 seggi bloccati su 8** ai due tavoli.
+
 ## D-254 — Cosa era disponibile e non e' stato preso
 
 **implemented in 0.1.216** — apre ISSUES 68

@@ -5,6 +5,46 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.217 — Un obiettivo deve chiedere più di quanto il mondo dia da solo (D-255)
+
+- **`run_asking_probe.gd`**: ogni anno giocato **due volte con lo stesso seme** —
+  una col tavolo vero, una con un **tavolo di pietra** che non spende mai
+  un'Occasione. Il numero che nessuno aveva: **quanto rende giocare**.
+- **Il tavolo di pietra ne avverava di più**: 470 obiettivi contro 465, cioè
+  **−1,1%**. E il **43,0%** di quelli avverati era già vero all'apertura, prima
+  che qualcuno posasse una pedina.
+- **Sei obiettivi riscritti e uno nuovo.** Le tre forme che il mondo serviva da
+  solo — le assenze («non più di due cicatrici», vera all'apertura nel 100% dei
+  casi), le scorte («cinque carte in mano»: accumulare **è** passare) e la roba
+  già in piedi («almeno una struttura», vera nel 95%) — adesso chiedono anche
+  qualcosa che nessuno regala.
+- **`tension_count`** e **`relation_state` con `$any`**: due clausole nuove nate
+  dallo stesso buco. Contando le clausole di tutti gli obiettivi, **INFLUENZARE
+  non compariva in nessuna** e FORGIARE nemmeno — il verbo che i seggi volevano
+  dire nel 79% delle intenzioni mute non aveva un solo obiettivo che lo chiedesse.
+- **«Qualcosa Deve Rompersi»**, il primo obiettivo che chiede di alzare una
+  questione invece di tenerla giù. La prima stesura chiedeva il contrario ed era
+  al rovescio: le questioni **partono** basse, e a tenerle basse basta che
+  nessuno giochi — misurato, 38 su 43 col tavolo di pietra contro 12 giocando.
+- **Gli obiettivi arrivano alla scelta dell'azione.** D-222 li aveva messi in
+  `_conditions()` scrivendo che «da qui l'obiettivo entra nella scelta
+  dell'azione»: non era vero. Quella scelta legge `_open_levels()`, che tornava
+  solo i gradini del Destino. Adesso gli obiettivi sono l'ultimo scalino — ma
+  **non convocano Consigli**: con quella lettura accesa la Chronicle 4 passava a
+  nove Consigli in due anni su dodici, sopra il limite duro di otto.
+- **I numeri**: quanto rende giocare da **−1,1% a +86,2%** (uniforme +72,4%),
+  avverati già veri all'apertura dal **43,0% al 14,0%**, turni «passa» dall'**85,7%
+  all'82,8%**, «nessuna mossa gli serviva» dal **64,9% al 58,7%**.
+- **Non basta, ed è scritto**: [ISSUES 68](docs/ISSUES.md#68) resta aperta, e le
+  intenzioni che la mano non sa dire **crescono** da 2.152 a 2.422 — il cervello
+  vuole più spesso, e il fronte successivo è il mazzo.
+- **`test_every_verb_has_a_reason.gd`**: va rosso il giorno che un verbo del gioco
+  resta senza nessun obiettivo che lo chieda.
+- Suite **500 prove / 10.809 asserzioni** verdi, cancelli verdi, playtest 100 semi
+  **0 seggi bloccati su 8** ai due tavoli.
+
+---
+
 ## 0.1.216 — Cosa era disponibile e non è stato preso (D-254)
 
 - **`run_pass_probe.gd`**: un testimone accanto a chi decide. Quando la risposta è
