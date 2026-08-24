@@ -888,6 +888,220 @@
         "delta": 1
       },
       "echo_title_template": "Il Consiglio di Chi Resta"
+    },
+    {
+      "id": "CNF_ANY_TERRITORY",
+      "applies_to_domain": "TERRITORY",
+      "title": "Il Consiglio del Confine",
+      "description": "Non importa di quale terra si parli. Prima o poi qualcuno chiede, ad alta voce, di chi e' il posto e chi lo tiene. Questo Consiglio serve qualunque questione di territorio: e' contenuto di biblioteca, non di questa Chronicle.",
+      "questions": [
+        {
+          "id": "Q_ANY_WHO_HOLDS",
+          "text": "$in_region, chi tiene il posto quando la voce si spegne?",
+          "eligibility": []
+        },
+        {
+          "id": "Q_ANY_WHOSE_LAW",
+          "text": "Quale legge vale $in_region: quella scritta, o quella di chi c'e'?",
+          "eligibility": [
+            {
+              "type": "tension_limit",
+              "tension_id": "$tension",
+              "min": 4,
+              "label": "La questione e' al limite"
+            }
+          ]
+        }
+      ],
+      "propositions": [
+        {
+          "id": "P_ANY_HOLD",
+          "question_id": "Q_ANY_WHO_HOLDS",
+          "text": "$proponent lo tiene, e lo dica forte: chi sta li' risponde a lui.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_SEAT_CLAIMED"
+          ],
+          "echo_summary": "$proponent prese il posto $of_region, e nessuno oso' contarlo due volte.",
+          "echo_summaries": {
+            "DECISIVE_SUCCESS": "$proponent prese il posto $of_region, e il conto torno' al primo colpo.",
+            "FAILURE": "$proponent volle il posto $of_region, e il posto non volle lui."
+          }
+        },
+        {
+          "id": "P_ANY_SPLIT",
+          "question_id": "Q_ANY_WHO_HOLDS",
+          "text": "Si divida l'uso, non il titolo: ognuno il suo pezzo, e i conti a fine anno.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_SHARED_BURDEN"
+          ],
+          "echo_summary": "L'uso $of_region fu diviso senza dividere il titolo, e resse quanto reggono le cose divise."
+        },
+        {
+          "id": "P_ANY_WALK_AWAY",
+          "question_id": "Q_ANY_WHOSE_LAW",
+          "text": "Nessuna legge: si lascia il posto a chi se lo vuole caricare addosso.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_ABANDONED"
+          ],
+          "echo_summary": "Nessuna legge fu scritta per $the_region, e il posto resto' a chi ci dormiva.",
+          "echo_summaries": {
+            "FAILURE": "Nessuno volle scrivere la legge $of_region, e nessuno volle nemmeno andarsene."
+          }
+        }
+      ],
+      "condition_clauses": [
+        {
+          "id": "C_ANY_WITNESSED_LINE",
+          "text": "...purché il confine sia camminato alla presenza di $rival, pietra per pietra.",
+          "effects": [
+            {
+              "type": "SET_GLOBAL_TAG",
+              "target": {
+                "kind": "world",
+                "id": "WORLD"
+              },
+              "payload": {
+                "tag": "list_witnessed"
+              }
+            },
+            {
+              "type": "ADJUST_TENSION",
+              "target": {
+                "kind": "tension",
+                "id": "$tension"
+              },
+              "payload": {
+                "delta": -1
+              }
+            }
+          ]
+        }
+      ],
+      "consequence_pools": {
+        "cost": [
+          "CNS_COST_UNREST"
+        ],
+        "failure": [
+          "CNS_FAILURE_SPIRAL"
+        ],
+        "decisive_bonus": [
+          "CNS_DECISIVE_RENOWN"
+        ]
+      },
+      "ripple": {
+        "targets": [
+          "TEN_SUCCESSION"
+        ],
+        "delta": 1
+      }
+    },
+    {
+      "id": "CNF_ANY_RESOURCE",
+      "applies_to_domain": "RESOURCE",
+      "title": "Il Consiglio del Prezzo",
+      "description": "Non importa quale sia la cosa che rende. Prima o poi qualcuno chiede, ad alta voce, chi paga e chi incassa. Questo Consiglio serve qualunque questione di risorse: e' contenuto di biblioteca, non di questa Chronicle.",
+      "questions": [
+        {
+          "id": "Q_ANY_WHO_PAYS",
+          "text": "$in_region, chi paga il prezzo di quello che rende?",
+          "eligibility": []
+        },
+        {
+          "id": "Q_ANY_WHO_KEEPS",
+          "text": "Chi tiene i conti di quello che passa $in_region — e chi li legge?",
+          "eligibility": [
+            {
+              "type": "tension_limit",
+              "tension_id": "$tension",
+              "min": 4,
+              "label": "La questione e' al limite"
+            }
+          ]
+        }
+      ],
+      "propositions": [
+        {
+          "id": "P_ANY_PRICE",
+          "question_id": "Q_ANY_WHO_PAYS",
+          "text": "Si metta un prezzo, e $proponent lo riscuota: quello che passa, paga.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_TOLL_ESTABLISHED"
+          ],
+          "echo_summary": "$proponent mise il prezzo su quello che passava, e il prezzo resto' anche quando lui non c'era.",
+          "echo_summaries": {
+            "FAILURE": "$proponent volle mettere il prezzo, e il prezzo lo pago' lui."
+          }
+        },
+        {
+          "id": "P_ANY_OPEN_LEDGER",
+          "question_id": "Q_ANY_WHO_KEEPS",
+          "text": "Si aprano i registri: che ognuno veda quanto rende, e a chi.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_LEDGER_OPENED"
+          ],
+          "echo_summary": "I registri furono aperti, e piu' d'uno avrebbe preferito di no."
+        },
+        {
+          "id": "P_ANY_SPREAD_COST",
+          "question_id": "Q_ANY_WHO_PAYS",
+          "text": "Il costo si divide in parti uguali, e nessuno ne esce bene.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_SHARED_BURDEN"
+          ],
+          "echo_summary": "Il costo $of_region fu diviso in parti uguali, e fu il massimo che quel consiglio riusci' a fare."
+        }
+      ],
+      "condition_clauses": [
+        {
+          "id": "C_ANY_PUBLIC_COUNT",
+          "text": "...purché il conto si faccia in piazza, e $rival possa contare per secondo.",
+          "effects": [
+            {
+              "type": "SET_GLOBAL_TAG",
+              "target": {
+                "kind": "world",
+                "id": "WORLD"
+              },
+              "payload": {
+                "tag": "distribution_audited"
+              }
+            },
+            {
+              "type": "ADJUST_TENSION",
+              "target": {
+                "kind": "tension",
+                "id": "$tension"
+              },
+              "payload": {
+                "delta": -1
+              }
+            }
+          ]
+        }
+      ],
+      "consequence_pools": {
+        "cost": [
+          "CNS_COST_DEBT"
+        ],
+        "failure": [
+          "CNS_FAILURE_SPIRAL"
+        ],
+        "decisive_bonus": [
+          "CNS_DECISIVE_RENOWN"
+        ]
+      },
+      "ripple": {
+        "targets": [
+          "TEN_DEBT"
+        ],
+        "delta": 1
+      }
     }
   ]
 }

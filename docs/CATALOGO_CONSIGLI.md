@@ -36,6 +36,35 @@ Ogni generazione trova sotto i piedi qualcosa che non ha messo lei, e deve decid
 
 ---
 
+## Il Consiglio del Prezzo
+
+Non importa quale sia la cosa che rende. Prima o poi qualcuno chiede, ad alta voce, chi paga e chi incassa. Questo Consiglio serve qualunque questione di risorse: e' contenuto di biblioteca, non di questa Chronicle.
+
+### Si metta un prezzo, e chi propone lo riscuota: quello che passa, paga.
+
+> Nella Regione di cui si discute, chi paga il prezzo di quello che rende?
+
+- **Se passa — Il Pedaggio Scritto:** la Regione discussa cambia padrone · si alza una costruzione dove si discute · la domanda in gioco sale
+
+### Si aprano i registri: che ognuno veda quanto rende, e a chi.
+
+> Chi tiene i conti di quello che passa nella Regione di cui si discute — e chi li legge?
+
+- **Se passa — Il Registro Aperto:** il mondo registra: i conti sono pubblici · una casa porta addosso: scoperta: il registro · la domanda in gioco sale
+
+### Il costo si divide in parti uguali, e nessuno ne esce bene.
+
+> Nella Regione di cui si discute, chi paga il prezzo di quello che rende?
+
+- **Se passa — Il Peso Diviso:** la Regione discussa non e' piu' affamata · la Regione discussa non e' piu' razionata · il mondo registra: il peso e' stato diviso · la domanda in gioco sale
+
+**Le clausole che si possono attaccare:**
+
+- ...purché il conto si faccia in piazza, e il rivale possa contare per secondo.
+  - se qualificata: il mondo registra: la distribuzione e' stata contata · la domanda in gioco sale
+
+---
+
 ## Il Consiglio di Chi Resta
 
 Non importa quale sia la cosa che manca. Prima o poi qualcuno chiede, ad alta voce, chi decide a chi non ne tocca. Questo Consiglio serve qualunque crisi di sopravvivenza: è contenuto di biblioteca, non di questa Chronicle.
@@ -71,6 +100,35 @@ Non importa quale sia la cosa che manca. Prima o poi qualcuno chiede, ad alta vo
   - se qualificata: il mondo registra: la lista e' stata letta davanti a testimoni · la domanda in gioco sale
 - ...purché chi se ne va possa tornare quando torna l'acqua.
   - se qualificata: la Regione discussa non e' piu' abbandonata · il mondo registra: il ritorno e' stato promesso
+
+---
+
+## Il Consiglio del Confine
+
+Non importa di quale terra si parli. Prima o poi qualcuno chiede, ad alta voce, di chi e' il posto e chi lo tiene. Questo Consiglio serve qualunque questione di territorio: e' contenuto di biblioteca, non di questa Chronicle.
+
+### Chi propone lo tiene, e lo dica forte: chi sta li' risponde a lui.
+
+> Nella Regione di cui si discute, chi tiene il posto quando la voce si spegne?
+
+- **Se passa — Il Seggio Preso:** la Regione discussa cambia padrone · il rapporto con chi tocca cambia di un passo · la Regione discussa diventa inquieta · la domanda in gioco sale · e resta una cicatrice: Nella sala del consiglio c'è una sedia più alta delle altre, e nessuno l'ha più tolta.
+
+### Si divida l'uso, non il titolo: ognuno il suo pezzo, e i conti a fine anno.
+
+> Nella Regione di cui si discute, chi tiene il posto quando la voce si spegne?
+
+- **Se passa — Il Peso Diviso:** la Regione discussa non e' piu' affamata · la Regione discussa non e' piu' razionata · il mondo registra: il peso e' stato diviso · la domanda in gioco sale
+
+### Nessuna legge: si lascia il posto a chi se lo vuole caricare addosso.
+
+> Quale legge vale nella Regione di cui si discute: quella scritta, o quella di chi c'e'?
+
+- **Se passa — Il Luogo Abbandonato:** la Regione discussa cambia padrone · perdi la tua presenza dove si discute · la Regione discussa diventa abbandonata · la domanda in gioco sale · il tuo rivale entra dove si discute · una costruzione sale o scende di grado · e resta una cicatrice: Le case in piedi e le porte aperte, e dentro niente che valga la pena portare via.
+
+**Le clausole che si possono attaccare:**
+
+- ...purché il confine sia camminato alla presenza di il rivale, pietra per pietra.
+  - se qualificata: il mondo registra: la lista e' stata letta davanti a testimoni · la domanda in gioco sale
 
 ---
 
@@ -439,4 +497,4 @@ I canali si possono riaprire in due stagioni. Il problema non è mai stato la te
 
 ---
 
-*10 Consigli, 43 proposte, 19 clausole.*
+*12 Consigli, 49 proposte, 21 clausole.*

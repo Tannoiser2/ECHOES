@@ -178,6 +178,11 @@ può dimostrare con una misura, non con una sensazione.
 > possibili in 100 semi, e l'app si apre da lì. Restano di questa fase la
 > **regola del luogo** (agire in montagna ≠ agire in città) e le **quattro
 > tessere nuove**, che sono materia d'autore (§4.4).
+>
+> **Le quattro tessere esistono da 0.1.227** ([D-265](DECISIONS.md#d-265)):
+> Porto Cinerino, Palude dei Canali, Isola Muta, Bosco dei Confini — 10
+> tessere, se ne pescano 6, ogni dominio su esattamente 5 così che ogni
+> mappa li porti tutti. Della fase resta la **regola del luogo**.
 
 ### PZ-3 — Le carte: ri-mirare 48, scriverne poche nuove
 

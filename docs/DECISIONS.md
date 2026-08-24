@@ -10,6 +10,110 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-265 — Dieci tessere, sessanta Tensioni, e la matematica che tiene i mazzetti vivi
+
+**implemented in 0.1.227** — parola del committente, sulla taglia del mondo
+
+Le richieste, testuali: *«Le tessere devono essere molte di più, e se ne
+pescano 6 [la taglia della prima mappa]. Il pool va deciso matematicamente in
+modo che i #tag delle zone siano equamente distribuiti. E i mazzetti delle
+tensioni devono essere molti di più: almeno 10 per tipo (60), in modo che ce
+ne sia almeno 1 per chronicle.»*
+
+**Le tessere: 10, se ne pescano 6.** Le sei di sempre più le **quattro di
+PZ-2** — Porto Cinerino, la Palude dei Canali, l'Isola Muta, il Bosco dei
+Confini — ognuna con biomi nuovi (MARSH, ISLAND), il suo disegno, e un **segno
+unico stampato** (`harbor`, `marsh`, `island`, `forest`) per la grammatica
+adattiva.
+
+**La matematica, che è il cuore:** i segni di zona meccanici sono i quattro
+domini (`domain:SURVIVAL/TERRITORY/RESOURCE/ANCIENT`). Ogni dominio sta su
+**esattamente 5 tessere su 10**: pescandone 6, le tessere che *non* portano un
+dominio sono al massimo 5 < 6, quindi **ogni dominio è sempre sul tavolo, su
+qualunque mappa** — non in media: sempre. L'invariante è tenuto da una guardia
+nuova (`check_a_drawn_map_bears_every_theme`), vista mordere su un difetto
+piantato.
+
+**Le Tensioni: 60, dieci per Tema.** Le 12 di sempre più **48 nuove scritte
+per intero** — titolo, apertura, inneschi, cure, presagio, fuochi — coi
+`focus_region_tags` distribuiti sulle dieci tessere. I Consigli sono coperti
+dai due template generici nuovi (**CNF_ANY_TERRITORY** «Il Consiglio del
+Confine» e **CNF_ANY_RESOURCE** «Il Consiglio del Prezzo», accanto ai due che
+c'erano). La regola che tiene i mazzetti vivi: **ogni Tema ha candidate a
+fuoco libero** — dominio garantito dalla matematica sopra, nessun segno di
+fuoco richiesto — quindi il suo mazzetto non è mai vuoto. Anche questa è
+guardia, non speranza.
+
+**La biblioteca e la mano (D-028, portata in fondo):** gli anni scritti
+(CHR_01-04) tengono la loro mano di 12 candidate e **non si muovono di un
+decimale** (100 semi: 4,62/4,63, 0 seggi bloccati su 8); la Prima Chronicle
+pesca da tutta la biblioteca.
+
+**I numeri, 100 semi di CHR_00:**
+
+| | 4 su 6 tessere, 12 Tensioni (D-264) | 6 su 10, 60 Tensioni |
+|---|---|---|
+| mappe diverse | 15 su 15 | **82** (su 210 possibili) |
+| anni diversi (per domande) | 88 | **100 su 100** |
+| Consigli | 3-6, media 4,61 | 3-6, media 4,24 |
+| mazzetti vuoti (100 semi × 6 Temi) | possibili (Terra) | **0 su 600** — minimo 4 carte |
+| partite non concluse | 0 | **0** |
+
+Nessuna partita uguale a un'altra, e il buco di Terra e Fede — una Tensione
+sola a testa, a verbale dal Punto Zero — **si chiude nei numeri**: dieci a
+testa, mai un mazzetto vuoto. La qualità d'autore delle 48 nuove resta
+materia di lettura del committente: sono scritte per essere riviste una a una,
+e ognuna è un dato che si può cambiare senza toccare il motore.
+
+**Di contorno, e dichiarato:** le carte stampano le fonti di pesca per
+famiglia e le tessere nuove sono fonti (la guardia delle fonti ha morso al
+primo colpo: 40 testi aggiornati alla verità nuova); i fogli d'export salgono
+a 41 con le dieci tessere; il BRIEF_ARTE ha le quattro tavole nuove.
+
+---
+
+## D-264 — Il mazzetto pieno: dentro ci sono tutte le Tensioni, e girare apre la questione
+
+**implemented in 0.1.226** — completa il disegno di D-261 sul tavolo pescato
+
+Le parole del committente in D-261 dicevano *«i mazzetti dei temi sono
+composti dalle tensioni»* — per intero, non solo dalle quattro aperte
+all'inizio. La Fase A l'aveva rimandato con la ragione scritta; il tavolo
+pescato di D-263 e' il posto dove il rinvio finisce.
+
+**La regola:** su una Chronicle che pesca le tessere (`region_pool`), il
+mazzetto di ogni Tema contiene **tutte le Tensioni del Tema che la mappa sa
+reggere** — il filtro e' lo stesso di D-263: dominio e segni di fuoco su una
+tessera uscita. **Girare la prima carta apre la questione**: se non era in
+gioco, entra — stato strutturale con la forma del setup, col valore
+d'apertura scritto sul dato, e una riga nel verbale («entra in gioco: il
+tavolo adesso se lo chiede»). Sul tavolo fisico e' esattamente quello che
+succede: la carta del mazzetto **e'** la scheda della questione, e girarla
+la mette sul tavolo.
+
+**Dichiarato, con la ragione:** la questione entrata a partita in corso non
+entra nel sacchetto della Deriva dell'anno — si scalda coi mazzetti e coi
+Consigli. E le **Chronicle scritte restano al mazzetto delle questioni in
+gioco**: il loro anno e' un anno d'autore, e i loro numeri non si sono mossi
+di un decimale (verificato sui 100 semi).
+
+**I numeri, 100 semi di CHR_00:**
+
+| | mazzetto delle aperte (D-263) | mazzetto pieno |
+|---|---|---|
+| carte nei mazzetti (seme 7000) | 4 | **10** |
+| Consigli | 3-6, media 4,32 | 3-6, media **4,61** |
+| partite non concluse | 0 | **0** |
+| mappe/tavoli/anni diversi | 15/52/88 | 15/52/88 |
+
+Le questioni che entrano girando danno all'anno piu' da dibattere — nella
+partita campione ne sono entrate tre — e il tetto dei due Consigli per Atto
+tiene la forma. Un Tema il cui mazzetto e' vuoto su questa mappa (la Terra,
+sul seme campione) non gira niente: e' il buco noto di Terra e Fede
+(ROADMAP §4.5) visto dal tavolo pescato, e resta materia d'autore.
+
+---
+
 ## D-263 — La Prima Chronicle: le tessere si pescano, e nessuno scrive lo scenario
 
 **implemented in 0.1.225** — Fase C della direzione del committente

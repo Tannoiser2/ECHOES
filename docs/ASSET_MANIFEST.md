@@ -111,7 +111,7 @@ family, 22 copies per family deck, 132 cards in the box (D-040).
 | ECH_THE_QUIET_SHAFT | Il Pozzo Zitto | TURN | RETURN | `echo.turn.the_quiet_shaft` |
 | ECH_THE_SHORT_YEAR | L'Anno Corto | TURN | TRANSFORMATION | `echo.turn.the_short_year` |
 
-## Region tiles (6)
+## Region tiles (10)
 | id | nome | biome | ruolo | slot | fonti Asset | art_prompt_key |
 |---|---|---|---|---|---|---|
 | REG_EREDAN | Eredan | CITY | PRIMARY | 4 | AUTHORITY, FORCE | `region.eredan` |
@@ -119,6 +119,10 @@ family, 22 copies per family deck, 132 cards in the box (D-040).
 | REG_MONTAGNE_ROSSE | Montagne Rosse | MOUNTAIN | PRIMARY | 3 | FORCE, BONDS | `region.montagne_rosse` |
 | REG_TERRE_NAHR | Terre Nahr | STEPPE | PRIMARY | 4 | AUTHORITY, PEOPLE | `region.terre_nahr` |
 | REG_VALLE_VERDE | Valle Verde | VALLEY | PRIMARY | 4 | PEOPLE, WEALTH | `region.valle_verde` |
+| REG_BOSCO_CONFINI | Il Bosco dei Confini | FOREST | SECONDARY | 3 | FORCE, PEOPLE | `region.bosco_confini` |
+| REG_ISOLA_MUTA | L'Isola Muta | ISLAND | SECONDARY | 2 | KNOWLEDGE, FORCE | `region.isola_muta` |
+| REG_PALUDE_CANALI | La Palude dei Canali | MARSH | SECONDARY | 3 | PEOPLE, KNOWLEDGE | `region.palude_canali` |
+| REG_PORTO_CINERINO | Porto Cinerino | COAST | SECONDARY | 4 | WEALTH, BONDS | `region.porto_cinerino` |
 | REG_STRADA_MERCANTI | Strada dei Mercanti | ROAD | SECONDARY | 4 | WEALTH, KNOWLEDGE | `region.strada_mercanti` |
 
 ## Entity cards (8)
@@ -157,23 +161,71 @@ family, 22 copies per family deck, 132 cards in the box (D-040).
 | DST_VETRO | Quello che Non si Deve Guardare | ENT_VETRO | L'Ordine tiene la sua casa | La custodia è un incarico, e la teca resta chiusa | E cosa ci sia dentro lo sa, e le gallerie sono ancora sue |
 | DST_VETRO_SHOWN | La Reliquia Mostrata | ENT_VETRO | L'Ordine tiene la sua casa | E l'ha mostrata lui | E la fede è diventata legge |
 
-## Tension tracks (12)
+## Tension tracks (60)
 | id | titolo | dominio | iniziale | soglia | visibilita | presagi |
 |---|---|---|---|---|---|---|
 | TEN_ASH | La Cenere che Sale | ANCIENT | 2 | 4 | VEILED | 1 |
 | TEN_AWAKENING | Il Risveglio | ANCIENT | 2 | 6 | VEILED | 2 |
+| TEN_BAD_GRAIN | Il Grano Guasto | SURVIVAL | 2 | 6 | OPEN | 1 |
+| TEN_BLACK_TOLLS | I Pedaggi Neri | RESOURCE | 2 | 6 | OPEN | 1 |
+| TEN_BOUNDARY_STONES | Le Pietre di Confine | TERRITORY | 2 | 6 | OPEN | 1 |
+| TEN_BURIALS | I Sepolti Senza Nome | ANCIENT | 2 | 6 | OPEN | 1 |
 | TEN_CHARTER | La Carta | TERRITORY | 2 | 7 | OPEN | 1 |
+| TEN_CLEARING | Il Disboscamento | RESOURCE | 2 | 6 | OPEN | 1 |
+| TEN_COUNCIL_SEATS | I Seggi del Consiglio | TERRITORY | 2 | 6 | OPEN | 1 |
+| TEN_COURIERS | Le Staffette | TERRITORY | 2 | 6 | OPEN | 1 |
 | TEN_DEBT | Il Debito | RESOURCE | 2 | 7 | OPEN | 1 |
+| TEN_DEEP_WATER | L'Acqua Fonda | ANCIENT | 2 | 6 | OPEN | 1 |
+| TEN_ECHOES_BELOW | Gli Echi nel Fondo | ANCIENT | 2 | 6 | OPEN | 1 |
+| TEN_EMPTY_NETS | Le Reti Vuote | SURVIVAL | 2 | 6 | OPEN | 1 |
+| TEN_ENCLOSURE | I Recinti | TERRITORY | 2 | 6 | OPEN | 1 |
+| TEN_FALLOW | La Terra Stanca | SURVIVAL | 2 | 6 | OPEN | 1 |
 | TEN_FAMINE | La Carestia | SURVIVAL | 3 | 6 | OPEN | 1 |
+| TEN_FERRY | Il Traghetto | RESOURCE | 2 | 6 | OPEN | 1 |
+| TEN_FLOOD | L'Acqua Alta | SURVIVAL | 2 | 6 | OPEN | 1 |
+| TEN_GUILD_WAR | La Guerra delle Gilde | RESOURCE | 2 | 6 | OPEN | 1 |
+| TEN_HERESY | La Parola Storta | TERRITORY | 2 | 6 | OPEN | 1 |
+| TEN_HOSTAGES | Gli Ostaggi di Corte | TERRITORY | 2 | 6 | OPEN | 1 |
+| TEN_ISLAND_SHRINE | Il Santuario dell'Isola | ANCIENT | 2 | 6 | OPEN | 1 |
+| TEN_ISLAND_SILENCE | Il Silenzio dell'Isola | ANCIENT | 2 | 6 | OPEN | 1 |
+| TEN_LANDLESS | I Braccianti | SURVIVAL | 2 | 6 | OPEN | 1 |
+| TEN_LAND_REGISTER | Il Catasto | TERRITORY | 2 | 6 | OPEN | 1 |
+| TEN_LEVY | La Leva | SURVIVAL | 2 | 6 | OPEN | 1 |
+| TEN_MARCHES | Le Marche di Confine | TERRITORY | 2 | 6 | OPEN | 1 |
+| TEN_MARSH_FEVER | La Febbre delle Paludi | SURVIVAL | 2 | 6 | OPEN | 1 |
 | TEN_NAMELESS | I Senza Città | SURVIVAL | 2 | 5 | VEILED | 1 |
+| TEN_OLD_CHANNELS | Le Vie di Prima | ANCIENT | 2 | 6 | OPEN | 1 |
+| TEN_OLD_GUARD | La Vecchia Guardia | TERRITORY | 2 | 6 | OPEN | 1 |
+| TEN_OLD_NAMES | I Nomi Vecchi | ANCIENT | 2 | 6 | OPEN | 1 |
+| TEN_PASTURE | Il Pascolo Conteso | TERRITORY | 2 | 6 | OPEN | 1 |
+| TEN_PILGRIMS | I Pellegrini | SURVIVAL | 2 | 6 | OPEN | 1 |
 | TEN_PLAGUE | La Febbre Bassa | SURVIVAL | 2 | 5 | OPEN | 2 |
+| TEN_PROPHECY | La Profezia Contata | ANCIENT | 2 | 6 | OPEN | 1 |
+| TEN_QUARANTINE | Il Cordone | SURVIVAL | 2 | 6 | OPEN | 1 |
+| TEN_REFUGEES | Chi Arriva da Fuori | SURVIVAL | 2 | 6 | OPEN | 1 |
+| TEN_REGENCY | La Reggenza | TERRITORY | 2 | 6 | OPEN | 1 |
 | TEN_RELIC | La Reliquia | ANCIENT | 2 | 6 | VEILED | 2 |
 | TEN_ROADS | Le Vie Interrotte | RESOURCE | 1 | 5 | VEILED | 2 |
+| TEN_SALT_FIELDS | I Campi di Sale | RESOURCE | 2 | 6 | OPEN | 1 |
+| TEN_SANCTUARY | Il Diritto d'Asilo | TERRITORY | 2 | 6 | OPEN | 1 |
+| TEN_SEALS | I Sigilli Falsi | RESOURCE | 2 | 6 | OPEN | 1 |
+| TEN_SILENT_BELLS | Le Campane Mute | TERRITORY | 2 | 6 | OPEN | 1 |
+| TEN_SILTED_CANALS | I Canali Interrati | RESOURCE | 2 | 6 | OPEN | 1 |
+| TEN_SLEEPERS | I Dormienti | ANCIENT | 2 | 6 | OPEN | 1 |
+| TEN_SMUGGLING | Il Contrabbando | RESOURCE | 2 | 6 | OPEN | 1 |
 | TEN_SUCCESSION | La Successione | TERRITORY | 2 | 6 | OPEN | 2 |
 | TEN_THIRST | I Pozzi Bassi | SURVIVAL | 1 | 5 | VEILED | 2 |
+| TEN_TITHE | La Decima | RESOURCE | 2 | 6 | OPEN | 1 |
+| TEN_TRIBUTE | Il Tributo | RESOURCE | 2 | 6 | OPEN | 1 |
+| TEN_UNEARTHED | Il Dissotterrato | ANCIENT | 2 | 6 | OPEN | 1 |
+| TEN_VOWS | I Voti Non Sciolti | ANCIENT | 2 | 6 | OPEN | 1 |
+| TEN_WARD_STONES | Le Pietre di Guardia | ANCIENT | 2 | 6 | OPEN | 1 |
 | TEN_WATER | L'Acqua Ferma | SURVIVAL | 3 | 6 | OPEN | 1 |
+| TEN_WEIGHTS | I Pesi e le Misure | RESOURCE | 2 | 6 | OPEN | 1 |
+| TEN_WINTER | L'Inverno Lungo | SURVIVAL | 2 | 6 | OPEN | 1 |
+| TEN_WOLVES | I Lupi al Limitare | SURVIVAL | 2 | 6 | OPEN | 1 |
 
-## Map overlays (27)
+## Map overlays (31)
 Ogni tag di Regione che il gioco puo mostrare sulla mappa. `domain:` marca il dominio di Tensione usato da INFLUENCE; `structure:`, `condition:` e `scar:` sono livelli grafici distinti (spec §19.5).
 
 | tag | layer |
@@ -196,7 +248,11 @@ Ogni tag di Regione che il gioco puo mostrare sulla mappa. `domain:` marca il do
 | `domain:RESOURCE` | domain |
 | `domain:SURVIVAL` | domain |
 | `domain:TERRITORY` | domain |
+| `forest` | base |
 | `granary` | base |
+| `harbor` | base |
+| `island` | base |
+| `marsh` | base |
 | `mine` | base |
 | `nomad_range` | base |
 | `settlement:$proponent` | settlement |

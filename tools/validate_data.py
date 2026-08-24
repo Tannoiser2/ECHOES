@@ -892,6 +892,69 @@ def check_every_family_can_do_everything(
             )
 
 
+def check_a_drawn_map_bears_every_theme(
+    documents: Dict[str, List[Dict[str, Any]]],
+    origins: Dict[str, str],
+    report: "Report",
+) -> None:
+    """La matematica del tavolo pescato (D-265), tenuta da una guardia.
+
+    Due invarianti, e insieme garantiscono che **ogni Tema abbia un mazzetto
+    vivo su qualunque mappa esca**:
+
+    1. per ogni dominio usato dalle candidate, le tessere candidate che lo
+       portano devono essere almeno `N - count + 1`: cosi' e' impossibile
+       pescare una mappa senza quel dominio;
+    2. ogni Tema deve avere almeno una candidata **a fuoco libero** (senza
+       `focus_region_tags`): il suo dominio e' garantito dal punto 1, quindi
+       la candidata regge su ogni mappa, e il mazzetto del Tema non e' mai
+       vuoto.
+
+    Senza questa guardia basterebbe una tessera tolta o una Tensione
+    rimirata per riaprire, in silenzio, il buco della Terra (D-264).
+    """
+    regions = {str(r["id"]): r for r in documents.get("region", [])}
+    tensions = {str(t["id"]): t for t in documents.get("tension", [])}
+    for chronicle in documents.get("chronicle", []):
+        pool = chronicle.get("region_pool") or {}
+        if not pool:
+            continue
+        where = f"chronicle [{chronicle.get('id')}]"
+        candidates = [str(r) for r in pool.get("candidates", [])]
+        count = int(pool.get("count", 0))
+        minimum = len(candidates) - count + 1
+        carriers: Dict[str, int] = {}
+        for region_id in candidates:
+            for tag in regions.get(region_id, {}).get("tags", []):
+                if str(tag).startswith("domain:"):
+                    carriers[str(tag)[len("domain:"):]] = carriers.get(str(tag)[len("domain:"):], 0) + 1
+        tension_ids = [str(t) for t in (chronicle.get("tension_pool") or {}).get("candidates", [])]
+        free_by_theme: Dict[str, int] = {}
+        for tension_id in tension_ids:
+            tension = tensions.get(tension_id)
+            if tension is None:
+                continue
+            domain = str(tension.get("domain", ""))
+            if carriers.get(domain, 0) < minimum:
+                report.fail(
+                    where,
+                    f"il dominio {domain} sta su {carriers.get(domain, 0)} tessere candidate "
+                    f"e ne servono {minimum} (N={len(candidates)}, pesca={count}): una mappa "
+                    f"puo' uscire senza, e «{tension_id}» non reggerebbe",
+                )
+            if not tension.get("focus_region_tags"):
+                theme = str(tension.get("theme", ""))
+                free_by_theme[theme] = free_by_theme.get(theme, 0) + 1
+        for theme in documents.get("theme", []):
+            theme_id = str(theme["id"])
+            if tension_ids and free_by_theme.get(theme_id, 0) < 1:
+                report.fail(
+                    where,
+                    f"il Tema {theme_id} non ha nessuna candidata a fuoco libero: "
+                    "su qualche mappa il suo mazzetto sarebbe vuoto (D-265)",
+                )
+
+
 def check_drawn_tables_do_not_name_a_house(
     documents: Dict[str, List[Dict[str, Any]]],
     origins: Dict[str, str],
@@ -1566,6 +1629,7 @@ def main() -> int:
         check_a_saga_plays_one_game(documents, origins, report)
         check_the_gate_and_the_thresholds_do_not_overlap(documents, origins, report)
         check_every_region_can_call_the_council(documents, origins, report)
+        check_a_drawn_map_bears_every_theme(documents, origins, report)
 
     # Duplicate ids across the whole data set are always a bug.
     seen: Dict[str, str] = {}

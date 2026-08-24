@@ -61,7 +61,7 @@ Nessuno: tutto quello che una condizione chiede, qualcosa lo puo' scrivere.
 | `condition:exploited` | Conseguenza | — | Destino, la Regione di cui si discute, pesca delle domande |
 | `condition:indebted` | Conseguenza, carta Asset | Conseguenza | la Regione di cui si discute, pesca delle domande |
 | `condition:lean` | Conseguenza | Conseguenza, carta Asset | la Regione di cui si discute |
-| `condition:mourning` | — | carta Asset | pesca delle domande |
+| `condition:mourning` | — | carta Asset | la Regione di cui si discute, pesca delle domande |
 | `condition:plundered` | Conseguenza | Conseguenza | la Regione di cui si discute, pesca delle domande, regola del segno |
 | `condition:rationed` | Conseguenza, carta Asset | Conseguenza, carta Asset | la Regione di cui si discute, pesca delle domande |
 | `condition:requisitioned` | Conseguenza | — | la Regione di cui si discute |
