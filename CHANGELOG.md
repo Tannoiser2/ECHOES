@@ -5,6 +5,32 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.222 — Il Calore diventa una pista, e la pista sceglie la Domanda dell'Atto (D-260)
+
+- **PZ-1 della roadmap, aperto e chiuso**: il Calore è **stato del mondo** —
+  `theme_heat`, sei Temi, un segnalino 0-6 ciascuno — mosso solo per Effect
+  (`ADJUST_THEME_HEAT`, inverso esatto, tetto a sei) e firmato dalla Risonanza.
+- **La pista sente quello che il ponte perdeva**: 100 anni a tavolo misto,
+  **1.056 Risonanze (10,6/anno)** contro le 364 che arrivavano alle Tensioni —
+  due su tre cadevano nel vuoto quando il Tema non aveva questioni in gioco.
+  La Terra passa da 1,4% a **3,4%** del Calore; e salta fuori che **l'Antico si
+  scalda dalla mano una volta su 1.056** — scritto, non curato (materia d'autore,
+  ROADMAP §4.5).
+- **A fine Atto la Domanda è quella del Tema più caldo**, a parità l'ordine
+  stampato, con discesa se il Tema non ha niente di apribile; il mucchio più
+  alto resta come **ripiego dichiarato** a pista fredda. Il Tema che ha parlato
+  torna a zero; gli altri tengono il loro. Salita/discesa/fine Chronicle sono
+  configurazione reversibile: la taratura è d'autore (ROADMAP §4.1).
+- **Il prezzo, dichiarato**: Consigli a tavolo misto 3-8 media **4,87** (era
+  5,05), uniforme 3-9 media **5,31** (era 5,26) — il nove resta nove. Verità
+  scritte da 384 a **373**. Il vincolo tiene: **0 seggi bloccati su 8**, misto
+  e uniforme.
+- **Lo schermo non mente**: riga `CALORE` nel pannello delle domande, e il
+  marcatore «va al Consiglio» diventa «il mucchio più alto» quando è la pista
+  a scegliere. `run_resonance_probe` conta dalla pista, col ponte a parte.
+- Suite: **520 prove / 12.321 asserzioni** (otto prove nuove sulla pista, e il
+  round-trip dell'Effetto nuovo preteso dalla guardia dell'enum).
+
 ## 0.1.221 — I segni diventano un dizionario, e la guardia lo legge (D-259)
 
 - **PZ-0 della roadmap, aperto e chiuso**: i segni sono una collezione

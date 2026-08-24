@@ -16,6 +16,9 @@ const IRREVERSIBLE: Array = ["CREATE_ECHO", "APPEND_TRUTH"]
 ## for why `inverse_type` is stored on the Effect rather than inferred.
 const INVERSE_TYPE: Dictionary = {
 	"ADJUST_TENSION": "ADJUST_TENSION",
+	# La traccia del Calore (PZ-1): sale e scende su se stessa, col delta
+	# davvero applicato nell'inverse_payload, come le Tensioni.
+	"ADJUST_THEME_HEAT": "ADJUST_THEME_HEAT",
 	"SET_TENSION_VISIBILITY": "SET_TENSION_VISIBILITY",
 	"ADD_PRESENCE": "REMOVE_PRESENCE",
 	"REMOVE_PRESENCE": "ADD_PRESENCE",

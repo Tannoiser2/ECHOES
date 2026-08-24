@@ -32,6 +32,15 @@ static func narrate(effect: Dictionary, data) -> String:
 				return ""
 			var verb: String = "sale" if applied > 0 else "scende"
 			return "%s %s di %d." % [_tension(target_id, data), verb, absi(applied)]
+		"ADJUST_THEME_HEAT":
+			# Stessa regola delle Tensioni: si narra il delta davvero applicato,
+			# tetto compreso, che e' la negazione dell'inverso.
+			var moved: int = -int(effect.get("inverse_payload", {}).get("delta", 0))
+			if moved == 0:
+				return ""
+			if moved > 0:
+				return "Il Tema %s si scalda di %d." % [_theme(target_id, data), moved]
+			return "Il Tema %s si raffredda." % _theme(target_id, data)
 		"SET_TENSION_VISIBILITY":
 			var visibility: String = str(payload.get("visibility", ""))
 			if not VISIBILITY_SAID.has(visibility):
@@ -146,6 +155,12 @@ static func _region(id: String, data) -> String:
 static func _tension(id: String, data) -> String:
 	if data != null and data.tensions.has(id):
 		return str(data.tensions[id]["title"])
+	return id
+
+
+static func _theme(id: String, data) -> String:
+	if data != null and data.themes.has(id):
+		return str(data.themes[id]["title"])
 	return id
 
 

@@ -119,6 +119,12 @@ static func say(effect: Dictionary, data: RefCounted) -> String:
 			return "%s %s di %d" % [
 				_tension(target, data), "sale" if delta >= 0 else "scende", absi(delta),
 			]
+		"ADJUST_THEME_HEAT":
+			var heat_delta: int = int(payload.get("delta", 0))
+			return "il Tema %s %s di %d" % [
+				_theme(target, data),
+				"si scalda" if heat_delta >= 0 else "si raffredda", absi(heat_delta),
+			]
 		"SET_TENSION_VISIBILITY":
 			return "%s adesso e %s" % [
 				_tension(target, data),
@@ -244,6 +250,13 @@ static func _tension(tension_id: String, data: RefCounted) -> String:
 		return str(tension["title"])
 	var slot: String = _slot(tension_id)
 	return slot if slot != "" else tension_id
+
+
+static func _theme(theme_id: String, data: RefCounted) -> String:
+	var theme: Variant = data.themes.get(theme_id)
+	if theme != null:
+		return str(theme["title"])
+	return theme_id
 
 
 static func _region(region_id: String, data: RefCounted) -> String:

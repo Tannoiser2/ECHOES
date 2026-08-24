@@ -670,6 +670,7 @@ const DEFS := {
 				"type": "String",
 				"enum": [
 					"ADJUST_TENSION",
+					"ADJUST_THEME_HEAT",
 					"SET_TENSION_VISIBILITY",
 					"ADD_PRESENCE",
 					"REMOVE_PRESENCE",
@@ -714,6 +715,7 @@ const DEFS := {
 				"type": "String",
 				"enum": [
 					"ADJUST_TENSION",
+					"ADJUST_THEME_HEAT",
 					"SET_TENSION_VISIBILITY",
 					"ADD_PRESENCE",
 					"REMOVE_PRESENCE",
@@ -1740,6 +1742,9 @@ const DEFS := {
 			"tensions": {
 				"type": "Dictionary",
 			},
+			"theme_heat": {
+				"type": "Dictionary",
+			},
 			"relations": {
 				"type": "Dictionary",
 			},
@@ -1891,6 +1896,7 @@ const COLLECTION_SCHEMA_IDS := [
 ## Closed EffectType enum (spec v0.2 §6.3).
 const EFFECT_TYPES := [
 	"ADJUST_TENSION",
+	"ADJUST_THEME_HEAT",
 	"SET_TENSION_VISIBILITY",
 	"ADD_PRESENCE",
 	"REMOVE_PRESENCE",
@@ -1921,6 +1927,7 @@ const EFFECT_TYPES := [
 
 const EFFECT_TARGET_KINDS := [
 	"tension",
+	"theme",
 	"entity",
 	"region",
 	"relation",
