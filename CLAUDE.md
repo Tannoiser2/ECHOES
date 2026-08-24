@@ -10,8 +10,16 @@ La direzione, decisa dal committente e valida da 0.1.218:
 >
 > Le Azioni cambiano il mondo. Il Consiglio decide cosa il mondo ricorderà.
 
-Prima di cominciare qualsiasi cosa, leggi **[docs/PUNTO_ZERO.md](docs/PUNTO_ZERO.md)**:
-dice dov'è il gioco oggi, con i numeri misurati e le voci aperte.
+Prima di cominciare qualsiasi cosa, leggi due documenti, in quest'ordine:
+
+1. **[docs/PUNTO_ZERO.md](docs/PUNTO_ZERO.md)** — dov'è il gioco oggi, coi numeri
+   misurati e le voci aperte;
+2. **[docs/ROADMAP_PUNTO_ZERO.md](docs/ROADMAP_PUNTO_ZERO.md)** — dove sta andando,
+   e le cinque cose su cui la direzione nuova corregge quella vecchia.
+
+E la domanda da farsi a ogni modifica, che viene prima di ogni regola qui sotto:
+
+> **Questa cosa esisterebbe e sarebbe comprensibile sul tavolo fisico?**
 
 ---
 
