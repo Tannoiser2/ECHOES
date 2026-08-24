@@ -10,6 +10,75 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-263 — La Prima Chronicle: le tessere si pescano, e nessuno scrive lo scenario
+
+**implemented in 0.1.225** — Fase C della direzione del committente
+
+Le parole del committente: *«Per iniziare la prima Chronicle non ci sono
+scenari, nessun CHR fisso. Si pescano le tessere della mappa (quindi una mappa
+diversa ogni saga), si mischiano i mazzetti dei temi che sono composti dalle
+tensioni.»*
+
+Da questa decisione esiste **CHR_00 — La Prima Chronicle**, e l'app **si apre
+da lì**: niente scenario, niente nomi scritti prima.
+
+**Come apparecchia, pezzo per pezzo:**
+
+1. **Le tessere si pescano** (`region_pool`, stessa forma di `entity_pool`):
+   quattro tessere su sei, con un dado derivato dal seme — la mappa non
+   consuma il caso della partita (D-150). Le case si pescano come già da
+   D-213, i mazzetti dei Temi si mischiano come da D-261.
+2. **Le tessere pescate si posano accostate.** Il grafo scritto, ristretto
+   alle tessere uscite, può spezzarsi in isole — due posti vicini solo
+   attraverso una tessera rimasta nella scatola. Si ricuce in ordine di
+   pesca, come sul tavolo vero.
+3. **L'anno fa solo le domande che la mappa sa reggere.** Una Tensione entra
+   nel sacchetto se una tessera porta il suo dominio e i suoi segni di fuoco
+   (grazie alla grammatica adattiva di D-262 il resto del contenuto si adatta
+   da solo). Senza `region_pool` il filtro non esiste: le Chronicle scritte
+   restano identiche.
+4. **Ogni casa comincia sul tavolo.** Le pedine cadono solo su tessere
+   uscite; una casa coi posti di partenza rimasti nella scatola **si
+   accampa** — una pedina sulla tessera che le tocca, a giro. Le pietre
+   scritte su tessere non uscite restano nella scatola. E **nessuna tessera
+   è governata da un assente**: il padrone scritto che non siede lascia il
+   posto di nessuno (la cura di D-213, estesa al primo anno).
+5. **La mappa è della saga.** La seconda era eredita e gioca sulle tessere
+   della prima, qualunque seme la apra: se la pesca cieca del seme nuovo dice
+   altro, il mondo si rimonta sulle tessere ereditate — Regioni, forma,
+   domande, mazzetti. CHR_00 è il seguito di sé stessa: la saga continua
+   procedurale.
+
+**Il difetto che la costruzione ha scovato** (e che valeva anche prima): tre
+sistemi rileggevano la Chronicle **vergine** dal dato invece di quella
+risolta dalla sessione — con le tessere pescate, il riconteggio del controllo
+toccava Regioni rimaste nella scatola. Ora la mappa si itera **dal mondo**,
+che è la direzione giusta comunque: il mondo è la verità, la lista della
+Chronicle è la candidatura.
+
+**I numeri, 100 semi di CHR_00** (`run_map_probe.gd`, sonda nuova):
+
+| | |
+|---|---|
+| mappe diverse | **15 su 15 possibili** |
+| tavoli diversi | 52 |
+| anni diversi (per domande) | 88 |
+| Consigli | 3-6, media **4,32** — in famiglia con gli scritti |
+| partite non concluse | **0 su 100** |
+
+**E il cancello che non si negozia, sugli scenari scritti:** 0 seggi bloccati
+su 8, misto e uniforme. I Consigli si muovono di un soffio (misto 4,59→4,62,
+uniforme 4,66→4,63; Verità 355→359 misto) — è il prezzo della guardia sul
+padrone assente al punto 4, dichiarato qui.
+
+**Aperto, e di chi:** i mazzetti come mazzi di **tutte** le Tensioni del Tema
+(con la questione che entra in gioco quando si gira) restano il passo dopo; le
+**quattro tessere nuove** (porto, canale/palude, isola, bosco) e la **regola
+del luogo** sono PZ-2 e materia d'autore (ROADMAP §4.4); il salvataggio di una
+CHR_00 a metà anno ripristina la mappa dal mondo salvato, come tutto il resto.
+
+---
+
 ## D-262 — La grammatica adattiva: il contenuto non nomina più un posto per id
 
 **implemented in 0.1.224** — Fase B della direzione a tessere (dopo D-261)

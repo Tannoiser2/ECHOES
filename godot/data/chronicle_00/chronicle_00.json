@@ -1,0 +1,340 @@
+{
+  "schema_id": "chronicle",
+  "version": "0.2.0",
+  "items": [
+    {
+      "id": "CHR_00",
+      "title": "La Prima Chronicle",
+      "world_id": "WORLD_ECHOES",
+      "start_year": 800,
+      "acts": 3,
+      "rounds_per_act": 3,
+      "action_opportunities_per_round": 2,
+      "minimum_confluences": 2,
+      "hand_limit": 7,
+      "presence_tokens": 5,
+      "max_commit_assets": 3,
+      "max_condition_commit_assets": 2,
+      "condition_qualified_threshold": 2,
+      "influence_rules": {
+        "max_per_entity_per_round": 1,
+        "max_per_tension_per_round": 1,
+        "displacement_on_decrease": 1
+      },
+      "confluence_rules": {
+        "opposer_recovers_on_failure": false,
+        "failure_delta": -1,
+        "alliance_weight": {
+          "per_step": 1,
+          "max": 2,
+          "commits_at_least": 2
+        },
+        "at_end_of_act": true
+      },
+      "control_rules": {
+        "contested": {
+          "presence_weight": 1
+        },
+        "max_stable_control": 2,
+        "overextension_delta": 1,
+        "lapse_without_presence": true
+      },
+      "entities": [
+        "ENT_ALDRIC",
+        "ENT_NAHR",
+        "ENT_LYRA",
+        "ENT_VAERAX"
+      ],
+      "regions": [
+        "REG_EREDAN",
+        "REG_VALLE_VERDE",
+        "REG_TERRE_NAHR",
+        "REG_MONTAGNE_ROSSE",
+        "REG_MINIERE_ANTICHE",
+        "REG_STRADA_MERCANTI"
+      ],
+      "act_echo_pools": [
+        {
+          "act": 1,
+          "families": [
+            "PRESSURE"
+          ]
+        },
+        {
+          "act": 2,
+          "families": [
+            "RUPTURE",
+            "RUPTURE",
+            "TURN",
+            "TURN",
+            "PRESSURE",
+            "MEMORIA"
+          ]
+        },
+        {
+          "act": 3,
+          "families": [
+            "RESOLUTION",
+            "RESOLUTION",
+            "RESOLUTION",
+            "TURN",
+            "RUPTURE",
+            "MEMORIA"
+          ]
+        }
+      ],
+      "confluence_templates": [
+        "CNF_FAMINE_01",
+        "CNF_AWAKENING_01",
+        "CNF_SUCCESSION_01",
+        "CNF_ROADS_01",
+        "CNF_ANY_SURVIVAL"
+      ],
+      "starting_relations": [],
+      "global_tags": [],
+      "opening_text": "Nessuno scenario, nessun nome scritto prima: le tessere della mappa si pescano dalla scatola, le case si pescano dal mucchio, e i sei mazzetti dei Temi si mischiano coperti. Le domande dell'anno sono quelle che questa mappa sa reggere. Quello che succede qui e' il Punto Zero della saga: la seconda era giochera' sulle stesse tessere, e ricordera'.",
+      "tension_pool": {
+        "candidates": [
+          "TEN_ASH",
+          "TEN_AWAKENING",
+          "TEN_CHARTER",
+          "TEN_DEBT",
+          "TEN_FAMINE",
+          "TEN_NAMELESS",
+          "TEN_PLAGUE",
+          "TEN_RELIC",
+          "TEN_ROADS",
+          "TEN_SUCCESSION",
+          "TEN_THIRST",
+          "TEN_WATER"
+        ],
+        "count": 4,
+        "always": [],
+        "echoes": {
+          "TEN_ASH": [
+            "condition:emptied",
+            "structure:watchtower"
+          ],
+          "TEN_AWAKENING": [
+            "mine_sealed",
+            "crystal_exploited",
+            "study_supervised",
+            "condition:exploited"
+          ],
+          "TEN_CHARTER": [
+            "charter_written",
+            "no_charter"
+          ],
+          "TEN_DEBT": [
+            "debt_called",
+            "condition:indebted"
+          ],
+          "TEN_FAMINE": [
+            "grain_requisitioned",
+            "condition:starving",
+            "condition:rationed"
+          ],
+          "TEN_NAMELESS": [
+            "faith_established",
+            "condition:unrest"
+          ],
+          "TEN_PLAGUE": [
+            "condition:mourning",
+            "condition:abandoned",
+            "condition:emptied"
+          ],
+          "TEN_RELIC": [
+            "relic_shown",
+            "relic_buried",
+            "structure:sealed"
+          ],
+          "TEN_ROADS": [
+            "condition:cut_off",
+            "condition:plundered",
+            "structure:tollgate"
+          ],
+          "TEN_SUCCESSION": [
+            "crown_divided",
+            "crown_dispossessed",
+            "oath_broken"
+          ],
+          "TEN_THIRST": [
+            "valley_sealed",
+            "condition:starving"
+          ],
+          "TEN_WATER": [
+            "water_priced",
+            "condition:starving"
+          ]
+        }
+      },
+      "years_after_previous": {
+        "min": 20,
+        "max": 200
+      },
+      "enduring_facts": [
+        "mine_sealed",
+        "valley_sealed",
+        "succession_by_law",
+        "nahr_settled",
+        "crown_divided",
+        "crown_dispossessed",
+        "ledger_public"
+      ],
+      "era_tallies": [
+        {
+          "id": "TLY_SEAL",
+          "if_tag": "mine_sealed",
+          "if_not_tag": "crystal_exploited",
+          "chain": [
+            "seal_kept",
+            "seal_kept_twice",
+            "mountain_forgotten"
+          ]
+        }
+      ],
+      "starting_structures": [
+        {
+          "region_id": "REG_VALLE_VERDE",
+          "structure_type": "STR_FOREST",
+          "grade": 1,
+          "owner": null
+        },
+        {
+          "region_id": "REG_TERRE_NAHR",
+          "structure_type": "STR_FOREST",
+          "grade": 1,
+          "owner": null
+        },
+        {
+          "region_id": "REG_MONTAGNE_ROSSE",
+          "structure_type": "STR_FOREST",
+          "grade": 1,
+          "owner": null
+        },
+        {
+          "region_id": "REG_MINIERE_ANTICHE",
+          "structure_type": "STR_OLD_SITE",
+          "grade": 1,
+          "owner": null
+        },
+        {
+          "region_id": "REG_MONTAGNE_ROSSE",
+          "structure_type": "STR_OLD_SITE",
+          "grade": 1,
+          "owner": null
+        },
+        {
+          "region_id": "REG_VALLE_VERDE",
+          "structure_type": "STR_SPRING",
+          "grade": 1,
+          "owner": null
+        },
+        {
+          "region_id": "REG_TERRE_NAHR",
+          "structure_type": "STR_SPRING",
+          "grade": 1,
+          "owner": null
+        },
+        {
+          "region_id": "REG_MONTAGNE_ROSSE",
+          "structure_type": "STR_PASS",
+          "grade": 1,
+          "owner": null
+        }
+      ],
+      "structure_rules": {
+        "rise_on": [
+          "VICTORY",
+          "TRIUMPH"
+        ],
+        "fall_on": [
+          "NONE"
+        ]
+      },
+      "actions_from_cards": true,
+      "hand_refill": {
+        "per_token": 2,
+        "floor": 2,
+        "cap": 6,
+        "hand_cap": 7,
+        "per_control": 1
+      },
+      "tension_tokens": {
+        "per_action": 1,
+        "replaces_drift": true,
+        "covered": [
+          0,
+          1,
+          1,
+          2
+        ]
+      },
+      "claim_rules": {
+        "same_round_when_ready": true,
+        "ready_at": 3
+      },
+      "veiled_tensions": "HIDES_THRESHOLD",
+      "saga_scoring": {
+        "none": -1,
+        "minimum": 1,
+        "victory": 3,
+        "triumph": 6,
+        "decides_after": 10
+      },
+      "objectives": {
+        "hidden": 3,
+        "public_from": "victory",
+        "levels": [
+          "NONE",
+          "MINIMUM",
+          "VICTORY",
+          "VICTORY",
+          "TRIUMPH"
+        ],
+        "saga_points": [
+          -1,
+          1,
+          2,
+          5,
+          8
+        ],
+        "drawn": "per_saga"
+      },
+      "sequel_id": "CHR_00",
+      "entity_pool": {
+        "candidates": [
+          "ENT_ALDRIC",
+          "ENT_CENERE",
+          "ENT_LIBERE",
+          "ENT_LYRA",
+          "ENT_NAHR",
+          "ENT_SALE",
+          "ENT_VAERAX",
+          "ENT_VETRO"
+        ],
+        "count": 4
+      },
+      "theme_tokens": {
+        "covered": [
+          0,
+          1,
+          1,
+          2
+        ],
+        "reveal_at": 2
+      },
+      "region_pool": {
+        "candidates": [
+          "REG_EREDAN",
+          "REG_MINIERE_ANTICHE",
+          "REG_MONTAGNE_ROSSE",
+          "REG_STRADA_MERCANTI",
+          "REG_TERRE_NAHR",
+          "REG_VALLE_VERDE"
+        ],
+        "count": 4
+      }
+    }
+  ]
+}

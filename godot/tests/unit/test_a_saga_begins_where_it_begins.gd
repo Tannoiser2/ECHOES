@@ -52,7 +52,9 @@ func test_every_opening_is_offered() -> void:
 				offered.has(str(chronicle_id)),
 				"«%s» comincia una saga e il menu la offre" % str(chronicle_id)
 			)
-	assert_eq(offered.size(), 2, "la scatola ha due saghe da cui cominciare")
+	# Tre da 0.1.225: la Prima Chronicle (CHR_00, D-263) viene prima di tutte —
+	# e' l'inizio senza scenario, e l'app adesso si apre da li'.
+	assert_eq(offered.size(), 3, "la scatola ha tre saghe da cui cominciare")
 
 
 ## In ordine d'anno: la prima saga sta prima, che e' l'unico ordine che una

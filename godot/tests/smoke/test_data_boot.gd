@@ -26,11 +26,13 @@ func test_reduced_content_matches_the_milestone() -> void:
 	# tavoli scritti a mano sono due giochi che non si incontrano mai. Adesso
 	# c'e' una biblioteca sola, e le Chronicle sono anni dentro la stessa
 	# storia — quindi il conto e' uno.
-	assert_eq(loaded.chronicles.size(), 4, "quattro anni scritti sulla stessa biblioteca")
-	for chronicle_id in ["CHR_01", "CHR_02", "CHR_03", "CHR_04"]:
+	# Cinque da 0.1.225: CHR_00 e' la Prima Chronicle (D-263) — quella che non
+	# ha uno scenario, pesca le tessere della mappa e apparecchia da sola.
+	assert_eq(loaded.chronicles.size(), 5, "cinque anni scritti sulla stessa biblioteca")
+	for chronicle_id in ["CHR_00", "CHR_01", "CHR_02", "CHR_03", "CHR_04"]:
 		assert_true(loaded.chronicles.has(str(chronicle_id)), "%s esiste" % chronicle_id)
 
-	_library_is_shared(loaded, ["CHR_01", "CHR_02", "CHR_03", "CHR_04"], 12, 8)
+	_library_is_shared(loaded, ["CHR_00", "CHR_01", "CHR_02", "CHR_03", "CHR_04"], 12, 8)
 	# Quindici da 0.1.189: i tre nuovi sono **contesi** (D-221), cioe' li puo'
 	# prendere un seggio alla volta. Prima era uno su dodici, e un tavolo di
 	# quattro solitari non e' un tavolo.

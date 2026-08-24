@@ -123,38 +123,9 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 	# Chronicle overrides it: the map is shared between sagas - the same six
 	# places centuries apart - so a starting owner written into the Region would
 	# seat the first saga's houses at the second saga's table (D-049).
-	var held: Dictionary = {}
-	for entry in chronicle.get("starting_control", []):
-		held[str((entry as Dictionary)["region_id"])] = (entry as Dictionary).get("entity_id", null)
+	_build_map(world, chronicle, data)
 
-	for region_id in chronicle["regions"]:
-		var definition: Dictionary = data.regions[region_id]
-		var control: Variant = (
-			held[str(region_id)] if held.has(str(region_id)) else definition.get("control", null)
-		)
-		world["regions"][region_id] = {
-			"id": region_id,
-			"control": control,
-			"tags": (definition["tags"] as Array).duplicate(),
-			# Cosa ci sta sopra (D-157): un tipo, un grado, e un padrone se e'
-			# opera di una casa. Vuoto finche' qualcuno non costruisce.
-			"structures": [],
-		}
-
-	# La **forma** del mondo (D-166). Fino a 0.1.132 le adiacenze si leggevano
-	# dal dato della Regione ed erano l'unica cosa della mappa che non cambiava
-	# mai. Adesso sono stato: un passo che frana toglie un arco, e da quel
-	# momento due Regioni smettono di essere vicine.
-	world["adjacency"] = {}
-	for region_id in chronicle["regions"]:
-		var links: Array = []
-		for neighbour in (data.regions[region_id]["adjacency"] as Array):
-			# Solo i vicini che questa Chronicle porta davvero al tavolo.
-			if (chronicle["regions"] as Array).has(str(neighbour)):
-				links.append(str(neighbour))
-		world["adjacency"][str(region_id)] = links
-
-	for tension_id in resolve_tensions(chronicle, rng):
+	for tension_id in resolve_tensions(filter_pool_for_map(chronicle, data, world), rng):
 		var definition: Dictionary = data.tensions[tension_id]
 		world["tensions"][tension_id] = {
 			"id": tension_id,
@@ -178,6 +149,142 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 	_build_echo_deck(world, chronicle, data, rng)
 	_build_drift_track(world, chronicle, rng)
 	return world
+
+
+## Le Regioni sul tavolo, e la forma del mondo. Estratto da `build` perche' con
+## la mappa pescata (D-263) un'era ereditata deve poterla **rimontare** sulle
+## tessere della saga.
+static func _build_map(world: Dictionary, chronicle: Dictionary, data: RefCounted) -> void:
+	var held: Dictionary = {}
+	for entry in chronicle.get("starting_control", []):
+		held[str((entry as Dictionary)["region_id"])] = (entry as Dictionary).get("entity_id", null)
+
+	(world["regions"] as Dictionary).clear()
+	for region_id in chronicle["regions"]:
+		var definition: Dictionary = data.regions[region_id]
+		var control: Variant = (
+			held[str(region_id)] if held.has(str(region_id)) else definition.get("control", null)
+		)
+		# Col tavolo pescato (D-263) il padrone scritto sulla tessera puo' non
+		# sedersi: una Regione governata da un assente e' il difetto che
+		# l'eredita' cura da D-213, e il primo anno non deve poterlo avere.
+		if control != null and not (chronicle["entities"] as Array).has(str(control)):
+			control = null
+		world["regions"][region_id] = {
+			"id": region_id,
+			"control": control,
+			"tags": (definition["tags"] as Array).duplicate(),
+			# Cosa ci sta sopra (D-157): un tipo, un grado, e un padrone se e'
+			# opera di una casa. Vuoto finche' qualcuno non costruisce.
+			"structures": [],
+		}
+
+	# La **forma** del mondo (D-166). Fino a 0.1.132 le adiacenze si leggevano
+	# dal dato della Regione ed erano l'unica cosa della mappa che non cambiava
+	# mai. Adesso sono stato: un passo che frana toglie un arco, e da quel
+	# momento due Regioni smettono di essere vicine.
+	world["adjacency"] = {}
+	for region_id in chronicle["regions"]:
+		var links: Array = []
+		for neighbour in (data.regions[region_id]["adjacency"] as Array):
+			# Solo i vicini che questa Chronicle porta davvero al tavolo.
+			if (chronicle["regions"] as Array).has(str(neighbour)):
+				links.append(str(neighbour))
+		world["adjacency"][str(region_id)] = links
+
+	# **Le tessere pescate si posano accostate** (D-263). Il grafo scritto,
+	# ristretto alle tessere uscite, puo' spezzarsi in isole — due posti vicini
+	# solo attraverso una tessera rimasta nella scatola. Sul tavolo fisico non
+	# succede: le tessere si accostano. Qui si ricuce nello stesso modo, in
+	# ordine di pesca: la prima tessera di ogni isola si posa accanto
+	# all'ultima dell'isola prima.
+	if not (chronicle.get("region_pool", {}) as Dictionary).is_empty():
+		_stitch_the_islands(world, chronicle)
+
+
+static func _stitch_the_islands(world: Dictionary, chronicle: Dictionary) -> void:
+	var order: Array = (chronicle["regions"] as Array)
+	var seen: Dictionary = {}
+	var islands: Array = []
+	for start in order:
+		if seen.has(str(start)):
+			continue
+		var island: Array = [str(start)]
+		seen[str(start)] = true
+		var frontier: Array = [str(start)]
+		while not frontier.is_empty():
+			var here: String = str(frontier.pop_back())
+			for neighbour in (world["adjacency"].get(here, []) as Array):
+				if not seen.has(str(neighbour)):
+					seen[str(neighbour)] = true
+					island.append(str(neighbour))
+					frontier.append(str(neighbour))
+		islands.append(island)
+	for i in range(1, islands.size()):
+		var shore: String = str((islands[i - 1] as Array).back())
+		var landing: String = str((islands[i] as Array)[0])
+		(world["adjacency"][shore] as Array).append(landing)
+		(world["adjacency"][landing] as Array).append(shore)
+
+
+## La pesca delle tessere (D-263): stessa forma di `resolve_seats`, candidate
+## ordinate prima di mescolare, cosi' un riordino innocuo del dato non cambia
+## ogni saga. Il dado lo passa il chiamante, **derivato dal seme** — la mappa
+## non consuma il caso della partita.
+static func resolve_map(chronicle: Dictionary, rng: RefCounted) -> Array:
+	var pool: Dictionary = chronicle.get("region_pool", {}) as Dictionary
+	if pool.is_empty():
+		return (chronicle["regions"] as Array).duplicate()
+	var drawn: Array = (pool.get("always", []) as Array).duplicate()
+	var candidates: Array = []
+	for region_id in pool["candidates"]:
+		if not drawn.has(str(region_id)):
+			candidates.append(str(region_id))
+	candidates.sort()
+	for region_id in rng.shuffle(candidates):
+		if drawn.size() >= int(pool["count"]):
+			break
+		drawn.append(str(region_id))
+	return drawn
+
+
+## Con la mappa pescata (D-263) l'anno fa solo le domande che la mappa sa
+## reggere: una Tensione entra nel sacchetto se i suoi `focus_region_tags`
+## esistono su una tessera uscita (o se non ne dichiara: le domande del mondo
+## valgono ovunque) **e** se una tessera porta il suo dominio. Senza
+## `region_pool` non filtra niente: le Chronicle scritte restano identiche.
+static func filter_pool_for_map(chronicle: Dictionary, data: RefCounted, world: Dictionary) -> Dictionary:
+	if (chronicle.get("region_pool", {}) as Dictionary).is_empty():
+		return chronicle
+	var pool: Dictionary = (chronicle.get("tension_pool", {}) as Dictionary)
+	if pool.is_empty():
+		return chronicle
+	var on_map: Dictionary = {}
+	for region_id in world.get("regions", {}):
+		for tag in (world["regions"][str(region_id)].get("tags", []) as Array):
+			on_map[str(tag)] = true
+	var kept: Array = []
+	for tension_id in (pool.get("candidates", []) as Array):
+		var definition: Variant = data.tensions.get(str(tension_id))
+		if definition == null:
+			continue
+		if _tension_fits_map(definition as Dictionary, on_map):
+			kept.append(str(tension_id))
+	var out: Dictionary = chronicle.duplicate(true)
+	(out["tension_pool"] as Dictionary)["candidates"] = kept
+	return out
+
+
+static func _tension_fits_map(definition: Dictionary, on_map: Dictionary) -> bool:
+	if not on_map.has("domain:%s" % str(definition.get("domain", ""))):
+		return false
+	var focus: Array = definition.get("focus_region_tags", []) as Array
+	if focus.is_empty():
+		return true
+	for tag in focus:
+		if on_map.has(str(tag)):
+			return true
+	return false
 
 
 ## Which Tensions this Chronicle actually runs.
@@ -722,7 +829,7 @@ static func redeal_tensions(
 			and _open_accounts(previous_results).is_empty():
 		return
 	(world["tensions"] as Dictionary).clear()
-	for tension_id in resolve_tensions(chronicle, rng, previous, previous_results):
+	for tension_id in resolve_tensions(filter_pool_for_map(chronicle, data, world), rng, previous, previous_results):
 		var definition: Dictionary = data.tensions[tension_id]
 		world["tensions"][tension_id] = {
 			"id": tension_id,
@@ -736,6 +843,28 @@ static func redeal_tensions(
 	# Temi vanno rimontati sulle nuove, o il tavolo girerebbe carte di domande
 	# che quest'era non sta facendo. Trovato da test_library_balance: il
 	# Consiglio si apriva su una Tensione che il mondo non aveva.
+	deal_theme_decks(world, data, rng)
+
+
+## La mappa e' della saga (D-263): un'era ereditata che pesca le tessere
+## rimonta il mondo su quelle della saga — Regioni, forma, questioni che la
+## mappa regge, e i mazzetti sopra. Chiamata da `inherit_from` quando la mappa
+## pescata da questo seme non e' quella che la saga ha gia' sul tavolo.
+static func rebuild_drawn_map(
+	world: Dictionary, chronicle: Dictionary, data: RefCounted, rng: RefCounted
+) -> void:
+	_build_map(world, chronicle, data)
+	(world["tensions"] as Dictionary).clear()
+	for tension_id in resolve_tensions(filter_pool_for_map(chronicle, data, world), rng):
+		var definition: Dictionary = data.tensions[tension_id]
+		world["tensions"][tension_id] = {
+			"id": tension_id,
+			"current_value": int(definition["current_value"]),
+			"visibility": str(definition["visibility"]),
+			"fired_omens": [],
+			"resolved_count": 0,
+		}
+	_build_drift_track(world, chronicle, rng)
 	deal_theme_decks(world, data, rng)
 
 
@@ -1016,6 +1145,7 @@ static func setup_effects(chronicle: Dictionary, data: RefCounted, world: Dictio
 	# prima vita del seggio - dopo una successione comanda l'incarnazione, che
 	# la sua presenza se la porta (D-133).
 	var declared: Dictionary = chronicle.get("starting_presence", {}) as Dictionary
+	var displaced: int = 0
 	for entity_id in chronicle["entities"]:
 		var definition: Dictionary = data.entities[entity_id]
 		var incarnation: int = int((
@@ -1025,6 +1155,20 @@ static func setup_effects(chronicle: Dictionary, data: RefCounted, world: Dictio
 		var presence: Array = active["presence"] as Array
 		if incarnation == 0 and declared.has(str(entity_id)):
 			presence = declared[str(entity_id)] as Array
+		# Con la mappa pescata (D-263) la casa puo' trovarsi i posti di
+		# partenza rimasti nella scatola: le pedine cadono solo sulle tessere
+		# uscite, e una casa rimasta senza niente **si accampa** — una pedina
+		# sulla tessera che le tocca, a giro, cosi' due sfollate non si
+		# ammucchiano sulla stessa.
+		var map: Array = chronicle["regions"] as Array
+		var settled: Array = []
+		for region_id in presence:
+			if map.has(str(region_id)):
+				settled.append(str(region_id))
+		if settled.is_empty() and not presence.is_empty():
+			settled = [str(map[displaced % map.size()])]
+			displaced += 1
+		presence = settled
 		for region_id in presence:
 			effects.append(
 				Effect.make("ADD_PRESENCE", "entity", entity_id, {"region_id": region_id}, source)
@@ -1062,6 +1206,10 @@ static func setup_effects(chronicle: Dictionary, data: RefCounted, world: Dictio
 	# pietra entra nel conto del controllo dal primo round.
 	for entry in chronicle.get("starting_structures", []):
 		var built: Dictionary = entry as Dictionary
+		# Con la mappa pescata (D-263) la pietra scritta su una tessera rimasta
+		# nella scatola non si alza: la scatola la tiene.
+		if not (chronicle["regions"] as Array).has(str(built["region_id"])):
+			continue
 		effects.append(Effect.make(
 			"BUILD_STRUCTURE", "region", str(built["region_id"]),
 			{

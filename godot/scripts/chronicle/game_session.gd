@@ -116,6 +116,17 @@ func setup(chronicle_id: String, seats: Array, seed_value: int) -> bool:
 		_chronicle_def = _chronicle_def.duplicate(true)
 		_chronicle_def["entities"] = seats.duplicate()
 
+	# Le tessere della mappa si pescano (D-263): come per le case, la lista
+	# `regions` della Chronicle dice le candidate, e da qui in poi dice le
+	# tessere uscite. Il dado e' derivato dal seme — la mappa non consuma il
+	# caso della partita (lezione di D-150).
+	if not (_chronicle_def.get("region_pool", {}) as Dictionary).is_empty():
+		if pool.is_empty():
+			_chronicle_def = _chronicle_def.duplicate(true)
+		_chronicle_def["regions"] = WorldStateFactory.resolve_map(
+			_chronicle_def, RngService.new(seed_value * 53 + 29)
+		)
+
 	log = GameLog.new()
 	log.line_added.connect(func(text: String) -> void: log_line.emit(text))
 
@@ -187,6 +198,16 @@ func inherit_from(previous: Dictionary, results: Dictionary = {}) -> void:
 	world["year"] = int(previous.get("year", world["year"])) + _years_passed
 	world["echo_log"] = (previous.get("echo_log", []) as Array).duplicate(true)
 	world["truth_log"] = (previous.get("truth_log", []) as Array).duplicate(true)
+	# **La mappa e' della saga** (D-263): un'era che pesca le tessere gioca su
+	# quelle uscite alla prima, qualunque seme la apra. Se la pesca cieca di
+	# questo seme ha detto altro, il mondo si rimonta sulle tessere ereditate
+	# — Regioni, forma, questioni che la mappa regge, mazzetti.
+	if not (_chronicle_def.get("region_pool", {}) as Dictionary).is_empty():
+		var saga_map: Array = (previous.get("regions", {}) as Dictionary).keys()
+		if not saga_map.is_empty() and saga_map != (_chronicle_def["regions"] as Array):
+			_chronicle_def = _chronicle_def.duplicate(true)
+			_chronicle_def["regions"] = saga_map.duplicate()
+			WorldStateFactory.rebuild_drawn_map(world, _chronicle_def, data, rng)
 	# La pesca che ascolta (D-079): il setup ha pescato l'anno alla cieca,
 	# perche' il mondo di prima non era ancora noto. Adesso lo e': se il pool
 	# dichiara degli echi, si ridanno le carte pesate sui segni ereditati.

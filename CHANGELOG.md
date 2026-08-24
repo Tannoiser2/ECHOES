@@ -5,6 +5,30 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.225 — La Prima Chronicle: le tessere si pescano, e nessuno scrive lo scenario (D-263)
+
+- **CHR_00 — La Prima Chronicle**, e l'app si apre da lì: niente scenario. Le
+  **tessere della mappa si pescano** (`region_pool`, 4 su 6, dado derivato dal
+  seme), le case si pescano (D-213), i mazzetti si mischiano (D-261), e l'anno
+  fa **solo le domande che la mappa sa reggere** (dominio e segni di fuoco su
+  una tessera uscita — la grammatica adattiva di D-262 fa il resto da sola).
+- **Le tessere pescate si posano accostate** (le isole del grafo ristretto si
+  ricuciono in ordine di pesca); **ogni casa comincia sul tavolo** (chi ha i
+  posti di partenza nella scatola si accampa, a giro); **nessuna tessera è
+  governata da un assente**; le pietre su tessere non uscite restano nella
+  scatola. **La mappa è della saga**: l'era ereditata si rimonta sulle tessere
+  della prima, qualunque seme la apra (CHR_00 è il seguito di sé stessa).
+- **Misurato su 100 semi** (`run_map_probe.gd`, sonda nuova): **15 mappe
+  diverse su 15 possibili**, 52 tavoli, 88 anni diversi per domande, Consigli
+  3-6 (media 4,32), **0 partite non concluse**.
+- **Il cancello tiene sugli scenari scritti**: 0 seggi bloccati su 8, misto e
+  uniforme. Consigli mossi d'un soffio (4,59→4,62 / 4,66→4,63) dal padrone
+  assente che non governa più — dichiarato in D-263.
+- **Difetto preesistente scovato**: tre sistemi rileggevano la Chronicle
+  vergine invece di quella risolta; ora la mappa si itera dal mondo, che è la
+  verità.
+- Suite: **533 prove / 12.578 asserzioni** (sei nuove sul tavolo pescato).
+
 ## 0.1.224 — La grammatica adattiva: il contenuto non nomina più un posto per id (D-262)
 
 - **Fase B della direzione a tessere**: le 23 occorrenze di id fissi nel

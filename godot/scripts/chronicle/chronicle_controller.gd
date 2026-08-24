@@ -252,7 +252,7 @@ func play_round(act: int, round_number: int, decider: Object) -> void:
 func _recount_control(act: int, round_number: int) -> void:
 	if not session.service.contest_is_on():
 		return
-	for region_id in _chronicle["regions"]:
+	for region_id in world["regions"]:
 		var region: Dictionary = world["regions"][str(region_id)]
 		var before: Variant = region.get("control", null)
 		var after: Variant = session.service.rightful_holder(str(region_id))
@@ -316,7 +316,7 @@ func _apply_overextension(act: int, round_number: int) -> void:
 
 	for entity_id in world["turn_order"]:
 		var held: Array = []
-		for region_id in _chronicle["regions"]:
+		for region_id in world["regions"]:
 			var control: Variant = world["regions"][str(region_id)].get("control", null)
 			if control != null and str(control) == str(entity_id):
 				held.append(str(region_id))
@@ -1233,7 +1233,7 @@ func _lower_one(seat: String) -> void:
 ## piu' bassa che puo' scendere. Vuoto se non ne ha nessuna.
 func _pick_structure(seat: String, rising: bool) -> Dictionary:
 	var best: Dictionary = {}
-	for region_id in _chronicle["regions"]:
+	for region_id in world["regions"]:
 		for structure in (world["regions"][str(region_id)] as Dictionary).get("structures", []):
 			var record: Dictionary = structure as Dictionary
 			if str(record.get("owner", "")) != seat:

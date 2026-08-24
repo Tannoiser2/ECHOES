@@ -173,6 +173,12 @@ portano funzioni che oggi non esistono: porto, canale/palude, isola, bosco.
 **Fatto quando** agire in montagna non è come agire in città o sulla costa — e si
 può dimostrare con una misura, non con una sensazione.
 
+> **Mezzo passo in 0.1.225** ([D-263](DECISIONS.md#d-263)): la mappa **si
+> pesca** — CHR_00, la Prima Chronicle senza scenario, 15 mappe su 15
+> possibili in 100 semi, e l'app si apre da lì. Restano di questa fase la
+> **regola del luogo** (agire in montagna ≠ agire in città) e le **quattro
+> tessere nuove**, che sono materia d'autore (§4.4).
+
 ### PZ-3 — Le carte: ri-mirare 48, scriverne poche nuove
 
 Ri-mirare i bersagli delle 48 sul dizionario e sulla mappa nuovi; scrivere carte
