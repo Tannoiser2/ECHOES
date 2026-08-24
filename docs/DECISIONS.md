@@ -10,6 +10,62 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-268 — La controproposta del RIVENDICARE: la pedina su un beneficio o su un costo
+
+**implemented in 0.1.230** — chiude PZ-5 della roadmap (Fase B), e ISSUES 71
+
+Parola del committente (D-261): il RIVENDICARE *«puo' servire in primis per
+fare una controproposta sulla Tensione che si va dibattendo - mettere una
+pedina su un beneficio o su un costo - oppure per dibattere una seconda
+tensione»*. Il secondo uso vive da 0.1.223. Da qui vive il primo, e ha la
+precedenza che il committente gli ha dato.
+
+**Come funziona.** Chi ha consumato un RIVENDICARE nell'Atto porta il diritto
+al primo Consiglio di fine Atto, e li' sceglie:
+
+- **pedina su un costo**: si prende la pedina del prezzo (D-267),
+  scavalcando il primo OPPOSE - il diritto pagato con un'azione batte
+  l'ordine delle dichiarazioni;
+- **pedina su un beneficio**: la posa su una voce del beneficio della
+  proposta - se la proposta passa, **quella voce parla di lui**: i suoi
+  Effect compilano col rivendicante al posto del proponente. La
+  controproposta prende un pezzo, non la proposta intera;
+- **niente**: si tiene il secondo dibattito, com'era da D-261.
+
+Spendersi in controproposta consuma il diritto: un'azione, un uso. Il
+proponente non controproppone a se stesso: se il titolare propone, il diritto
+resta secondo dibattito.
+
+**Il cervello** rivendica il beneficio se il dirottamento **guadagna** (la
+voce valutata con se' al posto del proponente, meno com'era), prende la
+pedina se sposta il prezzo a suo favore, altrimenti tiene il secondo
+dibattito. Al tavolo umano chiede `seat_decider`, con le voci per esteso.
+
+**Il numero che decide, 100 semi di CHR_01:** 117 controproposte, 46 voci di
+beneficio rivendicate e passate — e **117 secondi dibattiti spesi**: il
+cervello preferisce quasi sempre la controproposta, e i Consigli scendono da
+4,6 a **3,6 di media** (Verita' scritte 360 → 307 al misto). E' il costo
+dell'«in primis» preso alla lettera, scritto qui: quanto un tavolo umano
+preferira' il secondo dibattito e' taratura d'autore, e la scelta al tavolo
+resta tutta del titolare.
+
+**Correzione a D-267, trovata costruendo questa:** il tavolo **misto** del
+cancello ha giocato la Fase A **senza pedina** — il router dei caratteri
+(`table_of_characters.Table`) non inoltrava `choose_price`, e la guardia
+`has_method` lo copriva in silenzio: i numeri misti identici prima/dopo
+l'hanno detto. L'inoltro c'e' da questa versione (anche per
+`choose_counterclaim`), e i numeri misti di D-267 vanno letti come «pedina
+solo all'uniforme». Il cancello di casa resta verde con le mani vive: **0
+seggi bloccati su 8, misto e uniforme**.
+
+**PZ-5 si chiude:** il Consiglio cambia il significato delle Azioni gia'
+fatte — le presenze pesano sui fronti, le carte raccolte diventano impegni,
+il RIVENDICARE speso diventa controproposta o secondo dibattito — e nessun
+Consiglio finisce senza traccia: ogni esito muove la Tensione, fa scattare
+una Conseguenza e il Ripple, e il silenzio ha una regola (D-267).
+
+---
+
 ## D-267 — La pedina del prezzo: gli avversari scelgono il malus, e il silenzio paga
 
 **implemented in 0.1.229** — apre PZ-5 della roadmap (Fase A)

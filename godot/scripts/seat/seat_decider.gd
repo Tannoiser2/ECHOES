@@ -516,6 +516,46 @@ func choose_price(
 	return chosen
 
 
+## La controproposta del RIVENDICARE (D-268): il diritto guadagnato nell'Atto
+## si puo' spendere qui - sulla pedina del prezzo o su una voce del beneficio -
+## o tenere per il secondo dibattito.
+func choose_counterclaim(
+	entity_id: String, context: Dictionary, offer: Dictionary, session: RefCounted
+) -> Dictionary:
+	if not _is_human(entity_id):
+		return fallback.choose_counterclaim(entity_id, context, offer, session)
+	_speaking_to = entity_id
+	var labels: Array = [
+		"Tieni il diritto: aprirai il secondo dibattito",
+		"Prendi la pedina del prezzo: scegli tu costo e sfogo",
+	]
+	var benefits: Array = offer.get("benefits", []) as Array
+	for consequence_id in benefits:
+		var consequence: Dictionary = session.data.consequences.get(str(consequence_id), {})
+		labels.append("Rivendica «%s»: se la proposta passa, quella voce parla di te\n%s" % [
+			str(consequence.get("title", consequence_id)),
+			str(consequence.get("description", "")),
+		])
+	var picked: int = await _choose(
+		"  %s, hai un RIVENDICARE da spendere: controproposta?" % _name(entity_id, session),
+		labels
+	)
+	if picked < 0:
+		return fallback.choose_counterclaim(entity_id, context, offer, session)
+	if picked == 0:
+		return {}
+	if picked == 1:
+		var price: Dictionary = await choose_price(
+			entity_id, context, offer.get("price", {}), session
+		)
+		return {
+			"mode": "price",
+			"cost": str(price.get("cost", "")),
+			"failure": str(price.get("failure", "")),
+		}
+	return {"mode": "benefit", "consequence_id": str(benefits[picked - 2])}
+
+
 ## Commit one card at a time until the limit or "basta". The terminal could take
 ## a whole line of numbers and the browser cannot, so this is the shape both can
 ## drive - and it reads closer to what committing is: you put one thing down,

@@ -5,6 +5,27 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.230 — La controproposta del RIVENDICARE: la pedina su un beneficio o su un costo (D-268)
+
+- **PZ-5 Fase B, e PZ-5 si chiude** (ISSUES 71): chi ha consumato un
+  RIVENDICARE nell'Atto può spenderlo al primo Consiglio come
+  **controproposta** — prendersi la pedina del prezzo scavalcando il primo
+  OPPOSE, o rivendicare una **voce del beneficio**: se la proposta passa,
+  quella voce **parla di lui** (i suoi Effect compilano col rivendicante al
+  posto del proponente). Spendersi consuma il diritto: niente secondo
+  dibattito.
+- **Misure (100 semi, CHR_01)**: 117 controproposte, 46 benefici rivendicati
+  e passati, 117 secondi dibattiti spesi → Consigli da 4,6 a **3,6 di media**
+  (Verità 360→307 al misto). Il costo dell'«in primis», dichiarato: la
+  taratura del quando preferire il secondo dibattito è d'autore.
+- **Correzione a D-267**: il tavolo misto giocava la Fase A **senza pedina**
+  — il router dei caratteri non inoltrava `choose_price` e la guardia
+  `has_method` lo copriva in silenzio. Inoltro aggiunto (anche per
+  `choose_counterclaim`); playtest **0 seggi bloccati su 8**, misto e
+  uniforme, con le mani vive.
+- Suite **545 prove / 14.723 asserzioni**; `run_price_probe` conta le
+  controproposte.
+
 ## 0.1.229 — La pedina del prezzo: gli avversari scelgono il malus, e il silenzio paga (D-267)
 
 - **PZ-5 Fase A, la forma del dibattito** (parola del committente, D-266): il

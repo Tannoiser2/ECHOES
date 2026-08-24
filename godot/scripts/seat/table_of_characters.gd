@@ -177,3 +177,19 @@ class Table extends RefCounted:
 
 	func choose_recovery(context: Dictionary, session: RefCounted) -> Dictionary:
 		return _who(str(context["proponent"])).choose_recovery(context, session)
+
+	# La pedina del prezzo e la controproposta (D-267/D-268) nominano un seggio:
+	# risponde il carattere che ci siede. Senza questi inoltri la guardia
+	# `has_method` del controller saltava le due domande **in silenzio** - il
+	# tavolo misto del cancello ha giocato la Fase A senza pedina, e i numeri
+	# identici prima/dopo l'hanno detto. Un router che non inoltra e' un
+	# cervello che non sa scegliere, e nessuno se ne accorge.
+	func choose_price(
+		entity_id: String, context: Dictionary, menu: Dictionary, session: RefCounted
+	) -> Dictionary:
+		return _who(entity_id).choose_price(entity_id, context, menu, session)
+
+	func choose_counterclaim(
+		entity_id: String, context: Dictionary, offer: Dictionary, session: RefCounted
+	) -> Dictionary:
+		return _who(entity_id).choose_counterclaim(entity_id, context, offer, session)

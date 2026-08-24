@@ -513,7 +513,12 @@ func _bring_the_year_to_a_head() -> String:
 
 
 ## Drive one Confluence through A-K with the decider answering C, D, E.
-func run_confluence(tension_id: String, trigger: Dictionary, decider: Object) -> Dictionary:
+## `claimant` (D-268): il seggio che ha consumato un RIVENDICARE nell'Atto e
+## puo' spendere qui il diritto come controproposta invece che nel secondo
+## dibattito. Vuoto, il Consiglio e' quello di sempre.
+func run_confluence(
+	tension_id: String, trigger: Dictionary, decider: Object, claimant: String = ""
+) -> Dictionary:
 	# §6.3: a snapshot before every Confluence is what makes undo possible past
 	# the irreversible CREATE_ECHO / APPEND_TRUTH that may follow.
 	session.take_snapshot("pre-confluence")
@@ -554,12 +559,41 @@ func run_confluence(tension_id: String, trigger: Dictionary, decider: Object) ->
 			illegal_actions += 1
 			controller.declare_stance(str(entity_id), "ABSTAIN")
 
+	# La controproposta del RIVENDICARE (D-268): prima della pedina del
+	# prezzo, perche' il diritto pagato con l'azione batte l'ordine delle
+	# dichiarazioni. Il rivendicante sceglie: prendersi la pedina del prezzo,
+	# rivendicare una voce del beneficio, o tenersi il secondo dibattito.
+	var counterclaimed: String = ""
+	if claimant != "" and claimant != str(context["proponent"]) \
+			and decider.has_method("choose_counterclaim"):
+		var offer: Dictionary = {
+			"price": controller.price_menu(),
+			"benefits": controller.claimable_benefits(),
+		}
+		var counter: Dictionary = await decider.choose_counterclaim(claimant, context, offer, session)
+		var mode: String = str(counter.get("mode", ""))
+		if mode == "price":
+			if controller.place_counterclaim(
+				claimant, "price", str(counter.get("cost", "")), str(counter.get("failure", ""))
+			):
+				counterclaimed = mode
+			else:
+				log.bullet("Controproposta rifiutata (%s): resta il secondo dibattito." % controller.last_error)
+				illegal_actions += 1
+		elif mode == "benefit":
+			if controller.place_counterclaim(claimant, "benefit", str(counter.get("consequence_id", ""))):
+				counterclaimed = mode
+			else:
+				log.bullet("Controproposta rifiutata (%s): resta il secondo dibattito." % controller.last_error)
+				illegal_actions += 1
+
 	# La pedina del prezzo (PZ-5, D-267): a posizioni dichiarate e **prima**
 	# degli impegni - che restano segreti - il primo seggio del fronte avverso
 	# sceglie dal menu quale voce paghera' chi vince. Un cervello che non sa
 	# scegliere (has_method) lascia decidere il mondo: la prima voce, com'era.
+	# Se la controproposta si e' presa la pedina, il fronte avverso non sceglie.
 	var opposer: String = controller.first_opposer()
-	if opposer != "" and decider.has_method("choose_price"):
+	if counterclaimed != "price" and opposer != "" and decider.has_method("choose_price"):
 		var menu: Dictionary = controller.price_menu()
 		if (menu["cost"] as Array).size() > 1 or (menu["failure"] as Array).size() > 1:
 			var price: Dictionary = await decider.choose_price(opposer, context, menu, session)
@@ -642,7 +676,18 @@ func _council_closing_the_act(act: int, decider: Object) -> void:
 	else:
 		log.section("IL CONSIGLIO DI FINE ATTO %d" % act)
 		_set_phase(act, int(_chronicle["rounds_per_act"]), "CONFLUENCE")
-		await run_confluence(tension_id, {"kind": "THRESHOLD", "entity_id": ""}, decider)
+		# Il diritto del RIVENDICARE entra nel primo Consiglio (D-268): il suo
+		# titolare puo' spenderlo li' come controproposta. Se lo fa, il secondo
+		# dibattito non si apre - un'azione, un uso.
+		var claimant: String = "" if forced == null else str((forced as Dictionary).get("entity_id", ""))
+		var first_result: Dictionary = await run_confluence(
+			tension_id, {"kind": "THRESHOLD", "entity_id": ""}, decider, claimant
+		)
+		if str(first_result.get("counterclaim", "")) != "":
+			log.bullet(
+				"Il diritto del RIVENDICARE si e' speso in controproposta: nessun secondo dibattito."
+			)
+			forced = null
 	await _second_council_of_the_act(act, first_theme, forced, decider)
 	_spend_the_piles(act)
 

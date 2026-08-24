@@ -393,6 +393,74 @@ func place_price(entity_id: String, cost_id: String, failure_id: String) -> bool
 	return true
 
 
+# --- D-ter: la controproposta del RIVENDICARE (PZ-5 Fase B, D-268) ---------
+
+## Le voci del beneficio che una controproposta puo' rivendicare: le
+## Conseguenze di successo della proposta scelta.
+func claimable_benefits() -> Array:
+	if current.is_empty() or str(current["proposition_id"]) == "":
+		return []
+	return (_proposition().get("success_consequences", []) as Array).duplicate()
+
+
+## La controproposta (D-261, parola del committente: il RIVENDICARE *«puo'
+## servire in primis per fare una controproposta sulla Tensione che si va
+## dibattendo - mettere una pedina su un beneficio o su un costo»*). Chi ha
+## consumato un RIVENDICARE nell'Atto puo' spendere qui il suo diritto invece
+## che nel secondo dibattito:
+##
+## - **su un costo** (`mode = "price"`): si prende la pedina del prezzo,
+##   scavalcando il primo OPPOSE - il diritto pagato con l'azione batte
+##   l'ordine delle dichiarazioni;
+## - **su un beneficio** (`mode = "benefit"`): posa la pedina su una voce del
+##   beneficio della proposta - se la proposta passa, **quella voce parla di
+##   lui**, non del proponente.
+##
+## Spendersi qui consuma il diritto: il secondo dibattito non si apre.
+func place_counterclaim(entity_id: String, mode: String, first: String, second: String = "") -> bool:
+	last_error = ""
+	if current.is_empty() or str(current["step"]) not in ["STANCE", "COMMIT"]:
+		last_error = "non e' il momento di una controproposta"
+		return false
+	if entity_id == "" or entity_id == str(current["proponent"]):
+		last_error = "il proponente non controproppone a se stesso"
+		return false
+	match mode:
+		"price":
+			var menu: Dictionary = price_menu()
+			if first != "" and not (menu["cost"] as Array).has(first):
+				last_error = "'%s' non e' nel menu del costo" % first
+				return false
+			if second != "" and not (menu["failure"] as Array).has(second):
+				last_error = "'%s' non e' nel menu dello sfogo" % second
+				return false
+			current["price_pedina"] = {"by": entity_id, "cost": first, "failure": second}
+			current["counterclaim"] = "price"
+			var said: PackedStringArray = PackedStringArray()
+			if first != "":
+				said.append("se passa con un costo, %s" % _consequence_title(first))
+			if second != "":
+				said.append("se cade, %s" % _consequence_title(second))
+			log.bullet("D. La controproposta di %s: prende la pedina del prezzo%s." % [
+				_name(entity_id),
+				"" if said.is_empty() else " - %s" % "; ".join(said),
+			])
+			return true
+		"benefit":
+			if not claimable_benefits().has(first):
+				last_error = "'%s' non e' una voce del beneficio della proposta" % first
+				return false
+			current["benefit_pedina"] = {"by": entity_id, "consequence_id": first}
+			current["counterclaim"] = "benefit"
+			log.bullet(
+				"D. La controproposta di %s: rivendica «%s» - se la proposta passa, quella voce parla di %s."
+				% [_name(entity_id), _consequence_title(first), _name(entity_id)]
+			)
+			return true
+	last_error = "controproposta '%s' sconosciuta" % mode
+	return false
+
+
 ## Una voce sola dal pool (D-267): quella della pedina, o la prima. Il mondo
 ## decide solo quando il fronte avverso non ha posato niente.
 func _priced(pool: Array, chosen: String) -> String:
@@ -702,9 +770,20 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 				% str(consequence.get("title", consequence_id))
 			)
 			continue
+		# La voce rivendicata (D-268): la controproposta ha posato la pedina su
+		# questa voce del beneficio, e a proposta passata **parla del
+		# rivendicante** - i suoi Effect compilano con lui al posto del
+		# proponente. Le altre voci restano del proponente, com'e' giusto: la
+		# controproposta prende un pezzo, non la proposta intera.
+		var speaks_for: Dictionary = context
+		var claimed: Dictionary = current.get("benefit_pedina", {})
+		if str(consequence_id) == str(claimed.get("consequence_id", "")):
+			speaks_for = context.duplicate()
+			speaks_for["proponent"] = str(claimed.get("by", ""))
+			log.bullet("H. La voce rivendicata parla di %s:" % _name(str(claimed.get("by", ""))))
 		log.bullet("H. Conseguenza - %s:" % str(consequence.get("title", consequence_id)))
 		var first_effect: int = applied.size()
-		for effect in compiler.compile(str(consequence_id), context, source):
+		for effect in compiler.compile(str(consequence_id), speaks_for, source):
 			_apply(applied, effect)
 			_bar_return(applied, effect, source)
 		_apply_scar(applied, str(consequence_id), source)
@@ -807,6 +886,10 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 		_mark_asked(tension_id, str(current["question_id"]))
 
 	result["echo_created"] = echo_created
+	# La controproposta spesa qui (D-268): il chiamante deve sapere che il
+	# diritto del RIVENDICARE e' consumato, o aprirebbe anche il secondo
+	# dibattito - due usi per un'azione sola.
+	result["counterclaim"] = str(current.get("counterclaim", ""))
 	result["confluence_id"] = str(current["confluence_id"])
 	result["tension_id"] = tension_id
 	result["proponent"] = str(current["proponent"])

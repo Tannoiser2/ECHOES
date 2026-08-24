@@ -230,9 +230,17 @@ nessun Consiglio finisce senza lasciare traccia.
 > pool del prezzo diventano menu di due voci e il primo OPPOSE dichiarato posa
 > la pedina che decide quale scatta (44% dei Consigli su 100 semi). E la
 > regola anti-passività, scelta fra le tre: **il silenzio avvantaggia il
-> proponente** (+1 nei dati, 116 volte in 100 anni). Resta la Fase B
-> ([ISSUES 71](ISSUES.md#71)): la controproposta del RIVENDICARE, e la
-> lettura del «fatto quando».
+> proponente** (+1 nei dati, 116 volte in 100 anni).
+>
+> **Fase B in 0.1.230** ([D-268](DECISIONS.md#d-268)), **e PZ-5 si chiude**:
+> la controproposta del RIVENDICARE — pedina del prezzo scavalcando il primo
+> OPPOSE, o voce del beneficio che a proposta passata **parla del
+> rivendicante**; spendersi consuma il secondo dibattito. Il «fatto quando»
+> tiene: le Azioni già fatte cambiano significato al Consiglio (presenze,
+> carte, il RIVENDICARE stesso), e nessun Consiglio finisce senza traccia —
+> Tensione mossa, una Conseguenza, il Ripple, e il silenzio ha una regola.
+> Il costo dichiarato in D-268: i Consigli scendono a 3,6 di media, la
+> taratura del «quando tenersi il secondo dibattito» è d'autore.
 
 ### PZ-6 — Echo, Cicatrici, e il setup della Chronicle dopo
 
