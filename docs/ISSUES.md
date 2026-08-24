@@ -2765,7 +2765,15 @@ e' in gioco.
 
 ### 71. La controproposta del RIVENDICARE non esiste ancora (PZ-5, Fase B)
 
-`regole` · `motore` · **aperta in 0.1.229** ([D-267](DECISIONS.md#d-267))
+`regole` · `motore` · **aperta in 0.1.229** ([D-267](DECISIONS.md#d-267)) ·
+**chiusa in 0.1.230** ([D-268](DECISIONS.md#d-268))
+
+> **Fatta.** Il titolare del diritto sceglie al primo Consiglio: pedina del
+> prezzo (scavalcando il primo OPPOSE), voce del beneficio rivendicata (a
+> proposta passata parla di lui), o il secondo dibattito di sempre. 117
+> controproposte in 100 anni di CHR_01; il costo — i Consigli scendono a 3,6
+> di media perché il cervello preferisce quasi sempre la controproposta — è
+> scritto in D-268, e la taratura è d'autore.
 
 Parola del committente (D-261): il RIVENDICARE *«può servire in primis per
 fare una controproposta sulla Tensione che si va dibattendo — mettere una

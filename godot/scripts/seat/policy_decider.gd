@@ -1502,12 +1502,11 @@ func _best_priced(
 	var best_score: int = -999
 	var tied: Array = []
 	for consequence_id in pool:
-		var consequence: Variant = session.data.consequences.get(str(consequence_id))
-		if consequence == null:
+		if not session.data.consequences.has(str(consequence_id)):
 			continue
-		var score: int = 0
-		for effect in consequence["effects"]:
-			score += _score_effect(effect, entity_id, proponent, goals, session, bindings)
+		var score: int = _consequence_score(
+			str(consequence_id), entity_id, proponent, goals, session, bindings
+		)
 		if score > best_score:
 			best_score = score
 			tied = [str(consequence_id)]
@@ -1518,6 +1517,91 @@ func _best_priced(
 	if tied.size() == 1:
 		return str(tied[0])
 	return str(tied[session.rng.range_int(0, tied.size() - 1)])
+
+
+## Quanto valgono, per questo seggio, gli Effect di una Conseguenza: la stessa
+## lettura di _score_proposition, voce per voce.
+func _consequence_score(
+	consequence_id: String,
+	entity_id: String,
+	proponent_id: String,
+	goals: Dictionary,
+	session: RefCounted,
+	bindings: Dictionary
+) -> int:
+	var consequence: Variant = session.data.consequences.get(str(consequence_id))
+	if consequence == null:
+		return 0
+	var score: int = 0
+	for effect in consequence["effects"]:
+		score += _score_effect(effect, entity_id, proponent_id, goals, session, bindings)
+	return score
+
+
+## La controproposta del RIVENDICARE (D-268): spendere il diritto qui - sulla
+## pedina del prezzo o su una voce del beneficio - oppure tenerselo per il
+## secondo dibattito. Si rivendica il beneficio se, parlando di te invece che
+## del proponente, serve il tuo Destino; si prende la pedina se sposta il
+## prezzo a tuo favore piu' di quanto farebbe il fronte avverso da solo;
+## altrimenti niente: il secondo dibattito vale l'azione che e' costato.
+func choose_counterclaim(
+	entity_id: String, context: Dictionary, offer: Dictionary, session: RefCounted
+) -> Dictionary:
+	var goals: Dictionary = _tag_goals(entity_id, session)
+	var bindings: Dictionary = session.confluence.effect_context()
+	var proponent: String = str(context["proponent"])
+	# La voce rivendicata parla di te: si valuta con te al posto del proponente,
+	# e vale il **guadagno** del dirottamento, non la voce in se'.
+	var redirected: Dictionary = bindings.duplicate()
+	redirected["proponent"] = entity_id
+	var best_benefit: String = ""
+	var benefit_gain: int = 0
+	for consequence_id in (offer.get("benefits", []) as Array):
+		var mine: int = _consequence_score(
+			str(consequence_id), entity_id, entity_id, goals, session, redirected
+		)
+		var theirs: int = _consequence_score(
+			str(consequence_id), entity_id, proponent, goals, session, bindings
+		)
+		if mine - theirs > benefit_gain:
+			benefit_gain = mine - theirs
+			best_benefit = str(consequence_id)
+	var price: Dictionary = offer.get("price", {})
+	var price_gain: int = maxi(
+		_price_gain(price.get("cost", []) as Array, entity_id, proponent, goals, session, bindings),
+		_price_gain(price.get("failure", []) as Array, entity_id, proponent, goals, session, bindings)
+	)
+	if benefit_gain > 0 and benefit_gain >= price_gain:
+		return {"mode": "benefit", "consequence_id": best_benefit}
+	if price_gain > 0:
+		return {
+			"mode": "price",
+			"cost": _best_priced(price.get("cost", []) as Array, entity_id, context, session),
+			"failure": _best_priced(price.get("failure", []) as Array, entity_id, context, session),
+		}
+	return {}
+
+
+## Quanto la pedina migliorerebbe il pool per questo seggio: la voce migliore
+## meno quella che scatterebbe da sola, la prima.
+func _price_gain(
+	pool: Array,
+	entity_id: String,
+	proponent: String,
+	goals: Dictionary,
+	session: RefCounted,
+	bindings: Dictionary
+) -> int:
+	if pool.size() <= 1:
+		return 0
+	var best: int = -999
+	for consequence_id in pool:
+		best = maxi(best, _consequence_score(
+			str(consequence_id), entity_id, proponent, goals, session, bindings
+		))
+	return best - _consequence_score(
+		str(pool[0]), entity_id, proponent, goals, session, bindings
+	)
 
 
 func _current_proposition(context: Dictionary, session: RefCounted) -> Dictionary:

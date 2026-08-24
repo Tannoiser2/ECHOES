@@ -34,6 +34,9 @@ func _initialize() -> void:
 	var chosen_costs: int = 0
 	var chosen_vents: int = 0
 	var silences: int = 0
+	var counterclaims: int = 0
+	var claimed_voices: int = 0
+	var second_debates_spent: int = 0
 	var unfinished: int = 0
 
 	for run in range(runs):
@@ -58,6 +61,12 @@ func _initialize() -> void:
 				chosen_vents += 1
 			elif text.contains("Il tavolo tace: il silenzio avvantaggia"):
 				silences += 1
+			elif text.contains("La controproposta di"):
+				counterclaims += 1
+			elif text.contains("La voce rivendicata parla di"):
+				claimed_voices += 1
+			elif text.contains("nessun secondo dibattito"):
+				second_debates_spent += 1
 		session.dispose()
 
 	print("")
@@ -71,6 +80,9 @@ func _initialize() -> void:
 	print("    costi (passa pagando)  %d" % chosen_costs)
 	print("    sfoghi (proposta caduta) %d" % chosen_vents)
 	print("  Il tavolo ha taciuto     %d volte" % silences)
+	print("  Controproposte (D-268)   %d  (voci del beneficio rivendicate e passate: %d; secondi dibattiti spesi: %d)" % [
+		counterclaims, claimed_voices, second_debates_spent
+	])
 	if unfinished > 0:
 		print("  Partite non concluse: %d su %d" % [unfinished, runs])
 	quit(1 if unfinished > 0 else 0)
