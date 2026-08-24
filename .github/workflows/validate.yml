@@ -41,6 +41,15 @@ jobs:
       - name: Drift check - asset manifest
         run: python3 tools/build_manifest.py --check
 
+      # La grammatica fisica (D-256). Il gioco deve poter essere giocato al
+      # tavolo senza app, e al tavolo un gettone che nessuna carta, Domanda o
+      # Destino guarda e' peggio che nel codice: un giocatore lo posa e aspetta
+      # che serva a qualcosa. Questo passo va rosso se un segno resta muto, se
+      # una Domanda si aprirebbe sempre, se una carta ha un'Azione senza
+      # Risonanza, o se un Tema ha un mazzo che non si puo' aprire.
+      - name: La grammatica fisica tiene
+        run: python3 tools/validate_physical.py --check
+
       # Il registro dei segni (D-225). Un segno che le Conseguenze o le carte
       # scrivono sul mondo e che **nessuno legge** non e' una regola: e' colore
       # travestito da regola, e non lo si vede giocando — la partita gira lo

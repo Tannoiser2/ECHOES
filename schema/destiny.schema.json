@@ -216,6 +216,9 @@
         },
         "art_prompt_key": {
           "type": "string"
+        },
+        "physical": {
+          "$ref": "#/$defs/physical_destiny"
         }
       }
     },
@@ -236,6 +239,59 @@
           "minItems": 1,
           "items": {
             "$ref": "#/$defs/condition"
+          }
+        }
+      }
+    },
+    "physical_destiny": {
+      "type": "object",
+      "description": "La faccia fisica del Destino (D-256): il Tema che insegue, i segni che guarda sul tavolo, e le tre righe che un giocatore legge per sapere cosa sta cercando. Le clausole restano quelle: questo blocco non aggiunge regole, dice **dove guardare** — che e' la cosa che al tavolo manca.",
+      "required": [
+        "themes",
+        "observes",
+        "reads"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "themes": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 2,
+          "items": {
+            "type": "string",
+            "pattern": "^THM_[A-Z_]+$"
+          }
+        },
+        "observes": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "I segni del tavolo che decidono se questo Destino si avvera. Il giocatore li tiene d'occhio; il validatore controlla che qualcuno li scriva davvero."
+        },
+        "reads": {
+          "type": "object",
+          "required": [
+            "minimum",
+            "victory",
+            "triumph"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "minimum": {
+              "type": "string",
+              "minLength": 1
+            },
+            "victory": {
+              "type": "string",
+              "minLength": 1
+            },
+            "triumph": {
+              "type": "string",
+              "minLength": 1
+            }
           }
         }
       }

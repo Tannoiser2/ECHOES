@@ -115,12 +115,21 @@
         "card_action": {
           "type": "object",
           "additionalProperties": false,
-          "required": ["kind"],
+          "required": [
+            "kind"
+          ],
           "description": "L'azione di gioco che questa carta permette, se la si gioca dalla mano invece di impegnarla al Consiglio (ISSUES 47). Omessa, la carta non fa niente da sola: e' solo un valore e un effetto di Consiglio, come in v0.2. Il gioco che ne nasce e' il bilanciamento fra le tre cose che una carta e': un'azione, un peso al voto, e un effetto suo.",
           "properties": {
             "kind": {
               "type": "string",
-              "enum": ["ACQUIRE", "MOVE", "INFLUENCE", "FORGE", "SCHEME", "CLAIM"],
+              "enum": [
+                "ACQUIRE",
+                "MOVE",
+                "INFLUENCE",
+                "FORGE",
+                "SCHEME",
+                "CLAIM"
+              ],
               "description": "Quale delle azioni del gioco la carta mette in mano. Sono le stesse di §10: il telaio non inventa verbi nuovi, sposta chi li puo' pronunciare."
             },
             "params": {
@@ -139,6 +148,9 @@
             "$ref": "effect.schema.json#/$defs/effect_spec"
           },
           "description": "Effect specs compiled when this Asset is committed to a Confluence."
+        },
+        "physical": {
+          "$ref": "#/$defs/physical_card"
         }
       }
     },
@@ -164,6 +176,178 @@
           "type": "integer",
           "minimum": 0,
           "maximum": 3
+        }
+      }
+    },
+    "physical_action": {
+      "type": "object",
+      "required": [
+        "label",
+        "text"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Come si chiama la scelta: «Chiudere il passaggio»."
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Cosa fa, in imperativo e senza id: «Metti #chiuso sul luogo bersaglio»."
+        },
+        "puts_tag": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "I segni che l'Azione lascia. Servono al validatore per sapere chi scrive cosa."
+        },
+        "clears_tag": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "I segni che l'Azione toglie."
+        },
+        "template": {
+          "type": "string",
+          "description": "Il verbo del motore che questa Azione pronuncia, quando ce n'e' uno: MOVE, INFLUENCE, SCHEME, FORGE, CLAIM."
+        }
+      }
+    },
+    "physical_card": {
+      "type": "object",
+      "description": "La faccia fisica della carta (D-256): quello che un giocatore legge e fa al tavolo, senza app. Non e' una traduzione del blocco digitale — e' la stessa carta detta nella grammatica del tavolo: bersaglio a tag, due Azioni fra cui scegliere, una Risonanza che avviene sempre, e un uso in Consiglio. Blocco opzionale finche' la conversione non e' finita; chi ce l'ha deve averlo intero.",
+      "required": [
+        "themes",
+        "target",
+        "actions",
+        "resonance",
+        "council_use"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "themes": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 2,
+          "items": {
+            "type": "string",
+            "pattern": "^THM_[A-Z_]+$"
+          },
+          "description": "I Temi che questa carta tocca."
+        },
+        "target": {
+          "type": "object",
+          "description": "Su cosa si gioca la carta. Il bersaglio si dice **a tag**, mai col nome di una Regione: una carta che nomina la Valle Verde e' muta in ogni altra Cronaca.",
+          "required": [
+            "scope",
+            "text"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "scope": {
+              "enum": [
+                "REGION",
+                "ENTITY",
+                "TENSION",
+                "SELF",
+                "NONE"
+              ]
+            },
+            "any_tag": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "description": "Vale un bersaglio che porta **almeno uno** di questi segni."
+            },
+            "forbidden_tag": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "description": "Segni che rendono il bersaglio illegale."
+            },
+            "text": {
+              "type": "string",
+              "minLength": 1,
+              "description": "La riga stampata: «Scegli un luogo con ...»."
+            }
+          }
+        },
+        "actions": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "description": "Le due Azioni fra cui il giocatore sceglie. Due e non una: una carta con una sola Azione e' un evento che accade, non uno strumento che si usa.",
+          "items": {
+            "$ref": "#/$defs/physical_action"
+          }
+        },
+        "resonance": {
+          "type": "object",
+          "description": "**Avviene sempre**, dopo l'Azione, e non si sceglie. E' la reazione del mondo: scalda un Tema, e spesso lascia qualcosa che non volevi.",
+          "required": [
+            "theme",
+            "heat",
+            "text"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "theme": {
+              "type": "string",
+              "pattern": "^THM_[A-Z_]+$"
+            },
+            "heat": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 3
+            },
+            "text": {
+              "type": "string",
+              "minLength": 1
+            },
+            "if_target_tag": {
+              "type": "string",
+              "description": "Se il bersaglio porta questo segno, vale anche la parte aggravata."
+            },
+            "extra_heat": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 3
+            },
+            "extra_tag": {
+              "type": "string",
+              "description": "Il segno che la parte aggravata lascia sul bersaglio."
+            }
+          }
+        },
+        "council_use": {
+          "type": "object",
+          "description": "Cosa vale questa carta se invece di giocarla la impegni al Consiglio.",
+          "required": [
+            "base_strength"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "base_strength": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 4
+            },
+            "bonus_if_theme": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^THM_[A-Z_]+$"
+              }
+            }
+          }
         }
       }
     }

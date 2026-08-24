@@ -2763,6 +2763,45 @@ e' in gioco.
 
 ---
 
+### 69. La Risonanza è scritta e non succede
+
+`contenuto` · `direzione` · **aperta in 0.1.218** ([D-256](DECISIONS.md#d-256))
+
+La grammatica fisica esiste nei dati: dodici carte hanno bersaglio a segni, due
+Azioni, una Risonanza obbligatoria e un uso in Consiglio. **Il motore non ne
+legge una riga.**
+
+Quando una carta si gioca, il motore guarda `card_action.kind` — un verbo solo,
+senza scelta e senza reazione — e il blocco `physical` non lo apre nessuno. Al
+tavolo la carta funziona; nell'app è ancora quella di prima. Le due grammatiche
+convivono e non si toccano, e questo è **voluto per adesso**: il ponte è scritto
+(`from_template` e `from_question` legano ogni Domanda fisica al Consiglio da cui
+nasce) ma nessuno lo attraversa.
+
+**Cosa manca, in ordine di peso:**
+
+1. **La Risonanza non avviene.** È la regola che dà il carattere al gioco nuovo —
+   *ogni Azione ha una reazione del mondo* — ed è l'unica cosa qui dentro che
+   cambierebbe come si gioca. Finché il motore non la esegue, la direzione è
+   dichiarata e non provata.
+2. **La scelta fra le due Azioni non esiste.** Il cervello sceglie un verbo, non
+   una carta con due facce: `_choose_intent` non sa che una carta offre un bivio.
+3. **Il Calore dei Temi non è una traccia.** Le Tensioni salgono una per una; il
+   Tema è una classificazione, non un contatore. A fine Atto non si pesca «dal
+   mazzo del Tema più caldo» perché quel numero non esiste.
+4. **Trentasei carte su quarantotto non hanno faccia fisica**, e i dodici Destini
+   restanti nemmeno.
+
+**Il rischio da nominare adesso**, prima che diventi lavoro buttato: due
+grammatiche che non si toccano divergono. Oggi il ponte è un campo che il
+validatore controlla; se le facce fisiche crescono e il motore non le esegue mai,
+fra dieci carte saranno due giochi diversi con lo stesso nome.
+
+**Fatto quando** una carta giocata nell'app esegue l'Azione scelta **e** la sua
+Risonanza, e il Tema che ne esce è quello scritto sulla carta.
+
+---
+
 ### 68. Otto turni su dieci non succede niente
 
 `bilanciamento` · **misurata in 0.1.216** ([D-254](DECISIONS.md#d-254)) ·

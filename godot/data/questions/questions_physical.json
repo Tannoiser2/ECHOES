@@ -1,0 +1,636 @@
+{
+  "schema_id": "question_card",
+  "version": "1.0.0",
+  "items": [
+    {
+      "id": "QST_POTERE_CHI_SIEDE",
+      "theme": "THM_POTERE",
+      "title": "Chi Siede Dopo",
+      "question": "Il seggio è vuoto. Chi ci si mette, e con quale diritto?",
+      "requires_any_tag": [
+        "crowned",
+        "crown_divided",
+        "scar:the_empty_chair",
+        "capital"
+      ],
+      "outcomes": [
+        {
+          "id": "PER_NOME",
+          "text": "Si siede chi porta il nome: il sangue basta, e chi non lo ha si faccia da parte.",
+          "puts_tag": [
+            "heir_named",
+            "succession_settled"
+          ],
+          "clears_tag": [
+            "crown_divided"
+          ],
+          "echo": "Il Nome che Bastava",
+          "next_chronicle": "Chi ha #erede_nominato apre la prossima Cronaca con la parola al primo Consiglio."
+        },
+        {
+          "id": "PER_LEGGE",
+          "text": "Si siede chi la legge indica, e la legge la scriviamo adesso, davanti a tutti.",
+          "puts_tag": [
+            "succession_by_law",
+            "charter_written"
+          ],
+          "clears_tag": [
+            "crown_divided"
+          ],
+          "echo": "La Regola Prima del Nome",
+          "next_chronicle": "Il Tema Potere parte con +1 Calore: una regola scritta è una regola che qualcuno vorrà riscrivere."
+        },
+        {
+          "id": "NESSUNO",
+          "text": "Non si decide. Il seggio resta vuoto e ognuno fa come se fosse suo.",
+          "puts_tag": [
+            "question_unresolved",
+            "scar:the_empty_chair"
+          ],
+          "clears_tag": [],
+          "echo": "La Sedia Vuota",
+          "next_chronicle": "Pesca 1 Domanda Potere in più, e non si può scartare."
+        }
+      ],
+      "from_template": "CNF_SUCCESSION_01",
+      "from_question": "Q_SUCCESSION_HEIR",
+      "art_prompt_key": "question.potere_chi_siede"
+    },
+    {
+      "id": "QST_POTERE_CHI_SCRIVE",
+      "theme": "THM_POTERE",
+      "title": "Chi Scrive la Regola",
+      "question": "Una regola sta per valere per tutti. Chi la scrive decide anche chi ne resta fuori — e la si scrive dove c'è un tetto abbastanza alto da farla sembrare vera.",
+      "requires_any_tag": [
+        "capital",
+        "structure:castle",
+        "structure:palace",
+        "charter_temporary",
+        "no_charter",
+        "condition:contested"
+      ],
+      "outcomes": [
+        {
+          "id": "PER_TUTTI",
+          "text": "La regola vale per tutti allo stesso modo, e chi l'ha scritta ci sta sotto per primo.",
+          "puts_tag": [
+            "charter_for_all",
+            "charter_written"
+          ],
+          "clears_tag": [
+            "no_charter"
+          ],
+          "echo": "La Carta di Tutti",
+          "next_chronicle": "Ogni casa comincia la prossima Cronaca con una carta in più in mano."
+        },
+        {
+          "id": "PER_CHI_LA_SCRIVE",
+          "text": "La regola la scrive chi ha la forza di farla rispettare, e vale finché ce l'ha.",
+          "puts_tag": [
+            "charter_temporary"
+          ],
+          "clears_tag": [
+            "no_charter"
+          ],
+          "echo": "La Carta a Tempo",
+          "next_chronicle": "La regola sbiadisce: toglila all'inizio della Cronaca dopo la prossima."
+        },
+        {
+          "id": "NIENTE_CARTA",
+          "text": "Non si scrive niente. Si continua come si è sempre fatto.",
+          "puts_tag": [
+            "no_charter",
+            "question_unresolved"
+          ],
+          "clears_tag": [
+            "charter_written"
+          ],
+          "next_chronicle": "Il Tema Potere parte con +1 Calore."
+        }
+      ],
+      "from_template": "CNF_CHARTER_03",
+      "from_question": "Q_CHARTER_WRITE",
+      "art_prompt_key": "question.potere_chi_scrive"
+    },
+    {
+      "id": "QST_SOPR_CHI_NUTRE",
+      "theme": "THM_SOPRAVVIVENZA",
+      "title": "Chi Nutre Questo Luogo",
+      "question": "I granai si svuotano. Chi li apre, e a chi non ne tocca?",
+      "requires_any_tag": [
+        "condition:starving",
+        "condition:lean",
+        "granary",
+        "structure:granary"
+      ],
+      "outcomes": [
+        {
+          "id": "REQUISIZIONE",
+          "text": "Il grano passa sotto un solo sigillo e si distribuisce a razione.",
+          "puts_tag": [
+            "grain_requisitioned",
+            "condition:rationed"
+          ],
+          "clears_tag": [
+            "condition:starving"
+          ],
+          "echo": "Il Grano sotto il Sigillo",
+          "next_chronicle": "Chi tiene il sigillo parte con una presenza in più nel luogo del granaio."
+        },
+        {
+          "id": "APERTURA",
+          "text": "Si apre a chi arriva: chi lavora la terra, ne mangi.",
+          "puts_tag": [
+            "settlement:$proponent",
+            "nahr_settled"
+          ],
+          "clears_tag": [
+            "condition:starving",
+            "condition:lean"
+          ],
+          "echo": "La Valle Aperta",
+          "next_chronicle": "Il luogo conserva l'insediamento. Il Tema Terra parte con +1 Calore."
+        },
+        {
+          "id": "NESSUNO_MANGIA",
+          "text": "Non si decide, e i granai restano chiusi a chiave da qualcun altro.",
+          "puts_tag": [
+            "condition:starving",
+            "question_unresolved"
+          ],
+          "clears_tag": [],
+          "echo": "L'Inverno che Nessuno Contò",
+          "next_chronicle": "Metti una Cicatrice sul luogo: resta finché una Domanda Sopravvivenza non la toglie."
+        }
+      ],
+      "from_template": "CNF_FAMINE_01",
+      "from_question": "Q_FAMINE_GRAIN",
+      "art_prompt_key": "question.sopr_chi_nutre"
+    },
+    {
+      "id": "QST_SOPR_CHI_DECIDE",
+      "theme": "THM_SOPRAVVIVENZA",
+      "title": "Chi Decide a Chi non ne Tocca",
+      "question": "Non ce n'è per tutti, e questo è già deciso. Resta da dire chi lo dice.",
+      "requires_any_tag": [
+        "condition:rationed",
+        "condition:starving",
+        "condition:mourning",
+        "condition:unrest"
+      ],
+      "outcomes": [
+        {
+          "id": "IL_CONSIGLIO",
+          "text": "Lo decide il tavolo, a voce alta, e la lista si può leggere.",
+          "puts_tag": [
+            "distribution_audited",
+            "ledger_public"
+          ],
+          "clears_tag": [
+            "condition:unrest"
+          ],
+          "echo": "La Lista Letta ad Alta Voce",
+          "next_chronicle": "Chiunque può guardare il registro: il Tema Vie parte con +1 Calore."
+        },
+        {
+          "id": "CHI_HA_IL_GRANO",
+          "text": "Lo decide chi il grano ce l'ha, e non deve spiegarlo a nessuno.",
+          "puts_tag": [
+            "condition:rationed",
+            "condition:unrest"
+          ],
+          "clears_tag": [],
+          "echo": "Le Chiavi in una Mano Sola",
+          "next_chronicle": "Chi controlla il luogo comincia la prossima Cronaca con #malcontento addosso."
+        },
+        {
+          "id": "SI_PAGA",
+          "text": "Lo decide il prezzo. Chi può pagare mangia.",
+          "puts_tag": [
+            "water_priced",
+            "condition:indebted"
+          ],
+          "clears_tag": [],
+          "echo": "Il Prezzo di Restare Vivi",
+          "next_chronicle": "Il Tema Vie parte con +1 Calore, e chi era indebitato lo resta."
+        }
+      ],
+      "from_template": "CNF_ANY_SURVIVAL",
+      "from_question": "Q_ANY_WHO_DECIDES",
+      "art_prompt_key": "question.sopr_chi_decide"
+    },
+    {
+      "id": "QST_TERRA_DI_CHI",
+      "theme": "THM_TERRA",
+      "title": "A Chi Appartiene la Terra che Produce",
+      "question": "Una terra che ancora dà qualcosa. Di chi è: di chi la tiene, di chi la lavora, o di nessuno?",
+      "requires_any_tag": [
+        "granary",
+        "nomad_range",
+        "condition:contested",
+        "settlement:$proponent"
+      ],
+      "outcomes": [
+        {
+          "id": "DI_CHI_LA_TIENE",
+          "text": "È di chi la tiene, e chi la lavora la lavora per lui.",
+          "puts_tag": [
+            "condition:contested"
+          ],
+          "clears_tag": [],
+          "next_chronicle": "Chi controlla il luogo lo conserva, ma parte con #conteso addosso."
+        },
+        {
+          "id": "DI_CHI_LA_LAVORA",
+          "text": "È di chi ci mette le braccia. Il titolo segue il sudore.",
+          "puts_tag": [
+            "nahr_settled",
+            "settlement:village"
+          ],
+          "clears_tag": [
+            "condition:contested"
+          ],
+          "echo": "La Terra di Chi la Lavora",
+          "next_chronicle": "L'insediamento resta sulla mappa nella Cronaca successiva."
+        },
+        {
+          "id": "DI_NESSUNO",
+          "text": "Non è di nessuno, e chi ci passa ci passa.",
+          "puts_tag": [
+            "condition:abandoned",
+            "question_unresolved"
+          ],
+          "clears_tag": [],
+          "echo": "La Terra Lasciata Andare",
+          "next_chronicle": "Togli ogni controllo da quel luogo: la prossima Cronaca comincia con il posto vuoto."
+        }
+      ],
+      "from_template": "CNF_FAMINE_01",
+      "from_question": "Q_FAMINE_LAND",
+      "art_prompt_key": "question.terra_di_chi"
+    },
+    {
+      "id": "QST_TERRA_CHI_RESTA",
+      "theme": "THM_TERRA",
+      "title": "Chi Ha Ancora Motivo di Restare",
+      "question": "La gente se ne sta andando. Le si dà una ragione per fermarsi, o la si lascia andare?",
+      "requires_any_tag": [
+        "condition:abandoned",
+        "condition:emptied",
+        "nomad_range",
+        "condition:starving"
+      ],
+      "outcomes": [
+        {
+          "id": "SI_RESTA",
+          "text": "Si promette qualcosa e la promessa si scrive: chi resta avrà un posto suo.",
+          "puts_tag": [
+            "return_promised",
+            "settlement:village"
+          ],
+          "clears_tag": [
+            "condition:emptied"
+          ],
+          "echo": "La Promessa di Tornare",
+          "next_chronicle": "Chi ha fatto la promessa deve mantenerla: se il luogo è ancora vuoto fra due Cronache, mettici una Cicatrice."
+        },
+        {
+          "id": "SI_VA",
+          "text": "Si va. Meglio vivi altrove che padroni di niente.",
+          "puts_tag": [
+            "condition:emptied",
+            "scar:emptied"
+          ],
+          "clears_tag": [],
+          "echo": "L'Anno in cui il Posto si Svuotò",
+          "next_chronicle": "Il luogo entra nella prossima Cronaca senza presenze e senza opere in piedi."
+        },
+        {
+          "id": "SI_TRATTIENE",
+          "text": "Non si va da nessuna parte: chi prova a partire trova qualcuno sulla strada.",
+          "puts_tag": [
+            "condition:unrest",
+            "condition:cut_off"
+          ],
+          "clears_tag": [],
+          "next_chronicle": "Il Tema Potere parte con +1 Calore."
+        }
+      ],
+      "from_template": "CNF_ANY_SURVIVAL",
+      "from_question": "Q_ANY_WHO_STAYS",
+      "art_prompt_key": "question.terra_chi_resta"
+    },
+    {
+      "id": "QST_ANTICO_CRISTALLO",
+      "theme": "THM_ANTICO",
+      "title": "Cosa si Fa del Cristallo",
+      "question": "È uscito dalla pietra e adesso è sul tavolo. Si usa, si studia, o si rimette dov'era?",
+      "requires_any_tag": [
+        "crystal_site",
+        "crystal_exploited",
+        "crystal_measured",
+        "discovery:crystal"
+      ],
+      "outcomes": [
+        {
+          "id": "SI_USA",
+          "text": "Si usa. Quello che serve adesso vale più di quello che potrebbe succedere.",
+          "puts_tag": [
+            "crystal_exploited",
+            "condition:exploited"
+          ],
+          "clears_tag": [],
+          "echo": "La Vena Aperta",
+          "next_chronicle": "Il Tema Antico parte con +2 Calore, e il luogo conserva #sfruttato."
+        },
+        {
+          "id": "SI_STUDIA",
+          "text": "Si studia sotto sorveglianza, e quello che si impara si scrive.",
+          "puts_tag": [
+            "crystal_measured",
+            "study_supervised",
+            "knowledge_shared"
+          ],
+          "clears_tag": [],
+          "echo": "La Misura Sorvegliata",
+          "next_chronicle": "Chi ha #studio_sorvegliato pesca 1 Sapere all'apertura della prossima Cronaca."
+        },
+        {
+          "id": "SI_RICHIUDE",
+          "text": "Si richiude. Alcune cose dormivano per una ragione.",
+          "puts_tag": [
+            "mine_sealed",
+            "structure:sealed"
+          ],
+          "clears_tag": [
+            "crystal_exploited"
+          ],
+          "echo": "La Pietra Rimessa a Posto",
+          "next_chronicle": "Il Tema Antico parte a Calore 0. Chi lo riapre lo riapre da solo."
+        }
+      ],
+      "from_template": "CNF_AWAKENING_01",
+      "from_question": "Q_AWAKENING_CRYSTAL",
+      "art_prompt_key": "question.antico_cristallo"
+    },
+    {
+      "id": "QST_ANTICO_CHI_GUARDA",
+      "theme": "THM_ANTICO",
+      "title": "Chi Tiene d'Occhio Quello che c'è Sotto",
+      "question": "Qualcosa laggiù si muove. Qualcuno deve guardarlo, e chi guarda comanda.",
+      "requires_any_tag": [
+        "wild",
+        "structure:sealed",
+        "crystal_site",
+        "place:cursed_wood"
+      ],
+      "outcomes": [
+        {
+          "id": "LA_VEGLIA",
+          "text": "Si mette una veglia, e la veglia la paga il tavolo.",
+          "puts_tag": [
+            "ash_watch",
+            "burden_shared"
+          ],
+          "clears_tag": [],
+          "echo": "La Veglia sulla Cenere",
+          "next_chronicle": "Finché c'è la veglia, il Tema Antico non può salire di più di 1 per Atto."
+        },
+        {
+          "id": "UNA_CASA_SOLA",
+          "text": "Lo guarda una casa sola, e le altre si fidano o fanno finta.",
+          "puts_tag": [
+            "ash_watch",
+            "condition:contested"
+          ],
+          "clears_tag": [],
+          "echo": "Gli Occhi di Uno Solo",
+          "next_chronicle": "Chi guarda comincia la prossima Cronaca con una scoperta in più; le altre con #conteso su quel luogo."
+        },
+        {
+          "id": "NESSUNO_GUARDA",
+          "text": "Nessuno guarda. Non è successo niente per adesso.",
+          "puts_tag": [
+            "question_unresolved"
+          ],
+          "clears_tag": [],
+          "next_chronicle": "Il Tema Antico parte con +2 Calore."
+        }
+      ],
+      "from_template": "CNF_ANY_ANCIENT",
+      "from_question": "Q_ANY_ANCIENT_WATCH",
+      "art_prompt_key": "question.antico_chi_guarda"
+    },
+    {
+      "id": "QST_FEDE_CHI_RISPONDE",
+      "theme": "THM_FEDE",
+      "title": "Chi Risponde di Quello che c'è nella Teca",
+      "question": "C'è una cosa che la gente viene a guardare. Qualcuno deve dire cos'è, e quel qualcuno diventa qualcuno.",
+      "requires_any_tag": [
+        "discovery:relic",
+        "relic_shown",
+        "relic_buried",
+        "faith_established"
+      ],
+      "outcomes": [
+        {
+          "id": "UN_ORDINE",
+          "text": "Ne risponde un ordine, con una regola scritta e una porta che si chiude.",
+          "puts_tag": [
+            "faith_established",
+            "relic_recorded"
+          ],
+          "clears_tag": [],
+          "echo": "L'Ordine della Teca",
+          "next_chronicle": "Chi ha #fede_stabilita comincia la prossima Cronaca con la parola al primo Consiglio Fede."
+        },
+        {
+          "id": "IL_TAVOLO",
+          "text": "Ne risponde il tavolo: è di tutti, e nessuno la sposta da solo.",
+          "puts_tag": [
+            "relic_recorded",
+            "burden_shared"
+          ],
+          "clears_tag": [],
+          "echo": "La Cosa di Tutti",
+          "next_chronicle": "Nessuna casa può giocare carte su quel luogo senza il consenso di un'altra."
+        },
+        {
+          "id": "SI_SEPPELLISCE",
+          "text": "Si seppellisce. Quello che non si vede non divide nessuno.",
+          "puts_tag": [
+            "relic_buried"
+          ],
+          "clears_tag": [
+            "relic_shown"
+          ],
+          "echo": "Quello che Fu Sepolto",
+          "next_chronicle": "Il Tema Fede parte a Calore 0, ma chi la seppellì porta #giuramento_rotto se qualcuno la ritrova."
+        }
+      ],
+      "from_template": "CNF_RELIC_03",
+      "from_question": "Q_RELIC_KEEP",
+      "art_prompt_key": "question.fede_chi_risponde"
+    },
+    {
+      "id": "QST_FEDE_CHI_VEDE",
+      "theme": "THM_FEDE",
+      "title": "Chi Ha Diritto di Vederlo",
+      "question": "Non è più se esista: è chi può guardarla, e da quale stanza. E chi guarda racconta.",
+      "requires_any_tag": [
+        "relic_shown",
+        "relic_recorded",
+        "structure:archive",
+        "structure:library",
+        "faith_established",
+        "renowned"
+      ],
+      "outcomes": [
+        {
+          "id": "TUTTI",
+          "text": "La vedono tutti, e ognuno se ne va con la sua versione.",
+          "puts_tag": [
+            "relic_shown",
+            "knowledge_shared"
+          ],
+          "clears_tag": [],
+          "echo": "Quello che Videro in Molti",
+          "next_chronicle": "Ogni casa comincia la prossima Cronaca con una scoperta. Il Tema Fede parte con +1 Calore."
+        },
+        {
+          "id": "SOLO_CHI_SA",
+          "text": "La vede chi sa leggerla, e agli altri si racconta.",
+          "puts_tag": [
+            "study_supervised",
+            "renowned"
+          ],
+          "clears_tag": [],
+          "echo": "La Voce di Chi Sapeva",
+          "next_chronicle": "Chi ha #fama pesa +1 in ogni Consiglio Fede della prossima Cronaca."
+        },
+        {
+          "id": "NESSUNO",
+          "text": "Non la vede più nessuno, e chi dice di averla vista mente.",
+          "puts_tag": [
+            "question_unresolved",
+            "betrayal_spoken"
+          ],
+          "clears_tag": [
+            "relic_shown"
+          ],
+          "echo": "La Cosa Negata",
+          "next_chronicle": "Metti una Cicatrice: qualcuno tornerà a chiedere."
+        }
+      ],
+      "from_template": "CNF_RELIC_03",
+      "from_question": "Q_RELIC_SHOW",
+      "art_prompt_key": "question.fede_chi_vede"
+    },
+    {
+      "id": "QST_VIE_CHI_RISCUOTE",
+      "theme": "THM_VIE",
+      "title": "Chi Riscuote su Quello che Passa",
+      "question": "Le merci passano di qui. Chi mette la mano, e chi paga senza averlo scelto?",
+      "requires_any_tag": [
+        "trade",
+        "structure:tollgate",
+        "toll_shared",
+        "condition:cut_off"
+      ],
+      "outcomes": [
+        {
+          "id": "CHI_TIENE_LA_STRADA",
+          "text": "Riscuote chi tiene la strada, e la tiene finché riesce.",
+          "puts_tag": [
+            "condition:contested"
+          ],
+          "clears_tag": [
+            "condition:cut_off"
+          ],
+          "next_chronicle": "Chi controlla il luogo lo conserva e parte con #conteso."
+        },
+        {
+          "id": "SI_DIVIDE",
+          "text": "Si divide fra chi ci passa: meno per uno, ma la strada resta aperta.",
+          "puts_tag": [
+            "toll_shared",
+            "account_settled"
+          ],
+          "clears_tag": [
+            "condition:cut_off"
+          ],
+          "echo": "Il Pedaggio Diviso",
+          "next_chronicle": "La strada resta aperta all'inizio della prossima Cronaca, qualunque cosa succeda."
+        },
+        {
+          "id": "NON_SI_PASSA",
+          "text": "Non passa più niente. Se non è di nessuno, non è di nessuno per tutti.",
+          "puts_tag": [
+            "condition:cut_off",
+            "scar:broken_bridge"
+          ],
+          "clears_tag": [
+            "trade"
+          ],
+          "echo": "La Via Interrotta",
+          "next_chronicle": "Il luogo entra nella prossima Cronaca #tagliato_fuori, e serve una Domanda Vie per riaprirlo."
+        }
+      ],
+      "from_template": "CNF_ROADS_01",
+      "from_question": "Q_ROADS_TOLL",
+      "art_prompt_key": "question.vie_chi_riscuote"
+    },
+    {
+      "id": "QST_VIE_IL_REGISTRO",
+      "theme": "THM_VIE",
+      "title": "Chi Tiene il Registro",
+      "question": "I conti esistono. La domanda è chi li scrive e chi ha diritto di leggerli.",
+      "requires_any_tag": [
+        "condition:indebted",
+        "debt_called",
+        "ledger_public",
+        "discovery:the_ledger"
+      ],
+      "outcomes": [
+        {
+          "id": "PUBBLICO",
+          "text": "Il registro è pubblico. Chi deve, deve davanti a tutti.",
+          "puts_tag": [
+            "ledger_public",
+            "account_settled"
+          ],
+          "clears_tag": [],
+          "echo": "La Colonna Aperta",
+          "next_chronicle": "Nessun debito può essere chiamato di sorpresa nella prossima Cronaca: va annunciato un Atto prima."
+        },
+        {
+          "id": "DI_CHI_PRESTA",
+          "text": "Lo tiene chi presta, e lo legge quando gli conviene.",
+          "puts_tag": [
+            "debt_called",
+            "condition:indebted"
+          ],
+          "clears_tag": [],
+          "echo": "Il Registro in una Mano Sola",
+          "next_chronicle": "Chi lo tiene può chiamare un debito all'apertura della prossima Cronaca."
+        },
+        {
+          "id": "SI_CANCELLA",
+          "text": "Si cancella tutto. Si riparte da zero e nessuno si ricorda chi doveva a chi.",
+          "puts_tag": [
+            "debt_forgiven"
+          ],
+          "clears_tag": [
+            "condition:indebted",
+            "debt_called"
+          ],
+          "echo": "L'Anno in cui i Conti Sparirono",
+          "next_chronicle": "Nessuna casa parte indebitata. Il Tema Fede parte con +1 Calore: qualcuno se lo ricorderà lo stesso."
+        }
+      ],
+      "from_template": "CNF_DEBT_03",
+      "from_question": "Q_DEBT_LEDGER",
+      "art_prompt_key": "question.vie_il_registro"
+    }
+  ]
+}

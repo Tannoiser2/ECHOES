@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://echoes.local/schema/question_card.schema.json",
+  "title": "Question card collection",
+  "x-echoes-def": "question_card",
+  "x-echoes-kind": "collection",
+  "type": "object",
+  "required": [
+    "schema_id",
+    "version",
+    "items"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_id": {
+      "const": "question_card"
+    },
+    "version": {
+      "type": "string"
+    },
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/question_card"
+      }
+    }
+  },
+  "$defs": {
+    "outcome": {
+      "type": "object",
+      "required": [
+        "id",
+        "text",
+        "puts_tag",
+        "clears_tag"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Z0-9_]+$"
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "description": "La riga che si legge ad alta voce quando il Consiglio sceglie cosi'."
+        },
+        "puts_tag": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "I segni che questo esito lascia sul mondo. Puo' essere vuoto: un esito che non lascia niente e' una scelta legittima, ed e' quella che nessuno ricorda."
+        },
+        "clears_tag": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "echo": {
+          "type": "string",
+          "description": "Il titolo dell'Echo che nasce da questo esito, quando ne nasce uno."
+        },
+        "next_chronicle": {
+          "type": "string",
+          "description": "Cosa cambia nel setup della Cronaca dopo. E' la riga che il tavolo esegue a mano quando rimonta la mappa."
+        }
+      }
+    },
+    "question_card": {
+      "type": "object",
+      "description": "Una Domanda fisica (D-256): la carta che il Consiglio gira quando un Tema arriva in cima. Le Azioni cambiano il mondo; la Domanda decide **cosa quel cambiamento significa** — chi ha diritto, chi paga, cosa diventa legge, cosa resta scritto. Si pesca dal mazzo del suo Tema e si scarta se il tavolo non porta i segni che chiede: una Domanda senza i suoi segni e' una domanda su un mondo che non c'e'.",
+      "required": [
+        "id",
+        "theme",
+        "title",
+        "question",
+        "requires_any_tag",
+        "outcomes"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^QST_[A-Z0-9_]+$"
+        },
+        "theme": {
+          "type": "string",
+          "pattern": "^THM_[A-Z_]+$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "question": {
+          "type": "string",
+          "minLength": 1,
+          "description": "La questione politica o morale, scritta come si legge al tavolo."
+        },
+        "requires_any_tag": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "La Domanda si puo' aprire solo se il tavolo porta almeno uno di questi segni."
+        },
+        "outcomes": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "$ref": "#/$defs/outcome"
+          }
+        },
+        "from_template": {
+          "type": "string",
+          "description": "Il Consiglio digitale da cui questa Domanda e' tradotta, quando ce n'e' uno. Serve a tenere le due grammatiche allineate: il validatore confronta i due lati."
+        },
+        "from_question": {
+          "type": "string",
+          "description": "L'id della domanda dentro quel template."
+        },
+        "art_prompt_key": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

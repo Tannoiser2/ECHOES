@@ -1,0 +1,111 @@
+{
+  "schema_id": "theme",
+  "version": "1.0.0",
+  "items": [
+    {
+      "id": "THM_POTERE",
+      "title": "Potere",
+      "covers": "Corona, governo, successione, legittimita', legge. Chi ha diritto di dire una cosa e farla valere.",
+      "tags": [
+        "capital",
+        "crowned",
+        "crown_divided",
+        "crown_dispossessed",
+        "heir_named",
+        "succession_settled",
+        "charter_temporary",
+        "condition:contested",
+        "order_restored",
+        "petition_heard",
+        "amnesty_granted"
+      ],
+      "art_prompt_key": "theme.potere"
+    },
+    {
+      "id": "THM_SOPRAVVIVENZA",
+      "title": "Sopravvivenza",
+      "covers": "Fame, grano, malattia, sete, profughi, razioni. Chi mangia e chi resta fuori.",
+      "tags": [
+        "granary",
+        "structure:granary",
+        "condition:starving",
+        "condition:lean",
+        "condition:rationed",
+        "condition:requisitioned",
+        "grain_requisitioned",
+        "condition:mourning",
+        "burden_shared",
+        "someone_paid"
+      ],
+      "art_prompt_key": "theme.sopravvivenza"
+    },
+    {
+      "id": "THM_TERRA",
+      "title": "Terra",
+      "covers": "Confini, insediamenti, migrazioni, proprieta'. Di chi e' il posto in cui stai.",
+      "tags": [
+        "nomad_range",
+        "wild",
+        "settlement:$proponent",
+        "nahr_settled",
+        "valley_sealed",
+        "scar:sealed_border",
+        "condition:abandoned",
+        "condition:plundered",
+        "scar:plundered",
+        "evicted:"
+      ],
+      "art_prompt_key": "theme.terra"
+    },
+    {
+      "id": "THM_ANTICO",
+      "title": "Antico",
+      "covers": "Miniere, cristallo, reliquie, mostri, luoghi sigillati. Cio' che dormiva sotto la pietra.",
+      "tags": [
+        "crystal_site",
+        "discovery:crystal",
+        "crystal_measured",
+        "dragon_slain",
+        "scar:dragonfall",
+        "place:cursed_wood",
+        "mountain_forgotten",
+        "mine_sealed",
+        "structure:sealed"
+      ],
+      "art_prompt_key": "theme.antico"
+    },
+    {
+      "id": "THM_FEDE",
+      "title": "Fede",
+      "covers": "Culti, memoria, profezie, eresie, leggende. Cosa il mondo decide di ricordare.",
+      "tags": [
+        "faith_established",
+        "legend:",
+        "discovery:legend",
+        "betrayal_spoken",
+        "parley_held",
+        "question_unresolved",
+        "scar:unanswered",
+        "renowned"
+      ],
+      "art_prompt_key": "theme.fede"
+    },
+    {
+      "id": "THM_VIE",
+      "title": "Vie",
+      "covers": "Strade, canali, commercio, ponti, passaggi, acqua. Cosa passa e cosa viene fermato.",
+      "tags": [
+        "trade",
+        "condition:cut_off",
+        "structure:road",
+        "water_rights",
+        "condition:indebted",
+        "debt_called",
+        "account_settled",
+        "discovery:supervised_record",
+        "discovery:the_charter"
+      ],
+      "art_prompt_key": "theme.vie"
+    }
+  ]
+}

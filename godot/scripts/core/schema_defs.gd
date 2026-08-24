@@ -160,6 +160,9 @@ const DEFS := {
 					"type": "Dictionary",
 				},
 			},
+			"physical": {
+				"type": "Dictionary",
+			},
 		},
 	},
 	"chronicle": {
@@ -555,6 +558,9 @@ const DEFS := {
 			"art_prompt_key": {
 				"type": "String",
 			},
+			"physical": {
+				"type": "Dictionary",
+			},
 		},
 	},
 	"echo_card": {
@@ -911,6 +917,59 @@ const DEFS := {
 				"element": {
 					"type": "Dictionary",
 				},
+			},
+			"art_prompt_key": {
+				"type": "String",
+			},
+		},
+	},
+	"question_card": {
+		"kind": "collection",
+		"required": [
+			"id",
+			"theme",
+			"title",
+			"question",
+			"requires_any_tag",
+			"outcomes",
+		],
+		"additional_properties": false,
+		"properties": {
+			"id": {
+				"type": "String",
+				"pattern": "^QST_[A-Z0-9_]+$",
+			},
+			"theme": {
+				"type": "String",
+				"pattern": "^THM_[A-Z_]+$",
+			},
+			"title": {
+				"type": "String",
+				"min_length": 1,
+			},
+			"question": {
+				"type": "String",
+				"min_length": 1,
+			},
+			"requires_any_tag": {
+				"type": "Array",
+				"min_items": 1,
+				"element": {
+					"type": "String",
+				},
+			},
+			"outcomes": {
+				"type": "Array",
+				"min_items": 2,
+				"element": {
+					"type": "Dictionary",
+				},
+			},
+			"from_template": {
+				"type": "String",
+			},
+			"from_question": {
+				"type": "String",
 			},
 			"art_prompt_key": {
 				"type": "String",
@@ -1367,6 +1426,7 @@ const DEFS := {
 			"triggers",
 			"decrease_rules",
 			"linked_tensions",
+			"theme",
 		],
 		"additional_properties": false,
 		"properties": {
@@ -1466,6 +1526,44 @@ const DEFS := {
 			"opening_line": {
 				"type": "String",
 				"min_length": 1,
+			},
+			"theme": {
+				"type": "String",
+				"pattern": "^THM_[A-Z_]+$",
+			},
+		},
+	},
+	"theme": {
+		"kind": "collection",
+		"required": [
+			"id",
+			"title",
+			"covers",
+			"tags",
+		],
+		"additional_properties": false,
+		"properties": {
+			"id": {
+				"type": "String",
+				"pattern": "^THM_[A-Z_]+$",
+			},
+			"title": {
+				"type": "String",
+				"min_length": 1,
+			},
+			"covers": {
+				"type": "String",
+				"min_length": 1,
+			},
+			"tags": {
+				"type": "Array",
+				"min_items": 1,
+				"element": {
+					"type": "String",
+				},
+			},
+			"art_prompt_key": {
+				"type": "String",
 			},
 		},
 	},
@@ -1673,11 +1771,13 @@ const COLLECTION_SCHEMA_IDS := [
 	"echo_card",
 	"entity",
 	"objective",
+	"question_card",
 	"region",
 	"sim_plan",
 	"structure_type",
 	"tag_rule",
 	"tension",
+	"theme",
 ]
 
 ## Closed EffectType enum (spec v0.2 §6.3).
