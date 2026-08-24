@@ -5,6 +5,39 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.213 — Il testo che si tagliava, la pagina troppo grande, e un file per fare le carte
+
+- **D-246 — «le carte sono tagliate e non c'è scritto nulla sopra.»** Erano la
+  stessa frase: il testo che D-242 aveva aggiunto sta **sotto** l'immagine, e di
+  una carta troppo alta si taglia il fondo. Ora le misure si sommano invece di
+  essere indovinate, il titolo si ferma a due righe, e **la mano chiede alla
+  carta quanto è alta** invece di ripetere il numero in un altro file.
+- **D-247 — «non c'è un testo che dice a chi tocca.»** Ora, sopra le domande:
+  **ATTO 2 di 3 · ROUND 1 di 3**, *«Tocca a Kessa — 2 azioni»*, e quando finisce
+  l'Atto. Tutto derivato dal mondo.
+- **D-248 — «la cronaca dell'anno è sempre una pagina vuota.»** Non era vuota:
+  era rasterizzata a **3175×4490** (54 MB), oltre il massimo che un tablet
+  accetta. Ora si misura prima e si ingrandisce quanto ci sta: 1131×1599. **E
+  la prova che diceva «ogni pagina si rasterizza» era verde perché disegnava a
+  una scala diversa da quella dell'applicazione.**
+- **D-249 — un file solo per fare una carta.**
+  [CATALOGO_CARTE.md](docs/CATALOGO_CARTE.md): **87 carte** con descrizione,
+  effetti, valori e il prompt per l'immagine, più i **64 pezzi** della mappa —
+  pietre coi loro gradi e le loro rovine, condizioni, cicatrici, pedine,
+  vessilli. Generato da tre sorgenti diverse, con un cancello in CI.
+  - Il documento ha trovato un difetto scrivendosi: `scar:burned_records` usciva
+    col proprio id, perché la posa la **rovina di una pietra** e non un Effetto.
+- **D-250 — «la saga si ferma alla seconda partita.»** Il motore è escluso: la
+  catena vera gira pulita per quattro Chronicle. Non sono riuscito a riprodurlo
+  guidando la schermata in headless, quindi **non scrivo una diagnosi che non
+  ho**. Corretto lo stesso un difetto reale sulla stessa riga: l'apertura
+  dell'era successiva **ignorava il fallimento di `setup`**, e un fallimento
+  silenzioso ha la stessa faccia di un blocco. Ora lo dice.
+- **Misurato**: 486 prove / 10.741 asserzioni verdi (da 483 / 10.727), cancelli
+  verdi, sim verdi, export e cataloghi allineati, playtest 100 semi **0 su 8**.
+
+---
+
 ## 0.1.212 — L'app si apre e si gioca (D-245)
 
 - **«Non deve chiedere nessuna saga.»** D-241 aveva ridotto la domanda da

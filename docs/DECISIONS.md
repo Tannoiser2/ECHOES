@@ -10,6 +10,168 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-250 — Una saga che non prosegue deve dire perche'
+
+**implemented in 0.1.213** — parziale: la causa non e' ancora provata
+
+> «La saga si ferma alla seconda partita e non va avanti.»
+
+**Quello che ho misurato, e che esclude il motore.** La catena vera —
+`setup` → `inherit_from` → `run`, quattro Chronicle di fila, guidata come la
+guida lo schermo — gira pulita: quattro anni, quattro rapporti completi, e
+`library_sequel_of("CHR_02")` risponde `CHR_02` ogni volta, come deve. Il libro
+della saga con due anni dentro produce quattro pagine e tutte si disegnano. Il
+punto in cui si ferma **non e' nelle regole**.
+
+**Quello che non sono riuscito a fare**: guidare la schermata vera in headless
+per vederlo succedere. Un `Control` montato in un `SceneTree` da riga di comando
+non ha fatto girare il suo giro di scelte, e senza quello la diagnosi resterebbe
+un'ipotesi scritta come se fosse un fatto. Non la scrivo.
+
+**Quello che ho corretto lo stesso**, perche' e' un difetto in ogni caso: la
+riga che apre l'era successiva **ignorava il `false`** che `setup` puo' tornare.
+Un `setup` fallito lasciava una sessione a meta' e una schermata che non fa
+niente — cioe' **esattamente la faccia che ha un blocco**, senza una parola su
+perche'. Adesso dice cosa non si e' aperto e chiude la saga con il salvataggio
+al sicuro. Se la causa era quella, e' risolta; se non lo era, la prossima volta
+lo schermo lo dice invece di tacere, ed e' comunque un passo avanti rispetto a
+indovinare.
+
+**E c'e' un sospetto che [D-248](#d-248) potrebbe aver gia' chiuso**: alla fine
+del **secondo** anno — e solo da li' in poi — si apre il *libro della saga*, che
+prima di questa versione rasterizzava una pagina da cinquantaquattro megabyte.
+Su un tablet una texture oltre il tetto puo' non fallire in silenzio: puo'
+portarsi via il contesto grafico, e allora la pagina non e' vuota, e' tutto
+fermo. Il momento coincide. **Non lo dichiaro risolto senza una prova.**
+
+**La domanda che serve, e che vale piu' di dieci ipotesi**: a fine seconda
+partita l'offerta *«Gioca l'era successiva»* **compare**? Se compare e toccarla
+non fa niente, il difetto e' nell'apertura dell'anno; se non compare, e' prima.
+Sono due meta' diverse del codice e la risposta ne esclude una.
+
+---
+
+## D-249 — Un file solo per fare una carta, e uno per i pezzi
+
+**implemented in 0.1.213**
+
+> «Dimmi dove trovo, oppure generalo, il file con tutte le carte con la
+> descrizione, gli effetti, i valori e il prompt per fare l'immagine.»
+> «Dimmi anche tutte le pedine che devo generare per indicare le varie cose
+> sulla mappa.»
+
+Quelle quattro cose esistevano tutte, in **tre posti diversi**: i numeri in
+`ASSET_MANIFEST.md`, gli effetti solo dentro il JSON, il prompt in
+`BRIEF_ARTE.md`. Chi doveva far disegnare una carta teneva tre documenti aperti
+e sperava che parlassero della stessa carta.
+
+[CATALOGO_CARTE.md](CATALOGO_CARTE.md) e' una scheda per carta — **87 carte** —
+con dentro tutto, e una sezione per i **pezzi della mappa**: le pietre coi loro
+gradi e la loro rovina, le condizioni, le cicatrici, le pedine e i vessilli.
+**64 pezzi diversi da fabbricare.**
+
+**Nessuna riga e' scritta a mano**, ed e' l'unica cosa che rende il documento
+affidabile: i numeri vengono dai dati, le frasi da `AssetText` — lo stesso posto
+che le scrive sullo schermo e sul cartone ([D-228](#d-228)) — e il prompt da
+`ArtBible`, lo stesso che compone il brief. Tre sorgenti, una pagina, e non
+possono divergere. La CI lo rigenera e lo confronta.
+
+**E il documento ha trovato un difetto mentre lo scriveva**: `scar:burned_records`
+usciva nell'elenco delle cicatrici **col proprio id**. E' la cicatrice che
+l'Archivio lascia bruciando, e la posa la **rovina di una pietra**, non un
+Effetto — per questo il censimento di [D-107](#d-107) non la vedeva. Adesso ha la
+sua parola, e la prova guarda anche le rovine.
+
+---
+
+## D-248 — La cronaca non era vuota: era troppo grande per essere disegnata
+
+**implemented in 0.1.213**
+
+> «La cronaca dell'anno e' sempre una pagina vuota.»
+
+Non era vuota. La vista rasterizza l'SVG della pagina a **4 pixel per
+millimetro**, e un A4 a quella scala esce **3175x4490**: cinquantaquattro
+megabyte di texture, e un lato lungo che supera il massimo che la scheda di un
+tablet accetta. La texture non si carica, e resta una pagina nera.
+
+Il commento nel codice diceva *«4 rende un A4 a 840x1188»*. **Era sbagliato di un
+fattore quattro**, e nessuno l'ha mai verificato perche' su un monitor da
+scrivania funzionava lo stesso.
+
+Adesso la pagina si misura prima a scala 1 — costa poco — e da li' si calcola
+quanto si puo' ingrandire senza sfondare il tetto: **1131x1599**, sette megabyte,
+piu' nitida dello schermo che la mostra. Il numero non e' indovinato: se domani
+la pagina cambia formato, la misura si aggiusta da sola.
+
+**E c'era gia' una prova che diceva «ogni pagina si rasterizza», ed era verde.**
+Disegnava a scala **2**, mentre l'applicazione disegnava a **4**: misurava una
+cosa diversa da quella che si vedeva. Adesso chiama la stessa funzione che chiama
+lo schermo, e verifica che il lato lungo stia sotto il tetto — ed e' l'unico modo
+in cui una prova su una vista puo' voler dire qualcosa.
+
+---
+
+## D-247 — A che punto siamo, e a chi tocca
+
+**implemented in 0.1.213**
+
+> «Non c'e' un testo che dice a chi tocca e quando finisce un turno di un
+> giocatore o un atto.»
+
+Al tavolo fisico si vede: c'e' un segnalino di turno, e le carte di chi sta
+giocando sono in mano sua. Sullo schermo non c'era **niente** — il verbale a
+sinistra lo racconta *dopo*, e dopo non serve a chi deve decidere adesso.
+
+Adesso, sopra le domande: **ATTO 2 di 3 · ROUND 1 di 3**, e sotto *«Tocca a
+Kessa — 2 azioni»*. Tutto derivato dal mondo, niente di nuovo da tenere
+allineato: **chi gioca adesso** si legge dalle azioni rimaste, perche' il giro le
+assegna a un seggio quando il suo turno comincia e le consuma fino a zero — in
+ogni momento c'e' un solo seggio con azioni in mano.
+
+E la riga sotto dice **quando finisce l'Atto**, non solo quando si tiene il
+Consiglio: sono la stessa cosa, e per chi gioca non e' ovvio.
+
+---
+
+## D-246 — Una carta che si taglia il proprio testo
+
+**implemented in 0.1.213** — corregge [D-242](#d-242)
+
+> «Le carte in mano sono ancora troppo piccole, sono tagliate e non c'e' scritto
+> nulla sopra.»
+
+Tre lamentele, e sono **una sola**. [D-242](#d-242) aveva portato la carta a 150
+pixel e le aveva messo **sotto l'immagine** il nome e il verbo. Quello che si
+taglia di una carta troppo alta e' il fondo: cioe' esattamente il testo appena
+aggiunto.
+
+La carta chiedeva 196 pixel, la mano ne dava 200, e bastava un titolo su due
+righe. Peggio: l'immagine aveva `EXPAND_FILL`, quindi quando lo spazio non
+bastava **lo prendeva alle righe di sotto** — il testo non si stringeva, spariva.
+
+Tre cose, e nessuna e' un numero piu' grande:
+
+- **le misure si sommano invece di essere indovinate**: immagine, nome, verbo e
+  fondo hanno ognuno la propria altezza minima, e l'altezza della carta e' la
+  somma. `wanted_height()` la dice, e **la mano la chiede alla carta** invece di
+  ripeterla in un altro file — che e' esattamente dove il difetto e' nato;
+- **il titolo si ferma a due righe**: un titolo lungo allungava la carta oltre il
+  suo contenitore, e a quel punto tagliava se stesso;
+- **la misura si dichiara anche in `render`**, non solo in `_ready`: una carta
+  disegnata fuori dall'albero non ha mai visto `_ready`, e restava schiacciabile
+  a qualunque cosa.
+
+**Tre prove**, e la terza e' quella che chiude il cerchio: che la mano chieda alla
+carta quanto e' alta, invece di indovinarlo.
+
+**Misurato:** suite 486 prove / 10.741 asserzioni verdi (era 483 / 10.727), i
+cancelli degli strumenti verdi — compreso il nuovo sul catalogo delle carte — i
+piani di simulazione verdi, export e cataloghi allineati, `run_playtest.gd
+--runs=100 --seed=7000` **0 seggi bloccati su 8**.
+
+---
+
 ## D-245 — L'app si apre e si gioca: nessuna domanda
 
 **implemented in 0.1.212** — sostituisce [D-241](#d-241), che aveva ridotto la

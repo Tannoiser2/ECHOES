@@ -111,6 +111,14 @@ jobs:
       - name: Drift check - catalogo dei Consigli
         run: GODOT=~/godot/godot tools/run_council_catalogue.sh --check
 
+      # Il catalogo delle carte (D-249). Una scheda per carta con i suoi numeri,
+      # i suoi effetti e il prompt del disegno: e' il documento che si manda a
+      # chi disegna e a chi stampa, ed e' generato da tre sorgenti diverse. Se
+      # una di quelle cambia e il documento no, chi lo legge lavora su una carta
+      # che non esiste piu'.
+      - name: Drift check - catalogo delle carte
+        run: GODOT=~/godot/godot tools/run_card_catalogue.sh --check
+
       - name: Play every sim plan
         run: GODOT=~/godot/godot tools/run_sims.sh
 

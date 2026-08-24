@@ -10,9 +10,20 @@ extends PanelContainer
 
 const ChronicleBook := preload("res://scripts/core/chronicle_book.gd")
 
-## Quanti pixel per unita' SVG (millimetro): 4 rende un A4 a 840x1188, nitido
-## anche su uno schermo grande senza pesare come una scansione.
+## Quanto nitida vorremmo la pagina, in pixel per millimetro.
 const RASTER_SCALE: float = 4.0
+
+## **E quanto grande puo' diventare davvero** (D-248).
+##
+## Il commento qui sopra diceva «840x1188». E' sbagliato: a scala 4 un A4 esce
+## **3175x4490**, cioe' 54 megabyte di texture. Su un iPad quel lato lungo supera
+## il massimo che la scheda accetta, la texture non si carica, e la vista mostra
+## una pagina nera — *«la cronaca dell'anno e' sempre una pagina vuota»*. Non era
+## vuota: era troppo grande per essere disegnata.
+##
+## Milleseicento e' sotto il tetto di qualunque dispositivo in circolazione e
+## resta piu' nitido dello schermo che lo mostra.
+const MAX_SIDE: float = 1600.0
 
 var _pages: Array = []
 var _index: int = 0
@@ -78,8 +89,8 @@ func _show() -> void:
 		_picture.texture = null
 		_footer.text = "Nessuna cronaca da mostrare."
 		return
-	var image := Image.new()
-	if image.load_svg_from_string(str(_pages[_index]), RASTER_SCALE) != OK:
+	var image: Image = raster(str(_pages[_index]))
+	if image == null:
 		_footer.text = "La pagina non si e' lasciata disegnare."
 		return
 	_picture.texture = ImageTexture.create_from_image(image)
@@ -89,3 +100,26 @@ func _show() -> void:
 			" · frecce per sfogliare" if _pages.size() > 1 else "",
 		]
 	)
+
+
+## La pagina disegnata alla misura piu' nitida che ci sta dentro il tetto.
+##
+## Si misura prima a scala 1 — costa poco — e da li' si calcola quanto si puo'
+## ingrandire senza sfondare `MAX_SIDE`. Cosi' il numero non e' indovinato: se
+## domani la pagina cambia formato, la misura si aggiusta da sola invece di
+## tornare nera su meta' dei dispositivi.
+##
+## Statica e pura: e' l'unica parte di questa vista che si puo' provare in
+## headless, ed e' quella dove il difetto viveva.
+static func raster(svg: String) -> Image:
+	var probe := Image.new()
+	if probe.load_svg_from_string(svg, 1.0) != OK:
+		return null
+	var side: float = float(maxi(probe.get_width(), probe.get_height()))
+	var wanted: float = clampf(MAX_SIDE / maxf(side, 1.0), 1.0, RASTER_SCALE)
+	if wanted <= 1.0:
+		return probe
+	var image := Image.new()
+	if image.load_svg_from_string(svg, wanted) != OK:
+		return probe
+	return image
