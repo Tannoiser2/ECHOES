@@ -893,6 +893,39 @@
               "description": "A quanti segnalini si gira la prima carta del mazzetto (parola del committente: 2). Il conto e' dei gettoni caduti, non del loro valore, perche' e' quello che il tavolo vede."
             }
           }
+        },
+        "region_pool": {
+          "type": "object",
+          "description": "Le tessere della mappa si pescano (D-263, parola del committente): la Chronicle dice quali posti POTREBBERO esserci, e l'RNG derivato dal seme apparecchia — una mappa diversa ogni saga. La lista `regions` resta il ripiego scritto a mano (e il totale delle tessere in scatola). La mappa e' della saga: un'era ereditata gioca sulle tessere pescate dalla prima, qualunque seme la apra.",
+          "additionalProperties": false,
+          "required": [
+            "candidates",
+            "count"
+          ],
+          "properties": {
+            "candidates": {
+              "type": "array",
+              "minItems": 2,
+              "items": {
+                "type": "string",
+                "pattern": "^REG_[A-Z0-9_]+$"
+              },
+              "description": "Le tessere pescabili."
+            },
+            "count": {
+              "type": "integer",
+              "minimum": 2,
+              "description": "Quante tessere fanno la mappa."
+            },
+            "always": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^REG_[A-Z0-9_]+$"
+              },
+              "description": "Posate per prime, sempre: i posti di cui questa Chronicle parla per definizione."
+            }
+          }
         }
       }
     }

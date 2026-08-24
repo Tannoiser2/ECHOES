@@ -1226,7 +1226,9 @@ static func openings(data: RefCounted) -> Array:
 	for chronicle_id in data.chronicles:
 		var chronicle: Dictionary = data.chronicles[str(chronicle_id)] as Dictionary
 		var next_id: String = str(chronicle.get("sequel_id", ""))
-		if next_id != "":
+		# L'auto-seguito non conta: una saga che continua su se stessa (CHR_00,
+		# D-263) e' comunque un inizio — e' il seguito **suo**, non di un'altra.
+		if next_id != "" and next_id != str(chronicle_id):
 			sequels[next_id] = true
 	var ids: Array = []
 	for chronicle_id in data.chronicles:

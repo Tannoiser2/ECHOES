@@ -387,6 +387,9 @@ const DEFS := {
 			"theme_tokens": {
 				"type": "Dictionary",
 			},
+			"region_pool": {
+				"type": "Dictionary",
+			},
 		},
 	},
 	"confluence_template": {
