@@ -13,6 +13,7 @@ const Ids := preload("res://scripts/core/ids.gd")
 const WorldStateService := preload("res://scripts/world/world_state_service.gd")
 const TagRules := preload("res://scripts/world/tag_rules.gd")
 const ConditionEvaluator := preload("res://scripts/world/condition_evaluator.gd")
+const RngService := preload("res://scripts/core/rng_service.gd")
 
 const TEMPLATES: Array = [
 	"ACQUIRE", "MOVE", "INFLUENCE", "FORGE", "SCHEME", "CLAIM", "PLAY_ECHO", "PLAY_CARD"
@@ -1234,19 +1235,51 @@ func _resonance(
 		aggravated = true
 		heat += int(echo.get("extra_heat", 0))
 	var effects: Array = []
-	# **La pista del Tema si scalda per prima** (PZ-1): e' la cosa che sul
-	# tavolo fisico si vede — il segnalino che sale — e da PZ-1 e' lei che il
-	# Consiglio di fine Atto legge. Il ponte sulle Tensioni qui sotto resta:
-	# finche' le Domande vivono sulle questioni, il Calore deve anche
-	# avvicinarle. Cadra' quando le Domande fisiche si pescheranno dal Tema
-	# (ISSUES 69), non prima.
+	# **Il mazzetto del Tema si scalda per primo** (D-261, decisione del
+	# committente): la Risonanza fa cadere sul mazzetto del suo Tema un gettone
+	# **coperto** — puo' valere 0, 1 o 2, pescato dal sacchetto che la
+	# Chronicle dichiara — e il Calore scritto sulla carta dice **quanti**
+	# gettoni cadono, aggravata compresa. Il tavolo vede i gettoni cadere, non
+	# quanto valgono: si girano a fine Atto, e il mazzetto piu' alto apre il
+	# Consiglio. Il ponte sulle Tensioni qui sotto resta: finche' le Domande
+	# vivono sulle questioni, il Calore deve anche avvicinarle. Cadra' quando
+	# le Domande fisiche si pescheranno dal Tema (ISSUES 69), non prima.
 	var theme_id: String = str(echo.get("theme", ""))
 	if theme_id != "" and heat > 0:
-		var warmed: Dictionary = applier.apply(Effect.make(
-			"ADJUST_THEME_HEAT", "theme", theme_id, {"delta": heat}, mine
-		))
-		if not warmed.is_empty():
-			effects.append(warmed)
+		var bag: Array = (_chronicle.get("theme_tokens", {}) as Dictionary).get("covered", []) as Array
+		for _i in range(heat):
+			# Senza sacchetto il gettone vale 1 in chiaro: coprire ha senso
+			# solo se il valore varia — la stessa regola di `tension_tokens`.
+			#
+			# **Il sacchetto dei Temi ha un dado suo** (lezione di D-150): se
+			# pescasse dal caso condiviso, accendere i mazzetti riscriverebbe
+			# ogni storia a seme fisso — mazzi, deriva e domande comprese. Il
+			# dado deriva dal seme e dalla sequenza degli Effetti, cosi' e'
+			# riproducibile anche riprendendo un salvataggio a meta' anno.
+			var worth: int = 1
+			if not bag.is_empty():
+				var draw: RefCounted = RngService.new(
+					int(world["rng_seed"]) * 43 + int(world["effect_sequence"]) * 7 + 19
+				)
+				worth = int(bag[draw.range_int(0, bag.size() - 1)])
+			var dropped: Dictionary = applier.apply(Effect.make(
+				"ADJUST_THEME_HEAT", "theme", theme_id, {"delta": worth}, mine
+			))
+			if not dropped.is_empty():
+				effects.append(dropped)
+			# Anche il gettone bianco **e' caduto**: il mazzetto lo mostra, e
+			# mezzo senso di coprire sta proprio li'.
+			world["theme_tokens"] = world.get("theme_tokens", {}) as Dictionary
+			world["theme_tokens"][theme_id] = int((world["theme_tokens"] as Dictionary).get(theme_id, 0)) + 1
+			if not bag.is_empty():
+				log.bullet("  Un gettone coperto cade sul mazzetto di %s." % _theme_title(theme_id))
+		# **La carta si gira a due segnalini** (D-261): quando il mazzetto
+		# raggiunge il conto dichiarato, la prima carta si scopre e il tavolo
+		# sa quale Tensione si va scaldando li'. Una volta girata resta il
+		# fronte del Tema: i gettoni dopo non girano altro.
+		if tensions.theme_front(theme_id) == "" \
+				and tensions.theme_token_count(theme_id) >= tensions.reveal_at():
+			tensions.flip_theme_front(theme_id)
 	var tension_id: String = _hottest_of_theme(theme_id)
 	if tension_id != "" and heat > 0:
 		var applied: Dictionary = applier.apply(Effect.make(
@@ -1380,6 +1413,11 @@ func _title(asset_id: String) -> String:
 func _name(entity_id: String) -> String:
 	var entity: Variant = data.entities.get(entity_id)
 	return entity_id if entity == null else str(service.name_of(entity_id))
+
+
+func _theme_title(theme_id: String) -> String:
+	var theme: Variant = data.themes.get(theme_id)
+	return theme_id if theme == null else str((theme as Dictionary)["title"])
 
 
 func _region(region_id: String) -> String:

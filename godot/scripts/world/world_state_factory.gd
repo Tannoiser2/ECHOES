@@ -29,11 +29,17 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 		"entities": {},
 		"regions": {},
 		"tensions": {},
-		# La traccia del Calore (PZ-1): ogni Tema parte freddo. E' stato
-		# strutturale come `tensions`: la pista esiste dal primo round, non
+		# Il Calore dei Temi (PZ-1, poi D-261): ogni Tema parte freddo. Stato
+		# strutturale come `tensions`: i mazzetti esistono dal primo round, non
 		# dalla prima Risonanza — un Tema mai scaldato si legge a zero, non
-		# manca dal tavolo.
+		# manca dal tavolo. `theme_heat` e' il valore (che si scopre a fine
+		# Atto), `theme_tokens` i gettoni che il tavolo vede cadere,
+		# `theme_decks` le Tensioni coperte del Tema, `theme_front` la carta
+		# girata.
 		"theme_heat": {},
+		"theme_tokens": {},
+		"theme_decks": {},
+		"theme_front": {},
 		"relations": {},
 		"global_tags": (chronicle.get("global_tags", []) as Array).duplicate(),
 		"claims": [],
@@ -163,6 +169,9 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 	# scalda lo stesso — e' il tavolo che dice dove il mondo sta guardando.
 	for theme_id in data.themes:
 		world["theme_heat"][str(theme_id)] = 0
+		world["theme_tokens"][str(theme_id)] = 0
+
+	deal_theme_decks(world, data, rng)
 
 	_build_relations(world, chronicle, data)
 	_build_asset_decks(world, chronicle, data, rng)
@@ -723,6 +732,28 @@ static func redeal_tensions(
 			"resolved_count": 0,
 		}
 	_build_drift_track(world, chronicle, rng)
+	# La pesca che ascolta ha cambiato le questioni dell'anno: i mazzetti dei
+	# Temi vanno rimontati sulle nuove, o il tavolo girerebbe carte di domande
+	# che quest'era non sta facendo. Trovato da test_library_balance: il
+	# Consiglio si apriva su una Tensione che il mondo non aveva.
+	deal_theme_decks(world, data, rng)
+
+
+## I mazzetti dei Temi (D-261, parola del committente): le Tensioni in gioco
+## di ogni Tema, mischiate e coperte. Il dado e' **derivato dal seme**, non
+## quello della partita, per la lezione di D-150: un mazzetto che consumasse
+## il caso condiviso sposterebbe mazzi, deriva e domande di tutto l'anno.
+## Chiamata dal setup, e di nuovo dalla ripesca di D-079 quando un'era di
+## libreria cambia le questioni dell'anno.
+static func deal_theme_decks(world: Dictionary, data: RefCounted, rng: RefCounted) -> void:
+	var deck_rng: RefCounted = RngService.new(rng.get_seed() * 41 + 13)
+	for theme_id in data.themes:
+		var pile: Array = []
+		for tension_id in world["tensions"]:
+			if str(data.tensions[str(tension_id)].get("theme", "")) == str(theme_id):
+				pile.append(str(tension_id))
+		world["theme_decks"][str(theme_id)] = deck_rng.shuffle(pile)
+		world["theme_front"][str(theme_id)] = ""
 
 
 ## La domanda lasciata calda torna calda (D-088, Fase 2 del motore 0.3).

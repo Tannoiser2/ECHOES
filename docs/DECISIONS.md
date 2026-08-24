@@ -10,6 +10,96 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-261 — I sei mazzetti: gettoni coperti, la carta che si gira, e il secondo dibattito
+
+**implemented in 0.1.223** — decisione del committente, che supera la forma di D-260
+
+Le parole del committente, che sono la regola:
+
+> *I sei Temi sono 6 mazzetti. Quando si scalda un Tema si mette un gettone
+> coperto che può valere 0, 1 o 2. È il mucchio che si rivela a fine Atto: il
+> più alto va al Consiglio. Se un giocatore ha giocato un'azione che gli
+> permette di dibattere un secondo Tema, sarà quello col secondo mucchio più
+> alto.*
+
+E, sulla rivelazione: **la prima carta del mazzetto si gira a due segnalini** —
+da lì il tavolo sa quale Tensione si va scaldando su quel Tema. I mazzetti sono
+**mazzi di Tensioni**: le questioni in gioco di ogni Tema, mischiate a inizio
+partita con un dado derivato dal seme, coperte.
+
+**Com'e' fatto adesso, pezzo per pezzo:**
+
+1. **Il gettone coperto.** La Risonanza fa cadere sul mazzetto del suo Tema
+   tanti gettoni quanto il Calore scritto sulla carta (aggravata = gettoni in
+   piu'). Ogni gettone pesca il valore dal sacchetto `theme_tokens.covered`
+   — `[0,1,1,2]`, lo stesso dei gettoni delle Tensioni — e viaggia come
+   `ADJUST_THEME_HEAT` con l'inverso esatto. Il tavolo vede i gettoni cadere
+   (`theme_tokens`, contatore come `tokens_in_bag`), non quanto valgono.
+2. **La carta che si gira** (`reveal_at: 2`). Al secondo segnalino la testa del
+   mazzetto si scopre e resta il fronte del Tema. Una carta girata non si
+   ricopre.
+3. **La rivelazione di fine Atto.** I gettoni si girano («I mazzetti si girano:
+   Fede vale 3 (2 gettoni); …»), il mazzetto col valore piu' alto porta al
+   Consiglio **la sua carta girata** (se non s'era ancora girata, la gira la
+   rivelazione; se ha gia' detto tutto, si gira la prossima), e poi **tutti i
+   mazzetti si spendono**: valori a zero per Effect, gettoni via. A parita'
+   decide l'ordine del dato; a tavolo freddo il ripiego dichiarato resta il
+   mucchio piu' alto delle questioni.
+4. **Il secondo dibattito.** Chi consuma un RIVENDICARE durante l'Atto non
+   sceglie piu' lui la questione: a fine Atto apre **il secondo mazzetto piu'
+   alto**, restando proponente. La questione che aveva nominato e' solo il
+   ripiego se i mazzetti non offrono niente — cosi' il diritto guadagnato non
+   evapora in silenzio, che era ISSUES 53.
+
+**Le due trappole che il costruire ha trovato**, entrambe morse da una guardia:
+
+- *La pesca che ascolta smontava i mazzetti.* Un'era di libreria ripesca le
+  questioni dopo il setup (D-079), e i mazzetti restavano quelli della pesca
+  cieca: il Consiglio si apriva su una Tensione che il mondo non aveva.
+  Trovato da `test_library_balance`; adesso `redeal_tensions` rimonta i
+  mazzetti.
+- *Il primo Consiglio cancellava il diritto del secondo.* Risolvere una
+  Confluence azzera `forced_confluence` da sempre: letto dopo il primo
+  Consiglio dell'Atto era sempre vuoto, e il playtest e' sceso a **tre
+  Consigli esatti per cento anni** — il numero che non mente. Adesso il
+  diritto si legge prima.
+
+**Il dado dei mazzetti e' suo** (lezione di D-150, pagata di nuovo): la prima
+stesura pescava i valori dal caso condiviso e **riscriveva ogni storia a seme
+fisso** — `plan_d_crown_calls` perdeva un Consiglio e la sua morale. Col dado
+derivato (seme × sequenza degli Effetti, riproducibile anche da salvataggio) le
+storie scritte sono tornate **byte per byte** quelle di D-258, senza ribasare
+niente.
+
+**I numeri, 100 semi:**
+
+| | prima (D-260) | adesso |
+|---|---|---|
+| Consigli, misto | 3-8 (media 4,87) | **3-6 (media 4,59)** |
+| Consigli, uniforme | 3-9 (media 5,31) | **3-6 (media 4,66)** |
+| l'anno peggiore | **9** (prezzo dichiarato da D-257) | **6, per costruzione** |
+| Verita' scritte | 373 | 355 (misto) · 348 (uniforme) |
+| seggi bloccati | 0 su 8 | **0 su 8**, misto e uniforme |
+
+Il tetto a due Consigli per Atto **cancella il nove** che tre tentativi di
+taratura non avevano spostato: non e' piu' una coda della distribuzione, e' la
+forma dell'anno. Le Verita' scendono con i Consigli; e' il prezzo di un anno
+piu' corto di parole, scritto qui.
+
+**RIVENDICARE ha due usi, e qui ne vive uno.** Il committente ha detto anche:
+*puo' servire in primis per fare una controproposta sulla Tensione che si va
+dibattendo — mettere una pedina su un beneficio o su un costo.* Quella meta'
+tocca le proposte e le clausole del Consiglio, ed e' materia della revisione
+del Consiglio (PZ-5): registrata li', non costruita qui a meta'.
+
+**Aperto, e di chi:** la composizione del sacchetto `[0,1,1,2]` e `reveal_at: 2`
+sono configurazione reversibile (taratura d'autore); le Domande fisiche che si
+pescano dal Tema restano ISSUES 69/PZ-4; il mazzetto come mazzo di **tutte** le
+Tensioni del Tema (non solo quelle in gioco) arriva con la Fase C — la mappa a
+tessere e il setup procedurale, dove gli scenari fissi smettono di decidere.
+
+---
+
 ## D-260 — Il Calore diventa una pista, e la pista sceglie la Domanda dell'Atto
 
 **implemented in 0.1.222** — apre PZ-1 della roadmap e lo chiude

@@ -384,6 +384,9 @@ const DEFS := {
 			"entity_pool": {
 				"type": "Dictionary",
 			},
+			"theme_tokens": {
+				"type": "Dictionary",
+			},
 		},
 	},
 	"confluence_template": {
@@ -1743,6 +1746,15 @@ const DEFS := {
 				"type": "Dictionary",
 			},
 			"theme_heat": {
+				"type": "Dictionary",
+			},
+			"theme_tokens": {
+				"type": "Dictionary",
+			},
+			"theme_decks": {
+				"type": "Dictionary",
+			},
+			"theme_front": {
 				"type": "Dictionary",
 			},
 			"relations": {

@@ -369,16 +369,12 @@ func _end_of_round_confluence(decider: Object) -> void:
 	# un'incognita del sistema — sono almeno quanti sono gli Atti — e i gettoni
 	# smettono di dire *se* si parla per dire soltanto *di cosa*.
 	if _council_at_end_of_act():
-		if forced == null:
-			world["confluence_queue"] = []
-			return
-		_set_phase(int(world["act"]), int(world["round"]), "CONFLUENCE")
+		# **Il diritto rivendicato si spende a fine Atto** (D-261): il round
+		# non apre piu' nemmeno i forzati. Chi ha consumato un RIVENDICARE
+		# tiene il suo secondo dibattito per quando i mazzetti si girano, e
+		# la questione sara' il secondo mazzetto piu' alto — non quella che
+		# ha nominato, che resta solo come ripiego.
 		world["confluence_queue"] = []
-		await run_confluence(
-			str(forced["tension_id"]),
-			{"kind": "CLAIM", "entity_id": str(forced["entity_id"])},
-			decider
-		)
 		return
 
 	if forced != null:
@@ -603,25 +599,59 @@ func end_of_act(act: int, decider: Object) -> void:
 func _council_closing_the_act(act: int, decider: Object) -> void:
 	if not _council_at_end_of_act():
 		return
-	# **La pista sceglie, il mucchio ripiega** (PZ-1). Da questa decisione la
-	# domanda dell'Atto e' quella del Tema piu' caldo sulla traccia del Calore
-	# — che e' quello che il tavolo fisico legge: sei piste, un segnalino
-	# ciascuna. Il mucchio piu' alto resta come ripiego dichiarato per l'anno
-	# in cui nessuna Risonanza ha scaldato niente: un tavolo freddo non e' un
-	# tavolo senza domande.
-	var tension_id: String = _question_of_the_hottest_theme()
-	if tension_id == "":
+	# **I mazzetti si girano** (D-261, parola del committente): a fine Atto i
+	# gettoni coperti scoprono il loro valore, il mazzetto piu' alto porta al
+	# Consiglio la sua carta girata, e chi ha guadagnato un secondo dibattito
+	# con RIVENDICARE apre il secondo mazzetto. Il mucchio piu' alto delle
+	# questioni resta come ripiego dichiarato per l'Atto in cui nessuna
+	# Risonanza ha scaldato niente: un tavolo freddo non e' un tavolo senza
+	# domande.
+	_reveal_the_piles(act)
+	# Il diritto rivendicato si legge **prima** del primo Consiglio: risolvere
+	# una Confluence azzera `forced_confluence` (e' la sua consumazione, da
+	# prima di questa decisione), quindi leggerlo dopo lo trovava sempre vuoto
+	# — cento anni a tre Consigli esatti, e il playtest l'ha detto subito.
+	var forced: Variant = world.get("forced_confluence", null)
+	world["forced_confluence"] = null
+	var first_theme: String = ""
+	var tension_id: String = _front_of_hottest_theme("")
+	if tension_id != "":
+		first_theme = str(data.tensions[tension_id].get("theme", ""))
+	else:
 		tension_id = _hottest_with_something_to_say()
 	if tension_id == "":
 		log.bullet(
 			"L'Atto %d si chiude senza Consiglio: nessuna domanda ha ancora qualcosa di nuovo da decidere."
 			% act
 		)
+	else:
+		log.section("IL CONSIGLIO DI FINE ATTO %d" % act)
+		_set_phase(act, int(_chronicle["rounds_per_act"]), "CONFLUENCE")
+		await run_confluence(tension_id, {"kind": "THRESHOLD", "entity_id": ""}, decider)
+	await _second_council_of_the_act(act, first_theme, forced, decider)
+	_spend_the_piles(act)
+
+
+## Il secondo dibattito (D-261): chi ha consumato un RIVENDICARE durante
+## l'Atto non sceglie piu' lui la questione — apre **il secondo mazzetto piu'
+## alto**, restando proponente. Se i mazzetti non offrono niente, si ripiega
+## sulla questione che aveva nominato, se ha ancora qualcosa da chiedere: il
+## diritto guadagnato non evapora in silenzio (ISSUES 53).
+func _second_council_of_the_act(act: int, first_theme: String, forced: Variant, decider: Object) -> void:
+	if forced == null:
 		return
-	log.section("IL CONSIGLIO DI FINE ATTO %d" % act)
+	var claimant: String = str((forced as Dictionary).get("entity_id", ""))
+	var tension_id: String = _front_of_hottest_theme(first_theme)
+	if tension_id == "":
+		var named: String = str((forced as Dictionary).get("tension_id", ""))
+		if named != "" and session.confluence.can_open(named):
+			tension_id = named
+	if tension_id == "":
+		log.bullet("Il secondo dibattito rivendicato da %s non trova una questione aperta: il diritto si spegne, e resta scritto." % _name(claimant))
+		return
+	log.section("IL SECONDO CONSIGLIO DELL'ATTO %d" % act)
 	_set_phase(act, int(_chronicle["rounds_per_act"]), "CONFLUENCE")
-	await run_confluence(tension_id, {"kind": "THRESHOLD", "entity_id": ""}, decider)
-	_cool_theme_after_council(str(data.tensions[tension_id].get("theme", "")), act)
+	await run_confluence(tension_id, {"kind": "CLAIM", "entity_id": claimant}, decider)
 
 
 func _council_at_end_of_act() -> bool:
@@ -630,15 +660,37 @@ func _council_at_end_of_act() -> bool:
 	)
 
 
-## La domanda del Tema piu' caldo (PZ-1): si scorre la pista dal Tema piu'
-## caldo in giu' — a parita' vince l'ordine in cui i Temi stanno nel dato, che
-## e' l'ordine stampato sul tavolo — e per ognuno si cerca una sua questione
-## che si aprirebbe adesso. La discesa e' la stessa regola di
-## `_hottest_with_something_to_say`: un Tema caldo le cui domande hanno gia'
-## detto tutto lascia il posto al successivo, invece di far saltare il
-## Consiglio dell'Atto. I Temi a zero non scelgono niente: sotto il freddo
-## decide il mucchio, e la regola vecchia resta scritta come ripiego.
-func _question_of_the_hottest_theme() -> String:
+## La rivelazione (D-261): i gettoni coperti si girano, e per la prima volta
+## l'Atto dice quanto valeva ogni mazzetto. E' il momento del tavolo — si
+## racconta anche quando non cambia niente, perche' girare due gettoni bianchi
+## e' una storia («tanto fumo, niente fuoco»).
+func _reveal_the_piles(_act: int) -> void:
+	var track: Dictionary = world.get("theme_heat", {}) as Dictionary
+	var counts: Dictionary = world.get("theme_tokens", {}) as Dictionary
+	var said: PackedStringArray = PackedStringArray()
+	for theme_id in data.themes:
+		var fallen: int = int(counts.get(str(theme_id), 0))
+		if fallen <= 0:
+			continue
+		said.append("%s vale %d (%d gettoni)" % [
+			str(data.themes[str(theme_id)]["title"]),
+			int(track.get(str(theme_id), 0)), fallen,
+		])
+	if said.is_empty():
+		return
+	log.bullet("I mazzetti si girano: %s." % "; ".join(said))
+
+
+## La carta girata del mazzetto piu' alto (D-261). Si scorrono i Temi dal
+## valore rivelato piu' alto in giu' — a parita' l'ordine del dato, che e'
+## l'ordine stampato — saltando `exclude` (il Tema gia' dibattuto dal primo
+## Consiglio). Per ogni Tema caldo si prende **la sua carta girata**; se non
+## s'e' ancora girata (valore alto con pochi gettoni), la gira la rivelazione
+## stessa; se la girata ha gia' detto tutto, si gira la prossima. Un Tema il
+## cui mazzetto si esaurisce lascia il posto al successivo. I Temi a zero non
+## scelgono niente: sotto il freddo decide il mucchio, e la regola vecchia
+## resta scritta come ripiego.
+func _front_of_hottest_theme(exclude: String) -> String:
 	var track: Dictionary = world.get("theme_heat", {}) as Dictionary
 	var order: Array = data.themes.keys()
 	var ranked: Array = order.duplicate()
@@ -650,60 +702,51 @@ func _question_of_the_hottest_theme() -> String:
 		return heat_a > heat_b
 	)
 	for theme_id in ranked:
+		if str(theme_id) == exclude:
+			continue
 		if int(track.get(str(theme_id), 0)) <= 0:
 			break
-		var tension_id: String = _openable_tension_of_theme(str(theme_id))
+		var tension_id: String = _front_that_can_open(str(theme_id))
 		if tension_id != "":
 			return tension_id
 	return ""
 
 
-## Fra le questioni in gioco di questo Tema, la piu' alta che si aprirebbe
-## adesso — mucchio piu' alto prima, a parita' l'ordine di pesca, la stessa
-## coppia di regole di `_hottest_with_something_to_say`, cosi' la pista cambia
-## **quale Tema parla**, non come si sceglie dentro un Tema.
-func _openable_tension_of_theme(theme_id: String) -> String:
-	var order: Array = (world["tensions"] as Dictionary).keys()
-	var ranked: Array = order.filter(func(id: Variant) -> bool:
-		var definition: Variant = data.tensions.get(str(id))
-		if definition == null:
-			return false
-		return str((definition as Dictionary).get("theme", "")) == theme_id
-	)
-	ranked.sort_custom(func(a: String, b: String) -> bool:
-		var value_a: int = session.tensions.value(str(a))
-		var value_b: int = session.tensions.value(str(b))
-		if value_a == value_b:
-			return order.find(a) < order.find(b)
-		return value_a > value_b
-	)
-	for tension_id in ranked:
-		if session.confluence.can_open(str(tension_id)):
-			return str(tension_id)
+## Il fronte del Tema che si aprirebbe adesso: la carta girata se ha ancora
+## qualcosa da chiedere, altrimenti si gira la prossima finche' il mazzetto ne
+## ha. `can_open` e non `has_fresh_question`, per la stessa ragione scritta in
+## `_hottest_with_something_to_say`.
+func _front_that_can_open(theme_id: String) -> String:
+	var front: String = session.tensions.theme_front(theme_id)
+	if front != "" and session.confluence.can_open(front):
+		return front
+	while true:
+		front = session.tensions.flip_theme_front(theme_id)
+		if front == "":
+			return ""
+		if session.confluence.can_open(front):
+			return front
 	return ""
 
 
-## Il Tema che ha parlato torna a zero (PZ-1): la sua Domanda e' stata posta,
-## il Calore e' speso. Gli altri Temi **tengono** il loro — un fuoco che nessun
-## Consiglio ha guardato non si spegne da solo, e all'Atto dopo parte avanti.
-## Quanto sia giusto che tenga e' taratura d'autore (ROADMAP §4.1): questa e'
-## la regola piu' semplice che si possa spiegare al tavolo, scritta per essere
-## rivista. Il raffreddamento e' un Effect col suo inverso, come tutto.
-func _cool_theme_after_council(theme_id: String, act: int) -> void:
-	if theme_id == "":
-		return
-	var heat: int = int((world.get("theme_heat", {}) as Dictionary).get(theme_id, 0))
-	if heat <= 0:
-		return
+## I mazzetti si spendono (D-261): dopo i Consigli dell'Atto ogni Tema torna
+## freddo — valori a zero per Effect, gettoni via dal tavolo — e l'Atto nuovo
+## ricomincia a contare. Le carte girate **restano girate**: una questione
+## scoperta non si copre piu'. Quanto del Calore non speso dovrebbe invece
+## sopravvivere all'Atto e' taratura d'autore (ROADMAP §4.1).
+func _spend_the_piles(act: int) -> void:
+	var track: Dictionary = world.get("theme_heat", {}) as Dictionary
+	var counts: Dictionary = world.get("theme_tokens", {}) as Dictionary
 	var source: Dictionary = Effect.source(
 		"system", "ACT_END", "", act, int(world["round"]), 0
 	)
-	session.applier.apply(Effect.make(
-		"ADJUST_THEME_HEAT", "theme", theme_id, {"delta": -heat}, source
-	))
-	log.bullet("Il Tema %s ha avuto la sua Domanda: la pista torna fredda." % str(
-		(data.themes.get(theme_id, {}) as Dictionary).get("title", theme_id)
-	))
+	for theme_id in data.themes:
+		var heat: int = int(track.get(str(theme_id), 0))
+		if heat > 0:
+			session.applier.apply(Effect.make(
+				"ADJUST_THEME_HEAT", "theme", str(theme_id), {"delta": -heat}, source
+			))
+		counts[str(theme_id)] = 0
 
 
 ## Il mucchio piu' alto fra quelli che hanno ancora una domanda fresca. In

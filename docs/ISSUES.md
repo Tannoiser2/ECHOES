@@ -2851,11 +2851,13 @@ nasce) ma nessuno lo attraversa.
    una carta con due facce: `_choose_intent` non sa che una carta offre un bivio,
    e il motore esegue la `card_action` di sempre.
 5. ✅ **Il Calore dei Temi non è una traccia** — fatta in 0.1.222
-   ([D-260](DECISIONS.md#d-260)): `theme_heat` 0-6 per Tema come stato del
-   mondo, e a fine Atto apre il Tema più caldo. La pista sente **1.056
-   Risonanze in 100 anni** dove il ponte ne portava 364. Il ponte sulle
-   Tensioni resta finché le Domande vivono lì (punto 8): il giorno che cade,
-   la riga da togliere è in `_resonance`.
+   ([D-260](DECISIONS.md#d-260)) e rifatta in 0.1.223 nella forma voluta dal
+   committente ([D-261](DECISIONS.md#d-261)): sei **mazzetti di Tensioni**
+   coperti, gettoni 0/1/2, la carta che si gira a due segnalini, rivelazione
+   e secondo dibattito a fine Atto. La pista sente **~1.060 Risonanze in 100
+   anni** dove il ponte ne portava 364. Il ponte sulle Tensioni resta finché
+   le Domande vivono lì (punto 8): il giorno che cade, la riga da togliere è
+   in `_resonance`.
 6. **La Terra quasi non si scalda, e l'Antico peggio.** Col ponte: Terra 1,4%
    su 364. Con la pista (0.1.222): Terra **3,4%**, e **Antico 0,1%** — una
    Risonanza su 1.056: le sue Tensioni vivono di Drift e Consigli, non di
@@ -3840,7 +3842,18 @@ pochi modi di andare da qualche parte, e quelli che offre escono di rado**.
 
 ### 53. RIVENDICARE può forzare un Consiglio che poi non si apre
 
-`regole` · `difetto` · **misurata in 0.1.183** ([D-214](DECISIONS.md#d-214))
+`regole` · `difetto` · **misurata in 0.1.183** ([D-214](DECISIONS.md#d-214)) ·
+**cura in 0.1.223** ([D-261](DECISIONS.md#d-261))
+
+> **Fatto in 0.1.223: la strada presa è una terza**, dettata dal committente.
+> Il diritto guadagnato col RIVENDICARE non insegue più la questione nominata:
+> a fine Atto apre **il secondo mazzetto più alto**, scendendo di Tema in Tema
+> finché trova una carta che si apre, e la questione nominata resta solo come
+> ripiego. Si spegne — con una riga che lo dice — solo se **niente** al tavolo
+> può aprirsi. Le 43 aperture rifiutate su 100 anni vanno **rimisurate** sotto
+> la regola nuova prima di chiudere la voce; la seconda metà dell'azione (la
+> controproposta sulla Tensione in dibattito) è registrata in D-261 e aspetta
+> la revisione del Consiglio (PZ-5).
 
 Trovata misurando il Consiglio di fine Atto: su cento anni ci sono **43 aperture
 rifiutate**, e adesso che la chiusura d'Atto sceglie con `can_open()` sono

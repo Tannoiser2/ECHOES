@@ -5,6 +5,31 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.223 — I sei mazzetti: gettoni coperti, la carta che si gira, e il secondo dibattito (D-261)
+
+- **La regola del committente, per intero**: i sei Temi sono sei **mazzetti di
+  Tensioni**, mischiati a inizio partita e coperti. La Risonanza fa cadere
+  gettoni **coperti** (sacchetto `[0,1,1,2]`) sul mazzetto del suo Tema; **al
+  secondo segnalino la prima carta si gira** e il tavolo sa quale Tensione si
+  va scaldando; a fine Atto i mazzetti si rivelano, il più alto porta al
+  Consiglio la sua carta girata, e chi ha consumato un RIVENDICARE apre **il
+  secondo mazzetto più alto** (ripiego: la questione nominata — la cura terza
+  di ISSUES 53). Poi i mazzetti si spendono.
+- **Il nove è sparito per costruzione**: al massimo due Consigli per Atto.
+  Misto 3-6 (media 4,59), uniforme 3-6 (media 4,66) — l'anno peggiore era 9.
+  Verità da 373 a 355/348: un anno più corto di parole, scritto. **0 seggi
+  bloccati su 8**, misto e uniforme.
+- **Il dado dei mazzetti è suo** (lezione di D-150 pagata di nuovo): derivato
+  da seme e sequenza degli Effetti. Le storie a seme fisso (`plan_d_crown_calls`)
+  sono tornate byte per byte, senza ribasare.
+- **Due trappole trovate dalle guardie**: la ripesca di D-079 smontava i
+  mazzetti dell'era di libreria (`test_library_balance`), e il primo Consiglio
+  azzerava il diritto del secondo — cento anni a tre Consigli esatti, detto
+  dal playtest.
+- Suite: **522 prove / 12.385 asserzioni**. Sonda: 1.066 Risonanze in 100 anni
+  (10,7/anno), 365 col ponte, aggravate 7,2% — contate per giocata, non per
+  gettone.
+
 ## 0.1.222 — Il Calore diventa una pista, e la pista sceglie la Domanda dell'Atto (D-260)
 
 - **PZ-1 della roadmap, aperto e chiuso**: il Calore è **stato del mondo** —

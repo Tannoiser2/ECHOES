@@ -130,35 +130,34 @@ func _build() -> void:
 	add_child(_heat_line)
 
 
-## La pista del Calore, in una riga: «CALORE · Potere 3 · Vie 1 · …», col Tema
-## piu' caldo per primo a dire che a fine Atto apre lui. I Temi a zero non si
-## elencano: sul tavolo si vede il segnalino fermo, sullo schermo sarebbe solo
-## rumore. Freddo tutto, la riga sparisce e la classifica dei mucchi riprende
-## il suo posto.
+## I mazzetti dei Temi, in una riga (D-261): quanti gettoni **coperti** ha
+## ognuno, e la carta girata dove c'e'. I valori non si dicono — si scoprono a
+## fine Atto, quando i mazzetti si girano — quindi lo schermo mostra quello che
+## il tavolo vede: «CALORE  Potere ·2 → La Successione   Vie ·1». I Temi a
+## zero non si elencano: sul tavolo si vede il mazzetto fermo, sullo schermo
+## sarebbe solo rumore.
 func _render_heat(session: RefCounted) -> void:
 	_any_theme_hot = false
 	if not _at_end_of_act:
 		_heat_line.visible = false
 		return
-	var track: Dictionary = session.world.get("theme_heat", {}) as Dictionary
+	var counts: Dictionary = session.world.get("theme_tokens", {}) as Dictionary
+	var fronts: Dictionary = session.world.get("theme_front", {}) as Dictionary
 	var said: PackedStringArray = PackedStringArray()
-	var hottest_heat: int = 0
-	var hottest_title: String = ""
 	for theme_id in session.data.themes:
-		var heat: int = int(track.get(str(theme_id), 0))
-		if heat <= 0:
+		var fallen: int = int(counts.get(str(theme_id), 0))
+		if fallen <= 0:
 			continue
 		var title: String = str(session.data.themes[str(theme_id)]["title"])
-		said.append("%s %d" % [title, heat])
-		if heat > hottest_heat:
-			hottest_heat = heat
-			hottest_title = title
-	_any_theme_hot = hottest_heat > 0
+		var line: String = "%s ·%d" % [title, fallen]
+		var front: String = str(fronts.get(str(theme_id), ""))
+		if front != "" and session.data.tensions.has(front):
+			line += " → %s" % str(session.data.tensions[front]["title"])
+		said.append(line)
+	_any_theme_hot = not said.is_empty()
 	_heat_line.visible = _any_theme_hot
 	if _any_theme_hot:
-		_heat_line.text = "CALORE  %s  ·  a fine Atto apre %s" % [
-			"  ".join(said), hottest_title,
-		]
+		_heat_line.text = "CALORE  %s  ·  a fine Atto si girano" % "   ".join(said)
 
 
 ## La riga di una domanda, dentro il suo posto: da D-231 una carta che
