@@ -1234,19 +1234,33 @@ func _resonance(
 		aggravated = true
 		heat += int(echo.get("extra_heat", 0))
 	var effects: Array = []
-	# **La pista del Tema si scalda per prima** (PZ-1): e' la cosa che sul
-	# tavolo fisico si vede — il segnalino che sale — e da PZ-1 e' lei che il
-	# Consiglio di fine Atto legge. Il ponte sulle Tensioni qui sotto resta:
-	# finche' le Domande vivono sulle questioni, il Calore deve anche
-	# avvicinarle. Cadra' quando le Domande fisiche si pescheranno dal Tema
-	# (ISSUES 69), non prima.
+	# **Il mazzetto del Tema si scalda per primo** (D-261, decisione del
+	# committente): la Risonanza fa cadere sul mazzetto del suo Tema un gettone
+	# **coperto** — puo' valere 0, 1 o 2, pescato dal sacchetto che la
+	# Chronicle dichiara — e il Calore scritto sulla carta dice **quanti**
+	# gettoni cadono, aggravata compresa. Il tavolo vede i gettoni cadere, non
+	# quanto valgono: si girano a fine Atto, e il mazzetto piu' alto apre il
+	# Consiglio. Il ponte sulle Tensioni qui sotto resta: finche' le Domande
+	# vivono sulle questioni, il Calore deve anche avvicinarle. Cadra' quando
+	# le Domande fisiche si pescheranno dal Tema (ISSUES 69), non prima.
 	var theme_id: String = str(echo.get("theme", ""))
 	if theme_id != "" and heat > 0:
-		var warmed: Dictionary = applier.apply(Effect.make(
-			"ADJUST_THEME_HEAT", "theme", theme_id, {"delta": heat}, mine
-		))
-		if not warmed.is_empty():
-			effects.append(warmed)
+		var bag: Array = (_chronicle.get("theme_tokens", {}) as Dictionary).get("covered", []) as Array
+		for _i in range(heat):
+			# Senza sacchetto il gettone vale 1 in chiaro: coprire ha senso
+			# solo se il valore varia — la stessa regola di `tension_tokens`.
+			var worth: int = 1 if bag.is_empty() else int(bag[rng.range_int(0, bag.size() - 1)])
+			var dropped: Dictionary = applier.apply(Effect.make(
+				"ADJUST_THEME_HEAT", "theme", theme_id, {"delta": worth}, mine
+			))
+			if not dropped.is_empty():
+				effects.append(dropped)
+			# Anche il gettone bianco **e' caduto**: il mazzetto lo mostra, e
+			# mezzo senso di coprire sta proprio li'.
+			world["theme_tokens"] = world.get("theme_tokens", {}) as Dictionary
+			world["theme_tokens"][theme_id] = int((world["theme_tokens"] as Dictionary).get(theme_id, 0)) + 1
+			if not bag.is_empty():
+				log.bullet("  Un gettone coperto cade sul mazzetto di %s." % _theme_title(theme_id))
 	var tension_id: String = _hottest_of_theme(theme_id)
 	if tension_id != "" and heat > 0:
 		var applied: Dictionary = applier.apply(Effect.make(
@@ -1380,6 +1394,11 @@ func _title(asset_id: String) -> String:
 func _name(entity_id: String) -> String:
 	var entity: Variant = data.entities.get(entity_id)
 	return entity_id if entity == null else str(service.name_of(entity_id))
+
+
+func _theme_title(theme_id: String) -> String:
+	var theme: Variant = data.themes.get(theme_id)
+	return theme_id if theme == null else str((theme as Dictionary)["title"])
 
 
 func _region(region_id: String) -> String:

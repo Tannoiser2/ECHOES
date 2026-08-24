@@ -871,6 +871,22 @@
               "description": "Pescate per prime, sempre: le case di cui questa Chronicle parla per definizione."
             }
           }
+        },
+        "theme_tokens": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "I sei mazzetti del Calore (D-261, decisione del committente): quando una Risonanza scalda un Tema, sul suo mazzetto cade un gettone coperto pescato da questo sacchetto. A fine Atto i mazzetti si girano: il piu' alto apre il Consiglio dell'Atto, e chi ha guadagnato un secondo dibattito (RIVENDICARE) apre il secondo mazzetto. Omesso, ogni Risonanza scalda in chiaro il valore scritto sulla carta (la pista di D-260).",
+          "properties": {
+            "covered": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "description": "Il sacchetto dei valori del gettone del Tema: 0, 1 o 2 per parola del committente. Il mazzetto mostra quanti gettoni ha sopra; quanto valgono si scopre solo quando a fine Atto si gira."
+            }
+          }
         }
       }
     }

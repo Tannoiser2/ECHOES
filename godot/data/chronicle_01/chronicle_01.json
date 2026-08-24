@@ -294,6 +294,14 @@
           "ENT_VETRO"
         ],
         "count": 4
+      },
+      "theme_tokens": {
+        "covered": [
+          0,
+          1,
+          1,
+          2
+        ]
       }
     },
     {
@@ -608,6 +616,14 @@
           "ENT_VETRO"
         ],
         "count": 4
+      },
+      "theme_tokens": {
+        "covered": [
+          0,
+          1,
+          1,
+          2
+        ]
       }
     }
   ]

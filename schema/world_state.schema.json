@@ -84,11 +84,19 @@
         },
         "theme_heat": {
           "type": "object",
-          "description": "La traccia del Calore (PZ-1): per ogni Tema, quanto e' caldo adesso, 0-6. E' lo stato che sul tavolo fisico e' il segnalino sulla pista del Tema: le Risonanze lo alzano, e a fine Atto il Tema piu' caldo apre la sua Domanda e torna a zero. Si muove solo per Effect (ADJUST_THEME_HEAT), con l'inverso esatto del delta applicato.",
+          "description": "Il Calore dei Temi (PZ-1, poi D-261): per ogni Tema, quanto valgono i gettoni sul suo mazzetto, 0-6. Coi mazzetti coperti (theme_tokens della Chronicle) questo numero e' quello che si scopre girando i gettoni a fine Atto; il tavolo, prima, vede solo quanti gettoni sono caduti (theme_tokens qui sotto). Si muove solo per Effect (ADJUST_THEME_HEAT), con l'inverso esatto del delta applicato.",
           "additionalProperties": {
             "type": "integer",
             "minimum": 0,
             "maximum": 6
+          }
+        },
+        "theme_tokens": {
+          "type": "object",
+          "description": "Quanti gettoni coperti stanno su ogni mazzetto (D-261): quello che il tavolo vede prima che a fine Atto si giri. Contatore come tokens_in_bag — il valore vero viaggia negli Effect — azzerato quando i mazzetti si spendono.",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
           }
         },
         "relations": {
