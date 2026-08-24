@@ -1751,6 +1751,12 @@ const DEFS := {
 			"theme_tokens": {
 				"type": "Dictionary",
 			},
+			"theme_decks": {
+				"type": "Dictionary",
+			},
+			"theme_front": {
+				"type": "Dictionary",
+			},
 			"relations": {
 				"type": "Dictionary",
 			},

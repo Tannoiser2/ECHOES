@@ -131,6 +131,51 @@ func tokens_on(tension_id: String) -> int:
 	return seen
 
 
+# --- i mazzetti dei Temi (D-261) --------------------------------------------
+
+
+## A quanti segnalini si gira la prima carta del mazzetto. Parola del
+## committente: due. Il conto e' dei **gettoni caduti**, non del loro valore,
+## perche' e' quello che il tavolo vede.
+func reveal_at() -> int:
+	var chronicle: Variant = data.chronicles.get(str(world.get("chronicle_id", "")))
+	if chronicle == null:
+		return 2
+	var rules: Dictionary = (chronicle as Dictionary).get("theme_tokens", {}) as Dictionary
+	return int(rules.get("reveal_at", 2))
+
+
+## La carta girata del Tema: la Tensione che il tavolo sa essere quella che si
+## va scaldando li'. Vuota, il mazzetto e' tutto coperto.
+func theme_front(theme_id: String) -> String:
+	return str((world.get("theme_front", {}) as Dictionary).get(theme_id, ""))
+
+
+## Quanti gettoni coperti stanno sul mazzetto del Tema.
+func theme_token_count(theme_id: String) -> int:
+	return int((world.get("theme_tokens", {}) as Dictionary).get(theme_id, 0))
+
+
+## Gira la prima carta del mazzetto (D-261): da qui in poi il tavolo sa quale
+## Tensione si va scaldando su questo Tema. L'ordine del mazzetto l'ha deciso
+## il setup col suo dado; girare **consuma dalla testa e basta**, quindi e' un
+## gesto raccontabile e ripetibile — come pescare da un mazzo vero. Torna la
+## Tensione girata, o "" se il mazzetto e' finito.
+func flip_theme_front(theme_id: String) -> String:
+	var decks: Dictionary = world.get("theme_decks", {}) as Dictionary
+	var deck: Array = decks.get(theme_id, []) as Array
+	if deck.is_empty():
+		return ""
+	var tension_id: String = str(deck.pop_front())
+	decks[theme_id] = deck
+	world["theme_front"][theme_id] = tension_id
+	log.bullet("La prima carta del mazzetto di %s si gira: e' «%s» che si va scaldando." % [
+		str((data.themes.get(theme_id, {}) as Dictionary).get("title", theme_id)),
+		_public_name(tension_id),
+	])
+	return tension_id
+
+
 ## Il mucchio piu' alto: la domanda che il tavolo ha scaldato di piu'. A parita'
 ## vince quella che viene prima nell'ordine del mondo, cosi' il seme decide e non
 ## l'ordine con cui un Dictionary si lascia leggere.

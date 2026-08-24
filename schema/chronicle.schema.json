@@ -885,6 +885,12 @@
                 "minimum": 0
               },
               "description": "Il sacchetto dei valori del gettone del Tema: 0, 1 o 2 per parola del committente. Il mazzetto mostra quanti gettoni ha sopra; quanto valgono si scopre solo quando a fine Atto si gira."
+            },
+            "reveal_at": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 2,
+              "description": "A quanti segnalini si gira la prima carta del mazzetto (parola del committente: 2). Il conto e' dei gettoni caduti, non del loro valore, perche' e' quello che il tavolo vede."
             }
           }
         }

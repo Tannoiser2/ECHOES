@@ -41,6 +41,7 @@ func _initialize() -> void:
 	var bridged: int = 0       # di quelle, quante hanno anche avvicinato una questione
 	var per_theme: Dictionary = {}
 	var per_card: Dictionary = {}
+	var per_event: Dictionary = {}   # firma della giocata -> gettoni caduti
 	var marks: int = 0         # le Risonanze aggravate, che lasciano un segno
 
 	for run in range(runs):
@@ -86,25 +87,35 @@ func _initialize() -> void:
 			var echo: Dictionary = face.get("resonance", {}) as Dictionary
 			if echo.is_empty():
 				continue
-			# **La risposta del mondo e' la pista** (PZ-1): da quando il Calore e'
-			# stato del mondo, ogni Risonanza scalda il suo Tema — anche quando
-			# nessuna questione di quel Tema e' in gioco, dove prima cadeva nel
-			# vuoto. Il ponte sulle Tensioni si conta a parte, perche' e' lui
-			# che avvicina i Consigli finche' le Domande vivono li'.
+			# **La risposta del mondo e' il mazzetto** (D-261): ogni Risonanza fa
+			# cadere gettoni coperti sul suo Tema — anche quando nessuna
+			# questione di quel Tema e' in gioco, dove prima cadeva nel vuoto.
+			# I gettoni della stessa carta giocata condividono la firma
+			# (carta, atto, round, sequenza): raggrupparli distingue **quante
+			# volte il mondo ha risposto** da **quanti gettoni sono caduti».
+			# Il ponte sulle Tensioni si conta a parte, perche' e' lui che
+			# avvicina i Consigli finche' le Domande vivono li'.
 			if str(effect.get("type", "")) == "ADJUST_THEME_HEAT":
-				answered += 1
-				var theme: String = str(echo.get("theme", ""))
-				per_theme[theme] = int(per_theme.get(theme, 0)) + 1
-				per_card[asset_id] = int(per_card.get(asset_id, 0)) + 1
-				# **L'aggravata si riconosce dal Calore, non dal segno.** La prima
-				# stesura la contava dai SET_REGION_TAG, e quasi tutte le carte
-				# aggravano soltanto il Calore: la sonda ha detto **zero** per la
-				# quarta volta di fila su questo stesso numero, e per la quarta
-				# volta era cieca lei. Il verbale porta il delta applicato: se e'
-				# piu' del Calore base scritto sulla carta, la parte aggravata e'
-				# scattata.
-				var delta: int = int((effect.get("payload", {}) as Dictionary).get("delta", 0))
-				if delta > int(echo.get("heat", 1)):
+				# Il seme in testa alla firma: due anni diversi possono avere la
+				# stessa (carta, atto, round, sequenza), e senza il seme i loro
+				# gettoni si sommerebbero in un evento solo.
+				var stamp: String = "%d|%s|%d|%d|%d" % [
+					seed_value, asset_id, int(source.get("act", 0)),
+					int(source.get("round", 0)), int(source.get("sequence", 0)),
+				]
+				per_event[stamp] = int(per_event.get(stamp, 0)) + 1
+				if int(per_event[stamp]) == 1:
+					answered += 1
+					var theme: String = str(echo.get("theme", ""))
+					per_theme[theme] = int(per_theme.get(theme, 0)) + 1
+					per_card[asset_id] = int(per_card.get(asset_id, 0)) + 1
+				# **L'aggravata si riconosce dai gettoni in piu'.** Il Calore
+				# base scritto sulla carta dice quanti ne cadono sempre: il
+				# gettone oltre quel numero e' la meta' condizionale scattata.
+				# (La stesura precedente guardava il delta, che adesso e' il
+				# valore pescato dal sacchetto: avrebbe contato aggravata ogni
+				# pesca da 2 — un numero sbagliato in silenzio.)
+				if int(per_event[stamp]) == int(echo.get("heat", 1)) + 1:
 					marks += 1
 			if str(effect.get("type", "")) == "ADJUST_TENSION":
 				bridged += 1

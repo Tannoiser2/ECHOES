@@ -157,6 +157,12 @@ pesca dal Tema più caldo invece che dalla Tensione a soglia.
 > Restano d'autore salita/discesa/fine Chronicle (§4.1), e la pesca della
 > **carta Domanda fisica** resta con ISSUES 69: qui si sceglie il Tema, il
 > testo al tavolo è ancora quello dei template.
+>
+> **Rifatto in 0.1.223** ([D-261](DECISIONS.md#d-261)), su decisione del
+> committente: la pista aperta diventa **sei mazzetti di Tensioni** con
+> gettoni coperti 0/1/2, la carta che si gira a due segnalini, la rivelazione
+> a fine Atto, e il secondo dibattito da RIVENDICARE sul secondo mazzetto.
+> Il nove di D-257 sparisce per costruzione: 3-6 Consigli l'anno.
 
 ### PZ-2 — I Luoghi: regola, Temi, slot, e da 6 a 10
 

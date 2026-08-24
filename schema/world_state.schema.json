@@ -99,6 +99,23 @@
             "minimum": 0
           }
         },
+        "theme_decks": {
+          "type": "object",
+          "description": "Il mazzetto di ogni Tema (D-261): le sue Tensioni in gioco, mischiate a inizio partita con un dado derivato dal seme e coperte. La prima carta si gira quando il Tema raggiunge i segnalini di theme_tokens.reveal_at. L'ordine e' deciso dal setup: da li' in poi si consuma soltanto, dalla testa.",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "theme_front": {
+          "type": "object",
+          "description": "La carta girata di ogni Tema (D-261): la Tensione che il tavolo sa essere quella che si va scaldando li'. Vuota, il mazzetto e' ancora tutto coperto. E' il fronte che il Consiglio di fine Atto dibatte quando quel mazzetto vince.",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
         "relations": {
           "type": "object",
           "description": "Keyed by the two entity ids joined by '|' in ascending order.",
