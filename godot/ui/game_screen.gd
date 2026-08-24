@@ -25,6 +25,7 @@ const HandView := preload("res://ui/hand_view.gd")
 const ConfluenceBoard := preload("res://ui/confluence_board.gd")
 const CouncilSheet := preload("res://ui/council_sheet.gd")
 const AssetText := preload("res://scripts/core/asset_text.gd")
+const AssetCard := preload("res://ui/asset_card.gd")
 const HelpPanel := preload("res://ui/help_panel.gd")
 const SaveSerializer := preload("res://scripts/core/save_serializer.gd")
 const DevDashboard := preload("res://ui/dev_dashboard.gd")
@@ -58,6 +59,8 @@ var _closed_council: Dictionary = {}
 var _hint: Label
 ## What is about to happen, in one line, above the choices. See `_context_line`.
 var _context: Label
+## A che punto siamo: Atto, round, e chi sta giocando adesso (D-247).
+var _turn: Label
 ## The rules page, and the data it reads itself from. Open at the start, one
 ## button away for the rest of the Chronicle.
 var _help: PanelContainer
@@ -348,6 +351,19 @@ func _build() -> void:
 	_status.card_placed.connect(func(index: int) -> void: picked.emit(index))
 	right.add_child(_status)
 
+	# **A che punto siamo, e a chi tocca** (D-247).
+	#
+	# *«Non c'e' un testo che dice a chi tocca e quando finisce un turno di un
+	# giocatore o un atto.»* Al tavolo fisico lo vedi: c'e' un segnalino di
+	# turno, e le carte in mano di chi sta giocando sono alzate. Sullo schermo
+	# non c'era **niente** — il verbale a sinistra lo racconta dopo, e dopo non
+	# serve a chi deve decidere adesso.
+	_turn = Label.new()
+	_turn.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_turn.add_theme_font_size_override("font_size", 14)
+	_turn.add_theme_color_override("font_color", Color("#e8dcc8"))
+	right.add_child(_turn)
+
 	_context = Label.new()
 	_context.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_context.add_theme_font_size_override("font_size", 12)
@@ -430,7 +446,12 @@ func _build() -> void:
 	tools.add_child(_save_button)
 
 	_hand = HandView.new()
-	_hand.custom_minimum_size = Vector2(0, 200)
+	# **Alta quanto la carta piu' alta, e non un pixel di meno** (D-246). La
+	# mano era alta 200 e la carta ne chiedeva 196: bastava un titolo su due
+	# righe perche' il fondo della carta — cioe' il testo — finisse fuori. Il
+	# numero adesso viene dalla carta, cosi' se domani la carta cresce la mano
+	# cresce con lei invece di tagliarla.
+	_hand.custom_minimum_size = Vector2(0, AssetCard.wanted_height() + 14.0)
 	_hand.card_chosen.connect(_on_card_chosen)
 	rows.add_child(_hand)
 
@@ -459,6 +480,7 @@ func _refresh() -> void:
 	_map.render(_session, _viewer)
 	_status.render(_session, _viewer)
 	_hand.render(_session, _viewer, _focus_tension, _offers)
+	_turn.text = _turn_line()
 	_context.text = _context_line()
 
 
@@ -537,6 +559,50 @@ func _context_line() -> String:
 	return "La domanda piu vicina a scoppiare e %s, a %d passi.%s" % [title, margin, tail]
 
 
+## A che punto siamo, in una riga: Atto, round, e chi sta giocando.
+##
+## Tutto derivato dal mondo, niente di nuovo da tenere allineato. **Chi gioca
+## adesso** si legge dalle azioni rimaste: il giro le assegna a un seggio quando
+## il suo turno comincia e le consuma fino a zero, quindi in ogni momento
+## dell'Atto c'e' un solo seggio con azioni in mano — ed e' quello a cui tocca.
+func _turn_line() -> String:
+	if _session == null:
+		return ""
+	var chronicle: Variant = _session.data.chronicles.get(
+		str(_session.world.get("chronicle_id", ""))
+	)
+	if chronicle == null:
+		return ""
+	var acts: int = int((chronicle as Dictionary).get("acts", 0))
+	var rounds: int = int((chronicle as Dictionary).get("rounds_per_act", 0))
+	var act: int = int(_session.world.get("act", 0))
+	var round_number: int = int(_session.world.get("round", 0))
+	if act <= 0:
+		return "L'anno non e' ancora cominciato."
+
+	var where: String = "ATTO %d di %d  ·  ROUND %d di %d" % [act, acts, round_number, rounds]
+	var who: String = _who_acts()
+	if who == "":
+		return where
+	var left: int = int(
+		(_session.world["entities"][who] as Dictionary).get("ao_remaining", 0)
+	)
+	return "%s\nTocca a %s — %s" % [
+		where, _entity_name(who),
+		"un'azione" if left == 1 else "%d azioni" % left,
+	]
+
+
+## Il seggio che sta giocando adesso, o "" fuori dalla fase delle azioni.
+func _who_acts() -> String:
+	for entity_id in _session.world["turn_order"]:
+		if int((_session.world["entities"][str(entity_id)] as Dictionary).get(
+			"ao_remaining", 0
+		)) > 0:
+			return str(entity_id)
+	return ""
+
+
 func _council_at_end_of_act() -> bool:
 	if _session == null:
 		return false
@@ -559,10 +625,14 @@ func _line_about_the_closing_council() -> String:
 		str(_session.world["chronicle_id"])
 	] as Dictionary
 	var rounds_left: int = int(chronicle["rounds_per_act"]) - int(_session.world["round"])
+	# **Quando finisce l'Atto**, e non solo quando si tiene il Consiglio: sono la
+	# stessa cosa e per chi gioca non e' ovvio (D-247). L'Atto che chiude e' il
+	# momento in cui si smette di preparare e si decide.
 	var when: String = (
-		"a fine round si tiene il Consiglio" if rounds_left <= 0
-		else "il Consiglio e fra %d round" % rounds_left if rounds_left > 1
-		else "il Consiglio e il round prossimo"
+		"L'Atto finisce con questo round: a fine round si tiene il Consiglio" if rounds_left <= 0
+		else "L'Atto finisce fra %d round, e li' si tiene il Consiglio" % rounds_left
+		if rounds_left > 1
+		else "L'Atto finisce il round prossimo, e li' si tiene il Consiglio"
 	)
 
 	var covered: bool = _session.tensions.piles_are_covered()
@@ -583,11 +653,11 @@ func _line_about_the_closing_council() -> String:
 			tied = true
 
 	if tallest == "" or most <= 0:
-		return "%s, e nessun mucchio e ancora salito: chi cala carte decide di cosa si parla." % when.capitalize()
+		return "%s, e nessun mucchio e ancora salito: chi cala carte decide di cosa si parla." % when
 	var title: String = str(_session.data.tensions[tallest]["title"])
 	if covered:
 		return "%s: il mucchio piu alto e %s (%d gettoni)%s, ma i gettoni sono coperti e il conto non e il peso." % [
-			when.capitalize(), title, most, " a pari con un altro" if tied else ""
+			when, title, most, " a pari con un altro" if tied else ""
 		]
 	return "%s, e si parlera di %s: e il mucchio piu alto%s." % [
 		when.capitalize(), title, " a pari con un altro" if tied else ""
@@ -1401,7 +1471,20 @@ func _drive(data: RefCounted, humans: Array, chronicle_id: String) -> void:
 			_session = GameSession.new(data)
 			_last_seed = _last_seed + 97
 			_seats = _seats_of(sequel)
-			_session.setup(sequel, _seats, _last_seed)
+			# **Se l'anno dopo non si apre, si dice.** Questa riga ignorava il
+			# `false` che `setup` puo' tornare, e una saga che non prosegue
+			# restava una schermata che non fa niente — senza una parola su
+			# perche' (D-250). Un fallimento silenzioso ha la stessa faccia di
+			# un blocco, e al tavolo sono due cose diverse.
+			if not _session.setup(sequel, _seats, _last_seed):
+				say("")
+				say("[color=#c8553d]L'era successiva non si e' aperta:[/color] %s" % _session.last_error)
+				say("La saga si ferma qui. Il salvataggio dell'anno appena chiuso e' al sicuro.")
+				_session.dispose()
+				_session = null
+				_busy = false
+				_tools_state()
+				return
 			_session.inherit_from(previous, results)
 			_help.render(data, sequel)
 			say("")

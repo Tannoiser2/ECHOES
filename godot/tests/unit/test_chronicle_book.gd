@@ -7,6 +7,7 @@ extends "res://tests/test_case.gd"
 ## piu' pagine invece di uscire dal foglio, e un anno muto lo dice.
 
 const ChronicleBook := preload("res://scripts/core/chronicle_book.gd")
+const BookView := preload("res://ui/chronicle_book_view.gd")
 const PolicyDecider := preload("res://scripts/seat/policy_decider.gd")
 
 
@@ -67,20 +68,40 @@ func test_a_long_year_breaks_into_more_pages() -> void:
 	assert_true(pages.size() > 1, "ottanta Verita' non stanno su una pagina: %d" % pages.size())
 
 
-## La vista in-app (chronicle_book_view.gd) rasterizza l'SVG delle pagine:
-## se una pagina non si lascia disegnare da Image.load_svg_from_string, al
-## tavolo si vedrebbe un pannello vuoto. Ogni pagina deve rasterizzarsi.
+## La vista in-app rasterizza l'SVG delle pagine: se una pagina non si lascia
+## disegnare, al tavolo si vedrebbe un pannello vuoto.
+##
+## **Questa prova ha detto il falso per mesi** (D-248). Disegnava a scala 2, e
+## l'applicazione disegnava a scala 4: due cose diverse, e quella misurata non
+## era quella che si vedeva. A scala 4 un A4 esce **3175x4490**, il lato lungo
+## supera il massimo che una scheda di un tablet accetta, la texture non si
+## carica e la pagina resta nera — *«la cronaca dell'anno e' sempre una pagina
+## vuota»*. La prova restava verde perche' guardava altrove.
+##
+## Adesso chiama **la stessa funzione che chiama lo schermo**, ed e' l'unico
+## modo in cui una prova su questa vista puo' voler dire qualcosa.
 func test_every_page_rasterizes_for_the_screen() -> void:
 	new_session(4242, false)
 	await session.run(PolicyDecider.new(session.log))
 	var pages: Array = ChronicleBook.pages(session.to_save(), data())
+	assert_true(pages.size() > 0, "l'anno ha lasciato almeno una pagina")
 	for index in range(pages.size()):
-		var image := Image.new()
-		assert_eq(
-			image.load_svg_from_string(str(pages[index]), 2.0), OK,
-			"la pagina %d si rasterizza" % (index + 1)
-		)
+		var image: Image = BookView.raster(str(pages[index]))
+		assert_true(image != null, "la pagina %d si rasterizza" % (index + 1))
 		assert_true(image.get_width() > 0, "e ha dei pixel")
+		# **E ci sta dentro una texture.** E' il difetto, in una riga: una
+		# pagina piu' larga del tetto non e' una pagina brutta, e' una pagina
+		# che non esiste.
+		var side: int = maxi(image.get_width(), image.get_height())
+		assert_true(
+			float(side) <= BookView.MAX_SIDE,
+			"e sta sotto il tetto della texture: %d contro %d" % [
+				side, int(BookView.MAX_SIDE)
+			]
+		)
+		# Nitida abbastanza da leggersi: il tetto non deve diventare la scusa
+		# per una pagina illeggibile.
+		assert_true(side >= 1000, "e resta leggibile: lato lungo %d" % side)
 
 
 func test_a_silent_year_says_so() -> void:

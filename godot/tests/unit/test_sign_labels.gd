@@ -26,6 +26,16 @@ func _collect_written_tags() -> Dictionary:
 				writers.append([hook.get("effect", {})])
 	for asset_id in session.data.assets:
 		writers.append(session.data.assets[asset_id].get("on_commit_effects", []))
+	# **E le rovine delle pietre.** Una pietra che crolla lascia una cicatrice,
+	# e quella cicatrice non passa da nessun Effetto: e' scritta sul tipo di
+	# struttura. `scar:burned_records` e' rimasta senza parola fino a D-249 —
+	# usciva sul catalogo dei pezzi col proprio id.
+	for structure_id in session.data.structure_types:
+		var ruin: Dictionary = (
+			session.data.structure_types[str(structure_id)] as Dictionary
+		).get("ruin", {}) as Dictionary
+		if str(ruin.get("scar", "")) != "":
+			found["region"][str(ruin["scar"])] = true
 	# **E le clausole.** Il censimento non le guardava, e quattordici segni del
 	# mondo sono rimasti senza parola fino a D-236 — invisibili finche' una
 	# clausola qualificata applicava i suoi effetti e basta, evidenti il giorno

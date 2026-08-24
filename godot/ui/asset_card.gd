@@ -18,11 +18,23 @@ const CardFace := preload("res://scripts/core/card_face.gd")
 const CardArt := preload("res://ui/card_art.gd")
 
 ## Alta come la fila della mano: 63x88 in proporzione, ~79x110.
-# **Quanto e' grande una carta in mano** (D-242). Centodieci pixel erano una
-# figurina: su un tablet *«le carte sono minuscole e non si capisce cosa
-# fanno»*. Una carta in mano si legge, e per leggersi deve avere lo spazio di
-# due righe di testo sotto l'immagine.
-const CARD_H: float = 150.0
+# **Quanto e' grande una carta in mano** (D-242, corretto in D-246).
+#
+# Centodieci pixel erano una figurina. D-242 li ha portati a 150 e ci ha messo
+# sotto il nome e il verbo — e la carta e' arrivata **tagliata**: alta 196 in un
+# contenitore alto 200, con un titolo che va a capo. Quello che si taglia e'
+# **il fondo**, cioe' esattamente il testo appena aggiunto: *«sono tagliate e non
+# c'e' scritto nulla sopra»*. Le tre lamentele erano una sola.
+#
+# Adesso le misure si dichiarano tutte e si sommano: l'immagine ha un'altezza
+# fissa, ogni riga di testo ha la propria altezza minima e un tetto di righe, e
+# l'altezza della carta e' la somma. Niente che possa essere schiacciato via.
+const CARD_W: float = 168.0
+const PICTURE_H: float = 150.0
+const NAME_H: float = 34.0
+const VERB_H: float = 28.0
+const FOOTER_H: float = 16.0
+const CARD_H: float = PICTURE_H
 
 var asset: Dictionary = {}
 
@@ -60,8 +72,17 @@ var _verb: Label
 var _footer: Label
 
 
+## L'altezza che una carta chiede: la somma delle sue parti, in un posto solo.
+##
+## Chi la contiene la usa per farsi grande abbastanza, invece di indovinare un
+## numero che poi diventa vecchio. Il taglio di D-242 e' nato esattamente da un
+## numero indovinato in un altro file.
+static func wanted_height() -> float:
+	return PICTURE_H + NAME_H + VERB_H + FOOTER_H + 18.0
+
+
 func _ready() -> void:
-	custom_minimum_size = Vector2(CARD_H * 63.0 / 88.0 + 10.0, CARD_H + 46.0)
+	custom_minimum_size = Vector2(CARD_W, wanted_height())
 	mouse_filter = Control.MOUSE_FILTER_STOP
 	# Godot only asks for a tooltip when there is one to ask about.
 	tooltip_text = " "
@@ -72,6 +93,11 @@ func _ready() -> void:
 func render(p_asset: Dictionary, relevant: Array, council_open: bool, data: RefCounted) -> void:
 	asset = p_asset
 	_data = data
+	# **La misura si dichiara qui, non solo in `_ready`.** Una carta costruita e
+	# disegnata fuori dall'albero non ha mai visto `_ready`, e restava senza
+	# altezza minima: cioe' schiacciabile a qualunque cosa, che e' il difetto di
+	# D-246 nella sua forma piu' pura.
+	custom_minimum_size = Vector2(CARD_W, wanted_height())
 	var family: String = str(asset["family"])
 	var is_relevant: bool = relevant.has(family)
 
@@ -93,8 +119,11 @@ func render(p_asset: Dictionary, relevant: Array, council_open: bool, data: RefC
 		_picture = TextureRect.new()
 		_picture.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		_picture.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-		_picture.custom_minimum_size = Vector2(CARD_H * 63.0 / 88.0, CARD_H)
-		_picture.size_flags_vertical = Control.SIZE_EXPAND_FILL
+		_picture.custom_minimum_size = Vector2(CARD_W - 10.0, PICTURE_H)
+		# **Non piu' `EXPAND_FILL`.** L'immagine si prendeva lo spazio che
+		# avanzava e, quando non ne avanzava, lo prendeva alle righe di sotto:
+		# e' cosi' che il testo spariva invece di stringersi.
+		_picture.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 		box.add_child(_picture)
 		# **Il nome e il verbo sulla faccia, non nel tooltip** (D-242).
 		#
@@ -107,17 +136,24 @@ func render(p_asset: Dictionary, relevant: Array, council_open: bool, data: RefC
 		_name = Label.new()
 		_name.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		_name.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-		_name.add_theme_font_size_override("font_size", 11)
+		# Due righe e non una di piu': un titolo lungo allungava la carta oltre
+		# il suo contenitore, e a quel punto tagliava se stesso.
+		_name.max_lines_visible = 2
+		_name.custom_minimum_size = Vector2(0, NAME_H)
+		_name.add_theme_font_size_override("font_size", 12)
 		box.add_child(_name)
 		_verb = Label.new()
 		_verb.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		_verb.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		_verb.max_lines_visible = 2
+		_verb.custom_minimum_size = Vector2(0, VERB_H)
 		_verb.add_theme_font_size_override("font_size", 10)
 		_verb.add_theme_color_override("font_color", Color("#8a8172"))
 		box.add_child(_verb)
 		_footer = Label.new()
 		_footer.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		_footer.add_theme_font_size_override("font_size", 10)
+		_footer.custom_minimum_size = Vector2(0, FOOTER_H)
+		_footer.add_theme_font_size_override("font_size", 11)
 		box.add_child(_footer)
 
 	_picture.texture = CardArt.texture_for("asset", str(asset["id"]), data)

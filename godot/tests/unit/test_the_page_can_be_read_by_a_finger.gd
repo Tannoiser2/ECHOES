@@ -178,3 +178,83 @@ func test_the_two_tarots_say_what_they_are() -> void:
 		"e sotto la seconda il nome del Destino: %s" % str(destiny["title"])
 	)
 	panel.free()
+
+
+## --- e la carta deve **starci**, dentro il posto che la contiene (D-246) ---
+##
+## *«Sono tagliate e non c'e' scritto nulla sopra.»* Erano la stessa frase: il
+## testo che D-242 aveva aggiunto sta **sotto** l'immagine, e quello che si taglia
+## di una carta troppo alta e' il fondo. La carta chiedeva 196 pixel, la mano ne
+## dava 200, e bastava un titolo su due righe.
+
+const HandView := preload("res://ui/hand_view.gd")
+
+
+## L'altezza che la carta chiede e' la somma delle sue parti, e nessuna parte
+## puo' essere schiacciata via: ogni riga ha la propria altezza minima.
+func test_a_card_asks_for_room_for_all_of_its_parts() -> void:
+	var card: Control = AssetCard.new()
+	card.render(
+		session.data.assets[str((session.data.assets as Dictionary).keys()[0])] as Dictionary,
+		[], false, session.data
+	)
+	var wanted: float = AssetCard.wanted_height()
+	assert_true(wanted >= 240.0, "una carta con quattro pezzi chiede spazio per quattro: %.0f" % wanted)
+	assert_eq(
+		card.custom_minimum_size.y, wanted,
+		"e quello che chiede e' quello che dichiara"
+	)
+
+	# Ogni riga di testo ha un pavimento: senza, il contenitore le schiaccia a
+	# zero prima di lasciare che la carta sfori, ed e' esattamente il modo in cui
+	# il testo era sparito.
+	var floors: int = 0
+	for child in card.get_child(0).get_children():
+		if child is Label and (child as Label).custom_minimum_size.y > 0.0:
+			floors += 1
+	assert_true(floors >= 3, "le righe di testo hanno un pavimento: %d" % floors)
+	card.free()
+
+
+## E un titolo lungo non allunga la carta: si ferma a due righe. Un titolo che
+## va a capo tre volte era il modo piu' rapido di far uscire il fondo dal
+## contenitore.
+func test_a_long_title_does_not_grow_the_card() -> void:
+	var longest: Dictionary = {}
+	var length: int = 0
+	for asset_id in session.data.assets:
+		var asset: Dictionary = session.data.assets[str(asset_id)] as Dictionary
+		if str(asset["title"]).length() > length:
+			length = str(asset["title"]).length()
+			longest = asset
+	var card: Control = AssetCard.new()
+	card.render(longest, [], false, session.data)
+	for child in card.get_child(0).get_children():
+		if child is Label and str((child as Label).text) == str(longest["title"]):
+			assert_eq(
+				(child as Label).max_lines_visible, 2,
+				"il titolo piu' lungo della scatola si ferma a due righe: «%s»" % str(longest["title"])
+			)
+	assert_eq(
+		card.custom_minimum_size.y, AssetCard.wanted_height(),
+		"e la carta resta alta quanto le altre"
+	)
+	card.free()
+
+
+## **La mano e' alta quanto la carta.** Il numero non si indovina in un altro
+## file: si chiede alla carta. E' l'indovinello che ha prodotto il taglio.
+func test_the_hand_is_as_tall_as_the_card_it_holds() -> void:
+	var screen: Node = load("res://ui/game_screen.gd").new()
+	var wanted: float = AssetCard.wanted_height()
+	# La riga che conta sta nel codice dello schermo: la si legge da li', perche'
+	# costruire tutta la schermata in una prova headless vorrebbe dire montare
+	# mezza applicazione per misurare un numero.
+	var source: String = FileAccess.get_file_as_string("res://ui/game_screen.gd")
+	assert_true(
+		source.contains("AssetCard.wanted_height()"),
+		"la mano chiede alla carta quanto e' alta, invece di indovinarlo"
+	)
+	assert_true(wanted > 0.0, "e la carta sa rispondere: %.0f" % wanted)
+	screen.free()
+

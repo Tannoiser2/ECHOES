@@ -27,6 +27,10 @@ const REGION_WORDS: Dictionary = {
 	"scar:abandoned": "l'abbandono",
 	"scar:broken_bridge": "il ponte rotto",
 	"scar:broken_word": "la parola rotta",
+	# La cicatrice che l'Archivio lascia bruciando. La posa la **rovina di una
+	# pietra**, non un Effetto, ed e' la ragione per cui e' rimasta senza parola:
+	# il censimento di D-107 guardava gli Effetti (D-249).
+	"scar:burned_records": "i registri bruciati",
 	"scar:changed_hands": "passata di mano",
 	"scar:divided_seal": "il sigillo diviso",
 	"scar:dragonfall": "la caduta del drago",

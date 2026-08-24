@@ -2763,6 +2763,38 @@ e' in gioco.
 
 ---
 
+### 67. La saga si ferma alla seconda partita
+
+`difetto` · **aperta in 0.1.213** ([D-250](DECISIONS.md#d-250)) · **causa non
+provata**
+
+> «La saga si ferma alla seconda partita e non va avanti.»
+
+**Escluso**: il motore. La catena `setup → inherit_from → run` gira pulita per
+quattro Chronicle di fila, `library_sequel_of("CHR_02")` risponde sempre
+`CHR_02`, e il libro della saga con due anni produce quattro pagine che si
+disegnano tutte.
+
+**Non riprodotto**: guidare la schermata vera in headless non ha funzionato — un
+`Control` montato da riga di comando non fa girare il suo giro di scelte.
+
+**Corretto lo stesso**: l'apertura dell'era successiva ignorava il fallimento di
+`setup`, e un fallimento silenzioso ha la faccia di un blocco.
+
+**Sospetto aperto**: il libro della **saga** compare solo da fine seconda partita
+in poi, ed è esattamente il momento indicato. Prima di
+[D-248](DECISIONS.md#d-248) rasterizzava una pagina da 54 MB: su un tablet una
+texture oltre il tetto può portarsi via il contesto grafico invece di fallire in
+silenzio.
+
+**La domanda che chiude la voce**: a fine seconda partita l'offerta «Gioca l'era
+successiva» **compare**? Se compare e toccarla non fa niente, il difetto è
+nell'apertura dell'anno; se non compare, è prima.
+
+**Fatto quando** una saga arriva almeno al terzo anno su un tablet.
+
+---
+
 ### 66. La seconda saga non si raggiunge più
 
 `contenuto` · `da-decidere` · **aperta in 0.1.212** ([D-245](DECISIONS.md#d-245))
