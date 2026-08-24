@@ -2763,6 +2763,58 @@ e' in gioco.
 
 ---
 
+### 68. Otto turni su dieci non succede niente
+
+`bilanciamento` · **misurata in 0.1.216** ([D-254](DECISIONS.md#d-254))
+
+Il committente l'ha visto giocando: *«17 turni su 24 sono passa»*. Su 100 anni e
+**7.200 turni** il numero è peggiore ancora, ed è lo stesso a tavolo misto e
+uniforme.
+
+| | passa |
+|---|---|
+| tavolo misto | **85,7%** (6.168 su 7.200) |
+| tavolo uniforme | 84,8% |
+| Atto 1 | 77,9% |
+| Atto 2 | 88,9% |
+| Atto 3 | **90,2%** |
+
+**Due cause sono escluse, e non con un'impressione.**
+
+| | |
+|---|---|
+| passa con **zero mosse legali** | **0 su 6.168** |
+| mosse legali che aveva chi passava | **15,5 in media** |
+| passa con la **mano vuota** | 12 su 6.168 (0,2%) |
+| carte in mano di chi passava | **6,5 in media** |
+
+Non è che il tavolo non lo lasci giocare, e non è che non abbia carte. **Ha
+quindici mosse legali e sei carte in mano, e non fa niente.**
+
+**Le tre cause vere:**
+
+| | quota dei «passa» | cosa vuol dire |
+|---|---|---|
+| nessuna mossa gli serviva | **64,9%** | il gioco non gli dà una ragione per agire |
+| voleva un verbo, in mano non ne aveva nessuna carta | 20,1% | problema di **pesca** |
+| aveva il verbo in mano e non poteva usarlo lì | 14,8% | problema di **bersaglio** |
+
+E il verbo che vuole quasi sempre è uno: **INFLUENZARE, 1.695 volte su 2.152
+intenzioni mute (79%)**. Il cervello vuole scaldare una domanda e non ci riesce.
+
+**Perché è la voce più grossa aperta.** ISSUES 59 (due verbi che nessuno gioca) e
+ISSUES 60 (una domanda muta) sono **la stessa malattia vista da due lati**: non
+mancano le carte né le regole, manca la ragione. E il 65% non si cura col mazzo.
+
+**Da decidere, ed è d'autore:** cosa rende agire meglio che non agire. Le strade
+sono almeno tre e non sono equivalenti — un costo per il passare, un premio per
+il muovere, o obiettivi che chiedono di più di quanto il mondo dia da solo.
+
+**Fatto quando** i «passa» scendono sotto la metà dei turni, e il playtest resta
+0/8.
+
+---
+
 ### 67. La saga si ferma alla seconda partita
 
 `difetto` · **aperta in 0.1.213** ([D-250](DECISIONS.md#d-250)) · **causa non
