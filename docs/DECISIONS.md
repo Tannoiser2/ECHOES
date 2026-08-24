@@ -10,6 +10,49 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-254 — Cosa era disponibile e non e' stato preso
+
+**implemented in 0.1.216** — apre ISSUES 68
+
+Tutte le sonde di questo progetto misurano **cosa succede**. Nessuna misurava
+**cosa era disponibile e non e' stato preso**, ed e' il numero che mancava per
+dire qualcosa di serio sul difetto piu' grosso rimasto: *«17 turni su 24 sono
+passa»*.
+
+`godot/cli/run_pass_probe.gd` mette un testimone accanto a chi decide. Quando la
+risposta e' «passa», gli chiede **perche'** — con le sue stesse funzioni, ramo per
+ramo — e chiede alle **regole** quante mosse gli lascerebbero fare. Non decide
+niente: la partita con e senza testimone finisce uguale.
+
+**Su 7.200 turni, due cause sono escluse e non con un'impressione:** zero passa
+su 6.168 avevano zero mosse legali (media: **15,5**), e dodici avevano la mano
+vuota (media: **6,5 carte**). Quindici mosse legali e sei carte in mano, e non fa
+niente.
+
+Le tre cause vere sono **65% nessuna ragione**, **20% pesca sbagliata**, **15%
+bersaglio sbagliato** — e il verbo che il cervello vuole e non riesce a dire e'
+INFLUENZARE nel 79% dei casi.
+
+**Il taglio che rende la misura utile** e' l'ultimo: quando voleva un verbo e non
+l'ha detto, *quel verbo ce l'aveva in mano?* Se si', il bersaglio non era
+raggiungibile; se no, non l'ha pescato. Sono due cure opposte, e senza quel
+taglio si sarebbero confuse in un unico «la mano non basta» che avrebbe portato a
+toccare il mazzo — cioe' la cura del 20% applicata all'80%.
+
+**Una trappola vecchia, di nuovo.** La prima stesura chiedeva l'intenzione a
+`inner`, che a tavolo misto non e' un cervello: e' il router che smista a quattro
+caratteri ([D-053](#d-053)). In GDScript quella chiamata non alza niente che una
+sonda possa prendere: **interrompe la funzione**. La sonda ha contato 304 «passa»
+con zero cause e ha stampato una tabella vuota — muta invece che rossa. E' la
+stessa trappola che il cancello dei test sorveglia da [D-224](#d-224), e qui non
+c'era nessun cancello a guardarla: l'ho vista perche' il numero era assurdo.
+
+**Nessun dato e nessuna regola cambiati**: questa e' una misura. Suite 492 prove
+/ 10.759 asserzioni verdi, cancelli verdi, `run_playtest.gd --runs=100
+--seed=7000` **0 seggi bloccati su 8**.
+
+---
+
 ## D-253 — Una saga e' di dieci partite, e alla decima si chiude
 
 **implemented in 0.1.215**

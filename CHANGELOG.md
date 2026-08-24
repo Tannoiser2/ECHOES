@@ -5,6 +5,25 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.216 — Cosa era disponibile e non è stato preso (D-254)
+
+- **`run_pass_probe.gd`**: un testimone accanto a chi decide. Quando la risposta è
+  «passa», gli chiede **perché** ramo per ramo, e chiede alle regole quante mosse
+  gli lascerebbero fare.
+- **Su 7.200 turni, 85,7% sono «passa»** — e peggiora andando avanti nell'anno:
+  77,9% → 88,9% → **90,2%**.
+- **Due cause escluse con un numero**: zero passa su 6.168 avevano zero mosse
+  legali (media **15,5**), dodici avevano la mano vuota (media **6,5 carte**).
+- **Le tre cause vere**: 64,9% nessuna mossa gli serviva, 20,1% pesca sbagliata,
+  14,8% bersaglio sbagliato. Il verbo che vuole e non sa dire è INFLUENZARE nel
+  **79%** dei casi.
+- Apre **[ISSUES 68](docs/ISSUES.md#68)**, che assorbe ISSUES 59 e 60: non
+  mancano carte né regole, manca la ragione per agire.
+- Nessun dato e nessuna regola cambiati: è una misura. 492 prove / 10.759
+  asserzioni verdi, playtest 100 semi **0 su 8**.
+
+---
+
 ## 0.1.215 — La cronaca era nera perché il testo non veniva disegnato (D-252, D-253)
 
 - **D-252 — «le cronache ancora nere.»** D-248 aveva curato il sintomo
