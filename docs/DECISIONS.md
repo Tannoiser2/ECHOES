@@ -10,6 +10,50 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-269 — Il tavolo visibile basta: la fine della Chronicle come sequenza fisica
+
+**implemented in 0.1.231** — apre PZ-6 della roadmap e lo chiude
+
+La roadmap lo chiedeva cosi': *la procedura di fine Chronicle come sequenza
+fisica, eseguibile a mano — fatto quando la Chronicle successiva nasce dai
+segni visibili, e si puo' rimontare il tavolo leggendo solo quello che c'e'
+sopra.* Questa decisione lo prende alla lettera, e lo **misura**.
+
+**Il tavolo visibile e' una lista chiusa**
+(`godot/scripts/chronicle/visible_table.gd`): per casato la carta (nome,
+generazione, vita, ere a mani vuote, vivo/spento), i segni addosso, le pedine
+sulla mappa, il punteggio e gli obiettivi di saga; per tessera i segni, il
+titolo, le pietre; per Tensione in gioco il valore, la faccia, i presagi, le
+decisioni; per il mondo l'anno, le ere giocate, i segni globali, le
+cicatrici, i rapporti e il diario (Echo e Verita'). **Niente altro passa**:
+non l'ordine dei mazzi, non le mani, non le domande gia' poste, non la
+memoria dei bot.
+
+**La prova e' letterale** (`test_visible_handover.gd`): si gioca un anno
+intero, si spoglia il mondo finale fino al tavolo visibile, e si eredita due
+volte con lo stesso seme — dal mondo intero e dal solo visibile. I due mondi
+che nascono devono essere **identici, byte per byte**: CHR_01 → CHR_02 su tre
+semi, e la saga pescata CHR_00 → CHR_00 (la mappa e' della saga, D-263).
+Costruendola ha gia' morso una volta: la prima stesura metteva le pedine
+sulla tessera, e il mondo nuovo perdeva i padroni delle pietre — le pedine
+sono **del casato**, posate sulle tessere, ed e' cosi' che si contano al
+tavolo.
+
+**La procedura scritta** sta in
+[PROCEDURA_FINE_CHRONICLE.md](PROCEDURA_FINE_CHRONICLE.md): sette passi
+eseguibili a mano — si leggono i Destini, il diario resta, il tempo passa
+(50 anni e oltre: condizioni via, rapporti un passo verso NEUTRAL, i fatti
+non murati diventano leggende), la mappa e' della saga (titolo e pietre
+lapsano senza pedine), la successione, il tavolo si rimonta, il verbale
+d'apertura. Con la regola madre in coda: se per rimontare serve
+un'informazione fuori dalla tabella, o diventa un pezzo fisico dichiarato, o
+il motore smette di chiederla — e la prova se ne accorge prima del tavolo.
+
+Niente motore toccato: i numeri restano quelli di 0.1.230 (0 seggi bloccati
+su 8, misto e uniforme).
+
+---
+
 ## D-268 — La controproposta del RIVENDICARE: la pedina su un beneficio o su un costo
 
 **implemented in 0.1.230** — chiude PZ-5 della roadmap (Fase B), e ISSUES 71

@@ -5,6 +5,22 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.231 — Il tavolo visibile basta: la fine della Chronicle come sequenza fisica (D-269)
+
+- **PZ-6, aperto e chiuso**: la procedura di fine Chronicle è scritta ed
+  eseguibile a mano ([PROCEDURA_FINE_CHRONICLE.md](docs/PROCEDURA_FINE_CHRONICLE.md)) —
+  Destini, diario, il tempo che lavora (a 50+ anni: condizioni via, rapporti
+  un passo verso NEUTRAL, fatti non murati → leggende), la mappa della saga,
+  la successione, il rimontaggio, il verbale d'apertura.
+- **La garanzia è misurata**: `visible_table.gd` è la lista chiusa dei pezzi
+  fisici, e `test_visible_handover.gd` pretende che l'era nuova nasca
+  **identica** dal mondo intero e dal solo tavolo visibile — CHR_01→CHR_02 su
+  tre semi, più la saga pescata CHR_00→CHR_00. La prima stesura ha già morso:
+  le pedine sono del casato, non della tessera, o i padroni delle pietre si
+  perdono.
+- Niente motore toccato: suite **549 prove / 14.748 asserzioni**, playtest
+  **0 seggi bloccati su 8**, numeri fermi allo 0.1.230.
+
 ## 0.1.230 — La controproposta del RIVENDICARE: la pedina su un beneficio o su un costo (D-268)
 
 - **PZ-5 Fase B, e PZ-5 si chiude** (ISSUES 71): chi ha consumato un
