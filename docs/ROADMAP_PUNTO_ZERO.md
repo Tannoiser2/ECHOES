@@ -249,6 +249,13 @@ La procedura di fine Chronicle come sequenza fisica, eseguibile a mano.
 **Fatto quando** la Chronicle successiva nasce dai segni visibili, e si può
 rimontare il tavolo leggendo solo quello che c'è sopra.
 
+> **Fatto in 0.1.231** ([D-269](DECISIONS.md#d-269)): la procedura sta in
+> [PROCEDURA_FINE_CHRONICLE.md](PROCEDURA_FINE_CHRONICLE.md), sette passi a
+> mano — e il «fatto quando» è **una prova**, non una promessa:
+> `test_visible_handover.gd` eredita l'era nuova due volte, dal mondo intero
+> e dal solo tavolo visibile (`visible_table.gd`, lista chiusa), e i due
+> mondi devono nascere identici. Vale su CHR_01→CHR_02 e sulla saga pescata.
+
 ### PZ-7 — I Destini: 12, e nessuno che si avveri stando fermi
 
 Sei condivisi, sei di Entità. Ognuno con Tema, tag osservati, e le tre righe
