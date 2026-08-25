@@ -5,6 +5,20 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.234 — I sei controlli di PZ-9, riletti nel mondo dove la Domanda sta sulla Tensione (D-272)
+
+- **PZ-9, aperto e chiuso**: sei controlli nuovi in `validate_physical.py`
+  (11-16) — tessera senza segni, tessera che nessuno legge, Tensione senza
+  domande, **ponte delle domande rotto** (ogni `possible_questions` deve
+  esistere in un template di Consiglio), Destino che osserva un segno fuori
+  dal dizionario, Echo senza `effect_hooks`. I sei della RoadMap, riletti
+  dopo D-266.
+- **Self-test da cinque a undici difetti piantati**, e la guardia si è vista
+  mordere su ognuno. I dati spediti erano già puliti su tutti e sei,
+  misurato prima di scrivere i controlli.
+- Suite **551 prove / 14.836 asserzioni**; playtest **0 seggi bloccati su
+  8**; cancelli tutti verdi.
+
 ## 0.1.233 — Lo schermo dice quello che la carta dice: le cinque schermate, censite (D-271)
 
 - **PZ-8, la parte misurabile**: le cinque schermate della RoadMap esistono e

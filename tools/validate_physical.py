@@ -38,12 +38,29 @@ non e' sparita: e' diventata la controprova. Questo strumento controlla:
      verbo della carta raggiunge, e l'ambito adesso e' quello dichiarato;
  10. Temi senza Tensioni: un mazzetto vuoto e' un Tema che non parla mai.
 
+E i sei di PZ-9 (D-272), riletti nel mondo dove la Domanda sta sulla carta
+Tensione (D-266):
+
+ 11. tessere senza segni: il bersaglio si dice a segni (D-262), e un luogo
+     senza segni non si puo' nominare;
+ 12. tessere che nessuno legge: ogni tessera deve portare almeno un segno che
+     qualcosa legge — una tessera coi soli segni muti e' decorazione;
+ 13. Tensioni senza domande: girata la Tensione, le sue domande devono essere
+     li' (`possible_questions`);
+ 14. il ponte delle domande rotto: ogni domanda della Tensione deve esistere
+     in un template di Consiglio, o la carta promette un dibattito che il
+     motore non sa aprire;
+ 15. Destini che osservano un segno fuori dal dizionario: la faccia dice dove
+     guardare, e deve indicare un segno che esiste;
+ 16. Echi senza effetto: una carta del Narratore senza `effect_hooks` e'
+     colore travestito da carta.
+
 La Domanda non e' una carta a parte: **sta sulla carta Tensione** (decisione
 del committente, D-266) — girata la Tensione, le sue domande sono li', legate
 ai segni del mondo. I controlli sulle carte Domanda separate sono usciti con
 il componente.
 
-`--self-test` pianta cinque difetti, uno per famiglia di controllo, e pretende
+`--self-test` pianta undici difetti, uno per famiglia di controllo, e pretende
 che la guardia vada rossa su ognuno: una guardia che nessuno ha visto mordere
 non e' una guardia (lezione di D-256).
 """
@@ -428,6 +445,63 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
     for tema in sorted(temi):
         if per_tema.get(tema, 0) == 0:
             guai.append("Tema senza Tensioni: %s — il Calore sale e a fine Atto non si gira niente" % tema)
+
+    # 11. Tessere senza segni: il bersaglio si dice a segni (D-262). Un luogo
+    # senza segni non si puo' nominare da nessuna carta.
+    for regione in documenti.get("region", []):
+        if not regione.get("tags"):
+            guai.append("tessera senza segni: %s — un luogo senza segni non si puo' dire a segni"
+                        % regione.get("id"))
+
+    # 12. Tessere che nessuno legge: almeno uno dei segni stampati sulla
+    # tessera dev'essere letto da qualcosa. Una tessera coi soli segni muti
+    # e' decorazione: ci si posa un gettone e non serve a niente.
+    letti_nudi = {_nudo(t) for t in conto["letti"]}
+    for regione in documenti.get("region", []):
+        stampati_qui = [str(t) for t in regione.get("tags", [])]
+        if stampati_qui and not any(_nudo(t) in letti_nudi for t in stampati_qui):
+            guai.append("tessera che nessuno legge: %s — nessuno dei suoi segni (%s) e' letto da qualcosa"
+                        % (regione.get("id"), ", ".join(stampati_qui)))
+
+    # 13. Tensioni senza domande: la Domanda sta sulla carta Tensione (D-266).
+    # Girata sul Tema caldo, le sue domande devono essere li'.
+    for tensione in documenti.get("tension", []):
+        if not tensione.get("possible_questions"):
+            guai.append("Tensione senza domande: %s — girata, non avrebbe niente da chiedere"
+                        % tensione.get("id"))
+
+    # 14. Il ponte delle domande, sorvegliato: ogni domanda dichiarata da una
+    # Tensione deve esistere in un template di Consiglio, o la carta promette
+    # un dibattito che il motore non sa aprire.
+    quesiti_noti: Set[str] = set()
+    for template in documenti.get("confluence_template", []):
+        for quesito in template.get("questions", []):
+            quesiti_noti.add(str(quesito.get("id")))
+    for tensione in documenti.get("tension", []):
+        for quesito in tensione.get("possible_questions", []):
+            if str(quesito) not in quesiti_noti:
+                guai.append("ponte delle domande rotto su %s: «%s» non esiste in nessun template di Consiglio"
+                            % (tensione.get("id"), quesito))
+
+    # 15. Destini che osservano un segno fuori dal dizionario: la faccia dice
+    # dove guardare (D-270), e deve indicare un segno che esiste. Il censimento
+    # generale (controllo 1) lo direbbe comunque, ma senza fare il nome del
+    # Destino — e un errore senza nome e' un errore che nessuno va a cercare.
+    for destino in documenti.get("destiny", []):
+        fisica = destino.get("physical")
+        if not fisica:
+            continue
+        for segno in fisica.get("observes", []):
+            if _nudo(str(segno)) not in voci:
+                guai.append("Destino che osserva un segno fuori dal dizionario: %s guarda «%s»"
+                            % (destino.get("id"), segno))
+
+    # 16. Echi senza effetto: una carta del Narratore senza `effect_hooks` e'
+    # colore travestito da carta — si gioca, si paga, e il mondo non si muove.
+    for eco in documenti.get("echo_card", []):
+        if not eco.get("effect_hooks"):
+            guai.append("Echo senza effetto: %s — si gioca, si paga, e il mondo non si muove"
+                        % eco.get("id"))
     return guai
 
 
@@ -508,6 +582,28 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
         v["title"] = "carestia"
         v.pop("aliases", None)
 
+    # I sei di PZ-9 (D-272): ogni controllo nuovo si vede mordere una volta.
+    def tessera_spogliata(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        prova["region"][0]["tags"] = []
+
+    def tessera_decorativa(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        # Un segno vero del dizionario che nessuno legge (scritto-e-non-letto
+        # con nota, D-266): stampato da solo su una tessera, la rende muta.
+        prova["region"][0]["tags"] = ["charter_temporary"]
+
+    def tensione_muta(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        prova["tension"][0]["possible_questions"] = []
+
+    def ponte_rotto(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        prova["tension"][0]["possible_questions"] = ["Q_INVENTATO_APPOSTA"]
+
+    def destino_cieco(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        con_faccia = next(d for d in prova["destiny"] if d.get("physical"))
+        con_faccia["physical"]["observes"] = ["segno_inventato_apposta"]
+
+    def eco_di_colore(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        prova["echo_card"][0]["effect_hooks"] = []
+
     print("")
     print("== SELF-TEST: la guardia morde? ==")
     print("")
@@ -522,6 +618,18 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
                "mani non dichiarate su «%s»" % bersaglio),
         pianta("nome cambiato sotto un #cancelletto stampato", cancelletto_orfano,
                "cancelletto senza voce: «#fame»"),
+        pianta("tessera spogliata dei suoi segni", tessera_spogliata,
+               "tessera senza segni"),
+        pianta("tessera coi soli segni che nessuno legge", tessera_decorativa,
+               "tessera che nessuno legge"),
+        pianta("Tensione senza domande sulla carta", tensione_muta,
+               "Tensione senza domande"),
+        pianta("domanda che nessun template di Consiglio conosce", ponte_rotto,
+               "ponte delle domande rotto"),
+        pianta("Destino che osserva un segno inventato", destino_cieco,
+               "Destino che osserva un segno fuori dal dizionario"),
+        pianta("Echo svuotato dei suoi effetti", eco_di_colore,
+               "Echo senza effetto"),
     ]
     puliti = controlla(documenti)
     print("  %s %s" % ("OK " if not puliti else "MANCATO", "dati veri: nessun guaio"))
@@ -530,7 +638,7 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
             print("      %s" % guaio)
     print("")
     if all(esiti) and not puliti:
-        print("OK  la guardia morde su tutti e cinque i difetti piantati, e tace sui dati veri.")
+        print("OK  la guardia morde su tutti gli undici difetti piantati, e tace sui dati veri.")
         return 0
     print("LA GUARDIA NON MORDE: un controllo che non va rosso sul difetto piantato non esiste.")
     return 1

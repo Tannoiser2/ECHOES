@@ -10,6 +10,37 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-272 — I sei controlli di PZ-9, riletti nel mondo dove la Domanda sta sulla Tensione
+
+**implemented in 0.1.234** — apre PZ-9 della roadmap e lo chiude
+
+La roadmap chiedeva sei controlli scritti quando le carte Domanda erano un
+componente a parte. Quel componente e' uscito (D-266), e i sei si rileggono
+nel mondo com'e' — ognuno col suo nome nel rosso, e ognuno **visto mordere**
+su un difetto piantato:
+
+| chiesto dalla RoadMap | com'e' oggi (controlli 11-16 di `validate_physical.py`) |
+|---|---|
+| luogo senza tag | **tessera senza segni** — il bersaglio si dice a segni (D-262), un luogo senza segni non si puo' nominare |
+| luogo senza funzione | **tessera che nessuno legge** — almeno un segno stampato dev'essere letto da qualcosa, o la tessera e' decorazione |
+| Domanda senza Tema | **Tensione senza domande** — girata sul Tema caldo, `possible_questions` dev'essere li' |
+| Domanda senza tag e non marcata generica | **ponte delle domande rotto** — ogni domanda della Tensione deve esistere in un template di Consiglio, o la carta promette un dibattito che il motore non sa aprire |
+| Destino che legge un tag inesistente | **Destino che osserva un segno fuori dal dizionario** — il censimento generale lo direbbe comunque, ma senza fare il nome del Destino, e un errore senza nome non lo cerca nessuno |
+| Echo senza effetto di setup | **Echo senza `effect_hooks`** — colore travestito da carta: si gioca, si paga, e il mondo non si muove |
+
+**Il self-test sale da cinque a undici difetti piantati**, uno per controllo
+nuovo — fra cui la tessera resa muta con un segno vero del dizionario
+(`charter_temporary`, scritto-e-non-letto con nota da D-266): ogni pianta
+prova il controllo su un caso che deve mordere, non su uno di comodo.
+
+**I dati spediti erano gia' puliti su tutti e sei** — misurato prima di
+scrivere i controlli: 0 tessere mute, 0 Tensioni senza domande, 0 ponti
+rotti, 0 Echi vuoti. I sei denti servono al contenuto che verra', che e'
+esattamente il «fatto quando» di PZ-9: niente entra se produce segni muti o
+regole invisibili.
+
+---
+
 ## D-271 — Lo schermo dice quello che la carta dice: le cinque schermate, censite
 
 **implemented in 0.1.233** — PZ-8 della roadmap: la parte misurabile; l'occhio resta al committente (§5ter)
