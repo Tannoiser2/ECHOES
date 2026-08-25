@@ -5,6 +5,25 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.243 — Il turno si vede: la mano era morta (D-281)
+
+- **Difetto, trovato giocando**: le carte in mano non ricevevano mai le loro
+  offerte durante la domanda — `ask()` costruiva `_offers` **dopo** il
+  `_refresh()` che disegna la mano — e una carta col carico vuoto non si prende
+  e non si trascina. **Nessuna carta era giocabile, in nessun turno.**
+- **La colonna dice quali carte parlano adesso**, con quante mosse portano:
+  premere la riga è lo stesso gesto di toccare la carta nel ventaglio. D-238
+  aveva svuotato la colonna, e quando tutte le scelte hanno un posto dove
+  cadere restava un turno con niente da premere.
+- **Una carta giocabile si vede** (bordo acceso, le altre a metà luce), e il
+  suggerimento parla un gesto che un dito può fare: via «Trascina una carta
+  dove vuoi usarla».
+- Cinque prove nuove che legano **la domanda alla mano** (`test_a_turn_can_be_played`),
+  il buco per cui il difetto era passato: le prove sul trascinamento riempivano
+  il carico a mano.
+- Playtest 100 semi **0/8** misto e uniforme; suite **573 prove / 33.194
+  asserzioni**; cancelli tutti verdi.
+
 ## 0.1.242 — L'economia del Consiglio, costruita (D-280)
 
 - **Il cuore, come lo vuole la carta del committente.** Vocabolario chiuso di

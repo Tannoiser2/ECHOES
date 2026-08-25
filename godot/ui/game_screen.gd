@@ -905,8 +905,17 @@ func ask(prompt: String, labels: Array, subjects: Array = []) -> int:
 	_subjects = subjects.duplicate()
 	_asked = prompt
 	_prompt.text = prompt
+	# **La mano deve sapere cosa porta, adesso** (D-281).
+	#
+	# Il `_refresh()` in cima a questa funzione e' passato **prima** che le
+	# offerte esistessero, e ha disegnato le carte col carico vuoto. Una carta
+	# col carico vuoto non si prende e non si trascina — `_gui_input` e
+	# `_get_drag_data` escono subito — quindi per tutta la domanda la mano era
+	# morta: si vedevano le carte, non se ne poteva giocare nessuna. Il difetto
+	# stava fra due righe che sembravano a posto ognuna per conto suo.
+	_hand.render(_session, _viewer, _focus_tension, _offers)
 	_hint.text = (
-		"Trascina una carta dove vuoi usarla — una Regione, una domanda, una casa — o scegli qui accanto."
+		"Tocca una carta della tua mano: si accendono i posti dove puoi giocarla."
 		if not _offers.is_empty()
 		else ("" if on_map.is_empty()
 			else "Le Regioni cerchiate d'oro sono raggiungibili: cliccane una per metterci una presenza.")
@@ -1240,8 +1249,31 @@ func _on_tension_opened(tension_id: String) -> void:
 ##
 ## Una scelta che ha un posto dove cadere non e' anche un bottone (D-238): la
 ## colonna tiene solo quello che non si puo' prendere in mano.
+##
+## **Ma le carte che parlano adesso si nominano** (D-281, parola del
+## committente: *«non so quali azioni fare»*). D-238 aveva tolto dalla colonna
+## ogni scelta con un posto dove cadere, e quando tutte ce l'avevano la colonna
+## restava vuota: chi non sapeva gia' di dover toccare una carta si trovava
+## davanti a un turno senza niente da premere. Adesso in cima c'e' una riga per
+## carta giocabile, che dice **quante mosse porta**; premerla e' lo stesso
+## gesto di toccarla nella mano — si accendono i posti sul tavolo e la colonna
+## diventa la scheda di quella carta. Il ventaglio resta il modo bello di
+## giocare; questa e' la strada che nessuno puo' non vedere.
 func _redraw_choices() -> void:
 	_clear_buttons()
+	for asset_id in _playable_cards():
+		var carried: Array = _offers.get(str(asset_id), []) as Array
+		var row := Button.new()
+		row.text = "%s — %s" % [
+			_asset_title(str(asset_id)),
+			"1 mossa" if carried.size() == 1 else "%d mosse" % carried.size(),
+		]
+		row.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		row.alignment = HORIZONTAL_ALIGNMENT_LEFT
+		row.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		var card_id: String = str(asset_id)
+		row.pressed.connect(func() -> void: _on_card_chosen(card_id))
+		_buttons.add_child(row)
 	for i in range(_labels.size()):
 		var subject: Dictionary = _subjects[i] if i < _subjects.size() else {}
 		if _has_a_landing_place(subject as Dictionary):
@@ -1254,6 +1286,24 @@ func _redraw_choices() -> void:
 		var index: int = i
 		button.pressed.connect(func() -> void: picked.emit(index))
 		_buttons.add_child(button)
+
+
+## Le carte che portano una mossa adesso, nell'ordine in cui stanno in mano.
+##
+## L'ordine conta: la riga nella colonna e la carta nel ventaglio sono la stessa
+## cosa detta due volte, e due ordini diversi le farebbero sembrare due liste.
+func _playable_cards() -> Array:
+	if _offers.is_empty():
+		return []
+	var in_hand: Array = []
+	if _session != null and _viewer != "":
+		for asset_id in _session.service.hand(_viewer):
+			if _offers.has(str(asset_id)):
+				in_hand.append(str(asset_id))
+	for asset_id in _offers:
+		if not in_hand.has(str(asset_id)):
+			in_hand.append(str(asset_id))
+	return in_hand
 
 
 ## Le Regioni che erano bersaglio quando la domanda e' stata fatta.

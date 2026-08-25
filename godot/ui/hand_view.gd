@@ -73,6 +73,14 @@ func render(
 		add_child(card)
 		card.render(asset, relevant, council_open, session.data)
 		card.offers = offers.get(str(asset_id), [])
+		# **Quando qualcosa si puo' giocare, quello che non si puo' si spegne**
+		# (D-281). La carta da sola non lo sa — sa solo cosa porta lei — e il
+		# contesto ce l'ha soltanto la mano: fuori da una domanda le carte si
+		# guardano tutte uguali, dentro una domanda la differenza fra «adesso
+		# questa parla» e «questa no» e' l'unica cosa che serve vedere.
+		card.modulate = Color(1, 1, 1, 1.0 if (
+			offers.is_empty() or not (card.offers as Array).is_empty()
+		) else 0.5)
 		card.chosen.connect(func(chosen_id: String) -> void: card_chosen.emit(chosen_id))
 		card.set_held(str(asset_id) == _held)
 

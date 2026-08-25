@@ -10,6 +10,65 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-281 — Il turno si vede: la mano era morta, e la colonna era vuota
+
+**implemented in 0.1.243** — parola del committente, aprendo l'app
+
+> «L'app non mi fa giocare le carte, non so quali azioni fare, e la GUI mi dice
+> di trascinare una carta dove voglio usarla??? (in che senso???) Non capisco
+> quale meccanismo stai usando per il turno di gioco.»
+
+Sotto ci sono tre cose, e la prima **e' un difetto vero, non una questione di
+gusto**.
+
+**1. La mano era morta.** `GameScreen.ask()` chiama `_refresh()` in cima — ed e'
+`_refresh()` che disegna la mano — e costruisce `_offers` (cosa porta ogni
+carta adesso) **dopo**. Le carte venivano quindi disegnate col carico vuoto, e
+una carta col carico vuoto non si prende e non si trascina: `_gui_input` e
+`_get_drag_data` escono subito. Per tutta la domanda, in ogni turno di ogni
+partita giocata a schermo, **nessuna carta era giocabile**. Il difetto stava fra
+due righe giuste ognuna per conto suo, e nessuna prova lo vedeva: quelle sul
+trascinamento (D-230) riempiono il carico a mano, e nessuna legava **la domanda
+alla mano**. Adesso `ask()` ridisegna la mano con le offerte, e
+`test_a_turn_can_be_played` tiene il ponte.
+
+**2. La colonna era vuota.** D-238 aveva tolto dalla colonna ogni scelta con un
+posto dove cadere — *«la gui deve prevedere movimenti drag & drop, non pulsanti
+che dicono cosa fare»*. Quando **tutte** le scelte ce l'hanno, la colonna resta
+vuota: chi non sapeva gia' di dover toccare una carta si trovava davanti a un
+turno senza niente da premere. Il correttivo non riporta indietro D-238: la
+colonna non elenca le *mosse*, elenca **le carte che parlano adesso** e quante
+mosse portano. Premerne una e' lo stesso gesto di toccarla nel ventaglio — la
+carta va in mano, si accendono i posti, e la colonna diventa la scheda della
+carta (D-279). Il ventaglio resta il modo bello di giocare; questa e' la strada
+che nessuno puo' non vedere.
+
+**3. Il gesto si diceva sbagliato.** *«Trascina una carta dove vuoi usarla»*
+descrive un movimento che su un tablet non esiste (D-243) e che comunque non
+diceva dove. Adesso: *«Tocca una carta della tua mano: si accendono i posti dove
+puoi giocarla»*. E una carta che porta una mossa **si vede**: bordo acceso, come
+il cerchio d'oro di una Regione raggiungibile; le altre si spengono a meta'
+finche' la domanda e' aperta. La promessa e' sempre quella di D-039: dove c'e'
+il segno, la mossa e' gia' legale.
+
+**Il meccanismo del turno, per intero** (nessuna regola cambia qui, e' la
+risposta alla terza domanda): l'Atto ha 3 round, ogni round da' a ogni seggio
+**2 azioni**, e i seggi giocano nell'ordine del tavolo. Un'azione si spende
+**calando una carta della propria mano** — la carta porta due Azioni stampate e
+un bersaglio a segni (D-274) — e ogni carta calata fa cadere un gettone coperto
+sul Tema che la carta scalda (D-260/D-261). A fine Atto il Tema piu' caldo apre
+il suo Consiglio: si gira la Tensione, il proponente compra i benefici e gli
+avversari scelgono in che moneta paga (D-280), tutti si impegnano, e quello che
+il Consiglio decide resta scritto.
+
+**Prove**: `tests/unit/test_a_turn_can_be_played.gd` — la mano viva mentre la
+domanda e' aperta, il turno che non lascia mai lo schermo senza una strada,
+la colonna che nomina le carte (mai un id), la riga che si tocca al posto della
+carta, il suggerimento che parla un gesto che un dito puo' fare. La prima delle
+cinque, tolta la riga del correttivo, torna rossa.
+
+---
+
 ## D-280 — L'economia del Consiglio: benefici comprati, prezzo scelto dagli altri
 
 **implemented in 0.1.242** — carta d'esempio del committente
