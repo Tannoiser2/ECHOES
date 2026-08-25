@@ -33,6 +33,7 @@ const ExportPreview := preload("res://ui/export_preview.gd")
 const ChronicleBookView := preload("res://ui/chronicle_book_view.gd")
 const EchoCardView := preload("res://ui/echo_card_view.gd")
 const LogExport := preload("res://scripts/core/log_export.gd")
+const TableChoice := preload("res://scripts/core/table_choice.gd")
 
 ## Who is at the table is a property of the Chronicle, not of this screen
 ## (D-050). It used to be a constant here, which meant the browser could only
@@ -408,10 +409,14 @@ func _build() -> void:
 
 	# Outside `_buttons` on purpose: the choices are cleared after every question
 	# and this must not go with them. It is the one control that is always there.
+	# **Via la schermata «Come si gioca»** (D-279, parola del committente): le
+	# regole si imparano al tavolo, non da una pagina che copre la mappa. Il
+	# nodo resta — mezza dozzina di posti lo spengono per aprire altro — ma non
+	# ha piu' un bottone, non si apre all'avvio, e non e' mai visibile.
 	_help_button = Button.new()
-	_help_button.text = "Come si gioca"
 	_help_button.toggle_mode = true
-	_help_button.button_pressed = true
+	_help_button.button_pressed = false
+	_help_button.visible = false
 	_help_button.toggled.connect(_on_help_toggled)
 	right.add_child(_help_button)
 
@@ -469,7 +474,7 @@ func _build() -> void:
 	_hand.card_chosen.connect(_on_card_chosen)
 	rows.add_child(_hand)
 
-	_help.render(_load_help_data())
+	_help.visible = false
 
 
 ## Redraw the board from the world. Called after every phase and before every
@@ -1139,59 +1144,30 @@ func _menu() -> void:
 	say("La mappa e sempre la stessa. Le persone che ci stanno sopra no: fra un anno")
 	say("e l'altro cambiano le case, le domande e quello che ognuno vuole.")
 	say("")
+	# **La soglia ha gia' scelto** (D-279, parola del committente): chi siede e
+	# chi lo gioca si decide davanti alla copertina, e il mondo si pesca. Qui
+	# non si chiede piu' niente — ne' il seggio, ne' «che mondo?»: si apre.
 	while true:
 		if await _offer_to_resume():
 			continue
 		var chronicle_id: String = first_chronicle(_load_help_data())
 		_seats = _seats_of(chronicle_id)
-		# Redrawn here and not after the seat is picked: the rules page names the
-		# people at the table and the year's questions, and it is on screen while
-		# the seat is being chosen. A step later it was still describing the age
-		# the player had just declined.
-		_help.render(_load_help_data(), chronicle_id)
-		var labels: Array = []
-		for entity_id in _seats:
-			labels.append("Gioco %s" % _entity_name(str(entity_id)))
-		labels.append("Guardo giocare le policy")
-		# La stanza (voce 27, D-136): la mappa resta qui, i giocatori sui
-		# telefoni. La scena della stanza chiede l'anno per conto suo.
-		labels.append("Apro la stanza — console sui telefoni")
-		var choice: int = await ask("Quale seggio prendi?", labels)
-		if choice == _seats.size() + 1:
-			get_tree().change_scene_to_file("res://ui/room_screen.tscn")
-			return
-		var humans: Array = [] if choice >= _seats.size() else [str(_seats[choice])]
-		if not humans.is_empty():
-			humans = await _ask_companions(humans)
-		await _play(humans, chronicle_id, await _ask_seed())
+		var humans: Array = []
+		for seat in TableChoice.humans:
+			if _seats.has(str(seat)):
+				humans.append(str(seat))
+		if not TableChoice.chosen:
+			# Aperta senza passare dalla soglia (una prova, la sala rimontata a
+			# mano): si guarda giocare, invece di fermarsi a chiedere.
+			say("Nessuna scelta dalla soglia: giocano le policy.")
+		await _play(humans, chronicle_id, _a_world_at_random())
 
 
-## Chi altro gioca da questo schermo (D-147). I seggi di una Chronicle sono
-## sempre quattro — e' il tavolo, non un'impostazione — ma **quanti di quei
-## quattro siano persone** e' sempre stato libero: la riga di comando lo sa fare
-## da 0.0 (`--seats=all`), la stanza lo decide da chi si collega, e l'unico
-## posto che non lo chiedeva era il menu dell'app. Chi non e' nominato qui e'
-## una policy, e le policy giocano davvero (D-147: meglio del caso in 26
-## partite su 40).
-func _ask_companions(taken: Array) -> Array:
-	var humans: Array = taken.duplicate()
-	while humans.size() < _seats.size():
-		var free: Array = []
-		var labels: Array = ["Gli altri li giocano le policy"]
-		for entity_id in _seats:
-			if humans.has(str(entity_id)):
-				continue
-			free.append(str(entity_id))
-			labels.append("Gioca anche %s, da questo schermo" % _entity_name(str(entity_id)))
-		var choice: int = await ask(
-			"Siete in %d. Qualcun altro a questo schermo?" % humans.size(), labels
-		)
-		if choice <= 0:
-			break
-		humans.append(str(free[choice - 1]))
-	return humans
-
-
+## Il mondo si pesca (D-279). Il seme resta scritto in testa al verbale, cosi'
+## un anno che vale la pena si puo' ancora rigiocare da riga di comando — ma
+## non e' piu' una domanda da fare a chi apre l'app.
+func _a_world_at_random() -> int:
+	return int(Time.get_unix_time_from_system()) % 100000
 func _seats_of(chronicle_id: String) -> Array:
 	var data: RefCounted = _load_help_data()
 	if data == null or not data.chronicles.has(chronicle_id):
@@ -1242,52 +1218,6 @@ static func openings(data: RefCounted) -> Array:
 		return year_a < year_b
 	)
 	return ids
-
-
-## The seed is the world. It is printed at the top of every Chronicle precisely
-## so a year worth talking about can be played again - which it could not be,
-## until there was somewhere to type it back in.
-func _ask_seed() -> int:
-	var random: int = int(Time.get_unix_time_from_system()) % 100000
-	var labels: Array = ["Un mondo a caso"]
-	if _last_seed >= 0:
-		labels.append("Rigioca il seme %d" % _last_seed)
-	labels.append("Scrivo io il seme")
-	var choice: int = await ask("Che mondo?", labels)
-	if choice == 0:
-		return random
-	if _last_seed >= 0 and choice == 1:
-		return _last_seed
-	return await _ask_number("Il seme:", random)
-
-
-## A number, typed. Enter answers as well as the button, because a field with a
-## button beside it that only the button ends is a field that feels broken.
-func _ask_number(prompt: String, fallback: int) -> int:
-	_prompt.text = prompt
-	_clear_buttons()
-	var field := LineEdit.new()
-	field.placeholder_text = str(fallback)
-	field.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_buttons.add_child(field)
-	var button := Button.new()
-	button.text = "Vai"
-	button.pressed.connect(func() -> void: picked.emit(0))
-	field.text_submitted.connect(func(_t: String) -> void: picked.emit(0))
-	_buttons.add_child(button)
-	field.grab_focus()
-
-	await picked
-	var typed: String = field.text.strip_edges()
-	_clear_buttons()
-	_prompt.text = ""
-	return int(typed) if typed.is_valid_int() else fallback
-
-
-## Before the first Chronicle there is no session, so the name comes from the
-## data set the menu already loads for the rules page. It used to come from a
-## table written here, which listed the first saga's four houses and nothing
-## else (D-050).
 func _entity_name(entity_id: String) -> String:
 	if _session != null:
 		return str(_session.data.entities[entity_id]["name"])

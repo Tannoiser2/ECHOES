@@ -158,17 +158,21 @@ func _relayout() -> void:
 		for spot in posa.values():
 			columns = maxi(columns, int((spot as Array)[0]) + 1)
 			rows = maxi(rows, int((spot as Array)[1]) + 1)
-		_radius = clampf(
-			minf(size.x / (float(columns) * 2.4), size.y / (float(rows) * 2.8)),
-			RADIUS_MIN, RADIUS_MAX
-		)
+		# **Accostate, non distanziate** (D-279): sono tessere di cartone posate
+		# una accanto all'altra. Il lato e' il piu' grande che sta nello spazio
+		# con tre colonne e due righe, e il blocco si centra: fra una tessera e
+		# l'altra c'e' una fuga, non un prato.
+		var side: float = minf(size.x / float(columns), size.y / float(rows))
+		_radius = side * 0.5
+		var block: Vector2 = Vector2(side * float(columns), side * float(rows))
+		var origin: Vector2 = (size - block) * 0.5
 		for region_id in _regions:
 			var spot: Variant = posa.get(str(region_id))
 			if spot == null:
 				continue
-			_points[str(region_id)] = Vector2(
-				(float(int((spot as Array)[0])) + 0.5) / float(columns) * size.x,
-				(float(int((spot as Array)[1])) + 0.5) / float(rows) * size.y
+			_points[str(region_id)] = origin + Vector2(
+				(float(int((spot as Array)[0])) + 0.5) * side,
+				(float(int((spot as Array)[1])) + 0.5) * side
 			)
 		return
 
@@ -265,8 +269,18 @@ func _offered_at(point: Vector2) -> String:
 
 
 func _region_at(point: Vector2) -> String:
+	# Sul tavolo pescato la tessera e' un quadrato (D-279): il dito prende il
+	# quadrato. Col cerchio, i quattro angoli di ogni tessera — cioe' un
+	# quinto della sua superficie — non rispondevano al tocco.
+	var square: bool = _session != null and not (
+		_session.world.get("map_positions", {}) as Dictionary
+	).is_empty() and _board() == null
 	for region_id in _points:
-		if point.distance_to(_points[region_id]) <= _radius:
+		var centre: Vector2 = _points[region_id]
+		if square:
+			if absf(point.x - centre.x) <= _radius and absf(point.y - centre.y) <= _radius:
+				return str(region_id)
+		elif point.distance_to(centre) <= _radius:
 			return str(region_id)
 	return ""
 
@@ -279,9 +293,14 @@ func _draw() -> void:
 	var board: Texture2D = _board()
 	if board != null:
 		draw_texture_rect(board, _board_rect(board), false)
-	else:
+	elif (_session.world.get("map_positions", {}) as Dictionary).is_empty():
 		# Senza quadro le strade sono disegnate; con il quadro ci sono gia'
 		# dentro, e ridisegnarle sopra sarebbe una seconda mappa sulla prima.
+		#
+		# **Sul tavolo pescato non si disegnano affatto** (D-279): le tessere
+		# si toccano, e vicino e' chi si tocca (D-275). Una strada fra due
+		# tessere accostate sarebbe un segno che al tavolo non c'e' — e per di
+		# piu' disegnata dal grafo scritto nei dati, che li' non vale.
 		_draw_roads()
 	for region_id in _regions:
 		_draw_region(str(region_id))
@@ -328,6 +347,14 @@ func _draw_region(region_id: String) -> void:
 	var offered: bool = highlighted.has(region_id)
 	if _board() != null:
 		_draw_over_board(region_id, centre, control, offered)
+		return
+	# **Sul tavolo pescato la tessera e' un quadrato** (D-279, parola del
+	# committente: «la mappa deve essere con le immagini affiancate a quadrato
+	# con un 3x2, non a esagoni»). Le tessere di cartone si accostano lato a
+	# lato: l'esagono era una figura che sul tavolo non esiste, e nascondeva
+	# meta' del quadro dipinto ritagliandolo.
+	if not (_session.world.get("map_positions", {}) as Dictionary).is_empty():
+		_draw_square_tile(region_id, centre, control, offered)
 		return
 	# Il terreno, generato dal bioma e dall'id: la tessera si riconosce da lontano
 	# per quello che e', non per l'etichetta scritta sotto (D-057). Il centro
@@ -384,6 +411,83 @@ func _draw_region(region_id: String) -> void:
 	_draw_echo(centre, region_id)
 	_draw_presence(centre, region_id)
 	_draw_marks(centre, region_id, region)
+
+
+## La tessera quadrata del tavolo pescato (D-279).
+##
+## Il quadro della Regione riempie il quadrato per intero — nessun ritaglio,
+## nessuna sagoma: e' la tessera di cartone, vista da sopra. Senza quadro resta
+## il terreno generato, dipinto dentro lo stesso quadrato. Sopra ci vanno le
+## sole cose che il quadro non sa: chi la tiene, chi ci sta, cosa le e'
+## successo quest'anno.
+func _draw_square_tile(
+	region_id: String, centre: Vector2, control: Variant, offered: bool
+) -> void:
+	var definition: Dictionary = _session.data.regions[region_id]
+	var half: float = _radius
+	var box: Rect2 = Rect2(centre - Vector2(half, half), Vector2(half, half) * 2.0)
+	var lift: float = 0.0
+	if offered:
+		lift += 0.10
+	if _hovered == region_id or _landing == region_id:
+		lift += 0.12
+
+	var painted: Texture2D = ArtLibrary.texture(str(definition.get("art_prompt_key", "")))
+	if painted != null:
+		draw_texture_rect(painted, box, false, Color(1, 1, 1).lightened(lift))
+	else:
+		var art: Dictionary = RegionArt.plan(region_id, str(definition["biome"]))
+		draw_rect(box, Color(str(art["ground"])).lightened(lift), true)
+		_draw_terrain_strokes(art, box, lift)
+	# Il centro resta calmo anche qui: un velo sotto i segnalini, perche' un
+	# pezzo chiaro su un campo chiaro sparisce.
+	draw_circle(centre, half * 0.62, Color(0.07, 0.06, 0.05, 0.28))
+
+	# Il bordo: la fuga fra due tessere accostate, e chi tiene il posto.
+	var ring: Color = Color("#2a241c")
+	var width: float = 2.0
+	if control != null:
+		ring = _entity_colour(str(control))
+		width = 4.0
+	draw_rect(box, ring, false, width)
+	if offered:
+		var lit: bool = _hovered == region_id or _landing == region_id
+		draw_rect(
+			box.grow(-3.0), Color("#e8b563") if lit else Color("#7a6338"), false,
+			3.0 if lit else 2.0
+		)
+
+	var font: Font = ThemeDB.fallback_font
+	var name: String = str(definition["name"])
+	var name_size: Vector2 = font.get_string_size(name, HORIZONTAL_ALIGNMENT_LEFT, -1, 13)
+	# Il nome sta **dentro** la tessera, in basso: fuori si sovrapporrebbe alla
+	# tessera della riga sotto, che qui e' accostata e non distante.
+	var at: Vector2 = centre + Vector2(-name_size.x * 0.5, half - 8.0)
+	draw_rect(
+		Rect2(at + Vector2(-6.0, -13.0), name_size + Vector2(12.0, 6.0)),
+		Color(0.05, 0.04, 0.03, 0.62), true
+	)
+	draw_string(font, at, name, HORIZONTAL_ALIGNMENT_LEFT, -1, 13, Color("#efe7d8"))
+
+	_draw_echo(centre, region_id)
+	_draw_presence(centre, region_id)
+	_draw_marks(centre, region_id, _session.world["regions"][region_id])
+
+
+## I tratti del bioma dentro un rettangolo, senza la sagoma piena: la usa la
+## tessera quadrata quando il quadro non e' stato consegnato.
+func _draw_terrain_strokes(art: Dictionary, box: Rect2, lift: float) -> void:
+	for stroke in art["strokes"]:
+		var item: Dictionary = stroke
+		var colour: Color = Color(str(item["colour"])).lightened(lift)
+		var at: PackedVector2Array = _mapped(item["points"], box)
+		match str(item["kind"]):
+			"poly":
+				draw_colored_polygon(at, colour)
+			"line":
+				draw_polyline(at, colour, maxf(1.0, float(item["width"]) * box.size.x), true)
+			"dot":
+				draw_circle(at[0], float(item["width"]) * box.size.x, colour)
 
 
 ## Quello che il quadro non sa.
