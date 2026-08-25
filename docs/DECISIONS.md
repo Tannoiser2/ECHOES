@@ -10,6 +10,37 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-271 — Lo schermo dice quello che la carta dice: le cinque schermate, censite
+
+**implemented in 0.1.233** — PZ-8 della roadmap: la parte misurabile; l'occhio resta al committente (§5ter)
+
+Le cinque schermate della RoadMap **esistono, e sono queste**:
+
+| schermata | dove vive |
+|---|---|
+| **Mappa** | `map_view.gd`, dentro la vista TAVOLO (`table_view.gd`) — tessere pescate, segni, pedine |
+| **Mano** | `hand_view.gd` — le carte del seggio, col trascinare di D-231 |
+| **Temi** | `status_panel.gd` — la pista del Calore, i mazzetti coi gettoni coperti e la carta girata (D-261), le domande dell'anno |
+| **Consiglio** | `confluence_board.gd` + `council_sheet.gd` — e le domande al giocatore passano da `game_screen.choose`, che e' l'`io` di `seat_decider`: **la pedina del prezzo e la controproposta (D-267/D-268) arrivano al browser gratis**, con le voci per esteso |
+| **Saga** | `chronicle_book_view.gd` — le pagine vere del Chronicle Book, rasterizzate — piu' i tarocchi del seggio (chi sei / cosa vuoi) |
+
+**La correzione di questa decisione:** il pannello del Destino mostrava le
+etichette digitali dei gradini; da D-270 ogni Destino ha una faccia fisica
+con le tre righe `reads` — la frase stampata sul cartoncino. Adesso **lo
+schermo dice quello che la carta dice**: `rung_text` preferisce la faccia, e
+il ripiego sull'etichetta resta per i Destini fabbricati nelle prove. La
+logica e' una funzione pura, provata su tutti i 23 Destini spediti
+(`test_destiny_screen.gd`).
+
+**Il «fatto quando» di PZ-8 non si chiude da qui, e va detto**: la regola
+§5ter — *nessuna misura copre quello che una persona vede* — vale piu' di
+ogni prova headless. L'export web e' verde in CI; il giro su un iPad vero e'
+del committente, domattina. Quello che una macchina poteva verificare
+(le cinque schermate esistono, mostrano il tavolo e non i segreti, le
+domande nuove arrivano al giocatore, lo schermo legge le carte) e' verificato.
+
+---
+
 ## D-270 — Ogni Destino ha una faccia, e una misura che dice se chiede di giocare
 
 **implemented in 0.1.232** — apre PZ-7 della roadmap; il criterio e' misurato, la coda e' d'autore

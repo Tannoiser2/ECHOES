@@ -5,6 +5,20 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.233 — Lo schermo dice quello che la carta dice: le cinque schermate, censite (D-271)
+
+- **PZ-8, la parte misurabile**: le cinque schermate della RoadMap esistono e
+  sono censite nel verbale (Mappa/`map_view`, Mano/`hand_view`,
+  Temi/`status_panel`, Consiglio/`confluence_board`+`council_sheet`,
+  Saga/`chronicle_book_view`). **La pedina del prezzo e la controproposta
+  arrivano al browser gratis** via `seat_decider`→`game_screen.choose`.
+- **Il pannello del Destino legge la carta**: i gradini usano le tre righe
+  `reads` della faccia fisica (D-270) invece delle etichette digitali —
+  funzione pura, provata su tutti i 23 Destini (`test_destiny_screen.gd`).
+- **§5ter dichiarato aperto**: nessuna misura copre quello che una persona
+  vede — il giro su iPad vero è del committente. Suite **551 prove / 14.836
+  asserzioni**, playtest **0 seggi bloccati su 8**.
+
 ## 0.1.232 — Ogni Destino ha una faccia, e una misura che dice se chiede di giocare (D-270)
 
 - **PZ-7**: i 12 Destini senza faccia fisica (ISSUES 69.7) l'hanno adesso —
