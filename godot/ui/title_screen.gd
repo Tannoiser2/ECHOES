@@ -16,6 +16,7 @@ const DataSet := preload("res://scripts/core/data_set.gd")
 const RngService := preload("res://scripts/core/rng_service.gd")
 const WorldStateFactory := preload("res://scripts/world/world_state_factory.gd")
 const RegionArt := preload("res://scripts/core/region_art.gd")
+const ArtLibrary := preload("res://scripts/core/art_library.gd")
 const GameScreen := preload("res://ui/game_screen.gd")
 
 ## La porta: dove si entra premendo il bottone. La sala e' la scena di sempre.
@@ -58,6 +59,7 @@ static func preview(data: RefCounted, seed_value: int) -> Array:
 			"name": str(definition.get("name", str(drawn[i]))),
 			"signs": _printed_signs(definition, data),
 			"plan": RegionArt.plan(str(drawn[i]), str(definition.get("biome", ""))),
+			"art_key": str(definition.get("art_prompt_key", "")),
 			"col": i % columns,
 			"row": i / columns,
 		})
@@ -173,20 +175,33 @@ class TilePreview extends Control:
 				centre - Vector2(radius, radius), Vector2(radius, radius) * 2.0
 			)
 			var art: Dictionary = entry["plan"]
-			draw_colored_polygon(_mapped(art["outline"], box), Color(str(art["ground"])))
-			for stroke in art["strokes"]:
-				var item: Dictionary = stroke
-				var colour: Color = Color(str(item["colour"]))
-				var at: PackedVector2Array = _mapped(item["points"], box)
-				match str(item["kind"]):
-					"poly":
-						draw_colored_polygon(at, colour)
-					"line":
-						draw_polyline(
-							at, colour, maxf(1.0, float(item["width"]) * box.size.x), true
-						)
-					"dot":
-						draw_circle(at[0], float(item["width"]) * box.size.x, colour)
+			# La tessera dipinta se e' stata consegnata (D-277), ritagliata
+			# dentro l'esagono come sulla mappa in partita (D-059); senza,
+			# il terreno generato di sempre.
+			var painted: Texture2D = ArtLibrary.texture(str(entry.get("art_key", "")))
+			if painted != null:
+				var shape: PackedVector2Array = _mapped(art["outline"], box)
+				var uvs: PackedVector2Array = PackedVector2Array()
+				for point in art["outline"]:
+					uvs.append(point as Vector2)
+				draw_colored_polygon(shape, Color(1, 1, 1).darkened(0.12), uvs, painted)
+			else:
+				draw_colored_polygon(
+					_mapped(art["outline"], box), Color(str(art["ground"]))
+				)
+				for stroke in art["strokes"]:
+					var item: Dictionary = stroke
+					var colour: Color = Color(str(item["colour"]))
+					var at: PackedVector2Array = _mapped(item["points"], box)
+					match str(item["kind"]):
+						"poly":
+							draw_colored_polygon(at, colour)
+						"line":
+							draw_polyline(
+								at, colour, maxf(1.0, float(item["width"]) * box.size.x), true
+							)
+						"dot":
+							draw_circle(at[0], float(item["width"]) * box.size.x, colour)
 			var ring: PackedVector2Array = _mapped(art["outline"], box)
 			ring.append(ring[0])
 			draw_polyline(ring, Color("#4a4238"), 2.0, true)

@@ -117,7 +117,15 @@ func render(session: RefCounted, viewer_id: String) -> void:
 ## Quando c'e', il terreno generato si fa da parte: l'immagine **e'** il terreno,
 ## e la mappa disegna solo quello che il quadro non sa - chi tiene un posto, chi
 ## ci sta, cosa gli e' successo quest'anno.
+##
+## **Vale solo per la mappa d'autore.** Sul tavolo pescato le tessere si posano
+## in griglia (D-275) e ognuna porta il suo quadro (`region.<id>`, D-277): il
+## tabellone dipinto li' sarebbe un'altra mappa sotto quella vera.
 func _board() -> Texture2D:
+	if _session != null and not (
+		_session.world.get("map_positions", {}) as Dictionary
+	).is_empty():
+		return null
 	return ArtLibrary.texture(ArtLibrary.BOARD)
 
 
