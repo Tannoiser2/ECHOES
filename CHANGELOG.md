@@ -5,6 +5,24 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.235 — La ri-mira delle 48: ogni bersaglio esiste su ogni mappa pescata (D-273)
+
+- **PZ-3 chiuso**: censite prima di toccare, **30 carte su 30** a bersaglio
+  REGION non erano garantite sul tavolo pescato (segni su 1-3 tessere su 10;
+  le quattro tessere di PZ-2 quasi irraggiungibili). Ri-mira con la
+  matematica di D-265: ogni carta guadagna il **dominio affine** alla sua
+  famiglia (stampato su esattamente 5 tessere su 10 ⇒ garantito per
+  costruzione) più i segni nuovi dove la finzione li chiede (#porto,
+  #palude, #isola, #bosco, #miniera). Testi delle facce aggiornati, alias
+  da #cancelletto per i domini, mani del dizionario allineate.
+- **Guardia nuova (controllo 17)**: bersaglio REGION ⇒ segni stampati su
+  almeno N−K+1 tessere del parco. Self-test a **dodici difetti piantati**.
+- **Limite dichiarato**: la ri-mira è della faccia fisica; il motore non la
+  esegue ancora (ISSUES 69) e i «passa» non si muovono da qui (87,2% sul
+  tavolo pescato — ISSUES 68 resta aperta; il passo vero è far leggere al
+  motore il bersaglio a segni). Motore intatto: playtest **0 seggi bloccati
+  su 8**, suite **551 prove / 14.836 asserzioni**.
+
 ## 0.1.234 — I sei controlli di PZ-9, riletti nel mondo dove la Domanda sta sulla Tensione (D-272)
 
 - **PZ-9, aperto e chiuso**: sei controlli nuovi in `validate_physical.py`

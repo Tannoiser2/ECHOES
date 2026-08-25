@@ -82,7 +82,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **Temi:** Potere
 
-**BERSAGLIO** — Scegli un luogo con #capitale.
+**BERSAGLIO** — Scegli un luogo con #capitale. Vale anche ogni luogo del dominio del #territorio.
 
 **AZIONE — scegli 1**
 
@@ -128,7 +128,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **Temi:** Potere
 
-**BERSAGLIO** — Scegli un luogo con #capitale o #conteso.
+**BERSAGLIO** — Scegli un luogo con #capitale o #conteso. Vale anche ogni luogo del dominio del #territorio.
 
 **AZIONE — scegli 1**
 
@@ -175,7 +175,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **Temi:** Potere · Vie
 
-**BERSAGLIO** — Scegli un luogo con #capitale, #commercio, #conteso o #malcontento.
+**BERSAGLIO** — Scegli un luogo con #capitale, #commercio, #conteso o #malcontento. Vale anche ogni luogo del dominio del #territorio.
 
 **AZIONE — scegli 1**
 
@@ -222,7 +222,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **Temi:** Potere · Vie
 
-**BERSAGLIO** — Scegli un luogo con #capitale, #granaio o #commercio.
+**BERSAGLIO** — Scegli un luogo con #capitale, #granaio o #commercio. Vale anche il #porto, e ogni luogo del dominio del #territorio.
 
 **AZIONE — scegli 1**
 
@@ -549,7 +549,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **Temi:** Fede · Potere
 
-**BERSAGLIO** — Scegli un luogo con #capitale, #pascolo o un insediamento cresciuto.
+**BERSAGLIO** — Scegli un luogo con #capitale, #pascolo o un insediamento cresciuto. Vale anche ogni luogo del dominio della #sopravvivenza.
 
 **AZIONE — scegli 1**
 
@@ -783,7 +783,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **Temi:** Potere · Terra
 
-**BERSAGLIO** — Scegli un luogo con #capitale o una struttura murata.
+**BERSAGLIO** — Scegli un luogo con #capitale o una struttura murata. Vale anche ogni luogo del dominio del #territorio.
 
 **AZIONE — scegli 1**
 
@@ -829,7 +829,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **Temi:** Potere
 
-**BERSAGLIO** — Scegli un luogo con #capitale, #conteso o #malcontento.
+**BERSAGLIO** — Scegli un luogo con #capitale, #conteso o #malcontento. Vale anche ogni luogo del dominio del #territorio.
 
 **AZIONE — scegli 1**
 
@@ -876,7 +876,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **Temi:** Potere · Sopravvivenza
 
-**BERSAGLIO** — Scegli un luogo con #capitale, #granaio o una struttura murata.
+**BERSAGLIO** — Scegli un luogo con #capitale, #granaio o una struttura murata. Vale anche ogni luogo del dominio del #territorio.
 
 **AZIONE — scegli 1**
 
@@ -922,7 +922,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **Temi:** Potere · Terra
 
-**BERSAGLIO** — Scegli un luogo con #selvaggio, #pascolo, #abbandonato o #conteso che non sia una #capitale.
+**BERSAGLIO** — Scegli un luogo con #selvaggio, #pascolo, #abbandonato o #conteso che non sia una #capitale. Vale anche il #bosco, e ogni luogo del dominio del #territorio.
 
 **AZIONE — scegli 1**
 
@@ -969,7 +969,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **Temi:** Terra · Potere
 
-**BERSAGLIO** — Scegli un luogo con #capitale, #granaio, #pascolo o #conteso.
+**BERSAGLIO** — Scegli un luogo con #capitale, #granaio, #pascolo o #conteso. Vale anche ogni luogo del dominio del #territorio.
 
 **AZIONE — scegli 1**
 
@@ -1015,7 +1015,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **Temi:** Potere · Sopravvivenza
 
-**BERSAGLIO** — Scegli un luogo con #granaio, #pascolo o #capitale dove hai gia' una presenza.
+**BERSAGLIO** — Scegli un luogo con #granaio, #pascolo o #capitale dove hai gia' una presenza. Vale anche ogni luogo del dominio del #territorio.
 
 **AZIONE — scegli 1**
 
@@ -1109,7 +1109,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **Temi:** Vie · Potere
 
-**BERSAGLIO** — Scegli un luogo con #commercio, #dogana o #capitale che non sia gia' #tagliato_fuori.
+**BERSAGLIO** — Scegli un luogo con #commercio, #dogana o #capitale che non sia gia' #tagliato_fuori. Vale anche il #porto, e ogni luogo del dominio del #territorio.
 
 **AZIONE — scegli 1**
 
@@ -1157,7 +1157,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **Temi:** Antico · Fede
 
-**BERSAGLIO** — Scegli un luogo con #cristallo, #selvaggio o #sigillato.
+**BERSAGLIO** — Scegli un luogo con #cristallo, #selvaggio o #sigillato. Vale anche la #miniera, e ogni luogo del dominio dell'#antico.
 
 **AZIONE — scegli 1**
 
@@ -1203,7 +1203,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **Temi:** Potere · Fede
 
-**BERSAGLIO** — Scegli un luogo con #capitale, #conteso o un archivio.
+**BERSAGLIO** — Scegli un luogo con #capitale, #conteso o un archivio. Vale anche l'#isola, e ogni luogo del dominio dell'#antico.
 
 **AZIONE — scegli 1**
 
@@ -1249,7 +1249,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **Temi:** Fede · Potere
 
-**BERSAGLIO** — Scegli un luogo con #capitale, #cristallo o una stanza dove si tengono le carte.
+**BERSAGLIO** — Scegli un luogo con #capitale, #cristallo o una stanza dove si tengono le carte. Vale anche la #miniera, e ogni luogo del dominio dell'#antico.
 
 **AZIONE — scegli 1**
 
@@ -1342,7 +1342,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **Temi:** Vie · Fede
 
-**BERSAGLIO** — Scegli un luogo con #capitale, #commercio o una stanza dove si tengono le carte.
+**BERSAGLIO** — Scegli un luogo con #capitale, #commercio o una stanza dove si tengono le carte. Vale anche ogni luogo del dominio dell'#antico.
 
 **AZIONE — scegli 1**
 
@@ -1436,7 +1436,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **Temi:** Vie · Terra
 
-**BERSAGLIO** — Scegli un luogo con #tagliato_fuori, #selvaggio o #commercio.
+**BERSAGLIO** — Scegli un luogo con #tagliato_fuori, #selvaggio o #commercio. Vale anche la #palude, l'#isola, e ogni luogo del dominio dell'#antico.
 
 **AZIONE — scegli 1**
 
@@ -1482,7 +1482,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **Temi:** Fede · Potere
 
-**BERSAGLIO** — Scegli un luogo con #capitale, #commercio, #malcontento o #mercato.
+**BERSAGLIO** — Scegli un luogo con #capitale, #commercio, #malcontento o #mercato. Vale anche il #porto, e ogni luogo del dominio delle #risorse.
 
 **AZIONE — scegli 1**
 
@@ -1530,7 +1530,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **Temi:** Terra · Sopravvivenza
 
-**BERSAGLIO** — Scegli un luogo con #fame, #svuotato, #abbandonato o #pascolo.
+**BERSAGLIO** — Scegli un luogo con #fame, #svuotato, #abbandonato o #pascolo. Vale anche la #palude, e ogni luogo del dominio della #sopravvivenza.
 
 **AZIONE — scegli 1**
 
@@ -1669,7 +1669,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **Temi:** Potere · Fede
 
-**BERSAGLIO** — Scegli un luogo con #capitale, #malcontento o un insediamento cresciuto.
+**BERSAGLIO** — Scegli un luogo con #capitale, #malcontento o un insediamento cresciuto. Vale anche ogni luogo del dominio della #sopravvivenza.
 
 **AZIONE — scegli 1**
 
@@ -1762,7 +1762,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **Temi:** Fede · Sopravvivenza
 
-**BERSAGLIO** — Scegli un luogo con #granaio, #pascolo, #lutto o un insediamento.
+**BERSAGLIO** — Scegli un luogo con #granaio, #pascolo, #lutto o un insediamento. Vale anche ogni luogo del dominio della #sopravvivenza.
 
 **AZIONE — scegli 1**
 
@@ -1809,7 +1809,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **Temi:** Sopravvivenza
 
-**BERSAGLIO** — Scegli un luogo con #granaio, #magro o #fame.
+**BERSAGLIO** — Scegli un luogo con #granaio, #magro o #fame. Vale anche ogni luogo del dominio della #sopravvivenza.
 
 **AZIONE — scegli 1**
 
@@ -1855,7 +1855,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **Temi:** Sopravvivenza · Terra
 
-**BERSAGLIO** — Scegli un luogo con #fame, #razionato, #magro o #pascolo.
+**BERSAGLIO** — Scegli un luogo con #fame, #razionato, #magro o #pascolo. Vale anche ogni luogo del dominio della #sopravvivenza.
 
 **AZIONE — scegli 1**
 
@@ -1949,7 +1949,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **Temi:** Potere · Vie
 
-**BERSAGLIO** — Scegli un luogo con #capitale o #commercio.
+**BERSAGLIO** — Scegli un luogo con #capitale o #commercio. Vale anche ogni luogo del dominio delle #risorse.
 
 **AZIONE — scegli 1**
 
@@ -1995,7 +1995,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **Temi:** Vie
 
-**BERSAGLIO** — Scegli un luogo con #commercio, #mercato o #tagliato_fuori.
+**BERSAGLIO** — Scegli un luogo con #commercio, #mercato o #tagliato_fuori. Vale anche il #porto, e ogni luogo del dominio delle #risorse.
 
 **AZIONE — scegli 1**
 
@@ -2135,7 +2135,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **Temi:** Sopravvivenza
 
-**BERSAGLIO** — Scegli un luogo con #granaio, #fame o #magro.
+**BERSAGLIO** — Scegli un luogo con #granaio, #fame o #magro. Vale anche ogni luogo del dominio delle #risorse.
 
 **AZIONE — scegli 1**
 
@@ -2182,7 +2182,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **Temi:** Vie · Sopravvivenza
 
-**BERSAGLIO** — Scegli un luogo con #commercio, #granaio, #mercato o #magro.
+**BERSAGLIO** — Scegli un luogo con #commercio, #granaio, #mercato o #magro. Vale anche il #porto, e ogni luogo del dominio delle #risorse.
 
 **AZIONE — scegli 1**
 
@@ -2229,7 +2229,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **Temi:** Vie · Potere
 
-**BERSAGLIO** — Scegli un luogo con #commercio, #dogana o #strada.
+**BERSAGLIO** — Scegli un luogo con #commercio, #dogana o #strada. Vale anche il #porto, e ogni luogo del dominio delle #risorse.
 
 **AZIONE — scegli 1**
 
