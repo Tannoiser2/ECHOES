@@ -10,6 +10,191 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-280 — L'economia del Consiglio: benefici comprati, prezzo scelto dagli altri
+
+**decided in 0.1.241, da costruire** — carta d'esempio del committente
+
+Il committente ha mandato **la faccia vera di una carta Tensione**, e ha
+chiesto: *«non dovevano esserci dei benefici che il proponente poteva
+scegliere, e dei costi che il proponente o gli altri giocatori dovevano
+scegliere? Questi Benefici e Costi dovevano essere collegati alla mappa
+tramite i Tag di Edifici, cicatrici e condizioni. Oppure hai scordato?»*
+
+**Aveva ragione, e D-278 Fase A ha sbagliato macchina.** Quella fase ha messo
+le liste **nel posto giusto** — sulla carta — e ci ha scritto **la cosa
+sbagliata**: 240 frasi d'autore, una scelta secca fra due voci. La carta dice
+un'altra cosa, e migliore:
+
+| | D-278 Fase A (fatta) | quello che la carta dice |
+|---|---|---|
+| cosa sono | frasi d'autore, diverse su ogni carta | **verbi chiusi e ripetibili** |
+| a cosa sono legati | a una Conseguenza scritta nei dati | **ai segni della mappa**: condizioni, pietre, cicatrici, controllo, Calore |
+| come si scelgono | una voce sola, dal primo oppositore | **pedine posate sulla carta**: max 3 benefici, max 2 costi |
+| l'economia | non c'è | **1 beneficio è gratis; ogni beneficio in più costa 1 costo; una Cicatrice ne compra uno oltre il limite** |
+| se cade | una seconda lista da cui scegliere | **effetti fissi stampati** |
+
+**Il vocabolario** (dalla carta):
+*benefici* — RIAPRI (via `#chiuso`), RIMUOVI CONDIZIONE, COSTRUISCI PIETRA,
+CAMBIA CONTROLLO, RAFFREDDA TEMA;
+*costi* — AGGIUNGI CONDIZIONE, PEDAGGIO (`#pedaggio`), CEDI CONTROLLO, SCALDA
+TEMA, PRENDI DEBITO (`#indebitata`), CICATRICE.
+
+**Chi posa cosa** (parola del committente, scelta fra tre): **il proponente
+compra i benefici, gli avversari scelgono in che moneta paga** — un costo per
+ogni beneficio oltre il primo. Il proponente sa *quanto* paga; non sa *in
+cosa*.
+
+**Due cose che cadono**, dichiarate dal committente rispondendo:
+
+1. **niente costo di apertura**: il numero in alto a destra sulla carta
+   d'esempio era esemplificativo. La Tensione **si risolve a fine Atto**, come
+   il motore già fa (D-214, D-260, D-261);
+2. di conseguenza **la soglia non si stampa più sulla faccia**: era la domanda
+   aperta della Fase C di ISSUES 72, e questa la chiude.
+
+**Cosa resta di D-278 Fase A.** Il ponte nel motore (il menu del prezzo letto
+dalla faccia della carta invece che dal pool del template) e la guardia 18
+restano: sono la strada su cui questa economia passerà. Le 240 frasi e la
+tavolozza di Conseguenze diventano **materiale di partenza** per i verbi, non
+la forma finale. Il lavoro è in ISSUES 72, riscritta.
+
+---
+
+## D-279 — L'app come la vuole il tavolo: la soglia sceglie, la mappa è a tessere
+
+**implemented in 0.1.241** — sei correzioni del committente, sulla partita provata a schermo
+
+Il committente ha giocato il prototipo e ha scritto sei cose. Cinque sono
+fatte qui; la sesta — la carta Tensione — è D-280, perché non è una
+correzione dell'interfaccia ma della regola.
+
+1. **La soglia è la copertina, e lì si compone il tavolo.** *«Lo splash screen
+   deve essere con questa immagine, lì devo scegliere i seggi e i giocatori
+   (chi è persona e chi Bot).»* La copertina consegnata sta in
+   `art/ui/copertina.png`; sopra, una riga per seggio con un bottone che passa
+   da **Bot** a **Persona**. La scelta viaggia in `TableChoice` — statico e non
+   un autoload: sono tre righe fra due schermate.
+2. **La sala non chiede più niente.** Via *«quale seggio prendi»* (si sceglie
+   sulla soglia), via *«che mondo?»* — **il mondo si pesca**, come le tessere.
+   Le tre funzioni che facevano quelle domande escono dal codice.
+3. **Via la schermata «Come si gioca».** Non si apre all'avvio, non ha più un
+   bottone, non copre più la mappa.
+4. **Le tessere sono quadrate e accostate**, in griglia 3×2 col loro quadro
+   dipinto **per intero**: *«non a esagoni»*. L'esagono ritagliava metà del
+   quadro consegnato e disegnava una forma che sul tavolo non esiste. Cadono
+   anche le strade disegnate: le tessere si toccano, e vicino è chi si tocca
+   (D-275). Il dito prende il quadrato — col cerchio, i quattro angoli di ogni
+   tessera non rispondevano.
+5. **I sei mazzetti dei Temi si vedono, tutti e sei**, coi gettoni sopra e la
+   carta girata quando c'è. La regola il motore la eseguiva già da D-261
+   (gettoni coperti, e alla soglia dichiarata la prima carta si gira): quello
+   che mancava era **vederlo** — sullo schermo c'era una riga di testo che
+   nominava solo i Temi già caldi.
+6. **Le carte in mano hanno una scheda.** *«Non si capisce come usarle, non c'è
+   nessuna GUI per gestire il loro uso.»* Prendendo una carta si legge adesso
+   la **sua faccia**: il bersaglio a segni, le **due Azioni** col loro nome, e
+   sotto ognuna i posti dove può andare. Il ponte è il **verbo**, che ora
+   viaggia con l'offerta (`subject.verb`): senza, lo schermo non poteva legare
+   una scelta legale all'Azione stampata, e mostrava l'etichetta grezza del
+   motore.
+
+**Un difetto che questo lavoro mette in luce, e che resta aperto:** una carta
+si può giocare solo col verbo che dichiara al motore (`card_action.kind`),
+quindi **la seconda Azione stampata spesso non è eseguibile** — la scheda lo
+dice invece di nasconderlo («questa metà della carta il motore non la esegue
+ancora»). È ISSUES 69, e adesso si vede.
+
+Misure: playtest 100 semi **0/8** misto e uniforme; suite **567 prove /
+24.887 asserzioni**; cancelli verdi. Nessuna regola toccata.
+
+---
+
+## D-278 — Le due liste sulla carta Tensione: il cuore, misurato
+
+**implemented in 0.1.240 (Fase A)** — richiamo del committente, e aveva ragione
+
+> «nelle tensioni ci dovrebbero essere anche i vantaggi e gli svantaggi che
+> possono essere scelti e proposti durante il consiglio, dove sono? Non sono
+> stati né implementati né misurati. Dovrebbe essere il cuore del gioco.»
+
+**Quello che ho trovato guardando, prima di rispondere.** Il *meccanismo*
+c'era: il proponente sceglie fra le proposte (D-267/D-268), il primo del fronte
+avverso posa la pedina del prezzo e una voce sola scatta. Il *contenuto* no, e
+i numeri lo dicevano senza appello:
+
+| | prima |
+|---|---|
+| carte con un menu di proposte proprio | **8 su 60** (52 condividono 4 template generici di dominio) |
+| menu di proposte distinti in tutto il gioco | **12** per 60 carte |
+| **menu di malus distinti in tutto il gioco** | **1** — la stessa coppia `CNS_COST_UNREST`/`CNS_COST_DEBT` su **tutte e sessanta** |
+| domande con una sola proposta (nessuna scelta) | **40 su 107** |
+
+Cioè: al tavolo, la scelta del fronte avverso era sempre la stessa coppia, e su
+40 domande su 107 il proponente non sceglieva niente. Una regola c'era; il
+gioco che quella regola dovrebbe reggere, no.
+
+**La decisione: le due liste stanno sulla carta**, come sta la Domanda (D-266).
+Il blocco `physical` della Tensione porta `costs`, `failures` e (Fase B)
+`opportunities`; ogni voce ha **le sue parole** e la Conseguenza che il motore
+esegue. Il motore legge il menu del prezzo **dalla faccia della carta**, e il
+pool del template resta il ripiego dichiarato per chi una faccia non ce l'ha.
+
+**Fase A, fatta qui — i malus:**
+
+1. **La tavolozza del prezzo**: dodici Conseguenze nuove (sei costi, sei
+   sfoghi), ognuna che toglie una cosa diversa — razione, guardia, spopolamento,
+   spremitura, lutto, parola fredda; conteso, strada chiusa, razzia, abbandono,
+   voce che corre, domanda incisa sul muro. Due voci che tolgono la stessa cosa
+   non sono una scelta.
+2. **Le 60 carte** portano due costi e due sfoghi ciascuna, **240 testi tutti
+   diversi**, scritti per la loro domanda.
+3. **Il tavolo legge le parole della carta**: il verbale e la console mostrano
+   la voce com'è scritta, non il titolo della Conseguenza.
+4. **La scheda della domanda le mostra** — e per tutte: cercando il template
+   solo per id, la scheda diceva *«Nessun Consiglio scritto per questa domanda»*
+   su **52 domande su 60**. Adesso lo trova come lo trova il motore.
+5. **Il segno della domanda caduta è del motore, non del malus.** Lo scriveva
+   `CNS_FAILURE_SPIRAL`, una voce fra le tante: con lo sfogo scelto dagli
+   avversari, il mondo si sarebbe ricordato della caduta *solo se l'avversario
+   avesse scelto la voce giusta*. Che una proposta sia caduta è un fatto del
+   tavolo e resta sul tavolo comunque.
+6. **Guardia (controllo 18) e sonda.** Il validatore rifiuta liste monche, voci
+   con la stessa Conseguenza, testi identici, Conseguenze inesistenti — e il
+   self-test lo pianta su due difetti nuovi (14 in tutto). La sonda del prezzo
+   conta **quante voci diverse il tavolo ha davvero letto**.
+
+**I numeri, dopo:**
+
+| | prima | dopo |
+|---|---|---|
+| menu di costo distinti | 2 | **21** |
+| menu di sfogo distinti | 2 | **25** |
+| voci di costo diverse in gioco | 2 | **8** |
+| voci di sfogo diverse in gioco | 2 | **8** |
+| testi distinti sulle carte | 0 | **240 su 240** |
+| voci di costo lette al tavolo (40 anni, CHR_00) | ≤2 | **34** |
+| voci di sfogo lette al tavolo (40 anni, CHR_00) | ≤2 | **34** |
+
+Cancello: **0 seggi bloccati su 8** (misto e uniforme, 100 semi). Suite
+**564 prove / 24.886 asserzioni**.
+
+**Quello che costa, scritto.** Il malus adesso morde la questione di cui si sta
+parlando invece di una lontana (`$tension` invece di un id fisso): il piano di
+simulazione `plan_d_crown_calls` chiude l'ultimo Consiglio con
+`SUCCESS_WITH_COST` dove prima faceva `SUCCESS` — il tavolo arriva all'ultimo
+dibattito un gradino più in basso. È il prezzo della scelta vera, ed è scritto
+nel piano. Sette segni nuovi nascono **muti con ragione** (dichiarati nel
+dizionario e nel registro): si leggono sul tavolo, nessuna clausola del motore
+li interroga ancora — `condition:guarded` è il primo candidato a mordere.
+
+**Resta aperto, e va detto:** la Fase A ha dato al fronte avverso la sua metà
+del cuore. **Le opportunità del proponente sono ancora quelle dei 12 menu
+condivisi** (Fase B), e la revisione di **soglia e velo** sulla faccia della
+carta — che con il Calore dei Temi (D-260/D-261) non aprono più niente da soli
+— è la Fase C. ISSUES 72.
+
+---
+
 ## D-277 — Le dieci tessere dipinte: ogni Regione ha il suo quadro
 
 **implemented in 0.1.239** — consegna del committente, «queste le tessere delle 10 regioni»

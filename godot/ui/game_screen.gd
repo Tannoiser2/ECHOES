@@ -33,6 +33,8 @@ const ExportPreview := preload("res://ui/export_preview.gd")
 const ChronicleBookView := preload("res://ui/chronicle_book_view.gd")
 const EchoCardView := preload("res://ui/echo_card_view.gd")
 const LogExport := preload("res://scripts/core/log_export.gd")
+const TableChoice := preload("res://scripts/core/table_choice.gd")
+const ThemeDecksView := preload("res://ui/theme_decks_view.gd")
 
 ## Who is at the table is a property of the Chronicle, not of this screen
 ## (D-050). It used to be a constant here, which meant the browser could only
@@ -130,6 +132,8 @@ var _year_save: Dictionary = {}
 ## della saga impagina. Si azzera quando dal menu comincia una storia nuova.
 var _saga_saves: Array = []
 var _status: VBoxContainer
+## I sei mazzetti dei Temi, in cima alla colonna di destra (D-279).
+var _decks: Control
 var _hand: HBoxContainer
 ## The seat the board is drawn for, and the Tension under discussion if any.
 var _viewer: String = ""
@@ -354,6 +358,25 @@ func _build() -> void:
 	reading.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	right.add_child(reading)
 
+	# **I sei mazzetti, sempre tutti e sei** (D-279): stanno in cima alla
+	# colonna, sopra il resto, perche' sono la cosa che dice *di cosa si
+	# parlera'* — e al tavolo sono il primo posto dove si guarda.
+	var decks_column := VBoxContainer.new()
+	decks_column.add_theme_constant_override("separation", 6)
+	reading.add_child(decks_column)
+
+	var decks_title := Label.new()
+	decks_title.text = "I MAZZETTI DEI TEMI"
+	decks_title.add_theme_font_size_override("font_size", 12)
+	decks_title.add_theme_color_override("font_color", Color("#8a8172"))
+	decks_column.add_child(decks_title)
+
+	_decks = ThemeDecksView.new()
+	_decks.custom_minimum_size = Vector2(0, 190)
+	_decks.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_decks.deck_pressed.connect(_on_deck_pressed)
+	decks_column.add_child(_decks)
+
 	_status = StatusPanel.new()
 	_status.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	# Le domande e le case sono posti dove una carta puo' cadere, come le Regioni
@@ -363,7 +386,7 @@ func _build() -> void:
 	_status.card_dropped.connect(_on_subject_dropped)
 	_status.tension_opened.connect(_on_tension_opened)
 	_status.card_placed.connect(func(index: int) -> void: picked.emit(index))
-	reading.add_child(_status)
+	decks_column.add_child(_status)
 
 	# **A che punto siamo, e a chi tocca** (D-247).
 	#
@@ -408,10 +431,14 @@ func _build() -> void:
 
 	# Outside `_buttons` on purpose: the choices are cleared after every question
 	# and this must not go with them. It is the one control that is always there.
+	# **Via la schermata «Come si gioca»** (D-279, parola del committente): le
+	# regole si imparano al tavolo, non da una pagina che copre la mappa. Il
+	# nodo resta — mezza dozzina di posti lo spengono per aprire altro — ma non
+	# ha piu' un bottone, non si apre all'avvio, e non e' mai visibile.
 	_help_button = Button.new()
-	_help_button.text = "Come si gioca"
 	_help_button.toggle_mode = true
-	_help_button.button_pressed = true
+	_help_button.button_pressed = false
+	_help_button.visible = false
 	_help_button.toggled.connect(_on_help_toggled)
 	right.add_child(_help_button)
 
@@ -469,7 +496,7 @@ func _build() -> void:
 	_hand.card_chosen.connect(_on_card_chosen)
 	rows.add_child(_hand)
 
-	_help.render(_load_help_data())
+	_help.visible = false
 
 
 ## Redraw the board from the world. Called after every phase and before every
@@ -492,6 +519,7 @@ func _refresh() -> void:
 	if council_open:
 		_board.render(_session, _viewer)
 	_map.render(_session, _viewer)
+	_decks.render(_session)
 	_status.render(_session, _viewer)
 	_hand.render(_session, _viewer, _focus_tension, _offers)
 	_turn.text = _turn_line()
@@ -979,9 +1007,9 @@ func _on_card_chosen(asset_id: String) -> void:
 	_map.queue_redraw()
 	_status.hold(places)
 	_hand.hold(asset_id)
-	_prompt.text = "%s in mano. Tocca dove la vuoi usare." % _asset_title(asset_id)
+	_prompt.text = "%s in mano." % _asset_title(asset_id)
 	_hint.text = "Tocca di nuovo la carta per rimetterla giu'."
-	_narrow_to(indices, _asset_reading(asset_id))
+	_card_sheet(asset_id, indices)
 
 
 ## La carta rimessa giu': lo schermo torna a com'era quando la domanda e' stata
@@ -1036,6 +1064,118 @@ func _asset_reading(asset_id: String) -> String:
 	return "" if asset == null else AssetText.tooltip(asset as Dictionary, _session.data)
 
 
+## **La scheda della carta in mano** (D-279, parola del committente: «le carte
+## in basso non si capisce come usarle, non c'e' nessuna GUI per gestire il
+## loro uso»).
+##
+## Prima qui c'era la lista grezza del motore — «"Leva Contadina" — Metti una
+## presenza in Valle Verde» — che e' la frase con cui il resolver parla a se
+## stesso, non quella stampata sulla carta. Adesso si legge la carta: il
+## **bersaglio a segni**, le **due Azioni** col loro nome, e sotto ognuna i
+## posti dove quell'Azione puo' andare adesso. Un'Azione che al tavolo c'e' ma
+## che qui non ha posti si vede lo stesso, spenta e con la sua ragione: una
+## scelta che sparisce senza dirlo insegna una regola falsa.
+func _card_sheet(asset_id: String, indices: Array) -> void:
+	_clear_buttons()
+	var asset: Variant = null if _session == null else _session.data.assets.get(asset_id)
+	if asset == null:
+		_narrow_to(indices)
+		return
+	var card: Dictionary = asset as Dictionary
+	var face: Dictionary = card.get("physical", {}) as Dictionary
+
+	var target: String = str((face.get("target", {}) as Dictionary).get("text", ""))
+	if target != "":
+		_sheet_line("BERSAGLIO", 10, "#8a8172")
+		_sheet_line(target, 12, "#c9bfae")
+
+	# Le scelte legali, raccolte per verbo: e' il ponte fra quello che il
+	# motore concede e quello che la carta dice di saper fare (D-279).
+	var by_verb: Dictionary = {}
+	for index in indices:
+		var subject: Dictionary = (
+			_subjects[int(index)] if int(index) < _subjects.size() else {}
+		) as Dictionary
+		var verb: String = str(subject.get("verb", ""))
+		var list: Array = by_verb.get(verb, []) as Array
+		list.append(int(index))
+		by_verb[verb] = list
+
+	var actions: Array = face.get("actions", []) as Array
+	if actions.is_empty():
+		_narrow_to(indices, _asset_reading(asset_id))
+		return
+	for entry in actions:
+		var action: Dictionary = entry as Dictionary
+		var verb: String = str(action.get("template", ""))
+		var offers: Array = by_verb.get(verb, []) as Array
+		_gap_line()
+		_sheet_line(str(action.get("label", "Azione")), 13, "#e8b563")
+		_sheet_line(str(action.get("text", "")), 11, "#c9bfae")
+		if offers.is_empty():
+			_sheet_line(
+				"— nessun posto valido adesso" if verb != ""
+				else "— questa meta' della carta il motore non la esegue ancora",
+				11, "#8a8172"
+			)
+			continue
+		for index in offers:
+			var label: String = (
+				str(_labels[int(index)]) if int(index) < _labels.size() else "?"
+			)
+			_sheet_button(_shorter(label), int(index))
+
+	# Le scelte che nessuna Azione stampata rivendica (il motore ne concede di
+	# sue): restano in fondo, invece di sparire.
+	var claimed: Dictionary = {}
+	for entry in actions:
+		claimed[str((entry as Dictionary).get("template", ""))] = true
+	for verb in by_verb:
+		if claimed.has(str(verb)):
+			continue
+		for index in (by_verb[verb] as Array):
+			_sheet_button(str(_labels[int(index)]), int(index))
+
+	var resonance: Dictionary = face.get("resonance", {}) as Dictionary
+	if not resonance.is_empty():
+		_gap_line()
+		_sheet_line("RISONANZA — avviene comunque", 10, "#8a8172")
+		_sheet_line(str(resonance.get("text", "")), 11, "#b06b46")
+
+
+## L'etichetta del motore, alleggerita del nome della carta: sulla scheda il
+## titolo e' gia' scritto sopra, e ripeterlo su ogni bottone mangia la riga.
+func _shorter(label: String) -> String:
+	var cut: int = label.find("» — ")
+	return label.substr(cut + 4) if cut >= 0 else label
+
+
+func _sheet_line(text: String, size: int, colour: String) -> void:
+	var line := Label.new()
+	line.text = text
+	line.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	line.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	line.add_theme_font_size_override("font_size", size)
+	line.add_theme_color_override("font_color", Color(colour))
+	_buttons.add_child(line)
+
+
+func _gap_line() -> void:
+	var gap := Control.new()
+	gap.custom_minimum_size = Vector2(0, 6)
+	_buttons.add_child(gap)
+
+
+func _sheet_button(label: String, index: int) -> void:
+	var button := Button.new()
+	button.text = label
+	button.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	button.alignment = HORIZONTAL_ALIGNMENT_LEFT
+	button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	button.pressed.connect(func() -> void: picked.emit(index))
+	_buttons.add_child(button)
+
+
 func _narrow_to(indices: Array, reading: String = "") -> void:
 	_clear_buttons()
 	_prompt.text = "La carta e' li. Cosa ne fai?"
@@ -1069,6 +1209,21 @@ func _on_region_clicked(region_id: String) -> void:
 ## Non tocca `picked`: leggere non risponde a niente. Se il Consiglio e' aperto
 ## la scheda non si mette in mezzo — li' le proposte sono gia' sul tavolo con
 ## quello che lasciano, ed e' quella la pagina da guardare.
+## Toccare un mazzetto apre la scheda della sua carta girata (D-279). Un
+## mazzetto ancora coperto non ha niente da leggere: al tavolo si guarda il
+## dorso, e il dorso non parla.
+func _on_deck_pressed(theme_id: String) -> void:
+	if _session == null:
+		return
+	var front: String = str(_session.tensions.theme_front(theme_id))
+	if front == "":
+		_hint.text = "Il mazzetto di %s e' ancora coperto." % str(
+			(_session.data.themes[theme_id] as Dictionary).get("title", theme_id)
+		)
+		return
+	_on_tension_opened(front)
+
+
 func _on_tension_opened(tension_id: String) -> void:
 	if _session == null or _session.confluence.is_open():
 		return
@@ -1139,59 +1294,30 @@ func _menu() -> void:
 	say("La mappa e sempre la stessa. Le persone che ci stanno sopra no: fra un anno")
 	say("e l'altro cambiano le case, le domande e quello che ognuno vuole.")
 	say("")
+	# **La soglia ha gia' scelto** (D-279, parola del committente): chi siede e
+	# chi lo gioca si decide davanti alla copertina, e il mondo si pesca. Qui
+	# non si chiede piu' niente — ne' il seggio, ne' «che mondo?»: si apre.
 	while true:
 		if await _offer_to_resume():
 			continue
 		var chronicle_id: String = first_chronicle(_load_help_data())
 		_seats = _seats_of(chronicle_id)
-		# Redrawn here and not after the seat is picked: the rules page names the
-		# people at the table and the year's questions, and it is on screen while
-		# the seat is being chosen. A step later it was still describing the age
-		# the player had just declined.
-		_help.render(_load_help_data(), chronicle_id)
-		var labels: Array = []
-		for entity_id in _seats:
-			labels.append("Gioco %s" % _entity_name(str(entity_id)))
-		labels.append("Guardo giocare le policy")
-		# La stanza (voce 27, D-136): la mappa resta qui, i giocatori sui
-		# telefoni. La scena della stanza chiede l'anno per conto suo.
-		labels.append("Apro la stanza — console sui telefoni")
-		var choice: int = await ask("Quale seggio prendi?", labels)
-		if choice == _seats.size() + 1:
-			get_tree().change_scene_to_file("res://ui/room_screen.tscn")
-			return
-		var humans: Array = [] if choice >= _seats.size() else [str(_seats[choice])]
-		if not humans.is_empty():
-			humans = await _ask_companions(humans)
-		await _play(humans, chronicle_id, await _ask_seed())
+		var humans: Array = []
+		for seat in TableChoice.humans:
+			if _seats.has(str(seat)):
+				humans.append(str(seat))
+		if not TableChoice.chosen:
+			# Aperta senza passare dalla soglia (una prova, la sala rimontata a
+			# mano): si guarda giocare, invece di fermarsi a chiedere.
+			say("Nessuna scelta dalla soglia: giocano le policy.")
+		await _play(humans, chronicle_id, _a_world_at_random())
 
 
-## Chi altro gioca da questo schermo (D-147). I seggi di una Chronicle sono
-## sempre quattro — e' il tavolo, non un'impostazione — ma **quanti di quei
-## quattro siano persone** e' sempre stato libero: la riga di comando lo sa fare
-## da 0.0 (`--seats=all`), la stanza lo decide da chi si collega, e l'unico
-## posto che non lo chiedeva era il menu dell'app. Chi non e' nominato qui e'
-## una policy, e le policy giocano davvero (D-147: meglio del caso in 26
-## partite su 40).
-func _ask_companions(taken: Array) -> Array:
-	var humans: Array = taken.duplicate()
-	while humans.size() < _seats.size():
-		var free: Array = []
-		var labels: Array = ["Gli altri li giocano le policy"]
-		for entity_id in _seats:
-			if humans.has(str(entity_id)):
-				continue
-			free.append(str(entity_id))
-			labels.append("Gioca anche %s, da questo schermo" % _entity_name(str(entity_id)))
-		var choice: int = await ask(
-			"Siete in %d. Qualcun altro a questo schermo?" % humans.size(), labels
-		)
-		if choice <= 0:
-			break
-		humans.append(str(free[choice - 1]))
-	return humans
-
-
+## Il mondo si pesca (D-279). Il seme resta scritto in testa al verbale, cosi'
+## un anno che vale la pena si puo' ancora rigiocare da riga di comando — ma
+## non e' piu' una domanda da fare a chi apre l'app.
+func _a_world_at_random() -> int:
+	return int(Time.get_unix_time_from_system()) % 100000
 func _seats_of(chronicle_id: String) -> Array:
 	var data: RefCounted = _load_help_data()
 	if data == null or not data.chronicles.has(chronicle_id):
@@ -1242,52 +1368,6 @@ static func openings(data: RefCounted) -> Array:
 		return year_a < year_b
 	)
 	return ids
-
-
-## The seed is the world. It is printed at the top of every Chronicle precisely
-## so a year worth talking about can be played again - which it could not be,
-## until there was somewhere to type it back in.
-func _ask_seed() -> int:
-	var random: int = int(Time.get_unix_time_from_system()) % 100000
-	var labels: Array = ["Un mondo a caso"]
-	if _last_seed >= 0:
-		labels.append("Rigioca il seme %d" % _last_seed)
-	labels.append("Scrivo io il seme")
-	var choice: int = await ask("Che mondo?", labels)
-	if choice == 0:
-		return random
-	if _last_seed >= 0 and choice == 1:
-		return _last_seed
-	return await _ask_number("Il seme:", random)
-
-
-## A number, typed. Enter answers as well as the button, because a field with a
-## button beside it that only the button ends is a field that feels broken.
-func _ask_number(prompt: String, fallback: int) -> int:
-	_prompt.text = prompt
-	_clear_buttons()
-	var field := LineEdit.new()
-	field.placeholder_text = str(fallback)
-	field.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_buttons.add_child(field)
-	var button := Button.new()
-	button.text = "Vai"
-	button.pressed.connect(func() -> void: picked.emit(0))
-	field.text_submitted.connect(func(_t: String) -> void: picked.emit(0))
-	_buttons.add_child(button)
-	field.grab_focus()
-
-	await picked
-	var typed: String = field.text.strip_edges()
-	_clear_buttons()
-	_prompt.text = ""
-	return int(typed) if typed.is_valid_int() else fallback
-
-
-## Before the first Chronicle there is no session, so the name comes from the
-## data set the menu already loads for the rules page. It used to come from a
-## table written here, which listed the first saga's four houses and nothing
-## else (D-050).
 func _entity_name(entity_id: String) -> String:
 	if _session != null:
 		return str(_session.data.entities[entity_id]["name"])

@@ -2763,6 +2763,51 @@ e' in gioco.
 
 ---
 
+### 72. Il cuore del Consiglio: le due liste sulla carta Tensione
+
+`regole` · `contenuto` · `da-misurare` · **aperta in 0.1.240**
+([D-278](DECISIONS.md#d-278)) · **Fase A chiusa in 0.1.240**
+
+> **Richiamo del committente:** *«nelle tensioni ci dovrebbero essere anche i
+> vantaggi e gli svantaggi che possono essere scelti e proposti durante il
+> consiglio, dove sono? Non sono stati né implementati né misurati. Dovrebbe
+> essere il cuore del gioco.»* Aveva ragione: il meccanismo c'era da D-267,
+> il contenuto no — **il menu dei malus era la stessa coppia su tutte e 60 le
+> carte**, e 40 domande su 107 offrivano una sola proposta.
+
+**Fase A — i malus (fatta).** Le liste `costs` e `failures` sulla faccia della
+carta, 12 Conseguenze nuove, 240 testi diversi, il motore che legge il menu
+dalla carta, la scheda che le mostra, la guardia (controllo 18) e la sonda.
+Menu distinti: costo **2 → 21**, sfogo **2 → 25**; al tavolo, 34 e 34 voci
+diverse lette in 40 anni.
+
+**Fase B — l'economia, riscritta da [D-280](DECISIONS.md#d-280) (aperta).** La
+carta d'esempio del committente ha corretto la Fase A: non frasi d'autore ma
+un **vocabolario chiuso di verbi legati ai segni della mappa**, posati con le
+**pedine**, dentro un'economia — *1 beneficio è gratis; ogni beneficio in più
+costa 1 costo; una Cicatrice ne compra uno oltre il limite*; max 3 benefici,
+max 2 costi. **Il proponente compra, gli avversari scelgono in che moneta
+paga.** Da costruire: i verbi come dato (RIAPRI, RIMUOVI CONDIZIONE,
+COSTRUISCI PIETRA, CAMBIA CONTROLLO, RAFFREDDA TEMA / AGGIUNGI CONDIZIONE,
+PEDAGGIO, CEDI CONTROLLO, SCALDA TEMA, PRENDI DEBITO, CICATRICE), la faccia
+delle 60 carte riscritta su quelli, il passo del Consiglio che posa le pedine,
+il cervello che sa comprare e far pagare, e gli effetti fissi se la proposta
+cade. Da misurare guardando il passa (ISSUES 68): un proponente che compra
+sposta quel numero, e va scritto.
+
+**Fase C — soglia e velo: chiusa dalla parola del committente.** *«Nessun
+costo di apertura, la tensione si risolve a fine atto.»* Quindi: la **soglia
+non si stampa** sulla faccia — non apre più niente da D-214/D-260/D-261 — e il
+numero in alto a destra della carta d'esempio non è una regola. Il velo resta
+vivo (TRAMARE scopre) e resta stampato.
+
+**Fatto quando** ogni carta Tensione porta i suoi verbi di beneficio e di
+costo, il Consiglio si gioca posando pedine dentro l'economia dichiarata, la
+sonda mostra quanta scelta arriva davvero al tavolo, e sulla faccia non resta
+stampato niente che il motore non esegua.
+
+---
+
 ### 71. La controproposta del RIVENDICARE non esiste ancora (PZ-5, Fase B)
 
 `regole` · `motore` · **aperta in 0.1.229** ([D-267](DECISIONS.md#d-267)) ·

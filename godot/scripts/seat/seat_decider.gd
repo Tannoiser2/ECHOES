@@ -375,10 +375,18 @@ func _through_the_hand(entity_id: String, offers: Array, session: RefCounted) ->
 	return out
 
 
-## Il bersaglio di un'offerta, con dentro la carta che la porta.
+## Il bersaglio di un'offerta, con dentro la carta che la porta **e il verbo
+## che la carta userebbe** (D-279).
+##
+## Il verbo si perdeva qui, e senza di lui lo schermo non poteva legare
+## un'offerta alle **due Azioni stampate sulla carta**: la mano mostrava carte
+## che nessuno sapeva come usare, perche' l'unica cosa scritta accanto era
+## l'etichetta grezza del motore. Con il verbo, «Chiamare la leva» e «Tenerli
+## a casa» diventano i due bottoni che sono al tavolo.
 static func _subject_with_card(offer: Dictionary, asset_id: String) -> Dictionary:
 	var subject: Dictionary = (offer.get("subject", {}) as Dictionary).duplicate()
 	subject["asset"] = asset_id
+	subject["verb"] = str(offer.get("template", ""))
 	return subject
 
 
@@ -499,6 +507,16 @@ func choose_price(
 			continue
 		var labels: Array = []
 		for consequence_id in pool:
+			# **La voce si legge com'e' scritta sulla carta** (D-278): la faccia
+			# della Tensione girata porta le sue parole, e sono quelle che al
+			# tavolo si scelgono. Il titolo della Conseguenza resta per le
+			# questioni che una faccia non ce l'hanno ancora.
+			var written: String = str(session.confluence.price_voice_text(
+				"costs" if side == "cost" else "failures", str(consequence_id)
+			))
+			if written != "":
+				labels.append(written)
+				continue
 			var consequence: Dictionary = session.data.consequences.get(str(consequence_id), {})
 			labels.append("%s — %s" % [
 				str(consequence.get("title", consequence_id)),

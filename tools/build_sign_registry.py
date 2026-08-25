@@ -66,6 +66,17 @@ MUTI_NOTI: Dict[str, str] = {
     "settlement:$proponent": "chi ci vive, scritto sulla mappa: la regola e' la pietra che la Conseguenza alza accanto — 50 volte in 100 anni",
     "succession_settled": "la successione risolta non entra in nessuna condizione — 14 volte in 100 anni",
     "water_rights": "i diritti sull'acqua non sono un requisito di niente — 18 volte in 100 anni",
+    # I marchi che la pedina del prezzo lascia (D-278). Nascono col loro posto
+    # sul tavolo — sulla tessera, sulla carta del casato, al centro — e per ora
+    # nessuna clausola del motore li interroga: e' dichiarato qui e nel
+    # dizionario, e la Fase B decidera' se farli mordere o toglierli.
+    "hard_bargain": "la parola fredda: si legge sulla carta del casato, nessuna clausola la chiede (D-278)",
+    "price_in_lives": "il conto in vite: memoria del mondo, nessuna clausola la chiede (D-278)",
+    "rumour_running": "la voce corre: memoria del mondo, nessuna clausola la chiede (D-278)",
+    "spoke_and_lost": "ha proposto e la proposta e' caduta: si legge sulla carta del casato (D-278)",
+    "took_by_hand": "si e' servito senza aspettare la decisione: si legge sulla carta del casato (D-278)",
+    "watched": "sotto osservazione: chi ha imposto la guardia se lo porta addosso (D-278)",
+    "condition:guarded": "la tessera sorvegliata: si vede sul tavolo, e nessuna regola la interroga ancora — candidato numero uno a mordere in Fase B (D-278)",
 }
 
 

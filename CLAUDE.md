@@ -45,8 +45,8 @@ Tutti vogliono `export GODOT=~/godot/Godot_v4.7.1-stable_linux.x86_64`.
 |---|---|
 | `python3 tools/validate_data.py` | i dati contro `/schema` |
 | `python3 tools/validate_data.py --self-test` | che la guardia dei gettoni morda |
-| `python3 tools/validate_physical.py --check` | **la grammatica fisica**: il dizionario dei segni (`godot/data/tags`) allineato ai dati — ambiti, mani, #cancelletti, muti con ragione — piu' carte senza Risonanza, Risonanze cieche, Temi senza Tensioni, tessere senza segni o che nessuno legge, Tensioni senza domande, ponti delle domande rotti, Destini che osservano l'inesistente, Echi senza effetto, bersagli non garantiti sul tavolo pescato |
-| `python3 tools/validate_physical.py --self-test` | che la guardia del dizionario morda, su dodici difetti piantati |
+| `python3 tools/validate_physical.py --check` | **la grammatica fisica**: il dizionario dei segni (`godot/data/tags`) allineato ai dati — ambiti, mani, #cancelletti, muti con ragione — piu' carte senza Risonanza, Risonanze cieche, Temi senza Tensioni, tessere senza segni o che nessuno legge, Tensioni senza domande, ponti delle domande rotti, Destini che osservano l'inesistente, Echi senza effetto, bersagli non garantiti sul tavolo pescato, liste di opportunita'/malus monche o con scelte finte sulle carte Tensione |
+| `python3 tools/validate_physical.py --self-test` | che la guardia del dizionario morda, su ogni difetto piantato |
 | `python3 tools/gen_gd_schema.py --check` | `schema_defs.gd` allineato agli schemi |
 | `python3 tools/build_manifest.py --check` | il manifesto degli asset |
 | `python3 tools/build_sign_registry.py --check` | `docs/REGISTRO_SEGNI.md` |
@@ -96,7 +96,15 @@ Il gioco è scritto due volte, e le due si controllano a vicenda.
   le carte Tensione nei sei mazzetti, la faccia fisica dei Destini, i sei **Temi**.
 
 **La Domanda non è una carta a parte** (D-266, per volere del committente): sta
-sulla carta Tensione. Girata la Tensione sul Tema caldo, le sue domande — legate
+sulla carta Tensione — e con lei **le due liste**: i *benefici* che il
+proponente compra e i *costi* con cui paga. La forma finale è
+[D-280](docs/DECISIONS.md#d-280): verbi chiusi legati ai segni della mappa,
+posati con le pedine, dentro un'economia — *1 beneficio è gratis, ogni altro
+costa 1 costo, una Cicatrice ne compra uno oltre il limite* — e **il
+proponente compra, gli avversari scelgono in che moneta paga**. Niente costo
+di apertura: la Tensione si risolve a fine Atto. Oggi il motore legge il menu
+del prezzo dalla faccia della carta (D-278 Fase A, la strada); l'economia è da
+costruire (ISSUES 72). Girata la Tensione sul Tema caldo, le sue domande — legate
 ai segni del mondo — sono lì: il proponente sceglie le opportunità, gli avversari
 i malus. Il ponte digitale è `possible_questions` sulla Tensione, verso i
 template di Consiglio. **Il motore esegue già la Risonanza e il bersaglio a

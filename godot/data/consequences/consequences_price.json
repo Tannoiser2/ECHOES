@@ -1,0 +1,349 @@
+{
+  "schema_id": "consequence",
+  "version": "0.2.0",
+  "items": [
+    {
+      "id": "CNS_COST_RATION",
+      "title": "La Cinghia Stretta",
+      "category": "CONTROL",
+      "description": "Passa, e si passa a razione. Quello che c'e' basta perche' qualcuno riceva meno, e quel qualcuno lo sa.",
+      "effects": [
+        {
+          "type": "SET_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "tag": "condition:rationed"
+          }
+        },
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "$tension"
+          },
+          "payload": {
+            "delta": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_COST_GUARD",
+      "title": "Gli Uomini alla Porta",
+      "category": "FORTIFICATION",
+      "description": "Passa, e va sorvegliata. Da adesso c'e' sempre qualcuno di guardia, e la guardia si paga tutti i giorni.",
+      "effects": [
+        {
+          "type": "SET_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "tag": "condition:guarded"
+          }
+        },
+        {
+          "type": "SET_ENTITY_TAG",
+          "target": {
+            "kind": "entity",
+            "id": "$proponent"
+          },
+          "payload": {
+            "tag": "watched"
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_COST_EMPTIED",
+      "title": "Chi Puo', Se Ne Va",
+      "category": "MIGRATION",
+      "description": "Passa, e la gente vota coi piedi. Il posto accanto si assottiglia di una famiglia alla volta, senza che nessuno lo dichiari.",
+      "effects": [
+        {
+          "type": "SET_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$adjacent"
+          },
+          "payload": {
+            "tag": "condition:emptied"
+          }
+        },
+        {
+          "type": "REMOVE_PRESENCE",
+          "target": {
+            "kind": "entity",
+            "id": "$proponent"
+          },
+          "payload": {
+            "region_id": "$adjacent",
+            "optional": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_COST_EXPLOITED",
+      "title": "Si Spreme Quello Che C'e'",
+      "category": "EXPLOITATION",
+      "description": "Passa, e il posto rende oltre quello che puo'. Rende adesso; l'anno prossimo si vedra'.",
+      "effects": [
+        {
+          "type": "SET_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "tag": "condition:exploited"
+          }
+        },
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "$tension"
+          },
+          "payload": {
+            "delta": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_COST_MOURNING",
+      "title": "Il Conto in Vite",
+      "category": "DEVASTATION",
+      "description": "Passa, e qualcuno non c'e' piu' per farlo passare. Si contano i morti dopo, e si mette il lutto sulla porta.",
+      "effects": [
+        {
+          "type": "SET_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "tag": "condition:mourning"
+          }
+        },
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "price_in_lives"
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_COST_COLD_WORD",
+      "title": "La Parola Fredda",
+      "category": "REVOLT",
+      "description": "Passa, ma chi ha ceduto se lo ricorda. Non e' una rottura dichiarata: e' un rapporto che da adesso si tiene a distanza di braccio.",
+      "effects": [
+        {
+          "type": "SET_RELATION",
+          "target": {
+            "kind": "relation",
+            "id": "$proponent|$rival"
+          },
+          "payload": {
+            "level": "HOSTILE"
+          }
+        },
+        {
+          "type": "SET_ENTITY_TAG",
+          "target": {
+            "kind": "entity",
+            "id": "$proponent"
+          },
+          "payload": {
+            "tag": "hard_bargain"
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_FAILURE_CONTESTED",
+      "title": "Resta Conteso",
+      "category": "REVOLT",
+      "description": "Non si decide, e allora decide chi c'e'. Il posto resta di due padroni, che e' come dire di nessuno.",
+      "effects": [
+        {
+          "type": "SET_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "tag": "condition:contested"
+          }
+        },
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "$tension"
+          },
+          "payload": {
+            "delta": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_FAILURE_CUT_OFF",
+      "title": "Si Chiude la Strada",
+      "category": "DEVASTATION",
+      "description": "Non si decide, e chi puo' chiude. Il posto accanto resta fuori dai conti finche' qualcuno non torna a parlare.",
+      "effects": [
+        {
+          "type": "SET_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$adjacent"
+          },
+          "payload": {
+            "tag": "condition:cut_off"
+          }
+        },
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "$tension"
+          },
+          "payload": {
+            "delta": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_FAILURE_PLUNDER",
+      "title": "Qualcuno Si Serve",
+      "category": "DEVASTATION",
+      "description": "Non si decide, e allora si prende. Non e' una razzia dichiarata: e' un magazzino che al mattino ha meno dentro.",
+      "effects": [
+        {
+          "type": "SET_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "tag": "condition:plundered"
+          }
+        },
+        {
+          "type": "SET_ENTITY_TAG",
+          "target": {
+            "kind": "entity",
+            "id": "$rival"
+          },
+          "payload": {
+            "tag": "took_by_hand"
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_FAILURE_ABANDONED",
+      "title": "Lo Lasciano Andare",
+      "category": "MIGRATION",
+      "description": "Non si decide, e allora nessuno se ne occupa. Il posto resta li', e smette di essere di qualcuno.",
+      "effects": [
+        {
+          "type": "SET_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "tag": "condition:abandoned"
+          }
+        },
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "question_unresolved"
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_FAILURE_RUMOUR",
+      "title": "La Voce Corre",
+      "category": "REVOLT",
+      "description": "Non si decide, e quello che non si e' deciso si racconta. Fuori dalla sala la versione e' gia' un'altra.",
+      "effects": [
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "rumour_running"
+          }
+        },
+        {
+          "type": "SET_ENTITY_TAG",
+          "target": {
+            "kind": "entity",
+            "id": "$proponent"
+          },
+          "payload": {
+            "tag": "spoke_and_lost"
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_FAILURE_WALL",
+      "title": "La Domanda sul Muro",
+      "category": "REVOLT",
+      "description": "Non si decide, e resta scritto. Qualcuno ha inciso la domanda dove tutti la leggono, e nessuno la cancella.",
+      "creates_scar": true,
+      "scar": {
+        "region_id": "$region_focus",
+        "tag": "scar:unanswered",
+        "description": "La domanda che il Consiglio non ha saputo chiudere, incisa dove passa la gente."
+      },
+      "effects": [
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "$tension"
+          },
+          "payload": {
+            "delta": 1
+          }
+        },
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "question_unresolved"
+          }
+        }
+      ]
+    }
+  ]
+}

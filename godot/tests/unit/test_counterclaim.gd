@@ -77,6 +77,23 @@ func _factor_cancelling_bite(proponent: String) -> int:
 
 ## Apre il Consiglio e mette il Premio fra le voci del beneficio della
 ## proposta scelta, ricordandosi cosa c'era prima.
+## Le voci dello sfogo scritte sulla carta in dibattito (D-278): il menu del
+## prezzo viene da li', quindi le prove lo leggono invece di scriverlo a mano.
+func _vents() -> Array:
+	var out: Array = []
+	for voice in ((data().tensions[TENSION]["physical"] as Dictionary)["failures"] as Array):
+		out.append(str((voice as Dictionary)["takes"]))
+	return out
+
+
+func _first_vent() -> String:
+	return str(_vents()[0])
+
+
+func _other_vent() -> String:
+	return str(_vents()[1])
+
+
 func _open_with_prize() -> Dictionary:
 	var context: Dictionary = session.confluence.open(TENSION, {"kind": "THRESHOLD"})
 	assert_false(context.is_empty(), "la Confluence su %s si apre" % TENSION)
@@ -138,7 +155,7 @@ func test_a_counterclaimed_price_overrides_the_first_opposer() -> void:
 	var claimant: String = str(others[1])
 	session.confluence.declare_stance(first_opposer, "OPPOSE")
 	assert_true(
-		session.confluence.place_counterclaim(claimant, "price", "", "CNS_OATH_BROKEN"),
+		session.confluence.place_counterclaim(claimant, "price", "", _other_vent()),
 		"il rivendicante prende la pedina senza essere il primo OPPOSE"
 	)
 	var hand: Array = session.service.hand(first_opposer)
@@ -149,12 +166,12 @@ func test_a_counterclaimed_price_overrides_the_first_opposer() -> void:
 	assert_eq(str(result["outcome"]), ConfluenceResolution.FAILURE, "la proposta cade")
 	assert_eq(str(result["counterclaim"]), "price", "il diritto risulta speso")
 	assert_true(
-		(result["consequence_ids"] as Array).has("CNS_OATH_BROKEN"),
+		(result["consequence_ids"] as Array).has(_other_vent()),
 		"lo sfogo e' quello della controproposta"
 	)
 	assert_false(
-		(result["consequence_ids"] as Array).has("CNS_FAILURE_SPIRAL"),
-		"non la prima voce del pool"
+		(result["consequence_ids"] as Array).has(_first_vent()),
+		"non la prima voce del menu"
 	)
 
 

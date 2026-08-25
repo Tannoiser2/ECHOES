@@ -50,6 +50,36 @@ func _rig(factor: int) -> void:
 	session.confluence.rng = die
 
 
+## Le voci scritte sulla carta in dibattito. Le prove le leggono invece di
+## scriverle a mano: la faccia e' dato spedito, e un id fisso qui dentro
+## smetterebbe di provare il giorno che la carta cambia parole (D-278).
+func _voices(list_name: String) -> Array:
+	var out: Array = []
+	for voice in ((data().tensions[TENSION]["physical"] as Dictionary)[list_name] as Array):
+		out.append(str((voice as Dictionary)["takes"]))
+	return out
+
+
+func _first_cost() -> String:
+	return str(_voices("costs")[0])
+
+
+func _other_cost() -> String:
+	return str(_voices("costs")[1])
+
+
+func _a_cost() -> String:
+	return _other_cost()
+
+
+func _first_vent() -> String:
+	return str(_voices("failures")[0])
+
+
+func _other_vent() -> String:
+	return str(_voices("failures")[1])
+
+
 func _open_with_proposition() -> Dictionary:
 	var context: Dictionary = session.confluence.open(TENSION, {"kind": "THRESHOLD"})
 	assert_false(context.is_empty(), "la Confluence su %s si apre" % TENSION)
@@ -77,29 +107,63 @@ func _factor_cancelling_bite(proponent: String) -> int:
 
 
 ## **Il menu viene dal template, e la prima voce e' quella del mondo.**
-func test_the_menu_is_the_template_pools() -> void:
+func test_the_menu_is_the_card_face() -> void:
 	_open_with_proposition()
+	var face: Dictionary = data().tensions[TENSION]["physical"]
 	var menu: Dictionary = session.confluence.price_menu()
+	var written_costs: Array = []
+	for voice in (face["costs"] as Array):
+		written_costs.append(str((voice as Dictionary)["takes"]))
+	var written_vents: Array = []
+	for voice in (face["failures"] as Array):
+		written_vents.append(str((voice as Dictionary)["takes"]))
+	assert_eq(menu["cost"], written_costs, "il menu del costo e' quello scritto sulla carta")
+	assert_eq(menu["failure"], written_vents, "il menu dello sfogo e' quello scritto sulla carta")
+	assert_true(written_costs.size() >= 2, "sulla carta ci sono almeno due costi: uno solo non e' una scelta")
+	assert_true(written_vents.size() >= 2, "sulla carta ci sono almeno due sfoghi")
+
+	# E la voce si legge **con le parole della carta**, non col titolo della
+	# Conseguenza: e' quello che al tavolo si sceglie.
 	assert_eq(
-		menu["cost"], ["CNS_COST_UNREST", "CNS_COST_DEBT"],
-		"il menu del costo e' il pool del template, nell'ordine dei dati"
+		session.confluence.price_voice_text("costs", str(written_costs[0])),
+		str((face["costs"] as Array)[0]["text"]),
+		"la voce del costo si legge com'e' scritta sulla carta"
 	)
+
+	var vents: Array = menu["failure"] as Array
 	assert_eq(
-		menu["failure"], ["CNS_FAILURE_SPIRAL", "CNS_OATH_BROKEN"],
-		"il menu dello sfogo e' il pool del template, nell'ordine dei dati"
-	)
-	assert_eq(
-		session.confluence._priced(menu["failure"], ""), "CNS_FAILURE_SPIRAL",
+		session.confluence._priced(vents, ""), str(vents[0]),
 		"senza pedina decide il mondo: la prima voce"
 	)
 	assert_eq(
-		session.confluence._priced(menu["failure"], "CNS_OATH_BROKEN"), "CNS_OATH_BROKEN",
+		session.confluence._priced(vents, str(vents[1])), str(vents[1]),
 		"con la pedina decide il fronte avverso"
 	)
 	assert_eq(
-		session.confluence._priced(menu["failure"], "CNS_NON_ESISTE"), "CNS_FAILURE_SPIRAL",
+		session.confluence._priced(vents, "CNS_NON_ESISTE"), str(vents[0]),
 		"una pedina fuori menu non decide niente"
 	)
+
+
+## **Una questione senza faccia usa ancora il pool del template** (D-278): la
+## carta comanda dove c'e', e dove non c'e' il gioco non si ferma. Si toglie la
+## faccia a mano dal `DataSet` della prova, che e' l'unico modo di provare il
+## ripiego adesso che tutte e sessanta le carte ce l'hanno.
+func test_without_a_face_the_template_pool_still_serves() -> void:
+	var face: Dictionary = (data().tensions[TENSION] as Dictionary)["physical"]
+	(data().tensions[TENSION] as Dictionary).erase("physical")
+	_open_with_proposition()
+	var pools: Dictionary = data().confluence_templates[
+		str(session.confluence.current["template_id"])
+	]["consequence_pools"]
+	var menu: Dictionary = session.confluence.price_menu()
+	assert_eq(menu["cost"], pools["cost"], "senza faccia, il costo torna al pool del template")
+	assert_eq(menu["failure"], pools["failure"], "senza faccia, lo sfogo torna al pool del template")
+	assert_eq(
+		session.confluence.price_voice_text("costs", str((pools["cost"] as Array)[0])), "",
+		"e senza faccia non c'e' una parola della carta da leggere"
+	)
+	(data().tensions[TENSION] as Dictionary)["physical"] = face
 
 
 ## **La pedina spetta al primo OPPOSE nell'ordine delle dichiarazioni**, ed e'
@@ -118,11 +182,11 @@ func test_the_pedina_belongs_to_the_first_opposer() -> void:
 		"il primo OPPOSE nell'ordine delle dichiarazioni parla per il fronte"
 	)
 	assert_false(
-		session.confluence.place_price(str(others[0]), "CNS_COST_DEBT", ""),
+		session.confluence.place_price(str(others[0]), _a_cost(), ""),
 		"chi sostiene non posa la pedina del prezzo"
 	)
 	assert_false(
-		session.confluence.place_price(str(others[2]), "CNS_COST_DEBT", ""),
+		session.confluence.place_price(str(others[2]), _a_cost(), ""),
 		"il secondo oppositore non posa la pedina del prezzo"
 	)
 	assert_false(
@@ -130,7 +194,7 @@ func test_the_pedina_belongs_to_the_first_opposer() -> void:
 		"una voce fuori dal menu del costo si rifiuta"
 	)
 	assert_true(
-		session.confluence.place_price(str(others[1]), "CNS_COST_DEBT", "CNS_OATH_BROKEN"),
+		session.confluence.place_price(str(others[1]), _a_cost(), _other_vent()),
 		"il primo oppositore posa la pedina su voci del menu"
 	)
 
@@ -144,7 +208,7 @@ func test_on_failure_the_chosen_vent_fires() -> void:
 	var opposer: String = str(_others(proponent)[0])
 	session.confluence.declare_stance(opposer, "OPPOSE")
 	assert_true(
-		session.confluence.place_price(opposer, "", "CNS_OATH_BROKEN"),
+		session.confluence.place_price(opposer, "", _other_vent()),
 		"la pedina si posa sul solo sfogo"
 	)
 	# La mano vera, non carte inventate: lo smaltimento di I. scarta quello che
@@ -157,11 +221,11 @@ func test_on_failure_the_chosen_vent_fires() -> void:
 	var result: Dictionary = session.confluence.resolve()
 	assert_eq(str(result["outcome"]), ConfluenceResolution.FAILURE, "la proposta cade")
 	assert_true(
-		(result["consequence_ids"] as Array).has("CNS_OATH_BROKEN"),
+		(result["consequence_ids"] as Array).has(_other_vent()),
 		"lo sfogo scattato e' quello della pedina"
 	)
 	assert_false(
-		(result["consequence_ids"] as Array).has("CNS_FAILURE_SPIRAL"),
+		(result["consequence_ids"] as Array).has(_first_vent()),
 		"la prima voce del pool non scatta: dal pool esce una voce sola"
 	)
 
@@ -174,7 +238,7 @@ func test_on_success_with_cost_the_chosen_price_fires() -> void:
 	var opposer: String = str(_others(proponent)[0])
 	session.confluence.declare_stance(opposer, "OPPOSE")
 	assert_true(
-		session.confluence.place_price(opposer, "CNS_COST_DEBT", ""),
+		session.confluence.place_price(opposer, _other_cost(), ""),
 		"la pedina si posa sul solo costo"
 	)
 	_rig(_factor_cancelling_bite(proponent))
@@ -184,11 +248,11 @@ func test_on_success_with_cost_the_chosen_price_fires() -> void:
 		"margine zero: passa pagando"
 	)
 	assert_true(
-		(result["consequence_ids"] as Array).has("CNS_COST_DEBT"),
+		(result["consequence_ids"] as Array).has(_other_cost()),
 		"il costo scattato e' quello della pedina"
 	)
 	assert_false(
-		(result["consequence_ids"] as Array).has("CNS_COST_UNREST"),
+		(result["consequence_ids"] as Array).has(_first_cost()),
 		"la prima voce del pool non scatta: dal pool esce una voce sola"
 	)
 
@@ -207,11 +271,11 @@ func test_without_a_pedina_the_world_picks_the_first_voice() -> void:
 	var result: Dictionary = session.confluence.resolve()
 	assert_eq(str(result["outcome"]), ConfluenceResolution.FAILURE, "la proposta cade")
 	assert_true(
-		(result["consequence_ids"] as Array).has("CNS_FAILURE_SPIRAL"),
+		(result["consequence_ids"] as Array).has(_first_vent()),
 		"senza pedina scatta la prima voce del pool"
 	)
 	assert_false(
-		(result["consequence_ids"] as Array).has("CNS_OATH_BROKEN"),
+		(result["consequence_ids"] as Array).has(_other_vent()),
 		"e soltanto quella"
 	)
 

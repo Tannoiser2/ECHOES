@@ -334,8 +334,17 @@ func _find_clause(clause_id: String) -> Dictionary:
 
 # --- D-bis: la pedina del prezzo (PZ-5, D-267) ------------------------------
 
-## Il menu del prezzo: fra quali voci il fronte avverso puo' scegliere. Sono i
-## pool del template - il costo se la proposta passa pagando, lo sfogo se cade.
+## Il menu del prezzo: fra quali voci il fronte avverso puo' scegliere - il
+## costo se la proposta passa pagando, lo sfogo se cade.
+##
+## **Le voci stanno sulla carta Tensione** (D-278, parola del committente: «nelle
+## tensioni ci dovrebbero essere anche i vantaggi e gli svantaggi che possono
+## essere scelti e proposti durante il consiglio»). La carta girata sul tavolo
+## porta le sue due liste, e sono quelle che il fronte avverso legge: il pool
+## del template resta il ripiego per le questioni che una faccia non ce l'hanno
+## ancora. Prima di questa decisione il menu veniva **solo** dal template, e
+## siccome 52 carte su 60 ne condividono quattro generici, il malus era la
+## stessa coppia per tutto il gioco.
 func price_menu() -> Dictionary:
 	if current.is_empty():
 		return {"cost": [], "failure": []}
@@ -343,9 +352,48 @@ func price_menu() -> Dictionary:
 		data.confluence_templates[str(current["template_id"])]["consequence_pools"]
 	)
 	return {
-		"cost": (pools["cost"] as Array).duplicate(),
-		"failure": (pools["failure"] as Array).duplicate(),
+		"cost": _voices_of("costs", pools["cost"] as Array),
+		"failure": _voices_of("failures", pools["failure"] as Array),
 	}
+
+
+## Le Conseguenze di una lista della carta, o il ripiego del template.
+func _voices_of(list_name: String, fallback: Array) -> Array:
+	var face: Dictionary = card_face()
+	var voices: Array = face.get(list_name, []) as Array
+	if voices.is_empty():
+		return fallback.duplicate()
+	var out: Array = []
+	for voice in voices:
+		out.append(str((voice as Dictionary)["takes"]))
+	return out
+
+
+## La faccia fisica della carta in dibattito, o {} se non ne ha una.
+func card_face() -> Dictionary:
+	if current.is_empty():
+		return {}
+	var definition: Variant = data.tensions.get(str(current["tension_id"]))
+	if definition == null:
+		return {}
+	return (definition as Dictionary).get("physical", {}) as Dictionary
+
+
+## Come si legge al tavolo la voce che il fronte avverso ha scelto: la parola
+## della carta, non il titolo della Conseguenza. Torna "" se la voce non sta
+## sulla faccia (il ripiego del template parla col titolo di sempre).
+func price_voice_text(list_name: String, consequence_id: String) -> String:
+	for voice in (card_face().get(list_name, []) as Array):
+		if str((voice as Dictionary)["takes"]) == consequence_id:
+			return str((voice as Dictionary)["text"])
+	return ""
+
+
+## Quello che il verbale scrive di una voce scelta: la parola della carta se
+## c'e', il titolo della Conseguenza se la carta non ne parla.
+func _price_said(list_name: String, consequence_id: String) -> String:
+	var written: String = price_voice_text(list_name, consequence_id)
+	return written if written != "" else _consequence_title(consequence_id)
 
 
 ## Chi parla per il fronte avverso: il primo seggio, nell'ordine delle
@@ -383,9 +431,9 @@ func place_price(entity_id: String, cost_id: String, failure_id: String) -> bool
 	current["price_pedina"] = {"by": entity_id, "cost": cost_id, "failure": failure_id}
 	var said: PackedStringArray = PackedStringArray()
 	if cost_id != "":
-		said.append("se passa con un costo, %s" % _consequence_title(cost_id))
+		said.append("se passa con un costo, %s" % _price_said("costs", cost_id))
 	if failure_id != "":
-		said.append("se cade, %s" % _consequence_title(failure_id))
+		said.append("se cade, %s" % _price_said("failures", failure_id))
 	if not said.is_empty():
 		log.bullet("D. La pedina del prezzo - %s: %s." % [
 			_name(entity_id), "; ".join(said)
@@ -728,7 +776,7 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 		consequence_ids.append_array(_proposition()["success_consequences"])
 		if outcome == ConfluenceResolution.SUCCESS_WITH_COST:
 			var cost_id: String = _priced(
-				template["consequence_pools"]["cost"], str(pedina.get("cost", ""))
+				price_menu()["cost"] as Array, str(pedina.get("cost", ""))
 			)
 			if cost_id != "":
 				consequence_ids.append(cost_id)
@@ -738,7 +786,7 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 			consequence_ids.append_array(template["consequence_pools"]["decisive_bonus"])
 	else:
 		var failure_id: String = _priced(
-			template["consequence_pools"]["failure"], str(pedina.get("failure", ""))
+			price_menu()["failure"] as Array, str(pedina.get("failure", ""))
 		)
 		if failure_id != "":
 			consequence_ids.append(failure_id)
@@ -866,6 +914,19 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 	if outcome == ConfluenceResolution.FAILURE:
 		if not (world["open_failures"] as Array).has(tension_id):
 			(world["open_failures"] as Array).append(tension_id)
+		# **Il segno della domanda caduta lo scrive il motore, non il malus**
+		# (D-278). Fin qui lo scriveva CNS_FAILURE_SPIRAL, cioe' una voce fra
+		# le tante: da quando lo sfogo lo sceglie il fronte avverso fra le due
+		# scritte sulla carta, farlo dipendere da quella scelta vorrebbe dire
+		# che il mondo si ricorda della caduta **solo se l'avversario ha
+		# scelto la voce giusta**. Che una proposta sia caduta e' un fatto del
+		# tavolo, e resta sul tavolo comunque; il malus e' quello che si paga
+		# in piu'.
+		if not (world["global_tags"] as Array).has("question_unresolved"):
+			_apply(applied, Effect.make(
+				"SET_GLOBAL_TAG", "world", "WORLD",
+				{"tag": "question_unresolved"}, source
+			))
 	elif (world["open_failures"] as Array).has(tension_id):
 		(world["open_failures"] as Array).erase(tension_id)
 		if (world["open_failures"] as Array).is_empty() \

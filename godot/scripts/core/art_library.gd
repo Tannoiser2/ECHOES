@@ -37,6 +37,9 @@ const ROOT: String = "res://art"
 ## a una Regione ne' a una Chronicle: e' la mappa, che le due saghe condividono.
 const BOARD: String = "map.board"
 
+## La copertina della scatola, sulla soglia (D-279): `art/ui/copertina.png`.
+const COVER: String = "ui.copertina"
+
 ## Le texture gia' costruite, per non rileggere e ridecodificare un PNG a ogni
 ## `_draw()`. Le immagini di questo gioco sono poche e grandi: e' esattamente il
 ## caso in cui una cache serve.
