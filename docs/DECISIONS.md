@@ -10,6 +10,43 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-276 — La soglia: l'app si apre sulla scatola, non sul menu
+
+**implemented in 0.1.238** — richiesta del committente, sulla bozza approvata in sessione
+
+Il committente ha chiesto una schermata di presentazione per l'app, sulla
+base della copertina: il nome del gioco, la mappa fatta con le sei tessere
+pescate a inizio saga posate 3×2, e la porta per entrare. La bozza («La
+Soglia di ECHOES») è stata costruita prima come pagina, e da lì è nata la
+domanda che ha deciso D-275; questa decisione è il pezzo dentro l'app.
+
+**La regola della soglia:**
+
+1. l'app si apre su `title_screen.tscn` (la scena d'ingresso in
+   `project.godot`), non più direttamente sul menu della sala; il bottone
+   «Entra nella sala» porta a `res://ui/main.tscn`, che resta identica —
+   menu, stanza e partita non cambiano di una riga;
+2. la mappa della soglia è **una pesca vera del motore**, non un'immagine:
+   `WorldStateFactory.resolve_map` con la stessa derivazione del seme di
+   `game_session.gd` (seme × 53 + 29), posata 3×2 riga per riga come
+   D-275 comanda. Il seme viene dall'orologio come nella stanza: ogni
+   apertura mostra una saga possibile, e la didascalia dichiara il seme;
+3. le tessere si dipingono **con lo stesso pennello della partita**
+   (`RegionArt.plan`): sagoma, tratti del bioma, centro calmo. Sotto ogni
+   tessera il nome e i **segni stampati a cancelletto** (D-262); i domini
+   restano alle iconcine della tessera fisica e non entrano nella riga;
+4. il patto è misurato: `test_title_screen.gd` pretende che allo stesso
+   seme la soglia e la partita diano **le stesse tessere nella stessa
+   posa** — se una delle due derivazioni cambia da sola, la prova va rossa.
+
+Il resto della bozza (badge 1–4 giocatori / 90–150 minuti / 14+, il credito
+«Un gioco di Stefano Ancillai», il motto) passa com'era. La grafica resta
+quella di sistema dell'app — parchment e font della bozza sono della pagina,
+non del motore: quando arriverà l'arte vera (ART_BIBLE), la soglia la
+riceverà come la mappa riceve il quadro.
+
+---
+
 ## D-275 — La posa comanda: sul tavolo pescato vicino è chi si tocca
 
 **implemented in 0.1.237** — parola del committente, sulla forma della mappa
