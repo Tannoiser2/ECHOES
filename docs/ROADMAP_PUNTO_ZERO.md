@@ -296,6 +296,14 @@ generica, Destino che legge un tag inesistente, Echo senza effetto di setup.
 invisibili — e il validatore **si è visto diventare rosso** su difetti piantati
 apposta, perché una guardia che nessuno ha visto mordere non è una guardia.
 
+> **Fatto in 0.1.234** ([D-272](DECISIONS.md#d-272)), coi sei riletti nel
+> mondo di D-266 (la Domanda sta sulla Tensione): tessera senza segni,
+> tessera che nessuno legge, Tensione senza domande, ponte delle domande
+> rotto, Destino che osserva un segno fuori dal dizionario, Echo senza
+> effetto. Self-test a **undici difetti piantati**, e la guardia si è vista
+> mordere su ognuno — dati spediti puliti su tutti e sei prima ancora di
+> scriverli.
+
 ---
 
 ## 3. Le milestone
