@@ -350,29 +350,48 @@ func _through_the_hand(entity_id: String, offers: Array, session: RefCounted) ->
 			var card: Variant = session.data.assets.get(str(asset_id))
 			if card == null:
 				continue
-			var action: Dictionary = (card as Dictionary).get("card_action", {}) as Dictionary
-			if action.is_empty() or str(action.get("kind", "")) != template:
-				continue
-			var params: Dictionary = ((offer as Dictionary)["params"] as Dictionary).duplicate()
-			params["asset_id"] = str(asset_id)
-			if not session.actions.can_execute(entity_id, "PLAY_CARD", params):
-				continue
-			out.append({
-				"label": "«%s» — %s" % [
-					str((card as Dictionary)["title"]),
-					str((offer as Dictionary)["label"]),
-				],
-				"template": "PLAY_CARD", "params": params,
-				# **Di cosa parla la scelta, e con che carta** (D-230). Il
-				# bersaglio dell'offerta si perdeva qui: una MUOVERE nata con
-				# `{"region": ...}` usciva avvolta in una carta e senza piu' un
-				# posto, quindi lo schermo non poteva offrirla sulla mappa e
-				# restava un bottone. `asset_id` viaggia accanto perche' un
-				# front-end che disegna le carte deve sapere **quale** carta
-				# porta quale scelta: e' quello che rende possibile prenderla e
-				# lasciarla cadere invece di leggerne il nome in una lista.
-				"subject": _subject_with_card(offer as Dictionary, str(asset_id)),
-			})
+			# **Le due Azioni stampate, tutte e due** (D-283, passo 1 del brief
+			# del Punto Zero). Fino a qui una carta si poteva calare solo col
+			# verbo dichiarato in `card_action.kind`, e la seconda Azione della
+			# faccia — che in 37 carte su 48 porta gia' un verbo eseguibile —
+			# non veniva offerta mai: era stampata su un cartoncino che il
+			# motore non girava. Adesso i verbi di una carta sono **quelli
+			# stampati sulla sua faccia**, e ogni Azione che combacia col verbo
+			# in corso diventa una voce sua, col suo nome.
+			var printed: Array = (
+				((card as Dictionary).get("physical", {}) as Dictionary).get("actions", [])
+				as Array
+			)
+			for index in range(printed.size()):
+				var face: Dictionary = printed[index] as Dictionary
+				if str(face.get("template", "")) != template:
+					continue
+				var params: Dictionary = (
+					(offer as Dictionary)["params"] as Dictionary
+				).duplicate()
+				params["asset_id"] = str(asset_id)
+				params["face_action"] = index
+				if not session.actions.can_execute(entity_id, "PLAY_CARD", params):
+					continue
+				out.append({
+					"label": "«%s» — %s" % [
+						str((card as Dictionary)["title"]),
+						str(face.get("label", (offer as Dictionary)["label"])),
+					],
+					"template": "PLAY_CARD", "params": params,
+					# **Di cosa parla la scelta, e con che carta** (D-230). Il
+					# bersaglio dell'offerta si perdeva qui: una MUOVERE nata
+					# con `{"region": ...}` usciva avvolta in una carta e senza
+					# piu' un posto, quindi lo schermo non poteva offrirla sulla
+					# mappa e restava un bottone. `asset_id` viaggia accanto
+					# perche' un front-end che disegna le carte deve sapere
+					# **quale** carta porta quale scelta: e' quello che rende
+					# possibile prenderla e lasciarla cadere invece di leggerne
+					# il nome in una lista.
+					"subject": _subject_with_card(
+						offer as Dictionary, str(asset_id), index
+					),
+				})
 	return out
 
 
@@ -384,10 +403,17 @@ func _through_the_hand(entity_id: String, offers: Array, session: RefCounted) ->
 ## che nessuno sapeva come usare, perche' l'unica cosa scritta accanto era
 ## l'etichetta grezza del motore. Con il verbo, «Chiamare la leva» e «Tenerli
 ## a casa» diventano i due bottoni che sono al tavolo.
-static func _subject_with_card(offer: Dictionary, asset_id: String) -> Dictionary:
+static func _subject_with_card(
+	offer: Dictionary, asset_id: String, face_action: int = -1
+) -> Dictionary:
 	var subject: Dictionary = (offer.get("subject", {}) as Dictionary).duplicate()
 	subject["asset"] = asset_id
 	subject["verb"] = str(offer.get("template", ""))
+	# **Quale delle due Azioni** (D-283): col solo verbo, due Azioni stampate
+	# che usano lo stesso verbo finivano nello stesso mucchio sulla scheda della
+	# carta, e chi guardava non sapeva quale stesse scegliendo.
+	if face_action >= 0:
+		subject["face_action"] = face_action
 	return subject
 
 

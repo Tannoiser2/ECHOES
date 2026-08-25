@@ -5,6 +5,31 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.245 — La faccia è la verità: entrambe le Azioni si giocano (D-283)
+
+- **Passo 1 del brief del Punto Zero.** I verbi di una carta sono adesso
+  **quelli stampati sulla sua faccia**, non il solo `card_action.kind`: chi
+  gioca dice quale delle due Azioni sta calando, e il motore la esegue.
+- **I segni stampati si posano davvero** (`puts_tag`, `clears_tag`): ognuno
+  dove il dizionario dice che vive — mondo, Regione, casa. Sono loro a rendere
+  diverse le due metà: 29 carte su 48 stampano lo stesso verbo due volte.
+- Il segno stampato **si firma** (`face_action`), come la Risonanza: nel
+  verbale si distingue quello che ha scritto l'Azione da quello che ha scritto
+  il verbo.
+- Misure su 100 anni: **16,6% delle carte calate usa la seconda Azione**
+  (prima: mai), **537 segni posati** sul mondo (prima: zero), RIVENDICARE
+  calato dal 19,6% al **33,0%**. Playtest 100 semi **0/8**.
+- **Il costo, scritto**: il passare scende solo dall'84,3% all'**82,3%**. La
+  ragione dominante non erano i verbi della mano — è l'appetito del cervello
+  («mosse legali, nessuna che gli servisse», dal 54,7% al 65,1% dei passa).
+  Restano 314 segni su 851 che non trovano un soggetto: passo 1bis.
+- Sonda nuova `cli/run_mark_probe.gd`; cinque prove in
+  `test_both_printed_actions.gd`.
+- **Correzione alla diagnosi**: le Memorie *esistono* — 80 voci di categoria
+  MEMORY nel dizionario, non zero come avevo scritto cercando il prefisso
+  `memory:`. Il difetto vero è che 27 non le legge nessuno e 20 erano
+  dichiarate scritte da uno scrittore che il motore non eseguiva.
+
 ## 0.1.244 — La colonna si legge, e la diagnosi del Punto Zero (D-282)
 
 - **La colonna di destra diceva la stessa cosa tre volte** e non spiegava

@@ -100,14 +100,21 @@ mostrava le stesse informazioni due volte, ed è la cosa che hai visto subito:
 Non l'ho tolto da solo: è una regola, e le regole le decidi tu. La proposta sta
 al punto 5.
 
-### 3.3 Le Memorie non esistono
+### 3.3 Le Memorie esistono, ma nessuno le scriveva
 
-Il brief chiede tre classi di segno persistente — condizioni, cicatrici,
-**memorie**. Nei dati ci sono **14 condizioni** e **13 cicatrici**. Le memorie
-sono **zero**: `grep -ro "memory:" godot/data` non trova niente.
+**Correzione alla prima stesura di questa diagnosi.** Avevo scritto che le
+Memorie non esistono, cercandole col prefisso `memory:` che il brief usa. È
+falso, e il dizionario dei segni lo dice: le voci di categoria **MEMORY** sono
+**80** — su 183 segni in tutto — accanto a 19 STATE (le condizioni), 22 PLACE,
+31 ENTITY e 31 FUNCTION. I patti, i miracoli, i martiri e i segreti pubblici
+ci sono; hanno un id nudo (`amnesty_granted`, `oath_broken`) invece del
+prefisso.
 
-Manca quindi tutta la metà buona della memoria: il gioco sa registrare le
-ferite (`scar:`), non i patti, i miracoli, i martiri e i segreti pubblici.
+Il difetto è un altro, ed è più preciso: **27 di quelle 80 non le legge
+nessuno**, e **20 sono dichiarate come scritte da `asset_physical`** — cioè
+dalla faccia stampata delle carte, che è esattamente lo scrittore che il
+motore non eseguiva (§3.1). Il dizionario prometteva uno scrittore che non
+girava mai.
 
 ### 3.4 Una carta dice un verbo che non ha stampato
 
@@ -147,8 +154,26 @@ benefici, costi e i due effetti stampati del fallimento girano tutti.
 
 ## 5. Il piano, in passi piccoli e misurabili
 
-**Passo 1 — entrambe le Azioni eseguibili** (è quello che il brief chiede per
-primo). I verbi giocabili di una carta diventano **quelli stampati sulla sua
+**Passo 1 — entrambe le Azioni eseguibili — FATTO in 0.1.245**
+([D-283](DECISIONS.md#d-283)). Misurato su 100 anni a tavolo misto: **1.412
+carte calate, di cui il 16,6% con la seconda Azione stampata**; degli 851 segni
+stampati sulle Azioni calate **537 sono stati posati sul mondo** e 314 non
+hanno trovato il proprio soggetto (una condizione di Regione in una mossa che
+non nomina nessuna Regione). Il cancello tiene: 0 seggi bloccati su 8.
+**Quello che non ha funzionato, scritto:** il passare scende solo dall'**84,3%
+all'82,3%**, contro il 60% che avevo messo come traguardo. La prima ragione per
+cui un seggio passa non erano i verbi della mano — è *«mosse legali, nessuna
+che gli servisse»*, salita dal 54,7% al 65,1% dei passa. **È appetito del
+cervello, non grammatica delle carte**, e va aggredita da lì (passo 4). Restano
+tre carte mai calate in 100 anni, tutte FORGIARE.
+
+**Passo 1bis — i 314 segni senza soggetto.** Quando l'Azione stampata posa un
+segno di Regione e il verbo non nomina nessuna Regione, il segno non si scrive.
+Al tavolo la carta dice *dove*: il bersaglio a segni è già sulla faccia. Serve
+che la scelta del posto arrivi anche ai verbi che oggi non la chiedono.
+*Fatto quando*: i segni senza soggetto sono zero.
+
+**Come era il passo 1** (è quello che il brief chiede per primo). I verbi giocabili di una carta diventano **quelli stampati sulla sua
 faccia**, non il solo `card_action.kind`; `puts_tag` e `clears_tag` diventano
 Effetti con inverso; le 11 seconde Azioni senza verbo ne ricevono uno chiuso
 (`SEGNA`, che mette o toglie un segno sul bersaglio). L'app le offre entrambe,
@@ -157,12 +182,13 @@ come già fa la scheda della carta.
 Azione viene scelta almeno una volta su cinque, il passare scende sotto il 60%,
 e il cancello resta 0 seggi bloccati su 8.
 
-**Passo 2 — le Memorie.** Terza classe di segno accanto a condizioni e
-cicatrici, con le sue otto voci nel dizionario, prodotta dai Consigli che
-*riescono* (oggi un Consiglio riuscito lascia solo benefici) e letta da Destini
-e Chronicle successive.
-*Fatto quando*: ogni memoria del dizionario viene scritta almeno una volta in
-100 anni **e** letta da almeno un Destino o una Domanda.
+**Passo 2 — le Memorie che nessuno legge.** Le 80 voci MEMORY ci sono e da
+D-283 le carte le scrivono davvero; ne restano **27 che nessuno legge**. Una
+memoria scritta e mai letta è un segnalino che si posa e non serve a niente.
+Vanno legate a chi le deve leggere: le clausole dei Destini, le condizioni di
+ingresso delle Tensioni, il setup della Chronicle successiva.
+*Fatto quando*: nessuna voce MEMORY del dizionario ha `read_by` vuoto, e ogni
+memoria scritta in 100 anni viene letta almeno una volta.
 
 **Passo 3 — una sola economia delle domande.** Le quattro questioni dell'anno
 spariscono; INFLUENZARE e TRAMARE agiscono sui **mazzetti** (scaldare e

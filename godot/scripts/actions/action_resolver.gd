@@ -1102,11 +1102,31 @@ func _card_request(entity_id: String, params: Dictionary) -> Dictionary:
 	var action: Dictionary = (card as Dictionary).get("card_action", {}) as Dictionary
 	if action.is_empty():
 		return {"error": "«%s» non porta nessuna azione" % str((card as Dictionary)["title"])}
+	# **La faccia e' la verita'** (D-283, passo 1 del brief del Punto Zero).
+	#
+	# Una carta stampa **due** Azioni, e fino a qui il motore ne conosceva una:
+	# quella dichiarata in `card_action.kind`. L'altra era testo. Adesso chi
+	# gioca dice **quale delle due sta calando** — `face_action` e' l'indice
+	# dell'Azione stampata — e il verbo viene da li'. Senza indice si ricade
+	# sul verbo dichiarato, che e' quello che fanno i salvataggi vecchi e le
+	# prove scritte prima di questa decisione.
+	var face_actions: Array = (
+		((card as Dictionary).get("physical", {}) as Dictionary).get("actions", []) as Array
+	)
+	var chosen: int = int(params.get("face_action", -1))
+	var kind: String = ""
+	if chosen >= 0 and chosen < face_actions.size():
+		kind = str((face_actions[chosen] as Dictionary).get("template", ""))
+		if kind == "":
+			return {"error": "quell'Azione della carta il motore non la sa ancora eseguire"}
+	if kind == "":
+		kind = str(action.get("kind", ""))
 	# I parametri della carta vengono prima; quelli di chi la gioca riempiono
-	# solo cio' che la carta lascia aperto.
+	# solo cio' che la carta lascia aperto. `face_action` dice **quale Azione**,
+	# non e' un parametro del verbo: non deve arrivare al resolver.
 	var merged: Dictionary = {}
 	for key in params:
-		if key != "asset_id":
+		if key != "asset_id" and key != "face_action":
 			merged[key] = params[key]
 	for key in (action.get("params", {}) as Dictionary):
 		merged[key] = (action["params"] as Dictionary)[key]
@@ -1117,7 +1137,9 @@ func _card_request(entity_id: String, params: Dictionary) -> Dictionary:
 	# stessa, e resta vero che una carta spesa non votera' piu'.
 	if not merged.has("discard_asset_id"):
 		merged["discard_asset_id"] = asset_id
-	return {"kind": str(action["kind"]), "params": merged, "asset_id": asset_id}
+	return {
+		"kind": kind, "params": merged, "asset_id": asset_id, "face_action": chosen,
+	}
 
 
 func _check_play_card(entity_id: String, params: Dictionary) -> String:
@@ -1221,6 +1243,19 @@ func _play_asset_card(
 			return _error("PLAY_CARD", "la carta porta un'azione che non esiste")
 	if not bool(outcome.get("ok", false)):
 		return outcome
+	# **I segni stampati sull'Azione, posati** (D-283). Fino a qui `puts_tag` e
+	# `clears_tag` erano inchiostro: 71 occorrenze su 33 segni diversi, e il
+	# motore non ne eseguiva nessuna. Sono la ragione per cui le due Azioni di
+	# una carta sono due scelte diverse — 29 carte su 48 stampano **lo stesso
+	# verbo** due volte, e senza i segni le due meta' farebbero la stessa cosa.
+	var marked: Array = _face_signs(
+		entity_id, str(request["asset_id"]), int(request.get("face_action", -1)),
+		inner, source
+	)
+	if not marked.is_empty():
+		var was: Array = outcome.get("effects", []) as Array
+		was.append_array(marked)
+		outcome["effects"] = was
 	# La carta si spende: e' questo che rende la mano una scelta e non una
 	# scorta. Se l'azione l'ha gia' consumata come proprio scarto (D-188) qui
 	# non c'e' piu' niente da spendere, e spenderla due volte sarebbe un Effetto
@@ -1255,6 +1290,87 @@ func _play_asset_card(
 ## Una Cronaca che non ha nessuna questione di quel Tema non scalda niente, e va
 ## bene: e' la stessa regola degli `on_commit_effects` da [D-106](#d-106) — il
 ## mestiere della carta parla solo dove ha di che parlare.
+## **I segni che l'Azione stampata posa e toglie** (D-283, passo 1 del brief).
+##
+## Ogni segno va dove il dizionario dice che vive (D-259): GLOBAL sul mondo,
+## REGION sulla Regione che l'azione ha nominato, ENTITY sulla casa che ha
+## nominato. **Un segno che non trova il proprio soggetto non si posa altrove**
+## — si conta e basta: metterlo dove capita sarebbe scrivere sul tavolo una
+## cosa che al tavolo nessuno saprebbe dove mettere. Quanti restano fuori lo
+## dice `run_mark_probe.gd`, ed e' il lavoro della fase dopo.
+func _face_signs(
+	entity_id: String, asset_id: String, face_action: int,
+	played: Dictionary, source: Dictionary
+) -> Array:
+	if face_action < 0:
+		return []
+	var card: Variant = data.assets.get(asset_id)
+	if card == null:
+		return []
+	var printed: Array = (
+		((card as Dictionary).get("physical", {}) as Dictionary).get("actions", []) as Array
+	)
+	if face_action >= printed.size():
+		return []
+	var face: Dictionary = printed[face_action] as Dictionary
+	var region_id: String = str(played.get("region_id", ""))
+	var other_id: String = str(played.get("target_entity_id", ""))
+	# **Il segno stampato si firma**, come la Risonanza (D-030): la sorgente
+	# dice `face_action` e nomina la carta, cosi' il verbale — e la sonda —
+	# distinguono cio' che ha scritto **l'Azione stampata** da cio' che ha
+	# scritto il verbo. Senza la firma la prima stesura della sonda contava
+	# insieme i due, e diceva 242 dove i segni della faccia erano 114.
+	var mine: Dictionary = Effect.source(
+		"face_action", asset_id, entity_id,
+		int(source.get("act", 0)), int(source.get("round", 0)),
+		int(world["effect_sequence"])
+	)
+	var applied: Array = []
+	for pair in [["puts_tag", true], ["clears_tag", false]]:
+		var field: String = str((pair as Array)[0])
+		var puts: bool = bool((pair as Array)[1])
+		for tag in face.get(field, []):
+			var effect: Dictionary = _sign_effect(
+				str(tag), puts, entity_id, region_id, other_id, mine
+			)
+			if effect.is_empty():
+				continue
+			applier.apply(effect)
+			applied.append(effect)
+	return applied
+
+
+## L'Effetto di un segno, scelto dall'ambito che il dizionario gli da'. Vuoto
+## quando quel segno non ha, in questa mossa, un soggetto su cui stare.
+func _sign_effect(
+	tag: String, puts: bool, entity_id: String, region_id: String,
+	other_id: String, source: Dictionary
+) -> Dictionary:
+	var known: Variant = data.tags.get(tag)
+	var scopes: Array = [] if known == null else (known as Dictionary).get("scope", []) as Array
+	if scopes.has("GLOBAL"):
+		return Effect.make(
+			"SET_GLOBAL_TAG" if puts else "REMOVE_GLOBAL_TAG",
+			"global", "", {"tag": tag}, source
+		)
+	if scopes.has("REGION"):
+		if region_id == "":
+			return {}
+		return Effect.make(
+			"SET_REGION_TAG" if puts else "REMOVE_REGION_TAG",
+			"region", region_id, {"tag": tag}, source
+		)
+	if scopes.has("ENTITY"):
+		# La casa nominata dall'azione se c'e'; altrimenti chi ha giocato, che
+		# e' l'unica altra casa che quella mossa sta toccando di sicuro.
+		var who: String = other_id if other_id != "" else entity_id
+		return Effect.make(
+			"SET_ENTITY_TAG" if puts else "REMOVE_ENTITY_TAG",
+			"entity", who, {"tag": tag}, source
+		)
+	return {}
+
+
 func _resonance(
 	entity_id: String, asset_id: String, played: Dictionary, source: Dictionary
 ) -> Array:

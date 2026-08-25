@@ -2763,6 +2763,44 @@ e' in gioco.
 
 ---
 
+### 74. I segni stampati che non trovano dove stare (passo 1bis)
+
+`motore` · `regole` · `da-misurare` · **aperta in 0.1.245**
+([D-283](DECISIONS.md#d-283))
+
+Con D-283 le Azioni stampate posano i loro segni. Su 100 anni: **851 segni
+stampati sulle Azioni calate, 537 posati, 314 senza un soggetto** — quasi tutti
+condizioni di Regione (`condition:contested` 160 volte) su mosse che una Regione
+non la nominano: INFLUENZARE parla a una domanda, FORGIARE a una casa.
+
+Non si scrivono altrove — sarebbe posare un segnalino dove al tavolo nessuno
+saprebbe metterlo — quindi la carta dice una cosa che non succede. Al tavolo la
+risposta c'è già: **il bersaglio è stampato sulla faccia**, a segni (D-274).
+Serve che la scelta del posto arrivi anche ai verbi che oggi non la chiedono.
+
+**Fatto quando** i segni senza soggetto sono zero su 100 anni, e il cancello
+tiene.
+
+---
+
+### 75. Ventisette Memorie che nessuno legge
+
+`contenuto` · `debito` · **aperta in 0.1.245**
+([la diagnosi](DIAGNOSI_PUNTO_ZERO.md#33-le-memorie-esistono-ma-nessuno-le-scriveva))
+
+Il dizionario ha **80 voci di categoria MEMORY**; **27 hanno `read_by` vuoto**.
+Una memoria scritta e mai letta è un segnalino che si posa e non serve a niente:
+la metà buona della memoria del mondo — i patti, i miracoli, i martiri — oggi
+non cambia nessuna partita.
+
+Vanno legate a chi le deve leggere: le clausole dei Destini, le condizioni di
+ingresso delle Tensioni, il setup della Chronicle successiva.
+
+**Fatto quando** nessuna voce MEMORY ha `read_by` vuoto, e ogni memoria scritta
+in 100 anni viene letta almeno una volta.
+
+---
+
 ### 73. Nessuna prova lega la domanda a quello che si può toccare
 
 `ux` · `motore` · `debito` · **aperta e in parte chiusa in 0.1.243**

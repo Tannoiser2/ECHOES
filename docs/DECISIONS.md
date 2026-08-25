@@ -10,6 +10,76 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-283 — La faccia è la verità: entrambe le Azioni stampate si giocano
+
+**implemented in 0.1.245** — passo 1 del brief del Punto Zero
+
+> «Rendere entrambe le azioni delle carte Asset realmente eseguibili dal motore
+> e visibili nell'app.»
+
+**Com'era.** Una carta si poteva calare **solo col verbo dichiarato** in
+`card_action.kind`. La seconda Azione stampata era inchiostro — anche quando
+portava già un verbo che il motore sa fare, e lo porta in **37 carte su 48**. E
+i segni che le Azioni posano (`puts_tag`, `clears_tag`: 71 occorrenze su 33
+segni diversi) non venivano eseguiti mai.
+
+**La regola nuova, in una riga: i verbi di una carta sono quelli stampati sulla
+sua faccia.** Chi gioca dice *quale delle due Azioni* sta calando — `face_action`
+è l'indice — e il verbo viene da lì. Senza indice si ricade sul verbo dichiarato,
+che è quello che fanno i salvataggi vecchi.
+
+**E i segni stampati si posano davvero**, ognuno dove il dizionario dice che vive
+(D-259): GLOBAL sul mondo, REGION sulla Regione che l'azione ha nominato, ENTITY
+sulla casa. Sono loro a rendere **diverse** le due metà: **29 carte su 48
+stampano lo stesso verbo due volte**, e senza i segni le due metà farebbero la
+stessa identica cosa — una scelta finta, quella che il validatore vieta alle
+Tensioni.
+
+**Il segno stampato si firma** (`kind: "face_action"`, la regola di D-030): nello
+stesso istante il verbo posa segni suoi — TRAMARE lascia le sue scoperte — e
+senza la firma non si distinguono. La prima stesura della sonda li contava
+insieme e diceva 242 dove i segni della faccia erano 114.
+
+**Taratura d'autore, dichiarata.** Fra due metà dello stesso verbo il cervello
+sceglie sui segni: una condizione che cade sulla mia terra o su casa mia pesa
+contro, una che cade altrove pesa a favore, una memoria vale poco e sempre
+positiva, e a parità vince la prima — quella che la carta stampa per prima.
+Senza questa regola il cervello avrebbe sempre giocato la prima metà.
+
+**Misure** (100 anni, tavolo misto):
+
+| | prima | dopo |
+|---|---|---|
+| carte calate con la **seconda** Azione | 0 | **235 su 1.412 (16,6%)** |
+| segni stampati posati sul mondo | 0 | **537** (su 851 stampati) |
+| carte pescate che si calano | 23,2% | 24,5% |
+| RIVENDICARE calato | 19,6% | **33,0%** |
+| FORGIARE calato | 5,9% | 8,0% |
+| si passa | 84,3% | **82,3%** |
+
+**Il costo, scritto.** Il passare scende di due punti, non dei venticinque che
+speravo: la prima ragione per cui un seggio passa non erano i verbi della mano
+— è *«mosse legali, nessuna che gli servisse»*, che sale dal 54,7% al 65,1% dei
+passa. È **appetito del cervello**, non grammatica delle carte, e va aggredita
+da lì. Restano **314 segni su 851** che non trovano il proprio soggetto (una
+condizione di Regione in una mossa che non nomina nessuna Regione): non si
+scrivono altrove, si contano, ed è il passo 1bis della diagnosi.
+
+**Una conseguenza da guardare, committente.** Con la faccia come verità,
+`AST_BONDS_OLD_DEBT` — che dichiara RIVENDICARE e stampa INFLUENZARE e
+FORGIARE — smette di essere una carta da RIVENDICARE. È la vecchia questione
+aperta, risolta *di fatto* in favore della faccia. Se la vuoi RIVENDICARE, la
+faccia deve stamparlo.
+
+**Prove**: `test_both_printed_actions.gd` — la seconda metà lascia il suo segno,
+il segno si firma, si disfa (è un Effect col suo inverso), un segno senza
+soggetto non finisce altrove, e la scatola così com'è spedita offre **due voci**
+per una carta a due metà, coi nomi stampati sulla faccia.
+
+**Sonda**: `cli/run_mark_probe.gd`.
+
+---
+
 ## D-282 — La colonna di destra si legge: un blocco, una riga che dice cos'è
 
 **implemented in 0.1.244** — parola del committente

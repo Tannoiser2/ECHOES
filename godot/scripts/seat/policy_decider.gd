@@ -761,11 +761,12 @@ func _as_card_play(
 		if kind == "PASS" or kind == "PLAY_ECHO" or kind == "PLAY_CARD":
 			continue
 		var wanted: Dictionary = (wish as Dictionary).get("params", {}) as Dictionary
-		var card: String = _card_that_says(entity_id, kind, wanted, session)
-		if card == "":
+		var card: Dictionary = _card_that_says(entity_id, kind, wanted, session)
+		if card.is_empty():
 			continue
 		var params: Dictionary = wanted.duplicate()
-		params["asset_id"] = card
+		params["asset_id"] = str(card["asset_id"])
+		params["face_action"] = int(card["face_action"])
 		return {"template": "PLAY_CARD", "params": params}
 	var fallback: Dictionary = _whatever_the_hand_allows(entity_id, session)
 	return fallback if not fallback.is_empty() else {"template": "PASS", "params": {}}
@@ -807,7 +808,7 @@ func _widen_the_tap(entity_id: String, session: RefCounted) -> Dictionary:
 		# faccia, una Regione dove nessuna carta MUOVERE in mano arriva non e'
 		# un rubinetto — e' un desiderio muto. La coppia luogo+carta si sceglie
 		# insieme, com'e' al tavolo: prima si guarda la carta, poi la mappa.
-		if _card_that_says(entity_id, "MOVE", {"region_id": str(region_id)}, session) == "":
+		if _card_that_says(entity_id, "MOVE", {"region_id": str(region_id)}, session).is_empty():
 			continue
 		var gain: int = 0
 		for family in (session.data.regions[str(region_id)] as Dictionary).get(
@@ -839,15 +840,17 @@ func _hand_weakest_first(entity_id: String, session: RefCounted) -> Array:
 	return hand
 
 
+## La carta che dice quell'intenzione, **e quale delle sue Azioni stampate**
+## (D-283). Vuoto se la mano non ne ha nessuna.
 func _card_that_says(
 	entity_id: String, kind: String, wanted: Dictionary, session: RefCounted
-) -> String:
+) -> Dictionary:
 	for asset_id in _hand_weakest_first(entity_id, session):
 		var card: Variant = session.data.assets.get(str(asset_id))
 		if card == null:
 			continue
 		var action: Dictionary = (card as Dictionary).get("card_action", {}) as Dictionary
-		if action.is_empty() or str(action.get("kind", "")) != kind:
+		if action.is_empty():
 			continue
 		# Cio' che la carta fissa non si contratta: se dice -1 e il seggio
 		# voleva +1, quella carta non dice quell'intenzione.
@@ -859,11 +862,76 @@ func _card_that_says(
 				break
 		if clashes:
 			continue
-		var params: Dictionary = wanted.duplicate()
-		params["asset_id"] = str(asset_id)
-		if session.actions.can_execute(entity_id, "PLAY_CARD", params):
-			return str(asset_id)
-	return ""
+		var best: int = -1
+		var best_score: int = 0
+		for index in _printed_actions(card as Dictionary, kind):
+			var params: Dictionary = wanted.duplicate()
+			params["asset_id"] = str(asset_id)
+			params["face_action"] = int(index)
+			if not session.actions.can_execute(entity_id, "PLAY_CARD", params):
+				continue
+			var score: int = _face_score(
+				card as Dictionary, int(index), entity_id, wanted, session
+			)
+			if best < 0 or score > best_score:
+				best = int(index)
+				best_score = score
+		if best >= 0:
+			return {"asset_id": str(asset_id), "face_action": best}
+	return {}
+
+
+## Gli indici delle Azioni stampate che usano quel verbo.
+static func _printed_actions(card: Dictionary, kind: String) -> Array:
+	var out: Array = []
+	var printed: Array = (card.get("physical", {}) as Dictionary).get("actions", []) as Array
+	for index in range(printed.size()):
+		if str((printed[index] as Dictionary).get("template", "")) == kind:
+			out.append(index)
+	return out
+
+
+## **Quale delle due meta' conviene** (D-283, taratura d'autore dichiarata).
+##
+## Ventinove carte su quarantotto stampano lo stesso verbo due volte: le due
+## meta' si distinguono solo per i **segni** che posano, ed e' quindi sui segni
+## che si sceglie. La regola e' piccola e situazionale, come quella
+## dell'economia del Consiglio (D-280): un segno che cade su casa mia o sulla
+## mia terra pesa contro, uno che cade altrove pesa a favore, e a parita' vince
+## la prima meta' — che e' quella che la carta stampa per prima.
+func _face_score(
+	card: Dictionary, index: int, entity_id: String, wanted: Dictionary,
+	session: RefCounted
+) -> int:
+	var printed: Array = (card.get("physical", {}) as Dictionary).get("actions", []) as Array
+	var face: Dictionary = printed[index] as Dictionary
+	var region_id: String = str(wanted.get("region_id", ""))
+	var mine: bool = false
+	if region_id != "":
+		var region: Dictionary = (session.world["regions"] as Dictionary).get(
+			region_id, {}
+		) as Dictionary
+		mine = str(region.get("control", "")) == entity_id
+	var score: int = 0
+	for tag in face.get("puts_tag", []):
+		var known: Variant = session.data.tags.get(str(tag))
+		if known == null:
+			continue
+		var category: String = str((known as Dictionary).get("category", ""))
+		var scopes: Array = (known as Dictionary).get("scope", []) as Array
+		# Una condizione e' un peso: sulla mia terra pesa contro di me, su
+		# quella di un altro pesa a suo carico.
+		if category == "STATE":
+			score += -2 if (mine or scopes.has("ENTITY")) else 2
+		else:
+			score += 1
+	for tag in face.get("clears_tag", []):
+		var known: Variant = session.data.tags.get(str(tag))
+		if known == null:
+			continue
+		# Togliere un peso vale se il peso sta a casa mia.
+		score += 2 if mine else 1
+	return score
 
 
 ## Nessuna carta per quell'intenzione: si guarda cosa la mano sa fare comunque.
@@ -903,6 +971,14 @@ func hand_plays(entity_id: String, session: RefCounted) -> Array:
 			if target == "":
 				continue
 			params["tension_id"] = target
+		# **Ogni Azione stampata e' una voce sua** (D-283): la stessa carta
+		# entra in lista una volta per meta' giocabile, cosi' il distratto —
+		# che pesca da questa lista a caso — puo' pescare anche la seconda.
+		for index in _printed_actions(card as Dictionary, kind):
+			var with_face: Dictionary = params.duplicate()
+			with_face["face_action"] = int(index)
+			if session.actions.can_execute(entity_id, "PLAY_CARD", with_face):
+				out.append({"template": "PLAY_CARD", "params": with_face})
 		if session.actions.can_execute(entity_id, "PLAY_CARD", params):
 			out.append({"template": "PLAY_CARD", "params": params})
 	return out
