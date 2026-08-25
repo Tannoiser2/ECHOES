@@ -2763,6 +2763,47 @@ e' in gioco.
 
 ---
 
+### 72. Il cuore del Consiglio: le due liste sulla carta Tensione
+
+`regole` · `contenuto` · `da-misurare` · **aperta in 0.1.240**
+([D-278](DECISIONS.md#d-278)) · **Fase A chiusa in 0.1.240**
+
+> **Richiamo del committente:** *«nelle tensioni ci dovrebbero essere anche i
+> vantaggi e gli svantaggi che possono essere scelti e proposti durante il
+> consiglio, dove sono? Non sono stati né implementati né misurati. Dovrebbe
+> essere il cuore del gioco.»* Aveva ragione: il meccanismo c'era da D-267,
+> il contenuto no — **il menu dei malus era la stessa coppia su tutte e 60 le
+> carte**, e 40 domande su 107 offrivano una sola proposta.
+
+**Fase A — i malus (fatta).** Le liste `costs` e `failures` sulla faccia della
+carta, 12 Conseguenze nuove, 240 testi diversi, il motore che legge il menu
+dalla carta, la scheda che le mostra, la guardia (controllo 18) e la sonda.
+Menu distinti: costo **2 → 21**, sfogo **2 → 25**; al tavolo, 34 e 34 voci
+diverse lette in 40 anni.
+
+**Fase B — le opportunità (aperta).** Il proponente sceglie ancora dentro 12
+menu condivisi da 60 carte, e su 40 domande su 107 non sceglie affatto. Serve
+`physical.opportunities` su ogni carta — almeno due per Domanda, ognuna con la
+sua Conseguenza di successo — e la misura di quante proposte diverse arrivano
+davvero al tavolo. Da fare guardando il numero del passa (ISSUES 68): dare
+scelta al proponente sposta quel numero, in un verso o nell'altro, e va
+scritto.
+
+**Fase C — soglia e velo (aperta).** *«C'è ancora la soglia e se è velata o
+palese, direi che bisogna aggiornare in base alle ultime cose dette.»* Sul
+tavolo pescato il Consiglio lo apre **il Tema più caldo** (D-260/D-261), non
+la soglia della singola questione: la soglia sopravvive come euristica del
+cervello e come lettura del pannello, e sulla carta stampata promette una
+regola che non c'è più. Il velo invece è ancora vivo (TRAMARE scopre), ma con
+i mucchi coperti (D-203/D-210) al tavolo cambia poco. Da decidere: cosa resta
+stampato sulla faccia, e cosa esce.
+
+**Fatto quando** ogni carta Tensione offre almeno due opportunità per Domanda e
+due malus per lato, la sonda mostra che il tavolo ne legge davvero una fetta
+larga, e sulla faccia non resta stampato niente che il motore non esegua.
+
+---
+
 ### 71. La controproposta del RIVENDICARE non esiste ancora (PZ-5, Fase B)
 
 `regole` · `motore` · **aperta in 0.1.229** ([D-267](DECISIONS.md#d-267)) ·

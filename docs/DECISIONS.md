@@ -10,6 +10,92 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-278 — Le due liste sulla carta Tensione: il cuore, misurato
+
+**implemented in 0.1.240 (Fase A)** — richiamo del committente, e aveva ragione
+
+> «nelle tensioni ci dovrebbero essere anche i vantaggi e gli svantaggi che
+> possono essere scelti e proposti durante il consiglio, dove sono? Non sono
+> stati né implementati né misurati. Dovrebbe essere il cuore del gioco.»
+
+**Quello che ho trovato guardando, prima di rispondere.** Il *meccanismo*
+c'era: il proponente sceglie fra le proposte (D-267/D-268), il primo del fronte
+avverso posa la pedina del prezzo e una voce sola scatta. Il *contenuto* no, e
+i numeri lo dicevano senza appello:
+
+| | prima |
+|---|---|
+| carte con un menu di proposte proprio | **8 su 60** (52 condividono 4 template generici di dominio) |
+| menu di proposte distinti in tutto il gioco | **12** per 60 carte |
+| **menu di malus distinti in tutto il gioco** | **1** — la stessa coppia `CNS_COST_UNREST`/`CNS_COST_DEBT` su **tutte e sessanta** |
+| domande con una sola proposta (nessuna scelta) | **40 su 107** |
+
+Cioè: al tavolo, la scelta del fronte avverso era sempre la stessa coppia, e su
+40 domande su 107 il proponente non sceglieva niente. Una regola c'era; il
+gioco che quella regola dovrebbe reggere, no.
+
+**La decisione: le due liste stanno sulla carta**, come sta la Domanda (D-266).
+Il blocco `physical` della Tensione porta `costs`, `failures` e (Fase B)
+`opportunities`; ogni voce ha **le sue parole** e la Conseguenza che il motore
+esegue. Il motore legge il menu del prezzo **dalla faccia della carta**, e il
+pool del template resta il ripiego dichiarato per chi una faccia non ce l'ha.
+
+**Fase A, fatta qui — i malus:**
+
+1. **La tavolozza del prezzo**: dodici Conseguenze nuove (sei costi, sei
+   sfoghi), ognuna che toglie una cosa diversa — razione, guardia, spopolamento,
+   spremitura, lutto, parola fredda; conteso, strada chiusa, razzia, abbandono,
+   voce che corre, domanda incisa sul muro. Due voci che tolgono la stessa cosa
+   non sono una scelta.
+2. **Le 60 carte** portano due costi e due sfoghi ciascuna, **240 testi tutti
+   diversi**, scritti per la loro domanda.
+3. **Il tavolo legge le parole della carta**: il verbale e la console mostrano
+   la voce com'è scritta, non il titolo della Conseguenza.
+4. **La scheda della domanda le mostra** — e per tutte: cercando il template
+   solo per id, la scheda diceva *«Nessun Consiglio scritto per questa domanda»*
+   su **52 domande su 60**. Adesso lo trova come lo trova il motore.
+5. **Il segno della domanda caduta è del motore, non del malus.** Lo scriveva
+   `CNS_FAILURE_SPIRAL`, una voce fra le tante: con lo sfogo scelto dagli
+   avversari, il mondo si sarebbe ricordato della caduta *solo se l'avversario
+   avesse scelto la voce giusta*. Che una proposta sia caduta è un fatto del
+   tavolo e resta sul tavolo comunque.
+6. **Guardia (controllo 18) e sonda.** Il validatore rifiuta liste monche, voci
+   con la stessa Conseguenza, testi identici, Conseguenze inesistenti — e il
+   self-test lo pianta su due difetti nuovi (14 in tutto). La sonda del prezzo
+   conta **quante voci diverse il tavolo ha davvero letto**.
+
+**I numeri, dopo:**
+
+| | prima | dopo |
+|---|---|---|
+| menu di costo distinti | 2 | **21** |
+| menu di sfogo distinti | 2 | **25** |
+| voci di costo diverse in gioco | 2 | **8** |
+| voci di sfogo diverse in gioco | 2 | **8** |
+| testi distinti sulle carte | 0 | **240 su 240** |
+| voci di costo lette al tavolo (40 anni, CHR_00) | ≤2 | **34** |
+| voci di sfogo lette al tavolo (40 anni, CHR_00) | ≤2 | **34** |
+
+Cancello: **0 seggi bloccati su 8** (misto e uniforme, 100 semi). Suite
+**564 prove / 24.886 asserzioni**.
+
+**Quello che costa, scritto.** Il malus adesso morde la questione di cui si sta
+parlando invece di una lontana (`$tension` invece di un id fisso): il piano di
+simulazione `plan_d_crown_calls` chiude l'ultimo Consiglio con
+`SUCCESS_WITH_COST` dove prima faceva `SUCCESS` — il tavolo arriva all'ultimo
+dibattito un gradino più in basso. È il prezzo della scelta vera, ed è scritto
+nel piano. Sette segni nuovi nascono **muti con ragione** (dichiarati nel
+dizionario e nel registro): si leggono sul tavolo, nessuna clausola del motore
+li interroga ancora — `condition:guarded` è il primo candidato a mordere.
+
+**Resta aperto, e va detto:** la Fase A ha dato al fronte avverso la sua metà
+del cuore. **Le opportunità del proponente sono ancora quelle dei 12 menu
+condivisi** (Fase B), e la revisione di **soglia e velo** sulla faccia della
+carta — che con il Calore dei Temi (D-260/D-261) non aprono più niente da soli
+— è la Fase C. ISSUES 72.
+
+---
+
 ## D-277 — Le dieci tessere dipinte: ogni Regione ha il suo quadro
 
 **implemented in 0.1.239** — consegna del committente, «queste le tessere delle 10 regioni»

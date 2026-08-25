@@ -5,6 +5,34 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.240 — Le due liste sulla carta Tensione: il cuore, misurato (D-278, Fase A)
+
+- **Richiamo del committente**, e aveva ragione: il meccanismo della scelta al
+  Consiglio c'era (D-267/D-268), il contenuto no. Misurato prima di toccare:
+  **8 carte su 60** avevano un menu di proposte proprio, **40 domande su 107**
+  ne offrivano una sola, e il menu dei malus era **la stessa coppia per tutte
+  e sessanta le carte**.
+- **Le due liste stanno sulla carta**, come la Domanda (D-266): il blocco
+  `physical` della Tensione porta `costs` e `failures` (le `opportunities`
+  sono la Fase B), ogni voce con le sue parole e la Conseguenza che esegue. Il
+  motore legge il menu del prezzo **dalla faccia della carta**; il pool del
+  template resta il ripiego.
+- **Tavolozza del prezzo**: 12 Conseguenze nuove che tolgono cose diverse.
+  **240 testi tutti diversi** sulle 60 carte.
+- Il verbale e la console leggono **le parole della carta**; la scheda della
+  domanda mostra le due liste — e adesso trova il Consiglio anche per le 52
+  carte che non ne nominano uno proprio (prima diceva loro «Nessun Consiglio
+  scritto»).
+- **Il segno della domanda caduta lo scrive il motore**, non il malus scelto.
+- Guardia nuova (controllo 18) e self-test su 14 difetti piantati; la sonda
+  del prezzo conta le voci diverse lette al tavolo.
+- Misure: menu di costo distinti **2 → 21**, di sfogo **2 → 25**; al tavolo,
+  in 40 anni, **34 costi e 34 sfoghi diversi** letti (prima: al massimo 2 e 2).
+  Cancello **0/8** su 100 semi; suite **564 prove / 24.886 asserzioni**.
+- Costo dichiarato: il malus morde adesso la questione in discussione, e
+  `plan_d_crown_calls` chiude con `SUCCESS_WITH_COST` dove faceva `SUCCESS`.
+  Sette segni nuovi nascono muti con ragione.
+
 ## 0.1.239 — Le dieci tessere dipinte (D-277)
 
 - **Consegna del committente**: le illustrazioni delle dieci tessere del

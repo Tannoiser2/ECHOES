@@ -128,6 +128,118 @@
           },
           "description": "Question ids from the Confluence template that this Tension may raise."
         },
+        "physical": {
+          "type": "object",
+          "description": "La faccia fisica della carta Tensione (D-278): le due liste che si leggono al tavolo quando la carta e' girata. Il proponente sceglie fra le opportunita', il fronte avverso fra i malus.",
+          "additionalProperties": false,
+          "properties": {
+            "opportunities": {
+              "type": "array",
+              "minItems": 2,
+              "description": "Cosa il proponente puo' promettere. Almeno due per Domanda: una sola non e' una scelta.",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "text",
+                  "gives"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[A-Z0-9_]+$",
+                    "description": "Id della voce, unico dentro la carta."
+                  },
+                  "text": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Come si legge sulla carta, al tavolo."
+                  },
+                  "gives": {
+                    "type": "string",
+                    "pattern": "^CNS_[A-Z0-9_]+$",
+                    "description": "La Conseguenza che il motore esegue quando questa voce scatta."
+                  },
+                  "question_id": {
+                    "type": "string",
+                    "description": "Solo per le opportunita': a quale Domanda della carta risponde."
+                  }
+                }
+              }
+            },
+            "costs": {
+              "type": "array",
+              "minItems": 2,
+              "description": "Il prezzo che il fronte avverso puo' imporre se la proposta passa pagando (la pedina del prezzo, D-267).",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "text",
+                  "takes"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[A-Z0-9_]+$",
+                    "description": "Id della voce, unico dentro la carta."
+                  },
+                  "text": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Come si legge sulla carta, al tavolo."
+                  },
+                  "takes": {
+                    "type": "string",
+                    "pattern": "^CNS_[A-Z0-9_]+$",
+                    "description": "La Conseguenza che il motore esegue quando questa voce scatta."
+                  },
+                  "question_id": {
+                    "type": "string",
+                    "description": "Solo per le opportunita': a quale Domanda della carta risponde."
+                  }
+                }
+              }
+            },
+            "failures": {
+              "type": "array",
+              "minItems": 2,
+              "description": "Lo sfogo che il fronte avverso puo' imporre se la proposta cade.",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "text",
+                  "takes"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[A-Z0-9_]+$",
+                    "description": "Id della voce, unico dentro la carta."
+                  },
+                  "text": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Come si legge sulla carta, al tavolo."
+                  },
+                  "takes": {
+                    "type": "string",
+                    "pattern": "^CNS_[A-Z0-9_]+$",
+                    "description": "La Conseguenza che il motore esegue quando questa voce scatta."
+                  },
+                  "question_id": {
+                    "type": "string",
+                    "description": "Solo per le opportunita': a quale Domanda della carta risponde."
+                  }
+                }
+              }
+            }
+          }
+        },
         "triggers": {
           "type": "array",
           "items": {

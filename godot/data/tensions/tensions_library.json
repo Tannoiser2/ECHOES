@@ -24,6 +24,32 @@
         "Q_ANY_WHO_HOLDS",
         "Q_ANY_WHOSE_LAW"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_PALI_RESTANO",
+            "text": "Passa, ma i pali restano, e chi li ha piantati si tiene la guardia.",
+            "takes": "CNS_COST_GUARD"
+          },
+          {
+            "id": "C_CHI_LAVORAVA",
+            "text": "Passa, ma chi lavorava quella terra se ne va a cercarne un'altra.",
+            "takes": "CNS_COST_EMPTIED"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_CAMPI_DUE_PADRONI",
+            "text": "Cade, e i campi restano di due padroni, cioe' di nessuno.",
+            "takes": "CNS_FAILURE_CONTESTED"
+          },
+          {
+            "id": "F_PALI_NOTTE",
+            "text": "Cade, e la notte dopo i pali sono di piu'.",
+            "takes": "CNS_FAILURE_PLUNDER"
+          }
+        ]
+      },
       "triggers": [
         "Ogni recinto alzato senza un titolo.",
         "Ogni raccolto conteso fra chi semina e chi possiede."
@@ -65,6 +91,32 @@
         "Q_ANY_WHO_DECIDES",
         "Q_ANY_WHO_STAYS"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_RIPOSO",
+            "text": "Passa, ma un campo su tre riposa, e quel terzo manca alla tavola.",
+            "takes": "CNS_COST_RATION"
+          },
+          {
+            "id": "C_SPREMUTA",
+            "text": "Passa, ma si spreme quello che resta: rende adesso, non l'anno prossimo.",
+            "takes": "CNS_COST_EXPLOITED"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_TERRA_STANCA",
+            "text": "Cade, e la terra continua a rendere corto: si litiga sui confini buoni.",
+            "takes": "CNS_FAILURE_CONTESTED"
+          },
+          {
+            "id": "F_CAMPI_LASCIATI",
+            "text": "Cade, e i campi peggiori li lascia andare chiunque li avesse.",
+            "takes": "CNS_FAILURE_ABANDONED"
+          }
+        ]
+      },
       "triggers": [
         "Ogni semina forzata su un campo che chiedeva riposo.",
         "Ogni anno magro contato come sfortuna."
@@ -106,6 +158,32 @@
         "Q_ANY_WHO_DECIDES",
         "Q_ANY_WHO_STAYS"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_BRACCIA_PAGATE",
+            "text": "Passa, ma le braccia si pagano, e le casse si svuotano.",
+            "takes": "CNS_COST_DEBT"
+          },
+          {
+            "id": "C_CHI_RESTA_FUORI",
+            "text": "Passa, ma chi resta senza terra parte, e il posto accanto si assottiglia.",
+            "takes": "CNS_COST_EMPTIED"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_SI_CONTANO",
+            "text": "Cade, e i braccianti si contano fra loro: la piazza non si svuota.",
+            "takes": "CNS_FAILURE_CONTESTED"
+          },
+          {
+            "id": "F_RACCOLTO_PRESO",
+            "text": "Cade, e il raccolto lo raccoglie chi arriva prima.",
+            "takes": "CNS_FAILURE_PLUNDER"
+          }
+        ]
+      },
       "triggers": [
         "Ogni stagione lavorata senza un patto scritto.",
         "Ogni paga data in promesse."
@@ -144,6 +222,32 @@
         "Q_ANY_WHO_DECIDES",
         "Q_ANY_WHO_STAYS"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_ARGINI",
+            "text": "Passa, ma gli argini si pagano, e si pagano adesso.",
+            "takes": "CNS_COST_DEBT"
+          },
+          {
+            "id": "C_CAMPI_BASSI",
+            "text": "Passa, ma i campi bassi si perdono: chi li lavorava se ne va.",
+            "takes": "CNS_COST_EMPTIED"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_ACQUA_SALE",
+            "text": "Cade, e l'acqua prende il posto accanto, che resta tagliato fuori.",
+            "takes": "CNS_FAILURE_CUT_OFF"
+          },
+          {
+            "id": "F_PIETRA_BIANCA",
+            "text": "Cade, e resta scritto dove l'acqua e' arrivata.",
+            "takes": "CNS_FAILURE_WALL"
+          }
+        ]
+      },
       "triggers": [
         "Ogni stagione di pioggia senza mani sugli argini.",
         "Ogni canale interrato lasciato interrato."
@@ -184,6 +288,32 @@
         "Q_ANY_WHO_PAYS",
         "Q_ANY_WHO_KEEPS"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_BOSCO_ARRETRA",
+            "text": "Passa, ma il bosco arretra di un campo, e rende una volta sola.",
+            "takes": "CNS_COST_EXPLOITED"
+          },
+          {
+            "id": "C_LEGNA_A_CHI",
+            "text": "Passa, ma la legna si conta, e non tocca a tutti.",
+            "takes": "CNS_COST_RATION"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_ASCE_LO_STESSO",
+            "text": "Cade, e le asce entrano lo stesso, senza che nessuno le conti.",
+            "takes": "CNS_FAILURE_PLUNDER"
+          },
+          {
+            "id": "F_MARGINE_CONTESO",
+            "text": "Cade, e il margine resta conteso fra chi taglia e chi vive li'.",
+            "takes": "CNS_FAILURE_CONTESTED"
+          }
+        ]
+      },
       "triggers": [
         "Ogni taglio oltre il segno.",
         "Ogni fornace accesa col legno dei confini."
@@ -224,6 +354,32 @@
         "Q_ANY_WHO_HOLDS",
         "Q_ANY_WHOSE_LAW"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_PIETRE_SORVEGLIATE",
+            "text": "Passa, ma da adesso le pietre si sorvegliano.",
+            "takes": "CNS_COST_GUARD"
+          },
+          {
+            "id": "C_PAROLA_FREDDA",
+            "text": "Passa, ma chi ha ceduto un palmo di terra se lo ricorda.",
+            "takes": "CNS_COST_COLD_WORD"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_CONFINE_APERTO",
+            "text": "Cade, e il confine resta dove ognuno dice che sia.",
+            "takes": "CNS_FAILURE_CONTESTED"
+          },
+          {
+            "id": "F_PIETRA_NUOVA",
+            "text": "Cade, e la notte dopo compare un'altra pietra dove non era.",
+            "takes": "CNS_FAILURE_PLUNDER"
+          }
+        ]
+      },
       "triggers": [
         "Ogni pietra spostata di notte.",
         "Ogni mappa che non combacia con quella del vicino."
@@ -262,6 +418,32 @@
         "Q_ANY_WHO_HOLDS",
         "Q_ANY_WHOSE_LAW"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_TURNI_ERBA",
+            "text": "Passa, ma si pascola a turni, e l'erba basta a meta'.",
+            "takes": "CNS_COST_RATION"
+          },
+          {
+            "id": "C_UN_GREGGE_VA",
+            "text": "Passa, ma un gregge deve andarsene, e con lui la sua gente.",
+            "takes": "CNS_COST_EMPTIED"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_DUE_GREGGI",
+            "text": "Cade, e i due greggi restano sullo stesso pascolo.",
+            "takes": "CNS_FAILURE_CONTESTED"
+          },
+          {
+            "id": "F_CANI_GROSSI",
+            "text": "Cade, e la notte qualcuno torna con meno capi di quanti ne aveva.",
+            "takes": "CNS_FAILURE_PLUNDER"
+          }
+        ]
+      },
       "triggers": [
         "Ogni gregge oltre il segno.",
         "Ogni pozzo conteso a bastonate."
@@ -303,6 +485,32 @@
         "Q_ANY_WHO_PAYS",
         "Q_ANY_WHO_KEEPS"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_VASCHE_SPREMUTE",
+            "text": "Passa, ma le vasche si spremono oltre la stagione.",
+            "takes": "CNS_COST_EXPLOITED"
+          },
+          {
+            "id": "C_SALE_A_DEBITO",
+            "text": "Passa, ma il sale e' gia' impegnato per pagare altro.",
+            "takes": "CNS_COST_DEBT"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_VASCHE_CONTESE",
+            "text": "Cade, e le vasche restano di chi ci mette gli uomini.",
+            "takes": "CNS_FAILURE_CONTESTED"
+          },
+          {
+            "id": "F_SALE_SPARISCE",
+            "text": "Cade, e il sale comincia a sparire prima del registro.",
+            "takes": "CNS_FAILURE_PLUNDER"
+          }
+        ]
+      },
       "triggers": [
         "Ogni vasca nuova scavata su terra da pascolo.",
         "Ogni carico di sale partito senza dazio."
@@ -344,6 +552,32 @@
         "Q_ANY_WHO_HOLDS",
         "Q_ANY_WHOSE_LAW"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_MISURATORI",
+            "text": "Passa, ma i misuratori girano con la scorta.",
+            "takes": "CNS_COST_GUARD"
+          },
+          {
+            "id": "C_CHI_NON_SI_SCRIVE",
+            "text": "Passa, ma chi non vuole essere scritto se ne va prima del catasto.",
+            "takes": "CNS_COST_EMPTIED"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_NIENTE_REGISTRO",
+            "text": "Cade, e la terra resta di chi la dice sua piu' forte.",
+            "takes": "CNS_FAILURE_CONTESTED"
+          },
+          {
+            "id": "F_FORCONI",
+            "text": "Cade, e al quarto villaggio i misuratori non ci arrivano proprio.",
+            "takes": "CNS_FAILURE_RUMOUR"
+          }
+        ]
+      },
       "triggers": [
         "Ogni misura presa contro la volonta' di chi abita.",
         "Ogni pagina del registro contestata."
@@ -384,6 +618,32 @@
         "Q_ANY_WHO_DECIDES",
         "Q_ANY_WHO_STAYS"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_PANE_PELLEGRINI",
+            "text": "Passa, ma le bocche in piu' si nutrono a razione.",
+            "takes": "CNS_COST_RATION"
+          },
+          {
+            "id": "C_STRADA_SORVEGLIATA",
+            "text": "Passa, ma la strada dei pellegrini si presidia.",
+            "takes": "CNS_COST_GUARD"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_ACCAMPATI",
+            "text": "Cade, e l'accampamento fuori porta diventa piu' grande del paese.",
+            "takes": "CNS_FAILURE_CONTESTED"
+          },
+          {
+            "id": "F_PROVVISTE",
+            "text": "Cade, e chi ha camminato per mesi prende quello che trova.",
+            "takes": "CNS_FAILURE_PLUNDER"
+          }
+        ]
+      },
       "triggers": [
         "Ogni carovana di fedeli senza scorta ne' scorte.",
         "Ogni villaggio che chiude i pozzi ai pellegrini."
@@ -422,6 +682,32 @@
         "Q_ANY_WHO_HOLDS",
         "Q_ANY_WHOSE_LAW"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_PREDICA_GUARDATA",
+            "text": "Passa, ma da adesso si sorveglia chi parla e chi ascolta.",
+            "takes": "CNS_COST_GUARD"
+          },
+          {
+            "id": "C_CHI_ASCOLTAVA",
+            "text": "Passa, ma chi ascoltava se ne va dove puo' ascoltare ancora.",
+            "takes": "CNS_COST_EMPTIED"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_NELLE_CASE",
+            "text": "Cade, e la parola nuova passa dalle piazze alle case.",
+            "takes": "CNS_FAILURE_RUMOUR"
+          },
+          {
+            "id": "F_DUE_FEDI",
+            "text": "Cade, e in citta' convivono due fedi che si contendono la stessa gente.",
+            "takes": "CNS_FAILURE_CONTESTED"
+          }
+        ]
+      },
       "triggers": [
         "Ogni predica sulla piazza senza permesso.",
         "Ogni famiglia divisa dalla parola."
@@ -461,6 +747,32 @@
       "possible_questions": [
         "Q_ANY_ANCIENT_WATCH"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_VOTI_PAGATI",
+            "text": "Passa, ma sciogliere i voti costa, e si paga in offerte vere.",
+            "takes": "CNS_COST_DEBT"
+          },
+          {
+            "id": "C_CHI_NON_SCIOGLIE",
+            "text": "Passa, ma chi resta legato al voto porta il lutto della promessa.",
+            "takes": "CNS_COST_MOURNING"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_LISTA_LUNGA",
+            "text": "Cade, e la lista dei voti in sospeso si allunga di un anno.",
+            "takes": "CNS_FAILURE_SPIRAL"
+          },
+          {
+            "id": "F_PROMESSA_ROTTA",
+            "text": "Cade, e qualcuno rompe la promessa per primo, in pubblico.",
+            "takes": "CNS_OATH_BROKEN"
+          }
+        ]
+      },
       "triggers": [
         "Ogni voto rimandato alla stagione dopo.",
         "Ogni giuramento fatto in fretta e male."
@@ -499,6 +811,32 @@
         "Q_ANY_WHO_HOLDS",
         "Q_ANY_WHOSE_LAW"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_CAMPANE_A_ORE",
+            "text": "Passa, ma le campane suonano a ore concesse, e le concede qualcuno.",
+            "takes": "CNS_COST_GUARD"
+          },
+          {
+            "id": "C_LUTTO_DICHIARATO",
+            "text": "Passa, ma si dichiara il lutto, e il lutto resta appeso alla citta'.",
+            "takes": "CNS_COST_MOURNING"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_SILENZIO",
+            "text": "Cade, e il silenzio continua: ognuno gli da' il significato che teme.",
+            "takes": "CNS_FAILURE_RUMOUR"
+          },
+          {
+            "id": "F_TORRI",
+            "text": "Cade, e nessuno sa piu' rispondere a cosa servano le torri.",
+            "takes": "CNS_FAILURE_ABANDONED"
+          }
+        ]
+      },
       "triggers": [
         "Ogni funerale senza rintocco.",
         "Ogni festa passata in silenzio."
@@ -539,6 +877,32 @@
       "possible_questions": [
         "Q_ANY_ANCIENT_WATCH"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_ALTARE_GUARDATO",
+            "text": "Passa, ma l'altare si sorveglia: ci si sbarca a permesso.",
+            "takes": "CNS_COST_GUARD"
+          },
+          {
+            "id": "C_PASSAGGIO_CARO",
+            "text": "Passa, ma il passaggio per l'isola costa, e lo pagano i fedeli.",
+            "takes": "CNS_COST_DEBT"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_BARCHE_PIENE",
+            "text": "Cade, e le barche partono lo stesso, piu' piene di prima.",
+            "takes": "CNS_FAILURE_RUMOUR"
+          },
+          {
+            "id": "F_ALTARE_CONTESO",
+            "text": "Cade, e l'altare resta di chi ci arriva per primo.",
+            "takes": "CNS_FAILURE_CONTESTED"
+          }
+        ]
+      },
       "triggers": [
         "Ogni pellegrinaggio all'isola senza guida.",
         "Ogni offerta lasciata sull'altare vecchio."
@@ -579,6 +943,32 @@
         "Q_ANY_WHO_PAYS",
         "Q_ANY_WHO_KEEPS"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_DECIMA_CONTATA",
+            "text": "Passa, ma la decima si conta due volte, e chi la porta ci rimette.",
+            "takes": "CNS_COST_RATION"
+          },
+          {
+            "id": "C_ESATTORE_GUARDATO",
+            "text": "Passa, ma l'esattore gira con qualcuno che lo controlla.",
+            "takes": "CNS_COST_GUARD"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_META_STRADA",
+            "text": "Cade, e meta' della decima continua a perdersi per strada.",
+            "takes": "CNS_FAILURE_PLUNDER"
+          },
+          {
+            "id": "F_CASA_SULLA_PIAZZA",
+            "text": "Cade, e la casa grande dell'esattore diventa il discorso di tutti.",
+            "takes": "CNS_FAILURE_RUMOUR"
+          }
+        ]
+      },
       "triggers": [
         "Ogni raccolta fatta senza registro.",
         "Ogni esattore che vive meglio dei fedeli."
@@ -619,6 +1009,32 @@
       "possible_questions": [
         "Q_ANY_ANCIENT_WATCH"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_RITO_PAGATO",
+            "text": "Passa, ma il rito per tutti quei morti si paga, e non e' poco.",
+            "takes": "CNS_COST_DEBT"
+          },
+          {
+            "id": "C_LUTTO_PALUDE",
+            "text": "Passa, ma il paese entra in lutto per gente di cui non sa il nome.",
+            "takes": "CNS_COST_MOURNING"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_SENZA_RITO",
+            "text": "Cade, e i morti senza nome restano dove l'acqua li ha lasciati.",
+            "takes": "CNS_FAILURE_ABANDONED"
+          },
+          {
+            "id": "F_BAMBINI",
+            "text": "Cade, e nessuno lascia piu' i bambini giocare verso la palude.",
+            "takes": "CNS_FAILURE_RUMOUR"
+          }
+        ]
+      },
       "triggers": [
         "Ogni corpo affiorato e lasciato dov'era.",
         "Ogni scavo che tocca le sepolture vecchie."
@@ -659,6 +1075,32 @@
       "possible_questions": [
         "Q_ANY_ANCIENT_WATCH"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_SCORTE",
+            "text": "Passa, ma si fanno scorte per la data, e le scorte si tolgono a chi mangia oggi.",
+            "takes": "CNS_COST_RATION"
+          },
+          {
+            "id": "C_CAMPI_VENDUTI",
+            "text": "Passa, ma chi ha venduto i campi per le scorte se ne va.",
+            "takes": "CNS_COST_EMPTIED"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_NUMERO_GIRA",
+            "text": "Cade, e il numero della profezia continua a girare, piu' vicino.",
+            "takes": "CNS_FAILURE_RUMOUR"
+          },
+          {
+            "id": "F_CHI_COMPRA",
+            "text": "Cade, e chi compra i campi a poco se li prende tutti.",
+            "takes": "CNS_FAILURE_PLUNDER"
+          }
+        ]
+      },
       "triggers": [
         "Ogni segno letto come conferma.",
         "Ogni decisione rimandata a dopo la data."
@@ -699,6 +1141,32 @@
         "Q_ANY_WHO_HOLDS",
         "Q_ANY_WHOSE_LAW"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_TEMPIO_GUARDATO",
+            "text": "Passa, ma davanti al tempio resta un presidio, di qua e di la'.",
+            "takes": "CNS_COST_GUARD"
+          },
+          {
+            "id": "C_CHI_HA_CEDUTO_ASILO",
+            "text": "Passa, ma chi ha rinunciato al proprio ricercato lo mette in conto.",
+            "takes": "CNS_COST_COLD_WORD"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_IN_TRE",
+            "text": "Cade, e dentro il tempio adesso sono in tre, e fuori il doppio di ieri.",
+            "takes": "CNS_FAILURE_CONTESTED"
+          },
+          {
+            "id": "F_SOGLIA",
+            "text": "Cade, e qualcuno passa la soglia lo stesso, e prende.",
+            "takes": "CNS_FAILURE_PLUNDER"
+          }
+        ]
+      },
       "triggers": [
         "Ogni asilo concesso a chi ha un conto aperto.",
         "Ogni soglia sacra presidiata da armati."
@@ -737,6 +1205,32 @@
         "Q_ANY_WHO_HOLDS",
         "Q_ANY_WHOSE_LAW"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_INSEGNE",
+            "text": "Passa, ma il reggente tiene i suoi uomini dove conta.",
+            "takes": "CNS_COST_GUARD"
+          },
+          {
+            "id": "C_SIGILLO_PAGATO",
+            "text": "Passa, ma il sigillo si e' comprato con promesse che si pagano.",
+            "takes": "CNS_COST_DEBT"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_REGGENTE_RESTA",
+            "text": "Cade, e il reggente trova un'altra ragione per tenere il sigillo.",
+            "takes": "CNS_FAILURE_CONTESTED"
+          },
+          {
+            "id": "F_INSEGNE_NUOVE",
+            "text": "Cade, e le insegne nuove si vedono in giro prima della decisione.",
+            "takes": "CNS_FAILURE_RUMOUR"
+          }
+        ]
+      },
       "triggers": [
         "Ogni decreto firmato «in vece di».",
         "Ogni mese di reggenza oltre il promesso."
@@ -775,6 +1269,32 @@
         "Q_ANY_WHO_HOLDS",
         "Q_ANY_WHOSE_LAW"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_OSPITI_CHIUSI",
+            "text": "Passa, ma gli «ospiti» restano, e adesso con la guardia alla porta.",
+            "takes": "CNS_COST_GUARD"
+          },
+          {
+            "id": "C_FIGLIO_LONTANO",
+            "text": "Passa, ma una casa perde il suo, e se lo ricorda a ogni tavolo.",
+            "takes": "CNS_COST_COLD_WORD"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_NON_SCRIVE_PIU",
+            "text": "Cade, e l'ospite piu' giovane smette di scrivere a casa.",
+            "takes": "CNS_FAILURE_RUMOUR"
+          },
+          {
+            "id": "F_PATTO_ROTTO",
+            "text": "Cade, e la parola che teneva insieme le case si rompe.",
+            "takes": "CNS_OATH_BROKEN"
+          }
+        ]
+      },
       "triggers": [
         "Ogni ospite trattenuto oltre la stagione.",
         "Ogni lettera di un ostaggio letta prima di partire."
@@ -815,6 +1335,32 @@
         "Q_ANY_WHO_DECIDES",
         "Q_ANY_WHO_STAYS"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_BRACCIA_TOLTE",
+            "text": "Passa, ma le braccia vanno alle armi e mancano al raccolto.",
+            "takes": "CNS_COST_RATION"
+          },
+          {
+            "id": "C_CHI_NON_TORNA",
+            "text": "Passa, e a fine anno qualche famiglia mette il lutto.",
+            "takes": "CNS_COST_MOURNING"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_LEVA_A_META",
+            "text": "Cade, e ogni villaggio manda chi gli pare: nessuno risponde di niente.",
+            "takes": "CNS_FAILURE_SPIRAL"
+          },
+          {
+            "id": "F_CERTIFICATI",
+            "text": "Cade, e al mercato il prezzo dei certificati di malattia raddoppia.",
+            "takes": "CNS_FAILURE_RUMOUR"
+          }
+        ]
+      },
       "triggers": [
         "Ogni chiamata fuori stagione.",
         "Ogni figlio unico preso lo stesso."
@@ -853,6 +1399,32 @@
         "Q_ANY_WHO_PAYS",
         "Q_ANY_WHO_KEEPS"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_CONTROLLI",
+            "text": "Passa, ma ogni ordine va controllato, e i controlli fermano tutto.",
+            "takes": "CNS_COST_GUARD"
+          },
+          {
+            "id": "C_ORDINI_PAGATI",
+            "text": "Passa, ma gli ordini falsi gia' eseguiti si pagano lo stesso.",
+            "takes": "CNS_COST_DEBT"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_DUE_ORDINI",
+            "text": "Cade, e restano due ordini opposti con lo stesso sigillo.",
+            "takes": "CNS_FAILURE_CONTESTED"
+          },
+          {
+            "id": "F_CERA_CORRE",
+            "text": "Cade, e la voce che nessun sigillo vale piu' corre prima degli ordini.",
+            "takes": "CNS_FAILURE_RUMOUR"
+          }
+        ]
+      },
       "triggers": [
         "Ogni ordine eseguito senza verifica.",
         "Ogni sigillo prestato «per una volta sola»."
@@ -894,6 +1466,32 @@
         "Q_ANY_WHO_HOLDS",
         "Q_ANY_WHOSE_LAW"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_CAPOBANDA_TITOLO",
+            "text": "Passa, ma il capobanda tiene il titolo, e con esso i suoi uomini.",
+            "takes": "CNS_COST_GUARD"
+          },
+          {
+            "id": "C_MARGINE_SPREMUTO",
+            "text": "Passa, ma il margine paga per tutti: si spreme quello che rende.",
+            "takes": "CNS_COST_EXPLOITED"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_MARGINE_SOLO",
+            "text": "Cade, e sul confine risponde chi e' piu' vicino, cioe' nessuno di noi.",
+            "takes": "CNS_FAILURE_CONTESTED"
+          },
+          {
+            "id": "F_CARTE_FIRMATE",
+            "text": "Cade, e il «custode» del bosco continua a firmare carte.",
+            "takes": "CNS_FAILURE_RUMOUR"
+          }
+        ]
+      },
       "triggers": [
         "Ogni tributo riscosso da chi non ne ha titolo.",
         "Ogni giudizio emesso fuori dalla legge."
@@ -935,6 +1533,32 @@
         "Q_ANY_WHO_HOLDS",
         "Q_ANY_WHOSE_LAW"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_SEGGIO_COMPRATO",
+            "text": "Passa, ma il seggio in piu' si e' pagato con favori che tornano.",
+            "takes": "CNS_COST_DEBT"
+          },
+          {
+            "id": "C_CHI_HA_VOTATO_NO",
+            "text": "Passa, ma chi ha votato contro tiene il conto aperto.",
+            "takes": "CNS_COST_COLD_WORD"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_SALA_PROPRIA",
+            "text": "Cade, e le case minori continuano a riunirsi nella loro sala.",
+            "takes": "CNS_FAILURE_CONTESTED"
+          },
+          {
+            "id": "F_TAVOLO_FERMO",
+            "text": "Cade, e il tavolo resta com'era: nessuno decide niente.",
+            "takes": "CNS_FAILURE_SPIRAL"
+          }
+        ]
+      },
       "triggers": [
         "Ogni seduta aperta con una disputa sulle sedie.",
         "Ogni voce esclusa che si organizza fuori."
@@ -975,6 +1599,32 @@
         "Q_ANY_WHO_HOLDS",
         "Q_ANY_WHOSE_LAW"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_VETERANI_TENUTI",
+            "text": "Passa, ma i veterani si tengono d'occhio, uno per uno.",
+            "takes": "CNS_COST_GUARD"
+          },
+          {
+            "id": "C_CONGEDO_PAGATO",
+            "text": "Passa, ma il congedo si paga, e costa piu' del previsto.",
+            "takes": "CNS_COST_DEBT"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_TAVERNA",
+            "text": "Cade, e alla settima sera la taverna e' piu' piena di prima.",
+            "takes": "CNS_FAILURE_RUMOUR"
+          },
+          {
+            "id": "F_DUE_ORDINI_ARMI",
+            "text": "Cade, e nelle caserme convivono due ordini che non si parlano.",
+            "takes": "CNS_FAILURE_CONTESTED"
+          }
+        ]
+      },
       "triggers": [
         "Ogni parata con due divise diverse.",
         "Ogni promozione negata a un veterano."
@@ -1013,6 +1663,32 @@
         "Q_ANY_WHO_PAYS",
         "Q_ANY_WHO_KEEPS"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_TRIBUTO_INTERO",
+            "text": "Passa, ma il tributo si paga intero in un anno che ha reso a meta'.",
+            "takes": "CNS_COST_DEBT"
+          },
+          {
+            "id": "C_CHI_NON_PAGA",
+            "text": "Passa, ma chi non riesce a pagare se ne va prima dell'esattore.",
+            "takes": "CNS_COST_EMPTIED"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_LETTERA",
+            "text": "Cade, e la lettera di conteggio del porto diventa famosa.",
+            "takes": "CNS_FAILURE_RUMOUR"
+          },
+          {
+            "id": "F_CASSE_VUOTE",
+            "text": "Cade, e le casse restano vuote: nessuno protegge niente.",
+            "takes": "CNS_FAILURE_SPIRAL"
+          }
+        ]
+      },
       "triggers": [
         "Ogni esattore scortato piu' del necessario.",
         "Ogni villaggio che paga in ritardo due volte."
@@ -1053,6 +1729,32 @@
       "possible_questions": [
         "Q_ANY_ANCIENT_WATCH"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_TURNO_LUNGO",
+            "text": "Passa, ma il turno lungo si fa in due, e il secondo uomo si paga.",
+            "takes": "CNS_COST_DEBT"
+          },
+          {
+            "id": "C_FONDO_CHIUSO",
+            "text": "Passa, ma il fondo si chiude, e la miniera rende meno.",
+            "takes": "CNS_COST_RATION"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_TRE_COLPI",
+            "text": "Cade, e i tre colpi continuano, e adesso arrivano per primi.",
+            "takes": "CNS_FAILURE_RUMOUR"
+          },
+          {
+            "id": "F_NESSUNO_SCENDE",
+            "text": "Cade, e al fondo non scende piu' nessuno.",
+            "takes": "CNS_FAILURE_ABANDONED"
+          }
+        ]
+      },
       "triggers": [
         "Ogni scavo oltre la galleria segnata.",
         "Ogni turno di notte nel fondo."
@@ -1092,6 +1794,32 @@
       "possible_questions": [
         "Q_ANY_ANCIENT_WATCH"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_VIA_VECCHIA_APERTA",
+            "text": "Passa, ma tenere aperta la via vecchia costa braccia tutti i mesi.",
+            "takes": "CNS_COST_DEBT"
+          },
+          {
+            "id": "C_SELCIATO_GUARDATO",
+            "text": "Passa, ma la via vecchia si presidia: non si sa dove porta.",
+            "takes": "CNS_COST_GUARD"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_CHI_LA_USA",
+            "text": "Cade, e chi conosce la via la usa per conto proprio.",
+            "takes": "CNS_FAILURE_PLUNDER"
+          },
+          {
+            "id": "F_STRADA_SEPOLTA",
+            "text": "Cade, e il selciato torna sotto la palude con la prima piena.",
+            "takes": "CNS_FAILURE_ABANDONED"
+          }
+        ]
+      },
       "triggers": [
         "Ogni tratto nuovo scoperto e percorso.",
         "Ogni pietra tolta dal selciato vecchio."
@@ -1132,6 +1860,32 @@
       "possible_questions": [
         "Q_ANY_ANCIENT_WATCH"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_SETTE_VEGLIE",
+            "text": "Passa, ma sette posti vanno vegliati, e le veglie non si interrompono.",
+            "takes": "CNS_COST_GUARD"
+          },
+          {
+            "id": "C_CHI_HA_SOGNATO",
+            "text": "Passa, ma chi ha fatto il sogno tre volte non dorme piu': il paese lo sa.",
+            "takes": "CNS_COST_MOURNING"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_RACCONTI",
+            "text": "Cade, e i racconti dei vecchi smettono di sembrare racconti.",
+            "takes": "CNS_FAILURE_RUMOUR"
+          },
+          {
+            "id": "F_SECONDO_SVEGLIO",
+            "text": "Cade, e nessuno sorveglia il secondo dei sette.",
+            "takes": "CNS_FAILURE_ABANDONED"
+          }
+        ]
+      },
       "triggers": [
         "Ogni segno di risveglio liquidato come caso.",
         "Ogni dormiente disturbato per curiosita'."
@@ -1169,6 +1923,32 @@
       "possible_questions": [
         "Q_ANY_ANCIENT_WATCH"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_ISOLA_VIETATA",
+            "text": "Passa, ma sull'isola si sbarca solo con chi la sorveglia.",
+            "takes": "CNS_COST_GUARD"
+          },
+          {
+            "id": "C_CHI_TORNA",
+            "text": "Passa, ma chi ci ha passato la notte non torna quello di prima.",
+            "takes": "CNS_COST_MOURNING"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_FARO",
+            "text": "Cade, e il faro spento continua ad accendersi, e lo vedono in tanti.",
+            "takes": "CNS_FAILURE_RUMOUR"
+          },
+          {
+            "id": "F_ISOLA_SOLA",
+            "text": "Cade, e all'isola non ci va piu' nessuno, per nessuna ragione.",
+            "takes": "CNS_FAILURE_ABANDONED"
+          }
+        ]
+      },
       "triggers": [
         "Ogni notte passata sull'isola.",
         "Ogni pietra portata via dallo scoglio."
@@ -1208,6 +1988,32 @@
       "possible_questions": [
         "Q_ANY_ANCIENT_WATCH"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_OGGETTO_GUARDATO",
+            "text": "Passa, ma l'oggetto sta sotto guardia, e la guardia chiede il cambio.",
+            "takes": "CNS_COST_GUARD"
+          },
+          {
+            "id": "C_SCAVO_SPINTO",
+            "text": "Passa, ma si scava dove l'hanno trovato, piu' a fondo di prima.",
+            "takes": "CNS_COST_EXPLOITED"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_CHI_LO_TIENE",
+            "text": "Cade, e lo tiene chi ce l'ha in mano adesso.",
+            "takes": "CNS_FAILURE_CONTESTED"
+          },
+          {
+            "id": "F_SPARISCE",
+            "text": "Cade, e una notte l'oggetto non e' piu' dove stava.",
+            "takes": "CNS_FAILURE_PLUNDER"
+          }
+        ]
+      },
       "triggers": [
         "Ogni mano che lo tocca senza guanti.",
         "Ogni offerta d'acquisto arrivata da fuori."
@@ -1248,6 +2054,32 @@
       "possible_questions": [
         "Q_ANY_ANCIENT_WATCH"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_MURI_PULITI",
+            "text": "Passa, ma i muri si sorvegliano, e chi scrive si cerca.",
+            "takes": "CNS_COST_GUARD"
+          },
+          {
+            "id": "C_NOME_DETTO",
+            "text": "Passa, ma il nome vecchio e' stato pronunciato in pubblico, e resta.",
+            "takes": "CNS_COST_MOURNING"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_MANO_IGNOTA",
+            "text": "Cade, e la mano che scrive i nomi vecchi continua, notte dopo notte.",
+            "takes": "CNS_FAILURE_RUMOUR"
+          },
+          {
+            "id": "F_NOME_SUL_MURO",
+            "text": "Cade, e il nome vecchio resta scritto dove tutti passano.",
+            "takes": "CNS_FAILURE_WALL"
+          }
+        ]
+      },
       "triggers": [
         "Ogni nome vecchio detto ad alta voce nei posti sbagliati.",
         "Ogni scritta nuova comparsa di notte."
@@ -1285,6 +2117,32 @@
       "possible_questions": [
         "Q_ANY_ANCIENT_WATCH"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_PIETRA_RIALZATA",
+            "text": "Passa, ma chi rialza la pietra ci mette il nome, e il nome pesa.",
+            "takes": "CNS_COST_MOURNING"
+          },
+          {
+            "id": "C_MARGINE_PRESIDIATO",
+            "text": "Passa, ma il varco resta presidiato finche' la pietra non tiene.",
+            "takes": "CNS_COST_GUARD"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_VARCO_APERTO",
+            "text": "Cade, e il varco resta aperto: nessuno vuole quel margine.",
+            "takes": "CNS_FAILURE_ABANDONED"
+          },
+          {
+            "id": "F_ANIMALI",
+            "text": "Cade, e gli animali grossi continuano a girare al largo del varco.",
+            "takes": "CNS_FAILURE_RUMOUR"
+          }
+        ]
+      },
       "triggers": [
         "Ogni pietra lasciata a terra una stagione.",
         "Ogni incisione ricopiata per gioco."
@@ -1325,6 +2183,32 @@
       "possible_questions": [
         "Q_ANY_ANCIENT_WATCH"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_ACQUA_VIETATA",
+            "text": "Passa, ma l'acqua fonda si vieta, e chi pescava li' pesca meno.",
+            "takes": "CNS_COST_RATION"
+          },
+          {
+            "id": "C_BARCHE_LARGO",
+            "text": "Passa, ma qualche famiglia di pescatori sposta le barche altrove.",
+            "takes": "CNS_COST_EMPTIED"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_RETI_STRAPPATE",
+            "text": "Cade, e le reti continuano a tornare strappate.",
+            "takes": "CNS_FAILURE_PLUNDER"
+          },
+          {
+            "id": "F_MONETA",
+            "text": "Cade, e si continua a buttare una moneta e a girare al largo.",
+            "takes": "CNS_FAILURE_RUMOUR"
+          }
+        ]
+      },
       "triggers": [
         "Ogni rete calata nell'acqua fonda.",
         "Ogni moneta buttata come pedaggio."
@@ -1366,6 +2250,32 @@
         "Q_ANY_WHO_DECIDES",
         "Q_ANY_WHO_STAYS"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_LEGNA",
+            "text": "Passa, ma la legna si spartisce a razione fino alla primavera.",
+            "takes": "CNS_COST_RATION"
+          },
+          {
+            "id": "C_MORTI_DI_FREDDO",
+            "text": "Passa, e a marzo si contano quelli che non hanno passato l'inverno.",
+            "takes": "CNS_COST_MOURNING"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_STRADE_CHIUSE",
+            "text": "Cade, e la neve chiude la strada al posto accanto.",
+            "takes": "CNS_FAILURE_CUT_OFF"
+          },
+          {
+            "id": "F_CASE_VUOTE",
+            "text": "Cade, e a primavera qualche casa non riapre.",
+            "takes": "CNS_FAILURE_ABANDONED"
+          }
+        ]
+      },
       "triggers": [
         "Ogni settimana di gelo oltre la stagione.",
         "Ogni catasta di legna venduta fuori."
@@ -1404,6 +2314,32 @@
         "Q_ANY_WHO_DECIDES",
         "Q_ANY_WHO_STAYS"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_FAZZOLETTI",
+            "text": "Passa, ma i villaggi bassi restano in lutto per una stagione.",
+            "takes": "CNS_COST_MOURNING"
+          },
+          {
+            "id": "C_PASSI_CONTATI",
+            "text": "Passa, ma si mette qualcuno a contare chi entra e chi esce.",
+            "takes": "CNS_COST_GUARD"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_NOMI_PERSI",
+            "text": "Cade, e i villaggi bassi si spopolano senza che nessuno lo scriva.",
+            "takes": "CNS_FAILURE_ABANDONED"
+          },
+          {
+            "id": "F_FEBBRE_RACCONTATA",
+            "text": "Cade, e fuori si racconta che la febbre e' un'altra cosa.",
+            "takes": "CNS_FAILURE_RUMOUR"
+          }
+        ]
+      },
       "triggers": [
         "Ogni pozza d'acqua ferma vicino alle case.",
         "Ogni malato nascosto per non fermare il lavoro."
@@ -1444,6 +2380,32 @@
         "Q_ANY_WHO_DECIDES",
         "Q_ANY_WHO_STAYS"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_PESCA_CONTATA",
+            "text": "Passa, ma si pesca a turni: la barca esce quando le tocca.",
+            "takes": "CNS_COST_RATION"
+          },
+          {
+            "id": "C_BARCHE_FERME",
+            "text": "Passa, ma qualche famiglia di pescatori leva le tende.",
+            "takes": "CNS_COST_EMPTIED"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_MOLO_CONTESO",
+            "text": "Cade, e il molo diventa di chi ci arriva per primo.",
+            "takes": "CNS_FAILURE_CONTESTED"
+          },
+          {
+            "id": "F_RETI_TAGLIATE",
+            "text": "Cade, e di notte qualcuno si serve dalle reti degli altri.",
+            "takes": "CNS_FAILURE_PLUNDER"
+          }
+        ]
+      },
       "triggers": [
         "Ogni barca tornata leggera.",
         "Ogni banco di pesca conteso fra equipaggi."
@@ -1484,6 +2446,32 @@
         "Q_ANY_WHO_DECIDES",
         "Q_ANY_WHO_STAYS"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_FUORI_PORTA",
+            "text": "Passa, ma chi resta fuori porta lo ricorda: la piazza non si svuota.",
+            "takes": "CNS_COST_UNREST"
+          },
+          {
+            "id": "C_PANE_DIVISO",
+            "text": "Passa, ma il pane si divide fra piu' bocche, e si stringe.",
+            "takes": "CNS_COST_RATION"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_FUOCHI",
+            "text": "Cade, e i fuochi fuori dalle mura restano accesi: la terra intorno si contende.",
+            "takes": "CNS_FAILURE_CONTESTED"
+          },
+          {
+            "id": "F_SI_SERVONO",
+            "text": "Cade, e chi non ha niente prende quello che trova.",
+            "takes": "CNS_FAILURE_PLUNDER"
+          }
+        ]
+      },
       "triggers": [
         "Ogni famiglia respinta che si accampa fuori.",
         "Ogni voce su cosa li ha fatti scappare."
@@ -1522,6 +2510,32 @@
         "Q_ANY_WHO_DECIDES",
         "Q_ANY_WHO_STAYS"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_RONDE",
+            "text": "Passa, ma da adesso si fanno le ronde, e le ronde si pagano.",
+            "takes": "CNS_COST_GUARD"
+          },
+          {
+            "id": "C_GREGGI_PERSE",
+            "text": "Passa, ma il prezzo lo pagano le greggi, e qualche pastore lascia.",
+            "takes": "CNS_COST_EMPTIED"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_RECINTI_APERTI",
+            "text": "Cade, e i branchi entrano nei recinti: si prende quello che c'e'.",
+            "takes": "CNS_FAILURE_PLUNDER"
+          },
+          {
+            "id": "F_MARGINE",
+            "text": "Cade, e il margine del bosco resta terra di nessuno.",
+            "takes": "CNS_FAILURE_ABANDONED"
+          }
+        ]
+      },
       "triggers": [
         "Ogni pecora presa a un tiro di sasso dalle case.",
         "Ogni battuta rimandata a dopo il raccolto."
@@ -1563,6 +2577,32 @@
         "Q_ANY_WHO_DECIDES",
         "Q_ANY_WHO_STAYS"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_SETACCIO",
+            "text": "Passa, ma si macina solo il buono, e il buono basta per meta'.",
+            "takes": "CNS_COST_RATION"
+          },
+          {
+            "id": "C_CHI_HA_MANGIATO",
+            "text": "Passa, ma qualcuno aveva gia' mangiato: si contano i malati.",
+            "takes": "CNS_COST_MOURNING"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_MUFFA",
+            "text": "Cade, e il granaio resta com'e': si litiga su ogni sacco.",
+            "takes": "CNS_FAILURE_CONTESTED"
+          },
+          {
+            "id": "F_MUGNAIO",
+            "text": "Cade, e la voce sul grano guasto arriva prima del grano.",
+            "takes": "CNS_FAILURE_RUMOUR"
+          }
+        ]
+      },
       "triggers": [
         "Ogni sacco venduto senza aprirlo.",
         "Ogni razione tagliata col grano del fondo."
@@ -1603,6 +2643,32 @@
         "Q_ANY_WHO_DECIDES",
         "Q_ANY_WHO_STAYS"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_NAVE_FERMA",
+            "text": "Passa, ma la nave resta alla fonda e il porto paga il fermo.",
+            "takes": "CNS_COST_DEBT"
+          },
+          {
+            "id": "C_MOLO_SORVEGLIATO",
+            "text": "Passa, ma il molo si sorveglia: si sbarca a permesso.",
+            "takes": "CNS_COST_GUARD"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_ROTTA_CHIUSA",
+            "text": "Cade, e i mercanti evitano la rotta: il posto accanto resta tagliato fuori.",
+            "takes": "CNS_FAILURE_CUT_OFF"
+          },
+          {
+            "id": "F_SBARCO_NOTTE",
+            "text": "Cade, e di notte si sbarca lo stesso, senza che nessuno controlli.",
+            "takes": "CNS_FAILURE_PLUNDER"
+          }
+        ]
+      },
       "triggers": [
         "Ogni carico fermo che marcisce in dogana.",
         "Ogni cordone scavalcato di notte."
@@ -1644,6 +2710,32 @@
         "Q_ANY_WHO_PAYS",
         "Q_ANY_WHO_KEEPS"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_PREZZO_BARCA",
+            "text": "Passa, ma il prezzo del traghetto lo paga l'isola, ogni giorno.",
+            "takes": "CNS_COST_DEBT"
+          },
+          {
+            "id": "C_ISOLA_MAGRA",
+            "text": "Passa, ma qualcuno sull'isola non regge il prezzo e se ne va.",
+            "takes": "CNS_COST_EMPTIED"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_FAVORI",
+            "text": "Cade, e il traghettatore continua a farsi pagare in favori.",
+            "takes": "CNS_FAILURE_CONTESTED"
+          },
+          {
+            "id": "F_ISOLA_TAGLIATA",
+            "text": "Cade, e l'isola resta tagliata fuori quando la barca decide.",
+            "takes": "CNS_FAILURE_CUT_OFF"
+          }
+        ]
+      },
       "triggers": [
         "Ogni traversata negata a chi non piace.",
         "Ogni prezzo alzato senza preavviso."
@@ -1685,6 +2777,32 @@
         "Q_ANY_WHO_PAYS",
         "Q_ANY_WHO_KEEPS"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_CATENA_LEVATA",
+            "text": "Passa, ma per levare la catena servono uomini fissi sulla strada.",
+            "takes": "CNS_COST_GUARD"
+          },
+          {
+            "id": "C_DAZIO_PAGATO",
+            "text": "Passa, ma i carri fermi in questi mesi si pagano lo stesso.",
+            "takes": "CNS_COST_DEBT"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_LISTINO",
+            "text": "Cade, e i pedaggeri neri aggiornano il listino.",
+            "takes": "CNS_FAILURE_PLUNDER"
+          },
+          {
+            "id": "F_STRADA_EVITATA",
+            "text": "Cade, e i mercanti girano al largo: il tratto muore.",
+            "takes": "CNS_FAILURE_CUT_OFF"
+          }
+        ]
+      },
       "triggers": [
         "Ogni carro che paga senza ricevuta.",
         "Ogni mercante che cambia strada."
@@ -1726,6 +2844,32 @@
         "Q_ANY_WHO_PAYS",
         "Q_ANY_WHO_KEEPS"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_BILANCE_NUOVE",
+            "text": "Passa, ma le bilance nuove si comprano, e le compra chi le usa.",
+            "takes": "CNS_COST_DEBT"
+          },
+          {
+            "id": "C_PESATORE",
+            "text": "Passa, ma al mercato c'e' sempre qualcuno che controlla il peso.",
+            "takes": "CNS_COST_GUARD"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_OGNI_MERCATO",
+            "text": "Cade, e ogni mercato continua a pesare col suo peso.",
+            "takes": "CNS_FAILURE_CONTESTED"
+          },
+          {
+            "id": "F_BILANCIA_DOPPIA",
+            "text": "Cade, e la bilancia doppia diventa lo spettacolo della piazza.",
+            "takes": "CNS_FAILURE_RUMOUR"
+          }
+        ]
+      },
       "triggers": [
         "Ogni bilancia senza bollo.",
         "Ogni disputa sul peso finita a pugni."
@@ -1766,6 +2910,32 @@
         "Q_ANY_WHO_HOLDS",
         "Q_ANY_WHOSE_LAW"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_STAFFETTE_PAGATE",
+            "text": "Passa, ma le staffette fedeli costano il doppio di quelle di prima.",
+            "takes": "CNS_COST_DEBT"
+          },
+          {
+            "id": "C_LETTERE_LETTE",
+            "text": "Passa, ma da adesso ogni lettera passa da chi la controlla.",
+            "takes": "CNS_COST_GUARD"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_DUE_PADRONI",
+            "text": "Cade, e le staffette continuano a servire due padroni.",
+            "takes": "CNS_FAILURE_RUMOUR"
+          },
+          {
+            "id": "F_POSTA_FERMA",
+            "text": "Cade, e le notizie smettono di arrivare al posto accanto.",
+            "takes": "CNS_FAILURE_CUT_OFF"
+          }
+        ]
+      },
       "triggers": [
         "Ogni lettera arrivata gia' letta.",
         "Ogni notizia arrivata prima al mercato che al destinatario."
@@ -1804,6 +2974,32 @@
         "Q_ANY_WHO_PAYS",
         "Q_ANY_WHO_KEEPS"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_BRACCIA_CANALI",
+            "text": "Passa, ma le braccia per riaprire i canali si tolgono ai campi.",
+            "takes": "CNS_COST_RATION"
+          },
+          {
+            "id": "C_SCAVO_PAGATO",
+            "text": "Passa, ma lo scavo si paga adesso e rende fra tre anni.",
+            "takes": "CNS_COST_DEBT"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_CANALI_CHIUSI",
+            "text": "Cade, e la via d'acqua resta sotto il fango.",
+            "takes": "CNS_FAILURE_ABANDONED"
+          },
+          {
+            "id": "F_SCOMMESSA",
+            "text": "Cade, e chi conosce il passaggio se lo tiene per se'.",
+            "takes": "CNS_FAILURE_PLUNDER"
+          }
+        ]
+      },
       "triggers": [
         "Ogni stagione persa a discutere chi paga.",
         "Ogni tratto scavato che frana per fretta."
@@ -1844,6 +3040,32 @@
         "Q_ANY_WHO_PAYS",
         "Q_ANY_WHO_KEEPS"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_MAGAZZINI_GUARDATI",
+            "text": "Passa, ma i magazzini si sorvegliano notte e giorno.",
+            "takes": "CNS_COST_GUARD"
+          },
+          {
+            "id": "C_GILDA_PERDENTE",
+            "text": "Passa, ma la gilda che cede se lo lega al dito.",
+            "takes": "CNS_COST_COLD_WORD"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_FUOCO",
+            "text": "Cade, e la notte dopo brucia un altro magazzino.",
+            "takes": "CNS_FAILURE_PLUNDER"
+          },
+          {
+            "id": "F_MERCATO_DIVISO",
+            "text": "Cade, e il mercato resta diviso a parole che nessuno rispetta.",
+            "takes": "CNS_FAILURE_CONTESTED"
+          }
+        ]
+      },
       "triggers": [
         "Ogni carico «perso» da una parte sola.",
         "Ogni artigiano costretto a scegliere la tessera."
@@ -1885,6 +3107,32 @@
         "Q_ANY_WHO_PAYS",
         "Q_ANY_WHO_KEEPS"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_CALA_GUARDATA",
+            "text": "Passa, ma la cala si presidia, e i presidi si pagano.",
+            "takes": "CNS_COST_GUARD"
+          },
+          {
+            "id": "C_MEZZO_PORTO",
+            "text": "Passa, ma meta' del porto perde il secondo mestiere e leva le tende.",
+            "takes": "CNS_COST_EMPTIED"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_DUE_PORTI",
+            "text": "Cade, e il porto continua a vivere due volte, di giorno e di notte.",
+            "takes": "CNS_FAILURE_CONTESTED"
+          },
+          {
+            "id": "F_DAZIO_INUTILE",
+            "text": "Cade, e il sale col dazio smette di trovare compratori.",
+            "takes": "CNS_FAILURE_PLUNDER"
+          }
+        ]
+      },
       "triggers": [
         "Ogni carico notturno senza dazio.",
         "Ogni doganiere che guarda il mare sbagliato."

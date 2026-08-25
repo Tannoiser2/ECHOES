@@ -63,9 +63,13 @@ func show_tension(tension_id: String, data: RefCounted, session: RefCounted = nu
 	_line(str((tension as Dictionary)["title"]).to_upper(), 15, "#e8dcc8")
 	_line("Se questa domanda arriva al Consiglio, ecco cosa si potra' proporre.", 11, "#8a8172")
 
-	var template_id: String = str((tension as Dictionary).get("confluence_template_id", ""))
-	var template: Variant = data.confluence_templates.get(template_id)
-	if template == null:
+	# **Il Consiglio di una domanda si trova come lo trova il motore** (D-278):
+	# 52 carte su 60 non nominano un template proprio e giocano su quello
+	# generico del loro dominio. Cercandolo per id soltanto, questa scheda
+	# diceva «Nessun Consiglio scritto» su cinquantadue domande su sessanta —
+	# cioe' sulla quasi totalita' del mazzo.
+	var template: Variant = data.confluence_template_for(tension_id)
+	if template == null or (template as Dictionary).is_empty():
 		_line("Nessun Consiglio scritto per questa domanda.", 12, "#9b9382")
 		_close_button()
 		return
@@ -107,7 +111,30 @@ func show_tension(tension_id: String, data: RefCounted, session: RefCounted = nu
 			_line(text if text.begins_with("...") else "...%s" % text, 12, "#d9d2c5")
 			if str(record["leaves"]) != "":
 				_line("se qualificata: %s" % str(record["leaves"]), 11, "#9b9382")
+	_the_two_lists(tension as Dictionary)
 	_close_button()
+
+
+## **Le due liste della carta** (D-278): cosa il proponente puo' promettere e
+## cosa il fronte avverso puo' fargli pagare. Sta in fondo perche' si legge
+## dopo aver capito di che si discute — ma sta **qui**, sulla scheda della
+## domanda, perche' al tavolo sta sulla stessa carta.
+func _the_two_lists(tension: Dictionary) -> void:
+	var face: Dictionary = tension.get("physical", {}) as Dictionary
+	if face.is_empty():
+		return
+	for pair in [
+		["opportunities", "Le opportunita' — le sceglie chi propone"],
+		["costs", "Il prezzo — lo sceglie il fronte avverso, se la proposta passa pagando"],
+		["failures", "Lo sfogo — lo sceglie il fronte avverso, se la proposta cade"],
+	]:
+		var voices: Array = face.get(str(pair[0]), []) as Array
+		if voices.is_empty():
+			continue
+		_gap()
+		_line(str(pair[1]), 12, "#8a8172")
+		for voice in voices:
+			_line("· %s" % str((voice as Dictionary)["text"]), 12, "#d9d2c5")
 
 
 ## La voce con cui questa scheda parla, ed e' il punto delicato di tutta la

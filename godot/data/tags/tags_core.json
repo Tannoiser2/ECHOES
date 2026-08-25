@@ -288,6 +288,22 @@
       ]
     },
     {
+      "id": "condition:guarded",
+      "title": "sorvegliata",
+      "category": "STATE",
+      "scope": [
+        "REGION"
+      ],
+      "aliases": [
+        "sorvegliata"
+      ],
+      "written_by": [
+        "consequence"
+      ],
+      "read_by": [],
+      "note": "il prezzo di una proposta che passa (D-278): al tavolo si legge sulla tessera — nessuna clausola del motore lo interroga ancora"
+    },
+    {
       "id": "condition:indebted",
       "title": "indebitata",
       "category": "STATE",
@@ -337,6 +353,7 @@
         "in lutto"
       ],
       "written_by": [
+        "consequence",
         "echo_card"
       ],
       "read_by": [
@@ -981,6 +998,22 @@
       ]
     },
     {
+      "id": "forest",
+      "title": "bosco",
+      "category": "PLACE",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "region"
+      ],
+      "read_by": [
+        "tension",
+        "asset_physical"
+      ],
+      "note": "tessera nuova di PZ-2 (D-265). Non e' la pietra STR_FOREST: come per #granaio, la vocazione del luogo e l'opera si stampano con la stessa parola"
+    },
+    {
       "id": "free_cities",
       "title": "le città libere",
       "category": "ENTITY",
@@ -1212,6 +1245,19 @@
       "note": "vocazione del luogo, stampata sulla Regione: non e' la pietra structure:granary, ma le carte stampano #granaio per entrambe"
     },
     {
+      "id": "guild",
+      "title": "la gilda",
+      "category": "ENTITY",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "entity"
+      ],
+      "read_by": [],
+      "note": "etichetta di famiglia: dice chi sei, non cosa puoi fare, e nessuna regola deve leggerla"
+    },
+    {
       "id": "harbor",
       "title": "porto",
       "category": "PLACE",
@@ -1228,83 +1274,17 @@
       "note": "vocazione della tessera nuova di PZ-2 (D-265): dove il mare concede e fa pagare"
     },
     {
-      "id": "marsh",
-      "title": "palude",
-      "category": "PLACE",
-      "scope": [
-        "REGION"
-      ],
-      "written_by": [
-        "region"
-      ],
-      "read_by": [
-        "tension",
-        "asset_physical"
-      ],
-      "note": "tessera nuova di PZ-2 (D-265): acqua ferma, canali vecchi, febbri"
-    },
-    {
-      "id": "island",
-      "title": "isola",
-      "category": "PLACE",
-      "scope": [
-        "REGION"
-      ],
-      "written_by": [
-        "region"
-      ],
-      "read_by": [
-        "tension",
-        "asset_physical"
-      ],
-      "note": "tessera nuova di PZ-2 (D-265): il posto che si raggiunge solo volendo"
-    },
-    {
-      "id": "forest",
-      "title": "bosco",
-      "category": "PLACE",
-      "scope": [
-        "REGION"
-      ],
-      "written_by": [
-        "region"
-      ],
-      "read_by": [
-        "tension",
-        "asset_physical"
-      ],
-      "note": "tessera nuova di PZ-2 (D-265). Non e' la pietra STR_FOREST: come per #granaio, la vocazione del luogo e l'opera si stampano con la stessa parola"
-    },
-    {
-      "id": "mine",
-      "title": "miniera",
-      "category": "FUNCTION",
-      "scope": [
-        "REGION"
-      ],
-      "written_by": [
-        "region"
-      ],
-      "read_by": [
-        "consequence",
-        "echo_card",
-        "tension",
-        "asset_physical"
-      ],
-      "note": "vocazione del luogo, stampata sulla Regione (D-262): il posto dove si scava, che le Conseguenze nominano col segno invece che con l'id"
-    },
-    {
-      "id": "guild",
-      "title": "la gilda",
-      "category": "ENTITY",
+      "id": "hard_bargain",
+      "title": "la parola fredda",
+      "category": "MEMORY",
       "scope": [
         "ENTITY"
       ],
       "written_by": [
-        "entity"
+        "consequence"
       ],
       "read_by": [],
-      "note": "etichetta di famiglia: dice chi sei, non cosa puoi fare, e nessuna regola deve leggerla"
+      "note": "marchio di memoria (D-278): ha ottenuto cedendo poco, e il tavolo se lo ricorda — il motore non lo interroga"
     },
     {
       "id": "heir_named",
@@ -1327,6 +1307,22 @@
         "entity"
       ],
       "note": "vive sia sulla casa (entry_tag della successione) sia sul mondo (fatto ricordato)"
+    },
+    {
+      "id": "island",
+      "title": "isola",
+      "category": "PLACE",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "region"
+      ],
+      "read_by": [
+        "tension",
+        "asset_physical"
+      ],
+      "note": "tessera nuova di PZ-2 (D-265): il posto che si raggiunge solo volendo"
     },
     {
       "id": "knowledge_shared",
@@ -1719,6 +1715,22 @@
       "note": "memoria del mondo: narrata (D-103), ereditata"
     },
     {
+      "id": "marsh",
+      "title": "palude",
+      "category": "PLACE",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "region"
+      ],
+      "read_by": [
+        "tension",
+        "asset_physical"
+      ],
+      "note": "tessera nuova di PZ-2 (D-265): acqua ferma, canali vecchi, febbri"
+    },
+    {
       "id": "migrating",
       "title": "in cammino",
       "category": "ENTITY",
@@ -1730,6 +1742,24 @@
       ],
       "read_by": [],
       "note": "etichetta di famiglia: dice chi sei, non cosa puoi fare, e nessuna regola deve leggerla"
+    },
+    {
+      "id": "mine",
+      "title": "miniera",
+      "category": "FUNCTION",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "region"
+      ],
+      "read_by": [
+        "consequence",
+        "echo_card",
+        "tension",
+        "asset_physical"
+      ],
+      "note": "vocazione del luogo, stampata sulla Regione (D-262): il posto dove si scava, che le Conseguenze nominano col segno invece che con l'id"
     },
     {
       "id": "mine_sealed",
@@ -2042,6 +2072,22 @@
       "note": "grado di pietra sulla mappa: oggi nessuna regola lo legge — colore dichiarato, in fila per un lettore (ISSUES 24)"
     },
     {
+      "id": "price_in_lives",
+      "title": "il conto in vite",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "aliases": [
+        "si e' pagato in vite"
+      ],
+      "written_by": [
+        "consequence"
+      ],
+      "read_by": [],
+      "note": "memoria del mondo (D-278): una decisione passata al prezzo di qualcuno che non c'e' piu' — si legge al centro del tavolo"
+    },
+    {
       "id": "question_unresolved",
       "title": "una domanda e' rimasta aperta",
       "category": "MEMORY",
@@ -2152,6 +2198,22 @@
       ],
       "read_by": [],
       "note": "memoria del mondo: narrata (D-103), ereditata"
+    },
+    {
+      "id": "rumour_running",
+      "title": "la voce corre",
+      "category": "MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "aliases": [
+        "la voce corre"
+      ],
+      "written_by": [
+        "consequence"
+      ],
+      "read_by": [],
+      "note": "memoria del mondo (D-278): fuori dalla sala la versione e' gia' un'altra — si legge al centro del tavolo"
     },
     {
       "id": "scar:abandoned",
@@ -2459,6 +2521,19 @@
       "note": "memoria del mondo: narrata (D-103), ereditata"
     },
     {
+      "id": "spoke_and_lost",
+      "title": "ha parlato e ha perso",
+      "category": "MEMORY",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "consequence"
+      ],
+      "read_by": [],
+      "note": "marchio di memoria (D-278): ha proposto e la proposta e' caduta — si legge sulla carta del casato"
+    },
+    {
       "id": "structure:archive",
       "title": "archivio",
       "category": "FUNCTION",
@@ -2714,6 +2789,19 @@
       ]
     },
     {
+      "id": "took_by_hand",
+      "title": "si e' servito",
+      "category": "MEMORY",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "consequence"
+      ],
+      "read_by": [],
+      "note": "marchio di memoria (D-278): non ha aspettato la decisione, ha preso — si legge sulla carta del casato"
+    },
+    {
       "id": "trade",
       "title": "commercio",
       "category": "FUNCTION",
@@ -2760,6 +2848,19 @@
         "destiny",
         "destiny_physical"
       ]
+    },
+    {
+      "id": "watched",
+      "title": "sotto osservazione",
+      "category": "STATE",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "consequence"
+      ],
+      "read_by": [],
+      "note": "marchio di memoria (D-278): chi ha imposto la guardia se lo porta addosso, e si legge sulla carta del casato — il motore non lo interroga"
     },
     {
       "id": "water_moves",

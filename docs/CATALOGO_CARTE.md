@@ -3290,6 +3290,7 @@ portarne piu' d'una**, quindi conviene averne qualcuna di scorta.
 | tagliata fuori | `condition:cut_off` |
 | svuotata | `condition:emptied` |
 | sfruttata | `condition:exploited` |
+| sorvegliata | `condition:guarded` |
 | indebitata | `condition:indebted` |
 | magra | `condition:lean` |
 | in lutto | `condition:mourning` |
@@ -3334,4 +3335,4 @@ servono tutti, perche' quali quattro lo decide l'anno.
 
 ---
 
-*87 carte e 64 pezzi diversi da fare.*
+*87 carte e 65 pezzi diversi da fare.*

@@ -19,7 +19,7 @@ Le viste che si limitano a **stampare** un segno sullo schermo non contano come
 lettori: disegnare non e' mordere.
 
 
-**71 segni scritti sul mondo: 65 li legge qualcosa, 6 no.**
+**78 segni scritti sul mondo: 65 li legge qualcosa, 13 no.**
 
 **E 0 segni li chiede qualcuno senza che niente li scriva.**
 
@@ -34,9 +34,16 @@ Conseguenza che promette un cambiamento che il gioco non registra.
 |---|---|---|
 | `account_settled` | Conseguenza | «Il Conto Saldato» chiude un debito e nessuna regola lo sa — 4 volte in 100 anni |
 | `burden_shared` | Conseguenza | il peso diviso non alleggerisce niente — 2 volte in 100 anni |
+| `condition:guarded` | Conseguenza | la tessera sorvegliata: si vede sul tavolo, e nessuna regola la interroga ancora — candidato numero uno a mordere in Fase B (D-278) |
 | `dragon_slain` | Conseguenza | «Il Drago Abbattuto» — e il mondo non se ne accorge. Non esce mai in 100 anni: la Conseguenza non e' mai stata scelta (ISSUES 56) |
+| `hard_bargain` | Conseguenza | la parola fredda: si legge sulla carta del casato, nessuna clausola la chiede (D-278) |
+| `price_in_lives` | Conseguenza | il conto in vite: memoria del mondo, nessuna clausola la chiede (D-278) |
+| `rumour_running` | Conseguenza | la voce corre: memoria del mondo, nessuna clausola la chiede (D-278) |
 | `settlement:$proponent` | Conseguenza | chi ci vive, scritto sulla mappa: la regola e' la pietra che la Conseguenza alza accanto — 50 volte in 100 anni |
+| `spoke_and_lost` | Conseguenza | ha proposto e la proposta e' caduta: si legge sulla carta del casato (D-278) |
 | `succession_settled` | Conseguenza | la successione risolta non entra in nessuna condizione — 14 volte in 100 anni |
+| `took_by_hand` | Conseguenza | si e' servito senza aspettare la decisione: si legge sulla carta del casato (D-278) |
+| `watched` | Conseguenza | sotto osservazione: chi ha imposto la guardia se lo porta addosso (D-278) |
 | `water_rights` | Conseguenza | i diritti sull'acqua non sono un requisito di niente — 18 volte in 100 anni |
 
 ---
@@ -61,7 +68,7 @@ Nessuno: tutto quello che una condizione chiede, qualcosa lo puo' scrivere.
 | `condition:exploited` | Conseguenza | — | Destino, la Regione di cui si discute, pesca delle domande |
 | `condition:indebted` | Conseguenza, carta Asset | Conseguenza | la Regione di cui si discute, pesca delle domande |
 | `condition:lean` | Conseguenza | Conseguenza, carta Asset | la Regione di cui si discute |
-| `condition:mourning` | — | carta Asset | la Regione di cui si discute, pesca delle domande |
+| `condition:mourning` | Conseguenza | carta Asset | la Regione di cui si discute, pesca delle domande |
 | `condition:plundered` | Conseguenza | Conseguenza | la Regione di cui si discute, pesca delle domande, regola del segno |
 | `condition:rationed` | Conseguenza, carta Asset | Conseguenza, carta Asset | la Regione di cui si discute, pesca delle domande |
 | `condition:requisitioned` | Conseguenza | — | la Regione di cui si discute |

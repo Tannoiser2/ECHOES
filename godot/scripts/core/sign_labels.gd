@@ -52,6 +52,11 @@ const REGION_WORDS: Dictionary = {
 ## I segni che una casa porta con sé.
 const ENTITY_WORDS: Dictionary = {
 	"anointed": "la custodia riconosciuta",
+	# I marchi che la pedina del prezzo lascia addosso (D-278).
+	"hard_bargain": "la parola fredda",
+	"spoke_and_lost": "la proposta caduta in Consiglio",
+	"took_by_hand": "si e' servito da solo",
+	"watched": "sotto osservazione",
 	"ash_watch": "la veglia della cenere",
 	"discovery:crystal": "scoperta: il cristallo",
 	"discovery:legend": "scoperta: la leggenda",
@@ -98,6 +103,9 @@ const ENTITY_WORDS: Dictionary = {
 ## dicono al **passato**, che e' come li legge chi apre la Cronaca l'anno dopo.
 const WORLD_WORDS: Dictionary = {
 	"account_settled": "il conto e' stato saldato",
+	# Quello che il prezzo di un Consiglio lascia al centro del tavolo (D-278).
+	"price_in_lives": "si e' pagato in vite",
+	"rumour_running": "la voce corre",
 	# **I quattordici che la clausola scrive** (D-236). Erano senza parola, e
 	# fino a ieri non si vedevano: una clausola qualificata applicava i suoi
 	# effetti e basta. Da quando la scheda di una domanda si legge sullo schermo

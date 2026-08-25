@@ -1557,6 +1557,9 @@ const DEFS := {
 					"type": "String",
 				},
 			},
+			"physical": {
+				"type": "Dictionary",
+			},
 			"triggers": {
 				"type": "Array",
 				"element": {

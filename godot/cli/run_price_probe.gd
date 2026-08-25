@@ -38,6 +38,12 @@ func _initialize() -> void:
 	var claimed_voices: int = 0
 	var second_debates_spent: int = 0
 	var unfinished: int = 0
+	# **Quante voci diverse arrivano davvero al tavolo** (D-278). Un menu che
+	# esiste nei dati e non si vede giocando e' contenuto che non esiste: qui si
+	# contano le parole distinte che i Consigli hanno davvero letto.
+	var costs_said: Dictionary = {}
+	var vents_said: Dictionary = {}
+	var faces_seen: Dictionary = {}
 
 	for run in range(runs):
 		var seed_value: int = first_seed + run
@@ -55,6 +61,12 @@ func _initialize() -> void:
 			var text: String = str(line)
 			if text.contains("La pedina del prezzo -"):
 				pedine += 1
+				# «D. La pedina del prezzo - Casa: se passa con un costo, X; se cade, Y.»
+				for piece in text.split(";"):
+					if piece.contains("se passa con un costo,"):
+						costs_said[piece.split("se passa con un costo,")[1].strip_edges()] = true
+					elif piece.contains("se cade,"):
+						vents_said[piece.split("se cade,")[1].strip_edges().trim_suffix(".")] = true
 			elif text.contains("Il costo e' quello della pedina"):
 				chosen_costs += 1
 			elif text.contains("Lo sfogo e' quello della pedina"):
@@ -67,6 +79,9 @@ func _initialize() -> void:
 				claimed_voices += 1
 			elif text.contains("nessun secondo dibattito"):
 				second_debates_spent += 1
+		for tension_id in session.world["tensions"]:
+			if not (data.tensions[str(tension_id)].get("physical", {}) as Dictionary).is_empty():
+				faces_seen[str(tension_id)] = true
 		session.dispose()
 
 	print("")
@@ -83,6 +98,11 @@ func _initialize() -> void:
 	print("  Controproposte (D-268)   %d  (voci del beneficio rivendicate e passate: %d; secondi dibattiti spesi: %d)" % [
 		counterclaims, claimed_voices, second_debates_spent
 	])
+	print("")
+	print("  Voci del prezzo lette al tavolo (D-278):")
+	print("    costi diversi          %d" % costs_said.size())
+	print("    sfoghi diversi         %d" % vents_said.size())
+	print("    carte con faccia viste %d" % faces_seen.size())
 	if unfinished > 0:
 		print("  Partite non concluse: %d su %d" % [unfinished, runs])
 	quit(1 if unfinished > 0 else 0)

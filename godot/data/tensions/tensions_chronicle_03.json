@@ -25,6 +25,32 @@
         "Q_WATER_CANALS",
         "Q_WATER_PRICE"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_BRACCIA_SCAVO",
+            "text": "Passa, ma le braccia per scavare si tolgono da un'altra parte.",
+            "takes": "CNS_COST_RATION"
+          },
+          {
+            "id": "C_ACQUA_PREZZO",
+            "text": "Passa, ma l'acqua ha un prezzo, e il prezzo lo fa chi ha scavato.",
+            "takes": "CNS_COST_DEBT"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_CANALI_TERRA",
+            "text": "Cade, e i canali restano pieni di terra per un'altra generazione.",
+            "takes": "CNS_FAILURE_ABANDONED"
+          },
+          {
+            "id": "F_SCAVI_NOTTE",
+            "text": "Cade, e si continua a scavare di notte, per conto proprio.",
+            "takes": "CNS_FAILURE_PLUNDER"
+          }
+        ]
+      },
       "triggers": [
         "Ogni canale che si insabbia e nessuno ripulisce.",
         "Ogni pozzo che diventa di qualcuno.",
@@ -71,6 +97,32 @@
         "Q_DEBT_LEDGER",
         "Q_DEBT_CALL"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_REGISTRO_APERTO",
+            "text": "Passa, ma il registro resta aperto, e ogni nome ci sta dentro.",
+            "takes": "CNS_COST_DEBT"
+          },
+          {
+            "id": "C_CHI_HA_CHIESTO",
+            "text": "Passa, ma chi ha chiesto di rimandare tratta da posizione debole.",
+            "takes": "CNS_COST_COLD_WORD"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_CHIAMATO",
+            "text": "Cade, e la Gilda chiama il debito tutto insieme.",
+            "takes": "CNS_FAILURE_CUT_OFF"
+          },
+          {
+            "id": "F_NOMI_LETTI",
+            "text": "Cade, e i nomi letti in pubblico restano scritti dove tutti passano.",
+            "takes": "CNS_FAILURE_WALL"
+          }
+        ]
+      },
       "triggers": [
         "Ogni raccolto comprato in anticipo.",
         "Ogni città che paga gli interessi e non il capitale.",
@@ -122,6 +174,32 @@
         "Q_RELIC_SHOW",
         "Q_RELIC_KEEP"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_TECA_GUARDATA",
+            "text": "Passa, ma la teca si sorveglia a turni, e i turni non finiscono.",
+            "takes": "CNS_COST_GUARD"
+          },
+          {
+            "id": "C_ORDINE_FREDDO",
+            "text": "Passa, ma l'Ordine se lo ricorda: la prossima porta si apre piu' piano.",
+            "takes": "CNS_COST_COLD_WORD"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_TECA_CONTESA",
+            "text": "Cade, e la custodia resta di chi ci mette gli uomini.",
+            "takes": "CNS_FAILURE_CONTESTED"
+          },
+          {
+            "id": "F_INVENTARIO",
+            "text": "Cade, e si racconta che la teca sia stata aperta e mai richiusa.",
+            "takes": "CNS_FAILURE_RUMOUR"
+          }
+        ]
+      },
       "triggers": [
         "Ogni volta che qualcuno chiede di vederla.",
         "Ogni copia del registro antico che salta fuori.",
@@ -168,6 +246,32 @@
         "Q_CHARTER_WRITE",
         "Q_CHARTER_SEAT"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_CARTA_PAGATA",
+            "text": "Passa, ma la carta si compra: chi l'ha voluta si indebita per averla.",
+            "takes": "CNS_COST_DEBT"
+          },
+          {
+            "id": "C_CHI_HA_FIRMATO",
+            "text": "Passa, ma chi ha firmato controvoglia tratta piu' duro la prossima volta.",
+            "takes": "CNS_COST_COLD_WORD"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_DUE_SENTENZE",
+            "text": "Cade, e due citta' continuano a giudicare lo stesso caso al contrario.",
+            "takes": "CNS_FAILURE_CONTESTED"
+          },
+          {
+            "id": "F_CARTA_SUL_MURO",
+            "text": "Cade, e qualcuno inchioda al muro la carta non firmata.",
+            "takes": "CNS_FAILURE_WALL"
+          }
+        ]
+      },
       "triggers": [
         "Ogni sentenza che contraddice quella della città accanto.",
         "Ogni confine spostato da chi ci abita e basta.",
@@ -214,6 +318,32 @@
         "Q_ANY_WHO_DECIDES",
         "Q_ANY_WHO_STAYS"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_REGISTRO",
+            "text": "Passa, ma chi viene scritto viene anche sorvegliato.",
+            "takes": "CNS_COST_GUARD"
+          },
+          {
+            "id": "C_FUORI_CONTO",
+            "text": "Passa, ma chi non entra nel conto se ne va altrove.",
+            "takes": "CNS_COST_EMPTIED"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_PIU_FUOCHI",
+            "text": "Cade, e l'anno prossimo i fuochi fuori dalle mura sono di piu'.",
+            "takes": "CNS_FAILURE_CONTESTED"
+          },
+          {
+            "id": "F_NESSUNO_RISPONDE",
+            "text": "Cade, e di quella gente non risponde nessuno.",
+            "takes": "CNS_FAILURE_ABANDONED"
+          }
+        ]
+      },
       "triggers": [
         "Ogni famiglia che nessuna città iscrive nei propri registri.",
         "Ogni inverno passato fra due confini."
@@ -255,6 +385,32 @@
       "possible_questions": [
         "Q_ANY_ANCIENT_WATCH"
       ],
+      "physical": {
+        "costs": [
+          {
+            "id": "C_VEGLIA_CENERE",
+            "text": "Passa, ma qualcuno deve stare a guardare la montagna, sempre.",
+            "takes": "CNS_COST_GUARD"
+          },
+          {
+            "id": "C_VERSANTE_LASCIATO",
+            "text": "Passa, ma il versante orientale si lascia, e chi ci stava scende a valle.",
+            "takes": "CNS_COST_EMPTIED"
+          }
+        ],
+        "failures": [
+          {
+            "id": "F_REGISTRI",
+            "text": "Cade, e i registri dell'Ordine e i vecchi continuano a dire il contrario.",
+            "takes": "CNS_FAILURE_RUMOUR"
+          },
+          {
+            "id": "F_CHIAZZE",
+            "text": "Cade, e le chiazze di neve sciolta restano li' a dire che qualcosa sale.",
+            "takes": "CNS_FAILURE_WALL"
+          }
+        ]
+      },
       "triggers": [
         "Ogni galleria riaperta più in basso di quella prima.",
         "Ogni notte in cui la roccia resta tiepida fino all'alba."
