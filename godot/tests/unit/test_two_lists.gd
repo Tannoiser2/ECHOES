@@ -12,6 +12,7 @@ extends "res://tests/test_case.gd"
 ## la scelta esista **su ogni carta**, e che sia il tavolo a leggerla.
 
 const CouncilSheet := preload("res://ui/council_sheet.gd")
+const CouncilEconomy := preload("res://scripts/confluence/council_economy.gd")
 
 
 func before_each() -> void:
@@ -28,34 +29,41 @@ func test_every_card_carries_two_real_lists() -> void:
 			"physical", {}
 		) as Dictionary
 		assert_false(face.is_empty(), "«%s» ha la sua faccia" % [str(tension_id)])
-		for pair in [["costs", "takes"], ["failures", "takes"]]:
+		for pair in [["benefits", "verb"], ["costs", "verb"], ["failure", "verb"]]:
 			var voices: Array = face.get(str(pair[0]), []) as Array
 			assert_true(
-				voices.size() >= 2,
-				"«%s» offre almeno due voci di %s" % [str(tension_id), str(pair[0])]
+				voices.size() >= (1 if str(pair[0]) == "failure" else 2),
+				"«%s» offre le sue voci di %s" % [str(tension_id), str(pair[0])]
 			)
 			var carried: Dictionary = {}
 			for voice in voices:
 				var entry: Dictionary = voice as Dictionary
 				assert_ne(str(entry["text"]), "", "ogni voce ha le sue parole")
 				assert_true(
-					data().consequences.has(str(entry[str(pair[1])])),
-					"«%s» nomina una Conseguenza che esiste" % [str(entry["id"])]
+					CouncilEconomy.knows(str(entry["verb"]),
+						"benefits" if str(pair[0]) == "benefits" else "costs"),
+					"«%s» usa un verbo del vocabolario" % [str(entry["id"])]
 				)
-				carried[str(entry[str(pair[1])])] = true
+				assert_true(
+					CouncilEconomy.missing_parameters(entry,
+						"benefits" if str(pair[0]) == "benefits" else "costs").is_empty(),
+					"«%s» porta i parametri che il suo verbo chiede" % [str(entry["id"])]
+				)
+				carried[str(entry["verb"])] = true
 				if str(pair[0]) == "costs":
-					costs_seen[str(entry[str(pair[1])])] = true
-				else:
-					vents_seen[str(entry[str(pair[1])])] = true
-			assert_eq(
-				carried.size(), voices.size(),
-				"le voci di %s di «%s» portano cose diverse: una scelta finta non e' una scelta"
-				% [str(pair[0]), str(tension_id)]
-			)
+					costs_seen[str(entry["verb"])] = true
+				elif str(pair[0]) == "benefits":
+					vents_seen[str(entry["verb"])] = true
+			if str(pair[0]) != "failure":
+				assert_eq(
+					carried.size(), voices.size(),
+					"le voci di %s di «%s» fanno cose diverse: una scelta finta non e' una scelta"
+					% [str(pair[0]), str(tension_id)]
+				)
 	# E la tavolozza e' larga: prima di D-278 era **una coppia sola** per tutte
 	# e sessanta le carte, e questa riga sarebbe stata 2 e 2.
-	assert_true(costs_seen.size() >= 6, "i costi in gioco sono piu' di una coppia (%d)" % costs_seen.size())
-	assert_true(vents_seen.size() >= 6, "gli sfoghi in gioco sono piu' di una coppia (%d)" % vents_seen.size())
+	assert_eq(costs_seen.size(), CouncilEconomy.COST_VERBS.size(), "tutti i verbi di costo sono in gioco")
+	assert_eq(vents_seen.size(), CouncilEconomy.BENEFIT_VERBS.size(), "e tutti quelli di beneficio")
 
 
 ## **Il menu del prezzo che il Consiglio offre e' quello scritto sulla carta.**
@@ -69,7 +77,7 @@ func test_the_council_offers_what_the_card_says() -> void:
 		var face: Dictionary = (data().tensions[str(tension_id)] as Dictionary)["physical"]
 		var written: Array = []
 		for voice in (face["costs"] as Array):
-			written.append(str((voice as Dictionary)["takes"]))
+			written.append(str((voice as Dictionary)["id"]))
 		assert_eq(
 			session.confluence.price_menu()["cost"], written,
 			"il Consiglio su «%s» offre i costi della sua carta" % [str(tension_id)]
@@ -102,7 +110,7 @@ func test_the_sheet_shows_both_lists_for_every_question() -> void:
 			"«%s» ha un Consiglio da mostrare" % [str(tension_id)]
 		)
 		var face: Dictionary = (data().tensions[str(tension_id)] as Dictionary)["physical"]
-		for list_name in ["costs", "failures"]:
+		for list_name in ["benefits", "costs", "failure"]:
 			for voice in (face[list_name] as Array):
 				assert_true(
 					page.contains(str((voice as Dictionary)["text"])),

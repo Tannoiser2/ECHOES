@@ -20,6 +20,7 @@ extends RefCounted
 
 const Ids := preload("res://scripts/core/ids.gd")
 const WorldStateService := preload("res://scripts/world/world_state_service.gd")
+const CouncilEconomy := preload("res://scripts/confluence/council_economy.gd")
 
 ## Stop stockpiling and start acting once the hand is this full.
 const COMFORTABLE_HAND: int = 4
@@ -1483,46 +1484,104 @@ func choose_recovery(_context: Dictionary, _session: RefCounted) -> Dictionary:
 	return {}
 
 
-## La pedina del prezzo (PZ-5, D-267): il primo seggio del fronte avverso
-## sceglie dal menu il costo (se la proposta passera' pagando) e lo sfogo (se
-## cadra'). Si sceglie come tutto il resto al Consiglio: la voce i cui Effect
-## servono meglio il proprio Destino; a parita' decide l'RNG di sessione, per
-## la stessa ragione di choose_proposition.
-func choose_price(
-	entity_id: String, context: Dictionary, menu: Dictionary, session: RefCounted
-) -> Dictionary:
-	return {
-		"cost": _best_priced(menu.get("cost", []) as Array, entity_id, context, session),
-		"failure": _best_priced(menu.get("failure", []) as Array, entity_id, context, session),
-	}
-
-
-func _best_priced(
-	pool: Array, entity_id: String, context: Dictionary, session: RefCounted
-) -> String:
-	if pool.size() <= 1:
-		return "" if pool.is_empty() else str(pool[0])
+## **L'economia del Consiglio, giocata dal cervello** (D-280).
+##
+## Comprare non e' gratis: il primo beneficio lo e', ogni altro lo pagano **gli
+## avversari scegliendo il costo**, cioe' scegliendo quello che fa piu' male al
+## proponente. Quindi il conto che il cervello fa e' quello giusto al tavolo:
+## *il beneficio in piu' vale piu' del peggior prezzo che possono farmi pagare?*
+## Se no, si tiene quello che ha.
+func choose_benefits(
+	entity_id: String, context: Dictionary, menu: Array, session: RefCounted
+) -> Array:
+	if menu.is_empty():
+		return []
 	var goals: Dictionary = _tag_goals(entity_id, session)
 	var bindings: Dictionary = session.confluence.effect_context()
-	var proponent: String = str(context["proponent"])
-	var best_score: int = -999
-	var tied: Array = []
-	for consequence_id in pool:
-		if not session.data.consequences.has(str(consequence_id)):
+	var ranked: Array = []
+	for voice in menu:
+		ranked.append({
+			"id": str((voice as Dictionary)["id"]),
+			"score": _voice_score(
+				voice as Dictionary, "benefits", entity_id, entity_id, goals, session, bindings
+			),
+		})
+	ranked.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
+		return int(a["score"]) > int(b["score"])
+	)
+	# Il peggior prezzo che il fronte avverso puo' imporre: e' il metro con cui
+	# si giudica ogni beneficio oltre il primo.
+	var worst_price: int = 0
+	for voice in (session.confluence.card_face().get("costs", []) as Array):
+		worst_price = mini(worst_price, _voice_score(
+			voice as Dictionary, "costs", entity_id, entity_id, goals, session, bindings
+		))
+	var bought: Array = [str((ranked[0] as Dictionary)["id"])]
+	for i in range(1, mini(ranked.size(), CouncilEconomy.MAX_BENEFITS)):
+		var entry: Dictionary = ranked[i] as Dictionary
+		# **A parita' si compra.** Il metro e' il peggior prezzo che gli
+		# avversari possono imporre; quando il beneficio in piu' lo pareggia,
+		# la proposta che fa di piu' e' quella che vale la pena fare — ed e'
+		# quello che la carta chiede, con le sue tre caselle. Col confronto
+		# stretto (`<= 0`) il cervello comprava **sempre e solo il primo**, che
+		# e' gratis: 1,01 benefici per Consiglio in 40 anni, economia morta.
+		if int(entry["score"]) + worst_price < 0:
+			break
+		bought.append(str(entry["id"]))
+	return bought
+
+
+## **E il prezzo lo sceglie chi lo subisce**: fra i costi stampati, il fronte
+## avverso posa quelli che pesano di piu' **al proponente**. Non e' cattiveria:
+## e' l'unica lettura che rende la scelta una scelta.
+func choose_costs(
+	entity_id: String, context: Dictionary, menu: Array, due: int, session: RefCounted
+) -> Array:
+	if due <= 0 or menu.is_empty():
+		return []
+	var proponent: String = str(context.get("proponent", ""))
+	var goals: Dictionary = _tag_goals(proponent, session)
+	var bindings: Dictionary = session.confluence.effect_context()
+	var ranked: Array = []
+	for voice_id in menu:
+		var voice: Dictionary = session.confluence._voice("costs", str(voice_id))
+		if voice.is_empty():
 			continue
-		var score: int = _consequence_score(
-			str(consequence_id), entity_id, proponent, goals, session, bindings
-		)
-		if score > best_score:
-			best_score = score
-			tied = [str(consequence_id)]
-		elif score == best_score:
-			tied.append(str(consequence_id))
-	if tied.is_empty():
-		return ""
-	if tied.size() == 1:
-		return str(tied[0])
-	return str(tied[session.rng.range_int(0, tied.size() - 1)])
+		ranked.append({
+			"id": str(voice_id),
+			"score": _voice_score(
+				voice, "costs", proponent, proponent, goals, session, bindings
+			),
+		})
+	ranked.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
+		return int(a["score"]) < int(b["score"])
+	)
+	var chosen: Array = []
+	for entry in ranked:
+		if chosen.size() >= due:
+			break
+		chosen.append(str((entry as Dictionary)["id"]))
+	return chosen
+
+
+## Quanto vale una voce della carta per un seggio: si costruiscono i suoi
+## Effetti col vocabolario (D-280) e si leggono con lo stesso metro delle
+## Conseguenze. Cosi' il cervello non ha una seconda tabella di valori da
+## tenere allineata: ne ha una sola, e vale per tutto quello che tocca il mondo.
+func _voice_score(
+	voice: Dictionary, kind: String, entity_id: String, proponent_id: String,
+	goals: Dictionary, session: RefCounted, bindings: Dictionary
+) -> int:
+	var theme_id: String = str((session.data.tensions.get(
+		str(session.confluence.current.get("tension_id", "")), {}
+	) as Dictionary).get("theme", ""))
+	var effects: Array = CouncilEconomy.effects_for(
+		voice, kind, bindings, session.world, theme_id, {}
+	)
+	var score: int = CouncilEconomy.intrinsic_value(voice, kind, bindings, session.world)
+	for effect in effects:
+		score += _score_effect(effect, entity_id, proponent_id, goals, session, bindings)
+	return score
 
 
 ## Quanto valgono, per questo seggio, gli Effect di una Conseguenza: la stessa
@@ -1572,24 +1631,31 @@ func choose_counterclaim(
 		if mine - theirs > benefit_gain:
 			benefit_gain = mine - theirs
 			best_benefit = str(consequence_id)
+	# **Prendersi la scelta del prezzo** (D-268, riscritta da D-280) vale quanto
+	# la differenza fra il costo che sceglierei io e quello che il mondo
+	# prenderebbe da solo — la prima voce della lista.
 	var price: Dictionary = offer.get("price", {})
-	var price_gain: int = maxi(
-		_price_gain(price.get("cost", []) as Array, entity_id, proponent, goals, session, bindings),
-		_price_gain(price.get("failure", []) as Array, entity_id, proponent, goals, session, bindings)
-	)
+	var costs: Array = price.get("cost", []) as Array
+	var due: int = session.confluence.costs_due()
+	var mine_costs: Array = choose_costs(entity_id, context, costs, due, session)
+	var price_gain: int = 0
+	if due > 0 and not mine_costs.is_empty():
+		var mine_voice: Dictionary = session.confluence._voice("costs", str(mine_costs[0]))
+		var world_voice: Dictionary = session.confluence._voice("costs", str(costs[0]))
+		price_gain = _voice_score(
+			world_voice, "costs", entity_id, proponent, goals, session, bindings
+		) - _voice_score(
+			mine_voice, "costs", entity_id, proponent, goals, session, bindings
+		)
 	if benefit_gain > 0 and benefit_gain >= price_gain:
 		return {"mode": "benefit", "consequence_id": best_benefit}
 	if price_gain > 0:
 		return {
 			"mode": "price",
-			"cost": _best_priced(price.get("cost", []) as Array, entity_id, context, session),
-			"failure": _best_priced(price.get("failure", []) as Array, entity_id, context, session),
+			"cost": "" if mine_costs.is_empty() else str(mine_costs[0]),
+			"failure": "" if mine_costs.size() < 2 else str(mine_costs[1]),
 		}
 	return {}
-
-
-## Quanto la pedina migliorerebbe il pool per questo seggio: la voce migliore
-## meno quella che scatterebbe da sola, la prima.
 func _price_gain(
 	pool: Array,
 	entity_id: String,

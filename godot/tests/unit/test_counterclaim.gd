@@ -79,19 +79,27 @@ func _factor_cancelling_bite(proponent: String) -> int:
 ## proposta scelta, ricordandosi cosa c'era prima.
 ## Le voci dello sfogo scritte sulla carta in dibattito (D-278): il menu del
 ## prezzo viene da li', quindi le prove lo leggono invece di scriverlo a mano.
-func _vents() -> Array:
+func _costs() -> Array:
 	var out: Array = []
-	for voice in ((data().tensions[TENSION]["physical"] as Dictionary)["failures"] as Array):
-		out.append(str((voice as Dictionary)["takes"]))
+	for voice in ((data().tensions[TENSION]["physical"] as Dictionary)["costs"] as Array):
+		out.append(str((voice as Dictionary)["id"]))
 	return out
 
 
 func _first_vent() -> String:
-	return str(_vents()[0])
+	return str(_costs()[0])
 
 
 func _other_vent() -> String:
-	return str(_vents()[1])
+	return str(_costs()[2])
+
+
+## Il testo stampato di un costo: e' quello che il verbale legge (D-280).
+func _cost_text(voice_id: String) -> String:
+	for voice in (data().tensions[TENSION]["physical"]["costs"] as Array):
+		if str((voice as Dictionary)["id"]) == voice_id:
+			return str((voice as Dictionary)["text"])
+	return ""
 
 
 func _open_with_prize() -> Dictionary:
@@ -154,25 +162,41 @@ func test_a_counterclaimed_price_overrides_the_first_opposer() -> void:
 	var first_opposer: String = str(others[0])
 	var claimant: String = str(others[1])
 	session.confluence.declare_stance(first_opposer, "OPPOSE")
+	var benefits: Array = []
+	for voice in (data().tensions[TENSION]["physical"]["benefits"] as Array):
+		benefits.append(str((voice as Dictionary)["id"]))
+	session.confluence.set_benefits(benefits.slice(0, 2))
 	assert_true(
-		session.confluence.place_counterclaim(claimant, "price", "", _other_vent()),
+		session.confluence.place_counterclaim(claimant, "price", _other_vent()),
 		"il rivendicante prende la pedina senza essere il primo OPPOSE"
 	)
-	var hand: Array = session.service.hand(first_opposer)
-	assert_true(hand.size() > 0, "l'oppositore ha una mano da impegnare")
-	session.confluence.current["commits"][first_opposer] = hand
+	# Il proponente ha comprato due benefici: un costo da pagare, e a sceglierlo
+	# e' il rivendicante invece del primo OPPOSE.
 	_rig(_factor_cancelling_bite(proponent))
 	var result: Dictionary = session.confluence.resolve()
-	assert_eq(str(result["outcome"]), ConfluenceResolution.FAILURE, "la proposta cade")
+	assert_true(
+		ConfluenceResolution.is_success(str(result["outcome"])),
+		"la proposta passa (esito: %s)" % str(result["outcome"])
+	)
 	assert_eq(str(result["counterclaim"]), "price", "il diritto risulta speso")
 	assert_true(
-		(result["consequence_ids"] as Array).has(_other_vent()),
-		"lo sfogo e' quello della controproposta"
+		_log_says(_cost_text(_other_vent())),
+		"il prezzo pagato e' quello della controproposta"
 	)
 	assert_false(
-		(result["consequence_ids"] as Array).has(_first_vent()),
-		"non la prima voce del menu"
+		_log_says(_cost_text(_first_vent())),
+		"non la prima voce del menu, che sarebbe stata quella del mondo"
 	)
+
+
+## Il verbale ha detto questa frase?
+func _log_says(needle: String) -> bool:
+	if needle == "":
+		return false
+	for line in session.log.lines:
+		if str(line).contains(needle):
+			return true
+	return false
 
 
 ## **Il diritto ha le sue regole.** Il proponente non controproppone a se

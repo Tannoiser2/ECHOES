@@ -12,7 +12,33 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ## D-280 — L'economia del Consiglio: benefici comprati, prezzo scelto dagli altri
 
-**decided in 0.1.241, da costruire** — carta d'esempio del committente
+**implemented in 0.1.242** — carta d'esempio del committente
+
+**Costruita.** Il vocabolario chiuso di undici verbi sta in
+`scripts/confluence/council_economy.gd` (codice, perche' ogni verbo **produce
+Effetti**); le 60 carte lo nominano e lo parametrizzano — quale condizione
+lascia, quale Pietra alza, quale Cicatrice incide. Il giro del Consiglio ha due
+passi nuovi: il proponente **compra** dopo la proposta, il primo del fronte
+avverso **sceglie il prezzo** prima degli impegni. Alla risoluzione: se passa si
+applicano benefici **e** costi, se cade scattano gli effetti stampati.
+
+**Una taratura d'autore, dichiarata.** Il cervello sapeva pesare solo cio' che un
+Destino nomina: davanti a verbi generici leggeva zero su tutto, comprava il
+beneficio gratis e non pagava mai — 1,01 benefici a Consiglio, economia morta.
+Ogni verbo ha adesso un **valore intrinseco situazionale**
+(`CouncilEconomy.intrinsic_value`): un titolo che gia' tieni non vale prenderlo,
+una condizione su una tessera che non e' tua non ti pesa come su una che e'
+tua, una Cicatrice pesa sempre. E a parita' si compra: col confronto stretto il
+cervello si fermava sempre al primo.
+
+**I numeri (40 anni di CHR_00):** 1,53 benefici comprati a Consiglio — due
+pedine 66 volte, tre 5 volte — **61 prezzi pagati**, 29 dei quali Cicatrici.
+Cancello **0 seggi bloccati su 8** (100 semi, misto e uniforme); suite **568
+prove / 33.172 asserzioni**; guardia del validatore su **15** difetti piantati.
+
+---
+
+### Come ci si è arrivati, e cosa correggeva
 
 Il committente ha mandato **la faccia vera di una carta Tensione**, e ha
 chiesto: *«non dovevano esserci dei benefici che il proponente poteva

@@ -550,6 +550,25 @@ func run_confluence(
 		illegal_actions += 1
 		controller.set_proposition(str(options[0]["id"]))
 
+	# **Il proponente compra** (D-280): posa le pedine sui benefici della carta,
+	# e con esse decide **quanto** pagera' — un costo per ogni beneficio oltre
+	# il primo. Un cervello che non sa comprare (has_method) compra il primo
+	# beneficio, che e' gratis: nessuna proposta esce dal tavolo a mani vuote
+	# senza che qualcuno l'abbia deciso.
+	var offered: Array = controller.benefit_menu()
+	if not offered.is_empty():
+		var bought: Array = []
+		if decider.has_method("choose_benefits"):
+			bought = await decider.choose_benefits(
+				str(context["proponent"]), context, offered, session
+			)
+		if bought.is_empty():
+			bought = [str((offered[0] as Dictionary)["id"])]
+		if not controller.set_benefits(bought):
+			log.bullet("Acquisto rifiutato (%s): si compra il primo beneficio." % controller.last_error)
+			illegal_actions += 1
+			controller.set_benefits([str((offered[0] as Dictionary)["id"])])
+
 	for entity_id in controller.stance_order():
 		var declaration: Dictionary = await decider.choose_stance(str(entity_id), context, session)
 		if not controller.declare_stance(
@@ -592,15 +611,21 @@ func run_confluence(
 	# sceglie dal menu quale voce paghera' chi vince. Un cervello che non sa
 	# scegliere (has_method) lascia decidere il mondo: la prima voce, com'era.
 	# Se la controproposta si e' presa la pedina, il fronte avverso non sceglie.
+	# **Gli avversari scelgono in che moneta paga** (D-280): il conto lo ha
+	# fatto l'economia — un costo per ogni beneficio oltre il primo — e il primo
+	# seggio del fronte avverso sceglie **quali** costi, fra quelli stampati.
+	# Se non sceglie, il mondo prende dall'alto della lista: una carta muta non
+	# esce senza prezzo. Se la controproposta si e' presa la pedina, il fronte
+	# avverso non sceglie.
 	var opposer: String = controller.first_opposer()
-	if counterclaimed != "price" and opposer != "" and decider.has_method("choose_price"):
-		var menu: Dictionary = controller.price_menu()
-		if (menu["cost"] as Array).size() > 1 or (menu["failure"] as Array).size() > 1:
-			var price: Dictionary = await decider.choose_price(opposer, context, menu, session)
-			if not price.is_empty() and not controller.place_price(
-				opposer, str(price.get("cost", "")), str(price.get("failure", ""))
-			):
-				log.bullet("Pedina del prezzo rifiutata (%s): decide il mondo." % controller.last_error)
+	var due: int = controller.costs_due()
+	if counterclaimed != "price" and opposer != "" and due > 0 \
+			and decider.has_method("choose_costs"):
+		var menu: Array = controller.price_menu()["cost"] as Array
+		if menu.size() > due:
+			var chosen: Array = await decider.choose_costs(opposer, context, menu, due, session)
+			if not chosen.is_empty() and not controller.place_costs(opposer, chosen):
+				log.bullet("Prezzo rifiutato (%s): decide il mondo." % controller.last_error)
 				illegal_actions += 1
 
 	for entity_id in world["turn_order"]:

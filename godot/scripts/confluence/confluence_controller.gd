@@ -19,6 +19,7 @@ extends RefCounted
 ##  10. Ripple                                 (K)
 
 const Effect := preload("res://scripts/core/effect.gd")
+const CouncilEconomy := preload("res://scripts/confluence/council_economy.gd")
 const Ids := preload("res://scripts/core/ids.gd")
 const ConfluenceResolution := preload("res://scripts/confluence/confluence_resolution.gd")
 const ConsequenceCompiler := preload("res://scripts/chronicle/consequence_compiler.gd")
@@ -348,25 +349,68 @@ func _find_clause(clause_id: String) -> Dictionary:
 func price_menu() -> Dictionary:
 	if current.is_empty():
 		return {"cost": [], "failure": []}
-	var pools: Dictionary = (
-		data.confluence_templates[str(current["template_id"])]["consequence_pools"]
-	)
-	return {
-		"cost": _voices_of("costs", pools["cost"] as Array),
-		"failure": _voices_of("failures", pools["failure"] as Array),
-	}
+	var costs: Array = []
+	for voice in (card_face().get("costs", []) as Array):
+		costs.append(str((voice as Dictionary)["id"]))
+	return {"cost": costs, "failure": []}
 
 
-## Le Conseguenze di una lista della carta, o il ripiego del template.
-func _voices_of(list_name: String, fallback: Array) -> Array:
-	var face: Dictionary = card_face()
-	var voices: Array = face.get(list_name, []) as Array
-	if voices.is_empty():
-		return fallback.duplicate()
-	var out: Array = []
-	for voice in voices:
-		out.append(str((voice as Dictionary)["takes"]))
-	return out
+## Quanti costi il fronte avverso deve posare adesso (D-280): uno per ogni
+## beneficio comprato oltre il primo. Con quattro benefici — cioe' con la
+## Cicatrice accettata — sono due **piu' la Cicatrice**, che e' quello che la
+## carta chiama *«se accetti una Cicatrice puoi ottenere un beneficio
+## aggiuntivo oltre il limite»*.
+func costs_due() -> int:
+	var bought: int = (current.get("benefits", []) as Array).size()
+	var due: int = CouncilEconomy.costs_due(bought)
+	if bought > CouncilEconomy.MAX_BENEFITS:
+		due += 1
+	return due
+
+
+## I benefici che il proponente puo' comprare: le voci scritte sulla carta.
+func benefit_menu() -> Array:
+	return (card_face().get("benefits", []) as Array).duplicate()
+
+
+## **Il proponente compra** (D-280). Fino a tre; il quarto si prende solo
+## accettando la Cicatrice, e allora fra i costi che gli avversari posano ce
+## n'e' una obbligata. Comprare zero benefici e' legittimo: e' una proposta che
+## chiede al tavolo di dire una cosa e basta, e non paga niente.
+func set_benefits(chosen: Array) -> bool:
+	last_error = ""
+	if current.is_empty() or str(current["step"]) not in ["STANCE", "PROPOSITION"]:
+		last_error = "non e' il momento di comprare i benefici"
+		return false
+	var scars_on_the_card: int = 0
+	for voice in (card_face().get("costs", []) as Array):
+		if str((voice as Dictionary).get("verb", "")) == "SCAR":
+			scars_on_the_card = 1
+	var ceiling: int = CouncilEconomy.benefit_ceiling(scars_on_the_card)
+	if chosen.size() > ceiling:
+		last_error = "sulla carta ci stanno %d pedine di beneficio" % ceiling
+		return false
+	var known: Dictionary = {}
+	for voice in benefit_menu():
+		known[str((voice as Dictionary)["id"])] = true
+	var taken: Dictionary = {}
+	for voice_id in chosen:
+		if not known.has(str(voice_id)):
+			last_error = "«%s» non e' un beneficio di questa carta" % str(voice_id)
+			return false
+		if taken.has(str(voice_id)):
+			last_error = "una pedina per voce: «%s» e' gia' posata" % str(voice_id)
+			return false
+		taken[str(voice_id)] = true
+	current["benefits"] = chosen.duplicate()
+	if not chosen.is_empty():
+		var said: PackedStringArray = PackedStringArray()
+		for voice_id in chosen:
+			said.append(_voice_text("benefits", str(voice_id)))
+		log.bullet("C. %s compra: %s  (prezzo: %d costi)" % [
+			_name(str(current["proponent"])), " · ".join(said), costs_due()
+		])
+	return true
 
 
 ## La faccia fisica della carta in dibattito, o {} se non ne ha una.
@@ -379,21 +423,29 @@ func card_face() -> Dictionary:
 	return (definition as Dictionary).get("physical", {}) as Dictionary
 
 
-## Come si legge al tavolo la voce che il fronte avverso ha scelto: la parola
-## della carta, non il titolo della Conseguenza. Torna "" se la voce non sta
-## sulla faccia (il ripiego del template parla col titolo di sempre).
-func price_voice_text(list_name: String, consequence_id: String) -> String:
+## Una voce della carta, per id.
+func _voice(list_name: String, voice_id: String) -> Dictionary:
 	for voice in (card_face().get(list_name, []) as Array):
-		if str((voice as Dictionary)["takes"]) == consequence_id:
-			return str((voice as Dictionary)["text"])
-	return ""
+		if str((voice as Dictionary)["id"]) == voice_id:
+			return voice as Dictionary
+	return {}
 
 
-## Quello che il verbale scrive di una voce scelta: la parola della carta se
-## c'e', il titolo della Conseguenza se la carta non ne parla.
-func _price_said(list_name: String, consequence_id: String) -> String:
-	var written: String = price_voice_text(list_name, consequence_id)
-	return written if written != "" else _consequence_title(consequence_id)
+## Come si legge al tavolo una voce: la parola stampata sulla carta.
+func _voice_text(list_name: String, voice_id: String) -> String:
+	var voice: Dictionary = _voice(list_name, voice_id)
+	return str(voice.get("text", voice_id))
+
+
+## Il testo di una voce del prezzo, per chi la deve scegliere.
+func price_voice_text(list_name: String, voice_id: String) -> String:
+	var voice: Dictionary = _voice(list_name, voice_id)
+	return str(voice.get("text", ""))
+
+
+## Quello che il verbale scrive di una voce scelta.
+func _price_said(list_name: String, voice_id: String) -> String:
+	return _voice_text(list_name, voice_id)
 
 
 ## Chi parla per il fronte avverso: il primo seggio, nell'ordine delle
@@ -414,31 +466,82 @@ func first_opposer() -> String:
 ## del menu paghera' chi vince - il costo se la proposta passa con un costo,
 ## lo sfogo se cade. Senza pedina decide il mondo: la prima voce del pool.
 func place_price(entity_id: String, cost_id: String, failure_id: String) -> bool:
+	var chosen: Array = [] if cost_id == "" else [cost_id]
+	# `failure_id` non esiste piu' come scelta (D-280): se la proposta cade,
+	# scattano gli effetti **stampati** sulla carta. Il parametro resta nella
+	# firma perche' la controproposta del RIVENDICARE (D-268) la chiama cosi',
+	# e cambiarla sotto i suoi override e' la trappola di casa.
+	if failure_id != "":
+		chosen.append(failure_id)
+	return place_costs(entity_id, chosen)
+
+
+## **Gli avversari scelgono in che moneta paga** (D-280, parola del
+## committente). Il proponente ha comprato i benefici; qui il fronte avverso
+## posa **quanti costi l'economia impone** — uno per ogni beneficio oltre il
+## primo — scegliendo quali fra quelli stampati sulla carta.
+##
+## Le pedine si posano a posizioni dichiarate e **prima** degli impegni, che
+## restano segreti: sceglierle su chi ha impegnato di piu' rivelerebbe gli
+## impegni (D-267, e la ragione non e' cambiata).
+func place_costs(entity_id: String, chosen: Array) -> bool:
 	last_error = ""
 	if current.is_empty() or str(current["step"]) not in ["STANCE", "COMMIT"]:
-		last_error = "non e' il momento di posare la pedina del prezzo"
+		last_error = "non e' il momento di posare il prezzo"
 		return false
 	if entity_id == "" or entity_id != first_opposer():
-		last_error = "la pedina del prezzo spetta al primo seggio del fronte avverso"
+		last_error = "il prezzo lo posa il primo seggio del fronte avverso"
 		return false
-	var menu: Dictionary = price_menu()
-	if cost_id != "" and not (menu["cost"] as Array).has(cost_id):
-		last_error = "'%s' non e' nel menu del costo" % cost_id
+	var menu: Array = price_menu()["cost"] as Array
+	var taken: Dictionary = {}
+	for voice_id in chosen:
+		if not menu.has(str(voice_id)):
+			last_error = "«%s» non e' un costo di questa carta" % str(voice_id)
+			return false
+		if taken.has(str(voice_id)):
+			last_error = "una pedina per voce: «%s» e' gia' posata" % str(voice_id)
+			return false
+		taken[str(voice_id)] = true
+	var due: int = costs_due()
+	if chosen.size() > due:
+		last_error = "la proposta costa %d, non %d" % [due, chosen.size()]
 		return false
-	if failure_id != "" and not (menu["failure"] as Array).has(failure_id):
-		last_error = "'%s' non e' nel menu dello sfogo" % failure_id
-		return false
-	current["price_pedina"] = {"by": entity_id, "cost": cost_id, "failure": failure_id}
-	var said: PackedStringArray = PackedStringArray()
-	if cost_id != "":
-		said.append("se passa con un costo, %s" % _price_said("costs", cost_id))
-	if failure_id != "":
-		said.append("se cade, %s" % _price_said("failures", failure_id))
-	if not said.is_empty():
-		log.bullet("D. La pedina del prezzo - %s: %s." % [
-			_name(entity_id), "; ".join(said)
-		])
+	current["price_pedina"] = {"by": entity_id, "costs": chosen.duplicate()}
+	if not chosen.is_empty():
+		var said: PackedStringArray = PackedStringArray()
+		for voice_id in chosen:
+			said.append(_price_said("costs", str(voice_id)))
+		log.bullet("D. Il prezzo lo sceglie %s: %s." % [_name(entity_id), " · ".join(said)])
 	return true
+
+
+## Il prezzo che scattera' se la proposta passa: quello posato dal fronte
+## avverso, completato dal mondo se il fronte non ha parlato o ha parlato a
+## meta'. **Il mondo prende dall'alto della lista** — la prima voce stampata —
+## perche' una carta che resta muta non deve poter uscire senza prezzo.
+func priced_costs() -> Array:
+	var due: int = costs_due()
+	if due <= 0:
+		return []
+	var chosen: Array = ((current.get("price_pedina", {}) as Dictionary).get(
+		"costs", []
+	) as Array).duplicate()
+	var menu: Array = price_menu()["cost"] as Array
+	for voice_id in menu:
+		if chosen.size() >= due:
+			break
+		if not chosen.has(str(voice_id)):
+			chosen.append(str(voice_id))
+	# Con la Cicatrice accettata (quattro benefici) una delle voci **e'** la
+	# Cicatrice: e' quello che il proponente ha accettato per comprarla.
+	if (current.get("benefits", []) as Array).size() > CouncilEconomy.MAX_BENEFITS:
+		var scar_id: String = ""
+		for voice in (card_face().get("costs", []) as Array):
+			if str((voice as Dictionary).get("verb", "")) == "SCAR":
+				scar_id = str((voice as Dictionary)["id"])
+		if scar_id != "" and not chosen.has(scar_id):
+			chosen[chosen.size() - 1] = scar_id
+	return chosen
 
 
 # --- D-ter: la controproposta del RIVENDICARE (PZ-5 Fase B, D-268) ---------
@@ -475,23 +578,27 @@ func place_counterclaim(entity_id: String, mode: String, first: String, second: 
 		return false
 	match mode:
 		"price":
-			var menu: Dictionary = price_menu()
-			if first != "" and not (menu["cost"] as Array).has(first):
-				last_error = "'%s' non e' nel menu del costo" % first
-				return false
-			if second != "" and not (menu["failure"] as Array).has(second):
-				last_error = "'%s' non e' nel menu dello sfogo" % second
-				return false
-			current["price_pedina"] = {"by": entity_id, "cost": first, "failure": second}
+			# **Il rivendicante si prende la scelta del prezzo** (D-268), che da
+			# D-280 vuol dire: decide lui **quali costi** paghera' chi vince,
+			# scavalcando il primo OPPOSE. I due parametri restano due perche'
+			# la firma e' quella dei suoi chiamanti; sono due voci di costo.
+			var menu: Array = price_menu()["cost"] as Array
+			var chosen: Array = []
+			for voice_id in [first, second]:
+				if str(voice_id) == "":
+					continue
+				if not menu.has(str(voice_id)):
+					last_error = "«%s» non e' un costo di questa carta" % str(voice_id)
+					return false
+				chosen.append(str(voice_id))
+			current["price_pedina"] = {"by": entity_id, "costs": chosen}
 			current["counterclaim"] = "price"
 			var said: PackedStringArray = PackedStringArray()
-			if first != "":
-				said.append("se passa con un costo, %s" % _consequence_title(first))
-			if second != "":
-				said.append("se cade, %s" % _consequence_title(second))
-			log.bullet("D. La controproposta di %s: prende la pedina del prezzo%s." % [
+			for voice_id in chosen:
+				said.append(_price_said("costs", str(voice_id)))
+			log.bullet("D. La controproposta di %s: sceglie lui il prezzo%s." % [
 				_name(entity_id),
-				"" if said.is_empty() else " - %s" % "; ".join(said),
+				"" if said.is_empty() else " - %s" % " · ".join(said),
 			])
 			return true
 		"benefit":
@@ -770,28 +877,17 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 	# (D-267): quella su cui il fronte avverso ha posato la pedina, o la prima
 	# se nessuno ha parlato. Fino a 0.1.228 scattava il pool intero - con una
 	# voce sola era la stessa cosa, e il pool era quasi sempre una voce sola.
-	var pedina: Dictionary = current.get("price_pedina", {})
 	var consequence_ids: Array = []
 	if ConfluenceResolution.is_success(outcome):
 		consequence_ids.append_array(_proposition()["success_consequences"])
-		if outcome == ConfluenceResolution.SUCCESS_WITH_COST:
-			var cost_id: String = _priced(
-				price_menu()["cost"] as Array, str(pedina.get("cost", ""))
-			)
-			if cost_id != "":
-				consequence_ids.append(cost_id)
-				if cost_id == str(pedina.get("cost", "")):
-					log.bullet("H. Il costo e' quello della pedina del fronte avverso.")
-		elif outcome == ConfluenceResolution.DECISIVE:
+		if outcome == ConfluenceResolution.DECISIVE:
 			consequence_ids.append_array(template["consequence_pools"]["decisive_bonus"])
-	else:
-		var failure_id: String = _priced(
-			price_menu()["failure"] as Array, str(pedina.get("failure", ""))
-		)
-		if failure_id != "":
-			consequence_ids.append(failure_id)
-			if failure_id == str(pedina.get("failure", "")):
-				log.bullet("H. Lo sfogo e' quello della pedina del fronte avverso.")
+	# **L'economia della carta** (D-280): se la proposta passa si applicano
+	# **tutti i benefici comprati e tutti i costi posati** — la riga in fondo
+	# alla carta, «applica tutti i benefici e tutti i costi (incluse le
+	# cicatrici)». Se cade, scattano gli **effetti stampati**: il mondo non
+	# sopporta l'indecisione, e quelli non li sceglie nessuno.
+	_spend_the_card(applied, outcome, source)
 	# ISSUES 22 (Fase 1): the Consequence speaks with its title, and every
 	# Effect it lands gets its own spoken line — the crown losing the Valle
 	# Verde must be a sentence at the table, not a silent SET_CONTROL.
@@ -1086,6 +1182,52 @@ func _apply(applied: Array, effect: Dictionary) -> void:
 		push_error("ConfluenceController: %s" % applier.last_error)
 		return
 	applied.append(stored)
+
+
+## L'economia della carta, applicata (D-280).
+##
+## Passa: i benefici comprati dal proponente **e** i costi che il fronte
+## avverso ha scelto — insieme, come dice la carta. Cade: gli effetti stampati
+## in fondo, che non sceglie nessuno.
+##
+## Ogni voce parla col suo testo prima di lasciare il segno: al tavolo si legge
+## la riga e si posa la pedina, e il verbale deve poter essere riletto come si
+## rilegge una partita vera.
+func _spend_the_card(applied: Array, outcome: String, source: Dictionary) -> void:
+	var face: Dictionary = card_face()
+	if face.is_empty():
+		return
+	var theme_id: String = str(
+		(data.tensions.get(str(current["tension_id"]), {}) as Dictionary).get("theme", "")
+	)
+	var context: Dictionary = effect_context()
+	var spent: Array = []
+	if ConfluenceResolution.is_success(outcome):
+		for voice_id in (current.get("benefits", []) as Array):
+			spent.append(["benefits", _voice("benefits", str(voice_id))])
+		for voice_id in priced_costs():
+			spent.append(["costs", _voice("costs", str(voice_id))])
+	else:
+		for voice in (face.get("failure", []) as Array):
+			spent.append(["failure", voice as Dictionary])
+	for entry in spent:
+		var kind: String = str((entry as Array)[0])
+		var voice: Dictionary = (entry as Array)[1] as Dictionary
+		if voice.is_empty():
+			continue
+		var effects: Array = CouncilEconomy.effects_for(
+			voice, kind, context, world, theme_id, source
+		)
+		if effects.is_empty():
+			continue
+		log.bullet("H. %s %s" % [
+			"Beneficio:" if kind == "benefits" else (
+				"Prezzo:" if kind == "costs" else "Il mondo non aspetta:"
+			),
+			str(voice.get("text", "")),
+		])
+		for effect in effects:
+			_apply(applied, effect)
 
 
 ## One spoken line for every Effect landed since `first` (ISSUES 22, Fase 1).

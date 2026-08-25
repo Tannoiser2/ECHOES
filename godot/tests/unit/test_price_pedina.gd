@@ -1,13 +1,13 @@
 extends "res://tests/test_case.gd"
-## La pedina del prezzo, e la regola del silenzio (PZ-5 Fase A, D-267).
+## L'economia del Consiglio, e la regola del silenzio (D-280, D-267).
 ##
-## Parola del committente (D-266): al Consiglio il proponente sceglie le
-## opportunita' e i bonus, **gli avversari scelgono i malus**. Qui la meta'
-## degli avversari: il primo seggio del fronte avverso posa la pedina sul menu
-## del prezzo - il costo se la proposta passa pagando, lo sfogo se cade - e la
-## risoluzione fa scattare **quella** voce, non il pool intero. E la regola
-## anti-passivita' della roadmap (PZ-5): se tutti si astengono, il silenzio
-## avvantaggia il proponente - un numero nei dati, reversibile.
+## Parola del committente, sulla sua carta d'esempio: **il proponente compra i
+## benefici, gli avversari scelgono in che moneta paga** — un costo per ogni
+## beneficio oltre il primo, e una Cicatrice ne compra uno oltre il limite. Se
+## la proposta passa si applicano benefici **e** costi; se cade, scattano gli
+## effetti stampati, che non sceglie nessuno. E la regola anti-passivita' della
+## roadmap (PZ-5): se tutti si astengono, il silenzio avvantaggia il
+## proponente - un numero nei dati, reversibile.
 ##
 ## Gli esiti si forzano col dado truccato e col morso del mondo annullato: una
 ## prova che dipendesse dal caso o dai segni di partenza smetterebbe di provare
@@ -56,8 +56,13 @@ func _rig(factor: int) -> void:
 func _voices(list_name: String) -> Array:
 	var out: Array = []
 	for voice in ((data().tensions[TENSION]["physical"] as Dictionary)[list_name] as Array):
-		out.append(str((voice as Dictionary)["takes"]))
+		out.append(str((voice as Dictionary)["id"]))
 	return out
+
+
+## I benefici stampati sulla carta in dibattito.
+func _benefits() -> Array:
+	return _voices("benefits")
 
 
 func _first_cost() -> String:
@@ -72,12 +77,10 @@ func _a_cost() -> String:
 	return _other_cost()
 
 
-func _first_vent() -> String:
-	return str(_voices("failures")[0])
-
-
-func _other_vent() -> String:
-	return str(_voices("failures")[1])
+## Il terzo costo della carta: serve alle prove che vogliono una voce **diversa**
+## da quella che il mondo prenderebbe da solo (la prima della lista).
+func _third_cost() -> String:
+	return str(_voices("costs")[2])
 
 
 func _open_with_proposition() -> Dictionary:
@@ -107,63 +110,70 @@ func _factor_cancelling_bite(proponent: String) -> int:
 
 
 ## **Il menu viene dal template, e la prima voce e' quella del mondo.**
-func test_the_menu_is_the_card_face() -> void:
+func test_the_card_offers_benefits_and_costs() -> void:
 	_open_with_proposition()
 	var face: Dictionary = data().tensions[TENSION]["physical"]
-	var menu: Dictionary = session.confluence.price_menu()
-	var written_costs: Array = []
-	for voice in (face["costs"] as Array):
-		written_costs.append(str((voice as Dictionary)["takes"]))
-	var written_vents: Array = []
-	for voice in (face["failures"] as Array):
-		written_vents.append(str((voice as Dictionary)["takes"]))
-	assert_eq(menu["cost"], written_costs, "il menu del costo e' quello scritto sulla carta")
-	assert_eq(menu["failure"], written_vents, "il menu dello sfogo e' quello scritto sulla carta")
-	assert_true(written_costs.size() >= 2, "sulla carta ci sono almeno due costi: uno solo non e' una scelta")
-	assert_true(written_vents.size() >= 2, "sulla carta ci sono almeno due sfoghi")
-
-	# E la voce si legge **con le parole della carta**, non col titolo della
-	# Conseguenza: e' quello che al tavolo si sceglie.
 	assert_eq(
-		session.confluence.price_voice_text("costs", str(written_costs[0])),
-		str((face["costs"] as Array)[0]["text"]),
-		"la voce del costo si legge com'e' scritta sulla carta"
-	)
-
-	var vents: Array = menu["failure"] as Array
-	assert_eq(
-		session.confluence._priced(vents, ""), str(vents[0]),
-		"senza pedina decide il mondo: la prima voce"
+		session.confluence.benefit_menu().size(), (face["benefits"] as Array).size(),
+		"il proponente vede i benefici stampati sulla carta"
 	)
 	assert_eq(
-		session.confluence._priced(vents, str(vents[1])), str(vents[1]),
-		"con la pedina decide il fronte avverso"
+		session.confluence.price_menu()["cost"], _voices("costs"),
+		"e il fronte avverso vede i costi stampati"
 	)
-	assert_eq(
-		session.confluence._priced(vents, "CNS_NON_ESISTE"), str(vents[0]),
-		"una pedina fuori menu non decide niente"
-	)
+	assert_true((face["failure"] as Array).size() >= 1, "e se cade, la carta dice gia' cosa succede")
 
 
-## **Una questione senza faccia usa ancora il pool del template** (D-278): la
-## carta comanda dove c'e', e dove non c'e' il gioco non si ferma. Si toglie la
-## faccia a mano dal `DataSet` della prova, che e' l'unico modo di provare il
-## ripiego adesso che tutte e sessanta le carte ce l'hanno.
-func test_without_a_face_the_template_pool_still_serves() -> void:
-	var face: Dictionary = (data().tensions[TENSION] as Dictionary)["physical"]
-	(data().tensions[TENSION] as Dictionary).erase("physical")
+## **L'economia: uno e' gratis, ogni altro si paga.** E' la riga in mezzo alla
+## carta, ed e' quella che rende il Consiglio una decisione invece di un menu.
+func test_one_benefit_is_free_and_every_other_costs_one() -> void:
 	_open_with_proposition()
-	var pools: Dictionary = data().confluence_templates[
-		str(session.confluence.current["template_id"])
-	]["consequence_pools"]
-	var menu: Dictionary = session.confluence.price_menu()
-	assert_eq(menu["cost"], pools["cost"], "senza faccia, il costo torna al pool del template")
-	assert_eq(menu["failure"], pools["failure"], "senza faccia, lo sfogo torna al pool del template")
-	assert_eq(
-		session.confluence.price_voice_text("costs", str((pools["cost"] as Array)[0])), "",
-		"e senza faccia non c'e' una parola della carta da leggere"
+	var benefits: Array = _benefits()
+	assert_true(session.confluence.set_benefits([]), "si puo' anche non comprare niente")
+	assert_eq(session.confluence.costs_due(), 0, "e allora non si paga")
+	assert_true(session.confluence.set_benefits([str(benefits[0])]), "un beneficio si compra")
+	assert_eq(session.confluence.costs_due(), 0, "il primo e' gratis")
+	assert_true(session.confluence.set_benefits(benefits.slice(0, 2)), "due benefici")
+	assert_eq(session.confluence.costs_due(), 1, "il secondo costa un costo")
+	assert_true(session.confluence.set_benefits(benefits.slice(0, 3)), "tre benefici")
+	assert_eq(session.confluence.costs_due(), 2, "il terzo ne costa un altro")
+	assert_true(
+		session.confluence.set_benefits(benefits.slice(0, 4)),
+		"il quarto si prende accettando la Cicatrice"
 	)
-	(data().tensions[TENSION] as Dictionary)["physical"] = face
+	assert_eq(
+		session.confluence.costs_due(), 3,
+		"e allora il prezzo e' due costi piu' la Cicatrice"
+	)
+	assert_false(
+		session.confluence.set_benefits(benefits.slice(0, 5)),
+		"oltre la Cicatrice non ci stanno altre pedine"
+	)
+	assert_false(
+		session.confluence.set_benefits([str(benefits[0]), str(benefits[0])]),
+		"una pedina per voce"
+	)
+	assert_false(
+		session.confluence.set_benefits(["B_INVENTATO"]),
+		"e solo sui benefici che la carta stampa"
+	)
+
+
+## **Con la Cicatrice accettata, la Cicatrice si paga davvero.** Il quarto
+## beneficio non e' gratis: fra i costi che scattano c'e' la voce CICATRICE,
+## anche se il fronte avverso ne aveva scelte altre.
+func test_the_fourth_benefit_brings_the_scar() -> void:
+	_open_with_proposition()
+	session.confluence.set_benefits(_benefits().slice(0, 4))
+	var scar_id: String = ""
+	for voice in (data().tensions[TENSION]["physical"]["costs"] as Array):
+		if str((voice as Dictionary)["verb"]) == "SCAR":
+			scar_id = str((voice as Dictionary)["id"])
+	assert_ne(scar_id, "", "la carta offre una Cicatrice")
+	assert_true(
+		(session.confluence.priced_costs() as Array).has(scar_id),
+		"e chi ha comprato il quarto beneficio se la prende"
+	)
 
 
 ## **La pedina spetta al primo OPPOSE nell'ordine delle dichiarazioni**, ed e'
@@ -181,36 +191,40 @@ func test_the_pedina_belongs_to_the_first_opposer() -> void:
 		session.confluence.first_opposer(), str(others[1]),
 		"il primo OPPOSE nell'ordine delle dichiarazioni parla per il fronte"
 	)
+	# Il proponente ha comprato tre benefici: due costi da pagare.
+	session.confluence.set_benefits(_benefits().slice(0, 3))
+	assert_eq(session.confluence.costs_due(), 2, "tre benefici costano due costi")
 	assert_false(
-		session.confluence.place_price(str(others[0]), _a_cost(), ""),
-		"chi sostiene non posa la pedina del prezzo"
+		session.confluence.place_costs(str(others[0]), [_a_cost()]),
+		"chi sostiene non sceglie il prezzo"
 	)
 	assert_false(
-		session.confluence.place_price(str(others[2]), _a_cost(), ""),
-		"il secondo oppositore non posa la pedina del prezzo"
+		session.confluence.place_costs(str(others[2]), [_a_cost()]),
+		"il secondo oppositore non sceglie il prezzo"
 	)
 	assert_false(
-		session.confluence.place_price(str(others[1]), "CNS_ROYAL_GRANARY", ""),
-		"una voce fuori dal menu del costo si rifiuta"
+		session.confluence.place_costs(str(others[1]), ["C_INVENTATO"]),
+		"una voce fuori dalla carta si rifiuta"
+	)
+	assert_false(
+		session.confluence.place_costs(str(others[1]), _voices("costs").slice(0, 3)),
+		"e non si posano piu' pedine di quante la proposta ne costa"
 	)
 	assert_true(
-		session.confluence.place_price(str(others[1]), _a_cost(), _other_vent()),
-		"il primo oppositore posa la pedina su voci del menu"
+		session.confluence.place_costs(str(others[1]), [_a_cost(), _third_cost()]),
+		"il primo oppositore sceglie in che moneta si paga"
 	)
 
 
-## **Se la proposta cade, lo sfogo e' quello della pedina.** Fronte avverso
-## carico e proponente a mani vuote: il fallimento e' certo, e la Conseguenza
-## che scatta e' quella scelta, non la prima del pool.
-func test_on_failure_the_chosen_vent_fires() -> void:
+## **Se la proposta cade, scattano gli effetti stampati.** Non li sceglie
+## nessuno: la carta dice che il mondo non sopporta l'indecisione, e quello
+## succede. Fronte avverso carico e proponente a mani vuote: il fallimento e'
+## certo.
+func test_on_failure_the_printed_effects_fire() -> void:
 	var context: Dictionary = _open_with_proposition()
 	var proponent: String = str(context["proponent"])
 	var opposer: String = str(_others(proponent)[0])
 	session.confluence.declare_stance(opposer, "OPPOSE")
-	assert_true(
-		session.confluence.place_price(opposer, "", _other_vent()),
-		"la pedina si posa sul solo sfogo"
-	)
 	# La mano vera, non carte inventate: lo smaltimento di I. scarta quello che
 	# e' stato impegnato, e una carta che il seggio non ha farebbe strillare
 	# l'applier senza provare niente.
@@ -220,64 +234,62 @@ func test_on_failure_the_chosen_vent_fires() -> void:
 	_rig(_factor_cancelling_bite(proponent))
 	var result: Dictionary = session.confluence.resolve()
 	assert_eq(str(result["outcome"]), ConfluenceResolution.FAILURE, "la proposta cade")
-	assert_true(
-		(result["consequence_ids"] as Array).has(_other_vent()),
-		"lo sfogo scattato e' quello della pedina"
-	)
-	assert_false(
-		(result["consequence_ids"] as Array).has(_first_vent()),
-		"la prima voce del pool non scatta: dal pool esce una voce sola"
-	)
+	for voice in (data().tensions[TENSION]["physical"]["failure"] as Array):
+		assert_true(
+			_log_says(str((voice as Dictionary)["text"])),
+			"il verbale legge l'effetto stampato: «%s»"
+				% str((voice as Dictionary)["text"]).substr(0, 30)
+		)
 
 
-## **Se passa con un costo, il costo e' quello della pedina.** Margine forzato
-## a zero (nessuna carta, morso annullato dal dado): Success with Cost.
-func test_on_success_with_cost_the_chosen_price_fires() -> void:
+## **Se passa, si applicano i benefici comprati e i costi scelti** — insieme,
+## come dice la carta. Margine forzato a zero: la proposta passa.
+func test_on_success_benefits_and_costs_are_applied() -> void:
 	var context: Dictionary = _open_with_proposition()
 	var proponent: String = str(context["proponent"])
 	var opposer: String = str(_others(proponent)[0])
+	session.confluence.set_benefits(_benefits().slice(0, 2))
 	session.confluence.declare_stance(opposer, "OPPOSE")
+	assert_eq(session.confluence.costs_due(), 1, "due benefici costano un costo")
 	assert_true(
-		session.confluence.place_price(opposer, _other_cost(), ""),
-		"la pedina si posa sul solo costo"
+		session.confluence.place_costs(opposer, [_third_cost()]),
+		"il fronte avverso sceglie la moneta"
 	)
 	_rig(_factor_cancelling_bite(proponent))
 	var result: Dictionary = session.confluence.resolve()
+	assert_true(
+		ConfluenceResolution.is_success(str(result["outcome"])),
+		"margine zero: la proposta passa"
+	)
+	for voice_id in _benefits().slice(0, 2):
+		assert_true(
+			_log_says(_text_of("benefits", str(voice_id))),
+			"il beneficio comprato si applica: «%s»" % _text_of("benefits", str(voice_id)).substr(0, 24)
+		)
+	assert_true(
+		_log_says(_text_of("costs", _third_cost())),
+		"e il costo scelto dagli avversari si paga"
+	)
+
+
+## **Senza scelta decide il mondo**: il prezzo si prende dall'alto della lista,
+## perche' una carta che resta muta non deve poter uscire senza pagare.
+func test_without_a_choice_the_world_takes_from_the_top() -> void:
+	_open_with_proposition()
+	session.confluence.set_benefits(_benefits().slice(0, 2))
+	assert_eq(session.confluence.costs_due(), 1, "un costo da pagare")
 	assert_eq(
-		str(result["outcome"]), ConfluenceResolution.SUCCESS_WITH_COST,
-		"margine zero: passa pagando"
-	)
-	assert_true(
-		(result["consequence_ids"] as Array).has(_other_cost()),
-		"il costo scattato e' quello della pedina"
-	)
-	assert_false(
-		(result["consequence_ids"] as Array).has(_first_cost()),
-		"la prima voce del pool non scatta: dal pool esce una voce sola"
+		session.confluence.priced_costs(), [_first_cost()],
+		"e nessuno l'ha scelto: prende il mondo, dall'alto"
 	)
 
 
-## **Senza pedina decide il mondo**: la prima voce del pool, com'e' sempre
-## stato quando il pool aveva una voce sola.
-func test_without_a_pedina_the_world_picks_the_first_voice() -> void:
-	var context: Dictionary = _open_with_proposition()
-	var proponent: String = str(context["proponent"])
-	var opposer: String = str(_others(proponent)[0])
-	session.confluence.declare_stance(opposer, "OPPOSE")
-	var hand: Array = session.service.hand(opposer)
-	assert_true(hand.size() > 0, "l'oppositore ha una mano da impegnare")
-	session.confluence.current["commits"][opposer] = hand
-	_rig(_factor_cancelling_bite(proponent))
-	var result: Dictionary = session.confluence.resolve()
-	assert_eq(str(result["outcome"]), ConfluenceResolution.FAILURE, "la proposta cade")
-	assert_true(
-		(result["consequence_ids"] as Array).has(_first_vent()),
-		"senza pedina scatta la prima voce del pool"
-	)
-	assert_false(
-		(result["consequence_ids"] as Array).has(_other_vent()),
-		"e soltanto quella"
-	)
+## Il testo stampato di una voce, per leggerlo nel verbale.
+func _text_of(list_name: String, voice_id: String) -> String:
+	for voice in (data().tensions[TENSION]["physical"][list_name] as Array):
+		if str((voice as Dictionary)["id"]) == voice_id:
+			return str((voice as Dictionary)["text"])
+	return ""
 
 
 ## **Il silenzio avvantaggia il proponente**, della misura scritta nei dati -

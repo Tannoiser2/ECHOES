@@ -537,36 +537,59 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
                     "su %d tessere del parco di %s, e per esserci su ogni mappa ne servono %d"
                     % (carta.get("id"), porta, cronaca.get("id"), pavimento))
 
-    # 18. Le due liste sulla carta Tensione (D-278, parola del committente:
-    # «nelle tensioni ci dovrebbero essere anche i vantaggi e gli svantaggi che
-    # possono essere scelti e proposti durante il consiglio»). La carta girata
-    # deve offrire una scelta **vera** a chi la subisce: due voci che portano
-    # la stessa Conseguenza sono una voce sola scritta due volte, e una lista
-    # che ne ha una sola non e' un menu — e' un destino.
-    conseguenze = {str(c.get("id")) for c in documenti.get("consequence", [])}
+    # 18. Le due liste sulla carta Tensione (D-280, parola del committente).
+    # La carta girata offre **benefici** che il proponente compra e **costi**
+    # che gli avversari scelgono, piu' gli effetti stampati se la proposta
+    # cade. I verbi sono un vocabolario chiuso — quello che il motore sa
+    # eseguire — e ognuno chiede i suoi parametri: una voce che ne salta uno
+    # e' una casella su cui si posa una pedina che non fa niente.
+    BENEFIT_VERBS = {"REOPEN", "CLEAR_CONDITION", "BUILD_STONE",
+                     "TAKE_CONTROL", "COOL_THEME"}
+    COST_VERBS = {"ADD_CONDITION", "TOLL", "YIELD_CONTROL", "HEAT_THEME",
+                  "TAKE_DEBT", "SCAR"}
+    NEEDS = {"BUILD_STONE": "structure", "ADD_CONDITION": "tag", "SCAR": "tag"}
+    pietre = {str(s.get("id")) for s in documenti.get("structure_type", [])}
     for tensione in documenti.get("tension", []):
         faccia = tensione.get("physical") or {}
-        for lista, campo, come in (("costs", "takes", "costo"),
-                                   ("failures", "takes", "sfogo"),
-                                   ("opportunities", "gives", "opportunita'")):
-            voci_carta = faccia.get(lista)
-            if voci_carta is None:
-                continue
-            if len(voci_carta) < 2:
-                guai.append("lista di %s troppo corta su %s: %d voce — una sola non e' "
-                            "una scelta" % (come, tensione.get("id"), len(voci_carta)))
-            portate = [str(v.get(campo, "")) for v in voci_carta]
-            for portata in portate:
-                if portata not in conseguenze:
-                    guai.append("voce che nomina una Conseguenza inesistente: %s -> «%s»"
-                                % (tensione.get("id"), portata))
-            if len(set(portate)) < len(portate):
-                guai.append("scelta finta fra i %s di %s: due voci portano la stessa "
-                            "Conseguenza" % (come, tensione.get("id")))
+        if not faccia:
+            guai.append("Tensione senza faccia: %s — girata, non avrebbe ne' "
+                        "benefici da comprare ne' un prezzo da pagare"
+                        % tensione.get("id"))
+            continue
+        for lista, vocabolario, minimo, come in (
+                ("benefits", BENEFIT_VERBS, 2, "benefici"),
+                ("costs", COST_VERBS, 2, "costi"),
+                ("failure", COST_VERBS, 1, "effetti se cade")):
+            voci_carta = faccia.get(lista) or []
+            if len(voci_carta) < minimo:
+                guai.append("lista di %s troppo corta su %s: %d voce"
+                            % (come, tensione.get("id"), len(voci_carta)))
+            verbi = []
+            for v in voci_carta:
+                verbo = str(v.get("verb", ""))
+                verbi.append(verbo)
+                if verbo not in vocabolario:
+                    guai.append("verbo fuori vocabolario su %s: «%s» fra i %s"
+                                % (tensione.get("id"), verbo, come))
+                    continue
+                chiede = NEEDS.get(verbo)
+                if chiede and not str(v.get(chiede, "")):
+                    guai.append("voce senza il suo parametro su %s: «%s» chiede "
+                                "`%s`" % (tensione.get("id"), verbo, chiede))
+                if verbo == "BUILD_STONE" and str(v.get("structure", "")) not in pietre:
+                    guai.append("Pietra inesistente su %s: «%s»"
+                                % (tensione.get("id"), v.get("structure")))
+                for campo in ("tag",):
+                    segno = str(v.get(campo, ""))
+                    if segno and segno not in voci:
+                        guai.append("segno fuori dal dizionario su %s: «%s»"
+                                    % (tensione.get("id"), segno))
+            if lista != "failure" and len(set(verbi)) < len(verbi):
+                guai.append("scelta finta fra i %s di %s: due pedine fanno la "
+                            "stessa cosa" % (come, tensione.get("id")))
             testi = [str(v.get("text", "")) for v in voci_carta]
             if len(set(testi)) < len(testi):
-                guai.append("due voci identiche fra i %s di %s: al tavolo si leggono "
-                            "uguali" % (come, tensione.get("id")))
+                guai.append("due voci identiche fra i %s di %s" % (come, tensione.get("id")))
             ids = [str(v.get("id", "")) for v in voci_carta]
             if len(set(ids)) < len(ids):
                 guai.append("id ripetuto fra i %s di %s" % (come, tensione.get("id")))
@@ -681,15 +704,23 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
         carta["physical"]["target"]["any_tag"] = ["capital"]
 
     def scelta_finta(prova: Dict[str, List[Dict[str, Any]]]) -> None:
-        # Due voci di costo che portano la stessa Conseguenza: al tavolo la
-        # pedina si posa su due caselle che fanno la stessa cosa (D-278).
+        # Due pedine di costo che fanno la stessa cosa: al tavolo si posano su
+        # due caselle uguali, e la scelta non e' una scelta (D-280).
         carta = next(t for t in prova["tension"] if (t.get("physical") or {}).get("costs"))
-        carta["physical"]["costs"][1]["takes"] = carta["physical"]["costs"][0]["takes"]
+        carta["physical"]["costs"][1]["verb"] = carta["physical"]["costs"][0]["verb"]
 
     def lista_monca(prova: Dict[str, List[Dict[str, Any]]]) -> None:
         # Una lista con una voce sola: non e' un menu, e' un destino.
-        carta = next(t for t in prova["tension"] if (t.get("physical") or {}).get("failures"))
-        carta["physical"]["failures"] = carta["physical"]["failures"][:1]
+        carta = next(t for t in prova["tension"] if (t.get("physical") or {}).get("costs"))
+        carta["physical"]["costs"] = carta["physical"]["costs"][:1]
+
+    def pedina_muta(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        # Una Pietra da costruire che non esiste: la pedina si posa e non
+        # succede niente.
+        carta = next(t for t in prova["tension"] if (t.get("physical") or {}).get("benefits"))
+        for voce in carta["physical"]["benefits"]:
+            if voce.get("verb") == "BUILD_STONE":
+                voce["structure"] = "STR_INVENTATA"
 
     print("")
     print("== SELF-TEST: la guardia morde? ==")
@@ -709,10 +740,12 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
                "tessera senza segni"),
         pianta("tessera coi soli segni che nessuno legge", tessera_decorativa,
                "tessera che nessuno legge"),
-        pianta("due malus che portano la stessa Conseguenza", scelta_finta,
-               "scelta finta fra i costo"),
-        pianta("lista di sfoghi con una voce sola", lista_monca,
-               "lista di sfogo troppo corta"),
+        pianta("due pedine di costo che fanno la stessa cosa", scelta_finta,
+               "scelta finta fra i costi"),
+        pianta("lista di costi con una voce sola", lista_monca,
+               "lista di costi troppo corta"),
+        pianta("una Pietra che non esiste sotto una pedina", pedina_muta,
+               "Pietra inesistente"),
         pianta("Tensione senza domande sulla carta", tensione_muta,
                "Tensione senza domande"),
         pianta("domanda che nessun template di Consiglio conosce", ponte_rotto,
