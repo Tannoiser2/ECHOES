@@ -10,6 +10,44 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-275 — La posa comanda: sul tavolo pescato vicino è chi si tocca
+
+**implemented in 0.1.237** — parola del committente, sulla forma della mappa
+
+La domanda del committente, davanti alla posa 3×2 della schermata: *che
+regola usano le adiacenze — ci sono lati bloccati, o tutte le tessere
+accostate sono vicine?* La risposta onesta era che il motore usava **un
+grafo scritto nei dati** (D-166), ristretto alle tessere uscite e ricucito
+quando si spezzava in isole (D-263) — una regola che sul tavolo fisico non
+si legge da nessuna parte. Delle due strade, il committente ha scelto la
+posizionale: **vai con A**.
+
+**La regola nuova, sul tavolo pescato:**
+
+1. le tessere si posano **in griglia, riga per riga, nell'ordine di pesca**
+   — con sei tessere, 3×2 (colonne = ⌈√N⌉);
+2. **vicino è chi si tocca di lato o di sopra**: niente diagonali;
+3. **niente lati bloccati**: ogni lato accostato è un confine aperto. Se un
+   giorno una tessera vorrà un lato chiuso, sarà un segno stampato — e
+   un'altra decisione;
+4. la posa è **stato del mondo** (`map_positions`, [colonna, riga]) e la
+   saga la eredita con l'ordine delle tessere: si rimonta leggendo il
+   tavolo, come tutto il resto (D-269). Le adiacenze restano mutabili
+   dentro l'anno (D-166: una frana toglie un arco);
+5. **l'app disegna la posa**: la vista della mappa mette le tessere in
+   griglia dove stanno sul tavolo — quello che si vede è quello che la
+   regola legge;
+6. il **grafo dichiarato resta agli anni scritti** (CHR_01-04), dove la
+   mappa è d'autore. La cucitura delle isole di D-263 esce: una griglia è
+   connessa per costruzione.
+
+**I numeri, 100 semi:** 0 seggi bloccati su 8 (misto e uniforme), 82 mappe
+diverse su 100 saghe, 0 partite non concluse. Le storie del tavolo pescato
+si riscrivono (l'adiacenza decide movimenti e vicinati): regola del gioco,
+dichiarata, come D-261.
+
+---
+
 ## D-274 — Il motore esegue il bersaglio a segni: la sim gioca il gioco del tavolo
 
 **implemented in 0.1.236** — il secondo pezzo di faccia fisica eseguito, dopo la Risonanza (ISSUES 69)

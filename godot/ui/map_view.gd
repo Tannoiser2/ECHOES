@@ -138,6 +138,32 @@ func _relayout() -> void:
 	# funziona in una finestra stretta e a schermo intero.
 	_radius = clampf(minf(size.x, size.y) * 0.17, RADIUS_MIN, RADIUS_MAX)
 
+	# **La posa comanda** (D-275): sul tavolo pescato le tessere stanno in
+	# griglia nell'ordine di pesca, e lo schermo le mette dove stanno sul
+	# tavolo — non dove le coordinate d'autore della mappa scritta le
+	# metterebbero. Vicino e' chi si tocca: quello che la vista mostra e'
+	# esattamente quello che la regola legge.
+	var posa: Dictionary = (_session.world.get("map_positions", {}) as Dictionary)
+	if not posa.is_empty():
+		var columns: int = 1
+		var rows: int = 1
+		for spot in posa.values():
+			columns = maxi(columns, int((spot as Array)[0]) + 1)
+			rows = maxi(rows, int((spot as Array)[1]) + 1)
+		_radius = clampf(
+			minf(size.x / (float(columns) * 2.4), size.y / (float(rows) * 2.8)),
+			RADIUS_MIN, RADIUS_MAX
+		)
+		for region_id in _regions:
+			var spot: Variant = posa.get(str(region_id))
+			if spot == null:
+				continue
+			_points[str(region_id)] = Vector2(
+				(float(int((spot as Array)[0])) + 0.5) / float(columns) * size.x,
+				(float(int((spot as Array)[1])) + 0.5) / float(rows) * size.y
+			)
+		return
+
 	# Con il quadro le coordinate dei dati si prendono **alla lettera**: chi ha
 	# dipinto la mappa ha messo la citta' dove i dati dicevano che stava, e
 	# allungare il riquadro come si fa senza quadro sposterebbe i segnalini fuori

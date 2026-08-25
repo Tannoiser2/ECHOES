@@ -79,6 +79,42 @@ func test_the_drawn_map_is_connected() -> void:
 		opened.dispose()
 
 
+## **La posa comanda** (D-275, parola del committente): le sei tessere stanno
+## in griglia 3x2 nell'ordine di pesca, e vicino e' chi si tocca di lato o di
+## sopra — niente diagonali, niente lati bloccati, niente grafo scritto. Gli
+## angoli toccano due tessere, i centri delle righe tre.
+func test_the_tiles_lie_in_a_grid_and_touch_decides() -> void:
+	var opened: RefCounted = _open(7000)
+	var order: Array = (opened.world["regions"] as Dictionary).keys()
+	var posa: Dictionary = opened.world["map_positions"] as Dictionary
+	assert_eq(posa.size(), 6, "ogni tessera ha la sua posizione")
+	for i in range(order.size()):
+		assert_eq(
+			posa[str(order[i])], [i % 3, i / 3],
+			"la tessera %d si posa riga per riga, nell'ordine di pesca" % i
+		)
+	# Il conto del tocco: angolo in alto a sinistra = 2 vicini (destra, sotto);
+	# centro della prima riga = 3 (i due lati e sotto). E la diagonale non
+	# conta: la prima tessera non confina con la quinta (colonna 1, riga 1).
+	var corner: String = str(order[0])
+	var middle: String = str(order[1])
+	var diagonal: String = str(order[4])
+	assert_eq((opened.world["adjacency"][corner] as Array).size(), 2, "l'angolo tocca due tessere")
+	assert_eq((opened.world["adjacency"][middle] as Array).size(), 3, "il centro della riga ne tocca tre")
+	assert_false(
+		(opened.world["adjacency"][corner] as Array).has(diagonal),
+		"la diagonale non e' un tocco"
+	)
+	# E la simmetria: se A tocca B, B tocca A.
+	for here in opened.world["adjacency"]:
+		for neighbour in (opened.world["adjacency"][here] as Array):
+			assert_true(
+				(opened.world["adjacency"][str(neighbour)] as Array).has(str(here)),
+				"il tocco e' simmetrico (%s-%s)" % [str(here), str(neighbour)]
+			)
+	opened.dispose()
+
+
 ## **Ogni casa seduta comincia sul tavolo, non nella scatola.** Le pedine di
 ## partenza cadono solo su tessere uscite, e nessuna casa resta senza niente.
 func test_every_seated_house_stands_on_the_table() -> void:

@@ -116,6 +116,18 @@
             "type": "string"
           }
         },
+        "map_positions": {
+          "type": "object",
+          "description": "La posa delle tessere pescate (D-275, parola del committente): [colonna, riga] nell'ordine di pesca, riga per riga — con sei tessere, 3x2. E' un fatto del tavolo: l'adiacenza si legge da qui (vicino e' chi si tocca di lato o di sopra, niente diagonali, niente lati bloccati), l'app la disegna, e la saga la eredita con l'ordine delle tessere. Assente sugli anni scritti, dove la mappa e' d'autore.",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "minItems": 2,
+            "maxItems": 2
+          }
+        },
         "relations": {
           "type": "object",
           "description": "Keyed by the two entity ids joined by '|' in ascending order.",
