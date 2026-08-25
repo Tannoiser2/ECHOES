@@ -10,6 +10,55 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-273 — La ri-mira delle 48: ogni bersaglio esiste su ogni mappa pescata
+
+**implemented in 0.1.235** — chiude PZ-3 della roadmap, con un limite dichiarato
+
+Il censimento che ha aperto questa decisione, misurato prima di toccare
+qualcosa: **30 carte su 30 a bersaglio REGION non erano garantite sul tavolo
+pescato** — quasi tutte nominavano segni stampati su 1-3 tessere su 10, e le
+quattro tessere di PZ-2 (porto, palude, isola, bosco) non le raggiungeva
+quasi nessuna. Le 48 erano scritte per la mappa vecchia di sei, e sul tavolo
+pescato questo si sente: **87,2% di turni passati** contro l'83,8% dell'anno
+scritto, col 70% dei passa a «mosse legali, nessuna che gli servisse».
+
+**La cura ha la matematica di D-265.** I quattro domini stampati stanno su
+**esattamente 5 tessere su 10**: una carta che mira anche al dominio affine
+alla sua famiglia e' garantita **per costruzione** su ogni mappa pescata
+(N−K+1 = 5). Ogni carta a bersaglio REGION guadagna il suo dominio — la
+FORZA e l'AUTORITA' il #territorio, il POPOLO e i LEGAMI la #sopravvivenza,
+la RICCHEZZA (e le voci di corridoio) le #risorse, il SAPERE l'#antico — e
+dove la finzione li chiede anche i segni nuovi: il #porto per sale, pedaggi,
+carovane e censimenti; la #palude e l'#isola per la mappa vecchia; la
+#miniera per la prova e il cristallo; il #bosco per la banda armata. I testi
+delle facce lo dicono («Vale anche il #porto, e ogni luogo del dominio delle
+#risorse.»), e i domini hanno gli alias da #cancelletto nel dizionario.
+Le due carte a bersaglio libero (l'Editto, il Diritto di Ospitalita') erano
+gia' garantite da sole.
+
+**La guardia che lo tiene** e' il controllo 17 del validatore fisico:
+bersaglio REGION ⇒ segni stampati su almeno N−K+1 tessere del parco.
+Contano i segni **stampati**: condizioni e pietre sono strade in piu', non
+il pavimento. Dodicesimo difetto piantato nel self-test, e la guardia si e'
+vista mordere.
+
+**Il «fatto quando» di PZ-3 tiene tutto**: nessuna carta nomina un id
+(verificato), ogni bersaglio esiste sulla mappa nuova (garantito, non
+sperato), il validatore delle Risonanze cieche resta verde. **Carte nuove
+non ne servono**: i luoghi nuovi chiedono gli stessi sei verbi, e la ri-mira
+li raggiunge — scriverne resta materia d'autore.
+
+**Il limite, dichiarato due volte:**
+1. la ri-mira e' della **faccia fisica**, e il motore digitale il bersaglio
+   fisico non lo esegue ancora (ISSUES 69): al tavolo la carta adesso trova
+   sempre un luogo, ma il cervello delle sim non passa di meno per questo.
+   I «passa» restano l'87,2% sul tavolo pescato — ISSUES 68 resta aperta, e
+   il prossimo passo vero e' **far leggere al motore il bersaglio a segni**;
+2. i numeri delle sim non si muovono (motore intatto): playtest 0 seggi
+   bloccati su 8, Risonanze CHR_00 875/100 anni col ponte a 646.
+
+---
+
 ## D-272 — I sei controlli di PZ-9, riletti nel mondo dove la Domanda sta sulla Tensione
 
 **implemented in 0.1.234** — apre PZ-9 della roadmap e lo chiude

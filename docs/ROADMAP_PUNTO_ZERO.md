@@ -197,6 +197,15 @@ nuova, e il validatore delle Risonanze cieche resta verde.
 > (`$region_with`/`$entity_with`), tessere con segno unico stampato, guardia
 > che vieta gli id nuovi. Le 48 carte Asset restano da ri-mirare sulla mappa
 > nuova quando esisterà (Fase C).
+>
+> **Chiuso in 0.1.235** ([D-273](DECISIONS.md#d-273)): censite, **30 su 30**
+> a bersaglio REGION non erano garantite sul tavolo pescato; ri-mirate con la
+> matematica di D-265 (il dominio affine sta su 5 tessere su 10 ⇒ garantite
+> per costruzione) più i segni nuovi dove la finzione li chiede. Guardia 17
+> nel validatore, dodicesimo difetto piantato. Carte nuove non servono: i
+> luoghi nuovi chiedono gli stessi sei verbi. Il limite, a verbale: la
+> ri-mira è della faccia fisica — farla **eseguire** al motore è il prossimo
+> passo di ISSUES 69, ed è lì che i «passa» (ISSUES 68) potranno muoversi.
 
 ### PZ-4 — Le Domande: da 12 a 18
 

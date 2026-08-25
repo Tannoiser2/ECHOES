@@ -48,9 +48,10 @@
           "any_tag": [
             "granary",
             "nomad_range",
-            "capital"
+            "capital",
+            "domain:TERRITORY"
           ],
-          "text": "Scegli un luogo con #granaio, #pascolo o #capitale dove hai gia' una presenza."
+          "text": "Scegli un luogo con #granaio, #pascolo o #capitale dove hai gia' una presenza. Vale anche ogni luogo del dominio del #territorio."
         },
         "actions": [
           {
@@ -129,9 +130,10 @@
             "capital",
             "granary",
             "nomad_range",
-            "condition:contested"
+            "condition:contested",
+            "domain:TERRITORY"
           ],
-          "text": "Scegli un luogo con #capitale, #granaio, #pascolo o #conteso."
+          "text": "Scegli un luogo con #capitale, #granaio, #pascolo o #conteso. Vale anche ogni luogo del dominio del #territorio."
         },
         "actions": [
           {
@@ -216,12 +218,14 @@
           "any_tag": [
             "trade",
             "structure:tollgate",
-            "capital"
+            "capital",
+            "harbor",
+            "domain:TERRITORY"
           ],
           "forbidden_tag": [
             "condition:cut_off"
           ],
-          "text": "Scegli un luogo con #commercio, #dogana o #capitale che non sia gia' #tagliato_fuori."
+          "text": "Scegli un luogo con #commercio, #dogana o #capitale che non sia gia' #tagliato_fuori. Vale anche il #porto, e ogni luogo del dominio del #territorio."
         },
         "actions": [
           {
@@ -302,12 +306,14 @@
             "wild",
             "nomad_range",
             "condition:abandoned",
-            "condition:contested"
+            "condition:contested",
+            "forest",
+            "domain:TERRITORY"
           ],
           "forbidden_tag": [
             "capital"
           ],
-          "text": "Scegli un luogo con #selvaggio, #pascolo, #abbandonato o #conteso che non sia una #capitale."
+          "text": "Scegli un luogo con #selvaggio, #pascolo, #abbandonato o #conteso che non sia una #capitale. Vale anche il #bosco, e ogni luogo del dominio del #territorio."
         },
         "actions": [
           {
@@ -472,9 +478,10 @@
             "capital",
             "granary",
             "structure:watchtower",
-            "structure:castle"
+            "structure:castle",
+            "domain:TERRITORY"
           ],
-          "text": "Scegli un luogo con #capitale, #granaio o una struttura murata."
+          "text": "Scegli un luogo con #capitale, #granaio o una struttura murata. Vale anche ogni luogo del dominio del #territorio."
         },
         "actions": [
           {
@@ -555,9 +562,10 @@
           "any_tag": [
             "capital",
             "condition:contested",
-            "condition:unrest"
+            "condition:unrest",
+            "domain:TERRITORY"
           ],
-          "text": "Scegli un luogo con #capitale, #conteso o #malcontento."
+          "text": "Scegli un luogo con #capitale, #conteso o #malcontento. Vale anche ogni luogo del dominio del #territorio."
         },
         "actions": [
           {
@@ -640,9 +648,10 @@
             "capital",
             "structure:watchtower",
             "structure:castle",
-            "structure:palace"
+            "structure:palace",
+            "domain:TERRITORY"
           ],
-          "text": "Scegli un luogo con #capitale o una struttura murata."
+          "text": "Scegli un luogo con #capitale o una struttura murata. Vale anche ogni luogo del dominio del #territorio."
         },
         "actions": [
           {
@@ -881,9 +890,11 @@
           "any_tag": [
             "capital",
             "granary",
-            "trade"
+            "trade",
+            "harbor",
+            "domain:TERRITORY"
           ],
-          "text": "Scegli un luogo con #capitale, #granaio o #commercio."
+          "text": "Scegli un luogo con #capitale, #granaio o #commercio. Vale anche il #porto, e ogni luogo del dominio del #territorio."
         },
         "actions": [
           {
@@ -965,9 +976,10 @@
           "scope": "REGION",
           "any_tag": [
             "capital",
-            "condition:contested"
+            "condition:contested",
+            "domain:TERRITORY"
           ],
-          "text": "Scegli un luogo con #capitale o #conteso."
+          "text": "Scegli un luogo con #capitale o #conteso. Vale anche ogni luogo del dominio del #territorio."
         },
         "actions": [
           {
@@ -1050,9 +1062,10 @@
             "capital",
             "trade",
             "condition:contested",
-            "condition:unrest"
+            "condition:unrest",
+            "domain:TERRITORY"
           ],
-          "text": "Scegli un luogo con #capitale, #commercio, #conteso o #malcontento."
+          "text": "Scegli un luogo con #capitale, #commercio, #conteso o #malcontento. Vale anche ogni luogo del dominio del #territorio."
         },
         "actions": [
           {
@@ -1291,9 +1304,10 @@
         "target": {
           "scope": "REGION",
           "any_tag": [
-            "capital"
+            "capital",
+            "domain:TERRITORY"
           ],
-          "text": "Scegli un luogo con #capitale."
+          "text": "Scegli un luogo con #capitale. Vale anche ogni luogo del dominio del #territorio."
         },
         "actions": [
           {
@@ -1453,9 +1467,10 @@
             "nomad_range",
             "condition:mourning",
             "settlement:village",
-            "settlement:town"
+            "settlement:town",
+            "domain:SURVIVAL"
           ],
-          "text": "Scegli un luogo con #granaio, #pascolo, #lutto o un insediamento."
+          "text": "Scegli un luogo con #granaio, #pascolo, #lutto o un insediamento. Vale anche ogni luogo del dominio della #sopravvivenza."
         },
         "actions": [
           {
@@ -1537,9 +1552,10 @@
           "any_tag": [
             "granary",
             "condition:lean",
-            "condition:starving"
+            "condition:starving",
+            "domain:SURVIVAL"
           ],
-          "text": "Scegli un luogo con #granaio, #magro o #fame."
+          "text": "Scegli un luogo con #granaio, #magro o #fame. Vale anche ogni luogo del dominio della #sopravvivenza."
         },
         "actions": [
           {
@@ -1698,9 +1714,10 @@
             "capital",
             "condition:unrest",
             "settlement:town",
-            "settlement:city"
+            "settlement:city",
+            "domain:SURVIVAL"
           ],
-          "text": "Scegli un luogo con #capitale, #malcontento o un insediamento cresciuto."
+          "text": "Scegli un luogo con #capitale, #malcontento o un insediamento cresciuto. Vale anche ogni luogo del dominio della #sopravvivenza."
         },
         "actions": [
           {
@@ -1781,9 +1798,10 @@
             "condition:starving",
             "condition:rationed",
             "condition:lean",
-            "nomad_range"
+            "nomad_range",
+            "domain:SURVIVAL"
           ],
-          "text": "Scegli un luogo con #fame, #razionato, #magro o #pascolo."
+          "text": "Scegli un luogo con #fame, #razionato, #magro o #pascolo. Vale anche ogni luogo del dominio della #sopravvivenza."
         },
         "actions": [
           {
@@ -1866,9 +1884,11 @@
             "condition:starving",
             "condition:emptied",
             "condition:abandoned",
-            "nomad_range"
+            "nomad_range",
+            "marsh",
+            "domain:SURVIVAL"
           ],
-          "text": "Scegli un luogo con #fame, #svuotato, #abbandonato o #pascolo."
+          "text": "Scegli un luogo con #fame, #svuotato, #abbandonato o #pascolo. Vale anche la #palude, e ogni luogo del dominio della #sopravvivenza."
         },
         "actions": [
           {
@@ -2029,9 +2049,11 @@
             "capital",
             "trade",
             "condition:unrest",
-            "settlement:market"
+            "settlement:market",
+            "harbor",
+            "domain:RESOURCE"
           ],
-          "text": "Scegli un luogo con #capitale, #commercio, #malcontento o #mercato."
+          "text": "Scegli un luogo con #capitale, #commercio, #malcontento o #mercato. Vale anche il #porto, e ogni luogo del dominio delle #risorse."
         },
         "actions": [
           {
@@ -2113,9 +2135,12 @@
           "any_tag": [
             "condition:cut_off",
             "wild",
-            "trade"
+            "trade",
+            "marsh",
+            "island",
+            "domain:ANCIENT"
           ],
-          "text": "Scegli un luogo con #tagliato_fuori, #selvaggio o #commercio."
+          "text": "Scegli un luogo con #tagliato_fuori, #selvaggio o #commercio. Vale anche la #palude, l'#isola, e ogni luogo del dominio dell'#antico."
         },
         "actions": [
           {
@@ -2276,9 +2301,11 @@
             "capital",
             "crystal_site",
             "structure:archive",
-            "structure:library"
+            "structure:library",
+            "mine",
+            "domain:ANCIENT"
           ],
-          "text": "Scegli un luogo con #capitale, #cristallo o una stanza dove si tengono le carte."
+          "text": "Scegli un luogo con #capitale, #cristallo o una stanza dove si tengono le carte. Vale anche la #miniera, e ogni luogo del dominio dell'#antico."
         },
         "actions": [
           {
@@ -2364,9 +2391,10 @@
             "capital",
             "structure:archive",
             "structure:library",
-            "trade"
+            "trade",
+            "domain:ANCIENT"
           ],
-          "text": "Scegli un luogo con #capitale, #commercio o una stanza dove si tengono le carte."
+          "text": "Scegli un luogo con #capitale, #commercio o una stanza dove si tengono le carte. Vale anche ogni luogo del dominio dell'#antico."
         },
         "actions": [
           {
@@ -2529,9 +2557,11 @@
           "any_tag": [
             "crystal_site",
             "wild",
-            "structure:sealed"
+            "structure:sealed",
+            "mine",
+            "domain:ANCIENT"
           ],
-          "text": "Scegli un luogo con #cristallo, #selvaggio o #sigillato."
+          "text": "Scegli un luogo con #cristallo, #selvaggio o #sigillato. Vale anche la #miniera, e ogni luogo del dominio dell'#antico."
         },
         "actions": [
           {
@@ -2619,9 +2649,11 @@
           "any_tag": [
             "capital",
             "structure:archive",
-            "condition:contested"
+            "condition:contested",
+            "island",
+            "domain:ANCIENT"
           ],
-          "text": "Scegli un luogo con #capitale, #conteso o un archivio."
+          "text": "Scegli un luogo con #capitale, #conteso o un archivio. Vale anche l'#isola, e ogni luogo del dominio dell'#antico."
         },
         "actions": [
           {
@@ -2707,9 +2739,10 @@
             "granary",
             "structure:granary",
             "condition:starving",
-            "condition:lean"
+            "condition:lean",
+            "domain:RESOURCE"
           ],
-          "text": "Scegli un luogo con #granaio, #fame o #magro."
+          "text": "Scegli un luogo con #granaio, #fame o #magro. Vale anche ogni luogo del dominio delle #risorse."
         },
         "actions": [
           {
@@ -2796,9 +2829,11 @@
             "trade",
             "granary",
             "settlement:market",
-            "condition:lean"
+            "condition:lean",
+            "harbor",
+            "domain:RESOURCE"
           ],
-          "text": "Scegli un luogo con #commercio, #granaio, #mercato o #magro."
+          "text": "Scegli un luogo con #commercio, #granaio, #mercato o #magro. Vale anche il #porto, e ogni luogo del dominio delle #risorse."
         },
         "actions": [
           {
@@ -2885,9 +2920,11 @@
           "any_tag": [
             "trade",
             "structure:tollgate",
-            "structure:road"
+            "structure:road",
+            "harbor",
+            "domain:RESOURCE"
           ],
-          "text": "Scegli un luogo con #commercio, #dogana o #strada."
+          "text": "Scegli un luogo con #commercio, #dogana o #strada. Vale anche il #porto, e ogni luogo del dominio delle #risorse."
         },
         "actions": [
           {
@@ -2968,9 +3005,11 @@
           "any_tag": [
             "trade",
             "settlement:market",
-            "condition:cut_off"
+            "condition:cut_off",
+            "harbor",
+            "domain:RESOURCE"
           ],
-          "text": "Scegli un luogo con #commercio, #mercato o #tagliato_fuori."
+          "text": "Scegli un luogo con #commercio, #mercato o #tagliato_fuori. Vale anche il #porto, e ogni luogo del dominio delle #risorse."
         },
         "actions": [
           {
@@ -3206,9 +3245,10 @@
           "scope": "REGION",
           "any_tag": [
             "capital",
-            "trade"
+            "trade",
+            "domain:RESOURCE"
           ],
-          "text": "Scegli un luogo con #capitale o #commercio."
+          "text": "Scegli un luogo con #capitale o #commercio. Vale anche ogni luogo del dominio delle #risorse."
         },
         "actions": [
           {
@@ -3770,9 +3810,10 @@
             "capital",
             "settlement:town",
             "settlement:city",
-            "nomad_range"
+            "nomad_range",
+            "domain:SURVIVAL"
           ],
-          "text": "Scegli un luogo con #capitale, #pascolo o un insediamento cresciuto."
+          "text": "Scegli un luogo con #capitale, #pascolo o un insediamento cresciuto. Vale anche ogni luogo del dominio della #sopravvivenza."
         },
         "actions": [
           {

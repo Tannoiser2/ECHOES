@@ -53,14 +53,18 @@ Tensione (D-266):
  15. Destini che osservano un segno fuori dal dizionario: la faccia dice dove
      guardare, e deve indicare un segno che esiste;
  16. Echi senza effetto: una carta del Narratore senza `effect_hooks` e'
-     colore travestito da carta.
+     colore travestito da carta;
+ 17. bersagli non garantiti sul tavolo pescato (PZ-3, D-273): una carta a
+     bersaglio REGION deve poter nominare un luogo su OGNI mappa pescata —
+     coi segni stampati su almeno N-K+1 tessere del parco, come i domini di
+     D-265. Le condizioni e le pietre sono strade in piu', non il pavimento.
 
 La Domanda non e' una carta a parte: **sta sulla carta Tensione** (decisione
 del committente, D-266) — girata la Tensione, le sue domande sono li', legate
 ai segni del mondo. I controlli sulle carte Domanda separate sono usciti con
 il componente.
 
-`--self-test` pianta undici difetti, uno per famiglia di controllo, e pretende
+`--self-test` pianta dodici difetti, uno per famiglia di controllo, e pretende
 che la guardia vada rossa su ognuno: una guardia che nessuno ha visto mordere
 non e' una guardia (lezione di D-256).
 """
@@ -502,6 +506,36 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
         if not eco.get("effect_hooks"):
             guai.append("Echo senza effetto: %s — si gioca, si paga, e il mondo non si muove"
                         % eco.get("id"))
+
+    # 17. Bersagli garantiti sul tavolo pescato (PZ-3, D-273): una carta a
+    # bersaglio REGION deve poter nominare un luogo su OGNI mappa pescata.
+    # Stessa matematica dei domini (D-265): con N candidate e K pescate, i
+    # segni stampati su almeno N-K+1 tessere ci sono per costruzione. Contano
+    # i segni STAMPATI: condizioni e pietre sono strade in piu', non il
+    # pavimento. Il bersaglio libero (senza any_tag) e' garantito da solo.
+    stampati_per_tessera = {str(r.get("id")): {str(t) for t in r.get("tags", [])}
+                            for r in documenti.get("region", [])}
+    for cronaca in documenti.get("chronicle", []):
+        pool = cronaca.get("region_pool") or {}
+        candidate = [str(c) for c in pool.get("candidates", [])]
+        pescate = int(pool.get("count", 0))
+        if not candidate or pescate <= 0:
+            continue
+        pavimento = len(candidate) - pescate + 1
+        for carta in documenti.get("asset", []):
+            bersaglio = (carta.get("physical") or {}).get("target") or {}
+            if str(bersaglio.get("scope", "")) != "REGION":
+                continue
+            segni = [str(t) for t in bersaglio.get("any_tag", [])]
+            if not segni:
+                continue
+            porta = sum(1 for rid in candidate
+                        if any(s in stampati_per_tessera.get(rid, set()) for s in segni))
+            if porta < pavimento:
+                guai.append(
+                    "bersaglio non garantito sul tavolo pescato: %s nomina segni stampati "
+                    "su %d tessere del parco di %s, e per esserci su ogni mappa ne servono %d"
+                    % (carta.get("id"), porta, cronaca.get("id"), pavimento))
     return guai
 
 
@@ -604,6 +638,14 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
     def eco_di_colore(prova: Dict[str, List[Dict[str, Any]]]) -> None:
         prova["echo_card"][0]["effect_hooks"] = []
 
+    def bersaglio_stretto(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        # Una carta ri-mirata sulla sola #capitale: una tessera su dieci, e la
+        # meta' delle mappe pescate non avrebbe dove posarla.
+        carta = next(a for a in prova["asset"]
+                     if (a.get("physical") or {}).get("target", {}).get("scope") == "REGION"
+                     and (a["physical"]["target"].get("any_tag")))
+        carta["physical"]["target"]["any_tag"] = ["capital"]
+
     print("")
     print("== SELF-TEST: la guardia morde? ==")
     print("")
@@ -630,6 +672,8 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
                "Destino che osserva un segno fuori dal dizionario"),
         pianta("Echo svuotato dei suoi effetti", eco_di_colore,
                "Echo senza effetto"),
+        pianta("carta ri-mirata su un segno raro", bersaglio_stretto,
+               "bersaglio non garantito sul tavolo pescato"),
     ]
     puliti = controlla(documenti)
     print("  %s %s" % ("OK " if not puliti else "MANCATO", "dati veri: nessun guaio"))
@@ -638,7 +682,7 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
             print("      %s" % guaio)
     print("")
     if all(esiti) and not puliti:
-        print("OK  la guardia morde su tutti gli undici difetti piantati, e tace sui dati veri.")
+        print("OK  la guardia morde su tutti i dodici difetti piantati, e tace sui dati veri.")
         return 0
     print("LA GUARDIA NON MORDE: un controllo che non va rosso sul difetto piantato non esiste.")
     return 1
