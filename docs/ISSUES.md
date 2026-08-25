@@ -2763,6 +2763,34 @@ e' in gioco.
 
 ---
 
+### 73. Nessuna prova lega la domanda a quello che si può toccare
+
+`ux` · `motore` · `debito` · **aperta e in parte chiusa in 0.1.243**
+([D-281](DECISIONS.md#d-281))
+
+> **Il committente, aprendo l'app:** *«non mi fa giocare le carte, non so quali
+> azioni fare»*.
+
+Per un numero imprecisato di versioni **nessuna carta era giocabile a schermo**:
+`ask()` costruiva le offerte dopo aver disegnato la mano, e una carta col carico
+vuoto non si prende. Il difetto è chiuso, ma il **buco che l'ha lasciato
+passare** no del tutto: la suite prova la mano (`test_drag_and_drop`) riempiendo
+il carico a mano, e provava lo schermo (`test_the_page_can_be_read_by_a_finger`)
+senza mai aprire una domanda. Fra i due pezzi, ognuno verde, ci stava un turno
+che non si poteva giocare.
+
+`test_a_turn_can_be_played` chiude il caso della **fase delle azioni**. Restano
+scoperti allo stesso modo: il giro del **Consiglio** visto da una persona (la
+proposta, i benefici comprati, il prezzo scelto, gli impegni), la scelta del
+**Destino** e la fine della Chronicle. Ognuno è una domanda che passa dallo
+stesso `io`, e ognuno può essere morto senza che un cancello se ne accorga.
+
+**Fatto quando** ogni passo in cui il motore chiede qualcosa a una persona ha
+una prova che parte dal decider e finisce su quello che si può toccare sullo
+schermo — e nessuna di quelle prove passa costruendosi il carico da sé.
+
+---
+
 ### 72. Il cuore del Consiglio: le due liste sulla carta Tensione
 
 `regole` · `contenuto` · `da-misurare` · **aperta in 0.1.240**

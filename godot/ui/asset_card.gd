@@ -53,7 +53,10 @@ var _data: RefCounted = null
 ## non deve saperlo. Come per le Regioni cerchiate d'oro, **una carta e'
 ## trascinabile esattamente quando la mossa e' legale** (D-039): la lista arriva
 ## gia' passata dalle regole.
-var offers: Array = []
+var offers: Array = []:
+	set(value):
+		offers = value
+		_restyle()
 
 ## La carta e' stata **scelta**, non trascinata (D-238).
 ##
@@ -223,11 +226,27 @@ func set_held(held: bool) -> void:
 	if _held == held:
 		return
 	_held = held
-	position.y = -6.0 if held else 0.0
+	_restyle()
+
+
+## Il bordo dice due cose in una: se la carta **si puo' giocare adesso**, e se
+## e' quella tenuta in mano (D-281).
+##
+## Il bordo acceso e' la stessa promessa del cerchio d'oro sulla Regione: dove
+## c'e', la mossa e' gia' legale. Senza, chi guarda un ventaglio di sei carte
+## non ha modo di sapere quali di quelle parlano in questo momento — e nella
+## partita del committente non ne parlava nessuna, perche' il carico non
+## arrivava mai.
+func _restyle() -> void:
+	position.y = -6.0 if _held else 0.0
+	var playable: bool = not offers.is_empty()
 	var style := StyleBoxFlat.new()
-	style.bg_color = Color("#241f18") if held else Color(0, 0, 0, 0)
-	style.border_color = Color("#e8b563") if held else Color(0, 0, 0, 0)
-	style.set_border_width_all(2 if held else 0)
+	style.bg_color = Color("#241f18") if _held else Color(0, 0, 0, 0)
+	style.border_color = (
+		Color("#e8b563") if _held
+		else (Color("#a8823f") if playable else Color(0, 0, 0, 0))
+	)
+	style.set_border_width_all(2 if _held or playable else 0)
 	style.set_corner_radius_all(4)
 	add_theme_stylebox_override("panel", style)
 
