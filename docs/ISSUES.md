@@ -2892,7 +2892,11 @@ nasce) ma nessuno lo attraversa.
    non è più sola — dieci per Tema, mazzetti mai vuoti sul tavolo pescato
    (0 su 600). Resta da misurare se le carte *scaldano* Terra e Antico più
    di prima: il mazzetto pieno dà loro domande, non ancora Calore.
-7. **Dodici Destini su venti** non hanno ancora faccia fisica.
+7. ✅ **Dodici Destini su venti** non hanno ancora faccia fisica — fatta in
+   0.1.232 ([D-270](DECISIONS.md#d-270)): **23 su 23** con Tema, segni
+   osservati e tre righe leggibili, sei condivisi che coprono i sei Temi, e
+   la sonda che dice per ognuno se giocare rende più che stare fermi (sul
+   tavolo pescato: 21 su 22 sì; la coda è taratura d'autore, coi nomi).
 8. **La Domanda sta sulla carta Tensione** (0.1.228,
    [D-266](DECISIONS.md#d-266), revoca del committente): le carte Domanda
    separate sono uscite dai dati — girata la Tensione sul Tema caldo, le sue

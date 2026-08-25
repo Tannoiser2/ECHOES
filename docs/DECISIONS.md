@@ -10,6 +10,53 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-270 — Ogni Destino ha una faccia, e una misura che dice se chiede di giocare
+
+**implemented in 0.1.232** — apre PZ-7 della roadmap; il criterio e' misurato, la coda e' d'autore
+
+PZ-7 chiede tre cose: ogni Destino con Tema, segni osservati e le tre righe
+Minimum/Victory/Triumph leggibili; sei Destini condivisi; e il criterio
+secco — *giocare rende piu' che stare fermi, per ognuno* — detto da
+`run_asking_probe.gd`.
+
+**Le facce: 23 su 23.** I dodici Destini senza faccia (ISSUES 69.7) l'hanno
+adesso: Tema, `observes` presi dalle loro stesse clausole, tre righe che si
+leggono al tavolo. **Il sei-piu'-sei del titolo e' superato dai fatti**: il
+tavolo pescato ha otto case, quindi 8 principali + 9 varianti di pool + 6
+condivisi. Dichiarato qui, non nascosto nel conto.
+
+**I sei condivisi coprono i sei Temi**: ai tre di sempre (il Nome che Pesa,
+la Terra che Risponde, i Conti Chiusi) si aggiungono **la Quiete Tenuta**
+(Sopravvivenza: questioni tenute basse — l'unica clausola che il mondo
+peggiora da solo), **Quello che si Sa** (Antico: le scoperte), **le Riserve**
+(Vie: la mano piena, e il primato `leads_in`). Ogni casa pesca ora da un pool
+di quattro (il suo, la variante, due condivisi affini). Lo schema ammette
+`observes` vuoto **solo** per i Destini che guardano contatori e non segni,
+e lo dice.
+
+**La sonda** (`run_asking_probe.gd`, sezione nuova): per ogni Destino il
+livello medio dell'anno (NONE 0 → TRIUMPH 3), tavolo vero contro tavolo di
+pietra, stessi semi.
+
+**I numeri, 100 semi:**
+
+- **CHR_00, il tavolo pescato — la direzione del gioco: 21 Destini su 22
+  chiedono di giocare.** L'unico che pareggia da fermo e' NAHR (0,56 pari).
+- CHR_01, l'anno scritto: 17 su 22. Si avverano da fermi: ALDRIC (0,55
+  contro 0,73 — giocare gli **costa**), NAHR (1,12 contro 1,25),
+  LIBERE_WATER (0,76 contro 1,00), VAERAX e VAERAX_WATCHED (pari).
+
+**Due correzioni provate e tolte, a verbale**: stringere la vittoria di
+VAERAX_WATCHED (piu' pedine sulla montagna) e di LIBERE_WATER (un'opera da
+mantenere) **non ha spostato il numero di un decimale** — pedine e pietre
+arrivano anche dai Consigli, che il tavolo di pietra tiene, perche' il
+Consiglio non e' un'Occasione. La coda idle-friendly e' quindi **taratura
+d'autore sui Destini scritti** (sono i quattro originali piu' una variante,
+e sono i Destini-custode: il loro mestiere e' che niente si muova). Lo
+strumento per chiuderla adesso esiste e fa i nomi.
+
+---
+
 ## D-269 — Il tavolo visibile basta: la fine della Chronicle come sequenza fisica
 
 **implemented in 0.1.231** — apre PZ-6 della roadmap e lo chiude

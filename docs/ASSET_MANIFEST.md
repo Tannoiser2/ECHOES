@@ -137,7 +137,7 @@ family, 22 copies per family deck, 132 cards in the box (D-040).
 | ENT_VAERAX | Vaerax | CREATURE | PROTECTION | DST_VAERAX | `entity.vaerax` |
 | ENT_VETRO | Priore Anselmo | CULT | FAITH | DST_VETRO | `entity.vetro` |
 
-## Destiny cards (20)
+## Destiny cards (23)
 | id | titolo | entita | Minimum | Victory | Triumph |
 |---|---|---|---|---|---|
 | DST_ALDRIC | Il Regno che Resta | ENT_ALDRIC | Il trono regge | Il regno decide | Un regno che non ha pagato il pane con il sangue |
@@ -153,7 +153,10 @@ family, 22 copies per family deck, 132 cards in the box (D-040).
 | DST_SALE | Il Registro che Tiene | ENT_SALE | La Gilda è ancora al tavolo | Il debito è stato chiamato, e nessuno lo ha cancellato | E la firma vale ancora |
 | DST_SALE_OPEN | Il Registro Aperto | ENT_SALE | La Gilda esiste ancora | E il registro si può leggere | E vale lo stesso |
 | DST_SHARED_ACCOUNTS | I Conti Chiusi | $self | La casa è ancora al tavolo | Nessuna domanda lasciata aperta | Un mondo che non deve niente a nessuno |
+| DST_SHARED_HAND | Le Riserve | $self | Le mani non vuote | Le riserve che diventano forma | Quando gli altri chiedono, tu hai |
 | DST_SHARED_LAND | La Terra che Risponde | $self | Un posto che risponde | La terra risponde, e non importa come | La mappa parla la tua lingua |
+| DST_SHARED_LORE | Quello che si Sa | $self | Una cosa vista | E un posto dove custodirla | Quello che sai lo sanno da te |
+| DST_SHARED_QUIET | La Quiete Tenuta | $self | Tre questioni tenute giù | La quiete si vede | La quiete non capita: si tiene |
 | DST_SHARED_RENOWN | Il Nome che Pesa | $self | La casa è ancora al tavolo | Il nome è conosciuto | Un nome che nessuno ha visto fallire |
 | DST_VAERAX | Cio che Dorme Resti Addormentato | ENT_VAERAX | La montagna è ancora sua | Le gallerie sono chiuse, e il Cristallo non è uscito | E nessuno ci arriva più |
 | DST_VAERAX_LEGEND | La Storia che si Racconta | ENT_VAERAX | La storia si racconta ancora | La montagna tiene lontani gli uomini | Nessuno ricorda com'era davvero |

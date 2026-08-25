@@ -5,6 +5,24 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.232 — Ogni Destino ha una faccia, e una misura che dice se chiede di giocare (D-270)
+
+- **PZ-7**: i 12 Destini senza faccia fisica (ISSUES 69.7) l'hanno adesso —
+  Tema, segni osservati dalle loro clausole, tre righe leggibili: **23 su
+  23**. Tre **Destini condivisi nuovi** (la Quiete Tenuta, Quello che si Sa,
+  le Riserve): i sei condivisi coprono i sei Temi, e ogni casa pesca da un
+  pool di quattro. Lo schema ammette `observes` vuoto solo per chi guarda
+  contatori, e lo dichiara.
+- **La sonda dei Destini** in `run_asking_probe.gd`: livello medio dell'anno
+  giocando contro tavolo di pietra, per ognuno. **CHR_00 (tavolo pescato):
+  21/22 chiedono di giocare** — pareggia solo NAHR. CHR_01: 17/22; la coda
+  (ALDRIC, NAHR, VAERAX, VAERAX_WATCHED, LIBERE_WATER — i custodi) è
+  **taratura d'autore**, coi numeri in D-270. Due correzioni provate sulle
+  varianti non hanno morso (i Consigli danno pedine e pietre anche a chi sta
+  fermo) e sono state tolte, a verbale.
+- Suite **549 prove / 14.765 asserzioni**; playtest **0 seggi bloccati su
+  8**, misto e uniforme (il pool a quattro ridà i Destini pescati).
+
 ## 0.1.231 — Il tavolo visibile basta: la fine della Chronicle come sequenza fisica (D-269)
 
 - **PZ-6, aperto e chiuso**: la procedura di fine Chronicle è scritta ed

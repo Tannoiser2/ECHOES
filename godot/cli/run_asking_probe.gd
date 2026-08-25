@@ -89,16 +89,26 @@ func _initialize() -> void:
 	# Gli stessi semi due volte: il tavolo vero e il tavolo di pietra.
 	var played: Dictionary = await _play(data, runs, first_seed, chronicle_id, mixed, false)
 	var still: Dictionary = await _play(data, runs, first_seed, chronicle_id, mixed, true)
-	_report(played, still, data, runs, chronicle_id, mixed)
+	_report(
+		played["objectives"], still["objectives"], data, runs, chronicle_id, mixed
+	)
+	_report_destinies(played["destinies"], still["destinies"], data)
 	quit(0)
 
 
-## Un giro di anni. Torna obiettivo -> [pescati, regalati, conquistati, persi, mai].
+const LEVEL_SCORE: Dictionary = {"NONE": 0, "MINIMUM": 1, "VICTORY": 2, "TRIUMPH": 3}
+
+
+## Un giro di anni. Torna {objectives: obiettivo -> [pescati, regalati,
+## conquistati, persi, mai], destinies: destino -> [volte al tavolo, somma dei
+## livelli]} — la seconda mappa e' PZ-7 (D-270): per ogni Destino, quanto
+## rende l'anno, per confrontare il tavolo vero col tavolo di pietra.
 func _play(
 	data: RefCounted, runs: int, first_seed: int, chronicle_id: String,
 	mixed: bool, stone: bool
 ) -> Dictionary:
 	var tally: Dictionary = {}
+	var fates: Dictionary = {}
 	for run in range(runs):
 		var seed_value: int = first_seed + run
 		var seats: Array = GameSession.seats_for(data, chronicle_id, seed_value)
@@ -141,8 +151,20 @@ func _play(
 			else:
 				cell[4] = int(cell[4]) + 1
 			tally[objective_id] = cell
+		for entity_id in (session.world["entities"] as Dictionary).keys():
+			var seat: Dictionary = (session.world["entities"] as Dictionary)[str(entity_id)]
+			var destiny_id: String = str(seat.get("destiny_id", ""))
+			if destiny_id == "":
+				continue
+			var level: String = str(
+				(report["destiny_results"] as Dictionary).get(str(entity_id), {}).get("level", "NONE")
+			)
+			var fate: Array = fates.get(destiny_id, [0, 0])
+			fate[0] = int(fate[0]) + 1
+			fate[1] = int(fate[1]) + int(LEVEL_SCORE.get(level, 0))
+			fates[destiny_id] = fate
 		session.dispose()
-	return tally
+	return {"objectives": tally, "destinies": fates}
 
 
 ## Ogni coppia (seggio, obiettivo pescato) e se la sua clausola vale adesso.
@@ -236,6 +258,38 @@ func _report(
 		])
 	if idle_ones == 0:
 		print("    nessuno.")
+
+
+## PZ-7 (D-270): per ogni Destino, il livello medio dell'anno (NONE 0 ...
+## TRIUMPH 3) col tavolo vero e col tavolo di pietra. Il criterio della
+## roadmap e' secco: **giocare deve rendere piu' che stare fermi, per ognuno**.
+func _report_destinies(played: Dictionary, still: Dictionary, data: RefCounted) -> void:
+	print("")
+	print("== I DESTINI: GIOCARE RENDE? (PZ-7) ==")
+	print("")
+	print("  %-22s %8s %10s %10s   %s" % [
+		"destino", "al tavolo", "giocando", "da fermi", "verdetto",
+	])
+	var ids: Array = played.keys()
+	ids.sort()
+	var idle_wins: int = 0
+	for destiny_id in ids:
+		var here: Array = played[str(destiny_id)] as Array
+		var there: Array = still.get(str(destiny_id), [0, 0]) as Array
+		var mine: float = float(int(here[1])) / float(maxi(1, int(here[0])))
+		var idle: float = float(int(there[1])) / float(maxi(1, int(there[0])))
+		var asks: bool = mine > idle
+		if not asks:
+			idle_wins += 1
+		print("  %-22s %8d %10.2f %10.2f   %s" % [
+			str(destiny_id).substr(4), int(here[0]), mine, idle,
+			"chiede di giocare" if asks else "SI AVVERA DA FERMI",
+		])
+	print("")
+	if idle_wins == 0:
+		print("  Tutti i Destini al tavolo rendono di piu' a chi gioca.")
+	else:
+		print("  **%d Destini si avverano da fermi quanto o piu' che giocando.**" % idle_wins)
 
 
 ## Quanto rende **giocare**, per questo obiettivo: la quota avverata col tavolo

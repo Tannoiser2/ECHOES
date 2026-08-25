@@ -595,7 +595,23 @@
           }
         ]
       },
-      "art_prompt_key": "destiny.aldric.record"
+      "art_prompt_key": "destiny.aldric.record",
+      "physical": {
+        "themes": [
+          "THM_POTERE"
+        ],
+        "observes": [
+          "question_unresolved",
+          "crown_divided",
+          "succession_by_law",
+          "condition:unrest"
+        ],
+        "reads": {
+          "minimum": "La casa siede ancora, e a Eredan c'è almeno una pedina sua.",
+          "victory": "Nessuna domanda lasciata aperta, due terre che rispondono, Eredan presidiata e qualcosa di murato col suo nome — senza rivolta.",
+          "triumph": "La corona intera, la successione passata per la legge, Eredan quieta e senza segni nuovi: chi siede non è più una domanda."
+        }
+      }
     },
     {
       "id": "DST_NAHR_ROOTED",
@@ -702,7 +718,22 @@
           }
         ]
       },
-      "art_prompt_key": "destiny.nahr.rooted"
+      "art_prompt_key": "destiny.nahr.rooted",
+      "physical": {
+        "themes": [
+          "THM_TERRA"
+        ],
+        "observes": [
+          "valley_sealed",
+          "nahr_settled",
+          "condition:emptied"
+        ],
+        "reads": {
+          "minimum": "Il popolo è ancora qui.",
+          "victory": "Una pedina nella Valle Verde, due terre che rispondono, tre cose che restano — e il villaggio è diventato borgo.",
+          "triumph": "Radicati senza chiudere la porta: la Valle aperta, l'insediamento riconosciuto, le Terre non svuotate, e la Valle Verde uscita pulita."
+        }
+      }
     },
     {
       "id": "DST_LYRA_TAUGHT",
@@ -779,7 +810,22 @@
           }
         ]
       },
-      "art_prompt_key": "destiny.lyra.taught"
+      "art_prompt_key": "destiny.lyra.taught",
+      "physical": {
+        "themes": [
+          "THM_ANTICO"
+        ],
+        "observes": [
+          "mine_sealed",
+          "escort_sworn",
+          "study_supervised"
+        ],
+        "reads": {
+          "minimum": "Qualcuno sa ancora leggere le carte.",
+          "victory": "Una scoperta all'attivo, le gallerie aperte, e due pietre sue — o una terra che le risponde.",
+          "triumph": "Verificabile da chiunque: gallerie aperte, una scorta giurata per arrivarci, e nessuna guardia messa allo studio."
+        }
+      }
     },
     {
       "id": "DST_VAERAX_WATCHED",
@@ -841,7 +887,21 @@
           }
         ]
       },
-      "art_prompt_key": "destiny.vaerax.watched"
+      "art_prompt_key": "destiny.vaerax.watched",
+      "physical": {
+        "themes": [
+          "THM_ANTICO"
+        ],
+        "observes": [
+          "crystal_exploited",
+          "condition:unrest"
+        ],
+        "reads": {
+          "minimum": "La montagna è ancora sua: una pedina sulle Montagne Rosse.",
+          "victory": "Nessuno scava più, e almeno una terra risponde.",
+          "triumph": "Il Cristallo intatto, le Montagne quiete — e a guardarlo è qualcuno che non lo vuole."
+        }
+      }
     },
     {
       "id": "DST_VAERAX_LEGEND",
@@ -904,7 +964,21 @@
           }
         ]
       },
-      "art_prompt_key": "destiny.vaerax.legend"
+      "art_prompt_key": "destiny.vaerax.legend",
+      "physical": {
+        "themes": [
+          "THM_ANTICO"
+        ],
+        "observes": [
+          "mountain_forgotten",
+          "mine_sealed"
+        ],
+        "reads": {
+          "minimum": "La storia si racconta ancora, e il mondo dimentica la montagna.",
+          "victory": "Il sigillo regge e il Risveglio resta quieto.",
+          "triumph": "Il sigillo regge, il Risveglio è un sussurro, e il giorno del Cristallo è ormai soltanto un racconto."
+        }
+      }
     }
   ]
 }

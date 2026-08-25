@@ -264,6 +264,14 @@ Minimum/Victory/Triumph leggibili.
 **Fatto quando** `run_asking_probe.gd` dice che giocare rende **più** che stare
 fermi, per ognuno dei dodici.
 
+> **In 0.1.232** ([D-270](DECISIONS.md#d-270)): facce **23 su 23** (il
+> sei-più-sei è superato dai fatti: otto case al tavolo pescato), sei
+> condivisi che coprono i sei Temi, e la sonda per-Destino dentro
+> `run_asking_probe`. Il criterio, misurato: **sul tavolo pescato 21 Destini
+> su 22 chiedono di giocare** (pareggia solo NAHR); sull'anno scritto 17 su
+> 22, e la coda — i Destini-custode — è taratura d'autore, coi numeri nel
+> verbale. Lo strumento per chiuderla esiste e fa i nomi.
+
 ### PZ-8 — La UI come tavolo
 
 Le cinque schermate della RoadMap: Mappa, Mano, Temi, Consiglio, Saga.

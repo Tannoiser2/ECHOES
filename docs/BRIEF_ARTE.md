@@ -2318,6 +2318,24 @@ is a calm, low-detail area reserved for a text overlay. Vertical card framing,
 not horror. Museum-quality illustration, boardgame card art.
 ```
 
+### `destiny.shared.hand` — Le Riserve
+
+- **soggetto**: Le Riserve — Quando l'anno si chiude, chi ha le mani piene detta le condizioni del prossimo. Le riserve non fanno rumore: pesano
+- **id**: `DST_SHARED_HAND`
+
+```
+Historical dark-fantasy emblematic scene of Le Riserve — Quando l'anno si chiude, chi ha le mani piene detta le condizioni del prossimo. Le riserve non fanno rumore: pesano. Painterly oil technique,
+visible brushwork, muted earth palette with a single l'accento della sua famiglia accent. No faces:
+a Destiny card shows the thing wanted, not the one who wants it — an object, a
+place, a threshold, composed like a votive image. Le Riserve — Quando l'anno si chiude, chi ha le mani piene detta le condizioni del prossimo. Le riserve non fanno rumore: pesano. Seen close and
+slightly from below, the way an ambition is seen; one strong light source, deep
+quiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: subject in the upper two thirds; the lower third
+is a calm, low-detail area reserved for a text overlay. Vertical card framing,
+2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,
+not horror. Museum-quality illustration, boardgame card art.
+```
+
 ### `destiny.shared.land` — La Terra che Risponde
 
 - **soggetto**: La Terra che Risponde — Chiunque tu sia, la domanda è la stessa: quanta terra risponde quando chiami? Un'ambizione semplice e spietata - contare le Regioni, e contarle tue
@@ -2328,6 +2346,42 @@ Historical dark-fantasy emblematic scene of La Terra che Risponde — Chiunque t
 visible brushwork, muted earth palette with a single l'accento della sua famiglia accent. No faces:
 a Destiny card shows the thing wanted, not the one who wants it — an object, a
 place, a threshold, composed like a votive image. La Terra che Risponde — Chiunque tu sia, la domanda è la stessa: quanta terra risponde quando chiami? Un'ambizione semplice e spietata - contare le Regioni, e contarle tue. Seen close and
+slightly from below, the way an ambition is seen; one strong light source, deep
+quiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: subject in the upper two thirds; the lower third
+is a calm, low-detail area reserved for a text overlay. Vertical card framing,
+2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,
+not horror. Museum-quality illustration, boardgame card art.
+```
+
+### `destiny.shared.lore` — Quello che si Sa
+
+- **soggetto**: Quello che si Sa — Chiunque tu sia, quello che sai nessuno te lo toglie. Scendere, guardare, mettere a verbale: il sapere è l'unica terra che non si può occupare
+- **id**: `DST_SHARED_LORE`
+
+```
+Historical dark-fantasy emblematic scene of Quello che si Sa — Chiunque tu sia, quello che sai nessuno te lo toglie. Scendere, guardare, mettere a verbale: il sapere è l'unica terra che non si può occupare. Painterly oil technique,
+visible brushwork, muted earth palette with a single l'accento della sua famiglia accent. No faces:
+a Destiny card shows the thing wanted, not the one who wants it — an object, a
+place, a threshold, composed like a votive image. Quello che si Sa — Chiunque tu sia, quello che sai nessuno te lo toglie. Scendere, guardare, mettere a verbale: il sapere è l'unica terra che non si può occupare. Seen close and
+slightly from below, the way an ambition is seen; one strong light source, deep
+quiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,
+no glowing magic. Composition: subject in the upper two thirds; the lower third
+is a calm, low-detail area reserved for a text overlay. Vertical card framing,
+2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,
+not horror. Museum-quality illustration, boardgame card art.
+```
+
+### `destiny.shared.quiet` — La Quiete Tenuta
+
+- **soggetto**: La Quiete Tenuta — Il mondo peggiora da solo: le questioni salgono per conto loro. Tenerle giù per un anno intero non è una cosa che capita — è una cosa che si fa
+- **id**: `DST_SHARED_QUIET`
+
+```
+Historical dark-fantasy emblematic scene of La Quiete Tenuta — Il mondo peggiora da solo: le questioni salgono per conto loro. Tenerle giù per un anno intero non è una cosa che capita — è una cosa che si fa. Painterly oil technique,
+visible brushwork, muted earth palette with a single l'accento della sua famiglia accent. No faces:
+a Destiny card shows the thing wanted, not the one who wants it — an object, a
+place, a threshold, composed like a votive image. La Quiete Tenuta — Il mondo peggiora da solo: le questioni salgono per conto loro. Tenerle giù per un anno intero non è una cosa che capita — è una cosa che si fa. Seen close and
 slightly from below, the way an ambition is seen; one strong light source, deep
 quiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,
 no glowing magic. Composition: subject in the upper two thirds; the lower third

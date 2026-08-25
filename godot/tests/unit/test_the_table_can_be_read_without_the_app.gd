@@ -150,10 +150,19 @@ func test_a_destiny_says_what_to_look_at() -> void:
 			continue
 		faced += 1
 		var face: Dictionary = destiny["physical"] as Dictionary
-		assert_true((face["observes"] as Array).size() > 0, "%s guarda qualcosa" % [str(destiny_id)])
+		# Un Destino guarda segni, oppure contatori (D-270: questioni tenute
+		# basse, scoperte, la mano): chi non osserva nessun segno deve dirlo
+		# con le tre righe — un `observes` vuoto E righe mute sarebbe una
+		# faccia che non dice dove guardare.
+		if (face["observes"] as Array).is_empty():
+			var spoken: String = ""
+			for level in ["minimum", "victory", "triumph"]:
+				spoken += str((face["reads"] as Dictionary)[level])
+			assert_true(spoken.length() > 30, "%s guarda contatori, e le righe lo dicono" % [str(destiny_id)])
 		for level in ["minimum", "victory", "triumph"]:
 			assert_false(
 				str((face["reads"] as Dictionary)[level]).is_empty(),
 				"%s dice cosa serve per %s" % [str(destiny_id), level]
 			)
-	assert_true(faced >= 8, "almeno otto Destini hanno una faccia leggibile (ne hanno %d)" % faced)
+	# Da D-270 **ogni** Destino spedito ha una faccia leggibile.
+	assert_eq(faced, loaded.destinies.size(), "tutti i %d Destini hanno una faccia" % loaded.destinies.size())

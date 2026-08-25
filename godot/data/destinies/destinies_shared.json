@@ -246,6 +246,180 @@
           "triumph": "E nessun giuramento spezzato è rimasto scritto: i conti li hai chiusi tu, e si vede."
         }
       }
+    },
+    {
+      "id": "DST_SHARED_QUIET",
+      "entity_id": "$self",
+      "title": "La Quiete Tenuta",
+      "description": "Il mondo peggiora da solo: le questioni salgono per conto loro. Tenerle giù per un anno intero non è una cosa che capita — è una cosa che si fa.",
+      "minimum": {
+        "label": "Tre questioni tenute giù",
+        "conditions": [
+          {
+            "type": "tension_count",
+            "at_or_below": 4,
+            "min": 3,
+            "label": "Tre questioni sotto il punto di rottura"
+          }
+        ]
+      },
+      "victory": {
+        "label": "La quiete si vede",
+        "conditions": [
+          {
+            "type": "tension_count",
+            "at_or_below": 3,
+            "min": 4,
+            "label": "Quattro questioni tenute basse"
+          },
+          {
+            "type": "scar_count",
+            "max": 2,
+            "label": "E non più di due segni nuovi sul mondo"
+          }
+        ]
+      },
+      "triumph": {
+        "label": "La quiete non capita: si tiene",
+        "conditions": [
+          {
+            "type": "tension_count",
+            "at_or_below": 2,
+            "min": 4,
+            "label": "Quattro questioni a un filo dal silenzio"
+          },
+          {
+            "type": "scar_count",
+            "max": 1,
+            "label": "E al massimo un segno nuovo"
+          }
+        ]
+      },
+      "art_prompt_key": "destiny.shared.quiet",
+      "physical": {
+        "themes": [
+          "THM_SOPRAVVIVENZA"
+        ],
+        "observes": [],
+        "reads": {
+          "minimum": "Tre questioni del mondo tenute sotto il punto di rottura.",
+          "victory": "Quattro questioni tenute basse, e non più di due segni nuovi sul mondo.",
+          "triumph": "Quattro questioni a un filo dal silenzio, e al massimo un segno nuovo: la quiete non capita — si tiene."
+        }
+      }
+    },
+    {
+      "id": "DST_SHARED_LORE",
+      "entity_id": "$self",
+      "title": "Quello che si Sa",
+      "description": "Chiunque tu sia, quello che sai nessuno te lo toglie. Scendere, guardare, mettere a verbale: il sapere è l'unica terra che non si può occupare.",
+      "minimum": {
+        "label": "Una cosa vista",
+        "conditions": [
+          {
+            "type": "discovery_count",
+            "entity_id": "$self",
+            "min": 1,
+            "label": "Almeno una scoperta all'attivo"
+          }
+        ]
+      },
+      "victory": {
+        "label": "E un posto dove custodirla",
+        "conditions": [
+          {
+            "type": "discovery_count",
+            "entity_id": "$self",
+            "min": 2,
+            "label": "Due scoperte all'attivo"
+          },
+          {
+            "type": "structure_count",
+            "entity_id": "$self",
+            "min": 1,
+            "label": "E una pietra dove il sapere sta"
+          }
+        ]
+      },
+      "triumph": {
+        "label": "Quello che sai lo sanno da te",
+        "conditions": [
+          {
+            "type": "discovery_count",
+            "entity_id": "$self",
+            "min": 3,
+            "label": "Tre scoperte all'attivo"
+          }
+        ]
+      },
+      "art_prompt_key": "destiny.shared.lore",
+      "physical": {
+        "themes": [
+          "THM_ANTICO"
+        ],
+        "observes": [],
+        "reads": {
+          "minimum": "Una scoperta all'attivo: sei sceso a guardare.",
+          "victory": "Due scoperte, e una pietra dove il sapere sta.",
+          "triumph": "Tre scoperte: quello che il tavolo sa, lo sa da te."
+        }
+      }
+    },
+    {
+      "id": "DST_SHARED_HAND",
+      "entity_id": "$self",
+      "title": "Le Riserve",
+      "description": "Quando l'anno si chiude, chi ha le mani piene detta le condizioni del prossimo. Le riserve non fanno rumore: pesano.",
+      "minimum": {
+        "label": "Le mani non vuote",
+        "conditions": [
+          {
+            "type": "asset_threshold",
+            "min": 3,
+            "label": "Tre carte in mano a fine anno"
+          }
+        ]
+      },
+      "victory": {
+        "label": "Le riserve che diventano forma",
+        "conditions": [
+          {
+            "type": "asset_threshold",
+            "min": 5,
+            "label": "Cinque carte in mano"
+          },
+          {
+            "type": "structure_count",
+            "entity_id": "$self",
+            "min": 1,
+            "label": "E una cosa costruita"
+          }
+        ]
+      },
+      "triumph": {
+        "label": "Quando gli altri chiedono, tu hai",
+        "conditions": [
+          {
+            "type": "leads_in",
+            "what": "hand",
+            "by": 2,
+            "entity_id": "$self",
+            "label": "Più riserve di chiunque altro, di due almeno"
+          }
+        ]
+      },
+      "art_prompt_key": "destiny.shared.hand",
+      "physical": {
+        "themes": [
+          "THM_VIE"
+        ],
+        "observes": [],
+        "reads": {
+          "minimum": "Tre carte in mano quando l'anno si chiude.",
+          "victory": "Cinque in mano, e una cosa costruita: le riserve che diventano forma.",
+          "triumph": "Più riserve di chiunque altro, di due almeno."
+        }
+      }
     }
   ]
 }
