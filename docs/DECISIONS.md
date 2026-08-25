@@ -10,6 +10,40 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-282 — La colonna di destra si legge: un blocco, una riga che dice cos'è
+
+**implemented in 0.1.244** — parola del committente
+
+> «Poi sulla colonna di destra non si capisce nulla: ci sono i mazzetti dei
+> temi, le domande dell'anno (?), i rapporti, i segni della casa, il destino,
+> poi ancora quattro tensioni (?)»
+
+Due difetti, e il punto interrogativo era su quello grosso.
+
+**La stessa cosa era lì tre volte.** I sei mazzetti disegnati (D-279), la riga
+«CALORE» che li ripeteva a parole, e le quattro questioni con le barre. Sotto
+c'è una vera sovrapposizione di regole — il gioco ha *due* economie della stessa
+domanda, le quattro questioni dell'anno e i sei mazzetti (vedi
+[la diagnosi](DIAGNOSI_PUNTO_ZERO.md#32-le-domande-sono-due-sistemi-sovrapposti))
+— e non la si chiude con una modifica allo schermo. Quello che lo schermo poteva
+fare l'ha fatto: la riga duplicata è via, e le quattro si chiamano per quello
+che **sono** — *«le questioni già aperte»*, il ripiego per l'Atto in cui nessuna
+Risonanza ha scaldato niente. Chiamarle «le domande dell'anno» insegnava una
+regola che il gioco non ha più.
+
+**E nessun blocco diceva a cosa servisse.** Al tavolo non serve: una plancia ha
+le sue caselle stampate, con la scritta accanto. Sullo schermo quella scritta
+non c'era, e sei blocchi muti sono arredo, non informazione. Adesso ognuno ha
+la sua riga, piccola e grigia: si legge la prima volta e poi si smette di
+vederla, che è esattamente il comportamento di una stampa sulla plancia.
+
+**Prove**: `test_the_column_can_be_read.gd` — ogni intestazione visibile ha la
+sua riga sotto; nessuna riga sopravvive alla cosa che spiega (i Diritti e i
+segni spariscono quando sono vuoti, e la spiegazione con loro); e la stessa
+cosa non si dice due volte.
+
+---
+
 ## D-281 — Il turno si vede: la mano era morta, e la colonna era vuota
 
 **implemented in 0.1.243** — parola del committente, aprendo l'app

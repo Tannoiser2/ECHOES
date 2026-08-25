@@ -5,6 +5,28 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.244 — La colonna si legge, e la diagnosi del Punto Zero (D-282)
+
+- **La colonna di destra diceva la stessa cosa tre volte** e non spiegava
+  niente: i sei mazzetti disegnati, la riga «CALORE» che li ripeteva a parole,
+  e le quattro questioni chiamate «le domande dell'anno» — mentre le domande,
+  da D-261, sono i mazzetti. Via la riga duplicata; le quattro si chiamano
+  adesso **«le questioni già aperte»**, che è quello che sono (il ripiego per
+  l'Atto in cui nessuna Risonanza ha scaldato niente).
+- **Ogni blocco dice a cosa serve**, in una riga sotto l'intestazione: i
+  mazzetti, le questioni, i rapporti, i diritti, i segni della casa, il
+  Destino. Al tavolo la plancia ha le sue scritte stampate accanto; sullo
+  schermo non c'erano.
+- Tre prove nuove (`test_the_column_can_be_read`): ogni intestazione ha la sua
+  riga, nessuna riga sopravvive alla cosa che spiega, e la stessa cosa non si
+  dice due volte.
+- **`docs/DIAGNOSI_PUNTO_ZERO.md`**: la risposta al brief del committente, coi
+  numeri. In breve — sei cose sono già la grammatica del brief, tre no: la
+  seconda Azione stampata che il motore non offre mai (48 carte), le Memorie
+  che nei dati non esistono (0 tag `memory:`), e le due economie della stessa
+  domanda. Misure: si passa l'**84,3%** dei turni; **23,2%** delle carte
+  pescate viene calato; FORGIARE il **5,9%**; tre carte non si calano mai.
+
 ## 0.1.243 — Il turno si vede: la mano era morta (D-281)
 
 - **Difetto, trovato giocando**: le carte in mano non ricevevano mai le loro
