@@ -5,6 +5,21 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.238 — La soglia: l'app si apre sulla scatola (D-276)
+
+- **La schermata d'ingresso** chiesta dal committente: il nome del gioco,
+  la mappa della saga — sei tessere di una **pesca vera del motore**
+  (stessa derivazione del seme di `game_session.gd`), posate 3×2 come
+  comanda D-275, dipinte col pennello della partita (`RegionArt.plan`) —
+  nome e segni a cancelletto sotto ogni tessera, i badge, il credito, e il
+  bottone «Entra nella sala» verso la scena di sempre.
+- `run/main_scene` passa a `title_screen.tscn`; menu, stanza e partita
+  non cambiano.
+- Il patto è provato: allo stesso seme la soglia e la partita danno le
+  stesse tessere nella stessa posa (`test_title_screen.gd`).
+- Misure (100 semi): **0 seggi bloccati su 8** (misto e uniforme). Suite
+  **560 prove / 14.960 asserzioni**, cancelli tutti verdi.
+
 ## 0.1.237 — La posa comanda: sul tavolo pescato vicino è chi si tocca (D-275)
 
 - **Parola del committente («vai con A»)**: sul tavolo pescato l'adiacenza è
