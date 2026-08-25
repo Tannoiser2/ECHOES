@@ -2781,26 +2781,30 @@ dalla carta, la scheda che le mostra, la guardia (controllo 18) e la sonda.
 Menu distinti: costo **2 → 21**, sfogo **2 → 25**; al tavolo, 34 e 34 voci
 diverse lette in 40 anni.
 
-**Fase B — le opportunità (aperta).** Il proponente sceglie ancora dentro 12
-menu condivisi da 60 carte, e su 40 domande su 107 non sceglie affatto. Serve
-`physical.opportunities` su ogni carta — almeno due per Domanda, ognuna con la
-sua Conseguenza di successo — e la misura di quante proposte diverse arrivano
-davvero al tavolo. Da fare guardando il numero del passa (ISSUES 68): dare
-scelta al proponente sposta quel numero, in un verso o nell'altro, e va
-scritto.
+**Fase B — l'economia, riscritta da [D-280](DECISIONS.md#d-280) (aperta).** La
+carta d'esempio del committente ha corretto la Fase A: non frasi d'autore ma
+un **vocabolario chiuso di verbi legati ai segni della mappa**, posati con le
+**pedine**, dentro un'economia — *1 beneficio è gratis; ogni beneficio in più
+costa 1 costo; una Cicatrice ne compra uno oltre il limite*; max 3 benefici,
+max 2 costi. **Il proponente compra, gli avversari scelgono in che moneta
+paga.** Da costruire: i verbi come dato (RIAPRI, RIMUOVI CONDIZIONE,
+COSTRUISCI PIETRA, CAMBIA CONTROLLO, RAFFREDDA TEMA / AGGIUNGI CONDIZIONE,
+PEDAGGIO, CEDI CONTROLLO, SCALDA TEMA, PRENDI DEBITO, CICATRICE), la faccia
+delle 60 carte riscritta su quelli, il passo del Consiglio che posa le pedine,
+il cervello che sa comprare e far pagare, e gli effetti fissi se la proposta
+cade. Da misurare guardando il passa (ISSUES 68): un proponente che compra
+sposta quel numero, e va scritto.
 
-**Fase C — soglia e velo (aperta).** *«C'è ancora la soglia e se è velata o
-palese, direi che bisogna aggiornare in base alle ultime cose dette.»* Sul
-tavolo pescato il Consiglio lo apre **il Tema più caldo** (D-260/D-261), non
-la soglia della singola questione: la soglia sopravvive come euristica del
-cervello e come lettura del pannello, e sulla carta stampata promette una
-regola che non c'è più. Il velo invece è ancora vivo (TRAMARE scopre), ma con
-i mucchi coperti (D-203/D-210) al tavolo cambia poco. Da decidere: cosa resta
-stampato sulla faccia, e cosa esce.
+**Fase C — soglia e velo: chiusa dalla parola del committente.** *«Nessun
+costo di apertura, la tensione si risolve a fine atto.»* Quindi: la **soglia
+non si stampa** sulla faccia — non apre più niente da D-214/D-260/D-261 — e il
+numero in alto a destra della carta d'esempio non è una regola. Il velo resta
+vivo (TRAMARE scopre) e resta stampato.
 
-**Fatto quando** ogni carta Tensione offre almeno due opportunità per Domanda e
-due malus per lato, la sonda mostra che il tavolo ne legge davvero una fetta
-larga, e sulla faccia non resta stampato niente che il motore non esegua.
+**Fatto quando** ogni carta Tensione porta i suoi verbi di beneficio e di
+costo, il Consiglio si gioca posando pedine dentro l'economia dichiarata, la
+sonda mostra quanta scelta arriva davvero al tavolo, e sulla faccia non resta
+stampato niente che il motore non esegua.
 
 ---
 

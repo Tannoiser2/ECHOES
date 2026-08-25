@@ -34,6 +34,7 @@ const ChronicleBookView := preload("res://ui/chronicle_book_view.gd")
 const EchoCardView := preload("res://ui/echo_card_view.gd")
 const LogExport := preload("res://scripts/core/log_export.gd")
 const TableChoice := preload("res://scripts/core/table_choice.gd")
+const ThemeDecksView := preload("res://ui/theme_decks_view.gd")
 
 ## Who is at the table is a property of the Chronicle, not of this screen
 ## (D-050). It used to be a constant here, which meant the browser could only
@@ -131,6 +132,8 @@ var _year_save: Dictionary = {}
 ## della saga impagina. Si azzera quando dal menu comincia una storia nuova.
 var _saga_saves: Array = []
 var _status: VBoxContainer
+## I sei mazzetti dei Temi, in cima alla colonna di destra (D-279).
+var _decks: Control
 var _hand: HBoxContainer
 ## The seat the board is drawn for, and the Tension under discussion if any.
 var _viewer: String = ""
@@ -355,6 +358,25 @@ func _build() -> void:
 	reading.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	right.add_child(reading)
 
+	# **I sei mazzetti, sempre tutti e sei** (D-279): stanno in cima alla
+	# colonna, sopra il resto, perche' sono la cosa che dice *di cosa si
+	# parlera'* — e al tavolo sono il primo posto dove si guarda.
+	var decks_column := VBoxContainer.new()
+	decks_column.add_theme_constant_override("separation", 6)
+	reading.add_child(decks_column)
+
+	var decks_title := Label.new()
+	decks_title.text = "I MAZZETTI DEI TEMI"
+	decks_title.add_theme_font_size_override("font_size", 12)
+	decks_title.add_theme_color_override("font_color", Color("#8a8172"))
+	decks_column.add_child(decks_title)
+
+	_decks = ThemeDecksView.new()
+	_decks.custom_minimum_size = Vector2(0, 190)
+	_decks.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_decks.deck_pressed.connect(_on_deck_pressed)
+	decks_column.add_child(_decks)
+
 	_status = StatusPanel.new()
 	_status.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	# Le domande e le case sono posti dove una carta puo' cadere, come le Regioni
@@ -364,7 +386,7 @@ func _build() -> void:
 	_status.card_dropped.connect(_on_subject_dropped)
 	_status.tension_opened.connect(_on_tension_opened)
 	_status.card_placed.connect(func(index: int) -> void: picked.emit(index))
-	reading.add_child(_status)
+	decks_column.add_child(_status)
 
 	# **A che punto siamo, e a chi tocca** (D-247).
 	#
@@ -497,6 +519,7 @@ func _refresh() -> void:
 	if council_open:
 		_board.render(_session, _viewer)
 	_map.render(_session, _viewer)
+	_decks.render(_session)
 	_status.render(_session, _viewer)
 	_hand.render(_session, _viewer, _focus_tension, _offers)
 	_turn.text = _turn_line()
@@ -984,9 +1007,9 @@ func _on_card_chosen(asset_id: String) -> void:
 	_map.queue_redraw()
 	_status.hold(places)
 	_hand.hold(asset_id)
-	_prompt.text = "%s in mano. Tocca dove la vuoi usare." % _asset_title(asset_id)
+	_prompt.text = "%s in mano." % _asset_title(asset_id)
 	_hint.text = "Tocca di nuovo la carta per rimetterla giu'."
-	_narrow_to(indices, _asset_reading(asset_id))
+	_card_sheet(asset_id, indices)
 
 
 ## La carta rimessa giu': lo schermo torna a com'era quando la domanda e' stata
@@ -1041,6 +1064,118 @@ func _asset_reading(asset_id: String) -> String:
 	return "" if asset == null else AssetText.tooltip(asset as Dictionary, _session.data)
 
 
+## **La scheda della carta in mano** (D-279, parola del committente: «le carte
+## in basso non si capisce come usarle, non c'e' nessuna GUI per gestire il
+## loro uso»).
+##
+## Prima qui c'era la lista grezza del motore — «"Leva Contadina" — Metti una
+## presenza in Valle Verde» — che e' la frase con cui il resolver parla a se
+## stesso, non quella stampata sulla carta. Adesso si legge la carta: il
+## **bersaglio a segni**, le **due Azioni** col loro nome, e sotto ognuna i
+## posti dove quell'Azione puo' andare adesso. Un'Azione che al tavolo c'e' ma
+## che qui non ha posti si vede lo stesso, spenta e con la sua ragione: una
+## scelta che sparisce senza dirlo insegna una regola falsa.
+func _card_sheet(asset_id: String, indices: Array) -> void:
+	_clear_buttons()
+	var asset: Variant = null if _session == null else _session.data.assets.get(asset_id)
+	if asset == null:
+		_narrow_to(indices)
+		return
+	var card: Dictionary = asset as Dictionary
+	var face: Dictionary = card.get("physical", {}) as Dictionary
+
+	var target: String = str((face.get("target", {}) as Dictionary).get("text", ""))
+	if target != "":
+		_sheet_line("BERSAGLIO", 10, "#8a8172")
+		_sheet_line(target, 12, "#c9bfae")
+
+	# Le scelte legali, raccolte per verbo: e' il ponte fra quello che il
+	# motore concede e quello che la carta dice di saper fare (D-279).
+	var by_verb: Dictionary = {}
+	for index in indices:
+		var subject: Dictionary = (
+			_subjects[int(index)] if int(index) < _subjects.size() else {}
+		) as Dictionary
+		var verb: String = str(subject.get("verb", ""))
+		var list: Array = by_verb.get(verb, []) as Array
+		list.append(int(index))
+		by_verb[verb] = list
+
+	var actions: Array = face.get("actions", []) as Array
+	if actions.is_empty():
+		_narrow_to(indices, _asset_reading(asset_id))
+		return
+	for entry in actions:
+		var action: Dictionary = entry as Dictionary
+		var verb: String = str(action.get("template", ""))
+		var offers: Array = by_verb.get(verb, []) as Array
+		_gap_line()
+		_sheet_line(str(action.get("label", "Azione")), 13, "#e8b563")
+		_sheet_line(str(action.get("text", "")), 11, "#c9bfae")
+		if offers.is_empty():
+			_sheet_line(
+				"— nessun posto valido adesso" if verb != ""
+				else "— questa meta' della carta il motore non la esegue ancora",
+				11, "#8a8172"
+			)
+			continue
+		for index in offers:
+			var label: String = (
+				str(_labels[int(index)]) if int(index) < _labels.size() else "?"
+			)
+			_sheet_button(_shorter(label), int(index))
+
+	# Le scelte che nessuna Azione stampata rivendica (il motore ne concede di
+	# sue): restano in fondo, invece di sparire.
+	var claimed: Dictionary = {}
+	for entry in actions:
+		claimed[str((entry as Dictionary).get("template", ""))] = true
+	for verb in by_verb:
+		if claimed.has(str(verb)):
+			continue
+		for index in (by_verb[verb] as Array):
+			_sheet_button(str(_labels[int(index)]), int(index))
+
+	var resonance: Dictionary = face.get("resonance", {}) as Dictionary
+	if not resonance.is_empty():
+		_gap_line()
+		_sheet_line("RISONANZA — avviene comunque", 10, "#8a8172")
+		_sheet_line(str(resonance.get("text", "")), 11, "#b06b46")
+
+
+## L'etichetta del motore, alleggerita del nome della carta: sulla scheda il
+## titolo e' gia' scritto sopra, e ripeterlo su ogni bottone mangia la riga.
+func _shorter(label: String) -> String:
+	var cut: int = label.find("» — ")
+	return label.substr(cut + 4) if cut >= 0 else label
+
+
+func _sheet_line(text: String, size: int, colour: String) -> void:
+	var line := Label.new()
+	line.text = text
+	line.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	line.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	line.add_theme_font_size_override("font_size", size)
+	line.add_theme_color_override("font_color", Color(colour))
+	_buttons.add_child(line)
+
+
+func _gap_line() -> void:
+	var gap := Control.new()
+	gap.custom_minimum_size = Vector2(0, 6)
+	_buttons.add_child(gap)
+
+
+func _sheet_button(label: String, index: int) -> void:
+	var button := Button.new()
+	button.text = label
+	button.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	button.alignment = HORIZONTAL_ALIGNMENT_LEFT
+	button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	button.pressed.connect(func() -> void: picked.emit(index))
+	_buttons.add_child(button)
+
+
 func _narrow_to(indices: Array, reading: String = "") -> void:
 	_clear_buttons()
 	_prompt.text = "La carta e' li. Cosa ne fai?"
@@ -1074,6 +1209,21 @@ func _on_region_clicked(region_id: String) -> void:
 ## Non tocca `picked`: leggere non risponde a niente. Se il Consiglio e' aperto
 ## la scheda non si mette in mezzo — li' le proposte sono gia' sul tavolo con
 ## quello che lasciano, ed e' quella la pagina da guardare.
+## Toccare un mazzetto apre la scheda della sua carta girata (D-279). Un
+## mazzetto ancora coperto non ha niente da leggere: al tavolo si guarda il
+## dorso, e il dorso non parla.
+func _on_deck_pressed(theme_id: String) -> void:
+	if _session == null:
+		return
+	var front: String = str(_session.tensions.theme_front(theme_id))
+	if front == "":
+		_hint.text = "Il mazzetto di %s e' ancora coperto." % str(
+			(_session.data.themes[theme_id] as Dictionary).get("title", theme_id)
+		)
+		return
+	_on_tension_opened(front)
+
+
 func _on_tension_opened(tension_id: String) -> void:
 	if _session == null or _session.confluence.is_open():
 		return

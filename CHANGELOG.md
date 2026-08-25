@@ -5,6 +5,32 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.241 — L'app come la vuole il tavolo (D-279), e l'economia del Consiglio decisa (D-280)
+
+- **Sei correzioni del committente sul prototipo giocato a schermo.** Cinque
+  fatte: la **soglia è la copertina** e lì si scelgono i seggi e chi li gioca
+  (persona o bot); la sala non chiede più né il seggio né «che mondo?» (il
+  mondo si pesca); via la schermata **«Come si gioca»**; le tessere sono
+  **quadrate e accostate in griglia 3×2** col quadro dipinto per intero —
+  niente esagoni, niente strade disegnate, e il dito prende il quadrato; i
+  **sei mazzetti dei Temi** si vedono tutti, coi gettoni sopra e la carta
+  girata quando c'è.
+- **Le carte in mano hanno una scheda**: bersaglio a segni, le due Azioni col
+  loro nome, e sotto ognuna i posti dove può andare. Il verbo viaggia con
+  l'offerta (`subject.verb`) — senza, lo schermo non poteva legare una scelta
+  legale all'Azione stampata. Dove il motore esegue una sola delle due Azioni,
+  la scheda lo dice (ISSUES 69).
+- **D-280, decisa e da costruire**: la carta d'esempio del committente mostra
+  che l'economia del Consiglio è **benefici comprati coi costi** (1 gratis,
+  ogni altro costa 1 costo, una Cicatrice ne compra uno oltre il limite), coi
+  verbi legati ai segni della mappa — e che **il proponente compra, gli
+  avversari scelgono in che moneta paga**. Niente costo di apertura: la
+  Tensione si risolve a fine Atto, e la soglia esce dalla faccia della carta.
+  D-278 Fase A resta come strada (il menu letto dalla carta, la guardia 18);
+  le sue 240 frasi diventano materiale, non forma finale.
+- Misure: playtest 100 semi **0/8**; suite **567 prove / 24.887 asserzioni**;
+  cancelli verdi. Nessuna regola toccata.
+
 ## 0.1.240 — Le due liste sulla carta Tensione: il cuore, misurato (D-278, Fase A)
 
 - **Richiamo del committente**, e aveva ragione: il meccanismo della scelta al

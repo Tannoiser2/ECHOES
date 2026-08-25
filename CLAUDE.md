@@ -96,10 +96,15 @@ Il gioco è scritto due volte, e le due si controllano a vicenda.
   le carte Tensione nei sei mazzetti, la faccia fisica dei Destini, i sei **Temi**.
 
 **La Domanda non è una carta a parte** (D-266, per volere del committente): sta
-sulla carta Tensione — e con lei **le due liste** (D-278): le *opportunità* fra
-cui sceglie il proponente e i *malus* fra cui sceglie il fronte avverso. Il
-motore legge il menu del prezzo dalla faccia della carta; il pool del template
-resta il ripiego. Girata la Tensione sul Tema caldo, le sue domande — legate
+sulla carta Tensione — e con lei **le due liste**: i *benefici* che il
+proponente compra e i *costi* con cui paga. La forma finale è
+[D-280](docs/DECISIONS.md#d-280): verbi chiusi legati ai segni della mappa,
+posati con le pedine, dentro un'economia — *1 beneficio è gratis, ogni altro
+costa 1 costo, una Cicatrice ne compra uno oltre il limite* — e **il
+proponente compra, gli avversari scelgono in che moneta paga**. Niente costo
+di apertura: la Tensione si risolve a fine Atto. Oggi il motore legge il menu
+del prezzo dalla faccia della carta (D-278 Fase A, la strada); l'economia è da
+costruire (ISSUES 72). Girata la Tensione sul Tema caldo, le sue domande — legate
 ai segni del mondo — sono lì: il proponente sceglie le opportunità, gli avversari
 i malus. Il ponte digitale è `possible_questions` sulla Tensione, verso i
 template di Consiglio. **Il motore esegue già la Risonanza e il bersaglio a

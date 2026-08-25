@@ -295,13 +295,21 @@ func test_the_side_column_can_be_taller_than_a_window() -> void:
 ## la riga che conta e' una sola.
 func test_the_side_column_lives_inside_something_that_scrolls() -> void:
 	var source: String = FileAccess.get_file_as_string("res://ui/game_screen.gd")
+	# Da D-279 dentro `reading` c'e' una colonna sola — i sei mazzetti piu' il
+	# pannello di stato — quindi la prova guarda **quella**: il patto e' che lo
+	# stato stia dentro il pannello che scorre, non che ci sia attaccato
+	# direttamente.
 	assert_true(
-		source.contains("reading.add_child(_status)"),
-		"la colonna di stato sta dentro un pannello che scorre"
+		source.contains("reading.add_child(decks_column)"),
+		"la colonna della lettura sta dentro un pannello che scorre"
+	)
+	assert_true(
+		source.contains("decks_column.add_child(_status)"),
+		"e il pannello di stato sta in quella colonna"
 	)
 	assert_false(
 		source.contains("right.add_child(_status)"),
-		"e non piu' attaccata dritta alla colonna, dove la sua altezza decideva la pagina"
+		"e non piu' attaccato dritto alla colonna, dove la sua altezza decideva la pagina"
 	)
 
 
