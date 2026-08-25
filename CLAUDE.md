@@ -99,8 +99,9 @@ Il gioco è scritto due volte, e le due si controllano a vicenda.
 sulla carta Tensione. Girata la Tensione sul Tema caldo, le sue domande — legate
 ai segni del mondo — sono lì: il proponente sceglie le opportunità, gli avversari
 i malus. Il ponte digitale è `possible_questions` sulla Tensione, verso i
-template di Consiglio. **Il motore esegue già la Risonanza**; il resto della
-faccia fisica non ancora — vedi ISSUES 69.
+template di Consiglio. **Il motore esegue già la Risonanza e il bersaglio a
+segni** (D-274: MUOVERE e TRAMARE arrivano solo dove i segni della faccia
+stanno); il resto della faccia fisica non ancora — vedi ISSUES 69.
 
 **Regole di scrittura di una carta fisica:**
 - il bersaglio si dice **a segni**, mai col nome di una Regione;

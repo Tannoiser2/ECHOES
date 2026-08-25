@@ -10,6 +10,54 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-274 — Il motore esegue il bersaglio a segni: la sim gioca il gioco del tavolo
+
+**implemented in 0.1.236** — il secondo pezzo di faccia fisica eseguito, dopo la Risonanza (ISSUES 69)
+
+Da D-256 la faccia fisica di ogni carta dice **dove** la carta arriva
+(«Scegli un luogo con #granaio, #pascolo o #capitale...»), e il motore non
+l'ha mai letta: la sim muoveva dove voleva, il tavolo no — due giochi con lo
+stesso nome, il rischio che ISSUES 69 nomina da sempre. Con la ri-mira di
+D-273 i bersagli esistono su ogni mappa pescata; da questa decisione **il
+motore li esegue**.
+
+**La regola**: quando una carta si gioca come verbo che nomina una Regione —
+**MUOVERE**, e **TRAMARE su una Regione** — il luogo scelto deve portare uno
+dei segni del bersaglio della faccia, e nessuno dei vietati. Contano i segni
+**vivi**, come al tavolo: quelli stampati sulla tessera piu' quelli posati
+durante l'anno (un #granaio costruito apre la strada a una carta che lo
+chiede). Una carta senza `any_tag` va ovunque, come la sua faccia dice. Il
+rifiuto parla: *«"Leva Contadina" non arriva li': il bersaglio si dice a
+segni, e Miniere Antiche non ne porta nessuno»*.
+
+**Il cervello si e' adeguato da solo, tranne in un punto**: le giocate
+passano gia' da `can_execute`, quindi una coppia carta+luogo illegale si
+scarta e si prova la carta dopo. Il punto corretto a mano e'
+`_widen_the_tap`: sceglieva la Regione migliore per famiglie e **poi**
+cercava la carta — da quando la faccia comanda, la coppia luogo+carta si
+sceglie insieme, com'e' al tavolo. (E il rubinetto ora itera le Regioni del
+mondo pescato, non il parco intero: un lettore di tessere non pescate in
+meno, lezione di D-263.)
+
+**I numeri, 100 semi, prima → stretta → con la coppia:**
+
+| turni «passa» | prima di D-274 | solo stretta | stretta + coppia |
+|---|---|---|---|
+| CHR_00 (tavolo pescato) | 87,2% | 88,8% | **87,8%** |
+| CHR_01 (anno scritto) | 83,8% | — | **84,0%** |
+
+**Il costo netto e' circa mezzo punto di passa, e si paga volentieri**: una
+stretta di legalita' non puo' che togliere giocate, e in cambio la sim
+adesso misura **il gioco vero** — ogni numero delle sonde d'ora in poi parla
+del gioco che si gioca al tavolo. ISSUES 68 (i passa) resta aperta e non era
+questa la sua cura: la leva e' il mazzo e il cervello, e adesso lavora sul
+gioco giusto. Restano dichiarate e non eseguite le facce a bersaglio
+ENTITY e TENSION (ISSUES 69).
+
+Cancello di casa verde: **0 seggi bloccati su 8**, misto e uniforme.
+
+---
+
 ## D-273 — La ri-mira delle 48: ogni bersaglio esiste su ogni mappa pescata
 
 **implemented in 0.1.235** — chiude PZ-3 della roadmap, con un limite dichiarato

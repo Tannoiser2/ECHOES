@@ -797,10 +797,16 @@ func _widen_the_tap(entity_id: String, session: RefCounted) -> Dictionary:
 			reachable[str(family)] = true
 	var best: String = ""
 	var best_gain: int = 0
-	for region_id in _sorted(session.data.regions.keys()):
+	for region_id in _sorted(session.world["regions"].keys()):
 		if session.service.region_free_slots(str(region_id)) <= 0:
 			continue
 		if not session.service.can_move_to(entity_id, str(region_id)):
+			continue
+		# Il bersaglio a segni si esegue (D-274): da quando il motore legge la
+		# faccia, una Regione dove nessuna carta MUOVERE in mano arriva non e'
+		# un rubinetto — e' un desiderio muto. La coppia luogo+carta si sceglie
+		# insieme, com'e' al tavolo: prima si guarda la carta, poi la mappa.
+		if _card_that_says(entity_id, "MOVE", {"region_id": str(region_id)}, session) == "":
 			continue
 		var gain: int = 0
 		for family in (session.data.regions[str(region_id)] as Dictionary).get(

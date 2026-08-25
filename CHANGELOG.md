@@ -5,6 +5,21 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.236 — Il motore esegue il bersaglio a segni: la sim gioca il gioco del tavolo (D-274)
+
+- **Il secondo pezzo di faccia fisica eseguito**, dopo la Risonanza (ISSUES
+  69): una carta giocata come **MUOVERE** — o **TRAMARE su una Regione** —
+  arriva solo dove i segni del suo bersaglio stanno (vivi: stampati +
+  posati), e mai dove sta un segno vietato. Il rifiuto spiega («il bersaglio
+  si dice a segni»). Facce ENTITY/TENSION ancora dichiarate e non eseguite.
+- **Il cervello sceglie la coppia luogo+carta insieme** (`_widen_the_tap`),
+  com'è al tavolo — e itera le Regioni pescate, non il parco intero.
+- **Misure (100 semi)**: passa CHR_00 87,2% → **87,8%**, CHR_01 83,8% →
+  **84,0%** — il costo della legalità, circa mezzo punto, dichiarato: in
+  cambio le sonde d'ora in poi misurano il gioco vero. Playtest **0 seggi
+  bloccati su 8**, misto e uniforme. Suite **556 prove / 14.861 asserzioni**
+  (5 nuove in `test_card_reaches_by_signs.gd`).
+
 ## 0.1.235 — La ri-mira delle 48: ogni bersaglio esiste su ogni mappa pescata (D-273)
 
 - **PZ-3 chiuso**: censite prima di toccare, **30 carte su 30** a bersaglio
