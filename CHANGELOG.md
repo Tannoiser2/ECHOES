@@ -5,6 +5,18 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.239 — Le dieci tessere dipinte (D-277)
+
+- **Consegna del committente**: le illustrazioni delle dieci tessere del
+  parco (D-265) in `res://art/region/` — le sei di CHR_01 sostituite, le
+  quattro del tavolo pescato aggiunte. La mappa le ritaglia nell'esagono
+  (D-059), la soglia (D-276) le dipinge nell'assaggio.
+- **Il quadro del tabellone resta alla mappa d'autore**: sul tavolo pescato
+  (`map_positions`) ogni tessera porta il suo quadro e `map.board` non si
+  stende più sotto la griglia.
+- Suite **560 prove / 14.960 asserzioni**; playtest 100 semi **0/8**
+  (nessuna regola toccata); cancelli verdi.
+
 ## 0.1.238 — La soglia: l'app si apre sulla scatola (D-276)
 
 - **La schermata d'ingresso** chiesta dal committente: il nome del gioco,

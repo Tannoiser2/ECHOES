@@ -10,6 +10,35 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-277 — Le dieci tessere dipinte: ogni Regione ha il suo quadro
+
+**implemented in 0.1.239** — consegna del committente, «queste le tessere delle 10 regioni»
+
+Il committente ha consegnato le illustrazioni delle dieci tessere del parco
+(D-265), generate dai prompt preparati in sessione: targa col nome, segno
+unico in emblema, iconcine dei domini. Stanno dove l'app le sa trovare da
+ISSUES 5 (`res://art/region/<id>.png`, la chiave `art_prompt_key` è il nome
+del file): le sei di CHR_01 **sostituite** con le versioni nuove, le quattro
+del parco pescato (porto, palude, isola, bosco) **aggiunte**.
+
+**Le regole che ne seguono:**
+
+1. la mappa in partita le ritaglia dentro l'esagono da sola (D-059:
+   l'immagine è il terreno, il disegno generato si fa da parte);
+2. **il quadro del tabellone (`map.board`) vale solo per la mappa
+   d'autore**: sul tavolo pescato le tessere si posano in griglia (D-275) e
+   ognuna porta il suo quadro — il tabellone dipinto lì sarebbe un'altra
+   mappa sotto quella vera. `map_view._board()` ora torna nullo quando il
+   mondo ha `map_positions`;
+3. la **soglia** (D-276) riceve il quadro come promesso: l'assaggio del
+   tavolo dipinge la tessera consegnata, col terreno generato come ripiego
+   per una tessera che un giorno restasse senza.
+
+Non misurato sul gioco (0 regole toccate: playtest 0/8 identico); misurato
+sugli occhi del committente, che è il cancello delle cose dipinte (§5ter).
+
+---
+
 ## D-276 — La soglia: l'app si apre sulla scatola, non sul menu
 
 **implemented in 0.1.238** — richiesta del committente, sulla bozza approvata in sessione
