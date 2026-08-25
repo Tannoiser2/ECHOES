@@ -183,48 +183,53 @@ static func _build_map(world: Dictionary, chronicle: Dictionary, data: RefCounte
 	# dal dato della Regione ed erano l'unica cosa della mappa che non cambiava
 	# mai. Adesso sono stato: un passo che frana toglie un arco, e da quel
 	# momento due Regioni smettono di essere vicine.
-	world["adjacency"] = {}
-	for region_id in chronicle["regions"]:
-		var links: Array = []
-		for neighbour in (data.regions[region_id]["adjacency"] as Array):
-			# Solo i vicini che questa Chronicle porta davvero al tavolo.
-			if (chronicle["regions"] as Array).has(str(neighbour)):
-				links.append(str(neighbour))
-		world["adjacency"][str(region_id)] = links
-
-	# **Le tessere pescate si posano accostate** (D-263). Il grafo scritto,
-	# ristretto alle tessere uscite, puo' spezzarsi in isole — due posti vicini
-	# solo attraverso una tessera rimasta nella scatola. Sul tavolo fisico non
-	# succede: le tessere si accostano. Qui si ricuce nello stesso modo, in
-	# ordine di pesca: la prima tessera di ogni isola si posa accanto
-	# all'ultima dell'isola prima.
+	#
+	# **Sul tavolo pescato la posa comanda** (D-275, parola del committente):
+	# le tessere si posano in griglia nell'ordine di pesca — con sei, tre
+	# colonne e due righe — e vicino e' chi si tocca di lato o di sopra.
+	# L'adiacenza si legge guardando il tavolo, senza grafo scritto e senza
+	# lati bloccati: ogni lato accostato e' un confine aperto (se un giorno
+	# una tessera vorra' un lato chiuso, sara' un segno stampato, e sara'
+	# un'altra decisione). Il grafo dichiarato resta agli anni scritti, dove
+	# la mappa e' d'autore — e la vecchia cucitura delle isole (D-263) non
+	# serve piu': una griglia e' connessa per costruzione.
 	if not (chronicle.get("region_pool", {}) as Dictionary).is_empty():
-		_stitch_the_islands(world, chronicle)
+		_lay_the_tiles(world, chronicle)
+	else:
+		world["adjacency"] = {}
+		for region_id in chronicle["regions"]:
+			var links: Array = []
+			for neighbour in (data.regions[region_id]["adjacency"] as Array):
+				# Solo i vicini che questa Chronicle porta davvero al tavolo.
+				if (chronicle["regions"] as Array).has(str(neighbour)):
+					links.append(str(neighbour))
+			world["adjacency"][str(region_id)] = links
 
 
-static func _stitch_the_islands(world: Dictionary, chronicle: Dictionary) -> void:
-	var order: Array = (chronicle["regions"] as Array)
-	var seen: Dictionary = {}
-	var islands: Array = []
-	for start in order:
-		if seen.has(str(start)):
-			continue
-		var island: Array = [str(start)]
-		seen[str(start)] = true
-		var frontier: Array = [str(start)]
-		while not frontier.is_empty():
-			var here: String = str(frontier.pop_back())
-			for neighbour in (world["adjacency"].get(here, []) as Array):
-				if not seen.has(str(neighbour)):
-					seen[str(neighbour)] = true
-					island.append(str(neighbour))
-					frontier.append(str(neighbour))
-		islands.append(island)
-	for i in range(1, islands.size()):
-		var shore: String = str((islands[i - 1] as Array).back())
-		var landing: String = str((islands[i] as Array)[0])
-		(world["adjacency"][shore] as Array).append(landing)
-		(world["adjacency"][landing] as Array).append(shore)
+## La posa delle tessere pescate (D-275): griglia riga per riga nell'ordine
+## di pesca, colonne = ceil(sqrt(N)) — per sei tessere, 3x2. La posizione
+## resta nel mondo (`map_positions`, [colonna, riga]) perche' e' un fatto del
+## tavolo: l'app la disegna, e la saga la eredita con l'ordine delle tessere.
+static func _lay_the_tiles(world: Dictionary, chronicle: Dictionary) -> void:
+	var order: Array = chronicle["regions"] as Array
+	var columns: int = int(ceil(sqrt(float(order.size()))))
+	var at: Dictionary = {}
+	world["map_positions"] = {}
+	for i in range(order.size()):
+		var spot: Vector2i = Vector2i(i % columns, i / columns)
+		at[str(order[i])] = spot
+		world["map_positions"][str(order[i])] = [spot.x, spot.y]
+	world["adjacency"] = {}
+	for i in range(order.size()):
+		var here: String = str(order[i])
+		var links: Array = []
+		for j in range(order.size()):
+			if i == j:
+				continue
+			var step: Vector2i = (at[str(order[j])] as Vector2i) - (at[here] as Vector2i)
+			if absi(step.x) + absi(step.y) == 1:
+				links.append(str(order[j]))
+		world["adjacency"][here] = links
 
 
 ## La pesca delle tessere (D-263): stessa forma di `resolve_seats`, candidate

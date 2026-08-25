@@ -1711,6 +1711,9 @@ const DEFS := {
 			"theme_front": {
 				"type": "Dictionary",
 			},
+			"map_positions": {
+				"type": "Dictionary",
+			},
 			"relations": {
 				"type": "Dictionary",
 			},

@@ -5,6 +5,21 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.237 — La posa comanda: sul tavolo pescato vicino è chi si tocca (D-275)
+
+- **Parola del committente («vai con A»)**: sul tavolo pescato l'adiacenza è
+  **posizionale** — le tessere si posano in griglia 3×2 nell'ordine di
+  pesca, vicino è chi si tocca di lato o di sopra, niente diagonali, niente
+  lati bloccati. La posa è stato del mondo (`map_positions`) e la saga la
+  eredita con l'ordine delle tessere; le adiacenze restano mutabili
+  nell'anno (D-166). Il grafo dichiarato resta agli anni scritti; la
+  cucitura delle isole (D-263) esce — una griglia è connessa per
+  costruzione.
+- **L'app disegna la posa**: la vista della mappa mette le tessere in
+  griglia dove stanno sul tavolo.
+- Misure (100 semi): **0 seggi bloccati su 8**, 82 mappe diverse, 0 partite
+  non concluse. Suite **557 prove / 14.886 asserzioni**.
+
 ## 0.1.236 — Il motore esegue il bersaglio a segni: la sim gioca il gioco del tavolo (D-274)
 
 - **Il secondo pezzo di faccia fisica eseguito**, dopo la Risonanza (ISSUES

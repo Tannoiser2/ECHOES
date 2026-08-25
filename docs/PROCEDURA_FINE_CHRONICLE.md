@@ -66,7 +66,10 @@ il resto della procedura:
 
 ## 4. La mappa è della saga
 
-Le tessere restano quelle pescate alla prima Chronicle. Su ognuna:
+Le tessere restano quelle pescate alla prima Chronicle, **posate come alla
+prima pesca**: in griglia 3×2, riga per riga, nell'ordine di pesca — e la
+posa È l'adiacenza (D-275: vicino è chi si tocca di lato o di sopra).
+Su ognuna:
 
 - **il titolo**: chi la teneva **senza nessuna pedina sopra** la perde prima
   che l'era nuova apra (se la Chronicle gioca con `lapse_without_presence`) —
