@@ -2855,7 +2855,11 @@ dire una cosa sola sul tavolo.
 
 La grammatica fisica esiste nei dati: dodici carte hanno bersaglio a segni, due
 Azioni, una Risonanza obbligatoria e un uso in Consiglio. **Il motore ne legge
-adesso una parte: la Risonanza. Il resto no.**
+adesso due parti: la Risonanza, e — da 0.1.236
+([D-274](DECISIONS.md#d-274)) — il bersaglio a segni dei verbi che nominano
+una Regione (MUOVERE, e TRAMARE su una Regione), coi segni vivi come al
+tavolo. Restano le facce a bersaglio ENTITY e TENSION, le due Azioni e l'uso
+in Consiglio.**
 
 Quando una carta si gioca, il motore guarda `card_action.kind` — un verbo solo,
 senza scelta e senza reazione — e il blocco `physical` non lo apre nessuno. Al

@@ -1128,6 +1128,14 @@ func _check_play_card(entity_id: String, params: Dictionary) -> String:
 	var gate: String = TagRules.action_gate(data, world, entity_id, str(request["kind"]))
 	if gate != "":
 		return "il segno lo vieta: %s" % gate
+	# Il bersaglio a segni, eseguito (D-274): la faccia fisica dice DOVE la
+	# carta arriva, e da qui il motore la legge — la sim gioca lo stesso gioco
+	# del tavolo.
+	var reach: String = _check_physical_target(
+		str(params.get("asset_id", "")), str(request["kind"]), request["params"] as Dictionary
+	)
+	if reach != "":
+		return reach
 	match str(request["kind"]):
 		"ACQUIRE":
 			return _check_acquire(entity_id, request["params"])
@@ -1142,6 +1150,49 @@ func _check_play_card(entity_id: String, params: Dictionary) -> String:
 		"CLAIM":
 			return _check_claim(entity_id, request["params"])
 	return "la carta porta un'azione che non esiste"
+
+
+## Il bersaglio a segni, eseguito (D-274 — il primo pezzo di faccia fisica
+## dopo la Risonanza che il motore esegue, ISSUES 69). La faccia della carta
+## dice DOVE la carta arriva; qui vale per i verbi che nominano una Regione —
+## MUOVERE, e TRAMARE su una Regione. Il luogo scelto deve portare uno dei
+## segni del bersaglio, e nessuno dei vietati. Contano i segni **vivi**, come
+## al tavolo: quelli stampati sulla tessera piu' quelli posati durante l'anno.
+## Una carta senza `any_tag` va ovunque, come la sua faccia dice. Le facce a
+## bersaglio ENTITY/TENSION restano dichiarate e non eseguite (ISSUES 69).
+func _check_physical_target(asset_id: String, kind: String, params: Dictionary) -> String:
+	var card: Variant = data.assets.get(asset_id)
+	if card == null:
+		return ""
+	var target: Dictionary = (
+		((card as Dictionary).get("physical", {}) as Dictionary).get("target", {}) as Dictionary
+	)
+	if str(target.get("scope", "")) != "REGION":
+		return ""
+	var aims_at_region: bool = (
+		kind == "MOVE" or (kind == "SCHEME" and str(params.get("mode", "")) == "REGION")
+	)
+	if not aims_at_region:
+		return ""
+	var region_id: String = str(params.get("region_id", ""))
+	var region: Variant = (world["regions"] as Dictionary).get(region_id)
+	if region == null:
+		return ""  # la regione sconosciuta la dice gia' il check del verbo
+	var alive: Array = (region as Dictionary).get("tags", []) as Array
+	var title: String = str((card as Dictionary).get("title", asset_id))
+	var place: String = str(data.regions.get(region_id, {}).get("name", region_id))
+	for tag in target.get("forbidden_tag", []):
+		if alive.has(str(tag)):
+			return "«%s» non arriva li': %s porta un segno che la carta vieta" % [title, place]
+	var wanted: Array = target.get("any_tag", []) as Array
+	if wanted.is_empty():
+		return ""
+	for tag in wanted:
+		if alive.has(str(tag)):
+			return ""
+	return "«%s» non arriva li': il bersaglio si dice a segni, e %s non ne porta nessuno" % [
+		title, place
+	]
 
 
 func _play_asset_card(
