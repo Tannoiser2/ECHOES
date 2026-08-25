@@ -5,6 +5,27 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.242 — L'economia del Consiglio, costruita (D-280)
+
+- **Il cuore, come lo vuole la carta del committente.** Vocabolario chiuso di
+  11 verbi legati ai segni della mappa: RIAPRI, RIMUOVI CONDIZIONE, COSTRUISCI
+  PIETRA, CAMBIA CONTROLLO, RAFFREDDA TEMA / AGGIUNGI CONDIZIONE, PEDAGGIO,
+  CEDI CONTROLLO, SCALDA TEMA, PRENDI DEBITO, CICATRICE. Le 60 carte li
+  nominano e li parametrizzano.
+- **L'economia**: 1 beneficio è gratis, ogni altro costa 1 costo, una Cicatrice
+  ne compra uno oltre il limite (max 3 benefici, max 2 costi). **Il proponente
+  compra, gli avversari scelgono in che moneta paga.** Se passa si applicano
+  benefici e costi; se cade, gli effetti stampati.
+- Due passi nuovi nel giro del Consiglio, il cervello che sa comprare e far
+  pagare, il router che li inoltra (la trappola di D-268), la scheda a schermo
+  con le due liste e la riga dell'economia.
+- **Taratura d'autore dichiarata**: valore intrinseco situazionale dei verbi,
+  senza il quale il cervello comprava sempre e solo il beneficio gratis
+  (1,01 a Consiglio, economia morta).
+- Misure (40 anni, CHR_00): **1,53 benefici a Consiglio**, 61 prezzi pagati,
+  29 Cicatrici. Playtest 100 semi **0/8**; suite **568 prove / 33.172
+  asserzioni**; guardia su **15** difetti piantati.
+
 ## 0.1.241 — L'app come la vuole il tavolo (D-279), e l'economia del Consiglio decisa (D-280)
 
 - **Sei correzioni del committente sul prototipo giocato a schermo.** Cinque

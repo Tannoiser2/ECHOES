@@ -1,5 +1,5 @@
 extends SceneTree
-## La sonda della pedina del prezzo (PZ-5 Fase A, D-267).
+## La sonda dell'economia del Consiglio (D-280, e la pedina di D-267).
 ##
 ##   godot --headless --path godot --script res://cli/run_price_probe.gd -- \
 ##       --runs=100 --seed=7000 --chronicle=CHR_01
@@ -44,6 +44,14 @@ func _initialize() -> void:
 	var costs_said: Dictionary = {}
 	var vents_said: Dictionary = {}
 	var faces_seen: Dictionary = {}
+	# **L'economia** (D-280): quanti benefici si comprano davvero, e quanto si
+	# paga. Una carta che offre cinque benefici e ne vede comprare sempre uno e'
+	# un'economia che al tavolo non esiste.
+	var bought_total: int = 0
+	var bought_councils: int = 0
+	var bought_spread: Dictionary = {}
+	var paid_total: int = 0
+	var scars_taken: int = 0
 
 	for run in range(runs):
 		var seed_value: int = first_seed + run
@@ -59,7 +67,16 @@ func _initialize() -> void:
 		councils += int(session.world["confluence_count"])
 		for line in session.log.lines:
 			var text: String = str(line)
-			if text.contains("La pedina del prezzo -"):
+			if text.contains(" compra: "):
+				bought_councils += 1
+				var how_many: int = text.split(" · ").size()
+				bought_total += how_many
+				bought_spread[how_many] = int(bought_spread.get(how_many, 0)) + 1
+			elif text.contains("H. Prezzo: "):
+				paid_total += 1
+				if text.contains("Cicatrice"):
+					scars_taken += 1
+			elif text.contains("Il prezzo lo sceglie ") or text.contains("La pedina del prezzo -"):
 				pedine += 1
 				# «D. La pedina del prezzo - Casa: se passa con un costo, X; se cade, Y.»
 				for piece in text.split(";"):
@@ -98,6 +115,17 @@ func _initialize() -> void:
 	print("  Controproposte (D-268)   %d  (voci del beneficio rivendicate e passate: %d; secondi dibattiti spesi: %d)" % [
 		counterclaims, claimed_voices, second_debates_spent
 	])
+	print("")
+	print("  L'economia (D-280):")
+	print("    Consigli in cui si e' comprato  %d su %d" % [bought_councils, councils])
+	print("    benefici comprati               %d  (%.2f a Consiglio)" % [
+		bought_total, float(bought_total) / float(maxi(1, bought_councils))
+	])
+	var spread: PackedStringArray = PackedStringArray()
+	for how_many in bought_spread:
+		spread.append("%dx%d" % [int(how_many), int(bought_spread[how_many])])
+	print("    quanti alla volta               %s" % " ".join(spread))
+	print("    prezzi pagati                   %d  (Cicatrici: %d)" % [paid_total, scars_taken])
 	print("")
 	print("  Voci del prezzo lette al tavolo (D-278):")
 	print("    costi diversi          %d" % costs_said.size())

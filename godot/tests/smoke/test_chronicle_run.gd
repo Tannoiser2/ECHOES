@@ -149,8 +149,18 @@ func test_a_resolved_council_reports_what_it_applied() -> void:
 		if report.is_empty():
 			continue
 		for result in report["confluences"]:
+			# **Un Consiglio risolto cambia il mondo.** Da D-280 puo' farlo per
+			# due strade: le Conseguenze della proposta, oppure i verbi della
+			# carta — i benefici comprati, il prezzo pagato, e gli effetti
+			# stampati quando la proposta cade, che Conseguenze non sono. Il
+			# patto che conta e' che **qualcosa sia successo**: un Consiglio
+			# che si chiude senza toccare niente e' un giro a vuoto.
 			var ids: Array = (result as Dictionary).get("consequence_ids", [])
-			assert_true(ids.size() > 0, "un Consiglio risolto applica almeno una Conseguenza")
+			var landed: Array = (result as Dictionary).get("effect_ids", [])
+			assert_true(
+				ids.size() > 0 or landed.size() > 0,
+				"un Consiglio risolto lascia un segno sul mondo"
+			)
 			for consequence_id in ids:
 				assert_true(
 					session.data.consequences.has(str(consequence_id)),

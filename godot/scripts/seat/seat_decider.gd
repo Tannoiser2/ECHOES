@@ -34,6 +34,7 @@ const EchoText := preload("res://scripts/core/echo_text.gd")
 const GameSession := preload("res://scripts/chronicle/game_session.gd")
 const SignLabels := preload("res://scripts/core/sign_labels.gd")
 const CouncilText := preload("res://scripts/core/council_text.gd")
+const CouncilEconomy := preload("res://scripts/confluence/council_economy.gd")
 
 ## Entity ids a person is playing.
 var humans: Dictionary = {}
@@ -488,49 +489,78 @@ func choose_stance(entity_id: String, context: Dictionary, session: RefCounted) 
 		1: return {"stance": "OPPOSE", "clause_id": ""}
 		2: return {"stance": "ABSTAIN", "clause_id": ""}
 	return {"stance": "CONDITION", "clause_id": str(clause_ids[choice - 3])}
-
-
-## La pedina del prezzo (PZ-5, D-267): il primo seggio del fronte avverso
-## dichiara, a posizioni note e prima degli impegni, quale voce del menu
-## paghera' chi vince - il costo se la proposta passa pagando, lo sfogo se cade.
-func choose_price(
-	entity_id: String, context: Dictionary, menu: Dictionary, session: RefCounted
-) -> Dictionary:
+## **Il proponente compra** (D-280): posa le pedine sui benefici della carta,
+## sapendo che ogni beneficio oltre il primo lo fara' pagare — e che a scegliere
+## la moneta saranno gli altri.
+func choose_benefits(
+	entity_id: String, context: Dictionary, menu: Array, session: RefCounted
+) -> Array:
 	if not _is_human(entity_id):
-		return fallback.choose_price(entity_id, context, menu, session)
+		return fallback.choose_benefits(entity_id, context, menu, session)
 	_speaking_to = entity_id
-	var chosen: Dictionary = {"cost": "", "failure": ""}
-	for side in ["cost", "failure"]:
-		var pool: Array = menu.get(side, []) as Array
-		if pool.size() <= 1:
-			chosen[side] = "" if pool.is_empty() else str(pool[0])
-			continue
+	var bought: Array = []
+	var ceiling: int = CouncilEconomy.MAX_BENEFITS
+	while bought.size() < ceiling:
 		var labels: Array = []
-		for consequence_id in pool:
-			# **La voce si legge com'e' scritta sulla carta** (D-278): la faccia
-			# della Tensione girata porta le sue parole, e sono quelle che al
-			# tavolo si scelgono. Il titolo della Conseguenza resta per le
-			# questioni che una faccia non ce l'hanno ancora.
-			var written: String = str(session.confluence.price_voice_text(
-				"costs" if side == "cost" else "failures", str(consequence_id)
-			))
-			if written != "":
-				labels.append(written)
+		var ids: Array = []
+		for voice in menu:
+			var voice_id: String = str((voice as Dictionary)["id"])
+			if bought.has(voice_id):
 				continue
-			var consequence: Dictionary = session.data.consequences.get(str(consequence_id), {})
-			labels.append("%s — %s" % [
-				str(consequence.get("title", consequence_id)),
-				str(consequence.get("description", "")),
-			])
-		var prompt: String = (
-			"  %s, se la proposta passa con un costo, il prezzo e':"
-			if side == "cost"
-			else "  %s, se la proposta cade, lo sfogo e':"
-		) % _name(entity_id, session)
-		var picked: int = await _choose(prompt, labels)
+			ids.append(voice_id)
+			labels.append(str((voice as Dictionary)["text"]))
+		if ids.is_empty():
+			break
+		labels.append("Basta cosi'")
+		var due: int = CouncilEconomy.costs_due(bought.size() + 1)
+		var picked: int = await _choose(
+			"  %s, cosa ottieni? (ne hai %d; il prossimo costa %d)" % [
+				_name(entity_id, session), bought.size(), due
+			],
+			labels
+		)
 		if picked < 0:
-			return fallback.choose_price(entity_id, context, menu, session)
-		chosen[side] = str(pool[picked])
+			# **Chi non risponde gioca come la policy** (patto di casa, provato
+			# da test_hotseat): un tavolo muto deve fare la partita identica.
+			# Fermarsi qui con quello che si era gia' preso la farebbe diversa.
+			return fallback.choose_benefits(entity_id, context, menu, session)
+		if picked >= ids.size():
+			break
+		bought.append(str(ids[picked]))
+	return bought
+
+
+## **E gli avversari scelgono in che moneta paga** (D-280): il primo seggio del
+## fronte avverso posa `due` pedine sui costi stampati. A posizioni dichiarate
+## e prima degli impegni, che restano segreti (D-267).
+func choose_costs(
+	entity_id: String, context: Dictionary, menu: Array, due: int, session: RefCounted
+) -> Array:
+	if not _is_human(entity_id):
+		return fallback.choose_costs(entity_id, context, menu, due, session)
+	_speaking_to = entity_id
+	var chosen: Array = []
+	while chosen.size() < due:
+		var labels: Array = []
+		var ids: Array = []
+		for voice_id in menu:
+			if chosen.has(str(voice_id)):
+				continue
+			ids.append(str(voice_id))
+			labels.append(str(session.confluence.price_voice_text("costs", str(voice_id))))
+		if ids.is_empty():
+			break
+		var picked: int = await _choose(
+			"  %s, la proposta passa pagando: scegli il prezzo (%d di %d)" % [
+				_name(entity_id, session), chosen.size() + 1, due
+			],
+			labels
+		)
+		if picked < 0:
+			return fallback.choose_costs(entity_id, context, menu, due, session)
+		if picked >= ids.size():
+			break
+		chosen.append(str(ids[picked]))
 	return chosen
 
 
@@ -563,13 +593,17 @@ func choose_counterclaim(
 	if picked == 0:
 		return {}
 	if picked == 1:
-		var price: Dictionary = await choose_price(
-			entity_id, context, offer.get("price", {}), session
+		# Prendersi la scelta del prezzo (D-268, riscritta da D-280): il
+		# rivendicante decide **quali costi** paghera' chi vince, scavalcando
+		# il primo OPPOSE. Ne sceglie quanti la proposta ne costa.
+		var menu: Array = (offer.get("price", {}) as Dictionary).get("cost", []) as Array
+		var chosen: Array = await choose_costs(
+			entity_id, context, menu, session.confluence.costs_due(), session
 		)
 		return {
 			"mode": "price",
-			"cost": str(price.get("cost", "")),
-			"failure": str(price.get("failure", "")),
+			"cost": "" if chosen.is_empty() else str(chosen[0]),
+			"failure": "" if chosen.size() < 2 else str(chosen[1]),
 		}
 	return {"mode": "benefit", "consequence_id": str(benefits[picked - 2])}
 

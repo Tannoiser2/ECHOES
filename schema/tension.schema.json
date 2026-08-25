@@ -130,19 +130,19 @@
         },
         "physical": {
           "type": "object",
-          "description": "La faccia fisica della carta Tensione (D-278): le due liste che si leggono al tavolo quando la carta e' girata. Il proponente sceglie fra le opportunita', il fronte avverso fra i malus.",
+          "description": "La faccia fisica della carta Tensione (D-280): le due liste su cui si posano le pedine, e cosa succede se la proposta cade. Il proponente compra i benefici; gli avversari scelgono in che moneta paga — un costo per ogni beneficio oltre il primo, e una Cicatrice ne compra uno oltre il limite.",
           "additionalProperties": false,
           "properties": {
-            "opportunities": {
+            "benefits": {
               "type": "array",
               "minItems": 2,
-              "description": "Cosa il proponente puo' promettere. Almeno due per Domanda: una sola non e' una scelta.",
+              "description": "Cosa la proposta puo' ottenere sul tavolo. Il proponente ne posa fino a tre (quattro accettando una Cicatrice).",
               "items": {
                 "type": "object",
                 "required": [
                   "id",
-                  "text",
-                  "gives"
+                  "verb",
+                  "text"
                 ],
                 "additionalProperties": false,
                 "properties": {
@@ -151,19 +151,30 @@
                     "pattern": "^[A-Z0-9_]+$",
                     "description": "Id della voce, unico dentro la carta."
                   },
+                  "verb": {
+                    "type": "string",
+                    "enum": [
+                      "REOPEN",
+                      "CLEAR_CONDITION",
+                      "BUILD_STONE",
+                      "TAKE_CONTROL",
+                      "COOL_THEME"
+                    ],
+                    "description": "Il verbo del vocabolario chiuso (D-280): e' il motore a eseguirlo. Agisce sul luogo di cui si discute."
+                  },
                   "text": {
                     "type": "string",
                     "minLength": 1,
-                    "description": "Come si legge sulla carta, al tavolo."
+                    "description": "Come si legge sulla carta, sotto l'icona del verbo."
                   },
-                  "gives": {
+                  "tag": {
                     "type": "string",
-                    "pattern": "^CNS_[A-Z0-9_]+$",
-                    "description": "La Conseguenza che il motore esegue quando questa voce scatta."
+                    "description": "Il segno che il verbo posa o toglie, dove il verbo lo chiede (AGGIUNGI CONDIZIONE, CICATRICE; opzionale per RIMUOVI CONDIZIONE)."
                   },
-                  "question_id": {
+                  "structure": {
                     "type": "string",
-                    "description": "Solo per le opportunita': a quale Domanda della carta risponde."
+                    "pattern": "^STR_[A-Z0-9_]+$",
+                    "description": "La Pietra che COSTRUISCI PIETRA alza."
                   }
                 }
               }
@@ -171,13 +182,13 @@
             "costs": {
               "type": "array",
               "minItems": 2,
-              "description": "Il prezzo che il fronte avverso puo' imporre se la proposta passa pagando (la pedina del prezzo, D-267).",
+              "description": "Il prezzo che la proposta lascia sulla mappa. Lo scelgono gli avversari, uno per ogni beneficio oltre il primo (massimo due).",
               "items": {
                 "type": "object",
                 "required": [
                   "id",
-                  "text",
-                  "takes"
+                  "verb",
+                  "text"
                 ],
                 "additionalProperties": false,
                 "properties": {
@@ -186,33 +197,45 @@
                     "pattern": "^[A-Z0-9_]+$",
                     "description": "Id della voce, unico dentro la carta."
                   },
+                  "verb": {
+                    "type": "string",
+                    "enum": [
+                      "ADD_CONDITION",
+                      "TOLL",
+                      "YIELD_CONTROL",
+                      "HEAT_THEME",
+                      "TAKE_DEBT",
+                      "SCAR"
+                    ],
+                    "description": "Il verbo del vocabolario chiuso (D-280): e' il motore a eseguirlo. Agisce sul luogo di cui si discute."
+                  },
                   "text": {
                     "type": "string",
                     "minLength": 1,
-                    "description": "Come si legge sulla carta, al tavolo."
+                    "description": "Come si legge sulla carta, sotto l'icona del verbo."
                   },
-                  "takes": {
+                  "tag": {
                     "type": "string",
-                    "pattern": "^CNS_[A-Z0-9_]+$",
-                    "description": "La Conseguenza che il motore esegue quando questa voce scatta."
+                    "description": "Il segno che il verbo posa o toglie, dove il verbo lo chiede (AGGIUNGI CONDIZIONE, CICATRICE; opzionale per RIMUOVI CONDIZIONE)."
                   },
-                  "question_id": {
+                  "structure": {
                     "type": "string",
-                    "description": "Solo per le opportunita': a quale Domanda della carta risponde."
+                    "pattern": "^STR_[A-Z0-9_]+$",
+                    "description": "La Pietra che COSTRUISCI PIETRA alza."
                   }
                 }
               }
             },
-            "failures": {
+            "failure": {
               "type": "array",
-              "minItems": 2,
-              "description": "Lo sfogo che il fronte avverso puo' imporre se la proposta cade.",
+              "minItems": 1,
+              "description": "Se la proposta non passa: il mondo non sopporta l'indecisione, e questi effetti si applicano comunque. Non si scelgono — sono stampati.",
               "items": {
                 "type": "object",
                 "required": [
                   "id",
-                  "text",
-                  "takes"
+                  "verb",
+                  "text"
                 ],
                 "additionalProperties": false,
                 "properties": {
@@ -221,19 +244,31 @@
                     "pattern": "^[A-Z0-9_]+$",
                     "description": "Id della voce, unico dentro la carta."
                   },
+                  "verb": {
+                    "type": "string",
+                    "enum": [
+                      "ADD_CONDITION",
+                      "TOLL",
+                      "YIELD_CONTROL",
+                      "HEAT_THEME",
+                      "TAKE_DEBT",
+                      "SCAR"
+                    ],
+                    "description": "Il verbo del vocabolario chiuso (D-280): e' il motore a eseguirlo. Scatta da solo quando la proposta cade."
+                  },
                   "text": {
                     "type": "string",
                     "minLength": 1,
-                    "description": "Come si legge sulla carta, al tavolo."
+                    "description": "Come si legge sulla carta, sotto l'icona del verbo."
                   },
-                  "takes": {
+                  "tag": {
                     "type": "string",
-                    "pattern": "^CNS_[A-Z0-9_]+$",
-                    "description": "La Conseguenza che il motore esegue quando questa voce scatta."
+                    "description": "Il segno che il verbo posa o toglie, dove il verbo lo chiede (AGGIUNGI CONDIZIONE, CICATRICE; opzionale per RIMUOVI CONDIZIONE)."
                   },
-                  "question_id": {
+                  "structure": {
                     "type": "string",
-                    "description": "Solo per le opportunita': a quale Domanda della carta risponde."
+                    "pattern": "^STR_[A-Z0-9_]+$",
+                    "description": "La Pietra che COSTRUISCI PIETRA alza."
                   }
                 }
               }

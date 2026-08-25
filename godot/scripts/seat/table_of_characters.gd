@@ -184,10 +184,18 @@ class Table extends RefCounted:
 	# tavolo misto del cancello ha giocato la Fase A senza pedina, e i numeri
 	# identici prima/dopo l'hanno detto. Un router che non inoltra e' un
 	# cervello che non sa scegliere, e nessuno se ne accorge.
-	func choose_price(
-		entity_id: String, context: Dictionary, menu: Dictionary, session: RefCounted
-	) -> Dictionary:
-		return _who(entity_id).choose_price(entity_id, context, menu, session)
+	# L'economia (D-280) nomina due seggi: il proponente che compra e il primo
+	# del fronte avverso che sceglie il prezzo. Stessa ragione dell'inoltro qui
+	# sopra, e stessa trappola se manca.
+	func choose_benefits(
+		entity_id: String, context: Dictionary, menu: Array, session: RefCounted
+	) -> Array:
+		return await _who(entity_id).choose_benefits(entity_id, context, menu, session)
+
+	func choose_costs(
+		entity_id: String, context: Dictionary, menu: Array, due: int, session: RefCounted
+	) -> Array:
+		return await _who(entity_id).choose_costs(entity_id, context, menu, due, session)
 
 	func choose_counterclaim(
 		entity_id: String, context: Dictionary, offer: Dictionary, session: RefCounted

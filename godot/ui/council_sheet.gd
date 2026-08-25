@@ -124,9 +124,9 @@ func _the_two_lists(tension: Dictionary) -> void:
 	if face.is_empty():
 		return
 	for pair in [
-		["opportunities", "Le opportunita' — le sceglie chi propone"],
-		["costs", "Il prezzo — lo sceglie il fronte avverso, se la proposta passa pagando"],
-		["failures", "Lo sfogo — lo sceglie il fronte avverso, se la proposta cade"],
+		["benefits", "Benefici possibili — li compra chi propone (massimo 3 pedine)"],
+		["costs", "Costi possibili — li sceglie il fronte avverso (massimo 2 pedine)"],
+		["failure", "Se la proposta non passa — non li sceglie nessuno"],
 	]:
 		var voices: Array = face.get(str(pair[0]), []) as Array
 		if voices.is_empty():
@@ -134,7 +134,14 @@ func _the_two_lists(tension: Dictionary) -> void:
 		_gap()
 		_line(str(pair[1]), 12, "#8a8172")
 		for voice in voices:
-			_line("· %s" % str((voice as Dictionary)["text"]), 12, "#d9d2c5")
+			_line("○ %s" % str((voice as Dictionary)["text"]), 12, "#d9d2c5")
+	# La riga dell'economia, che e' la regola vera della carta (D-280).
+	_gap()
+	_line(
+		"1 beneficio e' gratis. Ogni beneficio in piu' richiede 1 costo."
+		+ "  Accettando una Cicatrice se ne compra uno oltre il limite.",
+		11, "#c9a14a"
+	)
 
 
 ## La voce con cui questa scheda parla, ed e' il punto delicato di tutta la

@@ -26,28 +26,79 @@
         "Q_WATER_PRICE"
       ],
       "physical": {
-        "costs": [
+        "benefits": [
           {
-            "id": "C_BRACCIA_SCAVO",
-            "text": "Passa, ma le braccia per scavare si tolgono da un'altra parte.",
-            "takes": "CNS_COST_RATION"
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri l'accesso: il luogo torna raggiungibile."
           },
           {
-            "id": "C_ACQUA_PREZZO",
-            "text": "Passa, ma l'acqua ha un prezzo, e il prezzo lo fa chi ha scavato.",
-            "takes": "CNS_COST_DEBT"
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Rimuovi 1 condizione dal luogo scelto."
+          },
+          {
+            "id": "B_STONE",
+            "verb": "BUILD_STONE",
+            "text": "Costruisci 1 Pietra nel luogo: Granaio.",
+            "structure": "STR_GRANARY"
+          },
+          {
+            "id": "B_CONTROL",
+            "verb": "TAKE_CONTROL",
+            "text": "Assegna o trasferisci il controllo del luogo."
+          },
+          {
+            "id": "B_COOL",
+            "verb": "COOL_THEME",
+            "text": "Raffredda il Tema di 1 (minimo 0)."
           }
         ],
-        "failures": [
+        "costs": [
           {
-            "id": "F_CANALI_TERRA",
-            "text": "Cade, e i canali restano pieni di terra per un'altra generazione.",
-            "takes": "CNS_FAILURE_ABANDONED"
+            "id": "C_CONDITION",
+            "verb": "ADD_CONDITION",
+            "text": "Al luogo si aggiunge #razionato.",
+            "tag": "condition:rationed"
           },
           {
-            "id": "F_SCAVI_NOTTE",
-            "text": "Cade, e si continua a scavare di notte, per conto proprio.",
-            "takes": "CNS_FAILURE_PLUNDER"
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Il luogo ottiene #pedaggio."
+          },
+          {
+            "id": "C_YIELD",
+            "verb": "YIELD_CONTROL",
+            "text": "Cedi il controllo del luogo."
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Scalda il Tema di 1."
+          },
+          {
+            "id": "C_DEBT",
+            "verb": "TAKE_DEBT",
+            "text": "Al luogo si aggiunge #indebitata."
+          },
+          {
+            "id": "C_SCAR",
+            "verb": "SCAR",
+            "text": "Accetta 1 Cicatrice permanente: l'abbandono.",
+            "tag": "scar:abandoned"
+          }
+        ],
+        "failure": [
+          {
+            "id": "F_CONDITION",
+            "verb": "ADD_CONDITION",
+            "text": "Cade, e i canali restano pieni di terra per un'altra generazione. Al luogo si aggiunge #abbandonato.",
+            "tag": "condition:abandoned"
+          },
+          {
+            "id": "F_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1."
           }
         ]
       },
@@ -98,28 +149,79 @@
         "Q_DEBT_CALL"
       ],
       "physical": {
-        "costs": [
+        "benefits": [
           {
-            "id": "C_REGISTRO_APERTO",
-            "text": "Passa, ma il registro resta aperto, e ogni nome ci sta dentro.",
-            "takes": "CNS_COST_DEBT"
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri l'accesso: il luogo torna raggiungibile."
           },
           {
-            "id": "C_CHI_HA_CHIESTO",
-            "text": "Passa, ma chi ha chiesto di rimandare tratta da posizione debole.",
-            "takes": "CNS_COST_COLD_WORD"
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Rimuovi 1 condizione dal luogo scelto."
+          },
+          {
+            "id": "B_STONE",
+            "verb": "BUILD_STONE",
+            "text": "Costruisci 1 Pietra nel luogo: Pedaggio.",
+            "structure": "STR_TOLLGATE"
+          },
+          {
+            "id": "B_CONTROL",
+            "verb": "TAKE_CONTROL",
+            "text": "Assegna o trasferisci il controllo del luogo."
+          },
+          {
+            "id": "B_COOL",
+            "verb": "COOL_THEME",
+            "text": "Raffredda il Tema di 1 (minimo 0)."
           }
         ],
-        "failures": [
+        "costs": [
           {
-            "id": "F_CHIAMATO",
-            "text": "Cade, e la Gilda chiama il debito tutto insieme.",
-            "takes": "CNS_FAILURE_CUT_OFF"
+            "id": "C_CONDITION",
+            "verb": "ADD_CONDITION",
+            "text": "Al luogo si aggiunge #malcontento.",
+            "tag": "condition:unrest"
           },
           {
-            "id": "F_NOMI_LETTI",
-            "text": "Cade, e i nomi letti in pubblico restano scritti dove tutti passano.",
-            "takes": "CNS_FAILURE_WALL"
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Il luogo ottiene #pedaggio."
+          },
+          {
+            "id": "C_YIELD",
+            "verb": "YIELD_CONTROL",
+            "text": "Cedi il controllo del luogo."
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Scalda il Tema di 1."
+          },
+          {
+            "id": "C_DEBT",
+            "verb": "TAKE_DEBT",
+            "text": "Al luogo si aggiunge #indebitata."
+          },
+          {
+            "id": "C_SCAR",
+            "verb": "SCAR",
+            "text": "Accetta 1 Cicatrice permanente: il confine sigillato.",
+            "tag": "scar:sealed_border"
+          }
+        ],
+        "failure": [
+          {
+            "id": "F_CONDITION",
+            "verb": "ADD_CONDITION",
+            "text": "Cade, e la Gilda chiama il debito tutto insieme. Il luogo resta tagliato fuori.",
+            "tag": "condition:cut_off"
+          },
+          {
+            "id": "F_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1."
           }
         ]
       },
@@ -175,28 +277,79 @@
         "Q_RELIC_KEEP"
       ],
       "physical": {
-        "costs": [
+        "benefits": [
           {
-            "id": "C_TECA_GUARDATA",
-            "text": "Passa, ma la teca si sorveglia a turni, e i turni non finiscono.",
-            "takes": "CNS_COST_GUARD"
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri l'accesso: il luogo torna raggiungibile."
           },
           {
-            "id": "C_ORDINE_FREDDO",
-            "text": "Passa, ma l'Ordine se lo ricorda: la prossima porta si apre piu' piano.",
-            "takes": "CNS_COST_COLD_WORD"
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Rimuovi 1 condizione dal luogo scelto."
+          },
+          {
+            "id": "B_STONE",
+            "verb": "BUILD_STONE",
+            "text": "Costruisci 1 Pietra nel luogo: Sito dormiente.",
+            "structure": "STR_OLD_SITE"
+          },
+          {
+            "id": "B_CONTROL",
+            "verb": "TAKE_CONTROL",
+            "text": "Assegna o trasferisci il controllo del luogo."
+          },
+          {
+            "id": "B_COOL",
+            "verb": "COOL_THEME",
+            "text": "Raffredda il Tema di 1 (minimo 0)."
           }
         ],
-        "failures": [
+        "costs": [
           {
-            "id": "F_TECA_CONTESA",
-            "text": "Cade, e la custodia resta di chi ci mette gli uomini.",
-            "takes": "CNS_FAILURE_CONTESTED"
+            "id": "C_CONDITION",
+            "verb": "ADD_CONDITION",
+            "text": "Al luogo si aggiunge #sorvegliata.",
+            "tag": "condition:guarded"
           },
           {
-            "id": "F_INVENTARIO",
-            "text": "Cade, e si racconta che la teca sia stata aperta e mai richiusa.",
-            "takes": "CNS_FAILURE_RUMOUR"
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Il luogo ottiene #pedaggio."
+          },
+          {
+            "id": "C_YIELD",
+            "verb": "YIELD_CONTROL",
+            "text": "Cedi il controllo del luogo."
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Scalda il Tema di 1."
+          },
+          {
+            "id": "C_DEBT",
+            "verb": "TAKE_DEBT",
+            "text": "Al luogo si aggiunge #indebitata."
+          },
+          {
+            "id": "C_SCAR",
+            "verb": "SCAR",
+            "text": "Accetta 1 Cicatrice permanente: passata di mano.",
+            "tag": "scar:changed_hands"
+          }
+        ],
+        "failure": [
+          {
+            "id": "F_CONDITION",
+            "verb": "ADD_CONDITION",
+            "text": "Cade, e la custodia resta di chi ci mette gli uomini. Al luogo si aggiunge #conteso.",
+            "tag": "condition:contested"
+          },
+          {
+            "id": "F_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1."
           }
         ]
       },
@@ -247,28 +400,79 @@
         "Q_CHARTER_SEAT"
       ],
       "physical": {
-        "costs": [
+        "benefits": [
           {
-            "id": "C_CARTA_PAGATA",
-            "text": "Passa, ma la carta si compra: chi l'ha voluta si indebita per averla.",
-            "takes": "CNS_COST_DEBT"
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri l'accesso: il luogo torna raggiungibile."
           },
           {
-            "id": "C_CHI_HA_FIRMATO",
-            "text": "Passa, ma chi ha firmato controvoglia tratta piu' duro la prossima volta.",
-            "takes": "CNS_COST_COLD_WORD"
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Rimuovi 1 condizione dal luogo scelto."
+          },
+          {
+            "id": "B_STONE",
+            "verb": "BUILD_STONE",
+            "text": "Costruisci 1 Pietra nel luogo: Torre di veglia.",
+            "structure": "STR_KEEP"
+          },
+          {
+            "id": "B_CONTROL",
+            "verb": "TAKE_CONTROL",
+            "text": "Assegna o trasferisci il controllo del luogo."
+          },
+          {
+            "id": "B_COOL",
+            "verb": "COOL_THEME",
+            "text": "Raffredda il Tema di 1 (minimo 0)."
           }
         ],
-        "failures": [
+        "costs": [
           {
-            "id": "F_DUE_SENTENZE",
-            "text": "Cade, e due citta' continuano a giudicare lo stesso caso al contrario.",
-            "takes": "CNS_FAILURE_CONTESTED"
+            "id": "C_CONDITION",
+            "verb": "ADD_CONDITION",
+            "text": "Al luogo si aggiunge #malcontento.",
+            "tag": "condition:unrest"
           },
           {
-            "id": "F_CARTA_SUL_MURO",
-            "text": "Cade, e qualcuno inchioda al muro la carta non firmata.",
-            "takes": "CNS_FAILURE_WALL"
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Il luogo ottiene #pedaggio."
+          },
+          {
+            "id": "C_YIELD",
+            "verb": "YIELD_CONTROL",
+            "text": "Cedi il controllo del luogo."
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Scalda il Tema di 1."
+          },
+          {
+            "id": "C_DEBT",
+            "verb": "TAKE_DEBT",
+            "text": "Al luogo si aggiunge #indebitata."
+          },
+          {
+            "id": "C_SCAR",
+            "verb": "SCAR",
+            "text": "Accetta 1 Cicatrice permanente: passata di mano.",
+            "tag": "scar:changed_hands"
+          }
+        ],
+        "failure": [
+          {
+            "id": "F_CONDITION",
+            "verb": "ADD_CONDITION",
+            "text": "Cade, e due citta' continuano a giudicare lo stesso caso al contrario. Al luogo si aggiunge #conteso.",
+            "tag": "condition:contested"
+          },
+          {
+            "id": "F_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1."
           }
         ]
       },
@@ -319,28 +523,79 @@
         "Q_ANY_WHO_STAYS"
       ],
       "physical": {
-        "costs": [
+        "benefits": [
           {
-            "id": "C_REGISTRO",
-            "text": "Passa, ma chi viene scritto viene anche sorvegliato.",
-            "takes": "CNS_COST_GUARD"
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri l'accesso: il luogo torna raggiungibile."
           },
           {
-            "id": "C_FUORI_CONTO",
-            "text": "Passa, ma chi non entra nel conto se ne va altrove.",
-            "takes": "CNS_COST_EMPTIED"
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Rimuovi 1 condizione dal luogo scelto."
+          },
+          {
+            "id": "B_STONE",
+            "verb": "BUILD_STONE",
+            "text": "Costruisci 1 Pietra nel luogo: Villaggio.",
+            "structure": "STR_SETTLEMENT"
+          },
+          {
+            "id": "B_CONTROL",
+            "verb": "TAKE_CONTROL",
+            "text": "Assegna o trasferisci il controllo del luogo."
+          },
+          {
+            "id": "B_COOL",
+            "verb": "COOL_THEME",
+            "text": "Raffredda il Tema di 1 (minimo 0)."
           }
         ],
-        "failures": [
+        "costs": [
           {
-            "id": "F_PIU_FUOCHI",
-            "text": "Cade, e l'anno prossimo i fuochi fuori dalle mura sono di piu'.",
-            "takes": "CNS_FAILURE_CONTESTED"
+            "id": "C_CONDITION",
+            "verb": "ADD_CONDITION",
+            "text": "Al luogo si aggiunge #sorvegliata.",
+            "tag": "condition:guarded"
           },
           {
-            "id": "F_NESSUNO_RISPONDE",
-            "text": "Cade, e di quella gente non risponde nessuno.",
-            "takes": "CNS_FAILURE_ABANDONED"
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Il luogo ottiene #pedaggio."
+          },
+          {
+            "id": "C_YIELD",
+            "verb": "YIELD_CONTROL",
+            "text": "Cedi il controllo del luogo."
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Scalda il Tema di 1."
+          },
+          {
+            "id": "C_DEBT",
+            "verb": "TAKE_DEBT",
+            "text": "Al luogo si aggiunge #indebitata."
+          },
+          {
+            "id": "C_SCAR",
+            "verb": "SCAR",
+            "text": "Accetta 1 Cicatrice permanente: passata di mano.",
+            "tag": "scar:changed_hands"
+          }
+        ],
+        "failure": [
+          {
+            "id": "F_CONDITION",
+            "verb": "ADD_CONDITION",
+            "text": "Cade, e l'anno prossimo i fuochi fuori dalle mura sono di piu'. Al luogo si aggiunge #conteso.",
+            "tag": "condition:contested"
+          },
+          {
+            "id": "F_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1."
           }
         ]
       },
@@ -386,28 +641,79 @@
         "Q_ANY_ANCIENT_WATCH"
       ],
       "physical": {
-        "costs": [
+        "benefits": [
           {
-            "id": "C_VEGLIA_CENERE",
-            "text": "Passa, ma qualcuno deve stare a guardare la montagna, sempre.",
-            "takes": "CNS_COST_GUARD"
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri l'accesso: il luogo torna raggiungibile."
           },
           {
-            "id": "C_VERSANTE_LASCIATO",
-            "text": "Passa, ma il versante orientale si lascia, e chi ci stava scende a valle.",
-            "takes": "CNS_COST_EMPTIED"
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Rimuovi 1 condizione dal luogo scelto."
+          },
+          {
+            "id": "B_STONE",
+            "verb": "BUILD_STONE",
+            "text": "Costruisci 1 Pietra nel luogo: Sito dormiente.",
+            "structure": "STR_OLD_SITE"
+          },
+          {
+            "id": "B_CONTROL",
+            "verb": "TAKE_CONTROL",
+            "text": "Assegna o trasferisci il controllo del luogo."
+          },
+          {
+            "id": "B_COOL",
+            "verb": "COOL_THEME",
+            "text": "Raffredda il Tema di 1 (minimo 0)."
           }
         ],
-        "failures": [
+        "costs": [
           {
-            "id": "F_REGISTRI",
-            "text": "Cade, e i registri dell'Ordine e i vecchi continuano a dire il contrario.",
-            "takes": "CNS_FAILURE_RUMOUR"
+            "id": "C_CONDITION",
+            "verb": "ADD_CONDITION",
+            "text": "Al luogo si aggiunge #sorvegliata.",
+            "tag": "condition:guarded"
           },
           {
-            "id": "F_CHIAZZE",
-            "text": "Cade, e le chiazze di neve sciolta restano li' a dire che qualcosa sale.",
-            "takes": "CNS_FAILURE_WALL"
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Il luogo ottiene #pedaggio."
+          },
+          {
+            "id": "C_YIELD",
+            "verb": "YIELD_CONTROL",
+            "text": "Cedi il controllo del luogo."
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Scalda il Tema di 1."
+          },
+          {
+            "id": "C_DEBT",
+            "verb": "TAKE_DEBT",
+            "text": "Al luogo si aggiunge #indebitata."
+          },
+          {
+            "id": "C_SCAR",
+            "verb": "SCAR",
+            "text": "Accetta 1 Cicatrice permanente: la domanda sul muro.",
+            "tag": "scar:unanswered"
+          }
+        ],
+        "failure": [
+          {
+            "id": "F_CONDITION",
+            "verb": "ADD_CONDITION",
+            "text": "Cade, e i registri dell'Ordine e i vecchi continuano a dire il contrario. Al luogo si aggiunge #malcontento.",
+            "tag": "condition:unrest"
+          },
+          {
+            "id": "F_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1."
           }
         ]
       },
