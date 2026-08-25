@@ -105,7 +105,8 @@
       "destiny_pool": [
         "DST_SALE",
         "DST_SALE_OPEN",
-        "DST_SHARED_ACCOUNTS"
+        "DST_SHARED_ACCOUNTS",
+        "DST_SHARED_HAND"
       ],
       "name_grammar": {
         "pattern": "{title} {given}{ordinal}",
@@ -321,7 +322,8 @@
       "destiny_pool": [
         "DST_VETRO",
         "DST_VETRO_SHOWN",
-        "DST_SHARED_RENOWN"
+        "DST_SHARED_RENOWN",
+        "DST_SHARED_LORE"
       ],
       "name_grammar": {
         "pattern": "{title} {given}{ordinal}",
@@ -540,7 +542,8 @@
       "destiny_pool": [
         "DST_CENERE",
         "DST_CENERE_DEEP",
-        "DST_SHARED_RENOWN"
+        "DST_SHARED_RENOWN",
+        "DST_SHARED_QUIET"
       ],
       "name_grammar": {
         "pattern": "{given} dei Fuochi{ordinal}",
@@ -731,7 +734,8 @@
       "destiny_pool": [
         "DST_LIBERE",
         "DST_LIBERE_WATER",
-        "DST_SHARED_RENOWN"
+        "DST_SHARED_RENOWN",
+        "DST_SHARED_HAND"
       ],
       "incarnations": [
         {

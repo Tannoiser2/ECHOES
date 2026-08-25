@@ -196,6 +196,21 @@
             ]
           }
         ]
+      },
+      "physical": {
+        "themes": [
+          "THM_VIE"
+        ],
+        "observes": [
+          "ledger_public",
+          "question_unresolved",
+          "water_moves"
+        ],
+        "reads": {
+          "minimum": "La Gilda esiste ancora.",
+          "victory": "Il registro è aperto, una terra risponde, e i conti che tiene sono chiusi tutti.",
+          "triumph": "Una pedina sulla Strada, l'acqua che si muove pagata da lei, una sbarra col suo nome — e la Strada uscita pulita."
+        }
       }
     },
     {
@@ -294,6 +309,21 @@
             ]
           }
         ]
+      },
+      "physical": {
+        "themes": [
+          "THM_FEDE"
+        ],
+        "observes": [
+          "anointed",
+          "relic_shown",
+          "condition:emptied"
+        ],
+        "reads": {
+          "minimum": "L'Ordine tiene la sua casa: le gallerie presidiate, non solo abitate.",
+          "victory": "La custodia riconosciuta per atto, e la teca ancora chiusa.",
+          "triumph": "Le gallerie sue e vive, a verbale cosa custodisce, le tre questioni tenute lontane dalla teca — e le Miniere uscite pulite."
+        }
       }
     },
     {
@@ -353,6 +383,21 @@
             "label": "E nessuno l'ha rifiutata"
           }
         ]
+      },
+      "physical": {
+        "themes": [
+          "THM_FEDE"
+        ],
+        "observes": [
+          "relic_shown",
+          "charter_written",
+          "no_charter"
+        ],
+        "reads": {
+          "minimum": "L'Ordine tiene la sua casa: le gallerie presidiate, non solo abitate.",
+          "victory": "La reliquia mostrata — e a mostrarla è stato l'Ordine.",
+          "triumph": "La fede diventata legge: c'è una Carta scritta, e nessuno l'ha rifiutata."
+        }
       }
     },
     {
@@ -452,6 +497,21 @@
             ]
           }
         ]
+      },
+      "physical": {
+        "themes": [
+          "THM_TERRA"
+        ],
+        "observes": [
+          "ash_watch",
+          "structure:sealed",
+          "relic_buried"
+        ],
+        "reads": {
+          "minimum": "Restano sulla montagna: le Montagne Rosse presidiate.",
+          "victory": "La montagna è loro, la veglia affidata per atto, e le gallerie non murate.",
+          "triumph": "La Cenere che sale, due terre a registro, il patto con la Gilda in pari, quello che sta sotto ancora aperto — e i segni dell'anno dicono che si lavora."
+        }
       }
     },
     {
@@ -544,6 +604,19 @@
             ]
           }
         ]
+      },
+      "physical": {
+        "themes": [
+          "THM_ANTICO"
+        ],
+        "observes": [
+          "structure:sealed"
+        ],
+        "reads": {
+          "minimum": "I Fuochi non si sono spenti, e qualcuno è rimasto sulle Montagne Rosse.",
+          "victory": "Le gallerie aperte, discesi in due, e quello che c'è sotto visto coi propri occhi.",
+          "triumph": "Il patto con la Gilda saltato, qualcosa di murato che è loro, e l'anno chiuso quasi senza segni: né sulle gallerie, né sulla montagna."
+        }
       }
     },
     {
@@ -641,6 +714,22 @@
             ]
           }
         ]
+      },
+      "physical": {
+        "themes": [
+          "THM_POTERE"
+        ],
+        "observes": [
+          "charter_written",
+          "water_priced",
+          "debt_forgiven",
+          "condition:unrest"
+        ],
+        "reads": {
+          "minimum": "Le città esistono ancora, e a Eredan c'è una pedina loro.",
+          "victory": "La Carta è scritta, e l'acqua non è finita a prezzo.",
+          "triumph": "La Carta scritta quando non si poteva più rimandare, il debito rimesso, la Gilda non nemica, Eredan quieta — e le città hanno costruito, non solo discusso."
+        }
       }
     },
     {
@@ -723,6 +812,20 @@
             ]
           }
         ]
+      },
+      "physical": {
+        "themes": [
+          "THM_SOPRAVVIVENZA"
+        ],
+        "observes": [
+          "water_moves",
+          "water_priced"
+        ],
+        "reads": {
+          "minimum": "Le città esistono ancora.",
+          "victory": "I canali riaperti, una pedina nella Valle Verde, e il mondo non aperto dove l'acqua deve passare.",
+          "triumph": "L'acqua di nessuno: due terre che rispondono, un canale mantenuto, la Valle Verde pulita e l'anno quasi senza segni."
+        }
       }
     }
   ]

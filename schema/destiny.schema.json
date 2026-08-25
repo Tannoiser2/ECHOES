@@ -264,12 +264,12 @@
         },
         "observes": {
           "type": "array",
-          "minItems": 1,
+          "minItems": 0,
           "items": {
             "type": "string",
             "minLength": 1
           },
-          "description": "I segni del tavolo che decidono se questo Destino si avvera. Il giocatore li tiene d'occhio; il validatore controlla che qualcuno li scriva davvero."
+          "description": "I segni del tavolo che decidono se questo Destino si avvera. Il giocatore li tiene d'occhio; il validatore controlla che qualcuno li scriva davvero. Vuoto e' lecito solo per i Destini che guardano contatori e non segni (D-270: questioni tenute basse, scoperte, la mano) - le righe `reads` dicono comunque dove guardare."
         },
         "reads": {
           "type": "object",
