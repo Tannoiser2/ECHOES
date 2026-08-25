@@ -280,6 +280,12 @@ Le cinque schermate della RoadMap: Mappa, Mano, Temi, Consiglio, Saga.
 qui vale la regola §5ter di questo progetto: **nessuna misura copre quello che una
 persona vede**. Va guardato su un iPad vero.
 
+> **La parte misurabile in 0.1.233** ([D-271](DECISIONS.md#d-271)): le cinque
+> schermate esistono e sono censite; le domande nuove del Consiglio (pedina,
+> controproposta) arrivano al giocatore; il pannello del Destino legge le tre
+> righe della carta (D-270). **Resta l'occhio**: il giro su iPad vero è del
+> committente — §5ter non si chiude in headless.
+
 ### PZ-9 — I validatori
 
 I sette controlli che esistono, più i sei che la RoadMap chiede: luogo senza tag,

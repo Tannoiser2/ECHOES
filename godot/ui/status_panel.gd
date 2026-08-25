@@ -460,9 +460,23 @@ func _update_destiny(session: RefCounted, viewer_id: String) -> void:
 		return
 	for level in ["minimum", "victory", "triumph"]:
 		_rung_line(
-			str(destiny[level]["label"]),
+			rung_text(destiny, str(level)),
 			session.destinies.conditions.all_hold(destiny[level]["conditions"], {"self": viewer_id})
 		)
+
+
+## La riga di un gradino, come si legge **al tavolo** (PZ-8, D-271): se il
+## Destino ha una faccia fisica, la riga e' la sua — `physical.reads` e' la
+## frase stampata sulla carta, e lo schermo dice quello che la carta dice
+## (da D-270 ogni Destino spedito ce l'ha). Senza faccia, l'etichetta
+## digitale del gradino: il ripiego resta per i Destini fabbricati nelle
+## prove.
+static func rung_text(destiny: Dictionary, level: String) -> String:
+	var face: Dictionary = destiny.get("physical", {}) as Dictionary
+	var said: String = str((face.get("reads", {}) as Dictionary).get(level, ""))
+	if said != "":
+		return said
+	return str((destiny.get(level, {}) as Dictionary).get("label", ""))
 
 
 ## Una riga della scala. ASCII on purpose: the fallback font a Web export ships
