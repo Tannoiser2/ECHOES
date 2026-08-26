@@ -3065,7 +3065,8 @@
           {
             "id": "B_CLEAR",
             "verb": "CLEAR_CONDITION",
-            "text": "Rimuovi 1 condizione dal luogo scelto."
+            "text": "Cade il sigillo: quello che era murato torna raggiungibile.",
+            "tag": "structure:sealed"
           },
           {
             "id": "B_STONE",
@@ -3088,8 +3089,8 @@
           {
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Al luogo si aggiunge #razionato.",
-            "tag": "condition:rationed"
+            "text": "Il luogo viene murato: quello che sta sotto resta sotto.",
+            "tag": "structure:sealed"
           },
           {
             "id": "C_TOLL",
@@ -3298,7 +3299,8 @@
           {
             "id": "B_CLEAR",
             "verb": "CLEAR_CONDITION",
-            "text": "Rimuovi 1 condizione dal luogo scelto."
+            "text": "Cade il sigillo: quello che era murato torna raggiungibile.",
+            "tag": "structure:sealed"
           },
           {
             "id": "B_STONE",
@@ -3321,8 +3323,8 @@
           {
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Al luogo si aggiunge #sorvegliata.",
-            "tag": "condition:guarded"
+            "text": "Il luogo viene murato: quello che sta sotto resta sotto.",
+            "tag": "structure:sealed"
           },
           {
             "id": "C_TOLL",
@@ -3528,7 +3530,8 @@
           {
             "id": "B_CLEAR",
             "verb": "CLEAR_CONDITION",
-            "text": "Rimuovi 1 condizione dal luogo scelto."
+            "text": "Cade il sigillo: quello che era murato torna raggiungibile.",
+            "tag": "structure:sealed"
           },
           {
             "id": "B_STONE",
@@ -3551,8 +3554,8 @@
           {
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Al luogo si aggiunge #sorvegliata.",
-            "tag": "condition:guarded"
+            "text": "Il luogo viene murato: quello che sta sotto resta sotto.",
+            "tag": "structure:sealed"
           },
           {
             "id": "C_TOLL",

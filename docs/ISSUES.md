@@ -2763,6 +2763,40 @@ e' in gioco.
 
 ---
 
+### 85. Il quarto beneficio non si compra mai, e la Cicatrice non scatta
+
+`regole` · `motore` · **aperta in 0.1.264** ([D-301](DECISIONS.md#d-301))
+
+[D-280](DECISIONS.md#d-280) dice: *«un beneficio e' gratis, ogni altro costa un
+costo, e una Cicatrice ne compra uno oltre il limite»*. Misurato su 40 anni e
+159 Consigli: **il quarto beneficio non lo compra nessuno**.
+
+| quanti benefici comprati insieme | volte |
+|---|---|
+| 1 (gratis) | 89 |
+| 2 | 31 |
+| 3 | 39 |
+| **4 (con la Cicatrice)** | **0** |
+
+Conseguenza diretta: `scar:unanswered` — *«la domanda sul muro»* — sta come
+Cicatrice su **sedici** carte Tensione e **non si e' mai posata in
+quarant'anni**, perche' quella e' l'unica strada che ha.
+
+Due letture, e vanno provate in quest'ordine:
+
+1. **il cervello non ci prova**: la policy compra fino a tre e non valuta mai il
+   quarto. Se e' cosi', e' una riga in `policy_decider`, e la regola torna viva
+   subito;
+2. **il quarto non conviene mai**: tre benefici costano due costi, il quarto ne
+   costa due **piu' la Cicatrice permanente**, e nessun beneficio della carta
+   vale una Cicatrice. Se e' cosi', il difetto e' nell'economia, non nel bot.
+
+**Fatto quando** il quarto beneficio si compra almeno una volta in quaranta
+anni, oppure e' scritto qui perche' nessuno lo comprerebbe mai — e allora la
+riga della Cicatrice va tolta dalla carta invece di restarci a fare finta.
+
+---
+
 ### 84. L'Eredita' e' misurabile, e quasi inerte
 
 `regole` · `da-decidere` · **aperta in 0.1.262** ([D-299](DECISIONS.md#d-299))
