@@ -871,12 +871,6 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 		consequence_ids.append_array(_proposition()["success_consequences"])
 		if outcome == ConfluenceResolution.DECISIVE:
 			consequence_ids.append_array(template["consequence_pools"]["decisive_bonus"])
-	# **L'economia della carta** (D-280): se la proposta passa si applicano
-	# **tutti i benefici comprati e tutti i costi posati** — la riga in fondo
-	# alla carta, «applica tutti i benefici e tutti i costi (incluse le
-	# cicatrici)». Se cade, scattano gli **effetti stampati**: il mondo non
-	# sopporta l'indecisione, e quelli non li sceglie nessuno.
-	_spend_the_card(applied, outcome, source)
 	# ISSUES 22 (Fase 1): the Consequence speaks with its title, and every
 	# Effect it lands gets its own spoken line — the crown losing the Valle
 	# Verde must be a sentence at the table, not a silent SET_CONTROL.
@@ -936,6 +930,23 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 			for spec in clause["effects"]:
 				_apply(applied, compiler.compile_spec(spec, clause_context, source))
 			_narrate_applied(applied, first_clause_effect)
+
+	# **L'economia della carta, per ultima** (D-280, ordine deciso da D-305).
+	#
+	# Se la proposta passa si applicano **tutti i benefici comprati e tutti i
+	# costi posati** — la riga in fondo alla carta, «applica tutti i benefici e
+	# tutti i costi (incluse le cicatrici)». Se cade, scattano gli **effetti
+	# stampati**: il mondo non sopporta l'indecisione, e quelli non li sceglie
+	# nessuno.
+	#
+	# **Va per ultima perche' e' quella che il tavolo ha scelto.** Fino a
+	# 0.1.266 la carta si spendeva prima, e la frase d'autore ci passava sopra:
+	# misurato, **62 volte in 40 anni** — 38 riassegnazioni di controllo e 24
+	# segni tolti — e in silenzio, senza che il verbale dicesse che una casella
+	# comprata e pagata era stata cancellata. Adesso la frase racconta, e poi la
+	# carta lascia il segno: quello che il proponente ha comprato, il
+	# rivendicante ha rivendicato e gli avversari hanno fatto pagare resta.
+	_spend_the_card(applied, outcome, source)
 
 	# I. Asset disposition.
 	_dispose_assets(applied, result, outcome, recovery, source)

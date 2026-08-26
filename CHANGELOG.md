@@ -5,6 +5,31 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.267 — La carta vince sulla frase d'autore (D-305)
+
+- **Scelta del committente su ISSUES 86: la carta vince.** Le due liste
+  stampate sono l'economia esplicita di D-280 — quello che il tavolo ha
+  comprato, pagato e rivendicato non lo cancella una frase che non ha scelto
+  nessuno. `_spend_the_card()` è adesso l'ultima cosa che tocca il mondo.
+- **Misurato prima di toccare niente**, come ISSUES 86 chiedeva: la frase
+  passava sopra la carta **62 volte in 40 anni** — 38 riassegnazioni di
+  controllo e 24 segni tolti — e sempre in silenzio. Circa un Consiglio su tre.
+- **E la Pietra già alzata.** Girato l'ordine è saltata fuori la stessa
+  malattia allo specchio: la frase costruiva il Granaio prima, e il beneficio
+  comprato diventava un no-op — pagato per niente. Al tavolo c'è un Granaio
+  solo, e adesso **passa a chi l'ha comprato**: EffectType nuovo
+  `SET_STRUCTURE_OWNER`, che si inverte su se stesso col padrone di prima.
+- **Il numero peggiorato, scritto**: trasformazioni sedute 186 → **174**, e le
+  vite che non si siedono mai passano da 6 a **7** — «Il Banco Nero», che era
+  già al limite con una saga su ventiquattro. Non l'ho inseguito ritoccando i
+  dati.
+- **Aperta ISSUES 87**: 67 Effetti d'autore parlano ancora la lingua delle
+  caselle. Non si scavalcano più, ma quando la frase regala gratis quello che
+  la carta vende, il beneficio comprato è un acquisto a vuoto.
+- Playtest 100 semi: **0 seggi bloccati su 8**, misto e uniforme. Suite **610**.
+
+---
+
 ## 0.1.266 — Una pedina su una pedina, e la Cicatrice torna a fare un mestiere solo (D-303, D-304)
 
 - **Via la Cicatrice come moneta d'acquisto** (D-303, parola del committente):

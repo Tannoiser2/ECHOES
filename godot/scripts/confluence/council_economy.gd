@@ -67,6 +67,17 @@ static func costs_due(benefits: int) -> int:
 	return maxi(0, mini(benefits - 1, MAX_COSTS))
 
 
+## C'e' gia' una Pietra di questo tipo, in questo luogo?
+static func _stone_stands(world: Dictionary, region_id: String, type_id: String) -> bool:
+	var region: Variant = (world.get("regions", {}) as Dictionary).get(region_id)
+	if region == null or type_id == "":
+		return false
+	for structure in ((region as Dictionary).get("structures", []) as Array):
+		if str((structure as Dictionary).get("structure_type", "")) == type_id:
+			return true
+	return false
+
+
 ## Gli Effetti di una voce, sul luogo di cui si discute.
 ##
 ## `context` e' quello che il Consiglio gia' calcola (`effect_context`):
@@ -100,10 +111,26 @@ static func effects_for(
 		"BUILD_STONE":
 			if region == "":
 				return out
+			var stone: String = str(voice.get("structure", ""))
+			# **Al tavolo c'e' un Granaio solo** (D-305). Se la Pietra sta gia'
+			# li' — perche' l'ha alzata la frase d'autore in questo stesso
+			# Consiglio, o perche' c'era da prima — un secondo BUILD sarebbe un
+			# no-op silenzioso, e il beneficio comprato e pagato non lascerebbe
+			# niente. Quello che il Consiglio ha comprato e' *quella* Pietra:
+			# passa a chi l'ha comprata.
+			if _stone_stands(world, region, stone):
+				out.append(Effect.make(
+					"SET_STRUCTURE_OWNER", "region", region,
+					{
+						"structure_type": stone,
+						"entity_id": str(context.get("proponent", "")),
+					}, source
+				))
+				return out
 			out.append(Effect.make(
 				"BUILD_STRUCTURE", "region", region,
 				{
-					"structure_type": str(voice.get("structure", "")),
+					"structure_type": stone,
 					"grade": 1, "owner": str(context.get("proponent", "")),
 				}, source
 			))

@@ -10,6 +10,71 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-305 — La carta vince sulla frase d'autore
+
+**implemented** (0.1.267) · chiude [ISSUES 86](ISSUES.md)
+
+Scelta del committente fra le tre aperte da ISSUES 86: **la carta vince**.
+
+Le due liste stampate sono l'economia esplicita di [D-280](#d-280) — il
+proponente le compra, gli avversari le fanno pagare, il rivendicante ci posa la
+pedina. Quello che il tavolo ha scelto e pagato non lo cancella una frase che
+non ha scelto nessuno.
+
+### Quanto capitava, misurato prima di toccare niente
+
+ISSUES 86 diceva *«quanto spesso capita non e' ancora misurato»*. Adesso lo e':
+in 40 anni e 176 Consigli la frase d'autore passava sopra la carta **62 volte** —
+**38** riassegnazioni di controllo e **24** segni tolti da un luogo dove la
+carta li aveva appena posati. Circa un Consiglio su tre, e sempre in silenzio:
+il verbale non diceva che una casella comprata e pagata era stata cancellata.
+
+### Cosa cambia
+
+**L'ordine.** `_spend_the_card()` era chiamata *prima* delle Conseguenze;
+adesso e' l'ultima cosa che tocca il mondo, dopo la frase d'autore e dopo la
+clausola qualificata. La frase racconta, e poi la carta lascia il segno.
+
+**E la Pietra gia' alzata.** Girato l'ordine e' saltata fuori la stessa
+malattia allo specchio: la frase costruiva il Granaio *prima*, e il beneficio
+comprato «Costruisci 1 Pietra: Granaio» diventava un no-op silenzioso — il
+proponente aveva pagato un costo per niente. Al tavolo pero' **c'e' un Granaio
+solo**, e quello e' quello che il Consiglio ha comprato: adesso passa a chi
+l'ha comprato. Serve un EffectType nuovo, `SET_STRUCTURE_OWNER`, che si inverte
+su se stesso col padrone di prima — la stessa forma di `SET_CONTROL`, e per la
+stessa ragione: la Pietra resta dov'e', cambia di chi e'.
+
+### I costi dichiarati
+
+| | prima | dopo |
+|---|---|---|
+| scavalchi della frase sulla carta | 62 in 40 anni | **0** |
+| la carta scrive il controllo per ultima | mai | 49 volte in 40 anni |
+| trasformazioni sedute (su 168 salti) | 186 | **174** |
+| **vite che non si sono mai sedute** | 6 | **7** |
+
+**Il numero peggiorato, scritto**: una vita in piu' non si siede mai. E' «Il
+Banco Nero» (ENT_SALE, porta `debt_called`), che era gia' al limite — una saga
+su ventiquattro — e adesso e' a zero. Con un campione di ventiquattro saghe una
+vita che passa da 1 a 0 e' dentro il rumore; le trasformazioni che scendono del
+6% no. Cambiando l'ordine in cui il mondo si scrive cambia quali segni arrivano
+e quando, e le porte delle vite si aprono meno. Non l'ho inseguito ritoccando i
+dati: un numero aggiustato per far contenta una sonda vale meno di un numero
+peggiorato e detto.
+
+Playtest 100 semi: **0 seggi bloccati su 8**, misto e uniforme. Suite 610.
+
+### Quello che resta aperto
+
+**67 Effetti d'autore parlano ancora la lingua delle caselle** — 35
+`SET_REGION_TAG`, 14 `SET_CONTROL`, 11 `REMOVE_REGION_TAG`, 7
+`BUILD_STRUCTURE`. Non si scavalcano piu', ma dicono la stessa cosa due volte,
+e quando la frase regala gratis quello che la carta vende, il beneficio
+comprato resta un acquisto a vuoto. E' [ISSUES 87](ISSUES.md), ed e' contenuto,
+non motore.
+
+---
+
 ## D-304 — La pedina del RIVENDICARE si posa sulla carta
 
 **implemented** (0.1.266)

@@ -222,6 +222,8 @@ func _mutate(effect_type: String, target: Dictionary, payload: Dictionary) -> Va
 			return _raze_structure(target, payload)
 		"SET_STRUCTURE_GRADE":
 			return _set_structure_grade(target, payload)
+		"SET_STRUCTURE_OWNER":
+			return _set_structure_owner(target, payload)
 		"CLOSE_PASSAGE":
 			return _close_passage(target, payload)
 		"OPEN_PASSAGE":
@@ -421,6 +423,36 @@ func _build_structure(target: Dictionary, payload: Dictionary) -> Variant:
 	})
 	_apply_grade_tag(region, definition, 0, grade)
 	return {"structure_type": type_id}
+
+
+## Una Pietra che passa di mano (D-305). La Pietra resta dov'e' e com'e': cambia
+## soltanto di chi e'. Serve al Consiglio, dove un beneficio comprato «costruisci
+## una Pietra» trova la Pietra gia' alzata dalla frase d'autore: al tavolo c'e'
+## un Granaio solo, e quello che il Consiglio ha comprato e pagato e' quello.
+func _set_structure_owner(target: Dictionary, payload: Dictionary) -> Variant:
+	var region: Variant = world["regions"].get(str(target.get("id", "")))
+	if region == null:
+		return _fail("unknown region '%s'" % target.get("id", ""))
+	var type_id: String = str(payload.get("structure_type", ""))
+	var index: int = _structure_at(region, type_id)
+	if index < 0:
+		return {"noop": true}
+	var definition: Variant = data.structure_types.get(type_id)
+	if definition == null:
+		return _fail("unknown structure type '%s'" % type_id)
+	var structure: Dictionary = (region["structures"] as Array)[index]
+	var before: Variant = structure.get("owner", null)
+	var next: Variant = payload.get("entity_id", null)
+	if not bool(definition["owned"]):
+		return {"noop": true}
+	if next != null and not world["entities"].has(str(next)):
+		return _fail("unknown entity '%s'" % next)
+	structure["owner"] = next
+	# Una Pietra che non cambia padrone non e' un passaggio: marcata no-op,
+	# cosi' nessuna riga annuncia un Granaio che e' rimasto di chi era.
+	if str(before) == str(next) or (before == null and next == null):
+		return {"structure_type": type_id, "entity_id": before, "noop": true}
+	return {"structure_type": type_id, "entity_id": before}
 
 
 func _raze_structure(target: Dictionary, payload: Dictionary) -> Variant:

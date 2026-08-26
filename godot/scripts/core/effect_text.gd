@@ -152,6 +152,10 @@ static func say(effect: Dictionary, data: RefCounted) -> String:
 			return "%s: %s" % [
 				_region(target, data), _structure_words(payload, data, "adesso e"),
 			]
+		"SET_STRUCTURE_OWNER":
+			return "%s: %s passa di mano" % [
+				_region(target, data), _structure_words(payload, data, ""),
+			]
 		"SET_ENTITY_TAG":
 			return "%s: %s" % [_name(target, data), tag_words(str(payload.get("tag", "")))]
 		"REMOVE_ENTITY_TAG":

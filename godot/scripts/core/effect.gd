@@ -44,6 +44,10 @@ const INVERSE_TYPE: Dictionary = {
 	"BUILD_STRUCTURE": "RAZE_STRUCTURE",
 	"RAZE_STRUCTURE": "BUILD_STRUCTURE",
 	"SET_STRUCTURE_GRADE": "SET_STRUCTURE_GRADE",
+	# Una Pietra che passa di mano (D-305). Si inverte su se stessa, col padrone
+	# di prima nell'inverse_payload: e' la stessa forma di SET_CONTROL, e per la
+	# stessa ragione — la Pietra resta dov'e', cambia di chi e'.
+	"SET_STRUCTURE_OWNER": "SET_STRUCTURE_OWNER",
 	# Il grafo che si riscrive (D-166). Chiudere e riaprire un varco sono
 	# l'uno l'inverso dell'altro: e' l'unica cosa della mappa che cambia la
 	# **forma** del mondo e non solo cosa ci sta sopra.
