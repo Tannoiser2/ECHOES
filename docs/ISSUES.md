@@ -2763,6 +2763,31 @@ e' in gioco.
 
 ---
 
+### 78. Il profilo strategico lo legge la misura, non il gioco
+
+`motore` · `ux` · **aperta in 0.1.250** ([D-288](DECISIONS.md#d-288))
+
+I quattro profili dicono cosa una casa vuole lasciare nel mondo, e per adesso
+li leggono **il validatore** (che li conta fra i lettori dei segni) e **la
+misura** (che ne ricava chi sa dare ogni desiderio). **Il cervello no, e lo
+schermo nemmeno.**
+
+Finché non li leggono, la strategia è dichiarata e non giocata. Sono due cose
+diverse e vanno tutte e due:
+
+- **il cervello**: D-285 gli ha dato un ripiego — «gioca la più debole che la
+  mano permette»; il profilo gli darebbe una *preferenza*, cioè una ragione per
+  scegliere quella carta invece di quell'altra;
+- **lo schermo**: è quello che permette all'app di dire «questo segno ti serve»,
+  «questa questione aiuta un rivale» — e di dirlo **leggendo lo stesso file del
+  bot**, non una seconda copia.
+
+**Fatto quando** una partita giocata dal cervello si vede scegliere in base al
+profilo (misurabile: quante mosse vanno verso un segno voluto), e la colonna di
+destra nomina almeno un segno del profilo del seggio che sta guardando.
+
+---
+
 ### 76. Il Consiglio decide con una moneta che i Destini non spendono
 
 `regole` · `contenuto` · `da-misurare` · **aperta in 0.1.249**
@@ -2785,6 +2810,12 @@ può stare da tre parti: i benefici delle Tensioni (che dovrebbero produrre segn
 che qualcuno insegue), i Destini (che dovrebbero nominare segni che un Consiglio
 può dare), o un ponte dichiarato fra i due (`entity_strategic_profiles`).
 **Quale delle tre è una decisione del committente.**
+
+**Aggiornamento 0.1.250** ([D-288](DECISIONS.md#d-288)): con i profili
+strategici scritti, il buco si dice adesso per casa invece che in generale —
+**delle 16 cose che le quattro case di CHR_01 vogliono lasciare nel mondo, un
+Consiglio ne sa dare 4.** Le altre dodici si ottengono con una carta, con una
+Conseguenza, o non si ottengono affatto.
 
 **Fatto quando** ogni Tensione tocca almeno un segno nominato da almeno un
 Destino della scatola, e almeno un beneficio comprabile produce un segno che

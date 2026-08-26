@@ -5,6 +5,22 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.250 — Il profilo strategico delle quattro case (D-288)
+
+- `godot/data/design_matrix/entity_strategic_profiles.json` + schema suo: cosa
+  Aldric, Nahr, Lyra e Vaerax vogliono **lasciare nel mondo**, cosa non vogliono
+  vederci, e cosa vogliono impedire a chi. Ogni voce porta il suo perché.
+- **Solo quello che non si ricava**: niente incroci di tag e di Tensioni scritti
+  a mano — quelli i dati li dicono già, e due file che dicono la stessa cosa
+  divergono. Il resto lo calcola `matrix_survey`.
+- **Tre conseguenze subito**, o sarebbe un documento: il censimento del
+  validatore conta il profilo fra i lettori (29 segni, e gli orfani muti
+  scendono da 15 a 13); la misura ne ricava la sezione 4 — chi sa dare ogni
+  desiderio; lo schema rifiuta i segni inventati.
+- **Il numero**: delle 16 cose che le quattro case vogliono lasciare, **un
+  Consiglio ne sa dare 4**.
+- Il cervello e lo schermo non lo leggono ancora: è il passo dopo.
+
 ## 0.1.249 — Le tre misure che vengono prima della matrice (D-287)
 
 - `tools/matrix_survey.py` → `docs/MISURA_MATRICE.md`, nei cancelli: i tre

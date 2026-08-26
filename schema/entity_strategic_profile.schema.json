@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://echoes.local/schema/entity_strategic_profile.schema.json",
+  "title": "Entity strategic profile collection",
+  "x-echoes-def": "entity_strategic_profile",
+  "x-echoes-kind": "collection",
+  "type": "object",
+  "required": ["schema_id", "version", "items"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_id": { "const": "entity_strategic_profile" },
+    "version": { "type": "string" },
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/entity_strategic_profile" }
+    }
+  },
+  "$defs": {
+    "entity_strategic_profile": {
+      "type": "object",
+      "description": "Cosa una casa vuole lasciare nel mondo, cosa non vuole vederci, e cosa vuole impedire a un'altra. E' la sola parte della matrice strategica scritta a mano: il resto (chi produce un segno, chi lo legge, quale Tensione lo discute) si ricava dai dati e non si copia, perche' due file che dicono la stessa cosa divergono. Il Destino dice come si vince; questo dice **che mondo si vuole lasciare** — e sono due cose diverse.",
+      "required": ["entity_id", "in_one_line", "wants", "fears"],
+      "additionalProperties": false,
+      "properties": {
+        "entity_id": { "type": "string", "pattern": "^ENT_[A-Z_]+$" },
+        "in_one_line": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Cosa vuole lasciare nel mondo, in una riga che si legge al tavolo."
+        },
+        "wants": {
+          "type": "array",
+          "minItems": 2,
+          "description": "I segni che questa casa vuole vedere sul tavolo a fine anno. Almeno due: una casa con un desiderio solo non ha strategia, ha un compito.",
+          "items": { "$ref": "#/$defs/desire" }
+        },
+        "fears": {
+          "type": "array",
+          "minItems": 2,
+          "description": "I segni che questa casa non vuole vedere. Almeno due, per la stessa ragione.",
+          "items": { "$ref": "#/$defs/desire" }
+        },
+        "denies": {
+          "type": "array",
+          "description": "Il sabotaggio dichiarato: quale segno questa casa vuole impedire, e a chi. E' la voce che rende una partita una partita e non quattro solitari.",
+          "items": { "$ref": "#/$defs/denial" }
+        }
+      }
+    },
+    "desire": {
+      "type": "object",
+      "required": ["tag", "why"],
+      "additionalProperties": false,
+      "properties": {
+        "tag": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Un segno del dizionario (`data/tags`). Il validatore rifiuta i segni inventati."
+        },
+        "why": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Perche', detto come lo direbbe chi siede a quel posto."
+        }
+      }
+    },
+    "denial": {
+      "type": "object",
+      "required": ["tag", "to", "why"],
+      "additionalProperties": false,
+      "properties": {
+        "tag": { "type": "string", "minLength": 1 },
+        "to": { "type": "string", "pattern": "^ENT_[A-Z_]+$" },
+        "why": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}

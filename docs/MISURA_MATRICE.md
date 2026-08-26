@@ -9,14 +9,17 @@ piano, misurate sui dati di oggi **prima** di scrivere un file nuovo.
 |---|---|
 | segni nel dizionario | 183 |
 | di cui qualcuno scrive | 150 |
-| orfani in tutto | 67 |
-| **di cui senza una ragione scritta** | **15** |
+| orfani in tutto | 63 |
+| **di cui senza una ragione scritta** | **13** |
 | livelli di Destino (minimo/vittoria/trionfo) | 69 |
 | **clausole impossibili** (chiedono un segno che niente scrive) | **0** |
 | **livelli che si reggono solo su conteggi** | **33** |
 | Tensioni | 60 |
 | **Tensioni che non toccano nessun segno nominato da un Destino** | **35** |
 | segni che l'eredita' porta avanti | 49 |
+| profili strategici scritti | 4 |
+| segni che quelle case vogliono o temono | 35 |
+| **fra i voluti, quelli che un Consiglio sa dare** | **4** |
 
 ---
 
@@ -27,13 +30,13 @@ desidera o lo teme (Destini **e** obiettivi), nessuna Tensione lo mette
 o lo toglie, e nessuna regola del segno lo usa: si posa sul tavolo e non
 entra in nessuna partita.
 
-Non tutti gli orfani sono un difetto: **52 su 67 portano gia' la loro
+Non tutti gli orfani sono un difetto: **50 su 63 portano gia' la loro
 ragione scritta** nel dizionario — memorie narrate (D-103), etichette di
 famiglia, gradi di pietra, domini che legge il motore. Restano fuori
 quelli **senza una riga che spieghi perche' esistono**: sono questi che
 la matrice deve prendere per primi.
 
-### Orfani senza una ragione scritta: 15
+### Orfani senza una ragione scritta: 13
 
 | segno | categoria | chi lo scrive |
 |---|---|---|
@@ -42,9 +45,7 @@ la matrice deve prendere per primi.
 | `capital` | FUNCTION | tessera |
 | `condition:lean` | STATE | Conseguenza, carta Echo |
 | `condition:requisitioned` | STATE | Conseguenza |
-| `crowned` | ENTITY | casato |
 | `crystal_site` | PLACE | tessera |
-| `nomad_range` | PLACE | tessera |
 | `parley_held` | MEMORY | carta Echo |
 | `petition_heard` | MEMORY | carta Echo |
 | `structure:castle` | FUNCTION | Pietra |
@@ -53,14 +54,13 @@ la matrice deve prendere per primi.
 | `trade` | FUNCTION | tessera |
 | `wild` | PLACE | tessera |
 
-### Orfani dichiarati: 52
+### Orfani dichiarati: 50
 
 | segno | la ragione che porta scritta |
 |---|---|
 | `ancient` | etichetta di famiglia: dice chi sei, non cosa puoi fare, e nessuna regola deve leggerla |
 | `ash` | etichetta di famiglia: dice chi sei, non cosa puoi fare, e nessuna regola deve leggerla |
 | `burden_shared` | memoria del mondo: narrata (D-103), ereditata |
-| `discovery:crystal` | il motore la conta (discovery_count) oltre a chi la legge per nome |
 | `discovery:legend` | il motore la conta (discovery_count) oltre a chi la legge per nome |
 | `discovery:shared_record` | il motore la conta (discovery_count) oltre a chi la legge per nome |
 | `discovery:supervised_record` | il motore la conta (discovery_count) oltre a chi la legge per nome |
@@ -91,7 +91,6 @@ la matrice deve prendere per primi.
 | `migrating` | etichetta di famiglia: dice chi sei, non cosa puoi fare, e nessuna regola deve leggerla |
 | `mine` | vocazione del luogo, stampata sulla Regione (D-262): il posto dove si scava, che le Conseguenze nominano col segno invec |
 | `order` | etichetta di famiglia: dice chi sei, non cosa puoi fare, e nessuna regola deve leggerla |
-| `order_restored` | vita postuma: vive nella sua forma legend: |
 | `place:collapsed_pass` | grado di pietra sulla mappa: oggi nessuna regola lo legge — colore dichiarato, in fila per un lettore (ISSUES 24) |
 | `place:dry_spring` | grado di pietra sulla mappa: oggi nessuna regola lo legge — colore dichiarato, in fila per un lettore (ISSUES 24) |
 | `place:low_spring` | grado di pietra sulla mappa: oggi nessuna regola lo legge — colore dichiarato, in fila per un lettore (ISSUES 24) |
@@ -156,6 +155,77 @@ regge su conteggi — si verifica, ma al tavolo non si puo' indicare.
 | DST_SHARED_HAND | minimum | 1 | Le mani non vuote |
 | DST_SHARED_HAND | victory | 2 | Le riserve che diventano forma |
 | DST_SHARED_HAND | triumph | 1 | Quando gli altri chiedono, tu hai |
+
+## 4. Quanto di quello che una casa vuole, il tavolo sa darlo
+
+I profili strategici (`data/design_matrix`) dicono cosa una casa vuole
+lasciare nel mondo. Qui si chiede se il tavolo abbia i mezzi: **chi puo'
+dare quel segno** — un Consiglio vinto, una carta calata, una
+Conseguenza — e chi puo' infliggere quello che teme. Una casa che vuole
+cose che nessuno sa dare non ha una strategia: ha un desiderio.
+
+### ENT_ALDRIC
+
+> Un regno che, quando lui non ci sara' piu', si sappia ancora a chi obbedisce.
+
+| | segno | dal Consiglio | da una carta | altrimenti |
+|---|---|---|---|---|
+| vuole | `succession_by_law` | no | **si'** | Conseguenza, fatto che dura |
+| vuole | `crowned` | no | no | casato |
+| vuole | `structure:granary` | **si'** | no | Pietra |
+| vuole | `order_restored` | no | no | Conseguenza |
+| teme | `crown_divided` | no | no | Conseguenza, fatto che dura |
+| teme | `condition:unrest` | **si'** | **si'** | Conseguenza, Risonanza, carta Asset, carta Echo |
+| teme | `condition:starving` | no | **si'** | Conseguenza, Risonanza, carta Echo |
+| teme | `question_unresolved` | no | no | Conseguenza |
+| teme | `scar:changed_hands` | **si'** | no | Conseguenza |
+
+### ENT_LYRA
+
+> Che quello che ha capito resti scritto dove chiunque possa rileggerlo, anche chi non le crede.
+
+| | segno | dal Consiglio | da una carta | altrimenti |
+|---|---|---|---|---|
+| vuole | `discovery:crystal` | no | **si'** | Conseguenza |
+| vuole | `knowledge_shared` | no | **si'** | clausola di Consiglio |
+| vuole | `crystal_measured` | no | **si'** | carta Echo |
+| vuole | `structure:archive` | **si'** | no | Pietra |
+| teme | `mine_sealed` | no | no | Conseguenza, fatto che dura |
+| teme | `study_supervised` | no | no | Conseguenza |
+| teme | `condition:guarded` | **si'** | no | Conseguenza |
+| teme | `scar:unanswered` | **si'** | no | Conseguenza |
+
+### ENT_NAHR
+
+> Fermarsi da qualche parte senza smettere di poter andare via.
+
+| | segno | dal Consiglio | da una carta | altrimenti |
+|---|---|---|---|---|
+| vuole | `nahr_settled` | no | no | Conseguenza, fatto che dura |
+| vuole | `settlement:village` | **si'** | **si'** | Pietra |
+| vuole | `nomad_range` | no | no | tessera |
+| vuole | `crown_divided` | no | no | Conseguenza, fatto che dura |
+| teme | `valley_sealed` | no | no | Conseguenza, fatto che dura |
+| teme | `scar:sealed_border` | **si'** | no | Conseguenza |
+| teme | `condition:emptied` | **si'** | **si'** | Conseguenza, carta Echo |
+| teme | `condition:cut_off` | **si'** | **si'** | Conseguenza, carta Asset, carta Echo |
+| teme | `condition:guarded` | **si'** | no | Conseguenza |
+
+### ENT_VAERAX
+
+> Che la montagna torni un posto dove non si va, e che nessuno ricordi bene perche'.
+
+| | segno | dal Consiglio | da una carta | altrimenti |
+|---|---|---|---|---|
+| vuole | `mine_sealed` | no | no | Conseguenza, fatto che dura |
+| vuole | `structure:sealed` | no | no | Conseguenza |
+| vuole | `mountain_forgotten` | no | no | catena delle ere |
+| vuole | `place:sleeping_site` | **si'** | no | Pietra |
+| teme | `crystal_exploited` | no | **si'** | Conseguenza |
+| teme | `discovery:crystal` | no | **si'** | Conseguenza |
+| teme | `condition:exploited` | **si'** | no | Conseguenza, Risonanza |
+| teme | `knowledge_shared` | no | **si'** | clausola di Consiglio |
+| teme | `condition:unrest` | **si'** | **si'** | Conseguenza, Risonanza, carta Asset, carta Echo |
 
 ## 3. Le Tensioni che non incontrano nessun Destino
 

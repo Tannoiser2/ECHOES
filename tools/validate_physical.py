@@ -166,6 +166,16 @@ def _tocchi_espliciti(documenti: Dict[str, List[Dict[str, Any]]]):
         for tag in tensione.get("focus_region_tags", []) or []:
             yield "tension", "legge", str(tag)
 
+    # **Il profilo strategico e' una lettura** (D-288): quello che una casa
+    # dichiara di volere o di temere e' un segno che conta, e dichiararlo e'
+    # l'unico modo perche' il dizionario non menta. Senza questa riga il file
+    # dei profili sarebbe un documento: bello, e senza conseguenze.
+    for profilo in documenti.get("entity_strategic_profile", []):
+        for campo in ("wants", "fears", "denies"):
+            for voce in profilo.get(campo, []) or []:
+                if isinstance(voce, dict) and voce.get("tag"):
+                    yield "entity_strategic_profile", "legge", str(voce["tag"])
+
     # **La Chronicle ascolta il mondo di prima** (D-286): i segni elencati in
     # `tension_pool.echoes` decidono quali domande pesano il triplo nella pesca
     # dell'era successiva (D-079). E' una lettura a tutti gli effetti, e fino a

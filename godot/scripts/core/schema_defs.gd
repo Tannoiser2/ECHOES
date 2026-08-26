@@ -896,6 +896,46 @@ const DEFS := {
 			},
 		},
 	},
+	"entity_strategic_profile": {
+		"kind": "collection",
+		"required": [
+			"entity_id",
+			"in_one_line",
+			"wants",
+			"fears",
+		],
+		"additional_properties": false,
+		"properties": {
+			"entity_id": {
+				"type": "String",
+				"pattern": "^ENT_[A-Z_]+$",
+			},
+			"in_one_line": {
+				"type": "String",
+				"min_length": 1,
+			},
+			"wants": {
+				"type": "Array",
+				"min_items": 2,
+				"element": {
+					"type": "Dictionary",
+				},
+			},
+			"fears": {
+				"type": "Array",
+				"min_items": 2,
+				"element": {
+					"type": "Dictionary",
+				},
+			},
+			"denies": {
+				"type": "Array",
+				"element": {
+					"type": "Dictionary",
+				},
+			},
+		},
+	},
 	"objective": {
 		"kind": "collection",
 		"required": [
@@ -1277,6 +1317,7 @@ const DEFS := {
 						"structure_type",
 						"tag_rule",
 						"tension",
+						"entity_strategic_profile",
 						"engine",
 					],
 				},
@@ -1300,6 +1341,7 @@ const DEFS := {
 						"structure_type",
 						"tag_rule",
 						"tension",
+						"entity_strategic_profile",
 						"engine",
 					],
 				},
@@ -1854,6 +1896,7 @@ const COLLECTION_SCHEMA_IDS := [
 	"destiny",
 	"echo_card",
 	"entity",
+	"entity_strategic_profile",
 	"objective",
 	"region",
 	"sim_plan",

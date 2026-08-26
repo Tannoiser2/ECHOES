@@ -252,7 +252,8 @@
         "asset_physical",
         "consequence",
         "tension",
-        "chronicle"
+        "chronicle",
+        "entity_strategic_profile"
       ]
     },
     {
@@ -275,7 +276,8 @@
         "destiny",
         "destiny_physical",
         "tension",
-        "chronicle"
+        "chronicle",
+        "entity_strategic_profile"
       ]
     },
     {
@@ -295,7 +297,8 @@
       "read_by": [
         "destiny",
         "tension",
-        "chronicle"
+        "chronicle",
+        "entity_strategic_profile"
       ]
     },
     {
@@ -311,7 +314,9 @@
       "written_by": [
         "consequence"
       ],
-      "read_by": [],
+      "read_by": [
+        "entity_strategic_profile"
+      ],
       "note": "il prezzo di una proposta che passa (D-278): al tavolo si legge sulla tessera — nessuna clausola del motore lo interroga ancora"
     },
     {
@@ -461,7 +466,8 @@
         "destiny_physical",
         "tag_rule",
         "tension",
-        "chronicle"
+        "chronicle",
+        "entity_strategic_profile"
       ]
     },
     {
@@ -489,7 +495,8 @@
         "destiny_physical",
         "echo_card",
         "tension",
-        "chronicle"
+        "chronicle",
+        "entity_strategic_profile"
       ]
     },
     {
@@ -523,7 +530,8 @@
         "consequence",
         "destiny",
         "destiny_physical",
-        "chronicle"
+        "chronicle",
+        "entity_strategic_profile"
       ]
     },
     {
@@ -539,7 +547,8 @@
       "read_by": [
         "confluence_template",
         "consequence",
-        "destiny_physical"
+        "destiny_physical",
+        "entity_strategic_profile"
       ]
     },
     {
@@ -558,7 +567,8 @@
         "chronicle",
         "destiny",
         "destiny_physical",
-        "entity"
+        "entity",
+        "entity_strategic_profile"
       ]
     },
     {
@@ -576,7 +586,8 @@
         "echo_card"
       ],
       "read_by": [
-        "chronicle"
+        "chronicle",
+        "entity_strategic_profile"
       ],
       "note": "memoria del mondo (D-286): la pesca dell'era successiva la ascolta — se il mondo porta ancora questo segno, la sua questione pesa il triplo"
     },
@@ -686,7 +697,8 @@
       ],
       "read_by": [
         "destiny_physical",
-        "engine"
+        "engine",
+        "entity_strategic_profile"
       ],
       "note": "il motore la conta (discovery_count) oltre a chi la legge per nome"
     },
@@ -1371,7 +1383,8 @@
       "read_by": [
         "asset_physical",
         "destiny_physical",
-        "chronicle"
+        "chronicle",
+        "entity_strategic_profile"
       ]
     },
     {
@@ -1807,7 +1820,8 @@
         "confluence_template",
         "consequence",
         "destiny",
-        "destiny_physical"
+        "destiny_physical",
+        "entity_strategic_profile"
       ],
       "note": "fatto del mondo; il sigillo sulla mappa e' structure:sealed"
     },
@@ -1823,7 +1837,8 @@
         "destiny",
         "entity",
         "tag_rule",
-        "destiny_physical"
+        "destiny_physical",
+        "entity_strategic_profile"
       ],
       "note": "nessuno lo scrive piu' (ISSUES 24): il Destino DST_VAERAX_LEGEND lo chiede al vuoto"
     },
@@ -1841,7 +1856,8 @@
         "asset_physical",
         "destiny",
         "destiny_physical",
-        "entity"
+        "entity",
+        "entity_strategic_profile"
       ]
     },
     {
@@ -1877,7 +1893,8 @@
         "tension",
         "confluence_template",
         "consequence",
-        "echo_card"
+        "echo_card",
+        "entity_strategic_profile"
       ]
     },
     {
@@ -1926,7 +1943,9 @@
       "written_by": [
         "consequence"
       ],
-      "read_by": [],
+      "read_by": [
+        "entity_strategic_profile"
+      ],
       "note": "vita postuma: vive nella sua forma legend:"
     },
     {
@@ -2061,7 +2080,9 @@
       "written_by": [
         "structure_type"
       ],
-      "read_by": [],
+      "read_by": [
+        "entity_strategic_profile"
+      ],
       "note": "grado di pietra sulla mappa: oggi nessuna regola lo legge — colore dichiarato, in fila per un lettore (ISSUES 24)"
     },
     {
@@ -2136,7 +2157,8 @@
         "consequence",
         "destiny",
         "destiny_physical",
-        "objective"
+        "objective",
+        "entity_strategic_profile"
       ]
     },
     {
@@ -2308,7 +2330,8 @@
         "consequence"
       ],
       "read_by": [
-        "tag_rule"
+        "tag_rule",
+        "entity_strategic_profile"
       ]
     },
     {
@@ -2394,7 +2417,9 @@
       "written_by": [
         "consequence"
       ],
-      "read_by": [],
+      "read_by": [
+        "entity_strategic_profile"
+      ],
       "note": "il dente vivo e' valley_sealed, letto dai Destini"
     },
     {
@@ -2423,7 +2448,8 @@
         "consequence"
       ],
       "read_by": [
-        "asset"
+        "asset",
+        "entity_strategic_profile"
       ]
     },
     {
@@ -2528,7 +2554,8 @@
       "read_by": [
         "asset_physical",
         "destiny_physical",
-        "tag_rule"
+        "tag_rule",
+        "entity_strategic_profile"
       ]
     },
     {
@@ -2583,7 +2610,8 @@
         "structure_type"
       ],
       "read_by": [
-        "asset_physical"
+        "asset_physical",
+        "entity_strategic_profile"
       ]
     },
     {
@@ -2635,7 +2663,8 @@
       ],
       "read_by": [
         "asset_physical",
-        "tag_rule"
+        "tag_rule",
+        "entity_strategic_profile"
       ],
       "note": "la pietra alzata: non e' la vocazione nuda granary, ma le carte stampano #granaio per entrambe"
     },
@@ -2703,7 +2732,8 @@
         "entity",
         "tag_rule",
         "tension",
-        "chronicle"
+        "chronicle",
+        "entity_strategic_profile"
       ]
     },
     {
@@ -2764,7 +2794,8 @@
       "read_by": [
         "destiny",
         "destiny_physical",
-        "chronicle"
+        "chronicle",
+        "entity_strategic_profile"
       ]
     },
     {
@@ -2784,7 +2815,8 @@
       "read_by": [
         "destiny",
         "entity",
-        "destiny_physical"
+        "destiny_physical",
+        "entity_strategic_profile"
       ]
     },
     {
@@ -2895,7 +2927,8 @@
       "read_by": [
         "destiny",
         "destiny_physical",
-        "chronicle"
+        "chronicle",
+        "entity_strategic_profile"
       ]
     },
     {

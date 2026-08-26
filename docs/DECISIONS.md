@@ -10,6 +10,52 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-288 — Il profilo strategico: cosa una casa vuole lasciare nel mondo
+
+**implemented in 0.1.250** — primo file della matrice strategica
+
+Il Destino dice **come si vince**. Il profilo dice **che mondo si vuole
+lasciare**, e sono due cose diverse: Aldric vince tenendo il trono, ma quello
+che vuole lasciare è una corona che passa per legge — e quella non è una
+condizione di vittoria, è la ragione per cui gioca.
+
+`godot/data/design_matrix/entity_strategic_profiles.json`, quattro case di
+CHR_01, con schema suo. La forma è più stretta di quella che il piano
+proponeva, e apposta:
+
+**Si scrive a mano solo quello che non si può ricavare.** Il piano chiedeva
+quattro file; due — l'incrocio dei tag e quello delle Tensioni — direbbero cose
+che i dati dicono già (il dizionario dei segni, la faccia delle Tensioni, i
+`focus_region_tags`), e **due file che dicono la stessa cosa divergono**. Qui si
+scrivono solo `wants`, `fears` e `denies`, ognuno con il **perché** detto come lo
+direbbe chi siede a quel posto; il resto lo calcola `tools/matrix_survey.py`.
+
+**E il profilo ha subito una conseguenza, o sarebbe un documento.** Tre:
+
+- il **censimento del validatore fisico** lo conta fra i lettori (`read_by:
+  entity_strategic_profile` su 29 segni): un segno che una casa dichiara di
+  volere non è più un segno che non serve a nessuno — gli orfani muti scendono
+  da 15 a 13;
+- **la misura lo legge** e ne ricava la sezione 4 di `MISURA_MATRICE.md`: per
+  ogni desiderio, chi sa darlo — un Consiglio, una carta, una Conseguenza,
+  nessuno;
+- **lo schema lo valida**: un segno inventato in un profilo fa fallire il
+  cancello dei dati.
+
+**Il numero che ne esce, e che va guardato in faccia**: delle **16 cose** che le
+quattro case vogliono lasciare nel mondo, **un Consiglio ne sa dare 4**. Le
+altre dodici si ottengono con una carta, con una Conseguenza, o non si ottengono
+affatto. È ISSUES 76 detto per casa invece che in generale, e dice dove la
+matrice dovrà lavorare: **i benefici comprabili al Consiglio non producono
+quasi niente di quello che qualcuno insegue.**
+
+**Quello che questo file non fa ancora**: il cervello non lo legge, e lo schermo
+nemmeno. Finché non lo leggono, la strategia è dichiarata e non giocata — ed è
+il passo successivo, non un dettaglio: è quello che fa dire all'app *«questo
+segno ti serve»* senza scriverlo due volte.
+
+---
+
 ## D-287 — Le tre misure vengono prima della matrice, e come si contano
 
 **implemented in 0.1.249** — punti 8, 9 e 10 del piano del committente

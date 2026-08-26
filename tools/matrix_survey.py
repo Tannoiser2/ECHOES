@@ -279,6 +279,7 @@ def legacy_signs() -> Set[str]:
 
 def survey() -> Tuple[str, Dict[str, int]]:
     dictionary = {str(v["id"]): v for v in items("tags/*.json")}
+    profiles = items("design_matrix/*.json")
     pens = written_signs()
     wants, fears, watches, counts, levels = destiny_signs()
     tensions = tension_signs()
@@ -288,9 +289,27 @@ def survey() -> Tuple[str, Dict[str, int]]:
     for group in (wants, fears):
         for tags in group.values():
             wanted_anywhere |= tags
+    # **E quello che i profili dichiarano** (D-288): un segno che una casa dice
+    # di volere o di temere non e' orfano, anche se nessuna clausola lo nomina.
+    # E' il primo effetto misurabile della matrice: dichiarare una strategia
+    # toglie dei segni dal mucchio di quelli che non servono a nessuno.
+    for profile in profiles:
+        for field in ("wants", "fears", "denies"):
+            for voice in profile.get(field, []) or []:
+                if isinstance(voice, dict) and voice.get("tag"):
+                    wanted_anywhere.add(str(voice["tag"]))
     touched_by_tension: Set[str] = set()
+    council_gives: Set[str] = set()
+    council_inflicts: Set[str] = set()
     for sides in tensions.values():
         touched_by_tension |= sides["puts"] | sides["clears"]
+        # Un Consiglio **da'** un segno quando la sua faccia lo posa come
+        # beneficio o lo toglie di mezzo; lo **infligge** quando lo posa come
+        # costo o come fallimento. Qui la distinzione e' grossolana — posare e'
+        # posare — e va bene: serve a dire se il tavolo ha *un modo* di
+        # produrre quella cosa, non chi ci guadagna.
+        council_gives |= sides["puts"] | sides["clears"]
+        council_inflicts |= sides["puts"]
 
     # **E i segni che hanno una regola loro** (`tag_rules`): un segno che
     # sconta un'azione o la vieta morde per conto suo, e chiamarlo orfano
@@ -386,6 +405,15 @@ def survey() -> Tuple[str, Dict[str, int]]:
         "toccano_un_segno_nominato": named_touch,
         "entrano_nei_conteggi": counted_touch,
         "eredita": len(carried),
+        "profili": len(profiles),
+        "desideri": sum(
+            len(p.get("wants", []) or []) + len(p.get("fears", []) or [])
+            for p in profiles
+        ),
+        "desideri_che_il_consiglio_sa_dare": sum(
+            1 for p in profiles for v in (p.get("wants", []) or [])
+            if str(v.get("tag", "")) in council_gives
+        ),
     }
 
     lines: List[str] = []
@@ -409,6 +437,10 @@ def survey() -> Tuple[str, Dict[str, int]]:
     add("| Tensioni | %d |" % numbers["tensioni"])
     add("| **Tensioni che non toccano nessun segno nominato da un Destino** | **%d** |" % numbers["senza_conflitto"])
     add("| segni che l'eredita' porta avanti | %d |" % numbers["eredita"])
+    add("| profili strategici scritti | %d |" % numbers["profili"])
+    add("| segni che quelle case vogliono o temono | %d |" % numbers["desideri"])
+    add("| **fra i voluti, quelli che un Consiglio sa dare** | **%d** |" % (
+        numbers["desideri_che_il_consiglio_sa_dare"]))
     add("")
     add("---")
     add("")
@@ -470,6 +502,35 @@ def survey() -> Tuple[str, Dict[str, int]]:
             add("| %s | %s | %d | %s |" % (
                 level["destiny"], level["level"], level["counted"],
                 level["label"] or "—"))
+        add("")
+    add("## 4. Quanto di quello che una casa vuole, il tavolo sa darlo")
+    add("")
+    add("I profili strategici (`data/design_matrix`) dicono cosa una casa vuole")
+    add("lasciare nel mondo. Qui si chiede se il tavolo abbia i mezzi: **chi puo'")
+    add("dare quel segno** — un Consiglio vinto, una carta calata, una")
+    add("Conseguenza — e chi puo' infliggere quello che teme. Una casa che vuole")
+    add("cose che nessuno sa dare non ha una strategia: ha un desiderio.")
+    add("")
+    for profile in sorted(profiles, key=lambda p: str(p.get("entity_id", ""))):
+        entity = str(profile.get("entity_id", ""))
+        add("### %s" % entity)
+        add("")
+        add("> %s" % str(profile.get("in_one_line", "")))
+        add("")
+        add("| | segno | dal Consiglio | da una carta | altrimenti |")
+        add("|---|---|---|---|---|")
+        for field, mark in (("wants", "vuole"), ("fears", "teme")):
+            for voice in profile.get(field, []) or []:
+                tag = str(voice.get("tag", ""))
+                from_council = tag in council_gives if field == "wants" else tag in council_inflicts
+                from_card = "Azione stampata" in pens.get(tag, set())
+                other = sorted(pens.get(tag, set()) - {"Azione stampata"})
+                add("| %s | `%s` | %s | %s | %s |" % (
+                    mark, tag,
+                    "**si'**" if from_council else "no",
+                    "**si'**" if from_card else "no",
+                    ", ".join(other) if other else "—",
+                ))
         add("")
     add("## 3. Le Tensioni che non incontrano nessun Destino")
     add("")

@@ -25,6 +25,9 @@ var themes: Dictionary = {}
 ## Il dizionario dei segni (PZ-0): per ogni tag il nome stampato, la categoria,
 ## l'ambito e chi lo tocca. La guardia sta in tools/validate_physical.py.
 var tags: Dictionary = {}
+## I profili strategici delle case (D-288): il solo pezzo della matrice
+## scritto a mano — cosa vuole lasciare nel mondo chi siede a quel posto.
+var entity_profiles: Dictionary = {}
 
 var errors: PackedStringArray = PackedStringArray()
 var data_version: String = ""
@@ -90,6 +93,13 @@ func _load_document(path: String) -> void:
 	if schema_id == "action":
 		for item in document["items"]:
 			actions[str(item["template"])] = item
+		return
+	# Il profilo strategico si chiama col nome della casa, non con un id suo
+	# (D-288): un secondo identificatore per la stessa cosa e' un secondo posto
+	# dove sbagliare a scriverlo.
+	if schema_id == "entity_strategic_profile":
+		for item in document["items"]:
+			entity_profiles[str(item["entity_id"])] = item
 		return
 	if not _TARGETS.has(schema_id):
 		errors.append("%s: no runtime store for schema_id '%s'" % [path, schema_id])
