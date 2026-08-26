@@ -21,19 +21,25 @@ delle Regioni, i segni delle case, la traccia dei valori).
 
 ## 2. I segnalini che si posano
 
-Non hanno una carta: sono quadratini da 15 mm, e sono la meta' del
-gioco che si tocca. Escono dal **dizionario dei segni**, che e' l'unico
-posto dove un segno diventa una parola italiana.
+Non hanno una carta: sono quadratini di cartone da 15 mm, e sono la
+meta' del gioco che si tocca. **Non sono i 183 segni del dizionario**:
+quelli comprendono memorie, funzioni del motore, leggende e domini
+stampati sulle tessere. Un segnalino si taglia solo per quello che si
+**posa** su una Regione o accanto a una casa.
 
-| segnalino | quanti |
-|---|---|
-| segni nel dizionario | **183** |
-| di cui **condizioni** (curabili, doppia copia) | 14 |
-| di cui **Cicatrici** (permanenti, copia singola) | 12 |
-| di cui **Pietre** (i gradi che si vedono sulla mappa) | 10 |
-| gradi di Pietra (i livelli che una Pietra puo' avere) | 25, su 10 tipi |
-| presenza e controllo | 6 + 6 per casa |
-| rombi del Calore | uno per Tema in gioco, piu' due di scorta |
+| fustella | tipi diversi | pezzi da tagliare |
+|---|---|---|
+| **Segni delle Regioni** — condizioni (2 copie), Pietre e insediamenti, Cicatrici | 34 | 52 |
+| **Segni delle case** — fama, scoperte, promesse | 33 | 39 |
+| Presenza e controllo | 2 | 12 per casa |
+| Rombi del Calore | 1 | uno per Tema, piu' due di scorta |
+
+**67 tipi diversi, 91 pezzi** piu' le pedine dei seggi.
+
+Quanti di quei tipi un tavolo vede **davvero in un anno** non lo dice
+questo censimento: lo misura `cli/run_punchboard_probe.gd`, che gioca
+gli anni e conta. Il numero conta piu' del totale — nessuno impara 34
+simboli, si impara quello che si vede.
 
 ## 3. Quello che non si stampa ma tiene in piedi il gioco
 

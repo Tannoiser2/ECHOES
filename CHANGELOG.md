@@ -5,6 +5,19 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.259 — La fustella non e' il dizionario: 67 tipi, non 183 (D-296)
+
+- **Correzione di un numero mio**: il censimento metteva i 183 segni del
+  dizionario sotto «i segnalini che si posano». La fustella vera taglia
+  **67 tipi, 91 pezzi** — 34 per la mappa, 33 per le case — e il documento
+  adesso li conta da dove li conta il foglio di stampa.
+- `cli/run_punchboard_probe.gd`: quanti tipi arrivano **davvero** sul tavolo.
+  **8,8 in media per anno, 15 al massimo**; 17 tipi su 34 non escono mai o
+  escono meno di un anno su cinque.
+- E la coda letta divisa in due: **le Cicatrici rare sono design**, le
+  **condizioni rare sono un buco** — `condition:starving` esce 1 anno su 40, e
+  la fame è un Tema del gioco. ISSUES 82 porta la decisione al committente.
+
 ## 0.1.258 — Il censimento dei componenti (D-295)
 
 - `tools/components_survey.py` → `docs/COMPONENTI.md`, **nei cancelli**: quanti

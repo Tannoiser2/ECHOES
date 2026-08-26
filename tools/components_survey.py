@@ -21,6 +21,7 @@ nessuna misura sa dire cosa una persona vede, ed e' la regola §5ter.
 from __future__ import annotations
 
 import json
+import re
 import sys
 from collections import defaultdict
 from pathlib import Path
@@ -30,6 +31,7 @@ REPO = Path(__file__).resolve().parent.parent
 DATA = REPO / "godot" / "data"
 ART = REPO / "godot" / "art"
 DOC = REPO / "docs" / "COMPONENTI.md"
+LABELS = REPO / "godot" / "scripts" / "core" / "sign_labels.gd"
 
 ## I formati di stampa (D-097), copiati da `print_sheet.gd`: se cambiano li',
 ## qui il conto dei fogli mente — e il cancello lo dice, perche' il documento
@@ -56,6 +58,27 @@ SCHERMO = {
     "profile": "Colonna: **COSA RESTERA' DI TE**",
     "tag": "Mappa e colonna, ognuno con la sua parola italiana",
 }
+
+
+def fustella() -> Dict[str, List[str]]:
+    """I segni che diventano **un segnalino di cartone**, presi da dove li
+    prende la fustella (`sign_labels.gd`).
+
+    **Non sono i segni del dizionario**, e la differenza e' grossa: il
+    dizionario ne conta 183, ma la meta' sono memorie del mondo, funzioni che
+    legge solo il motore, leggende fabbricate dal tempo e domini stampati sulle
+    tessere — roba che non si posa. La prima stesura di questo documento
+    contava il dizionario sotto il titolo «i segnalini che si posano», e il
+    committente ha reagito al numero sbagliato: *«183 segnalini sono tanti,
+    forse troppi»*. Aveva ragione a spaventarsi di quel numero; il numero era
+    mio, non del gioco.
+    """
+    testo = LABELS.read_text(encoding="utf-8")
+    out: Dict[str, List[str]] = {}
+    for nome in ("REGION_WORDS", "ENTITY_WORDS"):
+        blocco = testo.split("const %s: Dictionary = {" % nome, 1)[1].split("\n}", 1)[0]
+        out[nome] = re.findall(r'"([^"]+)":\s*"', blocco)
+    return out
 
 
 def items(pattern: str) -> List[Dict[str, Any]]:
@@ -140,6 +163,20 @@ def survey() -> str:
         ("Tessere **Regione**", len(regions), len(regions), "TILE", 0, "region"),
     ]
 
+    segni = fustella()
+    mappa = segni["REGION_WORDS"]
+    case = segni["ENTITY_WORDS"]
+    condizioni_f = [t for t in mappa if t.startswith("condition:")]
+    pietre_f = [t for t in mappa if t.startswith(("structure:", "settlement:"))]
+    cicatrici_f = [t for t in mappa if t.startswith("scar:")]
+    # Le condizioni si tagliano in doppia copia (si curano e tornano nella
+    # riserva); Pietre e Cicatrici in copia singola. Piu' i quattro
+    # insediamenti con l'angolo per l'iniziale della casa.
+    pezzi_mappa = len(condizioni_f) * 2 + len(pietre_f) + 4 + len(cicatrici_f)
+    # I segni delle case, piu' quattro «cacciata» e due «giuramento spezzato»,
+    # che possono toccare piu' case insieme.
+    pezzi_case = len(case) + 6
+
     out: List[str] = []
     add = out.append
     add("# I componenti di ECHOES, contati")
@@ -169,21 +206,30 @@ def survey() -> str:
     add("")
     add("## 2. I segnalini che si posano")
     add("")
-    add("Non hanno una carta: sono quadratini da 15 mm, e sono la meta' del")
-    add("gioco che si tocca. Escono dal **dizionario dei segni**, che e' l'unico")
-    add("posto dove un segno diventa una parola italiana.")
+    add("Non hanno una carta: sono quadratini di cartone da 15 mm, e sono la")
+    add("meta' del gioco che si tocca. **Non sono i 183 segni del dizionario**:")
+    add("quelli comprendono memorie, funzioni del motore, leggende e domini")
+    add("stampati sulle tessere. Un segnalino si taglia solo per quello che si")
+    add("**posa** su una Regione o accanto a una casa.")
     add("")
-    add("| segnalino | quanti |")
-    add("|---|---|")
-    add("| segni nel dizionario | **%d** |" % len(tags))
-    add("| di cui **condizioni** (curabili, doppia copia) | %d |" % condizioni)
-    add("| di cui **Cicatrici** (permanenti, copia singola) | %d |" % cicatrici)
-    add("| di cui **Pietre** (i gradi che si vedono sulla mappa) | %d |" % pietre_tag)
-    add("| gradi di Pietra (i livelli che una Pietra puo' avere) | %d, su %d tipi |" % (
-        gradi, len(structures)))
-    add("| presenza e controllo | 6 + 6 per casa |")
-    add("| rombi del Calore | uno per Tema in gioco, piu' due di scorta |")
+    add("| fustella | tipi diversi | pezzi da tagliare |")
+    add("|---|---|---|")
+    add("| **Segni delle Regioni** — condizioni (2 copie), Pietre e insediamenti, Cicatrici | %d | %d |" % (
+        len(mappa), pezzi_mappa))
+    add("| **Segni delle case** — fama, scoperte, promesse | %d | %d |" % (
+        len(case), pezzi_case))
+    add("| Presenza e controllo | 2 | 12 per casa |")
+    add("| Rombi del Calore | 1 | uno per Tema, piu' due di scorta |")
     add("")
+    add("**%d tipi diversi, %d pezzi** piu' le pedine dei seggi." % (
+        len(mappa) + len(case), pezzi_mappa + pezzi_case))
+    add("")
+    add("Quanti di quei tipi un tavolo vede **davvero in un anno** non lo dice")
+    add("questo censimento: lo misura `cli/run_punchboard_probe.gd`, che gioca")
+    add("gli anni e conta. Il numero conta piu' del totale — nessuno impara 34")
+    add("simboli, si impara quello che si vede.")
+    add("")
+
     add("## 3. Quello che non si stampa ma tiene in piedi il gioco")
     add("")
     add("| | quanti | cos'e' |")

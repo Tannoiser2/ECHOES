@@ -10,6 +10,64 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-296 — La fustella non e' il dizionario: 67 tipi, non 183
+
+**implemented in 0.1.259** — correzione di [D-295](#d-295)
+
+Il committente, leggendo il censimento: *«certo che 183 segnalini sono tanti,
+forse troppi»*. **Aveva ragione a spaventarsi, e il numero era mio.** Il
+documento metteva i 183 segni del **dizionario** sotto il titolo «i segnalini
+che si posano», e sono due cose diverse: metà del dizionario sono memorie del
+mondo, funzioni che legge solo il motore, leggende fabbricate dal tempo e
+domini stampati sulle tessere. Roba che non si posa.
+
+**La fustella vera**, contata da dove la conta il foglio di stampa
+(`sign_labels.gd`, non i dati):
+
+| | tipi | pezzi |
+|---|---|---|
+| segni delle Regioni (condizioni in doppia copia, Pietre, insediamenti, Cicatrici) | 34 | 52 |
+| segni delle case | 33 | 39 |
+| **in tutto** | **67** | **91** |
+
+più presenza e controllo (12 per casa) e i rombi del Calore.
+
+**Ma la domanda sotto resta buona, e si misura.** `cli/run_punchboard_probe.gd`
+gioca gli anni e conta i tipi che arrivano davvero sul tavolo — per **anno**,
+non per Regione: un segno su tre Regioni è un tipo solo da imparare.
+
+| | |
+|---|---|
+| tipi disegnati per la mappa | 34 |
+| tipi visti almeno una volta in 40 anni | 30 |
+| **tipi sul tavolo in un anno solo** | **media 8,8 · massimo 15** |
+| tipi che non escono mai, o meno di un anno su cinque | **17 su 34** |
+
+**Nessuno impara 34 simboli: si impara quello che si vede, e quello che si vede
+sono nove.** Il totale della fustella è un costo di stampa; il numero che pesa
+sul tavolo è l'altro, ed è già ragionevole.
+
+**E la coda va letta divisa in due**, perché sono due cose diverse:
+
+- **le Cicatrici rare sono design**: `scar:divided_seal` due volte in
+  quarant'anni è memorabile, non morto. Una Cicatrice frequente sarebbe il
+  difetto.
+- **le condizioni rare sono un buco**: `condition:starving`,
+  `condition:lean` e `condition:requisitioned` una volta su quaranta vuol dire
+  che il motore quasi non sa produrle — e la fame è un Tema del gioco. Non è
+  cartone di troppo: è contenuto che non succede.
+
+E due dei quattro mai visti — `structure:sealed` e `scar:unanswered` — sono
+nominati dai profili come voluti o temuti: è [ISSUES 76](ISSUES.md#76-il-consiglio-decide-con-una-moneta-che-i-destini-non-spendono)
+un'altra volta, la moneta che nessuno sa coniare.
+
+**Cosa non ho fatto, e perché**: non ho tagliato niente. Tagliare i diciassette
+della coda toglierebbe soprattutto Cicatrici, cioè la parte che il gioco fa
+bene. La decisione — se ridurre i tipi, e quali — sta al committente, adesso
+con i numeri davanti ed è [ISSUES 82](ISSUES.md#82-la-coda-della-fustella-cicatrici-rare-che-vanno-bene-e-condizioni-che-non-succedono).
+
+---
+
 ## D-295 — Il censimento dei componenti: quanti pezzi ha la scatola
 
 **implemented in 0.1.258** — [il documento](COMPONENTI.md)

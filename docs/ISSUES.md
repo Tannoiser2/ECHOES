@@ -2763,6 +2763,41 @@ e' in gioco.
 
 ---
 
+### 82. La coda della fustella: Cicatrici rare che vanno bene, e condizioni che non succedono
+
+`contenuto` · `da-decidere` · **aperta in 0.1.259** ([D-296](DECISIONS.md#d-296))
+
+Misurato con `cli/run_punchboard_probe.gd`, 40 anni: dei **34 tipi** di
+segnalino disegnati per la mappa, **17 non escono mai o escono meno di un anno
+su cinque**. Sul tavolo, in un anno, se ne vedono **8,8 in media, 15 al
+massimo**.
+
+La coda va letta divisa in due, perche' sono due difetti diversi — e uno dei
+due non e' un difetto:
+
+- **Cicatrici rare = design.** `scar:divided_seal` due volte in quarant'anni e'
+  memorabile. Una Cicatrice frequente sarebbe il problema.
+- **Condizioni rare = buco.** `condition:starving` **1 anno su 40**,
+  `condition:lean` 1, `condition:requisitioned` 1: la fame e' un Tema del
+  gioco, e il motore quasi non sa produrla. Non e' cartone di troppo, e'
+  contenuto che non succede.
+
+E i quattro mai visti: `scar:broken_word`, `scar:dragonfall`,
+`scar:unanswered`, `structure:sealed`. Gli ultimi due sono **nominati dai
+profili** come voluti o temuti — e' ISSUES 76 un'altra volta.
+
+**La decisione e' del committente**, e sono tre diverse:
+
+1. ridurre i tipi (e quali: la coda e' quasi tutta Cicatrici);
+2. lasciare i tipi e **far succedere le condizioni rare** — chi scrive
+   `condition:starving`, e perche' non scatta mai;
+3. non toccare niente: 9 tipi in tavola per anno non sono troppi da imparare.
+
+**Fatto quando** il committente ha scelto, e il numero della coda si e' mosso
+nella direzione scelta.
+
+---
+
 ### 81. Una soglia non puo' leggere una memoria, perche' una memoria non si perde
 
 `regole` · **aperta in 0.1.257** ([D-294](DECISIONS.md#d-294) ·
