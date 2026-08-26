@@ -5,6 +5,28 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.248 — Il mondo si ricorda: quindici memorie tornano a mordere (D-286)
+
+- **Passo 2, con una correzione.** Le «27 Memorie che nessuno legge» non erano
+  un difetto: ognuna porta la sua ragione scritta, e quindici dicono «memoria
+  del mondo: narrata, ereditata». Il difetto vero era che **la pesca dell'era
+  successiva non ascoltava nessuna memoria** — solo condizioni e strutture.
+- Adesso quindici memorie stanno negli `echoes` delle Chronicle, accanto alla
+  domanda che è loro: la Carta che vale per un tempo solo, il cristallo
+  misurato, la successione con testimoni, i diritti d'acqua, il pedaggio
+  diviso, il sapere condiviso.
+- Misurato: **21 anni su 30** finiscono con almeno una memoria che chiama la
+  sua domanda per l'anno dopo (prima: zero). È un pavimento, non un soffitto.
+- **Tre penne si erano nascoste**, e si vedevano solo leggendo: il validatore
+  fisico non censiva la Chronicle come lettrice (39 segni con la mano non
+  dichiarata); il registro dei segni non vedeva la penna del Consiglio, né la
+  penna e l'occhio della faccia delle carte; e un gancio d'Echo su due.
+- **Un difetto piantato era scaduto**: il self-test nominava `charter_temporary`
+  come segno muto, e quando quella memoria ha trovato un lettore la guardia ha
+  smesso di mordere senza che niente fosse rotto. Adesso il difetto si sceglie
+  il segno dal dizionario.
+- Sonda nuova: `cli/run_memory_probe.gd`. Playtest 100 semi **0/8**.
+
 ## 0.1.247 — Un'Occasione non si butta (D-285)
 
 - **Passo 4: il turno che decide.** Si passava l'**82,1%** dei turni con sette

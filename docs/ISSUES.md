@@ -2786,21 +2786,24 @@ tiene.
 
 ---
 
-### 75. Ventisette Memorie che nessuno legge
+### 75. ✅ Le Memorie che nessuno legge — quindici tornano a mordere in 0.1.248
 
-`contenuto` · `debito` · **aperta in 0.1.245**
-([la diagnosi](DIAGNOSI_PUNTO_ZERO.md#33-le-memorie-esistono-ma-nessuno-le-scriveva))
+`contenuto` · `debito` · **aperta in 0.1.245** · **chiusa in 0.1.248**
+([D-286](DECISIONS.md#d-286))
 
-Il dizionario ha **80 voci di categoria MEMORY**; **27 hanno `read_by` vuoto**.
-Una memoria scritta e mai letta è un segnalino che si posa e non serve a niente:
-la metà buona della memoria del mondo — i patti, i miracoli, i martiri — oggi
-non cambia nessuna partita.
+**Chiusa, e con una correzione al testo di apertura**: le 27 non erano un
+difetto — ognuna porta la sua ragione scritta, e quindici dicevano «memoria del
+mondo: narrata, ereditata». Il difetto vero era che **la pesca dell'era
+successiva non ascoltava nessuna memoria**. Adesso quindici stanno negli
+`echoes` delle Chronicle, e in **21 anni su 30** almeno una chiama la sua
+domanda per l'anno dopo.
 
-Vanno legate a chi le deve leggere: le clausole dei Destini, le condizioni di
-ingresso delle Tensioni, il setup della Chronicle successiva.
+Restano fuori, dichiarate: le sei che sono **marchi sulla carta del casato**
+(D-278) — ha parlato e ha perso, si è servito, la parola fredda — che si
+leggono al tavolo e non in una regola, e quattro memorie narrate senza una
+domanda propria.
 
-**Fatto quando** nessuna voce MEMORY ha `read_by` vuoto, e ogni memoria scritta
-in 100 anni viene letta almeno una volta.
+**Il testo originale:**
 
 ---
 

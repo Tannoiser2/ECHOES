@@ -10,6 +10,61 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-286 — Quindici memorie tornano a mordere, e tre penne si erano nascoste
+
+**implemented in 0.1.248** — passo 2 del brief del Punto Zero
+
+**Prima, una correzione a quello che avevo scritto io.** Nella diagnosi avevo
+dato le *«27 Memorie che nessuno legge»* come difetto. Non lo erano: **ognuna
+delle 27 porta la sua ragione scritta**, e quindici dicono *«memoria del mondo:
+narrata (D-103), ereditata»*. Il progetto aveva già applicato la sua regola —
+quello che non morde si dichiara. Il difetto vero era un altro, ed è più
+piccolo e più utile.
+
+**La pesca dell'era successiva ascolta** (D-079): una domanda i cui echi sono
+ancora sul tavolo pesa il triplo. Quel meccanismo non ascoltava **nessuna
+memoria del mondo**: ascoltava condizioni e strutture. Così una Carta che vale
+per un tempo solo, un cristallo misurato, una successione con testimoni, dei
+diritti d'acqua venivano scritti dal Consiglio e poi **non tornavano a chiedere
+niente**. Adesso quindici di quelle memorie stanno negli `echoes` delle
+Chronicle, ognuna accanto alla domanda che è sua.
+
+Misurato (`cli/run_memory_probe.gd`, 30 anni): **21 anni su 30** finiscono con
+almeno una memoria che chiama la sua domanda per l'anno dopo. Prima erano zero.
+Il conto è un **pavimento**, non un soffitto: la sonda attribuisce la chiamata
+al primo segno che trova, e una domanda già chiamata da una condizione non
+mostra la sua memoria.
+
+**E tre penne si erano nascoste.** Facendo leggere quelle memorie sono usciti
+tre buchi nei censimenti — vecchi, e invisibili finché nessuno leggeva:
+
+1. **il censimento del validatore fisico non vedeva la Chronicle**: i segni
+   negli `echoes` sono letti dalla pesca, e nessuno lo dichiarava. Erano 39
+   segni con la mano non dichiarata, non solo i miei;
+2. **il registro dei segni non vedeva la penna del Consiglio** (le clausole
+   `condition_clauses[].effects`) né **la penna della faccia delle carte**
+   (`puts_tag`/`clears_tag`, che da D-283 scrivono davvero) né **l'occhio della
+   faccia** (il bersaglio a segni, la Risonanza che teme un segno);
+3. **e un gancio d'Echo su due**: la forma `effect` singolare non veniva
+   guardata, quindi «ci si è parlato» e «la richiesta è stata ascoltata»
+   risultavano chieste da una Risonanza e scritte da nessuno.
+
+Tutti e tre adesso sono censiti, e il registro torna a dire il vero: restano
+quattro segni muti dichiarati con la loro ragione, e uno chiesto-e-mai-scritto
+dichiarato (`structure:road`, che il motore conta dalle strutture invece di
+posarlo).
+
+**E il difetto piantato che era scaduto.** Il self-test piantava
+`charter_temporary` come «segno che nessuno legge»; il giorno in cui quella
+memoria ha trovato un lettore la guardia ha smesso di mordere **senza che niente
+fosse rotto**. Adesso il difetto si sceglie il segno muto dal dizionario: un
+difetto che nomina un dato che può cambiare è un difetto che scade.
+
+Playtest 100 semi: **0 seggi bloccati su 8**, misto e uniforme. Suite 589 prove.
+Guardia del dizionario: **15 difetti piantati**, tutti mordono.
+
+---
+
 ## D-285 — Un'Occasione non si butta: il cervello aveva mosse, non fame
 
 **implemented in 0.1.247** — passo 4 del brief del Punto Zero

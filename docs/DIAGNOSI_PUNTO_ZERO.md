@@ -182,13 +182,16 @@ come già fa la scheda della carta.
 Azione viene scelta almeno una volta su cinque, il passare scende sotto il 60%,
 e il cancello resta 0 seggi bloccati su 8.
 
-**Passo 2 — le Memorie che nessuno legge.** Le 80 voci MEMORY ci sono e da
-D-283 le carte le scrivono davvero; ne restano **27 che nessuno legge**. Una
-memoria scritta e mai letta è un segnalino che si posa e non serve a niente.
-Vanno legate a chi le deve leggere: le clausole dei Destini, le condizioni di
-ingresso delle Tensioni, il setup della Chronicle successiva.
-*Fatto quando*: nessuna voce MEMORY del dizionario ha `read_by` vuoto, e ogni
-memoria scritta in 100 anni viene letta almeno una volta.
+**Passo 2 — le Memorie — FATTO in 0.1.248** ([D-286](DECISIONS.md#d-286)),
+**con una correzione a questa diagnosi**: le 27 memorie senza lettori non erano
+un difetto — ognuna porta la sua ragione scritta, e quindici dicevano «memoria
+del mondo: narrata, ereditata». Il difetto vero era più preciso: **la pesca
+dell'era successiva non ascoltava nessuna memoria**, solo condizioni e
+strutture. Adesso quindici stanno negli echi delle Chronicle, accanto alla
+domanda che è loro, e in **21 anni su 30** almeno una chiama la sua domanda per
+l'anno dopo (prima: zero). Nel farlo sono uscite **tre penne nascoste** nei
+censimenti — la Chronicle che legge, il Consiglio e la faccia delle carte che
+scrivono, un gancio d'Echo su due — e un difetto piantato che era scaduto.
 
 **Passo 3 — una sola economia delle domande.** Le quattro questioni dell'anno
 spariscono; INFLUENZARE e TRAMARE agiscono sui **mazzetti** (scaldare e

@@ -165,6 +165,17 @@ def _tocchi_espliciti(documenti: Dict[str, List[Dict[str, Any]]]):
     for tensione in documenti.get("tension", []):
         for tag in tensione.get("focus_region_tags", []) or []:
             yield "tension", "legge", str(tag)
+
+    # **La Chronicle ascolta il mondo di prima** (D-286): i segni elencati in
+    # `tension_pool.echoes` decidono quali domande pesano il triplo nella pesca
+    # dell'era successiva (D-079). E' una lettura a tutti gli effetti, e fino a
+    # qui il censimento non la vedeva: tredici memorie del mondo risultavano
+    # «senza lettori» mentre la pesca le leggeva eccome.
+    for cronaca in documenti.get("chronicle", []):
+        sacchetto = cronaca.get("tension_pool") or {}
+        for elenco in (sacchetto.get("echoes") or {}).values():
+            for tag in elenco or []:
+                yield "chronicle", "legge", str(tag)
     for tipo_struttura in documenti.get("structure_type", []):
         for grado in tipo_struttura.get("grades", []):
             if grado.get("tag"):
@@ -680,7 +691,14 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
     def tessera_decorativa(prova: Dict[str, List[Dict[str, Any]]]) -> None:
         # Un segno vero del dizionario che nessuno legge (scritto-e-non-letto
         # con nota, D-266): stampato da solo su una tessera, la rende muta.
-        prova["region"][0]["tags"] = ["charter_temporary"]
+        #
+        # **Si sceglie dal dizionario, non a mano** (D-286): il difetto piantava
+        # `charter_temporary`, e il giorno in cui quella memoria ha trovato un
+        # lettore la guardia ha smesso di mordere senza che niente fosse rotto.
+        # Un difetto che nomina un dato che puo' cambiare e' un difetto che
+        # scade.
+        muto = next(v["id"] for v in prova["tag"] if not v.get("read_by"))
+        prova["region"][0]["tags"] = [muto]
 
     def tensione_muta(prova: Dict[str, List[Dict[str, Any]]]) -> None:
         prova["tension"][0]["possible_questions"] = []
