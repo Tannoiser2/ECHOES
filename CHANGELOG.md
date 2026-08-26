@@ -5,6 +5,108 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.248 — Il mondo si ricorda: quindici memorie tornano a mordere (D-286)
+
+- **Passo 2, con una correzione.** Le «27 Memorie che nessuno legge» non erano
+  un difetto: ognuna porta la sua ragione scritta, e quindici dicono «memoria
+  del mondo: narrata, ereditata». Il difetto vero era che **la pesca dell'era
+  successiva non ascoltava nessuna memoria** — solo condizioni e strutture.
+- Adesso quindici memorie stanno negli `echoes` delle Chronicle, accanto alla
+  domanda che è loro: la Carta che vale per un tempo solo, il cristallo
+  misurato, la successione con testimoni, i diritti d'acqua, il pedaggio
+  diviso, il sapere condiviso.
+- Misurato: **21 anni su 30** finiscono con almeno una memoria che chiama la
+  sua domanda per l'anno dopo (prima: zero). È un pavimento, non un soffitto.
+- **Tre penne si erano nascoste**, e si vedevano solo leggendo: il validatore
+  fisico non censiva la Chronicle come lettrice (39 segni con la mano non
+  dichiarata); il registro dei segni non vedeva la penna del Consiglio, né la
+  penna e l'occhio della faccia delle carte; e un gancio d'Echo su due.
+- **Un difetto piantato era scaduto**: il self-test nominava `charter_temporary`
+  come segno muto, e quando quella memoria ha trovato un lettore la guardia ha
+  smesso di mordere senza che niente fosse rotto. Adesso il difetto si sceglie
+  il segno dal dizionario.
+- Sonda nuova: `cli/run_memory_probe.gd`. Playtest 100 semi **0/8**.
+
+## 0.1.247 — Un'Occasione non si butta (D-285)
+
+- **Passo 4: il turno che decide.** Si passava l'**82,1%** dei turni con sette
+  carte in mano e quindici mosse legali. Il ripiego «fai quello che la mano
+  permette» non veniva **mai** provato, e la lista delle mosse guardava un solo
+  verbo per carta e un solo bersaglio per verbo.
+- Adesso, quando nessuna intenzione scatta, si gioca la più debole che la mano
+  permette — fra tutte le Azioni stampate e tutti i bersagli. **Mai** spingere
+  una domanda dalla parte sbagliata, **mai** rompere un patto per noia.
+- **La riserva resta**: una carta calata è una carta che al Consiglio non vota.
+  Sopra `max_commit_assets + 1` si gioca, sotto si tiene.
+- Misure (100 semi, tavolo misto): si passa **42,1%** (prima 82,1%); carte
+  pescate che si calano **55,0%** (prima 23,2%); FORGIARE **46,6%** (5,9%);
+  RIVENDICARE **60,9%** (19,6%); **nessuna carta muta** (prima 3 mai calate).
+  Playtest **0/8**.
+- **Il costo, scritto**: le Verità scritte scendono da **295 a 256** (−13%). È
+  la regola del gioco che si vede — il mondo ricorda solo i Consigli in cui
+  qualcuno ha messo peso — e la riserva è il quadrante per spostarla.
+
+## 0.1.246 — Il segno stampato ha un posto (D-284)
+
+- **Passo 1bis.** I 314 segni che non trovavano dove stare adesso lo trovano:
+  la carta dice *dove* col suo bersaglio a segni, e chi cala sceglie il luogo
+  fra quelli che la carta raggiunge. Un luogo che non raggiunge si rifiuta,
+  nella stessa lingua del bersaglio.
+- **È una scelta vera**: posare #conteso sulla capitale di un rivale non è come
+  posarlo su casa propria. Il cervello sceglie col metro dei segni; una persona
+  lo sceglie **sulla mappa** — si tocca la carta, si accendono i luoghi.
+- Misure su 100 anni: **862 segni stampati, 862 posati, 0 senza soggetto**
+  (prima: 537 posati, 314 senza). Playtest 100 semi **0/8**.
+- Quattro prove nuove (`test_the_sign_finds_its_place`), fra cui la regola su
+  tutte e 48 le carte: un posto si chiede esattamente quando serve.
+
+## 0.1.245 — La faccia è la verità: entrambe le Azioni si giocano (D-283)
+
+- **Passo 1 del brief del Punto Zero.** I verbi di una carta sono adesso
+  **quelli stampati sulla sua faccia**, non il solo `card_action.kind`: chi
+  gioca dice quale delle due Azioni sta calando, e il motore la esegue.
+- **I segni stampati si posano davvero** (`puts_tag`, `clears_tag`): ognuno
+  dove il dizionario dice che vive — mondo, Regione, casa. Sono loro a rendere
+  diverse le due metà: 29 carte su 48 stampano lo stesso verbo due volte.
+- Il segno stampato **si firma** (`face_action`), come la Risonanza: nel
+  verbale si distingue quello che ha scritto l'Azione da quello che ha scritto
+  il verbo.
+- Misure su 100 anni: **16,6% delle carte calate usa la seconda Azione**
+  (prima: mai), **537 segni posati** sul mondo (prima: zero), RIVENDICARE
+  calato dal 19,6% al **33,0%**. Playtest 100 semi **0/8**.
+- **Il costo, scritto**: il passare scende solo dall'84,3% all'**82,3%**. La
+  ragione dominante non erano i verbi della mano — è l'appetito del cervello
+  («mosse legali, nessuna che gli servisse», dal 54,7% al 65,1% dei passa).
+  Restano 314 segni su 851 che non trovano un soggetto: passo 1bis.
+- Sonda nuova `cli/run_mark_probe.gd`; cinque prove in
+  `test_both_printed_actions.gd`.
+- **Correzione alla diagnosi**: le Memorie *esistono* — 80 voci di categoria
+  MEMORY nel dizionario, non zero come avevo scritto cercando il prefisso
+  `memory:`. Il difetto vero è che 27 non le legge nessuno e 20 erano
+  dichiarate scritte da uno scrittore che il motore non eseguiva.
+
+## 0.1.244 — La colonna si legge, e la diagnosi del Punto Zero (D-282)
+
+- **La colonna di destra diceva la stessa cosa tre volte** e non spiegava
+  niente: i sei mazzetti disegnati, la riga «CALORE» che li ripeteva a parole,
+  e le quattro questioni chiamate «le domande dell'anno» — mentre le domande,
+  da D-261, sono i mazzetti. Via la riga duplicata; le quattro si chiamano
+  adesso **«le questioni già aperte»**, che è quello che sono (il ripiego per
+  l'Atto in cui nessuna Risonanza ha scaldato niente).
+- **Ogni blocco dice a cosa serve**, in una riga sotto l'intestazione: i
+  mazzetti, le questioni, i rapporti, i diritti, i segni della casa, il
+  Destino. Al tavolo la plancia ha le sue scritte stampate accanto; sullo
+  schermo non c'erano.
+- Tre prove nuove (`test_the_column_can_be_read`): ogni intestazione ha la sua
+  riga, nessuna riga sopravvive alla cosa che spiega, e la stessa cosa non si
+  dice due volte.
+- **`docs/DIAGNOSI_PUNTO_ZERO.md`**: la risposta al brief del committente, coi
+  numeri. In breve — sei cose sono già la grammatica del brief, tre no: la
+  seconda Azione stampata che il motore non offre mai (48 carte), le Memorie
+  che nei dati non esistono (0 tag `memory:`), e le due economie della stessa
+  domanda. Misure: si passa l'**84,3%** dei turni; **23,2%** delle carte
+  pescate viene calato; FORGIARE il **5,9%**; tre carte non si calano mai.
+
 ## 0.1.243 — Il turno si vede: la mano era morta (D-281)
 
 - **Difetto, trovato giocando**: le carte in mano non ricevevano mai le loro

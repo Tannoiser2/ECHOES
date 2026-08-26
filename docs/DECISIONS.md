@@ -10,6 +10,284 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-286 — Quindici memorie tornano a mordere, e tre penne si erano nascoste
+
+**implemented in 0.1.248** — passo 2 del brief del Punto Zero
+
+**Prima, una correzione a quello che avevo scritto io.** Nella diagnosi avevo
+dato le *«27 Memorie che nessuno legge»* come difetto. Non lo erano: **ognuna
+delle 27 porta la sua ragione scritta**, e quindici dicono *«memoria del mondo:
+narrata (D-103), ereditata»*. Il progetto aveva già applicato la sua regola —
+quello che non morde si dichiara. Il difetto vero era un altro, ed è più
+piccolo e più utile.
+
+**La pesca dell'era successiva ascolta** (D-079): una domanda i cui echi sono
+ancora sul tavolo pesa il triplo. Quel meccanismo non ascoltava **nessuna
+memoria del mondo**: ascoltava condizioni e strutture. Così una Carta che vale
+per un tempo solo, un cristallo misurato, una successione con testimoni, dei
+diritti d'acqua venivano scritti dal Consiglio e poi **non tornavano a chiedere
+niente**. Adesso quindici di quelle memorie stanno negli `echoes` delle
+Chronicle, ognuna accanto alla domanda che è sua.
+
+Misurato (`cli/run_memory_probe.gd`, 30 anni): **21 anni su 30** finiscono con
+almeno una memoria che chiama la sua domanda per l'anno dopo. Prima erano zero.
+Il conto è un **pavimento**, non un soffitto: la sonda attribuisce la chiamata
+al primo segno che trova, e una domanda già chiamata da una condizione non
+mostra la sua memoria.
+
+**E tre penne si erano nascoste.** Facendo leggere quelle memorie sono usciti
+tre buchi nei censimenti — vecchi, e invisibili finché nessuno leggeva:
+
+1. **il censimento del validatore fisico non vedeva la Chronicle**: i segni
+   negli `echoes` sono letti dalla pesca, e nessuno lo dichiarava. Erano 39
+   segni con la mano non dichiarata, non solo i miei;
+2. **il registro dei segni non vedeva la penna del Consiglio** (le clausole
+   `condition_clauses[].effects`) né **la penna della faccia delle carte**
+   (`puts_tag`/`clears_tag`, che da D-283 scrivono davvero) né **l'occhio della
+   faccia** (il bersaglio a segni, la Risonanza che teme un segno);
+3. **e un gancio d'Echo su due**: la forma `effect` singolare non veniva
+   guardata, quindi «ci si è parlato» e «la richiesta è stata ascoltata»
+   risultavano chieste da una Risonanza e scritte da nessuno.
+
+Tutti e tre adesso sono censiti, e il registro torna a dire il vero: restano
+quattro segni muti dichiarati con la loro ragione, e uno chiesto-e-mai-scritto
+dichiarato (`structure:road`, che il motore conta dalle strutture invece di
+posarlo).
+
+**E il difetto piantato che era scaduto.** Il self-test piantava
+`charter_temporary` come «segno che nessuno legge»; il giorno in cui quella
+memoria ha trovato un lettore la guardia ha smesso di mordere **senza che niente
+fosse rotto**. Adesso il difetto si sceglie il segno muto dal dizionario: un
+difetto che nomina un dato che può cambiare è un difetto che scade.
+
+Playtest 100 semi: **0 seggi bloccati su 8**, misto e uniforme. Suite 589 prove.
+Guardia del dizionario: **15 difetti piantati**, tutti mordono.
+
+---
+
+## D-285 — Un'Occasione non si butta: il cervello aveva mosse, non fame
+
+**implemented in 0.1.247** — passo 4 del brief del Punto Zero
+
+Il problema n° 3 del committente: *«i giocatori passano troppo spesso: il turno
+non genera abbastanza decisioni significative»*. Misurato: si passava l'**82,1%
+dei turni**, e due terzi di quei passa erano *«mosse legali, nessuna che gli
+servisse»* — **con sette carte in mano e quindici mosse legali in media**.
+
+Non era il mazzo, e non erano le regole. Erano **due difetti, uno dentro
+l'altro**:
+
+1. **Il ripiego non veniva mai provato.** Il cervello sceglie un'intenzione e
+   poi cerca la carta che la dica (`_as_card_play`). Quando l'intenzione era
+   PASSA, quella funzione tornava indietro **alla prima riga**: il ramo
+   *«fai quello che la mano permette»*, scritto e commentato, non veniva
+   raggiunto mai.
+2. **E la lista delle mosse possibili era quasi sempre vuota**, anche quando
+   veniva chiesta: guardava **un solo verbo per carta** — quello dichiarato, non
+   quelli stampati (D-283) — e **un solo bersaglio per verbo**. Sette carte in
+   mano producevano zero voci.
+
+**La regola nuova**: quando nessuna intenzione scatta, si gioca la **più debole
+che la mano permette**, fra tutte le Azioni stampate e tutti i bersagli che
+quelle Azioni accettano. Due mosse non si propongono mai, perché sono danni che
+il cervello si farebbe da solo per noia: **spingere una domanda dalla parte
+sbagliata**, e **rompere un patto**.
+
+**E si tiene la riserva.** Al tavolo una carta calata è una carta che al
+Consiglio non vota — e il mondo ricorda **solo i Consigli in cui qualcuno ha
+messo peso** (`EchoRecorder.should_record`). Una mano svuotata sulla mappa è
+quindi un anno che lascia meno scritto: è il quadrante fra *«le Azioni cambiano
+il mondo»* e *«il Consiglio decide cosa il mondo ricorderà»*.
+
+**Taratura d'autore, misurata** (100 semi, tavolo misto). La riserva è il
+quadrante, e questi sono i suoi scatti:
+
+| riserva | si passa | Verità scritte | Consigli |
+|---|---|---|---|
+| — (prima) | 82,1% | 295 | 3,67 |
+| 3 | 37,3% | 227 | 3,75 |
+| **4** (`max_commit_assets + 1`) | **42,1%** | **256** | **3,80** |
+| 5 | 47,2% | 252 | 3,81 |
+
+**Il costo, scritto**: le Verità scritte scendono da **295 a 256** (−13%). Non
+è un difetto del correttivo, è la regola del gioco che si vede: chi spende sulla
+mappa ha meno peso da mettere nel Consiglio, e un Consiglio senza peso non
+lascia memoria. Se il committente vuole un mondo più scritto e turni più fermi,
+il numero da muovere è la riserva, ed è una riga.
+
+**Le altre misure** (`run_card_ledger`, 100 anni):
+
+| | prima | dopo |
+|---|---|---|
+| carte pescate che si calano | 23,2% | **55,0%** |
+| FORGIARE calato | 5,9% | **46,6%** |
+| RIVENDICARE calato | 19,6% | **60,9%** |
+| carte **mai calate** in 100 anni | 3 | **0** |
+| carte mai impegnate al voto | 0 | 0 |
+
+Playtest 100 semi: **0 seggi bloccati su 8**, misto e uniforme — e ogni seggio
+adesso tocca più di un livello.
+
+**Prove**: `test_an_opportunity_is_not_wasted.gd` — a mano piena non si passa,
+alla riserva si tiene, la lista guarda tutte le facce e tutti i bersagli, e le
+due mosse che fanno male non si propongono mai.
+
+---
+
+## D-284 — Il segno stampato ha un posto: la carta dice dove, chi cala sceglie
+
+**implemented in 0.1.246** — passo 1bis del brief del Punto Zero
+
+D-283 ha fatto posare i segni stampati sulle Azioni. **Ne restavano fuori 314 su
+851**, quasi tutti condizioni di Regione in mosse che una Regione non la
+nominano: INFLUENZARE parla a una domanda, FORGIARE a una casa, RIVENDICARE a un
+dominio. Il segno non si scriveva altrove — sarebbe stato posare un segnalino
+dove al tavolo nessuno saprebbe metterlo — e quindi **la carta diceva una cosa
+che non succedeva**.
+
+**Al tavolo la risposta è già stampata**: il bersaglio si dice a segni (D-274).
+«Chiudere i granai» non chiede *quale domanda*: chiede **quale granaio**. Quindi
+chi cala nomina il posto dove i segni cadono, e può nominare solo un luogo che
+la carta raggiunge — la stessa promessa del bersaglio, sull'altro pezzo della
+faccia, con il suo rifiuto detto nella stessa lingua.
+
+**Ed è una scelta vera**, non una formalità: posare `#conteso` sulla capitale di
+un rivale non è come posarlo su casa propria. Il cervello sceglie il posto col
+metro dei segni già introdotto da D-283 (una condizione sulla mia terra pesa
+contro, altrove pesa a favore); una persona lo sceglie **sulla mappa**, perché
+ogni posto possibile è una voce che porta la sua Regione nel soggetto e quindi
+si accende (D-230): si tocca la carta, si accendono i luoghi, si tocca il luogo.
+
+**Misure** (100 anni, tavolo misto):
+
+| | D-283 | dopo |
+|---|---|---|
+| segni stampati sulle Azioni calate | 851 | 862 |
+| **posati sul mondo** | 537 | **862** |
+| **senza un soggetto** | 314 | **0** |
+| carte calate con la seconda Azione | 16,6% | 17,0% |
+| si passa | 82,3% | 82,1% |
+
+Playtest 100 semi: **0 seggi bloccati su 8**, misto e uniforme.
+
+**Una cosa che la misura ha detto e che non sapevo.** I primi segni rimasti
+senza casa dopo il correttivo non erano un caso di contenuto: erano le carte
+calate dalla **lista di ripiego** del cervello (`hand_plays`, quella da cui pesca
+il distratto), che non aveva imparato a scegliere il posto. Due strade per la
+stessa mossa, e ne avevo insegnata una sola — la stessa forma della trappola di
+D-268.
+
+**Prove**: `test_the_sign_finds_its_place.gd` — il posto lo dice chi cala, un
+posto che la carta non raggiunge si rifiuta a segni, il menu offre un luogo per
+voce e ognuna si accende sulla mappa, e su **tutte e 48 le carte** un posto si
+chiede esattamente quando serve.
+
+---
+
+## D-283 — La faccia è la verità: entrambe le Azioni stampate si giocano
+
+**implemented in 0.1.245** — passo 1 del brief del Punto Zero
+
+> «Rendere entrambe le azioni delle carte Asset realmente eseguibili dal motore
+> e visibili nell'app.»
+
+**Com'era.** Una carta si poteva calare **solo col verbo dichiarato** in
+`card_action.kind`. La seconda Azione stampata era inchiostro — anche quando
+portava già un verbo che il motore sa fare, e lo porta in **37 carte su 48**. E
+i segni che le Azioni posano (`puts_tag`, `clears_tag`: 71 occorrenze su 33
+segni diversi) non venivano eseguiti mai.
+
+**La regola nuova, in una riga: i verbi di una carta sono quelli stampati sulla
+sua faccia.** Chi gioca dice *quale delle due Azioni* sta calando — `face_action`
+è l'indice — e il verbo viene da lì. Senza indice si ricade sul verbo dichiarato,
+che è quello che fanno i salvataggi vecchi.
+
+**E i segni stampati si posano davvero**, ognuno dove il dizionario dice che vive
+(D-259): GLOBAL sul mondo, REGION sulla Regione che l'azione ha nominato, ENTITY
+sulla casa. Sono loro a rendere **diverse** le due metà: **29 carte su 48
+stampano lo stesso verbo due volte**, e senza i segni le due metà farebbero la
+stessa identica cosa — una scelta finta, quella che il validatore vieta alle
+Tensioni.
+
+**Il segno stampato si firma** (`kind: "face_action"`, la regola di D-030): nello
+stesso istante il verbo posa segni suoi — TRAMARE lascia le sue scoperte — e
+senza la firma non si distinguono. La prima stesura della sonda li contava
+insieme e diceva 242 dove i segni della faccia erano 114.
+
+**Taratura d'autore, dichiarata.** Fra due metà dello stesso verbo il cervello
+sceglie sui segni: una condizione che cade sulla mia terra o su casa mia pesa
+contro, una che cade altrove pesa a favore, una memoria vale poco e sempre
+positiva, e a parità vince la prima — quella che la carta stampa per prima.
+Senza questa regola il cervello avrebbe sempre giocato la prima metà.
+
+**Misure** (100 anni, tavolo misto):
+
+| | prima | dopo |
+|---|---|---|
+| carte calate con la **seconda** Azione | 0 | **235 su 1.412 (16,6%)** |
+| segni stampati posati sul mondo | 0 | **537** (su 851 stampati) |
+| carte pescate che si calano | 23,2% | 24,5% |
+| RIVENDICARE calato | 19,6% | **33,0%** |
+| FORGIARE calato | 5,9% | 8,0% |
+| si passa | 84,3% | **82,3%** |
+
+**Il costo, scritto.** Il passare scende di due punti, non dei venticinque che
+speravo: la prima ragione per cui un seggio passa non erano i verbi della mano
+— è *«mosse legali, nessuna che gli servisse»*, che sale dal 54,7% al 65,1% dei
+passa. È **appetito del cervello**, non grammatica delle carte, e va aggredita
+da lì. Restano **314 segni su 851** che non trovano il proprio soggetto (una
+condizione di Regione in una mossa che non nomina nessuna Regione): non si
+scrivono altrove, si contano, ed è il passo 1bis della diagnosi.
+
+**Una conseguenza da guardare, committente.** Con la faccia come verità,
+`AST_BONDS_OLD_DEBT` — che dichiara RIVENDICARE e stampa INFLUENZARE e
+FORGIARE — smette di essere una carta da RIVENDICARE. È la vecchia questione
+aperta, risolta *di fatto* in favore della faccia. Se la vuoi RIVENDICARE, la
+faccia deve stamparlo.
+
+**Prove**: `test_both_printed_actions.gd` — la seconda metà lascia il suo segno,
+il segno si firma, si disfa (è un Effect col suo inverso), un segno senza
+soggetto non finisce altrove, e la scatola così com'è spedita offre **due voci**
+per una carta a due metà, coi nomi stampati sulla faccia.
+
+**Sonda**: `cli/run_mark_probe.gd`.
+
+---
+
+## D-282 — La colonna di destra si legge: un blocco, una riga che dice cos'è
+
+**implemented in 0.1.244** — parola del committente
+
+> «Poi sulla colonna di destra non si capisce nulla: ci sono i mazzetti dei
+> temi, le domande dell'anno (?), i rapporti, i segni della casa, il destino,
+> poi ancora quattro tensioni (?)»
+
+Due difetti, e il punto interrogativo era su quello grosso.
+
+**La stessa cosa era lì tre volte.** I sei mazzetti disegnati (D-279), la riga
+«CALORE» che li ripeteva a parole, e le quattro questioni con le barre. Sotto
+c'è una vera sovrapposizione di regole — il gioco ha *due* economie della stessa
+domanda, le quattro questioni dell'anno e i sei mazzetti (vedi
+[la diagnosi](DIAGNOSI_PUNTO_ZERO.md#32-le-domande-sono-due-sistemi-sovrapposti))
+— e non la si chiude con una modifica allo schermo. Quello che lo schermo poteva
+fare l'ha fatto: la riga duplicata è via, e le quattro si chiamano per quello
+che **sono** — *«le questioni già aperte»*, il ripiego per l'Atto in cui nessuna
+Risonanza ha scaldato niente. Chiamarle «le domande dell'anno» insegnava una
+regola che il gioco non ha più.
+
+**E nessun blocco diceva a cosa servisse.** Al tavolo non serve: una plancia ha
+le sue caselle stampate, con la scritta accanto. Sullo schermo quella scritta
+non c'era, e sei blocchi muti sono arredo, non informazione. Adesso ognuno ha
+la sua riga, piccola e grigia: si legge la prima volta e poi si smette di
+vederla, che è esattamente il comportamento di una stampa sulla plancia.
+
+**Prove**: `test_the_column_can_be_read.gd` — ogni intestazione visibile ha la
+sua riga sotto; nessuna riga sopravvive alla cosa che spiega (i Diritti e i
+segni spariscono quando sono vuoti, e la spiegazione con loro); e la stessa
+cosa non si dice due volte.
+
+---
+
 ## D-281 — Il turno si vede: la mano era morta, e la colonna era vuota
 
 **implemented in 0.1.243** — parola del committente, aprendo l'app

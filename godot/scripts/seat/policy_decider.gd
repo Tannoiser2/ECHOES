@@ -651,7 +651,47 @@ func choose_action(entity_id: String, ao_index: int, session: RefCounted) -> Dic
 	var intent: Dictionary = _choose_intent(entity_id, ao_index, session)
 	if not _cards_are_the_coin(session):
 		return intent
-	return _as_card_play(entity_id, intent, session)
+	var play: Dictionary = _as_card_play(entity_id, intent, session)
+	if str(play.get("template", "PASS")) != "PASS":
+		return play
+	return _rather_than_nothing(entity_id, session)
+
+
+## **Un'Occasione non si butta** (D-285, passo 4 del brief del Punto Zero).
+##
+## Misurato: si passava l'**82%** dei turni, e due terzi di quei passa erano
+## «mosse legali, nessuna che gli servisse» — con in mano sette carte e quindici
+## mosse legali in media. Il ripiego `_whatever_the_hand_allows` c'era gia', ma
+## non veniva mai provato: quando `_choose_intent` diceva PASS, `_as_card_play`
+## tornava indietro alla prima riga. Il cervello non era senza mosse: era senza
+## fame.
+##
+## **Ma non si svuota la mano.** Al tavolo una carta calata e' una carta che al
+## Consiglio non vota, e tenerne da parte e' una scelta vera, non pigrizia:
+## il mondo ricorda solo i Consigli in cui qualcuno ha messo peso
+## (`EchoRecorder.should_record`), quindi una mano svuotata sulla mappa e' un
+## anno che lascia meno scritto. La riserva e' **quello che il Consiglio puo'
+## accettare, piu' una** (`max_commit_assets + 1`, quattro carte in CHR_01):
+## sopra si gioca la piu' debole che la mano permette, sotto si tiene. Un turno
+## vuoto con nove carte in mano non e' prudenza, e' silenzio.
+##
+## **Taratura d'autore, misurata su 100 semi a tavolo misto** — la riserva e'
+## il quadrante fra le Azioni e la memoria del mondo:
+##
+##   riserva  ·  passa  ·  Verita' scritte  ·  Consigli
+##      —        82,1%        295              3,67     (prima di questa regola)
+##      3        37,3%        227              3,75
+##      4        42,1%        256              3,80     <- scelta
+##      5        47,2%        252              3,81
+func _rather_than_nothing(entity_id: String, session: RefCounted) -> Dictionary:
+	var chronicle: Dictionary = session.data.chronicles[
+		str(session.world["chronicle_id"])
+	] as Dictionary
+	var reserve: int = int(chronicle.get("max_commit_assets", 3)) + 1
+	if session.service.hand_size(entity_id) <= reserve:
+		return {"template": "PASS", "params": {}}
+	var plays: Array = hand_plays(entity_id, session)
+	return plays[0] if not plays.is_empty() else {"template": "PASS", "params": {}}
 
 
 func _cards_are_the_coin(session: RefCounted) -> bool:
@@ -761,11 +801,14 @@ func _as_card_play(
 		if kind == "PASS" or kind == "PLAY_ECHO" or kind == "PLAY_CARD":
 			continue
 		var wanted: Dictionary = (wish as Dictionary).get("params", {}) as Dictionary
-		var card: String = _card_that_says(entity_id, kind, wanted, session)
-		if card == "":
+		var card: Dictionary = _card_that_says(entity_id, kind, wanted, session)
+		if card.is_empty():
 			continue
 		var params: Dictionary = wanted.duplicate()
-		params["asset_id"] = card
+		params["asset_id"] = str(card["asset_id"])
+		params["face_action"] = int(card["face_action"])
+		if str(card.get("mark_region_id", "")) != "":
+			params["mark_region_id"] = str(card["mark_region_id"])
 		return {"template": "PLAY_CARD", "params": params}
 	var fallback: Dictionary = _whatever_the_hand_allows(entity_id, session)
 	return fallback if not fallback.is_empty() else {"template": "PASS", "params": {}}
@@ -807,7 +850,7 @@ func _widen_the_tap(entity_id: String, session: RefCounted) -> Dictionary:
 		# faccia, una Regione dove nessuna carta MUOVERE in mano arriva non e'
 		# un rubinetto — e' un desiderio muto. La coppia luogo+carta si sceglie
 		# insieme, com'e' al tavolo: prima si guarda la carta, poi la mappa.
-		if _card_that_says(entity_id, "MOVE", {"region_id": str(region_id)}, session) == "":
+		if _card_that_says(entity_id, "MOVE", {"region_id": str(region_id)}, session).is_empty():
 			continue
 		var gain: int = 0
 		for family in (session.data.regions[str(region_id)] as Dictionary).get(
@@ -839,15 +882,17 @@ func _hand_weakest_first(entity_id: String, session: RefCounted) -> Array:
 	return hand
 
 
+## La carta che dice quell'intenzione, **e quale delle sue Azioni stampate**
+## (D-283). Vuoto se la mano non ne ha nessuna.
 func _card_that_says(
 	entity_id: String, kind: String, wanted: Dictionary, session: RefCounted
-) -> String:
+) -> Dictionary:
 	for asset_id in _hand_weakest_first(entity_id, session):
 		var card: Variant = session.data.assets.get(str(asset_id))
 		if card == null:
 			continue
 		var action: Dictionary = (card as Dictionary).get("card_action", {}) as Dictionary
-		if action.is_empty() or str(action.get("kind", "")) != kind:
+		if action.is_empty():
 			continue
 		# Cio' che la carta fissa non si contratta: se dice -1 e il seggio
 		# voleva +1, quella carta non dice quell'intenzione.
@@ -859,11 +904,105 @@ func _card_that_says(
 				break
 		if clashes:
 			continue
-		var params: Dictionary = wanted.duplicate()
-		params["asset_id"] = str(asset_id)
-		if session.actions.can_execute(entity_id, "PLAY_CARD", params):
-			return str(asset_id)
-	return ""
+		var best: int = -1
+		var best_place: String = ""
+		var best_score: int = 0
+		for index in _printed_actions(card as Dictionary, kind):
+			var params: Dictionary = wanted.duplicate()
+			params["asset_id"] = str(asset_id)
+			params["face_action"] = int(index)
+			if not session.actions.can_execute(entity_id, "PLAY_CARD", params):
+				continue
+			# **Dove cadono i segni** (D-284): se questa meta' posa segni di
+			# Regione e il verbo non ne nomina nessuna, il posto lo si sceglie
+			# fra quelli che la carta raggiunge — ed e' una scelta vera, perche'
+			# posare una condizione su casa d'altri non e' come posarla a casa
+			# propria.
+			var places: Array = _places_needed(
+				card as Dictionary, int(index), wanted, session, str(asset_id)
+			)
+			for place in places:
+				var here: Dictionary = wanted.duplicate()
+				if str(place) != "":
+					here["region_id"] = str(place)
+				var score: int = _face_score(
+					card as Dictionary, int(index), entity_id, here, session
+				)
+				if best < 0 or score > best_score:
+					best = int(index)
+					best_place = str(place)
+					best_score = score
+		if best >= 0:
+			return {
+				"asset_id": str(asset_id), "face_action": best,
+				"mark_region_id": best_place,
+			}
+	return {}
+
+
+## I posti fra cui scegliere per i segni di questa meta': `[""]` quando non
+## serve sceglierne uno — il verbo ha gia' nominato la Regione, oppure i segni
+## stampati non ne vogliono una.
+func _places_needed(
+	card: Dictionary, index: int, wanted: Dictionary, session: RefCounted, asset_id: String
+) -> Array:
+	if str(wanted.get("region_id", "")) != "":
+		return [""]
+	var places: Array = session.actions.places_for_face(asset_id, index)
+	return [""] if places.is_empty() else places
+
+
+## Gli indici delle Azioni stampate che usano quel verbo.
+static func _printed_actions(card: Dictionary, kind: String) -> Array:
+	var out: Array = []
+	var printed: Array = (card.get("physical", {}) as Dictionary).get("actions", []) as Array
+	for index in range(printed.size()):
+		if str((printed[index] as Dictionary).get("template", "")) == kind:
+			out.append(index)
+	return out
+
+
+## **Quale delle due meta' conviene** (D-283, taratura d'autore dichiarata).
+##
+## Ventinove carte su quarantotto stampano lo stesso verbo due volte: le due
+## meta' si distinguono solo per i **segni** che posano, ed e' quindi sui segni
+## che si sceglie. La regola e' piccola e situazionale, come quella
+## dell'economia del Consiglio (D-280): un segno che cade su casa mia o sulla
+## mia terra pesa contro, uno che cade altrove pesa a favore, e a parita' vince
+## la prima meta' — che e' quella che la carta stampa per prima.
+func _face_score(
+	card: Dictionary, index: int, entity_id: String, wanted: Dictionary,
+	session: RefCounted
+) -> int:
+	var printed: Array = (card.get("physical", {}) as Dictionary).get("actions", []) as Array
+	var face: Dictionary = printed[index] as Dictionary
+	var region_id: String = str(wanted.get("region_id", ""))
+	var mine: bool = false
+	if region_id != "":
+		var region: Dictionary = (session.world["regions"] as Dictionary).get(
+			region_id, {}
+		) as Dictionary
+		mine = str(region.get("control", "")) == entity_id
+	var score: int = 0
+	for tag in face.get("puts_tag", []):
+		var known: Variant = session.data.tags.get(str(tag))
+		if known == null:
+			continue
+		var category: String = str((known as Dictionary).get("category", ""))
+		var scopes: Array = (known as Dictionary).get("scope", []) as Array
+		# Una condizione e' un peso: sulla mia terra pesa contro di me, su
+		# quella di un altro pesa a suo carico.
+		if category == "STATE":
+			score += -2 if (mine or scopes.has("ENTITY")) else 2
+		else:
+			score += 1
+	for tag in face.get("clears_tag", []):
+		var known: Variant = session.data.tags.get(str(tag))
+		if known == null:
+			continue
+		# Togliere un peso vale se il peso sta a casa mia.
+		score += 2 if mine else 1
+	return score
 
 
 ## Nessuna carta per quell'intenzione: si guarda cosa la mano sa fare comunque.
@@ -875,9 +1014,19 @@ func _whatever_the_hand_allows(entity_id: String, session: RefCounted) -> Dictio
 	return plays[0] if not plays.is_empty() else {}
 
 
-## Tutte le carte che la mano puo' giocare adesso, dalla piu' debole alla piu'
-## forte. Il cervello prende la prima; il **distratto** ne prende una a caso, ed
-## e' cosi' che «fa un'altra cosa» senza mai chiedere una mossa illegale.
+## **Tutte le mosse che la mano permette adesso**, dalla carta piu' debole alla
+## piu' forte (D-285).
+##
+## Fino a qui questa lista guardava **il solo verbo dichiarato** di ogni carta e
+## **un solo bersaglio** per verbo: una mano di sette carte produceva quasi
+## sempre zero voci, e il cervello passava con quindici mosse legali sul tavolo.
+## Adesso guarda le Azioni stampate (D-283) e, per ognuna, i bersagli che quel
+## verbo accetta: e' il conto di quello che al tavolo si potrebbe davvero fare.
+##
+## Non e' un elenco di **buone** mosse: e' l'elenco di quelle possibili, in un
+## ordine che mette per prima la carta che costa meno perdere. Il cervello prende
+## la prima; il **distratto** ne pesca una a caso, ed e' cosi' che «fa un'altra
+## cosa» senza mai chiedere una mossa illegale.
 func hand_plays(entity_id: String, session: RefCounted) -> Array:
 	var out: Array = []
 	var goals: Dictionary = _tension_goals(entity_id, session)
@@ -885,27 +1034,95 @@ func hand_plays(entity_id: String, session: RefCounted) -> Array:
 		var card: Variant = session.data.assets.get(str(asset_id))
 		if card == null:
 			continue
-		var action: Dictionary = (card as Dictionary).get("card_action", {}) as Dictionary
-		if action.is_empty():
-			continue
-		var kind: String = str(action.get("kind", ""))
-		if kind == "ACQUIRE":
-			continue
-		var fixed: Dictionary = action.get("params", {}) as Dictionary
-		var params: Dictionary = {"asset_id": str(asset_id)}
-		if kind == "INFLUENCE":
+		var fixed: Dictionary = (
+			((card as Dictionary).get("card_action", {}) as Dictionary).get("params", {})
+			as Dictionary
+		)
+		var printed: Array = (
+			((card as Dictionary).get("physical", {}) as Dictionary).get("actions", []) as Array
+		)
+		for index in range(printed.size()):
+			var kind: String = str((printed[index] as Dictionary).get("template", ""))
+			if kind == "" or kind == "ACQUIRE":
+				continue
+			for wanted in _targets_for(entity_id, kind, fixed, goals, session):
+				var params: Dictionary = (wanted as Dictionary).duplicate()
+				params["asset_id"] = str(asset_id)
+				params["face_action"] = int(index)
+				var place: String = _best_place(
+					card as Dictionary, int(index), params, session, entity_id, str(asset_id)
+				)
+				if place != "":
+					params["mark_region_id"] = place
+				if session.actions.can_execute(entity_id, "PLAY_CARD", params):
+					out.append({"template": "PLAY_CARD", "params": params})
+	return out
+
+
+## I bersagli che quel verbo accetta adesso, come parametri gia' pronti. Le
+## regole li filtrano dopo — qui si propone, non si giudica — con **due
+## eccezioni dichiarate**, che sono mosse in cui il cervello farebbe male a se
+## stesso e che quindi non si propongono mai:
+##
+##  - INFLUENZARE si offre **solo nel verso che il Destino vuole**: spingere una
+##    domanda dalla parte sbagliata e' peggio che non fare niente;
+##  - FORGIARE si offre **solo in su**: rompere un patto per noia e' un prezzo,
+##    non un ripiego.
+func _targets_for(
+	entity_id: String, kind: String, fixed: Dictionary, goals: Dictionary,
+	session: RefCounted
+) -> Array:
+	var out: Array = []
+	match kind:
+		"MOVE":
+			for region_id in session.world["regions"]:
+				out.append({"region_id": str(region_id)})
+		"INFLUENCE":
 			var delta: int = int(fixed.get("delta", 1))
-			var target: String = ""
 			for tension_id in _sorted(goals.keys()):
 				if int(goals[str(tension_id)]) == delta:
-					target = str(tension_id)
-					break
-			if target == "":
-				continue
-			params["tension_id"] = target
-		if session.actions.can_execute(entity_id, "PLAY_CARD", params):
-			out.append({"template": "PLAY_CARD", "params": params})
+					out.append({"tension_id": str(tension_id)})
+		"SCHEME":
+			for tension_id in session.world["tensions"]:
+				out.append({"mode": "TENSION", "tension_id": str(tension_id)})
+			for region_id in session.world["regions"]:
+				out.append({"mode": "REGION", "region_id": str(region_id)})
+		"CLAIM":
+			var seen: Dictionary = {}
+			for tension_id in session.world["tensions"]:
+				var domain: String = str(session.service.tension_domain(str(tension_id)))
+				if domain == "" or seen.has(domain):
+					continue
+				seen[domain] = true
+				out.append({"mode": "CREATE", "domain": domain})
+		"FORGE":
+			for other in session.world["turn_order"]:
+				if str(other) == entity_id:
+					continue
+				out.append({
+					"target_entity_id": str(other), "direction": "UP", "consent": true,
+				})
 	return out
+
+
+## Il posto migliore dove far cadere i segni di questa meta', o "" se non serve
+## sceglierne uno (D-284).
+func _best_place(
+	card: Dictionary, index: int, params: Dictionary, session: RefCounted,
+	entity_id: String, asset_id: String
+) -> String:
+	var best_place: String = ""
+	var best_score: int = 0
+	for place in _places_needed(card, index, params, session, asset_id):
+		if str(place) == "":
+			continue
+		var here: Dictionary = params.duplicate()
+		here["region_id"] = str(place)
+		var score: int = _face_score(card, index, entity_id, here, session)
+		if best_place == "" or score > best_score:
+			best_place = str(place)
+			best_score = score
+	return best_place
 
 
 func _scout(entity_id: String, session: RefCounted) -> Dictionary:

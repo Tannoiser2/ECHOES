@@ -2763,6 +2763,50 @@ e' in gioco.
 
 ---
 
+### 74. ✅ I segni stampati che non trovano dove stare — chiusa in 0.1.246
+
+`motore` · `regole` · **chiusa** ([D-284](DECISIONS.md#d-284))
+
+**Chiusa e misurata**: 862 segni stampati sulle Azioni calate in 100 anni,
+**862 posati, 0 senza soggetto**. La carta dice il posto col suo bersaglio a
+segni; chi cala lo sceglie fra i luoghi che raggiunge. Il testo originale:
+
+Con D-283 le Azioni stampate posano i loro segni. Su 100 anni: **851 segni
+stampati sulle Azioni calate, 537 posati, 314 senza un soggetto** — quasi tutti
+condizioni di Regione (`condition:contested` 160 volte) su mosse che una Regione
+non la nominano: INFLUENZARE parla a una domanda, FORGIARE a una casa.
+
+Non si scrivono altrove — sarebbe posare un segnalino dove al tavolo nessuno
+saprebbe metterlo — quindi la carta dice una cosa che non succede. Al tavolo la
+risposta c'è già: **il bersaglio è stampato sulla faccia**, a segni (D-274).
+Serve che la scelta del posto arrivi anche ai verbi che oggi non la chiedono.
+
+**Fatto quando** i segni senza soggetto sono zero su 100 anni, e il cancello
+tiene.
+
+---
+
+### 75. ✅ Le Memorie che nessuno legge — quindici tornano a mordere in 0.1.248
+
+`contenuto` · `debito` · **aperta in 0.1.245** · **chiusa in 0.1.248**
+([D-286](DECISIONS.md#d-286))
+
+**Chiusa, e con una correzione al testo di apertura**: le 27 non erano un
+difetto — ognuna porta la sua ragione scritta, e quindici dicevano «memoria del
+mondo: narrata, ereditata». Il difetto vero era che **la pesca dell'era
+successiva non ascoltava nessuna memoria**. Adesso quindici stanno negli
+`echoes` delle Chronicle, e in **21 anni su 30** almeno una chiama la sua
+domanda per l'anno dopo.
+
+Restano fuori, dichiarate: le sei che sono **marchi sulla carta del casato**
+(D-278) — ha parlato e ha perso, si è servito, la parola fredda — che si
+leggono al tavolo e non in una regola, e quattro memorie narrate senza una
+domanda propria.
+
+**Il testo originale:**
+
+---
+
 ### 73. Nessuna prova lega la domanda a quello che si può toccare
 
 `ux` · `motore` · `debito` · **aperta e in parte chiusa in 0.1.243**
@@ -3000,10 +3044,26 @@ Risonanza, e il Tema che ne esce è quello scritto sulla carta.
 
 ---
 
-### 68. Otto turni su dieci non succede niente
+### 68. Otto turni su dieci non succede niente — **quattro su dieci in 0.1.247**
 
 `bilanciamento` · **misurata in 0.1.216** ([D-254](DECISIONS.md#d-254)) ·
-**prima cura in 0.1.217** ([D-255](DECISIONS.md#d-255)) · **aperta**
+**prima cura in 0.1.217** ([D-255](DECISIONS.md#d-255)) · **cura vera in
+0.1.247** ([D-285](DECISIONS.md#d-285)) · **aperta, ma di un altro ordine**
+
+**Aggiornamento 0.1.247.** La causa non era il mazzo né le regole: il cervello
+aveva le mosse e non aveva fame. Il ripiego «fai quello che la mano permette»
+non veniva mai provato, e la lista delle mosse possibili guardava un solo verbo
+per carta e un solo bersaglio per verbo. Adesso si passa il **42,1%** dei turni
+invece dell'**82,1%**, il **55%** delle carte pescate si cala (era il 23,2%) e
+**nessuna carta resta muta** in 100 anni (erano 3).
+
+Resta aperta perché quattro turni su dieci sono ancora fermi: sono quelli in cui
+la mano è **alla riserva** che il Consiglio richiede. Il prossimo numero da
+guardare non è il passare — è **quanto rende un turno pieno**: 256 Verità
+scritte contro le 295 di prima dicono che spendere sulla mappa toglie voce al
+Consiglio, e quel cambio va tarato con il committente.
+
+**Il testo originale:**
 
 Il committente l'ha visto giocando: *«17 turni su 24 sono passa»*. Su 100 anni e
 **7.200 turni** il numero è peggiore ancora, ed è lo stesso a tavolo misto e

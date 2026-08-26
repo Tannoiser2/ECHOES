@@ -60,7 +60,6 @@ var _leaders: int = 0
 ## La pista del Calore (PZ-1): se un Tema e' caldo, e' lei che sceglie la
 ## Domanda di fine Atto, e il mucchio piu' alto torna a essere una classifica.
 var _any_theme_hot: bool = false
-var _heat_line: Label
 
 
 ## Accende i posti dove la carta tenuta in mano puo' andare, e spegne gli altri.
@@ -71,6 +70,10 @@ func hold(places: Dictionary) -> void:
 		(slots[where] as Object).call("light", held_places.has(str(where)))
 var _claims: VBoxContainer
 var _claims_header: Label
+## Le righe che dicono a cosa serve il blocco: seguono la sorte della loro
+## intestazione, perche' una spiegazione senza la cosa spiegata e' rumore.
+var _claims_note: Label
+var _signs_note: Label
 var _signs: VBoxContainer
 var _signs_header: Label
 var _title: Label
@@ -116,18 +119,25 @@ func render(session: RefCounted, viewer_id: String) -> void:
 
 func _build() -> void:
 	_title = Label.new()
-	_title.text = "LE DOMANDE DELL'ANNO"
+	_title.text = "LE QUESTIONI GIA' APERTE"
 	_title.add_theme_font_size_override("font_size", 12)
 	_title.add_theme_color_override("font_color", Color("#8a8172"))
 	add_child(_title)
-	# La pista del Calore, come sta sul tavolo: sei Temi, un numero ciascuno.
-	# E' pubblica per costruzione — un segnalino su una pista non si vela.
-	_heat_line = Label.new()
-	_heat_line.add_theme_font_size_override("font_size", 11)
-	_heat_line.add_theme_color_override("font_color", Color("#b06b46"))
-	_heat_line.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	_heat_line.visible = false
-	add_child(_heat_line)
+	# **Ogni blocco della colonna dice cosa e', in una riga** (D-282).
+	#
+	# Parola del committente: *«sulla colonna di destra non si capisce nulla»*,
+	# seguita dall'elenco di quello che ci trovava — i mazzetti, «le domande
+	# dell'anno (?)», i rapporti, i segni, il Destino, «poi ancora quattro
+	# tensioni (?)». Aveva ragione due volte: **le stesse informazioni erano
+	# li' tre volte** (i sei mazzetti disegnati, la riga CALORE che li
+	# ripeteva a parole, le quattro barre), e nessun blocco diceva a cosa
+	# servisse. Al tavolo non serve: una plancia ha le sue caselle stampate
+	# accanto. Sullo schermo la riga sotto l'intestazione **e' quella stampa**.
+	add_child(_note(
+		"Le domande gia' sul tavolo quest'anno. INFLUENZARE e TRAMARE ne muovono"
+		+ " la pressione; se a fine Atto nessun mazzetto e' caldo, il Consiglio"
+		+ " si apre sulla piu' alta di queste."
+	))
 
 
 ## I mazzetti dei Temi, in una riga (D-261): quanti gettoni **coperti** ha
@@ -139,7 +149,6 @@ func _build() -> void:
 func _render_heat(session: RefCounted) -> void:
 	_any_theme_hot = false
 	if not _at_end_of_act:
-		_heat_line.visible = false
 		return
 	var counts: Dictionary = session.world.get("theme_tokens", {}) as Dictionary
 	var fronts: Dictionary = session.world.get("theme_front", {}) as Dictionary
@@ -155,9 +164,6 @@ func _render_heat(session: RefCounted) -> void:
 			line += " → %s" % str(session.data.tensions[front]["title"])
 		said.append(line)
 	_any_theme_hot = not said.is_empty()
-	_heat_line.visible = _any_theme_hot
-	if _any_theme_hot:
-		_heat_line.text = "CALORE  %s  ·  a fine Atto si girano" % "   ".join(said)
 
 
 ## La riga di una domanda, dentro il suo posto: da D-231 una carta che
@@ -257,6 +263,9 @@ func _update_relations(session: RefCounted, viewer_id: String) -> void:
 		header.add_theme_font_size_override("font_size", 12)
 		header.add_theme_color_override("font_color", Color("#8a8172"))
 		add_child(header)
+		add_child(_note(
+			"Come stai con le altre case. FORGIARE sposta un rapporto di un passo, e i Destini li contano."
+		))
 		_relations = VBoxContainer.new()
 		_relations.add_theme_constant_override("separation", 1)
 		add_child(_relations)
@@ -304,6 +313,10 @@ func _update_claims(session: RefCounted, viewer_id: String) -> void:
 		_claims_header.add_theme_font_size_override("font_size", 12)
 		_claims_header.add_theme_color_override("font_color", Color("#8a8172"))
 		add_child(_claims_header)
+		_claims_note = _note(
+			"Chi ha rivendicato cosa: un Diritto maturo apre un secondo Consiglio nell'Atto."
+		)
+		add_child(_claims_note)
 		_claims = VBoxContainer.new()
 		_claims.add_theme_constant_override("separation", 1)
 		add_child(_claims)
@@ -329,6 +342,7 @@ func _update_claims(session: RefCounted, viewer_id: String) -> void:
 		shown += 1
 	# Senza diritti la sezione sparisce, come i segni: niente intestazioni vuote.
 	_claims_header.visible = shown > 0
+	_claims_note.visible = shown > 0
 	_claims.visible = shown > 0
 
 
@@ -345,6 +359,10 @@ func _update_signs(session: RefCounted, viewer_id: String) -> void:
 		_signs_header.add_theme_font_size_override("font_size", 12)
 		_signs_header.add_theme_color_override("font_color", Color("#8a8172"))
 		add_child(_signs_header)
+		_signs_note = _note(
+			"Quello che la tua casa si porta addosso: fama, scoperte, promesse. Carte, Domande e Destini li leggono."
+		)
+		add_child(_signs_note)
 		_signs = VBoxContainer.new()
 		_signs.add_theme_constant_override("separation", 1)
 		add_child(_signs)
@@ -355,6 +373,7 @@ func _update_signs(session: RefCounted, viewer_id: String) -> void:
 	var holder: Variant = session.world["entities"].get(viewer_id)
 	if holder == null:
 		_signs_header.visible = false
+		_signs_note.visible = false
 		_signs.visible = false
 		return
 	var tags: Array = (holder["tags"] as Array).duplicate()
@@ -373,7 +392,20 @@ func _update_signs(session: RefCounted, viewer_id: String) -> void:
 		shown += 1
 	# Senza segni la sezione sparisce: un'intestazione sopra il nulla è rumore.
 	_signs_header.visible = shown > 0
+	_signs_note.visible = shown > 0
 	_signs.visible = shown > 0
+
+
+## La riga che dice a cosa serve il blocco sopra (D-282). Piccola e grigia:
+## si legge la prima volta e poi si smette di vederla, che e' esattamente il
+## comportamento di una scritta stampata sulla plancia.
+func _note(text: String) -> Label:
+	var line := Label.new()
+	line.text = text
+	line.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	line.add_theme_font_size_override("font_size", 10)
+	line.add_theme_color_override("font_color", Color("#6c6457"))
+	return line
 
 
 func _spacer() -> Control:
@@ -393,6 +425,9 @@ func _update_destiny(session: RefCounted, viewer_id: String) -> void:
 		header.add_theme_font_size_override("font_size", 12)
 		header.add_theme_color_override("font_color", Color("#8a8172"))
 		add_child(header)
+		add_child(_note(
+			"Chi sei e cosa vuoi: le due carte che dicono a che gioco stai giocando quest'anno."
+		))
 		# I tarocchi dietro il paravento (D-101): la Casata e il Destino del
 		# seggio sono le carte 70x120 dei fogli di stampa - il Destino lo vede
 		# solo chi lo giura, come al tavolo, perche' questo pannello e' gia'

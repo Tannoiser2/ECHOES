@@ -366,10 +366,25 @@ func _build() -> void:
 	reading.add_child(decks_column)
 
 	var decks_title := Label.new()
-	decks_title.text = "I MAZZETTI DEI TEMI"
+	decks_title.text = "I SEI MAZZETTI — DI COSA SI PARLERA'"
 	decks_title.add_theme_font_size_override("font_size", 12)
 	decks_title.add_theme_color_override("font_color", Color("#8a8172"))
 	decks_column.add_child(decks_title)
+
+	# **E cosa sono, in una riga** (D-282). *«Sulla colonna di destra non si
+	# capisce nulla»*: sei mazzetti disegnati non dicono da soli perche' sono
+	# li'. Al tavolo la plancia ha la sua scritta accanto; qui la scritta e'
+	# questa.
+	var decks_note := Label.new()
+	decks_note.text = (
+		"Ogni carta giocata fa cadere un gettone coperto sul Tema che scalda."
+		+ " Al secondo gettone il mazzetto gira la sua prima carta: quella e' la"
+		+ " questione. A fine Atto il mazzetto piu' caldo apre il Consiglio."
+	)
+	decks_note.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	decks_note.add_theme_font_size_override("font_size", 10)
+	decks_note.add_theme_color_override("font_color", Color("#6c6457"))
+	decks_column.add_child(decks_note)
 
 	_decks = ThemeDecksView.new()
 	_decks.custom_minimum_size = Vector2(0, 190)

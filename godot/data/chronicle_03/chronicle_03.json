@@ -261,20 +261,28 @@
             "mine_sealed",
             "crystal_exploited",
             "study_supervised",
-            "condition:exploited"
+            "condition:exploited",
+            "crystal_measured",
+            "descent_witnessed",
+            "knowledge_shared"
           ],
           "TEN_CHARTER": [
             "charter_written",
-            "no_charter"
+            "no_charter",
+            "charter_for_all",
+            "charter_temporary"
           ],
           "TEN_DEBT": [
             "debt_called",
-            "condition:indebted"
+            "condition:indebted",
+            "debt_staggered"
           ],
           "TEN_FAMINE": [
             "grain_requisitioned",
             "condition:starving",
-            "condition:rationed"
+            "condition:rationed",
+            "distribution_audited",
+            "quota_guaranteed"
           ],
           "TEN_NAMELESS": [
             "faith_established",
@@ -288,17 +296,22 @@
           "TEN_RELIC": [
             "relic_shown",
             "relic_buried",
-            "structure:sealed"
+            "structure:sealed",
+            "relic_recorded"
           ],
           "TEN_ROADS": [
             "condition:cut_off",
             "condition:plundered",
-            "structure:tollgate"
+            "structure:tollgate",
+            "toll_shared"
           ],
           "TEN_SUCCESSION": [
             "crown_divided",
             "crown_dispossessed",
-            "oath_broken"
+            "oath_broken",
+            "amnesty_granted",
+            "succession_witnessed",
+            "succession_settled"
           ],
           "TEN_THIRST": [
             "valley_sealed",
@@ -306,7 +319,9 @@
           ],
           "TEN_WATER": [
             "water_priced",
-            "condition:starving"
+            "condition:starving",
+            "water_shared",
+            "water_rights"
           ]
         }
       },
@@ -456,20 +471,28 @@
             "mine_sealed",
             "crystal_exploited",
             "study_supervised",
-            "condition:exploited"
+            "condition:exploited",
+            "crystal_measured",
+            "descent_witnessed",
+            "knowledge_shared"
           ],
           "TEN_CHARTER": [
             "charter_written",
-            "no_charter"
+            "no_charter",
+            "charter_for_all",
+            "charter_temporary"
           ],
           "TEN_DEBT": [
             "debt_called",
-            "condition:indebted"
+            "condition:indebted",
+            "debt_staggered"
           ],
           "TEN_FAMINE": [
             "grain_requisitioned",
             "condition:starving",
-            "condition:rationed"
+            "condition:rationed",
+            "distribution_audited",
+            "quota_guaranteed"
           ],
           "TEN_NAMELESS": [
             "faith_established",
@@ -483,17 +506,22 @@
           "TEN_RELIC": [
             "relic_shown",
             "relic_buried",
-            "structure:sealed"
+            "structure:sealed",
+            "relic_recorded"
           ],
           "TEN_ROADS": [
             "condition:cut_off",
             "condition:plundered",
-            "structure:tollgate"
+            "structure:tollgate",
+            "toll_shared"
           ],
           "TEN_SUCCESSION": [
             "crown_divided",
             "crown_dispossessed",
-            "oath_broken"
+            "oath_broken",
+            "amnesty_granted",
+            "succession_witnessed",
+            "succession_settled"
           ],
           "TEN_THIRST": [
             "valley_sealed",
@@ -501,7 +529,9 @@
           ],
           "TEN_WATER": [
             "water_priced",
-            "condition:starving"
+            "condition:starving",
+            "water_shared",
+            "water_rights"
           ]
         }
       },

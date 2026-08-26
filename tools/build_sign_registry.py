@@ -62,10 +62,15 @@ CLEAR_TYPES = {"REMOVE_REGION_TAG", "REMOVE_GLOBAL_TAG", "REMOVE_ENTITY_TAG"}
 MUTI_NOTI: Dict[str, str] = {
     "account_settled": "«Il Conto Saldato» chiude un debito e nessuna regola lo sa — 4 volte in 100 anni",
     "burden_shared": "il peso diviso non alleggerisce niente — 2 volte in 100 anni",
+    # Memorie del mondo che il Consiglio scrive e che nessuna regola interroga
+    # (D-103, D-286): restano perche' il tavolo le legge — sono la cronaca
+    # dell'anno, non un requisito. Chi vuole farle mordere le aggiunge agli
+    # echi della loro domanda, come D-286 ha fatto con tredici sorelle.
+    "list_witnessed": "la lista letta davanti a testimoni: memoria narrata, nessuna regola la chiede",
+    "someone_paid": "qualcuno ha pagato: il marchio di una decisione passata al prezzo di chi non c'e' piu' — si legge al centro del tavolo, non in una regola (D-278)",
+    "return_promised": "il ritorno promesso: memoria narrata, e la promessa non ha ancora una regola",
     "dragon_slain": "«Il Drago Abbattuto» — e il mondo non se ne accorge. Non esce mai in 100 anni: la Conseguenza non e' mai stata scelta (ISSUES 56)",
     "settlement:$proponent": "chi ci vive, scritto sulla mappa: la regola e' la pietra che la Conseguenza alza accanto — 50 volte in 100 anni",
-    "succession_settled": "la successione risolta non entra in nessuna condizione — 14 volte in 100 anni",
-    "water_rights": "i diritti sull'acqua non sono un requisito di niente — 18 volte in 100 anni",
     # I marchi che la pedina del prezzo lascia (D-278). Nascono col loro posto
     # sul tavolo — sulla tessera, sulla carta del casato, al centro — e per ora
     # nessuna clausola del motore li interroga: e' dichiarato qui e nel
@@ -212,9 +217,43 @@ def collect() -> Dict[str, Dict[str, Set[str]]]:
     for card in items("assets/*.json"):
         for role, tag in tags_in_effects(card.get("on_commit_effects")):
             note(tag, role, "carta Asset")
+        # **La faccia della carta e' una penna** (D-283): da quando il motore
+        # esegue `puts_tag` e `clears_tag` delle Azioni stampate, quei segni
+        # finiscono sul mondo per davvero. Prima erano inchiostro, e il registro
+        # aveva ragione a non contarli; adesso contarli e' l'unico modo di non
+        # dire il falso.
+        face = card.get("physical") or {}
+        for action in face.get("actions", []) or []:
+            for tag in (action or {}).get("puts_tag", []) or []:
+                note(str(tag), "scrive", "Azione stampata")
+            for tag in (action or {}).get("clears_tag", []) or []:
+                note(str(tag), "cancella", "Azione stampata")
+        resonance = face.get("resonance") or {}
+        if resonance.get("extra_tag"):
+            note(str(resonance["extra_tag"]), "scrive", "Risonanza")
+        # E la faccia **legge** quanto scrive: il bersaglio si dice a segni
+        # (D-274) e la Risonanza guarda il segno che teme. Insegnare al
+        # registro solo la penna e non l'occhio avrebbe dichiarato muti dei
+        # segni che una carta interroga a ogni giocata.
+        if resonance.get("if_target_tag"):
+            note(str(resonance["if_target_tag"]), "legge", "Risonanza")
+        target = face.get("target") or {}
+        for campo in ("any_tag", "forbidden_tag"):
+            for tag in target.get(campo, []) or []:
+                note(str(tag), "legge", "bersaglio a segni")
     for echo in items("echoes/*.json"):
         for hook in echo.get("effect_hooks", []) or []:
-            payload = hook.get("effects") if isinstance(hook, dict) and "effects" in hook else [hook]
+            payload: Any = [hook]
+            if isinstance(hook, dict):
+                # Un gancio porta `effects` (piu' d'uno) **oppure** `effect`
+                # (uno solo). La seconda forma non veniva guardata, e due
+                # memorie — «ci si e' parlato», «la richiesta e' stata
+                # ascoltata» — risultavano chieste da una Risonanza e scritte
+                # da nessuno (D-286).
+                if "effects" in hook:
+                    payload = hook["effects"]
+                elif "effect" in hook:
+                    payload = [hook["effect"]]
             for role, tag in tags_in_effects(payload):
                 note(tag, role, "carta Echo")
 
@@ -242,6 +281,15 @@ def collect() -> Dict[str, Dict[str, Set[str]]]:
                 for proposition in template.get("propositions", []) or []:
                     readers(proposition.get("eligibility"), "proposta")
                     readers(proposition.get("conditions"), "proposta")
+                # **La penna del Consiglio** (D-286): una clausola vinta posa i
+                # suoi segni sul mondo — l'amnistia concessa, la Carta che vale
+                # per un tempo solo, la successione con testimoni. Il registro
+                # non guardava qui, e quelle memorie risultavano scritte da
+                # nessuno: un allarme falso su contenuto sano, che si e' visto
+                # solo il giorno in cui qualcuno ha cominciato a leggerle.
+                for clause in template.get("condition_clauses", []) or []:
+                    for role, tag in tags_in_effects((clause or {}).get("effects")):
+                        note(tag, role, "clausola di Consiglio")
     # Le altre tre penne che scrivono sul mondo, e che una scansione dei soli
     # Effetti non vede: l'apertura della Chronicle, le Regioni come nascono, e
     # le **catene** — un fatto che si ripete di era in era avanza di un gradino
@@ -372,7 +420,13 @@ lettori: disegnare non e' mordere.
 
 # Le clausole impossibili ancora tollerate, con la ragione. Oggi non ce ne sono,
 # e quello zero e' un cancello: vedi `impossibili()`.
-CHIESTI_NOTI: Dict[str, str] = {}
+CHIESTI_NOTI: Dict[str, str] = {
+    # Il bersaglio a segni di «Pedaggio» nomina la strada, e la strada non e' un
+    # segno che qualcuno posa: il motore la conta dalle strutture sulla mappa
+    # (lo dice anche il dizionario). Visibile solo da D-286, da quando il
+    # registro sa che una faccia di carta legge.
+    "structure:road": "la strada non e' un segno posato: il motore la conta dalle strutture sulla mappa",
+}
 
 
 def impossibili(signs: Dict[str, Dict[str, Set[str]]]) -> List[str]:

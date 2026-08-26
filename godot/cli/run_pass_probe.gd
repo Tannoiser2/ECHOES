@@ -101,8 +101,16 @@ class Witness extends RefCounted:
 			var asset: Variant = session.data.assets.get(str(asset_id))
 			if asset == null:
 				continue
-			if str(((asset as Dictionary).get("card_action", {}) as Dictionary).get("kind", "")) == verb:
-				found += 1
+			# **I verbi di una carta sono quelli stampati sulla faccia** (D-283):
+			# leggere il solo `card_action.kind` diceva «non ne aveva nessuna»
+			# di carte che quel verbo lo dicono eccome.
+			for action in (
+				((asset as Dictionary).get("physical", {}) as Dictionary).get("actions", [])
+				as Array
+			):
+				if str((action as Dictionary).get("template", "")) == verb:
+					found += 1
+					break
 		return found
 
 
