@@ -2763,9 +2763,85 @@ e' in gioco.
 
 ---
 
-### 85. Il quarto beneficio non si compra mai, e la Cicatrice non scatta
+### 87. Sessantasette Effetti d'autore parlano la lingua delle caselle
 
-`regole` · `motore` · **aperta in 0.1.264** ([D-301](DECISIONS.md#d-301))
+`contenuto` · `regole` · **aperta in 0.1.267** ([D-305](DECISIONS.md#d-305))
+
+Dopo [D-305](DECISIONS.md#d-305) la frase d'autore non scavalca piu' la carta.
+Ma resta il fatto che le due grammatiche dicono spesso la stessa cosa: fra le
+Conseguenze spedite, **67 Effetti** fanno esattamente quello che le sei caselle
+del prezzo e le cinque del beneficio fanno.
+
+| Effetto d'autore | quanti | la casella che dice la stessa cosa |
+|---|---|---|
+| `SET_REGION_TAG` | 35 | AGGIUNGI CONDIZIONE, PEDAGGIO, PRENDI DEBITO |
+| `SET_CONTROL` | 14 | CAMBIA CONTROLLO, CEDI CONTROLLO |
+| `REMOVE_REGION_TAG` | 11 | RIMUOVI CONDIZIONE, RIAPRI |
+| `BUILD_STRUCTURE` | 7 | COSTRUISCI PIETRA |
+
+Il danno non e' piu' lo scavalco — quello D-305 l'ha chiuso. E' che **quando la
+frase regala gratis quello che la carta vende, il beneficio comprato resta un
+acquisto a vuoto**: il proponente ha pagato un costo per una cosa che sarebbe
+successa comunque. Il caso del Granaio adesso e' coperto (la Pietra passa a chi
+l'ha comprata), ma un `SET_REGION_TAG` d'autore che posa lo stesso segno di una
+casella no.
+
+Si vede a occhio nudo in una prova: `test_the_card_says_what_it_left_behind`
+deve **fabbricarsi il silenzio** della frase d'autore per riuscire a vedere
+cosa lascia la casella comprata.
+
+Tre letture, e la scelta e' del committente:
+
+1. **le frasi smettono di fare il mestiere delle caselle** — restano il
+   racconto, e il mondo lo cambiano le pedine. E' la direzione di D-280 portata
+   fino in fondo, ed e' il lavoro piu' grosso: 67 Effetti da riscrivere;
+2. **la casella non si paga se non lascia niente** — il costo si restituisce
+   quando il beneficio comprato e' un no-op. Regola nuova al tavolo, e da
+   spiegare;
+3. **si tiene cosi' e si dichiara** — la sovrapposizione e' voluta, la frase
+   ripete la casella perche' e' la stessa cosa detta due volte, e chi compra
+   compra la certezza.
+
+### 86. ✅ La frase d'autore riscriveva la carta — chiusa in 0.1.267
+
+`motore` · `regole` · aperta in 0.1.266 ([D-304](DECISIONS.md#d-304)) ·
+**chiusa da [D-305](DECISIONS.md#d-305)**: scelta del committente, **la carta
+vince**. Misurato prima di toccare niente: la frase passava sopra la carta
+**62 volte in 40 anni** (38 controlli riassegnati, 24 segni tolti). Adesso la
+carta si spende per ultima, e una Pietra gia' alzata passa a chi l'ha comprata.
+Il costo dichiarato: le vite che non si siedono mai passano da 6 a 7.
+
+Nell'ordine di `resolve()` la carta si spende **prima** e le Conseguenze
+d'autore del template **dopo**. Quindi una Conseguenza che assegna il controllo
+di un luogo riscrive quello che la casella CAMBIA CONTROLLO della carta ha
+appena deciso — compresa la casella rivendicata da una controproposta, che
+diventa muta senza che il verbale dica che e' stata sovrascritta.
+
+Visto con gli occhi mentre si costruiva la prova di D-304: la casella
+fabbricata prendeva il controllo per il rivendicante, e a fine risoluzione il
+luogo era del proponente. La prova adesso guarda una **Pietra** invece del
+controllo, perche' una Pietra costruita nessuno la riscrive.
+
+Tre letture, e la scelta e' del committente:
+
+1. **la carta vince** — le due liste sono l'economia esplicita di D-280, e
+   quello che il tavolo ha comprato e pagato non dovrebbe essere cancellato da
+   una frase che non ha scelto nessuno: si spenderebbe la carta **dopo**;
+2. **la frase vince, ma lo dice** — resta l'ordine di adesso, e il verbale
+   scrive «questa voce e' stata sovrascritta da», cosi' al tavolo si vede;
+3. **non si incrociano** — le Conseguenze d'autore smettono di assegnare
+   controllo, che e' mestiere delle caselle.
+
+Quanto spesso capita non e' ancora misurato: serve una sonda che conti i
+CAMBIA CONTROLLO della carta annullati dalla frase nello stesso Consiglio.
+
+### 85. ✅ Il quarto beneficio non si compra mai — chiusa in 0.1.266
+
+`regole` · `motore` · aperta in 0.1.264 ([D-301](DECISIONS.md#d-301)) ·
+**chiusa da [D-303](DECISIONS.md#d-303)**: parola del committente, *«io a questo
+punto toglierei la cicatrice, la lascerei come effetto malus o passivo»*. Il
+tetto e' tre secco, la Cicatrice resta uno dei sei costi. La riga che sparisce
+valeva uno e costava quattro.
 
 [D-280](DECISIONS.md#d-280) dice: *«un beneficio e' gratis, ogni altro costa un
 costo, e una Cicatrice ne compra uno oltre il limite»*. Misurato su 40 anni e

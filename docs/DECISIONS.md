@@ -10,6 +10,175 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-305 — La carta vince sulla frase d'autore
+
+**implemented** (0.1.267) · chiude [ISSUES 86](ISSUES.md)
+
+Scelta del committente fra le tre aperte da ISSUES 86: **la carta vince**.
+
+Le due liste stampate sono l'economia esplicita di [D-280](#d-280) — il
+proponente le compra, gli avversari le fanno pagare, il rivendicante ci posa la
+pedina. Quello che il tavolo ha scelto e pagato non lo cancella una frase che
+non ha scelto nessuno.
+
+### Quanto capitava, misurato prima di toccare niente
+
+ISSUES 86 diceva *«quanto spesso capita non e' ancora misurato»*. Adesso lo e':
+in 40 anni e 176 Consigli la frase d'autore passava sopra la carta **62 volte** —
+**38** riassegnazioni di controllo e **24** segni tolti da un luogo dove la
+carta li aveva appena posati. Circa un Consiglio su tre, e sempre in silenzio:
+il verbale non diceva che una casella comprata e pagata era stata cancellata.
+
+### Cosa cambia
+
+**L'ordine.** `_spend_the_card()` era chiamata *prima* delle Conseguenze;
+adesso e' l'ultima cosa che tocca il mondo, dopo la frase d'autore e dopo la
+clausola qualificata. La frase racconta, e poi la carta lascia il segno.
+
+**E la Pietra gia' alzata.** Girato l'ordine e' saltata fuori la stessa
+malattia allo specchio: la frase costruiva il Granaio *prima*, e il beneficio
+comprato «Costruisci 1 Pietra: Granaio» diventava un no-op silenzioso — il
+proponente aveva pagato un costo per niente. Al tavolo pero' **c'e' un Granaio
+solo**, e quello e' quello che il Consiglio ha comprato: adesso passa a chi
+l'ha comprato. Serve un EffectType nuovo, `SET_STRUCTURE_OWNER`, che si inverte
+su se stesso col padrone di prima — la stessa forma di `SET_CONTROL`, e per la
+stessa ragione: la Pietra resta dov'e', cambia di chi e'.
+
+### I costi dichiarati
+
+| | prima | dopo |
+|---|---|---|
+| scavalchi della frase sulla carta | 62 in 40 anni | **0** |
+| la carta scrive il controllo per ultima | mai | 49 volte in 40 anni |
+| trasformazioni sedute (su 168 salti) | 186 | **174** |
+| **vite che non si sono mai sedute** | 6 | **7** |
+
+**Il numero peggiorato, scritto**: una vita in piu' non si siede mai. E' «Il
+Banco Nero» (ENT_SALE, porta `debt_called`), che era gia' al limite — una saga
+su ventiquattro — e adesso e' a zero. Con un campione di ventiquattro saghe una
+vita che passa da 1 a 0 e' dentro il rumore; le trasformazioni che scendono del
+6% no. Cambiando l'ordine in cui il mondo si scrive cambia quali segni arrivano
+e quando, e le porte delle vite si aprono meno. Non l'ho inseguito ritoccando i
+dati: un numero aggiustato per far contenta una sonda vale meno di un numero
+peggiorato e detto.
+
+Playtest 100 semi: **0 seggi bloccati su 8**, misto e uniforme. Suite 610.
+
+### Quello che resta aperto
+
+**67 Effetti d'autore parlano ancora la lingua delle caselle** — 35
+`SET_REGION_TAG`, 14 `SET_CONTROL`, 11 `REMOVE_REGION_TAG`, 7
+`BUILD_STRUCTURE`. Non si scavalcano piu', ma dicono la stessa cosa due volte,
+e quando la frase regala gratis quello che la carta vende, il beneficio
+comprato resta un acquisto a vuoto. E' [ISSUES 87](ISSUES.md), ed e' contenuto,
+non motore.
+
+---
+
+## D-304 — La pedina del RIVENDICARE si posa sulla carta
+
+**implemented** (0.1.266)
+
+Parola del committente, che e' anche la diagnosi: *«non ho capito come si
+scelgono i benefici o i malus, non avevamo detto che chi propone sceglie un
+beneficio e poi ogni carta con azione rivendicazione permette di mettere un
+segnalino su un beneficio o un malus»*.
+
+Aveva ragione due volte. La regola era quella che ricordava — ed era scritta
+in [D-268](#d-268) — ma **le due meta' del Consiglio parlavano due lingue
+diverse**, e per questo al tavolo non si capiva.
+
+### Il difetto
+
+Il proponente compra dalla **faccia della carta** (`physical.benefits`, D-280).
+Il rivendicante posava la pedina su `claimable_benefits()`, che tornava le
+**Conseguenze di successo del template** — la grammatica vecchia, un elenco
+completamente diverso. Due pedine, due tabelloni.
+
+Adesso e' **una pedina su una pedina**: `claimable_benefits()` torna le caselle
+che il proponente ha *davvero comprato*, la pedina si posa solo li', e a
+proposta passata quella voce compila col rivendicante al posto del proponente —
+la Pietra la alza lui, il controllo lo prende lui. Le altre restano del
+proponente: la controproposta prende **una casella, non la carta**.
+
+Una casella stampata ma non comprata **non si rivendica**: e' una prova che
+morde ([`test_counterclaim.gd`](../godot/tests/unit/test_counterclaim.gd)).
+
+### Il secondo strato, che si vedeva solo dopo aver tolto il primo
+
+Rimessa in fila la grammatica, le voci rivendicate sono andate a **zero**, e la
+sonda diceva `mine=3 theirs=3` su ogni CAMBIA CONTROLLO. Non era la sonda: era
+il cervello. `_score_effect` valutava il passaggio di controllo solo quando il
+nuovo padrone era il **segnaposto** `$proponent` — che e' come arriva dalla
+frase d'autore. Ma `CouncilEconomy.effects_for` **risolve il nome prima**, e
+quindi ogni CAMBIA CONTROLLO stampato su una carta valeva **zero per chiunque**:
+il proponente non lo vedeva quando comprava, il rivendicante non lo vedeva
+quando decideva se posarci la pedina.
+
+Il ramo adesso risolve il segnaposto e poi confronta col nome vero. Vale per
+tutte e due le grammatiche.
+
+### I numeri, su 40 anni
+
+| | prima | dopo |
+|---|---|---|
+| voci del beneficio rivendicate e passate | 13 (ma su un altro elenco) | **9, sulla carta** |
+| controproposte | 38 | 17 |
+| pedine del prezzo posate | 28 (18%) | 32 (18%) |
+| voci di prezzo davvero scattate | 9 diverse | 10 diverse |
+| Cicatrici scattate | 17 | 7 |
+
+**Il costo dichiarato**: le controproposte scendono da 38 a 17, perche' il
+diritto adesso si spende solo quando vale — e piu' spesso si tiene per il
+secondo dibattito. Le Cicatrici scattate scendono da 17 a 7: il fronte avverso,
+che adesso vede a chi va il controllo, sceglie piu' spesso CEDI CONTROLLO che
+CICATRICE. Nessuna delle due e' un peggioramento del gioco, ma sono due numeri
+che si muovono, e vanno scritti.
+
+| trasformazioni sedute (su 168 salti) | 187 | 186 |
+
+E uno scambio al fondo della misura delle vite: «La Leggenda della Montagna»
+esce dal tavolo (1 → 0 saghe su ventiquattro) e «Il Banco Nero» ci entra
+(0 → 1). Le vite che non si siedono mai restano **sei**: cambia quale, non
+quante.
+
+Playtest 100 semi: **0 seggi bloccati su 8**, misto e uniforme.
+
+### Quello che resta aperto
+
+Le Conseguenze d'autore si applicano **dopo** la carta e possono riscrivere
+quello che la carta ha appena fatto — ISSUES 86.
+
+---
+
+## D-303 — Via la Cicatrice come moneta d'acquisto: resta un malus
+
+**implemented** (0.1.266)
+
+Parola del committente, sulle tre strade aperte da [D-302](#d-302): *«io a
+questo punto toglierei la cicatrice, la lascerei come effetto malus o
+passivo»*.
+
+Fatto. Il tetto dei benefici e' **tre secco** e non si sfonda: `benefit_ceiling()`
+non esiste piu', `costs_due()` non aggiunge la Cicatrice, `priced_costs()` non
+sostituisce piu' un costo scelto con la Cicatrice obbligata, e il cervello ha
+una sbarra sola invece di due.
+
+La Cicatrice **resta uno dei sei costi**, che e' quello che al tavolo era gia':
+misurato, si posava 17 volte in 40 anni **come prezzo scelto dagli avversari**,
+e mai come moneta d'acquisto. Toglierle il secondo mestiere non le toglie
+niente: le toglie una riga che il tavolo non ha mai giocato.
+
+**Il costo dichiarato: nessuno.** La riga che sparisce non era mai stata
+esercitata — [D-302](#d-302) l'ha resa raggiungibile apposta per misurarla, e
+il verdetto era `score=1 worst=-2 scar=-2 → -3`: valeva uno e costava quattro.
+Playtest 0 su 8, suite verde. Chiude **ISSUES 85**.
+
+La carta lo dice adesso com'e': *«1 beneficio e' gratis. Ogni beneficio in piu'
+richiede 1 costo. Al massimo 3: il tetto non si sfonda.»*
+
+---
+
 ## D-302 — Il quarto beneficio: prima non si poteva, e adesso non conviene
 
 **implemented in 0.1.265** — chiude la meta' misurabile di

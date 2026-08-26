@@ -33,6 +33,7 @@
         "BUILD_STRUCTURE",
         "RAZE_STRUCTURE",
         "SET_STRUCTURE_GRADE",
+        "SET_STRUCTURE_OWNER",
         "CLOSE_PASSAGE",
         "OPEN_PASSAGE",
         "CREATE_ECHO",

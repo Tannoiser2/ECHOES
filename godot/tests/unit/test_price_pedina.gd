@@ -3,7 +3,8 @@ extends "res://tests/test_case.gd"
 ##
 ## Parola del committente, sulla sua carta d'esempio: **il proponente compra i
 ## benefici, gli avversari scelgono in che moneta paga** — un costo per ogni
-## beneficio oltre il primo, e una Cicatrice ne compra uno oltre il limite. Se
+## beneficio oltre il primo, e il tetto e' tre (D-303: la Cicatrice non
+## compra, e' un costo come gli altri). Se
 ## la proposta passa si applicano benefici **e** costi; se cade, scattano gli
 ## effetti stampati, che non sceglie nessuno. E la regola anti-passivita' della
 ## roadmap (PZ-5): se tutti si astengono, il silenzio avvantaggia il
@@ -33,6 +34,11 @@ class RiggedDie extends RefCounted:
 const DIE_FOR_FACTOR: Dictionary = {-2: 1, -1: 2, 0: 3, 1: 5, 2: 6}
 
 
+var _hushed: String = ""
+var _hushed_template: String = ""
+var _hushed_said: Array = []
+
+
 func before_each() -> void:
 	new_session()
 
@@ -42,6 +48,32 @@ func after_each() -> void:
 	# gonfiano devono rimetterla, o il prossimo test la troverebbe storta.
 	var chronicle: Dictionary = data().chronicles["CHR_01"]
 	(chronicle["confluence_rules"] as Dictionary)["silence_support_bonus"] = 1
+	# E la frase d'autore zittita torna a parlare (D-305).
+	if _hushed != "":
+		for proposition in (data().confluence_templates[_hushed_template]["propositions"] as Array):
+			if str((proposition as Dictionary)["id"]) == _hushed:
+				(proposition as Dictionary)["success_consequences"] = _hushed_said
+		_hushed = ""
+
+
+## **Zittisce la frase d'autore della proposta in dibattito** (D-305).
+##
+## Da D-305 la carta si spende **per ultima**, e la frase d'autore non le passa
+## piu' sopra. Ma la frase puo' ancora fare *prima* la stessa cosa che la carta
+## vende — sui dati spediti, 67 Effetti d'autore parlano la lingua delle
+## caselle (ISSUES 87) — e allora il beneficio comprato trova il lavoro gia'
+## fatto e non lascia niente di nuovo.
+##
+## Una prova che vuole vedere **cosa lascia la casella** deve quindi fabbricarsi
+## il silenzio, invece di sperare che la proposta pescata non duplichi il verbo:
+## e' la regola di casa, e qui morde per la terza volta oggi.
+func _hush_the_authored_voice() -> void:
+	_hushed_template = str(session.confluence.current["template_id"])
+	_hushed = str(session.confluence.current["proposition_id"])
+	for proposition in (data().confluence_templates[_hushed_template]["propositions"] as Array):
+		if str((proposition as Dictionary)["id"]) == _hushed:
+			_hushed_said = ((proposition as Dictionary)["success_consequences"] as Array).duplicate()
+			(proposition as Dictionary)["success_consequences"] = []
 
 
 func _rig(factor: int) -> void:
@@ -137,17 +169,13 @@ func test_one_benefit_is_free_and_every_other_costs_one() -> void:
 	assert_eq(session.confluence.costs_due(), 1, "il secondo costa un costo")
 	assert_true(session.confluence.set_benefits(benefits.slice(0, 3)), "tre benefici")
 	assert_eq(session.confluence.costs_due(), 2, "il terzo ne costa un altro")
-	assert_true(
+	assert_false(
 		session.confluence.set_benefits(benefits.slice(0, 4)),
-		"il quarto si prende accettando la Cicatrice"
+		"e il tetto e' tre: sulla carta non ci stanno altre pedine (D-303)"
 	)
 	assert_eq(
-		session.confluence.costs_due(), 3,
-		"e allora il prezzo e' due costi piu' la Cicatrice"
-	)
-	assert_false(
-		session.confluence.set_benefits(benefits.slice(0, 5)),
-		"oltre la Cicatrice non ci stanno altre pedine"
+		session.confluence.costs_due(), 2,
+		"il rifiuto non tocca quello che era gia' comprato"
 	)
 	assert_false(
 		session.confluence.set_benefits([str(benefits[0]), str(benefits[0])]),
@@ -159,20 +187,101 @@ func test_one_benefit_is_free_and_every_other_costs_one() -> void:
 	)
 
 
-## **Con la Cicatrice accettata, la Cicatrice si paga davvero.** Il quarto
-## beneficio non e' gratis: fra i costi che scattano c'e' la voce CICATRICE,
-## anche se il fronte avverso ne aveva scelte altre.
-func test_the_fourth_benefit_brings_the_scar() -> void:
-	_open_with_proposition()
-	session.confluence.set_benefits(_benefits().slice(0, 4))
+## **La carta vince, e la Pietra gia' alzata passa a chi l'ha comprata**
+## (D-305, ISSUES 86).
+##
+## Il caso e' quello vero del tavolo: nel luogo c'e' gia' un Granaio, di un
+## altro. Il proponente compra la casella «Costruisci 1 Pietra: Granaio» e la
+## paga. Prima di D-305 quel BUILD era un no-op silenzioso e il beneficio
+## comprato non lasciava niente; adesso al tavolo c'e' un Granaio solo, e quello
+## e' quello che il Consiglio ha comprato: **passa di mano**, e il verbale lo
+## dice.
+func test_a_bought_stone_already_standing_passes_to_the_buyer() -> void:
+	var context: Dictionary = _open_with_proposition()
+	var proponent: String = str(context["proponent"])
+	var region: String = str(session.confluence.effect_context()["region_focus"])
+	assert_ne(region, "", "il Consiglio discute di un luogo")
+	var stone: String = ""
+	for voice in (data().tensions[TENSION]["physical"]["benefits"] as Array):
+		if str((voice as Dictionary).get("verb", "")) == "BUILD_STONE":
+			stone = str((voice as Dictionary)["structure"])
+	assert_ne(stone, "", "la carta offre di costruire una Pietra")
+
+	# La Pietra si pianta a mano, intestata a un altro: la prova si fabbrica il
+	# caso invece di sperare che i dati spediti glielo regalino.
+	var other: String = str(_others(proponent)[0])
+	((session.world["regions"][region] as Dictionary)["structures"] as Array).append({
+		"structure_type": stone, "grade": 1, "owner": other,
+	})
+	assert_eq(_stone_owner(region, stone), other, "il Granaio c'e' gia', ed e' di un altro")
+
+	var bought: String = ""
+	for voice in (data().tensions[TENSION]["physical"]["benefits"] as Array):
+		if str((voice as Dictionary).get("verb", "")) == "BUILD_STONE":
+			bought = str((voice as Dictionary)["id"])
+	session.confluence.set_benefits([bought])
+	_rig(_factor_cancelling_bite(proponent))
+	var before: int = session.log.lines.size()
+	var result: Dictionary = session.confluence.resolve()
+	assert_true(ConfluenceResolution.is_success(str(result["outcome"])), "la proposta passa")
+	assert_eq(
+		_stone_owner(region, stone), proponent,
+		"la Pietra comprata e pagata e' di chi l'ha comprata"
+	)
+	assert_eq(
+		_stones_of_type(region, stone), 1,
+		"e resta una sola: al tavolo c'e' un Granaio solo"
+	)
+	var said: bool = false
+	for i in range(before, session.log.lines.size()):
+		if str(session.log.lines[i]).contains("passa a"):
+			said = true
+	assert_true(said, "e il verbale dice che e' passata di mano, invece di tacere")
+
+
+## Di chi e' la Pietra di questo tipo in questo luogo, o "" se non c'e'.
+func _stone_owner(region: String, type_id: String) -> String:
+	for structure in ((session.world["regions"][region] as Dictionary)["structures"] as Array):
+		if str((structure as Dictionary)["structure_type"]) == type_id:
+			return str((structure as Dictionary).get("owner", ""))
+	return ""
+
+
+## Quante Pietre di questo tipo stanno in questo luogo. Deve essere una.
+func _stones_of_type(region: String, type_id: String) -> int:
+	var count: int = 0
+	for structure in ((session.world["regions"][region] as Dictionary)["structures"] as Array):
+		if str((structure as Dictionary)["structure_type"]) == type_id:
+			count += 1
+	return count
+
+
+## **La Cicatrice e' un costo, non una moneta d'acquisto** (D-303, parola del
+## committente). Sta fra i sei costi che il fronte avverso puo' scegliere, e
+## quando la sceglie scatta come tutti gli altri; quello che non fa piu' e'
+## sfondare il tetto dei benefici.
+func test_the_scar_is_a_cost_like_the_others() -> void:
+	var context: Dictionary = _open_with_proposition()
 	var scar_id: String = ""
 	for voice in (data().tensions[TENSION]["physical"]["costs"] as Array):
 		if str((voice as Dictionary)["verb"]) == "SCAR":
 			scar_id = str((voice as Dictionary)["id"])
 	assert_ne(scar_id, "", "la carta offre una Cicatrice")
 	assert_true(
+		(session.confluence.price_menu()["cost"] as Array).has(scar_id),
+		"e il fronte avverso puo' sceglierla come prezzo"
+	)
+	# Due benefici: un costo da pagare, e il fronte avverso sceglie la Cicatrice.
+	session.confluence.set_benefits(_benefits().slice(0, 2))
+	var others: Array = _others(str(context["proponent"]))
+	session.confluence.declare_stance(str(others[0]), "OPPOSE")
+	assert_true(
+		session.confluence.place_costs(str(others[0]), [scar_id]),
+		"la Cicatrice si posa come qualunque altro costo"
+	)
+	assert_true(
 		(session.confluence.priced_costs() as Array).has(scar_id),
-		"e chi ha comprato il quarto beneficio se la prende"
+		"e allora la Cicatrice scatta"
 	)
 
 
@@ -380,6 +489,7 @@ func test_the_card_says_what_it_left_behind() -> void:
 		if str((voice as Dictionary).get("verb", "")) == "BUILD_STONE":
 			stone = str((voice as Dictionary)["id"])
 	assert_ne(stone, "", "la carta offre di costruire una Pietra")
+	_hush_the_authored_voice()
 	session.confluence.set_benefits([stone])
 	session.confluence.declare_stance(opposer, "OPPOSE")
 	_rig(_factor_cancelling_bite(proponent))

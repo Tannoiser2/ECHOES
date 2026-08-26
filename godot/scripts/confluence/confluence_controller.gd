@@ -356,16 +356,10 @@ func price_menu() -> Dictionary:
 
 
 ## Quanti costi il fronte avverso deve posare adesso (D-280): uno per ogni
-## beneficio comprato oltre il primo. Con quattro benefici — cioe' con la
-## Cicatrice accettata — sono due **piu' la Cicatrice**, che e' quello che la
-## carta chiama *«se accetti una Cicatrice puoi ottenere un beneficio
-## aggiuntivo oltre il limite»*.
+## beneficio comprato oltre il primo, e basta. Il tetto e' tre e non si sfonda
+## (D-303): non c'e' piu' un quarto beneficio da pagare con una Cicatrice.
 func costs_due() -> int:
-	var bought: int = (current.get("benefits", []) as Array).size()
-	var due: int = CouncilEconomy.costs_due(bought)
-	if bought > CouncilEconomy.MAX_BENEFITS:
-		due += 1
-	return due
+	return CouncilEconomy.costs_due((current.get("benefits", []) as Array).size())
 
 
 ## I benefici che il proponente puo' comprare: le voci scritte sulla carta.
@@ -373,20 +367,16 @@ func benefit_menu() -> Array:
 	return (card_face().get("benefits", []) as Array).duplicate()
 
 
-## **Il proponente compra** (D-280). Fino a tre; il quarto si prende solo
-## accettando la Cicatrice, e allora fra i costi che gli avversari posano ce
-## n'e' una obbligata. Comprare zero benefici e' legittimo: e' una proposta che
-## chiede al tavolo di dire una cosa e basta, e non paga niente.
+## **Il proponente compra** (D-280). Fino a tre, che sono le pedine che stanno
+## sulla carta: il tetto non si sfonda (D-303). Comprare zero benefici e'
+## legittimo: e' una proposta che chiede al tavolo di dire una cosa e basta, e
+## non paga niente.
 func set_benefits(chosen: Array) -> bool:
 	last_error = ""
 	if current.is_empty() or str(current["step"]) not in ["STANCE", "PROPOSITION"]:
 		last_error = "non e' il momento di comprare i benefici"
 		return false
-	var scars_on_the_card: int = 0
-	for voice in (card_face().get("costs", []) as Array):
-		if str((voice as Dictionary).get("verb", "")) == "SCAR":
-			scars_on_the_card = 1
-	var ceiling: int = CouncilEconomy.benefit_ceiling(scars_on_the_card)
+	var ceiling: int = CouncilEconomy.MAX_BENEFITS
 	if chosen.size() > ceiling:
 		last_error = "sulla carta ci stanno %d pedine di beneficio" % ceiling
 		return false
@@ -532,26 +522,28 @@ func priced_costs() -> Array:
 			break
 		if not chosen.has(str(voice_id)):
 			chosen.append(str(voice_id))
-	# Con la Cicatrice accettata (quattro benefici) una delle voci **e'** la
-	# Cicatrice: e' quello che il proponente ha accettato per comprarla.
-	if (current.get("benefits", []) as Array).size() > CouncilEconomy.MAX_BENEFITS:
-		var scar_id: String = ""
-		for voice in (card_face().get("costs", []) as Array):
-			if str((voice as Dictionary).get("verb", "")) == "SCAR":
-				scar_id = str((voice as Dictionary)["id"])
-		if scar_id != "" and not chosen.has(scar_id):
-			chosen[chosen.size() - 1] = scar_id
 	return chosen
 
 
 # --- D-ter: la controproposta del RIVENDICARE (PZ-5 Fase B, D-268) ---------
 
-## Le voci del beneficio che una controproposta puo' rivendicare: le
-## Conseguenze di successo della proposta scelta.
+## **Le voci del beneficio che una controproposta puo' rivendicare: quelle che
+## il proponente ha comprato** (D-304).
+##
+## Prima questa lista tornava le Conseguenze di successo del *template*, che e'
+## la grammatica vecchia: il proponente comprava dalla faccia della carta e il
+## rivendicante posava la pedina su tutt'altro elenco. Due meta' dello stesso
+## Consiglio che parlavano due lingue diverse — ed e' esattamente la confusione
+## che il committente ha segnalato (*«non ho capito come si scelgono i benefici
+## o i malus»*).
+##
+## Adesso e' una pedina su una pedina: le caselle sono quelle occupate sulla
+## carta, e si posa solo dove il proponente ha gia' posato. Il momento e'
+## giusto — la controproposta arriva dopo l'acquisto e prima del prezzo.
 func claimable_benefits() -> Array:
-	if current.is_empty() or str(current["proposition_id"]) == "":
+	if current.is_empty():
 		return []
-	return (_proposition().get("success_consequences", []) as Array).duplicate()
+	return (current.get("benefits", []) as Array).duplicate()
 
 
 ## La controproposta (D-261, parola del committente: il RIVENDICARE *«puo'
@@ -563,9 +555,10 @@ func claimable_benefits() -> Array:
 ## - **su un costo** (`mode = "price"`): si prende la pedina del prezzo,
 ##   scavalcando il primo OPPOSE - il diritto pagato con l'azione batte
 ##   l'ordine delle dichiarazioni;
-## - **su un beneficio** (`mode = "benefit"`): posa la pedina su una voce del
-##   beneficio della proposta - se la proposta passa, **quella voce parla di
-##   lui**, non del proponente.
+## - **su un beneficio** (`mode = "benefit"`): posa la pedina su una delle voci
+##   che il proponente ha comprato sulla carta (D-304) - se la proposta passa,
+##   **quella voce parla di lui**, non del proponente. Le altre restano del
+##   proponente: la controproposta prende una casella, non la carta.
 ##
 ## Spendersi qui consuma il diritto: il secondo dibattito non si apre.
 func place_counterclaim(entity_id: String, mode: String, first: String, second: String = "") -> bool:
@@ -603,13 +596,13 @@ func place_counterclaim(entity_id: String, mode: String, first: String, second: 
 			return true
 		"benefit":
 			if not claimable_benefits().has(first):
-				last_error = "'%s' non e' una voce del beneficio della proposta" % first
+				last_error = "«%s» non e' un beneficio comprato su questa carta" % first
 				return false
-			current["benefit_pedina"] = {"by": entity_id, "consequence_id": first}
+			current["benefit_pedina"] = {"by": entity_id, "voice_id": first}
 			current["counterclaim"] = "benefit"
 			log.bullet(
 				"D. La controproposta di %s: rivendica «%s» - se la proposta passa, quella voce parla di %s."
-				% [_name(entity_id), _consequence_title(first), _name(entity_id)]
+				% [_name(entity_id), _voice_text("benefits", first), _name(entity_id)]
 			)
 			return true
 	last_error = "controproposta '%s' sconosciuta" % mode
@@ -624,10 +617,6 @@ func _priced(pool: Array, chosen: String) -> String:
 	if chosen != "" and pool.has(chosen):
 		return chosen
 	return str(pool[0])
-
-
-func _consequence_title(consequence_id: String) -> String:
-	return str((data.consequences.get(consequence_id, {}) as Dictionary).get("title", consequence_id))
 
 
 # --- E: Commit -------------------------------------------------------------
@@ -882,12 +871,6 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 		consequence_ids.append_array(_proposition()["success_consequences"])
 		if outcome == ConfluenceResolution.DECISIVE:
 			consequence_ids.append_array(template["consequence_pools"]["decisive_bonus"])
-	# **L'economia della carta** (D-280): se la proposta passa si applicano
-	# **tutti i benefici comprati e tutti i costi posati** — la riga in fondo
-	# alla carta, «applica tutti i benefici e tutti i costi (incluse le
-	# cicatrici)». Se cade, scattano gli **effetti stampati**: il mondo non
-	# sopporta l'indecisione, e quelli non li sceglie nessuno.
-	_spend_the_card(applied, outcome, source)
 	# ISSUES 22 (Fase 1): the Consequence speaks with its title, and every
 	# Effect it lands gets its own spoken line — the crown losing the Valle
 	# Verde must be a sentence at the table, not a silent SET_CONTROL.
@@ -914,20 +897,12 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 				% str(consequence.get("title", consequence_id))
 			)
 			continue
-		# La voce rivendicata (D-268): la controproposta ha posato la pedina su
-		# questa voce del beneficio, e a proposta passata **parla del
-		# rivendicante** - i suoi Effect compilano con lui al posto del
-		# proponente. Le altre voci restano del proponente, com'e' giusto: la
-		# controproposta prende un pezzo, non la proposta intera.
-		var speaks_for: Dictionary = context
-		var claimed: Dictionary = current.get("benefit_pedina", {})
-		if str(consequence_id) == str(claimed.get("consequence_id", "")):
-			speaks_for = context.duplicate()
-			speaks_for["proponent"] = str(claimed.get("by", ""))
-			log.bullet("H. La voce rivendicata parla di %s:" % _name(str(claimed.get("by", ""))))
+		# La pedina del rivendicante non sta qui (D-304): sta sulla carta, sulle
+		# caselle che il proponente ha comprato. La frase d'autore resta del
+		# proponente, che e' chi ha portato la proposta al tavolo.
 		log.bullet("H. Conseguenza - %s:" % str(consequence.get("title", consequence_id)))
 		var first_effect: int = applied.size()
-		for effect in compiler.compile(str(consequence_id), speaks_for, source):
+		for effect in compiler.compile(str(consequence_id), context, source):
 			_apply(applied, effect)
 			_bar_return(applied, effect, source)
 		_apply_scar(applied, str(consequence_id), source)
@@ -955,6 +930,23 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 			for spec in clause["effects"]:
 				_apply(applied, compiler.compile_spec(spec, clause_context, source))
 			_narrate_applied(applied, first_clause_effect)
+
+	# **L'economia della carta, per ultima** (D-280, ordine deciso da D-305).
+	#
+	# Se la proposta passa si applicano **tutti i benefici comprati e tutti i
+	# costi posati** — la riga in fondo alla carta, «applica tutti i benefici e
+	# tutti i costi (incluse le cicatrici)». Se cade, scattano gli **effetti
+	# stampati**: il mondo non sopporta l'indecisione, e quelli non li sceglie
+	# nessuno.
+	#
+	# **Va per ultima perche' e' quella che il tavolo ha scelto.** Fino a
+	# 0.1.266 la carta si spendeva prima, e la frase d'autore ci passava sopra:
+	# misurato, **62 volte in 40 anni** — 38 riassegnazioni di controllo e 24
+	# segni tolti — e in silenzio, senza che il verbale dicesse che una casella
+	# comprata e pagata era stata cancellata. Adesso la frase racconta, e poi la
+	# carta lascia il segno: quello che il proponente ha comprato, il
+	# rivendicante ha rivendicato e gli avversari hanno fatto pagare resta.
+	_spend_the_card(applied, outcome, source)
 
 	# I. Asset disposition.
 	_dispose_assets(applied, result, outcome, recovery, source)
@@ -1210,16 +1202,34 @@ func _spend_the_card(applied: Array, outcome: String, source: Dictionary) -> voi
 	else:
 		for voice in (face.get("failure", []) as Array):
 			spent.append(["failure", voice as Dictionary])
+	# **La voce rivendicata parla del rivendicante** (D-268, riscritta da D-304).
+	# La controproposta ha posato la pedina su una casella comprata: quella
+	# voce compila con lui al posto del proponente — la Pietra la costruisce
+	# lui, il controllo lo prende lui. Le altre restano del proponente: la
+	# controproposta prende una casella, non la carta.
+	var claimed: Dictionary = current.get("benefit_pedina", {}) as Dictionary
+	var claimant: String = str(claimed.get("by", ""))
+	var claimed_voice: String = str(claimed.get("voice_id", ""))
 	for entry in spent:
 		var kind: String = str((entry as Array)[0])
 		var voice: Dictionary = (entry as Array)[1] as Dictionary
 		if voice.is_empty():
 			continue
+		var speaks_for: Dictionary = context
+		var redirected: bool = (
+			kind == "benefits" and claimant != ""
+			and str(voice.get("id", "")) == claimed_voice
+		)
+		if redirected:
+			speaks_for = context.duplicate()
+			speaks_for["proponent"] = claimant
 		var effects: Array = CouncilEconomy.effects_for(
-			voice, kind, context, world, theme_id, source
+			voice, kind, speaks_for, world, theme_id, source
 		)
 		if effects.is_empty():
 			continue
+		if redirected:
+			log.bullet("H. La voce rivendicata parla di %s:" % _name(claimant))
 		log.bullet("H. %s %s" % [
 			"Beneficio:" if kind == "benefits" else (
 				"Prezzo:" if kind == "costs" else "Il mondo non aspetta:"

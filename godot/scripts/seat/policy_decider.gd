@@ -1533,8 +1533,19 @@ func _score_effect(
 		if new_owner == null:
 			if holds_it_now:
 				score -= 3  # the title is being taken off you
-		elif str(new_owner) == "$proponent":
-			if entity_id == proponent_id:
+		else:
+			# **A chi va, davvero.** La frase d'autore porta ancora il segnaposto
+			# `$proponent`; la voce della carta no — `CouncilEconomy.effects_for`
+			# ha gia' risolto il nome prima che il cervello la guardi. Finche'
+			# qui si confrontava solo col segnaposto, ogni CAMBIA CONTROLLO
+			# stampato su una carta valeva **zero per chiunque**: il proponente
+			# non lo vedeva quando comprava, e il rivendicante non lo vedeva
+			# quando decideva se posarci la pedina (D-304, misurato: le voci
+			# rivendicate erano zero, e mine == theirs su ogni carta).
+			var goes_to: String = str(new_owner)
+			if goes_to == "$proponent":
+				goes_to = proponent_id
+			if goes_to == entity_id:
 				score += 2
 			elif holds_it_now:
 				score -= 3  # handed to someone else, out of your hands
@@ -1786,24 +1797,12 @@ func choose_benefits(
 		worst_price = mini(worst_price, _voice_score(
 			voice as Dictionary, "costs", entity_id, entity_id, goals, session, bindings
 		))
-	# **E la Cicatrice, che compra il quarto** (D-302). Il tetto era fisso a tre,
-	# quindi il quarto beneficio non veniva nemmeno guardato: misurato, in
-	# quarant'anni **nessuno ne ha comprati quattro**, e la riga di D-280 «una
-	# Cicatrice ne compra uno oltre il limite» non era mai stata esercitata —
-	# insieme alla Cicatrice stampata su sedici carte, che non si posava mai.
-	var scar_voice: Dictionary = {}
-	for voice in (session.confluence.card_face().get("costs", []) as Array):
-		if str((voice as Dictionary).get("verb", "")) == "SCAR":
-			scar_voice = voice as Dictionary
-	var ceiling: int = CouncilEconomy.benefit_ceiling(0 if scar_voice.is_empty() else 1)
-	var scar_price: int = 0
-	if not scar_voice.is_empty():
-		scar_price = _voice_score(
-			scar_voice, "costs", entity_id, entity_id, goals, session, bindings
-		)
-
+	# Il tetto e' tre e non si sfonda (D-303): la Cicatrice e' un costo come gli
+	# altri, e il metro per comprare e' uno solo — il peggior prezzo. Prima
+	# c'era una riga in piu' che apriva un quarto beneficio comprato con una
+	# Cicatrice: misurato, valeva 1 e costava 4, e nessun seggio lo prendeva.
 	var bought: Array = [str((ranked[0] as Dictionary)["id"])]
-	for i in range(1, mini(ranked.size(), ceiling)):
+	for i in range(1, mini(ranked.size(), CouncilEconomy.MAX_BENEFITS)):
 		var entry: Dictionary = ranked[i] as Dictionary
 		# **A parita' si compra.** Il metro e' il peggior prezzo che gli
 		# avversari possono imporre; quando il beneficio in piu' lo pareggia,
@@ -1811,13 +1810,7 @@ func choose_benefits(
 		# quello che la carta chiede, con le sue tre caselle. Col confronto
 		# stretto (`<= 0`) il cervello comprava **sempre e solo il primo**, che
 		# e' gratis: 1,01 benefici per Consiglio in 40 anni, economia morta.
-		# Il quarto non si paga come gli altri: oltre al peggior prezzo si porta
-		# addosso **la Cicatrice**, che non si toglie piu'. Quindi la sbarra si
-		# alza, e si compra solo se il beneficio vale anche quella.
-		var soglia: int = worst_price
-		if i >= CouncilEconomy.MAX_BENEFITS:
-			soglia += scar_price
-		if int(entry["score"]) + soglia < 0:
+		if int(entry["score"]) + worst_price < 0:
 			break
 		bought.append(str(entry["id"]))
 	return bought
@@ -1906,9 +1899,9 @@ func _consequence_score(
 
 
 ## La controproposta del RIVENDICARE (D-268): spendere il diritto qui - sulla
-## pedina del prezzo o su una voce del beneficio - oppure tenerselo per il
-## secondo dibattito. Si rivendica il beneficio se, parlando di te invece che
-## del proponente, serve il tuo Destino; si prende la pedina se sposta il
+## pedina del prezzo o su una casella comprata sulla carta (D-304) - oppure
+## tenerselo per il secondo dibattito. Si rivendica il beneficio se, parlando
+## di te invece che del proponente, serve il tuo Destino; si prende la pedina se sposta il
 ## prezzo a tuo favore piu' di quanto farebbe il fronte avverso da solo;
 ## altrimenti niente: il secondo dibattito vale l'azione che e' costato.
 func choose_counterclaim(
@@ -1923,16 +1916,22 @@ func choose_counterclaim(
 	redirected["proponent"] = entity_id
 	var best_benefit: String = ""
 	var benefit_gain: int = 0
-	for consequence_id in (offer.get("benefits", []) as Array):
-		var mine: int = _consequence_score(
-			str(consequence_id), entity_id, entity_id, goals, session, redirected
+	for voice_id in (offer.get("benefits", []) as Array):
+		# **Le caselle comprate sulla carta** (D-304), non le Conseguenze del
+		# template: si rivendica quello che sta sul tavolo, e la pedina si posa
+		# su una pedina gia' posata.
+		var voice: Dictionary = session.confluence._voice("benefits", str(voice_id))
+		if voice.is_empty():
+			continue
+		var mine: int = _voice_score(
+			voice, "benefits", entity_id, entity_id, goals, session, redirected
 		)
-		var theirs: int = _consequence_score(
-			str(consequence_id), entity_id, proponent, goals, session, bindings
+		var theirs: int = _voice_score(
+			voice, "benefits", entity_id, proponent, goals, session, bindings
 		)
 		if mine - theirs > benefit_gain:
 			benefit_gain = mine - theirs
-			best_benefit = str(consequence_id)
+			best_benefit = str(voice_id)
 	# **Prendersi la scelta del prezzo** (D-268, riscritta da D-280) vale quanto
 	# la differenza fra il costo che sceglierei io e quello che il mondo
 	# prenderebbe da solo — la prima voce della lista.
@@ -1950,7 +1949,7 @@ func choose_counterclaim(
 			mine_voice, "costs", entity_id, proponent, goals, session, bindings
 		)
 	if benefit_gain > 0 and benefit_gain >= price_gain:
-		return {"mode": "benefit", "consequence_id": best_benefit}
+		return {"mode": "benefit", "voice_id": best_benefit}
 	if price_gain > 0:
 		return {
 			"mode": "price",

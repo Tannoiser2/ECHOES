@@ -181,8 +181,7 @@ func _paint_council(session: RefCounted, council: Dictionary) -> void:
 ## **Le due liste della carta**, come stanno stampate (D-291).
 ##
 ## Il proponente compra i benefici — uno e' gratis, ogni altro costa un costo,
-## una Cicatrice ne compra uno oltre il limite — e **gli avversari scelgono in
-## che moneta paga** (D-280). Il motore lo faceva gia'; qui lo si vede: la
+## al massimo tre — e **gli avversari scelgono in che moneta paga** (D-280). Il motore lo faceva gia'; qui lo si vede: la
 ## pedina posata accanto alla voce comprata, il prezzo dovuto in cifre, e chi
 ## tiene la pedina del prezzo.
 ##
@@ -202,8 +201,6 @@ func _render_face(session: RefCounted, council: Dictionary) -> void:
 
 	var bought: Array = council.get("benefits", []) as Array
 	var due: int = CouncilEconomy.costs_due(bought.size())
-	if bought.size() > CouncilEconomy.MAX_BENEFITS:
-		due += 1
 	var pedina: Dictionary = council.get("price_pedina", {}) as Dictionary
 	var paid: Array = pedina.get("costs", []) as Array
 
@@ -217,20 +214,24 @@ func _render_face(session: RefCounted, council: Dictionary) -> void:
 			]
 		)
 	))
+	# **E chi la tiene, se non e' il proponente** (D-304): la pedina della
+	# controproposta sta su una casella comprata, e sul tabellone si deve
+	# vedere accanto a quella, non in una riga a parte.
+	var claimed: Dictionary = council.get("benefit_pedina", {}) as Dictionary
+	var claimed_voice: String = str(claimed.get("voice_id", ""))
+	var claimant: String = str(claimed.get("by", ""))
 	for voice in (face.get("benefits", []) as Array):
-		var taken: bool = bought.has(str((voice as Dictionary)["id"]))
-		_face.add_child(_face_voice(str((voice as Dictionary).get("text", "")), taken, "#6fa88a"))
+		var voice_id: String = str((voice as Dictionary)["id"])
+		var taken: bool = bought.has(voice_id)
+		var text: String = str((voice as Dictionary).get("text", ""))
+		if voice_id == claimed_voice and claimant != "":
+			text += "   ← la rivendica %s" % session.service.name_of(claimant)
+		_face.add_child(_face_voice(text, taken, "#6fa88a"))
 
 	_face.add_child(_face_heading(_price_heading(session, council, due, pedina)))
 	for voice in (face.get("costs", []) as Array):
 		var chosen: bool = paid.has(str((voice as Dictionary)["id"]))
 		_face.add_child(_face_voice(str((voice as Dictionary).get("text", "")), chosen, "#c8553d"))
-
-	var claimed: Dictionary = council.get("benefit_pedina", {}) as Dictionary
-	if not claimed.is_empty():
-		_face.add_child(_face_heading("LA CONTROPROPOSTA — la posa %s" % session.service.name_of(
-			str(claimed.get("by", ""))
-		)))
 
 	var falls: Array = face.get("failure", []) as Array
 	if not falls.is_empty():

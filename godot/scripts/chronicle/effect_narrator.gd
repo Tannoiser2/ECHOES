@@ -86,6 +86,20 @@ static func narrate(effect: Dictionary, data) -> String:
 			if razed == "":
 				return ""
 			return "In %s non resta niente di: %s." % [_region(target_id, data), razed]
+		"SET_STRUCTURE_OWNER":
+			# Una Pietra che cambia padrone (D-305): al tavolo si sposta il
+			# segnalino della casa sotto il Granaio, e il verbale lo dice.
+			var passed: String = SignLabels.grade_name(
+				str(payload.get("structure_type", "")), 1, data
+			)
+			if passed == "":
+				return ""
+			var to_whom: Variant = payload.get("entity_id", null)
+			if to_whom == null:
+				return "In %s non e' piu' di nessuno: %s." % [_region(target_id, data), passed]
+			return "In %s passa a %s: %s." % [
+				_region(target_id, data), _entity(str(to_whom), data), passed
+			]
 		"SET_STRUCTURE_GRADE":
 			var type_id: String = str(payload.get("structure_type", ""))
 			var was: int = int(effect.get("inverse_payload", {}).get("grade", 0))

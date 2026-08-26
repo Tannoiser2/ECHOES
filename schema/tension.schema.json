@@ -130,7 +130,7 @@
         },
         "physical": {
           "type": "object",
-          "description": "La faccia fisica della carta Tensione (D-280): le due liste su cui si posano le pedine, e cosa succede se la proposta cade. Il proponente compra i benefici; gli avversari scelgono in che moneta paga — un costo per ogni beneficio oltre il primo, e una Cicatrice ne compra uno oltre il limite.",
+          "description": "La faccia fisica della carta Tensione (D-280): le due liste su cui si posano le pedine, e cosa succede se la proposta cade. Il proponente compra i benefici; gli avversari scelgono in che moneta paga — un costo per ogni beneficio oltre il primo, fino a un tetto di tre (D-303: la Cicatrice e' un costo come gli altri, non una moneta d'acquisto).",
           "additionalProperties": false,
           "properties": {
             "benefits": {

@@ -216,6 +216,16 @@ func test_round_trip_every_reversible_type() -> void:
 			{"structure_type": "STR_KEEP", "grade": 3}
 		)
 	)
+	# Una Pietra che passa di mano (D-305): la Pietra resta dov'e' e com'e', e
+	# l'inverso rimette il padrone di prima. Il Mastio l'ha appena alzato la
+	# riga qui sopra, intestato ad Aldric.
+	_round_trip(
+		"SET_STRUCTURE_OWNER",
+		_make(
+			"SET_STRUCTURE_OWNER", "region", "REG_EREDAN",
+			{"structure_type": "STR_KEEP", "entity_id": "ENT_NAHR"}
+		)
+	)
 	# Il varco che si chiude e si riapre (D-166): l'unica coppia di Effect che
 	# cambia la **forma** del mondo. REG_TERRE_NAHR e REG_MONTAGNE_ROSSE si
 	# toccano, e la montagna resta raggiungibile dalle Miniere anche senza
@@ -242,7 +252,7 @@ func test_round_trip_every_reversible_type() -> void:
 		"REMOVE_GLOBAL_TAG", "SET_RELATION", "GRANT_ASSET", "REMOVE_ASSET", "TRANSFER_ASSET",
 		"CREATE_CLAIM", "CONSUME_CLAIM", "ADD_SCAR", "REMOVE_SCAR", "SET_ENTITY_TAG",
 		"REMOVE_ENTITY_TAG", "SET_ENTITY_ACTIVE",
-		"BUILD_STRUCTURE", "RAZE_STRUCTURE", "SET_STRUCTURE_GRADE",
+		"BUILD_STRUCTURE", "RAZE_STRUCTURE", "SET_STRUCTURE_GRADE", "SET_STRUCTURE_OWNER",
 		"CLOSE_PASSAGE", "OPEN_PASSAGE",
 	]
 	for effect_type in SchemaDefs.EFFECT_TYPES:

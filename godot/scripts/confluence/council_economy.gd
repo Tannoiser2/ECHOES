@@ -14,8 +14,8 @@ extends RefCounted
 ##    tavolo, e i **parametri**: quale condizione lascia, quale Pietra alza,
 ##    quale Cicatrice incide.
 ## 2. **Un'economia**: *un beneficio e' gratis; ogni beneficio in piu' costa un
-##    costo; una Cicatrice ne compra uno oltre il limite.* Massimo tre benefici,
-##    massimo due costi.
+##    costo.* Massimo tre benefici, massimo due costi — e il tetto non si
+##    sfonda: la Cicatrice e' un costo come gli altri (D-303).
 ## 3. **Due mani**: il proponente compra i benefici, **gli avversari scelgono in
 ##    che moneta paga** (parola del committente, scelta fra tre). Lui sa
 ##    *quanto* paga; non sa *in cosa*.
@@ -57,16 +57,25 @@ const CLOSED_TAG: String = "condition:cut_off"
 
 
 ## **Il prezzo di un carrello di benefici.** Uno e' gratis; ogni altro costa un
-## costo. Una Cicatrice accettata compra un beneficio **oltre il limite**, e
-## quindi non aggiunge prezzo per se stessa: e' la riga in fondo alla carta.
+## costo. Il tetto e' tre, e non si sfonda: **la Cicatrice non compra niente**
+## (D-303, parola del committente: *«io a questo punto toglierei la cicatrice,
+## la lascerei come effetto malus o passivo»*). Resta uno dei sei costi, che e'
+## quello che al tavolo era gia' — misurato, si posava 17 volte in 40 anni
+## **come prezzo**, e mai come moneta d'acquisto: il quarto beneficio valeva
+## uno e costava quattro (D-302), e nessun seggio sano lo comprava.
 static func costs_due(benefits: int) -> int:
 	return maxi(0, mini(benefits - 1, MAX_COSTS))
 
 
-## Quanti benefici il proponente puo' comprare adesso: tre, piu' uno per ogni
-## Cicatrice che accetta (la carta ne offre una sola, quindi al massimo quattro).
-static func benefit_ceiling(scars_accepted: int) -> int:
-	return MAX_BENEFITS + maxi(0, scars_accepted)
+## C'e' gia' una Pietra di questo tipo, in questo luogo?
+static func _stone_stands(world: Dictionary, region_id: String, type_id: String) -> bool:
+	var region: Variant = (world.get("regions", {}) as Dictionary).get(region_id)
+	if region == null or type_id == "":
+		return false
+	for structure in ((region as Dictionary).get("structures", []) as Array):
+		if str((structure as Dictionary).get("structure_type", "")) == type_id:
+			return true
+	return false
 
 
 ## Gli Effetti di una voce, sul luogo di cui si discute.
@@ -102,10 +111,26 @@ static func effects_for(
 		"BUILD_STONE":
 			if region == "":
 				return out
+			var stone: String = str(voice.get("structure", ""))
+			# **Al tavolo c'e' un Granaio solo** (D-305). Se la Pietra sta gia'
+			# li' — perche' l'ha alzata la frase d'autore in questo stesso
+			# Consiglio, o perche' c'era da prima — un secondo BUILD sarebbe un
+			# no-op silenzioso, e il beneficio comprato e pagato non lascerebbe
+			# niente. Quello che il Consiglio ha comprato e' *quella* Pietra:
+			# passa a chi l'ha comprata.
+			if _stone_stands(world, region, stone):
+				out.append(Effect.make(
+					"SET_STRUCTURE_OWNER", "region", region,
+					{
+						"structure_type": stone,
+						"entity_id": str(context.get("proponent", "")),
+					}, source
+				))
+				return out
 			out.append(Effect.make(
 				"BUILD_STRUCTURE", "region", region,
 				{
-					"structure_type": str(voice.get("structure", "")),
+					"structure_type": stone,
 					"grade": 1, "owner": str(context.get("proponent", "")),
 				}, source
 			))

@@ -50,6 +50,7 @@ const COSTS: Dictionary = {
 	# proprio nome in maiuscolo. Il vocabolario e' condiviso, e adesso e' intero.
 	"SET_CONTROL": "la Regione discussa cambia padrone",
 	"SET_STRUCTURE_GRADE": "una costruzione sale o scende di grado",
+	"SET_STRUCTURE_OWNER": "una costruzione passa di mano",
 	"SET_ENTITY_ACTIVE": "una casa esce dal tavolo, o ci rientra",
 	"CLOSE_PASSAGE": "una strada fra due Regioni si chiude",
 }

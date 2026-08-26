@@ -5,6 +5,62 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.267 — La carta vince sulla frase d'autore (D-305)
+
+- **Scelta del committente su ISSUES 86: la carta vince.** Le due liste
+  stampate sono l'economia esplicita di D-280 — quello che il tavolo ha
+  comprato, pagato e rivendicato non lo cancella una frase che non ha scelto
+  nessuno. `_spend_the_card()` è adesso l'ultima cosa che tocca il mondo.
+- **Misurato prima di toccare niente**, come ISSUES 86 chiedeva: la frase
+  passava sopra la carta **62 volte in 40 anni** — 38 riassegnazioni di
+  controllo e 24 segni tolti — e sempre in silenzio. Circa un Consiglio su tre.
+- **E la Pietra già alzata.** Girato l'ordine è saltata fuori la stessa
+  malattia allo specchio: la frase costruiva il Granaio prima, e il beneficio
+  comprato diventava un no-op — pagato per niente. Al tavolo c'è un Granaio
+  solo, e adesso **passa a chi l'ha comprato**: EffectType nuovo
+  `SET_STRUCTURE_OWNER`, che si inverte su se stesso col padrone di prima.
+- **Il numero peggiorato, scritto**: trasformazioni sedute 186 → **174**, e le
+  vite che non si siedono mai passano da 6 a **7** — «Il Banco Nero», che era
+  già al limite con una saga su ventiquattro. Non l'ho inseguito ritoccando i
+  dati.
+- **Aperta ISSUES 87**: 67 Effetti d'autore parlano ancora la lingua delle
+  caselle. Non si scavalcano più, ma quando la frase regala gratis quello che
+  la carta vende, il beneficio comprato è un acquisto a vuoto.
+- Playtest 100 semi: **0 seggi bloccati su 8**, misto e uniforme. Suite **610**.
+
+---
+
+## 0.1.266 — Una pedina su una pedina, e la Cicatrice torna a fare un mestiere solo (D-303, D-304)
+
+- **Via la Cicatrice come moneta d'acquisto** (D-303, parola del committente):
+  il tetto dei benefici è **tre secco**. `benefit_ceiling()` non esiste più, e
+  la Cicatrice resta uno dei sei costi — che è quello che al tavolo era già:
+  17 volte in 40 anni come prezzo scelto dagli avversari, mai come acquisto.
+  Costo dichiarato: **nessuno**, la riga non era mai stata giocata. Chiude
+  ISSUES 85.
+- **La pedina del RIVENDICARE si posa sulla carta** (D-304). Il proponente
+  comprava dalla faccia della carta, il rivendicante posava la pedina sulle
+  Conseguenze del *template*: due elenchi diversi per la stessa pedina, ed è la
+  confusione che il committente aveva segnalato. Adesso si rivendica **solo una
+  casella davvero comprata**, e a proposta passata quella voce parla di lui.
+- **E il cervello non vedeva a chi va il controllo.** Rimessa in fila la
+  grammatica, le voci rivendicate sono andate a zero: `_score_effect` valutava
+  il passaggio di controllo solo col segnaposto `$proponent`, che sulla carta è
+  già risolto. Ogni CAMBIA CONTROLLO stampato valeva **zero per chiunque**.
+  Corretto: voci rivendicate 0 → **9** su 40 anni.
+- **Costi dichiarati**: controproposte 38 → 17 (il diritto si tiene più spesso
+  per il secondo dibattito); Cicatrici scattate 17 → 7 (il fronte avverso, che
+  adesso vede il controllo, sceglie più spesso CEDI CONTROLLO).
+- **Aperta ISSUES 86**: la frase d'autore si applica dopo la carta e può
+  riscriverla, compresa una casella rivendicata.
+- **La misura delle vite si muove, e va scritta**: trasformazioni sedute
+  187 → 186, e uno scambio al fondo della tabella — «La Leggenda della
+  Montagna» esce dal tavolo (1 → 0 saghe) e «Il Banco Nero» ci entra (0 → 1).
+  Le vite che non si siedono mai restano **sei**: cambia quale, non quante.
+- Playtest 100 semi: **0 seggi bloccati su 8**, misto e uniforme. Suite 609.
+
+---
+
 ## 0.1.265 — Il quarto beneficio: prima non si poteva, e adesso non conviene (D-302)
 
 - **Difetto vero, corretto**: il cervello si fermava a tre benefici *per
