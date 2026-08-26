@@ -600,7 +600,7 @@ func run_confluence(
 				log.bullet("Controproposta rifiutata (%s): resta il secondo dibattito." % controller.last_error)
 				illegal_actions += 1
 		elif mode == "benefit":
-			if controller.place_counterclaim(claimant, "benefit", str(counter.get("consequence_id", ""))):
+			if controller.place_counterclaim(claimant, "benefit", str(counter.get("voice_id", ""))):
 				counterclaimed = mode
 			else:
 				log.bullet("Controproposta rifiutata (%s): resta il secondo dibattito." % controller.last_error)

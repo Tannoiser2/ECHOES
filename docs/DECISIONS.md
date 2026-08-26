@@ -10,6 +10,103 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-304 — La pedina del RIVENDICARE si posa sulla carta
+
+**implemented** (0.1.266)
+
+Parola del committente, che e' anche la diagnosi: *«non ho capito come si
+scelgono i benefici o i malus, non avevamo detto che chi propone sceglie un
+beneficio e poi ogni carta con azione rivendicazione permette di mettere un
+segnalino su un beneficio o un malus»*.
+
+Aveva ragione due volte. La regola era quella che ricordava — ed era scritta
+in [D-268](#d-268) — ma **le due meta' del Consiglio parlavano due lingue
+diverse**, e per questo al tavolo non si capiva.
+
+### Il difetto
+
+Il proponente compra dalla **faccia della carta** (`physical.benefits`, D-280).
+Il rivendicante posava la pedina su `claimable_benefits()`, che tornava le
+**Conseguenze di successo del template** — la grammatica vecchia, un elenco
+completamente diverso. Due pedine, due tabelloni.
+
+Adesso e' **una pedina su una pedina**: `claimable_benefits()` torna le caselle
+che il proponente ha *davvero comprato*, la pedina si posa solo li', e a
+proposta passata quella voce compila col rivendicante al posto del proponente —
+la Pietra la alza lui, il controllo lo prende lui. Le altre restano del
+proponente: la controproposta prende **una casella, non la carta**.
+
+Una casella stampata ma non comprata **non si rivendica**: e' una prova che
+morde ([`test_counterclaim.gd`](../godot/tests/unit/test_counterclaim.gd)).
+
+### Il secondo strato, che si vedeva solo dopo aver tolto il primo
+
+Rimessa in fila la grammatica, le voci rivendicate sono andate a **zero**, e la
+sonda diceva `mine=3 theirs=3` su ogni CAMBIA CONTROLLO. Non era la sonda: era
+il cervello. `_score_effect` valutava il passaggio di controllo solo quando il
+nuovo padrone era il **segnaposto** `$proponent` — che e' come arriva dalla
+frase d'autore. Ma `CouncilEconomy.effects_for` **risolve il nome prima**, e
+quindi ogni CAMBIA CONTROLLO stampato su una carta valeva **zero per chiunque**:
+il proponente non lo vedeva quando comprava, il rivendicante non lo vedeva
+quando decideva se posarci la pedina.
+
+Il ramo adesso risolve il segnaposto e poi confronta col nome vero. Vale per
+tutte e due le grammatiche.
+
+### I numeri, su 40 anni
+
+| | prima | dopo |
+|---|---|---|
+| voci del beneficio rivendicate e passate | 13 (ma su un altro elenco) | **9, sulla carta** |
+| controproposte | 38 | 17 |
+| pedine del prezzo posate | 28 (18%) | 32 (18%) |
+| voci di prezzo davvero scattate | 9 diverse | 10 diverse |
+| Cicatrici scattate | 17 | 7 |
+
+**Il costo dichiarato**: le controproposte scendono da 38 a 17, perche' il
+diritto adesso si spende solo quando vale — e piu' spesso si tiene per il
+secondo dibattito. Le Cicatrici scattate scendono da 17 a 7: il fronte avverso,
+che adesso vede a chi va il controllo, sceglie piu' spesso CEDI CONTROLLO che
+CICATRICE. Nessuna delle due e' un peggioramento del gioco, ma sono due numeri
+che si muovono, e vanno scritti.
+
+Playtest 100 semi: **0 seggi bloccati su 8**, misto e uniforme.
+
+### Quello che resta aperto
+
+Le Conseguenze d'autore si applicano **dopo** la carta e possono riscrivere
+quello che la carta ha appena fatto — ISSUES 86.
+
+---
+
+## D-303 — Via la Cicatrice come moneta d'acquisto: resta un malus
+
+**implemented** (0.1.266)
+
+Parola del committente, sulle tre strade aperte da [D-302](#d-302): *«io a
+questo punto toglierei la cicatrice, la lascerei come effetto malus o
+passivo»*.
+
+Fatto. Il tetto dei benefici e' **tre secco** e non si sfonda: `benefit_ceiling()`
+non esiste piu', `costs_due()` non aggiunge la Cicatrice, `priced_costs()` non
+sostituisce piu' un costo scelto con la Cicatrice obbligata, e il cervello ha
+una sbarra sola invece di due.
+
+La Cicatrice **resta uno dei sei costi**, che e' quello che al tavolo era gia':
+misurato, si posava 17 volte in 40 anni **come prezzo scelto dagli avversari**,
+e mai come moneta d'acquisto. Toglierle il secondo mestiere non le toglie
+niente: le toglie una riga che il tavolo non ha mai giocato.
+
+**Il costo dichiarato: nessuno.** La riga che sparisce non era mai stata
+esercitata — [D-302](#d-302) l'ha resa raggiungibile apposta per misurarla, e
+il verdetto era `score=1 worst=-2 scar=-2 → -3`: valeva uno e costava quattro.
+Playtest 0 su 8, suite verde. Chiude **ISSUES 85**.
+
+La carta lo dice adesso com'e': *«1 beneficio e' gratis. Ogni beneficio in piu'
+richiede 1 costo. Al massimo 3: il tetto non si sfonda.»*
+
+---
+
 ## D-302 — Il quarto beneficio: prima non si poteva, e adesso non conviene
 
 **implemented in 0.1.265** — chiude la meta' misurabile di

@@ -617,8 +617,8 @@ func choose_costs(
 
 
 ## La controproposta del RIVENDICARE (D-268): il diritto guadagnato nell'Atto
-## si puo' spendere qui - sulla pedina del prezzo o su una voce del beneficio -
-## o tenere per il secondo dibattito.
+## si puo' spendere qui - sulla pedina del prezzo o su una casella comprata
+## sulla carta (D-304) - o tenere per il secondo dibattito.
 func choose_counterclaim(
 	entity_id: String, context: Dictionary, offer: Dictionary, session: RefCounted
 ) -> Dictionary:
@@ -629,12 +629,12 @@ func choose_counterclaim(
 		"Tieni il diritto: aprirai il secondo dibattito",
 		"Prendi la pedina del prezzo: scegli tu costo e sfogo",
 	]
+	# **Le caselle comprate sulla carta** (D-304): si rivendica una delle voci
+	# che il proponente ha appena posato, non una frase di un altro elenco.
 	var benefits: Array = offer.get("benefits", []) as Array
-	for consequence_id in benefits:
-		var consequence: Dictionary = session.data.consequences.get(str(consequence_id), {})
-		labels.append("Rivendica «%s»: se la proposta passa, quella voce parla di te\n%s" % [
-			str(consequence.get("title", consequence_id)),
-			str(consequence.get("description", "")),
+	for voice_id in benefits:
+		labels.append("Rivendica «%s»: se la proposta passa, quella voce parla di te" % [
+			session.confluence._voice_text("benefits", str(voice_id)),
 		])
 	var picked: int = await _choose(
 		"  %s, hai un RIVENDICARE da spendere: controproposta?" % _name(entity_id, session),
@@ -657,7 +657,7 @@ func choose_counterclaim(
 			"cost": "" if chosen.is_empty() else str(chosen[0]),
 			"failure": "" if chosen.size() < 2 else str(chosen[1]),
 		}
-	return {"mode": "benefit", "consequence_id": str(benefits[picked - 2])}
+	return {"mode": "benefit", "voice_id": str(benefits[picked - 2])}
 
 
 ## Commit one card at a time until the limit or "basta". The terminal could take

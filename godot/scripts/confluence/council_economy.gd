@@ -14,8 +14,8 @@ extends RefCounted
 ##    tavolo, e i **parametri**: quale condizione lascia, quale Pietra alza,
 ##    quale Cicatrice incide.
 ## 2. **Un'economia**: *un beneficio e' gratis; ogni beneficio in piu' costa un
-##    costo; una Cicatrice ne compra uno oltre il limite.* Massimo tre benefici,
-##    massimo due costi.
+##    costo.* Massimo tre benefici, massimo due costi — e il tetto non si
+##    sfonda: la Cicatrice e' un costo come gli altri (D-303).
 ## 3. **Due mani**: il proponente compra i benefici, **gli avversari scelgono in
 ##    che moneta paga** (parola del committente, scelta fra tre). Lui sa
 ##    *quanto* paga; non sa *in cosa*.
@@ -57,16 +57,14 @@ const CLOSED_TAG: String = "condition:cut_off"
 
 
 ## **Il prezzo di un carrello di benefici.** Uno e' gratis; ogni altro costa un
-## costo. Una Cicatrice accettata compra un beneficio **oltre il limite**, e
-## quindi non aggiunge prezzo per se stessa: e' la riga in fondo alla carta.
+## costo. Il tetto e' tre, e non si sfonda: **la Cicatrice non compra niente**
+## (D-303, parola del committente: *«io a questo punto toglierei la cicatrice,
+## la lascerei come effetto malus o passivo»*). Resta uno dei sei costi, che e'
+## quello che al tavolo era gia' — misurato, si posava 17 volte in 40 anni
+## **come prezzo**, e mai come moneta d'acquisto: il quarto beneficio valeva
+## uno e costava quattro (D-302), e nessun seggio sano lo comprava.
 static func costs_due(benefits: int) -> int:
 	return maxi(0, mini(benefits - 1, MAX_COSTS))
-
-
-## Quanti benefici il proponente puo' comprare adesso: tre, piu' uno per ogni
-## Cicatrice che accetta (la carta ne offre una sola, quindi al massimo quattro).
-static func benefit_ceiling(scars_accepted: int) -> int:
-	return MAX_BENEFITS + maxi(0, scars_accepted)
 
 
 ## Gli Effetti di una voce, sul luogo di cui si discute.

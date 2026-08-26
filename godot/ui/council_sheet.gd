@@ -139,7 +139,7 @@ func _the_two_lists(tension: Dictionary) -> void:
 	_gap()
 	_line(
 		"1 beneficio e' gratis. Ogni beneficio in piu' richiede 1 costo."
-		+ "  Accettando una Cicatrice se ne compra uno oltre il limite.",
+		+ "  Al massimo 3: il tetto non si sfonda.",
 		11, "#c9a14a"
 	)
 

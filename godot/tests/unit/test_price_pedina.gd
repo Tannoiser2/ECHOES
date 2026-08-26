@@ -3,7 +3,8 @@ extends "res://tests/test_case.gd"
 ##
 ## Parola del committente, sulla sua carta d'esempio: **il proponente compra i
 ## benefici, gli avversari scelgono in che moneta paga** — un costo per ogni
-## beneficio oltre il primo, e una Cicatrice ne compra uno oltre il limite. Se
+## beneficio oltre il primo, e il tetto e' tre (D-303: la Cicatrice non
+## compra, e' un costo come gli altri). Se
 ## la proposta passa si applicano benefici **e** costi; se cade, scattano gli
 ## effetti stampati, che non sceglie nessuno. E la regola anti-passivita' della
 ## roadmap (PZ-5): se tutti si astengono, il silenzio avvantaggia il
@@ -137,17 +138,13 @@ func test_one_benefit_is_free_and_every_other_costs_one() -> void:
 	assert_eq(session.confluence.costs_due(), 1, "il secondo costa un costo")
 	assert_true(session.confluence.set_benefits(benefits.slice(0, 3)), "tre benefici")
 	assert_eq(session.confluence.costs_due(), 2, "il terzo ne costa un altro")
-	assert_true(
+	assert_false(
 		session.confluence.set_benefits(benefits.slice(0, 4)),
-		"il quarto si prende accettando la Cicatrice"
+		"e il tetto e' tre: sulla carta non ci stanno altre pedine (D-303)"
 	)
 	assert_eq(
-		session.confluence.costs_due(), 3,
-		"e allora il prezzo e' due costi piu' la Cicatrice"
-	)
-	assert_false(
-		session.confluence.set_benefits(benefits.slice(0, 5)),
-		"oltre la Cicatrice non ci stanno altre pedine"
+		session.confluence.costs_due(), 2,
+		"il rifiuto non tocca quello che era gia' comprato"
 	)
 	assert_false(
 		session.confluence.set_benefits([str(benefits[0]), str(benefits[0])]),
@@ -159,20 +156,32 @@ func test_one_benefit_is_free_and_every_other_costs_one() -> void:
 	)
 
 
-## **Con la Cicatrice accettata, la Cicatrice si paga davvero.** Il quarto
-## beneficio non e' gratis: fra i costi che scattano c'e' la voce CICATRICE,
-## anche se il fronte avverso ne aveva scelte altre.
-func test_the_fourth_benefit_brings_the_scar() -> void:
-	_open_with_proposition()
-	session.confluence.set_benefits(_benefits().slice(0, 4))
+## **La Cicatrice e' un costo, non una moneta d'acquisto** (D-303, parola del
+## committente). Sta fra i sei costi che il fronte avverso puo' scegliere, e
+## quando la sceglie scatta come tutti gli altri; quello che non fa piu' e'
+## sfondare il tetto dei benefici.
+func test_the_scar_is_a_cost_like_the_others() -> void:
+	var context: Dictionary = _open_with_proposition()
 	var scar_id: String = ""
 	for voice in (data().tensions[TENSION]["physical"]["costs"] as Array):
 		if str((voice as Dictionary)["verb"]) == "SCAR":
 			scar_id = str((voice as Dictionary)["id"])
 	assert_ne(scar_id, "", "la carta offre una Cicatrice")
 	assert_true(
+		(session.confluence.price_menu()["cost"] as Array).has(scar_id),
+		"e il fronte avverso puo' sceglierla come prezzo"
+	)
+	# Due benefici: un costo da pagare, e il fronte avverso sceglie la Cicatrice.
+	session.confluence.set_benefits(_benefits().slice(0, 2))
+	var others: Array = _others(str(context["proponent"]))
+	session.confluence.declare_stance(str(others[0]), "OPPOSE")
+	assert_true(
+		session.confluence.place_costs(str(others[0]), [scar_id]),
+		"la Cicatrice si posa come qualunque altro costo"
+	)
+	assert_true(
 		(session.confluence.priced_costs() as Array).has(scar_id),
-		"e chi ha comprato il quarto beneficio se la prende"
+		"e allora la Cicatrice scatta"
 	)
 
 

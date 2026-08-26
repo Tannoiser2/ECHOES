@@ -5,6 +5,33 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.266 — Una pedina su una pedina, e la Cicatrice torna a fare un mestiere solo (D-303, D-304)
+
+- **Via la Cicatrice come moneta d'acquisto** (D-303, parola del committente):
+  il tetto dei benefici è **tre secco**. `benefit_ceiling()` non esiste più, e
+  la Cicatrice resta uno dei sei costi — che è quello che al tavolo era già:
+  17 volte in 40 anni come prezzo scelto dagli avversari, mai come acquisto.
+  Costo dichiarato: **nessuno**, la riga non era mai stata giocata. Chiude
+  ISSUES 85.
+- **La pedina del RIVENDICARE si posa sulla carta** (D-304). Il proponente
+  comprava dalla faccia della carta, il rivendicante posava la pedina sulle
+  Conseguenze del *template*: due elenchi diversi per la stessa pedina, ed è la
+  confusione che il committente aveva segnalato. Adesso si rivendica **solo una
+  casella davvero comprata**, e a proposta passata quella voce parla di lui.
+- **E il cervello non vedeva a chi va il controllo.** Rimessa in fila la
+  grammatica, le voci rivendicate sono andate a zero: `_score_effect` valutava
+  il passaggio di controllo solo col segnaposto `$proponent`, che sulla carta è
+  già risolto. Ogni CAMBIA CONTROLLO stampato valeva **zero per chiunque**.
+  Corretto: voci rivendicate 0 → **9** su 40 anni.
+- **Costi dichiarati**: controproposte 38 → 17 (il diritto si tiene più spesso
+  per il secondo dibattito); Cicatrici scattate 17 → 7 (il fronte avverso, che
+  adesso vede il controllo, sceglie più spesso CEDI CONTROLLO).
+- **Aperta ISSUES 86**: la frase d'autore si applica dopo la carta e può
+  riscriverla, compresa una casella rivendicata.
+- Playtest 100 semi: **0 seggi bloccati su 8**, misto e uniforme. Suite 609.
+
+---
+
 ## 0.1.265 — Il quarto beneficio: prima non si poteva, e adesso non conviene (D-302)
 
 - **Difetto vero, corretto**: il cervello si fermava a tre benefici *per

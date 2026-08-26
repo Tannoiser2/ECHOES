@@ -2763,9 +2763,41 @@ e' in gioco.
 
 ---
 
-### 85. Il quarto beneficio non si compra mai, e la Cicatrice non scatta
+### 86. La frase d'autore si applica dopo la carta, e puo' riscriverla
 
-`regole` · `motore` · **aperta in 0.1.264** ([D-301](DECISIONS.md#d-301))
+`motore` · `regole` · **aperta in 0.1.266** ([D-304](DECISIONS.md#d-304))
+
+Nell'ordine di `resolve()` la carta si spende **prima** e le Conseguenze
+d'autore del template **dopo**. Quindi una Conseguenza che assegna il controllo
+di un luogo riscrive quello che la casella CAMBIA CONTROLLO della carta ha
+appena deciso — compresa la casella rivendicata da una controproposta, che
+diventa muta senza che il verbale dica che e' stata sovrascritta.
+
+Visto con gli occhi mentre si costruiva la prova di D-304: la casella
+fabbricata prendeva il controllo per il rivendicante, e a fine risoluzione il
+luogo era del proponente. La prova adesso guarda una **Pietra** invece del
+controllo, perche' una Pietra costruita nessuno la riscrive.
+
+Tre letture, e la scelta e' del committente:
+
+1. **la carta vince** — le due liste sono l'economia esplicita di D-280, e
+   quello che il tavolo ha comprato e pagato non dovrebbe essere cancellato da
+   una frase che non ha scelto nessuno: si spenderebbe la carta **dopo**;
+2. **la frase vince, ma lo dice** — resta l'ordine di adesso, e il verbale
+   scrive «questa voce e' stata sovrascritta da», cosi' al tavolo si vede;
+3. **non si incrociano** — le Conseguenze d'autore smettono di assegnare
+   controllo, che e' mestiere delle caselle.
+
+Quanto spesso capita non e' ancora misurato: serve una sonda che conti i
+CAMBIA CONTROLLO della carta annullati dalla frase nello stesso Consiglio.
+
+### 85. ✅ Il quarto beneficio non si compra mai — chiusa in 0.1.266
+
+`regole` · `motore` · aperta in 0.1.264 ([D-301](DECISIONS.md#d-301)) ·
+**chiusa da [D-303](DECISIONS.md#d-303)**: parola del committente, *«io a questo
+punto toglierei la cicatrice, la lascerei come effetto malus o passivo»*. Il
+tetto e' tre secco, la Cicatrice resta uno dei sei costi. La riga che sparisce
+valeva uno e costava quattro.
 
 [D-280](DECISIONS.md#d-280) dice: *«un beneficio e' gratis, ogni altro costa un
 costo, e una Cicatrice ne compra uno oltre il limite»*. Misurato su 40 anni e
