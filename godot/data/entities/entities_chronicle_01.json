@@ -205,7 +205,28 @@
           "entry": "LINE_EXHAUSTED",
           "also_enters": {
             "after_years": 150,
-            "holds_at_least": 2
+            "unless": [
+              {
+                "type": "controls_at_least",
+                "min": 2,
+                "any_tag": [
+                  "capital",
+                  "granary",
+                  "trade"
+                ],
+                "why": "Un trono che non tiene due luoghi che contano non e' un trono, e' una casa con una corona dentro."
+              },
+              {
+                "type": "structure_stands",
+                "structure": "STR_KEEP",
+                "why": "La torre e' il posto da cui si dice di no. Senza, si contratta."
+              },
+              {
+                "type": "holds_wanted",
+                "min": 2,
+                "why": "E che il mondo porti ancora almeno due delle cose per cui questa casa e' venuta al tavolo."
+              }
+            ]
           }
         },
         {
@@ -402,7 +423,29 @@
           "entry_tag": "twice_uprooted",
           "also_enters": {
             "after_years": 150,
-            "holds_at_least": 2
+            "unless": [
+              {
+                "type": "controls_at_least",
+                "min": 1,
+                "any_tag": [
+                  "nomad_range",
+                  "granary",
+                  "wild"
+                ],
+                "why": "Un popolo ha bisogno di una terra su cui tornare, anche se non ci resta."
+              },
+              {
+                "type": "condition_below",
+                "tag": "condition:cut_off",
+                "max": 1,
+                "why": "Due strade chiuse insieme e questo popolo non e' piu' un popolo: sono due popoli."
+              },
+              {
+                "type": "holds_wanted",
+                "min": 2,
+                "why": "E che resti qualcosa di quello che volevano lasciare."
+              }
+            ]
           }
         }
       ],
@@ -637,7 +680,24 @@
           "entry": "LINE_EXHAUSTED",
           "also_enters": {
             "after_years": 150,
-            "holds_at_least": 2
+            "unless": [
+              {
+                "type": "structure_stands",
+                "structure": "STR_ARCHIVE",
+                "why": "Senza un archivio in piedi la misura si tramanda a voce, e a voce diventa rito."
+              },
+              {
+                "type": "condition_below",
+                "tag": "condition:guarded",
+                "max": 0,
+                "why": "Uno studio sorvegliato smette di essere studio prima di smettere di esistere."
+              },
+              {
+                "type": "holds_wanted",
+                "min": 2,
+                "why": "E che il sapere condiviso sia ancora sul tavolo, in qualche forma."
+              }
+            ]
           }
         }
       ],

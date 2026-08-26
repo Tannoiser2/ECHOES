@@ -5,6 +5,133 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.262 — L'Eredita' misurata, e per adesso non scritta (D-299)
+
+- `cli/run_inheritance_probe.gd`: il secondo punteggio del documento sulle
+  trasformazioni, misurato **senza cambiare regole**, in tre versioni, su 672
+  salti d'era.
+- **È misurabile ed è quasi inerte**: sommata ai gradini ribalta il vincitore
+  della saga **4 volte su 24**, e l'accordo con chi ha più Trionfi passa da 4 a
+  **5 su 24** — dentro il rumore.
+- **Perché**: la versione «solo quello che si poteva perdere» collassa a un +1
+  piatto per tutti; quella scritta paga di più le case i cui desideri sono
+  **memorie** (Sale 2,56 a salto contro 1,05 di Vaerax e Vetro) — cioè premia
+  la durata con un altro nome, che è quello che il committente non vuole.
+- **Non l'ho scritta come regola.** La variante che salverei è la terza: *+3 per
+  ogni leggenda che porta il tuo nome*. ISSUES 84 porta le tre strade al
+  committente.
+
+## 0.1.261 — La soglia legge quello che il mondo sa togliere (D-298)
+
+- **La grammatica ricca della porta del tempo**, come la chiede il documento
+  sulle trasformazioni: `unless` con cinque condizioni — Regioni controllate,
+  Pietre in piedi, condizioni sparse, un segno preciso, i desideri del profilo.
+  La porta si apre quando **una sola** gamba cade: sono le gambe di un tavolo,
+  non una somma. Ogni gamba porta il suo *perché*.
+- **La cura di ISSUES 81, con la guardia**: almeno una gamba dev'essere una cosa
+  che il mondo sa togliere. Difetto piantato «porta fatta di sole memorie» —
+  18 difetti, tutti mordono.
+- **I numeri**: trasformazioni **139 → 185**; **La Compagnia del Sale 0 → 14**
+  e **La Diaspora di Nahr 0 → 10**, che avevano la porta e non si aprivano mai.
+- **Le due storte**: il Banco Nero scende a **0** (il Sale muta per il tempo
+  prima che il debito venga chiamato), e il ritmo accelera — Nahr 1 salto su
+  **4,8**, Aldric 1 su **6,0** (era 15,3). In anni fa una pelle ogni ~480.
+- ISSUES 83 apre il rischio speculare: **la porta spalancata**.
+- Cancello: 0 seggi bloccati su 8. 609 prove verdi.
+
+## 0.1.260 — Il catalogo delle pedine (D-297)
+
+- `docs/CATALOGO_PEDINE.md`, generato e **nei cancelli**: **74 schede**, una per
+  segnalino — parola stampata, categoria e chi lo posa, **cosa vuol dire al
+  tavolo**, e il **prompt** pronto da mandare a chi disegna.
+- **MASTER PROMPT 6** nella ART_BIBLE: il segnalino da 15 mm non è
+  un'illustrazione — si riconosce **prima** di leggerlo. Tre varianti di
+  contorno (condizione tratteggiata, Cicatrice rotta, il resto pieno) e il
+  vincolo di collisione, che ha già respinto tre soggetti.
+- I soggetti stanno in `data/token_icons/token_icons.json`, con schema e
+  validatore; il prompt si compone, non si scrive.
+- **Le legge anche l'app**: `DataSet.token_icons`, chiavato sul segno — un
+  segnalino sulla mappa e uno sullo schermo devono spiegarsi con la stessa riga.
+- Cancello nuovo provato: tolta una scheda, va rosso.
+
+## 0.1.259 — La fustella non e' il dizionario: 67 tipi, non 183 (D-296)
+
+- **Correzione di un numero mio**: il censimento metteva i 183 segni del
+  dizionario sotto «i segnalini che si posano». La fustella vera taglia
+  **67 tipi, 91 pezzi** — 34 per la mappa, 33 per le case — e il documento
+  adesso li conta da dove li conta il foglio di stampa.
+- `cli/run_punchboard_probe.gd`: quanti tipi arrivano **davvero** sul tavolo.
+  **8,8 in media per anno, 15 al massimo**; 17 tipi su 34 non escono mai o
+  escono meno di un anno su cinque.
+- E la coda letta divisa in due: **le Cicatrici rare sono design**, le
+  **condizioni rare sono un buco** — `condition:starving` esce 1 anno su 40, e
+  la fame è un Tema del gioco. ISSUES 82 porta la decisione al committente.
+
+## 0.1.258 — Il censimento dei componenti (D-295)
+
+- `tools/components_survey.py` → `docs/COMPONENTI.md`, **nei cancelli**: quanti
+  pezzi ha la scatola, quanti fogli A4 escono, quanti segnalini, quanta arte, e
+  **cosa manca** perché l'app dica tutto quello che dice il tavolo.
+- La scatola: **48 Asset (132 copie), 39 Echo, 60 Tensioni, 23 Destini, 26
+  Casate, 10 tessere** — 39 fogli A4 più tre fustelle.
+- Il divario, in quattro voci: **facce fisiche non scritte** (39 Echo, 26
+  Casate, 10 tessere), **arte 135 su 146 segnaposto**, le regole aperte
+  (ISSUES 76/77/80/81), e l'app come oggetto (ISSUES 63/65).
+- Contando l'arte sono saltati fuori 49 soggetti che la prima misura non
+  vedeva: **le vite delle case hanno un volto ciascuna**. Adesso il numero
+  combacia col brief d'arte, che lo calcola da un'altra strada.
+
+## 0.1.257 — Le otto case dichiarano, e tre vite morte si siedono (D-294)
+
+- **Quattro profili nuovi** — Cenere, Città Libere, Sale, Vetro — nella forma
+  di D-288, e la porta del tempo a tre vite che non si erano **mai** sedute.
+- **I numeri**: incroci **7 → 15**, coppie di case con qualcosa per cui
+  litigare **3 → 9 su 28**, trasformazioni sedute **106 → 139**. Le Custodi
+  della Cenere **0 → 20**, I Frati del Vetro **3 → 18**.
+- **Le vite mai sedute restano 7**, ma non sono le stesse: le Custodi si
+  siedono, l'Inquisizione del Vetro scende a zero perché il Vetro adesso cambia
+  pelle per il tempo prima che la reliquia venga mostrata.
+- **La Compagnia del Sale ha la porta e non si apre**: i segni che la Gilda
+  vuole lasciare sono **memorie**, e una memoria scritta non si perde più. *Una
+  soglia deve leggere quello che il mondo sa togliere.*
+- E `trade` tolto dai desideri del Sale: è stampato sulle tessere, quindi non
+  distingue niente. **Un desiderio che la mappa porta da sola è arredo.**
+- Ritmo: nessuna casa muta più spesso di 1 salto su 6,2.
+- La guardia del validatore ora **fabbrica** il difetto invece di cercarlo.
+- Cancello: 0 seggi bloccati su 8. 607 prove verdi.
+
+## 0.1.256 — Gli incroci: chi litiga con chi, e per cosa (D-293)
+
+- `matrix_survey` sezione 5, nei cancelli: per ogni segno **chi aiuta e chi
+  danneggia**, mettendo insieme Destini e profili (le `denies` comprese, che
+  sono incroci dichiarati a mano).
+- **Il numero: 7 segni incrociano, e le coppie di case con qualcosa per cui
+  litigare sono 3 su 28.** Cinque di quei sette **cambiano anche la pelle** di
+  una casa, perché una porta del tempo li legge.
+- La causa è strutturale: gli incroci esistono quasi solo fra le quattro case
+  con un profilo. **Scrivere i quattro che mancano è la leva più corta**
+  (ISSUES 79).
+- Il cancello che la linea delle trasformazioni chiede — «due case devono
+  condividere un trigger opposto» — **resta spento e dichiarato**: acceso oggi
+  direbbe rosso su 25 coppie su 28.
+
+## 0.1.255 — Chi scrive nel mondo, e le Pietre che non lo dicevano (D-292)
+
+- `cli/run_who_writes_probe.gd`: la misura che viene prima del taglio 2. Su 158
+  Consigli, **la frase d'autore scrive il 71%** di quello che resta sul mondo,
+  la carta il 29%. **Il taglio 2 non e' una cancellazione, e' un
+  trasferimento** — e il committente decide sapendo quanto costa.
+- **La carta racconta cosa lascia**: la voce comprata applicava i suoi Effetti
+  in silenzio mentre la Conseguenza d'autore narrava i suoi. Meta' del Consiglio
+  cambiava il mondo senza una riga di verbale.
+- **Le Pietre e le strade parlano**: il narratore non aveva una frase per
+  `BUILD_STRUCTURE`, `RAZE_STRUCTURE`, `SET_STRUCTURE_GRADE`, `CLOSE_PASSAGE`,
+  `OPEN_PASSAGE`. Un Granaio si alzava e nessuno lo leggeva. I benefici
+  raccontati salgono **da 89 a 121**.
+- E la sonda non vedeva il trattino del registro: **sesta volta** che uno zero
+  in questo progetto era la sonda.
+- Cancello: 0 seggi bloccati su 8. 607 prove verdi.
+
 ## 0.1.254 — Il tabellone del Consiglio mostra la carta girata (D-291)
 
 - **Taglio 1 di ISSUES 80**: fra la Proposta e le pose, il tabellone apre la

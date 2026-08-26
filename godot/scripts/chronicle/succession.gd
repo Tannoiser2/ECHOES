@@ -274,13 +274,6 @@ static func _timed_life(
 	entity_id: String, previous: Dictionary, before: Dictionary
 ) -> int:
 	var incarnations: Array = definition.get("incarnations", [])
-	var profiles: Variant = data.get("entity_profiles")
-	if profiles == null:
-		return -1
-	var profile: Variant = (profiles as Dictionary).get(entity_id)
-	if profile == null:
-		return -1
-	var wants: Array = (profile as Dictionary).get("wants", []) as Array
 	for index in range(incarnation + 1, incarnations.size()):
 		var life: Dictionary = incarnations[index] as Dictionary
 		var door: Dictionary = life.get("also_enters", {}) as Dictionary
@@ -288,13 +281,78 @@ static func _timed_life(
 			continue
 		if life_years < int(door.get("after_years", 0)):
 			continue
-		var still: int = 0
-		for voice in wants:
-			if _sign_anywhere(str((voice as Dictionary).get("tag", "")), previous, before):
-				still += 1
-		if still < int(door.get("holds_at_least", 1)):
-			return index
+		# **Basta che una cosa sia caduta.** Non e' una somma: sono le gambe di
+		# un tavolo, e un tavolo con una gamba in meno non sta in piedi lo
+		# stesso perche' le altre reggono.
+		for clause in (door.get("unless", []) as Array):
+			if not _still_holds(clause as Dictionary, data, entity_id, previous, before):
+				return index
 	return -1
+
+
+## **Questa cosa regge ancora?** (D-298)
+##
+## Le cinque condizioni della porta del tempo. Quattro leggono il **mondo**
+## — Regioni controllate, Pietre in piedi, condizioni sparse, un segno preciso —
+## e una legge il profilo strategico, che e' la forma vecchia di D-290.
+##
+## La regola che le governa, e che il validatore pretende: **una soglia deve
+## leggere quello che il mondo sa togliere** (ISSUES 81). Una memoria, scritta
+## una volta, resta per sempre: una porta fatta di sole memorie non si apre
+## mai, e infatti La Compagnia del Sale non si e' seduta in 168 salti d'era.
+static func _still_holds(
+	clause: Dictionary, data: RefCounted, entity_id: String,
+	previous: Dictionary, before: Dictionary
+) -> bool:
+	var regions: Dictionary = previous.get("regions", {}) as Dictionary
+	match str(clause.get("type", "")):
+		"holds_wanted":
+			var profiles: Variant = data.get("entity_profiles")
+			if profiles == null:
+				return true
+			var profile: Variant = (profiles as Dictionary).get(entity_id)
+			if profile == null:
+				return true
+			var still: int = 0
+			for voice in (profile as Dictionary).get("wants", []) as Array:
+				if _sign_anywhere(str((voice as Dictionary).get("tag", "")), previous, before):
+					still += 1
+			return still >= int(clause.get("min", 1))
+		"controls_at_least":
+			var wanted: Array = clause.get("any_tag", []) as Array
+			var mine: int = 0
+			for region_id in regions:
+				var region: Dictionary = regions[str(region_id)] as Dictionary
+				if str(region.get("control", "")) != entity_id:
+					continue
+				for tag in (region.get("tags", []) as Array):
+					if wanted.has(str(tag)):
+						mine += 1
+						break
+			return mine >= int(clause.get("min", 1))
+		"structure_stands":
+			var kind: String = str(clause.get("structure", ""))
+			for region_id in regions:
+				var region: Dictionary = regions[str(region_id)] as Dictionary
+				if str(region.get("control", "")) != entity_id:
+					continue
+				for structure in (region.get("structures", []) as Array):
+					if str((structure as Dictionary).get("structure_type", "")) == kind:
+						return true
+			return false
+		"condition_below":
+			var tag: String = str(clause.get("tag", ""))
+			var quante: int = 0
+			for region_id in regions:
+				if ((regions[str(region_id)] as Dictionary).get("tags", []) as Array).has(tag):
+					quante += 1
+			return quante <= int(clause.get("max", 0))
+		"sign_stands":
+			return _sign_anywhere(str(clause.get("tag", "")), previous, before)
+	# Una condizione che il motore non conosce non fa cadere nessuno: il
+	# validatore l'avrebbe gia' rifiutata, e un errore di dati non deve
+	# trasformare una casa di nascosto.
+	return true
 
 
 ## La prossima vita del seggio, o -1: la prima candidata dopo quella corrente,

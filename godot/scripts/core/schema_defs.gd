@@ -1678,6 +1678,43 @@ const DEFS := {
 			},
 		},
 	},
+	"token_icon": {
+		"kind": "collection",
+		"required": [
+			"id",
+			"tag",
+			"fustella",
+			"rappresenta",
+			"soggetto",
+		],
+		"additional_properties": false,
+		"properties": {
+			"id": {
+				"type": "String",
+				"pattern": "^TOK_[A-Z0-9_]+$",
+			},
+			"fustella": {
+				"type": "String",
+				"enum": [
+					"REGIONI",
+					"CASE",
+					"PEDINE",
+				],
+			},
+			"rappresenta": {
+				"type": "String",
+				"min_length": 10,
+			},
+			"soggetto": {
+				"type": "String",
+				"min_length": 5,
+			},
+			"tag": {
+				"type": "String",
+				"min_length": 1,
+			},
+		},
+	},
 	"world_state": {
 		"kind": "runtime",
 		"required": [
@@ -1905,6 +1942,7 @@ const COLLECTION_SCHEMA_IDS := [
 	"tag_rule",
 	"tension",
 	"theme",
+	"token_icon",
 ]
 
 ## Closed EffectType enum (spec v0.2 §6.3).

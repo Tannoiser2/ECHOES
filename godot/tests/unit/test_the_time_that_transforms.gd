@@ -21,15 +21,32 @@ func _chronicle(id: String) -> Dictionary:
 	return data().chronicles[id]
 
 
-## Un mondo di prima in cui Aldric siede da `anni` con addosso questi segni.
-func _world(years_so_far: int, held: Array) -> Dictionary:
+## Un mondo di prima in cui Aldric siede da `anni` con addosso questi segni,
+## e **tiene quello che la sua porta gli chiede di tenere**: due Regioni che
+## contano e una torre in piedi (D-298). Le prove che vogliono vederlo cadere
+## tolgono una gamba per volta, invece di partire da un mondo vuoto: un mondo
+## vuoto farebbe cadere chiunque, e non proverebbe niente.
+func _world(years_so_far: int, held: Array, regions: Variant = null) -> Dictionary:
 	return {
 		"entities": {"ENT_ALDRIC": {
 			"name": "Re Aldric", "generation": 0, "incarnation": 0,
 			"life_years": years_so_far, "active": true, "tags": held.duplicate(),
 		}},
-		"regions": {},
+		"regions": _standing() if regions == null else regions,
 		"global_tags": [],
+	}
+
+
+## Il regno in piedi: la capitale col suo presidio, e il granaio.
+func _standing() -> Dictionary:
+	return {
+		"REG_EREDAN": {
+			"control": "ENT_ALDRIC", "tags": ["capital"],
+			"structures": [{"structure_type": "STR_KEEP", "grade": 1, "owner": "ENT_ALDRIC"}],
+		},
+		"REG_VALLE_VERDE": {
+			"control": "ENT_ALDRIC", "tags": ["granary"], "structures": [],
+		},
 	}
 
 
@@ -46,7 +63,8 @@ func test_two_cities_are_enough_for_a_decade() -> void:
 
 func test_but_not_for_three_centuries() -> void:
 	# Due secoli senza niente di quello che la casa voleva lasciare: il Regno
-	# non e' piu' un regno.
+	# non e' piu' un regno. Le Regioni ci sono ancora — cade la sola gamba dei
+	# desideri, e basta quella.
 	var plan: Dictionary = Succession.plan(
 		_world(100, []), {}, _chronicle("CHR_02"), data(), 100
 	)
@@ -86,17 +104,19 @@ func test_losing_alone_transforms_nobody() -> void:
 ## Uno solo dei due segni non basta: la porta chiede `holds_at_least`, e il
 ## numero e' scritto sulla vita, non nel codice.
 func test_the_threshold_is_a_number_the_life_declares() -> void:
-	var door: Dictionary = {}
-	for life in (data().entities["ENT_ALDRIC"] as Dictionary)["incarnations"]:
-		if str((life as Dictionary)["id"]) == "INC_ALDRIC_02":
-			door = (life as Dictionary).get("also_enters", {}) as Dictionary
+	var door: Dictionary = _door("ENT_ALDRIC", "INC_ALDRIC_02")
 	assert_false(door.is_empty(), "la Repubblica dichiara la sua porta")
+	var chiesti: int = 0
+	for clause in (door["unless"] as Array):
+		if str((clause as Dictionary)["type"]) == "holds_wanted":
+			chiesti = int((clause as Dictionary)["min"])
+	assert_true(chiesti >= 1, "e la porta dice quanti desideri devono reggere")
 	var one: Dictionary = Succession.plan(
 		_world(200, [ALDRIC_WANTS[0]]), {}, _chronicle("CHR_02"), data(), 10
 	)
 	assert_true(
 		bool((one["ENT_ALDRIC"] as Dictionary)["transformed"]),
-		"con un segno solo, sotto i %d chiesti, la casa cade" % int(door["holds_at_least"])
+		"con un segno solo, sotto i %d chiesti, la casa cade" % chiesti
 	)
 	var two: Dictionary = Succession.plan(
 		_world(200, ALDRIC_WANTS), {}, _chronicle("CHR_02"), data(), 10
@@ -104,6 +124,47 @@ func test_the_threshold_is_a_number_the_life_declares() -> void:
 	assert_false(
 		bool((two["ENT_ALDRIC"] as Dictionary)["transformed"]),
 		"con due, no"
+	)
+
+
+## La porta di una vita, per id.
+func _door(entity_id: String, life_id: String) -> Dictionary:
+	for life in (data().entities[entity_id] as Dictionary)["incarnations"]:
+		if str((life as Dictionary)["id"]) == life_id:
+			return (life as Dictionary).get("also_enters", {}) as Dictionary
+	return {}
+
+
+## **E ogni gamba regge da sola** (D-298): il regno tiene i suoi desideri, ma
+## perde le Regioni — e cade lo stesso. E' la meta' che mancava a D-290, dove
+## una porta fatta di sole memorie non si apriva mai (ISSUES 81).
+func test_losing_the_land_is_enough_even_holding_the_memories() -> void:
+	var senza_terra: Dictionary = {
+		"REG_EREDAN": {"control": "ENT_LYRA", "tags": ["capital"], "structures": []},
+		"REG_VALLE_VERDE": {"control": "ENT_LYRA", "tags": ["granary"], "structures": []},
+	}
+	var plan: Dictionary = Succession.plan(
+		_world(200, ALDRIC_WANTS, senza_terra), {}, _chronicle("CHR_02"), data(), 10
+	)
+	var seat: Dictionary = plan["ENT_ALDRIC"] as Dictionary
+	assert_true(
+		bool(seat["transformed"]),
+		"tiene le sue memorie e non tiene piu' niente sulla mappa: diventa un'altra cosa"
+	)
+	assert_eq(str(seat["name"]), "La Repubblica della Valle", "e sappiamo in cosa")
+
+
+## **E la Pietra e' una gamba come le altre.** Il regno tiene terra e desideri,
+## ma la torre e' caduta: e' abbastanza.
+func test_the_keep_is_a_leg_too() -> void:
+	var senza_torre: Dictionary = _standing()
+	(senza_torre["REG_EREDAN"] as Dictionary)["structures"] = []
+	var plan: Dictionary = Succession.plan(
+		_world(200, ALDRIC_WANTS, senza_torre), {}, _chronicle("CHR_02"), data(), 10
+	)
+	assert_true(
+		bool((plan["ENT_ALDRIC"] as Dictionary)["transformed"]),
+		"senza il posto da cui si dice di no, il trono e' una casa con una corona dentro"
 	)
 
 

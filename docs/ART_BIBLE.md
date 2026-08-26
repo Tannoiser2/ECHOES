@@ -209,6 +209,45 @@ due carte condividono accento e mondo: due quadri della stessa parete.
 
 ---
 
+## MASTER PROMPT 6 — segnalino da 15 mm
+
+I segnalini non sono illustrazione e non sono nemmeno le icone di sistema: sono
+**segni di cartone** che stanno sulla mappa insieme ad altri otto, girati di
+traverso, sotto una lampada. La regola dei 16 px vale anche qui, e in piu' ne
+vale una sua: **un segnalino si riconosce prima di leggerlo**. La parola
+italiana stampata sotto e' la conferma, non la spiegazione.
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: {soggetto}.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+Tre varianti, e la differenza si deve **vedere prima della parola**:
+
+- **condizione** (curabile, doppia copia): contorno tratteggiato. E' una cosa
+  che sta succedendo, e puo' finire.
+- **Cicatrice** (permanente): il segno porta una rottura — una linea che
+  spezza il disegno, non un simbolo diverso. La mappa non la dimentica.
+- **Pietra, insediamento, segno di casa**: contorno pieno. E' una cosa che
+  c'e'.
+
+**Il vincolo di collisione**, che ha gia' respinto tre soggetti in fase di
+scrittura: `abbandonata`, `svuotata` e `lo sgombero` raccontano tre cose
+diverse — chi se n'e' andato da solo, chi e' stato mandato via adesso, e il
+fatto che fu mandato via una volta per sempre. Se le tre icone si somigliano,
+al tavolo diventano una sola.
+
+L'elenco dei soggetti, uno per segnalino, sta in
+[CATALOGO_PEDINE.md](CATALOGO_PEDINE.md): e' generato dai dati, come il brief
+d'arte.
+
+---
+
 ## Overlay e iconografia
 
 **Fatto in 0.1.20** (`scripts/core/icon_set.gd`, [D-058](DECISIONS.md#d-058)):

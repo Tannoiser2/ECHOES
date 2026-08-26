@@ -66,6 +66,46 @@ static func narrate(effect: Dictionary, data) -> String:
 			return "%s passa sotto il controllo di %s." % [
 				_region(target_id, data), _entity(str(next), data)
 			]
+		# **Le Pietre e le strade parlano** (D-292). Erano gli unici cambiamenti
+		# della mappa che il verbale non diceva: al Consiglio si comprava
+		# «Costruisci 1 Pietra: Granaio», la Pietra si alzava davvero, e sul
+		# tavolo non restava una riga che lo raccontasse. Il piu' fisico di
+		# tutti i gesti era il piu' muto.
+		"BUILD_STRUCTURE":
+			var built: String = SignLabels.grade_name(
+				str(payload.get("structure_type", "")), int(payload.get("grade", 1)), data
+			)
+			if built == "":
+				return ""
+			return "In %s si alza: %s." % [_region(target_id, data), built]
+		"RAZE_STRUCTURE":
+			var razed: String = SignLabels.grade_name(
+				str(payload.get("structure_type", "")),
+				int(effect.get("inverse_payload", {}).get("grade", 1)), data
+			)
+			if razed == "":
+				return ""
+			return "In %s non resta niente di: %s." % [_region(target_id, data), razed]
+		"SET_STRUCTURE_GRADE":
+			var type_id: String = str(payload.get("structure_type", ""))
+			var was: int = int(effect.get("inverse_payload", {}).get("grade", 0))
+			var now: int = int(payload.get("grade", 0))
+			if was == 0 or now == was:
+				return ""
+			var name_now: String = SignLabels.grade_name(type_id, now, data)
+			if name_now == "":
+				return ""
+			return "In %s %s: %s." % [
+				_region(target_id, data), "cresce" if now > was else "decade", name_now
+			]
+		"CLOSE_PASSAGE":
+			return "Fra %s e %s non si passa piu'." % [
+				_region(target_id, data), _region(str(payload.get("region_id", "")), data)
+			]
+		"OPEN_PASSAGE":
+			return "Fra %s e %s si torna a passare." % [
+				_region(target_id, data), _region(str(payload.get("region_id", "")), data)
+			]
 		"SET_REGION_TAG":
 			return "Su %s resta un segno: «%s»." % [
 				_region(target_id, data), SignLabels.label(str(payload.get("tag", "")), data)

@@ -359,3 +359,58 @@ func _log_says(needle: String) -> bool:
 		if str(line).contains(needle):
 			return true
 	return false
+
+
+## **E la carta dice cosa ha lasciato sul mondo** (D-292).
+##
+## La Conseguenza d'autore narrava ogni suo Effetto — «Su Valle Verde resta un
+## segno: razionata» — e la voce della carta no: il verbale diceva «Beneficio:
+## costruisci un Granaio» e poi taceva. Meta' del Consiglio scriveva in
+## silenzio, e una sonda che contava quello che il tavolo legge dava **zero**
+## alla carta e 443 alla frase d'autore: un numero falso, prodotto da un difetto
+## vero.
+func test_the_card_says_what_it_left_behind() -> void:
+	var context: Dictionary = _open_with_proposition()
+	var proponent: String = str(context["proponent"])
+	var opposer: String = str(_others(proponent)[0])
+	# La Pietra: e' il beneficio che lascia il segno piu' facile da riconoscere
+	# nel verbale, e sta sulla carta, non scritto qui.
+	var stone: String = ""
+	for voice in (data().tensions[TENSION]["physical"]["benefits"] as Array):
+		if str((voice as Dictionary).get("verb", "")) == "BUILD_STONE":
+			stone = str((voice as Dictionary)["id"])
+	assert_ne(stone, "", "la carta offre di costruire una Pietra")
+	session.confluence.set_benefits([stone])
+	session.confluence.declare_stance(opposer, "OPPOSE")
+	_rig(_factor_cancelling_bite(proponent))
+	var before: int = session.log.lines.size()
+	var result: Dictionary = session.confluence.resolve()
+	assert_true(ConfluenceResolution.is_success(str(result["outcome"])), "la proposta passa")
+
+	# La riga della voce c'e' — quella c'era gia'. Quello che si pretende qui e'
+	# **la riga subito sotto**: cosa quella voce ha scritto sul mondo. Il
+	# registro incolonna «- H. Beneficio: ...» e sotto «-   il mondo ricorda…»,
+	# quindi una riga narrata e' una riga che **non** comincia con la lettera
+	# di un passo.
+	var said: int = -1
+	for i in range(before, session.log.lines.size()):
+		if str(session.log.lines[i]).contains("H. Beneficio: %s" % _text_of("benefits", stone)):
+			said = i
+	assert_true(said >= 0, "il verbale legge il beneficio comprato")
+	assert_true(said + 1 < session.log.lines.size(), "e non e' l'ultima riga del verbale")
+	var below: String = _unbulleted(str(session.log.lines[said + 1]))
+	assert_false(
+		_is_step(below),
+		"subito sotto il beneficio c'e' cosa ha lasciato, non il passo dopo: «%s»" % below
+	)
+
+
+## Una riga del registro senza il trattino dell'elenco.
+func _unbulleted(line: String) -> String:
+	var text: String = line.strip_edges()
+	return text.substr(2).strip_edges() if text.begins_with("- ") else text
+
+
+## «H. …», «I. …»: una riga che apre un passo della sequenza, non un Effetto.
+func _is_step(text: String) -> bool:
+	return text.length() > 2 and text[1] == "." and "ABCDEFGHIJK".contains(text[0])

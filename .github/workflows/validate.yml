@@ -139,6 +139,18 @@ jobs:
       # davvero al tavolo in dodici saghe, sui due tavoli del cancello. E' il
       # numero su cui si giudica la soglia di trasformazione: se cambia senza
       # che nessuno l'abbia voluto, questo passo va rosso.
+      # Il censimento dei componenti (D-295): quanti pezzi ha la scatola e
+      # quanto ne vede l'app. Se qualcuno aggiunge una carta e il documento non
+      # se ne accorge, questo passo va rosso.
+      # Il catalogo delle pedine (D-297): una scheda per segnalino, col prompt.
+      # Se qualcuno aggiunge una condizione e non dice cosa ci va disegnato
+      # sopra, il segnalino non si puo' stampare: questo passo lo dice subito.
+      - name: Drift check - il catalogo delle pedine
+        run: python3 tools/token_catalogue.py --check
+
+      - name: Drift check - i componenti
+        run: python3 tools/components_survey.py --check
+
       - name: Drift check - la misura delle vite
         run: GODOT=~/godot/godot tools/run_lives_survey.sh --check
 

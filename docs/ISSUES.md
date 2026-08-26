@@ -2763,6 +2763,139 @@ e' in gioco.
 
 ---
 
+### 84. L'Eredita' e' misurabile, e quasi inerte
+
+`regole` · `da-decidere` · **aperta in 0.1.262** ([D-299](DECISIONS.md#d-299))
+
+Il secondo punteggio che il documento sulle trasformazioni chiede — *quanto di
+quello che hai lasciato sopravvive al tempo* — e' stato misurato in tre versioni
+su 672 salti d'era, **senza cambiare nessuna regola**.
+
+Sommata ai gradini delle Chronicle, l'Eredita' **ribalta il vincitore della saga
+4 volte su 24**, e l'accordo con chi ha piu' Trionfi passa da **4 a 5 su 24**:
+dentro il rumore.
+
+La ragione e' la solita, e arriva dalla terza misura diversa: la versione «solo
+quello che si poteva perdere» collassa a un +1 piatto (nessuna casa tiene due
+segni perdibili a un salto), e quella scritta nel documento paga di piu' le case
+i cui desideri sono **memorie** — il Sale 2,56 a salto contro l'1,05 di Vaerax e
+del Vetro. Cioe' premia la durata con un altro nome.
+
+**Le tre strade**, e la decisione e' del committente:
+
+1. **non scriverla** finche' ISSUES 76 non e' chiusa: la moneta non viene
+   coniata, e nessuna scala puo' pesare quello che non c'e';
+2. **scrivere la sola variante delle leggende** — *«+3 per ogni leggenda che
+   porta il tuo nome»* — che e' l'unica che dice una cosa vera senza inventare
+   un dato, ribalta il vincitore una volta su 24 e sta in una riga;
+3. **cambiare i profili** perche' i desideri siano cose che il mondo sa dare e
+   togliere, e allora tutte e tre le versioni tornano vive.
+
+**Fatto quando** il committente ha scelto, e la sonda mostra il numero muoversi
+nella direzione scelta.
+
+---
+
+### 83. La porta spalancata: una gamba che nessuno riesce mai a tenere
+
+`regole` · `da-misurare` · **aperta in 0.1.261** ([D-298](DECISIONS.md#d-298))
+
+La cura di ISSUES 81 ha un rovescio da sorvegliare. Se una porta fatta di sole
+memorie non si apre **mai**, una porta con una gamba impossibile si apre
+**sempre**: la casa cambia pelle a ogni salto lungo, qualunque cosa faccia, e
+allora non e' una soglia — e' un calendario.
+
+Il candidato misurato: la Repubblica della Valle chiede ad Aldric **due Regioni
+fra capitale, granaio e traffico**, e sulla mappa pescata di quelle tessere ce
+n'e' **una ciascuna**. E' esattamente quello che il committente ha chiesto
+(*«un re deve controllare due citta'»*), e Aldric e' passato da una mutazione
+ogni 15,3 salti a una ogni **6,0**.
+
+Il segnale sta gia' in `MISURA_VITE.md`, che e' nei cancelli: **quanto spesso
+una casa cambia pelle**. Il limite di casa e' che nessuna scenda sotto **un
+salto su quattro** — una casa che muta a ogni salto non ha un'identita', ha un
+costume. Oggi la peggiore e' Nahr a 4,8.
+
+**Fatto quando** nessuna casa sta sotto 1 su 4, e la cosa si e' verificata su
+un numero e non a occhio.
+
+---
+
+### 82. La coda della fustella: Cicatrici rare che vanno bene, e condizioni che non succedono
+
+`contenuto` · `da-decidere` · **aperta in 0.1.259** ([D-296](DECISIONS.md#d-296))
+
+Misurato con `cli/run_punchboard_probe.gd`, 40 anni: dei **34 tipi** di
+segnalino disegnati per la mappa, **17 non escono mai o escono meno di un anno
+su cinque**. Sul tavolo, in un anno, se ne vedono **8,8 in media, 15 al
+massimo**.
+
+La coda va letta divisa in due, perche' sono due difetti diversi — e uno dei
+due non e' un difetto:
+
+- **Cicatrici rare = design.** `scar:divided_seal` due volte in quarant'anni e'
+  memorabile. Una Cicatrice frequente sarebbe il problema.
+- **Condizioni rare = buco.** `condition:starving` **1 anno su 40**,
+  `condition:lean` 1, `condition:requisitioned` 1: la fame e' un Tema del
+  gioco, e il motore quasi non sa produrla. Non e' cartone di troppo, e'
+  contenuto che non succede.
+
+E i quattro mai visti: `scar:broken_word`, `scar:dragonfall`,
+`scar:unanswered`, `structure:sealed`. Gli ultimi due sono **nominati dai
+profili** come voluti o temuti — e' ISSUES 76 un'altra volta.
+
+**La decisione e' del committente**, e sono tre diverse:
+
+1. ridurre i tipi (e quali: la coda e' quasi tutta Cicatrici);
+2. lasciare i tipi e **far succedere le condizioni rare** — chi scrive
+   `condition:starving`, e perche' non scatta mai;
+3. non toccare niente: 9 tipi in tavola per anno non sono troppi da imparare.
+
+**Fatto quando** il committente ha scelto, e il numero della coda si e' mosso
+nella direzione scelta.
+
+---
+
+### 81. ✅ Una soglia non puo' leggere una memoria — chiusa in 0.1.261
+
+`regole` · **aperta in 0.1.257** ([D-294](DECISIONS.md#d-294) ·
+[la misura](MISURA_VITE.md))
+
+La porta del tempo ([D-290](DECISIONS.md#d-290)) chiede: *«sono passati N anni e
+il mondo non porta piu' almeno K dei segni che questa casa voleva lasciare?»*.
+Misurato: **La Compagnia del Sale ha la porta e non si apre mai**, in 168 salti
+d'era, perche' i segni che la Gilda vuole lasciare — `debt_called`,
+`account_settled`, `ledger_public` — sono **memorie**, e una memoria scritta
+resta nel mondo per sempre.
+
+Una soglia che chiede *«tieni ancora?»* su una cosa che non si puo' perdere e'
+una porta murata. Vale per ogni profilo: i desideri fatti di memorie sono
+lucchetti a senso unico, quelli fatti di **condizioni, controllo e Pietre** sono
+soglie vere, perche' il mondo sa toglierli.
+
+Due strade, e la seconda e' quella del documento sulle trasformazioni:
+
+- **stretta**: la porta guarda solo i desideri che il mondo sa togliere, e il
+  validatore rifiuta una porta i cui segni sono tutti memorie;
+- **larga** (passo c della linea): la soglia smette di leggere «quanti dei
+  desideri» e legge condizioni proprie — controllo di luoghi, Pietre in piedi,
+  Cicatrici, leggi — come nel documento del committente.
+
+**Fatto quando** ogni vita che dichiara una porta del tempo si e' seduta almeno
+una volta in `MISURA_VITE.md`, oppure la sua porta e' stata tolta perche'
+sbagliata.
+
+**Chiusa in 0.1.261** ([D-298](DECISIONS.md#d-298)): la porta adesso legge
+Regioni controllate, Pietre in piedi e condizioni sparse, e il validatore
+pretende che **almeno una gamba sia una cosa che il mondo sa togliere** — col
+suo difetto piantato. Tutte e sei le vite con una porta si siedono:
+**La Compagnia del Sale 0 → 14**, **La Diaspora di Nahr 0 → 10**.
+
+Resta aperto il rischio speculare, che e' la voce nuova
+[83](#83-la-porta-spalancata-una-gamba-che-nessuno-riesce-mai-a-tenere).
+
+---
+
 ### 80. Il Consiglio sono due Consigli impilati, e a decidere e' quello vecchio
 
 `regole` · `ux` · **aperta in 0.1.253** — parola del committente davanti
@@ -2833,7 +2966,7 @@ volta in questo progetto che uno zero era la sonda.**
 
 ---
 
-### 79. Quattro case su otto non hanno un profilo, e quindi non hanno una soglia
+### 79. ✅ Quattro case su otto non hanno un profilo — chiusa in 0.1.257
 
 `contenuto` · **aperta in 0.1.252** ([D-290](DECISIONS.md#d-290) ·
 [la misura](MISURA_VITE.md))
@@ -2852,6 +2985,21 @@ esiste già: manca il profilo.
 
 **Fatto quando** le otto case hanno un profilo scritto con la stessa forma delle
 quattro di D-288, e `MISURA_VITE.md` mostra le vite mai sedute scendere.
+
+**Chiusa in 0.1.257** ([D-294](DECISIONS.md#d-294)): gli otto profili ci sono,
+gli incroci passano da 7 a 15 e le coppie che hanno qualcosa per cui litigare da
+3 a 9 su 28. Le Custodi della Cenere si siedono 20 volte e i Frati del Vetro 18.
+**La seconda metà del «fatto quando» non è stata raggiunta**: le vite mai sedute
+restano 7 — l'insieme è cambiato, il conto no — e la ragione è scritta in D-294
+punto 2, che è diventata la voce nuova [81](#81-una-soglia-non-puo-leggere-una-memoria-perche-una-memoria-non-si-perde).
+
+**E in 0.1.256 questa voce ha guadagnato un secondo numero** che la rende più
+urgente ([D-293](DECISIONS.md#d-293)): gli **incroci** — i segni che aiutano una
+casa e ne danneggiano un'altra — sono **7**, e le coppie di case che hanno
+qualcosa per cui litigare sono **3 su 28**. Quasi tutti gli incroci stanno fra
+le quattro case che un profilo ce l'hanno. Le quattro senza non hanno soglie,
+non hanno incroci, e le loro cinque vite non si siedono mai: **è lo stesso buco
+visto da tre parti**.
 
 ---
 

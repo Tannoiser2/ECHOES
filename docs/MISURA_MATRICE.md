@@ -9,17 +9,19 @@ piano, misurate sui dati di oggi **prima** di scrivere un file nuovo.
 |---|---|
 | segni nel dizionario | 183 |
 | di cui qualcuno scrive | 150 |
-| orfani in tutto | 63 |
-| **di cui senza una ragione scritta** | **13** |
+| orfani in tutto | 61 |
+| **di cui senza una ragione scritta** | **12** |
 | livelli di Destino (minimo/vittoria/trionfo) | 69 |
 | **clausole impossibili** (chiedono un segno che niente scrive) | **0** |
 | **livelli che si reggono solo su conteggi** | **33** |
 | Tensioni | 60 |
 | **Tensioni che non toccano nessun segno nominato da un Destino** | **35** |
 | segni che l'eredita' porta avanti | 49 |
-| profili strategici scritti | 4 |
-| segni che quelle case vogliono o temono | 35 |
-| **fra i voluti, quelli che un Consiglio sa dare** | **4** |
+| profili strategici scritti | 8 |
+| segni che quelle case vogliono o temono | 68 |
+| **fra i voluti, quelli che un Consiglio sa dare** | **5** |
+| segni che aiutano una casa e ne danneggiano un'altra | 15 |
+| **coppie di case che hanno qualcosa per cui litigare** | **9 su 28** |
 
 ---
 
@@ -30,17 +32,16 @@ desidera o lo teme (Destini **e** obiettivi), nessuna Tensione lo mette
 o lo toglie, e nessuna regola del segno lo usa: si posa sul tavolo e non
 entra in nessuna partita.
 
-Non tutti gli orfani sono un difetto: **50 su 63 portano gia' la loro
+Non tutti gli orfani sono un difetto: **49 su 61 portano gia' la loro
 ragione scritta** nel dizionario — memorie narrate (D-103), etichette di
 famiglia, gradi di pietra, domini che legge il motore. Restano fuori
 quelli **senza una riga che spieghi perche' esistono**: sono questi che
 la matrice deve prendere per primi.
 
-### Orfani senza una ragione scritta: 13
+### Orfani senza una ragione scritta: 12
 
 | segno | categoria | chi lo scrive |
 |---|---|---|
-| `account_settled` | MEMORY | Conseguenza |
 | `betrayal_spoken` | MEMORY | Azione stampata, carta Echo |
 | `capital` | FUNCTION | tessera |
 | `condition:lean` | STATE | Conseguenza, carta Echo |
@@ -54,12 +55,11 @@ la matrice deve prendere per primi.
 | `trade` | FUNCTION | tessera |
 | `wild` | PLACE | tessera |
 
-### Orfani dichiarati: 50
+### Orfani dichiarati: 49
 
 | segno | la ragione che porta scritta |
 |---|---|
 | `ancient` | etichetta di famiglia: dice chi sei, non cosa puoi fare, e nessuna regola deve leggerla |
-| `ash` | etichetta di famiglia: dice chi sei, non cosa puoi fare, e nessuna regola deve leggerla |
 | `burden_shared` | memoria del mondo: narrata (D-103), ereditata |
 | `discovery:legend` | il motore la conta (discovery_count) oltre a chi la legge per nome |
 | `discovery:shared_record` | il motore la conta (discovery_count) oltre a chi la legge per nome |
@@ -180,6 +180,37 @@ cose che nessuno sa dare non ha una strategia: ha un desiderio.
 | teme | `question_unresolved` | no | no | Conseguenza |
 | teme | `scar:changed_hands` | **si'** | no | Conseguenza |
 
+### ENT_CENERE
+
+> Una montagna che paghi chi ci e' sceso, e che non decida chi non ci e' mai stato.
+
+| | segno | dal Consiglio | da una carta | altrimenti |
+|---|---|---|---|---|
+| vuole | `crystal_exploited` | no | **si'** | Conseguenza |
+| vuole | `ash` | no | no | casato |
+| vuole | `discovery:crystal` | no | **si'** | Conseguenza |
+| vuole | `structure:road` | no | no | — |
+| teme | `mine_sealed` | no | no | Conseguenza, fatto che dura |
+| teme | `structure:sealed` | no | no | Conseguenza |
+| teme | `condition:emptied` | **si'** | **si'** | Conseguenza, carta Echo |
+| teme | `study_supervised` | no | no | Conseguenza |
+
+### ENT_LIBERE
+
+> Sette citta' che si reggono senza una corona sopra, e una Carta che lo dica per iscritto.
+
+| | segno | dal Consiglio | da una carta | altrimenti |
+|---|---|---|---|---|
+| vuole | `charter_written` | no | no | Conseguenza, fatto che dura |
+| vuole | `charter_for_all` | no | no | clausola di Consiglio |
+| vuole | `water_moves` | no | no | Conseguenza, carta Echo |
+| vuole | `debt_forgiven` | no | **si'** | Conseguenza |
+| teme | `crowned` | no | no | casato |
+| teme | `no_charter` | no | no | Conseguenza |
+| teme | `condition:cut_off` | **si'** | **si'** | Conseguenza, carta Asset, carta Echo |
+| teme | `water_priced` | no | no | Conseguenza, fatto che dura |
+| teme | `debt_called` | no | **si'** | Conseguenza, carta Asset |
+
 ### ENT_LYRA
 
 > Che quello che ha capito resti scritto dove chiunque possa rileggerlo, anche chi non le crede.
@@ -211,6 +242,21 @@ cose che nessuno sa dare non ha una strategia: ha un desiderio.
 | teme | `condition:cut_off` | **si'** | **si'** | Conseguenza, carta Asset, carta Echo |
 | teme | `condition:guarded` | **si'** | no | Conseguenza |
 
+### ENT_SALE
+
+> Un mondo dove una firma vale, e dove chi ha promesso paga anche quando e' scomodo.
+
+| | segno | dal Consiglio | da una carta | altrimenti |
+|---|---|---|---|---|
+| vuole | `debt_called` | no | **si'** | Conseguenza, carta Asset |
+| vuole | `account_settled` | no | no | Conseguenza |
+| vuole | `structure:tollgate` | **si'** | no | Pietra |
+| vuole | `ledger_public` | no | **si'** | Conseguenza, carta Asset, clausola di Consiglio, fatto che dura |
+| teme | `debt_forgiven` | no | **si'** | Conseguenza |
+| teme | `condition:cut_off` | **si'** | **si'** | Conseguenza, carta Asset, carta Echo |
+| teme | `crown_divided` | no | no | Conseguenza, fatto che dura |
+| teme | `oath_broken` | no | **si'** | Conseguenza |
+
 ### ENT_VAERAX
 
 > Che la montagna torni un posto dove non si va, e che nessuno ricordi bene perche'.
@@ -226,6 +272,21 @@ cose che nessuno sa dare non ha una strategia: ha un desiderio.
 | teme | `condition:exploited` | **si'** | no | Conseguenza, Risonanza |
 | teme | `knowledge_shared` | no | **si'** | clausola di Consiglio |
 | teme | `condition:unrest` | **si'** | **si'** | Conseguenza, Risonanza, carta Asset, carta Echo |
+
+### ENT_VETRO
+
+> Che quello che fu misurato una volta resti custodito, e non torni in discussione ogni generazione.
+
+| | segno | dal Consiglio | da una carta | altrimenti |
+|---|---|---|---|---|
+| vuole | `anointed` | no | no | Conseguenza |
+| vuole | `faith_established` | no | no | Conseguenza, fatto che dura |
+| vuole | `relic_buried` | no | no | Conseguenza, fatto che dura |
+| vuole | `structure:sealed` | no | no | Conseguenza |
+| teme | `knowledge_shared` | no | **si'** | clausola di Consiglio |
+| teme | `crystal_measured` | no | **si'** | carta Echo |
+| teme | `ledger_public` | no | **si'** | Conseguenza, carta Asset, clausola di Consiglio, fatto che dura |
+| teme | `condition:emptied` | **si'** | **si'** | Conseguenza, carta Echo |
 
 ## 3. Le Tensioni che non incontrano nessun Destino
 
@@ -285,4 +346,101 @@ D-270): un interesse c'e', ma non e' ancora un conflitto.
 | TEN_WEIGHTS | 9 | 8 | 2 |
 | TEN_WINTER | 9 | 8 | 1 |
 | TEN_WOLVES | 9 | 8 | 1 |
+
+## 5. Gli incroci: chi litiga con chi, e per cosa
+
+*«Gli stessi segni devono trasformare piu' Entita' in direzioni
+diverse»* — la linea delle trasformazioni. Qui si misura sui dati di
+oggi: per ogni segno, **chi aiuta** e **chi danneggia**, mettendo
+insieme quello che i Destini chiedono e quello che i profili
+dichiarano. Un segno che aiuta qualcuno e non danneggia nessuno non e'
+una questione: e' un regalo, e al Consiglio nessuno avra' mai una
+ragione per opporsi.
+
+**Segni che incrociano davvero: 15.**
+
+**Il conto e' un pavimento**, come quello delle Tensioni: guarda i
+segni **nominati** da un Destino o da un profilo, non i conteggi. Un
+Destino che chiede due Pietre o zero Cicatrici entra in conflitto con
+mezzo tavolo senza nominare niente — ma quel conflitto vale per tutti
+allo stesso modo, e quindi non distingue una coppia dall'altra. Qui
+interessa **cosa fa litigare queste due case e non altre**.
+
+La colonna **cambia pelle** dice se quel segno e' fra quelli che una
+porta del tempo legge (D-290): perderlo non sposta una clausola, sposta
+**cosa quella casa diventera'**.
+
+| segno | aiuta | danneggia | cambia pelle | chi lo sa scrivere |
+|---|---|---|---|---|
+| `crown_divided` | NAHR | ALDRIC, SALE | **si'** | Conseguenza, fatto che dura |
+| `discovery:crystal` | CENERE, LYRA | VAERAX | **si'** | Azione stampata, Conseguenza |
+| `knowledge_shared` | LYRA | VAERAX, VETRO | **si'** | Azione stampata, clausola di Consiglio |
+| `ledger_public` | SALE | SALE, VETRO | **si'** | Azione stampata, Conseguenza, carta Asset, clausola di Consiglio, fatto che dura |
+| `mine_sealed` | VAERAX | CENERE, LYRA | — | Conseguenza, fatto che dura |
+| `structure:sealed` | VAERAX, VETRO | CENERE | **si'** | Conseguenza |
+| `crowned` | ALDRIC | LIBERE | **si'** | casato |
+| `crystal_exploited` | CENERE | VAERAX | **si'** | Azione stampata, Conseguenza |
+| `crystal_measured` | LYRA | VETRO | **si'** | Azione stampata, carta Echo |
+| `debt_called` | SALE | LIBERE | **si'** | Azione stampata, Conseguenza, carta Asset |
+| `debt_forgiven` | LIBERE | SALE | — | Azione stampata, Conseguenza |
+| `nahr_settled` | NAHR | ALDRIC | **si'** | Conseguenza, fatto che dura |
+| `relic_buried` | VETRO | CENERE | **si'** | Conseguenza, fatto che dura |
+| `succession_by_law` | ALDRIC | NAHR | **si'** | Azione stampata, Conseguenza, fatto che dura |
+| `water_priced` | SALE | LIBERE | — | Conseguenza, fatto che dura |
+
+### Le coppie che non hanno niente per cui litigare
+
+Il controllo che la linea delle trasformazioni chiede: **due case
+devono condividere almeno un segno che le spinge in direzioni
+opposte**. Le coppie che non ce l'hanno possono sedere allo stesso
+tavolo per otto anni senza incontrarsi mai.
+
+**Coppie incrociate: 9 su 28.**
+
+**Tutte le case hanno un profilo**, quindi quello che resta non e'
+piu' un buco di dichiarazioni: e' la superficie. Un incrocio
+richiede che **lo stesso segno** sia nominato da una casa come
+voluto e da un'altra come temuto, e ogni casa ne nomina otto o
+nove; il resto di quello che i Destini chiedono sono conteggi —
+33 livelli su 69 — che litigano con tutti allo stesso modo.
+Le coppie ancora mute si chiudono in due modi: **una faccia di
+Tensione** che metta uno di quei segni sul tavolo dove le due case
+si incontrano, oppure **un `denies`** scritto — che e' un incrocio
+dichiarato a mano, e costa una riga.
+
+| coppia | |
+|---|---|
+| ALDRIC ↔ CENERE | niente |
+| ALDRIC ↔ LYRA | niente |
+| ALDRIC ↔ SALE | niente |
+| ALDRIC ↔ VAERAX | niente |
+| ALDRIC ↔ VETRO | niente |
+| CENERE ↔ LIBERE | niente |
+| CENERE ↔ LYRA | niente |
+| CENERE ↔ NAHR | niente |
+| CENERE ↔ SALE | niente |
+| LIBERE ↔ LYRA | niente |
+| LIBERE ↔ NAHR | niente |
+| LIBERE ↔ VAERAX | niente |
+| LIBERE ↔ VETRO | niente |
+| LYRA ↔ NAHR | niente |
+| LYRA ↔ SALE | niente |
+| NAHR ↔ VAERAX | niente |
+| NAHR ↔ VETRO | niente |
+| SALE ↔ VAERAX | niente |
+| VAERAX ↔ VETRO | niente |
+
+### Quante questioni ha ogni coppia
+
+| coppia | segni condivisi | quali |
+|---|---|---|
+| CENERE ↔ VAERAX | 4 | `crystal_exploited`, `discovery:crystal`, `mine_sealed`, `structure:sealed` |
+| ALDRIC ↔ NAHR | 3 | `crown_divided`, `nahr_settled`, `succession_by_law` |
+| LIBERE ↔ SALE | 3 | `debt_called`, `debt_forgiven`, `water_priced` |
+| LYRA ↔ VAERAX | 3 | `discovery:crystal`, `knowledge_shared`, `mine_sealed` |
+| CENERE ↔ VETRO | 2 | `relic_buried`, `structure:sealed` |
+| LYRA ↔ VETRO | 2 | `crystal_measured`, `knowledge_shared` |
+| ALDRIC ↔ LIBERE | 1 | `crowned` |
+| NAHR ↔ SALE | 1 | `crown_divided` |
+| SALE ↔ VETRO | 1 | `ledger_public` |
 

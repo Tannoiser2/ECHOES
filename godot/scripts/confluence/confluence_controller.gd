@@ -1226,8 +1226,16 @@ func _spend_the_card(applied: Array, outcome: String, source: Dictionary) -> voi
 			),
 			str(voice.get("text", "")),
 		])
+		# **E cosa ha lasciato sul mondo** (D-292). La Conseguenza d'autore
+		# narrava ogni suo Effetto, la voce della carta no: il verbale diceva
+		# «Beneficio: costruisci un Granaio» e poi taceva su cosa fosse
+		# successo davvero. Meta' del Consiglio scriveva in silenzio — e una
+		# sonda che contava gli Effetti narrati leggeva zero per la carta e
+		# 443 per la frase d'autore, che era falso.
+		var first_effect: int = applied.size()
 		for effect in effects:
 			_apply(applied, effect)
+		_narrate_applied(applied, first_effect)
 
 
 ## One spoken line for every Effect landed since `first` (ISSUES 22, Fase 1).

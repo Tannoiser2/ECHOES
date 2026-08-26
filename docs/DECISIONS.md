@@ -10,6 +10,455 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-299 — L'Eredita' misurata, e per adesso non scritta
+
+**flagged in 0.1.262** — passo (d) della linea delle trasformazioni ·
+[ISSUES 84](ISSUES.md#84-lredita-e-misurabile-e-quasi-inerte)
+
+Il documento del committente chiede un secondo punteggio:
+
+> *«La domanda non deve essere: l'Entità è ancora in gioco? La domanda deve
+> essere: il mondo parla ancora la lingua che quell'Entità voleva lasciare?»*
+
+`cli/run_inheritance_probe.gd` **non cambia nessuna regola**: gioca le saghe come
+sono e tiene un punteggio a fianco, come fece [D-181](#d-181) con le cinque
+scale. Ad ogni salto d'era classifica ogni casa — *radicata* +3, *fedele* +2,
+*sopravvissuta* +1, *distorta* +1, *svanita* +0 — e poi si guarda cosa produce.
+
+**Tre versioni misurate, 12 saghe da 8 anni sui due tavoli, 672 salti d'era.**
+
+| | radicata | fedele | sopravvissuta | distorta |
+|---|---|---|---|---|
+| **come sta scritta** (conta i desideri sul tavolo) | 16% | 26% | 54% | 4% |
+| **solo quello che si poteva perdere** | 0% | 0,1% | 82% | 18% |
+| **la leggenda** (quello che il tempo racconta ancora) | 51% | — | 36% | 13% |
+
+**E la domanda vera**, perché l'Eredità non è una scala alternativa: è un bonus
+**sopra** i gradini delle Chronicle.
+
+| | vince chi ha più Trionfi | l'Eredità ribalta il vincitore |
+|---|---|---|
+| soli gradini | 4 su 24 | — |
+| gradini + Eredità *(come scritta)* | **5 su 24** | 4 su 24 |
+| gradini + Eredità *(leggende)* | **5 su 24** | 1 su 24 |
+
+**È misurabile, ed è quasi inerte.** Sposta il vincitore della saga quattro
+volte su ventiquattro, e l'accordo con chi ha più Trionfi passa da 4 a 5 su 24 —
+dentro il rumore.
+
+**Perché**, ed è la terza volta che questa frase esce da una misura diversa: la
+moneta non viene coniata. La versione *«solo quello che si poteva perdere»*
+collassa a un +1 piatto per tutti — **nessuna casa tiene due segni perdibili a
+un salto d'era** — e quella *«come scritta»* paga di più le case i cui desideri
+sono **memorie** (il Sale prende 2,56 a salto, Vaerax e il Vetro 1,05), cioè
+premia chi ha scritto cose che una volta accadute non si perdono più. Che è
+*premiare la durata con un altro nome*, esattamente quello che il committente ha
+scritto di non volere.
+
+**Quindi non l'ho scritta come regola.** Resta la sonda, e restano i numeri, e
+resta la strada: l'Eredità morde il giorno in cui il tavolo sa **dare e togliere**
+le cose che le case dichiarano di volere — che è [ISSUES 76](ISSUES.md#76-il-consiglio-decide-con-una-moneta-che-i-destini-non-spendono),
+ancora e sempre.
+
+**La variante che salverei** è la terza: *radicata* = «di quella cosa il mondo
+parla ancora un secolo dopo», letta sulle **leggende** che il tempo fabbrica da
+solo al salto. È l'unica delle tre che dice una cosa vera senza inventare un
+dato nuovo, ribalta il vincitore una volta su ventiquattro invece di quattro, e
+starebbe in una riga di regolamento: *«a fine saga, +3 per ogni leggenda che
+porta il tuo nome»*.
+
+---
+
+## D-298 — La soglia legge quello che il mondo sa togliere
+
+**implemented in 0.1.261** — passo (c) della linea delle trasformazioni ·
+chiude [ISSUES 81](ISSUES.md#81-una-soglia-non-puo-leggere-una-memoria-perche-una-memoria-non-si-perde)
+
+[D-290](#d-290) aveva dato alla porta del tempo una domanda sola: *«tieni ancora
+almeno K dei segni che volevi lasciare?»*. [D-294](#d-294) ha misurato dove si
+rompe: **La Compagnia del Sale aveva la porta e non si e' aperta mai** in 168
+salti d'era, perche' i segni che la Gilda vuole lasciare sono **memorie**, e una
+memoria scritta il mondo non la toglie piu'. Una soglia che chiede «tieni
+ancora?» su una cosa che non si puo' perdere e' una porta murata.
+
+**La grammatica ricca**, come la chiede il documento del committente:
+
+```json
+"also_enters": {
+  "after_years": 150,
+  "unless": [
+    {"type": "controls_at_least", "min": 2, "any_tag": ["capital", "granary", "trade"]},
+    {"type": "structure_stands", "structure": "STR_KEEP"},
+    {"type": "holds_wanted", "min": 2}
+  ]
+}
+```
+
+Cinque condizioni: **quante Regioni che contano controlli**, **quale Pietra sta
+ancora in piedi**, **quante Regioni portano una condizione**, **se un segno
+preciso c'e'**, e la vecchia **quanti desideri reggono**. La porta si apre
+quando il tempo e' passato **e anche una sola** di quelle cade: sono le gambe di
+un tavolo, non una somma. E ogni gamba porta il suo *perche'*, scritto come lo
+direbbe chi ci siede — perche' finisce sulla carta della Casata.
+
+**La regola che il validatore adesso pretende** e' la cura di ISSUES 81:
+almeno una gamba dev'essere una cosa che **il mondo sa togliere** — Regioni,
+Pietre, condizioni. Non basta averlo scritto: c'e' il difetto piantato «porta
+del tempo fatta di sole memorie», e la guardia morde su 18 difetti.
+
+**I numeri, stessi semi, 168 salti d'era:**
+
+| | prima | dopo |
+|---|---|---|
+| trasformazioni sedute | 139 | **185** |
+| **La Compagnia del Sale** (aveva la porta, non si apriva) | 0 | **14** |
+| **La Diaspora di Nahr** (idem) | 0 | **10** |
+| La Repubblica della Valle | 9 | **22** |
+| Il Culto della Misura | 15 | **24** |
+| vite mai sedute | 7 | **6** |
+
+**E le due cose storte, dette.**
+
+1. **Il Banco Nero scende a zero** — era 2. Il Sale adesso diventa la Compagnia
+   *per il tempo* prima che il debito venga chiamato: una porta nuova puo'
+   chiudere una porta vecchia, e questo il conto delle vite mai sedute lo
+   nasconde (6 invece di 7, ma non sono le stesse sei).
+2. **Il ritmo e' accelerato molto.** Nahr muta una volta ogni **4,8** salti,
+   Aldric ogni **6,0** (era 15,3). In anni — il salto mediano e' un secolo —
+   fa una pelle nuova ogni **480 anni** circa, che regge; ma il margine si e'
+   assottigliato, e il cancello di `MISURA_VITE` e' il posto dove si vedra' se
+   passa il segno.
+
+**Il rischio speculare, che va nominato adesso e non quando mordera'**: se la
+porta murata era una porta che non si apre mai, esiste anche la **porta
+spalancata** — una gamba che nessuno riesce mai a tenere. La clausola di Aldric
+chiede due Regioni fra capitale, granaio e traffico, e sulla mappa pescata di
+quelle tessere ce n'e' una ciascuna: e' esattamente quello che il committente
+aveva detto (*«un re deve controllare due citta'»*), ed e' anche il candidato
+numero uno a essere troppo. Non l'ho toccato: si vede dal numero, e il numero
+adesso c'e'.
+
+---
+
+## D-297 — Il catalogo delle pedine: una scheda per segnalino, col suo prompt
+
+**implemented in 0.1.260** — [il catalogo](CATALOGO_PEDINE.md) · MASTER PROMPT 6
+
+Richiesta del committente: *«fai un elenco di tutte le pedine una per una, cosa
+sono, cosa dovrebbero rappresentare e il prompt»*.
+
+`docs/CATALOGO_PEDINE.md`, **generato e nei cancelli**: **74 schede** — 34 segni
+della mappa, 33 segni delle case, 7 pezzi che non sono segni (presenza,
+controllo, insediamento, rombo del Calore, quadrato della Deriva, la cacciata,
+il giuramento spezzato). Ogni scheda porta quattro cose: la **parola italiana**
+stampata sul cartone, il **fatto** (categoria, ambito, chi lo posa), **cosa
+vuol dire al tavolo** in una riga, e il **prompt** pronto da mandare.
+
+**Tre sorgenti, nessuna copiata**: la parola viene da dove la prende il foglio
+di stampa (`sign_labels.gd`), il fatto dal dizionario dei segni, e il soggetto
+del disegno da `data/token_icons/token_icons.json` — l'unica parte scritta a
+mano. Il prompt si compone col MASTER PROMPT 6, che è nuovo e sta nella
+ART_BIBLE perché è **stile**, e lo stile non cambia coi dati.
+
+**MASTER PROMPT 6 dice una cosa che gli altri cinque non dicevano**: un
+segnalino da 15 mm non è un'illustrazione ed è più povero di un'icona di
+sistema. Sta sulla mappa insieme ad altri otto, girato di traverso, sotto una
+lampada: **si riconosce prima di leggerlo**, e la parola stampata sotto è la
+conferma, non la spiegazione. Da qui il vincolo delle tre varianti — contorno
+tratteggiato per le condizioni (si curano), una rottura nel disegno per le
+Cicatrici (la mappa non dimentica), contorno pieno per quello che c'è — e il
+**vincolo di collisione**, che ha già respinto tre soggetti mentre li
+scrivevo: *abbandonata*, *svuotata* e *lo sgombero* sono tre fatti diversi
+(chi se n'è andato da solo, chi è stato mandato via adesso, e il ricordo che fu
+mandato via) e devono restare tre disegni diversi.
+
+**Il cancello garantisce la cosa che conta**: ogni segnalino che la fustella
+taglia ha la sua scheda, e nessuna scheda parla di un segnalino che non esiste.
+Provato: tolta una scheda, il cancello va rosso.
+
+**E le schede le legge anche l'app.** `DataSet` ha un magazzino nuovo,
+`token_icons`, chiavato sul **segno** e non sull'id della scheda: un segnalino
+sulla mappa e un segnalino sullo schermo devono spiegarsi con la stessa riga, o
+sono due giochi. Il file sta in `data/token_icons/` e non in `design_matrix/`
+per una ragione misurata: dentro `design_matrix` le due misure lo leggevano
+come un profilo strategico, e 592 prove sono andate rosse in un colpo.
+
+---
+
+## D-296 — La fustella non e' il dizionario: 67 tipi, non 183
+
+**implemented in 0.1.259** — correzione di [D-295](#d-295)
+
+Il committente, leggendo il censimento: *«certo che 183 segnalini sono tanti,
+forse troppi»*. **Aveva ragione a spaventarsi, e il numero era mio.** Il
+documento metteva i 183 segni del **dizionario** sotto il titolo «i segnalini
+che si posano», e sono due cose diverse: metà del dizionario sono memorie del
+mondo, funzioni che legge solo il motore, leggende fabbricate dal tempo e
+domini stampati sulle tessere. Roba che non si posa.
+
+**La fustella vera**, contata da dove la conta il foglio di stampa
+(`sign_labels.gd`, non i dati):
+
+| | tipi | pezzi |
+|---|---|---|
+| segni delle Regioni (condizioni in doppia copia, Pietre, insediamenti, Cicatrici) | 34 | 52 |
+| segni delle case | 33 | 39 |
+| **in tutto** | **67** | **91** |
+
+più presenza e controllo (12 per casa) e i rombi del Calore.
+
+**Ma la domanda sotto resta buona, e si misura.** `cli/run_punchboard_probe.gd`
+gioca gli anni e conta i tipi che arrivano davvero sul tavolo — per **anno**,
+non per Regione: un segno su tre Regioni è un tipo solo da imparare.
+
+| | |
+|---|---|
+| tipi disegnati per la mappa | 34 |
+| tipi visti almeno una volta in 40 anni | 30 |
+| **tipi sul tavolo in un anno solo** | **media 8,8 · massimo 15** |
+| tipi che non escono mai, o meno di un anno su cinque | **17 su 34** |
+
+**Nessuno impara 34 simboli: si impara quello che si vede, e quello che si vede
+sono nove.** Il totale della fustella è un costo di stampa; il numero che pesa
+sul tavolo è l'altro, ed è già ragionevole.
+
+**E la coda va letta divisa in due**, perché sono due cose diverse:
+
+- **le Cicatrici rare sono design**: `scar:divided_seal` due volte in
+  quarant'anni è memorabile, non morto. Una Cicatrice frequente sarebbe il
+  difetto.
+- **le condizioni rare sono un buco**: `condition:starving`,
+  `condition:lean` e `condition:requisitioned` una volta su quaranta vuol dire
+  che il motore quasi non sa produrle — e la fame è un Tema del gioco. Non è
+  cartone di troppo: è contenuto che non succede.
+
+E due dei quattro mai visti — `structure:sealed` e `scar:unanswered` — sono
+nominati dai profili come voluti o temuti: è [ISSUES 76](ISSUES.md#76-il-consiglio-decide-con-una-moneta-che-i-destini-non-spendono)
+un'altra volta, la moneta che nessuno sa coniare.
+
+**Cosa non ho fatto, e perché**: non ho tagliato niente. Tagliare i diciassette
+della coda toglierebbe soprattutto Cicatrici, cioè la parte che il gioco fa
+bene. La decisione — se ridurre i tipi, e quali — sta al committente, adesso
+con i numeri davanti ed è [ISSUES 82](ISSUES.md#82-la-coda-della-fustella-cicatrici-rare-che-vanno-bene-e-condizioni-che-non-succedono).
+
+---
+
+## D-295 — Il censimento dei componenti: quanti pezzi ha la scatola
+
+**implemented in 0.1.258** — [il documento](COMPONENTI.md)
+
+Domanda del committente:
+
+> *«Non mi rendo più conto di quanti componenti abbia il gioco, quanto sia
+> cresciuto, e quanto c'è ancora da fare per avere un'app uguale al gioco
+> fisico.»*
+
+Un elenco scritto a mano avrebbe risposto una volta e sarebbe invecchiato in
+silenzio — il difetto che questo progetto ha già visto tre volte. Quindi il
+censimento **si conta dai dati**, `tools/components_survey.py` →
+`docs/COMPONENTI.md`, **nei cancelli**.
+
+**La scatola, oggi**: 48 Asset (132 copie), 39 Echo, 60 Tensioni, 23 Destini,
+26 Casate (una per vita), 10 tessere Regione. **39 fogli A4** più i tre
+fogli-fustella. 183 segni nel dizionario, di cui 14 condizioni, 12 Cicatrici e
+10 Pietre con 25 gradi. Dietro: 8 case con 8 profili, 6 Temi, 16 obiettivi, 64
+Conseguenze, 12 modelli di Consiglio, 52 regole dei segni, 6 Azioni, 5
+Chronicle.
+
+**E quanto manca, in quattro voci separate perché sono lavori diversi:**
+
+1. **Le facce fisiche non scritte**: Echo 39, Casate 26, tessere Regione 10.
+   Stampano un testo che il motore *ricava* dai dati digitali — al tavolo si
+   legge come una scheda tecnica, non come una carta.
+2. **L'arte**: **135 soggetti su 146 sono segnaposto**. È il pezzo più grosso
+   in quantità e il più facile da parallelizzare — i prompt sono già scritti.
+3. **Le regole che il tavolo esegue e lo schermo non spiega**: ISSUES 80 (il
+   Consiglio impilato, 71% contro 29%), 81 (una soglia non può leggere una
+   memoria), 76 (la moneta che i Destini non spendono), 77 (i segni muti).
+4. **L'app come oggetto**: ISSUES 63 e 65, e la regola §5ter — *nessuna misura
+   copre quello che una persona vede*.
+
+**Una colonna sola è scritta a mano, ed è dichiarata**: *dove l'app disegna
+ogni componente*. Nessuna misura sa dire cosa una persona vede.
+
+**Due errori trovati scrivendolo**, tutti e due dello stesso tipo — la misura
+che guarda nel posto sbagliato: i soggetti d'arte erano 97 invece di 146 perché
+le cartelle erano `entity/` e `destiny/` invece di `entities/` e `destinies/`,
+e perché **le vite delle case hanno un volto ciascuna** e non venivano contate.
+Il numero adesso combacia esatto col brief d'arte, che è generato da un'altra
+strada.
+
+---
+
+## D-294 — Le otto case dichiarano, e tre vite morte si siedono
+
+**implemented in 0.1.257** — passo (b) della linea delle trasformazioni ·
+chiude [ISSUES 79](ISSUES.md#79-quattro-case-su-otto-non-hanno-un-profilo-e-quindi-non-hanno-una-soglia)
+
+[D-293](#d-293) aveva detto qual era la leva più corta: gli incroci esistevano
+quasi solo fra le quattro case con un profilo. Qui i profili diventano **otto**
+— Cenere, Città Libere, Sale e Vetro, nella stessa forma di
+[D-288](#d-288): una riga che dice cosa quella casa vuole lasciare, i segni
+voluti e temuti col loro *perché*, e le `denies`.
+
+E siccome il profilo è la chiave della porta del tempo, tre vite che non si
+erano **mai** sedute in 168 salti d'era ne hanno ricevuta una: **Le Custodi
+della Cenere**, **I Frati del Vetro**, **La Compagnia del Sale**.
+
+**I numeri, sugli stessi semi di prima:**
+
+| | prima | dopo |
+|---|---|---|
+| profili scritti | 4 | **8** |
+| segni che incrociano (aiutano una casa, ne danneggiano un'altra) | 7 | **15** |
+| **coppie di case con qualcosa per cui litigare** | 3 su 28 | **9 su 28** |
+| trasformazioni sedute in 168 salti | 106 | **139** |
+| Le Custodi della Cenere | 0 | **20** |
+| I Frati del Vetro | 3 | **18** |
+| vite mai sedute | 7 | **7** |
+
+**Le tre cose che vanno dette perché sono negative o storte.**
+
+1. **Le vite mai sedute restano sette**, e non è il numero di prima con dentro
+   le stesse: le Custodi si sono sedute, e l'Inquisizione del Vetro — che
+   c'era una volta sola — è scesa a zero, perché adesso il Vetro cambia pelle
+   per il tempo prima che la reliquia venga mostrata. L'insieme è cambiato, il
+   conto no.
+2. **La Compagnia del Sale ha la porta e non si apre mai**, e la ragione vale
+   per tutto il meccanismo: i segni che la Gilda vuole lasciare sono
+   **memorie** — `debt_called`, `account_settled`, `ledger_public` — e una
+   memoria, una volta scritta, **il mondo non la toglie più**. Una soglia che
+   chiede *«tieni ancora?»* su una cosa che non si può perdere è una porta
+   murata. *Una soglia deve leggere quello che il mondo sa togliere*:
+   condizioni, controllo, Pietre. È il motivo tecnico più forte per passare
+   alla grammatica ricca del documento (passo c).
+3. **Un desiderio che la mappa porta da sola non è una strategia, è arredo.**
+   Il Sale voleva `trade`, che è un segno stampato sulle tessere: presente
+   quasi sempre, quindi incapace di distinguere alcunché. Sostituito con
+   `ledger_public`, che è una cosa che si ottiene.
+
+**Il ritmo tiene**: nessuna casa muta più spesso di **1 salto su 6,2** (Nahr),
+e le due che prima non cambiavano mai — Vetro 1 su 42, Cenere mai — adesso
+stanno a 1 su 9,3 e 1 su 8,4. Nessuno è diventato un costume.
+
+**E la guardia si è rotta nel modo giusto**: il difetto piantato «porta del
+tempo su una casa senza profilo» *cercava* una casa senza profilo, e il giorno
+in cui tutte e otto ne hanno avuto uno è morto con un errore invece di dire che
+non aveva più niente da provare. Adesso il difetto **si fabbrica** — è la
+lezione di [D-286](#d-286), ripresa.
+
+**Il costo dichiarato**: nessuno sul cancello (0 seggi bloccati su 8, misto e
+uniforme; 607 prove).
+
+---
+
+## D-293 — Gli incroci: chi litiga con chi, e per cosa
+
+**implemented in 0.1.256** — punto 1 della linea delle trasformazioni ·
+[la misura](MISURA_MATRICE.md#5-gli-incroci-chi-litiga-con-chi-e-per-cosa)
+
+Il documento del committente sulle trasformazioni mette al centro una frase:
+
+> *«Gli stessi segni devono trasformare più Entità in direzioni diverse.»*
+
+E chiede al validatore un controllo nuovo: **due Entità devono condividere
+almeno un trigger che le influenzi in modo opposto**. Prima di farne un
+cancello si misura quanto ne manca — un cancello che va rosso su venticinque
+casi su ventotto non è un cancello, è un blocco.
+
+`matrix_survey` guadagna la sezione 5. Per ogni segno mette insieme quello che
+i **Destini** chiedono e quello che i **profili** dichiarano — comprese le
+`denies`, che sono incroci scritti a mano: *«voglio impedire proprio questo,
+proprio a lui»* significa che quel segno aiuta lui e danneggia me.
+
+**Il numero, ed è severo:**
+
+| | |
+|---|---|
+| segni che aiutano una casa e ne danneggiano un'altra | **7** |
+| **coppie di case che hanno qualcosa per cui litigare** | **3 su 28** |
+
+I sette: `crown_divided`, `nahr_settled`, `succession_by_law` (Aldric ↔ Nahr),
+`discovery:crystal`, `knowledge_shared`, `mine_sealed` (Lyra ↔ Vaerax),
+`structure:sealed` (Vaerax ↔ Cenere). **Cinque su sette cambiano anche la
+pelle** di una casa, perché sono voluti da un profilo che ha una porta del
+tempo ([D-290](#d-290)): perderli non sposta una clausola, sposta *cosa quella
+casa diventerà*.
+
+**La causa è strutturale, e si legge nella tabella**: gli incroci esistono
+quasi solo fra le quattro case che un profilo ce l'hanno. Le altre quattro —
+Cenere, Città Libere, Sale, Vetro — entrano solo dove un loro Destino nomina un
+segno per nome, e i Destini nominano poco: **33 livelli su 69 si reggono su
+conteggi**. Scrivere i quattro profili che mancano
+([ISSUES 79](ISSUES.md#79-quattro-case-su-otto-non-hanno-un-profilo-e-quindi-non-hanno-una-soglia))
+è la leva più corta su questo numero, ed è il passo dopo.
+
+**Il conto è un pavimento**, dichiarato come quello delle Tensioni: guarda i
+segni **nominati**, non i conteggi. Un Destino che chiede due Pietre litiga con
+mezzo tavolo senza nominare niente — ma litiga allo stesso modo con tutti, e
+qui interessa cosa fa litigare *queste due case e non altre*.
+
+**Il cancello che il committente chiede resta spento**, e va scritto perché non
+sembri dimenticanza: acceso oggi direbbe rosso su 25 coppie su 28. Si accende
+quando il numero è buono, e la misura di oggi è il metro per saperlo.
+
+---
+
+## D-292 — Chi scrive nel mondo, e le Pietre che non lo dicevano
+
+**implemented in 0.1.255** — la misura che viene prima del taglio 2 di
+[ISSUES 80](ISSUES.md#80-il-consiglio-sono-due-consigli-impilati-e-a-decidere-e-quello-vecchio)
+
+Il taglio 2 propone di cancellare la **frase d'autore** — la Proposta col suo
+`success_consequences` — e lasciare che a scrivere sul mondo sia la carta. Prima
+di cancellare si misura quanto scrive ognuno, perche' la differenza fra
+*togliere un doppione* e *svuotare il gioco* e' un numero, non un'opinione.
+
+`cli/run_who_writes_probe.gd`, 40 anni di CHR_01, 158 Consigli:
+
+| chi parla | volte | Effetti raccontati |
+|---|---|---|
+| la frase d'autore | 221 | **489 (71%)** |
+| la carta: benefici | 178 | 121 |
+| la carta: prezzi | 62 | 28 |
+| la carta: se cade | 84 | 47 |
+| **la carta, in tutto** | 324 | **196 (29%)** |
+| la clausola qualificata | 65 | 64 |
+| gli Asset impegnati | 373 | 377 |
+
+**Il taglio 2 non e' una cancellazione: e' un trasferimento.** Oggi la frase
+d'autore scrive due terzi di quello che un Consiglio lascia; cancellarla senza
+prima ingrossare le facce delle 60 Tensioni toglierebbe la meta' del contenuto
+del gioco. Il numero e' scritto qui perche' la decisione la prenda il
+committente sapendo quanto costa.
+
+**E per misurarlo ho dovuto riparare due cecita', tutte e due vere.**
+
+1. **La sonda non vedeva il trattino.** Il registro incolonna
+   `- H. Beneficio: …`; la sonda cercava `H. Beneficio: ` in testa alla riga e
+   leggeva **zero** per tutti. Sesta volta in questo progetto.
+2. **La carta scriveva in silenzio.** La Conseguenza d'autore narrava ogni suo
+   Effetto; la voce della carta no — il verbale diceva *«Beneficio: costruisci 1
+   Pietra: Granaio»* e poi taceva su cosa fosse successo. Meta' del Consiglio
+   cambiava il mondo **senza una riga**, e la prima misura (0 contro 443) era
+   falsa per questo.
+
+**E sotto ce n'era una terza, piu' vecchia**: il narratore non aveva una frase
+per `BUILD_STRUCTURE`, `RAZE_STRUCTURE`, `SET_STRUCTURE_GRADE`,
+`CLOSE_PASSAGE`, `OPEN_PASSAGE` — cioe' per **le Pietre e le strade**, le due
+cose piu' fisiche della mappa. Un Granaio si alzava e nessuno lo leggeva; una
+strada si chiudeva in silenzio. Adesso parlano: *«In Valle Verde si alza:
+Granaio»*, *«Fra Valle Verde e Terre Nahr non si passa piu'»*.
+
+I benefici raccontati passano da **89 a 121** con la sola aggiunta delle Pietre:
+32 mutazioni della mappa che prima succedevano e non si vedevano.
+
+**Il costo dichiarato**: nessuno sul cancello (0 seggi bloccati su 8). Il
+verbale e' piu' lungo, ed e' il punto: quello che il tavolo non legge, al tavolo
+non e' successo.
+
+---
+
 ## D-291 — Il tabellone del Consiglio mostra la carta girata
 
 **implemented in 0.1.254** — taglio 1 di [ISSUES 80](ISSUES.md#80-il-consiglio-sono-due-consigli-impilati-e-a-decidere-e-quello-vecchio)

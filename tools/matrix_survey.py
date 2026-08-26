@@ -390,6 +390,75 @@ def survey() -> Tuple[str, Dict[str, int]]:
     spoken = [(t, w) for t, w in orphans if str(dictionary[t].get("note", ""))]
     mute = [(t, w) for t, w in orphans if not str(dictionary[t].get("note", ""))]
 
+    # 5. **Gli incroci** (la linea delle trasformazioni, punto 1).
+    #
+    # *«Gli stessi segni devono trasformare piu' Entita' in direzioni
+    # diverse»*: e' la frase del committente, ed e' una cosa che si misura.
+    # Per ogni segno si guarda **chi aiuta** e **chi danneggia** — profili
+    # strategici e Destini insieme — e poi si guarda la scacchiera: fra due
+    # case qualunque, esiste almeno un segno che spinge l'una da una parte e
+    # l'altra dall'altra? Una coppia che non ne ha nemmeno uno non ha niente
+    # per cui litigare, e al tavolo non si incontrera' mai.
+    case = sorted(str(e.get("id", "")) for e in items("entities/*.json"))
+    aiuta: Dict[str, Set[str]] = defaultdict(set)
+    danneggia: Dict[str, Set[str]] = defaultdict(set)
+    for entity in case:
+        for tag in wants.get(entity, set()):
+            aiuta[tag].add(entity)
+        for tag in fears.get(entity, set()):
+            danneggia[tag].add(entity)
+    for profile in profiles:
+        entity = str(profile.get("entity_id", ""))
+        for voice in profile.get("wants", []) or []:
+            aiuta[str(voice.get("tag", ""))].add(entity)
+        for voice in profile.get("fears", []) or []:
+            danneggia[str(voice.get("tag", ""))].add(entity)
+        # `denies` e' un incrocio dichiarato a mano: A vuole impedire a B
+        # proprio quel segno. Quindi quel segno aiuta B e danneggia A.
+        for voice in profile.get("denies", []) or []:
+            tag = str(voice.get("tag", ""))
+            aiuta[tag].add(str(voice.get("to", "")))
+            danneggia[tag].add(entity)
+
+    # I segni che aprono una trasformazione: con D-290 la porta del tempo legge
+    # i **voluti** del profilo, quindi perderli e' quello che cambia la pelle a
+    # una casa. Un incrocio che tocca uno di questi non sposta una clausola:
+    # sposta cosa quella casa diventera'.
+    trasforma: Set[str] = set()
+    porte: Dict[str, str] = {}
+    for entity in items("entities/*.json"):
+        for vita in entity.get("incarnations", []) or []:
+            if not vita.get("also_enters"):
+                continue
+            porte[str(entity.get("id", ""))] = str(vita.get("name", ""))
+    for profile in profiles:
+        if str(profile.get("entity_id", "")) not in porte:
+            continue
+        for voice in profile.get("wants", []) or []:
+            trasforma.add(str(voice.get("tag", "")))
+
+    incroci: List[Tuple[str, List[str], List[str]]] = []
+    for tag in sorted(set(aiuta) | set(danneggia)):
+        pro = sorted(x for x in aiuta.get(tag, set()) if x in case)
+        contro = sorted(x for x in danneggia.get(tag, set()) if x in case)
+        if pro and contro and set(pro) != set(contro):
+            incroci.append((tag, pro, contro))
+
+    coppie_incrociate: Set[Tuple[str, str]] = set()
+    per_coppia: Dict[Tuple[str, str], List[str]] = defaultdict(list)
+    for tag, pro, contro in incroci:
+        for uno in pro:
+            for altro in contro:
+                if uno == altro:
+                    continue
+                coppia = (min(uno, altro), max(uno, altro))
+                coppie_incrociate.add(coppia)
+                per_coppia[coppia].append(tag)
+    tutte_le_coppie = {
+        (case[i], case[j]) for i in range(len(case)) for j in range(i + 1, len(case))
+    }
+    coppie_mute = sorted(tutte_le_coppie - coppie_incrociate)
+
     numbers = {
         "segni": len(dictionary),
         # Solo i segni del dizionario: le leggende che il tempo fabbrica
@@ -414,6 +483,9 @@ def survey() -> Tuple[str, Dict[str, int]]:
             1 for p in profiles for v in (p.get("wants", []) or [])
             if str(v.get("tag", "")) in council_gives
         ),
+        "incroci": len(incroci),
+        "coppie_incrociate": len(coppie_incrociate),
+        "coppie_totali": len(tutte_le_coppie),
     }
 
     lines: List[str] = []
@@ -441,6 +513,9 @@ def survey() -> Tuple[str, Dict[str, int]]:
     add("| segni che quelle case vogliono o temono | %d |" % numbers["desideri"])
     add("| **fra i voluti, quelli che un Consiglio sa dare** | **%d** |" % (
         numbers["desideri_che_il_consiglio_sa_dare"]))
+    add("| segni che aiutano una casa e ne danneggiano un'altra | %d |" % numbers["incroci"])
+    add("| **coppie di case che hanno qualcosa per cui litigare** | **%d su %d** |" % (
+        numbers["coppie_incrociate"], numbers["coppie_totali"]))
     add("")
     add("---")
     add("")
@@ -561,6 +636,101 @@ def survey() -> Tuple[str, Dict[str, int]]:
         add("|---|---|---|---|")
         for tension_id, helped, threatened, watched in no_conflict:
             add("| %s | %d | %d | %d |" % (tension_id, helped, threatened, watched))
+    add("")
+    add("## 5. Gli incroci: chi litiga con chi, e per cosa")
+    add("")
+    add("*«Gli stessi segni devono trasformare piu' Entita' in direzioni")
+    add("diverse»* — la linea delle trasformazioni. Qui si misura sui dati di")
+    add("oggi: per ogni segno, **chi aiuta** e **chi danneggia**, mettendo")
+    add("insieme quello che i Destini chiedono e quello che i profili")
+    add("dichiarano. Un segno che aiuta qualcuno e non danneggia nessuno non e'")
+    add("una questione: e' un regalo, e al Consiglio nessuno avra' mai una")
+    add("ragione per opporsi.")
+    add("")
+    add("**Segni che incrociano davvero: %d.**" % len(incroci))
+    add("")
+    add("**Il conto e' un pavimento**, come quello delle Tensioni: guarda i")
+    add("segni **nominati** da un Destino o da un profilo, non i conteggi. Un")
+    add("Destino che chiede due Pietre o zero Cicatrici entra in conflitto con")
+    add("mezzo tavolo senza nominare niente — ma quel conflitto vale per tutti")
+    add("allo stesso modo, e quindi non distingue una coppia dall'altra. Qui")
+    add("interessa **cosa fa litigare queste due case e non altre**.")
+    add("")
+    add("La colonna **cambia pelle** dice se quel segno e' fra quelli che una")
+    add("porta del tempo legge (D-290): perderlo non sposta una clausola, sposta")
+    add("**cosa quella casa diventera'**.")
+    add("")
+    if not incroci:
+        add("Nessuno: nessun segno aiuta una casa e ne danneggia un'altra.")
+    else:
+        add("| segno | aiuta | danneggia | cambia pelle | chi lo sa scrivere |")
+        add("|---|---|---|---|---|")
+        for tag, pro, contro in sorted(
+            incroci, key=lambda r: (-len(r[1]) * len(r[2]), r[0])
+        ):
+            add("| `%s` | %s | %s | %s | %s |" % (
+                tag,
+                ", ".join(x.replace("ENT_", "") for x in pro),
+                ", ".join(x.replace("ENT_", "") for x in contro),
+                "**si'**" if tag in trasforma else "—",
+                ", ".join(sorted(pens.get(tag, set()))) or "**nessuno**",
+            ))
+    add("")
+    add("### Le coppie che non hanno niente per cui litigare")
+    add("")
+    add("Il controllo che la linea delle trasformazioni chiede: **due case")
+    add("devono condividere almeno un segno che le spinge in direzioni")
+    add("opposte**. Le coppie che non ce l'hanno possono sedere allo stesso")
+    add("tavolo per otto anni senza incontrarsi mai.")
+    add("")
+    add("**Coppie incrociate: %d su %d.**" % (len(coppie_incrociate), len(tutte_le_coppie)))
+    add("")
+    senza_profilo = sorted(
+        x.replace("ENT_", "") for x in case
+        if x not in {str(p.get("entity_id", "")) for p in profiles}
+    )
+    if senza_profilo:
+        add("La causa si legge nella tabella qui sopra: **gli incroci esistono")
+        add("quasi solo fra le case che hanno un profilo**. Le altre — %s —" % (
+            ", ".join(senza_profilo)))
+        add("entrano solo dove un loro Destino nomina un segno per nome, e i")
+        add("Destini nominano poco: %d livelli su %d si reggono su conteggi." % (
+            len(only_counts), len(levels)))
+        add("Scrivere i profili che mancano (ISSUES 79) e' la leva piu' corta su")
+        add("questo numero.")
+    else:
+        add("**Tutte le case hanno un profilo**, quindi quello che resta non e'")
+        add("piu' un buco di dichiarazioni: e' la superficie. Un incrocio")
+        add("richiede che **lo stesso segno** sia nominato da una casa come")
+        add("voluto e da un'altra come temuto, e ogni casa ne nomina otto o")
+        add("nove; il resto di quello che i Destini chiedono sono conteggi —")
+        add("%d livelli su %d — che litigano con tutti allo stesso modo." % (
+            len(only_counts), len(levels)))
+        add("Le coppie ancora mute si chiudono in due modi: **una faccia di")
+        add("Tensione** che metta uno di quei segni sul tavolo dove le due case")
+        add("si incontrano, oppure **un `denies`** scritto — che e' un incrocio")
+        add("dichiarato a mano, e costa una riga.")
+    add("")
+    if not coppie_mute:
+        add("Nessuna coppia resta muta: ogni casa ha una questione con ogni altra.")
+    else:
+        add("| coppia | |")
+        add("|---|---|")
+        for uno, altro in coppie_mute:
+            add("| %s ↔ %s | niente |" % (
+                uno.replace("ENT_", ""), altro.replace("ENT_", "")))
+    add("")
+    add("### Quante questioni ha ogni coppia")
+    add("")
+    add("| coppia | segni condivisi | quali |")
+    add("|---|---|---|")
+    for coppia in sorted(per_coppia, key=lambda c: (-len(set(per_coppia[c])), c)):
+        segni = sorted(set(per_coppia[coppia]))
+        add("| %s ↔ %s | %d | %s |" % (
+            coppia[0].replace("ENT_", ""), coppia[1].replace("ENT_", ""),
+            len(segni), ", ".join("`%s`" % t for t in segni[:6])
+            + (" …" if len(segni) > 6 else ""),
+        ))
     add("")
     return "\n".join(lines) + "\n", numbers
 

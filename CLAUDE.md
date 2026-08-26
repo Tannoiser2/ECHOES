@@ -51,6 +51,8 @@ Tutti vogliono `export GODOT=~/godot/Godot_v4.7.1-stable_linux.x86_64`.
 | `python3 tools/build_manifest.py --check` | il manifesto degli asset |
 | `python3 tools/build_sign_registry.py --check` | `docs/REGISTRO_SEGNI.md` |
 | `python3 tools/dead_code.py` | codice che nessuno chiama |
+| `python3 tools/token_catalogue.py --check` | `docs/CATALOGO_PEDINE.md`: **una scheda per segnalino** — cos'e', cosa rappresenta, il prompt — e che nessun segnalino resti senza |
+| `python3 tools/components_survey.py --check` | `docs/COMPONENTI.md`: **quanti pezzi ha la scatola** — carte, tessere, segnalini, arte — e cosa manca perche' l'app dica tutto quello che dice il tavolo |
 | `python3 tools/matrix_survey.py --check` | `docs/MISURA_MATRICE.md`: **le tre misure che vengono prima della matrice** — segni orfani, obiettivi che non si possono puntare col dito, Tensioni che non incontrano nessun Destino |
 | `bash tools/run_council_catalogue.sh --check` | `docs/CATALOGO_CONSIGLI.md` |
 | `bash tools/run_card_catalogue.sh --check` | `docs/CATALOGO_CARTE.md` |
