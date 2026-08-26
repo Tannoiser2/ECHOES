@@ -5,6 +5,24 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.251 — Il profilo lo legge il cervello, e lo legge chi gioca (D-289)
+
+- **Lo schermo**: in fondo alla colonna di destra il blocco **COSA RESTERÀ DI
+  TE** — la riga del profilo, i segni voluti in verde, quelli temuti in rosso,
+  **in oro quelli che sono sul tavolo adesso**, e il perché di ognuno nel
+  suggerimento. Una casa senza profilo non mostra niente.
+- **Il cervello**: `profile_weight()` con peso 3, nella scelta fra le due metà
+  di una carta e nell'acquisto al Consiglio. Segno voluto posato vale, temuto
+  costa, e quello che un rivale ha dichiarato di volerti impedire vale doppio.
+- **Il numero, che è quasi tutto negativo** (misura appaiata, 40 anni, stessi
+  semi): segni voluti posati **17 → 17**, temuti **17 → 14**, benefici
+  comprati che davano al proponente un segno voluto **15/246 → 15/245**. Tre
+  autolesioni evitate in quarant'anni, al Consiglio niente.
+- **Perché**: non è la bilancia, è che *non c'è niente da preferire* — ISSUES 76
+  vista dal lato di chi sceglie. Il peso resta com'è; alzarlo peggiorerebbe le
+  scelte senza cambiare la moneta.
+- Cancello: 0 seggi bloccati su 8, misto e uniforme. 593 prove verdi.
+
 ## 0.1.250 — Il profilo strategico delle quattro case (D-288)
 
 - `godot/data/design_matrix/entity_strategic_profiles.json` + schema suo: cosa

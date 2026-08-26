@@ -52,6 +52,7 @@ func _initialize() -> void:
 	var bought_spread: Dictionary = {}
 	var paid_total: int = 0
 	var scars_taken: int = 0
+	var wanted_bought: int = 0
 
 	for run in range(runs):
 		var seed_value: int = first_seed + run
@@ -65,6 +66,24 @@ func _initialize() -> void:
 		if report.is_empty():
 			unfinished += 1
 		councils += int(session.world["confluence_count"])
+		# **Il Consiglio ha dato al proponente qualcosa che voleva?** (D-289)
+		# Si guarda il registro degli Effetti, non il verbale: la firma
+		# `confluence` porta con se' chi proponeva, e il profilo dice cosa
+		# quella casa vuole lasciare nel mondo.
+		for entry in (session.world.get("effect_log", []) as Array):
+			var effect: Dictionary = (entry as Dictionary).get("effect", entry) as Dictionary
+			var source: Dictionary = effect.get("source", {}) as Dictionary
+			if str(source.get("kind", "")) != "confluence":
+				continue
+			if not str(effect.get("type", "")).begins_with("SET_"):
+				continue
+			var tag: String = str((effect.get("payload", {}) as Dictionary).get("tag", ""))
+			var profile: Variant = data.get("entity_profiles").get(str(source.get("actor", "")))
+			if tag == "" or profile == null:
+				continue
+			for voice in (profile as Dictionary).get("wants", []) as Array:
+				if str((voice as Dictionary).get("tag", "")) == tag:
+					wanted_bought += 1
 		for line in session.log.lines:
 			var text: String = str(line)
 			if text.contains(" compra: "):
@@ -126,6 +145,10 @@ func _initialize() -> void:
 		spread.append("%dx%d" % [int(how_many), int(bought_spread[how_many])])
 	print("    quanti alla volta               %s" % " ".join(spread))
 	print("    prezzi pagati                   %d  (Cicatrici: %d)" % [paid_total, scars_taken])
+	# **E quanti di quei benefici davano al proponente un segno che il suo
+	# profilo dichiara di volere** (D-289). E' il posto dove la strategia
+	# dichiarata dovrebbe mordere di piu', perche' al Consiglio si **compra**.
+	print("    di cui un segno che il proponente voleva  %d" % wanted_bought)
 	print("")
 	print("  Voci del prezzo lette al tavolo (D-278):")
 	print("    costi diversi          %d" % costs_said.size())

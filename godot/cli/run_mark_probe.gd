@@ -109,6 +109,8 @@ func _initialize() -> void:
 
 	var marks: Marks = Marks.new(data)
 	var laid: Dictionary = {}
+	var wanted_marks: int = 0
+	var feared_marks: int = 0
 	var by_card: Dictionary = {}
 	var plans: Array = []
 	for i in range(runs):
@@ -142,6 +144,24 @@ func _initialize() -> void:
 				continue
 			var tag: String = str((effect.get("payload", {}) as Dictionary).get("tag", ""))
 			laid[tag] = int(laid.get(tag, 0)) + 1
+			# **Chi l'ha posato, lo voleva?** (D-289) Il profilo strategico dice
+			# cosa una casa vuole lasciare nel mondo: qui si conta quante volte
+			# un segno posato e' proprio uno di quelli — e quante volte e' uno
+			# che quella casa aveva dichiarato di temere.
+			var actor: String = str(source.get("actor", ""))
+			var profile: Variant = data.get("entity_profiles").get(actor)
+			if profile != null and _is_about_me(effect, actor, session):
+				# **Solo quando il segno riguarda me.** Un segno di Regione
+				# posato sulla terra di un rivale non e' «quello che temo»: e'
+				# quello che gli sto facendo. Il primo conto non distingueva, e
+				# diceva 24 segni temuti contro 18 voluti — cioe' contava come
+				# autolesionismo il sabotaggio riuscito.
+				for voice in (profile as Dictionary).get("wants", []) as Array:
+					if str((voice as Dictionary).get("tag", "")) == tag:
+						wanted_marks += 1
+				for voice in (profile as Dictionary).get("fears", []) as Array:
+					if str((voice as Dictionary).get("tag", "")) == tag:
+						feared_marks += 1
 			var card_id: String = str(source.get("id", ""))
 			by_card[card_id] = int(by_card.get(card_id, 0)) + 1
 		session.dispose()
@@ -168,6 +188,9 @@ func _initialize() -> void:
 	var lost: int = 0
 	for tag in marks.homeless:
 		lost += int(marks.homeless[tag])
+	print("  segni posati da chi li **voleva** (profilo, D-289): %d" % wanted_marks)
+	print("  segni posati da chi li **temeva**:                  %d" % feared_marks)
+	print("")
 	print("  segni stampati sulle Azioni calate: %d" % marks.printed)
 	print("    posati sul mondo:      %d" % placed)
 	print("    senza un soggetto:     %d" % lost)
@@ -186,6 +209,23 @@ func _initialize() -> void:
 			break
 	print("")
 	quit(0)
+
+
+## Il segno riguarda chi lo posa? Un segno del mondo si', sempre; uno di Regione
+## solo se quella Regione e' sua; uno di casa solo se la casa e' lei.
+func _is_about_me(effect: Dictionary, actor: String, session: RefCounted) -> bool:
+	var target: Dictionary = effect.get("target", {}) as Dictionary
+	match str(target.get("kind", "")):
+		"global":
+			return true
+		"entity":
+			return str(target.get("id", "")) == actor
+		"region":
+			var region: Dictionary = (session.world["regions"] as Dictionary).get(
+				str(target.get("id", "")), {}
+			) as Dictionary
+			return str(region.get("control", "")) == actor
+	return false
 
 
 func _sorted_by_count(counts: Dictionary) -> Array:

@@ -2765,7 +2765,8 @@ e' in gioco.
 
 ### 78. Il profilo strategico lo legge la misura, non il gioco
 
-`motore` · `ux` · **aperta in 0.1.250** ([D-288](DECISIONS.md#d-288))
+`motore` · `ux` · **aperta in 0.1.250** ([D-288](DECISIONS.md#d-288)) ·
+**letta in 0.1.251** ([D-289](DECISIONS.md#d-289))
 
 I quattro profili dicono cosa una casa vuole lasciare nel mondo, e per adesso
 li leggono **il validatore** (che li conta fra i lettori dei segni) e **la
@@ -2785,6 +2786,26 @@ diverse e vanno tutte e due:
 **Fatto quando** una partita giocata dal cervello si vede scegliere in base al
 profilo (misurabile: quante mosse vanno verso un segno voluto), e la colonna di
 destra nomina almeno un segno del profilo del seggio che sta guardando.
+
+**In 0.1.251 li leggono tutti e due** ([D-289](DECISIONS.md#d-289)), e **una
+delle due metà è servita, l'altra no.**
+
+- **Lo schermo**: fatto. Il blocco «COSA RESTERÀ DI TE» in fondo alla colonna
+  nomina ogni segno del profilo, in italiano, e accende in oro quelli già sul
+  tavolo. Quattro prove lo tengono, e mordono.
+- **Il cervello**: legge, e non cambia quasi niente. Misura appaiata su 40 anni
+  con gli stessi semi — segni voluti posati **17 → 17**, segni temuti posati
+  **17 → 14**, benefici comprati al Consiglio che davano al proponente un segno
+  voluto **15 su 246 → 15 su 245**.
+
+Tre autolesioni evitate in quarant'anni, e al Consiglio zero. Non è la bilancia
+a essere sorda: **è che non c'è niente da preferire**. È
+[ISSUES 76](#76-il-consiglio-decide-con-una-moneta-che-i-destini-non-spendono)
+guardata dal lato di chi sceglie — le facce delle Tensioni e le voci del
+Consiglio non parlano la moneta che i profili nominano. Questa voce resta
+aperta e **appesa a quella**: si richiude da sola il giorno in cui il
+macchinario produce le cose che le case dichiarano di volere. Alzare il peso non
+la chiude, la peggiora.
 
 ---
 

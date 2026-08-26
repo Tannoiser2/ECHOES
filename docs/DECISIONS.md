@@ -10,6 +10,59 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-289 — Il profilo lo legge il cervello, e lo legge chi gioca
+
+**implemented in 0.1.251** — [ISSUES 78](ISSUES.md#78-il-profilo-strategico-lo-legge-la-misura-non-il-gioco)
+
+Il profilo di [D-288](#d-288) diceva cosa quattro case vogliono lasciare nel
+mondo, e lo leggevano il validatore e la misura. Una strategia dichiarata e mai
+giocata è un documento. Qui la leggono le due cose che contano: **il cervello
+che sceglie** e **lo schermo di chi siede al tavolo**, dallo stesso file.
+
+**Il cervello.** `PROFILE_WEIGHT = 3`, e una funzione sola — `profile_weight()`
+— chiamata in due posti: quando si sceglie fra le due metà di una carta
+(`_face_score`) e quando si compra al Consiglio (`_voice_score`). Non è una
+regola nuova: è un peso in più nella bilancia che c'era già. Piccolo di
+proposito — la legalità, il bersaglio a segni e il Destino restano davanti.
+Posare un segno voluto vale, toglierlo costa; posare un segno temuto costa,
+toglierlo vale; e posare quello che un rivale ha dichiarato di volermi impedire
+vale doppio. Vale **zero** per le quattro case senza profilo, che giocano come
+prima.
+
+**E qui va scritto il numero, perché è quasi tutto negativo.** Misura appaiata,
+40 anni, stessi semi, col peso a 3 contro il peso a 0:
+
+| | senza profilo | col profilo |
+|---|---|---|
+| segni posati da chi li **voleva** | 17 | 17 |
+| segni posati da chi li **temeva** | 17 | **14** |
+| benefici comprati al Consiglio | 246 | 245 |
+| di cui un segno che il proponente **voleva** | 15 | 15 |
+
+Il peso evita **tre autolesioni in quaranta anni** e al Consiglio non sposta
+niente. La ragione non è la bilancia: è [ISSUES 76](ISSUES.md#76-il-consiglio-decide-con-una-moneta-che-i-destini-non-spendono)
+visto dall'altra parte — **il macchinario non produce quasi nulla di quello che
+i profili nominano**, quindi non c'è niente da preferire. Un peso più grosso
+non farebbe scegliere meglio: farebbe scegliere peggio le stesse cose. Il peso
+resta com'è, ed è pronto per il giorno in cui le facce delle Tensioni e le voci
+del Consiglio parleranno la moneta dei Destini.
+
+**Lo schermo**, invece, cambia qualcosa subito. In fondo alla colonna di destra
+c'è il blocco **COSA RESTERÀ DI TE**: la riga del profilo, poi una riga per ogni
+segno voluto (verde) e temuto (rosso), **in oro quelli che sono sul tavolo
+adesso** — il tavolo intero, fatti del mondo, Regioni e case. Il *perché* di
+ogni voce è il suggerimento della riga. Si chiama così e non «cosa vuoi
+lasciare» perché due righe sopra c'è già il **COSA VUOI** del Destino, e la
+colonna che ripete se stessa è il difetto che [D-282](#d-282) ha chiuso. Una
+casa senza profilo non mostra niente — né intestazione né spiegazione orfana.
+
+**Il costo dichiarato**: nessuno sul cancello (0 seggi bloccati su 8, misto e
+uniforme; 262 e 263 Verità). Il costo vero è che **la parte del cervello, oggi,
+non si vede giocando**: sta scritta qui perché il giorno in cui ISSUES 76 si
+chiude non la si scriva daccapo.
+
+---
+
 ## D-288 — Il profilo strategico: cosa una casa vuole lasciare nel mondo
 
 **implemented in 0.1.250** — primo file della matrice strategica
