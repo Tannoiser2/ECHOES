@@ -4055,6 +4055,12 @@
             "tag": "condition:cut_off"
           },
           {
+            "id": "F_LEAN",
+            "verb": "ADD_CONDITION",
+            "tag": "condition:lean",
+            "text": "E l'inverno si mangia le scorte prima della primavera: al luogo si aggiunge #magra."
+          },
+          {
             "id": "F_HEAT",
             "verb": "HEAT_THEME",
             "text": "Il Tema di questa domanda si scalda di 1."
@@ -4283,8 +4289,8 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e il molo diventa di chi ci arriva per primo. Al luogo si aggiunge #conteso.",
-            "tag": "condition:contested"
+            "text": "Cade, e le barche escono lo stesso, e tornano vuote lo stesso. Al luogo si aggiunge #fame.",
+            "tag": "condition:starving"
           },
           {
             "id": "F_HEAT",
@@ -4633,8 +4639,8 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e il granaio resta com'e': si litiga su ogni sacco. Al luogo si aggiunge #conteso.",
-            "tag": "condition:contested"
+            "text": "Cade, e il grano guasto resta nei sacchi finche' non lo mangia qualcuno che non ha altro. Al luogo si aggiunge #fame.",
+            "tag": "condition:starving"
           },
           {
             "id": "F_HEAT",

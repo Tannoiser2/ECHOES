@@ -5,7 +5,7 @@
     {
       "id": "SIM_PLAN_B",
       "title": "Il consiglio spezzato",
-      "description": "Il Consiglio del Grano si spezza al primo colpo: i Nahr propongono e restano soli, S 0 contro O 4 con il Fattore Mondo a -2, margine -6 - il fallimento piu' netto che questa Chronicle sappia produrre. Resta una Cicatrice, «la domanda a cui il consiglio non ha risposto», e sul Popolo Nahr il segno della proposta caduta. Poi succede la cosa che D-098 aveva promesso e che qui si vede a occhio nudo: la domanda bocciata non compra quiete, torna al round dopo - e a proporla e' Re Aldric, cioe' proprio chi l'aveva affondata. Passa pagando (S 2 O 4, W +2, M 0), la Valle Verde va a chi la lavora e il titolo di chi la teneva resta scritto solo sulla carta; il registro annota «la spirale si chiude». La Successione si decide nello stesso Atto, sempre con un costo. L'Atto 3 e' muto: Vaerax passa l'anno intero a tenere giu' Il Risveglio e nessuno ha piu' forze per aprire un tavolo. Tre Consigli, due Verita', e la lezione e' che dire di no non chiude niente.",
+      "description": "Il Consiglio del Grano si spezza al primo colpo: i Nahr propongono e restano soli, S 0 contro O 4 con il Fattore Mondo a -2, margine -6 - il fallimento piu' netto che questa Chronicle sappia produrre. E adesso la caduta si vede sulla mappa (D-300): «cade, e i granai restano chiusi a chiave» - sulla Valle Verde si posa la fame. Poi succede la cosa che D-098 aveva promesso: la domanda bocciata non compra quiete, torna al round dopo, e a proporla e' Re Aldric, cioe' proprio chi l'aveva affondata. Ma il tavolo non e' piu' quello di prima: **la fame siede al tavolo** e pesa sul Consiglio, e la domanda cade una seconda volta - S 2 O 4 col Fattore a +1, margine -1. Sulla Valle si posa la seconda fame. La Successione si decide nell'Atto dopo, con un costo, e solo al quarto tavolo qualcuno riesce a dire chi mangia: passa «Chi Lavora Mangia», e il titolo di chi teneva la Valle resta scritto solo sulla carta. Quattro Consigli, due cadute, e la lezione e' che dire di no non chiude niente - ma adesso costa fame a chi guarda.",
       "chronicle_id": "CHR_01",
       "seed": 20260811,
       "seats": [
@@ -304,11 +304,12 @@
         }
       ],
       "expected": {
-        "confluence_count": 3,
+        "confluence_count": 4,
         "outcomes": [
           "FAILURE",
+          "FAILURE",
           "SUCCESS_WITH_COST",
-          "SUCCESS_WITH_COST"
+          "SUCCESS"
         ],
         "min_echoes": 1,
         "min_truths": 1

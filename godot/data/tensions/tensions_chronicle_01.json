@@ -92,8 +92,8 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e i granai restano chiusi a chiave: chi ha fame se lo ricorda. Al luogo si aggiunge #conteso.",
-            "tag": "condition:contested"
+            "text": "Cade, e i granai restano chiusi a chiave: chi ha fame se lo ricorda. Al luogo si aggiunge #fame.",
+            "tag": "condition:starving"
           },
           {
             "id": "F_HEAT",
@@ -729,8 +729,8 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e il secchio continua a tornare mezzo: si litiga al pozzo. Al luogo si aggiunge #conteso.",
-            "tag": "condition:contested"
+            "text": "Cade, e i pozzi si abbassano ancora: quello che cresce, cresce poco. Al luogo si aggiunge #magra.",
+            "tag": "condition:lean"
           },
           {
             "id": "F_HEAT",

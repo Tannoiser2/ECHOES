@@ -9,8 +9,8 @@ piano, misurate sui dati di oggi **prima** di scrivere un file nuovo.
 |---|---|
 | segni nel dizionario | 183 |
 | di cui qualcuno scrive | 150 |
-| orfani in tutto | 61 |
-| **di cui senza una ragione scritta** | **12** |
+| orfani in tutto | 60 |
+| **di cui senza una ragione scritta** | **11** |
 | livelli di Destino (minimo/vittoria/trionfo) | 69 |
 | **clausole impossibili** (chiedono un segno che niente scrive) | **0** |
 | **livelli che si reggono solo su conteggi** | **33** |
@@ -32,19 +32,18 @@ desidera o lo teme (Destini **e** obiettivi), nessuna Tensione lo mette
 o lo toglie, e nessuna regola del segno lo usa: si posa sul tavolo e non
 entra in nessuna partita.
 
-Non tutti gli orfani sono un difetto: **49 su 61 portano gia' la loro
+Non tutti gli orfani sono un difetto: **49 su 60 portano gia' la loro
 ragione scritta** nel dizionario — memorie narrate (D-103), etichette di
 famiglia, gradi di pietra, domini che legge il motore. Restano fuori
 quelli **senza una riga che spieghi perche' esistono**: sono questi che
 la matrice deve prendere per primi.
 
-### Orfani senza una ragione scritta: 12
+### Orfani senza una ragione scritta: 11
 
 | segno | categoria | chi lo scrive |
 |---|---|---|
 | `betrayal_spoken` | MEMORY | Azione stampata, carta Echo |
 | `capital` | FUNCTION | tessera |
-| `condition:lean` | STATE | Conseguenza, carta Echo |
 | `condition:requisitioned` | STATE | Conseguenza |
 | `crystal_site` | PLACE | tessera |
 | `parley_held` | MEMORY | carta Echo |
@@ -176,7 +175,7 @@ cose che nessuno sa dare non ha una strategia: ha un desiderio.
 | vuole | `order_restored` | no | no | Conseguenza |
 | teme | `crown_divided` | no | no | Conseguenza, fatto che dura |
 | teme | `condition:unrest` | **si'** | **si'** | Conseguenza, Risonanza, carta Asset, carta Echo |
-| teme | `condition:starving` | no | **si'** | Conseguenza, Risonanza, carta Echo |
+| teme | `condition:starving` | **si'** | **si'** | Conseguenza, Risonanza, carta Echo |
 | teme | `question_unresolved` | no | no | Conseguenza |
 | teme | `scar:changed_hands` | **si'** | no | Conseguenza |
 
@@ -338,7 +337,7 @@ D-270): un interesse c'e', ma non e' ancora un conflitto.
 | TEN_SILTED_CANALS | 9 | 8 | 2 |
 | TEN_SMUGGLING | 9 | 8 | 2 |
 | TEN_SUCCESSION | 9 | 8 | 2 |
-| TEN_THIRST | 9 | 8 | 2 |
+| TEN_THIRST | 9 | 8 | 1 |
 | TEN_TITHE | 9 | 8 | 1 |
 | TEN_UNEARTHED | 9 | 8 | 2 |
 | TEN_WARD_STONES | 9 | 8 | 2 |
