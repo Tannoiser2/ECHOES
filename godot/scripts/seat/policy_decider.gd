@@ -651,7 +651,47 @@ func choose_action(entity_id: String, ao_index: int, session: RefCounted) -> Dic
 	var intent: Dictionary = _choose_intent(entity_id, ao_index, session)
 	if not _cards_are_the_coin(session):
 		return intent
-	return _as_card_play(entity_id, intent, session)
+	var play: Dictionary = _as_card_play(entity_id, intent, session)
+	if str(play.get("template", "PASS")) != "PASS":
+		return play
+	return _rather_than_nothing(entity_id, session)
+
+
+## **Un'Occasione non si butta** (D-285, passo 4 del brief del Punto Zero).
+##
+## Misurato: si passava l'**82%** dei turni, e due terzi di quei passa erano
+## «mosse legali, nessuna che gli servisse» — con in mano sette carte e quindici
+## mosse legali in media. Il ripiego `_whatever_the_hand_allows` c'era gia', ma
+## non veniva mai provato: quando `_choose_intent` diceva PASS, `_as_card_play`
+## tornava indietro alla prima riga. Il cervello non era senza mosse: era senza
+## fame.
+##
+## **Ma non si svuota la mano.** Al tavolo una carta calata e' una carta che al
+## Consiglio non vota, e tenerne da parte e' una scelta vera, non pigrizia:
+## il mondo ricorda solo i Consigli in cui qualcuno ha messo peso
+## (`EchoRecorder.should_record`), quindi una mano svuotata sulla mappa e' un
+## anno che lascia meno scritto. La riserva e' **quello che il Consiglio puo'
+## accettare, piu' una** (`max_commit_assets + 1`, quattro carte in CHR_01):
+## sopra si gioca la piu' debole che la mano permette, sotto si tiene. Un turno
+## vuoto con nove carte in mano non e' prudenza, e' silenzio.
+##
+## **Taratura d'autore, misurata su 100 semi a tavolo misto** — la riserva e'
+## il quadrante fra le Azioni e la memoria del mondo:
+##
+##   riserva  ·  passa  ·  Verita' scritte  ·  Consigli
+##      —        82,1%        295              3,67     (prima di questa regola)
+##      3        37,3%        227              3,75
+##      4        42,1%        256              3,80     <- scelta
+##      5        47,2%        252              3,81
+func _rather_than_nothing(entity_id: String, session: RefCounted) -> Dictionary:
+	var chronicle: Dictionary = session.data.chronicles[
+		str(session.world["chronicle_id"])
+	] as Dictionary
+	var reserve: int = int(chronicle.get("max_commit_assets", 3)) + 1
+	if session.service.hand_size(entity_id) <= reserve:
+		return {"template": "PASS", "params": {}}
+	var plays: Array = hand_plays(entity_id, session)
+	return plays[0] if not plays.is_empty() else {"template": "PASS", "params": {}}
 
 
 func _cards_are_the_coin(session: RefCounted) -> bool:
@@ -974,9 +1014,19 @@ func _whatever_the_hand_allows(entity_id: String, session: RefCounted) -> Dictio
 	return plays[0] if not plays.is_empty() else {}
 
 
-## Tutte le carte che la mano puo' giocare adesso, dalla piu' debole alla piu'
-## forte. Il cervello prende la prima; il **distratto** ne prende una a caso, ed
-## e' cosi' che «fa un'altra cosa» senza mai chiedere una mossa illegale.
+## **Tutte le mosse che la mano permette adesso**, dalla carta piu' debole alla
+## piu' forte (D-285).
+##
+## Fino a qui questa lista guardava **il solo verbo dichiarato** di ogni carta e
+## **un solo bersaglio** per verbo: una mano di sette carte produceva quasi
+## sempre zero voci, e il cervello passava con quindici mosse legali sul tavolo.
+## Adesso guarda le Azioni stampate (D-283) e, per ognuna, i bersagli che quel
+## verbo accetta: e' il conto di quello che al tavolo si potrebbe davvero fare.
+##
+## Non e' un elenco di **buone** mosse: e' l'elenco di quelle possibili, in un
+## ordine che mette per prima la carta che costa meno perdere. Il cervello prende
+## la prima; il **distratto** ne pesca una a caso, ed e' cosi' che «fa un'altra
+## cosa» senza mai chiedere una mossa illegale.
 func hand_plays(entity_id: String, session: RefCounted) -> Array:
 	var out: Array = []
 	var goals: Dictionary = _tension_goals(entity_id, session)
@@ -984,55 +1034,95 @@ func hand_plays(entity_id: String, session: RefCounted) -> Array:
 		var card: Variant = session.data.assets.get(str(asset_id))
 		if card == null:
 			continue
-		var action: Dictionary = (card as Dictionary).get("card_action", {}) as Dictionary
-		if action.is_empty():
-			continue
-		var kind: String = str(action.get("kind", ""))
-		if kind == "ACQUIRE":
-			continue
-		var fixed: Dictionary = action.get("params", {}) as Dictionary
-		var params: Dictionary = {"asset_id": str(asset_id)}
-		if kind == "INFLUENCE":
+		var fixed: Dictionary = (
+			((card as Dictionary).get("card_action", {}) as Dictionary).get("params", {})
+			as Dictionary
+		)
+		var printed: Array = (
+			((card as Dictionary).get("physical", {}) as Dictionary).get("actions", []) as Array
+		)
+		for index in range(printed.size()):
+			var kind: String = str((printed[index] as Dictionary).get("template", ""))
+			if kind == "" or kind == "ACQUIRE":
+				continue
+			for wanted in _targets_for(entity_id, kind, fixed, goals, session):
+				var params: Dictionary = (wanted as Dictionary).duplicate()
+				params["asset_id"] = str(asset_id)
+				params["face_action"] = int(index)
+				var place: String = _best_place(
+					card as Dictionary, int(index), params, session, entity_id, str(asset_id)
+				)
+				if place != "":
+					params["mark_region_id"] = place
+				if session.actions.can_execute(entity_id, "PLAY_CARD", params):
+					out.append({"template": "PLAY_CARD", "params": params})
+	return out
+
+
+## I bersagli che quel verbo accetta adesso, come parametri gia' pronti. Le
+## regole li filtrano dopo — qui si propone, non si giudica — con **due
+## eccezioni dichiarate**, che sono mosse in cui il cervello farebbe male a se
+## stesso e che quindi non si propongono mai:
+##
+##  - INFLUENZARE si offre **solo nel verso che il Destino vuole**: spingere una
+##    domanda dalla parte sbagliata e' peggio che non fare niente;
+##  - FORGIARE si offre **solo in su**: rompere un patto per noia e' un prezzo,
+##    non un ripiego.
+func _targets_for(
+	entity_id: String, kind: String, fixed: Dictionary, goals: Dictionary,
+	session: RefCounted
+) -> Array:
+	var out: Array = []
+	match kind:
+		"MOVE":
+			for region_id in session.world["regions"]:
+				out.append({"region_id": str(region_id)})
+		"INFLUENCE":
 			var delta: int = int(fixed.get("delta", 1))
-			var target: String = ""
 			for tension_id in _sorted(goals.keys()):
 				if int(goals[str(tension_id)]) == delta:
-					target = str(tension_id)
-					break
-			if target == "":
-				continue
-			params["tension_id"] = target
-		# **Ogni Azione stampata e' una voce sua** (D-283): la stessa carta
-		# entra in lista una volta per meta' giocabile, cosi' il distratto —
-		# che pesca da questa lista a caso — puo' pescare anche la seconda.
-		for index in _printed_actions(card as Dictionary, kind):
-			var with_face: Dictionary = params.duplicate()
-			with_face["face_action"] = int(index)
-			# E anche qui il posto dei segni (D-284): senza, la meta' pescata a
-			# caso dal distratto posava i suoi segni da nessuna parte — misurato,
-			# erano gli ultimi rimasti senza casa.
-			var best_place: String = ""
-			var best_score: int = 0
-			for place in _places_needed(
-				card as Dictionary, int(index), params, session, str(asset_id)
-			):
-				if str(place) == "":
+					out.append({"tension_id": str(tension_id)})
+		"SCHEME":
+			for tension_id in session.world["tensions"]:
+				out.append({"mode": "TENSION", "tension_id": str(tension_id)})
+			for region_id in session.world["regions"]:
+				out.append({"mode": "REGION", "region_id": str(region_id)})
+		"CLAIM":
+			var seen: Dictionary = {}
+			for tension_id in session.world["tensions"]:
+				var domain: String = str(session.service.tension_domain(str(tension_id)))
+				if domain == "" or seen.has(domain):
 					continue
-				var here: Dictionary = params.duplicate()
-				here["region_id"] = str(place)
-				var score: int = _face_score(
-					card as Dictionary, int(index), entity_id, here, session
-				)
-				if best_place == "" or score > best_score:
-					best_place = str(place)
-					best_score = score
-			if best_place != "":
-				with_face["mark_region_id"] = best_place
-			if session.actions.can_execute(entity_id, "PLAY_CARD", with_face):
-				out.append({"template": "PLAY_CARD", "params": with_face})
-		if session.actions.can_execute(entity_id, "PLAY_CARD", params):
-			out.append({"template": "PLAY_CARD", "params": params})
+				seen[domain] = true
+				out.append({"mode": "CREATE", "domain": domain})
+		"FORGE":
+			for other in session.world["turn_order"]:
+				if str(other) == entity_id:
+					continue
+				out.append({
+					"target_entity_id": str(other), "direction": "UP", "consent": true,
+				})
 	return out
+
+
+## Il posto migliore dove far cadere i segni di questa meta', o "" se non serve
+## sceglierne uno (D-284).
+func _best_place(
+	card: Dictionary, index: int, params: Dictionary, session: RefCounted,
+	entity_id: String, asset_id: String
+) -> String:
+	var best_place: String = ""
+	var best_score: int = 0
+	for place in _places_needed(card, index, params, session, asset_id):
+		if str(place) == "":
+			continue
+		var here: Dictionary = params.duplicate()
+		here["region_id"] = str(place)
+		var score: int = _face_score(card, index, entity_id, here, session)
+		if best_place == "" or score > best_score:
+			best_place = str(place)
+			best_score = score
+	return best_place
 
 
 func _scout(entity_id: String, session: RefCounted) -> Dictionary:

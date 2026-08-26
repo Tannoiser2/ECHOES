@@ -199,10 +199,16 @@ fisica.
 va misurato sui 100 semi prima di restare.
 **Questo passo è una tua decisione, non mia.**
 
-**Passo 4 — il turno che decide.** Con i passi 1 e 3 il passare dovrebbe
-scendere da solo; se non basta, si guarda la pesca (oggi la mano si riempie a
-`hand_refill` e la sonda dice che chi passa ha in media 7 carte e 15 mosse
-legali: il problema non è quante ne ha, è che dicono tutte la stessa cosa).
+**Passo 4 — il turno che decide — FATTO in 0.1.247**
+([D-285](DECISIONS.md#d-285)). Non erano le carte: era l'**appetito**. Il
+ripiego del cervello non veniva mai provato, e la lista delle mosse possibili
+guardava un solo verbo per carta e un solo bersaglio per verbo. Adesso si passa
+il **42,1%** dei turni invece dell'82,1%, il **55%** delle carte pescate si cala
+(era 23,2%) e **nessuna carta resta muta** in 100 anni.
+*Il costo, scritto*: le Verità scritte scendono da 295 a 256 (−13%), perché chi
+spende sulla mappa ha meno peso da mettere nel Consiglio — e il mondo ricorda
+solo i Consigli in cui qualcuno ha messo peso. La riserva di mano è il
+quadrante, e la sua curva sta in D-285.
 
 **Passo 5 — la saga lunga.** Segreti pescati, Entità che cambiano forma, le
 Chronicle dalla 5 alla 10. È lavoro di contenuto, e viene dopo che il turno

@@ -3041,10 +3041,26 @@ Risonanza, e il Tema che ne esce è quello scritto sulla carta.
 
 ---
 
-### 68. Otto turni su dieci non succede niente
+### 68. Otto turni su dieci non succede niente — **quattro su dieci in 0.1.247**
 
 `bilanciamento` · **misurata in 0.1.216** ([D-254](DECISIONS.md#d-254)) ·
-**prima cura in 0.1.217** ([D-255](DECISIONS.md#d-255)) · **aperta**
+**prima cura in 0.1.217** ([D-255](DECISIONS.md#d-255)) · **cura vera in
+0.1.247** ([D-285](DECISIONS.md#d-285)) · **aperta, ma di un altro ordine**
+
+**Aggiornamento 0.1.247.** La causa non era il mazzo né le regole: il cervello
+aveva le mosse e non aveva fame. Il ripiego «fai quello che la mano permette»
+non veniva mai provato, e la lista delle mosse possibili guardava un solo verbo
+per carta e un solo bersaglio per verbo. Adesso si passa il **42,1%** dei turni
+invece dell'**82,1%**, il **55%** delle carte pescate si cala (era il 23,2%) e
+**nessuna carta resta muta** in 100 anni (erano 3).
+
+Resta aperta perché quattro turni su dieci sono ancora fermi: sono quelli in cui
+la mano è **alla riserva** che il Consiglio richiede. Il prossimo numero da
+guardare non è il passare — è **quanto rende un turno pieno**: 256 Verità
+scritte contro le 295 di prima dicono che spendere sulla mappa toglie voce al
+Consiglio, e quel cambio va tarato con il committente.
+
+**Il testo originale:**
 
 Il committente l'ha visto giocando: *«17 turni su 24 sono passa»*. Su 100 anni e
 **7.200 turni** il numero è peggiore ancora, ed è lo stesso a tavolo misto e

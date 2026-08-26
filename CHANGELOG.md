@@ -5,6 +5,25 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.247 — Un'Occasione non si butta (D-285)
+
+- **Passo 4: il turno che decide.** Si passava l'**82,1%** dei turni con sette
+  carte in mano e quindici mosse legali. Il ripiego «fai quello che la mano
+  permette» non veniva **mai** provato, e la lista delle mosse guardava un solo
+  verbo per carta e un solo bersaglio per verbo.
+- Adesso, quando nessuna intenzione scatta, si gioca la più debole che la mano
+  permette — fra tutte le Azioni stampate e tutti i bersagli. **Mai** spingere
+  una domanda dalla parte sbagliata, **mai** rompere un patto per noia.
+- **La riserva resta**: una carta calata è una carta che al Consiglio non vota.
+  Sopra `max_commit_assets + 1` si gioca, sotto si tiene.
+- Misure (100 semi, tavolo misto): si passa **42,1%** (prima 82,1%); carte
+  pescate che si calano **55,0%** (prima 23,2%); FORGIARE **46,6%** (5,9%);
+  RIVENDICARE **60,9%** (19,6%); **nessuna carta muta** (prima 3 mai calate).
+  Playtest **0/8**.
+- **Il costo, scritto**: le Verità scritte scendono da **295 a 256** (−13%). È
+  la regola del gioco che si vede — il mondo ricorda solo i Consigli in cui
+  qualcuno ha messo peso — e la riserva è il quadrante per spostarla.
+
 ## 0.1.246 — Il segno stampato ha un posto (D-284)
 
 - **Passo 1bis.** I 314 segni che non trovavano dove stare adesso lo trovano:

@@ -10,6 +10,75 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-285 — Un'Occasione non si butta: il cervello aveva mosse, non fame
+
+**implemented in 0.1.247** — passo 4 del brief del Punto Zero
+
+Il problema n° 3 del committente: *«i giocatori passano troppo spesso: il turno
+non genera abbastanza decisioni significative»*. Misurato: si passava l'**82,1%
+dei turni**, e due terzi di quei passa erano *«mosse legali, nessuna che gli
+servisse»* — **con sette carte in mano e quindici mosse legali in media**.
+
+Non era il mazzo, e non erano le regole. Erano **due difetti, uno dentro
+l'altro**:
+
+1. **Il ripiego non veniva mai provato.** Il cervello sceglie un'intenzione e
+   poi cerca la carta che la dica (`_as_card_play`). Quando l'intenzione era
+   PASSA, quella funzione tornava indietro **alla prima riga**: il ramo
+   *«fai quello che la mano permette»*, scritto e commentato, non veniva
+   raggiunto mai.
+2. **E la lista delle mosse possibili era quasi sempre vuota**, anche quando
+   veniva chiesta: guardava **un solo verbo per carta** — quello dichiarato, non
+   quelli stampati (D-283) — e **un solo bersaglio per verbo**. Sette carte in
+   mano producevano zero voci.
+
+**La regola nuova**: quando nessuna intenzione scatta, si gioca la **più debole
+che la mano permette**, fra tutte le Azioni stampate e tutti i bersagli che
+quelle Azioni accettano. Due mosse non si propongono mai, perché sono danni che
+il cervello si farebbe da solo per noia: **spingere una domanda dalla parte
+sbagliata**, e **rompere un patto**.
+
+**E si tiene la riserva.** Al tavolo una carta calata è una carta che al
+Consiglio non vota — e il mondo ricorda **solo i Consigli in cui qualcuno ha
+messo peso** (`EchoRecorder.should_record`). Una mano svuotata sulla mappa è
+quindi un anno che lascia meno scritto: è il quadrante fra *«le Azioni cambiano
+il mondo»* e *«il Consiglio decide cosa il mondo ricorderà»*.
+
+**Taratura d'autore, misurata** (100 semi, tavolo misto). La riserva è il
+quadrante, e questi sono i suoi scatti:
+
+| riserva | si passa | Verità scritte | Consigli |
+|---|---|---|---|
+| — (prima) | 82,1% | 295 | 3,67 |
+| 3 | 37,3% | 227 | 3,75 |
+| **4** (`max_commit_assets + 1`) | **42,1%** | **256** | **3,80** |
+| 5 | 47,2% | 252 | 3,81 |
+
+**Il costo, scritto**: le Verità scritte scendono da **295 a 256** (−13%). Non
+è un difetto del correttivo, è la regola del gioco che si vede: chi spende sulla
+mappa ha meno peso da mettere nel Consiglio, e un Consiglio senza peso non
+lascia memoria. Se il committente vuole un mondo più scritto e turni più fermi,
+il numero da muovere è la riserva, ed è una riga.
+
+**Le altre misure** (`run_card_ledger`, 100 anni):
+
+| | prima | dopo |
+|---|---|---|
+| carte pescate che si calano | 23,2% | **55,0%** |
+| FORGIARE calato | 5,9% | **46,6%** |
+| RIVENDICARE calato | 19,6% | **60,9%** |
+| carte **mai calate** in 100 anni | 3 | **0** |
+| carte mai impegnate al voto | 0 | 0 |
+
+Playtest 100 semi: **0 seggi bloccati su 8**, misto e uniforme — e ogni seggio
+adesso tocca più di un livello.
+
+**Prove**: `test_an_opportunity_is_not_wasted.gd` — a mano piena non si passa,
+alla riserva si tiene, la lista guarda tutte le facce e tutti i bersagli, e le
+due mosse che fanno male non si propongono mai.
+
+---
+
 ## D-284 — Il segno stampato ha un posto: la carta dice dove, chi cala sceglie
 
 **implemented in 0.1.246** — passo 1bis del brief del Punto Zero
