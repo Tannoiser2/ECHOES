@@ -10,6 +10,53 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-291 — Il tabellone del Consiglio mostra la carta girata
+
+**implemented in 0.1.254** — taglio 1 di [ISSUES 80](ISSUES.md#80-il-consiglio-sono-due-consigli-impilati-e-a-decidere-e-quello-vecchio)
+
+Parola del committente, davanti all'app: *«il Concilio è ancora quello vecchio,
+mi sa che va cambiato tutto»*. Aveva ragione su quello che vedeva, e la ragione
+misurata è più precisa della frase: **lo schermo era vecchio al cento per cento,
+le regole a metà.** Il tabellone disegnava la carta della Tensione, la Domanda,
+la Proposta, le pose e le Conseguenze — la metà del 2024 — mentre il motore
+eseguiva già l'economia di [D-280](#d-280): 245 benefici comprati in 158
+Consigli, 62 prezzi scattati di cui 19 Cicatrici, il fronte avverso che sceglie
+la moneta 29 volte. **Il 45% dei Consigli pagava qualcosa e non si vedeva.**
+
+Questo è il **taglio 1**: nessuna regola cambia, si disegna quello che già
+succede. Fra la Proposta e le pose il tabellone apre la carta girata:
+
+- **COSA SI COMPRA** — tutti i benefici stampati, con la **pedina posata** (●)
+  su quelli che il proponente ha comprato e la casella libera (○) sugli altri,
+  e in testata il conto: *«2 comprati, prezzo: 1 costo»*. Con niente comprato,
+  la riga dell'economia: *«un beneficio è gratis, ogni altro costa un costo»*.
+- **IN CHE MONETA** — i costi stampati, con la pedina su quelli scelti, e tre
+  testate diverse perché al tavolo sono tre situazioni diverse: non si paga
+  niente, **la sceglie Kessa**, oppure *«il fronte avverso non ha ancora posato
+  la pedina»* — che è un'attesa, non un silenzio.
+- **LA CONTROPROPOSTA** ([D-268](#d-268)), quando c'è, con il nome di chi l'ha
+  posata.
+- **SE CADE** — le voci che scattano se la proposta non passa, che non sceglie
+  nessuno. È l'informazione che rende «opponiti» una scelta invece di un gesto.
+
+**Si legge dalla faccia stampata della Tensione, non dal template**, e dal
+dizionario del Consiglio che il registro già rende: così vale identico su un
+Consiglio aperto e su uno **già chiuso**, dove `current` non esiste più e il
+tabellone disegna la fotografia di D-039.
+
+**Una trappola di casa, ripresa in mano**: `_build()` girava solo in
+`_ready()`, che non gira per un nodo costruito fuori dall'albero — la prima
+prova che ha disegnato il tabellone è morta a metà invece di fallire. Adesso il
+tabellone si costruisce da solo alla prima lettura, come fa la colonna.
+
+**Il costo dichiarato**: nessuno — nessuna regola toccata, 0 seggi bloccati su
+8, e la sequenza A–K è ancora intera. Restano i tagli 2 e 3 di ISSUES 80: la
+Domanda e la Proposta dalla carta invece che dal template, e **chi decide** —
+il d6 e gli impegni segreti contro l'economia. Quello aspetta la parola del
+committente, ed è giusto che la aspetti guardando un Consiglio che si vede.
+
+---
+
 ## D-290 — La soglia: il tempo, e quello che non tieni piu'
 
 **implemented in 0.1.252** — [la misura](MISURA_VITE.md) · [ISSUES 79](ISSUES.md#79-quattro-case-su-otto-non-hanno-un-profilo-e-quindi-non-hanno-una-soglia)

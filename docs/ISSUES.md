@@ -2819,10 +2819,11 @@ volta in questo progetto che uno zero era la sonda.**
 
 **I tre tagli, in ordine**, da decidere col committente:
 
-1. **Lo schermo dice il Consiglio nuovo**: la faccia stampata della Tensione, i
-   benefici col loro prezzo, cosa il proponente ha comprato, chi tiene la pedina.
-   Non tocca nessuna regola, e senza non si puo' giudicare se le regole nuove
-   siano buone.
+1. ✅ **Lo schermo dice il Consiglio nuovo** — **fatto in 0.1.254**
+   ([D-291](DECISIONS.md#d-291)): la faccia stampata della Tensione sul
+   tabellone, i benefici con la pedina su quelli comprati, il prezzo in cifre,
+   chi tiene la pedina del prezzo, la controproposta e cosa succede se cade.
+   Nessuna regola toccata.
 2. **La Domanda e la Proposta vengono dalla carta**, non da
    `confluence_templates`: e' [D-266](DECISIONS.md#d-266) portata fino in fondo,
    ed e' la grammatica vecchia da cancellare davvero.

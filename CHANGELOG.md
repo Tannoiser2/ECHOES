@@ -5,6 +5,23 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.254 — Il tabellone del Consiglio mostra la carta girata (D-291)
+
+- **Taglio 1 di ISSUES 80**: fra la Proposta e le pose, il tabellone apre la
+  faccia stampata della Tensione — **COSA SI COMPRA** coi benefici e la pedina
+  posata su quelli comprati, **IN CHE MONETA** coi costi e la pedina del fronte
+  avverso, **LA CONTROPROPOSTA** quando c'è, **SE CADE** con quello che scatta
+  se la proposta non passa.
+- Il conto in testata: «2 comprati, prezzo: 1 costo», e tre testate diverse per
+  il prezzo — niente da pagare, chi l'ha scelto, o **si sta aspettando lui**.
+- **Nessuna regola cambia**: si disegna quello che il motore faceva già dal
+  45% dei Consigli in poi, e che nessuno vedeva.
+- Il tabellone si costruisce da solo alla prima lettura: `_ready()` non gira
+  per un nodo fuori dall'albero, ed è la trappola che ha fatto morire a metà la
+  prima prova invece di farla fallire.
+- Cinque prove nuove, provate a mordere (24 asserzioni rosse col blocco spento).
+- Cancelli: 0 seggi bloccati su 8. 606 prove verdi.
+
 ## 0.1.253 — La sonda del prezzo ci vedeva meta' (ISSUES 80)
 
 - `cli/run_price_probe.gd` cercava il formato di log che il motore non scrive
