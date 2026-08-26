@@ -10,6 +10,58 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-293 — Gli incroci: chi litiga con chi, e per cosa
+
+**implemented in 0.1.256** — punto 1 della linea delle trasformazioni ·
+[la misura](MISURA_MATRICE.md#5-gli-incroci-chi-litiga-con-chi-e-per-cosa)
+
+Il documento del committente sulle trasformazioni mette al centro una frase:
+
+> *«Gli stessi segni devono trasformare più Entità in direzioni diverse.»*
+
+E chiede al validatore un controllo nuovo: **due Entità devono condividere
+almeno un trigger che le influenzi in modo opposto**. Prima di farne un
+cancello si misura quanto ne manca — un cancello che va rosso su venticinque
+casi su ventotto non è un cancello, è un blocco.
+
+`matrix_survey` guadagna la sezione 5. Per ogni segno mette insieme quello che
+i **Destini** chiedono e quello che i **profili** dichiarano — comprese le
+`denies`, che sono incroci scritti a mano: *«voglio impedire proprio questo,
+proprio a lui»* significa che quel segno aiuta lui e danneggia me.
+
+**Il numero, ed è severo:**
+
+| | |
+|---|---|
+| segni che aiutano una casa e ne danneggiano un'altra | **7** |
+| **coppie di case che hanno qualcosa per cui litigare** | **3 su 28** |
+
+I sette: `crown_divided`, `nahr_settled`, `succession_by_law` (Aldric ↔ Nahr),
+`discovery:crystal`, `knowledge_shared`, `mine_sealed` (Lyra ↔ Vaerax),
+`structure:sealed` (Vaerax ↔ Cenere). **Cinque su sette cambiano anche la
+pelle** di una casa, perché sono voluti da un profilo che ha una porta del
+tempo ([D-290](#d-290)): perderli non sposta una clausola, sposta *cosa quella
+casa diventerà*.
+
+**La causa è strutturale, e si legge nella tabella**: gli incroci esistono
+quasi solo fra le quattro case che un profilo ce l'hanno. Le altre quattro —
+Cenere, Città Libere, Sale, Vetro — entrano solo dove un loro Destino nomina un
+segno per nome, e i Destini nominano poco: **33 livelli su 69 si reggono su
+conteggi**. Scrivere i quattro profili che mancano
+([ISSUES 79](ISSUES.md#79-quattro-case-su-otto-non-hanno-un-profilo-e-quindi-non-hanno-una-soglia))
+è la leva più corta su questo numero, ed è il passo dopo.
+
+**Il conto è un pavimento**, dichiarato come quello delle Tensioni: guarda i
+segni **nominati**, non i conteggi. Un Destino che chiede due Pietre litiga con
+mezzo tavolo senza nominare niente — ma litiga allo stesso modo con tutti, e
+qui interessa cosa fa litigare *queste due case e non altre*.
+
+**Il cancello che il committente chiede resta spento**, e va scritto perché non
+sembri dimenticanza: acceso oggi direbbe rosso su 25 coppie su 28. Si accende
+quando il numero è buono, e la misura di oggi è il metro per saperlo.
+
+---
+
 ## D-292 — Chi scrive nel mondo, e le Pietre che non lo dicevano
 
 **implemented in 0.1.255** — la misura che viene prima del taglio 2 di

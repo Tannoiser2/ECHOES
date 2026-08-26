@@ -5,6 +5,21 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.256 — Gli incroci: chi litiga con chi, e per cosa (D-293)
+
+- `matrix_survey` sezione 5, nei cancelli: per ogni segno **chi aiuta e chi
+  danneggia**, mettendo insieme Destini e profili (le `denies` comprese, che
+  sono incroci dichiarati a mano).
+- **Il numero: 7 segni incrociano, e le coppie di case con qualcosa per cui
+  litigare sono 3 su 28.** Cinque di quei sette **cambiano anche la pelle** di
+  una casa, perché una porta del tempo li legge.
+- La causa è strutturale: gli incroci esistono quasi solo fra le quattro case
+  con un profilo. **Scrivere i quattro che mancano è la leva più corta**
+  (ISSUES 79).
+- Il cancello che la linea delle trasformazioni chiede — «due case devono
+  condividere un trigger opposto» — **resta spento e dichiarato**: acceso oggi
+  direbbe rosso su 25 coppie su 28.
+
 ## 0.1.255 — Chi scrive nel mondo, e le Pietre che non lo dicevano (D-292)
 
 - `cli/run_who_writes_probe.gd`: la misura che viene prima del taglio 2. Su 158

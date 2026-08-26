@@ -2853,6 +2853,14 @@ esiste già: manca il profilo.
 **Fatto quando** le otto case hanno un profilo scritto con la stessa forma delle
 quattro di D-288, e `MISURA_VITE.md` mostra le vite mai sedute scendere.
 
+**E in 0.1.256 questa voce ha guadagnato un secondo numero** che la rende più
+urgente ([D-293](DECISIONS.md#d-293)): gli **incroci** — i segni che aiutano una
+casa e ne danneggiano un'altra — sono **7**, e le coppie di case che hanno
+qualcosa per cui litigare sono **3 su 28**. Quasi tutti gli incroci stanno fra
+le quattro case che un profilo ce l'hanno. Le quattro senza non hanno soglie,
+non hanno incroci, e le loro cinque vite non si siedono mai: **è lo stesso buco
+visto da tre parti**.
+
 ---
 
 ### 78. Il profilo strategico lo legge la misura, non il gioco

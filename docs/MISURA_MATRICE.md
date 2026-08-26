@@ -20,6 +20,8 @@ piano, misurate sui dati di oggi **prima** di scrivere un file nuovo.
 | profili strategici scritti | 4 |
 | segni che quelle case vogliono o temono | 35 |
 | **fra i voluti, quelli che un Consiglio sa dare** | **4** |
+| segni che aiutano una casa e ne danneggiano un'altra | 7 |
+| **coppie di case che hanno qualcosa per cui litigare** | **3 su 28** |
 
 ---
 
@@ -285,4 +287,89 @@ D-270): un interesse c'e', ma non e' ancora un conflitto.
 | TEN_WEIGHTS | 9 | 8 | 2 |
 | TEN_WINTER | 9 | 8 | 1 |
 | TEN_WOLVES | 9 | 8 | 1 |
+
+## 5. Gli incroci: chi litiga con chi, e per cosa
+
+*«Gli stessi segni devono trasformare piu' Entita' in direzioni
+diverse»* — la linea delle trasformazioni. Qui si misura sui dati di
+oggi: per ogni segno, **chi aiuta** e **chi danneggia**, mettendo
+insieme quello che i Destini chiedono e quello che i profili
+dichiarano. Un segno che aiuta qualcuno e non danneggia nessuno non e'
+una questione: e' un regalo, e al Consiglio nessuno avra' mai una
+ragione per opporsi.
+
+**Segni che incrociano davvero: 7.**
+
+**Il conto e' un pavimento**, come quello delle Tensioni: guarda i
+segni **nominati** da un Destino o da un profilo, non i conteggi. Un
+Destino che chiede due Pietre o zero Cicatrici entra in conflitto con
+mezzo tavolo senza nominare niente — ma quel conflitto vale per tutti
+allo stesso modo, e quindi non distingue una coppia dall'altra. Qui
+interessa **cosa fa litigare queste due case e non altre**.
+
+La colonna **cambia pelle** dice se quel segno e' fra quelli che una
+porta del tempo legge (D-290): perderlo non sposta una clausola, sposta
+**cosa quella casa diventera'**.
+
+| segno | aiuta | danneggia | cambia pelle | chi lo sa scrivere |
+|---|---|---|---|---|
+| `crown_divided` | NAHR | ALDRIC | **si'** | Conseguenza, fatto che dura |
+| `discovery:crystal` | LYRA | VAERAX | **si'** | Azione stampata, Conseguenza |
+| `knowledge_shared` | LYRA | VAERAX | **si'** | Azione stampata, clausola di Consiglio |
+| `mine_sealed` | VAERAX | LYRA | — | Conseguenza, fatto che dura |
+| `nahr_settled` | NAHR | ALDRIC | **si'** | Conseguenza, fatto che dura |
+| `structure:sealed` | VAERAX | CENERE | — | Conseguenza |
+| `succession_by_law` | ALDRIC | NAHR | **si'** | Azione stampata, Conseguenza, fatto che dura |
+
+### Le coppie che non hanno niente per cui litigare
+
+Il controllo che la linea delle trasformazioni chiede: **due case
+devono condividere almeno un segno che le spinge in direzioni
+opposte**. Le coppie che non ce l'hanno possono sedere allo stesso
+tavolo per otto anni senza incontrarsi mai.
+
+**Coppie incrociate: 3 su 28.**
+
+La causa si legge nella tabella qui sopra: **gli incroci esistono
+quasi solo fra le case che hanno un profilo**. Le altre — CENERE, LIBERE, SALE, VETRO —
+entrano solo dove un loro Destino nomina un segno per nome, e i
+Destini nominano poco: 33 livelli su 69 si reggono su conteggi.
+Scrivere i quattro profili che mancano (ISSUES 79) e' la leva piu'
+corta su questo numero.
+
+| coppia | |
+|---|---|
+| ALDRIC ↔ CENERE | niente |
+| ALDRIC ↔ LIBERE | niente |
+| ALDRIC ↔ LYRA | niente |
+| ALDRIC ↔ SALE | niente |
+| ALDRIC ↔ VAERAX | niente |
+| ALDRIC ↔ VETRO | niente |
+| CENERE ↔ LIBERE | niente |
+| CENERE ↔ LYRA | niente |
+| CENERE ↔ NAHR | niente |
+| CENERE ↔ SALE | niente |
+| CENERE ↔ VETRO | niente |
+| LIBERE ↔ LYRA | niente |
+| LIBERE ↔ NAHR | niente |
+| LIBERE ↔ SALE | niente |
+| LIBERE ↔ VAERAX | niente |
+| LIBERE ↔ VETRO | niente |
+| LYRA ↔ NAHR | niente |
+| LYRA ↔ SALE | niente |
+| LYRA ↔ VETRO | niente |
+| NAHR ↔ SALE | niente |
+| NAHR ↔ VAERAX | niente |
+| NAHR ↔ VETRO | niente |
+| SALE ↔ VAERAX | niente |
+| SALE ↔ VETRO | niente |
+| VAERAX ↔ VETRO | niente |
+
+### Quante questioni ha ogni coppia
+
+| coppia | segni condivisi | quali |
+|---|---|---|
+| ALDRIC ↔ NAHR | 3 | `crown_divided`, `nahr_settled`, `succession_by_law` |
+| LYRA ↔ VAERAX | 3 | `discovery:crystal`, `knowledge_shared`, `mine_sealed` |
+| CENERE ↔ VAERAX | 1 | `structure:sealed` |
 
