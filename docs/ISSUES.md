@@ -2763,9 +2763,26 @@ e' in gioco.
 
 ---
 
-### 87. Sessantasette Effetti d'autore parlano la lingua delle caselle
+### 87. Gli Effetti d'autore che parlano la lingua delle caselle
 
-`contenuto` · `regole` · **aperta in 0.1.267** ([D-305](DECISIONS.md#d-305))
+`contenuto` · `regole` · aperta in 0.1.267 ([D-305](DECISIONS.md#d-305)) ·
+**taglio A fatto in 0.1.269** ([D-307](DECISIONS.md#d-307)), il resto aperto
+
+> **Fatto (D-307)**: tolte le **9 righe** che consegnavano al proponente il
+> luogo che la carta gli vende. Acquisti a vuoto **24% → 9%**, costi a vuoto a
+> **zero**. La regola ha una guardia in `validate_physical.py`, col suo difetto
+> piantato.
+>
+> **Aperto**: i **17 acquisti a vuoto** rimasti — 14 sono ancora la frase, ma
+> per la via **indiretta** (un Effetto mirato a `$capital`, `$rival_seat`,
+> `$region_with:...` che quella volta cade sullo stesso luogo), 3 sono mondo che
+> c'era gia'. Piu' l'eccezione dichiarata **`CNS_MINE_TAKEN`**: prendere il
+> controllo e' tutto il suo corpo, e lo schema non accetta una Conseguenza
+> senza Effetti — va **riscritta**, e quello e' contenuto.
+>
+> Restano intoccate le **27 righe che arrivano altrove**: nessuna casella le
+> puo' fare, e toglierle sarebbe una perdita secca. E le **2** che svuotano il
+> luogo (`SET_CONTROL` a null): non consegnano niente a nessuno.
 
 Dopo [D-305](DECISIONS.md#d-305) la frase d'autore non scavalca piu' la carta.
 Ma resta il fatto che le due grammatiche dicono spesso la stessa cosa: fra le

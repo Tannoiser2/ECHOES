@@ -387,7 +387,9 @@ func _live_voices(list_name: String) -> Array:
 		(data.tensions.get(str(current["tension_id"]), {}) as Dictionary).get("theme", "")
 	)
 	for voice in (card_face().get(list_name, []) as Array):
-		if CouncilEconomy.voice_bites(voice as Dictionary, list_name, context, world, theme_id):
+		if CouncilEconomy.voice_bites(
+			voice as Dictionary, list_name, context, world, theme_id, data
+		):
 			out.append(voice)
 	return out
 

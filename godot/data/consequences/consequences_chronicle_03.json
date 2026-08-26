@@ -70,16 +70,6 @@
           }
         },
         {
-          "type": "SET_CONTROL",
-          "target": {
-            "kind": "region",
-            "id": "$region_focus"
-          },
-          "payload": {
-            "entity_id": "$proponent"
-          }
-        },
-        {
           "type": "SET_STRUCTURE_GRADE",
           "target": {
             "kind": "region",
@@ -197,16 +187,6 @@
             "level": "HOSTILE"
           },
           "note": "Chi non può pagare non perdona chi ha chiesto adesso (ISSUES 14: la seconda saga non aveva un solo modo di farsi un nemico)."
-        },
-        {
-          "type": "SET_CONTROL",
-          "target": {
-            "kind": "region",
-            "id": "$region_focus"
-          },
-          "payload": {
-            "entity_id": "$proponent"
-          }
         },
         {
           "type": "SET_REGION_TAG",
@@ -423,16 +403,6 @@
         "description": "Nella sala del consiglio c'è una sedia più alta delle altre, e nessuno l'ha più tolta."
       },
       "effects": [
-        {
-          "type": "SET_CONTROL",
-          "target": {
-            "kind": "region",
-            "id": "$region_focus"
-          },
-          "payload": {
-            "entity_id": "$proponent"
-          }
-        },
         {
           "type": "SET_RELATION",
           "target": {

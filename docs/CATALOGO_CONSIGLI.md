@@ -73,7 +73,7 @@ Non importa quale sia la cosa che manca. Prima o poi qualcuno chiede, ad alta vo
 
 > Nella Regione di cui si discute, chi decide a chi non ne tocca?
 
-- **Se passa — La Razione Imposta:** la Regione discussa cambia padrone · la Regione discussa diventa razionata · la domanda in gioco sale
+- **Se passa — La Razione Imposta:** la Regione discussa diventa razionata · la domanda in gioco sale
 
 ### Si divida in parti uguali, e si accetti che nessuno ne esca bene.
 
@@ -111,7 +111,7 @@ Non importa di quale terra si parli. Prima o poi qualcuno chiede, ad alta voce, 
 
 > Nella Regione di cui si discute, chi tiene il posto quando la voce si spegne?
 
-- **Se passa — Il Seggio Preso:** la Regione discussa cambia padrone · il rapporto con chi tocca cambia di un passo · la Regione discussa diventa inquieta · la domanda in gioco sale · e resta una cicatrice: Nella sala del consiglio c'è una sedia più alta delle altre, e nessuno l'ha più tolta.
+- **Se passa — Il Seggio Preso:** il rapporto con chi tocca cambia di un passo · la Regione discussa diventa inquieta · la domanda in gioco sale · e resta una cicatrice: Nella sala del consiglio c'è una sedia più alta delle altre, e nessuno l'ha più tolta.
 
 ### Si divida l'uso, non il titolo: ognuno il suo pezzo, e i conti a fine anno.
 
@@ -202,7 +202,7 @@ Sette città, sette modi di giudicare lo stesso caso. Finche i casi restavano de
 
 > E chi si siede, quando non si è d'accordo?
 
-- **Se passa — Il Seggio Preso:** la Regione discussa cambia padrone · il rapporto con chi tocca cambia di un passo · la Regione discussa diventa inquieta · la domanda in gioco sale · e resta una cicatrice: Nella sala del consiglio c'è una sedia più alta delle altre, e nessuno l'ha più tolta.
+- **Se passa — Il Seggio Preso:** il rapporto con chi tocca cambia di un passo · la Regione discussa diventa inquieta · la domanda in gioco sale · e resta una cicatrice: Nella sala del consiglio c'è una sedia più alta delle altre, e nessuno l'ha più tolta.
 
 ### Quando l'accordo manca, si tiri a sorte; e la sorte sia scritta.
 
@@ -235,7 +235,7 @@ Nessuno contesta il debito. Si contesta che a tenere il conto sia una parte sola
 
 > Chi tiene il registro, e chi può leggerlo?
 
-- **Se passa — Il Debito Chiamato:** il mondo registra: il debito e' stato chiamato · il rapporto con chi tocca cambia di un passo · la Regione discussa cambia padrone · la Regione discussa diventa indebitata
+- **Se passa — Il Debito Chiamato:** il mondo registra: il debito e' stato chiamato · il rapporto con chi tocca cambia di un passo · la Regione discussa diventa indebitata
 
 ### Una riga tirata sotto la colonna: si riparta da zero, e si scriva come.
 
@@ -247,8 +247,8 @@ Nessuno contesta il debito. Si contesta che a tenere il conto sia una parte sola
 
 > E se lo chiamano tutto insieme, nella Regione di cui si discute cosa succede?
 
-- **Se passa — Il Debito Chiamato:** il mondo registra: il debito e' stato chiamato · il rapporto con chi tocca cambia di un passo · la Regione discussa cambia padrone · la Regione discussa diventa indebitata
-- **Se passa — Il Seggio Preso:** la Regione discussa cambia padrone · il rapporto con chi tocca cambia di un passo · la Regione discussa diventa inquieta · la domanda in gioco sale · e resta una cicatrice: Nella sala del consiglio c'è una sedia più alta delle altre, e nessuno l'ha più tolta.
+- **Se passa — Il Debito Chiamato:** il mondo registra: il debito e' stato chiamato · il rapporto con chi tocca cambia di un passo · la Regione discussa diventa indebitata
+- **Se passa — Il Seggio Preso:** il rapporto con chi tocca cambia di un passo · la Regione discussa diventa inquieta · la domanda in gioco sale · e resta una cicatrice: Nella sala del consiglio c'è una sedia più alta delle altre, e nessuno l'ha più tolta.
 
 ### Si riapre il registro alla pagina che si racconta, e la si legge ad alta voce prima di scrivere la nuova.
 
@@ -277,14 +277,14 @@ Quando la Carestia raggiunge la soglia, la questione non è più se ci sia abbas
 > Chi nutre la Regione di cui si discute quando i granai si svuotano?
 
 - **Si puo' proporre solo se:** Solo chi porta la corona può requisire
-- **Se passa — Il Granaio del Trono:** si alza una costruzione dove si discute · la domanda in gioco sale · la Regione discussa cambia padrone · il mondo registra: il grano e' stato requisito
+- **Se passa — Il Granaio del Trono:** si alza una costruzione dove si discute · la domanda in gioco sale · il mondo registra: il grano e' stato requisito
 - **Se passa — La Valle Sgomberata:** perdi la tua presenza dove si discute · la Regione discussa diventa requisita · una costruzione sale o scende di grado · il tuo rivale entra dove si discute · e resta una cicatrice: Le piste dei carri incise nel terreno basso, e nessuno che le ripercorra.
 
 ### Chi propone apra la Regione di cui si discute a chi giunge da levante: chi ne lavora la terra, ne mangi.
 
 > Chi nutre la Regione di cui si discute quando i granai si svuotano?
 
-- **Se passa — Chi Lavora Mangia:** la Regione discussa diventa insediamento: chi propone · si alza una costruzione dove si discute · il mondo registra: i Nahr si sono fermati · il rapporto con chi tocca cambia di un passo
+- **Se passa — Chi Lavora Mangia:** la Regione discussa diventa insediamento: chi propone · il mondo registra: i Nahr si sono fermati · il rapporto con chi tocca cambia di un passo
 - **Se passa — Il Titolo che non Vale più:** la Regione discussa cambia padrone · il mondo registra: la corona e' stata spogliata
 
 ### Si serrino i confini: quello che cresce nella Regione di cui si discute resti a chi propone, e a nessun altro.
@@ -292,13 +292,13 @@ Quando la Carestia raggiunge la soglia, la questione non è più se ci sia abbas
 > Nella Regione di cui si discute, a chi appartiene la terra che ancora produce?
 
 - **Si puo' proporre solo se:** Solo il trono può chiudere i confini del regno
-- **Se passa — La Valle Chiusa:** la Regione discussa cambia padrone · il mondo registra: la Valle e' stata chiusa · la Regione discussa diventa affamata · perdi la tua presenza dove si discute · il rapporto con chi tocca cambia di un passo · e resta una cicatrice: Il vallo di pietra a secco tirato su in un inverno: nessuno lo ha più smontato.
+- **Se passa — La Valle Chiusa:** il mondo registra: la Valle e' stata chiusa · la Regione discussa diventa affamata · perdi la tua presenza dove si discute · il rapporto con chi tocca cambia di un passo · e resta una cicatrice: Il vallo di pietra a secco tirato su in un inverno: nessuno lo ha più smontato.
 
 ### La terra della Regione di cui si discute appartenga a chi la lavora - e quest'anno la lavora chi è arrivato.
 
 > Nella Regione di cui si discute, a chi appartiene la terra che ancora produce?
 
-- **Se passa — Chi Lavora Mangia:** la Regione discussa diventa insediamento: chi propone · si alza una costruzione dove si discute · il mondo registra: i Nahr si sono fermati · il rapporto con chi tocca cambia di un passo
+- **Se passa — Chi Lavora Mangia:** la Regione discussa diventa insediamento: chi propone · il mondo registra: i Nahr si sono fermati · il rapporto con chi tocca cambia di un passo
 - **Se passa — Il Titolo che non Vale più:** la Regione discussa cambia padrone · il mondo registra: la corona e' stata spogliata
 
 **Le clausole che si possono attaccare:**
@@ -327,7 +327,7 @@ L'Ordine dice che non si guarda. I Signori della Cenere scavano sotto la cella d
 > Chi risponde di quello che c'è nella teca?
 
 - **Se passa — Le Gallerie Lasciate:** la Regione discussa diventa svuotata · perdi la tua presenza dove si discute · la domanda in gioco sale · una costruzione sale o scende di grado · il tuo rivale entra dove si discute
-- **Se passa — Il Seggio Preso:** la Regione discussa cambia padrone · il rapporto con chi tocca cambia di un passo · la Regione discussa diventa inquieta · la domanda in gioco sale · e resta una cicatrice: Nella sala del consiglio c'è una sedia più alta delle altre, e nessuno l'ha più tolta.
+- **Se passa — Il Seggio Preso:** il rapporto con chi tocca cambia di un passo · la Regione discussa diventa inquieta · la domanda in gioco sale · e resta una cicatrice: Nella sala del consiglio c'è una sedia più alta delle altre, e nessuno l'ha più tolta.
 - **Se passa — La Roccia che Cede:** la Regione discussa diventa sfruttata · e resta una cicatrice: La galleria maestra non si richiude più, e la roccia intorno resta tiepida.
 
 ### La teca resti dov'è. Ciò che va guardato è la montagna, e la guardi chi propone.
@@ -373,7 +373,7 @@ Non è una guerra e non è una carestia: è che da qualche mese le cose non arri
 
 > Chi riscuote su quello che passa nella Regione di cui si discute?
 
-- **Se passa — Il Mercato Spostato:** la Regione discussa cambia padrone · la Regione discussa diventa il mercato · si alza una costruzione dove si discute · la Regione discussa diventa tagliata fuori
+- **Se passa — Il Mercato Spostato:** la Regione discussa diventa il mercato · la Regione discussa diventa tagliata fuori
 
 ### Una scorta giurata: dodici nomi che rispondono di ogni carico.
 
@@ -480,7 +480,7 @@ I canali si possono riaprire in due stagioni. Il problema non è mai stato la te
 > Chi manda gli uomini a scavare nella Regione di cui si discute?
 
 - **Se passa — I Canali Riaperti:** il mondo registra: l'acqua ha cambiato strada · si alza una costruzione dove si discute · la domanda in gioco sale
-- **Se passa — L'Acqua a Prezzo:** il mondo registra: l'acqua ha un prezzo · una casa porta addosso: i diritti d'acqua · la Regione discussa cambia padrone · una costruzione sale o scende di grado
+- **Se passa — L'Acqua a Prezzo:** il mondo registra: l'acqua ha un prezzo · una casa porta addosso: i diritti d'acqua · una costruzione sale o scende di grado
 
 ### L'acqua non è di nessuno. Chi la devia risponde a tutti.
 

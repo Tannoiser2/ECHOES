@@ -86,7 +86,7 @@ static func costs_due(benefits: int) -> int:
 ## validatore gia' impone alle carte, dove una scelta finta e' un difetto.
 static func voice_bites(
 	voice: Dictionary, verb_kind: String, context: Dictionary,
-	world: Dictionary, theme_id: String
+	world: Dictionary, theme_id: String, data = null
 ) -> bool:
 	var verb: String = str(voice.get("verb", ""))
 	var region: String = str(context.get("region_focus", ""))
@@ -101,12 +101,18 @@ static func voice_bites(
 			return _a_condition_on(world, region) != ""
 		"BUILD_STONE":
 			# O si alza, o passa di mano (D-305). Morde a meno che non stia gia'
-			# li' **e** sia gia' sua: allora comprarla non cambia niente.
+			# li' **e** non ci sia niente da passare: o perche' e' gia' sua, o
+			# perche' quel tipo di Pietra **non ha un padrone** — una strada, un
+			# ponte. Su quelle SET_STRUCTURE_OWNER non fa niente, e offrirle
+			# sarebbe una scelta finta (D-307: misurato, 20 acquisti a vuoto su
+			# 26 erano questo).
 			var stone: String = str(voice.get("structure", ""))
 			if region == "" or stone == "":
 				return false
 			if not _stone_stands(world, region, stone):
 				return true
+			if data != null and not _stone_is_owned(data, stone):
+				return false
 			return _stone_owner(world, region, stone) != proponent
 		"TAKE_CONTROL":
 			return region != "" and _control_of(world, region) != proponent
@@ -165,14 +171,28 @@ static func _region_has(world: Dictionary, region_id: String, tag: String) -> bo
 
 
 ## Di chi e' la Pietra di questo tipo, o "" se non c'e' o non e' di nessuno.
+##
+## `owner` vale **null** su una Pietra senza padrone, e `str(null)` in GDScript
+## e' `"<null>"`, non la stringa vuota: e' la stessa trappola di `_control_of`,
+## e qui faceva sembrare comprabile una Pietra che non aveva niente da passare.
 static func _stone_owner(world: Dictionary, region_id: String, type_id: String) -> String:
 	var region: Variant = (world.get("regions", {}) as Dictionary).get(region_id)
 	if region == null:
 		return ""
 	for structure in ((region as Dictionary).get("structures", []) as Array):
 		if str((structure as Dictionary).get("structure_type", "")) == type_id:
-			return str((structure as Dictionary).get("owner", ""))
+			var owner: Variant = (structure as Dictionary).get("owner", null)
+			return "" if owner == null else str(owner)
 	return ""
+
+
+## Questo tipo di Pietra ha un padrone? Una strada e un ponte non ce l'hanno, e
+## intestarli a qualcuno non vuol dire niente.
+static func _stone_is_owned(data, type_id: String) -> bool:
+	var definition: Variant = data.structure_types.get(type_id)
+	if definition == null:
+		return false
+	return bool((definition as Dictionary).get("owned", false))
 
 
 ## C'e' gia' una Pietra di questo tipo, in questo luogo?
