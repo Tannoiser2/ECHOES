@@ -349,8 +349,11 @@ func _find_clause(clause_id: String) -> Dictionary:
 func price_menu() -> Dictionary:
 	if current.is_empty():
 		return {"cost": [], "failure": []}
+	# **E solo i costi che mordono** (D-306): un prezzo che non toglie niente
+	# non e' un prezzo, e il beneficio comprato sarebbe uscito gratis. Misurato
+	# prima della regola: 21 costi su 92 scattavano a vuoto.
 	var costs: Array = []
-	for voice in (card_face().get("costs", []) as Array):
+	for voice in _live_voices("costs"):
 		costs.append(str((voice as Dictionary)["id"]))
 	return {"cost": costs, "failure": []}
 
@@ -362,9 +365,31 @@ func costs_due() -> int:
 	return CouncilEconomy.costs_due((current.get("benefits", []) as Array).size())
 
 
-## I benefici che il proponente puo' comprare: le voci scritte sulla carta.
+## **I benefici che il proponente puo' comprare: le caselle vive** (D-306).
+##
+## Le voci stampate sulla carta, meno quelle che qui e adesso non farebbero
+## niente — «Riapri l'accesso» dove non c'e' niente di chiuso, «Cambia
+## controllo» verso chi il luogo lo tiene gia'. Misurato prima della regola: il
+## **44%** dei benefici comprati non lasciava niente, e si pagava lo stesso.
+##
+## Al tavolo si guarda la mappa: sulla casella morta la pedina non ci va.
 func benefit_menu() -> Array:
-	return (card_face().get("benefits", []) as Array).duplicate()
+	return _live_voices("benefits")
+
+
+## Le caselle di una lista che possono davvero fare qualcosa, adesso (D-306).
+func _live_voices(list_name: String) -> Array:
+	var out: Array = []
+	if current.is_empty():
+		return out
+	var context: Dictionary = effect_context()
+	var theme_id: String = str(
+		(data.tensions.get(str(current["tension_id"]), {}) as Dictionary).get("theme", "")
+	)
+	for voice in (card_face().get(list_name, []) as Array):
+		if CouncilEconomy.voice_bites(voice as Dictionary, list_name, context, world, theme_id):
+			out.append(voice)
+	return out
 
 
 ## **Il proponente compra** (D-280). Fino a tre, che sono le pedine che stanno
@@ -376,7 +401,12 @@ func set_benefits(chosen: Array) -> bool:
 	if current.is_empty() or str(current["step"]) not in ["STANCE", "PROPOSITION"]:
 		last_error = "non e' il momento di comprare i benefici"
 		return false
-	var ceiling: int = CouncilEconomy.MAX_BENEFITS
+	# **E non si compra piu' di quanto si possa pagare** (D-306): il primo
+	# beneficio e' gratis, ogni altro vuole un costo che morda. Se sulla carta
+	# ne restano vivi meno di quanti ne servirebbero, il tetto scende.
+	var ceiling: int = mini(
+		CouncilEconomy.MAX_BENEFITS, 1 + (price_menu()["cost"] as Array).size()
+	)
 	if chosen.size() > ceiling:
 		last_error = "sulla carta ci stanno %d pedine di beneficio" % ceiling
 		return false
@@ -1246,6 +1276,23 @@ func _spend_the_card(applied: Array, outcome: String, source: Dictionary) -> voi
 		for effect in effects:
 			_apply(applied, effect)
 		_narrate_applied(applied, first_effect)
+		# **E se non ha lasciato niente, si dice** (D-306, regola di D-030:
+		# detto invece che taciuto). Il menu offre solo caselle vive, ma fra
+		# l'acquisto e la risoluzione passa la frase d'autore, che puo' aver
+		# fatto lei la stessa cosa: allora il proponente ha pagato per un
+		# lavoro gia' fatto. Misurato: 46 acquisti su 193, e prima non lo
+		# diceva nessuno (ISSUES 87).
+		if kind == "benefits" and not _anything_landed(applied, first_effect):
+			log.bullet("  ...e non lascia niente: era gia' cosi'.")
+
+
+## Qualcosa e' davvero cambiato nel mondo da `first` in poi? Un Effetto marcato
+## no-op ha attraversato il motore senza spostare niente (D-306).
+func _anything_landed(applied: Array, first: int) -> bool:
+	for i in range(first, applied.size()):
+		if not bool((applied[i] as Dictionary).get("inverse_payload", {}).get("noop", false)):
+			return true
+	return false
 
 
 ## One spoken line for every Effect landed since `first` (ISSUES 22, Fase 1).

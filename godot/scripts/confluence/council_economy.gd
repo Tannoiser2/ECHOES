@@ -30,6 +30,10 @@ const Effect := preload("res://scripts/core/effect.gd")
 const MAX_BENEFITS: int = 3
 const MAX_COSTS: int = 2
 
+## Il tetto del Calore, per sapere se SCALDA TEMA ha ancora spazio (D-306).
+## E' lo stesso numero di `EffectApplier.HEAT_MAX`, e la prova lo verifica.
+const MAX_HEAT: int = 6
+
 ## Il vocabolario. `needs` dice quali parametri la voce deve portare sulla
 ## carta: una voce senza il suo parametro non e' giocabile, e il validatore la
 ## rifiuta prima che il tavolo se ne accorga.
@@ -65,6 +69,110 @@ const CLOSED_TAG: String = "condition:cut_off"
 ## uno e costava quattro (D-302), e nessun seggio sano lo comprava.
 static func costs_due(benefits: int) -> int:
 	return maxi(0, mini(benefits - 1, MAX_COSTS))
+
+
+## **Questa casella puo' fare qualcosa, qui e adesso?** (D-306)
+##
+## Misurato su 40 anni: **il 44% dei benefici comprati non lasciava niente** —
+## 52 volte «Riapri l'accesso» su un luogo che non era chiuso, 24 volte «Cambia
+## controllo» verso chi il luogo lo teneva gia', 23 volte una Pietra che stava
+## gia' li' ed era gia' sua. E 21 costi su 92 non mordevano. Il proponente
+## pagava un prezzo per una casella morta, o gli avversari gli imponevano un
+## prezzo che non era un prezzo.
+##
+## Al tavolo non succede: **nessuno posa una pedina su «Riapri l'accesso» se il
+## luogo non e' chiuso**. Si guarda la mappa e si vede. Questa funzione e' quel
+## colpo d'occhio, e il menu si costruisce con lei — la stessa regola che il
+## validatore gia' impone alle carte, dove una scelta finta e' un difetto.
+static func voice_bites(
+	voice: Dictionary, verb_kind: String, context: Dictionary,
+	world: Dictionary, theme_id: String
+) -> bool:
+	var verb: String = str(voice.get("verb", ""))
+	var region: String = str(context.get("region_focus", ""))
+	var proponent: String = str(context.get("proponent", ""))
+	match verb:
+		"REOPEN":
+			return _region_has(world, region, CLOSED_TAG)
+		"CLEAR_CONDITION":
+			var named: String = str(voice.get("tag", ""))
+			if named != "":
+				return _region_has(world, region, named)
+			return _a_condition_on(world, region) != ""
+		"BUILD_STONE":
+			# O si alza, o passa di mano (D-305). Morde a meno che non stia gia'
+			# li' **e** sia gia' sua: allora comprarla non cambia niente.
+			var stone: String = str(voice.get("structure", ""))
+			if region == "" or stone == "":
+				return false
+			if not _stone_stands(world, region, stone):
+				return true
+			return _stone_owner(world, region, stone) != proponent
+		"TAKE_CONTROL":
+			return region != "" and _control_of(world, region) != proponent
+		"COOL_THEME":
+			return _heat_of(world, theme_id) > 0
+		"ADD_CONDITION":
+			return not _region_has(world, region, str(voice.get("tag", "")))
+		"TOLL":
+			return not _region_has(world, region, TOLL_TAG)
+		"YIELD_CONTROL":
+			# Cedere morde se c'e' qualcosa da cedere, e se non lo si sta
+			# cedendo a chi lo tiene gia'.
+			if region == "":
+				return false
+			var to_whom: String = str(context.get("rival", ""))
+			return _control_of(world, region) != to_whom
+		"HEAT_THEME":
+			return theme_id != "" and _heat_of(world, theme_id) < MAX_HEAT
+		"TAKE_DEBT":
+			return not _region_has(world, region, DEBT_TAG)
+		"SCAR":
+			return region != ""
+	return false
+
+
+## Il Calore di un Tema, o -1 se il Tema non c'e'.
+static func _heat_of(world: Dictionary, theme_id: String) -> int:
+	if theme_id == "":
+		return -1
+	var themes: Dictionary = world.get("theme_heat", {}) as Dictionary
+	if not themes.has(theme_id):
+		return -1
+	return int(themes[theme_id])
+
+
+## Chi tiene questo luogo, o "" se non lo tiene nessuno.
+##
+## `control` vale **null** quando il luogo e' di nessuno, e `str(null)` in
+## GDScript non e' la stringa vuota: e' `"<null>"`. Passarci sopra farebbe
+## mordere CEDI CONTROLLO su un luogo che non c'e' niente da cedere.
+static func _control_of(world: Dictionary, region_id: String) -> String:
+	var region: Variant = (world.get("regions", {}) as Dictionary).get(region_id)
+	if region == null:
+		return ""
+	var held: Variant = (region as Dictionary).get("control", null)
+	return "" if held == null else str(held)
+
+
+static func _region_has(world: Dictionary, region_id: String, tag: String) -> bool:
+	if region_id == "" or tag == "":
+		return false
+	var region: Variant = (world.get("regions", {}) as Dictionary).get(region_id)
+	if region == null:
+		return false
+	return ((region as Dictionary).get("tags", []) as Array).has(tag)
+
+
+## Di chi e' la Pietra di questo tipo, o "" se non c'e' o non e' di nessuno.
+static func _stone_owner(world: Dictionary, region_id: String, type_id: String) -> String:
+	var region: Variant = (world.get("regions", {}) as Dictionary).get(region_id)
+	if region == null:
+		return ""
+	for structure in ((region as Dictionary).get("structures", []) as Array):
+		if str((structure as Dictionary).get("structure_type", "")) == type_id:
+			return str((structure as Dictionary).get("owner", ""))
+	return ""
 
 
 ## C'e' gia' una Pietra di questo tipo, in questo luogo?

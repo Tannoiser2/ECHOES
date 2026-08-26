@@ -121,7 +121,50 @@ func _open_with_proposition() -> Dictionary:
 	var options: Array = session.confluence.available_propositions()
 	assert_true(options.size() > 0, "almeno una proposta disponibile")
 	session.confluence.set_proposition(str(options[0]["id"]))
+	_make_every_casella_live()
 	return context
+
+
+## **Il tavolo in cui ogni casella della carta puo' fare qualcosa** (D-306).
+##
+## Da D-306 il menu offre solo le caselle vive: «Riapri l'accesso» non si compra
+## dove non c'e' niente di chiuso. Una prova che vuole misurare **l'economia**
+## — uno gratis, ogni altro un costo, tetto tre — ha bisogno della carta intera,
+## quindi si fabbrica il mondo che la rende intera, invece di dipendere da quale
+## tessera e' uscita dal seme. E' la regola di casa, e in questa giornata e' la
+## quarta volta che serve.
+##
+## Le due condizioni si posano in quest'ordine apposta: RIMUOVI CONDIZIONE
+## prende la prima `condition:` che trova, quindi becca #fame e lascia
+## #tagliata_fuori a RIAPRI. Due caselle, due segni, nessuna che ruba il lavoro
+## all'altra.
+func _make_every_casella_live() -> void:
+	var context: Dictionary = session.confluence.effect_context()
+	var region_id: String = str(context.get("region_focus", ""))
+	assert_ne(region_id, "", "il Consiglio discute di un luogo")
+	var region: Dictionary = session.world["regions"][region_id]
+	var tags: Array = region["tags"] as Array
+	for tag in ["condition:starving", "condition:cut_off"]:
+		if not tags.has(tag):
+			tags.append(tag)
+	for tag in ["condition:rationed", "structure:tollgate", "condition:indebted"]:
+		tags.erase(tag)
+	# CAMBIA CONTROLLO morde solo se il luogo non e' gia' suo; CEDI CONTROLLO
+	# solo se non lo si sta cedendo a chi lo tiene. Un terzo che non e' ne' il
+	# proponente ne' il rivale soddisfa tutte e due.
+	var proponent: String = str(context.get("proponent", ""))
+	var rival: String = str(context.get("rival", ""))
+	for entity_id in session.world["entities"]:
+		if str(entity_id) != proponent and str(entity_id) != rival:
+			region["control"] = str(entity_id)
+			break
+	# E il Calore a meta' pista: RAFFREDDA ha da dove scendere, SCALDA ha dove
+	# salire.
+	var theme_id: String = str(data().tensions[TENSION].get("theme", ""))
+	if theme_id != "":
+		if not session.world.has("theme_heat"):
+			session.world["theme_heat"] = {}
+		(session.world["theme_heat"] as Dictionary)[theme_id] = 3
 
 
 func _others(proponent: String) -> Array:
@@ -185,6 +228,108 @@ func test_one_benefit_is_free_and_every_other_costs_one() -> void:
 		session.confluence.set_benefits(["B_INVENTATO"]),
 		"e solo sui benefici che la carta stampa"
 	)
+
+
+## **Una casella che non puo' fare niente non si compra** (D-306).
+##
+## Al tavolo nessuno posa la pedina su «Riapri l'accesso» se il luogo non e'
+## chiuso: si guarda la mappa e si vede. Misurato prima della regola, il **44%**
+## dei benefici comprati non lasciava niente — e si pagava lo stesso.
+##
+## La prova toglie il segno che rende viva la casella, e pretende due cose: che
+## la casella sparisca dal menu, e che comprarla si rifiuti anche nominandola
+## per id.
+func test_a_casella_that_can_do_nothing_is_not_on_the_menu() -> void:
+	var context: Dictionary = _open_with_proposition()
+	var region_id: String = str(session.confluence.effect_context()["region_focus"])
+	var reopen: String = ""
+	for voice in (data().tensions[TENSION]["physical"]["benefits"] as Array):
+		if str((voice as Dictionary).get("verb", "")) == "REOPEN":
+			reopen = str((voice as Dictionary)["id"])
+	assert_ne(reopen, "", "la carta offre di riaprire l'accesso")
+
+	# Col luogo chiuso la casella e' viva: il mondo qui se l'e' fabbricato
+	# `_open_with_proposition`, e la prova lo verifica invece di darlo per buono.
+	var offered: Array = []
+	for voice in session.confluence.benefit_menu():
+		offered.append(str((voice as Dictionary)["id"]))
+	assert_true(offered.has(reopen), "col luogo tagliato fuori, RIAPRI si puo' comprare")
+	assert_true(session.confluence.set_benefits([reopen]), "e si compra")
+
+	# Tolto il segno, la casella e' morta.
+	((session.world["regions"][region_id] as Dictionary)["tags"] as Array).erase("condition:cut_off")
+	offered = []
+	for voice in session.confluence.benefit_menu():
+		offered.append(str((voice as Dictionary)["id"]))
+	assert_false(offered.has(reopen), "senza niente di chiuso, RIAPRI non e' piu' sul menu")
+	assert_false(
+		session.confluence.set_benefits([reopen]),
+		"e non si compra nemmeno chiamandola per nome"
+	)
+	assert_true(str(session.confluence.last_error) != "", "il rifiuto dice perche'")
+	# Il proponente non resta a mani vuote: le altre caselle sono ancora vive.
+	assert_true(session.confluence.benefit_menu().size() > 0, "il menu non si svuota")
+
+
+## **E non si compra piu' di quanto si possa pagare** (D-306). Il primo
+## beneficio e' gratis; ogni altro vuole un costo che morda. Se sulla carta ne
+## resta vivo uno solo, il tetto scende da tre a due.
+##
+## Il caso si costruisce fino in fondo, senza rami che potrebbero non provare
+## niente: si spengono cinque costi su sei — i tre che posano un segno gia'
+## posato, SCALDA TEMA col Calore al tetto, CEDI CONTROLLO verso chi il luogo
+## lo tiene gia' — e resta la Cicatrice, che morde sempre.
+func test_you_cannot_buy_more_than_you_can_pay_for() -> void:
+	_open_with_proposition()
+	var region_id: String = str(session.confluence.effect_context()["region_focus"])
+	var region: Dictionary = session.world["regions"][region_id]
+	assert_true(
+		session.confluence.benefit_menu().size() >= 3,
+		"il tavolo fabbricato offre almeno tre benefici vivi"
+	)
+	assert_eq(
+		(session.confluence.price_menu()["cost"] as Array).size(), 6,
+		"e tutti e sei i costi mordono"
+	)
+
+	var tags: Array = region["tags"] as Array
+	for tag in ["condition:rationed", "structure:tollgate", "condition:indebted"]:
+		if not tags.has(tag):
+			tags.append(tag)
+	var theme_id: String = str(data().tensions[TENSION].get("theme", ""))
+	(session.world["theme_heat"] as Dictionary)[theme_id] = 6
+	# CEDI CONTROLLO cede al rivale: se il luogo e' gia' suo non toglie niente,
+	# e se la questione non ha un rivale cede alla terra — allora non morde su
+	# un luogo che gia' non e' di nessuno.
+	# Il rivale si legge da `effect_context()`, che e' quello che le caselle
+	# guardano: il contesto restituito da `open()` e' un'altra cosa, e prenderlo
+	# di li' faceva fallire la prova per la ragione sbagliata.
+	var rival: String = str(session.confluence.effect_context().get("rival", ""))
+	if rival == "":
+		region["control"] = null
+	else:
+		region["control"] = rival
+
+	assert_eq(
+		(session.confluence.price_menu()["cost"] as Array).size(), 1,
+		"resta viva solo la Cicatrice"
+	)
+	var live: Array = session.confluence.benefit_menu()
+	assert_true(live.size() >= 3, "i benefici vivi bastano ancora per provarci")
+	var three: Array = [
+		str((live[0] as Dictionary)["id"]),
+		str((live[1] as Dictionary)["id"]),
+		str((live[2] as Dictionary)["id"]),
+	]
+	assert_false(
+		session.confluence.set_benefits(three),
+		"con un costo vivo solo, tre benefici non si comprano: non ci sono due monete"
+	)
+	assert_true(
+		session.confluence.set_benefits(three.slice(0, 2)),
+		"due si', perche' il primo e' gratis e il secondo ha la sua moneta"
+	)
+	assert_eq(session.confluence.costs_due(), 1, "e il conto e' un costo")
 
 
 ## **La carta vince, e la Pietra gia' alzata passa a chi l'ha comprata**

@@ -2782,11 +2782,23 @@ del prezzo e le cinque del beneficio fanno.
 Il danno non e' piu' lo scavalco — quello D-305 l'ha chiuso. E' che **quando la
 frase regala gratis quello che la carta vende, il beneficio comprato resta un
 acquisto a vuoto**: il proponente ha pagato un costo per una cosa che sarebbe
-successa comunque. Il caso del Granaio adesso e' coperto (la Pietra passa a chi
-l'ha comprata), ma un `SET_REGION_TAG` d'autore che posa lo stesso segno di una
-casella no.
+successa comunque.
 
-Si vede a occhio nudo in una prova: `test_the_card_says_what_it_left_behind`
+**E adesso il danno ha un numero** (misurato in 0.1.268, dopo che
+[D-306](DECISIONS.md#d-306) ha tolto di mezzo l'altra meta' del problema):
+
+> **46 benefici comprati su 193 — il 24% — non lasciano niente, e sono tutti
+> qui.** 25 CAMBIA CONTROLLO verso chi la frase ha appena messo li', e 21
+> Pietre che la frase ha appena alzato.
+
+Prima di D-306 il numero era il 44%, ma dentro c'era anche la meta' che non
+c'entrava (caselle morte offerte lo stesso). Adesso quello che resta e'
+**tutto** sovrapposizione fra le due grammatiche.
+
+Da D-306 almeno **il verbale lo dice**: «...e non lascia niente: era gia'
+cosi'». Prima succedeva in silenzio.
+
+Si vede a occhio nudo anche in una prova: `test_the_card_says_what_it_left_behind`
 deve **fabbricarsi il silenzio** della frase d'autore per riuscire a vedere
 cosa lascia la casella comprata.
 

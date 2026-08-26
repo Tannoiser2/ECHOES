@@ -220,18 +220,38 @@ func _render_face(session: RefCounted, council: Dictionary) -> void:
 	var claimed: Dictionary = council.get("benefit_pedina", {}) as Dictionary
 	var claimed_voice: String = str(claimed.get("voice_id", ""))
 	var claimant: String = str(claimed.get("by", ""))
+	# **E quali caselle sono vive** (D-306): una che qui non farebbe niente si
+	# vede spenta, invece di stare li' a sembrare una scelta. E' quello che al
+	# tavolo si legge guardando la mappa.
+	var live: Dictionary = {}
+	for voice in session.confluence.benefit_menu():
+		live[str((voice as Dictionary)["id"])] = true
+	var live_costs: Dictionary = {}
+	for voice_id in (session.confluence.price_menu()["cost"] as Array):
+		live_costs[str(voice_id)] = true
 	for voice in (face.get("benefits", []) as Array):
 		var voice_id: String = str((voice as Dictionary)["id"])
 		var taken: bool = bought.has(voice_id)
 		var text: String = str((voice as Dictionary).get("text", ""))
 		if voice_id == claimed_voice and claimant != "":
 			text += "   ← la rivendica %s" % session.service.name_of(claimant)
+		if not live.has(voice_id) and not taken:
+			text += "   — non qui: non cambierebbe niente"
+			_face.add_child(_face_voice(text, false, "#5f6b62"))
+			continue
 		_face.add_child(_face_voice(text, taken, "#6fa88a"))
 
 	_face.add_child(_face_heading(_price_heading(session, council, due, pedina)))
 	for voice in (face.get("costs", []) as Array):
-		var chosen: bool = paid.has(str((voice as Dictionary)["id"]))
-		_face.add_child(_face_voice(str((voice as Dictionary).get("text", "")), chosen, "#c8553d"))
+		var cost_id: String = str((voice as Dictionary)["id"])
+		var chosen: bool = paid.has(cost_id)
+		var cost_text: String = str((voice as Dictionary).get("text", ""))
+		if not live_costs.has(cost_id) and not chosen:
+			_face.add_child(_face_voice(
+				cost_text + "   — non qui: non toglierebbe niente", false, "#7a5a52"
+			))
+			continue
+		_face.add_child(_face_voice(cost_text, chosen, "#c8553d"))
 
 	var falls: Array = face.get("failure", []) as Array
 	if not falls.is_empty():
