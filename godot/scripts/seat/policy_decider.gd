@@ -1786,8 +1786,24 @@ func choose_benefits(
 		worst_price = mini(worst_price, _voice_score(
 			voice as Dictionary, "costs", entity_id, entity_id, goals, session, bindings
 		))
+	# **E la Cicatrice, che compra il quarto** (D-302). Il tetto era fisso a tre,
+	# quindi il quarto beneficio non veniva nemmeno guardato: misurato, in
+	# quarant'anni **nessuno ne ha comprati quattro**, e la riga di D-280 «una
+	# Cicatrice ne compra uno oltre il limite» non era mai stata esercitata —
+	# insieme alla Cicatrice stampata su sedici carte, che non si posava mai.
+	var scar_voice: Dictionary = {}
+	for voice in (session.confluence.card_face().get("costs", []) as Array):
+		if str((voice as Dictionary).get("verb", "")) == "SCAR":
+			scar_voice = voice as Dictionary
+	var ceiling: int = CouncilEconomy.benefit_ceiling(0 if scar_voice.is_empty() else 1)
+	var scar_price: int = 0
+	if not scar_voice.is_empty():
+		scar_price = _voice_score(
+			scar_voice, "costs", entity_id, entity_id, goals, session, bindings
+		)
+
 	var bought: Array = [str((ranked[0] as Dictionary)["id"])]
-	for i in range(1, mini(ranked.size(), CouncilEconomy.MAX_BENEFITS)):
+	for i in range(1, mini(ranked.size(), ceiling)):
 		var entry: Dictionary = ranked[i] as Dictionary
 		# **A parita' si compra.** Il metro e' il peggior prezzo che gli
 		# avversari possono imporre; quando il beneficio in piu' lo pareggia,
@@ -1795,7 +1811,13 @@ func choose_benefits(
 		# quello che la carta chiede, con le sue tre caselle. Col confronto
 		# stretto (`<= 0`) il cervello comprava **sempre e solo il primo**, che
 		# e' gratis: 1,01 benefici per Consiglio in 40 anni, economia morta.
-		if int(entry["score"]) + worst_price < 0:
+		# Il quarto non si paga come gli altri: oltre al peggior prezzo si porta
+		# addosso **la Cicatrice**, che non si toglie piu'. Quindi la sbarra si
+		# alza, e si compra solo se il beneficio vale anche quella.
+		var soglia: int = worst_price
+		if i >= CouncilEconomy.MAX_BENEFITS:
+			soglia += scar_price
+		if int(entry["score"]) + soglia < 0:
 			break
 		bought.append(str(entry["id"]))
 	return bought

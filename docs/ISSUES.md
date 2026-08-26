@@ -2795,6 +2795,17 @@ Due letture, e vanno provate in quest'ordine:
 anni, oppure e' scritto qui perche' nessuno lo comprerebbe mai — e allora la
 riga della Cicatrice va tolta dalla carta invece di restarci a fare finta.
 
+**Provate tutte e due in 0.1.265** ([D-302](DECISIONS.md#d-302)), e **sono vere
+tutte e due.** Il cervello si fermava a tre per costruzione — il quarto non
+veniva rifiutato, non veniva guardato: difetto vero, corretto. E col tetto
+alzato il quarto **continua a non comprarsi**, perche' i conti dicono
+`score=+1, worst=-2, scar=-2 → -3`. Il quarto beneficio vale uno e costa
+quattro.
+
+**Quindi non e' il bot, e' l'economia**, e la decisione e' del committente fra
+le tre strade scritte in D-302: il quarto vale di piu', la Cicatrice costa meno,
+oppure la riga si toglie dalla carta.
+
 ---
 
 ### 84. L'Eredita' e' misurabile, e quasi inerte

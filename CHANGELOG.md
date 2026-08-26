@@ -5,6 +5,19 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.265 — Il quarto beneficio: prima non si poteva, e adesso non conviene (D-302)
+
+- **Difetto vero, corretto**: il cervello si fermava a tre benefici *per
+  costruzione* — il quarto non veniva rifiutato, non veniva **guardato**. La
+  riga di D-280 «una Cicatrice ne compra uno oltre il limite» era
+  irraggiungibile dal codice. Adesso il tetto lo legge dalla carta.
+- **E col tetto alzato non si compra lo stesso**, e adesso si sa perché:
+  `score=+1, worst=-2, scar=-2 → -3`. **Il quarto beneficio vale uno e costa
+  quattro.** Non è il bot: è l'economia.
+- Tre strade per il committente (D-302): il quarto vale di più, la Cicatrice
+  costa meno, oppure la riga si toglie dalla carta.
+- Nessun numero si muove: benefici 268, spread invariato, playtest 0 su 8.
+
 ## 0.1.264 — Il sigillo: un incrocio a tre che non si poteva giocare (D-301)
 
 - `structure:sealed` — che **Vaerax e il Vetro vogliono** e che **la Cenere
