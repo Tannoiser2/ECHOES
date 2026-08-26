@@ -166,6 +166,16 @@ def _tocchi_espliciti(documenti: Dict[str, List[Dict[str, Any]]]):
         for tag in tensione.get("focus_region_tags", []) or []:
             yield "tension", "legge", str(tag)
 
+    # **Il profilo strategico e' una lettura** (D-288): quello che una casa
+    # dichiara di volere o di temere e' un segno che conta, e dichiararlo e'
+    # l'unico modo perche' il dizionario non menta. Senza questa riga il file
+    # dei profili sarebbe un documento: bello, e senza conseguenze.
+    for profilo in documenti.get("entity_strategic_profile", []):
+        for campo in ("wants", "fears", "denies"):
+            for voce in profilo.get(campo, []) or []:
+                if isinstance(voce, dict) and voce.get("tag"):
+                    yield "entity_strategic_profile", "legge", str(voce["tag"])
+
     # **La Chronicle ascolta il mondo di prima** (D-286): i segni elencati in
     # `tension_pool.echoes` decidono quali domande pesano il triplo nella pesca
     # dell'era successiva (D-079). E' una lettura a tutti gli effetti, e fino a
@@ -604,6 +614,38 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
             ids = [str(v.get("id", "")) for v in voci_carta]
             if len(set(ids)) < len(ids):
                 guai.append("id ripetuto fra i %s di %s" % (come, tensione.get("id")))
+
+    # **La porta del tempo legge il profilo, non un elenco suo** (D-290).
+    #
+    # Una vita puo' dichiarare `also_enters`: dopo tanti anni, se la casa non
+    # tiene piu' abbastanza di quello che voleva lasciare, si trasforma. Il
+    # "quello che voleva lasciare" e' il profilo strategico, e non si riscrive
+    # sulla vita — se lo si riscrivesse, i due elenchi divergerebbero e al
+    # tavolo sarebbero due carte da leggere invece di una. Quindi: una porta su
+    # una casa senza profilo non si aprirebbe mai, ed e' regola morta; una porta
+    # che chiede piu' segni di quanti il profilo ne dichiara non si chiuderebbe
+    # mai, ed e' una casa condannata dal primo salto.
+    profili = {str(p.get("entity_id")): p
+               for p in documenti.get("entity_strategic_profile", [])}
+    for casa in documenti.get("entity", []):
+        for vita in casa.get("incarnations", []) or []:
+            porta = vita.get("also_enters")
+            if not porta:
+                continue
+            profilo = profili.get(str(casa.get("id")))
+            if profilo is None:
+                guai.append(
+                    "porta del tempo su una casa senza profilo: %s/%s non ha un "
+                    "profilo strategico, e la soglia non saprebbe cosa chiedere"
+                    % (casa.get("id"), vita.get("id")))
+                continue
+            voluti = len(profilo.get("wants", []) or [])
+            chiesti = int(porta.get("holds_at_least", 1))
+            if chiesti > voluti:
+                guai.append(
+                    "porta del tempo impossibile da tenere chiusa: %s/%s chiede %d "
+                    "segni e il profilo ne dichiara %d"
+                    % (casa.get("id"), vita.get("id"), chiesti, voluti))
     return guai
 
 
@@ -732,6 +774,22 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
         carta = next(t for t in prova["tension"] if (t.get("physical") or {}).get("costs"))
         carta["physical"]["costs"] = carta["physical"]["costs"][:1]
 
+    def porta_senza_profilo(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        # La porta del tempo su una casa che non ha dichiarato niente: la
+        # soglia non saprebbe cosa chiedere, e non si aprirebbe mai.
+        profilate = {str(p.get("entity_id")) for p in prova.get("entity_strategic_profile", [])}
+        casa = next(c for c in prova["entity"]
+                    if str(c.get("id")) not in profilate and c.get("incarnations"))
+        casa["incarnations"][-1]["also_enters"] = {"after_years": 150, "holds_at_least": 2}
+
+    def porta_impossibile(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        # Una porta che chiede piu' segni di quanti il profilo ne dichiara: la
+        # casa cade al primo salto, qualunque cosa faccia.
+        casa = next(c for c in prova["entity"]
+                    if any(v.get("also_enters") for v in c.get("incarnations", []) or []))
+        vita = next(v for v in casa["incarnations"] if v.get("also_enters"))
+        vita["also_enters"]["holds_at_least"] = 99
+
     def pedina_muta(prova: Dict[str, List[Dict[str, Any]]]) -> None:
         # Una Pietra da costruire che non esiste: la pedina si posa e non
         # succede niente.
@@ -774,6 +832,10 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
                "Echo senza effetto"),
         pianta("carta ri-mirata su un segno raro", bersaglio_stretto,
                "bersaglio non garantito sul tavolo pescato"),
+        pianta("porta del tempo su una casa senza profilo", porta_senza_profilo,
+               "porta del tempo su una casa senza profilo"),
+        pianta("porta del tempo che chiede piu' segni di quanti ne esistono",
+               porta_impossibile, "porta del tempo impossibile da tenere chiusa"),
     ]
     puliti = controlla(documenti)
     print("  %s %s" % ("OK " if not puliti else "MANCATO", "dati veri: nessun guaio"))

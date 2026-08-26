@@ -72,6 +72,11 @@ static func plan(
 		var before: Dictionary = (previous.get("entities", {}) as Dictionary).get(id, {})
 		var generation: int = int(before.get("generation", 0))
 		var incarnation: int = int(before.get("incarnation", 0))
+		# **Da quanto tempo questa vita e' seduta** (D-290). Non e' l'eta' della
+		# casa: e' l'eta' della *pelle* che porta adesso, e riparte da zero a
+		# ogni trasformazione. E' la meta' che mancava alla soglia - senza, il
+		# motore sa cosa c'e' sul tavolo e non sa da quanto.
+		var life_years: int = int(before.get("life_years", 0)) + years
 		var incarnations: Array = definition.get("incarnations", [])
 		# La vita corrente del seggio (D-108): la definizione con sopra i campi
 		# dell'incarnazione al tavolo. Con la sola prima incarnazione (o senza)
@@ -122,6 +127,36 @@ static func plan(
 				generation = 0
 				transformed = true
 				entry_kind = "ON_TAG"
+				changed = true
+
+		# **La seconda porta: il tempo, e quello che non tieni piu'** (D-290).
+		#
+		# Parola del committente: *«un re deve controllare due citta' e
+		# sopravvivere se passa poco tempo, ma se passano secoli due citta' non
+		# sono sufficienti per tenere il regno e questo si trasforma in una
+		# repubblica»*. Fino a qui il motore faceva due domande - c'e' il segno?
+		# la linea e' finita? - e mai la terza: **da quanto**. Un re poteva
+		# tenere due citta' per otto secoli e restare lo stesso re: misurato,
+		# la Repubblica si e' seduta **una volta su 168 salti** (MISURA_VITE).
+		#
+		# L'elenco di cosa la casa deve ancora tenere **non si scrive sulla
+		# vita**: e' il profilo strategico (D-288), quello che la casa ha
+		# dichiarato di voler lasciare nel mondo. Un secondo elenco divergerebbe
+		# dal primo entro tre commit, e al tavolo sarebbero due carte da leggere
+		# invece di una.
+		if not transformed:
+			var timed: int = _timed_life(
+				definition, incarnation, life_years, data, id, previous, before
+			)
+			if timed >= 0:
+				transformed_from = str(active["name"])
+				incarnation = timed
+				active = active_view(definition, incarnation)
+				name = str(active["name"])
+				note = str(active.get("description", ""))
+				generation = 0
+				transformed = true
+				entry_kind = "AFTER_YEARS"
 				changed = true
 
 		# A person does not survive two centuries; a people and a thing under a
@@ -201,8 +236,14 @@ static func plan(
 					note += ". "
 				note += "Non ha giurato sull'ambizione che ha visto fallire"
 
+		# La pelle nuova ha zero anni: la soglia del prossimo cambio si conta da
+		# adesso, non dalla fondazione della casa.
+		if transformed:
+			life_years = 0
+
 		out[id] = {
 			"name": name,
+			"life_years": life_years,
 			"destiny_id": destiny_id,
 			"generation": generation,
 			"incarnation": incarnation,
@@ -217,6 +258,43 @@ static func plan(
 			"note": note,
 		}
 	return out
+
+
+## **La vita che il tempo apre**, o -1 (D-290).
+##
+## La prima candidata dopo quella corrente che dichiara `also_enters` e le cui
+## due condizioni sono vere insieme: sono passati abbastanza anni **e** il mondo
+## non porta piu' abbastanza dei segni che il profilo della casa vuole lasciare.
+##
+## Vale zero per una casa senza profilo: la porta non si puo' nemmeno scrivere
+## (il validatore la rifiuta), e se ci arrivasse lo stesso non aprirebbe - una
+## casa che non ha dichiarato niente non puo' perdere quello che voleva.
+static func _timed_life(
+	definition: Dictionary, incarnation: int, life_years: int, data: RefCounted,
+	entity_id: String, previous: Dictionary, before: Dictionary
+) -> int:
+	var incarnations: Array = definition.get("incarnations", [])
+	var profiles: Variant = data.get("entity_profiles")
+	if profiles == null:
+		return -1
+	var profile: Variant = (profiles as Dictionary).get(entity_id)
+	if profile == null:
+		return -1
+	var wants: Array = (profile as Dictionary).get("wants", []) as Array
+	for index in range(incarnation + 1, incarnations.size()):
+		var life: Dictionary = incarnations[index] as Dictionary
+		var door: Dictionary = life.get("also_enters", {}) as Dictionary
+		if door.is_empty():
+			continue
+		if life_years < int(door.get("after_years", 0)):
+			continue
+		var still: int = 0
+		for voice in wants:
+			if _sign_anywhere(str((voice as Dictionary).get("tag", "")), previous, before):
+				still += 1
+		if still < int(door.get("holds_at_least", 1)):
+			return index
+	return -1
 
 
 ## La prossima vita del seggio, o -1: la prima candidata dopo quella corrente,

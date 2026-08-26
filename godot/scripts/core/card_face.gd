@@ -17,6 +17,7 @@ extends RefCounted
 ## posto comune finiscono per non esserlo, e adesso il posto comune e' questo.
 
 const AssetText := preload("res://scripts/core/asset_text.gd")
+const SignLabels := preload("res://scripts/core/sign_labels.gd")
 
 ## Le sei famiglie di Asset e il loro accento. Un solo accento saturo per
 ## famiglia (ART_BIBLE): la carta si riconosce dal bordo prima che dal titolo.
@@ -140,7 +141,7 @@ static func of(deck: String, id: String, data: RefCounted) -> Dictionary:
 		"echo": return _echo(item, data)
 		"tension": return _tension(item)
 		"destiny": return _destiny(item, data)
-		"entity": return _entity(item)
+		"entity": return _entity(item, data)
 		"region": return _region(item)
 	return {}
 
@@ -277,7 +278,7 @@ static func _destiny(destiny: Dictionary, data: RefCounted) -> Dictionary:
 	return face
 
 
-static func _entity(entity: Dictionary) -> Dictionary:
+static func _entity(entity: Dictionary, data: RefCounted) -> Dictionary:
 	var face: Dictionary = _face("entity", str(entity["id"]), "TAROT")
 	face["title"] = str(entity["name"])
 	face["subtitle"] = "%s · vuole %s" % [
@@ -291,12 +292,63 @@ static func _entity(entity: Dictionary) -> Dictionary:
 	for action in names:
 		values.append("%s %d" % [str(action).to_lower(), int(actions[action])])
 	face["notes"] = [" · ".join(PackedStringArray(values))]
+	# **Cosa questa casa vuole lasciare, e cosa diventa se non ce la fa**
+	# (D-288 e D-290). La strategia dichiarata stava in un file che leggevano il
+	# cervello e lo schermo; sul tavolo fisico non stava da nessuna parte, e una
+	# soglia che nomina dei segni che non sono stampati accanto sarebbe un
+	# rimando al manuale. Il tarocco della Casata resta in vista tutta la
+	# partita: e' il suo posto.
+	for line in _house_promise(entity, data):
+		face["notes"].append(line)
 	# **Non** il Destino: quello e' una carta a parte e sta dietro il paravento.
 	# Una carta Entity con sopra l'obiettivo del suo giocatore sarebbe il modo
 	# piu' rapido di rendere pubblico l'unico segreto che regge il gioco.
 	face["art_prompt_key"] = str(entity.get("art_prompt_key", ""))
 	face["footer"] = str(entity["id"])
 	return face
+
+
+## Le due righe della carta Casata che vengono dal profilo strategico: quello
+## che la casa vuole lasciare, e la porta del tempo che quei segni tiene chiusa.
+## Vuote per una casa senza profilo — la scatola ne ha otto e i profili sono
+## quattro.
+static func _house_promise(entity: Dictionary, data: RefCounted) -> Array:
+	var out: Array = []
+	if data == null:
+		return out
+	var profiles: Variant = data.get("entity_profiles")
+	if profiles == null:
+		return out
+	# La carta di una vita porta l'id della vita; il profilo e' della casa.
+	var house_id: String = str(entity.get("id", ""))
+	var lives: Array = entity.get("incarnations", []) as Array
+	var now: int = 0
+	for index in range(lives.size()):
+		if str((lives[index] as Dictionary).get("id", "")) == house_id:
+			now = index
+	if house_id.begins_with("INC_"):
+		for entity_id in data.entities:
+			for life in (data.entities[str(entity_id)] as Dictionary).get("incarnations", []):
+				if str((life as Dictionary).get("id", "")) == house_id:
+					house_id = str(entity_id)
+	var profile: Variant = (profiles as Dictionary).get(house_id)
+	if profile == null:
+		return out
+	var wanted: PackedStringArray = PackedStringArray()
+	for voice in (profile as Dictionary).get("wants", []) as Array:
+		wanted.append(SignLabels.label(str((voice as Dictionary).get("tag", "")), data))
+	if not wanted.is_empty():
+		out.append("vuoi lasciare: %s" % " · ".join(wanted))
+	for index in range(now + 1, lives.size()):
+		var door: Dictionary = (lives[index] as Dictionary).get("also_enters", {}) as Dictionary
+		if door.is_empty():
+			continue
+		out.append("dopo %d anni con meno di %d di questi segni: %s" % [
+			int(door.get("after_years", 0)), int(door.get("holds_at_least", 1)),
+			str((lives[index] as Dictionary).get("name", "")),
+		])
+		break
+	return out
 
 
 static func _region(region: Dictionary) -> Dictionary:

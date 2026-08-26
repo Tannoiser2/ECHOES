@@ -5,6 +5,113 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.254 — Il tabellone del Consiglio mostra la carta girata (D-291)
+
+- **Taglio 1 di ISSUES 80**: fra la Proposta e le pose, il tabellone apre la
+  faccia stampata della Tensione — **COSA SI COMPRA** coi benefici e la pedina
+  posata su quelli comprati, **IN CHE MONETA** coi costi e la pedina del fronte
+  avverso, **LA CONTROPROPOSTA** quando c'è, **SE CADE** con quello che scatta
+  se la proposta non passa.
+- Il conto in testata: «2 comprati, prezzo: 1 costo», e tre testate diverse per
+  il prezzo — niente da pagare, chi l'ha scelto, o **si sta aspettando lui**.
+- **Nessuna regola cambia**: si disegna quello che il motore faceva già dal
+  45% dei Consigli in poi, e che nessuno vedeva.
+- Il tabellone si costruisce da solo alla prima lettura: `_ready()` non gira
+  per un nodo fuori dall'albero, ed è la trappola che ha fatto morire a metà la
+  prima prova invece di farla fallire.
+- Cinque prove nuove, provate a mordere (24 asserzioni rosse col blocco spento).
+- Cancelli: 0 seggi bloccati su 8. 606 prove verdi.
+
+## 0.1.253 — La sonda del prezzo ci vedeva meta' (ISSUES 80)
+
+- `cli/run_price_probe.gd` cercava il formato di log che il motore non scrive
+  piu' da D-278: le sue voci «costi diversi 0» e «sfoghi diversi 0» erano
+  cecita' sua, non silenzio del tavolo. **Quinta volta in questo progetto.**
+- Riparata, dice: **11 voci di costo diverse scelte dal fronte avverso, 8
+  scattate davvero**, e il prezzo dichiarato all'acquisto — 87 Consigli comprano
+  solo il beneficio gratis, 55 ne pagano uno, 16 ne pagano due.
+- ISSUES 80 apre la diagnosi del Consiglio: **due Consigli impilati, e a
+  decidere e' quello vecchio** (voti + carte segrete + un d6), con lo schermo
+  che disegna solo la meta' vecchia.
+
+## 0.1.252 — La soglia: il tempo, e quello che non tieni piu' (D-290)
+
+- **Prima la misura**, congelata come cancello: `docs/MISURA_VITE.md` +
+  `cli/run_lives_probe.gd` + `tools/run_lives_survey.sh --check`. Delle 18 vite
+  scritte oltre la prima, in **168 salti d'era** sette non si erano **mai**
+  sedute; il Regno che diventa Repubblica, **una volta su 168**.
+- **La seconda porta**: `also_enters {after_years, holds_at_least}` su una vita.
+  Si apre quando è passato abbastanza tempo **e** il mondo non porta più
+  abbastanza dei segni che la casa vuole lasciare. Serve che siano vere tutte e
+  due.
+- **L'elenco lo dà il profilo (D-288), non la vita**: un secondo elenco
+  divergerebbe. Il validatore rifiuta la porta senza profilo e quella
+  impossibile da tenere chiusa — 17 difetti piantati, tutti mordono.
+- Il seggio porta `life_years`: l'età della **pelle**, non della casa.
+- **Il numero**: trasformazioni sedute **88 → 106**; il Culto della Misura
+  **2 → 16**, la Repubblica **2 → 6**. Le vite mai sedute restano **7**, perché
+  cinque appartengono alle quattro case senza profilo (ISSUES 79). La Diaspora
+  resta chiusa: Nahr insediato *tiene* quello che voleva, ed è la regola che
+  funziona.
+- Nessuna casa muta più spesso di 1 salto su 6.
+- **E si legge**: la riga della soglia in fondo a «COSA RESTERÀ DI TE», col
+  contatore degli anni, e sul tarocco della Casata «vuoi lasciare: …» più la
+  soglia sotto.
+- Cancello: 0 seggi bloccati su 8. 601 prove verdi.
+
+## 0.1.251 — Il profilo lo legge il cervello, e lo legge chi gioca (D-289)
+
+- **Lo schermo**: in fondo alla colonna di destra il blocco **COSA RESTERÀ DI
+  TE** — la riga del profilo, i segni voluti in verde, quelli temuti in rosso,
+  **in oro quelli che sono sul tavolo adesso**, e il perché di ognuno nel
+  suggerimento. Una casa senza profilo non mostra niente.
+- **Il cervello**: `profile_weight()` con peso 3, nella scelta fra le due metà
+  di una carta e nell'acquisto al Consiglio. Segno voluto posato vale, temuto
+  costa, e quello che un rivale ha dichiarato di volerti impedire vale doppio.
+- **Il numero, che è quasi tutto negativo** (misura appaiata, 40 anni, stessi
+  semi): segni voluti posati **17 → 17**, temuti **17 → 14**, benefici
+  comprati che davano al proponente un segno voluto **15/246 → 15/245**. Tre
+  autolesioni evitate in quarant'anni, al Consiglio niente.
+- **Perché**: non è la bilancia, è che *non c'è niente da preferire* — ISSUES 76
+  vista dal lato di chi sceglie. Il peso resta com'è; alzarlo peggiorerebbe le
+  scelte senza cambiare la moneta.
+- Cancello: 0 seggi bloccati su 8, misto e uniforme. 593 prove verdi.
+
+## 0.1.250 — Il profilo strategico delle quattro case (D-288)
+
+- `godot/data/design_matrix/entity_strategic_profiles.json` + schema suo: cosa
+  Aldric, Nahr, Lyra e Vaerax vogliono **lasciare nel mondo**, cosa non vogliono
+  vederci, e cosa vogliono impedire a chi. Ogni voce porta il suo perché.
+- **Solo quello che non si ricava**: niente incroci di tag e di Tensioni scritti
+  a mano — quelli i dati li dicono già, e due file che dicono la stessa cosa
+  divergono. Il resto lo calcola `matrix_survey`.
+- **Tre conseguenze subito**, o sarebbe un documento: il censimento del
+  validatore conta il profilo fra i lettori (29 segni, e gli orfani muti
+  scendono da 15 a 13); la misura ne ricava la sezione 4 — chi sa dare ogni
+  desiderio; lo schema rifiuta i segni inventati.
+- **Il numero**: delle 16 cose che le quattro case vogliono lasciare, **un
+  Consiglio ne sa dare 4**.
+- Il cervello e lo schermo non lo leggono ancora: è il passo dopo.
+
+## 0.1.249 — Le tre misure che vengono prima della matrice (D-287)
+
+- `tools/matrix_survey.py` → `docs/MISURA_MATRICE.md`, nei cancelli: i tre
+  elenchi che il piano della matrice strategica chiede prima di scrivere un
+  file nuovo.
+- **I segni orfani**: 67 su 150 scritti, ma **49 portano già la loro ragione**
+  (memorie narrate, etichette di famiglia, gradi di pietra). I **muti sono 15**,
+  ed è quella la lista di lavoro.
+- **Gli obiettivi**: **nessuna clausola impossibile** (la sola candidata,
+  il Trionfo di Vaerax, chiede una leggenda — e le leggende le scrive il tempo);
+  **33 livelli su 69** si reggono solo su conteggi, cioè si verificano ma al
+  tavolo non si possono indicare.
+- **Le Tensioni**: **35 su 60 non toccano nessun segno che un Destino nomina.**
+  Tutte e 60 hanno lo stesso conflitto strutturale — una Pietra e una Cicatrice
+  — che è il modello della faccia, non contenuto.
+- **Il Consiglio decide con una moneta che i Destini non spendono**: dei 24
+  segni che le facce delle Tensioni posano, 3 sono temuti per nome; dei 17
+  voluti, nessuno si ottiene da un Consiglio.
+
 ## 0.1.248 — Il mondo si ricorda: quindici memorie tornano a mordere (D-286)
 
 - **Passo 2, con una correzione.** Le «27 Memorie che nessuno legge» non erano

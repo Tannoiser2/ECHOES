@@ -10,6 +10,290 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-291 — Il tabellone del Consiglio mostra la carta girata
+
+**implemented in 0.1.254** — taglio 1 di [ISSUES 80](ISSUES.md#80-il-consiglio-sono-due-consigli-impilati-e-a-decidere-e-quello-vecchio)
+
+Parola del committente, davanti all'app: *«il Concilio è ancora quello vecchio,
+mi sa che va cambiato tutto»*. Aveva ragione su quello che vedeva, e la ragione
+misurata è più precisa della frase: **lo schermo era vecchio al cento per cento,
+le regole a metà.** Il tabellone disegnava la carta della Tensione, la Domanda,
+la Proposta, le pose e le Conseguenze — la metà del 2024 — mentre il motore
+eseguiva già l'economia di [D-280](#d-280): 245 benefici comprati in 158
+Consigli, 62 prezzi scattati di cui 19 Cicatrici, il fronte avverso che sceglie
+la moneta 29 volte. **Il 45% dei Consigli pagava qualcosa e non si vedeva.**
+
+Questo è il **taglio 1**: nessuna regola cambia, si disegna quello che già
+succede. Fra la Proposta e le pose il tabellone apre la carta girata:
+
+- **COSA SI COMPRA** — tutti i benefici stampati, con la **pedina posata** (●)
+  su quelli che il proponente ha comprato e la casella libera (○) sugli altri,
+  e in testata il conto: *«2 comprati, prezzo: 1 costo»*. Con niente comprato,
+  la riga dell'economia: *«un beneficio è gratis, ogni altro costa un costo»*.
+- **IN CHE MONETA** — i costi stampati, con la pedina su quelli scelti, e tre
+  testate diverse perché al tavolo sono tre situazioni diverse: non si paga
+  niente, **la sceglie Kessa**, oppure *«il fronte avverso non ha ancora posato
+  la pedina»* — che è un'attesa, non un silenzio.
+- **LA CONTROPROPOSTA** ([D-268](#d-268)), quando c'è, con il nome di chi l'ha
+  posata.
+- **SE CADE** — le voci che scattano se la proposta non passa, che non sceglie
+  nessuno. È l'informazione che rende «opponiti» una scelta invece di un gesto.
+
+**Si legge dalla faccia stampata della Tensione, non dal template**, e dal
+dizionario del Consiglio che il registro già rende: così vale identico su un
+Consiglio aperto e su uno **già chiuso**, dove `current` non esiste più e il
+tabellone disegna la fotografia di D-039.
+
+**Una trappola di casa, ripresa in mano**: `_build()` girava solo in
+`_ready()`, che non gira per un nodo costruito fuori dall'albero — la prima
+prova che ha disegnato il tabellone è morta a metà invece di fallire. Adesso il
+tabellone si costruisce da solo alla prima lettura, come fa la colonna.
+
+**Il costo dichiarato**: nessuno — nessuna regola toccata, 0 seggi bloccati su
+8, e la sequenza A–K è ancora intera. Restano i tagli 2 e 3 di ISSUES 80: la
+Domanda e la Proposta dalla carta invece che dal template, e **chi decide** —
+il d6 e gli impegni segreti contro l'economia. Quello aspetta la parola del
+committente, ed è giusto che la aspetti guardando un Consiglio che si vede.
+
+---
+
+## D-290 — La soglia: il tempo, e quello che non tieni piu'
+
+**implemented in 0.1.252** — [la misura](MISURA_VITE.md) · [ISSUES 79](ISSUES.md#79-quattro-case-su-otto-non-hanno-un-profilo-e-quindi-non-hanno-una-soglia)
+
+Parola del committente:
+
+> *«un re deve controllare due città e sopravvivere se passa poco tempo, ma se
+> passano secoli due città non sono sufficienti per tenere il regno e questo si
+> trasforma in una repubblica»*
+
+Le case hanno già più **vite** ([D-108](#d-108)/[D-109](#d-109)): il popolo che
+si insedia diventa regno, la scuola diventa culto, il regno diventa repubblica.
+Il motore faceva due domande per aprirle — *c'è il segno?* e *la linea è
+finita?* — e mai la terza: **da quanto**.
+
+**Prima la misura** ([MISURA_VITE.md](MISURA_VITE.md), nei cancelli): delle 18
+vite scritte oltre la prima, in **168 salti d'era** (12 saghe da 8 anni, sui due
+tavoli, circa 780 anni l'una) **sette non si sono mai sedute** e altre cinque una
+volta sola. Tre case sole — Nahr, Vaerax e le Città Libere, le tre che non
+muoiono — si prendevano **88 trasformazioni su 88**. Fra le mortali, il Regno
+che diventa Repubblica: **una volta su 168**, e per esaurimento della dinastia,
+non perché avesse perso il regno.
+
+**La seconda porta.** Una vita può dichiarare `also_enters: {after_years,
+holds_at_least}`. Si apre quando sono passati almeno tanti anni da quando la
+pelle corrente si è seduta **e** il mondo non porta più almeno tanti dei segni
+che quella casa ha dichiarato di voler lasciare. Servono tutte e due: il tempo
+da solo fa sedere un erede, la perdita da sola pure.
+
+**L'elenco dei segni non si scrive sulla vita.** È il profilo strategico di
+[D-288](#d-288), lo stesso file che leggono il cervello e la colonna di destra.
+Un secondo elenco divergerebbe dal primo entro tre commit, e al tavolo sarebbero
+due carte da leggere invece di una. Il validatore rifiuta la porta su una casa
+senza profilo (regola morta) e la porta che chiede più segni di quanti il
+profilo ne dichiara (casa condannata dal primo salto): due difetti piantati in
+più nel self-test, che portano la guardia a 17.
+
+**Il contatore.** Il seggio porta `life_years` — non l'età della casa, l'età
+della **pelle**: riparte da zero a ogni trasformazione. Come `barren` e
+`saga_score` è un passaggio di setup, non un Effetto, ed è fra le eccezioni
+dichiarate all'effect-sourcing.
+
+**Tre porte scritte**, sulle tre case con profilo che avevano una vita adatta:
+la Repubblica della Valle (Aldric), il Culto della Misura (Lyra), la Diaspora
+di Nahr. Tutte a 150 anni e 2 segni.
+
+**Il numero, con le stesse 12 saghe:**
+
+| | prima | dopo |
+|---|---|---|
+| trasformazioni sedute | 88 | **106** |
+| Il Culto della Misura | 2 | **16** |
+| La Repubblica della Valle | 2 | **6** |
+| La Diaspora di Nahr | 0 | **0** |
+| vite mai sedute | 7 | **7** |
+
+**Due cose vanno dette, e sono tutte e due negative.** La prima: **la Diaspora
+resta chiusa**, e non è un difetto — Nahr, una volta insediato, *tiene* quello
+che voleva, e la regola sta funzionando. La seconda: **le vite mai sedute
+restano sette**, perché cinque di quelle sette appartengono alle quattro case
+che un profilo non ce l'hanno, e lì la porta non si può nemmeno scrivere. È
+[ISSUES 79](ISSUES.md#79-quattro-case-su-otto-non-hanno-un-profilo-e-quindi-non-hanno-una-soglia).
+
+**Il ritmo**, che era il rischio vero: nessuna casa muta più spesso di **1 salto
+su 6** (Nahr 1/6, Vaerax 1/6.5, Città Libere 1/7.6, Lyra 1/10.5, Aldric 1/21).
+Una casa che cambia pelle a ogni salto non ha un'identità, ha un costume: il
+cancello di MISURA_VITE tiene anche questo numero.
+
+**E si legge al tavolo.** La riga sta in fondo al blocco «COSA RESTERÀ DI TE»
+della colonna — *«dopo 150 anni con meno di 2 di questi segni: diventi La
+Repubblica della Valle»*, con sotto **da quanti anni la casa è quella che è** e
+**quanti segni tiene adesso** — e sul **tarocco della Casata**, che resta in
+vista tutta la partita: lì il profilo diventa una riga stampata («vuoi lasciare:
+…») e la soglia la riga sotto. Senza quelle due righe la regola sarebbe un
+rimando al manuale, che al tavolo vuol dire: non esiste.
+
+**Il costo dichiarato**: nessuno sul cancello (0 seggi bloccati su 8, misto e
+uniforme). La soglia vive nel livello **saga**, che oggi lo esercitano le sonde
+e non l'app: una partita singola non la incontra mai.
+
+---
+
+## D-289 — Il profilo lo legge il cervello, e lo legge chi gioca
+
+**implemented in 0.1.251** — [ISSUES 78](ISSUES.md#78-il-profilo-strategico-lo-legge-la-misura-non-il-gioco)
+
+Il profilo di [D-288](#d-288) diceva cosa quattro case vogliono lasciare nel
+mondo, e lo leggevano il validatore e la misura. Una strategia dichiarata e mai
+giocata è un documento. Qui la leggono le due cose che contano: **il cervello
+che sceglie** e **lo schermo di chi siede al tavolo**, dallo stesso file.
+
+**Il cervello.** `PROFILE_WEIGHT = 3`, e una funzione sola — `profile_weight()`
+— chiamata in due posti: quando si sceglie fra le due metà di una carta
+(`_face_score`) e quando si compra al Consiglio (`_voice_score`). Non è una
+regola nuova: è un peso in più nella bilancia che c'era già. Piccolo di
+proposito — la legalità, il bersaglio a segni e il Destino restano davanti.
+Posare un segno voluto vale, toglierlo costa; posare un segno temuto costa,
+toglierlo vale; e posare quello che un rivale ha dichiarato di volermi impedire
+vale doppio. Vale **zero** per le quattro case senza profilo, che giocano come
+prima.
+
+**E qui va scritto il numero, perché è quasi tutto negativo.** Misura appaiata,
+40 anni, stessi semi, col peso a 3 contro il peso a 0:
+
+| | senza profilo | col profilo |
+|---|---|---|
+| segni posati da chi li **voleva** | 17 | 17 |
+| segni posati da chi li **temeva** | 17 | **14** |
+| benefici comprati al Consiglio | 246 | 245 |
+| di cui un segno che il proponente **voleva** | 15 | 15 |
+
+Il peso evita **tre autolesioni in quaranta anni** e al Consiglio non sposta
+niente. La ragione non è la bilancia: è [ISSUES 76](ISSUES.md#76-il-consiglio-decide-con-una-moneta-che-i-destini-non-spendono)
+visto dall'altra parte — **il macchinario non produce quasi nulla di quello che
+i profili nominano**, quindi non c'è niente da preferire. Un peso più grosso
+non farebbe scegliere meglio: farebbe scegliere peggio le stesse cose. Il peso
+resta com'è, ed è pronto per il giorno in cui le facce delle Tensioni e le voci
+del Consiglio parleranno la moneta dei Destini.
+
+**Lo schermo**, invece, cambia qualcosa subito. In fondo alla colonna di destra
+c'è il blocco **COSA RESTERÀ DI TE**: la riga del profilo, poi una riga per ogni
+segno voluto (verde) e temuto (rosso), **in oro quelli che sono sul tavolo
+adesso** — il tavolo intero, fatti del mondo, Regioni e case. Il *perché* di
+ogni voce è il suggerimento della riga. Si chiama così e non «cosa vuoi
+lasciare» perché due righe sopra c'è già il **COSA VUOI** del Destino, e la
+colonna che ripete se stessa è il difetto che [D-282](#d-282) ha chiuso. Una
+casa senza profilo non mostra niente — né intestazione né spiegazione orfana.
+
+**Il costo dichiarato**: nessuno sul cancello (0 seggi bloccati su 8, misto e
+uniforme; 262 e 263 Verità). Il costo vero è che **la parte del cervello, oggi,
+non si vede giocando**: sta scritta qui perché il giorno in cui ISSUES 76 si
+chiude non la si scriva daccapo.
+
+---
+
+## D-288 — Il profilo strategico: cosa una casa vuole lasciare nel mondo
+
+**implemented in 0.1.250** — primo file della matrice strategica
+
+Il Destino dice **come si vince**. Il profilo dice **che mondo si vuole
+lasciare**, e sono due cose diverse: Aldric vince tenendo il trono, ma quello
+che vuole lasciare è una corona che passa per legge — e quella non è una
+condizione di vittoria, è la ragione per cui gioca.
+
+`godot/data/design_matrix/entity_strategic_profiles.json`, quattro case di
+CHR_01, con schema suo. La forma è più stretta di quella che il piano
+proponeva, e apposta:
+
+**Si scrive a mano solo quello che non si può ricavare.** Il piano chiedeva
+quattro file; due — l'incrocio dei tag e quello delle Tensioni — direbbero cose
+che i dati dicono già (il dizionario dei segni, la faccia delle Tensioni, i
+`focus_region_tags`), e **due file che dicono la stessa cosa divergono**. Qui si
+scrivono solo `wants`, `fears` e `denies`, ognuno con il **perché** detto come lo
+direbbe chi siede a quel posto; il resto lo calcola `tools/matrix_survey.py`.
+
+**E il profilo ha subito una conseguenza, o sarebbe un documento.** Tre:
+
+- il **censimento del validatore fisico** lo conta fra i lettori (`read_by:
+  entity_strategic_profile` su 29 segni): un segno che una casa dichiara di
+  volere non è più un segno che non serve a nessuno — gli orfani muti scendono
+  da 15 a 13;
+- **la misura lo legge** e ne ricava la sezione 4 di `MISURA_MATRICE.md`: per
+  ogni desiderio, chi sa darlo — un Consiglio, una carta, una Conseguenza,
+  nessuno;
+- **lo schema lo valida**: un segno inventato in un profilo fa fallire il
+  cancello dei dati.
+
+**Il numero che ne esce, e che va guardato in faccia**: delle **16 cose** che le
+quattro case vogliono lasciare nel mondo, **un Consiglio ne sa dare 4**. Le
+altre dodici si ottengono con una carta, con una Conseguenza, o non si ottengono
+affatto. È ISSUES 76 detto per casa invece che in generale, e dice dove la
+matrice dovrà lavorare: **i benefici comprabili al Consiglio non producono
+quasi niente di quello che qualcuno insegue.**
+
+**Quello che questo file non fa ancora**: il cervello non lo legge, e lo schermo
+nemmeno. Finché non lo leggono, la strategia è dichiarata e non giocata — ed è
+il passo successivo, non un dettaglio: è quello che fa dire all'app *«questo
+segno ti serve»* senza scriverlo due volte.
+
+---
+
+## D-287 — Le tre misure vengono prima della matrice, e come si contano
+
+**implemented in 0.1.249** — punti 8, 9 e 10 del piano del committente
+
+Il piano della matrice strategica chiede, prima di scrivere qualsiasi file
+nuovo, tre elenchi: **tag orfani, obiettivi non fisici, Tensioni senza
+conflitto**. Sono misure, e questo verbale scrive **come si contano**, perché
+ognuna delle tre ha una definizione che si poteva prendere in tre modi diversi
+e ognuno avrebbe dato un numero diverso.
+
+Lo strumento è `tools/matrix_survey.py`, il documento `docs/MISURA_MATRICE.md`,
+e sta fra i cancelli: una misura che invecchia in silenzio è peggio di nessuna
+misura.
+
+**Le tre definizioni, e le tre volte che ho dovuto cambiarle** — perché ogni
+volta il numero era un assoluto, e un assoluto in questo progetto è quasi
+sempre una sonda cieca:
+
+1. **Orfano** = qualcuno lo scrive, e poi *nessuna Entità lo vuole o lo teme*,
+   *nessuna Tensione lo mette o lo toglie*, *nessuna regola del segno lo usa*,
+   *l'eredità non lo porta avanti*. La prima stesura guardava solo i Destini e
+   diceva **84 orfani su 148**: mancavano gli obiettivi (D-222), le regole del
+   segno e la pesca dell'era dopo (D-286). E gli orfani vanno **divisi in due**:
+   quelli che portano già la loro ragione scritta (memorie narrate, etichette
+   di famiglia, gradi di pietra) e quelli **muti**. Sono i muti la lista di
+   lavoro.
+2. **Obiettivo che non si può puntare col dito** = una clausola che chiede un
+   segno che **niente scrive** (impossibile), oppure un livello intero che non
+   nomina nessun segno e si regge su conteggi. Il primo conto diceva **una
+   clausola impossibile**: il Trionfo di Vaerax, che chiede
+   `legend:crystal_exploited` — e le leggende le scrive **il tempo**, al salto,
+   non i dati. Impossibile non era: era la misura che non conosceva quella
+   penna.
+3. **Tensione senza conflitto** = non tocca nessun segno che un Destino
+   **nomina**. Qui gli assoluti sono stati due, uno per parte: contando i soli
+   segni nominati veniva **60 su 60 senza conflitto**; aggiungendo i conteggi
+   *e il controllo* veniva **0 su 60**. Il controllo va tenuto fuori — ogni
+   cambio di controllo aiuta chi prende e danneggia chi perde, quindi vale per
+   tutte e sessanta e non distingue niente — e `physical.observes` non è un
+   desiderio: elenca insieme quello che una casa insegue e quello che teme, e
+   dice *a chi interessa*, non chi ci guadagna.
+
+**Il numero che vale il viaggio.** Tutte e 60 le Tensioni hanno un conflitto
+*strutturale* — la faccia alza una Pietra e incide una Cicatrice, e i Destini
+contano l'una e l'altra — ma è **identico su tutte**: è il modello della faccia
+(D-280), non è contenuto. Il conflitto che distingue una questione dall'altra è
+quello nominato, e lì **35 Tensioni su 60 non incontrano nessun Destino**.
+
+Detto altrimenti, e questo è l'argomento più forte a favore della matrice che il
+committente chiede: **il Consiglio decide con una moneta che i Destini non
+spendono.** I benefici che si comprano producono segni che nessun Destino
+nomina; dei 24 segni che le facce delle Tensioni posano, **tre** sono temuti da
+qualcuno per nome, e dei 17 voluti **nessuno** si può ottenere da un Consiglio.
+
+---
+
 ## D-286 — Quindici memorie tornano a mordere, e tre penne si erano nascoste
 
 **implemented in 0.1.248** — passo 2 del brief del Punto Zero

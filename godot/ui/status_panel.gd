@@ -74,6 +74,11 @@ var _claims_header: Label
 ## intestazione, perche' una spiegazione senza la cosa spiegata e' rumore.
 var _claims_note: Label
 var _signs_note: Label
+## Il blocco della strategia dichiarata (D-289): cosa questa casa vuole
+## lasciare nel mondo, e a che punto e'.
+var _profile: VBoxContainer
+var _profile_header: Label
+var _profile_note: Label
 var _signs: VBoxContainer
 var _signs_header: Label
 var _title: Label
@@ -115,6 +120,7 @@ func render(session: RefCounted, viewer_id: String) -> void:
 	_update_claims(session, viewer_id)
 	_update_signs(session, viewer_id)
 	_update_destiny(session, viewer_id)
+	_update_profile(session, viewer_id)
 
 
 func _build() -> void:
@@ -406,6 +412,140 @@ func _note(text: String) -> Label:
 	line.add_theme_font_size_override("font_size", 10)
 	line.add_theme_color_override("font_color", Color("#6c6457"))
 	return line
+
+
+## **Cosa vuoi lasciare nel mondo** (D-289).
+##
+## Il Destino dice come si vince, e sta gia' qui sopra. Questo dice l'altra
+## meta': quali segni questa casa vuole vedere sul tavolo a fine anno, e quali
+## non vuole vederci — con accanto **se ci sono adesso**, perche' una strategia
+## che non si puo' controllare a colpo d'occhio non e' una strategia, e' un
+## foglietto.
+##
+## Legge il profilo strategico dai dati (`data/design_matrix`): la stessa
+## fonte che il cervello usa per scegliere. Una casa senza profilo non mostra
+## niente — la scatola ne ha otto e i profili sono quattro.
+func _update_profile(session: RefCounted, viewer_id: String) -> void:
+	if _profile == null:
+		add_child(_spacer())
+		_profile_header = Label.new()
+		_profile_header.text = "COSA RESTERA' DI TE"
+		_profile_header.tooltip_text = (
+			"La strategia dichiarata di questa casa: i segni che vuole vedere nel"
+			+ " mondo a fine partita, e quelli che non vuole."
+		)
+		_profile_header.add_theme_font_size_override("font_size", 12)
+		_profile_header.add_theme_color_override("font_color", Color("#8a8172"))
+		add_child(_profile_header)
+		_profile_note = _note(
+			"I segni che questa casa vuole vedere sul tavolo a fine anno, e quelli che non vuole. In oro quelli che ci sono adesso."
+		)
+		add_child(_profile_note)
+		_profile = VBoxContainer.new()
+		_profile.add_theme_constant_override("separation", 1)
+		add_child(_profile)
+
+	for child in _profile.get_children():
+		child.queue_free()
+		_profile.remove_child(child)
+	var profiles: Variant = session.data.get("entity_profiles")
+	var mine: Variant = null if profiles == null else (profiles as Dictionary).get(viewer_id)
+	var shown: bool = mine != null
+	_profile_header.visible = shown
+	_profile_note.visible = shown
+	_profile.visible = shown
+	if not shown:
+		return
+
+	var said := Label.new()
+	said.text = str((mine as Dictionary).get("in_one_line", ""))
+	said.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	said.add_theme_font_size_override("font_size", 11)
+	said.add_theme_color_override("font_color", Color("#c9bfae"))
+	_profile.add_child(said)
+
+	for pair in [["wants", "vuoi", "#6fa88a"], ["fears", "temi", "#c8553d"]]:
+		for voice in (mine as Dictionary).get(str((pair as Array)[0]), []) as Array:
+			var tag: String = str((voice as Dictionary).get("tag", ""))
+			var here: bool = _world_carries(session, tag)
+			var row := Label.new()
+			row.text = "%s  %s%s" % [
+				str((pair as Array)[1]), SignLabels.label(tag, session.data),
+				"  ·  c'e'" if here else "",
+			]
+			row.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+			row.add_theme_font_size_override("font_size", 11)
+			row.add_theme_color_override(
+				"font_color", Color("#e8b563") if here else Color(str((pair as Array)[2]))
+			)
+			row.tooltip_text = str((voice as Dictionary).get("why", ""))
+			_profile.add_child(row)
+
+	_add_threshold(session, viewer_id, mine as Dictionary)
+
+
+## **E cosa succede se non li tieni** (D-290): la soglia, stampata sotto i segni
+## che conta. Al tavolo e' la riga in fondo alla carta della Casata — «dopo un
+## secolo, se il mondo non porta almeno due di questi, la casa diventa
+## un'altra cosa» — e accanto c'e' l'unico numero che serve per saperlo:
+## **da quanti anni questa pelle e' seduta**.
+func _add_threshold(session: RefCounted, viewer_id: String, profile: Dictionary) -> void:
+	var entity: Variant = session.data.entities.get(viewer_id)
+	if entity == null:
+		return
+	var seat: Dictionary = (session.world.get("entities", {}) as Dictionary).get(
+		viewer_id, {}
+	) as Dictionary
+	var lives: Array = (entity as Dictionary).get("incarnations", []) as Array
+	var now: int = int(seat.get("incarnation", 0))
+	for index in range(now + 1, lives.size()):
+		var life: Dictionary = lives[index] as Dictionary
+		var door: Dictionary = life.get("also_enters", {}) as Dictionary
+		if door.is_empty():
+			continue
+		var held: int = 0
+		for voice in profile.get("wants", []) as Array:
+			if _world_carries(session, str((voice as Dictionary).get("tag", ""))):
+				held += 1
+		var line := Label.new()
+		line.text = "dopo %d anni con meno di %d di questi segni: diventi %s" % [
+			int(door.get("after_years", 0)), int(door.get("holds_at_least", 1)),
+			str(life.get("name", "")),
+		]
+		line.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		line.add_theme_font_size_override("font_size", 11)
+		line.add_theme_color_override("font_color", Color("#b06b8f"))
+		line.tooltip_text = str(life.get("description", ""))
+		_profile.add_child(line)
+		var clock := Label.new()
+		clock.text = "questa casa e' cosi' da %d anni · adesso ne tieni %d" % [
+			int(seat.get("life_years", 0)), held,
+		]
+		clock.add_theme_font_size_override("font_size", 11)
+		clock.add_theme_color_override(
+			"font_color",
+			Color("#c8553d") if held < int(door.get("holds_at_least", 1)) else Color("#8a8172")
+		)
+		_profile.add_child(clock)
+		return
+
+
+## Il segno e' sul tavolo adesso? Fatto del mondo, segno di una Regione, o segno
+## di una casa: le tre case in cui un segno puo' vivere (D-259).
+func _world_carries(session: RefCounted, tag: String) -> bool:
+	if (session.world.get("global_tags", []) as Array).has(tag):
+		return true
+	for region_id in session.world.get("regions", {}):
+		if ((session.world["regions"][str(region_id)] as Dictionary).get(
+			"tags", []
+		) as Array).has(tag):
+			return true
+	for entity_id in session.world.get("entities", {}):
+		if ((session.world["entities"][str(entity_id)] as Dictionary).get(
+			"tags", []
+		) as Array).has(tag):
+			return true
+	return false
 
 
 func _spacer() -> Control:

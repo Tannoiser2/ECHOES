@@ -280,6 +280,10 @@ func inherit_from(previous: Dictionary, results: Dictionary = {}) -> void:
 		# Le ere a mani vuote viaggiano col seggio: e' il contatore che fa
 		# stancare un erede della stessa ambizione (D-081).
 		seat["barren"] = int(_handover[entity_id].get("barren", 0))
+		# E da quanti anni questa pelle e' seduta (D-290): e' la meta' che
+		# mancava alla soglia di trasformazione. Come `barren`, e' un contatore
+		# di setup e non un Effetto — sta fra le eccezioni dichiarate.
+		seat["life_years"] = int(_handover[entity_id].get("life_years", 0))
 		# La vita corrente del seggio (D-108): quando la linea si esaurisce,
 		# l'incarnazione successiva prende il posto - e il verbale lo dice.
 		seat["incarnation"] = int(_handover[entity_id].get("incarnation", 0))

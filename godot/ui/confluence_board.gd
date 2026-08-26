@@ -16,6 +16,7 @@ extends VBoxContainer
 signal picked(index: int)
 
 const CardArt := preload("res://ui/card_art.gd")
+const CouncilEconomy := preload("res://scripts/confluence/council_economy.gd")
 
 const STANCE_COLOURS: Dictionary = {
 	"SUPPORT": "#6fa88a", "OPPOSE": "#c8553d",
@@ -35,6 +36,7 @@ var _card: TextureRect
 var _header: Label
 var _question: Label
 var _proposition: Label
+var _face: VBoxContainer
 var _stances: VBoxContainer
 var _consequences: VBoxContainer
 var _consequences_title: Label
@@ -46,6 +48,15 @@ var _prompt: Label
 func _ready() -> void:
 	add_theme_constant_override("separation", 10)
 	_build()
+
+
+## Il tabellone si costruisce da solo alla prima lettura, se nessuno lo ha
+## ancora messo nell'albero: `_ready()` non gira per un nodo costruito fuori —
+## e' la trappola di casa, e senza questa riga una prova che disegna il
+## Consiglio muore a meta' invece di fallire.
+func _ensure_built() -> void:
+	if _card == null:
+		_build()
 
 
 func _build() -> void:
@@ -81,6 +92,15 @@ func _build() -> void:
 	rule.color = Color("#3a332a")
 	rule.custom_minimum_size = Vector2(0, 1)
 	add_child(rule)
+
+	# **La carta girata, con le sue due liste** (D-291). Il Consiglio si decide
+	# su quello che la carta offre e su quello che chiede in cambio: finche' le
+	# due liste stavano solo nel motore, al tavolo si votava alla cieca una
+	# frase d'autore — ed e' quello che il committente ha visto guardando
+	# l'app: *«il Concilio e' ancora quello vecchio»*.
+	_face = VBoxContainer.new()
+	_face.add_theme_constant_override("separation", 2)
+	add_child(_face)
 
 	_stances = VBoxContainer.new()
 	_stances.add_theme_constant_override("separation", 3)
@@ -139,6 +159,7 @@ func render_closed(session: RefCounted, council: Dictionary) -> void:
 
 
 func _paint_council(session: RefCounted, council: Dictionary) -> void:
+	_ensure_built()
 	var template: Dictionary = session.data.confluence_templates[str(council["template_id"])]
 	_card.texture = CardArt.texture_for("tension", str(council["tension_id"]), session.data)
 	_header.text = "%s — %s propone" % [
@@ -151,9 +172,101 @@ func _paint_council(session: RefCounted, council: Dictionary) -> void:
 		if str(proposition["id"]) == str(council.get("proposition_id", "")):
 			_proposition.text = _fill(session, council, str(proposition["text"]))
 
+	_render_face(session, council)
 	_render_stances(session, council)
 	_render_consequences(session, council, template)
 	_render_outcome(council)
+
+
+## **Le due liste della carta**, come stanno stampate (D-291).
+##
+## Il proponente compra i benefici — uno e' gratis, ogni altro costa un costo,
+## una Cicatrice ne compra uno oltre il limite — e **gli avversari scelgono in
+## che moneta paga** (D-280). Il motore lo faceva gia'; qui lo si vede: la
+## pedina posata accanto alla voce comprata, il prezzo dovuto in cifre, e chi
+## tiene la pedina del prezzo.
+##
+## Si legge dallo stesso dizionario che il registro rende — e dalla faccia
+## stampata della Tensione, non dal template — cosi' vale identico su un
+## Consiglio aperto e su uno gia' chiuso, dove `current` non c'e' piu'.
+func _render_face(session: RefCounted, council: Dictionary) -> void:
+	for child in _face.get_children():
+		child.queue_free()
+		_face.remove_child(child)
+	var tension: Variant = session.data.tensions.get(str(council.get("tension_id", "")))
+	if tension == null:
+		return
+	var face: Dictionary = (tension as Dictionary).get("physical", {}) as Dictionary
+	if face.is_empty():
+		return
+
+	var bought: Array = council.get("benefits", []) as Array
+	var due: int = CouncilEconomy.costs_due(bought.size())
+	if bought.size() > CouncilEconomy.MAX_BENEFITS:
+		due += 1
+	var pedina: Dictionary = council.get("price_pedina", {}) as Dictionary
+	var paid: Array = pedina.get("costs", []) as Array
+
+	_face.add_child(_face_heading(
+		"COSA SI COMPRA — %s" % (
+			"un beneficio e' gratis, ogni altro costa un costo"
+			if bought.is_empty() else
+			"%d comprat%s, prezzo: %d cost%s" % [
+				bought.size(), "o" if bought.size() == 1 else "i",
+				due, "o" if due == 1 else "i",
+			]
+		)
+	))
+	for voice in (face.get("benefits", []) as Array):
+		var taken: bool = bought.has(str((voice as Dictionary)["id"]))
+		_face.add_child(_face_voice(str((voice as Dictionary).get("text", "")), taken, "#6fa88a"))
+
+	_face.add_child(_face_heading(_price_heading(session, council, due, pedina)))
+	for voice in (face.get("costs", []) as Array):
+		var chosen: bool = paid.has(str((voice as Dictionary)["id"]))
+		_face.add_child(_face_voice(str((voice as Dictionary).get("text", "")), chosen, "#c8553d"))
+
+	var claimed: Dictionary = council.get("benefit_pedina", {}) as Dictionary
+	if not claimed.is_empty():
+		_face.add_child(_face_heading("LA CONTROPROPOSTA — la posa %s" % session.service.name_of(
+			str(claimed.get("by", ""))
+		)))
+
+	var falls: Array = face.get("failure", []) as Array
+	if not falls.is_empty():
+		_face.add_child(_face_heading("SE CADE — non lo sceglie nessuno"))
+		for voice in falls:
+			_face.add_child(_face_voice(str((voice as Dictionary).get("text", "")), false, "#8a8172"))
+
+
+## Chi paga, e quanto. Le tre situazioni sono tre frasi diverse, perche' al
+## tavolo sono tre cose diverse: non si paga niente, il fronte avverso ha
+## scelto, oppure ha taciuto e il prezzo lo prende il mondo dall'alto della
+## lista (D-267).
+func _price_heading(
+	session: RefCounted, council: Dictionary, due: int, pedina: Dictionary
+) -> String:
+	if due <= 0:
+		return "IN CHE MONETA — niente da pagare: il primo beneficio e' gratis"
+	var who: String = str(pedina.get("by", ""))
+	if who == "":
+		return "IN CHE MONETA — %d da pagare, il fronte avverso non ha ancora posato la pedina" % due
+	return "IN CHE MONETA — %d, e la sceglie %s" % [due, session.service.name_of(who)]
+
+
+func _face_heading(text: String) -> Label:
+	var label: Label = _label(11, "#8a8172")
+	label.text = text
+	return label
+
+
+## Una voce della carta: la pedina posata (●) o la casella libera (○). E' il
+## disegno del cartone, non una lista puntata: quello che si vede al tavolo e'
+## dove stanno le pedine.
+func _face_voice(text: String, marked: bool, colour: String) -> Label:
+	var label: Label = _label(12, colour if marked else "#5f584c")
+	label.text = "%s %s" % ["●" if marked else "○", text]
+	return label
 
 
 ## The narrative slots ($the_region, $rival...) filled from the bindings this

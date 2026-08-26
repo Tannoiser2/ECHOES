@@ -1,0 +1,211 @@
+{
+  "schema_id": "entity_strategic_profile",
+  "version": "1.0.0",
+  "items": [
+    {
+      "entity_id": "ENT_ALDRIC",
+      "in_one_line": "Un regno che, quando lui non ci sara' piu', si sappia ancora a chi obbedisce.",
+      "wants": [
+        {
+          "tag": "succession_by_law",
+          "why": "La corona che passa per legge e non per forza: e' l'unica cosa che rende il trono piu' vecchio di chi ci siede."
+        },
+        {
+          "tag": "crowned",
+          "why": "Che la corona sia sulla testa di qualcuno, e che si sappia di chi: un trono conteso non decide niente."
+        },
+        {
+          "tag": "structure:granary",
+          "why": "Il pane e' meta' della legittimita': un re che non sfama non comanda, contratta."
+        },
+        {
+          "tag": "order_restored",
+          "why": "Che il disordine si sia chiuso mentre lui era in sala, e che lo dica il verbale."
+        }
+      ],
+      "fears": [
+        {
+          "tag": "crown_divided",
+          "why": "Una corona spezzata non si rimette insieme: da li' in poi ogni domanda ha due risposte."
+        },
+        {
+          "tag": "condition:unrest",
+          "why": "La rivolta e' la prova pubblica che l'ordine era una parola."
+        },
+        {
+          "tag": "condition:starving",
+          "why": "La fame in una sua terra e' un'accusa che nessun Consiglio archivia."
+        },
+        {
+          "tag": "question_unresolved",
+          "why": "Una questione lasciata aperta torna l'anno dopo, e torna piu' grande."
+        },
+        {
+          "tag": "scar:changed_hands",
+          "why": "Una terra passata di mano insegna che si puo' fare."
+        }
+      ],
+      "denies": [
+        {
+          "tag": "nahr_settled",
+          "to": "ENT_NAHR",
+          "why": "Un popolo riconosciuto dentro il regno e' un secondo regno con un altro nome."
+        },
+        {
+          "tag": "crown_divided",
+          "to": "ENT_NAHR",
+          "why": "A chi non ha corona conviene che la mia si spezzi: e' la sola cosa che ci mette d'accordo sul contrario."
+        }
+      ]
+    },
+    {
+      "entity_id": "ENT_NAHR",
+      "in_one_line": "Fermarsi da qualche parte senza smettere di poter andare via.",
+      "wants": [
+        {
+          "tag": "nahr_settled",
+          "why": "Un posto riconosciuto: non un accampamento tollerato, un insediamento che sta sulle carte."
+        },
+        {
+          "tag": "settlement:village",
+          "why": "Il villaggio e' la prova che il posto e' rimasto: le tende non lasciano segni."
+        },
+        {
+          "tag": "nomad_range",
+          "why": "Le rotte aperte: fermarsi e' una scelta finche' andarsene resta possibile."
+        },
+        {
+          "tag": "crown_divided",
+          "why": "Una corona sola decide di noi; due corone devono chiedercelo."
+        }
+      ],
+      "fears": [
+        {
+          "tag": "valley_sealed",
+          "why": "La valle chiusa e' la porta che si sbarra dal lato in cui non siamo."
+        },
+        {
+          "tag": "scar:sealed_border",
+          "why": "Un confine sigillato resta sigillato anche quando chi l'ha voluto e' morto."
+        },
+        {
+          "tag": "condition:emptied",
+          "why": "Un posto svuotato non si ripopola: si racconta."
+        },
+        {
+          "tag": "condition:cut_off",
+          "why": "Tagliati fuori vuol dire che la carestia arriva prima del grano."
+        },
+        {
+          "tag": "condition:guarded",
+          "why": "Sorvegliati si vive, ma si vive come ospiti di qualcun altro."
+        }
+      ],
+      "denies": [
+        {
+          "tag": "succession_by_law",
+          "to": "ENT_ALDRIC",
+          "why": "Una corona che passa per legge e' una corona che dura piu' di una generazione: e nessuna legge ci ha mai contati."
+        }
+      ]
+    },
+    {
+      "entity_id": "ENT_LYRA",
+      "in_one_line": "Che quello che ha capito resti scritto dove chiunque possa rileggerlo, anche chi non le crede.",
+      "wants": [
+        {
+          "tag": "discovery:crystal",
+          "why": "Prima di decidere cosa farne bisogna sapere cos'e': la scoperta viene prima della discussione."
+        },
+        {
+          "tag": "knowledge_shared",
+          "why": "Un sapere che sanno tutti non si puo' piu' sequestrare."
+        },
+        {
+          "tag": "crystal_measured",
+          "why": "Misurato, non raccontato: e' la differenza fra una scienza e una leggenda."
+        },
+        {
+          "tag": "structure:archive",
+          "why": "Un archivio e' il posto dove il sapere sopravvive a chi lo ha trovato."
+        }
+      ],
+      "fears": [
+        {
+          "tag": "mine_sealed",
+          "why": "Le gallerie chiuse: la domanda resta, e la risposta no."
+        },
+        {
+          "tag": "study_supervised",
+          "why": "Uno studio sorvegliato produce quello che il sorvegliante voleva sentirsi dire."
+        },
+        {
+          "tag": "condition:guarded",
+          "why": "Dove c'e' una guardia non si torna a guardare due volte."
+        },
+        {
+          "tag": "scar:unanswered",
+          "why": "Una domanda lasciata senza risposta diventa, in due generazioni, una cosa che non si chiede."
+        }
+      ],
+      "denies": [
+        {
+          "tag": "mine_sealed",
+          "to": "ENT_VAERAX",
+          "why": "Il sigillo non protegge nessuno: rimanda soltanto, e chi rimanda vince col tempo."
+        }
+      ]
+    },
+    {
+      "entity_id": "ENT_VAERAX",
+      "in_one_line": "Che la montagna torni un posto dove non si va, e che nessuno ricordi bene perche'.",
+      "wants": [
+        {
+          "tag": "mine_sealed",
+          "why": "Chiuse le gallerie, la cosa che dorme continua a dormire."
+        },
+        {
+          "tag": "structure:sealed",
+          "why": "Il sigillo e' una pietra: dura piu' di un divieto detto."
+        },
+        {
+          "tag": "mountain_forgotten",
+          "why": "Il divieto migliore e' quello che nessuno ricorda di aver ricevuto."
+        },
+        {
+          "tag": "place:sleeping_site",
+          "why": "Che il posto resti quello che e': un letto, non un giacimento."
+        }
+      ],
+      "fears": [
+        {
+          "tag": "crystal_exploited",
+          "why": "Sfruttato, il cristallo non e' piu' un segreto: e' un'economia, e le economie non si fermano."
+        },
+        {
+          "tag": "discovery:crystal",
+          "why": "Ogni scoperta e' un dito che indica dove scavare."
+        },
+        {
+          "tag": "condition:exploited",
+          "why": "Una terra sfruttata chiama gente, e la gente scava piu' a fondo."
+        },
+        {
+          "tag": "knowledge_shared",
+          "why": "Un sapere condiviso non si richiude: si puo' solo dimenticare, e ci vogliono ere."
+        },
+        {
+          "tag": "condition:unrest",
+          "why": "La rivolta scava dove la legge non lascerebbe scavare."
+        }
+      ],
+      "denies": [
+        {
+          "tag": "knowledge_shared",
+          "to": "ENT_LYRA",
+          "why": "Quello che lei vuole pubblicare io lo devo far diventare una storia che si racconta ai bambini."
+        }
+      ]
+    }
+  ]
+}

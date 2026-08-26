@@ -26,6 +26,10 @@ const CouncilEconomy := preload("res://scripts/confluence/council_economy.gd")
 const COMFORTABLE_HAND: int = 4
 ## A Tension this close to its threshold is worth spending an action on.
 const DANGER_MARGIN: int = 2
+## Quanto pesa, nella bilancia del cervello, un segno che il profilo strategico
+## nomina (D-289). Piccolo di proposito: e' una preferenza, non un ordine — la
+## legalita', il bersaglio a segni e il Destino restano davanti.
+const PROFILE_WEIGHT: int = 3
 
 var log: RefCounted
 
@@ -996,13 +1000,62 @@ func _face_score(
 			score += -2 if (mine or scopes.has("ENTITY")) else 2
 		else:
 			score += 1
+		score += profile_weight(entity_id, str(tag), true, session)
 	for tag in face.get("clears_tag", []):
 		var known: Variant = session.data.tags.get(str(tag))
 		if known == null:
 			continue
 		# Togliere un peso vale se il peso sta a casa mia.
 		score += 2 if mine else 1
+		score += profile_weight(entity_id, str(tag), false, session)
 	return score
+
+
+## **Quanto conta questo segno per chi sta giocando** (D-289).
+##
+## Il profilo strategico (D-288) dice cosa una casa vuole lasciare nel mondo,
+## cosa non vuole vederci, e cosa vuole impedire a un'altra. Fino a qui era un
+## dato che leggevano solo il validatore e la misura: una strategia dichiarata e
+## mai giocata. Qui diventa una **preferenza** — non una regola nuova, un peso
+## in piu' nella stessa bilancia che sceglieva gia' fra due meta' di una carta.
+##
+## `posa` distingue le due direzioni: posare un segno voluto vale, toglierlo
+## costa; posare un segno temuto costa, toglierlo vale. E il **sabotaggio**
+## conta al contrario: mettere sul tavolo un segno che un rivale ha dichiarato
+## di voler impedire — o togliergli quello che vuole — e' un buon affare.
+##
+## Vale zero per le case senza profilo: la scatola ne ha otto e i profili sono
+## quattro, e una casa senza strategia dichiarata gioca come prima.
+func profile_weight(
+	entity_id: String, tag: String, posa: bool, session: RefCounted
+) -> int:
+	var profiles: Dictionary = session.data.get("entity_profiles")
+	if profiles == null or profiles.is_empty():
+		return 0
+	var weight: int = 0
+	var mine: Variant = profiles.get(entity_id)
+	if mine != null:
+		for voice in (mine as Dictionary).get("wants", []) as Array:
+			if str((voice as Dictionary).get("tag", "")) == tag:
+				weight += PROFILE_WEIGHT if posa else -PROFILE_WEIGHT
+		for voice in (mine as Dictionary).get("fears", []) as Array:
+			if str((voice as Dictionary).get("tag", "")) == tag:
+				weight += -PROFILE_WEIGHT if posa else PROFILE_WEIGHT
+	# Quello che gli altri hanno dichiarato: il loro desiderio e' la mia
+	# occasione di negarlo, e il loro timore la mia arma.
+	for other_id in profiles:
+		if str(other_id) == entity_id:
+			continue
+		var other: Dictionary = profiles[str(other_id)] as Dictionary
+		for voice in other.get("denies", []) as Array:
+			var denial: Dictionary = voice as Dictionary
+			if str(denial.get("to", "")) != entity_id:
+				continue
+			# Un rivale ha dichiarato di volermi impedire proprio questo: se
+			# riesco a posarlo lo stesso, vale doppio.
+			if str(denial.get("tag", "")) == tag and posa:
+				weight += PROFILE_WEIGHT
+	return weight
 
 
 ## Nessuna carta per quell'intenzione: si guarda cosa la mano sa fare comunque.
@@ -1798,6 +1851,16 @@ func _voice_score(
 	var score: int = CouncilEconomy.intrinsic_value(voice, kind, bindings, session.world)
 	for effect in effects:
 		score += _score_effect(effect, entity_id, proponent_id, goals, session, bindings)
+		# **E quello che questa casa ha dichiarato di volere lasciare** (D-289):
+		# e' al Consiglio che la dichiarazione conta di piu', perche' li' si
+		# compra. La misura dice che di sedici cose volute il Consiglio ne sa
+		# dare quattro (D-288): questa riga fa in modo che, quando una di
+		# quelle quattro e' sul tavolo, il proponente la veda.
+		var payload: Dictionary = (effect as Dictionary).get("payload", {}) as Dictionary
+		var tag: String = str(payload.get("tag", ""))
+		if tag != "":
+			var puts: bool = not str((effect as Dictionary).get("type", "")).begins_with("REMOVE")
+			score += profile_weight(entity_id, tag, puts, session)
 	return score
 
 

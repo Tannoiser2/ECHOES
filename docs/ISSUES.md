@@ -2763,6 +2763,198 @@ e' in gioco.
 
 ---
 
+### 80. Il Consiglio sono due Consigli impilati, e a decidere e' quello vecchio
+
+`regole` · `ux` · **aperta in 0.1.253** — parola del committente davanti
+all'app: *«il Concilio e' ancora quello vecchio, mi sa che va cambiato tutto»*.
+
+Ha ragione su quello che vede, e la ragione e' piu' precisa della frase: **lo
+schermo e' vecchio al cento per cento, le regole a meta'.**
+
+Un Consiglio vero, preso dal registro di una partita giocata:
+
+```
+A. Trigger: THRESHOLD su I Senza Citta'
+B. Domanda: Nelle Terre Nahr, chi decide a chi non ne tocca?   <- template
+C. Proponente: Lyra
+C. Proposta: Si conti quello che c'e', e Lyra decida chi ne ha diritto.  <- template
+C. Lyra compra: Assegna o trasferisci il controllo del luogo. (prezzo: 0 costi)  <- D-280
+D. Kessa: Condition - ...purche' chi se ne va possa tornare.   <- voto vecchio
+D. Vaerax: ABSTAIN                                             <- voto vecchio
+E. Rivelazione simultanea degli impegni: ...                   <- carte segrete
+F. World Factor: 1d6 = 1 -> -2                                 <- il dado
+G. S=3 C=3 O=0 W=-2 -> M=4 -> SUCCESS                          <- l'aritmetica
+H. Beneficio / Prezzo / Conseguenza / Clausola qualificata     <- misto
+```
+
+La sequenza A-K della specifica v0.2 e' ancora intera, e l'economia di
+[D-280](DECISIONS.md#d-280) le sta **accanto**, non al posto. Quello che decide
+e' ancora: voti + carte impegnate in segreto + **un d6**. La mappa e i segni
+entrano solo dopo, quando il risultato e' gia' deciso.
+
+Lo schermo, dal canto suo, disegna solo la meta' vecchia: la carta della
+Tensione, la Domanda, la Proposta, le pose (sostieni/opponiti/astieniti/a
+condizione) e le Conseguenze. **Dei benefici comprati, del prezzo, della pedina
+e della controproposta non mostra niente.**
+
+**Le misure di oggi** (40 anni, 158 Consigli — con la sonda del prezzo appena
+riparata, vedi sotto):
+
+| | |
+|---|---|
+| benefici comprati | 245 (1,55 a Consiglio) |
+| Consigli che comprano solo il gratis | 87 |
+| che pagano 1 costo / 2 costi | 55 / 16 |
+| prezzi davvero scattati | 62, di cui **19 Cicatrici** |
+| **il fronte avverso ha scelto la moneta** | **29 volte (18%)** |
+| controproposte | 39 |
+
+Quindi l'economia **gira** — il 45% dei Consigli paga qualcosa — e non si vede.
+
+**La sonda era cieca su due righe** e le sue due voci a zero («costi diversi 0»,
+«sfoghi diversi 0») erano sue, non del tavolo: cercava il formato di log che il
+motore ha smesso di scrivere con [D-278](DECISIONS.md#d-278). Riparata:
+11 voci di costo diverse scelte dal fronte, 8 scattate davvero. **E' la quinta
+volta in questo progetto che uno zero era la sonda.**
+
+**I tre tagli, in ordine**, da decidere col committente:
+
+1. ✅ **Lo schermo dice il Consiglio nuovo** — **fatto in 0.1.254**
+   ([D-291](DECISIONS.md#d-291)): la faccia stampata della Tensione sul
+   tabellone, i benefici con la pedina su quelli comprati, il prezzo in cifre,
+   chi tiene la pedina del prezzo, la controproposta e cosa succede se cade.
+   Nessuna regola toccata.
+2. **La Domanda e la Proposta vengono dalla carta**, non da
+   `confluence_templates`: e' [D-266](DECISIONS.md#d-266) portata fino in fondo,
+   ed e' la grammatica vecchia da cancellare davvero.
+3. **Chi decide**: il d6 e gli impegni segreti contro l'economia. Se passa
+   perche' il proponente puo' pagare quello che il tavolo chiede, il dado esce
+   dal gioco — ed e' la modifica che vale la parola del committente, non la mia.
+
+---
+
+### 79. Quattro case su otto non hanno un profilo, e quindi non hanno una soglia
+
+`contenuto` · **aperta in 0.1.252** ([D-290](DECISIONS.md#d-290) ·
+[la misura](MISURA_VITE.md))
+
+La porta del tempo legge il profilo strategico, per non essere un secondo
+elenco che diverge dal primo. Conseguenza diretta: **si può scrivere solo sulle
+quattro case che un profilo ce l'hanno** — Aldric, Nahr, Lyra, Vaerax. Le altre
+quattro (Cenere, Città Libere, Sale, Vetro) non possono averla, e il validatore
+lo dice a voce alta invece di lasciarla scrivere e non aprire mai.
+
+Il conto: delle **sette vite che in 168 salti d'era non si sono mai sedute**,
+**cinque** appartengono a quelle quattro case — I Forni Riaccesi e Le Custodi
+della Cenere, La Compagnia del Sale, e le vite tardive del Vetro. Sono
+contenuto scritto che al tavolo non esiste (D-035), e la chiave per aprirle
+esiste già: manca il profilo.
+
+**Fatto quando** le otto case hanno un profilo scritto con la stessa forma delle
+quattro di D-288, e `MISURA_VITE.md` mostra le vite mai sedute scendere.
+
+---
+
+### 78. Il profilo strategico lo legge la misura, non il gioco
+
+`motore` · `ux` · **aperta in 0.1.250** ([D-288](DECISIONS.md#d-288)) ·
+**letta in 0.1.251** ([D-289](DECISIONS.md#d-289))
+
+I quattro profili dicono cosa una casa vuole lasciare nel mondo, e per adesso
+li leggono **il validatore** (che li conta fra i lettori dei segni) e **la
+misura** (che ne ricava chi sa dare ogni desiderio). **Il cervello no, e lo
+schermo nemmeno.**
+
+Finché non li leggono, la strategia è dichiarata e non giocata. Sono due cose
+diverse e vanno tutte e due:
+
+- **il cervello**: D-285 gli ha dato un ripiego — «gioca la più debole che la
+  mano permette»; il profilo gli darebbe una *preferenza*, cioè una ragione per
+  scegliere quella carta invece di quell'altra;
+- **lo schermo**: è quello che permette all'app di dire «questo segno ti serve»,
+  «questa questione aiuta un rivale» — e di dirlo **leggendo lo stesso file del
+  bot**, non una seconda copia.
+
+**Fatto quando** una partita giocata dal cervello si vede scegliere in base al
+profilo (misurabile: quante mosse vanno verso un segno voluto), e la colonna di
+destra nomina almeno un segno del profilo del seggio che sta guardando.
+
+**In 0.1.251 li leggono tutti e due** ([D-289](DECISIONS.md#d-289)), e **una
+delle due metà è servita, l'altra no.**
+
+- **Lo schermo**: fatto. Il blocco «COSA RESTERÀ DI TE» in fondo alla colonna
+  nomina ogni segno del profilo, in italiano, e accende in oro quelli già sul
+  tavolo. Quattro prove lo tengono, e mordono.
+- **Il cervello**: legge, e non cambia quasi niente. Misura appaiata su 40 anni
+  con gli stessi semi — segni voluti posati **17 → 17**, segni temuti posati
+  **17 → 14**, benefici comprati al Consiglio che davano al proponente un segno
+  voluto **15 su 246 → 15 su 245**.
+
+Tre autolesioni evitate in quarant'anni, e al Consiglio zero. Non è la bilancia
+a essere sorda: **è che non c'è niente da preferire**. È
+[ISSUES 76](#76-il-consiglio-decide-con-una-moneta-che-i-destini-non-spendono)
+guardata dal lato di chi sceglie — le facce delle Tensioni e le voci del
+Consiglio non parlano la moneta che i profili nominano. Questa voce resta
+aperta e **appesa a quella**: si richiude da sola il giorno in cui il
+macchinario produce le cose che le case dichiarano di volere. Alzare il peso non
+la chiude, la peggiora.
+
+---
+
+### 76. Il Consiglio decide con una moneta che i Destini non spendono
+
+`regole` · `contenuto` · `da-misurare` · **aperta in 0.1.249**
+([D-287](DECISIONS.md#d-287) · [le misure](MISURA_MATRICE.md))
+
+Misurato: le facce delle 60 Tensioni posano **24 segni** e ne tolgono **uno**.
+I Destini e gli obiettivi ne **vogliono 17** e ne **temono 17**. L'incrocio:
+
+- dei 24 posati, **3** sono temuti da qualcuno per nome;
+- dei 17 voluti, **nessuno** si può ottenere vincendo un Consiglio;
+- **35 Tensioni su 60** non toccano nessun segno che un Destino nomina.
+
+Tutte e 60 hanno un conflitto *strutturale* — la faccia alza una Pietra e
+incide una Cicatrice, e i Destini le contano — ma è **lo stesso su tutte**: è il
+modello della faccia (D-280), non è contenuto. Al tavolo vuol dire che il
+Consiglio è una cosa che succede, non una cosa che qualcuno *voleva*.
+
+È il buco che la matrice strategica del committente vuole chiudere, e la cura
+può stare da tre parti: i benefici delle Tensioni (che dovrebbero produrre segni
+che qualcuno insegue), i Destini (che dovrebbero nominare segni che un Consiglio
+può dare), o un ponte dichiarato fra i due (`entity_strategic_profiles`).
+**Quale delle tre è una decisione del committente.**
+
+**Aggiornamento 0.1.250** ([D-288](DECISIONS.md#d-288)): con i profili
+strategici scritti, il buco si dice adesso per casa invece che in generale —
+**delle 16 cose che le quattro case di CHR_01 vogliono lasciare nel mondo, un
+Consiglio ne sa dare 4.** Le altre dodici si ottengono con una carta, con una
+Conseguenza, o non si ottengono affatto.
+
+**Fatto quando** ogni Tensione tocca almeno un segno nominato da almeno un
+Destino della scatola, e almeno un beneficio comprabile produce un segno che
+almeno un Destino vuole.
+
+---
+
+### 77. Quindici segni muti senza una ragione scritta
+
+`contenuto` · `debito` · **aperta in 0.1.249** ([le misure](MISURA_MATRICE.md))
+
+Su 150 segni scritti, **67 sono orfani** — nessuno li vuole, nessuna Tensione li
+tocca, nessuna regola li usa, l'eredità non li porta avanti. **49 portano già la
+loro ragione** e restano (memorie narrate D-103, etichette di famiglia, gradi di
+pietra, domini che legge il motore).
+
+Ne restano **15 senza una riga che spieghi perché esistono** — fra cui
+`condition:lean`, `condition:requisitioned`, `structure:castle`,
+`structure:library`, `structure:palace`. Tre pietre di grado alto che nessuno
+insegue sono contenuto costoso e muto.
+
+**Fatto quando** ognuno dei quindici o trova un lettore (un Destino, una
+Tensione, una regola) o porta la sua ragione scritta come gli altri 49.
+
+---
+
 ### 74. ✅ I segni stampati che non trovano dove stare — chiusa in 0.1.246
 
 `motore` · `regole` · **chiusa** ([D-284](DECISIONS.md#d-284))
