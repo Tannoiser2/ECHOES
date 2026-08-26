@@ -206,6 +206,208 @@
           "why": "Quello che lei vuole pubblicare io lo devo far diventare una storia che si racconta ai bambini."
         }
       ]
+    },
+    {
+      "entity_id": "ENT_CENERE",
+      "in_one_line": "Una montagna che paghi chi ci e' sceso, e che non decida chi non ci e' mai stato.",
+      "wants": [
+        {
+          "tag": "crystal_exploited",
+          "why": "La pietra cavata e' l'unica ricchezza che la montagna abbia mai dato: lasciarla dentro non e' prudenza, e' fame."
+        },
+        {
+          "tag": "ash",
+          "why": "Il segno della Cenere sulle Montagne Rosse: finche' c'e', quella terra ha un nome e il nome e' il nostro."
+        },
+        {
+          "tag": "discovery:crystal",
+          "why": "Che si sappia che sotto c'e' altro. Un giacimento che nessuno ha visto non si difende: si perde."
+        },
+        {
+          "tag": "structure:road",
+          "why": "Una strada che porta fuori il carico: una miniera senza strada e' un buco, non un mestiere."
+        }
+      ],
+      "fears": [
+        {
+          "tag": "mine_sealed",
+          "why": "Una miniera sigillata e' la nostra casa dichiarata inutile, con una decisione presa altrove."
+        },
+        {
+          "tag": "structure:sealed",
+          "why": "Quello che si mura non si riapre: chi sigilla non sta proteggendo, sta chiudendo un conto."
+        },
+        {
+          "tag": "condition:emptied",
+          "why": "Sgomberare la montagna e' l'unico modo di toglierci quello che siamo, e si e' gia' provato."
+        },
+        {
+          "tag": "study_supervised",
+          "why": "Uno studioso con un permesso in mano diventa il padrone del buco che noi scaviamo."
+        }
+      ],
+      "denies": [
+        {
+          "tag": "mine_sealed",
+          "to": "ENT_VAERAX",
+          "why": "Che dorma pure: dormire non e' un diritto sulla roccia che sta sopra."
+        },
+        {
+          "tag": "structure:sealed",
+          "to": "ENT_VETRO",
+          "why": "Custodire e' murare, e murata la montagna smette di dare da mangiare a chi ci vive."
+        }
+      ]
+    },
+    {
+      "entity_id": "ENT_LIBERE",
+      "in_one_line": "Sette citta' che si reggono senza una corona sopra, e una Carta che lo dica per iscritto.",
+      "wants": [
+        {
+          "tag": "charter_written",
+          "why": "Una Carta firmata e' la sola cosa che sopravvive a chi l'ha firmata: senza, l'autonomia dura quanto chi la difende."
+        },
+        {
+          "tag": "charter_for_all",
+          "why": "Una Carta che vale per tutti, o e' un privilegio - e un privilegio si toglie."
+        },
+        {
+          "tag": "water_moves",
+          "why": "L'acqua che scorre tiene vive sette citta' che non hanno un re a nutrirle."
+        },
+        {
+          "tag": "debt_forgiven",
+          "why": "Un debito cancellato e' una citta' che torna a decidere da sola; uno chiamato e' un padrone nuovo."
+        }
+      ],
+      "fears": [
+        {
+          "tag": "crowned",
+          "why": "Una corona sulla testa di qualcuno e' la fine della domanda: da quel giorno si obbedisce."
+        },
+        {
+          "tag": "no_charter",
+          "why": "Che il tavolo dichiari che una Carta non c'e': e' peggio di non averla, e' averla persa."
+        },
+        {
+          "tag": "condition:cut_off",
+          "why": "Una citta' tagliata fuori non e' libera, e' sola - e le sette si tengono solo se si toccano."
+        },
+        {
+          "tag": "water_priced",
+          "why": "Se l'acqua ha un prezzo, chi lo fissa comanda le sette citta' senza esercito."
+        },
+        {
+          "tag": "debt_called",
+          "why": "Il debito chiamato compra una citta' senza assedio, e le nostre non hanno mura contro un registro."
+        }
+      ],
+      "denies": [
+        {
+          "tag": "crowned",
+          "to": "ENT_ALDRIC",
+          "why": "Il trono puo' esistere: sopra di noi no. E' la sola cosa su cui le sette non discutono."
+        },
+        {
+          "tag": "water_priced",
+          "to": "ENT_SALE",
+          "why": "Mettere un prezzo all'acqua e' comprarci tutte in una firma sola."
+        }
+      ]
+    },
+    {
+      "entity_id": "ENT_SALE",
+      "in_one_line": "Un mondo dove una firma vale, e dove chi ha promesso paga anche quando e' scomodo.",
+      "wants": [
+        {
+          "tag": "debt_called",
+          "why": "Un debito chiamato e' la prova pubblica che il registro morde: senza, il registro e' un quaderno."
+        },
+        {
+          "tag": "account_settled",
+          "why": "Un conto chiuso e' la nostra vittoria piu' silenziosa: ha pagato, e nessuno ha dovuto minacciare."
+        },
+        {
+          "tag": "structure:tollgate",
+          "why": "Una barriera che conta chi passa: e' il registro che diventa una cosa che si tocca."
+        },
+        {
+          "tag": "ledger_public",
+          "why": "Un registro che si puo' leggere e' una firma che vale anche quando chi l'ha scritta non c'e' piu'. Il commercio c'e' comunque: quello si eredita davvero."
+        }
+      ],
+      "fears": [
+        {
+          "tag": "debt_forgiven",
+          "why": "Un debito cancellato insegna che si puo' non pagare, e quella lezione costa piu' del debito."
+        },
+        {
+          "tag": "condition:cut_off",
+          "why": "Una strada chiusa non e' un disagio: e' un conto che non si potra' esigere."
+        },
+        {
+          "tag": "crown_divided",
+          "why": "Con due corone nessuno onora la firma dell'altra, e ogni contratto diventa una lite."
+        },
+        {
+          "tag": "oath_broken",
+          "why": "Una parola rotta senza conseguenze e' la fine del mestiere: noi vendiamo esattamente quella."
+        }
+      ],
+      "denies": [
+        {
+          "tag": "debt_forgiven",
+          "to": "ENT_LIBERE",
+          "why": "La generosita' pubblica la pagano i creditori: se si cancella, si cancella per tutti, e allora nessuno presta piu'."
+        }
+      ]
+    },
+    {
+      "entity_id": "ENT_VETRO",
+      "in_one_line": "Che quello che fu misurato una volta resti custodito, e non torni in discussione ogni generazione.",
+      "wants": [
+        {
+          "tag": "anointed",
+          "why": "Un incarico riconosciuto: la custodia deve essere di qualcuno, o la prima mano che passa la prende."
+        },
+        {
+          "tag": "faith_established",
+          "why": "Una fede stabilita sopravvive al custode; una devozione privata muore con lui."
+        },
+        {
+          "tag": "relic_buried",
+          "why": "Quello che sta sotto non si rimette in discussione: e' l'unico modo di conservarlo davvero."
+        },
+        {
+          "tag": "structure:sealed",
+          "why": "La teca chiusa e' la regola fatta pietra: si vede da fuori che non si apre."
+        }
+      ],
+      "fears": [
+        {
+          "tag": "knowledge_shared",
+          "why": "Quello che si insegna a tutti si discute con tutti, e cio' che si discute prima o poi si cambia."
+        },
+        {
+          "tag": "crystal_measured",
+          "why": "Misurarlo di nuovo e' dire che la prima misura non bastava: da li' non si torna indietro."
+        },
+        {
+          "tag": "ledger_public",
+          "why": "Un registro aperto e' l'abitudine di controllare, e l'abitudine di controllare arriva anche alla teca."
+        },
+        {
+          "tag": "condition:emptied",
+          "why": "Un luogo svuotato non ha piu' nessuno che ricordi perche' quella cosa andava custodita."
+        }
+      ],
+      "denies": [
+        {
+          "tag": "knowledge_shared",
+          "to": "ENT_LYRA",
+          "why": "Non e' segreto per potere: e' che una domanda riaperta ogni cent'anni non e' sapere, e' inquietudine."
+        }
+      ]
     }
   ]
 }

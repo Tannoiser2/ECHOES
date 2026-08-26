@@ -689,13 +689,27 @@ def survey() -> Tuple[str, Dict[str, int]]:
         x.replace("ENT_", "") for x in case
         if x not in {str(p.get("entity_id", "")) for p in profiles}
     )
-    add("La causa si legge nella tabella qui sopra: **gli incroci esistono")
-    add("quasi solo fra le case che hanno un profilo**. Le altre — %s —" % ", ".join(senza_profilo))
-    add("entrano solo dove un loro Destino nomina un segno per nome, e i")
-    add("Destini nominano poco: %d livelli su %d si reggono su conteggi." % (
-        len(only_counts), len(levels)))
-    add("Scrivere i quattro profili che mancano (ISSUES 79) e' la leva piu'")
-    add("corta su questo numero.")
+    if senza_profilo:
+        add("La causa si legge nella tabella qui sopra: **gli incroci esistono")
+        add("quasi solo fra le case che hanno un profilo**. Le altre — %s —" % (
+            ", ".join(senza_profilo)))
+        add("entrano solo dove un loro Destino nomina un segno per nome, e i")
+        add("Destini nominano poco: %d livelli su %d si reggono su conteggi." % (
+            len(only_counts), len(levels)))
+        add("Scrivere i profili che mancano (ISSUES 79) e' la leva piu' corta su")
+        add("questo numero.")
+    else:
+        add("**Tutte le case hanno un profilo**, quindi quello che resta non e'")
+        add("piu' un buco di dichiarazioni: e' la superficie. Un incrocio")
+        add("richiede che **lo stesso segno** sia nominato da una casa come")
+        add("voluto e da un'altra come temuto, e ogni casa ne nomina otto o")
+        add("nove; il resto di quello che i Destini chiedono sono conteggi —")
+        add("%d livelli su %d — che litigano con tutti allo stesso modo." % (
+            len(only_counts), len(levels)))
+        add("Le coppie ancora mute si chiudono in due modi: **una faccia di")
+        add("Tensione** che metta uno di quei segni sul tavolo dove le due case")
+        add("si incontrano, oppure **un `denies`** scritto — che e' un incrocio")
+        add("dichiarato a mano, e costa una riga.")
     add("")
     if not coppie_mute:
         add("Nessuna coppia resta muta: ogni casa ha una questione con ogni altra.")

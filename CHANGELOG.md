@@ -5,6 +5,25 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.257 — Le otto case dichiarano, e tre vite morte si siedono (D-294)
+
+- **Quattro profili nuovi** — Cenere, Città Libere, Sale, Vetro — nella forma
+  di D-288, e la porta del tempo a tre vite che non si erano **mai** sedute.
+- **I numeri**: incroci **7 → 15**, coppie di case con qualcosa per cui
+  litigare **3 → 9 su 28**, trasformazioni sedute **106 → 139**. Le Custodi
+  della Cenere **0 → 20**, I Frati del Vetro **3 → 18**.
+- **Le vite mai sedute restano 7**, ma non sono le stesse: le Custodi si
+  siedono, l'Inquisizione del Vetro scende a zero perché il Vetro adesso cambia
+  pelle per il tempo prima che la reliquia venga mostrata.
+- **La Compagnia del Sale ha la porta e non si apre**: i segni che la Gilda
+  vuole lasciare sono **memorie**, e una memoria scritta non si perde più. *Una
+  soglia deve leggere quello che il mondo sa togliere.*
+- E `trade` tolto dai desideri del Sale: è stampato sulle tessere, quindi non
+  distingue niente. **Un desiderio che la mappa porta da sola è arredo.**
+- Ritmo: nessuna casa muta più spesso di 1 salto su 6,2.
+- La guardia del validatore ora **fabbrica** il difetto invece di cercarlo.
+- Cancello: 0 seggi bloccati su 8. 607 prove verdi.
+
 ## 0.1.256 — Gli incroci: chi litiga con chi, e per cosa (D-293)
 
 - `matrix_survey` sezione 5, nei cancelli: per ogni segno **chi aiuta e chi

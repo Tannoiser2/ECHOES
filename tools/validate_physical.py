@@ -777,9 +777,16 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
     def porta_senza_profilo(prova: Dict[str, List[Dict[str, Any]]]) -> None:
         # La porta del tempo su una casa che non ha dichiarato niente: la
         # soglia non saprebbe cosa chiedere, e non si aprirebbe mai.
-        profilate = {str(p.get("entity_id")) for p in prova.get("entity_strategic_profile", [])}
-        casa = next(c for c in prova["entity"]
-                    if str(c.get("id")) not in profilate and c.get("incarnations"))
+        #
+        # **Il difetto si fabbrica, non si cerca** (lezione di D-286, ripresa in
+        # 0.1.257): la prima stesura cercava una casa senza profilo, e il giorno
+        # in cui tutte e otto ne hanno avuto uno la guardia e' morta con una
+        # StopIteration invece di dire che non aveva piu' niente da provare.
+        casa = next(c for c in prova["entity"] if c.get("incarnations"))
+        prova["entity_strategic_profile"] = [
+            p for p in prova.get("entity_strategic_profile", [])
+            if str(p.get("entity_id")) != str(casa.get("id"))
+        ]
         casa["incarnations"][-1]["also_enters"] = {"after_years": 150, "holds_at_least": 2}
 
     def porta_impossibile(prova: Dict[str, List[Dict[str, Any]]]) -> None:

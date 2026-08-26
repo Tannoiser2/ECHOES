@@ -10,6 +10,68 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-294 — Le otto case dichiarano, e tre vite morte si siedono
+
+**implemented in 0.1.257** — passo (b) della linea delle trasformazioni ·
+chiude [ISSUES 79](ISSUES.md#79-quattro-case-su-otto-non-hanno-un-profilo-e-quindi-non-hanno-una-soglia)
+
+[D-293](#d-293) aveva detto qual era la leva più corta: gli incroci esistevano
+quasi solo fra le quattro case con un profilo. Qui i profili diventano **otto**
+— Cenere, Città Libere, Sale e Vetro, nella stessa forma di
+[D-288](#d-288): una riga che dice cosa quella casa vuole lasciare, i segni
+voluti e temuti col loro *perché*, e le `denies`.
+
+E siccome il profilo è la chiave della porta del tempo, tre vite che non si
+erano **mai** sedute in 168 salti d'era ne hanno ricevuta una: **Le Custodi
+della Cenere**, **I Frati del Vetro**, **La Compagnia del Sale**.
+
+**I numeri, sugli stessi semi di prima:**
+
+| | prima | dopo |
+|---|---|---|
+| profili scritti | 4 | **8** |
+| segni che incrociano (aiutano una casa, ne danneggiano un'altra) | 7 | **15** |
+| **coppie di case con qualcosa per cui litigare** | 3 su 28 | **9 su 28** |
+| trasformazioni sedute in 168 salti | 106 | **139** |
+| Le Custodi della Cenere | 0 | **20** |
+| I Frati del Vetro | 3 | **18** |
+| vite mai sedute | 7 | **7** |
+
+**Le tre cose che vanno dette perché sono negative o storte.**
+
+1. **Le vite mai sedute restano sette**, e non è il numero di prima con dentro
+   le stesse: le Custodi si sono sedute, e l'Inquisizione del Vetro — che
+   c'era una volta sola — è scesa a zero, perché adesso il Vetro cambia pelle
+   per il tempo prima che la reliquia venga mostrata. L'insieme è cambiato, il
+   conto no.
+2. **La Compagnia del Sale ha la porta e non si apre mai**, e la ragione vale
+   per tutto il meccanismo: i segni che la Gilda vuole lasciare sono
+   **memorie** — `debt_called`, `account_settled`, `ledger_public` — e una
+   memoria, una volta scritta, **il mondo non la toglie più**. Una soglia che
+   chiede *«tieni ancora?»* su una cosa che non si può perdere è una porta
+   murata. *Una soglia deve leggere quello che il mondo sa togliere*:
+   condizioni, controllo, Pietre. È il motivo tecnico più forte per passare
+   alla grammatica ricca del documento (passo c).
+3. **Un desiderio che la mappa porta da sola non è una strategia, è arredo.**
+   Il Sale voleva `trade`, che è un segno stampato sulle tessere: presente
+   quasi sempre, quindi incapace di distinguere alcunché. Sostituito con
+   `ledger_public`, che è una cosa che si ottiene.
+
+**Il ritmo tiene**: nessuna casa muta più spesso di **1 salto su 6,2** (Nahr),
+e le due che prima non cambiavano mai — Vetro 1 su 42, Cenere mai — adesso
+stanno a 1 su 9,3 e 1 su 8,4. Nessuno è diventato un costume.
+
+**E la guardia si è rotta nel modo giusto**: il difetto piantato «porta del
+tempo su una casa senza profilo» *cercava* una casa senza profilo, e il giorno
+in cui tutte e otto ne hanno avuto uno è morto con un errore invece di dire che
+non aveva più niente da provare. Adesso il difetto **si fabbrica** — è la
+lezione di [D-286](#d-286), ripresa.
+
+**Il costo dichiarato**: nessuno sul cancello (0 seggi bloccati su 8, misto e
+uniforme; 607 prove).
+
+---
+
 ## D-293 — Gli incroci: chi litiga con chi, e per cosa
 
 **implemented in 0.1.256** — punto 1 della linea delle trasformazioni ·

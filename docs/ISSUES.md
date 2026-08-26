@@ -2763,6 +2763,37 @@ e' in gioco.
 
 ---
 
+### 81. Una soglia non puo' leggere una memoria, perche' una memoria non si perde
+
+`regole` · **aperta in 0.1.257** ([D-294](DECISIONS.md#d-294) ·
+[la misura](MISURA_VITE.md))
+
+La porta del tempo ([D-290](DECISIONS.md#d-290)) chiede: *«sono passati N anni e
+il mondo non porta piu' almeno K dei segni che questa casa voleva lasciare?»*.
+Misurato: **La Compagnia del Sale ha la porta e non si apre mai**, in 168 salti
+d'era, perche' i segni che la Gilda vuole lasciare — `debt_called`,
+`account_settled`, `ledger_public` — sono **memorie**, e una memoria scritta
+resta nel mondo per sempre.
+
+Una soglia che chiede *«tieni ancora?»* su una cosa che non si puo' perdere e'
+una porta murata. Vale per ogni profilo: i desideri fatti di memorie sono
+lucchetti a senso unico, quelli fatti di **condizioni, controllo e Pietre** sono
+soglie vere, perche' il mondo sa toglierli.
+
+Due strade, e la seconda e' quella del documento sulle trasformazioni:
+
+- **stretta**: la porta guarda solo i desideri che il mondo sa togliere, e il
+  validatore rifiuta una porta i cui segni sono tutti memorie;
+- **larga** (passo c della linea): la soglia smette di leggere «quanti dei
+  desideri» e legge condizioni proprie — controllo di luoghi, Pietre in piedi,
+  Cicatrici, leggi — come nel documento del committente.
+
+**Fatto quando** ogni vita che dichiara una porta del tempo si e' seduta almeno
+una volta in `MISURA_VITE.md`, oppure la sua porta e' stata tolta perche'
+sbagliata.
+
+---
+
 ### 80. Il Consiglio sono due Consigli impilati, e a decidere e' quello vecchio
 
 `regole` · `ux` · **aperta in 0.1.253** — parola del committente davanti
@@ -2833,7 +2864,7 @@ volta in questo progetto che uno zero era la sonda.**
 
 ---
 
-### 79. Quattro case su otto non hanno un profilo, e quindi non hanno una soglia
+### 79. ✅ Quattro case su otto non hanno un profilo — chiusa in 0.1.257
 
 `contenuto` · **aperta in 0.1.252** ([D-290](DECISIONS.md#d-290) ·
 [la misura](MISURA_VITE.md))
@@ -2852,6 +2883,13 @@ esiste già: manca il profilo.
 
 **Fatto quando** le otto case hanno un profilo scritto con la stessa forma delle
 quattro di D-288, e `MISURA_VITE.md` mostra le vite mai sedute scendere.
+
+**Chiusa in 0.1.257** ([D-294](DECISIONS.md#d-294)): gli otto profili ci sono,
+gli incroci passano da 7 a 15 e le coppie che hanno qualcosa per cui litigare da
+3 a 9 su 28. Le Custodi della Cenere si siedono 20 volte e i Frati del Vetro 18.
+**La seconda metà del «fatto quando» non è stata raggiunta**: le vite mai sedute
+restano 7 — l'insieme è cambiato, il conto no — e la ragione è scritta in D-294
+punto 2, che è diventata la voce nuova [81](#81-una-soglia-non-puo-leggere-una-memoria-perche-una-memoria-non-si-perde).
 
 **E in 0.1.256 questa voce ha guadagnato un secondo numero** che la rende più
 urgente ([D-293](DECISIONS.md#d-293)): gli **incroci** — i segni che aiutano una

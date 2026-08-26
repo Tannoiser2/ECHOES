@@ -216,7 +216,11 @@
             "CLAIM": 1
           },
           "art_prompt_key": "entity.sale_company",
-          "entry": "LINE_EXHAUSTED"
+          "entry": "LINE_EXHAUSTED",
+          "also_enters": {
+            "after_years": 150,
+            "holds_at_least": 2
+          }
         }
       ],
       "starting_structures": [
@@ -433,7 +437,11 @@
             "CLAIM": 3
           },
           "art_prompt_key": "entity.vetro_friars",
-          "entry": "LINE_EXHAUSTED"
+          "entry": "LINE_EXHAUSTED",
+          "also_enters": {
+            "after_years": 150,
+            "holds_at_least": 2
+          }
         }
       ],
       "starting_structures": [
@@ -646,7 +654,11 @@
             "CLAIM": 3
           },
           "art_prompt_key": "entity.cenere_keepers",
-          "entry": "LINE_EXHAUSTED"
+          "entry": "LINE_EXHAUSTED",
+          "also_enters": {
+            "after_years": 150,
+            "holds_at_least": 2
+          }
         }
       ],
       "starting_structures": [

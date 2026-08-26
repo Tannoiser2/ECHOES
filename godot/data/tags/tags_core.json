@@ -13,7 +13,8 @@
         "consequence"
       ],
       "read_by": [
-        "destiny_physical"
+        "destiny_physical",
+        "entity_strategic_profile"
       ]
     },
     {
@@ -57,7 +58,8 @@
       ],
       "read_by": [
         "destiny",
-        "destiny_physical"
+        "destiny_physical",
+        "entity_strategic_profile"
       ]
     },
     {
@@ -70,7 +72,9 @@
       "written_by": [
         "entity"
       ],
-      "read_by": [],
+      "read_by": [
+        "entity_strategic_profile"
+      ],
       "note": "etichetta di famiglia: dice chi sei, non cosa puoi fare, e nessuna regola deve leggerla"
     },
     {
@@ -148,7 +152,8 @@
         "confluence_template"
       ],
       "read_by": [
-        "chronicle"
+        "chronicle",
+        "entity_strategic_profile"
       ],
       "note": "memoria del mondo (D-286): la pesca dell'era successiva la ascolta — se il mondo porta ancora questo segno, la sua questione pesa il triplo"
     },
@@ -183,7 +188,8 @@
         "destiny",
         "entity",
         "destiny_physical",
-        "chronicle"
+        "chronicle",
+        "entity_strategic_profile"
       ]
     },
     {
@@ -632,7 +638,8 @@
         "destiny_physical",
         "entity",
         "tag_rule",
-        "chronicle"
+        "chronicle",
+        "entity_strategic_profile"
       ]
     },
     {
@@ -651,7 +658,8 @@
       ],
       "read_by": [
         "destiny",
-        "destiny_physical"
+        "destiny_physical",
+        "entity_strategic_profile"
       ]
     },
     {
@@ -1035,7 +1043,8 @@
       ],
       "read_by": [
         "asset_physical",
-        "chronicle"
+        "chronicle",
+        "entity_strategic_profile"
       ]
     },
     {
@@ -1406,7 +1415,8 @@
       "read_by": [
         "asset_physical",
         "destiny",
-        "destiny_physical"
+        "destiny_physical",
+        "entity_strategic_profile"
       ]
     },
     {
@@ -1874,7 +1884,8 @@
         "asset_physical",
         "destiny",
         "destiny_physical",
-        "chronicle"
+        "chronicle",
+        "entity_strategic_profile"
       ]
     },
     {
@@ -1917,7 +1928,8 @@
         "destiny",
         "destiny_physical",
         "tag_rule",
-        "chronicle"
+        "chronicle",
+        "entity_strategic_profile"
       ]
     },
     {
@@ -2189,7 +2201,8 @@
       "read_by": [
         "destiny",
         "destiny_physical",
-        "chronicle"
+        "chronicle",
+        "entity_strategic_profile"
       ]
     },
     {
@@ -2707,7 +2720,8 @@
         "engine"
       ],
       "read_by": [
-        "asset_physical"
+        "asset_physical",
+        "entity_strategic_profile"
       ],
       "note": "la strada non e' un segno: il motore la conta dalle strutture sulla mappa"
     },
@@ -2756,7 +2770,8 @@
         "destiny_physical",
         "tag_rule",
         "tension",
-        "chronicle"
+        "chronicle",
+        "entity_strategic_profile"
       ]
     },
     {
@@ -2957,7 +2972,8 @@
       ],
       "read_by": [
         "destiny",
-        "destiny_physical"
+        "destiny_physical",
+        "entity_strategic_profile"
       ]
     },
     {
@@ -2973,7 +2989,8 @@
       "read_by": [
         "destiny",
         "destiny_physical",
-        "chronicle"
+        "chronicle",
+        "entity_strategic_profile"
       ]
     },
     {
