@@ -28,6 +28,10 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
   adesso vede il controllo, sceglie più spesso CEDI CONTROLLO).
 - **Aperta ISSUES 86**: la frase d'autore si applica dopo la carta e può
   riscriverla, compresa una casella rivendicata.
+- **La misura delle vite si muove, e va scritta**: trasformazioni sedute
+  187 → 186, e uno scambio al fondo della tabella — «La Leggenda della
+  Montagna» esce dal tavolo (1 → 0 saghe) e «Il Banco Nero» ci entra (0 → 1).
+  Le vite che non si siedono mai restano **sei**: cambia quale, non quante.
 - Playtest 100 semi: **0 seggi bloccati su 8**, misto e uniforme. Suite 609.
 
 ---

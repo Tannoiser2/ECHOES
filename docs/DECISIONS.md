@@ -70,6 +70,13 @@ che adesso vede a chi va il controllo, sceglie piu' spesso CEDI CONTROLLO che
 CICATRICE. Nessuna delle due e' un peggioramento del gioco, ma sono due numeri
 che si muovono, e vanno scritti.
 
+| trasformazioni sedute (su 168 salti) | 187 | 186 |
+
+E uno scambio al fondo della misura delle vite: «La Leggenda della Montagna»
+esce dal tavolo (1 → 0 saghe su ventiquattro) e «Il Banco Nero» ci entra
+(0 → 1). Le vite che non si siedono mai restano **sei**: cambia quale, non
+quante.
+
 Playtest 100 semi: **0 seggi bloccati su 8**, misto e uniforme.
 
 ### Quello che resta aperto
