@@ -32,7 +32,6 @@ func _initialize() -> void:
 	var councils: int = 0
 	var pedine: int = 0
 	var chosen_costs: int = 0
-	var chosen_vents: int = 0
 	var silences: int = 0
 	var counterclaims: int = 0
 	var claimed_voices: int = 0
@@ -53,6 +52,7 @@ func _initialize() -> void:
 	var paid_total: int = 0
 	var scars_taken: int = 0
 	var wanted_bought: int = 0
+	var price_spread: Dictionary = {}
 
 	for run in range(runs):
 		var seed_value: int = first_seed + run
@@ -91,22 +91,31 @@ func _initialize() -> void:
 				var how_many: int = text.split(" · ").size()
 				bought_total += how_many
 				bought_spread[how_many] = int(bought_spread.get(how_many, 0)) + 1
-			elif text.contains("H. Prezzo: "):
+				# **E quanto ha dichiarato di dover pagare** (D-291): e' il
+				# numero che dice se l'economia gira o se si compra sempre e solo
+				# il beneficio gratis.
+				if text.contains("(prezzo: "):
+					var due: int = int(text.split("(prezzo: ")[1].split(" ")[0])
+					price_spread[due] = int(price_spread.get(due, 0)) + 1
+			if text.contains("H. Prezzo: "):
 				paid_total += 1
+				# Che voce e' scattata davvero, non quale era sul menu.
+				vents_said[text.split("H. Prezzo: ")[1].strip_edges()] = true
 				if text.contains("Cicatrice"):
 					scars_taken += 1
-			elif text.contains("Il prezzo lo sceglie ") or text.contains("La pedina del prezzo -"):
+			elif text.contains("Il prezzo lo sceglie "):
+				# «D. Il prezzo lo sceglie Casa: voce · voce.» (D-267)
+				#
+				# **Questa riga la sonda non la sapeva leggere** (D-291): cercava
+				# la forma vecchia — «la pedina del prezzo - Casa: se passa con un
+				# costo, X» — che il motore non scrive piu' da D-278. Le due voci
+				# «costi diversi 0» e «sfoghi diversi 0» erano cecita' della
+				# sonda, non silenzio del tavolo, ed e' la quinta volta che uno
+				# zero in questo progetto voleva dire questo.
 				pedine += 1
-				# «D. La pedina del prezzo - Casa: se passa con un costo, X; se cade, Y.»
-				for piece in text.split(";"):
-					if piece.contains("se passa con un costo,"):
-						costs_said[piece.split("se passa con un costo,")[1].strip_edges()] = true
-					elif piece.contains("se cade,"):
-						vents_said[piece.split("se cade,")[1].strip_edges().trim_suffix(".")] = true
-			elif text.contains("Il costo e' quello della pedina"):
 				chosen_costs += 1
-			elif text.contains("Lo sfogo e' quello della pedina"):
-				chosen_vents += 1
+				for piece in text.split(": ", true, 1)[1].split(" · "):
+					costs_said[str(piece).strip_edges().trim_suffix(".")] = true
 			elif text.contains("Il tavolo tace: il silenzio avvantaggia"):
 				silences += 1
 			elif text.contains("La controproposta di"):
@@ -127,9 +136,7 @@ func _initialize() -> void:
 	print("  Pedine posate            %d  (%.0f%% dei Consigli)" % [
 		pedine, 100.0 * float(pedine) / float(maxi(1, councils))
 	])
-	print("  Il prezzo l'ha deciso il fronte avverso:")
-	print("    costi (passa pagando)  %d" % chosen_costs)
-	print("    sfoghi (proposta caduta) %d" % chosen_vents)
+	print("  Il prezzo l'ha deciso il fronte avverso  %d volte" % chosen_costs)
 	print("  Il tavolo ha taciuto     %d volte" % silences)
 	print("  Controproposte (D-268)   %d  (voci del beneficio rivendicate e passate: %d; secondi dibattiti spesi: %d)" % [
 		counterclaims, claimed_voices, second_debates_spent
@@ -145,14 +152,20 @@ func _initialize() -> void:
 		spread.append("%dx%d" % [int(how_many), int(bought_spread[how_many])])
 	print("    quanti alla volta               %s" % " ".join(spread))
 	print("    prezzi pagati                   %d  (Cicatrici: %d)" % [paid_total, scars_taken])
+	var prices: PackedStringArray = PackedStringArray()
+	var keys: Array = price_spread.keys()
+	keys.sort()
+	for due in keys:
+		prices.append("%d costi x%d" % [int(due), int(price_spread[due])])
+	print("    il prezzo dichiarato all'acquisto  %s" % " · ".join(prices))
 	# **E quanti di quei benefici davano al proponente un segno che il suo
 	# profilo dichiara di volere** (D-289). E' il posto dove la strategia
 	# dichiarata dovrebbe mordere di piu', perche' al Consiglio si **compra**.
 	print("    di cui un segno che il proponente voleva  %d" % wanted_bought)
 	print("")
 	print("  Voci del prezzo lette al tavolo (D-278):")
-	print("    costi diversi          %d" % costs_said.size())
-	print("    sfoghi diversi         %d" % vents_said.size())
+	print("    voci scelte dal fronte avverso   %d diverse" % costs_said.size())
+	print("    voci di prezzo davvero scattate  %d diverse" % vents_said.size())
 	print("    carte con faccia viste %d" % faces_seen.size())
 	if unfinished > 0:
 		print("  Partite non concluse: %d su %d" % [unfinished, runs])

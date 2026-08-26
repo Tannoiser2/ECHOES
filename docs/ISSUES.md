@@ -2763,6 +2763,75 @@ e' in gioco.
 
 ---
 
+### 80. Il Consiglio sono due Consigli impilati, e a decidere e' quello vecchio
+
+`regole` · `ux` · **aperta in 0.1.253** — parola del committente davanti
+all'app: *«il Concilio e' ancora quello vecchio, mi sa che va cambiato tutto»*.
+
+Ha ragione su quello che vede, e la ragione e' piu' precisa della frase: **lo
+schermo e' vecchio al cento per cento, le regole a meta'.**
+
+Un Consiglio vero, preso dal registro di una partita giocata:
+
+```
+A. Trigger: THRESHOLD su I Senza Citta'
+B. Domanda: Nelle Terre Nahr, chi decide a chi non ne tocca?   <- template
+C. Proponente: Lyra
+C. Proposta: Si conti quello che c'e', e Lyra decida chi ne ha diritto.  <- template
+C. Lyra compra: Assegna o trasferisci il controllo del luogo. (prezzo: 0 costi)  <- D-280
+D. Kessa: Condition - ...purche' chi se ne va possa tornare.   <- voto vecchio
+D. Vaerax: ABSTAIN                                             <- voto vecchio
+E. Rivelazione simultanea degli impegni: ...                   <- carte segrete
+F. World Factor: 1d6 = 1 -> -2                                 <- il dado
+G. S=3 C=3 O=0 W=-2 -> M=4 -> SUCCESS                          <- l'aritmetica
+H. Beneficio / Prezzo / Conseguenza / Clausola qualificata     <- misto
+```
+
+La sequenza A-K della specifica v0.2 e' ancora intera, e l'economia di
+[D-280](DECISIONS.md#d-280) le sta **accanto**, non al posto. Quello che decide
+e' ancora: voti + carte impegnate in segreto + **un d6**. La mappa e i segni
+entrano solo dopo, quando il risultato e' gia' deciso.
+
+Lo schermo, dal canto suo, disegna solo la meta' vecchia: la carta della
+Tensione, la Domanda, la Proposta, le pose (sostieni/opponiti/astieniti/a
+condizione) e le Conseguenze. **Dei benefici comprati, del prezzo, della pedina
+e della controproposta non mostra niente.**
+
+**Le misure di oggi** (40 anni, 158 Consigli — con la sonda del prezzo appena
+riparata, vedi sotto):
+
+| | |
+|---|---|
+| benefici comprati | 245 (1,55 a Consiglio) |
+| Consigli che comprano solo il gratis | 87 |
+| che pagano 1 costo / 2 costi | 55 / 16 |
+| prezzi davvero scattati | 62, di cui **19 Cicatrici** |
+| **il fronte avverso ha scelto la moneta** | **29 volte (18%)** |
+| controproposte | 39 |
+
+Quindi l'economia **gira** — il 45% dei Consigli paga qualcosa — e non si vede.
+
+**La sonda era cieca su due righe** e le sue due voci a zero («costi diversi 0»,
+«sfoghi diversi 0») erano sue, non del tavolo: cercava il formato di log che il
+motore ha smesso di scrivere con [D-278](DECISIONS.md#d-278). Riparata:
+11 voci di costo diverse scelte dal fronte, 8 scattate davvero. **E' la quinta
+volta in questo progetto che uno zero era la sonda.**
+
+**I tre tagli, in ordine**, da decidere col committente:
+
+1. **Lo schermo dice il Consiglio nuovo**: la faccia stampata della Tensione, i
+   benefici col loro prezzo, cosa il proponente ha comprato, chi tiene la pedina.
+   Non tocca nessuna regola, e senza non si puo' giudicare se le regole nuove
+   siano buone.
+2. **La Domanda e la Proposta vengono dalla carta**, non da
+   `confluence_templates`: e' [D-266](DECISIONS.md#d-266) portata fino in fondo,
+   ed e' la grammatica vecchia da cancellare davvero.
+3. **Chi decide**: il d6 e gli impegni segreti contro l'economia. Se passa
+   perche' il proponente puo' pagare quello che il tavolo chiede, il dado esce
+   dal gioco — ed e' la modifica che vale la parola del committente, non la mia.
+
+---
+
 ### 79. Quattro case su otto non hanno un profilo, e quindi non hanno una soglia
 
 `contenuto` · **aperta in 0.1.252** ([D-290](DECISIONS.md#d-290) ·

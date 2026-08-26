@@ -5,6 +5,18 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.253 — La sonda del prezzo ci vedeva meta' (ISSUES 80)
+
+- `cli/run_price_probe.gd` cercava il formato di log che il motore non scrive
+  piu' da D-278: le sue voci «costi diversi 0» e «sfoghi diversi 0» erano
+  cecita' sua, non silenzio del tavolo. **Quinta volta in questo progetto.**
+- Riparata, dice: **11 voci di costo diverse scelte dal fronte avverso, 8
+  scattate davvero**, e il prezzo dichiarato all'acquisto — 87 Consigli comprano
+  solo il beneficio gratis, 55 ne pagano uno, 16 ne pagano due.
+- ISSUES 80 apre la diagnosi del Consiglio: **due Consigli impilati, e a
+  decidere e' quello vecchio** (voti + carte segrete + un d6), con lo schermo
+  che disegna solo la meta' vecchia.
+
 ## 0.1.252 — La soglia: il tempo, e quello che non tieni piu' (D-290)
 
 - **Prima la misura**, congelata come cancello: `docs/MISURA_VITE.md` +
