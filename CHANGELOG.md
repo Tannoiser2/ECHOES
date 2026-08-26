@@ -5,6 +5,23 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.255 — Chi scrive nel mondo, e le Pietre che non lo dicevano (D-292)
+
+- `cli/run_who_writes_probe.gd`: la misura che viene prima del taglio 2. Su 158
+  Consigli, **la frase d'autore scrive il 71%** di quello che resta sul mondo,
+  la carta il 29%. **Il taglio 2 non e' una cancellazione, e' un
+  trasferimento** — e il committente decide sapendo quanto costa.
+- **La carta racconta cosa lascia**: la voce comprata applicava i suoi Effetti
+  in silenzio mentre la Conseguenza d'autore narrava i suoi. Meta' del Consiglio
+  cambiava il mondo senza una riga di verbale.
+- **Le Pietre e le strade parlano**: il narratore non aveva una frase per
+  `BUILD_STRUCTURE`, `RAZE_STRUCTURE`, `SET_STRUCTURE_GRADE`, `CLOSE_PASSAGE`,
+  `OPEN_PASSAGE`. Un Granaio si alzava e nessuno lo leggeva. I benefici
+  raccontati salgono **da 89 a 121**.
+- E la sonda non vedeva il trattino del registro: **sesta volta** che uno zero
+  in questo progetto era la sonda.
+- Cancello: 0 seggi bloccati su 8. 607 prove verdi.
+
 ## 0.1.254 — Il tabellone del Consiglio mostra la carta girata (D-291)
 
 - **Taglio 1 di ISSUES 80**: fra la Proposta e le pose, il tabellone apre la

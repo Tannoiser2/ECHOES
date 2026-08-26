@@ -10,6 +10,61 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-292 — Chi scrive nel mondo, e le Pietre che non lo dicevano
+
+**implemented in 0.1.255** — la misura che viene prima del taglio 2 di
+[ISSUES 80](ISSUES.md#80-il-consiglio-sono-due-consigli-impilati-e-a-decidere-e-quello-vecchio)
+
+Il taglio 2 propone di cancellare la **frase d'autore** — la Proposta col suo
+`success_consequences` — e lasciare che a scrivere sul mondo sia la carta. Prima
+di cancellare si misura quanto scrive ognuno, perche' la differenza fra
+*togliere un doppione* e *svuotare il gioco* e' un numero, non un'opinione.
+
+`cli/run_who_writes_probe.gd`, 40 anni di CHR_01, 158 Consigli:
+
+| chi parla | volte | Effetti raccontati |
+|---|---|---|
+| la frase d'autore | 221 | **489 (71%)** |
+| la carta: benefici | 178 | 121 |
+| la carta: prezzi | 62 | 28 |
+| la carta: se cade | 84 | 47 |
+| **la carta, in tutto** | 324 | **196 (29%)** |
+| la clausola qualificata | 65 | 64 |
+| gli Asset impegnati | 373 | 377 |
+
+**Il taglio 2 non e' una cancellazione: e' un trasferimento.** Oggi la frase
+d'autore scrive due terzi di quello che un Consiglio lascia; cancellarla senza
+prima ingrossare le facce delle 60 Tensioni toglierebbe la meta' del contenuto
+del gioco. Il numero e' scritto qui perche' la decisione la prenda il
+committente sapendo quanto costa.
+
+**E per misurarlo ho dovuto riparare due cecita', tutte e due vere.**
+
+1. **La sonda non vedeva il trattino.** Il registro incolonna
+   `- H. Beneficio: …`; la sonda cercava `H. Beneficio: ` in testa alla riga e
+   leggeva **zero** per tutti. Sesta volta in questo progetto.
+2. **La carta scriveva in silenzio.** La Conseguenza d'autore narrava ogni suo
+   Effetto; la voce della carta no — il verbale diceva *«Beneficio: costruisci 1
+   Pietra: Granaio»* e poi taceva su cosa fosse successo. Meta' del Consiglio
+   cambiava il mondo **senza una riga**, e la prima misura (0 contro 443) era
+   falsa per questo.
+
+**E sotto ce n'era una terza, piu' vecchia**: il narratore non aveva una frase
+per `BUILD_STRUCTURE`, `RAZE_STRUCTURE`, `SET_STRUCTURE_GRADE`,
+`CLOSE_PASSAGE`, `OPEN_PASSAGE` — cioe' per **le Pietre e le strade**, le due
+cose piu' fisiche della mappa. Un Granaio si alzava e nessuno lo leggeva; una
+strada si chiudeva in silenzio. Adesso parlano: *«In Valle Verde si alza:
+Granaio»*, *«Fra Valle Verde e Terre Nahr non si passa piu'»*.
+
+I benefici raccontati passano da **89 a 121** con la sola aggiunta delle Pietre:
+32 mutazioni della mappa che prima succedevano e non si vedevano.
+
+**Il costo dichiarato**: nessuno sul cancello (0 seggi bloccati su 8). Il
+verbale e' piu' lungo, ed e' il punto: quello che il tavolo non legge, al tavolo
+non e' successo.
+
+---
+
 ## D-291 — Il tabellone del Consiglio mostra la carta girata
 
 **implemented in 0.1.254** — taglio 1 di [ISSUES 80](ISSUES.md#80-il-consiglio-sono-due-consigli-impilati-e-a-decidere-e-quello-vecchio)
