@@ -202,7 +202,11 @@
             "CLAIM": 2
           },
           "art_prompt_key": "entity.aldric_republic",
-          "entry": "LINE_EXHAUSTED"
+          "entry": "LINE_EXHAUSTED",
+          "also_enters": {
+            "after_years": 150,
+            "holds_at_least": 2
+          }
         },
         {
           "id": "INC_ALDRIC_RESTORED",
@@ -395,7 +399,11 @@
           },
           "art_prompt_key": "entity.nahr_diaspora",
           "entry": "ON_TAG",
-          "entry_tag": "twice_uprooted"
+          "entry_tag": "twice_uprooted",
+          "also_enters": {
+            "after_years": 150,
+            "holds_at_least": 2
+          }
         }
       ],
       "starting_structures": [
@@ -626,7 +634,11 @@
             "CLAIM": 3
           },
           "art_prompt_key": "entity.lyra_cult",
-          "entry": "LINE_EXHAUSTED"
+          "entry": "LINE_EXHAUSTED",
+          "also_enters": {
+            "after_years": 150,
+            "holds_at_least": 2
+          }
         }
       ],
       "starting_structures": [

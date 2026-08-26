@@ -264,6 +264,27 @@
                 "type": "string",
                 "minLength": 1,
                 "description": "Solo per ON_TAG: la vita NON entra finche' questo segno esiste (D-129) - la miniera riaperta non fa nascere i Forni se il sigillo la chiude. Vale anche la forma qualificata `tag@REG_ID` (D-131)."
+              },
+              "also_enters": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "after_years",
+                  "holds_at_least"
+                ],
+                "description": "La seconda porta di questa vita: il tempo (D-290). La vita entra anche quando sono passati almeno `after_years` anni da quando la vita corrente si e' seduta E il mondo non porta piu' almeno `holds_at_least` dei segni che il profilo strategico della casa dichiara di volere. E' la regola del re che tiene due citta': bastano per un decennio, non per tre secoli. L'elenco dei segni NON si scrive qui - si legge dal profilo (data/design_matrix), o sarebbe un secondo elenco che diverge dal primo. Il validatore rifiuta questa porta su una casa senza profilo, o con meno segni voluti di quanti la porta ne chiede.",
+                "properties": {
+                  "after_years": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "description": "Quanti anni devono essere passati dall'inizio della vita corrente perche' la porta possa aprirsi."
+                  },
+                  "holds_at_least": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "description": "Quanti dei segni voluti dal profilo devono ancora stare sul tavolo perche' la casa resti quello che e'. Sotto questo numero, si trasforma."
+                  }
+                }
               }
             }
           }

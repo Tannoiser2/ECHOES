@@ -100,3 +100,31 @@ func test_the_signs_are_counted_not_assumed() -> void:
 		"ogni voce del profilo ha la sua riga"
 	)
 	panel.free()
+
+
+## **E la soglia si legge insieme ai segni che conta** (D-290). Una regola che
+## decide cosa diventi la tua casa e che non sta scritta accanto ai segni che la
+## decidono e' una regola che al tavolo non esiste: sarebbe il manuale.
+func test_the_threshold_is_printed_under_the_signs_it_counts() -> void:
+	var panel: Node = _panel("ENT_ALDRIC")
+	var column: String = _column(panel)
+	assert_true(
+		column.contains("diventi La Repubblica della Valle"),
+		"la soglia dice in cosa si diventa: %s" % column
+	)
+	assert_true(column.contains("dopo 150 anni"), "e dopo quanto: %s" % column)
+	assert_true(
+		column.contains("questa casa e' cosi' da"),
+		"e da quanto sei quello che sei: %s" % column
+	)
+	panel.free()
+
+
+## Una casa la cui vita non dichiara nessuna porta del tempo non mostra nessuna
+## soglia: Vaerax si trasforma per il Cristallo, non per il calendario.
+func test_a_house_without_a_time_door_shows_no_threshold() -> void:
+	var panel: Node = _panel("ENT_VAERAX")
+	var column: String = _column(panel)
+	assert_true(column.contains("COSA RESTERA' DI TE"), "il blocco c'e' lo stesso")
+	assert_false(column.contains("dopo 150 anni"), "ma nessuna soglia: %s" % column)
+	panel.free()

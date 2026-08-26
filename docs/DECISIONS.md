@@ -10,6 +10,88 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-290 — La soglia: il tempo, e quello che non tieni piu'
+
+**implemented in 0.1.252** — [la misura](MISURA_VITE.md) · [ISSUES 79](ISSUES.md#79-quattro-case-su-otto-non-hanno-un-profilo-e-quindi-non-hanno-una-soglia)
+
+Parola del committente:
+
+> *«un re deve controllare due città e sopravvivere se passa poco tempo, ma se
+> passano secoli due città non sono sufficienti per tenere il regno e questo si
+> trasforma in una repubblica»*
+
+Le case hanno già più **vite** ([D-108](#d-108)/[D-109](#d-109)): il popolo che
+si insedia diventa regno, la scuola diventa culto, il regno diventa repubblica.
+Il motore faceva due domande per aprirle — *c'è il segno?* e *la linea è
+finita?* — e mai la terza: **da quanto**.
+
+**Prima la misura** ([MISURA_VITE.md](MISURA_VITE.md), nei cancelli): delle 18
+vite scritte oltre la prima, in **168 salti d'era** (12 saghe da 8 anni, sui due
+tavoli, circa 780 anni l'una) **sette non si sono mai sedute** e altre cinque una
+volta sola. Tre case sole — Nahr, Vaerax e le Città Libere, le tre che non
+muoiono — si prendevano **88 trasformazioni su 88**. Fra le mortali, il Regno
+che diventa Repubblica: **una volta su 168**, e per esaurimento della dinastia,
+non perché avesse perso il regno.
+
+**La seconda porta.** Una vita può dichiarare `also_enters: {after_years,
+holds_at_least}`. Si apre quando sono passati almeno tanti anni da quando la
+pelle corrente si è seduta **e** il mondo non porta più almeno tanti dei segni
+che quella casa ha dichiarato di voler lasciare. Servono tutte e due: il tempo
+da solo fa sedere un erede, la perdita da sola pure.
+
+**L'elenco dei segni non si scrive sulla vita.** È il profilo strategico di
+[D-288](#d-288), lo stesso file che leggono il cervello e la colonna di destra.
+Un secondo elenco divergerebbe dal primo entro tre commit, e al tavolo sarebbero
+due carte da leggere invece di una. Il validatore rifiuta la porta su una casa
+senza profilo (regola morta) e la porta che chiede più segni di quanti il
+profilo ne dichiara (casa condannata dal primo salto): due difetti piantati in
+più nel self-test, che portano la guardia a 17.
+
+**Il contatore.** Il seggio porta `life_years` — non l'età della casa, l'età
+della **pelle**: riparte da zero a ogni trasformazione. Come `barren` e
+`saga_score` è un passaggio di setup, non un Effetto, ed è fra le eccezioni
+dichiarate all'effect-sourcing.
+
+**Tre porte scritte**, sulle tre case con profilo che avevano una vita adatta:
+la Repubblica della Valle (Aldric), il Culto della Misura (Lyra), la Diaspora
+di Nahr. Tutte a 150 anni e 2 segni.
+
+**Il numero, con le stesse 12 saghe:**
+
+| | prima | dopo |
+|---|---|---|
+| trasformazioni sedute | 88 | **106** |
+| Il Culto della Misura | 2 | **16** |
+| La Repubblica della Valle | 2 | **6** |
+| La Diaspora di Nahr | 0 | **0** |
+| vite mai sedute | 7 | **7** |
+
+**Due cose vanno dette, e sono tutte e due negative.** La prima: **la Diaspora
+resta chiusa**, e non è un difetto — Nahr, una volta insediato, *tiene* quello
+che voleva, e la regola sta funzionando. La seconda: **le vite mai sedute
+restano sette**, perché cinque di quelle sette appartengono alle quattro case
+che un profilo non ce l'hanno, e lì la porta non si può nemmeno scrivere. È
+[ISSUES 79](ISSUES.md#79-quattro-case-su-otto-non-hanno-un-profilo-e-quindi-non-hanno-una-soglia).
+
+**Il ritmo**, che era il rischio vero: nessuna casa muta più spesso di **1 salto
+su 6** (Nahr 1/6, Vaerax 1/6.5, Città Libere 1/7.6, Lyra 1/10.5, Aldric 1/21).
+Una casa che cambia pelle a ogni salto non ha un'identità, ha un costume: il
+cancello di MISURA_VITE tiene anche questo numero.
+
+**E si legge al tavolo.** La riga sta in fondo al blocco «COSA RESTERÀ DI TE»
+della colonna — *«dopo 150 anni con meno di 2 di questi segni: diventi La
+Repubblica della Valle»*, con sotto **da quanti anni la casa è quella che è** e
+**quanti segni tiene adesso** — e sul **tarocco della Casata**, che resta in
+vista tutta la partita: lì il profilo diventa una riga stampata («vuoi lasciare:
+…») e la soglia la riga sotto. Senza quelle due righe la regola sarebbe un
+rimando al manuale, che al tavolo vuol dire: non esiste.
+
+**Il costo dichiarato**: nessuno sul cancello (0 seggi bloccati su 8, misto e
+uniforme). La soglia vive nel livello **saga**, che oggi lo esercitano le sonde
+e non l'app: una partita singola non la incontra mai.
+
+---
+
 ## D-289 — Il profilo lo legge il cervello, e lo legge chi gioca
 
 **implemented in 0.1.251** — [ISSUES 78](ISSUES.md#78-il-profilo-strategico-lo-legge-la-misura-non-il-gioco)

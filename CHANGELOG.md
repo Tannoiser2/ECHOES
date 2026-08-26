@@ -5,6 +5,31 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.252 — La soglia: il tempo, e quello che non tieni piu' (D-290)
+
+- **Prima la misura**, congelata come cancello: `docs/MISURA_VITE.md` +
+  `cli/run_lives_probe.gd` + `tools/run_lives_survey.sh --check`. Delle 18 vite
+  scritte oltre la prima, in **168 salti d'era** sette non si erano **mai**
+  sedute; il Regno che diventa Repubblica, **una volta su 168**.
+- **La seconda porta**: `also_enters {after_years, holds_at_least}` su una vita.
+  Si apre quando è passato abbastanza tempo **e** il mondo non porta più
+  abbastanza dei segni che la casa vuole lasciare. Serve che siano vere tutte e
+  due.
+- **L'elenco lo dà il profilo (D-288), non la vita**: un secondo elenco
+  divergerebbe. Il validatore rifiuta la porta senza profilo e quella
+  impossibile da tenere chiusa — 17 difetti piantati, tutti mordono.
+- Il seggio porta `life_years`: l'età della **pelle**, non della casa.
+- **Il numero**: trasformazioni sedute **88 → 106**; il Culto della Misura
+  **2 → 16**, la Repubblica **2 → 6**. Le vite mai sedute restano **7**, perché
+  cinque appartengono alle quattro case senza profilo (ISSUES 79). La Diaspora
+  resta chiusa: Nahr insediato *tiene* quello che voleva, ed è la regola che
+  funziona.
+- Nessuna casa muta più spesso di 1 salto su 6.
+- **E si legge**: la riga della soglia in fondo a «COSA RESTERÀ DI TE», col
+  contatore degli anni, e sul tarocco della Casata «vuoi lasciare: …» più la
+  soglia sotto.
+- Cancello: 0 seggi bloccati su 8. 601 prove verdi.
+
 ## 0.1.251 — Il profilo lo legge il cervello, e lo legge chi gioca (D-289)
 
 - **Lo schermo**: in fondo alla colonna di destra il blocco **COSA RESTERÀ DI

@@ -2763,6 +2763,28 @@ e' in gioco.
 
 ---
 
+### 79. Quattro case su otto non hanno un profilo, e quindi non hanno una soglia
+
+`contenuto` · **aperta in 0.1.252** ([D-290](DECISIONS.md#d-290) ·
+[la misura](MISURA_VITE.md))
+
+La porta del tempo legge il profilo strategico, per non essere un secondo
+elenco che diverge dal primo. Conseguenza diretta: **si può scrivere solo sulle
+quattro case che un profilo ce l'hanno** — Aldric, Nahr, Lyra, Vaerax. Le altre
+quattro (Cenere, Città Libere, Sale, Vetro) non possono averla, e il validatore
+lo dice a voce alta invece di lasciarla scrivere e non aprire mai.
+
+Il conto: delle **sette vite che in 168 salti d'era non si sono mai sedute**,
+**cinque** appartengono a quelle quattro case — I Forni Riaccesi e Le Custodi
+della Cenere, La Compagnia del Sale, e le vite tardive del Vetro. Sono
+contenuto scritto che al tavolo non esiste (D-035), e la chiave per aprirle
+esiste già: manca il profilo.
+
+**Fatto quando** le otto case hanno un profilo scritto con la stessa forma delle
+quattro di D-288, e `MISURA_VITE.md` mostra le vite mai sedute scendere.
+
+---
+
 ### 78. Il profilo strategico lo legge la misura, non il gioco
 
 `motore` · `ux` · **aperta in 0.1.250** ([D-288](DECISIONS.md#d-288)) ·

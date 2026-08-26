@@ -481,6 +481,54 @@ func _update_profile(session: RefCounted, viewer_id: String) -> void:
 			row.tooltip_text = str((voice as Dictionary).get("why", ""))
 			_profile.add_child(row)
 
+	_add_threshold(session, viewer_id, mine as Dictionary)
+
+
+## **E cosa succede se non li tieni** (D-290): la soglia, stampata sotto i segni
+## che conta. Al tavolo e' la riga in fondo alla carta della Casata — «dopo un
+## secolo, se il mondo non porta almeno due di questi, la casa diventa
+## un'altra cosa» — e accanto c'e' l'unico numero che serve per saperlo:
+## **da quanti anni questa pelle e' seduta**.
+func _add_threshold(session: RefCounted, viewer_id: String, profile: Dictionary) -> void:
+	var entity: Variant = session.data.entities.get(viewer_id)
+	if entity == null:
+		return
+	var seat: Dictionary = (session.world.get("entities", {}) as Dictionary).get(
+		viewer_id, {}
+	) as Dictionary
+	var lives: Array = (entity as Dictionary).get("incarnations", []) as Array
+	var now: int = int(seat.get("incarnation", 0))
+	for index in range(now + 1, lives.size()):
+		var life: Dictionary = lives[index] as Dictionary
+		var door: Dictionary = life.get("also_enters", {}) as Dictionary
+		if door.is_empty():
+			continue
+		var held: int = 0
+		for voice in profile.get("wants", []) as Array:
+			if _world_carries(session, str((voice as Dictionary).get("tag", ""))):
+				held += 1
+		var line := Label.new()
+		line.text = "dopo %d anni con meno di %d di questi segni: diventi %s" % [
+			int(door.get("after_years", 0)), int(door.get("holds_at_least", 1)),
+			str(life.get("name", "")),
+		]
+		line.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		line.add_theme_font_size_override("font_size", 11)
+		line.add_theme_color_override("font_color", Color("#b06b8f"))
+		line.tooltip_text = str(life.get("description", ""))
+		_profile.add_child(line)
+		var clock := Label.new()
+		clock.text = "questa casa e' cosi' da %d anni · adesso ne tieni %d" % [
+			int(seat.get("life_years", 0)), held,
+		]
+		clock.add_theme_font_size_override("font_size", 11)
+		clock.add_theme_color_override(
+			"font_color",
+			Color("#c8553d") if held < int(door.get("holds_at_least", 1)) else Color("#8a8172")
+		)
+		_profile.add_child(clock)
+		return
+
 
 ## Il segno e' sul tavolo adesso? Fatto del mondo, segno di una Regione, o segno
 ## di una casa: le tre case in cui un segno puo' vivere (D-259).
