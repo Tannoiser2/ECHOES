@@ -2763,6 +2763,39 @@ e' in gioco.
 
 ---
 
+### 84. L'Eredita' e' misurabile, e quasi inerte
+
+`regole` · `da-decidere` · **aperta in 0.1.262** ([D-299](DECISIONS.md#d-299))
+
+Il secondo punteggio che il documento sulle trasformazioni chiede — *quanto di
+quello che hai lasciato sopravvive al tempo* — e' stato misurato in tre versioni
+su 672 salti d'era, **senza cambiare nessuna regola**.
+
+Sommata ai gradini delle Chronicle, l'Eredita' **ribalta il vincitore della saga
+4 volte su 24**, e l'accordo con chi ha piu' Trionfi passa da **4 a 5 su 24**:
+dentro il rumore.
+
+La ragione e' la solita, e arriva dalla terza misura diversa: la versione «solo
+quello che si poteva perdere» collassa a un +1 piatto (nessuna casa tiene due
+segni perdibili a un salto), e quella scritta nel documento paga di piu' le case
+i cui desideri sono **memorie** — il Sale 2,56 a salto contro l'1,05 di Vaerax e
+del Vetro. Cioe' premia la durata con un altro nome.
+
+**Le tre strade**, e la decisione e' del committente:
+
+1. **non scriverla** finche' ISSUES 76 non e' chiusa: la moneta non viene
+   coniata, e nessuna scala puo' pesare quello che non c'e';
+2. **scrivere la sola variante delle leggende** — *«+3 per ogni leggenda che
+   porta il tuo nome»* — che e' l'unica che dice una cosa vera senza inventare
+   un dato, ribalta il vincitore una volta su 24 e sta in una riga;
+3. **cambiare i profili** perche' i desideri siano cose che il mondo sa dare e
+   togliere, e allora tutte e tre le versioni tornano vive.
+
+**Fatto quando** il committente ha scelto, e la sonda mostra il numero muoversi
+nella direzione scelta.
+
+---
+
 ### 83. La porta spalancata: una gamba che nessuno riesce mai a tenere
 
 `regole` · `da-misurare` · **aperta in 0.1.261** ([D-298](DECISIONS.md#d-298))

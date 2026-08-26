@@ -5,6 +5,22 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.262 — L'Eredita' misurata, e per adesso non scritta (D-299)
+
+- `cli/run_inheritance_probe.gd`: il secondo punteggio del documento sulle
+  trasformazioni, misurato **senza cambiare regole**, in tre versioni, su 672
+  salti d'era.
+- **È misurabile ed è quasi inerte**: sommata ai gradini ribalta il vincitore
+  della saga **4 volte su 24**, e l'accordo con chi ha più Trionfi passa da 4 a
+  **5 su 24** — dentro il rumore.
+- **Perché**: la versione «solo quello che si poteva perdere» collassa a un +1
+  piatto per tutti; quella scritta paga di più le case i cui desideri sono
+  **memorie** (Sale 2,56 a salto contro 1,05 di Vaerax e Vetro) — cioè premia
+  la durata con un altro nome, che è quello che il committente non vuole.
+- **Non l'ho scritta come regola.** La variante che salverei è la terza: *+3 per
+  ogni leggenda che porta il tuo nome*. ISSUES 84 porta le tre strade al
+  committente.
+
 ## 0.1.261 — La soglia legge quello che il mondo sa togliere (D-298)
 
 - **La grammatica ricca della porta del tempo**, come la chiede il documento

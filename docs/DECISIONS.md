@@ -10,6 +10,65 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-299 — L'Eredita' misurata, e per adesso non scritta
+
+**flagged in 0.1.262** — passo (d) della linea delle trasformazioni ·
+[ISSUES 84](ISSUES.md#84-lredita-e-misurabile-e-quasi-inerte)
+
+Il documento del committente chiede un secondo punteggio:
+
+> *«La domanda non deve essere: l'Entità è ancora in gioco? La domanda deve
+> essere: il mondo parla ancora la lingua che quell'Entità voleva lasciare?»*
+
+`cli/run_inheritance_probe.gd` **non cambia nessuna regola**: gioca le saghe come
+sono e tiene un punteggio a fianco, come fece [D-181](#d-181) con le cinque
+scale. Ad ogni salto d'era classifica ogni casa — *radicata* +3, *fedele* +2,
+*sopravvissuta* +1, *distorta* +1, *svanita* +0 — e poi si guarda cosa produce.
+
+**Tre versioni misurate, 12 saghe da 8 anni sui due tavoli, 672 salti d'era.**
+
+| | radicata | fedele | sopravvissuta | distorta |
+|---|---|---|---|---|
+| **come sta scritta** (conta i desideri sul tavolo) | 16% | 26% | 54% | 4% |
+| **solo quello che si poteva perdere** | 0% | 0,1% | 82% | 18% |
+| **la leggenda** (quello che il tempo racconta ancora) | 51% | — | 36% | 13% |
+
+**E la domanda vera**, perché l'Eredità non è una scala alternativa: è un bonus
+**sopra** i gradini delle Chronicle.
+
+| | vince chi ha più Trionfi | l'Eredità ribalta il vincitore |
+|---|---|---|
+| soli gradini | 4 su 24 | — |
+| gradini + Eredità *(come scritta)* | **5 su 24** | 4 su 24 |
+| gradini + Eredità *(leggende)* | **5 su 24** | 1 su 24 |
+
+**È misurabile, ed è quasi inerte.** Sposta il vincitore della saga quattro
+volte su ventiquattro, e l'accordo con chi ha più Trionfi passa da 4 a 5 su 24 —
+dentro il rumore.
+
+**Perché**, ed è la terza volta che questa frase esce da una misura diversa: la
+moneta non viene coniata. La versione *«solo quello che si poteva perdere»*
+collassa a un +1 piatto per tutti — **nessuna casa tiene due segni perdibili a
+un salto d'era** — e quella *«come scritta»* paga di più le case i cui desideri
+sono **memorie** (il Sale prende 2,56 a salto, Vaerax e il Vetro 1,05), cioè
+premia chi ha scritto cose che una volta accadute non si perdono più. Che è
+*premiare la durata con un altro nome*, esattamente quello che il committente ha
+scritto di non volere.
+
+**Quindi non l'ho scritta come regola.** Resta la sonda, e restano i numeri, e
+resta la strada: l'Eredità morde il giorno in cui il tavolo sa **dare e togliere**
+le cose che le case dichiarano di volere — che è [ISSUES 76](ISSUES.md#76-il-consiglio-decide-con-una-moneta-che-i-destini-non-spendono),
+ancora e sempre.
+
+**La variante che salverei** è la terza: *radicata* = «di quella cosa il mondo
+parla ancora un secolo dopo», letta sulle **leggende** che il tempo fabbrica da
+solo al salto. È l'unica delle tre che dice una cosa vera senza inventare un
+dato nuovo, ribalta il vincitore una volta su ventiquattro invece di quattro, e
+starebbe in una riga di regolamento: *«a fine saga, +3 per ogni leggenda che
+porta il tuo nome»*.
+
+---
+
 ## D-298 — La soglia legge quello che il mondo sa togliere
 
 **implemented in 0.1.261** — passo (c) della linea delle trasformazioni ·
