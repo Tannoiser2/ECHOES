@@ -10,6 +10,87 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-306 — Una casella che non puo' fare niente non si compra, e non si paga
+
+**implemented** (0.1.268)
+
+Costruendo [D-305](#d-305) e' venuta fuori una misura che non aspettavo, e che
+riguarda il cuore del Consiglio:
+
+> **Il 44% dei benefici comprati non lasciava niente.**
+
+Su 40 anni, di 224 caselle di beneficio applicate, **99 non spostavano un
+grammo di mondo**: 52 volte «Riapri l'accesso» su un luogo che non era chiuso,
+24 volte «Cambia controllo» verso chi il luogo lo teneva gia', 23 volte una
+Pietra che stava gia' li' ed era gia' sua. E **21 costi su 92** non mordevano:
+il fronte avverso imponeva un prezzo che non era un prezzo, e il beneficio
+usciva gratis.
+
+E la causa principale **non era** la sovrapposizione con la frase d'autore
+(ISSUES 87), che e' quello che avevo dato per scontato. Era piu' semplice: **il
+menu offriva caselle che in quella situazione non potevano fare niente.**
+
+### Al tavolo non succede
+
+Nessuno posa una pedina su «Riapri l'accesso» se il luogo non e' chiuso: si
+guarda la mappa e si vede. `CouncilEconomy.voice_bites()` e' quel colpo
+d'occhio — verbo per verbo, guarda il mondo e dice se la casella puo' fare
+qualcosa qui e adesso — e i due menu si costruiscono con lei.
+
+E' la stessa regola che [`validate_physical.py`](../tools/validate_physical.py)
+gia' impone alle carte, dove **una scelta finta e' un difetto**: qui vale sul
+tavolo invece che sui dati.
+
+Tre conseguenze:
+
+1. **il menu offre solo caselle vive** — sia i benefici che i costi;
+2. **non si compra piu' di quanto si possa pagare**: il primo beneficio e'
+   gratis, ogni altro vuole un costo che morda, quindi il tetto e' `min(3, 1 +
+   costi vivi)`;
+3. **e se una casella comprata non lascia niente lo stesso, il verbale lo
+   dice** — «...e non lascia niente: era gia' cosi'». Fra l'acquisto e la
+   risoluzione passa la frase d'autore, che puo' aver fatto lei la stessa cosa;
+   quello resta ISSUES 87, ma almeno smette di succedere in silenzio (regola di
+   D-030: detto invece che taciuto).
+
+### E un difetto trovato per strada
+
+`_control_of` faceva `str(region["control"])` su un luogo di nessuno, dove
+`control` vale **null**. In GDScript `str(null)` non e' la stringa vuota: e'
+`"<null>"`. CEDI CONTROLLO mordeva su un luogo che non c'era niente da cedere.
+
+### I numeri
+
+| | prima | dopo |
+|---|---|---|
+| benefici comprati che non lasciano niente | **99 su 224 (44%)** | **46 su 193 (24%)** |
+| costi che scattano a vuoto | 21 su 92 | **1 su 63** |
+| benefici comprati a Consiglio | 1.69 | 1.49 |
+| quanti alla volta (1 / 2 / 3) | 103 / 28 / 48 | 102 / 64 / 12 |
+| trasformazioni sedute (168 salti) | 174 | **185** |
+| **vite che non si sono mai sedute** | 7 | **6** |
+
+**Il 24% che resta e' tutto ISSUES 87**: 25 CAMBIA CONTROLLO e 21 Pietre dove
+la frase d'autore, che si applica prima, ha gia' fatto quello che la carta
+vendeva. Adesso quel numero e' isolato e ha un nome.
+
+**E il costo di D-305 rientra**: le vite che non si siedono mai tornano da 7 a
+6, le trasformazioni da 174 a 185. Non l'ho cercato — e' venuto perche' i
+Consigli hanno smesso di spendere pedine su niente.
+
+**Il numero che scende, dichiarato**: si comprano meno benefici (1.69 → 1.49) e
+quasi mai tre alla volta (48 → 12), perche' il tetto adesso dipende da quanti
+costi mordono. E' l'economia che diventa vera: prima si compravano tre caselle
+di cui una o due morte, pagando due prezzi di cui uno finto.
+
+Il piano `plan_d_crown_calls` e' ribasato: sei domande invece di cinque, la
+seconda cade, Echi da 2 a 1. Riguarda quella storia sola — gli altri tre piani
+ne lasciano 4, 2 e 4.
+
+Playtest 100 semi: **0 seggi bloccati su 8**, misto e uniforme. Suite 612.
+
+---
+
 ## D-305 — La carta vince sulla frase d'autore
 
 **implemented** (0.1.267) · chiude [ISSUES 86](ISSUES.md)

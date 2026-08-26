@@ -38,6 +38,34 @@ func _open() -> void:
 	session.confluence.open(TENSION, {"kind": "THRESHOLD"})
 	var options: Array = session.confluence.available_propositions()
 	session.confluence.set_proposition(str(options[0]["id"]))
+	_make_every_casella_live()
+
+
+## **Il tavolo in cui ogni casella della carta puo' fare qualcosa** (D-306).
+## Da D-306 una casella che qui non farebbe niente non si compra; una prova che
+## guarda il **tabellone** vuole la carta intera, quindi se la fabbrica.
+func _make_every_casella_live() -> void:
+	var context: Dictionary = session.confluence.effect_context()
+	var region_id: String = str(context.get("region_focus", ""))
+	assert_ne(region_id, "", "il Consiglio discute di un luogo")
+	var region: Dictionary = session.world["regions"][region_id]
+	var tags: Array = region["tags"] as Array
+	for tag in ["condition:starving", "condition:cut_off"]:
+		if not tags.has(tag):
+			tags.append(tag)
+	for tag in ["condition:rationed", "structure:tollgate", "condition:indebted"]:
+		tags.erase(tag)
+	var proponent: String = str(context.get("proponent", ""))
+	var rival: String = str(context.get("rival", ""))
+	for entity_id in session.world["entities"]:
+		if str(entity_id) != proponent and str(entity_id) != rival:
+			region["control"] = str(entity_id)
+			break
+	var theme_id: String = str(data().tensions[TENSION].get("theme", ""))
+	if theme_id != "":
+		if not session.world.has("theme_heat"):
+			session.world["theme_heat"] = {}
+		(session.world["theme_heat"] as Dictionary)[theme_id] = 3
 
 
 func _drawn() -> Array:

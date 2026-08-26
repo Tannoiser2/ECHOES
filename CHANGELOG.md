@@ -5,6 +5,41 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.268 — Una casella che non può fare niente non si compra, e non si paga (D-306)
+
+- **Misurato costruendo D-305, e non me l'aspettavo: il 44% dei benefici
+  comprati non lasciava niente.** Su 40 anni, 99 caselle su 224 non spostavano
+  un grammo di mondo — 52 «Riapri l'accesso» su luoghi non chiusi, 24 «Cambia
+  controllo» verso chi già teneva, 23 Pietre già sue. E 21 costi su 92 non
+  mordevano: il prezzo non era un prezzo.
+- **E la causa principale non era ISSUES 87**, come avevo dato per scontato:
+  era che il menu offriva caselle che lì non potevano fare niente.
+- **Al tavolo non succede**: nessuno posa la pedina su «Riapri l'accesso» se il
+  luogo non è chiuso. `CouncilEconomy.voice_bites()` è quel colpo d'occhio, e i
+  due menu si costruiscono con lei. È la stessa regola che il validatore già
+  impone alle carte, dove una scelta finta è un difetto.
+- **Non si compra più di quanto si possa pagare**: il tetto è
+  `min(3, 1 + costi vivi)`.
+- **E se una casella comprata non lascia niente lo stesso, il verbale lo dice**
+  — «…e non lascia niente: era già così». Prima era silenzio.
+- **Un difetto trovato per strada**: `_control_of` faceva `str(control)` su un
+  luogo di nessuno, dove `control` è **null** — e in GDScript `str(null)` non è
+  la stringa vuota, è `"<null>"`. CEDI CONTROLLO mordeva dove non c'era niente
+  da cedere.
+- **I numeri**: benefici a vuoto **44% → 24%**, costi a vuoto **21 → 1**. Il
+  24% che resta è tutto ISSUES 87, e adesso ha un nome e un numero.
+- **E il costo di D-305 rientra**: vite che non si siedono mai **7 → 6**,
+  trasformazioni **174 → 185**. Non l'ho cercato.
+- **Il numero che scende, dichiarato**: benefici comprati 1.69 → 1.49 a
+  Consiglio, e quasi mai tre alla volta (48 → 12). È l'economia che diventa
+  vera: prima si compravano tre caselle di cui una o due morte, pagando due
+  prezzi di cui uno finto.
+- `plan_d_crown_calls` ribasato: sei domande invece di cinque, la seconda cade,
+  Echi 2 → 1. Riguarda quella storia sola: gli altri tre piani ne lasciano 4, 2 e 4.
+- Playtest 100 semi: **0 seggi bloccati su 8**, misto e uniforme. Suite **612**.
+
+---
+
 ## 0.1.267 — La carta vince sulla frase d'autore (D-305)
 
 - **Scelta del committente su ISSUES 86: la carta vince.** Le due liste
