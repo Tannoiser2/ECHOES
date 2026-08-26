@@ -10,6 +10,60 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-300 — La fame non aveva un posto da cui entrare
+
+**implemented in 0.1.263** — [ISSUES 82](ISSUES.md#82-la-coda-della-fustella-cicatrici-rare-che-vanno-bene-e-condizioni-che-non-succedono), strada 2
+
+[D-296](#d-296) aveva diviso la coda della fustella in due: *«le Cicatrici rare
+sono design, le condizioni rare sono un buco»*. Il caso peggiore era
+`condition:starving` — **un anno su quaranta**, mentre la fame è un Tema del
+gioco e le Tensioni della Sopravvivenza sono dieci.
+
+**La causa, cercata invece che immaginata**: nei dati, `condition:starving` la
+scrivono tre cose in tutto — una carta Asset, una Conseguenza, e un Echo che sta
+nella Chronicle 03. E soprattutto: **nessuna delle dieci Tensioni della
+Sopravvivenza sa affamare qualcuno.** La Carestia, se cade, lascia
+*«contesa»*. Il Grano Guasto, se cade, lascia *«contesa»*. Le Reti Vuote,
+*«contesa»*.
+
+**La cura è una riga di finzione, non una regola nuova.** La lista `failure` di
+una carta è *«cosa succede se nessuno decide»*: per una domanda sulla fame, la
+risposta onesta è che **la gente ha fame**.
+
+| carta | se cade, prima | se cade, adesso |
+|---|---|---|
+| La Carestia | contesa | **#fame** — *«i granai restano chiusi a chiave: chi ha fame se lo ricorda»* |
+| Il Grano Guasto | contesa | **#fame** |
+| Le Reti Vuote | contesa | **#fame** |
+| I Pozzi Bassi | contesa | **#magra** |
+| L'Inverno Lungo | tagliata fuori | tagliata fuori **+ #magra** |
+
+**Il numero**: `condition:starving` da **1 a 3 anni su 40**, `condition:lean` da
+**1 a 3**.
+
+**E la cosa che vale più del numero.** Il segno aveva già i denti, e non li
+aveva mai mostrati: nel registro adesso si legge *«Il segno pesa: La fame mangia
+le scorte»*, e al Consiglio dopo *«Il segno pesa sul Consiglio: **la fame siede
+al tavolo**»*. Le regole c'erano da sempre — mancava solo un posto da cui la
+fame potesse entrare nel mondo.
+
+**Il costo dichiarato**, e non è piccolo: **una simulazione scritta a mano è
+cambiata**. `plan_b_broken_council` passa da tre Consigli a quattro, e la
+domanda della Carestia **cade due volte** invece di una, perché la fame posata
+dalla prima caduta pesa sul secondo tavolo. La storia del piano è migliorata —
+la lezione era *«dire di no non chiude niente»*, e adesso è *«dire di no non
+chiude niente, e costa fame a chi guarda»* — ma la prosa del piano descriveva la
+partita vecchia, quindi l'ho riscritta.
+
+**Quello che non ho fatto**: non ho toccato `condition:requisitioned` (1 anno su
+40). Il suo posto naturale sarebbe un **beneficio** del Consiglio — la corona
+che si prende il grano — e i benefici della carta li tocca il taglio 2, che
+aspetta la parola del committente.
+
+**Cancello**: 0 seggi bloccati su 8, misto e uniforme. 609 prove.
+
+---
+
 ## D-299 — L'Eredita' misurata, e per adesso non scritta
 
 **flagged in 0.1.262** — passo (d) della linea delle trasformazioni ·

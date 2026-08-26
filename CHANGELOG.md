@@ -5,6 +5,20 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.263 — La fame non aveva un posto da cui entrare (D-300)
+
+- **Nessuna delle dieci Tensioni della Sopravvivenza sapeva affamare qualcuno**:
+  la Carestia, se cadeva, lasciava «contesa». Adesso la lista `failure` dice la
+  cosa onesta — *«i granai restano chiusi a chiave: chi ha fame se lo ricorda»*.
+- `condition:starving` **1 → 3 anni su 40**, `condition:lean` **1 → 3**.
+- **E il segno aveva già i denti**: nel registro compaiono «La fame mangia le
+  scorte» e, al Consiglio dopo, «**la fame siede al tavolo**». Le regole c'erano
+  da sempre: mancava un posto da cui la fame potesse entrare.
+- **Costo dichiarato**: `plan_b_broken_council` passa da 3 Consigli a 4 e la
+  Carestia cade **due volte**, perché la fame posata dalla prima caduta pesa sul
+  secondo tavolo. Prosa del piano riscritta sulla partita nuova.
+- Cancello: 0 seggi bloccati su 8. 609 prove verdi.
+
 ## 0.1.262 — L'Eredita' misurata, e per adesso non scritta (D-299)
 
 - `cli/run_inheritance_probe.gd`: il secondo punteggio del documento sulle

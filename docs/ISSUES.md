@@ -2851,6 +2851,13 @@ profili** come voluti o temuti — e' ISSUES 76 un'altra volta.
    `condition:starving`, e perche' non scatta mai;
 3. non toccare niente: 9 tipi in tavola per anno non sono troppi da imparare.
 
+**In 0.1.263 la strada 2 e' stata imboccata per la fame**
+([D-300](DECISIONS.md#d-300)): nessuna delle dieci Tensioni della Sopravvivenza
+sapeva affamare qualcuno, e adesso quattro di loro lo fanno quando cadono.
+`condition:starving` **1 → 3 anni su 40**, `condition:lean` **1 → 3**. Restano
+in coda `condition:requisitioned` (il suo posto e' un beneficio del Consiglio, e
+i benefici li tocca il taglio 2), `condition:mourning` e `condition:plundered`.
+
 **Fatto quando** il committente ha scelto, e il numero della coda si e' mosso
 nella direzione scelta.
 
