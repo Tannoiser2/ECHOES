@@ -10,6 +10,96 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-302 — Il quarto beneficio: prima non si poteva, e adesso non conviene
+
+**implemented in 0.1.265** — chiude la meta' misurabile di
+[ISSUES 85](ISSUES.md#85-il-quarto-beneficio-non-si-compra-mai-e-la-cicatrice-non-scatta)
+
+[D-301](#d-301) aveva trovato il numero: in quarant'anni **nessuno compra
+quattro benefici**, e per questo la Cicatrice stampata su sedici carte non si
+posa mai. Le letture possibili erano due, e la voce chiedeva di provarle in
+ordine. **Sono vere tutte e due.**
+
+**Prima lettura, ed era un difetto vero.** Il cervello si fermava a tre per
+costruzione: `for i in range(1, mini(ranked.size(), MAX_BENEFITS))`. Il quarto
+non veniva *rifiutato*: non veniva **guardato**. La riga di
+[D-280](#d-280) — *«una Cicatrice ne compra uno oltre il limite»* — era
+irraggiungibile dal codice, non solo rara. Adesso il tetto lo legge dalla carta
+(`benefit_ceiling`), come fa il controller, e il quarto entra nella scelta.
+
+**Seconda lettura, e si vede solo dopo aver tolto la prima.** Con il tetto
+alzato, il quarto **continua a non comprarsi mai** — e adesso si sa il perche',
+in cifre. Il ramo si esercita (cinque volte in sei anni) e dice sempre la stessa
+cosa:
+
+```
+QUARTO: score=1  worst=-2  scar=-2  ->  -3
+```
+
+Il quarto beneficio vale **+1**; il peggior prezzo che gli avversari possono
+imporre vale **-2**, e la Cicatrice altri **-2**. Nessun beneficio di una carta
+vale quattro punti di prezzo, perche' i cinque benefici stampati si somigliano
+per forza: sono un vocabolario chiuso.
+
+**Quindi il difetto non e' del bot: e' dell'economia.** La regola della
+Cicatrice, com'e' scritta, non e' una scelta difficile — e' una scelta che
+nessuno farebbe. Tre strade, e sono del committente:
+
+1. **il quarto vale di piu'**: la carta dichiara *quale* dei benefici e' quello
+   grosso, e quello si compra solo con la Cicatrice;
+2. **la Cicatrice costa meno**: e' permanente, ma non e' peggio del peggior
+   costo — oggi pesa quanto quello, e si somma;
+3. **la riga si toglie** dalla carta, invece di restarci a fare finta.
+
+**Il costo dichiarato di questa modifica: nessun numero si muove.** Benefici
+comprati 268, spread invariato (1x89, 2x31, 3x39, 4 mai), playtest 0 seggi
+bloccati su 8. Quello che cambia e' che **adesso la regola e' raggiungibile**, e
+il giorno in cui una delle tre strade viene scelta funziona da sola.
+
+---
+
+## D-301 — Il sigillo: un incrocio a tre che non si poteva giocare
+
+**implemented in 0.1.264** — [ISSUES 82](ISSUES.md#82-la-coda-della-fustella-cicatrici-rare-che-vanno-bene-e-condizioni-che-non-succedono) ·
+apre [ISSUES 85](ISSUES.md#85-il-quarto-beneficio-non-si-compra-mai-e-la-cicatrice-non-scatta)
+
+Dei quattro segnalini **mai visti in quarant'anni**, due erano nominati dai
+profili: `structure:sealed` — che **Vaerax e il Vetro vogliono** e che **la
+Cenere teme** — e `scar:unanswered`, che **Lyra teme**. Un incrocio a tre,
+scritto e impossibile: nei dati il sigillo lo posavano due sole Conseguenze, e
+quelle Conseguenze arrivano solo se passa una proposta d'autore precisa.
+
+**La cura sta nella grammatica che c'è già.** Quattro carte del Tema Antico —
+I Dormienti, Il Dissotterrato, Gli Echi nel Fondo, La Cenere che Sale — adesso
+portano il sigillo sulle **due liste**, che è la forma di [D-280](#d-280):
+
+- fra i **costi**, *«Il luogo viene murato: quello che sta sotto resta sotto»* —
+  e il costo lo scelgono **gli avversari**;
+- fra i **benefici**, *«Cade il sigillo: quello che era murato torna
+  raggiungibile»* — e il beneficio lo compra **il proponente**.
+
+Sulla stessa carta, la stessa cosa da due parti opposte. Nessun verbo nuovo:
+`ADD_CONDITION` e `CLEAR_CONDITION` con il segno nominato, che il vocabolario
+chiuso già permette.
+
+**Il numero, onesto e piccolo**: `structure:sealed` passa da **mai** a **un anno
+su quaranta**. I segnalini mai visti scendono da 4 a 3. È poco, ed è la
+differenza fra una regola che non esiste e una regola rara: prima quel segno non
+aveva **nessuna strada** per entrare nel mondo, e adesso ne ha una che passa da
+una decisione al tavolo.
+
+**E la misura ne ha tirata fuori un'altra, che vale più di questa.**
+`scar:unanswered` sta come **Cicatrice** su sedici carte Tensione, e non si posa
+mai perché la Cicatrice si paga solo comprando il **quarto** beneficio — e in
+quaranta anni nessuno ne ha comprati quattro: *2 benefici 31 volte, 1 beneficio
+89, 3 benefici 39, **4 mai***. La regola di D-280 *«una Cicatrice ne compra uno
+oltre il limite»* non è mai stata esercitata: contenuto che esiste nei dati e
+non esiste al tavolo, ed è [ISSUES 85](ISSUES.md#85-il-quarto-beneficio-non-si-compra-mai-e-la-cicatrice-non-scatta).
+
+**Cancello**: 0 seggi bloccati su 8, misto e uniforme. 609 prove.
+
+---
+
 ## D-300 — La fame non aveva un posto da cui entrare
 
 **implemented in 0.1.263** — [ISSUES 82](ISSUES.md#82-la-coda-della-fustella-cicatrici-rare-che-vanno-bene-e-condizioni-che-non-succedono), strada 2

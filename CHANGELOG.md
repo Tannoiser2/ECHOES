@@ -5,6 +5,34 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.265 — Il quarto beneficio: prima non si poteva, e adesso non conviene (D-302)
+
+- **Difetto vero, corretto**: il cervello si fermava a tre benefici *per
+  costruzione* — il quarto non veniva rifiutato, non veniva **guardato**. La
+  riga di D-280 «una Cicatrice ne compra uno oltre il limite» era
+  irraggiungibile dal codice. Adesso il tetto lo legge dalla carta.
+- **E col tetto alzato non si compra lo stesso**, e adesso si sa perché:
+  `score=+1, worst=-2, scar=-2 → -3`. **Il quarto beneficio vale uno e costa
+  quattro.** Non è il bot: è l'economia.
+- Tre strade per il committente (D-302): il quarto vale di più, la Cicatrice
+  costa meno, oppure la riga si toglie dalla carta.
+- Nessun numero si muove: benefici 268, spread invariato, playtest 0 su 8.
+
+## 0.1.264 — Il sigillo: un incrocio a tre che non si poteva giocare (D-301)
+
+- `structure:sealed` — che **Vaerax e il Vetro vogliono** e che **la Cenere
+  teme** — non aveva nessuna strada per entrare nel mondo. Adesso quattro carte
+  del Tema Antico lo portano sulle due liste: fra i **costi** («il luogo viene
+  murato») e fra i **benefici** («cade il sigillo»). La stessa cosa da due parti
+  opposte, sulla stessa carta.
+- **Il numero, piccolo e onesto**: da **mai** a **1 anno su 40**. I segnalini
+  mai visti scendono da 4 a 3.
+- **E la misura ne ha tirata fuori una più grossa**: `scar:unanswered` sta come
+  Cicatrice su 16 carte e non si posa mai, perché **nessuno compra il quarto
+  beneficio** — 1 benefico 89 volte, 2 → 31, 3 → 39, **4 → mai**. La regola di
+  D-280 non è mai stata esercitata: ISSUES 85.
+- Cancello: 0 seggi bloccati su 8. 609 prove verdi.
+
 ## 0.1.263 — La fame non aveva un posto da cui entrare (D-300)
 
 - **Nessuna delle dieci Tensioni della Sopravvivenza sapeva affamare qualcuno**:

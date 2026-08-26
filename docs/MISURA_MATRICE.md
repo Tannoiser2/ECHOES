@@ -15,11 +15,11 @@ piano, misurate sui dati di oggi **prima** di scrivere un file nuovo.
 | **clausole impossibili** (chiedono un segno che niente scrive) | **0** |
 | **livelli che si reggono solo su conteggi** | **33** |
 | Tensioni | 60 |
-| **Tensioni che non toccano nessun segno nominato da un Destino** | **35** |
+| **Tensioni che non toccano nessun segno nominato da un Destino** | **34** |
 | segni che l'eredita' porta avanti | 49 |
 | profili strategici scritti | 8 |
 | segni che quelle case vogliono o temono | 68 |
-| **fra i voluti, quelli che un Consiglio sa dare** | **5** |
+| **fra i voluti, quelli che un Consiglio sa dare** | **7** |
 | segni che aiutano una casa e ne danneggiano un'altra | 15 |
 | **coppie di case che hanno qualcosa per cui litigare** | **9 su 28** |
 
@@ -190,7 +190,7 @@ cose che nessuno sa dare non ha una strategia: ha un desiderio.
 | vuole | `discovery:crystal` | no | **si'** | Conseguenza |
 | vuole | `structure:road` | no | no | — |
 | teme | `mine_sealed` | no | no | Conseguenza, fatto che dura |
-| teme | `structure:sealed` | no | no | Conseguenza |
+| teme | `structure:sealed` | **si'** | no | Conseguenza |
 | teme | `condition:emptied` | **si'** | **si'** | Conseguenza, carta Echo |
 | teme | `study_supervised` | no | no | Conseguenza |
 
@@ -263,7 +263,7 @@ cose che nessuno sa dare non ha una strategia: ha un desiderio.
 | | segno | dal Consiglio | da una carta | altrimenti |
 |---|---|---|---|---|
 | vuole | `mine_sealed` | no | no | Conseguenza, fatto che dura |
-| vuole | `structure:sealed` | no | no | Conseguenza |
+| vuole | `structure:sealed` | **si'** | no | Conseguenza |
 | vuole | `mountain_forgotten` | no | no | catena delle ere |
 | vuole | `place:sleeping_site` | **si'** | no | Pietra |
 | teme | `crystal_exploited` | no | **si'** | Conseguenza |
@@ -281,7 +281,7 @@ cose che nessuno sa dare non ha una strategia: ha un desiderio.
 | vuole | `anointed` | no | no | Conseguenza |
 | vuole | `faith_established` | no | no | Conseguenza, fatto che dura |
 | vuole | `relic_buried` | no | no | Conseguenza, fatto che dura |
-| vuole | `structure:sealed` | no | no | Conseguenza |
+| vuole | `structure:sealed` | **si'** | no | Conseguenza |
 | teme | `knowledge_shared` | no | **si'** | clausola di Consiglio |
 | teme | `crystal_measured` | no | **si'** | carta Echo |
 | teme | `ledger_public` | no | **si'** | Conseguenza, carta Asset, clausola di Consiglio, fatto che dura |
@@ -299,7 +299,7 @@ hanno un conflitto *strutturale* — la loro faccia alza una Pietra e
 incide una Cicatrice, e i Destini contano l'una e l'altra — ma quel
 conflitto e' **identico su tutte**: e' il modello della faccia (D-280),
 non e' contenuto. Il conflitto che distingue una questione dall'altra e'
-quello **nominato**, e li' il conto e' **35 su 60**.
+quello **nominato**, e li' il conto e' **34 su 60**.
 
 **Il conto e' un pavimento**: guarda i segni che la faccia della carta
 posa e toglie, non il controllo, non il Calore, non chi ci guadagna in
@@ -339,7 +339,6 @@ D-270): un interesse c'e', ma non e' ancora un conflitto.
 | TEN_SUCCESSION | 9 | 8 | 2 |
 | TEN_THIRST | 9 | 8 | 1 |
 | TEN_TITHE | 9 | 8 | 1 |
-| TEN_UNEARTHED | 9 | 8 | 2 |
 | TEN_WARD_STONES | 9 | 8 | 2 |
 | TEN_WATER | 9 | 8 | 2 |
 | TEN_WEIGHTS | 9 | 8 | 2 |
