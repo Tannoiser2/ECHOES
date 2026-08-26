@@ -135,6 +135,13 @@ jobs:
       - name: Drift check - catalogo delle carte
         run: GODOT=~/godot/godot tools/run_card_catalogue.sh --check
 
+      # La misura delle vite (D-290). Quante delle vite scritte si siedono
+      # davvero al tavolo in dodici saghe, sui due tavoli del cancello. E' il
+      # numero su cui si giudica la soglia di trasformazione: se cambia senza
+      # che nessuno l'abbia voluto, questo passo va rosso.
+      - name: Drift check - la misura delle vite
+        run: GODOT=~/godot/godot tools/run_lives_survey.sh --check
+
       - name: Play every sim plan
         run: GODOT=~/godot/godot tools/run_sims.sh
 
