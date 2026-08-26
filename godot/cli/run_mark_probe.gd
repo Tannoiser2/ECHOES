@@ -67,7 +67,13 @@ class Marks extends RefCounted:
 				var scopes: Array = (known as Dictionary).get("scope", []) as Array
 				if scopes.has("GLOBAL"):
 					continue
-				if scopes.has("REGION") and str(params.get("region_id", "")) != "":
+				# Il posto puo' venire dal verbo (`region_id`) o dalla faccia
+				# (`mark_region_id`, D-284): guardarne uno solo direbbe senza
+				# casa dei segni che una casa ce l'hanno.
+				if scopes.has("REGION") and (
+					str(params.get("region_id", "")) != ""
+					or str(params.get("mark_region_id", "")) != ""
+				):
 					continue
 				if scopes.has("ENTITY"):
 					continue

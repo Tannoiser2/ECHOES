@@ -10,6 +10,56 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-284 — Il segno stampato ha un posto: la carta dice dove, chi cala sceglie
+
+**implemented in 0.1.246** — passo 1bis del brief del Punto Zero
+
+D-283 ha fatto posare i segni stampati sulle Azioni. **Ne restavano fuori 314 su
+851**, quasi tutti condizioni di Regione in mosse che una Regione non la
+nominano: INFLUENZARE parla a una domanda, FORGIARE a una casa, RIVENDICARE a un
+dominio. Il segno non si scriveva altrove — sarebbe stato posare un segnalino
+dove al tavolo nessuno saprebbe metterlo — e quindi **la carta diceva una cosa
+che non succedeva**.
+
+**Al tavolo la risposta è già stampata**: il bersaglio si dice a segni (D-274).
+«Chiudere i granai» non chiede *quale domanda*: chiede **quale granaio**. Quindi
+chi cala nomina il posto dove i segni cadono, e può nominare solo un luogo che
+la carta raggiunge — la stessa promessa del bersaglio, sull'altro pezzo della
+faccia, con il suo rifiuto detto nella stessa lingua.
+
+**Ed è una scelta vera**, non una formalità: posare `#conteso` sulla capitale di
+un rivale non è come posarlo su casa propria. Il cervello sceglie il posto col
+metro dei segni già introdotto da D-283 (una condizione sulla mia terra pesa
+contro, altrove pesa a favore); una persona lo sceglie **sulla mappa**, perché
+ogni posto possibile è una voce che porta la sua Regione nel soggetto e quindi
+si accende (D-230): si tocca la carta, si accendono i luoghi, si tocca il luogo.
+
+**Misure** (100 anni, tavolo misto):
+
+| | D-283 | dopo |
+|---|---|---|
+| segni stampati sulle Azioni calate | 851 | 862 |
+| **posati sul mondo** | 537 | **862** |
+| **senza un soggetto** | 314 | **0** |
+| carte calate con la seconda Azione | 16,6% | 17,0% |
+| si passa | 82,3% | 82,1% |
+
+Playtest 100 semi: **0 seggi bloccati su 8**, misto e uniforme.
+
+**Una cosa che la misura ha detto e che non sapevo.** I primi segni rimasti
+senza casa dopo il correttivo non erano un caso di contenuto: erano le carte
+calate dalla **lista di ripiego** del cervello (`hand_plays`, quella da cui pesca
+il distratto), che non aveva imparato a scegliere il posto. Due strade per la
+stessa mossa, e ne avevo insegnata una sola — la stessa forma della trappola di
+D-268.
+
+**Prove**: `test_the_sign_finds_its_place.gd` — il posto lo dice chi cala, un
+posto che la carta non raggiunge si rifiuta a segni, il menu offre un luogo per
+voce e ognuna si accende sulla mappa, e su **tutte e 48 le carte** un posto si
+chiede esattamente quando serve.
+
+---
+
 ## D-283 — La faccia è la verità: entrambe le Azioni stampate si giocano
 
 **implemented in 0.1.245** — passo 1 del brief del Punto Zero

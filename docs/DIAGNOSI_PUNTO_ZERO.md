@@ -167,11 +167,11 @@ che gli servisse»*, salita dal 54,7% al 65,1% dei passa. **È appetito del
 cervello, non grammatica delle carte**, e va aggredita da lì (passo 4). Restano
 tre carte mai calate in 100 anni, tutte FORGIARE.
 
-**Passo 1bis — i 314 segni senza soggetto.** Quando l'Azione stampata posa un
-segno di Regione e il verbo non nomina nessuna Regione, il segno non si scrive.
-Al tavolo la carta dice *dove*: il bersaglio a segni è già sulla faccia. Serve
-che la scelta del posto arrivi anche ai verbi che oggi non la chiedono.
-*Fatto quando*: i segni senza soggetto sono zero.
+**Passo 1bis — i 314 segni senza soggetto — FATTO in 0.1.246**
+([D-284](DECISIONS.md#d-284)). La carta dice *dove* col suo bersaglio a segni, e
+chi cala sceglie il luogo fra quelli che raggiunge — sulla mappa, se è una
+persona. Misurato su 100 anni: **862 segni stampati, 862 posati, zero senza
+soggetto**. Cancello 0/8.
 
 **Come era il passo 1** (è quello che il brief chiede per primo). I verbi giocabili di una carta diventano **quelli stampati sulla sua
 faccia**, non il solo `card_action.kind`; `puts_tag` e `clears_tag` diventano

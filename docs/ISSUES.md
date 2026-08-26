@@ -2763,10 +2763,13 @@ e' in gioco.
 
 ---
 
-### 74. I segni stampati che non trovano dove stare (passo 1bis)
+### 74. ✅ I segni stampati che non trovano dove stare — chiusa in 0.1.246
 
-`motore` · `regole` · `da-misurare` · **aperta in 0.1.245**
-([D-283](DECISIONS.md#d-283))
+`motore` · `regole` · **chiusa** ([D-284](DECISIONS.md#d-284))
+
+**Chiusa e misurata**: 862 segni stampati sulle Azioni calate in 100 anni,
+**862 posati, 0 senza soggetto**. La carta dice il posto col suo bersaglio a
+segni; chi cala lo sceglie fra i luoghi che raggiunge. Il testo originale:
 
 Con D-283 le Azioni stampate posano i loro segni. Su 100 anni: **851 segni
 stampati sulle Azioni calate, 537 posati, 314 senza un soggetto** — quasi tutti

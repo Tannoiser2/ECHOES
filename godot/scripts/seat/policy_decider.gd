@@ -767,6 +767,8 @@ func _as_card_play(
 		var params: Dictionary = wanted.duplicate()
 		params["asset_id"] = str(card["asset_id"])
 		params["face_action"] = int(card["face_action"])
+		if str(card.get("mark_region_id", "")) != "":
+			params["mark_region_id"] = str(card["mark_region_id"])
 		return {"template": "PLAY_CARD", "params": params}
 	var fallback: Dictionary = _whatever_the_hand_allows(entity_id, session)
 	return fallback if not fallback.is_empty() else {"template": "PASS", "params": {}}
@@ -863,6 +865,7 @@ func _card_that_says(
 		if clashes:
 			continue
 		var best: int = -1
+		var best_place: String = ""
 		var best_score: int = 0
 		for index in _printed_actions(card as Dictionary, kind):
 			var params: Dictionary = wanted.duplicate()
@@ -870,15 +873,43 @@ func _card_that_says(
 			params["face_action"] = int(index)
 			if not session.actions.can_execute(entity_id, "PLAY_CARD", params):
 				continue
-			var score: int = _face_score(
-				card as Dictionary, int(index), entity_id, wanted, session
+			# **Dove cadono i segni** (D-284): se questa meta' posa segni di
+			# Regione e il verbo non ne nomina nessuna, il posto lo si sceglie
+			# fra quelli che la carta raggiunge — ed e' una scelta vera, perche'
+			# posare una condizione su casa d'altri non e' come posarla a casa
+			# propria.
+			var places: Array = _places_needed(
+				card as Dictionary, int(index), wanted, session, str(asset_id)
 			)
-			if best < 0 or score > best_score:
-				best = int(index)
-				best_score = score
+			for place in places:
+				var here: Dictionary = wanted.duplicate()
+				if str(place) != "":
+					here["region_id"] = str(place)
+				var score: int = _face_score(
+					card as Dictionary, int(index), entity_id, here, session
+				)
+				if best < 0 or score > best_score:
+					best = int(index)
+					best_place = str(place)
+					best_score = score
 		if best >= 0:
-			return {"asset_id": str(asset_id), "face_action": best}
+			return {
+				"asset_id": str(asset_id), "face_action": best,
+				"mark_region_id": best_place,
+			}
 	return {}
+
+
+## I posti fra cui scegliere per i segni di questa meta': `[""]` quando non
+## serve sceglierne uno — il verbo ha gia' nominato la Regione, oppure i segni
+## stampati non ne vogliono una.
+func _places_needed(
+	card: Dictionary, index: int, wanted: Dictionary, session: RefCounted, asset_id: String
+) -> Array:
+	if str(wanted.get("region_id", "")) != "":
+		return [""]
+	var places: Array = session.actions.places_for_face(asset_id, index)
+	return [""] if places.is_empty() else places
 
 
 ## Gli indici delle Azioni stampate che usano quel verbo.
@@ -977,6 +1008,26 @@ func hand_plays(entity_id: String, session: RefCounted) -> Array:
 		for index in _printed_actions(card as Dictionary, kind):
 			var with_face: Dictionary = params.duplicate()
 			with_face["face_action"] = int(index)
+			# E anche qui il posto dei segni (D-284): senza, la meta' pescata a
+			# caso dal distratto posava i suoi segni da nessuna parte — misurato,
+			# erano gli ultimi rimasti senza casa.
+			var best_place: String = ""
+			var best_score: int = 0
+			for place in _places_needed(
+				card as Dictionary, int(index), params, session, str(asset_id)
+			):
+				if str(place) == "":
+					continue
+				var here: Dictionary = params.duplicate()
+				here["region_id"] = str(place)
+				var score: int = _face_score(
+					card as Dictionary, int(index), entity_id, here, session
+				)
+				if best_place == "" or score > best_score:
+					best_place = str(place)
+					best_score = score
+			if best_place != "":
+				with_face["mark_region_id"] = best_place
 			if session.actions.can_execute(entity_id, "PLAY_CARD", with_face):
 				out.append({"template": "PLAY_CARD", "params": with_face})
 		if session.actions.can_execute(entity_id, "PLAY_CARD", params):

@@ -5,6 +5,20 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.246 — Il segno stampato ha un posto (D-284)
+
+- **Passo 1bis.** I 314 segni che non trovavano dove stare adesso lo trovano:
+  la carta dice *dove* col suo bersaglio a segni, e chi cala sceglie il luogo
+  fra quelli che la carta raggiunge. Un luogo che non raggiunge si rifiuta,
+  nella stessa lingua del bersaglio.
+- **È una scelta vera**: posare #conteso sulla capitale di un rivale non è come
+  posarlo su casa propria. Il cervello sceglie col metro dei segni; una persona
+  lo sceglie **sulla mappa** — si tocca la carta, si accendono i luoghi.
+- Misure su 100 anni: **862 segni stampati, 862 posati, 0 senza soggetto**
+  (prima: 537 posati, 314 senza). Playtest 100 semi **0/8**.
+- Quattro prove nuove (`test_the_sign_finds_its_place`), fra cui la regola su
+  tutte e 48 le carte: un posto si chiede esattamente quando serve.
+
 ## 0.1.245 — La faccia è la verità: entrambe le Azioni si giocano (D-283)
 
 - **Passo 1 del brief del Punto Zero.** I verbi di una carta sono adesso

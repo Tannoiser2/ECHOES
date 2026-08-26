@@ -373,12 +373,32 @@ func _through_the_hand(entity_id: String, offers: Array, session: RefCounted) ->
 				params["face_action"] = index
 				if not session.actions.can_execute(entity_id, "PLAY_CARD", params):
 					continue
-				out.append({
-					"label": "«%s» — %s" % [
-						str((card as Dictionary)["title"]),
-						str(face.get("label", (offer as Dictionary)["label"])),
-					],
-					"template": "PLAY_CARD", "params": params,
+				# **E dove cadono i segni stampati** (D-284). Se questa meta'
+				# posa segni di Regione e il verbo non ne nomina nessuna, il
+				# posto e' una scelta vera — posare una condizione a casa
+				# d'altri non e' come posarla a casa propria — e diventa una
+				# voce per ogni luogo che la carta raggiunge. Sullo schermo si
+				# accendono sulla mappa: si tocca la carta, si tocca il posto.
+				var places: Array = [""]
+				if str(params.get("region_id", "")) == "":
+					var reachable: Array = session.actions.places_for_face(
+						str(asset_id), index
+					)
+					if not reachable.is_empty():
+						places = reachable
+				for place in places:
+					var here: Dictionary = params.duplicate()
+					var where: String = str(place)
+					if where != "":
+						here["mark_region_id"] = where
+					out.append({
+						"label": "«%s» — %s%s" % [
+							str((card as Dictionary)["title"]),
+							str(face.get("label", (offer as Dictionary)["label"])),
+							"" if where == ""
+							else " · a %s" % _region(where, session),
+						],
+						"template": "PLAY_CARD", "params": here,
 					# **Di cosa parla la scelta, e con che carta** (D-230). Il
 					# bersaglio dell'offerta si perdeva qui: una MUOVERE nata
 					# con `{"region": ...}` usciva avvolta in una carta e senza
@@ -388,10 +408,10 @@ func _through_the_hand(entity_id: String, offers: Array, session: RefCounted) ->
 					# **quale** carta porta quale scelta: e' quello che rende
 					# possibile prenderla e lasciarla cadere invece di leggerne
 					# il nome in una lista.
-					"subject": _subject_with_card(
-						offer as Dictionary, str(asset_id), index
-					),
-				})
+						"subject": _subject_with_card(
+							offer as Dictionary, str(asset_id), index, where
+						),
+					})
 	return out
 
 
@@ -404,7 +424,7 @@ func _through_the_hand(entity_id: String, offers: Array, session: RefCounted) ->
 ## l'etichetta grezza del motore. Con il verbo, «Chiamare la leva» e «Tenerli
 ## a casa» diventano i due bottoni che sono al tavolo.
 static func _subject_with_card(
-	offer: Dictionary, asset_id: String, face_action: int = -1
+	offer: Dictionary, asset_id: String, face_action: int = -1, place: String = ""
 ) -> Dictionary:
 	var subject: Dictionary = (offer.get("subject", {}) as Dictionary).duplicate()
 	subject["asset"] = asset_id
@@ -414,6 +434,12 @@ static func _subject_with_card(
 	# carta, e chi guardava non sapeva quale stesse scegliendo.
 	if face_action >= 0:
 		subject["face_action"] = face_action
+	# Il posto dei segni **e' un posto sullo schermo** (D-284, con D-230): una
+	# scelta che nomina una Regione si accende sulla mappa, e la carta ci si
+	# posa sopra. Senza questa riga la scelta sarebbe una riga di testo per un
+	# luogo che sta disegnato due centimetri piu' in la'.
+	if place != "" and str(subject.get("region", "")) == "":
+		subject["region"] = place
 	return subject
 
 

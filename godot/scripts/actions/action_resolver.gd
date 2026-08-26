@@ -1126,7 +1126,7 @@ func _card_request(entity_id: String, params: Dictionary) -> Dictionary:
 	# non e' un parametro del verbo: non deve arrivare al resolver.
 	var merged: Dictionary = {}
 	for key in params:
-		if key != "asset_id" and key != "face_action":
+		if key != "asset_id" and key != "face_action" and key != "mark_region_id":
 			merged[key] = params[key]
 	for key in (action.get("params", {}) as Dictionary):
 		merged[key] = (action["params"] as Dictionary)[key]
@@ -1139,6 +1139,11 @@ func _card_request(entity_id: String, params: Dictionary) -> Dictionary:
 		merged["discard_asset_id"] = asset_id
 	return {
 		"kind": kind, "params": merged, "asset_id": asset_id, "face_action": chosen,
+		# **Dove cadono i segni stampati** (D-284). Il verbo puo' non nominare
+		# nessuna Regione — INFLUENZARE parla a una domanda, FORGIARE a una casa
+		# — ma la carta il posto lo dice lo stesso: il bersaglio a segni sta
+		# sulla faccia, e al tavolo ci si punta il dito.
+		"mark_region_id": str(params.get("mark_region_id", "")),
 	}
 
 
@@ -1158,6 +1163,16 @@ func _check_play_card(entity_id: String, params: Dictionary) -> String:
 	)
 	if reach != "":
 		return reach
+	# E il posto dove cadranno i segni stampati, se chi cala l'ha nominato, deve
+	# essere uno che la carta raggiunge: la stessa promessa, per la stessa
+	# ragione (D-284).
+	var mark: String = str(request.get("mark_region_id", ""))
+	if mark != "":
+		var refused: String = why_not_reached(
+			str(params.get("asset_id", "")), mark, "non lascia segni li'"
+		)
+		if refused != "":
+			return refused
 	match str(request["kind"]):
 		"ACQUIRE":
 			return _check_acquire(entity_id, request["params"])
@@ -1197,24 +1212,98 @@ func _check_physical_target(asset_id: String, kind: String, params: Dictionary) 
 	if not aims_at_region:
 		return ""
 	var region_id: String = str(params.get("region_id", ""))
+	if (world["regions"] as Dictionary).get(region_id) == null:
+		return ""  # la regione sconosciuta la dice gia' il check del verbo
+	return why_not_reached(asset_id, region_id, "non arriva li'")
+
+
+## **La carta arriva li'?** Il bersaglio a segni, letto su una Regione sola
+## (D-274). Estratto perche' adesso lo chiedono in tre: il controllo del verbo,
+## il posto dove cadono i segni stampati (D-284) e il menu che quei posti li
+## offre.
+func card_reaches(asset_id: String, region_id: String) -> bool:
+	return why_not_reached(asset_id, region_id, "") == ""
+
+
+## Perche' non ci arriva, detto com'e' giusto dirlo: **un segno vietato e un
+## segno mancante sono due rifiuti diversi**, e chi legge deve poterli
+## distinguere. Torna "" quando la carta ci arriva.
+func why_not_reached(asset_id: String, region_id: String, doing: String) -> String:
+	var card: Variant = data.assets.get(asset_id)
+	if card == null:
+		return "carta sconosciuta"
+	var target: Dictionary = (
+		((card as Dictionary).get("physical", {}) as Dictionary).get("target", {}) as Dictionary
+	)
 	var region: Variant = (world["regions"] as Dictionary).get(region_id)
 	if region == null:
-		return ""  # la regione sconosciuta la dice gia' il check del verbo
+		return "luogo sconosciuto"
 	var alive: Array = (region as Dictionary).get("tags", []) as Array
 	var title: String = str((card as Dictionary).get("title", asset_id))
 	var place: String = str(data.regions.get(region_id, {}).get("name", region_id))
+	var said: String = doing if doing != "" else "non arriva li'"
 	for tag in target.get("forbidden_tag", []):
 		if alive.has(str(tag)):
-			return "«%s» non arriva li': %s porta un segno che la carta vieta" % [title, place]
+			return "«%s» %s: %s porta un segno che la carta vieta" % [title, said, place]
 	var wanted: Array = target.get("any_tag", []) as Array
 	if wanted.is_empty():
 		return ""
 	for tag in wanted:
 		if alive.has(str(tag)):
 			return ""
-	return "«%s» non arriva li': il bersaglio si dice a segni, e %s non ne porta nessuno" % [
-		title, place
+	return "«%s» %s: il bersaglio si dice a segni, e %s non ne porta nessuno" % [
+		title, said, place
 	]
+
+
+## **I posti dove i segni di questa meta' possono cadere**, o vuoto se non serve
+## sceglierne uno — la meta' non posa segni di Regione, oppure il verbo la
+## Regione la nomina gia' (D-284).
+##
+## Sta qui e non nei due cervelli perche' la domanda e' una sola — *dove finisce
+## quello che la carta dice di lasciare* — e due copie sono due posti dove
+## smettere di essere d'accordo.
+func places_for_face(asset_id: String, face_action: int) -> Array:
+	var card: Variant = data.assets.get(asset_id)
+	if card == null or face_action < 0:
+		return []
+	var printed: Array = (
+		((card as Dictionary).get("physical", {}) as Dictionary).get("actions", []) as Array
+	)
+	if face_action >= printed.size():
+		return []
+	var face: Dictionary = printed[face_action] as Dictionary
+	var wants_a_place: bool = false
+	for field in ["puts_tag", "clears_tag"]:
+		for tag in face.get(field, []):
+			var known: Variant = data.tags.get(str(tag))
+			if known == null:
+				continue
+			var scopes: Array = (known as Dictionary).get("scope", []) as Array
+			if scopes.has("REGION") and not scopes.has("GLOBAL"):
+				wants_a_place = true
+	if not wants_a_place:
+		return []
+	return places_for_card(asset_id)
+
+
+## **I posti che la carta raggiunge adesso**, in ordine di tavolo. Sono le
+## Regioni dove i suoi segni stampati possono cadere: il bersaglio e' sulla
+## faccia, e al tavolo si punta il dito li' (D-284).
+func places_for_card(asset_id: String) -> Array:
+	var out: Array = []
+	var card: Variant = data.assets.get(asset_id)
+	if card == null:
+		return out
+	var target: Dictionary = (
+		((card as Dictionary).get("physical", {}) as Dictionary).get("target", {}) as Dictionary
+	)
+	if str(target.get("scope", "")) != "REGION":
+		return out
+	for region_id in world["regions"]:
+		if card_reaches(asset_id, str(region_id)):
+			out.append(str(region_id))
+	return out
 
 
 func _play_asset_card(
@@ -1248,9 +1337,12 @@ func _play_asset_card(
 	# motore non ne eseguiva nessuna. Sono la ragione per cui le due Azioni di
 	# una carta sono due scelte diverse — 29 carte su 48 stampano **lo stesso
 	# verbo** due volte, e senza i segni le due meta' farebbero la stessa cosa.
+	var where: Dictionary = inner.duplicate()
+	if str(where.get("region_id", "")) == "":
+		where["region_id"] = str(request.get("mark_region_id", ""))
 	var marked: Array = _face_signs(
 		entity_id, str(request["asset_id"]), int(request.get("face_action", -1)),
-		inner, source
+		where, source
 	)
 	if not marked.is_empty():
 		var was: Array = outcome.get("effects", []) as Array
