@@ -1,0 +1,524 @@
+{
+  "schema_id": "token_icon",
+  "version": "1.0.0",
+  "items": [
+    {
+      "id": "TOK_CONDITION_ABANDONED",
+      "tag": "condition:abandoned",
+      "fustella": "REGIONI",
+      "rappresenta": "Nessuno ci vive piu': la gente se n'e' andata da sola, e la terra resta.",
+      "soggetto": "una porta aperta su una casa vuota, erba alta sulla soglia"
+    },
+    {
+      "id": "TOK_CONDITION_CONTESTED",
+      "tag": "condition:contested",
+      "fustella": "REGIONI",
+      "rappresenta": "Due case ci mettono le mani sopra e nessuna ha ancora vinto.",
+      "soggetto": "due mani che afferrano lo stesso lembo di stoffa, tirando in direzioni opposte"
+    },
+    {
+      "id": "TOK_CONDITION_CUT_OFF",
+      "tag": "condition:cut_off",
+      "fustella": "REGIONI",
+      "rappresenta": "La strada non porta piu' qui: chi c'e' resta, chi e' fuori non entra.",
+      "soggetto": "una strada che si interrompe di netto sul bordo del segnalino"
+    },
+    {
+      "id": "TOK_CONDITION_EMPTIED",
+      "tag": "condition:emptied",
+      "fustella": "REGIONI",
+      "rappresenta": "Qualcuno ha sgomberato: non se ne sono andati, sono stati mandati via.",
+      "soggetto": "un carro carico che si allontana, visto di spalle"
+    },
+    {
+      "id": "TOK_CONDITION_EXPLOITED",
+      "tag": "condition:exploited",
+      "fustella": "REGIONI",
+      "rappresenta": "Si prende piu' di quello che la terra rida': rende adesso e meno domani.",
+      "soggetto": "una mano che spreme un grappolo fino all'ultima goccia"
+    },
+    {
+      "id": "TOK_CONDITION_INDEBTED",
+      "tag": "condition:indebted",
+      "fustella": "REGIONI",
+      "rappresenta": "Quello che c'e' e' gia' promesso a qualcun altro.",
+      "soggetto": "un sacco chiuso con un sigillo di ceralacca che non e' di chi lo tiene"
+    },
+    {
+      "id": "TOK_CONDITION_LEAN",
+      "tag": "condition:lean",
+      "fustella": "REGIONI",
+      "rappresenta": "L'annata e' scarsa: si mangia, ma poco.",
+      "soggetto": "tre spighe magre, una piegata"
+    },
+    {
+      "id": "TOK_CONDITION_MOURNING",
+      "tag": "condition:mourning",
+      "fustella": "REGIONI",
+      "rappresenta": "Qui e' morto qualcuno che contava, e il posto se lo ricorda.",
+      "soggetto": "un panno scuro annodato a un palo"
+    },
+    {
+      "id": "TOK_CONDITION_PLUNDERED",
+      "tag": "condition:plundered",
+      "fustella": "REGIONI",
+      "rappresenta": "E' passata una razzia: si sono presi e sono andati via.",
+      "soggetto": "una cassa rovesciata, il contenuto sparso"
+    },
+    {
+      "id": "TOK_CONDITION_RATIONED",
+      "tag": "condition:rationed",
+      "fustella": "REGIONI",
+      "rappresenta": "Si mangia a misura: qualcuno decide quanto tocca a chi.",
+      "soggetto": "una ciotola con una linea incisa a meta'"
+    },
+    {
+      "id": "TOK_CONDITION_REQUISITIONED",
+      "tag": "condition:requisitioned",
+      "fustella": "REGIONI",
+      "rappresenta": "Il raccolto non e' piu' di chi l'ha fatto: se l'e' preso l'autorita'.",
+      "soggetto": "una spiga con un sigillo appeso al gambo"
+    },
+    {
+      "id": "TOK_CONDITION_STARVING",
+      "tag": "condition:starving",
+      "fustella": "REGIONI",
+      "rappresenta": "Si muore di fame, adesso, non l'anno prossimo.",
+      "soggetto": "una ciotola vuota rovesciata"
+    },
+    {
+      "id": "TOK_CONDITION_UNREST",
+      "tag": "condition:unrest",
+      "fustella": "REGIONI",
+      "rappresenta": "La gente non ci sta piu', e si vede.",
+      "soggetto": "tre bastoni alzati insieme"
+    },
+    {
+      "id": "TOK_CONDITION_GUARDED",
+      "tag": "condition:guarded",
+      "fustella": "REGIONI",
+      "rappresenta": "C'e' una guardia imposta da fuori: si entra e si esce con permesso.",
+      "soggetto": "una lancia piantata di traverso davanti a un varco"
+    },
+    {
+      "id": "TOK_SCAR_ABANDONED",
+      "tag": "scar:abandoned",
+      "fustella": "REGIONI",
+      "rappresenta": "Il posto fu lasciato, e il mondo lo ricorda anche quando torna gente.",
+      "soggetto": "una soglia di pietra spaccata dall'erba"
+    },
+    {
+      "id": "TOK_SCAR_BROKEN_BRIDGE",
+      "tag": "scar:broken_bridge",
+      "fustella": "REGIONI",
+      "rappresenta": "Il ponte fu rotto, e da allora si passa altrove.",
+      "soggetto": "un arco di ponte spezzato a meta' sopra l'acqua"
+    },
+    {
+      "id": "TOK_SCAR_BROKEN_WORD",
+      "tag": "scar:broken_word",
+      "fustella": "REGIONI",
+      "rappresenta": "Qualcuno promise e non mantenne, e qui se lo ricordano.",
+      "soggetto": "un anello di corda tagliato di netto"
+    },
+    {
+      "id": "TOK_SCAR_BURNED_RECORDS",
+      "tag": "scar:burned_records",
+      "fustella": "REGIONI",
+      "rappresenta": "Le carte bruciarono: quello che c'era scritto non c'e' piu'.",
+      "soggetto": "un rotolo mezzo carbonizzato, ancora fumante"
+    },
+    {
+      "id": "TOK_SCAR_CHANGED_HANDS",
+      "tag": "scar:changed_hands",
+      "fustella": "REGIONI",
+      "rappresenta": "Questa terra ha cambiato padrone, e si e' visto che si puo' fare.",
+      "soggetto": "due sigilli sovrapposti, quello sotto scalfito"
+    },
+    {
+      "id": "TOK_SCAR_DIVIDED_SEAL",
+      "tag": "scar:divided_seal",
+      "fustella": "REGIONI",
+      "rappresenta": "La corona fu spezzata qui, e da allora ogni domanda ha due risposte.",
+      "soggetto": "un sigillo di cera spaccato in due meta' che non combaciano"
+    },
+    {
+      "id": "TOK_SCAR_DRAGONFALL",
+      "tag": "scar:dragonfall",
+      "fustella": "REGIONI",
+      "rappresenta": "Qualcosa di antico cadde su questa terra, e la terra se ne ricorda.",
+      "soggetto": "un'ala enorme e ossuta, mezza sepolta"
+    },
+    {
+      "id": "TOK_SCAR_EMPTIED",
+      "tag": "scar:emptied",
+      "fustella": "REGIONI",
+      "rappresenta": "Qui vennero sgomberati, e nessuna generazione dopo l'ha dimenticato.",
+      "soggetto": "impronte di ruote impresse nel fango secco"
+    },
+    {
+      "id": "TOK_SCAR_OPEN_WOUND",
+      "tag": "scar:open_wound",
+      "fustella": "REGIONI",
+      "rappresenta": "Uno squarcio che non si e' richiuso: la montagna, la terra, la gente.",
+      "soggetto": "una crepa nella roccia che attraversa tutto il segnalino"
+    },
+    {
+      "id": "TOK_SCAR_PLUNDERED",
+      "tag": "scar:plundered",
+      "fustella": "REGIONI",
+      "rappresenta": "La razzia divento' racconto: qui si tiene ancora il conto.",
+      "soggetto": "un tetto senza travi, quattro muri in piedi"
+    },
+    {
+      "id": "TOK_SCAR_SEALED_BORDER",
+      "tag": "scar:sealed_border",
+      "fustella": "REGIONI",
+      "rappresenta": "Un confine fu chiuso, e chi stava di la' e' rimasto di la'.",
+      "soggetto": "un palo di confine con una catena tesa"
+    },
+    {
+      "id": "TOK_SCAR_THE_EMPTY_CHAIR",
+      "tag": "scar:the_empty_chair",
+      "fustella": "REGIONI",
+      "rappresenta": "Un seggio resto' vuoto in un momento che contava.",
+      "soggetto": "una sedia rovesciata"
+    },
+    {
+      "id": "TOK_SCAR_UNANSWERED",
+      "tag": "scar:unanswered",
+      "fustella": "REGIONI",
+      "rappresenta": "Una domanda fu posta e nessuno rispose: la scritta e' rimasta sul muro.",
+      "soggetto": "un segno inciso su un muro, tre tacche e nessuna risposta"
+    },
+    {
+      "id": "TOK_SETTLEMENT_MARCH",
+      "tag": "settlement:march",
+      "fustella": "REGIONI",
+      "rappresenta": "Terra di confine tenuta da chi ci vive armato.",
+      "soggetto": "una palizzata bassa su un crinale"
+    },
+    {
+      "id": "TOK_SETTLEMENT_MARKET",
+      "tag": "settlement:market",
+      "fustella": "REGIONI",
+      "rappresenta": "Qui si scambia, e per questo qui si viene.",
+      "soggetto": "un banco coperto da un telo teso"
+    },
+    {
+      "id": "TOK_STRUCTURE_CANAL",
+      "tag": "structure:canal",
+      "fustella": "REGIONI",
+      "rappresenta": "L'acqua e' stata portata dove non arrivava.",
+      "soggetto": "una condotta scavata, l'acqua che entra"
+    },
+    {
+      "id": "TOK_STRUCTURE_GRANARY",
+      "tag": "structure:granary",
+      "fustella": "REGIONI",
+      "rappresenta": "Il pane e' messo da parte: questa terra puo' aspettare l'inverno.",
+      "soggetto": "un silo tondo col tetto conico e una porticina alta"
+    },
+    {
+      "id": "TOK_STRUCTURE_SEALED",
+      "tag": "structure:sealed",
+      "fustella": "REGIONI",
+      "rappresenta": "Qui e' stato murato qualcosa, e sta chiuso per decisione di qualcuno.",
+      "soggetto": "una porta di pietra murata, i blocchi ancora nuovi"
+    },
+    {
+      "id": "TOK_STRUCTURE_TOLLGATE",
+      "tag": "structure:tollgate",
+      "fustella": "REGIONI",
+      "rappresenta": "Chi passa paga, e qualcuno tiene il conto.",
+      "soggetto": "una sbarra abbassata su una strada, con un ceppo di pietra"
+    },
+    {
+      "id": "TOK_STRUCTURE_WATCHTOWER",
+      "tag": "structure:watchtower",
+      "fustella": "REGIONI",
+      "rappresenta": "Si vede lontano: qui non si arriva di sorpresa.",
+      "soggetto": "una torre stretta con una feritoia e un fuoco acceso in cima"
+    },
+    {
+      "id": "TOK_ANOINTED",
+      "tag": "anointed",
+      "fustella": "CASE",
+      "rappresenta": "Questa casa ha un incarico riconosciuto, non solo preso.",
+      "soggetto": "due mani che consegnano una chiave"
+    },
+    {
+      "id": "TOK_HARD_BARGAIN",
+      "tag": "hard_bargain",
+      "fustella": "CASE",
+      "rappresenta": "Ha ottenuto cedendo pochissimo, e al tavolo se lo ricordano.",
+      "soggetto": "una bilancia con un piatto quasi vuoto che pesa lo stesso"
+    },
+    {
+      "id": "TOK_SPOKE_AND_LOST",
+      "tag": "spoke_and_lost",
+      "fustella": "CASE",
+      "rappresenta": "Ha proposto in Consiglio e la proposta e' caduta.",
+      "soggetto": "una mano alzata che nessuno guarda"
+    },
+    {
+      "id": "TOK_TOOK_BY_HAND",
+      "tag": "took_by_hand",
+      "fustella": "CASE",
+      "rappresenta": "Non ha aspettato la decisione: ha preso.",
+      "soggetto": "una mano che si chiude su un oggetto prima che sia posato"
+    },
+    {
+      "id": "TOK_WATCHED",
+      "tag": "watched",
+      "fustella": "CASE",
+      "rappresenta": "Qualcuno le ha messo gli occhi addosso, e non e' un modo di dire.",
+      "soggetto": "un occhio aperto dentro una cornice quadrata"
+    },
+    {
+      "id": "TOK_ASH_WATCH",
+      "tag": "ash_watch",
+      "fustella": "CASE",
+      "rappresenta": "La veglia sulla montagna: sanno cosa dorme sotto e non lo dicono.",
+      "soggetto": "un braciere coperto da una grata"
+    },
+    {
+      "id": "TOK_DISCOVERY_CRYSTAL",
+      "tag": "discovery:crystal",
+      "fustella": "CASE",
+      "rappresenta": "Hanno trovato il cristallo, e adesso il mondo lo sa.",
+      "soggetto": "una scheggia di cristallo tenuta fra due dita"
+    },
+    {
+      "id": "TOK_DISCOVERY_LEGEND",
+      "tag": "discovery:legend",
+      "fustella": "CASE",
+      "rappresenta": "Hanno trovato una storia vera piu' vecchia di loro.",
+      "soggetto": "una pagina con una figura antica"
+    },
+    {
+      "id": "TOK_DISCOVERY_RELIC",
+      "tag": "discovery:relic",
+      "fustella": "CASE",
+      "rappresenta": "Hanno trovato la reliquia.",
+      "soggetto": "un cofanetto socchiuso con una luce dentro"
+    },
+    {
+      "id": "TOK_DISCOVERY_SHARED_RECORD",
+      "tag": "discovery:shared_record",
+      "fustella": "CASE",
+      "rappresenta": "Hanno trovato un registro che vale per tutti.",
+      "soggetto": "due mani che tengono lo stesso foglio"
+    },
+    {
+      "id": "TOK_DISCOVERY_THE_MEASURE",
+      "tag": "discovery:the_measure",
+      "fustella": "CASE",
+      "rappresenta": "Hanno trovato **come** si misura: il metodo, non la cosa.",
+      "soggetto": "un compasso aperto su una tacca"
+    },
+    {
+      "id": "TOK_DISCOVERY_THE_OMEN",
+      "tag": "discovery:the_omen",
+      "fustella": "CASE",
+      "rappresenta": "Hanno visto il presagio, e non l'hanno potuto disfare.",
+      "soggetto": "un uccello nero fermo su un ramo secco"
+    },
+    {
+      "id": "TOK_DISCOVERY_TRADE_LEDGER",
+      "tag": "discovery:trade_ledger",
+      "fustella": "CASE",
+      "rappresenta": "Hanno trovato il registro dei traffici: chi deve a chi.",
+      "soggetto": "un libro aperto con due colonne di segni"
+    },
+    {
+      "id": "TOK_DISCOVERY_SUPERVISED_RECORD",
+      "tag": "discovery:supervised_record",
+      "fustella": "CASE",
+      "rappresenta": "Lo studio esiste, ma qualcuno guarda mentre si studia.",
+      "soggetto": "un libro aperto sotto un'ombra che lo copre a meta'"
+    },
+    {
+      "id": "TOK_DISCOVERY_THE_CHARTER",
+      "tag": "discovery:the_charter",
+      "fustella": "CASE",
+      "rappresenta": "Hanno trovato la Carta: le regole scritte prima di loro.",
+      "soggetto": "una pergamena con un sigillo pendente"
+    },
+    {
+      "id": "TOK_DISCOVERY_THE_LEDGER",
+      "tag": "discovery:the_ledger",
+      "fustella": "CASE",
+      "rappresenta": "Hanno trovato il registro.",
+      "soggetto": "un libro chiuso con una fibbia"
+    },
+    {
+      "id": "TOK_DISCOVERY_WRITTEN_LAW",
+      "tag": "discovery:written_law",
+      "fustella": "CASE",
+      "rappresenta": "Hanno trovato la legge scritta: non e' piu' questione di parola.",
+      "soggetto": "una lastra incisa con righe di testo"
+    },
+    {
+      "id": "TOK_ESCORT_SWORN",
+      "tag": "escort_sworn",
+      "fustella": "CASE",
+      "rappresenta": "Qualcuno ha giurato di accompagnarli, e il giuramento vale.",
+      "soggetto": "due lance incrociate sopra una strada"
+    },
+    {
+      "id": "TOK_UPROOTED",
+      "tag": "uprooted",
+      "fustella": "CASE",
+      "rappresenta": "Sono stati cacciati da dove stavano.",
+      "soggetto": "un albero divelto con le radici in aria"
+    },
+    {
+      "id": "TOK_TWICE_UPROOTED",
+      "tag": "twice_uprooted",
+      "fustella": "CASE",
+      "rappresenta": "Cacciati due volte: non hanno piu' un centro da difendere.",
+      "soggetto": "due alberi divelti, uno dietro l'altro"
+    },
+    {
+      "id": "TOK_FAILED_PROPOSAL",
+      "tag": "failed_proposal",
+      "fustella": "CASE",
+      "rappresenta": "La loro proposta e' caduta in Consiglio.",
+      "soggetto": "un foglio piegato a meta' e messo da parte"
+    },
+    {
+      "id": "TOK_HEIR_NAMED",
+      "tag": "heir_named",
+      "fustella": "CASE",
+      "rappresenta": "L'erede ha un nome, e il nome e' stato detto davanti a qualcuno.",
+      "soggetto": "una mano di adulto sopra una mano piccola"
+    },
+    {
+      "id": "TOK_RENOWNED",
+      "tag": "renowned",
+      "fustella": "CASE",
+      "rappresenta": "Di questa casa si parla, e la fama pesa nelle stanze.",
+      "soggetto": "una corona d'alloro semplice"
+    },
+    {
+      "id": "TOK_WATER_RIGHTS",
+      "tag": "water_rights",
+      "fustella": "CASE",
+      "rappresenta": "Hanno il diritto sull'acqua, e il diritto e' scritto.",
+      "soggetto": "una brocca sopra un foglio sigillato"
+    },
+    {
+      "id": "TOK_CROWNED",
+      "tag": "crowned",
+      "fustella": "CASE",
+      "rappresenta": "Portano la corona, e si sa di chi e'.",
+      "soggetto": "una corona a tre punte, di lato"
+    },
+    {
+      "id": "TOK_MIGRATING",
+      "tag": "migrating",
+      "fustella": "CASE",
+      "rappresenta": "Sono un popolo che si sposta quando la terra smette di rispondere.",
+      "soggetto": "una fila di sagome in cammino sotto un carro"
+    },
+    {
+      "id": "TOK_SCHOLAR",
+      "tag": "scholar",
+      "fustella": "CASE",
+      "rappresenta": "Sono quelli che misurano e scrivono.",
+      "soggetto": "una penna posata su un foglio con una riga tracciata"
+    },
+    {
+      "id": "TOK_ANCIENT",
+      "tag": "ancient",
+      "fustella": "CASE",
+      "rappresenta": "Erano qui prima, e lo saranno dopo.",
+      "soggetto": "una pietra levigata con un simbolo consumato dal tempo"
+    },
+    {
+      "id": "TOK_SLEEPING",
+      "tag": "sleeping",
+      "fustella": "CASE",
+      "rappresenta": "Dorme. Finche' dorme, il mondo si comporta di conseguenza.",
+      "soggetto": "una sagoma enorme accovacciata sotto una montagna"
+    },
+    {
+      "id": "TOK_GUILD",
+      "tag": "guild",
+      "fustella": "CASE",
+      "rappresenta": "Non possiedono terra: tengono i registri di chi la possiede.",
+      "soggetto": "un sigillo a timbro accanto a un libro"
+    },
+    {
+      "id": "TOK_ORDER",
+      "tag": "order",
+      "fustella": "CASE",
+      "rappresenta": "Discendono da una scuola e si comportano da fede.",
+      "soggetto": "una teca chiusa con un vetro"
+    },
+    {
+      "id": "TOK_ASH",
+      "tag": "ash",
+      "fustella": "CASE",
+      "rappresenta": "Vivono di quello che la montagna ha lasciato indietro.",
+      "soggetto": "una pala e un mucchio di cenere"
+    },
+    {
+      "id": "TOK_FREE_CITIES",
+      "tag": "free_cities",
+      "fustella": "CASE",
+      "rappresenta": "Sette citta' che si governano da sole, e considerano questo il principio.",
+      "soggetto": "sette torri di altezza diversa, in fila"
+    },
+    {
+      "id": "TOK_PEDINA_PRESENZA",
+      "tag": "pedina:presenza",
+      "fustella": "PEDINE",
+      "rappresenta": "La tua gente e' qui. Sei nella stanza quando si decide di questa Regione.",
+      "soggetto": "un tondo pieno, senza dettagli"
+    },
+    {
+      "id": "TOK_PEDINA_CONTROLLO",
+      "tag": "pedina:controllo",
+      "fustella": "PEDINE",
+      "rappresenta": "Questa Regione risponde a te.",
+      "soggetto": "un anello aperto, spesso"
+    },
+    {
+      "id": "TOK_PEDINA_INSEDIAMENTO",
+      "tag": "pedina:insediamento",
+      "fustella": "PEDINE",
+      "rappresenta": "La casa si e' seduta qui: si scrive l'iniziale nell'angolo.",
+      "soggetto": "un quadrato con un angolo bianco lasciato libero"
+    },
+    {
+      "id": "TOK_PEDINA_CALORE",
+      "tag": "pedina:calore",
+      "fustella": "PEDINE",
+      "rappresenta": "Quanto e' caldo un Tema: cammina sulla corsia 0-8.",
+      "soggetto": "un rombo pieno"
+    },
+    {
+      "id": "TOK_PEDINA_DERIVA",
+      "tag": "pedina:deriva",
+      "fustella": "PEDINE",
+      "rappresenta": "La Deriva del round: il mondo che si muove da solo.",
+      "soggetto": "un quadrato con una tacca su un lato"
+    },
+    {
+      "id": "TOK_PEDINA_CACCIATA",
+      "tag": "pedina:cacciata",
+      "fustella": "PEDINE",
+      "rappresenta": "La porta sbarrata: quella Regione e' chiusa per te fino a fine Atto.",
+      "soggetto": "una porta con una sbarra di traverso"
+    },
+    {
+      "id": "TOK_PEDINA_GIURAMENTO_SPEZZATO",
+      "tag": "pedina:giuramento_spezzato",
+      "fustella": "PEDINE",
+      "rappresenta": "Sta fra due case che si sono tradite, e le riguarda tutte e due.",
+      "soggetto": "una catena spezzata a meta'"
+    }
+  ]
+}

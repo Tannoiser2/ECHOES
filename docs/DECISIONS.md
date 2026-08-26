@@ -10,6 +10,51 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-297 — Il catalogo delle pedine: una scheda per segnalino, col suo prompt
+
+**implemented in 0.1.260** — [il catalogo](CATALOGO_PEDINE.md) · MASTER PROMPT 6
+
+Richiesta del committente: *«fai un elenco di tutte le pedine una per una, cosa
+sono, cosa dovrebbero rappresentare e il prompt»*.
+
+`docs/CATALOGO_PEDINE.md`, **generato e nei cancelli**: **74 schede** — 34 segni
+della mappa, 33 segni delle case, 7 pezzi che non sono segni (presenza,
+controllo, insediamento, rombo del Calore, quadrato della Deriva, la cacciata,
+il giuramento spezzato). Ogni scheda porta quattro cose: la **parola italiana**
+stampata sul cartone, il **fatto** (categoria, ambito, chi lo posa), **cosa
+vuol dire al tavolo** in una riga, e il **prompt** pronto da mandare.
+
+**Tre sorgenti, nessuna copiata**: la parola viene da dove la prende il foglio
+di stampa (`sign_labels.gd`), il fatto dal dizionario dei segni, e il soggetto
+del disegno da `data/token_icons/token_icons.json` — l'unica parte scritta a
+mano. Il prompt si compone col MASTER PROMPT 6, che è nuovo e sta nella
+ART_BIBLE perché è **stile**, e lo stile non cambia coi dati.
+
+**MASTER PROMPT 6 dice una cosa che gli altri cinque non dicevano**: un
+segnalino da 15 mm non è un'illustrazione ed è più povero di un'icona di
+sistema. Sta sulla mappa insieme ad altri otto, girato di traverso, sotto una
+lampada: **si riconosce prima di leggerlo**, e la parola stampata sotto è la
+conferma, non la spiegazione. Da qui il vincolo delle tre varianti — contorno
+tratteggiato per le condizioni (si curano), una rottura nel disegno per le
+Cicatrici (la mappa non dimentica), contorno pieno per quello che c'è — e il
+**vincolo di collisione**, che ha già respinto tre soggetti mentre li
+scrivevo: *abbandonata*, *svuotata* e *lo sgombero* sono tre fatti diversi
+(chi se n'è andato da solo, chi è stato mandato via adesso, e il ricordo che fu
+mandato via) e devono restare tre disegni diversi.
+
+**Il cancello garantisce la cosa che conta**: ogni segnalino che la fustella
+taglia ha la sua scheda, e nessuna scheda parla di un segnalino che non esiste.
+Provato: tolta una scheda, il cancello va rosso.
+
+**E le schede le legge anche l'app.** `DataSet` ha un magazzino nuovo,
+`token_icons`, chiavato sul **segno** e non sull'id della scheda: un segnalino
+sulla mappa e un segnalino sullo schermo devono spiegarsi con la stessa riga, o
+sono due giochi. Il file sta in `data/token_icons/` e non in `design_matrix/`
+per una ragione misurata: dentro `design_matrix` le due misure lo leggevano
+come un profilo strategico, e 592 prove sono andate rosse in un colpo.
+
+---
+
 ## D-296 — La fustella non e' il dizionario: 67 tipi, non 183
 
 **implemented in 0.1.259** — correzione di [D-295](#d-295)

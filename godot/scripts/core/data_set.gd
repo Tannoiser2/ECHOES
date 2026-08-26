@@ -28,6 +28,12 @@ var tags: Dictionary = {}
 ## I profili strategici delle case (D-288): il solo pezzo della matrice
 ## scritto a mano — cosa vuole lasciare nel mondo chi siede a quel posto.
 var entity_profiles: Dictionary = {}
+## Le schede dei segnalini (D-297): per ogni segno che la fustella taglia, cosa
+## vuol dire al tavolo e cosa ci va disegnato sopra. Le legge il catalogo di
+## stampa; le legge anche l'app, perche' un segnalino sulla mappa e un
+## segnalino sullo schermo devono spiegarsi con la stessa riga. Chiavate sul
+## **segno**, non sull'id della scheda.
+var token_icons: Dictionary = {}
 
 var errors: PackedStringArray = PackedStringArray()
 var data_version: String = ""
@@ -100,6 +106,12 @@ func _load_document(path: String) -> void:
 	if schema_id == "entity_strategic_profile":
 		for item in document["items"]:
 			entity_profiles[str(item["entity_id"])] = item
+		return
+	# La scheda del segnalino si chiama col segno che descrive, come il profilo
+	# si chiama con la casa: chi la cerca ha in mano un tag, non un TOK_.
+	if schema_id == "token_icon":
+		for item in document["items"]:
+			token_icons[str(item["tag"])] = item
 		return
 	if not _TARGETS.has(schema_id):
 		errors.append("%s: no runtime store for schema_id '%s'" % [path, schema_id])

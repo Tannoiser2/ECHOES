@@ -5,6 +5,21 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.260 — Il catalogo delle pedine (D-297)
+
+- `docs/CATALOGO_PEDINE.md`, generato e **nei cancelli**: **74 schede**, una per
+  segnalino — parola stampata, categoria e chi lo posa, **cosa vuol dire al
+  tavolo**, e il **prompt** pronto da mandare a chi disegna.
+- **MASTER PROMPT 6** nella ART_BIBLE: il segnalino da 15 mm non è
+  un'illustrazione — si riconosce **prima** di leggerlo. Tre varianti di
+  contorno (condizione tratteggiata, Cicatrice rotta, il resto pieno) e il
+  vincolo di collisione, che ha già respinto tre soggetti.
+- I soggetti stanno in `data/token_icons/token_icons.json`, con schema e
+  validatore; il prompt si compone, non si scrive.
+- **Le legge anche l'app**: `DataSet.token_icons`, chiavato sul segno — un
+  segnalino sulla mappa e uno sullo schermo devono spiegarsi con la stessa riga.
+- Cancello nuovo provato: tolta una scheda, va rosso.
+
 ## 0.1.259 — La fustella non e' il dizionario: 67 tipi, non 183 (D-296)
 
 - **Correzione di un numero mio**: il censimento metteva i 183 segni del

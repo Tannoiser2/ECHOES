@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://echoes.local/schema/token_icon.schema.json",
+  "title": "Token icon collection",
+  "x-echoes-def": "token_icon",
+  "x-echoes-kind": "collection",
+  "type": "object",
+  "required": [
+    "schema_id",
+    "version",
+    "items"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_id": {
+      "const": "token_icon"
+    },
+    "version": {
+      "type": "string"
+    },
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/token_icon"
+      }
+    }
+  },
+  "$defs": {
+    "token_icon": {
+      "type": "object",
+      "description": "La scheda di un segnalino: cos'e' al tavolo e cosa ci va disegnato sopra. Un segnalino da 15 mm non e' un'illustrazione: e' un segno che si deve riconoscere in mezzo ad altri otto, girato di traverso, sotto una lampada. Il soggetto sta qui e non nella ART_BIBLE perche' cambia con i dati; il MASTER PROMPT 6 sta la' perche' e' lo stile, e lo stile non cambia con i dati.",
+      "required": [
+        "id",
+        "tag",
+        "fustella",
+        "rappresenta",
+        "soggetto"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^TOK_[A-Z0-9_]+$",
+          "description": "L'id della scheda. Non e' il segno: il segno sta in `tag`, perche' due documenti non possono portare lo stesso id."
+        },
+        "fustella": {
+          "type": "string",
+          "enum": [
+            "REGIONI",
+            "CASE",
+            "PEDINE"
+          ],
+          "description": "Su quale foglio-fustella sta: i segni che si posano sulla mappa, quelli che stanno accanto al tarocco della casata, o i pezzi che non sono segni."
+        },
+        "rappresenta": {
+          "type": "string",
+          "minLength": 10,
+          "description": "Cosa vuol dire al tavolo, in una riga: non la regola, il **fatto**. Chi lo trova sul tavolo deve capire cos'e' successo, non quale clausola si e' attivata."
+        },
+        "soggetto": {
+          "type": "string",
+          "minLength": 5,
+          "description": "Cosa si vede nell'icona. Una cosa sola, riconoscibile in monocromatico a 16 px (ART_BIBLE): due o tre tratti, niente scena, niente testo."
+        },
+        "tag": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Il segno del dizionario, oppure `pedina:*` per i pezzi che non sono segni (presenza, controllo, Calore, Deriva)."
+        }
+      }
+    }
+  }
+}
