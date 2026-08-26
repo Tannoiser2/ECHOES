@@ -139,6 +139,12 @@ jobs:
       # davvero al tavolo in dodici saghe, sui due tavoli del cancello. E' il
       # numero su cui si giudica la soglia di trasformazione: se cambia senza
       # che nessuno l'abbia voluto, questo passo va rosso.
+      # Il censimento dei componenti (D-295): quanti pezzi ha la scatola e
+      # quanto ne vede l'app. Se qualcuno aggiunge una carta e il documento non
+      # se ne accorge, questo passo va rosso.
+      - name: Drift check - i componenti
+        run: python3 tools/components_survey.py --check
+
       - name: Drift check - la misura delle vite
         run: GODOT=~/godot/godot tools/run_lives_survey.sh --check
 

@@ -10,6 +10,53 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-295 — Il censimento dei componenti: quanti pezzi ha la scatola
+
+**implemented in 0.1.258** — [il documento](COMPONENTI.md)
+
+Domanda del committente:
+
+> *«Non mi rendo più conto di quanti componenti abbia il gioco, quanto sia
+> cresciuto, e quanto c'è ancora da fare per avere un'app uguale al gioco
+> fisico.»*
+
+Un elenco scritto a mano avrebbe risposto una volta e sarebbe invecchiato in
+silenzio — il difetto che questo progetto ha già visto tre volte. Quindi il
+censimento **si conta dai dati**, `tools/components_survey.py` →
+`docs/COMPONENTI.md`, **nei cancelli**.
+
+**La scatola, oggi**: 48 Asset (132 copie), 39 Echo, 60 Tensioni, 23 Destini,
+26 Casate (una per vita), 10 tessere Regione. **39 fogli A4** più i tre
+fogli-fustella. 183 segni nel dizionario, di cui 14 condizioni, 12 Cicatrici e
+10 Pietre con 25 gradi. Dietro: 8 case con 8 profili, 6 Temi, 16 obiettivi, 64
+Conseguenze, 12 modelli di Consiglio, 52 regole dei segni, 6 Azioni, 5
+Chronicle.
+
+**E quanto manca, in quattro voci separate perché sono lavori diversi:**
+
+1. **Le facce fisiche non scritte**: Echo 39, Casate 26, tessere Regione 10.
+   Stampano un testo che il motore *ricava* dai dati digitali — al tavolo si
+   legge come una scheda tecnica, non come una carta.
+2. **L'arte**: **135 soggetti su 146 sono segnaposto**. È il pezzo più grosso
+   in quantità e il più facile da parallelizzare — i prompt sono già scritti.
+3. **Le regole che il tavolo esegue e lo schermo non spiega**: ISSUES 80 (il
+   Consiglio impilato, 71% contro 29%), 81 (una soglia non può leggere una
+   memoria), 76 (la moneta che i Destini non spendono), 77 (i segni muti).
+4. **L'app come oggetto**: ISSUES 63 e 65, e la regola §5ter — *nessuna misura
+   copre quello che una persona vede*.
+
+**Una colonna sola è scritta a mano, ed è dichiarata**: *dove l'app disegna
+ogni componente*. Nessuna misura sa dire cosa una persona vede.
+
+**Due errori trovati scrivendolo**, tutti e due dello stesso tipo — la misura
+che guarda nel posto sbagliato: i soggetti d'arte erano 97 invece di 146 perché
+le cartelle erano `entity/` e `destiny/` invece di `entities/` e `destinies/`,
+e perché **le vite delle case hanno un volto ciascuna** e non venivano contate.
+Il numero adesso combacia esatto col brief d'arte, che è generato da un'altra
+strada.
+
+---
+
 ## D-294 — Le otto case dichiarano, e tre vite morte si siedono
 
 **implemented in 0.1.257** — passo (b) della linea delle trasformazioni ·

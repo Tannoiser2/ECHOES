@@ -5,6 +5,20 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.258 — Il censimento dei componenti (D-295)
+
+- `tools/components_survey.py` → `docs/COMPONENTI.md`, **nei cancelli**: quanti
+  pezzi ha la scatola, quanti fogli A4 escono, quanti segnalini, quanta arte, e
+  **cosa manca** perché l'app dica tutto quello che dice il tavolo.
+- La scatola: **48 Asset (132 copie), 39 Echo, 60 Tensioni, 23 Destini, 26
+  Casate, 10 tessere** — 39 fogli A4 più tre fustelle.
+- Il divario, in quattro voci: **facce fisiche non scritte** (39 Echo, 26
+  Casate, 10 tessere), **arte 135 su 146 segnaposto**, le regole aperte
+  (ISSUES 76/77/80/81), e l'app come oggetto (ISSUES 63/65).
+- Contando l'arte sono saltati fuori 49 soggetti che la prima misura non
+  vedeva: **le vite delle case hanno un volto ciascuna**. Adesso il numero
+  combacia col brief d'arte, che lo calcola da un'altra strada.
+
 ## 0.1.257 — Le otto case dichiarano, e tre vite morte si siedono (D-294)
 
 - **Quattro profili nuovi** — Cenere, Città Libere, Sale, Vetro — nella forma
