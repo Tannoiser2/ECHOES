@@ -10,6 +10,62 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-287 — Le tre misure vengono prima della matrice, e come si contano
+
+**implemented in 0.1.249** — punti 8, 9 e 10 del piano del committente
+
+Il piano della matrice strategica chiede, prima di scrivere qualsiasi file
+nuovo, tre elenchi: **tag orfani, obiettivi non fisici, Tensioni senza
+conflitto**. Sono misure, e questo verbale scrive **come si contano**, perché
+ognuna delle tre ha una definizione che si poteva prendere in tre modi diversi
+e ognuno avrebbe dato un numero diverso.
+
+Lo strumento è `tools/matrix_survey.py`, il documento `docs/MISURA_MATRICE.md`,
+e sta fra i cancelli: una misura che invecchia in silenzio è peggio di nessuna
+misura.
+
+**Le tre definizioni, e le tre volte che ho dovuto cambiarle** — perché ogni
+volta il numero era un assoluto, e un assoluto in questo progetto è quasi
+sempre una sonda cieca:
+
+1. **Orfano** = qualcuno lo scrive, e poi *nessuna Entità lo vuole o lo teme*,
+   *nessuna Tensione lo mette o lo toglie*, *nessuna regola del segno lo usa*,
+   *l'eredità non lo porta avanti*. La prima stesura guardava solo i Destini e
+   diceva **84 orfani su 148**: mancavano gli obiettivi (D-222), le regole del
+   segno e la pesca dell'era dopo (D-286). E gli orfani vanno **divisi in due**:
+   quelli che portano già la loro ragione scritta (memorie narrate, etichette
+   di famiglia, gradi di pietra) e quelli **muti**. Sono i muti la lista di
+   lavoro.
+2. **Obiettivo che non si può puntare col dito** = una clausola che chiede un
+   segno che **niente scrive** (impossibile), oppure un livello intero che non
+   nomina nessun segno e si regge su conteggi. Il primo conto diceva **una
+   clausola impossibile**: il Trionfo di Vaerax, che chiede
+   `legend:crystal_exploited` — e le leggende le scrive **il tempo**, al salto,
+   non i dati. Impossibile non era: era la misura che non conosceva quella
+   penna.
+3. **Tensione senza conflitto** = non tocca nessun segno che un Destino
+   **nomina**. Qui gli assoluti sono stati due, uno per parte: contando i soli
+   segni nominati veniva **60 su 60 senza conflitto**; aggiungendo i conteggi
+   *e il controllo* veniva **0 su 60**. Il controllo va tenuto fuori — ogni
+   cambio di controllo aiuta chi prende e danneggia chi perde, quindi vale per
+   tutte e sessanta e non distingue niente — e `physical.observes` non è un
+   desiderio: elenca insieme quello che una casa insegue e quello che teme, e
+   dice *a chi interessa*, non chi ci guadagna.
+
+**Il numero che vale il viaggio.** Tutte e 60 le Tensioni hanno un conflitto
+*strutturale* — la faccia alza una Pietra e incide una Cicatrice, e i Destini
+contano l'una e l'altra — ma è **identico su tutte**: è il modello della faccia
+(D-280), non è contenuto. Il conflitto che distingue una questione dall'altra è
+quello nominato, e lì **35 Tensioni su 60 non incontrano nessun Destino**.
+
+Detto altrimenti, e questo è l'argomento più forte a favore della matrice che il
+committente chiede: **il Consiglio decide con una moneta che i Destini non
+spendono.** I benefici che si comprano producono segni che nessun Destino
+nomina; dei 24 segni che le facce delle Tensioni posano, **tre** sono temuti da
+qualcuno per nome, e dei 17 voluti **nessuno** si può ottenere da un Consiglio.
+
+---
+
 ## D-286 — Quindici memorie tornano a mordere, e tre penne si erano nascoste
 
 **implemented in 0.1.248** — passo 2 del brief del Punto Zero

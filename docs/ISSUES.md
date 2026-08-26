@@ -2763,6 +2763,54 @@ e' in gioco.
 
 ---
 
+### 76. Il Consiglio decide con una moneta che i Destini non spendono
+
+`regole` · `contenuto` · `da-misurare` · **aperta in 0.1.249**
+([D-287](DECISIONS.md#d-287) · [le misure](MISURA_MATRICE.md))
+
+Misurato: le facce delle 60 Tensioni posano **24 segni** e ne tolgono **uno**.
+I Destini e gli obiettivi ne **vogliono 17** e ne **temono 17**. L'incrocio:
+
+- dei 24 posati, **3** sono temuti da qualcuno per nome;
+- dei 17 voluti, **nessuno** si può ottenere vincendo un Consiglio;
+- **35 Tensioni su 60** non toccano nessun segno che un Destino nomina.
+
+Tutte e 60 hanno un conflitto *strutturale* — la faccia alza una Pietra e
+incide una Cicatrice, e i Destini le contano — ma è **lo stesso su tutte**: è il
+modello della faccia (D-280), non è contenuto. Al tavolo vuol dire che il
+Consiglio è una cosa che succede, non una cosa che qualcuno *voleva*.
+
+È il buco che la matrice strategica del committente vuole chiudere, e la cura
+può stare da tre parti: i benefici delle Tensioni (che dovrebbero produrre segni
+che qualcuno insegue), i Destini (che dovrebbero nominare segni che un Consiglio
+può dare), o un ponte dichiarato fra i due (`entity_strategic_profiles`).
+**Quale delle tre è una decisione del committente.**
+
+**Fatto quando** ogni Tensione tocca almeno un segno nominato da almeno un
+Destino della scatola, e almeno un beneficio comprabile produce un segno che
+almeno un Destino vuole.
+
+---
+
+### 77. Quindici segni muti senza una ragione scritta
+
+`contenuto` · `debito` · **aperta in 0.1.249** ([le misure](MISURA_MATRICE.md))
+
+Su 150 segni scritti, **67 sono orfani** — nessuno li vuole, nessuna Tensione li
+tocca, nessuna regola li usa, l'eredità non li porta avanti. **49 portano già la
+loro ragione** e restano (memorie narrate D-103, etichette di famiglia, gradi di
+pietra, domini che legge il motore).
+
+Ne restano **15 senza una riga che spieghi perché esistono** — fra cui
+`condition:lean`, `condition:requisitioned`, `structure:castle`,
+`structure:library`, `structure:palace`. Tre pietre di grado alto che nessuno
+insegue sono contenuto costoso e muto.
+
+**Fatto quando** ognuno dei quindici o trova un lettore (un Destino, una
+Tensione, una regola) o porta la sua ragione scritta come gli altri 49.
+
+---
+
 ### 74. ✅ I segni stampati che non trovano dove stare — chiusa in 0.1.246
 
 `motore` · `regole` · **chiusa** ([D-284](DECISIONS.md#d-284))

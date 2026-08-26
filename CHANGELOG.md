@@ -5,6 +5,25 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.249 — Le tre misure che vengono prima della matrice (D-287)
+
+- `tools/matrix_survey.py` → `docs/MISURA_MATRICE.md`, nei cancelli: i tre
+  elenchi che il piano della matrice strategica chiede prima di scrivere un
+  file nuovo.
+- **I segni orfani**: 67 su 150 scritti, ma **49 portano già la loro ragione**
+  (memorie narrate, etichette di famiglia, gradi di pietra). I **muti sono 15**,
+  ed è quella la lista di lavoro.
+- **Gli obiettivi**: **nessuna clausola impossibile** (la sola candidata,
+  il Trionfo di Vaerax, chiede una leggenda — e le leggende le scrive il tempo);
+  **33 livelli su 69** si reggono solo su conteggi, cioè si verificano ma al
+  tavolo non si possono indicare.
+- **Le Tensioni**: **35 su 60 non toccano nessun segno che un Destino nomina.**
+  Tutte e 60 hanno lo stesso conflitto strutturale — una Pietra e una Cicatrice
+  — che è il modello della faccia, non contenuto.
+- **Il Consiglio decide con una moneta che i Destini non spendono**: dei 24
+  segni che le facce delle Tensioni posano, 3 sono temuti per nome; dei 17
+  voluti, nessuno si ottiene da un Consiglio.
+
 ## 0.1.248 — Il mondo si ricorda: quindici memorie tornano a mordere (D-286)
 
 - **Passo 2, con una correzione.** Le «27 Memorie che nessuno legge» non erano
