@@ -617,35 +617,68 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
 
     # **La porta del tempo legge il profilo, non un elenco suo** (D-290).
     #
-    # Una vita puo' dichiarare `also_enters`: dopo tanti anni, se la casa non
-    # tiene piu' abbastanza di quello che voleva lasciare, si trasforma. Il
-    # "quello che voleva lasciare" e' il profilo strategico, e non si riscrive
-    # sulla vita — se lo si riscrivesse, i due elenchi divergerebbero e al
-    # tavolo sarebbero due carte da leggere invece di una. Quindi: una porta su
-    # una casa senza profilo non si aprirebbe mai, ed e' regola morta; una porta
-    # che chiede piu' segni di quanti il profilo ne dichiara non si chiuderebbe
-    # mai, ed e' una casa condannata dal primo salto.
+    # Riscritta in D-298: la porta non chiede piu' «quanti desideri reggono»,
+    # chiede una lista di cose che devono ancora reggere — e almeno una deve
+    # essere una cosa che **il mondo sa togliere**. E' la cura di ISSUES 81: i
+    # desideri di una casa sono spesso memorie, e una memoria scritta non si
+    # perde piu', quindi una porta fatta di sole memorie e' murata. Misurato:
+    # La Compagnia del Sale, con la porta e con zero trasformazioni in 168
+    # salti d'era.
+    TOGLIBILI = {"controls_at_least", "structure_stands", "condition_below"}
+    CHIEDE = {
+        "holds_wanted": ["min"],
+        "controls_at_least": ["min", "any_tag"],
+        "structure_stands": ["structure"],
+        "condition_below": ["tag", "max"],
+        "sign_stands": ["tag"],
+    }
     profili = {str(p.get("entity_id")): p
                for p in documenti.get("entity_strategic_profile", [])}
+    pietre = {str(s.get("id")) for s in documenti.get("structure_type", [])}
     for casa in documenti.get("entity", []):
         for vita in casa.get("incarnations", []) or []:
             porta = vita.get("also_enters")
             if not porta:
                 continue
-            profilo = profili.get(str(casa.get("id")))
-            if profilo is None:
+            dove = "%s/%s" % (casa.get("id"), vita.get("id"))
+            clausole = porta.get("unless", []) or []
+            if not any(str(c.get("type")) in TOGLIBILI for c in clausole):
                 guai.append(
-                    "porta del tempo su una casa senza profilo: %s/%s non ha un "
-                    "profilo strategico, e la soglia non saprebbe cosa chiedere"
-                    % (casa.get("id"), vita.get("id")))
-                continue
-            voluti = len(profilo.get("wants", []) or [])
-            chiesti = int(porta.get("holds_at_least", 1))
-            if chiesti > voluti:
-                guai.append(
-                    "porta del tempo impossibile da tenere chiusa: %s/%s chiede %d "
-                    "segni e il profilo ne dichiara %d"
-                    % (casa.get("id"), vita.get("id"), chiesti, voluti))
+                    "porta del tempo murata: %s chiede solo cose che il mondo non "
+                    "sa togliere - una memoria, una volta scritta, resta per sempre"
+                    % dove)
+            for clausola in clausole:
+                genere = str(clausola.get("type", ""))
+                for campo in CHIEDE.get(genere, []):
+                    if clausola.get(campo) in (None, "", []):
+                        guai.append("clausola incompleta su %s: «%s» senza «%s»"
+                                    % (dove, genere, campo))
+                if genere in ("condition_below", "sign_stands"):
+                    if str(clausola.get("tag", "")) not in voci:
+                        guai.append("segno fuori dal dizionario su %s: «%s»"
+                                    % (dove, clausola.get("tag")))
+                if genere == "structure_stands" and str(clausola.get("structure", "")) not in pietre:
+                    guai.append("Pietra inesistente su %s: «%s»"
+                                % (dove, clausola.get("structure")))
+                if genere == "controls_at_least":
+                    for tag in clausola.get("any_tag", []) or []:
+                        if str(tag) not in voci:
+                            guai.append("segno fuori dal dizionario su %s: «%s»"
+                                        % (dove, tag))
+                if genere == "holds_wanted":
+                    profilo = profili.get(str(casa.get("id")))
+                    if profilo is None:
+                        guai.append(
+                            "porta del tempo su una casa senza profilo: %s non ha un "
+                            "profilo strategico, e la soglia non saprebbe cosa chiedere"
+                            % dove)
+                        continue
+                    voluti = len(profilo.get("wants", []) or [])
+                    chiesti = int(clausola.get("min", 1))
+                    if chiesti > voluti:
+                        guai.append(
+                            "porta del tempo impossibile da tenere chiusa: %s chiede %d "
+                            "segni e il profilo ne dichiara %d" % (dove, chiesti, voluti))
     return guai
 
 
@@ -782,20 +815,32 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
         # 0.1.257): la prima stesura cercava una casa senza profilo, e il giorno
         # in cui tutte e otto ne hanno avuto uno la guardia e' morta con una
         # StopIteration invece di dire che non aveva piu' niente da provare.
-        casa = next(c for c in prova["entity"] if c.get("incarnations"))
+        casa = next(c for c in prova["entity"]
+                    if any(v.get("also_enters") for v in c.get("incarnations", []) or []))
         prova["entity_strategic_profile"] = [
             p for p in prova.get("entity_strategic_profile", [])
             if str(p.get("entity_id")) != str(casa.get("id"))
         ]
-        casa["incarnations"][-1]["also_enters"] = {"after_years": 150, "holds_at_least": 2}
 
     def porta_impossibile(prova: Dict[str, List[Dict[str, Any]]]) -> None:
         # Una porta che chiede piu' segni di quanti il profilo ne dichiara: la
         # casa cade al primo salto, qualunque cosa faccia.
-        casa = next(c for c in prova["entity"]
-                    if any(v.get("also_enters") for v in c.get("incarnations", []) or []))
-        vita = next(v for v in casa["incarnations"] if v.get("also_enters"))
-        vita["also_enters"]["holds_at_least"] = 99
+        vita = next(v for c in prova["entity"] for v in c.get("incarnations", []) or []
+                    if v.get("also_enters"))
+        for clausola in vita["also_enters"]["unless"]:
+            if clausola["type"] == "holds_wanted":
+                clausola["min"] = 99
+
+    def porta_murata(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        # **Il difetto di ISSUES 81 piantato**: una porta fatta di sole cose
+        # che il mondo non sa togliere. Non si aprirebbe mai, e nessuno se ne
+        # accorgerebbe se non giocando 168 salti d'era.
+        vita = next(v for c in prova["entity"] for v in c.get("incarnations", []) or []
+                    if v.get("also_enters"))
+        vita["also_enters"]["unless"] = [
+            {"type": "holds_wanted", "min": 2},
+            {"type": "sign_stands", "tag": "crowned"},
+        ]
 
     def pedina_muta(prova: Dict[str, List[Dict[str, Any]]]) -> None:
         # Una Pietra da costruire che non esiste: la pedina si posa e non
@@ -843,6 +888,8 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
                "porta del tempo su una casa senza profilo"),
         pianta("porta del tempo che chiede piu' segni di quanti ne esistono",
                porta_impossibile, "porta del tempo impossibile da tenere chiusa"),
+        pianta("porta del tempo fatta di sole memorie (murata)", porta_murata,
+               "porta del tempo murata"),
     ]
     puliti = controlla(documenti)
     print("  %s %s" % ("OK " if not puliti else "MANCATO", "dati veri: nessun guaio"))

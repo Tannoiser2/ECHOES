@@ -10,6 +10,77 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-298 — La soglia legge quello che il mondo sa togliere
+
+**implemented in 0.1.261** — passo (c) della linea delle trasformazioni ·
+chiude [ISSUES 81](ISSUES.md#81-una-soglia-non-puo-leggere-una-memoria-perche-una-memoria-non-si-perde)
+
+[D-290](#d-290) aveva dato alla porta del tempo una domanda sola: *«tieni ancora
+almeno K dei segni che volevi lasciare?»*. [D-294](#d-294) ha misurato dove si
+rompe: **La Compagnia del Sale aveva la porta e non si e' aperta mai** in 168
+salti d'era, perche' i segni che la Gilda vuole lasciare sono **memorie**, e una
+memoria scritta il mondo non la toglie piu'. Una soglia che chiede «tieni
+ancora?» su una cosa che non si puo' perdere e' una porta murata.
+
+**La grammatica ricca**, come la chiede il documento del committente:
+
+```json
+"also_enters": {
+  "after_years": 150,
+  "unless": [
+    {"type": "controls_at_least", "min": 2, "any_tag": ["capital", "granary", "trade"]},
+    {"type": "structure_stands", "structure": "STR_KEEP"},
+    {"type": "holds_wanted", "min": 2}
+  ]
+}
+```
+
+Cinque condizioni: **quante Regioni che contano controlli**, **quale Pietra sta
+ancora in piedi**, **quante Regioni portano una condizione**, **se un segno
+preciso c'e'**, e la vecchia **quanti desideri reggono**. La porta si apre
+quando il tempo e' passato **e anche una sola** di quelle cade: sono le gambe di
+un tavolo, non una somma. E ogni gamba porta il suo *perche'*, scritto come lo
+direbbe chi ci siede — perche' finisce sulla carta della Casata.
+
+**La regola che il validatore adesso pretende** e' la cura di ISSUES 81:
+almeno una gamba dev'essere una cosa che **il mondo sa togliere** — Regioni,
+Pietre, condizioni. Non basta averlo scritto: c'e' il difetto piantato «porta
+del tempo fatta di sole memorie», e la guardia morde su 18 difetti.
+
+**I numeri, stessi semi, 168 salti d'era:**
+
+| | prima | dopo |
+|---|---|---|
+| trasformazioni sedute | 139 | **185** |
+| **La Compagnia del Sale** (aveva la porta, non si apriva) | 0 | **14** |
+| **La Diaspora di Nahr** (idem) | 0 | **10** |
+| La Repubblica della Valle | 9 | **22** |
+| Il Culto della Misura | 15 | **24** |
+| vite mai sedute | 7 | **6** |
+
+**E le due cose storte, dette.**
+
+1. **Il Banco Nero scende a zero** — era 2. Il Sale adesso diventa la Compagnia
+   *per il tempo* prima che il debito venga chiamato: una porta nuova puo'
+   chiudere una porta vecchia, e questo il conto delle vite mai sedute lo
+   nasconde (6 invece di 7, ma non sono le stesse sei).
+2. **Il ritmo e' accelerato molto.** Nahr muta una volta ogni **4,8** salti,
+   Aldric ogni **6,0** (era 15,3). In anni — il salto mediano e' un secolo —
+   fa una pelle nuova ogni **480 anni** circa, che regge; ma il margine si e'
+   assottigliato, e il cancello di `MISURA_VITE` e' il posto dove si vedra' se
+   passa il segno.
+
+**Il rischio speculare, che va nominato adesso e non quando mordera'**: se la
+porta murata era una porta che non si apre mai, esiste anche la **porta
+spalancata** — una gamba che nessuno riesce mai a tenere. La clausola di Aldric
+chiede due Regioni fra capitale, granaio e traffico, e sulla mappa pescata di
+quelle tessere ce n'e' una ciascuna: e' esattamente quello che il committente
+aveva detto (*«un re deve controllare due citta'»*), ed e' anche il candidato
+numero uno a essere troppo. Non l'ho toccato: si vede dal numero, e il numero
+adesso c'e'.
+
+---
+
 ## D-297 — Il catalogo delle pedine: una scheda per segnalino, col suo prompt
 
 **implemented in 0.1.260** — [il catalogo](CATALOGO_PEDINE.md) · MASTER PROMPT 6

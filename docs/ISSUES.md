@@ -2763,6 +2763,31 @@ e' in gioco.
 
 ---
 
+### 83. La porta spalancata: una gamba che nessuno riesce mai a tenere
+
+`regole` · `da-misurare` · **aperta in 0.1.261** ([D-298](DECISIONS.md#d-298))
+
+La cura di ISSUES 81 ha un rovescio da sorvegliare. Se una porta fatta di sole
+memorie non si apre **mai**, una porta con una gamba impossibile si apre
+**sempre**: la casa cambia pelle a ogni salto lungo, qualunque cosa faccia, e
+allora non e' una soglia — e' un calendario.
+
+Il candidato misurato: la Repubblica della Valle chiede ad Aldric **due Regioni
+fra capitale, granaio e traffico**, e sulla mappa pescata di quelle tessere ce
+n'e' **una ciascuna**. E' esattamente quello che il committente ha chiesto
+(*«un re deve controllare due citta'»*), e Aldric e' passato da una mutazione
+ogni 15,3 salti a una ogni **6,0**.
+
+Il segnale sta gia' in `MISURA_VITE.md`, che e' nei cancelli: **quanto spesso
+una casa cambia pelle**. Il limite di casa e' che nessuna scenda sotto **un
+salto su quattro** — una casa che muta a ogni salto non ha un'identita', ha un
+costume. Oggi la peggiore e' Nahr a 4,8.
+
+**Fatto quando** nessuna casa sta sotto 1 su 4, e la cosa si e' verificata su
+un numero e non a occhio.
+
+---
+
 ### 82. La coda della fustella: Cicatrici rare che vanno bene, e condizioni che non succedono
 
 `contenuto` · `da-decidere` · **aperta in 0.1.259** ([D-296](DECISIONS.md#d-296))
@@ -2798,7 +2823,7 @@ nella direzione scelta.
 
 ---
 
-### 81. Una soglia non puo' leggere una memoria, perche' una memoria non si perde
+### 81. ✅ Una soglia non puo' leggere una memoria — chiusa in 0.1.261
 
 `regole` · **aperta in 0.1.257** ([D-294](DECISIONS.md#d-294) ·
 [la misura](MISURA_VITE.md))
@@ -2826,6 +2851,15 @@ Due strade, e la seconda e' quella del documento sulle trasformazioni:
 **Fatto quando** ogni vita che dichiara una porta del tempo si e' seduta almeno
 una volta in `MISURA_VITE.md`, oppure la sua porta e' stata tolta perche'
 sbagliata.
+
+**Chiusa in 0.1.261** ([D-298](DECISIONS.md#d-298)): la porta adesso legge
+Regioni controllate, Pietre in piedi e condizioni sparse, e il validatore
+pretende che **almeno una gamba sia una cosa che il mondo sa togliere** — col
+suo difetto piantato. Tutte e sei le vite con una porta si siedono:
+**La Compagnia del Sale 0 → 14**, **La Diaspora di Nahr 0 → 10**.
+
+Resta aperto il rischio speculare, che e' la voce nuova
+[83](#83-la-porta-spalancata-una-gamba-che-nessuno-riesce-mai-a-tenere).
 
 ---
 

@@ -5,6 +5,24 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.261 — La soglia legge quello che il mondo sa togliere (D-298)
+
+- **La grammatica ricca della porta del tempo**, come la chiede il documento
+  sulle trasformazioni: `unless` con cinque condizioni — Regioni controllate,
+  Pietre in piedi, condizioni sparse, un segno preciso, i desideri del profilo.
+  La porta si apre quando **una sola** gamba cade: sono le gambe di un tavolo,
+  non una somma. Ogni gamba porta il suo *perché*.
+- **La cura di ISSUES 81, con la guardia**: almeno una gamba dev'essere una cosa
+  che il mondo sa togliere. Difetto piantato «porta fatta di sole memorie» —
+  18 difetti, tutti mordono.
+- **I numeri**: trasformazioni **139 → 185**; **La Compagnia del Sale 0 → 14**
+  e **La Diaspora di Nahr 0 → 10**, che avevano la porta e non si aprivano mai.
+- **Le due storte**: il Banco Nero scende a **0** (il Sale muta per il tempo
+  prima che il debito venga chiamato), e il ritmo accelera — Nahr 1 salto su
+  **4,8**, Aldric 1 su **6,0** (era 15,3). In anni fa una pelle ogni ~480.
+- ISSUES 83 apre il rischio speculare: **la porta spalancata**.
+- Cancello: 0 seggi bloccati su 8. 609 prove verdi.
+
 ## 0.1.260 — Il catalogo delle pedine (D-297)
 
 - `docs/CATALOGO_PEDINE.md`, generato e **nei cancelli**: **74 schede**, una per

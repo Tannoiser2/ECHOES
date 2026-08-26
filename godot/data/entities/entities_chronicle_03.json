@@ -219,7 +219,24 @@
           "entry": "LINE_EXHAUSTED",
           "also_enters": {
             "after_years": 150,
-            "holds_at_least": 2
+            "unless": [
+              {
+                "type": "structure_stands",
+                "structure": "STR_TOLLGATE",
+                "why": "Una barriera che conta chi passa: e' il registro che si tocca. Abbattuta quella, il registro e' un quaderno."
+              },
+              {
+                "type": "condition_below",
+                "tag": "condition:cut_off",
+                "max": 1,
+                "why": "Due strade chiuse e non c'e' piu' traffico da registrare."
+              },
+              {
+                "type": "holds_wanted",
+                "min": 2,
+                "why": "E che le promesse scritte contino ancora qualcosa."
+              }
+            ]
           }
         }
       ],
@@ -440,7 +457,24 @@
           "entry": "LINE_EXHAUSTED",
           "also_enters": {
             "after_years": 150,
-            "holds_at_least": 2
+            "unless": [
+              {
+                "type": "structure_stands",
+                "structure": "STR_ARCHIVE",
+                "why": "L'Ordine custodisce dentro un edificio. Senza l'edificio restano degli uomini con una regola."
+              },
+              {
+                "type": "condition_below",
+                "tag": "condition:emptied",
+                "max": 0,
+                "why": "Un luogo svuotato non ha piu' nessuno che ricordi perche' quella cosa andava custodita."
+              },
+              {
+                "type": "holds_wanted",
+                "min": 2,
+                "why": "E che la custodia sia ancora riconosciuta da qualcuno."
+              }
+            ]
           }
         }
       ],
@@ -657,7 +691,27 @@
           "entry": "LINE_EXHAUSTED",
           "also_enters": {
             "after_years": 150,
-            "holds_at_least": 2
+            "unless": [
+              {
+                "type": "controls_at_least",
+                "min": 1,
+                "any_tag": [
+                  "mine",
+                  "crystal_site"
+                ],
+                "why": "Se la montagna non e' piu' loro, scavare non e' piu' un mestiere: e' un ricordo."
+              },
+              {
+                "type": "sign_stands",
+                "tag": "crystal_exploited",
+                "why": "Finche' si cava, sono i Signori della Cenere. Quando si smette, diventano quelli che ricordano."
+              },
+              {
+                "type": "holds_wanted",
+                "min": 2,
+                "why": "E che resti qualcosa di quello che volevano lasciare sulla montagna."
+              }
+            ]
           }
         }
       ],
