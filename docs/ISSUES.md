@@ -2763,6 +2763,53 @@ e' in gioco.
 
 ---
 
+### 91. Il 60% dei punti era gia' fatto prima che qualcuno giocasse
+
+`regola` · `bilanciamento` · `decisione` · aperta in 0.1.276
+([D-314](DECISIONS.md#d-314))
+
+**Misurata**, su 40 tavoli CHR_01 ai semi 7000+, misto e uniforme concordi:
+
+- **60.5%** delle clausole a punti erano gia' vere **all'apertura**, prima di
+  ogni mossa;
+- **89.8%** non avevano nessun altro seggio al tavolo con un motivo *scritto*
+  per impedirle;
+- solo **2.9%** delle coppie di seggi si contendono una Regione, **1.2%** una
+  memoria del mondo.
+
+Il difetto ha tre nomi. `entity_alive` (113 clausole), `scar_count` (154),
+`state_tag_absent` (165): **vere al setup nel 100% dei casi**, contese quasi
+mai, e insieme **il 40.8% di tutti i punti del tavolo**. Non chiedono di
+giocare — chiedono di non morire, di non prendersi Cicatrici e di sperare che
+una memoria non compaia. Sul tavolo fisico sono punti gia' stampati sulla
+plancia.
+
+Specularmente, `control_count` e' contesa **92 volte su 92** e regge da sola
+**l'85%** della superficie competitiva. Il gioco ha un solo tipo di obiettivo
+che si comporta come tale.
+
+Caso di mezzo da non rompere: `discovery_count` (121 clausole) si guadagna
+davvero — zero gia' vere in apertura — ma non si contende mai. Fatica vera,
+senza avversario: e' un solitario dentro la gara.
+
+**Cosa la chiude.** La scelta e' del committente e non e' stata presa. Le
+strade sul tavolo:
+
+1. **Le clausole a dotazione diventano soglie mosse** — non *sei vivo* ma
+   *sei vivo avendo speso*, non *poche Cicatrici* ma *meno Cicatrici di chi
+   ne ha di piu'*: un confronto fra seggi al posto di un valore assoluto.
+2. **Il mondo prende un rovescio contendibile** — ogni memoria che qualcuno
+   teme e' una memoria che qualcun altro vuole, cosi' `state_tag_absent`
+   smette di essere gratis.
+3. **I Destini si scrivono a coppie** — la distribuzione garantisce che ogni
+   seggio nomini almeno una cosa che un altro seggio nomina.
+
+**Il metro c'e' gia'**: `cli/run_contest_probe.gd`. Una modifica che vuole
+rendere il gioco una gara deve **far scendere il 60.5% e salire il 10.2%**,
+senza toccare il cancello dei 100 semi.
+
+---
+
 ### 90. ✅ La mappa pescata poteva non offrire una famiglia — chiusa in 0.1.275
 
 `regole` · `bilanciamento` · aperta e chiusa in 0.1.275

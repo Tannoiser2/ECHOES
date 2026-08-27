@@ -5,6 +5,35 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.276 — Sei punti su dieci erano gia' tuoi prima di giocare (D-314)
+
+### Misurato
+
+- **La quarta domanda di `run_contest_probe.gd`, promessa e mai eseguita.** Il
+  commento di testa della sonda ne annunciava quattro fin dalla nascita; ne
+  girava tre. La mancante era *gli obiettivi si incrociano?* — cioe' l'unica che
+  dice se il gioco e' una gara. Undicesima misura cieca a verbale.
+- **Quattro misure nuove**, su 40 tavoli CHR_01 ai semi 7000+, misto e uniforme
+  (i due tavoli concordano):
+  - coppie di seggi che si contendono una Regione: **2.9%**; una memoria: **1.2%**;
+  - i punti presi: **55.3%** mappa, **16.3%** mondo, **28.4%** quello che porti;
+  - clausole centrate che nessuno poteva impedire: **89.8%**;
+  - clausole **gia' vere all'apertura**, prima di ogni mossa: **60.5%**.
+- **Tre tipi di clausola valgono il 40.8% dei punti e sono una dotazione, non un
+  obiettivo**: `entity_alive` (113), `scar_count` (154), `state_tag_absent` (165)
+  — vere al setup nel 100% dei casi, contese quasi mai.
+- **Un tipo solo regge l'85% della superficie competitiva**: `control_count`,
+  92 clausole centrate su 92 contese.
+- L'analisi statica del grafo diceva *la corsia mappa e' competitiva, quella del
+  mondo no*. **In partita e' peggio, e non e' un problema di una corsia sola.**
+
+### Non cambiato
+
+- Nessuna regola, nessun dato. Questo giro **misura**: la scelta strutturale sta
+  al committente, con i numeri in mano ([ISSUES 91](docs/ISSUES.md)).
+
+---
+
 ## 0.1.275 — Una mappa che non offre una famiglia toglie otto carte dal gioco (D-313)
 
 - **Nata da una domanda del committente sul tavolo fisico**: *«se le zone sono 6

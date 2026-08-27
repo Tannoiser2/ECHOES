@@ -10,6 +10,95 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-314 — Sei punti su dieci erano gia' tuoi prima che qualcuno giocasse
+
+**implemented** (0.1.276) · misura, non modifica · nata dalla domanda del
+committente: *«dobbiamo capire se il gioco e' divertente e competitivo, quindi
+dobbiamo capire se la struttura stessa va cambiata. Nulla deve essere inutile e
+tutto quello che si fa deve rispondere a una logica di perseguire la vittoria»*
+— e dalla sua scelta fra le strade possibili: **prima misuriamo se il problema
+si vede in partita.**
+
+### La domanda mai eseguita
+
+`cli/run_contest_probe.gd` prometteva quattro domande nel suo commento di testa
+fin da quando e' nato. **Ne eseguiva tre.** La quarta — *gli obiettivi si
+incrociano?* — non era mai stata scritta. E' l'undicesima misura cieca a
+verbale in questo progetto, e la piu' cara: era proprio quella che diceva se il
+gioco e' una gara.
+
+Adesso e' scritta, e con lei altre tre che servivano a leggerla:
+
+- **con cosa si sono presi i punti** — la corsia di ogni clausola centrata;
+- **quanti punti nessuno poteva impedire** — se un altro seggio al tavolo
+  avesse avuto un motivo *scritto* per contrastare quella clausola;
+- **i punti che avevi gia' prima di giocare** — le clausole valutate subito
+  dopo il setup, prima di ogni mossa, e ancora vere a fine partita.
+
+### Cosa dicono, e non e' una buona notizia
+
+40 tavoli su CHR_01, semi 7000+, entrambi i tavoli. I due tavoli **concordano**
+— quindi non e' un artefatto del cervello che gioca.
+
+| misura | misto | uniforme |
+|---|---|---|
+| coppie di seggi che si contendono una Regione | 2.9% | 2.9% |
+| coppie che si contendono una memoria del mondo | 1.2% | 1.2% |
+| clausole centrate che **nessuno** contendeva | 89.8% | 90.9% |
+| clausole **gia' vere all'apertura** | 60.5% | 59.1% |
+
+Sei clausole a punti su dieci erano vere **prima che qualcuno giocasse**, e nove
+su dieci non avevano nessuno al tavolo con un motivo scritto per impedirle.
+
+L'analisi statica del grafo aveva detto un'altra cosa — *la corsia mappa sembra
+competitiva, quella del mondo no*. **In partita e' peggio di cosi', e il difetto
+non e' di una corsia sola.** Vale la regola di casa: il numero peggiore e
+scritto vale piu' di quello buono e nascosto.
+
+### Dove sta, esattamente
+
+La rottura ha un nome preciso, e sono **tre tipi di clausola** (tavolo misto,
+1058 clausole centrate in tutto):
+
+| tipo | centrate | gia' vere in apertura | mai contese |
+|---|---|---|---|
+| `entity_alive` — *sei vivo* | 113 | 113 (100%) | 113 (100%) |
+| `scar_count` — *hai poche Cicatrici* | 154 | 154 (100%) | 154 (100%) |
+| `state_tag_absent` — *questa memoria non c'e'* | 165 | 165 (100%) | 161 (98%) |
+
+**432 clausole su 1058 — il 40.8% di tutti i punti del tavolo — sono vere al
+setup, restano vere per inerzia, e nessuno ha mai un motivo scritto per
+toglierle.** Non sono obiettivi: sono una dotazione. Sul tavolo fisico
+equivalgono a punti gia' stampati sulla plancia.
+
+All'estremo opposto ce n'e' **una sola** che si comporta come un obiettivo di
+un gioco competitivo:
+
+| tipo | centrate | contese |
+|---|---|---|
+| `control_count` — *tieni N Regioni* | 92 | 92 (100%) |
+
+`control_count` e' **sempre** contesa, e da sola vale 92 delle 108 clausole
+contese di tutto il campione: **l'85% della superficie competitiva del gioco e'
+un tipo di clausola solo.** Le altre tredici o non si contendono mai, o quasi.
+
+Nel mezzo, il caso interessante: `discovery_count` (121 clausole) si **guadagna**
+giocando — zero gia' vere in apertura — ma non si contende mai. E' fatica vera
+che nessuno puo' ostacolare: solitario, non gara.
+
+### Cosa si decide qui
+
+**Niente, ancora.** Questo verbale registra la misura e la sonda che la produce,
+non una correzione: la scelta strutturale — se e come riscrivere le clausole a
+dotazione, e se il mondo debba avere un rovescio contendibile — e' del
+committente, e gli e' posta con questi numeri in mano. La sonda resta come metro
+per giudicare qualsiasi proposta: **una modifica che vuole rendere il gioco una
+gara deve far scendere il 60.5% e salire il 10.2%.**
+
+Aperta come [ISSUES 91](ISSUES.md).
+
+---
+
 ## D-313 — Una mappa che non offre una famiglia toglie otto carte dal gioco
 
 **implemented** (0.1.275) · nata da una domanda del committente sul tavolo
