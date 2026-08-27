@@ -2763,42 +2763,53 @@ e' in gioco.
 
 ---
 
-### 92. Propone solo il proponente, e il mondo non impara i segni che qualcuno teme
+### 92. Il cancello misura un anno d'autore, non la scatola
 
-`regola` · `motore` · `bilanciamento` · aperta in 0.1.277
-([D-315](DECISIONS.md#d-315))
+`regola` · `strumenti` · `decisione` · aperta in 0.1.277, **riscritta in
+0.1.279** ([D-317](DECISIONS.md#d-317))
 
-Undici segni non li scrive nessuno, mai, in 40 partite: `failed_proposal` (25
-clausole a punti), `oath_broken` (16), `mine_sealed` (15), `valley_sealed` (14),
-`condition:emptied` (11), `study_supervised` (10), `crystal_exploited` (9),
-`water_priced` (9), `structure:sealed` (7), `no_charter` (6), `relic_shown` (4),
-`condition:exploited` (3).
+**La prima versione di questa voce diceva una cosa sbagliata** — *«propone solo
+il proponente»* — e va letta come esempio di diagnosi plausibile che non regge
+alla misura. Tre verifiche la smontano: la proposta si propone (`P_EXPLOIT`
+offerta 3 volte e scelta 3), la Tensione non e' affamata (`TEN_AWAKENING`:
+media 5.90 su soglia 6, picco 33, 116 spinte in su contro 7 in giu' — la meno
+frenata del gioco), e la sua domanda ha `eligibility: []`, sempre eleggibile.
 
-**Non e' perche' nessuno li vuole.** `mine_sealed` e' temuto 3 volte e **voluto
-3 volte**, e non compare mai lo stesso. D-315 ha aggiunto un obiettivo che
-vuole `condition:emptied`: e' passato da 0 scritture a **1** in 40 partite.
+**Il blocco e' a monte:** quella Tensione non e' quasi mai sul tavolo.
+`deal_theme_decks()` pesca dalle sessanta carte della scatola **solo se la
+Chronicle ha un `region_pool`**; senza, il mazzetto contiene solo le Tensioni
+gia' in gioco — *«il loro anno e' un anno d'autore»*, dice il commento, ed e'
+una scelta. Il `region_pool` ce l'ha **CHR_00 e basta**.
 
-La strozzatura sta nella scelta della proposta. Le Conseguenze che scrivono
-quei segni stanno in `success_consequences` di proposte come `P_SEAL_MINE` o
-`P_DIG_FOR_HIRE`: i loro template si aprono — `CNF_WATER_03` 58 volte — ma
-quelle proposte non vincono mai. Il cablaggio del cervello e' giusto
-(`_score_proposition` legge `_tag_goals`, che legge Destino **e** obiettivi
-pescati), ma **propone solo il proponente**: se chi porta l'obiettivo non
-siede come proponente a quel Consiglio, il suo movente non entra nella scelta.
+Venti partite a tavolo misto, `cli/run_tension_reach_probe.gd`:
 
-**Cosa la chiude** — le strade, non ancora scelte:
+| | CHR_01 | CHR_00 |
+|---|---|---|
+| Tensioni sul tavolo, per partita | **4.0** | **8.8** |
+| distinte in 20 partite | **12** | **57** |
+| mai viste, su 60 | **48** | **3** |
+| che tengono un Consiglio | 12 | **28** |
 
-1. **Chi non propone puo' spingere.** Un avversario che ha un motivo scritto
-   per la proposta B mette una pedina su B, e il proponente decide se
-   prendersela. E' economia di Consiglio, e il tavolo la vede.
-2. **La controproposta esiste gia'** (D-268, il RIVENDICARE): oggi posa una
-   pedina su un beneficio o su un costo. Estenderla alla **proposta** e'
-   la strada piu' corta e non aggiunge grammatica nuova.
-3. **Il proponente cambia piu' spesso**, cosi' che nell'arco di un anno ogni
-   casa proponga almeno una volta al Consiglio del proprio Tema.
+E il cancello dei 100 semi gira su **CHR_01 e CHR_03**, tutti e due anni
+d'autore:
 
-**Il metro**: `cli/run_contest_probe.gd`, riga *memorie temute che nessuno ha
-mai toccato* — oggi **66.5%**. Deve scendere.
+> Ogni numero di bilanciamento a verbale in questo progetto e' stato misurato
+> su una partita con **quattro** Tensioni, non con sessanta.
+
+**Cosa la chiude.** La scelta e' del committente:
+
+1. **Il cancello impara la scatola** — `run_playtest.gd` gira anche su una
+   saga a mappa pescata, e il vincolo *0 seggi bloccati su 8* vale li' pure.
+   E' la strada che misura il gioco che si vende, e va messa in conto che
+   qualche numero peggiori: nessuno l'ha mai guardato.
+2. **Le Chronicle scritte prendono il mazzetto pieno** — via la riga che le
+   distingue, e anche l'anno d'autore pesca dalle sessanta. Cambia il carattere
+   delle due saghe scritte, che oggi raccontano una storia precisa.
+3. **Restano due giochi, e si dichiara** — l'anno d'autore e' il tutorial, la
+   mappa pescata e' la campagna. Allora servono due cancelli, non uno.
+
+**Il metro**: `cli/run_tension_reach_probe.gd`, riga *mai viste* — oggi **48
+su 60** sull'anno d'autore, **3 su 60** sulla mappa pescata.
 
 ---
 

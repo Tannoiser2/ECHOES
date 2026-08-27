@@ -10,6 +10,101 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-317 — Il cancello misura un anno d'autore, non la scatola
+
+**implemented** (0.1.279) · misura, non modifica · nata da
+[ISSUES 92](ISSUES.md), la cui diagnosi era **sbagliata**.
+
+### Cosa dicevo, e perche' era sbagliato
+
+ISSUES 92 diceva: *undici segni non li scrive nessuno perche' le Conseguenze
+che li scrivono stanno in proposte che nessuno propone — propone solo il
+proponente.* Sembrava solido. Non regge a nessuna delle tre verifiche.
+
+**Prima verifica — la proposta si propone.** `run_choice_probe.gd`, che
+esisteva gia' e separa i tre motivi per cui una proposta non arriva ai voti,
+dice che sul tavolo uniforme `P_EXPLOIT` e' stata **offerta 3 volte e scelta
+3 volte**. Il gesto lo si propone eccome.
+
+**Seconda verifica — la Tensione non e' affamata.** Anzi:
+
+| tensione | soglia | media a fine anno | picco | spinte+ | spinte- |
+|---|---|---|---|---|---|
+| `TEN_AWAKENING` | 6 | **5.90** | **33** | 116 | **7** |
+
+E' la Tensione **meno frenata del gioco**: 116 spinte in su contro 7 in giu'.
+La soglia la passa continuamente.
+
+**Terza verifica — la domanda e' sempre eleggibile.** `Q_AWAKENING_CRYSTAL` ha
+`eligibility: []`. Non c'e' nessuna clausola che la blocchi.
+
+E nonostante tutte e tre, sul tavolo misto `CNF_AWAKENING_01` si apre **zero
+volte su 40 partite**.
+
+### Dove sta davvero
+
+Il blocco e' a monte di tutto: **quella Tensione non e' quasi mai sul tavolo.**
+
+`WorldStateFactory.deal_theme_decks()` riempie i sei mazzetti in due modi, e la
+riga che decide e' una sola:
+
+```gdscript
+var full: bool = not (chronicle.get("region_pool", {}) as Dictionary).is_empty()
+```
+
+Con un `region_pool` il mazzetto pesca dalle **sessanta** carte della scatola.
+Senza, il mazzetto contiene **solo le Tensioni che la Chronicle ha gia' messo
+in gioco**. Il commento nel codice lo dice, ed e' una scelta: *«sulle Chronicle
+scritte il mazzetto resta quello delle questioni in gioco: il loro anno e' un
+anno d'autore»*.
+
+E il `region_pool` ce l'ha **una Chronicle sola**:
+
+| Chronicle | `region_pool` | Tensioni dichiarate |
+|---|---|---|
+| CHR_00 | **si'** | — (pesca dalla scatola) |
+| CHR_01 | no | 4 |
+| CHR_02 | no | 0 |
+| CHR_03 | no | 5 |
+| CHR_04 | no | 0 |
+
+### La misura, e il confronto che la chiude
+
+`cli/run_tension_reach_probe.gd`, 20 partite a tavolo misto:
+
+| | CHR_01 (anno d'autore) | CHR_00 (mappa pescata) |
+|---|---|---|
+| Tensioni sul tavolo, per partita | **4.0** | **8.8** |
+| distinte viste in 20 partite | **12** | **57** |
+| mai viste, su 60 nella scatola | **48** | **3** |
+| Tensioni che tengono un Consiglio | 12 | **28** |
+
+**La scatola funziona.** Con la mappa pescata, 57 delle 60 carte Tensione
+arrivano al tavolo in venti partite e 28 tengono il loro Consiglio. Tutto
+quello che D-261, D-264 e D-265 hanno costruito — i sei mazzetti, le dieci
+carte per Tema, le sessanta Domande — **esiste, e si vede giocare**.
+
+### La cosa da decidere, e non la decido io
+
+Il cancello che vincola ogni modifica di questo progetto —
+`run_playtest.gd --runs=100 --seed=7000`, *0 seggi bloccati su 8* — gira su
+**CHR_01 e CHR_03**. Tutte e due anni d'autore. Tutte e due con quattro e
+cinque Tensioni.
+
+> **Ogni numero di bilanciamento a verbale in questo progetto e' stato misurato
+> su una partita con quattro Tensioni, non con sessanta.**
+
+Non e' un difetto del motore: e' una scelta di cosa misurare, presa quando le
+Chronicle scritte erano tutto quello che c'era, e mai rivista dopo D-265. Ma
+significa che il gioco misurato e il gioco della scatola **non sono lo stesso
+gioco**, e le due cose che ISSUES 91 sta inseguendo — la contesa e la dotazione
+— si misurano sul primo.
+
+Le strade stanno in [ISSUES 92](ISSUES.md), riscritta. La scelta e' del
+committente.
+
+---
+
 ## D-316 — Una casa spenta non segna, e adesso lo dice una regola sola
 
 **implemented** (0.1.278) · taglio (a) della strada 1 di

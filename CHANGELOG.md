@@ -5,6 +5,49 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.279 — Il cancello misura un anno d'autore, non la scatola (D-317)
+
+### Misurato
+
+- **La diagnosi di ISSUES 92 era sbagliata**, e tre verifiche la smontano:
+  `P_EXPLOIT` e' **offerta 3 volte e scelta 3** (`run_choice_probe.gd`, che
+  esisteva gia'); `TEN_AWAKENING` ha media **5.90** su soglia 6, picco 33, e
+  **116 spinte in su contro 7 in giu'** — la Tensione meno frenata del gioco;
+  `Q_AWAKENING_CRYSTAL` ha `eligibility: []`, sempre eleggibile. E il suo
+  Consiglio si apre **zero volte su 40 partite**.
+- **Il blocco e' a monte:** quella Tensione non e' quasi mai sul tavolo.
+  `deal_theme_decks()` riempie i sei mazzetti dalle sessanta carte **solo se la
+  Chronicle ha un `region_pool`**; senza, il mazzetto contiene solo le Tensioni
+  gia' in gioco. Il `region_pool` ce l'ha **CHR_00 e basta**.
+- **Il confronto**, 20 partite a tavolo misto:
+
+  | | CHR_01 (anno d'autore) | CHR_00 (mappa pescata) |
+  |---|---|---|
+  | Tensioni sul tavolo, per partita | **4.0** | **8.8** |
+  | distinte in 20 partite | **12** | **57** |
+  | mai viste, su 60 | **48** | **3** |
+  | che tengono un Consiglio | 12 | **28** |
+
+- **La scatola funziona**: con la mappa pescata, 57 carte Tensione su 60
+  arrivano al tavolo e 28 tengono il loro Consiglio. D-261, D-264 e D-265 si
+  vedono giocare.
+- **Ma il cancello dei 100 semi gira su CHR_01 e CHR_03**, tutti e due anni
+  d'autore. Ogni numero di bilanciamento a verbale in questo progetto e' stato
+  misurato su una partita con **quattro** Tensioni, non con sessanta.
+
+### Aggiunto
+
+- `cli/run_tension_reach_probe.gd`: quante delle sessanta Tensioni scritte
+  arrivano al tavolo, dove arrivano contro la loro soglia, e quante tengono
+  davvero un Consiglio.
+
+### Non cambiato
+
+- Nessuna regola, nessun dato, nessun cancello. Quale gioco misurare e' una
+  scelta del committente ([ISSUES 92](docs/ISSUES.md), riscritta).
+
+---
+
 ## 0.1.278 — Una casa spenta non segna, e adesso lo dice una regola sola (D-316)
 
 ### Cambiato
