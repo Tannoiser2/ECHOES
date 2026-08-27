@@ -122,30 +122,30 @@ regge su conteggi — si verifica, ma al tavolo non si puo' indicare.
 
 | Destino | livello | clausole | come si legge |
 |---|---|---|---|
-| DST_ALDRIC | minimum | 2 | Il trono regge |
+| DST_ALDRIC | minimum | 1 | Il trono regge |
 | DST_ALDRIC | victory | 2 | Il regno decide |
-| DST_NAHR | minimum | 2 | Il popolo sopravvive |
-| DST_LYRA | minimum | 2 | Ha capito qualcosa |
-| DST_VAERAX | minimum | 2 | La montagna è ancora sua |
-| DST_ALDRIC_RECORD | minimum | 2 | La casa siede ancora |
-| DST_NAHR_ROOTED | minimum | 1 | Il popolo è ancora qui |
+| DST_NAHR | minimum | 1 | Il popolo sopravvive |
+| DST_LYRA | minimum | 1 | Ha capito qualcosa |
+| DST_VAERAX | minimum | 1 | La montagna è ancora sua |
+| DST_ALDRIC_RECORD | minimum | 1 | La casa siede ancora |
+| DST_NAHR_ROOTED | minimum | 1 | Qualcosa che resta, piantato |
 | DST_NAHR_ROOTED | victory | 4 | La terra risponde a chi la lavora |
-| DST_LYRA_TAUGHT | minimum | 1 | Qualcuno sa ancora leggere le carte |
+| DST_LYRA_TAUGHT | minimum | 1 | Qualcosa è stato insegnato |
 | DST_VAERAX_WATCHED | minimum | 1 | La montagna è ancora sua |
-| DST_SALE | minimum | 2 | La Gilda è ancora al tavolo |
-| DST_SALE_OPEN | minimum | 1 | La Gilda esiste ancora |
-| DST_VETRO | minimum | 2 | L'Ordine tiene la sua casa |
-| DST_VETRO_SHOWN | minimum | 2 | L'Ordine tiene la sua casa |
+| DST_SALE | minimum | 1 | La Gilda è ancora al tavolo |
+| DST_SALE_OPEN | minimum | 1 | Una terra risponde alla Gilda |
+| DST_VETRO | minimum | 1 | L'Ordine tiene la sua casa |
+| DST_VETRO_SHOWN | minimum | 1 | L'Ordine tiene la sua casa |
 | DST_CENERE | minimum | 1 | Restano sulla montagna |
-| DST_CENERE_DEEP | minimum | 2 | Non hanno lasciato la montagna |
+| DST_CENERE_DEEP | minimum | 1 | Non hanno lasciato la montagna |
 | DST_CENERE_DEEP | triumph | 5 | E non devono più niente a nessuno |
-| DST_LIBERE | minimum | 2 | Le città esistono ancora |
-| DST_LIBERE_WATER | minimum | 1 | Le città esistono ancora |
-| DST_SHARED_RENOWN | minimum | 1 | La casa è ancora al tavolo |
+| DST_LIBERE | minimum | 1 | Le città esistono ancora |
+| DST_LIBERE_WATER | minimum | 1 | Un'opera alzata |
+| DST_SHARED_RENOWN | minimum | 1 | Un posto che risponde al tuo nome |
 | DST_SHARED_LAND | minimum | 1 | Un posto che risponde |
 | DST_SHARED_LAND | victory | 2 | La terra risponde, e non importa come |
 | DST_SHARED_LAND | triumph | 1 | La mappa parla la tua lingua |
-| DST_SHARED_ACCOUNTS | minimum | 1 | La casa è ancora al tavolo |
+| DST_SHARED_ACCOUNTS | minimum | 1 | Due conti tenuti sotto controllo |
 | DST_SHARED_QUIET | minimum | 1 | Tre questioni tenute giù |
 | DST_SHARED_QUIET | victory | 2 | La quiete si vede |
 | DST_SHARED_QUIET | triumph | 2 | La quiete non capita: si tiene |

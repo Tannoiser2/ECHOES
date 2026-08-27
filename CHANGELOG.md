@@ -5,6 +5,50 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.278 — Una casa spenta non segna, e adesso lo dice una regola sola (D-316)
+
+### Cambiato
+
+- **La regola sta in un posto solo.** `entity_alive` stava nel Minimo di
+  **17 Destini su 23**, sempre riferita a se' stessi. Adesso il cancello e' in
+  `destiny_evaluator.evaluate()`: casa spenta, livello NONE, i tre gradini
+  falsi, e il verbale dice perche'. Vale per **tutti e ventitre'**, non per
+  diciassette — sei Destini (`DST_CENERE`, `DST_VAERAX_WATCHED` fra questi) il
+  cancello non ce l'avevano affatto.
+- **Diciassette righe stampate riscritte.** Il Minimo di Aldric diceva *«Sei
+  ancora sul trono e hai una presenza sulla capitale»*; adesso dice *«Hai una
+  presenza sulla capitale»*. Mezza riga della carta era spesa a dire «non sei
+  morto», che al tavolo non e' un obiettivo ma il presupposto per averne uno.
+- **Sei Minimi scritti da zero**, perche' senza la clausola restavano vuoti — e
+  un livello vuoto si avvera da solo, cioe' un regalo piu' grosso di quello
+  tolto. Ognuno e' il passo piu' piccolo della stessa ambizione: una pietra
+  piantata per i Nahr radicati, una Scoperta per la scuola di Lyra, una terra
+  che risponde alla Gilda, un'opera alzata per le Citta' Libere, una terra che
+  risponde al tuo nome, due questioni tenute sotto il punto di rottura.
+- Riscritte anche le sei **etichette di livello**: «La Gilda esiste ancora» su
+  un livello che adesso chiede una terra e' una frase d'autore che contraddice
+  la carta (D-305).
+
+### Misurato
+
+- **Il punteggio non si muove.** 100 semi, prima -> dopo: NONE 191 -> 190,
+  MINIMUM 426 -> 428, VICTORY 550 -> 551, TRIUMPH 33 -> 31. La clausola era
+  sempre vera per i vivi e i morti cadevano gia' sul Minimo cumulativo.
+- **Quello che si muove e' la dotazione.** 40 tavoli CHR_01, contro il
+  baseline di D-314: clausole gia' vere all'apertura **60.5% -> 57.8% ->
+  52.4%**, clausole contese **10.2% -> 11.8% -> 15.8%**. Otto punti in meno di
+  dotazione e cinque e mezzo in piu' di contesa, in due tagli.
+
+### Aggiunto
+
+- Cinque prove, due delle quali sono guardie contro la cecita': il caso che
+  deve dare **non-NONE**, e la prova che **nessun livello e' rimasto vuoto**.
+  Una terza gira su **ogni** Destino la cui casa siede al tavolo invece che su
+  una lista scritta a mano — la prima versione nominava `DST_CENERE`, che a
+  quel tavolo non c'e', e si era gia' ridotta a provare la meta'.
+
+---
+
 ## 0.1.277 — Il mondo prende un rovescio, e la prima carta lo prende sul serio (D-315)
 
 ### Aggiunto

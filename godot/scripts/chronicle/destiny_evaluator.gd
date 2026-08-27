@@ -48,6 +48,35 @@ func evaluate(destiny_id: String, holder: String = "") -> Dictionary:
 		entity_id = holder
 	var context: Dictionary = {"self": entity_id}
 
+	# **Una casa spenta non segna** (D-316).
+	#
+	# Fino a 0.1.277 questa regola stava scritta diciassette volte, come
+	# clausola `entity_alive` nel Minimo di diciassette Destini su ventitre'.
+	# Funzionava — i livelli sono cumulativi, quindi cadere sul Minimo spegneva
+	# anche Vittoria e Trionfo — ma al prezzo di due cose. Sulla carta stampata
+	# **mezza riga del Minimo** diceva «e non sei morto», che al tavolo non e'
+	# un obiettivo: e' il presupposto per averne uno. E nella misura di D-314
+	# quelle clausole risultavano **centrate 113 volte su 113, gia' vere
+	# all'apertura 113 volte su 113, contese mai**: la voce piu' grossa fra i
+	# punti che nessuno doveva giocarsi.
+	#
+	# Adesso la regola si dice **una volta sola**, qui, e vale per tutti e
+	# ventitre' i Destini invece che per diciassette. Chi non e' piu' al tavolo
+	# esce a NONE, e il verbale dice perche'.
+	var seat: Variant = (world["entities"] as Dictionary).get(entity_id)
+	if seat != null and not bool((seat as Dictionary)["active"]):
+		var gone: Dictionary = {}
+		for name in LEVEL_NAMES:
+			gone[str(name)] = false
+		return {
+			"destiny_id": destiny_id,
+			"entity_id": entity_id,
+			"level": "NONE",
+			"levels": gone,
+			"evidence": ["NONE la casa non e' piu' al tavolo: il Destino si chiude qui"],
+			"unmet": [],
+		}
+
 	# La Chronicle puo' dichiarare che i gradini non ci sono piu' (D-198): allora
 	# non si guarda fin dove si e' saliti, si contano gli obiettivi avverati.
 	var rules: Dictionary = _objective_rules()

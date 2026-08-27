@@ -8,12 +8,13 @@
       "title": "Il Nome che Pesa",
       "description": "Non importa da dove vieni: importa che quando parli, il tavolo ascolta. La stessa ambizione per chiunque la giuri - la fama, e un posto da cui difenderla.",
       "minimum": {
-        "label": "La casa è ancora al tavolo",
+        "label": "Un posto che risponde al tuo nome",
         "conditions": [
           {
-            "type": "entity_alive",
+            "type": "control_count",
             "entity_id": "$self",
-            "label": "La casa esiste ancora"
+            "min": 1,
+            "label": "Almeno una terra risponde al tuo nome"
           }
         ]
       },
@@ -84,7 +85,7 @@
           "condition:contested"
         ],
         "reads": {
-          "minimum": "Sei ancora al tavolo.",
+          "minimum": "Almeno una terra risponde al tuo nome.",
           "victory": "Porti il segno della fama.",
           "triumph": "Nessuna tua proposta è caduta a verbale, e tre segni dicono che il nome pesa: terre, pietra, o un anno pulito."
         }
@@ -165,12 +166,13 @@
       "title": "I Conti Chiusi",
       "description": "Vincere non è prendere: è una firma che vale, e finire la cronaca senza debiti a verbale. Nessuna proposta caduta, nessuna domanda lasciata aperta, nessun giuramento spezzato nel mondo che lasci.",
       "minimum": {
-        "label": "La casa è ancora al tavolo",
+        "label": "Due conti tenuti sotto controllo",
         "conditions": [
           {
-            "type": "entity_alive",
-            "entity_id": "$self",
-            "label": "La casa esiste ancora"
+            "type": "tension_count",
+            "at_or_below": 3,
+            "min": 2,
+            "label": "Due questioni tenute sotto il punto di rottura"
           }
         ]
       },
@@ -241,7 +243,7 @@
           "renowned"
         ],
         "reads": {
-          "minimum": "Sei ancora al tavolo.",
+          "minimum": "Due questioni sono rimaste sotto il punto di rottura.",
           "victory": "L'anno finisce senza nessuna Domanda lasciata aperta.",
           "triumph": "E nessun giuramento spezzato è rimasto scritto: i conti li hai chiusi tu, e si vede."
         }

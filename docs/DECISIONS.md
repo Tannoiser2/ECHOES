@@ -10,6 +10,103 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-316 — Una casa spenta non segna, e adesso lo dice una regola sola
+
+**implemented** (0.1.278) · taglio (a) della strada 1 di
+[ISSUES 91](ISSUES.md) · scelta del committente: *«parti dalla 2 e poi il
+taglio (a)»*.
+
+### Cosa c'era
+
+`entity_alive` — *«sei ancora vivo»* — stava nel **Minimo di diciassette
+Destini su ventitre'**, sempre riferita a se' stessi. Funzionava come cancello,
+perche' i livelli sono cumulativi: cadere sul Minimo spegne anche Vittoria e
+Trionfo. Ma lo faceva **diciassette volte**, e costava due cose.
+
+Sulla carta stampata si prendeva **mezza riga del Minimo**:
+
+> *«Sei ancora sul trono e hai una presenza sulla capitale.»*
+
+Al tavolo «non sei morto» non e' un obiettivo: e' il presupposto per averne uno.
+E nella misura di D-314 quelle clausole erano **centrate 113 volte su 113,
+gia' vere all'apertura 113 su 113, contese mai** — la voce piu' grossa fra i
+punti che nessuno doveva giocarsi.
+
+E c'era un buco: **sei Destini la clausola non l'avevano**. `DST_CENERE` e
+`DST_VAERAX_WATCHED` fra questi. Per loro il cancello semplicemente non
+esisteva.
+
+### Cosa si fa adesso
+
+La regola sta **in un posto solo**, in `destiny_evaluator.evaluate()`: se la
+casa del Destino non e' piu' attiva, il livello e' NONE, i tre gradini sono
+tutti falsi, e il verbale dice perche'. Vale per **tutti e ventitre'** i
+Destini, non per diciassette.
+
+Le diciassette clausole sono sparite, e con loro diciassette righe stampate
+riscritte. Il Minimo di Aldric adesso dice quello che chiede e basta:
+
+> *«Hai una presenza sulla capitale.»*
+
+### La parte che non era gratis
+
+Togliendo la clausola, **sei Destini restavano col Minimo vuoto** — e un
+livello senza clausole si avvera da solo: sarebbe stato un regalo piu' grosso
+di quello tolto. Quei sei hanno un Minimo **scritto**, il passo piu' piccolo
+della stessa ambizione, nella voce della loro casa:
+
+| Destino | il Minimo nuovo |
+|---|---|
+| `DST_NAHR_ROOTED` — *La Terra Sotto i Piedi* | una pietra sua: il popolo ha piantato qualcosa che resta |
+| `DST_LYRA_TAUGHT` — *Quello che Resta Insegnato* | una Scoperta: la scuola ha insegnato almeno una volta |
+| `DST_SALE_OPEN` — *Il Registro Aperto* | una terra risponde alla Gilda |
+| `DST_LIBERE_WATER` — *L'Acqua Torna a Muoversi* | un'opera alzata: l'acqua non si muove da sola |
+| `DST_SHARED_RENOWN` — *Il Nome che Pesa* | una terra risponde al tuo nome |
+| `DST_SHARED_ACCOUNTS` — *I Conti Chiusi* | due questioni tenute sotto il punto di rottura |
+
+Riscritte anche le sei **etichette di livello**, che dicevano ancora la cosa
+vecchia: «La Gilda esiste ancora» su un livello che adesso chiede una terra e'
+una frase d'autore che contraddice la carta (D-305).
+
+### Cosa e' costato
+
+**Niente, e la misura lo dice.** 100 semi, prima e dopo:
+
+| | prima | dopo |
+|---|---|---|
+| NONE | 191 | 190 |
+| MINIMUM | 426 | 428 |
+| VICTORY | 550 | 551 |
+| TRIUMPH | 33 | 31 |
+
+Nessuno guadagna o perde un livello: la clausola era sempre vera per i vivi, e
+i morti cadevano gia' sul Minimo cumulativo. **0 seggi bloccati su 8**,
+entrambi i tavoli.
+
+### Cosa ha reso
+
+40 tavoli CHR_01, contro il baseline di D-314:
+
+| misura | D-314 | dopo D-315 | dopo D-316 |
+|---|---|---|---|
+| clausole gia' vere all'apertura | 60.5% | 57.8% | **52.4%** |
+| clausole che qualcuno contendeva | 10.2% | 11.8% | **15.8%** |
+
+Otto punti in meno di dotazione e cinque e mezzo in piu' di contesa, in due
+tagli. `entity_alive` e' sparito da tutte e tre le liste della sonda perche'
+non esiste piu' come clausola.
+
+### Le prove
+
+Cinque, e due sono guardie contro la cecita': il caso che deve dare
+**non-NONE** (senza, un NONE costante passerebbe), e la prova che **nessun
+livello e' rimasto vuoto**. Una terza gira su **ogni** Destino la cui casa
+siede al tavolo, invece che su una lista scritta a mano — la prima versione
+nominava `DST_CENERE`, che a quel tavolo non c'e', e si era gia' ridotta a
+provare la meta'.
+
+---
+
 ## D-315 — Il mondo prende un rovescio, e la prima carta lo prende sul serio
 
 **implemented** (0.1.277) · primo taglio della strada 2 di

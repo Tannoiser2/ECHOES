@@ -23,17 +23,17 @@ caratteri misti, come al cancello — e dopo quanto tempo.
 
 | uniforme | misto | vita | casa | porta | segno atteso | anni (mediana) |
 |---|---|---|---|---|---|---|
-| 16 | 19 | Il Regno di Nahr | ENT_NAHR | ON_TAG | `nahr_settled` | 440 |
+| 15 | 18 | Il Regno di Nahr | ENT_NAHR | ON_TAG | `nahr_settled` | 440 |
+| 13 | 12 | Vaerax Ridestato | ENT_VAERAX | ON_TAG | `crystal_exploited` | 486 |
 | 12 | 12 | Il Culto della Misura | ENT_LYRA | LINE_EXHAUSTED | — | 368 |
-| 13 | 11 | Vaerax Ridestato | ENT_VAERAX | ON_TAG | `crystal_exploited` | 433 |
-| 11 | 11 | La Repubblica della Valle | ENT_ALDRIC | LINE_EXHAUSTED | — | 560 |
-| 9 | 9 | Le Custodi della Cenere | ENT_CENERE | LINE_EXHAUSTED | — | 345 |
-| 9 | 9 | I Frati del Vetro | ENT_VETRO | LINE_EXHAUSTED | — | 322 |
-| 9 | 4 | La Lega delle Sette | ENT_LIBERE | ON_TAG | `charter_written` | 560 |
-| 5 | 7 | L'Egemonia di Eredan | ENT_LIBERE | ON_TAG | `scar:emptied@REG_VALLE_VERDE` | 368 |
+| 11 | 10 | La Repubblica della Valle | ENT_ALDRIC | LINE_EXHAUSTED | — | 506 |
+| 10 | 9 | Le Custodi della Cenere | ENT_CENERE | LINE_EXHAUSTED | — | 345 |
+| 9 | 9 | I Frati del Vetro | ENT_VETRO | LINE_EXHAUSTED | — | 357 |
+| 9 | 5 | La Lega delle Sette | ENT_LIBERE | ON_TAG | `charter_written` | 509 |
 | 6 | 6 | La Compagnia del Sale | ENT_SALE | LINE_EXHAUSTED | — | 369 |
-| 5 | 2 | La Diaspora di Nahr | ENT_NAHR | ON_TAG | `twice_uprooted` | 485 |
-| 3 | 2 | La Corona Restaurata | ENT_ALDRIC | ON_TAG | `heir_named` | 381 |
+| 5 | 6 | L'Egemonia di Eredan | ENT_LIBERE | ON_TAG | `scar:emptied@REG_VALLE_VERDE` | 440 |
+| 4 | 3 | La Diaspora di Nahr | ENT_NAHR | ON_TAG | `twice_uprooted` | 368 |
+| 4 | 2 | La Corona Restaurata | ENT_ALDRIC | ON_TAG | `heir_named` | 381 |
 | **0** | **0** | La Reggenza del Granaio | ENT_ALDRIC | ON_TAG | `grain_requisitioned` | — |
 | **0** | **0** | I Forni Riaccesi | ENT_CENERE | ON_TAG | `scar:open_wound` | — |
 | **0** | **0** | L'Accademia delle Misure | ENT_LYRA | ON_TAG | `succession_by_law` | — |
@@ -50,11 +50,11 @@ Il conto e' mutazioni su 168 salti giocati.
 | casa | mutazioni | ogni quanti salti |
 |---|---|---|
 | ENT_ALDRIC | 27 | 1 ogni 6.2 |
-| ENT_CENERE | 18 | 1 ogni 9.3 |
+| ENT_CENERE | 19 | 1 ogni 8.8 |
 | ENT_LIBERE | 25 | 1 ogni 6.7 |
 | ENT_LYRA | 24 | 1 ogni 7.0 |
-| ENT_NAHR | 42 | 1 ogni 4.0 |
+| ENT_NAHR | 40 | 1 ogni 4.2 |
 | ENT_SALE | 12 | 1 ogni 14.0 |
-| ENT_VAERAX | 24 | 1 ogni 7.0 |
+| ENT_VAERAX | 25 | 1 ogni 6.7 |
 | ENT_VETRO | 18 | 1 ogni 9.3 |
 

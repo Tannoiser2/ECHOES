@@ -2802,7 +2802,7 @@ mai toccato* — oggi **66.5%**. Deve scendere.
 
 ---
 
-### 91. Il 60% dei punti era gia' fatto prima che qualcuno giocasse
+### 91. Il 60% dei punti era gia' fatto prima che qualcuno giocasse — 52.4% in 0.1.278
 
 `regola` · `bilanciamento` · `decisione` · aperta in 0.1.276
 ([D-314](DECISIONS.md#d-314))
@@ -2846,6 +2846,19 @@ strade sul tavolo:
 **Il metro c'e' gia'**: `cli/run_contest_probe.gd`. Una modifica che vuole
 rendere il gioco una gara deve **far scendere il 60.5% e salire il 10.2%**,
 senza toccare il cancello dei 100 semi.
+
+**Avanzamento.** Due tagli fatti, entrambi misurati:
+
+| | D-314 | dopo [D-315](DECISIONS.md#d-315) | dopo [D-316](DECISIONS.md#d-316) |
+|---|---|---|---|
+| gia' vere all'apertura | 60.5% | 57.8% | **52.4%** |
+| clausole contese | 10.2% | 11.8% | **15.8%** |
+
+La strada 2 ha dato il rovescio a una memoria (`OBJ_THE_USEFUL_RUIN`) e ha
+trovato il muro vero, che sta altrove ([ISSUES 92](#)). Il taglio (a) della
+strada 1 ha tolto `entity_alive` dal punteggio **senza spostare un livello**.
+Restano aperti il taglio (b) — le soglie assolute che diventano confronti,
+`scar_count` in testa con 154 clausole mai contese — e la strada 3.
 
 ---
 

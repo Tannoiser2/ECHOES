@@ -11,11 +11,6 @@
         "label": "Il trono regge",
         "conditions": [
           {
-            "type": "entity_alive",
-            "entity_id": "ENT_ALDRIC",
-            "label": "Aldric è ancora sul trono"
-          },
-          {
             "type": "region_presence",
             "entity_id": "ENT_ALDRIC",
             "region_id": "REG_EREDAN",
@@ -105,7 +100,7 @@
           "question_unresolved"
         ],
         "reads": {
-          "minimum": "Sei ancora sul trono e hai una presenza sulla capitale.",
+          "minimum": "Hai una presenza sulla capitale.",
           "victory": "Controlli ancora la tua terra, e il Tema Sopravvivenza non è mai salito oltre metà traccia.",
           "triumph": "La capitale esce dall'anno senza #malcontento, la corona non è spezzata, e nessuna Domanda resta aperta."
         }
@@ -119,11 +114,6 @@
       "minimum": {
         "label": "Il popolo sopravvive",
         "conditions": [
-          {
-            "type": "entity_alive",
-            "entity_id": "ENT_NAHR",
-            "label": "I Nahr esistono ancora come popolo"
-          },
           {
             "type": "region_presence",
             "entity_id": "ENT_NAHR",
@@ -240,7 +230,7 @@
           "scar:emptied"
         ],
         "reads": {
-          "minimum": "Il popolo esiste ancora e ha una presenza sul pascolo.",
+          "minimum": "Il popolo ha una presenza sul pascolo.",
           "victory": "Un Consiglio ha riconosciuto il tuo insediamento, e sei nel luogo del granaio.",
           "triumph": "L'insediamento regge, la valle non è stata chiusa, e il mondo esce con non più di due Cicatrici."
         }
@@ -254,11 +244,6 @@
       "minimum": {
         "label": "Ha capito qualcosa",
         "conditions": [
-          {
-            "type": "entity_alive",
-            "entity_id": "ENT_LYRA",
-            "label": "Lyra è viva"
-          },
           {
             "type": "discovery_count",
             "entity_id": "ENT_LYRA",
@@ -383,11 +368,6 @@
         "label": "La montagna è ancora sua",
         "conditions": [
           {
-            "type": "entity_alive",
-            "entity_id": "ENT_VAERAX",
-            "label": "Vaerax è ancora presente nel mondo"
-          },
-          {
             "type": "region_presence",
             "entity_id": "ENT_VAERAX",
             "region_id": "REG_MONTAGNE_ROSSE",
@@ -479,7 +459,7 @@
           "condition:emptied"
         ],
         "reads": {
-          "minimum": "Sei ancora sulla montagna.",
+          "minimum": "Hai una presenza sulla montagna.",
           "victory": "Le gallerie sono sigillate e il Cristallo non è uscito.",
           "triumph": "Restano sigillate, il Tema Antico è tornato in basso, e salire fin lassù non è facile per nessuno."
         }
@@ -493,11 +473,6 @@
       "minimum": {
         "label": "La casa siede ancora",
         "conditions": [
-          {
-            "type": "entity_alive",
-            "entity_id": "ENT_ALDRIC",
-            "label": "La casa è ancora al tavolo"
-          },
           {
             "type": "region_presence",
             "entity_id": "ENT_ALDRIC",
@@ -607,7 +582,7 @@
           "condition:unrest"
         ],
         "reads": {
-          "minimum": "La casa siede ancora, e a Eredan c'è almeno una pedina sua.",
+          "minimum": "A Eredan c'è almeno una pedina sua.",
           "victory": "Nessuna domanda lasciata aperta, due terre che rispondono, Eredan presidiata e qualcosa di murato col suo nome — senza rivolta.",
           "triumph": "La corona intera, la successione passata per la legge, Eredan quieta e senza segni nuovi: chi siede non è più una domanda."
         }
@@ -619,12 +594,13 @@
       "title": "La Terra Sotto i Piedi",
       "description": "Il popolo si è fermato. Adesso la domanda è se il posto in cui si è fermato è suo, o solo prestato.",
       "minimum": {
-        "label": "Il popolo è ancora qui",
+        "label": "Qualcosa che resta, piantato",
         "conditions": [
           {
-            "type": "entity_alive",
+            "type": "structure_count",
             "entity_id": "ENT_NAHR",
-            "label": "Il popolo esiste ancora"
+            "min": 1,
+            "label": "Il popolo ha piantato almeno una cosa che resta"
           }
         ]
       },
@@ -729,7 +705,7 @@
           "condition:emptied"
         ],
         "reads": {
-          "minimum": "Il popolo è ancora qui.",
+          "minimum": "Il popolo ha piantato almeno una cosa che resta.",
           "victory": "Una pedina nella Valle Verde, due terre che rispondono, tre cose che restano — e il villaggio è diventato borgo.",
           "triumph": "Radicati senza chiudere la porta: la Valle aperta, l'insediamento riconosciuto, le Terre non svuotate, e la Valle Verde uscita pulita."
         }
@@ -741,12 +717,13 @@
       "title": "Quello che Resta Insegnato",
       "description": "Il sapere è uscito dalle gallerie una volta. Chi viene dopo vuole che non ci torni dentro alla prima paura.",
       "minimum": {
-        "label": "Qualcuno sa ancora leggere le carte",
+        "label": "Qualcosa è stato insegnato",
         "conditions": [
           {
-            "type": "entity_alive",
+            "type": "discovery_count",
             "entity_id": "ENT_LYRA",
-            "label": "La scuola esiste ancora"
+            "min": 1,
+            "label": "Qualcuno ha imparato qualcosa"
           }
         ]
       },
@@ -821,7 +798,7 @@
           "study_supervised"
         ],
         "reads": {
-          "minimum": "Qualcuno sa ancora leggere le carte.",
+          "minimum": "Qualcuno ha imparato qualcosa: la scuola ha insegnato almeno una volta.",
           "victory": "Una scoperta all'attivo, le gallerie aperte, e due pietre sue — o una terra che le risponde.",
           "triumph": "Verificabile da chiunque: gallerie aperte, una scorta giurata per arrivarci, e nessuna guardia messa allo studio."
         }
@@ -912,11 +889,6 @@
         "label": "La storia si racconta ancora",
         "conditions": [
           {
-            "type": "entity_alive",
-            "entity_id": "ENT_VAERAX",
-            "label": "Il seggio della storia non è stato spento"
-          },
-          {
             "type": "state_tag_present",
             "scope": "GLOBAL",
             "tag": "mountain_forgotten",
@@ -974,7 +946,7 @@
           "mine_sealed"
         ],
         "reads": {
-          "minimum": "La storia si racconta ancora, e il mondo dimentica la montagna.",
+          "minimum": "Il mondo dimentica la montagna.",
           "victory": "Il sigillo regge e il Risveglio resta quieto.",
           "triumph": "Il sigillo regge, il Risveglio è un sussurro, e il giorno del Cristallo è ormai soltanto un racconto."
         }
