@@ -5,6 +5,38 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.272 — Ogni carta le sue proposte (D-310)
+
+- **Taglio 2 di ISSUES 80, scelta del committente: «ogni carta sue proposte».**
+- **Cosa c'era, misurato**: sette Domande generiche coprivano **52 carte su
+  60**. *«Chi decide a chi non ne tocca?»* era la domanda di quindici questioni
+  diverse; solo otto carte ne avevano una propria. Al tavolo, La Febbre Bassa e
+  I Lupi al Limitare aprivano lo **stesso dibattito**.
+- **Ogni carta porta adesso il suo Consiglio** — un blocco `council` con le sue
+  Domande e le sue Proposte. La carta girata basta a se stessa. Il template
+  resta per quello che non è della singola carta: clausole, pool, Risonanza del
+  titolo; `confluence_template_for` fonde le due cose e **la carta vince su
+  quello che è suo**.
+- **Il controller non legge più `confluence_templates[...]` direttamente**:
+  cinque punti passavano di lì e avrebbero preso la domanda di ripiego.
+- **Il cancello che rende il debito un numero**: la misura della matrice conta
+  le **carte che aprono ancora una domanda in prestito**, e guarda il **testo**,
+  non l'id — così il buco non si chiude rinominando.
+- **Due controlli nuovi** nella grammatica fisica, coi loro difetti piantati
+  (**ventuno**): il ponte delle domande accetta la casa nuova, e una domanda che
+  si apre deve avere **almeno una risposta**.
+- **Scritto il primo Tema, la Sopravvivenza**: nove carte, **18 domande e 27
+  proposte** nuove, sulle Conseguenze che già esistono. **52 → 43** carte in
+  prestito.
+- **Il costo dichiarato**: trasformazioni sedute **183 → 174** — le proposte
+  nuove portano Conseguenze diverse, e il mondo arriva ai salti d'era in un
+  altro stato. È il valore basso della banda in cui il numero oscilla da cinque
+  decisioni (182, 185, 184, 183, 174), non un gradino nuovo. Vite che non si
+  siedono mai: **sei**, invariato.
+- Playtest 100 semi: **0 seggi bloccati su 8**, misto e uniforme. Suite **614**.
+
+---
+
 ## 0.1.271 — La Miniera di Stato dice quello che la sua frase diceva già (D-309)
 
 - **Chiusa l'eccezione dichiarata da D-307.** `CNS_MINE_TAKEN` era l'unica

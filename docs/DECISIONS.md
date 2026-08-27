@@ -10,6 +10,86 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-310 — Ogni carta le sue proposte
+
+**implemented, Fase A + primo Tema** (0.1.272) · taglio **2** di
+[ISSUES 80](ISSUES.md), scelta del committente: *«ogni carta sue proposte»*
+
+### Cosa c'era
+
+Misurato prima di scrivere: **sette Domande generiche coprivano cinquantadue
+carte su sessanta**.
+
+| domanda | su quante carte |
+|---|---|
+| *«$in_region, chi decide a chi non ne tocca?»* | 15 |
+| *«Chi ha ancora motivo di restare $in_region?»* | 15 |
+| *«$in_region, chi tiene il posto quando la voce si spegne?»* | 13 |
+| *«Quale legge vale $in_region: quella scritta, o quella di chi c'e'?»* | 13 |
+| *«Chi tiene d'occhio quello che c'e' $in_region?»* | 13 |
+| *«$in_region, chi paga il prezzo di quello che rende?»* | 11 |
+| *«Chi tiene i conti di quello che passa $in_region?»* | 11 |
+
+Solo **otto** carte avevano domande proprie, e **dodici** proposte generiche
+servivano tutte le altre. Al tavolo vuol dire che La Febbre Bassa, I Lupi al
+Limitare e Il Grano Guasto aprivano lo **stesso dibattito**.
+
+### Cosa c'e' adesso
+
+**Ogni carta porta il suo Consiglio**: un blocco `council` con le sue Domande e
+le sue Proposte. Al tavolo la carta girata basta a se stessa — chi la legge vede
+la sua domanda, non quella di un mazzetto condiviso.
+
+Il template resta, e serve ancora, per quello che **non e' della singola
+carta**: le clausole qualificate, i pool delle Conseguenze, la Risonanza del
+titolo. `confluence_template_for` fonde le due cose, e **la carta vince su
+quello che e' suo**. Il controller non legge piu' `confluence_templates[...]`
+direttamente: cinque punti passavano di li' e avrebbero preso la domanda di
+ripiego.
+
+### Il cancello che rende il debito un numero
+
+Copiare il blocco non basta: se il **testo** e' lo stesso di un'altra carta, al
+tavolo la domanda e' ancora quella generica. La misura della matrice conta le
+**carte che aprono ancora una domanda in prestito**, e guarda il testo, non
+l'id — cosi' il buco non si chiude rinominando.
+
+Due controlli nuovi nella grammatica fisica, coi loro difetti piantati
+(**ventuno** adesso): il ponte delle domande accetta la casa nuova, e **una
+domanda che si apre deve avere almeno una risposta**.
+
+### Il primo Tema, scritto
+
+**La Sopravvivenza**: nove carte (la decima, La Carestia, aveva gia' le sue),
+**18 domande e 27 proposte** nuove. Le Conseguenze sono quelle che gia'
+esistono — qui cambia il testo, non la meccanica.
+
+> *«$in_region, chi apre i sili e guarda dentro?»* — Il Grano Guasto
+> *«Chi traccia il cordone $in_region, e dove passa?»* — Il Cordone
+> *«Chi veglia il limitare $in_region?»* — I Lupi al Limitare
+
+| | prima | dopo |
+|---|---|---|
+| **carte che aprono una domanda in prestito** | 52 su 60 | **43** |
+
+### Il costo dichiarato
+
+Trasformazioni sedute (168 salti) **183 → 174**. Le proposte nuove portano
+Conseguenze diverse da quelle generiche che quelle nove carte pescavano, quindi
+il mondo arriva ai salti d'era in un altro stato. Le vite che non si siedono mai
+restano **sei**. E' il valore basso della banda in cui questo numero oscilla da
+cinque decisioni (182, 185, 184, 183, 174), non un gradino nuovo: va guardato
+quando gli altri cinque Temi saranno scritti.
+
+Playtest 100 semi: **0 seggi bloccati su 8**, misto e uniforme. Suite 614.
+
+### Quello che resta
+
+**43 carte** ancora in prestito, cinque Temi: Potere, Vie, Antico, Fede, Terra.
+Un Tema per volta, e il numero della matrice dice quanto manca.
+
+---
+
 ## D-309 — La Miniera di Stato dice quello che la sua frase diceva gia'
 
 **implemented** (0.1.271) · chiude l'eccezione dichiarata da

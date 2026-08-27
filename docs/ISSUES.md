@@ -3128,9 +3128,20 @@ volta in questo progetto che uno zero era la sonda.**
    tabellone, i benefici con la pedina su quelli comprati, il prezzo in cifre,
    chi tiene la pedina del prezzo, la controproposta e cosa succede se cade.
    Nessuna regola toccata.
-2. **La Domanda e la Proposta vengono dalla carta**, non da
-   `confluence_templates`: e' [D-266](DECISIONS.md#d-266) portata fino in fondo,
-   ed e' la grammatica vecchia da cancellare davvero.
+2. 🔨 **La Domanda e la Proposta vengono dalla carta** — **Fase A e primo Tema
+   fatti in 0.1.272** ([D-310](DECISIONS.md#d-310)), scelta del committente:
+   *«ogni carta sue proposte»*.
+
+   Misurato prima di scrivere: **sette domande generiche coprivano 52 carte su
+   60** — La Febbre Bassa, I Lupi al Limitare e Il Grano Guasto aprivano lo
+   stesso dibattito. Adesso ogni carta porta il suo blocco `council`, il
+   template resta solo per quello che non e' della singola carta, e la misura
+   della matrice conta le **carte che aprono ancora una domanda in prestito**
+   guardando il **testo**, non l'id.
+
+   Scritta la **Sopravvivenza**: 9 carte, 18 domande e 27 proposte nuove.
+   **52 → 43 carte in prestito.** Restano cinque Temi — Potere, Vie, Antico,
+   Fede, Terra — un Tema per volta.
 3. **Chi decide**: il d6 e gli impegni segreti contro l'economia. Se passa
    perche' il proponente puo' pagare quello che il tavolo chiede, il dado esce
    dal gioco — ed e' la modifica che vale la parola del committente, non la mia.

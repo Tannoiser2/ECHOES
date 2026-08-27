@@ -277,6 +277,26 @@ def tension_signs() -> Dict[str, Dict[str, Set[str]]]:
 
 # --- la Legacy: cosa il tempo porta avanti ----------------------------------
 
+def _borrowed_questions() -> int:
+    """Quante carte aprono una Domanda che si legge identica su un'altra carta.
+
+    Da 0.1.272 ogni carta porta il suo Consiglio (`council`), ma copiarlo non
+    basta: se il testo e' lo stesso di un'altra carta, al tavolo la domanda e'
+    ancora quella generica. Il conto guarda il **testo**, non l'id, cosi' non
+    si puo' chiudere il buco rinominando.
+    """
+    testi: Dict[str, Set[str]] = defaultdict(set)
+    for tension in items("tensions/*.json"):
+        council = tension.get("council") or {}
+        for question in council.get("questions", []) or []:
+            testi[str((question or {}).get("text", ""))].add(str(tension.get("id", "")))
+    in_prestito: Set[str] = set()
+    for text, cards in testi.items():
+        if text and len(cards) > 1:
+            in_prestito |= cards
+    return len(in_prestito)
+
+
 def legacy_signs() -> Set[str]:
     carried: Set[str] = set()
     for chronicle in items("chronicle_*/chronicle_*.json"):
@@ -500,6 +520,12 @@ def survey() -> Tuple[str, Dict[str, int]]:
             1 for p in profiles for v in (p.get("wants", []) or [])
             if str(v.get("tag", "")) in council_gives
         ),
+        # **Quante carte aprono ancora una domanda che non e' loro** (0.1.272,
+        # taglio 2 di ISSUES 80). Il criterio non e' l'id ma il **testo**: una
+        # domanda che si legge identica su piu' carte e' una domanda in
+        # prestito, e al tavolo suona come tale — «chi decide a chi non ne
+        # tocca?» era la domanda di quindici questioni diverse.
+        "carte_con_domanda_in_prestito": _borrowed_questions(),
         "incroci": len(incroci),
         "coppie_incrociate": len(coppie_incrociate),
         "coppie_totali": len(tutte_le_coppie),
@@ -525,6 +551,8 @@ def survey() -> Tuple[str, Dict[str, int]]:
     add("| **livelli che si reggono solo su conteggi** | **%d** |" % numbers["solo_conteggi"])
     add("| Tensioni | %d |" % numbers["tensioni"])
     add("| **Tensioni che non toccano nessun segno nominato da un Destino** | **%d** |" % numbers["senza_conflitto"])
+    add("| **carte che aprono ancora una domanda in prestito** | **%d** |" % (
+        numbers["carte_con_domanda_in_prestito"]))
     add("| segni che l'eredita' porta avanti | %d |" % numbers["eredita"])
     add("| profili strategici scritti | %d |" % numbers["profili"])
     add("| segni che quelle case vogliono o temono | %d |" % numbers["desideri"])

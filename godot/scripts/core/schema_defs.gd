@@ -1644,6 +1644,9 @@ const DEFS := {
 				"type": "String",
 				"pattern": "^THM_[A-Z_]+$",
 			},
+			"council": {
+				"type": "Dictionary",
+			},
 		},
 	},
 	"theme": {
