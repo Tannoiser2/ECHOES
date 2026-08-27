@@ -2763,6 +2763,29 @@ e' in gioco.
 
 ---
 
+### 90. ✅ La mappa pescata poteva non offrire una famiglia — chiusa in 0.1.275
+
+`regole` · `bilanciamento` · aperta e chiusa in 0.1.275
+([D-313](DECISIONS.md#d-313))
+
+Trovata rispondendo a una domanda del committente sul tavolo fisico. Ogni
+tessera e' fonte di due famiglie di carte; sei tessere su dieci fanno venti
+caselle per sei famiglie, e **45 mappe su 210 ne lasciavano fuori una** — 28
+volte l'Autorita', che usciva da due sole tessere.
+
+Chiusa in due mosse: il Bosco dei Confini riequilibrato (45 → 30, l'ottimo
+teorico) e una regola di stesura che chiude il resto (30 → 0). Quattro prove,
+due delle quali guardano il **cablaggio** e non la funzione — sono quelle che
+avrebbero preso l'errore vero.
+
+**Quello che resta aperto e non e' di questa voce**: la mappa pescata la usa
+solo CHR_00, e il cancello a 100 semi gira CHR_01 e CHR_03. Finche' e' cosi',
+**nessuna modifica alla pesca delle tessere passa dal cancello**: la si prova
+coi test o non la si prova. Vale la pena, quando si torna sul setup
+procedurale, far girare al cancello anche una Chronicle a mappa pescata.
+
+---
+
 ### 89. La proposta non si risolve col dito: 642 Effetti che nessuna carta stampa
 
 `regole` · `fisico` · **aperta in 0.1.274** ([D-312](DECISIONS.md#d-312)) —

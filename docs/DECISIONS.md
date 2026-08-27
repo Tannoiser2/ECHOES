@@ -10,6 +10,107 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-313 — Una mappa che non offre una famiglia toglie otto carte dal gioco
+
+**implemented** (0.1.275) · nata da una domanda del committente sul tavolo
+fisico: *«se le zone della mappa sono 6 come si fa a pescare 7 carte? E se non
+hai presenza in una regione non peschi la carta?»*
+
+### Cosa c'era
+
+Rispondere alla seconda domanda ha scoperto la prima. **Si pesca sempre**: la
+presenza non e' un requisito, e' un selettore — senza gettoni il rubinetto
+pesca dal mazzo piu' pieno e l'ACQUISIRE pesca una carta invece di due. Ma
+allora la mappa decide *quale* famiglia si puo' inseguire, e li' c'era un buco.
+
+Ogni tessera e' fonte di **due** famiglie. Sei tessere pescate su dieci fanno
+**venti caselle per sei famiglie**, e il conto non era distribuito:
+
+| famiglia | Regioni che la offrivano |
+|---|---|
+| Forza, Gente, Conoscenza | 4 ciascuna |
+| Ricchezza, Legami | 3 ciascuna |
+| **Autorita'** | **2** |
+
+Enumerate tutte e **210** le mappe possibili: **45 lasciavano fuori una
+famiglia**, e in **28** di quelle era l'Autorita'. Su una mappa cosi', le otto
+carte Autorita' — Sigillo, Editto, Censimento, Investitura, Magistrato, Diritto
+di Corona, Interdetto, Atto di Successione — **non si possono andare a
+prendere**: le pesca solo chi e' a terra, alla cieca.
+
+### Il limite, prima del rimedio
+
+Una famiglia su `k` Regioni sparisce da `C(10-k, 6)` mappe: serve **k ≥ 5** per
+non sparire mai. Sei famiglie a cinque Regioni fanno **trenta** caselle, e ne
+esistono **venti**. **Il 100% e' impossibile con due famiglie per tessera**, e
+la distribuzione migliore e' `4,4,3,3,3,3` — **trenta** mappe monche.
+
+### Le due mosse
+
+**1. Una casella riequilibrata.** Il **Bosco dei Confini** passa da
+*Forza + Gente* a *Forza + Autorita'*. La ragione e' scritta nella tessera
+stessa:
+
+> *«Il confine passa di qui, ma nessuno l'ha mai visto scritto.»*
+
+Un confine che nessuno ha scritto **e'** una questione di Autorita'. La
+distribuzione diventa `4,4,3,3,3,3`, che e' l'ottimo: **45 → 30**. Provato per
+forza bruta: dieci scambi diversi arrivano a 30 e nessuno va sotto — a
+scegliere fra quei dieci e' la finzione, non la misura.
+
+**2. Una regola di stesura**, che chiude le trenta che restano:
+
+> Stese le sei tessere, se una famiglia non compare da nessuna parte, togli la
+> tessera piu' inutile — quella le cui due famiglie sono gia' offerte da
+> un'altra — e mettine una che porti la famiglia mancante.
+
+E' una regola che **una persona sa eseguire al tavolo**, non un algoritmo:
+guardi le sei tessere, vedi che manca la Ricchezza, togli quella che non serve
+a niente e ne peschi una col simbolo giusto. Deterministica come tutto il
+resto: le mancanti si guardano in ordine, la sostituta e' la prima di scorta
+che la offre.
+
+| | prima | dopo |
+|---|---|---|
+| mappe che lasciano fuori una famiglia | 45 su 210 · **21%** | **0** |
+
+### Le prove, e perche' sono quattro
+
+Un test che dice **zero** in questo progetto va provato prima di crederci. Ce
+ne sono quattro, e due sono guardie contro l'errore piu' probabile:
+
+1. **il difetto, misurato**: la pesca nuda lascia ancora fuori 30 mappe. Se
+   qualcuno tocca le `asset_sources`, questo numero cambia e la CI lo dice;
+2. **la regola le chiude tutte**: 210 mappe, zero monche;
+3. **la sostituzione non rompe la mappa**: restano sei tessere, tutte diverse;
+4. **e la partita vera la usa** — apre sessanta partite di CHR_00 e guarda le
+   tessere uscite.
+
+La quarta e' quella che conta di piu'. Le prime tre chiamano `resolve_map` a
+mano e sarebbero verdi anche se `GameSession` si fosse dimenticata di passargli
+il set di dati: **al tavolo la regola non ci sarebbe, e nessuno se ne
+accorgerebbe**. Tolto il set di dati alla chiamata, la quarta va rossa dicendo
+**9 partite su 60** — la stessa proporzione del 30 su 210. Con il rimedio
+guasto, la seconda dice 30. Mordono tutte e due.
+
+### Il costo dichiarato, e cosa il cancello non prova
+
+**Il playtest a 100 semi non tocca questa modifica.** Gira CHR_01 e CHR_03, e
+nessuna delle due contiene il Bosco dei Confini: CHR_00 e' l'unica Chronicle
+che pesca la mappa. I numeri del cancello sono identici **per questo**, non
+perche' la modifica sia neutra — e va scritto invece che spacciato per
+conferma. La prova di questa decisione e' il test nuovo, non il cancello.
+
+Sedici carte hanno dovuto cambiare la loro frase stampata: `acquisition_rule`
+nomina le Regioni fonte, e il validatore l'ha presa subito — otto Autorita' che
+non nominavano il Bosco e otto Gente che lo nominavano ancora. E' la guardia
+messa in piedi quando la mappa fu ridistribuita la prima volta, e ha fatto
+esattamente il suo mestiere.
+
+Playtest 100 semi: **0 seggi bloccati su 8**, misto e uniforme. Suite **618**.
+
+---
+
 ## D-312 — Le Vie, e la domanda che il committente ha fatto guardando le carte
 
 **implemented** (0.1.274) · terzo Tema del taglio **2** di [ISSUES 80](ISSUES.md)

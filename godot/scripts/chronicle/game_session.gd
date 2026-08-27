@@ -124,7 +124,7 @@ func setup(chronicle_id: String, seats: Array, seed_value: int) -> bool:
 		if pool.is_empty():
 			_chronicle_def = _chronicle_def.duplicate(true)
 		_chronicle_def["regions"] = WorldStateFactory.resolve_map(
-			_chronicle_def, RngService.new(seed_value * 53 + 29)
+			_chronicle_def, RngService.new(seed_value * 53 + 29), data
 		)
 
 	log = GameLog.new()

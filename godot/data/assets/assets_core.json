@@ -696,7 +696,7 @@
         "law",
         "common"
       ],
-      "acquisition_rule": "ACQUIRE su AUTHORITY. Fonti: Eredan, Terre Nahr.",
+      "acquisition_rule": "ACQUIRE su AUTHORITY. Fonti: Eredan, Terre Nahr, Il Bosco dei Confini.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -775,7 +775,7 @@
         "law",
         "symbol"
       ],
-      "acquisition_rule": "ACQUIRE su AUTHORITY. Fonti: Eredan, Terre Nahr.",
+      "acquisition_rule": "ACQUIRE su AUTHORITY. Fonti: Eredan, Terre Nahr, Il Bosco dei Confini.",
       "confluence_modifier": {
         "kind": "OPPOSE_BONUS",
         "value": 1
@@ -849,7 +849,7 @@
         "record",
         "administration"
       ],
-      "acquisition_rule": "ACQUIRE su AUTHORITY. Fonti: Eredan, Terre Nahr.",
+      "acquisition_rule": "ACQUIRE su AUTHORITY. Fonti: Eredan, Terre Nahr, Il Bosco dei Confini.",
       "confluence_modifier": {
         "kind": "RELEVANT_BONUS",
         "value": 1
@@ -941,7 +941,7 @@
         "tradition",
         "risky"
       ],
-      "acquisition_rule": "ACQUIRE su AUTHORITY. Fonti: Eredan, Terre Nahr.",
+      "acquisition_rule": "ACQUIRE su AUTHORITY. Fonti: Eredan, Terre Nahr, Il Bosco dei Confini.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -1020,7 +1020,7 @@
         "law",
         "judgement"
       ],
-      "acquisition_rule": "ACQUIRE su AUTHORITY. Fonti: Eredan, Terre Nahr.",
+      "acquisition_rule": "ACQUIRE su AUTHORITY. Fonti: Eredan, Terre Nahr, Il Bosco dei Confini.",
       "confluence_modifier": {
         "kind": "OPPOSE_BONUS",
         "value": 2
@@ -1109,7 +1109,7 @@
         "title",
         "grant"
       ],
-      "acquisition_rule": "ACQUIRE su AUTHORITY. Fonti: Eredan, Terre Nahr.",
+      "acquisition_rule": "ACQUIRE su AUTHORITY. Fonti: Eredan, Terre Nahr, Il Bosco dei Confini.",
       "confluence_modifier": {
         "kind": "FLAT_BONUS",
         "value": 1
@@ -1189,7 +1189,7 @@
         "prohibition",
         "risky"
       ],
-      "acquisition_rule": "ACQUIRE su AUTHORITY. Fonti: Eredan, Terre Nahr.",
+      "acquisition_rule": "ACQUIRE su AUTHORITY. Fonti: Eredan, Terre Nahr, Il Bosco dei Confini.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -1269,7 +1269,7 @@
         "succession",
         "risky"
       ],
-      "acquisition_rule": "ACQUIRE su AUTHORITY. Fonti: Eredan, Terre Nahr.",
+      "acquisition_rule": "ACQUIRE su AUTHORITY. Fonti: Eredan, Terre Nahr, Il Bosco dei Confini.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -1351,7 +1351,7 @@
         "population",
         "common"
       ],
-      "acquisition_rule": "ACQUIRE su PEOPLE. Fonti: Valle Verde, Terre Nahr, La Palude dei Canali, Il Bosco dei Confini.",
+      "acquisition_rule": "ACQUIRE su PEOPLE. Fonti: Valle Verde, Terre Nahr, La Palude dei Canali.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -1427,7 +1427,7 @@
         "tradition",
         "voice"
       ],
-      "acquisition_rule": "ACQUIRE su PEOPLE. Fonti: Valle Verde, Terre Nahr, La Palude dei Canali, Il Bosco dei Confini.",
+      "acquisition_rule": "ACQUIRE su PEOPLE. Fonti: Valle Verde, Terre Nahr, La Palude dei Canali.",
       "confluence_modifier": {
         "kind": "OPPOSE_BONUS",
         "value": 1
@@ -1515,7 +1515,7 @@
         "labour",
         "harvest"
       ],
-      "acquisition_rule": "ACQUIRE su PEOPLE. Fonti: Valle Verde, Terre Nahr, La Palude dei Canali, Il Bosco dei Confini.",
+      "acquisition_rule": "ACQUIRE su PEOPLE. Fonti: Valle Verde, Terre Nahr, La Palude dei Canali.",
       "confluence_modifier": {
         "kind": "RELEVANT_BONUS",
         "value": 1
@@ -1600,7 +1600,7 @@
         "mobilisation",
         "risky"
       ],
-      "acquisition_rule": "ACQUIRE su PEOPLE. Fonti: Valle Verde, Terre Nahr, La Palude dei Canali, Il Bosco dei Confini.",
+      "acquisition_rule": "ACQUIRE su PEOPLE. Fonti: Valle Verde, Terre Nahr, La Palude dei Canali.",
       "confluence_modifier": {
         "kind": "OPPOSE_BONUS",
         "value": 2
@@ -1676,7 +1676,7 @@
         "voice",
         "consensus"
       ],
-      "acquisition_rule": "ACQUIRE su PEOPLE. Fonti: Valle Verde, Terre Nahr, La Palude dei Canali, Il Bosco dei Confini.",
+      "acquisition_rule": "ACQUIRE su PEOPLE. Fonti: Valle Verde, Terre Nahr, La Palude dei Canali.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -1759,7 +1759,7 @@
         "mobilisation",
         "pressure"
       ],
-      "acquisition_rule": "ACQUIRE su PEOPLE. Fonti: Valle Verde, Terre Nahr, La Palude dei Canali, Il Bosco dei Confini.",
+      "acquisition_rule": "ACQUIRE su PEOPLE. Fonti: Valle Verde, Terre Nahr, La Palude dei Canali.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -1845,7 +1845,7 @@
         "irreversible",
         "risky"
       ],
-      "acquisition_rule": "ACQUIRE su PEOPLE. Fonti: Valle Verde, Terre Nahr, La Palude dei Canali, Il Bosco dei Confini.",
+      "acquisition_rule": "ACQUIRE su PEOPLE. Fonti: Valle Verde, Terre Nahr, La Palude dei Canali.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -1935,7 +1935,7 @@
         "labour",
         "risky"
       ],
-      "acquisition_rule": "ACQUIRE su PEOPLE. Fonti: Valle Verde, Terre Nahr, La Palude dei Canali, Il Bosco dei Confini.",
+      "acquisition_rule": "ACQUIRE su PEOPLE. Fonti: Valle Verde, Terre Nahr, La Palude dei Canali.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0

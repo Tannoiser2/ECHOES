@@ -318,8 +318,8 @@
         "REG_MONTAGNE_ROSSE"
       ],
       "asset_sources": [
-        "FORCE",
-        "PEOPLE"
+        "AUTHORITY",
+        "FORCE"
       ],
       "tags": [
         "domain:ANCIENT",
