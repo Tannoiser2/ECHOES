@@ -46,24 +46,33 @@ func _initialize() -> void:
 		"",
 	]
 
+	# **Il catalogo cammina sulle carte, non sui template** (0.1.273).
+	#
+	# Fino a 0.1.272 iterava `confluence_templates`: dodici schede per sessanta
+	# carte. Da D-310 la Domanda e la Proposta stanno **sulla carta**, e il
+	# catalogo stampava ancora le generiche — otto carte del Potere riscritte, e
+	# il documento non se ne accorgeva: zero delle proposte nuove, e le vecchie
+	# ancora li'. **Nona volta in questo progetto che una misura ferma era la
+	# sonda.**
 	var ids: Array = []
-	for template_id in data.confluence_templates:
-		ids.append(str(template_id))
+	for tension_id in data.tensions:
+		ids.append(str(tension_id))
 	ids.sort()
 
 	var propositions: int = 0
 	var clauses: int = 0
-	for template_id in ids:
-		var template: Dictionary = data.confluence_templates[template_id] as Dictionary
+	for tension_id in ids:
+		var about: Dictionary = data.tensions[tension_id] as Dictionary
+		var template: Dictionary = data.confluence_template_for(str(tension_id))
+		if template.is_empty():
+			continue
 		lines.append("---")
 		lines.append("")
-		lines.append("## %s" % str(template["title"]))
+		lines.append("## %s" % str(about["title"]))
 		lines.append("")
-		var about: Variant = data.tensions.get(str(template.get("tension_id", "")))
-		if about != null:
-			lines.append("*Si apre su **%s**.*" % str((about as Dictionary)["title"]))
-			lines.append("")
-		lines.append(CouncilText.speak(str(template.get("description", ""))))
+		lines.append("*Il Consiglio che questa carta apre.*")
+		lines.append("")
+		lines.append(CouncilText.speak(str(about.get("description", ""))))
 		lines.append("")
 
 		for entry in template.get("propositions", []):
@@ -102,7 +111,7 @@ func _initialize() -> void:
 
 	lines.append("---")
 	lines.append("")
-	lines.append("*%d Consigli, %d proposte, %d clausole.*" % [
+	lines.append("*%d carte, %d proposte, %d clausole.*" % [
 		ids.size(), propositions, clauses,
 	])
 	lines.append("")
@@ -120,7 +129,7 @@ func _initialize() -> void:
 		return
 	handle.store_string(text)
 	handle.close()
-	print("scritto %s — %d Consigli, %d proposte, %d clausole" % [
+	print("scritto %s — %d carte, %d proposte, %d clausole" % [
 		out, ids.size(), propositions, clauses,
 	])
 	quit(0)

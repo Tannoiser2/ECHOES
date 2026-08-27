@@ -2763,6 +2763,44 @@ e' in gioco.
 
 ---
 
+### 88. Il tavolo vede poco piu' di un terzo di quello che c'e' scritto
+
+`contenuto` · `misura` · **aperta in 0.1.273**
+([D-311](DECISIONS.md#d-311) · `cli/run_who_writes_probe.gd`)
+
+Il numero non e' nuovo: e' **appena diventato onesto**. La sonda contava il
+denominatore sui dodici template, e diceva *«36 proposte votate su 49 scritte»*
+— il 73%. Da [D-310](DECISIONS.md#d-310) le proposte stanno sulle carte, e
+adesso che la sonda le guarda il conto e':
+
+| in 40 anni di CHR_01 | prima (denominatore vecchio) | adesso |
+|---|---|---|
+| domande poste | 21 su 23 · **91%** | 21 su 57 · **37%** |
+| proposte votate | 36 su 49 · **73%** | 36 su 100 · **36%** |
+
+Il numeratore non si e' mosso di un'unita': al tavolo non e' regredito niente.
+E' che scrivere un Consiglio per carta ha **triplicato il contenuto** senza
+allargare la finestra da cui il tavolo lo guarda — una Chronicle gira sei Temi
+e pesca poche carte per Tema, quindi il resto resta nel mazzo.
+
+Due letture possibili, e non si sceglie prima di aver finito i sei Temi:
+
+- **va bene cosi'**: e' un gioco da tavolo con sessanta carte, e nessuna
+  partita le vede tutte. La rigiocabilita' *e'* il contenuto non visto.
+- **non va bene**: [D-035](DECISIONS.md#d-035) dice che contenuto che il tavolo
+  non raggiunge non esiste. Se una carta si pesca ma la sua domanda non si apre
+  mai perche' la politica ne preferisce sempre un'altra, e' il difetto vecchio
+  con un vestito nuovo.
+
+La differenza fra le due sta in **quale** contenuto resta fuori: se sono le
+carte non pescate, e' la prima; se sono le domande di carte che *sono* state
+girate, e' la seconda. La sonda oggi non le distingue.
+
+**Fatto quando** la misura separa "non pescata" da "pescata e mai aperta", e la
+seconda cifra sta sotto un quinto.
+
+---
+
 ### 87. Gli Effetti d'autore che parlano la lingua delle caselle
 
 `contenuto` · `regole` · aperta in 0.1.267 ([D-305](DECISIONS.md#d-305)) ·
@@ -3140,8 +3178,14 @@ volta in questo progetto che uno zero era la sonda.**
    guardando il **testo**, non l'id.
 
    Scritta la **Sopravvivenza**: 9 carte, 18 domande e 27 proposte nuove.
-   **52 → 43 carte in prestito.** Restano cinque Temi — Potere, Vie, Antico,
-   Fede, Terra — un Tema per volta.
+   **52 → 43 carte in prestito.**
+
+   Scritto in 0.1.273 il **Potere** ([D-311](DECISIONS.md#d-311)): 8 carte, 16
+   domande e 24 proposte nuove. **43 → 35 carte in prestito.** Nello stesso
+   passo sono cadute due sonde che guardavano ancora i template invece delle
+   carte — il catalogo dei Consigli (12 schede per 60 carte) e il denominatore
+   di *«quanto contenuto d'autore il tavolo vede»*. Restano quattro Temi —
+   Vie, Antico, Fede, Terra — un Tema per volta.
 3. **Chi decide**: il d6 e gli impegni segreti contro l'economia. Se passa
    perche' il proponente puo' pagare quello che il tavolo chiede, il dado esce
    dal gioco — ed e' la modifica che vale la parola del committente, non la mia.

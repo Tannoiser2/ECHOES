@@ -5,6 +5,32 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.273 — Il Potere ha le sue domande, e due sonde guardavano altrove (D-311)
+
+- **Scritto il secondo Tema, il Potere**: otto carte (La Carta e La Successione
+  avevano già le loro), **16 domande e 24 proposte** nuove, sulle nove
+  Conseguenze che già esistono. **43 → 35** carte che aprono una domanda in
+  prestito.
+- **La sonda del catalogo dei Consigli non guardava le carte.** Riscritte otto
+  carte, il cancello è passato *senza che il documento cambiasse di una riga*:
+  `run_council_catalogue.gd` iterava `confluence_templates` — dodici schede per
+  sessanta carte — e stampava ancora le proposte generiche. Adesso cammina su
+  `data.tensions` attraverso `confluence_template_for`, la stessa strada del
+  motore: **12 Consigli / 49 proposte / 21 clausole → 60 carte / 185 proposte /
+  83 clausole**.
+- **Stesso difetto in `run_who_writes_probe.gd`**: il denominatore di *«quanto
+  contenuto d'autore il tavolo vede»* veniva dai template. **Nona e decima volta
+  in questo progetto che una misura ferma era la sonda.**
+- **Il costo dichiarato, ed è il numero che peggiora**: proposte votate **36 su
+  49 (73%) → 36 su 100 (36%)**, domande poste **21 su 23 (91%) → 21 su 57
+  (37%)**. Al tavolo non è regredito niente: è finita una misura che si dava
+  ragione da sola. Oggi in 40 anni di CHR_01 il tavolo vede **poco più di un
+  terzo** di quello che c'è scritto.
+- Trasformazioni sedute **174**, vite mai sedute **6**: invariate. Playtest 100
+  semi: **0 seggi bloccati su 8**, misto e uniforme. Suite **614**.
+
+---
+
 ## 0.1.272 — Ogni carta le sue proposte (D-310)
 
 - **Taglio 2 di ISSUES 80, scelta del committente: «ogni carta sue proposte».**

@@ -10,6 +10,73 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-311 — Il Potere ha le sue domande, e due sonde guardavano altrove
+
+**implemented** (0.1.273) · secondo Tema del taglio **2** di
+[ISSUES 80](ISSUES.md), sulla strada aperta da [D-310](#d-310)
+
+### Il Tema scritto
+
+**Il Potere**: otto carte — La Carta e La Successione avevano gia' le loro —
+con **16 domande e 24 proposte** nuove. Le Conseguenze sono le nove che gia'
+esistono: qui cambia cosa il tavolo si sente chiedere, non cosa il motore
+esegue.
+
+> *«Chi siede al Consiglio $in_region, e chi lo tiene fuori?»* — I Seggi
+> *«Di chi sono i figli che dormono $in_region?»* — Gli Ostaggi
+> *«Chi chiama gli uomini $in_region, e per andare dove?»* — La Leva
+> *«Chi comanda il confine $in_region quando la corte e' lontana?»* — Le Marche
+
+| | prima | dopo |
+|---|---|---|
+| **carte che aprono una domanda in prestito** | 43 su 60 | **35** |
+
+### Le due sonde che non guardavano le carte
+
+Scritte le otto carte, il cancello del catalogo dei Consigli e' passato **senza
+che il documento cambiasse di una riga**. Non era il gioco: era la sonda.
+
+`run_council_catalogue.gd` iterava `data.confluence_templates` — **dodici schede
+per sessanta carte**. Da D-310 la Domanda e la Proposta stanno sulla carta, e il
+catalogo stampava ancora le dodici generiche: **zero** delle proposte nuove del
+Potere, e le vecchie ancora li'. Adesso cammina su `data.tensions` attraverso
+`confluence_template_for`, che e' la stessa strada che percorre il motore.
+
+| | prima | dopo |
+|---|---|---|
+| schede nel catalogo | 12 Consigli | **60 carte** |
+| proposte stampate | 49 | **185** |
+| clausole stampate | 21 | **83** |
+
+Trovata quella, ne e' venuta fuori una seconda con lo stesso difetto:
+`run_who_writes_probe.gd` contava il denominatore di *«quanto contenuto d'autore
+il tavolo vede»* sui template. Diceva **36 proposte votate su 49 scritte** — un
+numero che suonava bene perche' il denominatore era vecchio. Il conto vero e'
+**36 su 100**, e le domande **21 su 57** invece di 21 su 23.
+
+**Nona e decima volta in questo progetto che una misura ferma era la sonda.** La
+regola di casa che le riguarda va letta al contrario, adesso: non solo *«uno zero
+e' quasi sempre la sonda»*, ma anche **«un numero che non si muove quando hai
+riscritto sessanta righe e' quasi sempre la sonda»**.
+
+### Il costo dichiarato
+
+Il numero peggiora, ed e' giusto che peggiori: **36 su 49 (73%) → 36 su 100
+(36%)**, e **21 su 23 (91%) → 21 su 57 (37%)**. Non e' regredito niente al
+tavolo — e' finita una misura che si dava ragione da sola. Il vero conto e' che
+oggi in 40 anni di CHR_01 il tavolo vede **poco piu' di un terzo** di quello che
+c'e' scritto: e' il costo di aver scritto molto in fretta, e va ripreso quando i
+sei Temi saranno tutti a posto.
+
+Trasformazioni sedute **174**, vite mai sedute **6**: invariate. Playtest 100
+semi: **0 seggi bloccati su 8**, misto e uniforme. Suite 614.
+
+### Quello che resta
+
+**35 carte** in prestito, quattro Temi: Vie, Antico, Fede, Terra.
+
+---
+
 ## D-310 — Ogni carta le sue proposte
 
 **implemented, Fase A + primo Tema** (0.1.272) · taglio **2** di
