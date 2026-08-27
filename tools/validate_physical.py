@@ -165,6 +165,21 @@ def _tocchi_espliciti(documenti: Dict[str, List[Dict[str, Any]]]):
     for tensione in documenti.get("tension", []):
         for tag in tensione.get("focus_region_tags", []) or []:
             yield "tension", "legge", str(tag)
+        # **La faccia della carta scrive** (D-308). Le voci delle due liste
+        # posano segni — AGGIUNGI CONDIZIONE, CICATRICE, e da D-308 IL MONDO
+        # RICORDA — e il dizionario non lo sapeva: `_scava` cerca gli Effect
+        # compilati, e le caselle sono verbi, non Effect. Finche' i costi
+        # posavano segni che anche una Conseguenza posava, la bugia non si
+        # vedeva; il verbo nuovo l'ha scoperta.
+        faccia = tensione.get("physical") or {}
+        for lista in ("benefits", "costs", "failure"):
+            for voce in faccia.get(lista) or []:
+                tag = voce.get("tag")
+                if isinstance(tag, str) and tag:
+                    if str(voce.get("verb", "")) == "CLEAR_CONDITION":
+                        yield "tension", "legge", tag
+                    else:
+                        yield "tension", "scrive", tag
 
     # **Il profilo strategico e' una lettura** (D-288): quello che una casa
     # dichiara di volere o di temere e' un segno che conta, e dichiararlo e'
@@ -565,10 +580,11 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
     # eseguire — e ognuno chiede i suoi parametri: una voce che ne salta uno
     # e' una casella su cui si posa una pedina che non fa niente.
     BENEFIT_VERBS = {"REOPEN", "CLEAR_CONDITION", "BUILD_STONE",
-                     "TAKE_CONTROL", "COOL_THEME"}
+                     "TAKE_CONTROL", "COOL_THEME", "REMEMBER"}
     COST_VERBS = {"ADD_CONDITION", "TOLL", "YIELD_CONTROL", "HEAT_THEME",
                   "TAKE_DEBT", "SCAR"}
-    NEEDS = {"BUILD_STONE": "structure", "ADD_CONDITION": "tag", "SCAR": "tag"}
+    NEEDS = {"BUILD_STONE": "structure", "ADD_CONDITION": "tag", "SCAR": "tag",
+             "REMEMBER": "tag"}
     pietre = {str(s.get("id")) for s in documenti.get("structure_type", [])}
     for tensione in documenti.get("tension", []):
         faccia = tensione.get("physical") or {}
@@ -600,6 +616,26 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
                 if verbo == "BUILD_STONE" and str(v.get("structure", "")) not in pietre:
                     guai.append("Pietra inesistente su %s: «%s»"
                                 % (tensione.get("id"), v.get("structure")))
+                # **IL MONDO RICORDA posa una memoria, e solo quella** (D-308).
+                # Il verbo scrive sul mondo intero, non sul luogo: un segno di
+                # ambito REGION o ENTITY finirebbe in un posto dove nessuna
+                # regola lo va a leggere. La categoria e l'ambito li dichiara
+                # il dizionario, e qui si riscontrano.
+                if verbo == "REMEMBER":
+                    fatto = str(v.get("tag", ""))
+                    voce_fatto = voci.get(fatto, {})
+                    if fatto and voce_fatto:
+                        if str(voce_fatto.get("category", "")) != "MEMORY":
+                            guai.append(
+                                "IL MONDO RICORDA su %s non nomina una memoria: "
+                                "«%s» e' %s" % (tensione.get("id"), fatto,
+                                                voce_fatto.get("category")))
+                        if "GLOBAL" not in (voce_fatto.get("scope") or []):
+                            guai.append(
+                                "IL MONDO RICORDA su %s posa un segno che non e' "
+                                "del mondo: «%s» ha ambito %s"
+                                % (tensione.get("id"), fatto,
+                                   "/".join(voce_fatto.get("scope") or ["nessuno"])))
                 for campo in ("tag",):
                     segno = str(v.get(campo, ""))
                     if segno and segno not in voci:
@@ -883,6 +919,18 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
             if voce.get("verb") == "BUILD_STONE":
                 voce["structure"] = "STR_INVENTATA"
 
+    def memoria_sbagliata(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        # IL MONDO RICORDA che nomina un segno del **luogo** invece che del
+        # mondo: la pedina si posa e la memoria finisce dove nessuna regola la
+        # va a leggere. Si fabbrica, non si cerca: appena i dati sono a posto,
+        # cercarla smetterebbe di provare senza dirlo.
+        carta = next(t for t in prova["tension"]
+                     if any(v.get("verb") == "REMEMBER"
+                            for v in (t.get("physical") or {}).get("benefits", [])))
+        for voce in carta["physical"]["benefits"]:
+            if voce.get("verb") == "REMEMBER":
+                voce["tag"] = "condition:unrest"
+
     def frase_che_ruba_la_casella(prova: Dict[str, List[Dict[str, Any]]]) -> None:
         # Una Conseguenza che si riprende il mestiere della casella: consegna al
         # proponente il luogo di cui si discute, che e' quello che la carta
@@ -939,6 +987,8 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
                "porta del tempo murata"),
         pianta("frase d'autore che consegna il luogo che la carta vende",
                frase_che_ruba_la_casella, "la frase fa il mestiere della casella"),
+        pianta("IL MONDO RICORDA che nomina un segno del luogo, non del mondo",
+               memoria_sbagliata, "posa un segno che non e' del mondo"),
     ]
     puliti = controlla(documenti)
     print("  %s %s" % ("OK " if not puliti else "MANCATO", "dati veri: nessun guaio"))

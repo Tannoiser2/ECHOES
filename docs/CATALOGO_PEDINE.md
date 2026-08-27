@@ -17,7 +17,7 @@ Si posano su una Regione. Le **condizioni** si stampano in doppia copia e col co
 
 ### abbandonata
 
-`condition:abandoned` · categoria **STATE** · sta su region · lo posa: consequence
+`condition:abandoned` · categoria **STATE** · sta su region · lo posa: consequence, tension
 
 **Cosa vuol dire.** Nessuno ci vive piu': la gente se n'e' andata da sola, e la terra resta.
 
@@ -36,7 +36,7 @@ Dashed outline: this is a thing happening, and it can end.
 
 ### contesa
 
-`condition:contested` · categoria **STATE** · sta su region · lo posa: asset, asset_physical, consequence, echo_card
+`condition:contested` · categoria **STATE** · sta su region · lo posa: asset, asset_physical, consequence, echo_card, tension
 
 **Cosa vuol dire.** Due case ci mettono le mani sopra e nessuna ha ancora vinto.
 
@@ -55,7 +55,7 @@ Dashed outline: this is a thing happening, and it can end.
 
 ### tagliata fuori
 
-`condition:cut_off` · categoria **STATE** · sta su region · lo posa: asset, asset_physical, consequence, echo_card
+`condition:cut_off` · categoria **STATE** · sta su region · lo posa: asset, asset_physical, consequence, echo_card, tension
 
 **Cosa vuol dire.** La strada non porta piu' qui: chi c'e' resta, chi e' fuori non entra.
 
@@ -74,7 +74,7 @@ Dashed outline: this is a thing happening, and it can end.
 
 ### svuotata
 
-`condition:emptied` · categoria **STATE** · sta su region · lo posa: asset_physical, consequence, echo_card
+`condition:emptied` · categoria **STATE** · sta su region · lo posa: asset_physical, consequence, echo_card, tension
 
 **Cosa vuol dire.** Qualcuno ha sgomberato: non se ne sono andati, sono stati mandati via.
 
@@ -93,7 +93,7 @@ Dashed outline: this is a thing happening, and it can end.
 
 ### sfruttata
 
-`condition:exploited` · categoria **STATE** · sta su region · lo posa: asset_physical, consequence
+`condition:exploited` · categoria **STATE** · sta su region · lo posa: asset_physical, consequence, tension
 
 **Cosa vuol dire.** Si prende piu' di quello che la terra rida': rende adesso e meno domani.
 
@@ -131,7 +131,7 @@ Dashed outline: this is a thing happening, and it can end.
 
 ### magra
 
-`condition:lean` · categoria **STATE** · sta su region · lo posa: consequence, echo_card
+`condition:lean` · categoria **STATE** · sta su region · lo posa: consequence, echo_card, tension
 
 **Cosa vuol dire.** L'annata e' scarsa: si mangia, ma poco.
 
@@ -150,7 +150,7 @@ Dashed outline: this is a thing happening, and it can end.
 
 ### in lutto
 
-`condition:mourning` · categoria **STATE** · sta su region · lo posa: consequence, echo_card
+`condition:mourning` · categoria **STATE** · sta su region · lo posa: consequence, echo_card, tension
 
 **Cosa vuol dire.** Qui e' morto qualcuno che contava, e il posto se lo ricorda.
 
@@ -169,7 +169,7 @@ Dashed outline: this is a thing happening, and it can end.
 
 ### depredata
 
-`condition:plundered` · categoria **STATE** · sta su region · lo posa: asset_physical, consequence
+`condition:plundered` · categoria **STATE** · sta su region · lo posa: asset_physical, consequence, tension
 
 **Cosa vuol dire.** E' passata una razzia: si sono presi e sono andati via.
 
@@ -188,7 +188,7 @@ Dashed outline: this is a thing happening, and it can end.
 
 ### razionata
 
-`condition:rationed` · categoria **STATE** · sta su region · lo posa: asset, asset_physical, consequence
+`condition:rationed` · categoria **STATE** · sta su region · lo posa: asset, asset_physical, consequence, tension
 
 **Cosa vuol dire.** Si mangia a misura: qualcuno decide quanto tocca a chi.
 
@@ -226,7 +226,7 @@ Dashed outline: this is a thing happening, and it can end.
 
 ### affamata
 
-`condition:starving` · categoria **STATE** · sta su region · lo posa: asset_physical, consequence, echo_card
+`condition:starving` · categoria **STATE** · sta su region · lo posa: asset_physical, consequence, echo_card, tension
 
 **Cosa vuol dire.** Si muore di fame, adesso, non l'anno prossimo.
 
@@ -245,7 +245,7 @@ Dashed outline: this is a thing happening, and it can end.
 
 ### inquieta
 
-`condition:unrest` · categoria **STATE** · sta su region · lo posa: asset, asset_physical, consequence, echo_card
+`condition:unrest` · categoria **STATE** · sta su region · lo posa: asset, asset_physical, consequence, echo_card, tension
 
 **Cosa vuol dire.** La gente non ci sta piu', e si vede.
 
@@ -264,7 +264,7 @@ Dashed outline: this is a thing happening, and it can end.
 
 ### sorvegliata
 
-`condition:guarded` · categoria **STATE** · sta su region · lo posa: consequence
+`condition:guarded` · categoria **STATE** · sta su region · lo posa: consequence, tension
 
 **Cosa vuol dire.** C'e' una guardia imposta da fuori: si entra e si esce con permesso.
 
@@ -283,7 +283,7 @@ Dashed outline: this is a thing happening, and it can end.
 
 ### l'abbandono
 
-`scar:abandoned` · categoria **MEMORY** · sta su region · lo posa: consequence
+`scar:abandoned` · categoria **MEMORY** · sta su region · lo posa: consequence, tension
 
 **Cosa vuol dire.** Il posto fu lasciato, e il mondo lo ricorda anche quando torna gente.
 
@@ -359,7 +359,7 @@ The drawing carries a break — one line that splits it. Permanent.
 
 ### passata di mano
 
-`scar:changed_hands` · categoria **MEMORY** · sta su region · lo posa: consequence
+`scar:changed_hands` · categoria **MEMORY** · sta su region · lo posa: consequence, tension
 
 **Cosa vuol dire.** Questa terra ha cambiato padrone, e si e' visto che si puo' fare.
 
@@ -454,7 +454,7 @@ The drawing carries a break — one line that splits it. Permanent.
 
 ### la razzia
 
-`scar:plundered` · categoria **MEMORY** · sta su region · lo posa: consequence
+`scar:plundered` · categoria **MEMORY** · sta su region · lo posa: consequence, tension
 
 **Cosa vuol dire.** La razzia divento' racconto: qui si tiene ancora il conto.
 
@@ -473,7 +473,7 @@ The drawing carries a break — one line that splits it. Permanent.
 
 ### il confine sigillato
 
-`scar:sealed_border` · categoria **MEMORY** · sta su region · lo posa: consequence
+`scar:sealed_border` · categoria **MEMORY** · sta su region · lo posa: consequence, tension
 
 **Cosa vuol dire.** Un confine fu chiuso, e chi stava di la' e' rimasto di la'.
 
@@ -511,7 +511,7 @@ The drawing carries a break — one line that splits it. Permanent.
 
 ### la domanda sul muro
 
-`scar:unanswered` · categoria **MEMORY** · sta su region · lo posa: consequence
+`scar:unanswered` · categoria **MEMORY** · sta su region · lo posa: consequence, tension
 
 **Cosa vuol dire.** Una domanda fu posta e nessuno rispose: la scritta e' rimasta sul muro.
 
@@ -602,7 +602,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### il sigillo
 
-`structure:sealed` · categoria **STATE** · sta su region · lo posa: consequence
+`structure:sealed` · categoria **STATE** · sta su region · lo posa: consequence, tension
 
 **Cosa vuol dire.** Qui e' stato murato qualcosa, e sta chiuso per decisione di qualcuno.
 

@@ -230,6 +230,71 @@ func test_one_benefit_is_free_and_every_other_costs_one() -> void:
 	)
 
 
+## **IL MONDO RICORDA: il Consiglio decide cosa il mondo ricordera'** (D-308,
+## ISSUES 76 strada a).
+##
+## Il verbo che mancava. I cinque verbi del beneficio spostavano cose —
+## riapri, ripulisci, costruisci, cambia controllo, raffredda — e **nessuno
+## scriveva un fatto**. Misurato: dei segni che le otto case dichiarano di
+## voler lasciare nel mondo, un Consiglio ne sapeva dare sette, e tutti e
+## sette erano Pietre. Il resto sono memorie, e solo una frase d'autore le
+## sapeva scrivere.
+##
+## La memoria si posa sul **mondo**, non sul luogo: e' la sola casella del
+## beneficio che esce dalla Regione in discussione.
+func test_the_world_remembers_what_the_council_bought() -> void:
+	var context: Dictionary = _open_with_proposition()
+	var proponent: String = str(context["proponent"])
+	var fact: String = ""
+	var voice_id: String = ""
+	for voice in (data().tensions[TENSION]["physical"]["benefits"] as Array):
+		if str((voice as Dictionary).get("verb", "")) == "REMEMBER":
+			voice_id = str((voice as Dictionary)["id"])
+			fact = str((voice as Dictionary)["tag"])
+	assert_ne(fact, "", "la carta offre un fatto da lasciare al mondo")
+	assert_false(
+		(session.world["global_tags"] as Array).has(fact),
+		"e il mondo non lo ricorda ancora"
+	)
+
+	var offered: Array = []
+	for voice in session.confluence.benefit_menu():
+		offered.append(str((voice as Dictionary)["id"]))
+	assert_true(offered.has(voice_id), "la casella e' viva: il fatto non c'e' ancora")
+	assert_true(session.confluence.set_benefits([voice_id]), "il proponente la compra")
+
+	_rig(_factor_cancelling_bite(proponent))
+	var result: Dictionary = session.confluence.resolve()
+	assert_true(ConfluenceResolution.is_success(str(result["outcome"])), "la proposta passa")
+	assert_true(
+		(session.world["global_tags"] as Array).has(fact),
+		"e adesso il mondo lo ricorda: «%s»" % fact
+	)
+
+
+## **Un fatto che il mondo ricorda gia' non si ricorda due volte** (D-308):
+## la casella si spegne, come ogni altra che qui non farebbe niente (D-306).
+func test_a_fact_the_world_already_holds_is_not_on_the_menu() -> void:
+	_open_with_proposition()
+	var fact: String = ""
+	var voice_id: String = ""
+	for voice in (data().tensions[TENSION]["physical"]["benefits"] as Array):
+		if str((voice as Dictionary).get("verb", "")) == "REMEMBER":
+			voice_id = str((voice as Dictionary)["id"])
+			fact = str((voice as Dictionary)["tag"])
+	assert_ne(fact, "", "la carta offre un fatto da lasciare al mondo")
+
+	(session.world["global_tags"] as Array).append(fact)
+	var offered: Array = []
+	for voice in session.confluence.benefit_menu():
+		offered.append(str((voice as Dictionary)["id"]))
+	assert_false(offered.has(voice_id), "il mondo lo ricorda gia': la casella e' spenta")
+	assert_false(
+		session.confluence.set_benefits([voice_id]),
+		"e non si compra nemmeno chiamandola per nome"
+	)
+
+
 ## **Una casella che non puo' fare niente non si compra** (D-306).
 ##
 ## Al tavolo nessuno posa la pedina su «Riapri l'accesso» se il luogo non e'

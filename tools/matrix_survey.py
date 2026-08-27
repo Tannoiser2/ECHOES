@@ -107,6 +107,16 @@ def written_signs() -> Dict[str, Set[str]]:
         extra = (face.get("resonance") or {}).get("extra_tag")
         if extra:
             note(str(extra), "Risonanza")
+    # **La faccia della Tensione scrive** (D-308): le sue caselle posano segni
+    # come una Conseguenza, e la sonda non le guardava.
+    for tension in items("tensions/*.json"):
+        face = tension.get("physical") or {}
+        for field in ("benefits", "costs", "failure"):
+            for voice in face.get(field, []) or []:
+                verb = str((voice or {}).get("verb", ""))
+                tag = str((voice or {}).get("tag", ""))
+                if tag and verb in ("ADD_CONDITION", "SCAR", "REMEMBER"):
+                    note(tag, "faccia della Tensione")
     for structure in items("structures/*.json"):
         for grade in structure.get("grades", []) or []:
             note(str((grade or {}).get("tag", "")), "Pietra")
@@ -241,6 +251,13 @@ def tension_signs() -> Dict[str, Dict[str, Set[str]]]:
                 elif verb == "TAKE_DEBT":
                     puts.add(DEBT_TAG)
                 elif verb == "SCAR" and tag:
+                    puts.add(tag)
+                # **IL MONDO RICORDA** (D-308): il verbo con cui il Consiglio
+                # posa una memoria sul mondo. Senza questa riga la sonda
+                # continuava a dire «sette» a un tavolo che ne sa dare
+                # venticinque — l'ottava volta in questo progetto che una
+                # misura ferma era la sonda, non il gioco.
+                elif verb == "REMEMBER" and tag:
                     puts.add(tag)
         for tag in tension.get("focus_region_tags", []) or []:
             pass  # il fuoco dice dove si discute, non cosa lascia
