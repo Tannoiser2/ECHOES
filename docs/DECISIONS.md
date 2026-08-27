@@ -10,6 +10,89 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-307 — La frase d'autore smette di fare il mestiere delle caselle
+
+**implemented** (0.1.269) · taglio **A** di [ISSUES 87](ISSUES.md), scelto dal
+committente
+
+Le due grammatiche dicevano la stessa cosa sullo stesso luogo, e chi comprava
+pagava per un lavoro che sarebbe stato fatto lo stesso. Qui si taglia **solo
+dove si scontrano davvero**.
+
+### Cosa si toglie, e cosa no
+
+Delle 67 righe d'autore che parlano la lingua delle caselle, **solo 40 agiscono
+sul luogo di cui il Consiglio discute** — le altre 27 arrivano altrove
+(`$capital`, `$rival_seat`, `$region_with:...`) e nessuna casella le puo' fare:
+toglierle sarebbe una perdita secca, non una pulizia.
+
+E delle 40, si tolgono **le 9 che consegnano al proponente quello che la carta
+gli vende**: 7 `SET_CONTROL` verso `$proponent` e 2 `BUILD_STRUCTURE`, su otto
+Conseguenze (`CNS_DEBT_CALLED`, `CNS_MARKET_MOVED`, `CNS_NAHR_SETTLEMENT`,
+`CNS_RATIONED`, `CNS_ROYAL_GRANARY`, `CNS_SEALED_VALLEY`, `CNS_SEAT_CLAIMED`,
+`CNS_WATER_PRICED`).
+
+**Tre righe restano, e ognuna ha la sua ragione scritta:**
+
+- `CNS_ABANDONED` e `CNS_CROWN_DISPOSSESSED` fanno `SET_CONTROL` a **null**:
+  **svuotano** il luogo invece di consegnarlo. Nessun beneficio vende questo, e
+  toglierlo distruggerebbe due esiti senza correggere un solo acquisto a vuoto;
+- `CNS_MINE_TAKEN` e' **l'eccezione dichiarata**: prendere il controllo e' tutto
+  il suo corpo, e lo schema non accetta una Conseguenza senza Effetti
+  (`minItems: 1`). Riscriverla e' contenuto, non motore — resta in ISSUES 87.
+
+Il catalogo lo legge com'e' adesso: *«Se passa — La Razione Imposta: la Regione
+discussa diventa razionata · la domanda in gioco sale»*. La riga «la Regione
+discussa cambia padrone» non c'e' piu': quella la posa la pedina.
+
+### E la seconda trappola del null, che si e' vista misurando
+
+Corretto il taglio, gli acquisti a vuoto sono scesi meno del previsto e le
+Pietre erano **salite**. Non era il taglio: `_stone_owner` faceva
+`str(structure["owner"])` su una Pietra **senza padrone**, dove `owner` vale
+`null` — e in GDScript `str(null)` e' `"<null>"`, non la stringa vuota. Quindi
+una strada o un ponte, che un padrone non ce l'hanno proprio, sembravano
+comprabili: si offriva la casella e `SET_STRUCTURE_OWNER` non faceva niente.
+E' la **stessa trappola di `_control_of`**, seconda volta nella stessa giornata.
+
+Adesso `voice_bites` guarda anche se quel tipo di Pietra **ha** un padrone: 20
+acquisti a vuoto su 26 erano questo.
+
+### I numeri
+
+| | prima di D-306 | dopo D-306 | dopo D-307 |
+|---|---|---|---|
+| benefici comprati che non lasciano niente | **44%** | 24% | **9%** |
+| costi che scattano a vuoto | 21 su 92 | 1 su 63 | **0 su 52** |
+
+Dei 17 acquisti a vuoto rimasti, **14 sono ancora la frase d'autore nello stesso
+Consiglio** — ma per la via indiretta: un Effetto mirato altrove che quella volta
+cade sullo stesso luogo. Gli altri 3 sono mondo che c'era gia'. Restano in
+ISSUES 87.
+
+### Il costo dichiarato
+
+| | prima | dopo |
+|---|---|---|
+| trasformazioni sedute (168 salti) | 185 | **182** |
+| **vite che non si sono mai sedute** | 6 | **7** |
+
+Torna a cadere «La Leggenda della Montagna» (ENT_VAERAX, porta
+`mountain_forgotten`), che oscilla fra 0 e 1 saga su ventiquattro da tre
+decisioni: e' una vita sul filo, e ogni volta che il mondo cambia ritmo passa da
+una parte o dall'altra. Non l'ho inseguita ritoccando i dati.
+
+### La guardia
+
+Il controllo sta in [`validate_physical.py`](../tools/validate_physical.py),
+dove stanno le regole delle due grammatiche, e ha il suo difetto piantato: una
+Conseguenza fabbricata che si riprende il mestiere della casella deve far
+diventare rosso il validatore. **Diciannove difetti piantati.**
+
+Playtest 100 semi: **0 seggi bloccati su 8**, misto e uniforme. Suite 612.
+
+---
+
 ## D-306 — Una casella che non puo' fare niente non si compra, e non si paga
 
 **implemented** (0.1.268)

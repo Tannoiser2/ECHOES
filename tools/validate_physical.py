@@ -679,6 +679,39 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
                         guai.append(
                             "porta del tempo impossibile da tenere chiusa: %s chiede %d "
                             "segni e il profilo ne dichiara %d" % (dove, chiesti, voluti))
+
+    # **La frase d'autore non fa il mestiere delle caselle** (D-307, taglio A di
+    # ISSUES 87). Sul *luogo di cui si discute* — quello su cui si posano le
+    # pedine — le Conseguenze non consegnano piu' al proponente ne' il controllo
+    # ne' una Pietra: quelle due cose le vende la carta, e chi le compra le paga.
+    # Una Conseguenza che le rifacesse renderebbe l'acquisto un pagamento a
+    # vuoto, ed e' esattamente il difetto che si e' misurato (44% dei benefici
+    # comprati non lasciava niente).
+    #
+    # Restano fuori dal controllo, e per ragioni diverse:
+    #   - gli Effetti che arrivano **altrove** ($capital, $rival_seat, ...):
+    #     nessuna casella li puo' fare, e toglierli sarebbe una perdita secca;
+    #   - `SET_CONTROL` a **null**, che svuota il luogo invece di consegnarlo:
+    #     e' un esito che nessun beneficio vende;
+    #   - `CNS_MINE_TAKEN`, l'eccezione dichiarata: prendere il controllo e'
+    #     tutto il suo corpo, e una Conseguenza senza Effetti lo schema non la
+    #     accetta. Riscriverla e' contenuto, non motore.
+    ECCEZIONI_D307 = {"CNS_MINE_TAKEN"}
+    for conseguenza in documenti.get("consequence", []):
+        if conseguenza.get("id") in ECCEZIONI_D307:
+            continue
+        for effetto in conseguenza.get("effects", []) or []:
+            if (effetto.get("target") or {}).get("id") != "$region_focus":
+                continue
+            tipo = effetto.get("type")
+            if tipo == "BUILD_STRUCTURE" or (
+                tipo == "SET_CONTROL"
+                and (effetto.get("payload") or {}).get("entity_id") == "$proponent"
+            ):
+                guai.append(
+                    "la frase fa il mestiere della casella: %s consegna al proponente "
+                    "(%s) il luogo di cui si discute, che e' quello che il Consiglio "
+                    "gli vende" % (conseguenza.get("id"), tipo))
     return guai
 
 
@@ -850,6 +883,20 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
             if voce.get("verb") == "BUILD_STONE":
                 voce["structure"] = "STR_INVENTATA"
 
+    def frase_che_ruba_la_casella(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        # Una Conseguenza che si riprende il mestiere della casella: consegna al
+        # proponente il luogo di cui si discute, che e' quello che la carta
+        # vende. Si **fabbrica** invece di cercarla: appena i dati fossero a
+        # posto, cercarla smetterebbe di provare senza dirlo (regola di casa).
+        bersaglio = next(
+            c for c in prova["consequence"] if c.get("id") not in {"CNS_MINE_TAKEN"}
+        )
+        bersaglio.setdefault("effects", []).append({
+            "type": "SET_CONTROL",
+            "target": {"kind": "region", "id": "$region_focus"},
+            "payload": {"entity_id": "$proponent"},
+        })
+
     print("")
     print("== SELF-TEST: la guardia morde? ==")
     print("")
@@ -890,6 +937,8 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
                porta_impossibile, "porta del tempo impossibile da tenere chiusa"),
         pianta("porta del tempo fatta di sole memorie (murata)", porta_murata,
                "porta del tempo murata"),
+        pianta("frase d'autore che consegna il luogo che la carta vende",
+               frase_che_ruba_la_casella, "la frase fa il mestiere della casella"),
     ]
     puliti = controlla(documenti)
     print("  %s %s" % ("OK " if not puliti else "MANCATO", "dati veri: nessun guaio"))

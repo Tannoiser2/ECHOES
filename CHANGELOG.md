@@ -5,6 +5,38 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.269 — La frase d'autore smette di fare il mestiere delle caselle (D-307)
+
+- **Taglio A di ISSUES 87, scelto dal committente.** Le due grammatiche
+  dicevano la stessa cosa sullo stesso luogo, e chi comprava pagava per un
+  lavoro che sarebbe stato fatto lo stesso.
+- **E il taglio è più stretto di quanto sembrava.** Delle 67 righe d'autore che
+  parlano la lingua delle caselle, solo **40** agiscono sul luogo di cui il
+  Consiglio discute; le altre 27 arrivano altrove (`$capital`, `$rival_seat`) e
+  nessuna casella le può fare. Delle 40, si tolgono le **9** che consegnano al
+  proponente quello che la carta gli vende — 7 `SET_CONTROL` e 2
+  `BUILD_STRUCTURE`, su otto Conseguenze.
+- **Tre righe restano, con la ragione scritta**: due `SET_CONTROL` a **null**
+  (svuotano il luogo invece di consegnarlo — nessun beneficio vende questo), e
+  `CNS_MINE_TAKEN`, l'eccezione dichiarata: prendere il controllo è tutto il suo
+  corpo, e lo schema non accetta una Conseguenza senza Effetti.
+- **La seconda trappola del null, vista misurando**: `_stone_owner` faceva
+  `str(owner)` su una Pietra **senza padrone**, dove `owner` è `null` — e
+  `str(null)` è `"<null>"`, non la stringa vuota. Una strada o un ponte
+  sembravano comprabili. Stessa trappola di `_control_of`, seconda volta nella
+  stessa giornata: **20 acquisti a vuoto su 26 erano questo**.
+- **I numeri**: benefici comprati che non lasciano niente **44% → 24% → 9%**,
+  costi a vuoto **21 → 1 → 0**. Dei 17 rimasti, 14 sono ancora la frase per via
+  indiretta: restano in ISSUES 87.
+- **Il costo dichiarato**: trasformazioni sedute 185 → **182**, vite che non si
+  siedono mai 6 → **7**. Torna a cadere «La Leggenda della Montagna», che
+  oscilla fra 0 e 1 saga su ventiquattro da tre decisioni. Non l'ho inseguita.
+- **La guardia**: il controllo sta in `validate_physical.py`, col suo difetto
+  piantato. **Diciannove difetti piantati.**
+- Playtest 100 semi: **0 seggi bloccati su 8**, misto e uniforme. Suite **612**.
+
+---
+
 ## 0.1.268 — Una casella che non può fare niente non si compra, e non si paga (D-306)
 
 - **Misurato costruendo D-305, e non me l'aspettavo: il 44% dei benefici
