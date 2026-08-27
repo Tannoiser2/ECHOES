@@ -10,6 +10,90 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-308 — IL MONDO RICORDA: il verbo che mancava al Consiglio
+
+**implemented** (0.1.270) · strada **(a)** di [ISSUES 76](ISSUES.md), scelta dal
+committente · **chiude ISSUES 76**
+
+> *«Le Azioni cambiano il mondo. Il Consiglio decide cosa il mondo ricordera'.»*
+> — la direzione in testa a [CLAUDE.md](../CLAUDE.md), decisa dal committente.
+
+Il vocabolario del beneficio **non aveva il verbo che quella frase nomina**.
+Riaprire, ripulire, costruire, cambiare controllo, raffreddare: cinque verbi che
+spostano cose, nessuno che scriva un fatto.
+
+### Il buco, misurato
+
+Dei 30 segni che le otto case dichiarano di voler lasciare nel mondo, un
+Consiglio ne sapeva dare **sette** — e tutti e sette erano **Pietre**. Tutto il
+resto e' una **memoria**: categoria MEMORY, ambito GLOBAL, e solo una frase
+d'autore la sapeva scrivere.
+
+Detto al tavolo: **il Consiglio sapeva infliggere quello che le case temono, e
+non sapeva dare quello che vogliono.** I costi posano segni — AGGIUNGI
+CONDIZIONE, PEDAGGIO, DEBITO, CICATRICE — i benefici no.
+
+### Il verbo
+
+**`REMEMBER` — «IL MONDO RICORDA»**, sesto verbo del beneficio, parametrizzato
+con un `tag` come AGGIUNGI CONDIZIONE lo e' dalla parte dei costi. Posa una
+memoria sul **mondo**, non sul luogo: e' la sola casella del beneficio che esce
+dalla Regione in discussione, ed e' giusto cosi' — un fatto che dura non sta in
+un posto.
+
+Diciotto dei trenta segni voluti sono memorie globali, e coprono **tutte e otto
+le case**: nessuna resta senza qualcosa da chiedere al Consiglio. Ognuna delle
+**60 carte** ne porta una, scelta per Tema e per quello che la carta gia' dice.
+
+### La guardia, e cosa ha scoperto
+
+Il validatore rifiuta una casella RICORDA che nomini un segno che non sia
+MEMORY/GLOBAL — con il suo difetto piantato: **venti** adesso.
+
+E scrivendola e' saltata fuori una **bugia vecchia del dizionario**: la faccia
+della carta scrive segni, e il registro delle mani non lo sapeva. `_scava` cerca
+gli Effect compilati, e le caselle sono **verbi**, non Effect; finche' i costi
+posavano segni che anche una Conseguenza posava, la bugia non si vedeva. Il
+verbo nuovo l'ha scoperta: **36 segni** — i 18 fatti nuovi piu' 18 condizioni e
+Cicatrici che i costi scrivevano da sempre in silenzio. Allineati.
+
+**E la sonda della matrice era cieca allo stesso modo**, la ottava volta in
+questo progetto: dopo aver scritto le sessanta carte, le misure non si
+muovevano di un numero. Non era il gioco: `tension_signs()` aveva la sua copia
+del vocabolario e non conosceva il verbo nuovo.
+
+### I numeri
+
+| | prima | dopo |
+|---|---|---|
+| **Tensioni che non toccano nessun segno nominato da un Destino** | 34 su 60 | **0** |
+| **fra i voluti, quelli che un Consiglio sa dare** | 7 | **25** |
+| IL MONDO RICORDA comprato, su 40 anni | — | **24 volte** |
+| fatti che ha davvero scritto | — | **19**, su otto diversi |
+| benefici comprati che non lasciano niente | 9% | 11% |
+| trasformazioni sedute (168 salti) | 182 | **184** |
+
+Le **due condizioni** che ISSUES 76 poneva sono soddisfatte tutte e due: ogni
+Tensione tocca almeno un segno che un Destino nomina, e ci sono 25 benefici
+comprabili che producono un segno che almeno un Destino vuole.
+
+**Undici carte hanno cambiato fatto** a meta' strada: portavano un segno che i
+**profili** nominano ma nessun **Destino** — `order_restored`,
+`account_settled`, `knowledge_shared`, `faith_established`, `charter_for_all`.
+Scambiato con uno che un Destino chiede, senza forzare il senso della carta: il
+Cordone decide chi puo' fermarsi (`nahr_settled`), il Diritto d'Asilo si scrive
+nella Carta (`charter_written`), la Decima apre il suo registro
+(`ledger_public`).
+
+**Il numero peggiorato, dichiarato**: gli acquisti a vuoto risalgono da 9% a
+11%, perche' 5 delle 24 memorie comprate trovano il fatto gia' scritto — dalla
+frase d'autore, nello stesso Consiglio. E' la via indiretta di
+[ISSUES 87](ISSUES.md), che questo verbo allarga di poco.
+
+Playtest 100 semi: **0 seggi bloccati su 8**, misto e uniforme. Suite 614.
+
+---
+
 ## D-307 — La frase d'autore smette di fare il mestiere delle caselle
 
 **implemented** (0.1.269) · taglio **A** di [ISSUES 87](ISSUES.md), scelto dal

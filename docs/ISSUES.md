@@ -3206,10 +3206,24 @@ la chiude, la peggiora.
 
 ---
 
-### 76. Il Consiglio decide con una moneta che i Destini non spendono
+### 76. ✅ Il Consiglio decideva con una moneta che i Destini non spendono — chiusa in 0.1.270
 
-`regole` · `contenuto` · `da-misurare` · **aperta in 0.1.249**
-([D-287](DECISIONS.md#d-287) · [le misure](MISURA_MATRICE.md))
+`regole` · `contenuto` · aperta in 0.1.249 ([D-287](DECISIONS.md#d-287)) ·
+**chiusa da [D-308](DECISIONS.md#d-308)**, strada **(a)** scelta dal committente:
+i benefici delle Tensioni producono segni che qualcuno insegue.
+
+> Il vocabolario del beneficio non aveva il verbo che la direzione del progetto
+> nomina — *«il Consiglio decide cosa il mondo ricordera'»*. Aggiunto
+> **IL MONDO RICORDA**, e messo su tutte e 60 le carte.
+>
+> **Tensioni che non toccano nessun segno nominato da un Destino: 34 → 0.**
+> **Fra i voluti, quelli che un Consiglio sa dare: 7 → 25.**
+> Al tavolo si compra **24 volte in 40 anni** e scrive 19 fatti su otto diversi.
+>
+> Restano aperte due cose che non sono questa: i **33 livelli di Destino che si
+> reggono solo su conteggi** (litigano con tutti allo stesso modo) e le **19
+> coppie di case su 28 senza niente per cui litigare** — la superficie degli
+> incroci, che e' la strada (b) o (c) e non e' stata imboccata.
 
 Misurato: le facce delle 60 Tensioni posano **24 segni** e ne tolgono **uno**.
 I Destini e gli obiettivi ne **vogliono 17** e ne **temono 17**. L'incrocio:

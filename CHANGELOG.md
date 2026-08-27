@@ -5,6 +5,44 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.270 — IL MONDO RICORDA: il verbo che mancava al Consiglio (D-308)
+
+- **Strada (a) di ISSUES 76, scelta dal committente — e chiude ISSUES 76.**
+- **Il vocabolario del beneficio non aveva il verbo che la direzione del
+  progetto nomina.** *«Le Azioni cambiano il mondo. Il Consiglio decide cosa il
+  mondo ricorderà»* — e i cinque verbi erano: riapri, ripulisci, costruisci,
+  cambia controllo, raffredda. **Nessuno scriveva un fatto.**
+- **Il buco, misurato**: dei 30 segni che le otto case vogliono lasciare nel
+  mondo, un Consiglio ne sapeva dare **sette**, e tutti e sette erano Pietre. Il
+  resto sono memorie, e solo una frase d'autore le sapeva scrivere. Il Consiglio
+  sapeva **infliggere** quello che le case temono e non sapeva **dare** quello
+  che vogliono.
+- **`REMEMBER` — «IL MONDO RICORDA»**, sesto verbo del beneficio, con un `tag`
+  come AGGIUNGI CONDIZIONE dalla parte dei costi. Posa una memoria sul **mondo**:
+  è la sola casella che esce dalla Regione in discussione. Diciotto memorie
+  coprono tutte e otto le case; ognuna delle 60 carte ne porta una.
+- **I numeri**: Tensioni che non toccano nessun segno nominato da un Destino
+  **34 → 0**; fra i voluti, quelli che un Consiglio sa dare **7 → 25**. Al
+  tavolo il verbo si compra **24 volte in 40 anni** e scrive 19 fatti su otto
+  diversi.
+- **Undici carte hanno cambiato fatto**: portavano un segno che i profili
+  nominano ma nessun Destino. Scambiato senza forzare il senso della carta.
+- **Una bugia vecchia del dizionario, scoperta dal verbo nuovo**: la faccia
+  della carta scrive segni e il registro delle mani non lo sapeva — `_scava`
+  cerca gli Effect, e le caselle sono verbi. **36 segni** allineati, i 18 fatti
+  nuovi più 18 condizioni e Cicatrici che i costi scrivevano in silenzio.
+- **E la sonda della matrice era cieca allo stesso modo**: scritte le sessanta
+  carte, le misure non si muovevano di un numero. Ottava volta in questo
+  progetto che una misura ferma era la sonda.
+- **Il numero peggiorato**: acquisti a vuoto 9% → **11%** — 5 delle 24 memorie
+  trovano il fatto già scritto dalla frase d'autore nello stesso Consiglio. È la
+  via indiretta di ISSUES 87.
+- La guardia rifiuta una casella RICORDA che non nomini una memoria del mondo:
+  **venti difetti piantati**.
+- Playtest 100 semi: **0 seggi bloccati su 8**, misto e uniforme. Suite **614**.
+
+---
+
 ## 0.1.269 — La frase d'autore smette di fare il mestiere delle caselle (D-307)
 
 - **Taglio A di ISSUES 87, scelto dal committente.** Le due grammatiche

@@ -16,24 +16,24 @@ caratteri misti, come al cancello — e dopo quanto tempo.
 | vite scritte oltre la prima | 18 |
 | **vite che non si sono mai sedute** | **7** |
 | salti d'era giocati | 168 |
-| trasformazioni sedute | 182 |
+| trasformazioni sedute | 184 |
 | salti brevi (sotto 50 anni) / medi / lunghi (oltre 150) | 22 / 108 / 38 |
 
 ## Le vite, una per una
 
 | uniforme | misto | vita | casa | porta | segno atteso | anni (mediana) |
 |---|---|---|---|---|---|---|
-| 14 | 13 | Vaerax Ridestato | ENT_VAERAX | ON_TAG | `crystal_exploited` | 381 |
-| 13 | 10 | Il Regno di Nahr | ENT_NAHR | ON_TAG | `nahr_settled` | 440 |
+| 15 | 15 | Il Regno di Nahr | ENT_NAHR | ON_TAG | `nahr_settled` | 440 |
+| 13 | 12 | Vaerax Ridestato | ENT_VAERAX | ON_TAG | `crystal_exploited` | 381 |
 | 11 | 11 | Il Culto della Misura | ENT_LYRA | LINE_EXHAUSTED | — | 368 |
-| 9 | 11 | Le Custodi della Cenere | ENT_CENERE | LINE_EXHAUSTED | — | 345 |
-| 8 | 10 | La Repubblica della Valle | ENT_ALDRIC | LINE_EXHAUSTED | — | 560 |
+| 9 | 9 | La Repubblica della Valle | ENT_ALDRIC | LINE_EXHAUSTED | — | 683 |
+| 9 | 9 | Le Custodi della Cenere | ENT_CENERE | LINE_EXHAUSTED | — | 379 |
 | 9 | 9 | I Frati del Vetro | ENT_VETRO | LINE_EXHAUSTED | — | 322 |
-| 9 | 6 | La Lega delle Sette | ENT_LIBERE | ON_TAG | `charter_written` | 509 |
-| 5 | 9 | La Diaspora di Nahr | ENT_NAHR | ON_TAG | `twice_uprooted` | 422 |
-| 8 | 6 | La Compagnia del Sale | ENT_SALE | LINE_EXHAUSTED | — | 369 |
-| 2 | 4 | L'Egemonia di Eredan | ENT_LIBERE | ON_TAG | `scar:emptied@REG_VALLE_VERDE` | 463 |
-| 3 | 2 | La Corona Restaurata | ENT_ALDRIC | ON_TAG | `heir_named` | 381 |
+| 9 | 7 | La Lega delle Sette | ENT_LIBERE | ON_TAG | `charter_written` | 525 |
+| 8 | 8 | La Compagnia del Sale | ENT_SALE | LINE_EXHAUSTED | — | 369 |
+| 6 | 6 | La Diaspora di Nahr | ENT_NAHR | ON_TAG | `twice_uprooted` | 556 |
+| 4 | 2 | L'Egemonia di Eredan | ENT_LIBERE | ON_TAG | `scar:emptied@REG_VALLE_VERDE` | 357 |
+| 1 | 2 | La Corona Restaurata | ENT_ALDRIC | ON_TAG | `heir_named` | 632 |
 | **0** | **0** | La Reggenza del Granaio | ENT_ALDRIC | ON_TAG | `grain_requisitioned` | — |
 | **0** | **0** | I Forni Riaccesi | ENT_CENERE | ON_TAG | `scar:open_wound` | — |
 | **0** | **0** | L'Accademia delle Misure | ENT_LYRA | ON_TAG | `succession_by_law` | — |
@@ -49,12 +49,12 @@ Il conto e' mutazioni su 168 salti giocati.
 
 | casa | mutazioni | ogni quanti salti |
 |---|---|---|
-| ENT_ALDRIC | 23 | 1 ogni 7.3 |
-| ENT_CENERE | 20 | 1 ogni 8.4 |
-| ENT_LIBERE | 21 | 1 ogni 8.0 |
+| ENT_ALDRIC | 21 | 1 ogni 8.0 |
+| ENT_CENERE | 18 | 1 ogni 9.3 |
+| ENT_LIBERE | 22 | 1 ogni 7.6 |
 | ENT_LYRA | 22 | 1 ogni 7.6 |
-| ENT_NAHR | 37 | 1 ogni 4.5 |
-| ENT_SALE | 14 | 1 ogni 12.0 |
-| ENT_VAERAX | 27 | 1 ogni 6.2 |
+| ENT_NAHR | 42 | 1 ogni 4.0 |
+| ENT_SALE | 16 | 1 ogni 10.5 |
+| ENT_VAERAX | 25 | 1 ogni 6.7 |
 | ENT_VETRO | 18 | 1 ogni 9.3 |
 

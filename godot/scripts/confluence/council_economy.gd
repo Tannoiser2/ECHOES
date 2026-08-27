@@ -43,6 +43,22 @@ const BENEFIT_VERBS: Dictionary = {
 	"BUILD_STONE": {"label": "COSTRUISCI PIETRA", "needs": ["structure"]},
 	"TAKE_CONTROL": {"label": "CAMBIA CONTROLLO", "needs": []},
 	"COOL_THEME": {"label": "RAFFREDDA TEMA", "needs": []},
+	# **Il verbo che mancava** (D-308, ISSUES 76 strada a).
+	#
+	# «Le Azioni cambiano il mondo. Il Consiglio decide cosa il mondo
+	# ricordera'» — e' la direzione scritta in testa al progetto, e il
+	# vocabolario del beneficio non aveva il verbo che quella frase nomina.
+	# Riaprire, ripulire, costruire, cambiare controllo, raffreddare: cinque
+	# verbi che spostano cose, **nessuno che scriva un fatto**.
+	#
+	# Misurato: dei segni che le otto case dichiarano di voler lasciare nel
+	# mondo, un Consiglio ne sapeva dare **sette** — e tutti e sette erano
+	# Pietre. Tutto il resto — `succession_by_law`, `charter_written`,
+	# `debt_forgiven`, `knowledge_shared` — e' una **memoria**, categoria
+	# MEMORY e ambito GLOBAL, e solo una frase d'autore la sapeva scrivere.
+	# Cioe': il Consiglio sapeva **infliggere** quello che le case temono e
+	# non sapeva **dare** quello che vogliono.
+	"REMEMBER": {"label": "IL MONDO RICORDA", "needs": ["tag"]},
 }
 const COST_VERBS: Dictionary = {
 	"ADD_CONDITION": {"label": "AGGIUNGI CONDIZIONE", "needs": ["tag"]},
@@ -118,6 +134,10 @@ static func voice_bites(
 			return region != "" and _control_of(world, region) != proponent
 		"COOL_THEME":
 			return _heat_of(world, theme_id) > 0
+		"REMEMBER":
+			# Un fatto che il mondo ricorda gia' non si ricorda due volte.
+			var fact: String = str(voice.get("tag", ""))
+			return fact != "" and not ((world.get("global_tags", []) as Array).has(fact))
 		"ADD_CONDITION":
 			return not _region_has(world, region, str(voice.get("tag", "")))
 		"TOLL":
@@ -273,6 +293,14 @@ static func effects_for(
 			if theme_id == "":
 				return out
 			out.append(Effect.make("ADJUST_THEME_HEAT", "theme", theme_id, {"delta": -1}, source))
+		"REMEMBER":
+			# La memoria si posa sul **mondo**, non sul luogo: e' un fatto che
+			# dura, e il dizionario lo dichiara di ambito GLOBAL. Il validatore
+			# rifiuta una voce RICORDA che nomini un segno di altro ambito.
+			var fact: String = str(voice.get("tag", ""))
+			if fact == "":
+				return out
+			out.append(Effect.make("SET_GLOBAL_TAG", "world", "WORLD", {"tag": fact}, source))
 		"ADD_CONDITION":
 			if region == "":
 				return out

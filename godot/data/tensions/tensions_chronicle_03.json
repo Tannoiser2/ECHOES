@@ -52,6 +52,12 @@
             "id": "B_COOL",
             "verb": "COOL_THEME",
             "text": "Raffredda il Tema di 1 (minimo 0)."
+          },
+          {
+            "id": "B_REMEMBER",
+            "verb": "REMEMBER",
+            "text": "Il mondo ricorda: l'acqua torna a muoversi.",
+            "tag": "water_moves"
           }
         ],
         "costs": [
@@ -175,6 +181,12 @@
             "id": "B_COOL",
             "verb": "COOL_THEME",
             "text": "Raffredda il Tema di 1 (minimo 0)."
+          },
+          {
+            "id": "B_REMEMBER",
+            "verb": "REMEMBER",
+            "text": "Il mondo ricorda: il debito e' stato rimesso.",
+            "tag": "debt_forgiven"
           }
         ],
         "costs": [
@@ -303,6 +315,12 @@
             "id": "B_COOL",
             "verb": "COOL_THEME",
             "text": "Raffredda il Tema di 1 (minimo 0)."
+          },
+          {
+            "id": "B_REMEMBER",
+            "verb": "REMEMBER",
+            "text": "Il mondo ricorda: la reliquia e' tornata sottoterra.",
+            "tag": "relic_buried"
           }
         ],
         "costs": [
@@ -426,6 +444,12 @@
             "id": "B_COOL",
             "verb": "COOL_THEME",
             "text": "Raffredda il Tema di 1 (minimo 0)."
+          },
+          {
+            "id": "B_REMEMBER",
+            "verb": "REMEMBER",
+            "text": "Il mondo ricorda: la Carta e' stata scritta.",
+            "tag": "charter_written"
           }
         ],
         "costs": [
@@ -549,6 +573,12 @@
             "id": "B_COOL",
             "verb": "COOL_THEME",
             "text": "Raffredda il Tema di 1 (minimo 0)."
+          },
+          {
+            "id": "B_REMEMBER",
+            "verb": "REMEMBER",
+            "text": "Il mondo ricorda: i Nahr hanno un posto dove fermarsi.",
+            "tag": "nahr_settled"
           }
         ],
         "costs": [
@@ -668,6 +698,12 @@
             "id": "B_COOL",
             "verb": "COOL_THEME",
             "text": "Raffredda il Tema di 1 (minimo 0)."
+          },
+          {
+            "id": "B_REMEMBER",
+            "verb": "REMEMBER",
+            "text": "Il mondo ricorda: della montagna si e' smesso di parlare.",
+            "tag": "mountain_forgotten"
           }
         ],
         "costs": [
