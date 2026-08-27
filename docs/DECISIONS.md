@@ -10,6 +10,42 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-309 — La Miniera di Stato dice quello che la sua frase diceva gia'
+
+**implemented** (0.1.271) · chiude l'eccezione dichiarata da
+[D-307](#d-307)
+
+`CNS_MINE_TAKEN` era l'unica Conseguenza il cui corpo intero era **il mestiere
+di una casella**: prendere il controllo del luogo in discussione. D-307 l'aveva
+lasciata stare e l'aveva scritto — toglierle quella riga l'avrebbe lasciata
+senza Effetti, e lo schema non accetta una Conseguenza vuota (`minItems: 1`).
+
+Ma la sua frase dice un'altra cosa:
+
+> *«Aprire le gallerie significa metterci qualcuno a contare quello che esce.
+> Chi conta, comanda.»*
+
+Il controllo e' la seconda meta'; **la prima e' che da adesso qualcuno conta**. E
+quella meta' il dizionario ce l'ha gia': `study_supervised`, memoria del mondo,
+**temuta da Cenere e da Lyra**, che nessuna casella del Consiglio vende.
+
+Adesso la Conseguenza lascia quello. Il controllo lo decide il Consiglio, con la
+pedina che qualcuno ha comprato e pagato; quello che la frase aggiunge e' il
+sorvegliante nella galleria — e due case hanno una ragione per non volerlo.
+
+**L'eccezione di D-307 non esiste piu'**: la guardia della grammatica copre
+tutte le Conseguenze, senza un elenco di perdonate.
+
+Il catalogo lo legge cosi':
+
+> *Se passa — La Miniera di Stato: il mondo registra: lo studio e' sotto
+> sorveglianza*
+
+**I numeri**: vite che non si siedono mai **7 → 6**, trasformazioni sedute
+184 → **183**. Playtest 100 semi 0 su 8, suite 614.
+
+---
+
 ## D-308 — IL MONDO RICORDA: il verbo che mancava al Consiglio
 
 **implemented** (0.1.270) · strada **(a)** di [ISSUES 76](ISSUES.md), scelta dal

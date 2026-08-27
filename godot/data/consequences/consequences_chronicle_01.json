@@ -439,16 +439,16 @@
       "id": "CNS_MINE_TAKEN",
       "title": "La Miniera di Stato",
       "category": "EXPLOITATION",
-      "description": "Aprire le gallerie significa metterci qualcuno a contare quello che esce. Chi conta, comanda.",
+      "description": "Aprire le gallerie significa metterci qualcuno a contare quello che esce. Il controllo lo decide il Consiglio; quello che resta e' che da adesso, li' sotto, qualcuno conta.",
       "effects": [
         {
-          "type": "SET_CONTROL",
+          "type": "SET_GLOBAL_TAG",
           "target": {
-            "kind": "region",
-            "id": "$region_focus"
+            "kind": "world",
+            "id": "WORLD"
           },
           "payload": {
-            "entity_id": "$proponent"
+            "tag": "study_supervised"
           }
         }
       ]

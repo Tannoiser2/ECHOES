@@ -2773,12 +2773,16 @@ e' in gioco.
 > **zero**. La regola ha una guardia in `validate_physical.py`, col suo difetto
 > piantato.
 >
-> **Aperto**: i **17 acquisti a vuoto** rimasti — 14 sono ancora la frase, ma
-> per la via **indiretta** (un Effetto mirato a `$capital`, `$rival_seat`,
-> `$region_with:...` che quella volta cade sullo stesso luogo), 3 sono mondo che
-> c'era gia'. Piu' l'eccezione dichiarata **`CNS_MINE_TAKEN`**: prendere il
-> controllo e' tutto il suo corpo, e lo schema non accetta una Conseguenza
-> senza Effetti — va **riscritta**, e quello e' contenuto.
+> **Aperto**: gli acquisti a vuoto rimasti — la maggior parte e' ancora la
+> frase, ma per la via **indiretta** (un Effetto mirato a `$capital`,
+> `$rival_seat`, `$region_with:...` che quella volta cade sullo stesso luogo).
+> Con IL MONDO RICORDA ([D-308](DECISIONS.md#d-308)) sono risaliti dal 9% all'11%.
+>
+> ✅ **L'eccezione `CNS_MINE_TAKEN` e' chiusa** in 0.1.271
+> ([D-309](DECISIONS.md#d-309)): riscritta su quello che la sua frase dice
+> davvero — *«metterci qualcuno a contare quello che esce»* — lascia
+> `study_supervised`, che Cenere e Lyra temono e che nessuna casella vende. La
+> guardia adesso copre tutte le Conseguenze, senza perdonate.
 >
 > Restano intoccate le **27 righe che arrivano altrove**: nessuna casella le
 > puo' fare, e toglierle sarebbe una perdita secca. E le **2** che svuotano il
@@ -3000,6 +3004,16 @@ profili** come voluti o temuti — e' ISSUES 76 un'altra volta.
 2. lasciare i tipi e **far succedere le condizioni rare** — chi scrive
    `condition:starving`, e perche' non scatta mai;
 3. non toccare niente: 9 tipi in tavola per anno non sono troppi da imparare.
+
+**Aggiornamento 0.1.271.** La coda si e' mossa da sola con le decisioni
+D-306/D-307/D-308, che hanno cambiato quali costi il fronte avverso sceglie:
+`condition:plundered` **1 → 4** anni su 40, `condition:mourning` **1 → 3**,
+`condition:requisitioned` **1 → 2**. E i mai visti sono ancora quattro, ma non
+gli stessi: `structure:sealed` e' entrato (D-301) e al suo posto e' uscito
+`settlement:market`, che nessuno ha tolto — la sua Conseguenza lo scrive ancora,
+ma la questione che la porta al tavolo non passa piu' in quarant'anni. E' uno
+spostamento a valle, non una cancellazione, ed e' dentro il rumore di una misura
+su 40 anni.
 
 **In 0.1.263 la strada 2 e' stata imboccata per la fame**
 ([D-300](DECISIONS.md#d-300)): nessuna delle dieci Tensioni della Sopravvivenza

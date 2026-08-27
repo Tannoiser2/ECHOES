@@ -729,13 +729,15 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
     #     nessuna casella li puo' fare, e toglierli sarebbe una perdita secca;
     #   - `SET_CONTROL` a **null**, che svuota il luogo invece di consegnarlo:
     #     e' un esito che nessun beneficio vende;
-    #   - `CNS_MINE_TAKEN`, l'eccezione dichiarata: prendere il controllo e'
-    #     tutto il suo corpo, e una Conseguenza senza Effetti lo schema non la
-    #     accetta. Riscriverla e' contenuto, non motore.
-    ECCEZIONI_D307 = {"CNS_MINE_TAKEN"}
+    #
+    # **E l'eccezione non c'e' piu'** (0.1.271). `CNS_MINE_TAKEN` era l'unica
+    # Conseguenza il cui corpo era tutto la casella: prendere il controllo. E'
+    # stata riscritta su quello che la sua frase dice davvero — *«metterci
+    # qualcuno a contare quello che esce»* — e adesso lascia `study_supervised`,
+    # una memoria che Cenere e Lyra temono e che nessuna casella vende. Il
+    # controllo lo decide il Consiglio; quello che resta e' che li' sotto
+    # qualcuno conta.
     for conseguenza in documenti.get("consequence", []):
-        if conseguenza.get("id") in ECCEZIONI_D307:
-            continue
         for effetto in conseguenza.get("effects", []) or []:
             if (effetto.get("target") or {}).get("id") != "$region_focus":
                 continue
@@ -936,9 +938,7 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
         # proponente il luogo di cui si discute, che e' quello che la carta
         # vende. Si **fabbrica** invece di cercarla: appena i dati fossero a
         # posto, cercarla smetterebbe di provare senza dirlo (regola di casa).
-        bersaglio = next(
-            c for c in prova["consequence"] if c.get("id") not in {"CNS_MINE_TAKEN"}
-        )
+        bersaglio = next(iter(prova["consequence"]))
         bersaglio.setdefault("effects", []).append({
             "type": "SET_CONTROL",
             "target": {"kind": "region", "id": "$region_focus"},

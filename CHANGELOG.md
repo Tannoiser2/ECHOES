@@ -5,6 +5,29 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.271 — La Miniera di Stato dice quello che la sua frase diceva già (D-309)
+
+- **Chiusa l'eccezione dichiarata da D-307.** `CNS_MINE_TAKEN` era l'unica
+  Conseguenza il cui corpo intero era il mestiere di una casella: prendere il
+  controllo. Toglierle quella riga l'avrebbe lasciata senza Effetti, e lo schema
+  non accetta una Conseguenza vuota.
+- **Ma la sua frase dice un'altra cosa**: *«Aprire le gallerie significa
+  metterci qualcuno a contare quello che esce. Chi conta, comanda.»* Il
+  controllo è la seconda metà; la prima è che **da adesso qualcuno conta**. E
+  quella metà il dizionario ce l'ha già: `study_supervised`, memoria del mondo,
+  **temuta da Cenere e da Lyra**, che nessuna casella del Consiglio vende.
+- **La guardia della grammatica adesso copre tutte le Conseguenze**, senza un
+  elenco di perdonate.
+- **I numeri**: vite che non si siedono mai **7 → 6**, trasformazioni sedute
+  184 → **183**.
+- **Aggiornata ISSUES 82** con la coda di adesso: le tre condizioni rare si sono
+  mosse da sole con D-306/D-307/D-308 — `plundered` 1 → 4 anni su 40,
+  `mourning` 1 → 3, `requisitioned` 1 → 2. I mai visti restano quattro ma non
+  sono gli stessi: entra `structure:sealed`, esce `settlement:market`.
+- Playtest 100 semi: **0 seggi bloccati su 8**, misto e uniforme. Suite **614**.
+
+---
+
 ## 0.1.270 — IL MONDO RICORDA: il verbo che mancava al Consiglio (D-308)
 
 - **Strada (a) di ISSUES 76, scelta dal committente — e chiude ISSUES 76.**
