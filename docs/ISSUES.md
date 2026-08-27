@@ -2763,6 +2763,49 @@ e' in gioco.
 
 ---
 
+### 93. Cancellare gli anni d'autore: la suite ci sta sopra
+
+`regola` · `debito` · `strumenti` · aperta in 0.1.280
+([D-318](DECISIONS.md#d-318))
+
+Il committente ha deciso: **gli anni d'autore vanno via** — CHR_01, CHR_02,
+CHR_03, CHR_04. La strada 1 di ISSUES 92 e' fatta (il cancello gira su CHR_00),
+ma la cancellazione vera e' bloccata da una cosa misurata prima di provarci:
+
+**Puntando `tests/test_case.gd` su CHR_00, la suite va a 217 fallimenti su 42
+suite.** Le cause, contate:
+
+| quante | cosa |
+|---|---|
+| 26 | un hook EFFECT di Eco non compila: nomina una Regione che non e' stata pescata |
+| 9 | «tensione sconosciuta 'TEN_...'» — la prova nomina una questione che quell'anno non e' uscita |
+| 8 | il menu non offre quello che la prova si aspetta |
+| 5 | il tavolo non e' quello del §10 scritto a mano |
+
+La suite unitaria **e' costruita sull'anno d'autore**: nomina `TEN_FAMINE`,
+`REG_EREDAN`, «La Carestia Rossa». Spostarla non e' una sostituzione di
+stringhe — e' riscrivere le prove perche' **non nominino** un mondo che adesso
+cambia a ogni seme.
+
+**Cosa la chiude**, in quest'ordine:
+
+1. **Il tavolo di prova si fabbrica.** `test_case.gd` costruisce un mondo
+   deterministico *suo* — sei Regioni, quattro case, le questioni che servono —
+   invece di prendere in prestito una Chronicle spedita. E' la regola di casa
+   gia' scritta: *una prova che cerca una condizione fra i dati spediti puo'
+   smettere di provare senza dirlo — fabbricatela.*
+2. **Le prove smettono di nominare il mondo.** Chi ha bisogno di una Regione
+   se la chiede al tavolo (`la prima Regione`, `una terra che tiene un altro`)
+   invece di scrivere `REG_EREDAN`.
+3. **Poi si cancella**: le definizioni delle quattro Chronicle e i `sim_plans`.
+   Restano entita', Destini, Regioni, Tensioni, Echi e i template di Consiglio,
+   che CHR_00 usa gia' tutti.
+
+**Il metro**: la suite verde con `test_case.gd` che non nomina nessuna
+Chronicle spedita.
+
+---
+
 ### 92. Il cancello misura un anno d'autore, non la scatola
 
 `regola` · `strumenti` · `decisione` · aperta in 0.1.277, **riscritta in

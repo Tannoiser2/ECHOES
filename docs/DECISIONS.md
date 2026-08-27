@@ -10,6 +10,78 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-318 — Cento anni pescati: il cancello misura il gioco che si vende
+
+**implemented** (0.1.280) · strada 1 di [ISSUES 92](ISSUES.md) · scelta del
+committente: *«fai la 1, questi anni d'autore dovevamo cancellarli giorni e
+giorni fa»*.
+
+### Cosa cambia
+
+`run_playtest.gd` girava **meta' su CHR_01 e meta' su CHR_03**: due anni
+d'autore, mappa scritta a mano, quattro e cinque Tensioni fisse. D-317 ha
+misurato cosa costava: **48 delle 60 carte Tensione non arrivavano mai al
+tavolo**, e ogni numero di bilanciamento a verbale era stato preso su una
+partita che nella scatola non c'e'.
+
+Adesso **ogni seme e' un anno diverso di CHR_00**: la mappa si pesca dal parco
+tessere, le case dal loro parco, le questioni dalle sessanta. Cento semi fanno
+cento tavoli invece di due ripetuti cinquanta volte.
+
+| | prima (due anni d'autore) | adesso (cento anni pescati) |
+|---|---|---|
+| Tensioni sul tavolo, per partita | 4.0 | **8.8** |
+| carte Tensione mai viste, su 60 | **48** | **3** |
+
+### Il vincolo regge
+
+`--runs=100 --seed=7000`: **0 seggi bloccati su un solo livello su 8**, tavolo
+misto **e** uniforme. Il gioco della scatola passa il vincolo che non si
+negozia, e non era scontato: nessuno l'aveva mai fatto girare.
+
+### E il costo, che si scrive
+
+Il gioco pescato e' **piu' duro e piu' asciutto** del gioco d'autore:
+
+| su 100 partite | anni d'autore | anni pescati |
+|---|---|---|
+| NONE | 190 | **237** |
+| MINIMUM | 428 | 407 |
+| VICTORY | 551 | 525 |
+| TRIUMPH | 31 | 31 |
+| Consigli per anno (misto) | 3.85 | **3.47** |
+| Verita' scritte (misto) | 221 | **162** |
+
+**Quarantasette seggi in piu' escono a mani vuote**, si tiene mezzo Consiglio
+in meno per anno, e il mondo scrive un quinto di Verita' in meno. Ha senso: la
+mappa pescata non garantisce che la tua terra sia in gioco, e le questioni
+girate cambiano ogni anno.
+
+Non e' un peggioramento da correggere di corsa: e' **il numero vero, guardato
+per la prima volta**. Quello di prima non era migliore — era di un'altra
+partita. Vale la regola di casa: *un numero peggiorato e scritto vale piu' di
+un numero nascosto.*
+
+### Quello che non e' stato fatto, e perche'
+
+Il committente ha chiesto anche di **cancellare gli anni d'autore per intero**
+— CHR_01, CHR_02, CHR_03, CHR_04. Misurato il costo prima di farlo: puntando
+il tavolo di prova condiviso (`tests/test_case.gd`) su CHR_00, la suite va a
+**217 fallimenti su 42 suite**.
+
+La causa non e' un difetto: **la suite unitaria e' costruita sull'anno
+d'autore.** Nomina `TEN_FAMINE`, `REG_EREDAN`, «La Carestia Rossa»; ventisei
+prove falliscono perche' un hook di Eco non compila quando la Regione che
+nomina non e' stata pescata. Spostarla su un tavolo pescato non e' una
+sostituzione di stringhe: e' riscrivere le prove perche' **non nominino** un
+mondo che adesso cambia a ogni seme.
+
+Quindi questo verbale fa la mossa che vale da sola — il cancello guarda il
+gioco giusto — e lascia la demolizione come lavoro suo, con le prove da
+rifare. Aperta come [ISSUES 93](ISSUES.md).
+
+---
+
 ## D-317 — Il cancello misura un anno d'autore, non la scatola
 
 **implemented** (0.1.279) · misura, non modifica · nata da

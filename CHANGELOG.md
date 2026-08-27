@@ -5,6 +5,47 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.280 — Cento anni pescati: il cancello misura il gioco che si vende (D-318)
+
+### Cambiato
+
+- **`run_playtest.gd` gira su CHR_00**, cento semi, cento anni pescati. Girava
+  meta' su CHR_01 e meta' su CHR_03: due anni d'autore con quattro e cinque
+  Tensioni fisse, dove **48 delle 60 carte Tensione non arrivavano mai al
+  tavolo**. Adesso ne restano fuori **3**.
+
+### Misurato
+
+- **Il vincolo regge sul gioco vero**: `--runs=100 --seed=7000`, **0 seggi
+  bloccati su 8**, misto e uniforme. Non era scontato: nessuno l'aveva mai
+  fatto girare.
+- **E costa, e si scrive.** Il gioco pescato e' piu' duro e piu' asciutto:
+
+  | su 100 partite | anni d'autore | anni pescati |
+  |---|---|---|
+  | NONE | 190 | **237** |
+  | MINIMUM | 428 | 407 |
+  | VICTORY | 551 | 525 |
+  | TRIUMPH | 31 | 31 |
+  | Consigli per anno (misto) | 3.85 | **3.47** |
+  | Verita' scritte (misto) | 221 | **162** |
+
+  Quarantasette seggi in piu' escono a mani vuote, mezzo Consiglio in meno per
+  anno, un quinto di Verita' in meno. Non e' un peggioramento da correggere di
+  corsa: e' il numero vero, guardato per la prima volta.
+
+### Non fatto, e misurato perche'
+
+- La cancellazione degli anni d'autore (CHR_01, CHR_02, CHR_03, CHR_04) chiesta
+  dal committente: puntando `tests/test_case.gd` su CHR_00 la suite va a **217
+  fallimenti su 42 suite**. La suite unitaria e' costruita sull'anno d'autore —
+  nomina `TEN_FAMINE`, `REG_EREDAN`, «La Carestia Rossa», e ventisei prove
+  cadono perche' un hook di Eco non compila quando la Regione che nomina non e'
+  stata pescata. E' lavoro suo, con le prove da rifare
+  ([ISSUES 93](docs/ISSUES.md)).
+
+---
+
 ## 0.1.279 — Il cancello misura un anno d'autore, non la scatola (D-317)
 
 ### Misurato
