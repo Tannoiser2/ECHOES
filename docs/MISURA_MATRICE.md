@@ -16,7 +16,7 @@ piano, misurate sui dati di oggi **prima** di scrivere un file nuovo.
 | **livelli che si reggono solo su conteggi** | **33** |
 | Tensioni | 60 |
 | **Tensioni che non toccano nessun segno nominato da un Destino** | **0** |
-| **carte che aprono ancora una domanda in prestito** | **43** |
+| **carte che aprono ancora una domanda in prestito** | **35** |
 | segni che l'eredita' porta avanti | 49 |
 | profili strategici scritti | 8 |
 | segni che quelle case vogliono o temono | 68 |

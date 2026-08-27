@@ -98,10 +98,19 @@ func _initialize() -> void:
 				wrote[speaking] = int(wrote.get(speaking, 0)) + 1
 		session.dispose()
 
+	# **Il denominatore sono le carte, non i template** (0.1.273).
+	#
+	# Fino a 0.1.272 contava le domande e le proposte dei dodici template: 23 e
+	# 49. Da D-310 la Domanda e la Proposta stanno **sulla carta**, e con
+	# sessanta carte il conto vero e' un altro — la misura diceva "36 su 49"
+	# mentre il tavolo ne aveva scritte 185. **Decima volta in questo progetto
+	# che una misura ferma era la sonda.**
 	var written_questions: Dictionary = {}
 	var written_propositions: Dictionary = {}
-	for template_id in data.confluence_templates:
-		var template: Dictionary = data.confluence_templates[str(template_id)] as Dictionary
+	for tension_id in data.tensions:
+		var template: Dictionary = data.confluence_template_for(str(tension_id))
+		if template.is_empty():
+			continue
 		for question in (template.get("questions", []) as Array):
 			written_questions[str((question as Dictionary)["id"])] = true
 		for proposition in (template.get("propositions", []) as Array):
