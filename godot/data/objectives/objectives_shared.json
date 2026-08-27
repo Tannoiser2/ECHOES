@@ -230,6 +230,35 @@
       "art_prompt_key": "objective.the_name"
     },
     {
+      "id": "OBJ_THE_USEFUL_RUIN",
+      "title": "Quello che si Prende",
+      "description": "Ogni casa scrive nel proprio Destino le terre che vuole intatte. Nessuna scrive quelle che vuole vuote, e per questo nessuna terra si svuota mai: il disastro resta una cosa che si teme e che non arriva. Questo obiettivo è di chi ha capito che una terra spolpata è una terra che non ti fa più concorrenza — purché sia quella di un altro.",
+      "label": "Una terra altrui è stata spolpata o svuotata",
+      "conditions": [
+        {
+          "type": "any_of",
+          "label": "Sfruttata o svuotata, in una terra che non è sua",
+          "conditions": [
+            {
+              "type": "state_tag_present",
+              "scope": "REGION",
+              "region_id": "$rival",
+              "tag": "condition:exploited",
+              "label": "Una terra d'altri è stata sfruttata"
+            },
+            {
+              "type": "state_tag_present",
+              "scope": "REGION",
+              "region_id": "$rival",
+              "tag": "condition:emptied",
+              "label": "Una terra d'altri si è svuotata"
+            }
+          ]
+        }
+      ],
+      "art_prompt_key": "objective.the_useful_ruin"
+    },
+    {
       "id": "OBJ_THE_WIDEST_SPREAD",
       "title": "La Gente più Sparsa",
       "description": "Essere in più posti degli altri non è tenere: è **esserci**. Si paga in pedine che non tornano indietro, e si perde nel momento in cui qualcun altro ne posa una in più.",

@@ -286,11 +286,12 @@
       ],
       "read_by": [
         "asset_physical",
+        "chronicle",
         "destiny",
         "destiny_physical",
-        "tension",
-        "chronicle",
-        "entity_strategic_profile"
+        "entity_strategic_profile",
+        "objective",
+        "tension"
       ]
     },
     {
@@ -309,10 +310,11 @@
         "tension"
       ],
       "read_by": [
-        "destiny",
-        "tension",
         "chronicle",
-        "entity_strategic_profile"
+        "destiny",
+        "entity_strategic_profile",
+        "objective",
+        "tension"
       ]
     },
     {
@@ -1957,12 +1959,12 @@
       ],
       "read_by": [
         "asset_physical",
+        "chronicle",
         "consequence",
         "destiny",
         "destiny_physical",
-        "tag_rule",
-        "chronicle",
-        "entity_strategic_profile"
+        "entity_strategic_profile",
+        "tag_rule"
       ]
     },
     {
@@ -2782,14 +2784,14 @@
       ],
       "read_by": [
         "asset_physical",
+        "chronicle",
         "consequence",
         "destiny",
         "destiny_physical",
         "entity",
+        "entity_strategic_profile",
         "tag_rule",
-        "tension",
-        "chronicle",
-        "entity_strategic_profile"
+        "tension"
       ]
     },
     {

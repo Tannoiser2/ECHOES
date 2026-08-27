@@ -10,6 +10,315 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-316 — Una casa spenta non segna, e adesso lo dice una regola sola
+
+**implemented** (0.1.278) · taglio (a) della strada 1 di
+[ISSUES 91](ISSUES.md) · scelta del committente: *«parti dalla 2 e poi il
+taglio (a)»*.
+
+### Cosa c'era
+
+`entity_alive` — *«sei ancora vivo»* — stava nel **Minimo di diciassette
+Destini su ventitre'**, sempre riferita a se' stessi. Funzionava come cancello,
+perche' i livelli sono cumulativi: cadere sul Minimo spegne anche Vittoria e
+Trionfo. Ma lo faceva **diciassette volte**, e costava due cose.
+
+Sulla carta stampata si prendeva **mezza riga del Minimo**:
+
+> *«Sei ancora sul trono e hai una presenza sulla capitale.»*
+
+Al tavolo «non sei morto» non e' un obiettivo: e' il presupposto per averne uno.
+E nella misura di D-314 quelle clausole erano **centrate 113 volte su 113,
+gia' vere all'apertura 113 su 113, contese mai** — la voce piu' grossa fra i
+punti che nessuno doveva giocarsi.
+
+E c'era un buco: **sei Destini la clausola non l'avevano**. `DST_CENERE` e
+`DST_VAERAX_WATCHED` fra questi. Per loro il cancello semplicemente non
+esisteva.
+
+### Cosa si fa adesso
+
+La regola sta **in un posto solo**, in `destiny_evaluator.evaluate()`: se la
+casa del Destino non e' piu' attiva, il livello e' NONE, i tre gradini sono
+tutti falsi, e il verbale dice perche'. Vale per **tutti e ventitre'** i
+Destini, non per diciassette.
+
+Le diciassette clausole sono sparite, e con loro diciassette righe stampate
+riscritte. Il Minimo di Aldric adesso dice quello che chiede e basta:
+
+> *«Hai una presenza sulla capitale.»*
+
+### La parte che non era gratis
+
+Togliendo la clausola, **sei Destini restavano col Minimo vuoto** — e un
+livello senza clausole si avvera da solo: sarebbe stato un regalo piu' grosso
+di quello tolto. Quei sei hanno un Minimo **scritto**, il passo piu' piccolo
+della stessa ambizione, nella voce della loro casa:
+
+| Destino | il Minimo nuovo |
+|---|---|
+| `DST_NAHR_ROOTED` — *La Terra Sotto i Piedi* | una pietra sua: il popolo ha piantato qualcosa che resta |
+| `DST_LYRA_TAUGHT` — *Quello che Resta Insegnato* | una Scoperta: la scuola ha insegnato almeno una volta |
+| `DST_SALE_OPEN` — *Il Registro Aperto* | una terra risponde alla Gilda |
+| `DST_LIBERE_WATER` — *L'Acqua Torna a Muoversi* | un'opera alzata: l'acqua non si muove da sola |
+| `DST_SHARED_RENOWN` — *Il Nome che Pesa* | una terra risponde al tuo nome |
+| `DST_SHARED_ACCOUNTS` — *I Conti Chiusi* | due questioni tenute sotto il punto di rottura |
+
+Riscritte anche le sei **etichette di livello**, che dicevano ancora la cosa
+vecchia: «La Gilda esiste ancora» su un livello che adesso chiede una terra e'
+una frase d'autore che contraddice la carta (D-305).
+
+### Cosa e' costato
+
+**Niente, e la misura lo dice.** 100 semi, prima e dopo:
+
+| | prima | dopo |
+|---|---|---|
+| NONE | 191 | 190 |
+| MINIMUM | 426 | 428 |
+| VICTORY | 550 | 551 |
+| TRIUMPH | 33 | 31 |
+
+Nessuno guadagna o perde un livello: la clausola era sempre vera per i vivi, e
+i morti cadevano gia' sul Minimo cumulativo. **0 seggi bloccati su 8**,
+entrambi i tavoli.
+
+### Cosa ha reso
+
+40 tavoli CHR_01, contro il baseline di D-314:
+
+| misura | D-314 | dopo D-315 | dopo D-316 |
+|---|---|---|---|
+| clausole gia' vere all'apertura | 60.5% | 57.8% | **52.4%** |
+| clausole che qualcuno contendeva | 10.2% | 11.8% | **15.8%** |
+
+Otto punti in meno di dotazione e cinque e mezzo in piu' di contesa, in due
+tagli. `entity_alive` e' sparito da tutte e tre le liste della sonda perche'
+non esiste piu' come clausola.
+
+### Le prove
+
+Cinque, e due sono guardie contro la cecita': il caso che deve dare
+**non-NONE** (senza, un NONE costante passerebbe), e la prova che **nessun
+livello e' rimasto vuoto**. Una terza gira su **ogni** Destino la cui casa
+siede al tavolo, invece che su una lista scritta a mano — la prima versione
+nominava `DST_CENERE`, che a quel tavolo non c'e', e si era gia' ridotta a
+provare la meta'.
+
+---
+
+## D-315 — Il mondo prende un rovescio, e la prima carta lo prende sul serio
+
+**implemented** (0.1.277) · primo taglio della strada 2 di
+[ISSUES 91](ISSUES.md) · scelta del committente: *«parti dalla 2 e poi il
+taglio (a)»*.
+
+### L'idea, e perche' non era gratis
+
+D-314 aveva misurato che il 60.5% delle clausole a punti era vero prima che
+qualcuno giocasse. La lettura statica diceva: **su 17 memorie temute solo 4
+sono anche volute da qualcuno**, quindi le altre 13 arrivano per inerzia perche'
+nessuno al tavolo ha un motivo scritto per scriverle. Il rimedio sembrava
+di puro contenuto — dare un padrino a ogni memoria temuta.
+
+**Non era di puro contenuto, e la lettura statica sbagliava su due voci.**
+
+### Quello che la misura ha corretto
+
+Una sonda nuova, dentro `run_contest_probe.gd`, legge il registro degli Effetti
+**Regione per Regione**: la memoria temuta e' comparsa li' dove quella clausola
+la temeva, oppure no. Niente assunzioni, niente indizi letti sulle carte.
+
+Il baseline, 40 tavoli CHR_01: **63.3% delle memorie temute non le tocca mai
+nessuno.** Ma il dettaglio per segno ribalta due conclusioni statiche:
+
+| segno | scritte | mai toccate | la lettura statica diceva |
+|---|---|---|---|
+| `question_unresolved` | 61 | 3 | «temuta 5 volte, voluta zero» |
+| `condition:unrest` | 17 | 5 | «temuta 5 volte, voluta zero» |
+
+Le **due memorie piu' temute del gioco sono anche le due piu' scritte**: le
+scrivono le carte e le Conseguenze come effetto collaterale, senza che nessun
+Destino le desideri. Il difetto non era li'.
+
+Dove e' davvero: **undici segni mai scritti una sola volta in 40 partite** —
+`failed_proposal` (25 clausole), `oath_broken` (16), `mine_sealed` (15),
+`valley_sealed` (14), `condition:emptied` (11), `study_supervised` (10),
+`crystal_exploited` (9), `water_priced` (9), `structure:sealed` (7),
+`no_charter` (6), `relic_shown` (4), `condition:exploited` (3).
+
+E fra questi, il caso che ha ucciso l'idea semplice: **`mine_sealed` e' temuto
+3 volte e voluto 3 volte, e non compare mai lo stesso.** Il padrino c'era gia'
+e non bastava. La ragione, trovata risalendo: le Conseguenze che scrivono quei
+segni stanno tutte in `success_consequences` di **proposte che nessuno
+propone** — `CNF_AWAKENING_01` si apre, ma la proposta `P_SEAL_MINE` non vince
+mai.
+
+### La dodicesima misura cieca
+
+Il primo tentativo di attribuire le Conseguenze contava `source.id` sugli
+Effetti e dava **zero su tutte e diciotto**. Era cieco lui: gli Effetti di una
+Conseguenza si firmano col **template del Consiglio** (`CNF_WATER_03#1`), mai
+col `CNS_*` — zero firme `CNS_` su 84 distinte. La misura per segno, che non
+passa dalle firme, non e' cieca e resta valida.
+
+### Cosa si e' fatto
+
+**Il selettore che mancava.** Un obiettivo del pool si pesca a qualunque
+tavolo e da D-265 **la mappa si pesca**: nominare una Regione lo renderebbe
+muto meta' delle volte, e il validatore giustamente lo vieta. Il risultato era
+che **nessun obiettivo del mazzo poteva chiedere un segno di Regione**. Ora
+`region_id` accetta due forme, con lo stesso argomento del `$any` che D-255
+aggiunse alle relazioni:
+
+- **`$any`** — da qualche parte sulla mappa;
+- **`$rival`** — solo in una terra che **tiene un altro**. E' la forma che non
+  si puo' soddisfare in casa propria, e nemmeno su una terra di nessuno: per
+  centrarla il segno va posato dove toglie qualcosa a qualcuno.
+
+**Una carta sola, non tre.** Ne erano state scritte tre. La sonda degli
+obiettivi le ha giudicate:
+
+| carta | si avvera | verdetto della sonda |
+|---|---|---|
+| `OBJ_THE_USEFUL_RUIN` — *una terra altrui e' stata spolpata* | **34.2%** | in banda (come `OBJ_A_GARRISON`, 33.3%) |
+| `OBJ_THE_WALL_THAT_HOLDS` | 6.7% | **arredo** |
+| `OBJ_THE_BROKEN_WORD` | 3.3% | **arredo** |
+
+Le due arredo sono state **tolte prima di spedire**. Un obiettivo che non si
+avvera assomiglia a un obiettivo difficile ed e' il difetto esatto contro cui
+esiste la regola del pool: metterne due in mazzo avrebbe peggiorato il mazzo
+per far salire una percentuale.
+
+### Cosa e' costato e cosa ha reso
+
+40 tavoli CHR_01, prima e dopo, con una carta sola in piu':
+
+| misura | prima | dopo |
+|---|---|---|
+| coppie che si contendono una memoria | 1.2% (3) | **6.2% (15)** |
+| clausole centrate che qualcuno contendeva | 10.2% | **11.8%** |
+| clausole gia' vere all'apertura | 60.5% | **57.8%** |
+| memorie temute che nessuno ha mai toccato | 63.3% | **66.5%** |
+
+**Le prime tre si muovono nel verso giusto. La quarta no, e peggiora.** Vale la
+regola di casa: si scrive. La lite fra i Destini adesso e' scritta cinque volte
+piu' spesso, ma il mondo non ha ancora imparato a produrre le memorie che
+qualcuno teme — `condition:emptied` passa da 0 a 1 in 40 partite, che e' il
+meccanismo che funziona e basta.
+
+### Dove sta il muro, per il taglio dopo
+
+Non nelle carte: nella **scelta della proposta**. Il cervello sceglie cosa
+proporre col proprio Destino e i propri obiettivi in mano
+(`_score_proposition` legge `_tag_goals`, che legge tutti e due — il cablaggio
+c'e'). Ma **propone solo il proponente**, e chi porta l'obiettivo raramente e'
+lui al Consiglio giusto. Finche' quella e' la strozzatura, aggiungere carte che
+vogliono un segno non fa comparire il segno.
+
+### Un effetto collaterale, misurato rigenerando
+
+Il cancello delle vite e' andato rosso: le partite si giocano **diversamente**.
+Le case cambiano pelle piu' spesso — `ENT_NAHR` da 35 a 42 mutazioni in dodici
+saghe, `ENT_ALDRIC` da 22 a 27 — e una vita che prima non compariva
+(*La Leggenda della Montagna*) adesso sta in tabella, ancora a zero. Una
+carta sola in mano a un seggio muove abbastanza il gioco da spostare quanto
+spesso le case si trasformano: e' il segno che l'obiettivo non e' arredo.
+`docs/MISURA_VITE.md` rigenerato.
+
+Aperta come [ISSUES 92](ISSUES.md).
+
+---
+
+## D-314 — Sei punti su dieci erano gia' tuoi prima che qualcuno giocasse
+
+**implemented** (0.1.276) · misura, non modifica · nata dalla domanda del
+committente: *«dobbiamo capire se il gioco e' divertente e competitivo, quindi
+dobbiamo capire se la struttura stessa va cambiata. Nulla deve essere inutile e
+tutto quello che si fa deve rispondere a una logica di perseguire la vittoria»*
+— e dalla sua scelta fra le strade possibili: **prima misuriamo se il problema
+si vede in partita.**
+
+### La domanda mai eseguita
+
+`cli/run_contest_probe.gd` prometteva quattro domande nel suo commento di testa
+fin da quando e' nato. **Ne eseguiva tre.** La quarta — *gli obiettivi si
+incrociano?* — non era mai stata scritta. E' l'undicesima misura cieca a
+verbale in questo progetto, e la piu' cara: era proprio quella che diceva se il
+gioco e' una gara.
+
+Adesso e' scritta, e con lei altre tre che servivano a leggerla:
+
+- **con cosa si sono presi i punti** — la corsia di ogni clausola centrata;
+- **quanti punti nessuno poteva impedire** — se un altro seggio al tavolo
+  avesse avuto un motivo *scritto* per contrastare quella clausola;
+- **i punti che avevi gia' prima di giocare** — le clausole valutate subito
+  dopo il setup, prima di ogni mossa, e ancora vere a fine partita.
+
+### Cosa dicono, e non e' una buona notizia
+
+40 tavoli su CHR_01, semi 7000+, entrambi i tavoli. I due tavoli **concordano**
+— quindi non e' un artefatto del cervello che gioca.
+
+| misura | misto | uniforme |
+|---|---|---|
+| coppie di seggi che si contendono una Regione | 2.9% | 2.9% |
+| coppie che si contendono una memoria del mondo | 1.2% | 1.2% |
+| clausole centrate che **nessuno** contendeva | 89.8% | 90.9% |
+| clausole **gia' vere all'apertura** | 60.5% | 59.1% |
+
+Sei clausole a punti su dieci erano vere **prima che qualcuno giocasse**, e nove
+su dieci non avevano nessuno al tavolo con un motivo scritto per impedirle.
+
+L'analisi statica del grafo aveva detto un'altra cosa — *la corsia mappa sembra
+competitiva, quella del mondo no*. **In partita e' peggio di cosi', e il difetto
+non e' di una corsia sola.** Vale la regola di casa: il numero peggiore e
+scritto vale piu' di quello buono e nascosto.
+
+### Dove sta, esattamente
+
+La rottura ha un nome preciso, e sono **tre tipi di clausola** (tavolo misto,
+1058 clausole centrate in tutto):
+
+| tipo | centrate | gia' vere in apertura | mai contese |
+|---|---|---|---|
+| `entity_alive` — *sei vivo* | 113 | 113 (100%) | 113 (100%) |
+| `scar_count` — *hai poche Cicatrici* | 154 | 154 (100%) | 154 (100%) |
+| `state_tag_absent` — *questa memoria non c'e'* | 165 | 165 (100%) | 161 (98%) |
+
+**432 clausole su 1058 — il 40.8% di tutti i punti del tavolo — sono vere al
+setup, restano vere per inerzia, e nessuno ha mai un motivo scritto per
+toglierle.** Non sono obiettivi: sono una dotazione. Sul tavolo fisico
+equivalgono a punti gia' stampati sulla plancia.
+
+All'estremo opposto ce n'e' **una sola** che si comporta come un obiettivo di
+un gioco competitivo:
+
+| tipo | centrate | contese |
+|---|---|---|
+| `control_count` — *tieni N Regioni* | 92 | 92 (100%) |
+
+`control_count` e' **sempre** contesa, e da sola vale 92 delle 108 clausole
+contese di tutto il campione: **l'85% della superficie competitiva del gioco e'
+un tipo di clausola solo.** Le altre tredici o non si contendono mai, o quasi.
+
+Nel mezzo, il caso interessante: `discovery_count` (121 clausole) si **guadagna**
+giocando — zero gia' vere in apertura — ma non si contende mai. E' fatica vera
+che nessuno puo' ostacolare: solitario, non gara.
+
+### Cosa si decide qui
+
+**Niente, ancora.** Questo verbale registra la misura e la sonda che la produce,
+non una correzione: la scelta strutturale — se e come riscrivere le clausole a
+dotazione, e se il mondo debba avere un rovescio contendibile — e' del
+committente, e gli e' posta con questi numeri in mano. La sonda resta come metro
+per giudicare qualsiasi proposta: **una modifica che vuole rendere il gioco una
+gara deve far scendere il 60.5% e salire il 10.2%.**
+
+Aperta come [ISSUES 91](ISSUES.md).
+
+---
+
 ## D-313 — Una mappa che non offre una famiglia toglie otto carte dal gioco
 
 **implemented** (0.1.275) · nata da una domanda del committente sul tavolo

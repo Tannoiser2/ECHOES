@@ -189,6 +189,36 @@ func _has_tag(condition: Dictionary, context: Dictionary) -> bool:
 			return (world["global_tags"] as Array).has(tag)
 		"REGION":
 			var region_id: String = _resolve(str(condition.get("region_id", "")), context)
+			# **`$any` e `$rival`: da qualche parte, e non importa dove** —
+			# l'argomento di D-255 applicato alle Regioni invece che alle case.
+			#
+			# Un Destino e' scritto per la sua casa e sa nominare la sua terra.
+			# Un obiettivo condiviso no: lo pesca chiunque, in una Chronicle
+			# qualunque, e da D-265 **la mappa si pesca** — nominare una
+			# Regione lo renderebbe muto meta' delle volte. Senza queste due
+			# forme nessun obiettivo del mazzo puo' chiedere un segno di
+			# Regione, e i segni di Regione temuti restano temuti da tutti e
+			# voluti da nessuno (D-315).
+			#
+			# `$any` guarda tutta la mappa. `$rival` guarda **solo le terre che
+			# tiene un altro**: e' la forma che non si puo' soddisfare da soli,
+			# perche' il segno va posato in casa d'altri.
+			if region_id == "$any":
+				for candidate in world["regions"]:
+					if service.region_has_tag(str(candidate), tag):
+						return true
+				return false
+			if region_id == "$rival":
+				var me: String = _resolve("$self", context)
+				for candidate in world["regions"]:
+					var holder: String = str(
+						(world["regions"][candidate] as Dictionary).get("control", "")
+					)
+					if holder == "" or holder == me:
+						continue
+					if service.region_has_tag(str(candidate), tag):
+						return true
+				return false
 			return service.region_has_tag(region_id, tag)
 		"ENTITY":
 			var entity_id: String = _resolve(str(condition.get("entity_id", "")), context)

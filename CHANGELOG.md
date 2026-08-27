@@ -5,6 +5,148 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.278 — Una casa spenta non segna, e adesso lo dice una regola sola (D-316)
+
+### Cambiato
+
+- **La regola sta in un posto solo.** `entity_alive` stava nel Minimo di
+  **17 Destini su 23**, sempre riferita a se' stessi. Adesso il cancello e' in
+  `destiny_evaluator.evaluate()`: casa spenta, livello NONE, i tre gradini
+  falsi, e il verbale dice perche'. Vale per **tutti e ventitre'**, non per
+  diciassette — sei Destini (`DST_CENERE`, `DST_VAERAX_WATCHED` fra questi) il
+  cancello non ce l'avevano affatto.
+- **Diciassette righe stampate riscritte.** Il Minimo di Aldric diceva *«Sei
+  ancora sul trono e hai una presenza sulla capitale»*; adesso dice *«Hai una
+  presenza sulla capitale»*. Mezza riga della carta era spesa a dire «non sei
+  morto», che al tavolo non e' un obiettivo ma il presupposto per averne uno.
+- **Sei Minimi scritti da zero**, perche' senza la clausola restavano vuoti — e
+  un livello vuoto si avvera da solo, cioe' un regalo piu' grosso di quello
+  tolto. Ognuno e' il passo piu' piccolo della stessa ambizione: una pietra
+  piantata per i Nahr radicati, una Scoperta per la scuola di Lyra, una terra
+  che risponde alla Gilda, un'opera alzata per le Citta' Libere, una terra che
+  risponde al tuo nome, due questioni tenute sotto il punto di rottura.
+- Riscritte anche le sei **etichette di livello**: «La Gilda esiste ancora» su
+  un livello che adesso chiede una terra e' una frase d'autore che contraddice
+  la carta (D-305).
+
+### Misurato
+
+- **Il punteggio non si muove.** 100 semi, prima -> dopo: NONE 191 -> 190,
+  MINIMUM 426 -> 428, VICTORY 550 -> 551, TRIUMPH 33 -> 31. La clausola era
+  sempre vera per i vivi e i morti cadevano gia' sul Minimo cumulativo.
+- **Quello che si muove e' la dotazione.** 40 tavoli CHR_01, contro il
+  baseline di D-314: clausole gia' vere all'apertura **60.5% -> 57.8% ->
+  52.4%**, clausole contese **10.2% -> 11.8% -> 15.8%**. Otto punti in meno di
+  dotazione e cinque e mezzo in piu' di contesa, in due tagli.
+
+### Corretto
+
+- `docs/ASSET_MANIFEST.md` non era stato rigenerato dopo la riscrittura delle
+  sei etichette di livello: i cancelli erano stati passati **prima** di
+  quell'ultima modifica, non dopo, e la CI l'ha preso. La batteria va
+  ripassata **intera** dopo l'ultima riga toccata, non a pezzi.
+
+### Aggiunto
+
+- Cinque prove, due delle quali sono guardie contro la cecita': il caso che
+  deve dare **non-NONE**, e la prova che **nessun livello e' rimasto vuoto**.
+  Una terza gira su **ogni** Destino la cui casa siede al tavolo invece che su
+  una lista scritta a mano — la prima versione nominava `DST_CENERE`, che a
+  quel tavolo non c'e', e si era gia' ridotta a provare la meta'.
+
+---
+
+## 0.1.277 — Il mondo prende un rovescio, e la prima carta lo prende sul serio (D-315)
+
+### Aggiunto
+
+- **`$any` e `$rival` sulle Regioni**, nelle clausole a segni. Un obiettivo del
+  pool si pesca a qualunque tavolo e la mappa si pesca (D-265): nominare una
+  Regione lo renderebbe muto meta' delle volte. Il risultato era che **nessun
+  obiettivo del mazzo poteva chiedere un segno di Regione**. `$rival` guarda
+  solo le terre che tiene un altro — ne' le proprie, ne' quelle di nessuno.
+- **`OBJ_THE_USEFUL_RUIN`**, *«una terra altrui e' stata spolpata o svuotata»*.
+  Si avvera nel **34.2%** dei seggi, in banda col mazzo.
+- Quattro prove sul selettore, fra cui il caso che deve dare **falso** (mappa
+  pulita) e quello che distingue le due forme (segno in casa propria).
+- Un quarto caso piantato nel `--self-test` del validatore: l'esenzione nuova
+  deve **tacere** su `$any`/`$rival` e **mordere** su `REG_EREDAN`, anche
+  annidato dentro un `any_of`.
+
+### Misurato
+
+- **Una sonda che legge il registro degli Effetti Regione per Regione**: la
+  memoria temuta e' comparsa li' dove la clausola la temeva, oppure no.
+  Baseline: **63.3% delle memorie temute non le tocca mai nessuno.**
+- **La lettura statica sbagliava su due voci.** `question_unresolved` (61
+  scritture) e `condition:unrest` (17) sono le due memorie piu' temute **e** le
+  due piu' scritte: le scrivono carte e Conseguenze di rimbalzo, senza che
+  nessun Destino le voglia.
+- **Undici segni mai scritti una volta in 40 partite**, fra cui `mine_sealed`,
+  che e' temuto 3 volte **e voluto 3 volte**. Il padrino c'era gia' e non
+  bastava: le Conseguenze che li scrivono stanno in proposte che nessuno
+  propone.
+- **Dodicesima misura cieca**: l'attribuzione per `source.id` dava zero su
+  tutte e diciotto le Conseguenze. Gli Effetti si firmano col template del
+  Consiglio (`CNF_WATER_03#1`), mai col `CNS_*` — zero firme `CNS_` su 84.
+
+### Tolto prima di spedire
+
+- **Due obiettivi su tre.** `OBJ_THE_WALL_THAT_HOLDS` (6.7%) e
+  `OBJ_THE_BROKEN_WORD` (3.3%): la sonda li ha chiamati **arredo**. Un
+  obiettivo che non si avvera assomiglia a un obiettivo difficile, ed e' il
+  difetto contro cui esiste la regola del pool.
+
+### Costato
+
+- 40 tavoli CHR_01: coppie che si contendono una memoria **1.2% -> 6.2%**,
+  clausole contese **10.2% -> 11.8%**, gia' vere all'apertura
+  **60.5% -> 57.8%**. Ma le memorie temute mai toccate **63.3% -> 66.5%**:
+  **peggiora**, e si scrive. La lite e' scritta piu' spesso; il mondo non
+  produce ancora i segni che qualcuno teme.
+- Il muro non e' nelle carte: **propone solo il proponente**, e chi porta
+  l'obiettivo raramente e' lui al Consiglio giusto ([ISSUES 92](docs/ISSUES.md)).
+- Le case cambiano pelle piu' spesso: `ENT_NAHR` 35 -> 42 mutazioni in dodici
+  saghe, `ENT_ALDRIC` 22 -> 27. `docs/MISURA_VITE.md` rigenerato. Una carta in
+  mano a un seggio sposta quanto spesso le case si trasformano — non e' arredo.
+
+### Corretto
+
+- `test_data_boot` contava 16 obiettivi; il pool ne ha 17. E la guardia gemella
+  in GDScript (`test_objective_pool`) non conosceva i selettori nuovi, come non
+  li conosceva quella Python: due copie della stessa regola, corrette insieme.
+
+---
+
+## 0.1.276 — Sei punti su dieci erano gia' tuoi prima di giocare (D-314)
+
+### Misurato
+
+- **La quarta domanda di `run_contest_probe.gd`, promessa e mai eseguita.** Il
+  commento di testa della sonda ne annunciava quattro fin dalla nascita; ne
+  girava tre. La mancante era *gli obiettivi si incrociano?* — cioe' l'unica che
+  dice se il gioco e' una gara. Undicesima misura cieca a verbale.
+- **Quattro misure nuove**, su 40 tavoli CHR_01 ai semi 7000+, misto e uniforme
+  (i due tavoli concordano):
+  - coppie di seggi che si contendono una Regione: **2.9%**; una memoria: **1.2%**;
+  - i punti presi: **55.3%** mappa, **16.3%** mondo, **28.4%** quello che porti;
+  - clausole centrate che nessuno poteva impedire: **89.8%**;
+  - clausole **gia' vere all'apertura**, prima di ogni mossa: **60.5%**.
+- **Tre tipi di clausola valgono il 40.8% dei punti e sono una dotazione, non un
+  obiettivo**: `entity_alive` (113), `scar_count` (154), `state_tag_absent` (165)
+  — vere al setup nel 100% dei casi, contese quasi mai.
+- **Un tipo solo regge l'85% della superficie competitiva**: `control_count`,
+  92 clausole centrate su 92 contese.
+- L'analisi statica del grafo diceva *la corsia mappa e' competitiva, quella del
+  mondo no*. **In partita e' peggio, e non e' un problema di una corsia sola.**
+
+### Non cambiato
+
+- Nessuna regola, nessun dato. Questo giro **misura**: la scelta strutturale sta
+  al committente, con i numeri in mano ([ISSUES 91](docs/ISSUES.md)).
+
+---
+
 ## 0.1.275 — Una mappa che non offre una famiglia toglie otto carte dal gioco (D-313)
 
 - **Nata da una domanda del committente sul tavolo fisico**: *«se le zone sono 6

@@ -2763,6 +2763,105 @@ e' in gioco.
 
 ---
 
+### 92. Propone solo il proponente, e il mondo non impara i segni che qualcuno teme
+
+`regola` · `motore` · `bilanciamento` · aperta in 0.1.277
+([D-315](DECISIONS.md#d-315))
+
+Undici segni non li scrive nessuno, mai, in 40 partite: `failed_proposal` (25
+clausole a punti), `oath_broken` (16), `mine_sealed` (15), `valley_sealed` (14),
+`condition:emptied` (11), `study_supervised` (10), `crystal_exploited` (9),
+`water_priced` (9), `structure:sealed` (7), `no_charter` (6), `relic_shown` (4),
+`condition:exploited` (3).
+
+**Non e' perche' nessuno li vuole.** `mine_sealed` e' temuto 3 volte e **voluto
+3 volte**, e non compare mai lo stesso. D-315 ha aggiunto un obiettivo che
+vuole `condition:emptied`: e' passato da 0 scritture a **1** in 40 partite.
+
+La strozzatura sta nella scelta della proposta. Le Conseguenze che scrivono
+quei segni stanno in `success_consequences` di proposte come `P_SEAL_MINE` o
+`P_DIG_FOR_HIRE`: i loro template si aprono — `CNF_WATER_03` 58 volte — ma
+quelle proposte non vincono mai. Il cablaggio del cervello e' giusto
+(`_score_proposition` legge `_tag_goals`, che legge Destino **e** obiettivi
+pescati), ma **propone solo il proponente**: se chi porta l'obiettivo non
+siede come proponente a quel Consiglio, il suo movente non entra nella scelta.
+
+**Cosa la chiude** — le strade, non ancora scelte:
+
+1. **Chi non propone puo' spingere.** Un avversario che ha un motivo scritto
+   per la proposta B mette una pedina su B, e il proponente decide se
+   prendersela. E' economia di Consiglio, e il tavolo la vede.
+2. **La controproposta esiste gia'** (D-268, il RIVENDICARE): oggi posa una
+   pedina su un beneficio o su un costo. Estenderla alla **proposta** e'
+   la strada piu' corta e non aggiunge grammatica nuova.
+3. **Il proponente cambia piu' spesso**, cosi' che nell'arco di un anno ogni
+   casa proponga almeno una volta al Consiglio del proprio Tema.
+
+**Il metro**: `cli/run_contest_probe.gd`, riga *memorie temute che nessuno ha
+mai toccato* — oggi **66.5%**. Deve scendere.
+
+---
+
+### 91. Il 60% dei punti era gia' fatto prima che qualcuno giocasse — 52.4% in 0.1.278
+
+`regola` · `bilanciamento` · `decisione` · aperta in 0.1.276
+([D-314](DECISIONS.md#d-314))
+
+**Misurata**, su 40 tavoli CHR_01 ai semi 7000+, misto e uniforme concordi:
+
+- **60.5%** delle clausole a punti erano gia' vere **all'apertura**, prima di
+  ogni mossa;
+- **89.8%** non avevano nessun altro seggio al tavolo con un motivo *scritto*
+  per impedirle;
+- solo **2.9%** delle coppie di seggi si contendono una Regione, **1.2%** una
+  memoria del mondo.
+
+Il difetto ha tre nomi. `entity_alive` (113 clausole), `scar_count` (154),
+`state_tag_absent` (165): **vere al setup nel 100% dei casi**, contese quasi
+mai, e insieme **il 40.8% di tutti i punti del tavolo**. Non chiedono di
+giocare — chiedono di non morire, di non prendersi Cicatrici e di sperare che
+una memoria non compaia. Sul tavolo fisico sono punti gia' stampati sulla
+plancia.
+
+Specularmente, `control_count` e' contesa **92 volte su 92** e regge da sola
+**l'85%** della superficie competitiva. Il gioco ha un solo tipo di obiettivo
+che si comporta come tale.
+
+Caso di mezzo da non rompere: `discovery_count` (121 clausole) si guadagna
+davvero — zero gia' vere in apertura — ma non si contende mai. Fatica vera,
+senza avversario: e' un solitario dentro la gara.
+
+**Cosa la chiude.** La scelta e' del committente e non e' stata presa. Le
+strade sul tavolo:
+
+1. **Le clausole a dotazione diventano soglie mosse** — non *sei vivo* ma
+   *sei vivo avendo speso*, non *poche Cicatrici* ma *meno Cicatrici di chi
+   ne ha di piu'*: un confronto fra seggi al posto di un valore assoluto.
+2. **Il mondo prende un rovescio contendibile** — ogni memoria che qualcuno
+   teme e' una memoria che qualcun altro vuole, cosi' `state_tag_absent`
+   smette di essere gratis.
+3. **I Destini si scrivono a coppie** — la distribuzione garantisce che ogni
+   seggio nomini almeno una cosa che un altro seggio nomina.
+
+**Il metro c'e' gia'**: `cli/run_contest_probe.gd`. Una modifica che vuole
+rendere il gioco una gara deve **far scendere il 60.5% e salire il 10.2%**,
+senza toccare il cancello dei 100 semi.
+
+**Avanzamento.** Due tagli fatti, entrambi misurati:
+
+| | D-314 | dopo [D-315](DECISIONS.md#d-315) | dopo [D-316](DECISIONS.md#d-316) |
+|---|---|---|---|
+| gia' vere all'apertura | 60.5% | 57.8% | **52.4%** |
+| clausole contese | 10.2% | 11.8% | **15.8%** |
+
+La strada 2 ha dato il rovescio a una memoria (`OBJ_THE_USEFUL_RUIN`) e ha
+trovato il muro vero, che sta altrove ([ISSUES 92](#)). Il taglio (a) della
+strada 1 ha tolto `entity_alive` dal punteggio **senza spostare un livello**.
+Restano aperti il taglio (b) — le soglie assolute che diventano confronti,
+`scar_count` in testa con 154 clausole mai contese — e la strada 3.
+
+---
+
 ### 90. ✅ La mappa pescata poteva non offrire una famiglia — chiusa in 0.1.275
 
 `regole` · `bilanciamento` · aperta e chiusa in 0.1.275

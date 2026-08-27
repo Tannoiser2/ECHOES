@@ -12,11 +12,6 @@
         "label": "La Gilda è ancora al tavolo",
         "conditions": [
           {
-            "type": "entity_alive",
-            "entity_id": "ENT_SALE",
-            "label": "La Gilda esiste ancora"
-          },
-          {
             "type": "region_presence",
             "entity_id": "ENT_SALE",
             "region_id": "REG_STRADA_MERCANTI",
@@ -107,7 +102,7 @@
           "structure:tollgate"
         ],
         "reads": {
-          "minimum": "La Gilda è al tavolo e ha una presenza sulla strada.",
+          "minimum": "La Gilda ha una presenza sulla strada.",
           "victory": "Un debito è stato chiamato per intero, e chi lo doveva non ti è diventato nemico.",
           "triumph": "Il registro è ancora tuo — non è diventato pubblico — e due cose murate portano il tuo nome."
         }
@@ -120,12 +115,13 @@
       "description": "Una Gilda che ha già vinto una volta scopre che la firma tiene finché qualcuno si fida. Adesso vuole essere creduta, non solo dovuta.",
       "art_prompt_key": "destiny.sale.open",
       "minimum": {
-        "label": "La Gilda esiste ancora",
+        "label": "Una terra risponde alla Gilda",
         "conditions": [
           {
-            "type": "entity_alive",
+            "type": "control_count",
             "entity_id": "ENT_SALE",
-            "label": "La Gilda esiste ancora"
+            "min": 1,
+            "label": "Almeno una terra risponde alla Gilda"
           }
         ]
       },
@@ -207,7 +203,7 @@
           "water_moves"
         ],
         "reads": {
-          "minimum": "La Gilda esiste ancora.",
+          "minimum": "Almeno una terra risponde alla Gilda.",
           "victory": "Il registro è aperto, una terra risponde, e i conti che tiene sono chiusi tutti.",
           "triumph": "Una pedina sulla Strada, l'acqua che si muove pagata da lei, una sbarra col suo nome — e la Strada uscita pulita."
         }
@@ -222,11 +218,6 @@
       "minimum": {
         "label": "L'Ordine tiene la sua casa",
         "conditions": [
-          {
-            "type": "entity_alive",
-            "entity_id": "ENT_VETRO",
-            "label": "L'Ordine esiste ancora"
-          },
           {
             "type": "region_presence",
             "entity_id": "ENT_VETRO",
@@ -335,11 +326,6 @@
       "minimum": {
         "label": "L'Ordine tiene la sua casa",
         "conditions": [
-          {
-            "type": "entity_alive",
-            "entity_id": "ENT_VETRO",
-            "label": "L'Ordine esiste ancora"
-          },
           {
             "type": "region_presence",
             "entity_id": "ENT_VETRO",
@@ -524,11 +510,6 @@
         "label": "Non hanno lasciato la montagna",
         "conditions": [
           {
-            "type": "entity_alive",
-            "entity_id": "ENT_CENERE",
-            "label": "I Fuochi non si sono spenti"
-          },
-          {
             "type": "region_presence",
             "entity_id": "ENT_CENERE",
             "region_id": "REG_MONTAGNE_ROSSE",
@@ -613,7 +594,7 @@
           "structure:sealed"
         ],
         "reads": {
-          "minimum": "I Fuochi non si sono spenti, e qualcuno è rimasto sulle Montagne Rosse.",
+          "minimum": "Qualcuno è rimasto sulle Montagne Rosse.",
           "victory": "Le gallerie aperte, discesi in due, e quello che c'è sotto visto coi propri occhi.",
           "triumph": "Il patto con la Gilda saltato, qualcosa di murato che è loro, e l'anno chiuso quasi senza segni: né sulle gallerie, né sulla montagna."
         }
@@ -628,11 +609,6 @@
       "minimum": {
         "label": "Le città esistono ancora",
         "conditions": [
-          {
-            "type": "entity_alive",
-            "entity_id": "ENT_LIBERE",
-            "label": "Le città esistono ancora"
-          },
           {
             "type": "region_presence",
             "entity_id": "ENT_LIBERE",
@@ -726,7 +702,7 @@
           "condition:unrest"
         ],
         "reads": {
-          "minimum": "Le città esistono ancora, e a Eredan c'è una pedina loro.",
+          "minimum": "A Eredan c'è una pedina loro.",
           "victory": "La Carta è scritta, e l'acqua non è finita a prezzo.",
           "triumph": "La Carta scritta quando non si poteva più rimandare, il debito rimesso, la Gilda non nemica, Eredan quieta — e le città hanno costruito, non solo discusso."
         }
@@ -739,12 +715,13 @@
       "description": "Scritta la regola, resta il motivo per cui serviva: la Valle non da più da mangiare a sette città. Questa volta l'obiettivo si vede da fuori.",
       "art_prompt_key": "destiny.libere.water",
       "minimum": {
-        "label": "Le città esistono ancora",
+        "label": "Un'opera alzata",
         "conditions": [
           {
-            "type": "entity_alive",
+            "type": "structure_count",
             "entity_id": "ENT_LIBERE",
-            "label": "Le città esistono ancora"
+            "min": 1,
+            "label": "Le citta' hanno alzato almeno un'opera"
           }
         ]
       },
@@ -822,7 +799,7 @@
           "water_priced"
         ],
         "reads": {
-          "minimum": "Le città esistono ancora.",
+          "minimum": "Le città hanno alzato almeno un'opera: l'acqua non si muove da sola.",
           "victory": "I canali riaperti, una pedina nella Valle Verde, e il mondo non aperto dove l'acqua deve passare.",
           "triumph": "L'acqua di nessuno: due terre che rispondono, un canale mantenuto, la Valle Verde pulita e l'anno quasi senza segni."
         }

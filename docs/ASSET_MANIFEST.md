@@ -145,19 +145,19 @@ family, 22 copies per family deck, 132 cards in the box (D-040).
 | DST_CENERE | La Montagna è Nostra | ENT_CENERE | Restano sulla montagna | Chi scava lo dicono loro | E non solo quella |
 | DST_CENERE_DEEP | Più a Fondo | ENT_CENERE | Non hanno lasciato la montagna | E hanno visto cosa c'è sotto | E non devono più niente a nessuno |
 | DST_LIBERE | Una Legge Senza Corona | ENT_LIBERE | Le città esistono ancora | E c'è una Carta, e l'acqua non è di nessuno | E nessuno l'ha pagata più degli altri |
-| DST_LIBERE_WATER | L'Acqua Torna a Muoversi | ENT_LIBERE | Le città esistono ancora | E l'acqua si muove | E non è di nessuno |
+| DST_LIBERE_WATER | L'Acqua Torna a Muoversi | ENT_LIBERE | Un'opera alzata | E l'acqua si muove | E non è di nessuno |
 | DST_LYRA | Sapere e Poter Tornare a Guardare | ENT_LYRA | Ha capito qualcosa | Sa, ed è ancora nelle gallerie | Il sapere è diventato pubblico e verificabile |
-| DST_LYRA_TAUGHT | Quello che Resta Insegnato | ENT_LYRA | Qualcuno sa ancora leggere le carte | Il sapere ha un posto suo | Verificabile da chiunque, anche da chi non c'era |
+| DST_LYRA_TAUGHT | Quello che Resta Insegnato | ENT_LYRA | Qualcosa è stato insegnato | Il sapere ha un posto suo | Verificabile da chiunque, anche da chi non c'era |
 | DST_NAHR | Una Terra dove Fermarsi | ENT_NAHR | Il popolo sopravvive | Il popolo si ferma | Fermarsi senza smettere di essere Nahr |
-| DST_NAHR_ROOTED | La Terra Sotto i Piedi | ENT_NAHR | Il popolo è ancora qui | La terra risponde a chi la lavora | Radicati senza aver chiuso la porta a nessuno |
+| DST_NAHR_ROOTED | La Terra Sotto i Piedi | ENT_NAHR | Qualcosa che resta, piantato | La terra risponde a chi la lavora | Radicati senza aver chiuso la porta a nessuno |
 | DST_SALE | Il Registro che Tiene | ENT_SALE | La Gilda è ancora al tavolo | Il debito è stato chiamato, e nessuno lo ha cancellato | E la firma vale ancora |
-| DST_SALE_OPEN | Il Registro Aperto | ENT_SALE | La Gilda esiste ancora | E il registro si può leggere | E vale lo stesso |
-| DST_SHARED_ACCOUNTS | I Conti Chiusi | $self | La casa è ancora al tavolo | Nessuna domanda lasciata aperta | Un mondo che non deve niente a nessuno |
+| DST_SALE_OPEN | Il Registro Aperto | ENT_SALE | Una terra risponde alla Gilda | E il registro si può leggere | E vale lo stesso |
+| DST_SHARED_ACCOUNTS | I Conti Chiusi | $self | Due conti tenuti sotto controllo | Nessuna domanda lasciata aperta | Un mondo che non deve niente a nessuno |
 | DST_SHARED_HAND | Le Riserve | $self | Le mani non vuote | Le riserve che diventano forma | Quando gli altri chiedono, tu hai |
 | DST_SHARED_LAND | La Terra che Risponde | $self | Un posto che risponde | La terra risponde, e non importa come | La mappa parla la tua lingua |
 | DST_SHARED_LORE | Quello che si Sa | $self | Una cosa vista | E un posto dove custodirla | Quello che sai lo sanno da te |
 | DST_SHARED_QUIET | La Quiete Tenuta | $self | Tre questioni tenute giù | La quiete si vede | La quiete non capita: si tiene |
-| DST_SHARED_RENOWN | Il Nome che Pesa | $self | La casa è ancora al tavolo | Il nome è conosciuto | Un nome che nessuno ha visto fallire |
+| DST_SHARED_RENOWN | Il Nome che Pesa | $self | Un posto che risponde al tuo nome | Il nome è conosciuto | Un nome che nessuno ha visto fallire |
 | DST_VAERAX | Cio che Dorme Resti Addormentato | ENT_VAERAX | La montagna è ancora sua | Le gallerie sono chiuse, e il Cristallo non è uscito | E nessuno ci arriva più |
 | DST_VAERAX_LEGEND | La Storia che si Racconta | ENT_VAERAX | La storia si racconta ancora | La montagna tiene lontani gli uomini | Nessuno ricorda com'era davvero |
 | DST_VAERAX_WATCHED | Il Sonno Sorvegliato | ENT_VAERAX | La montagna è ancora sua | Nessuno scava più | Guardato da qualcuno che non lo vuole |
