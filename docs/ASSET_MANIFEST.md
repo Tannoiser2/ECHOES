@@ -119,7 +119,7 @@ family, 22 copies per family deck, 132 cards in the box (D-040).
 | REG_MONTAGNE_ROSSE | Montagne Rosse | MOUNTAIN | PRIMARY | 3 | FORCE, BONDS | `region.montagne_rosse` |
 | REG_TERRE_NAHR | Terre Nahr | STEPPE | PRIMARY | 4 | AUTHORITY, PEOPLE | `region.terre_nahr` |
 | REG_VALLE_VERDE | Valle Verde | VALLEY | PRIMARY | 4 | PEOPLE, WEALTH | `region.valle_verde` |
-| REG_BOSCO_CONFINI | Il Bosco dei Confini | FOREST | SECONDARY | 3 | FORCE, PEOPLE | `region.bosco_confini` |
+| REG_BOSCO_CONFINI | Il Bosco dei Confini | FOREST | SECONDARY | 3 | AUTHORITY, FORCE | `region.bosco_confini` |
 | REG_ISOLA_MUTA | L'Isola Muta | ISLAND | SECONDARY | 2 | KNOWLEDGE, FORCE | `region.isola_muta` |
 | REG_PALUDE_CANALI | La Palude dei Canali | MARSH | SECONDARY | 3 | PEOPLE, KNOWLEDGE | `region.palude_canali` |
 | REG_PORTO_CINERINO | Porto Cinerino | COAST | SECONDARY | 4 | WEALTH, BONDS | `region.porto_cinerino` |

@@ -14,6 +14,13 @@ const RngService := preload("res://scripts/core/rng_service.gd")
 
 const DEFAULT_DECK_COPIES: int = 3
 
+## Le sei famiglie di carte, nell'ordine in cui si nominano al tavolo. Stanno
+## qui perche' le legge anche la regola di stesura di D-313: una mappa deve
+## offrirle tutte, e per saperlo bisogna sapere quali sono.
+const ASSET_FAMILIES: Array = [
+	"FORCE", "AUTHORITY", "PEOPLE", "KNOWLEDGE", "WEALTH", "BONDS",
+]
+
 
 static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seats: Array) -> Dictionary:
 	var world: Dictionary = {
@@ -236,7 +243,26 @@ static func _lay_the_tiles(world: Dictionary, chronicle: Dictionary) -> void:
 ## ordinate prima di mescolare, cosi' un riordino innocuo del dato non cambia
 ## ogni saga. Il dado lo passa il chiamante, **derivato dal seme** — la mappa
 ## non consuma il caso della partita.
-static func resolve_map(chronicle: Dictionary, rng: RefCounted) -> Array:
+##
+## **E la mappa deve offrire tutte e sei le famiglie** (D-313). Ogni tessera e'
+## fonte di due famiglie; sei tessere pescate su dieci fanno venti caselle per
+## sei famiglie, e senza un rimedio **quarantacinque mappe su duecentodieci**
+## ne lasciavano fuori una — ventotto volte l'Autorita', che usciva da due sole
+## tessere. Una famiglia che non sta sulla mappa non si puo' andare a prendere:
+## quelle otto carte le pesca solo chi e' a terra, alla cieca.
+##
+## Riequilibrare le fonti porta il conto da 45 a 30, ed e' il minimo teorico
+## con due famiglie per tessera: servirebbero cinque tessere a famiglia — trenta
+## caselle — e ce ne sono venti. Le ultime trenta mappe le chiude **una regola
+## di stesura**, ed e' una regola che una persona sa eseguire:
+##
+## > Stese le sei tessere, se una famiglia non compare da nessuna parte, togli
+## > la tessera piu' inutile — quella le cui due famiglie sono gia' offerte da
+## > un'altra — e mettine una che porti la famiglia mancante.
+##
+## Deterministica come tutto il resto: le mancanti si guardano in ordine, e la
+## sostituta e' la prima candidata rimasta che la offre.
+static func resolve_map(chronicle: Dictionary, rng: RefCounted, data = null) -> Array:
 	var pool: Dictionary = chronicle.get("region_pool", {}) as Dictionary
 	if pool.is_empty():
 		return (chronicle["regions"] as Array).duplicate()
@@ -246,11 +272,76 @@ static func resolve_map(chronicle: Dictionary, rng: RefCounted) -> Array:
 		if not drawn.has(str(region_id)):
 			candidates.append(str(region_id))
 	candidates.sort()
+	var spare: Array = []
 	for region_id in rng.shuffle(candidates):
 		if drawn.size() >= int(pool["count"]):
-			break
+			spare.append(str(region_id))
+			continue
 		drawn.append(str(region_id))
-	return drawn
+	return _every_family_on_the_map(drawn, spare, data)
+
+
+## Le famiglie che una tessera offre. Vuoto se la Regione non si conosce: il
+## rimedio non inventa niente, si limita a non poter fare niente.
+static func _sources_of(region_id: String, data) -> Array:
+	if data == null:
+		return []
+	var region: Variant = data.regions.get(region_id)
+	if region == null:
+		return []
+	return (region as Dictionary).get("asset_sources", []) as Array
+
+
+## La regola di stesura di D-313, applicata. Senza `data` — o senza tessere di
+## scorta — la mappa resta com'e': un rimedio che non puo' guardare le fonti
+## non deve tirare a indovinare.
+static func _every_family_on_the_map(drawn: Array, spare: Array, data) -> Array:
+	if data == null or spare.is_empty():
+		return drawn
+	var out: Array = drawn.duplicate()
+	var left: Array = spare.duplicate()
+	for family in ASSET_FAMILIES:
+		var offered: bool = false
+		for region_id in out:
+			if _sources_of(str(region_id), data).has(str(family)):
+				offered = true
+				break
+		if offered:
+			continue
+		# Chi entra: la prima di scorta che porta la famiglia mancante.
+		var comes_in: int = -1
+		for i in range(left.size()):
+			if _sources_of(str(left[i]), data).has(str(family)):
+				comes_in = i
+				break
+		if comes_in < 0:
+			continue
+		# Chi esce: la tessera piu' inutile — quella le cui due famiglie sono
+		# gia' offerte da un'altra. Si guarda dall'ultima pescata, cosi' le
+		# tessere fisse di `always` escono per ultime.
+		var goes_out: int = -1
+		for i in range(out.size() - 1, -1, -1):
+			var mine: Array = _sources_of(str(out[i]), data)
+			if mine.is_empty():
+				continue
+			var redundant: bool = true
+			for f in mine:
+				var elsewhere: bool = false
+				for j in range(out.size()):
+					if j != i and _sources_of(str(out[j]), data).has(str(f)):
+						elsewhere = true
+						break
+				if not elsewhere:
+					redundant = false
+					break
+			if redundant:
+				goes_out = i
+				break
+		if goes_out < 0:
+			continue
+		out[goes_out] = str(left[comes_in])
+		left.remove_at(comes_in)
+	return out
 
 
 ## Con la mappa pescata (D-263) l'anno fa solo le domande che la mappa sa
@@ -761,8 +852,7 @@ static func _build_asset_decks(
 		for asset_id in data.entities[entity_id]["starting_assets"]:
 			dealt[asset_id] = int(dealt.get(asset_id, 0)) + 1
 
-	var families: Array = ["FORCE", "AUTHORITY", "PEOPLE", "KNOWLEDGE", "WEALTH", "BONDS"]
-	for family in families:
+	for family in ASSET_FAMILIES:
 		var pile: Array = []
 		for asset in data.assets_of_family(family):
 			var copies: int = int(asset.get("deck_copies", DEFAULT_DECK_COPIES))

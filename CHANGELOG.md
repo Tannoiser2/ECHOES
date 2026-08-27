@@ -5,6 +5,68 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.275 — Una mappa che non offre una famiglia toglie otto carte dal gioco (D-313)
+
+- **Nata da una domanda del committente sul tavolo fisico**: *«se le zone sono 6
+  come si fa a pescare 7 carte? E se non hai presenza in una regione non peschi
+  la carta?»* La risposta alla seconda ha scoperto un difetto.
+- **Si pesca sempre**: la presenza non è un requisito, è un selettore. Senza
+  gettoni il rubinetto pesca dal mazzo più pieno; l'ACQUISIRE pesca una carta
+  invece di due. Ma allora è la mappa a decidere **quale** famiglia si può
+  inseguire.
+- **Il difetto, misurato su tutte le 210 mappe possibili**: **45 lasciavano
+  fuori una famiglia**, e in **28** era l'Autorità — che usciva da **2 sole
+  tessere su 10** contro le 4 di Forza, Gente e Conoscenza. Su una mappa così,
+  le otto carte Autorità non si possono andare a prendere.
+- **Il limite prima del rimedio**: servirebbe ogni famiglia su 5 tessere — 30
+  caselle — e ne esistono 20. Il 100% è **impossibile** con due famiglie per
+  tessera; il meglio è `4,4,3,3,3,3`, cioè 30 mappe monche.
+- **Mossa 1, una casella**: il **Bosco dei Confini** passa da *Forza + Gente* a
+  *Forza + Autorità*, e la ragione è scritta nella tessera — *«Il confine passa
+  di qui, ma nessuno l'ha mai visto scritto»*. **45 → 30**, che è l'ottimo:
+  provato per forza bruta, dieci scambi ci arrivano e nessuno va sotto.
+- **Mossa 2, una regola di stesura** che chiude le trenta rimaste: *stese le sei
+  tessere, se una famiglia non compare, togli quella le cui due famiglie sono
+  già offerte da un'altra e mettine una che porti la mancante*. È un gesto che
+  una persona esegue al tavolo. **30 → 0.**
+- **Quattro prove, due delle quali sono guardie**: la terza e la quarta esistono
+  perché le prime chiamano `resolve_map` a mano e sarebbero verdi anche col
+  cablaggio rotto. Tolto il set di dati alla chiamata di `GameSession`, la
+  quarta va rossa: **9 partite su 60**. Col rimedio guasto, la seconda dice 30.
+- **Quello che il cancello non prova, dichiarato**: il playtest gira CHR_01 e
+  CHR_03, e **nessuna delle due contiene il Bosco**. I numeri sono identici per
+  questo, non perché la modifica sia neutra: CHR_00 è l'unica Chronicle che
+  pesca la mappa, e la prova di questa decisione è il test nuovo.
+- **Sedici carte hanno cambiato la frase stampata**: `acquisition_rule` nomina
+  le Regioni fonte, e il validatore l'ha presa subito — otto Autorità che non
+  nominavano il Bosco, otto Gente che lo nominavano ancora.
+- Playtest 100 semi: **0 seggi bloccati su 8**, misto e uniforme. Suite **618**.
+
+---
+
+## 0.1.274 — Le Vie, e la domanda che il committente ha fatto guardando le carte (D-312)
+
+- **Scritto il terzo Tema, le Vie**: sette carte (Le Vie Interrotte, L'Acqua
+  Ferma e Il Debito avevano già le loro), **14 domande e 21 proposte** nuove.
+  **35 → 28** carte che aprono una domanda in prestito.
+- Trasformazioni sedute **174**, vite mai sedute **6**: invariate. Playtest 100
+  semi: **0 seggi bloccati su 8**, misto e uniforme. Suite **614**.
+- **Aperta ISSUES 89, ed è la voce che conta più delle altre due.** Guardando
+  le carte, il committente ha chiesto perché non sono fatte come le carte
+  Azione — bersaglio a segni, due azioni che dicono quale segno posano, il resto
+  Flavor Text. Ha ragione: le carte Azione sono già così (D-274), e la **faccia
+  fisica** della Tensione pure (D-280, dodici caselle verbo+segno). Il
+  **Consiglio** che quella stessa carta apre no.
+- **Il numero**: **185 proposte, 642 Effetti che nessuna carta stampa**. Al
+  tavolo fisico non si risolve **una sola** proposta senza l'app. Dei 642, 494
+  li saprebbero dire le caselle di oggi; **148** no, e sono di cinque specie.
+- **Detto col suo nome**: i tre Temi scritti finora hanno reso le carte diverse
+  da **leggere**, non risolvibili **col dito**. È un guadagno vero e piccolo.
+  La scelta fra le tre strade è del committente, e viene prima degli altri tre
+  Temi.
+
+---
+
 ## 0.1.273 — Il Potere ha le sue domande, e due sonde guardavano altrove (D-311)
 
 - **Scritto il secondo Tema, il Potere**: otto carte (La Carta e La Successione
