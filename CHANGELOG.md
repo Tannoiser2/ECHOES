@@ -39,6 +39,13 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
   52.4%**, clausole contese **10.2% -> 11.8% -> 15.8%**. Otto punti in meno di
   dotazione e cinque e mezzo in piu' di contesa, in due tagli.
 
+### Corretto
+
+- `docs/ASSET_MANIFEST.md` non era stato rigenerato dopo la riscrittura delle
+  sei etichette di livello: i cancelli erano stati passati **prima** di
+  quell'ultima modifica, non dopo, e la CI l'ha preso. La batteria va
+  ripassata **intera** dopo l'ultima riga toccata, non a pezzi.
+
 ### Aggiunto
 
 - Cinque prove, due delle quali sono guardie contro la cecita': il caso che
