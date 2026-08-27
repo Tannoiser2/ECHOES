@@ -10,6 +10,55 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-312 — Le Vie, e la domanda che il committente ha fatto guardando le carte
+
+**implemented** (0.1.274) · terzo Tema del taglio **2** di [ISSUES 80](ISSUES.md)
+· apre [ISSUES 89](ISSUES.md), che e' la voce piu' importante delle tre
+
+### Il Tema scritto
+
+**Le Vie**: sette carte — Le Vie Interrotte, L'Acqua Ferma e Il Debito avevano
+gia' le loro — con **14 domande e 21 proposte** nuove, sulle Conseguenze che
+gia' esistono.
+
+> *«Chi ha teso la catena sulla strada, e con che diritto?»* — I Pedaggi Neri
+> *«Di chi e' il braccio con cui si misura?»* — I Pesi e le Misure
+> *«E quando l'acqua torna a correre, di chi e'?»* — I Canali Interrati
+> *«La cala vecchia scarica di notte: si chiude, o si apre?»* — Il Contrabbando
+
+| | prima | dopo |
+|---|---|---|
+| **carte che aprono una domanda in prestito** | 35 su 60 | **28** |
+
+Trasformazioni sedute **174**, vite mai sedute **6**: invariate. Playtest 100
+semi: **0 seggi bloccati su 8**, misto e uniforme. Suite 614.
+
+### E la cosa che non convinceva
+
+Guardando le carte, il committente ha chiesto perche' non sono fatte come le
+carte Azione: *«ci dovrebbe essere indicato i tag dove le azioni possono essere
+fatte, e dovrebbero esserci due azioni che indicano i tag da mettere. Il testo
+dovrebbe essere solo Flavor Text»*.
+
+**Ha ragione, e la misura lo conferma.** Le carte Azione sono gia' cosi'
+(D-274). La **faccia fisica** della carta Tensione e' gia' cosi': dodici
+caselle, verbo chiuso piu' segno. Ma il **Consiglio** che la stessa carta apre
+non lo e': una proposta e' una frase d'autore che rimanda a una Conseguenza, e
+la Conseguenza e' un sacchetto di Effetti che **non sta scritto da nessuna
+parte sulla carta**.
+
+Il conto, misurato oggi: **185 proposte, 642 Effetti che nessuna carta
+stampa**. Al tavolo fisico non si puo' risolvere **una sola** proposta senza
+l'app.
+
+I tre Temi scritti finora — Sopravvivenza, Potere, Vie — hanno reso le carte
+**diverse da leggere**, non **risolvibili col dito**. E' un guadagno vero e
+piccolo, e va chiamato col suo nome. La voce nuova [ISSUES 89](ISSUES.md) porta
+il numero e mette la scelta davanti al committente prima di scrivere gli altri
+tre Temi.
+
+---
+
 ## D-311 — Il Potere ha le sue domande, e due sonde guardavano altrove
 
 **implemented** (0.1.273) · secondo Tema del taglio **2** di

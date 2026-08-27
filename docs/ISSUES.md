@@ -2763,6 +2763,81 @@ e' in gioco.
 
 ---
 
+### 89. La proposta non si risolve col dito: 642 Effetti che nessuna carta stampa
+
+`regole` · `fisico` · **aperta in 0.1.274** ([D-312](DECISIONS.md#d-312)) —
+parola del committente guardando le carte: *«ci dovrebbe essere indicato i tag
+dove le azioni possono essere fatte, e dovrebbero esserci due azioni che
+indicano i tag da mettere. Il testo dovrebbe essere solo Flavor Text. C'e'
+qualcosa che non mi convince»*.
+
+Ha ragione. La domanda di casa — *questa cosa esisterebbe e sarebbe
+comprensibile sul tavolo fisico?* — su questa meta' del gioco risponde **no**.
+
+**Cosa e' gia' come dice lui.** La carta **Azione** (D-274): un bersaglio a
+segni (`#granaio`, `#pascolo`, `#capitale`), due Azioni che dicono quale segno
+posano, una Risonanza che scalda un Tema. Il testo e' istruzione breve, il
+resto e' colore.
+
+**Cosa e' gia' come dice lui, sulla Tensione.** La sua **faccia fisica**
+(D-280): dodici caselle, ognuna un verbo chiuso piu' un segno — COSTRUISCI
+PIETRA *Pedaggio*, AGGIUNGI CONDIZIONE *#svuotato*, IL MONDO RICORDA
+*l'acqua torna a muoversi*.
+
+**Cosa non lo e'.** Il **Consiglio** che quella stessa carta apre. Una proposta
+e' una frase d'autore che punta a una Conseguenza, e la Conseguenza e' un
+sacchetto di Effetti che sulla carta non c'e'.
+
+| | |
+|---|---|
+| proposte nel mazzo | 185 |
+| **Effetti che quelle proposte applicano** | **642** |
+| di quelli, stampati su una carta | **0** |
+| media di Effetti per proposta | 3,5 |
+
+Un esempio, dalle carte appena scritte. Passa *«La tariffa si scriva al
+Consiglio, e la riscuota chi propone»* sul Traghetto. Il motore esegue
+`CNS_TOLL_ESTABLISHED`, che fa tre cose:
+
+- **prende il controllo** di un luogo con `#commercio` — che puo' non essere
+  quello di cui si discuteva;
+- **ci costruisce un Pedaggio** di grado 1, intestato al proponente;
+- **abbassa di 1** la questione delle Vie Interrotte.
+
+Nessuna delle tre e' scritta sulla carta. Le prime due sono il mestiere di due
+caselle che quella carta **ha gia'** (PRENDI CONTROLLO, COSTRUISCI PIETRA), ma
+puntate altrove: e' il residuo che [87](#87) aveva misurato e lasciato aperto —
+D-307 taglio' le righe che agivano sul **luogo discusso**, non quelle che
+arrivano da un'altra parte.
+
+**Le tre strade, e la scelta e' del committente.**
+
+- **(a) La proposta diventa un menu di caselle.** Una proposta dice *quali
+  caselle apre*, e il proponente le compra con l'economia che gia' esiste
+  (D-280). Le Conseguenze restano solo come **Flavor Text**: la frase che il
+  verbale racconta, senza Effetti. E' la strada che il committente descrive,
+  ed e' anche il **taglio 3** di [80](#80) visto dall'altro lato — se il
+  prezzo si paga in caselle, il d6 non serve piu'.
+  *Costo, misurato:* dei 642 Effetti, **494 li saprebbero dire le caselle di
+  oggi** (segni sul luogo, memorie del mondo, controllo, Pietre, e la traccia
+  della questione che sul tavolo c'e' gia'). **148 no**, e sono di cinque
+  specie: quello che una casa **porta addosso** (54), i **rapporti** fra case
+  (27), il **grado** di una Pietra (24), e **chi sta o non sta piu'** in un
+  luogo (38). O si perdono, o servono verbi nuovi — e sono pochi abbastanza da
+  poterli guardare uno per uno.
+- **(b) Le caselle restano, la Conseguenza si stampa.** Non si tocca il
+  motore: si stampa sulla carta cosa fa ogni proposta, in grammatica di segni.
+  *Costo:* la carta diventa fitta, e la stampa puo' divergere dal dato — a meno
+  di generarla, ed e' un cancello in piu'.
+- **(c) Si finiscono i tre Temi che mancano** (Antico, Fede, Terra) **e poi si
+  decide.** *Costo:* altre 60-70 proposte scritte nella grammatica che forse si
+  butta.
+
+**Fatto quando** una proposta si puo' risolvere guardando solo la carta e la
+mappa.
+
+---
+
 ### 88. Il tavolo vede poco piu' di un terzo di quello che c'e' scritto
 
 `contenuto` · `misura` · **aperta in 0.1.273**
@@ -3181,7 +3256,15 @@ volta in questo progetto che uno zero era la sonda.**
    **52 → 43 carte in prestito.**
 
    Scritto in 0.1.273 il **Potere** ([D-311](DECISIONS.md#d-311)): 8 carte, 16
-   domande e 24 proposte nuove. **43 → 35 carte in prestito.** Nello stesso
+   domande e 24 proposte nuove. **43 → 35 carte in prestito.** In 0.1.274 le
+   **Vie** ([D-312](DECISIONS.md#d-312)): 7 carte, 14 domande e 21 proposte.
+   **35 → 28.**
+
+   **Fermo qui in attesa della parola del committente**: la voce
+   [89](#89-la-proposta-non-si-risolve-col-dito-642-effetti-che-nessuna-carta-stampa)
+   dice che questa strada rende le carte diverse da **leggere** e non
+   risolvibili **col dito**, e mette tre strade davanti. Gli ultimi tre Temi —
+   Antico, Fede, Terra — si scrivono dopo quella scelta, non prima. Nello stesso
    passo sono cadute due sonde che guardavano ancora i template invece delle
    carte — il catalogo dei Consigli (12 schede per 60 carte) e il denominatore
    di *«quanto contenuto d'autore il tavolo vede»*. Restano quattro Temi —

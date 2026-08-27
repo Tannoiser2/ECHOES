@@ -125,23 +125,23 @@ Il grano del fondo ha una muffa scura. Si puo' non vederla, se si ha abbastanza 
 
 Sul tratto in ombra qualcuno riscuote un pedaggio che nessun Consiglio ha scritto. I carri pagano: costa meno che discutere.
 
-### Si metta un prezzo, e chi propone lo riscuota: quello che passa, paga.
+### Il pedaggio diventi legge, e lo riscuota chi propone invece di chi si nasconde nel bosco.
 
-> Nella Regione di cui si discute, chi paga il prezzo di quello che rende?
+> Chi ha teso la catena sulla strada, e con che diritto?
 
 - **Se passa — Il Pedaggio Scritto:** la Regione discussa cambia padrone · si alza una costruzione dove si discute · la domanda in gioco sale
 
-### Il costo si divide in parti uguali, e nessuno ne esce bene.
+### Si tolga la catena e la si mostri in piazza, poi si guardi chi la rimette.
 
-> Nella Regione di cui si discute, chi paga il prezzo di quello che rende?
+> Chi ha teso la catena sulla strada, e con che diritto?
 
-- **Se passa — Il Peso Diviso:** la Regione discussa non e' piu' affamata · la Regione discussa non e' piu' razionata · il mondo registra: il peso e' stato diviso · la domanda in gioco sale
+- **Se passa — Le Vie Riaperte:** la Regione discussa non e' piu' tagliata fuori · la Regione discussa non e' piu' depredata · la domanda in gioco sale
 
-### Si aprano i registri: che ognuno veda quanto rende, e a chi.
+### Una scorta su ogni convoglio, e che risponda col proprio nome di quello che porta.
 
-> Chi tiene i conti di quello che passa nella Regione di cui si discute — e chi li legge?
+> E i carri che passano domani, chi li accompagna?
 
-- **Se passa — Il Registro Aperto:** il mondo registra: i conti sono pubblici · una casa porta addosso: scoperta: il registro · la domanda in gioco sale
+- **Se passa — La Scorta Giurata:** una casa porta addosso: la scorta giurata · la Regione discussa non e' piu' tagliata fuori · la domanda in gioco sale
 
 **Le clausole che si possono attaccare:**
 
@@ -313,23 +313,23 @@ Chi siede decide. Percio' la prima decisione e' sempre chi siede.
 
 Le notizie viaggiano a cavallo di chi le porta. Chi paga le staffette sceglie cosa arriva, e quando.
 
-### Chi propone lo tiene, e lo dica forte: chi sta li' risponde a lui.
+### Un servizio giurato al Consiglio: dodici staffette che rispondono col proprio nome di ogni lettera.
 
-> Nella Regione di cui si discute, chi tiene il posto quando la voce si spegne?
+> Chi paga le staffette, e cosa compra davvero?
+
+- **Se passa — La Scorta Giurata:** una casa porta addosso: la scorta giurata · la Regione discussa non e' piu' tagliata fuori · la domanda in gioco sale
+
+### Le paghi chi propone, e almeno si sappia a chi rispondono.
+
+> Chi paga le staffette, e cosa compra davvero?
 
 - **Se passa — Il Seggio Preso:** il rapporto con chi tocca cambia di un passo · la Regione discussa diventa inquieta · la domanda in gioco sale · e resta una cicatrice: Nella sala del consiglio c'è una sedia più alta delle altre, e nessuno l'ha più tolta.
 
-### Si divida l'uso, non il titolo: ognuno il suo pezzo, e i conti a fine anno.
+### Chi ha rotto un sigillo lo dica davanti a chi aspettava quella lettera, e paghi.
 
-> Nella Regione di cui si discute, chi tiene il posto quando la voce si spegne?
+> E le lettere che arrivano aperte, per le mani di chi sono passate?
 
-- **Se passa — Il Peso Diviso:** la Regione discussa non e' piu' affamata · la Regione discussa non e' piu' razionata · il mondo registra: il peso e' stato diviso · la domanda in gioco sale
-
-### Nessuna legge: si lascia il posto a chi se lo vuole caricare addosso.
-
-> Quale legge vale nella Regione di cui si discute: quella scritta, o quella di chi c'e'?
-
-- **Se passa — Il Luogo Abbandonato:** la Regione discussa cambia padrone · perdi la tua presenza dove si discute · la Regione discussa diventa abbandonata · la domanda in gioco sale · il tuo rivale entra dove si discute · una costruzione sale o scende di grado · e resta una cicatrice: Le case in piedi e le porte aperte, e dentro niente che valga la pena portare via.
+- **Se passa — Il Conto Saldato:** il mondo dimentica: il giuramento e' stato rotto · il mondo registra: il conto e' stato saldato · la domanda in gioco sale
 
 **Le clausole che si possono attaccare:**
 
@@ -589,23 +589,23 @@ Non è ancora fame. È il calcolo, fatto a voce bassa, di quanto manchi alla fam
 
 Un'unica barca collega l'isola. Chi la governa, governa l'isola piu' del suo padrone.
 
-### Si metta un prezzo, e chi propone lo riscuota: quello che passa, paga.
+### La tariffa si scriva al Consiglio, e la riscuota chi propone: chi la supera perde la barca.
 
-> Nella Regione di cui si discute, chi paga il prezzo di quello che rende?
+> La traversata ha un prezzo: chi lo scrive, e chi lo riscuote?
 
 - **Se passa — Il Pedaggio Scritto:** la Regione discussa cambia padrone · si alza una costruzione dove si discute · la domanda in gioco sale
 
-### Il costo si divide in parti uguali, e nessuno ne esce bene.
+### Ogni traversata si segni su un registro, e il registro stia al molo dove chiunque legge.
 
-> Nella Regione di cui si discute, chi paga il prezzo di quello che rende?
-
-- **Se passa — Il Peso Diviso:** la Regione discussa non e' piu' affamata · la Regione discussa non e' piu' razionata · il mondo registra: il peso e' stato diviso · la domanda in gioco sale
-
-### Si aprano i registri: che ognuno veda quanto rende, e a chi.
-
-> Chi tiene i conti di quello che passa nella Regione di cui si discute — e chi li legge?
+> La traversata ha un prezzo: chi lo scrive, e chi lo riscuote?
 
 - **Se passa — Il Registro Aperto:** il mondo registra: i conti sono pubblici · una casa porta addosso: scoperta: il registro · la domanda in gioco sale
+
+### Si metta in acqua una seconda barca, e la paghino tutte le case insieme.
+
+> E se una barca sola non basta piu'?
+
+- **Se passa — Il Peso Diviso:** la Regione discussa non e' piu' affamata · la Regione discussa non e' piu' razionata · il mondo registra: il peso e' stato diviso · la domanda in gioco sale
 
 **Le clausole che si possono attaccare:**
 
@@ -660,23 +660,23 @@ Gli argini vecchi tengono per abitudine. L'acqua non ha abitudini.
 
 Due gilde si contendono le stesse strade. Per ora si rubano i clienti. Le vie sono strette, e prima o poi ci si incontra.
 
-### Si metta un prezzo, e chi propone lo riscuota: quello che passa, paga.
+### Si dividano i mercati con confini scritti, e ogni gilda stia dalla sua parte.
 
-> Nella Regione di cui si discute, chi paga il prezzo di quello che rende?
+> Le vie sono strette: di chi sono?
 
-- **Se passa — Il Pedaggio Scritto:** la Regione discussa cambia padrone · si alza una costruzione dove si discute · la domanda in gioco sale
+- **Se passa — Il Mercato Spostato:** la Regione discussa diventa il mercato · la Regione discussa diventa tagliata fuori
 
-### Il costo si divide in parti uguali, e nessuno ne esce bene.
+### Una gilda sola, e la tessera la dia chi propone.
 
-> Nella Regione di cui si discute, chi paga il prezzo di quello che rende?
+> Le vie sono strette: di chi sono?
 
-- **Se passa — Il Peso Diviso:** la Regione discussa non e' piu' affamata · la Regione discussa non e' piu' razionata · il mondo registra: il peso e' stato diviso · la domanda in gioco sale
+- **Se passa — Il Seggio Preso:** il rapporto con chi tocca cambia di un passo · la Regione discussa diventa inquieta · la domanda in gioco sale · e resta una cicatrice: Nella sala del consiglio c'è una sedia più alta delle altre, e nessuno l'ha più tolta.
 
-### Si aprano i registri: che ognuno veda quanto rende, e a chi.
+### Chi ha acceso paghi davanti a chi ha perso il magazzino, e si chiuda qui.
 
-> Chi tiene i conti di quello che passa nella Regione di cui si discute — e chi li legge?
+> E del magazzino bruciato, chi risponde?
 
-- **Se passa — Il Registro Aperto:** il mondo registra: i conti sono pubblici · una casa porta addosso: scoperta: il registro · la domanda in gioco sale
+- **Se passa — Il Conto Saldato:** il mondo dimentica: il giuramento e' stato rotto · il mondo registra: il conto e' stato saldato · la domanda in gioco sale
 
 **Le clausole che si possono attaccare:**
 
@@ -1530,23 +1530,23 @@ Le campane non suonano da tre lune. Nessuno ha deciso il silenzio, e nessuno osa
 
 Una volta le barche passavano dalla palude. I canali ci sono ancora, sotto: chiedono solo braccia.
 
-### Si metta un prezzo, e chi propone lo riscuota: quello che passa, paga.
+### Si scavi, e mandi gli uomini chi propone: il primo tratto riaperto paghera' il secondo.
 
-> Nella Regione di cui si discute, chi paga il prezzo di quello che rende?
+> Chi manda le braccia a scavare, e per quante stagioni?
 
-- **Se passa — Il Pedaggio Scritto:** la Regione discussa cambia padrone · si alza una costruzione dove si discute · la domanda in gioco sale
+- **Se passa — I Canali Riaperti:** il mondo registra: l'acqua ha cambiato strada · si alza una costruzione dove si discute · la domanda in gioco sale
 
-### Il costo si divide in parti uguali, e nessuno ne esce bene.
+### Il cantiere si divida in parti uguali, e nessuna casa scavi piu' di quanto le tocca.
 
-> Nella Regione di cui si discute, chi paga il prezzo di quello che rende?
+> Chi manda le braccia a scavare, e per quante stagioni?
 
 - **Se passa — Il Peso Diviso:** la Regione discussa non e' piu' affamata · la Regione discussa non e' piu' razionata · il mondo registra: il peso e' stato diviso · la domanda in gioco sale
 
-### Si aprano i registri: che ognuno veda quanto rende, e a chi.
+### Chi ha pagato i lavori riscuota sull'acqua: e' scritto, ed e' giusto.
 
-> Chi tiene i conti di quello che passa nella Regione di cui si discute — e chi li legge?
+> E quando l'acqua torna a correre, di chi e'?
 
-- **Se passa — Il Registro Aperto:** il mondo registra: i conti sono pubblici · una casa porta addosso: scoperta: il registro · la domanda in gioco sale
+- **Se passa — L'Acqua a Prezzo:** il mondo registra: l'acqua ha un prezzo · una casa porta addosso: i diritti d'acqua · una costruzione sale o scende di grado
 
 **Le clausole che si possono attaccare:**
 
@@ -1586,23 +1586,23 @@ Non e' solo la montagna a dormire. I racconti contano sette dormienti, e uno si 
 
 Quello che non passa dal molo passa dalla cala. Il porto vive due volte: di giorno e di notte.
 
-### Si metta un prezzo, e chi propone lo riscuota: quello che passa, paga.
+### Si tiri una riga sotto quello che e' passato, e da domani si dichiari tutto.
 
-> Nella Regione di cui si discute, chi paga il prezzo di quello che rende?
+> La cala vecchia scarica di notte: si chiude, o si apre?
+
+- **Se passa — Il Debito Rimesso:** il mondo registra: il debito e' stato perdonato · la domanda in gioco sale · la Regione discussa non e' piu' indebitata
+
+### Anche la cala paghi il dazio, e lo riscuota chi propone: se non si puo' fermare, si scriva.
+
+> La cala vecchia scarica di notte: si chiude, o si apre?
 
 - **Se passa — Il Pedaggio Scritto:** la Regione discussa cambia padrone · si alza una costruzione dove si discute · la domanda in gioco sale
 
-### Il costo si divide in parti uguali, e nessuno ne esce bene.
+### Uomini alla porta, pagati bene e cambiati spesso: la guardia costa meno del dazio perso.
 
-> Nella Regione di cui si discute, chi paga il prezzo di quello che rende?
+> E i doganieri che guardano il mare sbagliato?
 
-- **Se passa — Il Peso Diviso:** la Regione discussa non e' piu' affamata · la Regione discussa non e' piu' razionata · il mondo registra: il peso e' stato diviso · la domanda in gioco sale
-
-### Si aprano i registri: che ognuno veda quanto rende, e a chi.
-
-> Chi tiene i conti di quello che passa nella Regione di cui si discute — e chi li legge?
-
-- **Se passa — Il Registro Aperto:** il mondo registra: i conti sono pubblici · una casa porta addosso: scoperta: il registro · la domanda in gioco sale
+- **Se passa — Gli Uomini alla Porta:** la Regione discussa diventa sorvegliata · una casa porta addosso: sotto osservazione
 
 **Le clausole che si possono attaccare:**
 
@@ -1886,23 +1886,23 @@ I canali che Aldric fece scavare ci sono ancora. Sono pieni di terra, e da otto 
 
 Il braccio di Eredan non e' il braccio del porto. Su ogni differenza, qualcuno guadagna.
 
-### Si metta un prezzo, e chi propone lo riscuota: quello che passa, paga.
+### Un campione solo, firmato da tutte le case, e ogni bilancia si confronti con quello.
 
-> Nella Regione di cui si discute, chi paga il prezzo di quello che rende?
+> Di chi e' il braccio con cui si misura?
 
-- **Se passa — Il Pedaggio Scritto:** la Regione discussa cambia padrone · si alza una costruzione dove si discute · la domanda in gioco sale
+- **Se passa — La Carta Scritta:** il mondo registra: la Carta e' stata scritta · una casa porta addosso: scoperta: la carta · la domanda in gioco sale
 
-### Il costo si divide in parti uguali, e nessuno ne esce bene.
+### Si aprano i registri dei pesi: che si veda quanto manca, e in quale tasca finisce.
 
-> Nella Regione di cui si discute, chi paga il prezzo di quello che rende?
-
-- **Se passa — Il Peso Diviso:** la Regione discussa non e' piu' affamata · la Regione discussa non e' piu' razionata · il mondo registra: il peso e' stato diviso · la domanda in gioco sale
-
-### Si aprano i registri: che ognuno veda quanto rende, e a chi.
-
-> Chi tiene i conti di quello che passa nella Regione di cui si discute — e chi li legge?
+> E chi guarda le bilance quando il mercato e' pieno?
 
 - **Se passa — Il Registro Aperto:** il mondo registra: i conti sono pubblici · una casa porta addosso: scoperta: il registro · la domanda in gioco sale
+
+### Si sposti il mercato dove le bilance si possono guardare tutte insieme.
+
+> E chi guarda le bilance quando il mercato e' pieno?
+
+- **Se passa — Il Mercato Spostato:** la Regione discussa diventa il mercato · la Regione discussa diventa tagliata fuori
 
 **Le clausole che si possono attaccare:**
 

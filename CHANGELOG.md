@@ -5,6 +5,29 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.274 — Le Vie, e la domanda che il committente ha fatto guardando le carte (D-312)
+
+- **Scritto il terzo Tema, le Vie**: sette carte (Le Vie Interrotte, L'Acqua
+  Ferma e Il Debito avevano già le loro), **14 domande e 21 proposte** nuove.
+  **35 → 28** carte che aprono una domanda in prestito.
+- Trasformazioni sedute **174**, vite mai sedute **6**: invariate. Playtest 100
+  semi: **0 seggi bloccati su 8**, misto e uniforme. Suite **614**.
+- **Aperta ISSUES 89, ed è la voce che conta più delle altre due.** Guardando
+  le carte, il committente ha chiesto perché non sono fatte come le carte
+  Azione — bersaglio a segni, due azioni che dicono quale segno posano, il resto
+  Flavor Text. Ha ragione: le carte Azione sono già così (D-274), e la **faccia
+  fisica** della Tensione pure (D-280, dodici caselle verbo+segno). Il
+  **Consiglio** che quella stessa carta apre no.
+- **Il numero**: **185 proposte, 642 Effetti che nessuna carta stampa**. Al
+  tavolo fisico non si risolve **una sola** proposta senza l'app. Dei 642, 494
+  li saprebbero dire le caselle di oggi; **148** no, e sono di cinque specie.
+- **Detto col suo nome**: i tre Temi scritti finora hanno reso le carte diverse
+  da **leggere**, non risolvibili **col dito**. È un guadagno vero e piccolo.
+  La scelta fra le tre strade è del committente, e viene prima degli altri tre
+  Temi.
+
+---
+
 ## 0.1.273 — Il Potere ha le sue domande, e due sonde guardavano altrove (D-311)
 
 - **Scritto il secondo Tema, il Potere**: otto carte (La Carta e La Successione

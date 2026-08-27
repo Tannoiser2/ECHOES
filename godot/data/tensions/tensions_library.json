@@ -7027,8 +7027,8 @@
         }
       ],
       "possible_questions": [
-        "Q_ANY_WHO_PAYS",
-        "Q_ANY_WHO_KEEPS"
+        "Q_FERRY_TARIFF",
+        "Q_FERRY_SECOND"
       ],
       "physical": {
         "benefits": [
@@ -7134,56 +7134,49 @@
       "council": {
         "questions": [
           {
-            "id": "Q_ANY_WHO_PAYS",
-            "text": "$in_region, chi paga il prezzo di quello che rende?",
+            "id": "Q_FERRY_TARIFF",
+            "text": "La traversata ha un prezzo: chi lo scrive, e chi lo riscuote?",
             "eligibility": []
           },
           {
-            "id": "Q_ANY_WHO_KEEPS",
-            "text": "Chi tiene i conti di quello che passa $in_region — e chi li legge?",
-            "eligibility": [
-              {
-                "type": "tension_limit",
-                "tension_id": "$tension",
-                "min": 4,
-                "label": "La questione e' al limite"
-              }
-            ]
+            "id": "Q_FERRY_SECOND",
+            "text": "E se una barca sola non basta piu'?",
+            "eligibility": []
           }
         ],
         "propositions": [
           {
-            "id": "P_ANY_PRICE",
-            "question_id": "Q_ANY_WHO_PAYS",
-            "text": "Si metta un prezzo, e $proponent lo riscuota: quello che passa, paga.",
+            "id": "P_FERRY_WRITTEN",
+            "question_id": "Q_FERRY_TARIFF",
+            "text": "La tariffa si scriva al Consiglio, e la riscuota $proponent: chi la supera perde la barca.",
             "eligibility": [],
             "success_consequences": [
               "CNS_TOLL_ESTABLISHED"
             ],
-            "echo_summary": "$proponent mise il prezzo su quello che passava, e il prezzo resto' anche quando lui non c'era.",
+            "echo_summary": "La tariffa del traghetto fu scritta, e chi la riscoteva era $proponent.",
             "echo_summaries": {
-              "FAILURE": "$proponent volle mettere il prezzo, e il prezzo lo pago' lui."
+              "FAILURE": "$proponent volle scrivere la tariffa, e il traghettatore continuo' a farsi pagare in favori."
             }
           },
           {
-            "id": "P_ANY_SPREAD_COST",
-            "question_id": "Q_ANY_WHO_PAYS",
-            "text": "Il costo si divide in parti uguali, e nessuno ne esce bene.",
-            "eligibility": [],
-            "success_consequences": [
-              "CNS_SHARED_BURDEN"
-            ],
-            "echo_summary": "Il costo $of_region fu diviso in parti uguali, e fu il massimo che quel consiglio riusci' a fare."
-          },
-          {
-            "id": "P_ANY_OPEN_LEDGER",
-            "question_id": "Q_ANY_WHO_KEEPS",
-            "text": "Si aprano i registri: che ognuno veda quanto rende, e a chi.",
+            "id": "P_FERRY_LEDGER",
+            "question_id": "Q_FERRY_TARIFF",
+            "text": "Ogni traversata si segni su un registro, e il registro stia al molo dove chiunque legge.",
             "eligibility": [],
             "success_consequences": [
               "CNS_LEDGER_OPENED"
             ],
-            "echo_summary": "I registri furono aperti, e piu' d'uno avrebbe preferito di no."
+            "echo_summary": "Le traversate finirono su un registro al molo, e si scopri' chi non pagava mai."
+          },
+          {
+            "id": "P_FERRY_SECOND_BOAT",
+            "question_id": "Q_FERRY_SECOND",
+            "text": "Si metta in acqua una seconda barca, e la paghino tutte le case insieme.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SHARED_BURDEN"
+            ],
+            "echo_summary": "Una seconda barca ando' in acqua a spese di tutti, e l'isola smise di dipendere da un uomo solo."
           }
         ]
       }
@@ -7207,8 +7200,8 @@
         }
       ],
       "possible_questions": [
-        "Q_ANY_WHO_PAYS",
-        "Q_ANY_WHO_KEEPS"
+        "Q_TOLLS_CHAIN",
+        "Q_TOLLS_CONVOY"
       ],
       "physical": {
         "benefits": [
@@ -7314,56 +7307,49 @@
       "council": {
         "questions": [
           {
-            "id": "Q_ANY_WHO_PAYS",
-            "text": "$in_region, chi paga il prezzo di quello che rende?",
+            "id": "Q_TOLLS_CHAIN",
+            "text": "Chi ha teso la catena sulla strada, e con che diritto?",
             "eligibility": []
           },
           {
-            "id": "Q_ANY_WHO_KEEPS",
-            "text": "Chi tiene i conti di quello che passa $in_region — e chi li legge?",
-            "eligibility": [
-              {
-                "type": "tension_limit",
-                "tension_id": "$tension",
-                "min": 4,
-                "label": "La questione e' al limite"
-              }
-            ]
+            "id": "Q_TOLLS_CONVOY",
+            "text": "E i carri che passano domani, chi li accompagna?",
+            "eligibility": []
           }
         ],
         "propositions": [
           {
-            "id": "P_ANY_PRICE",
-            "question_id": "Q_ANY_WHO_PAYS",
-            "text": "Si metta un prezzo, e $proponent lo riscuota: quello che passa, paga.",
+            "id": "P_TOLLS_LEGAL",
+            "question_id": "Q_TOLLS_CHAIN",
+            "text": "Il pedaggio diventi legge, e lo riscuota $proponent invece di chi si nasconde nel bosco.",
             "eligibility": [],
             "success_consequences": [
               "CNS_TOLL_ESTABLISHED"
             ],
-            "echo_summary": "$proponent mise il prezzo su quello che passava, e il prezzo resto' anche quando lui non c'era.",
+            "echo_summary": "Il pedaggio nero divento' pedaggio scritto, e a riscuoterlo era $proponent.",
             "echo_summaries": {
-              "FAILURE": "$proponent volle mettere il prezzo, e il prezzo lo pago' lui."
+              "FAILURE": "$proponent volle scrivere il pedaggio, e la catena resto' dov'era."
             }
           },
           {
-            "id": "P_ANY_SPREAD_COST",
-            "question_id": "Q_ANY_WHO_PAYS",
-            "text": "Il costo si divide in parti uguali, e nessuno ne esce bene.",
+            "id": "P_TOLLS_CUT",
+            "question_id": "Q_TOLLS_CHAIN",
+            "text": "Si tolga la catena e la si mostri in piazza, poi si guardi chi la rimette.",
             "eligibility": [],
             "success_consequences": [
-              "CNS_SHARED_BURDEN"
+              "CNS_ROADS_REOPENED"
             ],
-            "echo_summary": "Il costo $of_region fu diviso in parti uguali, e fu il massimo che quel consiglio riusci' a fare."
+            "echo_summary": "La catena fu portata in piazza, e per una stagione le carovane ripartirono da sole."
           },
           {
-            "id": "P_ANY_OPEN_LEDGER",
-            "question_id": "Q_ANY_WHO_KEEPS",
-            "text": "Si aprano i registri: che ognuno veda quanto rende, e a chi.",
+            "id": "P_TOLLS_ESCORT",
+            "question_id": "Q_TOLLS_CONVOY",
+            "text": "Una scorta su ogni convoglio, e che risponda col proprio nome di quello che porta.",
             "eligibility": [],
             "success_consequences": [
-              "CNS_LEDGER_OPENED"
+              "CNS_ESCORT_SWORN"
             ],
-            "echo_summary": "I registri furono aperti, e piu' d'uno avrebbe preferito di no."
+            "echo_summary": "Dodici uomini giurarono sui carichi del bosco, e chi rubava dovette sapere a chi rubava."
           }
         ]
       }
@@ -7387,8 +7373,8 @@
         }
       ],
       "possible_questions": [
-        "Q_ANY_WHO_PAYS",
-        "Q_ANY_WHO_KEEPS"
+        "Q_WEIGHTS_ARM",
+        "Q_WEIGHTS_WATCH"
       ],
       "physical": {
         "benefits": [
@@ -7493,56 +7479,46 @@
       "council": {
         "questions": [
           {
-            "id": "Q_ANY_WHO_PAYS",
-            "text": "$in_region, chi paga il prezzo di quello che rende?",
+            "id": "Q_WEIGHTS_ARM",
+            "text": "Di chi e' il braccio con cui si misura?",
             "eligibility": []
           },
           {
-            "id": "Q_ANY_WHO_KEEPS",
-            "text": "Chi tiene i conti di quello che passa $in_region — e chi li legge?",
-            "eligibility": [
-              {
-                "type": "tension_limit",
-                "tension_id": "$tension",
-                "min": 4,
-                "label": "La questione e' al limite"
-              }
-            ]
+            "id": "Q_WEIGHTS_WATCH",
+            "text": "E chi guarda le bilance quando il mercato e' pieno?",
+            "eligibility": []
           }
         ],
         "propositions": [
           {
-            "id": "P_ANY_PRICE",
-            "question_id": "Q_ANY_WHO_PAYS",
-            "text": "Si metta un prezzo, e $proponent lo riscuota: quello che passa, paga.",
+            "id": "P_WEIGHTS_ONE",
+            "question_id": "Q_WEIGHTS_ARM",
+            "text": "Un campione solo, firmato da tutte le case, e ogni bilancia si confronti con quello.",
             "eligibility": [],
             "success_consequences": [
-              "CNS_TOLL_ESTABLISHED"
+              "CNS_CHARTER_WRITTEN"
             ],
-            "echo_summary": "$proponent mise il prezzo su quello che passava, e il prezzo resto' anche quando lui non c'era.",
-            "echo_summaries": {
-              "FAILURE": "$proponent volle mettere il prezzo, e il prezzo lo pago' lui."
-            }
+            "echo_summary": "Le case firmarono lo stesso braccio, e il foglio era piu' corto di quanto chiunque si aspettasse."
           },
           {
-            "id": "P_ANY_SPREAD_COST",
-            "question_id": "Q_ANY_WHO_PAYS",
-            "text": "Il costo si divide in parti uguali, e nessuno ne esce bene.",
-            "eligibility": [],
-            "success_consequences": [
-              "CNS_SHARED_BURDEN"
-            ],
-            "echo_summary": "Il costo $of_region fu diviso in parti uguali, e fu il massimo che quel consiglio riusci' a fare."
-          },
-          {
-            "id": "P_ANY_OPEN_LEDGER",
-            "question_id": "Q_ANY_WHO_KEEPS",
-            "text": "Si aprano i registri: che ognuno veda quanto rende, e a chi.",
+            "id": "P_WEIGHTS_OPEN",
+            "question_id": "Q_WEIGHTS_WATCH",
+            "text": "Si aprano i registri dei pesi: che si veda quanto manca, e in quale tasca finisce.",
             "eligibility": [],
             "success_consequences": [
               "CNS_LEDGER_OPENED"
             ],
-            "echo_summary": "I registri furono aperti, e piu' d'uno avrebbe preferito di no."
+            "echo_summary": "I registri dei pesi furono copiati e lasciati al mercato, e la differenza smise di essere invisibile."
+          },
+          {
+            "id": "P_WEIGHTS_MOVE",
+            "question_id": "Q_WEIGHTS_WATCH",
+            "text": "Si sposti il mercato dove le bilance si possono guardare tutte insieme.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_MARKET_MOVED"
+            ],
+            "echo_summary": "Il mercato si sposto' sotto un tetto solo, e chi comandava sulle bilance cambio' con la piazza."
           }
         ]
       }
@@ -7566,8 +7542,8 @@
         }
       ],
       "possible_questions": [
-        "Q_ANY_WHO_HOLDS",
-        "Q_ANY_WHOSE_LAW"
+        "Q_COURIERS_PAYS",
+        "Q_COURIERS_SEAL"
       ],
       "physical": {
         "benefits": [
@@ -7670,60 +7646,46 @@
       "council": {
         "questions": [
           {
-            "id": "Q_ANY_WHO_HOLDS",
-            "text": "$in_region, chi tiene il posto quando la voce si spegne?",
+            "id": "Q_COURIERS_PAYS",
+            "text": "Chi paga le staffette, e cosa compra davvero?",
             "eligibility": []
           },
           {
-            "id": "Q_ANY_WHOSE_LAW",
-            "text": "Quale legge vale $in_region: quella scritta, o quella di chi c'e'?",
-            "eligibility": [
-              {
-                "type": "tension_limit",
-                "tension_id": "$tension",
-                "min": 4,
-                "label": "La questione e' al limite"
-              }
-            ]
+            "id": "Q_COURIERS_SEAL",
+            "text": "E le lettere che arrivano aperte, per le mani di chi sono passate?",
+            "eligibility": []
           }
         ],
         "propositions": [
           {
-            "id": "P_ANY_HOLD",
-            "question_id": "Q_ANY_WHO_HOLDS",
-            "text": "$proponent lo tiene, e lo dica forte: chi sta li' risponde a lui.",
+            "id": "P_COURIERS_SWORN",
+            "question_id": "Q_COURIERS_PAYS",
+            "text": "Un servizio giurato al Consiglio: dodici staffette che rispondono col proprio nome di ogni lettera.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_ESCORT_SWORN"
+            ],
+            "echo_summary": "Dodici staffette giurarono sulle lettere, e per la prima volta si seppe chi le aveva in mano."
+          },
+          {
+            "id": "P_COURIERS_MINE",
+            "question_id": "Q_COURIERS_PAYS",
+            "text": "Le paghi $proponent, e almeno si sappia a chi rispondono.",
             "eligibility": [],
             "success_consequences": [
               "CNS_SEAT_CLAIMED"
             ],
-            "echo_summary": "$proponent prese il posto $of_region, e nessuno oso' contarlo due volte.",
-            "echo_summaries": {
-              "DECISIVE_SUCCESS": "$proponent prese il posto $of_region, e il conto torno' al primo colpo.",
-              "FAILURE": "$proponent volle il posto $of_region, e il posto non volle lui."
-            }
+            "echo_summary": "Le staffette passarono a $proponent, e per un po' le notizie arrivarono in orario."
           },
           {
-            "id": "P_ANY_SPLIT",
-            "question_id": "Q_ANY_WHO_HOLDS",
-            "text": "Si divida l'uso, non il titolo: ognuno il suo pezzo, e i conti a fine anno.",
+            "id": "P_COURIERS_ANSWER",
+            "question_id": "Q_COURIERS_SEAL",
+            "text": "Chi ha rotto un sigillo lo dica davanti a chi aspettava quella lettera, e paghi.",
             "eligibility": [],
             "success_consequences": [
-              "CNS_SHARED_BURDEN"
+              "CNS_ACCOUNT_SETTLED"
             ],
-            "echo_summary": "L'uso $of_region fu diviso senza dividere il titolo, e resse quanto reggono le cose divise."
-          },
-          {
-            "id": "P_ANY_WALK_AWAY",
-            "question_id": "Q_ANY_WHOSE_LAW",
-            "text": "Nessuna legge: si lascia il posto a chi se lo vuole caricare addosso.",
-            "eligibility": [],
-            "success_consequences": [
-              "CNS_ABANDONED"
-            ],
-            "echo_summary": "Nessuna legge fu scritta per $the_region, e il posto resto' a chi ci dormiva.",
-            "echo_summaries": {
-              "FAILURE": "Nessuno volle scrivere la legge $of_region, e nessuno volle nemmeno andarsene."
-            }
+            "echo_summary": "I sigilli rotti furono contati davanti a chi li aspettava, e non riparo' niente, ma chiuse."
           }
         ]
       }
@@ -7747,8 +7709,8 @@
         }
       ],
       "possible_questions": [
-        "Q_ANY_WHO_PAYS",
-        "Q_ANY_WHO_KEEPS"
+        "Q_CANALS_ARMS",
+        "Q_CANALS_WATER"
       ],
       "physical": {
         "benefits": [
@@ -7853,56 +7815,49 @@
       "council": {
         "questions": [
           {
-            "id": "Q_ANY_WHO_PAYS",
-            "text": "$in_region, chi paga il prezzo di quello che rende?",
+            "id": "Q_CANALS_ARMS",
+            "text": "Chi manda le braccia a scavare, e per quante stagioni?",
             "eligibility": []
           },
           {
-            "id": "Q_ANY_WHO_KEEPS",
-            "text": "Chi tiene i conti di quello che passa $in_region — e chi li legge?",
-            "eligibility": [
-              {
-                "type": "tension_limit",
-                "tension_id": "$tension",
-                "min": 4,
-                "label": "La questione e' al limite"
-              }
-            ]
+            "id": "Q_CANALS_WATER",
+            "text": "E quando l'acqua torna a correre, di chi e'?",
+            "eligibility": []
           }
         ],
         "propositions": [
           {
-            "id": "P_ANY_PRICE",
-            "question_id": "Q_ANY_WHO_PAYS",
-            "text": "Si metta un prezzo, e $proponent lo riscuota: quello che passa, paga.",
+            "id": "P_CANALS_DIG",
+            "question_id": "Q_CANALS_ARMS",
+            "text": "Si scavi, e mandi gli uomini $proponent: il primo tratto riaperto paghera' il secondo.",
             "eligibility": [],
             "success_consequences": [
-              "CNS_TOLL_ESTABLISHED"
+              "CNS_CANALS_DUG"
             ],
-            "echo_summary": "$proponent mise il prezzo su quello che passava, e il prezzo resto' anche quando lui non c'era.",
+            "echo_summary": "Si scavo' per due stagioni, e il fiume ricomincio' ad arrivare dove arrivava prima.",
             "echo_summaries": {
-              "FAILURE": "$proponent volle mettere il prezzo, e il prezzo lo pago' lui."
+              "FAILURE": "Nessuno mando' le braccia, e la palude si riprese anche il tratto vecchio."
             }
           },
           {
-            "id": "P_ANY_SPREAD_COST",
-            "question_id": "Q_ANY_WHO_PAYS",
-            "text": "Il costo si divide in parti uguali, e nessuno ne esce bene.",
+            "id": "P_CANALS_SHARE",
+            "question_id": "Q_CANALS_ARMS",
+            "text": "Il cantiere si divida in parti uguali, e nessuna casa scavi piu' di quanto le tocca.",
             "eligibility": [],
             "success_consequences": [
               "CNS_SHARED_BURDEN"
             ],
-            "echo_summary": "Il costo $of_region fu diviso in parti uguali, e fu il massimo che quel consiglio riusci' a fare."
+            "echo_summary": "Il cantiere fu diviso in parti uguali, e fu il massimo che quel consiglio riusci' a fare."
           },
           {
-            "id": "P_ANY_OPEN_LEDGER",
-            "question_id": "Q_ANY_WHO_KEEPS",
-            "text": "Si aprano i registri: che ognuno veda quanto rende, e a chi.",
+            "id": "P_CANALS_PRICE",
+            "question_id": "Q_CANALS_WATER",
+            "text": "Chi ha pagato i lavori riscuota sull'acqua: e' scritto, ed e' giusto.",
             "eligibility": [],
             "success_consequences": [
-              "CNS_LEDGER_OPENED"
+              "CNS_WATER_PRICED"
             ],
-            "echo_summary": "I registri furono aperti, e piu' d'uno avrebbe preferito di no."
+            "echo_summary": "Chi aveva pagato lo scavo riscosse sull'acqua, e la palude ebbe un padrone che non ci aveva mai messo piede."
           }
         ]
       }
@@ -7926,8 +7881,8 @@
         }
       ],
       "possible_questions": [
-        "Q_ANY_WHO_PAYS",
-        "Q_ANY_WHO_KEEPS"
+        "Q_GUILDS_STREETS",
+        "Q_GUILDS_FIRE"
       ],
       "physical": {
         "benefits": [
@@ -8033,56 +7988,46 @@
       "council": {
         "questions": [
           {
-            "id": "Q_ANY_WHO_PAYS",
-            "text": "$in_region, chi paga il prezzo di quello che rende?",
+            "id": "Q_GUILDS_STREETS",
+            "text": "Le vie sono strette: di chi sono?",
             "eligibility": []
           },
           {
-            "id": "Q_ANY_WHO_KEEPS",
-            "text": "Chi tiene i conti di quello che passa $in_region — e chi li legge?",
-            "eligibility": [
-              {
-                "type": "tension_limit",
-                "tension_id": "$tension",
-                "min": 4,
-                "label": "La questione e' al limite"
-              }
-            ]
+            "id": "Q_GUILDS_FIRE",
+            "text": "E del magazzino bruciato, chi risponde?",
+            "eligibility": []
           }
         ],
         "propositions": [
           {
-            "id": "P_ANY_PRICE",
-            "question_id": "Q_ANY_WHO_PAYS",
-            "text": "Si metta un prezzo, e $proponent lo riscuota: quello che passa, paga.",
+            "id": "P_GUILDS_SPLIT",
+            "question_id": "Q_GUILDS_STREETS",
+            "text": "Si dividano i mercati con confini scritti, e ogni gilda stia dalla sua parte.",
             "eligibility": [],
             "success_consequences": [
-              "CNS_TOLL_ESTABLISHED"
+              "CNS_MARKET_MOVED"
             ],
-            "echo_summary": "$proponent mise il prezzo su quello che passava, e il prezzo resto' anche quando lui non c'era.",
-            "echo_summaries": {
-              "FAILURE": "$proponent volle mettere il prezzo, e il prezzo lo pago' lui."
-            }
+            "echo_summary": "I mercati furono divisi con confini scritti, e le due gilde smisero di incontrarsi per strada."
           },
           {
-            "id": "P_ANY_SPREAD_COST",
-            "question_id": "Q_ANY_WHO_PAYS",
-            "text": "Il costo si divide in parti uguali, e nessuno ne esce bene.",
+            "id": "P_GUILDS_ONE",
+            "question_id": "Q_GUILDS_STREETS",
+            "text": "Una gilda sola, e la tessera la dia $proponent.",
             "eligibility": [],
             "success_consequences": [
-              "CNS_SHARED_BURDEN"
+              "CNS_SEAT_CLAIMED"
             ],
-            "echo_summary": "Il costo $of_region fu diviso in parti uguali, e fu il massimo che quel consiglio riusci' a fare."
+            "echo_summary": "Le due gilde divennero una sola, con la tessera in mano a $proponent, e per un po' funziono' meglio."
           },
           {
-            "id": "P_ANY_OPEN_LEDGER",
-            "question_id": "Q_ANY_WHO_KEEPS",
-            "text": "Si aprano i registri: che ognuno veda quanto rende, e a chi.",
+            "id": "P_GUILDS_PAY",
+            "question_id": "Q_GUILDS_FIRE",
+            "text": "Chi ha acceso paghi davanti a chi ha perso il magazzino, e si chiuda qui.",
             "eligibility": [],
             "success_consequences": [
-              "CNS_LEDGER_OPENED"
+              "CNS_ACCOUNT_SETTLED"
             ],
-            "echo_summary": "I registri furono aperti, e piu' d'uno avrebbe preferito di no."
+            "echo_summary": "Il conto del magazzino fu pagato davanti a tutti, e nessuno si dichiaro' soddisfatto."
           }
         ]
       }
@@ -8106,8 +8051,8 @@
         }
       ],
       "possible_questions": [
-        "Q_ANY_WHO_PAYS",
-        "Q_ANY_WHO_KEEPS"
+        "Q_SMUGGLING_COVE",
+        "Q_SMUGGLING_CUSTOMS"
       ],
       "physical": {
         "benefits": [
@@ -8212,56 +8157,49 @@
       "council": {
         "questions": [
           {
-            "id": "Q_ANY_WHO_PAYS",
-            "text": "$in_region, chi paga il prezzo di quello che rende?",
+            "id": "Q_SMUGGLING_COVE",
+            "text": "La cala vecchia scarica di notte: si chiude, o si apre?",
             "eligibility": []
           },
           {
-            "id": "Q_ANY_WHO_KEEPS",
-            "text": "Chi tiene i conti di quello che passa $in_region — e chi li legge?",
-            "eligibility": [
-              {
-                "type": "tension_limit",
-                "tension_id": "$tension",
-                "min": 4,
-                "label": "La questione e' al limite"
-              }
-            ]
+            "id": "Q_SMUGGLING_CUSTOMS",
+            "text": "E i doganieri che guardano il mare sbagliato?",
+            "eligibility": []
           }
         ],
         "propositions": [
           {
-            "id": "P_ANY_PRICE",
-            "question_id": "Q_ANY_WHO_PAYS",
-            "text": "Si metta un prezzo, e $proponent lo riscuota: quello che passa, paga.",
+            "id": "P_SMUGGLING_AMNESTY",
+            "question_id": "Q_SMUGGLING_COVE",
+            "text": "Si tiri una riga sotto quello che e' passato, e da domani si dichiari tutto.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_DEBT_FORGIVEN"
+            ],
+            "echo_summary": "Fu tirata una riga sotto i traffici vecchi, e per un anno intero non si parlo' d'altro."
+          },
+          {
+            "id": "P_SMUGGLING_TOLL",
+            "question_id": "Q_SMUGGLING_COVE",
+            "text": "Anche la cala paghi il dazio, e lo riscuota $proponent: se non si puo' fermare, si scriva.",
             "eligibility": [],
             "success_consequences": [
               "CNS_TOLL_ESTABLISHED"
             ],
-            "echo_summary": "$proponent mise il prezzo su quello che passava, e il prezzo resto' anche quando lui non c'era.",
+            "echo_summary": "Anche la cala vecchia ebbe il suo dazio, riscosso da $proponent, e il porto smise di vivere due volte.",
             "echo_summaries": {
-              "FAILURE": "$proponent volle mettere il prezzo, e il prezzo lo pago' lui."
+              "FAILURE": "$proponent volle mettere il dazio sulla cala, e la cala continuo' a scaricare di notte."
             }
           },
           {
-            "id": "P_ANY_SPREAD_COST",
-            "question_id": "Q_ANY_WHO_PAYS",
-            "text": "Il costo si divide in parti uguali, e nessuno ne esce bene.",
+            "id": "P_SMUGGLING_GUARD",
+            "question_id": "Q_SMUGGLING_CUSTOMS",
+            "text": "Uomini alla porta, pagati bene e cambiati spesso: la guardia costa meno del dazio perso.",
             "eligibility": [],
             "success_consequences": [
-              "CNS_SHARED_BURDEN"
+              "CNS_COST_GUARD"
             ],
-            "echo_summary": "Il costo $of_region fu diviso in parti uguali, e fu il massimo che quel consiglio riusci' a fare."
-          },
-          {
-            "id": "P_ANY_OPEN_LEDGER",
-            "question_id": "Q_ANY_WHO_KEEPS",
-            "text": "Si aprano i registri: che ognuno veda quanto rende, e a chi.",
-            "eligibility": [],
-            "success_consequences": [
-              "CNS_LEDGER_OPENED"
-            ],
-            "echo_summary": "I registri furono aperti, e piu' d'uno avrebbe preferito di no."
+            "echo_summary": "Alla cala furono messi uomini di guardia, pagati bene, e da allora si pagarono tutti i giorni."
           }
         ]
       }
