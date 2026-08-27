@@ -10,6 +10,129 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-315 — Il mondo prende un rovescio, e la prima carta lo prende sul serio
+
+**implemented** (0.1.277) · primo taglio della strada 2 di
+[ISSUES 91](ISSUES.md) · scelta del committente: *«parti dalla 2 e poi il
+taglio (a)»*.
+
+### L'idea, e perche' non era gratis
+
+D-314 aveva misurato che il 60.5% delle clausole a punti era vero prima che
+qualcuno giocasse. La lettura statica diceva: **su 17 memorie temute solo 4
+sono anche volute da qualcuno**, quindi le altre 13 arrivano per inerzia perche'
+nessuno al tavolo ha un motivo scritto per scriverle. Il rimedio sembrava
+di puro contenuto — dare un padrino a ogni memoria temuta.
+
+**Non era di puro contenuto, e la lettura statica sbagliava su due voci.**
+
+### Quello che la misura ha corretto
+
+Una sonda nuova, dentro `run_contest_probe.gd`, legge il registro degli Effetti
+**Regione per Regione**: la memoria temuta e' comparsa li' dove quella clausola
+la temeva, oppure no. Niente assunzioni, niente indizi letti sulle carte.
+
+Il baseline, 40 tavoli CHR_01: **63.3% delle memorie temute non le tocca mai
+nessuno.** Ma il dettaglio per segno ribalta due conclusioni statiche:
+
+| segno | scritte | mai toccate | la lettura statica diceva |
+|---|---|---|---|
+| `question_unresolved` | 61 | 3 | «temuta 5 volte, voluta zero» |
+| `condition:unrest` | 17 | 5 | «temuta 5 volte, voluta zero» |
+
+Le **due memorie piu' temute del gioco sono anche le due piu' scritte**: le
+scrivono le carte e le Conseguenze come effetto collaterale, senza che nessun
+Destino le desideri. Il difetto non era li'.
+
+Dove e' davvero: **undici segni mai scritti una sola volta in 40 partite** —
+`failed_proposal` (25 clausole), `oath_broken` (16), `mine_sealed` (15),
+`valley_sealed` (14), `condition:emptied` (11), `study_supervised` (10),
+`crystal_exploited` (9), `water_priced` (9), `structure:sealed` (7),
+`no_charter` (6), `relic_shown` (4), `condition:exploited` (3).
+
+E fra questi, il caso che ha ucciso l'idea semplice: **`mine_sealed` e' temuto
+3 volte e voluto 3 volte, e non compare mai lo stesso.** Il padrino c'era gia'
+e non bastava. La ragione, trovata risalendo: le Conseguenze che scrivono quei
+segni stanno tutte in `success_consequences` di **proposte che nessuno
+propone** — `CNF_AWAKENING_01` si apre, ma la proposta `P_SEAL_MINE` non vince
+mai.
+
+### La dodicesima misura cieca
+
+Il primo tentativo di attribuire le Conseguenze contava `source.id` sugli
+Effetti e dava **zero su tutte e diciotto**. Era cieco lui: gli Effetti di una
+Conseguenza si firmano col **template del Consiglio** (`CNF_WATER_03#1`), mai
+col `CNS_*` — zero firme `CNS_` su 84 distinte. La misura per segno, che non
+passa dalle firme, non e' cieca e resta valida.
+
+### Cosa si e' fatto
+
+**Il selettore che mancava.** Un obiettivo del pool si pesca a qualunque
+tavolo e da D-265 **la mappa si pesca**: nominare una Regione lo renderebbe
+muto meta' delle volte, e il validatore giustamente lo vieta. Il risultato era
+che **nessun obiettivo del mazzo poteva chiedere un segno di Regione**. Ora
+`region_id` accetta due forme, con lo stesso argomento del `$any` che D-255
+aggiunse alle relazioni:
+
+- **`$any`** — da qualche parte sulla mappa;
+- **`$rival`** — solo in una terra che **tiene un altro**. E' la forma che non
+  si puo' soddisfare in casa propria, e nemmeno su una terra di nessuno: per
+  centrarla il segno va posato dove toglie qualcosa a qualcuno.
+
+**Una carta sola, non tre.** Ne erano state scritte tre. La sonda degli
+obiettivi le ha giudicate:
+
+| carta | si avvera | verdetto della sonda |
+|---|---|---|
+| `OBJ_THE_USEFUL_RUIN` — *una terra altrui e' stata spolpata* | **34.2%** | in banda (come `OBJ_A_GARRISON`, 33.3%) |
+| `OBJ_THE_WALL_THAT_HOLDS` | 6.7% | **arredo** |
+| `OBJ_THE_BROKEN_WORD` | 3.3% | **arredo** |
+
+Le due arredo sono state **tolte prima di spedire**. Un obiettivo che non si
+avvera assomiglia a un obiettivo difficile ed e' il difetto esatto contro cui
+esiste la regola del pool: metterne due in mazzo avrebbe peggiorato il mazzo
+per far salire una percentuale.
+
+### Cosa e' costato e cosa ha reso
+
+40 tavoli CHR_01, prima e dopo, con una carta sola in piu':
+
+| misura | prima | dopo |
+|---|---|---|
+| coppie che si contendono una memoria | 1.2% (3) | **6.2% (15)** |
+| clausole centrate che qualcuno contendeva | 10.2% | **11.8%** |
+| clausole gia' vere all'apertura | 60.5% | **57.8%** |
+| memorie temute che nessuno ha mai toccato | 63.3% | **66.5%** |
+
+**Le prime tre si muovono nel verso giusto. La quarta no, e peggiora.** Vale la
+regola di casa: si scrive. La lite fra i Destini adesso e' scritta cinque volte
+piu' spesso, ma il mondo non ha ancora imparato a produrre le memorie che
+qualcuno teme — `condition:emptied` passa da 0 a 1 in 40 partite, che e' il
+meccanismo che funziona e basta.
+
+### Dove sta il muro, per il taglio dopo
+
+Non nelle carte: nella **scelta della proposta**. Il cervello sceglie cosa
+proporre col proprio Destino e i propri obiettivi in mano
+(`_score_proposition` legge `_tag_goals`, che legge tutti e due — il cablaggio
+c'e'). Ma **propone solo il proponente**, e chi porta l'obiettivo raramente e'
+lui al Consiglio giusto. Finche' quella e' la strozzatura, aggiungere carte che
+vogliono un segno non fa comparire il segno.
+
+### Un effetto collaterale, misurato rigenerando
+
+Il cancello delle vite e' andato rosso: le partite si giocano **diversamente**.
+Le case cambiano pelle piu' spesso — `ENT_NAHR` da 35 a 42 mutazioni in dodici
+saghe, `ENT_ALDRIC` da 22 a 27 — e una vita che prima non compariva
+(*La Leggenda della Montagna*) adesso sta in tabella, ancora a zero. Una
+carta sola in mano a un seggio muove abbastanza il gioco da spostare quanto
+spesso le case si trasformano: e' il segno che l'obiettivo non e' arredo.
+`docs/MISURA_VITE.md` rigenerato.
+
+Aperta come [ISSUES 92](ISSUES.md).
+
+---
+
 ## D-314 — Sei punti su dieci erano gia' tuoi prima che qualcuno giocasse
 
 **implemented** (0.1.276) · misura, non modifica · nata dalla domanda del

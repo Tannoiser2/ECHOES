@@ -98,6 +98,13 @@ func _no_local_names(condition: Dictionary, objective_id: String) -> void:
 		# ([D-255](DECISIONS.md#d-255)). Ogni altro nome resta vietato.
 		if key == "other_entity_id" and str(condition.get(key, "")) == "$any":
 			continue
+		# E per le Regioni la stessa forma ([D-315](DECISIONS.md#d-315)):
+		# `$any` guarda tutta la mappa, `$rival` solo le terre che tiene un
+		# altro. Senza di loro **nessun** obiettivo del pool puo' chiedere un
+		# segno di Regione, e i segni di Regione temuti restano voluti da
+		# nessuno.
+		if key == "region_id" and ["$any", "$rival"].has(str(condition.get(key, ""))):
+			continue
 		assert_false(
 			condition.has(key),
 			"%s: la clausola nomina `%s`, che esiste in una Chronicle sola" % [objective_id, key]

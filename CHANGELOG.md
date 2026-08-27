@@ -5,6 +5,68 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.277 — Il mondo prende un rovescio, e la prima carta lo prende sul serio (D-315)
+
+### Aggiunto
+
+- **`$any` e `$rival` sulle Regioni**, nelle clausole a segni. Un obiettivo del
+  pool si pesca a qualunque tavolo e la mappa si pesca (D-265): nominare una
+  Regione lo renderebbe muto meta' delle volte. Il risultato era che **nessun
+  obiettivo del mazzo poteva chiedere un segno di Regione**. `$rival` guarda
+  solo le terre che tiene un altro — ne' le proprie, ne' quelle di nessuno.
+- **`OBJ_THE_USEFUL_RUIN`**, *«una terra altrui e' stata spolpata o svuotata»*.
+  Si avvera nel **34.2%** dei seggi, in banda col mazzo.
+- Quattro prove sul selettore, fra cui il caso che deve dare **falso** (mappa
+  pulita) e quello che distingue le due forme (segno in casa propria).
+- Un quarto caso piantato nel `--self-test` del validatore: l'esenzione nuova
+  deve **tacere** su `$any`/`$rival` e **mordere** su `REG_EREDAN`, anche
+  annidato dentro un `any_of`.
+
+### Misurato
+
+- **Una sonda che legge il registro degli Effetti Regione per Regione**: la
+  memoria temuta e' comparsa li' dove la clausola la temeva, oppure no.
+  Baseline: **63.3% delle memorie temute non le tocca mai nessuno.**
+- **La lettura statica sbagliava su due voci.** `question_unresolved` (61
+  scritture) e `condition:unrest` (17) sono le due memorie piu' temute **e** le
+  due piu' scritte: le scrivono carte e Conseguenze di rimbalzo, senza che
+  nessun Destino le voglia.
+- **Undici segni mai scritti una volta in 40 partite**, fra cui `mine_sealed`,
+  che e' temuto 3 volte **e voluto 3 volte**. Il padrino c'era gia' e non
+  bastava: le Conseguenze che li scrivono stanno in proposte che nessuno
+  propone.
+- **Dodicesima misura cieca**: l'attribuzione per `source.id` dava zero su
+  tutte e diciotto le Conseguenze. Gli Effetti si firmano col template del
+  Consiglio (`CNF_WATER_03#1`), mai col `CNS_*` — zero firme `CNS_` su 84.
+
+### Tolto prima di spedire
+
+- **Due obiettivi su tre.** `OBJ_THE_WALL_THAT_HOLDS` (6.7%) e
+  `OBJ_THE_BROKEN_WORD` (3.3%): la sonda li ha chiamati **arredo**. Un
+  obiettivo che non si avvera assomiglia a un obiettivo difficile, ed e' il
+  difetto contro cui esiste la regola del pool.
+
+### Costato
+
+- 40 tavoli CHR_01: coppie che si contendono una memoria **1.2% -> 6.2%**,
+  clausole contese **10.2% -> 11.8%**, gia' vere all'apertura
+  **60.5% -> 57.8%**. Ma le memorie temute mai toccate **63.3% -> 66.5%**:
+  **peggiora**, e si scrive. La lite e' scritta piu' spesso; il mondo non
+  produce ancora i segni che qualcuno teme.
+- Il muro non e' nelle carte: **propone solo il proponente**, e chi porta
+  l'obiettivo raramente e' lui al Consiglio giusto ([ISSUES 92](docs/ISSUES.md)).
+- Le case cambiano pelle piu' spesso: `ENT_NAHR` 35 -> 42 mutazioni in dodici
+  saghe, `ENT_ALDRIC` 22 -> 27. `docs/MISURA_VITE.md` rigenerato. Una carta in
+  mano a un seggio sposta quanto spesso le case si trasformano — non e' arredo.
+
+### Corretto
+
+- `test_data_boot` contava 16 obiettivi; il pool ne ha 17. E la guardia gemella
+  in GDScript (`test_objective_pool`) non conosceva i selettori nuovi, come non
+  li conosceva quella Python: due copie della stessa regola, corrette insieme.
+
+---
+
 ## 0.1.276 — Sei punti su dieci erano gia' tuoi prima di giocare (D-314)
 
 ### Misurato

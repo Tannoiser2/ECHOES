@@ -93,6 +93,14 @@ func _initialize() -> void:
 	var already: int = 0
 	var earned: int = 0
 	var found: Dictionary = {}    # di che tipo erano le clausole trovate gia' fatte
+	# **Le memorie temute che qualcuno ha davvero provato a scrivere.** Non
+	# «un altro Destino nomina quel segno» — quello e' un indizio sulla carta.
+	# Questo si legge nel registro degli Effetti, **Regione per Regione**: la
+	# memoria e' comparsa li' dove quella clausola la temeva, oppure no.
+	var threatened: int = 0
+	var untouched: int = 0
+	var safe: Dictionary = {}     # e quali sono rimaste intoccate
+	var hit: Dictionary = {}      # e quali il mondo ha scritto davvero
 
 	for run in range(runs):
 		var seed_value: int = first_seed + run
@@ -136,6 +144,17 @@ func _initialize() -> void:
 			printerr("partita non conclusa al seme %d" % seed_value)
 			quit(3)
 			return
+
+		# Ogni memoria comparsa in quest'anno, col posto dove e' comparsa.
+		var written: Dictionary = {}
+		for entry in (session.world["effect_log"] as Array):
+			var e: Dictionary = (entry as Dictionary).get("effect", entry) as Dictionary
+			var et: String = str(e.get("type", ""))
+			if et != "SET_REGION_TAG" and et != "SET_GLOBAL_TAG" and et != "SET_ENTITY_TAG":
+				continue
+			var where: String = str((e.get("target", {}) as Dictionary).get("id", ""))
+			var what: String = str((e.get("payload", {}) as Dictionary).get("tag", ""))
+			written["%s|%s" % [where, what]] = true
 
 		for entry in (session.world["effect_log"] as Array):
 			var effect: Dictionary = (entry as Dictionary).get("effect", entry) as Dictionary
@@ -307,6 +326,23 @@ func _initialize() -> void:
 					_clauses(objective2, mine2)
 			for clause in mine2:
 				var c2: Dictionary = clause as Dictionary
+				# La memoria temuta: qualcuno ha provato a scriverla **li'**?
+				if str(c2.get("type", "")) == "state_tag_absent":
+					var scope2: String = str(c2.get("scope", "GLOBAL"))
+					var spot: String = "WORLD"
+					if scope2 == "REGION":
+						spot = str(c2.get("region_id", ""))
+					elif scope2 == "ENTITY":
+						spot = str(c2.get("entity_id", "$self"))
+						if spot == "$self":
+							spot = str(entity_id)
+					var mark: String = str(c2.get("tag", ""))
+					if written.has("%s|%s" % [spot, mark]):
+						threatened += 1
+						hit[mark] = int(hit.get(mark, 0)) + 1
+					else:
+						untouched += 1
+						safe[mark] = int(safe.get(mark, 0)) + 1
 				if not session.destinies.conditions.holds(c2, {"self": str(entity_id)}):
 					continue
 				if at_open.has("%s|%s" % [str(entity_id), JSON.stringify(c2)]):
@@ -432,6 +468,28 @@ func _initialize() -> void:
 	var nk: Array = never.keys(); nk.sort()
 	for k in nk:
 		print("      %-24s %d" % [str(k), int(never[k])])
+	print("")
+	print("  **Le memorie temute: qualcuno ha provato a scriverle?**")
+	var fears_seen: int = maxi(1, threatened + untouched)
+	print("    memorie temute che il mondo ha davvero scritto  %5.1f%%   (%d)" % [
+		100.0 * float(threatened) / float(fears_seen), threatened,
+	])
+	print("    memorie temute che nessuno ha mai toccato       %5.1f%%   (%d)" % [
+		100.0 * float(untouched) / float(fears_seen), untouched,
+	])
+	print("    per segno — scritte / mai toccate:")
+	var sk: Array = safe.keys()
+	for k in hit:
+		if not sk.has(k):
+			sk.append(k)
+	sk.sort()
+	for k in sk:
+		var h: int = int(hit.get(k, 0))
+		var u: int = int(safe.get(k, 0))
+		print("      %-24s %4d / %4d   %s" % [
+			str(k), h, u, "<-- MAI" if h == 0 else "",
+		])
+	print("")
 	print("    gia' vere all'apertura, per tipo:")
 	var fk: Array = found.keys(); fk.sort()
 	for k in fk:

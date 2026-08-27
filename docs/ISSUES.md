@@ -2763,6 +2763,45 @@ e' in gioco.
 
 ---
 
+### 92. Propone solo il proponente, e il mondo non impara i segni che qualcuno teme
+
+`regola` · `motore` · `bilanciamento` · aperta in 0.1.277
+([D-315](DECISIONS.md#d-315))
+
+Undici segni non li scrive nessuno, mai, in 40 partite: `failed_proposal` (25
+clausole a punti), `oath_broken` (16), `mine_sealed` (15), `valley_sealed` (14),
+`condition:emptied` (11), `study_supervised` (10), `crystal_exploited` (9),
+`water_priced` (9), `structure:sealed` (7), `no_charter` (6), `relic_shown` (4),
+`condition:exploited` (3).
+
+**Non e' perche' nessuno li vuole.** `mine_sealed` e' temuto 3 volte e **voluto
+3 volte**, e non compare mai lo stesso. D-315 ha aggiunto un obiettivo che
+vuole `condition:emptied`: e' passato da 0 scritture a **1** in 40 partite.
+
+La strozzatura sta nella scelta della proposta. Le Conseguenze che scrivono
+quei segni stanno in `success_consequences` di proposte come `P_SEAL_MINE` o
+`P_DIG_FOR_HIRE`: i loro template si aprono — `CNF_WATER_03` 58 volte — ma
+quelle proposte non vincono mai. Il cablaggio del cervello e' giusto
+(`_score_proposition` legge `_tag_goals`, che legge Destino **e** obiettivi
+pescati), ma **propone solo il proponente**: se chi porta l'obiettivo non
+siede come proponente a quel Consiglio, il suo movente non entra nella scelta.
+
+**Cosa la chiude** — le strade, non ancora scelte:
+
+1. **Chi non propone puo' spingere.** Un avversario che ha un motivo scritto
+   per la proposta B mette una pedina su B, e il proponente decide se
+   prendersela. E' economia di Consiglio, e il tavolo la vede.
+2. **La controproposta esiste gia'** (D-268, il RIVENDICARE): oggi posa una
+   pedina su un beneficio o su un costo. Estenderla alla **proposta** e'
+   la strada piu' corta e non aggiunge grammatica nuova.
+3. **Il proponente cambia piu' spesso**, cosi' che nell'arco di un anno ogni
+   casa proponga almeno una volta al Consiglio del proprio Tema.
+
+**Il metro**: `cli/run_contest_probe.gd`, riga *memorie temute che nessuno ha
+mai toccato* — oggi **66.5%**. Deve scendere.
+
+---
+
 ### 91. Il 60% dei punti era gia' fatto prima che qualcuno giocasse
 
 `regola` · `bilanciamento` · `decisione` · aperta in 0.1.276

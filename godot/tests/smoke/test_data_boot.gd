@@ -59,7 +59,7 @@ func test_reduced_content_matches_the_milestone() -> void:
 	# che chiede una Tensione alta, cioe' il primo che chiede **INFLUENZARE** —
 	# il verbo che i seggi volevano dire nel 79% delle intenzioni mute e che
 	# nessuna clausola chiedeva ([D-255](DECISIONS.md#d-255)).
-	assert_eq(loaded.objectives.size(), 16, "16 obiettivi, pescati dallo stesso mazzo da tutti")
+	assert_eq(loaded.objectives.size(), 17, "17 obiettivi, pescati dallo stesso mazzo da tutti")
 
 
 ## Cosa c'e' in biblioteca, e che **e' la stessa per ogni anno**. Contarlo per

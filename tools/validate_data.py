@@ -1345,6 +1345,13 @@ def check_objectives_are_shareable(
                 # di sempre: esiste solo in una Chronicle.
                 if key == "other_entity_id" and str(condition[key]) == "$any":
                     continue
+                # E per le Regioni, la stessa forma: `$any` guarda tutta la
+                # mappa, `$rival` solo le terre che tiene un altro (D-315).
+                # Nessuno dei due nomina un posto, quindi nessuno dei due
+                # muore cambiando Chronicle — e senza di loro **nessun**
+                # obiettivo del pool puo' chiedere un segno di Regione.
+                if key == "region_id" and str(condition[key]) in ("$any", "$rival"):
+                    continue
                 report.fail(
                     where,
                     f"la clausola nomina `{key}` = «{condition[key]}»: un "
@@ -1525,10 +1532,43 @@ def self_test_token_budget() -> int:
             print(f"        {error}")
         if not ok:
             failures += 1
+    # E la terza: un obiettivo del pool che nomina un posto. D-315 ha aperto
+    # due eccezioni (`$any` e `$rival`) e un'eccezione che non e' stata vista
+    # tacere e mordere e' un buco, non una regola.
+    for objective, expected, what in (
+        ({"id": "OBJ_ANY", "conditions": [{
+            "type": "state_tag_present", "scope": "REGION",
+            "region_id": "$any", "tag": "x",
+        }]}, 0, "`$any` non nomina nessun posto: passa"),
+        ({"id": "OBJ_RIVAL", "conditions": [{
+            "type": "state_tag_present", "scope": "REGION",
+            "region_id": "$rival", "tag": "x",
+        }]}, 0, "`$rival` non nomina nessun posto: passa"),
+        ({"id": "OBJ_NOME", "conditions": [{
+            "type": "state_tag_present", "scope": "REGION",
+            "region_id": "REG_EREDAN", "tag": "x",
+        }]}, 1, "una Regione col suo nome: muta meta' delle Chronicle"),
+        ({"id": "OBJ_ANNIDATO", "conditions": [{
+            "type": "any_of", "conditions": [{
+                "type": "state_tag_present", "scope": "REGION",
+                "region_id": "REG_EREDAN", "tag": "x",
+            }],
+        }]}, 1, "e anche annidata dentro un any_of"),
+    ):
+        report = Report()
+        check_objectives_are_shareable({"objective": [objective]}, {}, report)
+        ok = (len(report.errors) > 0) == (expected > 0)
+        name = "check_objectives_are_shareable"
+        print(f"{'ok  ' if ok else 'FAIL'}  {name:<28} {objective['id']:<14} {what}")
+        for error in report.errors:
+            print(f"        {error}")
+        if not ok:
+            failures += 1
+
     if failures:
         sys.stderr.write(f"\n{failures} caso/i non si comporta come deve\n")
         return 1
-    print("\nle due guardie mordono dove devono e tacciono dove devono")
+    print("\nle tre guardie mordono dove devono e tacciono dove devono")
     return 0
 
 
