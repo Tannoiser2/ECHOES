@@ -129,7 +129,64 @@
         "structure:canal"
       ],
       "opening_line": "I canali che Aldric fece scavare ci sono ancora, pieni di terra, e da otto secoli nessuno e' obbligato a toglierla.",
-      "theme": "THM_VIE"
+      "theme": "THM_VIE",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_WATER_CANALS",
+            "text": "Chi manda gli uomini a scavare $in_region?",
+            "eligibility": []
+          },
+          {
+            "id": "Q_WATER_PRICE",
+            "text": "E l'acqua, dopo, di chi e?",
+            "eligibility": [
+              {
+                "type": "tension_limit",
+                "tension_id": "TEN_WATER",
+                "min": 4,
+                "label": "L'Acqua Ferma è al limite"
+              }
+            ]
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_DIG_TOGETHER",
+            "question_id": "Q_WATER_CANALS",
+            "text": "Ogni città mandi braccia per quanta acqua prende. E nessuno riscuota.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_CANALS_DUG"
+            ],
+            "echo_summary": "I canali furono riaperti a spese di tutti, e l'acqua tornò a muoversi $in_region.",
+            "echo_summaries": {
+              "FAILURE": "Si stabilì chi mandava le braccia, e a primavera non le mandò nessuno."
+            }
+          },
+          {
+            "id": "P_DIG_FOR_HIRE",
+            "question_id": "Q_WATER_CANALS",
+            "text": "Li paghi $proponent; chi vorrà l'acqua, poi, la compri.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_CANALS_DUG",
+              "CNS_WATER_PRICED"
+            ],
+            "echo_summary": "I canali furono riaperti da $proponent, e da allora l'acqua ebbe un prezzo."
+          },
+          {
+            "id": "P_WATER_COMMON",
+            "question_id": "Q_WATER_PRICE",
+            "text": "L'acqua non è di nessuno. Chi la devia risponde a tutti.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_CANALS_DUG"
+            ],
+            "echo_summary": "Si stabilì che l'acqua non fosse di nessuno, e per un anno intero funzionò."
+          }
+        ]
+      }
     },
     {
       "id": "TEN_DEBT",
@@ -258,7 +315,94 @@
         "structure:tollgate"
       ],
       "opening_line": "La Gilda del Sale tiene il registro di tutti, e quest'anno il registro e' stato aperto in pubblico per la prima volta.",
-      "theme": "THM_VIE"
+      "theme": "THM_VIE",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_DEBT_LEDGER",
+            "text": "Chi tiene il registro, e chi può leggerlo?",
+            "eligibility": []
+          },
+          {
+            "id": "Q_DEBT_CALL",
+            "text": "E se lo chiamano tutto insieme, $in_region cosa succede?",
+            "eligibility": [
+              {
+                "type": "tension_limit",
+                "tension_id": "TEN_DEBT",
+                "min": 3,
+                "label": "Il Debito è al limite"
+              }
+            ]
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_OPEN_LEDGER",
+            "question_id": "Q_DEBT_LEDGER",
+            "text": "Si copi il registro e lo si lasci dove chiunque possa leggerlo.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_LEDGER_OPENED"
+            ],
+            "echo_summary": "Il registro fu copiato e lasciato leggere, e nessuno ci trovò un imbroglio."
+          },
+          {
+            "id": "P_KEEP_LEDGER",
+            "question_id": "Q_DEBT_LEDGER",
+            "text": "Il registro resti a $proponent, che ne risponda col proprio nome.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_DEBT_CALLED"
+            ],
+            "echo_summary": "Il registro restò a $proponent, e le condizioni le seppe solo chi le firmava.",
+            "echo_summaries": {
+              "FAILURE": "Si volle che il registro restasse a uno solo, e tre città smisero di firmare."
+            }
+          },
+          {
+            "id": "P_OLD_PAGE",
+            "question_id": "Q_DEBT_LEDGER",
+            "text": "Si riapre il registro alla pagina che si racconta, e la si legge ad alta voce prima di scrivere la nuova.",
+            "eligibility": [
+              {
+                "type": "state_tag_present",
+                "scope": "GLOBAL",
+                "tag": "legend:debt_called",
+                "label": "Si racconta del giorno in cui la Gilda chiese tutto"
+              }
+            ],
+            "success_consequences": [
+              "CNS_LEGEND_RETOLD"
+            ],
+            "echo_summary": "La vecchia pagina fu letta ad alta voce, e i numeri nuovi fecero meno paura.",
+            "echo_summaries": {
+              "FAILURE": "Si cercò la pagina che si racconta, e nessuno fu d'accordo su cosa ci fosse scritto."
+            }
+          },
+          {
+            "id": "P_FORGIVE",
+            "question_id": "Q_DEBT_CALL",
+            "text": "Una riga tirata sotto la colonna: si riparta da zero, e si scriva come.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_DEBT_FORGIVEN"
+            ],
+            "echo_summary": "Il debito fu rimesso, e per un anno non si parlò d'altro."
+          },
+          {
+            "id": "P_CALL_IT_IN",
+            "question_id": "Q_DEBT_CALL",
+            "text": "Si chieda tutto, adesso. Chi non può pagare, paghi con quello che ha.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_DEBT_CALLED",
+              "CNS_SEAT_CLAIMED"
+            ],
+            "echo_summary": "Il debito fu chiamato tutto insieme, e $in_region cambiò padrone senza che partisse un colpo."
+          }
+        ]
+      }
     },
     {
       "id": "TEN_RELIC",
@@ -392,7 +536,91 @@
         "condition:unrest"
       ],
       "opening_line": "L'Ordine del Vetro custodisce un frammento che nessuno dei vivi ha visto, e qualcuno ha cominciato a chiedere come si faccia a custodire una cosa che non si guarda.",
-      "theme": "THM_FEDE"
+      "theme": "THM_FEDE",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_RELIC_SHOW",
+            "text": "E chi ha diritto di vederlo?",
+            "eligibility": [
+              {
+                "type": "tension_limit",
+                "tension_id": "TEN_RELIC",
+                "min": 4,
+                "label": "La Reliquia è al limite"
+              }
+            ]
+          },
+          {
+            "id": "Q_RELIC_KEEP",
+            "text": "Chi risponde di quello che c'è nella teca?",
+            "eligibility": []
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_SHOW_IT",
+            "question_id": "Q_RELIC_SHOW",
+            "text": "Si apra la teca davanti a testimoni, e a mostrarla sia $proponent.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_RELIC_SHOWN"
+            ],
+            "echo_summary": "La teca fu aperta davanti a testimoni, e non successe niente: fu quella la notizia.",
+            "echo_summaries": {
+              "DECISIVE_SUCCESS": "La teca fu aperta davanti a tutti, e otto secoli di prudenza finirono in un pomeriggio."
+            }
+          },
+          {
+            "id": "P_BURY_IT",
+            "question_id": "Q_RELIC_SHOW",
+            "text": "Si muri la cella, e si metta a verbale che è stata murata.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_RELIC_BURIED"
+            ],
+            "echo_summary": "La cella fu murata, e messo a verbale che era stata murata."
+          },
+          {
+            "id": "P_ANOINT_KEEPER",
+            "question_id": "Q_RELIC_KEEP",
+            "text": "La custodia divenga incarico scritto, e a portarlo sia $proponent.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_ORDER_ANOINTED"
+            ],
+            "echo_summary": "La custodia fu riconosciuta a $proponent per atto, e smise di essere una consuetudine."
+          },
+          {
+            "id": "P_DIG_BELOW",
+            "question_id": "Q_RELIC_KEEP",
+            "text": "Sotto la cella si continui a scavare: chi custodisce non comanda alla roccia.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_ASH_ABANDONED",
+              "CNS_SEAT_CLAIMED",
+              "CNS_MOUNTAIN_WOUNDED"
+            ],
+            "echo_summary": "Si stabilì che la roccia non fosse dell'Ordine, e sotto la cella si continuò a scendere.",
+            "echo_summaries": {
+              "FAILURE": "Si volle scavare sotto la cella, e i puntelli non ressero un inverno."
+            }
+          },
+          {
+            "id": "P_WATCH_THE_ROCK",
+            "question_id": "Q_RELIC_KEEP",
+            "text": "La teca resti dov'è. Ciò che va guardato è la montagna, e la guardi $proponent.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_ASH_WATCH"
+            ],
+            "echo_summary": "Si stabilì che il pericolo non fosse nella teca ma nella roccia, e a vegliarla fu $proponent.",
+            "echo_summaries": {
+              "FAILURE": "Si volle spostare la veglia dalla teca alla montagna, e per un anno non la tenne nessuno."
+            }
+          }
+        ]
+      }
     },
     {
       "id": "TEN_CHARTER",
@@ -521,7 +749,73 @@
         "condition:unrest"
       ],
       "opening_line": "Otto secoli senza corona hanno funzionato benissimo, finche' quest'anno due citta' hanno avuto bisogno di sapere chi decide.",
-      "theme": "THM_POTERE"
+      "theme": "THM_POTERE",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_CHARTER_WRITE",
+            "text": "Chi scrive la regola che vale $in_region?",
+            "eligibility": []
+          },
+          {
+            "id": "Q_CHARTER_SEAT",
+            "text": "E chi si siede, quando non si è d'accordo?",
+            "eligibility": [
+              {
+                "type": "tension_limit",
+                "tension_id": "TEN_CHARTER",
+                "min": 3,
+                "label": "La Carta è al limite"
+              }
+            ]
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_WRITE_CHARTER",
+            "question_id": "Q_CHARTER_WRITE",
+            "text": "Una Carta breve, firmata da tutte e sette, che dica soltanto ciò che non si può fare.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_CHARTER_WRITTEN"
+            ],
+            "echo_summary": "Sette città firmarono lo stesso foglio, e il foglio era più corto di quanto tutti si aspettassero."
+          },
+          {
+            "id": "P_REFUSE_CHARTER",
+            "question_id": "Q_CHARTER_WRITE",
+            "text": "Ogni città tenga la propria legge. Chi vuole commerciare, si adegui.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_CHARTER_REFUSED"
+            ],
+            "echo_summary": "Si stabilì che ognuno tenesse la propria regola, e da allora contava chi arrivava prima.",
+            "echo_summaries": {
+              "FAILURE": "Si volle che ognuno tenesse la propria, e la prima causa la vinsero tutti e due."
+            }
+          },
+          {
+            "id": "P_TAKE_SEAT",
+            "question_id": "Q_CHARTER_SEAT",
+            "text": "Quando l'accordo manca, decida $proponent - e ne porti il costo.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SEAT_CLAIMED"
+            ],
+            "echo_summary": "$proponent si sedette dove non si sedeva nessuno da otto secoli, e per un po' funzionò meglio."
+          },
+          {
+            "id": "P_DRAW_LOTS",
+            "question_id": "Q_CHARTER_SEAT",
+            "text": "Quando l'accordo manca, si tiri a sorte; e la sorte sia scritta.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_CHARTER_WRITTEN"
+            ],
+            "echo_summary": "Si stabilì di tirare a sorte, e la cosa strana è che tenne."
+          }
+        ]
+      }
     },
     {
       "id": "TEN_NAMELESS",
@@ -646,7 +940,88 @@
         "condition:emptied"
       ],
       "opening_line": "Fuori dalle sette citta' vive gente che non risulta da nessuna parte, e ogni anno sono di piu' senza che nessun registro se ne accorga.",
-      "theme": "THM_TERRA"
+      "theme": "THM_TERRA",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_ANY_WHO_DECIDES",
+            "text": "$in_region, chi decide a chi non ne tocca?",
+            "eligibility": []
+          },
+          {
+            "id": "Q_ANY_WHO_STAYS",
+            "text": "Chi ha ancora motivo di restare $in_region?",
+            "eligibility": [
+              {
+                "type": "tension_limit",
+                "tension_id": "$tension",
+                "min": 4,
+                "label": "La questione è al limite"
+              }
+            ]
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_ANY_RATION",
+            "question_id": "Q_ANY_WHO_DECIDES",
+            "text": "Si conti quello che c'è, e $proponent decida chi ne ha diritto.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_RATIONED"
+            ],
+            "echo_summary": "$proponent fece la lista di chi aveva diritto $in_region, e nessuno la dimenticò.",
+            "echo_summaries": {
+              "DECISIVE_SUCCESS": "$proponent fece la lista di chi aveva diritto $in_region, e nessuno chiese di vederla due volte.",
+              "FAILURE": "$proponent volle fare la lista di chi aveva diritto $in_region, e la lista non fu mai letta."
+            }
+          },
+          {
+            "id": "P_ANY_SHARE",
+            "question_id": "Q_ANY_WHO_DECIDES",
+            "text": "Si divida in parti uguali, e si accetti che nessuno ne esca bene.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SHARED_BURDEN"
+            ],
+            "echo_summary": "Il peso $of_region fu diviso in parti uguali, e fu il massimo che quel consiglio riuscì a fare."
+          },
+          {
+            "id": "P_ANY_AS_STORY",
+            "question_id": "Q_ANY_WHO_DECIDES",
+            "text": "Si fa come si racconta che si fece, l'anno buono: ognuno al suo posto, e i conti dopo.",
+            "eligibility": [
+              {
+                "type": "state_tag_present",
+                "scope": "GLOBAL",
+                "tag": "legend:order_restored",
+                "label": "Si racconta di un anno in cui l'ordine torno davvero"
+              }
+            ],
+            "success_consequences": [
+              "CNS_LEGEND_RETOLD"
+            ],
+            "echo_summary": "Si fece come si racconta che si fece, e per quell'anno bastò.",
+            "echo_summaries": {
+              "FAILURE": "Si volle fare come nella storia, e la storia non tornò."
+            }
+          },
+          {
+            "id": "P_ANY_LEAVE",
+            "question_id": "Q_ANY_WHO_STAYS",
+            "text": "Non si risolve: si va via. $rival resti pure, se ci tiene.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_ABANDONED"
+            ],
+            "echo_summary": "$proponent lasciò $the_region a chi voleva restare, e restarono in pochi.",
+            "echo_summaries": {
+              "FAILURE": "$proponent volle andarsene da $the_region, e non partì nessuno.",
+              "SUCCESS_WITH_COST": "$proponent lasciò $the_region a chi voleva restare, e restarono in pochi - e nessuno dei due gruppi perdonò l'altro."
+            }
+          }
+        ]
+      }
     },
     {
       "id": "TEN_ASH",
@@ -770,7 +1145,38 @@
         "wild"
       ],
       "opening_line": "La montagna ha ricominciato a fumare: i vecchi dicono che l'ha sempre fatto, i registri dell'Ordine dicono di no.",
-      "theme": "THM_ANTICO"
+      "theme": "THM_ANTICO",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_ANY_ANCIENT_WATCH",
+            "text": "Chi tiene d'occhio quello che c'è $in_region?",
+            "eligibility": []
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_ANY_WATCH",
+            "question_id": "Q_ANY_ANCIENT_WATCH",
+            "text": "Due torri e un turno di guardia. Non impediranno nulla: faranno sapere prima.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_ASH_WATCH"
+            ],
+            "echo_summary": "Si mise una veglia $in_region, e da allora si seppe sempre con un giorno di anticipo."
+          },
+          {
+            "id": "P_ANY_IGNORE",
+            "question_id": "Q_ANY_ANCIENT_WATCH",
+            "text": "Non c'è nulla da guardare. Chi vuole vegliare, paghi le proprie guardie.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_COST_UNREST"
+            ],
+            "echo_summary": "Si stabilì che non ci fosse niente da guardare, e per qualche mese fu vero."
+          }
+        ]
+      }
     }
   ]
 }

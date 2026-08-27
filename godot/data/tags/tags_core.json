@@ -548,12 +548,13 @@
       ],
       "read_by": [
         "asset_physical",
+        "chronicle",
         "confluence_template",
         "consequence",
         "destiny",
         "destiny_physical",
-        "chronicle",
-        "entity_strategic_profile"
+        "entity_strategic_profile",
+        "tension"
       ]
     },
     {
@@ -570,7 +571,8 @@
         "confluence_template",
         "consequence",
         "destiny_physical",
-        "entity_strategic_profile"
+        "entity_strategic_profile",
+        "tension"
       ]
     },
     {
@@ -1213,7 +1215,8 @@
         "engine"
       ],
       "read_by": [
-        "confluence_template"
+        "confluence_template",
+        "tension"
       ],
       "note": "la funzione dell'Azione appena compiuta: il motore la posa sul mondo per l'eleggibilita' degli Echo, e la vista la nasconde"
     },
@@ -1471,7 +1474,8 @@
       "read_by": [
         "confluence_template",
         "echo_card",
-        "engine"
+        "engine",
+        "tension"
       ],
       "note": "la forma postuma di un fatto: la scrive il motore quando la memoria sfuma"
     },
@@ -1504,7 +1508,8 @@
       "read_by": [
         "confluence_template",
         "echo_card",
-        "engine"
+        "engine",
+        "tension"
       ],
       "note": "la forma postuma di un fatto: la scrive il motore quando la memoria sfuma"
     },
@@ -1855,7 +1860,8 @@
         "consequence",
         "destiny",
         "destiny_physical",
-        "entity_strategic_profile"
+        "entity_strategic_profile",
+        "tension"
       ],
       "note": "fatto del mondo; il sigillo sulla mappa e' structure:sealed"
     },
@@ -2197,8 +2203,9 @@
         "consequence",
         "destiny",
         "destiny_physical",
+        "entity_strategic_profile",
         "objective",
-        "entity_strategic_profile"
+        "tension"
       ]
     },
     {

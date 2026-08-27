@@ -320,6 +320,31 @@
           "type": "string",
           "pattern": "^THM_[A-Z_]+$",
           "description": "Il Tema fisico a cui questa Tensione appartiene sul tavolo. `domain` resta la parola del motore; `theme` e' la traccia di Calore che i giocatori guardano, e le due non coincidono: la Successione e' TERRITORY per il motore e Potere per chi gioca."
+        },
+        "council": {
+          "type": "object",
+          "description": "**Il Consiglio che questa carta apre** (0.1.272, taglio 2 di ISSUES 80, parola del committente: «ogni carta sue proposte»). Le Domande e le Proposte stanno sulla carta, non in un template condiviso: al tavolo la carta girata deve bastare a se stessa. Il template resta per quello che non e' della singola carta — le clausole, i pool, la Risonanza del titolo.",
+          "required": [
+            "questions",
+            "propositions"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "questions": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "confluence_template.schema.json#/$defs/question"
+              }
+            },
+            "propositions": {
+              "type": "array",
+              "minItems": 2,
+              "items": {
+                "$ref": "confluence_template.schema.json#/$defs/proposition"
+              }
+            }
+          }
         }
       }
     }

@@ -140,11 +140,22 @@ func open(tension_id: String, trigger: Dictionary) -> Dictionary:
 	return current
 
 
+## **Il Consiglio di questa carta**, domande e proposte comprese (0.1.272).
+##
+## Non si legge piu' `confluence_templates[...]` direttamente: quel dizionario
+## ha ancora le domande di ripiego, e prenderle di li' vorrebbe dire chiedere
+## al tavolo la domanda generica invece di quella stampata sulla carta.
+## `confluence_template_for` fonde le due cose: la carta vince su quello che e'
+## suo, il template tiene il resto.
+func _template() -> Dictionary:
+	return data.confluence_template_for(str(current["tension_id"]))
+
+
 ## §12.2 B: which questions the state of the Tension actually raises.
 func available_questions() -> Array:
 	if current.is_empty():
 		return []
-	var template: Dictionary = data.confluence_templates[str(current["template_id"])]
+	var template: Dictionary = _template()
 	return _eligible_questions(template, str(current["proponent"]), str(current["tension_id"]))
 
 
@@ -260,7 +271,7 @@ func _select_question(template: Dictionary, proponent: String, tension_id: Strin
 func available_propositions() -> Array:
 	if current.is_empty():
 		return []
-	var template: Dictionary = data.confluence_templates[str(current["template_id"])]
+	var template: Dictionary = _template()
 	var context: Dictionary = effect_context()
 	var out: Array = []
 	for proposition in template["propositions"]:
@@ -326,7 +337,7 @@ func declare_stance(entity_id: String, stance: String, clause_id: String = "") -
 
 
 func _find_clause(clause_id: String) -> Dictionary:
-	var template: Dictionary = data.confluence_templates[str(current["template_id"])]
+	var template: Dictionary = _template()
 	for clause in template["condition_clauses"]:
 		if str(clause["id"]) == clause_id:
 			return clause
@@ -704,7 +715,7 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 		last_error = "nessuna proposta scelta"
 		return {}
 
-	var template: Dictionary = data.confluence_templates[str(current["template_id"])]
+	var template: Dictionary = _template()
 	var tension_id: String = str(current["tension_id"])
 	var source: Dictionary = Effect.source(
 		"confluence",
@@ -1530,7 +1541,7 @@ func _stance_of(entity_id: String) -> String:
 
 
 func _proposition() -> Dictionary:
-	var template: Dictionary = data.confluence_templates[str(current["template_id"])]
+	var template: Dictionary = _template()
 	for proposition in template["propositions"]:
 		if str(proposition["id"]) == str(current["proposition_id"]):
 			return proposition

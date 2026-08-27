@@ -60,37 +60,17 @@
           "type": "array",
           "minItems": 1,
           "items": {
-            "type": "object",
-            "required": [
-              "id",
-              "text",
-              "eligibility"
-            ],
-            "additionalProperties": false,
-            "properties": {
-              "id": {
-                "type": "string",
-                "minLength": 1
-              },
-              "text": {
-                "type": "string",
-                "minLength": 1
-              },
-              "eligibility": {
-                "type": "array",
-                "items": {
-                  "$ref": "destiny.schema.json#/$defs/condition"
-                }
-              }
-            }
-          }
+            "$ref": "#/$defs/question"
+          },
+          "description": "Le Domande che questa questione puo' aprire. Il ripiego per una carta che non porta il suo blocco `council`: la carta viene prima."
         },
         "propositions": {
           "type": "array",
           "minItems": 2,
           "items": {
             "$ref": "#/$defs/proposition"
-          }
+          },
+          "description": "Le Proposte votabili. Il ripiego per una carta che non porta il suo blocco `council`: la carta viene prima."
         },
         "condition_clauses": {
           "type": "array",
@@ -262,6 +242,32 @@
           }
         }
       }
+    },
+    "question": {
+      "type": "object",
+      "required": [
+        "id",
+        "text",
+        "eligibility"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "eligibility": {
+          "type": "array",
+          "items": {
+            "$ref": "destiny.schema.json#/$defs/condition"
+          }
+        }
+      },
+      "description": "Una Domanda del Consiglio. Da 0.1.272 vive sulla carta Tensione (blocco `council`): qui resta la forma, perche' la carta e il template la scrivono uguale."
     }
   }
 }

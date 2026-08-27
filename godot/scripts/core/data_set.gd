@@ -210,12 +210,40 @@ func _check_references() -> void:
 ## (D-028). Ids are sorted so the fallback is deterministic.
 func confluence_template_for(tension_id: String) -> Dictionary:
 	var tension: Variant = tensions.get(tension_id)
+	var base: Dictionary = _council_base_for(tension_id, tension)
+	if base.is_empty() or tension == null:
+		return base
+	# **Le Domande e le Proposte vengono dalla carta** (0.1.272, taglio 2 di
+	# ISSUES 80, parola del committente: «ogni carta sue proposte»).
+	#
+	# Al tavolo la carta girata deve bastare a se stessa: chi la legge vede la
+	# sua domanda e le sue proposte, non quelle di un mazzetto condiviso. Prima
+	# di questa decisione **sette domande generiche coprivano cinquantadue
+	# carte** — «chi decide a chi non ne tocca?» era la domanda di quindici
+	# questioni diverse.
+	#
+	# Il template resta, e serve ancora: le clausole, i pool delle Conseguenze,
+	# la Risonanza del titolo non sono della singola carta. Quello che la carta
+	# porta, la carta lo vince.
+	var council: Dictionary = (tension as Dictionary).get("council", {}) as Dictionary
+	if council.is_empty():
+		return base
+	var merged: Dictionary = base.duplicate()
+	merged["questions"] = (council["questions"] as Array)
+	merged["propositions"] = (council["propositions"] as Array)
+	return merged
+
+
+## Il template che fa da base a questa questione: quello scritto per lei, o
+## quello del suo dominio. Da qui vengono le clausole e i pool; le Domande e le
+## Proposte le mette la carta.
+func _council_base_for(tension_id: String, tension: Variant) -> Dictionary:
 	for template in confluence_templates.values():
 		if str(template.get("tension_id", "")) == tension_id:
 			return template
 	if tension == null:
 		return {}
-	var domain: String = str(tension["domain"])
+	var domain: String = str((tension as Dictionary)["domain"])
 	var ids: Array = confluence_templates.keys()
 	ids.sort()
 	for template_id in ids:

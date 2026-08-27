@@ -143,7 +143,7 @@ Il Cristallo Rosso non è più una curiosità. Qualcuno deve dire, ad alta voce,
 > Che cosa si fa del Cristallo Rosso che esce nella Regione di cui si discute?
 
 - **Se passa — La Miniera Aperta:** la Regione discussa diventa sfruttata · il mondo registra: il Cristallo e' stato sfruttato · la domanda si apre a tutti · una casa porta addosso: scoperta: il cristallo · una costruzione sale o scende di grado · e resta una cicatrice: La galleria maestra non si richiude più, e la roccia intorno resta tiepida.
-- **Se passa — La Miniera di Stato:** la Regione discussa cambia padrone
+- **Se passa — La Miniera di Stato:** il mondo registra: lo studio e' sotto sorveglianza
 
 ### Si sigillino le gallerie nella Regione di cui si discute: ciò che dorme resti addormentato.
 

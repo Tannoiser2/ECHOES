@@ -124,7 +124,67 @@
         "condition:contested"
       ],
       "opening_line": "Qualcuno ha piantato pali attorno ai campi bassi, e nessuno ricorda di averglielo concesso.",
-      "theme": "THM_TERRA"
+      "theme": "THM_TERRA",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_ANY_WHO_HOLDS",
+            "text": "$in_region, chi tiene il posto quando la voce si spegne?",
+            "eligibility": []
+          },
+          {
+            "id": "Q_ANY_WHOSE_LAW",
+            "text": "Quale legge vale $in_region: quella scritta, o quella di chi c'e'?",
+            "eligibility": [
+              {
+                "type": "tension_limit",
+                "tension_id": "$tension",
+                "min": 4,
+                "label": "La questione e' al limite"
+              }
+            ]
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_ANY_HOLD",
+            "question_id": "Q_ANY_WHO_HOLDS",
+            "text": "$proponent lo tiene, e lo dica forte: chi sta li' risponde a lui.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SEAT_CLAIMED"
+            ],
+            "echo_summary": "$proponent prese il posto $of_region, e nessuno oso' contarlo due volte.",
+            "echo_summaries": {
+              "DECISIVE_SUCCESS": "$proponent prese il posto $of_region, e il conto torno' al primo colpo.",
+              "FAILURE": "$proponent volle il posto $of_region, e il posto non volle lui."
+            }
+          },
+          {
+            "id": "P_ANY_SPLIT",
+            "question_id": "Q_ANY_WHO_HOLDS",
+            "text": "Si divida l'uso, non il titolo: ognuno il suo pezzo, e i conti a fine anno.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SHARED_BURDEN"
+            ],
+            "echo_summary": "L'uso $of_region fu diviso senza dividere il titolo, e resse quanto reggono le cose divise."
+          },
+          {
+            "id": "P_ANY_WALK_AWAY",
+            "question_id": "Q_ANY_WHOSE_LAW",
+            "text": "Nessuna legge: si lascia il posto a chi se lo vuole caricare addosso.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_ABANDONED"
+            ],
+            "echo_summary": "Nessuna legge fu scritta per $the_region, e il posto resto' a chi ci dormiva.",
+            "echo_summaries": {
+              "FAILURE": "Nessuno volle scrivere la legge $of_region, e nessuno volle nemmeno andarsene."
+            }
+          }
+        ]
+      }
     },
     {
       "id": "TEN_FALLOW",
@@ -248,7 +308,88 @@
         "condition:lean"
       ],
       "opening_line": "Il grano viene su corto. I vecchi dicono che la terra chiede riposo, e nessuno puo' permetterselo.",
-      "theme": "THM_TERRA"
+      "theme": "THM_TERRA",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_ANY_WHO_DECIDES",
+            "text": "$in_region, chi decide a chi non ne tocca?",
+            "eligibility": []
+          },
+          {
+            "id": "Q_ANY_WHO_STAYS",
+            "text": "Chi ha ancora motivo di restare $in_region?",
+            "eligibility": [
+              {
+                "type": "tension_limit",
+                "tension_id": "$tension",
+                "min": 4,
+                "label": "La questione è al limite"
+              }
+            ]
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_ANY_RATION",
+            "question_id": "Q_ANY_WHO_DECIDES",
+            "text": "Si conti quello che c'è, e $proponent decida chi ne ha diritto.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_RATIONED"
+            ],
+            "echo_summary": "$proponent fece la lista di chi aveva diritto $in_region, e nessuno la dimenticò.",
+            "echo_summaries": {
+              "DECISIVE_SUCCESS": "$proponent fece la lista di chi aveva diritto $in_region, e nessuno chiese di vederla due volte.",
+              "FAILURE": "$proponent volle fare la lista di chi aveva diritto $in_region, e la lista non fu mai letta."
+            }
+          },
+          {
+            "id": "P_ANY_SHARE",
+            "question_id": "Q_ANY_WHO_DECIDES",
+            "text": "Si divida in parti uguali, e si accetti che nessuno ne esca bene.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SHARED_BURDEN"
+            ],
+            "echo_summary": "Il peso $of_region fu diviso in parti uguali, e fu il massimo che quel consiglio riuscì a fare."
+          },
+          {
+            "id": "P_ANY_AS_STORY",
+            "question_id": "Q_ANY_WHO_DECIDES",
+            "text": "Si fa come si racconta che si fece, l'anno buono: ognuno al suo posto, e i conti dopo.",
+            "eligibility": [
+              {
+                "type": "state_tag_present",
+                "scope": "GLOBAL",
+                "tag": "legend:order_restored",
+                "label": "Si racconta di un anno in cui l'ordine torno davvero"
+              }
+            ],
+            "success_consequences": [
+              "CNS_LEGEND_RETOLD"
+            ],
+            "echo_summary": "Si fece come si racconta che si fece, e per quell'anno bastò.",
+            "echo_summaries": {
+              "FAILURE": "Si volle fare come nella storia, e la storia non tornò."
+            }
+          },
+          {
+            "id": "P_ANY_LEAVE",
+            "question_id": "Q_ANY_WHO_STAYS",
+            "text": "Non si risolve: si va via. $rival resti pure, se ci tiene.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_ABANDONED"
+            ],
+            "echo_summary": "$proponent lasciò $the_region a chi voleva restare, e restarono in pochi.",
+            "echo_summaries": {
+              "FAILURE": "$proponent volle andarsene da $the_region, e non partì nessuno.",
+              "SUCCESS_WITH_COST": "$proponent lasciò $the_region a chi voleva restare, e restarono in pochi - e nessuno dei due gruppi perdonò l'altro."
+            }
+          }
+        ]
+      }
     },
     {
       "id": "TEN_LANDLESS",
@@ -369,7 +510,88 @@
       "description": "Braccia senza terra, terra senza braccia: il conto non torna, e chi lavora comincia a chiederselo.",
       "focus_region_tags": [],
       "opening_line": "Alle porte si presentano braccia che chiedono terra, e la terra ha gia' tutti i padroni che regge.",
-      "theme": "THM_TERRA"
+      "theme": "THM_TERRA",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_ANY_WHO_DECIDES",
+            "text": "$in_region, chi decide a chi non ne tocca?",
+            "eligibility": []
+          },
+          {
+            "id": "Q_ANY_WHO_STAYS",
+            "text": "Chi ha ancora motivo di restare $in_region?",
+            "eligibility": [
+              {
+                "type": "tension_limit",
+                "tension_id": "$tension",
+                "min": 4,
+                "label": "La questione è al limite"
+              }
+            ]
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_ANY_RATION",
+            "question_id": "Q_ANY_WHO_DECIDES",
+            "text": "Si conti quello che c'è, e $proponent decida chi ne ha diritto.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_RATIONED"
+            ],
+            "echo_summary": "$proponent fece la lista di chi aveva diritto $in_region, e nessuno la dimenticò.",
+            "echo_summaries": {
+              "DECISIVE_SUCCESS": "$proponent fece la lista di chi aveva diritto $in_region, e nessuno chiese di vederla due volte.",
+              "FAILURE": "$proponent volle fare la lista di chi aveva diritto $in_region, e la lista non fu mai letta."
+            }
+          },
+          {
+            "id": "P_ANY_SHARE",
+            "question_id": "Q_ANY_WHO_DECIDES",
+            "text": "Si divida in parti uguali, e si accetti che nessuno ne esca bene.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SHARED_BURDEN"
+            ],
+            "echo_summary": "Il peso $of_region fu diviso in parti uguali, e fu il massimo che quel consiglio riuscì a fare."
+          },
+          {
+            "id": "P_ANY_AS_STORY",
+            "question_id": "Q_ANY_WHO_DECIDES",
+            "text": "Si fa come si racconta che si fece, l'anno buono: ognuno al suo posto, e i conti dopo.",
+            "eligibility": [
+              {
+                "type": "state_tag_present",
+                "scope": "GLOBAL",
+                "tag": "legend:order_restored",
+                "label": "Si racconta di un anno in cui l'ordine torno davvero"
+              }
+            ],
+            "success_consequences": [
+              "CNS_LEGEND_RETOLD"
+            ],
+            "echo_summary": "Si fece come si racconta che si fece, e per quell'anno bastò.",
+            "echo_summaries": {
+              "FAILURE": "Si volle fare come nella storia, e la storia non tornò."
+            }
+          },
+          {
+            "id": "P_ANY_LEAVE",
+            "question_id": "Q_ANY_WHO_STAYS",
+            "text": "Non si risolve: si va via. $rival resti pure, se ci tiene.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_ABANDONED"
+            ],
+            "echo_summary": "$proponent lasciò $the_region a chi voleva restare, e restarono in pochi.",
+            "echo_summaries": {
+              "FAILURE": "$proponent volle andarsene da $the_region, e non partì nessuno.",
+              "SUCCESS_WITH_COST": "$proponent lasciò $the_region a chi voleva restare, e restarono in pochi - e nessuno dei due gruppi perdonò l'altro."
+            }
+          }
+        ]
+      }
     },
     {
       "id": "TEN_FLOOD",
@@ -492,7 +714,88 @@
         "marsh"
       ],
       "opening_line": "La palude e' salita di un palmo, e il palmo dopo tocca i campi.",
-      "theme": "THM_TERRA"
+      "theme": "THM_TERRA",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_ANY_WHO_DECIDES",
+            "text": "$in_region, chi decide a chi non ne tocca?",
+            "eligibility": []
+          },
+          {
+            "id": "Q_ANY_WHO_STAYS",
+            "text": "Chi ha ancora motivo di restare $in_region?",
+            "eligibility": [
+              {
+                "type": "tension_limit",
+                "tension_id": "$tension",
+                "min": 4,
+                "label": "La questione è al limite"
+              }
+            ]
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_ANY_RATION",
+            "question_id": "Q_ANY_WHO_DECIDES",
+            "text": "Si conti quello che c'è, e $proponent decida chi ne ha diritto.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_RATIONED"
+            ],
+            "echo_summary": "$proponent fece la lista di chi aveva diritto $in_region, e nessuno la dimenticò.",
+            "echo_summaries": {
+              "DECISIVE_SUCCESS": "$proponent fece la lista di chi aveva diritto $in_region, e nessuno chiese di vederla due volte.",
+              "FAILURE": "$proponent volle fare la lista di chi aveva diritto $in_region, e la lista non fu mai letta."
+            }
+          },
+          {
+            "id": "P_ANY_SHARE",
+            "question_id": "Q_ANY_WHO_DECIDES",
+            "text": "Si divida in parti uguali, e si accetti che nessuno ne esca bene.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SHARED_BURDEN"
+            ],
+            "echo_summary": "Il peso $of_region fu diviso in parti uguali, e fu il massimo che quel consiglio riuscì a fare."
+          },
+          {
+            "id": "P_ANY_AS_STORY",
+            "question_id": "Q_ANY_WHO_DECIDES",
+            "text": "Si fa come si racconta che si fece, l'anno buono: ognuno al suo posto, e i conti dopo.",
+            "eligibility": [
+              {
+                "type": "state_tag_present",
+                "scope": "GLOBAL",
+                "tag": "legend:order_restored",
+                "label": "Si racconta di un anno in cui l'ordine torno davvero"
+              }
+            ],
+            "success_consequences": [
+              "CNS_LEGEND_RETOLD"
+            ],
+            "echo_summary": "Si fece come si racconta che si fece, e per quell'anno bastò.",
+            "echo_summaries": {
+              "FAILURE": "Si volle fare come nella storia, e la storia non tornò."
+            }
+          },
+          {
+            "id": "P_ANY_LEAVE",
+            "question_id": "Q_ANY_WHO_STAYS",
+            "text": "Non si risolve: si va via. $rival resti pure, se ci tiene.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_ABANDONED"
+            ],
+            "echo_summary": "$proponent lasciò $the_region a chi voleva restare, e restarono in pochi.",
+            "echo_summaries": {
+              "FAILURE": "$proponent volle andarsene da $the_region, e non partì nessuno.",
+              "SUCCESS_WITH_COST": "$proponent lasciò $the_region a chi voleva restare, e restarono in pochi - e nessuno dei due gruppi perdonò l'altro."
+            }
+          }
+        ]
+      }
     },
     {
       "id": "TEN_CLEARING",
@@ -615,7 +918,63 @@
         "forest"
       ],
       "opening_line": "Le asce sono entrate nel bosco dei confini, e il bosco arretra di un campo all'anno.",
-      "theme": "THM_TERRA"
+      "theme": "THM_TERRA",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_ANY_WHO_PAYS",
+            "text": "$in_region, chi paga il prezzo di quello che rende?",
+            "eligibility": []
+          },
+          {
+            "id": "Q_ANY_WHO_KEEPS",
+            "text": "Chi tiene i conti di quello che passa $in_region — e chi li legge?",
+            "eligibility": [
+              {
+                "type": "tension_limit",
+                "tension_id": "$tension",
+                "min": 4,
+                "label": "La questione e' al limite"
+              }
+            ]
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_ANY_PRICE",
+            "question_id": "Q_ANY_WHO_PAYS",
+            "text": "Si metta un prezzo, e $proponent lo riscuota: quello che passa, paga.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_TOLL_ESTABLISHED"
+            ],
+            "echo_summary": "$proponent mise il prezzo su quello che passava, e il prezzo resto' anche quando lui non c'era.",
+            "echo_summaries": {
+              "FAILURE": "$proponent volle mettere il prezzo, e il prezzo lo pago' lui."
+            }
+          },
+          {
+            "id": "P_ANY_SPREAD_COST",
+            "question_id": "Q_ANY_WHO_PAYS",
+            "text": "Il costo si divide in parti uguali, e nessuno ne esce bene.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SHARED_BURDEN"
+            ],
+            "echo_summary": "Il costo $of_region fu diviso in parti uguali, e fu il massimo che quel consiglio riusci' a fare."
+          },
+          {
+            "id": "P_ANY_OPEN_LEDGER",
+            "question_id": "Q_ANY_WHO_KEEPS",
+            "text": "Si aprano i registri: che ognuno veda quanto rende, e a chi.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_LEDGER_OPENED"
+            ],
+            "echo_summary": "I registri furono aperti, e piu' d'uno avrebbe preferito di no."
+          }
+        ]
+      }
     },
     {
       "id": "TEN_BOUNDARY_STONES",
@@ -736,7 +1095,67 @@
       "description": "Le pietre che dicono dove finisce il mio e comincia il tuo si sono mosse. Le pietre non si muovono da sole.",
       "focus_region_tags": [],
       "opening_line": "Tre pietre di confine sono state trovate spostate, e nessuna delle due parti ammette di averle toccate.",
-      "theme": "THM_TERRA"
+      "theme": "THM_TERRA",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_ANY_WHO_HOLDS",
+            "text": "$in_region, chi tiene il posto quando la voce si spegne?",
+            "eligibility": []
+          },
+          {
+            "id": "Q_ANY_WHOSE_LAW",
+            "text": "Quale legge vale $in_region: quella scritta, o quella di chi c'e'?",
+            "eligibility": [
+              {
+                "type": "tension_limit",
+                "tension_id": "$tension",
+                "min": 4,
+                "label": "La questione e' al limite"
+              }
+            ]
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_ANY_HOLD",
+            "question_id": "Q_ANY_WHO_HOLDS",
+            "text": "$proponent lo tiene, e lo dica forte: chi sta li' risponde a lui.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SEAT_CLAIMED"
+            ],
+            "echo_summary": "$proponent prese il posto $of_region, e nessuno oso' contarlo due volte.",
+            "echo_summaries": {
+              "DECISIVE_SUCCESS": "$proponent prese il posto $of_region, e il conto torno' al primo colpo.",
+              "FAILURE": "$proponent volle il posto $of_region, e il posto non volle lui."
+            }
+          },
+          {
+            "id": "P_ANY_SPLIT",
+            "question_id": "Q_ANY_WHO_HOLDS",
+            "text": "Si divida l'uso, non il titolo: ognuno il suo pezzo, e i conti a fine anno.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SHARED_BURDEN"
+            ],
+            "echo_summary": "L'uso $of_region fu diviso senza dividere il titolo, e resse quanto reggono le cose divise."
+          },
+          {
+            "id": "P_ANY_WALK_AWAY",
+            "question_id": "Q_ANY_WHOSE_LAW",
+            "text": "Nessuna legge: si lascia il posto a chi se lo vuole caricare addosso.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_ABANDONED"
+            ],
+            "echo_summary": "Nessuna legge fu scritta per $the_region, e il posto resto' a chi ci dormiva.",
+            "echo_summaries": {
+              "FAILURE": "Nessuno volle scrivere la legge $of_region, e nessuno volle nemmeno andarsene."
+            }
+          }
+        ]
+      }
     },
     {
       "id": "TEN_PASTURE",
@@ -860,7 +1279,67 @@
         "condition:contested"
       ],
       "opening_line": "Due greggi sullo stesso pascolo, due pastori con la stessa ragione, e l'erba che non basta per due.",
-      "theme": "THM_TERRA"
+      "theme": "THM_TERRA",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_ANY_WHO_HOLDS",
+            "text": "$in_region, chi tiene il posto quando la voce si spegne?",
+            "eligibility": []
+          },
+          {
+            "id": "Q_ANY_WHOSE_LAW",
+            "text": "Quale legge vale $in_region: quella scritta, o quella di chi c'e'?",
+            "eligibility": [
+              {
+                "type": "tension_limit",
+                "tension_id": "$tension",
+                "min": 4,
+                "label": "La questione e' al limite"
+              }
+            ]
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_ANY_HOLD",
+            "question_id": "Q_ANY_WHO_HOLDS",
+            "text": "$proponent lo tiene, e lo dica forte: chi sta li' risponde a lui.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SEAT_CLAIMED"
+            ],
+            "echo_summary": "$proponent prese il posto $of_region, e nessuno oso' contarlo due volte.",
+            "echo_summaries": {
+              "DECISIVE_SUCCESS": "$proponent prese il posto $of_region, e il conto torno' al primo colpo.",
+              "FAILURE": "$proponent volle il posto $of_region, e il posto non volle lui."
+            }
+          },
+          {
+            "id": "P_ANY_SPLIT",
+            "question_id": "Q_ANY_WHO_HOLDS",
+            "text": "Si divida l'uso, non il titolo: ognuno il suo pezzo, e i conti a fine anno.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SHARED_BURDEN"
+            ],
+            "echo_summary": "L'uso $of_region fu diviso senza dividere il titolo, e resse quanto reggono le cose divise."
+          },
+          {
+            "id": "P_ANY_WALK_AWAY",
+            "question_id": "Q_ANY_WHOSE_LAW",
+            "text": "Nessuna legge: si lascia il posto a chi se lo vuole caricare addosso.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_ABANDONED"
+            ],
+            "echo_summary": "Nessuna legge fu scritta per $the_region, e il posto resto' a chi ci dormiva.",
+            "echo_summaries": {
+              "FAILURE": "Nessuno volle scrivere la legge $of_region, e nessuno volle nemmeno andarsene."
+            }
+          }
+        ]
+      }
     },
     {
       "id": "TEN_SALT_FIELDS",
@@ -984,7 +1463,63 @@
         "marsh"
       ],
       "opening_line": "Le vasche di sale rendono come un raccolto, e chi le governa non ha mai toccato una zappa.",
-      "theme": "THM_TERRA"
+      "theme": "THM_TERRA",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_ANY_WHO_PAYS",
+            "text": "$in_region, chi paga il prezzo di quello che rende?",
+            "eligibility": []
+          },
+          {
+            "id": "Q_ANY_WHO_KEEPS",
+            "text": "Chi tiene i conti di quello che passa $in_region — e chi li legge?",
+            "eligibility": [
+              {
+                "type": "tension_limit",
+                "tension_id": "$tension",
+                "min": 4,
+                "label": "La questione e' al limite"
+              }
+            ]
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_ANY_PRICE",
+            "question_id": "Q_ANY_WHO_PAYS",
+            "text": "Si metta un prezzo, e $proponent lo riscuota: quello che passa, paga.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_TOLL_ESTABLISHED"
+            ],
+            "echo_summary": "$proponent mise il prezzo su quello che passava, e il prezzo resto' anche quando lui non c'era.",
+            "echo_summaries": {
+              "FAILURE": "$proponent volle mettere il prezzo, e il prezzo lo pago' lui."
+            }
+          },
+          {
+            "id": "P_ANY_SPREAD_COST",
+            "question_id": "Q_ANY_WHO_PAYS",
+            "text": "Il costo si divide in parti uguali, e nessuno ne esce bene.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SHARED_BURDEN"
+            ],
+            "echo_summary": "Il costo $of_region fu diviso in parti uguali, e fu il massimo che quel consiglio riusci' a fare."
+          },
+          {
+            "id": "P_ANY_OPEN_LEDGER",
+            "question_id": "Q_ANY_WHO_KEEPS",
+            "text": "Si aprano i registri: che ognuno veda quanto rende, e a chi.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_LEDGER_OPENED"
+            ],
+            "echo_summary": "I registri furono aperti, e piu' d'uno avrebbe preferito di no."
+          }
+        ]
+      }
     },
     {
       "id": "TEN_LAND_REGISTER",
@@ -1107,7 +1642,67 @@
         "capital"
       ],
       "opening_line": "Il trono vuole un registro delle terre, e ogni casa ha una ragione per non farsi scrivere.",
-      "theme": "THM_TERRA"
+      "theme": "THM_TERRA",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_ANY_WHO_HOLDS",
+            "text": "$in_region, chi tiene il posto quando la voce si spegne?",
+            "eligibility": []
+          },
+          {
+            "id": "Q_ANY_WHOSE_LAW",
+            "text": "Quale legge vale $in_region: quella scritta, o quella di chi c'e'?",
+            "eligibility": [
+              {
+                "type": "tension_limit",
+                "tension_id": "$tension",
+                "min": 4,
+                "label": "La questione e' al limite"
+              }
+            ]
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_ANY_HOLD",
+            "question_id": "Q_ANY_WHO_HOLDS",
+            "text": "$proponent lo tiene, e lo dica forte: chi sta li' risponde a lui.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SEAT_CLAIMED"
+            ],
+            "echo_summary": "$proponent prese il posto $of_region, e nessuno oso' contarlo due volte.",
+            "echo_summaries": {
+              "DECISIVE_SUCCESS": "$proponent prese il posto $of_region, e il conto torno' al primo colpo.",
+              "FAILURE": "$proponent volle il posto $of_region, e il posto non volle lui."
+            }
+          },
+          {
+            "id": "P_ANY_SPLIT",
+            "question_id": "Q_ANY_WHO_HOLDS",
+            "text": "Si divida l'uso, non il titolo: ognuno il suo pezzo, e i conti a fine anno.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SHARED_BURDEN"
+            ],
+            "echo_summary": "L'uso $of_region fu diviso senza dividere il titolo, e resse quanto reggono le cose divise."
+          },
+          {
+            "id": "P_ANY_WALK_AWAY",
+            "question_id": "Q_ANY_WHOSE_LAW",
+            "text": "Nessuna legge: si lascia il posto a chi se lo vuole caricare addosso.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_ABANDONED"
+            ],
+            "echo_summary": "Nessuna legge fu scritta per $the_region, e il posto resto' a chi ci dormiva.",
+            "echo_summaries": {
+              "FAILURE": "Nessuno volle scrivere la legge $of_region, e nessuno volle nemmeno andarsene."
+            }
+          }
+        ]
+      }
     },
     {
       "id": "TEN_PILGRIMS",
@@ -1228,7 +1823,88 @@
       "description": "Arrivano a piedi, mangiano poco, pregano molto. Sono tanti, e continuano ad arrivare.",
       "focus_region_tags": [],
       "opening_line": "La strada porta pellegrini come il fiume porta acqua, e i villaggi sul cammino contano le bocche.",
-      "theme": "THM_FEDE"
+      "theme": "THM_FEDE",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_ANY_WHO_DECIDES",
+            "text": "$in_region, chi decide a chi non ne tocca?",
+            "eligibility": []
+          },
+          {
+            "id": "Q_ANY_WHO_STAYS",
+            "text": "Chi ha ancora motivo di restare $in_region?",
+            "eligibility": [
+              {
+                "type": "tension_limit",
+                "tension_id": "$tension",
+                "min": 4,
+                "label": "La questione è al limite"
+              }
+            ]
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_ANY_RATION",
+            "question_id": "Q_ANY_WHO_DECIDES",
+            "text": "Si conti quello che c'è, e $proponent decida chi ne ha diritto.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_RATIONED"
+            ],
+            "echo_summary": "$proponent fece la lista di chi aveva diritto $in_region, e nessuno la dimenticò.",
+            "echo_summaries": {
+              "DECISIVE_SUCCESS": "$proponent fece la lista di chi aveva diritto $in_region, e nessuno chiese di vederla due volte.",
+              "FAILURE": "$proponent volle fare la lista di chi aveva diritto $in_region, e la lista non fu mai letta."
+            }
+          },
+          {
+            "id": "P_ANY_SHARE",
+            "question_id": "Q_ANY_WHO_DECIDES",
+            "text": "Si divida in parti uguali, e si accetti che nessuno ne esca bene.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SHARED_BURDEN"
+            ],
+            "echo_summary": "Il peso $of_region fu diviso in parti uguali, e fu il massimo che quel consiglio riuscì a fare."
+          },
+          {
+            "id": "P_ANY_AS_STORY",
+            "question_id": "Q_ANY_WHO_DECIDES",
+            "text": "Si fa come si racconta che si fece, l'anno buono: ognuno al suo posto, e i conti dopo.",
+            "eligibility": [
+              {
+                "type": "state_tag_present",
+                "scope": "GLOBAL",
+                "tag": "legend:order_restored",
+                "label": "Si racconta di un anno in cui l'ordine torno davvero"
+              }
+            ],
+            "success_consequences": [
+              "CNS_LEGEND_RETOLD"
+            ],
+            "echo_summary": "Si fece come si racconta che si fece, e per quell'anno bastò.",
+            "echo_summaries": {
+              "FAILURE": "Si volle fare come nella storia, e la storia non tornò."
+            }
+          },
+          {
+            "id": "P_ANY_LEAVE",
+            "question_id": "Q_ANY_WHO_STAYS",
+            "text": "Non si risolve: si va via. $rival resti pure, se ci tiene.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_ABANDONED"
+            ],
+            "echo_summary": "$proponent lasciò $the_region a chi voleva restare, e restarono in pochi.",
+            "echo_summaries": {
+              "FAILURE": "$proponent volle andarsene da $the_region, e non partì nessuno.",
+              "SUCCESS_WITH_COST": "$proponent lasciò $the_region a chi voleva restare, e restarono in pochi - e nessuno dei due gruppi perdonò l'altro."
+            }
+          }
+        ]
+      }
     },
     {
       "id": "TEN_HERESY",
@@ -1351,7 +2027,67 @@
         "capital"
       ],
       "opening_line": "In citta' si predica una parola nuova, e chi la ascolta smette di ascoltare quella vecchia.",
-      "theme": "THM_FEDE"
+      "theme": "THM_FEDE",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_ANY_WHO_HOLDS",
+            "text": "$in_region, chi tiene il posto quando la voce si spegne?",
+            "eligibility": []
+          },
+          {
+            "id": "Q_ANY_WHOSE_LAW",
+            "text": "Quale legge vale $in_region: quella scritta, o quella di chi c'e'?",
+            "eligibility": [
+              {
+                "type": "tension_limit",
+                "tension_id": "$tension",
+                "min": 4,
+                "label": "La questione e' al limite"
+              }
+            ]
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_ANY_HOLD",
+            "question_id": "Q_ANY_WHO_HOLDS",
+            "text": "$proponent lo tiene, e lo dica forte: chi sta li' risponde a lui.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SEAT_CLAIMED"
+            ],
+            "echo_summary": "$proponent prese il posto $of_region, e nessuno oso' contarlo due volte.",
+            "echo_summaries": {
+              "DECISIVE_SUCCESS": "$proponent prese il posto $of_region, e il conto torno' al primo colpo.",
+              "FAILURE": "$proponent volle il posto $of_region, e il posto non volle lui."
+            }
+          },
+          {
+            "id": "P_ANY_SPLIT",
+            "question_id": "Q_ANY_WHO_HOLDS",
+            "text": "Si divida l'uso, non il titolo: ognuno il suo pezzo, e i conti a fine anno.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SHARED_BURDEN"
+            ],
+            "echo_summary": "L'uso $of_region fu diviso senza dividere il titolo, e resse quanto reggono le cose divise."
+          },
+          {
+            "id": "P_ANY_WALK_AWAY",
+            "question_id": "Q_ANY_WHOSE_LAW",
+            "text": "Nessuna legge: si lascia il posto a chi se lo vuole caricare addosso.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_ABANDONED"
+            ],
+            "echo_summary": "Nessuna legge fu scritta per $the_region, e il posto resto' a chi ci dormiva.",
+            "echo_summaries": {
+              "FAILURE": "Nessuno volle scrivere la legge $of_region, e nessuno volle nemmeno andarsene."
+            }
+          }
+        ]
+      }
     },
     {
       "id": "TEN_VOWS",
@@ -1471,7 +2207,38 @@
       "description": "Promesse fatte agli dei in anni cattivi. Gli anni sono passati, le promesse no.",
       "focus_region_tags": [],
       "opening_line": "Meta' del paese ha un voto da sciogliere e nessuno ricorda piu' come si scioglie.",
-      "theme": "THM_FEDE"
+      "theme": "THM_FEDE",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_ANY_ANCIENT_WATCH",
+            "text": "Chi tiene d'occhio quello che c'è $in_region?",
+            "eligibility": []
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_ANY_WATCH",
+            "question_id": "Q_ANY_ANCIENT_WATCH",
+            "text": "Due torri e un turno di guardia. Non impediranno nulla: faranno sapere prima.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_ASH_WATCH"
+            ],
+            "echo_summary": "Si mise una veglia $in_region, e da allora si seppe sempre con un giorno di anticipo."
+          },
+          {
+            "id": "P_ANY_IGNORE",
+            "question_id": "Q_ANY_ANCIENT_WATCH",
+            "text": "Non c'è nulla da guardare. Chi vuole vegliare, paghi le proprie guardie.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_COST_UNREST"
+            ],
+            "echo_summary": "Si stabilì che non ci fosse niente da guardare, e per qualche mese fu vero."
+          }
+        ]
+      }
     },
     {
       "id": "TEN_SILENT_BELLS",
@@ -1595,7 +2362,67 @@
         "condition:mourning"
       ],
       "opening_line": "Le campane della citta' tacciono, e ognuno da' al silenzio il significato che teme di piu'.",
-      "theme": "THM_FEDE"
+      "theme": "THM_FEDE",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_ANY_WHO_HOLDS",
+            "text": "$in_region, chi tiene il posto quando la voce si spegne?",
+            "eligibility": []
+          },
+          {
+            "id": "Q_ANY_WHOSE_LAW",
+            "text": "Quale legge vale $in_region: quella scritta, o quella di chi c'e'?",
+            "eligibility": [
+              {
+                "type": "tension_limit",
+                "tension_id": "$tension",
+                "min": 4,
+                "label": "La questione e' al limite"
+              }
+            ]
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_ANY_HOLD",
+            "question_id": "Q_ANY_WHO_HOLDS",
+            "text": "$proponent lo tiene, e lo dica forte: chi sta li' risponde a lui.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SEAT_CLAIMED"
+            ],
+            "echo_summary": "$proponent prese il posto $of_region, e nessuno oso' contarlo due volte.",
+            "echo_summaries": {
+              "DECISIVE_SUCCESS": "$proponent prese il posto $of_region, e il conto torno' al primo colpo.",
+              "FAILURE": "$proponent volle il posto $of_region, e il posto non volle lui."
+            }
+          },
+          {
+            "id": "P_ANY_SPLIT",
+            "question_id": "Q_ANY_WHO_HOLDS",
+            "text": "Si divida l'uso, non il titolo: ognuno il suo pezzo, e i conti a fine anno.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SHARED_BURDEN"
+            ],
+            "echo_summary": "L'uso $of_region fu diviso senza dividere il titolo, e resse quanto reggono le cose divise."
+          },
+          {
+            "id": "P_ANY_WALK_AWAY",
+            "question_id": "Q_ANY_WHOSE_LAW",
+            "text": "Nessuna legge: si lascia il posto a chi se lo vuole caricare addosso.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_ABANDONED"
+            ],
+            "echo_summary": "Nessuna legge fu scritta per $the_region, e il posto resto' a chi ci dormiva.",
+            "echo_summaries": {
+              "FAILURE": "Nessuno volle scrivere la legge $of_region, e nessuno volle nemmeno andarsene."
+            }
+          }
+        ]
+      }
     },
     {
       "id": "TEN_ISLAND_SHRINE",
@@ -1717,7 +2544,38 @@
         "island"
       ],
       "opening_line": "Le barche tornano dall'isola con gente diversa da quella partita: piu' quieta, o piu' decisa.",
-      "theme": "THM_FEDE"
+      "theme": "THM_FEDE",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_ANY_ANCIENT_WATCH",
+            "text": "Chi tiene d'occhio quello che c'è $in_region?",
+            "eligibility": []
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_ANY_WATCH",
+            "question_id": "Q_ANY_ANCIENT_WATCH",
+            "text": "Due torri e un turno di guardia. Non impediranno nulla: faranno sapere prima.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_ASH_WATCH"
+            ],
+            "echo_summary": "Si mise una veglia $in_region, e da allora si seppe sempre con un giorno di anticipo."
+          },
+          {
+            "id": "P_ANY_IGNORE",
+            "question_id": "Q_ANY_ANCIENT_WATCH",
+            "text": "Non c'è nulla da guardare. Chi vuole vegliare, paghi le proprie guardie.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_COST_UNREST"
+            ],
+            "echo_summary": "Si stabilì che non ci fosse niente da guardare, e per qualche mese fu vero."
+          }
+        ]
+      }
     },
     {
       "id": "TEN_TITHE",
@@ -1841,7 +2699,63 @@
         "trade"
       ],
       "opening_line": "La decima si paga, e la meta' della decima si perde per strada fra il campo e l'altare.",
-      "theme": "THM_FEDE"
+      "theme": "THM_FEDE",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_ANY_WHO_PAYS",
+            "text": "$in_region, chi paga il prezzo di quello che rende?",
+            "eligibility": []
+          },
+          {
+            "id": "Q_ANY_WHO_KEEPS",
+            "text": "Chi tiene i conti di quello che passa $in_region — e chi li legge?",
+            "eligibility": [
+              {
+                "type": "tension_limit",
+                "tension_id": "$tension",
+                "min": 4,
+                "label": "La questione e' al limite"
+              }
+            ]
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_ANY_PRICE",
+            "question_id": "Q_ANY_WHO_PAYS",
+            "text": "Si metta un prezzo, e $proponent lo riscuota: quello che passa, paga.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_TOLL_ESTABLISHED"
+            ],
+            "echo_summary": "$proponent mise il prezzo su quello che passava, e il prezzo resto' anche quando lui non c'era.",
+            "echo_summaries": {
+              "FAILURE": "$proponent volle mettere il prezzo, e il prezzo lo pago' lui."
+            }
+          },
+          {
+            "id": "P_ANY_SPREAD_COST",
+            "question_id": "Q_ANY_WHO_PAYS",
+            "text": "Il costo si divide in parti uguali, e nessuno ne esce bene.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SHARED_BURDEN"
+            ],
+            "echo_summary": "Il costo $of_region fu diviso in parti uguali, e fu il massimo che quel consiglio riusci' a fare."
+          },
+          {
+            "id": "P_ANY_OPEN_LEDGER",
+            "question_id": "Q_ANY_WHO_KEEPS",
+            "text": "Si aprano i registri: che ognuno veda quanto rende, e a chi.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_LEDGER_OPENED"
+            ],
+            "echo_summary": "I registri furono aperti, e piu' d'uno avrebbe preferito di no."
+          }
+        ]
+      }
     },
     {
       "id": "TEN_BURIALS",
@@ -1964,7 +2878,38 @@
         "condition:mourning"
       ],
       "opening_line": "L'acqua bassa ha scoperto sepolture che nessun registro conosce, e i morti senza nome chiedono un rito.",
-      "theme": "THM_FEDE"
+      "theme": "THM_FEDE",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_ANY_ANCIENT_WATCH",
+            "text": "Chi tiene d'occhio quello che c'è $in_region?",
+            "eligibility": []
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_ANY_WATCH",
+            "question_id": "Q_ANY_ANCIENT_WATCH",
+            "text": "Due torri e un turno di guardia. Non impediranno nulla: faranno sapere prima.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_ASH_WATCH"
+            ],
+            "echo_summary": "Si mise una veglia $in_region, e da allora si seppe sempre con un giorno di anticipo."
+          },
+          {
+            "id": "P_ANY_IGNORE",
+            "question_id": "Q_ANY_ANCIENT_WATCH",
+            "text": "Non c'è nulla da guardare. Chi vuole vegliare, paghi le proprie guardie.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_COST_UNREST"
+            ],
+            "echo_summary": "Si stabilì che non ci fosse niente da guardare, e per qualche mese fu vero."
+          }
+        ]
+      }
     },
     {
       "id": "TEN_PROPHECY",
@@ -2086,7 +3031,38 @@
         "crystal_site"
       ],
       "opening_line": "Gira una profezia con un numero dentro, e il numero si avvicina.",
-      "theme": "THM_FEDE"
+      "theme": "THM_FEDE",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_ANY_ANCIENT_WATCH",
+            "text": "Chi tiene d'occhio quello che c'è $in_region?",
+            "eligibility": []
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_ANY_WATCH",
+            "question_id": "Q_ANY_ANCIENT_WATCH",
+            "text": "Due torri e un turno di guardia. Non impediranno nulla: faranno sapere prima.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_ASH_WATCH"
+            ],
+            "echo_summary": "Si mise una veglia $in_region, e da allora si seppe sempre con un giorno di anticipo."
+          },
+          {
+            "id": "P_ANY_IGNORE",
+            "question_id": "Q_ANY_ANCIENT_WATCH",
+            "text": "Non c'è nulla da guardare. Chi vuole vegliare, paghi le proprie guardie.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_COST_UNREST"
+            ],
+            "echo_summary": "Si stabilì che non ci fosse niente da guardare, e per qualche mese fu vero."
+          }
+        ]
+      }
     },
     {
       "id": "TEN_SANCTUARY",
@@ -2207,7 +3183,67 @@
       "description": "Chi tocca l'altare non si tocca. Era una regola comoda finche' non ci si e' aggrappato qualcuno di scomodo.",
       "focus_region_tags": [],
       "opening_line": "Un ricercato ha preso asilo al tempio, e davanti alla porta si accumulano uomini armati e ragioni.",
-      "theme": "THM_FEDE"
+      "theme": "THM_FEDE",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_ANY_WHO_HOLDS",
+            "text": "$in_region, chi tiene il posto quando la voce si spegne?",
+            "eligibility": []
+          },
+          {
+            "id": "Q_ANY_WHOSE_LAW",
+            "text": "Quale legge vale $in_region: quella scritta, o quella di chi c'e'?",
+            "eligibility": [
+              {
+                "type": "tension_limit",
+                "tension_id": "$tension",
+                "min": 4,
+                "label": "La questione e' al limite"
+              }
+            ]
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_ANY_HOLD",
+            "question_id": "Q_ANY_WHO_HOLDS",
+            "text": "$proponent lo tiene, e lo dica forte: chi sta li' risponde a lui.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SEAT_CLAIMED"
+            ],
+            "echo_summary": "$proponent prese il posto $of_region, e nessuno oso' contarlo due volte.",
+            "echo_summaries": {
+              "DECISIVE_SUCCESS": "$proponent prese il posto $of_region, e il conto torno' al primo colpo.",
+              "FAILURE": "$proponent volle il posto $of_region, e il posto non volle lui."
+            }
+          },
+          {
+            "id": "P_ANY_SPLIT",
+            "question_id": "Q_ANY_WHO_HOLDS",
+            "text": "Si divida l'uso, non il titolo: ognuno il suo pezzo, e i conti a fine anno.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SHARED_BURDEN"
+            ],
+            "echo_summary": "L'uso $of_region fu diviso senza dividere il titolo, e resse quanto reggono le cose divise."
+          },
+          {
+            "id": "P_ANY_WALK_AWAY",
+            "question_id": "Q_ANY_WHOSE_LAW",
+            "text": "Nessuna legge: si lascia il posto a chi se lo vuole caricare addosso.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_ABANDONED"
+            ],
+            "echo_summary": "Nessuna legge fu scritta per $the_region, e il posto resto' a chi ci dormiva.",
+            "echo_summaries": {
+              "FAILURE": "Nessuno volle scrivere la legge $of_region, e nessuno volle nemmeno andarsene."
+            }
+          }
+        ]
+      }
     },
     {
       "id": "TEN_REGENCY",
@@ -2328,7 +3364,67 @@
       "description": "Chi governa in nome di un altro governa comunque. E ci prende gusto.",
       "focus_region_tags": [],
       "opening_line": "Il sigillo lo tiene un reggente, e ogni mese trova una ragione nuova per tenerlo ancora.",
-      "theme": "THM_POTERE"
+      "theme": "THM_POTERE",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_ANY_WHO_HOLDS",
+            "text": "$in_region, chi tiene il posto quando la voce si spegne?",
+            "eligibility": []
+          },
+          {
+            "id": "Q_ANY_WHOSE_LAW",
+            "text": "Quale legge vale $in_region: quella scritta, o quella di chi c'e'?",
+            "eligibility": [
+              {
+                "type": "tension_limit",
+                "tension_id": "$tension",
+                "min": 4,
+                "label": "La questione e' al limite"
+              }
+            ]
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_ANY_HOLD",
+            "question_id": "Q_ANY_WHO_HOLDS",
+            "text": "$proponent lo tiene, e lo dica forte: chi sta li' risponde a lui.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SEAT_CLAIMED"
+            ],
+            "echo_summary": "$proponent prese il posto $of_region, e nessuno oso' contarlo due volte.",
+            "echo_summaries": {
+              "DECISIVE_SUCCESS": "$proponent prese il posto $of_region, e il conto torno' al primo colpo.",
+              "FAILURE": "$proponent volle il posto $of_region, e il posto non volle lui."
+            }
+          },
+          {
+            "id": "P_ANY_SPLIT",
+            "question_id": "Q_ANY_WHO_HOLDS",
+            "text": "Si divida l'uso, non il titolo: ognuno il suo pezzo, e i conti a fine anno.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SHARED_BURDEN"
+            ],
+            "echo_summary": "L'uso $of_region fu diviso senza dividere il titolo, e resse quanto reggono le cose divise."
+          },
+          {
+            "id": "P_ANY_WALK_AWAY",
+            "question_id": "Q_ANY_WHOSE_LAW",
+            "text": "Nessuna legge: si lascia il posto a chi se lo vuole caricare addosso.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_ABANDONED"
+            ],
+            "echo_summary": "Nessuna legge fu scritta per $the_region, e il posto resto' a chi ci dormiva.",
+            "echo_summaries": {
+              "FAILURE": "Nessuno volle scrivere la legge $of_region, e nessuno volle nemmeno andarsene."
+            }
+          }
+        ]
+      }
     },
     {
       "id": "TEN_HOSTAGES",
@@ -2451,7 +3547,67 @@
         "capital"
       ],
       "opening_line": "Ogni casa ha un figlio «ospite» alla corte di un'altra, e tutti sorridono a denti stretti.",
-      "theme": "THM_POTERE"
+      "theme": "THM_POTERE",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_ANY_WHO_HOLDS",
+            "text": "$in_region, chi tiene il posto quando la voce si spegne?",
+            "eligibility": []
+          },
+          {
+            "id": "Q_ANY_WHOSE_LAW",
+            "text": "Quale legge vale $in_region: quella scritta, o quella di chi c'e'?",
+            "eligibility": [
+              {
+                "type": "tension_limit",
+                "tension_id": "$tension",
+                "min": 4,
+                "label": "La questione e' al limite"
+              }
+            ]
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_ANY_HOLD",
+            "question_id": "Q_ANY_WHO_HOLDS",
+            "text": "$proponent lo tiene, e lo dica forte: chi sta li' risponde a lui.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SEAT_CLAIMED"
+            ],
+            "echo_summary": "$proponent prese il posto $of_region, e nessuno oso' contarlo due volte.",
+            "echo_summaries": {
+              "DECISIVE_SUCCESS": "$proponent prese il posto $of_region, e il conto torno' al primo colpo.",
+              "FAILURE": "$proponent volle il posto $of_region, e il posto non volle lui."
+            }
+          },
+          {
+            "id": "P_ANY_SPLIT",
+            "question_id": "Q_ANY_WHO_HOLDS",
+            "text": "Si divida l'uso, non il titolo: ognuno il suo pezzo, e i conti a fine anno.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SHARED_BURDEN"
+            ],
+            "echo_summary": "L'uso $of_region fu diviso senza dividere il titolo, e resse quanto reggono le cose divise."
+          },
+          {
+            "id": "P_ANY_WALK_AWAY",
+            "question_id": "Q_ANY_WHOSE_LAW",
+            "text": "Nessuna legge: si lascia il posto a chi se lo vuole caricare addosso.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_ABANDONED"
+            ],
+            "echo_summary": "Nessuna legge fu scritta per $the_region, e il posto resto' a chi ci dormiva.",
+            "echo_summaries": {
+              "FAILURE": "Nessuno volle scrivere la legge $of_region, e nessuno volle nemmeno andarsene."
+            }
+          }
+        ]
+      }
     },
     {
       "id": "TEN_LEVY",
@@ -2572,7 +3728,88 @@
       "description": "Servono braccia per le armi. Le stesse braccia servivano per il raccolto.",
       "focus_region_tags": [],
       "opening_line": "I banditori chiamano la leva, e ogni villaggio conta chi puo' perdere.",
-      "theme": "THM_POTERE"
+      "theme": "THM_POTERE",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_ANY_WHO_DECIDES",
+            "text": "$in_region, chi decide a chi non ne tocca?",
+            "eligibility": []
+          },
+          {
+            "id": "Q_ANY_WHO_STAYS",
+            "text": "Chi ha ancora motivo di restare $in_region?",
+            "eligibility": [
+              {
+                "type": "tension_limit",
+                "tension_id": "$tension",
+                "min": 4,
+                "label": "La questione è al limite"
+              }
+            ]
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_ANY_RATION",
+            "question_id": "Q_ANY_WHO_DECIDES",
+            "text": "Si conti quello che c'è, e $proponent decida chi ne ha diritto.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_RATIONED"
+            ],
+            "echo_summary": "$proponent fece la lista di chi aveva diritto $in_region, e nessuno la dimenticò.",
+            "echo_summaries": {
+              "DECISIVE_SUCCESS": "$proponent fece la lista di chi aveva diritto $in_region, e nessuno chiese di vederla due volte.",
+              "FAILURE": "$proponent volle fare la lista di chi aveva diritto $in_region, e la lista non fu mai letta."
+            }
+          },
+          {
+            "id": "P_ANY_SHARE",
+            "question_id": "Q_ANY_WHO_DECIDES",
+            "text": "Si divida in parti uguali, e si accetti che nessuno ne esca bene.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SHARED_BURDEN"
+            ],
+            "echo_summary": "Il peso $of_region fu diviso in parti uguali, e fu il massimo che quel consiglio riuscì a fare."
+          },
+          {
+            "id": "P_ANY_AS_STORY",
+            "question_id": "Q_ANY_WHO_DECIDES",
+            "text": "Si fa come si racconta che si fece, l'anno buono: ognuno al suo posto, e i conti dopo.",
+            "eligibility": [
+              {
+                "type": "state_tag_present",
+                "scope": "GLOBAL",
+                "tag": "legend:order_restored",
+                "label": "Si racconta di un anno in cui l'ordine torno davvero"
+              }
+            ],
+            "success_consequences": [
+              "CNS_LEGEND_RETOLD"
+            ],
+            "echo_summary": "Si fece come si racconta che si fece, e per quell'anno bastò.",
+            "echo_summaries": {
+              "FAILURE": "Si volle fare come nella storia, e la storia non tornò."
+            }
+          },
+          {
+            "id": "P_ANY_LEAVE",
+            "question_id": "Q_ANY_WHO_STAYS",
+            "text": "Non si risolve: si va via. $rival resti pure, se ci tiene.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_ABANDONED"
+            ],
+            "echo_summary": "$proponent lasciò $the_region a chi voleva restare, e restarono in pochi.",
+            "echo_summaries": {
+              "FAILURE": "$proponent volle andarsene da $the_region, e non partì nessuno.",
+              "SUCCESS_WITH_COST": "$proponent lasciò $the_region a chi voleva restare, e restarono in pochi - e nessuno dei due gruppi perdonò l'altro."
+            }
+          }
+        ]
+      }
     },
     {
       "id": "TEN_SEALS",
@@ -2696,7 +3933,63 @@
         "capital"
       ],
       "opening_line": "Girano ordini con sigilli perfetti che nessuno ricorda di aver firmato.",
-      "theme": "THM_POTERE"
+      "theme": "THM_POTERE",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_ANY_WHO_PAYS",
+            "text": "$in_region, chi paga il prezzo di quello che rende?",
+            "eligibility": []
+          },
+          {
+            "id": "Q_ANY_WHO_KEEPS",
+            "text": "Chi tiene i conti di quello che passa $in_region — e chi li legge?",
+            "eligibility": [
+              {
+                "type": "tension_limit",
+                "tension_id": "$tension",
+                "min": 4,
+                "label": "La questione e' al limite"
+              }
+            ]
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_ANY_PRICE",
+            "question_id": "Q_ANY_WHO_PAYS",
+            "text": "Si metta un prezzo, e $proponent lo riscuota: quello che passa, paga.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_TOLL_ESTABLISHED"
+            ],
+            "echo_summary": "$proponent mise il prezzo su quello che passava, e il prezzo resto' anche quando lui non c'era.",
+            "echo_summaries": {
+              "FAILURE": "$proponent volle mettere il prezzo, e il prezzo lo pago' lui."
+            }
+          },
+          {
+            "id": "P_ANY_SPREAD_COST",
+            "question_id": "Q_ANY_WHO_PAYS",
+            "text": "Il costo si divide in parti uguali, e nessuno ne esce bene.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SHARED_BURDEN"
+            ],
+            "echo_summary": "Il costo $of_region fu diviso in parti uguali, e fu il massimo che quel consiglio riusci' a fare."
+          },
+          {
+            "id": "P_ANY_OPEN_LEDGER",
+            "question_id": "Q_ANY_WHO_KEEPS",
+            "text": "Si aprano i registri: che ognuno veda quanto rende, e a chi.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_LEDGER_OPENED"
+            ],
+            "echo_summary": "I registri furono aperti, e piu' d'uno avrebbe preferito di no."
+          }
+        ]
+      }
     },
     {
       "id": "TEN_MARCHES",
@@ -2820,7 +4113,67 @@
         "condition:contested"
       ],
       "opening_line": "Le terre di margine rispondono ai capibanda locali, e i capibanda cominciano a darsi titoli.",
-      "theme": "THM_POTERE"
+      "theme": "THM_POTERE",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_ANY_WHO_HOLDS",
+            "text": "$in_region, chi tiene il posto quando la voce si spegne?",
+            "eligibility": []
+          },
+          {
+            "id": "Q_ANY_WHOSE_LAW",
+            "text": "Quale legge vale $in_region: quella scritta, o quella di chi c'e'?",
+            "eligibility": [
+              {
+                "type": "tension_limit",
+                "tension_id": "$tension",
+                "min": 4,
+                "label": "La questione e' al limite"
+              }
+            ]
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_ANY_HOLD",
+            "question_id": "Q_ANY_WHO_HOLDS",
+            "text": "$proponent lo tiene, e lo dica forte: chi sta li' risponde a lui.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SEAT_CLAIMED"
+            ],
+            "echo_summary": "$proponent prese il posto $of_region, e nessuno oso' contarlo due volte.",
+            "echo_summaries": {
+              "DECISIVE_SUCCESS": "$proponent prese il posto $of_region, e il conto torno' al primo colpo.",
+              "FAILURE": "$proponent volle il posto $of_region, e il posto non volle lui."
+            }
+          },
+          {
+            "id": "P_ANY_SPLIT",
+            "question_id": "Q_ANY_WHO_HOLDS",
+            "text": "Si divida l'uso, non il titolo: ognuno il suo pezzo, e i conti a fine anno.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SHARED_BURDEN"
+            ],
+            "echo_summary": "L'uso $of_region fu diviso senza dividere il titolo, e resse quanto reggono le cose divise."
+          },
+          {
+            "id": "P_ANY_WALK_AWAY",
+            "question_id": "Q_ANY_WHOSE_LAW",
+            "text": "Nessuna legge: si lascia il posto a chi se lo vuole caricare addosso.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_ABANDONED"
+            ],
+            "echo_summary": "Nessuna legge fu scritta per $the_region, e il posto resto' a chi ci dormiva.",
+            "echo_summaries": {
+              "FAILURE": "Nessuno volle scrivere la legge $of_region, e nessuno volle nemmeno andarsene."
+            }
+          }
+        ]
+      }
     },
     {
       "id": "TEN_COUNCIL_SEATS",
@@ -2943,7 +4296,67 @@
         "capital"
       ],
       "opening_line": "Si discute di allargare il tavolo del Consiglio, e ogni casa ha un candidato e un veto.",
-      "theme": "THM_POTERE"
+      "theme": "THM_POTERE",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_ANY_WHO_HOLDS",
+            "text": "$in_region, chi tiene il posto quando la voce si spegne?",
+            "eligibility": []
+          },
+          {
+            "id": "Q_ANY_WHOSE_LAW",
+            "text": "Quale legge vale $in_region: quella scritta, o quella di chi c'e'?",
+            "eligibility": [
+              {
+                "type": "tension_limit",
+                "tension_id": "$tension",
+                "min": 4,
+                "label": "La questione e' al limite"
+              }
+            ]
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_ANY_HOLD",
+            "question_id": "Q_ANY_WHO_HOLDS",
+            "text": "$proponent lo tiene, e lo dica forte: chi sta li' risponde a lui.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SEAT_CLAIMED"
+            ],
+            "echo_summary": "$proponent prese il posto $of_region, e nessuno oso' contarlo due volte.",
+            "echo_summaries": {
+              "DECISIVE_SUCCESS": "$proponent prese il posto $of_region, e il conto torno' al primo colpo.",
+              "FAILURE": "$proponent volle il posto $of_region, e il posto non volle lui."
+            }
+          },
+          {
+            "id": "P_ANY_SPLIT",
+            "question_id": "Q_ANY_WHO_HOLDS",
+            "text": "Si divida l'uso, non il titolo: ognuno il suo pezzo, e i conti a fine anno.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SHARED_BURDEN"
+            ],
+            "echo_summary": "L'uso $of_region fu diviso senza dividere il titolo, e resse quanto reggono le cose divise."
+          },
+          {
+            "id": "P_ANY_WALK_AWAY",
+            "question_id": "Q_ANY_WHOSE_LAW",
+            "text": "Nessuna legge: si lascia il posto a chi se lo vuole caricare addosso.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_ABANDONED"
+            ],
+            "echo_summary": "Nessuna legge fu scritta per $the_region, e il posto resto' a chi ci dormiva.",
+            "echo_summaries": {
+              "FAILURE": "Nessuno volle scrivere la legge $of_region, e nessuno volle nemmeno andarsene."
+            }
+          }
+        ]
+      }
     },
     {
       "id": "TEN_OLD_GUARD",
@@ -3064,7 +4477,67 @@
       "description": "Hanno servito il potere di prima. Il potere di adesso non si fida, e non puo' congedarli.",
       "focus_region_tags": [],
       "opening_line": "I veterani del vecchio ordine portano ancora le insegne, e i giovani ufficiali portano rancore.",
-      "theme": "THM_POTERE"
+      "theme": "THM_POTERE",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_ANY_WHO_HOLDS",
+            "text": "$in_region, chi tiene il posto quando la voce si spegne?",
+            "eligibility": []
+          },
+          {
+            "id": "Q_ANY_WHOSE_LAW",
+            "text": "Quale legge vale $in_region: quella scritta, o quella di chi c'e'?",
+            "eligibility": [
+              {
+                "type": "tension_limit",
+                "tension_id": "$tension",
+                "min": 4,
+                "label": "La questione e' al limite"
+              }
+            ]
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_ANY_HOLD",
+            "question_id": "Q_ANY_WHO_HOLDS",
+            "text": "$proponent lo tiene, e lo dica forte: chi sta li' risponde a lui.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SEAT_CLAIMED"
+            ],
+            "echo_summary": "$proponent prese il posto $of_region, e nessuno oso' contarlo due volte.",
+            "echo_summaries": {
+              "DECISIVE_SUCCESS": "$proponent prese il posto $of_region, e il conto torno' al primo colpo.",
+              "FAILURE": "$proponent volle il posto $of_region, e il posto non volle lui."
+            }
+          },
+          {
+            "id": "P_ANY_SPLIT",
+            "question_id": "Q_ANY_WHO_HOLDS",
+            "text": "Si divida l'uso, non il titolo: ognuno il suo pezzo, e i conti a fine anno.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SHARED_BURDEN"
+            ],
+            "echo_summary": "L'uso $of_region fu diviso senza dividere il titolo, e resse quanto reggono le cose divise."
+          },
+          {
+            "id": "P_ANY_WALK_AWAY",
+            "question_id": "Q_ANY_WHOSE_LAW",
+            "text": "Nessuna legge: si lascia il posto a chi se lo vuole caricare addosso.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_ABANDONED"
+            ],
+            "echo_summary": "Nessuna legge fu scritta per $the_region, e il posto resto' a chi ci dormiva.",
+            "echo_summaries": {
+              "FAILURE": "Nessuno volle scrivere la legge $of_region, e nessuno volle nemmeno andarsene."
+            }
+          }
+        ]
+      }
     },
     {
       "id": "TEN_TRIBUTE",
@@ -3188,7 +4661,63 @@
         "trade"
       ],
       "opening_line": "Le casse chiedono il tributo intero in un anno che ha reso a meta'.",
-      "theme": "THM_POTERE"
+      "theme": "THM_POTERE",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_ANY_WHO_PAYS",
+            "text": "$in_region, chi paga il prezzo di quello che rende?",
+            "eligibility": []
+          },
+          {
+            "id": "Q_ANY_WHO_KEEPS",
+            "text": "Chi tiene i conti di quello che passa $in_region — e chi li legge?",
+            "eligibility": [
+              {
+                "type": "tension_limit",
+                "tension_id": "$tension",
+                "min": 4,
+                "label": "La questione e' al limite"
+              }
+            ]
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_ANY_PRICE",
+            "question_id": "Q_ANY_WHO_PAYS",
+            "text": "Si metta un prezzo, e $proponent lo riscuota: quello che passa, paga.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_TOLL_ESTABLISHED"
+            ],
+            "echo_summary": "$proponent mise il prezzo su quello che passava, e il prezzo resto' anche quando lui non c'era.",
+            "echo_summaries": {
+              "FAILURE": "$proponent volle mettere il prezzo, e il prezzo lo pago' lui."
+            }
+          },
+          {
+            "id": "P_ANY_SPREAD_COST",
+            "question_id": "Q_ANY_WHO_PAYS",
+            "text": "Il costo si divide in parti uguali, e nessuno ne esce bene.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SHARED_BURDEN"
+            ],
+            "echo_summary": "Il costo $of_region fu diviso in parti uguali, e fu il massimo che quel consiglio riusci' a fare."
+          },
+          {
+            "id": "P_ANY_OPEN_LEDGER",
+            "question_id": "Q_ANY_WHO_KEEPS",
+            "text": "Si aprano i registri: che ognuno veda quanto rende, e a chi.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_LEDGER_OPENED"
+            ],
+            "echo_summary": "I registri furono aperti, e piu' d'uno avrebbe preferito di no."
+          }
+        ]
+      }
     },
     {
       "id": "TEN_ECHOES_BELOW",
@@ -3311,7 +4840,38 @@
         "mine"
       ],
       "opening_line": "I minatori del turno lungo giurano che il fondo risponde battendo tre colpi ai loro tre colpi.",
-      "theme": "THM_ANTICO"
+      "theme": "THM_ANTICO",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_ANY_ANCIENT_WATCH",
+            "text": "Chi tiene d'occhio quello che c'è $in_region?",
+            "eligibility": []
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_ANY_WATCH",
+            "question_id": "Q_ANY_ANCIENT_WATCH",
+            "text": "Due torri e un turno di guardia. Non impediranno nulla: faranno sapere prima.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_ASH_WATCH"
+            ],
+            "echo_summary": "Si mise una veglia $in_region, e da allora si seppe sempre con un giorno di anticipo."
+          },
+          {
+            "id": "P_ANY_IGNORE",
+            "question_id": "Q_ANY_ANCIENT_WATCH",
+            "text": "Non c'è nulla da guardare. Chi vuole vegliare, paghi le proprie guardie.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_COST_UNREST"
+            ],
+            "echo_summary": "Si stabilì che non ci fosse niente da guardare, e per qualche mese fu vero."
+          }
+        ]
+      }
     },
     {
       "id": "TEN_OLD_CHANNELS",
@@ -3434,7 +4994,38 @@
         "forest"
       ],
       "opening_line": "La stagione secca ha scoperto un selciato sotto la palude, e il selciato non e' opera delle case di adesso.",
-      "theme": "THM_ANTICO"
+      "theme": "THM_ANTICO",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_ANY_ANCIENT_WATCH",
+            "text": "Chi tiene d'occhio quello che c'è $in_region?",
+            "eligibility": []
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_ANY_WATCH",
+            "question_id": "Q_ANY_ANCIENT_WATCH",
+            "text": "Due torri e un turno di guardia. Non impediranno nulla: faranno sapere prima.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_ASH_WATCH"
+            ],
+            "echo_summary": "Si mise una veglia $in_region, e da allora si seppe sempre con un giorno di anticipo."
+          },
+          {
+            "id": "P_ANY_IGNORE",
+            "question_id": "Q_ANY_ANCIENT_WATCH",
+            "text": "Non c'è nulla da guardare. Chi vuole vegliare, paghi le proprie guardie.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_COST_UNREST"
+            ],
+            "echo_summary": "Si stabilì che non ci fosse niente da guardare, e per qualche mese fu vero."
+          }
+        ]
+      }
     },
     {
       "id": "TEN_SLEEPERS",
@@ -3555,7 +5146,38 @@
       "description": "Non e' solo la montagna a dormire. I racconti contano sette dormienti, e uno si e' gia' svegliato.",
       "focus_region_tags": [],
       "opening_line": "I racconti dei vecchi contano sette cose che dormono, e i racconti hanno smesso di sembrare racconti.",
-      "theme": "THM_ANTICO"
+      "theme": "THM_ANTICO",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_ANY_ANCIENT_WATCH",
+            "text": "Chi tiene d'occhio quello che c'è $in_region?",
+            "eligibility": []
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_ANY_WATCH",
+            "question_id": "Q_ANY_ANCIENT_WATCH",
+            "text": "Due torri e un turno di guardia. Non impediranno nulla: faranno sapere prima.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_ASH_WATCH"
+            ],
+            "echo_summary": "Si mise una veglia $in_region, e da allora si seppe sempre con un giorno di anticipo."
+          },
+          {
+            "id": "P_ANY_IGNORE",
+            "question_id": "Q_ANY_ANCIENT_WATCH",
+            "text": "Non c'è nulla da guardare. Chi vuole vegliare, paghi le proprie guardie.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_COST_UNREST"
+            ],
+            "echo_summary": "Si stabilì che non ci fosse niente da guardare, e per qualche mese fu vero."
+          }
+        ]
+      }
     },
     {
       "id": "TEN_ISLAND_SILENCE",
@@ -3677,7 +5299,38 @@
         "island"
       ],
       "opening_line": "Chi torna dall'isola parla piano per giorni, e nessuno di loro sa spiegare il perche'.",
-      "theme": "THM_ANTICO"
+      "theme": "THM_ANTICO",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_ANY_ANCIENT_WATCH",
+            "text": "Chi tiene d'occhio quello che c'è $in_region?",
+            "eligibility": []
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_ANY_WATCH",
+            "question_id": "Q_ANY_ANCIENT_WATCH",
+            "text": "Due torri e un turno di guardia. Non impediranno nulla: faranno sapere prima.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_ASH_WATCH"
+            ],
+            "echo_summary": "Si mise una veglia $in_region, e da allora si seppe sempre con un giorno di anticipo."
+          },
+          {
+            "id": "P_ANY_IGNORE",
+            "question_id": "Q_ANY_ANCIENT_WATCH",
+            "text": "Non c'è nulla da guardare. Chi vuole vegliare, paghi le proprie guardie.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_COST_UNREST"
+            ],
+            "echo_summary": "Si stabilì che non ci fosse niente da guardare, e per qualche mese fu vero."
+          }
+        ]
+      }
     },
     {
       "id": "TEN_UNEARTHED",
@@ -3801,7 +5454,38 @@
         "crystal_site"
       ],
       "opening_line": "Dalle gallerie e' salito un oggetto che nessun mastro riconosce, e tutti vogliono vederlo da vicino.",
-      "theme": "THM_ANTICO"
+      "theme": "THM_ANTICO",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_ANY_ANCIENT_WATCH",
+            "text": "Chi tiene d'occhio quello che c'è $in_region?",
+            "eligibility": []
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_ANY_WATCH",
+            "question_id": "Q_ANY_ANCIENT_WATCH",
+            "text": "Due torri e un turno di guardia. Non impediranno nulla: faranno sapere prima.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_ASH_WATCH"
+            ],
+            "echo_summary": "Si mise una veglia $in_region, e da allora si seppe sempre con un giorno di anticipo."
+          },
+          {
+            "id": "P_ANY_IGNORE",
+            "question_id": "Q_ANY_ANCIENT_WATCH",
+            "text": "Non c'è nulla da guardare. Chi vuole vegliare, paghi le proprie guardie.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_COST_UNREST"
+            ],
+            "echo_summary": "Si stabilì che non ci fosse niente da guardare, e per qualche mese fu vero."
+          }
+        ]
+      }
     },
     {
       "id": "TEN_OLD_NAMES",
@@ -3921,7 +5605,38 @@
       "description": "I posti hanno due nomi: quello che si usa e quello che si evita. Qualcuno ha ripreso a usare il secondo.",
       "focus_region_tags": [],
       "opening_line": "Sui muri compaiono i nomi vecchi dei posti, scritti in una mano che nessuno riconosce.",
-      "theme": "THM_ANTICO"
+      "theme": "THM_ANTICO",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_ANY_ANCIENT_WATCH",
+            "text": "Chi tiene d'occhio quello che c'è $in_region?",
+            "eligibility": []
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_ANY_WATCH",
+            "question_id": "Q_ANY_ANCIENT_WATCH",
+            "text": "Due torri e un turno di guardia. Non impediranno nulla: faranno sapere prima.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_ASH_WATCH"
+            ],
+            "echo_summary": "Si mise una veglia $in_region, e da allora si seppe sempre con un giorno di anticipo."
+          },
+          {
+            "id": "P_ANY_IGNORE",
+            "question_id": "Q_ANY_ANCIENT_WATCH",
+            "text": "Non c'è nulla da guardare. Chi vuole vegliare, paghi le proprie guardie.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_COST_UNREST"
+            ],
+            "echo_summary": "Si stabilì che non ci fosse niente da guardare, e per qualche mese fu vero."
+          }
+        ]
+      }
     },
     {
       "id": "TEN_WARD_STONES",
@@ -4044,7 +5759,38 @@
         "forest"
       ],
       "opening_line": "Una delle pietre incise del margine e' stata trovata a terra, spezzata, e nessuno vuole essere quello che la rialza.",
-      "theme": "THM_ANTICO"
+      "theme": "THM_ANTICO",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_ANY_ANCIENT_WATCH",
+            "text": "Chi tiene d'occhio quello che c'è $in_region?",
+            "eligibility": []
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_ANY_WATCH",
+            "question_id": "Q_ANY_ANCIENT_WATCH",
+            "text": "Due torri e un turno di guardia. Non impediranno nulla: faranno sapere prima.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_ASH_WATCH"
+            ],
+            "echo_summary": "Si mise una veglia $in_region, e da allora si seppe sempre con un giorno di anticipo."
+          },
+          {
+            "id": "P_ANY_IGNORE",
+            "question_id": "Q_ANY_ANCIENT_WATCH",
+            "text": "Non c'è nulla da guardare. Chi vuole vegliare, paghi le proprie guardie.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_COST_UNREST"
+            ],
+            "echo_summary": "Si stabilì che non ci fosse niente da guardare, e per qualche mese fu vero."
+          }
+        ]
+      }
     },
     {
       "id": "TEN_DEEP_WATER",
@@ -4167,7 +5913,38 @@
         "island"
       ],
       "opening_line": "Nel fondo scuro fra l'isola e la palude le reti tornano strappate, e non dai sassi.",
-      "theme": "THM_ANTICO"
+      "theme": "THM_ANTICO",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_ANY_ANCIENT_WATCH",
+            "text": "Chi tiene d'occhio quello che c'è $in_region?",
+            "eligibility": []
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_ANY_WATCH",
+            "question_id": "Q_ANY_ANCIENT_WATCH",
+            "text": "Due torri e un turno di guardia. Non impediranno nulla: faranno sapere prima.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_ASH_WATCH"
+            ],
+            "echo_summary": "Si mise una veglia $in_region, e da allora si seppe sempre con un giorno di anticipo."
+          },
+          {
+            "id": "P_ANY_IGNORE",
+            "question_id": "Q_ANY_ANCIENT_WATCH",
+            "text": "Non c'è nulla da guardare. Chi vuole vegliare, paghi le proprie guardie.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_COST_UNREST"
+            ],
+            "echo_summary": "Si stabilì che non ci fosse niente da guardare, e per qualche mese fu vero."
+          }
+        ]
+      }
     },
     {
       "id": "TEN_WINTER",
@@ -4188,8 +5965,8 @@
         }
       ],
       "possible_questions": [
-        "Q_ANY_WHO_DECIDES",
-        "Q_ANY_WHO_STAYS"
+        "Q_WINTER_WOOD",
+        "Q_WINTER_DEBT"
       ],
       "physical": {
         "benefits": [
@@ -4294,7 +6071,53 @@
       "description": "Il freddo non e' una carestia. E' la carestia con la porta chiusa.",
       "focus_region_tags": [],
       "opening_line": "Le prime nevi sono arrivate con un mese d'anticipo, e la legna e' quella contata per un inverno normale.",
-      "theme": "THM_SOPRAVVIVENZA"
+      "theme": "THM_SOPRAVVIVENZA",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_WINTER_WOOD",
+            "text": "$in_region, chi distribuisce la legna quando gela?",
+            "eligibility": []
+          },
+          {
+            "id": "Q_WINTER_DEBT",
+            "text": "E i debiti dell'inverno, si contano a primavera?",
+            "eligibility": []
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_WINTER_RATION",
+            "question_id": "Q_WINTER_WOOD",
+            "text": "Legna razionata, e $proponent tiene la lista di chi ne ha diritto.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_RATIONED"
+            ],
+            "echo_summary": "La legna $of_region fu razionata, e la lista di chi ne aveva diritto la teneva $proponent."
+          },
+          {
+            "id": "P_WINTER_FORGET",
+            "question_id": "Q_WINTER_DEBT",
+            "text": "L'inverno non si conta: quello che si e' preso per non morire non e' debito.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SHARED_BURDEN"
+            ],
+            "echo_summary": "$in_region i debiti dell'inverno non furono contati, e a primavera nessuno li ricordava uguali."
+          },
+          {
+            "id": "P_WINTER_AS_STORY",
+            "question_id": "Q_WINTER_WOOD",
+            "text": "Si fa come l'anno del gelo grande: ognuno al suo fuoco, e i conti dopo.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_LEGEND_RETOLD"
+            ],
+            "echo_summary": "$in_region si fece come nell'anno del gelo grande, o come si racconta che si fece."
+          }
+        ]
+      }
     },
     {
       "id": "TEN_MARSH_FEVER",
@@ -4315,8 +6138,8 @@
         }
       ],
       "possible_questions": [
-        "Q_ANY_WHO_DECIDES",
-        "Q_ANY_WHO_STAYS"
+        "Q_MARSH_FEVER_WATER",
+        "Q_MARSH_FEVER_SICK"
       ],
       "physical": {
         "benefits": [
@@ -4417,7 +6240,53 @@
         "marsh"
       ],
       "opening_line": "Nei villaggi bassi la febbre gira di casa in casa, e chi guarisce non ricorda bene.",
-      "theme": "THM_SOPRAVVIVENZA"
+      "theme": "THM_SOPRAVVIVENZA",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_MARSH_FEVER_WATER",
+            "text": "$in_region, chi manda gli uomini a prosciugare?",
+            "eligibility": []
+          },
+          {
+            "id": "Q_MARSH_FEVER_SICK",
+            "text": "E i malati, chi se li tiene?",
+            "eligibility": []
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_MARSH_FEVER_DIG",
+            "question_id": "Q_MARSH_FEVER_WATER",
+            "text": "Si scavino i canali, e $proponent decida da dove si comincia.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SEAT_CLAIMED"
+            ],
+            "echo_summary": "I canali $of_region furono scavati dove disse $proponent, e l'acqua andò dove lui l'aveva mandata."
+          },
+          {
+            "id": "P_MARSH_FEVER_SHARE",
+            "question_id": "Q_MARSH_FEVER_SICK",
+            "text": "Ogni casa ne prenda la sua parte, e nessuno ne esca pulito.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SHARED_BURDEN"
+            ],
+            "echo_summary": "La febbre $of_region fu divisa fra tutti, come si divide una cosa che nessuno vuole."
+          },
+          {
+            "id": "P_MARSH_FEVER_WALL",
+            "question_id": "Q_MARSH_FEVER_SICK",
+            "text": "Si chiuda la palude e chi ci sta dentro. Chi vuole vegliarli, paghi le guardie.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_COST_UNREST"
+            ],
+            "echo_summary": "La palude $of_region fu chiusa con dentro chi ci viveva, e nessuno andò a contarli."
+          }
+        ]
+      }
     },
     {
       "id": "TEN_EMPTY_NETS",
@@ -4438,8 +6307,8 @@
         }
       ],
       "possible_questions": [
-        "Q_ANY_WHO_DECIDES",
-        "Q_ANY_WHO_STAYS"
+        "Q_EMPTY_NETS_WATER",
+        "Q_EMPTY_NETS_BOATS"
       ],
       "physical": {
         "benefits": [
@@ -4540,7 +6409,53 @@
         "harbor"
       ],
       "opening_line": "Le reti tornano vuote da una luna, e il porto vive di quello che le reti portano.",
-      "theme": "THM_SOPRAVVIVENZA"
+      "theme": "THM_SOPRAVVIVENZA",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_EMPTY_NETS_WATER",
+            "text": "Chi pesca $in_region, adesso che le reti tornano vuote?",
+            "eligibility": []
+          },
+          {
+            "id": "Q_EMPTY_NETS_BOATS",
+            "text": "E le barche ferme, di chi restano?",
+            "eligibility": []
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_EMPTY_NETS_TURNS",
+            "question_id": "Q_EMPTY_NETS_WATER",
+            "text": "Si peschi a turno, e $proponent tenga il calendario.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_RATIONED"
+            ],
+            "echo_summary": "$in_region si pescò a turno, e il calendario lo teneva $proponent."
+          },
+          {
+            "id": "P_EMPTY_NETS_STOP",
+            "question_id": "Q_EMPTY_NETS_WATER",
+            "text": "Si fermi tutto per un anno: il mare si rifa', se lo si lascia stare.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SHARED_BURDEN"
+            ],
+            "echo_summary": "Per un anno nessuno calò le reti $in_region, e fu un anno lungo per tutti."
+          },
+          {
+            "id": "P_EMPTY_NETS_LEAVE",
+            "question_id": "Q_EMPTY_NETS_BOATS",
+            "text": "Le barche restino a chi le vuole tirare in secco. Noi andiamo altrove.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_ABANDONED"
+            ],
+            "echo_summary": "Le barche $of_region restarono in secco, e chi sapeva remare era già partito."
+          }
+        ]
+      }
     },
     {
       "id": "TEN_REFUGEES",
@@ -4561,8 +6476,8 @@
         }
       ],
       "possible_questions": [
-        "Q_ANY_WHO_DECIDES",
-        "Q_ANY_WHO_STAYS"
+        "Q_REFUGEES_ROOM",
+        "Q_REFUGEES_COST"
       ],
       "physical": {
         "benefits": [
@@ -4661,7 +6576,53 @@
       "description": "Arrivano con quello che portano addosso. Da qualcosa scappano, e nessuno chiede cosa per non doverci pensare.",
       "focus_region_tags": [],
       "opening_line": "Alle porte si presentano famiglie intere venute da fuori mappa, e le porte non sanno se aprirsi.",
-      "theme": "THM_SOPRAVVIVENZA"
+      "theme": "THM_SOPRAVVIVENZA",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_REFUGEES_ROOM",
+            "text": "$in_region, chi decide dove si fermano quelli che arrivano?",
+            "eligibility": []
+          },
+          {
+            "id": "Q_REFUGEES_COST",
+            "text": "E chi paga il pane in piu'?",
+            "eligibility": []
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_REFUGEES_SETTLE",
+            "question_id": "Q_REFUGEES_ROOM",
+            "text": "Si dia loro un posto dove piantare le tende, e $proponent dica quale.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SEAT_CLAIMED"
+            ],
+            "echo_summary": "Chi arrivava da fuori si fermò dove disse $proponent, e da allora quel posto ebbe un nome."
+          },
+          {
+            "id": "P_REFUGEES_SHARE",
+            "question_id": "Q_REFUGEES_COST",
+            "text": "Il pane in piu' lo mette ogni casa, in parti uguali.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SHARED_BURDEN"
+            ],
+            "echo_summary": "Il pane per chi arrivava $in_region lo misero tutti, e a nessuno bastò."
+          },
+          {
+            "id": "P_REFUGEES_MOVE_ON",
+            "question_id": "Q_REFUGEES_ROOM",
+            "text": "Non qui. Passino, bevano, e domani siano piu' avanti.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_ABANDONED"
+            ],
+            "echo_summary": "$in_region si lasciò passare chi arrivava, e nessuno chiese dove sarebbe andato a dormire."
+          }
+        ]
+      }
     },
     {
       "id": "TEN_WOLVES",
@@ -4682,8 +6643,8 @@
         }
       ],
       "possible_questions": [
-        "Q_ANY_WHO_DECIDES",
-        "Q_ANY_WHO_STAYS"
+        "Q_WOLVES_WATCH",
+        "Q_WOLVES_FLOCK"
       ],
       "physical": {
         "benefits": [
@@ -4785,7 +6746,53 @@
         "wild"
       ],
       "opening_line": "I branchi scendono fino ai recinti, e i cani da guardia dormono dentro casa.",
-      "theme": "THM_SOPRAVVIVENZA"
+      "theme": "THM_SOPRAVVIVENZA",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_WOLVES_WATCH",
+            "text": "Chi veglia il limitare $in_region?",
+            "eligibility": []
+          },
+          {
+            "id": "Q_WOLVES_FLOCK",
+            "text": "E le bestie perse, chi le rimette?",
+            "eligibility": []
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_WOLVES_TOWERS",
+            "question_id": "Q_WOLVES_WATCH",
+            "text": "Due torri e un turno di guardia: non fermeranno i lupi, faranno sapere prima.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_ASH_WATCH"
+            ],
+            "echo_summary": "Al limitare $of_region si alzarono due torri, e chi vegliava vedeva arrivare il buio prima degli altri."
+          },
+          {
+            "id": "P_WOLVES_NOTHING",
+            "question_id": "Q_WOLVES_WATCH",
+            "text": "Non c'e' niente da vegliare. Chi ha paura, paghi le proprie guardie.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_COST_UNREST"
+            ],
+            "echo_summary": "$in_region nessuno vegliò il limitare, e ognuno contò le proprie bestie da solo."
+          },
+          {
+            "id": "P_WOLVES_SHARE",
+            "question_id": "Q_WOLVES_FLOCK",
+            "text": "Le bestie perse si rimettono fra tutti, e nessuno ci guadagna.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SHARED_BURDEN"
+            ],
+            "echo_summary": "Le bestie perse $of_region furono rimesse fra tutti, e il conto non tornò a nessuno."
+          }
+        ]
+      }
     },
     {
       "id": "TEN_BAD_GRAIN",
@@ -4806,8 +6813,8 @@
         }
       ],
       "possible_questions": [
-        "Q_ANY_WHO_DECIDES",
-        "Q_ANY_WHO_STAYS"
+        "Q_BAD_GRAIN_SILO",
+        "Q_BAD_GRAIN_BLAME"
       ],
       "physical": {
         "benefits": [
@@ -4908,7 +6915,53 @@
         "granary"
       ],
       "opening_line": "Nel granaio grande la muffa ha preso il fondo, e nessuno sa dire quanto sia salita.",
-      "theme": "THM_SOPRAVVIVENZA"
+      "theme": "THM_SOPRAVVIVENZA",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_BAD_GRAIN_SILO",
+            "text": "$in_region, chi apre i sili e guarda dentro?",
+            "eligibility": []
+          },
+          {
+            "id": "Q_BAD_GRAIN_BLAME",
+            "text": "E del raccolto marcito, chi risponde?",
+            "eligibility": []
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_BAD_GRAIN_BURN",
+            "question_id": "Q_BAD_GRAIN_SILO",
+            "text": "Si bruci quello che e' guasto, e $proponent conti quello che resta.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_RATIONED"
+            ],
+            "echo_summary": "Il grano guasto $of_region bruciò in piazza, e il conto di quello che restava lo tenne $proponent."
+          },
+          {
+            "id": "P_BAD_GRAIN_SIEVE",
+            "question_id": "Q_BAD_GRAIN_SILO",
+            "text": "Si setacci tutto: chi ha fame mangia anche quello che non e' bello.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SHARED_BURDEN"
+            ],
+            "echo_summary": "$in_region si setacciò il marcio dal buono, e nessuno chiese di che annata fosse."
+          },
+          {
+            "id": "P_BAD_GRAIN_LEDGER",
+            "question_id": "Q_BAD_GRAIN_BLAME",
+            "text": "Si apra il registro dei sili: si vedra' chi ha chiuso male le porte.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_LEDGER_OPENED"
+            ],
+            "echo_summary": "I registri dei sili $of_region furono aperti, e il nome di chi li chiudeva era scritto in fondo."
+          }
+        ]
+      }
     },
     {
       "id": "TEN_QUARANTINE",
@@ -4929,8 +6982,8 @@
         }
       ],
       "possible_questions": [
-        "Q_ANY_WHO_DECIDES",
-        "Q_ANY_WHO_STAYS"
+        "Q_QUARANTINE_LINE",
+        "Q_QUARANTINE_OUT"
       ],
       "physical": {
         "benefits": [
@@ -5032,7 +7085,53 @@
         "harbor"
       ],
       "opening_line": "Una nave e' stata messa alla fonda con l'equipaggio a bordo, e il porto discute se e' prudenza o rovina.",
-      "theme": "THM_SOPRAVVIVENZA"
+      "theme": "THM_SOPRAVVIVENZA",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_QUARANTINE_LINE",
+            "text": "Chi traccia il cordone $in_region, e dove passa?",
+            "eligibility": []
+          },
+          {
+            "id": "Q_QUARANTINE_OUT",
+            "text": "E chi resta fuori, dove va?",
+            "eligibility": []
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_QUARANTINE_HOLD",
+            "question_id": "Q_QUARANTINE_LINE",
+            "text": "Il cordone lo tiene $proponent, e chi lo attraversa risponde a lui.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SEAT_CLAIMED"
+            ],
+            "echo_summary": "Il cordone $of_region lo tenne $proponent, e nessuno lo attraversò senza il suo permesso."
+          },
+          {
+            "id": "P_QUARANTINE_TOLL",
+            "question_id": "Q_QUARANTINE_LINE",
+            "text": "Si passa pagando: chi ha di che, esce.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_TOLL_ESTABLISHED"
+            ],
+            "echo_summary": "Dal cordone $of_region si usciva pagando, e chi non aveva di che restò dentro."
+          },
+          {
+            "id": "P_QUARANTINE_NONE",
+            "question_id": "Q_QUARANTINE_OUT",
+            "text": "Nessun cordone. Chi vuole andarsene se ne vada, e si porti dietro quello che ha.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_ABANDONED"
+            ],
+            "echo_summary": "$in_region non si tracciò nessun cordone, e chi poteva partire partì."
+          }
+        ]
+      }
     },
     {
       "id": "TEN_FERRY",
@@ -5156,7 +7255,63 @@
         "island"
       ],
       "opening_line": "Il traghettatore ha alzato il prezzo per la terza volta, e l'isola mangia quello che la barca porta.",
-      "theme": "THM_VIE"
+      "theme": "THM_VIE",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_ANY_WHO_PAYS",
+            "text": "$in_region, chi paga il prezzo di quello che rende?",
+            "eligibility": []
+          },
+          {
+            "id": "Q_ANY_WHO_KEEPS",
+            "text": "Chi tiene i conti di quello che passa $in_region — e chi li legge?",
+            "eligibility": [
+              {
+                "type": "tension_limit",
+                "tension_id": "$tension",
+                "min": 4,
+                "label": "La questione e' al limite"
+              }
+            ]
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_ANY_PRICE",
+            "question_id": "Q_ANY_WHO_PAYS",
+            "text": "Si metta un prezzo, e $proponent lo riscuota: quello che passa, paga.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_TOLL_ESTABLISHED"
+            ],
+            "echo_summary": "$proponent mise il prezzo su quello che passava, e il prezzo resto' anche quando lui non c'era.",
+            "echo_summaries": {
+              "FAILURE": "$proponent volle mettere il prezzo, e il prezzo lo pago' lui."
+            }
+          },
+          {
+            "id": "P_ANY_SPREAD_COST",
+            "question_id": "Q_ANY_WHO_PAYS",
+            "text": "Il costo si divide in parti uguali, e nessuno ne esce bene.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SHARED_BURDEN"
+            ],
+            "echo_summary": "Il costo $of_region fu diviso in parti uguali, e fu il massimo che quel consiglio riusci' a fare."
+          },
+          {
+            "id": "P_ANY_OPEN_LEDGER",
+            "question_id": "Q_ANY_WHO_KEEPS",
+            "text": "Si aprano i registri: che ognuno veda quanto rende, e a chi.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_LEDGER_OPENED"
+            ],
+            "echo_summary": "I registri furono aperti, e piu' d'uno avrebbe preferito di no."
+          }
+        ]
+      }
     },
     {
       "id": "TEN_BLACK_TOLLS",
@@ -5280,7 +7435,63 @@
         "trade"
       ],
       "opening_line": "Fra il bosco e la strada c'e' una catena, e alla catena uomini che chiamano «dazio» quello che prendono.",
-      "theme": "THM_VIE"
+      "theme": "THM_VIE",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_ANY_WHO_PAYS",
+            "text": "$in_region, chi paga il prezzo di quello che rende?",
+            "eligibility": []
+          },
+          {
+            "id": "Q_ANY_WHO_KEEPS",
+            "text": "Chi tiene i conti di quello che passa $in_region — e chi li legge?",
+            "eligibility": [
+              {
+                "type": "tension_limit",
+                "tension_id": "$tension",
+                "min": 4,
+                "label": "La questione e' al limite"
+              }
+            ]
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_ANY_PRICE",
+            "question_id": "Q_ANY_WHO_PAYS",
+            "text": "Si metta un prezzo, e $proponent lo riscuota: quello che passa, paga.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_TOLL_ESTABLISHED"
+            ],
+            "echo_summary": "$proponent mise il prezzo su quello che passava, e il prezzo resto' anche quando lui non c'era.",
+            "echo_summaries": {
+              "FAILURE": "$proponent volle mettere il prezzo, e il prezzo lo pago' lui."
+            }
+          },
+          {
+            "id": "P_ANY_SPREAD_COST",
+            "question_id": "Q_ANY_WHO_PAYS",
+            "text": "Il costo si divide in parti uguali, e nessuno ne esce bene.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SHARED_BURDEN"
+            ],
+            "echo_summary": "Il costo $of_region fu diviso in parti uguali, e fu il massimo che quel consiglio riusci' a fare."
+          },
+          {
+            "id": "P_ANY_OPEN_LEDGER",
+            "question_id": "Q_ANY_WHO_KEEPS",
+            "text": "Si aprano i registri: che ognuno veda quanto rende, e a chi.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_LEDGER_OPENED"
+            ],
+            "echo_summary": "I registri furono aperti, e piu' d'uno avrebbe preferito di no."
+          }
+        ]
+      }
     },
     {
       "id": "TEN_WEIGHTS",
@@ -5403,7 +7614,63 @@
         "trade"
       ],
       "opening_line": "Ogni mercato pesa col suo peso, e la differenza finisce sempre nella stessa tasca.",
-      "theme": "THM_VIE"
+      "theme": "THM_VIE",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_ANY_WHO_PAYS",
+            "text": "$in_region, chi paga il prezzo di quello che rende?",
+            "eligibility": []
+          },
+          {
+            "id": "Q_ANY_WHO_KEEPS",
+            "text": "Chi tiene i conti di quello che passa $in_region — e chi li legge?",
+            "eligibility": [
+              {
+                "type": "tension_limit",
+                "tension_id": "$tension",
+                "min": 4,
+                "label": "La questione e' al limite"
+              }
+            ]
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_ANY_PRICE",
+            "question_id": "Q_ANY_WHO_PAYS",
+            "text": "Si metta un prezzo, e $proponent lo riscuota: quello che passa, paga.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_TOLL_ESTABLISHED"
+            ],
+            "echo_summary": "$proponent mise il prezzo su quello che passava, e il prezzo resto' anche quando lui non c'era.",
+            "echo_summaries": {
+              "FAILURE": "$proponent volle mettere il prezzo, e il prezzo lo pago' lui."
+            }
+          },
+          {
+            "id": "P_ANY_SPREAD_COST",
+            "question_id": "Q_ANY_WHO_PAYS",
+            "text": "Il costo si divide in parti uguali, e nessuno ne esce bene.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SHARED_BURDEN"
+            ],
+            "echo_summary": "Il costo $of_region fu diviso in parti uguali, e fu il massimo che quel consiglio riusci' a fare."
+          },
+          {
+            "id": "P_ANY_OPEN_LEDGER",
+            "question_id": "Q_ANY_WHO_KEEPS",
+            "text": "Si aprano i registri: che ognuno veda quanto rende, e a chi.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_LEDGER_OPENED"
+            ],
+            "echo_summary": "I registri furono aperti, e piu' d'uno avrebbe preferito di no."
+          }
+        ]
+      }
     },
     {
       "id": "TEN_COURIERS",
@@ -5524,7 +7791,67 @@
       "description": "Le notizie viaggiano a cavallo di chi le porta. Chi paga le staffette sceglie cosa arriva, e quando.",
       "focus_region_tags": [],
       "opening_line": "Le lettere arrivano aperte, in ritardo, o non arrivano: le staffette servono piu' padroni di quanti ne dichiarino.",
-      "theme": "THM_VIE"
+      "theme": "THM_VIE",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_ANY_WHO_HOLDS",
+            "text": "$in_region, chi tiene il posto quando la voce si spegne?",
+            "eligibility": []
+          },
+          {
+            "id": "Q_ANY_WHOSE_LAW",
+            "text": "Quale legge vale $in_region: quella scritta, o quella di chi c'e'?",
+            "eligibility": [
+              {
+                "type": "tension_limit",
+                "tension_id": "$tension",
+                "min": 4,
+                "label": "La questione e' al limite"
+              }
+            ]
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_ANY_HOLD",
+            "question_id": "Q_ANY_WHO_HOLDS",
+            "text": "$proponent lo tiene, e lo dica forte: chi sta li' risponde a lui.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SEAT_CLAIMED"
+            ],
+            "echo_summary": "$proponent prese il posto $of_region, e nessuno oso' contarlo due volte.",
+            "echo_summaries": {
+              "DECISIVE_SUCCESS": "$proponent prese il posto $of_region, e il conto torno' al primo colpo.",
+              "FAILURE": "$proponent volle il posto $of_region, e il posto non volle lui."
+            }
+          },
+          {
+            "id": "P_ANY_SPLIT",
+            "question_id": "Q_ANY_WHO_HOLDS",
+            "text": "Si divida l'uso, non il titolo: ognuno il suo pezzo, e i conti a fine anno.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SHARED_BURDEN"
+            ],
+            "echo_summary": "L'uso $of_region fu diviso senza dividere il titolo, e resse quanto reggono le cose divise."
+          },
+          {
+            "id": "P_ANY_WALK_AWAY",
+            "question_id": "Q_ANY_WHOSE_LAW",
+            "text": "Nessuna legge: si lascia il posto a chi se lo vuole caricare addosso.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_ABANDONED"
+            ],
+            "echo_summary": "Nessuna legge fu scritta per $the_region, e il posto resto' a chi ci dormiva.",
+            "echo_summaries": {
+              "FAILURE": "Nessuno volle scrivere la legge $of_region, e nessuno volle nemmeno andarsene."
+            }
+          }
+        ]
+      }
     },
     {
       "id": "TEN_SILTED_CANALS",
@@ -5647,7 +7974,63 @@
         "marsh"
       ],
       "opening_line": "Riaprire i canali della palude accorcerebbe ogni strada, e nessuno vuole pagare le braccia per primo.",
-      "theme": "THM_VIE"
+      "theme": "THM_VIE",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_ANY_WHO_PAYS",
+            "text": "$in_region, chi paga il prezzo di quello che rende?",
+            "eligibility": []
+          },
+          {
+            "id": "Q_ANY_WHO_KEEPS",
+            "text": "Chi tiene i conti di quello che passa $in_region — e chi li legge?",
+            "eligibility": [
+              {
+                "type": "tension_limit",
+                "tension_id": "$tension",
+                "min": 4,
+                "label": "La questione e' al limite"
+              }
+            ]
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_ANY_PRICE",
+            "question_id": "Q_ANY_WHO_PAYS",
+            "text": "Si metta un prezzo, e $proponent lo riscuota: quello che passa, paga.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_TOLL_ESTABLISHED"
+            ],
+            "echo_summary": "$proponent mise il prezzo su quello che passava, e il prezzo resto' anche quando lui non c'era.",
+            "echo_summaries": {
+              "FAILURE": "$proponent volle mettere il prezzo, e il prezzo lo pago' lui."
+            }
+          },
+          {
+            "id": "P_ANY_SPREAD_COST",
+            "question_id": "Q_ANY_WHO_PAYS",
+            "text": "Il costo si divide in parti uguali, e nessuno ne esce bene.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SHARED_BURDEN"
+            ],
+            "echo_summary": "Il costo $of_region fu diviso in parti uguali, e fu il massimo che quel consiglio riusci' a fare."
+          },
+          {
+            "id": "P_ANY_OPEN_LEDGER",
+            "question_id": "Q_ANY_WHO_KEEPS",
+            "text": "Si aprano i registri: che ognuno veda quanto rende, e a chi.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_LEDGER_OPENED"
+            ],
+            "echo_summary": "I registri furono aperti, e piu' d'uno avrebbe preferito di no."
+          }
+        ]
+      }
     },
     {
       "id": "TEN_GUILD_WAR",
@@ -5771,7 +8154,63 @@
         "capital"
       ],
       "opening_line": "La gilda vecchia e quella nuova si sono divise il mercato a parole, e nessuna delle due rispetta le parole.",
-      "theme": "THM_VIE"
+      "theme": "THM_VIE",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_ANY_WHO_PAYS",
+            "text": "$in_region, chi paga il prezzo di quello che rende?",
+            "eligibility": []
+          },
+          {
+            "id": "Q_ANY_WHO_KEEPS",
+            "text": "Chi tiene i conti di quello che passa $in_region — e chi li legge?",
+            "eligibility": [
+              {
+                "type": "tension_limit",
+                "tension_id": "$tension",
+                "min": 4,
+                "label": "La questione e' al limite"
+              }
+            ]
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_ANY_PRICE",
+            "question_id": "Q_ANY_WHO_PAYS",
+            "text": "Si metta un prezzo, e $proponent lo riscuota: quello che passa, paga.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_TOLL_ESTABLISHED"
+            ],
+            "echo_summary": "$proponent mise il prezzo su quello che passava, e il prezzo resto' anche quando lui non c'era.",
+            "echo_summaries": {
+              "FAILURE": "$proponent volle mettere il prezzo, e il prezzo lo pago' lui."
+            }
+          },
+          {
+            "id": "P_ANY_SPREAD_COST",
+            "question_id": "Q_ANY_WHO_PAYS",
+            "text": "Il costo si divide in parti uguali, e nessuno ne esce bene.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SHARED_BURDEN"
+            ],
+            "echo_summary": "Il costo $of_region fu diviso in parti uguali, e fu il massimo che quel consiglio riusci' a fare."
+          },
+          {
+            "id": "P_ANY_OPEN_LEDGER",
+            "question_id": "Q_ANY_WHO_KEEPS",
+            "text": "Si aprano i registri: che ognuno veda quanto rende, e a chi.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_LEDGER_OPENED"
+            ],
+            "echo_summary": "I registri furono aperti, e piu' d'uno avrebbe preferito di no."
+          }
+        ]
+      }
     },
     {
       "id": "TEN_SMUGGLING",
@@ -5894,7 +8333,63 @@
         "harbor"
       ],
       "opening_line": "Le barche di notte scaricano nella cala vecchia, e meta' porto lo sa perche' l'altra meta' rema.",
-      "theme": "THM_VIE"
+      "theme": "THM_VIE",
+      "council": {
+        "questions": [
+          {
+            "id": "Q_ANY_WHO_PAYS",
+            "text": "$in_region, chi paga il prezzo di quello che rende?",
+            "eligibility": []
+          },
+          {
+            "id": "Q_ANY_WHO_KEEPS",
+            "text": "Chi tiene i conti di quello che passa $in_region — e chi li legge?",
+            "eligibility": [
+              {
+                "type": "tension_limit",
+                "tension_id": "$tension",
+                "min": 4,
+                "label": "La questione e' al limite"
+              }
+            ]
+          }
+        ],
+        "propositions": [
+          {
+            "id": "P_ANY_PRICE",
+            "question_id": "Q_ANY_WHO_PAYS",
+            "text": "Si metta un prezzo, e $proponent lo riscuota: quello che passa, paga.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_TOLL_ESTABLISHED"
+            ],
+            "echo_summary": "$proponent mise il prezzo su quello che passava, e il prezzo resto' anche quando lui non c'era.",
+            "echo_summaries": {
+              "FAILURE": "$proponent volle mettere il prezzo, e il prezzo lo pago' lui."
+            }
+          },
+          {
+            "id": "P_ANY_SPREAD_COST",
+            "question_id": "Q_ANY_WHO_PAYS",
+            "text": "Il costo si divide in parti uguali, e nessuno ne esce bene.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_SHARED_BURDEN"
+            ],
+            "echo_summary": "Il costo $of_region fu diviso in parti uguali, e fu il massimo che quel consiglio riusci' a fare."
+          },
+          {
+            "id": "P_ANY_OPEN_LEDGER",
+            "question_id": "Q_ANY_WHO_KEEPS",
+            "text": "Si aprano i registri: che ognuno veda quanto rende, e a chi.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_LEDGER_OPENED"
+            ],
+            "echo_summary": "I registri furono aperti, e piu' d'uno avrebbe preferito di no."
+          }
+        ]
+      }
     }
   ]
 }

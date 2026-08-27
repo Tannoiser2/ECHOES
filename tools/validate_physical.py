@@ -510,18 +510,33 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
             guai.append("Tensione senza domande: %s — girata, non avrebbe niente da chiedere"
                         % tensione.get("id"))
 
-    # 14. Il ponte delle domande, sorvegliato: ogni domanda dichiarata da una
-    # Tensione deve esistere in un template di Consiglio, o la carta promette
-    # un dibattito che il motore non sa aprire.
+    # 14. **Il ponte delle domande, e dove sta l'altra riva** (riscritto in
+    # 0.1.272, taglio 2 di ISSUES 80). Ogni domanda dichiarata da una Tensione
+    # deve esistere — sul **suo** blocco `council`, che e' la casa nuova, o in
+    # un template, che e' il ripiego finche' tutte le carte non hanno il loro.
+    # Senza questo la carta promette un dibattito che il motore non sa aprire.
+    #
+    # E la domanda che la carta apre deve avere **almeno una proposta**: una
+    # domanda senza risposte e' un Consiglio che si ferma prima di cominciare.
     quesiti_noti: Set[str] = set()
     for template in documenti.get("confluence_template", []):
         for quesito in template.get("questions", []):
             quesiti_noti.add(str(quesito.get("id")))
     for tensione in documenti.get("tension", []):
+        consiglio = tensione.get("council") or {}
+        propri = {str(q.get("id")) for q in consiglio.get("questions", []) or []}
+        risposte: Dict[str, int] = defaultdict(int)
+        for proposta in consiglio.get("propositions", []) or []:
+            risposte[str(proposta.get("question_id"))] += 1
         for quesito in tensione.get("possible_questions", []):
-            if str(quesito) not in quesiti_noti:
-                guai.append("ponte delle domande rotto su %s: «%s» non esiste in nessun template di Consiglio"
+            if str(quesito) not in propri | quesiti_noti:
+                guai.append("ponte delle domande rotto su %s: «%s» non sta ne' sulla "
+                            "carta ne' in un template di Consiglio"
                             % (tensione.get("id"), quesito))
+        for quesito in propri:
+            if risposte.get(quesito, 0) < 1:
+                guai.append("domanda senza risposte su %s: «%s» si apre e nessuno "
+                            "puo' proporre niente" % (tensione.get("id"), quesito))
 
     # 15. Destini che osservano un segno fuori dal dizionario: la faccia dice
     # dove guardare (D-270), e deve indicare un segno che esiste. Il censimento
@@ -729,13 +744,15 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
     #     nessuna casella li puo' fare, e toglierli sarebbe una perdita secca;
     #   - `SET_CONTROL` a **null**, che svuota il luogo invece di consegnarlo:
     #     e' un esito che nessun beneficio vende;
-    #   - `CNS_MINE_TAKEN`, l'eccezione dichiarata: prendere il controllo e'
-    #     tutto il suo corpo, e una Conseguenza senza Effetti lo schema non la
-    #     accetta. Riscriverla e' contenuto, non motore.
-    ECCEZIONI_D307 = {"CNS_MINE_TAKEN"}
+    #
+    # **E l'eccezione non c'e' piu'** (0.1.271). `CNS_MINE_TAKEN` era l'unica
+    # Conseguenza il cui corpo era tutto la casella: prendere il controllo. E'
+    # stata riscritta su quello che la sua frase dice davvero — *«metterci
+    # qualcuno a contare quello che esce»* — e adesso lascia `study_supervised`,
+    # una memoria che Cenere e Lyra temono e che nessuna casella vende. Il
+    # controllo lo decide il Consiglio; quello che resta e' che li' sotto
+    # qualcuno conta.
     for conseguenza in documenti.get("consequence", []):
-        if conseguenza.get("id") in ECCEZIONI_D307:
-            continue
         for effetto in conseguenza.get("effects", []) or []:
             if (effetto.get("target") or {}).get("id") != "$region_focus":
                 continue
@@ -919,6 +936,18 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
             if voce.get("verb") == "BUILD_STONE":
                 voce["structure"] = "STR_INVENTATA"
 
+    def domanda_muta(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        # Una carta che apre una Domanda a cui nessuno puo' rispondere: il
+        # Consiglio si ferma prima di cominciare. Si fabbrica togliendo le
+        # proposte di una domanda, invece di cercarne una gia' rotta.
+        carta = next(t for t in prova["tension"]
+                     if (t.get("council") or {}).get("questions"))
+        muta = str(carta["council"]["questions"][0]["id"])
+        carta["council"]["propositions"] = [
+            p for p in carta["council"]["propositions"]
+            if str(p.get("question_id")) != muta
+        ]
+
     def memoria_sbagliata(prova: Dict[str, List[Dict[str, Any]]]) -> None:
         # IL MONDO RICORDA che nomina un segno del **luogo** invece che del
         # mondo: la pedina si posa e la memoria finisce dove nessuna regola la
@@ -936,9 +965,7 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
         # proponente il luogo di cui si discute, che e' quello che la carta
         # vende. Si **fabbrica** invece di cercarla: appena i dati fossero a
         # posto, cercarla smetterebbe di provare senza dirlo (regola di casa).
-        bersaglio = next(
-            c for c in prova["consequence"] if c.get("id") not in {"CNS_MINE_TAKEN"}
-        )
+        bersaglio = next(iter(prova["consequence"]))
         bersaglio.setdefault("effects", []).append({
             "type": "SET_CONTROL",
             "target": {"kind": "region", "id": "$region_focus"},
@@ -989,6 +1016,8 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
                frase_che_ruba_la_casella, "la frase fa il mestiere della casella"),
         pianta("IL MONDO RICORDA che nomina un segno del luogo, non del mondo",
                memoria_sbagliata, "posa un segno che non e' del mondo"),
+        pianta("carta che apre una Domanda a cui nessuno puo' rispondere",
+               domanda_muta, "domanda senza risposte"),
     ]
     puliti = controlla(documenti)
     print("  %s %s" % ("OK " if not puliti else "MANCATO", "dati veri: nessun guaio"))
