@@ -10,6 +10,101 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-325 — Otto clausole guardano quello che il mondo produce, e la lite sta sulle carte condivise
+
+**implemented** (0.1.288) · [ISSUES 96](ISSUES.md) strada 1 · decisione del
+committente: *«Vai con 1»*.
+
+### Cosa dice la strada 1
+
+[D-324](#d-324) aveva misurato che **venticinque segni** che il mondo scrive
+almeno dieci volte per secolo non hanno una sola clausola addosso, e in testa
+`condition:contested` con **531 scritture in cento anni**. La strada 1: **far
+guardare a qualcuno quello che il mondo gia' produce**. Una clausola
+`state_tag_present` su un segno cosi' e' **falsa all'apertura** — il mondo
+comincia pulito — quindi si conquista invece di trovarsi nella dotazione.
+
+### Le carte, e perche' proprio quelle
+
+| segno | scritto | chi lo vuole | chi lo teme |
+|---|---|---|---|
+| `condition:contested` | 531 | `DST_NAHR` — dove nessuno ha messo il suo titolo, un popolo senza terra puo' fermarsi | `DST_ALDRIC` — un regno che resta non lascia domande sulla mappa |
+| `condition:cut_off` | 98 | `DST_VAERAX` — chi non passa non arriva | `DST_SALE` — un registro vale quanto le vie che copre |
+| `rumour_running` | 29 | `DST_VAERAX_LEGEND` — la versione che gira fuori dalla sala e' la sua | `DST_VETRO` — l'Ordine e' creduto sulla parola, non sui racconti |
+| `order_restored` | 87 | `DST_ALDRIC_RECORD` — l'ordine ristabilito per atto, e a verbale | — |
+
+Su `DST_NAHR` la riga nuova sta accanto a una che diceva gia' la stessa cosa in
+altre parole — *«finche' si discute chi siede, nessuno ha tempo di mandarci
+via»*. Su `DST_VAERAX` accanto a *«salire fin lassu' non e' facile per
+nessuno»*.
+
+### Una clausola ri-mirata, e un segno cancellato
+
+`DST_VAERAX_LEGEND` chiedeva `legend:crystal_exploited`, che in cento partite
+**non e' mai stato scritto**: uno dei cinque «punti regalati» di D-324. Riscritta
+sullo stesso soggetto della carta — la voce che corre — che il mondo scrive 29
+volte per secolo. Rimasto senza nessuno che lo tocchi,
+`legend:crystal_exploited` **esce dal dizionario**: 183 segni -> 182. Il
+validatore l'ha preteso, ed e' giusto cosi'.
+
+### La lezione, ed e' quella che vale piu' delle otto clausole
+
+Le prime sei righe — tre volute, tre temute, tutte su carte di case — hanno
+**atterrato senza incontrarsi**: `state_tag_present` mai contese 135 -> 160,
+contese 4 -> **5**. Una sola.
+
+**Una lite scritta fra due carte di due case precise quasi non capita a un tavolo
+pescato.** Servono che le due case siedano insieme (quattro su otto) *e* che
+ognuna abbia pescato proprio quella faccia fra le sue due o tre. Le Cicatrici
+avevano funzionato ([D-321](#d-321)) perche' `scar_count` sta anche sulle
+**carte condivise**, che le pesca chiunque.
+
+Aggiunta la coppia dove la lite puo' davvero capitare — `DST_SHARED_QUIET` teme
+la terra contesa, `DST_SHARED_HAND` la vuole (*«chi ha le mani piene la decide
+l'anno prossimo»*) — il numero si e' mosso subito:
+
+| | prima | sei clausole di casa | + la coppia condivisa |
+|---|---|---|---|
+| **coppie che si contendono una memoria** | 4.5% (27) | 4.5% (27) | **7.0% (42)** |
+| `state_tag_present` contese | 4 | 5 | **18** |
+| clausole gia' vere all'apertura | 54.0% | 53.8% | **53.1%** |
+| clausole contese | 490 | 492 | **503** |
+
+**Le carte condivise sono dove vive la lite.** Vale per tutto quello che verra':
+scrivere una lotta su due facce di casa e' scriverla per un tavolo che quasi mai
+si presenta.
+
+### Il costo, dichiarato
+
+`cli/run_playtest.gd --runs=100 --seed=7000` — **0 seggi bloccati su 8**, misto
+e uniforme.
+
+| | misto prima | misto dopo | uniforme prima | uniforme dopo |
+|---|---|---|---|---|
+| NONE | 91 | 90 | 69 | 69 |
+| VICTORY | 164 | 166 | 181 | **184** |
+| TRIUMPH | 10 | 9 | 14 | **11** |
+| Verita' diverse | 150 | 148 | 139 | **133** |
+
+Il gioco e' **appena piu' facile alla Vittoria e piu' duro al Trionfo**: tre
+Trionfi in meno sull'uniforme, tre Vittorie in piu'. E scrive **sei verita'
+diverse in meno** sull'uniforme: e' il costo, e si scrive.
+
+`docs/MISURA_VITE.md`: trasformazioni sedute 194 -> **198**.
+
+`docs/MISURA_SEGNI.md`: i segni scritti spesso che nessuno guarda passano da
+**25 a 21**. Restano in testa la famiglia `discovery:*` (`the_omen` 454,
+`the_ledger` 337) e `heir_named` 76.
+
+### Quello che resta
+
+`condition:contested` adesso ha due clausole per verso, e resta il segno piu'
+scritto del gioco: 538 volte per secolo contro quattro righe che lo nominano. Il
+rapporto e' ancora squilibrato, ma la direzione e' quella. E i ventuno orfani
+rimasti stanno in [ISSUES 96](ISSUES.md), che resta aperta.
+
+---
+
 ## D-324 — Il segno piu' scritto del gioco non lo guarda nessuno
 
 **implemented** (0.1.287) · misura nuova, con cancello · [ISSUES 96](ISSUES.md)

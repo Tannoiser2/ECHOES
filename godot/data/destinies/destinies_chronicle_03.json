@@ -83,6 +83,13 @@
                 "structure_type": "STR_TOLLGATE",
                 "min": 2,
                 "label": "E ci sono due cose murate che portano il suo nome"
+              },
+              {
+                "type": "state_tag_absent",
+                "scope": "REGION",
+                "region_id": "$any",
+                "tag": "condition:cut_off",
+                "label": "E nessuna strada si e' chiusa: un registro vale quanto le vie che copre"
               }
             ]
           }
@@ -99,12 +106,13 @@
           "debt_called",
           "ledger_public",
           "account_settled",
-          "structure:tollgate"
+          "structure:tollgate",
+          "condition:cut_off"
         ],
         "reads": {
           "minimum": "La Gilda ha una presenza sulla strada.",
           "victory": "Un debito è stato chiamato per intero, e chi lo doveva non ti è diventato nemico.",
-          "triumph": "Il registro è ancora tuo — non è diventato pubblico — e due cose murate portano il tuo nome."
+          "triumph": "Il registro è ancora tuo, non è diventato pubblico, due cose murate portano il tuo nome — e nessuna strada si è chiusa: un registro vale quanto le vie che copre."
         }
       }
     },
@@ -296,6 +304,12 @@
                 "entity_id": "ENT_VETRO",
                 "min": 2,
                 "label": "E l'Ordine ha alzato qualcosa oltre all'Archivio"
+              },
+              {
+                "type": "state_tag_absent",
+                "scope": "GLOBAL",
+                "tag": "rumour_running",
+                "label": "E nessuna voce corre: l'Ordine e' creduto sulla parola, non sui racconti"
               }
             ]
           }
@@ -308,7 +322,8 @@
         "observes": [
           "anointed",
           "relic_shown",
-          "condition:emptied"
+          "condition:emptied",
+          "rumour_running"
         ],
         "reads": {
           "minimum": "L'Ordine tiene la sua casa: le gallerie presidiate, non solo abitate.",

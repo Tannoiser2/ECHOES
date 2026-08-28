@@ -77,7 +77,6 @@ MUTI_NOTI: Dict[str, str] = {
     # dizionario, e la Fase B decidera' se farli mordere o toglierli.
     "hard_bargain": "la parola fredda: si legge sulla carta del casato, nessuna clausola la chiede (D-278)",
     "price_in_lives": "il conto in vite: memoria del mondo, nessuna clausola la chiede (D-278)",
-    "rumour_running": "la voce corre: memoria del mondo, nessuna clausola la chiede (D-278)",
     "spoke_and_lost": "ha proposto e la proposta e' caduta: si legge sulla carta del casato (D-278)",
     "took_by_hand": "si e' servito senza aspettare la decisione: si legge sulla carta del casato (D-278)",
     "watched": "sotto osservazione: chi ha imposto la guardia se lo porta addosso (D-278)",

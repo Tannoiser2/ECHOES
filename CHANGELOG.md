@@ -5,6 +5,59 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.288 — Otto clausole guardano quello che il mondo produce (D-325)
+
+### Cambiato
+
+- **Strada 1 di ISSUES 96**, scelta dal committente: qualcuno guarda i segni che
+  il mondo scrive gia'. `condition:contested` (531 scritture per secolo, zero
+  clausole) lo **vuole** `DST_NAHR` — dove nessuno ha messo il suo titolo un
+  popolo senza terra puo' fermarsi — e lo **teme** `DST_ALDRIC`.
+  `condition:cut_off` lo vuole `DST_VAERAX`, lo teme `DST_SALE`.
+  `rumour_running` lo vuole `DST_VAERAX_LEGEND`, lo teme `DST_VETRO`.
+  `order_restored` lo vuole `DST_ALDRIC_RECORD`.
+- **E la coppia sulle carte condivise**: `DST_SHARED_QUIET` teme la terra
+  contesa, `DST_SHARED_HAND` la vuole.
+- **Una clausola ri-mirata**: `DST_VAERAX_LEGEND` chiedeva
+  `legend:crystal_exploited`, mai scritto in cento partite. Riscritta sullo
+  stesso soggetto della carta — la voce che corre.
+- **Un segno cancellato**: `legend:crystal_exploited` non lo tocca piu' nessuno.
+  Dizionario **183 -> 182 segni**. L'ha preteso il validatore.
+
+### Misurato
+
+- **Coppie che si contendono una memoria: 4.5% -> 7.0%** (27 -> 42).
+- `state_tag_present` contese **4 -> 18**; clausole contese 490 -> 503.
+- **Clausole gia' vere all'apertura 54.0% -> 53.1%.**
+- Segni scritti spesso che nessuno guarda: **25 -> 21**.
+
+### La lezione, e vale piu' delle otto clausole
+
+Le prime **sei** righe, tutte su carte di case, sono atterrate **senza
+incontrarsi**: contese 4 -> 5. Una lite scritta fra due carte di due case
+precise quasi non capita a un tavolo pescato — servono che le due case siedano
+insieme *e* che ognuna abbia pescato proprio quella faccia. Aggiunta la coppia
+sulle **carte condivise**, che le pesca chiunque, il numero e' saltato a 18.
+**Le carte condivise sono dove vive la lite.**
+
+### Costo, dichiarato
+
+- Il gioco e' appena piu' facile alla Vittoria e piu' duro al Trionfo: uniforme
+  VICTORY 181 -> **184**, TRIUMPH 14 -> **11**.
+- **Verita' diverse in meno**: uniforme 139 -> **133**, misto 150 -> 148.
+- `docs/MISURA_VITE.md`: trasformazioni sedute 194 -> 198.
+- Cancello vincolante: **0 seggi bloccati su 8**, misto e uniforme. Sedici
+  cancelli verdi, 625 test / 35634 asserzioni.
+
+### Resta aperto
+
+- `condition:contested` e' ancora scritto 538 volte per secolo contro quattro
+  righe che lo nominano, e **ventuno segni** restano senza nessuno che li
+  guardi: in testa la famiglia `discovery:*` e `heir_named`. ISSUES 96 resta
+  aperta.
+
+---
+
 ## 0.1.287 — Il segno piu' scritto del gioco non lo guarda nessuno (D-324)
 
 ### Aggiunto

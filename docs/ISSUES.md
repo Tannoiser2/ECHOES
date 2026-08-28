@@ -2822,6 +2822,21 @@ un incidente. Una casa che campa sul confine irrisolto la renderebbe una mossa.
 tavolo non conta*. **Fatto quando** nessun segno scritto piu' di dieci volte in
 cento anni ha zero clausole addosso.
 
+**Avanzamento.** La strada 1 e' fatta per i quattro segni piu' grossi
+([D-325](DECISIONS.md#d-325)): orfani **25 -> 21**, coppie che si contendono una
+memoria **4.5% -> 7.0%**, clausole gia' vere all'apertura **54.0% -> 53.1%**.
+
+E si e' imparata una cosa che vale per tutto il resto della lista: **le prime sei
+clausole, tutte su carte di case, sono atterrate senza incontrarsi** (contese
+4 -> 5). Una lite scritta fra due facce di due case precise quasi non capita a un
+tavolo pescato. La coppia sulle **carte condivise** — che le pesca chiunque — da
+sola ha portato le contese a 18. Chi continua questa lista scriva li'.
+
+Restano ventuno segni, in testa la famiglia `discovery:*` (`the_omen` 454,
+`the_ledger` 337, `trade_ledger` 204) e `heir_named` 76. Sono scoperte di casa:
+la domanda vera e' se una scoperta debba valere punti a qualcuno, o se sia
+contabilita' e vada tolta dal conto — cioe' la strada 3.
+
 ---
 
 ### 95. ✅ Esiti di Consiglio che nessuno puo' pescare — chiusa in 0.1.286, strada 2

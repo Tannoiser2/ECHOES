@@ -80,6 +80,13 @@
                 "region_id": "REG_EREDAN",
                 "max": 0,
                 "label": "Eredan è uscita dall'anno senza un segno"
+              },
+              {
+                "type": "state_tag_absent",
+                "scope": "REGION",
+                "region_id": "$any",
+                "tag": "condition:contested",
+                "label": "E non c'e' una terra lasciata contesa: un regno che resta non lascia domande sulla mappa"
               }
             ]
           }
@@ -102,7 +109,7 @@
         "reads": {
           "minimum": "Hai una presenza sulla capitale.",
           "victory": "Controlli ancora la tua terra, e il Tema Sopravvivenza non è mai salito oltre metà traccia.",
-          "triumph": "La capitale esce dall'anno senza #malcontento, la corona non è spezzata, e nessuna Domanda resta aperta."
+          "triumph": "La capitale esce dall'anno senza #malcontento, la corona non è spezzata, nessuna Domanda resta aperta — e sulla mappa non è rimasta una terra contesa."
         }
       }
     },
@@ -210,6 +217,13 @@
                 "type": "scar_count",
                 "max": 2,
                 "label": "E l'anno non ha lasciato più di due segni sul mondo"
+              },
+              {
+                "type": "state_tag_present",
+                "scope": "REGION",
+                "region_id": "$any",
+                "tag": "condition:contested",
+                "label": "E da qualche parte la terra e' ancora contesa: dove nessuno ha messo il suo titolo, un popolo puo' fermarsi"
               }
             ]
           }
@@ -232,7 +246,7 @@
         "reads": {
           "minimum": "Il popolo ha una presenza sul pascolo.",
           "victory": "Un Consiglio ha riconosciuto il tuo insediamento, e sei nel luogo del granaio.",
-          "triumph": "L'insediamento regge, la valle non è stata chiusa, e il mondo esce con non più di due Cicatrici."
+          "triumph": "L'insediamento regge, la valle non è stata chiusa — e da qualche parte la terra è ancora contesa: è lì che un popolo senza titolo può fermarsi."
         }
       }
     },
@@ -440,6 +454,13 @@
                 "region_id": "REG_MINIERE_ANTICHE",
                 "min": 1,
                 "label": "E le gallerie portano un segno che si vede da fuori"
+              },
+              {
+                "type": "state_tag_present",
+                "scope": "REGION",
+                "region_id": "$any",
+                "tag": "condition:cut_off",
+                "label": "E una strada si e' chiusa: chi non passa non arriva"
               }
             ]
           }
@@ -461,7 +482,7 @@
         "reads": {
           "minimum": "Hai una presenza sulla montagna.",
           "victory": "Le gallerie sono sigillate e il Cristallo non è uscito.",
-          "triumph": "Restano sigillate, il Tema Antico è tornato in basso, e salire fin lassù non è facile per nessuno."
+          "triumph": "Le Miniere non svuotate, il Risveglio riportato indietro, salire non è facile per nessuno — e una strada si è chiusa: chi non passa non arriva."
         }
       }
     },
@@ -565,6 +586,12 @@
                 "tension_id": "TEN_SUCCESSION",
                 "max": 3,
                 "label": "E chi siede non è più una domanda aperta"
+              },
+              {
+                "type": "state_tag_present",
+                "scope": "GLOBAL",
+                "tag": "order_restored",
+                "label": "E l'ordine e' stato ristabilito per atto, e sta a verbale"
               }
             ]
           }
@@ -579,7 +606,9 @@
           "question_unresolved",
           "crown_divided",
           "succession_by_law",
-          "condition:unrest"
+          "condition:unrest",
+          "order_restored",
+          "condition:contested"
         ],
         "reads": {
           "minimum": "A Eredan c'è almeno una pedina sua.",
@@ -931,8 +960,8 @@
           {
             "type": "state_tag_present",
             "scope": "GLOBAL",
-            "tag": "legend:crystal_exploited",
-            "label": "Il giorno del Cristallo è ormai soltanto un racconto"
+            "tag": "rumour_running",
+            "label": "E la voce corre: la versione che gira fuori dalla sala e' la sua"
           }
         ]
       },
@@ -943,12 +972,13 @@
         ],
         "observes": [
           "mountain_forgotten",
-          "mine_sealed"
+          "mine_sealed",
+          "rumour_running"
         ],
         "reads": {
           "minimum": "Il mondo dimentica la montagna.",
           "victory": "Il sigillo regge e il Risveglio resta quieto.",
-          "triumph": "Il sigillo regge, il Risveglio è un sussurro, e il giorno del Cristallo è ormai soltanto un racconto."
+          "triumph": "Il sigillo regge, il Risveglio è un sussurro — e la voce che corre fuori dalla sala è la sua."
         }
       }
     }
