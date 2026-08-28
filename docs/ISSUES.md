@@ -2763,64 +2763,59 @@ e' in gioco.
 
 ---
 
-### 95. Tredici esiti di Consiglio stampati che nessuno puo' pescare
+### 95. ✅ Esiti di Consiglio che nessuno puo' pescare — chiusa in 0.1.286, strada 2
 
 `regola` · `contenuto` · `debito` · `decisione` · aperta in 0.1.285
-([D-322](DECISIONS.md#d-322))
+([D-322](DECISIONS.md#d-322)), chiusa in 0.1.286
+([D-323](DECISIONS.md#d-323))
 
-La scatola contiene **64 Conseguenze** — cosa resta al mondo quando un Consiglio
-si chiude. **Tredici non escono mai**, e non per sfortuna: nessun Consiglio le
-puo' pescare.
+La scatola contiene **64 Conseguenze**. Con la regola stretta — quello che il
+motore legge davvero, cioe' le proposte delle 60 carte Tensione piu'
+`decisive_bonus` — **diciassette non uscivano mai**: le sei della famiglia del
+fallimento, le sei del prezzo, e cinque altre.
 
-| | |
-|---|---|
-| raggiungibili dalle proposte delle 60 carte Tensione | 46 |
-| raggiungibili dai pool dei 12 template | 6 |
-| **orfane** | **13** |
+*(D-322 diceva 13 perche' contava come raggiungibile anche il pool `cost`, che
+il motore non legge — proprio la cosa che quel verbale aveva scoperto. Il numero
+giusto era 17.)*
 
-Undici delle tredici sono **i prezzi e i fallimenti**: `CNS_COST_COLD_WORD`,
-`CNS_COST_EMPTIED`, `CNS_COST_EXPLOITED`, `CNS_COST_MOURNING`,
-`CNS_COST_RATION`, `CNS_FAILURE_ABANDONED`, `CNS_FAILURE_CONTESTED`,
-`CNS_FAILURE_CUT_OFF`, `CNS_FAILURE_PLUNDER`, `CNS_FAILURE_RUMOUR`,
-`CNS_FAILURE_WALL`. Le altre due: `CNS_EXODUS`, `CNS_HARVEST_RETURNS`.
+**Come si e' chiusa.** Il committente ha scelto la **strada 2**: il fallimento
+riprende una faccia. Sul FAILURE scatta **una riga sola** dal pool `failure`
+della scheda, e ogni scheda cade a modo suo — SURVIVAL lascia un luogo
+abbandonato, TERRITORY un luogo conteso, ANCIENT una voce che corre, RESOURCE
+una strada chiusa; e le otto carte con scheda propria cadono nel modo della loro
+domanda.
 
-**Perche'.** I dodici template portano tutti gli stessi pool `cost` / `failure`
-/ `decisive_bonus`, ma il motore ne legge **solo `decisive_bonus`**: gli esiti
-vengono da `success_consequences` della proposta. E' un residuo di due decisioni
-gia' prese — il prezzo e' passato sulla carta ([D-267](DECISIONS.md#d-267),
-[D-280](DECISIONS.md#d-280)), il segno della domanda caduta lo scrive il motore
-([D-278](DECISIONS.md#d-278)) — a cui non e' seguita la pulizia.
+| | prima | dopo |
+|---|---|---|
+| Conseguenze irraggiungibili | 17 su 64 | **9 su 64** |
+| VICTORY, tavolo misto | 173 | **164** |
+| NONE, tavolo misto | 86 | **91** |
+| verita' diverse, uniforme | 133 | **139** |
+| trasformazioni sedute | 198 | **194** |
 
-**Perche' conta oltre la pulizia.** Un Consiglio che fallisce **non lascia
-niente al mondo** tranne `question_unresolved`, e sul tavolo misto cade una
-proposta su quattro. Le undici Conseguenze morte sono proprio quelle che
-sporcherebbero il mondo — `condition:abandoned`, `condition:contested`,
-`condition:plundered`, `condition:cut_off`, `rumour_running`. E' la ragione di
-fondo per cui `state_tag_absent` e' gratis ([ISSUES 91](#)): quando il tavolo
-non sa decidere, **il mondo non si sporca**.
+**Quello che non ha funzionato, ed e' il motivo per cui la strada era stata
+consigliata:** le memorie temute **non si muovono** (76.6% prima, 76.6% dopo), e
+le clausole gia' vere all'apertura passano dal 54.3% al 54.0%. La strada 2
+sporca il mondo ma non rende `state_tag_absent` contendibile.
 
-**Cosa la chiude.** La scelta e' del committente — sono tredici carte scritte:
+Il perche' e' preciso: **i segni che un fallimento lascia non sono i segni che i
+Destini temono.** Un Consiglio caduto scrive `condition:abandoned`,
+`condition:contested`, `condition:cut_off`, `condition:plundered`,
+`rumour_running`; i Destini temono `crown_divided`, `valley_sealed`,
+`water_priced`, `oath_broken` — cose che solo una proposta **passata** puo'
+scrivere. Il blocco sta un passo piu' in la', in **cosa i Destini scelgono di
+temere**: torna a [ISSUES 91](#).
 
-1. **Si cancellano.** Il prezzo sta sulla carta, un Consiglio caduto non lascia
-   niente: e' gia' la regola, e la scatola torna onesta. Via anche i pool
-   `cost` e `failure` dallo schema, che nessuno legge. Costo: tredici esiti
-   scritti buttati, e `state_tag_absent` resta gratis.
-2. **Il fallimento riprende una faccia.** Una domanda che il tavolo non sa
-   chiudere lascia il segno che *quella* domanda lascia — per dominio, non
-   uguale per tutti: SURVIVAL lascia un luogo abbandonato, TERRITORY un luogo
-   conteso o saccheggiato, ANCIENT una voce che corre, RESOURCE una strada
-   chiusa. Tocca il motore (una riga: leggere il pool `failure` sul FAILURE) e
-   rende `state_tag_absent` una scommessa invece di un regalo.
-3. **Lasciare e dichiarare.**
+**La coda che resta aperta.** Nove Conseguenze restano irraggiungibili, e sei
+sono quelle del prezzo (`CNS_COST_*`): superate per costruzione da
+[D-280](DECISIONS.md#d-280), perche' la moneta sta sulla carta Tensione.
+Andrebbero cancellate, insieme al pool `cost` dello schema che nessuno legge —
+ma e' contenuto stampato, quindi serve una parola. Le altre tre —
+`CNS_EXODUS`, `CNS_HARVEST_RETURNS`, `CNS_VALLEY_DRAINED` — sono esiti di storia
+che nessuna proposta nomina piu': o le nomina qualcuno, o vanno via anche loro.
 
-**Nota su una strada gia' provata e ritirata**: assegnare a ogni dominio pool
-diversi, senza toccare il motore, passa tutti i validatori e **non cambia un
-singolo esito** — i pool restano non letti. Il contenuto da solo non basta.
-
-**Il metro**: il censimento in [D-322](DECISIONS.md#d-322), e
-`cli/run_contest_probe.gd`, riga *memorie temute che nessuno ha mai toccato* —
-oggi **76.6%**. Con la strada 2 deve scendere. **Fatto quando** nessuna
-Conseguenza scritta e' irraggiungibile, e un cancello lo controlla.
+**Fatto quando** nessuna Conseguenza scritta e' irraggiungibile, e un cancello
+lo controlla.
 
 ---
 
@@ -3048,6 +3043,17 @@ la superficie contesa dal 14.6% al 21.4%. **Ma non ha spostato la dotazione**:
 Restano aperti il taglio (b) — le soglie assolute che diventano confronti, e
 adesso `state_tag_absent` e' il blocco piu' grosso rimasto, con 426 clausole
 mai contese — e la strada 3.
+
+**E si sa una cosa in piu' su `state_tag_absent`, dopo
+[ISSUES 95](#).** Rimettere una faccia al fallimento — un Consiglio caduto
+sporca il mondo — **non l'ha spostato di niente**: memorie temute 76.6% prima e
+dopo. La ragione: **i segni che un fallimento lascia non sono i segni che i
+Destini temono**. Un Consiglio caduto scrive `condition:abandoned`,
+`condition:contested`, `condition:cut_off`; i Destini temono `crown_divided`,
+`valley_sealed`, `water_priced`, `oath_broken` — cose che solo una proposta
+**passata** puo' scrivere. Quindi il taglio (b) non basta neanche lui dal lato
+del mondo: o i Destini temono cose che il mondo produce da solo, o quelle cose
+diventano piu' facili da produrre. E' la voce da aprire dopo.
 
 ---
 
