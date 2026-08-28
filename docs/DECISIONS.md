@@ -146,6 +146,22 @@ mondo non produce mai e' una promessa falsa per chiunque lo tema (ISSUES 96,
 strada 2). Non l'ho toccato qui: e' contenuto, e questa e' una modifica di
 motore.
 
+E **la stessa deriva arriva alle vite**, `MISURA_VITE.md`. Qui va nella
+direzione buona:
+
+| | prima | dopo |
+|---|---|---|
+| **trasformazioni sedute** (168 salti) | 195 | **198** |
+| Vaerax Ridestato, uniforme / misto | 11 / 8 | **12 / 9** |
+| L'Egemonia di Eredan, uniforme | 5 | **7** |
+| la casa che muta piu' spesso | Aldric, 1 ogni 4,7 | Aldric, 1 ogni **4,8** |
+
+Tre vite scritte in piu' si siedono davvero al tavolo, ed e' quello che ci si
+aspetta: il Calore che va sulla questione giusta apre Consigli che producono i
+segni sulle cui porte le case cambiano pelle. Il limite di casa di
+[ISSUES 83](ISSUES.md) — **nessuna casa sotto un salto su quattro** — tiene, e
+anzi respira: la peggiore passa da 4,7 a 4,8.
+
 - Il ponte non e' stato tolto. Finche' 13 Tensioni non hanno la casella e 124
   cadute su 381 non trovano una riga, toglierlo lascerebbe del Calore per terra.
 
