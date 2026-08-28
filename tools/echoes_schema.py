@@ -9,7 +9,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Any, Dict, Iterator, Tuple
+from typing import Any, Dict, Iterator, List, Tuple
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 SCHEMA_DIR = REPO_ROOT / "schema"
@@ -53,6 +53,28 @@ def iter_data_files() -> Iterator[Tuple[Path, Dict[str, Any]]]:
                 yield path, json.load(handle)
             except json.JSONDecodeError as exc:
                 raise SystemExit(f"{rel(path)}: invalid JSON: {exc}") from exc
+
+
+def items_of(schema_id: str) -> List[Dict[str, Any]]:
+    """Ogni voce dei documenti che dichiarano quello `schema_id`.
+
+    Si sceglie per **schema, non per cartella**, e la ragione e' pagata due
+    volte. `build_review.py` nominava a mano un file cancellato con gli anni
+    d'autore e moriva all'avvio (D-328). Poi, fondendo i file che portavano il
+    nome di quegli anni (ISSUES 99), quattro strumenti che cercavano i template
+    dei Consigli in `chronicle_*/confluences/` hanno smesso di vederli **senza
+    fallire**: il registro dei segni ha dichiarato otto clausole impossibili che
+    non lo erano, e il censimento dei componenti ha scritto «Modelli di
+    Consiglio: 0».
+
+    Un documento va trovato per quello che **dice di essere**, cosi' nessuno
+    puo' renderlo invisibile spostandolo.
+    """
+    out: List[Dict[str, Any]] = []
+    for _path, document in iter_data_files():
+        if str(document.get("schema_id", "")) == schema_id:
+            out.extend(document.get("items", []))
+    return out
 
 
 def rel(path: Path) -> str:

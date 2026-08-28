@@ -86,11 +86,24 @@ MUTI_NOTI: Dict[str, str] = {
 
 # --- lettura dei dati -------------------------------------------------------
 
-def items(pattern: str) -> List[Dict[str, Any]]:
+def items(schema_id: str) -> List[Dict[str, Any]]:
+    """Tutte le voci dei documenti che dichiarano quello `schema_id`.
+
+    Si sceglie per **schema, non per percorso**, e la ragione e' pagata: fino
+    alla 0.1.291 questa funzione prendeva un glob, e tre chiamate nominavano una
+    cartella di Chronicle (`chronicle_*/confluences/*.json`). Spostando i
+    template dove il loro nome non mentiva piu' (ISSUES 99), il registro ha
+    smesso di vederli e ha dichiarato **otto clausole impossibili** che non lo
+    erano. Un documento adesso si trova per quello che dice di essere, cosi'
+    nessun rinomino puo' renderlo invisibile in silenzio.
+    """
     out: List[Dict[str, Any]] = []
-    for path in sorted(DATA_DIR.glob(pattern)):
+    for path in sorted(DATA_DIR.rglob("*.json")):
         with path.open(encoding="utf-8") as handle:
-            out.extend(json.load(handle).get("items", []))
+            document = json.load(handle)
+        if str(document.get("schema_id", "")) != schema_id:
+            continue
+        out.extend(document.get("items", []))
     return out
 
 
@@ -199,7 +212,7 @@ def collect() -> Dict[str, Dict[str, Set[str]]]:
     def note(tag: str, role: str, who: str) -> None:
         signs[tag][role].add(who)
 
-    for consequence in items("consequences/*.json"):
+    for consequence in items("consequence"):
         for role, tag in tags_in_effects(consequence.get("effects")):
             note(tag, role, "Conseguenza")
         # Una cicatrice non e' un Effetto come gli altri: la Conseguenza la
@@ -213,7 +226,7 @@ def collect() -> Dict[str, Dict[str, Set[str]]]:
         if scar:
             note(scar, "scrive", "Conseguenza (cicatrice)")
             note(scar, "legge", "conteggio delle cicatrici (`scar_count`)")
-    for card in items("assets/*.json"):
+    for card in items("asset"):
         for role, tag in tags_in_effects(card.get("on_commit_effects")):
             note(tag, role, "carta Asset")
         # **La faccia della carta e' una penna** (D-283): da quando il motore
@@ -240,7 +253,7 @@ def collect() -> Dict[str, Dict[str, Set[str]]]:
         for campo in ("any_tag", "forbidden_tag"):
             for tag in target.get(campo, []) or []:
                 note(str(tag), "legge", "bersaglio a segni")
-    for echo in items("echoes/*.json"):
+    for echo in items("echo_card"):
         for hook in echo.get("effect_hooks", []) or []:
             payload: Any = [hook]
             if isinstance(hook, dict):
@@ -262,33 +275,31 @@ def collect() -> Dict[str, Dict[str, Set[str]]]:
         for tag in sink:
             note(tag, "legge", who)
 
-    for objective in items("objectives/*.json"):
+    for objective in items("objective"):
         readers(objective.get("conditions"), "obiettivo")
-    for destiny in items("destinies/*.json"):
+    for destiny in items("destiny"):
         for level in ("minimum", "victory", "triumph"):
             readers((destiny.get(level) or {}).get("conditions"), "Destino")
-    for rule in items("tag_rules/*.json"):
+    for rule in items("tag_rule"):
         when = rule.get("when")
         readers([when] if isinstance(when, dict) else when, "regola del segno")
-    for echo in items("echoes/*.json"):
+    for echo in items("echo_card"):
         readers(echo.get("eligibility"), "carta Echo")
-    for consequence in items("consequences/*.json"):
+    for consequence in items("consequence"):
         readers(consequence.get("eligibility"), "Conseguenza")
-    for path in sorted(DATA_DIR.glob("chronicle_*/confluences/*.json")):
-        with path.open(encoding="utf-8") as handle:
-            for template in json.load(handle).get("items", []):
-                for proposition in template.get("propositions", []) or []:
-                    readers(proposition.get("eligibility"), "proposta")
-                    readers(proposition.get("conditions"), "proposta")
-                # **La penna del Consiglio** (D-286): una clausola vinta posa i
-                # suoi segni sul mondo — l'amnistia concessa, la Carta che vale
-                # per un tempo solo, la successione con testimoni. Il registro
-                # non guardava qui, e quelle memorie risultavano scritte da
-                # nessuno: un allarme falso su contenuto sano, che si e' visto
-                # solo il giorno in cui qualcuno ha cominciato a leggerle.
-                for clause in template.get("condition_clauses", []) or []:
-                    for role, tag in tags_in_effects((clause or {}).get("effects")):
-                        note(tag, role, "clausola di Consiglio")
+    for template in items("confluence_template"):
+        for proposition in template.get("propositions", []) or []:
+            readers(proposition.get("eligibility"), "proposta")
+            readers(proposition.get("conditions"), "proposta")
+        # **La penna del Consiglio** (D-286): una clausola vinta posa i
+        # suoi segni sul mondo — l'amnistia concessa, la Carta che vale
+        # per un tempo solo, la successione con testimoni. Il registro
+        # non guardava qui, e quelle memorie risultavano scritte da
+        # nessuno: un allarme falso su contenuto sano, che si e' visto
+        # solo il giorno in cui qualcuno ha cominciato a leggerle.
+        for clause in template.get("condition_clauses", []) or []:
+            for role, tag in tags_in_effects((clause or {}).get("effects")):
+                note(tag, role, "clausola di Consiglio")
     # Le altre tre penne che scrivono sul mondo, e che una scansione dei soli
     # Effetti non vede: l'apertura della Chronicle, le Regioni come nascono, e
     # le **catene** — un fatto che si ripete di era in era avanza di un gradino
@@ -299,7 +310,7 @@ def collect() -> Dict[str, Dict[str, Set[str]]]:
     # `settlement:city`: e' cosi' che undici regole del segno trovano il segno
     # che aspettano. Senza questa penna il registro le dichiarava tutte
     # impossibili, che sarebbe stato un allarme falso su contenuto sano.
-    for structure in items("structures/*.json"):
+    for structure in items("structure_type"):
         for grade in structure.get("grades", []) or []:
             tag = str((grade or {}).get("tag", ""))
             if tag:
@@ -309,17 +320,15 @@ def collect() -> Dict[str, Dict[str, Set[str]]]:
         ruin = str((structure.get("ruin") or {}).get("tag", ""))
         if ruin:
             note(ruin, "posa", "pietra «%s» in rovina" % structure.get("name", "?"))
-    for region in items("regions/*.json"):
+    for region in items("region"):
         for tag in region.get("tags", []) or []:
             note(str(tag), "posa", "Regione all'apertura")
-    for path in sorted(DATA_DIR.glob("chronicle_*/chronicle_*.json")):
-        with path.open(encoding="utf-8") as handle:
-            for chronicle in json.load(handle).get("items", []):
-                for tag in chronicle.get("global_tags", []) or []:
-                    note(str(tag), "posa", "Chronicle all'apertura")
-                for tally in chronicle.get("era_tallies", []) or []:
-                    for tag in tally.get("chain", []) or []:
-                        note(str(tag), "posa", "catena delle ere")
+    for chronicle in items("chronicle"):
+        for tag in chronicle.get("global_tags", []) or []:
+            note(str(tag), "posa", "Chronicle all'apertura")
+        for tally in chronicle.get("era_tallies", []) or []:
+            for tag in tally.get("chain", []) or []:
+                note(str(tag), "posa", "catena delle ere")
     # **Tre penne che leggono, e che una scansione delle sole condizioni non
     # vede.** Sono la ragione per cui questo registro ha detto per due versioni
     # che dieci segni erano muti: non guardava dove il gioco li legge davvero.
@@ -327,13 +336,13 @@ def collect() -> Dict[str, Dict[str, Set[str]]]:
     # 1. `focus_region_tags` di una Tensione decide **di quale Regione parla il
     #    Consiglio**. Non e' colore: e' il bersaglio. Una Regione contesa tira
     #    su di se' il Consiglio sulla Successione, e chi la rende contesa lo sa.
-    for tension in items("tensions/*.json"):
+    for tension in items("tension"):
         for tag in tension.get("focus_region_tags", []) or []:
             note(str(tag), "legge", "la Regione di cui si discute")
     # 2. `entry_tag` e `entry_forbidden_tag` di una vita decidono **chi siede
     #    l'anno prossimo**: e' il morso piu' forte che ci sia in questo gioco,
     #    perche' cambia il giocatore e non una modifica. `heir_named` sta li'.
-    for entity in items("entities/*.json"):
+    for entity in items("entity"):
         for life in entity.get("incarnations", []) or []:
             for key, why in (
                 ("entry_tag", "chi siede l'anno prossimo"),
@@ -348,26 +357,22 @@ def collect() -> Dict[str, Dict[str, Set[str]]]:
                     note(tag.split("@", 1)[0], "legge", why)
     # 3. `if_tag` e `if_not_tag` di una catena delle ere decidono se la catena
     #    avanza: il segno di quest'anno sceglie il segno di fra dieci.
-    for path in sorted(DATA_DIR.glob("chronicle_*/chronicle_*.json")):
-        with path.open(encoding="utf-8") as handle:
-            for chronicle in json.load(handle).get("items", []):
-                for tally in chronicle.get("era_tallies", []) or []:
-                    for key in ("if_tag", "if_not_tag"):
-                        tag = str((tally or {}).get(key, ""))
-                        if tag:
-                            note(tag, "legge", "catena delle ere")
-    for path in sorted(DATA_DIR.glob("chronicle_*/chronicle_*.json")):
-        with path.open(encoding="utf-8") as handle:
-            for chronicle in json.load(handle).get("items", []):
-                for fact in chronicle.get("enduring_facts", []) or []:
-                    note(str(fact), "legge", "fatto che dura")
-                echoes = (chronicle.get("tension_pool") or {}).get("echoes") or {}
-                for signals in echoes.values():
-                    for signal in signals:
-                        signal = str(signal)
-                        if signal.startswith("structure:"):
-                            continue
-                        note(signal, "legge", "pesca delle domande")
+    for chronicle in items("chronicle"):
+        for tally in chronicle.get("era_tallies", []) or []:
+            for key in ("if_tag", "if_not_tag"):
+                tag = str((tally or {}).get(key, ""))
+                if tag:
+                    note(tag, "legge", "catena delle ere")
+    for chronicle in items("chronicle"):
+        for fact in chronicle.get("enduring_facts", []) or []:
+            note(str(fact), "legge", "fatto che dura")
+        echoes = (chronicle.get("tension_pool") or {}).get("echoes") or {}
+        for signals in echoes.values():
+            for signal in signals:
+                signal = str(signal)
+                if signal.startswith("structure:"):
+                    continue
+                note(signal, "legge", "pesca delle domande")
 
     # I prefissi letti dal codice: quello che una scansione dei nomi non vede.
     # Solo quelli che PREFISSI dichiara mordenti — leggere non e' agire.

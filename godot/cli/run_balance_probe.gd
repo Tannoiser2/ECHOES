@@ -5,10 +5,11 @@ extends SceneTree
 ##   godot --headless --path godot --script res://cli/run_balance_probe.gd -- \
 ##       --runs=40 --seed=1000
 ##
-## This is the measuring instrument for the balance pass. The scripted plans in
-## data/chronicle_01/sim_plans answer "do the rules do what the plan says"; this
-## answers "what happens when four people all play their own Destiny", which is
-## the only question a balance number can come from.
+## This is the measuring instrument for the balance pass: it answers "what
+## happens when four people all play their own Destiny", which is the only
+## question a balance number can come from. (The scripted plans that used to
+## answer "do the rules do what the plan says" left with the authored years,
+## D-318.)
 ##
 ## Fully deterministic: run it twice with the same --seed and --runs and you get
 ## the same table.

@@ -2,12 +2,15 @@ extends SceneTree
 ## Headless Chronicle harness (§18.1).
 ##
 ##   godot --headless --path godot --script res://cli/run_chronicle_sim.gd -- \
-##       --plan=res://data/chronicle_01/sim_plans/plan_a.json \
-##       --out=out/plan_a.save.json
+##       --chronicle=CHR_00 --seed=7000 --out=out/anno.save.json
 ##
-## Reads a sim plan, plays the whole Chronicle, prints a readable log and writes
-## the final save. Exit code 0 means the run finished with every scripted choice
-## legal and every `expected` assertion satisfied.
+## Gioca la Chronicle intera, stampa un log leggibile e scrive il salvataggio
+## finale. Uscita 0 vuol dire che l'anno e' arrivato in fondo.
+##
+## Accetta ancora `--plan=` per un piano scritto a mano, ma **nessun piano
+## esiste piu' nei dati**: se ne sono andati con gli anni d'autore (D-318), e
+## una sequenza di mosse scritta per una mappa fissa non ha senso su una mappa
+## che si pesca.
 
 const DataSet := preload("res://scripts/core/data_set.gd")
 const GameSession := preload("res://scripts/chronicle/game_session.gd")

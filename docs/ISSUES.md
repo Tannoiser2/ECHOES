@@ -2768,9 +2768,35 @@ e' in gioco.
 
 ---
 
-### 99. I dati portano ancora i nomi degli anni cancellati
+### 99. ✅ I dati portano ancora i nomi degli anni cancellati — chiusa in 0.1.292
 
-`debito` · `strumenti` · **aperta in 0.1.291** ([D-328](DECISIONS.md#d-328))
+`debito` · `strumenti` · aperta in 0.1.291 ([D-328](DECISIONS.md#d-328)),
+**chiusa in 0.1.292** ([D-329](DECISIONS.md#d-329))
+
+> **Fatto.** Le sette coppie sono fuse in un file solo ciascuna, chiamato col
+> contenuto: `entities_core`, `destinies_core`, `tensions_core`,
+> `consequences_core`, `echo_cards_core`, `regions_core`, e i template dei
+> Consigli in `confluences/`. Le due cartelle degli anni morti non ci sono piu'.
+>
+> **E la voce ha trovato quello che nascondeva.** Il motore non se n'e' accorto
+> (`data_set.gd` raccoglie ogni `.json` e indicizza per id), ma **quattro
+> strumenti si', in silenzio**: cercavano i template dei Consigli in
+> `chronicle_*/confluences/*.json`, e spostati quelli hanno prodotto documenti
+> puliti e sbagliati — otto clausole impossibili che non lo sono, «Modelli di
+> Consiglio: 0», 146 soggetti d'arte diventati 0, 670 righe di testi sparite.
+> Nessuno dei quattro ha fallito.
+>
+> Curati con un aiutante solo, `items_of(schema_id)` in `echoes_schema.py`: un
+> documento si cerca **per quello che dice di essere**, non per la cartella.
+> Venti riferimenti a percorsi spariti.
+>
+> **La guardia**: `check_no_file_names_a_dead_chronicle` in `validate_data.py`,
+> e il self-test passa da tre guardie a **quattro** — due nomi buoni che devono
+> passare, due che devono mordere.
+>
+> **La prova che nessun dato e' cambiato**: i quattro documenti generati tornano
+> identici, e il playtest da' gli stessi numeri di prima (0 seggi bloccati su 8,
+> Consigli 3,41, Verita' 156).
 
 Gli anni d'autore sono usciti in 0.1.281 ([ISSUES 93](#)), ma **i nomi dei file
 no**. Dodici file di dati e due cartelle si chiamano ancora `*_chronicle_01` e

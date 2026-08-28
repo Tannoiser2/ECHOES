@@ -81,13 +81,11 @@ def fustella() -> Dict[str, List[str]]:
     return out
 
 
-def items(pattern: str) -> List[Dict[str, Any]]:
-    out: List[Dict[str, Any]] = []
-    for path in sorted(DATA.glob(pattern)):
-        loaded = json.loads(path.read_text(encoding="utf-8"))
-        if isinstance(loaded, dict):
-            out.extend(loaded.get("items", []) or [])
-    return out
+# Un documento si cerca per quello che **dice di essere**, non per la cartella
+# in cui sta: l'aiutante condiviso e' in `echoes_schema.py`, e la ragione per cui
+# esiste e' scritta li' (ISSUES 99).
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from echoes_schema import items_of as items  # noqa: E402
 
 
 def sheets(copies: int, shape: str) -> int:
@@ -103,9 +101,8 @@ def art_files() -> Dict[str, bool]:
     stesura di questa misura contava 97 prompt contro i 146 del brief, ed erano
     le cartelle sbagliate piu' le vite non contate."""
     out: Dict[str, bool] = {}
-    for pattern in ("assets/*.json", "echoes/*.json", "regions/*.json",
-                    "entities/*.json", "destinies/*.json"):
-        for entry in items(pattern):
+    for schema in ("asset", "echo_card", "region", "entity", "destiny"):
+        for entry in items(schema):
             chiavi = [str(entry.get("art_prompt_key", ""))]
             for vita in entry.get("incarnations", []) or []:
                 chiavi.append(str((vita or {}).get("art_prompt_key", "")))
@@ -116,22 +113,22 @@ def art_files() -> Dict[str, bool]:
 
 
 def survey() -> str:
-    assets = items("assets/*.json")
-    echoes = items("echoes/*.json")
-    tensions = items("tensions/*.json")
-    destinies = items("destinies/*.json")
-    entities = items("entities/*.json")
-    regions = items("regions/*.json")
-    structures = items("structures/*.json")
-    themes = items("themes/*.json")
-    tags = items("tags/*.json")
-    objectives = items("objectives/*.json")
-    consequences = items("consequences/*.json")
-    rules = items("tag_rules/*.json")
-    actions = items("actions/*.json")
-    chronicles = items("chronicle_*/chronicle_*.json")
-    templates = items("chronicle_*/confluences/*.json")
-    profiles = items("design_matrix/*.json")
+    assets = items("asset")
+    echoes = items("echo_card")
+    tensions = items("tension")
+    destinies = items("destiny")
+    entities = items("entity")
+    regions = items("region")
+    structures = items("structure_type")
+    themes = items("theme")
+    tags = items("tag")
+    objectives = items("objective")
+    consequences = items("consequence")
+    rules = items("tag_rule")
+    actions = items("action")
+    chronicles = items("chronicle")
+    templates = items("confluence_template")
+    profiles = items("entity_strategic_profile")
 
     vite = sum(len(e.get("incarnations", []) or []) for e in entities)
     copie_asset = sum(int(a.get("deck_copies", 1)) for a in assets)

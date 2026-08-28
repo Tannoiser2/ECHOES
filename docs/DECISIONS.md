@@ -10,6 +10,90 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-329 — I nomi degli anni cancellati, e i quattro strumenti che cercavano per cartella
+
+**implemented** (0.1.292) · [ISSUES 99](ISSUES.md) chiusa · richiesta del
+committente: *«ora fai issues 99»*.
+
+### Il difetto, che era due difetti
+
+Il primo si vedeva: gli anni d'autore sono usciti in 0.1.281, **i nomi dei file
+no**. Dodici file di dati e due cartelle si chiamavano ancora `*_chronicle_01` e
+`*_chronicle_03`, e dentro c'era il contenuto vivo che ogni anno pescato usa —
+le 8 case, i 17 Destini di casata, le 39 carte Echo, **tutte e dieci le
+tessere**. Chi apriva `regions_chronicle_01.json` credendo di guardare un anno
+d'autore stava guardando la mappa della scatola.
+
+Il secondo si e' visto **solo togliendo il primo**, ed e' quello che conta.
+
+### Quello che la fusione ha smascherato
+
+Le due meta' di ogni coppia erano divise per l'anno che le aveva introdotte, non
+per quello che contengono: fuse in un file solo, chiamato col contenuto.
+
+| adesso | voci | veniva da |
+|---|---|---|
+| `entities/entities_core.json` | 8 | `_chronicle_01` + `_03` |
+| `destinies/destinies_core.json` | 17 | `_chronicle_01` + `_03` |
+| `tensions/tensions_core.json` | 12 | `_chronicle_01` + `_03` |
+| `consequences/consequences_core.json` | 52 | `_chronicle_01` + `_03` |
+| `echoes/echo_cards_core.json` | 39 | `_chronicle_01` + `_03` |
+| `regions/regions_core.json` | 10 | `_chronicle_01` |
+| `confluences/confluence_templates.json` | 12 | `chronicle_01/` + `chronicle_03/` |
+
+Il motore non se n'e' accorto: `data_set.gd` raccoglie ricorsivamente ogni
+`.json` e indicizza per id. **Gli strumenti si', e nel modo peggiore.** Quattro
+di loro cercavano i template dei Consigli in `chronicle_*/confluences/*.json`:
+
+| strumento | cosa ha fatto, spostati i template |
+|---|---|
+| `build_sign_registry.py` | ha dichiarato **otto clausole impossibili** che non lo sono, e due segni «muti» che invece qualcuno legge |
+| `components_survey.py` | ha scritto **«Modelli di Consiglio: 0»**, e i soggetti da illustrare **146 → 0** |
+| `matrix_survey.py` | segni scritti **149 → 102**, e **19 clausole impossibili** dal nulla |
+| `build_review.py` | **670 righe di testi** sparite dal documento |
+
+Nessuno dei quattro ha fallito. Hanno tutti prodotto un documento pulito e
+sbagliato — ed e' la stessa malattia di [D-328](#d-328), dove lo stesso
+strumento moriva all'avvio per lo stesso motivo.
+
+> **Uno strumento che nomina un file per percorso non fallisce quando il file si
+> sposta: smette di vederlo.** Un errore che si annuncia costa un'ora; uno che
+> produce un numero plausibile costa la fiducia in tutti gli altri numeri.
+
+### La cura: si cerca per schema, non per cartella
+
+Un aiutante solo, `items_of(schema_id)` in `tools/echoes_schema.py`, che scorre
+tutti i dati e tiene i documenti che **dichiarano** quello schema. I quattro
+strumenti lo usano; sono spariti **venti** riferimenti a cartelle e tutti i
+`glob` di percorso. Un documento si trova adesso per quello che dice di essere,
+e nessun rinomino puo' renderlo invisibile in silenzio.
+
+### La guardia, vista mordere
+
+`check_no_file_names_a_dead_chronicle` in `validate_data.py`: nessun file di dati
+puo' portare nel nome una Chronicle che non esiste. Il self-test passa da tre
+guardie a **quattro**, con due nomi buoni che devono passare e due che devono
+mordere — uno col difetto nel file, uno nella cartella.
+
+### La prova che nessun dato e' cambiato
+
+La piu' importante, e non e' un'opinione: **i quattro documenti generati tornano
+identici byte per byte** dopo la fusione, coi cancelli riportati a verde. Se la
+fusione avesse perso o riordinato una voce, `REGISTRO_SEGNI`, `COMPONENTI`,
+`MISURA_MATRICE` o `REVISIONE_TESTI` l'avrebbero detto.
+
+### Il costo, dichiarato
+
+- **Nessuno sui numeri.** Non e' stata toccata una riga di regole ne' un valore:
+  solo nomi di file, quattro strumenti e due commenti di sonda che nominavano i
+  `sim_plans` cancellati.
+- Da **20 file di dati a 20**: sette fusioni tolgono sei file, la cartella
+  `confluences/` ne aggiunge uno al posto di due sotto gli anni morti.
+- Resta un `sim_plan.schema.json` senza nessun piano: lo schema e il codice che
+  lo legge restano, com'e' scritto in `DATA_SCHEMA.md`.
+
+---
+
 ## D-328 — Diciassette documenti che mentivano, e uno strumento che non partiva
 
 **implemented** (0.1.291) · [ISSUES 92](ISSUES.md) chiusa, [ISSUES 99](ISSUES.md)
