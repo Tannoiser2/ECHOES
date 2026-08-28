@@ -5,6 +5,48 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.285 — Tredici esiti di Consiglio che la scatola non puo' pescare (D-322)
+
+### Misurato
+
+- **64 Conseguenze scritte, 13 che nessun Consiglio puo' pescare.** Le proposte
+  delle 60 carte Tensione ne raggiungono 46, i pool dei 12 template altre 6.
+  Undici delle tredici orfane sono **i prezzi e i fallimenti**:
+  `CNS_COST_COLD_WORD`, `CNS_COST_EMPTIED`, `CNS_COST_EXPLOITED`,
+  `CNS_COST_MOURNING`, `CNS_COST_RATION`, e i sei `CNS_FAILURE_*`.
+- **I pool `cost` e `failure` dei template non li legge nessuno**: nel motore
+  gli esiti vengono da `success_consequences` della proposta piu', sul decisivo,
+  `decisive_bonus`. E' un residuo coerente con due decisioni gia' prese — il
+  prezzo e' passato sulla carta (D-267/D-280), il segno della domanda caduta lo
+  scrive il motore (D-278) — a cui nessuno ha fatto seguire la pulizia.
+- **Un Consiglio che fallisce non lascia niente al mondo** tranne
+  `question_unresolved`. Sul tavolo misto cade **una proposta su quattro**
+  (90 FAIL su 347); sull'uniforme una su venti (17 su 355).
+- Tutti e diciassette i segni temuti **hanno** almeno una strada che li scrive:
+  il problema di `state_tag_absent` non e' l'impossibilita', e' l'improbabilita'.
+
+### Corretto in corsa
+
+- **Quattordicesima misura cieca.** Il primo censimento dava «cinque segni
+  temuti irraggiungibili»: cercava il segno su `tag`, mentre le Conseguenze lo
+  scrivono dentro `payload`. Rifatto, gli irraggiungibili sono **zero**. Anche
+  «5 Conseguenze raggiungibili su 64» era dello stesso errore: guardava i pool
+  dei template e non le proposte delle carte.
+
+### Provato e ritirato
+
+- Assegnare a ogni dominio il suo prezzo e il suo fallimento (SURVIVAL in
+  razioni e lutti, TERRITORY in terre svuotate, ANCIENT in voci che corrono,
+  RESOURCE in strade chiuse) passa tutti i validatori e **non cambia un singolo
+  esito**: i pool restano non letti. Ritirato invece che committato inerte.
+
+### Aperto
+
+- **ISSUES 95**: o si cancellano le tredici carte morte, o il fallimento
+  riprende una faccia. E' contenuto stampato: decide il committente.
+
+---
+
 ## 0.1.284 — Sette clausole vogliono il segno, e la lite si quadruplica (D-321)
 
 ### Cambiato

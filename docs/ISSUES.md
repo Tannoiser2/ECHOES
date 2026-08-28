@@ -2763,6 +2763,67 @@ e' in gioco.
 
 ---
 
+### 95. Tredici esiti di Consiglio stampati che nessuno puo' pescare
+
+`regola` · `contenuto` · `debito` · `decisione` · aperta in 0.1.285
+([D-322](DECISIONS.md#d-322))
+
+La scatola contiene **64 Conseguenze** — cosa resta al mondo quando un Consiglio
+si chiude. **Tredici non escono mai**, e non per sfortuna: nessun Consiglio le
+puo' pescare.
+
+| | |
+|---|---|
+| raggiungibili dalle proposte delle 60 carte Tensione | 46 |
+| raggiungibili dai pool dei 12 template | 6 |
+| **orfane** | **13** |
+
+Undici delle tredici sono **i prezzi e i fallimenti**: `CNS_COST_COLD_WORD`,
+`CNS_COST_EMPTIED`, `CNS_COST_EXPLOITED`, `CNS_COST_MOURNING`,
+`CNS_COST_RATION`, `CNS_FAILURE_ABANDONED`, `CNS_FAILURE_CONTESTED`,
+`CNS_FAILURE_CUT_OFF`, `CNS_FAILURE_PLUNDER`, `CNS_FAILURE_RUMOUR`,
+`CNS_FAILURE_WALL`. Le altre due: `CNS_EXODUS`, `CNS_HARVEST_RETURNS`.
+
+**Perche'.** I dodici template portano tutti gli stessi pool `cost` / `failure`
+/ `decisive_bonus`, ma il motore ne legge **solo `decisive_bonus`**: gli esiti
+vengono da `success_consequences` della proposta. E' un residuo di due decisioni
+gia' prese — il prezzo e' passato sulla carta ([D-267](DECISIONS.md#d-267),
+[D-280](DECISIONS.md#d-280)), il segno della domanda caduta lo scrive il motore
+([D-278](DECISIONS.md#d-278)) — a cui non e' seguita la pulizia.
+
+**Perche' conta oltre la pulizia.** Un Consiglio che fallisce **non lascia
+niente al mondo** tranne `question_unresolved`, e sul tavolo misto cade una
+proposta su quattro. Le undici Conseguenze morte sono proprio quelle che
+sporcherebbero il mondo — `condition:abandoned`, `condition:contested`,
+`condition:plundered`, `condition:cut_off`, `rumour_running`. E' la ragione di
+fondo per cui `state_tag_absent` e' gratis ([ISSUES 91](#)): quando il tavolo
+non sa decidere, **il mondo non si sporca**.
+
+**Cosa la chiude.** La scelta e' del committente — sono tredici carte scritte:
+
+1. **Si cancellano.** Il prezzo sta sulla carta, un Consiglio caduto non lascia
+   niente: e' gia' la regola, e la scatola torna onesta. Via anche i pool
+   `cost` e `failure` dallo schema, che nessuno legge. Costo: tredici esiti
+   scritti buttati, e `state_tag_absent` resta gratis.
+2. **Il fallimento riprende una faccia.** Una domanda che il tavolo non sa
+   chiudere lascia il segno che *quella* domanda lascia — per dominio, non
+   uguale per tutti: SURVIVAL lascia un luogo abbandonato, TERRITORY un luogo
+   conteso o saccheggiato, ANCIENT una voce che corre, RESOURCE una strada
+   chiusa. Tocca il motore (una riga: leggere il pool `failure` sul FAILURE) e
+   rende `state_tag_absent` una scommessa invece di un regalo.
+3. **Lasciare e dichiarare.**
+
+**Nota su una strada gia' provata e ritirata**: assegnare a ogni dominio pool
+diversi, senza toccare il motore, passa tutti i validatori e **non cambia un
+singolo esito** — i pool restano non letti. Il contenuto da solo non basta.
+
+**Il metro**: il censimento in [D-322](DECISIONS.md#d-322), e
+`cli/run_contest_probe.gd`, riga *memorie temute che nessuno ha mai toccato* —
+oggi **76.6%**. Con la strada 2 deve scendere. **Fatto quando** nessuna
+Conseguenza scritta e' irraggiungibile, e un cancello lo controlla.
+
+---
+
 ### 94. ✅ La quiete e' un bene comune — chiusa in 0.1.284, strada 1
 
 `regola` · `contenuto` · `decisione` · aperta in 0.1.283
