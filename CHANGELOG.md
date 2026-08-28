@@ -80,6 +80,27 @@ decimo.
 
 - Il `text` delle 46 righe derivate e' prosa meccanica, e si vede. E' un
   pavimento, non una faccia finita.
+### La deriva del mondo, che un cancello ha preso
+
+`run_marks_survey` e' andato **rosso**, e aveva ragione: mandando il Calore su
+questioni diverse, il mondo apre Consigli diversi e **scrive segni leggermente
+diversi**. Quarantacinque righe di `MISURA_SEGNI.md` si sono mosse, tutte di
+poco:
+
+| segno | prima | dopo |
+|---|---|---|
+| `condition:contested` | 522 | **524** |
+| `condition:unrest` | 202 | **204** |
+| `burden_shared` | 49 | **50** |
+| `condition:abandoned` | 52 | **51** |
+| `amnesty_granted` | 1 | **0 — non si scrive piu'** |
+
+`amnesty_granted` e' l'unico che sparisce: si scriveva **una volta in cento
+anni**, e adesso zero. Resta nel dizionario, e va guardato — un segno che il
+mondo non produce mai e' una promessa falsa per chiunque lo tema (ISSUES 96,
+strada 2). Non l'ho toccato qui: e' contenuto, e questa e' una modifica di
+motore.
+
 - Il ponte **non e' stato tolto**: con 13 Tensioni senza casella e 124 cadute su
   381 che non trovano una riga, toglierlo lascerebbe del Calore per terra.
 
