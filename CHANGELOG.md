@@ -5,6 +5,42 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.282 — Due strumenti giravano ancora sugli anni cancellati (D-319)
+
+La CI ha preso quello che i quattordici cancelli non guardano: due passi suoi
+che nella lista di casa non ci sono.
+
+### Corretto
+
+- **`tools/run_sims.sh` cercava i `sim_plans`** — *«Piano non trovato:
+  res://data/chronicle_01/sim_plans/*.json»*. Riscritto su **anni pescati**:
+  quattro semi di CHR_00, verbale e salvataggio per ciascuno. Cosi' sopravvive
+  la verifica che stava sopra — **stesso seme, salvataggio identico byte per
+  byte** (§18.3) — che e' un passo di CI e non un cancello di casa. Provata:
+  quattro salvataggi su quattro identici fra due esecuzioni.
+- **`run_chronicle_sim.gd` sa girare senza piano**: `--chronicle` e `--seed` al
+  posto di `--plan`, coi seggi che quel seme pesca e che giocano da soli. Il
+  modo con piano resta, e non ha piu' piani da leggere.
+- **Sette sonde e il cancello delle vite incatenavano ancora a `CHR_02`.** La
+  spazzata di 0.1.281 aveva sostituito `CHR_01` e `CHR_03` e **non** `CHR_02`:
+  `--then=CHR_02` faceva fallire il `setup()` della seconda era, e la sonda
+  proseguiva su una sessione morta — *«Nonexistent function 'run' in base
+  Nil»*, dodici volte per esecuzione.
+- **E `docs/MISURA_VITE.md` era stato rigenerato da quel giro rotto.** Il
+  cancello diceva «allineato» perche' confrontava il documento con l'output
+  che l'errore produceva: allineato al guasto. Rigenerato pulito, 23 righe
+  cambiate.
+
+### La lezione, che e' la stessa di prima
+
+Il `--check` di un documento generato dice che **il documento combacia con
+quello che lo strumento produce adesso**, non che lo strumento funzioni. Se lo
+strumento va in errore a meta' e stampa comunque, il cancello e' verde e la
+misura e' finta. Vale il grep su `SCRIPT ERROR` anche qui, non solo sulla
+suite.
+
+---
+
 ## 0.1.281 — Gli anni d'autore sono cancellati (D-319)
 
 ### Tolto

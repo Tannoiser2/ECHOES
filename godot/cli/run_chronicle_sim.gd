@@ -24,7 +24,17 @@ const EXIT_ASSERT: int = 5
 
 func _initialize() -> void:
 	var options: Dictionary = _parse_args(OS.get_cmdline_user_args())
-	if options.has("help") or not options.has("plan"):
+	# **Un anno pescato, senza piano** (D-319). I `sim_plans` erano quattro
+	# playthrough scritti a mano della Carestia, e se ne sono andati con gli
+	# anni d'autore: una sequenza di mosse per una mappa fissa non ha senso su
+	# una mappa che si pesca. Il resto di questa sonda — il verbale leggibile,
+	# il salvataggio finale, il confronto byte a byte fra due esecuzioni dello
+	# stesso seme — vale ancora, e adesso si chiede cosi':
+	#
+	#   --chronicle=CHR_00 --seed=7000 --out=... --log=...
+	#
+	# Al tavolo siedono i seggi che quel seme pesca, e giocano da soli.
+	if options.has("help") or (not options.has("plan") and not options.has("chronicle")):
 		_usage()
 		quit(EXIT_USAGE if not options.has("help") else EXIT_OK)
 		return
@@ -37,15 +47,36 @@ func _initialize() -> void:
 		quit(EXIT_DATA)
 		return
 
-	var plan: Dictionary = _load_plan(str(options["plan"]))
-	if plan.is_empty():
-		quit(EXIT_PLAN)
-		return
+	var scripted: bool = options.has("plan")
+	var plan: Dictionary = {}
+	var chronicle_id: String = str(options.get("chronicle", ""))
+	var seed_value: int = int(options.get("seed", 7000))
+	var seats: Array = []
+	if scripted:
+		plan = _load_plan(str(options["plan"]))
+		if plan.is_empty():
+			quit(EXIT_PLAN)
+			return
+		GameSession.apply_plan_overrides(data, plan)
+		chronicle_id = str(plan["chronicle_id"])
+		seed_value = int(options.get("seed", plan["seed"]))
+		seats = plan["seats"]
+	else:
+		if not data.chronicles.has(chronicle_id):
+			printerr("Chronicle sconosciuta: %s" % chronicle_id)
+			quit(EXIT_PLAN)
+			return
+		seats = GameSession.seats_for(data, chronicle_id, seed_value)
+		plan = {
+			"id": "%s-%d" % [chronicle_id.to_lower(), seed_value],
+			"title": "anno pescato",
+			"chronicle_id": chronicle_id,
+			"seats": seats,
+			"seed": seed_value,
+		}
 
-	GameSession.apply_plan_overrides(data, plan)
 	var session: RefCounted = GameSession.new(data)
-	var seed_value: int = int(options.get("seed", plan["seed"]))
-	if not session.setup(str(plan["chronicle_id"]), plan["seats"], seed_value):
+	if not session.setup(chronicle_id, seats, seed_value):
 		printerr("Setup fallito: %s" % session.last_error)
 		quit(EXIT_PLAN)
 		return
@@ -58,7 +89,7 @@ func _initialize() -> void:
 	# pursue their own Destiny. The plan still supplies the Chronicle and the
 	# seed; everything else is decided at the table.
 	var decider: RefCounted = null
-	if bool(options.get("policy", false)):
+	if bool(options.get("policy", false)) or not scripted:
 		decider = PolicyDecider.new(session.log)
 		print("Giocatori: policy (ognuno persegue il proprio Destiny)")
 	else:
@@ -67,7 +98,7 @@ func _initialize() -> void:
 	session.sync_rng_state()
 
 	var failures: PackedStringArray = PackedStringArray()
-	if not bool(options.get("policy", false)):
+	if scripted and not bool(options.get("policy", false)):
 		failures = _check_expectations(plan, report, session)
 	_print_summary(plan, report, session, failures)
 

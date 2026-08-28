@@ -7,7 +7,7 @@ extends SceneTree
 ##   --seats=all          all four played by hand
 ##   --seats=ENT_NAHR     one seat by hand, the other three by the policy
 ##   --seed=812           same seed, same world
-##   --chronicle=CHR_02   the library Chronicle instead of the authored one
+##   --chronicle=CHR_00   la Chronicle della scatola: mappa, case e questioni pescate
 ##   --quiet              only the Councils, the Echo cards and the ending -
 ##                        no per-round rules trace
 ##

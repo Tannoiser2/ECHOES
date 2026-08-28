@@ -2,7 +2,7 @@ extends SceneTree
 ## Why a Chronicle never opens a Council.
 ##
 ##   godot --headless --path godot --script res://cli/run_silence_probe.gd -- \
-##       --chronicles=10 --seed=1867 --then=CHR_02
+##       --chronicles=10 --seed=1867 --then=CHR_00
 ##
 ## A ten-Chronicle saga produced three years with **zero** Councils, while the
 ## same Chronicle measured on its own, over forty seeds, never produced fewer

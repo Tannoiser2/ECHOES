@@ -1,25 +1,36 @@
 #!/usr/bin/env bash
-# Play every sim plan headless and write logs + saves under out/.
+# Gioca alcuni anni interi headless e scrive verbali e salvataggi sotto out/.
 #
 #   GODOT=/path/to/godot tools/run_sims.sh
 #
-# Exit code 0 means every plan ran to the end with legal choices and satisfied
-# its `expected` block (§18.3).
+# Fino a 0.1.280 girava i quattro `sim_plans`: playthrough scritti a mano della
+# Carestia Rossa, mossa per mossa. Se ne sono andati con gli anni d'autore
+# (D-318), e non si potevano ripuntare — una sequenza di mosse scritta per una
+# mappa fissa non ha senso su una mappa che si pesca.
+#
+# Quello che serviva resta: un anno arriva in fondo senza schiantarsi, e **lo
+# stesso seme produce un salvataggio identico byte per byte** (§18.3, la
+# verifica di determinismo in CI). Adesso lo si chiede su anni pescati.
+#
+# Exit 0 se ogni anno e' arrivato in fondo.
 set -uo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 GODOT="${GODOT:-godot}"
 OUT="${OUT:-$ROOT/out}"
+CHRONICLE="${CHRONICLE:-CHR_00}"
+SEEDS="${SEEDS:-7000 7001 7002 7003}"
 
 mkdir -p "$OUT"
 status=0
 
-for plan in "$ROOT"/godot/data/chronicle_01/sim_plans/*.json; do
-  name="$(basename "$plan" .json)"
+for seed in $SEEDS; do
+  name="anno_${seed}"
   echo "=== $name"
   "$GODOT" --headless --path "$ROOT/godot" \
     --script res://cli/run_chronicle_sim.gd -- \
-    "--plan=res://data/chronicle_01/sim_plans/$(basename "$plan")" \
+    "--chronicle=$CHRONICLE" \
+    "--seed=$seed" \
     "--out=$OUT/$name.save.json" \
     "--log=$OUT/$name.log" \
     --quiet

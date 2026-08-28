@@ -156,7 +156,7 @@ func _initialize() -> void:
 	else:
 		var chain: Array = ["CHR_00"]
 		for index in range(saga - 1):
-			chain.append(str(options.get("then", "CHR_02")))
+			chain.append(str(options.get("then", "CHR_00")))
 		lines.append(chain)
 
 	var years_played: int = 0

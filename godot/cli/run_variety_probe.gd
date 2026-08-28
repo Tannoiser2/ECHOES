@@ -2,7 +2,7 @@ extends SceneTree
 ## Quanto si somigliano due saghe? (D-149)
 ##
 ##   godot --headless --path godot --script res://cli/run_variety_probe.gd -- \
-##       --sagas=4 --chronicles=6 --seed=3000 --chronicle=CHR_00 --then=CHR_02
+##       --sagas=4 --chronicles=6 --seed=3000 --chronicle=CHR_00 --then=CHR_00
 ##
 ## Le sonde di questo progetto misurano il **motore**: gli esiti in banda, i
 ## seggi non bloccati, il filo trasparente, le fughe. Nessuna sa rispondere a

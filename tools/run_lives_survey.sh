@@ -26,7 +26,7 @@ trap 'rm -f "$TMP"' EXIT
 
 "$GODOT" --headless --path "$ROOT/godot" \
   --script res://cli/run_lives_probe.gd -- \
-  --sagas=12 --chronicles=8 --seed=812 --then=CHR_02 "--out=$TMP" > /dev/null
+  --sagas=12 --chronicles=8 --seed=812 --then=CHR_00 "--out=$TMP" > /dev/null
 code=$?
 if [ $code -ne 0 ]; then
   echo "  FALLITO (exit $code)"

@@ -2,7 +2,7 @@ extends SceneTree
 ## La sonda delle ere: cosa fa il tempo a una saga, misurato (issue #25).
 ##
 ##   godot --headless --path godot --script res://cli/run_era_probe.gd -- \
-##       --sagas=20 --chronicles=10 --seed=812 --then=CHR_02
+##       --sagas=20 --chronicles=10 --seed=812 --then=CHR_00
 ##
 ## Una saga non e' una fila di primavere: fra un anno giocato e il prossimo
 ## possono passare venti anni o duecento (D-045), le persone diventano case,
@@ -27,7 +27,7 @@ func _initialize() -> void:
 	var chronicles: int = int(options.get("chronicles", 10))
 	var first_seed: int = int(options.get("seed", 812))
 	var first_id: String = str(options.get("chronicle", "CHR_00"))
-	var later_id: String = str(options.get("then", "CHR_02"))
+	var later_id: String = str(options.get("then", "CHR_00"))
 
 	var data: RefCounted = DataSet.new()
 	if not data.load_from("res://data"):
