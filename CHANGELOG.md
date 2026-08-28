@@ -5,6 +5,51 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.284 — Sette clausole vogliono il segno, e la lite si quadruplica (D-321)
+
+### Cambiato
+
+- **Quattro carte scrivono il verso opposto** (strada 1 di ISSUES 94, scelta dal
+  committente). `DST_LIBERE` e due clausole di `DST_CENERE_DEEP` girate da
+  «l'anno e' finito pulito» a «l'anno ha lasciato segni»; `DST_VETRO_SHOWN` e
+  `DST_SHARED_LAND` ne ricevono una nuova. Non a caso: su tutte e quattro la
+  carta gia' si contraddiceva — una Carta strappata a un anno tranquillo, chi
+  scende in due nelle gallerie e le lascia intatte, una teca aperta che non
+  lascia traccia, tre Regioni prese in silenzio. Da **2 clausole su 24** a
+  **7 su 26**.
+- Le facce fisiche (`physical.reads.triumph`) delle quattro carte riscritte per
+  dire quello che la clausola chiede adesso.
+
+### Misurato
+
+- **La Cicatrice diventa la lite del gioco**: coppie che se la contendono
+  **5.7% -> 25.0%**. Regione e memoria non si muovono (2.8% e 4.5%).
+- **Clausole che qualcuno contendeva: 14.6% -> 21.4%.** Fra le sole
+  `scar_count`, da **38 contese su 393 a 189 su 393** — una su due.
+- Clausole gia' vere all'apertura **55.5% -> 54.3%**.
+
+### Costo, dichiarato
+
+- **Il tavolo uniforme scrive quattro verita' in meno** (160 -> 156, e 137 -> 133
+  diverse). Il misto ne scrive una in piu' (162 -> 163).
+- I livelli dei Destini non si muovono: misto NONE 84 -> 86, TRIUMPH 8 -> 9;
+  uniforme NONE 69 -> 69, TRIUMPH 15 -> 15. **Gli stessi punti si prendono,
+  ma adesso qualcuno puo' impedirlo.**
+- **`scar_count` resta gia' vero all'apertura nel 92.1%** dei casi (da 99.5%):
+  girare il verso ha reso le clausole contese, non conquistate. Il fondo di
+  ISSUES 91 e' scalfito, non chiuso.
+- Cancello vincolante: **0 seggi bloccati su 8**, tavolo misto e uniforme.
+  Suite 622 test / 35551 asserzioni, quindici cancelli verdi.
+
+### Corretto
+
+- **I conteggi assoluti di D-320 e ISSUES 94 non si riproducevano** col comando
+  che citavano: venivano da una corsa di una quarantina d'anni, non di cento.
+  Non «145 clausole centrate, 143 gia' vere, 7.1% delle coppie» ma **393, 391 e
+  5.7%**. La proporzione era giusta (98.6% -> 99.5%), i numeri no.
+
+---
+
 ## 0.1.283 — Le Cicatrici hanno due versi, e la sonda ne vedeva uno solo (D-320)
 
 ### Misurato

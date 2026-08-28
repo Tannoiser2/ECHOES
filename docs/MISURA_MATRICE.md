@@ -144,7 +144,7 @@ regge su conteggi — si verifica, ma al tavolo non si puo' indicare.
 | DST_SHARED_RENOWN | minimum | 1 | Un posto che risponde al tuo nome |
 | DST_SHARED_LAND | minimum | 1 | Un posto che risponde |
 | DST_SHARED_LAND | victory | 2 | La terra risponde, e non importa come |
-| DST_SHARED_LAND | triumph | 1 | La mappa parla la tua lingua |
+| DST_SHARED_LAND | triumph | 2 | La mappa parla la tua lingua |
 | DST_SHARED_ACCOUNTS | minimum | 1 | Due conti tenuti sotto controllo |
 | DST_SHARED_QUIET | minimum | 1 | Tre questioni tenute giù |
 | DST_SHARED_QUIET | victory | 2 | La quiete si vede |

@@ -10,6 +10,109 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-321 — Sette clausole su ventisei vogliono il segno, e la lite si quadruplica
+
+**implemented** (0.1.284) · [ISSUES 94](ISSUES.md) chiusa, strada 1 · decisione
+del committente: *«Mergia e fai la 1»*, fra le tre strade aperte da
+[D-320](#d-320).
+
+### Cosa dice la strada 1
+
+D-320 aveva misurato che la Cicatrice e' la lite **piu' scritta** del gioco, e
+che quasi nessuno la scriveva al contrario: ventidue clausole su ventiquattro
+chiedono che l'anno finisca **pulito**, due sole che lasci il **segno**. La
+quiete e' un bene comune: la vogliono tutti e non costa a nessuno.
+
+La strada 1 e' la sola che non tocca il motore e non cambia cosa una clausola
+*significa*: **si scrive il verso opposto su piu' carte**. Ma non a caso — su
+quelle dove la carta, letta com'e' stampata, gia' si contraddiceva.
+
+### Le quattro carte, e perche' proprio quelle
+
+**`DST_LIBERE` — «Una Legge Senza Corona»** · `max: 2` -> `min: 2`
+La stessa lista chiede gia' `TEN_CHARTER min 3`: *«la Carta si scrive quando la
+domanda non si puo' piu' rimandare»*. Una Carta strappata a un anno che non ha
+lasciato segni e' una contraddizione **sulla stessa carta**. Adesso legge: *«E
+l'anno ha lasciato segni: una Carta scritta in un anno tranquillo non serviva a
+nessuno»*.
+
+**`DST_CENERE_DEEP` — «Piu' a Fondo»** · due clausole su tre girate
+Il titolo e' *scendere*, la descrizione dice *«lo stesso desiderio di prima, con
+meno margine»*, e la Vittoria pretende che siano **scesi in due** e abbiano
+visto cosa c'e' sotto. Poi il Trionfo offriva tre modi su cinque di dire «e non
+si e' visto niente». Girate: il mondo porta i segni (`min: 2`), e le gallerie
+pure (`min: 1`). **Le Montagne Rosse restano `max: 0`**, ed e' il punto: si
+scava sotto, ma non a casa propria. Una carta con due versi dentro.
+
+**`DST_VETRO_SHOWN` — «La Reliquia Mostrata»** · clausola nuova, `min: 1`
+*«Mostrarla, e restare creduto lo stesso.»* Il giorno in cui la teca si apre e
+la fede diventa legge e' un giorno che il mondo si porta addosso. E la casa
+adesso tira in due direzioni: `DST_VETRO` vuole le Miniere pulite,
+`DST_VETRO_SHOWN` vuole il mondo segnato.
+
+**`DST_SHARED_LAND` — «La Terra che Risponde»** · clausola nuova, `min: 2`
+La descrizione dice gia' *«un'ambizione semplice e spietata»*. Tre Regioni in un
+anno non si prendono in silenzio. E' la carta condivisa: **la puo' avere
+chiunque**, quindi e' quella che pesa di piu' sulla lite.
+
+Da **2 su 24** a **7 su 26**.
+
+### Cosa e' cambiato al tavolo
+
+`cli/run_contest_probe.gd --runs=100 --seed=7000 --chronicle=CHR_00`:
+
+| | prima | dopo |
+|---|---|---|
+| **coppie che si contendono una Cicatrice** | 5.7% (34) | **25.0% (150)** |
+| coppie che si contendono una Regione | 2.8% (17) | 2.8% (17) |
+| coppie che si contendono una memoria | 4.5% (27) | 4.5% (27) |
+| **clausole che qualcuno contendeva** | 14.6% (333) | **21.4% (488)** |
+| `scar_count` contese | 38 su 393 | **189 su 393** |
+| clausole gia' vere all'apertura | 55.5% (1269) | **54.3% (1237)** |
+| `scar_count` gia' vere all'apertura | 391 su 393 | **362 su 393** |
+
+**Una clausola `scar_count` su due adesso e' contesa**, da una su dieci. E il
+quarto di tutte le coppie del tavolo si toglie qualcosa sulle Cicatrici: e'
+diventata la lite piu' frequente del gioco, con distacco.
+
+### Il costo, dichiarato
+
+`cli/run_playtest.gd --runs=100 --seed=7000` — **0 seggi bloccati su 8**,
+tavolo misto e uniforme, il vincolo che non si negozia regge.
+
+| | misto prima | misto dopo | uniforme prima | uniforme dopo |
+|---|---|---|---|---|
+| NONE | 84 | 86 | 69 | 69 |
+| MINIMUM | 136 | 132 | 135 | 136 |
+| VICTORY | 172 | 173 | 181 | 180 |
+| TRIUMPH | 8 | 9 | 15 | 15 |
+| Verita' scritte | 162 | 163 | 160 | **156** |
+| Verita' diverse | 153 | 154 | 137 | **133** |
+
+Il tavolo uniforme scrive **quattro verita' in meno**, e quattro diverse in
+meno. Il resto non si muove: gli stessi punti si prendono, ma adesso qualcuno
+puo' impedirlo.
+
+### Quello che la strada 1 **non** risolve
+
+`scar_count` resta **gia' vero all'apertura nel 92.1% dei casi** (362 su 393),
+da 99.5%. Girare il verso ha reso le clausole **contese**, non **conquistate**:
+sette carte su ventisei chiedono di sporcare il mondo, le altre diciannove
+continuano a premiare il non essere successo niente. Il fondo di
+[ISSUES 91](ISSUES.md) e' scalfito, non chiuso — le strade 2 e 3 di ISSUES 94
+restano scritte, se un giorno servissero.
+
+### Una correzione ai numeri di D-320
+
+I conteggi assoluti di [D-320](#d-320) e di ISSUES 94 — *«145 clausole
+centrate, 143 gia' vere»*, *«7.1% delle coppie»* — **non si riproducono col
+comando che il verbale cita**. Vengono da una corsa piu' corta (una quarantina
+d'anni, non cento). Sui cento anni documentati sono **393 centrate, 391 gia'
+vere, 5.7% delle coppie**. La forma della misura era giusta — il 98.6% resta
+99.5% — i numeri assoluti no. Corretti qui e in ISSUES 94.
+
+---
+
 ## D-320 — Le Cicatrici hanno due versi, e la sonda ne vedeva uno solo
 
 **implemented** (0.1.283) · misura, non modifica · nata dal voler attaccare

@@ -139,6 +139,11 @@
             "entity_id": "$self",
             "min": 3,
             "label": "Controllo di almeno 3 Regioni"
+          },
+          {
+            "type": "scar_count",
+            "min": 2,
+            "label": "E l'anno lo dice: tre posti non si prendono in silenzio"
           }
         ]
       },
@@ -156,7 +161,7 @@
         "reads": {
           "minimum": "Un posto sulla mappa risponde a te.",
           "victory": "Due posti che rispondono, oppure due cose tue che stanno in piedi.",
-          "triumph": "Tre posti che rispondono a te, e nessun altro può dire lo stesso."
+          "triumph": "Tre posti che rispondono a te, e l'anno lo dice: tanta terra non si prende in silenzio."
         }
       }
     },
