@@ -167,8 +167,7 @@
           "CNS_COST_DEBT"
         ],
         "failure": [
-          "CNS_FAILURE_SPIRAL",
-          "CNS_OATH_BROKEN"
+          "CNS_FAILURE_ABANDONED"
         ],
         "decisive_bonus": [
           "CNS_DECISIVE_RENOWN"
@@ -349,8 +348,7 @@
           "CNS_COST_DEBT"
         ],
         "failure": [
-          "CNS_FAILURE_SPIRAL",
-          "CNS_OATH_BROKEN"
+          "CNS_FAILURE_RUMOUR"
         ],
         "decisive_bonus": [
           "CNS_DECISIVE_RENOWN"
@@ -571,8 +569,7 @@
           "CNS_COST_DEBT"
         ],
         "failure": [
-          "CNS_FAILURE_SPIRAL",
-          "CNS_OATH_BROKEN"
+          "CNS_FAILURE_SPIRAL"
         ],
         "decisive_bonus": [
           "CNS_DECISIVE_RENOWN"
@@ -723,8 +720,7 @@
           "CNS_COST_UNREST"
         ],
         "failure": [
-          "CNS_FAILURE_SPIRAL",
-          "CNS_OATH_BROKEN"
+          "CNS_FAILURE_CUT_OFF"
         ],
         "decisive_bonus": [
           "CNS_DECISIVE_RENOWN"
@@ -884,8 +880,7 @@
           "CNS_COST_DEBT"
         ],
         "failure": [
-          "CNS_FAILURE_SPIRAL",
-          "CNS_OATH_BROKEN"
+          "CNS_FAILURE_ABANDONED"
         ],
         "decisive_bonus": [
           "CNS_DECISIVE_RENOWN"
@@ -996,8 +991,7 @@
           "CNS_COST_DEBT"
         ],
         "failure": [
-          "CNS_FAILURE_SPIRAL",
-          "CNS_OATH_BROKEN"
+          "CNS_FAILURE_CONTESTED"
         ],
         "decisive_bonus": [
           "CNS_DECISIVE_RENOWN"
@@ -1103,8 +1097,7 @@
           "CNS_COST_UNREST"
         ],
         "failure": [
-          "CNS_FAILURE_SPIRAL",
-          "CNS_OATH_BROKEN"
+          "CNS_FAILURE_CUT_OFF"
         ],
         "decisive_bonus": [
           "CNS_DECISIVE_RENOWN"

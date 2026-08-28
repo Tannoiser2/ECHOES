@@ -914,6 +914,26 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 		consequence_ids.append_array(_proposition()["success_consequences"])
 		if outcome == ConfluenceResolution.DECISIVE:
 			consequence_ids.append_array(template["consequence_pools"]["decisive_bonus"])
+	elif outcome == ConfluenceResolution.FAILURE:
+		# **Una domanda caduta lascia il segno che quella domanda lascia**
+		# (D-323, [ISSUES 95](../../docs/ISSUES.md)). Fino a 0.1.285 il pool
+		# `failure` non lo leggeva nessuno: un Consiglio che falliva lasciava al
+		# mondo soltanto `question_unresolved`, e undici Conseguenze scritte —
+		# proprio quelle che sporcano il mondo — non uscivano mai. Da qui il
+		# regalo piu' grosso del punteggio: `state_tag_absent` era gratis perche'
+		# quando il tavolo non sa decidere il mondo non si sporca.
+		#
+		# Il pool ne porta **una sola**, come per il prezzo (D-267): al tavolo la
+		# scheda del Consiglio ha una riga sola sotto "se cade", e quella si
+		# legge. Non e' la stessa per tutti: la fame che nessuno risolve svuota
+		# il posto, una terra che nessuno assegna resta contesa, una domanda
+		# sull'Antico che nessuno chiude diventa una voce che corre, un conto che
+		# nessuno salda chiude la strada.
+		var when_it_falls: Array = (
+			(template.get("consequence_pools", {}) as Dictionary).get("failure", []) as Array
+		)
+		if not when_it_falls.is_empty():
+			consequence_ids.append(when_it_falls[0])
 	# ISSUES 22 (Fase 1): the Consequence speaks with its title, and every
 	# Effect it lands gets its own spoken line — the crown losing the Valle
 	# Verde must be a sentence at the table, not a silent SET_CONTROL.

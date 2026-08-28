@@ -10,6 +10,108 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-323 — Una domanda caduta lascia il segno che quella domanda lascia
+
+**implemented** (0.1.286) · [ISSUES 95](ISSUES.md) chiusa, strada 2 · decisione
+del committente: *«Mergia e fai la 2»*, fra le tre strade aperte da
+[D-322](#d-322).
+
+### Cosa cambia, sul tavolo
+
+Fino a 0.1.285 un Consiglio che falliva lasciava al mondo **soltanto**
+`question_unresolved`. La scheda del Consiglio aveva un pool `failure` che
+**nessuno leggeva**, e con lui undici Conseguenze scritte non uscivano mai.
+
+Adesso una domanda caduta lascia **una riga**, e non e' la stessa per tutti.
+Sotto «se cade» ogni scheda ne porta una sola — stessa regola del prezzo
+([D-267](#d-267)): al tavolo si legge una riga, non si sceglie fra due.
+
+| la scheda | se cade | perche' |
+|---|---|---|
+| dominio **SURVIVAL** | *Lo Lasciano Andare* | la fame che nessuno risolve svuota il posto |
+| dominio **TERRITORY** | *Resta Conteso* | la terra che nessuno assegna resta di nessuno |
+| dominio **ANCIENT** | *La Voce Corre* | dell'Antico che nessuno chiude si parla fuori dalla sala |
+| dominio **RESOURCE** | *Si Chiude la Strada* | il conto che nessuno salda chiude il passaggio |
+| `TEN_SUCCESSION` | *Nessuno Decide* | e' letteralmente la successione |
+| `TEN_CHARTER` | *La Domanda sul Muro* | la Carta non firmata resta appesa |
+| `TEN_DEBT` | *Il Patto Rotto* | un debito che nessuno salda rompe il patto |
+| `TEN_RELIC` | *Qualcuno Si Serve* | se nessuno decide della reliquia, se la prende qualcuno |
+| `TEN_FAMINE`, `TEN_WATER` | *Lo Lasciano Andare* | dalla carestia e dalla sete si parte |
+| `TEN_ROADS` | *Si Chiude la Strada* | alla lettera |
+| `TEN_AWAKENING` | *La Voce Corre* | di cio' che si sveglia si parla |
+
+Nel motore e' un `elif`: sul FAILURE scatta la prima voce del pool `failure`.
+
+### Cosa e' tornato vivo
+
+Con la regola stretta — **quello che il motore legge davvero**, cioe' le
+proposte delle carte piu' `decisive_bonus` — le Conseguenze irraggiungibili
+erano **17 su 64**. Adesso sono **9**.
+
+*(Correzione a [D-322](#d-322): quel verbale diceva 13, perche' contava come
+raggiungibile anche il pool `cost`. Ma il pool `cost` il motore non lo legge —
+e' proprio la cosa che D-322 aveva scoperto. Contando come conta il motore, il
+numero di partenza era 17.)*
+
+Le nove che restano: le cinque `CNS_COST_*`, `CNS_EXODUS`,
+`CNS_HARVEST_RETURNS`, `CNS_VALLEY_DRAINED` e `CNS_COST_DEBT`. Le sei del
+prezzo sono superate per costruzione da [D-280](#d-280) — la moneta sta sulla
+carta — e andrebbero cancellate: e' contenuto stampato, quindi resta in
+[ISSUES 95](ISSUES.md) come coda.
+
+### La prova, e la riga che la tiene onesta
+
+`tests/unit/test_a_fallen_question_leaves_a_mark.gd`, tre prove: ogni scheda
+dice una riga sola sotto «se cade» e quella riga nomina una Conseguenza che
+esiste; ogni Consiglio caduto in partita porta la Conseguenza della **sua**
+scheda; e il segno arriva **al mondo**, non solo nel verbale.
+
+La terza riga di ognuna e' `assert_true(fallen > 0)`. Senza, il giorno in cui
+nessuno di quei semi facesse cadere piu' niente la prova passerebbe a vuoto —
+e' successo altrove in questo progetto. Provata al contrario spegnendo l'`elif`:
+**sei fallimenti**.
+
+### Il costo, dichiarato
+
+`cli/run_playtest.gd --runs=100 --seed=7000` — **0 seggi bloccati su 8**,
+tavolo misto e uniforme.
+
+| | misto prima | misto dopo | uniforme prima | uniforme dopo |
+|---|---|---|---|---|
+| NONE | 86 | **91** | 69 | 69 |
+| MINIMUM | 132 | 135 | 136 | 136 |
+| VICTORY | 173 | **164** | 180 | 181 |
+| TRIUMPH | 9 | 10 | 15 | 14 |
+| Verita' diverse | 154 | **150** | 133 | **139** |
+
+**Il tavolo misto e' piu' duro**: nove Vittorie in meno, cinque case che
+chiudono a mani vuote in piu'. Ed e' quello che la modifica dice di fare — il
+mondo si sporca quando il tavolo non decide, e un mondo sporco e' piu' difficile
+da far tornare. L'uniforme quasi non lo sente (una Vittoria in piu', un Trionfo
+in meno) e scrive **sei verita' diverse in piu'**.
+
+`docs/MISURA_VITE.md`: trasformazioni sedute **198 -> 194**.
+
+### E adesso la parte che non ha funzionato
+
+**Le memorie temute non si sono mosse: 76.6% prima, 76.6% dopo.** Le clausole
+gia' vere all'apertura passano dal 54.3% al 54.0%. Cioe': la strada 2 ha reso il
+mondo piu' sporco, ma **non ha reso `state_tag_absent` contendibile**, che era
+la ragione per cui l'avevo consigliata.
+
+La ragione e' precisa, e vale la pena scriverla perche' indica la prossima cosa:
+**i segni che un fallimento lascia non sono i segni che i Destini temono.**
+Un Consiglio caduto scrive `condition:abandoned`, `condition:contested`,
+`condition:cut_off`, `condition:plundered`, `rumour_running` — e nessuno di
+questi compare in una clausola `state_tag_absent`. I Destini temono
+`crown_divided`, `valley_sealed`, `water_priced`, `oath_broken`, cose che solo
+una proposta **passata** puo' scrivere.
+
+Il blocco resta, e adesso si sa che sta un passo piu' in la': non nel motore, ma
+in **cosa i Destini scelgono di temere**. Torna a [ISSUES 91](ISSUES.md).
+
+---
+
 ## D-322 — Tredici esiti di Consiglio stampati che la scatola non puo' pescare
 
 **implemented** (0.1.285) · misura, non modifica · [ISSUES 95](ISSUES.md)

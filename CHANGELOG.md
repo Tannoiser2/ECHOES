@@ -5,6 +5,61 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.286 — Una domanda caduta lascia il segno che quella domanda lascia (D-323)
+
+### Aggiunto
+
+- **Il pool `failure` della scheda del Consiglio adesso si legge** (strada 2 di ISSUES 95,
+  scelta dal committente). Sul FAILURE scatta **una
+  riga sola**, come per il prezzo (D-267). Nel motore e' un `elif` in
+  `confluence_controller.gd`.
+- **Ogni scheda cade a modo suo**: SURVIVAL lascia un luogo abbandonato,
+  TERRITORY un luogo conteso, ANCIENT una voce che corre, RESOURCE una strada
+  chiusa; e le otto carte con scheda propria cadono ognuna nel modo della sua
+  domanda — la successione in *Nessuno Decide*, la Carta *sul Muro*, il debito
+  nel *Patto Rotto*, la reliquia in *Qualcuno Si Serve*.
+- `tests/unit/test_a_fallen_question_leaves_a_mark.gd`, tre prove, con la riga
+  che le tiene oneste (`assert_true(fallen > 0)`) perche' una prova che cerca
+  una condizione fra i dati puo' smettere di provare in silenzio. Provate al
+  contrario spegnendo l'`elif`: **sei fallimenti**.
+
+### Misurato
+
+- **Conseguenze irraggiungibili 17 -> 9**, con la regola stretta di cosa il
+  motore legge davvero. Otto tornate vive, tutte della famiglia del fallimento.
+- **Cancello vincolante: 0 seggi bloccati su 8**, misto e uniforme.
+
+### Costo, dichiarato
+
+- **Il tavolo misto e' piu' duro**: VICTORY **173 -> 164**, NONE **86 -> 91**,
+  verita' diverse **154 -> 150**. E' quello che la modifica fa: il mondo si
+  sporca quando il tavolo non decide, e un mondo sporco e' piu' duro da
+  raddrizzare.
+- Il tavolo uniforme quasi non lo sente (VICTORY 180 -> 181, TRIUMPH 15 -> 14) e
+  scrive **sei verita' diverse in piu'** (133 -> 139).
+- `docs/MISURA_VITE.md`: trasformazioni sedute **198 -> 194**.
+- **Restano nove Conseguenze orfane.** Le sei del prezzo sono superate da D-280
+  — la moneta sta sulla carta — e andrebbero cancellate: coda in ISSUES 95.
+
+### Non ha funzionato
+
+- **Le memorie temute non si muovono: 76.6% prima, 76.6% dopo.** Clausole gia'
+  vere all'apertura 54.3% -> 54.0%. La strada 2 sporca il mondo ma **non rende
+  `state_tag_absent` contendibile**, che era la ragione per cui era stata
+  consigliata. Il perche' e' preciso: **i segni che un fallimento lascia non
+  sono i segni che i Destini temono** — un Consiglio caduto scrive
+  `condition:abandoned`, `condition:contested`, `condition:cut_off`, e nessuno
+  di questi compare in una clausola `state_tag_absent`. Il blocco sta un passo
+  piu' in la': in cosa i Destini scelgono di temere. Torna a ISSUES 91.
+
+### Corretto
+
+- D-322 diceva «13 Conseguenze irraggiungibili» contando come raggiungibile il
+  pool `cost`, che il motore non legge — cioe' proprio la cosa che D-322 aveva
+  scoperto. Col conto giusto erano **17**.
+
+---
+
 ## 0.1.285 — Tredici esiti di Consiglio che la scatola non puo' pescare (D-322)
 
 ### Misurato
