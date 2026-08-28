@@ -35,7 +35,7 @@ func _initialize() -> void:
 
 	var plan: Array = []
 	for i in range(runs):
-		plan.append("CHR_01" if i % 2 == 0 else "CHR_03")
+		plan.append("CHR_00")
 
 	print("SONDA ESPULSIONI - %d partite, tavolo misto, semi da %d" % [runs, first_seed])
 

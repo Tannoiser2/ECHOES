@@ -53,7 +53,7 @@ func _ready() -> void:
 
 ## `data` may be null - the page opens before any Chronicle is loaded - and then
 ## the parts that come from the world are simply left out.
-func render(data: RefCounted, chronicle_id: String = "CHR_01") -> void:
+func render(data: RefCounted, chronicle_id: String = "CHR_00") -> void:
 	if _text == null:
 		return
 	_text.clear()

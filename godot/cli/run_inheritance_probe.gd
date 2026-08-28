@@ -2,7 +2,7 @@ extends SceneTree
 ## **L'Eredita'**: il mondo parla ancora la lingua che quella casa voleva lasciare?
 ##
 ##   godot --headless --path godot --script res://cli/run_inheritance_probe.gd -- \
-##       --sagas=12 --chronicles=8 --seed=812 --then=CHR_02
+##       --sagas=12 --chronicles=8 --seed=812 --then=CHR_00
 ##
 ## Dal documento del committente sulle trasformazioni:
 ##
@@ -49,8 +49,8 @@ func _initialize() -> void:
 	var sagas: int = int(options.get("sagas", 12))
 	var chronicles: int = int(options.get("chronicles", 8))
 	var first_seed: int = int(options.get("seed", 812))
-	var first_id: String = str(options.get("chronicle", "CHR_01"))
-	var later_id: String = str(options.get("then", "CHR_02"))
+	var first_id: String = str(options.get("chronicle", "CHR_00"))
+	var later_id: String = str(options.get("then", "CHR_00"))
 	# **La variante che la prima misura ha reso necessaria** (D-299): contare
 	# solo quello che il mondo **poteva** perdere. I desideri di una casa sono
 	# spesso memorie, e una memoria scritta resta per sempre: contarla come

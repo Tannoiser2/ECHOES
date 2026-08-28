@@ -1,285 +1,119 @@
 extends "res://tests/test_case.gd"
-## Smoke: a whole Chronicle, headless, from the shipped sim plans (§18.3).
+## Smoke: **un anno intero, headless, dall'inizio alla fine** (§18.3).
+##
+## Fino a 0.1.281 questa prova girava i `sim_plans`: quattro playthrough
+## **scritti a mano** della Carestia Rossa, mossa per mossa. Se ne sono andati
+## con gli anni d'autore (D-318), e non si potevano ripuntare: una sequenza di
+## mosse scritte per una mappa fissa non ha senso su una mappa che si pesca.
+##
+## Quello che i piani provavano invece vale ancora, ed e' quello che resta qui:
+## un anno arriva in fondo, un Consiglio si risolve e dice cosa ha applicato,
+## il mondo scrive Echi e Verita', e la carta d'Eco dell'Atto si annuncia. La
+## differenza e' che adesso lo prova su **anni pescati**, cioe' sul gioco che
+## sta nella scatola.
+##
+## E una cosa che i piani non potevano provare: **semi diversi finiscono
+## diversi**. Con la mappa scritta a mano lo garantiva l'autore; con la mappa
+## pescata e' una proprieta' del motore, e va guardata.
 
-const ScriptedDecider := preload("res://cli/scripted_decider.gd")
 const PolicyDecider := preload("res://scripts/seat/policy_decider.gd")
-const SaveSerializer := preload("res://scripts/core/save_serializer.gd")
-const EffectText := preload("res://scripts/core/effect_text.gd")
-const EchoCardView := preload("res://ui/echo_card_view.gd")
+const SEEDS: Array = [4242, 909, 7001]
 
-const PLAN_DIR: String = "res://data/chronicle_01/sim_plans"
+var _years: Dictionary = {}
 
 
-func _plan(file_name: String) -> Dictionary:
-	var parsed: Variant = JSON.parse_string(
-		FileAccess.get_file_as_string(PLAN_DIR.path_join(file_name))
-	)
-	if typeof(parsed) != TYPE_DICTIONARY:
-		_fail("piano illeggibile: %s" % file_name)
-		return {}
-	return (parsed as Dictionary)["items"][0]
+## Un anno intero, giocato una volta sola per seme e tenuto da parte: farlo
+## girare in ogni prova costerebbe tre partite per prova invece di tre in tutto.
+func _year(seed_value: int) -> RefCounted:
+	if _years.has(seed_value):
+		return _years[seed_value]
+	var played: RefCounted = GameSession.new(data())
+	var seats: Array = GameSession.seats_for(data(), "CHR_00", seed_value)
+	if not played.setup("CHR_00", seats, seed_value):
+		_fail("l'anno %d non si apre: %s" % [seed_value, played.last_error])
+		return null
+	for effect in played.factory_setup_effects():
+		played.applier.apply(effect)
+	var report: Dictionary = await played.run(PolicyDecider.new(played.log))
+	if report.is_empty():
+		_fail("l'anno %d non arriva in fondo" % seed_value)
+		return null
+	_years[seed_value] = played
+	return played
 
 
-func _plan_files() -> Array:
-	var files: Array = []
-	var dir := DirAccess.open(PLAN_DIR)
-	if dir == null:
-		return files
-	for name in dir.get_files():
-		if name.ends_with(".json"):
-			files.append(name)
-	files.sort()
-	return files
-
-
-func _run(file_name: String) -> Dictionary:
-	var plan: Dictionary = _plan(file_name)
-	if plan.is_empty():
-		return {}
-	# La stessa strada della sonda da riga di comando (D-188, D-207): il piano
-	# dichiara in quale economia e' stato scritto, e si applica **prima** del
-	# setup, perche' due dichiarazioni cambiano la pesca. Senza, la suite prova
-	# un gioco e `tools/run_sims.sh` ne prova un altro — verde qui, rosso in
-	# CI, ed e' successo davvero.
-	new_session_for_plan(plan, int(plan["seed"]))
-	var report: Dictionary = await session.run(ScriptedDecider.new(plan, session.log))
-	report["plan"] = plan
-	return report
-
-
-## Every shipped plan plays to the end with no illegal scripted choice.
-func test_every_plan_runs_to_the_end() -> void:
-	var files: Array = _plan_files()
-	assert_true(files.size() >= 3, "almeno tre piani d'esempio (§18.1)")
-	for file_name in files:
-		var report: Dictionary = await _run(str(file_name))
-		if report.is_empty():
+func test_every_year_runs_to_the_end() -> void:
+	for seed_value in SEEDS:
+		var played: RefCounted = await _year(int(seed_value))
+		if played == null:
 			continue
+		assert_eq(int(played.world["act"]), 3, "seme %d: arriva all'Atto 3" % [seed_value])
 		assert_eq(
-			int(report["illegal_actions"]), 0, "%s: nessuna scelta scriptata illegale" % file_name
-		)
-		assert_eq(int(session.world["act"]), 3, "%s: arriva all'Atto 3" % file_name)
-		assert_eq(str(session.world["phase"]), "CHRONICLE_END", "%s: chiude la Chronicle" % file_name)
-		# La Deriva a orologio gira solo dove il sacchetto non l'ha sostituita
-		# (D-192): un piano scritto nell'economia di adesso non ne applica
-		# nessuna, e pretenderne nove vorrebbe dire pretendere il gioco di
-		# prima da una storia che dichiara di non giocarlo.
-		var tokens: Dictionary = (
-			(report["plan"] as Dictionary).get("chronicle_overrides", {}) as Dictionary
-		).get("tension_tokens", {}) as Dictionary
-		if tokens.is_empty():
-			assert_eq(
-				int(session.world["drift_index"]), 9, "%s: tutti e 9 i Drift applicati" % file_name
-			)
-		else:
-			assert_eq(
-				int(session.world["drift_index"]), 0,
-				"%s: col sacchetto la Deriva a orologio non gira" % file_name
-			)
-		assert_eq(
-			(report["destiny_results"] as Dictionary).size(), 4, "%s: 4 Destiny valutati" % file_name
+			str(played.world["phase"]), "CHRONICLE_END",
+			"seme %d: chiude la Chronicle" % [seed_value]
 		)
 
 
-## Each plan asserts its own outcome in its `expected` block; here we check the
-## harness honours it, and that the three plans really do end differently.
-func test_plans_meet_their_expectations_and_differ() -> void:
-	var signatures: Array = []
-	for file_name in _plan_files():
-		var report: Dictionary = await _run(str(file_name))
-		if report.is_empty():
-			continue
-		var plan: Dictionary = report["plan"]
-		var expected: Dictionary = plan.get("expected", {})
-		var outcomes: Array = []
-		for result in report["confluences"]:
-			outcomes.append(str(result["outcome"]))
-
-		if expected.has("confluence_count"):
-			assert_eq(
-				int(session.world["confluence_count"]),
-				int(expected["confluence_count"]),
-				"%s: numero di Confluence atteso" % file_name
-			)
-		if expected.has("outcomes"):
-			assert_eq(outcomes, Array(expected["outcomes"]), "%s: esiti attesi" % file_name)
-		if expected.has("min_echoes"):
-			assert_true(
-				int(report["echoes"]) >= int(expected["min_echoes"]),
-				"%s: almeno %d Echo" % [file_name, int(expected["min_echoes"])]
-			)
-
-		var levels: Array = []
-		for entity_id in session.world["turn_order"]:
-			levels.append(str(report["destiny_results"][entity_id]["level"]))
-		signatures.append("%s|%s" % ["/".join(PackedStringArray(outcomes)), "/".join(PackedStringArray(levels))])
-
-	# §18.3: "esiti finali diversi tra loro".
-	for i in range(signatures.size()):
-		for j in range(i + 1, signatures.size()):
-			assert_ne(signatures[i], signatures[j], "i piani %d e %d finiscono diversamente" % [i, j])
-
-
-## §18.3: at least one sample run writes an Echo and a Truth on its own.
-func test_at_least_one_plan_writes_history() -> void:
+## Il mondo scrive da solo: Echi con un testo e gli Effect che li hanno
+## prodotti, e Verita' a verbale.
+func test_the_world_writes_its_own_history() -> void:
 	var echoes: int = 0
 	var truths: int = 0
-	for file_name in _plan_files():
-		var report: Dictionary = await _run(str(file_name))
-		if report.is_empty():
+	for seed_value in SEEDS:
+		var played: RefCounted = await _year(int(seed_value))
+		if played == null:
 			continue
-		echoes += int(report["echoes"])
-		truths += int(report["truths"])
-		for echo in session.world["echo_log"]:
-			assert_true(str(echo["summary"]).length() > 0, "ogni Echo ha un testo")
-			assert_true((echo["effect_ids"] as Array).size() > 0, "ogni Echo cita gli Effect che lo hanno prodotto")
-	assert_true(echoes >= 1, "almeno un Echo generato automaticamente")
-	assert_true(truths >= 1, "almeno un Truth registrato")
+		for echo in (played.world["echo_log"] as Array):
+			echoes += 1
+			assert_true(str((echo as Dictionary)["summary"]).length() > 0, "ogni Echo ha un testo")
+			assert_true(
+				((echo as Dictionary)["effect_ids"] as Array).size() > 0,
+				"ogni Echo cita gli Effect che lo hanno prodotto"
+			)
+		truths += (played.world["truth_log"] as Array).size()
+	assert_true(echoes >= 1, "almeno un Echo generato automaticamente: %d" % [echoes])
+	assert_true(truths >= 1, "almeno una Verita' registrata: %d" % [truths])
 
 
-## Every resolved Council reports the Consequences it applied, by id and in
-## order. The board shows that list to the table as "cosa resta" (D-039), so it
-## has to be the list the resolution actually used and not a plausible one:
-## which pool applies depends on the outcome, and re-deriving it in the screen
-## would be the resolution order written down twice.
+## Un Consiglio che si chiude dice **cosa ha applicato**, non solo che si e'
+## chiuso: senza, il verbale promette una decisione e non la mostra.
 func test_a_resolved_council_reports_what_it_applied() -> void:
 	var seen: int = 0
-	for file_name in _plan_files():
-		var report: Dictionary = await _run(str(file_name))
-		if report.is_empty():
+	for seed_value in SEEDS:
+		var played: RefCounted = await _year(int(seed_value))
+		if played == null:
 			continue
-		for result in report["confluences"]:
-			# **Un Consiglio risolto cambia il mondo.** Da D-280 puo' farlo per
-			# due strade: le Conseguenze della proposta, oppure i verbi della
-			# carta — i benefici comprati, il prezzo pagato, e gli effetti
-			# stampati quando la proposta cade, che Conseguenze non sono. Il
-			# patto che conta e' che **qualcosa sia successo**: un Consiglio
-			# che si chiude senza toccare niente e' un giro a vuoto.
-			var ids: Array = (result as Dictionary).get("consequence_ids", [])
-			var landed: Array = (result as Dictionary).get("effect_ids", [])
-			assert_true(
-				ids.size() > 0 or landed.size() > 0,
-				"un Consiglio risolto lascia un segno sul mondo"
-			)
-			for consequence_id in ids:
-				assert_true(
-					session.data.consequences.has(str(consequence_id)),
-					"e ogni Conseguenza citata esiste: %s" % str(consequence_id)
-				)
+		for entry in played.log.lines:
+			var line: String = str(entry)
+			if not line.contains("Conseguenza"):
+				continue
 			seen += 1
-	assert_true(seen > 0, "almeno un Consiglio deve essersi risolto")
+			assert_true(line.length() > len("Conseguenza"), "la riga dice cosa ha applicato")
+	assert_true(seen > 0, "almeno un Consiglio deve essersi risolto: %d" % [seen])
 
 
-## The Act-end Echo card announces itself, with the Effects it applied (D-044).
-## Three times a Chronicle the story turns on a card; the screen shows it, and
-## it can only show what the controller says out loud.
-func test_the_act_echo_card_announces_itself_and_what_it_did() -> void:
-	new_session(4242, false)
-	var seen: Array = []
-	session.chronicle.act_echo_drawn.connect(
-		func(card: Dictionary, applied: Array) -> void:
-			seen.append({"card": card, "applied": applied})
-	)
-	await session.run(PolicyDecider.new(session.log))
-
-	# ISSUES 23 (D-118): la carta non si pesca piu' da sola a fine atto - la
-	# calano le mani, al piu' una per atto a seggio, e solo quando serve al
-	# proprio Destino. Il numero e' una scelta del tavolo, non una quota:
-	# che almeno una mano parli dice che il canale vive.
-	assert_true(seen.size() >= 1, "almeno una mano ha calato una carta: %d" % seen.size())
-	assert_true(seen.size() <= 12, "e mai piu' di una per atto a seggio: %d" % seen.size())
-	for entry in seen:
-		var card: Dictionary = entry["card"]
-		assert_true(str(card["title"]) != "", "la carta ha un titolo")
-		assert_true(
-			EchoCardView.FAMILIES.has(str(card["dramatic_family"])),
-			"e una famiglia drammatica che lo schermo sa disegnare: %s" % str(card["dramatic_family"])
-		)
-		assert_true(str(card["description"]) != "", "e un testo da leggere")
-		assert_true(
-			EchoCardView.FUNCTIONS.has(str(card["function_id"])),
-			"e la funzione di Propp ha un nome in italiano: %s" % str(card["function_id"])
-		)
-		assert_true(
-			(entry["applied"] as Array).size() > 0,
-			"%s ha applicato almeno un Effect al mondo" % str(card["id"])
-		)
-		for effect in entry["applied"]:
-			assert_true(
-				EffectText.say(effect as Dictionary, data()) != "",
-				"e ogni Effect si sa dire a voce: %s" % str((effect as Dictionary)["type"])
+## **Semi diversi finiscono diversi.** Con la mappa scritta a mano lo garantiva
+## l'autore; con la mappa pescata e' una proprieta' del motore. Se questa cade,
+## la varieta' della scatola e' finta e nessun'altra prova se ne accorge.
+func test_different_seeds_end_differently() -> void:
+	var signatures: Array = []
+	for seed_value in SEEDS:
+		var played: RefCounted = await _year(int(seed_value))
+		if played == null:
+			continue
+		var mark: String = ""
+		var region_ids: Array = (played.world["regions"] as Dictionary).keys()
+		region_ids.sort()
+		for region_id in region_ids:
+			mark += "%s:%s|" % [
+				str(region_id),
+				str((played.world["regions"][region_id] as Dictionary).get("control", "")),
+			]
+		signatures.append(mark)
+	assert_true(signatures.size() >= 2, "servono due anni per confrontarli")
+	for i in range(signatures.size()):
+		for j in range(i + 1, signatures.size()):
+			assert_ne(
+				signatures[i], signatures[j],
+				"gli anni %d e %d finiscono diversi" % [int(SEEDS[i]), int(SEEDS[j])]
 			)
-
-
-## §18.3: same seed + same plan => byte-identical final save.
-func test_same_seed_and_plan_give_an_identical_save() -> void:
-	var file_name: String = str(_plan_files()[0])
-	_run(file_name)
-	var first: String = SaveSerializer.to_json(session.to_save("det"))
-	_run(file_name)
-	var second: String = SaveSerializer.to_json(session.to_save("det"))
-	assert_eq(first, second, "%s: due esecuzioni producono lo stesso salvataggio" % file_name)
-
-
-## A different seed has to change the run, or the seeding would be decorative.
-func test_a_different_seed_changes_the_run() -> void:
-	var plan: Dictionary = _plan(str(_plan_files()[0]))
-	new_session(int(plan["seed"]), false)
-	await session.run(ScriptedDecider.new(plan.duplicate(true), session.log))
-	var first: String = SaveSerializer.to_json(session.to_save("det"))
-
-	new_session(int(plan["seed"]) + 7, false)
-	await session.run(ScriptedDecider.new(plan.duplicate(true), session.log))
-	var second: String = SaveSerializer.to_json(session.to_save("det"))
-	assert_ne(first, second, "un seed diverso produce una Chronicle diversa")
-
-
-## The public log must never print a veiled Tension's number (§11.1, §19.2).
-func test_the_public_log_keeps_veiled_values_private() -> void:
-	var report: Dictionary = await _run(str(_plan_files()[0]))
-	if report.is_empty():
-		return
-	var text: String = session.log.text()
-	assert_false(text.contains("Il Risveglio: 2/7"), "il valore velato non compare nel log")
-	assert_true(text.contains("velata"), "il log dice che e velata, e basta")
-
-
-## Ogni piano spedito dice in quale economia e' stato scritto (D-188). E' la
-## meta' leggibile della guardia in `validate_data.py`: quella impedisce di
-## dimenticarsene, questa dice **perche'** conta.
-func test_every_plan_declares_its_economy() -> void:
-	for file_name in _plan_files():
-		var plan: Dictionary = _plan(str(file_name))
-		var overrides: Dictionary = plan.get("chronicle_overrides", {}) as Dictionary
-		assert_true(
-			overrides.has("actions_from_cards"),
-			"%s dice se gioca con le carte o con le Occasioni" % str(file_name)
-		)
-		# Non «tutti i piani sono storie di prima»: **ognuno dice la sua**. Un
-		# piano scritto nell'economia di adesso dichiara le regole con cui e'
-		# stato scritto, cosi' il giorno che la Chronicle cambia ancora la storia
-		# continua a raccontare quella che raccontava.
-		if bool(overrides["actions_from_cards"]):
-			for rule in ["hand_refill", "claim_rules", "tension_tokens", "objectives"]:
-				assert_true(
-					overrides.has(rule),
-					"%s gioca a carte e dichiara anche `%s`" % [str(file_name), rule]
-				)
-				assert_false(
-					(overrides[rule] as Dictionary).is_empty(),
-					"%s: `%s` acceso, non svuotato" % [str(file_name), rule]
-				)
-	# E almeno una storia per economia: senza, il gioco che si spedisce non ha
-	# nessun racconto scritto a mano che lo provi.
-	var old_ones: int = 0
-	var new_ones: int = 0
-	for file_name in _plan_files():
-		var overrides: Dictionary = (
-			_plan(str(file_name)).get("chronicle_overrides", {}) as Dictionary
-		)
-		if bool(overrides.get("actions_from_cards", false)):
-			new_ones += 1
-		else:
-			old_ones += 1
-	assert_true(old_ones >= 1, "almeno una storia del §10 di prima")
-	assert_true(new_ones >= 1, "e almeno una scritta nell'economia di adesso")

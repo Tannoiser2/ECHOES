@@ -10,7 +10,7 @@ var _veil_default: Variant = null
 
 func before_each() -> void:
 	new_session()
-	var chronicle: Dictionary = session.data.chronicles["CHR_01"] as Dictionary
+	var chronicle: Dictionary = session.data.chronicles["CHR_TEST"] as Dictionary
 	if _veil_default == null:
 		_veil_default = chronicle.get("veiled_tensions", "")
 	chronicle["veiled_tensions"] = str(_veil_default)
@@ -111,7 +111,7 @@ func test_omens_fire_once_and_come_from_the_data() -> void:
 
 
 func _veil_rule(rule: String) -> void:
-	(session.data.chronicles["CHR_01"] as Dictionary)["veiled_tensions"] = rule
+	(session.data.chronicles["CHR_TEST"] as Dictionary)["veiled_tensions"] = rule
 
 
 ## Col velo che copre tutto, il numero non compare nel registro pubblico.

@@ -111,7 +111,7 @@ func test_a_card_cannot_do_what_the_action_forbids() -> void:
 ## L'interruttore della Chronicle: acceso, le sei azioni di §10 non si prendono
 ## piu' con un'Opportunita' - la mano diventa l'unica moneta.
 func test_the_switch_takes_the_six_actions_off_the_table() -> void:
-	var chronicle: Dictionary = session.data.chronicles["CHR_01"] as Dictionary
+	var chronicle: Dictionary = session.data.chronicles["CHR_TEST"] as Dictionary
 	# `new_session()` nasce sul lato classico (vedi `play_classic()`), cosi' le
 	# prove delle azioni restano leggibili.
 	assert_false(
@@ -158,7 +158,7 @@ func test_the_shipped_chronicle_plays_with_cards() -> void:
 	# al lato classico, e chiederlo a lei sarebbe chiedere alla prova stessa.
 	var shipped: RefCounted = DataSet.new()
 	assert_true(shipped.load_from("res://data"), "i dati spediti si caricano")
-	var chronicle: Dictionary = shipped.chronicles["CHR_01"] as Dictionary
+	var chronicle: Dictionary = shipped.chronicles["CHR_00"] as Dictionary
 	assert_true(
 		bool(chronicle.get("actions_from_cards", false)),
 		"CHR_01 gioca con le carte"

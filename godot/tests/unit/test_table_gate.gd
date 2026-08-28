@@ -16,7 +16,7 @@ func before_each() -> void:
 
 
 func _with_gate(gate: int = GATE) -> Dictionary:
-	var chronicle: Dictionary = session.data.chronicles["CHR_01"] as Dictionary
+	var chronicle: Dictionary = session.data.chronicles["CHR_TEST"] as Dictionary
 	chronicle["tension_tokens"] = {
 		"per_action": 1, "replaces_drift": true, "table_gate": gate
 	}

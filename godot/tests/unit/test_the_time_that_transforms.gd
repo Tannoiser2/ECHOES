@@ -53,7 +53,7 @@ func _standing() -> Dictionary:
 func test_two_cities_are_enough_for_a_decade() -> void:
 	# Dieci anni: la soglia non c'entra, e al trono ci sta ancora lui.
 	var plan: Dictionary = Succession.plan(
-		_world(0, []), {}, _chronicle("CHR_02"), data(), 10
+		_world(0, []), {}, _chronicle("CHR_TEST_HEIR"), data(), 10
 	)
 	var seat: Dictionary = plan["ENT_ALDRIC"] as Dictionary
 	assert_false(bool(seat["transformed"]), "dieci anni non trasformano niente")
@@ -66,7 +66,7 @@ func test_but_not_for_three_centuries() -> void:
 	# non e' piu' un regno. Le Regioni ci sono ancora — cade la sola gamba dei
 	# desideri, e basta quella.
 	var plan: Dictionary = Succession.plan(
-		_world(100, []), {}, _chronicle("CHR_02"), data(), 100
+		_world(100, []), {}, _chronicle("CHR_TEST_HEIR"), data(), 100
 	)
 	var seat: Dictionary = plan["ENT_ALDRIC"] as Dictionary
 	assert_true(bool(seat["transformed"]), "la casa cambia pelle")
@@ -81,7 +81,7 @@ func test_but_not_for_three_centuries() -> void:
 ## si cambia il re, non la cosa.
 func test_time_alone_transforms_nobody() -> void:
 	var plan: Dictionary = Succession.plan(
-		_world(100, ALDRIC_WANTS), {}, _chronicle("CHR_02"), data(), 100
+		_world(100, ALDRIC_WANTS), {}, _chronicle("CHR_TEST_HEIR"), data(), 100
 	)
 	var seat: Dictionary = plan["ENT_ALDRIC"] as Dictionary
 	assert_false(bool(seat["transformed"]), "chi tiene quello che voleva resta se stesso")
@@ -94,7 +94,7 @@ func test_time_alone_transforms_nobody() -> void:
 ## generazione.
 func test_losing_alone_transforms_nobody() -> void:
 	var plan: Dictionary = Succession.plan(
-		_world(0, []), {}, _chronicle("CHR_02"), data(), 30
+		_world(0, []), {}, _chronicle("CHR_TEST_HEIR"), data(), 30
 	)
 	var seat: Dictionary = plan["ENT_ALDRIC"] as Dictionary
 	assert_false(bool(seat["transformed"]), "trent'anni non bastano")
@@ -112,14 +112,14 @@ func test_the_threshold_is_a_number_the_life_declares() -> void:
 			chiesti = int((clause as Dictionary)["min"])
 	assert_true(chiesti >= 1, "e la porta dice quanti desideri devono reggere")
 	var one: Dictionary = Succession.plan(
-		_world(200, [ALDRIC_WANTS[0]]), {}, _chronicle("CHR_02"), data(), 10
+		_world(200, [ALDRIC_WANTS[0]]), {}, _chronicle("CHR_TEST_HEIR"), data(), 10
 	)
 	assert_true(
 		bool((one["ENT_ALDRIC"] as Dictionary)["transformed"]),
 		"con un segno solo, sotto i %d chiesti, la casa cade" % chiesti
 	)
 	var two: Dictionary = Succession.plan(
-		_world(200, ALDRIC_WANTS), {}, _chronicle("CHR_02"), data(), 10
+		_world(200, ALDRIC_WANTS), {}, _chronicle("CHR_TEST_HEIR"), data(), 10
 	)
 	assert_false(
 		bool((two["ENT_ALDRIC"] as Dictionary)["transformed"]),
@@ -144,7 +144,7 @@ func test_losing_the_land_is_enough_even_holding_the_memories() -> void:
 		"REG_VALLE_VERDE": {"control": "ENT_LYRA", "tags": ["granary"], "structures": []},
 	}
 	var plan: Dictionary = Succession.plan(
-		_world(200, ALDRIC_WANTS, senza_terra), {}, _chronicle("CHR_02"), data(), 10
+		_world(200, ALDRIC_WANTS, senza_terra), {}, _chronicle("CHR_TEST_HEIR"), data(), 10
 	)
 	var seat: Dictionary = plan["ENT_ALDRIC"] as Dictionary
 	assert_true(
@@ -160,7 +160,7 @@ func test_the_keep_is_a_leg_too() -> void:
 	var senza_torre: Dictionary = _standing()
 	(senza_torre["REG_EREDAN"] as Dictionary)["structures"] = []
 	var plan: Dictionary = Succession.plan(
-		_world(200, ALDRIC_WANTS, senza_torre), {}, _chronicle("CHR_02"), data(), 10
+		_world(200, ALDRIC_WANTS, senza_torre), {}, _chronicle("CHR_TEST_HEIR"), data(), 10
 	)
 	assert_true(
 		bool((plan["ENT_ALDRIC"] as Dictionary)["transformed"]),
@@ -175,7 +175,7 @@ func test_the_clock_travels_with_the_seat() -> void:
 	var previous: Dictionary = _world(140, [])
 	previous["year"] = 300
 	var next: RefCounted = GameSession.new(data())
-	next.setup("CHR_02", ["ENT_ALDRIC", "ENT_NAHR", "ENT_LYRA", "ENT_VAERAX"], 99)
+	next.setup("CHR_TEST_HEIR", ["ENT_ALDRIC", "ENT_NAHR", "ENT_LYRA", "ENT_VAERAX"], 99)
 	next.inherit_from(previous, {})
 	var seat: Dictionary = next.world["entities"]["ENT_ALDRIC"] as Dictionary
 	assert_true(seat.has("life_years"), "il seggio porta il contatore")

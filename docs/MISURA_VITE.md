@@ -3,7 +3,7 @@
 Generato da `cli/run_lives_probe.gd` — non si scrive a mano.
 
     godot --headless --path godot --script res://cli/run_lives_probe.gd -- \
-        --sagas=12 --chronicles=8 --seed=812 --then=CHR_02
+        --sagas=12 --chronicles=8 --seed=812 --then=CHR_00
 
 Una casa ha piu' vite scritte: il popolo diventa regno, la scuola
 diventa culto, il regno diventa repubblica. Qui si conta **quante di
@@ -16,24 +16,24 @@ caratteri misti, come al cancello — e dopo quanto tempo.
 | vite scritte oltre la prima | 18 |
 | **vite che non si sono mai sedute** | **7** |
 | salti d'era giocati | 168 |
-| trasformazioni sedute | 190 |
-| salti brevi (sotto 50 anni) / medi / lunghi (oltre 150) | 22 / 108 / 38 |
+| trasformazioni sedute | 199 |
+| salti brevi (sotto 50 anni) / medi / lunghi (oltre 150) | 36 / 84 / 48 |
 
 ## Le vite, una per una
 
 | uniforme | misto | vita | casa | porta | segno atteso | anni (mediana) |
 |---|---|---|---|---|---|---|
-| 15 | 18 | Il Regno di Nahr | ENT_NAHR | ON_TAG | `nahr_settled` | 440 |
-| 13 | 12 | Vaerax Ridestato | ENT_VAERAX | ON_TAG | `crystal_exploited` | 486 |
-| 12 | 12 | Il Culto della Misura | ENT_LYRA | LINE_EXHAUSTED | — | 368 |
-| 11 | 10 | La Repubblica della Valle | ENT_ALDRIC | LINE_EXHAUSTED | — | 506 |
-| 10 | 9 | Le Custodi della Cenere | ENT_CENERE | LINE_EXHAUSTED | — | 345 |
-| 9 | 9 | I Frati del Vetro | ENT_VETRO | LINE_EXHAUSTED | — | 357 |
-| 9 | 5 | La Lega delle Sette | ENT_LIBERE | ON_TAG | `charter_written` | 509 |
-| 6 | 6 | La Compagnia del Sale | ENT_SALE | LINE_EXHAUSTED | — | 369 |
-| 5 | 6 | L'Egemonia di Eredan | ENT_LIBERE | ON_TAG | `scar:emptied@REG_VALLE_VERDE` | 440 |
-| 4 | 3 | La Diaspora di Nahr | ENT_NAHR | ON_TAG | `twice_uprooted` | 368 |
-| 4 | 2 | La Corona Restaurata | ENT_ALDRIC | ON_TAG | `heir_named` | 381 |
+| 16 | 15 | Le Custodi della Cenere | ENT_CENERE | LINE_EXHAUSTED | — | 476 |
+| 14 | 13 | La Repubblica della Valle | ENT_ALDRIC | LINE_EXHAUSTED | — | 494 |
+| 14 | 12 | Il Culto della Misura | ENT_LYRA | LINE_EXHAUSTED | — | 494 |
+| 13 | 13 | I Frati del Vetro | ENT_VETRO | LINE_EXHAUSTED | — | 235 |
+| 11 | 10 | Vaerax Ridestato | ENT_VAERAX | ON_TAG | `crystal_exploited` | 291 |
+| 7 | 6 | La Compagnia del Sale | ENT_SALE | LINE_EXHAUSTED | — | 590 |
+| 7 | 5 | L'Egemonia di Eredan | ENT_LIBERE | ON_TAG | `scar:emptied@REG_VALLE_VERDE` | 576 |
+| 6 | 6 | La Diaspora di Nahr | ENT_NAHR | ON_TAG | `twice_uprooted` | 378 |
+| 5 | 7 | Il Regno di Nahr | ENT_NAHR | ON_TAG | `nahr_settled` | 708 |
+| 5 | 5 | La Lega delle Sette | ENT_LIBERE | ON_TAG | `charter_written` | 474 |
+| 4 | 5 | La Corona Restaurata | ENT_ALDRIC | ON_TAG | `heir_named` | 521 |
 | **0** | **0** | La Reggenza del Granaio | ENT_ALDRIC | ON_TAG | `grain_requisitioned` | — |
 | **0** | **0** | I Forni Riaccesi | ENT_CENERE | ON_TAG | `scar:open_wound` | — |
 | **0** | **0** | L'Accademia delle Misure | ENT_LYRA | ON_TAG | `succession_by_law` | — |
@@ -49,12 +49,12 @@ Il conto e' mutazioni su 168 salti giocati.
 
 | casa | mutazioni | ogni quanti salti |
 |---|---|---|
-| ENT_ALDRIC | 27 | 1 ogni 6.2 |
-| ENT_CENERE | 19 | 1 ogni 8.8 |
-| ENT_LIBERE | 25 | 1 ogni 6.7 |
-| ENT_LYRA | 24 | 1 ogni 7.0 |
-| ENT_NAHR | 40 | 1 ogni 4.2 |
-| ENT_SALE | 12 | 1 ogni 14.0 |
-| ENT_VAERAX | 25 | 1 ogni 6.7 |
-| ENT_VETRO | 18 | 1 ogni 9.3 |
+| ENT_ALDRIC | 36 | 1 ogni 4.7 |
+| ENT_CENERE | 31 | 1 ogni 5.4 |
+| ENT_LIBERE | 22 | 1 ogni 7.6 |
+| ENT_LYRA | 26 | 1 ogni 6.5 |
+| ENT_NAHR | 24 | 1 ogni 7.0 |
+| ENT_SALE | 13 | 1 ogni 12.9 |
+| ENT_VAERAX | 21 | 1 ogni 8.0 |
+| ENT_VETRO | 26 | 1 ogni 6.5 |
 

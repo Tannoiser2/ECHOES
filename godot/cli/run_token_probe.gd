@@ -2,7 +2,7 @@ extends SceneTree
 ## Il sacchetto dei segnalini coperti (proposta del committente).
 ##
 ##   godot --headless --path godot --script res://cli/run_token_probe.gd -- \
-##       --runs=60 --seed=7000 --chronicle=CHR_01
+##       --runs=60 --seed=7000 --chronicle=CHR_00
 ##
 ## «Ogni carta o azione fa pescare uno o piu' segnalini coperti che danno un
 ## valore a una tensione. A un certo punto, quando parte la Confluence, si
@@ -44,7 +44,7 @@ func _initialize() -> void:
 	var options: Dictionary = _parse_args(OS.get_cmdline_user_args())
 	var runs: int = int(options.get("runs", 60))
 	var first_seed: int = int(options.get("seed", 7000))
-	var chronicle_id: String = str(options.get("chronicle", "CHR_01"))
+	var chronicle_id: String = str(options.get("chronicle", "CHR_00"))
 
 	var data: RefCounted = DataSet.new()
 	if not data.load_from("res://data"):

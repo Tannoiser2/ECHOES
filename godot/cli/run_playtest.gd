@@ -39,17 +39,26 @@ func _initialize() -> void:
 		quit(3)
 		return
 
-	# Meta su una saga e meta sull'altra: un risultato che vale per una sola non
-	# dice niente su una regola.
+	# **Cento anni pescati, non due scritti** (D-318).
+	#
+	# Fino a 0.1.279 il cancello girava meta' su CHR_00 e meta' su CHR_03, due
+	# anni d'autore con quattro e cinque Tensioni fisse. D-317 ha misurato cosa
+	# costava: **48 delle 60 carte Tensione non arrivavano mai al tavolo**, e
+	# ogni numero di bilanciamento a verbale era stato preso su una partita che
+	# nella scatola non c'e'.
+	#
+	# Adesso ogni seme e' un anno diverso di CHR_00: la mappa si pesca dal parco
+	# tessere, le case dal loro parco, le questioni dalle sessanta. Cento semi
+	# fanno cento tavoli, invece di due ripetuti cinquanta volte.
 	var plan: Array = []
-	for i in range(runs):
-		plan.append("CHR_01" if i % 2 == 0 else "CHR_03")
+	for _i in range(runs):
+		plan.append("CHR_00")
 
 	# La leva si prova senza toccare i dati, come i cap su INFLUENCE:
 	# `--oppose-recovery=0` fa costare il fronte contrario quanto la proposta.
 	if options.has("oppose-recovery"):
 		var recovers: bool = str(options["oppose-recovery"]) not in ["0", "false", "no"]
-		for chronicle_id in ["CHR_01", "CHR_03"]:
+		for chronicle_id in ["CHR_00"]:
 			var chronicle: Dictionary = data.chronicles[chronicle_id]
 			var rules: Dictionary = (
 				(chronicle.get("confluence_rules", {}) as Dictionary).duplicate(true)
@@ -63,7 +72,7 @@ func _initialize() -> void:
 	# i dati - come sopra, e come i cap su INFLUENCE.
 	if options.has("failure-delta"):
 		var failure_delta: int = int(str(options["failure-delta"]))
-		for chronicle_id in ["CHR_01", "CHR_03"]:
+		for chronicle_id in ["CHR_00"]:
 			var chronicle: Dictionary = data.chronicles[chronicle_id]
 			var rules: Dictionary = (
 				(chronicle.get("confluence_rules", {}) as Dictionary).duplicate(true)
@@ -72,7 +81,7 @@ func _initialize() -> void:
 			chronicle["confluence_rules"] = rules
 		print("confluence_rules: failure_delta = %d" % failure_delta)
 
-	print("PLAYTEST - %d partite, %d per saga, semi da %d" % [runs, runs / 2, first_seed])
+	print("PLAYTEST - %d anni pescati, semi da %d" % [runs, first_seed])
 	var mixed: Dictionary = await _play(data, plan, first_seed, true)
 	var same: Dictionary = await _play(data, plan, first_seed, false)
 

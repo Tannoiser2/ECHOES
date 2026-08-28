@@ -2,7 +2,7 @@ extends SceneTree
 ## Il libro mastro degli obiettivi (ISSUES 52)
 ##
 ##   godot --headless --path godot --script res://cli/run_objective_ledger.gd -- \
-##       --runs=100 --seed=7000 --chronicle=CHR_01
+##       --runs=100 --seed=7000 --chronicle=CHR_00
 ##
 ## `run_objective_probe` misurava il **preventivo**: quanto vale ogni
 ## obiettivo prima che il gioco lo giochi ([D-196](DECISIONS.md#d-196)). Questa
@@ -34,7 +34,7 @@ func _initialize() -> void:
 	var options: Dictionary = _parse_args(OS.get_cmdline_user_args())
 	var runs: int = int(options.get("runs", 100))
 	var first_seed: int = int(options.get("seed", 7000))
-	var chronicle_id: String = str(options.get("chronicle", "CHR_01"))
+	var chronicle_id: String = str(options.get("chronicle", "CHR_00"))
 	var mixed: bool = not options.has("uniform")
 
 	var data: RefCounted = DataSet.new()

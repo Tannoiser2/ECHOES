@@ -7,7 +7,7 @@ extends SceneTree
 ##   --seats=all          all four played by hand
 ##   --seats=ENT_NAHR     one seat by hand, the other three by the policy
 ##   --seed=812           same seed, same world
-##   --chronicle=CHR_02   the library Chronicle instead of the authored one
+##   --chronicle=CHR_00   la Chronicle della scatola: mappa, case e questioni pescate
 ##   --quiet              only the Councils, the Echo cards and the ending -
 ##                        no per-round rules trace
 ##
@@ -29,7 +29,7 @@ const SEATS: Array = ["ENT_ALDRIC", "ENT_NAHR", "ENT_LYRA", "ENT_VAERAX"]
 func _initialize() -> void:
 	var options: Dictionary = _parse_args(OS.get_cmdline_user_args())
 	var seed_value: int = int(options.get("seed", 812))
-	var chronicle_id: String = str(options.get("chronicle", "CHR_01"))
+	var chronicle_id: String = str(options.get("chronicle", "CHR_00"))
 	var quiet: bool = options.has("quiet")
 	var humans: Array = _seats(str(options.get("seats", "ENT_NAHR")))
 

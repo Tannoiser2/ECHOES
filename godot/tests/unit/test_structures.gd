@@ -131,7 +131,7 @@ func test_the_catalogue_decides_whether_it_has_an_owner() -> void:
 func test_stones_cross_the_years() -> void:
 	_build(HERE, 3, "ENT_VAERAX")
 	var previous: Dictionary = session.world.duplicate(true)
-	var chronicle: Dictionary = data().chronicles["CHR_01"]
+	var chronicle: Dictionary = data().chronicles["CHR_TEST"]
 	var carried: Array = WorldStateFactory.inheritance_effects(previous, chronicle, data(), 1)
 
 	# Cercare «la prima BUILD_STRUCTURE» non basta piu': da 0.1.126 la mappa si

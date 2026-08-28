@@ -5,6 +5,200 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.282 — Due strumenti giravano ancora sugli anni cancellati (D-319)
+
+La CI ha preso quello che i quattordici cancelli non guardano: due passi suoi
+che nella lista di casa non ci sono.
+
+### Corretto
+
+- **`tools/run_sims.sh` cercava i `sim_plans`** — *«Piano non trovato:
+  res://data/chronicle_01/sim_plans/*.json»*. Riscritto su **anni pescati**:
+  quattro semi di CHR_00, verbale e salvataggio per ciascuno. Cosi' sopravvive
+  la verifica che stava sopra — **stesso seme, salvataggio identico byte per
+  byte** (§18.3) — che e' un passo di CI e non un cancello di casa. Provata:
+  quattro salvataggi su quattro identici fra due esecuzioni.
+- **`run_chronicle_sim.gd` sa girare senza piano**: `--chronicle` e `--seed` al
+  posto di `--plan`, coi seggi che quel seme pesca e che giocano da soli. Il
+  modo con piano resta, e non ha piu' piani da leggere.
+- **Sette sonde e il cancello delle vite incatenavano ancora a `CHR_02`.** La
+  spazzata di 0.1.281 aveva sostituito `CHR_01` e `CHR_03` e **non** `CHR_02`:
+  `--then=CHR_02` faceva fallire il `setup()` della seconda era, e la sonda
+  proseguiva su una sessione morta — *«Nonexistent function 'run' in base
+  Nil»*, dodici volte per esecuzione.
+- **E `docs/MISURA_VITE.md` era stato rigenerato da quel giro rotto.** Il
+  cancello diceva «allineato» perche' confrontava il documento con l'output
+  che l'errore produceva: allineato al guasto. Rigenerato pulito, 23 righe
+  cambiate.
+
+### La lezione, che e' la stessa di prima
+
+Il `--check` di un documento generato dice che **il documento combacia con
+quello che lo strumento produce adesso**, non che lo strumento funzioni. Se lo
+strumento va in errore a meta' e stampa comunque, il cancello e' verde e la
+misura e' finta. Vale il grep su `SCRIPT ERROR` anche qui, non solo sulla
+suite.
+
+---
+
+## 0.1.281 — Gli anni d'autore sono cancellati (D-319)
+
+### Tolto
+
+- **`CHR_01` (La Carestia Rossa), `CHR_02`, `CHR_03` (Le Citta' Libere),
+  `CHR_04`**, e i quattro `sim_plans` che sceneggiavano la Carestia mossa per
+  mossa. Nella scatola resta **una Chronicle**: la Prima, che pesca mappa,
+  case e questioni, e prosegue se stessa.
+- Non si e' persa una carta: le 10 Regioni, le 8 case, i 23 Destini, le 60
+  Tensioni, gli Echi e i 12 template di Consiglio restano — quegli anni li
+  **usavano**, non li possedevano.
+
+### Aggiunto
+
+- **`tests/fixtures/chronicle_test.json` e `tests/test_table.gd`**: `CHR_TEST`
+  e `CHR_TEST_HEIR`, il **banco** e non il gioco. Stanno sotto `tests/` e non
+  finiscono nella scatola. E' la regola di casa applicata alla suite: *una
+  prova che cerca una condizione fra i dati spediti puo' smettere di provare
+  senza dirlo — fabbricatela.*
+- **`shipped_data()`** accanto a `data()`: chi prova il motore usa il banco,
+  chi **censisce la scatola** usa i dati spediti. Senza, una prova che conta le
+  saghe contava anche il banco e dichiarava una scatola piu' ricca del vero.
+
+### Riscritto
+
+- **`test_chronicle_run`** girava i `sim_plans`, e una sequenza di mosse
+  scritta per una mappa fissa non si ripunta su una mappa pescata. Riscritto su
+  anni pescati con le stesse domande — un anno arriva in fondo, un Consiglio
+  dice cosa ha applicato, il mondo scrive Echi e Verita' — piu' una che i piani
+  non potevano fare: **semi diversi finiscono diversi**.
+- **`test_the_menu_never_offers_a_sequel`** sarebbe passato **per assenza**:
+  senza anni incatenati non c'e' piu' un seguito da non offrire. Adesso la
+  coppia se la fabbrica, e controlla anche il caso che deve dare non-vuoto.
+- **`test_the_three_survive_the_handover`**: l'era dopo e' la stessa Chronicle
+  con un seme nuovo.
+
+### Corretto
+
+- Tre punti dell'app aprivano ancora `CHR_01` di default
+  (`game_screen.first_chronicle()`, `help_panel.render()`, `dev_split`): con la
+  Carestia cancellata avrebbero aperto il vuoto.
+- Cinquanta sonde in `cli/` avevano `CHR_01` o `CHR_03` come predefinita.
+
+### Misurato
+
+| | prima | dopo |
+|---|---|---|
+| Chronicle nella scatola | 5 | **1** |
+| Tensioni che la Chronicle vede | 12 | **60** |
+| test | 627 | 622 |
+| fallimenti spostando la suite | **217** | **0** |
+
+### E tre prove morte a meta', prese dalla CI
+
+Il runner locale conta i test che ha **fatto partire**, non quelli arrivati in
+fondo: una prova che sbatte su una chiave che non c'e' si interrompe, scrive
+una riga di log, e la suite dice verde. La CI legge quel log, e ha preso tre
+casi che il verde locale nascondeva:
+
+- **`test_chronicle_run`, la prova che avevo appena riscritto**, leggeva
+  `log.entries` invece di `log.lines`. Si interrompeva prima di contare i
+  Consigli risolti: verde, e non provava niente. Sedici asserzioni tornate a
+  girare.
+- `test_library_balance` incatenava ancora `CHR_03` -> `CHR_04`.
+- `test_library_content` cercava `CHR_TEST_HEIR` nei dati **spediti**, dove il
+  banco non c'e'.
+
+**35520 -> 35551 asserzioni**: trentuno che non giravano. La lezione e' quella
+gia' scritta in CLAUDE.md, e vale anche per chi la scrive: il verde della suite
+non basta, si legge il log. Il cancello e' `.github/workflows/validate.yml`, e
+gira anche in locale.
+
+---
+
+## 0.1.280 — Cento anni pescati: il cancello misura il gioco che si vende (D-318)
+
+### Cambiato
+
+- **`run_playtest.gd` gira su CHR_00**, cento semi, cento anni pescati. Girava
+  meta' su CHR_01 e meta' su CHR_03: due anni d'autore con quattro e cinque
+  Tensioni fisse, dove **48 delle 60 carte Tensione non arrivavano mai al
+  tavolo**. Adesso ne restano fuori **3**.
+
+### Misurato
+
+- **Il vincolo regge sul gioco vero**: `--runs=100 --seed=7000`, **0 seggi
+  bloccati su 8**, misto e uniforme. Non era scontato: nessuno l'aveva mai
+  fatto girare.
+- **E costa, e si scrive.** Il gioco pescato e' piu' duro e piu' asciutto:
+
+  | su 100 partite | anni d'autore | anni pescati |
+  |---|---|---|
+  | NONE | 190 | **237** |
+  | MINIMUM | 428 | 407 |
+  | VICTORY | 551 | 525 |
+  | TRIUMPH | 31 | 31 |
+  | Consigli per anno (misto) | 3.85 | **3.47** |
+  | Verita' scritte (misto) | 221 | **162** |
+
+  Quarantasette seggi in piu' escono a mani vuote, mezzo Consiglio in meno per
+  anno, un quinto di Verita' in meno. Non e' un peggioramento da correggere di
+  corsa: e' il numero vero, guardato per la prima volta.
+
+### Non fatto, e misurato perche'
+
+- La cancellazione degli anni d'autore (CHR_01, CHR_02, CHR_03, CHR_04) chiesta
+  dal committente: puntando `tests/test_case.gd` su CHR_00 la suite va a **217
+  fallimenti su 42 suite**. La suite unitaria e' costruita sull'anno d'autore —
+  nomina `TEN_FAMINE`, `REG_EREDAN`, «La Carestia Rossa», e ventisei prove
+  cadono perche' un hook di Eco non compila quando la Regione che nomina non e'
+  stata pescata. E' lavoro suo, con le prove da rifare
+  ([ISSUES 93](docs/ISSUES.md)).
+
+---
+
+## 0.1.279 — Il cancello misura un anno d'autore, non la scatola (D-317)
+
+### Misurato
+
+- **La diagnosi di ISSUES 92 era sbagliata**, e tre verifiche la smontano:
+  `P_EXPLOIT` e' **offerta 3 volte e scelta 3** (`run_choice_probe.gd`, che
+  esisteva gia'); `TEN_AWAKENING` ha media **5.90** su soglia 6, picco 33, e
+  **116 spinte in su contro 7 in giu'** — la Tensione meno frenata del gioco;
+  `Q_AWAKENING_CRYSTAL` ha `eligibility: []`, sempre eleggibile. E il suo
+  Consiglio si apre **zero volte su 40 partite**.
+- **Il blocco e' a monte:** quella Tensione non e' quasi mai sul tavolo.
+  `deal_theme_decks()` riempie i sei mazzetti dalle sessanta carte **solo se la
+  Chronicle ha un `region_pool`**; senza, il mazzetto contiene solo le Tensioni
+  gia' in gioco. Il `region_pool` ce l'ha **CHR_00 e basta**.
+- **Il confronto**, 20 partite a tavolo misto:
+
+  | | CHR_01 (anno d'autore) | CHR_00 (mappa pescata) |
+  |---|---|---|
+  | Tensioni sul tavolo, per partita | **4.0** | **8.8** |
+  | distinte in 20 partite | **12** | **57** |
+  | mai viste, su 60 | **48** | **3** |
+  | che tengono un Consiglio | 12 | **28** |
+
+- **La scatola funziona**: con la mappa pescata, 57 carte Tensione su 60
+  arrivano al tavolo e 28 tengono il loro Consiglio. D-261, D-264 e D-265 si
+  vedono giocare.
+- **Ma il cancello dei 100 semi gira su CHR_01 e CHR_03**, tutti e due anni
+  d'autore. Ogni numero di bilanciamento a verbale in questo progetto e' stato
+  misurato su una partita con **quattro** Tensioni, non con sessanta.
+
+### Aggiunto
+
+- `cli/run_tension_reach_probe.gd`: quante delle sessanta Tensioni scritte
+  arrivano al tavolo, dove arrivano contro la loro soglia, e quante tengono
+  davvero un Consiglio.
+
+### Non cambiato
+
+- Nessuna regola, nessun dato, nessun cancello. Quale gioco misurare e' una
+  scelta del committente ([ISSUES 92](docs/ISSUES.md), riscritta).
+
+---
+
 ## 0.1.278 — Una casa spenta non segna, e adesso lo dice una regola sola (D-316)
 
 ### Cambiato

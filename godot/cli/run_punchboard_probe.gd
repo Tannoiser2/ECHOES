@@ -2,7 +2,7 @@ extends SceneTree
 ## **La fustella al tavolo**: quanti segnalini si posano davvero (D-296).
 ##
 ##   godot --headless --path godot --script res://cli/run_punchboard_probe.gd -- \
-##       --runs=40 --seed=7000 --chronicle=CHR_01
+##       --runs=40 --seed=7000 --chronicle=CHR_00
 ##
 ## Parola del committente, guardando il censimento dei componenti: *«certo che
 ## 183 segnalini sono tanti, forse troppi»*. Il 183 era il **dizionario** e non
@@ -27,7 +27,7 @@ func _initialize() -> void:
 	var options: Dictionary = _parse_args(OS.get_cmdline_user_args())
 	var runs: int = int(options.get("runs", 40))
 	var first_seed: int = int(options.get("seed", 7000))
-	var chronicle_id: String = str(options.get("chronicle", "CHR_01"))
+	var chronicle_id: String = str(options.get("chronicle", "CHR_00"))
 
 	var data: RefCounted = DataSet.new()
 	if not data.load_from("res://data"):

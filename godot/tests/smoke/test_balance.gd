@@ -148,7 +148,7 @@ func test_destinies_are_contested() -> void:
 ## Chronicle, not just in the isolated unit test.
 func test_influence_cap_holds_over_a_whole_chronicle() -> void:
 	var cap: int = int(
-		data().chronicles["CHR_01"].get("influence_rules", {}).get("max_per_entity_per_round", 0)
+		data().chronicles["CHR_TEST"].get("influence_rules", {}).get("max_per_entity_per_round", 0)
 	)
 	assert_true(cap > 0, "la Chronicle I dichiara un cap su INFLUENCE")
 

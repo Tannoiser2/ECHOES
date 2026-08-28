@@ -131,8 +131,8 @@ func test_rng_position_survives_a_save() -> void:
 ## quale mondo e' - stessa grammatica del log (lettere, numeri, trattini).
 func test_the_downloaded_save_has_an_honest_name() -> void:
 	assert_eq(
-		SaveSerializer.download_name("CHR_01", 7042),
-		"echoes-salvataggio-chr-01-7042.json",
+		SaveSerializer.download_name("CHR_TEST", 7042),
+		"echoes-salvataggio-chr-test-7042.json",
 		"chronicle e seme nel nome, in minuscolo coi trattini"
 	)
 	assert_eq(

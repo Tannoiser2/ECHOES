@@ -2,7 +2,7 @@ extends SceneTree
 ## La vita delle pietre (ISSUES 39, strada C)
 ##
 ##   godot --headless --path godot --script res://cli/run_stone_probe.gd -- \
-##       --runs=100 --seed=7000 --chronicle=CHR_01
+##       --runs=100 --seed=7000 --chronicle=CHR_00
 ##
 ## «74 costruite, zero abbattute» era il numero che ha aperto la strada C, e da
 ## allora nessuno l'ha rimisurato. La domanda e' se la mappa ha una **vita** —
@@ -25,7 +25,7 @@ func _initialize() -> void:
 	var options: Dictionary = _parse_args(OS.get_cmdline_user_args())
 	var runs: int = int(options.get("runs", 100))
 	var first_seed: int = int(options.get("seed", 7000))
-	var chronicle_id: String = str(options.get("chronicle", "CHR_01"))
+	var chronicle_id: String = str(options.get("chronicle", "CHR_00"))
 	var mixed: bool = not options.has("uniform")
 
 	var data: RefCounted = DataSet.new()

@@ -2,7 +2,7 @@ extends SceneTree
 ## Perche' le pedine non si muovono? (ISSUES 48)
 ##
 ##   godot --headless --path godot --script res://cli/run_move_probe.gd -- \
-##       --runs=40 --seed=6000 --chronicle=CHR_01
+##       --runs=40 --seed=6000 --chronicle=CHR_00
 ##
 ## La mappa di fine anno e' quasi quella d'inizio, e per due volte un rimedio
 ## misurato non ha spostato niente ([D-186](DECISIONS.md#d-186),
@@ -36,7 +36,7 @@ func _initialize() -> void:
 	var options: Dictionary = _parse_args(OS.get_cmdline_user_args())
 	var runs: int = int(options.get("runs", 40))
 	var first_seed: int = int(options.get("seed", 6000))
-	var chronicle_id: String = str(options.get("chronicle", "CHR_01"))
+	var chronicle_id: String = str(options.get("chronicle", "CHR_00"))
 	var mixed: bool = not options.has("uniform")
 
 	var data: RefCounted = DataSet.new()

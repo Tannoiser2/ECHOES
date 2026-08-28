@@ -2763,42 +2763,99 @@ e' in gioco.
 
 ---
 
-### 92. Propone solo il proponente, e il mondo non impara i segni che qualcuno teme
+### 93. ✅ Cancellare gli anni d'autore — chiusa in 0.1.281
 
-`regola` · `motore` · `bilanciamento` · aperta in 0.1.277
-([D-315](DECISIONS.md#d-315))
+`regola` · `debito` · `strumenti` · aperta in 0.1.280
+([D-318](DECISIONS.md#d-318))
 
-Undici segni non li scrive nessuno, mai, in 40 partite: `failed_proposal` (25
-clausole a punti), `oath_broken` (16), `mine_sealed` (15), `valley_sealed` (14),
-`condition:emptied` (11), `study_supervised` (10), `crystal_exploited` (9),
-`water_priced` (9), `structure:sealed` (7), `no_charter` (6), `relic_shown` (4),
-`condition:exploited` (3).
+Il committente ha deciso: **gli anni d'autore vanno via** — CHR_01, CHR_02,
+CHR_03, CHR_04. La strada 1 di ISSUES 92 e' fatta (il cancello gira su CHR_00),
+ma la cancellazione vera e' bloccata da una cosa misurata prima di provarci:
 
-**Non e' perche' nessuno li vuole.** `mine_sealed` e' temuto 3 volte e **voluto
-3 volte**, e non compare mai lo stesso. D-315 ha aggiunto un obiettivo che
-vuole `condition:emptied`: e' passato da 0 scritture a **1** in 40 partite.
+**Puntando `tests/test_case.gd` su CHR_00, la suite va a 217 fallimenti su 42
+suite.** Le cause, contate:
 
-La strozzatura sta nella scelta della proposta. Le Conseguenze che scrivono
-quei segni stanno in `success_consequences` di proposte come `P_SEAL_MINE` o
-`P_DIG_FOR_HIRE`: i loro template si aprono — `CNF_WATER_03` 58 volte — ma
-quelle proposte non vincono mai. Il cablaggio del cervello e' giusto
-(`_score_proposition` legge `_tag_goals`, che legge Destino **e** obiettivi
-pescati), ma **propone solo il proponente**: se chi porta l'obiettivo non
-siede come proponente a quel Consiglio, il suo movente non entra nella scelta.
+| quante | cosa |
+|---|---|
+| 26 | un hook EFFECT di Eco non compila: nomina una Regione che non e' stata pescata |
+| 9 | «tensione sconosciuta 'TEN_...'» — la prova nomina una questione che quell'anno non e' uscita |
+| 8 | il menu non offre quello che la prova si aspetta |
+| 5 | il tavolo non e' quello del §10 scritto a mano |
 
-**Cosa la chiude** — le strade, non ancora scelte:
+La suite unitaria **e' costruita sull'anno d'autore**: nomina `TEN_FAMINE`,
+`REG_EREDAN`, «La Carestia Rossa». Spostarla non e' una sostituzione di
+stringhe — e' riscrivere le prove perche' **non nominino** un mondo che adesso
+cambia a ogni seme.
 
-1. **Chi non propone puo' spingere.** Un avversario che ha un motivo scritto
-   per la proposta B mette una pedina su B, e il proponente decide se
-   prendersela. E' economia di Consiglio, e il tavolo la vede.
-2. **La controproposta esiste gia'** (D-268, il RIVENDICARE): oggi posa una
-   pedina su un beneficio o su un costo. Estenderla alla **proposta** e'
-   la strada piu' corta e non aggiunge grammatica nuova.
-3. **Il proponente cambia piu' spesso**, cosi' che nell'arco di un anno ogni
-   casa proponga almeno una volta al Consiglio del proprio Tema.
+**Cosa la chiude**, in quest'ordine:
 
-**Il metro**: `cli/run_contest_probe.gd`, riga *memorie temute che nessuno ha
-mai toccato* — oggi **66.5%**. Deve scendere.
+1. **Il tavolo di prova si fabbrica.** `test_case.gd` costruisce un mondo
+   deterministico *suo* — sei Regioni, quattro case, le questioni che servono —
+   invece di prendere in prestito una Chronicle spedita. E' la regola di casa
+   gia' scritta: *una prova che cerca una condizione fra i dati spediti puo'
+   smettere di provare senza dirlo — fabbricatela.*
+2. **Le prove smettono di nominare il mondo.** Chi ha bisogno di una Regione
+   se la chiede al tavolo (`la prima Regione`, `una terra che tiene un altro`)
+   invece di scrivere `REG_EREDAN`.
+3. **Poi si cancella**: le definizioni delle quattro Chronicle e i `sim_plans`.
+   Restano entita', Destini, Regioni, Tensioni, Echi e i template di Consiglio,
+   che CHR_00 usa gia' tutti.
+
+**Chiusa in 0.1.281** ([D-319](DECISIONS.md#d-319)): il banco se lo fabbrica
+la suite (`tests/fixtures/chronicle_test.json`), `shipped_data()` separa il
+censimento della scatola dalla prova del motore, e le quattro Chronicle sono
+cancellate. Dai **217 fallimenti** misurati a **zero**, con 622 test verdi e il
+cancello dei 100 semi a 0 seggi bloccati su 8.
+
+---
+
+### 92. Il cancello misura un anno d'autore, non la scatola
+
+`regola` · `strumenti` · `decisione` · aperta in 0.1.277, **riscritta in
+0.1.279** ([D-317](DECISIONS.md#d-317))
+
+**La prima versione di questa voce diceva una cosa sbagliata** — *«propone solo
+il proponente»* — e va letta come esempio di diagnosi plausibile che non regge
+alla misura. Tre verifiche la smontano: la proposta si propone (`P_EXPLOIT`
+offerta 3 volte e scelta 3), la Tensione non e' affamata (`TEN_AWAKENING`:
+media 5.90 su soglia 6, picco 33, 116 spinte in su contro 7 in giu' — la meno
+frenata del gioco), e la sua domanda ha `eligibility: []`, sempre eleggibile.
+
+**Il blocco e' a monte:** quella Tensione non e' quasi mai sul tavolo.
+`deal_theme_decks()` pesca dalle sessanta carte della scatola **solo se la
+Chronicle ha un `region_pool`**; senza, il mazzetto contiene solo le Tensioni
+gia' in gioco — *«il loro anno e' un anno d'autore»*, dice il commento, ed e'
+una scelta. Il `region_pool` ce l'ha **CHR_00 e basta**.
+
+Venti partite a tavolo misto, `cli/run_tension_reach_probe.gd`:
+
+| | CHR_01 | CHR_00 |
+|---|---|---|
+| Tensioni sul tavolo, per partita | **4.0** | **8.8** |
+| distinte in 20 partite | **12** | **57** |
+| mai viste, su 60 | **48** | **3** |
+| che tengono un Consiglio | 12 | **28** |
+
+E il cancello dei 100 semi gira su **CHR_01 e CHR_03**, tutti e due anni
+d'autore:
+
+> Ogni numero di bilanciamento a verbale in questo progetto e' stato misurato
+> su una partita con **quattro** Tensioni, non con sessanta.
+
+**Cosa la chiude.** La scelta e' del committente:
+
+1. **Il cancello impara la scatola** — `run_playtest.gd` gira anche su una
+   saga a mappa pescata, e il vincolo *0 seggi bloccati su 8* vale li' pure.
+   E' la strada che misura il gioco che si vende, e va messa in conto che
+   qualche numero peggiori: nessuno l'ha mai guardato.
+2. **Le Chronicle scritte prendono il mazzetto pieno** — via la riga che le
+   distingue, e anche l'anno d'autore pesca dalle sessanta. Cambia il carattere
+   delle due saghe scritte, che oggi raccontano una storia precisa.
+3. **Restano due giochi, e si dichiara** — l'anno d'autore e' il tutorial, la
+   mappa pescata e' la campagna. Allora servono due cancelli, non uno.
+
+**Il metro**: `cli/run_tension_reach_probe.gd`, riga *mai viste* — oggi **48
+su 60** sull'anno d'autore, **3 su 60** sulla mappa pescata.
 
 ---
 

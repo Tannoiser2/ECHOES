@@ -30,7 +30,7 @@ func _initialize() -> void:
 	var runs: int = 40
 	# `--chronicle` come nella sonda delle posizioni (D-066): questa guardava
 	# solo la prima saga, con i seggi cablati nel file.
-	var chronicle_id: String = "CHR_01"
+	var chronicle_id: String = "CHR_00"
 	# `--tavolo=misto` come nella sonda delle scelte: l'ottimizzatore da solo
 	# quasi non si oppone, e un margine misurato senza opposizione dice poco.
 	var mixed: bool = false

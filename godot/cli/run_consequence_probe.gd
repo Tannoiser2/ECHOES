@@ -151,12 +151,12 @@ func _initialize() -> void:
 
 	var lines: Array = []
 	if saga <= 1:
-		for chronicle_id in ["CHR_01", "CHR_03"]:
+		for chronicle_id in ["CHR_00"]:
 			lines.append([str(chronicle_id)])
 	else:
-		var chain: Array = ["CHR_01"]
+		var chain: Array = ["CHR_00"]
 		for index in range(saga - 1):
-			chain.append(str(options.get("then", "CHR_02")))
+			chain.append(str(options.get("then", "CHR_00")))
 		lines.append(chain)
 
 	var years_played: int = 0

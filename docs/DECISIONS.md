@@ -10,6 +10,257 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-319 — Gli anni d'autore sono cancellati, e il banco se lo fabbrica la suite
+
+**implemented** (0.1.281) · [ISSUES 93](ISSUES.md) chiusa · decisione del
+committente: *«questi anni d'autore dovevamo cancellarli giorni e giorni fa.
+Eliminali proprio»*.
+
+### Cosa se n'e' andato
+
+`CHR_01` (*La Carestia Rossa*), `CHR_02`, `CHR_03` (*Le Citta' Libere*),
+`CHR_04`, e i quattro `sim_plans` che sceneggiavano la Carestia mossa per
+mossa. **Nella scatola resta una Chronicle**: la Prima, che pesca la mappa dal
+parco tessere, le case dal loro parco, le questioni dalle sessanta — e che
+prosegue **se stessa**, cosi' una saga e' una catena di anni pescati invece di
+due storie scritte.
+
+Resta tutto il contenuto che quegli anni **usavano** e non possedevano: le 10
+Regioni, le 8 case, i 23 Destini, le 60 Tensioni, gli Echi e i 12 template di
+Consiglio. Non si e' persa una carta.
+
+### Il problema vero, e non era la cancellazione
+
+D-318 aveva misurato il muro: **la suite unitaria era costruita sull'anno
+d'autore.** Puntandola altrove andava a **217 fallimenti su 42 suite** — non
+per un difetto, ma perche' centinaia di prove nominavano `TEN_FAMINE`,
+`REG_EREDAN`, «La Carestia Rossa».
+
+La soluzione e' la regola di casa, applicata alla suite stessa:
+
+> *Una prova che cerca una condizione fra i dati spediti puo' smettere di
+> provare senza dirlo. **Fabbricatela.***
+
+`tests/fixtures/chronicle_test.json` porta `CHR_TEST` e `CHR_TEST_HEIR`: il
+**banco**, non il gioco. Stanno sotto `tests/`, non finiscono nella scatola, e
+`tests/test_table.gd` li mette in mano a chi ne ha bisogno. Nominano contenuto
+spedito — Regioni, case, Tensioni — perche' e' quello che le prove devono
+provare; quello che non nominano piu' e' una Chronicle che qualcuno potrebbe
+voler togliere.
+
+E la distinzione che mancava: `data()` porta il banco, **`shipped_data()` no**.
+Chi prova il motore usa il primo; chi **censisce la scatola** usa il secondo.
+Senza, una prova che conta le saghe spedite contava anche il banco e
+dichiarava una scatola piu' ricca di quella che si vende.
+
+### Le prove che sono cambiate davvero, non solo di nome
+
+Tre non erano rinomini, ed e' dove stava il lavoro:
+
+- **`test_chronicle_run`** girava i quattro `sim_plans`. Una sequenza di mosse
+  scritta per una mappa fissa non si ripunta su una mappa pescata: il suo
+  soggetto non esiste piu'. Riscritta su **anni pescati**, con le stesse
+  domande — un anno arriva in fondo, un Consiglio si risolve e dice cosa ha
+  applicato, il mondo scrive Echi e Verita' — piu' una che i piani non
+  potevano fare: **semi diversi finiscono diversi**. Con la mappa d'autore lo
+  garantiva l'autore; con la mappa pescata e' una proprieta' del motore, e va
+  guardata.
+- **`test_the_menu_never_offers_a_sequel`** cercava i seguiti fra i dati
+  spediti. Con una Chronicle sola che prosegue se stessa non ce n'e' piu'
+  nessuno, e la prova sarebbe passata **per assenza**. Adesso la coppia se la
+  fabbrica, e controlla anche il caso che deve dare non-vuoto.
+- **`test_the_three_survive_the_handover`** incatenava CHR_01 a CHR_02. Adesso
+  l'era dopo e' la stessa Chronicle con un seme nuovo: e' cosi' che una saga
+  va avanti.
+
+### E il gioco parte da un posto che esiste
+
+Tre punti dell'app dicevano ancora `CHR_01` come apertura di default —
+`game_screen.first_chronicle()`, `help_panel.render()`, `dev_split`. Con la
+Carestia cancellata avrebbero aperto il vuoto.
+
+### I numeri
+
+| | prima | dopo |
+|---|---|---|
+| Chronicle nella scatola | 5 | **1** |
+| Tensioni che la Chronicle vede | 12 (d'autore) | **60** |
+| test | 627 | 622 |
+| fallimenti spostando la suite | **217** | **0** |
+
+Cinque test in meno: `test_chronicle_run` provava sei piani e adesso prova
+quattro anni, e due prove sui piani non hanno piu' soggetto. **0 seggi
+bloccati su 8** sul cancello dei 100 semi.
+
+---
+
+## D-318 — Cento anni pescati: il cancello misura il gioco che si vende
+
+**implemented** (0.1.280) · strada 1 di [ISSUES 92](ISSUES.md) · scelta del
+committente: *«fai la 1, questi anni d'autore dovevamo cancellarli giorni e
+giorni fa»*.
+
+### Cosa cambia
+
+`run_playtest.gd` girava **meta' su CHR_01 e meta' su CHR_03**: due anni
+d'autore, mappa scritta a mano, quattro e cinque Tensioni fisse. D-317 ha
+misurato cosa costava: **48 delle 60 carte Tensione non arrivavano mai al
+tavolo**, e ogni numero di bilanciamento a verbale era stato preso su una
+partita che nella scatola non c'e'.
+
+Adesso **ogni seme e' un anno diverso di CHR_00**: la mappa si pesca dal parco
+tessere, le case dal loro parco, le questioni dalle sessanta. Cento semi fanno
+cento tavoli invece di due ripetuti cinquanta volte.
+
+| | prima (due anni d'autore) | adesso (cento anni pescati) |
+|---|---|---|
+| Tensioni sul tavolo, per partita | 4.0 | **8.8** |
+| carte Tensione mai viste, su 60 | **48** | **3** |
+
+### Il vincolo regge
+
+`--runs=100 --seed=7000`: **0 seggi bloccati su un solo livello su 8**, tavolo
+misto **e** uniforme. Il gioco della scatola passa il vincolo che non si
+negozia, e non era scontato: nessuno l'aveva mai fatto girare.
+
+### E il costo, che si scrive
+
+Il gioco pescato e' **piu' duro e piu' asciutto** del gioco d'autore:
+
+| su 100 partite | anni d'autore | anni pescati |
+|---|---|---|
+| NONE | 190 | **237** |
+| MINIMUM | 428 | 407 |
+| VICTORY | 551 | 525 |
+| TRIUMPH | 31 | 31 |
+| Consigli per anno (misto) | 3.85 | **3.47** |
+| Verita' scritte (misto) | 221 | **162** |
+
+**Quarantasette seggi in piu' escono a mani vuote**, si tiene mezzo Consiglio
+in meno per anno, e il mondo scrive un quinto di Verita' in meno. Ha senso: la
+mappa pescata non garantisce che la tua terra sia in gioco, e le questioni
+girate cambiano ogni anno.
+
+Non e' un peggioramento da correggere di corsa: e' **il numero vero, guardato
+per la prima volta**. Quello di prima non era migliore — era di un'altra
+partita. Vale la regola di casa: *un numero peggiorato e scritto vale piu' di
+un numero nascosto.*
+
+### Quello che non e' stato fatto, e perche'
+
+Il committente ha chiesto anche di **cancellare gli anni d'autore per intero**
+— CHR_01, CHR_02, CHR_03, CHR_04. Misurato il costo prima di farlo: puntando
+il tavolo di prova condiviso (`tests/test_case.gd`) su CHR_00, la suite va a
+**217 fallimenti su 42 suite**.
+
+La causa non e' un difetto: **la suite unitaria e' costruita sull'anno
+d'autore.** Nomina `TEN_FAMINE`, `REG_EREDAN`, «La Carestia Rossa»; ventisei
+prove falliscono perche' un hook di Eco non compila quando la Regione che
+nomina non e' stata pescata. Spostarla su un tavolo pescato non e' una
+sostituzione di stringhe: e' riscrivere le prove perche' **non nominino** un
+mondo che adesso cambia a ogni seme.
+
+Quindi questo verbale fa la mossa che vale da sola — il cancello guarda il
+gioco giusto — e lascia la demolizione come lavoro suo, con le prove da
+rifare. Aperta come [ISSUES 93](ISSUES.md).
+
+---
+
+## D-317 — Il cancello misura un anno d'autore, non la scatola
+
+**implemented** (0.1.279) · misura, non modifica · nata da
+[ISSUES 92](ISSUES.md), la cui diagnosi era **sbagliata**.
+
+### Cosa dicevo, e perche' era sbagliato
+
+ISSUES 92 diceva: *undici segni non li scrive nessuno perche' le Conseguenze
+che li scrivono stanno in proposte che nessuno propone — propone solo il
+proponente.* Sembrava solido. Non regge a nessuna delle tre verifiche.
+
+**Prima verifica — la proposta si propone.** `run_choice_probe.gd`, che
+esisteva gia' e separa i tre motivi per cui una proposta non arriva ai voti,
+dice che sul tavolo uniforme `P_EXPLOIT` e' stata **offerta 3 volte e scelta
+3 volte**. Il gesto lo si propone eccome.
+
+**Seconda verifica — la Tensione non e' affamata.** Anzi:
+
+| tensione | soglia | media a fine anno | picco | spinte+ | spinte- |
+|---|---|---|---|---|---|
+| `TEN_AWAKENING` | 6 | **5.90** | **33** | 116 | **7** |
+
+E' la Tensione **meno frenata del gioco**: 116 spinte in su contro 7 in giu'.
+La soglia la passa continuamente.
+
+**Terza verifica — la domanda e' sempre eleggibile.** `Q_AWAKENING_CRYSTAL` ha
+`eligibility: []`. Non c'e' nessuna clausola che la blocchi.
+
+E nonostante tutte e tre, sul tavolo misto `CNF_AWAKENING_01` si apre **zero
+volte su 40 partite**.
+
+### Dove sta davvero
+
+Il blocco e' a monte di tutto: **quella Tensione non e' quasi mai sul tavolo.**
+
+`WorldStateFactory.deal_theme_decks()` riempie i sei mazzetti in due modi, e la
+riga che decide e' una sola:
+
+```gdscript
+var full: bool = not (chronicle.get("region_pool", {}) as Dictionary).is_empty()
+```
+
+Con un `region_pool` il mazzetto pesca dalle **sessanta** carte della scatola.
+Senza, il mazzetto contiene **solo le Tensioni che la Chronicle ha gia' messo
+in gioco**. Il commento nel codice lo dice, ed e' una scelta: *«sulle Chronicle
+scritte il mazzetto resta quello delle questioni in gioco: il loro anno e' un
+anno d'autore»*.
+
+E il `region_pool` ce l'ha **una Chronicle sola**:
+
+| Chronicle | `region_pool` | Tensioni dichiarate |
+|---|---|---|
+| CHR_00 | **si'** | — (pesca dalla scatola) |
+| CHR_01 | no | 4 |
+| CHR_02 | no | 0 |
+| CHR_03 | no | 5 |
+| CHR_04 | no | 0 |
+
+### La misura, e il confronto che la chiude
+
+`cli/run_tension_reach_probe.gd`, 20 partite a tavolo misto:
+
+| | CHR_01 (anno d'autore) | CHR_00 (mappa pescata) |
+|---|---|---|
+| Tensioni sul tavolo, per partita | **4.0** | **8.8** |
+| distinte viste in 20 partite | **12** | **57** |
+| mai viste, su 60 nella scatola | **48** | **3** |
+| Tensioni che tengono un Consiglio | 12 | **28** |
+
+**La scatola funziona.** Con la mappa pescata, 57 delle 60 carte Tensione
+arrivano al tavolo in venti partite e 28 tengono il loro Consiglio. Tutto
+quello che D-261, D-264 e D-265 hanno costruito — i sei mazzetti, le dieci
+carte per Tema, le sessanta Domande — **esiste, e si vede giocare**.
+
+### La cosa da decidere, e non la decido io
+
+Il cancello che vincola ogni modifica di questo progetto —
+`run_playtest.gd --runs=100 --seed=7000`, *0 seggi bloccati su 8* — gira su
+**CHR_01 e CHR_03**. Tutte e due anni d'autore. Tutte e due con quattro e
+cinque Tensioni.
+
+> **Ogni numero di bilanciamento a verbale in questo progetto e' stato misurato
+> su una partita con quattro Tensioni, non con sessanta.**
+
+Non e' un difetto del motore: e' una scelta di cosa misurare, presa quando le
+Chronicle scritte erano tutto quello che c'era, e mai rivista dopo D-265. Ma
+significa che il gioco misurato e il gioco della scatola **non sono lo stesso
+gioco**, e le due cose che ISSUES 91 sta inseguendo — la contesa e la dotazione
+— si misurano sul primo.
+
+Le strade stanno in [ISSUES 92](ISSUES.md), riscritta. La scelta e' del
+committente.
+
+---
+
 ## D-316 — Una casa spenta non segna, e adesso lo dice una regola sola
 
 **implemented** (0.1.278) · taglio (a) della strada 1 di

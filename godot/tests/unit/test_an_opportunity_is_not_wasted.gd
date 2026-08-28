@@ -35,8 +35,8 @@ func _cards_table() -> RefCounted:
 	var loaded: RefCounted = DataSet.new()
 	assert_true(loaded.load_from("res://data"), "i dati della scatola si leggono")
 	_mine = GameSession.new(loaded)
-	var seats: Array = GameSession.seats_for(loaded, "CHR_01", 4242)
-	assert_true(_mine.setup("CHR_01", seats, 4242), "e l'anno si apre")
+	var seats: Array = GameSession.seats_for(loaded, "CHR_00", 4242)
+	assert_true(_mine.setup("CHR_00", seats, 4242), "e l'anno si apre")
 	for effect in _mine.factory_setup_effects():
 		_mine.applier.apply(effect)
 	_mine.world["act"] = 1
@@ -74,7 +74,7 @@ func test_the_reserve_for_the_council_is_kept() -> void:
 	var hand: Array = live.world["entities"][seat]["hand"] as Array
 	var kept: Array = hand.duplicate()
 	var reserve: int = int(
-		(live.data.chronicles["CHR_01"] as Dictionary).get("max_commit_assets", 3)
+		(live.data.chronicles["CHR_00"] as Dictionary).get("max_commit_assets", 3)
 	) + 1
 	while hand.size() < reserve + 2:
 		hand.append(str(kept[hand.size() % kept.size()]))

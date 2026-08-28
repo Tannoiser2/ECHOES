@@ -150,7 +150,7 @@ func test_the_natural_proponent_does_not_claim() -> void:
 ## che e' gia' matura**. Con `claim_rules.same_round_when_ready` acceso,
 ## strappare il Consiglio e' un'azione sola, senza prenotazione.
 func test_a_ripe_question_is_taken_in_one_move() -> void:
-	var chronicle: Dictionary = session.data.chronicles["CHR_01"] as Dictionary
+	var chronicle: Dictionary = session.data.chronicles["CHR_TEST"] as Dictionary
 	var before: Variant = chronicle.get("claim_rules")
 	chronicle.erase("claim_rules")
 	session.actions.set("_chronicle", chronicle)
@@ -175,7 +175,7 @@ func test_a_ripe_question_is_taken_in_one_move() -> void:
 ## E la maturita' resta una condizione: una domanda fredda non si strappa,
 ## deroga o no. E' quello che tiene in vita la prenotazione.
 func test_a_cold_question_still_needs_the_booking() -> void:
-	var chronicle: Dictionary = session.data.chronicles["CHR_01"] as Dictionary
+	var chronicle: Dictionary = session.data.chronicles["CHR_TEST"] as Dictionary
 	var before: Variant = chronicle.get("claim_rules")
 	chronicle["claim_rules"] = {"same_round_when_ready": true, "ready_at": 3}
 	session.actions.set("_chronicle", chronicle)

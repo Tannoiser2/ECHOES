@@ -23,11 +23,11 @@ func _chronicle(id: String) -> Dictionary:
 ## same one from the same seed.
 func test_the_jump_is_declared_by_the_chronicle() -> void:
 	assert_eq(
-		Succession.years_between(_chronicle("CHR_01"), RngService.new(1)), 1,
+		Succession.years_between(_chronicle("CHR_TEST"), RngService.new(1)), 1,
 		"la Chronicle scritta a mano e l'anno dopo"
 	)
-	var first: int = Succession.years_between(_chronicle("CHR_02"), RngService.new(4242))
-	var again: int = Succession.years_between(_chronicle("CHR_02"), RngService.new(4242))
+	var first: int = Succession.years_between(_chronicle("CHR_TEST_HEIR"), RngService.new(4242))
+	var again: int = Succession.years_between(_chronicle("CHR_TEST_HEIR"), RngService.new(4242))
 	assert_eq(first, again, "stesso seme, stesso salto")
 	assert_true(first >= 20 and first <= 200, "e sta nell'intervallo dichiarato: %d" % first)
 
@@ -37,7 +37,7 @@ func test_the_jump_is_declared_by_the_chronicle() -> void:
 func test_only_mortals_are_replaced_and_only_after_a_lifetime() -> void:
 	var previous: Dictionary = {"entities": {}}
 	var long_jump: Dictionary = Succession.plan(
-		previous, {}, _chronicle("CHR_02"), data(), 120
+		previous, {}, _chronicle("CHR_TEST_HEIR"), data(), 120
 	)
 	assert_eq(str(long_jump["ENT_ALDRIC"]["name"]), "Re Serane", "il trono passa")
 	assert_true(bool(long_jump["ENT_ALDRIC"]["changed"]), "ed e dichiarato un passaggio")
@@ -46,7 +46,7 @@ func test_only_mortals_are_replaced_and_only_after_a_lifetime() -> void:
 	assert_eq(str(long_jump["ENT_VAERAX"]["name"]), "Vaerax", "e il tempo non tocca Vaerax")
 
 	var short_jump: Dictionary = Succession.plan(
-		previous, {}, _chronicle("CHR_02"), data(), 3
+		previous, {}, _chronicle("CHR_TEST_HEIR"), data(), 3
 	)
 	assert_eq(
 		str(short_jump["ENT_ALDRIC"]["name"]), "Re Aldric",
@@ -89,7 +89,7 @@ func test_a_house_never_runs_out_of_names() -> void:
 func test_a_seat_keeps_the_destiny_it_failed_and_drops_the_one_it_won() -> void:
 	var previous: Dictionary = {"entities": {}}
 	var failed: Dictionary = Succession.plan(
-		previous, {"ENT_ALDRIC": {"level": "MINIMUM"}}, _chronicle("CHR_02"), data(), 1
+		previous, {"ENT_ALDRIC": {"level": "MINIMUM"}}, _chronicle("CHR_TEST_HEIR"), data(), 1
 	)
 	assert_eq(
 		str(failed["ENT_ALDRIC"]["destiny_id"]), "DST_ALDRIC",
@@ -99,7 +99,7 @@ func test_a_seat_keeps_the_destiny_it_failed_and_drops_the_one_it_won() -> void:
 
 	for level in ["VICTORY", "TRIUMPH"]:
 		var won: Dictionary = Succession.plan(
-			previous, {"ENT_ALDRIC": {"level": str(level)}}, _chronicle("CHR_02"), data(), 1
+			previous, {"ENT_ALDRIC": {"level": str(level)}}, _chronicle("CHR_TEST_HEIR"), data(), 1
 		)
 		assert_eq(
 			str(won["ENT_ALDRIC"]["destiny_id"]), "DST_ALDRIC_RECORD",
@@ -119,7 +119,7 @@ func test_an_heir_does_not_swear_on_a_failed_ambition() -> void:
 		"ENT_ALDRIC": {"name": "Re Aldric", "destiny_id": "DST_ALDRIC", "generation": 0, "barren": 2},
 		"ENT_VAERAX": {"name": "Vaerax", "destiny_id": "DST_VAERAX", "generation": 0, "barren": 9},
 	}}
-	var heirs: Dictionary = Succession.plan(worn, {}, _chronicle("CHR_02"), data(), 120)
+	var heirs: Dictionary = Succession.plan(worn, {}, _chronicle("CHR_TEST_HEIR"), data(), 120)
 	assert_eq(
 		str(heirs["ENT_ALDRIC"]["destiny_id"]), "DST_ALDRIC_RECORD",
 		"l'erede dopo tre ere a mani vuote vuole un'altra cosa"
@@ -134,7 +134,7 @@ func test_an_heir_does_not_swear_on_a_failed_ambition() -> void:
 
 	# La stessa persona non abbandona la propria ambizione, per quante ere
 	# abbia perso: il salto breve non cambia la generazione e non cambia niente.
-	var same_life: Dictionary = Succession.plan(worn, {}, _chronicle("CHR_02"), data(), 3)
+	var same_life: Dictionary = Succession.plan(worn, {}, _chronicle("CHR_TEST_HEIR"), data(), 3)
 	assert_eq(
 		str(same_life["ENT_ALDRIC"]["destiny_id"]), "DST_ALDRIC",
 		"la stessa persona riprova finche' vive"
@@ -146,7 +146,7 @@ func test_an_heir_does_not_swear_on_a_failed_ambition() -> void:
 		"ENT_ALDRIC": {"name": "Re Aldric", "destiny_id": "DST_ALDRIC", "generation": 0, "barren": 1},
 	}}
 	assert_eq(
-		str(Succession.plan(twice, {}, _chronicle("CHR_02"), data(), 120)["ENT_ALDRIC"]["destiny_id"]),
+		str(Succession.plan(twice, {}, _chronicle("CHR_TEST_HEIR"), data(), 120)["ENT_ALDRIC"]["destiny_id"]),
 		"DST_ALDRIC",
 		"un erede che ha visto due ere fallite ci riprova ancora"
 	)
@@ -159,11 +159,11 @@ func test_barren_eras_are_counted_and_reset_by_achievement() -> void:
 		"ENT_ALDRIC": {"name": "Re Aldric", "destiny_id": "DST_ALDRIC", "generation": 0, "barren": 1},
 	}}
 	var failed: Dictionary = Succession.plan(
-		previous, {"ENT_ALDRIC": {"level": "MINIMUM"}}, _chronicle("CHR_02"), data(), 3
+		previous, {"ENT_ALDRIC": {"level": "MINIMUM"}}, _chronicle("CHR_TEST_HEIR"), data(), 3
 	)
 	assert_eq(int(failed["ENT_ALDRIC"]["barren"]), 2, "un'altra era a mani vuote si conta")
 	var won: Dictionary = Succession.plan(
-		previous, {"ENT_ALDRIC": {"level": "VICTORY"}}, _chronicle("CHR_02"), data(), 3
+		previous, {"ENT_ALDRIC": {"level": "VICTORY"}}, _chronicle("CHR_TEST_HEIR"), data(), 3
 	)
 	assert_eq(int(won["ENT_ALDRIC"]["barren"]), 0, "ottenere chiude i conti")
 	assert_true(bool(won["ENT_ALDRIC"]["wants_new"]), "e la rotazione resta quella da premio")
@@ -194,7 +194,7 @@ func test_a_chained_chronicle_keeps_the_world_and_changes_the_table() -> void:
 		held[str(region_id)] = session.world["regions"][str(region_id)].get("control", null)
 
 	var second: RefCounted = GameSession.new(data())
-	second.setup("CHR_02", SEATS, 4242)
+	second.setup("CHR_TEST_HEIR", SEATS, 4242)
 	second.inherit_from(before_world, first["destiny_results"])
 
 	assert_eq(
@@ -237,7 +237,7 @@ func test_time_turns_unwritten_facts_into_legends() -> void:
 		"regions": {}, "relations": {}, "entities": {},
 	}
 	var effects: Array = preload("res://scripts/world/world_state_factory.gd").inheritance_effects(
-		previous, _chronicle("CHR_02"), data(), 120
+		previous, _chronicle("CHR_TEST_HEIR"), data(), 120
 	)
 	var carried: Array = []
 	for effect in effects:
@@ -253,7 +253,7 @@ func test_time_turns_unwritten_facts_into_legends() -> void:
 
 	# Un salto breve ricorda tutto com'era.
 	var soon: Array = preload("res://scripts/world/world_state_factory.gd").inheritance_effects(
-		previous, _chronicle("CHR_02"), data(), 20
+		previous, _chronicle("CHR_TEST_HEIR"), data(), 20
 	)
 	var kept: Array = []
 	for effect in soon:
@@ -279,7 +279,7 @@ func test_time_lets_conditions_fade_but_keeps_what_is_built() -> void:
 		},
 	}
 	var effects: Array = preload("res://scripts/world/world_state_factory.gd").inheritance_effects(
-		previous, _chronicle("CHR_02"), data(), 120
+		previous, _chronicle("CHR_TEST_HEIR"), data(), 120
 	)
 	var carried: Array = []
 	for effect in effects:
@@ -290,7 +290,7 @@ func test_time_lets_conditions_fade_but_keeps_what_is_built() -> void:
 	assert_true(carried.has("settlement:march"), "e l'insediamento pure")
 
 	var soon: Array = preload("res://scripts/world/world_state_factory.gd").inheritance_effects(
-		previous, _chronicle("CHR_02"), data(), 20
+		previous, _chronicle("CHR_TEST_HEIR"), data(), 20
 	)
 	var kept: Array = []
 	for effect in soon:
@@ -305,7 +305,7 @@ func test_time_lets_conditions_fade_but_keeps_what_is_built() -> void:
 ## interrotto non e' una memoria.
 func test_the_era_tally_counts_held_seals_and_resets() -> void:
 	var factory: GDScript = preload("res://scripts/world/world_state_factory.gd")
-	var chronicle: Dictionary = _chronicle("CHR_02")
+	var chronicle: Dictionary = _chronicle("CHR_TEST_HEIR")
 
 	var first: Array = _global_tags(factory.inheritance_effects(
 		{"global_tags": ["mine_sealed"], "regions": {}, "relations": {}, "entities": {}},

@@ -46,7 +46,7 @@ func before_each() -> void:
 func after_each() -> void:
 	# La regola del silenzio e' dato spedito (1): le prove che la spengono o la
 	# gonfiano devono rimetterla, o il prossimo test la troverebbe storta.
-	var chronicle: Dictionary = data().chronicles["CHR_01"]
+	var chronicle: Dictionary = data().chronicles["CHR_TEST"]
 	(chronicle["confluence_rules"] as Dictionary)["silence_support_bonus"] = 1
 	# E la frase d'autore zittita torna a parlare (D-305).
 	if _hushed != "":
@@ -631,7 +631,7 @@ func test_silence_advantages_the_proponent_by_the_written_number() -> void:
 ## **Basta una voce a rompere il silenzio.** Un solo OPPOSE dichiarato, anche a
 ## mani vuote, e il bonus non esiste.
 func test_one_declared_stance_breaks_the_silence() -> void:
-	var chronicle: Dictionary = data().chronicles["CHR_01"]
+	var chronicle: Dictionary = data().chronicles["CHR_TEST"]
 	(chronicle["confluence_rules"] as Dictionary)["silence_support_bonus"] = 3
 	var context: Dictionary = _open_with_proposition()
 	var proponent: String = str(context["proponent"])
@@ -656,7 +656,7 @@ func test_one_declared_stance_breaks_the_silence() -> void:
 ## lo butti via, che e' l'errore da cui questa funzione e' nata.
 func _silent_council(bonus: int) -> Dictionary:
 	new_session()
-	var chronicle: Dictionary = data().chronicles["CHR_01"]
+	var chronicle: Dictionary = data().chronicles["CHR_TEST"]
 	(chronicle["confluence_rules"] as Dictionary)["silence_support_bonus"] = bonus
 	var context: Dictionary = _open_with_proposition()
 	var proponent: String = str(context["proponent"])

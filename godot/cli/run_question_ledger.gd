@@ -2,7 +2,7 @@ extends SceneTree
 ## Il libro mastro delle domande (ISSUES 51)
 ##
 ##   godot --headless --path godot --script res://cli/run_question_ledger.gd -- \
-##       --runs=60 --seed=7000 --chronicle=CHR_01
+##       --runs=60 --seed=7000 --chronicle=CHR_00
 ##
 ## [D-207](DECISIONS.md#d-207) ha lasciato aperta una domanda che il test delle
 ## soglie non sapeva porre: **quante volte una domanda arriva davvero al
@@ -27,7 +27,7 @@ func _initialize() -> void:
 	var options: Dictionary = _parse_args(OS.get_cmdline_user_args())
 	var runs: int = int(options.get("runs", 60))
 	var first_seed: int = int(options.get("seed", 7000))
-	var chronicle_id: String = str(options.get("chronicle", "CHR_01"))
+	var chronicle_id: String = str(options.get("chronicle", "CHR_00"))
 	var mixed: bool = not options.has("uniform")
 
 	var data: RefCounted = DataSet.new()

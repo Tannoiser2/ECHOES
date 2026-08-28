@@ -64,7 +64,7 @@ func _run_chronicle(chronicle_id: String, seed_value: int, decider: RefCounted) 
 ## Both Chronicles declare a floor, and it is the number §7 asks for. If this
 ## fails, everything else in this file is measuring a Chronicle that opted out.
 func test_both_chronicles_declare_the_floor() -> void:
-	for chronicle_id in ["CHR_01", "CHR_02"]:
+	for chronicle_id in ["CHR_TEST", "CHR_TEST_HEIR"]:
 		assert_eq(
 			int(data().chronicles[str(chronicle_id)].get("minimum_confluences", 0)), 2,
 			"%s garantisce due Consigli" % chronicle_id
@@ -78,7 +78,7 @@ func test_both_chronicles_declare_the_floor() -> void:
 ## alla 0.1.36, la seconda carta MEMORIA nel mazzo della corona (0.1.37) ha
 ## rimescolato l'anno e il seme si e' spostato di uno.
 func test_a_table_that_does_nothing_still_gets_a_year() -> void:
-	var report: Dictionary = await _run_chronicle("CHR_02", 1868, Idle.new())
+	var report: Dictionary = await _run_chronicle("CHR_TEST_HEIR", 1868, Idle.new())
 	assert_true(
 		(report["confluences"] as Array).size() >= 2,
 		"un tavolo che non spinge niente ottiene comunque i suoi Consigli: %d"
@@ -92,7 +92,7 @@ func test_a_table_that_does_nothing_still_gets_a_year() -> void:
 func test_no_chronicle_in_a_run_of_seeds_ends_in_silence() -> void:
 	for index in range(6):
 		var report: Dictionary = await _run_chronicle(
-			"CHR_02", 1867 + index * 97, PolicyDecider.new(session.log if session != null else null)
+			"CHR_TEST_HEIR", 1867 + index * 97, PolicyDecider.new(session.log if session != null else null)
 		)
 		assert_true(
 			(report["confluences"] as Array).size() >= 2,
@@ -109,7 +109,7 @@ func test_no_chronicle_in_a_run_of_seeds_ends_in_silence() -> void:
 ## stesso seme apparecchia un altro anno. Il 4242 ne fa due, che non basta a
 ## provare niente; il 4246 ne fa sei.
 func test_a_loud_year_is_left_exactly_as_it_was() -> void:
-	var report: Dictionary = await _run_chronicle("CHR_01", 4246, PolicyDecider.new(null))
+	var report: Dictionary = await _run_chronicle("CHR_TEST", 4246, PolicyDecider.new(null))
 	assert_true(
 		(report["confluences"] as Array).size() > 2,
 		"il seme scelto e un anno rumoroso, altrimenti il test non prova niente"
@@ -130,7 +130,7 @@ func test_a_loud_year_is_left_exactly_as_it_was() -> void:
 ## the same seed is played twice and the two runs are compared - which is the
 ## only way to say what the floor did rather than what the year did.
 func test_a_chronicle_can_opt_out_of_the_floor() -> void:
-	var chronicle: Dictionary = data().chronicles["CHR_02"]
+	var chronicle: Dictionary = data().chronicles["CHR_TEST_HEIR"]
 	var declared: int = int(chronicle["minimum_confluences"])
 	var quieter: int = 0
 
@@ -142,11 +142,11 @@ func test_a_chronicle_can_opt_out_of_the_floor() -> void:
 	for index in range(5):
 		var seed_value: int = 1867 + index * 97
 		var with_floor: int = ((await _run_chronicle(
-			"CHR_02", seed_value, Idle.new()
+			"CHR_TEST_HEIR", seed_value, Idle.new()
 		))["confluences"] as Array).size()
 
 		chronicle["minimum_confluences"] = 0
-		var without: Dictionary = await _run_chronicle("CHR_02", seed_value, Idle.new())
+		var without: Dictionary = await _run_chronicle("CHR_TEST_HEIR", seed_value, Idle.new())
 		chronicle["minimum_confluences"] = declared
 
 		var alone: int = (without["confluences"] as Array).size()
@@ -171,7 +171,7 @@ func test_a_chronicle_can_opt_out_of_the_floor() -> void:
 ## that reached into the Tension directly would be the one place in the engine
 ## where the register stops explaining the table.
 func test_the_forced_push_goes_through_the_effect_log() -> void:
-	await _run_chronicle("CHR_02", 1868, Idle.new())
+	await _run_chronicle("CHR_TEST_HEIR", 1868, Idle.new())
 	var forced: Array = []
 	var revealed: Array = []
 	for effect in session.world["effect_log"]:

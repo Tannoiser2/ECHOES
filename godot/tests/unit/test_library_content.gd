@@ -16,7 +16,7 @@ const LIBRARY_SEATS: Array = ["ENT_ALDRIC", "ENT_NAHR", "ENT_LYRA", "ENT_VAERAX"
 
 ## A Tension with no Council of its own is served by the Council of its domain.
 func test_a_tension_without_a_council_borrows_its_domain_one() -> void:
-	var loaded: RefCounted = data()
+	var loaded: RefCounted = shipped_data()
 	var own: Dictionary = loaded.confluence_template_for("TEN_FAMINE")
 	assert_eq(str(own["id"]), "CNF_FAMINE_01", "una Tensione con il proprio Consiglio lo tiene")
 
@@ -37,7 +37,7 @@ func test_a_tension_without_a_council_borrows_its_domain_one() -> void:
 ## Every Tension in the library must find a Council, or a threshold hit would
 ## open a Confluence with nothing to ask.
 func test_every_tension_in_the_library_finds_a_council() -> void:
-	var loaded: RefCounted = data()
+	var loaded: RefCounted = shipped_data()
 	for tension_id in loaded.tensions:
 		assert_false(
 			loaded.confluence_template_for(str(tension_id)).is_empty(),
@@ -48,7 +48,7 @@ func test_every_tension_in_the_library_finds_a_council() -> void:
 ## The draw is seeded: same seed, same year - which is what keeps a library
 ## Chronicle as reproducible as an authored one.
 func test_the_tension_draw_is_deterministic_and_varies_by_seed() -> void:
-	var chronicle: Dictionary = data().chronicles["CHR_02"]
+	var chronicle: Dictionary = data().chronicles["CHR_TEST_HEIR"]
 	var first: Array = WorldStateFactory.resolve_tensions(chronicle, RngService.new(4242))
 	var again: Array = WorldStateFactory.resolve_tensions(chronicle, RngService.new(4242))
 	assert_eq(first, again, "stesso seed, stessa mano di Tensioni")
@@ -79,7 +79,7 @@ func test_the_tension_draw_is_deterministic_and_varies_by_seed() -> void:
 ## scritta a mano, ed e' l'unico modo che una storia che nomina i propri
 ## Consigli ha di restare la stessa storia.
 func test_an_emptied_library_falls_back_to_the_written_hand() -> void:
-	var chronicle: Dictionary = (data().chronicles["CHR_01"] as Dictionary).duplicate(true)
+	var chronicle: Dictionary = (data().chronicles["CHR_TEST"] as Dictionary).duplicate(true)
 	assert_false(
 		(chronicle.get("tension_pool", {}) as Dictionary).is_empty(),
 		"CHR_01 pesca le sue domande"
@@ -129,7 +129,7 @@ func test_an_effect_on_a_tension_not_in_play_is_a_noop() -> void:
 ## dichiarato negli `echoes`, la candidata richiamata pesa il triplo; la pesca
 ## resta deterministica, e senza mondo di prima resta quella cieca di sempre.
 func test_the_draw_listens_to_the_marks_of_the_era_before() -> void:
-	var chronicle: Dictionary = data().chronicles["CHR_02"]
+	var chronicle: Dictionary = data().chronicles["CHR_TEST_HEIR"]
 	var marked: Dictionary = {
 		"global_tags": ["mine_sealed"], "regions": {}, "relations": {}, "entities": {},
 	}
@@ -172,7 +172,7 @@ func test_the_draw_listens_to_the_marks_of_the_era_before() -> void:
 ## `tension_limit` negata nell'era prima pesa nella pesca come un segno sul
 ## mondo (D-079) - e' la prima lettura strutturata delle evidence.
 func test_an_open_account_calls_its_question_into_the_draw() -> void:
-	var chronicle: Dictionary = data().chronicles["CHR_02"]
+	var chronicle: Dictionary = data().chronicles["CHR_TEST_HEIR"]
 	var bare: Dictionary = {
 		"global_tags": [], "regions": {}, "relations": {}, "entities": {},
 	}
@@ -239,8 +239,10 @@ func test_a_question_left_hot_starts_warm_after_a_short_jump() -> void:
 ## nomina le cose per nome. Solo lettura: costruirlo due volte da' lo stesso
 ## verbale, e non consuma un solo tiro.
 func test_the_opening_record_says_why_each_question_is_on_the_table() -> void:
+	# Legge il **banco**: `CHR_TEST_HEIR` e' l'era ripescata, e nella scatola
+	# non c'e' piu' un'era d'autore da cui leggerla (D-318).
 	var loaded: RefCounted = data()
-	var chronicle: Dictionary = loaded.chronicles["CHR_02"]
+	var chronicle: Dictionary = loaded.chronicles["CHR_TEST_HEIR"]
 	var world: Dictionary = {"tensions": {
 		"TEN_AWAKENING": {"current_value": 2},
 		"TEN_PLAGUE": {"current_value": 4},
@@ -295,7 +297,7 @@ func test_the_opening_record_says_why_each_question_is_on_the_table() -> void:
 
 	# E un anno con la biblioteca spenta non verbalizza: le sue domande non
 	# sono pescate, quindi non c'e' niente da spiegare.
-	var written: Dictionary = (loaded.chronicles["CHR_01"] as Dictionary).duplicate(true)
+	var written: Dictionary = (loaded.chronicles["CHR_TEST"] as Dictionary).duplicate(true)
 	written["tension_pool"] = {}
 	assert_true(
 		WorldStateFactory.opening_record(
@@ -313,7 +315,7 @@ func test_the_opening_record_says_why_each_question_is_on_the_table() -> void:
 func test_the_map_record_says_how_the_new_era_is_placed() -> void:
 	var loaded: RefCounted = data()
 	var session_two: RefCounted = GameSession.new(loaded)
-	assert_true(session_two.setup("CHR_02", LIBRARY_SEATS, 4242), "CHR_02 si prepara")
+	assert_true(session_two.setup("CHR_TEST_HEIR", LIBRARY_SEATS, 4242), "CHR_02 si prepara")
 	var previous: Dictionary = {
 		"year": 812,
 		"global_tags": ["grain_requisitioned", "mine_sealed"],
@@ -333,7 +335,7 @@ func test_the_map_record_says_how_the_new_era_is_placed() -> void:
 	}
 
 	var record: Dictionary = WorldStateFactory.map_record(
-		session_two.world, loaded.chronicles["CHR_02"], loaded, previous, 120
+		session_two.world, loaded.chronicles["CHR_TEST_HEIR"], loaded, previous, 120
 	)
 	var by_region: Dictionary = {}
 	for entry in record["regions"]:
@@ -376,7 +378,7 @@ func test_the_map_record_says_how_the_new_era_is_placed() -> void:
 	# resta in corso, nessuna leggenda nasce, i rapporti restano interi.
 	# Solo la decadenza del controllo resta: e' questione di presenza, non di anni.
 	var short_record: Dictionary = WorldStateFactory.map_record(
-		session_two.world, loaded.chronicles["CHR_02"], loaded, previous, 20
+		session_two.world, loaded.chronicles["CHR_TEST_HEIR"], loaded, previous, 20
 	)
 	for entry in short_record["regions"]:
 		if str((entry as Dictionary)["region_id"]) == "REG_TERRE_NAHR":
@@ -393,7 +395,7 @@ func test_the_map_record_says_how_the_new_era_is_placed() -> void:
 ## pescato alla cieca al setup.
 func test_the_redeal_rebuilds_the_drift_bag_over_the_new_hand() -> void:
 	var session_two: RefCounted = GameSession.new(data())
-	assert_true(session_two.setup("CHR_02", LIBRARY_SEATS, 4242), "CHR_02 si prepara")
+	assert_true(session_two.setup("CHR_TEST_HEIR", LIBRARY_SEATS, 4242), "CHR_02 si prepara")
 	var previous: Dictionary = {
 		"year": 812,
 		"global_tags": ["mine_sealed"], "regions": {}, "relations": {}, "entities": {},
@@ -411,18 +413,32 @@ func test_the_redeal_rebuilds_the_drift_bag_over_the_new_hand() -> void:
 ## siede lo stesso tavolo - il criterio con cui run_saga incatena le ere,
 ## adesso scritto nei dati una volta sola e usato anche dall'app.
 func test_every_age_knows_which_library_continues_it() -> void:
+	# **La scatola ne ha una sola, e prosegue se stessa** (D-318): una saga e'
+	# una catena di anni pescati. La coppia «prima eta' -> seconda eta'», che
+	# fino a 0.1.280 la portavano gli anni d'autore, la porta adesso il banco
+	# (`CHR_TEST` -> `CHR_TEST_HEIR`) — cosi' la prova continua a provare la
+	# catena invece di girare a vuoto su un caso che non esiste piu'.
+	var shipped: RefCounted = shipped_data()
+	assert_eq(
+		shipped.library_sequel_of("CHR_00"), "CHR_00",
+		"la Chronicle della scatola prosegue se stessa"
+	)
 	var loaded: RefCounted = data()
-	assert_eq(loaded.library_sequel_of("CHR_01"), "CHR_02", "la prima eta' prosegue nella sua biblioteca")
-	assert_eq(loaded.library_sequel_of("CHR_02"), "CHR_02", "una biblioteca prosegue se stessa")
-	assert_eq(loaded.library_sequel_of("CHR_03"), "CHR_04", "la seconda eta' nella sua")
-	assert_eq(loaded.library_sequel_of("CHR_04"), "CHR_04", "e anche lei prosegue se stessa")
+	assert_eq(
+		loaded.library_sequel_of("CHR_TEST"), "CHR_TEST_HEIR",
+		"la prima eta' prosegue nella sua biblioteca"
+	)
+	assert_eq(
+		loaded.library_sequel_of("CHR_TEST_HEIR"), "CHR_TEST_HEIR",
+		"e la seconda prosegue se stessa"
+	)
 	assert_eq(loaded.library_sequel_of("CHR_MAI_SCRITTA"), "", "un'eta' sconosciuta non ha seguito")
 
 
 ## The whole point: a Chronicle assembled from the library plays to the end.
 func test_a_library_chronicle_plays_to_the_end() -> void:
 	var session_two: RefCounted = GameSession.new(data())
-	assert_true(session_two.setup("CHR_02", LIBRARY_SEATS, 7777), "CHR_02 si prepara")
+	assert_true(session_two.setup("CHR_TEST_HEIR", LIBRARY_SEATS, 7777), "CHR_02 si prepara")
 	assert_eq((session_two.world["tensions"] as Dictionary).size(), 4, "quattro domande pescate")
 	var report: Dictionary = await session_two.run(PolicyDecider.new(session_two.log))
 	assert_eq(int(report["illegal_actions"]), 0, "nessuna scelta illegale")

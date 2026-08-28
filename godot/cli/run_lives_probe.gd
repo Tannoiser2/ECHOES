@@ -2,7 +2,7 @@ extends SceneTree
 ## **La sonda delle vite**: quante volte una casa diventa qualcos'altro (D-290).
 ##
 ##   godot --headless --path godot --script res://cli/run_lives_probe.gd -- \
-##       --sagas=12 --chronicles=8 --seed=812 --then=CHR_02 [--out=FILE]
+##       --sagas=12 --chronicles=8 --seed=812 --then=CHR_00 [--out=FILE]
 ##
 ## Una casa ha piu' vite (`incarnations`, D-108/D-109): il popolo che si insedia
 ## diventa regno, la scuola diventa culto, il regno diventa repubblica. Le vite
@@ -33,8 +33,8 @@ func _initialize() -> void:
 	var sagas: int = int(options.get("sagas", 12))
 	var chronicles: int = int(options.get("chronicles", 8))
 	var first_seed: int = int(options.get("seed", 812))
-	var first_id: String = str(options.get("chronicle", "CHR_01"))
-	var later_id: String = str(options.get("then", "CHR_02"))
+	var first_id: String = str(options.get("chronicle", "CHR_00"))
+	var later_id: String = str(options.get("then", "CHR_00"))
 	var out_path: String = str(options.get("out", ""))
 	# **I due tavoli, come al cancello.** Quante case si trasformano dipende da
 	# come si gioca: quattro ottimizzatori scavano il mondo in un modo, un tavolo

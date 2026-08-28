@@ -2,7 +2,7 @@ extends SceneTree
 ## Sonda delle scelte: cosa il tavolo poteva dire, e cosa ha detto.
 ##
 ##   godot --headless --path godot --script res://cli/run_choice_probe.gd -- \
-##       --runs=40 --seed=2000 --chronicle=CHR_03 --tavolo=misto
+##       --runs=40 --seed=2000 --chronicle=CHR_00 --tavolo=misto
 ##
 ## Il progetto ha gia' trovato tre volte lo stesso problema guardando un numero
 ## che nessuno guardava, e la forma e' sempre la stessa: **contenuto scritto,
@@ -37,7 +37,7 @@ func _initialize() -> void:
 	var options: Dictionary = _parse_args(OS.get_cmdline_user_args())
 	var runs: int = int(options.get("runs", 40))
 	var first_seed: int = int(options.get("seed", 2000))
-	var chronicle_id: String = str(options.get("chronicle", "CHR_01"))
+	var chronicle_id: String = str(options.get("chronicle", "CHR_00"))
 	# `--tavolo=misto` mette ai seggi i quattro caratteri di D-051 invece di
 	# quattro ottimizzatori identici. Serve a separare le due risposte possibili
 	# a «questa proposta non la sceglie nessuno»: contenuto debole, oppure una

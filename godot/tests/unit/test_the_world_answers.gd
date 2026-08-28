@@ -145,8 +145,8 @@ func test_a_card_without_a_face_answers_nothing() -> void:
 	)
 
 	var stripped: RefCounted = GameSession.new(loaded)
-	var seats: Array = GameSession.seats_for(loaded, "CHR_01", 4242)
-	assert_true(stripped.setup("CHR_01", seats, 4242), "l'anno si apre")
+	var seats: Array = GameSession.seats_for(loaded, "CHR_00", 4242)
+	assert_true(stripped.setup("CHR_00", seats, 4242), "l'anno si apre")
 	for effect in stripped.factory_setup_effects():
 		stripped.applier.apply(effect)
 	# **Un seggio vero di questa partita.** La prima stesura nominava Aldric, che

@@ -16,7 +16,7 @@ const RngService := preload("res://scripts/core/rng_service.gd")
 ## quattro Chronicle vere.
 func test_without_any_pool_a_house_keeps_its_written_destiny() -> void:
 	var set: RefCounted = data()
-	var chronicle: Dictionary = (set.chronicles["CHR_01"] as Dictionary).duplicate(true)
+	var chronicle: Dictionary = (set.chronicles["CHR_TEST"] as Dictionary).duplicate(true)
 	chronicle.erase("destiny_pool")
 	var bare: Dictionary = {}
 	for entity_id in chronicle["entities"]:
@@ -46,7 +46,7 @@ func test_without_any_pool_a_house_keeps_its_written_destiny() -> void:
 ## non venivano mai giocati all'apertura (D-173).
 func test_the_entity_list_is_the_default_pool() -> void:
 	var set: RefCounted = data()
-	var chronicle: Dictionary = (set.chronicles["CHR_01"] as Dictionary).duplicate(true)
+	var chronicle: Dictionary = (set.chronicles["CHR_TEST"] as Dictionary).duplicate(true)
 	chronicle.erase("destiny_pool")
 	var seen: Dictionary = {}
 	for seed_value in [11, 22, 33, 44, 55, 66, 77, 88]:
@@ -73,7 +73,7 @@ func test_with_a_pool_the_destiny_comes_from_that_house_s_list() -> void:
 	# saranno misurati uno per uno (D-150): il meccanismo si prova qui su una
 	# Chronicle costruita apposta, che e' anche il modo di provarlo senza
 	# dipendere da come sono scritte le Chronicle vere.
-	var chronicle: Dictionary = (set.chronicles["CHR_01"] as Dictionary).duplicate(true)
+	var chronicle: Dictionary = (set.chronicles["CHR_TEST"] as Dictionary).duplicate(true)
 	chronicle["destiny_pool"] = {
 		"ENT_ALDRIC": ["DST_ALDRIC", "DST_ALDRIC_RECORD"],
 		"ENT_NAHR": ["DST_NAHR", "DST_NAHR_ROOTED"],
@@ -101,7 +101,7 @@ func test_with_a_pool_the_destiny_comes_from_that_house_s_list() -> void:
 ## pool sarebbe un campo in piu' e nient'altro.
 func test_two_seeds_want_different_things() -> void:
 	var set: RefCounted = data()
-	var chronicle: Dictionary = (set.chronicles["CHR_01"] as Dictionary).duplicate(true)
+	var chronicle: Dictionary = (set.chronicles["CHR_TEST"] as Dictionary).duplicate(true)
 	chronicle["destiny_pool"] = {
 		"ENT_ALDRIC": ["DST_ALDRIC", "DST_ALDRIC_RECORD"],
 		"ENT_NAHR": ["DST_NAHR", "DST_NAHR_ROOTED"],
@@ -125,7 +125,7 @@ func test_two_seeds_want_different_things() -> void:
 ## partita, sposterebbe mazzi, deriva e domande — ed e' successo davvero.
 func test_the_draw_does_not_move_the_world() -> void:
 	var set: RefCounted = data()
-	var without: Dictionary = (set.chronicles["CHR_01"] as Dictionary).duplicate(true)
+	var without: Dictionary = (set.chronicles["CHR_TEST"] as Dictionary).duplicate(true)
 	without.erase("destiny_pool")
 	var with_pool: Dictionary = (without as Dictionary).duplicate(true)
 	with_pool["destiny_pool"] = {

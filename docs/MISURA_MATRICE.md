@@ -201,14 +201,14 @@ cose che nessuno sa dare non ha una strategia: ha un desiderio.
 
 | | segno | dal Consiglio | da una carta | altrimenti |
 |---|---|---|---|---|
-| vuole | `charter_written` | **si'** | no | Conseguenza, faccia della Tensione, fatto che dura |
+| vuole | `charter_written` | **si'** | no | Conseguenza, faccia della Tensione |
 | vuole | `charter_for_all` | **si'** | no | clausola di Consiglio, faccia della Tensione |
 | vuole | `water_moves` | **si'** | no | Conseguenza, carta Echo, faccia della Tensione |
 | vuole | `debt_forgiven` | **si'** | **si'** | Conseguenza, faccia della Tensione |
 | teme | `crowned` | no | no | casato |
 | teme | `no_charter` | no | no | Conseguenza |
 | teme | `condition:cut_off` | **si'** | **si'** | Conseguenza, carta Asset, carta Echo, faccia della Tensione |
-| teme | `water_priced` | no | no | Conseguenza, fatto che dura |
+| teme | `water_priced` | no | no | Conseguenza |
 | teme | `debt_called` | **si'** | **si'** | Conseguenza, carta Asset, faccia della Tensione |
 
 ### ENT_LYRA
@@ -280,8 +280,8 @@ cose che nessuno sa dare non ha una strategia: ha un desiderio.
 | | segno | dal Consiglio | da una carta | altrimenti |
 |---|---|---|---|---|
 | vuole | `anointed` | no | no | Conseguenza |
-| vuole | `faith_established` | **si'** | no | Conseguenza, faccia della Tensione, fatto che dura |
-| vuole | `relic_buried` | **si'** | no | Conseguenza, faccia della Tensione, fatto che dura |
+| vuole | `faith_established` | **si'** | no | Conseguenza, faccia della Tensione |
+| vuole | `relic_buried` | **si'** | no | Conseguenza, faccia della Tensione |
 | vuole | `structure:sealed` | **si'** | no | Conseguenza, faccia della Tensione |
 | teme | `knowledge_shared` | **si'** | **si'** | clausola di Consiglio, faccia della Tensione |
 | teme | `crystal_measured` | **si'** | **si'** | carta Echo, faccia della Tensione |
@@ -348,9 +348,9 @@ porta del tempo legge (D-290): perderlo non sposta una clausola, sposta
 | `debt_called` | SALE | LIBERE | **si'** | Azione stampata, Conseguenza, carta Asset, faccia della Tensione |
 | `debt_forgiven` | LIBERE | SALE | — | Azione stampata, Conseguenza, faccia della Tensione |
 | `nahr_settled` | NAHR | ALDRIC | **si'** | Conseguenza, faccia della Tensione, fatto che dura |
-| `relic_buried` | VETRO | CENERE | **si'** | Conseguenza, faccia della Tensione, fatto che dura |
+| `relic_buried` | VETRO | CENERE | **si'** | Conseguenza, faccia della Tensione |
 | `succession_by_law` | ALDRIC | NAHR | **si'** | Azione stampata, Conseguenza, faccia della Tensione, fatto che dura |
-| `water_priced` | SALE | LIBERE | — | Conseguenza, fatto che dura |
+| `water_priced` | SALE | LIBERE | — | Conseguenza |
 
 ### Le coppie che non hanno niente per cui litigare
 

@@ -2,7 +2,7 @@ extends SceneTree
 ## What a Destiny costs, measured before anyone plays and again while they do.
 ##
 ##   godot --headless --path godot --script res://cli/run_destiny_probe.gd -- \
-##       --runs=40 --seed=1000 --chronicle=CHR_01
+##       --runs=40 --seed=1000 --chronicle=CHR_00
 ##
 ## Two questions, and the first one needs no dice at all.
 ##
@@ -36,7 +36,7 @@ func _initialize() -> void:
 	var options: Dictionary = _parse_args(OS.get_cmdline_user_args())
 	var runs: int = int(options.get("runs", 40))
 	var first_seed: int = int(options.get("seed", 1000))
-	var chronicle_id: String = str(options.get("chronicle", "CHR_01"))
+	var chronicle_id: String = str(options.get("chronicle", "CHR_00"))
 
 	var data: RefCounted = DataSet.new()
 	if not data.load_from("res://data"):

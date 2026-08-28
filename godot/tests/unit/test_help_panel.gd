@@ -18,7 +18,7 @@ func before_each() -> void:
 
 
 func _page(rules: Dictionary) -> String:
-	var chronicle: Dictionary = session.data.chronicles["CHR_01"] as Dictionary
+	var chronicle: Dictionary = session.data.chronicles["CHR_TEST"] as Dictionary
 	var before: Dictionary = {}
 	for key in rules:
 		before[key] = chronicle.get(str(key))
@@ -26,7 +26,7 @@ func _page(rules: Dictionary) -> String:
 	# La pagina e' un nodo, non un oggetto contato: si costruisce, le si chiede
 	# il testo e la si libera a mano — `_ready()` qui non gira mai.
 	var panel: Node = HelpPanel.new()
-	var lines: Array = panel.call("_lines", session.data, "CHR_01")
+	var lines: Array = panel.call("_lines", session.data, "CHR_TEST")
 	panel.free()
 	for key in before:
 		if before[key] == null:

@@ -262,7 +262,7 @@ func test_a_seat_nobody_plays_is_left_to_the_policy() -> void:
 func test_with_cards_the_menu_offers_cards_and_not_the_six_actions() -> void:
 	var decider: RefCounted = SeatDecider.new(SEATS, null)
 	new_session(4242)
-	var chronicle: Dictionary = session.data.chronicles["CHR_01"] as Dictionary
+	var chronicle: Dictionary = session.data.chronicles["CHR_TEST"] as Dictionary
 	chronicle["actions_from_cards"] = true
 	session.actions.set("_chronicle", chronicle)
 

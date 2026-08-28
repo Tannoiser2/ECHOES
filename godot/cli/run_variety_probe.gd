@@ -2,7 +2,7 @@ extends SceneTree
 ## Quanto si somigliano due saghe? (D-149)
 ##
 ##   godot --headless --path godot --script res://cli/run_variety_probe.gd -- \
-##       --sagas=4 --chronicles=6 --seed=3000 --chronicle=CHR_01 --then=CHR_02
+##       --sagas=4 --chronicles=6 --seed=3000 --chronicle=CHR_00 --then=CHR_00
 ##
 ## Le sonde di questo progetto misurano il **motore**: gli esiti in banda, i
 ## seggi non bloccati, il filo trasparente, le fughe. Nessuna sa rispondere a
@@ -43,7 +43,7 @@ func _initialize() -> void:
 	var sagas: int = int(options.get("sagas", 4))
 	var chronicles: int = int(options.get("chronicles", 6))
 	var first_seed: int = int(options.get("seed", 3000))
-	var first_id: String = str(options.get("chronicle", "CHR_01"))
+	var first_id: String = str(options.get("chronicle", "CHR_00"))
 	var later_id: String = str(options.get("then", first_id))
 	# A tavolo misto per scelta: i quattro caratteri (D-053) sono la cosa piu'
 	# vicina a persone vere che questo progetto abbia, e la varieta' si misura
