@@ -2763,6 +2763,53 @@ e' in gioco.
 
 ---
 
+### 94. La quiete e' un bene comune: 143 clausole su 145 vere all'apertura
+
+`regola` · `contenuto` · `decisione` · aperta in 0.1.283
+([D-320](DECISIONS.md#d-320))
+
+`scar_count` e' il blocco piu' grosso rimasto di [ISSUES 91](#): **145
+clausole centrate, 143 delle quali gia' vere all'apertura — il 98.6%.**
+
+Il censimento delle ventiquattro clausole scritte dice perche':
+
+| cosa chiedono | quante |
+|---|---|
+| che l'anno finisca **pulito** (`max: 0`, `max: 1`, `max: 2`) | **22** |
+| che l'anno **lasci il segno** (`min: 1`, `min: 3`) | **2** |
+
+Il mondo comincia senza Cicatrici, quasi tutti vogliono che resti cosi', e
+**nessuno paga per il contrario**. Non e' scritto male: e' che la quiete e' un
+bene comune — la vogliono tutti e non costa a nessuno. Con `state_tag_absent`
+(187 gia' vere) fanno **330 clausole su 924, il 35.7% di tutti i punti**, che
+sono «una cosa non e' successa».
+
+**Quello che invece funziona**, e non lo sapevamo: dove il verso opposto c'e'
+scritto, la lite e' la piu' frequente del gioco — **7.1% delle coppie**, contro
+il 6.2% della memoria e il 2.9% della Regione. `DST_LYRA` vuole le Miniere
+pulite, `DST_VAERAX` le vuole segnate, e quando siedono insieme si tolgono
+qualcosa davvero.
+
+**Cosa la chiude.** La scelta e' del committente — sono ventiquattro clausole
+stampate su carte vere:
+
+1. **Piu' case vogliono il segno.** La lite esiste gia' e rende: basta che il
+   verso opposto sia scritto piu' spesso di due volte su ventiquattro. E' la
+   strada che non tocca il motore e non cambia cosa una clausola *significa*.
+2. **La quiete diventa relativa.** Non «il mondo ha al massimo due segni» ma
+   «la tua terra e' uscita piu' pulita di quella di chiunque altro»: un
+   confronto fra seggi al posto di un bollettino meteo. Serve un `what:
+   "scars"` in `_lead_value`, e `leads_in` e' vera per uno solo — troppe
+   farebbero chiudere tre seggi su quattro a mani vuote.
+3. **La quiete si paga.** Una clausola che chiede il mondo pulito vale solo se
+   quel seggio ha speso qualcosa per tenerlo tale — una Cicatrice evitata a
+   proprie spese, non una che non e' capitata.
+
+**Il metro**: `cli/run_contest_probe.gd`, riga *gia' vere all'apertura, per
+tipo* — oggi `scar_count` **143**. Deve scendere.
+
+---
+
 ### 93. ✅ Cancellare gli anni d'autore — chiusa in 0.1.281
 
 `regola` · `debito` · `strumenti` · aperta in 0.1.280

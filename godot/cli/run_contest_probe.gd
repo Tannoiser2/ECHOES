@@ -79,7 +79,8 @@ func _initialize() -> void:
 
 	# La quarta domanda: gli obiettivi si incrociano?
 	var clash_map: int = 0        # coppie di seggi che vogliono la stessa Regione
-	var clash_world: int = 0      # coppie che vogliono/temono la stessa memoria
+	var clash_world: int = 0
+	var clash_scars: int = 0      # coppie che vogliono/temono la stessa memoria
 	var tables: int = 0
 	var won_map: int = 0          # clausole centrate che guardano la mappa
 	var won_world: int = 0        # ...che guardano una memoria del mondo
@@ -265,6 +266,14 @@ func _initialize() -> void:
 		var wants: Dictionary = {}   # seggio -> {segno voluto}
 		var fears: Dictionary = {}   # seggio -> {segno temuto}
 		var places: Dictionary = {}  # seggio -> {Regione nominata}
+		# **Le Cicatrici hanno due versi** (D-320). Ventidue clausole su
+		# ventiquattro chiedono che l'anno finisca *pulito*; due chiedono che
+		# lasci il segno. Fino a 0.1.282 la sonda non le guardava affatto —
+		# `scar_count` cadeva fuori da tutti i rami del test di contesa —
+		# quindi **145 clausole risultavano mai contese per costruzione**, non
+		# per misura. Tredicesima misura cieca.
+		var clean: Dictionary = {}   # seggio -> {dove vuole pulito}  (max)
+		var marked: Dictionary = {}  # seggio -> {dove vuole il segno} (min)
 		var seats_here: Array = []
 		for entity_id in session.world["entities"]:
 			var seat: Dictionary = session.world["entities"][str(entity_id)] as Dictionary
@@ -287,6 +296,17 @@ func _initialize() -> void:
 					(fears.get_or_add(str(entity_id), {}) as Dictionary)[str(c["tag"])] = true
 				elif kind == "region_presence" and str(c.get("region_id", "")) != "":
 					(places.get_or_add(str(entity_id), {}) as Dictionary)[str(c["region_id"])] = true
+				elif kind == "scar_count":
+					# Senza `region_id` la clausola parla del mondo intero: si
+					# registra sotto una chiave che nessuna Regione porta, cosi'
+					# «il mondo pulito» e «il mondo segnato» si incontrano.
+					var spot: String = str(c.get("region_id", ""))
+					if spot == "":
+						spot = "*"
+					if c.has("max"):
+						(clean.get_or_add(str(entity_id), {}) as Dictionary)[spot] = true
+					if c.has("min"):
+						(marked.get_or_add(str(entity_id), {}) as Dictionary)[spot] = true
 		for i in range(seats_here.size()):
 			for j in range(i + 1, seats_here.size()):
 				var a: String = str(seats_here[i])
@@ -313,6 +333,24 @@ func _initialize() -> void:
 							break
 				if crossed:
 					clash_world += 1
+				# E la lite sulle Cicatrici: uno vuole il posto pulito,
+				# l'altro lo vuole segnato.
+				var ca: Dictionary = clean.get(a, {}) as Dictionary
+				var mb: Dictionary = marked.get(b, {}) as Dictionary
+				var cb: Dictionary = clean.get(b, {}) as Dictionary
+				var ma: Dictionary = marked.get(a, {}) as Dictionary
+				var scarred: bool = false
+				for spot in ca:
+					if mb.has(spot) or mb.has("*"):
+						scarred = true
+						break
+				if not scarred:
+					for spot in cb:
+						if ma.has(spot) or ma.has("*"):
+							scarred = true
+							break
+				if scarred:
+					clash_scars += 1
 
 		# E i punti presi: di che corsia erano, e qualcuno poteva impedirli?
 		for entity_id in seats_here:
@@ -369,6 +407,18 @@ func _initialize() -> void:
 							contested = true
 					elif kind2 == "region_presence":
 						if (places.get(str(other), {}) as Dictionary).has(str(c2.get("region_id", ""))):
+							contested = true
+					elif kind2 == "scar_count":
+						# Contesa se un altro vuole il verso opposto **nello
+						# stesso posto**, o sul mondo intero.
+						var here: String = str(c2.get("region_id", ""))
+						if here == "":
+							here = "*"
+						var opposite: Dictionary = (
+							marked.get(str(other), {}) if c2.has("max")
+							else clean.get(str(other), {})
+						) as Dictionary
+						if opposite.has(here) or opposite.has("*"):
 							contested = true
 					elif kind2 == "control_count":
 						# Le Regioni sono poche e le vogliono tutti: e' contesa
@@ -430,6 +480,9 @@ func _initialize() -> void:
 	])
 	print("    coppie che si contendono una memoria   %5.1f%%   (%d)" % [
 		100.0 * float(clash_world) / couples, clash_world,
+	])
+	print("    coppie che si contendono una Cicatrice %5.1f%%   (%d)" % [
+		100.0 * float(clash_scars) / couples, clash_scars,
 	])
 	print("")
 	print("  **Con cosa si sono presi i punti**")
