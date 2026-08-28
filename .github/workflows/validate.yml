@@ -154,6 +154,9 @@ jobs:
       - name: Drift check - la misura delle vite
         run: GODOT=~/godot/godot tools/run_lives_survey.sh --check
 
+      - name: Drift check - la misura dei segni
+        run: GODOT=~/godot/godot tools/run_marks_survey.sh --check
+
       - name: Play every sim plan
         run: GODOT=~/godot/godot tools/run_sims.sh
 

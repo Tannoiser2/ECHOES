@@ -5,6 +5,47 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.287 — Il segno piu' scritto del gioco non lo guarda nessuno (D-324)
+
+### Aggiunto
+
+- **`cli/run_world_marks_probe.gd`**, la misura girata dalla parte giusta: non
+  «quanti dei segni che i Destini nominano il mondo li scrive», ma **quali segni
+  il mondo scrive, e se se ne accorge qualcuno**. Per ogni segno che al tavolo si
+  posa (MEMORY e STATE; fuori la contabilita' del motore): quante volte la
+  partita lo **scrive**, quante clausole lo **temono**, quante lo **vogliono**.
+- **`docs/MISURA_SEGNI.md`** e il cancello `tools/run_marks_survey.sh --check`,
+  sedicesimo della batteria, in CI accanto agli altri. Provato col difetto
+  piantato: **esce 1**.
+
+### Misurato
+
+- **`condition:contested` e' scritto 531 volte in cento anni — cinque volte
+  l'anno — e nessuna clausola in tutta la scatola lo nomina.** E' il segno piu'
+  scritto del gioco.
+- **Venticinque segni** superano le dieci scritture per secolo con zero clausole
+  addosso: `discovery:the_omen` 455, `discovery:the_ledger` 335,
+  `knowledge_shared` 147, `condition:cut_off` 98, `order_restored` 87,
+  `heir_named` 73...
+- Dall'altra parte, **cinque segni guardati e mai scritti** in cento partite:
+  `study_supervised`, `valley_sealed`, `water_priced`,
+  `legend:crystal_exploited`, `mountain_forgotten`.
+
+### Cosa cambia nella diagnosi
+
+Il problema di `state_tag_absent` sembrava di **quantita'** — troppe clausole
+gia' vere. E' di **incontro**: il mondo produce una cosa, le carte ne guardano
+un'altra, e le due liste quasi non si toccano. Aperta **ISSUES 96**.
+
+### Aperto
+
+- Da D-323 un Consiglio caduto lascia una terra contesa cinque volte l'anno, e
+  **a nessuno conviene farla cadere**: una casa che campa sul confine irrisolto
+  renderebbe il fallimento una mossa invece che un incidente. Decide il
+  committente: sono carte stampate.
+
+---
+
 ## 0.1.286 — Una domanda caduta lascia il segno che quella domanda lascia (D-323)
 
 ### Aggiunto

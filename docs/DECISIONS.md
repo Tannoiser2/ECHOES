@@ -10,6 +10,79 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-324 — Il segno piu' scritto del gioco non lo guarda nessuno
+
+**implemented** (0.1.287) · misura nuova, con cancello · [ISSUES 96](ISSUES.md)
+aperta · nata dalla domanda lasciata aperta da [D-323](#d-323).
+
+### La misura che mancava, ed era girata dalla parte sbagliata
+
+Tutte le sonde del punteggio partono dai **Destini** e chiedono al mondo se
+scrive quello che loro nominano. D-323 ha mostrato il limite: adesso una domanda
+caduta sporca il mondo per davvero, e le memorie temute **non si sono mosse di
+un decimo**, perche' i segni che un fallimento lascia non sono i segni che i
+Destini temono.
+
+La domanda va girata: **quali segni il mondo scrive, e se ne parla qualcuno?**
+
+`cli/run_world_marks_probe.gd` guarda solo i segni che al tavolo si posano —
+MEMORY e STATE, cioe' le memorie del mondo e le condizioni dei luoghi; fuori
+resta la contabilita' del motore — e per ognuno conta tre cose: quante volte la
+partita lo **scrive**, quante clausole lo **temono**, quante lo **vogliono**.
+
+### Il numero
+
+> **`condition:contested` e' scritto 531 volte in cento anni — cinque volte
+> l'anno — e non c'e' una sola clausola in tutta la scatola che lo nomini.**
+
+E' il segno piu' scritto del gioco, ed e' anche il piu' inutile. Dietro di lui:
+
+| segno | scritto in 100 anni | clausole |
+|---|---|---|
+| `condition:contested` | **531** | 0 |
+| `discovery:the_omen` | 455 | 0 |
+| `discovery:the_ledger` | 335 | 0 |
+| `discovery:trade_ledger` | 200 | 0 |
+| `discovery:written_law` | 167 | 0 |
+| `discovery:legend` | 158 | 0 |
+| `knowledge_shared` | 147 | 0 |
+| `condition:cut_off` | 98 | 0 |
+| `order_restored` | 87 | 0 |
+| `heir_named` | 73 | 0 |
+| ...e altri quindici | | |
+
+**Venticinque segni** che il mondo scrive almeno dieci volte in cento anni, e su
+cui nessun Destino e nessun Obiettivo ha mai scritto una riga.
+
+Dall'altra parte, cinque segni **guardati e mai scritti** in cento partite:
+`study_supervised`, `valley_sealed`, `water_priced` (due clausole ciascuno),
+`legend:crystal_exploited`, `mountain_forgotten`. Quelle clausole sono vere
+dall'apertura e nessuno le puo' rompere: e' il regalo di ISSUES 91 visto dal
+lato del mondo invece che dal lato della carta.
+
+### E questo dice cosa fare, invece che cosa aggiustare
+
+Fino a qui il problema di `state_tag_absent` sembrava di **quantita'**: troppe
+clausole gia' vere. La misura dice che e' di **incontro**: il mondo produce una
+cosa, le carte ne guardano un'altra, e le due liste quasi non si toccano.
+
+E il caso di `condition:contested` e' il piu' parlante, perche' e' anche una
+**possibilita' di gioco che nessuno ha**: da D-323 un Consiglio caduto lascia
+una terra contesa cinque volte l'anno, e **a nessuno conviene farla cadere**.
+Una casa che campa sul confine irrisolto renderebbe il fallimento una mossa
+invece che un incidente. Le strade in [ISSUES 96](ISSUES.md).
+
+### Il cancello
+
+`tools/run_marks_survey.sh --check` tiene `docs/MISURA_SEGNI.md` allineato a
+quello che il gioco produce adesso, come la misura delle vite e il catalogo dei
+Consigli. Provato col difetto piantato: **esce 1**. In CI accanto agli altri.
+
+Sedicesimo cancello. Serve a una cosa sola: che questa classe di difetto — un
+segno che il motore scrive e la scatola ignora — non possa tornare in silenzio.
+
+---
+
 ## D-323 — Una domanda caduta lascia il segno che quella domanda lascia
 
 **implemented** (0.1.286) · [ISSUES 95](ISSUES.md) chiusa, strada 2 · decisione

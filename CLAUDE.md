@@ -57,6 +57,7 @@ Tutti vogliono `export GODOT=~/godot/Godot_v4.7.1-stable_linux.x86_64`.
 | `bash tools/run_council_catalogue.sh --check` | `docs/CATALOGO_CONSIGLI.md` |
 | `bash tools/run_card_catalogue.sh --check` | `docs/CATALOGO_CARTE.md` |
 | `bash tools/run_lives_survey.sh --check` | `docs/MISURA_VITE.md`: **quante delle vite scritte delle case si siedono davvero al tavolo**, in dodici saghe sui due tavoli (due minuti) |
+| `bash tools/run_marks_survey.sh --check` | `docs/MISURA_SEGNI.md`: **quali segni il mondo scrive davvero, e chi li guarda** — quelli scritti spesso che nessuna clausola nomina, e quelli nominati che non escono mai |
 | `bash tools/run_export.sh --check-brief` | `docs/BRIEF_ARTE.md` |
 | `$GODOT --headless --path godot --script res://tests/run_tests.gd` | la suite |
 
