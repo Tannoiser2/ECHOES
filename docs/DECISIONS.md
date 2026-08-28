@@ -10,6 +10,77 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-320 — Le Cicatrici hanno due versi, e la sonda ne vedeva uno solo
+
+**implemented** (0.1.283) · misura, non modifica · nata dal voler attaccare
+`scar_count`, il blocco piu' grosso rimasto di [ISSUES 91](ISSUES.md).
+
+### Prima cosa: i numeri di ISSUES 91 erano di un'altra partita
+
+D-318 ha cambiato il gioco che il cancello misura, e D-319 ha cancellato quello
+di prima. Quindi il 52.4% e il 15.8% a verbale erano di **CHR_01, che non
+esiste piu'**. Rifatti sul gioco che c'e':
+
+| | CHR_01 (cancellata) | CHR_00 (il gioco vero) |
+|---|---|---|
+| clausole gia' vere all'apertura | 52.4% | **55.3%** |
+| clausole contese | 15.8% | **14.2%** |
+| memorie temute mai toccate | 66.5% | **76.8%** |
+
+Il gioco vero e' **piu' regalato** di quello che stavamo misurando. Vale la
+regola di casa: si scrive.
+
+### La tredicesima misura cieca
+
+`scar_count` risultava **145 clausole, contese zero volte**. Sembrava il
+bersaglio ovvio. Ma il test di contesa della sonda aveva quattro rami —
+`state_tag_present`, `state_tag_absent`, `region_presence`, `control_count` —
+e `scar_count` **cadeva fuori da tutti**. Non poteva risultare contesa nemmeno
+una volta: era zero per costruzione, non per misura.
+
+E guardando i dati, una lite c'era eccome: `DST_LYRA` vuole le Miniere pulite
+(`max: 0`), `DST_VAERAX` le vuole segnate (`min: 1`).
+
+### Cosa dice la sonda adesso che guarda
+
+Una Cicatrice ha due versi, e la contesa e' quando due seggi li vogliono
+opposti **nello stesso posto** — o sul mondo intero, che nella sonda e' un
+posto anche lui.
+
+| | prima | dopo |
+|---|---|---|
+| coppie che si contendono una Regione | 2.9% | 2.9% |
+| coppie che si contendono una memoria | 6.2% | 6.2% |
+| **coppie che si contendono una Cicatrice** | *invisibile* | **7.1%** |
+| clausole contese, in tutto | 14.2% | **15.6%** |
+
+**La Cicatrice e' la lite piu' scritta del gioco** — piu' della Regione, piu'
+della memoria. Non lo sapevamo perche' non la guardavamo.
+
+### Ma resta il blocco piu' grosso, e adesso si sa perche'
+
+Contese **13 su 145**. E soprattutto:
+
+> **143 clausole `scar_count` su 145 sono gia' vere all'apertura: il 98.6%.**
+
+Il censimento delle ventiquattro clausole scritte spiega tutto: **ventidue
+chiedono che l'anno finisca pulito** (`max: 0`, `max: 1`, `max: 2`); due sole
+chiedono che lasci il segno. Il mondo comincia senza Cicatrici, quasi tutti
+vogliono che resti cosi', e nessuno paga per il contrario.
+
+Non e' un difetto di scrittura: **la quiete e' un bene comune**. La vogliono
+tutti e non costa a nessuno. Con `state_tag_absent` (187 gia' vere) fanno
+**330 clausole su 924 — il 35.7% di tutti i punti del tavolo — che sono "una
+cosa non e' successa"**.
+
+### Cosa non si decide qui
+
+Le strade per rimettere un prezzo alla quiete stanno in
+[ISSUES 94](ISSUES.md). La scelta e' del committente: sono ventiquattro
+clausole stampate su carte vere, e cambiarle cambia cosa le case vogliono.
+
+---
+
 ## D-319 — Gli anni d'autore sono cancellati, e il banco se lo fabbrica la suite
 
 **implemented** (0.1.281) · [ISSUES 93](ISSUES.md) chiusa · decisione del

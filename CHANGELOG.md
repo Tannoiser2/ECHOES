@@ -5,6 +5,39 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.283 — Le Cicatrici hanno due versi, e la sonda ne vedeva uno solo (D-320)
+
+### Misurato
+
+- **I numeri di ISSUES 91 erano di un'altra partita.** Erano stati presi su
+  CHR_01, cancellata da D-319. Rifatti sul gioco vero: clausole gia' vere
+  all'apertura **52.4% -> 55.3%**, contese **15.8% -> 14.2%**, memorie temute
+  mai toccate **66.5% -> 76.8%**. Il gioco della scatola e' **piu' regalato**
+  di quello che stavamo misurando.
+- **Tredicesima misura cieca.** `scar_count` risultava 145 clausole contese
+  zero volte, e sembrava il bersaglio ovvio. Ma il test di contesa aveva
+  quattro rami e `scar_count` **cadeva fuori da tutti**: zero per costruzione,
+  non per misura. Nei dati la lite c'era — `DST_LYRA` vuole le Miniere pulite,
+  `DST_VAERAX` le vuole segnate.
+- **La Cicatrice e' la lite piu' scritta del gioco**, adesso che si guarda:
+  **7.1%** delle coppie, contro il 6.2% della memoria e il 2.9% della Regione.
+  Clausole contese in tutto: **14.2% -> 15.6%**.
+- **E resta il blocco piu' grosso**: contese 13 su 145, e **143 su 145 sono
+  gia' vere all'apertura — il 98.6%**. Il censimento spiega perche': delle
+  ventiquattro clausole scritte, **ventidue chiedono che l'anno finisca
+  pulito** e due sole che lasci il segno. La quiete e' un bene comune: la
+  vogliono tutti e non costa a nessuno.
+- Con `state_tag_absent` (187 gia' vere) fanno **330 clausole su 924 — il
+  35.7% di tutti i punti — che sono «una cosa non e' successa»**.
+
+### Non cambiato
+
+- Nessuna regola, nessun dato. Rimettere un prezzo alla quiete significa
+  toccare ventiquattro clausole stampate: la scelta e' del committente
+  ([ISSUES 94](docs/ISSUES.md)).
+
+---
+
 ## 0.1.282 — Due strumenti giravano ancora sugli anni cancellati (D-319)
 
 La CI ha preso quello che i quattordici cancelli non guardano: due passi suoi
