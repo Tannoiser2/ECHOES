@@ -62,6 +62,11 @@ terzo del problema, sono un sesto. **Resta la ragione, sola.**
 Da **37 documenti a 20**: dieci generati e sorvegliati, sei vivi, quattro di
 riferimento.
 
+E **`tools/tag_census.py`**, su decisione del committente: non lo chiamava
+nessuno, censiva 86 segni per deduzione dove il dizionario di D-259 ne dichiara
+182, e il suo mestiere lo fanno tre strumenti che hanno un cancello
+(`build_sign_registry`, `matrix_survey`, `run_marks_survey`).
+
 ### Cancelli
 
 - **`build_review.py --check`** e **`matrix_survey.py --check`** aggiunti alla CI.

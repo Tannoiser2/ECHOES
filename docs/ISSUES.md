@@ -579,7 +579,7 @@ e i numeri prima/dopo sono a verbale.
 
 «Ogni conseguenza, ogni cicatrice, ogni decisione potrebbe cambiare il
 meccanismo di gioco e gli effetti su entità e luoghi.» Il censimento
-(sonda in `tag_census`, 0.1.65) dice dove siamo: **79 segni** scritti da
+(sonda in `tag_census`, tolta in 0.1.291) dice dove eravamo: **79 segni** scritti da
 Conseguenze, cicatrici e carte Echo, di cui **27 vivi** (letti da clausole
 di Destini, Conseguenze o eleggibilità), **5 vivi per il motore**
 (`discovery:` contati da `discovery_count`), **2 con vita postuma** (letti

@@ -87,7 +87,7 @@ E i due cancelli che mancavano, aggiunti alla CI:
 - `matrix_survey.py --check`, **dichiarato in `CLAUDE.md` dalla 0.1.249 e mai
   messo in CI**: si e' visto solo facendo il giro a mano.
 
-### Quello che non ho fatto, e perche'
+### Quello che non ho fatto, e quello che e' uscito dopo
 
 **I dati portano ancora i nomi degli anni cancellati** — dodici file
 `*_chronicle_01`/`_03` e due cartelle, che contengono i 23 Destini, le 60
@@ -95,9 +95,15 @@ Tensioni e le 10 tessere che ogni anno pescato usa. E' [ISSUES 98](ISSUES.md):
 un rinomino tocca i caricatori, la suite, i cancelli e i generati insieme, e
 merita un commit suo misurato col giro completo, non la coda di una pulizia.
 
-**`tools/tag_census.py` non lo chiama nessuno** (86 segni censiti a deduzione,
-dove il dizionario di D-259 ne dichiara 182). Gira ancora e non e' rotto: lo
-lascio in elenco per il committente invece di toglierlo di mia iniziativa.
+**`tools/tag_census.py` e' uscito, su decisione del committente** — *«togli anche
+tag_census.py»*. Non lo chiamava nessuno: censiva **86 segni per deduzione**
+dove il dizionario dichiarato di [D-259](#d-259) ne porta **182**, ed era la
+sonda di ISSUES 24 (chiusa in 0.1.65 con D-104/D-105/D-122). Il suo mestiere lo
+fanno adesso tre strumenti **con un cancello**: `build_sign_registry.py` per i
+segni muti, `matrix_survey.py` per gli orfani, `run_marks_survey.sh` per chi
+scrive e chi guarda. Girava ancora, e non e' questo il criterio: **uno strumento
+che nessuno chiama e che un cancello ha superato e' la stessa cosa di un
+documento fermo**, con la differenza che sembra vivo perche' non fallisce.
 
 ### Il costo, dichiarato
 
