@@ -150,7 +150,7 @@ E le tre misure che vengono prima della matrice (`MISURA_MATRICE.md`):
 
 ## 5. Le voci aperte che posso chiudere io
 
-47 voci aperte su 103. In ordine di quanto cambiano la partita.
+48 voci aperte su 104. In ordine di quanto cambiano la partita.
 
 1. **ISSUES 89 — il Consiglio non si risolve col dito.** Le Azioni hanno la
    faccia fisica e il motore la esegue; la proposta no: **642 Effetti d'autore
@@ -197,7 +197,7 @@ Queste non le prendo io. Sono le porte chiuse.
 
 ## 7. Il debito che questo giro ha trovato
 
-- **`godot/data/` porta ancora i nomi degli anni cancellati** (ISSUES 98). Dodici
+- **`godot/data/` porta ancora i nomi degli anni cancellati** (ISSUES 99). Dodici
   file si chiamano `*_chronicle_01` / `*_chronicle_03` e due cartelle pure, ma
   dentro c'è il contenuto vivo che ogni anno pescato usa: 17 dei 23 Destini, le
   8 case, le 39 carte Echo, **tutte e dieci le tessere**. Non è roba morta: è un

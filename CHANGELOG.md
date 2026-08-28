@@ -82,7 +82,7 @@ nessuno, censiva 86 segni per deduzione dove il dizionario di D-259 ne dichiara
   verbale non si riscrive. In `ISSUES.md`, che e' un elenco vivo, i quattordici
   collegamenti sono sciolti in corsivo con una nota che spiega cosa vuol dire.
 - **`godot/data/` porta ancora i nomi degli anni cancellati** — dodici file
-  `*_chronicle_01`/`_03` con dentro il contenuto vivo. E' ISSUES 98, e vuole un
+  `*_chronicle_01`/`_03` con dentro il contenuto vivo. E' ISSUES 99, e vuole un
   commit suo.
 
 ---

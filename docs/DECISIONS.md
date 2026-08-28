@@ -12,7 +12,7 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ## D-328 — Diciassette documenti che mentivano, e uno strumento che non partiva
 
-**implemented** (0.1.291) · [ISSUES 92](ISSUES.md) chiusa, [ISSUES 98](ISSUES.md)
+**implemented** (0.1.291) · [ISSUES 92](ISSUES.md) chiusa, [ISSUES 99](ISSUES.md)
 aperta · richiesta del committente: *«aggiorna PUNTO_ZERO con i numeri di oggi e
 poi fai una pulizia di documenti superati»*.
 
@@ -91,7 +91,8 @@ E i due cancelli che mancavano, aggiunti alla CI:
 
 **I dati portano ancora i nomi degli anni cancellati** — dodici file
 `*_chronicle_01`/`_03` e due cartelle, che contengono i 23 Destini, le 60
-Tensioni e le 10 tessere che ogni anno pescato usa. E' [ISSUES 98](ISSUES.md):
+Tensioni e le 10 tessere che ogni anno pescato usa. E' [ISSUES 99](ISSUES.md) — nata **98**, rinumerata fondendo `main`,
+dove la 98 era gia' presa da *«chiudere il circuito»*:
 un rinomino tocca i caricatori, la suite, i cancelli e i generati insieme, e
 merita un commit suo misurato col giro completo, non la coda di una pulizia.
 

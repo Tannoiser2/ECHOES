@@ -2768,7 +2768,7 @@ e' in gioco.
 
 ---
 
-### 98. I dati portano ancora i nomi degli anni cancellati
+### 99. I dati portano ancora i nomi degli anni cancellati
 
 `debito` · `strumenti` · **aperta in 0.1.291** ([D-328](DECISIONS.md#d-328))
 
@@ -2804,6 +2804,95 @@ giro completo, non la coda di una pulizia di documenti.
 **Fatto quando** nessun file sotto `godot/data/` nomina una Chronicle che non
 esiste, e i dati che valgono per ogni anno stanno in file che non nominano
 nessun anno.
+
+---
+
+### 98. Chiudere il circuito: ogni segno dichiara se pesa o se e' colore
+
+`regola` · `strumenti` · `decisione` · aperta in 0.1.290 · **direzione del
+committente**:
+
+> «Il prossimo lavoro non e' aggiungere contenuto, ma **chiudere il circuito**.
+> Ogni tag deve avere una funzione verificabile: chi lo puo' scrivere; dove
+> viene posato; chi lo legge; quale decisione abilita; quale
+> Obiettivo/Destino/Confluence/Legacy modifica.
+>
+> Se un tag viene scritto ma non letto, e' **rumore**. Se viene letto ma non
+> scritto, e' una **promessa falsa**. Se viene scritto e letto solo in modo
+> narrativo, va marcato come **flavour** e non deve pesare sul bilanciamento.»
+
+### Dove siamo, misurato
+
+Incrociando `docs/REGISTRO_SEGNI.md` (chi scrive, chi legge) con
+`docs/MISURA_SEGNI.md` (quanto scatta in 100 anni):
+
+| | |
+|---|---|
+| segni scritti da qualcosa | **87** |
+| che **pesano** — toccano un punto, una mossa o l'era dopo | **51** |
+| **flavour** — letti solo dalla narrazione (pesca delle domande, Risonanza, la Regione di cui si discute) | **36** |
+| **rumore** — scritti, letti da niente | **13** (gia' dichiarati uno per uno con la ragione) |
+| **promessa falsa** — letti, mai scritti | **6** |
+
+Dei 51 che pesano: **32 scattano** almeno una volta in cento anni, **5 mai**, e
+**14 la misura non li vede** (vedi il difetto qui sotto).
+
+**E solo sette scattano piu' di cento volte per secolo.** Sono il gioco:
+
+| scatti/secolo | segno | cosa tocca |
+|---|---|---|
+| 522 | `condition:contested` | punto · mossa · domanda |
+| 226 | `debt_called` | punto · mossa · domanda · **era dopo** |
+| 214 | `escort_sworn` | punto · domanda |
+| 202 | `condition:unrest` | punto · mossa · domanda |
+| 152 | `ledger_public` | punto · **era dopo** · domanda |
+| 110 | `condition:cut_off` | punto · mossa · domanda |
+| 102 | `debt_forgiven` | punto |
+
+### Il circuito piu' debole e' quello che da' il nome al gioco
+
+> **Diciotto segni arrivano all'era successiva. Due scattano piu' di cento
+> volte**: `debt_called` e `ledger_public`.
+
+Sotto: `order_restored` 85, `heir_named` 72, `crystal_exploited` 26 — poi si
+crolla. Otto segni sotto le quindici volte per secolo, e tre (`mine_sealed`,
+`oath_broken`, `valley_sealed`) **mai**. Il ponte fra quello che fai adesso e
+quello che vuoi ottenere dopo esiste diciotto volte sulla carta e **due** in
+partita.
+
+### E il flavour non e' marginale: e' il traffico principale
+
+Cinque dei trentasei flavour sono la famiglia `discovery:` —
+**1.308 scritture per secolo**, e nessuna riga che le conti. Marcare il flavour
+come «non pesa sul bilanciamento» vuol dire marcare cosi' la cosa che il motore
+fa piu' spesso. E' la piu' grossa delle tre decisioni, non una postilla.
+
+### Un difetto dello strumento, da chiudere per primo
+
+**`docs/MISURA_SEGNI.md` non vede le Cicatrici.** `cli/run_world_marks_probe.gd`
+conta solo `SET_REGION_TAG`, `SET_GLOBAL_TAG` e `SET_ENTITY_TAG`; le Cicatrici
+le scrive `ADD_SCAR`, che e' un Effect suo. **Sei segni `scar:*` che pesano sono
+invisibili alla misura**, insieme a tre `settlement:` (FUNCTION) e tre di ambito
+ENTITY che il filtro MEMORY/STATE esclude per costruzione. Finche' quel buco
+c'e', il conto «32 scattano» e' un **pavimento**, non un totale.
+
+### Cosa la chiude
+
+1. **Il campo che manca**: `weight` nel dizionario dei segni — `pesa` oppure
+   `flavour`, obbligatorio, con la ragione quando e' flavour. Le altre quattro
+   colonne che il committente chiede esistono gia' sparse fra
+   `godot/data/tags`, `REGISTRO_SEGNI.md` e `MISURA_SEGNI.md`; questa no.
+2. **Il validatore rifiuta un segno senza `weight`**, e rifiuta un segno
+   marcato `flavour` che compaia in una clausola di punteggio — e' la regola
+   del committente resa eseguibile.
+3. **Il cancello va rosso** se un segno marcato `pesa` non scatta mai in cento
+   anni: e' una promessa falsa che si e' rivestita da regola.
+4. **Prima di tutto**: la sonda conta anche `ADD_SCAR`, e la misura smette di
+   essere un pavimento.
+
+**Il metro**: `tools/run_marks_survey.sh` e `docs/REGISTRO_SEGNI.md`.
+**Fatto quando** ogni segno dichiara il suo peso, nessun `pesa` resta senza
+scatti, e nessun `flavour` compare in una clausola di punteggio.
 
 ---
 
