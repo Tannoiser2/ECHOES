@@ -126,6 +126,15 @@ func holds(condition: Dictionary, context: Dictionary = {}) -> bool:
 		"discovery_count":
 			return _within(_discovery_count(entity_id), condition)
 		"region_presence":
+			# Coi segni la riga chiede **una terra cosi' dove il conto torna**,
+			# non la somma su tutte: «presidiata, non solo abitata» vuol dire
+			# due pedine nello stesso posto, e sommarne una qua e una la'
+			# direbbe un'altra cosa (D-327).
+			if not (condition.get("any_tag", []) as Array).is_empty():
+				for place in _places_with(condition):
+					if _within(service.presence_count(entity_id, str(place)), condition):
+						return true
+				return false
 			var region_id: String = _resolve(str(condition.get("region_id", "")), context)
 			return _within(service.presence_count(entity_id, region_id), condition)
 		"promise_kept":
@@ -188,6 +197,15 @@ func _has_tag(condition: Dictionary, context: Dictionary) -> bool:
 		"GLOBAL":
 			return (world["global_tags"] as Array).has(tag)
 		"REGION":
+			# **Per segni** (D-327): vero se **una** terra che porta uno di
+			# quei segni ha il tag. Con `state_tag_absent` diventa quindi
+			# «nessuna di quelle terre ce l'ha», che e' la lettura giusta:
+			# al tavolo si guardano le tessere col segno e si controlla.
+			if not (condition.get("any_tag", []) as Array).is_empty():
+				for place in _places_with(condition):
+					if service.region_has_tag(str(place), tag):
+						return true
+				return false
 			var region_id: String = _resolve(str(condition.get("region_id", "")), context)
 			# **`$any` e `$rival`: da qualche parte, e non importa dove** —
 			# l'argomento di D-255 applicato alle Regioni invece che alle case.
@@ -383,13 +401,46 @@ func _tensions_past(condition: Dictionary) -> int:
 	return count
 
 
+## **Le terre che portano uno di questi segni** ([D-327](DECISIONS.md#d-327)).
+##
+## Una clausola che nomina una Regione per nome muore quando quella Regione non
+## esce dalla pesca: misurato in [D-326](DECISIONS.md#d-326), succedeva al
+## **43.1%** delle righe. Le Azioni avevano gia' risolto la stessa cosa nello
+## stesso modo (D-273): non «Eredan» ma «una terra che porta questo segno», e il
+## validatore controlla che i segni scelti stiano su abbastanza tessere del parco
+## perche' su **ogni** mappa pescata ce ne sia almeno una.
+##
+## Al tavolo: si guardano le tessere con quel segno stampato, e si guarda li'.
+func _places_with(condition: Dictionary) -> Array:
+	var wanted: Array = condition.get("any_tag", []) as Array
+	var out: Array = []
+	if wanted.is_empty():
+		return out
+	for region_id in world["regions"]:
+		for tag in wanted:
+			if service.region_has_tag(str(region_id), str(tag)):
+				out.append(str(region_id))
+				break
+	return out
+
+
 func _scars_on_the_map(condition: Dictionary) -> int:
 	var wanted_tag: String = str(condition.get("tag", ""))
 	var only_here: String = str(condition.get("region_id", ""))
+	# Coi segni si contano le Cicatrici **su tutte le terre cosi'** (D-327):
+	# `max: 0` diventa «nessuna di quelle terre porta un segno», `min: 1`
+	# «almeno una lo porta». E' la stessa lettura di `$any`, ristretta alle
+	# tessere che portano il segno stampato.
+	var places: Array = _places_with(condition)
+	var by_sign: bool = not (condition.get("any_tag", []) as Array).is_empty()
 	var count: int = 0
 	for scar in world["scars"]:
 		var record: Dictionary = scar as Dictionary
-		if only_here != "" and str(record.get("region_id", "")) != only_here:
+		var where: String = str(record.get("region_id", ""))
+		if by_sign:
+			if not places.has(where):
+				continue
+		elif only_here != "" and where != only_here:
 			continue
 		if wanted_tag != "" and str(record.get("tag", "")) != wanted_tag:
 			continue

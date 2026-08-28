@@ -10,6 +10,138 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-327 — I Destini mirano a segni, e la mappa diventa contesa
+
+**implemented** (0.1.290) · [ISSUES 97](ISSUES.md) chiusa, strada 1 · decisione
+del committente: *«Vai strada 1 e vaerax metti nel mazzo»*.
+
+### Il difetto, e perche' era l'ultimo pezzo di D-265
+
+[D-326](#d-326) ha misurato che **il 43.1% delle righe dei Destini nominava una
+Regione che quell'anno non usciva dalla pesca**, e che **il 77.7% delle terre
+pescate non le nominava nessuno**. Da [D-265](#d-265) la mappa si pesca sei
+tessere su dieci: una riga che dice «Eredan» e' viva sei volte su dieci e morta
+le altre quattro.
+
+Le Azioni avevano gia' risolto la stessa cosa nello stesso modo
+([D-273](#d-273)), e le Tensioni pure con la grammatica #TAG. **I Destini erano
+rimasti indietro.**
+
+### La grammatica, che non e' nuova: e' quella delle Azioni
+
+Una clausola non dice piu' `region_id`, dice **`any_tag`** — la stessa forma del
+bersaglio a segni di una carta Azione. Vuol dire *«una terra che porta uno di
+questi segni»*, e al tavolo si guardano le tessere col segno stampato.
+
+Tre letture, una per tipo di clausola, e vanno dette perche' sono tre:
+
+| | vuol dire |
+|---|---|
+| `region_presence` | **una terra cosi' dove il conto torna** — non la somma su tutte: «presidiata» vuol dire due pedine nello stesso posto |
+| `state_tag_present` | **una** di quelle terre porta il segno; quindi `state_tag_absent` = **nessuna** |
+| `scar_count` | le Cicatrici contate **su tutte** quelle terre |
+
+### La matematica che tiene, ed e' la stessa di D-273
+
+Con N tessere nel parco e K pescate, un segno stampato su almeno **N-K+1**
+tessere c'e' per costruzione. Qui N=10, K=6: **il pavimento e' 5 tessere**, e
+solo i quattro `domain:` lo raggiungono da soli. I segni di luogo — `capital`,
+`granary`, `mine`, `trade`, `wild`, `nomad_range` — stanno **su una tessera
+sola**: scrivere «la terra col #granaio» sarebbe stato lo stesso difetto con un
+altro nome.
+
+Quindi ogni riga porta **due** segni: quello che dice il posto, e il dominio che
+fa da pavimento.
+
+| la riga guarda | tessere | |
+|---|---|---|
+| `capital` + `domain:TERRITORY` | 5 | il trono, o una terra di Territorio |
+| `granary` + `domain:SURVIVAL` | 5 | il granaio, o una di Sopravvivenza |
+| `nomad_range` + `domain:SURVIVAL` | 5 | il pascolo, o una di Sopravvivenza |
+| `mine` + `domain:ANCIENT` | 5 | la miniera, o una d'Antico |
+| `wild` + `domain:ANCIENT` | 5 | il selvaggio, o una d'Antico |
+| `trade` + `domain:RESOURCE` | 5 | il commercio, o una di Risorse |
+
+**Quarantuno righe ri-mirate**, su ventitre' Destini. Nessuna clausola spedita
+nomina piu' una Regione per nome, e una prova lo controlla.
+
+### Il numero
+
+`cli/run_map_probe.gd` e `cli/run_contest_probe.gd`, 100 partite, seme 7000:
+
+| | prima | dopo |
+|---|---|---|
+| righe che nascono morte | **43.1%** (215) | **0%** (0) |
+| Regioni pescate che qualcuno nomina | 22.3% | **72.2%** |
+| **coppie che si contendono una Regione** | **2.8%** (17) | **15.5%** (93) |
+| coppie che si contendono una memoria | 7.0% | 8.3% |
+| coppie che si contendono una Cicatrice | 25.0% | 26.2% |
+| **clausole che qualcuno contendeva** | 21.4% (503) | **25.9%** (619) |
+| `region_presence` contese | 17 | **143** |
+| clausole gia' vere all'apertura | 53.1% | 53.1% |
+
+**La contesa sulla mappa passa da 2.8% a 15.5%**: e' il numero che non si era
+mosso in tutta la giornata, ed era fermo per una ragione sola — le carte
+guardavano una geografia che meta' delle volte non c'era.
+
+### Due misure cieche, trovate prima di crederci
+
+Ri-mirate le clausole, **tutte e due le sonde sono andate a zero**: cercavano
+`region_id`, e non ne esisteva piu' uno. La sonda della mappa dava «0 righe che
+nominano una Regione», quella della contesa «0.0% di coppie». Erano la
+quindicesima e la sedicesima misura cieca di questo progetto — le prime due
+trovate **perche' uno zero non si crede mai**, non perche' qualcosa fosse
+esploso. Adesso tutte e due risolvono i segni in terre pescate.
+
+*(E dentro la seconda ce n'era una terza: le clausole `scar_count`, perse il
+`region_id`, risultavano **globali**, e la lite sulle Cicatrici saliva a 29.0%
+per un difetto di conto. Con i segni risolti e' 26.2%.)*
+
+### Il cancello
+
+`validate_physical.py` regola 17 estesa: una clausola di Destino o Obiettivo
+**non puo' nominare una Regione per nome** — su una mappa pescata e' una riga
+che nasce morta — e i segni che guarda devono stare su almeno N-K+1 tessere. Due
+difetti nuovi nel `--self-test`, che adesso sono **ventitre'** e mordono tutti.
+
+`tests/unit/test_a_clause_aims_by_signs.gd`, cinque prove, fra cui una che
+controlla che **nessuna clausola spedita** nomini piu' una Regione. Provata al
+contrario spegnendo la mira a segni: **ventuno fallimenti**.
+
+### Vaerax nel mazzo
+
+`DST_VAERAX_LEGEND` — mai uscita in 400 seggi perche' non stava nel mazzetto di
+nessuno ([D-326](#d-326)) — entra in quello di `ENT_VAERAX`, che diventa l'unica
+casa con **cinque** carte invece di quattro. Il committente ha scelto cosi'
+invece di toglierla dalla scatola.
+
+### Il costo, dichiarato
+
+**0 seggi bloccati su 8**, misto e uniforme.
+
+| | misto prima | misto dopo | uniforme prima | uniforme dopo |
+|---|---|---|---|---|
+| NONE | 90 | **85** | 69 | **72** |
+| MINIMUM | 135 | 140 | 136 | 144 |
+| VICTORY | 166 | 169 | 184 | **173** |
+| TRIUMPH | 9 | **6** | 11 | 11 |
+| Verita' scritte | 162 | **156** | 159 | 157 |
+
+Il tavolo misto e' **piu' generoso in basso e piu' duro in cima**: cinque case in
+meno a mani vuote, tre Trionfi in meno. L'uniforme il contrario: tre NONE in piu'
+e **undici Vittorie in meno**. Ed e' coerente con quello che la modifica fa —
+una riga a segni si puo' sempre provare, ma adesso **qualcun altro la vuole**.
+
+`docs/MISURA_VITE.md`: trasformazioni sedute 198 -> **195**.
+
+### Quello che resta
+
+Le clausole gia' vere all'apertura **non si muovono** (53.1%). Questa modifica
+non le tocca: rende le righe *raggiungibili* e *contese*, non *conquistate*. Il
+fondo di [ISSUES 91](ISSUES.md) e' ancora li'.
+
+---
+
 ## D-326 — La lotta per la mappa c'e'; sono le carte che guardano altrove
 
 **implemented** (0.1.289) · misura, non modifica · [ISSUES 97](ISSUES.md)

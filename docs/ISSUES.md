@@ -2763,7 +2763,7 @@ e' in gioco.
 
 ---
 
-### 97. Quasi meta' delle clausole di Regione nomina una terra che non e' stata pescata
+### 97. ✅ Le clausole di Regione nascevano morte — chiusa in 0.1.290, strada 1
 
 `regola` · `contenuto` · `bilanciamento` · `decisione` · aperta in 0.1.289
 ([D-326](DECISIONS.md#d-326))
@@ -2820,6 +2820,29 @@ l'unica casa con tre Destini propri), o esce dalla scatola.
 
 **Il metro**: `cli/run_map_probe.gd`, righe *su una che non c'e'* e *non le
 nomina nessuno*. **Fatto quando** nessuna clausola di Regione puo' nascere morta.
+
+---
+
+**Chiusa in 0.1.290 con la strada 1** ([D-327](DECISIONS.md#d-327)). Quarantuno
+righe su ventitre' Destini mirano a segni con `any_tag`, la stessa forma delle
+Azioni. Ogni riga porta **due** segni — quello del posto e il dominio che fa da
+pavimento — perche' con 10 tessere e 6 pescate solo un segno su almeno 5 tessere
+e' garantito, e i segni di luogo stanno su una sola.
+
+| | prima | dopo |
+|---|---|---|
+| righe che nascono morte | 43.1% | **0%** |
+| Regioni pescate che qualcuno nomina | 22.3% | **72.2%** |
+| coppie che si contendono una Regione | 2.8% | **15.5%** |
+| clausole contese | 21.4% | **25.9%** |
+
+Il cancello: la regola 17 del validatore adesso vieta di nominare una Regione
+per nome in una clausola, e pretende il pavimento sui segni. `DST_VAERAX_LEGEND`
+e' entrata nel mazzetto di `ENT_VAERAX`.
+
+**Resta aperto**: le clausole gia' vere all'apertura non si muovono (53.1%).
+Questa strada rende le righe raggiungibili e contese, non conquistate —
+[ISSUES 91](#).
 
 ---
 

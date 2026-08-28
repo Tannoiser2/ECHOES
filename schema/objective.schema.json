@@ -66,6 +66,14 @@
         "region_id": {
           "type": "string"
         },
+        "any_tag": {
+          "description": "I segni della tessera che la clausola guarda, invece del nome di una Regione (D-327). Vera se una terra che porta uno di questi segni soddisfa la riga; con `absent`/`max` diventa «nessuna terra cosi'». Il validatore pretende che i segni scelti stiano su abbastanza tessere del parco da esserci su ogni mappa pescata.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
         "tension_id": {
           "type": "string"
         },

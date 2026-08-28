@@ -88,7 +88,29 @@ func _initialize() -> void:
 				if objective != null:
 					_clauses(objective, carried)
 			for clause in carried:
-				var named: String = str((clause as Dictionary).get("region_id", ""))
+				var cl: Dictionary = clause as Dictionary
+				# **Una riga mirata a segni** (D-327): vive se una delle terre
+				# pescate porta uno di quei segni, e chiede *quelle*. Il
+				# validatore garantisce che ce ne sia sempre almeno una, ma la
+				# sonda lo misura lo stesso: una garanzia non provata in partita
+				# e' una promessa.
+				var signs: Array = cl.get("any_tag", []) as Array
+				if not signs.is_empty():
+					var found: bool = false
+					for region_id in session.world["regions"]:
+						for sign in signs:
+							if session.service.region_has_tag(str(region_id), str(sign)):
+								asked[str(region_id)] = true
+								found = true
+								break
+					if found:
+						live_clauses += 1
+					else:
+						dead_clauses += 1
+						var missing: String = "segni: %s" % str(signs)
+						dead_by_region[missing] = int(dead_by_region.get(missing, 0)) + 1
+					continue
+				var named: String = str(cl.get("region_id", ""))
 				if named == "" or named.begins_with("$"):
 					continue
 				if (session.world["regions"] as Dictionary).has(named):
