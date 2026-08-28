@@ -232,7 +232,24 @@
             }
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "una carta posa #fame o #requisito o #malcontento",
+          "puts_tag": [
+            "condition:starving",
+            "condition:requisitioned",
+            "condition:unrest"
+          ]
+        },
+        {
+          "text": "una carta cambia il controllo di una terra con #granaio",
+          "takes_control": true,
+          "on_region_with": [
+            "granary"
+          ]
+        }
+      ]
     },
     {
       "id": "TEN_AWAKENING",
@@ -468,7 +485,23 @@
             ]
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "una carta posa #sfruttato o #sigillato",
+          "puts_tag": [
+            "condition:exploited",
+            "structure:sealed"
+          ]
+        },
+        {
+          "text": "una carta cambia il controllo di una terra con #cristallo",
+          "takes_control": true,
+          "on_region_with": [
+            "crystal_site"
+          ]
+        }
+      ]
     },
     {
       "id": "TEN_SUCCESSION",
@@ -744,7 +777,24 @@
             }
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "una carta posa #conteso o #malcontento o #il_seggio_vuoto",
+          "puts_tag": [
+            "condition:contested",
+            "condition:unrest",
+            "scar:the_empty_chair"
+          ]
+        },
+        {
+          "text": "una carta cambia il controllo di una terra con #capitale",
+          "takes_control": true,
+          "on_region_with": [
+            "capital"
+          ]
+        }
+      ]
     },
     {
       "id": "TEN_ROADS",
@@ -951,7 +1001,24 @@
             }
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "una carta posa #tagliato_fuori o #saccheggiato",
+          "puts_tag": [
+            "condition:cut_off",
+            "condition:plundered"
+          ]
+        },
+        {
+          "text": "una carta cambia il controllo di una terra con #commercio o #cristallo",
+          "takes_control": true,
+          "on_region_with": [
+            "trade",
+            "crystal_site"
+          ]
+        }
+      ]
     },
     {
       "id": "TEN_PLAGUE",
@@ -1128,7 +1195,24 @@
             "echo_summary": "I morti $of_region furono scritti a uno a uno in un registro che chiunque poteva leggere."
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "una carta posa #fame o #malcontento o #abbandonato",
+          "puts_tag": [
+            "condition:starving",
+            "condition:unrest",
+            "condition:abandoned"
+          ]
+        },
+        {
+          "text": "una carta cambia il controllo di una terra con #pascolo",
+          "takes_control": true,
+          "on_region_with": [
+            "nomad_range"
+          ]
+        }
+      ]
     },
     {
       "id": "TEN_THIRST",
@@ -1305,7 +1389,24 @@
             "echo_summary": "$in_region l'acqua restò senza prezzo, e i pozzi si abbassarono per tutti insieme."
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "una carta posa #razionato o #fame",
+          "puts_tag": [
+            "condition:rationed",
+            "condition:starving"
+          ]
+        },
+        {
+          "text": "una carta cambia il controllo di una terra con #granaio o #commercio",
+          "takes_control": true,
+          "on_region_with": [
+            "granary",
+            "trade"
+          ]
+        }
+      ]
     },
     {
       "id": "TEN_WATER",
@@ -1491,7 +1592,23 @@
             "echo_summary": "Si stabilì che l'acqua non fosse di nessuno, e per un anno intero funzionò."
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "una carta posa #magro o #il_canale",
+          "puts_tag": [
+            "condition:lean",
+            "structure:canal"
+          ]
+        },
+        {
+          "text": "una carta cambia il controllo di una terra con #granaio",
+          "takes_control": true,
+          "on_region_with": [
+            "granary"
+          ]
+        }
+      ]
     },
     {
       "id": "TEN_DEBT",
@@ -1707,7 +1824,23 @@
             "echo_summary": "Il debito fu chiamato tutto insieme, e $in_region cambiò padrone senza che partisse un colpo."
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "una carta posa #indebitata o #pedaggio",
+          "puts_tag": [
+            "condition:indebted",
+            "structure:tollgate"
+          ]
+        },
+        {
+          "text": "una carta cambia il controllo di una terra con #commercio",
+          "takes_control": true,
+          "on_region_with": [
+            "trade"
+          ]
+        }
+      ]
     },
     {
       "id": "TEN_RELIC",
@@ -1925,7 +2058,23 @@
             }
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "una carta posa #sigillato o #malcontento",
+          "puts_tag": [
+            "structure:sealed",
+            "condition:unrest"
+          ]
+        },
+        {
+          "text": "una carta cambia il controllo di una terra con #cristallo",
+          "takes_control": true,
+          "on_region_with": [
+            "crystal_site"
+          ]
+        }
+      ]
     },
     {
       "id": "TEN_CHARTER",
@@ -2120,7 +2269,23 @@
             "echo_summary": "Si stabilì di tirare a sorte, e la cosa strana è che tenne."
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "una carta posa #conteso o #malcontento",
+          "puts_tag": [
+            "condition:contested",
+            "condition:unrest"
+          ]
+        },
+        {
+          "text": "una carta cambia il controllo di una terra con #capitale",
+          "takes_control": true,
+          "on_region_with": [
+            "capital"
+          ]
+        }
+      ]
     },
     {
       "id": "TEN_NAMELESS",
@@ -2326,7 +2491,22 @@
             }
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "una carta posa #svuotato",
+          "puts_tag": [
+            "condition:emptied"
+          ]
+        },
+        {
+          "text": "una carta cambia il controllo di una terra con #pascolo",
+          "takes_control": true,
+          "on_region_with": [
+            "nomad_range"
+          ]
+        }
+      ]
     },
     {
       "id": "TEN_ASH",
@@ -2481,7 +2661,17 @@
             "echo_summary": "Si stabilì che non ci fosse niente da guardare, e per qualche mese fu vero."
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "una carta cambia il controllo di una terra con #cristallo o #selvaggio",
+          "takes_control": true,
+          "on_region_with": [
+            "crystal_site",
+            "wild"
+          ]
+        }
+      ]
     }
   ]
 }

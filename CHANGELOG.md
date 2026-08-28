@@ -5,6 +5,86 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.293 — SI ACCENDE QUANDO: la Tensione dice cosa la sveglia (D-330)
+
+### Aggiunto
+
+- **`heats_when` sulla faccia della Tensione**: la casella che il committente ha
+  disegnato sulla carta *I Recinti*. Quattro verbi chiusi — un segno posato o
+  tolto, una Pietra costruita, un controllo cambiato, una Presenza tolta — piu'
+  il filtro del luogo `on_region_with`, e un `text` che e' **la riga come si
+  stampa**. La regola e il suo testo sono la stessa cosa.
+- Il motore guarda gli Effetti che l'Azione ha **davvero prodotto** e manda il
+  Calore alla questione che riconosce il gesto. Se nessuna lo riconosce torna il
+  ponte di D-261, **come ripiego dichiarato**.
+
+### Misurato — e il numero che mi aspettavo non si e' mosso
+
+| su 20 anni, seme 7000 | col ponte | con la casella |
+|---|---|---|
+| Risonanze | 772 | 772 |
+| **questioni diverse toccate** | **48 su 60** | **48 su 60** |
+
+Immaginavo che il ponte concentrasse il Calore e la casella lo spargesse: non
+era vero. Con dieci questioni per Tema, «la piu' vicina alla soglia» ruotava
+gia' da sola.
+
+**Quello che cambia e' un'altra cosa**, e vale il lavoro:
+
+| | |
+|---|---|
+| Tensioni con la casella | **47 su 60** |
+| cadute di Calore su una che la porta | **257 su 381 — il 67,5%** |
+
+Due volte su tre il Calore va dove una **riga stampata** dice che deve andare, e
+al tavolo lo si verifica guardando la mappa. Non e' bilanciamento: e'
+leggibilita'.
+
+### Contenuto
+
+- **`TEN_ENCLOSURE` (I Recinti)** porta le quattro righe della carta disegnata,
+  tradotte sui segni che la mappa ha davvero: `#campo`, `#villaggio` e `#pascolo`
+  **non esistono** — le terre da coltivo si dicono `granary`, `nomad_range` e
+  `domain:TERRITORY`.
+- Le altre 46 hanno un **pavimento derivato** da quello che gia' dichiaravano in
+  `focus_region_tags`. Non e' contenuto d'autore: e' la stessa cosa detta in un
+  modo che il motore esegue e il tavolo legge, e si riscrive una carta alla
+  volta. **13 Tensioni restano senza**, e per loro vale il ponte.
+
+### Cancelli
+
+- **Controllo 19** in `validate_physical.py`: una riga che nomina un segno fuori
+  dal dizionario o una Pietra che non esiste non si accende mai; una riga senza
+  nessun verbo e' lo stesso difetto in peggio, perche' al tavolo sembra una
+  regola. Self-test da 23 a **26** difetti piantati.
+- **`test_a_tension_says_what_wakes_it.gd`**, quattro prove. La seconda questione
+  se la fabbrica: il banco ne porta una sola per Tema, e con una sola il ponte e
+  la casella sceglierebbero la stessa — la prova sarebbe passata senza provare
+  niente.
+
+### Costo, dichiarato
+
+| | prima | dopo |
+|---|---|---|
+| **seggi bloccati su 8** | **0** | **0** (misto e uniforme) |
+| Consigli per anno, misto / uniforme | 3,41 / 3,46 | 3,41 / 3,46 |
+| **Verita' scritte**, misto | 156 | **160** |
+| di cui diverse, misto | 146 | **150** |
+| Verita' scritte / diverse, uniforme | 157 / 133 | **160 / 137** |
+
+Le Verita' salgono di quattro e la loro varieta' di quattro: piccolo, dentro il
+rumore, e **nella direzione giusta** — il Calore che va sulla questione che il
+gesto riguarda apre Consigli su cose che stanno succedendo davvero. Non lo
+vendo per piu' di quello che e': i Consigli per anno non si muovono di un
+decimo.
+
+- Il `text` delle 46 righe derivate e' prosa meccanica, e si vede. E' un
+  pavimento, non una faccia finita.
+- Il ponte **non e' stato tolto**: con 13 Tensioni senza casella e 124 cadute su
+  381 che non trovano una riga, toglierlo lascerebbe del Calore per terra.
+
+---
+
 ## 0.1.292 — I nomi degli anni cancellati, e quattro strumenti che cercavano per cartella (D-329)
 
 ### Cambiato

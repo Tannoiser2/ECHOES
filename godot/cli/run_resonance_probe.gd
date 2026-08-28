@@ -43,6 +43,8 @@ func _initialize() -> void:
 	var per_card: Dictionary = {}
 	var per_event: Dictionary = {}   # firma della giocata -> gettoni caduti
 	var marks: int = 0         # le Risonanze aggravate, che lasciano un segno
+	var per_tension: Dictionary = {}  # su quale questione e' caduto il Calore (D-330)
+	var woken: int = 0         # quante volte l'ha scelta la casella «si accende quando»
 
 	for run in range(runs):
 		var seed_value: int = first_seed + run
@@ -119,6 +121,19 @@ func _initialize() -> void:
 					marks += 1
 			if str(effect.get("type", "")) == "ADJUST_TENSION":
 				bridged += 1
+				# **Dove cade il Calore** (D-330). Il ponte lo mandava sempre
+				# alla questione piu' vicina alla soglia del Tema; la casella
+				# «si accende quando» lo manda a quella che il gesto riguarda.
+				# La differenza si vede in una cosa sola: su **quante questioni
+				# diverse** il Calore atterra in cento anni.
+				var hit: String = str((effect.get("target", {}) as Dictionary).get("id", ""))
+				if hit != "":
+					per_tension[hit] = int(per_tension.get(hit, 0)) + 1
+					var definition: Variant = data.tensions.get(hit)
+					if definition != null and not (
+							(definition as Dictionary).get("heats_when", []) as Array
+					).is_empty():
+						woken += 1
 		played += int((session.world.get("cards_played_count", 0)))
 		session.dispose()
 
@@ -161,6 +176,32 @@ func _initialize() -> void:
 		print("    %-30s %5d" % [
 			str((data.assets[str(asset_id)] as Dictionary)["title"]), int(per_card[asset_id]),
 		])
+	# **Dove cade il Calore** (D-330): la misura della casella «si accende
+	# quando». Il numero che conta non e' quante Risonanze ci sono — quello lo
+	# dice la riga sopra — ma su **quante questioni diverse** il Calore atterra.
+	# Il ponte lo mandava sempre alla piu' vicina alla soglia del suo Tema, e
+	# quindi alle stesse poche; la casella lo manda a quella che il gesto
+	# riguarda.
+	print("")
+	print("  Su quali questioni cade il Calore:")
+	var with_rule: int = 0
+	for tension_id in data.tensions:
+		if not ((data.tensions[str(tension_id)] as Dictionary).get("heats_when", []) as Array).is_empty():
+			with_rule += 1
+	print("    questioni diverse toccate      %5d su %d" % [per_tension.size(), data.tensions.size()])
+	print("    con la casella «si accende»    %5d su %d" % [with_rule, data.tensions.size()])
+	print("    Calore caduto su una che ce l'ha  %5d su %d" % [woken, bridged])
+	var hottest: Array = per_tension.keys()
+	hottest.sort_custom(func(a: Variant, b: Variant) -> bool:
+		return int(per_tension[a]) > int(per_tension[b])
+	)
+	for tension_id in hottest.slice(0, 12):
+		var card: Dictionary = data.tensions[str(tension_id)]
+		print("    %-28s %5d  %s" % [
+			str(card["title"]), int(per_tension[tension_id]),
+			"si accende quando" if not (card.get("heats_when", []) as Array).is_empty() else "(ponte)",
+		])
+
 	var silent: Array = []
 	for asset_id in data.assets:
 		var card: Dictionary = data.assets[str(asset_id)]

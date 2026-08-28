@@ -1647,6 +1647,12 @@ const DEFS := {
 			"council": {
 				"type": "Dictionary",
 			},
+			"heats_when": {
+				"type": "Array",
+				"element": {
+					"type": "Dictionary",
+				},
+			},
 		},
 	},
 	"theme": {

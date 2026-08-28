@@ -345,6 +345,59 @@
               }
             }
           }
+        },
+        "heats_when": {
+          "type": "array",
+          "description": "**SI ACCENDE QUANDO** — la casella che il committente ha disegnato sulla faccia della Tensione. Dice, in regola leggibile al tavolo, cosa le fa prendere Calore: non e' prosa, e' quello che l'Azione appena giocata ha **fatto al mondo**. Fino alla 0.1.292 il Calore andava alla questione piu' vicina alla soglia del Tema — un ponte che il codice stesso dichiarava provvisorio (D-261). Con queste righe il Calore va alla questione che **quel gesto** riguarda. Vuota o assente: vale il ponte, ed e' il ripiego dichiarato.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "text"
+            ],
+            "properties": {
+              "text": {
+                "type": "string",
+                "description": "La riga come si stampa sulla carta: «aggiunge #conteso su una Regione con #campo o #granaio»."
+              },
+              "puts_tag": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "L'Azione ha posato uno di questi segni."
+              },
+              "clears_tag": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "L'Azione ha tolto uno di questi segni."
+              },
+              "builds": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "L'Azione ha costruito una di queste Pietre (id di structure_type)."
+              },
+              "takes_control": {
+                "type": "boolean",
+                "description": "L'Azione ha cambiato il controllo di una Regione."
+              },
+              "removes_presence": {
+                "type": "boolean",
+                "description": "L'Azione ha tolto una Presenza da una Regione."
+              },
+              "on_region_with": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Filtro: la Regione toccata deve portare uno di questi segni. Senza, vale ovunque."
+              }
+            }
+          }
         }
       }
     }

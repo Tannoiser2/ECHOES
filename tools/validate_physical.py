@@ -813,6 +813,41 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
                     "la frase fa il mestiere della casella: %s consegna al proponente "
                     "(%s) il luogo di cui si discute, che e' quello che il Consiglio "
                     "gli vende" % (conseguenza.get("id"), tipo))
+
+    # 19. **SI ACCENDE QUANDO** (D-330, la casella disegnata dal committente).
+    #
+    # La riga dice cosa fa prendere Calore alla Tensione, e si legge al tavolo
+    # guardando la mappa. Una riga che nomina un segno che nessuno scrive, o una
+    # Pietra che non esiste, e' una regola stampata che non si accende mai: il
+    # difetto peggiore, perche' chi legge la carta crede che valga.
+    #
+    # E una riga **senza nessun verbo** — solo il testo — non si accende
+    # nemmeno per sbaglio: il motore la scarta, e al tavolo sembra una regola.
+    segni_noti = {v["id"] for v in documenti.get("tag", [])}
+    pietre_note = {v["id"] for v in documenti.get("structure_type", [])}
+    for tensione in documenti.get("tension", []):
+        for riga in tensione.get("heats_when", []) or []:
+            dove = "%s «%s»" % (tensione.get("id"), str(riga.get("text", ""))[:40])
+            verbi = [
+                riga.get("puts_tag"), riga.get("clears_tag"), riga.get("builds"),
+                riga.get("takes_control"), riga.get("removes_presence"),
+            ]
+            if not any(verbi):
+                guai.append(
+                    "si accende quando: %s non dice nessun verbo — il motore la "
+                    "scarta, e al tavolo sembra una regola" % dove)
+            for chiave in ("puts_tag", "clears_tag", "on_region_with"):
+                for tag in riga.get(chiave) or []:
+                    if str(tag) not in segni_noti:
+                        guai.append(
+                            "si accende quando: %s nomina il segno «%s», che non "
+                            "sta nel dizionario: la riga non si accende mai"
+                            % (dove, tag))
+            for pietra in riga.get("builds") or []:
+                if str(pietra) not in pietre_note:
+                    guai.append(
+                        "si accende quando: %s nomina la Pietra «%s», che non "
+                        "esiste: la riga non si accende mai" % (dove, pietra))
     return guai
 
 
@@ -1038,6 +1073,24 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
     print("")
     print("== SELF-TEST: la guardia morde? ==")
     print("")
+    def accende_segno_inventato(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        tensione = next(t for t in prova["tension"] if t.get("heats_when"))
+        tensione["heats_when"] = [{
+            "text": "una carta posa un segno che non esiste",
+            "puts_tag": ["condition:seminato_apposta"],
+        }]
+
+    def accende_pietra_inventata(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        tensione = next(t for t in prova["tension"] if t.get("heats_when"))
+        tensione["heats_when"] = [{
+            "text": "una carta costruisce una Pietra che non esiste",
+            "builds": ["STR_SEMINATA_APPOSTA"],
+        }]
+
+    def accende_senza_verbo(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        tensione = next(t for t in prova["tension"] if t.get("heats_when"))
+        tensione["heats_when"] = [{"text": "una regola che non dice cosa guardare"}]
+
     esiti = [
         pianta("segno usato tolto dal dizionario", senza_voce,
                "segno fuori dal dizionario: «%s»" % bersaglio),
@@ -1085,6 +1138,12 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
                memoria_sbagliata, "posa un segno che non e' del mondo"),
         pianta("carta che apre una Domanda a cui nessuno puo' rispondere",
                domanda_muta, "domanda senza risposte"),
+        pianta("si accende quando: un segno che nessuno scrive",
+               accende_segno_inventato, "non sta nel dizionario"),
+        pianta("si accende quando: una Pietra che non esiste",
+               accende_pietra_inventata, "nomina la Pietra"),
+        pianta("si accende quando: una riga senza verbo", accende_senza_verbo,
+               "non dice nessun verbo"),
     ]
     puliti = controlla(documenti)
     print("  %s %s" % ("OK " if not puliti else "MANCATO", "dati veri: nessun guaio"))

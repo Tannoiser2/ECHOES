@@ -2768,6 +2768,37 @@ e' in gioco.
 
 ---
 
+### 100. Le quarantasei caselle «si accende quando» sono un pavimento, non una faccia
+
+`contenuto` · `da-decidere` · **aperta in 0.1.293** ([D-330](DECISIONS.md#d-330))
+
+La casella esiste, il motore la esegue e una guardia la sorveglia. Quello che
+manca e' **d'autore**, e sono tre cose diverse:
+
+1. **Una sola carta e' scritta a mano.** `TEN_ENCLOSURE` porta le quattro righe
+   che il committente ha disegnato su *I Recinti*. Le altre 46 hanno un
+   pavimento derivato da `focus_region_tags`, e il testo si vede che e'
+   meccanico: *«una carta posa #fame o #requisito o #malcontento»*. Al tavolo si
+   legge, ma non e' una faccia finita.
+2. **Tredici Tensioni non hanno la casella**, perche' non dichiaravano nessun
+   `focus_region_tags` da cui derivarla. Per loro vale il ponte, e nessuno puo'
+   leggere sulla carta perche' si scaldano.
+3. **Il ponte e' ancora vivo**, e regge **124 cadute di Calore su 381**. Finche'
+   e' cosi' non si puo' togliere: il Calore resterebbe per terra.
+
+**Il verso del filo, e questa e' la decisione vera.** Oggi il Tema lo dichiara
+**la carta Azione** (`resonance.theme`) e la Tensione dice solo quale di quelle
+del Tema si sveglia. La carta del committente lo dichiara **dalla parte della
+Tensione**. Non possono essere tutte e due la fonte di verita': con 60 Tensioni
+e 48 carte, la regola sta su meno posti se la porta la Tensione — ma il
+cambiamento tocca la Risonanza, che e' la regola al centro della direzione.
+
+**Il metro**: `cli/run_resonance_probe.gd`, riga *Calore caduto su una che ce
+l'ha* — oggi 257 su 381. **Fatto quando** nessuna caduta di Calore ricade sul
+ponte, e ogni riga stampata e' scritta da chi scrive il gioco.
+
+---
+
 ### 99. ✅ I dati portano ancora i nomi degli anni cancellati — chiusa in 0.1.292
 
 `debito` · `strumenti` · aperta in 0.1.291 ([D-328](DECISIONS.md#d-328)),

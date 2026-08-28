@@ -10,6 +10,126 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-330 — SI ACCENDE QUANDO: la Tensione dice cosa la sveglia
+
+**implemented** (0.1.293) · richiesta del committente, con la carta disegnata
+*I Recinti*: *«le carte tensione esempio di come le vorrei»*.
+
+### Il ponte che il codice dichiarava provvisorio
+
+Il Calore lo dichiara la carta Azione: la Risonanza dice quale Tema scalda, e
+fa cadere gettoni coperti sul suo mazzetto ([D-261](#d-261)). Ma **quale
+questione**, dentro quel Tema, si avvicinasse alla soglia lo decideva una riga
+sola: `_hottest_of_theme()`, *«la piu' vicina alla soglia»*. Il commento accanto
+lo diceva senza girarci intorno — *«il ponte resta finche' le Domande vivono
+li'»*.
+
+Al tavolo quella riga non si puo' leggere. Giochi una carta che recinta un
+campo, e il Calore va alla questione che per caso era piu' avanti: non c'e'
+niente, sulla mappa, che spieghi perche'.
+
+### La casella, come il committente l'ha disegnata
+
+Sulla faccia della Tensione, un riquadro: **SI ACCENDE QUANDO**. Quattro verbi
+chiusi, e sono quelli che si vedono succedere sul tavolo:
+
+| la riga guarda | vuol dire |
+|---|---|
+| `puts_tag` / `clears_tag` | l'Azione ha posato o tolto uno di questi segni |
+| `builds` | ha costruito una di queste Pietre |
+| `takes_control` | ha cambiato il controllo di una Regione |
+| `removes_presence` | ha tolto una Presenza |
+| `on_region_with` | **filtro del luogo**: la Regione toccata porta uno di questi segni |
+
+Piu' un `text`, che e' **la riga come si stampa**. La regola e il suo testo sono
+la stessa cosa: non c'e' una versione per il motore e una per la carta.
+
+Il motore guarda gli Effetti che l'Azione ha **davvero prodotto** — non le sue
+intenzioni — e fra le questioni del Tema in gioco sceglie quella che riconosce
+il gesto. A parita' vince la piu' vicina alla soglia, che e' la mano del ponte
+applicata a un insieme piu' piccolo. **Nessuna che lo riconosca: torna il
+ponte**, ed e' il ripiego dichiarato, non un caso.
+
+### Il numero che mi aspettavo, e che non si e' mosso
+
+Va scritto per primo, perche' e' quello che avevo previsto e sbagliato.
+
+| su 20 anni, seme 7000 | col ponte | con la casella |
+|---|---|---|
+| Risonanze | 772 | 772 |
+| di quelle, col ponte alla questione | 378 | 381 |
+| **questioni diverse toccate** | **48 su 60** | **48 su 60** |
+
+**La dispersione non cambia.** Immaginavo che il ponte concentrasse il Calore su
+poche questioni e che la casella lo spargesse: non era vero — con dieci
+questioni per Tema, «la piu' vicina alla soglia» ruotava gia' da sola.
+
+### Quello che cambia, ed e' un'altra cosa
+
+| | |
+|---|---|
+| Tensioni con la casella | **47 su 60** |
+| cadute di Calore su una questione che la porta | **257 su 381 — il 67,5%** |
+
+Due volte su tre il Calore adesso va dove **una riga stampata dice che deve
+andare**, e chi sta al tavolo puo' verificarlo guardando la mappa. Non e' un
+guadagno di bilanciamento: e' un guadagno di **leggibilita'**, ed e' esattamente
+quello che la domanda di casa chiede — *questa cosa esisterebbe e sarebbe
+comprensibile sul tavolo fisico?*
+
+### I Recinti, e i tre segni che non esistono
+
+La carta disegnata dal committente nomina `#campo`, `#villaggio` e `#pascolo`.
+**Sulla mappa non esistono**: le terre da coltivo si dicono `granary` e
+`nomad_range`, piu' il dominio `domain:TERRITORY`. `TEN_ENCLOSURE` porta le
+quattro righe della carta tradotte sui segni veri; e' l'unica scritta a mano.
+
+Le altre 46 hanno un **pavimento derivato**, e va detto chiaro: e' costruito da
+quello che ogni Tensione **gia' dichiarava** in `focus_region_tags` — i segni che
+guarda — reso leggibile come regola. Non e' contenuto d'autore, e' la stessa
+cosa detta in un modo che il motore esegue e il tavolo legge. Si riscrive una
+carta alla volta, come I Recinti, e quella e' materia d'autore.
+
+Restano **13 Tensioni senza casella**: sono le tredici senza `focus_region_tags`,
+e per loro vale il ponte.
+
+### La guardia, vista mordere
+
+Controllo 19 in `validate_physical.py`: una riga che nomina un segno fuori dal
+dizionario, o una Pietra che non esiste, non si accende mai — e chi legge la
+carta crede che valga. Una riga **senza nessun verbo** e' lo stesso difetto in
+peggio: il motore la scarta, e al tavolo sembra una regola. Tre difetti nuovi
+nel self-test, che passa da 23 a **26**.
+
+E quattro prove in `test_a_tension_says_what_wakes_it.gd`. La seconda questione
+**se la fabbrica**: il banco ne porta una sola per Tema, e con una sola il ponte
+e la casella sceglierebbero la stessa — la prova sarebbe passata senza provare
+niente, che e' la lezione di `test_the_world_answers`.
+
+### Il costo, dichiarato
+
+| | prima | dopo |
+|---|---|---|
+| **seggi bloccati su 8** | **0** | **0** (misto e uniforme) |
+| Consigli per anno, misto / uniforme | 3,41 / 3,46 | 3,41 / 3,46 |
+| **Verita' scritte**, misto | 156 | **160** |
+| di cui diverse, misto | 146 | **150** |
+| Verita' scritte / diverse, uniforme | 157 / 133 | **160 / 137** |
+
+Le Verita' salgono di quattro e la loro varieta' di quattro: piccolo, dentro il
+rumore, e **nella direzione giusta** — il Calore che va sulla questione che il
+gesto riguarda apre Consigli su cose che stanno succedendo davvero. Non lo
+vendo per piu' di quello che e': i Consigli per anno non si muovono di un
+decimo.
+
+- Il `text` delle 46 righe derivate e' prosa meccanica, e si vede: *«una carta
+  posa #fame o #requisito o #malcontento»*. E' un pavimento, non una faccia
+  finita.
+- Il ponte non e' stato tolto. Finche' 13 Tensioni non hanno la casella e 124
+  cadute su 381 non trovano una riga, toglierlo lascerebbe del Calore per terra.
+
+---
+
 ## D-329 — I nomi degli anni cancellati, e i quattro strumenti che cercavano per cartella
 
 **implemented** (0.1.292) · [ISSUES 99](ISSUES.md) chiusa · richiesta del
