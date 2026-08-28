@@ -1,13 +1,27 @@
 # ECHOES — Regole v0.2 (implementate in 0.0)
 
-Il testo di riferimento è la specifica esecutiva v0.2. Questo documento descrive
-**cosa fa il codice**: i numeri che sono davvero in gioco, le regole dove la
-specifica lasciava un margine e come è stato chiuso. Ogni scostamento è marcato
-con il riferimento a [DECISIONS.md](DECISIONS.md).
+> ⚠️ **Questo documento è fermo a 0.1.38, e da allora il gioco ha cambiato
+> direzione.** Resta perché è l'unico posto dove le regole sono scritte per
+> esteso, ma **non è il presente**: per i numeri di oggi vedi
+> [PUNTO_ZERO.md](PUNTO_ZERO.md), per dove sta andando
+> [ROADMAP_PUNTO_ZERO.md](ROADMAP_PUNTO_ZERO.md), e per cosa è stato deciso da
+> allora [DECISIONS.md](DECISIONS.md) da D-100 in avanti.
+>
+> Le cose che qui sotto sono descritte in modo superato, e sono le più grosse:
+> **gli anni d'autore non esistono più** (D-318, la Chronicle è una sola, CHR_00,
+> e ogni seme pesca la sua mappa), **la Domanda sta sulla carta Tensione** e non
+> nei template (D-266), **il Calore è una pista per Tema** che decide quale
+> Consiglio si apre (D-260/D-261), e **il bersaglio di una carta si dice a
+> segni**, mai col nome di una Regione (D-273, D-327).
 
-Tutti i numeri qui sotto sono data-driven: vivono in
-`godot/data/chronicle_01/chronicle_01.json` e nei file di `godot/data/`, non nel
-codice.
+Il testo di riferimento è la specifica esecutiva v0.2. Questo documento descrive
+**cosa faceva il codice a 0.1.38**: i numeri che erano davvero in gioco, le
+regole dove la specifica lasciava un margine e come è stato chiuso. Ogni
+scostamento è marcato con il riferimento a [DECISIONS.md](DECISIONS.md).
+
+Tutti i numeri qui sotto sono data-driven: vivevano nei file di `godot/data/`,
+non nel codice. Il file di Chronicle che questo documento nominava
+(`chronicle_01/chronicle_01.json`) è stato cancellato in 0.1.281.
 
 ---
 

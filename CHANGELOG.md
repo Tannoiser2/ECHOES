@@ -5,6 +5,83 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.291 — Il primo documento da leggere era falso, e uno strumento non partiva (D-328)
+
+### Cambiato
+
+- **`docs/PUNTO_ZERO.md` riscritto sui numeri di oggi.** Era fermo a **0.1.220**,
+  settanta versioni indietro: dava 512 prove (sono 630), l'82,8% di turni «passa»
+  (il 47,3%), 8 Destini su 20 con faccia fisica (23 su 23), la Terra all'1,4% del
+  Calore (7,1%). E' il documento che `CLAUDE.md` ordina di leggere per primo.
+- **`README.md` riparato in cinque punti** dove nominava cose che non esistono:
+  lo stato («Milestone 0.1 completata (0.1.18)»), la scelta fra `CHR_01` e
+  `CHR_02`, i quattro `sim_plans` cancellati in 0.1.281, i fogli di stampa (**25
+  → 42**) e sei collegamenti a documenti tolti.
+- **`docs/RULES_V0_2.md` porta un'avvertenza in cima**: e' fermo a 0.1.38, resta
+  perche' e' l'unico posto dove le regole sono scritte per esteso, e la nota dice
+  quali quattro cose descrive in modo superato.
+
+### Misurato — il giro completo dei cancelli
+
+| | |
+|---|---|
+| suite | **630 prove / 96 suite / 35.886 asserzioni** verdi |
+| il vincolo | **0 seggi bloccati su 8**, misto e uniforme |
+| turni «passa» | **47,3%** (3.406 su 7.200), 47,0 / 47,6 / 47,4 per Atto |
+| quanto rende giocare | **+183,1%** contro il tavolo di pietra |
+| Risonanze | **3.762 in 100 anni**, il 25,7% aggravate |
+
+**Il criterio 2 di PZ-01 e' soddisfatto, e nessun documento lo diceva**: *«meno
+della meta' dei turni sono passa»*. Era l'82,8% quando la voce e' stata aperta.
+
+E il difetto che resta ha cambiato forma: dei «passa» rimasti, l'**84,6%** e'
+*«nessuna mossa gli serviva»*. Il mazzo e il bersaglio, che in 0.1.216 erano un
+terzo del problema, sono un sesto. **Resta la ragione, sola.**
+
+### Trovato — uno strumento rotto da dieci versioni, senza che niente diventasse rosso
+
+- **`tools/build_review.py` moriva all'avvio dalla 0.1.281**: nominava a mano
+  `chronicle_01/chronicle_01.json`, cancellato con gli anni d'autore (D-318).
+  `docs/REVISIONE_TESTI.md` e' rimasto fermo settanta versioni **perche' nessun
+  cancello lo guardava**.
+- Riparato leggendo **a glob invece che a lista di nomi**, e cosi' raccoglie
+  anche i tre file che la lista non nominava: **da 771 a 1.010 testi in lettura**.
+- **`matrix_survey.py --check` era dichiarato in `CLAUDE.md` dalla 0.1.249 e non
+  era in CI.** Se n'e' accorto solo il giro a mano.
+
+### Tolto
+
+**Diciassette documenti superati**, in tre gruppi:
+
+| | |
+|---|---|
+| le cinque **sedute** (VITE, LEGGENDA, TAVOLO, TERRA, LINEE) | dossier di decisione, decisioni prese e a verbale |
+| le tre **saghe** (812, NAHR, SALE) | raccontano Chronicle cancellate: i comandi che stampano non girano piu' |
+| nove **istantanee** (ROADMAP, AUDIT_DESTINI, DIAGNOSI_PUNTO_ZERO, COMPONENTS, CONSEGNE, TEST_PLAN, TRASFORMAZIONI, MECCANICA, VISIONE) | fotografie fra la 0.1.0 e la 0.1.192, superate da documenti generati con un cancello |
+
+Da **37 documenti a 20**: dieci generati e sorvegliati, sei vivi, quattro di
+riferimento.
+
+### Cancelli
+
+- **`build_review.py --check`** e **`matrix_survey.py --check`** aggiunti alla CI.
+  Il primo si e' visto mordere su un difetto piantato.
+- `CLAUDE.md` porta la riga del cancello nuovo; il passo «Play every sim plan»
+  della CI ha smesso di chiamarsi cosi', visto che i piani non esistono.
+
+### Costo, dichiarato
+
+- **Nessuno sui numeri**: non e' stata toccata una riga di regole.
+- Una decina di collegamenti nella storia di `CHANGELOG.md` e `DECISIONS.md`
+  puntano a documenti tolti, e **restano appesi apposta**: sono verbali, e un
+  verbale non si riscrive. In `ISSUES.md`, che e' un elenco vivo, i quattordici
+  collegamenti sono sciolti in corsivo con una nota che spiega cosa vuol dire.
+- **`godot/data/` porta ancora i nomi degli anni cancellati** — dodici file
+  `*_chronicle_01`/`_03` con dentro il contenuto vivo. E' ISSUES 98, e vuole un
+  commit suo.
+
+---
+
 ## 0.1.290 — I Destini mirano a segni, e la mappa diventa contesa (D-327)
 
 ### Cambiato

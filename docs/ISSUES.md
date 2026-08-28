@@ -18,6 +18,11 @@ cose ([D-051](DECISIONS.md#d-051), [D-055](DECISIONS.md#d-055)).
 Legenda etichette: `regola` · `contenuto` · `arte` · `motore` · `ux` ·
 `strumenti` · `da-misurare` · `decisione` · `debito`
 
+**Un nome in corsivo senza collegamento** — *SEDUTA_TERRA*, *AUDIT_DESTINI*,
+*MECCANICA* — è un documento **tolto in 0.1.291**
+([D-328](DECISIONS.md#d-328)): la decisione che conteneva è a verbale in
+`DECISIONS.md`, il documento no. Si legge nella storia di git.
+
 ---
 
 ## Milestone 0.2 — Bilanciamento
@@ -155,7 +160,7 @@ mordere.
 **Fatto quando** `run_stance_probe.gd` riporta `SET_RELATION` con un numero
 diverso da zero nella colonna «pesato», e il modo per arrivarci è scritto a
 verbale: Conseguenze che facciano nemici, e clausole `relation_state` nei Destini
-al tavolo. Vedi [AUDIT_DESTINI.md](AUDIT_DESTINI.md) §2.3.
+al tavolo. Vedi *AUDIT_DESTINI* §2.3.
 
 </details>
 
@@ -186,7 +191,7 @@ La causa non è la taratura: **perdere non è implementato.**
 niente lo può falsificare — e le 5 `REMOVE_PRESENCE` che esistono sono o
 opzionali sulla `$region_focus` o costi che ci si infligge da soli. L'audit
 completo, con le direzioni possibili e le trappole, sta in
-[AUDIT_DESTINI.md](AUDIT_DESTINI.md).
+*AUDIT_DESTINI*.
 
 **Fatto quando** una variante è misurata sugli stessi 100 semi di D-055 e NONE
 smette di essere un livello teorico — o è scritta come respinta con i numeri
@@ -398,7 +403,7 @@ Le fasi:
 5. **L'albero delle vite** — su richiesta del committente («farei molte
    più trasformazioni, ognuna con poteri asimmetrici, altrimenti sono
    nomi che cambiano su una carta»), lo studio completo per le otto case
-   è in [TRASFORMAZIONI.md](TRASFORMAZIONI.md): ~17 vite con ingresso
+   è in *TRASFORMAZIONI*: ~17 vite con ingresso
    narrativo, potere asimmetrico e gancio tecnico dichiarati. Regola
    della casa: una vita senza dente non si scrive. **Gli ingressi sono
    fatti in 0.1.71** ([D-109](DECISIONS.md#d-109)): `ON_TAG` (la storia
@@ -409,7 +414,7 @@ Le fasi:
    Culto della Montagna in attesa che qualcuno impari a uccidere un
    drago). Il **dossier di decisione per la seduta** — lo stato vero dei
    dati, una proposta concreta per vita, le domande secche — è in
-   [SEDUTA_VITE.md](SEDUTA_VITE.md). **Le tre vite della decisione C sono
+   *SEDUTA_VITE*. **Le tre vite della decisione C sono
    scritte e misurate**: i Forni Riaccesi (0.1.92,
    [D-129](DECISIONS.md#d-129)), la Diaspora di Nahr (0.1.93,
    [D-130](DECISIONS.md#d-130)), l'Egemonia di Eredan (0.1.94,
@@ -422,7 +427,7 @@ Le fasi:
    [D-133](DECISIONS.md#d-133)): il conto delle ere nei segni, il primo
    seggio senza corpo, il Destino su misura — siede 3/20 saghe, e il suo
    Minimo si perde se il sigillo cade. La seduta dedicata e il suo
-   verbale sono in [SEDUTA_LEGGENDA.md](SEDUTA_LEGGENDA.md).
+   verbale sono in *SEDUTA_LEGGENDA*.
 
 **Com'è finita**: tutte le vite dell'albero sono scritte, ognuna con
 almeno un dente e una misura; le saghe attraversano i cambi
@@ -856,7 +861,7 @@ giocano davvero. ✓
 
 ### 36. Linee sempre diverse: pool di Destini, ruoli, generatore
 
-`contenuto` · `regole` · voluta dal committente · **in seduta** ([SEDUTA_LINEE.md](SEDUTA_LINEE.md))
+`contenuto` · `regole` · voluta dal committente · **in seduta** (*SEDUTA_LINEE*)
 
 «Io andrei oltre, farei un sistema che combina e permuta per ottenere linee
 sempre diverse, un randomizzatore di obiettivi, entità e incarnazioni che
@@ -898,7 +903,7 @@ strada scelta è stata percorsa e misurata.
 
 ### 35. Le istituzioni **non** governano diversamente dalle persone
 
-`contenuto` · **chiusa in 0.1.144** · [SAGA_SALE.md](SAGA_SALE.md) → [D-176](DECISIONS.md#d-176)
+`contenuto` · **chiusa in 0.1.144** · *SAGA_SALE* → [D-176](DECISIONS.md#d-176)
 
 La voce nasceva da una forma vista nella saga del Sale: finché sedevano
 **persone** c'erano Vittorie e due Trionfi; dal 1981, con le **istituzioni** al
@@ -1025,7 +1030,7 @@ riavviato rientra senza perdere niente, e le sim restano deterministiche
 Il **dossier di decisione per la seduta** — architettura host+console,
 la disciplina dei segreti sul filo, l'accoppiamento col QR, le fasi coi
 loro «fatto quando» e i rischi onesti delle reti di casa — è in
-[SEDUTA_TAVOLO.md](SEDUTA_TAVOLO.md).
+*SEDUTA_TAVOLO*.
 
 ---
 
@@ -1218,7 +1223,7 @@ allora la domanda cambia forma.
 
 *Misura di 0.1.147, per il confronto di domani: **128 aperte, 17 forzate, 111
 morte** su 80 Chronicle — la proporzione non si è mossa, ed è scritta anche in
-[MECCANICA §15](MECCANICA.md), fra le nove cose che i numeri dicono a chi gioca.*
+*MECCANICA §15*, fra le nove cose che i numeri dicono a chi gioca.*
 
 ### 38. ✅ La Vittoria della Cenere ha una porta sola — fatta in 0.1.122
 
@@ -1255,7 +1260,7 @@ invece che un muro. Kessa passa da **1/44/5/0** a **0/18/31/1**, tavolo misto
 ### 39. La terra che si vede: pedine di carta, o strutture con una vita
 
 `contenuto` · `regole` · voluta dal committente · **in seduta**
-([SEDUTA_TERRA.md](SEDUTA_TERRA.md)) · nata da [D-154](DECISIONS.md#d-154)
+(*SEDUTA_TERRA*) · nata da [D-154](DECISIONS.md#d-154)
 
 Tre idee del committente sono la stessa domanda vista da tre lati: **come si
 rende visibile, costoso e duraturo il possesso di un luogo?** Il dossier mette
@@ -1269,7 +1274,7 @@ committente): quattro costruzioni vere — granaio, canale, pedaggio, torre di
 veglia — piu' `structure:sealed`, che non e' un edificio ma **il contrario** di
 un edificio, e due insediamenti in una famiglia parallela quasi inutilizzata.
 **Zero luoghi naturali**, e sei biomi che non hanno niente che li distingua. Il
-catalogo sta in [SEDUTA_TERRA §8](SEDUTA_TERRA.md): da cinque tag a una ventina
+catalogo sta in *SEDUTA_TERRA §8*: da cinque tag a una ventina
 di cose, divise in **due nature** — le opere delle case, che hanno un padrone e
 un valore nella contesa del controllo, e **i luoghi del mondo** (foreste, passi,
 fiumi, siti antichi) che non sono di nessuno e cambiano cosa vale una Regione
@@ -1396,7 +1401,7 @@ Aldric e nello 0% per cinque case su otto, grado 3 **mai**.
 La voce chiedeva di scegliere fra due strade. **Scelta la prima: il grado alto
 resta materia di saga.** La scala che segue il Destino ([D-159](DECISIONS.md#d-159))
 vale proprio perché una reggia non si compra in una sera — è il sedimento di tre
-anni buoni, e la [saga del Regno che si è seduto](SAGA_NAHR.md) lo mostra meglio
+anni buoni, e la *saga del Regno che si è seduto* lo mostra meglio
 di qualsiasi misura: villaggio 812, borgo 813, granaio 814, città 815, castello
 816, **reggia 818**.
 
@@ -2225,7 +2230,7 @@ partita e il draft non sceglie niente. Ne servono **almeno dodici**.
 
 **Quello che la sonda non può misurare**: il draft. Scegliere un obiettivo
 guardando gli altri scegliere è una decisione umana, e nessuna sonda che gioca
-con `PolicyDecider` la produce ([CONSEGNE §5ter](CONSEGNE.md)).
+con `PolicyDecider` la produce (*CONSEGNE §5ter*).
 
 **Le quattro cose da decidere prima di scrivere:**
 
@@ -2763,6 +2768,45 @@ e' in gioco.
 
 ---
 
+### 98. I dati portano ancora i nomi degli anni cancellati
+
+`debito` · `strumenti` · **aperta in 0.1.291** ([D-328](DECISIONS.md#d-328))
+
+Gli anni d'autore sono usciti in 0.1.281 ([ISSUES 93](#)), ma **i nomi dei file
+no**. Dodici file di dati e due cartelle si chiamano ancora `*_chronicle_01` e
+`*_chronicle_03`:
+
+| | |
+|---|---|
+| `destinies/destinies_chronicle_01.json` + `_03` | **17 dei 23 Destini** che il gioco pesca (gli altri 6 stanno in `destinies_shared`) |
+| `tensions/tensions_chronicle_01.json` + `_03` | **12 delle 60 Tensioni** (le altre 48 in `tensions_library`) |
+| `consequences/consequences_chronicle_01.json` + `_03` | parte delle **64 Conseguenze** |
+| `entities/entities_chronicle_01.json` + `_03` | le **8 case** |
+| `echoes/echo_cards_chronicle_01.json` + `_03` | le **39 carte Echo** |
+| `regions/regions_chronicle_01.json` | **tutte e 10 le tessere** |
+| `chronicle_01/confluences/` + `chronicle_03/confluences/` | i **12 template** |
+
+**Non e' roba morta: e' contenuto vivo con un nome che mente.** Ogni anno
+pescato di CHR_00 usa questi file, e chi apre `regions_chronicle_01.json`
+credendo di guardare un anno d'autore sta guardando la mappa della scatola.
+
+**Il costo l'ha gia' pagato uno strumento.** `tools/build_review.py` nominava
+`chronicle_01/chronicle_01.json`, cancellato con gli anni d'autore, e **moriva
+all'avvio**: il documento che genera e' rimasto fermo settanta versioni perche'
+nessun cancello lo guardava. Riparato in 0.1.291 leggendo a glob invece che a
+lista di nomi, e adesso ha il suo cancello — ma la stessa trappola e' ancora
+sotto ogni altro strumento che nomini un file per nome.
+
+**Perche' non l'ho fatto adesso.** Un rinomino tocca i caricatori del motore, la
+suite, i cancelli e i documenti generati insieme: e' un commit suo, misurato col
+giro completo, non la coda di una pulizia di documenti.
+
+**Fatto quando** nessun file sotto `godot/data/` nomina una Chronicle che non
+esiste, e i dati che valgono per ogni anno stanno in file che non nominano
+nessun anno.
+
+---
+
 ### 97. ✅ Le clausole di Regione nascevano morte — chiusa in 0.1.290, strada 1
 
 `regola` · `contenuto` · `bilanciamento` · `decisione` · aperta in 0.1.289
@@ -3081,10 +3125,22 @@ cancello dei 100 semi a 0 seggi bloccati su 8.
 
 ---
 
-### 92. Il cancello misura un anno d'autore, non la scatola
+### 92. ✅ Il cancello misura un anno d'autore, non la scatola — chiusa in 0.1.280, strada 1
 
 `regola` · `strumenti` · `decisione` · aperta in 0.1.277, **riscritta in
-0.1.279** ([D-317](DECISIONS.md#d-317))
+0.1.279** ([D-317](DECISIONS.md#d-317)), **chiusa in 0.1.280**
+([D-318](DECISIONS.md#d-318))
+
+> **Il committente ha scelto la strada 1**: *«fai la 1, questi anni d'autore
+> dovevamo cancellarli giorni e giorni fa»*. `run_playtest.gd` gira su cento
+> anni pescati di CHR_00 — Tensioni sul tavolo da 4,0 a **8,8**, carte mai viste
+> da **48 su 60 a 3** — e il vincolo *0 seggi bloccati su 8* tiene li' pure. La
+> cancellazione vera degli anni d'autore e' diventata [ISSUES 93](#), chiusa in
+> 0.1.281.
+>
+> **La spunta mancava**: la voce e' rimasta senza ✅ per undici versioni, e se
+> n'e' accorto il giro dei cancelli di 0.1.291 ([D-328](DECISIONS.md#d-328)).
+> Una voce chiusa che sembra aperta costa quanto una aperta che sembra chiusa.
 
 **La prima versione di questa voce diceva una cosa sbagliata** — *«propone solo
 il proponente»* — e va letta come esempio di diagnosi plausibile che non regge
@@ -4686,7 +4742,7 @@ metà dei seggi.
 <summary>La voce come era scritta</summary>
 
 `regole` · `da-misurare` · voluta dal committente · **trovata nel confronto con
-l'idea di partenza** ([VISIONE.md](VISIONE.md))
+l'idea di partenza** (*VISIONE*)
 
 > «Ogni entità ha un obiettivo palese e tre segreti che si pescano **all'inizio
 > della saga**.»

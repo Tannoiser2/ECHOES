@@ -4,7 +4,7 @@ extends SceneTree
 ##   godot --headless --path godot --script res://cli/run_eviction_probe.gd -- \
 ##       --runs=100 --seed=7000
 ##
-## AUDIT_DESTINI ha concluso che NONE non e raro per sfortuna: perdere non era
+## D-067 ha concluso che NONE non e raro per sfortuna: perdere non era
 ## implementato. Le prime Conseguenze che tolgono una presenza a qualcun altro
 ## rispondono a meta della domanda — adesso cacciare si puo. Questa sonda
 ## risponde all'altra meta: **quante volte succede davvero, in che momento

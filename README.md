@@ -6,32 +6,43 @@ diversa — un sovrano, un popolo, una creatura antica, un individuo — prepara
 propria posizione mentre le Tensioni del mondo salgono, e si scontrano nelle
 **Confluence**, gli eventi storici in cui il tavolo decide cosa succede davvero.
 
-**Stato: Milestone 0.1 — Vertical Slice Hotseat, completata (0.1.18).** Si gioca
-una Chronicle intera dal browser o dal terminale, su due saghe, con salvataggio e
-ripresa; una partita headless gira in meno di un secondo; e i pezzi si stampano
-dagli stessi dati. Prossima: la 0.2, bilanciamento — cosa resta è scritto in
-[ISSUES.md](docs/ISSUES.md).
+**Stato: 0.1.291 — il Punto Zero fisico-first.** Si gioca una Chronicle intera
+dal browser o dal terminale, con salvataggio e ripresa; ogni partita pesca la
+propria mappa, le proprie case e le proprie questioni; e i pezzi si stampano
+dagli stessi dati. **Dov'è il gioco oggi, coi numeri, sta in
+[PUNTO_ZERO.md](docs/PUNTO_ZERO.md)** — è il primo documento da leggere.
 
-- [**Passaggio di consegne**](docs/CONSEGNE.md) — se apri una sessione nuova, parti da qui
-- [Meccanica per intero](docs/MECCANICA.md) — il gioco spiegato dall'inizio, dai dati
+- [**Punto Zero**](docs/PUNTO_ZERO.md) — cosa fa il gioco oggi, misurato
+- [**Roadmap Punto Zero**](docs/ROADMAP_PUNTO_ZERO.md) — dove sta andando
 - [Game Design](docs/GAME_DESIGN.md) — perché il gioco è fatto così
 - [Regole v0.2](docs/RULES_V0_2.md) — cosa fa il codice, numeri compresi
-- [Componenti](docs/COMPONENTS.md) — cosa si stampa e cosa sta sullo schermo
+  (fermo a 0.1.38: si legge con l'avvertenza che porta in cima)
+- [Procedura di fine Chronicle](docs/PROCEDURA_FINE_CHRONICLE.md) — i sette passi a mano
 - [Modello dati](docs/DATA_SCHEMA.md) · [Decisioni](docs/DECISIONS.md) ·
-  [Piano di test](docs/TEST_PLAN.md) · [Roadmap](docs/ROADMAP.md) ·
   [Da fare](docs/ISSUES.md) · [Changelog](CHANGELOG.md) ·
   [Art Bible](docs/ART_BIBLE.md) · [Asset Manifest](docs/ASSET_MANIFEST.md)
-- Saghe giocate e raccontate: [il Regno che si è seduto](docs/SAGA_NAHR.md) ·
-  [l'812](docs/SAGA_812.md) · [il Sale](docs/SAGA_SALE.md)
+- Generati a ogni giro, con un cancello che li sorveglia:
+  [Componenti](docs/COMPONENTI.md) · [Catalogo carte](docs/CATALOGO_CARTE.md) ·
+  [Catalogo Consigli](docs/CATALOGO_CONSIGLI.md) ·
+  [Catalogo pedine](docs/CATALOGO_PEDINE.md) ·
+  [Registro dei segni](docs/REGISTRO_SEGNI.md) · [Brief d'arte](docs/BRIEF_ARTE.md) ·
+  [Testi in lettura](docs/REVISIONE_TESTI.md) · le tre misure
+  ([matrice](docs/MISURA_MATRICE.md) · [vite](docs/MISURA_VITE.md) ·
+  [segni](docs/MISURA_SEGNI.md))
 
 ---
 
 ## Come funziona il gioco
 
-[docs/MECCANICA.md](docs/MECCANICA.md) — la meccanica per intero in un foglio
-solo: il tempo, la mappa, le casate, le Tensioni, le sette azioni, il Consiglio
-passo per passo con la matematica, le carte, i Destini e cosa attraversa gli
-anni. È il posto da cui partire se non hai mai visto ECHOES.
+Le Azioni cambiano il mondo; il Consiglio decide cosa il mondo ricorderà. Ogni
+carta è **un'Azione scelta più una Risonanza obbligatoria**, mai un evento che
+accade; il bersaglio si dice **a segni** e non col nome di una Regione, così la
+stessa carta vale su ogni mappa pescata. A fine Atto il Tema più caldo apre la
+sua Domanda, che sta sulla carta Tensione insieme ai benefici che il proponente
+compra e ai costi con cui paga.
+
+Le regole per esteso stanno in [docs/RULES_V0_2.md](docs/RULES_V0_2.md), i numeri
+di oggi in [docs/PUNTO_ZERO.md](docs/PUNTO_ZERO.md).
 
 ## Requisiti
 
@@ -73,10 +84,11 @@ vince. Si toglie di mezzo appena scegli un seggio e torna con il bottone in
 fondo alla colonna. Sopra le scelte c'è sempre una riga che dice cosa sta per
 succedere — «La Carestia è a un passo dalla soglia».
 
-Si sceglie **il seggio, l'anno e il mondo**: `CHR_01` è la Carestia Rossa con le
-sue quattro domande scritte a mano, `CHR_02` ne pesca quattro dalla biblioteca e
-non è mai due volte la stessa storia; il seme può essere casuale, riscritto a
-mano, o quello della partita appena finita.
+Si sceglie **il seggio e il seme**: da [D-318](docs/DECISIONS.md#d-318) gli anni
+d'autore non esistono più e c'è una Chronicle sola, `CHR_00` — la scatola. Ogni
+seme pesca sei tessere su dieci, le case dal loro parco e le questioni dalle
+sessanta carte Tensione, quindi non è mai due volte la stessa storia. Il seme può
+essere casuale, riscritto a mano, o quello della partita appena finita.
 
 Poi si gioca sul tabellone: le **Regioni cerchiate d'oro**
 sono quelle dove puoi mettere una presenza, e ci si va premendole. Le altre azioni
@@ -127,9 +139,8 @@ elencato lo gioca la policy. **Invio a vuoto su qualsiasi scelta la lascia
 decidere alla policy**, quindi si puo giocare un seggio solo, o mollarne uno a
 meta partita, o pipare un file di risposte e lasciare che finisca da sola.
 
-Opzioni: `--seed=<n>` stesso seme stesso mondo · `--chronicle=CHR_02` la
-Chronicle di libreria · `--quiet` toglie la traccia delle regole round per round
-e lascia solo i Consigli, le carte Echo e il finale.
+Opzioni: `--seed=<n>` stesso seme stesso mondo · `--quiet` toglie la traccia
+delle regole round per round e lascia solo i Consigli, le carte Echo e il finale.
 
 ## Perché non si supera il Minimo
 
@@ -168,7 +179,7 @@ minimo in 20 partite mentre la policy non lo manca mai.
 
 ```bash
 godot --headless --path godot --script res://cli/run_room.gd -- \
-    --seed=7000 --chronicle=CHR_01 --port=8137 --pages=8123
+    --seed=7000 --chronicle=CHR_00 --port=8137 --pages=8123
 ```
 
 Apre la stanza della voce 27 senza la scena Godot che la avvolge: stampa un
@@ -185,45 +196,29 @@ filo · `--pages` le pagine. La stanza con l'interfaccia sta nel menu dell'app:
 
 ```bash
 godot --headless --path godot --script res://cli/run_chronicle_sim.gd -- \
-    --plan=res://data/chronicle_01/sim_plans/plan_a_grain_accord.json
+    --chronicle=CHR_00 --seed=7000
 ```
 
-Stampa il log pubblico dell'intera partita — azioni, Drift, presagi, la sequenza
-A–K di ogni Confluence con la matematica in chiaro, i Destiny finali e il registro
-delle Verità.
+Stampa il log pubblico dell'intera partita — azioni, Risonanze, la sequenza del
+Consiglio con la matematica in chiaro, i Destini finali e il registro delle
+Verità.
 
 Opzioni: `--out=<file>` salva il save finale · `--log=<file>` salva il log ·
-`--seed=<int>` sovrascrive il seed del piano · `--quiet` non stampa il log ·
-`--lenient` non fallisce sulle scelte scriptate illegali · `--help`.
+`--seed=<int>` il seme, cioè il mondo · `--quiet` non stampa il log · `--help`.
 
-**Attenzione a cosa stai guardando.** I tre piani qui sotto sono *fixture di
-regressione*: verificano che una sequenza di mosse decisa a mano produca sempre
-lo stesso esito. I turni che il piano non copre li riempie una routine passiva
-che di proposito non tocca le Tensioni, quindi in un piano scriptato quasi meta
-dei turni sono "passa". Non e il gioco: e il manichino.
-
-Per vedere una partita vera, con quattro giocatori che perseguono davvero il
-proprio Destiny:
-
-```bash
-godot --headless --path godot --script res://cli/run_chronicle_sim.gd -- \
-    --plan=res://data/chronicle_01/sim_plans/plan_a_grain_accord.json --policy
-```
-
-Il piano fornisce solo la Chronicle e il seed; ogni scelta la prendono i
-giocatori. Nessun "passa", e 3-4 Confluence per partita.
-
-Tutti e tre i piani in un colpo solo:
+Fino a 0.1.280 questa sonda girava quattro `sim_plans`: playthrough scritti a
+mano della Carestia Rossa, mossa per mossa. Se ne sono andati con gli anni
+d'autore ([D-318](docs/DECISIONS.md#d-318)), e non si potevano ripuntare — una
+sequenza di mosse scritta per una mappa fissa non ha senso su una mappa che si
+pesca. Quello che serviva resta, e adesso lo si chiede su anni pescati:
 
 ```bash
 GODOT=/path/to/godot tools/run_sims.sh     # scrive log e save in out/
 ```
 
-| piano | esiti | cosa mostra |
-|---|---|---|
-| `plan_a_grain_accord` | Decisive Success | il trono conquista il seggio di proponente e requisisce il grano senza opposizione |
-| `plan_b_broken_council` | Failure ×2, Success with Cost | i Nahr chiedono la terra e il tavolo intero dice no: una sconfitta memorabile diventa comunque storia. Chiedono ancora, e cadono di misura sul Fattore Mondo. Alla terza il consiglio cede a caro prezzo |
-| `plan_c_opened_mine` | Failure, Success | un Claim forza una Confluence fuori soglia sulle Miniere, e Vaerax la fa cadere |
+Quattro anni ai semi 7000-7003: ognuno deve arrivare in fondo senza schiantarsi,
+e **lo stesso seme deve produrre un salvataggio identico byte per byte** — è la
+verifica di determinismo che gira in CI.
 
 ---
 
@@ -237,10 +232,11 @@ GODOT=/path/to/godot tools/run_export.sh            # il mazzo intero, in out/ex
 GODOT=/path/to/godot tools/run_export.sh --proof    # una copia per faccia, per correggere
 ```
 
-Escono **25 fogli A4 in SVG, in scala 1:1** con i segni di taglio — carte 63×88
-mm tre per tre, tessere Regione 80×80 due per tre, il mazzo espanso per
-`deck_copies` (48 facce Asset = 132 carte) — più il brief d'arte, cioè ogni
-`art_prompt_key` in uso col MASTER PROMPT della ART_BIBLE già composto. Il brief
+Escono **42 fogli A4 in SVG, in scala 1:1** con i segni di taglio — 15 di carte
+Asset (48 facce espanse per `deck_copies` = 132 carte), 5 di Echo, 4 di Domande,
+6 di Destini, 7 di Casate, 2 di tessere Regione, e tre fogli-fustella per la
+traccia dei valori e i segni — più il brief d'arte, cioè ogni `art_prompt_key`
+in uso col MASTER PROMPT della ART_BIBLE già composto. Il brief
 è anche committato in [`docs/BRIEF_ARTE.md`](docs/BRIEF_ARTE.md), così si legge
 senza generare niente; la CI controlla che sia allineato.
 

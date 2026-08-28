@@ -432,7 +432,7 @@ static func _deal_objectives(
 ## l'altro.
 ##
 ## Ogni Destino del pool e' scritto **per la sua casa** — non si permuta niente
-## fra le case (SEDUTA_LINEE §2: una clausola nomina Regioni, rivali e segni di
+## fra le case (una clausola nomina Regioni, rivali e segni di
 ## quell'epoca, e la prosa e' scritta per chi la porta).
 static func _deal_destiny(
 	entity_id: String, definition: Dictionary, chronicle: Dictionary, rng: RefCounted

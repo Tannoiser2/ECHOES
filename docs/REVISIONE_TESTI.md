@@ -7,40 +7,34 @@ Ogni testo che un giocatore può leggere, nell'ordine in cui lo incontra,
 con il suo identificativo. Per correggere basta una riga, anche a voce:
 «`P_SHOW_IT`: riscrivi così…» — al resto pensa il motore. I segnaposto
 (`$the_region`, `$proponent`…) sono gli slot che il mondo riempie: si
-possono spostare nella frase, non togliere. 771 testi in lettura.
+possono spostare nella frase, non togliere. 1010 testi in lettura.
 
 ## 1. Le aperture — lette ad alta voce all'inizio dell'anno
 
-**`CHR_01`**
-> La Carestia Rossa
+**`CHR_00`**
+> La Prima Chronicle
 
-> Ottocentododici. La Valle Verde ha reso un terzo meno dell'anno scorso e i Nahr hanno cominciato a spostarsi verso ovest. A Eredan il trono conta le riserve due volte al giorno e ottiene lo stesso numero. Nelle Miniere Antiche qualcuno ha trovato una pietra rossa che non si comporta come una pietra. Sulle Montagne Rosse, qualcosa che dormiva da molto tempo si è girato nel sonno.
-
-
-**`CHR_02`**
-> Gli anni che vengono
-
-> Ogni anno il mondo sceglie da solo di cosa si parlera. Questa Chronicle non elenca le proprie domande: le pesca dalla biblioteca, in base a com'è finita quella prima. Stesso seed, stesso anno.
-
-
-**`CHR_03`**
-> Le Città Libere
-
-> Ottocento anni dopo Aldric non c'è più una corona, e per otto secoli non è servita. Le sette città si governano da sole, la Gilda del Sale tiene il registro di tutti, l'Ordine del Vetro custodisce un frammento che nessuno dei vivi ha visto, e sulle Montagne Rosse si scava più in basso di quanto sia mai stato scavato. La Valle non da più da mangiare a tutti: i canali ci sono ancora, sono pieni di terra, e nessuno è obbligato a toglierla.
-
-
-**`CHR_04`**
-> Gli anni delle città
-
-> Le città continuano, e non sempre nello stesso ordine. Questa Chronicle non elenca le proprie domande: le pesca dalla biblioteca, in base a com'è finita quella prima.
+> Nessuno scenario, nessun nome scritto prima: le tessere della mappa si pescano dalla scatola, le case si pescano dal mucchio, e i sei mazzetti dei Temi si mischiano coperti. Le domande dell'anno sono quelle che questa mappa sa reggere. Quello che succede qui e' il Punto Zero della saga: la seconda era giochera' sulle stesse tessere, e ricordera'.
 
 
 ## 2. Le Regioni — la mappa
+
+**`REG_BOSCO_CONFINI`**
+> Il Bosco dei Confini
+
+> Alberi alti e sentieri che non restano dove li lasci. Il confine passa di qui, ma nessuno l'ha mai visto scritto.
+
 
 **`REG_EREDAN`**
 > Eredan
 
 > La città del trono. Vive di leggi, di titoli e del grano che sale dalla Valle.
+
+
+**`REG_ISOLA_MUTA`**
+> L'Isola Muta
+
+> Uno scoglio grande, senza porto e senza campane. Chi ci sbarca parla piano, e non sa dire perche'.
 
 
 **`REG_MINIERE_ANTICHE`**
@@ -53,6 +47,18 @@ possono spostare nella frase, non togliere. 771 testi in lettura.
 > Montagne Rosse
 
 > Pietra rossa e vento. Qualcosa di molto vecchio dorme qui, e il suo sonno si sta assottigliando.
+
+
+**`REG_PALUDE_CANALI`**
+> La Palude dei Canali
+
+> Acqua ferma e canne. I canali di un'altra eta' affiorano quando la stagione e' secca, e qualcosa affiora con loro.
+
+
+**`REG_PORTO_CINERINO`**
+> Porto Cinerino
+
+> Banchine grigie di sale e cenere. Tutto quello che il mare concede passa da qui, e paga.
 
 
 **`REG_STRADA_MERCANTI`**
@@ -441,6 +447,46 @@ possono spostare nella frase, non togliere. 771 testi in lettura.
 > Sulle Montagne Rosse la neve non attecchisce più sul versante orientale.
 
 
+**`TEN_BAD_GRAIN`**
+> Il Grano Guasto
+
+> Il grano del fondo ha una muffa scura. Si puo' non vederla, se si ha abbastanza fame.
+
+
+**`TEN_BAD_GRAIN, presagio al 5`**
+> Il mugnaio ha rifiutato una partita senza spiegare. Da allora macina solo per chi conosce.
+
+
+**`TEN_BLACK_TOLLS`**
+> I Pedaggi Neri
+
+> Sul tratto in ombra qualcuno riscuote un pedaggio che nessun Consiglio ha scritto. I carri pagano: costa meno che discutere.
+
+
+**`TEN_BLACK_TOLLS, presagio al 5`**
+> I pedaggeri neri hanno fatto un listino. Scritto. Chi sa scrivere, fra loro, e' la vera notizia.
+
+
+**`TEN_BOUNDARY_STONES`**
+> Le Pietre di Confine
+
+> Le pietre che dicono dove finisce il mio e comincia il tuo si sono mosse. Le pietre non si muovono da sole.
+
+
+**`TEN_BOUNDARY_STONES, presagio al 5`**
+> Un'altra pietra e' comparsa dove non era. Qualcuno sta scrivendo un confine nuovo, una notte alla volta.
+
+
+**`TEN_BURIALS`**
+> I Sepolti Senza Nome
+
+> La palude restituisce corpi che nessuno ha sepolto secondo il rito. Vecchi. Alcuni, vecchissimi.
+
+
+**`TEN_BURIALS, presagio al 5`**
+> Le famiglie hanno smesso di far giocare i bambini verso la palude. Nessuno ha dovuto dirglielo.
+
+
 **`TEN_CHARTER`**
 > La Carta
 
@@ -449,6 +495,36 @@ possono spostare nella frase, non togliere. 771 testi in lettura.
 
 **`TEN_CHARTER, presagio al 4`**
 > Due città hanno giudicato lo stesso caso in modo opposto, e tutte e due hanno ragione.
+
+
+**`TEN_CLEARING`**
+> Il Disboscamento
+
+> Il bosco rende: legna, carbone, terra nuova. Rende una volta sola.
+
+
+**`TEN_CLEARING, presagio al 5`**
+> Dal margine si vede il fondo del bosco. L'anno scorso non si vedeva.
+
+
+**`TEN_COUNCIL_SEATS`**
+> I Seggi del Consiglio
+
+> Chi siede decide. Percio' la prima decisione e' sempre chi siede.
+
+
+**`TEN_COUNCIL_SEATS, presagio al 5`**
+> Le case minori si sono riunite in una sala propria. Per ora parlano soltanto.
+
+
+**`TEN_COURIERS`**
+> Le Staffette
+
+> Le notizie viaggiano a cavallo di chi le porta. Chi paga le staffette sceglie cosa arriva, e quando.
+
+
+**`TEN_COURIERS, presagio al 5`**
+> La staffetta del nord e' arrivata con due lettere identiche per due case nemiche. Le ha consegnate entrambe, sorridendo.
 
 
 **`TEN_DEBT`**
@@ -461,6 +537,56 @@ possono spostare nella frase, non togliere. 771 testi in lettura.
 > Tre città hanno chiesto alla Gilda di rimandare, e la Gilda ha detto di sì a due.
 
 
+**`TEN_DEEP_WATER`**
+> L'Acqua Fonda
+
+> Ci sono acque dove le pertiche non toccano. I pescatori ci buttano una moneta e girano largo.
+
+
+**`TEN_DEEP_WATER, presagio al 5`**
+> Il pescatore piu' vecchio ha regalato la barca al nipote. Ha detto solo: non nell'acqua fonda.
+
+
+**`TEN_ECHOES_BELOW`**
+> Gli Echi nel Fondo
+
+> In fondo alle gallerie qualcosa risponde ai colpi. Con un ritardo. Sempre lo stesso.
+
+
+**`TEN_ECHOES_BELOW, presagio al 5`**
+> Ieri il fondo ha battuto per primo. Tre colpi. Nessuno e' sceso a rispondere.
+
+
+**`TEN_EMPTY_NETS`**
+> Le Reti Vuote
+
+> Il mare ha smesso di dare. Nessuno sa a chi chiedere il perche', e intanto le barche tornano leggere.
+
+
+**`TEN_EMPTY_NETS, presagio al 5`**
+> I gabbiani hanno lasciato il porto. I pescatori li guardano andare via, e capiscono.
+
+
+**`TEN_ENCLOSURE`**
+> I Recinti
+
+> I pali nuovi spuntano di notte. La terra che era di tutti, al mattino, ha un padrone.
+
+
+**`TEN_ENCLOSURE, presagio al 5`**
+> I pali arrivano al bordo della strada. Il prossimo campo recintato ha gia' il nome del padrone inciso.
+
+
+**`TEN_FALLOW`**
+> La Terra Stanca
+
+> I campi rendono meno ogni anno, e nessuno vuole essere il primo a lasciarli riposare.
+
+
+**`TEN_FALLOW, presagio al 5`**
+> Le spighe dei campi alti si contano a occhio. L'anno prossimo si contano a mano.
+
+
 **`TEN_FAMINE`**
 > La Carestia
 
@@ -471,6 +597,126 @@ possono spostare nella frase, non togliere. 771 testi in lettura.
 > I granai di Eredan si aprono un giorno su tre. Nessuno lo ha annunciato: si vede dalle code.
 
 
+**`TEN_FERRY`**
+> Il Traghetto
+
+> Un'unica barca collega l'isola. Chi la governa, governa l'isola piu' del suo padrone.
+
+
+**`TEN_FERRY, presagio al 5`**
+> Il traghettatore ha cominciato a chiedere favori invece che monete. I favori rendono di piu'.
+
+
+**`TEN_FLOOD`**
+> L'Acqua Alta
+
+> Gli argini vecchi tengono per abitudine. L'acqua non ha abitudini.
+
+
+**`TEN_FLOOD, presagio al 5`**
+> L'acqua ha toccato la pietra bianca che i vecchi chiamano il limite. Nessuno ricorda di averla mai vista bagnata.
+
+
+**`TEN_GUILD_WAR`**
+> La Guerra delle Gilde
+
+> Due gilde si contendono le stesse strade. Per ora si rubano i clienti. Le vie sono strette, e prima o poi ci si incontra.
+
+
+**`TEN_GUILD_WAR, presagio al 5`**
+> Il magazzino della gilda nuova ha preso fuoco di notte. Pioveva. Il fuoco non se n'e' accorto.
+
+
+**`TEN_HERESY`**
+> La Parola Storta
+
+> Qualcuno predica una fede quasi uguale. Il quasi e' il problema.
+
+
+**`TEN_HERESY, presagio al 5`**
+> Il predicatore ha smesso di parlare in piazza. Adesso parla nelle case, ed e' peggio.
+
+
+**`TEN_HOSTAGES`**
+> Gli Ostaggi di Corte
+
+> Si chiamano ospiti. Mangiano a corte, dormono a corte, e non possono andarsene.
+
+
+**`TEN_HOSTAGES, presagio al 5`**
+> L'ospite piu' giovane ha smesso di scrivere a casa. La casa se n'e' accorta.
+
+
+**`TEN_ISLAND_SHRINE`**
+> Il Santuario dell'Isola
+
+> Sull'isola c'e' un altare piu' vecchio della fede che lo usa. Le barche hanno ripreso ad andarci.
+
+
+**`TEN_ISLAND_SHRINE, presagio al 5`**
+> Il traghettatore ha triplicato il prezzo per l'isola, e le barche partono piene lo stesso.
+
+
+**`TEN_ISLAND_SILENCE`**
+> Il Silenzio dell'Isola
+
+> Sull'isola i suoni durano meno. Le parole cadono corte. Nessuno ci passa la notte due volte.
+
+
+**`TEN_ISLAND_SILENCE, presagio al 5`**
+> Il faro spento dell'isola ieri notte era acceso. Il guardiano del porto l'ha visto, e non era il solo.
+
+
+**`TEN_LANDLESS`**
+> I Braccianti
+
+> Braccia senza terra, terra senza braccia: il conto non torna, e chi lavora comincia a chiederselo.
+
+
+**`TEN_LANDLESS, presagio al 5`**
+> I braccianti hanno cominciato a contarsi. Sono piu' dei padroni, e adesso lo sanno.
+
+
+**`TEN_LAND_REGISTER`**
+> Il Catasto
+
+> Scrivere di chi e' la terra e' un modo di prendersela. Non scriverlo e' un altro.
+
+
+**`TEN_LAND_REGISTER, presagio al 5`**
+> I misuratori sono arrivati al terzo villaggio. Al quarto li aspettano con i forconi.
+
+
+**`TEN_LEVY`**
+> La Leva
+
+> Servono braccia per le armi. Le stesse braccia servivano per il raccolto.
+
+
+**`TEN_LEVY, presagio al 5`**
+> Al mercato si vendono certificati di malattia. Il prezzo sale ogni settimana.
+
+
+**`TEN_MARCHES`**
+> Le Marche di Confine
+
+> Ai margini il potere arriva stanco. Chi vive sul confine obbedisce a chi e' piu' vicino.
+
+
+**`TEN_MARCHES, presagio al 5`**
+> Il capobanda del bosco si fa chiamare «custode». Ha cominciato a firmare carte.
+
+
+**`TEN_MARSH_FEVER`**
+> La Febbre delle Paludi
+
+> Dalla palude sale una febbre lenta che non uccide subito. Prima toglie le forze, poi i nomi.
+
+
+**`TEN_MARSH_FEVER, presagio al 5`**
+> La levatrice non entra piu' nei villaggi bassi senza il fazzoletto sul viso. Le mamme la imitano.
+
+
 **`TEN_NAMELESS`**
 > I Senza Città
 
@@ -479,6 +725,56 @@ possono spostare nella frase, non togliere. 771 testi in lettura.
 
 **`TEN_NAMELESS, presagio al 4`**
 > Fuori dalle mura ci sono più fuochi dell'anno scorso, e sono sempre gli stessi fuochi.
+
+
+**`TEN_OLD_CHANNELS`**
+> Le Vie di Prima
+
+> Sotto i sentieri ci sono strade piu' vecchie, dritte come nessuno costruisce piu'. Portano tutte nello stesso posto.
+
+
+**`TEN_OLD_CHANNELS, presagio al 5`**
+> Un carro ha seguito la via vecchia per scommessa. E' arrivato in un giorno dove ce ne vogliono tre. Il carrettiere non ci torna.
+
+
+**`TEN_OLD_GUARD`**
+> La Vecchia Guardia
+
+> Hanno servito il potere di prima. Il potere di adesso non si fida, e non puo' congedarli.
+
+
+**`TEN_OLD_GUARD, presagio al 5`**
+> I veterani si trovano ogni settima sera alla stessa taverna. Il padrone ha smesso di far pagare il primo giro.
+
+
+**`TEN_OLD_NAMES`**
+> I Nomi Vecchi
+
+> I posti hanno due nomi: quello che si usa e quello che si evita. Qualcuno ha ripreso a usare il secondo.
+
+
+**`TEN_OLD_NAMES, presagio al 5`**
+> Il traghettatore ha chiamato il fiume col nome vecchio, per sbaglio. L'acqua era piu' fredda del solito, dice.
+
+
+**`TEN_PASTURE`**
+> Il Pascolo Conteso
+
+> Le greggi non leggono i confini. I pastori si', e li leggono diversi.
+
+
+**`TEN_PASTURE, presagio al 5`**
+> I pastori hanno cominciato a portare i cani grossi. Non li portano per i lupi.
+
+
+**`TEN_PILGRIMS`**
+> I Pellegrini
+
+> Arrivano a piedi, mangiano poco, pregano molto. Sono tanti, e continuano ad arrivare.
+
+
+**`TEN_PILGRIMS, presagio al 5`**
+> I pellegrini accampati fuori porta sono piu' degli abitanti dentro. Pregano. Per ora.
 
 
 **`TEN_PLAGUE`**
@@ -493,6 +789,46 @@ possono spostare nella frase, non togliere. 771 testi in lettura.
 
 **`TEN_PLAGUE, presagio al 4`**
 > I pozzi vengono coperti di notte, e di giorno nessuno ammette di averlo fatto.
+
+
+**`TEN_PROPHECY`**
+> La Profezia Contata
+
+> Qualcuno ha letto nei cristalli una data. Da allora, tutto quello che succede sembra confermarla.
+
+
+**`TEN_PROPHECY, presagio al 5`**
+> Qualcuno ha cominciato a vendere i campi per comprare scorte. Qualcun altro compra i campi.
+
+
+**`TEN_QUARANTINE`**
+> Il Cordone
+
+> Fermare i malanni vuol dire fermare le strade. Le strade sono quelle che danno da mangiare.
+
+
+**`TEN_QUARANTINE, presagio al 5`**
+> L'equipaggio alla fonda ha appeso una scritta alla murata: SIAMO SANI. Nessuno e' salito a controllare.
+
+
+**`TEN_REFUGEES`**
+> Chi Arriva da Fuori
+
+> Arrivano con quello che portano addosso. Da qualcosa scappano, e nessuno chiede cosa per non doverci pensare.
+
+
+**`TEN_REFUGEES, presagio al 5`**
+> Quelli fuori porta hanno acceso il terzo fuoco. Contano di restare, o non hanno dove tornare.
+
+
+**`TEN_REGENCY`**
+> La Reggenza
+
+> Chi governa in nome di un altro governa comunque. E ci prende gusto.
+
+
+**`TEN_REGENCY, presagio al 5`**
+> Il reggente ha ordinato insegne nuove. Non sono quelle della casa che rappresenta.
 
 
 **`TEN_RELIC`**
@@ -523,6 +859,76 @@ possono spostare nella frase, non togliere. 771 testi in lettura.
 > Il prezzo del sale a Eredan raddoppia in nove giorni e nessuno sa dire perché.
 
 
+**`TEN_SALT_FIELDS`**
+> I Campi di Sale
+
+> Dove l'acqua si ritira resta il sale, e il sale vale. La terra che lo da' non da' altro.
+
+
+**`TEN_SALT_FIELDS, presagio al 5`**
+> Il sale ha superato il grano nei registri del porto. Quando lo sapranno i campi, vorranno la loro parte.
+
+
+**`TEN_SANCTUARY`**
+> Il Diritto d'Asilo
+
+> Chi tocca l'altare non si tocca. Era una regola comoda finche' non ci si e' aggrappato qualcuno di scomodo.
+
+
+**`TEN_SANCTUARY, presagio al 5`**
+> Dentro il tempio adesso sono in tre. Fuori, il doppio di ieri.
+
+
+**`TEN_SEALS`**
+> I Sigilli Falsi
+
+> Un sigillo vale quanto la cera se nessuno controlla la mano che lo preme.
+
+
+**`TEN_SEALS, presagio al 5`**
+> Due ordini con lo stesso sigillo si contraddicono. Uno dei due e' falso. Forse tutti e due.
+
+
+**`TEN_SILENT_BELLS`**
+> Le Campane Mute
+
+> Le campane non suonano da tre lune. Nessuno ha deciso il silenzio, e nessuno osa romperlo.
+
+
+**`TEN_SILENT_BELLS, presagio al 5`**
+> Un bambino ha chiesto a cosa servono le torri. Nessuno dei presenti ha saputo rispondere subito.
+
+
+**`TEN_SILTED_CANALS`**
+> I Canali Interrati
+
+> Una volta le barche passavano dalla palude. I canali ci sono ancora, sotto: chiedono solo braccia.
+
+
+**`TEN_SILTED_CANALS, presagio al 5`**
+> Un barcaiolo ha passato il tratto vecchio con l'acqua alta, per scommessa. Ha vinto, e adesso tutti conoscono la strada.
+
+
+**`TEN_SLEEPERS`**
+> I Dormienti
+
+> Non e' solo la montagna a dormire. I racconti contano sette dormienti, e uno si e' gia' svegliato.
+
+
+**`TEN_SLEEPERS, presagio al 5`**
+> Il piu' vecchio del villaggio ha rifatto lo stesso sogno tre notti. Non lo racconta, ma ha smesso di dormire.
+
+
+**`TEN_SMUGGLING`**
+> Il Contrabbando
+
+> Quello che non passa dal molo passa dalla cala. Il porto vive due volte: di giorno e di notte.
+
+
+**`TEN_SMUGGLING, presagio al 5`**
+> Il prezzo del sale di contrabbando e' sceso sotto quello del sale col dazio. Il mercato l'ha capito prima della dogana.
+
+
 **`TEN_SUCCESSION`**
 > La Successione
 
@@ -551,6 +957,56 @@ possono spostare nella frase, non togliere. 771 testi in lettura.
 > Due villaggi si accordano per attingere a ore diverse, e non lo scrivono da nessuna parte.
 
 
+**`TEN_TITHE`**
+> La Decima
+
+> Una parte del raccolto va agli dei. Chi la raccoglie per loro, intanto, la tiene.
+
+
+**`TEN_TITHE, presagio al 5`**
+> L'esattore della decima ha comprato la casa grande sulla piazza. I fedeli l'hanno notato.
+
+
+**`TEN_TRIBUTE`**
+> Il Tributo
+
+> Il tributo si paga a chi protegge. Quando la protezione non si vede, il tributo pesa il doppio.
+
+
+**`TEN_TRIBUTE, presagio al 5`**
+> Il porto ha pagato per ultimo, e ha pagato con una lettera di conteggio allegata. La lettera e' gia' famosa.
+
+
+**`TEN_UNEARTHED`**
+> Il Dissotterrato
+
+> Lo scavo ha trovato qualcosa di fabbricato. Nessuna fucina di adesso sa fabbricarlo.
+
+
+**`TEN_UNEARTHED, presagio al 5`**
+> L'oggetto e' piu' freddo della stanza in cui sta. Chi lo sorveglia ha chiesto il cambio in anticipo.
+
+
+**`TEN_VOWS`**
+> I Voti Non Sciolti
+
+> Promesse fatte agli dei in anni cattivi. Gli anni sono passati, le promesse no.
+
+
+**`TEN_VOWS, presagio al 5`**
+> La lista dei voti in sospeso e' piu' lunga della lista dei battesimi. Qualcuno ha cominciato a dirlo forte.
+
+
+**`TEN_WARD_STONES`**
+> Le Pietre di Guardia
+
+> Attorno alle terre selvagge ci sono pietre incise, a distanze regolari. Una e' caduta.
+
+
+**`TEN_WARD_STONES, presagio al 5`**
+> Gli animali grossi non passano piu' dal varco della pietra caduta. Gli animali lo sanno prima di noi.
+
+
 **`TEN_WATER`**
 > L'Acqua Ferma
 
@@ -559,6 +1015,36 @@ possono spostare nella frase, non togliere. 771 testi in lettura.
 
 **`TEN_WATER, presagio al 5`**
 > Nella Valle si scava di notte, e nessuno dice cosa cerca. Di giorno i canali sono gli stessi di prima.
+
+
+**`TEN_WEIGHTS`**
+> I Pesi e le Misure
+
+> Il braccio di Eredan non e' il braccio del porto. Su ogni differenza, qualcuno guadagna.
+
+
+**`TEN_WEIGHTS, presagio al 5`**
+> Al mercato e' comparsa una bilancia doppia: pesa la merce e il peso del venditore. La folla paga per guardare.
+
+
+**`TEN_WINTER`**
+> L'Inverno Lungo
+
+> Il freddo non e' una carestia. E' la carestia con la porta chiusa.
+
+
+**`TEN_WINTER, presagio al 5`**
+> Il fiume ha ghiacciato dove non ghiaccia mai. I vecchi hanno smesso di fare paragoni.
+
+
+**`TEN_WOLVES`**
+> I Lupi al Limitare
+
+> I lupi hanno smesso di aver paura. Qualcosa nel bosco li ha convinti che di qua si sta meglio.
+
+
+**`TEN_WOLVES, presagio al 5`**
+> Un lupo e' stato visto di giorno, fermo, a guardare il villaggio. Non e' scappato per primo.
 
 
 ## 5. I Consigli — domande ai voti e proposte
@@ -583,6 +1069,42 @@ possono spostare nella frase, non togliere. 771 testi in lettura.
 
 **`P_ANY_IGNORE, esito`**
 > Si stabilì che non ci fosse niente da guardare, e per qualche mese fu vero.
+
+
+**`Q_ANY_WHO_PAYS`**
+> $in_region, chi paga il prezzo di quello che rende?
+
+
+**`Q_ANY_WHO_KEEPS`**
+> Chi tiene i conti di quello che passa $in_region — e chi li legge?
+
+
+**`P_ANY_PRICE`**
+> Si metta un prezzo, e $proponent lo riscuota: quello che passa, paga.
+
+
+**`P_ANY_PRICE, esito`**
+> $proponent mise il prezzo su quello che passava, e il prezzo resto' anche quando lui non c'era.
+
+
+**`P_ANY_PRICE, esito FAILURE`**
+> $proponent volle mettere il prezzo, e il prezzo lo pago' lui.
+
+
+**`P_ANY_OPEN_LEDGER`**
+> Si aprano i registri: che ognuno veda quanto rende, e a chi.
+
+
+**`P_ANY_OPEN_LEDGER, esito`**
+> I registri furono aperti, e piu' d'uno avrebbe preferito di no.
+
+
+**`P_ANY_SPREAD_COST`**
+> Il costo si divide in parti uguali, e nessuno ne esce bene.
+
+
+**`P_ANY_SPREAD_COST, esito`**
+> Il costo $of_region fu diviso in parti uguali, e fu il massimo che quel consiglio riusci' a fare.
 
 
 **`Q_ANY_WHO_DECIDES`**
@@ -643,6 +1165,50 @@ possono spostare nella frase, non togliere. 771 testi in lettura.
 
 **`P_ANY_AS_STORY, esito FAILURE`**
 > Si volle fare come nella storia, e la storia non tornò.
+
+
+**`Q_ANY_WHO_HOLDS`**
+> $in_region, chi tiene il posto quando la voce si spegne?
+
+
+**`Q_ANY_WHOSE_LAW`**
+> Quale legge vale $in_region: quella scritta, o quella di chi c'e'?
+
+
+**`P_ANY_HOLD`**
+> $proponent lo tiene, e lo dica forte: chi sta li' risponde a lui.
+
+
+**`P_ANY_HOLD, esito`**
+> $proponent prese il posto $of_region, e nessuno oso' contarlo due volte.
+
+
+**`P_ANY_HOLD, esito DECISIVE_SUCCESS`**
+> $proponent prese il posto $of_region, e il conto torno' al primo colpo.
+
+
+**`P_ANY_HOLD, esito FAILURE`**
+> $proponent volle il posto $of_region, e il posto non volle lui.
+
+
+**`P_ANY_SPLIT`**
+> Si divida l'uso, non il titolo: ognuno il suo pezzo, e i conti a fine anno.
+
+
+**`P_ANY_SPLIT, esito`**
+> L'uso $of_region fu diviso senza dividere il titolo, e resse quanto reggono le cose divise.
+
+
+**`P_ANY_WALK_AWAY`**
+> Nessuna legge: si lascia il posto a chi se lo vuole caricare addosso.
+
+
+**`P_ANY_WALK_AWAY, esito`**
+> Nessuna legge fu scritta per $the_region, e il posto resto' a chi ci dormiva.
+
+
+**`P_ANY_WALK_AWAY, esito FAILURE`**
+> Nessuno volle scrivere la legge $of_region, e nessuno volle nemmeno andarsene.
 
 
 **`Q_AWAKENING_CRYSTAL`**
@@ -1180,7 +1746,7 @@ possono spostare nella frase, non togliere. 771 testi in lettura.
 **`CNS_ASH_WATCH`**
 > La Veglia sulla Montagna
 
-> Due torri e un turno di guardia che nessuno salta. Non impedisce niente: fa sapere prima.
+> Due torri e un turno di guardia che nessuno salta. Non impedisce niente: fa sapere prima — e da quel momento sulla montagna c'e' qualcosa che ha un nome sopra.
 
 
 **`CNS_CANALS_DUG`**
@@ -1211,10 +1777,46 @@ possono spostare nella frase, non togliere. 771 testi in lettura.
 > Sette città firmano lo stesso foglio. Ci hanno messo un anno e mezzo, e il foglio è più corto di quanto chiunque si aspettasse.
 
 
+**`CNS_COST_COLD_WORD`**
+> La Parola Fredda
+
+> Passa, ma chi ha ceduto se lo ricorda. Non e' una rottura dichiarata: e' un rapporto che da adesso si tiene a distanza di braccio.
+
+
 **`CNS_COST_DEBT`**
 > Il Debito Contratto
 
 > Si è pagato, ma con soldi di qualcun altro, e quel qualcuno se lo ricorda.
+
+
+**`CNS_COST_EMPTIED`**
+> Chi Puo', Se Ne Va
+
+> Passa, e la gente vota coi piedi. Il posto accanto si assottiglia di una famiglia alla volta, senza che nessuno lo dichiari.
+
+
+**`CNS_COST_EXPLOITED`**
+> Si Spreme Quello Che C'e'
+
+> Passa, e il posto rende oltre quello che puo'. Rende adesso; l'anno prossimo si vedra'.
+
+
+**`CNS_COST_GUARD`**
+> Gli Uomini alla Porta
+
+> Passa, e va sorvegliata. Da adesso c'e' sempre qualcuno di guardia, e la guardia si paga tutti i giorni.
+
+
+**`CNS_COST_MOURNING`**
+> Il Conto in Vite
+
+> Passa, e qualcuno non c'e' piu' per farlo passare. Si contano i morti dopo, e si mette il lutto sulla porta.
+
+
+**`CNS_COST_RATION`**
+> La Cinghia Stretta
+
+> Passa, e si passa a razione. Quello che c'e' basta perche' qualcuno riceva meno, e quel qualcuno lo sa.
 
 
 **`CNS_COST_UNREST`**
@@ -1295,6 +1897,36 @@ possono spostare nella frase, non togliere. 771 testi in lettura.
 > Non se ne vanno tutti, e non se ne va nessuno del tutto. Ma qualcosa parte e non torna quell'anno.
 
 
+**`CNS_FAILURE_ABANDONED`**
+> Lo Lasciano Andare
+
+> Non si decide, e allora nessuno se ne occupa. Il posto resta li', e smette di essere di qualcuno.
+
+
+**`CNS_FAILURE_CONTESTED`**
+> Resta Conteso
+
+> Non si decide, e allora decide chi c'e'. Il posto resta di due padroni, che e' come dire di nessuno.
+
+
+**`CNS_FAILURE_CUT_OFF`**
+> Si Chiude la Strada
+
+> Non si decide, e chi puo' chiude. Il posto accanto resta fuori dai conti finche' qualcuno non torna a parlare.
+
+
+**`CNS_FAILURE_PLUNDER`**
+> Qualcuno Si Serve
+
+> Non si decide, e allora si prende. Non e' una razzia dichiarata: e' un magazzino che al mattino ha meno dentro.
+
+
+**`CNS_FAILURE_RUMOUR`**
+> La Voce Corre
+
+> Non si decide, e quello che non si e' deciso si racconta. Fuori dalla sala la versione e' gia' un'altra.
+
+
 **`CNS_FAILURE_SPIRAL`**
 > Nessuno Decide
 
@@ -1303,6 +1935,16 @@ possono spostare nella frase, non togliere. 771 testi in lettura.
 
 **`CNS_FAILURE_SPIRAL, cicatrice`**
 > La domanda a cui il consiglio non ha risposto, rimasta scritta su un muro.
+
+
+**`CNS_FAILURE_WALL`**
+> La Domanda sul Muro
+
+> Non si decide, e resta scritto. Qualcuno ha inciso la domanda dove tutti la leggono, e nessuno la cancella.
+
+
+**`CNS_FAILURE_WALL, cicatrice`**
+> La domanda che il Consiglio non ha saputo chiudere, incisa dove passa la gente.
 
 
 **`CNS_HARVEST_RETURNS`**
@@ -1372,7 +2014,7 @@ possono spostare nella frase, non togliere. 771 testi in lettura.
 **`CNS_MINE_TAKEN`**
 > La Miniera di Stato
 
-> Aprire le gallerie significa metterci qualcuno a contare quello che esce. Chi conta, comanda.
+> Aprire le gallerie significa metterci qualcuno a contare quello che esce. Il controllo lo decide il Consiglio; quello che resta e' che da adesso, li' sotto, qualcuno conta.
 
 
 **`CNS_MOUNTAIN_WOUNDED`**
@@ -1896,7 +2538,7 @@ possono spostare nella frase, non togliere. 771 testi in lettura.
 **`AST_FORCE_SIEGE`**
 > Assedio
 
-> +2 sul fronte Oppose. Non serve prendere una cosa per impedire che sia di qualcun altro — ma l'assedio affama anche la terra intorno: la Carestia sale di 1.
+> +2 sul fronte Oppose. Non serve prendere una cosa per impedire che sia di qualcun altro — ma l'assedio affama anche la terra intorno: la Carestia sale di 1, e il presidio della Regione della domanda viene giu'.
 
 
 **`AST_FORCE_WARBAND`**
@@ -1908,7 +2550,7 @@ possono spostare nella frase, non togliere. 771 testi in lettura.
 **`AST_KNOWLEDGE_ARCHIVE`**
 > Archivio
 
-> Se la proposta passa resta in mano. Le carte non si consumano: si consuma chi le sa leggere.
+> Se la proposta passa resta in mano. Le carte non si consumano: si consuma chi le sa leggere — e quello che si e' letto resta: sulla Regione della domanda si apre un archivio suo.
 
 
 **`AST_KNOWLEDGE_LEDGER`**
@@ -2060,19 +2702,19 @@ possono spostare nella frase, non togliere. 771 testi in lettura.
 **`DST_ALDRIC, minimum`**
 > Il trono regge
 
-> Aldric è ancora sul trono · Presenza a Eredan
+> Una pedina dove c'e' il #capitale, o su una terra di #territorio
 
 
 **`DST_ALDRIC, victory`**
 > Il regno decide
 
-> Controllo di almeno 2 Regioni · La Carestia non supera 4
+> La corona tiene ancora la sua terra · La Carestia non supera 4
 
 
 **`DST_ALDRIC, triumph`**
 > Un regno che non ha pagato il pane con il sangue
 
-> Eredan non è in rivolta · Nessuna questione lasciata aperta · La corona non è stata spezzata · E nessuno ha ancora chiesto chi siede dopo
+> La terra col #capitale non e' in rivolta · E tre segni che la corona ha retto senza stringere
 
 
 **`DST_ALDRIC_RECORD`**
@@ -2084,19 +2726,19 @@ possono spostare nella frase, non togliere. 771 testi in lettura.
 **`DST_ALDRIC_RECORD, minimum`**
 > La casa siede ancora
 
-> La casa è ancora al tavolo · Presenza a Eredan
+> Una pedina dove c'e' il #capitale, o su una terra di #territorio
 
 
 **`DST_ALDRIC_RECORD, victory`**
 > Nessuno rilegge la stessa domanda
 
-> Controllo di almeno 2 Regioni · Nessuna questione lasciata aperta
+> Nessuna questione lasciata aperta · E un segno che la corona tiene il suo registro
 
 
 **`DST_ALDRIC_RECORD, triumph`**
 > Un regno che non ha dovuto dividersi per reggere
 
-> La corona non è stata spezzata · La successione è passata per la legge · Eredan non è in rivolta
+> La corona non è stata spezzata · E due segni che si è retto per legge e non per forza
 
 
 **`DST_CENERE`**
@@ -2108,19 +2750,19 @@ possono spostare nella frase, non togliere. 771 testi in lettura.
 **`DST_CENERE, minimum`**
 > Restano sulla montagna
 
-> Le Montagne Rosse sono presidiate, non solo abitate
+> La terra col #selvaggio e' presidiata, non solo abitata
 
 
 **`DST_CENERE, victory`**
-> Tengono la montagna, e non solo quella
+> Chi scava lo dicono loro
 
-> Controllo di almeno 2 Regioni · E le gallerie non sono state murate
+> La montagna è ancora loro · E la veglia sulla montagna è affidata a loro, per atto e non per abitudine · E la terra della #miniera non e' stata murata
 
 
 **`DST_CENERE, triumph`**
-> E la veglia sulla montagna è loro
+> E non solo quella
 
-> La veglia sulla montagna è affidata a loro · E il patto con la Gilda non è un conto aperto · E nessuno ha richiuso quello che c'è sotto · E la Cenere continua a salire: è quello che tiene la montagna nostra · E quello che c'è sotto resta una domanda aperta
+> E la Cenere continua a salire: è quello che tiene la montagna nostra · E quattro segni che la montagna è loro davvero
 
 
 **`DST_CENERE_DEEP`**
@@ -2130,21 +2772,21 @@ possono spostare nella frase, non togliere. 771 testi in lettura.
 
 
 **`DST_CENERE_DEEP, minimum`**
-> Restano sulla montagna
+> Non hanno lasciato la montagna
 
-> Le Montagne Rosse sono presidiate, non solo abitate
+> E qualcuno di loro e' rimasto sulla terra col #selvaggio
 
 
 **`DST_CENERE_DEEP, victory`**
 > E hanno visto cosa c'è sotto
 
-> Hanno visto la reliquia con i propri occhi · E le gallerie non sono state murate
+> La terra della #miniera non e' stata murata · E sono scesi in due nella #miniera, non hanno solo guardato · E quello che c'è sotto l'hanno visto coi propri occhi
 
 
 **`DST_CENERE_DEEP, triumph`**
 > E non devono più niente a nessuno
 
-> Il patto con la Gilda è saltato · Controllo di almeno 2 Regioni
+> Tre segni che quello che hanno trovato è loro
 
 
 **`DST_LIBERE`**
@@ -2156,7 +2798,7 @@ possono spostare nella frase, non togliere. 771 testi in lettura.
 **`DST_LIBERE, minimum`**
 > Le città esistono ancora
 
-> Le città esistono ancora · Presenza a Eredan
+> Una pedina dove c'e' il #capitale, o su una terra di #territorio
 
 
 **`DST_LIBERE, victory`**
@@ -2168,7 +2810,7 @@ possono spostare nella frase, non togliere. 771 testi in lettura.
 **`DST_LIBERE, triumph`**
 > E nessuno l'ha pagata più degli altri
 
-> Il debito è stato rimesso · E la Gilda non è diventata un nemico delle città · Eredan non è in rivolta · E la Carta si scrive quando la domanda non si può più rimandare · E il Debito resta la domanda che nessuno può fingere di non vedere
+> E la Carta si scrive quando la domanda non si può più rimandare · E quattro segni che il conto è stato diviso
 
 
 **`DST_LIBERE_WATER`**
@@ -2178,21 +2820,21 @@ possono spostare nella frase, non togliere. 771 testi in lettura.
 
 
 **`DST_LIBERE_WATER, minimum`**
-> Le città esistono ancora
+> Un'opera alzata
 
-> Le città esistono ancora
+> Le citta' hanno alzato almeno un'opera
 
 
 **`DST_LIBERE_WATER, victory`**
 > E l'acqua si muove
 
-> I canali sono stati riaperti · Presenza nella Valle Verde
+> I canali sono stati riaperti · Una pedina dove c'e' il #granaio, o su una terra di #sopravvivenza · E il mondo non è stato aperto in più di due punti: l'acqua non torna dove si è combattuto
 
 
 **`DST_LIBERE_WATER, triumph`**
 > E non è di nessuno
 
-> L'acqua non è stata messa a prezzo · Almeno una Regione controllata
+> L'acqua non è stata messa a prezzo · E due segni che l'hanno tenuta aperta per tutti
 
 
 **`DST_LYRA`**
@@ -2204,19 +2846,19 @@ possono spostare nella frase, non togliere. 771 testi in lettura.
 **`DST_LYRA, minimum`**
 > Ha capito qualcosa
 
-> Lyra è viva · Almeno una Scoperta
+> Almeno una Scoperta
 
 
 **`DST_LYRA, victory`**
 > Sa, ed è ancora nelle gallerie
 
-> Presenza nelle Miniere Antiche · Qualcuno ha giurato di tenerle aperta la strada
+> Una pedina dove c'e' la #miniera, o su una terra d'#antico · E due segni che la strada per tornarci è ancora sua
 
 
 **`DST_LYRA, triumph`**
 > Il sapere è diventato pubblico e verificabile
 
-> Due Scoperte · Il Risveglio non è esploso · La strada per le gallerie è ancora aperta · Nessuno ha messo una guardia allo studio · E la strada per le gallerie non è allo stremo
+> Quattro Scoperte · E tre segni che si può ancora tornare a guardare
 
 
 **`DST_LYRA_TAUGHT`**
@@ -2226,15 +2868,15 @@ possono spostare nella frase, non togliere. 771 testi in lettura.
 
 
 **`DST_LYRA_TAUGHT, minimum`**
-> Qualcuno sa ancora leggere le carte
+> Qualcosa è stato insegnato
 
-> La scuola esiste ancora
+> Qualcuno ha imparato qualcosa
 
 
 **`DST_LYRA_TAUGHT, victory`**
 > Il sapere ha un posto suo
 
-> Almeno una scoperta all'attivo · Le gallerie non sono state sigillate
+> Almeno una scoperta all'attivo · Le gallerie non sono state sigillate · E un posto dove quel sapere sta
 
 
 **`DST_LYRA_TAUGHT, triumph`**
@@ -2252,19 +2894,19 @@ possono spostare nella frase, non togliere. 771 testi in lettura.
 **`DST_NAHR, minimum`**
 > Il popolo sopravvive
 
-> I Nahr esistono ancora come popolo · Presenza nelle Terre Nahr
+> Una pedina dove c'e' il #pascolo, o su una terra di #sopravvivenza
 
 
 **`DST_NAHR, victory`**
 > Il popolo si ferma
 
-> L'insediamento è riconosciuto · Presenza nella Valle Verde
+> L'insediamento è riconosciuto · Una pedina dove c'e' il #granaio, o su una terra di #sopravvivenza · E un segno che fermarsi è costato qualcosa
 
 
 **`DST_NAHR, triumph`**
 > Fermarsi senza smettere di essere Nahr
 
-> La Valle non è stata chiusa · La Carestia è sotto controllo · La corona ha smesso di essere una sola · E finché si discute chi siede, nessuno ha tempo di mandarci via
+> La Valle non è stata chiusa · E tre segni che fermarsi non è stato arrendersi
 
 
 **`DST_NAHR_ROOTED`**
@@ -2274,21 +2916,21 @@ possono spostare nella frase, non togliere. 771 testi in lettura.
 
 
 **`DST_NAHR_ROOTED, minimum`**
-> Il popolo è ancora qui
+> Qualcosa che resta, piantato
 
-> Il popolo esiste ancora
+> Il popolo ha piantato almeno una cosa che resta
 
 
 **`DST_NAHR_ROOTED, victory`**
 > La terra risponde a chi la lavora
 
-> Almeno una Regione controllata · Presenza nella Valle Verde
+> Una pedina dove c'e' il #granaio, o su una terra di #sopravvivenza · E due segni che non sono di passaggio
 
 
 **`DST_NAHR_ROOTED, triumph`**
 > Radicati senza aver chiuso la porta a nessuno
 
-> L'insediamento è riconosciuto · Le Terre Nahr non si sono svuotate · La Valle non è stata chiusa · E la storia del popolo è stata messa per iscritto, com'è' raccontata
+> La Valle non è stata chiusa · E due segni che la terra li ha accettati
 
 
 **`DST_SALE`**
@@ -2300,19 +2942,19 @@ possono spostare nella frase, non togliere. 771 testi in lettura.
 **`DST_SALE, minimum`**
 > La Gilda è ancora al tavolo
 
-> La Gilda esiste ancora · Presenza sulla Strada dei Mercanti
+> Una pedina dove c'e' il #commercio, o su una terra di #risorse
 
 
 **`DST_SALE, victory`**
 > Il debito è stato chiamato, e nessuno lo ha cancellato
 
-> Il debito è stato chiamato per intero · E nessuno lo ha cancellato
+> Il debito è stato chiamato per intero · E chi lo doveva non le è diventato nemico
 
 
 **`DST_SALE, triumph`**
 > E la firma vale ancora
 
-> Il patto con i Signori della Cenere regge · E il registro resta suo · E il registro copre due Regioni, non una · E il Debito non ha spaccato la Strada
+> Il registro non è finito sul muro: è ancora suo · E quattro segni che il registro pesa più della spada
 
 
 **`DST_SALE_OPEN`**
@@ -2322,21 +2964,165 @@ possono spostare nella frase, non togliere. 771 testi in lettura.
 
 
 **`DST_SALE_OPEN, minimum`**
-> La Gilda esiste ancora
+> Una terra risponde alla Gilda
 
-> La Gilda esiste ancora
+> Almeno una terra risponde alla Gilda
 
 
 **`DST_SALE_OPEN, victory`**
 > E il registro si può leggere
 
-> Il registro è stato aperto · Almeno una Regione controllata
+> Il registro è stato aperto · Almeno una Regione controllata · E i conti che il registro tiene sono chiusi tutti
 
 
 **`DST_SALE_OPEN, triumph`**
 > E vale lo stesso
 
-> L'acqua torna a muoversi, e i lavori li ha pagati lei · Presenza sulla Strada dei Mercanti · E la vecchia pagina è stata riletta e trascritta nel registro
+> Una pedina dove c'e' il #commercio, o su una terra di #risorse · E due segni che un registro aperto pesa uguale
+
+
+**`DST_SHARED_ACCOUNTS`**
+> I Conti Chiusi
+
+> Vincere non è prendere: è una firma che vale, e finire la cronaca senza debiti a verbale. Nessuna proposta caduta, nessuna domanda lasciata aperta, nessun giuramento spezzato nel mondo che lasci.
+
+
+**`DST_SHARED_ACCOUNTS, minimum`**
+> Due conti tenuti sotto controllo
+
+> Due questioni tenute sotto il punto di rottura
+
+
+**`DST_SHARED_ACCOUNTS, victory`**
+> Nessuna domanda lasciata aperta
+
+> Nessuna questione lasciata aperta
+
+
+**`DST_SHARED_ACCOUNTS, triumph`**
+> Un mondo che non deve niente a nessuno
+
+> Nessun giuramento spezzato è rimasto scritto · E tre segni che i conti li ha chiusi lei
+
+
+**`DST_SHARED_HAND`**
+> Le Riserve
+
+> Quando l'anno si chiude, chi ha le mani piene detta le condizioni del prossimo. Le riserve non fanno rumore: pesano.
+
+
+**`DST_SHARED_HAND, minimum`**
+> Le mani non vuote
+
+> Tre carte in mano a fine anno
+
+
+**`DST_SHARED_HAND, victory`**
+> Le riserve che diventano forma
+
+> Cinque carte in mano · E una cosa costruita
+
+
+**`DST_SHARED_HAND, triumph`**
+> Quando gli altri chiedono, tu hai
+
+> Più riserve di chiunque altro, di due almeno · E la mappa ha ancora una terra contesa: chi ha le mani piene la decide l'anno prossimo
+
+
+**`DST_SHARED_LAND`**
+> La Terra che Risponde
+
+> Chiunque tu sia, la domanda è la stessa: quanta terra risponde quando chiami? Un'ambizione semplice e spietata - contare le Regioni, e contarle tue.
+
+
+**`DST_SHARED_LAND, minimum`**
+> Un posto che risponde
+
+> Almeno una Regione controllata
+
+
+**`DST_SHARED_LAND, victory`**
+> La terra risponde, e non importa come
+
+> Due Regioni che rispondono, o due cose che stanno in piedi
+
+
+**`DST_SHARED_LAND, triumph`**
+> La mappa parla la tua lingua
+
+> Controllo di almeno 3 Regioni · E l'anno lo dice: tre posti non si prendono in silenzio
+
+
+**`DST_SHARED_LORE`**
+> Quello che si Sa
+
+> Chiunque tu sia, quello che sai nessuno te lo toglie. Scendere, guardare, mettere a verbale: il sapere è l'unica terra che non si può occupare.
+
+
+**`DST_SHARED_LORE, minimum`**
+> Una cosa vista
+
+> Almeno una scoperta all'attivo
+
+
+**`DST_SHARED_LORE, victory`**
+> E un posto dove custodirla
+
+> Due scoperte all'attivo · E una pietra dove il sapere sta
+
+
+**`DST_SHARED_LORE, triumph`**
+> Quello che sai lo sanno da te
+
+> Tre scoperte all'attivo
+
+
+**`DST_SHARED_QUIET`**
+> La Quiete Tenuta
+
+> Il mondo peggiora da solo: le questioni salgono per conto loro. Tenerle giù per un anno intero non è una cosa che capita — è una cosa che si fa.
+
+
+**`DST_SHARED_QUIET, minimum`**
+> Tre questioni tenute giù
+
+> Tre questioni sotto il punto di rottura
+
+
+**`DST_SHARED_QUIET, victory`**
+> La quiete si vede
+
+> Quattro questioni tenute basse · E non più di due segni nuovi sul mondo
+
+
+**`DST_SHARED_QUIET, triumph`**
+> La quiete non capita: si tiene
+
+> Quattro questioni a un filo dal silenzio · E al massimo un segno nuovo · E sulla mappa non e' rimasta una terra contesa
+
+
+**`DST_SHARED_RENOWN`**
+> Il Nome che Pesa
+
+> Non importa da dove vieni: importa che quando parli, il tavolo ascolta. La stessa ambizione per chiunque la giuri - la fama, e un posto da cui difenderla.
+
+
+**`DST_SHARED_RENOWN, minimum`**
+> Un posto che risponde al tuo nome
+
+> Almeno una terra risponde al tuo nome
+
+
+**`DST_SHARED_RENOWN, victory`**
+> Il nome è conosciuto
+
+> La casa porta il segno della fama
+
+
+**`DST_SHARED_RENOWN, triumph`**
+> Un nome che nessuno ha visto fallire
+
+> Nessuna proposta caduta a verbale · E tre segni che il nome ha un peso
 
 
 **`DST_VAERAX`**
@@ -2348,7 +3134,7 @@ possono spostare nella frase, non togliere. 771 testi in lettura.
 **`DST_VAERAX, minimum`**
 > La montagna è ancora sua
 
-> Vaerax è ancora presente nel mondo · Presenza sulle Montagne Rosse
+> Una pedina sulla terra col #selvaggio, o su una d'#antico
 
 
 **`DST_VAERAX, victory`**
@@ -2360,7 +3146,7 @@ possono spostare nella frase, non togliere. 771 testi in lettura.
 **`DST_VAERAX, triumph`**
 > E nessuno ci arriva più
 
-> Il Risveglio è stato riportato indietro · E la fame tiene gli uomini nelle valli, lontani dalla montagna · Nessuno arriva facilmente fin lassù · E le Miniere non sono state svuotate · E salire fin lassù non è facile per nessuno
+> E la terra della #miniera non e' stata svuotata · E quattro segni che la montagna è tornata lontana
 
 
 **`DST_VAERAX_LEGEND`**
@@ -2372,7 +3158,7 @@ possono spostare nella frase, non togliere. 771 testi in lettura.
 **`DST_VAERAX_LEGEND, minimum`**
 > La storia si racconta ancora
 
-> Il seggio della storia non è stato spento · Il mondo dimentica ancora la montagna
+> Il mondo dimentica ancora la montagna
 
 
 **`DST_VAERAX_LEGEND, victory`**
@@ -2384,7 +3170,7 @@ possono spostare nella frase, non togliere. 771 testi in lettura.
 **`DST_VAERAX_LEGEND, triumph`**
 > Nessuno ricorda com'era davvero
 
-> Il sigillo regge · Il Risveglio è un sussurro · Il giorno del Cristallo è ormai soltanto un racconto
+> Il sigillo regge · Il Risveglio è un sussurro · E la voce corre: la versione che gira fuori dalla sala e' la sua
 
 
 **`DST_VAERAX_WATCHED`**
@@ -2396,7 +3182,7 @@ possono spostare nella frase, non togliere. 771 testi in lettura.
 **`DST_VAERAX_WATCHED, minimum`**
 > La montagna è ancora sua
 
-> Presenza sulle Montagne Rosse
+> Una pedina sulla terra col #selvaggio, o su una d'#antico
 
 
 **`DST_VAERAX_WATCHED, victory`**
@@ -2408,7 +3194,7 @@ possono spostare nella frase, non togliere. 771 testi in lettura.
 **`DST_VAERAX_WATCHED, triumph`**
 > Guardato da qualcuno che non lo vuole
 
-> Il Cristallo non è stato messo a peso · Chi studia la pietra non la vuole · Le Montagne non sono in rivolta
+> Il Cristallo non è stato messo a peso · Chi studia la pietra non la vuole · La terra col #selvaggio non e' in rivolta
 
 
 **`DST_VETRO`**
@@ -2420,7 +3206,7 @@ possono spostare nella frase, non togliere. 771 testi in lettura.
 **`DST_VETRO, minimum`**
 > L'Ordine tiene la sua casa
 
-> L'Ordine esiste ancora · Le gallerie sono presidiate, non solo abitate
+> La terra della #miniera e' presidiata, non solo abitata
 
 
 **`DST_VETRO, victory`**
@@ -2432,7 +3218,7 @@ possono spostare nella frase, non togliere. 771 testi in lettura.
 **`DST_VETRO, triumph`**
 > E cosa ci sia dentro lo sa, e le gallerie sono ancora sue
 
-> L'Ordine ha messo a verbale cosa custodisce · E le gallerie non sono state abbandonate · E la Reliquia non è diventata la domanda di tutti · E l'acqua non è diventata la questione che sveglia tutti · E la legge scritta non è arrivata a bussare alla teca
+> E non e' stata abbandonata · E quattro segni che la custodia ha tenuto
 
 
 **`DST_VETRO_SHOWN`**
@@ -2444,7 +3230,7 @@ possono spostare nella frase, non togliere. 771 testi in lettura.
 **`DST_VETRO_SHOWN, minimum`**
 > L'Ordine tiene la sua casa
 
-> L'Ordine esiste ancora · Le gallerie sono presidiate, non solo abitate
+> La terra della #miniera e' presidiata, non solo abitata
 
 
 **`DST_VETRO_SHOWN, victory`**
@@ -2456,7 +3242,7 @@ possono spostare nella frase, non togliere. 771 testi in lettura.
 **`DST_VETRO_SHOWN, triumph`**
 > E la fede è diventata legge
 
-> C'è una Carta scritta · E nessuno l'ha rifiutata
+> C'è una Carta scritta · E nessuno l'ha rifiutata · E il mondo porta il segno di quel giorno: una teca aperta non si richiude
 
 
 ## 10. Le Azioni — la plancia, stampata una volta

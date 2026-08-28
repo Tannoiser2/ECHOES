@@ -66,7 +66,7 @@ func test_the_entity_list_is_the_default_pool() -> void:
 
 
 ## Col pool, il Destino esce da quella lista — e da nessun'altra parte: non si
-## permuta niente fra le case (SEDUTA_LINEE §2).
+## permuta niente fra le case.
 func test_with_a_pool_the_destiny_comes_from_that_house_s_list() -> void:
 	var set: RefCounted = data()
 	# Il pool e' **spento nei dati** finche' gli otto Destini alternativi non

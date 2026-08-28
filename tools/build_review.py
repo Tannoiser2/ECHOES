@@ -9,6 +9,7 @@ riceve sa esattamente dove riportarla nei dati.
 Come il manifest: non si modifica a mano, si rigenera —
 
     python3 tools/build_review.py
+    python3 tools/build_review.py --check    # esce 1 se il documento e' vecchio
 
 Deterministico: ordine per id dentro ogni sezione, ordine di lettura fra le
 sezioni. La revisione e' d'autore; questo file e' solo il tavolo su cui si fa.
@@ -16,6 +17,7 @@ sezioni. La revisione e' d'autore; questo file e' solo il tavolo su cui si fa.
 from __future__ import annotations
 
 import json
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -23,8 +25,20 @@ DATA = ROOT / "godot" / "data"
 OUT = ROOT / "docs" / "REVISIONE_TESTI.md"
 
 
-def load(relative: str) -> list[dict]:
-    return json.loads((DATA / relative).read_text())["items"]
+def load_all(*globs: str) -> list[dict]:
+    """Tutti gli `items` dei file che corrispondono, in ordine di percorso.
+
+    Scritto a glob e non a lista di nomi per una ragione pagata: fino a 0.1.290
+    questo strumento nominava `chronicle_01/chronicle_01.json`, cancellato con
+    gli anni d'autore (D-318), e **moriva all'avvio** — il documento che genera
+    e' rimasto fermo settanta versioni senza che nessuno se ne accorgesse,
+    perche' nessun cancello lo guardava. Adesso legge quello che c'e'.
+    """
+    items: list[dict] = []
+    for pattern in globs:
+        for path in sorted(DATA.glob(pattern)):
+            items.extend(json.loads(path.read_text())["items"])
+    return items
 
 
 def sorted_by_id(items: list[dict]) -> list[dict]:
@@ -58,32 +72,16 @@ def main() -> int:
     review = Review()
     out = review.lines
 
-    chronicles = sorted_by_id(
-        load("chronicle_01/chronicle_01.json") + load("chronicle_03/chronicle_03.json")
-    )
-    regions = sorted_by_id(load("regions/regions_chronicle_01.json"))
-    entities = sorted_by_id(
-        load("entities/entities_chronicle_01.json") + load("entities/entities_chronicle_03.json")
-    )
-    tensions = sorted_by_id(
-        load("tensions/tensions_chronicle_01.json") + load("tensions/tensions_chronicle_03.json")
-    )
-    templates = sorted_by_id(
-        load("chronicle_01/confluences/confluence_templates.json")
-        + load("chronicle_03/confluences/confluence_templates.json")
-    )
-    consequences = sorted_by_id(
-        load("consequences/consequences_chronicle_01.json")
-        + load("consequences/consequences_chronicle_03.json")
-    )
-    echoes = sorted_by_id(
-        load("echoes/echo_cards_chronicle_01.json") + load("echoes/echo_cards_chronicle_03.json")
-    )
-    assets = sorted_by_id(load("assets/assets_core.json"))
-    destinies = sorted_by_id(
-        load("destinies/destinies_chronicle_01.json") + load("destinies/destinies_chronicle_03.json")
-    )
-    actions = sorted_by_id(load("actions/action_templates.json"))
+    chronicles = sorted_by_id(load_all("chronicle_*/chronicle_*.json"))
+    regions = sorted_by_id(load_all("regions/*.json"))
+    entities = sorted_by_id(load_all("entities/*.json"))
+    tensions = sorted_by_id(load_all("tensions/*.json"))
+    templates = sorted_by_id(load_all("chronicle_*/confluences/*.json"))
+    consequences = sorted_by_id(load_all("consequences/*.json"))
+    echoes = sorted_by_id(load_all("echoes/*.json"))
+    assets = sorted_by_id(load_all("assets/*.json"))
+    destinies = sorted_by_id(load_all("destinies/*.json"))
+    actions = sorted_by_id(load_all("actions/*.json"))
 
     review.line("# ECHOES — I testi, per la revisione")
     review.line()
@@ -208,7 +206,17 @@ def main() -> int:
         "possono spostare nella frase, non togliere. " + header_note,
         1,
     )
-    OUT.write_text(body.rstrip() + "\n")
+    testo = body.rstrip() + "\n"
+
+    if "--check" in sys.argv:
+        if not OUT.exists() or OUT.read_text(encoding="utf-8") != testo:
+            print("FAIL  docs/REVISIONE_TESTI.md non e' piu' quello che i dati dicono:")
+            print("      rilancia `python3 tools/build_review.py`.")
+            return 1
+        print("OK  i testi in lettura sono quelli dei dati (%d)." % review.count)
+        return 0
+
+    OUT.write_text(testo)
     print("wrote %s  (%d testi)" % (OUT.relative_to(ROOT), review.count))
     return 0
 

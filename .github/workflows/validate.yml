@@ -66,6 +66,19 @@ jobs:
       - name: Drift check - registro dei segni
         run: python3 tools/build_sign_registry.py --check
 
+      # Le tre misure che vengono prima della matrice: segni orfani, obiettivi
+      # che non si possono puntare col dito, Tensioni che non incontrano nessun
+      # Destino. Il cancello era dichiarato in CLAUDE.md dalla 0.1.249 e **non
+      # era in CI**: si e' visto facendo il giro a mano in 0.1.291.
+      - name: Drift check - le tre misure della matrice
+        run: python3 tools/matrix_survey.py --check
+
+      # Ogni testo che un giocatore puo' leggere, in ordine di lettura. Senza
+      # questo passo il documento e' rimasto fermo settanta versioni mentre lo
+      # strumento che lo genera moriva all'avvio su un file cancellato (D-328).
+      - name: Drift check - i testi in lettura
+        run: python3 tools/build_review.py --check
+
       # Un blocco finito dopo un `return` non e' un errore per GDScript: e'
       # silenzio. Il bottone «Si comincia» della stanza e' vissuto una versione
       # intera dietro un return, e nessun test poteva vederlo (D-140).
@@ -157,7 +170,7 @@ jobs:
       - name: Drift check - la misura dei segni
         run: GODOT=~/godot/godot tools/run_marks_survey.sh --check
 
-      - name: Play every sim plan
+      - name: Ogni anno arriva in fondo, e lo stesso seme da' lo stesso salvataggio
         run: GODOT=~/godot/godot tools/run_sims.sh
 
       # Not a pass/fail gate on its own - test_balance.gd is - but the numbers
