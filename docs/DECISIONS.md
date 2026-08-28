@@ -10,6 +10,112 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-322 — Tredici esiti di Consiglio stampati che la scatola non puo' pescare
+
+**implemented** (0.1.285) · misura, non modifica · [ISSUES 95](ISSUES.md)
+aperta · nata dal voler attaccare `state_tag_absent`, il blocco piu' grosso
+rimasto di [ISSUES 91](ISSUES.md) dopo [D-321](#d-321).
+
+### La domanda di partenza, e perche' era quella sbagliata
+
+Dopo D-321 il blocco piu' grosso e' `state_tag_absent`: **448 clausole gia'
+vere all'apertura, 426 che nessuno contende mai**. Sono le clausole che dicono
+«questa cosa non e' successa». La sonda diceva anche che **il 76.6% delle
+memorie temute il mondo non le tocca mai**, e dodici segni su diciassette non
+li scrive mai nessuno in cento anni.
+
+La prima ipotesi era la piu' brutta: *una paura di una cosa che non puo'
+succedere non e' una paura*. **Ed era sbagliata.** Censite le strade, tutti e
+diciassette i segni temuti hanno almeno una Conseguenza raggiungibile che li
+scrive. Il problema non e' che la paura sia impossibile: e' che e'
+improbabile.
+
+*(Il primo censimento diceva «cinque segni irraggiungibili». Era cieco:
+cercava il segno su `tag`, mentre le Conseguenze lo scrivono dentro `payload`.
+Quattordicesima misura cieca del progetto, e la seconda in due giorni della
+stessa famiglia — il dato aveva una forma diversa da quella che la sonda
+cercava, e uno zero non e' mai una risposta finche' non lo si prova su un caso
+che deve dare non-zero.)*
+
+### Cosa c'era invece
+
+Tirando il filo di **chi puo' pescare cosa**:
+
+| | |
+|---|---|
+| Conseguenze scritte nella scatola | **64** |
+| raggiungibili dalle proposte delle 60 carte Tensione | 46 |
+| raggiungibili dai pool dei 12 template | 6 |
+| **che nessun Consiglio puo' pescare** | **13** |
+
+E le tredici non sono a caso. **Undici sono i prezzi e i fallimenti:**
+`CNS_COST_COLD_WORD`, `CNS_COST_EMPTIED`, `CNS_COST_EXPLOITED`,
+`CNS_COST_MOURNING`, `CNS_COST_RATION`, `CNS_FAILURE_ABANDONED`,
+`CNS_FAILURE_CONTESTED`, `CNS_FAILURE_CUT_OFF`, `CNS_FAILURE_PLUNDER`,
+`CNS_FAILURE_RUMOUR`, `CNS_FAILURE_WALL`. Le altre due sono `CNS_EXODUS` e
+`CNS_HARVEST_RETURNS`.
+
+### Perche' sono morte, e non e' un difetto: e' un residuo
+
+Tutti e dodici i template portano **gli stessi identici pool**:
+
+```
+cost:           CNS_COST_UNREST, CNS_COST_DEBT
+failure:        CNS_FAILURE_SPIRAL, CNS_OATH_BROKEN
+decisive_bonus: CNS_DECISIVE_RENOWN
+```
+
+Ma nel motore, `confluence_controller.gd`, gli esiti si costruiscono cosi':
+
+```gdscript
+if ConfluenceResolution.is_success(outcome):
+    consequence_ids.append_array(_proposition()["success_consequences"])
+    if outcome == ConfluenceResolution.DECISIVE:
+        consequence_ids.append_array(template["consequence_pools"]["decisive_bonus"])
+```
+
+**`cost` e `failure` non li legge nessuno.** E per due ragioni entrambe
+deliberate, entrambe gia' a verbale:
+
+- il **prezzo** e' passato sulla carta ([D-267](#d-267), [D-280](#d-280)): il
+  proponente compra i benefici, gli avversari scelgono in che moneta paga, e
+  la moneta e' scritta sulla faccia della Tensione. Il pool `cost` del template
+  e' superato per costruzione.
+- il **segno della domanda caduta** lo scrive il motore ([D-278](#d-278)) e non
+  piu' `CNS_FAILURE_SPIRAL`, perche' *«che una proposta sia caduta e' un fatto
+  del tavolo, e resta sul tavolo comunque»*.
+
+Nessuno ha tolto i pool vecchi. Sono rimasti tredici esiti scritti, con
+titolo, descrizione e Effect, che nella scatola non escono.
+
+### Quello che resta scoperto, e che nessuno ha deciso
+
+**Un Consiglio che fallisce non lascia niente al mondo** tranne il segno
+`question_unresolved`. Sul tavolo misto **una proposta su quattro cade**
+(90 FAIL su 347 esiti in cento anni); sull'uniforme una su venti (17 su 355).
+
+Ed e' qui che si chiude il cerchio con ISSUES 91: `state_tag_absent` e' gratis
+perche' il mondo, quando il tavolo non riesce a decidere, **non si sporca**.
+Le undici Conseguenze morte sono esattamente quelle che lo sporcherebbero:
+`condition:abandoned`, `condition:contested`, `condition:plundered`,
+`condition:cut_off`, `rumour_running`, `condition:emptied`.
+
+### Cosa non si decide qui
+
+Le strade stanno in [ISSUES 95](ISSUES.md), e la scelta e' del committente
+perche' e' contenuto stampato: o le tredici carte si cancellano — il prezzo sta
+sulla carta, un Consiglio caduto non lascia niente, e la scatola torna onesta —
+o **il fallimento riprende una faccia**, e allora una domanda che il tavolo non
+sa chiudere lascia il segno che quella domanda lascia.
+
+Una prova tentata e ritirata: assegnare a ogni dominio il suo prezzo e il suo
+fallimento (SURVIVAL paga in razioni e lutti, TERRITORY in terre svuotate,
+ANCIENT in parole fredde e voci che corrono, RESOURCE in strade chiuse). Passa
+i validatori e **non cambia un singolo esito**, misurato: i pool restano non
+letti. Il contenuto da solo non basta — serve prima la decisione sul motore.
+
+---
+
 ## D-321 — Sette clausole su ventisei vogliono il segno, e la lite si quadruplica
 
 **implemented** (0.1.284) · [ISSUES 94](ISSUES.md) chiusa, strada 1 · decisione
