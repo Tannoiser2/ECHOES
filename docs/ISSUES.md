@@ -2763,6 +2763,66 @@ e' in gioco.
 
 ---
 
+### 97. Quasi meta' delle clausole di Regione nomina una terra che non e' stata pescata
+
+`regola` · `contenuto` · `bilanciamento` · `decisione` · aperta in 0.1.289
+([D-326](DECISIONS.md#d-326))
+
+Misurata la mappa per la prima volta con
+`cli/run_map_probe.gd` (100 partite, CHR_00, misto), la lotta **c'e'**:
+
+> **Il 47.1% delle Regioni tenute a fine anno si decide per una pedina o meno.**
+
+Ma le carte guardano altrove:
+
+| | | |
+|---|---|---|
+| righe dei Destini su una Regione **pescata** | 284 | 56.9% |
+| righe su una Regione **che non c'e'** | **215** | **43.1%** |
+| Regioni pescate che **qualcuno nomina** | 134 | 22.3% |
+| Regioni pescate che **non nomina nessuno** | 466 | **77.7%** |
+
+Le morte, per nome: `REG_EREDAN` 62, `REG_MINIERE_ANTICHE` 57,
+`REG_STRADA_MERCANTI` 33, `REG_VALLE_VERDE` 30, `REG_MONTAGNE_ROSSE` 23,
+`REG_TERRE_NAHR` 10.
+
+**Ecco perche' le coppie che si contendono una Regione sono il 2.8%.** Perche'
+due Destini si incontrino su una terra, quella terra deve essere stata pescata —
+e da [D-265](DECISIONS.md#d-265) la mappa si pesca sei su dieci.
+
+**E' l'ultimo pezzo di D-265 rimasto indietro.** La mappa e' diventata pescata,
+i bersagli delle Azioni sono stati ri-mirati a segni
+([D-273](DECISIONS.md#d-273)), le Tensioni parlano per #TAG — **i Destini no**.
+
+**Cosa la chiude.** Sono ventitre' carte stampate, quindi decide il committente:
+
+1. **I Destini parlano per segni, come tutto il resto.** Non «Eredan e' uscita
+   pulita» ma «la terra col #trono e' uscita pulita»; non «presenza nelle Terre
+   Nahr» ma «presenza dove c'e' il #pascolo». E' la strada gia' percorsa due
+   volte (D-273 per le Azioni, la grammatica #TAG per le Tensioni), e chiude il
+   difetto alla radice: una clausola a segni **trova sempre il suo posto** sulla
+   mappa pescata. Costo: e' la riscrittura piu' grossa fatta finora sulle carte,
+   e va provata che ogni segno esista su ogni mappa possibile — il validatore ha
+   gia' quel controllo per le Azioni.
+2. **Il mazzetto dei Destini si pesca dopo la mappa.** La casa riceve solo i
+   Destini le cui Regioni sono uscite. Non tocca le carte, tocca il setup —
+   ma con quattro carte per casa restringere puo' lasciare un mazzetto vuoto, e
+   allora serve comunque un ripiego a segni.
+3. **La mappa si pesca in funzione delle case sedute.** Le sei tessere le
+   scelgono le quattro case, non l'RNG. Rende la mappa meno varia: e' il
+   contrario di D-265.
+
+**Coda dello stesso difetto, e questa non ha bisogno di una decisione grossa:**
+**`DST_VAERAX_LEGEND` non sta nel mazzetto di nessuna casa** — mai uscita in 400
+seggi. E' la carta che [D-325](DECISIONS.md#d-325) ha appena modificato: quella
+modifica non puo' vedersi. O entra nel mazzetto di `ENT_VAERAX` (che diventa
+l'unica casa con tre Destini propri), o esce dalla scatola.
+
+**Il metro**: `cli/run_map_probe.gd`, righe *su una che non c'e'* e *non le
+nomina nessuno*. **Fatto quando** nessuna clausola di Regione puo' nascere morta.
+
+---
+
 ### 96. Il segno piu' scritto del gioco non lo guarda nessuno
 
 `regola` · `contenuto` · `bilanciamento` · `decisione` · aperta in 0.1.287

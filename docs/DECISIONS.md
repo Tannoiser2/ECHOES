@@ -10,6 +10,113 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-326 — La lotta per la mappa c'e'; sono le carte che guardano altrove
+
+**implemented** (0.1.289) · misura, non modifica · [ISSUES 97](ISSUES.md)
+aperta · decisione del committente: *«misura la mappa»*, dopo aver visto che le
+coppie che si contendono una Regione sono ferme al **2.8%** da tutta la
+giornata.
+
+### La frase da misurare
+
+> «Modificare la mappa dovrebbe essere la priorita' del gioco e **una
+> maggioranza dovrebbe essere una lotta fra entita'».
+
+La seconda meta' non era mai stata misurata. Il motore riconta le forze a ogni
+round e **la presenza piu' forte tiene la Regione**; a parita' non cambia
+niente. Quindi la frase e' un numero solo: **di quanto vince chi vince**. Una
+terra tenuta tre a zero e' una proprieta'; una tenuta due a uno e' una lotta, e
+la prossima pedina la ribalta.
+
+`cli/run_map_probe.gd`, 100 partite, CHR_00, tavolo misto.
+
+### Prima sorpresa: la lotta c'e', ed e' stretta
+
+| margine fra primo e secondo | Regioni | |
+|---|---|---|
+| 0 | 82 | 15.7% |
+| 1 | 164 | **31.4%** |
+| 2 | 112 | 21.5% |
+| 3 | 76 | 14.6% |
+| 4 o piu' | 88 | 16.8% |
+
+> **Il 47.1% delle Regioni tenute si decide per una pedina o meno.**
+
+Il tavolo **e' conteso**. Non e' una spartizione: quasi la meta' delle terre, a
+fine anno, la ribalterebbe un solo pezzo di legno in piu'. Questo va detto
+perche' era la mia ipotesi, ed era sbagliata.
+
+### Seconda: il controllo si raccoglie, non si toglie
+
+| | passaggi | |
+|---|---|---|
+| raccolta da terra | 466 | **68.4%** |
+| tolta a un'altra casa | 181 | 26.6% |
+| persa e basta | 34 | 5.0% |
+
+Due volte su tre una Regione si prende dove non c'era nessuno. La lotta stretta
+del punto prima e' **una lotta per arrivare primi**, non per scacciare.
+
+### Terza, ed e' la risposta al 2.8%
+
+| le righe dei Destini che nominano una Regione | | |
+|---|---|---|
+| su una Regione pescata | 284 | 56.9% |
+| **su una che la mappa non ha pescato** | **215** | **43.1%** |
+
+> **Quasi meta' delle clausole di Regione sono morte prima che si cominci.**
+> `REG_EREDAN` 62 volte, `REG_MINIERE_ANTICHE` 57, `REG_STRADA_MERCANTI` 33.
+
+E dall'altro lato:
+
+> **Il 77.7% delle Regioni pescate non le nomina nessuno.** Sei terre sul
+> tavolo, e in media **1.3** interessano a qualcuno.
+
+Ecco perche' le coppie che si contendono una Regione sono il 2.8%: perche' due
+Destini si incontrino sulla stessa terra, quella terra deve **essere stata
+pescata** — e da D-265 la mappa si pesca sei su dieci. Le carte nominano la
+geografia di un'era che quell'anno per meta' non c'e'.
+
+**Non e' un difetto del motore: e' l'ultimo pezzo di D-265 rimasto indietro.**
+La mappa e' diventata pescata, i bersagli delle Azioni sono stati ri-mirati a
+segni (D-273), le Tensioni parlano per #TAG — **i Destini no**: continuano a
+nominare Regioni per nome.
+
+### Quarta: una carta scritta che non sta in nessun mazzetto
+
+Ogni casa ha un mazzetto di quattro Destini, due suoi e due condivisi. Contati
+tutti: **`DST_VAERAX_LEGEND` — «La Storia che si Racconta» — non e' nel
+mazzetto di nessuno.** In 400 seggi non e' mai uscita.
+
+Ed e' una carta che **ho modificato oggi** ([D-325](#d-325)): le ho ri-mirato la
+clausola morta su `rumour_running`. Quella modifica non puo' vedersi in nessuna
+partita. Lo scrivo perche' e' un errore mio, e perche' e' la stessa famiglia dei
+tredici esiti di Consiglio di [D-322](#d-322) e delle sette vite mai sedute: la
+scatola e' cresciuta piu' in fretta dei suoi mazzetti.
+
+### Quinta: come si distribuiscono i Destini
+
+Su 400 seggi, **200 prendono un Destino della propria casa e 200 uno condiviso**
+— meta' e meta'. Ma i sei condivisi si dividono quei 200 (una media di 33 a
+testa, `DST_SHARED_RENOWN` da sola **51**), mentre i diciassette di casa si
+dividono gli altri 200 (una media di **12**).
+
+*(Correzione: guardando due soli semi avevo detto «le case quasi sempre pescano
+un Destino condiviso». Su cento partite non e' vero — e' meta' e meta'. Il fatto
+vero e' la concentrazione, non la prevalenza.)*
+
+E questo spiega di nuovo, dall'interno, la cosa imparata in
+[D-325](#d-325): **le carte condivise sono dove vive la lite** perche' una carta
+condivisa esce quattro volte piu' spesso di una di casa.
+
+### Cosa non si decide qui
+
+Le strade stanno in [ISSUES 97](ISSUES.md). La piu' grossa e' se i Destini
+debbano smettere di nominare Regioni per nome e passare ai **segni**, come hanno
+gia' fatto le Azioni e le Tensioni.
+
+---
+
 ## D-325 — Otto clausole guardano quello che il mondo produce, e la lite sta sulle carte condivise
 
 **implemented** (0.1.288) · [ISSUES 96](ISSUES.md) strada 1 · decisione del
