@@ -2763,39 +2763,49 @@ e' in gioco.
 
 ---
 
-### 94. La quiete e' un bene comune: 143 clausole su 145 vere all'apertura
+### 94. ✅ La quiete e' un bene comune — chiusa in 0.1.284, strada 1
 
 `regola` · `contenuto` · `decisione` · aperta in 0.1.283
-([D-320](DECISIONS.md#d-320))
+([D-320](DECISIONS.md#d-320)), chiusa in 0.1.284
+([D-321](DECISIONS.md#d-321))
 
-`scar_count` e' il blocco piu' grosso rimasto di [ISSUES 91](#): **145
-clausole centrate, 143 delle quali gia' vere all'apertura — il 98.6%.**
+`scar_count` era il blocco piu' grosso rimasto di [ISSUES 91](#): **393 clausole
+centrate, 391 gia' vere all'apertura — il 99.5%.**
 
-Il censimento delle ventiquattro clausole scritte dice perche':
+*(I numeri scritti qui in 0.1.283 — «145 centrate, 143 gia' vere, 7.1% delle
+coppie» — venivano da una corsa piu' corta di quella che il metro cita, una
+quarantina d'anni invece di cento. Corretti in D-321: la proporzione era
+giusta, i conteggi no.)*
+
+Il censimento delle ventiquattro clausole scritte diceva perche':
 
 | cosa chiedono | quante |
 |---|---|
 | che l'anno finisca **pulito** (`max: 0`, `max: 1`, `max: 2`) | **22** |
 | che l'anno **lasci il segno** (`min: 1`, `min: 3`) | **2** |
 
-Il mondo comincia senza Cicatrici, quasi tutti vogliono che resti cosi', e
-**nessuno paga per il contrario**. Non e' scritto male: e' che la quiete e' un
-bene comune — la vogliono tutti e non costa a nessuno. Con `state_tag_absent`
-(187 gia' vere) fanno **330 clausole su 924, il 35.7% di tutti i punti**, che
-sono «una cosa non e' successa».
+Il mondo comincia senza Cicatrici, quasi tutti volevano che restasse cosi', e
+**nessuno pagava per il contrario**. Non era scritto male: la quiete e' un bene
+comune — la vogliono tutti e non costa a nessuno.
 
-**Quello che invece funziona**, e non lo sapevamo: dove il verso opposto c'e'
-scritto, la lite e' la piu' frequente del gioco — **7.1% delle coppie**, contro
-il 6.2% della memoria e il 2.9% della Regione. `DST_LYRA` vuole le Miniere
-pulite, `DST_VAERAX` le vuole segnate, e quando siedono insieme si tolgono
-qualcosa davvero.
+**Come si e' chiusa.** Il committente ha scelto la **strada 1**: piu' case
+vogliono il segno. Quattro carte hanno cambiato verso — `DST_LIBERE`,
+`DST_CENERE_DEEP` (due clausole), piu' una clausola nuova su `DST_VETRO_SHOWN` e
+su `DST_SHARED_LAND` — scelte dove la carta, letta com'e' stampata, gia' si
+contraddiceva. Da **2 su 24** a **7 su 26**.
 
-**Cosa la chiude.** La scelta e' del committente — sono ventiquattro clausole
-stampate su carte vere:
+| | prima | dopo |
+|---|---|---|
+| coppie che si contendono una Cicatrice | 5.7% | **25.0%** |
+| clausole che qualcuno contendeva | 14.6% | **21.4%** |
+| `scar_count` contese | 38 su 393 | **189 su 393** |
+| `scar_count` gia' vere all'apertura | 391 su 393 | **362 su 393** |
 
-1. **Piu' case vogliono il segno.** La lite esiste gia' e rende: basta che il
-   verso opposto sia scritto piu' spesso di due volte su ventiquattro. E' la
-   strada che non tocca il motore e non cambia cosa una clausola *significa*.
+**Quello che resta aperto** (e torna a [ISSUES 91](#)): `scar_count` e' ancora
+gia' vero all'apertura nel **92.1%** dei casi. Girare il verso ha reso le
+clausole **contese**, non **conquistate**. Le altre due strade restano scritte
+qui sotto, se un giorno servissero:
+
 2. **La quiete diventa relativa.** Non «il mondo ha al massimo due segni» ma
    «la tua terra e' uscita piu' pulita di quella di chiunque altro»: un
    confronto fra seggi al posto di un bollettino meteo. Serve un `what:
@@ -2805,8 +2815,8 @@ stampate su carte vere:
    quel seggio ha speso qualcosa per tenerlo tale — una Cicatrice evitata a
    proprie spese, non una che non e' capitata.
 
-**Il metro**: `cli/run_contest_probe.gd`, riga *gia' vere all'apertura, per
-tipo* — oggi `scar_count` **143**. Deve scendere.
+**Il metro**: `cli/run_contest_probe.gd --runs=100 --seed=7000
+--chronicle=CHR_00`, riga *gia' vere all'apertura, per tipo*.
 
 ---
 
@@ -2958,11 +2968,25 @@ senza toccare il cancello dei 100 semi.
 | gia' vere all'apertura | 60.5% | 57.8% | **52.4%** |
 | clausole contese | 10.2% | 11.8% | **15.8%** |
 
+Quei tre numeri sono di **CHR_01, cancellata da D-319**. Rimisurato sul gioco
+che c'e' — `--runs=100 --seed=7000 --chronicle=CHR_00`:
+
+| | CHR_00, prima di D-321 | dopo [D-321](DECISIONS.md#d-321) |
+|---|---|---|
+| gia' vere all'apertura | 55.5% | **54.3%** |
+| clausole contese | 14.6% | **21.4%** |
+
 La strada 2 ha dato il rovescio a una memoria (`OBJ_THE_USEFUL_RUIN`) e ha
 trovato il muro vero, che sta altrove ([ISSUES 92](#)). Il taglio (a) della
 strada 1 ha tolto `entity_alive` dal punteggio **senza spostare un livello**.
-Restano aperti il taglio (b) — le soglie assolute che diventano confronti,
-`scar_count` in testa con 154 clausole mai contese — e la strada 3.
+[ISSUES 94](#) ha aggredito `scar_count` per la via del contenuto — sette
+clausole su ventisei chiedono adesso che il mondo porti il segno — e ha portato
+la superficie contesa dal 14.6% al 21.4%. **Ma non ha spostato la dotazione**:
+`scar_count` resta gia' vero all'apertura nel 92.1% dei casi.
+
+Restano aperti il taglio (b) — le soglie assolute che diventano confronti, e
+adesso `state_tag_absent` e' il blocco piu' grosso rimasto, con 426 clausole
+mai contese — e la strada 3.
 
 ---
 
