@@ -48,7 +48,7 @@ Prefissi degli id (§6): `ENT_`, `REG_`, `AST_<FAMIGLIA>_`, `ACT_`, `TEN_`, `ECH
 | `destiny.schema.json` | collezione | Destiny e le condizioni riutilizzabili (§14) |
 | `confluence_template.schema.json` | collezione | Question, Proposition, clausole, pool, ripple (§12) |
 | `chronicle.schema.json` | collezione | La Chronicle: Atti, round, AO, drift, pool Echo — [D-015](DECISIONS.md#d-015) |
-| `sim_plan.schema.json` | collezione | Piani di partita per l'harness headless — [D-015](DECISIONS.md#d-015) |
+| `sim_plan.schema.json` | collezione | Piani di partita per l'harness headless — [D-015](DECISIONS.md#d-015). **Nessun file di piano esiste piu'** dalla 0.1.281: se ne sono andati con gli anni d'autore ([D-318](DECISIONS.md#d-318)). Lo schema e il codice che lo legge restano, cosi' un piano scritto a mano si puo' ancora giocare |
 | `effect.schema.json` | runtime | L'Effect e l'`effect_spec` di authoring (§6.3) |
 | `world_state.schema.json` | runtime | Lo stato del mondo (§6.2) |
 | `save.schema.json` | runtime | Il salvataggio versionato (§22) |

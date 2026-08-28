@@ -10,6 +10,115 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-328 — Diciassette documenti che mentivano, e uno strumento che non partiva
+
+**implemented** (0.1.291) · [ISSUES 92](ISSUES.md) chiusa, [ISSUES 99](ISSUES.md)
+aperta · richiesta del committente: *«aggiorna PUNTO_ZERO con i numeri di oggi e
+poi fai una pulizia di documenti superati»*.
+
+### Il difetto: il primo documento che CLAUDE.md ordina di leggere era falso
+
+`docs/PUNTO_ZERO.md` era fermo a **0.1.220**, settanta versioni indietro. Diceva
+512 prove (sono 630), 12.289 asserzioni (35.886), l'82,8% di turni «passa» (il
+47,3%), otto Destini su venti con faccia fisica (23 su 23), la Terra all'1,4% del
+Calore (7,1%), e *«il motore esegue la Risonanza e nient'altro»*.
+
+Non e' un documento vecchio: e' un documento che **dice il falso al primo che
+apre il repository**, ed e' quello contro cui la regola di casa dice di
+decidere.
+
+### Cosa e' stato misurato prima di riscriverlo
+
+Il giro completo dei cancelli, non i verbali — **diciotto prima, diciannove
+dopo** (il cancello dei testi in lettura e' nato qui). Tutti verdi: suite
+**630 prove / 96 suite / 35.886 asserzioni**, playtest **0 seggi bloccati su 8**
+misto e uniforme. E tre sonde rifatte sul codice di oggi:
+
+| | |
+|---|---|
+| turni «passa» | **47,3%** (3.406 su 7.200), piatto per Atto |
+| quanto rende giocare | **+183,1%** contro il tavolo di pietra |
+| Risonanze | **3.762 in 100 anni**, il 25,7% aggravate |
+
+**Il criterio 2 di PZ-01 e' soddisfatto e nessuno lo sapeva**: *«meno della meta'
+dei turni sono passa»*. Era l'82,8% quando la voce e' stata aperta.
+
+### La regola con cui si e' tolto
+
+> **Un documento che descrive una decisione gia' a verbale, o contenuto che non
+> esiste piu', non e' storia: e' una trappola.** La storia sta in git e in
+> `DECISIONS.md`; un file in `docs/` e' una promessa che quello che c'e' scritto
+> vale adesso.
+
+Diciassette usciti, in tre gruppi:
+
+| | |
+|---|---|
+| **le cinque sedute** — VITE, LEGGENDA, TAVOLO, TERRA, LINEE | dossier di decisione (0.1.86-0.1.122), decisioni prese e a verbale |
+| **le tre saghe** — 812, NAHR, SALE | raccontano CHR_01/CHR_03/CHR_04, cancellate in 0.1.281: **i comandi che stampano non girano piu'** |
+| **nove istantanee** — ROADMAP, AUDIT_DESTINI, DIAGNOSI_PUNTO_ZERO, COMPONENTS, CONSEGNE, TEST_PLAN, TRASFORMAZIONI, MECCANICA, VISIONE | fotografie di una versione fra la 0.1.0 e la 0.1.192, superate da documenti generati con un cancello |
+
+Restano venti documenti: dieci **generati con un cancello che li sorveglia**, sei
+vivi (DECISIONS, ISSUES, PUNTO_ZERO, ROADMAP_PUNTO_ZERO, ART_BIBLE,
+PROCEDURA_FINE_CHRONICLE) e quattro di riferimento (RULES_V0_2, GAME_DESIGN,
+DATA_SCHEMA, ASSET_MANIFEST).
+
+**Scelta del committente sui cinque di riferimento**: fuori MECCANICA e VISIONE
+(due istantanee di una domanda gia' chiusa), dentro gli altri tre — e a
+RULES_V0_2, fermo a 0.1.38, un'avvertenza in cima che dice a quale versione e'
+fermo e quali quattro cose descrive in modo superato.
+
+### Lo strumento che non partiva, e il cancello che mancava
+
+Il ritrovamento che vale piu' della pulizia. **`tools/build_review.py` era rotto
+da 0.1.281**: nominava `chronicle_01/chronicle_01.json` a mano, il file se n'e'
+andato con gli anni d'autore, e lo strumento **moriva all'avvio**. Il documento
+che genera — `docs/REVISIONE_TESTI.md`, ogni testo che un giocatore puo' leggere
+— e' rimasto fermo settanta versioni **senza che niente andasse rosso**, perche'
+nessun cancello lo guardava.
+
+Riparato leggendo **a glob invece che a lista di nomi**, e adesso raccoglie anche
+i tre file che la lista scritta a mano non nominava (`tensions_library`,
+`destinies_shared`, `consequences_price`): da **771 a 1.010 testi in lettura**.
+
+E i due cancelli che mancavano, aggiunti alla CI:
+
+- `build_review.py --check`, provato al contrario su un difetto piantato;
+- `matrix_survey.py --check`, **dichiarato in `CLAUDE.md` dalla 0.1.249 e mai
+  messo in CI**: si e' visto solo facendo il giro a mano.
+
+### Quello che non ho fatto, e quello che e' uscito dopo
+
+**I dati portano ancora i nomi degli anni cancellati** — dodici file
+`*_chronicle_01`/`_03` e due cartelle, che contengono i 23 Destini, le 60
+Tensioni e le 10 tessere che ogni anno pescato usa. E' [ISSUES 99](ISSUES.md) — nata **98**, rinumerata fondendo `main`,
+dove la 98 era gia' presa da *«chiudere il circuito»*:
+un rinomino tocca i caricatori, la suite, i cancelli e i generati insieme, e
+merita un commit suo misurato col giro completo, non la coda di una pulizia.
+
+**`tools/tag_census.py` e' uscito, su decisione del committente** — *«togli anche
+tag_census.py»*. Non lo chiamava nessuno: censiva **86 segni per deduzione**
+dove il dizionario dichiarato di [D-259](#d-259) ne porta **182**, ed era la
+sonda di ISSUES 24 (chiusa in 0.1.65 con D-104/D-105/D-122). Il suo mestiere lo
+fanno adesso tre strumenti **con un cancello**: `build_sign_registry.py` per i
+segni muti, `matrix_survey.py` per gli orfani, `run_marks_survey.sh` per chi
+scrive e chi guarda. Girava ancora, e non e' questo il criterio: **uno strumento
+che nessuno chiama e che un cancello ha superato e' la stessa cosa di un
+documento fermo**, con la differenza che sembra vivo perche' non fallisce.
+
+### Il costo, dichiarato
+
+Nessuno sui numeri: non e' stata toccata una riga di regole. **630 prove /
+35.886 asserzioni verdi, 0 seggi bloccati su 8** dopo la pulizia come prima.
+
+Il costo vero e' altrove: **una decina di link nella storia di `CHANGELOG.md` e
+`DECISIONS.md` puntano a documenti che non ci sono piu'**, e li ho lasciati
+apposta — sono verbali, e un verbale non si riscrive. In `ISSUES.md`, che e' un
+elenco vivo e non un verbale, i quattordici collegamenti sono stati sciolti in
+corsivo con una nota in cima che spiega cosa vuol dire.
+
+---
+
 ## D-327 — I Destini mirano a segni, e la mappa diventa contesa
 
 **implemented** (0.1.290) · [ISSUES 97](ISSUES.md) chiusa, strada 1 · decisione

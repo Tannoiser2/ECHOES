@@ -1,5 +1,5 @@
 extends SceneTree
-## Test runner (§18.3, docs/TEST_PLAN.md).
+## Test runner (§18.3). I cancelli e come si girano stanno in CLAUDE.md.
 ##
 ##   godot --headless --path godot --script res://tests/run_tests.gd
 ##   godot --headless --path godot --script res://tests/run_tests.gd -- --filter=effect
