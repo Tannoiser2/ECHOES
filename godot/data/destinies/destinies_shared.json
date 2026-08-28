@@ -299,6 +299,13 @@
             "type": "scar_count",
             "max": 1,
             "label": "E al massimo un segno nuovo"
+          },
+          {
+            "type": "state_tag_absent",
+            "scope": "REGION",
+            "region_id": "$any",
+            "tag": "condition:contested",
+            "label": "E sulla mappa non e' rimasta una terra contesa"
           }
         ]
       },
@@ -307,11 +314,13 @@
         "themes": [
           "THM_SOPRAVVIVENZA"
         ],
-        "observes": [],
+        "observes": [
+          "condition:contested"
+        ],
         "reads": {
           "minimum": "Tre questioni del mondo tenute sotto il punto di rottura.",
           "victory": "Quattro questioni tenute basse, e non più di due segni nuovi sul mondo.",
-          "triumph": "Quattro questioni a un filo dal silenzio, e al massimo un segno nuovo: la quiete non capita — si tiene."
+          "triumph": "Quattro questioni a un filo dal silenzio, e al massimo un segno nuovo: la quiete non capita — si tiene, e sulla mappa non è rimasta una terra contesa."
         }
       }
     },
@@ -412,6 +421,13 @@
             "by": 2,
             "entity_id": "$self",
             "label": "Più riserve di chiunque altro, di due almeno"
+          },
+          {
+            "type": "state_tag_present",
+            "scope": "REGION",
+            "region_id": "$any",
+            "tag": "condition:contested",
+            "label": "E la mappa ha ancora una terra contesa: chi ha le mani piene la decide l'anno prossimo"
           }
         ]
       },
@@ -420,11 +436,13 @@
         "themes": [
           "THM_VIE"
         ],
-        "observes": [],
+        "observes": [
+          "condition:contested"
+        ],
         "reads": {
           "minimum": "Tre carte in mano quando l'anno si chiude.",
           "victory": "Cinque in mano, e una cosa costruita: le riserve che diventano forma.",
-          "triumph": "Più riserve di chiunque altro, di due almeno."
+          "triumph": "Più riserve di chiunque altro, di due almeno — e sulla mappa una terra ancora contesa: chi ha le mani piene la decide l'anno prossimo."
         }
       }
     }

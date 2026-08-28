@@ -5,6 +5,100 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.288 — Otto clausole guardano quello che il mondo produce (D-325)
+
+### Cambiato
+
+- **Strada 1 di ISSUES 96**, scelta dal committente: qualcuno guarda i segni che
+  il mondo scrive gia'. `condition:contested` (531 scritture per secolo, zero
+  clausole) lo **vuole** `DST_NAHR` — dove nessuno ha messo il suo titolo un
+  popolo senza terra puo' fermarsi — e lo **teme** `DST_ALDRIC`.
+  `condition:cut_off` lo vuole `DST_VAERAX`, lo teme `DST_SALE`.
+  `rumour_running` lo vuole `DST_VAERAX_LEGEND`, lo teme `DST_VETRO`.
+  `order_restored` lo vuole `DST_ALDRIC_RECORD`.
+- **E la coppia sulle carte condivise**: `DST_SHARED_QUIET` teme la terra
+  contesa, `DST_SHARED_HAND` la vuole.
+- **Una clausola ri-mirata**: `DST_VAERAX_LEGEND` chiedeva
+  `legend:crystal_exploited`, mai scritto in cento partite. Riscritta sullo
+  stesso soggetto della carta — la voce che corre.
+- **Un segno cancellato**: `legend:crystal_exploited` non lo tocca piu' nessuno.
+  Dizionario **183 -> 182 segni**. L'ha preteso il validatore.
+
+### Misurato
+
+- **Coppie che si contendono una memoria: 4.5% -> 7.0%** (27 -> 42).
+- `state_tag_present` contese **4 -> 18**; clausole contese 490 -> 503.
+- **Clausole gia' vere all'apertura 54.0% -> 53.1%.**
+- Segni scritti spesso che nessuno guarda: **25 -> 21**.
+
+### La lezione, e vale piu' delle otto clausole
+
+Le prime **sei** righe, tutte su carte di case, sono atterrate **senza
+incontrarsi**: contese 4 -> 5. Una lite scritta fra due carte di due case
+precise quasi non capita a un tavolo pescato — servono che le due case siedano
+insieme *e* che ognuna abbia pescato proprio quella faccia. Aggiunta la coppia
+sulle **carte condivise**, che le pesca chiunque, il numero e' saltato a 18.
+**Le carte condivise sono dove vive la lite.**
+
+### Costo, dichiarato
+
+- Il gioco e' appena piu' facile alla Vittoria e piu' duro al Trionfo: uniforme
+  VICTORY 181 -> **184**, TRIUMPH 14 -> **11**.
+- **Verita' diverse in meno**: uniforme 139 -> **133**, misto 150 -> 148.
+- `docs/MISURA_VITE.md`: trasformazioni sedute 194 -> 198.
+- Cancello vincolante: **0 seggi bloccati su 8**, misto e uniforme. Sedici
+  cancelli verdi, 625 test / 35634 asserzioni.
+
+### Resta aperto
+
+- `condition:contested` e' ancora scritto 538 volte per secolo contro quattro
+  righe che lo nominano, e **ventuno segni** restano senza nessuno che li
+  guardi: in testa la famiglia `discovery:*` e `heir_named`. ISSUES 96 resta
+  aperta.
+
+---
+
+## 0.1.287 — Il segno piu' scritto del gioco non lo guarda nessuno (D-324)
+
+### Aggiunto
+
+- **`cli/run_world_marks_probe.gd`**, la misura girata dalla parte giusta: non
+  «quanti dei segni che i Destini nominano il mondo li scrive», ma **quali segni
+  il mondo scrive, e se se ne accorge qualcuno**. Per ogni segno che al tavolo si
+  posa (MEMORY e STATE; fuori la contabilita' del motore): quante volte la
+  partita lo **scrive**, quante clausole lo **temono**, quante lo **vogliono**.
+- **`docs/MISURA_SEGNI.md`** e il cancello `tools/run_marks_survey.sh --check`,
+  sedicesimo della batteria, in CI accanto agli altri. Provato col difetto
+  piantato: **esce 1**.
+
+### Misurato
+
+- **`condition:contested` e' scritto 531 volte in cento anni — cinque volte
+  l'anno — e nessuna clausola in tutta la scatola lo nomina.** E' il segno piu'
+  scritto del gioco.
+- **Venticinque segni** superano le dieci scritture per secolo con zero clausole
+  addosso: `discovery:the_omen` 455, `discovery:the_ledger` 335,
+  `knowledge_shared` 147, `condition:cut_off` 98, `order_restored` 87,
+  `heir_named` 73...
+- Dall'altra parte, **cinque segni guardati e mai scritti** in cento partite:
+  `study_supervised`, `valley_sealed`, `water_priced`,
+  `legend:crystal_exploited`, `mountain_forgotten`.
+
+### Cosa cambia nella diagnosi
+
+Il problema di `state_tag_absent` sembrava di **quantita'** — troppe clausole
+gia' vere. E' di **incontro**: il mondo produce una cosa, le carte ne guardano
+un'altra, e le due liste quasi non si toccano. Aperta **ISSUES 96**.
+
+### Aperto
+
+- Da D-323 un Consiglio caduto lascia una terra contesa cinque volte l'anno, e
+  **a nessuno conviene farla cadere**: una casa che campa sul confine irrisolto
+  renderebbe il fallimento una mossa invece che un incidente. Decide il
+  committente: sono carte stampate.
+
+---
+
 ## 0.1.286 — Una domanda caduta lascia il segno che quella domanda lascia (D-323)
 
 ### Aggiunto

@@ -7,13 +7,13 @@ piano, misurate sui dati di oggi **prima** di scrivere un file nuovo.
 
 | | |
 |---|---|
-| segni nel dizionario | 183 |
-| di cui qualcuno scrive | 150 |
-| orfani in tutto | 60 |
+| segni nel dizionario | 182 |
+| di cui qualcuno scrive | 149 |
+| orfani in tutto | 59 |
 | **di cui senza una ragione scritta** | **11** |
 | livelli di Destino (minimo/vittoria/trionfo) | 69 |
 | **clausole impossibili** (chiedono un segno che niente scrive) | **0** |
-| **livelli che si reggono solo su conteggi** | **33** |
+| **livelli che si reggono solo su conteggi** | **31** |
 | Tensioni | 60 |
 | **Tensioni che non toccano nessun segno nominato da un Destino** | **0** |
 | **carte che aprono ancora una domanda in prestito** | **28** |
@@ -21,8 +21,8 @@ piano, misurate sui dati di oggi **prima** di scrivere un file nuovo.
 | profili strategici scritti | 8 |
 | segni che quelle case vogliono o temono | 68 |
 | **fra i voluti, quelli che un Consiglio sa dare** | **25** |
-| segni che aiutano una casa e ne danneggiano un'altra | 15 |
-| **coppie di case che hanno qualcosa per cui litigare** | **9 su 28** |
+| segni che aiutano una casa e ne danneggiano un'altra | 18 |
+| **coppie di case che hanno qualcosa per cui litigare** | **13 su 28** |
 
 ---
 
@@ -33,7 +33,7 @@ desidera o lo teme (Destini **e** obiettivi), nessuna Tensione lo mette
 o lo toglie, e nessuna regola del segno lo usa: si posa sul tavolo e non
 entra in nessuna partita.
 
-Non tutti gli orfani sono un difetto: **49 su 60 portano gia' la loro
+Non tutti gli orfani sono un difetto: **48 su 59 portano gia' la loro
 ragione scritta** nel dizionario — memorie narrate (D-103), etichette di
 famiglia, gradi di pietra, domini che legge il motore. Restano fuori
 quelli **senza una riga che spieghi perche' esistono**: sono questi che
@@ -55,7 +55,7 @@ la matrice deve prendere per primi.
 | `trade` | FUNCTION | tessera |
 | `wild` | PLACE | tessera |
 
-### Orfani dichiarati: 49
+### Orfani dichiarati: 48
 
 | segno | la ragione che porta scritta |
 |---|---|
@@ -99,7 +99,6 @@ la matrice deve prendere per primi.
 | `place:thinned_wood` | grado di pietra sulla mappa: oggi nessuna regola lo legge — colore dichiarato, in fila per un lettore (ISSUES 24) |
 | `price_in_lives` | memoria del mondo (D-278): una decisione passata al prezzo di qualcuno che non c'e' piu' — si legge al centro del tavolo |
 | `return_promised` | memoria del mondo: narrata (D-103), ereditata |
-| `rumour_running` | memoria del mondo (D-278): fuori dalla sala la versione e' gia' un'altra — si legge al centro del tavolo |
 | `scar:divided_seal` | il dente vivo e' crown_divided, letto dai Destini e sciolto da CNS_CROWN_REUNITED |
 | `scholar` | etichetta di famiglia: dice chi sei, non cosa puoi fare, e nessuna regola deve leggerla |
 | `settlement:$proponent` | porta un id dinamico: chi vive li' e' scritto nel segno stesso |
@@ -118,7 +117,7 @@ regge su conteggi — si verifica, ma al tavolo non si puo' indicare.
 
 **Clausole impossibili: 0**
 
-**Livelli che si reggono solo su conteggi: 33 su 69**
+**Livelli che si reggono solo su conteggi: 31 su 69**
 
 | Destino | livello | clausole | come si legge |
 |---|---|---|---|
@@ -148,13 +147,11 @@ regge su conteggi — si verifica, ma al tavolo non si puo' indicare.
 | DST_SHARED_ACCOUNTS | minimum | 1 | Due conti tenuti sotto controllo |
 | DST_SHARED_QUIET | minimum | 1 | Tre questioni tenute giù |
 | DST_SHARED_QUIET | victory | 2 | La quiete si vede |
-| DST_SHARED_QUIET | triumph | 2 | La quiete non capita: si tiene |
 | DST_SHARED_LORE | minimum | 1 | Una cosa vista |
 | DST_SHARED_LORE | victory | 2 | E un posto dove custodirla |
 | DST_SHARED_LORE | triumph | 1 | Quello che sai lo sanno da te |
 | DST_SHARED_HAND | minimum | 1 | Le mani non vuote |
 | DST_SHARED_HAND | victory | 2 | Le riserve che diventano forma |
-| DST_SHARED_HAND | triumph | 1 | Quando gli altri chiedono, tu hai |
 
 ## 4. Quanto di quello che una casa vuole, il tavolo sa darlo
 
@@ -321,7 +318,7 @@ dichiarano. Un segno che aiuta qualcuno e non danneggia nessuno non e'
 una questione: e' un regalo, e al Consiglio nessuno avra' mai una
 ragione per opporsi.
 
-**Segni che incrociano davvero: 15.**
+**Segni che incrociano davvero: 18.**
 
 **Il conto e' un pavimento**, come quello delle Tensioni: guarda i
 segni **nominati** da un Destino o da un profilo, non i conteggi. Un
@@ -336,12 +333,14 @@ porta del tempo legge (D-290): perderlo non sposta una clausola, sposta
 
 | segno | aiuta | danneggia | cambia pelle | chi lo sa scrivere |
 |---|---|---|---|---|
+| `condition:cut_off` | VAERAX | LIBERE, NAHR, SALE | — | Azione stampata, Conseguenza, carta Asset, carta Echo, faccia della Tensione |
 | `crown_divided` | NAHR | ALDRIC, SALE | **si'** | Conseguenza, faccia della Tensione, fatto che dura |
 | `discovery:crystal` | CENERE, LYRA | VAERAX | **si'** | Azione stampata, Conseguenza |
 | `knowledge_shared` | LYRA | VAERAX, VETRO | **si'** | Azione stampata, clausola di Consiglio, faccia della Tensione |
 | `ledger_public` | SALE | SALE, VETRO | **si'** | Azione stampata, Conseguenza, carta Asset, clausola di Consiglio, faccia della Tensione, fatto che dura |
 | `mine_sealed` | VAERAX | CENERE, LYRA | — | Conseguenza, faccia della Tensione, fatto che dura |
 | `structure:sealed` | VAERAX, VETRO | CENERE | **si'** | Conseguenza, faccia della Tensione |
+| `condition:contested` | NAHR | ALDRIC | — | Azione stampata, Conseguenza, carta Asset, carta Echo, faccia della Tensione |
 | `crowned` | ALDRIC | LIBERE | **si'** | casato |
 | `crystal_exploited` | CENERE | VAERAX | **si'** | Azione stampata, Conseguenza, faccia della Tensione |
 | `crystal_measured` | LYRA | VETRO | **si'** | Azione stampata, carta Echo, faccia della Tensione |
@@ -349,6 +348,7 @@ porta del tempo legge (D-290): perderlo non sposta una clausola, sposta
 | `debt_forgiven` | LIBERE | SALE | — | Azione stampata, Conseguenza, faccia della Tensione |
 | `nahr_settled` | NAHR | ALDRIC | **si'** | Conseguenza, faccia della Tensione, fatto che dura |
 | `relic_buried` | VETRO | CENERE | **si'** | Conseguenza, faccia della Tensione |
+| `rumour_running` | VAERAX | VETRO | — | Conseguenza |
 | `succession_by_law` | ALDRIC | NAHR | **si'** | Azione stampata, Conseguenza, faccia della Tensione, fatto che dura |
 | `water_priced` | SALE | LIBERE | — | Conseguenza |
 
@@ -359,14 +359,14 @@ devono condividere almeno un segno che le spinge in direzioni
 opposte**. Le coppie che non ce l'hanno possono sedere allo stesso
 tavolo per otto anni senza incontrarsi mai.
 
-**Coppie incrociate: 9 su 28.**
+**Coppie incrociate: 13 su 28.**
 
 **Tutte le case hanno un profilo**, quindi quello che resta non e'
 piu' un buco di dichiarazioni: e' la superficie. Un incrocio
 richiede che **lo stesso segno** sia nominato da una casa come
 voluto e da un'altra come temuto, e ogni casa ne nomina otto o
 nove; il resto di quello che i Destini chiedono sono conteggi —
-33 livelli su 69 — che litigano con tutti allo stesso modo.
+31 livelli su 69 — che litigano con tutti allo stesso modo.
 Le coppie ancora mute si chiudono in due modi: **una faccia di
 Tensione** che metta uno di quei segni sul tavolo dove le due case
 si incontrano, oppure **un `denies`** scritto — che e' un incrocio
@@ -385,26 +385,26 @@ dichiarato a mano, e costa una riga.
 | CENERE ↔ SALE | niente |
 | LIBERE ↔ LYRA | niente |
 | LIBERE ↔ NAHR | niente |
-| LIBERE ↔ VAERAX | niente |
 | LIBERE ↔ VETRO | niente |
 | LYRA ↔ NAHR | niente |
 | LYRA ↔ SALE | niente |
-| NAHR ↔ VAERAX | niente |
 | NAHR ↔ VETRO | niente |
-| SALE ↔ VAERAX | niente |
-| VAERAX ↔ VETRO | niente |
 
 ### Quante questioni ha ogni coppia
 
 | coppia | segni condivisi | quali |
 |---|---|---|
+| ALDRIC ↔ NAHR | 4 | `condition:contested`, `crown_divided`, `nahr_settled`, `succession_by_law` |
 | CENERE ↔ VAERAX | 4 | `crystal_exploited`, `discovery:crystal`, `mine_sealed`, `structure:sealed` |
-| ALDRIC ↔ NAHR | 3 | `crown_divided`, `nahr_settled`, `succession_by_law` |
 | LIBERE ↔ SALE | 3 | `debt_called`, `debt_forgiven`, `water_priced` |
 | LYRA ↔ VAERAX | 3 | `discovery:crystal`, `knowledge_shared`, `mine_sealed` |
 | CENERE ↔ VETRO | 2 | `relic_buried`, `structure:sealed` |
 | LYRA ↔ VETRO | 2 | `crystal_measured`, `knowledge_shared` |
 | ALDRIC ↔ LIBERE | 1 | `crowned` |
+| LIBERE ↔ VAERAX | 1 | `condition:cut_off` |
 | NAHR ↔ SALE | 1 | `crown_divided` |
+| NAHR ↔ VAERAX | 1 | `condition:cut_off` |
+| SALE ↔ VAERAX | 1 | `condition:cut_off` |
 | SALE ↔ VETRO | 1 | `ledger_public` |
+| VAERAX ↔ VETRO | 1 | `rumour_running` |
 

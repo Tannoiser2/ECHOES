@@ -2763,6 +2763,82 @@ e' in gioco.
 
 ---
 
+### 96. Il segno piu' scritto del gioco non lo guarda nessuno
+
+`regola` · `contenuto` · `bilanciamento` · `decisione` · aperta in 0.1.287
+([D-324](DECISIONS.md#d-324))
+
+Girando la misura dalla parte giusta — non «quanti dei segni che i Destini
+nominano il mondo li scrive», ma **quali segni il mondo scrive** — esce questo:
+
+> **`condition:contested` e' scritto 531 volte in cento anni, e non c'e' una
+> sola clausola in tutta la scatola che lo nomini.**
+
+**Venticinque segni** superano le dieci scritture per secolo con zero clausole
+addosso. I primi:
+
+| segno | scritto in 100 anni | clausole |
+|---|---|---|
+| `condition:contested` | **531** | 0 |
+| `discovery:the_omen` | 455 | 0 |
+| `discovery:the_ledger` | 335 | 0 |
+| `discovery:trade_ledger` | 200 | 0 |
+| `knowledge_shared` | 147 | 0 |
+| `condition:cut_off` | 98 | 0 |
+| `order_restored` | 87 | 0 |
+| `heir_named` | 73 | 0 |
+
+E dall'altra parte, cinque **guardati e mai scritti**: `study_supervised`,
+`valley_sealed`, `water_priced`, `legend:crystal_exploited`,
+`mountain_forgotten`. Quelle clausole sono vere dall'apertura e nessuno le puo'
+rompere.
+
+**Cosa cambia nella diagnosi di [ISSUES 91](#).** Il problema di
+`state_tag_absent` sembrava di **quantita'**. E' di **incontro**: il mondo
+produce una cosa, le carte ne guardano un'altra.
+
+**E c'e' una mossa che manca al gioco.** Da [D-323](DECISIONS.md#d-323) un
+Consiglio caduto lascia una terra contesa cinque volte l'anno, e **a nessuno
+conviene farla cadere**. Far cadere una domanda non e' mai una scelta: e' solo
+un incidente. Una casa che campa sul confine irrisolto la renderebbe una mossa.
+
+**Cosa la chiude.** Sono carte stampate, quindi decide il committente:
+
+1. **Qualcuno vuole quello che il mondo produce.** Le clausole nuove usano
+   `state_tag_present` sui segni che escono spesso — un confine conteso, una
+   strada chiusa, una voce che corre. Sono **false all'apertura**, quindi si
+   conquistano e non si trovano nella dotazione; e chi le ha ha un motivo per
+   far cadere una domanda, che oggi non ha nessuno. E' la strada gemella di
+   quella che ha funzionato per le Cicatrici
+   ([D-321](DECISIONS.md#d-321)) — contenuto, niente motore.
+2. **Le clausole mai scritte si ri-mirano.** Le cinque che temono cose che non
+   succedono si riscrivono su segni che il mondo produce. Toglie regali, ma non
+   aggiunge lotta.
+3. **Il mondo smette di scrivere quello che nessuno legge.** Meno segni, piu'
+   densi. E' la strada del rasoio: al tavolo un segnalino che non serve a
+   niente e' un segnalino da togliere dalla scatola.
+
+**Il metro**: `tools/run_marks_survey.sh`, la tabella *Lavoro del motore che al
+tavolo non conta*. **Fatto quando** nessun segno scritto piu' di dieci volte in
+cento anni ha zero clausole addosso.
+
+**Avanzamento.** La strada 1 e' fatta per i quattro segni piu' grossi
+([D-325](DECISIONS.md#d-325)): orfani **25 -> 21**, coppie che si contendono una
+memoria **4.5% -> 7.0%**, clausole gia' vere all'apertura **54.0% -> 53.1%**.
+
+E si e' imparata una cosa che vale per tutto il resto della lista: **le prime sei
+clausole, tutte su carte di case, sono atterrate senza incontrarsi** (contese
+4 -> 5). Una lite scritta fra due facce di due case precise quasi non capita a un
+tavolo pescato. La coppia sulle **carte condivise** — che le pesca chiunque — da
+sola ha portato le contese a 18. Chi continua questa lista scriva li'.
+
+Restano ventuno segni, in testa la famiglia `discovery:*` (`the_omen` 454,
+`the_ledger` 337, `trade_ledger` 204) e `heir_named` 76. Sono scoperte di casa:
+la domanda vera e' se una scoperta debba valere punti a qualcuno, o se sia
+contabilita' e vada tolta dal conto — cioe' la strada 3.
+
+---
+
 ### 95. ✅ Esiti di Consiglio che nessuno puo' pescare — chiusa in 0.1.286, strada 2
 
 `regola` · `contenuto` · `debito` · `decisione` · aperta in 0.1.285

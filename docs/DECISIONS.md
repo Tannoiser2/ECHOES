@@ -10,6 +10,174 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-325 — Otto clausole guardano quello che il mondo produce, e la lite sta sulle carte condivise
+
+**implemented** (0.1.288) · [ISSUES 96](ISSUES.md) strada 1 · decisione del
+committente: *«Vai con 1»*.
+
+### Cosa dice la strada 1
+
+[D-324](#d-324) aveva misurato che **venticinque segni** che il mondo scrive
+almeno dieci volte per secolo non hanno una sola clausola addosso, e in testa
+`condition:contested` con **531 scritture in cento anni**. La strada 1: **far
+guardare a qualcuno quello che il mondo gia' produce**. Una clausola
+`state_tag_present` su un segno cosi' e' **falsa all'apertura** — il mondo
+comincia pulito — quindi si conquista invece di trovarsi nella dotazione.
+
+### Le carte, e perche' proprio quelle
+
+| segno | scritto | chi lo vuole | chi lo teme |
+|---|---|---|---|
+| `condition:contested` | 531 | `DST_NAHR` — dove nessuno ha messo il suo titolo, un popolo senza terra puo' fermarsi | `DST_ALDRIC` — un regno che resta non lascia domande sulla mappa |
+| `condition:cut_off` | 98 | `DST_VAERAX` — chi non passa non arriva | `DST_SALE` — un registro vale quanto le vie che copre |
+| `rumour_running` | 29 | `DST_VAERAX_LEGEND` — la versione che gira fuori dalla sala e' la sua | `DST_VETRO` — l'Ordine e' creduto sulla parola, non sui racconti |
+| `order_restored` | 87 | `DST_ALDRIC_RECORD` — l'ordine ristabilito per atto, e a verbale | — |
+
+Su `DST_NAHR` la riga nuova sta accanto a una che diceva gia' la stessa cosa in
+altre parole — *«finche' si discute chi siede, nessuno ha tempo di mandarci
+via»*. Su `DST_VAERAX` accanto a *«salire fin lassu' non e' facile per
+nessuno»*.
+
+### Una clausola ri-mirata, e un segno cancellato
+
+`DST_VAERAX_LEGEND` chiedeva `legend:crystal_exploited`, che in cento partite
+**non e' mai stato scritto**: uno dei cinque «punti regalati» di D-324. Riscritta
+sullo stesso soggetto della carta — la voce che corre — che il mondo scrive 29
+volte per secolo. Rimasto senza nessuno che lo tocchi,
+`legend:crystal_exploited` **esce dal dizionario**: 183 segni -> 182. Il
+validatore l'ha preteso, ed e' giusto cosi'.
+
+### La lezione, ed e' quella che vale piu' delle otto clausole
+
+Le prime sei righe — tre volute, tre temute, tutte su carte di case — hanno
+**atterrato senza incontrarsi**: `state_tag_present` mai contese 135 -> 160,
+contese 4 -> **5**. Una sola.
+
+**Una lite scritta fra due carte di due case precise quasi non capita a un tavolo
+pescato.** Servono che le due case siedano insieme (quattro su otto) *e* che
+ognuna abbia pescato proprio quella faccia fra le sue due o tre. Le Cicatrici
+avevano funzionato ([D-321](#d-321)) perche' `scar_count` sta anche sulle
+**carte condivise**, che le pesca chiunque.
+
+Aggiunta la coppia dove la lite puo' davvero capitare — `DST_SHARED_QUIET` teme
+la terra contesa, `DST_SHARED_HAND` la vuole (*«chi ha le mani piene la decide
+l'anno prossimo»*) — il numero si e' mosso subito:
+
+| | prima | sei clausole di casa | + la coppia condivisa |
+|---|---|---|---|
+| **coppie che si contendono una memoria** | 4.5% (27) | 4.5% (27) | **7.0% (42)** |
+| `state_tag_present` contese | 4 | 5 | **18** |
+| clausole gia' vere all'apertura | 54.0% | 53.8% | **53.1%** |
+| clausole contese | 490 | 492 | **503** |
+
+**Le carte condivise sono dove vive la lite.** Vale per tutto quello che verra':
+scrivere una lotta su due facce di casa e' scriverla per un tavolo che quasi mai
+si presenta.
+
+### Il costo, dichiarato
+
+`cli/run_playtest.gd --runs=100 --seed=7000` — **0 seggi bloccati su 8**, misto
+e uniforme.
+
+| | misto prima | misto dopo | uniforme prima | uniforme dopo |
+|---|---|---|---|---|
+| NONE | 91 | 90 | 69 | 69 |
+| VICTORY | 164 | 166 | 181 | **184** |
+| TRIUMPH | 10 | 9 | 14 | **11** |
+| Verita' diverse | 150 | 148 | 139 | **133** |
+
+Il gioco e' **appena piu' facile alla Vittoria e piu' duro al Trionfo**: tre
+Trionfi in meno sull'uniforme, tre Vittorie in piu'. E scrive **sei verita'
+diverse in meno** sull'uniforme: e' il costo, e si scrive.
+
+`docs/MISURA_VITE.md`: trasformazioni sedute 194 -> **198**.
+
+`docs/MISURA_SEGNI.md`: i segni scritti spesso che nessuno guarda passano da
+**25 a 21**. Restano in testa la famiglia `discovery:*` (`the_omen` 454,
+`the_ledger` 337) e `heir_named` 76.
+
+### Quello che resta
+
+`condition:contested` adesso ha due clausole per verso, e resta il segno piu'
+scritto del gioco: 538 volte per secolo contro quattro righe che lo nominano. Il
+rapporto e' ancora squilibrato, ma la direzione e' quella. E i ventuno orfani
+rimasti stanno in [ISSUES 96](ISSUES.md), che resta aperta.
+
+---
+
+## D-324 — Il segno piu' scritto del gioco non lo guarda nessuno
+
+**implemented** (0.1.287) · misura nuova, con cancello · [ISSUES 96](ISSUES.md)
+aperta · nata dalla domanda lasciata aperta da [D-323](#d-323).
+
+### La misura che mancava, ed era girata dalla parte sbagliata
+
+Tutte le sonde del punteggio partono dai **Destini** e chiedono al mondo se
+scrive quello che loro nominano. D-323 ha mostrato il limite: adesso una domanda
+caduta sporca il mondo per davvero, e le memorie temute **non si sono mosse di
+un decimo**, perche' i segni che un fallimento lascia non sono i segni che i
+Destini temono.
+
+La domanda va girata: **quali segni il mondo scrive, e se ne parla qualcuno?**
+
+`cli/run_world_marks_probe.gd` guarda solo i segni che al tavolo si posano —
+MEMORY e STATE, cioe' le memorie del mondo e le condizioni dei luoghi; fuori
+resta la contabilita' del motore — e per ognuno conta tre cose: quante volte la
+partita lo **scrive**, quante clausole lo **temono**, quante lo **vogliono**.
+
+### Il numero
+
+> **`condition:contested` e' scritto 531 volte in cento anni — cinque volte
+> l'anno — e non c'e' una sola clausola in tutta la scatola che lo nomini.**
+
+E' il segno piu' scritto del gioco, ed e' anche il piu' inutile. Dietro di lui:
+
+| segno | scritto in 100 anni | clausole |
+|---|---|---|
+| `condition:contested` | **531** | 0 |
+| `discovery:the_omen` | 455 | 0 |
+| `discovery:the_ledger` | 335 | 0 |
+| `discovery:trade_ledger` | 200 | 0 |
+| `discovery:written_law` | 167 | 0 |
+| `discovery:legend` | 158 | 0 |
+| `knowledge_shared` | 147 | 0 |
+| `condition:cut_off` | 98 | 0 |
+| `order_restored` | 87 | 0 |
+| `heir_named` | 73 | 0 |
+| ...e altri quindici | | |
+
+**Venticinque segni** che il mondo scrive almeno dieci volte in cento anni, e su
+cui nessun Destino e nessun Obiettivo ha mai scritto una riga.
+
+Dall'altra parte, cinque segni **guardati e mai scritti** in cento partite:
+`study_supervised`, `valley_sealed`, `water_priced` (due clausole ciascuno),
+`legend:crystal_exploited`, `mountain_forgotten`. Quelle clausole sono vere
+dall'apertura e nessuno le puo' rompere: e' il regalo di ISSUES 91 visto dal
+lato del mondo invece che dal lato della carta.
+
+### E questo dice cosa fare, invece che cosa aggiustare
+
+Fino a qui il problema di `state_tag_absent` sembrava di **quantita'**: troppe
+clausole gia' vere. La misura dice che e' di **incontro**: il mondo produce una
+cosa, le carte ne guardano un'altra, e le due liste quasi non si toccano.
+
+E il caso di `condition:contested` e' il piu' parlante, perche' e' anche una
+**possibilita' di gioco che nessuno ha**: da D-323 un Consiglio caduto lascia
+una terra contesa cinque volte l'anno, e **a nessuno conviene farla cadere**.
+Una casa che campa sul confine irrisolto renderebbe il fallimento una mossa
+invece che un incidente. Le strade in [ISSUES 96](ISSUES.md).
+
+### Il cancello
+
+`tools/run_marks_survey.sh --check` tiene `docs/MISURA_SEGNI.md` allineato a
+quello che il gioco produce adesso, come la misura delle vite e il catalogo dei
+Consigli. Provato col difetto piantato: **esce 1**. In CI accanto agli altri.
+
+Sedicesimo cancello. Serve a una cosa sola: che questa classe di difetto — un
+segno che il motore scrive e la scatola ignora — non possa tornare in silenzio.
+
+---
+
 ## D-323 — Una domanda caduta lascia il segno che quella domanda lascia
 
 **implemented** (0.1.286) · [ISSUES 95](ISSUES.md) chiusa, strada 2 · decisione

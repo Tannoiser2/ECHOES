@@ -239,7 +239,8 @@
         "asset_physical",
         "consequence",
         "destiny_physical",
-        "tension"
+        "tension",
+        "destiny"
       ]
     },
     {
@@ -265,7 +266,9 @@
         "consequence",
         "tension",
         "chronicle",
-        "entity_strategic_profile"
+        "entity_strategic_profile",
+        "destiny",
+        "destiny_physical"
       ]
     },
     {
@@ -1448,22 +1451,6 @@
       ]
     },
     {
-      "id": "legend:crystal_exploited",
-      "title": "si racconta che il Cristallo e' stato sfruttato",
-      "category": "MEMORY",
-      "scope": [
-        "GLOBAL"
-      ],
-      "written_by": [
-        "engine"
-      ],
-      "read_by": [
-        "destiny",
-        "engine"
-      ],
-      "note": "la forma postuma di un fatto: la scrive il motore quando la memoria sfuma"
-    },
-    {
       "id": "legend:debt_called",
       "title": "si racconta che il debito e' stato chiamato",
       "category": "MEMORY",
@@ -1992,7 +1979,9 @@
         "tension"
       ],
       "read_by": [
-        "entity_strategic_profile"
+        "entity_strategic_profile",
+        "destiny",
+        "destiny_physical"
       ],
       "note": "vita postuma: vive nella sua forma legend:"
     },
@@ -2324,8 +2313,10 @@
       "written_by": [
         "consequence"
       ],
-      "read_by": [],
-      "note": "memoria del mondo (D-278): fuori dalla sala la versione e' gia' un'altra — si legge al centro del tavolo"
+      "read_by": [
+        "destiny",
+        "destiny_physical"
+      ]
     },
     {
       "id": "scar:abandoned",

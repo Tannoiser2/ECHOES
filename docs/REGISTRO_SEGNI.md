@@ -19,7 +19,7 @@ Le viste che si limitano a **stampare** un segno sullo schermo non contano come
 lettori: disegnare non e' mordere.
 
 
-**102 segni scritti sul mondo: 88 li legge qualcosa, 14 no.**
+**102 segni scritti sul mondo: 89 li legge qualcosa, 13 no.**
 
 **E 1 segni li chiede qualcuno senza che niente li scriva.**
 
@@ -40,7 +40,6 @@ Conseguenza che promette un cambiamento che il gioco non registra.
 | `list_witnessed` | clausola di Consiglio | la lista letta davanti a testimoni: memoria narrata, nessuna regola la chiede |
 | `price_in_lives` | Conseguenza | il conto in vite: memoria del mondo, nessuna clausola la chiede (D-278) |
 | `return_promised` | clausola di Consiglio | il ritorno promesso: memoria narrata, e la promessa non ha ancora una regola |
-| `rumour_running` | Conseguenza | la voce corre: memoria del mondo, nessuna clausola la chiede (D-278) |
 | `settlement:$proponent` | Conseguenza | chi ci vive, scritto sulla mappa: la regola e' la pietra che la Conseguenza alza accanto — 50 volte in 100 anni |
 | `someone_paid` | carta Echo | qualcuno ha pagato: il marchio di una decisione passata al prezzo di chi non c'e' piu' — si legge al centro del tavolo, non in una regola (D-278) |
 | `spoke_and_lost` | Conseguenza | ha proposto e la proposta e' caduta: si legge sulla carta del casato (D-278) |
@@ -75,8 +74,8 @@ I segni che scrive il **codice** e non i dati non compaiono qui: `evicted:` (con
 | `charter_temporary` | carta Echo, clausola di Consiglio | — | pesca delle domande |
 | `charter_written` | Conseguenza | — | Destino, Risonanza, chi siede l'anno prossimo, pesca delle domande |
 | `condition:abandoned` | Conseguenza | clausola di Consiglio | bersaglio a segni, la Regione di cui si discute, pesca delle domande |
-| `condition:contested` | Azione stampata, Conseguenza, carta Asset, carta Echo | Azione stampata, Conseguenza, carta Asset | bersaglio a segni, la Regione di cui si discute |
-| `condition:cut_off` | Azione stampata, Conseguenza, carta Asset, carta Echo | Azione stampata, Conseguenza, carta Asset | bersaglio a segni, la Regione di cui si discute, pesca delle domande |
+| `condition:contested` | Azione stampata, Conseguenza, carta Asset, carta Echo | Azione stampata, Conseguenza, carta Asset | Destino, bersaglio a segni, la Regione di cui si discute |
+| `condition:cut_off` | Azione stampata, Conseguenza, carta Asset, carta Echo | Azione stampata, Conseguenza, carta Asset | Destino, bersaglio a segni, la Regione di cui si discute, pesca delle domande |
 | `condition:emptied` | Azione stampata, Conseguenza, carta Echo | — | Destino, bersaglio a segni, la Regione di cui si discute, obiettivo, pesca delle domande |
 | `condition:exploited` | Conseguenza, Risonanza | — | Destino, la Regione di cui si discute, obiettivo, pesca delle domande |
 | `condition:indebted` | Conseguenza, carta Asset, carta Echo | Conseguenza | la Regione di cui si discute, pesca delle domande |
@@ -90,7 +89,7 @@ I segni che scrive il **codice** e non i dati non compaiono qui: `evicted:` (con
 | `crown_dispossessed` | Conseguenza | — | Risonanza, fatto che dura, pesca delle domande |
 | `crown_divided` | Conseguenza | Conseguenza | Destino, Risonanza, fatto che dura, pesca delle domande, proposta |
 | `crowned` | — | Conseguenza | proposta |
-| `crystal_exploited` | Azione stampata, Conseguenza | — | Destino, Risonanza, catena delle ere, chi **non** siede l'anno prossimo, chi siede l'anno prossimo, leggenda (un'era dopo), pesca delle domande |
+| `crystal_exploited` | Azione stampata, Conseguenza | — | Destino, Risonanza, catena delle ere, chi **non** siede l'anno prossimo, chi siede l'anno prossimo, pesca delle domande |
 | `crystal_measured` | Azione stampata, carta Echo | — | pesca delle domande |
 | `debt_called` | Azione stampata, Conseguenza, carta Asset | — | Destino, Risonanza, chi siede l'anno prossimo, leggenda (un'era dopo), pesca delle domande, regola del segno |
 | `debt_forgiven` | Azione stampata, Conseguenza | — | Destino |
@@ -120,7 +119,7 @@ I segni che scrive il **codice** e non i dati non compaiono qui: `evicted:` (con
 | `nahr_settled` | Conseguenza | — | Destino, Risonanza, chi siede l'anno prossimo, fatto che dura |
 | `no_charter` | Conseguenza | — | Destino, Risonanza, pesca delle domande |
 | `oath_broken` | Azione stampata, Conseguenza | Conseguenza | Destino, Risonanza, bersaglio a segni, leggenda (un'era dopo), pesca delle domande, regola del segno |
-| `order_restored` | Conseguenza | — | leggenda (un'era dopo) |
+| `order_restored` | Conseguenza | — | Destino, leggenda (un'era dopo) |
 | `parley_held` | carta Echo | — | Risonanza |
 | `petition_heard` | carta Echo | — | Risonanza |
 | `question_unresolved` | Conseguenza | Conseguenza | Destino, Risonanza, obiettivo, proposta |
@@ -129,6 +128,7 @@ I segni che scrive il **codice** e non i dati non compaiono qui: `evicted:` (con
 | `relic_recorded` | clausola di Consiglio | — | pesca delle domande |
 | `relic_shown` | Conseguenza | — | Destino, chi siede l'anno prossimo, pesca delle domande |
 | `renowned` | Azione stampata, Conseguenza, carta Echo | — | Destino, Risonanza, obiettivo, regola del segno |
+| `rumour_running` | Conseguenza | — | Destino |
 | `scar:abandoned` | Conseguenza (cicatrice) | — | conteggio delle cicatrici (`scar_count`), regola del segno |
 | `scar:broken_bridge` | Conseguenza (cicatrice) | carta Asset | conteggio delle cicatrici (`scar_count`), regola del segno |
 | `scar:broken_word` | Conseguenza (cicatrice) | — | conteggio delle cicatrici (`scar_count`), regola del segno |
