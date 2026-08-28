@@ -25,20 +25,11 @@ DATA = ROOT / "godot" / "data"
 OUT = ROOT / "docs" / "REVISIONE_TESTI.md"
 
 
-def load_all(*globs: str) -> list[dict]:
-    """Tutti gli `items` dei file che corrispondono, in ordine di percorso.
-
-    Scritto a glob e non a lista di nomi per una ragione pagata: fino a 0.1.290
-    questo strumento nominava `chronicle_01/chronicle_01.json`, cancellato con
-    gli anni d'autore (D-318), e **moriva all'avvio** — il documento che genera
-    e' rimasto fermo settanta versioni senza che nessuno se ne accorgesse,
-    perche' nessun cancello lo guardava. Adesso legge quello che c'e'.
-    """
-    items: list[dict] = []
-    for pattern in globs:
-        for path in sorted(DATA.glob(pattern)):
-            items.extend(json.loads(path.read_text())["items"])
-    return items
+# Un documento si cerca per quello che **dice di essere**, non per la cartella
+# in cui sta: l'aiutante condiviso e' in `echoes_schema.py`, e la ragione per cui
+# esiste l'ha pagata per prima questa funzione (D-328, poi ISSUES 99).
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from echoes_schema import items_of as load_all  # noqa: E402
 
 
 def sorted_by_id(items: list[dict]) -> list[dict]:
@@ -72,16 +63,16 @@ def main() -> int:
     review = Review()
     out = review.lines
 
-    chronicles = sorted_by_id(load_all("chronicle_*/chronicle_*.json"))
-    regions = sorted_by_id(load_all("regions/*.json"))
-    entities = sorted_by_id(load_all("entities/*.json"))
-    tensions = sorted_by_id(load_all("tensions/*.json"))
-    templates = sorted_by_id(load_all("chronicle_*/confluences/*.json"))
-    consequences = sorted_by_id(load_all("consequences/*.json"))
-    echoes = sorted_by_id(load_all("echoes/*.json"))
-    assets = sorted_by_id(load_all("assets/*.json"))
-    destinies = sorted_by_id(load_all("destinies/*.json"))
-    actions = sorted_by_id(load_all("actions/*.json"))
+    chronicles = sorted_by_id(load_all("chronicle"))
+    regions = sorted_by_id(load_all("region"))
+    entities = sorted_by_id(load_all("entity"))
+    tensions = sorted_by_id(load_all("tension"))
+    templates = sorted_by_id(load_all("confluence_template"))
+    consequences = sorted_by_id(load_all("consequence"))
+    echoes = sorted_by_id(load_all("echo_card"))
+    assets = sorted_by_id(load_all("asset"))
+    destinies = sorted_by_id(load_all("destiny"))
+    actions = sorted_by_id(load_all("action"))
 
     review.line("# ECHOES — I testi, per la revisione")
     review.line()

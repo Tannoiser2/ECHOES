@@ -95,12 +95,24 @@ una coda che ha i nomi:
 | tessere Regione | **10 nel parco, 6 pescate** ogni anno |
 
 **Il motore esegue**: la Risonanza, il bersaglio a segni delle Azioni
-([D-273](DECISIONS.md#d-273)), le clausole dei Destini mirate a segni
+([D-273](DECISIONS.md#d-273)), **la scelta fra le due Azioni stampate**
+([D-283](DECISIONS.md#d-283): chi gioca dice quale delle due cala, e il verbo
+viene da lì), le clausole dei Destini mirate a segni
 ([D-327](DECISIONS.md#d-327)), la pista del Calore e il Consiglio che si apre sul
 Tema più caldo.
 
-**Il motore non esegue**: la scelta fra le **due Azioni** della carta, e la
-risoluzione della proposta con le caselle della Tensione — è ISSUES 89.
+> **Correzione (0.1.292).** Fino alla 0.1.291 questo foglio diceva che la scelta
+> fra le due Azioni non arrivava al motore. Era vecchia di nove versioni: D-283
+> l'ha implementata. Il conto vero è **85 Azioni stampate su 96** che portano un
+> verbo eseguibile; le altre **11 posano solo un segno**, e su quelle il motore
+> risponde *«quell'Azione la carta la stampa e io non la so ancora eseguire»*.
+
+**Il motore non esegue**: la **risoluzione della proposta con le caselle della
+Tensione** — il Consiglio gira ancora su 642 Effetti d'autore che nessuna carta
+stampa. È ISSUES 89, ed è la voce più grossa rimasta.
+
+E le **11 Azioni che posano solo un segno** sono la coda della stessa voce: la
+faccia le stampa, il tavolo le potrebbe giocare, il motore no.
 
 | la Risonanza, misurata | |
 |---|---|

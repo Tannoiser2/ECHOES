@@ -1446,6 +1446,36 @@ def check_destiny_token_budget(
                     )
 
 
+def check_no_file_names_a_dead_chronicle(
+    paths: List[str], chronicle_ids: Iterable[str], report: "Report"
+) -> None:
+    """Nessun file di dati porta il nome di una Chronicle che non esiste.
+
+    ISSUES 99, e il difetto che l'ha resa necessaria non era teorico. Gli anni
+    d'autore sono usciti in 0.1.281 ma i nomi dei file no: dodici file e due
+    cartelle si chiamavano ancora `*_chronicle_01`/`_03` mentre dentro c'era il
+    contenuto vivo — tutte e dieci le tessere comprese. Il costo l'hanno pagato
+    quattro strumenti che cercavano i dati per cartella: uno moriva all'avvio
+    (D-328), gli altri tre hanno smesso di vedere i template dei Consigli
+    **senza fallire**, dichiarando otto clausole impossibili che non lo erano.
+
+    Un nome che mente non e' un dettaglio estetico: e' la cosa che rende
+    invisibile un file quando lo sposti.
+    """
+    vivi = {str(c).lower() for c in chronicle_ids}
+    for where in sorted(paths):
+        for match in re.finditer(r"chronicle[_-]?(\d+)", where.lower()):
+            nome = "chr_%s" % match.group(1)
+            if nome not in vivi:
+                report.fail(
+                    where,
+                    "il nome porta una Chronicle che non esiste ('%s'): "
+                    "un file si chiama con quello che contiene, non con l'anno "
+                    "che l'ha introdotto (ISSUES 99)" % nome.upper(),
+                )
+                break
+
+
 def self_test_token_budget() -> int:
     """La guardia dei gettoni con un difetto piantato apposta (D-144, D-177).
 
@@ -1565,10 +1595,33 @@ def self_test_token_budget() -> int:
         if not ok:
             failures += 1
 
+    # E la quarta: un file che porta il nome di una Chronicle che non esiste.
+    # ISSUES 99. La guardia va vista tacere sui nomi buoni e mordere su quelli
+    # che mentono, altrimenti e' un commento con le parentesi.
+    for paths, vivi, expected, what in (
+        (["godot/data/regions/regions_core.json"], ["CHR_00"], 0,
+         "un nome che dice cosa contiene: passa"),
+        (["godot/data/chronicle_00/chronicle_00.json"], ["CHR_00"], 0,
+         "la Chronicle che esiste davvero: passa"),
+        (["godot/data/regions/regions_chronicle_01.json"], ["CHR_00"], 1,
+         "un anno cancellato nel nome del file: morde"),
+        (["godot/data/chronicle_03/confluences/confluence_templates.json"], ["CHR_00"], 1,
+         "e anche quando l'anno sta nella cartella"),
+    ):
+        report = Report()
+        check_no_file_names_a_dead_chronicle(paths, vivi, report)
+        ok = (len(report.errors) > 0) == (expected > 0)
+        name = "check_no_file_names_a_dead_chronicle"
+        print(f"{'ok  ' if ok else 'FAIL'}  {name:<28} {'':<14} {what}")
+        for error in report.errors:
+            print(f"        {error}")
+        if not ok:
+            failures += 1
+
     if failures:
         sys.stderr.write(f"\n{failures} caso/i non si comporta come deve\n")
         return 1
-    print("\nle tre guardie mordono dove devono e tacciono dove devono")
+    print("\nle quattro guardie mordono dove devono e tacciono dove devono")
     return 0
 
 
@@ -1627,8 +1680,10 @@ def main() -> int:
         sys.stderr.write(f"data directory not found: {DATA_DIR}\n")
         return 1
 
+    seen_paths: List[str] = []
     for path, document in iter_data_files():
         where = rel(path)
+        seen_paths.append(where)
         if not isinstance(document, dict) or "schema_id" not in document:
             report.fail(where, "document has no 'schema_id' field")
             continue
@@ -1670,6 +1725,9 @@ def main() -> int:
         check_the_gate_and_the_thresholds_do_not_overlap(documents, origins, report)
         check_every_region_can_call_the_council(documents, origins, report)
         check_a_drawn_map_bears_every_theme(documents, origins, report)
+        check_no_file_names_a_dead_chronicle(
+            seen_paths, [c.get("id", "") for c in documents.get("chronicle", [])], report
+        )
 
     # Duplicate ids across the whole data set are always a bug.
     seen: Dict[str, str] = {}

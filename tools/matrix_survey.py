@@ -55,12 +55,11 @@ COUNTS_ONLY = {
 }
 
 
-def items(pattern: str) -> List[Dict[str, Any]]:
-    out: List[Dict[str, Any]] = []
-    for path in sorted(DATA.glob(pattern)):
-        with path.open(encoding="utf-8") as handle:
-            out.extend(json.load(handle).get("items", []))
-    return out
+# Un documento si cerca per quello che **dice di essere**, non per la cartella
+# in cui sta: l'aiutante condiviso e' in `echoes_schema.py`, e la ragione per cui
+# esiste e' scritta li' (ISSUES 99).
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from echoes_schema import items_of as items  # noqa: E402
 
 
 def walk(node: Any):
@@ -83,13 +82,13 @@ def written_signs() -> Dict[str, Set[str]]:
         if tag:
             pens[str(tag)].add(who)
 
-    for pattern, who in (
-        ("consequences/*.json", "Conseguenza"),
-        ("echoes/*.json", "carta Echo"),
-        ("chronicle_*/confluences/*.json", "clausola di Consiglio"),
-        ("assets/*.json", "carta Asset"),
+    for schema, who in (
+        ("consequence", "Conseguenza"),
+        ("echo_card", "carta Echo"),
+        ("confluence_template", "clausola di Consiglio"),
+        ("asset", "carta Asset"),
     ):
-        for item in items(pattern):
+        for item in items(schema):
             for node in walk(item):
                 kind = str(node.get("type", ""))
                 tag = str((node.get("payload") or {}).get("tag", ""))
@@ -99,7 +98,7 @@ def written_signs() -> Dict[str, Set[str]]:
                     note(tag, who)
             note(str((item.get("scar") or {}).get("tag", "")), who)
     # La faccia delle carte, che da D-283 scrive per davvero.
-    for card in items("assets/*.json"):
+    for card in items("asset"):
         face = card.get("physical") or {}
         for action in face.get("actions", []) or []:
             for tag in (action or {}).get("puts_tag", []) or []:
@@ -109,7 +108,7 @@ def written_signs() -> Dict[str, Set[str]]:
             note(str(extra), "Risonanza")
     # **La faccia della Tensione scrive** (D-308): le sue caselle posano segni
     # come una Conseguenza, e la sonda non le guardava.
-    for tension in items("tensions/*.json"):
+    for tension in items("tension"):
         face = tension.get("physical") or {}
         for field in ("benefits", "costs", "failure"):
             for voice in face.get(field, []) or []:
@@ -117,17 +116,17 @@ def written_signs() -> Dict[str, Set[str]]:
                 tag = str((voice or {}).get("tag", ""))
                 if tag and verb in ("ADD_CONDITION", "SCAR", "REMEMBER"):
                     note(tag, "faccia della Tensione")
-    for structure in items("structures/*.json"):
+    for structure in items("structure_type"):
         for grade in structure.get("grades", []) or []:
             note(str((grade or {}).get("tag", "")), "Pietra")
         note(str((structure.get("ruin") or {}).get("tag", "")), "Pietra in rovina")
-    for region in items("regions/*.json"):
+    for region in items("region"):
         for tag in region.get("tags", []) or []:
             note(str(tag), "tessera")
-    for entity in items("entities/*.json"):
+    for entity in items("entity"):
         for tag in entity.get("tags", []) or []:
             note(str(tag), "casato")
-    for chronicle in items("chronicle_*/chronicle_*.json"):
+    for chronicle in items("chronicle"):
         for tag in chronicle.get("global_tags", []) or []:
             note(str(tag), "apertura della Chronicle")
         for tag in chronicle.get("enduring_facts", []) or []:
@@ -162,7 +161,7 @@ def destiny_signs() -> Tuple[
     # segnale che la misura non guardava dove il gioco succede.
     counts: Dict[str, Set[str]] = defaultdict(set)
     levels: List[Dict[str, Any]] = []
-    for destiny in items("destinies/*.json"):
+    for destiny in items("destiny"):
         entity = str(destiny.get("entity_id", ""))
         for level in ("minimum", "victory", "triumph"):
             named: Set[str] = set()
@@ -203,7 +202,7 @@ def destiny_signs() -> Tuple[
     # «orfani» su 148 erano il segnale che qualcosa non veniva letto, non che
     # il gioco fosse mezzo vuoto. Un obiettivo non e' di nessuna Entita' in
     # particolare (si pesca), quindi vale per tutte: sta nel mazzo comune.
-    for objective in items("objectives/*.json"):
+    for objective in items("objective"):
         for node in walk(objective.get("conditions")):
             kind = str(node.get("type", ""))
             if kind in NAMES_A_SIGN and node.get("tag"):
@@ -216,7 +215,7 @@ def destiny_signs() -> Tuple[
 
 def stone_tag() -> Dict[str, str]:
     out: Dict[str, str] = {}
-    for structure in items("structures/*.json"):
+    for structure in items("structure_type"):
         grades = structure.get("grades", []) or []
         if grades:
             out[str(structure.get("id", ""))] = str(grades[0].get("tag", ""))
@@ -227,7 +226,7 @@ def tension_signs() -> Dict[str, Dict[str, Set[str]]]:
     """Tensione -> {'puts': segni che la sua faccia posa, 'clears': quelli che toglie}."""
     stones = stone_tag()
     out: Dict[str, Dict[str, Set[str]]] = {}
-    for tension in items("tensions/*.json"):
+    for tension in items("tension"):
         puts: Set[str] = set()
         clears: Set[str] = set()
         face = tension.get("physical") or {}
@@ -286,7 +285,7 @@ def _borrowed_questions() -> int:
     si puo' chiudere il buco rinominando.
     """
     testi: Dict[str, Set[str]] = defaultdict(set)
-    for tension in items("tensions/*.json"):
+    for tension in items("tension"):
         council = tension.get("council") or {}
         for question in council.get("questions", []) or []:
             testi[str((question or {}).get("text", ""))].add(str(tension.get("id", "")))
@@ -299,7 +298,7 @@ def _borrowed_questions() -> int:
 
 def legacy_signs() -> Set[str]:
     carried: Set[str] = set()
-    for chronicle in items("chronicle_*/chronicle_*.json"):
+    for chronicle in items("chronicle"):
         for tag in chronicle.get("enduring_facts", []) or []:
             carried.add(str(tag))
         for tally in chronicle.get("era_tallies", []) or []:
@@ -315,8 +314,8 @@ def legacy_signs() -> Set[str]:
 
 
 def survey() -> Tuple[str, Dict[str, int]]:
-    dictionary = {str(v["id"]): v for v in items("tags/*.json")}
-    profiles = items("design_matrix/*.json")
+    dictionary = {str(v["id"]): v for v in items("tag")}
+    profiles = items("entity_strategic_profile")
     pens = written_signs()
     wants, fears, watches, counts, levels = destiny_signs()
     tensions = tension_signs()
@@ -352,7 +351,7 @@ def survey() -> Tuple[str, Dict[str, int]]:
     # sconta un'azione o la vieta morde per conto suo, e chiamarlo orfano
     # sarebbe dire il falso — non e' strategia dichiarata, ma e' una regola.
     ruled: Set[str] = set()
-    for rule in items("tag_rules/*.json"):
+    for rule in items("tag_rule"):
         for node in walk(rule):
             if node.get("tag"):
                 ruled.add(str(node["tag"]))
@@ -436,7 +435,7 @@ def survey() -> Tuple[str, Dict[str, int]]:
     # case qualunque, esiste almeno un segno che spinge l'una da una parte e
     # l'altra dall'altra? Una coppia che non ne ha nemmeno uno non ha niente
     # per cui litigare, e al tavolo non si incontrera' mai.
-    case = sorted(str(e.get("id", "")) for e in items("entities/*.json"))
+    case = sorted(str(e.get("id", "")) for e in items("entity"))
     aiuta: Dict[str, Set[str]] = defaultdict(set)
     danneggia: Dict[str, Set[str]] = defaultdict(set)
     for entity in case:
@@ -463,7 +462,7 @@ def survey() -> Tuple[str, Dict[str, int]]:
     # sposta cosa quella casa diventera'.
     trasforma: Set[str] = set()
     porte: Dict[str, str] = {}
-    for entity in items("entities/*.json"):
+    for entity in items("entity"):
         for vita in entity.get("incarnations", []) or []:
             if not vita.get("also_enters"):
                 continue

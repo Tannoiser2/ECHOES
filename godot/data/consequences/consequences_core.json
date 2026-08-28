@@ -1562,6 +1562,617 @@
         }
       ],
       "requires_entity_tag": "sleeping"
+    },
+    {
+      "id": "CNS_CANALS_DUG",
+      "title": "I Canali Riaperti",
+      "category": "PROSPERITY",
+      "description": "Si scava per due stagioni, e il fiume ricomincia ad arrivare dove arrivava prima. La parte difficile non era scavare: era decidere chi mandava gli uomini.",
+      "effects": [
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "water_moves"
+          }
+        },
+        {
+          "type": "BUILD_STRUCTURE",
+          "target": {
+            "kind": "region",
+            "id": "$region_with:granary"
+          },
+          "payload": {
+            "structure_type": "STR_CANAL",
+            "grade": 1,
+            "owner": "$proponent"
+          },
+          "note": "L'opera come oggetto (D-162): ha un padrone, entra nel conto del controllo, puo' diventare una grande opera e puo' cadere."
+        },
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "TEN_WATER"
+          },
+          "payload": {
+            "delta": -2
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_WATER_PRICED",
+      "title": "L'Acqua a Prezzo",
+      "category": "CONTROL",
+      "description": "Chi ha pagato i lavori riscuote sull'acqua. È legittimo, è scritto, e da quel giorno la Valle ha un padrone che non ha mai messo piede nella Valle.",
+      "effects": [
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "water_priced"
+          }
+        },
+        {
+          "type": "SET_ENTITY_TAG",
+          "target": {
+            "kind": "entity",
+            "id": "$proponent"
+          },
+          "payload": {
+            "tag": "water_rights"
+          }
+        },
+        {
+          "type": "SET_STRUCTURE_GRADE",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "structure_type": "STR_SPRING",
+            "grade": 3,
+            "optional": true
+          },
+          "note": "D-165: quando l'acqua ha un prezzo, la sorgente libera smette di esistere come sorgente libera. Il segno cambia e il dono finisce."
+        }
+      ]
+    },
+    {
+      "id": "CNS_LEDGER_OPENED",
+      "title": "Il Registro Aperto",
+      "category": "DISCOVERY",
+      "description": "Il registro della Gilda viene copiato e lasciato dove chiunque può leggerlo. Nessuno ci trova un imbroglio: ci trova le condizioni, che era la cosa importante.",
+      "effects": [
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "ledger_public"
+          }
+        },
+        {
+          "type": "SET_ENTITY_TAG",
+          "target": {
+            "kind": "entity",
+            "id": "$rival"
+          },
+          "payload": {
+            "tag": "discovery:the_ledger"
+          }
+        },
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "TEN_DEBT"
+          },
+          "payload": {
+            "delta": -1
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_DEBT_FORGIVEN",
+      "title": "Il Debito Rimesso",
+      "category": "PACT",
+      "description": "Una riga tirata sotto una colonna di numeri. Costa a chi la tira, e per un anno intero nessuno parla d'altro.",
+      "effects": [
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "debt_forgiven"
+          }
+        },
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "TEN_DEBT"
+          },
+          "payload": {
+            "delta": -2
+          }
+        },
+        {
+          "type": "REMOVE_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "tag": "condition:indebted",
+            "optional": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_DEBT_CALLED",
+      "title": "Il Debito Chiamato",
+      "category": "DEBT",
+      "description": "La Gilda chiede tutto insieme. Ha diritto di farlo, e nessuno può pagare: è esattamente per questo che lo fa adesso.",
+      "effects": [
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "debt_called"
+          }
+        },
+        {
+          "type": "SET_RELATION",
+          "target": {
+            "kind": "relation",
+            "id": "$proponent|$rival"
+          },
+          "payload": {
+            "level": "HOSTILE"
+          },
+          "note": "Chi non può pagare non perdona chi ha chiesto adesso (ISSUES 14: la seconda saga non aveva un solo modo di farsi un nemico)."
+        },
+        {
+          "type": "SET_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "tag": "condition:indebted"
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_RELIC_SHOWN",
+      "title": "La Teca Aperta",
+      "category": "DISCOVERY",
+      "description": "La reliquia esce dalla teca davanti a testimoni. Non succede niente, e questa è la notizia: per otto secoli era stato detto il contrario.",
+      "creates_scar": false,
+      "effects": [
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "relic_shown"
+          }
+        },
+        {
+          "type": "SET_ENTITY_TAG",
+          "target": {
+            "kind": "entity",
+            "id": "$proponent"
+          },
+          "payload": {
+            "tag": "discovery:relic"
+          }
+        },
+        {
+          "type": "SET_TENSION_VISIBILITY",
+          "target": {
+            "kind": "tension",
+            "id": "TEN_RELIC"
+          },
+          "payload": {
+            "visibility": "OPEN"
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_RELIC_BURIED",
+      "title": "La Teca Murata",
+      "category": "SECRET",
+      "description": "Si mura la cella e si mette a verbale che è stata murata. Chi verrà dopo saprà che c'è qualcosa e non saprà cosa: era il piano.",
+      "effects": [
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "relic_buried"
+          }
+        },
+        {
+          "type": "SET_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_with:crystal_site"
+          },
+          "payload": {
+            "tag": "structure:sealed"
+          }
+        },
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "TEN_RELIC"
+          },
+          "payload": {
+            "delta": -2
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_ORDER_ANOINTED",
+      "title": "La Custodia Riconosciuta",
+      "category": "INFLUENCE",
+      "description": "Non un privilegio: un incarico, con una firma sotto. Da quel giorno chi custodisce lo fa per conto di tutti, e deve rendere conto a tutti.",
+      "effects": [
+        {
+          "type": "SET_ENTITY_TAG",
+          "target": {
+            "kind": "entity",
+            "id": "$proponent"
+          },
+          "payload": {
+            "tag": "anointed"
+          }
+        },
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "faith_established"
+          }
+        },
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "TEN_RELIC"
+          },
+          "payload": {
+            "delta": -1
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_CHARTER_WRITTEN",
+      "title": "La Carta Scritta",
+      "category": "INFLUENCE",
+      "description": "Sette città firmano lo stesso foglio. Ci hanno messo un anno e mezzo, e il foglio è più corto di quanto chiunque si aspettasse.",
+      "effects": [
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "charter_written"
+          }
+        },
+        {
+          "type": "SET_ENTITY_TAG",
+          "target": {
+            "kind": "entity",
+            "id": "$rival"
+          },
+          "payload": {
+            "tag": "discovery:the_charter"
+          }
+        },
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "TEN_CHARTER"
+          },
+          "payload": {
+            "delta": -2
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_CHARTER_REFUSED",
+      "title": "La Carta Rifiutata",
+      "category": "REVOLT",
+      "description": "Una città non firma, e le altre scoprono che non c'è niente da fare se una città non firma. La regola esisteva finché tutti fingevano che esistesse.",
+      "effects": [
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "no_charter"
+          }
+        },
+        {
+          "type": "SET_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "tag": "condition:contested"
+          }
+        },
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "TEN_CHARTER"
+          },
+          "payload": {
+            "delta": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_SEAT_CLAIMED",
+      "title": "Il Seggio Preso",
+      "category": "CONTROL",
+      "description": "Qualcuno si siede dove non si sedeva nessuno da otto secoli, e per un po' funziona meglio. È il per un po' che preoccupa.",
+      "creates_scar": true,
+      "scar": {
+        "region_id": "$region_focus",
+        "tag": "scar:the_empty_chair",
+        "description": "Nella sala del consiglio c'è una sedia più alta delle altre, e nessuno l'ha più tolta."
+      },
+      "effects": [
+        {
+          "type": "SET_RELATION",
+          "target": {
+            "kind": "relation",
+            "id": "$proponent|$rival"
+          },
+          "payload": {
+            "level": "HOSTILE"
+          },
+          "note": "Chi stava nella stanza si ricorda chi ha portato la sedia (ISSUES 14)."
+        },
+        {
+          "type": "SET_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "tag": "condition:unrest"
+          }
+        },
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "TEN_CHARTER"
+          },
+          "payload": {
+            "delta": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_ASH_WATCH",
+      "title": "La Veglia sulla Montagna",
+      "category": "FORTIFICATION",
+      "description": "Due torri e un turno di guardia che nessuno salta. Non impedisce niente: fa sapere prima — e da quel momento sulla montagna c'e' qualcosa che ha un nome sopra.",
+      "effects": [
+        {
+          "type": "SET_ENTITY_TAG",
+          "target": {
+            "kind": "entity",
+            "id": "$proponent"
+          },
+          "payload": {
+            "tag": "ash_watch"
+          }
+        },
+        {
+          "type": "BUILD_STRUCTURE",
+          "target": {
+            "kind": "region",
+            "id": "$region_with:wild"
+          },
+          "payload": {
+            "structure_type": "STR_KEEP",
+            "grade": 1,
+            "owner": "$proponent"
+          },
+          "note": "La prima cosa che si costruisce dentro l'anno (D-161): la veglia non e' piu' un segno posato sulla Regione ma una torre che ha un padrone, entra nel conto del controllo e puo' crescere."
+        },
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "TEN_ASH"
+          },
+          "payload": {
+            "delta": -1
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_ASH_ABANDONED",
+      "title": "Le Gallerie Lasciate",
+      "category": "MIGRATION",
+      "description": "Si smette di scendere. Non per paura: perché l'anno prossimo costa meno risalire che puntellare.",
+      "effects": [
+        {
+          "type": "SET_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_with:mine"
+          },
+          "payload": {
+            "tag": "condition:emptied"
+          }
+        },
+        {
+          "type": "REMOVE_PRESENCE",
+          "target": {
+            "kind": "entity",
+            "id": "$rival"
+          },
+          "payload": {
+            "region_id": "$region_with:mine",
+            "optional": true
+          },
+          "note": "Gallerie lasciate vuol dire che chi le presidiava smette di presidiarle: la Regione e nominata come nel resto della carta, ed e quella che il Minimo dell'Ordine nomina a soglia 2 (AUDIT_DESTINI 7.2)."
+        },
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "TEN_ASH"
+          },
+          "payload": {
+            "delta": -2
+          }
+        },
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "TEN_DEBT"
+          },
+          "payload": {
+            "delta": 1
+          }
+        },
+        {
+          "type": "SET_STRUCTURE_GRADE",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "structure_type": "STR_FOREST",
+            "grade": 3,
+            "optional": true
+          },
+          "note": "D-163: quando le gallerie si lasciano, quello che resta sopra smette di essere un bosco. Nessuno lo ha maledetto: e' successo, e da li' in poi chi ci sta dentro tiene una carta in meno."
+        },
+        {
+          "type": "ADD_PRESENCE",
+          "target": {
+            "kind": "entity",
+            "id": "$rival"
+          },
+          "payload": {
+            "region_id": "$adjacent",
+            "optional": true
+          },
+          "note": "Le domande spostano la mappa (D-223). «Si smette di scendere»: chi non scende piu' resta di sopra. La miniera si svuota e la superficie si riempie. `optional` perche' il tetto delle pedine vale anche per il mondo: chi le ha gia' tutte sul tavolo non ne ha una da mandare."
+        }
+      ]
+    },
+    {
+      "id": "CNS_MOUNTAIN_WOUNDED",
+      "title": "La Roccia che Cede",
+      "category": "EXPLOITATION",
+      "description": "Sotto la cella i puntelli trovano il vuoto: la galleria maestra si riapre, e la roccia intorno resta tiepida. Quello che l'Ordine custodiva adesso è una porta.",
+      "creates_scar": true,
+      "scar": {
+        "region_id": "$region_with:mine",
+        "tag": "scar:open_wound",
+        "description": "La galleria maestra non si richiude più, e la roccia intorno resta tiepida."
+      },
+      "effects": [
+        {
+          "type": "SET_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_with:mine"
+          },
+          "payload": {
+            "tag": "condition:exploited"
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_VALLEY_DRAINED",
+      "title": "La Valle che si Vuota",
+      "category": "MIGRATION",
+      "description": "L'acqua non è arrivata, e i campi hanno risposto a modo loro. Chi poteva partire è partito prima del secondo inverno.",
+      "creates_scar": true,
+      "scar": {
+        "region_id": "$region_with:granary",
+        "tag": "scar:emptied",
+        "description": "Le case basse con le porte aperte, e i canali asciutti che nessuno riscava."
+      },
+      "effects": [
+        {
+          "type": "SET_REGION_TAG",
+          "target": {
+            "kind": "region",
+            "id": "$region_with:granary"
+          },
+          "payload": {
+            "tag": "condition:lean"
+          }
+        },
+        {
+          "type": "SET_STRUCTURE_GRADE",
+          "target": {
+            "kind": "region",
+            "id": "$region_focus"
+          },
+          "payload": {
+            "structure_type": "STR_SPRING",
+            "grade": 2,
+            "optional": true
+          },
+          "note": "D-165: una valle che si vuota si porta dietro l'acqua. La sorgente cala — e chi ci stava vicino smette di contare meno le giornate."
+        }
+      ]
     }
   ]
 }

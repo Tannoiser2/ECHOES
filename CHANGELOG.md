@@ -5,6 +5,63 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.292 — I nomi degli anni cancellati, e quattro strumenti che cercavano per cartella (D-329)
+
+### Cambiato
+
+- **Sette coppie di file di dati fuse in una ciascuna**, chiamate col contenuto
+  invece che con l'anno d'autore che le aveva introdotte: `entities_core` (8
+  case), `destinies_core` (17), `tensions_core` (12), `consequences_core` (52),
+  `echo_cards_core` (39), `regions_core` (**tutte e dieci le tessere**) e
+  `confluences/confluence_templates.json` (12). Le cartelle `chronicle_01/` e
+  `chronicle_03/` non esistono piu'.
+- **`items_of(schema_id)` in `tools/echoes_schema.py`**: un documento si cerca
+  per quello che **dichiara di essere**, non per la cartella in cui sta. Quattro
+  strumenti lo usano, e sono spariti venti riferimenti a percorsi.
+- Due commenti di sonda che rimandavano ai `sim_plans` cancellati in 0.1.281.
+
+### Trovato — quattro strumenti sbagliavano in silenzio
+
+Il motore non si e' accorto della fusione (`data_set.gd` raccoglie ogni `.json`
+e indicizza per id). **Gli strumenti si', e senza fallire:**
+
+| strumento | cosa ha prodotto, spostati i template |
+|---|---|
+| `build_sign_registry.py` | **otto clausole impossibili** che non lo sono, e due segni «muti» che invece qualcuno legge |
+| `components_survey.py` | **«Modelli di Consiglio: 0»**, soggetti da illustrare **146 → 0** |
+| `matrix_survey.py` | segni scritti **149 → 102**, e **19 clausole impossibili** dal nulla |
+| `build_review.py` | **670 righe di testi** sparite |
+
+E' la stessa malattia di D-328, dove lo stesso strumento moriva all'avvio per lo
+stesso motivo. **Uno strumento che nomina un file per percorso non fallisce
+quando il file si sposta: smette di vederlo.**
+
+### Corretto
+
+- **`PUNTO_ZERO.md` diceva che il motore non esegue la scelta fra le due Azioni
+  della carta.** Era vecchio di nove versioni: [D-283](docs/DECISIONS.md#d-283)
+  l'ha implementata. Il conto vero: **85 Azioni stampate su 96** portano un verbo
+  eseguibile, le altre 11 posano solo un segno e il motore le rifiuta.
+
+### Cancelli
+
+- `check_no_file_names_a_dead_chronicle` in `validate_data.py`: nessun file di
+  dati puo' portare nel nome una Chronicle che non esiste. Il self-test passa da
+  tre guardie a **quattro**, e la nuova si e' vista tacere su due nomi buoni e
+  mordere su due che mentono — uno col difetto nel file, uno nella cartella.
+
+### Costo, dichiarato
+
+- **Nessuno sui numeri**, e stavolta e' provato invece che dedotto: i quattro
+  documenti generati tornano **identici**, la suite fa **630 prove / 35.886
+  asserzioni** verdi, e il playtest da' gli stessi numeri di prima — **0 seggi
+  bloccati su 8** misto e uniforme, Consigli 3,41, Verita' 156 di cui 146
+  diverse.
+- Resta `sim_plan.schema.json` senza nessun piano: lo schema e il codice che lo
+  legge restano, com'e' scritto in `DATA_SCHEMA.md`.
+
+---
+
 ## 0.1.291 — Il primo documento da leggere era falso, e uno strumento non partiva (D-328)
 
 ### Cambiato
