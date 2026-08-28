@@ -5,7 +5,7 @@ extends SceneTree
 ## quello che si vede sul telefono con un browser vero al posto di un mockup.
 ##
 ##   godot --headless --path godot --script res://cli/run_room.gd -- \
-##       --seed=7000 --chronicle=CHR_01 --port=8137 --pages=8123
+##       --seed=7000 --chronicle=CHR_00 --port=8137 --pages=8123
 ##
 ## Stampa una riga per seggio con l'indirizzo da aprire, poi gioca: i seggi
 ## umani aspettano il telefono, gli altri sono policy — le stesse regole della
@@ -20,7 +20,7 @@ const ConsoleHost := preload("res://scripts/net/console_host.gd")
 func _initialize() -> void:
 	var options: Dictionary = _parse_args(OS.get_cmdline_user_args())
 	var seed_value: int = int(options.get("seed", 7000))
-	var chronicle_id: String = str(options.get("chronicle", "CHR_01"))
+	var chronicle_id: String = str(options.get("chronicle", "CHR_00"))
 	var port: int = int(options.get("port", 8137))
 	var pages: int = int(options.get("pages", 8123))
 	var seats_wanted: int = int(options.get("seats", 2))

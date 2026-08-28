@@ -114,7 +114,7 @@ func _initialize() -> void:
 	var by_card: Dictionary = {}
 	var plans: Array = []
 	for i in range(runs):
-		plans.append("CHR_01" if i % 2 == 0 else "CHR_03")
+		plans.append("CHR_00")
 
 	for index in range(plans.size()):
 		var chronicle_id: String = str(plans[index])

@@ -53,7 +53,7 @@ func _initialize() -> void:
 	var held: Dictionary = {}   # "candidato|casa" -> quante volte vera
 	var seen: Dictionary = {}   # "candidato|casa" -> quante volte guardata
 	for index in range(runs):
-		var chronicle_id: String = "CHR_01" if index % 2 == 0 else "CHR_03"
+		var chronicle_id: String = "CHR_00"
 		var seed_value: int = first_seed + index
 		var session: RefCounted = GameSession.new(data)
 		var seats: Array = GameSession.seats_for(data, chronicle_id, seed_value)

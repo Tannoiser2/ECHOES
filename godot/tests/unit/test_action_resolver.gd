@@ -69,7 +69,7 @@ func test_move_requires_adjacency() -> void:
 ## pedine finche' ce ne sono, e **poi** guarda che la successiva sposti. Scritto
 ## col numero dentro, cambiare il tetto lo rompeva senza che niente fosse rotto.
 func test_move_relocates_once_all_tokens_are_placed() -> void:
-	var cap: int = int(session.data.chronicles["CHR_01"]["presence_tokens"])
+	var cap: int = int(session.data.chronicles["CHR_TEST"]["presence_tokens"])
 	for region_id in ["REG_STRADA_MERCANTI", "REG_TERRE_NAHR", "REG_MINIERE_ANTICHE"]:
 		if session.service.tokens_placed("ENT_ALDRIC") >= cap:
 			break
@@ -119,7 +119,7 @@ func test_influence_by_discard_spends_a_relevant_asset() -> void:
 ## Col velo che copre **tutto** (`HIDES_ALL`): la domanda e' fuori portata
 ## finche' non la si scopre.
 func test_influence_refuses_a_veiled_tension() -> void:
-	var chronicle: Dictionary = session.data.chronicles["CHR_01"] as Dictionary
+	var chronicle: Dictionary = session.data.chronicles["CHR_TEST"] as Dictionary
 	var before_rule: Variant = chronicle.get("veiled_tensions")
 	chronicle["veiled_tensions"] = "HIDES_ALL"
 	var result: Dictionary = _do(
@@ -142,7 +142,7 @@ func test_influence_refuses_a_veiled_tension() -> void:
 ## domanda si spinge subito. Non sapere quando esplodera' e' il rischio che il
 ## committente voleva, non un divieto.
 func test_influence_reaches_a_tension_whose_only_secret_is_the_threshold() -> void:
-	var chronicle: Dictionary = session.data.chronicles["CHR_01"] as Dictionary
+	var chronicle: Dictionary = session.data.chronicles["CHR_TEST"] as Dictionary
 	assert_eq(
 		str(chronicle.get("veiled_tensions", "HIDES_ALL")),
 		"HIDES_THRESHOLD",

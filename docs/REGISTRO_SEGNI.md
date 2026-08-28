@@ -73,7 +73,7 @@ I segni che scrive il **codice** e non i dati non compaiono qui: `evicted:` (con
 | `betrayal_spoken` | Azione stampata, carta Echo | — | Risonanza |
 | `charter_for_all` | clausola di Consiglio | — | pesca delle domande |
 | `charter_temporary` | carta Echo, clausola di Consiglio | — | pesca delle domande |
-| `charter_written` | Conseguenza | — | Destino, Risonanza, chi siede l'anno prossimo, fatto che dura, pesca delle domande |
+| `charter_written` | Conseguenza | — | Destino, Risonanza, chi siede l'anno prossimo, pesca delle domande |
 | `condition:abandoned` | Conseguenza | clausola di Consiglio | bersaglio a segni, la Regione di cui si discute, pesca delle domande |
 | `condition:contested` | Azione stampata, Conseguenza, carta Asset, carta Echo | Azione stampata, Conseguenza, carta Asset | bersaglio a segni, la Regione di cui si discute |
 | `condition:cut_off` | Azione stampata, Conseguenza, carta Asset, carta Echo | Azione stampata, Conseguenza, carta Asset | bersaglio a segni, la Regione di cui si discute, pesca delle domande |
@@ -111,7 +111,7 @@ I segni che scrive il **codice** e non i dati non compaiono qui: `evicted:` (con
 | `escort_sworn` | Azione stampata, Conseguenza | — | Destino, Risonanza |
 | `evicted:$region_focus` | — | carta Asset | codice (chronicle_controller.gd) |
 | `failed_proposal` | Conseguenza | — | Destino |
-| `faith_established` | Conseguenza | — | Risonanza, fatto che dura, pesca delle domande |
+| `faith_established` | Conseguenza | — | Risonanza, pesca delle domande |
 | `grain_requisitioned` | Azione stampata, Conseguenza | — | Risonanza, chi siede l'anno prossimo, pesca delle domande |
 | `heir_named` | Azione stampata, Conseguenza, carta Asset | — | Risonanza, chi siede l'anno prossimo |
 | `knowledge_shared` | Azione stampata, clausola di Consiglio | — | Risonanza, pesca delle domande |
@@ -125,7 +125,7 @@ I segni che scrive il **codice** e non i dati non compaiono qui: `evicted:` (con
 | `petition_heard` | carta Echo | — | Risonanza |
 | `question_unresolved` | Conseguenza | Conseguenza | Destino, Risonanza, obiettivo, proposta |
 | `quota_guaranteed` | clausola di Consiglio | — | pesca delle domande |
-| `relic_buried` | Conseguenza | — | Destino, fatto che dura, pesca delle domande |
+| `relic_buried` | Conseguenza | — | Destino, pesca delle domande |
 | `relic_recorded` | clausola di Consiglio | — | pesca delle domande |
 | `relic_shown` | Conseguenza | — | Destino, chi siede l'anno prossimo, pesca delle domande |
 | `renowned` | Azione stampata, Conseguenza, carta Echo | — | Destino, Risonanza, obiettivo, regola del segno |
@@ -152,6 +152,6 @@ I segni che scrive il **codice** e non i dati non compaiono qui: `evicted:` (con
 | `toll_shared` | Azione stampata, clausola di Consiglio | — | Risonanza, pesca delle domande |
 | `valley_sealed` | Conseguenza | — | Destino, fatto che dura, pesca delle domande |
 | `water_moves` | Conseguenza, carta Echo | — | Destino |
-| `water_priced` | Conseguenza | — | Destino, fatto che dura, pesca delle domande |
+| `water_priced` | Conseguenza | — | Destino, pesca delle domande |
 | `water_rights` | Conseguenza | — | pesca delle domande |
 | `water_shared` | clausola di Consiglio | — | pesca delle domande |

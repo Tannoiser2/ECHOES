@@ -2,7 +2,7 @@ extends SceneTree
 ## **Chi scrive nel mondo: la carta o la frase d'autore?** (taglio 2, ISSUES 80)
 ##
 ##   godot --headless --path godot --script res://cli/run_who_writes_probe.gd -- \
-##       --runs=40 --seed=7000 --chronicle=CHR_01
+##       --runs=40 --seed=7000 --chronicle=CHR_00
 ##
 ## Un Consiglio che passa lascia due cose sul mondo, da due grammatiche diverse:
 ##
@@ -41,7 +41,7 @@ func _initialize() -> void:
 	var options: Dictionary = _parse_args(OS.get_cmdline_user_args())
 	var runs: int = int(options.get("runs", 40))
 	var first_seed: int = int(options.get("seed", 7000))
-	var chronicle_id: String = str(options.get("chronicle", "CHR_01"))
+	var chronicle_id: String = str(options.get("chronicle", "CHR_00"))
 
 	var data: RefCounted = DataSet.new()
 	if not data.load_from("res://data"):

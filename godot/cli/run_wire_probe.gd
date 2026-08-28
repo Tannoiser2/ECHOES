@@ -7,7 +7,7 @@ extends SceneTree
 ## nessuna: salvataggio e verbale identici byte per byte.
 ##
 ##   godot --headless --path godot --script res://cli/run_wire_probe.gd -- \
-##       --seed=7000 --chronicle=CHR_01 --port=8137
+##       --seed=7000 --chronicle=CHR_00 --port=8137
 
 const DataSet := preload("res://scripts/core/data_set.gd")
 const GameSession := preload("res://scripts/chronicle/game_session.gd")
@@ -20,7 +20,7 @@ const ProbeClient := preload("res://scripts/net/console_probe_client.gd")
 func _initialize() -> void:
 	var options: Dictionary = _parse_args(OS.get_cmdline_user_args())
 	var seed_value: int = int(options.get("seed", 7000))
-	var chronicle_id: String = str(options.get("chronicle", "CHR_01"))
+	var chronicle_id: String = str(options.get("chronicle", "CHR_00"))
 	var port: int = int(options.get("port", 8137))
 
 	var data: RefCounted = DataSet.new()

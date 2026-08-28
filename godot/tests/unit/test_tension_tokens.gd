@@ -15,7 +15,7 @@ func before_each() -> void:
 
 
 func _chronicle() -> Dictionary:
-	return session.data.chronicles["CHR_01"] as Dictionary
+	return session.data.chronicles["CHR_TEST"] as Dictionary
 
 
 func _heat() -> int:

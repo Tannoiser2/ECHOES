@@ -25,7 +25,7 @@ func before_each() -> void:
 
 
 func _covered(faces: Array = FACES) -> Dictionary:
-	var chronicle: Dictionary = session.data.chronicles["CHR_01"] as Dictionary
+	var chronicle: Dictionary = session.data.chronicles["CHR_TEST"] as Dictionary
 	chronicle["tension_tokens"] = {
 		"per_action": 1, "replaces_drift": true, "table_gate": 2, "covered": faces
 	}
@@ -34,7 +34,7 @@ func _covered(faces: Array = FACES) -> Dictionary:
 
 
 func _open(gate: int = 2) -> Dictionary:
-	var chronicle: Dictionary = session.data.chronicles["CHR_01"] as Dictionary
+	var chronicle: Dictionary = session.data.chronicles["CHR_TEST"] as Dictionary
 	chronicle["tension_tokens"] = {
 		"per_action": 1, "replaces_drift": true, "table_gate": gate
 	}
@@ -137,7 +137,7 @@ func test_the_seat_sheet_is_covered_too() -> void:
 ## crede di sapere l'altezza sta giocando un altro gioco, e la pagina glielo
 ## deve dire.
 func test_the_help_page_says_the_piles_are_covered() -> void:
-	var chronicle: Dictionary = session.data.chronicles["CHR_01"] as Dictionary
+	var chronicle: Dictionary = session.data.chronicles["CHR_TEST"] as Dictionary
 	var before: Variant = chronicle.get("tension_tokens")
 	chronicle["tension_tokens"] = {
 		"per_action": 1, "replaces_drift": true, "table_gate": 2, "covered": FACES
@@ -145,7 +145,7 @@ func test_the_help_page_says_the_piles_are_covered() -> void:
 	# La pagina e' un nodo, non un oggetto contato: si costruisce, le si chiede
 	# il testo e la si libera a mano.
 	var panel: Node = load("res://ui/help_panel.gd").new()
-	var lines: Array = panel.call("_lines", session.data, "CHR_01")
+	var lines: Array = panel.call("_lines", session.data, "CHR_TEST")
 	panel.free()
 	if before == null:
 		chronicle.erase("tension_tokens")

@@ -56,7 +56,7 @@ func _seat_vaerax_on_the_mountain() -> void:
 	#     **ordina**. Le altre Regioni stanno tutte dopo «MONTAGNE» in
 	#     alfabeto, cosi' qualunque mossa altrove parte da li'. Con le Miniere
 	#     in mano toccava a loro, e l'avviso taceva per la ragione giusta.
-	var limit: int = int(session.data.chronicles["CHR_01"]["presence_tokens"])
+	var limit: int = int(session.data.chronicles["CHR_TEST"]["presence_tokens"])
 	_apply("ADD_PRESENCE", "entity", "ENT_VAERAX", {"region_id": MOUNTAIN})
 	# Le tre Regioni si ripetono a giro invece di prenderne altre: le altre due
 	# della mappa — Eredan e le Miniere — stanno **prima** di «MONTAGNE» in

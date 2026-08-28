@@ -41,7 +41,7 @@ func _initialize() -> void:
 
 	# **Cento anni pescati, non due scritti** (D-318).
 	#
-	# Fino a 0.1.279 il cancello girava meta' su CHR_01 e meta' su CHR_03, due
+	# Fino a 0.1.279 il cancello girava meta' su CHR_00 e meta' su CHR_03, due
 	# anni d'autore con quattro e cinque Tensioni fisse. D-317 ha misurato cosa
 	# costava: **48 delle 60 carte Tensione non arrivavano mai al tavolo**, e
 	# ogni numero di bilanciamento a verbale era stato preso su una partita che

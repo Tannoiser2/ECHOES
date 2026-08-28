@@ -2,7 +2,7 @@ extends SceneTree
 ## Quanto spesso esce un segno che nessuno legge (ISSUES 61).
 ##
 ##   godot --headless --path godot --script res://cli/run_mute_signs.gd -- \
-##       --runs=100 --seed=7000 --chronicle=CHR_01
+##       --runs=100 --seed=7000 --chronicle=CHR_00
 ##
 ## [D-225](../docs/DECISIONS.md#d-225) ha contato i segni **nei dati**: 71
 ## scritti sul mondo, 10 che nessuna regola, nessun obiettivo e nessuna pesca
@@ -67,7 +67,7 @@ func _initialize() -> void:
 	var options: Dictionary = _parse_args(OS.get_cmdline_user_args())
 	var runs: int = int(options.get("runs", 100))
 	var first_seed: int = int(options.get("seed", 7000))
-	var chronicle_id: String = str(options.get("chronicle", "CHR_01"))
+	var chronicle_id: String = str(options.get("chronicle", "CHR_00"))
 	var mixed: bool = not options.has("uniform")
 
 	var data: RefCounted = DataSet.new()

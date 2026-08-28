@@ -3,8 +3,8 @@
   "version": "0.2.0",
   "items": [
     {
-      "id": "CHR_01",
-      "title": "La Carestia Rossa",
+      "id": "CHR_TEST",
+      "title": "Il Tavolo di Prova",
       "world_id": "WORLD_ECHOES",
       "start_year": 812,
       "acts": 3,
@@ -297,7 +297,7 @@
           ]
         }
       },
-      "sequel_id": "CHR_02",
+      "sequel_id": "CHR_TEST_HEIR",
       "entity_pool": {
         "candidates": [
           "ENT_ALDRIC",
@@ -322,8 +322,8 @@
       }
     },
     {
-      "id": "CHR_02",
-      "title": "Gli anni che vengono",
+      "id": "CHR_TEST_HEIR",
+      "title": "Il Tavolo di Prova, l'era dopo",
       "world_id": "WORLD_ECHOES",
       "start_year": 813,
       "acts": 3,
@@ -636,7 +636,7 @@
         ],
         "drawn": "per_saga"
       },
-      "sequel_id": "CHR_02",
+      "sequel_id": "CHR_TEST_HEIR",
       "entity_pool": {
         "candidates": [
           "ENT_ALDRIC",

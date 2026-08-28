@@ -174,8 +174,8 @@ func test_the_box_offers_both_halves_of_a_card() -> void:
 	var loaded: RefCounted = DataSet.new()
 	assert_true(loaded.load_from("res://data"), "i dati della scatola si leggono")
 	var live: RefCounted = GameSession.new(loaded)
-	var seats: Array = GameSession.seats_for(loaded, "CHR_01", 4242)
-	assert_true(live.setup("CHR_01", seats, 4242), "e l'anno si apre")
+	var seats: Array = GameSession.seats_for(loaded, "CHR_00", 4242)
+	assert_true(live.setup("CHR_00", seats, 4242), "e l'anno si apre")
 	for effect in live.factory_setup_effects():
 		live.applier.apply(effect)
 	live.world["act"] = 1

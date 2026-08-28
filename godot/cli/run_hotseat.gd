@@ -29,7 +29,7 @@ const SEATS: Array = ["ENT_ALDRIC", "ENT_NAHR", "ENT_LYRA", "ENT_VAERAX"]
 func _initialize() -> void:
 	var options: Dictionary = _parse_args(OS.get_cmdline_user_args())
 	var seed_value: int = int(options.get("seed", 812))
-	var chronicle_id: String = str(options.get("chronicle", "CHR_01"))
+	var chronicle_id: String = str(options.get("chronicle", "CHR_00"))
 	var quiet: bool = options.has("quiet")
 	var humans: Array = _seats(str(options.get("seats", "ENT_NAHR")))
 

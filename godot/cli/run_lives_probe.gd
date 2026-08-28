@@ -33,7 +33,7 @@ func _initialize() -> void:
 	var sagas: int = int(options.get("sagas", 12))
 	var chronicles: int = int(options.get("chronicles", 8))
 	var first_seed: int = int(options.get("seed", 812))
-	var first_id: String = str(options.get("chronicle", "CHR_01"))
+	var first_id: String = str(options.get("chronicle", "CHR_00"))
 	var later_id: String = str(options.get("then", "CHR_02"))
 	var out_path: String = str(options.get("out", ""))
 	# **I due tavoli, come al cancello.** Quante case si trasformano dipende da

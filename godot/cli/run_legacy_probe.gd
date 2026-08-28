@@ -38,7 +38,7 @@ func _initialize() -> void:
 	var per_saga: Dictionary = {}
 
 	for index in range(runs):
-		var chronicle_id: String = "CHR_01" if index % 2 == 0 else "CHR_03"
+		var chronicle_id: String = "CHR_00"
 		var seed_value: int = first_seed + index
 		var session: RefCounted = GameSession.new(data)
 		var seats: Array = GameSession.seats_for(data, chronicle_id, seed_value)
@@ -107,7 +107,7 @@ func _initialize() -> void:
 		per_saga[chronicle_id] = saga
 		session.dispose()
 
-	for chronicle_id in ["CHR_01", "CHR_03"]:
+	for chronicle_id in ["CHR_00"]:
 		if per_saga.has(chronicle_id):
 			_report(chronicle_id, per_saga[chronicle_id])
 	quit(0)

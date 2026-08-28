@@ -92,7 +92,7 @@ func test_the_rule_is_written_in_the_data() -> void:
 			"e le Chronicle della scatola li pescano una volta per saga (D-237)"
 		)
 		declared += 1
-	assert_true(declared >= 4, "per ogni Chronicle che gioca a obiettivi: %d" % declared)
+	assert_true(declared >= 1, "per ogni Chronicle che gioca a obiettivi: %d" % declared)
 
 
 ## I tre d'apertura restano gli stessi l'anno dopo.
@@ -107,8 +107,8 @@ func test_the_three_survive_the_handover() -> void:
 	# prova misurerebbe il ricambio invece della regola. Che il ricambio esista
 	# e' vero e sta scritto a verbale (D-237) — ma e' un'altra domanda.
 	var first: RefCounted = GameSession.new(loaded)
-	var seats: Array = GameSession.seats_for(loaded, "CHR_01", 4242)
-	assert_true(first.setup("CHR_01", seats, 4242), "il primo anno si apre")
+	var seats: Array = GameSession.seats_for(loaded, "CHR_00", 4242)
+	assert_true(first.setup("CHR_00", seats, 4242), "il primo anno si apre")
 	for effect in first.factory_setup_effects():
 		first.applier.apply(effect)
 
@@ -118,8 +118,11 @@ func test_the_three_survive_the_handover() -> void:
 			(first.world["entities"][str(entity_id)] as Dictionary).get("objectives", []) as Array
 		).duplicate()
 
+	# **L'era dopo e' la stessa Chronicle** (D-318): cancellati gli anni
+	# d'autore, una saga e' una catena di anni pescati dalla Prima Chronicle,
+	# che prosegue se stessa. Il seme cambia — e' un anno nuovo — la Chronicle no.
 	var second: RefCounted = GameSession.new(loaded)
-	assert_true(second.setup("CHR_02", seats, 4343), "il secondo anno si apre")
+	assert_true(second.setup("CHR_00", seats, 4343), "il secondo anno si apre")
 	second.inherit_from(first.world, {})
 
 	var carried: int = 0

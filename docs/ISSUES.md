@@ -2763,7 +2763,7 @@ e' in gioco.
 
 ---
 
-### 93. Cancellare gli anni d'autore: la suite ci sta sopra
+### 93. ✅ Cancellare gli anni d'autore — chiusa in 0.1.281
 
 `regola` · `debito` · `strumenti` · aperta in 0.1.280
 ([D-318](DECISIONS.md#d-318))
@@ -2801,8 +2801,11 @@ cambia a ogni seme.
    Restano entita', Destini, Regioni, Tensioni, Echi e i template di Consiglio,
    che CHR_00 usa gia' tutti.
 
-**Il metro**: la suite verde con `test_case.gd` che non nomina nessuna
-Chronicle spedita.
+**Chiusa in 0.1.281** ([D-319](DECISIONS.md#d-319)): il banco se lo fabbrica
+la suite (`tests/fixtures/chronicle_test.json`), `shipped_data()` separa il
+censimento della scatola dalla prova del motore, e le quattro Chronicle sono
+cancellate. Dai **217 fallimenti** misurati a **zero**, con 622 test verdi e il
+cancello dei 100 semi a 0 seggi bloccati su 8.
 
 ---
 

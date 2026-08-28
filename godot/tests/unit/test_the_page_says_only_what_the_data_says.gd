@@ -123,11 +123,11 @@ func test_every_shipped_chronicle_reads_true() -> void:
 func test_taking_a_rule_away_takes_its_words_away() -> void:
 	for clause in CLAUSES:
 		var path: String = str((clause as Dictionary)["path"])
-		if not _declares("CHR_01", path):
+		if not _declares("CHR_TEST", path):
 			continue
-		var chronicle: Dictionary = data().chronicles["CHR_01"] as Dictionary
+		var chronicle: Dictionary = data().chronicles["CHR_TEST"] as Dictionary
 		var undo: Dictionary = _erase(chronicle, path)
-		var page: String = _page("CHR_01")
+		var page: String = _page("CHR_TEST")
 		_restore(chronicle, undo)
 		_check("CHR_01 senza %s" % path, page, clause as Dictionary, false)
 
@@ -301,7 +301,7 @@ func _restore(chronicle: Dictionary, undo: Dictionary) -> void:
 ## legge quello che c'e' scritto sullo schermo.
 func test_the_line_the_player_reads_every_round_never_promises_a_threshold() -> void:
 	new_session()
-	var chronicle: Dictionary = session.data.chronicles["CHR_01"] as Dictionary
+	var chronicle: Dictionary = session.data.chronicles["CHR_TEST"] as Dictionary
 	var rules: Dictionary = (chronicle.get("confluence_rules", {}) as Dictionary).duplicate(true)
 	rules["at_end_of_act"] = true
 	chronicle["confluence_rules"] = rules
@@ -329,7 +329,7 @@ func test_the_line_the_player_reads_every_round_never_promises_a_threshold() -> 
 ## pagina come lo schermo la nominano.
 func test_without_the_closing_council_the_line_counts_the_steps_again() -> void:
 	new_session()
-	var chronicle: Dictionary = session.data.chronicles["CHR_01"] as Dictionary
+	var chronicle: Dictionary = session.data.chronicles["CHR_TEST"] as Dictionary
 	var rules: Dictionary = (chronicle.get("confluence_rules", {}) as Dictionary).duplicate(true)
 	rules.erase("at_end_of_act")
 	chronicle["confluence_rules"] = rules

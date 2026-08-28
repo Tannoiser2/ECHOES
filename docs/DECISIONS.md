@@ -10,6 +10,90 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-319 — Gli anni d'autore sono cancellati, e il banco se lo fabbrica la suite
+
+**implemented** (0.1.281) · [ISSUES 93](ISSUES.md) chiusa · decisione del
+committente: *«questi anni d'autore dovevamo cancellarli giorni e giorni fa.
+Eliminali proprio»*.
+
+### Cosa se n'e' andato
+
+`CHR_01` (*La Carestia Rossa*), `CHR_02`, `CHR_03` (*Le Citta' Libere*),
+`CHR_04`, e i quattro `sim_plans` che sceneggiavano la Carestia mossa per
+mossa. **Nella scatola resta una Chronicle**: la Prima, che pesca la mappa dal
+parco tessere, le case dal loro parco, le questioni dalle sessanta — e che
+prosegue **se stessa**, cosi' una saga e' una catena di anni pescati invece di
+due storie scritte.
+
+Resta tutto il contenuto che quegli anni **usavano** e non possedevano: le 10
+Regioni, le 8 case, i 23 Destini, le 60 Tensioni, gli Echi e i 12 template di
+Consiglio. Non si e' persa una carta.
+
+### Il problema vero, e non era la cancellazione
+
+D-318 aveva misurato il muro: **la suite unitaria era costruita sull'anno
+d'autore.** Puntandola altrove andava a **217 fallimenti su 42 suite** — non
+per un difetto, ma perche' centinaia di prove nominavano `TEN_FAMINE`,
+`REG_EREDAN`, «La Carestia Rossa».
+
+La soluzione e' la regola di casa, applicata alla suite stessa:
+
+> *Una prova che cerca una condizione fra i dati spediti puo' smettere di
+> provare senza dirlo. **Fabbricatela.***
+
+`tests/fixtures/chronicle_test.json` porta `CHR_TEST` e `CHR_TEST_HEIR`: il
+**banco**, non il gioco. Stanno sotto `tests/`, non finiscono nella scatola, e
+`tests/test_table.gd` li mette in mano a chi ne ha bisogno. Nominano contenuto
+spedito — Regioni, case, Tensioni — perche' e' quello che le prove devono
+provare; quello che non nominano piu' e' una Chronicle che qualcuno potrebbe
+voler togliere.
+
+E la distinzione che mancava: `data()` porta il banco, **`shipped_data()` no**.
+Chi prova il motore usa il primo; chi **censisce la scatola** usa il secondo.
+Senza, una prova che conta le saghe spedite contava anche il banco e
+dichiarava una scatola piu' ricca di quella che si vende.
+
+### Le prove che sono cambiate davvero, non solo di nome
+
+Tre non erano rinomini, ed e' dove stava il lavoro:
+
+- **`test_chronicle_run`** girava i quattro `sim_plans`. Una sequenza di mosse
+  scritta per una mappa fissa non si ripunta su una mappa pescata: il suo
+  soggetto non esiste piu'. Riscritta su **anni pescati**, con le stesse
+  domande — un anno arriva in fondo, un Consiglio si risolve e dice cosa ha
+  applicato, il mondo scrive Echi e Verita' — piu' una che i piani non
+  potevano fare: **semi diversi finiscono diversi**. Con la mappa d'autore lo
+  garantiva l'autore; con la mappa pescata e' una proprieta' del motore, e va
+  guardata.
+- **`test_the_menu_never_offers_a_sequel`** cercava i seguiti fra i dati
+  spediti. Con una Chronicle sola che prosegue se stessa non ce n'e' piu'
+  nessuno, e la prova sarebbe passata **per assenza**. Adesso la coppia se la
+  fabbrica, e controlla anche il caso che deve dare non-vuoto.
+- **`test_the_three_survive_the_handover`** incatenava CHR_01 a CHR_02. Adesso
+  l'era dopo e' la stessa Chronicle con un seme nuovo: e' cosi' che una saga
+  va avanti.
+
+### E il gioco parte da un posto che esiste
+
+Tre punti dell'app dicevano ancora `CHR_01` come apertura di default —
+`game_screen.first_chronicle()`, `help_panel.render()`, `dev_split`. Con la
+Carestia cancellata avrebbero aperto il vuoto.
+
+### I numeri
+
+| | prima | dopo |
+|---|---|---|
+| Chronicle nella scatola | 5 | **1** |
+| Tensioni che la Chronicle vede | 12 (d'autore) | **60** |
+| test | 627 | 622 |
+| fallimenti spostando la suite | **217** | **0** |
+
+Cinque test in meno: `test_chronicle_run` provava sei piani e adesso prova
+quattro anni, e due prove sui piani non hanno piu' soggetto. **0 seggi
+bloccati su 8** sul cancello dei 100 semi.
+
+---
+
 ## D-318 — Cento anni pescati: il cancello misura il gioco che si vende
 
 **implemented** (0.1.280) · strada 1 di [ISSUES 92](ISSUES.md) · scelta del

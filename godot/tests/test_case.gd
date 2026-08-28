@@ -8,6 +8,7 @@ extends RefCounted
 
 const DataSet := preload("res://scripts/core/data_set.gd")
 const GameSession := preload("res://scripts/chronicle/game_session.gd")
+const TestTable := preload("res://tests/test_table.gd")
 
 var failures: PackedStringArray = PackedStringArray()
 var assertions: int = 0
@@ -92,7 +93,33 @@ func data() -> RefCounted:
 		_data = DataSet.new()
 		if not _data.load_from("res://data"):
 			_fail("i dati non passano la validazione: %s" % _data.describe_errors())
+		_add_the_test_table(_data)
 	return _data
+
+
+## **Solo quello che c'e' nella scatola** (D-319).
+##
+## `data()` porta anche `CHR_TEST`, il banco. Va bene per provare il motore e
+## **non** va bene per censire il contenuto: una prova che conta le saghe
+## spedite conterebbe anche il banco, e dichiarerebbe una scatola piu' ricca di
+## quella che si vende. Chi conta usa questo.
+var _shipped_box: RefCounted = null
+
+
+func shipped_data() -> RefCounted:
+	if _shipped_box == null:
+		_shipped_box = DataSet.new()
+		if not _shipped_box.load_from("res://data"):
+			_fail("i dati spediti non passano: %s" % _shipped_box.describe_errors())
+	return _shipped_box
+
+
+## Il banco che la suite si fabbrica, invece di prendere in prestito una
+## Chronicle spedita: vedi `tests/test_table.gd` per il perche'.
+func _add_the_test_table(into: RefCounted) -> void:
+	if not TestTable.add_to(into):
+		_fail("il tavolo di prova non si apre: %s" % TestTable.PATH)
+
 
 
 ## A fresh Chronicle I session at a fixed seed.
@@ -111,13 +138,13 @@ func new_session(seed_value: int = 4242, apply_setup: bool = true) -> RefCounted
 	# pescava e la seconda - trovando la dichiarazione gia' spenta - no. Due
 	# esecuzioni dello stesso seme davano due partite diverse, ed e' cosi' che
 	# si e' visto. Le prove unitarie giocano le quattro domande scritte a mano.
-	(session.data.chronicles["CHR_01"] as Dictionary)["tension_pool"] = {}
+	(session.data.chronicles["CHR_TEST"] as Dictionary)["tension_pool"] = {}
 	# E il sacchetto scritto a mano non resta appeso da un piano all'altro:
 	# `apply_plan_overrides` scrive sulla definizione **condivisa**, quindi
 	# senza questa riga la Chronicle spedita - che il sacchetto non lo scrive
 	# piu' - se lo ritroverebbe addosso nella prova dopo.
-	(session.data.chronicles["CHR_01"] as Dictionary).erase("drift_distribution")
-	if not session.setup("CHR_01", ["ENT_ALDRIC", "ENT_NAHR", "ENT_LYRA", "ENT_VAERAX"], seed_value):
+	(session.data.chronicles["CHR_TEST"] as Dictionary).erase("drift_distribution")
+	if not session.setup("CHR_TEST", ["ENT_ALDRIC", "ENT_NAHR", "ENT_LYRA", "ENT_VAERAX"], seed_value):
 		_fail("setup fallito: %s" % session.last_error)
 		return session
 	# Il Destino pescato (D-150) e' una variabile in piu' sul banco: una suite
@@ -183,7 +210,7 @@ func new_session_for_plan(plan: Dictionary, seed_value: int) -> RefCounted:
 ## dell'interruttore; il lato nuovo si accende a mano, e che i **dati spediti**
 ## ce l'abbiano acceso lo prova `test_card_actions`.
 func play_classic() -> void:
-	var chronicle: Dictionary = session.data.chronicles["CHR_01"] as Dictionary
+	var chronicle: Dictionary = session.data.chronicles["CHR_TEST"] as Dictionary
 	chronicle["actions_from_cards"] = false
 	# Le due meta' si spengono insieme come si accendono insieme (D-184, D-185):
 	# il rubinetto sopra ACQUISIRE non e' ne' il gioco vecchio ne' quello nuovo,

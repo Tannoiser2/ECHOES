@@ -214,7 +214,7 @@ func test_each_deck_has_the_size_of_its_table_role() -> void:
 ## Drift - e due export identici byte per byte, come tutto il resto.
 func test_the_token_sheet_counts_its_pieces() -> void:
 	var TokenSheet: GDScript = load("res://scripts/core/token_sheet.gd")
-	var svg: String = TokenSheet.tokens_svg(data(), "CHR_01")
+	var svg: String = TokenSheet.tokens_svg(data(), "CHR_TEST")
 	# Si contano i **contorni da punzonare** (`class="pezzo"`), non le forme
 	# grezze: da quando dentro il tondo c'e' la sagoma della pedina (D-137) un
 	# pezzo e' fatto di piu' disegni, e contare i cerchi conterebbe le teste.
@@ -227,7 +227,7 @@ func test_the_token_sheet_counts_its_pieces() -> void:
 	assert_true(svg.contains("<circle cx="), "e dentro i tondi la sagoma della pedina")
 	assert_true(svg.contains("Re Aldric"), "le case sono quelle della Chronicle")
 	assert_true(svg.contains("width=\"210mm\" height=\"297mm\""), "il foglio e' un A4 vero")
-	assert_eq(svg, TokenSheet.tokens_svg(data(), "CHR_01"), "deterministico byte per byte")
+	assert_eq(svg, TokenSheet.tokens_svg(data(), "CHR_TEST"), "deterministico byte per byte")
 
 	var track: String = TokenSheet.track_board_svg()
 	assert_eq(track.count("<rect"), 1 + 4 * 10, "il fondo, e per corsia un posto-carta e nove caselle")

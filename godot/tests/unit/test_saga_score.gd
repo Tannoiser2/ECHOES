@@ -19,7 +19,7 @@ func before_each() -> void:
 ## I valori d'autore: un anno perso toglie, esistere vale poco, osare vale il
 ## doppio di riuscire.
 func test_the_scale_is_the_one_the_chronicle_declares() -> void:
-	var rules: Dictionary = data().chronicles["CHR_01"].get("saga_scoring", {})
+	var rules: Dictionary = data().chronicles["CHR_TEST"].get("saga_scoring", {})
 	assert_false(rules.is_empty(), "CHR_01 tiene il conto della saga")
 	assert_eq(int(rules["none"]), -1, "un anno senza nemmeno il Minimo costa")
 	assert_eq(int(rules["minimum"]), 1, "esistere vale poco")
@@ -65,7 +65,7 @@ func test_the_count_crosses_the_eras() -> void:
 	var previous: Dictionary = session.world.duplicate(true)
 
 	var next: RefCounted = GameSession.new(data())
-	next.setup("CHR_01", SEATS, 99)
+	next.setup("CHR_TEST", SEATS, 99)
 	next.inherit_from(previous, {})
 	assert_eq(
 		int(next.world["entities"]["ENT_ALDRIC"]["saga_score"]), 6,
@@ -82,7 +82,7 @@ func test_the_count_crosses_the_eras() -> void:
 ## almeno 10 partite». Prima di dieci Chronicle il conto si tiene ma nessuno ha
 ## vinto; dalla decima in poi il tavolo puo' chiudere quando vuole.
 func test_the_campaign_is_not_decided_before_the_tenth_year() -> void:
-	var rules: Dictionary = data().chronicles["CHR_01"].get("saga_scoring", {})
+	var rules: Dictionary = data().chronicles["CHR_TEST"].get("saga_scoring", {})
 	assert_eq(int(rules["decides_after"]), 10, "una campagna e' almeno dieci anni")
 	assert_eq(
 		int(session.world["chronicles_played"]), 1,
@@ -110,12 +110,12 @@ func test_the_campaign_is_not_decided_before_the_tenth_year() -> void:
 func test_the_years_of_the_campaign_are_counted() -> void:
 	var previous: Dictionary = session.world.duplicate(true)
 	var next: RefCounted = GameSession.new(data())
-	next.setup("CHR_01", SEATS, 99)
+	next.setup("CHR_TEST", SEATS, 99)
 	next.inherit_from(previous, {})
 	assert_eq(int(next.world["chronicles_played"]), 2, "il secondo anno di campagna")
 	var third: Dictionary = next.world.duplicate(true)
 	var last: RefCounted = GameSession.new(data())
-	last.setup("CHR_01", SEATS, 101)
+	last.setup("CHR_TEST", SEATS, 101)
 	last.inherit_from(third, {})
 	assert_eq(int(last.world["chronicles_played"]), 3, "e il terzo")
 	next.dispose()

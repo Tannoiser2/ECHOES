@@ -15,7 +15,7 @@ const PolicyDecider := preload("res://scripts/seat/policy_decider.gd")
 const TableView := preload("res://ui/table_view.gd")
 const ConsoleView := preload("res://ui/console_view.gd")
 
-const CHRONICLE: String = "CHR_01"
+const CHRONICLE: String = "CHR_00"
 const SEED: int = 7000
 
 

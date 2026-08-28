@@ -42,7 +42,7 @@ const BAND_HIGH: int = 7
 
 
 func test_a_library_year_still_decides_things() -> void:
-	for pair in [["CHR_01", "CHR_02"], ["CHR_03", "CHR_04"]]:
+	for pair in [["CHR_TEST", "CHR_TEST_HEIR"], ["CHR_03", "CHR_04"]]:
 		var counts: Array = []
 		var outside: int = 0
 		for i in range(RUNS):

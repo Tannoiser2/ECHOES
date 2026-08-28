@@ -48,14 +48,14 @@ func _run(seed_value: int, decider: RefCounted) -> Dictionary:
 	if session != null:
 		session.dispose()
 	session = GameSession.new(data())
-	session.setup("CHR_01", SEATS, seed_value)
+	session.setup("CHR_TEST", SEATS, seed_value)
 	return await session.run(decider)
 
 
 ## La promessa numerica, e col tavolo che ne dà meno di chiunque: tre Atti, tre
 ## Consigli, su ogni seme provato.
 func test_a_silent_table_still_gets_one_council_per_act() -> void:
-	var acts: int = int(data().chronicles["CHR_01"]["acts"])
+	var acts: int = int(data().chronicles["CHR_TEST"]["acts"])
 	for index in range(6):
 		var seed_value: int = 9100 + index * 37
 		var report: Dictionary = await _run(seed_value, Idle.new())
@@ -90,7 +90,7 @@ func test_the_tallest_pile_is_the_one_debated() -> void:
 	new_session()
 	# Il lato classico spegne il Consiglio di chiusura come spegne tutto il
 	# resto: qui si riaccende, perché è proprio quello che si prova.
-	var chronicle: Dictionary = session.data.chronicles["CHR_01"] as Dictionary
+	var chronicle: Dictionary = session.data.chronicles["CHR_TEST"] as Dictionary
 	var rules: Dictionary = (chronicle["confluence_rules"] as Dictionary).duplicate()
 	rules["at_end_of_act"] = true
 	chronicle["confluence_rules"] = rules
@@ -125,7 +125,7 @@ func test_the_tallest_pile_is_the_one_debated() -> void:
 ## Consiglio in più invece di un Consiglio al posto degli altri.
 func test_a_round_no_longer_opens_a_council_by_itself() -> void:
 	new_session()
-	var chronicle: Dictionary = session.data.chronicles["CHR_01"] as Dictionary
+	var chronicle: Dictionary = session.data.chronicles["CHR_TEST"] as Dictionary
 	var rules: Dictionary = (chronicle["confluence_rules"] as Dictionary).duplicate()
 	rules["at_end_of_act"] = true
 	chronicle["confluence_rules"] = rules

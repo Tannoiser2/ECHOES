@@ -53,7 +53,7 @@ simboli, si impara quello che si vede.
 | Modelli di Consiglio | 12 | domande, proposte e clausole d'autore |
 | Regole dei segni | 52 | cosa un segno fa da solo |
 | Azioni | 6 | i verbi del turno |
-| Chronicle | 5 | gli anni giocabili |
+| Chronicle | 1 | gli anni giocabili |
 
 ## 4. L'arte
 

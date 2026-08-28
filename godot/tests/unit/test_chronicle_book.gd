@@ -59,7 +59,7 @@ func test_a_long_year_breaks_into_more_pages() -> void:
 			"text": "Anno 900, Atto 1: la lunga voce numero %d del registro, scritta apposta per riempire la pagina fino a mandarla a capo. (S1 O0 M1)." % index,
 		})
 	var save: Dictionary = {
-		"chronicle_id": "CHR_01",
+		"chronicle_id": "CHR_TEST",
 		"world_state": {"year": 900, "truth_log": truths, "entities": {}},
 		"destiny_results": {},
 	}
@@ -115,7 +115,7 @@ func test_the_screen_and_the_print_agree_on_the_pages() -> void:
 
 func test_a_silent_year_says_so() -> void:
 	var save: Dictionary = {
-		"chronicle_id": "CHR_01",
+		"chronicle_id": "CHR_TEST",
 		"world_state": {"year": 813, "truth_log": [], "entities": {}},
 		"destiny_results": {},
 	}
@@ -133,7 +133,7 @@ func test_a_silent_year_says_so() -> void:
 ## sempre.
 func test_the_saga_book_opens_with_the_timeline() -> void:
 	var first: Dictionary = {
-		"chronicle_id": "CHR_01",
+		"chronicle_id": "CHR_TEST",
 		"world_state": {
 			"year": 812,
 			"truth_log": [{"act": 1, "round": 1, "truth_id": "TRU_0001",
@@ -143,7 +143,7 @@ func test_the_saga_book_opens_with_the_timeline() -> void:
 		"destiny_results": {"ENT_ALDRIC": {"level": "VICTORY"}},
 	}
 	var second: Dictionary = {
-		"chronicle_id": "CHR_02",
+		"chronicle_id": "CHR_TEST_HEIR",
 		"world_state": {
 			"year": 904,
 			"truth_log": [{"act": 1, "round": 1, "truth_id": "TRU_0002",

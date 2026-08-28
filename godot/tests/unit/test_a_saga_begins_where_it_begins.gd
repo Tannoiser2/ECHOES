@@ -15,8 +15,33 @@ const GameScreen := preload("res://ui/game_screen.gd")
 
 
 ## Il posto da cui si parte non e' mai il seguito di qualcun altro.
+##
+## **La coppia si fabbrica** (D-319). Fino a 0.1.280 la scatola conteneva
+## quattro anni d'autore incatenati — CHR_01 in CHR_02, CHR_03 in CHR_04 — e la
+## prova poteva pescare i seguiti dal contenuto spedito. Cancellati quelli
+## (D-318), resta una Chronicle sola che prosegue **se stessa**: di seguiti
+## veri non ce n'e' piu' nessuno, e la prova diventerebbe un giro a vuoto che
+## passa sempre. E' la trappola scritta in CLAUDE.md — *una prova che cerca una
+## condizione fra i dati spediti puo' smettere di provare senza dirlo* — quindi
+## la condizione la costruisce lei.
 func test_the_menu_never_offers_a_sequel() -> void:
-	var loaded: RefCounted = data()
+	var loaded: RefCounted = shipped_data()
+	var first: String = ""
+	for chronicle_id in loaded.chronicles:
+		first = str(chronicle_id)
+		break
+	assert_ne(first, "", "c'e' almeno una Chronicle spedita")
+
+	# L'era dopo, fabbricata: stessa forma, e dichiarata come continuazione
+	# della prima. Il menu non deve offrirla.
+	var heir: Dictionary = (loaded.chronicles[first] as Dictionary).duplicate(true)
+	heir["id"] = "CHR_PROVA_SEGUITO"
+	heir["sequel_id"] = "CHR_PROVA_SEGUITO"
+	var chained: Dictionary = (loaded.chronicles[first] as Dictionary).duplicate(true)
+	chained["sequel_id"] = "CHR_PROVA_SEGUITO"
+	loaded.chronicles[first] = chained
+	loaded.chronicles["CHR_PROVA_SEGUITO"] = heir
+
 	var sequels: Dictionary = {}
 	for chronicle_id in loaded.chronicles:
 		var next_id: String = str(
@@ -24,10 +49,13 @@ func test_the_menu_never_offers_a_sequel() -> void:
 		)
 		if next_id != "" and next_id != str(chronicle_id):
 			sequels[next_id] = true
-	assert_true(sequels.size() >= 2, "la scatola ha dei seguiti: %d" % sequels.size())
+	assert_eq(sequels.size(), 1, "la coppia fabbricata ha un seguito")
 
 	var offered: Array = GameScreen.openings(loaded)
 	assert_false(offered.is_empty(), "e qualcosa da cui cominciare c'e'")
+	# Il caso che deve dare **non-vuoto**: se il menu si svuotasse, l'altra
+	# asserzione passerebbe per assenza invece che per regola.
+	assert_true(offered.has(first), "la prima si comincia ancora")
 	for chronicle_id in offered:
 		assert_false(
 			sequels.has(str(chronicle_id)),
@@ -38,7 +66,7 @@ func test_the_menu_never_offers_a_sequel() -> void:
 ## E offre **tutte** quelle che lo sono: una saga scritta e mai raggiungibile
 ## sarebbe contenuto che non esiste (D-035).
 func test_every_opening_is_offered() -> void:
-	var loaded: RefCounted = data()
+	var loaded: RefCounted = shipped_data()
 	var offered: Array = GameScreen.openings(loaded)
 	for chronicle_id in loaded.chronicles:
 		var is_a_sequel: bool = false
@@ -54,13 +82,13 @@ func test_every_opening_is_offered() -> void:
 			)
 	# Tre da 0.1.225: la Prima Chronicle (CHR_00, D-263) viene prima di tutte —
 	# e' l'inizio senza scenario, e l'app adesso si apre da li'.
-	assert_eq(offered.size(), 3, "la scatola ha tre saghe da cui cominciare")
+	assert_eq(offered.size(), 1, "la scatola ha una saga da cui cominciare")
 
 
 ## In ordine d'anno: la prima saga sta prima, che e' l'unico ordine che una
 ## persona si aspetta.
 func test_the_openings_come_in_year_order() -> void:
-	var loaded: RefCounted = data()
+	var loaded: RefCounted = shipped_data()
 	var offered: Array = GameScreen.openings(loaded)
 	var last: int = -99999
 	for chronicle_id in offered:
@@ -74,7 +102,7 @@ func test_the_openings_come_in_year_order() -> void:
 ## non se ne accorgerebbe — ma il punto da cui si parte resta scritto qui, ed e'
 ## quello che una domanda tornerebbe a mettere in dubbio.
 func test_the_game_starts_without_asking() -> void:
-	var loaded: RefCounted = data()
+	var loaded: RefCounted = shipped_data()
 	var start: String = GameScreen.first_chronicle(loaded)
 	assert_true(loaded.chronicles.has(start), "il posto da cui si parte esiste: %s" % start)
 	assert_eq(
@@ -83,7 +111,7 @@ func test_the_game_starts_without_asking() -> void:
 	)
 	# Senza dati non si pianta: il menu ha una risposta anche quando la scatola
 	# non si e' letta, ed e' la stessa che l'app ha sempre avuto.
-	assert_eq(GameScreen.first_chronicle(null), "CHR_01", "e senza dati non resta muto")
+	assert_eq(GameScreen.first_chronicle(null), "CHR_00", "e senza dati non resta muto")
 
 
 ## --- e finisce dove deve finire (D-253) ---
@@ -96,7 +124,7 @@ func test_the_game_starts_without_asking() -> void:
 
 ## Ogni Chronicle che gioca a saga dice **dopo quanti anni** si decide.
 func test_every_chronicle_says_how_long_a_saga_is() -> void:
-	var loaded: RefCounted = data()
+	var loaded: RefCounted = shipped_data()
 	var counted: int = 0
 	for chronicle_id in loaded.chronicles:
 		var rules: Dictionary = (
@@ -110,7 +138,7 @@ func test_every_chronicle_says_how_long_a_saga_is() -> void:
 		)
 		assert_eq(int(rules["decides_after"]), 10, "e sono dieci anni, come l'idea di partenza")
 		counted += 1
-	assert_true(counted >= 4, "per ogni Chronicle della scatola: %d" % counted)
+	assert_true(counted >= 1, "per ogni Chronicle della scatola: %d" % counted)
 
 
 ## E la porta dell'anno dopo legge quel numero, invece di aprirsi per sempre.

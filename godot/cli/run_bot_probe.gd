@@ -42,7 +42,7 @@ func _initialize() -> void:
 	# playtest (D-051).
 	var scores: Dictionary = {"policy": [], "caso": []}
 	for index in range(runs):
-		var chronicle_id: String = "CHR_01" if index % 2 == 0 else "CHR_03"
+		var chronicle_id: String = "CHR_00"
 		var seed_value: int = first_seed + index
 		var seats: Array = GameSession.seats_for(data, chronicle_id, seed_value)
 		var studied: String = str(seats[index % seats.size()])

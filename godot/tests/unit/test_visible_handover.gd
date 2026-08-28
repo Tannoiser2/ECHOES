@@ -44,9 +44,9 @@ func _inherited(next_id: String, previous: Dictionary, results: Dictionary, seed
 ## **La prova madre**: mondo intero e tavolo visibile generano la stessa era.
 func test_the_next_chronicle_is_born_from_the_visible_table_alone() -> void:
 	var year: Dictionary = await _played_year(4242)
-	var full: Dictionary = _inherited("CHR_02", year["world"], year["results"], 4242)
+	var full: Dictionary = _inherited("CHR_TEST_HEIR", year["world"], year["results"], 4242)
 	var bare: Dictionary = _inherited(
-		"CHR_02", VisibleTable.read(year["world"]), year["results"], 4242
+		"CHR_TEST_HEIR", VisibleTable.read(year["world"]), year["results"], 4242
 	)
 	assert_eq(
 		canonical(bare), canonical(full),
@@ -58,9 +58,9 @@ func test_the_next_chronicle_is_born_from_the_visible_table_alone() -> void:
 func test_the_visible_table_is_enough_on_other_seeds() -> void:
 	for seed_value in [9100, 5511]:
 		var year: Dictionary = await _played_year(seed_value)
-		var full: Dictionary = _inherited("CHR_02", year["world"], year["results"], seed_value)
+		var full: Dictionary = _inherited("CHR_TEST_HEIR", year["world"], year["results"], seed_value)
 		var bare: Dictionary = _inherited(
-			"CHR_02", VisibleTable.read(year["world"]), year["results"], seed_value
+			"CHR_TEST_HEIR", VisibleTable.read(year["world"]), year["results"], seed_value
 		)
 		assert_eq(
 			canonical(bare), canonical(full),

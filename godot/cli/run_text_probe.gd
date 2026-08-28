@@ -3,7 +3,7 @@ extends SceneTree
 ## engine actually produced, with the world state that produced it.
 ##
 ##   godot --headless --path godot --script res://cli/run_text_probe.gd -- \
-##       --runs=40 --seed=2000 --chronicle=CHR_01
+##       --runs=40 --seed=2000 --chronicle=CHR_00
 ##
 ## This exists to answer one question that cannot be answered by reading the
 ## data: do authored sentences with $slots in them still read like a person
@@ -29,7 +29,7 @@ func _initialize() -> void:
 	var options: Dictionary = _parse_args(OS.get_cmdline_user_args())
 	var runs: int = int(options.get("runs", 40))
 	var first_seed: int = int(options.get("seed", 2000))
-	var chronicle_id: String = str(options.get("chronicle", "CHR_01"))
+	var chronicle_id: String = str(options.get("chronicle", "CHR_00"))
 
 	var data: RefCounted = DataSet.new()
 	if not data.load_from("res://data"):

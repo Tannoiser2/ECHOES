@@ -21,7 +21,7 @@ func before_each() -> void:
 ## che ha in mano. È l'unico punto da guardare: nove posti del decider leggono
 ## di qui, quindi da qui l'obiettivo entra in ogni scelta.
 func test_the_wanted_conditions_include_the_objectives_in_hand() -> void:
-	var chronicle: Dictionary = session.data.chronicles["CHR_01"] as Dictionary
+	var chronicle: Dictionary = session.data.chronicles["CHR_TEST"] as Dictionary
 	chronicle["objectives"] = {"hidden": 3, "public_from": "victory"}
 	session.actions.set("_chronicle", chronicle)
 	# Un obiettivo che il seggio non ha ancora preso, e che nessun Destino
@@ -41,7 +41,7 @@ func test_the_wanted_conditions_include_the_objectives_in_hand() -> void:
 ## E un obiettivo **già preso** non è più un movente: è un punto in cassaforte,
 ## e giocarci contro toglierebbe azioni a quelli che mancano.
 func test_an_objective_already_taken_stops_being_a_reason() -> void:
-	var chronicle: Dictionary = session.data.chronicles["CHR_01"] as Dictionary
+	var chronicle: Dictionary = session.data.chronicles["CHR_TEST"] as Dictionary
 	chronicle["objectives"] = {"hidden": 3, "public_from": "victory"}
 	session.actions.set("_chronicle", chronicle)
 	var seat: Dictionary = session.world["entities"]["ENT_ALDRIC"] as Dictionary

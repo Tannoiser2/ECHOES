@@ -2,7 +2,7 @@ extends SceneTree
 ## La lotta per la mappa: c'e'?
 ##
 ##   godot --headless --path godot --script res://cli/run_contest_probe.gd -- \
-##       --runs=100 --seed=7000 --chronicle=CHR_01
+##       --runs=100 --seed=7000 --chronicle=CHR_00
 ##
 ## «Modificare la mappa dovrebbe essere la priorita' del gioco e una maggioranza
 ## dovrebbe essere una lotta fra entita'» — decisione del committente. Prima di
@@ -50,7 +50,7 @@ func _initialize() -> void:
 	var options: Dictionary = _parse_args(OS.get_cmdline_user_args())
 	var runs: int = int(options.get("runs", 100))
 	var first_seed: int = int(options.get("seed", 7000))
-	var chronicle_id: String = str(options.get("chronicle", "CHR_01"))
+	var chronicle_id: String = str(options.get("chronicle", "CHR_00"))
 	var mixed: bool = not options.has("uniform")
 	# **Il tetto** (ISSUES 55, dopo [D-226](DECISIONS.md#d-226)). Riaccendere il
 	# peso della terra al Consiglio non ha mosso la mappa, e la ragione e' che il

@@ -133,7 +133,7 @@ func test_a_real_setup_never_leaves_a_family_out() -> void:
 	var mappe: Dictionary = {}
 	for i in range(60):
 		var seed_value: int = 7000 + i
-		var seats: Array = GameSession.seats_for(session.data, "CHR_00", seed_value)
+		var seats: Array = GameSession.seats_for(session.data, "CHR_TEST", seed_value)
 		var other: RefCounted = GameSession.new(session.data)
 		if not other.setup("CHR_00", seats, seed_value):
 			other.dispose()

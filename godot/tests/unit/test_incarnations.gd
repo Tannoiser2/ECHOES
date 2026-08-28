@@ -334,7 +334,7 @@ func test_the_bodiless_life_places_no_tokens() -> void:
 	session.world["entities"]["ENT_VAERAX"]["incarnation"] = 3
 	var placed: Dictionary = {}
 	for effect in factory.setup_effects(
-		session.data.chronicles["CHR_01"], session.data, session.world
+		session.data.chronicles["CHR_TEST"], session.data, session.world
 	):
 		if str(effect["type"]) == "ADD_PRESENCE":
 			var seat: String = str(effect["target"]["id"])

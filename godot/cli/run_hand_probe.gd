@@ -2,7 +2,7 @@ extends SceneTree
 ## L'economia della mano, se le carte le desse la mappa (proposta del committente).
 ##
 ##   godot --headless --path godot --script res://cli/run_hand_probe.gd -- \
-##       --runs=60 --seed=7000 --chronicle=CHR_01
+##       --runs=60 --seed=7000 --chronicle=CHR_00
 ##
 ## «Tutte le azioni si fanno con le carte, e le carte si pescano a inizio atto a
 ## seconda della presenza in una regione: due presenze, due carte.»
@@ -35,7 +35,7 @@ func _initialize() -> void:
 	var options: Dictionary = _parse_args(OS.get_cmdline_user_args())
 	var runs: int = int(options.get("runs", 60))
 	var first_seed: int = int(options.get("seed", 7000))
-	var chronicle_id: String = str(options.get("chronicle", "CHR_01"))
+	var chronicle_id: String = str(options.get("chronicle", "CHR_00"))
 
 	var data: RefCounted = DataSet.new()
 	if not data.load_from("res://data"):

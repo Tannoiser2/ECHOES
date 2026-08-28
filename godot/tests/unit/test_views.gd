@@ -23,7 +23,7 @@ func _source() -> Dictionary:
 ## sbirciata con lo SCHEME: il numero vive solo sulla console di chi sa.
 func test_the_veiled_question_shows_its_back_to_the_table() -> void:
 	# La DataSet e' condivisa: si prova la regola vecchia e la si rimette.
-	var chronicle: Dictionary = session.data.chronicles["CHR_01"] as Dictionary
+	var chronicle: Dictionary = session.data.chronicles["CHR_TEST"] as Dictionary
 	var before_rule: String = str(chronicle.get("veiled_tensions", ""))
 	chronicle["veiled_tensions"] = "HIDES_ALL"
 	var seats: Array = session.world["turn_order"]

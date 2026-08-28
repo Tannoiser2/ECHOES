@@ -49,7 +49,7 @@ func _initialize() -> void:
 	var sagas: int = int(options.get("sagas", 12))
 	var chronicles: int = int(options.get("chronicles", 8))
 	var first_seed: int = int(options.get("seed", 812))
-	var first_id: String = str(options.get("chronicle", "CHR_01"))
+	var first_id: String = str(options.get("chronicle", "CHR_00"))
 	var later_id: String = str(options.get("then", "CHR_02"))
 	# **La variante che la prima misura ha reso necessaria** (D-299): contare
 	# solo quello che il mondo **poteva** perdere. I desideri di una casa sono

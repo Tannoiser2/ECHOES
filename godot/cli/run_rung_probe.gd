@@ -77,7 +77,7 @@ func _initialize() -> void:
 	var stone_hist: Dictionary = {}  # "casa|quante" -> quante partite
 	var scars_by_region: Dictionary = {}  # Regione -> quante volte segnata
 	for index in range(runs):
-		var chronicle_id: String = "CHR_01" if index % 2 == 0 else "CHR_03"
+		var chronicle_id: String = "CHR_00"
 		var seed_value: int = first_seed + index
 		var session: RefCounted = GameSession.new(data)
 		var seats: Array = GameSession.seats_for(data, chronicle_id, seed_value)
@@ -313,11 +313,11 @@ func _initialize() -> void:
 	# cause possibili e' che le sue domande arrivino al voto piu' spesso — piu'
 	# Consigli, piu' occasioni di chiudere una clausola.
 	print("  Consigli chiusi per saga (media per partita):")
-	for chronicle_id in ["CHR_01", "CHR_03"]:
+	for chronicle_id in ["CHR_00"]:
 		var games: float = maxf(1.0, float(runs) / 2.0)
 		print("    %s: %.2f" % [chronicle_id, float(councils.get(chronicle_id, 0)) / games])
 	print("  Caselle passate di mano in gioco (solo via Consequence):")
-	for chronicle_id in ["CHR_01", "CHR_03"]:
+	for chronicle_id in ["CHR_00"]:
 		print("    %s: %d prese, %d lasciate a nessuno" % [
 			chronicle_id, int(granted.get(chronicle_id, 0)), int(cleared.get(chronicle_id, 0))
 		])

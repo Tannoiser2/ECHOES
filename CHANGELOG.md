@@ -5,6 +5,60 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.281 — Gli anni d'autore sono cancellati (D-319)
+
+### Tolto
+
+- **`CHR_01` (La Carestia Rossa), `CHR_02`, `CHR_03` (Le Citta' Libere),
+  `CHR_04`**, e i quattro `sim_plans` che sceneggiavano la Carestia mossa per
+  mossa. Nella scatola resta **una Chronicle**: la Prima, che pesca mappa,
+  case e questioni, e prosegue se stessa.
+- Non si e' persa una carta: le 10 Regioni, le 8 case, i 23 Destini, le 60
+  Tensioni, gli Echi e i 12 template di Consiglio restano — quegli anni li
+  **usavano**, non li possedevano.
+
+### Aggiunto
+
+- **`tests/fixtures/chronicle_test.json` e `tests/test_table.gd`**: `CHR_TEST`
+  e `CHR_TEST_HEIR`, il **banco** e non il gioco. Stanno sotto `tests/` e non
+  finiscono nella scatola. E' la regola di casa applicata alla suite: *una
+  prova che cerca una condizione fra i dati spediti puo' smettere di provare
+  senza dirlo — fabbricatela.*
+- **`shipped_data()`** accanto a `data()`: chi prova il motore usa il banco,
+  chi **censisce la scatola** usa i dati spediti. Senza, una prova che conta le
+  saghe contava anche il banco e dichiarava una scatola piu' ricca del vero.
+
+### Riscritto
+
+- **`test_chronicle_run`** girava i `sim_plans`, e una sequenza di mosse
+  scritta per una mappa fissa non si ripunta su una mappa pescata. Riscritto su
+  anni pescati con le stesse domande — un anno arriva in fondo, un Consiglio
+  dice cosa ha applicato, il mondo scrive Echi e Verita' — piu' una che i piani
+  non potevano fare: **semi diversi finiscono diversi**.
+- **`test_the_menu_never_offers_a_sequel`** sarebbe passato **per assenza**:
+  senza anni incatenati non c'e' piu' un seguito da non offrire. Adesso la
+  coppia se la fabbrica, e controlla anche il caso che deve dare non-vuoto.
+- **`test_the_three_survive_the_handover`**: l'era dopo e' la stessa Chronicle
+  con un seme nuovo.
+
+### Corretto
+
+- Tre punti dell'app aprivano ancora `CHR_01` di default
+  (`game_screen.first_chronicle()`, `help_panel.render()`, `dev_split`): con la
+  Carestia cancellata avrebbero aperto il vuoto.
+- Cinquanta sonde in `cli/` avevano `CHR_01` o `CHR_03` come predefinita.
+
+### Misurato
+
+| | prima | dopo |
+|---|---|---|
+| Chronicle nella scatola | 5 | **1** |
+| Tensioni che la Chronicle vede | 12 | **60** |
+| test | 627 | 622 |
+| fallimenti spostando la suite | **217** | **0** |
+
+---
+
 ## 0.1.280 — Cento anni pescati: il cancello misura il gioco che si vende (D-318)
 
 ### Cambiato

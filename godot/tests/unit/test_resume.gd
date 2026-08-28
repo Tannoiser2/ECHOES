@@ -21,7 +21,7 @@ const SEED: int = 4242
 
 func _fresh() -> RefCounted:
 	var made: RefCounted = GameSession.new(data())
-	made.setup("CHR_01", SEATS, SEED)
+	made.setup("CHR_TEST", SEATS, SEED)
 	return made
 
 
@@ -62,7 +62,7 @@ func _compare_interrupted_at(stop_act: int, stop_round: int) -> void:
 
 	# E si riparte da li, con un motore che non sa niente di quello che e stato.
 	var resumed: RefCounted = GameSession.new(data())
-	resumed.setup("CHR_01", SEATS, SEED)
+	resumed.setup("CHR_TEST", SEATS, SEED)
 	assert_true(resumed.restore(save), "il mondo si rilegge: %s" % resumed.last_error)
 	var report: Dictionary = await resumed.run(PolicyDecider.new(resumed.log))
 

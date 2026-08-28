@@ -25,7 +25,7 @@ func before_each() -> void:
 ## Accende la regola e ripesca gli obiettivi: `new_session` parte dal lato
 ## classico (`play_classic`), che li spegne e svuota quelli gia' pescati.
 func _play_with_objectives(hidden: Array = ["OBJ_TWO_LANDS", "OBJ_A_STONE", "OBJ_THE_NAME"]) -> void:
-	var chronicle: Dictionary = session.data.chronicles["CHR_01"] as Dictionary
+	var chronicle: Dictionary = session.data.chronicles["CHR_TEST"] as Dictionary
 	chronicle["objectives"] = ObjectiveRules.duplicate(true)
 	for entity_id in session.world["entities"]:
 		(session.world["entities"][str(entity_id)] as Dictionary)["objectives"] = hidden.duplicate()
@@ -35,7 +35,7 @@ func _play_with_objectives(hidden: Array = ["OBJ_TWO_LANDS", "OBJ_A_STONE", "OBJ
 ## Il conto e' quello che decide, e la tabella della Chronicle lo traduce.
 func test_the_level_comes_from_the_count() -> void:
 	_play_with_objectives([])
-	var chronicle: Dictionary = session.data.chronicles["CHR_01"] as Dictionary
+	var chronicle: Dictionary = session.data.chronicles["CHR_TEST"] as Dictionary
 	# Senza nascosti resta il solo palese: o zero o uno.
 	(chronicle["objectives"] as Dictionary)["hidden"] = 0
 	var result: Dictionary = session.destinies.evaluate("DST_ALDRIC", "ENT_ALDRIC")
@@ -101,10 +101,10 @@ func test_the_minute_says_the_count_and_not_a_rung_label() -> void:
 
 ## Gli obiettivi coperti si pescano all'apertura, dal pool, senza ripetizioni.
 func test_the_hidden_ones_are_dealt_at_the_opening() -> void:
-	var chronicle: Dictionary = session.data.chronicles["CHR_01"] as Dictionary
+	var chronicle: Dictionary = session.data.chronicles["CHR_TEST"] as Dictionary
 	chronicle["objectives"] = ObjectiveRules.duplicate(true)
 	var fresh: RefCounted = GameSession.new(session.data)
-	fresh.setup("CHR_01", ["ENT_ALDRIC", "ENT_NAHR", "ENT_LYRA", "ENT_VAERAX"], 4242)
+	fresh.setup("CHR_TEST", ["ENT_ALDRIC", "ENT_NAHR", "ENT_LYRA", "ENT_VAERAX"], 4242)
 	for entity_id in fresh.world["entities"]:
 		var drawn: Array = (fresh.world["entities"][str(entity_id)] as Dictionary)["objectives"]
 		assert_eq(drawn.size(), 3, "%s ne pesca tre" % entity_id)
@@ -122,13 +122,13 @@ func test_the_hidden_ones_are_dealt_at_the_opening() -> void:
 
 ## Lo stesso seme pesca gli stessi obiettivi: senza, una partita non si rigioca.
 func test_the_same_seed_deals_the_same_objectives() -> void:
-	var chronicle: Dictionary = session.data.chronicles["CHR_01"] as Dictionary
+	var chronicle: Dictionary = session.data.chronicles["CHR_TEST"] as Dictionary
 	chronicle["objectives"] = ObjectiveRules.duplicate(true)
 	var seats: Array = ["ENT_ALDRIC", "ENT_NAHR", "ENT_LYRA", "ENT_VAERAX"]
 	var drawn: Array = []
 	for i in range(2):
 		var fresh: RefCounted = GameSession.new(session.data)
-		fresh.setup("CHR_01", seats, 909)
+		fresh.setup("CHR_TEST", seats, 909)
 		var row: Array = []
 		for entity_id in seats:
 			row.append((fresh.world["entities"][str(entity_id)] as Dictionary)["objectives"])
@@ -142,7 +142,7 @@ func test_the_same_seed_deals_the_same_objectives() -> void:
 ## cambia niente, e si sale la scala di sempre.
 func test_without_the_rule_the_ladder_is_the_one_of_always() -> void:
 	# `new_session` parte gia' dal lato classico.
-	var chronicle: Dictionary = session.data.chronicles["CHR_01"] as Dictionary
+	var chronicle: Dictionary = session.data.chronicles["CHR_TEST"] as Dictionary
 	assert_true(
 		(chronicle.get("objectives", {}) as Dictionary).is_empty(),
 		"il lato classico non dichiara obiettivi"
@@ -154,7 +154,7 @@ func test_without_the_rule_the_ladder_is_the_one_of_always() -> void:
 	var shipped: RefCounted = DataSet.new()
 	shipped.load_from("res://data")
 	assert_false(
-		((shipped.chronicles["CHR_01"] as Dictionary).get("objectives", {}) as Dictionary).is_empty(),
+		((shipped.chronicles["CHR_00"] as Dictionary).get("objectives", {}) as Dictionary).is_empty(),
 		"ma CHR_01, come spedita, gioca a obiettivi"
 	)
 
@@ -165,7 +165,7 @@ func test_without_the_rule_the_ladder_is_the_one_of_always() -> void:
 func test_the_shipped_points_pay_every_extra_objective() -> void:
 	var shipped: RefCounted = DataSet.new()
 	shipped.load_from("res://data")
-	var rules: Dictionary = (shipped.chronicles["CHR_01"] as Dictionary)["objectives"]
+	var rules: Dictionary = (shipped.chronicles["CHR_00"] as Dictionary)["objectives"]
 	var points: Array = rules["saga_points"] as Array
 	var levels: Array = rules["levels"] as Array
 	assert_eq(

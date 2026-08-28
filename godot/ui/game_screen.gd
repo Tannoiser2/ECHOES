@@ -1400,9 +1400,9 @@ func _seats_of(chronicle_id: String) -> Array:
 ## offre gia' l'era successiva (D-095).
 static func first_chronicle(data: RefCounted) -> String:
 	if data == null:
-		return "CHR_01"
+		return "CHR_00"
 	var ids: Array = openings(data)
-	return "CHR_01" if ids.is_empty() else str(ids[0])
+	return "CHR_00" if ids.is_empty() else str(ids[0])
 
 
 ## Le Chronicle da cui una saga **comincia**, in ordine di anno.

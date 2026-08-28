@@ -29,11 +29,11 @@ func _hot_pairs(seats: Array) -> int:
 func test_no_drawn_table_opens_without_a_single_bond() -> void:
 	for index in range(50):
 		var seed_value: int = 7000 + index * 3
-		var seats: Array = GameSession.seats_for(data(), "CHR_01", seed_value)
+		var seats: Array = GameSession.seats_for(data(), "CHR_TEST", seed_value)
 		if session != null:
 			session.dispose()
 		session = GameSession.new(data())
-		assert_true(session.setup("CHR_01", seats, seed_value), "il seme apparecchia")
+		assert_true(session.setup("CHR_TEST", seats, seed_value), "il seme apparecchia")
 		for effect in session.factory_setup_effects():
 			session.applier.apply(effect)
 		assert_true(
@@ -51,7 +51,7 @@ func test_a_mixed_table_carries_a_crossed_bond() -> void:
 	if session != null:
 		session.dispose()
 	session = GameSession.new(data())
-	assert_true(session.setup("CHR_01", mixed, 4242), "il tavolo misto si apparecchia")
+	assert_true(session.setup("CHR_TEST", mixed, 4242), "il tavolo misto si apparecchia")
 	var crossed: int = 0
 	for first in mixed:
 		for second in mixed:

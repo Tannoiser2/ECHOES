@@ -2,7 +2,7 @@ extends SceneTree
 ## Quante delle sessanta Tensioni scritte arrivano al tavolo.
 ##
 ##   godot --headless --path godot --script res://cli/run_tension_reach_probe.gd -- \
-##       --runs=20 --seed=7000 --chronicle=CHR_01
+##       --runs=20 --seed=7000 --chronicle=CHR_00
 ##
 ## La scatola ha **60 carte Tensione**, dieci per Tema, e ognuna porta la sua
 ## Domanda, le sue proposte e le sue Conseguenze ([D-264](../docs/DECISIONS.md#d-264),
@@ -36,7 +36,7 @@ func _initialize() -> void:
 	var options: Dictionary = _parse_args(OS.get_cmdline_user_args())
 	var runs: int = int(options.get("runs", 20))
 	var first_seed: int = int(options.get("seed", 7000))
-	var chronicle_id: String = str(options.get("chronicle", "CHR_01"))
+	var chronicle_id: String = str(options.get("chronicle", "CHR_00"))
 	var mixed: bool = not options.has("uniform")
 
 	var data: RefCounted = DataSet.new()

@@ -15,7 +15,7 @@ func test_data_loads_and_validates() -> void:
 
 ## §18.2: the reduced content the milestone actually asks for.
 func test_reduced_content_matches_the_milestone() -> void:
-	var loaded: RefCounted = data()
+	var loaded: RefCounted = shipped_data()
 	# Shared by every saga: the rules, the cards you can hold, and the land.
 	assert_eq(loaded.assets.size(), 48, "48 Asset, 8 per famiglia: il traguardo §19.4 (D-040)")
 	# Dieci da 0.1.227 (D-265): le sei di sempre piu' le quattro tessere di
@@ -25,20 +25,20 @@ func test_reduced_content_matches_the_milestone() -> void:
 
 	# Un setup solo (D-213). Fino a 0.1.181 questa prova contava «due saghe»
 	# con due biblioteche separate, e contarle separate **era** la voce: due
-	# tavoli scritti a mano sono due giochi che non si incontrano mai. Adesso
-	# c'e' una biblioteca sola, e le Chronicle sono anni dentro la stessa
-	# storia — quindi il conto e' uno.
-	# Cinque da 0.1.225: CHR_00 e' la Prima Chronicle (D-263) — quella che non
-	# ha uno scenario, pesca le tessere della mappa e apparecchia da sola.
-	assert_eq(loaded.chronicles.size(), 5, "cinque anni scritti sulla stessa biblioteca")
-	for chronicle_id in ["CHR_00", "CHR_01", "CHR_02", "CHR_03", "CHR_04"]:
-		assert_true(loaded.chronicles.has(str(chronicle_id)), "%s esiste" % chronicle_id)
+	# tavoli scritti a mano sono due giochi che non si incontrano mai.
+	#
+	# **Uno da 0.1.281** (D-318): gli anni d'autore sono stati cancellati. Ne
+	# resta uno — la Prima Chronicle, che non ha uno scenario, pesca le tessere
+	# della mappa e apparecchia da sola — e prosegue **se stessa**, cosi' una
+	# saga e' una catena di anni pescati invece di due storie scritte.
+	assert_eq(loaded.chronicles.size(), 1, "un anno solo, e si pesca")
+	assert_true(loaded.chronicles.has("CHR_00"), "CHR_00 esiste")
 
-	# Gli anni scritti condividono la stessa **mano** di 12 domande; la Prima
-	# Chronicle (D-265) pesca dalla **biblioteca intera** — 60 Tensioni, 10 per
-	# Tema — che e' la metafora di D-028 portata fino in fondo: le domande sono
-	# biblioteca, la Chronicle e' la mano.
-	_library_is_shared(loaded, ["CHR_01", "CHR_02", "CHR_03", "CHR_04"], 12, 8)
+	# La Chronicle pesca dalla **biblioteca intera** — 60 Tensioni, 10 per Tema
+	# — che e' la metafora di D-028 portata fino in fondo: le domande sono
+	# biblioteca, la Chronicle e' la mano. Prima di D-318 gli anni d'autore ne
+	# vedevano dodici, e la prova contava quelle.
+	_library_is_shared(loaded, ["CHR_00"], 60, 8)
 	assert_eq(loaded.tensions.size(), 60, "60 Tensioni in biblioteca, 10 per Tema (D-265)")
 	var drawn_pool: Array = (
 		(loaded.chronicles["CHR_00"]["tension_pool"] as Dictionary)["candidates"] as Array
@@ -114,7 +114,7 @@ func _library_is_shared(
 ## about four points instead of six, which is the difference between "passa" and
 ## "passa senza discussione" (D-040).
 func test_every_family_has_the_same_curve() -> void:
-	var loaded: RefCounted = data()
+	var loaded: RefCounted = shipped_data()
 	for family in SchemaDefs.ASSET_FAMILIES:
 		var strengths: Array = []
 		for asset in loaded.assets_of_family(str(family)):
@@ -130,7 +130,7 @@ func test_every_family_has_the_same_curve() -> void:
 ## when the question is its own. Without the first a table can only ever push,
 ## which is what O-6 measured; without the second preparation is just drawing.
 func test_every_family_can_refuse_and_has_a_card_of_its_own() -> void:
-	var loaded: RefCounted = data()
+	var loaded: RefCounted = shipped_data()
 	for family in SchemaDefs.ASSET_FAMILIES:
 		var oppose: int = 0
 		var relevant: int = 0
@@ -147,7 +147,7 @@ func test_every_family_can_refuse_and_has_a_card_of_its_own() -> void:
 ## whatever happens, and it does something to the world on the way out. Without
 ## that they are simply the correct play, and preparation stops being a choice.
 func test_the_strongest_cards_all_cost_something() -> void:
-	var loaded: RefCounted = data()
+	var loaded: RefCounted = shipped_data()
 	var checked: int = 0
 	for asset_id in loaded.assets:
 		var asset: Dictionary = loaded.assets[asset_id]
@@ -172,7 +172,7 @@ func test_the_strongest_cards_all_cost_something() -> void:
 func test_rarity_fixes_strength_and_copies() -> void:
 	var copies: Dictionary = {"COMMON": 4, "UNCOMMON": 2, "RARE": 1}
 	var strength: Dictionary = {"COMMON": 1, "UNCOMMON": 2, "RARE": 3}
-	var loaded: RefCounted = data()
+	var loaded: RefCounted = shipped_data()
 	for asset_id in loaded.assets:
 		var asset: Dictionary = loaded.assets[asset_id]
 		var rarity: String = str(asset["rarity"])
@@ -187,7 +187,7 @@ func test_rarity_fixes_strength_and_copies() -> void:
 
 
 func test_chronicle_matches_the_baseline_numbers() -> void:
-	var chronicle: Dictionary = data().chronicles["CHR_01"]
+	var chronicle: Dictionary = data().chronicles["CHR_00"]
 	assert_eq(int(chronicle["acts"]), 3, "3 Atti")
 	assert_eq(int(chronicle["rounds_per_act"]), 3, "3 round per Atto")
 	assert_eq(int(chronicle["action_opportunities_per_round"]), 2, "2 AO per round")
@@ -238,7 +238,7 @@ func test_chronicle_matches_the_baseline_numbers() -> void:
 ## Il numero vero - quante volte ogni domanda arriva davvero al Consiglio - sta
 ## in ISSUES 51, misurato invece che dedotto.
 func test_every_tension_can_reach_its_threshold() -> void:
-	var loaded: RefCounted = data()
+	var loaded: RefCounted = shipped_data()
 	for chronicle_id in loaded.chronicles:
 		var chronicle: Dictionary = loaded.chronicles[str(chronicle_id)]
 		var rounds: int = int(chronicle["acts"]) * int(chronicle["rounds_per_act"])
@@ -290,7 +290,7 @@ func test_every_tension_can_reach_its_threshold() -> void:
 ## is a stake, not a goal - it is true until someone breaks it, and a tag nothing
 ## writes simply makes it a stake nobody can take.
 func test_no_destiny_asks_for_a_tag_nothing_can_write() -> void:
-	var loaded: RefCounted = data()
+	var loaded: RefCounted = shipped_data()
 
 	var writable: Dictionary = {}
 	for consequence in loaded.consequences.values():
