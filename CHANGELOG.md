@@ -57,6 +57,26 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 | test | 627 | 622 |
 | fallimenti spostando la suite | **217** | **0** |
 
+### E tre prove morte a meta', prese dalla CI
+
+Il runner locale conta i test che ha **fatto partire**, non quelli arrivati in
+fondo: una prova che sbatte su una chiave che non c'e' si interrompe, scrive
+una riga di log, e la suite dice verde. La CI legge quel log, e ha preso tre
+casi che il verde locale nascondeva:
+
+- **`test_chronicle_run`, la prova che avevo appena riscritto**, leggeva
+  `log.entries` invece di `log.lines`. Si interrompeva prima di contare i
+  Consigli risolti: verde, e non provava niente. Sedici asserzioni tornate a
+  girare.
+- `test_library_balance` incatenava ancora `CHR_03` -> `CHR_04`.
+- `test_library_content` cercava `CHR_TEST_HEIR` nei dati **spediti**, dove il
+  banco non c'e'.
+
+**35520 -> 35551 asserzioni**: trentuno che non giravano. La lezione e' quella
+gia' scritta in CLAUDE.md, e vale anche per chi la scrive: il verde della suite
+non basta, si legge il log. Il cancello e' `.github/workflows/validate.yml`, e
+gira anche in locale.
+
 ---
 
 ## 0.1.280 — Cento anni pescati: il cancello misura il gioco che si vende (D-318)

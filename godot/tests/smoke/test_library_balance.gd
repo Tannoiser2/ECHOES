@@ -42,7 +42,10 @@ const BAND_HIGH: int = 7
 
 
 func test_a_library_year_still_decides_things() -> void:
-	for pair in [["CHR_TEST", "CHR_TEST_HEIR"], ["CHR_03", "CHR_04"]]:
+	# **Una coppia sola** (D-318): gli anni d'autore incatenati sono stati
+	# cancellati, e la seconda coppia nominava CHR_03 e CHR_04. Resta il banco,
+	# che la catena prima-eta' -> seconda-eta' ce l'ha per costruzione.
+	for pair in [["CHR_TEST", "CHR_TEST_HEIR"]]:
 		var counts: Array = []
 		var outside: int = 0
 		for i in range(RUNS):

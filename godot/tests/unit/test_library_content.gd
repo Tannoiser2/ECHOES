@@ -239,7 +239,9 @@ func test_a_question_left_hot_starts_warm_after_a_short_jump() -> void:
 ## nomina le cose per nome. Solo lettura: costruirlo due volte da' lo stesso
 ## verbale, e non consuma un solo tiro.
 func test_the_opening_record_says_why_each_question_is_on_the_table() -> void:
-	var loaded: RefCounted = shipped_data()
+	# Legge il **banco**: `CHR_TEST_HEIR` e' l'era ripescata, e nella scatola
+	# non c'e' piu' un'era d'autore da cui leggerla (D-318).
+	var loaded: RefCounted = data()
 	var chronicle: Dictionary = loaded.chronicles["CHR_TEST_HEIR"]
 	var world: Dictionary = {"tensions": {
 		"TEN_AWAKENING": {"current_value": 2},

@@ -83,7 +83,7 @@ func test_a_resolved_council_reports_what_it_applied() -> void:
 		var played: RefCounted = await _year(int(seed_value))
 		if played == null:
 			continue
-		for entry in (played.log.entries as Array):
+		for entry in played.log.lines:
 			var line: String = str(entry)
 			if not line.contains("Conseguenza"):
 				continue
