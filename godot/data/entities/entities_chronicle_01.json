@@ -786,6 +786,7 @@
       "destiny_pool": [
         "DST_VAERAX",
         "DST_VAERAX_WATCHED",
+        "DST_VAERAX_LEGEND",
         "DST_SHARED_LAND",
         "DST_SHARED_LORE"
       ],

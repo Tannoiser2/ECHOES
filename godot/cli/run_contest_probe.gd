@@ -294,19 +294,23 @@ func _initialize() -> void:
 					(wants.get_or_add(str(entity_id), {}) as Dictionary)[str(c["tag"])] = true
 				elif kind == "state_tag_absent" and str(c.get("tag", "")) != "":
 					(fears.get_or_add(str(entity_id), {}) as Dictionary)[str(c["tag"])] = true
-				elif kind == "region_presence" and str(c.get("region_id", "")) != "":
-					(places.get_or_add(str(entity_id), {}) as Dictionary)[str(c["region_id"])] = true
+				elif kind == "region_presence":
+					for place in _places_of(c, session):
+						(places.get_or_add(str(entity_id), {}) as Dictionary)[str(place)] = true
 				elif kind == "scar_count":
-					# Senza `region_id` la clausola parla del mondo intero: si
-					# registra sotto una chiave che nessuna Regione porta, cosi'
-					# «il mondo pulito» e «il mondo segnato» si incontrano.
-					var spot: String = str(c.get("region_id", ""))
-					if spot == "":
-						spot = "*"
-					if c.has("max"):
-						(clean.get_or_add(str(entity_id), {}) as Dictionary)[spot] = true
-					if c.has("min"):
-						(marked.get_or_add(str(entity_id), {}) as Dictionary)[spot] = true
+					# I posti di cui parla: quello che nomina, quelli che i suoi
+					# segni scelgono (D-327), o **il mondo intero** se non dice
+					# ne' l'uno ne' gli altri — e allora si registra sotto una
+					# chiave che nessuna Regione porta, cosi' «il mondo pulito» e
+					# «il mondo segnato» si incontrano.
+					var spots: Array = _places_of(c, session)
+					if spots.is_empty() and (c.get("any_tag", []) as Array).is_empty():
+						spots = ["*"]
+					for spot in spots:
+						if c.has("max"):
+							(clean.get_or_add(str(entity_id), {}) as Dictionary)[str(spot)] = true
+						if c.has("min"):
+							(marked.get_or_add(str(entity_id), {}) as Dictionary)[str(spot)] = true
 		for i in range(seats_here.size()):
 			for j in range(i + 1, seats_here.size()):
 				var a: String = str(seats_here[i])
@@ -406,20 +410,28 @@ func _initialize() -> void:
 						if (wants.get(str(other), {}) as Dictionary).has(str(c2.get("tag", ""))):
 							contested = true
 					elif kind2 == "region_presence":
-						if (places.get(str(other), {}) as Dictionary).has(str(c2.get("region_id", ""))):
-							contested = true
+						var theirs: Dictionary = places.get(str(other), {}) as Dictionary
+						for place in _places_of(c2, session):
+							if theirs.has(str(place)):
+								contested = true
+								break
 					elif kind2 == "scar_count":
-						# Contesa se un altro vuole il verso opposto **nello
-						# stesso posto**, o sul mondo intero.
-						var here: String = str(c2.get("region_id", ""))
-						if here == "":
-							here = "*"
+						# Contesa se un altro vuole il verso opposto **in uno
+						# degli stessi posti**, o sul mondo intero.
+						var spots2: Array = _places_of(c2, session)
+						if spots2.is_empty() and (c2.get("any_tag", []) as Array).is_empty():
+							spots2 = ["*"]
 						var opposite: Dictionary = (
 							marked.get(str(other), {}) if c2.has("max")
 							else clean.get(str(other), {})
 						) as Dictionary
-						if opposite.has(here) or opposite.has("*"):
+						if opposite.has("*"):
 							contested = true
+						else:
+							for here in spots2:
+								if opposite.has(str(here)):
+									contested = true
+									break
 					elif kind2 == "control_count":
 						# Le Regioni sono poche e le vogliono tutti: e' contesa
 						# per scarsita', non per nome.
@@ -597,6 +609,27 @@ func _lane(clause: Dictionary, data: RefCounted) -> String:
 	return "altro"
 
 
+
+
+## Le terre che una clausola guarda: quella che nomina, o **tutte quelle che
+## portano uno dei suoi segni** ([D-327](../../docs/DECISIONS.md#d-327)).
+##
+## Senza questa riga la sonda cerca `region_id` e non ne trova piu' nessuno: da
+## D-327 i Destini mirano a segni, e la contesa sulla mappa risulterebbe zero
+## **per costruzione**. E' la quindicesima misura cieca di questo progetto, e
+## l'unica trovata prima di crederci.
+func _places_of(clause: Dictionary, session: RefCounted) -> Array:
+	var signs: Array = clause.get("any_tag", []) as Array
+	if signs.is_empty():
+		var named: String = str(clause.get("region_id", ""))
+		return [] if named == "" or named.begins_with("$") else [named]
+	var out: Array = []
+	for region_id in session.world["regions"]:
+		for sign in signs:
+			if session.service.region_has_tag(str(region_id), str(sign)):
+				out.append(str(region_id))
+				break
+	return out
 
 
 func _parse_args(args: PackedStringArray) -> Dictionary:

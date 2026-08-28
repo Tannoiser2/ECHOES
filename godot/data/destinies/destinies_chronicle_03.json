@@ -14,9 +14,12 @@
           {
             "type": "region_presence",
             "entity_id": "ENT_SALE",
-            "region_id": "REG_STRADA_MERCANTI",
             "min": 1,
-            "label": "Presenza sulla Strada dei Mercanti"
+            "label": "Una pedina dove c'e' il #commercio, o su una terra di #risorse",
+            "any_tag": [
+              "trade",
+              "domain:RESOURCE"
+            ]
           }
         ]
       },
@@ -73,9 +76,12 @@
               },
               {
                 "type": "scar_count",
-                "region_id": "REG_STRADA_MERCANTI",
                 "max": 0,
-                "label": "La Strada dei Mercanti è uscita pulita"
+                "label": "La via del #commercio e' uscita pulita",
+                "any_tag": [
+                  "trade",
+                  "domain:RESOURCE"
+                ]
               },
               {
                 "type": "structure_count",
@@ -162,9 +168,12 @@
           {
             "type": "region_presence",
             "entity_id": "ENT_SALE",
-            "region_id": "REG_STRADA_MERCANTI",
             "min": 1,
-            "label": "Presenza sulla Strada dei Mercanti"
+            "label": "Una pedina dove c'e' il #commercio, o su una terra di #risorse",
+            "any_tag": [
+              "trade",
+              "domain:RESOURCE"
+            ]
           },
           {
             "type": "some_of",
@@ -186,9 +195,12 @@
               },
               {
                 "type": "scar_count",
-                "region_id": "REG_STRADA_MERCANTI",
                 "max": 0,
-                "label": "La Strada dei Mercanti è uscita pulita"
+                "label": "La via del #commercio e' uscita pulita",
+                "any_tag": [
+                  "trade",
+                  "domain:RESOURCE"
+                ]
               },
               {
                 "type": "structure_count",
@@ -213,7 +225,7 @@
         "reads": {
           "minimum": "Almeno una terra risponde alla Gilda.",
           "victory": "Il registro è aperto, una terra risponde, e i conti che tiene sono chiusi tutti.",
-          "triumph": "Una pedina sulla Strada, l'acqua che si muove pagata da lei, una sbarra col suo nome — e la Strada uscita pulita."
+          "triumph": "Una pedina sulla via del #commercio, l'acqua che si muove pagata da lei, una sbarra col suo nome — e la via del #commercio uscita pulita."
         }
       }
     },
@@ -229,9 +241,12 @@
           {
             "type": "region_presence",
             "entity_id": "ENT_VETRO",
-            "region_id": "REG_MINIERE_ANTICHE",
             "min": 2,
-            "label": "Le gallerie sono presidiate, non solo abitate"
+            "label": "La terra della #miniera e' presidiata, non solo abitata",
+            "any_tag": [
+              "mine",
+              "domain:ANCIENT"
+            ]
           }
         ]
       },
@@ -260,8 +275,11 @@
             "type": "state_tag_absent",
             "scope": "REGION",
             "tag": "condition:emptied",
-            "region_id": "REG_MINIERE_ANTICHE",
-            "label": "E le gallerie non sono state abbandonate"
+            "label": "E non e' stata abbandonata",
+            "any_tag": [
+              "mine",
+              "domain:ANCIENT"
+            ]
           },
           {
             "type": "some_of",
@@ -295,9 +313,12 @@
               },
               {
                 "type": "scar_count",
-                "region_id": "REG_MINIERE_ANTICHE",
                 "max": 0,
-                "label": "Le Miniere sono uscite pulite"
+                "label": "La terra della #miniera e' uscita pulita",
+                "any_tag": [
+                  "mine",
+                  "domain:ANCIENT"
+                ]
               },
               {
                 "type": "structure_count",
@@ -326,9 +347,9 @@
           "rumour_running"
         ],
         "reads": {
-          "minimum": "L'Ordine tiene la sua casa: le gallerie presidiate, non solo abitate.",
+          "minimum": "L'Ordine tiene la sua casa: la terra della #miniera presidiata, non solo abitata.",
           "victory": "La custodia riconosciuta per atto, e la teca ancora chiusa.",
-          "triumph": "Le gallerie sue e vive, a verbale cosa custodisce, le tre questioni tenute lontane dalla teca — e le Miniere uscite pulite."
+          "triumph": "La terra della #miniera sua e viva, a verbale cosa custodisce, le tre questioni tenute lontane dalla teca — e la #miniera uscita pulita."
         }
       }
     },
@@ -344,9 +365,12 @@
           {
             "type": "region_presence",
             "entity_id": "ENT_VETRO",
-            "region_id": "REG_MINIERE_ANTICHE",
             "min": 2,
-            "label": "Le gallerie sono presidiate, non solo abitate"
+            "label": "La terra della #miniera e' presidiata, non solo abitata",
+            "any_tag": [
+              "mine",
+              "domain:ANCIENT"
+            ]
           }
         ]
       },
@@ -400,7 +424,7 @@
           "no_charter"
         ],
         "reads": {
-          "minimum": "L'Ordine tiene la sua casa: le gallerie presidiate, non solo abitate.",
+          "minimum": "L'Ordine tiene la sua casa: la terra della #miniera presidiata, non solo abitata.",
           "victory": "La reliquia mostrata — e a mostrarla è stato l'Ordine.",
           "triumph": "La fede diventata legge: c'è una Carta scritta, nessuno l'ha rifiutata — e il mondo porta il segno del giorno in cui la teca si è aperta."
         }
@@ -418,9 +442,12 @@
           {
             "type": "region_presence",
             "entity_id": "ENT_CENERE",
-            "region_id": "REG_MONTAGNE_ROSSE",
             "min": 2,
-            "label": "Le Montagne Rosse sono presidiate, non solo abitate"
+            "label": "La terra col #selvaggio e' presidiata, non solo abitata",
+            "any_tag": [
+              "wild",
+              "domain:ANCIENT"
+            ]
           }
         ]
       },
@@ -443,9 +470,12 @@
           {
             "type": "state_tag_absent",
             "scope": "REGION",
-            "region_id": "REG_MINIERE_ANTICHE",
             "tag": "structure:sealed",
-            "label": "E le gallerie non sono state murate"
+            "label": "E la terra della #miniera non e' stata murata",
+            "any_tag": [
+              "mine",
+              "domain:ANCIENT"
+            ]
           }
         ]
       },
@@ -514,8 +544,8 @@
           "relic_buried"
         ],
         "reads": {
-          "minimum": "Restano sulla montagna: le Montagne Rosse presidiate.",
-          "victory": "La montagna è loro, la veglia affidata per atto, e le gallerie non murate.",
+          "minimum": "Restano sulla terra col #selvaggio: presidiata, non solo abitata.",
+          "victory": "La terra col #selvaggio è loro, la veglia affidata per atto, e la terra della #miniera non murata.",
           "triumph": "La Cenere che sale, due terre a registro, il patto con la Gilda in pari, quello che sta sotto ancora aperto — e i segni dell'anno dicono che si lavora."
         }
       }
@@ -532,9 +562,12 @@
           {
             "type": "region_presence",
             "entity_id": "ENT_CENERE",
-            "region_id": "REG_MONTAGNE_ROSSE",
             "min": 1,
-            "label": "E qualcuno di loro è rimasto sulle Montagne Rosse"
+            "label": "E qualcuno di loro e' rimasto sulla terra col #selvaggio",
+            "any_tag": [
+              "wild",
+              "domain:ANCIENT"
+            ]
           }
         ]
       },
@@ -544,16 +577,22 @@
           {
             "type": "state_tag_absent",
             "scope": "REGION",
-            "region_id": "REG_MINIERE_ANTICHE",
             "tag": "structure:sealed",
-            "label": "Le gallerie non sono state murate"
+            "label": "La terra della #miniera non e' stata murata",
+            "any_tag": [
+              "mine",
+              "domain:ANCIENT"
+            ]
           },
           {
             "type": "region_presence",
             "entity_id": "ENT_CENERE",
-            "region_id": "REG_MINIERE_ANTICHE",
             "min": 2,
-            "label": "E sono scesi in due, non hanno solo guardato"
+            "label": "E sono scesi in due nella #miniera, non hanno solo guardato",
+            "any_tag": [
+              "mine",
+              "domain:ANCIENT"
+            ]
           },
           {
             "type": "state_tag_present",
@@ -592,15 +631,21 @@
               },
               {
                 "type": "scar_count",
-                "region_id": "REG_MINIERE_ANTICHE",
-                "label": "E le gallerie portano il segno di chi è sceso",
-                "min": 1
+                "label": "E la terra della #miniera porta il segno di chi e' sceso",
+                "min": 1,
+                "any_tag": [
+                  "mine",
+                  "domain:ANCIENT"
+                ]
               },
               {
                 "type": "scar_count",
-                "region_id": "REG_MONTAGNE_ROSSE",
                 "max": 0,
-                "label": "E la montagna anche"
+                "label": "E la terra col #selvaggio anche",
+                "any_tag": [
+                  "wild",
+                  "domain:ANCIENT"
+                ]
               }
             ]
           }
@@ -614,9 +659,9 @@
           "structure:sealed"
         ],
         "reads": {
-          "minimum": "Qualcuno è rimasto sulle Montagne Rosse.",
-          "victory": "Le gallerie aperte, discesi in due, e quello che c'è sotto visto coi propri occhi.",
-          "triumph": "Il patto con la Gilda saltato, qualcosa di murato che è loro, i segni dell'anno sul mondo e sulle gallerie — e la montagna, quella no: quella è casa."
+          "minimum": "Qualcuno è rimasto sulla terra col #selvaggio.",
+          "victory": "Le terra della #miniera aperta, discesi in due, e quello che c'è sotto visto coi propri occhi.",
+          "triumph": "Il patto con la Gilda saltato, qualcosa di murato che è loro, i segni dell'anno sul mondo e sulla terra della #miniera — e la terra col #selvaggio, quella no: quella è casa."
         }
       }
     },
@@ -632,9 +677,12 @@
           {
             "type": "region_presence",
             "entity_id": "ENT_LIBERE",
-            "region_id": "REG_EREDAN",
             "min": 1,
-            "label": "Presenza a Eredan"
+            "label": "Una pedina dove c'e' il #capitale, o su una terra di #territorio",
+            "any_tag": [
+              "capital",
+              "domain:TERRITORY"
+            ]
           }
         ]
       },
@@ -687,8 +735,11 @@
                 "type": "state_tag_absent",
                 "scope": "REGION",
                 "tag": "condition:unrest",
-                "region_id": "REG_EREDAN",
-                "label": "Eredan non è in rivolta"
+                "label": "La terra col #capitale non e' in rivolta",
+                "any_tag": [
+                  "capital",
+                  "domain:TERRITORY"
+                ]
               },
               {
                 "type": "tension_limit",
@@ -722,9 +773,9 @@
           "condition:unrest"
         ],
         "reads": {
-          "minimum": "A Eredan c'è una pedina loro.",
+          "minimum": "Sulla terra col #capitale c'è una pedina loro.",
           "victory": "La Carta è scritta, e l'acqua non è finita a prezzo.",
-          "triumph": "La Carta scritta quando non si poteva più rimandare, il debito rimesso, la Gilda non nemica, Eredan quieta — le città hanno costruito, e l'anno porta i segni di quanto è costato."
+          "triumph": "La Carta scritta quando non si poteva più rimandare, il debito rimesso, la Gilda non nemica, la terra col #capitale quieta — le città hanno costruito, e l'anno porta i segni di quanto è costato."
         }
       }
     },
@@ -757,9 +808,12 @@
           {
             "type": "region_presence",
             "entity_id": "ENT_LIBERE",
-            "region_id": "REG_VALLE_VERDE",
             "min": 1,
-            "label": "Presenza nella Valle Verde"
+            "label": "Una pedina dove c'e' il #granaio, o su una terra di #sopravvivenza",
+            "any_tag": [
+              "granary",
+              "domain:SURVIVAL"
+            ]
           },
           {
             "type": "scar_count",
@@ -797,9 +851,12 @@
               },
               {
                 "type": "scar_count",
-                "region_id": "REG_VALLE_VERDE",
                 "max": 0,
-                "label": "La Valle Verde è uscita pulita"
+                "label": "La terra del #granaio e' uscita pulita",
+                "any_tag": [
+                  "granary",
+                  "domain:SURVIVAL"
+                ]
               },
               {
                 "type": "scar_count",
@@ -820,8 +877,8 @@
         ],
         "reads": {
           "minimum": "Le città hanno alzato almeno un'opera: l'acqua non si muove da sola.",
-          "victory": "I canali riaperti, una pedina nella Valle Verde, e il mondo non aperto dove l'acqua deve passare.",
-          "triumph": "L'acqua di nessuno: due terre che rispondono, un canale mantenuto, la Valle Verde pulita e l'anno quasi senza segni."
+          "victory": "I canali riaperti, una pedina sulla terra del #granaio, e il mondo non aperto dove l'acqua deve passare.",
+          "triumph": "L'acqua di nessuno: due terre che rispondono, un canale mantenuto, la terra del #granaio pulita e l'anno quasi senza segni."
         }
       }
     }

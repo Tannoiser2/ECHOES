@@ -2,7 +2,8 @@ extends "res://tests/test_case.gd"
 ## ISSUES 21: la mossa che spegne il tuo Destino avverta prima.
 ##
 ## Nella partita vera al seme 15308 Vaerax entra nell'ultimo round con la
-## prima spunta accesa («Presenza sulle Montagne Rosse») e la spegne da solo:
+## prima spunta accesa — da D-327 si legge «una pedina sulla terra col
+## #selvaggio, o su una d'#antico» — e la spegne da solo:
 ## un MOVE al limite dei token toglie il presidio dalla montagna senza che
 ## l'app dica nulla. Al tavolo fisico un compagno te lo farebbe notare; il
 ## SeatDecider - lo stesso del terminale e del browser (D-038) - adesso lo fa:
@@ -88,12 +89,31 @@ func _decider_with(io: RefCounted) -> RefCounted:
 	return decider
 
 
+## Una mossa che porta via **davvero**, cioe' verso una terra che **non** porta
+## i segni del Minimo.
+##
+## Da [D-327](DECISIONS.md#d-327) la clausola non nomina piu' la montagna: dice
+## «una terra col #selvaggio, o una d'#antico». Spostarsi dalla montagna alle
+## gallerie — che sono d'#antico anche loro — **non spegne piu' niente**, ed e'
+## giusto cosi': la riga guarda un genere di posto, non un posto. Perche'
+## l'avviso abbia qualcosa da dire, la mossa deve uscire dal genere.
+const MINIMUM_SIGNS: Array = ["wild", "domain:ANCIENT"]
+
+
 func _first_move_away(decider: RefCounted) -> int:
 	var options: Array = decider._action_options("ENT_VAERAX", session)
 	for i in range(options.size()):
 		if str(options[i]["template"]) != "MOVE":
 			continue
-		if str(options[i]["params"]["region_id"]) != MOUNTAIN:
+		var where: String = str(options[i]["params"]["region_id"])
+		if where == MOUNTAIN:
+			continue
+		var still_counts: bool = false
+		for sign in MINIMUM_SIGNS:
+			if session.service.region_has_tag(where, str(sign)):
+				still_counts = true
+				break
+		if not still_counts:
 			return i
 	return -1
 
@@ -111,7 +131,7 @@ func test_the_move_of_seed_15308_warns_before_confirming() -> void:
 
 	var warned: bool = false
 	for line in io.said:
-		if str(line).contains("spegne") and str(line).contains("Presenza sulle Montagne Rosse"):
+		if str(line).contains("spegne") and str(line).contains("#selvaggio"):
 			warned = true
 	assert_true(warned, "l'avviso nomina la clausola che si spegnerebbe")
 	assert_eq(io.asks.size(), 2, "prima la mossa, poi la conferma: due domande")

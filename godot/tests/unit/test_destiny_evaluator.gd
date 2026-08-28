@@ -92,11 +92,31 @@ func test_three_levels_for_vaerax() -> void:
 	assert_eq(str(result["level"]), "TRIUMPH", "col passo franato la quarta strada c'e': Triumph")
 
 	# Losing the mountain drops him to nothing at all, whatever else is true.
-	_apply("REMOVE_PRESENCE", "entity", "ENT_VAERAX", {"region_id": "REG_MONTAGNE_ROSSE"})
+	# **Da D-327 il Minimo mira a segni**, non alla montagna per nome: per
+	# spegnerlo bisogna toglierlo da **ogni** terra che porta quei segni, ed e'
+	# proprio quello che la riga dice adesso.
+	_leave_every_place_with(["wild", "domain:ANCIENT"], "ENT_VAERAX")
 	result = session.destinies.evaluate("DST_VAERAX")
 	assert_eq(str(result["level"]), "NONE", "senza Minimum non c'e livello, anche col Triumph vero")
 	assert_true(bool(result["levels"]["TRIUMPH"]), "le condizioni di Triumph restano vere")
 	assert_false(bool(result["levels"]["MINIMUM"]), "ma il Minimum e caduto")
+
+
+## Togliere la casa da **ogni** terra che porta uno di quei segni (D-327).
+## Con le clausole mirate a segni, sgomberare un posto solo non spegne niente:
+## la riga guarda tutte le tessere col segno stampato.
+func _leave_every_place_with(signs: Array, entity_id: String) -> void:
+	for region_id in session.world["regions"]:
+		var here: String = str(region_id)
+		var carries: bool = false
+		for sign in signs:
+			if session.service.region_has_tag(here, str(sign)):
+				carries = true
+				break
+		if not carries:
+			continue
+		while session.service.presence_count(entity_id, here) > 0:
+			_apply("REMOVE_PRESENCE", "entity", entity_id, {"region_id": here})
 
 
 func test_victory_needs_the_consequence_that_grants_it() -> void:
@@ -143,10 +163,15 @@ func test_victory_needs_the_consequence_that_grants_it() -> void:
 	assert_eq(str(result["level"]), "VICTORY", "la Valle chiusa blocca il Triumph")
 	assert_false(bool(result["levels"]["TRIUMPH"]), "condizione di Triumph fallita")
 
-	# And losing the Valley presence takes the Victory away as well.
-	_apply("REMOVE_PRESENCE", "entity", "ENT_NAHR", {"region_id": "REG_VALLE_VERDE"})
+	# And losing the granary presence takes the Victory away as well. Da D-327
+	# la riga guarda **il segno**, non la Valle per nome: si sgombera ogni terra
+	# che lo porta.
+	_leave_every_place_with(["granary", "domain:SURVIVAL"], "ENT_NAHR")
 	result = session.destinies.evaluate("DST_NAHR")
-	assert_eq(str(result["level"]), "MINIMUM", "senza presenza nella Valle si torna al Minimum")
+	assert_eq(
+		str(result["level"]), "NONE",
+		"sgomberate tutte le terre del #granaio cade anche il Minimo, che guarda il #pascolo"
+	)
 
 
 ## Discoveries are counted from the 'discovery:' tags an Entity has earned - and

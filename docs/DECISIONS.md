@@ -10,6 +10,245 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-327 — I Destini mirano a segni, e la mappa diventa contesa
+
+**implemented** (0.1.290) · [ISSUES 97](ISSUES.md) chiusa, strada 1 · decisione
+del committente: *«Vai strada 1 e vaerax metti nel mazzo»*.
+
+### Il difetto, e perche' era l'ultimo pezzo di D-265
+
+[D-326](#d-326) ha misurato che **il 43.1% delle righe dei Destini nominava una
+Regione che quell'anno non usciva dalla pesca**, e che **il 77.7% delle terre
+pescate non le nominava nessuno**. Da [D-265](#d-265) la mappa si pesca sei
+tessere su dieci: una riga che dice «Eredan» e' viva sei volte su dieci e morta
+le altre quattro.
+
+Le Azioni avevano gia' risolto la stessa cosa nello stesso modo
+([D-273](#d-273)), e le Tensioni pure con la grammatica #TAG. **I Destini erano
+rimasti indietro.**
+
+### La grammatica, che non e' nuova: e' quella delle Azioni
+
+Una clausola non dice piu' `region_id`, dice **`any_tag`** — la stessa forma del
+bersaglio a segni di una carta Azione. Vuol dire *«una terra che porta uno di
+questi segni»*, e al tavolo si guardano le tessere col segno stampato.
+
+Tre letture, una per tipo di clausola, e vanno dette perche' sono tre:
+
+| | vuol dire |
+|---|---|
+| `region_presence` | **una terra cosi' dove il conto torna** — non la somma su tutte: «presidiata» vuol dire due pedine nello stesso posto |
+| `state_tag_present` | **una** di quelle terre porta il segno; quindi `state_tag_absent` = **nessuna** |
+| `scar_count` | le Cicatrici contate **su tutte** quelle terre |
+
+### La matematica che tiene, ed e' la stessa di D-273
+
+Con N tessere nel parco e K pescate, un segno stampato su almeno **N-K+1**
+tessere c'e' per costruzione. Qui N=10, K=6: **il pavimento e' 5 tessere**, e
+solo i quattro `domain:` lo raggiungono da soli. I segni di luogo — `capital`,
+`granary`, `mine`, `trade`, `wild`, `nomad_range` — stanno **su una tessera
+sola**: scrivere «la terra col #granaio» sarebbe stato lo stesso difetto con un
+altro nome.
+
+Quindi ogni riga porta **due** segni: quello che dice il posto, e il dominio che
+fa da pavimento.
+
+| la riga guarda | tessere | |
+|---|---|---|
+| `capital` + `domain:TERRITORY` | 5 | il trono, o una terra di Territorio |
+| `granary` + `domain:SURVIVAL` | 5 | il granaio, o una di Sopravvivenza |
+| `nomad_range` + `domain:SURVIVAL` | 5 | il pascolo, o una di Sopravvivenza |
+| `mine` + `domain:ANCIENT` | 5 | la miniera, o una d'Antico |
+| `wild` + `domain:ANCIENT` | 5 | il selvaggio, o una d'Antico |
+| `trade` + `domain:RESOURCE` | 5 | il commercio, o una di Risorse |
+
+**Quarantuno righe ri-mirate**, su ventitre' Destini. Nessuna clausola spedita
+nomina piu' una Regione per nome, e una prova lo controlla.
+
+### Il numero
+
+`cli/run_map_probe.gd` e `cli/run_contest_probe.gd`, 100 partite, seme 7000:
+
+| | prima | dopo |
+|---|---|---|
+| righe che nascono morte | **43.1%** (215) | **0%** (0) |
+| Regioni pescate che qualcuno nomina | 22.3% | **72.2%** |
+| **coppie che si contendono una Regione** | **2.8%** (17) | **15.5%** (93) |
+| coppie che si contendono una memoria | 7.0% | 8.3% |
+| coppie che si contendono una Cicatrice | 25.0% | 26.2% |
+| **clausole che qualcuno contendeva** | 21.4% (503) | **25.9%** (619) |
+| `region_presence` contese | 17 | **143** |
+| clausole gia' vere all'apertura | 53.1% | 53.1% |
+
+**La contesa sulla mappa passa da 2.8% a 15.5%**: e' il numero che non si era
+mosso in tutta la giornata, ed era fermo per una ragione sola — le carte
+guardavano una geografia che meta' delle volte non c'era.
+
+### Due misure cieche, trovate prima di crederci
+
+Ri-mirate le clausole, **tutte e due le sonde sono andate a zero**: cercavano
+`region_id`, e non ne esisteva piu' uno. La sonda della mappa dava «0 righe che
+nominano una Regione», quella della contesa «0.0% di coppie». Erano la
+quindicesima e la sedicesima misura cieca di questo progetto — le prime due
+trovate **perche' uno zero non si crede mai**, non perche' qualcosa fosse
+esploso. Adesso tutte e due risolvono i segni in terre pescate.
+
+*(E dentro la seconda ce n'era una terza: le clausole `scar_count`, perse il
+`region_id`, risultavano **globali**, e la lite sulle Cicatrici saliva a 29.0%
+per un difetto di conto. Con i segni risolti e' 26.2%.)*
+
+### Il cancello
+
+`validate_physical.py` regola 17 estesa: una clausola di Destino o Obiettivo
+**non puo' nominare una Regione per nome** — su una mappa pescata e' una riga
+che nasce morta — e i segni che guarda devono stare su almeno N-K+1 tessere. Due
+difetti nuovi nel `--self-test`, che adesso sono **ventitre'** e mordono tutti.
+
+`tests/unit/test_a_clause_aims_by_signs.gd`, cinque prove, fra cui una che
+controlla che **nessuna clausola spedita** nomini piu' una Regione. Provata al
+contrario spegnendo la mira a segni: **ventuno fallimenti**.
+
+### Vaerax nel mazzo
+
+`DST_VAERAX_LEGEND` — mai uscita in 400 seggi perche' non stava nel mazzetto di
+nessuno ([D-326](#d-326)) — entra in quello di `ENT_VAERAX`, che diventa l'unica
+casa con **cinque** carte invece di quattro. Il committente ha scelto cosi'
+invece di toglierla dalla scatola.
+
+### Il costo, dichiarato
+
+**0 seggi bloccati su 8**, misto e uniforme.
+
+| | misto prima | misto dopo | uniforme prima | uniforme dopo |
+|---|---|---|---|---|
+| NONE | 90 | **85** | 69 | **72** |
+| MINIMUM | 135 | 140 | 136 | 144 |
+| VICTORY | 166 | 169 | 184 | **173** |
+| TRIUMPH | 9 | **6** | 11 | 11 |
+| Verita' scritte | 162 | **156** | 159 | 157 |
+
+Il tavolo misto e' **piu' generoso in basso e piu' duro in cima**: cinque case in
+meno a mani vuote, tre Trionfi in meno. L'uniforme il contrario: tre NONE in piu'
+e **undici Vittorie in meno**. Ed e' coerente con quello che la modifica fa —
+una riga a segni si puo' sempre provare, ma adesso **qualcun altro la vuole**.
+
+`docs/MISURA_VITE.md`: trasformazioni sedute 198 -> **195**.
+
+### Quello che resta
+
+Le clausole gia' vere all'apertura **non si muovono** (53.1%). Questa modifica
+non le tocca: rende le righe *raggiungibili* e *contese*, non *conquistate*. Il
+fondo di [ISSUES 91](ISSUES.md) e' ancora li'.
+
+---
+
+## D-326 — La lotta per la mappa c'e'; sono le carte che guardano altrove
+
+**implemented** (0.1.289) · misura, non modifica · [ISSUES 97](ISSUES.md)
+aperta · decisione del committente: *«misura la mappa»*, dopo aver visto che le
+coppie che si contendono una Regione sono ferme al **2.8%** da tutta la
+giornata.
+
+### La frase da misurare
+
+> «Modificare la mappa dovrebbe essere la priorita' del gioco e **una
+> maggioranza dovrebbe essere una lotta fra entita'».
+
+La seconda meta' non era mai stata misurata. Il motore riconta le forze a ogni
+round e **la presenza piu' forte tiene la Regione**; a parita' non cambia
+niente. Quindi la frase e' un numero solo: **di quanto vince chi vince**. Una
+terra tenuta tre a zero e' una proprieta'; una tenuta due a uno e' una lotta, e
+la prossima pedina la ribalta.
+
+`cli/run_map_probe.gd`, 100 partite, CHR_00, tavolo misto.
+
+### Prima sorpresa: la lotta c'e', ed e' stretta
+
+| margine fra primo e secondo | Regioni | |
+|---|---|---|
+| 0 | 82 | 15.7% |
+| 1 | 164 | **31.4%** |
+| 2 | 112 | 21.5% |
+| 3 | 76 | 14.6% |
+| 4 o piu' | 88 | 16.8% |
+
+> **Il 47.1% delle Regioni tenute si decide per una pedina o meno.**
+
+Il tavolo **e' conteso**. Non e' una spartizione: quasi la meta' delle terre, a
+fine anno, la ribalterebbe un solo pezzo di legno in piu'. Questo va detto
+perche' era la mia ipotesi, ed era sbagliata.
+
+### Seconda: il controllo si raccoglie, non si toglie
+
+| | passaggi | |
+|---|---|---|
+| raccolta da terra | 466 | **68.4%** |
+| tolta a un'altra casa | 181 | 26.6% |
+| persa e basta | 34 | 5.0% |
+
+Due volte su tre una Regione si prende dove non c'era nessuno. La lotta stretta
+del punto prima e' **una lotta per arrivare primi**, non per scacciare.
+
+### Terza, ed e' la risposta al 2.8%
+
+| le righe dei Destini che nominano una Regione | | |
+|---|---|---|
+| su una Regione pescata | 284 | 56.9% |
+| **su una che la mappa non ha pescato** | **215** | **43.1%** |
+
+> **Quasi meta' delle clausole di Regione sono morte prima che si cominci.**
+> `REG_EREDAN` 62 volte, `REG_MINIERE_ANTICHE` 57, `REG_STRADA_MERCANTI` 33.
+
+E dall'altro lato:
+
+> **Il 77.7% delle Regioni pescate non le nomina nessuno.** Sei terre sul
+> tavolo, e in media **1.3** interessano a qualcuno.
+
+Ecco perche' le coppie che si contendono una Regione sono il 2.8%: perche' due
+Destini si incontrino sulla stessa terra, quella terra deve **essere stata
+pescata** — e da D-265 la mappa si pesca sei su dieci. Le carte nominano la
+geografia di un'era che quell'anno per meta' non c'e'.
+
+**Non e' un difetto del motore: e' l'ultimo pezzo di D-265 rimasto indietro.**
+La mappa e' diventata pescata, i bersagli delle Azioni sono stati ri-mirati a
+segni (D-273), le Tensioni parlano per #TAG — **i Destini no**: continuano a
+nominare Regioni per nome.
+
+### Quarta: una carta scritta che non sta in nessun mazzetto
+
+Ogni casa ha un mazzetto di quattro Destini, due suoi e due condivisi. Contati
+tutti: **`DST_VAERAX_LEGEND` — «La Storia che si Racconta» — non e' nel
+mazzetto di nessuno.** In 400 seggi non e' mai uscita.
+
+Ed e' una carta che **ho modificato oggi** ([D-325](#d-325)): le ho ri-mirato la
+clausola morta su `rumour_running`. Quella modifica non puo' vedersi in nessuna
+partita. Lo scrivo perche' e' un errore mio, e perche' e' la stessa famiglia dei
+tredici esiti di Consiglio di [D-322](#d-322) e delle sette vite mai sedute: la
+scatola e' cresciuta piu' in fretta dei suoi mazzetti.
+
+### Quinta: come si distribuiscono i Destini
+
+Su 400 seggi, **200 prendono un Destino della propria casa e 200 uno condiviso**
+— meta' e meta'. Ma i sei condivisi si dividono quei 200 (una media di 33 a
+testa, `DST_SHARED_RENOWN` da sola **51**), mentre i diciassette di casa si
+dividono gli altri 200 (una media di **12**).
+
+*(Correzione: guardando due soli semi avevo detto «le case quasi sempre pescano
+un Destino condiviso». Su cento partite non e' vero — e' meta' e meta'. Il fatto
+vero e' la concentrazione, non la prevalenza.)*
+
+E questo spiega di nuovo, dall'interno, la cosa imparata in
+[D-325](#d-325): **le carte condivise sono dove vive la lite** perche' una carta
+condivisa esce quattro volte piu' spesso di una di casa.
+
+### Cosa non si decide qui
+
+Le strade stanno in [ISSUES 97](ISSUES.md). La piu' grossa e' se i Destini
+debbano smettere di nominare Regioni per nome e passare ai **segni**, come hanno
+gia' fatto le Azioni e le Tensioni.
+
+---
+
 ## D-325 — Otto clausole guardano quello che il mondo produce, e la lite sta sulle carte condivise
 
 **implemented** (0.1.288) · [ISSUES 96](ISSUES.md) strada 1 · decisione del

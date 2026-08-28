@@ -5,6 +5,119 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.290 — I Destini mirano a segni, e la mappa diventa contesa (D-327)
+
+### Cambiato
+
+- **Quarantuno righe su ventitre' Destini non nominano piu' una Regione**: dicono
+  `any_tag`, la stessa forma del bersaglio a segni delle Azioni (D-273). Ogni
+  riga porta due segni — quello del posto e il dominio che fa da pavimento —
+  perche' con 10 tessere e 6 pescate **solo un segno su almeno 5 tessere e'
+  garantito**, e `capital`, `granary`, `mine`, `trade`, `wild`, `nomad_range`
+  stanno su una sola.
+- Il motore legge `any_tag` su `region_presence` (una terra cosi' dove il conto
+  torna), `state_tag_present`/`absent` (una / nessuna) e `scar_count` (contate su
+  tutte). Schema aggiornato, `schema_defs.gd` rigenerato.
+- **`DST_VAERAX_LEGEND` entra nel mazzetto di `ENT_VAERAX`**, che passa a cinque
+  carte: non usciva mai in 400 seggi.
+- Le facce fisiche riscritte: dove dicevano «Eredan», «le gallerie», «la
+  montagna», adesso dicono il segno.
+
+### Misurato
+
+| | prima | dopo |
+|---|---|---|
+| righe che nascono morte | **43.1%** | **0%** |
+| Regioni pescate che qualcuno nomina | 22.3% | **72.2%** |
+| **coppie che si contendono una Regione** | **2.8%** | **15.5%** |
+| clausole che qualcuno contendeva | 21.4% | **25.9%** |
+| `region_presence` contese | 17 | **143** |
+
+**La contesa sulla mappa passa da 2.8% a 15.5%**: e' il numero che non si muoveva
+da tutta la giornata.
+
+### Due misure cieche, trovate prima di crederci
+
+Ri-mirate le clausole, **tutte e due le sonde sono andate a zero**: cercavano
+`region_id` e non ne esisteva piu' uno. Quindicesima e sedicesima del progetto,
+e le prime due trovate perche' **uno zero non si crede mai**. Dentro la seconda
+ce n'era una terza: le `scar_count` senza `region_id` risultavano *globali* e
+gonfiavano la lite delle Cicatrici al 29.0% — col conto giusto e' 26.2%.
+
+### Cancelli
+
+- `validate_physical.py` regola 17 estesa ai Destini: **nominare una Regione per
+  nome non si puo' piu'**, e i segni devono stare su almeno N-K+1 tessere. Due
+  difetti nuovi nel self-test, che adesso sono **ventitre'**.
+- `tests/unit/test_a_clause_aims_by_signs.gd`, cinque prove, fra cui una che
+  controlla che nessuna clausola spedita nomini una Regione. Provata al
+  contrario: **ventuno fallimenti**.
+- Aggiornate due prove che spegnevano una clausola sgomberando **una** Regione:
+  adesso una riga a segni sopravvive a una mossa verso un'altra terra dello
+  stesso genere, ed e' il comportamento giusto.
+
+### Costo, dichiarato
+
+- **0 seggi bloccati su 8**, misto e uniforme. Suite 630 test / 35886 asserzioni.
+- Il misto e' piu' generoso in basso e piu' duro in cima: NONE **90 -> 85**,
+  TRIUMPH **9 -> 6**. L'uniforme il contrario: NONE 69 -> **72**, VICTORY
+  184 -> **173**.
+- Verita' scritte, misto **162 -> 156**. Trasformazioni sedute **198 -> 195**.
+- **Le clausole gia' vere all'apertura non si muovono** (53.1%): questa modifica
+  rende le righe raggiungibili e contese, non conquistate. ISSUES 91 resta.
+
+---
+
+## 0.1.289 — La lotta per la mappa c'e'; sono le carte che guardano altrove (D-326)
+
+### Aggiunto
+
+- **`cli/run_map_probe.gd`**: la sonda che misura la frase mai misurata — *«una
+  maggioranza dovrebbe essere una lotta fra entita'»*. Il motore da' la Regione
+  alla presenza piu' forte, quindi la frase e' un numero solo: **di quanto vince
+  chi vince**. Piu' le prese (a qualcuno o da terra), le clausole di Regione
+  morte, e le Regioni che nessuno nomina.
+
+### Misurato
+
+- **Il 47.1% delle Regioni tenute si decide per una pedina o meno** (margine 0:
+  15.7%, margine 1: 31.4%). Il tavolo **e' conteso**: era la mia ipotesi
+  contraria, ed era sbagliata.
+- **Ma il controllo si raccoglie, non si toglie**: 68.4% delle prese avviene
+  dove non c'era nessuno, 26.6% a spese di un'altra casa.
+- **Il 43.1% delle righe che nominano una Regione nomina una Regione che la
+  mappa non ha pescato** — `REG_EREDAN` 62 volte, `REG_MINIERE_ANTICHE` 57.
+  Clausole morte prima che si cominci.
+- **Il 77.7% delle Regioni pescate non le nomina nessuno**: sei terre sul
+  tavolo, in media 1.3 interessano a qualcuno.
+- **`DST_VAERAX_LEGEND` non e' nel mazzetto di nessuna casa**: mai uscita in 400
+  seggi. Ed e' la carta che D-325 ha modificato ieri — quella modifica non puo'
+  vedersi in partita. Errore mio, scritto.
+- Distribuzione dei Destini: **200 seggi su 400 pescano un Destino di casa, 200
+  uno condiviso**; ma i sei condivisi si dividono 200 (media 33,
+  `DST_SHARED_RENOWN` **51**) e i diciassette di casa gli altri 200 (media 12).
+
+### Perche' le coppie che si contendono una Regione sono ferme al 2.8%
+
+Perche' due Destini si incontrino su una terra, quella terra deve **essere stata
+pescata** — e da D-265 la mappa si pesca sei su dieci. **E' l'ultimo pezzo di
+D-265 rimasto indietro**: la mappa e' diventata pescata, i bersagli delle Azioni
+sono stati ri-mirati a segni (D-273), le Tensioni parlano per #TAG — i Destini
+no, continuano a nominare Regioni per nome.
+
+### Corretto
+
+- Guardando due soli semi avevo detto «le case quasi sempre pescano un Destino
+  condiviso». Su cento partite **non e' vero**: e' meta' e meta'. Il fatto vero
+  e' la concentrazione, non la prevalenza.
+
+### Aperto
+
+- **ISSUES 97**: se i Destini debbano smettere di nominare Regioni per nome e
+  passare ai segni, come hanno gia' fatto Azioni e Tensioni.
+
+---
+
 ## 0.1.288 — Otto clausole guardano quello che il mondo produce (D-325)
 
 ### Cambiato

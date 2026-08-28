@@ -13,9 +13,12 @@
           {
             "type": "region_presence",
             "entity_id": "ENT_ALDRIC",
-            "region_id": "REG_EREDAN",
             "min": 1,
-            "label": "Presenza a Eredan"
+            "label": "Una pedina dove c'e' il #capitale, o su una terra di #territorio",
+            "any_tag": [
+              "capital",
+              "domain:TERRITORY"
+            ]
           }
         ]
       },
@@ -43,8 +46,11 @@
             "type": "state_tag_absent",
             "scope": "REGION",
             "tag": "condition:unrest",
-            "region_id": "REG_EREDAN",
-            "label": "Eredan non è in rivolta"
+            "label": "La terra col #capitale non e' in rivolta",
+            "any_tag": [
+              "capital",
+              "domain:TERRITORY"
+            ]
           },
           {
             "type": "some_of",
@@ -77,9 +83,12 @@
               },
               {
                 "type": "scar_count",
-                "region_id": "REG_EREDAN",
                 "max": 0,
-                "label": "Eredan è uscita dall'anno senza un segno"
+                "label": "La terra col #capitale e' uscita dall'anno senza un segno",
+                "any_tag": [
+                  "capital",
+                  "domain:TERRITORY"
+                ]
               },
               {
                 "type": "state_tag_absent",
@@ -124,9 +133,12 @@
           {
             "type": "region_presence",
             "entity_id": "ENT_NAHR",
-            "region_id": "REG_TERRE_NAHR",
             "min": 1,
-            "label": "Presenza nelle Terre Nahr"
+            "label": "Una pedina dove c'e' il #pascolo, o su una terra di #sopravvivenza",
+            "any_tag": [
+              "nomad_range",
+              "domain:SURVIVAL"
+            ]
           }
         ]
       },
@@ -142,9 +154,12 @@
           {
             "type": "region_presence",
             "entity_id": "ENT_NAHR",
-            "region_id": "REG_VALLE_VERDE",
             "min": 1,
-            "label": "Presenza nella Valle Verde"
+            "label": "Una pedina dove c'e' il #granaio, o su una terra di #sopravvivenza",
+            "any_tag": [
+              "granary",
+              "domain:SURVIVAL"
+            ]
           },
           {
             "type": "some_of",
@@ -209,9 +224,12 @@
               },
               {
                 "type": "scar_count",
-                "region_id": "REG_VALLE_VERDE",
                 "max": 0,
-                "label": "La Valle Verde è uscita pulita"
+                "label": "La terra del #granaio e' uscita pulita",
+                "any_tag": [
+                  "granary",
+                  "domain:SURVIVAL"
+                ]
               },
               {
                 "type": "scar_count",
@@ -272,9 +290,12 @@
           {
             "type": "region_presence",
             "entity_id": "ENT_LYRA",
-            "region_id": "REG_MINIERE_ANTICHE",
             "min": 1,
-            "label": "Presenza nelle Miniere Antiche"
+            "label": "Una pedina dove c'e' la #miniera, o su una terra d'#antico",
+            "any_tag": [
+              "mine",
+              "domain:ANCIENT"
+            ]
           },
           {
             "type": "some_of",
@@ -338,15 +359,21 @@
               },
               {
                 "type": "scar_count",
-                "region_id": "REG_MINIERE_ANTICHE",
                 "max": 0,
-                "label": "Le Miniere sono uscite dall'anno senza un segno"
+                "label": "La terra della #miniera e' uscita dall'anno senza un segno",
+                "any_tag": [
+                  "mine",
+                  "domain:ANCIENT"
+                ]
               },
               {
                 "type": "scar_count",
-                "region_id": "REG_STRADA_MERCANTI",
                 "max": 0,
-                "label": "E la strada per le gallerie è uscita pulita"
+                "label": "E la via del #commercio, quella che porta alle gallerie, e' uscita pulita",
+                "any_tag": [
+                  "trade",
+                  "domain:RESOURCE"
+                ]
               }
             ]
           }
@@ -368,8 +395,8 @@
         ],
         "reads": {
           "minimum": "Hai almeno una Scoperta davanti a te.",
-          "victory": "Sei nelle gallerie, e qualcuno ti ha giurato la strada aperta oppure un posto risponde a te.",
-          "triumph": "Quattro Scoperte, nessuna guardia sullo studio, e le gallerie escono dall'anno senza Cicatrici."
+          "victory": "Sei sulla terra della #miniera, e qualcuno ti ha giurato la via del #commercio aperta oppure un posto risponde a te.",
+          "triumph": "Quattro Scoperte, nessuna guardia sullo studio, e la terra della #miniera esce dall'anno senza Cicatrici."
         }
       }
     },
@@ -384,9 +411,12 @@
           {
             "type": "region_presence",
             "entity_id": "ENT_VAERAX",
-            "region_id": "REG_MONTAGNE_ROSSE",
             "min": 1,
-            "label": "Presenza sulle Montagne Rosse"
+            "label": "Una pedina sulla terra col #selvaggio, o su una d'#antico",
+            "any_tag": [
+              "wild",
+              "domain:ANCIENT"
+            ]
           }
         ]
       },
@@ -414,8 +444,11 @@
             "type": "state_tag_absent",
             "scope": "REGION",
             "tag": "condition:exploited",
-            "region_id": "REG_MINIERE_ANTICHE",
-            "label": "E le Miniere non sono state svuotate"
+            "label": "E la terra della #miniera non e' stata svuotata",
+            "any_tag": [
+              "mine",
+              "domain:ANCIENT"
+            ]
           },
           {
             "type": "some_of",
@@ -451,9 +484,12 @@
               },
               {
                 "type": "scar_count",
-                "region_id": "REG_MINIERE_ANTICHE",
                 "min": 1,
-                "label": "E le gallerie portano un segno che si vede da fuori"
+                "label": "E la terra della #miniera porta un segno che si vede da fuori",
+                "any_tag": [
+                  "mine",
+                  "domain:ANCIENT"
+                ]
               },
               {
                 "type": "state_tag_present",
@@ -480,9 +516,9 @@
           "condition:emptied"
         ],
         "reads": {
-          "minimum": "Hai una presenza sulla montagna.",
-          "victory": "Le gallerie sono sigillate e il Cristallo non è uscito.",
-          "triumph": "Le Miniere non svuotate, il Risveglio riportato indietro, salire non è facile per nessuno — e una strada si è chiusa: chi non passa non arriva."
+          "minimum": "Hai una pedina sulla terra col #selvaggio.",
+          "victory": "La terra della #miniera e' sigillata e il Cristallo non è uscito.",
+          "triumph": "La terra della #miniera non svuotata, il Risveglio riportato indietro, salire non è facile per nessuno — e una strada si è chiusa: chi non passa non arriva."
         }
       }
     },
@@ -497,9 +533,12 @@
           {
             "type": "region_presence",
             "entity_id": "ENT_ALDRIC",
-            "region_id": "REG_EREDAN",
             "min": 1,
-            "label": "Presenza a Eredan"
+            "label": "Una pedina dove c'e' il #capitale, o su una terra di #territorio",
+            "any_tag": [
+              "capital",
+              "domain:TERRITORY"
+            ]
           }
         ]
       },
@@ -526,9 +565,12 @@
               {
                 "type": "region_presence",
                 "entity_id": "ENT_ALDRIC",
-                "region_id": "REG_EREDAN",
                 "min": 2,
-                "label": "Eredan è presidiata, non solo tenuta"
+                "label": "La terra col #capitale e' presidiata, non solo tenuta",
+                "any_tag": [
+                  "capital",
+                  "domain:TERRITORY"
+                ]
               },
               {
                 "type": "structure_count",
@@ -540,9 +582,12 @@
               {
                 "type": "state_tag_absent",
                 "scope": "REGION",
-                "region_id": "REG_EREDAN",
                 "tag": "condition:unrest",
-                "label": "Eredan non è in rivolta"
+                "label": "E non e' in rivolta",
+                "any_tag": [
+                  "capital",
+                  "domain:TERRITORY"
+                ]
               }
             ]
           }
@@ -571,15 +616,21 @@
               {
                 "type": "state_tag_absent",
                 "scope": "REGION",
-                "region_id": "REG_EREDAN",
                 "tag": "condition:unrest",
-                "label": "Eredan non è in rivolta"
+                "label": "La terra col #capitale non e' in rivolta",
+                "any_tag": [
+                  "capital",
+                  "domain:TERRITORY"
+                ]
               },
               {
                 "type": "scar_count",
-                "region_id": "REG_EREDAN",
                 "max": 0,
-                "label": "Eredan è uscita dall'anno senza un segno"
+                "label": "Ed e' uscita dall'anno senza un segno",
+                "any_tag": [
+                  "capital",
+                  "domain:TERRITORY"
+                ]
               },
               {
                 "type": "tension_limit",
@@ -611,9 +662,9 @@
           "condition:contested"
         ],
         "reads": {
-          "minimum": "A Eredan c'è almeno una pedina sua.",
-          "victory": "Nessuna domanda lasciata aperta, due terre che rispondono, Eredan presidiata e qualcosa di murato col suo nome — senza rivolta.",
-          "triumph": "La corona intera, la successione passata per la legge, Eredan quieta e senza segni nuovi: chi siede non è più una domanda."
+          "minimum": "Sulla terra col #capitale c'è almeno una pedina sua.",
+          "victory": "Nessuna domanda lasciata aperta, due terre che rispondono, la terra col #capitale presidiata e qualcosa di murato col suo nome — senza rivolta.",
+          "triumph": "La corona intera, la successione passata per la legge, la terra col #capitale quieta e senza segni nuovi: chi siede non è più una domanda."
         }
       }
     },
@@ -639,9 +690,12 @@
           {
             "type": "region_presence",
             "entity_id": "ENT_NAHR",
-            "region_id": "REG_VALLE_VERDE",
             "min": 1,
-            "label": "Presenza nella Valle Verde"
+            "label": "Una pedina dove c'e' il #granaio, o su una terra di #sopravvivenza",
+            "any_tag": [
+              "granary",
+              "domain:SURVIVAL"
+            ]
           },
           {
             "type": "some_of",
@@ -695,9 +749,12 @@
               {
                 "type": "state_tag_absent",
                 "scope": "REGION",
-                "region_id": "REG_TERRE_NAHR",
                 "tag": "condition:emptied",
-                "label": "Le Terre Nahr non si sono svuotate"
+                "label": "La terra del #pascolo non si e' svuotata",
+                "any_tag": [
+                  "nomad_range",
+                  "domain:SURVIVAL"
+                ]
               },
               {
                 "type": "structure_count",
@@ -707,9 +764,12 @@
               },
               {
                 "type": "scar_count",
-                "region_id": "REG_VALLE_VERDE",
                 "max": 0,
-                "label": "La Valle Verde è uscita pulita"
+                "label": "E la terra del #granaio e' uscita pulita",
+                "any_tag": [
+                  "granary",
+                  "domain:SURVIVAL"
+                ]
               },
               {
                 "type": "structure_count",
@@ -735,8 +795,8 @@
         ],
         "reads": {
           "minimum": "Il popolo ha piantato almeno una cosa che resta.",
-          "victory": "Una pedina nella Valle Verde, due terre che rispondono, tre cose che restano — e il villaggio è diventato borgo.",
-          "triumph": "Radicati senza chiudere la porta: la Valle aperta, l'insediamento riconosciuto, le Terre non svuotate, e la Valle Verde uscita pulita."
+          "victory": "Una pedina sulla terra del #granaio, due terre che rispondono, tre cose che restano — e il villaggio è diventato borgo.",
+          "triumph": "Radicati senza chiudere la porta: la terra del #granaio aperta, l'insediamento riconosciuto, la terra del #pascolo non svuotata — e il #granaio uscito pulito."
         }
       }
     },
@@ -828,8 +888,8 @@
         ],
         "reads": {
           "minimum": "Qualcuno ha imparato qualcosa: la scuola ha insegnato almeno una volta.",
-          "victory": "Una scoperta all'attivo, le gallerie aperte, e due pietre sue — o una terra che le risponde.",
-          "triumph": "Verificabile da chiunque: gallerie aperte, una scorta giurata per arrivarci, e nessuna guardia messa allo studio."
+          "victory": "Una scoperta all'attivo, le terra della #miniera aperta, e due pietre sue — o una terra che le risponde.",
+          "triumph": "Verificabile da chiunque: terra della #miniera aperta, una scorta giurata per arrivarci, e nessuna guardia messa allo studio."
         }
       }
     },
@@ -844,9 +904,12 @@
           {
             "type": "region_presence",
             "entity_id": "ENT_VAERAX",
-            "region_id": "REG_MONTAGNE_ROSSE",
             "min": 1,
-            "label": "Presenza sulle Montagne Rosse"
+            "label": "Una pedina sulla terra col #selvaggio, o su una d'#antico",
+            "any_tag": [
+              "wild",
+              "domain:ANCIENT"
+            ]
           }
         ]
       },
@@ -887,9 +950,12 @@
           {
             "type": "state_tag_absent",
             "scope": "REGION",
-            "region_id": "REG_MONTAGNE_ROSSE",
             "tag": "condition:unrest",
-            "label": "Le Montagne non sono in rivolta"
+            "label": "La terra col #selvaggio non e' in rivolta",
+            "any_tag": [
+              "wild",
+              "domain:ANCIENT"
+            ]
           }
         ]
       },
@@ -903,7 +969,7 @@
           "condition:unrest"
         ],
         "reads": {
-          "minimum": "La montagna è ancora sua: una pedina sulle Montagne Rosse.",
+          "minimum": "La terra col #selvaggio è ancora sua: una pedina sopra.",
           "victory": "Nessuno scava più, e almeno una terra risponde.",
           "triumph": "Il Cristallo intatto, le Montagne quiete — e a guardarlo è qualcuno che non lo vuole."
         }
@@ -976,7 +1042,7 @@
           "rumour_running"
         ],
         "reads": {
-          "minimum": "Il mondo dimentica la montagna.",
+          "minimum": "Il mondo dimentica la terra col #selvaggio.",
           "victory": "Il sigillo regge e il Risveglio resta quieto.",
           "triumph": "Il sigillo regge, il Risveglio è un sussurro — e la voce che corre fuori dalla sala è la sua."
         }

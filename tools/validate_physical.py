@@ -91,6 +91,24 @@ MANO_INVISIBILE = "engine"
 CANCELLETTO = re.compile(r"#([a-zàèéìòù][a-zàèéìòù_]*)")
 
 
+def _righe_di_regione(carta: Dict[str, Any]) -> List[Dict[str, Any]]:
+    """Ogni clausola di un Destino o di un Obiettivo che punta a un luogo."""
+    out: List[Dict[str, Any]] = []
+
+    def cammina(nodo: Any) -> None:
+        if isinstance(nodo, dict):
+            if "type" in nodo and ("region_id" in nodo or "any_tag" in nodo):
+                out.append(nodo)
+            for valore in nodo.values():
+                cammina(valore)
+        elif isinstance(nodo, list):
+            for valore in nodo:
+                cammina(valore)
+
+    cammina(carta)
+    return out
+
+
 def carica() -> Dict[str, List[Dict[str, Any]]]:
     documenti: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
     for path in sorted(DATA_DIR.rglob("*.json")):
@@ -588,6 +606,36 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
                     "su %d tessere del parco di %s, e per esserci su ogni mappa ne servono %d"
                     % (carta.get("id"), porta, cronaca.get("id"), pavimento))
 
+        # E la stessa matematica sulle **clausole** dei Destini e degli
+        # Obiettivi (D-327). Fino a 0.1.289 una riga poteva nominare una Regione
+        # per nome, e il 43.1% nominava una terra che quell'anno non usciva
+        # dalla pesca: misurato in D-326. Adesso mirano a segni, e i segni
+        # devono stare su abbastanza tessere da esserci comunque. Nominare una
+        # Regione per nome non si puo' piu': su una mappa pescata e' una riga
+        # che nasce morta.
+        for famiglia in ("destiny", "objective"):
+            for carta in documenti.get(famiglia, []):
+                for riga in _righe_di_regione(carta):
+                    nominata = str(riga.get("region_id", ""))
+                    if nominata and not nominata.startswith("$"):
+                        guai.append(
+                            "clausola che nasce morta: %s nomina %s per nome, e la mappa si "
+                            "pesca %d su %d — si mira a segni (D-327)"
+                            % (carta.get("id"), nominata, pescate, len(candidate)))
+                        continue
+                    segni_riga = [str(s) for s in riga.get("any_tag", [])]
+                    if not segni_riga:
+                        continue
+                    porta_riga = sum(
+                        1 for rid in candidate
+                        if any(s in stampati_per_tessera.get(rid, set()) for s in segni_riga))
+                    if porta_riga < pavimento:
+                        guai.append(
+                            "clausola non garantita sul tavolo pescato: %s guarda segni "
+                            "stampati su %d tessere del parco di %s, e per esserci su ogni "
+                            "mappa ne servono %d"
+                            % (carta.get("id"), porta_riga, cronaca.get("id"), pavimento))
+
     # 18. Le due liste sulla carta Tensione (D-280, parola del committente).
     # La carta girata offre **benefici** che il proponente compra e **costi**
     # che gli avversari scelgono, piu' gli effetti stampati se la proposta
@@ -882,6 +930,21 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
                      and (a["physical"]["target"].get("any_tag")))
         carta["physical"]["target"]["any_tag"] = ["capital"]
 
+    def clausola_stretta(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        # Una riga di Destino ri-mirata sulla sola #capitale: una tessera su
+        # dieci, e meta' delle mappe pescate non la porterebbe (D-327).
+        riga = next(r for d in prova["destiny"] for r in _righe_di_regione(d)
+                    if r.get("any_tag"))
+        riga["any_tag"] = ["capital"]
+
+    def clausola_col_nome(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        # Una riga che torna a nominare una Regione per nome: e' il difetto che
+        # D-326 ha misurato al 43.1%, e da D-327 non si puo' piu' scrivere.
+        riga = next(r for d in prova["destiny"] for r in _righe_di_regione(d)
+                    if r.get("any_tag"))
+        riga.pop("any_tag")
+        riga["region_id"] = "REG_EREDAN"
+
     def scelta_finta(prova: Dict[str, List[Dict[str, Any]]]) -> None:
         # Due pedine di costo che fanno la stessa cosa: al tavolo si posano su
         # due caselle uguali, e la scelta non e' una scelta (D-280).
@@ -1006,6 +1069,10 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
                "Echo senza effetto"),
         pianta("carta ri-mirata su un segno raro", bersaglio_stretto,
                "bersaglio non garantito sul tavolo pescato"),
+        pianta("clausola di Destino ri-mirata su un segno raro", clausola_stretta,
+               "clausola non garantita sul tavolo pescato"),
+        pianta("clausola che torna a nominare una Regione per nome", clausola_col_nome,
+               "clausola che nasce morta"),
         pianta("porta del tempo su una casa senza profilo", porta_senza_profilo,
                "porta del tempo su una casa senza profilo"),
         pianta("porta del tempo che chiede piu' segni di quanti ne esistono",
