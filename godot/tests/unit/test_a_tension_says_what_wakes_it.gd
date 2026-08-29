@@ -170,3 +170,37 @@ func test_a_rule_with_no_verb_never_wakes() -> void:
 	assert_true(bool(_play().get("ok", false)), "la carta si gioca")
 	assert_eq(session.tensions.value(twin), before,
 		"una riga senza verbo non ha svegliato niente")
+
+
+## **Si scaldano tutte** (D-332): due questioni che riconoscono lo stesso gesto
+## prendono **tutte e due** il Calore.
+##
+## E' la prova che il numero della sonda non e' cieco: se questa passa e la sonda
+## dice sempre «una questione per gesto», e' il mondo a essere fatto cosi', non
+## la misura a essere rotta.
+func test_every_question_that_recognises_the_gesture_wakes() -> void:
+	_a_card_that_marks()
+	var first: String = _fabricate_twin([{
+		"text": "una carta posa il segno del banco", "puts_tag": [MARK],
+	}])
+	# Una seconda gemella, di un Tema ancora diverso, con la stessa riga.
+	var second: Dictionary = (session.data.tensions["TEN_FAMINE"] as Dictionary).duplicate(true)
+	second["id"] = "TEN_TEST_TWIN_B"
+	second["title"] = "La Seconda Gemella"
+	second["theme"] = "THM_VIE"
+	second["threshold"] = 12
+	second["heats_when"] = [{"text": "anche lei", "puts_tag": [MARK]}]
+	session.data.tensions["TEN_TEST_TWIN_B"] = second
+	session.world["tensions"]["TEN_TEST_TWIN_B"] = {
+		"id": "TEN_TEST_TWIN_B", "current_value": 1, "visibility": "OPEN",
+		"fired_omens": [], "resolved_count": 0,
+	}
+	var before_first: int = session.tensions.value(first)
+	var before_second: int = session.tensions.value("TEN_TEST_TWIN_B")
+
+	assert_true(bool(_play().get("ok", false)), "la carta si gioca")
+	assert_true(session.tensions.value(first) > before_first,
+		"la prima si e' scaldata (%d -> %d)" % [before_first, session.tensions.value(first)])
+	assert_true(session.tensions.value("TEN_TEST_TWIN_B") > before_second,
+		"e anche la seconda (%d -> %d)"
+			% [before_second, session.tensions.value("TEN_TEST_TWIN_B")])

@@ -10,6 +10,121 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-332 — Si scaldano tutte, e le regole guardavano dove il gioco non succede
+
+**implemented** (0.1.295) · [ISSUES 100](ISSUES.md) · decisione del committente:
+*«Si scaldano tutte, un evento puo' avere conseguenze su piu' tempi… Dovresti
+fare un controllo di quanto siano strette le cose che scaldano»*.
+
+### La decisione, e la sua ragione
+
+Fino a qui, fra le questioni che riconoscevano il gesto ne prendeva Calore **una
+sola**, la piu' vicina alla soglia. La faccia della carta prometteva *«mi accendo
+quando succede questo»* e il motore lo manteneva solo se quella questione era
+anche la piu' matura: una promessa con un asterisco che al tavolo non si legge.
+
+Adesso **si scaldano tutte**. Resta per ognuna la regola di D-257 — *la
+Risonanza avvicina, non decide* — che vieta di portare alla soglia una questione
+gia' a un passo: e' la riga che impedisce a «tutte» di aprire Consigli da sola.
+
+### Il controllo che il committente ha chiesto, e ha trovato piu' di quanto cercava
+
+**Prima cosa: un numero che avevo dato era sbagliato.** Dicevo *«257 cadute su
+381 usano la casella — il 67,5%»*. Quel contatore misurava le cadute finite su
+una questione **che ha** una casella, non quelle che la casella ha **scelto**: il
+ponte poteva aver scelto lei. Il numero vero si prende **spegnendo il ponte** e
+contando cosa resta:
+
+> **20 cadute su 383. La casella decide una volta su venti — il 5,2%.**
+
+**Seconda cosa, ed e' la causa.** Cosa fanno **davvero** le Azioni in 20 anni,
+contato sul verbale degli Effetti:
+
+| verbo | volte |
+|---|---|
+| `REMOVE_ASSET` (la carta si spende) | 909 |
+| **`SET_ENTITY_TAG`** — un segno sulla casa | **316** |
+| **`ADD_PRESENCE`** | **175** |
+| **`SET_RELATION`** | **159** |
+| `REMOVE_PRESENCE` | 58 |
+| `SET_GLOBAL_TAG` | 16 |
+| **`SET_REGION_TAG`** — un segno sulla terra | **6** |
+| **`SET_CONTROL`** | **mai** |
+| **`BUILD_STRUCTURE`** | **mai** |
+
+E cosa aspettano le 66 righe scritte:
+
+| aspettano | righe | il gioco lo fa |
+|---|---|---|
+| **un cambio di controllo** | **47** | **mai** |
+| un segno posato | 17 | 6 volte in 20 anni sulle Regioni |
+| una Pietra costruita | 1 | **mai** |
+| una Presenza tolta | 1 | 58 volte ✓ |
+
+E la stoccata: **dei 17 segni che le righe guardano, zero sono di ambito
+ENTITA'** — mentre il segno sulla casa e' la seconda cosa piu' frequente che
+un'Azione fa.
+
+> **Le regole non sono troppo strette: guardano dalla parte opposta a dove il
+> gioco succede.** Il pavimento derivato in D-330 veniva da `focus_region_tags`,
+> che dice di quali segni una questione **parla** — non quali gesti la
+> **toccano**. E' la stessa famiglia dell'errore di D-331: misurare il proxy
+> invece della cosa.
+
+### Quindi «si scaldano tutte» oggi non fa quasi niente
+
+Su **100 semi**, 1.849 gesti:
+
+| questioni svegliate da un gesto | gesti | |
+|---|---|---|
+| una | 1.844 | 99,7% |
+| **due** | **5** | 0,3% |
+| tre o piu' | **0** | 0,0% |
+
+Media **1,00**. La frase del committente — *«raramente un gesto scalda piu' di
+tre temi»* — e' rispettata con enorme abbondanza, ma **per la ragione
+sbagliata**: non perche' il mondo sia parsimonioso, perche' quasi nessuna riga
+morde.
+
+> **E su venti semi la sonda diceva zero gesti con due questioni.** Il campione
+> era troppo piccolo per un evento allo 0,3%: il playtest a cento semi si e'
+> mosso e la sonda a venti diceva che non poteva. Un numero che non si muove va
+> rimisurato su un campione che possa vederlo muovere.
+
+La modifica resta perche' e' la promessa che la carta stampa, e diventera' viva
+quando le righe guarderanno i verbi veri. **Non la conto come un miglioramento
+di adesso.**
+
+### La prova che la misura non e' cieca
+
+Un numero sempre uguale a uno e' un numero da non credere, come uno zero. La
+quinta prova di `test_a_tension_says_what_wakes_it.gd` fabbrica **due** questioni
+che riconoscono lo stesso gesto e pretende che si scaldino **tutte e due**: passa.
+Quindi l'«uno fisso» e' il mondo, non la sonda.
+
+### Il costo, dichiarato
+
+| | prima | dopo |
+|---|---|---|
+| **seggi bloccati su 8** | **0** | **0** (misto e uniforme) |
+| suite | 634 prove / 35.900 asserzioni | **635 / 35.873** |
+| Consigli per anno, misto / uniforme | 3,41 / 3,45 | 3,40 / 3,45 |
+| Verita' scritte, misto | 165 | **167** |
+| Verita' scritte, uniforme | 161 | 158 |
+
+Il playtest si muove di poco in tutte e due le direzioni: e' rumore, e non e' su
+questo che la decisione si giustifica.
+
+### Cosa resta, e ha un ordine adesso
+
+1. **Estendere la grammatica** coi verbi che il gioco produce: manca
+   `adds_presence`, che e' la terza cosa piu' comune sul tavolo, e
+   `changes_relation`.
+2. **Ri-mirare le 47 righe** che aspettano un cambio di controllo.
+3. Solo dopo, la scrittura a mano — su regole che almeno possono accendersi.
+
+---
+
 ## D-331 — La regola guarda il gesto, non il Tema della carta
 
 **implemented** (0.1.294) · [ISSUES 100](ISSUES.md) riscritta · decisione del
@@ -147,6 +262,23 @@ sarebbe invisibile.**
 ---
 
 ## D-330 — SI ACCENDE QUANDO: la Tensione dice cosa la sveglia
+
+> ### ⚠️ Correzione (0.1.295): il «67,5%» era sbagliato
+>
+> Il numero *«257 cadute su 381 usano la casella»* misurava una cosa diversa da
+> quella che diceva: contava le cadute finite su una questione **che ha** una
+> casella, non quelle che la casella ha **scelto**. Il ponte poteva benissimo
+> aver scelto lei.
+>
+> Il numero vero si prende spegnendo il ponte e contando le cadute che restano:
+> **20 su 383 — il 5,2%**. La casella decide una volta su venti.
+>
+> La ragione sta nei verbi, ed e' in [D-332](#d-332): quarantasette righe su
+> sessantasei aspettano un **cambio di controllo**, e le Azioni non ne producono
+> **mai**; una aspetta una **Pietra costruita**, e nemmeno quella; i segni di
+> Regione le Azioni li posano **6 volte in 20 anni**. Le regole erano scritte per
+> gesti che il gioco quasi non fa.
+
 
 **implemented** (0.1.293) · richiesta del committente, con la carta disegnata
 *I Recinti*: *«le carte tensione esempio di come le vorrei»*.

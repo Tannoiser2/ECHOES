@@ -1546,14 +1546,21 @@ func _resonance(
 	# guardando cosa e' appena successo alla mappa. Il ponte resta come ripiego
 	# dichiarato: se nessuna questione del Tema riconosce il gesto, il Calore
 	# torna alla piu' vicina alla soglia, che e' il comportamento di D-261.
-	var tension_id: String = _tension_that_wakes(done)
-	if tension_id == "":
-		tension_id = _hottest_of_theme(theme_id)
-	if tension_id != "" and heat > 0:
-		var applied: Dictionary = applier.apply(Effect.make(
-			"ADJUST_TENSION", "tension", tension_id, {"delta": heat}, mine
-		))
-		effects.append(applied)
+	# **Si scaldano tutte** (D-332, decisione del committente): *«un evento puo'
+	# avere conseguenze su piu' temi»*. Ogni questione la cui faccia riconosce il
+	# gesto prende il Calore, non piu' solo la piu' matura fra loro. Nessuna che
+	# lo riconosca: torna il ponte, per una sola.
+	var woken: Array = _tensions_that_wake(done)
+	if woken.is_empty():
+		var fallback: String = _hottest_of_theme(theme_id)
+		if fallback != "":
+			woken = [fallback]
+	if heat > 0:
+		for tension_id in woken:
+			var applied: Dictionary = applier.apply(Effect.make(
+				"ADJUST_TENSION", "tension", str(tension_id), {"delta": heat}, mine
+			))
+			effects.append(applied)
 	if aggravated and target_region != "" and str(echo.get("extra_tag", "")) != "":
 		var marked: Dictionary = applier.apply(Effect.make(
 			"SET_REGION_TAG", "region", target_region,
@@ -1599,23 +1606,26 @@ func _resonance(
 ## del loro Tema mentre lo erano da sei, due e cinque di altri: il loro gesto
 ## non veniva mai letto da chi lo riguardava.
 ##
-## Il Calore non aumenta: fra tutte le questioni che riconoscono il gesto ne
-## vince **una sola**, la piu' vicina alla soglia. L'insieme si allarga, il
-## vincitore resta uno — la modifica e' neutra sul volume per costruzione.
+## **E si scaldano tutte** (D-332, decisione del committente): *«un evento puo'
+## avere conseguenze su piu' tempi»*. Fino alla 0.1.294 fra le questioni che
+## riconoscevano il gesto ne vinceva una sola, la piu' vicina alla soglia — e la
+## faccia della carta prometteva una cosa che il motore manteneva solo se quella
+## questione era la piu' matura. Adesso la promessa e' intera: se c'e' scritto
+## che ti accendi quando succede questo, ti accendi.
 ##
 ## Il Tema della carta continua a decidere **su quale mazzetto cadono i
 ## gettoni**, cioe' quale Consiglio si apre: quello e' l'eco del gesto, e sta
 ## sulla carta che hai in mano. Qui si decide **quale domanda e' matura**, e
 ## quello lo dice il mondo.
 ##
-## Nessuna che riconosca il gesto: torna "" e il chiamante ricade sul ponte.
-func _tension_that_wakes(done: Array) -> String:
+## Nessuna che riconosca il gesto: torna vuoto e il chiamante ricade sul ponte,
+## per una sola questione.
+func _tensions_that_wake(done: Array) -> Array:
+	var out: Array = []
 	if done.is_empty():
-		return ""
+		return out
 	var ids: Array = (world["tensions"] as Dictionary).keys()
 	ids.sort()
-	var best: String = ""
-	var best_gap: int = 1 << 30
 	for tension_id in ids:
 		var definition: Variant = data.tensions.get(str(tension_id))
 		if definition == null:
@@ -1631,16 +1641,14 @@ func _tension_that_wakes(done: Array) -> String:
 				break
 		if not wakes:
 			continue
-		# La soglia si guarda come nel ponte: una questione gia' a un passo non
-		# si spinge oltre con una Risonanza (D-257, «la Risonanza avvicina, non
-		# decide»).
-		var gap: int = int(card["threshold"]) - tensions.value(str(tension_id))
-		if gap <= 1:
+		# La soglia si guarda come nel ponte, e adesso **per ognuna**: una
+		# questione gia' a un passo non si spinge oltre con una Risonanza
+		# (D-257, «la Risonanza avvicina, non decide»). E' la riga che impedisce
+		# a «si scaldano tutte» di aprire Consigli da sola.
+		if int(card["threshold"]) - tensions.value(str(tension_id)) <= 1:
 			continue
-		if gap < best_gap:
-			best_gap = gap
-			best = str(tension_id)
-	return best
+		out.append(str(tension_id))
+	return out
 
 
 ## Una riga di «SI ACCENDE QUANDO» contro quello che l'Azione ha fatto.

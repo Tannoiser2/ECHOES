@@ -110,8 +110,10 @@ Tema più caldo.
 E da 0.1.293 esegue anche **«SI ACCENDE QUANDO»** ([D-330](DECISIONS.md#d-330)):
 la Tensione stampa cosa le fa prendere Calore, e il Calore va alla questione che
 *quel gesto* riguarda invece che alla più vicina alla soglia. **47 Tensioni su
-60** portano la casella, e **259 cadute di Calore su 383** la usano; le altre
-ricadono sul ponte di D-261, che resta come ripiego dichiarato (ISSUES 100).
+60** portano la casella, ma **la casella decide solo 20 cadute su 383 — il
+5,2%**: le altre le sceglie ancora il ponte di D-261. La ragione e' che le righe
+aspettano gesti che le Azioni non fanno ([D-332](DECISIONS.md#d-332)), ed e' la
+voce piu' grossa di ISSUES 100.
 La regola guarda il **gesto**, non il Tema della carta
 ([D-331](DECISIONS.md#d-331)): il Tema decide su quale mazzetto cadono i gettoni,
 cioè quale Consiglio si apre; il gesto decide quale domanda è matura.

@@ -5,6 +5,76 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.295 — Si scaldano tutte, e le regole guardavano dove il gioco non succede (D-332)
+
+### Cambiato
+
+- **Si scaldano tutte** (decisione del committente): ogni questione la cui faccia
+  riconosce il gesto prende Calore, non piu' solo la piu' vicina alla soglia
+  fra loro. Resta per ognuna la regola di D-257 — *la Risonanza avvicina, non
+  decide* — che vieta di portare alla soglia una questione gia' a un passo.
+
+### Corretto — un numero che avevo dato era sbagliato
+
+Dicevo *«257 cadute su 381 usano la casella — il 67,5%»*. Quel contatore
+misurava le cadute finite su una questione **che ha** una casella, non quelle che
+la casella ha **scelto**. Il numero vero, preso spegnendo il ponte:
+
+> **20 cadute su 383. La casella decide una volta su venti — il 5,2%.**
+
+### Misurato — il controllo che il committente ha chiesto
+
+Cosa fanno **davvero** le Azioni in 20 anni, contro cosa aspettano le 66 righe:
+
+| le Azioni producono | volte | | le righe aspettano | righe |
+|---|---|---|---|---|
+| `SET_ENTITY_TAG` | 316 | | un cambio di controllo | **47** |
+| `ADD_PRESENCE` | 175 | | un segno posato | 17 |
+| `SET_RELATION` | 159 | | una Pietra costruita | 1 |
+| `REMOVE_PRESENCE` | 58 | | una Presenza tolta | 1 |
+| `SET_REGION_TAG` | **6** | | | |
+| `SET_CONTROL` | **mai** | | | |
+| `BUILD_STRUCTURE` | **mai** | | | |
+
+**Quarantasette righe su sessantasei aspettano un gesto che il gioco non fa mai**,
+e dei 17 segni guardati **zero sono di ambito Entita'** — mentre il segno sulla
+casa e' la seconda cosa piu' frequente che un'Azione produce.
+
+> Le regole non sono troppo strette: **guardano dalla parte opposta a dove il
+> gioco succede.** Il pavimento derivato veniva da `focus_region_tags`, che dice
+> di quali segni una questione **parla**, non quali gesti la **toccano**.
+
+E quindi «si scaldano tutte» oggi quasi non si vede — su 100 semi e 1.849 gesti:
+**1.844 ne svegliano una, 5 ne svegliano due, nessuno tre o piu'**. La modifica
+resta perche' e' la promessa che la carta stampa, non perche' migliori qualcosa
+adesso.
+
+### Cancelli
+
+- Quinta prova in `test_a_tension_says_what_wakes_it.gd`: due questioni che
+  riconoscono lo stesso gesto **si scaldano tutte e due**. Serve a sapere che
+  l'«uno fisso» della sonda e' il mondo e non la misura.
+- La sonda della Risonanza porta la distribuzione per gesto, e l'etichetta del
+  vecchio contatore adesso dice quello che il numero misura.
+
+### Costo, dichiarato
+
+| | prima | dopo |
+|---|---|---|
+| **seggi bloccati su 8** | **0** | **0** (misto e uniforme) |
+| suite | 634 / 35.900 | **635 / 35.873** |
+| Verita' scritte, misto / uniforme | 165 / 161 | **167 / 158** |
+
+Rumore in tutte e due le direzioni.
+
+### Cosa resta, e adesso ha un ordine
+
+1. Estendere la grammatica coi verbi veri: manca `adds_presence`.
+2. Ri-mirare le 47 righe che aspettano un cambio di controllo.
+3. Solo dopo, la scrittura a mano.
+
+---
+
 ## 0.1.294 — La regola guarda il gesto, non il Tema della carta (D-331)
 
 ### Cambiato
@@ -107,6 +177,23 @@ sarebbe invisibile.**
 ---
 
 ## 0.1.293 — SI ACCENDE QUANDO: la Tensione dice cosa la sveglia (D-330)
+
+> ### ⚠️ Correzione (0.1.295): il «67,5%» era sbagliato
+>
+> Il numero *«257 cadute su 381 usano la casella»* misurava una cosa diversa da
+> quella che diceva: contava le cadute finite su una questione **che ha** una
+> casella, non quelle che la casella ha **scelto**. Il ponte poteva benissimo
+> aver scelto lei.
+>
+> Il numero vero si prende spegnendo il ponte e contando le cadute che restano:
+> **20 su 383 — il 5,2%**. La casella decide una volta su venti.
+>
+> La ragione sta nei verbi, ed e' in [D-332](#d-332): quarantasette righe su
+> sessantasei aspettano un **cambio di controllo**, e le Azioni non ne producono
+> **mai**; una aspetta una **Pietra costruita**, e nemmeno quella; i segni di
+> Regione le Azioni li posano **6 volte in 20 anni**. Le regole erano scritte per
+> gesti che il gioco quasi non fa.
+
 
 ### Aggiunto
 
