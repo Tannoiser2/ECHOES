@@ -10,6 +10,161 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-335 — Le righe guardavano tre gesti che le Azioni non fanno
+
+**implemented** — 0.1.298
+
+### Il seguito misurato di D-332
+
+Con D-332 il Calore va a **ogni** questione che riconosce il gesto. Restava la
+domanda che avevo lasciato aperta: perché la casella decideva solo il **5,2%**
+delle cadute, e il ponte tutto il resto. Non era un problema di quante questioni
+si svegliano. Era che **le righe guardavano dalla parte sbagliata**.
+
+Contando cosa le Azioni fanno davvero al mondo, in vent'anni sul seme 7000:
+
+| il gesto | quante volte | c'era un verbo che lo nominava |
+|---|---|---|
+| `ADD_PRESENCE` — una Presenza arriva | **175** | **no** |
+| `SET_RELATION` — cambia un rapporto | **159** | **no** |
+| `REMOVE_PRESENCE` — una Presenza se ne va | 58 | sì |
+| `SET_REGION_TAG` — un segno sulla mappa | **6** | sì |
+| `SET_CONTROL` — cambia il controllo | **0** | sì |
+| `BUILD_STRUCTURE` — si costruisce una Pietra | **0** | sì |
+
+E contando cosa le righe aspettavano, sulle 66 stampate:
+
+| il verbo | righe | quanto esce |
+|---|---|---|
+| `takes_control` | **47** | mai |
+| `puts_tag` | 17 | 6 volte |
+| `builds` | 1 | mai |
+| `removes_presence` | 1 | 58 volte |
+
+Quarantotto righe su sessantasei aspettavano un gesto che non succede. Non è
+sfortuna statistica: **nessuna delle 48 carte Azione produce `SET_CONTROL`.** Il
+controllo di una Regione cambia al **Consiglio** — lo scrivono sei Conseguenze e
+un Echo — e il Consiglio sta a valle del Calore, non a monte. Una riga che
+aspetta un cambio di controllo per accendersi aspetta una cosa che, quando
+arriva, è già troppo tardi.
+
+### E un terzo difetto, peggiore, sulla carta del committente
+
+Il filtro del luogo — `on_region_with`, «su una terra con #granaio» — guardava la
+Regione **bersaglio** dell'Effetto. Ma una Presenza non ha come bersaglio la
+Regione: ha la **casata**. Il posto sta nel payload, sotto `region_id`.
+
+Quindi **ogni riga di Presenza con un filtro di luogo era muta per
+costruzione** — compresa la quarta riga de *I Recinti*, quella che il committente
+ha disegnato a mano: *«toglie una Presenza da una terra da coltivo»*. Non si è
+mai potuta accendere, in nessuna partita, da quando è stata scritta.
+
+### Cosa ho fatto, e cosa non ho fatto
+
+**Fatto:**
+
+- **`adds_presence`**, il verbo che mancava. È il gesto più frequente che le
+  Azioni fanno alla mappa e non aveva un nome sulla carta.
+- **Il filtro del luogo legge `payload.region_id`** quando c'è, e ricade sul
+  bersaglio quando non c'è. Tre prove nuove, di cui una che dice **no**: senza
+  quella, la prova che dice sì non proverebbe niente.
+- **Le 47 righe `takes_control` ripuntate** su quello che le Azioni fanno in quel
+  posto: *«una Presenza arriva o se ne va da una terra con #granaio»*. Sono righe
+  **derivate a macchina** (ISSUES 100 punto 1), non scritte da nessuno: ripuntare
+  un pavimento non è riscriverlo.
+- **Su *I Recinti* ho toccato una riga sola**, e la dico: *«cambia il controllo di
+  una terra da coltivo»* è diventata *«porta una Presenza in una terra da
+  coltivo»*. La sua riga «toglie una Presenza» esisteva già, quindi le quattro
+  righe restano quattro gesti diversi. Se il committente vuole che prendere il
+  controllo sia un gesto delle Azioni, la riga torna com'era — ma allora il mazzo
+  deve avere una carta che lo fa.
+
+**Non fatto, e perché:** `changes_relation` per `SET_RELATION` — 159 gesti su
+vent'anni senza un verbo. Non l'ho aggiunto perché **nessuna riga lo userebbe**:
+un cambio di rapporto non è un gesto su un luogo, e le 47 righe derivate sono
+tutte di luogo. Aggiungere un verbo che nessuno usa è inventare. Resta aperto in
+ISSUES 100: le 13 Tensioni senza casella sono quasi tutte di rapporti — *I Voti
+Non Sciolti*, *Il Diritto d'Asilo*, *La Vecchia Guardia* — e il verbo nascerà
+quando nascono le loro righe.
+
+### Il guadagno
+
+| su vent'anni, seme 7000 | prima | dopo |
+|---|---|---|
+| **la casella decide** (ponte spento) | 20 su 383 — **5,2%** | 121 su 409 — **29,6%** |
+| cadute di Calore in tutto | 383 | 409 |
+| questioni diverse toccate | 49 su 60 | **52 su 60** |
+| Calore a un Tema diverso da quello della carta | 5 | **54** |
+| gesti che svegliano più di una questione | 0 | 7 su 401, mai più di **tre** |
+
+L'ultima riga è la frase del committente misurata: *«raramente succede che un
+singolo gesto scalda più di tre temi»*. Non succede mai.
+
+**Il metodo, e il suo limite dichiarato:** il 29,6% si prende spegnendo il ponte
+e contando le cadute che restano, contro quelle col ponte acceso. Sono due mondi
+che divergono in vent'anni, quindi è una stima, non un rapporto esatto. È lo
+stesso metodo con cui è stato preso il 5,2%, quindi il confronto regge.
+
+### Il costo, dichiarato — e non è piccolo
+
+| su 100 semi | prima | dopo |
+|---|---|---|
+| **seggi bloccati su un solo livello** | **0 su 8** | **0 su 8** |
+| Consigli per anno, misto / uniforme | 3,40 / 3,45 | 3,43 / 3,48 |
+| **Verità scritte**, misto | **167**, 153 diverse | **159**, **143** diverse |
+| **Verità scritte**, uniforme | **158**, 137 diverse | **149**, **125** diverse |
+| trasformazioni sedute (12 saghe) | 199 | **204** |
+| **vite che non si sono mai sedute** | 6 | **7** |
+
+**Il mondo ricorda meno.** Dieci Verità diverse in meno al tavolo misto, dodici
+all'uniforme. Su una direzione che dice *«il Consiglio decide cosa il mondo
+ricorderà»*, è il numero che pesa di più in questa pagina.
+
+E si sa **dove** se ne vanno, guardando gli esiti dei Consigli:
+
+| esito | misto | uniforme |
+|---|---|---|
+| FAILURE | 91 → 93 | 27 → **15** |
+| SUCCESS_WITH_COST | 57 → **50** | 39 → **35** |
+| SUCCESS | 110 → **120** | 146 → **167** |
+| DECISIVE_SUCCESS | 82 → 80 | 133 → 131 |
+
+I Consigli **passano più puliti**: al tavolo uniforme i fallimenti quasi si
+dimezzano e i successi netti salgono di ventuno. E un successo che non costa
+niente lascia meno memoria di uno pagato — le Verità le scrive il prezzo, non
+l'approvazione. Il meccanismo è coerente coi numeri; non l'ho isolato con una
+prova apposta, e lo dico.
+
+**Perché succede, in una riga:** prima il Calore andava alla questione più vicina
+alla soglia, che non c'entrava col gesto; adesso va a quella che il gesto
+riguarda — ed è la stessa che le carte di quel tipo sanno sostenere al Consiglio.
+Le proposte arrivano più preparate e passano senza pagare.
+
+**Una via provata e scartata:** ho misurato la variante stretta, con le righe che
+guardano solo la Presenza che **arriva** e non anche quella che se ne va. Verità
+**identiche** — 159/143 e 149/125 — e Consigli identici. Restringere non compra
+niente, quindi resta la versione larga, che è più fedele all'intento della riga
+che ha sostituito.
+
+**La vita che si è spenta** è **Il Banco Nero** (ENT_SALE, su `debt_called`): si
+sedeva una volta su dodici saghe, adesso zero. In cambio le trasformazioni sedute
+salgono da 199 a 204.
+
+### Una prova che ha smesso di provare, e l'ha detto
+
+`test_without_the_box_the_bridge_still_carries` è andata rossa, e aveva ragione.
+Il suo presupposto era scritto nel commento: *«il segno del banco non lo guarda
+nessuna delle sessanta, quindi qui il ponte è davvero l'ultima parola»*. Con 46
+righe che guardano l'arrivo di una Presenza, non è più vero.
+
+Cercare un posto che nessuna riga guarda non serve: **non esiste**. Le 46 righe
+nominano segni sparsi su tutta la mappa, quindi un movimento di Presenza sveglia
+sempre qualcosa — che è un'altra misura, e detta bene. Quindi la prova adesso **si
+fabbrica la condizione**: mette a tacere le caselle del banco e prova il ripiego
+da solo. È la lezione di casa applicata alla lettera.
+
+---
+
 ## D-334 — Il motore non posa gettoni: via la mano invisibile
 
 **implemented** — 0.1.297

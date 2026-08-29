@@ -1287,6 +1287,41 @@ pedina** mossa per scelta. E il difetto si vede a occhio: **74 costruite, zero
 abbattute**, e visto che `structure:` attraversa le Chronicle senza sbiadire, in
 una saga la mappa **puo' solo riempirsi**.
 
+> **Rimisurato in 0.1.299**, con `cli/run_stone_probe.gd` su 100 partite, tavolo
+> misto, semi da 7000 — il numero qui sopra non lo rifaceva nessuno da allora, e
+> lo dichiarava la sonda stessa.
+>
+> | | su 30 Chronicle | **su 100 partite** |
+> |---|---|---|
+> | alzate | 74 — 2,5 a partita | **1062 — 10,62 a partita** |
+> | abbattute | **zero** | **24** — 0,24 a partita |
+> | andate in rovina | non misurato | **50** — 0,50 a partita |
+> | salite di grado | non misurato | **142** — 1,42 a partita |
+> | **scese di grado** | non misurato | **0** |
+> | in piedi a fine anno | 2 a partita | **8,98** a partita, 1,50 di grado 2+ |
+>
+> **Due cose sono cambiate e una no.**
+>
+> Le Pietre si alzano **quattro volte piu' spesso** di quanto diceva il numero
+> vecchio, e **non e' piu' vero che zero vengono abbattute**: ventiquattro
+> cadono, e cinquanta vanno in rovina perche' nessuno ha ottenuto quello che
+> voleva. La mappa non puo' piu' soltanto riempirsi — su questo la strada C ha
+> gia' vinto.
+>
+> **Quello che non e' cambiato e' il verso.** Una Pietra sale di grado 142 volte
+> e **non scende mai**: zero su cento partite. Il grado e' una scala a senso
+> unico, e o cade tutta la Pietra o resta dov'e' arrivata.
+>
+> **E la domanda di ISSUES 52 ha una risposta**: *«una casa puo' decidere di
+> costruire?»* Delle 1062, **856 le posa l'apertura** e solo **206 il Consiglio o
+> un'Eco** — quattro Pietre su cinque le distribuisce l'allestimento, non l'anno.
+> Un obiettivo che chiede una struttura lo decide il setup nell'80% dei casi.
+>
+> **Un avvertimento sulla misura**, che vale per tutte le righe qui sopra:
+> nessuno di questi gesti lascia un segno che `MISURA_SEGNI` sappia contare —
+> il segno del grado si scrive **dentro** l'effetto che costruisce la Pietra.
+> E' [ISSUES 102](#102-misura_segni-conta-due-categorie-su-cinque-e-non-vede-niente-di-quello-che-posa-una-pietra).
+
 Quello che segue e' la strada A per esteso, che resta il primo passo piu'
 economico.
 
@@ -2768,11 +2803,12 @@ e' in gioco.
 
 ---
 
-### 100. Le caselle «si accende quando» sono un pavimento, e il Calore ne sveglia una sola
+### 100. Le caselle «si accende quando» sono ancora un pavimento derivato
 
 `contenuto` · `regole` · `da-decidere` · aperta in 0.1.293
 ([D-330](DECISIONS.md#d-330)) · **riscritta in 0.1.294**
-([D-331](DECISIONS.md#d-331))
+([D-331](DECISIONS.md#d-331)) · **due punti chiusi in 0.1.298**
+([D-335](DECISIONS.md#d-335))
 
 > **La prima stesura poneva la domanda sbagliata**, e l'avevo posta io: *«il Tema
 > lo dichiara la carta o la Tensione?»*. La carta disegnata dal committente non
@@ -2784,30 +2820,40 @@ e' in gioco.
 > Ci scriveva anche un errore: *«con 60 Tensioni e 48 carte la regola sta su
 > meno posti dalla parte della Tensione»*. E' il contrario, e di cinque volte.
 
-Quello che resta e' **d'autore**, e sono quattro cose diverse.
+> **Due punti sono chiusi.** Il punto 4 — *una questione o tutte* — l'ha deciso
+> il committente: si scaldano tutte (D-332). E il punto 3 non era una scelta ma
+> un difetto: il ponte reggeva il 94,8% delle cadute perche' **48 righe su 66
+> guardavano gesti che le Azioni non fanno mai** (D-335). Ripuntate, la casella
+> decide il **29,6%**.
 
-1. **Una sola carta e' scritta a mano.** `TEN_ENCLOSURE` porta le quattro righe
-   che il committente ha disegnato su *I Recinti*. Le altre 46 hanno un
-   pavimento derivato da `focus_region_tags`, e il testo si vede che e'
-   meccanico: *«una carta posa #fame o #requisito o #malcontento»*. Al tavolo si
-   legge, ma non e' una faccia finita.
+Quello che resta e' **d'autore**, e sono tre cose.
+
+1. **Una sola carta e' scritta a mano.** `TEN_ENCLOSURE` porta le righe che il
+   committente ha disegnato su *I Recinti*. Le altre 46 hanno un pavimento
+   derivato da `focus_region_tags`, e il testo si vede che e' meccanico: *«una
+   carta posa #fame o #requisito o #malcontento»*, *«una Presenza arriva o se ne
+   va da una terra con #granaio»*. Al tavolo si legge, ma non e' una faccia
+   finita.
 2. **Tredici Tensioni non hanno la casella**, perche' non dichiaravano nessun
    `focus_region_tags` da cui derivarla. Per loro vale il ponte, e nessuno puo'
-   leggere sulla carta perche' si scaldano.
-3. **Il ponte e' ancora vivo**, e regge **124 cadute di Calore su 383**.
-4. **E la scelta vera, che non prendo io: una questione o tutte.** Oggi fra le
-   questioni che riconoscono il gesto ne vince **una sola**, la piu' vicina alla
-   soglia — ed e' per questo che togliere il filtro del Tema ha spostato solo
-   **5 cadute su 383** (D-331): le altre questioni che riconoscevano il gesto
-   erano meno mature e hanno perso. Se il Calore andasse a **tutte** quelle che
-   riconoscono, il gesto sveglierebbe ogni domanda che riguarda — ma il volume
-   del Calore si moltiplicherebbe, e con lui i Consigli per anno, che oggi
-   stanno in banda 3-6. **E' una decisione di volume, ed e' del committente.**
+   leggere sulla carta perche' si scaldano. E **sono quasi tutte di rapporti** —
+   *I Voti Non Sciolti*, *Il Diritto d'Asilo*, *La Vecchia Guardia*, *I Nomi
+   Vecchi* — il che le lega al punto qui sotto.
+3. **Manca il verbo dei rapporti.** `SET_RELATION` esce **159 volte** su
+   vent'anni e nessuna riga puo' nominarlo. Non ho aggiunto `changes_relation`
+   perche' oggi nessuna riga lo userebbe: le 47 derivate sono tutte di luogo, e
+   un cambio di rapporto non e' un gesto su un luogo. Il verbo nasce **insieme**
+   alle righe delle tredici, non prima.
 
-**Il metro**: `cli/run_resonance_probe.gd`, righe *Calore caduto su una che ce
-l'ha* (259 su 383) e *...e di un Tema diverso dalla carta* (5). **Fatto quando**
-nessuna caduta di Calore ricade sul ponte, e ogni riga stampata e' scritta da chi
-scrive il gioco.
+**E un numero che va guardato mentre si scrivono queste facce:** ripuntare le
+righe ha fatto scendere le **Verita' scritte** da 167 a 159 al tavolo misto (153
+a 143 diverse), perche' i Consigli passano piu' puliti e un successo che non
+costa niente lascia meno memoria. Ogni riga scritta a mano sposta quel numero:
+va riletto a ogni carta finita, non alla fine.
+
+**Il metro**: `cli/run_resonance_probe.gd` col ponte spento (121 su 409) e la
+riga *...e di un Tema diverso dalla carta* (54). **Fatto quando** ogni riga
+stampata e' scritta da chi scrive il gioco, e le tredici hanno la loro casella.
 
 ---
 
@@ -5449,6 +5495,82 @@ voce del dizionario porta `written_by: []`, che nel dizionario e' il modo di
 dire ad alta voce *«questo segno non lo scrive nessuno»*.
 
 **Fatto quando** `structure:road` ha una penna, oppure non ha piu' lettori.
+
+---
+
+### 102. `MISURA_SEGNI` conta due categorie su cinque, e non vede niente di quello che posa una Pietra
+
+`strumenti` · `misura` · aperta in 0.1.299
+
+Il committente, guardando il grafo dei segni: *«non e' possibile che scritto e
+clausole siano cosi' poche»*. Aveva ragione, e non era il grafo: e' la misura.
+
+`docs/MISURA_SEGNI.md` e' il documento che dice **quali segni il mondo scrive
+davvero e chi li guarda**. Ha **tre punti ciechi**, e due dei tre non sono
+dichiarati da nessuna parte.
+
+#### 1. Guarda due categorie su cinque — questo e' dichiarato
+
+`run_world_marks_probe.gd` conta solo `MEMORY` e `STATE`:
+
+> *«Solo i segni che al tavolo si posano [...]. Fuori restano FUNCTION, ENTITY e
+> PLACE, che sono contabilita' del motore.»*
+
+Sono **138 segni su 204** che non hanno un numero. La ragione scritta reggeva
+quando `PLACE` voleva dire «il posto e basta». Non regge piu': `place:forest`,
+`place:dry_spring`, `structure:granary`, `settlement:city` sono **la mappa che
+cambia**, e la mappa che cambia e' il gioco.
+
+#### 2. Non vede **niente** di quello che posa una Pietra — questo non e' dichiarato
+
+`effect_applier._build_structure` scrive il segno del grado con
+`_apply_grade_tag`, **dentro** l'effetto `BUILD_STRUCTURE`: non emette un
+`SET_REGION_TAG`. Il commento accanto lo dice — *«l'oggetto e' la verita', il tag
+e' derivato»* — ed e' una scelta giusta per il motore. Ma la sonda conta gli
+**effetti di segno**, quindi di tutto quello che una Pietra posa non vede niente.
+
+Misurato sugli stessi vent'anni: **214 Pietre alzate**, e nel conto dei segni ne
+risultano **sette**. Non e' un'approssimazione, e' cecita'.
+
+Vale anche per i **cambi di grado**: su 100 partite le Pietre salgono di grado
+**142 volte**, e nessuna di quelle 142 lascia un segno che la misura sappia
+contare.
+
+#### 3. «temuto» e «voluto» sono solo Destini e obiettivi — nemmeno questo e' dichiarato
+
+Le due colonne delle clausole leggono `data.destinies` e `data.objectives`. Una
+**regola del segno**, la **faccia di una carta**, un **Consiglio** o una
+**Tensione** che guardano quel segno non contano. Nel grafo si vede a occhio:
+righe con cinque lettori dichiarati e «clausole 0» accanto.
+
+#### Perche' conta
+
+Non e' un difetto estetico di un documento. `MISURA_SEGNI` e' uno dei due elenchi
+che la roadmap usa per decidere **cosa e' colore e cosa e' regola** — i «segni
+scritti spesso che nessuna clausola nomina» e i «nominati che non escono mai».
+Con questi tre buchi, quell'elenco:
+
+- non puo' dire niente su 138 segni su 204;
+- dichiara «mai scritti» segni che il mondo posa mille volte;
+- dichiara «senza clausole» segni che quattro pezzi diversi leggono.
+
+Un documento che non fallisce e racconta il mondo sbagliato: e' la stessa forma
+di D-329, D-333 e D-334, la terza volta in una settimana.
+
+#### Le tre riparazioni, in ordine di peso
+
+1. **Il segno della Pietra deve passare da un effetto**, o la sonda deve leggere
+   anche i `BUILD_STRUCTURE` e i cambi di grado. La seconda e' piu' piccola e non
+   tocca l'effect-sourcing; la prima e' piu' pulita e va discussa, perche' cambia
+   cosa finisce nel verbale.
+2. **Allargare le categorie**, o dire nel documento — riga per riga, non in
+   premessa — quali segni non sono misurati. Oggi un trattino e uno zero si
+   leggono uguali.
+3. **Separare «clausole» da «lettori».** Contare le clausole di punteggio e' una
+   cosa; dire chi guarda un segno e' un'altra, e servono tutt'e due.
+
+**Fatto quando** ogni voce del dizionario ha un numero o una riga che dice
+perche' non ce l'ha, e il conto dei segni di Pietra combacia con le Pietre alzate.
 
 ---
 

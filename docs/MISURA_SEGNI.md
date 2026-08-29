@@ -12,69 +12,71 @@ Misura: `cli/run_world_marks_probe.gd`, 100 partite, tavolo misto, semi da 7000.
 
 | segno | scritto | temuto | voluto | |
 |---|---|---|---|---|
-| `account_settled` | 11 | 0 | 0 | nessuno lo guarda |
+| `account_settled` | 12 | 0 | 0 | nessuno lo guarda |
 | `amnesty_granted` | 1 | 0 | 0 |  |
-| `betrayal_spoken` | 16 | 0 | 0 | nessuno lo guarda |
-| `burden_shared` | 50 | 0 | 0 | nessuno lo guarda |
-| `charter_for_all` | 3 | 0 | 0 |  |
+| `betrayal_spoken` | 17 | 0 | 0 | nessuno lo guarda |
+| `burden_shared` | 49 | 0 | 0 | nessuno lo guarda |
+| `charter_for_all` | 4 | 0 | 0 |  |
 | `charter_written` | 6 | 0 | 2 |  |
-| `condition:abandoned` | 48 | 0 | 0 | nessuno lo guarda |
-| `condition:contested` | 521 | 2 | 2 |  |
-| `condition:cut_off` | 108 | 1 | 1 |  |
-| `condition:emptied` | 28 | 2 | 1 |  |
+| `condition:abandoned` | 49 | 0 | 0 | nessuno lo guarda |
+| `condition:contested` | 515 | 2 | 2 |  |
+| `condition:cut_off` | 94 | 1 | 1 |  |
+| `condition:emptied` | 29 | 2 | 1 |  |
 | `condition:exploited` | 7 | 1 | 1 |  |
-| `condition:guarded` | 36 | 0 | 0 | nessuno lo guarda |
-| `condition:indebted` | 11 | 0 | 0 | nessuno lo guarda |
-| `condition:mourning` | 6 | 0 | 0 |  |
-| `condition:plundered` | 27 | 0 | 0 | nessuno lo guarda |
-| `condition:rationed` | 36 | 0 | 0 | nessuno lo guarda |
-| `condition:unrest` | 206 | 5 | 0 |  |
-| `crown_dispossessed` | 3 | 0 | 0 |  |
-| `crown_divided` | 7 | 2 | 1 |  |
-| `crystal_exploited` | 25 | 3 | 0 |  |
-| `crystal_measured` | 4 | 0 | 0 |  |
-| `debt_called` | 223 | 0 | 1 |  |
-| `debt_forgiven` | 105 | 0 | 1 |  |
-| `discovery:crystal` | 4 | 0 | 0 |  |
-| `discovery:legend` | 156 | 0 | 0 | nessuno lo guarda |
-| `discovery:relic` | 9 | 0 | 3 |  |
-| `discovery:the_charter` | 4 | 0 | 0 |  |
-| `discovery:the_ledger` | 338 | 0 | 0 | nessuno lo guarda |
-| `discovery:the_omen` | 455 | 0 | 0 | nessuno lo guarda |
-| `discovery:trade_ledger` | 201 | 0 | 0 | nessuno lo guarda |
-| `discovery:written_law` | 163 | 0 | 0 | nessuno lo guarda |
-| `distribution_audited` | 12 | 0 | 0 | nessuno lo guarda |
-| `escort_sworn` | 215 | 0 | 2 |  |
-| `failed_proposal` | 5 | 1 | 0 |  |
+| `condition:guarded` | 34 | 0 | 0 | nessuno lo guarda |
+| `condition:indebted` | 13 | 0 | 0 | nessuno lo guarda |
+| `condition:lean` | 1 | 0 | 0 |  |
+| `condition:mourning` | 7 | 0 | 0 |  |
+| `condition:plundered` | 25 | 0 | 0 | nessuno lo guarda |
+| `condition:rationed` | 35 | 0 | 0 | nessuno lo guarda |
+| `condition:starving` | 1 | 0 | 0 |  |
+| `condition:unrest` | 207 | 5 | 0 |  |
+| `crown_dispossessed` | 2 | 0 | 0 |  |
+| `crown_divided` | 6 | 2 | 1 |  |
+| `crystal_exploited` | 29 | 3 | 0 |  |
+| `crystal_measured` | 3 | 0 | 0 |  |
+| `debt_called` | 233 | 0 | 1 |  |
+| `debt_forgiven` | 104 | 0 | 1 |  |
+| `discovery:crystal` | 3 | 0 | 0 |  |
+| `discovery:legend` | 151 | 0 | 0 | nessuno lo guarda |
+| `discovery:relic` | 10 | 0 | 3 |  |
+| `discovery:the_charter` | 3 | 0 | 0 |  |
+| `discovery:the_ledger` | 339 | 0 | 0 | nessuno lo guarda |
+| `discovery:the_omen` | 449 | 0 | 0 | nessuno lo guarda |
+| `discovery:trade_ledger` | 193 | 0 | 0 | nessuno lo guarda |
+| `discovery:written_law` | 161 | 0 | 0 | nessuno lo guarda |
+| `distribution_audited` | 6 | 0 | 0 |  |
+| `escort_sworn` | 217 | 0 | 2 |  |
+| `failed_proposal` | 6 | 1 | 0 |  |
 | `faith_established` | 6 | 0 | 0 |  |
 | `grain_requisitioned` | 5 | 0 | 0 |  |
-| `heir_named` | 74 | 0 | 0 | nessuno lo guarda |
-| `knowledge_shared` | 145 | 0 | 0 | nessuno lo guarda |
-| `ledger_public` | 151 | 1 | 1 |  |
-| `list_witnessed` | 1 | 0 | 0 |  |
+| `heir_named` | 77 | 0 | 0 | nessuno lo guarda |
+| `knowledge_shared` | 142 | 0 | 0 | nessuno lo guarda |
+| `ledger_public` | 143 | 1 | 1 |  |
 | `mine_sealed` | 0 | 3 | 3 | **mai scritto** |
 | `mountain_forgotten` | 0 | 0 | 1 | **mai scritto** |
-| `nahr_settled` | 8 | 0 | 2 |  |
+| `nahr_settled` | 9 | 0 | 2 |  |
 | `no_charter` | 1 | 1 | 0 |  |
 | `oath_broken` | 0 | 1 | 0 | **mai scritto** |
-| `order_restored` | 83 | 0 | 1 |  |
-| `question_unresolved` | 82 | 5 | 0 |  |
-| `relic_buried` | 8 | 1 | 0 |  |
-| `relic_shown` | 4 | 1 | 1 |  |
-| `rumour_running` | 30 | 1 | 1 |  |
+| `order_restored` | 86 | 0 | 1 |  |
+| `question_unresolved` | 83 | 5 | 0 |  |
+| `relic_buried` | 7 | 1 | 0 |  |
+| `relic_shown` | 6 | 1 | 1 |  |
+| `return_promised` | 1 | 0 | 0 |  |
+| `rumour_running` | 33 | 1 | 1 |  |
 | `scar:open_wound` | 13 | 0 | 0 | nessuno lo guarda |
 | `someone_paid` | 27 | 0 | 0 | nessuno lo guarda |
-| `spoke_and_lost` | 30 | 0 | 0 | nessuno lo guarda |
-| `structure:sealed` | 3 | 2 | 0 |  |
+| `spoke_and_lost` | 33 | 0 | 0 | nessuno lo guarda |
+| `structure:sealed` | 2 | 2 | 0 |  |
 | `study_supervised` | 0 | 2 | 0 | **mai scritto** |
-| `succession_by_law` | 3 | 0 | 1 |  |
+| `succession_by_law` | 5 | 0 | 1 |  |
 | `succession_settled` | 2 | 0 | 0 |  |
-| `succession_witnessed` | 3 | 0 | 0 |  |
-| `toll_shared` | 19 | 0 | 0 | nessuno lo guarda |
-| `took_by_hand` | 12 | 0 | 0 | nessuno lo guarda |
+| `succession_witnessed` | 2 | 0 | 0 |  |
+| `toll_shared` | 17 | 0 | 0 | nessuno lo guarda |
+| `took_by_hand` | 13 | 0 | 0 | nessuno lo guarda |
 | `valley_sealed` | 0 | 2 | 0 | **mai scritto** |
-| `watched` | 6 | 0 | 0 |  |
-| `water_moves` | 4 | 0 | 2 |  |
+| `watched` | 5 | 0 | 0 |  |
+| `water_moves` | 5 | 0 | 2 |  |
 | `water_priced` | 0 | 2 | 0 | **mai scritto** |
 
 ## Lavoro del motore che al tavolo non conta
@@ -83,27 +85,26 @@ Scritti almeno 10 volte, e nessuna clausola li nomina.
 
 | segno | scritto |
 |---|---|
-| `discovery:the_omen` | 455 |
-| `discovery:the_ledger` | 338 |
-| `discovery:trade_ledger` | 201 |
-| `discovery:written_law` | 163 |
-| `discovery:legend` | 156 |
-| `knowledge_shared` | 145 |
-| `heir_named` | 74 |
-| `burden_shared` | 50 |
-| `condition:abandoned` | 48 |
-| `condition:guarded` | 36 |
-| `condition:rationed` | 36 |
-| `spoke_and_lost` | 30 |
+| `discovery:the_omen` | 449 |
+| `discovery:the_ledger` | 339 |
+| `discovery:trade_ledger` | 193 |
+| `discovery:written_law` | 161 |
+| `discovery:legend` | 151 |
+| `knowledge_shared` | 142 |
+| `heir_named` | 77 |
+| `burden_shared` | 49 |
+| `condition:abandoned` | 49 |
+| `condition:rationed` | 35 |
+| `condition:guarded` | 34 |
+| `spoke_and_lost` | 33 |
 | `someone_paid` | 27 |
-| `condition:plundered` | 27 |
-| `toll_shared` | 19 |
-| `betrayal_spoken` | 16 |
+| `condition:plundered` | 25 |
+| `toll_shared` | 17 |
+| `betrayal_spoken` | 17 |
+| `took_by_hand` | 13 |
 | `scar:open_wound` | 13 |
-| `took_by_hand` | 12 |
-| `distribution_audited` | 12 |
-| `condition:indebted` | 11 |
-| `account_settled` | 11 |
+| `condition:indebted` | 13 |
+| `account_settled` | 12 |
 
 ## Punti regalati: guardati e mai scritti
 

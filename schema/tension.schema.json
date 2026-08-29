@@ -389,6 +389,10 @@
                 "type": "boolean",
                 "description": "L'Azione ha tolto una Presenza da una Regione."
               },
+              "adds_presence": {
+                "type": "boolean",
+                "description": "L'Azione ha portato una Presenza in una Regione. E' il gesto piu' frequente che le Azioni fanno alla mappa — 175 volte su vent'anni — e fino alla 0.1.298 nessun verbo lo nominava, quindi non poteva accendere niente (D-335)."
+              },
               "on_region_with": {
                 "type": "array",
                 "items": {
