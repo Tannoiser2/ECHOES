@@ -3664,6 +3664,21 @@ arrivano da un'altra parte.
 > solo che (a) si puo' fare in tre passi con una soglia visibile dopo ognuno, e
 > che i primi due passi non chiedono di decidere niente di irreversibile.
 
+> ### La strada scelta, e il primo passo fatto in 0.1.301 (D-336)
+>
+> Il committente ha preso la **(b)**. Costruendola si e' visto che **meta'
+> esisteva gia'** — `CATALOGO_CONSIGLI` rende ogni proposta in grammatica di
+> segni da D-232 — **e diceva il falso su 89 righe su 164**: la frase era una
+> stringa fissa per tipo di Effetto, diceva il verbo e taceva il bersaglio.
+>
+> Riparata: adesso la riga porta il luogo, la casa, la questione per nome, il
+> verso e la Pietra col suo nome. Con una guardia nuova che non confronta due
+> testi ma la frase col **dato**, ed e' quella che mancava.
+>
+> **Resta il pezzo che chiude questa voce**: la riga vera vive in due documenti
+> generati, non sulla **faccia stampata** della carta. Il «fatto quando» qui
+> sotto chiede la carta, non un catalogo.
+
 **Fatto quando** una proposta si puo' risolvere guardando solo la carta e la
 mappa.
 

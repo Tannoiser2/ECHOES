@@ -10,6 +10,133 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-336 — Una frase che non dice dove non dice niente
+
+**implemented** — 0.1.301
+
+### La strada scelta dal committente
+
+ISSUES 89 lasciava tre strade, e il committente ha preso la **(b)**: *«il motore
+continua a fare quello che fa, ma la carta lo dice, generato dal dato con un
+cancello che sorveglia»*.
+
+Andando a costruirla si è scoperto che **metà esisteva già** — e diceva il falso.
+
+### Quello che c'era
+
+`docs/CATALOGO_CONSIGLI.md` rende da D-232 ogni proposta in grammatica di segni,
+generato dai dati e sorvegliato da un cancello in CI. La frase la costruisce
+`AssetText.effect_note()`, l'unico posto dove un Effetto diventa italiano.
+
+Era un dizionario di **stringhe fisse, una per tipo di Effetto**:
+
+```gdscript
+"BUILD_STRUCTURE": "si alza una costruzione dove si discute",
+"ADJUST_TENSION":  "la domanda in gioco sale",
+"SET_ENTITY_TAG":  "una casa porta addosso: %s",
+```
+
+Il tipo lo diceva. Il **bersaglio** no.
+
+### Il conto
+
+Misurate le frasi contro i dati, sui 164 Effetti che una proposta può applicare:
+**89 righe stampate su 164 — il 54% — dicevano il falso.** Cinque famiglie:
+
+| | quante | cosa prometteva, cosa faceva |
+|---|---|---|
+| il posto | **33** | diceva «dove si discute» e agiva altrove |
+| la questione | **26** | diceva «la domanda in gioco» e ne muoveva un'altra per nome |
+| la casa | **18** | diceva «una casa» e non diceva quale |
+| il grado | **7** | diceva «sale o scende» e non diceva da che parte |
+| il verso | **5** | diceva «sale» e invece scendeva |
+
+Un esempio intero, la stessa proposta prima e dopo — *«Il grano sia requisito in
+nome del trono»* su **La Carestia**:
+
+> **prima:** si alza una costruzione **dove si discute** · **la domanda in
+> gioco** sale · il mondo registra: il grano è stato requisito
+>
+> **adesso:** si alza **Granaio in una Regione con granaio** · **Le Vie
+> Interrotte** sale · il mondo registra: il grano è stato requisito
+
+Il Granaio si alza **in un'altra Regione**, e la domanda che sale è **un'altra
+questione**. Due bugie su tre righe, su una scheda che la CI sorvegliava.
+
+**E il cancello non poteva accorgersene**: confronta il documento con quello che
+il generatore produce, non il generatore con quello che il motore fa. È la terza
+volta in una settimana che un documento generato non fallisce e racconta il mondo
+sbagliato — dopo D-329, D-333 e D-334.
+
+### La riparazione
+
+`effect_note()` riceveva già l'**Effetto intero**: bersaglio e payload erano lì,
+e le costanti li ignoravano. Adesso la frase si costruisce da tutti e tre — il
+verbo dal tipo, il posto dal bersaglio, il verso dal payload:
+
+- **il luogo**: `dove si discute`, `in una Regione confinante`, `nella sede del
+  rivale`, `nella capitale`, `in una Regione con <segno>`;
+- **la casa**: `chi propone`, `il rivale`, `chi gioca`, `chi tiene la Regione`,
+  `chi ha posto la condizione`, `la casa che porta <segno>`;
+- **la questione**: `la domanda in gioco`, oppure il **titolo stampato** della
+  Tensione — *Le Vie Interrotte*, *Il Risveglio*;
+- **il verso**: `sale` / `scende`, e di quanto; il grado dice a quale grado va;
+- **la Pietra**: col suo nome — *Granaio*, *Sito antico*, *Passo*.
+
+Una Presenza ha come bersaglio la **casa**, non la Regione: il posto sta nel
+payload, sotto `region_id`. È lo stesso inciampo di D-335, un file più in là.
+
+### Tre difetti trovati riparando
+
+**Il dizionario aveva la parola e nessuno la chiedeva.** I segni della tessera —
+`granaio`, `pascolo`, `cristallo`, `capitale` — non stanno in `SignLabels`, e la
+frase stampava il tag inglese: *«in una Regione con crystal_site»*. Ma il campo
+`title` del dizionario dei segni è, per definizione dello schema, *«il nome
+stampato: come il segno si chiama sul tavolo»*, e per quei segni è l'unico posto
+che ce l'ha. Ora `SignLabels` lo consulta prima del ripiego: una riga, e vale
+anche per la mappa e per il foglio dei segnalini.
+
+**Un segnaposto non è il nome di un posto.** `evicted:$region_focus` stampava
+*«cacciata da $region_focus»*, e `settlement:$proponent` *«insediamento:
+$proponent»*. Il primo lo prese una prova che c'era già; il secondo lo prese la
+guardia nuova. Ora un `$` si dice a parole.
+
+**Una carta stampava il verso sbagliato sulla propria faccia**: *«la domanda in
+gioco sale»* mentre la fa scendere.
+
+### La guardia che mancava
+
+Il cancello del catalogo confronta due testi. Quello nuovo confronta la frase col
+**dato**: prende ogni Effetto che una proposta può applicare — 164 — e chiede
+alla frase di nominare il suo posto, la sua casa, il suo verso. Un bersaglio che
+il vocabolario non conosce cade su un ripiego **dichiarato**, e la prova lo
+prende; una seconda prova pianta un bersaglio inventato e verifica che il ripiego
+scatti davvero, perché senza quella la prima passerebbe anche con un vocabolario
+che inventa.
+
+**Ha morso subito**, su `settlement:$proponent`.
+
+### Il costo, dichiarato
+
+**Nessuno sul gioco.** Playtest 100 semi identico al prima — Verità 159/143 al
+tavolo misto, 149/125 all'uniforme, **0 seggi bloccati su un solo livello su 8**:
+è cambiato come un Effetto si *descrive*, non cosa fa.
+
+Due documenti generati sono derivati e sono stati rigenerati: `CATALOGO_CONSIGLI`
+(281 righe su 1.980) e `CATALOGO_CARTE` (37 righe). Tutte e due le derive sono
+correzioni.
+
+Suite da 638 a **640 prove**.
+
+### Quello che resta della strada (b)
+
+Questa decisione fa dire il vero alla frase. **Non la mette ancora sulla carta**:
+oggi vive in due documenti, e il «fatto quando» di ISSUES 89 chiede che una
+proposta si risolva *guardando solo la carta e la mappa*. Il passo dopo è portare
+quella riga sulla faccia stampata, ed è ISSUES 89 che resta aperta.
+
+---
+
 ## D-335 — Le righe guardavano tre gesti che le Azioni non fanno
 
 **implemented** — 0.1.298
