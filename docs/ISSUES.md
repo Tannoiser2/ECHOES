@@ -2768,12 +2768,23 @@ e' in gioco.
 
 ---
 
-### 100. Le quarantasei caselle «si accende quando» sono un pavimento, non una faccia
+### 100. Le caselle «si accende quando» sono un pavimento, e il Calore ne sveglia una sola
 
-`contenuto` · `da-decidere` · **aperta in 0.1.293** ([D-330](DECISIONS.md#d-330))
+`contenuto` · `regole` · `da-decidere` · aperta in 0.1.293
+([D-330](DECISIONS.md#d-330)) · **riscritta in 0.1.294**
+([D-331](DECISIONS.md#d-331))
 
-La casella esiste, il motore la esegue e una guardia la sorveglia. Quello che
-manca e' **d'autore**, e sono tre cose diverse:
+> **La prima stesura poneva la domanda sbagliata**, e l'avevo posta io: *«il Tema
+> lo dichiara la carta o la Tensione?»*. La carta disegnata dal committente non
+> chiede quello — dice *«questa Tensione riceve Calore quando **una carta**…»*,
+> senza nominare il Tema di chi gioca. D-331 ha tolto il filtro; il Tema resta
+> sulla carta, dove costa 48 dichiarazioni invece di 240 righe, e dove al tavolo
+> si legge in mano invece che scandagliando sei Tensioni scoperte.
+>
+> Ci scriveva anche un errore: *«con 60 Tensioni e 48 carte la regola sta su
+> meno posti dalla parte della Tensione»*. E' il contrario, e di cinque volte.
+
+Quello che resta e' **d'autore**, e sono quattro cose diverse.
 
 1. **Una sola carta e' scritta a mano.** `TEN_ENCLOSURE` porta le quattro righe
    che il committente ha disegnato su *I Recinti*. Le altre 46 hanno un
@@ -2783,19 +2794,20 @@ manca e' **d'autore**, e sono tre cose diverse:
 2. **Tredici Tensioni non hanno la casella**, perche' non dichiaravano nessun
    `focus_region_tags` da cui derivarla. Per loro vale il ponte, e nessuno puo'
    leggere sulla carta perche' si scaldano.
-3. **Il ponte e' ancora vivo**, e regge **124 cadute di Calore su 381**. Finche'
-   e' cosi' non si puo' togliere: il Calore resterebbe per terra.
+3. **Il ponte e' ancora vivo**, e regge **124 cadute di Calore su 383**.
+4. **E la scelta vera, che non prendo io: una questione o tutte.** Oggi fra le
+   questioni che riconoscono il gesto ne vince **una sola**, la piu' vicina alla
+   soglia — ed e' per questo che togliere il filtro del Tema ha spostato solo
+   **5 cadute su 383** (D-331): le altre questioni che riconoscevano il gesto
+   erano meno mature e hanno perso. Se il Calore andasse a **tutte** quelle che
+   riconoscono, il gesto sveglierebbe ogni domanda che riguarda — ma il volume
+   del Calore si moltiplicherebbe, e con lui i Consigli per anno, che oggi
+   stanno in banda 3-6. **E' una decisione di volume, ed e' del committente.**
 
-**Il verso del filo, e questa e' la decisione vera.** Oggi il Tema lo dichiara
-**la carta Azione** (`resonance.theme`) e la Tensione dice solo quale di quelle
-del Tema si sveglia. La carta del committente lo dichiara **dalla parte della
-Tensione**. Non possono essere tutte e due la fonte di verita': con 60 Tensioni
-e 48 carte, la regola sta su meno posti se la porta la Tensione — ma il
-cambiamento tocca la Risonanza, che e' la regola al centro della direzione.
-
-**Il metro**: `cli/run_resonance_probe.gd`, riga *Calore caduto su una che ce
-l'ha* — oggi 257 su 381. **Fatto quando** nessuna caduta di Calore ricade sul
-ponte, e ogni riga stampata e' scritta da chi scrive il gioco.
+**Il metro**: `cli/run_resonance_probe.gd`, righe *Calore caduto su una che ce
+l'ha* (259 su 383) e *...e di un Tema diverso dalla carta* (5). **Fatto quando**
+nessuna caduta di Calore ricade sul ponte, e ogni riga stampata e' scritta da chi
+scrive il gioco.
 
 ---
 

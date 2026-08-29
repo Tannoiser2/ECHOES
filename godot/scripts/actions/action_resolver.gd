@@ -1546,7 +1546,7 @@ func _resonance(
 	# guardando cosa e' appena successo alla mappa. Il ponte resta come ripiego
 	# dichiarato: se nessuna questione del Tema riconosce il gesto, il Calore
 	# torna alla piu' vicina alla soglia, che e' il comportamento di D-261.
-	var tension_id: String = _tension_that_wakes(theme_id, done)
+	var tension_id: String = _tension_that_wakes(done)
 	if tension_id == "":
 		tension_id = _hottest_of_theme(theme_id)
 	if tension_id != "" and heat > 0:
@@ -1590,11 +1590,27 @@ func _resonance(
 ## un controllo cambiato, una Presenza tolta — e il Calore va a quella che il
 ## gesto appena fatto riguarda davvero.
 ##
-## Fra piu' questioni che riconoscono lo stesso gesto vince la piu' vicina alla
-## soglia: e' la stessa mano del ponte, applicata a un insieme piu' piccolo.
-## Nessuna che lo riconosca: torna "" e il chiamante ricade sul ponte.
-func _tension_that_wakes(theme_id: String, done: Array) -> String:
-	if theme_id == "" or done.is_empty():
+## **La regola guarda il gesto, non il Tema della carta** (D-331). La prima
+## stesura cercava solo fra le questioni del Tema che la carta scalda, e la
+## carta disegnata dal committente non lo chiede: dice *«questa Tensione riceve
+## Calore quando **una carta** aggiunge #conteso...»*, senza nominare il Tema di
+## chi la gioca. Col filtro, tre carte su quaranta — la Banda Armata, le Braccia
+## per il Raccolto, il Pedaggio — non erano riconosciute da **nessuna** questione
+## del loro Tema mentre lo erano da sei, due e cinque di altri: il loro gesto
+## non veniva mai letto da chi lo riguardava.
+##
+## Il Calore non aumenta: fra tutte le questioni che riconoscono il gesto ne
+## vince **una sola**, la piu' vicina alla soglia. L'insieme si allarga, il
+## vincitore resta uno — la modifica e' neutra sul volume per costruzione.
+##
+## Il Tema della carta continua a decidere **su quale mazzetto cadono i
+## gettoni**, cioe' quale Consiglio si apre: quello e' l'eco del gesto, e sta
+## sulla carta che hai in mano. Qui si decide **quale domanda e' matura**, e
+## quello lo dice il mondo.
+##
+## Nessuna che riconosca il gesto: torna "" e il chiamante ricade sul ponte.
+func _tension_that_wakes(done: Array) -> String:
+	if done.is_empty():
 		return ""
 	var ids: Array = (world["tensions"] as Dictionary).keys()
 	ids.sort()
@@ -1605,8 +1621,6 @@ func _tension_that_wakes(theme_id: String, done: Array) -> String:
 		if definition == null:
 			continue
 		var card: Dictionary = definition as Dictionary
-		if str(card.get("theme", "")) != theme_id:
-			continue
 		var rules: Array = card.get("heats_when", []) as Array
 		if rules.is_empty():
 			continue

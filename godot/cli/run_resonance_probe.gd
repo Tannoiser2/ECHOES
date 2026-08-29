@@ -45,6 +45,7 @@ func _initialize() -> void:
 	var marks: int = 0         # le Risonanze aggravate, che lasciano un segno
 	var per_tension: Dictionary = {}  # su quale questione e' caduto il Calore (D-330)
 	var woken: int = 0         # quante volte l'ha scelta la casella «si accende quando»
+	var crossed: int = 0       # ...e di quelle, quante di un Tema diverso da quello della carta (D-331)
 
 	for run in range(runs):
 		var seed_value: int = first_seed + run
@@ -134,6 +135,12 @@ func _initialize() -> void:
 							(definition as Dictionary).get("heats_when", []) as Array
 					).is_empty():
 						woken += 1
+						# **Il numero di D-331**: quante volte il gesto ha svegliato
+						# una questione che la carta **non** scalda. Col filtro del
+						# Tema era zero per costruzione; senza, e' la misura di cosa
+						# la modifica ha davvero spostato.
+						if str((definition as Dictionary).get("theme", "")) != str(echo.get("theme", "")):
+							crossed += 1
 		played += int((session.world.get("cards_played_count", 0)))
 		session.dispose()
 
@@ -191,6 +198,7 @@ func _initialize() -> void:
 	print("    questioni diverse toccate      %5d su %d" % [per_tension.size(), data.tensions.size()])
 	print("    con la casella «si accende»    %5d su %d" % [with_rule, data.tensions.size()])
 	print("    Calore caduto su una che ce l'ha  %5d su %d" % [woken, bridged])
+	print("    ...e di un Tema diverso dalla carta %5d  (D-331)" % crossed)
 	var hottest: Array = per_tension.keys()
 	hottest.sort_custom(func(a: Variant, b: Variant) -> bool:
 		return int(per_tension[a]) > int(per_tension[b])

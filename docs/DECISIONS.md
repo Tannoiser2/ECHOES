@@ -10,6 +10,119 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-331 — La regola guarda il gesto, non il Tema della carta
+
+**implemented** (0.1.294) · [ISSUES 100](ISSUES.md) riscritta · decisione del
+committente dopo la domanda *«quale soluzione ti pare migliore?»*.
+
+### La domanda era posta male, e l'avevo posta male io
+
+[ISSUES 100](ISSUES.md), come l'avevo scritta, chiedeva: *«il Tema lo dichiara
+la carta Azione o la Tensione?»*. Rileggendo la carta disegnata dal committente,
+quella domanda **non c'e'**:
+
+> *«Questa Tensione riceve Calore quando **una carta**: aggiunge #conteso su una
+> Regione con #campo…»*
+
+**«Una carta»**, non «una carta di Terra». Il Tema (Terra) sta gia' stampato in
+alto sulla Tensione, come sua identita'. Il riquadro non chiede di spostare il
+Tema: chiede che la Tensione si accenda **sul gesto, chiunque l'abbia fatto**. La
+prima stesura di D-330 filtrava per il Tema della carta, ed era piu' restrittiva
+di quello che il committente aveva disegnato.
+
+### Perche' il Tema resta sulla carta
+
+| | sulla carta | sulla Tensione |
+|---|---|---|
+| dichiarazioni da scrivere | **48** | ~240 righe su 60 carte |
+| cosa fai al tavolo | leggi una riga sulla carta che hai in mano | scandagli fino a **6 Tensioni scoperte** dopo ogni Azione |
+| la meta' aggravata (25% delle Risonanze) | e' sulla carta, e dipende dal bersaglio | dovrebbe migrare, ma e' del gesto |
+| Calore che non trova regola | ricade sul ponte: **124 su 383** | **sparirebbe**, un terzo della risposta del mondo |
+
+Il costo al tavolo e' quello che decide: una riga sulla carta in mano contro sei
+carte da scandagliare a ogni Azione.
+
+**Correzione a quanto avevo scritto in ISSUES 100**: dicevo che *«con 60
+Tensioni e 48 carte la regola sta su meno posti dalla parte della Tensione»*. E'
+il contrario, e di cinque volte.
+
+### Cosa cambia davvero, e il Calore non aumenta
+
+Il filtro sparisce: fra **tutte** le questioni in gioco che riconoscono il gesto
+ne vince **una sola**, la piu' vicina alla soglia. L'insieme si allarga, il
+vincitore resta uno — **la modifica e' neutra sul volume per costruzione**.
+
+I due fili restano divisi, e adesso si dicono bene:
+
+- **i gettoni del Tema** — quale Consiglio si apre — li dice la **carta**: e'
+  l'eco del gesto, nel registro che la carta dichiara;
+- **il valore della questione** — quale domanda e' matura — lo dice il **gesto**:
+  la Tensione riconosce quello che le succede intorno.
+
+### La misura, e la mia previsione sbagliata
+
+Contando sui dati fermi, la modifica sembrava grossa: delle 40 carte che posano
+un segno, **20 sono riconosciute anche da Tensioni di altri Temi**, e **tre** —
+`AST_FORCE_WARBAND`, `AST_PEOPLE_HARVEST_HANDS`, `AST_WEALTH_TOLL` — non sono
+riconosciute da **nessuna** del loro Tema mentre lo sono da sei, due e cinque di
+altri. Col filtro, il loro gesto non poteva mai essere letto da chi lo
+riguardava.
+
+Giocata, e' molto piu' piccola:
+
+| su 20 anni, seme 7000 | col filtro | senza |
+|---|---|---|
+| Risonanze | 772 | 775 |
+| Calore su una questione con la casella | 257 su 381 | 259 su 383 |
+| questioni diverse toccate | 48 su 60 | **49 su 60** |
+| **Calore andato a un Tema diverso da quello della carta** | **0** per costruzione | **5 su 383 — l'1,3%** |
+
+**Cinque cadute su trecentottantatre.** Non lo vendo per un miglioramento di
+bilanciamento: non lo e'.
+
+> **La lezione, e vale oltre questa voce.** La misura statica contava le
+> questioni che **possono** riconoscere un gesto; la partita premia quella che
+> **vince**, e a parita' vince la piu' vicina alla soglia — quasi sempre una del
+> Tema della carta. Contare le possibilita' invece degli esiti gonfia una
+> previsione di un ordine di grandezza. E' la stessa famiglia dello zero che non
+> si crede: un numero plausibile misurato sul proxy sbagliato.
+
+### Perche' la tengo lo stesso
+
+Tre ragioni, e nessuna e' «i numeri migliorano»:
+
+1. **E' quello che la carta disegnata dice.** Il filtro era una mia aggiunta.
+2. **Toglie un punto cieco strutturale**: tre carte il cui gesto non poteva mai
+   raggiungere la questione che riguarda. Adesso puo', ed e' l'1,3% delle volte
+   perche' le altre questioni sono piu' mature — non perche' la regola non
+   morde.
+3. **Il codice e' piu' semplice**: un filtro in meno, e la funzione non ha piu'
+   bisogno del Tema — il parametro e' sparito dalla firma, perche' un parametro
+   che nessuno legge e' un pezzo di regola che sembra esserci.
+
+### Il costo, dichiarato
+
+| | col filtro | senza |
+|---|---|---|
+| **seggi bloccati su 8** | **0** | **0** (misto e uniforme) |
+| Consigli per anno, misto / uniforme | 3,41 / 3,46 | 3,41 / **3,45** |
+| **Verita' scritte**, misto | 160 | **165** |
+| di cui diverse, misto | 150 | **152** |
+| Verita' scritte / diverse, uniforme | 160 / 137 | **161 / 139** |
+
+Cinque Verita' in piu' a tavolo misto, e due questioni in piu' fra quelle
+scritte. **E' rumore fino a prova contraria**, e la prova contraria non ce l'ho:
+non e' su questo che la modifica si giustifica.
+
+- La prova si e' vista **andare rossa col filtro rimesso** e verde senza: senza
+  quel controllo sarebbe una prova che passa comunque.
+- Resta aperta la scelta che **non** ho preso da solo, ed e' in ISSUES 100: se il
+  Calore debba andare a **tutte** le questioni che riconoscono il gesto invece
+  che a una sola. Quella moltiplicherebbe il volume, e il volume e' del
+  committente.
+
+---
+
 ## D-330 — SI ACCENDE QUANDO: la Tensione dice cosa la sveglia
 
 **implemented** (0.1.293) · richiesta del committente, con la carta disegnata

@@ -17,7 +17,10 @@ const Effect := preload("res://scripts/core/effect.gd")
 
 const SEAT: String = "ENT_ALDRIC"
 const CARD: String = "AST_FORCE_LEVY"
-const MARK: String = "condition:contested"
+## Un segno che una carta posa e che **nessuna Tensione spedita guarda**
+## (`build_sign_registry` lo conferma): serve a poter dire con certezza chi
+## riconosce il gesto nella prova, invece di gareggiare con le sessanta carte.
+const MARK: String = "discovery:the_ledger"
 const TWIN: String = "TEN_TEST_TWIN"
 
 
@@ -51,7 +54,9 @@ func _fabricate_twin(rules: Array) -> String:
 	var twin: Dictionary = (session.data.tensions["TEN_FAMINE"] as Dictionary).duplicate(true)
 	twin["id"] = TWIN
 	twin["title"] = "La Gemella di Prova"
-	twin["theme"] = _theme_of_the_card()
+	# **Un Tema diverso da quello della carta**, ed e' il punto di D-331: la
+	# regola guarda il gesto, non il registro in cui la carta risuona.
+	twin["theme"] = "THM_ANTICO" if _theme_of_the_card() != "THM_ANTICO" else "THM_FEDE"
 	twin["threshold"] = 12
 	twin["heats_when"] = rules
 	session.data.tensions[TWIN] = twin
@@ -95,7 +100,13 @@ func _play() -> Dictionary:
 	})
 
 
-## **La questione che il gesto riguarda prende il Calore, non la piu' vicina.**
+## **La questione che il gesto riguarda prende il Calore, anche se e' di un
+## altro Tema** (D-331).
+##
+## La gemella e' lontanissima dalla soglia e sta in un Tema che la carta non
+## scalda: col ponte, e col filtro della prima stesura, non l'avrebbe sfiorata
+## nessuno. Ha pero' la riga che riconosce quello che la carta **fa**, e per
+## quella riga il Calore va a lei.
 func test_the_printed_rule_chooses_the_question() -> void:
 	_a_card_that_marks()
 	var twin: String = _fabricate_twin([{
@@ -111,7 +122,9 @@ func test_the_printed_rule_chooses_the_question() -> void:
 			% [before, session.tensions.value(twin)])
 
 
-## **Senza casella, vale il ponte** — il ripiego dichiarato, non un caso.
+## **Quando nessuno riconosce il gesto, vale il ponte** — il ripiego
+## dichiarato, non un caso. Il segno del banco non lo guarda nessuna delle
+## sessanta, quindi qui il ponte e' davvero l'ultima parola.
 func test_without_the_box_the_bridge_still_carries() -> void:
 	_a_card_that_marks()
 	var twin: String = _fabricate_twin([])

@@ -1,6 +1,6 @@
 # PUNTO ZERO — dov'è ECHOES, misurato
 
-**Versione 0.1.293** · `main` a `c0c83f9` · riscritto dopo un giro completo dei
+**Versione 0.1.294** · `main` a `c0c83f9` · riscritto dopo un giro completo dei
 cancelli, con le sonde rifatte sul codice di oggi.
 
 Questo documento non racconta cosa il gioco vuole essere. Dice **cosa fa oggi,
@@ -110,8 +110,11 @@ Tema più caldo.
 E da 0.1.293 esegue anche **«SI ACCENDE QUANDO»** ([D-330](DECISIONS.md#d-330)):
 la Tensione stampa cosa le fa prendere Calore, e il Calore va alla questione che
 *quel gesto* riguarda invece che alla più vicina alla soglia. **47 Tensioni su
-60** portano la casella, e **257 cadute di Calore su 381** la usano; le altre
+60** portano la casella, e **259 cadute di Calore su 383** la usano; le altre
 ricadono sul ponte di D-261, che resta come ripiego dichiarato (ISSUES 100).
+La regola guarda il **gesto**, non il Tema della carta
+([D-331](DECISIONS.md#d-331)): il Tema decide su quale mazzetto cadono i gettoni,
+cioè quale Consiglio si apre; il gesto decide quale domanda è matura.
 
 **Il motore non esegue**: la **risoluzione della proposta con le caselle della
 Tensione** — il Consiglio gira ancora su 642 Effetti d'autore che nessuna carta

@@ -5,6 +5,84 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.294 — La regola guarda il gesto, non il Tema della carta (D-331)
+
+### Cambiato
+
+- **Il filtro del Tema sparisce da `_tension_that_wakes`.** La casella «si
+  accende quando» adesso guarda il **gesto**, non il registro in cui la carta
+  risuona — che e' quello che la carta disegnata dal committente dice:
+  *«questa Tensione riceve Calore quando **una carta** aggiunge #conteso...»*,
+  senza nominare il Tema di chi gioca. Il filtro era una mia aggiunta, piu'
+  restrittiva del disegno.
+- **Il Tema resta sulla carta Azione**, e ci resta per il tavolo: 48
+  dichiarazioni contro ~240 righe, e una riga da leggere in mano invece di sei
+  Tensioni scoperte da scandagliare a ogni Azione.
+- Il Calore **non aumenta**: fra tutte le questioni che riconoscono il gesto ne
+  vince una sola, la piu' vicina alla soglia. L'insieme si allarga, il vincitore
+  resta uno.
+
+### Misurato — e la mia previsione era gonfiata di un ordine di grandezza
+
+Sui dati fermi la modifica sembrava grossa: delle 40 carte che posano un segno,
+**20** sono riconosciute anche da Tensioni di altri Temi, e **tre** —
+`AST_FORCE_WARBAND`, `AST_PEOPLE_HARVEST_HANDS`, `AST_WEALTH_TOLL` — da
+**nessuna** del loro Tema mentre lo sono da sei, due e cinque di altri.
+
+Giocata:
+
+| su 20 anni, seme 7000 | col filtro | senza |
+|---|---|---|
+| Risonanze | 772 | 775 |
+| Calore su una questione con la casella | 257 su 381 | 259 su 383 |
+| questioni diverse toccate | 48 su 60 | **49 su 60** |
+| **Calore a un Tema diverso da quello della carta** | **0** per costruzione | **5 su 383 — l'1,3%** |
+
+**Cinque cadute su trecentottantatre**, e non lo vendo per un miglioramento di
+bilanciamento.
+
+> **La lezione**: la misura statica contava le questioni che **possono**
+> riconoscere un gesto; la partita premia quella che **vince**, e a parita' vince
+> la piu' vicina alla soglia — quasi sempre una del Tema della carta. Contare le
+> possibilita' invece degli esiti gonfia una previsione di dieci volte. E' la
+> famiglia dello zero che non si crede: un numero plausibile misurato sul proxy
+> sbagliato.
+
+### Perche' resta
+
+Nessuna delle tre ragioni e' «i numeri migliorano»: e' quello che la carta
+disegnata dice; toglie un punto cieco strutturale (tre carte il cui gesto non
+poteva **mai** raggiungere la questione che riguarda); e il codice ha un filtro
+in meno.
+
+### Cancelli
+
+- La prova `test_the_printed_rule_chooses_the_question` e' ri-mirata sulla
+  regola nuova — la gemella prende un **Tema diverso** da quello della carta — e
+  si e' vista **andare rossa col filtro rimesso** e verde senza. Senza quel
+  controllo sarebbe una prova che passa comunque.
+- La sonda della Risonanza porta la riga *«...e di un Tema diverso dalla carta»*,
+  che e' il metro di questa decisione.
+
+### Costo, dichiarato
+
+| | col filtro | senza |
+|---|---|---|
+| **seggi bloccati su 8** | **0** | **0** (misto e uniforme) |
+| Consigli per anno, misto / uniforme | 3,41 / 3,46 | 3,41 / **3,45** |
+| **Verita' scritte**, misto | 160 | **165** |
+| di cui diverse, misto | 150 | **152** |
+
+Cinque Verita' in piu' e due questioni in piu' fra quelle scritte: **e' rumore
+fino a prova contraria**, e la prova contraria non ce l'ho. Non e' su questo che
+la modifica si giustifica.
+
+- Resta la scelta che **non** ho preso: se il Calore debba andare a **tutte** le
+  questioni che riconoscono il gesto invece che a una sola. Moltiplicherebbe il
+  volume, e il volume e' del committente — e' ISSUES 100, punto 4.
+
+---
+
 ## 0.1.293 — SI ACCENDE QUANDO: la Tensione dice cosa la sveglia (D-330)
 
 ### Aggiunto
