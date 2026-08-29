@@ -67,6 +67,30 @@ adesso.
 
 Rumore in tutte e due le direzioni.
 
+### La deriva, la quarta volta — e stavolta un segno torna
+
+I due soliti cancelli sono andati rossi, e la CI ha preso quello delle vite prima
+che lo rigirassi io. Rigenerati:
+
+| | prima | dopo |
+|---|---|---|
+| **trasformazioni sedute** (168 salti) | 202 | **199** |
+| L'Egemonia di Eredan, uniforme | 9 | 7 |
+| La Compagnia del Sale, uniforme / misto | 6 / 7 | **7 / 6** |
+| la casa che muta piu' spesso | Aldric, 1 ogni 4,8 | Aldric, 1 ogni **4,9** |
+| righe di `MISURA_SEGNI` che si muovono | — | **63** |
+| **segni entrati nell'elenco** | — | **`amnesty_granted`** |
+
+Le trasformazioni oscillano fra 195 e 202 a ogni tocco del Calore: e' rumore
+attorno a un valore, non una direzione, e va letto cosi'. Il limite di
+[ISSUES 83](ISSUES.md) — nessuna casa sotto un salto su quattro — tiene a 4,9.
+
+**La cosa nuova e' `amnesty_granted`**, che rientra nell'elenco dei segni che il
+mondo scrive: una volta in cento anni, e prima zero. Un Consiglio che prima non
+si apriva adesso si apre, e concede un'amnistia. E' un segno solo, ed e' il
+genere di cosa che nessuna misura di bilanciamento avrebbe mostrato — la vede
+solo il documento che elenca **cosa il mondo scrive davvero**.
+
 ### Cosa resta, e adesso ha un ordine
 
 1. Estendere la grammatica coi verbi veri: manca `adds_presence`.
