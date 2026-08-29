@@ -1364,7 +1364,7 @@ func _play_asset_card(
 	# sceglie. E' la regola che il committente ha messo al centro della direzione
 	# fisica — *ogni Azione ha una reazione* — ed e' l'unica riga di questo file
 	# che il tavolo puo' leggere sulla carta invece che dedurla.
-	effects.append_array(_resonance(entity_id, str(request["asset_id"]), inner, source))
+	effects.append_array(_resonance(entity_id, str(request["asset_id"]), inner, source, effects))
 	var info: Dictionary = (outcome.get("info", {}) as Dictionary).duplicate()
 	info["asset_id"] = str(request["asset_id"])
 	info["kind"] = kind
@@ -1464,7 +1464,8 @@ func _sign_effect(
 
 
 func _resonance(
-	entity_id: String, asset_id: String, played: Dictionary, source: Dictionary
+	entity_id: String, asset_id: String, played: Dictionary, source: Dictionary,
+	done: Array
 ) -> Array:
 	var card: Variant = data.assets.get(asset_id)
 	if card == null:
@@ -1539,12 +1540,27 @@ func _resonance(
 		if tensions.theme_front(theme_id) == "" \
 				and tensions.theme_token_count(theme_id) >= tensions.reveal_at():
 			tensions.flip_theme_front(theme_id)
-	var tension_id: String = _hottest_of_theme(theme_id)
-	if tension_id != "" and heat > 0:
-		var applied: Dictionary = applier.apply(Effect.make(
-			"ADJUST_TENSION", "tension", tension_id, {"delta": heat}, mine
-		))
-		effects.append(applied)
+	# **SI ACCENDE QUANDO** (D-330): la questione che prende il Calore e' quella
+	# che **quel gesto** riguarda, non piu' quella piu' vicina alla soglia. La
+	# regola sta stampata sulla faccia della Tensione, e si legge al tavolo
+	# guardando cosa e' appena successo alla mappa. Il ponte resta come ripiego
+	# dichiarato: se nessuna questione del Tema riconosce il gesto, il Calore
+	# torna alla piu' vicina alla soglia, che e' il comportamento di D-261.
+	# **Si scaldano tutte** (D-332, decisione del committente): *«un evento puo'
+	# avere conseguenze su piu' temi»*. Ogni questione la cui faccia riconosce il
+	# gesto prende il Calore, non piu' solo la piu' matura fra loro. Nessuna che
+	# lo riconosca: torna il ponte, per una sola.
+	var woken: Array = _tensions_that_wake(done)
+	if woken.is_empty():
+		var fallback: String = _hottest_of_theme(theme_id)
+		if fallback != "":
+			woken = [fallback]
+	if heat > 0:
+		for tension_id in woken:
+			var applied: Dictionary = applier.apply(Effect.make(
+				"ADJUST_TENSION", "tension", str(tension_id), {"delta": heat}, mine
+			))
+			effects.append(applied)
 	if aggravated and target_region != "" and str(echo.get("extra_tag", "")) != "":
 		var marked: Dictionary = applier.apply(Effect.make(
 			"SET_REGION_TAG", "region", target_region,
@@ -1572,6 +1588,118 @@ func _resonance(
 ## economico di convocare un Consiglio, cioe' l'esatto contrario di una reazione.
 ## Il nove e' scritto in [D-257](DECISIONS.md#d-257): e' il prezzo dichiarato di
 ## un mondo che risponde.
+## **La questione che quel gesto sveglia** (D-330, la casella «SI ACCENDE
+## QUANDO» disegnata dal committente).
+##
+## Fino a qui il Calore andava alla questione piu' vicina alla soglia del Tema:
+## un ponte che il codice dichiarava provvisorio gia' in D-261. Adesso ogni
+## Tensione stampa **cosa la accende** — un segno posato, una Pietra costruita,
+## un controllo cambiato, una Presenza tolta — e il Calore va a quella che il
+## gesto appena fatto riguarda davvero.
+##
+## **La regola guarda il gesto, non il Tema della carta** (D-331). La prima
+## stesura cercava solo fra le questioni del Tema che la carta scalda, e la
+## carta disegnata dal committente non lo chiede: dice *«questa Tensione riceve
+## Calore quando **una carta** aggiunge #conteso...»*, senza nominare il Tema di
+## chi la gioca. Col filtro, tre carte su quaranta — la Banda Armata, le Braccia
+## per il Raccolto, il Pedaggio — non erano riconosciute da **nessuna** questione
+## del loro Tema mentre lo erano da sei, due e cinque di altri: il loro gesto
+## non veniva mai letto da chi lo riguardava.
+##
+## **E si scaldano tutte** (D-332, decisione del committente): *«un evento puo'
+## avere conseguenze su piu' tempi»*. Fino alla 0.1.294 fra le questioni che
+## riconoscevano il gesto ne vinceva una sola, la piu' vicina alla soglia — e la
+## faccia della carta prometteva una cosa che il motore manteneva solo se quella
+## questione era la piu' matura. Adesso la promessa e' intera: se c'e' scritto
+## che ti accendi quando succede questo, ti accendi.
+##
+## Il Tema della carta continua a decidere **su quale mazzetto cadono i
+## gettoni**, cioe' quale Consiglio si apre: quello e' l'eco del gesto, e sta
+## sulla carta che hai in mano. Qui si decide **quale domanda e' matura**, e
+## quello lo dice il mondo.
+##
+## Nessuna che riconosca il gesto: torna vuoto e il chiamante ricade sul ponte,
+## per una sola questione.
+func _tensions_that_wake(done: Array) -> Array:
+	var out: Array = []
+	if done.is_empty():
+		return out
+	var ids: Array = (world["tensions"] as Dictionary).keys()
+	ids.sort()
+	for tension_id in ids:
+		var definition: Variant = data.tensions.get(str(tension_id))
+		if definition == null:
+			continue
+		var card: Dictionary = definition as Dictionary
+		var rules: Array = card.get("heats_when", []) as Array
+		if rules.is_empty():
+			continue
+		var wakes: bool = false
+		for rule in rules:
+			if _rule_matches(rule as Dictionary, done):
+				wakes = true
+				break
+		if not wakes:
+			continue
+		# La soglia si guarda come nel ponte, e adesso **per ognuna**: una
+		# questione gia' a un passo non si spinge oltre con una Risonanza
+		# (D-257, «la Risonanza avvicina, non decide»). E' la riga che impedisce
+		# a «si scaldano tutte» di aprire Consigli da sola.
+		if int(card["threshold"]) - tensions.value(str(tension_id)) <= 1:
+			continue
+		out.append(str(tension_id))
+	return out
+
+
+## Una riga di «SI ACCENDE QUANDO» contro quello che l'Azione ha fatto.
+##
+## I quattro verbi sono chiusi apposta, e sono quelli che si vedono sul tavolo:
+## un segno posato o tolto, una Pietra costruita, il controllo che cambia, una
+## Presenza che se ne va. `on_region_with` e' il filtro del luogo — «su una
+## Regione con #campo o #granaio» — e senza di lui la riga vale ovunque.
+func _rule_matches(rule: Dictionary, done: Array) -> bool:
+	var puts: Array = rule.get("puts_tag", []) as Array
+	var clears: Array = rule.get("clears_tag", []) as Array
+	var builds: Array = rule.get("builds", []) as Array
+	var control: bool = bool(rule.get("takes_control", false))
+	var leaves: bool = bool(rule.get("removes_presence", false))
+	if puts.is_empty() and clears.is_empty() and builds.is_empty() \
+			and not control and not leaves:
+		return false
+	var where: Array = rule.get("on_region_with", []) as Array
+	for entry in done:
+		var effect: Dictionary = entry as Dictionary
+		var kind: String = str(effect.get("type", ""))
+		var payload: Dictionary = effect.get("payload", {}) as Dictionary
+		var target: Dictionary = effect.get("target", {}) as Dictionary
+		var hit: bool = false
+		match kind:
+			"SET_REGION_TAG", "SET_GLOBAL_TAG", "SET_ENTITY_TAG", "ADD_SCAR":
+				hit = puts.has(str(payload.get("tag", "")))
+			"REMOVE_REGION_TAG", "REMOVE_GLOBAL_TAG", "REMOVE_ENTITY_TAG", "REMOVE_SCAR":
+				hit = clears.has(str(payload.get("tag", "")))
+			"BUILD_STRUCTURE":
+				hit = builds.has(str(payload.get("structure_type", "")))
+			"SET_CONTROL":
+				hit = control
+			"REMOVE_PRESENCE":
+				hit = leaves
+		if not hit:
+			continue
+		if where.is_empty():
+			return true
+		# Il filtro del luogo guarda la Regione che l'Effetto ha toccato.
+		if str(target.get("kind", "")) != "region":
+			continue
+		var region: Dictionary = (world["regions"] as Dictionary).get(
+			str(target.get("id", "")), {}
+		) as Dictionary
+		for tag in where:
+			if (region.get("tags", []) as Array).has(str(tag)):
+				return true
+	return false
+
+
 func _hottest_of_theme(theme_id: String) -> String:
 	if theme_id == "":
 		return ""

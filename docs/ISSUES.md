@@ -2768,6 +2768,49 @@ e' in gioco.
 
 ---
 
+### 100. Le caselle «si accende quando» sono un pavimento, e il Calore ne sveglia una sola
+
+`contenuto` · `regole` · `da-decidere` · aperta in 0.1.293
+([D-330](DECISIONS.md#d-330)) · **riscritta in 0.1.294**
+([D-331](DECISIONS.md#d-331))
+
+> **La prima stesura poneva la domanda sbagliata**, e l'avevo posta io: *«il Tema
+> lo dichiara la carta o la Tensione?»*. La carta disegnata dal committente non
+> chiede quello — dice *«questa Tensione riceve Calore quando **una carta**…»*,
+> senza nominare il Tema di chi gioca. D-331 ha tolto il filtro; il Tema resta
+> sulla carta, dove costa 48 dichiarazioni invece di 240 righe, e dove al tavolo
+> si legge in mano invece che scandagliando sei Tensioni scoperte.
+>
+> Ci scriveva anche un errore: *«con 60 Tensioni e 48 carte la regola sta su
+> meno posti dalla parte della Tensione»*. E' il contrario, e di cinque volte.
+
+Quello che resta e' **d'autore**, e sono quattro cose diverse.
+
+1. **Una sola carta e' scritta a mano.** `TEN_ENCLOSURE` porta le quattro righe
+   che il committente ha disegnato su *I Recinti*. Le altre 46 hanno un
+   pavimento derivato da `focus_region_tags`, e il testo si vede che e'
+   meccanico: *«una carta posa #fame o #requisito o #malcontento»*. Al tavolo si
+   legge, ma non e' una faccia finita.
+2. **Tredici Tensioni non hanno la casella**, perche' non dichiaravano nessun
+   `focus_region_tags` da cui derivarla. Per loro vale il ponte, e nessuno puo'
+   leggere sulla carta perche' si scaldano.
+3. **Il ponte e' ancora vivo**, e regge **124 cadute di Calore su 383**.
+4. **E la scelta vera, che non prendo io: una questione o tutte.** Oggi fra le
+   questioni che riconoscono il gesto ne vince **una sola**, la piu' vicina alla
+   soglia — ed e' per questo che togliere il filtro del Tema ha spostato solo
+   **5 cadute su 383** (D-331): le altre questioni che riconoscevano il gesto
+   erano meno mature e hanno perso. Se il Calore andasse a **tutte** quelle che
+   riconoscono, il gesto sveglierebbe ogni domanda che riguarda — ma il volume
+   del Calore si moltiplicherebbe, e con lui i Consigli per anno, che oggi
+   stanno in banda 3-6. **E' una decisione di volume, ed e' del committente.**
+
+**Il metro**: `cli/run_resonance_probe.gd`, righe *Calore caduto su una che ce
+l'ha* (259 su 383) e *...e di un Tema diverso dalla carta* (5). **Fatto quando**
+nessuna caduta di Calore ricade sul ponte, e ogni riga stampata e' scritta da chi
+scrive il gioco.
+
+---
+
 ### 99. ✅ I dati portano ancora i nomi degli anni cancellati — chiusa in 0.1.292
 
 `debito` · `strumenti` · aperta in 0.1.291 ([D-328](DECISIONS.md#d-328)),
@@ -5369,6 +5412,43 @@ idonei. La chiusura d'Atto l'ha isolato.
 
 **Fatto quando** nessuna apertura viene rifiutata su 100 anni, o quando un
 rifiuto non costa niente a chi l'ha chiesto.
+
+---
+
+### 101. `structure:road` — una strada che nessuna Pietra costruisce
+
+`dati` · `grammatica-fisica` · `piccola` · aperta in 0.1.297
+([D-334](DECISIONS.md#d-334))
+
+Tolta la mano invisibile del motore, trentotto segni su trentotto hanno trovato
+il pezzo di cartone che li posa. **Trentasette.** Il trentottesimo e'
+`structure:road`, e non lo scrive nessuno: fra le dieci Pietre del catalogo non
+ce n'e' una che si chiami «strada».
+
+Eppure il segno e' guardato da tre parti:
+
+- un **Tema** lo elenca fra i suoi segni;
+- una **carta** lo nomina nel suo bersaglio a segni;
+- il **profilo strategico** di una casa dice di volerlo.
+
+Cioe': una casa desidera una cosa che non puo' esistere, e una carta cerca una
+Regione che non ci sara' mai. Al tavolo e' peggio che nel codice — un giocatore
+legge «la Regione con la strada» e gira la mappa cercandola.
+
+**Le due strade, e sono davvero due:**
+
+1. **Una Pietra `STR_ROAD`**, con i suoi gradi e la sua rovina (`La Via
+   Dimenticata` esiste gia' come rovina del Passo: il nome e' preso). La strada
+   diventa una cosa che si costruisce, e i tre lettori hanno senso.
+2. **Via il segno e i suoi tre lettori.** Se la strada non e' una Pietra, il
+   Tema non deve elencarla, la carta deve puntare altrove e il profilo deve
+   volere altro.
+
+Non la decido io: e' contenuto, ed e' del committente. Finche' non e' decisa la
+voce del dizionario porta `written_by: []`, che nel dizionario e' il modo di
+dire ad alta voce *«questo segno non lo scrive nessuno»*.
+
+**Fatto quando** `structure:road` ha una penna, oppure non ha piu' lettori.
 
 ---
 

@@ -43,6 +43,11 @@ func _initialize() -> void:
 	var per_card: Dictionary = {}
 	var per_event: Dictionary = {}   # firma della giocata -> gettoni caduti
 	var marks: int = 0         # le Risonanze aggravate, che lasciano un segno
+	var per_tension: Dictionary = {}  # su quale questione e' caduto il Calore (D-330)
+	var woken: int = 0         # quante volte l'ha scelta la casella «si accende quando»
+	var crossed: int = 0       # ...e di quelle, quante di un Tema diverso da quello della carta (D-331)
+	var per_gesture: Dictionary = {}  # firma della giocata -> quante questioni si sono svegliate (D-332)
+	var verbs: Dictionary = {}  # che cosa fa davvero un'Azione, per tipo di Effetto
 
 	for run in range(runs):
 		var seed_value: int = first_seed + run
@@ -73,6 +78,13 @@ func _initialize() -> void:
 			# la sorgente non ha mai avuto, e ha contato **zero** su venti anni
 			# mentre le Risonanze avvenivano. Zero e' la risposta piu' pericolosa
 			# che una sonda possa dare.
+			# **Che cosa fa davvero un'Azione** (D-332). Le righe «si accende
+			# quando» possono mordere solo sui verbi che le Azioni producono: se
+			# una regola aspetta un cambio di controllo e le carte non ne fanno
+			# quasi mai, quella regola e' scritta per un mondo che non c'e'.
+			if str(source.get("kind", "")) == "action":
+				var did: String = str(effect.get("type", ""))
+				verbs[did] = int(verbs.get(did, 0)) + 1
 			if str(source.get("kind", "")) != "resonance":
 				continue
 			var asset_id: String = str(source.get("id", ""))
@@ -119,6 +131,39 @@ func _initialize() -> void:
 					marks += 1
 			if str(effect.get("type", "")) == "ADJUST_TENSION":
 				bridged += 1
+				# **Dove cade il Calore** (D-330). Il ponte lo mandava sempre
+				# alla questione piu' vicina alla soglia del Tema; la casella
+				# «si accende quando» lo manda a quella che il gesto riguarda.
+				# La differenza si vede in una cosa sola: su **quante questioni
+				# diverse** il Calore atterra in cento anni.
+				var hit: String = str((effect.get("target", {}) as Dictionary).get("id", ""))
+				if hit != "":
+					# **Quante si svegliano insieme** (D-332). Il committente ha
+					# detto che «raramente un gesto scalda piu' di tre temi»: e'
+					# la frase da controllare, e si controlla contando le
+					# questioni che portano la stessa firma di Risonanza.
+					var gesture: String = "%d|%s|%d|%d|%d" % [
+						seed_value, asset_id, int(source.get("act", 0)),
+						int(source.get("round", 0)), int(source.get("sequence", 0)),
+					]
+					per_gesture[gesture] = int(per_gesture.get(gesture, 0)) + 1
+					per_tension[hit] = int(per_tension.get(hit, 0)) + 1
+					var definition: Variant = data.tensions.get(hit)
+					if definition != null and not (
+							(definition as Dictionary).get("heats_when", []) as Array
+					).is_empty():
+						# **Attenzione a cosa dice questo numero** (D-332): che la
+						# questione scaldata **ha** una casella, non che la casella
+						# abbia deciso. Il ponte puo' benissimo aver scelto lei. Per
+						# sapere quante volte decide la casella si spegne il ponte e
+						# si contano le cadute che restano: 20 su 383, il 5,2%.
+						woken += 1
+						# **Il numero di D-331**: quante volte il gesto ha svegliato
+						# una questione che la carta **non** scalda. Col filtro del
+						# Tema era zero per costruzione; senza, e' la misura di cosa
+						# la modifica ha davvero spostato.
+						if str((definition as Dictionary).get("theme", "")) != str(echo.get("theme", "")):
+							crossed += 1
 		played += int((session.world.get("cards_played_count", 0)))
 		session.dispose()
 
@@ -161,6 +206,71 @@ func _initialize() -> void:
 		print("    %-30s %5d" % [
 			str((data.assets[str(asset_id)] as Dictionary)["title"]), int(per_card[asset_id]),
 		])
+	# **Dove cade il Calore** (D-330): la misura della casella «si accende
+	# quando». Il numero che conta non e' quante Risonanze ci sono — quello lo
+	# dice la riga sopra — ma su **quante questioni diverse** il Calore atterra.
+	# Il ponte lo mandava sempre alla piu' vicina alla soglia del suo Tema, e
+	# quindi alle stesse poche; la casella lo manda a quella che il gesto
+	# riguarda.
+	print("")
+	print("  Su quali questioni cade il Calore:")
+	var with_rule: int = 0
+	for tension_id in data.tensions:
+		if not ((data.tensions[str(tension_id)] as Dictionary).get("heats_when", []) as Array).is_empty():
+			with_rule += 1
+	print("    questioni diverse toccate      %5d su %d" % [per_tension.size(), data.tensions.size()])
+	print("    con la casella «si accende»    %5d su %d" % [with_rule, data.tensions.size()])
+	print("    su una questione CHE HA la casella  %5d su %d  (non vuol dire che l'abbia scelta lei)" % [woken, bridged])
+	print("    ...e di un Tema diverso dalla carta %5d  (D-331)" % crossed)
+
+	# **Quante questioni un gesto solo sveglia** (D-332). E' la frase del
+	# committente messa alla prova: *«raramente succede che un singolo gesto
+	# scalda piu' di tre temi»*.
+	print("")
+	print("")
+	print("  Che cosa fanno davvero le Azioni (i verbi su cui una riga puo' mordere):")
+	var kinds: Array = verbs.keys()
+	kinds.sort_custom(func(a: Variant, b: Variant) -> bool:
+		return int(verbs[a]) > int(verbs[b])
+	)
+	for kind in kinds:
+		print("    %-24s %6d" % [str(kind), int(verbs[kind])])
+	print("")
+	print("  Quante questioni sveglia un gesto solo:")
+	var spread: Dictionary = {}
+	for gesture in per_gesture:
+		var many: int = int(per_gesture[gesture])
+		spread[many] = int(spread.get(many, 0)) + 1
+	var keys: Array = spread.keys()
+	keys.sort()
+	var gestures: int = per_gesture.size()
+	var total_woken: int = 0
+	var over_three: int = 0
+	for many in keys:
+		total_woken += int(many) * int(spread[many])
+		if int(many) > 3:
+			over_three += int(spread[many])
+		print("    %d question%s   %5d gesti   %4.1f%%" % [
+			int(many), "e" if int(many) == 1 else "i", int(spread[many]),
+			100.0 * float(spread[many]) / float(max(gestures, 1)),
+		])
+	print("    ------")
+	print("    media                 %.2f questioni per gesto" % (
+		float(total_woken) / float(max(gestures, 1))))
+	print("    piu' di tre           %5d gesti su %d  (%.1f%%)" % [
+		over_three, gestures, 100.0 * float(over_three) / float(max(gestures, 1)),
+	])
+	var hottest: Array = per_tension.keys()
+	hottest.sort_custom(func(a: Variant, b: Variant) -> bool:
+		return int(per_tension[a]) > int(per_tension[b])
+	)
+	for tension_id in hottest.slice(0, 12):
+		var card: Dictionary = data.tensions[str(tension_id)]
+		print("    %-28s %5d  %s" % [
+			str(card["title"]), int(per_tension[tension_id]),
+			"si accende quando" if not (card.get("heats_when", []) as Array).is_empty() else "(ponte)",
+		])
+
 	var silent: Array = []
 	for asset_id in data.assets:
 		var card: Dictionary = data.assets[str(asset_id)]

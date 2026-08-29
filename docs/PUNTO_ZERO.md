@@ -1,6 +1,6 @@
 # PUNTO ZERO — dov'è ECHOES, misurato
 
-**Versione 0.1.291** · `main` a `4fa45f2` · riscritto dopo un giro completo dei
+**Versione 0.1.294** · `main` a `c0c83f9` · riscritto dopo un giro completo dei
 cancelli, con le sonde rifatte sul codice di oggi.
 
 Questo documento non racconta cosa il gioco vuole essere. Dice **cosa fa oggi,
@@ -18,11 +18,11 @@ scatola.
 
 | | |
 |---|---|
-| suite | **630 prove / 96 suite / 35.886 asserzioni** verdi |
+| suite | **634 prove / 97 suite / 35.900 asserzioni** verdi |
 | il vincolo che non si negozia | **0 seggi bloccati su 8**, misto *e* uniforme |
 | cancelli | **tutti e diciannove verdi** (vedi `CLAUDE.md`) |
 | Consigli per anno | misto **3-6** (media 3,41) · uniforme **3-5** (media 3,46) |
-| Verità scritte | misto **156**, di cui 146 diverse · uniforme 157, di cui 133 |
+| Verità scritte | misto **160**, di cui 150 diverse · uniforme 160, di cui 137 |
 
 Il **nove** del tavolo uniforme, che era il prezzo dichiarato della Risonanza in
 D-257, non esiste più: i sei mazzetti di Tensioni ([D-261](DECISIONS.md#d-261))
@@ -107,6 +107,17 @@ Tema più caldo.
 > verbo eseguibile; le altre **11 posano solo un segno**, e su quelle il motore
 > risponde *«quell'Azione la carta la stampa e io non la so ancora eseguire»*.
 
+E da 0.1.293 esegue anche **«SI ACCENDE QUANDO»** ([D-330](DECISIONS.md#d-330)):
+la Tensione stampa cosa le fa prendere Calore, e il Calore va alla questione che
+*quel gesto* riguarda invece che alla più vicina alla soglia. **47 Tensioni su
+60** portano la casella, ma **la casella decide solo 20 cadute su 383 — il
+5,2%**: le altre le sceglie ancora il ponte di D-261. La ragione e' che le righe
+aspettano gesti che le Azioni non fanno ([D-332](DECISIONS.md#d-332)), ed e' la
+voce piu' grossa di ISSUES 100.
+La regola guarda il **gesto**, non il Tema della carta
+([D-331](DECISIONS.md#d-331)): il Tema decide su quale mazzetto cadono i gettoni,
+cioè quale Consiglio si apre; il gesto decide quale domanda è matura.
+
 **Il motore non esegue**: la **risoluzione della proposta con le caselle della
 Tensione** — il Consiglio gira ancora su 642 Effetti d'autore che nessuna carta
 stampa. È ISSUES 89, ed è la voce più grossa rimasta.
@@ -162,7 +173,7 @@ E le tre misure che vengono prima della matrice (`MISURA_MATRICE.md`):
 
 ## 5. Le voci aperte che posso chiudere io
 
-48 voci aperte su 104. In ordine di quanto cambiano la partita.
+48 voci aperte su 105. In ordine di quanto cambiano la partita.
 
 1. **ISSUES 89 — il Consiglio non si risolve col dito.** Le Azioni hanno la
    faccia fisica e il motore la esegue; la proposta no: **642 Effetti d'autore

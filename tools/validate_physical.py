@@ -25,8 +25,8 @@ non e' sparita: e' diventata la controprova. Questo strumento controlla:
      segno inventato);
   3. l'ambito dichiarato combacia con quello osservato negli effetti;
   4. le mani dichiarate (chi scrive, chi legge) combaciano con quelle
-     osservate — `engine` e' l'unica mano che il censimento non vede, e
-     quindi l'unica che si puo' dichiarare senza riscontro;
+     osservate, **senza eccezioni** (D-334): non esiste piu' una mano che si
+     dichiara e non si riscontra;
   5. un segno senza lettori o senza scrittori nei dati porta una `note` che
      dice perche' e' ancora qui — la vecchia lista DICHIARATI, diventata dato;
   6. ogni #cancelletto stampato su una faccia fisica e' il nome (o un alias)
@@ -79,14 +79,11 @@ import sys
 from collections import defaultdict
 from typing import Any, Dict, List, Set, Tuple
 
-from echoes_schema import DATA_DIR
+from echoes_schema import DATA_DIR, REPO_ROOT
 
 # I livelli di rapporto viaggiano nella stessa chiave `tag` ma non sono segni:
 # sono i gradini di RELATION_ORDER, e restano fuori dal dizionario.
 LIVELLI = {"ENEMY", "HOSTILE", "NEUTRAL", "ALLY", "BOUND", "BLOOD", "PACT"}
-
-# L'unica mano che il censimento dei dati non puo' osservare.
-MANO_INVISIBILE = "engine"
 
 CANCELLETTO = re.compile(r"#([a-zàèéìòù][a-zàèéìòù_]*)")
 
@@ -162,6 +159,17 @@ def _scava(nodo: Any, scritti: Set[str], letti: Set[str]) -> None:
                 letti.add(nodo[len(prefisso):])
 
 
+def _toglie_presenza(nodo: Any) -> bool:
+    """Se questo pezzo, da qualche parte, toglie una presenza dalla mappa."""
+    if isinstance(nodo, dict):
+        if str(nodo.get("type", "")) == "REMOVE_PRESENCE":
+            return True
+        return any(_toglie_presenza(v) for v in nodo.values())
+    if isinstance(nodo, list):
+        return any(_toglie_presenza(v) for v in nodo)
+    return False
+
+
 def _tocchi_espliciti(documenti: Dict[str, List[Dict[str, Any]]]):
     """Le letture e scritture che `_scava` non vede, ognuna con la sua fonte.
 
@@ -219,13 +227,83 @@ def _tocchi_espliciti(documenti: Dict[str, List[Dict[str, Any]]]):
         for elenco in (sacchetto.get("echoes") or {}).values():
             for tag in elenco or []:
                 yield "chronicle", "legge", str(tag)
+    # **Le quattro penne del motore, riportate ai pezzi che le tengono** (D-334).
+    # Trentotto segni si dichiaravano `written_by: ["engine"]`, e il censimento
+    # li credeva sulla parola perche' `engine` era esente dal riscontro. Ma al
+    # tavolo il motore non esiste: se un segno finisce sulla plancia, c'e' una
+    # mano stampata che ce lo mette. Eccole, una per una, lette dal dato.
+
+    # La Funzione e' stampata sulla carta Echo: giocarla la lascia sul mondo.
+    for eco in documenti.get("echo_card", []):
+        if eco.get("function_id"):
+            yield "echo_card", "scrive", "function:%s" % str(eco["function_id"])
+
+    # La Vita e' stampata sulla scheda della casata: sceglierla in setup la posa.
+    for casata in documenti.get("entity", []):
+        for vita in casata.get("incarnations", []) or []:
+            if isinstance(vita, dict) and vita.get("id"):
+                yield "entity", "scrive", "life:%s" % str(vita["id"])
+
+    # Il passaggio di Chronicle promuove a leggenda il fatto che non dura: e'
+    # una procedura stampata della scatola, non un capriccio del codice. Vale
+    # per i fatti che il dizionario conosce gia' — la leggenda di un fatto che
+    # nessuno scrive resterebbe una voce morta, ed e' giusto che si veda.
+    fatti_scritti: Set[str] = {
+        str(v["id"]) for v in documenti.get("tag", []) if v.get("written_by")
+    }
+    for voce in documenti.get("tag", []):
+        nome = str(voce["id"])
+        if nome.startswith("legend:") and nome.split(":", 1)[1] in fatti_scritti:
+            yield "chronicle", "scrive", nome
+            yield "chronicle", "legge", nome
+
+    # Chi caccia una casa le lascia addosso i segni della cacciata, **e li
+    # rilegge**: la seconda cacciata nello stesso anno vale il doppio, e per
+    # saperlo bisogna guardare se il primo segno c'e' gia'. Non e' una regola a
+    # parte: e' la stessa mano che toglie la presenza, e il dato dice quali
+    # pezzi lo fanno.
+    for schema_id in ("asset", "consequence", "echo_card", "confluence_template",
+                      "tension", "destiny"):
+        for pezzo in documenti.get(schema_id, []):
+            if _toglie_presenza(pezzo):
+                for segno in ("uprooted", "twice_uprooted", "evicted:$region_focus"):
+                    yield schema_id, "scrive", segno
+                yield schema_id, "legge", "uprooted"
+
+    # Il dominio e' stampato sulla Tensione, e serve a trovare il posto di cui
+    # si parla: la Regione che porta quel segno. Leggerlo e' il gesto del dito
+    # sulla mappa, non un calcolo.
+    for tensione in documenti.get("tension", []):
+        if tensione.get("domain"):
+            yield "tension", "legge", "domain:%s" % str(tensione["domain"])
+
+    # Chi conta le scoperte le legge **tutte**: la clausola non dice quale, dice
+    # quante. Un Destino che chiede «tre scoperte» guarda ogni `discovery:`.
+    conta_scoperte = [
+        schema_id for schema_id in ("destiny", "objective")
+        if any("discovery_count" in json.dumps(p) for p in documenti.get(schema_id, []))
+    ]
+    if conta_scoperte:
+        for voce in documenti.get("tag", []):
+            if str(voce["id"]).startswith("discovery:"):
+                for schema_id in conta_scoperte:
+                    yield schema_id, "legge", str(voce["id"])
+
     for tipo_struttura in documenti.get("structure_type", []):
         for grado in tipo_struttura.get("grades", []):
             if grado.get("tag"):
                 yield "structure_type", "scrive", str(grado["tag"])
+        # **La rovina scrive con la chiave `scar`, non `tag`** (D-333). Per una
+        # parola sola questa riga e' stata cieca a **tutte e dieci** le Cicatrici
+        # che una Pietra lascia andando in rovina. Non si e' vista perche' nove
+        # su dieci le scrive anche una Conseguenza: l'unica scoperta era
+        # `scar:burned_records`, che solo l'Archivio bruciato posa — e infatti
+        # non era nemmeno nel dizionario. Si leggono tutt'e due le chiavi.
         rovina = tipo_struttura.get("ruin") or {}
-        if isinstance(rovina, dict) and rovina.get("tag"):
-            yield "structure_type", "scrive", str(rovina["tag"])
+        if isinstance(rovina, dict):
+            for chiave in ("tag", "scar"):
+                if rovina.get(chiave):
+                    yield "structure_type", "scrive", str(rovina[chiave])
     for regione in documenti.get("region", []):
         for tag in regione.get("tags", []):
             yield "region", "scrive", str(tag)
@@ -264,6 +342,12 @@ def censimento(documenti: Dict[str, List[Dict[str, Any]]]) -> Dict[str, Set[str]
     _scava({k: v for k, v in documenti.items() if k != "tag"}, scritti, letti)
     for _, verso, tag in _tocchi_espliciti(documenti):
         (scritti if verso == "scrive" else letti).add(tag)
+    # **Nessuna mano invisibile** (D-334). Fino a qui `engine` era una mano
+    # esente dal riscontro: bastava scriverlo nel dizionario perche' il
+    # censimento credesse che un segno avesse uno scrittore. Al tavolo il
+    # motore non esiste — se un gettone finisce sulla plancia, c'e' un pezzo
+    # stampato che ce lo mette — e quei trentotto segni ce l'avevano eccome.
+    # Ora ogni scrittore si osserva nel dato, senza eccezioni.
     # **Il Tema non legge niente.** Elencare un segno sotto un Tema e' archiviarlo,
     # non usarlo: se contasse come lettura, questo cancello si soddisferebbe da
     # solo aggiungendo una riga a un elenco. Un segno vive se lo guarda una
@@ -404,7 +488,7 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
                 guai.append("mani non dichiarate su «%s»: %s lo %s ma %s non lo dice"
                             % (tag, "/".join(sorted(mancano)),
                                "scrive" if campo == "written_by" else "legge", campo))
-            inventate = dichiarate - osservate - {MANO_INVISIBILE}
+            inventate = dichiarate - osservate
             if inventate:
                 guai.append("mani inventate su «%s»: %s dichiara %s che il censimento "
                             "non vede" % (tag, campo, "/".join(sorted(inventate))))
@@ -813,6 +897,41 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
                     "la frase fa il mestiere della casella: %s consegna al proponente "
                     "(%s) il luogo di cui si discute, che e' quello che il Consiglio "
                     "gli vende" % (conseguenza.get("id"), tipo))
+
+    # 19. **SI ACCENDE QUANDO** (D-330, la casella disegnata dal committente).
+    #
+    # La riga dice cosa fa prendere Calore alla Tensione, e si legge al tavolo
+    # guardando la mappa. Una riga che nomina un segno che nessuno scrive, o una
+    # Pietra che non esiste, e' una regola stampata che non si accende mai: il
+    # difetto peggiore, perche' chi legge la carta crede che valga.
+    #
+    # E una riga **senza nessun verbo** — solo il testo — non si accende
+    # nemmeno per sbaglio: il motore la scarta, e al tavolo sembra una regola.
+    segni_noti = {v["id"] for v in documenti.get("tag", [])}
+    pietre_note = {v["id"] for v in documenti.get("structure_type", [])}
+    for tensione in documenti.get("tension", []):
+        for riga in tensione.get("heats_when", []) or []:
+            dove = "%s «%s»" % (tensione.get("id"), str(riga.get("text", ""))[:40])
+            verbi = [
+                riga.get("puts_tag"), riga.get("clears_tag"), riga.get("builds"),
+                riga.get("takes_control"), riga.get("removes_presence"),
+            ]
+            if not any(verbi):
+                guai.append(
+                    "si accende quando: %s non dice nessun verbo — il motore la "
+                    "scarta, e al tavolo sembra una regola" % dove)
+            for chiave in ("puts_tag", "clears_tag", "on_region_with"):
+                for tag in riga.get(chiave) or []:
+                    if str(tag) not in segni_noti:
+                        guai.append(
+                            "si accende quando: %s nomina il segno «%s», che non "
+                            "sta nel dizionario: la riga non si accende mai"
+                            % (dove, tag))
+            for pietra in riga.get("builds") or []:
+                if str(pietra) not in pietre_note:
+                    guai.append(
+                        "si accende quando: %s nomina la Pietra «%s», che non "
+                        "esiste: la riga non si accende mai" % (dove, pietra))
     return guai
 
 
@@ -1038,6 +1157,43 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
     print("")
     print("== SELF-TEST: la guardia morde? ==")
     print("")
+    def rovina_non_dichiarata(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        """La Cicatrice di una rovina che il dizionario non conosce (D-333).
+
+        Per una parola sola — `ruin.scar` letto come `ruin.tag` — questa guardia
+        e' stata cieca a tutte e dieci le rovine, e `scar:burned_records` e'
+        vissuto fuori dal dizionario senza che niente andasse rosso."""
+        pietra = next(p for p in prova["structure_type"] if (p.get("ruin") or {}).get("scar"))
+        pietra["ruin"] = dict(pietra["ruin"], scar="scar:seminata_apposta")
+
+    def mano_inventata(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        """Uno scrittore dichiarato che il censimento non vede (D-334).
+
+        E' il difetto che `engine` poteva nascondere: era una mano esente dal
+        riscontro, e bastava scriverla perche' un segno senza penne ne avesse
+        una. Tolta l'esenzione, uno scrittore che non si osserva e' un errore
+        come tutti gli altri, e questa pianta lo prova."""
+        voce = next(v for v in prova["tag"] if v.get("written_by"))
+        voce["written_by"] = list(voce["written_by"]) + ["destiny_physical"]
+
+    def accende_segno_inventato(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        tensione = next(t for t in prova["tension"] if t.get("heats_when"))
+        tensione["heats_when"] = [{
+            "text": "una carta posa un segno che non esiste",
+            "puts_tag": ["condition:seminato_apposta"],
+        }]
+
+    def accende_pietra_inventata(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        tensione = next(t for t in prova["tension"] if t.get("heats_when"))
+        tensione["heats_when"] = [{
+            "text": "una carta costruisce una Pietra che non esiste",
+            "builds": ["STR_SEMINATA_APPOSTA"],
+        }]
+
+    def accende_senza_verbo(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        tensione = next(t for t in prova["tension"] if t.get("heats_when"))
+        tensione["heats_when"] = [{"text": "una regola che non dice cosa guardare"}]
+
     esiti = [
         pianta("segno usato tolto dal dizionario", senza_voce,
                "segno fuori dal dizionario: «%s»" % bersaglio),
@@ -1085,6 +1241,16 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
                memoria_sbagliata, "posa un segno che non e' del mondo"),
         pianta("carta che apre una Domanda a cui nessuno puo' rispondere",
                domanda_muta, "domanda senza risposte"),
+        pianta("si accende quando: un segno che nessuno scrive",
+               accende_segno_inventato, "non sta nel dizionario"),
+        pianta("si accende quando: una Pietra che non esiste",
+               accende_pietra_inventata, "nomina la Pietra"),
+        pianta("si accende quando: una riga senza verbo", accende_senza_verbo,
+               "non dice nessun verbo"),
+        pianta("Cicatrice di rovina fuori dal dizionario", rovina_non_dichiarata,
+               "segno fuori dal dizionario"),
+        pianta("scrittore dichiarato che il censimento non vede",
+               mano_inventata, "mani inventate"),
     ]
     puliti = controlla(documenti)
     print("  %s %s" % ("OK " if not puliti else "MANCATO", "dati veri: nessun guaio"))

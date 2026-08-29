@@ -10,6 +10,660 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-334 — Il motore non posa gettoni: via la mano invisibile
+
+**implemented** — 0.1.297
+
+### Il committente, in una riga
+
+> *«Il motore che mette segni deve sparire: non esiste nel gioco fisico, quindi
+> non dovrebbe esistere.»*
+
+Ha ragione, e non è un'osservazione di stile. Nel dizionario dei segni ogni voce
+dichiara **chi la scrive** e **chi la legge**, e le mani sono i pezzi della
+scatola: la carta, la sua faccia fisica, la Conseguenza, il Destino, la tessera,
+la scheda della casata. Fra queste ce n'era una che nella scatola non c'è:
+`engine`.
+
+E non era una mano come le altre. Nel validatore aveva una costante tutta sua:
+
+```python
+# L'unica mano che il censimento dei dati non puo' osservare.
+MANO_INVISIBILE = "engine"
+```
+
+usata in un punto solo, il controllo che confronta le mani dichiarate con quelle
+osservate:
+
+```python
+inventate = dichiarate - osservate - {MANO_INVISIBILE}
+```
+
+Cioè: **`engine` era esente dal riscontro**. Bastava scriverlo perché un segno
+senza penne ne avesse una, e il cancello tacesse. È la forma esatta del difetto
+che questo progetto ha già incontrato tre volte in una settimana — uno strumento
+che si soddisfa da solo — e stavolta era scritto in chiaro, con tanto di
+commento che lo spiegava.
+
+### La misura, prima di toccare niente
+
+Trentotto voci dichiaravano `written_by: ["engine"]`. Per ognuna sono andato a
+vedere **dove il codice scrive davvero il segno**, e da lì a quale pezzo di
+cartone corrisponde quel gesto:
+
+| famiglia | quante | il gesto, al tavolo | la mano vera |
+|---|---|---|---|
+| `function:*` | 12 | giochi la carta Echo, e la sua Funzione resta sul mondo | `echo_card` |
+| `life:*` | 18 | scegli la Vita in allestimento, o la casa la cambia alla successione | `entity` |
+| `legend:*` | 3 | il passaggio di Chronicle promuove a racconto un fatto che non dura | `chronicle` |
+| `uprooted`, `twice_uprooted`, `evicted:` | 3 | cacci una casa da una Regione | il pezzo che toglie la presenza |
+| `failed_proposal` | 1 | una proposta cade al Consiglio | `consequence`, già dichiarata |
+| `structure:road` | 1 | **niente** | nessuna |
+
+**Trentasette su trentotto avevano già un pezzo fisico che li scrive.**
+L'etichetta `engine` non descriveva una regola del gioco: era metadato vecchio,
+scritto quando il dizionario è nato e mai più guardato.
+
+Il trentottesimo è un difetto vero, ed è la scoperta di questa decisione:
+[ISSUES 101](ISSUES.md#101-structureroad--una-strada-che-nessuna-pietra-costruisce).
+
+### La correzione, e com'è fatta
+
+Non ho corretto le etichette. **Ho tolto l'esenzione**, e poi ho fatto in modo
+che ogni penna si vedesse nei dati:
+
+- via `MANO_INVISIBILE`, via il ramo che la usava, via `engine` dall'elenco
+  delle mani nello schema. Ora `inventate = dichiarate - osservate`, senza
+  eccezioni.
+- via anche `_scritti_dal_codice()`, la guardia che avevo scritto due giorni fa
+  per D-333: leggeva il GDScript per confermare le dichiarazioni `engine`.
+  **Aveva un difetto suo** — scandiva tutto `godot/scripts`, comprese
+  `sign_labels.gd`, `effect_text.gd` e `effect_narrator.gd`, che sono tabelle di
+  stampa: un segno bastava che avesse un'etichetta per risultare «scritto dal
+  motore». Era lo stesso difetto che stava riparando. Tolta `engine`, la
+  funzione non serve più, e sparisce col difetto dentro.
+- e **cinque penne nuove**, ognuna letta dal dato e non dichiarata:
+  la Funzione dalla carta Echo (`function_id`), la Vita dalla scheda della
+  casata (`incarnations[].id`), la leggenda dal passaggio di Chronicle, i segni
+  della cacciata da chi toglie una presenza, il dominio letto dalla Tensione che
+  lo porta stampato.
+
+Le stesse penne sono andate anche in `matrix_survey.py`, che ha un censimento
+suo: senza, i due strumenti avrebbero raccontato due mondi diversi. E lì dentro
+**c'era una seconda volta lo stesso `ruin.tag` di D-333**, un file più in là:
+riparato anche quello.
+
+### Il costo, dichiarato
+
+**Il dizionario cresce di venti voci: da 184 a 204.** Le Funzioni degli Echo
+erano nel dizionario solo se qualcuno le rileggeva — dodici su ventiquattro. Ma
+il mondo le scrive tutte e ventiquattro, ogni volta che una carta Echo si gioca;
+le altre dodici vivevano fuori dal dizionario senza che niente andasse rosso.
+Stessa cosa per le otto Vite iniziali delle case: la prima vita di ogni casa non
+era dichiarata, le successive sì. Ora ci sono, e portano scritto perché nessuno
+le rilegge.
+
+**E la misura della matrice peggiora, di parecchio.**
+
+| | prima | dopo |
+|---|---|---|
+| segni nel dizionario | 184 | **204** |
+| di cui qualcuno scrive | 149 | **200** |
+| orfani in tutto | 59 | **92** |
+| **di cui senza una ragione scritta** | 11 | **11** |
+
+Novantadue orfani invece di cinquantanove. Non è un peggioramento del gioco: è
+lo stesso gioco, misurato senza la scappatoia. Un «orfano» è un segno che
+qualcuno scrive e che nessun Destino desidera, nessuna Tensione tocca, nessuna
+regola legge — e finché trentatré segni non avevano nemmeno una penna
+riconosciuta, la misura non li contava proprio. La riga che conta davvero, gli
+orfani **senza una ragione scritta**, resta a undici.
+
+### Cosa morde adesso
+
+Il difetto piantato che sorvegliava `engine` («una voce che dice *lo scrive il
+motore* e nel codice non c'è») non ha più senso. Al suo posto ce n'è uno che
+prova la regola nuova: si aggiunge uno scrittore vero a una voce vera, e il
+cancello deve accorgersi che il censimento non lo vede. La guardia resta a
+**ventotto difetti piantati**, tutti mordenti.
+
+### Cosa non cambia
+
+**Nessuna riga di GDScript.** Il motore continua a fare esattamente quello che
+faceva: è l'app che tiene il conto al posto tuo. Quello che cambia è come il
+gioco lo racconta — e adesso, per ogni gettone che finisce sulla plancia, il
+dizionario sa dire quale pezzo di cartone ce l'ha messo.
+
+---
+
+## D-333 — Una parola sola rendeva invisibili dieci Cicatrici
+
+**implemented** (0.1.296) · trovata rispondendo a due domande del committente sul
+grafo dei segni: *«ma cosa e' il motore, e come fa una Pietra ad accendere una
+Regione?»*.
+
+### Le due domande, e perche' erano giuste tutte e due
+
+**«Cosa e' il motore»** — nel dizionario, `written_by: ["engine"]` vuol dire che
+il segno lo scrive **il codice**, non una carta ne' una Conseguenza. Sono 37, e
+quasi nessuno e' cartone: `life:` (18, quale vita sta vivendo una casa),
+`function:` (12, la funzione narrativa dell'anno che le carte Echo controllano),
+`legend:` (3, memorie sfumate dopo un salto d'era). **Due su trentasette hanno un
+segnalino**: gli altri trentacinque sono stato interno che al tavolo non si vede.
+
+**«Come fa una Pietra ad accendere una Regione»** — non lo fa, ed era
+un'etichetta mia a farlo credere. La carta della Pietra **dichiara quale segno
+lascia sulla tessera dove sta**: `STR_GRANARY` stampa `structure:granary` su
+tutt'e due i gradi, e in rovina lascia `scar:emptied`. La Regione porta il segno
+perche' quella Pietra ci sta sopra.
+
+### Il difetto che la seconda domanda ha scoperto
+
+Andando a verificare, due segni che il gioco posa davvero **non erano nel
+dizionario**:
+
+| | |
+|---|---|
+| `uprooted` | lo scrive il motore alla prima cacciata da un Consiglio (D-130), ha un segnalino disegnato e un'etichetta stampata. Curiosamente `twice_uprooted` era dichiarato: **la seconda sradicata si', la prima no** |
+| `scar:burned_records` | la Cicatrice che l'Archivio lascia andando in rovina, con segnalino ed etichetta |
+
+E la ragione per cui la guardia non li aveva mai visti sono **due buchi
+distinti**.
+
+### Primo buco: `ruin.tag` contro `ruin.scar`
+
+`_tocchi_espliciti` leggeva `rovina.get("tag")`. Le Pietre scrivono la loro
+Cicatrice sotto la chiave **`scar`**. Tutte e dieci.
+
+Per quella parola la guardia era cieca a **ogni Cicatrice di rovina**. Non si e'
+mai vista perche' **nove su dieci le scrive anche una Conseguenza**, e passavano
+di li'; l'unica che solo una Pietra posa — `scar:burned_records` dell'Archivio —
+viveva fuori dal dizionario senza che niente andasse rosso.
+
+Riparata la riga, la guardia ha subito trovato altro: **cinque Cicatrici il cui
+`written_by` non dichiarava la Pietra** fra le mani che le scrivono. Dichiarate.
+
+### Secondo buco: un segno che scrive solo il codice
+
+`uprooted` non lo tocca nessun dato, quindi il censimento — che guarda solo
+`godot/data` — lo dichiarava voce morta. La tentazione era far bastare
+`written_by: ["engine"]` per zittire il cancello, ed e' esattamente **un cancello
+che si soddisfa da solo**: sarebbe bastato scrivere «lo fa il motore».
+
+Quindi la guardia **va a vedere nel GDScript**: un segno vale come scritto dal
+codice se il suo nome compare fra virgolette sotto `godot/scripts`. Il codice
+**conferma** una dichiarazione, non la sostituisce — un segno trovato nel codice
+ma non dichiarato resta un segno fuori dal dizionario.
+
+### Le guardie, viste mordere
+
+Due difetti piantati nuovi, e il self-test passa da 26 a **28**:
+
+- una Cicatrice di rovina che il dizionario non conosce;
+- una voce che dice «lo scrive il motore» e che nel codice non c'e'.
+
+### Il costo, dichiarato
+
+- Dizionario da **182 a 184** voci; `CATALOGO_PEDINE` da' finalmente una scheda
+  intera a `scar:burned_records`, che prima era una riga nuda.
+- **Nessun cambiamento di regole**: due dichiarazioni, cinque `written_by`
+  completati, due righe di validatore.
+- Resta che **117 dei 184 segni non sono cartone**: sono contabilita' del
+  motore. Il dizionario li mette in fila coi segnalini senza distinguerli, e
+  `COMPONENTI.md` la distinzione la fa gia' a parole. Metterla nel dato e' lavoro
+  per ISSUES 98.
+
+---
+
+## D-332 — Si scaldano tutte, e le regole guardavano dove il gioco non succede
+
+**implemented** (0.1.295) · [ISSUES 100](ISSUES.md) · decisione del committente:
+*«Si scaldano tutte, un evento puo' avere conseguenze su piu' tempi… Dovresti
+fare un controllo di quanto siano strette le cose che scaldano»*.
+
+### La decisione, e la sua ragione
+
+Fino a qui, fra le questioni che riconoscevano il gesto ne prendeva Calore **una
+sola**, la piu' vicina alla soglia. La faccia della carta prometteva *«mi accendo
+quando succede questo»* e il motore lo manteneva solo se quella questione era
+anche la piu' matura: una promessa con un asterisco che al tavolo non si legge.
+
+Adesso **si scaldano tutte**. Resta per ognuna la regola di D-257 — *la
+Risonanza avvicina, non decide* — che vieta di portare alla soglia una questione
+gia' a un passo: e' la riga che impedisce a «tutte» di aprire Consigli da sola.
+
+### Il controllo che il committente ha chiesto, e ha trovato piu' di quanto cercava
+
+**Prima cosa: un numero che avevo dato era sbagliato.** Dicevo *«257 cadute su
+381 usano la casella — il 67,5%»*. Quel contatore misurava le cadute finite su
+una questione **che ha** una casella, non quelle che la casella ha **scelto**: il
+ponte poteva aver scelto lei. Il numero vero si prende **spegnendo il ponte** e
+contando cosa resta:
+
+> **20 cadute su 383. La casella decide una volta su venti — il 5,2%.**
+
+**Seconda cosa, ed e' la causa.** Cosa fanno **davvero** le Azioni in 20 anni,
+contato sul verbale degli Effetti:
+
+| verbo | volte |
+|---|---|
+| `REMOVE_ASSET` (la carta si spende) | 909 |
+| **`SET_ENTITY_TAG`** — un segno sulla casa | **316** |
+| **`ADD_PRESENCE`** | **175** |
+| **`SET_RELATION`** | **159** |
+| `REMOVE_PRESENCE` | 58 |
+| `SET_GLOBAL_TAG` | 16 |
+| **`SET_REGION_TAG`** — un segno sulla terra | **6** |
+| **`SET_CONTROL`** | **mai** |
+| **`BUILD_STRUCTURE`** | **mai** |
+
+E cosa aspettano le 66 righe scritte:
+
+| aspettano | righe | il gioco lo fa |
+|---|---|---|
+| **un cambio di controllo** | **47** | **mai** |
+| un segno posato | 17 | 6 volte in 20 anni sulle Regioni |
+| una Pietra costruita | 1 | **mai** |
+| una Presenza tolta | 1 | 58 volte ✓ |
+
+E la stoccata: **dei 17 segni che le righe guardano, zero sono di ambito
+ENTITA'** — mentre il segno sulla casa e' la seconda cosa piu' frequente che
+un'Azione fa.
+
+> **Le regole non sono troppo strette: guardano dalla parte opposta a dove il
+> gioco succede.** Il pavimento derivato in D-330 veniva da `focus_region_tags`,
+> che dice di quali segni una questione **parla** — non quali gesti la
+> **toccano**. E' la stessa famiglia dell'errore di D-331: misurare il proxy
+> invece della cosa.
+
+### Quindi «si scaldano tutte» oggi non fa quasi niente
+
+Su **100 semi**, 1.849 gesti:
+
+| questioni svegliate da un gesto | gesti | |
+|---|---|---|
+| una | 1.844 | 99,7% |
+| **due** | **5** | 0,3% |
+| tre o piu' | **0** | 0,0% |
+
+Media **1,00**. La frase del committente — *«raramente un gesto scalda piu' di
+tre temi»* — e' rispettata con enorme abbondanza, ma **per la ragione
+sbagliata**: non perche' il mondo sia parsimonioso, perche' quasi nessuna riga
+morde.
+
+> **E su venti semi la sonda diceva zero gesti con due questioni.** Il campione
+> era troppo piccolo per un evento allo 0,3%: il playtest a cento semi si e'
+> mosso e la sonda a venti diceva che non poteva. Un numero che non si muove va
+> rimisurato su un campione che possa vederlo muovere.
+
+La modifica resta perche' e' la promessa che la carta stampa, e diventera' viva
+quando le righe guarderanno i verbi veri. **Non la conto come un miglioramento
+di adesso.**
+
+### La prova che la misura non e' cieca
+
+Un numero sempre uguale a uno e' un numero da non credere, come uno zero. La
+quinta prova di `test_a_tension_says_what_wakes_it.gd` fabbrica **due** questioni
+che riconoscono lo stesso gesto e pretende che si scaldino **tutte e due**: passa.
+Quindi l'«uno fisso» e' il mondo, non la sonda.
+
+### Il costo, dichiarato
+
+| | prima | dopo |
+|---|---|---|
+| **seggi bloccati su 8** | **0** | **0** (misto e uniforme) |
+| suite | 634 prove / 35.900 asserzioni | **635 / 35.873** |
+| Consigli per anno, misto / uniforme | 3,41 / 3,45 | 3,40 / 3,45 |
+| Verita' scritte, misto | 165 | **167** |
+| Verita' scritte, uniforme | 161 | 158 |
+
+Il playtest si muove di poco in tutte e due le direzioni: e' rumore, e non e' su
+questo che la decisione si giustifica.
+
+### La deriva, la quarta volta — e stavolta un segno torna
+
+I due soliti cancelli sono andati rossi, e la CI ha preso quello delle vite prima
+che lo rigirassi io. Rigenerati:
+
+| | prima | dopo |
+|---|---|---|
+| **trasformazioni sedute** (168 salti) | 202 | **199** |
+| L'Egemonia di Eredan, uniforme | 9 | 7 |
+| La Compagnia del Sale, uniforme / misto | 6 / 7 | **7 / 6** |
+| la casa che muta piu' spesso | Aldric, 1 ogni 4,8 | Aldric, 1 ogni **4,9** |
+| righe di `MISURA_SEGNI` che si muovono | — | **63** |
+| **segni entrati nell'elenco** | — | **`amnesty_granted`** |
+
+Le trasformazioni oscillano fra 195 e 202 a ogni tocco del Calore: e' rumore
+attorno a un valore, non una direzione, e va letto cosi'. Il limite di
+[ISSUES 83](ISSUES.md) — nessuna casa sotto un salto su quattro — tiene a 4,9.
+
+**La cosa nuova e' `amnesty_granted`**, che rientra nell'elenco dei segni che il
+mondo scrive: una volta in cento anni, e prima zero. Un Consiglio che prima non
+si apriva adesso si apre, e concede un'amnistia. E' un segno solo, ed e' il
+genere di cosa che nessuna misura di bilanciamento avrebbe mostrato — la vede
+solo il documento che elenca **cosa il mondo scrive davvero**.
+
+### Cosa resta, e ha un ordine adesso
+
+1. **Estendere la grammatica** coi verbi che il gioco produce: manca
+   `adds_presence`, che e' la terza cosa piu' comune sul tavolo, e
+   `changes_relation`.
+2. **Ri-mirare le 47 righe** che aspettano un cambio di controllo.
+3. Solo dopo, la scrittura a mano — su regole che almeno possono accendersi.
+
+---
+
+## D-331 — La regola guarda il gesto, non il Tema della carta
+
+**implemented** (0.1.294) · [ISSUES 100](ISSUES.md) riscritta · decisione del
+committente dopo la domanda *«quale soluzione ti pare migliore?»*.
+
+### La domanda era posta male, e l'avevo posta male io
+
+[ISSUES 100](ISSUES.md), come l'avevo scritta, chiedeva: *«il Tema lo dichiara
+la carta Azione o la Tensione?»*. Rileggendo la carta disegnata dal committente,
+quella domanda **non c'e'**:
+
+> *«Questa Tensione riceve Calore quando **una carta**: aggiunge #conteso su una
+> Regione con #campo…»*
+
+**«Una carta»**, non «una carta di Terra». Il Tema (Terra) sta gia' stampato in
+alto sulla Tensione, come sua identita'. Il riquadro non chiede di spostare il
+Tema: chiede che la Tensione si accenda **sul gesto, chiunque l'abbia fatto**. La
+prima stesura di D-330 filtrava per il Tema della carta, ed era piu' restrittiva
+di quello che il committente aveva disegnato.
+
+### Perche' il Tema resta sulla carta
+
+| | sulla carta | sulla Tensione |
+|---|---|---|
+| dichiarazioni da scrivere | **48** | ~240 righe su 60 carte |
+| cosa fai al tavolo | leggi una riga sulla carta che hai in mano | scandagli fino a **6 Tensioni scoperte** dopo ogni Azione |
+| la meta' aggravata (25% delle Risonanze) | e' sulla carta, e dipende dal bersaglio | dovrebbe migrare, ma e' del gesto |
+| Calore che non trova regola | ricade sul ponte: **124 su 383** | **sparirebbe**, un terzo della risposta del mondo |
+
+Il costo al tavolo e' quello che decide: una riga sulla carta in mano contro sei
+carte da scandagliare a ogni Azione.
+
+**Correzione a quanto avevo scritto in ISSUES 100**: dicevo che *«con 60
+Tensioni e 48 carte la regola sta su meno posti dalla parte della Tensione»*. E'
+il contrario, e di cinque volte.
+
+### Cosa cambia davvero, e il Calore non aumenta
+
+Il filtro sparisce: fra **tutte** le questioni in gioco che riconoscono il gesto
+ne vince **una sola**, la piu' vicina alla soglia. L'insieme si allarga, il
+vincitore resta uno — **la modifica e' neutra sul volume per costruzione**.
+
+I due fili restano divisi, e adesso si dicono bene:
+
+- **i gettoni del Tema** — quale Consiglio si apre — li dice la **carta**: e'
+  l'eco del gesto, nel registro che la carta dichiara;
+- **il valore della questione** — quale domanda e' matura — lo dice il **gesto**:
+  la Tensione riconosce quello che le succede intorno.
+
+### La misura, e la mia previsione sbagliata
+
+Contando sui dati fermi, la modifica sembrava grossa: delle 40 carte che posano
+un segno, **20 sono riconosciute anche da Tensioni di altri Temi**, e **tre** —
+`AST_FORCE_WARBAND`, `AST_PEOPLE_HARVEST_HANDS`, `AST_WEALTH_TOLL` — non sono
+riconosciute da **nessuna** del loro Tema mentre lo sono da sei, due e cinque di
+altri. Col filtro, il loro gesto non poteva mai essere letto da chi lo
+riguardava.
+
+Giocata, e' molto piu' piccola:
+
+| su 20 anni, seme 7000 | col filtro | senza |
+|---|---|---|
+| Risonanze | 772 | 775 |
+| Calore su una questione con la casella | 257 su 381 | 259 su 383 |
+| questioni diverse toccate | 48 su 60 | **49 su 60** |
+| **Calore andato a un Tema diverso da quello della carta** | **0** per costruzione | **5 su 383 — l'1,3%** |
+
+**Cinque cadute su trecentottantatre.** Non lo vendo per un miglioramento di
+bilanciamento: non lo e'.
+
+> **La lezione, e vale oltre questa voce.** La misura statica contava le
+> questioni che **possono** riconoscere un gesto; la partita premia quella che
+> **vince**, e a parita' vince la piu' vicina alla soglia — quasi sempre una del
+> Tema della carta. Contare le possibilita' invece degli esiti gonfia una
+> previsione di un ordine di grandezza. E' la stessa famiglia dello zero che non
+> si crede: un numero plausibile misurato sul proxy sbagliato.
+
+### Perche' la tengo lo stesso
+
+Tre ragioni, e nessuna e' «i numeri migliorano»:
+
+1. **E' quello che la carta disegnata dice.** Il filtro era una mia aggiunta.
+2. **Toglie un punto cieco strutturale**: tre carte il cui gesto non poteva mai
+   raggiungere la questione che riguarda. Adesso puo', ed e' l'1,3% delle volte
+   perche' le altre questioni sono piu' mature — non perche' la regola non
+   morde.
+3. **Il codice e' piu' semplice**: un filtro in meno, e la funzione non ha piu'
+   bisogno del Tema — il parametro e' sparito dalla firma, perche' un parametro
+   che nessuno legge e' un pezzo di regola che sembra esserci.
+
+### Il costo, dichiarato
+
+| | col filtro | senza |
+|---|---|---|
+| **seggi bloccati su 8** | **0** | **0** (misto e uniforme) |
+| Consigli per anno, misto / uniforme | 3,41 / 3,46 | 3,41 / **3,45** |
+| **Verita' scritte**, misto | 160 | **165** |
+| di cui diverse, misto | 150 | **152** |
+| Verita' scritte / diverse, uniforme | 160 / 137 | **161 / 139** |
+
+Cinque Verita' in piu' a tavolo misto, e due questioni in piu' fra quelle
+scritte. **E' rumore fino a prova contraria**, e la prova contraria non ce l'ho:
+non e' su questo che la modifica si giustifica.
+
+- La prova si e' vista **andare rossa col filtro rimesso** e verde senza: senza
+  quel controllo sarebbe una prova che passa comunque.
+### La deriva, di nuovo, e i due cancelli l'hanno presa
+
+Togliere il filtro sposta il mondo di poco ma davvero, e `MISURA_SEGNI` e
+`MISURA_VITE` sono andati rossi tutti e due. Rigenerati:
+
+| | col filtro | senza |
+|---|---|---|
+| righe di `MISURA_SEGNI` che si muovono | — | **66**, tutte di ±1-3 |
+| segni entrati o usciti dall'elenco | — | **nessuno** |
+| **trasformazioni sedute** (168 salti) | 198 | **202** |
+| Nahr, ogni quanti salti muta | 1 ogni 10,5 | 1 ogni **8,8** |
+| la casa che muta piu' spesso | Aldric, 1 ogni 4,8 | Aldric, 1 ogni **4,8** |
+
+Quattro trasformazioni in piu' si siedono, e il Popolo Nahr — la casa che mutava
+di meno — si avvicina alle altre. Il limite di [ISSUES 83](ISSUES.md), **nessuna
+casa sotto un salto su quattro**, tiene invariato.
+
+E' la terza volta in due decisioni che questi due cancelli prendono una deriva
+che nessun altro avrebbe visto: il Calore che cambia strada cambia i Consigli,
+i Consigli cambiano le Conseguenze, e le Conseguenze cambiano le porte su cui le
+case cambiano pelle. **La catena e' lunga, e senza i due documenti generati
+sarebbe invisibile.**
+
+- Resta aperta la scelta che **non** ho preso da solo, ed e' in ISSUES 100: se il
+  Calore debba andare a **tutte** le questioni che riconoscono il gesto invece
+  che a una sola. Quella moltiplicherebbe il volume, e il volume e' del
+  committente.
+
+---
+
+## D-330 — SI ACCENDE QUANDO: la Tensione dice cosa la sveglia
+
+> ### ⚠️ Correzione (0.1.295): il «67,5%» era sbagliato
+>
+> Il numero *«257 cadute su 381 usano la casella»* misurava una cosa diversa da
+> quella che diceva: contava le cadute finite su una questione **che ha** una
+> casella, non quelle che la casella ha **scelto**. Il ponte poteva benissimo
+> aver scelto lei.
+>
+> Il numero vero si prende spegnendo il ponte e contando le cadute che restano:
+> **20 su 383 — il 5,2%**. La casella decide una volta su venti.
+>
+> La ragione sta nei verbi, ed e' in [D-332](#d-332): quarantasette righe su
+> sessantasei aspettano un **cambio di controllo**, e le Azioni non ne producono
+> **mai**; una aspetta una **Pietra costruita**, e nemmeno quella; i segni di
+> Regione le Azioni li posano **6 volte in 20 anni**. Le regole erano scritte per
+> gesti che il gioco quasi non fa.
+
+
+**implemented** (0.1.293) · richiesta del committente, con la carta disegnata
+*I Recinti*: *«le carte tensione esempio di come le vorrei»*.
+
+### Il ponte che il codice dichiarava provvisorio
+
+Il Calore lo dichiara la carta Azione: la Risonanza dice quale Tema scalda, e
+fa cadere gettoni coperti sul suo mazzetto ([D-261](#d-261)). Ma **quale
+questione**, dentro quel Tema, si avvicinasse alla soglia lo decideva una riga
+sola: `_hottest_of_theme()`, *«la piu' vicina alla soglia»*. Il commento accanto
+lo diceva senza girarci intorno — *«il ponte resta finche' le Domande vivono
+li'»*.
+
+Al tavolo quella riga non si puo' leggere. Giochi una carta che recinta un
+campo, e il Calore va alla questione che per caso era piu' avanti: non c'e'
+niente, sulla mappa, che spieghi perche'.
+
+### La casella, come il committente l'ha disegnata
+
+Sulla faccia della Tensione, un riquadro: **SI ACCENDE QUANDO**. Quattro verbi
+chiusi, e sono quelli che si vedono succedere sul tavolo:
+
+| la riga guarda | vuol dire |
+|---|---|
+| `puts_tag` / `clears_tag` | l'Azione ha posato o tolto uno di questi segni |
+| `builds` | ha costruito una di queste Pietre |
+| `takes_control` | ha cambiato il controllo di una Regione |
+| `removes_presence` | ha tolto una Presenza |
+| `on_region_with` | **filtro del luogo**: la Regione toccata porta uno di questi segni |
+
+Piu' un `text`, che e' **la riga come si stampa**. La regola e il suo testo sono
+la stessa cosa: non c'e' una versione per il motore e una per la carta.
+
+Il motore guarda gli Effetti che l'Azione ha **davvero prodotto** — non le sue
+intenzioni — e fra le questioni del Tema in gioco sceglie quella che riconosce
+il gesto. A parita' vince la piu' vicina alla soglia, che e' la mano del ponte
+applicata a un insieme piu' piccolo. **Nessuna che lo riconosca: torna il
+ponte**, ed e' il ripiego dichiarato, non un caso.
+
+### Il numero che mi aspettavo, e che non si e' mosso
+
+Va scritto per primo, perche' e' quello che avevo previsto e sbagliato.
+
+| su 20 anni, seme 7000 | col ponte | con la casella |
+|---|---|---|
+| Risonanze | 772 | 772 |
+| di quelle, col ponte alla questione | 378 | 381 |
+| **questioni diverse toccate** | **48 su 60** | **48 su 60** |
+
+**La dispersione non cambia.** Immaginavo che il ponte concentrasse il Calore su
+poche questioni e che la casella lo spargesse: non era vero — con dieci
+questioni per Tema, «la piu' vicina alla soglia» ruotava gia' da sola.
+
+### Quello che cambia, ed e' un'altra cosa
+
+| | |
+|---|---|
+| Tensioni con la casella | **47 su 60** |
+| cadute di Calore su una questione che la porta | **257 su 381 — il 67,5%** |
+
+Due volte su tre il Calore adesso va dove **una riga stampata dice che deve
+andare**, e chi sta al tavolo puo' verificarlo guardando la mappa. Non e' un
+guadagno di bilanciamento: e' un guadagno di **leggibilita'**, ed e' esattamente
+quello che la domanda di casa chiede — *questa cosa esisterebbe e sarebbe
+comprensibile sul tavolo fisico?*
+
+### I Recinti, e i tre segni che non esistono
+
+La carta disegnata dal committente nomina `#campo`, `#villaggio` e `#pascolo`.
+**Sulla mappa non esistono**: le terre da coltivo si dicono `granary` e
+`nomad_range`, piu' il dominio `domain:TERRITORY`. `TEN_ENCLOSURE` porta le
+quattro righe della carta tradotte sui segni veri; e' l'unica scritta a mano.
+
+Le altre 46 hanno un **pavimento derivato**, e va detto chiaro: e' costruito da
+quello che ogni Tensione **gia' dichiarava** in `focus_region_tags` — i segni che
+guarda — reso leggibile come regola. Non e' contenuto d'autore, e' la stessa
+cosa detta in un modo che il motore esegue e il tavolo legge. Si riscrive una
+carta alla volta, come I Recinti, e quella e' materia d'autore.
+
+Restano **13 Tensioni senza casella**: sono le tredici senza `focus_region_tags`,
+e per loro vale il ponte.
+
+### La guardia, vista mordere
+
+Controllo 19 in `validate_physical.py`: una riga che nomina un segno fuori dal
+dizionario, o una Pietra che non esiste, non si accende mai — e chi legge la
+carta crede che valga. Una riga **senza nessun verbo** e' lo stesso difetto in
+peggio: il motore la scarta, e al tavolo sembra una regola. Tre difetti nuovi
+nel self-test, che passa da 23 a **26**.
+
+E quattro prove in `test_a_tension_says_what_wakes_it.gd`. La seconda questione
+**se la fabbrica**: il banco ne porta una sola per Tema, e con una sola il ponte
+e la casella sceglierebbero la stessa — la prova sarebbe passata senza provare
+niente, che e' la lezione di `test_the_world_answers`.
+
+### Il costo, dichiarato
+
+| | prima | dopo |
+|---|---|---|
+| **seggi bloccati su 8** | **0** | **0** (misto e uniforme) |
+| Consigli per anno, misto / uniforme | 3,41 / 3,46 | 3,41 / 3,46 |
+| **Verita' scritte**, misto | 156 | **160** |
+| di cui diverse, misto | 146 | **150** |
+| Verita' scritte / diverse, uniforme | 157 / 133 | **160 / 137** |
+
+Le Verita' salgono di quattro e la loro varieta' di quattro: piccolo, dentro il
+rumore, e **nella direzione giusta** — il Calore che va sulla questione che il
+gesto riguarda apre Consigli su cose che stanno succedendo davvero. Non lo
+vendo per piu' di quello che e': i Consigli per anno non si muovono di un
+decimo.
+
+- Il `text` delle 46 righe derivate e' prosa meccanica, e si vede: *«una carta
+  posa #fame o #requisito o #malcontento»*. E' un pavimento, non una faccia
+  finita.
+### La deriva del mondo, che un cancello ha preso
+
+`run_marks_survey` e' andato **rosso**, e aveva ragione: mandando il Calore su
+questioni diverse, il mondo apre Consigli diversi e **scrive segni leggermente
+diversi**. Quarantacinque righe di `MISURA_SEGNI.md` si sono mosse, tutte di
+poco:
+
+| segno | prima | dopo |
+|---|---|---|
+| `condition:contested` | 522 | **524** |
+| `condition:unrest` | 202 | **204** |
+| `burden_shared` | 49 | **50** |
+| `condition:abandoned` | 52 | **51** |
+| `amnesty_granted` | 1 | **0 — non si scrive piu'** |
+
+`amnesty_granted` e' l'unico che sparisce: si scriveva **una volta in cento
+anni**, e adesso zero. Resta nel dizionario, e va guardato — un segno che il
+mondo non produce mai e' una promessa falsa per chiunque lo tema (ISSUES 96,
+strada 2). Non l'ho toccato qui: e' contenuto, e questa e' una modifica di
+motore.
+
+E **la stessa deriva arriva alle vite**, `MISURA_VITE.md`. Qui va nella
+direzione buona:
+
+| | prima | dopo |
+|---|---|---|
+| **trasformazioni sedute** (168 salti) | 195 | **198** |
+| Vaerax Ridestato, uniforme / misto | 11 / 8 | **12 / 9** |
+| L'Egemonia di Eredan, uniforme | 5 | **7** |
+| la casa che muta piu' spesso | Aldric, 1 ogni 4,7 | Aldric, 1 ogni **4,8** |
+
+Tre vite scritte in piu' si siedono davvero al tavolo, ed e' quello che ci si
+aspetta: il Calore che va sulla questione giusta apre Consigli che producono i
+segni sulle cui porte le case cambiano pelle. Il limite di casa di
+[ISSUES 83](ISSUES.md) — **nessuna casa sotto un salto su quattro** — tiene, e
+anzi respira: la peggiore passa da 4,7 a 4,8.
+
+- Il ponte non e' stato tolto. Finche' 13 Tensioni non hanno la casella e 124
+  cadute su 381 non trovano una riga, toglierlo lascerebbe del Calore per terra.
+
+---
+
 ## D-329 — I nomi degli anni cancellati, e i quattro strumenti che cercavano per cartella
 
 **implemented** (0.1.292) · [ISSUES 99](ISSUES.md) chiusa · richiesta del

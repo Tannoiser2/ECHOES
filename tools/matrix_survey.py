@@ -97,6 +97,12 @@ def written_signs() -> Dict[str, Set[str]]:
                 if kind == "ADD_SCAR" and tag:
                     note(tag, who)
             note(str((item.get("scar") or {}).get("tag", "")), who)
+    # **La Funzione e' stampata sulla carta Echo** (D-334): giocarla la lascia
+    # sul mondo. Era l'altra penna che si dichiarava «del motore».
+    for card in items("echo_card"):
+        if card.get("function_id"):
+            note("function:%s" % str(card["function_id"]), "carta Echo")
+
     # La faccia delle carte, che da D-283 scrive per davvero.
     for card in items("asset"):
         face = card.get("physical") or {}
@@ -119,13 +125,24 @@ def written_signs() -> Dict[str, Set[str]]:
     for structure in items("structure_type"):
         for grade in structure.get("grades", []) or []:
             note(str((grade or {}).get("tag", "")), "Pietra")
-        note(str((structure.get("ruin") or {}).get("tag", "")), "Pietra in rovina")
+        # **La rovina scrive con la chiave `scar`, non `tag`** (D-333). La stessa
+        # parola sbagliata viveva anche qui, un file piu' in la': si leggono
+        # tutt'e due, cosi' le dieci Cicatrici delle rovine hanno una penna.
+        ruin = structure.get("ruin") or {}
+        for key in ("tag", "scar"):
+            note(str(ruin.get(key, "")), "Pietra in rovina")
     for region in items("region"):
         for tag in region.get("tags", []) or []:
             note(str(tag), "tessera")
     for entity in items("entity"):
         for tag in entity.get("tags", []) or []:
             note(str(tag), "casato")
+        # **La Vita e' stampata sulla scheda** (D-334): sceglierla in allestimento
+        # posa il suo segno. Prima questa penna si dichiarava «del motore», e le
+        # due misure — questa e il censimento fisico — non erano d'accordo.
+        for life in entity.get("incarnations", []) or []:
+            if isinstance(life, dict) and life.get("id"):
+                note("life:%s" % str(life["id"]), "scheda della casata")
     for chronicle in items("chronicle"):
         for tag in chronicle.get("global_tags", []) or []:
             note(str(tag), "apertura della Chronicle")
@@ -573,7 +590,7 @@ def survey() -> Tuple[str, Dict[str, int]]:
     add("Non tutti gli orfani sono un difetto: **%d su %d portano gia' la loro" % (
         len(spoken), len(orphans)))
     add("ragione scritta** nel dizionario — memorie narrate (D-103), etichette di")
-    add("famiglia, gradi di pietra, domini che legge il motore. Restano fuori")
+    add("famiglia, gradi di pietra, domini che si cercano col dito. Restano fuori")
     add("quelli **senza una riga che spieghi perche' esistono**: sono questi che")
     add("la matrice deve prendere per primi.")
     add("")

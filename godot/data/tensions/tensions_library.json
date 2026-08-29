@@ -184,7 +184,45 @@
             }
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "aggiunge #conteso a una terra da coltivo, da pascolo o del Territorio",
+          "puts_tag": [
+            "condition:contested"
+          ],
+          "on_region_with": [
+            "granary",
+            "nomad_range",
+            "domain:TERRITORY"
+          ]
+        },
+        {
+          "text": "costruisce un Pedaggio o un Granaio",
+          "builds": [
+            "STR_TOLLGATE",
+            "STR_GRANARY"
+          ]
+        },
+        {
+          "text": "cambia il controllo di una terra da coltivo",
+          "takes_control": true,
+          "on_region_with": [
+            "granary",
+            "nomad_range",
+            "domain:TERRITORY"
+          ]
+        },
+        {
+          "text": "toglie una Presenza da una terra da coltivo",
+          "removes_presence": true,
+          "on_region_with": [
+            "granary",
+            "nomad_range",
+            "domain:TERRITORY"
+          ]
+        }
+      ]
     },
     {
       "id": "TEN_FALLOW",
@@ -389,7 +427,22 @@
             }
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "una carta posa #magro",
+          "puts_tag": [
+            "condition:lean"
+          ]
+        },
+        {
+          "text": "una carta cambia il controllo di una terra con #granaio",
+          "takes_control": true,
+          "on_region_with": [
+            "granary"
+          ]
+        }
+      ]
     },
     {
       "id": "TEN_LANDLESS",
@@ -795,7 +848,16 @@
             }
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "una carta cambia il controllo di una terra con #palude",
+          "takes_control": true,
+          "on_region_with": [
+            "marsh"
+          ]
+        }
+      ]
     },
     {
       "id": "TEN_CLEARING",
@@ -974,7 +1036,16 @@
             "echo_summary": "I registri furono aperti, e piu' d'uno avrebbe preferito di no."
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "una carta cambia il controllo di una terra con #bosco",
+          "takes_control": true,
+          "on_region_with": [
+            "forest"
+          ]
+        }
+      ]
     },
     {
       "id": "TEN_BOUNDARY_STONES",
@@ -1339,7 +1410,22 @@
             }
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "una carta posa #conteso",
+          "puts_tag": [
+            "condition:contested"
+          ]
+        },
+        {
+          "text": "una carta cambia il controllo di una terra con #pascolo",
+          "takes_control": true,
+          "on_region_with": [
+            "nomad_range"
+          ]
+        }
+      ]
     },
     {
       "id": "TEN_SALT_FIELDS",
@@ -1519,7 +1605,17 @@
             "echo_summary": "I registri furono aperti, e piu' d'uno avrebbe preferito di no."
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "una carta cambia il controllo di una terra con #porto o #palude",
+          "takes_control": true,
+          "on_region_with": [
+            "harbor",
+            "marsh"
+          ]
+        }
+      ]
     },
     {
       "id": "TEN_LAND_REGISTER",
@@ -1702,7 +1798,16 @@
             }
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "una carta cambia il controllo di una terra con #capitale",
+          "takes_control": true,
+          "on_region_with": [
+            "capital"
+          ]
+        }
+      ]
     },
     {
       "id": "TEN_PILGRIMS",
@@ -2087,7 +2192,16 @@
             }
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "una carta cambia il controllo di una terra con #capitale",
+          "takes_control": true,
+          "on_region_with": [
+            "capital"
+          ]
+        }
+      ]
     },
     {
       "id": "TEN_VOWS",
@@ -2422,7 +2536,22 @@
             }
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "una carta posa #lutto",
+          "puts_tag": [
+            "condition:mourning"
+          ]
+        },
+        {
+          "text": "una carta cambia il controllo di una terra con #capitale",
+          "takes_control": true,
+          "on_region_with": [
+            "capital"
+          ]
+        }
+      ]
     },
     {
       "id": "TEN_ISLAND_SHRINE",
@@ -2575,7 +2704,16 @@
             "echo_summary": "Si stabilì che non ci fosse niente da guardare, e per qualche mese fu vero."
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "una carta cambia il controllo di una terra con #isola",
+          "takes_control": true,
+          "on_region_with": [
+            "island"
+          ]
+        }
+      ]
     },
     {
       "id": "TEN_TITHE",
@@ -2755,7 +2893,17 @@
             "echo_summary": "I registri furono aperti, e piu' d'uno avrebbe preferito di no."
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "una carta cambia il controllo di una terra con #granaio o #commercio",
+          "takes_control": true,
+          "on_region_with": [
+            "granary",
+            "trade"
+          ]
+        }
+      ]
     },
     {
       "id": "TEN_BURIALS",
@@ -2909,7 +3057,22 @@
             "echo_summary": "Si stabilì che non ci fosse niente da guardare, e per qualche mese fu vero."
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "una carta posa #lutto",
+          "puts_tag": [
+            "condition:mourning"
+          ]
+        },
+        {
+          "text": "una carta cambia il controllo di una terra con #palude",
+          "takes_control": true,
+          "on_region_with": [
+            "marsh"
+          ]
+        }
+      ]
     },
     {
       "id": "TEN_PROPHECY",
@@ -3062,7 +3225,16 @@
             "echo_summary": "Si stabilì che non ci fosse niente da guardare, e per qualche mese fu vero."
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "una carta cambia il controllo di una terra con #cristallo",
+          "takes_control": true,
+          "on_region_with": [
+            "crystal_site"
+          ]
+        }
+      ]
     },
     {
       "id": "TEN_SANCTUARY",
@@ -3579,7 +3751,16 @@
             "echo_summary": "I figli si scambiarono da una corte all'altra, e nessuna casa dormì meglio."
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "una carta cambia il controllo di una terra con #capitale",
+          "takes_control": true,
+          "on_region_with": [
+            "capital"
+          ]
+        }
+      ]
     },
     {
       "id": "TEN_LEVY",
@@ -3916,7 +4097,17 @@
             "echo_summary": "Tutti gli ordini dell'anno furono annullati, e per un mese nessuno seppe piu' a chi obbedire."
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "una carta cambia il controllo di una terra con #commercio o #capitale",
+          "takes_control": true,
+          "on_region_with": [
+            "trade",
+            "capital"
+          ]
+        }
+      ]
     },
     {
       "id": "TEN_MARCHES",
@@ -4086,7 +4277,22 @@
             "echo_summary": "Il margine $of_region fu lasciato a chi ci viveva, e sulle mappe smise di avere un padrone."
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "una carta posa #conteso",
+          "puts_tag": [
+            "condition:contested"
+          ]
+        },
+        {
+          "text": "una carta cambia il controllo di una terra con #bosco",
+          "takes_control": true,
+          "on_region_with": [
+            "forest"
+          ]
+        }
+      ]
     },
     {
       "id": "TEN_COUNCIL_SEATS",
@@ -4255,7 +4461,16 @@
             "echo_summary": "Si scrisse chi aveva diritto di sedere al Consiglio, e la riga valeva anche per chi quel giorno era fuori."
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "una carta cambia il controllo di una terra con #capitale",
+          "takes_control": true,
+          "on_region_with": [
+            "capital"
+          ]
+        }
+      ]
     },
     {
       "id": "TEN_OLD_GUARD",
@@ -4592,7 +4807,17 @@
             "echo_summary": "Fu messo per iscritto cosa comprava il tributo, e qualcuno smise di riscuoterlo."
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "una carta cambia il controllo di una terra con #porto o #commercio",
+          "takes_control": true,
+          "on_region_with": [
+            "harbor",
+            "trade"
+          ]
+        }
+      ]
     },
     {
       "id": "TEN_ECHOES_BELOW",
@@ -4746,7 +4971,16 @@
             "echo_summary": "Si stabilì che non ci fosse niente da guardare, e per qualche mese fu vero."
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "una carta cambia il controllo di una terra con #miniera",
+          "takes_control": true,
+          "on_region_with": [
+            "mine"
+          ]
+        }
+      ]
     },
     {
       "id": "TEN_OLD_CHANNELS",
@@ -4900,7 +5134,17 @@
             "echo_summary": "Si stabilì che non ci fosse niente da guardare, e per qualche mese fu vero."
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "una carta cambia il controllo di una terra con #palude o #bosco",
+          "takes_control": true,
+          "on_region_with": [
+            "marsh",
+            "forest"
+          ]
+        }
+      ]
     },
     {
       "id": "TEN_SLEEPERS",
@@ -5205,7 +5449,16 @@
             "echo_summary": "Si stabilì che non ci fosse niente da guardare, e per qualche mese fu vero."
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "una carta cambia il controllo di una terra con #isola",
+          "takes_control": true,
+          "on_region_with": [
+            "island"
+          ]
+        }
+      ]
     },
     {
       "id": "TEN_UNEARTHED",
@@ -5360,7 +5613,17 @@
             "echo_summary": "Si stabilì che non ci fosse niente da guardare, e per qualche mese fu vero."
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "una carta cambia il controllo di una terra con #miniera o #cristallo",
+          "takes_control": true,
+          "on_region_with": [
+            "mine",
+            "crystal_site"
+          ]
+        }
+      ]
     },
     {
       "id": "TEN_OLD_NAMES",
@@ -5665,7 +5928,17 @@
             "echo_summary": "Si stabilì che non ci fosse niente da guardare, e per qualche mese fu vero."
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "una carta cambia il controllo di una terra con #selvaggio o #bosco",
+          "takes_control": true,
+          "on_region_with": [
+            "wild",
+            "forest"
+          ]
+        }
+      ]
     },
     {
       "id": "TEN_DEEP_WATER",
@@ -5819,7 +6092,17 @@
             "echo_summary": "Si stabilì che non ci fosse niente da guardare, e per qualche mese fu vero."
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "una carta cambia il controllo di una terra con #palude o #isola",
+          "takes_control": true,
+          "on_region_with": [
+            "marsh",
+            "island"
+          ]
+        }
+      ]
     },
     {
       "id": "TEN_WINTER",
@@ -6161,7 +6444,16 @@
             "echo_summary": "La palude $of_region fu chiusa con dentro chi ci viveva, e nessuno andò a contarli."
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "una carta cambia il controllo di una terra con #palude",
+          "takes_control": true,
+          "on_region_with": [
+            "marsh"
+          ]
+        }
+      ]
     },
     {
       "id": "TEN_EMPTY_NETS",
@@ -6330,7 +6622,16 @@
             "echo_summary": "Le barche $of_region restarono in secco, e chi sapeva remare era già partito."
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "una carta cambia il controllo di una terra con #porto",
+          "takes_control": true,
+          "on_region_with": [
+            "harbor"
+          ]
+        }
+      ]
     },
     {
       "id": "TEN_REFUGEES",
@@ -6667,7 +6968,17 @@
             "echo_summary": "Le bestie perse $of_region furono rimesse fra tutti, e il conto non tornò a nessuno."
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "una carta cambia il controllo di una terra con #bosco o #selvaggio",
+          "takes_control": true,
+          "on_region_with": [
+            "forest",
+            "wild"
+          ]
+        }
+      ]
     },
     {
       "id": "TEN_BAD_GRAIN",
@@ -6836,7 +7147,16 @@
             "echo_summary": "I registri dei sili $of_region furono aperti, e il nome di chi li chiudeva era scritto in fondo."
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "una carta cambia il controllo di una terra con #granaio",
+          "takes_control": true,
+          "on_region_with": [
+            "granary"
+          ]
+        }
+      ]
     },
     {
       "id": "TEN_QUARANTINE",
@@ -7006,7 +7326,17 @@
             "echo_summary": "$in_region non si tracciò nessun cordone, e chi poteva partire partì."
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "una carta cambia il controllo di una terra con #commercio o #porto",
+          "takes_control": true,
+          "on_region_with": [
+            "trade",
+            "harbor"
+          ]
+        }
+      ]
     },
     {
       "id": "TEN_FERRY",
@@ -7179,7 +7509,17 @@
             "echo_summary": "Una seconda barca ando' in acqua a spese di tutti, e l'isola smise di dipendere da un uomo solo."
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "una carta cambia il controllo di una terra con #porto o #isola",
+          "takes_control": true,
+          "on_region_with": [
+            "harbor",
+            "island"
+          ]
+        }
+      ]
     },
     {
       "id": "TEN_BLACK_TOLLS",
@@ -7352,7 +7692,17 @@
             "echo_summary": "Dodici uomini giurarono sui carichi del bosco, e chi rubava dovette sapere a chi rubava."
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "una carta cambia il controllo di una terra con #bosco o #commercio",
+          "takes_control": true,
+          "on_region_with": [
+            "forest",
+            "trade"
+          ]
+        }
+      ]
     },
     {
       "id": "TEN_WEIGHTS",
@@ -7521,7 +7871,16 @@
             "echo_summary": "Il mercato si sposto' sotto un tetto solo, e chi comandava sulle bilance cambio' con la piazza."
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "una carta cambia il controllo di una terra con #commercio",
+          "takes_control": true,
+          "on_region_with": [
+            "trade"
+          ]
+        }
+      ]
     },
     {
       "id": "TEN_COURIERS",
@@ -7860,7 +8219,16 @@
             "echo_summary": "Chi aveva pagato lo scavo riscosse sull'acqua, e la palude ebbe un padrone che non ci aveva mai messo piede."
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "una carta cambia il controllo di una terra con #palude",
+          "takes_control": true,
+          "on_region_with": [
+            "marsh"
+          ]
+        }
+      ]
     },
     {
       "id": "TEN_GUILD_WAR",
@@ -8030,7 +8398,17 @@
             "echo_summary": "Il conto del magazzino fu pagato davanti a tutti, e nessuno si dichiaro' soddisfatto."
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "una carta cambia il controllo di una terra con #commercio o #capitale",
+          "takes_control": true,
+          "on_region_with": [
+            "trade",
+            "capital"
+          ]
+        }
+      ]
     },
     {
       "id": "TEN_SMUGGLING",
@@ -8202,7 +8580,16 @@
             "echo_summary": "Alla cala furono messi uomini di guardia, pagati bene, e da allora si pagarono tutti i giorni."
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "una carta cambia il controllo di una terra con #porto",
+          "takes_control": true,
+          "on_region_with": [
+            "harbor"
+          ]
+        }
+      ]
     }
   ]
 }

@@ -1320,7 +1320,6 @@ const DEFS := {
 						"tag_rule",
 						"tension",
 						"entity_strategic_profile",
-						"engine",
 					],
 				},
 			},
@@ -1344,7 +1343,6 @@ const DEFS := {
 						"tag_rule",
 						"tension",
 						"entity_strategic_profile",
-						"engine",
 					],
 				},
 			},
@@ -1646,6 +1644,12 @@ const DEFS := {
 			},
 			"council": {
 				"type": "Dictionary",
+			},
+			"heats_when": {
+				"type": "Array",
+				"element": {
+					"type": "Dictionary",
+				},
 			},
 		},
 	},
