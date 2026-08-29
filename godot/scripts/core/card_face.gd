@@ -275,7 +275,13 @@ static func _tension(tension: Dictionary) -> Dictionary:
 	# La soglia e' il numero che sta sulla traccia: la carta la ripete perche' la
 	# traccia e' dall'altra parte del tavolo.
 	face["corner"] = str(int(tension["threshold"]))
-	face["body"] = [str(tension.get("description", ""))]
+	# **Niente racconto sulla carta Domanda** (D-341). La `description` e' voce
+	# d'autore — *«Non e' ancora fame. E' il calcolo, fatto a voce bassa, di
+	# quanto manchi alla fame»* — ed e' il primo blocco che un giocatore incontra
+	# su una carta che deve dirgli **quando la domanda si scalda**. E' la stessa
+	# scelta di D-340 sulla carta Asset: il racconto resta nel dato, lo legge il
+	# brief d'arte, e sulla carta ogni riga e' una regola.
+	face["body"] = []
 	# **SI ACCENDE QUANDO, sulla carta** (D-337). Fino alla 0.1.301 la faccia
 	# stampata portava `triggers`, che e' prosa d'autore — *«Ogni raccolto
 	# mancato nella Valle Verde»* — e un giocatore la legge senza sapere quando
@@ -318,37 +324,51 @@ static func _council(tension: Dictionary, data: RefCounted) -> Dictionary:
 	var face: Dictionary = _face("council", str(tension["id"]), "TAROT")
 	face["title"] = str(tension["title"])
 	face["subtitle"] = "il Consiglio che questa domanda apre"
+	# **Perche' due domande** (D-341). Il committente, davanti alla scheda: *«due
+	# domande? Perche' due»*. La ragione era scritta e non stampata: undici
+	# domande su ventitre' portano una `eligibility` con la sua `label` — «La
+	# Carestia e' al limite» — e la scheda la buttava via. Una domanda che
+	# compare senza una ragione visibile e' una domanda che al tavolo non si sa
+	# quando fare.
 	var council: Dictionary = tension.get("council", {}) as Dictionary
 	var body: Array = []
-	for question in council.get("questions", []) as Array:
-		body.append(CouncilText.speak(str((question as Dictionary).get("text", ""))))
+	for entry in council.get("questions", []) as Array:
+		var question: Dictionary = entry
+		var asked: String = CouncilText.speak(str(question.get("text", "")))
+		var needs: Array = CouncilText.needs_of(question.get("eligibility", []) as Array)
+		if not needs.is_empty():
+			asked += "  — solo se: %s" % " e ".join(PackedStringArray(needs))
+		body.append(asked)
 	face["body"] = body
-	for proposal in council.get("propositions", []) as Array:
-		var said: Dictionary = CouncilText.proposition(
-			council, str((proposal as Dictionary).get("id", "")), data
-		)
-		if said.is_empty():
-			continue
-		var leaves: Array = []
-		for leaf in said["consequences"] as Array:
-			leaves.append(str((leaf as Dictionary)["leaves"]))
-		if leaves.is_empty():
-			face["notes"].append("· %s" % str(said["text"]))
-		else:
-			face["notes"].append("· %s → %s" % [
-				str(said["text"]), " · ".join(PackedStringArray(leaves)),
-			])
+
+	# **Le caselle, una per riga, e sono tutta la scheda.**
+	#
+	# *«I costi e benefici dove sono?»* — in fondo, dopo quattro proposte in
+	# prosa, e tutte e sei schiacciate in un'unica riga separata da punti.
+	#
+	# Le proposte scritte **non sono piu' su questa scheda**, e non e' una scelta
+	# di gusto: e' una misura. Rimesse le caselle al loro posto — in cima, una
+	# per riga, che e' come si legge un elenco da cui si sceglie — le proposte
+	# non ci stanno piu': **due schede su dodici sfondano il bordo** e La
+	# Carestia scende al 74%, il pavimento sotto cui il corpo non si legge. E non
+	# ci stanno nemmeno senza la loro frase: provato, resta una scheda fuori.
+	#
+	# Sulla scheda resta la grammatica del tavolo (D-280): la domanda, e le
+	# dodici caselle con cui si risolve. **Cosa si perde e' dichiarato**: le
+	# proposte che l'app risolve fanno cose che nessuna casella sa dire — «la
+	# Foresta va al grado 2», «il rivale entra in una Regione confinante» — ed e'
+	# esattamente il 65% misurato in ISSUES 89. Finche' quella voce e' aperta, il
+	# tavolo e l'app non risolvono lo stesso Consiglio, e la scheda dice quello
+	# che il tavolo puo' fare. Le proposte restano intere, col loro effetto, in
+	# `docs/CATALOGO_CONSIGLI.md`.
 	var physical: Dictionary = tension.get("physical", {}) as Dictionary
 	for pair in [["benefits", "SI OTTIENE"], ["costs", "SI PAGA"], ["failure", "SE CADE"]]:
 		var voices: Array = physical.get(str(pair[0]), []) as Array
 		if voices.is_empty():
 			continue
-		var said_now: Array = []
+		face["notes"].append(str(pair[1]))
 		for voice in voices:
-			said_now.append(str((voice as Dictionary).get("text", "")))
-		face["notes"].append("%s — %s" % [
-			str(pair[1]), " · ".join(PackedStringArray(said_now)),
-		])
+			face["notes"].append("· %s" % str((voice as Dictionary).get("text", "")))
 	face["footer"] = str(tension["id"])
 	return face
 

@@ -98,7 +98,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e i granai restano chiusi a chiave: chi ha fame se lo ricorda. Al luogo si aggiunge #fame.",
+            "text": "Al luogo si aggiunge #fame.",
             "tag": "condition:starving"
           },
           {
@@ -353,7 +353,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e le lampade continuano a spegnersi tutte insieme. Al luogo si aggiunge #malcontento.",
+            "text": "Al luogo si aggiunge #malcontento.",
             "tag": "condition:unrest"
           },
           {
@@ -606,7 +606,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e il seggio resta vuoto: ognuno governa il suo pezzo. Al luogo si aggiunge #conteso.",
+            "text": "Al luogo si aggiunge #conteso.",
             "tag": "condition:contested"
           },
           {
@@ -900,7 +900,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e le carovane continuano a viaggiare in tre, quando partono. Il luogo resta tagliato fuori.",
+            "text": "Il luogo resta tagliato fuori.",
             "tag": "condition:cut_off"
           },
           {
@@ -1125,7 +1125,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e chi puo' se ne va prima delle fosse: il posto si svuota. Al luogo si aggiunge #abbandonato.",
+            "text": "Al luogo si aggiunge #abbandonato.",
             "tag": "condition:abandoned"
           },
           {
@@ -1320,7 +1320,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e i pozzi si abbassano ancora: quello che cresce, cresce poco. Al luogo si aggiunge #magra.",
+            "text": "Al luogo si aggiunge #magra.",
             "tag": "condition:lean"
           },
           {
@@ -1510,7 +1510,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e i canali restano pieni di terra per un'altra generazione. Al luogo si aggiunge #abbandonato.",
+            "text": "Al luogo si aggiunge #abbandonato.",
             "tag": "condition:abandoned"
           },
           {
@@ -1713,7 +1713,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e la Gilda chiama il debito tutto insieme. Il luogo resta tagliato fuori.",
+            "text": "Il luogo resta tagliato fuori.",
             "tag": "condition:cut_off"
           },
           {
@@ -1951,7 +1951,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e la custodia resta di chi ci mette gli uomini. Al luogo si aggiunge #conteso.",
+            "text": "Al luogo si aggiunge #conteso.",
             "tag": "condition:contested"
           },
           {
@@ -2181,7 +2181,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e due citta' continuano a giudicare lo stesso caso al contrario. Al luogo si aggiunge #conteso.",
+            "text": "Al luogo si aggiunge #conteso.",
             "tag": "condition:contested"
           },
           {
@@ -2393,7 +2393,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e l'anno prossimo i fuochi fuori dalle mura sono di piu'. Al luogo si aggiunge #conteso.",
+            "text": "Al luogo si aggiunge #conteso.",
             "tag": "condition:contested"
           },
           {
@@ -2551,7 +2551,7 @@
           {
             "id": "B_CLEAR",
             "verb": "CLEAR_CONDITION",
-            "text": "Cade il sigillo: quello che era murato torna raggiungibile.",
+            "text": "Il luogo torna raggiungibile.",
             "tag": "structure:sealed"
           },
           {
@@ -2615,7 +2615,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e i registri dell'Ordine e i vecchi continuano a dire il contrario. Al luogo si aggiunge #malcontento.",
+            "text": "Al luogo si aggiunge #malcontento.",
             "tag": "condition:unrest"
           },
           {

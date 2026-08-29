@@ -10,6 +10,7 @@ extends "res://tests/test_case.gd"
 ## Nessun `$` rimasto, nessun tipo di Effetto in maiuscolo, nessun id.
 
 const CouncilText := preload("res://scripts/core/council_text.gd")
+const AssetText := preload("res://scripts/core/asset_text.gd")
 
 
 ## Nessuna frase che una persona legge porta ancora un buco. Un `$rival` su una
@@ -217,3 +218,34 @@ func test_the_seat_is_offered_what_it_leaves() -> void:
 			"che dice cosa resta al mondo: %s" % str(parts[1])
 		)
 
+
+
+## **Una Cicatrice e' un segno in un posto, non una frase** (D-341).
+##
+## `consequence_note` chiudeva la riga con la `description` della Cicatrice —
+## voce d'autore, *«Le piste dei carri incise nel terreno basso, e nessuno che
+## le ripercorra»* — e taceva le due cose che al tavolo servono: **quale segno
+## si posa e dove**. Sono tutti e due campi del dato, `tag` e `region_id`.
+##
+## La prova parte dai dati: prende ogni Conseguenza che lascia una Cicatrice e
+## chiede che la riga dica il segno e il posto, e che la frase non ci sia.
+func test_a_scar_is_a_sign_in_a_place() -> void:
+	var loaded: RefCounted = data()
+	var seen: int = 0
+	for id in loaded.consequences:
+		var consequence: Dictionary = loaded.consequences[str(id)]
+		var scar: Dictionary = consequence.get("scar", {}) as Dictionary
+		if scar.is_empty():
+			continue
+		seen += 1
+		var line: String = CouncilText.consequence_note(consequence, loaded)
+		var sign_word: String = AssetText.sign_word(str(scar["tag"]), loaded)
+		assert_true(line.contains(sign_word),
+			"%s: la Cicatrice non dice il suo segno (%s)" % [str(id), sign_word])
+		assert_true(line.contains(AssetText.place_word(str(scar["region_id"]), loaded)),
+			"%s: la Cicatrice non dice dove si posa" % str(id))
+		var prose: String = str(scar.get("description", ""))
+		if prose != "":
+			assert_false(line.contains(prose),
+				"%s: la Cicatrice stampa ancora la frase d'autore" % str(id))
+	assert_true(seen > 0, "nessuna Conseguenza lascia una Cicatrice: la prova e cieca")

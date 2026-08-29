@@ -95,9 +95,17 @@ static func consequence_note(
 		var line: String = _voice(AssetText.effect_note(effect as Dictionary, data), voice)
 		if line != "" and not said.has(line):
 			said.append(line)
+	# **Una Cicatrice e' un segno in un posto, non una frase** (D-341). Stampava
+	# la `description` — voce d'autore, 1.142 caratteri su quindici schede — e
+	# taceva le due cose che al tavolo servono: quale segno si posa e dove. Sono
+	# tutti e due campi, `tag` e `region_id`. La frase resta nel dato e si
+	# corregge da `REVISIONE_TESTI`, che la porta gia' col suo id.
 	var scar: Dictionary = consequence.get("scar", {}) as Dictionary
 	if not scar.is_empty():
-		said.append("e resta una cicatrice: %s" % _voice(str(scar.get("description", "")), voice))
+		said.append("e resta una Cicatrice: %s %s" % [
+			AssetText.sign_word(str(scar.get("tag", "")), data),
+			AssetText.place_word(str(scar.get("region_id", "")), data),
+		])
 	return " · ".join(PackedStringArray(said))
 
 
@@ -149,6 +157,10 @@ static func clauses(
 
 ## Quando una proposta si puo' fare, in parole. Le condizioni portano gia' la
 ## propria `label` d'autore: e' scritta per chi gioca, e qui si usa quella.
+static func needs_of(eligibility: Array, voice: Callable = Callable()) -> Array:
+	return _needs(eligibility, voice)
+
+
 static func _needs(eligibility: Array, voice: Callable = Callable()) -> Array:
 	var out: Array = []
 	for condition in eligibility:

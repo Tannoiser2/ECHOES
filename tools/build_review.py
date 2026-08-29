@@ -127,6 +127,23 @@ def main() -> int:
                 "%s, presagio al %d" % (tension["id"], int(omen.get("at", 0))),
                 omen.get("message"),
             )
+        # **Le caselle con cui si risolve un Consiglio** (D-341, ISSUES 103).
+        #
+        # Sono 841, e non ce n'era **nessuna**: sono precisamente quello che un
+        # giocatore legge mentre decide cosa proporre e in che moneta pagare —
+        # «Al luogo si aggiunge #razionato», «Accetta 1 Cicatrice permanente» —
+        # e il documento che dice «ogni testo che un giocatore puo' leggere» le
+        # ignorava tutte. Qui ognuna prende il suo id, cosi' una correzione si
+        # segna con una riga.
+        physical = tension.get("physical") or {}
+        for group, label in (
+            ("benefits", "si ottiene"), ("costs", "si paga"), ("failure", "se cade"),
+        ):
+            for box in physical.get(group, []):
+                review.entry(
+                    "%s, %s — %s" % (tension["id"], label, box.get("id", "?")),
+                    box.get("text"),
+                )
 
     review.line("## 5. I Consigli — domande ai voti e proposte")
     review.line()

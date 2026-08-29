@@ -5,6 +5,79 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.306 — Due grammatiche sulla stessa scheda, e le caselle stavano in fondo (D-341)
+
+Le tre domande del committente sulla scheda de La Carestia: *«due domande? Perché
+due, i costi e benefici dove sono? Ci sono testi ridondanti e inutili»*. Tre
+difetti diversi, tutti e tre misurabili.
+
+### «Perché due»: la ragione era scritta e buttata via
+
+**Ventuno condizioni** — 11 di domande, 10 di proposte — hanno una `label`
+scritta per il giocatore (*«La Carestia è al limite»*, *«Solo chi porta la corona
+può requisire»*), e **nessuna arrivava sulla scheda**. `CouncilText` le calcolava
+già e la faccia le scartava.
+
+### «I costi e benefici dove sono»: in fondo, e schiacciati
+
+Le dodici caselle di D-280 — la grammatica con cui il tavolo risolve un Consiglio
+— stavano dopo quattro proposte in prosa, sei per riga separate da punti. Adesso
+in cima, **una per riga**.
+
+### E allora le proposte non ci stanno più — misurato, non deciso
+
+| scheda 70×120 | fuori dal bordo |
+|---|---|
+| caselle in cima, proposte intere | **2 su 12** |
+| caselle in cima, proposte **senza la frase** | **1 su 12** |
+| **caselle sole** | **0 su 60** |
+
+Non è la prosa a non starci: sono le proposte. Sulla scheda resta la grammatica
+del tavolo — la domanda con la sua condizione, e le dodici caselle. **Da 2.399
+caratteri a 737**, tutte e 60 a corpo pieno.
+
+**Cosa si perde, dichiarato:** le proposte che l'app risolve fanno cose che
+nessuna casella sa dire — *«Foresta va al grado 2»*, *«il rivale entra in una
+Regione confinante»* — ed è il **65% misurato in ISSUES 89**. Finché quella voce
+è aperta, la scheda dice quello che il tavolo può fare. Le proposte restano
+intere in `CATALOGO_CONSIGLI`.
+
+### Due riparazioni di grammatica
+
+**Una Cicatrice è un segno in un posto, non una frase.** Stampava la
+`description` (1.142 caratteri su quindici schede) e taceva `tag` e `region_id`,
+che sono campi: adesso dice *«e resta una Cicatrice: lo sgombero dove si
+discute»*.
+
+**Sessantacinque caselle cominciavano con un racconto** — *«Cade, e i granai
+restano chiusi a chiave: chi ha fame se lo ricorda. Al luogo si aggiunge
+#fame.»* La regola è l'ultima frase, e SE CADE dice già il resto: **35.057
+caratteri → 31.172**.
+
+### La carta Domanda perde il racconto, come la carta Asset
+
+Stessa scelta di D-340: da **421 caratteri a 293**, e tutte e 60 stampano a corpo
+pieno.
+
+### ISSUES 103 si chiude
+
+Le **841 caselle** entrano in `REVISIONE_TESTI`, ognuna col suo id —
+`TEN_FAMINE, se cade — F_CONDITION` — così le sessantacinque riscritte si
+rileggono con una riga. Il documento cresce di 3.635 righe.
+
+### Il costo
+
+**Nessuno sul gioco:** playtest 100 semi identico, **0 seggi bloccati su un solo
+livello su 8**, misto e uniforme. Suite da 644 a **648 prove**; quattro guardie
+nuove, tutte provate su un difetto piantato.
+
+### Verbali
+
+**D-341** in `DECISIONS.md`, **ISSUES 103** chiusa, **ISSUES 104** aperta (tre
+proposte su quarantanove fanno la stessa identica cosa: la prosa lo nascondeva).
+
+---
+
 ## 0.1.305 — La carta stampava il racconto e taceva la faccia che si gioca (D-340)
 
 Il committente, guardando la carta Azione generata: *«devi eliminare ogni
