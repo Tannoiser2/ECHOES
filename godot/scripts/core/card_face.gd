@@ -193,7 +193,11 @@ static func _asset(asset: Dictionary, data: RefCounted) -> Dictionary:
 	var family: String = str(asset["family"])
 	var face: Dictionary = _face("asset", str(asset["id"]), "CARD")
 	face["title"] = str(asset["title"])
-	face["subtitle"] = "%s · %s" % [family.to_lower(), str(RARITY.get(str(asset["rarity"]), ""))]
+	# **In italiano** (D-339): la famiglia e' un enum, e `to_lower()` stampava
+	# «authority» su otto carte, «bonds» su altre otto, e cosi' per tutte e 48.
+	face["subtitle"] = "%s · %s" % [
+		SignLabels.family(family), str(RARITY.get(str(asset["rarity"]), "")),
+	]
 	face["accent"] = family_colour(family)
 	# La forza sta nell'angolo perche' e' l'unico numero che si legge con la carta
 	# ancora in mano, a ventaglio.
@@ -244,9 +248,12 @@ static func _tension(tension: Dictionary) -> Dictionary:
 	face["title"] = str(tension["title"])
 	# La velatura e' una regola e sta nel dato `visibility`: la carta la
 	# dichiara da se', cosi' la descrizione resta racconto (D-099).
+	# **In italiano** (D-339): `domain` e `relevant_asset_families` sono enum, e
+	# stamparli minuscoli stampa inglese. Sulla Carestia si leggeva «domanda ·
+	# survival» e «al Consiglio valgono: wealth, people, authority».
 	face["subtitle"] = "domanda%s · %s" % [
 		"" if str(tension["visibility"]) == "OPEN" else " velata",
-		str(tension["domain"]).to_lower(),
+		SignLabels.domain(str(tension["domain"])),
 	]
 	# La soglia e' il numero che sta sulla traccia: la carta la ripete perche' la
 	# traccia e' dall'altra parte del tavolo.
@@ -276,9 +283,11 @@ static func _tension(tension: Dictionary) -> Dictionary:
 	face["notes"] = [
 		rise,
 		"scende: %s" % " ".join(PackedStringArray(tension.get("decrease_rules", []))),
-		"al Consiglio valgono: %s" % ", ".join(
-			PackedStringArray(tension["relevant_asset_families"])
-		).to_lower(),
+		"al Consiglio valgono: %s" % ", ".join(PackedStringArray(
+			(tension["relevant_asset_families"] as Array).map(
+				func(f: Variant) -> String: return SignLabels.family(str(f))
+			)
+		)),
 	]
 	face["footer"] = str(tension["id"])
 	return face
@@ -361,8 +370,11 @@ static func _destiny(destiny: Dictionary, data: RefCounted) -> Dictionary:
 static func _entity(entity: Dictionary, data: RefCounted) -> Dictionary:
 	var face: Dictionary = _face("entity", str(entity["id"]), "TAROT")
 	face["title"] = str(entity["name"])
+	# **In italiano** (D-339): archetipo e bisogno sono enum, e si leggeva
+	# «people · vuole survival» sul tarocco che resta in vista tutta la partita.
 	face["subtitle"] = "%s · vuole %s" % [
-		str(entity["archetype"]).to_lower(), str(entity["need"]).to_lower(),
+		SignLabels.archetype(str(entity["archetype"])),
+		SignLabels.need(str(entity["need"])),
 	]
 	face["body"] = [str(entity.get("description", ""))]
 	var values: Array = []
@@ -370,7 +382,8 @@ static func _entity(entity: Dictionary, data: RefCounted) -> Dictionary:
 	var names: Array = actions.keys()
 	names.sort()
 	for action in names:
-		values.append("%s %d" % [str(action).to_lower(), int(actions[action])])
+		# I verbi, non i loro nomi interni: si leggeva «acquire 3 · claim 1».
+		values.append("%s %d" % [SignLabels.action(str(action)), int(actions[action])])
 	face["notes"] = [" · ".join(PackedStringArray(values))]
 	# **Cosa questa casa vuole lasciare, e cosa diventa se non ce la fa**
 	# (D-288 e D-290). La strategia dichiarata stava in un file che leggevano il
@@ -439,9 +452,12 @@ static func _region(region: Dictionary) -> Dictionary:
 		int(region["presence_slots"]),
 	]
 	face["body"] = [str(region.get("description", ""))]
-	face["notes"] = ["fonti: %s" % ", ".join(
-		PackedStringArray(region.get("asset_sources", []))
-	).to_lower()]
+	# Le famiglie in italiano (D-339): la tessera diceva «fonti: authority, force».
+	face["notes"] = ["fonti: %s" % ", ".join(PackedStringArray(
+		(region.get("asset_sources", []) as Array).map(
+			func(f: Variant) -> String: return SignLabels.family(str(f))
+		)
+	))]
 	face["art_prompt_key"] = str(region.get("art_prompt_key", ""))
 	face["terrain"] = str(region["biome"])
 	face["footer"] = str(region["id"])

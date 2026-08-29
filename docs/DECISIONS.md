@@ -10,6 +10,79 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-339 — Le carte parlavano inglese, e nessuno le guardava
+
+**implemented** — 0.1.304
+
+### Trovato guardando una carta
+
+Il committente, dopo D-338: *«poi fammi un esempio di carta»*. Generata **La
+Carestia** dal sistema di stampa, in scala 1:1, e guardata. Sul sottotitolo c'era
+scritto:
+
+> domanda · **survival**
+
+e sotto:
+
+> al Consiglio valgono: **wealth, people, authority**
+
+Le parole italiane **esistevano**. I domini in `SignLabels.DOMAIN_WORDS`, e la
+carta non le chiedeva. Le famiglie erano chiuse dentro `help_panel.gd` — che è
+una **vista**: una tabella di parole chiusa in una vista la vede solo quella
+vista, ed è la stessa trappola che `card_face.gd` dichiara in cima al file
+(*«due tabelle che devono essere d'accordo e non hanno un posto comune finiscono
+per non esserlo»*).
+
+### Quanto era largo
+
+Cercandolo con una prova invece che a occhio, non erano due carte:
+
+| dove | cosa si leggeva |
+|---|---|
+| **48 carte Asset** | `authority · comune`, `bonds · comune` |
+| **10 tessere Regione** | `fonti: authority, force` |
+| **8+ carte Casata** e ogni vita | `faction · vuole wealth` |
+| **le Casate**, valori d'azione | `acquire 3 · claim 1 · forge 3 · influence 3` |
+| **60 carte Domanda** | `domanda · survival`, `valgono: wealth, people` |
+| 54 stringhe di dato | `ACQUIRE su AUTHORITY`, `+1 quando BONDS è rilevante` |
+| 2 descrizioni | `dominio SURVIVAL (D-028)` — anche l'id di una decisione |
+
+Cinque enum senza una parola italiana: le **famiglie**, gli **archetipi**, i
+**bisogni**, i **verbi**, e un **dominio** — `KNOWLEDGE` mancava alla tabella che
+esisteva, così una Tensione del sapere stampava «knowledge».
+
+### Fatto
+
+- **Le cinque tabelle stanno in `SignLabels`**, che è il posto dichiarato dove un
+  id diventa una parola: `FAMILY_WORDS`, `ARCHETYPE_WORDS`, `NEED_WORDS`,
+  `ACTION_WORDS`, più `KNOWLEDGE` nei domini. `help_panel.gd` non ha più la sua.
+- **Le facce le usano**: carta Asset, tessera Regione, carta Casata (sottotitolo
+  e valori), carta Domanda.
+- **56 stringhe di dato corrette**: 48 regole d'acquisto, 6 testi di regola, 2
+  descrizioni. Tutte con la stessa forma meccanica — non era voce d'autore, era
+  una formula con l'enum dentro.
+
+### La guardia
+
+Non guarda un elenco di parole vietate — quello invecchia. Prende **gli enum dai
+dati** e chiede che nessuno arrivi su una faccia com'è scritto nel JSON, parola
+intera. Un enum nuovo è coperto il giorno che entra.
+
+**Ha morso quattro volte di fila** mentre riparavo: dopo le Domande sono uscite
+le Asset, poi le Casate, poi le Regioni, poi archetipi e bisogni — che avevo
+mappato sulla tabella sbagliata, e la prova l'ha detto.
+
+### Il costo, dichiarato
+
+**Nessuno sul gioco**: playtest 100 semi, **0 seggi bloccati su un solo livello
+su 8**. Quattro documenti generati sono derivati e rigenerati — `CATALOGO_CARTE`,
+`CATALOGO_CONSIGLI`, `REVISIONE_TESTI`, `BRIEF_ARTE` — e le derive sono tutte la
+stessa correzione.
+
+Suite da 641 a **642 prove**.
+
+---
+
 ## D-338 — La scheda del Consiglio: due pezzi, due mestieri
 
 **implemented** — 0.1.303

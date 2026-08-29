@@ -780,7 +780,7 @@ possono spostare nella frase, non togliere. 1010 testi in lettura.
 **`TEN_PLAGUE`**
 > La Febbre Bassa
 
-> Nessun Consiglio proprio: se ne occupa quello di dominio SURVIVAL (D-028).
+> Non apre un Consiglio suo: la questione la porta la sopravvivenza.
 
 
 **`TEN_PLAGUE, presagio al 3`**
@@ -946,7 +946,7 @@ possono spostare nella frase, non togliere. 1010 testi in lettura.
 **`TEN_THIRST`**
 > I Pozzi Bassi
 
-> Nessun Consiglio proprio: se ne occupa quello di dominio SURVIVAL (D-028).
+> Non apre un Consiglio suo: la questione la porta la sopravvivenza.
 
 
 **`TEN_THIRST, presagio al 2`**
@@ -2406,7 +2406,7 @@ possono spostare nella frase, non togliere. 1010 testi in lettura.
 **`AST_AUTHORITY_CENSUS`**
 > Censimento
 
-> +1 quando AUTHORITY è rilevante per la Tensione. Una lista di nomi è la forma più semplice del potere — e la lista chiarisce: la Regione della domanda smette di essere contesa.
+> +1 quando Autorità è rilevante per la Tensione. Una lista di nomi è la forma più semplice del potere — e la lista chiarisce: la Regione della domanda smette di essere contesa.
 
 
 **`AST_AUTHORITY_CROWN_RIGHT`**
@@ -2478,7 +2478,7 @@ possono spostare nella frase, non togliere. 1010 testi in lettura.
 **`AST_BONDS_GUEST_RIGHT`**
 > Diritto di Ospitalità
 
-> +1 quando BONDS è rilevante per la Tensione. Chi ha mangiato al tuo tavolo non può dire di no davanti a tutti. Può dirlo dopo — e chi lo impegna torna ospite: la cacciata dalla Regione della domanda si cancella.
+> +1 quando Legami è rilevante per la Tensione. Chi ha mangiato al tuo tavolo non può dire di no davanti a tutti. Può dirlo dopo — e chi lo impegna torna ospite: la cacciata dalla Regione della domanda si cancella.
 
 
 **`AST_BONDS_HOSTAGE`**
@@ -2502,7 +2502,7 @@ possono spostare nella frase, non togliere. 1010 testi in lettura.
 **`AST_FORCE_BORDER_WATCH`**
 > Guardia di Confine
 
-> +1 quando FORCE è rilevante per la Tensione. Contano i carri che passano, e sanno quali contare — e ogni conta ferma la strada: Le Vie Interrotte salgono di 1.
+> +1 quando Forza è rilevante per la Tensione. Contano i carri che passano, e sanno quali contare — e ogni conta ferma la strada: Le Vie Interrotte salgono di 1.
 
 
 **`AST_FORCE_BURNED_GATE`**
@@ -2562,7 +2562,7 @@ possono spostare nella frase, non togliere. 1010 testi in lettura.
 **`AST_KNOWLEDGE_OLD_MAP`**
 > Mappa Vecchia
 
-> +1 quando KNOWLEDGE è rilevante per la Tensione. I confini sono sbagliati; le strade no — e una strada giusta ricuce il ponte rotto sulla Regione della domanda.
+> +1 quando Sapere è rilevante per la Tensione. I confini sono sbagliati; le strade no — e una strada giusta ricuce il ponte rotto sulla Regione della domanda.
 
 
 **`AST_KNOWLEDGE_PROOF`**
@@ -2616,7 +2616,7 @@ possono spostare nella frase, non togliere. 1010 testi in lettura.
 **`AST_PEOPLE_HARVEST_HANDS`**
 > Braccia per il Raccolto
 
-> +1 quando PEOPLE è rilevante per la Tensione. Non sono un esercito: ma senza di loro non si mangia — e dove arrivano, la fame della Regione della domanda si spegne.
+> +1 quando Gente è rilevante per la Tensione. Non sono un esercito: ma senza di loro non si mangia — e dove arrivano, la fame della Regione della domanda si spegne.
 
 
 **`AST_PEOPLE_MARCH`**
@@ -2676,7 +2676,7 @@ possono spostare nella frase, non togliere. 1010 testi in lettura.
 **`AST_WEALTH_SALT`**
 > Sale
 
-> +1 quando WEALTH è rilevante per la Tensione. Non nutre nessuno: senza, quello che nutre non arriva — e dove arriva, la magra si supera.
+> +1 quando Ricchezza è rilevante per la Tensione. Non nutre nessuno: senza, quello che nutre non arriva — e dove arriva, la magra si supera.
 
 
 **`AST_WEALTH_TOLL`**

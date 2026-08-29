@@ -317,3 +317,41 @@ func test_the_tension_card_prints_the_rule_not_the_prose() -> void:
 				"%s stampa ancora la prosa insieme alla regola" % str(card["id"]))
 	assert_eq(col_regola, 47, "le Tensioni che stampano la regola")
 	assert_eq(col_prosa, 13, "e quelle che, senza casella, tengono la prosa")
+
+
+## **Nessuna parola interna arriva sulla carta stampata** (D-339).
+##
+## `domain` e `relevant_asset_families` sono enum, e stamparli minuscoli stampa
+## inglese: sulla Carestia si leggeva *«domanda · survival»* e *«al Consiglio
+## valgono: wealth, people, authority»*. Le parole italiane esistevano — i
+## domini in `SignLabels`, le famiglie chiuse dentro `help_panel.gd`, che e' una
+## vista e quindi le vedeva solo lei.
+##
+## La prova non guarda un elenco di parole vietate: prende **gli enum dai dati**
+## e chiede che nessuno arrivi sulla faccia com'e' scritto nel JSON. Cosi' un
+## enum nuovo e' coperto il giorno che entra.
+func test_no_face_prints_an_internal_word() -> void:
+	var loaded: RefCounted = data()
+	var interne: Dictionary = {}
+	for tension_id in loaded.tensions:
+		var tension: Dictionary = loaded.tensions[str(tension_id)]
+		interne[str(tension["domain"]).to_lower()] = true
+		for family in tension["relevant_asset_families"] as Array:
+			interne[str(family).to_lower()] = true
+	assert_true(interne.size() >= 8, "gli enum guardati: %d" % interne.size())
+	var guai: Array = []
+	for face in CardFace.every(loaded):
+		var card: Dictionary = face as Dictionary
+		var said: String = " ".join(PackedStringArray([
+			str(card["title"]), str(card["subtitle"]),
+			" ".join(PackedStringArray(card["body"] as Array)),
+			" ".join(PackedStringArray(card["notes"] as Array)),
+		])).to_lower()
+		for word in interne:
+			# Parola intera: «sapere» contiene «sape», e «forza» non deve
+			# scattare dentro «rinforza».
+			for piece in said.split(" "):
+				if str(piece).strip_edges(true, true).trim_suffix(",").trim_suffix(".") == str(word):
+					guai.append("%s: «%s»" % [str(card["id"]), str(word)])
+					break
+	assert_eq(guai, [], "nessuna carta stampa un nome interno")

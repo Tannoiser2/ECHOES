@@ -11,11 +11,11 @@ copia in `out/export/` a ogni `tools/run_export.sh`, e quella committata in
 
 ### `asset.authority.census` — Censimento
 
-- **soggetto**: Censimento — +1 quando AUTHORITY è rilevante per la Tensione. Una lista di nomi è la forma più semplice del potere — e la lista chiarisce: la Regione della domanda smette di essere contesa
+- **soggetto**: Censimento — +1 quando Autorità è rilevante per la Tensione. Una lista di nomi è la forma più semplice del potere — e la lista chiarisce: la Regione della domanda smette di essere contesa
 - **id**: `AST_AUTHORITY_CENSUS`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Censimento — +1 quando AUTHORITY è rilevante per la Tensione. Una lista di nomi è la forma più semplice del potere — e la lista chiarisce: la Regione della domanda smette di essere contesa.
+Historical dark-fantasy painting, single evocative scene depicting Censimento — +1 quando Autorità è rilevante per la Tensione. Una lista di nomi è la forma più semplice del potere — e la lista chiarisce: la Regione della domanda smette di essere contesa.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 oro spento accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -227,11 +227,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.bonds.guest_right` — Diritto di Ospitalità
 
-- **soggetto**: Diritto di Ospitalità — +1 quando BONDS è rilevante per la Tensione. Chi ha mangiato al tuo tavolo non può dire di no davanti a tutti. Può dirlo dopo — e chi lo impegna torna ospite: la cacciata dalla Regione della domanda si cancella
+- **soggetto**: Diritto di Ospitalità — +1 quando Legami è rilevante per la Tensione. Chi ha mangiato al tuo tavolo non può dire di no davanti a tutti. Può dirlo dopo — e chi lo impegna torna ospite: la cacciata dalla Regione della domanda si cancella
 - **id**: `AST_BONDS_GUEST_RIGHT`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Diritto di Ospitalità — +1 quando BONDS è rilevante per la Tensione. Chi ha mangiato al tuo tavolo non può dire di no davanti a tutti. Può dirlo dopo — e chi lo impegna torna ospite: la cacciata dalla Regione della domanda si cancella.
+Historical dark-fantasy painting, single evocative scene depicting Diritto di Ospitalità — +1 quando Legami è rilevante per la Tensione. Chi ha mangiato al tuo tavolo non può dire di no davanti a tutti. Può dirlo dopo — e chi lo impegna torna ospite: la cacciata dalla Regione della domanda si cancella.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 porpora tenue accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -299,11 +299,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.force.border_watch` — Guardia di Confine
 
-- **soggetto**: Guardia di Confine — +1 quando FORCE è rilevante per la Tensione. Contano i carri che passano, e sanno quali contare — e ogni conta ferma la strada: Le Vie Interrotte salgono di 1
+- **soggetto**: Guardia di Confine — +1 quando Forza è rilevante per la Tensione. Contano i carri che passano, e sanno quali contare — e ogni conta ferma la strada: Le Vie Interrotte salgono di 1
 - **id**: `AST_FORCE_BORDER_WATCH`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Guardia di Confine — +1 quando FORCE è rilevante per la Tensione. Contano i carri che passano, e sanno quali contare — e ogni conta ferma la strada: Le Vie Interrotte salgono di 1.
+Historical dark-fantasy painting, single evocative scene depicting Guardia di Confine — +1 quando Forza è rilevante per la Tensione. Contano i carri che passano, e sanno quali contare — e ogni conta ferma la strada: Le Vie Interrotte salgono di 1.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 rosso ossido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -479,11 +479,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.knowledge.old_map` — Mappa Vecchia
 
-- **soggetto**: Mappa Vecchia — +1 quando KNOWLEDGE è rilevante per la Tensione. I confini sono sbagliati; le strade no — e una strada giusta ricuce il ponte rotto sulla Regione della domanda
+- **soggetto**: Mappa Vecchia — +1 quando Sapere è rilevante per la Tensione. I confini sono sbagliati; le strade no — e una strada giusta ricuce il ponte rotto sulla Regione della domanda
 - **id**: `AST_KNOWLEDGE_OLD_MAP`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Mappa Vecchia — +1 quando KNOWLEDGE è rilevante per la Tensione. I confini sono sbagliati; le strade no — e una strada giusta ricuce il ponte rotto sulla Regione della domanda.
+Historical dark-fantasy painting, single evocative scene depicting Mappa Vecchia — +1 quando Sapere è rilevante per la Tensione. I confini sono sbagliati; le strade no — e una strada giusta ricuce il ponte rotto sulla Regione della domanda.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 verde-azzurro pallido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -641,11 +641,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.people.harvest_hands` — Braccia per il Raccolto
 
-- **soggetto**: Braccia per il Raccolto — +1 quando PEOPLE è rilevante per la Tensione. Non sono un esercito: ma senza di loro non si mangia — e dove arrivano, la fame della Regione della domanda si spegne
+- **soggetto**: Braccia per il Raccolto — +1 quando Gente è rilevante per la Tensione. Non sono un esercito: ma senza di loro non si mangia — e dove arrivano, la fame della Regione della domanda si spegne
 - **id**: `AST_PEOPLE_HARVEST_HANDS`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Braccia per il Raccolto — +1 quando PEOPLE è rilevante per la Tensione. Non sono un esercito: ma senza di loro non si mangia — e dove arrivano, la fame della Regione della domanda si spegne.
+Historical dark-fantasy painting, single evocative scene depicting Braccia per il Raccolto — +1 quando Gente è rilevante per la Tensione. Non sono un esercito: ma senza di loro non si mangia — e dove arrivano, la fame della Regione della domanda si spegne.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 terracotta accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -821,11 +821,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.wealth.salt` — Sale
 
-- **soggetto**: Sale — +1 quando WEALTH è rilevante per la Tensione. Non nutre nessuno: senza, quello che nutre non arriva — e dove arriva, la magra si supera
+- **soggetto**: Sale — +1 quando Ricchezza è rilevante per la Tensione. Non nutre nessuno: senza, quello che nutre non arriva — e dove arriva, la magra si supera
 - **id**: `AST_WEALTH_SALT`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Sale — +1 quando WEALTH è rilevante per la Tensione. Non nutre nessuno: senza, quello che nutre non arriva — e dove arriva, la magra si supera.
+Historical dark-fantasy painting, single evocative scene depicting Sale — +1 quando Ricchezza è rilevante per la Tensione. Non nutre nessuno: senza, quello che nutre non arriva — e dove arriva, la magra si supera.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 ambra accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.

@@ -5,6 +5,56 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.304 — Le carte parlavano inglese, e nessuno le guardava (D-339)
+
+Il committente, dopo la scheda del Consiglio: *«poi fammi un esempio di carta»*.
+Generata **La Carestia** in scala 1:1 e guardata. Sul sottotitolo:
+
+> domanda · **survival** · al Consiglio valgono: **wealth, people, authority**
+
+Le parole italiane **esistevano**: i domini in `SignLabels`, le famiglie chiuse
+dentro `help_panel.gd` — che è una vista, e una tabella di parole chiusa in una
+vista la vede solo quella vista.
+
+### Non erano due carte
+
+| dove | cosa si leggeva |
+|---|---|
+| **48 carte Asset** | `authority · comune` |
+| **10 tessere Regione** | `fonti: authority, force` |
+| **carte Casata** e ogni vita | `faction · vuole wealth` |
+| **le Casate**, valori d'azione | `acquire 3 · claim 1 · forge 3` |
+| **60 carte Domanda** | `domanda · survival` |
+| 54 stringhe di dato | `ACQUIRE su AUTHORITY` |
+| 2 descrizioni | `dominio SURVIVAL (D-028)` — anche l'id di una decisione |
+
+Cinque enum senza parola italiana — famiglie, archetipi, bisogni, verbi — più
+`KNOWLEDGE`, che mancava alla tabella dei domini che già esisteva.
+
+### Fatto
+
+- **Cinque tabelle in `SignLabels`**, il posto dichiarato dove un id diventa una
+  parola. `help_panel.gd` non ha più la sua.
+- **Le facce le usano**: Asset, Regione, Casata (sottotitolo e valori), Domanda.
+- **56 stringhe di dato corrette** — tutte con la stessa forma meccanica, non
+  voce d'autore.
+
+### La guardia
+
+Non guarda un elenco di parole vietate: prende **gli enum dai dati** e chiede che
+nessuno arrivi su una faccia com'è scritto nel JSON. **Ha morso quattro volte di
+fila** mentre riparavo — Asset, Casate, Regioni, e archetipi/bisogni che avevo
+mappato sulla tabella sbagliata.
+
+### Il costo, dichiarato
+
+**Nessuno sul gioco**: playtest 100 semi, **0 seggi bloccati su un solo livello
+su 8**. Quattro documenti generati rigenerati (`CATALOGO_CARTE`,
+`CATALOGO_CONSIGLI`, `REVISIONE_TESTI`, `BRIEF_ARTE`), tutte le derive sono la
+stessa correzione. Suite da 641 a **642 prove**, diciannove cancelli verdi.
+
+---
+
 ## 0.1.303 — La scheda del Consiglio: due pezzi, due mestieri (D-338)
 
 Il committente, dopo la misura di D-337: *«facciamo formato tarocco o quello che

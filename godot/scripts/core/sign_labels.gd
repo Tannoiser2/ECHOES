@@ -165,12 +165,75 @@ const DOMAIN_WORDS: Dictionary = {
 	"SURVIVAL": "la sopravvivenza",
 	"RESOURCE": "le risorse",
 	"TERRITORY": "il territorio",
+	# **Il quinto dominio mancava** (D-339): lo schema ne dichiara cinque e
+	# questa tabella ne aveva quattro, cosi' una Tensione del sapere stampava
+	# «knowledge» sulla propria carta. Il ripiego non protesta, scrive inglese.
+	"KNOWLEDGE": "il sapere",
 	"ANCIENT": "l'antico",
+}
+
+## Le sei famiglie delle carte, in italiano.
+##
+## Stavano dentro `help_panel.gd`, che e' una vista: una tabella di parole
+## chiusa in una vista la vede solo quella vista, e la carta stampata scriveva
+## «wealth, people, authority» al tavolo. Stanno qui perche' qui e' il posto
+## dove un id diventa una parola — la stessa regola dei segni e dei domini.
+const FAMILY_WORDS: Dictionary = {
+	"FORCE": "forza",
+	"AUTHORITY": "autorità",
+	"PEOPLE": "gente",
+	"KNOWLEDGE": "sapere",
+	"WEALTH": "ricchezza",
+	"BONDS": "legami",
 }
 
 
 static func domain(id: String) -> String:
 	return str(DOMAIN_WORDS.get(id, id.to_lower()))
+
+
+## I sei verbi, in italiano. Stessa storia delle famiglie (D-339): le parole
+## c'erano dentro `help_panel.gd`, e la carta Casata stampava i propri valori
+## come «acquire 3 · claim 1 · forge 3».
+const ACTION_WORDS: Dictionary = {
+	"MOVE": "muovere",
+	"INFLUENCE": "influenzare",
+	"SCHEME": "tramare",
+	"FORGE": "forgiare",
+	"CLAIM": "rivendicare",
+	"ACQUIRE": "acquisire",
+}
+
+
+static func family(id: String) -> String:
+	return str(FAMILY_WORDS.get(id, id.to_lower()))
+
+
+## Che cosa e' una casa, e cosa cerca. Due enum che finivano sul tarocco della
+## Casata — la carta che resta in vista tutta la partita — come «faction · vuole
+## wealth» (D-339).
+const ARCHETYPE_WORDS: Dictionary = {
+	"SOVEREIGN": "sovrano", "PEOPLE": "popolo", "INDIVIDUAL": "individuo",
+	"CREATURE": "creatura", "FACTION": "fazione", "CULT": "culto",
+}
+
+const NEED_WORDS: Dictionary = {
+	"POWER": "il potere", "SURVIVAL": "la sopravvivenza", "KNOWLEDGE": "il sapere",
+	"PROTECTION": "la protezione", "WEALTH": "la ricchezza", "FAITH": "la fede",
+	"FREEDOM": "la liberta'",
+}
+
+
+static func action(id: String) -> String:
+	return str(ACTION_WORDS.get(id.to_upper(), id.to_lower()))
+
+
+static func archetype(id: String) -> String:
+	return str(ARCHETYPE_WORDS.get(id, id.to_lower()))
+
+
+static func need(id: String) -> String:
+	return str(NEED_WORDS.get(id, id.to_lower()))
 
 
 ## La parola di un segno, con il vocabolario giusto per dove sta. `data` serve
