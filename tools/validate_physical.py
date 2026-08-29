@@ -79,7 +79,7 @@ import sys
 from collections import defaultdict
 from typing import Any, Dict, List, Set, Tuple
 
-from echoes_schema import DATA_DIR
+from echoes_schema import DATA_DIR, REPO_ROOT
 
 # I livelli di rapporto viaggiano nella stessa chiave `tag` ma non sono segni:
 # sono i gradini di RELATION_ORDER, e restano fuori dal dizionario.
@@ -223,9 +223,17 @@ def _tocchi_espliciti(documenti: Dict[str, List[Dict[str, Any]]]):
         for grado in tipo_struttura.get("grades", []):
             if grado.get("tag"):
                 yield "structure_type", "scrive", str(grado["tag"])
+        # **La rovina scrive con la chiave `scar`, non `tag`** (D-333). Per una
+        # parola sola questa riga e' stata cieca a **tutte e dieci** le Cicatrici
+        # che una Pietra lascia andando in rovina. Non si e' vista perche' nove
+        # su dieci le scrive anche una Conseguenza: l'unica scoperta era
+        # `scar:burned_records`, che solo l'Archivio bruciato posa — e infatti
+        # non era nemmeno nel dizionario. Si leggono tutt'e due le chiavi.
         rovina = tipo_struttura.get("ruin") or {}
-        if isinstance(rovina, dict) and rovina.get("tag"):
-            yield "structure_type", "scrive", str(rovina["tag"])
+        if isinstance(rovina, dict):
+            for chiave in ("tag", "scar"):
+                if rovina.get(chiave):
+                    yield "structure_type", "scrive", str(rovina[chiave])
     for regione in documenti.get("region", []):
         for tag in regione.get("tags", []):
             yield "region", "scrive", str(tag)
@@ -258,12 +266,47 @@ def _tocchi_espliciti(documenti: Dict[str, List[Dict[str, Any]]]):
                 yield "destiny_physical", "legge", str(tag)
 
 
+SCRIPTS = REPO_ROOT / "godot" / "scripts"
+
+
+def _scritti_dal_codice() -> Set[str]:
+    """I segni che il **motore** scrive da se', letti dal GDScript (D-333).
+
+    Un pugno di segni non passa da nessun dato: li scrive il codice, e il
+    censimento — che guarda solo `godot/data` — li dichiarava voci morte. La
+    tentazione era far bastare `written_by: ["engine"]` nel dizionario, ma un
+    cancello che si accontenta di una dichiarazione si soddisfa da solo: sarebbe
+    bastato scrivere «lo fa il motore» per zittirlo.
+
+    Quindi si va a vedere. Un segno vale come scritto dal codice se il suo nome
+    compare fra virgolette in un sorgente sotto `godot/scripts`: e' la stessa
+    verifica che `build_sign_registry` fa sui prefissi.
+    """
+    trovati: Set[str] = set()
+    if not SCRIPTS.exists():
+        return trovati
+    for percorso in SCRIPTS.rglob("*.gd"):
+        testo = percorso.read_text(encoding="utf-8")
+        for pezzo in re.findall(r'"([a-z][a-z_]*(?::[A-Za-z_$][\w$]*)?)"', testo):
+            trovati.add(pezzo)
+    return trovati
+
+
 def censimento(documenti: Dict[str, List[Dict[str, Any]]]) -> Dict[str, Set[str]]:
     scritti: Set[str] = set()
     letti: Set[str] = set()
     _scava({k: v for k, v in documenti.items() if k != "tag"}, scritti, letti)
     for _, verso, tag in _tocchi_espliciti(documenti):
         (scritti if verso == "scrive" else letti).add(tag)
+    # E quello che il motore scrive da se', verificato nel GDScript e non
+    # creduto sulla parola (D-333). Solo per le voci che **dichiarano** di
+    # essere del motore: cosi' il codice conferma una dichiarazione, non la
+    # sostituisce, e un segno trovato nel codice ma non dichiarato resta un
+    # segno fuori dal dizionario.
+    dal_codice = _scritti_dal_codice()
+    for voce in documenti.get("tag", []):
+        if "engine" in (voce.get("written_by") or []) and str(voce["id"]) in dal_codice:
+            scritti.add(str(voce["id"]))
     # **Il Tema non legge niente.** Elencare un segno sotto un Tema e' archiviarlo,
     # non usarlo: se contasse come lettura, questo cancello si soddisferebbe da
     # solo aggiungendo una riga a un elenco. Un segno vive se lo guarda una
@@ -1073,6 +1116,25 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
     print("")
     print("== SELF-TEST: la guardia morde? ==")
     print("")
+    def rovina_non_dichiarata(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        """La Cicatrice di una rovina che il dizionario non conosce (D-333).
+
+        Per una parola sola — `ruin.scar` letto come `ruin.tag` — questa guardia
+        e' stata cieca a tutte e dieci le rovine, e `scar:burned_records` e'
+        vissuto fuori dal dizionario senza che niente andasse rosso."""
+        pietra = next(p for p in prova["structure_type"] if (p.get("ruin") or {}).get("scar"))
+        pietra["ruin"] = dict(pietra["ruin"], scar="scar:seminata_apposta")
+
+    def motore_non_verificato(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        """Una voce che dice «lo scrive il motore» e che nel codice non c'e'.
+
+        Senza questa pianta, `written_by: ["engine"]` sarebbe una parola magica
+        che zittisce il cancello."""
+        prova["tag"].append({
+            "id": "motore_seminato_apposta", "title": "seminato apposta",
+            "category": "STATE", "scope": ["ENTITY"],
+            "written_by": ["engine"], "read_by": [], "note": "difetto piantato"})
+
     def accende_segno_inventato(prova: Dict[str, List[Dict[str, Any]]]) -> None:
         tensione = next(t for t in prova["tension"] if t.get("heats_when"))
         tensione["heats_when"] = [{
@@ -1144,6 +1206,10 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
                accende_pietra_inventata, "nomina la Pietra"),
         pianta("si accende quando: una riga senza verbo", accende_senza_verbo,
                "non dice nessun verbo"),
+        pianta("Cicatrice di rovina fuori dal dizionario", rovina_non_dichiarata,
+               "segno fuori dal dizionario"),
+        pianta("voce che dice «lo scrive il motore» e nel codice non c'e'",
+               motore_non_verificato, "voce morta nel dizionario"),
     ]
     puliti = controlla(documenti)
     print("  %s %s" % ("OK " if not puliti else "MANCATO", "dati veri: nessun guaio"))

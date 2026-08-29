@@ -7,7 +7,7 @@ piano, misurate sui dati di oggi **prima** di scrivere un file nuovo.
 
 | | |
 |---|---|
-| segni nel dizionario | 182 |
+| segni nel dizionario | 184 |
 | di cui qualcuno scrive | 149 |
 | orfani in tutto | 59 |
 | **di cui senza una ragione scritta** | **11** |

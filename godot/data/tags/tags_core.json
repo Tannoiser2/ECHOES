@@ -2327,6 +2327,7 @@
       ],
       "written_by": [
         "consequence",
+        "structure_type",
         "tension"
       ],
       "read_by": [
@@ -2341,7 +2342,8 @@
         "REGION"
       ],
       "written_by": [
-        "consequence"
+        "consequence",
+        "structure_type"
       ],
       "read_by": [
         "asset",
@@ -2361,6 +2363,19 @@
       "read_by": [
         "tag_rule"
       ]
+    },
+    {
+      "id": "scar:burned_records",
+      "title": "l'Archivio bruciato",
+      "category": "MEMORY",
+      "scope": [
+        "REGION"
+      ],
+      "written_by": [
+        "structure_type"
+      ],
+      "read_by": [],
+      "note": "la Cicatrice che l'Archivio (STR_ARCHIVE) lascia sulla tessera andando in rovina; nessuna clausola la nomina, come scar:divided_seal, e pesa per il fatto di esistere nel conto delle Cicatrici"
     },
     {
       "id": "scar:changed_hands",
@@ -2414,7 +2429,8 @@
       ],
       "written_by": [
         "asset_physical",
-        "consequence"
+        "consequence",
+        "structure_type"
       ],
       "read_by": [
         "destiny_physical",
@@ -2431,7 +2447,8 @@
       ],
       "written_by": [
         "asset_physical",
-        "consequence"
+        "consequence",
+        "structure_type"
       ],
       "read_by": [
         "entity",
@@ -2447,6 +2464,7 @@
       ],
       "written_by": [
         "consequence",
+        "structure_type",
         "tension"
       ],
       "read_by": [],
@@ -2964,6 +2982,21 @@
         "entity"
       ],
       "note": "lo scrive il motore alla seconda cacciata (D-234)"
+    },
+    {
+      "id": "uprooted",
+      "title": "sradicato",
+      "category": "ENTITY",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "engine"
+      ],
+      "read_by": [
+        "engine"
+      ],
+      "note": "lo scrive il motore alla prima cacciata da un Consiglio (D-130); lo rilegge lui stesso, perche' la seconda cacciata nello stesso anno diventa `twice_uprooted`, e quella la legge la successione"
     },
     {
       "id": "valley_sealed",

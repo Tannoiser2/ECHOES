@@ -283,7 +283,7 @@ Dashed outline: this is a thing happening, and it can end.
 
 ### l'abbandono
 
-`scar:abandoned` · categoria **MEMORY** · sta su region · lo posa: consequence, tension
+`scar:abandoned` · categoria **MEMORY** · sta su region · lo posa: consequence, structure_type, tension
 
 **Cosa vuol dire.** Il posto fu lasciato, e il mondo lo ricorda anche quando torna gente.
 
@@ -302,7 +302,7 @@ The drawing carries a break — one line that splits it. Permanent.
 
 ### il ponte rotto
 
-`scar:broken_bridge` · categoria **MEMORY** · sta su region · lo posa: consequence
+`scar:broken_bridge` · categoria **MEMORY** · sta su region · lo posa: consequence, structure_type
 
 **Cosa vuol dire.** Il ponte fu rotto, e da allora si passa altrove.
 
@@ -340,7 +340,7 @@ The drawing carries a break — one line that splits it. Permanent.
 
 ### i registri bruciati
 
-`scar:burned_records`
+`scar:burned_records` · categoria **MEMORY** · sta su region · lo posa: structure_type
 
 **Cosa vuol dire.** Le carte bruciarono: quello che c'era scritto non c'e' piu'.
 
@@ -416,7 +416,7 @@ The drawing carries a break — one line that splits it. Permanent.
 
 ### lo sgombero
 
-`scar:emptied` · categoria **MEMORY** · sta su region · lo posa: asset_physical, consequence
+`scar:emptied` · categoria **MEMORY** · sta su region · lo posa: asset_physical, consequence, structure_type
 
 **Cosa vuol dire.** Qui vennero sgomberati, e nessuna generazione dopo l'ha dimenticato.
 
@@ -435,7 +435,7 @@ The drawing carries a break — one line that splits it. Permanent.
 
 ### la ferita aperta
 
-`scar:open_wound` · categoria **MEMORY** · sta su region · lo posa: asset_physical, consequence
+`scar:open_wound` · categoria **MEMORY** · sta su region · lo posa: asset_physical, consequence, structure_type
 
 **Cosa vuol dire.** Uno squarcio che non si e' richiuso: la montagna, la terra, la gente.
 
@@ -454,7 +454,7 @@ The drawing carries a break — one line that splits it. Permanent.
 
 ### la razzia
 
-`scar:plundered` · categoria **MEMORY** · sta su region · lo posa: consequence, tension
+`scar:plundered` · categoria **MEMORY** · sta su region · lo posa: consequence, structure_type, tension
 
 **Cosa vuol dire.** La razzia divento' racconto: qui si tiene ancora il conto.
 
@@ -984,7 +984,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### sradicato
 
-`uprooted`
+`uprooted` · categoria **ENTITY** · sta su entity · lo posa: engine
 
 **Cosa vuol dire.** Sono stati cacciati da dove stavano.
 

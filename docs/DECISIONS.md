@@ -10,6 +10,85 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-333 — Una parola sola rendeva invisibili dieci Cicatrici
+
+**implemented** (0.1.296) · trovata rispondendo a due domande del committente sul
+grafo dei segni: *«ma cosa e' il motore, e come fa una Pietra ad accendere una
+Regione?»*.
+
+### Le due domande, e perche' erano giuste tutte e due
+
+**«Cosa e' il motore»** — nel dizionario, `written_by: ["engine"]` vuol dire che
+il segno lo scrive **il codice**, non una carta ne' una Conseguenza. Sono 37, e
+quasi nessuno e' cartone: `life:` (18, quale vita sta vivendo una casa),
+`function:` (12, la funzione narrativa dell'anno che le carte Echo controllano),
+`legend:` (3, memorie sfumate dopo un salto d'era). **Due su trentasette hanno un
+segnalino**: gli altri trentacinque sono stato interno che al tavolo non si vede.
+
+**«Come fa una Pietra ad accendere una Regione»** — non lo fa, ed era
+un'etichetta mia a farlo credere. La carta della Pietra **dichiara quale segno
+lascia sulla tessera dove sta**: `STR_GRANARY` stampa `structure:granary` su
+tutt'e due i gradi, e in rovina lascia `scar:emptied`. La Regione porta il segno
+perche' quella Pietra ci sta sopra.
+
+### Il difetto che la seconda domanda ha scoperto
+
+Andando a verificare, due segni che il gioco posa davvero **non erano nel
+dizionario**:
+
+| | |
+|---|---|
+| `uprooted` | lo scrive il motore alla prima cacciata da un Consiglio (D-130), ha un segnalino disegnato e un'etichetta stampata. Curiosamente `twice_uprooted` era dichiarato: **la seconda sradicata si', la prima no** |
+| `scar:burned_records` | la Cicatrice che l'Archivio lascia andando in rovina, con segnalino ed etichetta |
+
+E la ragione per cui la guardia non li aveva mai visti sono **due buchi
+distinti**.
+
+### Primo buco: `ruin.tag` contro `ruin.scar`
+
+`_tocchi_espliciti` leggeva `rovina.get("tag")`. Le Pietre scrivono la loro
+Cicatrice sotto la chiave **`scar`**. Tutte e dieci.
+
+Per quella parola la guardia era cieca a **ogni Cicatrice di rovina**. Non si e'
+mai vista perche' **nove su dieci le scrive anche una Conseguenza**, e passavano
+di li'; l'unica che solo una Pietra posa — `scar:burned_records` dell'Archivio —
+viveva fuori dal dizionario senza che niente andasse rosso.
+
+Riparata la riga, la guardia ha subito trovato altro: **cinque Cicatrici il cui
+`written_by` non dichiarava la Pietra** fra le mani che le scrivono. Dichiarate.
+
+### Secondo buco: un segno che scrive solo il codice
+
+`uprooted` non lo tocca nessun dato, quindi il censimento — che guarda solo
+`godot/data` — lo dichiarava voce morta. La tentazione era far bastare
+`written_by: ["engine"]` per zittire il cancello, ed e' esattamente **un cancello
+che si soddisfa da solo**: sarebbe bastato scrivere «lo fa il motore».
+
+Quindi la guardia **va a vedere nel GDScript**: un segno vale come scritto dal
+codice se il suo nome compare fra virgolette sotto `godot/scripts`. Il codice
+**conferma** una dichiarazione, non la sostituisce — un segno trovato nel codice
+ma non dichiarato resta un segno fuori dal dizionario.
+
+### Le guardie, viste mordere
+
+Due difetti piantati nuovi, e il self-test passa da 26 a **28**:
+
+- una Cicatrice di rovina che il dizionario non conosce;
+- una voce che dice «lo scrive il motore» e che nel codice non c'e'.
+
+### Il costo, dichiarato
+
+- Dizionario da **182 a 184** voci; `CATALOGO_PEDINE` da' finalmente una scheda
+  intera a `scar:burned_records`, che prima era una riga nuda.
+- **Nessun cambiamento di regole**: due dichiarazioni, cinque `written_by`
+  completati, due righe di validatore.
+- Resta che **117 dei 184 segni non sono cartone**: sono contabilita' del
+  motore. Il dizionario li mette in fila coi segnalini senza distinguerli, e
+  `COMPONENTI.md` la distinzione la fa gia' a parole. Metterla nel dato e' lavoro
+  per ISSUES 98.
+
+---
+
 ## D-332 — Si scaldano tutte, e le regole guardavano dove il gioco non succede
 
 **implemented** (0.1.295) · [ISSUES 100](ISSUES.md) · decisione del committente:

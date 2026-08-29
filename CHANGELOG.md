@@ -5,6 +5,52 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.296 — Una parola sola rendeva invisibili dieci Cicatrici (D-333)
+
+### Trovato rispondendo a due domande
+
+Il committente, guardando il grafo dei segni: *«ma cosa e' il motore, e come fa
+una Pietra ad accendere una Regione?»*. Andando a verificare, **due segni che il
+gioco posa davvero non erano nel dizionario**:
+
+- **`uprooted`** — lo scrive il motore alla prima cacciata da un Consiglio
+  (D-130), ha un segnalino e un'etichetta stampata. `twice_uprooted` era
+  dichiarato: la seconda sradicata si', la prima no.
+- **`scar:burned_records`** — la Cicatrice che l'Archivio lascia in rovina.
+
+### Due buchi nella guardia, distinti
+
+**`ruin.tag` contro `ruin.scar`.** Il validatore fisico leggeva `rovina["tag"]`;
+le Pietre scrivono la Cicatrice sotto **`scar`**. Tutte e dieci. Per quella
+parola la guardia era cieca a **ogni Cicatrice di rovina**, e non si e' mai vista
+perche' nove su dieci le scrive anche una Conseguenza. L'unica che solo una
+Pietra posa viveva fuori dal dizionario.
+
+Riparata la riga, la guardia ha trovato subito **cinque Cicatrici il cui
+`written_by` non dichiarava la Pietra**. Dichiarate.
+
+**Un segno che scrive solo il codice.** `uprooted` non lo tocca nessun dato. Far
+bastare `written_by: ["engine"]` sarebbe stato un cancello che si soddisfa da
+solo, quindi la guardia **va a leggere il GDScript**: il codice conferma la
+dichiarazione, non la sostituisce.
+
+### Cancelli
+
+Self-test da 26 a **28** difetti piantati: una Cicatrice di rovina fuori dal
+dizionario, e una voce che dice «lo scrive il motore» e nel codice non c'e'.
+Tutt'e due viste mordere.
+
+### Costo, dichiarato
+
+- Dizionario da **182 a 184** voci. `CATALOGO_PEDINE.md` da' finalmente una
+  scheda intera a `scar:burned_records`, che prima era una riga nuda.
+- **Nessun cambiamento di regole**: due dichiarazioni, cinque `written_by`
+  completati, due righe di validatore.
+- Resta che **117 dei 184 segni non sono cartone** ma contabilita' del motore, e
+  il dizionario non li distingue. E' lavoro per ISSUES 98.
+
+---
+
 ## 0.1.295 — Si scaldano tutte, e le regole guardavano dove il gioco non succede (D-332)
 
 ### Cambiato
