@@ -116,6 +116,29 @@ non e' su questo che la modifica si giustifica.
 
 - La prova si e' vista **andare rossa col filtro rimesso** e verde senza: senza
   quel controllo sarebbe una prova che passa comunque.
+### La deriva, di nuovo, e i due cancelli l'hanno presa
+
+Togliere il filtro sposta il mondo di poco ma davvero, e `MISURA_SEGNI` e
+`MISURA_VITE` sono andati rossi tutti e due. Rigenerati:
+
+| | col filtro | senza |
+|---|---|---|
+| righe di `MISURA_SEGNI` che si muovono | — | **66**, tutte di ±1-3 |
+| segni entrati o usciti dall'elenco | — | **nessuno** |
+| **trasformazioni sedute** (168 salti) | 198 | **202** |
+| Nahr, ogni quanti salti muta | 1 ogni 10,5 | 1 ogni **8,8** |
+| la casa che muta piu' spesso | Aldric, 1 ogni 4,8 | Aldric, 1 ogni **4,8** |
+
+Quattro trasformazioni in piu' si siedono, e il Popolo Nahr — la casa che mutava
+di meno — si avvicina alle altre. Il limite di [ISSUES 83](ISSUES.md), **nessuna
+casa sotto un salto su quattro**, tiene invariato.
+
+E' la terza volta in due decisioni che questi due cancelli prendono una deriva
+che nessun altro avrebbe visto: il Calore che cambia strada cambia i Consigli,
+i Consigli cambiano le Conseguenze, e le Conseguenze cambiano le porte su cui le
+case cambiano pelle. **La catena e' lunga, e senza i due documenti generati
+sarebbe invisibile.**
+
 - Resta aperta la scelta che **non** ho preso da solo, ed e' in ISSUES 100: se il
   Calore debba andare a **tutte** le questioni che riconoscono il gesto invece
   che a una sola. Quella moltiplicherebbe il volume, e il volume e' del
