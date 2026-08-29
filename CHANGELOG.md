@@ -5,6 +5,56 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.303 — La scheda del Consiglio: due pezzi, due mestieri (D-338)
+
+Il committente, dopo la misura di D-337: *«facciamo formato tarocco o quello che
+serve in più»*.
+
+Provato il tarocco per la carta intera, **non basta**: `TEN_SUCCESSION`, con
+sette proposte, esce dal bordo anche a 70×120. E c'è una ragione più seria: una
+prova che c'era già dice *«le domande sono mini, **per la traccia**»* — è D-097,
+ed è fisica. La carta Tensione **sta appoggiata alla traccia dei valori**.
+
+Quindi la seconda metà della frase: **quello che serve in più**.
+
+| pezzo | formato | mestiere |
+|---|---|---|
+| carta **Domanda** | 44×68, resta mini | sta sulla traccia, dice **quando** la domanda si scalda |
+| scheda **Consiglio** | 70×120, tarocco | si tira fuori quando il Consiglio si apre, dice **cosa si può proporre e cosa costa** |
+
+Sulla scheda: la domanda, ogni proposta **con cosa lascia** (la riga che D-336 ha
+fatto dire il vero), e le **dodici caselle** — SI OTTIENE, SI PAGA, SE CADE — che
+non erano stampate da nessuna parte.
+
+### La misura ha scelto la forma, non io
+
+| tentativo | esito |
+|---|---|
+| tutto sulla carta, **mini** | non ci sta, di quattro volte (D-337) |
+| tutto sulla carta, **tarocco** | **una carta sborda** |
+| **carta mini + scheda tarocco** | **tutte e 60 ci stanno** |
+
+### Il costo, dichiarato
+
+**Sessanta pezzi di cartone in più.** I fogli A4 di carte e tessere passano da
+**39 a 54**; con i tre fogli-fustella la scatola ne stampa 57. È il prezzo che
+ISSUES 89 prevedeva per la strada (b), pagato dove costa meno: non sulla carta
+che tieni in mano tutta la partita, ma su una scheda che tiri fuori quando serve.
+
+**Nessun costo sul gioco:** playtest 100 semi, **0 seggi bloccati su un solo
+livello su 8**. Non è cambiata una regola.
+
+### E un documento che non sapeva di avere sessanta pezzi in più
+
+`components_survey.py` costruisce la tabella dei mazzi da **righe scritte a
+mano**, non dai mazzi che `CardFace` dichiara. Aggiunto un mazzo, il documento
+che conta i pezzi della scatola non se n'è accorto e **non è fallito**. Aggiunta
+la riga; che la tabella si costruisca da sola resta da fare.
+
+Diciannove cancelli verdi, suite 641 prove / **36.404 asserzioni**.
+
+---
+
 ## 0.1.302 — La carta stampava la frase che non si può giocare (D-337)
 
 D-336 ha fatto dire il vero alla frase, ma quella riga vive in due documenti.

@@ -154,6 +154,14 @@ def survey() -> str:
         ("Carte **Echo**", len(echoes), len(echoes), "CARD", 0, "echo"),
         ("Carte **Tensione** (le Domande)", len(tensions), len(tensions), "MINI",
          sum(1 for t in tensions if t.get("physical")), "tension"),
+        # **La scheda del Consiglio** (D-338): un pezzo suo, uno per Tensione. La
+        # carta Domanda resta mini perche' sta sulla traccia (D-097); quello che
+        # serve per *risolvere* un Consiglio — la domanda, le proposte con cosa
+        # lasciano, le dodici caselle — sono 870 caratteri, e su una mini non
+        # entrano. La faccia fisica c'e' per tutte: e' fatta di dato, non di
+        # blocco `physical`.
+        ("Schede **Consiglio**", len(tensions), len(tensions), "TAROT",
+         len(tensions), "council"),
         ("Carte **Destino**", len(destinies), len(destinies), "TAROT",
          sum(1 for d in destinies if d.get("physical")), "destiny"),
         ("Carte **Casata** (una per vita)", vite, vite, "TAROT", 0, "entity"),

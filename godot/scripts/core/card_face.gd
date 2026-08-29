@@ -18,6 +18,7 @@ extends RefCounted
 
 const AssetText := preload("res://scripts/core/asset_text.gd")
 const SignLabels := preload("res://scripts/core/sign_labels.gd")
+const CouncilText := preload("res://scripts/core/council_text.gd")
 
 ## Le sei famiglie di Asset e il loro accento. Un solo accento saturo per
 ## famiglia (ART_BIBLE): la carta si riconosce dal bordo prima che dal titolo.
@@ -64,13 +65,26 @@ const BIOMES: Dictionary = {
 ## I cinque mazzi che si stampano come carte 2:3, piu' le tessere quadrate. Le
 ## Consequence non sono qui perche' non sono un pezzo: si vedono sulla mappa come
 ## overlay, e la COMPONENTS §2 lo dice gia'.
-const DECKS: Array = ["asset", "echo", "tension", "destiny", "entity"]
+## **E la scheda del Consiglio** (D-338): un pezzo suo, uno per Tensione.
+##
+## La carta Tensione resta **mini**, perche' D-097 la vuole appoggiata alla
+## traccia dei valori: e' il segnalino della domanda in gioco, e una carta da
+## tarocco sulla traccia non ci sta. Ma quello che serve per **risolvere** un
+## Consiglio — la domanda, le proposte con cosa lasciano, le dodici caselle
+## dell'economia — sono 870 caratteri mediani, e su una mini non entrano.
+##
+## Quindi due pezzi con due mestieri: la mini dice **quando** la domanda si
+## scalda e sta sulla traccia; il tarocco dice **cosa si puo' proporre e cosa
+## costa**, e si tira fuori quando il Consiglio si apre. E' il «fatto quando»
+## di ISSUES 89: una proposta si risolve guardando questa scheda e la mappa.
+const DECKS: Array = ["asset", "echo", "tension", "council", "destiny", "entity"]
 const TILES: Array = ["region"]
 
 ## Come si chiamano al tavolo, che e' come vanno chiamati ovunque li si nomini:
 ## sul foglio di stampa, nell'anteprima e nel riepilogo dell'export.
 const DECK_LABELS: Dictionary = {
 	"asset": "carte Asset", "echo": "carte Echo", "tension": "carte Domanda",
+	"council": "schede Consiglio",
 	"destiny": "carte Destino", "entity": "carte Casata", "region": "tessere Regione",
 }
 
@@ -112,6 +126,7 @@ static func _source(deck: String, data: RefCounted) -> Dictionary:
 		"asset": return data.assets
 		"echo": return data.echo_cards
 		"tension": return data.tensions
+		"council": return data.tensions
 		"destiny": return data.destinies
 		"entity": return data.entities
 		"region": return data.regions
@@ -140,6 +155,7 @@ static func of(deck: String, id: String, data: RefCounted) -> Dictionary:
 		"asset": return _asset(item, data)
 		"echo": return _echo(item, data)
 		"tension": return _tension(item)
+		"council": return _council(item, data)
 		"destiny": return _destiny(item, data)
 		"entity": return _entity(item, data)
 		"region": return _region(item)
@@ -264,6 +280,49 @@ static func _tension(tension: Dictionary) -> Dictionary:
 			PackedStringArray(tension["relevant_asset_families"])
 		).to_lower(),
 	]
+	face["footer"] = str(tension["id"])
+	return face
+
+
+## La scheda del Consiglio che una Tensione apre: la domanda, le proposte con
+## cosa lasciano, e le dodici caselle. La riga di ogni proposta e' la stessa che
+## D-336 ha fatto dire il vero — fino alla 0.1.301 diceva «dove si discute»
+## anche quando la cosa succedeva altrove.
+static func _council(tension: Dictionary, data: RefCounted) -> Dictionary:
+	var face: Dictionary = _face("council", str(tension["id"]), "TAROT")
+	face["title"] = str(tension["title"])
+	face["subtitle"] = "il Consiglio che questa domanda apre"
+	var council: Dictionary = tension.get("council", {}) as Dictionary
+	var body: Array = []
+	for question in council.get("questions", []) as Array:
+		body.append(CouncilText.speak(str((question as Dictionary).get("text", ""))))
+	face["body"] = body
+	for proposal in council.get("propositions", []) as Array:
+		var said: Dictionary = CouncilText.proposition(
+			council, str((proposal as Dictionary).get("id", "")), data
+		)
+		if said.is_empty():
+			continue
+		var leaves: Array = []
+		for leaf in said["consequences"] as Array:
+			leaves.append(str((leaf as Dictionary)["leaves"]))
+		if leaves.is_empty():
+			face["notes"].append("· %s" % str(said["text"]))
+		else:
+			face["notes"].append("· %s → %s" % [
+				str(said["text"]), " · ".join(PackedStringArray(leaves)),
+			])
+	var physical: Dictionary = tension.get("physical", {}) as Dictionary
+	for pair in [["benefits", "SI OTTIENE"], ["costs", "SI PAGA"], ["failure", "SE CADE"]]:
+		var voices: Array = physical.get(str(pair[0]), []) as Array
+		if voices.is_empty():
+			continue
+		var said_now: Array = []
+		for voice in voices:
+			said_now.append(str((voice as Dictionary).get("text", "")))
+		face["notes"].append("%s — %s" % [
+			str(pair[1]), " · ".join(PackedStringArray(said_now)),
+		])
 	face["footer"] = str(tension["id"])
 	return face
 

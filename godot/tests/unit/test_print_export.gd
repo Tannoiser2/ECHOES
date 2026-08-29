@@ -200,6 +200,16 @@ func test_each_deck_has_the_size_of_its_table_role() -> void:
 	assert_eq(str(CardFace.deck_of("asset", loaded)[0]["shape"]), "CARD", "gli Asset si mescolano: classica")
 	assert_eq(str(CardFace.deck_of("echo", loaded)[0]["shape"]), "CARD", "gli Echo pure")
 	assert_eq(str(CardFace.deck_of("tension", loaded)[0]["shape"]), "MINI", "le domande sono mini, per la traccia")
+	# **E la scheda del Consiglio e' un tarocco** (D-338). Due pezzi con due
+	# mestieri: la mini sta sulla traccia e dice quando la domanda si scalda; il
+	# tarocco dice cosa si puo' proporre e cosa costa, e si tira fuori quando il
+	# Consiglio si apre. Su una mini quelle 870 righe non entravano, e su una
+	# carta sola nemmeno: TEN_SUCCESSION sbordava.
+	assert_eq(str(CardFace.deck_of("council", loaded)[0]["shape"]), "TAROT",
+		"le schede del Consiglio sono tarocchi: si leggono, non si appoggiano")
+	assert_eq(CardFace.deck_of("council", loaded).size(),
+		CardFace.deck_of("tension", loaded).size(),
+		"una scheda per ogni domanda")
 	assert_eq(str(CardFace.deck_of("destiny", loaded)[0]["shape"]), "TAROT", "i Destini sono tarocchi, sempre in vista")
 	assert_eq(str(CardFace.deck_of("entity", loaded)[0]["shape"]), "TAROT", "le Casate pure")
 	assert_eq(str(CardFace.deck_of("region", loaded)[0]["shape"]), "TILE", "le Regioni restano tessere: la mappa e' fatta")

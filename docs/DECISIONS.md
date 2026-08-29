@@ -10,6 +10,76 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-338 — La scheda del Consiglio: due pezzi, due mestieri
+
+**implemented** — 0.1.303
+
+### La decisione del committente
+
+D-337 aveva misurato che quello che le decisioni prese chiedono di stampare sulla
+carta Tensione — 1.024 caratteri mediani — non sta su una 44x68. La risposta del
+committente: *«facciamo formato tarocco o quello che serve in più»*.
+
+Provato il tarocco per la carta intera, e **non basta**: `TEN_SUCCESSION`, con
+sette proposte, esce dal bordo anche a 70x120. E ce n'è un'altra, più seria: una
+prova che c'era già dice *«le domande sono mini, **per la traccia**»* — è
+[D-097](#d-097), e la ragione è fisica. La carta Tensione **sta appoggiata alla
+traccia dei valori**: è il segnalino della domanda in gioco, e un tarocco lì non
+ci sta.
+
+Quindi la seconda metà della frase: **quello che serve in più**.
+
+### Due pezzi con due mestieri
+
+| pezzo | formato | mestiere |
+|---|---|---|
+| carta **Domanda** | 44x68, resta mini | sta sulla traccia, dice **quando** la domanda si scalda |
+| scheda **Consiglio** | 70x120, tarocco | si tira fuori quando il Consiglio si apre, dice **cosa si può proporre e cosa costa** |
+
+Sulla scheda ci sono le tre cose che servono per risolvere:
+
+- **la domanda** — *«Chi nutre la Regione di cui si discute quando i granai si svuotano?»*;
+- **ogni proposta, con cosa lascia** — la riga che D-336 ha fatto dire il vero:
+  *«Il grano sia requisito → si alza Granaio in una Regione con granaio · Le Vie
+  Interrotte sale · il mondo registra: il grano è stato requisito»*;
+- **le dodici caselle** — SI OTTIENE, SI PAGA, SE CADE: il premio e il prezzo
+  dell'economia di D-280, che non erano stampati da nessuna parte.
+
+### La misura che ha deciso la forma
+
+Il sistema di stampa sa già dire se un testo ci sta: calcola l'eccedenza e la
+scala, e il cancello rifiuta sotto il 74%. È lui che ha scelto, non io:
+
+| tentativo | esito |
+|---|---|
+| tutto sulla carta, **mini** | non ci sta, di quattro volte (D-337) |
+| tutto sulla carta, **tarocco** | **una carta sborda**: `TEN_SUCCESSION` |
+| **carta mini + scheda tarocco** | **tutte e 60 ci stanno** |
+
+### Il costo, dichiarato
+
+**Sessanta pezzi di cartone in più.** I fogli A4 di carte e tessere passano da
+**39 a 54**; con i tre fogli-fustella la scatola ne stampa 57.
+
+È il prezzo che ISSUES 89 prevedeva per la strada (b), pagato dove costa meno:
+non sulla carta che tieni in mano tutta la partita, ma su una scheda che tiri
+fuori quando serve. E al tavolo sono 60 schede di cui ne consulti una alla volta,
+quando un Consiglio si apre su quella domanda.
+
+**Nessun costo sul gioco:** playtest 100 semi, **0 seggi bloccati su un solo
+livello su 8**. Non è cambiata una regola: è cambiato cosa è stampato.
+
+### E un documento che non sapeva di avere sessanta pezzi in più
+
+`components_survey.py` costruisce la tabella dei mazzi da **righe scritte a
+mano**, non dai mazzi che `CardFace` dichiara. Aggiunto un mazzo, il documento
+che conta i pezzi della scatola non se n'è accorto e **non è fallito** — «39
+fogli A4» sarebbe rimasto scritto mentre l'export ne stampava 57. Aggiunta la
+riga; che la tabella si costruisca da sola resta da fare, ed è la stessa forma di
+ISSUES 102.
+
+---
+
 ## D-337 — La carta stampava la frase che non si puo' giocare
 
 **implemented** — 0.1.302

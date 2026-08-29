@@ -3706,6 +3706,22 @@ arrivano da un'altra parte.
 > d'autore, e nascondeva la regola in segni che il motore esegue. Lo scambio
 > toglie 1.559 caratteri dal mazzo.
 
+> ### E il formato l'ha deciso il committente (0.1.303, [D-338](DECISIONS.md#d-338))
+>
+> *«Facciamo formato tarocco o quello che serve in più.»* Il tarocco per la carta
+> intera non basta — `TEN_SUCCESSION` sborda anche a 70x120 — e la carta Domanda
+> deve restare mini perche' **sta sulla traccia dei valori** (D-097). Quindi due
+> pezzi: la mini sulla traccia, e una **scheda del Consiglio** in tarocco con la
+> domanda, ogni proposta con cosa lascia, e le dodici caselle.
+>
+> **Tutte e 60 ci stanno.** Costo: sessanta pezzi in piu', i fogli A4 da 39 a 54.
+>
+> **Il «fatto quando» qui sotto e' raggiunto**: una proposta si risolve guardando
+> quella scheda e la mappa. Quello che resta di questa voce non e' piu' la
+> stampa, e' il **motore**: le proposte restano frasi d'autore che puntano a
+> Conseguenze, e la strada (a) — la proposta come menu di caselle — non e' stata
+> presa. La misura di 0.1.300 dice cosa costerebbe.
+
 **Fatto quando** una proposta si puo' risolvere guardando solo la carta e la
 mappa.
 
