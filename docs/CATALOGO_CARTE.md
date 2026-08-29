@@ -40,8 +40,8 @@ la rarita'.
 
 **AZIONE — scegli 1**
 
-A. **Proibire.** Abbassa quella questione di 2. Nessuno puo' influenzarla fino alla fine dell'Atto.
-B. **Scomunicare.** Alzala di 1 e metti #tradimento_detto sul mondo: hai messo qualcuno fuori, e tutti sanno chi.
+A. **Proibire.** Abbassa quella questione di 2. Nessuno puo' influenzarla fino a fine Atto.
+B. **Scomunicare.** Alzala di 1 e metti #tradimento_detto sul mondo.
 
 **RISONANZA (avviene sempre)** — Scalda Fede +2. Un interdetto non toglie niente a nessuno: dice solo che d'ora in poi c'e' un dentro e un fuori.
 
@@ -52,7 +52,7 @@ B. **Scomunicare.** Alzala di 1 e metti #tradimento_detto sul mondo: hai messo q
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Interdetto — Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: vietare una cosa a tutti alza la posta per tutti.
+Historical dark-fantasy painting, single evocative scene depicting Interdetto.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 oro spento accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -86,8 +86,8 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **AZIONE — scegli 1**
 
-A. **Scrivere il nome.** Rivendica il luogo e metti #erede_nominato sul mondo: il nome adesso e' scritto.
-B. **Scrivere la regola.** Metti #successione_per_legge sul mondo. Non un nome: un modo di sceglierlo, che vale anche contro di te.
+A. **Scrivere il nome.** Rivendica il luogo e metti #erede_nominato sul mondo.
+B. **Scrivere la regola.** Metti #successione_per_legge sul mondo.
 
 **RISONANZA (avviene sempre)** — Scalda Potere +2. Un atto di successione e' la promessa che qualcuno si alzera' — e l'annuncio a tutti gli altri che non saranno loro.
 
@@ -98,7 +98,7 @@ B. **Scrivere la regola.** Metti #successione_per_legge sul mondo. Non un nome: 
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Atto di Successione — Forza 3. Si scarta sempre, e chi ti sta di fronte guadagna una presenza nella Regione di cui si discute: nominare un erede fa arrivare tutti quelli che non sono stati nominati.
+Historical dark-fantasy painting, single evocative scene depicting Atto di Successione.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 oro spento accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -132,8 +132,8 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **AZIONE — scegli 1**
 
-A. **Rivendicare per diritto.** Rivendica il luogo. Il diritto non si discute: si esibisce.
-B. **Cedere il diritto.** Un'altra casa prende la rivendicazione al posto tuo, e sale di due gradini nel rapporto con te.
+A. **Rivendicare per diritto.** Rivendica il luogo.
+B. **Cedere il diritto.** Un'altra casa prende la rivendicazione al posto tuo e sale di 2 gradini nel rapporto con te.
 
 **RISONANZA (avviene sempre)** — Scalda Potere +2. Ogni volta che il diritto viene detto ad alta voce, qualcuno conta chi non l'ha detto.
 
@@ -144,7 +144,7 @@ B. **Cedere il diritto.** Un'altra casa prende la rivendicazione al posto tuo, e
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Diritto di Corona — Si scarta sempre: un diritto invocato due volte non è più un diritto, è una pretesa — e la pretesa divide: la Regione della domanda resta contesa.
+Historical dark-fantasy painting, single evocative scene depicting Diritto di Corona.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 oro spento accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -179,8 +179,8 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **AZIONE — scegli 1**
 
-A. **Mandarlo a giudicare.** Sposta una tua presenza li', e togli #conteso: dove c'e' un giudice, la lite ha un posto dove finire.
-B. **Mandarlo a controllare.** Togli #malcontento dal luogo e pesca 1 Sapere: un registro tenuto bene calma piu' di una lancia.
+A. **Mandarlo a giudicare.** Sposta una tua presenza li' e togli #conteso dal luogo.
+B. **Mandarlo a controllare.** Togli #malcontento dal luogo e pesca 1 Sapere.
 
 **RISONANZA (avviene sempre)** — Scalda Potere +1. Un magistrato e' la corona che arriva dove la corona non va di persona.
 
@@ -191,7 +191,7 @@ B. **Mandarlo a controllare.** Togli #malcontento dal luogo e pesca 1 Sapere: un
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Magistrato — +2 sul fronte Oppose. Se la proposta passa lo stesso resta in mano: un giudice che ha avuto ragione serve ancora — e il giudice risponde: la domanda rimasta scritta sul muro si cancella.
+Historical dark-fantasy painting, single evocative scene depicting Magistrato.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 oro spento accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -227,7 +227,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 **AZIONE — scegli 1**
 
 A. **Contare le teste.** Scopri una questione velata che tocca quel luogo, e pesca 1 Sapere.
-B. **Contare i sacchi.** Togli #razionato o #requisito dal luogo: quando i conti sono pubblici, le scuse finiscono.
+B. **Contare i sacchi.** Togli #razionato o #requisito dal luogo.
 
 **RISONANZA (avviene sempre)** — Scalda Potere +1. Contare e' un atto di governo, e chi viene contato lo sa.
 
@@ -238,7 +238,7 @@ B. **Contare i sacchi.** Togli #razionato o #requisito dal luogo: quando i conti
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Censimento — +1 quando Autorità è rilevante per la Tensione. Una lista di nomi è la forma più semplice del potere — e la lista chiarisce: la Regione della domanda smette di essere contesa.
+Historical dark-fantasy painting, single evocative scene depicting Censimento.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 oro spento accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -272,8 +272,8 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **AZIONE — scegli 1**
 
-A. **Rivendicare.** Metti la tua rivendicazione sul luogo: al prossimo Consiglio quel luogo apre la sua Domanda, e tu parli per primo.
-B. **Proibire.** Nessuno puo' giocare carte Forza su quel luogo fino alla fine dell'Atto. Chi lo fa lo fa contro la legge, e si vede.
+A. **Rivendicare.** Rivendica il luogo: al prossimo Consiglio apre la sua Domanda, e parli per primo.
+B. **Proibire.** Nessuno puo' giocare carte Forza su quel luogo fino a fine Atto.
 
 **RISONANZA (avviene sempre)** — Scalda Potere +1. Un editto e' una promessa che qualcuno dovra' mantenere o rompere.
 
@@ -284,7 +284,7 @@ B. **Proibire.** Nessuno puo' giocare carte Forza su quel luogo fino alla fine d
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Editto — Una riga scritta bene vale quanto chi la fa rispettare — e dove si discute, la legge calma la piazza: l'inquietudine si cancella.
+Historical dark-fantasy painting, single evocative scene depicting Editto.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 oro spento accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -319,8 +319,8 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **AZIONE — scegli 1**
 
-A. **Investirla.** Sale di due gradini nel rapporto con te, e prende #fama: il titolo lo dai tu, e si sa.
-B. **Farsi investire.** Sali tu di un gradino verso di lei e prendi #fama. Chi accetta un titolo accetta anche chi glielo da'.
+A. **Investirla.** Sale di 2 gradini nel rapporto con te e prende #fama.
+B. **Farsi investire.** Sali di 1 gradino verso di lei e prendi #fama.
 
 **RISONANZA (avviene sempre)** — Scalda Fede +1. Un titolo dato e' una gerarchia detta ad alta voce, e qualcuno la sentira' come un insulto.
 
@@ -331,7 +331,7 @@ B. **Farsi investire.** Sali tu di un gradino verso di lei e prendi #fama. Chi a
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Investitura — +1 sempre, su qualsiasi fronte. Si scarta sempre: si concede una volta sola, e tutti se ne ricordano — perché la nomina scrive un nome nella linea: il mondo ricorda l'erede nominato.
+Historical dark-fantasy painting, single evocative scene depicting Investitura.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 oro spento accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -366,8 +366,8 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **AZIONE — scegli 1**
 
-A. **Sigillare in basso.** Abbassa quella questione di 1. Il sigillo dice che non c'e' niente da discutere.
-B. **Sigillare in alto.** Alzala di 1. Il sigillo dice che invece c'e', e adesso e' ufficiale.
+A. **Sigillare in basso.** Abbassa quella questione di 1.
+B. **Sigillare in alto.** Alza quella questione di 1.
 
 **RISONANZA (avviene sempre)** — Scalda Potere +1. Un sigillo non convince nessuno: dice solo chi ha il diritto di chiudere il discorso.
 
@@ -378,7 +378,7 @@ B. **Sigillare in alto.** Alzala di 1. Il sigillo dice che invece c'e', e adesso
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Sigillo — +1 sul fronte Oppose. Il sigillo che manca ferma più cose del sigillo che c'è — e quello impegnato raffredda la questione: la Tensione in gioco scende di 1.
+Historical dark-fantasy painting, single evocative scene depicting Sigillo.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 oro spento accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -414,8 +414,8 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **AZIONE — scegli 1**
 
-A. **Rompere adesso.** Alza quella questione di 2 e metti #giuramento_rotto sul mondo. Scendi di due gradini con chi aveva il patto.
-B. **Minacciare di rompere.** Alzala di 1. Chi aveva il patto ti da' una carta a scelta perche' tu non lo faccia.
+A. **Rompere adesso.** Alza quella questione di 2, metti #giuramento_rotto sul mondo e scendi di 2 gradini con chi aveva il patto.
+B. **Minacciare di rompere.** Alza quella questione di 1. Chi aveva il patto ti da' 1 carta a scelta perche' tu non lo faccia.
 
 **RISONANZA (avviene sempre)** — Scalda Fede +2. Un patto rotto non si dimentica: cambia quello che gli altri sono disposti a promettere a chiunque.
 
@@ -426,7 +426,7 @@ B. **Minacciare di rompere.** Alzala di 1. Chi aveva il patto ti da' una carta a
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Patto Rotto — Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: rompere un patto davanti al tavolo scalda ogni domanda ancora aperta.
+Historical dark-fantasy painting, single evocative scene depicting Patto Rotto.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 porpora tenue accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -460,8 +460,8 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **AZIONE — scegli 1**
 
-A. **Mostrare l'ostaggio.** Abbassa quella questione di 2. Nessuno alza la voce mentre lo guardi.
-B. **Restituire l'ostaggio.** Alza quella questione di 1: la casa che lo rivoleva sale di due gradini nel rapporto con te.
+A. **Mostrare l'ostaggio.** Abbassa quella questione di 2.
+B. **Restituire l'ostaggio.** Alza quella questione di 1: la casa che lo rivoleva sale di 2 gradini nel rapporto con te.
 
 **RISONANZA (avviene sempre)** — Scalda Fede +2. Un ostaggio tiene fermo il tavolo e intanto insegna a tutti come si tiene fermo un tavolo.
 
@@ -472,7 +472,7 @@ B. **Restituire l'ostaggio.** Alza quella questione di 1: la casa che lo rivolev
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Ostaggio — Forza 3. Si scarta sempre, e chi ti sta di fronte guadagna una presenza nella Regione di cui si discute: chi consegna un figlio compra una parola, e la paga a casa propria.
+Historical dark-fantasy painting, single evocative scene depicting Ostaggio.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 porpora tenue accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -507,8 +507,8 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **AZIONE — scegli 1**
 
-A. **Promettere.** Salite tutti e due di due gradini. Da adesso ogni Consiglio in cui vi opponete vi costa una carta a testa.
-B. **Rimandare.** Salite di un gradino e pesca 1 Legami: una promessa non ancora fatta si puo' ancora vendere.
+A. **Promettere.** Salite tutti e due di 2 gradini. Da adesso ogni Consiglio in cui vi opponete costa 1 carta a testa.
+B. **Rimandare.** Salite di 1 gradino e pesca 1 Legami.
 
 **RISONANZA (avviene sempre)** — Scalda Fede +2. Una promessa di nozze e' un patto che coinvolge chi non era nella stanza.
 
@@ -519,7 +519,7 @@ B. **Rimandare.** Salite di un gradino e pesca 1 Legami: una promessa non ancora
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Promessa di Nozze — +2 sul fronte Oppose: una promessa serve più a impedire un'alleanza che a farne una. Si scarta sempre — e resta scritta: fra le due case nasce un patto, e i patti si giudicano.
+Historical dark-fantasy painting, single evocative scene depicting Promessa di Nozze.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 porpora tenue accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -554,7 +554,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 **AZIONE — scegli 1**
 
 A. **Cercare il legame.** Scopri una questione velata che tocca il luogo, e pesca 1 Legami.
-B. **Rivendicare il sangue.** Metti #erede_nominato sul mondo. Non e' una prova: e' un nome detto in un posto dove qualcuno ascolta.
+B. **Rivendicare il sangue.** Metti #erede_nominato sul mondo.
 
 **RISONANZA (avviene sempre)** — Scalda Potere +1. Il sangue non e' un argomento: e' un modo di non doverne portare nessuno.
 
@@ -565,7 +565,7 @@ B. **Rivendicare il sangue.** Metti #erede_nominato sul mondo. Non e' una prova:
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Legame di Sangue — Non è un accordo: e una cosa che c'era prima dell'accordo, e che nessuno ha firmato. Impegnata, scrive il vincolo di sangue sulla coppia: da lì in poi, quella relazione non scende sotto il neutrale.
+Historical dark-fantasy painting, single evocative scene depicting Legame di Sangue.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 porpora tenue accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -599,8 +599,8 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **AZIONE — scegli 1**
 
-A. **Chiedere il favore.** Abbassa quella questione di 1, e scendi di un gradino con la casa che la stava spingendo.
-B. **Fare il favore.** Alza quella questione di 1 per conto di un'altra casa: lei sale di due gradini nel rapporto con te.
+A. **Chiedere il favore.** Abbassa quella questione di 1 e scendi di 1 gradino con la casa che la stava spingendo.
+B. **Fare il favore.** Alza quella questione di 1 per conto di un'altra casa: lei sale di 2 gradini nel rapporto con te.
 
 **RISONANZA (avviene sempre)** — Scalda Fede +1. Un favore non si restituisce mai per intero: e' questo che lo tiene in vita.
 
@@ -611,7 +611,7 @@ B. **Fare il favore.** Alza quella questione di 1 per conto di un'altra casa: le
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Favore — Piccolo, ricordato con precisione — e restituito al momento giusto: fra chi lo impegna e il rivale, una vendetta si spegne.
+Historical dark-fantasy painting, single evocative scene depicting Favore.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 porpora tenue accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -646,8 +646,8 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **AZIONE — scegli 1**
 
-A. **Entrare come ospite.** Sposta una tua presenza li' anche se e' di un altro: l'ospitalita' non si nega.
-B. **Offrire ospitalita'.** Un'altra casa mette una presenza in un luogo tuo, e sale di due gradini nel rapporto con te.
+A. **Entrare come ospite.** Sposta una tua presenza li', anche se il luogo e' di un altro.
+B. **Offrire ospitalita'.** Un'altra casa mette una presenza in un tuo luogo e sale di 2 gradini nel rapporto con te.
 
 **RISONANZA (avviene sempre)** — Scalda Fede +1. Il diritto d'ospitalita' regge finche' nessuno lo mette alla prova, e qualcuno lo mettera'.
 
@@ -658,7 +658,7 @@ B. **Offrire ospitalita'.** Un'altra casa mette una presenza in un luogo tuo, e 
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Diritto di Ospitalità — +1 quando Legami è rilevante per la Tensione. Chi ha mangiato al tuo tavolo non può dire di no davanti a tutti. Può dirlo dopo — e chi lo impegna torna ospite: la cacciata dalla Regione della domanda si cancella.
+Historical dark-fantasy painting, single evocative scene depicting Diritto di Ospitalità.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 porpora tenue accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -692,8 +692,8 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **AZIONE — scegli 1**
 
-A. **Giurare insieme.** Sali di un gradino nel rapporto con lei, e metti #scorta_giurata su tutti e due. Vale finche' uno dei due non lo rompe.
-B. **Farsi giurare.** Lei sale di un gradino verso di te e tu no. Prendi una sua carta a scelta: un giuramento a senso unico si paga subito.
+A. **Giurare insieme.** Sali di 1 gradino nel rapporto con lei e metti #scorta_giurata su tutti e due. Vale finche' uno dei due non lo rompe.
+B. **Farsi giurare.** Lei sale di 1 gradino verso di te, tu no. Prendi 1 sua carta a scelta.
 
 **RISONANZA (avviene sempre)** — Scalda Fede +1. Un giuramento pronunciato e' una cosa che il mondo dovra' ricordare o dimenticare, e nessuna delle due e' gratis.
 
@@ -704,7 +704,7 @@ B. **Farsi giurare.** Lei sale di un gradino verso di te e tu no. Prendi una sua
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Giuramento — Non si scarta mai. Un giuramento impegnato resta impegnato anche dopo, ed è la sua unica forza — e un giuramento rifatto scioglie quello spezzato: fra chi lo impegna e il rivale, il tradimento si cancella.
+Historical dark-fantasy painting, single evocative scene depicting Giuramento.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 porpora tenue accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -739,8 +739,8 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **AZIONE — scegli 1**
 
-A. **Esigere.** Metti #debito_chiamato su di lei: deve darti una carta adesso, o scendere di un gradino nel rapporto con te davanti a tutti.
-B. **Rimettere.** Metti #debito_rimesso: sali di due gradini nel rapporto con lei, e tutti vedono che potevi non farlo.
+A. **Esigere.** Metti #debito_chiamato su di lei: ti da' 1 carta adesso, oppure scende di 1 gradino nel rapporto con te.
+B. **Rimettere.** Metti #debito_rimesso e sali di 2 gradini nel rapporto con lei.
 
 **RISONANZA (avviene sempre)** — Scalda Fede +1. Un debito vecchio non e' una somma: e' una storia che qualcuno raccontera' diversamente.
 
@@ -751,7 +751,7 @@ B. **Rimettere.** Metti #debito_rimesso: sali di due gradini nel rapporto con le
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Debito Vecchio — +1 sul fronte Oppose. Nessuno se lo ricorda tranne le due persone che contano, e una delle due lo tira fuori adesso — e da adesso è pubblico: la sede del debitore resta segnata come indebitata.
+Historical dark-fantasy painting, single evocative scene depicting Debito Vecchio.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 porpora tenue accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -787,8 +787,8 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **AZIONE — scegli 1**
 
-A. **Bruciare la porta.** Rivendica il luogo e metti una Cicatrice: quello che era chiuso non lo sara' mai piu'.
-B. **Mostrare la fiaccola.** Non bruci niente. Metti #malcontento su quel luogo e su un altro che confina: ha visto anche lui.
+A. **Bruciare la porta.** Rivendica il luogo e metti 1 Cicatrice.
+B. **Mostrare la fiaccola.** Metti #malcontento su quel luogo e su un luogo confinante.
 
 **RISONANZA (avviene sempre)** — Scalda Potere +2. Le porte bruciate si raccontano per due generazioni, e nessuna versione e' la tua.
 
@@ -799,7 +799,7 @@ B. **Mostrare la fiaccola.** Non bruci niente. Metti #malcontento su quel luogo 
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Le Porte Bruciate — Forza 3. Si scarta sempre, e chi la gioca perde la propria presenza nella Regione di cui si discute: chi apre una porta così non resta li a difenderla.
+Historical dark-fantasy painting, single evocative scene depicting Le Porte Bruciate.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 rosso ossido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -833,8 +833,8 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **AZIONE — scegli 1**
 
-A. **Richiamarli sotto le armi.** Sposta due tue presenze in quel luogo, anche da lontano. Sanno la strada.
-B. **Lasciarli tornare a casa.** Togli #malcontento dal luogo e pesca 1 Autorita': congedarli e' un atto di governo.
+A. **Richiamarli sotto le armi.** Sposta due tue presenze in quel luogo, anche da lontano.
+B. **Lasciarli tornare a casa.** Togli #malcontento dal luogo e pesca 1 Autorita'.
 
 **RISONANZA (avviene sempre)** — Scalda Potere +2. Un esercito che si muove e' una domanda su chi comanda, posta senza parole.
 
@@ -845,7 +845,7 @@ B. **Lasciarli tornare a casa.** Togli #malcontento dal luogo e pesca 1 Autorita
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Il Vecchio Esercito — Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: richiamare i vecchi reggimenti dice al mondo che la cosa è seria.
+Historical dark-fantasy painting, single evocative scene depicting Il Vecchio Esercito.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 rosso ossido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -880,8 +880,8 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **AZIONE — scegli 1**
 
-A. **Stringere l'assedio.** Rivendica il luogo: al prossimo Consiglio la sua Domanda si apre e tu parli per primo.
-B. **Affamare e aspettare.** Metti #fame sul luogo. Non entri: aspetti che escano loro.
+A. **Stringere l'assedio.** Rivendica il luogo: al prossimo Consiglio la sua Domanda si apre e parli per primo.
+B. **Affamare e aspettare.** Metti #fame sul luogo.
 
 **RISONANZA (avviene sempre)** — Scalda Sopravvivenza +2. Un assedio si vede da lontano, e chi ha fame lo racconta prima di chi comanda.
 
@@ -892,7 +892,7 @@ B. **Affamare e aspettare.** Metti #fame sul luogo. Non entri: aspetti che escan
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Assedio — +2 sul fronte Oppose. Non serve prendere una cosa per impedire che sia di qualcun altro — ma l'assedio affama anche la terra intorno: la Carestia sale di 1, e il presidio della Regione della domanda viene giu'.
+Historical dark-fantasy painting, single evocative scene depicting Assedio.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 rosso ossido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -926,8 +926,8 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **AZIONE — scegli 1**
 
-A. **Prendere il posto.** Sposta una tua presenza li'. Chi c'era si sposta o resta e sta zitto.
-B. **Spogliare il posto.** Metti #saccheggiato e prendi una carta a caso dalla mano di chi lo controlla.
+A. **Prendere il posto.** Sposta una tua presenza li'.
+B. **Spogliare il posto.** Metti #saccheggiato sul luogo e prendi 1 carta a caso dalla mano di chi lo controlla.
 
 **RISONANZA (avviene sempre)** — Scalda Terra +2. Una banda armata non torna indietro uguale, e nemmeno il posto da cui e' passata.
 
@@ -938,7 +938,7 @@ B. **Spogliare il posto.** Metti #saccheggiato e prendi una carta a caso dalla m
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Banda Armata — Si scarta sempre, e la Tensione in gioco sale di 1: la paura non si spegne insieme alla questione.
+Historical dark-fantasy painting, single evocative scene depicting Banda Armata.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 rosso ossido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -974,7 +974,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 **AZIONE — scegli 1**
 
 A. **Guardare chi arriva.** Scopri una questione velata che tocca quel luogo, e pesca 1 Sapere.
-B. **Far sapere che si guarda.** Metti #conteso sul luogo: nessuno ci entra senza che si sappia.
+B. **Far sapere che si guarda.** Metti #conteso sul luogo.
 
 **RISONANZA (avviene sempre)** — Scalda Terra +1. Un confine sorvegliato e' un confine che qualcuno ha appena disegnato.
 
@@ -985,7 +985,7 @@ B. **Far sapere che si guarda.** Metti #conteso sul luogo: nessuno ci entra senz
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Guardia di Confine — +1 quando Forza è rilevante per la Tensione. Contano i carri che passano, e sanno quali contare — e ogni conta ferma la strada: Le Vie Interrotte salgono di 1.
+Historical dark-fantasy painting, single evocative scene depicting Guardia di Confine.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 rosso ossido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -1019,8 +1019,8 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **AZIONE — scegli 1**
 
-A. **Chiamare la leva.** Sposta una tua presenza da quel luogo a un luogo confinante. Gli uomini vanno dove li mandi.
-B. **Tenerli a casa.** La presenza resta, ma il luogo si mette in fila: metti #razionato e nessuno puo' requisirgli il grano quest'Atto.
+A. **Chiamare la leva.** Sposta una tua presenza da quel luogo a un luogo confinante.
+B. **Tenerli a casa.** La presenza resta. Metti #razionato sul luogo: nessuno puo' requisirgli il grano fino a fine Atto.
 
 **RISONANZA (avviene sempre)** — Scalda Sopravvivenza +1. I campi restano soli: chi tiene la lancia non tiene la falce.
 
@@ -1031,7 +1031,7 @@ B. **Tenerli a casa.** La presenza resta, ma il luogo si mette in fila: metti #r
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Leva Contadina — Uomini con attrezzi da lavoro tenuti come lance. Bastano finché nessuno li conta — ma i campi restano soli: la Carestia sale di 1.
+Historical dark-fantasy painting, single evocative scene depicting Leva Contadina.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 rosso ossido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -1066,8 +1066,8 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **AZIONE — scegli 1**
 
-A. **Prestarli.** Sali di un gradino nel rapporto con lei: chi combatte per te ti deve qualcosa, o viceversa.
-B. **Toglierli di mezzo.** Scendi di un gradino con lei e pesca 1 Ricchezza: li hai pagati per non esserci.
+A. **Prestarli.** Sali di 1 gradino nel rapporto con lei.
+B. **Toglierli di mezzo.** Scendi di 1 gradino con lei e pesca 1 Ricchezza.
 
 **RISONANZA (avviene sempre)** — Scalda Vie +1. Chi si compra si ricompra, e il prezzo lo sa gia' qualcun altro.
 
@@ -1078,7 +1078,7 @@ B. **Toglierli di mezzo.** Scendi di un gradino con lei e pesca 1 Ricchezza: li 
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Mercenari — +1 sempre, su qualsiasi fronte: fuori tema vale quanto in tema. Dove passano, però, resta l'inquietudine.
+Historical dark-fantasy painting, single evocative scene depicting Mercenari.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 rosso ossido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -1113,8 +1113,8 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **AZIONE — scegli 1**
 
-A. **Sbarrare la strada.** Metti #tagliato_fuori sul luogo. Finche' c'e', nessuno puo' muovere una presenza dentro o fuori da li' senza spendere una carta in piu'.
-B. **Farsi pagare il passaggio.** Non chiudi niente: prendi una carta Ricchezza dal mazzo e la strada resta aperta a tutti, tua compresa.
+A. **Sbarrare la strada.** Metti #tagliato_fuori sul luogo. Finche' c'e', muovere una presenza dentro o fuori costa 1 carta in piu'.
+B. **Farsi pagare il passaggio.** Pesca 1 Ricchezza. Il luogo resta aperto a tutti, te compreso.
 
 **RISONANZA (avviene sempre)** — Scalda Vie +1. Una strada su cui c'e' un posto di blocco non e' piu' una strada: e' una porta, e le porte si contano.
 
@@ -1125,7 +1125,7 @@ B. **Farsi pagare il passaggio.** Non chiudi niente: prendi una carta Ricchezza 
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Posto di Blocco — +1 sul fronte Oppose. Fermare un carro costa sempre meno che farlo partire — e la Regione della domanda resta tagliata fuori dal mondo.
+Historical dark-fantasy painting, single evocative scene depicting Posto di Blocco.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 rosso ossido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -1161,8 +1161,8 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **AZIONE — scegli 1**
 
-A. **Aprire la vena.** Togli #sigillato e aggiungi una tua presenza. Quello che dormiva sotto la pietra adesso e' tuo — e sveglio.
-B. **Misurare senza toccare.** Metti #cristallo_misurato e pesca 1 Sapere. Non lo prendi: lo scrivi, e quello che e' scritto lo puo' leggere chiunque.
+A. **Aprire la vena.** Togli #sigillato dal luogo e aggiungi una tua presenza.
+B. **Misurare senza toccare.** Metti #cristallo_misurato sul luogo e pesca 1 Sapere.
 
 **RISONANZA (avviene sempre)** — Scalda Antico +1. Il Risveglio non distingue fra chi scava e chi guarda.
 
@@ -1173,7 +1173,7 @@ B. **Misurare senza toccare.** Metti #cristallo_misurato e pesca 1 Sapere. Non l
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Il Cristallo Rosso — Forza 3. Si scarta sempre, e la Tensione in gioco diventa aperta a tutti: mostrarlo chiude ogni dubbio e apre la domanda a chiunque fosse nella stanza.
+Historical dark-fantasy painting, single evocative scene depicting Il Cristallo Rosso.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 verde-azzurro pallido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -1207,8 +1207,8 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **AZIONE — scegli 1**
 
-A. **Aprire la busta.** Rivendica il luogo e metti #tradimento_detto sul mondo. Quello che era sigillato adesso e' pubblico.
-B. **Tenerla sigillata.** Rivendica il luogo e basta. La busta resta chiusa, e tutti sanno che ce l'hai tu.
+A. **Aprire la busta.** Rivendica il luogo e metti #tradimento_detto sul mondo.
+B. **Tenerla sigillata.** Rivendica il luogo.
 
 **RISONANZA (avviene sempre)** — Scalda Potere +2. Una deposizione sigillata pesa uguale aperta o chiusa: quello che conta e' che esista.
 
@@ -1219,7 +1219,7 @@ B. **Tenerla sigillata.** Rivendica il luogo e basta. La busta resta chiusa, e t
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Deposizione Sigillata — Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: quello che era scritto per un solo lettore adesso lo hanno sentito tutti.
+Historical dark-fantasy painting, single evocative scene depicting Deposizione Sigillata.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 verde-azzurro pallido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -1253,8 +1253,8 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **AZIONE — scegli 1**
 
-A. **Mostrare la prova.** Scopri una questione velata e metti #sapere_condiviso sul mondo: adesso lo sanno tutti.
-B. **Tenere la prova.** Scopri la questione e basta. Pesca 1 Sapere: quello che sai da solo vale di piu' finche' sei solo a saperlo.
+A. **Mostrare la prova.** Scopri una questione velata e metti #sapere_condiviso sul mondo.
+B. **Tenere la prova.** Scopri la questione e pesca 1 Sapere.
 
 **RISONANZA (avviene sempre)** — Scalda Fede +1. Una prova non chiude una discussione: decide chi dovra' chiamare bugiardo chi.
 
@@ -1265,7 +1265,7 @@ B. **Tenere la prova.** Scopri la questione e basta. Pesca 1 Sapere: quello che 
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Prova — Se la proposta passa, resta in mano: una prova dimostrata non si consuma — e dimostra: la questione in gioco si apre a tutti i presenti.
+Historical dark-fantasy painting, single evocative scene depicting Prova.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 verde-azzurro pallido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -1300,8 +1300,8 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **AZIONE — scegli 1**
 
-A. **Farlo parlare.** Alza quella questione di 2 e metti #tradimento_detto sul mondo: qualcuno ha detto un nome.
-B. **Farlo tacere.** Abbassa quella questione di 2. Un testimone che non parla e' un testimone che ti deve qualcosa.
+A. **Farlo parlare.** Alza quella questione di 2 e metti #tradimento_detto sul mondo.
+B. **Farlo tacere.** Abbassa quella questione di 2.
 
 **RISONANZA (avviene sempre)** — Scalda Fede +2. Un testimone non porta la verita': porta la propria, e adesso il tavolo deve scegliere.
 
@@ -1312,7 +1312,7 @@ B. **Farlo tacere.** Abbassa quella questione di 2. Un testimone che non parla e
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Testimone — +2 sul fronte Oppose. Si scarta sempre: un testimone si spende una volta sola — e la deposizione agita la casa accusata: la sua sede resta inquieta.
+Historical dark-fantasy painting, single evocative scene depicting Testimone.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 verde-azzurro pallido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -1347,7 +1347,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 **AZIONE — scegli 1**
 
 A. **Cercare indietro.** Scopri una questione velata che tocca il luogo, e pesca 1 Sapere.
-B. **Far leggere a tutti.** Metti #registro_pubblico sul mondo: quello che c'e' scritto smette di essere di qualcuno.
+B. **Far leggere a tutti.** Metti #registro_pubblico sul mondo.
 
 **RISONANZA (avviene sempre)** — Scalda Vie +1. Un archivio non conserva il passato: conserva la versione che qualcuno ha avuto il tempo di scrivere.
 
@@ -1358,7 +1358,7 @@ B. **Far leggere a tutti.** Metti #registro_pubblico sul mondo: quello che c'e' 
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Archivio — Se la proposta passa resta in mano. Le carte non si consumano: si consuma chi le sa leggere — e quello che si e' letto resta: sulla Regione della domanda si apre un archivio suo.
+Historical dark-fantasy painting, single evocative scene depicting Archivio.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 verde-azzurro pallido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -1393,8 +1393,8 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **AZIONE — scegli 1**
 
-A. **Aprire il registro.** Metti #registro_pubblico sul mondo e sali di un gradino con lei: i conti chiari fanno gli amici lunghi.
-B. **Chiudere il registro.** Scendi di un gradino con lei e metti #debito_chiamato sul mondo: adesso deve, e si sa quanto.
+A. **Aprire il registro.** Metti #registro_pubblico sul mondo e sali di 1 gradino con lei.
+B. **Chiudere il registro.** Scendi di 1 gradino con lei e metti #debito_chiamato sul mondo.
 
 **RISONANZA (avviene sempre)** — Scalda Vie +1. Un registro non e' un elenco di numeri: e' un elenco di persone, in ordine di quanto devono.
 
@@ -1405,7 +1405,7 @@ B. **Chiudere il registro.** Scendi di un gradino con lei e metti #debito_chiama
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Registro — +1 sul fronte Oppose. Chi tiene i conti sa cosa manca, e lo dice nel momento peggiore — e da quel momento i conti sono di tutti: il registro è pubblico.
+Historical dark-fantasy painting, single evocative scene depicting Registro.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 verde-azzurro pallido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -1441,7 +1441,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 **AZIONE — scegli 1**
 
 A. **Trovare il passaggio.** Togli #tagliato_fuori dal luogo, oppure muovi una tua presenza li' ignorando i confini.
-B. **Tenere la mappa per se'.** Metti #registro_del_commercio: sai una cosa che gli altri non sanno, e al prossimo Consiglio vale +1.
+B. **Tenere la mappa per se'.** Metti #registro_del_commercio: al prossimo Consiglio vale +1.
 
 **RISONANZA (avviene sempre)** — Scalda Vie +1. Una strada che qualcuno ha ritrovato e' una strada che qualcun altro vorra' chiudere.
 
@@ -1452,7 +1452,7 @@ B. **Tenere la mappa per se'.** Metti #registro_del_commercio: sai una cosa che 
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Mappa Vecchia — +1 quando Sapere è rilevante per la Tensione. I confini sono sbagliati; le strade no — e una strada giusta ricuce il ponte rotto sulla Regione della domanda.
+Historical dark-fantasy painting, single evocative scene depicting Mappa Vecchia.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 verde-azzurro pallido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -1487,7 +1487,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 **AZIONE — scegli 1**
 
 A. **Ascoltare la voce.** Scopri una questione velata che tocca il luogo.
-B. **Mettere in giro la voce.** Metti #malcontento sul luogo. Non serve che sia vera: serve che sia arrivata prima.
+B. **Mettere in giro la voce.** Metti #malcontento sul luogo.
 
 **RISONANZA (avviene sempre)** — Scalda Fede +1. Una voce di corridoio e' una verita' che non ha ancora deciso di chi essere.
 
@@ -1498,7 +1498,7 @@ B. **Mettere in giro la voce.** Metti #malcontento sul luogo. Non serve che sia 
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Voce di Corridoio — Non è vera. Non è ancora falsa — e finché gira, la questione in gioco torna velata: i numeri si nascondono dietro le voci.
+Historical dark-fantasy painting, single evocative scene depicting Voce di Corridoio.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 verde-azzurro pallido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -1535,7 +1535,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 **AZIONE — scegli 1**
 
 A. **Andarsene tutti.** Togli tutte le tue presenze da quel luogo e mettine due in un altro qualsiasi. Metti #svuotato dove sei partito.
-B. **Mandare avanti i primi.** Sposta una presenza in un luogo qualsiasi, e li' metti il tuo insediamento.
+B. **Mandare avanti i primi.** Sposta una presenza in un luogo qualsiasi e metti li' il tuo insediamento.
 
 **RISONANZA (avviene sempre)** — Scalda Terra +2. Un esodo non si annulla: il posto da cui si e' partiti resta com'e' rimasto.
 
@@ -1546,7 +1546,7 @@ B. **Mandare avanti i primi.** Sposta una presenza in un luogo qualsiasi, e li' 
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Esodo — Forza 3. Si scarta sempre, e chi la gioca perde la propria presenza nella Regione di cui si discute: chi parte non torna al tavolo.
+Historical dark-fantasy painting, single evocative scene depicting Esodo.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 terracotta accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -1580,8 +1580,8 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **AZIONE — scegli 1**
 
-A. **Fermare tutto.** Alza quella questione di 2. Le braccia ferme si vedono meglio delle braccia alzate.
-B. **Fermare solo una cosa.** Abbassa quella questione di 1 e pesca 1 Popolo: si tratta, e intanto si lavora.
+A. **Fermare tutto.** Alza quella questione di 2.
+B. **Fermare solo una cosa.** Abbassa quella questione di 1 e pesca 1 Popolo.
 
 **RISONANZA (avviene sempre)** — Scalda Vie +2. Quando le braccia si fermano, le prime cose che non arrivano sono quelle che venivano da lontano.
 
@@ -1592,7 +1592,7 @@ B. **Fermare solo una cosa.** Abbassa quella questione di 1 e pesca 1 Popolo: si
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Braccia Ferme — Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: un paese che si ferma non si rimette in moto dove l'avevi lasciato.
+Historical dark-fantasy painting, single evocative scene depicting Braccia Ferme.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 terracotta accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -1627,8 +1627,8 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **AZIONE — scegli 1**
 
-A. **Chiamare tutti.** Alza quella questione di 2. Quando si muovono tutti insieme, nessuno puo' far finta di niente.
-B. **Chiamare solo i tuoi.** Alzala di 1 e pesca 1 Popolo: meno rumore, e ti resta della gente in mano.
+A. **Chiamare tutti.** Alza quella questione di 2.
+B. **Chiamare solo i tuoi.** Alza quella questione di 1 e pesca 1 Popolo.
 
 **RISONANZA (avviene sempre)** — Scalda Sopravvivenza +2. Chi si mobilita non lavora, e chi non lavora mangia lo stesso.
 
@@ -1639,7 +1639,7 @@ B. **Chiamare solo i tuoi.** Alzala di 1 e pesca 1 Popolo: meno rumore, e ti res
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Mobilitazione — +2 sul fronte Oppose: è più facile fermare qualcosa in molti che costruirla. Si scarta sempre — e la piazza resta calda: la Tensione in gioco sale di 1.
+Historical dark-fantasy painting, single evocative scene depicting Mobilitazione.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 terracotta accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -1673,8 +1673,8 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **AZIONE — scegli 1**
 
-A. **Prendere la parola.** Rivendica il luogo: al prossimo Consiglio parli per primo, e parli per loro.
-B. **Darla a un altro.** Un'altra casa parlera' per prima al prossimo Consiglio, e sale di due gradini nel rapporto con te.
+A. **Prendere la parola.** Rivendica il luogo: al prossimo Consiglio parli per primo.
+B. **Darla a un altro.** Un'altra casa parla per prima al prossimo Consiglio e sale di 2 gradini nel rapporto con te.
 
 **RISONANZA (avviene sempre)** — Scalda Potere +1. Un portavoce e' qualcuno che ha deciso di chi e' la voce, e l'ha deciso prima di parlare.
 
@@ -1685,7 +1685,7 @@ B. **Darla a un altro.** Un'altra casa parlera' per prima al prossimo Consiglio,
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Portavoce — Qualcuno che dice ad alta voce quello che già pensano in molti, e che dopo non può più tornare indietro — la parola detta è una promessa fra le due case.
+Historical dark-fantasy painting, single evocative scene depicting Portavoce.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 terracotta accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -1719,8 +1719,8 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **AZIONE — scegli 1**
 
-A. **Portare la folla sotto le finestre.** Alza quella questione di 1. La folla non chiede: sta li'.
-B. **Mandare la folla a casa.** Abbassala di 1. Chi la sa mandare a casa e' chi l'ha chiamata.
+A. **Portare la folla sotto le finestre.** Alza quella questione di 1.
+B. **Mandare la folla a casa.** Abbassa quella questione di 1.
 
 **RISONANZA (avviene sempre)** — Scalda Sopravvivenza +1. Una folla che si raduna mangia dove si raduna, e i conti li fa il posto.
 
@@ -1731,7 +1731,7 @@ B. **Mandare la folla a casa.** Abbassala di 1. Chi la sa mandare a casa e' chi 
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Folla — Nessuno l'ha convocata. È arrivata lo stesso — in capitale: e la capitale resta inquieta.
+Historical dark-fantasy painting, single evocative scene depicting Folla.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 terracotta accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -1767,7 +1767,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 **AZIONE — scegli 1**
 
 A. **Ascoltarli.** Scopri una questione velata che tocca il luogo, e pesca 1 Legami.
-B. **Farli parlare in pubblico.** Togli #lutto o #malcontento dal luogo: quello che gli anziani dicono ad alta voce smette di covare.
+B. **Farli parlare in pubblico.** Togli #lutto o #malcontento dal luogo.
 
 **RISONANZA (avviene sempre)** — Scalda Fede +1. Chi ricorda decide cosa c'era prima, e cosa c'era prima decide cosa e' giusto adesso.
 
@@ -1778,7 +1778,7 @@ B. **Farli parlare in pubblico.** Togli #lutto o #malcontento dal luogo: quello 
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Consiglio degli Anziani — +1 sul fronte Oppose. Parlano piano, dicono di no, e vengono ripetuti per tre villaggi — e sanno accompagnare: il lutto della Regione della domanda si elabora.
+Historical dark-fantasy painting, single evocative scene depicting Consiglio degli Anziani.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 terracotta accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -1813,8 +1813,8 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **AZIONE — scegli 1**
 
-A. **Portare le braccia.** Togli #magro dal luogo, oppure abbassa di 1 la questione Sopravvivenza piu' calda. Il raccolto si fa in tempo.
-B. **Prestare le braccia.** Un'altra casa toglie #magro da un suo luogo. Sali di un gradino nel rapporto con lei.
+A. **Portare le braccia.** Togli #magro dal luogo, oppure abbassa di 1 la questione Sopravvivenza piu' calda.
+B. **Prestare le braccia.** Un'altra casa toglie #magro da un suo luogo. Sali di 1 gradino nel rapporto con lei.
 
 **RISONANZA (avviene sempre)** — Scalda Sopravvivenza +1. Le braccia che raccolgono qui sono braccia che non arano altrove.
 
@@ -1825,7 +1825,7 @@ B. **Prestare le braccia.** Un'altra casa toglie #magro da un suo luogo. Sali di
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Braccia per il Raccolto — +1 quando Gente è rilevante per la Tensione. Non sono un esercito: ma senza di loro non si mangia — e dove arrivano, la fame della Regione della domanda si spegne.
+Historical dark-fantasy painting, single evocative scene depicting Braccia per il Raccolto.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 terracotta accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -1859,8 +1859,8 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **AZIONE — scegli 1**
 
-A. **Marciare verso il grano.** Sposta una tua presenza in un luogo con #granaio, anche se non confina. La gente cammina.
-B. **Marciare sulla capitale.** Metti #malcontento su un luogo con #capitale, ovunque sia. Non serve arrivarci: basta partire.
+A. **Marciare verso il grano.** Sposta una tua presenza in un luogo con #granaio, anche se non confina.
+B. **Marciare sulla capitale.** Metti #malcontento su un luogo con #capitale, ovunque sia.
 
 **RISONANZA (avviene sempre)** — Scalda Sopravvivenza +1. Una marcia non torna indietro da sola: qualcuno deve prometterle qualcosa.
 
@@ -1871,7 +1871,7 @@ B. **Marciare sulla capitale.** Metti #malcontento su un luogo con #capitale, ov
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Marcia — Poca gente, ma in strada e alla stessa ora. Il punto non è quanti sono: è che si sono trovati — e le razioni imposte sulla Regione della domanda si rompono.
+Historical dark-fantasy painting, single evocative scene depicting Marcia.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 terracotta accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -1907,8 +1907,8 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **AZIONE — scegli 1**
 
-A. **Prendere la terra in garanzia.** Scendi di un gradino con lei. Se a fine anno controlla meno terre di adesso, ne prendi una tu.
-B. **Rimettere l'ipoteca.** Sali di due gradini con lei e metti #debito_rimesso sul mondo: la terra resta sua, e lo sanno tutti.
+A. **Prendere la terra in garanzia.** Scendi di 1 gradino con lei. Se a fine anno controlla meno terre di adesso, ne prendi una tu.
+B. **Rimettere l'ipoteca.** Sali di 2 gradini con lei e metti #debito_rimesso sul mondo.
 
 **RISONANZA (avviene sempre)** — Scalda Terra +2. Un'ipoteca sulla terra e' una domanda su chi ci vive, fatta a chi non e' presente.
 
@@ -1919,7 +1919,7 @@ B. **Rimettere l'ipoteca.** Sali di due gradini con lei e metti #debito_rimesso 
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Ipoteca sulle Terre — Forza 3. Si scarta sempre, e chi ti sta di fronte guadagna una presenza nella Regione di cui si discute: impegnare una terra fa arrivare chi la vuole.
+Historical dark-fantasy painting, single evocative scene depicting Ipoteca sulle Terre.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 ambra accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -1953,8 +1953,8 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **AZIONE — scegli 1**
 
-A. **Aprire il tesoro.** Sposta due tue presenze in quel luogo: il denaro muove gli uomini piu' in fretta degli ordini.
-B. **Chiudere il tesoro.** Pesca 2 Ricchezza e metti #malcontento sul luogo: chi non viene pagato lo dice in giro.
+A. **Aprire il tesoro.** Sposta due tue presenze in quel luogo.
+B. **Chiudere il tesoro.** Pesca 2 Ricchezza e metti #malcontento sul luogo.
 
 **RISONANZA (avviene sempre)** — Scalda Potere +2. Un tesoro aperto e' una promessa; un tesoro chiuso e' un'accusa. Nessuno dei due resta segreto.
 
@@ -1965,7 +1965,7 @@ B. **Chiudere il tesoro.** Pesca 2 Ricchezza e metti #malcontento sul luogo: chi
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Il Tesoro — Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: aprire il tesoro dice a tutti quanto vale davvero la questione.
+Historical dark-fantasy painting, single evocative scene depicting Il Tesoro.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 ambra accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -1999,8 +1999,8 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **AZIONE — scegli 1**
 
-A. **Farla arrivare.** Sposta una tua presenza li' e togli #tagliato_fuori: una carovana che arriva riapre la strada da sola.
-B. **Dirottarla.** Sposta la presenza in un altro luogo con #commercio e pesca 1 Ricchezza: la merce va dove rende.
+A. **Farla arrivare.** Sposta una tua presenza li' e togli #tagliato_fuori dal luogo.
+B. **Dirottarla.** Sposta la presenza in un altro luogo con #commercio e pesca 1 Ricchezza.
 
 **RISONANZA (avviene sempre)** — Scalda Vie +1. Una carovana che passa dice a tutti quanto vale passare di li'.
 
@@ -2011,7 +2011,7 @@ B. **Dirottarla.** Sposta la presenza in un altro luogo con #commercio e pesca 1
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Carovana — Si scarta sempre: una carovana spesa è una carovana partita — e una carovana che parte riapre la via: la Regione tagliata fuori si ricollega.
+Historical dark-fantasy painting, single evocative scene depicting Carovana.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 ambra accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -2046,8 +2046,8 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **AZIONE — scegli 1**
 
-A. **Dare le chiavi.** Sale di due gradini nel rapporto con te. Chi ha le chiavi del granaio ha una ragione per non tradirti.
-B. **Tenere le chiavi.** Scendi di un gradino con lei e metti #grano_requisito sul mondo: il grano c'e' e non e' suo.
+A. **Dare le chiavi.** Sale di 2 gradini nel rapporto con te.
+B. **Tenere le chiavi.** Scendi di 1 gradino con lei e metti #grano_requisito sul mondo.
 
 **RISONANZA (avviene sempre)** — Scalda Sopravvivenza +2. Le chiavi non fanno il grano: decidono soltanto chi resta fuori dalla porta.
 
@@ -2058,7 +2058,7 @@ B. **Tenere le chiavi.** Scendi di un gradino con lei e metti #grano_requisito s
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Chiavi del Granaio — +2 sul fronte Oppose. Non possiedi il grano: possiedi la serratura — e la serratura raziona: sulla Regione della domanda resta il segno della razione.
+Historical dark-fantasy painting, single evocative scene depicting Chiavi del Granaio.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 ambra accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -2093,8 +2093,8 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **AZIONE — scegli 1**
 
-A. **Aprire credito.** Sale di due gradini nel rapporto con te, e metti #indebitata sul mondo: le hai fatto un favore che si ricorda.
-B. **Comprare il suo debito.** Scendi di un gradino con lei e pesca 2 Ricchezza. Adesso quello che deve, lo deve a te.
+A. **Aprire credito.** Sale di 2 gradini nel rapporto con te e metti #indebitata sul mondo.
+B. **Comprare il suo debito.** Scendi di 1 gradino con lei e pesca 2 Ricchezza.
 
 **RISONANZA (avviene sempre)** — Scalda Vie +1. Il credito e' una corda: la tiene chi presta, e la sente chi la porta al collo.
 
@@ -2105,7 +2105,7 @@ B. **Comprare il suo debito.** Scendi di un gradino con lei e pesca 2 Ricchezza.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Credito — +1 sempre, su qualsiasi fronte. Vale nel momento in cui lo chiedi, e non un minuto dopo — perché chiederlo chiama tutti i debiti: il mondo ricorda che il debito fu chiamato.
+Historical dark-fantasy painting, single evocative scene depicting Credito.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 ambra accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -2140,7 +2140,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 **AZIONE — scegli 1**
 
 A. **Aprire i granai.** Togli #fame dal luogo e abbassa di 1 la questione Sopravvivenza piu' calda.
-B. **Chiudere i granai.** Metti #razionato. Il grano c'e' e non e' per tutti: alza di 1 la questione Sopravvivenza piu' calda.
+B. **Chiudere i granai.** Metti #razionato sul luogo e alza di 1 la questione Sopravvivenza piu' calda.
 
 **RISONANZA (avviene sempre)** — Scalda Sopravvivenza +1. Il grano che si tocca e' grano che qualcuno ha contato.
 
@@ -2151,7 +2151,7 @@ B. **Chiudere i granai.** Metti #razionato. Il grano c'e' e non e' per tutti: al
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Riserva di Grano — Conta più di un titolo, per il tempo in cui dura — e dura quanto basta: la Carestia scende di 1.
+Historical dark-fantasy painting, single evocative scene depicting Riserva di Grano.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 ambra accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -2187,7 +2187,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 **AZIONE — scegli 1**
 
 A. **Vendere il sale.** Scopri una questione velata che tocca il luogo, e pesca 1 Ricchezza.
-B. **Salare le riserve.** Togli #magro dal luogo: quello che si conserva non marcisce, e chi conserva decide quando.
+B. **Salare le riserve.** Togli #magro dal luogo.
 
 **RISONANZA (avviene sempre)** — Scalda Vie +1. Il sale e' l'unica merce che tutti comprano e nessuno vuole nominare.
 
@@ -2198,7 +2198,7 @@ B. **Salare le riserve.** Togli #magro dal luogo: quello che si conserva non mar
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Sale — +1 quando Ricchezza è rilevante per la Tensione. Non nutre nessuno: senza, quello che nutre non arriva — e dove arriva, la magra si supera.
+Historical dark-fantasy painting, single evocative scene depicting Sale.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 ambra accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -2233,8 +2233,8 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 **AZIONE — scegli 1**
 
-A. **Alzare la sbarra.** Rivendica il luogo: al prossimo Consiglio la sua Domanda si apre, e la questione e' chi incassa.
-B. **Dividere l'incasso.** Metti #pedaggio_diviso e sali di un gradino nel rapporto con chi controlla il luogo. Si guadagna meno e si dorme meglio.
+A. **Alzare la sbarra.** Rivendica il luogo: al prossimo Consiglio la sua Domanda si apre.
+B. **Dividere l'incasso.** Metti #pedaggio_diviso sul luogo e sali di 1 gradino nel rapporto con chi lo controlla.
 
 **RISONANZA (avviene sempre)** — Scalda Vie +1. Ogni pedaggio e' un prezzo che qualcuno non aveva messo in conto.
 
@@ -2245,7 +2245,7 @@ B. **Dividere l'incasso.** Metti #pedaggio_diviso e sali di un gradino nel rappo
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Pedaggio — +1 sul fronte Oppose. Una corda tesa fra due pali, e il diritto di non alzarla — e il diritto si scrive: sulla Regione della domanda resta il pedaggio.
+Historical dark-fantasy painting, single evocative scene depicting Pedaggio.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 ambra accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.

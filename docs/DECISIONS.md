@@ -10,6 +10,131 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-340 — La carta stampava il racconto e taceva la faccia che si gioca
+
+**implemented** — 0.1.305
+
+### Trovato guardando la carta Azione
+
+Il committente, dopo l'esempio di D-339: *«ma la carta azione? Asset? Come è»*.
+Generata **Leva Contadina** in scala 1:1 e guardata. Poi, davanti al risultato:
+
+> *«stai tentando di mettere tutto in prosa narrativa […] devi eliminare ogni
+> narrativa prolissa e far capire esattamente al giocatore che quel beneficio è
+> un #tag che si mette in un posto preciso, o una azione che si fa. Ovvio che
+> servono carte gigantesche se si scrive la divina commedia su di esse.»*
+
+Aveva ragione, e il difetto era piu' grosso di come si vedeva.
+
+### Quello che c'era
+
+La carta Asset **e'** la carta Azione: e' lei che porta il blocco `physical` —
+bersaglio a segni, due Azioni, Risonanza, uso in Consiglio. Ce l'hanno **tutte e
+48**, e la faccia stampata non ne diceva **niente**:
+
+| sul blocco `physical` | scritto nel dato | stampato sulla carta |
+|---|---|---|
+| bersaglio a segni | 48 | **0** |
+| Azioni | 96 (due per carta) | **48**, e solo come verbo digitale |
+| Risonanza — avviene sempre | 48 | **0** |
+| uso in Consiglio | 48 | **0** |
+
+Al suo posto la carta stampava `rules_text`, che e' voce d'autore, e tre righe
+del blocco digitale. E' ISSUES 69, aperta da D-256 e mai chiusa: il motore la
+Risonanza e il bersaglio a segni li **esegue** gia' (D-274), la carta non li
+**diceva**.
+
+Misurato sul racconto stampato: **48 carte su 48 nominavano una Regione per
+nome** — «Fonti: Eredan, Montagne Rosse…» — che e' la cosa che la grammatica
+fisica vieta al bersaglio; e **12 carte su 48** ripetevano nel racconto un fatto
+che la riga meccanica accanto diceva gia'.
+
+### Cosa va sulla carta, e chi lo scrive
+
+Il committente ha dettato le cinque righe. Tre di quelle **non si scrivono a
+mano**, perche' sono interamente campi strutturati:
+
+| riga | da dove viene |
+|---|---|
+| **DOVE** | `physical.target.text` — d'autore |
+| **① ②** | `label` + `text` delle due Azioni — d'autore |
+| **SEMPRE** | generata da `theme`, `heat`, `if_target_tag`, `extra_heat`, `extra_tag` |
+| **AL CONSIGLIO** | generata da `base_strength` e `bonus_if_theme` |
+
+Generarle e' l'unico modo perche' la carta non possa dire una cosa e il motore
+farne un'altra (D-042) — ed e' la lezione di D-336, dove 89 frasi su 164 erano
+costanti scritte a mano accanto a dati che nel frattempo erano cambiati. Il campo
+`resonance.text` resta nel dato come voce d'autore e **sulla carta non ci va**.
+
+### Il racconto tolto dai testi
+
+Le 96 Azioni avevano tutte la stessa forma: *la regola, poi una frase di
+colore*. «Sposta una tua presenza da quel luogo a un luogo confinante. **Gli
+uomini vanno dove li mandi.**»
+
+Riscritte tutte e 96 tenendo ogni regola — comprese quelle nascoste in coda,
+come *«Vale finche' uno dei due non lo rompe»* del Giuramento — e togliendo il
+colore: **8.666 caratteri → 5.751, il 34% in meno**. I 48 bersagli erano gia'
+operativi e restano come sono.
+
+### Il costo, dichiarato
+
+**La carta adesso dice quattro volte piu' cose, e il corpo si stringe.**
+
+| su 48 carte Asset | prima | dopo |
+|---|---|---|
+| fuori dal bordo | 0 | **0** |
+| col corpo sotto la misura piena | **4** | **46** |
+| la piu' stretta | — | **77%** |
+
+L'illustrazione e' scesa al suo pavimento del 34% su tutte e 48. Nessuna carta
+sfonda il bordo e nessuna scende sotto il 74%, che e' il limite che la prova
+sorveglia da D-056 — ma **46 carte su 48 stampano il corpo rimpicciolito**, ed
+e' un numero peggiorato che va scritto. E' la decisione che resta aperta, ed e'
+del committente: o la carta Asset va in tarocco come la scheda del Consiglio
+(D-338), o l'illustrazione lascia la faccia delle regole.
+
+**Sul gioco, niente.** Playtest 100 semi identico al prima — Verita' 159/143 al
+tavolo misto, 149/125 all'uniforme, **0 seggi bloccati su un solo livello su 8**
+su tutti e due i tavoli: e' cambiato cosa e' stampato, non cosa succede.
+
+### Le due guardie
+
+La prima non guarda un elenco di frasi buone: prende **il blocco fisico dal
+dato** e chiede che ogni sua parte — il bersaglio, i due nomi, i due testi, il
+Tema e il grado della Risonanza, la forza al Consiglio — arrivi sulla faccia; e
+che il racconto **non** ci resti accanto. Una carta nuova e' coperta il giorno
+che entra. La seconda verifica che la Risonanza si legga dai campi, piantando il
+caso aggravato, perche' senza quella la prima passerebbe anche con una riga che
+perde la clausola.
+
+Tutte e due mordono: rimessa la prosa sulla faccia, **48 fallimenti**; tolto il
+blocco fisico a una carta, il conto delle 48 cade.
+
+### Il terzo difetto, trovato passando
+
+`docs/REVISIONE_TESTI.md` e' il documento che dice *«ogni testo che un giocatore
+puo' leggere, nell'ordine in cui lo incontra»*. Raccoglieva `title` e
+`rules_text` e **lasciava fuori tutto il blocco fisico**:
+
+| | testi | non c'erano |
+|---|---|---|
+| faccia fisica delle carte Asset | 288 | **287** |
+| caselle di costo e beneficio delle Tensioni | 841 | **841** |
+
+Mille e centoventotto stringhe che un giocatore legge con la carta in mano, fuori
+dal documento fatto per correggerle — e il cancello non falliva, perche'
+confronta il documento col generatore e non il generatore col gioco. E' la
+**sesta** volta che un documento generato non fallisce e racconta il mondo
+sbagliato, dopo D-329, D-333, D-334, D-336 e D-338.
+
+Riparata la parte delle Asset in questa decisione: 288 testi entrano nel
+documento, ognuno col suo id — `AST_FORCE_LEVY, azione 2` — cosi' una correzione
+si segna con una riga. Le 841 caselle delle Tensioni restano fuori, ed e'
+**ISSUES 103**.
+
+---
+
 ## D-339 — Le carte parlavano inglese, e nessuno le guardava
 
 **implemented** — 0.1.304

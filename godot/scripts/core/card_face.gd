@@ -202,19 +202,36 @@ static func _asset(asset: Dictionary, data: RefCounted) -> Dictionary:
 	# La forza sta nell'angolo perche' e' l'unico numero che si legge con la carta
 	# ancora in mano, a ventaglio.
 	face["corner"] = str(int(asset["strength"]))
-	face["body"] = [str(asset.get("rules_text", ""))]
-	# La riga meccanica e' quella che il resolver legge davvero, chiesta ad
-	# `AssetText` e non riscritta: una carta non puo' stampare una cosa e farne
-	# un'altra (D-042).
-	# **Il verbo per primo, anche sul cartone** (D-228). La carta stampata portava
-	# forza, famiglia, modificatore, che fine fa e cosa costa impegnarla — e mai
-	# cosa fa se la cali. Chi la teneva in mano leggeva tutto tranne la prima
-	# cosa che serve sapere.
-	face["notes"] = [
-		AssetText.action_note(asset),
-		AssetText.note(asset, data),
-		str(asset.get("acquisition_rule", "")),
-	]
+	# **La carta stampa la faccia che si gioca, non il racconto** (D-340).
+	#
+	# Fino alla 0.1.304 qui c'era `rules_text` — voce d'autore — e le tre righe
+	# meccaniche del blocco digitale. Il blocco `physical`, che e' la carta come
+	# si usa al tavolo (bersaglio a segni, due Azioni, Risonanza, uso in
+	# Consiglio), non lo stampava nessuno: 48 carte su 48, e ce l'hanno tutte.
+	#
+	# Il racconto esce dalla faccia e resta nel dato: lo legge il brief d'arte,
+	# che e' il posto dove serve. Sulla carta ogni riga e' un segno che si posa
+	# in un posto preciso o un'azione che si fa.
+	#
+	# **Il ripiego e' dichiarato**: una carta senza blocco fisico stampa la
+	# vecchia faccia e lo dice, invece di uscire muta. Lo schema tiene il blocco
+	# opzionale finche' la conversione non e' finita, e un giorno in cui la
+	# conversione torna indietro dev'essere un giorno che si vede.
+	var physical: Array = AssetText.physical_lines(asset, data)
+	if physical.is_empty():
+		face["body"] = [str(asset.get("rules_text", ""))]
+		face["notes"] = [
+			AssetText.action_note(asset),
+			AssetText.note(asset, data),
+			str(asset.get("acquisition_rule", "")),
+			"questa carta non ha ancora una faccia fisica",
+		]
+	else:
+		face["body"] = []
+		face["notes"] = physical + [
+			AssetText.note(asset, data),
+			str(asset.get("acquisition_rule", "")),
+		]
 	face["family"] = family
 	face["art_prompt_key"] = str(asset["art_prompt_key"])
 	face["copies"] = int(asset.get("deck_copies", 1))

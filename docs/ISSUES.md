@@ -4515,6 +4515,30 @@ dire una cosa sola sul tavolo.
 > Risonanze passano da 163 a **364 in 100 anni — 3,6 per anno**, e la metà
 > condizionale scatta nel **10,2%** dei casi.
 >
+> ### Fatto in 0.1.305: la faccia si stampa. Resta il formato.
+>
+> Il committente, guardando la carta Azione generata: *«devi eliminare ogni
+> narrativa prolissa»*. La faccia fisica c'era in tutte e 48 le carte e **la
+> carta stampata non ne diceva niente**: bersaglio 0 su 48, Risonanza 0 su 48,
+> uso in Consiglio 0 su 48, e delle 96 Azioni ne arrivava una sola, detta col
+> verbo digitale invece che col suo nome.
+>
+> Adesso la faccia si stampa per intero ([D-340](DECISIONS.md#d-340)): **DOVE**,
+> le due Azioni numerate col loro nome, **SEMPRE** e **AL CONSIGLIO** — le
+> ultime due generate dai campi, non scritte a mano. I 96 testi delle Azioni
+> sono stati riscritti togliendo il colore e tenendo ogni regola: 8.666
+> caratteri → 5.751.
+>
+> **Quello che resta non e' piu' il contenuto, e' il formato.** Su 48 carte, 0
+> escono dal bordo ma **46 stampano il corpo rimpicciolito** (la piu' stretta al
+> 77%), e l'illustrazione e' scesa al suo pavimento del 34% su tutte. Una carta
+> 63x88 che porta sette righe di regole **e** un'illustrazione e' una carta che
+> si legge male. Le due strade — tarocco anche per le Asset, come la scheda del
+> Consiglio ([D-338](DECISIONS.md#d-338)); oppure l'illustrazione fuori dalla
+> faccia delle regole — sono misurabili tutte e due, e la scelta e' del
+> committente.
+
+
 > **Correzione a quanto scritto sopra in 0.1.219**: il «0 su 163, contenuto
 > morto» era **un numero sbagliato**. La sonda contava le aggravate dai segni
 > lasciati sulla mappa, e quasi tutte le carte aggravano solo il Calore. Il
@@ -5730,6 +5754,46 @@ perche' non ce l'ha, e il conto dei segni di Pietra combacia con le Pietre alzat
 ---
 
 ## Come si aprono
+
+
+
+---
+
+### 103. `REVISIONE_TESTI` non contiene le 841 caselle di costo e beneficio
+
+`strumenti` · `misura` · aperta in 0.1.305
+
+`docs/REVISIONE_TESTI.md` dice di se' stesso: *«ogni testo che un giocatore puo'
+leggere, nell'ordine in cui lo incontra, con il suo identificativo»*. E' il
+documento con cui il committente corregge un testo scrivendo una riga.
+
+Raccoglieva `title` e `rules_text` e lasciava fuori **il blocco fisico intero**:
+
+| | testi | non c'erano |
+|---|---|---|
+| faccia fisica delle carte Asset | 288 | **287** |
+| caselle di costo e beneficio delle Tensioni | 841 | **841** |
+
+La meta' delle Asset e' riparata in [D-340](DECISIONS.md#d-340): 288 testi
+entrano, ognuno col suo id — `AST_FORCE_LEVY, azione 2`. **Le 841 caselle delle
+Tensioni restano fuori**, e sono precisamente quelle che un giocatore legge
+mentre decide cosa proporre e in che moneta pagare: *«Al luogo si aggiunge
+#razionato»*, *«Accetta 1 Cicatrice permanente»*.
+
+#### Perche' il cancello non se ne accorge
+
+`build_review.py --check` confronta il documento con quello che il **generatore**
+produce, non il generatore con quello che il **gioco** stampa. Finche' nessuno
+aggiunge una sezione, un documento che ne manca mille resta verde.
+
+E' la stessa forma di D-329, D-333, D-334, D-336 e D-338: la **sesta** volta che
+un documento generato non fallisce e racconta il mondo sbagliato. La riparazione
+di classe non e' aggiungere una sezione alla volta — e' **una prova che parte
+dai dati** e chiede che ogni stringa che una faccia di `CardFace` puo' stampare
+compaia nel documento, cosi' che un blocco nuovo sia coperto il giorno che entra.
+
+**Fatto quando** nessuna stringa stampabile su una faccia manca dal documento, e
+lo tiene una prova che pianta un blocco nuovo e la vede cadere.
 
 Ogni voce qui sopra è già un'issue: il titolo dopo il numero, le etichette e la
 milestone dalla riga sotto, il resto come corpo. Chi le apre segna il numero

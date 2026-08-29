@@ -161,8 +161,30 @@ def main() -> int:
 
     review.line("## 8. Le carte Asset — quello che si tiene in mano")
     review.line()
+    # **La faccia che si gioca, non solo il racconto** (D-340).
+    #
+    # Fino alla 0.1.304 questa sezione raccoglieva `title` e `rules_text`, e
+    # lasciava fuori tutto il blocco `physical`: il bersaglio, le due Azioni col
+    # loro nome, la Risonanza. Sono 288 stringhe su 48 carte, e sono
+    # precisamente quelle che un giocatore legge con la carta in mano — cioe' il
+    # documento che dice «ogni testo che un giocatore puo' leggere» ne mancava
+    # 287 su 288, e non falliva.
     for asset in assets:
         review.entry(asset["id"], asset.get("title"), asset.get("rules_text"))
+        physical = asset.get("physical")
+        if not physical:
+            continue
+        review.entry(
+            "%s, bersaglio" % asset["id"], physical.get("target", {}).get("text")
+        )
+        for number, action in enumerate(physical.get("actions", []), start=1):
+            review.entry(
+                "%s, azione %d" % (asset["id"], number),
+                action.get("label"), action.get("text"),
+            )
+        review.entry(
+            "%s, risonanza" % asset["id"], physical.get("resonance", {}).get("text")
+        )
 
     review.line("## 9. I Destini — le ambizioni, gradino per gradino")
     review.line()

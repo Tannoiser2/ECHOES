@@ -5,6 +5,76 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.305 — La carta stampava il racconto e taceva la faccia che si gioca (D-340)
+
+Il committente, guardando la carta Azione generata: *«devi eliminare ogni
+narrativa prolissa e far capire esattamente al giocatore che quel beneficio è un
+#tag che si mette in un posto preciso, o una azione che si fa. Ovvio che servono
+carte gigantesche se si scrive la divina commedia su di esse.»*
+
+### La carta Asset **è** la carta Azione, e non lo stampava
+
+È lei che porta il blocco `physical` — bersaglio a segni, due Azioni, Risonanza,
+uso in Consiglio. Ce l'hanno tutte e 48, e la faccia stampata non ne diceva
+niente: al suo posto `rules_text`, che è voce d'autore.
+
+| sul blocco `physical` | scritto | stampato |
+|---|---|---|
+| bersaglio a segni | 48 | **0** |
+| Azioni | 96 | **48**, solo come verbo |
+| Risonanza — avviene sempre | 48 | **0** |
+| uso in Consiglio | 48 | **0** |
+
+E il racconto che ne prendeva il posto: **48 carte su 48** nominavano una Regione
+per nome, che è la cosa che la grammatica fisica vieta; **12 su 48** ripetevano
+un fatto già detto dalla riga meccanica accanto.
+
+### Tre righe su cinque non si scrivono a mano
+
+**SEMPRE** e **AL CONSIGLIO** sono interamente campi strutturati, e adesso si
+generano da quelli: è l'unico modo perché la carta non possa dire una cosa e il
+motore farne un'altra. È la lezione di D-336, dove 89 frasi su 164 erano costanti
+scritte accanto a dati che nel frattempo erano cambiati.
+
+### Il racconto tolto dai 96 testi
+
+Tutte le Azioni avevano la stessa forma — la regola, poi una frase di colore.
+Riscritte tenendo ogni regola, comprese quelle nascoste in coda: **8.666
+caratteri → 5.751, il 34% in meno**.
+
+### Il costo, dichiarato
+
+| su 48 carte | prima | dopo |
+|---|---|---|
+| fuori dal bordo | 0 | **0** |
+| corpo sotto la misura piena | **4** | **46** |
+| la più stretta | — | **77%** |
+
+La carta dice quattro volte più cose e il corpo si stringe; l'illustrazione è
+scesa al suo pavimento del 34% su tutte e 48. Nessuna sfonda il bordo, nessuna
+scende sotto il 74% che la prova sorveglia — ma 46 su 48 stampano rimpicciolito,
+e la decisione che resta è del committente: **tarocco anche per le Asset, o
+l'illustrazione lascia la faccia delle regole**.
+
+Sul gioco niente: playtest 100 semi identico, **0 seggi bloccati su un solo
+livello su 8**, misto e uniforme.
+
+### Il documento dei testi ne mancava 1.128
+
+`REVISIONE_TESTI` raccoglieva `title` e `rules_text` e lasciava fuori il blocco
+fisico intero: **287 testi su 288** delle carte Asset, e **841 su 841** delle
+caselle di Tensione. È la sesta volta che un documento generato non fallisce e
+racconta il mondo sbagliato — dopo D-329, D-333, D-334, D-336 e D-338. Riparata
+la parte Asset; le Tensioni sono **ISSUES 103**.
+
+### Verbali
+
+**D-340** in `DECISIONS.md`, **ISSUES 69** aggiornata (la faccia si stampa; resta
+il formato), **ISSUES 103** aperta. Suite da 642 a **644 prove**; giro completo
+dei cancelli verde per codice di uscita.
+
+---
+
 ## 0.1.304 — Le carte parlavano inglese, e nessuno le guardava (D-339)
 
 Il committente, dopo la scheda del Consiglio: *«poi fammi un esempio di carta»*.

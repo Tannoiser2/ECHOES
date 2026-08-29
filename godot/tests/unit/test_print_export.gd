@@ -12,6 +12,7 @@ const CardFace := preload("res://scripts/core/card_face.gd")
 const PrintSheet := preload("res://scripts/core/print_sheet.gd")
 const ArtPlaceholder := preload("res://scripts/core/art_placeholder.gd")
 const ArtBible := preload("res://scripts/core/art_bible.gd")
+const AssetText := preload("res://scripts/core/asset_text.gd")
 
 
 ## Il test che vale per tutti: ogni faccia del set ci sta nella sua carta.
@@ -355,3 +356,90 @@ func test_no_face_prints_an_internal_word() -> void:
 					guai.append("%s: «%s»" % [str(card["id"]), str(word)])
 					break
 	assert_eq(guai, [], "nessuna carta stampa un nome interno")
+
+
+## **La carta Asset stampa la faccia che si gioca, non il racconto** (D-340).
+##
+## Fino alla 0.1.304 la carta stampava `rules_text` — voce d'autore — e taceva
+## il blocco `physical` per intero: bersaglio a segni, due Azioni, Risonanza,
+## uso in Consiglio. Quarantotto carte su quarantotto, e ce l'hanno tutte.
+##
+## La prova non guarda un elenco di frasi buone: prende **il blocco fisico dal
+## dato** e chiede che ogni sua parte arrivi sulla faccia. Una carta nuova e'
+## coperta il giorno che entra, e una faccia che torna al racconto cade qui.
+func test_the_asset_card_prints_the_face_you_play() -> void:
+	var loaded: RefCounted = data()
+	var con_faccia: int = 0
+	for face in CardFace.every(loaded):
+		var card: Dictionary = face as Dictionary
+		if str(card.get("deck", "")) != "asset":
+			continue
+		var asset: Dictionary = loaded.assets[str(card["id"])]
+		var physical: Dictionary = asset.get("physical", {})
+		var printed: String = " ".join(PackedStringArray(card.get("notes", []) as Array))
+		if physical.is_empty():
+			# Il ripiego e' dichiarato, non muto: la carta dice che non ce l'ha.
+			assert_true(printed.contains("non ha ancora una faccia fisica"),
+				"%s e' senza blocco fisico e non lo dichiara" % str(card["id"]))
+			continue
+		con_faccia += 1
+		assert_true(printed.contains(str((physical["target"] as Dictionary)["text"])),
+			"%s: il bersaglio non arriva sulla carta" % str(card["id"]))
+		for action in physical["actions"] as Array:
+			var written: Dictionary = action
+			assert_true(printed.contains(str(written["label"])),
+				"%s: l'Azione «%s» non arriva sulla carta" % [str(card["id"]), str(written["label"])])
+			assert_true(printed.contains(str(written["text"])),
+				"%s: cosa fa «%s» non arriva sulla carta" % [str(card["id"]), str(written["label"])])
+		var resonance: Dictionary = physical["resonance"]
+		var theme: String = str((loaded.themes[str(resonance["theme"])] as Dictionary)["title"])
+		assert_true(printed.contains("SEMPRE  %s +%d" % [theme, int(resonance["heat"])]),
+			"%s: la Risonanza non arriva sulla carta" % str(card["id"]))
+		assert_true(printed.contains("AL CONSIGLIO  %d" % int(
+			(physical["council_use"] as Dictionary)["base_strength"]
+		)), "%s: quanto vale impegnata non arriva sulla carta" % str(card["id"]))
+		# **E il racconto non ci resta accanto.** Due testi per lo stesso gesto
+		# sono la ragione per cui la carta non ci stava: uno dei due non si gioca.
+		var prose: String = str(asset.get("rules_text", ""))
+		if prose != "":
+			var whole: String = printed + " " + " ".join(
+				PackedStringArray(card.get("body", []) as Array)
+			)
+			assert_false(whole.contains(prose),
+				"%s stampa ancora il racconto insieme alla regola" % str(card["id"]))
+	assert_eq(con_faccia, 48, "le carte Asset che stampano la faccia fisica")
+
+
+## **La Risonanza e l'uso in Consiglio si generano, non si scrivono** (D-340).
+##
+## Sono interamente campi strutturati — `theme`, `heat`, `if_target_tag`,
+## `extra_heat`, `extra_tag`, `base_strength`, `bonus_if_theme` — e una riga
+## scritta a mano accanto a un campo e' una riga che invecchia da sola: e'
+## esattamente quello che D-336 ha trovato sui Consigli, dove 89 frasi su 164
+## dicevano il falso perche' erano costanti e i dati no.
+##
+## Qui la prova pianta una Risonanza aggravata e verifica che la parte
+## condizionale compaia: senza questo, una carta che perde la clausola passerebbe
+## lo stesso.
+func test_the_resonance_is_read_from_the_fields() -> void:
+	var loaded: RefCounted = data()
+	var aggravate: int = 0
+	for id in loaded.assets:
+		var asset: Dictionary = loaded.assets[str(id)]
+		var physical: Dictionary = asset.get("physical", {})
+		if physical.is_empty():
+			continue
+		var resonance: Dictionary = physical["resonance"]
+		var line: String = AssetText.resonance_line(physical, loaded)
+		if str(resonance.get("if_target_tag", "")) == "":
+			assert_false(line.contains("se il bersaglio ha"),
+				"%s non ha clausola e la carta ne stampa una" % str(id))
+			continue
+		aggravate += 1
+		assert_true(line.contains("se il bersaglio ha"),
+			"%s ha la clausola e la riga non la dice" % str(id))
+		var extra: String = str(resonance.get("extra_tag", ""))
+		if extra != "":
+			assert_true(line.contains("posa "),
+				"%s lascia %s e la riga non lo posa" % [str(id), extra])
+	assert_true(aggravate > 0, "nessuna carta ha una Risonanza aggravata: la prova e cieca")

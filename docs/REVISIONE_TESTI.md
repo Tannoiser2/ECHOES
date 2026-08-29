@@ -7,7 +7,7 @@ Ogni testo che un giocatore può leggere, nell'ordine in cui lo incontra,
 con il suo identificativo. Per correggere basta una riga, anche a voce:
 «`P_SHOW_IT`: riscrivi così…» — al resto pensa il motore. I segnaposto
 (`$the_region`, `$proponent`…) sono gli slot che il mondo riempie: si
-possono spostare nella frase, non togliere. 1010 testi in lettura.
+possono spostare nella frase, non togliere. 1298 testi in lettura.
 
 ## 1. Le aperture — lette ad alta voce all'inizio dell'anno
 
@@ -2409,10 +2409,50 @@ possono spostare nella frase, non togliere. 1010 testi in lettura.
 > +1 quando Autorità è rilevante per la Tensione. Una lista di nomi è la forma più semplice del potere — e la lista chiarisce: la Regione della domanda smette di essere contesa.
 
 
+**`AST_AUTHORITY_CENSUS, bersaglio`**
+> Scegli un luogo con #capitale, #granaio o #commercio. Vale anche il #porto, e ogni luogo del dominio del #territorio.
+
+
+**`AST_AUTHORITY_CENSUS, azione 1`**
+> Contare le teste
+
+> Scopri una questione velata che tocca quel luogo, e pesca 1 Sapere.
+
+
+**`AST_AUTHORITY_CENSUS, azione 2`**
+> Contare i sacchi
+
+> Togli #razionato o #requisito dal luogo.
+
+
+**`AST_AUTHORITY_CENSUS, risonanza`**
+> Scalda Potere +1. Contare e' un atto di governo, e chi viene contato lo sa.
+
+
 **`AST_AUTHORITY_CROWN_RIGHT`**
 > Diritto di Corona
 
 > Si scarta sempre: un diritto invocato due volte non è più un diritto, è una pretesa — e la pretesa divide: la Regione della domanda resta contesa.
+
+
+**`AST_AUTHORITY_CROWN_RIGHT, bersaglio`**
+> Scegli un luogo con #capitale o #conteso. Vale anche ogni luogo del dominio del #territorio.
+
+
+**`AST_AUTHORITY_CROWN_RIGHT, azione 1`**
+> Rivendicare per diritto
+
+> Rivendica il luogo.
+
+
+**`AST_AUTHORITY_CROWN_RIGHT, azione 2`**
+> Cedere il diritto
+
+> Un'altra casa prende la rivendicazione al posto tuo e sale di 2 gradini nel rapporto con te.
+
+
+**`AST_AUTHORITY_CROWN_RIGHT, risonanza`**
+> Scalda Potere +2. Ogni volta che il diritto viene detto ad alta voce, qualcuno conta chi non l'ha detto.
 
 
 **`AST_AUTHORITY_EDICT`**
@@ -2421,10 +2461,50 @@ possono spostare nella frase, non togliere. 1010 testi in lettura.
 > Una riga scritta bene vale quanto chi la fa rispettare — e dove si discute, la legge calma la piazza: l'inquietudine si cancella.
 
 
+**`AST_AUTHORITY_EDICT, bersaglio`**
+> Scegli un luogo qualsiasi che non sia gia' #conteso.
+
+
+**`AST_AUTHORITY_EDICT, azione 1`**
+> Rivendicare
+
+> Rivendica il luogo: al prossimo Consiglio apre la sua Domanda, e parli per primo.
+
+
+**`AST_AUTHORITY_EDICT, azione 2`**
+> Proibire
+
+> Nessuno puo' giocare carte Forza su quel luogo fino a fine Atto.
+
+
+**`AST_AUTHORITY_EDICT, risonanza`**
+> Scalda Potere +1. Un editto e' una promessa che qualcuno dovra' mantenere o rompere.
+
+
 **`AST_AUTHORITY_INTERDICT`**
 > Interdetto
 
 > Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: vietare una cosa a tutti alza la posta per tutti.
+
+
+**`AST_AUTHORITY_INTERDICT, bersaglio`**
+> Scegli una questione aperta sul tavolo.
+
+
+**`AST_AUTHORITY_INTERDICT, azione 1`**
+> Proibire
+
+> Abbassa quella questione di 2. Nessuno puo' influenzarla fino a fine Atto.
+
+
+**`AST_AUTHORITY_INTERDICT, azione 2`**
+> Scomunicare
+
+> Alzala di 1 e metti #tradimento_detto sul mondo.
+
+
+**`AST_AUTHORITY_INTERDICT, risonanza`**
+> Scalda Fede +2. Un interdetto non toglie niente a nessuno: dice solo che d'ora in poi c'e' un dentro e un fuori.
 
 
 **`AST_AUTHORITY_INVESTITURE`**
@@ -2433,10 +2513,50 @@ possono spostare nella frase, non togliere. 1010 testi in lettura.
 > +1 sempre, su qualsiasi fronte. Si scarta sempre: si concede una volta sola, e tutti se ne ricordano — perché la nomina scrive un nome nella linea: il mondo ricorda l'erede nominato.
 
 
+**`AST_AUTHORITY_INVESTITURE, bersaglio`**
+> Scegli un'altra casa al tavolo.
+
+
+**`AST_AUTHORITY_INVESTITURE, azione 1`**
+> Investirla
+
+> Sale di 2 gradini nel rapporto con te e prende #fama.
+
+
+**`AST_AUTHORITY_INVESTITURE, azione 2`**
+> Farsi investire
+
+> Sali di 1 gradino verso di lei e prendi #fama.
+
+
+**`AST_AUTHORITY_INVESTITURE, risonanza`**
+> Scalda Fede +1. Un titolo dato e' una gerarchia detta ad alta voce, e qualcuno la sentira' come un insulto.
+
+
 **`AST_AUTHORITY_MAGISTRATE`**
 > Magistrato
 
 > +2 sul fronte Oppose. Se la proposta passa lo stesso resta in mano: un giudice che ha avuto ragione serve ancora — e il giudice risponde: la domanda rimasta scritta sul muro si cancella.
+
+
+**`AST_AUTHORITY_MAGISTRATE, bersaglio`**
+> Scegli un luogo con #capitale, #commercio, #conteso o #malcontento. Vale anche ogni luogo del dominio del #territorio.
+
+
+**`AST_AUTHORITY_MAGISTRATE, azione 1`**
+> Mandarlo a giudicare
+
+> Sposta una tua presenza li' e togli #conteso dal luogo.
+
+
+**`AST_AUTHORITY_MAGISTRATE, azione 2`**
+> Mandarlo a controllare
+
+> Togli #malcontento dal luogo e pesca 1 Sapere.
+
+
+**`AST_AUTHORITY_MAGISTRATE, risonanza`**
+> Scalda Potere +1. Un magistrato e' la corona che arriva dove la corona non va di persona.
 
 
 **`AST_AUTHORITY_SEAL`**
@@ -2445,10 +2565,50 @@ possono spostare nella frase, non togliere. 1010 testi in lettura.
 > +1 sul fronte Oppose. Il sigillo che manca ferma più cose del sigillo che c'è — e quello impegnato raffredda la questione: la Tensione in gioco scende di 1.
 
 
+**`AST_AUTHORITY_SEAL, bersaglio`**
+> Scegli una questione aperta sul tavolo.
+
+
+**`AST_AUTHORITY_SEAL, azione 1`**
+> Sigillare in basso
+
+> Abbassa quella questione di 1.
+
+
+**`AST_AUTHORITY_SEAL, azione 2`**
+> Sigillare in alto
+
+> Alza quella questione di 1.
+
+
+**`AST_AUTHORITY_SEAL, risonanza`**
+> Scalda Potere +1. Un sigillo non convince nessuno: dice solo chi ha il diritto di chiudere il discorso.
+
+
 **`AST_AUTHORITY_SUCCESSION_ACT`**
 > Atto di Successione
 
 > Forza 3. Si scarta sempre, e chi ti sta di fronte guadagna una presenza nella Regione di cui si discute: nominare un erede fa arrivare tutti quelli che non sono stati nominati.
+
+
+**`AST_AUTHORITY_SUCCESSION_ACT, bersaglio`**
+> Scegli un luogo con #capitale. Vale anche ogni luogo del dominio del #territorio.
+
+
+**`AST_AUTHORITY_SUCCESSION_ACT, azione 1`**
+> Scrivere il nome
+
+> Rivendica il luogo e metti #erede_nominato sul mondo.
+
+
+**`AST_AUTHORITY_SUCCESSION_ACT, azione 2`**
+> Scrivere la regola
+
+> Metti #successione_per_legge sul mondo.
+
+
+**`AST_AUTHORITY_SUCCESSION_ACT, risonanza`**
+> Scalda Potere +2. Un atto di successione e' la promessa che qualcuno si alzera' — e l'annuncio a tutti gli altri che non saranno loro.
 
 
 **`AST_BONDS_BETROTHAL`**
@@ -2457,10 +2617,50 @@ possono spostare nella frase, non togliere. 1010 testi in lettura.
 > +2 sul fronte Oppose: una promessa serve più a impedire un'alleanza che a farne una. Si scarta sempre — e resta scritta: fra le due case nasce un patto, e i patti si giudicano.
 
 
+**`AST_BONDS_BETROTHAL, bersaglio`**
+> Scegli un'altra casa che non porti #giuramento_rotto.
+
+
+**`AST_BONDS_BETROTHAL, azione 1`**
+> Promettere
+
+> Salite tutti e due di 2 gradini. Da adesso ogni Consiglio in cui vi opponete costa 1 carta a testa.
+
+
+**`AST_BONDS_BETROTHAL, azione 2`**
+> Rimandare
+
+> Salite di 1 gradino e pesca 1 Legami.
+
+
+**`AST_BONDS_BETROTHAL, risonanza`**
+> Scalda Fede +2. Una promessa di nozze e' un patto che coinvolge chi non era nella stanza.
+
+
 **`AST_BONDS_BLOOD_TIE`**
 > Legame di Sangue
 
 > Non è un accordo: e una cosa che c'era prima dell'accordo, e che nessuno ha firmato. Impegnata, scrive il vincolo di sangue sulla coppia: da lì in poi, quella relazione non scende sotto il neutrale.
+
+
+**`AST_BONDS_BLOOD_TIE, bersaglio`**
+> Scegli un luogo con #capitale, #pascolo o un insediamento cresciuto. Vale anche ogni luogo del dominio della #sopravvivenza.
+
+
+**`AST_BONDS_BLOOD_TIE, azione 1`**
+> Cercare il legame
+
+> Scopri una questione velata che tocca il luogo, e pesca 1 Legami.
+
+
+**`AST_BONDS_BLOOD_TIE, azione 2`**
+> Rivendicare il sangue
+
+> Metti #erede_nominato sul mondo.
+
+
+**`AST_BONDS_BLOOD_TIE, risonanza`**
+> Scalda Potere +1. Il sangue non e' un argomento: e' un modo di non doverne portare nessuno.
 
 
 **`AST_BONDS_BROKEN_PACT`**
@@ -2469,10 +2669,50 @@ possono spostare nella frase, non togliere. 1010 testi in lettura.
 > Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: rompere un patto davanti al tavolo scalda ogni domanda ancora aperta.
 
 
+**`AST_BONDS_BROKEN_PACT, bersaglio`**
+> Scegli una questione aperta sul tavolo.
+
+
+**`AST_BONDS_BROKEN_PACT, azione 1`**
+> Rompere adesso
+
+> Alza quella questione di 2, metti #giuramento_rotto sul mondo e scendi di 2 gradini con chi aveva il patto.
+
+
+**`AST_BONDS_BROKEN_PACT, azione 2`**
+> Minacciare di rompere
+
+> Alza quella questione di 1. Chi aveva il patto ti da' 1 carta a scelta perche' tu non lo faccia.
+
+
+**`AST_BONDS_BROKEN_PACT, risonanza`**
+> Scalda Fede +2. Un patto rotto non si dimentica: cambia quello che gli altri sono disposti a promettere a chiunque.
+
+
 **`AST_BONDS_FAVOR`**
 > Favore
 
 > Piccolo, ricordato con precisione — e restituito al momento giusto: fra chi lo impegna e il rivale, una vendetta si spegne.
+
+
+**`AST_BONDS_FAVOR, bersaglio`**
+> Scegli una questione aperta sul tavolo.
+
+
+**`AST_BONDS_FAVOR, azione 1`**
+> Chiedere il favore
+
+> Abbassa quella questione di 1 e scendi di 1 gradino con la casa che la stava spingendo.
+
+
+**`AST_BONDS_FAVOR, azione 2`**
+> Fare il favore
+
+> Alza quella questione di 1 per conto di un'altra casa: lei sale di 2 gradini nel rapporto con te.
+
+
+**`AST_BONDS_FAVOR, risonanza`**
+> Scalda Fede +1. Un favore non si restituisce mai per intero: e' questo che lo tiene in vita.
 
 
 **`AST_BONDS_GUEST_RIGHT`**
@@ -2481,10 +2721,50 @@ possono spostare nella frase, non togliere. 1010 testi in lettura.
 > +1 quando Legami è rilevante per la Tensione. Chi ha mangiato al tuo tavolo non può dire di no davanti a tutti. Può dirlo dopo — e chi lo impegna torna ospite: la cacciata dalla Regione della domanda si cancella.
 
 
+**`AST_BONDS_GUEST_RIGHT, bersaglio`**
+> Scegli un luogo che non sia #conteso.
+
+
+**`AST_BONDS_GUEST_RIGHT, azione 1`**
+> Entrare come ospite
+
+> Sposta una tua presenza li', anche se il luogo e' di un altro.
+
+
+**`AST_BONDS_GUEST_RIGHT, azione 2`**
+> Offrire ospitalita'
+
+> Un'altra casa mette una presenza in un tuo luogo e sale di 2 gradini nel rapporto con te.
+
+
+**`AST_BONDS_GUEST_RIGHT, risonanza`**
+> Scalda Fede +1. Il diritto d'ospitalita' regge finche' nessuno lo mette alla prova, e qualcuno lo mettera'.
+
+
 **`AST_BONDS_HOSTAGE`**
 > Ostaggio
 
 > Forza 3. Si scarta sempre, e chi ti sta di fronte guadagna una presenza nella Regione di cui si discute: chi consegna un figlio compra una parola, e la paga a casa propria.
+
+
+**`AST_BONDS_HOSTAGE, bersaglio`**
+> Scegli una questione aperta sul tavolo.
+
+
+**`AST_BONDS_HOSTAGE, azione 1`**
+> Mostrare l'ostaggio
+
+> Abbassa quella questione di 2.
+
+
+**`AST_BONDS_HOSTAGE, azione 2`**
+> Restituire l'ostaggio
+
+> Alza quella questione di 1: la casa che lo rivoleva sale di 2 gradini nel rapporto con te.
+
+
+**`AST_BONDS_HOSTAGE, risonanza`**
+> Scalda Fede +2. Un ostaggio tiene fermo il tavolo e intanto insegna a tutti come si tiene fermo un tavolo.
 
 
 **`AST_BONDS_OATH`**
@@ -2493,10 +2773,50 @@ possono spostare nella frase, non togliere. 1010 testi in lettura.
 > Non si scarta mai. Un giuramento impegnato resta impegnato anche dopo, ed è la sua unica forza — e un giuramento rifatto scioglie quello spezzato: fra chi lo impegna e il rivale, il tradimento si cancella.
 
 
+**`AST_BONDS_OATH, bersaglio`**
+> Scegli un'altra casa al tavolo che non porti #giuramento_rotto.
+
+
+**`AST_BONDS_OATH, azione 1`**
+> Giurare insieme
+
+> Sali di 1 gradino nel rapporto con lei e metti #scorta_giurata su tutti e due. Vale finche' uno dei due non lo rompe.
+
+
+**`AST_BONDS_OATH, azione 2`**
+> Farsi giurare
+
+> Lei sale di 1 gradino verso di te, tu no. Prendi 1 sua carta a scelta.
+
+
+**`AST_BONDS_OATH, risonanza`**
+> Scalda Fede +1. Un giuramento pronunciato e' una cosa che il mondo dovra' ricordare o dimenticare, e nessuna delle due e' gratis.
+
+
 **`AST_BONDS_OLD_DEBT`**
 > Debito Vecchio
 
 > +1 sul fronte Oppose. Nessuno se lo ricorda tranne le due persone che contano, e una delle due lo tira fuori adesso — e da adesso è pubblico: la sede del debitore resta segnata come indebitata.
+
+
+**`AST_BONDS_OLD_DEBT, bersaglio`**
+> Scegli un'altra casa al tavolo.
+
+
+**`AST_BONDS_OLD_DEBT, azione 1`**
+> Esigere
+
+> Metti #debito_chiamato su di lei: ti da' 1 carta adesso, oppure scende di 1 gradino nel rapporto con te.
+
+
+**`AST_BONDS_OLD_DEBT, azione 2`**
+> Rimettere
+
+> Metti #debito_rimesso e sali di 2 gradini nel rapporto con lei.
+
+
+**`AST_BONDS_OLD_DEBT, risonanza`**
+> Scalda Fede +1. Un debito vecchio non e' una somma: e' una storia che qualcuno raccontera' diversamente.
 
 
 **`AST_FORCE_BORDER_WATCH`**
@@ -2505,10 +2825,50 @@ possono spostare nella frase, non togliere. 1010 testi in lettura.
 > +1 quando Forza è rilevante per la Tensione. Contano i carri che passano, e sanno quali contare — e ogni conta ferma la strada: Le Vie Interrotte salgono di 1.
 
 
+**`AST_FORCE_BORDER_WATCH, bersaglio`**
+> Scegli un luogo con #capitale, #granaio, #pascolo o #conteso. Vale anche ogni luogo del dominio del #territorio.
+
+
+**`AST_FORCE_BORDER_WATCH, azione 1`**
+> Guardare chi arriva
+
+> Scopri una questione velata che tocca quel luogo, e pesca 1 Sapere.
+
+
+**`AST_FORCE_BORDER_WATCH, azione 2`**
+> Far sapere che si guarda
+
+> Metti #conteso sul luogo.
+
+
+**`AST_FORCE_BORDER_WATCH, risonanza`**
+> Scalda Terra +1. Un confine sorvegliato e' un confine che qualcuno ha appena disegnato.
+
+
 **`AST_FORCE_BURNED_GATE`**
 > Le Porte Bruciate
 
 > Forza 3. Si scarta sempre, e chi la gioca perde la propria presenza nella Regione di cui si discute: chi apre una porta così non resta li a difenderla.
+
+
+**`AST_FORCE_BURNED_GATE, bersaglio`**
+> Scegli un luogo con #capitale o una struttura murata. Vale anche ogni luogo del dominio del #territorio.
+
+
+**`AST_FORCE_BURNED_GATE, azione 1`**
+> Bruciare la porta
+
+> Rivendica il luogo e metti 1 Cicatrice.
+
+
+**`AST_FORCE_BURNED_GATE, azione 2`**
+> Mostrare la fiaccola
+
+> Metti #malcontento su quel luogo e su un luogo confinante.
+
+
+**`AST_FORCE_BURNED_GATE, risonanza`**
+> Scalda Potere +2. Le porte bruciate si raccontano per due generazioni, e nessuna versione e' la tua.
 
 
 **`AST_FORCE_LEVY`**
@@ -2517,10 +2877,50 @@ possono spostare nella frase, non togliere. 1010 testi in lettura.
 > Uomini con attrezzi da lavoro tenuti come lance. Bastano finché nessuno li conta — ma i campi restano soli: la Carestia sale di 1.
 
 
+**`AST_FORCE_LEVY, bersaglio`**
+> Scegli un luogo con #granaio, #pascolo o #capitale dove hai gia' una presenza. Vale anche ogni luogo del dominio del #territorio.
+
+
+**`AST_FORCE_LEVY, azione 1`**
+> Chiamare la leva
+
+> Sposta una tua presenza da quel luogo a un luogo confinante.
+
+
+**`AST_FORCE_LEVY, azione 2`**
+> Tenerli a casa
+
+> La presenza resta. Metti #razionato sul luogo: nessuno puo' requisirgli il grano fino a fine Atto.
+
+
+**`AST_FORCE_LEVY, risonanza`**
+> Scalda Sopravvivenza +1. I campi restano soli: chi tiene la lancia non tiene la falce.
+
+
 **`AST_FORCE_MERCENARIES`**
 > Mercenari
 
 > +1 sempre, su qualsiasi fronte: fuori tema vale quanto in tema. Dove passano, però, resta l'inquietudine.
+
+
+**`AST_FORCE_MERCENARIES, bersaglio`**
+> Scegli un'altra casa al tavolo.
+
+
+**`AST_FORCE_MERCENARIES, azione 1`**
+> Prestarli
+
+> Sali di 1 gradino nel rapporto con lei.
+
+
+**`AST_FORCE_MERCENARIES, azione 2`**
+> Toglierli di mezzo
+
+> Scendi di 1 gradino con lei e pesca 1 Ricchezza.
+
+
+**`AST_FORCE_MERCENARIES, risonanza`**
+> Scalda Vie +1. Chi si compra si ricompra, e il prezzo lo sa gia' qualcun altro.
 
 
 **`AST_FORCE_OLD_ARMY`**
@@ -2529,10 +2929,50 @@ possono spostare nella frase, non togliere. 1010 testi in lettura.
 > Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: richiamare i vecchi reggimenti dice al mondo che la cosa è seria.
 
 
+**`AST_FORCE_OLD_ARMY, bersaglio`**
+> Scegli un luogo con #capitale, #conteso o #malcontento. Vale anche ogni luogo del dominio del #territorio.
+
+
+**`AST_FORCE_OLD_ARMY, azione 1`**
+> Richiamarli sotto le armi
+
+> Sposta due tue presenze in quel luogo, anche da lontano.
+
+
+**`AST_FORCE_OLD_ARMY, azione 2`**
+> Lasciarli tornare a casa
+
+> Togli #malcontento dal luogo e pesca 1 Autorita'.
+
+
+**`AST_FORCE_OLD_ARMY, risonanza`**
+> Scalda Potere +2. Un esercito che si muove e' una domanda su chi comanda, posta senza parole.
+
+
 **`AST_FORCE_ROADBLOCK`**
 > Posto di Blocco
 
 > +1 sul fronte Oppose. Fermare un carro costa sempre meno che farlo partire — e la Regione della domanda resta tagliata fuori dal mondo.
+
+
+**`AST_FORCE_ROADBLOCK, bersaglio`**
+> Scegli un luogo con #commercio, #dogana o #capitale che non sia gia' #tagliato_fuori. Vale anche il #porto, e ogni luogo del dominio del #territorio.
+
+
+**`AST_FORCE_ROADBLOCK, azione 1`**
+> Sbarrare la strada
+
+> Metti #tagliato_fuori sul luogo. Finche' c'e', muovere una presenza dentro o fuori costa 1 carta in piu'.
+
+
+**`AST_FORCE_ROADBLOCK, azione 2`**
+> Farsi pagare il passaggio
+
+> Pesca 1 Ricchezza. Il luogo resta aperto a tutti, te compreso.
+
+
+**`AST_FORCE_ROADBLOCK, risonanza`**
+> Scalda Vie +1. Una strada su cui c'e' un posto di blocco non e' piu' una strada: e' una porta, e le porte si contano.
 
 
 **`AST_FORCE_SIEGE`**
@@ -2541,10 +2981,50 @@ possono spostare nella frase, non togliere. 1010 testi in lettura.
 > +2 sul fronte Oppose. Non serve prendere una cosa per impedire che sia di qualcun altro — ma l'assedio affama anche la terra intorno: la Carestia sale di 1, e il presidio della Regione della domanda viene giu'.
 
 
+**`AST_FORCE_SIEGE, bersaglio`**
+> Scegli un luogo con #capitale, #granaio o una struttura murata. Vale anche ogni luogo del dominio del #territorio.
+
+
+**`AST_FORCE_SIEGE, azione 1`**
+> Stringere l'assedio
+
+> Rivendica il luogo: al prossimo Consiglio la sua Domanda si apre e parli per primo.
+
+
+**`AST_FORCE_SIEGE, azione 2`**
+> Affamare e aspettare
+
+> Metti #fame sul luogo.
+
+
+**`AST_FORCE_SIEGE, risonanza`**
+> Scalda Sopravvivenza +2. Un assedio si vede da lontano, e chi ha fame lo racconta prima di chi comanda.
+
+
 **`AST_FORCE_WARBAND`**
 > Banda Armata
 
 > Si scarta sempre, e la Tensione in gioco sale di 1: la paura non si spegne insieme alla questione.
+
+
+**`AST_FORCE_WARBAND, bersaglio`**
+> Scegli un luogo con #selvaggio, #pascolo, #abbandonato o #conteso che non sia una #capitale. Vale anche il #bosco, e ogni luogo del dominio del #territorio.
+
+
+**`AST_FORCE_WARBAND, azione 1`**
+> Prendere il posto
+
+> Sposta una tua presenza li'.
+
+
+**`AST_FORCE_WARBAND, azione 2`**
+> Spogliare il posto
+
+> Metti #saccheggiato sul luogo e prendi 1 carta a caso dalla mano di chi lo controlla.
+
+
+**`AST_FORCE_WARBAND, risonanza`**
+> Scalda Terra +2. Una banda armata non torna indietro uguale, e nemmeno il posto da cui e' passata.
 
 
 **`AST_KNOWLEDGE_ARCHIVE`**
@@ -2553,10 +3033,50 @@ possono spostare nella frase, non togliere. 1010 testi in lettura.
 > Se la proposta passa resta in mano. Le carte non si consumano: si consuma chi le sa leggere — e quello che si e' letto resta: sulla Regione della domanda si apre un archivio suo.
 
 
+**`AST_KNOWLEDGE_ARCHIVE, bersaglio`**
+> Scegli un luogo con #capitale, #commercio o una stanza dove si tengono le carte. Vale anche ogni luogo del dominio dell'#antico.
+
+
+**`AST_KNOWLEDGE_ARCHIVE, azione 1`**
+> Cercare indietro
+
+> Scopri una questione velata che tocca il luogo, e pesca 1 Sapere.
+
+
+**`AST_KNOWLEDGE_ARCHIVE, azione 2`**
+> Far leggere a tutti
+
+> Metti #registro_pubblico sul mondo.
+
+
+**`AST_KNOWLEDGE_ARCHIVE, risonanza`**
+> Scalda Vie +1. Un archivio non conserva il passato: conserva la versione che qualcuno ha avuto il tempo di scrivere.
+
+
 **`AST_KNOWLEDGE_LEDGER`**
 > Registro
 
 > +1 sul fronte Oppose. Chi tiene i conti sa cosa manca, e lo dice nel momento peggiore — e da quel momento i conti sono di tutti: il registro è pubblico.
+
+
+**`AST_KNOWLEDGE_LEDGER, bersaglio`**
+> Scegli un'altra casa al tavolo.
+
+
+**`AST_KNOWLEDGE_LEDGER, azione 1`**
+> Aprire il registro
+
+> Metti #registro_pubblico sul mondo e sali di 1 gradino con lei.
+
+
+**`AST_KNOWLEDGE_LEDGER, azione 2`**
+> Chiudere il registro
+
+> Scendi di 1 gradino con lei e metti #debito_chiamato sul mondo.
+
+
+**`AST_KNOWLEDGE_LEDGER, risonanza`**
+> Scalda Vie +1. Un registro non e' un elenco di numeri: e' un elenco di persone, in ordine di quanto devono.
 
 
 **`AST_KNOWLEDGE_OLD_MAP`**
@@ -2565,10 +3085,50 @@ possono spostare nella frase, non togliere. 1010 testi in lettura.
 > +1 quando Sapere è rilevante per la Tensione. I confini sono sbagliati; le strade no — e una strada giusta ricuce il ponte rotto sulla Regione della domanda.
 
 
+**`AST_KNOWLEDGE_OLD_MAP, bersaglio`**
+> Scegli un luogo con #tagliato_fuori, #selvaggio o #commercio. Vale anche la #palude, l'#isola, e ogni luogo del dominio dell'#antico.
+
+
+**`AST_KNOWLEDGE_OLD_MAP, azione 1`**
+> Trovare il passaggio
+
+> Togli #tagliato_fuori dal luogo, oppure muovi una tua presenza li' ignorando i confini.
+
+
+**`AST_KNOWLEDGE_OLD_MAP, azione 2`**
+> Tenere la mappa per se'
+
+> Metti #registro_del_commercio: al prossimo Consiglio vale +1.
+
+
+**`AST_KNOWLEDGE_OLD_MAP, risonanza`**
+> Scalda Vie +1. Una strada che qualcuno ha ritrovato e' una strada che qualcun altro vorra' chiudere.
+
+
 **`AST_KNOWLEDGE_PROOF`**
 > Prova
 
 > Se la proposta passa, resta in mano: una prova dimostrata non si consuma — e dimostra: la questione in gioco si apre a tutti i presenti.
+
+
+**`AST_KNOWLEDGE_PROOF, bersaglio`**
+> Scegli un luogo con #capitale, #cristallo o una stanza dove si tengono le carte. Vale anche la #miniera, e ogni luogo del dominio dell'#antico.
+
+
+**`AST_KNOWLEDGE_PROOF, azione 1`**
+> Mostrare la prova
+
+> Scopri una questione velata e metti #sapere_condiviso sul mondo.
+
+
+**`AST_KNOWLEDGE_PROOF, azione 2`**
+> Tenere la prova
+
+> Scopri la questione e pesca 1 Sapere.
+
+
+**`AST_KNOWLEDGE_PROOF, risonanza`**
+> Scalda Fede +1. Una prova non chiude una discussione: decide chi dovra' chiamare bugiardo chi.
 
 
 **`AST_KNOWLEDGE_RED_CRYSTAL`**
@@ -2577,10 +3137,50 @@ possono spostare nella frase, non togliere. 1010 testi in lettura.
 > Forza 3. Si scarta sempre, e la Tensione in gioco diventa aperta a tutti: mostrarlo chiude ogni dubbio e apre la domanda a chiunque fosse nella stanza.
 
 
+**`AST_KNOWLEDGE_RED_CRYSTAL, bersaglio`**
+> Scegli un luogo con #cristallo, #selvaggio o #sigillato. Vale anche la #miniera, e ogni luogo del dominio dell'#antico.
+
+
+**`AST_KNOWLEDGE_RED_CRYSTAL, azione 1`**
+> Aprire la vena
+
+> Togli #sigillato dal luogo e aggiungi una tua presenza.
+
+
+**`AST_KNOWLEDGE_RED_CRYSTAL, azione 2`**
+> Misurare senza toccare
+
+> Metti #cristallo_misurato sul luogo e pesca 1 Sapere.
+
+
+**`AST_KNOWLEDGE_RED_CRYSTAL, risonanza`**
+> Scalda Antico +1. Il Risveglio non distingue fra chi scava e chi guarda.
+
+
 **`AST_KNOWLEDGE_RUMOR`**
 > Voce di Corridoio
 
 > Non è vera. Non è ancora falsa — e finché gira, la questione in gioco torna velata: i numeri si nascondono dietro le voci.
+
+
+**`AST_KNOWLEDGE_RUMOR, bersaglio`**
+> Scegli un luogo con #capitale, #commercio, #malcontento o #mercato. Vale anche il #porto, e ogni luogo del dominio delle #risorse.
+
+
+**`AST_KNOWLEDGE_RUMOR, azione 1`**
+> Ascoltare la voce
+
+> Scopri una questione velata che tocca il luogo.
+
+
+**`AST_KNOWLEDGE_RUMOR, azione 2`**
+> Mettere in giro la voce
+
+> Metti #malcontento sul luogo.
+
+
+**`AST_KNOWLEDGE_RUMOR, risonanza`**
+> Scalda Fede +1. Una voce di corridoio e' una verita' che non ha ancora deciso di chi essere.
 
 
 **`AST_KNOWLEDGE_SEALED_TESTIMONY`**
@@ -2589,10 +3189,50 @@ possono spostare nella frase, non togliere. 1010 testi in lettura.
 > Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: quello che era scritto per un solo lettore adesso lo hanno sentito tutti.
 
 
+**`AST_KNOWLEDGE_SEALED_TESTIMONY, bersaglio`**
+> Scegli un luogo con #capitale, #conteso o un archivio. Vale anche l'#isola, e ogni luogo del dominio dell'#antico.
+
+
+**`AST_KNOWLEDGE_SEALED_TESTIMONY, azione 1`**
+> Aprire la busta
+
+> Rivendica il luogo e metti #tradimento_detto sul mondo.
+
+
+**`AST_KNOWLEDGE_SEALED_TESTIMONY, azione 2`**
+> Tenerla sigillata
+
+> Rivendica il luogo.
+
+
+**`AST_KNOWLEDGE_SEALED_TESTIMONY, risonanza`**
+> Scalda Potere +2. Una deposizione sigillata pesa uguale aperta o chiusa: quello che conta e' che esista.
+
+
 **`AST_KNOWLEDGE_WITNESS`**
 > Testimone
 
 > +2 sul fronte Oppose. Si scarta sempre: un testimone si spende una volta sola — e la deposizione agita la casa accusata: la sua sede resta inquieta.
+
+
+**`AST_KNOWLEDGE_WITNESS, bersaglio`**
+> Scegli una questione aperta sul tavolo.
+
+
+**`AST_KNOWLEDGE_WITNESS, azione 1`**
+> Farlo parlare
+
+> Alza quella questione di 2 e metti #tradimento_detto sul mondo.
+
+
+**`AST_KNOWLEDGE_WITNESS, azione 2`**
+> Farlo tacere
+
+> Abbassa quella questione di 2.
+
+
+**`AST_KNOWLEDGE_WITNESS, risonanza`**
+> Scalda Fede +2. Un testimone non porta la verita': porta la propria, e adesso il tavolo deve scegliere.
 
 
 **`AST_PEOPLE_CROWD`**
@@ -2601,10 +3241,50 @@ possono spostare nella frase, non togliere. 1010 testi in lettura.
 > Nessuno l'ha convocata. È arrivata lo stesso — in capitale: e la capitale resta inquieta.
 
 
+**`AST_PEOPLE_CROWD, bersaglio`**
+> Scegli una questione aperta sul tavolo.
+
+
+**`AST_PEOPLE_CROWD, azione 1`**
+> Portare la folla sotto le finestre
+
+> Alza quella questione di 1.
+
+
+**`AST_PEOPLE_CROWD, azione 2`**
+> Mandare la folla a casa
+
+> Abbassa quella questione di 1.
+
+
+**`AST_PEOPLE_CROWD, risonanza`**
+> Scalda Sopravvivenza +1. Una folla che si raduna mangia dove si raduna, e i conti li fa il posto.
+
+
 **`AST_PEOPLE_ELDERS`**
 > Consiglio degli Anziani
 
 > +1 sul fronte Oppose. Parlano piano, dicono di no, e vengono ripetuti per tre villaggi — e sanno accompagnare: il lutto della Regione della domanda si elabora.
+
+
+**`AST_PEOPLE_ELDERS, bersaglio`**
+> Scegli un luogo con #granaio, #pascolo, #lutto o un insediamento. Vale anche ogni luogo del dominio della #sopravvivenza.
+
+
+**`AST_PEOPLE_ELDERS, azione 1`**
+> Ascoltarli
+
+> Scopri una questione velata che tocca il luogo, e pesca 1 Legami.
+
+
+**`AST_PEOPLE_ELDERS, azione 2`**
+> Farli parlare in pubblico
+
+> Togli #lutto o #malcontento dal luogo.
+
+
+**`AST_PEOPLE_ELDERS, risonanza`**
+> Scalda Fede +1. Chi ricorda decide cosa c'era prima, e cosa c'era prima decide cosa e' giusto adesso.
 
 
 **`AST_PEOPLE_EXODUS`**
@@ -2613,10 +3293,50 @@ possono spostare nella frase, non togliere. 1010 testi in lettura.
 > Forza 3. Si scarta sempre, e chi la gioca perde la propria presenza nella Regione di cui si discute: chi parte non torna al tavolo.
 
 
+**`AST_PEOPLE_EXODUS, bersaglio`**
+> Scegli un luogo con #fame, #svuotato, #abbandonato o #pascolo. Vale anche la #palude, e ogni luogo del dominio della #sopravvivenza.
+
+
+**`AST_PEOPLE_EXODUS, azione 1`**
+> Andarsene tutti
+
+> Togli tutte le tue presenze da quel luogo e mettine due in un altro qualsiasi. Metti #svuotato dove sei partito.
+
+
+**`AST_PEOPLE_EXODUS, azione 2`**
+> Mandare avanti i primi
+
+> Sposta una presenza in un luogo qualsiasi e metti li' il tuo insediamento.
+
+
+**`AST_PEOPLE_EXODUS, risonanza`**
+> Scalda Terra +2. Un esodo non si annulla: il posto da cui si e' partiti resta com'e' rimasto.
+
+
 **`AST_PEOPLE_HARVEST_HANDS`**
 > Braccia per il Raccolto
 
 > +1 quando Gente è rilevante per la Tensione. Non sono un esercito: ma senza di loro non si mangia — e dove arrivano, la fame della Regione della domanda si spegne.
+
+
+**`AST_PEOPLE_HARVEST_HANDS, bersaglio`**
+> Scegli un luogo con #granaio, #magro o #fame. Vale anche ogni luogo del dominio della #sopravvivenza.
+
+
+**`AST_PEOPLE_HARVEST_HANDS, azione 1`**
+> Portare le braccia
+
+> Togli #magro dal luogo, oppure abbassa di 1 la questione Sopravvivenza piu' calda.
+
+
+**`AST_PEOPLE_HARVEST_HANDS, azione 2`**
+> Prestare le braccia
+
+> Un'altra casa toglie #magro da un suo luogo. Sali di 1 gradino nel rapporto con lei.
+
+
+**`AST_PEOPLE_HARVEST_HANDS, risonanza`**
+> Scalda Sopravvivenza +1. Le braccia che raccolgono qui sono braccia che non arano altrove.
 
 
 **`AST_PEOPLE_MARCH`**
@@ -2625,10 +3345,50 @@ possono spostare nella frase, non togliere. 1010 testi in lettura.
 > Poca gente, ma in strada e alla stessa ora. Il punto non è quanti sono: è che si sono trovati — e le razioni imposte sulla Regione della domanda si rompono.
 
 
+**`AST_PEOPLE_MARCH, bersaglio`**
+> Scegli un luogo con #fame, #razionato, #magro o #pascolo. Vale anche ogni luogo del dominio della #sopravvivenza.
+
+
+**`AST_PEOPLE_MARCH, azione 1`**
+> Marciare verso il grano
+
+> Sposta una tua presenza in un luogo con #granaio, anche se non confina.
+
+
+**`AST_PEOPLE_MARCH, azione 2`**
+> Marciare sulla capitale
+
+> Metti #malcontento su un luogo con #capitale, ovunque sia.
+
+
+**`AST_PEOPLE_MARCH, risonanza`**
+> Scalda Sopravvivenza +1. Una marcia non torna indietro da sola: qualcuno deve prometterle qualcosa.
+
+
 **`AST_PEOPLE_MOBILIZATION`**
 > Mobilitazione
 
 > +2 sul fronte Oppose: è più facile fermare qualcosa in molti che costruirla. Si scarta sempre — e la piazza resta calda: la Tensione in gioco sale di 1.
+
+
+**`AST_PEOPLE_MOBILIZATION, bersaglio`**
+> Scegli una questione aperta sul tavolo.
+
+
+**`AST_PEOPLE_MOBILIZATION, azione 1`**
+> Chiamare tutti
+
+> Alza quella questione di 2.
+
+
+**`AST_PEOPLE_MOBILIZATION, azione 2`**
+> Chiamare solo i tuoi
+
+> Alza quella questione di 1 e pesca 1 Popolo.
+
+
+**`AST_PEOPLE_MOBILIZATION, risonanza`**
+> Scalda Sopravvivenza +2. Chi si mobilita non lavora, e chi non lavora mangia lo stesso.
 
 
 **`AST_PEOPLE_SPOKESMAN`**
@@ -2637,10 +3397,50 @@ possono spostare nella frase, non togliere. 1010 testi in lettura.
 > Qualcuno che dice ad alta voce quello che già pensano in molti, e che dopo non può più tornare indietro — la parola detta è una promessa fra le due case.
 
 
+**`AST_PEOPLE_SPOKESMAN, bersaglio`**
+> Scegli un luogo con #capitale, #malcontento o un insediamento cresciuto. Vale anche ogni luogo del dominio della #sopravvivenza.
+
+
+**`AST_PEOPLE_SPOKESMAN, azione 1`**
+> Prendere la parola
+
+> Rivendica il luogo: al prossimo Consiglio parli per primo.
+
+
+**`AST_PEOPLE_SPOKESMAN, azione 2`**
+> Darla a un altro
+
+> Un'altra casa parla per prima al prossimo Consiglio e sale di 2 gradini nel rapporto con te.
+
+
+**`AST_PEOPLE_SPOKESMAN, risonanza`**
+> Scalda Potere +1. Un portavoce e' qualcuno che ha deciso di chi e' la voce, e l'ha deciso prima di parlare.
+
+
 **`AST_PEOPLE_STILL_HANDS`**
 > Braccia Ferme
 
 > Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: un paese che si ferma non si rimette in moto dove l'avevi lasciato.
+
+
+**`AST_PEOPLE_STILL_HANDS, bersaglio`**
+> Scegli una questione aperta sul tavolo.
+
+
+**`AST_PEOPLE_STILL_HANDS, azione 1`**
+> Fermare tutto
+
+> Alza quella questione di 2.
+
+
+**`AST_PEOPLE_STILL_HANDS, azione 2`**
+> Fermare solo una cosa
+
+> Abbassa quella questione di 1 e pesca 1 Popolo.
+
+
+**`AST_PEOPLE_STILL_HANDS, risonanza`**
+> Scalda Vie +2. Quando le braccia si fermano, le prime cose che non arrivano sono quelle che venivano da lontano.
 
 
 **`AST_WEALTH_CARAVAN`**
@@ -2649,10 +3449,50 @@ possono spostare nella frase, non togliere. 1010 testi in lettura.
 > Si scarta sempre: una carovana spesa è una carovana partita — e una carovana che parte riapre la via: la Regione tagliata fuori si ricollega.
 
 
+**`AST_WEALTH_CARAVAN, bersaglio`**
+> Scegli un luogo con #commercio, #mercato o #tagliato_fuori. Vale anche il #porto, e ogni luogo del dominio delle #risorse.
+
+
+**`AST_WEALTH_CARAVAN, azione 1`**
+> Farla arrivare
+
+> Sposta una tua presenza li' e togli #tagliato_fuori dal luogo.
+
+
+**`AST_WEALTH_CARAVAN, azione 2`**
+> Dirottarla
+
+> Sposta la presenza in un altro luogo con #commercio e pesca 1 Ricchezza.
+
+
+**`AST_WEALTH_CARAVAN, risonanza`**
+> Scalda Vie +1. Una carovana che passa dice a tutti quanto vale passare di li'.
+
+
 **`AST_WEALTH_CREDIT`**
 > Credito
 
 > +1 sempre, su qualsiasi fronte. Vale nel momento in cui lo chiedi, e non un minuto dopo — perché chiederlo chiama tutti i debiti: il mondo ricorda che il debito fu chiamato.
+
+
+**`AST_WEALTH_CREDIT, bersaglio`**
+> Scegli un'altra casa al tavolo.
+
+
+**`AST_WEALTH_CREDIT, azione 1`**
+> Aprire credito
+
+> Sale di 2 gradini nel rapporto con te e metti #indebitata sul mondo.
+
+
+**`AST_WEALTH_CREDIT, azione 2`**
+> Comprare il suo debito
+
+> Scendi di 1 gradino con lei e pesca 2 Ricchezza.
+
+
+**`AST_WEALTH_CREDIT, risonanza`**
+> Scalda Vie +1. Il credito e' una corda: la tiene chi presta, e la sente chi la porta al collo.
 
 
 **`AST_WEALTH_GRAIN`**
@@ -2661,10 +3501,50 @@ possono spostare nella frase, non togliere. 1010 testi in lettura.
 > Conta più di un titolo, per il tempo in cui dura — e dura quanto basta: la Carestia scende di 1.
 
 
+**`AST_WEALTH_GRAIN, bersaglio`**
+> Scegli un luogo con #granaio, #fame o #magro. Vale anche ogni luogo del dominio delle #risorse.
+
+
+**`AST_WEALTH_GRAIN, azione 1`**
+> Aprire i granai
+
+> Togli #fame dal luogo e abbassa di 1 la questione Sopravvivenza piu' calda.
+
+
+**`AST_WEALTH_GRAIN, azione 2`**
+> Chiudere i granai
+
+> Metti #razionato sul luogo e alza di 1 la questione Sopravvivenza piu' calda.
+
+
+**`AST_WEALTH_GRAIN, risonanza`**
+> Scalda Sopravvivenza +1. Il grano che si tocca e' grano che qualcuno ha contato.
+
+
 **`AST_WEALTH_GRANARY_KEYS`**
 > Chiavi del Granaio
 
 > +2 sul fronte Oppose. Non possiedi il grano: possiedi la serratura — e la serratura raziona: sulla Regione della domanda resta il segno della razione.
+
+
+**`AST_WEALTH_GRANARY_KEYS, bersaglio`**
+> Scegli un'altra casa al tavolo.
+
+
+**`AST_WEALTH_GRANARY_KEYS, azione 1`**
+> Dare le chiavi
+
+> Sale di 2 gradini nel rapporto con te.
+
+
+**`AST_WEALTH_GRANARY_KEYS, azione 2`**
+> Tenere le chiavi
+
+> Scendi di 1 gradino con lei e metti #grano_requisito sul mondo.
+
+
+**`AST_WEALTH_GRANARY_KEYS, risonanza`**
+> Scalda Sopravvivenza +2. Le chiavi non fanno il grano: decidono soltanto chi resta fuori dalla porta.
 
 
 **`AST_WEALTH_LAND_MORTGAGE`**
@@ -2673,10 +3553,50 @@ possono spostare nella frase, non togliere. 1010 testi in lettura.
 > Forza 3. Si scarta sempre, e chi ti sta di fronte guadagna una presenza nella Regione di cui si discute: impegnare una terra fa arrivare chi la vuole.
 
 
+**`AST_WEALTH_LAND_MORTGAGE, bersaglio`**
+> Scegli un'altra casa al tavolo.
+
+
+**`AST_WEALTH_LAND_MORTGAGE, azione 1`**
+> Prendere la terra in garanzia
+
+> Scendi di 1 gradino con lei. Se a fine anno controlla meno terre di adesso, ne prendi una tu.
+
+
+**`AST_WEALTH_LAND_MORTGAGE, azione 2`**
+> Rimettere l'ipoteca
+
+> Sali di 2 gradini con lei e metti #debito_rimesso sul mondo.
+
+
+**`AST_WEALTH_LAND_MORTGAGE, risonanza`**
+> Scalda Terra +2. Un'ipoteca sulla terra e' una domanda su chi ci vive, fatta a chi non e' presente.
+
+
 **`AST_WEALTH_SALT`**
 > Sale
 
 > +1 quando Ricchezza è rilevante per la Tensione. Non nutre nessuno: senza, quello che nutre non arriva — e dove arriva, la magra si supera.
+
+
+**`AST_WEALTH_SALT, bersaglio`**
+> Scegli un luogo con #commercio, #granaio, #mercato o #magro. Vale anche il #porto, e ogni luogo del dominio delle #risorse.
+
+
+**`AST_WEALTH_SALT, azione 1`**
+> Vendere il sale
+
+> Scopri una questione velata che tocca il luogo, e pesca 1 Ricchezza.
+
+
+**`AST_WEALTH_SALT, azione 2`**
+> Salare le riserve
+
+> Togli #magro dal luogo.
+
+
+**`AST_WEALTH_SALT, risonanza`**
+> Scalda Vie +1. Il sale e' l'unica merce che tutti comprano e nessuno vuole nominare.
 
 
 **`AST_WEALTH_TOLL`**
@@ -2685,10 +3605,50 @@ possono spostare nella frase, non togliere. 1010 testi in lettura.
 > +1 sul fronte Oppose. Una corda tesa fra due pali, e il diritto di non alzarla — e il diritto si scrive: sulla Regione della domanda resta il pedaggio.
 
 
+**`AST_WEALTH_TOLL, bersaglio`**
+> Scegli un luogo con #commercio, #dogana o #strada. Vale anche il #porto, e ogni luogo del dominio delle #risorse.
+
+
+**`AST_WEALTH_TOLL, azione 1`**
+> Alzare la sbarra
+
+> Rivendica il luogo: al prossimo Consiglio la sua Domanda si apre.
+
+
+**`AST_WEALTH_TOLL, azione 2`**
+> Dividere l'incasso
+
+> Metti #pedaggio_diviso sul luogo e sali di 1 gradino nel rapporto con chi lo controlla.
+
+
+**`AST_WEALTH_TOLL, risonanza`**
+> Scalda Vie +1. Ogni pedaggio e' un prezzo che qualcuno non aveva messo in conto.
+
+
 **`AST_WEALTH_TREASURY`**
 > Il Tesoro
 
 > Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: aprire il tesoro dice a tutti quanto vale davvero la questione.
+
+
+**`AST_WEALTH_TREASURY, bersaglio`**
+> Scegli un luogo con #capitale o #commercio. Vale anche ogni luogo del dominio delle #risorse.
+
+
+**`AST_WEALTH_TREASURY, azione 1`**
+> Aprire il tesoro
+
+> Sposta due tue presenze in quel luogo.
+
+
+**`AST_WEALTH_TREASURY, azione 2`**
+> Chiudere il tesoro
+
+> Pesca 2 Ricchezza e metti #malcontento sul luogo.
+
+
+**`AST_WEALTH_TREASURY, risonanza`**
+> Scalda Potere +2. Un tesoro aperto e' una promessa; un tesoro chiuso e' un'accusa. Nessuno dei due resta segreto.
 
 
 ## 9. I Destini — le ambizioni, gradino per gradino
