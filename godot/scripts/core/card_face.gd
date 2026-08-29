@@ -236,8 +236,29 @@ static func _tension(tension: Dictionary) -> Dictionary:
 	# traccia e' dall'altra parte del tavolo.
 	face["corner"] = str(int(tension["threshold"]))
 	face["body"] = [str(tension.get("description", ""))]
+	# **SI ACCENDE QUANDO, sulla carta** (D-337). Fino alla 0.1.301 la faccia
+	# stampata portava `triggers`, che e' prosa d'autore — *«Ogni raccolto
+	# mancato nella Valle Verde»* — e un giocatore la legge senza sapere quando
+	# la Tensione sale. La regola vera esiste da D-330, e' scritta in segni, il
+	# motore la esegue, e **non era stampata da nessuna parte**: la carta diceva
+	# la frase che non si puo' giocare e nascondeva quella che si gioca.
+	#
+	# Lo scambio toglie anche 1.559 caratteri dal mazzo: la regola in segni e'
+	# piu' corta della prosa che sostituisce.
+	#
+	# Le 13 Tensioni senza casella tengono la prosa, perche' per loro vale
+	# ancora il ponte di D-261 e non c'e' altro da stampare.
+	var rules: Array = tension.get("heats_when", []) as Array
+	var rise: String = ""
+	if rules.is_empty():
+		rise = "sale: %s" % " ".join(PackedStringArray(tension.get("triggers", [])))
+	else:
+		var said: Array = []
+		for rule in rules:
+			said.append(str((rule as Dictionary).get("text", "")))
+		rise = "si accende quando: %s" % " · ".join(PackedStringArray(said))
 	face["notes"] = [
-		"sale: %s" % " ".join(PackedStringArray(tension.get("triggers", []))),
+		rise,
 		"scende: %s" % " ".join(PackedStringArray(tension.get("decrease_rules", []))),
 		"al Consiglio valgono: %s" % ", ".join(
 			PackedStringArray(tension["relevant_asset_families"])

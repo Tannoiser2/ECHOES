@@ -5,6 +5,54 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.302 — La carta stampava la frase che non si può giocare (D-337)
+
+D-336 ha fatto dire il vero alla frase, ma quella riga vive in due documenti.
+ISSUES 89 chiede la **carta**. Quindi: cosa c'è stampato sulla carta Tensione?
+
+**Niente del lavoro fisico degli ultimi sessanta rilasci.** Non le dodici
+caselle di D-280, non SI ACCENDE QUANDO di D-330, non la domanda né le proposte
+di D-310. Titolo, soglia, descrizione, prosa, famiglie: è la faccia di prima di
+D-280.
+
+### Il numero che decide, e non lo decido io
+
+| blocco | mediana | max |
+|---|---|---|
+| descrizione | 89 | 162 |
+| si accende quando | 63 | 189 |
+| **le caselle** | **582** | 653 |
+| la domanda | 85 | 122 |
+| le proposte | 203 | 592 |
+| **tutto insieme** | **1.024** | **1.484** |
+
+Su una carta **44×68 mm**, che ne regge duecento scarsi. ISSUES 89 prevedeva
+«la carta diventa fitta»: **non ci sta, di quattro volte**. Il rimedio è una
+decisione di prodotto — formato più grande, un retro, o una scheda del Consiglio
+a parte — e sta in ISSUES 89 con questo numero accanto.
+
+### Quello che ci sta, ed era anche un difetto
+
+La carta stampava `triggers`, prosa d'autore: *«Ogni raccolto mancato nella
+Valle Verde»*. Un giocatore la legge e non sa quando la Tensione sale. La regola
+vera esiste da D-330, è in segni, il motore la esegue: *«una carta posa #fame o
+#requisito o #malcontento»*.
+
+**La carta stampava la frase che non si può giocare e nascondeva quella che si
+gioca.** Scambiate.
+
+### Il costo, dichiarato — ed è negativo
+
+Lo scambio **toglie 1.559 caratteri dal mazzo**: 5.063 di prosa contro 3.504 di
+regole. Più giocabile e più corta. Le 13 Tensioni senza casella tengono la
+prosa, perché per loro vale ancora il ponte.
+
+Playtest 100 semi identico — 159/143 misto, 149/125 uniforme, **0 seggi bloccati
+su un solo livello su 8**. Suite da 640 a **641 prove**, diciannove cancelli
+verdi.
+
+---
+
 ## 0.1.301 — Il catalogo dei Consigli diceva il falso su 89 righe (D-336)
 
 Il committente ha scelto la strada **(b)** di ISSUES 89: *«il motore continua a

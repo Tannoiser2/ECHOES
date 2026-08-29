@@ -3675,9 +3675,36 @@ arrivano da un'altra parte.
 > verso e la Pietra col suo nome. Con una guardia nuova che non confronta due
 > testi ma la frase col **dato**, ed e' quella che mancava.
 >
-> **Resta il pezzo che chiude questa voce**: la riga vera vive in due documenti
-> generati, non sulla **faccia stampata** della carta. Il «fatto quando» qui
-> sotto chiede la carta, non un catalogo.
+> **E la carta non ha posto** (0.1.302, [D-337](DECISIONS.md#d-337)). Cercando
+> dove mettere la riga vera si e' visto che **la faccia stampata della Tensione
+> non porta niente del lavoro fisico degli ultimi sessanta rilasci**: non le
+> dodici caselle di D-280, non SI ACCENDE QUANDO di D-330, non la domanda ne' le
+> proposte di D-310. Stampa titolo, soglia, descrizione, prosa e famiglie.
+>
+> Misurato quanto testo servirebbe per stampare quello che le decisioni prese
+> chiedono:
+>
+> | blocco | mediana | max |
+> |---|---|---|
+> | descrizione | 89 | 162 |
+> | si accende quando | 63 | 189 |
+> | **le caselle** | **582** | 653 |
+> | la domanda | 85 | 122 |
+> | le proposte | 203 | 592 |
+> | **tutto insieme** | **1.024** | **1.484** |
+>
+> Su una carta **44x68 mm**, che ne regge duecento scarsi. Questa voce prevedeva
+> «la carta diventa fitta» per la strada (b): **non ci sta, di quattro volte**.
+> Le caselle da sole sono tre volte lo spazio.
+>
+> **La decisione che manca e' di prodotto, non di codice**: formato piu' grande
+> (i Destini sono 70x120), un retro, o una scheda del Consiglio come pezzo a
+> parte. E' del committente, e adesso ha il numero accanto.
+>
+> Intanto e' entrato l'unico blocco che ci sta — **SI ACCENDE QUANDO**, 63
+> caratteri — che era anche un difetto: la carta stampava `triggers`, prosa
+> d'autore, e nascondeva la regola in segni che il motore esegue. Lo scambio
+> toglie 1.559 caratteri dal mazzo.
 
 **Fatto quando** una proposta si puo' risolvere guardando solo la carta e la
 mappa.
