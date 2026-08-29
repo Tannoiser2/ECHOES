@@ -10,6 +10,87 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-337 — La carta stampava la frase che non si puo' giocare
+
+**implemented** — 0.1.302
+
+### Cercando dove mettere la riga vera
+
+D-336 ha fatto dire il vero alla frase che racconta cosa lascia una proposta, ma
+quella riga vive in due documenti generati. ISSUES 89 chiede altro: *«una
+proposta si puo' risolvere guardando solo la carta e la mappa»*. Quindi: dove sta
+la carta, e cosa c'e' stampato sopra?
+
+**La faccia stampata della Tensione non porta niente del lavoro fisico degli
+ultimi sessanta rilasci.**
+
+| blocco | deciso in | stampato? |
+|---|---|---|
+| `physical` — le dodici caselle, l'economia | D-280 | **no** |
+| `heats_when` — SI ACCENDE QUANDO | D-330 | **no** |
+| `council` — la domanda e le proposte | D-310 | **no** |
+
+`_tension()` stampa titolo, soglia, descrizione, `triggers`, `decrease_rules` e
+le famiglie. E' la faccia di prima di D-280.
+
+### Il numero che decide, e non lo decido io
+
+Misurato quanto testo servirebbe per stampare tutto quello che le decisioni
+prese chiedono che ci sia:
+
+| blocco | mediana | max |
+|---|---|---|
+| descrizione | 89 | 162 |
+| si accende quando | 63 | 189 |
+| **le caselle** | **582** | 653 |
+| la domanda | 85 | 122 |
+| le proposte | 203 | 592 |
+| **tutto insieme** | **1.024** | **1.484** |
+
+Su una carta **44×68 mm**, che ne regge duecento scarsi. Non e' «la carta diventa
+fitta», come ISSUES 89 prevedeva per questa strada: **non ci sta, di quattro
+volte**. Le caselle da sole sono tre volte lo spazio.
+
+Il rimedio e' una decisione di prodotto — formato piu' grande, un retro, o una
+scheda del Consiglio a parte — e non e' mia. **Sta in ISSUES 89 con questo
+numero accanto.**
+
+### Quello che ci sta, ed e' anche un difetto
+
+Fra tutti i blocchi ce n'e' uno piccolo: **SI ACCENDE QUANDO**, 63 caratteri
+mediani. E non stamparlo non era solo una mancanza.
+
+La carta stampava `triggers`, che e' **prosa d'autore**:
+
+> *«Ogni raccolto mancato nella Valle Verde.»*
+> *«Ogni bocca in piu' che arriva da est.»*
+
+Un giocatore la legge e non sa quando la Tensione sale. La regola vera esiste da
+D-330, e' scritta in segni, il motore la esegue a ogni carta giocata:
+
+> *«una carta posa #fame o #requisito o #malcontento»*
+> *«una Presenza arriva o se ne va da una terra con #granaio»*
+
+**La carta stampava la frase che non si puo' giocare e nascondeva quella che si
+gioca.** Scambiate.
+
+### Il costo, dichiarato — ed e' negativo
+
+Lo scambio **toglie 1.559 caratteri dal mazzo**: 5.063 di prosa contro 3.504 di
+regole. La carta diventa piu' giocabile **e** piu' corta.
+
+Le **13 Tensioni senza casella** tengono la prosa: per loro vale ancora il ponte
+di D-261 e non c'e' altro da stampare. La prova conta 47 e 13, cosi' il giorno
+che diventano zero questa riga non passa per un banco vuoto.
+
+Playtest 100 semi identico — Verita' 159/143 misto, 149/125 uniforme, **0 seggi
+bloccati su un solo livello su 8**. Suite da 640 a **641 prove**.
+
+`test_every_face_fits_on_its_card` esisteva gia' e non aveva niente da dire:
+adesso la faccia porta la regola, e ci sta.
+
+---
+
 ## D-336 — Una frase che non dice dove non dice niente
 
 **implemented** — 0.1.301

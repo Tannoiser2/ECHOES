@@ -266,3 +266,44 @@ func _house_of(face_id: String) -> String:
 				return str(entity_id)
 	_fail("la faccia %s non appartiene a nessuna Casata" % face_id)
 	return ""
+
+
+## **La carta stampa la regola, non la prosa** (D-337).
+##
+## Fino alla 0.1.301 la faccia della Tensione portava `triggers` — prosa
+## d'autore: *«Ogni raccolto mancato nella Valle Verde»* — e un giocatore la
+## leggeva senza sapere quando la Tensione sale. La regola vera esiste da D-330,
+## e' in segni, il motore la esegue, e non era stampata da nessuna parte: la
+## carta diceva la frase che non si puo' giocare e nascondeva quella che si
+## gioca.
+##
+## Le 13 Tensioni senza casella tengono la prosa, perche' per loro vale ancora
+## il ponte e non c'e' altro da stampare — e la prova conta anche quelle, cosi'
+## se un giorno diventano zero questa riga non passa per un banco vuoto.
+func test_the_tension_card_prints_the_rule_not_the_prose() -> void:
+	var loaded: RefCounted = data()
+	var col_regola: int = 0
+	var col_prosa: int = 0
+	for face in CardFace.every(loaded):
+		var card: Dictionary = face as Dictionary
+		if str(card.get("deck", "")) != "tension":
+			continue
+		var tension: Dictionary = loaded.tensions[str(card["id"])]
+		var notes: String = " ".join(PackedStringArray(card.get("notes", []) as Array))
+		if (tension.get("heats_when", []) as Array).is_empty():
+			col_prosa += 1
+			continue
+		col_regola += 1
+		assert_true(notes.contains("si accende quando:"),
+			"%s ha la casella e la carta non la stampa" % str(card["id"]))
+		for rule in tension["heats_when"] as Array:
+			var line: String = str((rule as Dictionary).get("text", ""))
+			assert_true(notes.contains(line),
+				"%s: la riga «%s» non arriva sulla carta" % [str(card["id"]), line])
+		# E la prosa vecchia non deve restarci accanto: due regole per la stessa
+		# cosa, e una delle due non si puo' giocare.
+		for old in tension.get("triggers", []) as Array:
+			assert_false(notes.contains(str(old)),
+				"%s stampa ancora la prosa insieme alla regola" % str(card["id"]))
+	assert_eq(col_regola, 47, "le Tensioni che stampano la regola")
+	assert_eq(col_prosa, 13, "e quelle che, senza casella, tengono la prosa")
