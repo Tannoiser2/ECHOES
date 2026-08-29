@@ -5,6 +5,93 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.299 — La vita delle Pietre, rimisurata, e la misura che non la vede
+
+Nessun codice: due misure e due verbali. Nasce da una domanda del committente
+davanti al grafo dei segni — *«una Pietra posata su una Regione non la vede
+nessuno? Mi pare strano»* — e da una seconda subito dopo: *«non è possibile che
+scritto e clausole siano così poche»*.
+
+Aveva ragione due volte, e in un caso su due il difetto non era dove sembrava.
+
+### La prima risposta: la Pietra la vedono eccome, tranne otto segni
+
+Dei **28 segni che una Pietra posa, 20 hanno un lettore**. Il nastro verso
+NESSUNO nel grafo ne porta otto, e hanno una forma:
+
+| Pietra | grado 1 | grado 2 | grado 3 |
+|---|---|---|---|
+| Foresta | `place:forest` letto | `place:thinned_wood` **muto** | `place:cursed_wood` letto |
+| Sorgente | `place:spring` letto | `place:low_spring` **muto** | `place:dry_spring` **muto** |
+| Sito antico | `place:sleeping_site` letto | `place:open_site` letto | `place:stripped_site` **muto** |
+| Passo | `place:pass` **muto** | `place:collapsed_pass` **muto** | — |
+
+Quello che una Pietra **diventa** quasi non lo guarda nessuno. Ognuno di questi
+porta già una `note` che lo dichiara colore in attesa di lavoro: è dichiarato,
+ma è dichiarato tanto.
+
+### La seconda: il numero di ISSUES 39 era morto da trenta versioni
+
+*«74 costruite, zero abbattute»* aveva aperto la strada C, e la sonda che lo
+teneva — `cli/run_stone_probe.gd` — dichiarava lei stessa che nessuno l'aveva più
+rifatto. Rifatto adesso, 100 partite, tavolo misto, semi da 7000:
+
+| | su 30 Chronicle | **su 100 partite** |
+|---|---|---|
+| alzate | 74 — 2,5 a partita | **1062 — 10,62 a partita** |
+| abbattute | **zero** | **24** |
+| andate in rovina | non misurato | **50** |
+| salite di grado | non misurato | **142** |
+| **scese di grado** | non misurato | **0** |
+| in piedi a fine anno | 2 a partita | **8,98**, di cui 1,50 di grado 2+ |
+
+**La mappa non può più soltanto riempirsi**: ventiquattro Pietre cadono e
+cinquanta vanno in rovina. Su questo la strada C ha già vinto.
+
+**Ma il grado è una scala a senso unico**: 142 salite, **zero discese** su cento
+partite. O cade tutta la Pietra, o resta dov'è arrivata.
+
+E la domanda di ISSUES 52 ha una risposta: delle 1062, **856 le posa
+l'apertura** e solo **206 il Consiglio o un'Eco**. Quattro Pietre su cinque le
+distribuisce l'allestimento, non l'anno.
+
+### La terza, che nessuno aveva chiesto: la misura è cieca
+
+Nessuno di quei gesti lascia un segno che `MISURA_SEGNI` sappia contare.
+`_build_structure` scrive il segno del grado con `_apply_grade_tag`, **dentro**
+l'effetto `BUILD_STRUCTURE`, senza emettere un effetto di segno — ed è la scelta
+giusta per il motore (*«l'oggetto è la verità, il tag è derivato»*). Ma la sonda
+conta gli effetti di segno.
+
+Sugli stessi vent'anni: **214 Pietre alzate, sette segni contati.** Non è
+un'approssimazione.
+
+E ce ne sono altri due, nessuno dei tre dichiarato riga per riga: la sonda guarda
+solo `MEMORY` e `STATE` — **138 segni su 204 non hanno un numero** — e le colonne
+«temuto/voluto» leggono solo Destini e obiettivi, non le regole del segno, le
+facce delle carte, i Consigli, le Tensioni. È **ISSUES 102**.
+
+### Il grafo dei segni, riparato
+
+Fuori dal repo, ma è dove le tre cose si sono viste. Quattro difetti:
+
+- la colonna **«chi lo legge» aveva le barre e non i nomi**: le etichette erano
+  disegnate oltre il bordo della tela;
+- **le trecce uscivano dal fondo**: l'altezza di ogni nastro era scalata sul
+  numero di segni del nodo invece che sulla somma dei nastri di quel lato, e un
+  segno con due lettori manda due nastri ma vale uno — l'eccedenza colava fuori;
+- i dati erano di prima di D-334, con *«il codice del motore»* ancora fra le mani;
+- e le due colonne numeriche mostravano i buchi di `MISURA_SEGNI` come se fossero
+  zeri del gioco.
+
+### Verbali
+
+**ISSUES 102** aperta, **ISSUES 39** rimisurata nel suo blocco. Nessun cancello
+toccato: giro completo verde, playtest 100 semi, **0 seggi bloccati su un solo
+livello su 8**, misto e uniforme.
+
+---
+
 ## 0.1.298 — Le righe guardavano tre gesti che le Azioni non fanno (D-335)
 
 ### La domanda lasciata aperta da D-332
