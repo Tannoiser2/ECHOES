@@ -72,7 +72,7 @@
         "note": {
           "type": "string",
           "minLength": 1,
-          "description": "Quando la voce ha bisogno di una riga di contesto: perche' e' muta, o cosa la legge dal lato del motore."
+          "description": "Quando la voce ha bisogno di una riga di contesto: perche' e' muta, o quale pezzo della scatola la posa e la guarda."
         }
       }
     },
@@ -93,10 +93,9 @@
         "structure_type",
         "tag_rule",
         "tension",
-        "entity_strategic_profile",
-          "engine"
+        "entity_strategic_profile"
       ],
-      "description": "Una mano che tocca il segno, per collezione: gli effetti digitali di una carta (`asset`) e la sua faccia fisica (`asset_physical`) sono due mani diverse, perche' le due grammatiche si controllano a vicenda. `engine` e' il motore: l'unica mano che il censimento dei dati non puo' osservare, e per questo l'unica che si puo' dichiarare senza riscontro."
+      "description": "Una mano che tocca il segno, per collezione: gli effetti digitali di una carta (`asset`) e la sua faccia fisica (`asset_physical`) sono due mani diverse, perche' le due grammatiche si controllano a vicenda. Sono tutte mani di pezzi che stanno nella scatola: `engine` — il motore, l'unica mano che si dichiarava senza riscontro — non esiste piu' (D-334), perche' al tavolo non c'e' nessun motore che posa gettoni. Se un segno finisce sulla plancia, c'e' una carta, una scheda o una procedura stampata che ce lo mette, e il censimento la osserva."
     }
   }
 }

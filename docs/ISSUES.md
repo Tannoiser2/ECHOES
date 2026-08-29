@@ -5415,6 +5415,43 @@ rifiuto non costa niente a chi l'ha chiesto.
 
 ---
 
+### 101. `structure:road` — una strada che nessuna Pietra costruisce
+
+`dati` · `grammatica-fisica` · `piccola` · aperta in 0.1.297
+([D-334](DECISIONS.md#d-334))
+
+Tolta la mano invisibile del motore, trentotto segni su trentotto hanno trovato
+il pezzo di cartone che li posa. **Trentasette.** Il trentottesimo e'
+`structure:road`, e non lo scrive nessuno: fra le dieci Pietre del catalogo non
+ce n'e' una che si chiami «strada».
+
+Eppure il segno e' guardato da tre parti:
+
+- un **Tema** lo elenca fra i suoi segni;
+- una **carta** lo nomina nel suo bersaglio a segni;
+- il **profilo strategico** di una casa dice di volerlo.
+
+Cioe': una casa desidera una cosa che non puo' esistere, e una carta cerca una
+Regione che non ci sara' mai. Al tavolo e' peggio che nel codice — un giocatore
+legge «la Regione con la strada» e gira la mappa cercandola.
+
+**Le due strade, e sono davvero due:**
+
+1. **Una Pietra `STR_ROAD`**, con i suoi gradi e la sua rovina (`La Via
+   Dimenticata` esiste gia' come rovina del Passo: il nome e' preso). La strada
+   diventa una cosa che si costruisce, e i tre lettori hanno senso.
+2. **Via il segno e i suoi tre lettori.** Se la strada non e' una Pietra, il
+   Tema non deve elencarla, la carta deve puntare altrove e il profilo deve
+   volere altro.
+
+Non la decido io: e' contenuto, ed e' del committente. Finche' non e' decisa la
+voce del dizionario porta `written_by: []`, che nel dizionario e' il modo di
+dire ad alta voce *«questo segno non lo scrive nessuno»*.
+
+**Fatto quando** `structure:road` ha una penna, oppure non ha piu' lettori.
+
+---
+
 ---
 
 ## Come si aprono

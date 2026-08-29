@@ -10,6 +10,132 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-334 — Il motore non posa gettoni: via la mano invisibile
+
+**implemented** — 0.1.297
+
+### Il committente, in una riga
+
+> *«Il motore che mette segni deve sparire: non esiste nel gioco fisico, quindi
+> non dovrebbe esistere.»*
+
+Ha ragione, e non è un'osservazione di stile. Nel dizionario dei segni ogni voce
+dichiara **chi la scrive** e **chi la legge**, e le mani sono i pezzi della
+scatola: la carta, la sua faccia fisica, la Conseguenza, il Destino, la tessera,
+la scheda della casata. Fra queste ce n'era una che nella scatola non c'è:
+`engine`.
+
+E non era una mano come le altre. Nel validatore aveva una costante tutta sua:
+
+```python
+# L'unica mano che il censimento dei dati non puo' osservare.
+MANO_INVISIBILE = "engine"
+```
+
+usata in un punto solo, il controllo che confronta le mani dichiarate con quelle
+osservate:
+
+```python
+inventate = dichiarate - osservate - {MANO_INVISIBILE}
+```
+
+Cioè: **`engine` era esente dal riscontro**. Bastava scriverlo perché un segno
+senza penne ne avesse una, e il cancello tacesse. È la forma esatta del difetto
+che questo progetto ha già incontrato tre volte in una settimana — uno strumento
+che si soddisfa da solo — e stavolta era scritto in chiaro, con tanto di
+commento che lo spiegava.
+
+### La misura, prima di toccare niente
+
+Trentotto voci dichiaravano `written_by: ["engine"]`. Per ognuna sono andato a
+vedere **dove il codice scrive davvero il segno**, e da lì a quale pezzo di
+cartone corrisponde quel gesto:
+
+| famiglia | quante | il gesto, al tavolo | la mano vera |
+|---|---|---|---|
+| `function:*` | 12 | giochi la carta Echo, e la sua Funzione resta sul mondo | `echo_card` |
+| `life:*` | 18 | scegli la Vita in allestimento, o la casa la cambia alla successione | `entity` |
+| `legend:*` | 3 | il passaggio di Chronicle promuove a racconto un fatto che non dura | `chronicle` |
+| `uprooted`, `twice_uprooted`, `evicted:` | 3 | cacci una casa da una Regione | il pezzo che toglie la presenza |
+| `failed_proposal` | 1 | una proposta cade al Consiglio | `consequence`, già dichiarata |
+| `structure:road` | 1 | **niente** | nessuna |
+
+**Trentasette su trentotto avevano già un pezzo fisico che li scrive.**
+L'etichetta `engine` non descriveva una regola del gioco: era metadato vecchio,
+scritto quando il dizionario è nato e mai più guardato.
+
+Il trentottesimo è un difetto vero, ed è la scoperta di questa decisione:
+[ISSUES 101](ISSUES.md#101-structureroad--una-strada-che-nessuna-pietra-costruisce).
+
+### La correzione, e com'è fatta
+
+Non ho corretto le etichette. **Ho tolto l'esenzione**, e poi ho fatto in modo
+che ogni penna si vedesse nei dati:
+
+- via `MANO_INVISIBILE`, via il ramo che la usava, via `engine` dall'elenco
+  delle mani nello schema. Ora `inventate = dichiarate - osservate`, senza
+  eccezioni.
+- via anche `_scritti_dal_codice()`, la guardia che avevo scritto due giorni fa
+  per D-333: leggeva il GDScript per confermare le dichiarazioni `engine`.
+  **Aveva un difetto suo** — scandiva tutto `godot/scripts`, comprese
+  `sign_labels.gd`, `effect_text.gd` e `effect_narrator.gd`, che sono tabelle di
+  stampa: un segno bastava che avesse un'etichetta per risultare «scritto dal
+  motore». Era lo stesso difetto che stava riparando. Tolta `engine`, la
+  funzione non serve più, e sparisce col difetto dentro.
+- e **cinque penne nuove**, ognuna letta dal dato e non dichiarata:
+  la Funzione dalla carta Echo (`function_id`), la Vita dalla scheda della
+  casata (`incarnations[].id`), la leggenda dal passaggio di Chronicle, i segni
+  della cacciata da chi toglie una presenza, il dominio letto dalla Tensione che
+  lo porta stampato.
+
+Le stesse penne sono andate anche in `matrix_survey.py`, che ha un censimento
+suo: senza, i due strumenti avrebbero raccontato due mondi diversi. E lì dentro
+**c'era una seconda volta lo stesso `ruin.tag` di D-333**, un file più in là:
+riparato anche quello.
+
+### Il costo, dichiarato
+
+**Il dizionario cresce di venti voci: da 184 a 204.** Le Funzioni degli Echo
+erano nel dizionario solo se qualcuno le rileggeva — dodici su ventiquattro. Ma
+il mondo le scrive tutte e ventiquattro, ogni volta che una carta Echo si gioca;
+le altre dodici vivevano fuori dal dizionario senza che niente andasse rosso.
+Stessa cosa per le otto Vite iniziali delle case: la prima vita di ogni casa non
+era dichiarata, le successive sì. Ora ci sono, e portano scritto perché nessuno
+le rilegge.
+
+**E la misura della matrice peggiora, di parecchio.**
+
+| | prima | dopo |
+|---|---|---|
+| segni nel dizionario | 184 | **204** |
+| di cui qualcuno scrive | 149 | **200** |
+| orfani in tutto | 59 | **92** |
+| **di cui senza una ragione scritta** | 11 | **11** |
+
+Novantadue orfani invece di cinquantanove. Non è un peggioramento del gioco: è
+lo stesso gioco, misurato senza la scappatoia. Un «orfano» è un segno che
+qualcuno scrive e che nessun Destino desidera, nessuna Tensione tocca, nessuna
+regola legge — e finché trentatré segni non avevano nemmeno una penna
+riconosciuta, la misura non li contava proprio. La riga che conta davvero, gli
+orfani **senza una ragione scritta**, resta a undici.
+
+### Cosa morde adesso
+
+Il difetto piantato che sorvegliava `engine` («una voce che dice *lo scrive il
+motore* e nel codice non c'è») non ha più senso. Al suo posto ce n'è uno che
+prova la regola nuova: si aggiunge uno scrittore vero a una voce vera, e il
+cancello deve accorgersi che il censimento non lo vede. La guardia resta a
+**ventotto difetti piantati**, tutti mordenti.
+
+### Cosa non cambia
+
+**Nessuna riga di GDScript.** Il motore continua a fare esattamente quello che
+faceva: è l'app che tiene il conto al posto tuo. Quello che cambia è come il
+gioco lo racconta — e adesso, per ogni gettone che finisce sulla plancia, il
+dizionario sa dire quale pezzo di cartone ce l'ha messo.
+
+---
+
 ## D-333 — Una parola sola rendeva invisibili dieci Cicatrici
 
 **implemented** (0.1.296) · trovata rispondendo a due domande del committente sul

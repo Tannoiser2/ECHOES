@@ -7,9 +7,9 @@ piano, misurate sui dati di oggi **prima** di scrivere un file nuovo.
 
 | | |
 |---|---|
-| segni nel dizionario | 184 |
-| di cui qualcuno scrive | 149 |
-| orfani in tutto | 59 |
+| segni nel dizionario | 204 |
+| di cui qualcuno scrive | 200 |
+| orfani in tutto | 92 |
 | **di cui senza una ragione scritta** | **11** |
 | livelli di Destino (minimo/vittoria/trionfo) | 69 |
 | **clausole impossibili** (chiedono un segno che niente scrive) | **0** |
@@ -33,9 +33,9 @@ desidera o lo teme (Destini **e** obiettivi), nessuna Tensione lo mette
 o lo toglie, e nessuna regola del segno lo usa: si posa sul tavolo e non
 entra in nessuna partita.
 
-Non tutti gli orfani sono un difetto: **48 su 59 portano gia' la loro
+Non tutti gli orfani sono un difetto: **81 su 92 portano gia' la loro
 ragione scritta** nel dizionario — memorie narrate (D-103), etichette di
-famiglia, gradi di pietra, domini che legge il motore. Restano fuori
+famiglia, gradi di pietra, domini che si cercano col dito. Restano fuori
 quelli **senza una riga che spieghi perche' esistono**: sono questi che
 la matrice deve prendere per primi.
 
@@ -55,37 +55,69 @@ la matrice deve prendere per primi.
 | `trade` | FUNCTION | tessera |
 | `wild` | PLACE | tessera |
 
-### Orfani dichiarati: 48
+### Orfani dichiarati: 81
 
 | segno | la ragione che porta scritta |
 |---|---|
 | `ancient` | etichetta di famiglia: dice chi sei, non cosa puoi fare, e nessuna regola deve leggerla |
 | `burden_shared` | memoria del mondo: narrata (D-103), ereditata |
-| `discovery:legend` | il motore la conta (discovery_count) oltre a chi la legge per nome |
-| `discovery:shared_record` | il motore la conta (discovery_count) oltre a chi la legge per nome |
-| `discovery:supervised_record` | il motore la conta (discovery_count) oltre a chi la legge per nome |
-| `discovery:the_charter` | il motore la conta (discovery_count) oltre a chi la legge per nome |
-| `discovery:the_ledger` | il motore la conta (discovery_count) oltre a chi la legge per nome |
-| `discovery:the_measure` | il motore la conta (discovery_count) oltre a chi la legge per nome |
-| `discovery:the_omen` | il motore la conta (discovery_count) oltre a chi la legge per nome |
-| `discovery:trade_ledger` | il motore la conta (discovery_count) oltre a chi la legge per nome |
-| `discovery:written_law` | il motore la conta (discovery_count) oltre a chi la legge per nome |
-| `domain:ANCIENT` | il dominio della Regione: lo legge il motore per decidere quale Tensione guarda quale posto |
-| `domain:RESOURCE` | il dominio della Regione: lo legge il motore per decidere quale Tensione guarda quale posto |
-| `domain:SURVIVAL` | il dominio della Regione: lo legge il motore per decidere quale Tensione guarda quale posto |
-| `domain:TERRITORY` | il dominio della Regione: lo legge il motore per decidere quale Tensione guarda quale posto |
+| `discovery:legend` | una scoperta: le clausole che la contano la guardano tutte insieme, non per nome, e nessun Destino la desidera da sola — |
+| `discovery:shared_record` | una scoperta: le clausole che la contano la guardano tutte insieme, non per nome, e nessun Destino la desidera da sola — |
+| `discovery:supervised_record` | una scoperta: le clausole che la contano la guardano tutte insieme, non per nome, e nessun Destino la desidera da sola — |
+| `discovery:the_charter` | una scoperta: le clausole che la contano la guardano tutte insieme, non per nome, e nessun Destino la desidera da sola — |
+| `discovery:the_ledger` | una scoperta: le clausole che la contano la guardano tutte insieme, non per nome, e nessun Destino la desidera da sola — |
+| `discovery:the_measure` | una scoperta: le clausole che la contano la guardano tutte insieme, non per nome, e nessun Destino la desidera da sola — |
+| `discovery:the_omen` | una scoperta: le clausole che la contano la guardano tutte insieme, non per nome, e nessun Destino la desidera da sola — |
+| `discovery:trade_ledger` | una scoperta: le clausole che la contano la guardano tutte insieme, non per nome, e nessun Destino la desidera da sola — |
+| `discovery:written_law` | una scoperta: le clausole che la contano la guardano tutte insieme, non per nome, e nessun Destino la desidera da sola — |
+| `domain:ANCIENT` | il dominio della Regione: e' il segno che dice quale Tensione guarda quale posto, e si legge cercandolo col dito sulla m |
+| `domain:RESOURCE` | il dominio della Regione: e' il segno che dice quale Tensione guarda quale posto, e si legge cercandolo col dito sulla m |
+| `domain:SURVIVAL` | il dominio della Regione: e' il segno che dice quale Tensione guarda quale posto, e si legge cercandolo col dito sulla m |
+| `domain:TERRITORY` | il dominio della Regione: e' il segno che dice quale Tensione guarda quale posto, e si legge cercandolo col dito sulla m |
 | `dragon_slain` | memoria del mondo: narrata (D-103), ereditata |
 | `forest` | tessera nuova di PZ-2 (D-265). Non e' la pietra STR_FOREST: come per #granaio, la vocazione del luogo e l'opera si stamp |
 | `free_cities` | etichetta di famiglia: dice chi sei, non cosa puoi fare, e nessuna regola deve leggerla |
+| `function:ATTACK` | la funzione stampata sulla carta Echo appena giocata: resta sul mondo come memoria di cosa e' successo, e la vista la na |
+| `function:BETRAYAL` | la funzione stampata sulla carta Echo appena giocata: resta sul mondo come memoria di cosa e' successo, e la vista la na |
+| `function:CONQUEST` | la funzione stampata sulla carta Echo appena giocata: resta sul mondo come memoria di cosa e' successo, e la vista la na |
+| `function:DISCOVERY` | la funzione stampata sulla carta Echo appena giocata: resta sul mondo come memoria di cosa e' successo, e la vista la na |
+| `function:ENCOUNTER` | la funzione stampata sulla carta Echo appena giocata: resta sul mondo come memoria di cosa e' successo, e nessuna carta  |
+| `function:GIFT` | la funzione stampata sulla carta Echo appena giocata: resta sul mondo come memoria di cosa e' successo, e nessuna carta  |
+| `function:LACK` | la funzione stampata sulla carta Echo appena giocata: resta sul mondo come memoria di cosa e' successo, e la vista la na |
+| `function:LIBERATION` | la funzione stampata sulla carta Echo appena giocata: resta sul mondo come memoria di cosa e' successo, e nessuna carta  |
+| `function:LOSS` | la funzione stampata sulla carta Echo appena giocata: resta sul mondo come memoria di cosa e' successo, e nessuna carta  |
+| `function:OMEN` | la funzione stampata sulla carta Echo appena giocata: resta sul mondo come memoria di cosa e' successo, e nessuna carta  |
+| `function:PROHIBITION` | la funzione stampata sulla carta Echo appena giocata: resta sul mondo come memoria di cosa e' successo, e la vista la na |
+| `function:PUNISHMENT` | la funzione stampata sulla carta Echo appena giocata: resta sul mondo come memoria di cosa e' successo, e nessuna carta  |
+| `function:RECONCILIATION` | la funzione stampata sulla carta Echo appena giocata: resta sul mondo come memoria di cosa e' successo, e nessuna carta  |
+| `function:REQUEST` | la funzione stampata sulla carta Echo appena giocata: resta sul mondo come memoria di cosa e' successo, e la vista la na |
+| `function:RETURN` | la funzione stampata sulla carta Echo appena giocata: resta sul mondo come memoria di cosa e' successo, e nessuna carta  |
+| `function:REVELATION` | la funzione stampata sulla carta Echo appena giocata: resta sul mondo come memoria di cosa e' successo, e la vista la na |
+| `function:SACRIFICE` | la funzione stampata sulla carta Echo appena giocata: resta sul mondo come memoria di cosa e' successo, e nessuna carta  |
+| `function:SEPARATION` | la funzione stampata sulla carta Echo appena giocata: resta sul mondo come memoria di cosa e' successo, e la vista la na |
+| `function:SUCCESSION` | la funzione stampata sulla carta Echo appena giocata: resta sul mondo come memoria di cosa e' successo, e nessuna carta  |
+| `function:TEMPTATION` | la funzione stampata sulla carta Echo appena giocata: resta sul mondo come memoria di cosa e' successo, e nessuna carta  |
+| `function:THREAT` | la funzione stampata sulla carta Echo appena giocata: resta sul mondo come memoria di cosa e' successo, e la vista la na |
+| `function:TRANSFORMATION` | la funzione stampata sulla carta Echo appena giocata: resta sul mondo come memoria di cosa e' successo, e nessuna carta  |
+| `function:USURPATION` | la funzione stampata sulla carta Echo appena giocata: resta sul mondo come memoria di cosa e' successo, e la vista la na |
+| `function:VIOLATION` | la funzione stampata sulla carta Echo appena giocata: resta sul mondo come memoria di cosa e' successo, e la vista la na |
 | `granary` | vocazione del luogo, stampata sulla Regione: non e' la pietra structure:granary, ma le carte stampano #granaio per entra |
 | `guild` | etichetta di famiglia: dice chi sei, non cosa puoi fare, e nessuna regola deve leggerla |
 | `harbor` | vocazione della tessera nuova di PZ-2 (D-265): dove il mare concede e fa pagare |
 | `hard_bargain` | marchio di memoria (D-278): ha ottenuto cedendo poco, e il tavolo se lo ricorda — il motore non lo interroga |
 | `heir_named` | vive sia sulla casa (entry_tag della successione) sia sul mondo (fatto ricordato) |
 | `island` | tessera nuova di PZ-2 (D-265): il posto che si raggiunge solo volendo |
-| `legend:debt_called` | la forma postuma di un fatto: la scrive il motore quando la memoria sfuma |
-| `legend:oath_broken` | la forma postuma di un fatto: la scrive il motore quando la memoria sfuma |
-| `legend:order_restored` | la forma postuma di un fatto: la scrive il motore quando la memoria sfuma |
+| `legend:debt_called` | la forma postuma di un fatto: il passaggio di Chronicle promuove a racconto quello che il mondo non tiene piu' per vero  |
+| `legend:oath_broken` | la forma postuma di un fatto: il passaggio di Chronicle promuove a racconto quello che il mondo non tiene piu' per vero  |
+| `legend:order_restored` | la forma postuma di un fatto: il passaggio di Chronicle promuove a racconto quello che il mondo non tiene piu' per vero  |
+| `life:INC_ALDRIC_01` | la vita che la casa comincia: sta stampata sulla scheda e si posa in allestimento. Le vite successive le legge una regol |
+| `life:INC_CENERE_01` | la vita che la casa comincia: sta stampata sulla scheda e si posa in allestimento. Le vite successive le legge una regol |
+| `life:INC_LIBERE_01` | la vita che la casa comincia: sta stampata sulla scheda e si posa in allestimento. Le vite successive le legge una regol |
+| `life:INC_LYRA_01` | la vita che la casa comincia: sta stampata sulla scheda e si posa in allestimento. Le vite successive le legge una regol |
+| `life:INC_NAHR_01` | la vita che la casa comincia: sta stampata sulla scheda e si posa in allestimento. Le vite successive le legge una regol |
+| `life:INC_SALE_01` | la vita che la casa comincia: sta stampata sulla scheda e si posa in allestimento. Le vite successive le legge una regol |
+| `life:INC_VAERAX_01` | la vita che la casa comincia: sta stampata sulla scheda e si posa in allestimento. Le vite successive le legge una regol |
+| `life:INC_VETRO_01` | la vita che la casa comincia: sta stampata sulla scheda e si posa in allestimento. Le vite successive le legge una regol |
 | `list_witnessed` | memoria del mondo: narrata (D-103), ereditata |
 | `marsh` | tessera nuova di PZ-2 (D-265): acqua ferma, canali vecchi, febbri |
 | `migrating` | etichetta di famiglia: dice chi sei, non cosa puoi fare, e nessuna regola deve leggerla |
@@ -99,6 +131,7 @@ la matrice deve prendere per primi.
 | `place:thinned_wood` | grado di pietra sulla mappa: oggi nessuna regola lo legge — colore dichiarato, in fila per un lettore (ISSUES 24) |
 | `price_in_lives` | memoria del mondo (D-278): una decisione passata al prezzo di qualcuno che non c'e' piu' — si legge al centro del tavolo |
 | `return_promised` | memoria del mondo: narrata (D-103), ereditata |
+| `scar:burned_records` | la Cicatrice che l'Archivio (STR_ARCHIVE) lascia sulla tessera andando in rovina; nessuna clausola la nomina, come scar: |
 | `scar:divided_seal` | il dente vivo e' crown_divided, letto dai Destini e sciolto da CNS_CROWN_REUNITED |
 | `scholar` | etichetta di famiglia: dice chi sei, non cosa puoi fare, e nessuna regola deve leggerla |
 | `settlement:$proponent` | porta un id dinamico: chi vive li' e' scritto nel segno stesso |

@@ -984,7 +984,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### sradicato
 
-`uprooted` · categoria **ENTITY** · sta su entity · lo posa: engine
+`uprooted` · categoria **ENTITY** · sta su entity · lo posa: asset, consequence, echo_card
 
 **Cosa vuol dire.** Sono stati cacciati da dove stavano.
 
@@ -1002,7 +1002,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### due volte sradicato
 
-`twice_uprooted` · categoria **ENTITY** · sta su entity · lo posa: engine
+`twice_uprooted` · categoria **ENTITY** · sta su entity · lo posa: asset, consequence, echo_card
 
 **Cosa vuol dire.** Cacciati due volte: non hanno piu' un centro da difendere.
 
@@ -1020,7 +1020,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### la proposta caduta
 
-`failed_proposal` · categoria **STATE** · sta su entity · lo posa: consequence, engine
+`failed_proposal` · categoria **STATE** · sta su entity · lo posa: consequence
 
 **Cosa vuol dire.** La loro proposta e' caduta in Consiglio.
 

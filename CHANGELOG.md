@@ -5,6 +5,70 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.297 — Il motore non posa gettoni (D-334)
+
+### Detto dal committente
+
+> *«Il motore che mette segni deve sparire: non esiste nel gioco fisico, quindi
+> non dovrebbe esistere.»*
+
+Nel dizionario dei segni ogni voce dichiara chi la scrive. Fra le mani c'era
+`engine` — e non era una mano come le altre: nel validatore aveva una costante
+che la chiamava `MANO_INVISIBILE` e la **esentava dal riscontro**. Bastava
+scriverla perché un segno senza penne ne avesse una.
+
+### La misura, prima della correzione
+
+Trentotto voci dicevano «lo scrive il motore». Andando a vedere dove il codice
+le scrive davvero, e a quale pezzo di cartone corrisponde quel gesto:
+**trentasette su trentotto avevano già una mano fisica**. La Funzione è stampata
+sulla carta Echo; la Vita sulla scheda della casata; la leggenda la fa il
+passaggio di Chronicle; i segni della cacciata li posa chi caccia. `engine` era
+metadato vecchio, non una regola.
+
+Il trentottesimo è un difetto vero, ed è aperto: [ISSUES 101](docs/ISSUES.md).
+
+### Fatto
+
+- **Via `MANO_INVISIBILE`**, via il ramo che la usava, via `engine` dall'elenco
+  delle mani nello schema. Il confronto fra mani dichiarate e mani osservate non
+  ha più eccezioni.
+- **Via `_scritti_dal_codice()`**, la guardia scritta due giorni fa per D-333.
+  Aveva un difetto suo: scandiva anche `sign_labels.gd` ed `effect_text.gd`, che
+  sono tabelle di stampa, così a un segno bastava avere un'etichetta per
+  risultare «scritto dal motore». Era lo stesso difetto che stava riparando.
+- **Cinque penne nuove**, ognuna letta dal dato: la Funzione dall'Echo, la Vita
+  dalla scheda, la leggenda dalla Chronicle, i segni della cacciata da chi
+  toglie una presenza, il dominio dalla Tensione che lo porta stampato.
+- Le stesse penne in `matrix_survey.py`, che ha un censimento suo — e lì dentro
+  **c'era una seconda volta lo stesso `ruin.tag` di D-333**, un file più in là.
+  Riparato.
+- **Venti voci nuove nel dizionario**: dodici Funzioni degli Echo e otto Vite
+  iniziali che il mondo scrive e il dizionario non conosceva.
+- Il difetto piantato che sorvegliava `engine` è sostituito da uno che prova la
+  regola nuova. La guardia resta a **28 difetti piantati**.
+
+### Il costo, dichiarato
+
+| | prima | dopo |
+|---|---|---|
+| segni nel dizionario | 184 | **204** |
+| di cui qualcuno scrive | 149 | **200** |
+| orfani in tutto | 59 | **92** |
+| **di cui senza una ragione scritta** | 11 | **11** |
+
+Novantadue orfani invece di cinquantanove: è lo stesso gioco, misurato senza la
+scappatoia. La riga che conta — gli orfani senza una ragione scritta — resta a
+undici.
+
+### I cancelli
+
+Diciannove cancelli verdi, suite 635 test in 97 suite (35.873 asserzioni),
+playtest 100 semi: **0 seggi bloccati su un solo livello su 8**, tavolo misto e
+uniforme. Nessuna riga di GDScript toccata.
+
+---
+
 ## 0.1.296 — Una parola sola rendeva invisibili dieci Cicatrici (D-333)
 
 ### Trovato rispondendo a due domande
