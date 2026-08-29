@@ -3569,6 +3569,101 @@ arrivano da un'altra parte.
   decide.** *Costo:* altre 60-70 proposte scritte nella grammatica che forse si
   butta.
 
+
+> ### Rimisurata in 0.1.300, e i due numeri in cima erano sbagliati
+>
+> La voce chiedeva di guardare i residui **uno per uno** — *«sono pochi
+> abbastanza»* — e nessuno l'aveva fatto. Fatto adesso, e la misura corregge
+> se' stessa in due punti.
+>
+> **Primo: 642 non e' la quantita' di lavoro.** Quel numero conta ogni
+> **applicazione** — una Conseguenza usata da trentaquattro proposte pesa
+> trentaquattro volte. Oggi le applicazioni sono **841** (il mazzo e' cresciuto),
+> ma gli **Effetti distinti scritti sono 164**, in 56 Conseguenze. Il lavoro da
+> fare e' su 164 righe, non su 841: **cinque volte piu' piccolo** di come la voce
+> lo faceva sembrare.
+>
+> **Secondo, e piu' grave: «494 su 642» era il 77%. Il conto vero e' il 35%.**
+>
+> Il numero vecchio guardava il **verbo** e non guardava **dove**. Rifacendolo
+> con le due regole vere di una casella — il verbo dev'essere fra i dodici *e* il
+> bersaglio dev'essere il **luogo di cui si discute**, il Tema, o il mondo:
+>
+> | come si conta | su 841 applicazioni | |
+> |---|---|---|
+> | solo il verbo, bersaglio ignorato | 401 | 48% |
+> | verbo + la traccia della questione | **631** | **75%** ← e' il numero vecchio |
+> | **verbo + bersaglio** | **295** | **35%** |
+>
+> Le due scale concordano: per Effetto distinto e' **55 su 164, il 34%**.
+>
+> Non e' un dettaglio contabile. **Il «dove» e' esattamente cio' che rende
+> fisica una casella**: una casella agisce sul luogo che stai discutendo, che hai
+> davanti col dito sopra. «Prendi il controllo di *un altro* luogo con
+> `#commercio`» ha il verbo giusto e non puo' essere una casella — ed e'
+> l'esempio del Traghetto che questa voce racconta due paragrafi piu' su. La voce
+> lo diceva a parole e il suo numero non lo contava.
+>
+> ### I 164, in quattro gruppi
+>
+> | | Effetti distinti | applicazioni |
+> |---|---|---|
+> | **0** — una casella di oggi lo sa dire | **55** | 295 |
+> | **1** — la traccia della questione | **36** | 230 |
+> | **2** — verbo giusto, posto sbagliato | **24** | 106 |
+> | **3** — verbo che manca davvero | **49** | 210 |
+> | | **164** | **841** |
+>
+> **Gruppo 1 — la traccia della questione (36).** `ADJUST_TENSION`: la proposta
+> alza o abbassa una questione. E' il gruppo piu' grosso, ed e' **una casella
+> sola**: al tavolo la traccia c'e' gia' e il segnalino si muove col dito. Manca
+> solo il verbo che lo dica. Dieci dei trentasei muovono la questione **di cui si
+> discute** (`$tension`); gli altri ventisei ne muovono un'altra per nome, e
+> quelli ricadono nel problema del gruppo 2.
+>
+> **Gruppo 2 — verbo giusto, posto sbagliato (24).** Nessuno di questi ha bisogno
+> di un verbo nuovo: hanno bisogno di **un modo di dire quale luogo**. Sono
+> quattordici segni di Regione, cinque Pietre, quattro cambi di controllo e una
+> condizione tolta, tutti puntati su `$adjacent`, `$rival_seat`, `$capital` o
+> `$region_with:#segno`. La grammatica per dirlo **esiste gia' sulle carte
+> Azione** (D-262: *«la Regione col #granaio»*): qui e' solo di non averla
+> portata sulla faccia della Tensione.
+>
+> **Gruppo 3 — i verbi che mancano davvero (49).** Questi sono i soli che
+> obbligano a inventare, e sono sei famiglie piu' quattro pezzi unici:
+>
+> | | quanti | cosa fa |
+> |---|---|---|
+> | `SET_ENTITY_TAG` | 18 | quello che una casa **porta addosso** (13 al proponente, 5 al rivale) |
+> | `SET_STRUCTURE_GRADE` | 8 | il **grado** di una Pietra — e ISSUES 39 ha appena misurato che scendere non succede mai |
+> | `SET_RELATION` | 6 | i **rapporti** fra due case |
+> | `REMOVE_PRESENCE` | 5 | chi **non sta piu'** in un luogo |
+> | `REMOVE_GLOBAL_TAG` | 4 | il mondo che **dimentica** — il contrario di IL MONDO RICORDA, che una casella ce l'ha |
+> | `ADD_PRESENCE` | 3 | chi **arriva** in un luogo |
+> | i quattro unici | 4 | `SET_TENSION_VISIBILITY` (2), `REMOVE_ENTITY_TAG`, `SET_ENTITY_ACTIVE`, `CLOSE_PASSAGE` |
+>
+> ### Cosa cambia per le tre strade
+>
+> **La strada (a) e' piu' piccola e piu' difficile di come sembrava.** Piu'
+> piccola: 164 righe da tradurre, non 642. Piu' difficile: il 65% non e'
+> traducibile con quello che c'e', non il 23%.
+>
+> Ma i tre gruppi non costano uguale, e il grosso non e' dove sembra:
+>
+> 1. **Una casella per la traccia della questione** copre 36 Effetti distinti e
+>    230 applicazioni. E' un verbo solo, ed e' il pezzo di tavolo che gia'
+>    esiste.
+> 2. **Portare il bersaglio a segni sulla faccia della Tensione** copre altri 24
+>    distinti e 106 applicazioni, e non inventa niente: e' la grammatica di D-262
+>    spostata di file.
+> 3. Fatti quei due, resta **il 30% (49 distinti)** che chiede verbi nuovi — e
+>    quello si', va guardato uno per uno, perche' e' la' che si decide cosa il
+>    Consiglio non deve piu' poter fare.
+>
+> **La misura non sceglie la strada**, e la scelta resta del committente. Dice
+> solo che (a) si puo' fare in tre passi con una soglia visibile dopo ognuno, e
+> che i primi due passi non chiedono di decidere niente di irreversibile.
+
 **Fatto quando** una proposta si puo' risolvere guardando solo la carta e la
 mappa.
 
