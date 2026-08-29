@@ -154,16 +154,74 @@ func test_no_card_speaks_in_effect_types() -> void:
 
 
 ## E i segni si dicono **con la parola del segno**, la stessa della mappa e del
-## segnalino di cartone: «la Regione discussa diventa affamata», non «un segno
-## cade sul mondo». Il ripiego esiste per non mentire, non per essere usato.
+## segnalino di cartone: «dove si discute diventa affamata», non col nome
+## interno del tag. La prova non guarda piu' un elenco di tipi (D-336: quello
+## non esiste piu', la frase si costruisce dall'Effetto intero): guarda ogni
+## Effetto che **porta un segno nel payload**, che e' la stessa cosa detta dal
+## dato invece che da una costante.
 func test_a_sign_on_a_card_carries_its_own_word() -> void:
 	var loaded: RefCounted = data()
 	var vague: Array = []
+	var seen: int = 0
 	for asset_id in loaded.assets:
 		var asset: Dictionary = loaded.assets[str(asset_id)]
 		for effect in asset.get("on_commit_effects", []):
-			if not AssetText.SIGN_COSTS.has(str((effect as Dictionary).get("type", ""))):
+			var tag: String = str(
+				((effect as Dictionary).get("payload", {}) as Dictionary).get("tag", "")
+			)
+			if tag == "":
 				continue
-			if AssetText.effect_note(effect as Dictionary, loaded) == "un segno cade sul mondo":
-				vague.append(str(asset["title"]))
-	assert_eq(vague, [], "ogni segno su una carta ha la sua parola")
+			seen += 1
+			var said: String = AssetText.effect_note(effect as Dictionary, loaded)
+			if said.contains(tag):
+				vague.append("%s: «%s»" % [str(asset["title"]), said])
+	assert_eq(vague, [], "ogni segno su una carta si dice con la sua parola")
+	assert_true(seen >= 20, "e la prova ha guardato abbastanza segni: %d" % seen)
+
+
+## **Una riga stampata che non dice dove non dice niente** (D-336).
+##
+## Fino alla 0.1.300 la frase era una stringa fissa per tipo di Effetto, e
+## prometteva sempre lo stesso posto: *«si alza una costruzione dove si
+## discute»* anche quando la costruzione si alzava altrove. Contro i dati, **89
+## righe su 164 dicevano il falso** — e il cancello del catalogo non se ne
+## accorgeva, perche' controlla che il documento combaci col generatore, non che
+## il generatore dica il vero.
+##
+## Questa e' la guardia che mancava. Non confronta due testi: prende **ogni
+## Effetto che una proposta puo' applicare** e chiede alla frase di nominare il
+## suo posto, la sua casa, il suo verso. Un bersaglio che il vocabolario non
+## conosce cade su un ripiego **dichiarato**, e la prova lo prende — cosi' un
+## bersaglio nuovo si vede il giorno che entra, non tre mesi dopo al tavolo.
+func test_every_council_effect_says_where_it_lands() -> void:
+	var loaded: RefCounted = data()
+	var muti: Array = []
+	var visti: int = 0
+	for consequence_id in loaded.consequences:
+		var consequence: Dictionary = loaded.consequences[str(consequence_id)]
+		for effect in consequence.get("effects", []) as Array:
+			visti += 1
+			var said: String = AssetText.effect_note(effect as Dictionary, loaded)
+			var ripiego: bool = (
+				said.contains("non sa dire")
+				or said.begins_with("un effetto senza parole")
+			)
+			# E nessun segnaposto deve arrivare fino alla riga: `$rival_seat` sulla
+			# scheda e' un nome interno, non una parola del tavolo.
+			if ripiego or said.contains("$"):
+				muti.append("%s: «%s»" % [str(consequence_id), said])
+	assert_eq(muti, [], "ogni Effetto di una Conseguenza dice dove cade")
+	assert_true(visti >= 150, "e la prova li ha guardati tutti: %d" % visti)
+
+
+## E la guardia morde: un bersaglio che il vocabolario non conosce **deve**
+## finire sul ripiego dichiarato. Senza questa, la prova qui sopra passerebbe
+## anche se `_place` inventasse un posto qualsiasi.
+func test_an_unknown_target_is_declared_not_invented() -> void:
+	var said: String = AssetText.effect_note({
+		"type": "SET_REGION_TAG",
+		"target": {"kind": "region", "id": "$un_posto_seminato_apposta"},
+		"payload": {"tag": "condition:contested"},
+	}, data())
+	assert_true(said.contains("non sa dire"),
+		"un posto che il vocabolario non conosce si dichiara: «%s»" % said)

@@ -5,6 +5,70 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.301 — Il catalogo dei Consigli diceva il falso su 89 righe (D-336)
+
+Il committente ha scelto la strada **(b)** di ISSUES 89: *«il motore continua a
+fare quello che fa, ma la carta lo dice, generato dal dato con un cancello che
+sorveglia»*. Andando a costruirla, **metà esisteva già** — e diceva il falso.
+
+`CATALOGO_CONSIGLI` rende da D-232 ogni proposta in grammatica di segni,
+generato e sorvegliato in CI. Ma la frase era un dizionario di **stringhe fisse,
+una per tipo di Effetto**: diceva il verbo e non il bersaglio.
+
+### Il conto: 89 righe su 164
+
+| | quante | prometteva → faceva |
+|---|---|---|
+| il posto | **33** | «dove si discute» → altrove |
+| la questione | **26** | «la domanda in gioco» → un'altra per nome |
+| la casa | **18** | «una casa» → quale? |
+| il grado | **7** | «sale o scende» → da che parte? |
+| il verso | **5** | «sale» → scendeva |
+
+La stessa proposta, prima e dopo — *«Il grano sia requisito in nome del trono»*:
+
+> **prima:** si alza una costruzione **dove si discute** · **la domanda in gioco** sale
+>
+> **adesso:** si alza **Granaio in una Regione con granaio** · **Le Vie Interrotte** sale
+
+Il Granaio si alza in un'altra Regione, e la domanda che sale è un'altra
+questione. **E il cancello non poteva accorgersene**: confronta il documento col
+generatore, non il generatore col motore. Terza volta in una settimana, dopo
+D-329, D-333 e D-334.
+
+### Fatto
+
+- `effect_note()` riceveva già l'Effetto intero e ignorava bersaglio e payload.
+  Ora la frase porta **il luogo, la casa, la questione per nome, il verso e la
+  Pietra col suo nome**.
+- **Il dizionario aveva la parola e nessuno la chiedeva**: `granaio`, `pascolo`,
+  `cristallo`, `capitale` non stanno in `SignLabels`, e si stampava
+  *«crystal_site»*. Il campo `title` del dizionario è il nome stampato per
+  definizione dello schema: ora `SignLabels` lo consulta, e vale anche per la
+  mappa e per il foglio dei segnalini.
+- **Un segnaposto non è il nome di un posto**: `evicted:$region_focus` e
+  `settlement:$proponent` arrivavano stampati sulla scheda.
+- **Una carta stampava il verso sbagliato sulla propria faccia.**
+- **La guardia che mancava**: non confronta due testi, confronta la frase col
+  dato — ogni Effetto deve nominare posto, casa e verso, e un bersaglio ignoto
+  cade su un ripiego dichiarato. Una seconda prova pianta un bersaglio inventato
+  e verifica che il ripiego scatti. Ha morso subito, su `settlement:$proponent`.
+
+### Il costo, dichiarato
+
+**Nessuno sul gioco.** Playtest 100 semi identico: Verità 159/143 misto, 149/125
+uniforme, **0 seggi bloccati su un solo livello su 8**. È cambiato come un
+Effetto si descrive, non cosa fa. Due cataloghi rigenerati (281 righe e 37),
+tutte correzioni. Suite da 638 a **640 prove**, diciannove cancelli verdi.
+
+### Quello che resta
+
+La frase adesso dice il vero, ma **non è ancora sulla carta**: vive in due
+documenti. Il «fatto quando» di ISSUES 89 chiede che una proposta si risolva
+guardando solo la carta e la mappa. ISSUES 89 resta aperta.
+
+---
+
 ## 0.1.300 — I 642 Effetti del Consiglio erano 164, e il 77% era un 35%
 
 Nessun codice. La voce più pesante aperta — **ISSUES 89**, *«la proposta non si

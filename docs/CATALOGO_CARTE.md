@@ -75,7 +75,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | rarita' | rare · 1 copia nel mazzo |
 | dopo il voto | si scarta sempre |
 | se la cali | RIVENDICARE — ti prendi il diritto di aprire il Consiglio |
-| cosa lascia | il tuo rivale entra dove si discute |
+| cosa lascia | il rivale entra dove si discute |
 | id | `AST_AUTHORITY_SUCCESSION_ACT` |
 
 > Forza 3. Si scarta sempre, e chi ti sta di fronte guadagna una presenza nella Regione di cui si discute: nominare un erede fa arrivare tutti quelli che non sono stati nominati.
@@ -121,7 +121,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | rarita' | uncommon · 2 copie nel mazzo |
 | dopo il voto | si scarta sempre |
 | se la cali | RIVENDICARE — ti prendi il diritto di aprire il Consiglio |
-| cosa lascia | la Regione discussa diventa contesa |
+| cosa lascia | dove si discute diventa contesa |
 | id | `AST_AUTHORITY_CROWN_RIGHT` |
 
 > Si scarta sempre: un diritto invocato due volte non è più un diritto, è una pretesa — e la pretesa divide: la Regione della domanda resta contesa.
@@ -168,7 +168,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | dopo il voto | torna in mano se la proposta passa |
 | se la cali | MUOVERE — sposti una tua presenza su un'altra Regione |
 | al Consiglio | +2 se ti opponi |
-| cosa lascia | la Regione discussa non e' piu' la domanda sul muro |
+| cosa lascia | dove si discute non e' piu' la domanda sul muro |
 | id | `AST_AUTHORITY_MAGISTRATE` |
 
 > +2 sul fronte Oppose. Se la proposta passa lo stesso resta in mano: un giudice che ha avuto ragione serve ancora — e il giudice risponde: la domanda rimasta scritta sul muro si cancella.
@@ -215,7 +215,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | dopo il voto | discard |
 | se la cali | TRAMARE — leggi in privato qualcosa che e' coperto |
 | al Consiglio | +1 sul suo tema |
-| cosa lascia | la Regione discussa non e' piu' contesa |
+| cosa lascia | dove si discute non e' piu' contesa |
 | id | `AST_AUTHORITY_CENSUS` |
 
 > +1 quando AUTHORITY è rilevante per la Tensione. Una lista di nomi è la forma più semplice del potere — e la lista chiarisce: la Regione della domanda smette di essere contesa.
@@ -261,7 +261,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | rarita' | common · 4 copie nel mazzo |
 | dopo il voto | discard |
 | se la cali | RIVENDICARE — ti prendi il diritto di aprire il Consiglio |
-| cosa lascia | la Regione discussa non e' piu' inquieta |
+| cosa lascia | dove si discute non e' piu' inquieta |
 | id | `AST_AUTHORITY_EDICT` |
 
 > Una riga scritta bene vale quanto chi la fa rispettare — e dove si discute, la legge calma la piazza: l'inquietudine si cancella.
@@ -355,7 +355,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | dopo il voto | discard |
 | se la cali | INFLUENZARE — alzi o abbassi di 1 una domanda dell'anno |
 | al Consiglio | +1 se ti opponi |
-| cosa lascia | la domanda in gioco sale |
+| cosa lascia | la domanda in gioco scende |
 | id | `AST_AUTHORITY_SEAL` |
 
 > +1 sul fronte Oppose. Il sigillo che manca ferma più cose del sigillo che c'è — e quello impegnato raffredda la questione: la Tensione in gioco scende di 1.
@@ -449,7 +449,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | rarita' | rare · 1 copia nel mazzo |
 | dopo il voto | si scarta sempre |
 | se la cali | INFLUENZARE — alzi o abbassi di 1 una domanda dell'anno |
-| cosa lascia | il tuo rivale entra dove si discute |
+| cosa lascia | il rivale entra dove si discute |
 | id | `AST_BONDS_HOSTAGE` |
 
 > Forza 3. Si scarta sempre, e chi ti sta di fronte guadagna una presenza nella Regione di cui si discute: chi consegna un figlio compra una parola, e la paga a casa propria.
@@ -496,7 +496,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | dopo il voto | si scarta sempre |
 | se la cali | FORGIARE — muovi di un passo il rapporto con un'altra casa |
 | al Consiglio | +2 se ti opponi |
-| cosa lascia | il rapporto con chi tocca cambia di un passo |
+| cosa lascia | il rapporto fra chi gioca e il rivale cambia |
 | id | `AST_BONDS_BETROTHAL` |
 
 > +2 sul fronte Oppose: una promessa serve più a impedire un'alleanza che a farne una. Si scarta sempre — e resta scritta: fra le due case nasce un patto, e i patti si giudicano.
@@ -542,7 +542,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | rarita' | uncommon · 2 copie nel mazzo |
 | dopo il voto | discard |
 | se la cali | TRAMARE — leggi in privato qualcosa che e' coperto |
-| cosa lascia | il rapporto con chi tocca cambia di un passo |
+| cosa lascia | il rapporto fra chi gioca e il rivale cambia |
 | id | `AST_BONDS_BLOOD_TIE` |
 
 > Non è un accordo: e una cosa che c'era prima dell'accordo, e che nessuno ha firmato. Impegnata, scrive il vincolo di sangue sulla coppia: da lì in poi, quella relazione non scende sotto il neutrale.
@@ -588,7 +588,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | rarita' | common · 4 copie nel mazzo |
 | dopo il voto | discard |
 | se la cali | INFLUENZARE — alzi o abbassi di 1 una domanda dell'anno |
-| cosa lascia | il rapporto con chi tocca cambia di un passo |
+| cosa lascia | il rapporto fra chi gioca e il rivale cambia |
 | id | `AST_BONDS_FAVOR` |
 
 > Piccolo, ricordato con precisione — e restituito al momento giusto: fra chi lo impegna e il rivale, una vendetta si spegne.
@@ -635,7 +635,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | dopo il voto | discard |
 | se la cali | MUOVERE — sposti una tua presenza su un'altra Regione |
 | al Consiglio | +1 sul suo tema |
-| cosa lascia | una casa perde un segno che portava addosso |
+| cosa lascia | chi gioca perde: cacciata da dove si discuteva |
 | id | `AST_BONDS_GUEST_RIGHT` |
 
 > +1 quando BONDS è rilevante per la Tensione. Chi ha mangiato al tuo tavolo non può dire di no davanti a tutti. Può dirlo dopo — e chi lo impegna torna ospite: la cacciata dalla Regione della domanda si cancella.
@@ -681,7 +681,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | rarita' | common · 4 copie nel mazzo |
 | dopo il voto | retain |
 | se la cali | FORGIARE — muovi di un passo il rapporto con un'altra casa |
-| cosa lascia | il rapporto con chi tocca cambia di un passo |
+| cosa lascia | il rapporto fra chi gioca e il rivale cambia |
 | id | `AST_BONDS_OATH` |
 
 > Non si scarta mai. Un giuramento impegnato resta impegnato anche dopo, ed è la sua unica forza — e un giuramento rifatto scioglie quello spezzato: fra chi lo impegna e il rivale, il tradimento si cancella.
@@ -728,7 +728,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | dopo il voto | discard |
 | se la cali | RIVENDICARE — ti prendi il diritto di aprire il Consiglio |
 | al Consiglio | +1 se ti opponi |
-| cosa lascia | la Regione discussa diventa indebitata |
+| cosa lascia | nella sede del rivale diventa indebitata |
 | id | `AST_BONDS_OLD_DEBT` |
 
 > +1 sul fronte Oppose. Nessuno se lo ricorda tranne le due persone che contano, e una delle due lo tira fuori adesso — e da adesso è pubblico: la sede del debitore resta segnata come indebitata.
@@ -776,7 +776,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | rarita' | rare · 1 copia nel mazzo |
 | dopo il voto | si scarta sempre |
 | se la cali | RIVENDICARE — ti prendi il diritto di aprire il Consiglio |
-| cosa lascia | perdi la tua presenza dove si discute |
+| cosa lascia | chi gioca se ne va dove si discute |
 | id | `AST_FORCE_BURNED_GATE` |
 
 > Forza 3. Si scarta sempre, e chi la gioca perde la propria presenza nella Regione di cui si discute: chi apre una porta così non resta li a difenderla.
@@ -869,7 +869,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | dopo il voto | discard |
 | se la cali | RIVENDICARE — ti prendi il diritto di aprire il Consiglio |
 | al Consiglio | +2 se ti opponi |
-| cosa lascia | la domanda in gioco sale, viene giu' una costruzione dove si discute |
+| cosa lascia | La Carestia sale, viene giu' Presidio dove si discute |
 | id | `AST_FORCE_SIEGE` |
 
 > +2 sul fronte Oppose. Non serve prendere una cosa per impedire che sia di qualcun altro — ma l'assedio affama anche la terra intorno: la Carestia sale di 1, e il presidio della Regione della domanda viene giu'.
@@ -962,7 +962,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | dopo il voto | discard |
 | se la cali | TRAMARE — leggi in privato qualcosa che e' coperto |
 | al Consiglio | +1 sul suo tema |
-| cosa lascia | la domanda in gioco sale |
+| cosa lascia | Le Vie Interrotte sale |
 | id | `AST_FORCE_BORDER_WATCH` |
 
 > +1 quando FORCE è rilevante per la Tensione. Contano i carri che passano, e sanno quali contare — e ogni conta ferma la strada: Le Vie Interrotte salgono di 1.
@@ -1008,7 +1008,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | rarita' | common · 4 copie nel mazzo |
 | dopo il voto | discard |
 | se la cali | MUOVERE — sposti una tua presenza su un'altra Regione |
-| cosa lascia | la domanda in gioco sale |
+| cosa lascia | La Carestia sale |
 | id | `AST_FORCE_LEVY` |
 
 > Uomini con attrezzi da lavoro tenuti come lance. Bastano finché nessuno li conta — ma i campi restano soli: la Carestia sale di 1.
@@ -1055,7 +1055,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | dopo il voto | discard |
 | se la cali | FORGIARE — muovi di un passo il rapporto con un'altra casa |
 | al Consiglio | +1 sempre |
-| cosa lascia | la Regione discussa diventa inquieta |
+| cosa lascia | dove si discute diventa inquieta |
 | id | `AST_FORCE_MERCENARIES` |
 
 > +1 sempre, su qualsiasi fronte: fuori tema vale quanto in tema. Dove passano, però, resta l'inquietudine.
@@ -1102,7 +1102,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | dopo il voto | discard |
 | se la cali | INFLUENZARE — alzi o abbassi di 1 una domanda dell'anno |
 | al Consiglio | +1 se ti opponi |
-| cosa lascia | la Regione discussa diventa tagliata fuori |
+| cosa lascia | dove si discute diventa tagliata fuori |
 | id | `AST_FORCE_ROADBLOCK` |
 
 > +1 sul fronte Oppose. Fermare un carro costa sempre meno che farlo partire — e la Regione della domanda resta tagliata fuori dal mondo.
@@ -1150,7 +1150,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | rarita' | rare · 1 copia nel mazzo |
 | dopo il voto | si scarta sempre |
 | se la cali | TRAMARE — leggi in privato qualcosa che e' coperto |
-| cosa lascia | la domanda si apre a tutti |
+| cosa lascia | la domanda in gioco si apre a tutti |
 | id | `AST_KNOWLEDGE_RED_CRYSTAL` |
 
 > Forza 3. Si scarta sempre, e la Tensione in gioco diventa aperta a tutti: mostrarlo chiude ogni dubbio e apre la domanda a chiunque fosse nella stanza.
@@ -1242,7 +1242,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | rarita' | uncommon · 2 copie nel mazzo |
 | dopo il voto | torna in mano se la proposta passa |
 | se la cali | TRAMARE — leggi in privato qualcosa che e' coperto |
-| cosa lascia | la domanda si apre a tutti |
+| cosa lascia | la domanda in gioco si apre a tutti |
 | id | `AST_KNOWLEDGE_PROOF` |
 
 > Se la proposta passa, resta in mano: una prova dimostrata non si consuma — e dimostra: la questione in gioco si apre a tutti i presenti.
@@ -1289,7 +1289,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | dopo il voto | si scarta sempre |
 | se la cali | INFLUENZARE — alzi o abbassi di 1 una domanda dell'anno |
 | al Consiglio | +2 se ti opponi |
-| cosa lascia | la Regione discussa diventa inquieta |
+| cosa lascia | nella sede del rivale diventa inquieta |
 | id | `AST_KNOWLEDGE_WITNESS` |
 
 > +2 sul fronte Oppose. Si scarta sempre: un testimone si spende una volta sola — e la deposizione agita la casa accusata: la sua sede resta inquieta.
@@ -1335,7 +1335,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | rarita' | common · 4 copie nel mazzo |
 | dopo il voto | torna in mano se la proposta passa |
 | se la cali | TRAMARE — leggi in privato qualcosa che e' coperto |
-| cosa lascia | si alza una costruzione dove si discute |
+| cosa lascia | si alza Archivio dove si discute |
 | id | `AST_KNOWLEDGE_ARCHIVE` |
 
 > Se la proposta passa resta in mano. Le carte non si consumano: si consuma chi le sa leggere — e quello che si e' letto resta: sulla Regione della domanda si apre un archivio suo.
@@ -1429,7 +1429,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | dopo il voto | discard |
 | se la cali | MUOVERE — sposti una tua presenza su un'altra Regione |
 | al Consiglio | +1 sul suo tema |
-| cosa lascia | la Regione discussa non e' piu' il ponte rotto |
+| cosa lascia | dove si discute non e' piu' il ponte rotto |
 | id | `AST_KNOWLEDGE_OLD_MAP` |
 
 > +1 quando KNOWLEDGE è rilevante per la Tensione. I confini sono sbagliati; le strade no — e una strada giusta ricuce il ponte rotto sulla Regione della domanda.
@@ -1475,7 +1475,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | rarita' | common · 4 copie nel mazzo |
 | dopo il voto | discard |
 | se la cali | TRAMARE — leggi in privato qualcosa che e' coperto |
-| cosa lascia | la domanda si apre a tutti |
+| cosa lascia | la domanda in gioco si apre a tutti |
 | id | `AST_KNOWLEDGE_RUMOR` |
 
 > Non è vera. Non è ancora falsa — e finché gira, la questione in gioco torna velata: i numeri si nascondono dietro le voci.
@@ -1523,7 +1523,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | rarita' | rare · 1 copia nel mazzo |
 | dopo il voto | si scarta sempre |
 | se la cali | MUOVERE — sposti una tua presenza su un'altra Regione |
-| cosa lascia | perdi la tua presenza dove si discute |
+| cosa lascia | chi gioca se ne va dove si discute |
 | id | `AST_PEOPLE_EXODUS` |
 
 > Forza 3. Si scarta sempre, e chi la gioca perde la propria presenza nella Regione di cui si discute: chi parte non torna al tavolo.
@@ -1662,7 +1662,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | rarita' | uncommon · 2 copie nel mazzo |
 | dopo il voto | discard |
 | se la cali | RIVENDICARE — ti prendi il diritto di aprire il Consiglio |
-| cosa lascia | il rapporto con chi tocca cambia di un passo |
+| cosa lascia | il rapporto fra chi gioca e il rivale cambia |
 | id | `AST_PEOPLE_SPOKESMAN` |
 
 > Qualcuno che dice ad alta voce quello che già pensano in molti, e che dopo non può più tornare indietro — la parola detta è una promessa fra le due case.
@@ -1708,7 +1708,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | rarita' | common · 4 copie nel mazzo |
 | dopo il voto | discard |
 | se la cali | INFLUENZARE — alzi o abbassi di 1 una domanda dell'anno |
-| cosa lascia | la Regione discussa diventa inquieta |
+| cosa lascia | nella capitale diventa inquieta |
 | id | `AST_PEOPLE_CROWD` |
 
 > Nessuno l'ha convocata. È arrivata lo stesso — in capitale: e la capitale resta inquieta.
@@ -1755,7 +1755,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | dopo il voto | discard |
 | se la cali | TRAMARE — leggi in privato qualcosa che e' coperto |
 | al Consiglio | +1 se ti opponi |
-| cosa lascia | la Regione discussa non e' piu' in lutto |
+| cosa lascia | dove si discute non e' piu' in lutto |
 | id | `AST_PEOPLE_ELDERS` |
 
 > +1 sul fronte Oppose. Parlano piano, dicono di no, e vengono ripetuti per tre villaggi — e sanno accompagnare: il lutto della Regione della domanda si elabora.
@@ -1802,7 +1802,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | dopo il voto | discard |
 | se la cali | FORGIARE — muovi di un passo il rapporto con un'altra casa |
 | al Consiglio | +1 sul suo tema |
-| cosa lascia | la Regione discussa non e' piu' affamata |
+| cosa lascia | dove si discute non e' piu' affamata |
 | id | `AST_PEOPLE_HARVEST_HANDS` |
 
 > +1 quando PEOPLE è rilevante per la Tensione. Non sono un esercito: ma senza di loro non si mangia — e dove arrivano, la fame della Regione della domanda si spegne.
@@ -1848,7 +1848,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | rarita' | common · 4 copie nel mazzo |
 | dopo il voto | discard |
 | se la cali | MUOVERE — sposti una tua presenza su un'altra Regione |
-| cosa lascia | la Regione discussa non e' piu' razionata |
+| cosa lascia | dove si discute non e' piu' razionata |
 | id | `AST_PEOPLE_MARCH` |
 
 > Poca gente, ma in strada e alla stessa ora. Il punto non è quanti sono: è che si sono trovati — e le razioni imposte sulla Regione della domanda si rompono.
@@ -1896,7 +1896,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | rarita' | rare · 1 copia nel mazzo |
 | dopo il voto | si scarta sempre |
 | se la cali | FORGIARE — muovi di un passo il rapporto con un'altra casa |
-| cosa lascia | il tuo rivale entra dove si discute |
+| cosa lascia | il rivale entra dove si discute |
 | id | `AST_WEALTH_LAND_MORTGAGE` |
 
 > Forza 3. Si scarta sempre, e chi ti sta di fronte guadagna una presenza nella Regione di cui si discute: impegnare una terra fa arrivare chi la vuole.
@@ -1988,7 +1988,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | rarita' | uncommon · 2 copie nel mazzo |
 | dopo il voto | si scarta sempre |
 | se la cali | MUOVERE — sposti una tua presenza su un'altra Regione |
-| cosa lascia | la Regione discussa non e' piu' tagliata fuori |
+| cosa lascia | dove si discute non e' piu' tagliata fuori |
 | id | `AST_WEALTH_CARAVAN` |
 
 > Si scarta sempre: una carovana spesa è una carovana partita — e una carovana che parte riapre la via: la Regione tagliata fuori si ricollega.
@@ -2035,7 +2035,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | dopo il voto | discard |
 | se la cali | FORGIARE — muovi di un passo il rapporto con un'altra casa |
 | al Consiglio | +2 se ti opponi |
-| cosa lascia | la Regione discussa diventa razionata |
+| cosa lascia | dove si discute diventa razionata |
 | id | `AST_WEALTH_GRANARY_KEYS` |
 
 > +2 sul fronte Oppose. Non possiedi il grano: possiedi la serratura — e la serratura raziona: sulla Regione della domanda resta il segno della razione.
@@ -2128,7 +2128,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | rarita' | common · 4 copie nel mazzo |
 | dopo il voto | discard |
 | se la cali | INFLUENZARE — alzi o abbassi di 1 una domanda dell'anno |
-| cosa lascia | la domanda in gioco sale |
+| cosa lascia | La Carestia scende |
 | id | `AST_WEALTH_GRAIN` |
 
 > Conta più di un titolo, per il tempo in cui dura — e dura quanto basta: la Carestia scende di 1.
@@ -2175,7 +2175,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | dopo il voto | discard |
 | se la cali | TRAMARE — leggi in privato qualcosa che e' coperto |
 | al Consiglio | +1 sul suo tema |
-| cosa lascia | la Regione discussa non e' piu' magra |
+| cosa lascia | dove si discute non e' piu' magra |
 | id | `AST_WEALTH_SALT` |
 
 > +1 quando WEALTH è rilevante per la Tensione. Non nutre nessuno: senza, quello che nutre non arriva — e dove arriva, la magra si supera.
@@ -2222,7 +2222,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | dopo il voto | discard |
 | se la cali | RIVENDICARE — ti prendi il diritto di aprire il Consiglio |
 | al Consiglio | +1 se ti opponi |
-| cosa lascia | si alza una costruzione dove si discute |
+| cosa lascia | si alza Pedaggio dove si discute |
 | id | `AST_WEALTH_TOLL` |
 
 > +1 sul fronte Oppose. Una corda tesa fra due pali, e il diritto di non alzarla — e il diritto si scrive: sulla Regione della domanda resta il pedaggio.

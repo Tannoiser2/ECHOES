@@ -30,47 +30,75 @@ const ACTIONS: Dictionary = {
 	"ACQUIRE": "ACQUISIRE — peschi una carta della famiglia che scegli",
 }
 
-## Gli effetti che **non** nominano un segno: per questi basta il tipo.
+## **Una frase che non dice dove non dice niente** (D-336).
 ##
-## Prima erano quattro, e gli altri sette stampavano il proprio tipo in
-## minuscolo: 28 effetti su 49. Sull'«Assedio» un giocatore leggeva davvero
-## «costa: la domanda in gioco sale, raze_structure».
-const COSTS: Dictionary = {
-	"ADJUST_TENSION": "la domanda in gioco sale",
-	"ADD_PRESENCE": "il tuo rivale entra dove si discute",
-	"REMOVE_PRESENCE": "perdi la tua presenza dove si discute",
-	"SET_TENSION_VISIBILITY": "la domanda si apre a tutti",
-	"SET_RELATION": "il rapporto con chi tocca cambia di un passo",
-	"BUILD_STRUCTURE": "si alza una costruzione dove si discute",
-	"RAZE_STRUCTURE": "viene giu' una costruzione dove si discute",
-	"REMOVE_ENTITY_TAG": "una casa perde un segno che portava addosso",
-	# **Gli Effetti che solo le Conseguenze usano** (D-232). Nessuna carta li
-	# porta, quindi non erano mai serviti — e quando il catalogo dei Consigli ha
-	# cominciato a leggere le Conseguenze, cinque tipi su sedici sono usciti col
-	# proprio nome in maiuscolo. Il vocabolario e' condiviso, e adesso e' intero.
-	"SET_CONTROL": "la Regione discussa cambia padrone",
-	"SET_STRUCTURE_GRADE": "una costruzione sale o scende di grado",
-	"SET_STRUCTURE_OWNER": "una costruzione passa di mano",
-	"SET_ENTITY_ACTIVE": "una casa esce dal tavolo, o ci rientra",
-	"CLOSE_PASSAGE": "una strada fra due Regioni si chiude",
-}
+## Fino alla 0.1.300 queste erano stringhe fisse, una per tipo di Effetto, e la
+## frase prometteva sempre lo stesso posto: *«si alza una costruzione dove si
+## discute»*, *«la domanda in gioco sale»*. Contro i dati, **89 righe stampate su
+## 164 dicevano il falso**: la costruzione si alza in un'altra Regione, la
+## domanda che sale e' un'altra, quella «in gioco» spesso scende. Il catalogo dei
+## Consigli le stampava cosi', e il suo cancello non se ne accorgeva — controlla
+## che il documento combaci col generatore, non che il generatore dica il vero.
+##
+## Adesso ogni frase si costruisce dall'Effetto intero: il verbo dal tipo, il
+## posto dal bersaglio, il verso dal payload. Un bersaglio che non sappiamo dire
+## **si dichiara**, come gia' faceva un tipo senza parole: un posto inventato
+## sembra una regola e non lo e'.
 
-## E i quattro che posano o tolgono un segno si dicono **col nome del segno
-## dentro**: «la Regione discussa diventa affamata» dice una cosa, e
-## `set_region_tag` non ne dice nessuna. La parola la da' `SignLabels`, che e'
-## l'unico posto dove un tag diventa italiano — la stessa che sta sulla mappa e
-## sul segnalino di cartone.
-const SIGN_COSTS: Dictionary = {
-	"SET_REGION_TAG": "la Regione discussa diventa %s",
-	"REMOVE_REGION_TAG": "la Regione discussa non e' piu' %s",
-	"SET_GLOBAL_TAG": "il mondo registra: %s",
-	"REMOVE_GLOBAL_TAG": "il mondo dimentica: %s",
-	# **Un segno addosso a una casa ha un nome, e il nome e' meta' della
-	# regola.** Diceva «una casa porta addosso un segno nuovo», che e' vero e
-	# inutile: su una scheda del Consiglio quella riga e' esattamente il pezzo
-	# che fa decidere (D-236).
-	"SET_ENTITY_TAG": "una casa porta addosso: %s",
-}
+## Dove cade un Effetto, detto come si dice al tavolo.
+static func _place(id: String, data = null) -> String:
+	match id:
+		"$region_focus", "$focus_region":
+			return "dove si discute"
+		"$adjacent":
+			return "in una Regione confinante"
+		"$rival_seat":
+			return "nella sede del rivale"
+		"$capital":
+			return "nella capitale"
+	if id.begins_with("$region_with:"):
+		return "in una Regione con %s" % _sign(id.substr(13), data)
+	return "in un posto che la carta non sa dire (%s)" % id
+
+
+## A chi tocca.
+static func _house(id: String, data = null) -> String:
+	match id:
+		"$proponent":
+			return "chi propone"
+		"$rival":
+			return "il rivale"
+		"$actor":
+			return "chi gioca"
+		"$controller":
+			return "chi tiene la Regione"
+		"$conditioner":
+			return "chi ha posto la condizione"
+	if id.begins_with("$entity_with:"):
+		return "la casa che porta %s" % _sign(id.substr(13), data)
+	return "una casa che la carta non sa dire (%s)" % id
+
+
+## Quale domanda: quella aperta, o un'altra chiamata per nome.
+static func _question(id: String, data = null) -> String:
+	if id == "$tension":
+		return "la domanda in gioco"
+	if data != null:
+		var card: Variant = (data.tensions as Dictionary).get(id)
+		if card != null:
+			return str((card as Dictionary).get("title", id))
+	return id
+
+
+## La parola stampata di un segno; se non ne ha una, il segno nudo.
+static func _sign(tag: String, data = null) -> String:
+	var word: String = SignLabels.label(tag, data) if tag != "" else ""
+	return word if word != "" else tag
+
+
+## Di quanto, e da che parte.
+static func _steps(n: int) -> String:
+	return "di %d" % n if n > 1 else ""
 
 const DISPOSITION: Dictionary = {
 	"DISCARD": "si scarta se la impegni",
@@ -122,15 +150,77 @@ static func cost_note(asset: Dictionary, data = null) -> String:
 ## nuovo senza parole si vede subito, e la prova lo prende.
 static func effect_note(effect: Dictionary, data = null) -> String:
 	var kind: String = str(effect.get("type", ""))
-	if SIGN_COSTS.has(kind):
-		var tag: String = str((effect.get("payload", {}) as Dictionary).get("tag", ""))
-		var word: String = SignLabels.label(tag, data) if tag != "" else ""
-		if word != "" and word != tag:
-			return str(SIGN_COSTS[kind]) % word
-		return "un segno cade sul mondo"
-	if COSTS.has(kind):
-		return str(COSTS[kind])
+	var target: Dictionary = effect.get("target", {}) as Dictionary
+	var payload: Dictionary = effect.get("payload", {}) as Dictionary
+	var id: String = str(target.get("id", ""))
+	var tag: String = str(payload.get("tag", ""))
+	# Una Presenza ha come bersaglio la **casa**: il posto sta nel payload.
+	var here: String = _place(str(payload.get("region_id", id)), data)
+	var there: String = _place(id, data)
+
+	match kind:
+		"SET_REGION_TAG":
+			return "%s diventa %s" % [there, _sign(tag, data)]
+		"REMOVE_REGION_TAG":
+			return "%s non e' piu' %s" % [there, _sign(tag, data)]
+		"SET_GLOBAL_TAG":
+			return "il mondo registra: %s" % _sign(tag, data)
+		"REMOVE_GLOBAL_TAG":
+			return "il mondo dimentica: %s" % _sign(tag, data)
+		"SET_ENTITY_TAG":
+			return "%s porta addosso: %s" % [_house(id, data), _sign(tag, data)]
+		"REMOVE_ENTITY_TAG":
+			return "%s perde: %s" % [_house(id, data), _sign(tag, data)]
+		"ADJUST_TENSION":
+			var delta: int = int(payload.get("delta", 0))
+			var verso: String = "sale" if delta > 0 else "scende"
+			return " ".join(PackedStringArray(
+				[_question(id, data), verso, _steps(abs(delta))]
+			)).strip_edges()
+		"BUILD_STRUCTURE":
+			return "si alza %s %s" % [_stone(str(payload.get("structure_type", "")), data), there]
+		"RAZE_STRUCTURE":
+			return "viene giu' %s %s" % [_stone(str(payload.get("structure_type", "")), data), there]
+		"SET_STRUCTURE_GRADE":
+			return "%s %s va al grado %d" % [
+				_stone(str(payload.get("structure_type", "")), data), there,
+				int(payload.get("grade", 1)),
+			]
+		"SET_STRUCTURE_OWNER":
+			return "una costruzione %s passa di mano" % there
+		"SET_CONTROL":
+			return "%s cambia padrone" % there
+		"ADD_PRESENCE":
+			return "%s entra %s" % [_house(id, data), here]
+		"REMOVE_PRESENCE":
+			return "%s se ne va %s" % [_house(id, data), here]
+		"CLOSE_PASSAGE":
+			return "si chiude la strada %s" % here
+		"SET_RELATION":
+			return "il rapporto fra %s cambia" % _pair(id, data)
+		"SET_TENSION_VISIBILITY":
+			return "%s si apre a tutti" % _question(id, data)
+		"SET_ENTITY_ACTIVE":
+			return "%s esce dal tavolo, o ci rientra" % _house(id, data)
 	return "un effetto senza parole (%s)" % kind
+
+
+## Le due case di un rapporto, che nel bersaglio stanno separate da una barra.
+static func _pair(id: String, data = null) -> String:
+	var parts: PackedStringArray = id.split("|")
+	if parts.size() != 2:
+		return "due case che la carta non sa dire (%s)" % id
+	return "%s e %s" % [_house(str(parts[0]), data), _house(str(parts[1]), data)]
+
+
+## Il nome stampato di una Pietra.
+static func _stone(id: String, data = null) -> String:
+	if id != "" and data != null:
+		var stone: Variant = (data.structure_types as Dictionary).get(id)
+		if stone != null:
+			return str((stone as Dictionary).get("name", "una costruzione"))
+	return "una costruzione"
+
 
 
 ## Il verbo che la carta porta, per chi la deve calare.

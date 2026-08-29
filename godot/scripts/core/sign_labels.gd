@@ -205,6 +205,18 @@ static func label(tag: String, data = null) -> String:
 		return "insediamento: %s" % _entity_name(tag.trim_prefix("settlement:"), data)
 	if tag.begins_with("discovery:"):
 		return "scoperta: %s" % tag.trim_prefix("discovery:")
+	# **E il dizionario dei segni ha gia' la parola stampata** (D-336). Il campo
+	# `title` e', per definizione dello schema, «il nome stampato: come il segno
+	# si chiama sul tavolo e nei verbali» — e per i segni della tessera
+	# (`granaio`, `pascolo`, `cristallo`, `capitale`) e' l'unico posto che ce
+	# l'ha. Finche' questa riga non c'era, una frase che nominava il luogo
+	# stampava il tag inglese: *«in una Regione con crystal_site»*.
+	if data != null:
+		var entry: Variant = (data.tags as Dictionary).get(tag)
+		if entry != null:
+			var printed: String = str((entry as Dictionary).get("title", ""))
+			if printed != "":
+				return printed
 	# Un segno nuovo senza parola si legge comunque - e il test lo segnala.
 	return tag.get_slice(":", tag.get_slice_count(":") - 1)
 
@@ -238,12 +250,41 @@ static func known(tag: String) -> bool:
 static func _region_name(id: String, data) -> String:
 	if data != null and data.regions.has(id):
 		return str(data.regions[id]["name"])
+	# **Un segnaposto non e' il nome di un posto** (D-336). `evicted:` porta
+	# dentro la Regione da cui si e' stati cacciati, e su una carta quella
+	# Regione non e' ancora scelta: c'e' scritto `$region_focus`. Finche' questa
+	# riga non c'era, la frase stampava lo slot — *«cacciata da $region_focus»* —
+	# e si e' visto solo quando la frase ha cominciato a nominare il segno.
+	match id:
+		"$region_focus", "$focus_region":
+			return "dove si discuteva"
+		"$adjacent":
+			return "una Regione confinante"
+		"$rival_seat":
+			return "la sede del rivale"
+		"$capital":
+			return "la capitale"
+	if id.begins_with("$"):
+		return "un posto deciso al tavolo"
 	return id
 
 
 static func _entity_name(id: String, data) -> String:
 	if data != null and data.entities.has(id):
 		return str(data.entities[id]["name"])
+	# **Il buco puo' stare dentro il segno** (D-336): `settlement:$proponent` e'
+	# l'insediamento di chi propone, e su una carta chi propone non e' ancora
+	# scelto. Come per le Regioni, un segnaposto si dice a parole invece di
+	# arrivare stampato fino alla scheda.
+	match id:
+		"$proponent":
+			return "chi propone"
+		"$rival":
+			return "il rivale"
+		"$actor":
+			return "chi gioca"
+	if id.begins_with("$"):
+		return "una casa decisa al tavolo"
 	return id
 
 
