@@ -1161,7 +1161,7 @@ Arrivano a piedi, mangiano poco, pregano molto. Sono tanti, e continuano ad arri
 
 *Il Consiglio che questa carta apre.*
 
-Nessun Consiglio proprio: se ne occupa quello di dominio SURVIVAL (D-028).
+Non apre un Consiglio suo: la questione la porta la sopravvivenza.
 
 ### Si chiuda un quartiere alla volta, e chi propone dica quale.
 
@@ -1680,7 +1680,7 @@ Aperta: tutti sanno che Aldric non ha erede. Nessuno sa ancora chi lo dirà per 
 
 *Il Consiglio che questa carta apre.*
 
-Nessun Consiglio proprio: se ne occupa quello di dominio SURVIVAL (D-028).
+Non apre un Consiglio suo: la questione la porta la sopravvivenza.
 
 ### Un secchio a testa e un turno per ognuno, e chi propone tiene l'ordine.
 

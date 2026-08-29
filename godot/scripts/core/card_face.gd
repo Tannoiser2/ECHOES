@@ -18,6 +18,7 @@ extends RefCounted
 
 const AssetText := preload("res://scripts/core/asset_text.gd")
 const SignLabels := preload("res://scripts/core/sign_labels.gd")
+const CouncilText := preload("res://scripts/core/council_text.gd")
 
 ## Le sei famiglie di Asset e il loro accento. Un solo accento saturo per
 ## famiglia (ART_BIBLE): la carta si riconosce dal bordo prima che dal titolo.
@@ -64,13 +65,26 @@ const BIOMES: Dictionary = {
 ## I cinque mazzi che si stampano come carte 2:3, piu' le tessere quadrate. Le
 ## Consequence non sono qui perche' non sono un pezzo: si vedono sulla mappa come
 ## overlay, e la COMPONENTS §2 lo dice gia'.
-const DECKS: Array = ["asset", "echo", "tension", "destiny", "entity"]
+## **E la scheda del Consiglio** (D-338): un pezzo suo, uno per Tensione.
+##
+## La carta Tensione resta **mini**, perche' D-097 la vuole appoggiata alla
+## traccia dei valori: e' il segnalino della domanda in gioco, e una carta da
+## tarocco sulla traccia non ci sta. Ma quello che serve per **risolvere** un
+## Consiglio — la domanda, le proposte con cosa lasciano, le dodici caselle
+## dell'economia — sono 870 caratteri mediani, e su una mini non entrano.
+##
+## Quindi due pezzi con due mestieri: la mini dice **quando** la domanda si
+## scalda e sta sulla traccia; il tarocco dice **cosa si puo' proporre e cosa
+## costa**, e si tira fuori quando il Consiglio si apre. E' il «fatto quando»
+## di ISSUES 89: una proposta si risolve guardando questa scheda e la mappa.
+const DECKS: Array = ["asset", "echo", "tension", "council", "destiny", "entity"]
 const TILES: Array = ["region"]
 
 ## Come si chiamano al tavolo, che e' come vanno chiamati ovunque li si nomini:
 ## sul foglio di stampa, nell'anteprima e nel riepilogo dell'export.
 const DECK_LABELS: Dictionary = {
 	"asset": "carte Asset", "echo": "carte Echo", "tension": "carte Domanda",
+	"council": "schede Consiglio",
 	"destiny": "carte Destino", "entity": "carte Casata", "region": "tessere Regione",
 }
 
@@ -112,6 +126,7 @@ static func _source(deck: String, data: RefCounted) -> Dictionary:
 		"asset": return data.assets
 		"echo": return data.echo_cards
 		"tension": return data.tensions
+		"council": return data.tensions
 		"destiny": return data.destinies
 		"entity": return data.entities
 		"region": return data.regions
@@ -140,6 +155,7 @@ static func of(deck: String, id: String, data: RefCounted) -> Dictionary:
 		"asset": return _asset(item, data)
 		"echo": return _echo(item, data)
 		"tension": return _tension(item)
+		"council": return _council(item, data)
 		"destiny": return _destiny(item, data)
 		"entity": return _entity(item, data)
 		"region": return _region(item)
@@ -177,24 +193,45 @@ static func _asset(asset: Dictionary, data: RefCounted) -> Dictionary:
 	var family: String = str(asset["family"])
 	var face: Dictionary = _face("asset", str(asset["id"]), "CARD")
 	face["title"] = str(asset["title"])
-	face["subtitle"] = "%s · %s" % [family.to_lower(), str(RARITY.get(str(asset["rarity"]), ""))]
+	# **In italiano** (D-339): la famiglia e' un enum, e `to_lower()` stampava
+	# «authority» su otto carte, «bonds» su altre otto, e cosi' per tutte e 48.
+	face["subtitle"] = "%s · %s" % [
+		SignLabels.family(family), str(RARITY.get(str(asset["rarity"]), "")),
+	]
 	face["accent"] = family_colour(family)
 	# La forza sta nell'angolo perche' e' l'unico numero che si legge con la carta
 	# ancora in mano, a ventaglio.
 	face["corner"] = str(int(asset["strength"]))
-	face["body"] = [str(asset.get("rules_text", ""))]
-	# La riga meccanica e' quella che il resolver legge davvero, chiesta ad
-	# `AssetText` e non riscritta: una carta non puo' stampare una cosa e farne
-	# un'altra (D-042).
-	# **Il verbo per primo, anche sul cartone** (D-228). La carta stampata portava
-	# forza, famiglia, modificatore, che fine fa e cosa costa impegnarla — e mai
-	# cosa fa se la cali. Chi la teneva in mano leggeva tutto tranne la prima
-	# cosa che serve sapere.
-	face["notes"] = [
-		AssetText.action_note(asset),
-		AssetText.note(asset, data),
-		str(asset.get("acquisition_rule", "")),
-	]
+	# **La carta stampa la faccia che si gioca, non il racconto** (D-340).
+	#
+	# Fino alla 0.1.304 qui c'era `rules_text` — voce d'autore — e le tre righe
+	# meccaniche del blocco digitale. Il blocco `physical`, che e' la carta come
+	# si usa al tavolo (bersaglio a segni, due Azioni, Risonanza, uso in
+	# Consiglio), non lo stampava nessuno: 48 carte su 48, e ce l'hanno tutte.
+	#
+	# Il racconto esce dalla faccia e resta nel dato: lo legge il brief d'arte,
+	# che e' il posto dove serve. Sulla carta ogni riga e' un segno che si posa
+	# in un posto preciso o un'azione che si fa.
+	#
+	# **Il ripiego e' dichiarato**: una carta senza blocco fisico stampa la
+	# vecchia faccia e lo dice, invece di uscire muta. Lo schema tiene il blocco
+	# opzionale finche' la conversione non e' finita, e un giorno in cui la
+	# conversione torna indietro dev'essere un giorno che si vede.
+	var physical: Array = AssetText.physical_lines(asset, data)
+	if physical.is_empty():
+		face["body"] = [str(asset.get("rules_text", ""))]
+		face["notes"] = [
+			AssetText.action_note(asset),
+			AssetText.note(asset, data),
+			str(asset.get("acquisition_rule", "")),
+			"questa carta non ha ancora una faccia fisica",
+		]
+	else:
+		face["body"] = []
+		face["notes"] = physical + [
+			AssetText.note(asset, data),
+			str(asset.get("acquisition_rule", "")),
+		]
 	face["family"] = family
 	face["art_prompt_key"] = str(asset["art_prompt_key"])
 	face["copies"] = int(asset.get("deck_copies", 1))
@@ -228,9 +265,12 @@ static func _tension(tension: Dictionary) -> Dictionary:
 	face["title"] = str(tension["title"])
 	# La velatura e' una regola e sta nel dato `visibility`: la carta la
 	# dichiara da se', cosi' la descrizione resta racconto (D-099).
+	# **In italiano** (D-339): `domain` e `relevant_asset_families` sono enum, e
+	# stamparli minuscoli stampa inglese. Sulla Carestia si leggeva «domanda ·
+	# survival» e «al Consiglio valgono: wealth, people, authority».
 	face["subtitle"] = "domanda%s · %s" % [
 		"" if str(tension["visibility"]) == "OPEN" else " velata",
-		str(tension["domain"]).to_lower(),
+		SignLabels.domain(str(tension["domain"])),
 	]
 	# La soglia e' il numero che sta sulla traccia: la carta la ripete perche' la
 	# traccia e' dall'altra parte del tavolo.
@@ -260,10 +300,55 @@ static func _tension(tension: Dictionary) -> Dictionary:
 	face["notes"] = [
 		rise,
 		"scende: %s" % " ".join(PackedStringArray(tension.get("decrease_rules", []))),
-		"al Consiglio valgono: %s" % ", ".join(
-			PackedStringArray(tension["relevant_asset_families"])
-		).to_lower(),
+		"al Consiglio valgono: %s" % ", ".join(PackedStringArray(
+			(tension["relevant_asset_families"] as Array).map(
+				func(f: Variant) -> String: return SignLabels.family(str(f))
+			)
+		)),
 	]
+	face["footer"] = str(tension["id"])
+	return face
+
+
+## La scheda del Consiglio che una Tensione apre: la domanda, le proposte con
+## cosa lasciano, e le dodici caselle. La riga di ogni proposta e' la stessa che
+## D-336 ha fatto dire il vero — fino alla 0.1.301 diceva «dove si discute»
+## anche quando la cosa succedeva altrove.
+static func _council(tension: Dictionary, data: RefCounted) -> Dictionary:
+	var face: Dictionary = _face("council", str(tension["id"]), "TAROT")
+	face["title"] = str(tension["title"])
+	face["subtitle"] = "il Consiglio che questa domanda apre"
+	var council: Dictionary = tension.get("council", {}) as Dictionary
+	var body: Array = []
+	for question in council.get("questions", []) as Array:
+		body.append(CouncilText.speak(str((question as Dictionary).get("text", ""))))
+	face["body"] = body
+	for proposal in council.get("propositions", []) as Array:
+		var said: Dictionary = CouncilText.proposition(
+			council, str((proposal as Dictionary).get("id", "")), data
+		)
+		if said.is_empty():
+			continue
+		var leaves: Array = []
+		for leaf in said["consequences"] as Array:
+			leaves.append(str((leaf as Dictionary)["leaves"]))
+		if leaves.is_empty():
+			face["notes"].append("· %s" % str(said["text"]))
+		else:
+			face["notes"].append("· %s → %s" % [
+				str(said["text"]), " · ".join(PackedStringArray(leaves)),
+			])
+	var physical: Dictionary = tension.get("physical", {}) as Dictionary
+	for pair in [["benefits", "SI OTTIENE"], ["costs", "SI PAGA"], ["failure", "SE CADE"]]:
+		var voices: Array = physical.get(str(pair[0]), []) as Array
+		if voices.is_empty():
+			continue
+		var said_now: Array = []
+		for voice in voices:
+			said_now.append(str((voice as Dictionary).get("text", "")))
+		face["notes"].append("%s — %s" % [
+			str(pair[1]), " · ".join(PackedStringArray(said_now)),
+		])
 	face["footer"] = str(tension["id"])
 	return face
 
@@ -302,8 +387,11 @@ static func _destiny(destiny: Dictionary, data: RefCounted) -> Dictionary:
 static func _entity(entity: Dictionary, data: RefCounted) -> Dictionary:
 	var face: Dictionary = _face("entity", str(entity["id"]), "TAROT")
 	face["title"] = str(entity["name"])
+	# **In italiano** (D-339): archetipo e bisogno sono enum, e si leggeva
+	# «people · vuole survival» sul tarocco che resta in vista tutta la partita.
 	face["subtitle"] = "%s · vuole %s" % [
-		str(entity["archetype"]).to_lower(), str(entity["need"]).to_lower(),
+		SignLabels.archetype(str(entity["archetype"])),
+		SignLabels.need(str(entity["need"])),
 	]
 	face["body"] = [str(entity.get("description", ""))]
 	var values: Array = []
@@ -311,7 +399,8 @@ static func _entity(entity: Dictionary, data: RefCounted) -> Dictionary:
 	var names: Array = actions.keys()
 	names.sort()
 	for action in names:
-		values.append("%s %d" % [str(action).to_lower(), int(actions[action])])
+		# I verbi, non i loro nomi interni: si leggeva «acquire 3 · claim 1».
+		values.append("%s %d" % [SignLabels.action(str(action)), int(actions[action])])
 	face["notes"] = [" · ".join(PackedStringArray(values))]
 	# **Cosa questa casa vuole lasciare, e cosa diventa se non ce la fa**
 	# (D-288 e D-290). La strategia dichiarata stava in un file che leggevano il
@@ -380,9 +469,12 @@ static func _region(region: Dictionary) -> Dictionary:
 		int(region["presence_slots"]),
 	]
 	face["body"] = [str(region.get("description", ""))]
-	face["notes"] = ["fonti: %s" % ", ".join(
-		PackedStringArray(region.get("asset_sources", []))
-	).to_lower()]
+	# Le famiglie in italiano (D-339): la tessera diceva «fonti: authority, force».
+	face["notes"] = ["fonti: %s" % ", ".join(PackedStringArray(
+		(region.get("asset_sources", []) as Array).map(
+			func(f: Variant) -> String: return SignLabels.family(str(f))
+		)
+	))]
 	face["art_prompt_key"] = str(region.get("art_prompt_key", ""))
 	face["terrain"] = str(region["biome"])
 	face["footer"] = str(region["id"])

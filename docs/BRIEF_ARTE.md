@@ -11,11 +11,11 @@ copia in `out/export/` a ogni `tools/run_export.sh`, e quella committata in
 
 ### `asset.authority.census` — Censimento
 
-- **soggetto**: Censimento — +1 quando AUTHORITY è rilevante per la Tensione. Una lista di nomi è la forma più semplice del potere — e la lista chiarisce: la Regione della domanda smette di essere contesa
+- **soggetto**: Censimento
 - **id**: `AST_AUTHORITY_CENSUS`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Censimento — +1 quando AUTHORITY è rilevante per la Tensione. Una lista di nomi è la forma più semplice del potere — e la lista chiarisce: la Regione della domanda smette di essere contesa.
+Historical dark-fantasy painting, single evocative scene depicting Censimento.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 oro spento accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -29,11 +29,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.authority.crown_right` — Diritto di Corona
 
-- **soggetto**: Diritto di Corona — Si scarta sempre: un diritto invocato due volte non è più un diritto, è una pretesa — e la pretesa divide: la Regione della domanda resta contesa
+- **soggetto**: Diritto di Corona
 - **id**: `AST_AUTHORITY_CROWN_RIGHT`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Diritto di Corona — Si scarta sempre: un diritto invocato due volte non è più un diritto, è una pretesa — e la pretesa divide: la Regione della domanda resta contesa.
+Historical dark-fantasy painting, single evocative scene depicting Diritto di Corona.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 oro spento accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -47,11 +47,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.authority.edict` — Editto
 
-- **soggetto**: Editto — Una riga scritta bene vale quanto chi la fa rispettare — e dove si discute, la legge calma la piazza: l'inquietudine si cancella
+- **soggetto**: Editto
 - **id**: `AST_AUTHORITY_EDICT`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Editto — Una riga scritta bene vale quanto chi la fa rispettare — e dove si discute, la legge calma la piazza: l'inquietudine si cancella.
+Historical dark-fantasy painting, single evocative scene depicting Editto.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 oro spento accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -65,11 +65,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.authority.interdict` — Interdetto
 
-- **soggetto**: Interdetto — Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: vietare una cosa a tutti alza la posta per tutti
+- **soggetto**: Interdetto
 - **id**: `AST_AUTHORITY_INTERDICT`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Interdetto — Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: vietare una cosa a tutti alza la posta per tutti.
+Historical dark-fantasy painting, single evocative scene depicting Interdetto.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 oro spento accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -83,11 +83,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.authority.investiture` — Investitura
 
-- **soggetto**: Investitura — +1 sempre, su qualsiasi fronte. Si scarta sempre: si concede una volta sola, e tutti se ne ricordano — perché la nomina scrive un nome nella linea: il mondo ricorda l'erede nominato
+- **soggetto**: Investitura
 - **id**: `AST_AUTHORITY_INVESTITURE`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Investitura — +1 sempre, su qualsiasi fronte. Si scarta sempre: si concede una volta sola, e tutti se ne ricordano — perché la nomina scrive un nome nella linea: il mondo ricorda l'erede nominato.
+Historical dark-fantasy painting, single evocative scene depicting Investitura.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 oro spento accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -101,11 +101,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.authority.magistrate` — Magistrato
 
-- **soggetto**: Magistrato — +2 sul fronte Oppose. Se la proposta passa lo stesso resta in mano: un giudice che ha avuto ragione serve ancora — e il giudice risponde: la domanda rimasta scritta sul muro si cancella
+- **soggetto**: Magistrato
 - **id**: `AST_AUTHORITY_MAGISTRATE`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Magistrato — +2 sul fronte Oppose. Se la proposta passa lo stesso resta in mano: un giudice che ha avuto ragione serve ancora — e il giudice risponde: la domanda rimasta scritta sul muro si cancella.
+Historical dark-fantasy painting, single evocative scene depicting Magistrato.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 oro spento accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -119,11 +119,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.authority.seal` — Sigillo
 
-- **soggetto**: Sigillo — +1 sul fronte Oppose. Il sigillo che manca ferma più cose del sigillo che c'è — e quello impegnato raffredda la questione: la Tensione in gioco scende di 1
+- **soggetto**: Sigillo
 - **id**: `AST_AUTHORITY_SEAL`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Sigillo — +1 sul fronte Oppose. Il sigillo che manca ferma più cose del sigillo che c'è — e quello impegnato raffredda la questione: la Tensione in gioco scende di 1.
+Historical dark-fantasy painting, single evocative scene depicting Sigillo.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 oro spento accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -137,11 +137,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.authority.succession_act` — Atto di Successione
 
-- **soggetto**: Atto di Successione — Forza 3. Si scarta sempre, e chi ti sta di fronte guadagna una presenza nella Regione di cui si discute: nominare un erede fa arrivare tutti quelli che non sono stati nominati
+- **soggetto**: Atto di Successione
 - **id**: `AST_AUTHORITY_SUCCESSION_ACT`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Atto di Successione — Forza 3. Si scarta sempre, e chi ti sta di fronte guadagna una presenza nella Regione di cui si discute: nominare un erede fa arrivare tutti quelli che non sono stati nominati.
+Historical dark-fantasy painting, single evocative scene depicting Atto di Successione.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 oro spento accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -155,11 +155,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.bonds.betrothal` — Promessa di Nozze
 
-- **soggetto**: Promessa di Nozze — +2 sul fronte Oppose: una promessa serve più a impedire un'alleanza che a farne una. Si scarta sempre — e resta scritta: fra le due case nasce un patto, e i patti si giudicano
+- **soggetto**: Promessa di Nozze
 - **id**: `AST_BONDS_BETROTHAL`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Promessa di Nozze — +2 sul fronte Oppose: una promessa serve più a impedire un'alleanza che a farne una. Si scarta sempre — e resta scritta: fra le due case nasce un patto, e i patti si giudicano.
+Historical dark-fantasy painting, single evocative scene depicting Promessa di Nozze.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 porpora tenue accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -173,11 +173,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.bonds.blood_tie` — Legame di Sangue
 
-- **soggetto**: Legame di Sangue — Non è un accordo: e una cosa che c'era prima dell'accordo, e che nessuno ha firmato. Impegnata, scrive il vincolo di sangue sulla coppia: da lì in poi, quella relazione non scende sotto il neutrale
+- **soggetto**: Legame di Sangue
 - **id**: `AST_BONDS_BLOOD_TIE`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Legame di Sangue — Non è un accordo: e una cosa che c'era prima dell'accordo, e che nessuno ha firmato. Impegnata, scrive il vincolo di sangue sulla coppia: da lì in poi, quella relazione non scende sotto il neutrale.
+Historical dark-fantasy painting, single evocative scene depicting Legame di Sangue.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 porpora tenue accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -191,11 +191,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.bonds.broken_pact` — Patto Rotto
 
-- **soggetto**: Patto Rotto — Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: rompere un patto davanti al tavolo scalda ogni domanda ancora aperta
+- **soggetto**: Patto Rotto
 - **id**: `AST_BONDS_BROKEN_PACT`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Patto Rotto — Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: rompere un patto davanti al tavolo scalda ogni domanda ancora aperta.
+Historical dark-fantasy painting, single evocative scene depicting Patto Rotto.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 porpora tenue accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -209,11 +209,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.bonds.favor` — Favore
 
-- **soggetto**: Favore — Piccolo, ricordato con precisione — e restituito al momento giusto: fra chi lo impegna e il rivale, una vendetta si spegne
+- **soggetto**: Favore
 - **id**: `AST_BONDS_FAVOR`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Favore — Piccolo, ricordato con precisione — e restituito al momento giusto: fra chi lo impegna e il rivale, una vendetta si spegne.
+Historical dark-fantasy painting, single evocative scene depicting Favore.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 porpora tenue accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -227,11 +227,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.bonds.guest_right` — Diritto di Ospitalità
 
-- **soggetto**: Diritto di Ospitalità — +1 quando BONDS è rilevante per la Tensione. Chi ha mangiato al tuo tavolo non può dire di no davanti a tutti. Può dirlo dopo — e chi lo impegna torna ospite: la cacciata dalla Regione della domanda si cancella
+- **soggetto**: Diritto di Ospitalità
 - **id**: `AST_BONDS_GUEST_RIGHT`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Diritto di Ospitalità — +1 quando BONDS è rilevante per la Tensione. Chi ha mangiato al tuo tavolo non può dire di no davanti a tutti. Può dirlo dopo — e chi lo impegna torna ospite: la cacciata dalla Regione della domanda si cancella.
+Historical dark-fantasy painting, single evocative scene depicting Diritto di Ospitalità.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 porpora tenue accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -245,11 +245,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.bonds.hostage` — Ostaggio
 
-- **soggetto**: Ostaggio — Forza 3. Si scarta sempre, e chi ti sta di fronte guadagna una presenza nella Regione di cui si discute: chi consegna un figlio compra una parola, e la paga a casa propria
+- **soggetto**: Ostaggio
 - **id**: `AST_BONDS_HOSTAGE`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Ostaggio — Forza 3. Si scarta sempre, e chi ti sta di fronte guadagna una presenza nella Regione di cui si discute: chi consegna un figlio compra una parola, e la paga a casa propria.
+Historical dark-fantasy painting, single evocative scene depicting Ostaggio.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 porpora tenue accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -263,11 +263,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.bonds.oath` — Giuramento
 
-- **soggetto**: Giuramento — Non si scarta mai. Un giuramento impegnato resta impegnato anche dopo, ed è la sua unica forza — e un giuramento rifatto scioglie quello spezzato: fra chi lo impegna e il rivale, il tradimento si cancella
+- **soggetto**: Giuramento
 - **id**: `AST_BONDS_OATH`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Giuramento — Non si scarta mai. Un giuramento impegnato resta impegnato anche dopo, ed è la sua unica forza — e un giuramento rifatto scioglie quello spezzato: fra chi lo impegna e il rivale, il tradimento si cancella.
+Historical dark-fantasy painting, single evocative scene depicting Giuramento.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 porpora tenue accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -281,11 +281,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.bonds.old_debt` — Debito Vecchio
 
-- **soggetto**: Debito Vecchio — +1 sul fronte Oppose. Nessuno se lo ricorda tranne le due persone che contano, e una delle due lo tira fuori adesso — e da adesso è pubblico: la sede del debitore resta segnata come indebitata
+- **soggetto**: Debito Vecchio
 - **id**: `AST_BONDS_OLD_DEBT`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Debito Vecchio — +1 sul fronte Oppose. Nessuno se lo ricorda tranne le due persone che contano, e una delle due lo tira fuori adesso — e da adesso è pubblico: la sede del debitore resta segnata come indebitata.
+Historical dark-fantasy painting, single evocative scene depicting Debito Vecchio.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 porpora tenue accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -299,11 +299,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.force.border_watch` — Guardia di Confine
 
-- **soggetto**: Guardia di Confine — +1 quando FORCE è rilevante per la Tensione. Contano i carri che passano, e sanno quali contare — e ogni conta ferma la strada: Le Vie Interrotte salgono di 1
+- **soggetto**: Guardia di Confine
 - **id**: `AST_FORCE_BORDER_WATCH`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Guardia di Confine — +1 quando FORCE è rilevante per la Tensione. Contano i carri che passano, e sanno quali contare — e ogni conta ferma la strada: Le Vie Interrotte salgono di 1.
+Historical dark-fantasy painting, single evocative scene depicting Guardia di Confine.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 rosso ossido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -317,11 +317,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.force.burned_gate` — Le Porte Bruciate
 
-- **soggetto**: Le Porte Bruciate — Forza 3. Si scarta sempre, e chi la gioca perde la propria presenza nella Regione di cui si discute: chi apre una porta così non resta li a difenderla
+- **soggetto**: Le Porte Bruciate
 - **id**: `AST_FORCE_BURNED_GATE`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Le Porte Bruciate — Forza 3. Si scarta sempre, e chi la gioca perde la propria presenza nella Regione di cui si discute: chi apre una porta così non resta li a difenderla.
+Historical dark-fantasy painting, single evocative scene depicting Le Porte Bruciate.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 rosso ossido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -335,11 +335,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.force.levy` — Leva Contadina
 
-- **soggetto**: Leva Contadina — Uomini con attrezzi da lavoro tenuti come lance. Bastano finché nessuno li conta — ma i campi restano soli: la Carestia sale di 1
+- **soggetto**: Leva Contadina
 - **id**: `AST_FORCE_LEVY`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Leva Contadina — Uomini con attrezzi da lavoro tenuti come lance. Bastano finché nessuno li conta — ma i campi restano soli: la Carestia sale di 1.
+Historical dark-fantasy painting, single evocative scene depicting Leva Contadina.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 rosso ossido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -353,11 +353,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.force.mercenaries` — Mercenari
 
-- **soggetto**: Mercenari — +1 sempre, su qualsiasi fronte: fuori tema vale quanto in tema. Dove passano, però, resta l'inquietudine
+- **soggetto**: Mercenari
 - **id**: `AST_FORCE_MERCENARIES`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Mercenari — +1 sempre, su qualsiasi fronte: fuori tema vale quanto in tema. Dove passano, però, resta l'inquietudine.
+Historical dark-fantasy painting, single evocative scene depicting Mercenari.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 rosso ossido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -371,11 +371,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.force.old_army` — Il Vecchio Esercito
 
-- **soggetto**: Il Vecchio Esercito — Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: richiamare i vecchi reggimenti dice al mondo che la cosa è seria
+- **soggetto**: Il Vecchio Esercito
 - **id**: `AST_FORCE_OLD_ARMY`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Il Vecchio Esercito — Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: richiamare i vecchi reggimenti dice al mondo che la cosa è seria.
+Historical dark-fantasy painting, single evocative scene depicting Il Vecchio Esercito.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 rosso ossido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -389,11 +389,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.force.roadblock` — Posto di Blocco
 
-- **soggetto**: Posto di Blocco — +1 sul fronte Oppose. Fermare un carro costa sempre meno che farlo partire — e la Regione della domanda resta tagliata fuori dal mondo
+- **soggetto**: Posto di Blocco
 - **id**: `AST_FORCE_ROADBLOCK`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Posto di Blocco — +1 sul fronte Oppose. Fermare un carro costa sempre meno che farlo partire — e la Regione della domanda resta tagliata fuori dal mondo.
+Historical dark-fantasy painting, single evocative scene depicting Posto di Blocco.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 rosso ossido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -407,11 +407,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.force.siege` — Assedio
 
-- **soggetto**: Assedio — +2 sul fronte Oppose. Non serve prendere una cosa per impedire che sia di qualcun altro — ma l'assedio affama anche la terra intorno: la Carestia sale di 1, e il presidio della Regione della domanda viene giu'
+- **soggetto**: Assedio
 - **id**: `AST_FORCE_SIEGE`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Assedio — +2 sul fronte Oppose. Non serve prendere una cosa per impedire che sia di qualcun altro — ma l'assedio affama anche la terra intorno: la Carestia sale di 1, e il presidio della Regione della domanda viene giu'.
+Historical dark-fantasy painting, single evocative scene depicting Assedio.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 rosso ossido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -425,11 +425,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.force.warband` — Banda Armata
 
-- **soggetto**: Banda Armata — Si scarta sempre, e la Tensione in gioco sale di 1: la paura non si spegne insieme alla questione
+- **soggetto**: Banda Armata
 - **id**: `AST_FORCE_WARBAND`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Banda Armata — Si scarta sempre, e la Tensione in gioco sale di 1: la paura non si spegne insieme alla questione.
+Historical dark-fantasy painting, single evocative scene depicting Banda Armata.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 rosso ossido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -443,11 +443,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.knowledge.archive` — Archivio
 
-- **soggetto**: Archivio — Se la proposta passa resta in mano. Le carte non si consumano: si consuma chi le sa leggere — e quello che si e' letto resta: sulla Regione della domanda si apre un archivio suo
+- **soggetto**: Archivio
 - **id**: `AST_KNOWLEDGE_ARCHIVE`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Archivio — Se la proposta passa resta in mano. Le carte non si consumano: si consuma chi le sa leggere — e quello che si e' letto resta: sulla Regione della domanda si apre un archivio suo.
+Historical dark-fantasy painting, single evocative scene depicting Archivio.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 verde-azzurro pallido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -461,11 +461,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.knowledge.ledger` — Registro
 
-- **soggetto**: Registro — +1 sul fronte Oppose. Chi tiene i conti sa cosa manca, e lo dice nel momento peggiore — e da quel momento i conti sono di tutti: il registro è pubblico
+- **soggetto**: Registro
 - **id**: `AST_KNOWLEDGE_LEDGER`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Registro — +1 sul fronte Oppose. Chi tiene i conti sa cosa manca, e lo dice nel momento peggiore — e da quel momento i conti sono di tutti: il registro è pubblico.
+Historical dark-fantasy painting, single evocative scene depicting Registro.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 verde-azzurro pallido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -479,11 +479,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.knowledge.old_map` — Mappa Vecchia
 
-- **soggetto**: Mappa Vecchia — +1 quando KNOWLEDGE è rilevante per la Tensione. I confini sono sbagliati; le strade no — e una strada giusta ricuce il ponte rotto sulla Regione della domanda
+- **soggetto**: Mappa Vecchia
 - **id**: `AST_KNOWLEDGE_OLD_MAP`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Mappa Vecchia — +1 quando KNOWLEDGE è rilevante per la Tensione. I confini sono sbagliati; le strade no — e una strada giusta ricuce il ponte rotto sulla Regione della domanda.
+Historical dark-fantasy painting, single evocative scene depicting Mappa Vecchia.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 verde-azzurro pallido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -497,11 +497,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.knowledge.proof` — Prova
 
-- **soggetto**: Prova — Se la proposta passa, resta in mano: una prova dimostrata non si consuma — e dimostra: la questione in gioco si apre a tutti i presenti
+- **soggetto**: Prova
 - **id**: `AST_KNOWLEDGE_PROOF`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Prova — Se la proposta passa, resta in mano: una prova dimostrata non si consuma — e dimostra: la questione in gioco si apre a tutti i presenti.
+Historical dark-fantasy painting, single evocative scene depicting Prova.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 verde-azzurro pallido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -515,11 +515,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.knowledge.red_crystal` — Il Cristallo Rosso
 
-- **soggetto**: Il Cristallo Rosso — Forza 3. Si scarta sempre, e la Tensione in gioco diventa aperta a tutti: mostrarlo chiude ogni dubbio e apre la domanda a chiunque fosse nella stanza
+- **soggetto**: Il Cristallo Rosso
 - **id**: `AST_KNOWLEDGE_RED_CRYSTAL`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Il Cristallo Rosso — Forza 3. Si scarta sempre, e la Tensione in gioco diventa aperta a tutti: mostrarlo chiude ogni dubbio e apre la domanda a chiunque fosse nella stanza.
+Historical dark-fantasy painting, single evocative scene depicting Il Cristallo Rosso.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 verde-azzurro pallido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -533,11 +533,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.knowledge.rumor` — Voce di Corridoio
 
-- **soggetto**: Voce di Corridoio — Non è vera. Non è ancora falsa — e finché gira, la questione in gioco torna velata: i numeri si nascondono dietro le voci
+- **soggetto**: Voce di Corridoio
 - **id**: `AST_KNOWLEDGE_RUMOR`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Voce di Corridoio — Non è vera. Non è ancora falsa — e finché gira, la questione in gioco torna velata: i numeri si nascondono dietro le voci.
+Historical dark-fantasy painting, single evocative scene depicting Voce di Corridoio.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 verde-azzurro pallido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -551,11 +551,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.knowledge.sealed_testimony` — Deposizione Sigillata
 
-- **soggetto**: Deposizione Sigillata — Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: quello che era scritto per un solo lettore adesso lo hanno sentito tutti
+- **soggetto**: Deposizione Sigillata
 - **id**: `AST_KNOWLEDGE_SEALED_TESTIMONY`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Deposizione Sigillata — Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: quello che era scritto per un solo lettore adesso lo hanno sentito tutti.
+Historical dark-fantasy painting, single evocative scene depicting Deposizione Sigillata.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 verde-azzurro pallido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -569,11 +569,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.knowledge.witness` — Testimone
 
-- **soggetto**: Testimone — +2 sul fronte Oppose. Si scarta sempre: un testimone si spende una volta sola — e la deposizione agita la casa accusata: la sua sede resta inquieta
+- **soggetto**: Testimone
 - **id**: `AST_KNOWLEDGE_WITNESS`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Testimone — +2 sul fronte Oppose. Si scarta sempre: un testimone si spende una volta sola — e la deposizione agita la casa accusata: la sua sede resta inquieta.
+Historical dark-fantasy painting, single evocative scene depicting Testimone.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 verde-azzurro pallido accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -587,11 +587,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.people.crowd` — Folla
 
-- **soggetto**: Folla — Nessuno l'ha convocata. È arrivata lo stesso — in capitale: e la capitale resta inquieta
+- **soggetto**: Folla
 - **id**: `AST_PEOPLE_CROWD`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Folla — Nessuno l'ha convocata. È arrivata lo stesso — in capitale: e la capitale resta inquieta.
+Historical dark-fantasy painting, single evocative scene depicting Folla.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 terracotta accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -605,11 +605,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.people.elders` — Consiglio degli Anziani
 
-- **soggetto**: Consiglio degli Anziani — +1 sul fronte Oppose. Parlano piano, dicono di no, e vengono ripetuti per tre villaggi — e sanno accompagnare: il lutto della Regione della domanda si elabora
+- **soggetto**: Consiglio degli Anziani
 - **id**: `AST_PEOPLE_ELDERS`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Consiglio degli Anziani — +1 sul fronte Oppose. Parlano piano, dicono di no, e vengono ripetuti per tre villaggi — e sanno accompagnare: il lutto della Regione della domanda si elabora.
+Historical dark-fantasy painting, single evocative scene depicting Consiglio degli Anziani.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 terracotta accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -623,11 +623,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.people.exodus` — Esodo
 
-- **soggetto**: Esodo — Forza 3. Si scarta sempre, e chi la gioca perde la propria presenza nella Regione di cui si discute: chi parte non torna al tavolo
+- **soggetto**: Esodo
 - **id**: `AST_PEOPLE_EXODUS`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Esodo — Forza 3. Si scarta sempre, e chi la gioca perde la propria presenza nella Regione di cui si discute: chi parte non torna al tavolo.
+Historical dark-fantasy painting, single evocative scene depicting Esodo.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 terracotta accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -641,11 +641,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.people.harvest_hands` — Braccia per il Raccolto
 
-- **soggetto**: Braccia per il Raccolto — +1 quando PEOPLE è rilevante per la Tensione. Non sono un esercito: ma senza di loro non si mangia — e dove arrivano, la fame della Regione della domanda si spegne
+- **soggetto**: Braccia per il Raccolto
 - **id**: `AST_PEOPLE_HARVEST_HANDS`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Braccia per il Raccolto — +1 quando PEOPLE è rilevante per la Tensione. Non sono un esercito: ma senza di loro non si mangia — e dove arrivano, la fame della Regione della domanda si spegne.
+Historical dark-fantasy painting, single evocative scene depicting Braccia per il Raccolto.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 terracotta accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -659,11 +659,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.people.march` — Marcia
 
-- **soggetto**: Marcia — Poca gente, ma in strada e alla stessa ora. Il punto non è quanti sono: è che si sono trovati — e le razioni imposte sulla Regione della domanda si rompono
+- **soggetto**: Marcia
 - **id**: `AST_PEOPLE_MARCH`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Marcia — Poca gente, ma in strada e alla stessa ora. Il punto non è quanti sono: è che si sono trovati — e le razioni imposte sulla Regione della domanda si rompono.
+Historical dark-fantasy painting, single evocative scene depicting Marcia.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 terracotta accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -677,11 +677,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.people.mobilization` — Mobilitazione
 
-- **soggetto**: Mobilitazione — +2 sul fronte Oppose: è più facile fermare qualcosa in molti che costruirla. Si scarta sempre — e la piazza resta calda: la Tensione in gioco sale di 1
+- **soggetto**: Mobilitazione
 - **id**: `AST_PEOPLE_MOBILIZATION`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Mobilitazione — +2 sul fronte Oppose: è più facile fermare qualcosa in molti che costruirla. Si scarta sempre — e la piazza resta calda: la Tensione in gioco sale di 1.
+Historical dark-fantasy painting, single evocative scene depicting Mobilitazione.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 terracotta accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -695,11 +695,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.people.spokesman` — Portavoce
 
-- **soggetto**: Portavoce — Qualcuno che dice ad alta voce quello che già pensano in molti, e che dopo non può più tornare indietro — la parola detta è una promessa fra le due case
+- **soggetto**: Portavoce
 - **id**: `AST_PEOPLE_SPOKESMAN`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Portavoce — Qualcuno che dice ad alta voce quello che già pensano in molti, e che dopo non può più tornare indietro — la parola detta è una promessa fra le due case.
+Historical dark-fantasy painting, single evocative scene depicting Portavoce.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 terracotta accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -713,11 +713,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.people.still_hands` — Braccia Ferme
 
-- **soggetto**: Braccia Ferme — Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: un paese che si ferma non si rimette in moto dove l'avevi lasciato
+- **soggetto**: Braccia Ferme
 - **id**: `AST_PEOPLE_STILL_HANDS`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Braccia Ferme — Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: un paese che si ferma non si rimette in moto dove l'avevi lasciato.
+Historical dark-fantasy painting, single evocative scene depicting Braccia Ferme.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 terracotta accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -731,11 +731,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.wealth.caravan` — Carovana
 
-- **soggetto**: Carovana — Si scarta sempre: una carovana spesa è una carovana partita — e una carovana che parte riapre la via: la Regione tagliata fuori si ricollega
+- **soggetto**: Carovana
 - **id**: `AST_WEALTH_CARAVAN`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Carovana — Si scarta sempre: una carovana spesa è una carovana partita — e una carovana che parte riapre la via: la Regione tagliata fuori si ricollega.
+Historical dark-fantasy painting, single evocative scene depicting Carovana.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 ambra accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -749,11 +749,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.wealth.credit` — Credito
 
-- **soggetto**: Credito — +1 sempre, su qualsiasi fronte. Vale nel momento in cui lo chiedi, e non un minuto dopo — perché chiederlo chiama tutti i debiti: il mondo ricorda che il debito fu chiamato
+- **soggetto**: Credito
 - **id**: `AST_WEALTH_CREDIT`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Credito — +1 sempre, su qualsiasi fronte. Vale nel momento in cui lo chiedi, e non un minuto dopo — perché chiederlo chiama tutti i debiti: il mondo ricorda che il debito fu chiamato.
+Historical dark-fantasy painting, single evocative scene depicting Credito.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 ambra accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -767,11 +767,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.wealth.grain` — Riserva di Grano
 
-- **soggetto**: Riserva di Grano — Conta più di un titolo, per il tempo in cui dura — e dura quanto basta: la Carestia scende di 1
+- **soggetto**: Riserva di Grano
 - **id**: `AST_WEALTH_GRAIN`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Riserva di Grano — Conta più di un titolo, per il tempo in cui dura — e dura quanto basta: la Carestia scende di 1.
+Historical dark-fantasy painting, single evocative scene depicting Riserva di Grano.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 ambra accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -785,11 +785,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.wealth.granary_keys` — Chiavi del Granaio
 
-- **soggetto**: Chiavi del Granaio — +2 sul fronte Oppose. Non possiedi il grano: possiedi la serratura — e la serratura raziona: sulla Regione della domanda resta il segno della razione
+- **soggetto**: Chiavi del Granaio
 - **id**: `AST_WEALTH_GRANARY_KEYS`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Chiavi del Granaio — +2 sul fronte Oppose. Non possiedi il grano: possiedi la serratura — e la serratura raziona: sulla Regione della domanda resta il segno della razione.
+Historical dark-fantasy painting, single evocative scene depicting Chiavi del Granaio.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 ambra accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -803,11 +803,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.wealth.land_mortgage` — Ipoteca sulle Terre
 
-- **soggetto**: Ipoteca sulle Terre — Forza 3. Si scarta sempre, e chi ti sta di fronte guadagna una presenza nella Regione di cui si discute: impegnare una terra fa arrivare chi la vuole
+- **soggetto**: Ipoteca sulle Terre
 - **id**: `AST_WEALTH_LAND_MORTGAGE`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Ipoteca sulle Terre — Forza 3. Si scarta sempre, e chi ti sta di fronte guadagna una presenza nella Regione di cui si discute: impegnare una terra fa arrivare chi la vuole.
+Historical dark-fantasy painting, single evocative scene depicting Ipoteca sulle Terre.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 ambra accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -821,11 +821,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.wealth.salt` — Sale
 
-- **soggetto**: Sale — +1 quando WEALTH è rilevante per la Tensione. Non nutre nessuno: senza, quello che nutre non arriva — e dove arriva, la magra si supera
+- **soggetto**: Sale
 - **id**: `AST_WEALTH_SALT`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Sale — +1 quando WEALTH è rilevante per la Tensione. Non nutre nessuno: senza, quello che nutre non arriva — e dove arriva, la magra si supera.
+Historical dark-fantasy painting, single evocative scene depicting Sale.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 ambra accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -839,11 +839,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.wealth.toll` — Pedaggio
 
-- **soggetto**: Pedaggio — +1 sul fronte Oppose. Una corda tesa fra due pali, e il diritto di non alzarla — e il diritto si scrive: sulla Regione della domanda resta il pedaggio
+- **soggetto**: Pedaggio
 - **id**: `AST_WEALTH_TOLL`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Pedaggio — +1 sul fronte Oppose. Una corda tesa fra due pali, e il diritto di non alzarla — e il diritto si scrive: sulla Regione della domanda resta il pedaggio.
+Historical dark-fantasy painting, single evocative scene depicting Pedaggio.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 ambra accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
@@ -857,11 +857,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `asset.wealth.treasury` — Il Tesoro
 
-- **soggetto**: Il Tesoro — Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: aprire il tesoro dice a tutti quanto vale davvero la questione
+- **soggetto**: Il Tesoro
 - **id**: `AST_WEALTH_TREASURY`
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Il Tesoro — Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: aprire il tesoro dice a tutti quanto vale davvero la questione.
+Historical dark-fantasy painting, single evocative scene depicting Il Tesoro.
 Painterly oil technique, visible brushwork, muted earth palette with a single
 ambra accent. Low side lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.

@@ -5,6 +5,176 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.305 — La carta stampava il racconto e taceva la faccia che si gioca (D-340)
+
+Il committente, guardando la carta Azione generata: *«devi eliminare ogni
+narrativa prolissa e far capire esattamente al giocatore che quel beneficio è un
+#tag che si mette in un posto preciso, o una azione che si fa. Ovvio che servono
+carte gigantesche se si scrive la divina commedia su di esse.»*
+
+### La carta Asset **è** la carta Azione, e non lo stampava
+
+È lei che porta il blocco `physical` — bersaglio a segni, due Azioni, Risonanza,
+uso in Consiglio. Ce l'hanno tutte e 48, e la faccia stampata non ne diceva
+niente: al suo posto `rules_text`, che è voce d'autore.
+
+| sul blocco `physical` | scritto | stampato |
+|---|---|---|
+| bersaglio a segni | 48 | **0** |
+| Azioni | 96 | **48**, solo come verbo |
+| Risonanza — avviene sempre | 48 | **0** |
+| uso in Consiglio | 48 | **0** |
+
+E il racconto che ne prendeva il posto: **48 carte su 48** nominavano una Regione
+per nome, che è la cosa che la grammatica fisica vieta; **12 su 48** ripetevano
+un fatto già detto dalla riga meccanica accanto.
+
+### Tre righe su cinque non si scrivono a mano
+
+**SEMPRE** e **AL CONSIGLIO** sono interamente campi strutturati, e adesso si
+generano da quelli: è l'unico modo perché la carta non possa dire una cosa e il
+motore farne un'altra. È la lezione di D-336, dove 89 frasi su 164 erano costanti
+scritte accanto a dati che nel frattempo erano cambiati.
+
+### Il racconto tolto dai 96 testi
+
+Tutte le Azioni avevano la stessa forma — la regola, poi una frase di colore.
+Riscritte tenendo ogni regola, comprese quelle nascoste in coda: **8.666
+caratteri → 5.751, il 34% in meno**.
+
+### Il costo, dichiarato
+
+| su 48 carte | prima | dopo |
+|---|---|---|
+| fuori dal bordo | 0 | **0** |
+| corpo sotto la misura piena | **4** | **46** |
+| la più stretta | — | **77%** |
+
+La carta dice quattro volte più cose e il corpo si stringe; l'illustrazione è
+scesa al suo pavimento del 34% su tutte e 48. Nessuna sfonda il bordo, nessuna
+scende sotto il 74% che la prova sorveglia — ma 46 su 48 stampano rimpicciolito,
+e la decisione che resta è del committente: **tarocco anche per le Asset, o
+l'illustrazione lascia la faccia delle regole**.
+
+Sul gioco niente: playtest 100 semi identico, **0 seggi bloccati su un solo
+livello su 8**, misto e uniforme.
+
+### Il documento dei testi ne mancava 1.128
+
+`REVISIONE_TESTI` raccoglieva `title` e `rules_text` e lasciava fuori il blocco
+fisico intero: **287 testi su 288** delle carte Asset, e **841 su 841** delle
+caselle di Tensione. È la sesta volta che un documento generato non fallisce e
+racconta il mondo sbagliato — dopo D-329, D-333, D-334, D-336 e D-338. Riparata
+la parte Asset; le Tensioni sono **ISSUES 103**.
+
+### Verbali
+
+**D-340** in `DECISIONS.md`, **ISSUES 69** aggiornata (la faccia si stampa; resta
+il formato), **ISSUES 103** aperta. Suite da 642 a **644 prove**; giro completo
+dei cancelli verde per codice di uscita.
+
+---
+
+## 0.1.304 — Le carte parlavano inglese, e nessuno le guardava (D-339)
+
+Il committente, dopo la scheda del Consiglio: *«poi fammi un esempio di carta»*.
+Generata **La Carestia** in scala 1:1 e guardata. Sul sottotitolo:
+
+> domanda · **survival** · al Consiglio valgono: **wealth, people, authority**
+
+Le parole italiane **esistevano**: i domini in `SignLabels`, le famiglie chiuse
+dentro `help_panel.gd` — che è una vista, e una tabella di parole chiusa in una
+vista la vede solo quella vista.
+
+### Non erano due carte
+
+| dove | cosa si leggeva |
+|---|---|
+| **48 carte Asset** | `authority · comune` |
+| **10 tessere Regione** | `fonti: authority, force` |
+| **carte Casata** e ogni vita | `faction · vuole wealth` |
+| **le Casate**, valori d'azione | `acquire 3 · claim 1 · forge 3` |
+| **60 carte Domanda** | `domanda · survival` |
+| 54 stringhe di dato | `ACQUIRE su AUTHORITY` |
+| 2 descrizioni | `dominio SURVIVAL (D-028)` — anche l'id di una decisione |
+
+Cinque enum senza parola italiana — famiglie, archetipi, bisogni, verbi — più
+`KNOWLEDGE`, che mancava alla tabella dei domini che già esisteva.
+
+### Fatto
+
+- **Cinque tabelle in `SignLabels`**, il posto dichiarato dove un id diventa una
+  parola. `help_panel.gd` non ha più la sua.
+- **Le facce le usano**: Asset, Regione, Casata (sottotitolo e valori), Domanda.
+- **56 stringhe di dato corrette** — tutte con la stessa forma meccanica, non
+  voce d'autore.
+
+### La guardia
+
+Non guarda un elenco di parole vietate: prende **gli enum dai dati** e chiede che
+nessuno arrivi su una faccia com'è scritto nel JSON. **Ha morso quattro volte di
+fila** mentre riparavo — Asset, Casate, Regioni, e archetipi/bisogni che avevo
+mappato sulla tabella sbagliata.
+
+### Il costo, dichiarato
+
+**Nessuno sul gioco**: playtest 100 semi, **0 seggi bloccati su un solo livello
+su 8**. Quattro documenti generati rigenerati (`CATALOGO_CARTE`,
+`CATALOGO_CONSIGLI`, `REVISIONE_TESTI`, `BRIEF_ARTE`), tutte le derive sono la
+stessa correzione. Suite da 641 a **642 prove**, diciannove cancelli verdi.
+
+---
+
+## 0.1.303 — La scheda del Consiglio: due pezzi, due mestieri (D-338)
+
+Il committente, dopo la misura di D-337: *«facciamo formato tarocco o quello che
+serve in più»*.
+
+Provato il tarocco per la carta intera, **non basta**: `TEN_SUCCESSION`, con
+sette proposte, esce dal bordo anche a 70×120. E c'è una ragione più seria: una
+prova che c'era già dice *«le domande sono mini, **per la traccia**»* — è D-097,
+ed è fisica. La carta Tensione **sta appoggiata alla traccia dei valori**.
+
+Quindi la seconda metà della frase: **quello che serve in più**.
+
+| pezzo | formato | mestiere |
+|---|---|---|
+| carta **Domanda** | 44×68, resta mini | sta sulla traccia, dice **quando** la domanda si scalda |
+| scheda **Consiglio** | 70×120, tarocco | si tira fuori quando il Consiglio si apre, dice **cosa si può proporre e cosa costa** |
+
+Sulla scheda: la domanda, ogni proposta **con cosa lascia** (la riga che D-336 ha
+fatto dire il vero), e le **dodici caselle** — SI OTTIENE, SI PAGA, SE CADE — che
+non erano stampate da nessuna parte.
+
+### La misura ha scelto la forma, non io
+
+| tentativo | esito |
+|---|---|
+| tutto sulla carta, **mini** | non ci sta, di quattro volte (D-337) |
+| tutto sulla carta, **tarocco** | **una carta sborda** |
+| **carta mini + scheda tarocco** | **tutte e 60 ci stanno** |
+
+### Il costo, dichiarato
+
+**Sessanta pezzi di cartone in più.** I fogli A4 di carte e tessere passano da
+**39 a 54**; con i tre fogli-fustella la scatola ne stampa 57. È il prezzo che
+ISSUES 89 prevedeva per la strada (b), pagato dove costa meno: non sulla carta
+che tieni in mano tutta la partita, ma su una scheda che tiri fuori quando serve.
+
+**Nessun costo sul gioco:** playtest 100 semi, **0 seggi bloccati su un solo
+livello su 8**. Non è cambiata una regola.
+
+### E un documento che non sapeva di avere sessanta pezzi in più
+
+`components_survey.py` costruisce la tabella dei mazzi da **righe scritte a
+mano**, non dai mazzi che `CardFace` dichiara. Aggiunto un mazzo, il documento
+che conta i pezzi della scatola non se n'è accorto e **non è fallito**. Aggiunta
+la riga; che la tabella si costruisca da sola resta da fare.
+
+Diciannove cancelli verdi, suite 641 prove / **36.404 asserzioni**.
+
+---
+
 ## 0.1.302 — La carta stampava la frase che non si può giocare (D-337)
 
 D-336 ha fatto dire il vero alla frase, ma quella riga vive in due documenti.

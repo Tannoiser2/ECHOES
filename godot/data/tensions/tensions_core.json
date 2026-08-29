@@ -1151,7 +1151,7 @@
         "condition:abandoned",
         "nomad_range"
       ],
-      "description": "Nessun Consiglio proprio: se ne occupa quello di dominio SURVIVAL (D-028).",
+      "description": "Non apre un Consiglio suo: la questione la porta la sopravvivenza.",
       "opening_line": "Nei villaggi bassi si scavano piu' fosse che solchi, e i guaritori discutono ancora se sia una cosa sola o tre cose diverse.",
       "theme": "THM_SOPRAVVIVENZA",
       "council": {
@@ -1346,7 +1346,7 @@
         "granary",
         "trade"
       ],
-      "description": "Nessun Consiglio proprio: se ne occupa quello di dominio SURVIVAL (D-028).",
+      "description": "Non apre un Consiglio suo: la questione la porta la sopravvivenza.",
       "opening_line": "I pozzi si abbassano di un palmo a settimana e nessuno dei vivi ricorda un'estate in cui l'avessero fatto due volte di fila.",
       "theme": "THM_SOPRAVVIVENZA",
       "council": {

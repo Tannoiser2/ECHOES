@@ -254,3 +254,117 @@ static func tooltip(asset: Dictionary, data = null) -> String:
 		lines.append("")
 		lines.append(rules)
 	return "\n".join(PackedStringArray(lines))
+
+
+## ---------------------------------------------------------------------------
+## La faccia fisica, riga per riga (D-340).
+##
+## Fino alla 0.1.304 la carta Asset stampava `rules_text` — il racconto — e
+## taceva **tutto** il blocco `physical`: bersaglio a segni, due Azioni,
+## Risonanza, uso in Consiglio. Quarantotto carte su quarantotto, cioe' la
+## faccia che si gioca al tavolo non era stampata da nessuna parte.
+##
+## Il committente, guardandola: *«devi eliminare ogni narrativa prolissa e far
+## capire esattamente al giocatore che quel beneficio e' un #tag che si mette in
+## un posto preciso, o una azione che si fa»*.
+##
+## Tre di queste cinque righe **non si scrivono a mano**: Risonanza e uso in
+## Consiglio sono interamente campi strutturati, e generarle e' l'unico modo
+## perche' la carta non possa dire una cosa e il motore farne un'altra (D-042).
+## Le altre due — il bersaglio e le due Azioni — hanno un testo d'autore, ed e'
+## quello che va scritto in imperativo, come lo schema gia' chiede.
+
+## Un segno come si legge sulla carta: col cancelletto davanti, che al tavolo e'
+## il modo in cui si distingue «una cosa che si posa» da una parola qualunque.
+static func _hash(tag: String, data = null) -> String:
+	var word: String = _sign(tag, data)
+	return word if word.begins_with("#") else "#%s" % word
+
+
+## Il nome stampato di un Tema.
+static func _theme(id: String, data = null) -> String:
+	if data != null:
+		var theme: Variant = (data.themes as Dictionary).get(id)
+		if theme != null:
+			return str((theme as Dictionary).get("title", id))
+	return id
+
+
+## **DOVE si gioca.** La riga e' d'autore perche' porta condizioni che i campi
+## non reggono ancora («dove hai gia' una presenza»): quelle stanno solo qui, ed
+## e' una voce aperta, non una scelta.
+static func target_line(physical: Dictionary) -> String:
+	var target: Dictionary = physical.get("target", {})
+	var text: String = str(target.get("text", ""))
+	return "DOVE  %s" % text if text != "" else ""
+
+
+## **Le due Azioni**, numerate: al tavolo si sceglie per numero, non per nome.
+static func action_lines(physical: Dictionary) -> Array:
+	const NUMBERS: Array = ["①", "②"]
+	var lines: Array = []
+	var actions: Array = physical.get("actions", [])
+	for i in actions.size():
+		var action: Dictionary = actions[i]
+		var number: String = str(NUMBERS[i]) if i < NUMBERS.size() else "%d" % (i + 1)
+		lines.append("%s %s — %s" % [number, str(action["label"]), str(action["text"])])
+	return lines
+
+
+## **La Risonanza, generata.** Avviene sempre e non si sceglie: scalda un Tema, e
+## se il bersaglio porta un certo segno scalda di piu' e lascia qualcosa.
+## Tutto questo sta in `theme`/`heat`/`if_target_tag`/`extra_heat`/`extra_tag`:
+## il campo `text` accanto e' voce d'autore e sulla carta non ci va.
+static func resonance_line(physical: Dictionary, data = null) -> String:
+	var resonance: Dictionary = physical.get("resonance", {})
+	if resonance.is_empty():
+		return ""
+	var parts: Array = ["%s +%d" % [
+		_theme(str(resonance.get("theme", "")), data), int(resonance.get("heat", 0)),
+	]]
+	var condition: String = str(resonance.get("if_target_tag", ""))
+	if condition != "":
+		var extra: Array = []
+		var extra_heat: int = int(resonance.get("extra_heat", 0))
+		if extra_heat > 0:
+			extra.append("+%d ancora" % extra_heat)
+		var extra_tag: String = str(resonance.get("extra_tag", ""))
+		if extra_tag != "":
+			extra.append("posa %s" % _hash(extra_tag, data))
+		if not extra.is_empty():
+			parts.append("se il bersaglio ha %s: %s" % [
+				_hash(condition, data), " e ".join(PackedStringArray(extra)),
+			])
+	return "SEMPRE  %s" % " · ".join(PackedStringArray(parts))
+
+
+## **Quanto vale impegnata**, generato: forza base e il Tema che la fa valere di
+## piu'.
+static func council_line(physical: Dictionary, data = null) -> String:
+	var use: Dictionary = physical.get("council_use", {})
+	if use.is_empty():
+		return ""
+	var line: String = "AL CONSIGLIO  %d" % int(use.get("base_strength", 0))
+	var themes: Array = use.get("bonus_if_theme", [])
+	if not themes.is_empty():
+		var named: Array = []
+		for id in themes:
+			named.append(_theme(str(id), data))
+		line += " · +1 se si discute di %s" % " o ".join(PackedStringArray(named))
+	return line
+
+
+## Le cinque righe della faccia fisica, nell'ordine in cui si leggono.
+static func physical_lines(asset: Dictionary, data = null) -> Array:
+	var physical: Dictionary = asset.get("physical", {})
+	if physical.is_empty():
+		return []
+	var lines: Array = [target_line(physical)]
+	lines.append_array(action_lines(physical))
+	lines.append(resonance_line(physical, data))
+	lines.append(council_line(physical, data))
+	var said: Array = []
+	for line in lines:
+		if str(line) != "":
+			said.append(str(line))
+	return said

@@ -26,6 +26,7 @@ extends PanelContainer
 ## quando c'e', la suite va rossa. Chi aggiunge un paragrafo qui aggiunge una
 ## clausola li'.
 
+const SignLabels := preload("res://scripts/core/sign_labels.gd")
 const SECTION: String = "[color=#e8b563][b]%s[/b][/color]"
 
 var _text: RichTextLabel
@@ -573,10 +574,9 @@ func _families_can_do(data: RefCounted) -> Array:
 		"FORGE": "forgiare", "CLAIM": "rivendicare", "ACQUIRE": "acquisire",
 	}
 	const FAMILIES: Array = ["FORCE", "AUTHORITY", "PEOPLE", "KNOWLEDGE", "WEALTH", "BONDS"]
-	const NAMES: Dictionary = {
-		"FORCE": "FORZA", "AUTHORITY": "AUTORITA", "PEOPLE": "GENTE",
-		"KNOWLEDGE": "SAPERE", "WEALTH": "RICCHEZZA", "BONDS": "LEGAMI",
-	}
+	# I nomi li dice `SignLabels` (D-339): erano una tabella qui dentro, e una
+	# tabella di parole chiusa in una vista la vede solo quella vista — la carta
+	# stampata scriveva «wealth, people, authority».
 	var counted: Dictionary = {}
 	for asset_id in data.assets:
 		var card: Dictionary = data.assets[str(asset_id)] as Dictionary
@@ -603,6 +603,6 @@ func _families_can_do(data: RefCounted) -> Array:
 		for kind in kinds:
 			parts.append("%d %s" % [int(per[str(kind)]), str(VERBS.get(str(kind), kind))])
 		out.append("[b]%s[/b] — %s" % [
-			str(NAMES.get(family, family)), ", ".join(PackedStringArray(parts))
+			SignLabels.family(str(family)).to_upper(), ", ".join(PackedStringArray(parts))
 		])
 	return out
