@@ -5,6 +5,85 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.300 — I 642 Effetti del Consiglio erano 164, e il 77% era un 35%
+
+Nessun codice. La voce più pesante aperta — **ISSUES 89**, *«la proposta non si
+risolve col dito»* — chiedeva di guardare i residui uno per uno, *«sono pochi
+abbastanza»*, e nessuno l'aveva fatto. Fatto adesso, e la misura corregge sé
+stessa in due punti.
+
+### Primo: 642 non era la quantità di lavoro
+
+Quel numero conta ogni **applicazione** — una Conseguenza usata da trentaquattro
+proposte pesa trentaquattro volte. Oggi le applicazioni sono **841**, perché il
+mazzo è cresciuto, ma gli **Effetti distinti scritti sono 164**, in 56
+Conseguenze su 234 proposte.
+
+Il lavoro è su 164 righe, non su 841. **Cinque volte più piccolo** di come la
+voce lo faceva sembrare.
+
+### Secondo, e più grave: «494 su 642» era il 77%. Il conto vero è il 35%
+
+Il numero vecchio guardava il **verbo** e non guardava **dove**. Le regole vere
+di una casella sono due: il verbo dev'essere fra i dodici, **e** il bersaglio
+dev'essere il luogo di cui si discute, il Tema, o il mondo.
+
+| come si conta | su 841 | |
+|---|---|---|
+| solo il verbo, bersaglio ignorato | 401 | 48% |
+| verbo + la traccia della questione | **631** | **75%** ← è il numero vecchio |
+| **verbo + bersaglio** | **295** | **35%** |
+
+Le due scale concordano: per Effetto distinto è **55 su 164**, il 34%.
+
+Non è contabilità. **Il «dove» è esattamente ciò che rende fisica una casella**:
+una casella agisce sul luogo che hai davanti col dito sopra. *«Prendi il
+controllo di un altro luogo con #commercio»* ha il verbo giusto e non può essere
+una casella — ed è l'esempio del Traghetto che la voce stessa racconta. Lo
+diceva a parole, e il suo numero non lo contava.
+
+### I 164, in quattro gruppi
+
+| | distinti | applicazioni |
+|---|---|---|
+| **0** — una casella di oggi lo sa dire | **55** | 295 |
+| **1** — la traccia della questione (`ADJUST_TENSION`) | **36** | 230 |
+| **2** — verbo giusto, posto sbagliato | **24** | 106 |
+| **3** — verbo che manca davvero | **49** | 210 |
+
+**Il gruppo 1 è una casella sola**: al tavolo la traccia c'è già e il segnalino
+si muove col dito, manca solo il verbo che lo dica.
+
+**Il gruppo 2 non chiede verbi nuovi**, chiede un modo di dire *quale* luogo — e
+quella grammatica esiste già sulle carte Azione da D-262 (*«la Regione col
+#granaio»*): non è mai stata portata sulla faccia della Tensione.
+
+**Il gruppo 3 è il solo che obbliga a inventare**: 18 segni che una casa porta
+addosso, 8 gradi di Pietra, 6 rapporti, 8 presenze che arrivano o se ne vanno,
+4 memorie che il mondo dimentica, più quattro pezzi unici.
+
+### Cosa cambia per la scelta
+
+La strada **(a)** — la proposta diventa un menu di caselle — è **più piccola e
+più difficile** di come sembrava. Più piccola: 164 righe. Più difficile: il 65%
+non è traducibile con quello che c'è, non il 23%.
+
+Ma si può fare in tre passi con una soglia visibile dopo ognuno, e **i primi due
+non chiedono di decidere niente di irreversibile**: una casella per la traccia
+(36 distinti, 230 applicazioni), poi il bersaglio a segni sulla faccia della
+Tensione (altri 24 e 106). Resta il 30% che chiede verbi nuovi, ed è lì che si
+decide cosa il Consiglio non deve più poter fare.
+
+**La misura non sceglie la strada.** La scelta resta del committente.
+
+### Verbali
+
+**ISSUES 89** riscritta col blocco della rimisura. Nessun cancello toccato: giro
+completo verde, playtest 100 semi, **0 seggi bloccati su un solo livello su 8**,
+misto e uniforme.
+
+---
+
 ## 0.1.299 — La vita delle Pietre, rimisurata, e la misura che non la vede
 
 Nessun codice: due misure e due verbali. Nasce da una domanda del committente
