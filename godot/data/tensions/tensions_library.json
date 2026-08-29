@@ -205,13 +205,13 @@
           ]
         },
         {
-          "text": "cambia il controllo di una terra da coltivo",
-          "takes_control": true,
+          "text": "porta una Presenza in una terra da coltivo",
           "on_region_with": [
             "granary",
             "nomad_range",
             "domain:TERRITORY"
-          ]
+          ],
+          "adds_presence": true
         },
         {
           "text": "toglie una Presenza da una terra da coltivo",
@@ -436,11 +436,12 @@
           ]
         },
         {
-          "text": "una carta cambia il controllo di una terra con #granaio",
-          "takes_control": true,
+          "text": "una Presenza arriva o se ne va da una terra con #granaio",
           "on_region_with": [
             "granary"
-          ]
+          ],
+          "adds_presence": true,
+          "removes_presence": true
         }
       ]
     },
@@ -851,11 +852,12 @@
       },
       "heats_when": [
         {
-          "text": "una carta cambia il controllo di una terra con #palude",
-          "takes_control": true,
+          "text": "una Presenza arriva o se ne va da una terra con #palude",
           "on_region_with": [
             "marsh"
-          ]
+          ],
+          "adds_presence": true,
+          "removes_presence": true
         }
       ]
     },
@@ -1039,11 +1041,12 @@
       },
       "heats_when": [
         {
-          "text": "una carta cambia il controllo di una terra con #bosco",
-          "takes_control": true,
+          "text": "una Presenza arriva o se ne va da una terra con #bosco",
           "on_region_with": [
             "forest"
-          ]
+          ],
+          "adds_presence": true,
+          "removes_presence": true
         }
       ]
     },
@@ -1419,11 +1422,12 @@
           ]
         },
         {
-          "text": "una carta cambia il controllo di una terra con #pascolo",
-          "takes_control": true,
+          "text": "una Presenza arriva o se ne va da una terra con #pascolo",
           "on_region_with": [
             "nomad_range"
-          ]
+          ],
+          "adds_presence": true,
+          "removes_presence": true
         }
       ]
     },
@@ -1608,12 +1612,13 @@
       },
       "heats_when": [
         {
-          "text": "una carta cambia il controllo di una terra con #porto o #palude",
-          "takes_control": true,
+          "text": "una Presenza arriva o se ne va da una terra con #porto o #palude",
           "on_region_with": [
             "harbor",
             "marsh"
-          ]
+          ],
+          "adds_presence": true,
+          "removes_presence": true
         }
       ]
     },
@@ -1801,11 +1806,12 @@
       },
       "heats_when": [
         {
-          "text": "una carta cambia il controllo di una terra con #capitale",
-          "takes_control": true,
+          "text": "una Presenza arriva o se ne va da una terra con #capitale",
           "on_region_with": [
             "capital"
-          ]
+          ],
+          "adds_presence": true,
+          "removes_presence": true
         }
       ]
     },
@@ -2195,11 +2201,12 @@
       },
       "heats_when": [
         {
-          "text": "una carta cambia il controllo di una terra con #capitale",
-          "takes_control": true,
+          "text": "una Presenza arriva o se ne va da una terra con #capitale",
           "on_region_with": [
             "capital"
-          ]
+          ],
+          "adds_presence": true,
+          "removes_presence": true
         }
       ]
     },
@@ -2545,11 +2552,12 @@
           ]
         },
         {
-          "text": "una carta cambia il controllo di una terra con #capitale",
-          "takes_control": true,
+          "text": "una Presenza arriva o se ne va da una terra con #capitale",
           "on_region_with": [
             "capital"
-          ]
+          ],
+          "adds_presence": true,
+          "removes_presence": true
         }
       ]
     },
@@ -2707,11 +2715,12 @@
       },
       "heats_when": [
         {
-          "text": "una carta cambia il controllo di una terra con #isola",
-          "takes_control": true,
+          "text": "una Presenza arriva o se ne va da una terra con #isola",
           "on_region_with": [
             "island"
-          ]
+          ],
+          "adds_presence": true,
+          "removes_presence": true
         }
       ]
     },
@@ -2896,12 +2905,13 @@
       },
       "heats_when": [
         {
-          "text": "una carta cambia il controllo di una terra con #granaio o #commercio",
-          "takes_control": true,
+          "text": "una Presenza arriva o se ne va da una terra con #granaio o #commercio",
           "on_region_with": [
             "granary",
             "trade"
-          ]
+          ],
+          "adds_presence": true,
+          "removes_presence": true
         }
       ]
     },
@@ -3066,11 +3076,12 @@
           ]
         },
         {
-          "text": "una carta cambia il controllo di una terra con #palude",
-          "takes_control": true,
+          "text": "una Presenza arriva o se ne va da una terra con #palude",
           "on_region_with": [
             "marsh"
-          ]
+          ],
+          "adds_presence": true,
+          "removes_presence": true
         }
       ]
     },
@@ -3228,11 +3239,12 @@
       },
       "heats_when": [
         {
-          "text": "una carta cambia il controllo di una terra con #cristallo",
-          "takes_control": true,
+          "text": "una Presenza arriva o se ne va da una terra con #cristallo",
           "on_region_with": [
             "crystal_site"
-          ]
+          ],
+          "adds_presence": true,
+          "removes_presence": true
         }
       ]
     },
@@ -3754,11 +3766,12 @@
       },
       "heats_when": [
         {
-          "text": "una carta cambia il controllo di una terra con #capitale",
-          "takes_control": true,
+          "text": "una Presenza arriva o se ne va da una terra con #capitale",
           "on_region_with": [
             "capital"
-          ]
+          ],
+          "adds_presence": true,
+          "removes_presence": true
         }
       ]
     },
@@ -4100,12 +4113,13 @@
       },
       "heats_when": [
         {
-          "text": "una carta cambia il controllo di una terra con #commercio o #capitale",
-          "takes_control": true,
+          "text": "una Presenza arriva o se ne va da una terra con #commercio o #capitale",
           "on_region_with": [
             "trade",
             "capital"
-          ]
+          ],
+          "adds_presence": true,
+          "removes_presence": true
         }
       ]
     },
@@ -4286,11 +4300,12 @@
           ]
         },
         {
-          "text": "una carta cambia il controllo di una terra con #bosco",
-          "takes_control": true,
+          "text": "una Presenza arriva o se ne va da una terra con #bosco",
           "on_region_with": [
             "forest"
-          ]
+          ],
+          "adds_presence": true,
+          "removes_presence": true
         }
       ]
     },
@@ -4464,11 +4479,12 @@
       },
       "heats_when": [
         {
-          "text": "una carta cambia il controllo di una terra con #capitale",
-          "takes_control": true,
+          "text": "una Presenza arriva o se ne va da una terra con #capitale",
           "on_region_with": [
             "capital"
-          ]
+          ],
+          "adds_presence": true,
+          "removes_presence": true
         }
       ]
     },
@@ -4810,12 +4826,13 @@
       },
       "heats_when": [
         {
-          "text": "una carta cambia il controllo di una terra con #porto o #commercio",
-          "takes_control": true,
+          "text": "una Presenza arriva o se ne va da una terra con #porto o #commercio",
           "on_region_with": [
             "harbor",
             "trade"
-          ]
+          ],
+          "adds_presence": true,
+          "removes_presence": true
         }
       ]
     },
@@ -4974,11 +4991,12 @@
       },
       "heats_when": [
         {
-          "text": "una carta cambia il controllo di una terra con #miniera",
-          "takes_control": true,
+          "text": "una Presenza arriva o se ne va da una terra con #miniera",
           "on_region_with": [
             "mine"
-          ]
+          ],
+          "adds_presence": true,
+          "removes_presence": true
         }
       ]
     },
@@ -5137,12 +5155,13 @@
       },
       "heats_when": [
         {
-          "text": "una carta cambia il controllo di una terra con #palude o #bosco",
-          "takes_control": true,
+          "text": "una Presenza arriva o se ne va da una terra con #palude o #bosco",
           "on_region_with": [
             "marsh",
             "forest"
-          ]
+          ],
+          "adds_presence": true,
+          "removes_presence": true
         }
       ]
     },
@@ -5452,11 +5471,12 @@
       },
       "heats_when": [
         {
-          "text": "una carta cambia il controllo di una terra con #isola",
-          "takes_control": true,
+          "text": "una Presenza arriva o se ne va da una terra con #isola",
           "on_region_with": [
             "island"
-          ]
+          ],
+          "adds_presence": true,
+          "removes_presence": true
         }
       ]
     },
@@ -5616,12 +5636,13 @@
       },
       "heats_when": [
         {
-          "text": "una carta cambia il controllo di una terra con #miniera o #cristallo",
-          "takes_control": true,
+          "text": "una Presenza arriva o se ne va da una terra con #miniera o #cristallo",
           "on_region_with": [
             "mine",
             "crystal_site"
-          ]
+          ],
+          "adds_presence": true,
+          "removes_presence": true
         }
       ]
     },
@@ -5931,12 +5952,13 @@
       },
       "heats_when": [
         {
-          "text": "una carta cambia il controllo di una terra con #selvaggio o #bosco",
-          "takes_control": true,
+          "text": "una Presenza arriva o se ne va da una terra con #selvaggio o #bosco",
           "on_region_with": [
             "wild",
             "forest"
-          ]
+          ],
+          "adds_presence": true,
+          "removes_presence": true
         }
       ]
     },
@@ -6095,12 +6117,13 @@
       },
       "heats_when": [
         {
-          "text": "una carta cambia il controllo di una terra con #palude o #isola",
-          "takes_control": true,
+          "text": "una Presenza arriva o se ne va da una terra con #palude o #isola",
           "on_region_with": [
             "marsh",
             "island"
-          ]
+          ],
+          "adds_presence": true,
+          "removes_presence": true
         }
       ]
     },
@@ -6447,11 +6470,12 @@
       },
       "heats_when": [
         {
-          "text": "una carta cambia il controllo di una terra con #palude",
-          "takes_control": true,
+          "text": "una Presenza arriva o se ne va da una terra con #palude",
           "on_region_with": [
             "marsh"
-          ]
+          ],
+          "adds_presence": true,
+          "removes_presence": true
         }
       ]
     },
@@ -6625,11 +6649,12 @@
       },
       "heats_when": [
         {
-          "text": "una carta cambia il controllo di una terra con #porto",
-          "takes_control": true,
+          "text": "una Presenza arriva o se ne va da una terra con #porto",
           "on_region_with": [
             "harbor"
-          ]
+          ],
+          "adds_presence": true,
+          "removes_presence": true
         }
       ]
     },
@@ -6971,12 +6996,13 @@
       },
       "heats_when": [
         {
-          "text": "una carta cambia il controllo di una terra con #bosco o #selvaggio",
-          "takes_control": true,
+          "text": "una Presenza arriva o se ne va da una terra con #bosco o #selvaggio",
           "on_region_with": [
             "forest",
             "wild"
-          ]
+          ],
+          "adds_presence": true,
+          "removes_presence": true
         }
       ]
     },
@@ -7150,11 +7176,12 @@
       },
       "heats_when": [
         {
-          "text": "una carta cambia il controllo di una terra con #granaio",
-          "takes_control": true,
+          "text": "una Presenza arriva o se ne va da una terra con #granaio",
           "on_region_with": [
             "granary"
-          ]
+          ],
+          "adds_presence": true,
+          "removes_presence": true
         }
       ]
     },
@@ -7329,12 +7356,13 @@
       },
       "heats_when": [
         {
-          "text": "una carta cambia il controllo di una terra con #commercio o #porto",
-          "takes_control": true,
+          "text": "una Presenza arriva o se ne va da una terra con #commercio o #porto",
           "on_region_with": [
             "trade",
             "harbor"
-          ]
+          ],
+          "adds_presence": true,
+          "removes_presence": true
         }
       ]
     },
@@ -7512,12 +7540,13 @@
       },
       "heats_when": [
         {
-          "text": "una carta cambia il controllo di una terra con #porto o #isola",
-          "takes_control": true,
+          "text": "una Presenza arriva o se ne va da una terra con #porto o #isola",
           "on_region_with": [
             "harbor",
             "island"
-          ]
+          ],
+          "adds_presence": true,
+          "removes_presence": true
         }
       ]
     },
@@ -7695,12 +7724,13 @@
       },
       "heats_when": [
         {
-          "text": "una carta cambia il controllo di una terra con #bosco o #commercio",
-          "takes_control": true,
+          "text": "una Presenza arriva o se ne va da una terra con #bosco o #commercio",
           "on_region_with": [
             "forest",
             "trade"
-          ]
+          ],
+          "adds_presence": true,
+          "removes_presence": true
         }
       ]
     },
@@ -7874,11 +7904,12 @@
       },
       "heats_when": [
         {
-          "text": "una carta cambia il controllo di una terra con #commercio",
-          "takes_control": true,
+          "text": "una Presenza arriva o se ne va da una terra con #commercio",
           "on_region_with": [
             "trade"
-          ]
+          ],
+          "adds_presence": true,
+          "removes_presence": true
         }
       ]
     },
@@ -8222,11 +8253,12 @@
       },
       "heats_when": [
         {
-          "text": "una carta cambia il controllo di una terra con #palude",
-          "takes_control": true,
+          "text": "una Presenza arriva o se ne va da una terra con #palude",
           "on_region_with": [
             "marsh"
-          ]
+          ],
+          "adds_presence": true,
+          "removes_presence": true
         }
       ]
     },
@@ -8401,12 +8433,13 @@
       },
       "heats_when": [
         {
-          "text": "una carta cambia il controllo di una terra con #commercio o #capitale",
-          "takes_control": true,
+          "text": "una Presenza arriva o se ne va da una terra con #commercio o #capitale",
           "on_region_with": [
             "trade",
             "capital"
-          ]
+          ],
+          "adds_presence": true,
+          "removes_presence": true
         }
       ]
     },
@@ -8583,11 +8616,12 @@
       },
       "heats_when": [
         {
-          "text": "una carta cambia il controllo di una terra con #porto",
-          "takes_control": true,
+          "text": "una Presenza arriva o se ne va da una terra con #porto",
           "on_region_with": [
             "harbor"
-          ]
+          ],
+          "adds_presence": true,
+          "removes_presence": true
         }
       ]
     }

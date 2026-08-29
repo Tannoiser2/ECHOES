@@ -915,6 +915,7 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
             verbi = [
                 riga.get("puts_tag"), riga.get("clears_tag"), riga.get("builds"),
                 riga.get("takes_control"), riga.get("removes_presence"),
+                riga.get("adds_presence"),
             ]
             if not any(verbi):
                 guai.append(

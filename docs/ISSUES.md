@@ -2768,11 +2768,12 @@ e' in gioco.
 
 ---
 
-### 100. Le caselle «si accende quando» sono un pavimento, e il Calore ne sveglia una sola
+### 100. Le caselle «si accende quando» sono ancora un pavimento derivato
 
 `contenuto` · `regole` · `da-decidere` · aperta in 0.1.293
 ([D-330](DECISIONS.md#d-330)) · **riscritta in 0.1.294**
-([D-331](DECISIONS.md#d-331))
+([D-331](DECISIONS.md#d-331)) · **due punti chiusi in 0.1.298**
+([D-335](DECISIONS.md#d-335))
 
 > **La prima stesura poneva la domanda sbagliata**, e l'avevo posta io: *«il Tema
 > lo dichiara la carta o la Tensione?»*. La carta disegnata dal committente non
@@ -2784,30 +2785,40 @@ e' in gioco.
 > Ci scriveva anche un errore: *«con 60 Tensioni e 48 carte la regola sta su
 > meno posti dalla parte della Tensione»*. E' il contrario, e di cinque volte.
 
-Quello che resta e' **d'autore**, e sono quattro cose diverse.
+> **Due punti sono chiusi.** Il punto 4 — *una questione o tutte* — l'ha deciso
+> il committente: si scaldano tutte (D-332). E il punto 3 non era una scelta ma
+> un difetto: il ponte reggeva il 94,8% delle cadute perche' **48 righe su 66
+> guardavano gesti che le Azioni non fanno mai** (D-335). Ripuntate, la casella
+> decide il **29,6%**.
 
-1. **Una sola carta e' scritta a mano.** `TEN_ENCLOSURE` porta le quattro righe
-   che il committente ha disegnato su *I Recinti*. Le altre 46 hanno un
-   pavimento derivato da `focus_region_tags`, e il testo si vede che e'
-   meccanico: *«una carta posa #fame o #requisito o #malcontento»*. Al tavolo si
-   legge, ma non e' una faccia finita.
+Quello che resta e' **d'autore**, e sono tre cose.
+
+1. **Una sola carta e' scritta a mano.** `TEN_ENCLOSURE` porta le righe che il
+   committente ha disegnato su *I Recinti*. Le altre 46 hanno un pavimento
+   derivato da `focus_region_tags`, e il testo si vede che e' meccanico: *«una
+   carta posa #fame o #requisito o #malcontento»*, *«una Presenza arriva o se ne
+   va da una terra con #granaio»*. Al tavolo si legge, ma non e' una faccia
+   finita.
 2. **Tredici Tensioni non hanno la casella**, perche' non dichiaravano nessun
    `focus_region_tags` da cui derivarla. Per loro vale il ponte, e nessuno puo'
-   leggere sulla carta perche' si scaldano.
-3. **Il ponte e' ancora vivo**, e regge **124 cadute di Calore su 383**.
-4. **E la scelta vera, che non prendo io: una questione o tutte.** Oggi fra le
-   questioni che riconoscono il gesto ne vince **una sola**, la piu' vicina alla
-   soglia — ed e' per questo che togliere il filtro del Tema ha spostato solo
-   **5 cadute su 383** (D-331): le altre questioni che riconoscevano il gesto
-   erano meno mature e hanno perso. Se il Calore andasse a **tutte** quelle che
-   riconoscono, il gesto sveglierebbe ogni domanda che riguarda — ma il volume
-   del Calore si moltiplicherebbe, e con lui i Consigli per anno, che oggi
-   stanno in banda 3-6. **E' una decisione di volume, ed e' del committente.**
+   leggere sulla carta perche' si scaldano. E **sono quasi tutte di rapporti** —
+   *I Voti Non Sciolti*, *Il Diritto d'Asilo*, *La Vecchia Guardia*, *I Nomi
+   Vecchi* — il che le lega al punto qui sotto.
+3. **Manca il verbo dei rapporti.** `SET_RELATION` esce **159 volte** su
+   vent'anni e nessuna riga puo' nominarlo. Non ho aggiunto `changes_relation`
+   perche' oggi nessuna riga lo userebbe: le 47 derivate sono tutte di luogo, e
+   un cambio di rapporto non e' un gesto su un luogo. Il verbo nasce **insieme**
+   alle righe delle tredici, non prima.
 
-**Il metro**: `cli/run_resonance_probe.gd`, righe *Calore caduto su una che ce
-l'ha* (259 su 383) e *...e di un Tema diverso dalla carta* (5). **Fatto quando**
-nessuna caduta di Calore ricade sul ponte, e ogni riga stampata e' scritta da chi
-scrive il gioco.
+**E un numero che va guardato mentre si scrivono queste facce:** ripuntare le
+righe ha fatto scendere le **Verita' scritte** da 167 a 159 al tavolo misto (153
+a 143 diverse), perche' i Consigli passano piu' puliti e un successo che non
+costa niente lascia meno memoria. Ogni riga scritta a mano sposta quel numero:
+va riletto a ogni carta finita, non alla fine.
+
+**Il metro**: `cli/run_resonance_probe.gd` col ponte spento (121 su 409) e la
+riga *...e di un Tema diverso dalla carta* (54). **Fatto quando** ogni riga
+stampata e' scritta da chi scrive il gioco, e le tredici hanno la loro casella.
 
 ---
 

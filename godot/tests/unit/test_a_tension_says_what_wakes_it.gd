@@ -122,12 +122,28 @@ func test_the_printed_rule_chooses_the_question() -> void:
 			% [before, session.tensions.value(twin)])
 
 
-## **Quando nessuno riconosce il gesto, vale il ponte** — il ripiego
-## dichiarato, non un caso. Il segno del banco non lo guarda nessuna delle
-## sessanta, quindi qui il ponte e' davvero l'ultima parola.
+## **Il banco messo a tacere**, perche' il ponte si possa provare (D-335).
+##
+## La prima stesura di questa prova si fidava dei dati spediti: il segno del
+## banco non lo guardava nessuna delle sessanta, quindi il ponte era per forza
+## l'ultima parola. Il giorno in cui 46 righe hanno cominciato a guardare
+## l'arrivo di una Presenza, la prova e' andata rossa — e aveva ragione lei.
+##
+## Cercare un posto che nessuna riga guarda non serve: **non esiste**. Le 46
+## righe nominano segni che stanno su tutta la mappa, quindi un movimento di
+## Presenza sveglia sempre qualcosa. Allora la condizione si fabbrica: si tolgono
+## le caselle a tutte le questioni del banco, e resta solo il ripiego da provare.
+func _silence_the_table() -> void:
+	for tension_id in session.data.tensions:
+		if str(tension_id) == TWIN:
+			continue
+		(session.data.tensions[str(tension_id)] as Dictionary)["heats_when"] = []
+
+
 func test_without_the_box_the_bridge_still_carries() -> void:
 	_a_card_that_marks()
 	var twin: String = _fabricate_twin([])
+	_silence_the_table()
 	var siblings: Array = _siblings()
 	assert_true(siblings.size() > 0, "il Tema ha gia' una questione in gioco")
 	var before_twin: int = session.tensions.value(twin)
@@ -204,3 +220,86 @@ func test_every_question_that_recognises_the_gesture_wakes() -> void:
 	assert_true(session.tensions.value("TEN_TEST_TWIN_B") > before_second,
 		"e anche la seconda (%d -> %d)"
 			% [before_second, session.tensions.value("TEN_TEST_TWIN_B")])
+
+
+## La Regione dove la carta si puo' calare **e che porta almeno un segno**: al
+## filtro del luogo serve un segno da nominare, e una Regione nuda non lo prova.
+func _somewhere_legal_with_a_mark() -> Array:
+	for region_id in session.world["regions"]:
+		var params: Dictionary = {
+			"asset_id": CARD, "face_action": 0, "region_id": str(region_id),
+		}
+		if session.actions.check(SEAT, "PLAY_CARD", params) != "":
+			continue
+		var tags: Array = (session.world["regions"][str(region_id)] as Dictionary).get(
+			"tags", []
+		) as Array
+		if not tags.is_empty():
+			return [str(region_id), str(tags[0])]
+	return ["", ""]
+
+
+func _play_at(region_id: String) -> Dictionary:
+	return session.actions.execute(SEAT, {
+		"template": "PLAY_CARD",
+		"params": {"asset_id": CARD, "face_action": 0, "region_id": region_id},
+	})
+
+
+## **Una Presenza che arriva accende** (D-335).
+##
+## Portare una Presenza in una Regione e' il gesto piu' frequente che le Azioni
+## fanno alla mappa — 175 volte su vent'anni — e fino alla 0.1.298 nessun verbo
+## della casella lo nominava. Le righe potevano guardare solo il controllo, che
+## nessuna Azione cambia mai, e i segni di Regione, che escono sei volte.
+func test_a_presence_that_arrives_wakes_the_question() -> void:
+	_a_card_that_marks()
+	var twin: String = _fabricate_twin([{
+		"text": "una Presenza arriva da qualche parte", "adds_presence": true,
+	}])
+	var before: int = session.tensions.value(twin)
+
+	assert_true(bool(_play().get("ok", false)), "la carta si gioca")
+	assert_true(session.tensions.value(twin) > before,
+		"la Presenza arrivata ha scaldato la questione (%d -> %d)"
+			% [before, session.tensions.value(twin)])
+
+
+## **Il filtro del luogo morde anche su una Presenza** (D-335).
+##
+## E' la prova della riparazione peggiore di questa tornata: una Presenza non ha
+## come bersaglio la Regione, ha la **casata** — il posto sta nel payload. Finche'
+## il filtro guardava solo il bersaglio, **ogni** riga di Presenza con un filtro
+## di luogo era muta per costruzione, compresa la quarta riga de «I Recinti».
+## Senza la riparazione questa prova va rossa.
+func test_the_place_filter_bites_on_a_presence() -> void:
+	_a_card_that_marks()
+	var where: Array = _somewhere_legal_with_a_mark()
+	assert_ne(str(where[0]), "", "c'e' una Regione giocabile con un segno sopra")
+	var twin: String = _fabricate_twin([{
+		"text": "una Presenza arriva in una terra segnata", "adds_presence": true,
+		"on_region_with": [str(where[1])],
+	}])
+	var before: int = session.tensions.value(twin)
+
+	assert_true(bool(_play_at(str(where[0])).get("ok", false)), "la carta si gioca")
+	assert_true(session.tensions.value(twin) > before,
+		"il filtro ha riconosciuto il luogo della Presenza (%d -> %d)"
+			% [before, session.tensions.value(twin)])
+
+
+## E lo stesso filtro **non** morde dove il segno non c'e': se questa passasse
+## sempre, la prova di sopra non proverebbe niente.
+func test_the_place_filter_on_a_presence_can_also_say_no() -> void:
+	_a_card_that_marks()
+	var where: Array = _somewhere_legal_with_a_mark()
+	assert_ne(str(where[0]), "", "c'e' una Regione giocabile con un segno sopra")
+	var twin: String = _fabricate_twin([{
+		"text": "una Presenza arriva in una terra che non e' questa",
+		"adds_presence": true, "on_region_with": ["condition:seminato_apposta"],
+	}])
+	var before: int = session.tensions.value(twin)
+
+	assert_true(bool(_play_at(str(where[0])).get("ok", false)), "la carta si gioca")
+	assert_eq(session.tensions.value(twin), before,
+		"il filtro ha detto no: quel segno la Regione non ce l'ha")

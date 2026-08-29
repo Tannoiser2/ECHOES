@@ -5,6 +5,93 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.298 — Le righe guardavano tre gesti che le Azioni non fanno (D-335)
+
+### La domanda lasciata aperta da D-332
+
+Perché la casella «si accende quando» decideva solo il **5,2%** delle cadute di
+Calore, e il ponte tutto il resto? Non era quante questioni si svegliano. Era che
+le righe guardavano dalla parte sbagliata.
+
+**Contato cosa le Azioni fanno davvero, in vent'anni:** una Presenza arriva
+**175** volte, un rapporto cambia **159**, una Presenza se ne va 58, un segno
+cade sulla mappa **6**, il controllo cambia **0**, si costruisce una Pietra **0**.
+
+**Contato cosa le righe aspettavano, sulle 66 stampate:** **47** aspettavano un
+cambio di controllo, 17 un segno di Regione, 1 una Pietra, 1 una Presenza tolta.
+
+Quarantotto righe su sessantasei aspettavano un gesto che non succede — e non per
+sfortuna: **nessuna delle 48 carte Azione produce `SET_CONTROL`**. Il controllo
+cambia al Consiglio, che sta a valle del Calore, non a monte.
+
+### E un terzo difetto, sulla carta disegnata a mano
+
+Il filtro del luogo guardava la Regione **bersaglio** dell'Effetto. Ma una
+Presenza ha come bersaglio la **casata**: il posto sta nel payload. Quindi ogni
+riga di Presenza con un filtro di luogo era muta per costruzione — compresa la
+quarta riga de *I Recinti*, *«toglie una Presenza da una terra da coltivo»*, che
+non si è mai potuta accendere da quando è stata scritta.
+
+### Fatto
+
+- **`adds_presence`**, il verbo che mancava al gesto più frequente della mappa.
+- **Il filtro del luogo legge `payload.region_id`**, e ricade sul bersaglio
+  quando non c'è. Tre prove nuove, di cui una che dice **no**.
+- **Le 47 righe `takes_control` ripuntate** su ciò che le Azioni fanno in quel
+  posto. Sono righe derivate a macchina: ripuntare un pavimento non è riscriverlo.
+- **Su *I Recinti* una riga sola**, e sta a verbale quale.
+- **Non aggiunto `changes_relation`**: 159 gesti l'anno senza verbo, ma nessuna
+  riga lo userebbe senza scrivere contenuto. Aggiungere un verbo che nessuno usa
+  è inventare.
+
+### Il guadagno
+
+| su vent'anni, seme 7000 | prima | dopo |
+|---|---|---|
+| **la casella decide** (ponte spento) | 20 su 383 — **5,2%** | 121 su 409 — **29,6%** |
+| questioni diverse toccate | 49 su 60 | **52 su 60** |
+| Calore a un Tema diverso dalla carta | 5 | **54** |
+| gesti che svegliano più di una questione | 0 | 7 su 401, mai più di **tre** |
+
+L'ultima riga è la frase del committente misurata — *«raramente un singolo gesto
+scalda più di tre temi»*: non succede mai.
+
+### Il costo, dichiarato — e non è piccolo
+
+| su 100 semi | prima | dopo |
+|---|---|---|
+| **seggi bloccati su un solo livello** | **0 su 8** | **0 su 8** |
+| Consigli per anno, misto / uniforme | 3,40 / 3,45 | 3,43 / 3,48 |
+| **Verità scritte**, misto | **167**, 153 diverse | **159**, **143** diverse |
+| **Verità scritte**, uniforme | **158**, 137 diverse | **149**, **125** diverse |
+| trasformazioni sedute | 199 | **204** |
+| **vite che non si sono mai sedute** | 6 | **7** (*Il Banco Nero*) |
+
+**Il mondo ricorda meno**, e su una direzione che dice *«il Consiglio decide cosa
+il mondo ricorderà»* è il numero che pesa di più. Si sa dove se ne vanno: al
+tavolo uniforme i fallimenti scendono da 27 a **15** e i successi netti salgono
+da 146 a **167**. I Consigli passano più puliti, e un successo che non costa
+niente lascia meno memoria di uno pagato.
+
+**Provata e scartata** la variante stretta (solo la Presenza che arriva): Verità
+identiche, 159/143. Restringere non compra niente.
+
+### Una prova che ha smesso di provare, e l'ha detto
+
+`test_without_the_box_the_bridge_still_carries` è andata rossa, e aveva ragione:
+il suo presupposto — *«quel segno non lo guarda nessuna delle sessanta»* — non è
+più vero. Cercare un posto che nessuna riga guarda non serve, **non esiste**: le
+46 righe coprono tutta la mappa. Adesso la prova si fabbrica la condizione, mette
+a tacere il banco e prova il ripiego da solo.
+
+### I cancelli
+
+Diciannove verdi per codice di uscita. Suite **638 test in 97 suite, 35.881
+asserzioni**. `MISURA_VITE` e `MISURA_SEGNI` hanno derivato per la **quinta**
+volta in questa serie, e sono rigenerate.
+
+---
+
 ## 0.1.297 — Il motore non posa gettoni (D-334)
 
 ### Detto dal committente

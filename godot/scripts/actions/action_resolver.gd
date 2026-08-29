@@ -1653,18 +1653,25 @@ func _tensions_that_wake(done: Array) -> Array:
 
 ## Una riga di «SI ACCENDE QUANDO» contro quello che l'Azione ha fatto.
 ##
-## I quattro verbi sono chiusi apposta, e sono quelli che si vedono sul tavolo:
-## un segno posato o tolto, una Pietra costruita, il controllo che cambia, una
-## Presenza che se ne va. `on_region_with` e' il filtro del luogo — «su una
+## I verbi sono chiusi apposta, e sono quelli che si vedono sul tavolo: un segno
+## posato o tolto, una Pietra costruita, il controllo che cambia, una Presenza
+## che arriva o che se ne va. `on_region_with` e' il filtro del luogo — «su una
 ## Regione con #campo o #granaio» — e senza di lui la riga vale ovunque.
+##
+## **`adds_presence` e' arrivato dopo, e per una misura** (D-335). Contando cosa
+## le Azioni fanno davvero in vent'anni, il gesto piu' frequente sulla mappa e'
+## portare una Presenza in una Regione — **175 volte**, contro le 58 di toglierla
+## e le 6 di posare un segno di Regione — e non c'era nessun verbo che lo
+## nominasse. Le righe potevano guardare solo quello che quasi non succede.
 func _rule_matches(rule: Dictionary, done: Array) -> bool:
 	var puts: Array = rule.get("puts_tag", []) as Array
 	var clears: Array = rule.get("clears_tag", []) as Array
 	var builds: Array = rule.get("builds", []) as Array
 	var control: bool = bool(rule.get("takes_control", false))
 	var leaves: bool = bool(rule.get("removes_presence", false))
+	var arrives: bool = bool(rule.get("adds_presence", false))
 	if puts.is_empty() and clears.is_empty() and builds.is_empty() \
-			and not control and not leaves:
+			and not control and not leaves and not arrives:
 		return false
 	var where: Array = rule.get("on_region_with", []) as Array
 	for entry in done:
@@ -1684,15 +1691,26 @@ func _rule_matches(rule: Dictionary, done: Array) -> bool:
 				hit = control
 			"REMOVE_PRESENCE":
 				hit = leaves
+			"ADD_PRESENCE":
+				hit = arrives
 		if not hit:
 			continue
 		if where.is_empty():
 			return true
-		# Il filtro del luogo guarda la Regione che l'Effetto ha toccato.
-		if str(target.get("kind", "")) != "region":
-			continue
+		# Il filtro del luogo guarda la Regione che l'Effetto ha toccato — e
+		# **una Presenza non ha come bersaglio la Regione, ha la casata** (D-335):
+		# il posto sta nel payload, sotto `region_id`. Finche' questa riga
+		# guardava solo il bersaglio, ogni riga di Presenza con un filtro di luogo
+		# era muta per costruzione, compresa la quarta riga de «I Recinti» —
+		# *«toglie una Presenza da una terra da coltivo»* — che il committente ha
+		# disegnato a mano e che non poteva accendersi mai.
+		var region_id: String = str(payload.get("region_id", ""))
+		if region_id == "":
+			if str(target.get("kind", "")) != "region":
+				continue
+			region_id = str(target.get("id", ""))
 		var region: Dictionary = (world["regions"] as Dictionary).get(
-			str(target.get("id", "")), {}
+			region_id, {}
 		) as Dictionary
 		for tag in where:
 			if (region.get("tags", []) as Array).has(str(tag)):
