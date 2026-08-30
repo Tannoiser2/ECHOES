@@ -3570,6 +3570,64 @@ arrivano da un'altra parte.
   butta.
 
 
+> ### Rimisurata in 0.1.307, e il numero grosso di questa voce era una conclusione sbagliata
+>
+> Il committente, davanti all'esempio che questa voce racconta: *«la casella
+> dice: chiudi una strada tra una tessera #pascolo e #selvaggio, se c'e' si puo'
+> usare quella casella altrimenti no. Non vedo perche' non potrebbe essere
+> scritta su una casella»*. Aveva ragione, e su tutti e tre i punti che avevo
+> chiamato ostacoli ([D-342](DECISIONS.md#d-342)).
+>
+> **Il «65% non traducibile» contava contro le dodici caselle di adesso**, non
+> contro quello che una casella puo' dire. Non e' un muro: e' un elenco di
+> **nove caselle**.
+>
+> E misurando si e' scoperta una cosa che nessun documento diceva: **il
+> Consiglio cambia il mondo in due modi che girano insieme.** L'economia delle
+> caselle e' costruita ed esegue (vedi la correzione in ISSUES 72); le
+> Conseguenze d'autore girano accanto a lei, nello stesso Consiglio. Da
+> [D-341](DECISIONS.md#d-341) la scheda stampa solo le prime.
+>
+> Il conto sta in `docs/MISURA_CASELLE.md`, generato e sorvegliato da un
+> cancello, e il vocabolario **non e' ricopiato**: la sonda chiede a
+> `CouncilEconomy` cosa esce.
+>
+> | | distinti | applicazioni |
+> |---|---|---|
+> | una casella di oggi lo sa dire | 4 | 64 |
+> | verbo giusto, posto che la casella non sa dire | 15 | 41 |
+> | **verbo che manca** | **27** | **231** |
+> | | **46** | **336** |
+>
+> #### Le nove caselle
+>
+> | casella da scrivere | distinti | applicazioni |
+> |---|---|---|
+> | **SPOSTA UNA DOMANDA — chi propone nomina quale** | 11 | **90** |
+> | POSA UN SEGNO SU UNA CASATA | 4 | 44 |
+> | MUOVI UN RAPPORTO | 1 | 11 |
+> | UNA PRESENZA ENTRA O SE NE VA | 4 | 10 |
+> | UNA PIETRA SALE O SCENDE | 2 | 9 |
+> | IL MONDO DIMENTICA | 1 | 3 |
+> | UNA DOMANDA VELATA SI SCOPRE | 2 | 2 |
+> | UNA CASATA LASCIA IL TAVOLO | 1 | 1 |
+> | CHIUDI LA STRADA FRA DUE SEGNI | 1 | 1 |
+>
+> **La prima vale da sola 90 applicazioni su 336**, ed e' quella che il
+> committente non riusciva a leggere sulla scheda — *«La Carestia +1 non so cosa
+> intende»*. L'effetto sposta la traccia di **un'altra domanda**, e non c'era
+> scritto. Scelta presa dal committente: **la sceglie chi propone**.
+>
+> E una differenza strutturale che la misura ha portato a galla: **le caselle di
+> oggi non toccano le domande.** RAFFREDDA TEMA e SCALDA TEMA producono
+> `ADJUST_THEME_HEAT` su un **Tema**; tutte e novanta quelle applicazioni sono
+> `ADJUST_TENSION` su una **domanda**. Sono due tracce diverse, e nessuna
+> casella sa muovere la seconda.
+>
+> **Le nove caselle non sono scritte.** Il passo dopo e' scriverne una — la
+> prima — e misurarla sui 100 semi.
+
+
 > ### Rimisurata in 0.1.300, e i due numeri in cima erano sbagliati
 >
 > La voce chiedeva di guardare i residui **uno per uno** — *«sono pochi
@@ -4424,6 +4482,18 @@ costo di apertura, la tensione si risolve a fine atto.»* Quindi: la **soglia
 non si stampa** sulla faccia — non apre più niente da D-214/D-260/D-261 — e il
 numero in alto a destra della carta d'esempio non è una regola. Il velo resta
 vivo (TRAMARE scopre) e resta stampato.
+
+> ### Correzione in 0.1.307: quello che questa voce dà «da costruire» è costruito
+>
+> La riga qui sopra elenca fra le cose da fare *«i verbi come dato […], il passo
+> del Consiglio che posa le pedine, il cervello che sa comprare e far pagare»*.
+> Sono in `scripts/confluence/council_economy.gd` da tempo: **dodici verbi,
+> l'economia, l'idoneità di ogni casella** ([D-306](DECISIONS.md#d-306)), e il
+> controller li applica. Nessuno aveva riportato la voce indietro
+> ([D-342](DECISIONS.md#d-342)).
+>
+> Quello che resta di questa voce è **una sola riga del suo «fatto quando»**: la
+> sonda che dice quanta scelta arriva davvero al tavolo. Il resto vive.
 
 **Fatto quando** ogni carta Tensione porta i suoi verbi di beneficio e di
 costo, il Consiglio si gioca posando pedine dentro l'economia dichiarata, la
