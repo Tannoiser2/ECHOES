@@ -443,3 +443,88 @@ func test_the_resonance_is_read_from_the_fields() -> void:
 			assert_true(line.contains("posa "),
 				"%s lascia %s e la riga non lo posa" % [str(id), extra])
 	assert_true(aggravate > 0, "nessuna carta ha una Risonanza aggravata: la prova e cieca")
+
+
+## **La scheda del Consiglio e' le caselle, non le proposte in prosa** (D-341).
+##
+## Il committente, davanti alla scheda: *«due domande? Perche' due, i costi e
+## benefici dove sono? Ci sono testi ridondanti e inutili»*. Le dodici caselle
+## di D-280 — la grammatica con cui il tavolo risolve un Consiglio — stavano in
+## fondo, dopo quattro proposte in prosa, e tutte e sei schiacciate in un'unica
+## riga separata da punti.
+##
+## La prova parte dai dati: ogni casella dev'essere **una riga sua**, e nessuna
+## frase di proposta deve arrivare sulla scheda.
+func test_the_council_sheet_is_the_boxes_not_the_prose() -> void:
+	var loaded: RefCounted = data()
+	var sheets: int = 0
+	for face in CardFace.every(loaded):
+		var card: Dictionary = face as Dictionary
+		if str(card.get("deck", "")) != "council":
+			continue
+		var tension: Dictionary = loaded.tensions[str(card["id"])]
+		var notes: Array = card.get("notes", []) as Array
+		sheets += 1
+		for group in ["benefits", "costs", "failure"]:
+			for voice in tension.get("physical", {}).get(group, []) as Array:
+				var text: String = str((voice as Dictionary).get("text", ""))
+				assert_true(notes.has("· %s" % text),
+					"%s: la casella «%s» non ha una riga sua" % [str(card["id"]), text])
+		# E nessuna proposta in prosa: due grammatiche sulla stessa scheda sono
+		# la ragione per cui le caselle stavano in fondo, e la misura dice che
+		# non ci stanno insieme — due schede su dodici sfondavano il bordo.
+		var whole: String = " ".join(PackedStringArray(notes)) + " " + " ".join(
+			PackedStringArray(card.get("body", []) as Array)
+		)
+		for proposal in (tension.get("council", {}) as Dictionary).get("propositions", []) as Array:
+			var said: String = str((proposal as Dictionary).get("text", ""))
+			assert_false(whole.contains(said),
+				"%s stampa ancora una proposta in prosa" % str(card["id"]))
+	assert_eq(sheets, 60, "le schede del Consiglio")
+
+
+## **Una domanda che compare senza ragione** (D-341).
+##
+## *«Due domande? Perche' due.»* La ragione era scritta e buttata via: undici
+## domande su ventitre' portano una `eligibility` con la sua `label` — «La
+## Carestia e' al limite» — che `CouncilText.proposition` calcolava gia' e che
+## la scheda non stampava.
+func test_a_question_that_needs_a_condition_prints_it() -> void:
+	var loaded: RefCounted = data()
+	var conditioned: int = 0
+	for face in CardFace.every(loaded):
+		var card: Dictionary = face as Dictionary
+		if str(card.get("deck", "")) != "council":
+			continue
+		var council: Dictionary = loaded.tensions[str(card["id"])].get("council", {})
+		var printed: String = " ".join(PackedStringArray(card.get("body", []) as Array))
+		for question in council.get("questions", []) as Array:
+			for condition in (question as Dictionary).get("eligibility", []) as Array:
+				var label: String = str((condition as Dictionary).get("label", ""))
+				if label == "":
+					continue
+				conditioned += 1
+				assert_true(printed.contains(label),
+					"%s: «%s» non arriva sulla scheda" % [str(card["id"]), label])
+	assert_true(conditioned > 0, "nessuna domanda ha una condizione: la prova e cieca")
+
+
+## **La carta Domanda non stampa il racconto** (D-341), come la carta Asset da
+## D-340: la `description` e' voce d'autore, e su una carta che deve dire quando
+## la domanda si scalda era il primo blocco che si leggeva.
+func test_the_tension_card_prints_no_description() -> void:
+	var loaded: RefCounted = data()
+	var cards: int = 0
+	for face in CardFace.every(loaded):
+		var card: Dictionary = face as Dictionary
+		if str(card.get("deck", "")) != "tension":
+			continue
+		cards += 1
+		var prose: String = str(loaded.tensions[str(card["id"])].get("description", ""))
+		if prose == "":
+			continue
+		var whole: String = " ".join(PackedStringArray(card.get("notes", []) as Array)) + " " + \
+			" ".join(PackedStringArray(card.get("body", []) as Array))
+		assert_false(whole.contains(prose),
+			"%s stampa ancora il racconto" % str(card["id"]))
+	assert_eq(cards, 60, "le carte Domanda")

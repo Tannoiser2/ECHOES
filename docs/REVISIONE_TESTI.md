@@ -7,7 +7,7 @@ Ogni testo che un giocatore può leggere, nell'ordine in cui lo incontra,
 con il suo identificativo. Per correggere basta una riga, anche a voce:
 «`P_SHOW_IT`: riscrivi così…» — al resto pensa il motore. I segnaposto
 (`$the_region`, `$proponent`…) sono gli slot che il mondo riempie: si
-possono spostare nella frase, non togliere. 1298 testi in lettura.
+possono spostare nella frase, non togliere. 2139 testi in lettura.
 
 ## 1. Le aperture — lette ad alta voce all'inizio dell'anno
 
@@ -433,6 +433,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 > Sulle Montagne Rosse la neve si scioglie a chiazze, e le chiazze sono sempre le stesse.
 
 
+**`TEN_ASH, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_ASH, si ottiene — B_CLEAR`**
+> Il luogo torna raggiungibile.
+
+
+**`TEN_ASH, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Sito dormiente.
+
+
+**`TEN_ASH, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_ASH, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_ASH, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: della montagna si e' smesso di parlare.
+
+
+**`TEN_ASH, si paga — C_CONDITION`**
+> Il luogo viene murato: quello che sta sotto resta sotto.
+
+
+**`TEN_ASH, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_ASH, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_ASH, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_ASH, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_ASH, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: la domanda sul muro.
+
+
+**`TEN_ASH, se cade — F_CONDITION`**
+> Al luogo si aggiunge #malcontento.
+
+
+**`TEN_ASH, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
+
+
 **`TEN_AWAKENING`**
 > Il Risveglio
 
@@ -447,6 +503,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 > Sulle Montagne Rosse la neve non attecchisce più sul versante orientale.
 
 
+**`TEN_AWAKENING, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_AWAKENING, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_AWAKENING, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Sito dormiente.
+
+
+**`TEN_AWAKENING, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_AWAKENING, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_AWAKENING, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: il Cristallo e' stato messo a rendere.
+
+
+**`TEN_AWAKENING, si paga — C_CONDITION`**
+> Al luogo si aggiunge #sfruttato.
+
+
+**`TEN_AWAKENING, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_AWAKENING, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_AWAKENING, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_AWAKENING, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_AWAKENING, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: la domanda sul muro.
+
+
+**`TEN_AWAKENING, se cade — F_CONDITION`**
+> Al luogo si aggiunge #malcontento.
+
+
+**`TEN_AWAKENING, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
+
+
 **`TEN_BAD_GRAIN`**
 > Il Grano Guasto
 
@@ -455,6 +567,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 
 **`TEN_BAD_GRAIN, presagio al 5`**
 > Il mugnaio ha rifiutato una partita senza spiegare. Da allora macina solo per chi conosce.
+
+
+**`TEN_BAD_GRAIN, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_BAD_GRAIN, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_BAD_GRAIN, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Granaio.
+
+
+**`TEN_BAD_GRAIN, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_BAD_GRAIN, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_BAD_GRAIN, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.
+
+
+**`TEN_BAD_GRAIN, si paga — C_CONDITION`**
+> Al luogo si aggiunge #razionato.
+
+
+**`TEN_BAD_GRAIN, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_BAD_GRAIN, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_BAD_GRAIN, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_BAD_GRAIN, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_BAD_GRAIN, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_BAD_GRAIN, se cade — F_CONDITION`**
+> Al luogo si aggiunge #fame.
+
+
+**`TEN_BAD_GRAIN, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_BLACK_TOLLS`**
@@ -467,6 +635,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 > I pedaggeri neri hanno fatto un listino. Scritto. Chi sa scrivere, fra loro, e' la vera notizia.
 
 
+**`TEN_BLACK_TOLLS, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_BLACK_TOLLS, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_BLACK_TOLLS, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Pedaggio.
+
+
+**`TEN_BLACK_TOLLS, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_BLACK_TOLLS, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_BLACK_TOLLS, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: il debito e' stato chiamato.
+
+
+**`TEN_BLACK_TOLLS, si paga — C_CONDITION`**
+> Al luogo si aggiunge #sorvegliata.
+
+
+**`TEN_BLACK_TOLLS, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_BLACK_TOLLS, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_BLACK_TOLLS, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_BLACK_TOLLS, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_BLACK_TOLLS, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: la razzia.
+
+
+**`TEN_BLACK_TOLLS, se cade — F_CONDITION`**
+> Al luogo si aggiunge #saccheggiato.
+
+
+**`TEN_BLACK_TOLLS, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
+
+
 **`TEN_BOUNDARY_STONES`**
 > Le Pietre di Confine
 
@@ -475,6 +699,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 
 **`TEN_BOUNDARY_STONES, presagio al 5`**
 > Un'altra pietra e' comparsa dove non era. Qualcuno sta scrivendo un confine nuovo, una notte alla volta.
+
+
+**`TEN_BOUNDARY_STONES, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_BOUNDARY_STONES, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_BOUNDARY_STONES, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Torre di veglia.
+
+
+**`TEN_BOUNDARY_STONES, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_BOUNDARY_STONES, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_BOUNDARY_STONES, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: i Nahr hanno un posto dove fermarsi.
+
+
+**`TEN_BOUNDARY_STONES, si paga — C_CONDITION`**
+> Al luogo si aggiunge #sorvegliata.
+
+
+**`TEN_BOUNDARY_STONES, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_BOUNDARY_STONES, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_BOUNDARY_STONES, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_BOUNDARY_STONES, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_BOUNDARY_STONES, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_BOUNDARY_STONES, se cade — F_CONDITION`**
+> Al luogo si aggiunge #conteso.
+
+
+**`TEN_BOUNDARY_STONES, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_BURIALS`**
@@ -487,6 +767,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 > Le famiglie hanno smesso di far giocare i bambini verso la palude. Nessuno ha dovuto dirglielo.
 
 
+**`TEN_BURIALS, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_BURIALS, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_BURIALS, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Canale.
+
+
+**`TEN_BURIALS, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_BURIALS, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_BURIALS, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: la reliquia e' tornata sottoterra.
+
+
+**`TEN_BURIALS, si paga — C_CONDITION`**
+> Al luogo si aggiunge #lutto.
+
+
+**`TEN_BURIALS, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_BURIALS, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_BURIALS, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_BURIALS, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_BURIALS, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: l'abbandono.
+
+
+**`TEN_BURIALS, se cade — F_CONDITION`**
+> Al luogo si aggiunge #abbandonato.
+
+
+**`TEN_BURIALS, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
+
+
 **`TEN_CHARTER`**
 > La Carta
 
@@ -495,6 +831,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 
 **`TEN_CHARTER, presagio al 4`**
 > Due città hanno giudicato lo stesso caso in modo opposto, e tutte e due hanno ragione.
+
+
+**`TEN_CHARTER, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_CHARTER, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_CHARTER, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Torre di veglia.
+
+
+**`TEN_CHARTER, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_CHARTER, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_CHARTER, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: la Carta e' stata scritta.
+
+
+**`TEN_CHARTER, si paga — C_CONDITION`**
+> Al luogo si aggiunge #malcontento.
+
+
+**`TEN_CHARTER, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_CHARTER, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_CHARTER, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_CHARTER, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_CHARTER, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_CHARTER, se cade — F_CONDITION`**
+> Al luogo si aggiunge #conteso.
+
+
+**`TEN_CHARTER, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_CLEARING`**
@@ -507,6 +899,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 > Dal margine si vede il fondo del bosco. L'anno scorso non si vedeva.
 
 
+**`TEN_CLEARING, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_CLEARING, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_CLEARING, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Foresta.
+
+
+**`TEN_CLEARING, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_CLEARING, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_CLEARING, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: il Cristallo e' stato messo a rendere.
+
+
+**`TEN_CLEARING, si paga — C_CONDITION`**
+> Al luogo si aggiunge #sfruttato.
+
+
+**`TEN_CLEARING, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_CLEARING, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_CLEARING, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_CLEARING, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_CLEARING, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: la razzia.
+
+
+**`TEN_CLEARING, se cade — F_CONDITION`**
+> Al luogo si aggiunge #saccheggiato.
+
+
+**`TEN_CLEARING, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
+
+
 **`TEN_COUNCIL_SEATS`**
 > I Seggi del Consiglio
 
@@ -515,6 +963,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 
 **`TEN_COUNCIL_SEATS, presagio al 5`**
 > Le case minori si sono riunite in una sala propria. Per ora parlano soltanto.
+
+
+**`TEN_COUNCIL_SEATS, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_COUNCIL_SEATS, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_COUNCIL_SEATS, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Torre di veglia.
+
+
+**`TEN_COUNCIL_SEATS, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_COUNCIL_SEATS, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_COUNCIL_SEATS, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: la Carta vale anche per chi non siede.
+
+
+**`TEN_COUNCIL_SEATS, si paga — C_CONDITION`**
+> Al luogo si aggiunge #malcontento.
+
+
+**`TEN_COUNCIL_SEATS, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_COUNCIL_SEATS, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_COUNCIL_SEATS, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_COUNCIL_SEATS, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_COUNCIL_SEATS, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_COUNCIL_SEATS, se cade — F_CONDITION`**
+> Al luogo si aggiunge #conteso.
+
+
+**`TEN_COUNCIL_SEATS, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_COURIERS`**
@@ -527,6 +1031,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 > La staffetta del nord e' arrivata con due lettere identiche per due case nemiche. Le ha consegnate entrambe, sorridendo.
 
 
+**`TEN_COURIERS, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_COURIERS, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_COURIERS, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Torre di veglia.
+
+
+**`TEN_COURIERS, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_COURIERS, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_COURIERS, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: quello che si e' capito resta scritto.
+
+
+**`TEN_COURIERS, si paga — C_CONDITION`**
+> Al luogo si aggiunge #sorvegliata.
+
+
+**`TEN_COURIERS, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_COURIERS, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_COURIERS, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_COURIERS, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_COURIERS, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: la domanda sul muro.
+
+
+**`TEN_COURIERS, se cade — F_CONDITION`**
+> Al luogo si aggiunge #malcontento.
+
+
+**`TEN_COURIERS, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
+
+
 **`TEN_DEBT`**
 > Il Debito
 
@@ -535,6 +1095,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 
 **`TEN_DEBT, presagio al 4`**
 > Tre città hanno chiesto alla Gilda di rimandare, e la Gilda ha detto di sì a due.
+
+
+**`TEN_DEBT, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_DEBT, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_DEBT, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Pedaggio.
+
+
+**`TEN_DEBT, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_DEBT, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_DEBT, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: il debito e' stato rimesso.
+
+
+**`TEN_DEBT, si paga — C_CONDITION`**
+> Al luogo si aggiunge #malcontento.
+
+
+**`TEN_DEBT, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_DEBT, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_DEBT, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_DEBT, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_DEBT, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: il confine sigillato.
+
+
+**`TEN_DEBT, se cade — F_CONDITION`**
+> Il luogo resta tagliato fuori.
+
+
+**`TEN_DEBT, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_DEEP_WATER`**
@@ -547,6 +1163,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 > Il pescatore piu' vecchio ha regalato la barca al nipote. Ha detto solo: non nell'acqua fonda.
 
 
+**`TEN_DEEP_WATER, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_DEEP_WATER, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_DEEP_WATER, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Canale.
+
+
+**`TEN_DEEP_WATER, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_DEEP_WATER, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_DEEP_WATER, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: l'acqua torna a muoversi.
+
+
+**`TEN_DEEP_WATER, si paga — C_CONDITION`**
+> Al luogo si aggiunge #razionato.
+
+
+**`TEN_DEEP_WATER, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_DEEP_WATER, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_DEEP_WATER, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_DEEP_WATER, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_DEEP_WATER, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: la razzia.
+
+
+**`TEN_DEEP_WATER, se cade — F_CONDITION`**
+> Al luogo si aggiunge #saccheggiato.
+
+
+**`TEN_DEEP_WATER, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
+
+
 **`TEN_ECHOES_BELOW`**
 > Gli Echi nel Fondo
 
@@ -555,6 +1227,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 
 **`TEN_ECHOES_BELOW, presagio al 5`**
 > Ieri il fondo ha battuto per primo. Tre colpi. Nessuno e' sceso a rispondere.
+
+
+**`TEN_ECHOES_BELOW, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_ECHOES_BELOW, si ottiene — B_CLEAR`**
+> Il luogo torna raggiungibile.
+
+
+**`TEN_ECHOES_BELOW, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Sito dormiente.
+
+
+**`TEN_ECHOES_BELOW, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_ECHOES_BELOW, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_ECHOES_BELOW, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: la miniera e' stata chiusa.
+
+
+**`TEN_ECHOES_BELOW, si paga — C_CONDITION`**
+> Il luogo viene murato: quello che sta sotto resta sotto.
+
+
+**`TEN_ECHOES_BELOW, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_ECHOES_BELOW, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_ECHOES_BELOW, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_ECHOES_BELOW, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_ECHOES_BELOW, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: la domanda sul muro.
+
+
+**`TEN_ECHOES_BELOW, se cade — F_CONDITION`**
+> Al luogo si aggiunge #malcontento.
+
+
+**`TEN_ECHOES_BELOW, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_EMPTY_NETS`**
@@ -567,6 +1295,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 > I gabbiani hanno lasciato il porto. I pescatori li guardano andare via, e capiscono.
 
 
+**`TEN_EMPTY_NETS, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_EMPTY_NETS, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_EMPTY_NETS, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Pedaggio.
+
+
+**`TEN_EMPTY_NETS, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_EMPTY_NETS, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_EMPTY_NETS, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: il debito e' stato rimesso.
+
+
+**`TEN_EMPTY_NETS, si paga — C_CONDITION`**
+> Al luogo si aggiunge #razionato.
+
+
+**`TEN_EMPTY_NETS, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_EMPTY_NETS, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_EMPTY_NETS, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_EMPTY_NETS, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_EMPTY_NETS, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_EMPTY_NETS, se cade — F_CONDITION`**
+> Al luogo si aggiunge #fame.
+
+
+**`TEN_EMPTY_NETS, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
+
+
 **`TEN_ENCLOSURE`**
 > I Recinti
 
@@ -575,6 +1359,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 
 **`TEN_ENCLOSURE, presagio al 5`**
 > I pali arrivano al bordo della strada. Il prossimo campo recintato ha gia' il nome del padrone inciso.
+
+
+**`TEN_ENCLOSURE, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_ENCLOSURE, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_ENCLOSURE, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Granaio.
+
+
+**`TEN_ENCLOSURE, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_ENCLOSURE, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_ENCLOSURE, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: la Carta e' stata scritta.
+
+
+**`TEN_ENCLOSURE, si paga — C_CONDITION`**
+> Al luogo si aggiunge #sorvegliata.
+
+
+**`TEN_ENCLOSURE, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_ENCLOSURE, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_ENCLOSURE, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_ENCLOSURE, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_ENCLOSURE, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_ENCLOSURE, se cade — F_CONDITION`**
+> Al luogo si aggiunge #conteso.
+
+
+**`TEN_ENCLOSURE, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_FALLOW`**
@@ -587,6 +1427,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 > Le spighe dei campi alti si contano a occhio. L'anno prossimo si contano a mano.
 
 
+**`TEN_FALLOW, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_FALLOW, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_FALLOW, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Granaio.
+
+
+**`TEN_FALLOW, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_FALLOW, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_FALLOW, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: il debito e' stato rimesso.
+
+
+**`TEN_FALLOW, si paga — C_CONDITION`**
+> Al luogo si aggiunge #razionato.
+
+
+**`TEN_FALLOW, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_FALLOW, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_FALLOW, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_FALLOW, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_FALLOW, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_FALLOW, se cade — F_CONDITION`**
+> Al luogo si aggiunge #conteso.
+
+
+**`TEN_FALLOW, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
+
+
 **`TEN_FAMINE`**
 > La Carestia
 
@@ -595,6 +1491,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 
 **`TEN_FAMINE, presagio al 5`**
 > I granai di Eredan si aprono un giorno su tre. Nessuno lo ha annunciato: si vede dalle code.
+
+
+**`TEN_FAMINE, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_FAMINE, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_FAMINE, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Granaio.
+
+
+**`TEN_FAMINE, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_FAMINE, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_FAMINE, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: il debito e' stato rimesso.
+
+
+**`TEN_FAMINE, si paga — C_CONDITION`**
+> Al luogo si aggiunge #razionato.
+
+
+**`TEN_FAMINE, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_FAMINE, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_FAMINE, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_FAMINE, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_FAMINE, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_FAMINE, se cade — F_CONDITION`**
+> Al luogo si aggiunge #fame.
+
+
+**`TEN_FAMINE, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_FERRY`**
@@ -607,6 +1559,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 > Il traghettatore ha cominciato a chiedere favori invece che monete. I favori rendono di piu'.
 
 
+**`TEN_FERRY, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_FERRY, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_FERRY, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Pedaggio.
+
+
+**`TEN_FERRY, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_FERRY, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_FERRY, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: l'acqua torna a muoversi.
+
+
+**`TEN_FERRY, si paga — C_CONDITION`**
+> Al luogo si aggiunge #svuotato.
+
+
+**`TEN_FERRY, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_FERRY, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_FERRY, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_FERRY, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_FERRY, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_FERRY, se cade — F_CONDITION`**
+> Al luogo si aggiunge #conteso.
+
+
+**`TEN_FERRY, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
+
+
 **`TEN_FLOOD`**
 > L'Acqua Alta
 
@@ -615,6 +1623,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 
 **`TEN_FLOOD, presagio al 5`**
 > L'acqua ha toccato la pietra bianca che i vecchi chiamano il limite. Nessuno ricorda di averla mai vista bagnata.
+
+
+**`TEN_FLOOD, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_FLOOD, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_FLOOD, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Canale.
+
+
+**`TEN_FLOOD, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_FLOOD, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_FLOOD, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: l'acqua torna a muoversi.
+
+
+**`TEN_FLOOD, si paga — C_CONDITION`**
+> Al luogo si aggiunge #svuotato.
+
+
+**`TEN_FLOOD, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_FLOOD, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_FLOOD, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_FLOOD, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_FLOOD, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: il confine sigillato.
+
+
+**`TEN_FLOOD, se cade — F_CONDITION`**
+> Il luogo resta tagliato fuori.
+
+
+**`TEN_FLOOD, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_GUILD_WAR`**
@@ -627,6 +1691,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 > Il magazzino della gilda nuova ha preso fuoco di notte. Pioveva. Il fuoco non se n'e' accorto.
 
 
+**`TEN_GUILD_WAR, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_GUILD_WAR, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_GUILD_WAR, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Pedaggio.
+
+
+**`TEN_GUILD_WAR, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_GUILD_WAR, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_GUILD_WAR, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.
+
+
+**`TEN_GUILD_WAR, si paga — C_CONDITION`**
+> Al luogo si aggiunge #sorvegliata.
+
+
+**`TEN_GUILD_WAR, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_GUILD_WAR, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_GUILD_WAR, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_GUILD_WAR, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_GUILD_WAR, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: la razzia.
+
+
+**`TEN_GUILD_WAR, se cade — F_CONDITION`**
+> Al luogo si aggiunge #saccheggiato.
+
+
+**`TEN_GUILD_WAR, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
+
+
 **`TEN_HERESY`**
 > La Parola Storta
 
@@ -635,6 +1755,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 
 **`TEN_HERESY, presagio al 5`**
 > Il predicatore ha smesso di parlare in piazza. Adesso parla nelle case, ed e' peggio.
+
+
+**`TEN_HERESY, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_HERESY, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_HERESY, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Torre di veglia.
+
+
+**`TEN_HERESY, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_HERESY, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_HERESY, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: la fede ha una casa riconosciuta.
+
+
+**`TEN_HERESY, si paga — C_CONDITION`**
+> Al luogo si aggiunge #sorvegliata.
+
+
+**`TEN_HERESY, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_HERESY, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_HERESY, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_HERESY, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_HERESY, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: la domanda sul muro.
+
+
+**`TEN_HERESY, se cade — F_CONDITION`**
+> Al luogo si aggiunge #malcontento.
+
+
+**`TEN_HERESY, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_HOSTAGES`**
@@ -647,6 +1823,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 > L'ospite piu' giovane ha smesso di scrivere a casa. La casa se n'e' accorta.
 
 
+**`TEN_HOSTAGES, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_HOSTAGES, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_HOSTAGES, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Torre di veglia.
+
+
+**`TEN_HOSTAGES, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_HOSTAGES, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_HOSTAGES, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: l'ordine e' stato rimesso in piedi.
+
+
+**`TEN_HOSTAGES, si paga — C_CONDITION`**
+> Al luogo si aggiunge #sorvegliata.
+
+
+**`TEN_HOSTAGES, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_HOSTAGES, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_HOSTAGES, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_HOSTAGES, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_HOSTAGES, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: la domanda sul muro.
+
+
+**`TEN_HOSTAGES, se cade — F_CONDITION`**
+> Al luogo si aggiunge #malcontento.
+
+
+**`TEN_HOSTAGES, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
+
+
 **`TEN_ISLAND_SHRINE`**
 > Il Santuario dell'Isola
 
@@ -655,6 +1887,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 
 **`TEN_ISLAND_SHRINE, presagio al 5`**
 > Il traghettatore ha triplicato il prezzo per l'isola, e le barche partono piene lo stesso.
+
+
+**`TEN_ISLAND_SHRINE, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_ISLAND_SHRINE, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_ISLAND_SHRINE, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Sito dormiente.
+
+
+**`TEN_ISLAND_SHRINE, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_ISLAND_SHRINE, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_ISLAND_SHRINE, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: la fede ha una casa riconosciuta.
+
+
+**`TEN_ISLAND_SHRINE, si paga — C_CONDITION`**
+> Al luogo si aggiunge #sorvegliata.
+
+
+**`TEN_ISLAND_SHRINE, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_ISLAND_SHRINE, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_ISLAND_SHRINE, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_ISLAND_SHRINE, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_ISLAND_SHRINE, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: la domanda sul muro.
+
+
+**`TEN_ISLAND_SHRINE, se cade — F_CONDITION`**
+> Al luogo si aggiunge #malcontento.
+
+
+**`TEN_ISLAND_SHRINE, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_ISLAND_SILENCE`**
@@ -667,6 +1955,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 > Il faro spento dell'isola ieri notte era acceso. Il guardiano del porto l'ha visto, e non era il solo.
 
 
+**`TEN_ISLAND_SILENCE, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_ISLAND_SILENCE, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_ISLAND_SILENCE, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Sito dormiente.
+
+
+**`TEN_ISLAND_SILENCE, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_ISLAND_SILENCE, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_ISLAND_SILENCE, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: della montagna si e' smesso di parlare.
+
+
+**`TEN_ISLAND_SILENCE, si paga — C_CONDITION`**
+> Al luogo si aggiunge #sorvegliata.
+
+
+**`TEN_ISLAND_SILENCE, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_ISLAND_SILENCE, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_ISLAND_SILENCE, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_ISLAND_SILENCE, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_ISLAND_SILENCE, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: la domanda sul muro.
+
+
+**`TEN_ISLAND_SILENCE, se cade — F_CONDITION`**
+> Al luogo si aggiunge #malcontento.
+
+
+**`TEN_ISLAND_SILENCE, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
+
+
 **`TEN_LANDLESS`**
 > I Braccianti
 
@@ -675,6 +2019,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 
 **`TEN_LANDLESS, presagio al 5`**
 > I braccianti hanno cominciato a contarsi. Sono piu' dei padroni, e adesso lo sanno.
+
+
+**`TEN_LANDLESS, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_LANDLESS, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_LANDLESS, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Granaio.
+
+
+**`TEN_LANDLESS, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_LANDLESS, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_LANDLESS, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: la Carta e' stata scritta.
+
+
+**`TEN_LANDLESS, si paga — C_CONDITION`**
+> Al luogo si aggiunge #svuotato.
+
+
+**`TEN_LANDLESS, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_LANDLESS, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_LANDLESS, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_LANDLESS, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_LANDLESS, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_LANDLESS, se cade — F_CONDITION`**
+> Al luogo si aggiunge #conteso.
+
+
+**`TEN_LANDLESS, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_LAND_REGISTER`**
@@ -687,6 +2087,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 > I misuratori sono arrivati al terzo villaggio. Al quarto li aspettano con i forconi.
 
 
+**`TEN_LAND_REGISTER, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_LAND_REGISTER, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_LAND_REGISTER, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Torre di veglia.
+
+
+**`TEN_LAND_REGISTER, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_LAND_REGISTER, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_LAND_REGISTER, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.
+
+
+**`TEN_LAND_REGISTER, si paga — C_CONDITION`**
+> Al luogo si aggiunge #sorvegliata.
+
+
+**`TEN_LAND_REGISTER, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_LAND_REGISTER, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_LAND_REGISTER, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_LAND_REGISTER, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_LAND_REGISTER, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_LAND_REGISTER, se cade — F_CONDITION`**
+> Al luogo si aggiunge #conteso.
+
+
+**`TEN_LAND_REGISTER, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
+
+
 **`TEN_LEVY`**
 > La Leva
 
@@ -695,6 +2151,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 
 **`TEN_LEVY, presagio al 5`**
 > Al mercato si vendono certificati di malattia. Il prezzo sale ogni settimana.
+
+
+**`TEN_LEVY, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_LEVY, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_LEVY, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Granaio.
+
+
+**`TEN_LEVY, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_LEVY, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_LEVY, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: l'ordine e' stato rimesso in piedi.
+
+
+**`TEN_LEVY, si paga — C_CONDITION`**
+> Al luogo si aggiunge #razionato.
+
+
+**`TEN_LEVY, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_LEVY, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_LEVY, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_LEVY, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_LEVY, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: la domanda sul muro.
+
+
+**`TEN_LEVY, se cade — F_CONDITION`**
+> Al luogo si aggiunge #malcontento.
+
+
+**`TEN_LEVY, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_MARCHES`**
@@ -707,6 +2219,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 > Il capobanda del bosco si fa chiamare «custode». Ha cominciato a firmare carte.
 
 
+**`TEN_MARCHES, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_MARCHES, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_MARCHES, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Foresta.
+
+
+**`TEN_MARCHES, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_MARCHES, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_MARCHES, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: la corona e' stata divisa.
+
+
+**`TEN_MARCHES, si paga — C_CONDITION`**
+> Al luogo si aggiunge #sorvegliata.
+
+
+**`TEN_MARCHES, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_MARCHES, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_MARCHES, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_MARCHES, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_MARCHES, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_MARCHES, se cade — F_CONDITION`**
+> Al luogo si aggiunge #conteso.
+
+
+**`TEN_MARCHES, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
+
+
 **`TEN_MARSH_FEVER`**
 > La Febbre delle Paludi
 
@@ -715,6 +2283,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 
 **`TEN_MARSH_FEVER, presagio al 5`**
 > La levatrice non entra piu' nei villaggi bassi senza il fazzoletto sul viso. Le mamme la imitano.
+
+
+**`TEN_MARSH_FEVER, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_MARSH_FEVER, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_MARSH_FEVER, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Canale.
+
+
+**`TEN_MARSH_FEVER, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_MARSH_FEVER, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_MARSH_FEVER, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: l'acqua torna a muoversi.
+
+
+**`TEN_MARSH_FEVER, si paga — C_CONDITION`**
+> Al luogo si aggiunge #lutto.
+
+
+**`TEN_MARSH_FEVER, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_MARSH_FEVER, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_MARSH_FEVER, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_MARSH_FEVER, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_MARSH_FEVER, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: l'abbandono.
+
+
+**`TEN_MARSH_FEVER, se cade — F_CONDITION`**
+> Al luogo si aggiunge #abbandonato.
+
+
+**`TEN_MARSH_FEVER, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_NAMELESS`**
@@ -727,6 +2351,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 > Fuori dalle mura ci sono più fuochi dell'anno scorso, e sono sempre gli stessi fuochi.
 
 
+**`TEN_NAMELESS, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_NAMELESS, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_NAMELESS, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Villaggio.
+
+
+**`TEN_NAMELESS, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_NAMELESS, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_NAMELESS, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: i Nahr hanno un posto dove fermarsi.
+
+
+**`TEN_NAMELESS, si paga — C_CONDITION`**
+> Al luogo si aggiunge #sorvegliata.
+
+
+**`TEN_NAMELESS, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_NAMELESS, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_NAMELESS, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_NAMELESS, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_NAMELESS, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_NAMELESS, se cade — F_CONDITION`**
+> Al luogo si aggiunge #conteso.
+
+
+**`TEN_NAMELESS, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
+
+
 **`TEN_OLD_CHANNELS`**
 > Le Vie di Prima
 
@@ -735,6 +2415,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 
 **`TEN_OLD_CHANNELS, presagio al 5`**
 > Un carro ha seguito la via vecchia per scommessa. E' arrivato in un giorno dove ce ne vogliono tre. Il carrettiere non ci torna.
+
+
+**`TEN_OLD_CHANNELS, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_OLD_CHANNELS, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_OLD_CHANNELS, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Canale.
+
+
+**`TEN_OLD_CHANNELS, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_OLD_CHANNELS, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_OLD_CHANNELS, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: l'acqua torna a muoversi.
+
+
+**`TEN_OLD_CHANNELS, si paga — C_CONDITION`**
+> Al luogo si aggiunge #sorvegliata.
+
+
+**`TEN_OLD_CHANNELS, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_OLD_CHANNELS, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_OLD_CHANNELS, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_OLD_CHANNELS, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_OLD_CHANNELS, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: la razzia.
+
+
+**`TEN_OLD_CHANNELS, se cade — F_CONDITION`**
+> Al luogo si aggiunge #saccheggiato.
+
+
+**`TEN_OLD_CHANNELS, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_OLD_GUARD`**
@@ -747,6 +2483,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 > I veterani si trovano ogni settima sera alla stessa taverna. Il padrone ha smesso di far pagare il primo giro.
 
 
+**`TEN_OLD_GUARD, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_OLD_GUARD, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_OLD_GUARD, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Torre di veglia.
+
+
+**`TEN_OLD_GUARD, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_OLD_GUARD, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_OLD_GUARD, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: la successione e' scritta in una legge.
+
+
+**`TEN_OLD_GUARD, si paga — C_CONDITION`**
+> Al luogo si aggiunge #sorvegliata.
+
+
+**`TEN_OLD_GUARD, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_OLD_GUARD, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_OLD_GUARD, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_OLD_GUARD, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_OLD_GUARD, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: la domanda sul muro.
+
+
+**`TEN_OLD_GUARD, se cade — F_CONDITION`**
+> Al luogo si aggiunge #malcontento.
+
+
+**`TEN_OLD_GUARD, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
+
+
 **`TEN_OLD_NAMES`**
 > I Nomi Vecchi
 
@@ -755,6 +2547,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 
 **`TEN_OLD_NAMES, presagio al 5`**
 > Il traghettatore ha chiamato il fiume col nome vecchio, per sbaglio. L'acqua era piu' fredda del solito, dice.
+
+
+**`TEN_OLD_NAMES, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_OLD_NAMES, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_OLD_NAMES, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Archivio.
+
+
+**`TEN_OLD_NAMES, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_OLD_NAMES, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_OLD_NAMES, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: quello che si e' capito resta scritto.
+
+
+**`TEN_OLD_NAMES, si paga — C_CONDITION`**
+> Al luogo si aggiunge #sorvegliata.
+
+
+**`TEN_OLD_NAMES, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_OLD_NAMES, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_OLD_NAMES, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_OLD_NAMES, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_OLD_NAMES, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: la domanda sul muro.
+
+
+**`TEN_OLD_NAMES, se cade — F_CONDITION`**
+> Al luogo si aggiunge #malcontento.
+
+
+**`TEN_OLD_NAMES, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_PASTURE`**
@@ -767,6 +2615,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 > I pastori hanno cominciato a portare i cani grossi. Non li portano per i lupi.
 
 
+**`TEN_PASTURE, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_PASTURE, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_PASTURE, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Villaggio.
+
+
+**`TEN_PASTURE, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_PASTURE, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_PASTURE, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: i Nahr hanno un posto dove fermarsi.
+
+
+**`TEN_PASTURE, si paga — C_CONDITION`**
+> Al luogo si aggiunge #razionato.
+
+
+**`TEN_PASTURE, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_PASTURE, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_PASTURE, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_PASTURE, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_PASTURE, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_PASTURE, se cade — F_CONDITION`**
+> Al luogo si aggiunge #conteso.
+
+
+**`TEN_PASTURE, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
+
+
 **`TEN_PILGRIMS`**
 > I Pellegrini
 
@@ -775,6 +2679,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 
 **`TEN_PILGRIMS, presagio al 5`**
 > I pellegrini accampati fuori porta sono piu' degli abitanti dentro. Pregano. Per ora.
+
+
+**`TEN_PILGRIMS, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_PILGRIMS, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_PILGRIMS, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Granaio.
+
+
+**`TEN_PILGRIMS, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_PILGRIMS, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_PILGRIMS, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: la reliquia e' tornata sottoterra.
+
+
+**`TEN_PILGRIMS, si paga — C_CONDITION`**
+> Al luogo si aggiunge #razionato.
+
+
+**`TEN_PILGRIMS, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_PILGRIMS, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_PILGRIMS, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_PILGRIMS, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_PILGRIMS, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_PILGRIMS, se cade — F_CONDITION`**
+> Al luogo si aggiunge #conteso.
+
+
+**`TEN_PILGRIMS, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_PLAGUE`**
@@ -791,6 +2751,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 > I pozzi vengono coperti di notte, e di giorno nessuno ammette di averlo fatto.
 
 
+**`TEN_PLAGUE, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_PLAGUE, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_PLAGUE, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Villaggio.
+
+
+**`TEN_PLAGUE, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_PLAGUE, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_PLAGUE, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: il debito e' stato rimesso.
+
+
+**`TEN_PLAGUE, si paga — C_CONDITION`**
+> Al luogo si aggiunge #lutto.
+
+
+**`TEN_PLAGUE, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_PLAGUE, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_PLAGUE, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_PLAGUE, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_PLAGUE, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: l'abbandono.
+
+
+**`TEN_PLAGUE, se cade — F_CONDITION`**
+> Al luogo si aggiunge #abbandonato.
+
+
+**`TEN_PLAGUE, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
+
+
 **`TEN_PROPHECY`**
 > La Profezia Contata
 
@@ -799,6 +2815,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 
 **`TEN_PROPHECY, presagio al 5`**
 > Qualcuno ha cominciato a vendere i campi per comprare scorte. Qualcun altro compra i campi.
+
+
+**`TEN_PROPHECY, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_PROPHECY, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_PROPHECY, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Sito dormiente.
+
+
+**`TEN_PROPHECY, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_PROPHECY, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_PROPHECY, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: il Cristallo e' stato misurato.
+
+
+**`TEN_PROPHECY, si paga — C_CONDITION`**
+> Al luogo si aggiunge #razionato.
+
+
+**`TEN_PROPHECY, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_PROPHECY, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_PROPHECY, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_PROPHECY, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_PROPHECY, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: la domanda sul muro.
+
+
+**`TEN_PROPHECY, se cade — F_CONDITION`**
+> Al luogo si aggiunge #malcontento.
+
+
+**`TEN_PROPHECY, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_QUARANTINE`**
@@ -811,6 +2883,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 > L'equipaggio alla fonda ha appeso una scritta alla murata: SIAMO SANI. Nessuno e' salito a controllare.
 
 
+**`TEN_QUARANTINE, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_QUARANTINE, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_QUARANTINE, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Pedaggio.
+
+
+**`TEN_QUARANTINE, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_QUARANTINE, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_QUARANTINE, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: i Nahr hanno un posto dove fermarsi.
+
+
+**`TEN_QUARANTINE, si paga — C_CONDITION`**
+> Al luogo si aggiunge #sorvegliata.
+
+
+**`TEN_QUARANTINE, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_QUARANTINE, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_QUARANTINE, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_QUARANTINE, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_QUARANTINE, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: il confine sigillato.
+
+
+**`TEN_QUARANTINE, se cade — F_CONDITION`**
+> Il luogo resta tagliato fuori.
+
+
+**`TEN_QUARANTINE, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
+
+
 **`TEN_REFUGEES`**
 > Chi Arriva da Fuori
 
@@ -821,6 +2949,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 > Quelli fuori porta hanno acceso il terzo fuoco. Contano di restare, o non hanno dove tornare.
 
 
+**`TEN_REFUGEES, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_REFUGEES, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_REFUGEES, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Granaio.
+
+
+**`TEN_REFUGEES, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_REFUGEES, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_REFUGEES, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: i Nahr hanno un posto dove fermarsi.
+
+
+**`TEN_REFUGEES, si paga — C_CONDITION`**
+> Al luogo si aggiunge #malcontento.
+
+
+**`TEN_REFUGEES, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_REFUGEES, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_REFUGEES, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_REFUGEES, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_REFUGEES, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_REFUGEES, se cade — F_CONDITION`**
+> Al luogo si aggiunge #conteso.
+
+
+**`TEN_REFUGEES, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
+
+
 **`TEN_REGENCY`**
 > La Reggenza
 
@@ -829,6 +3013,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 
 **`TEN_REGENCY, presagio al 5`**
 > Il reggente ha ordinato insegne nuove. Non sono quelle della casa che rappresenta.
+
+
+**`TEN_REGENCY, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_REGENCY, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_REGENCY, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Torre di veglia.
+
+
+**`TEN_REGENCY, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_REGENCY, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_REGENCY, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: la corona e' stata divisa.
+
+
+**`TEN_REGENCY, si paga — C_CONDITION`**
+> Al luogo si aggiunge #sorvegliata.
+
+
+**`TEN_REGENCY, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_REGENCY, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_REGENCY, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_REGENCY, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_REGENCY, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_REGENCY, se cade — F_CONDITION`**
+> Al luogo si aggiunge #conteso.
+
+
+**`TEN_REGENCY, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_RELIC`**
@@ -845,6 +3085,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 > La teca è stata aperta per un inventario, e l'inventario non è stato scritto.
 
 
+**`TEN_RELIC, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_RELIC, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_RELIC, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Sito dormiente.
+
+
+**`TEN_RELIC, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_RELIC, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_RELIC, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: la reliquia e' tornata sottoterra.
+
+
+**`TEN_RELIC, si paga — C_CONDITION`**
+> Al luogo si aggiunge #sorvegliata.
+
+
+**`TEN_RELIC, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_RELIC, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_RELIC, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_RELIC, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_RELIC, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_RELIC, se cade — F_CONDITION`**
+> Al luogo si aggiunge #conteso.
+
+
+**`TEN_RELIC, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
+
+
 **`TEN_ROADS`**
 > Le Vie Interrotte
 
@@ -859,6 +3155,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 > Il prezzo del sale a Eredan raddoppia in nove giorni e nessuno sa dire perché.
 
 
+**`TEN_ROADS, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_ROADS, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_ROADS, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Pedaggio.
+
+
+**`TEN_ROADS, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_ROADS, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_ROADS, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: il debito e' stato chiamato.
+
+
+**`TEN_ROADS, si paga — C_CONDITION`**
+> Al luogo si aggiunge #sorvegliata.
+
+
+**`TEN_ROADS, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_ROADS, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_ROADS, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_ROADS, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_ROADS, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: il confine sigillato.
+
+
+**`TEN_ROADS, se cade — F_CONDITION`**
+> Il luogo resta tagliato fuori.
+
+
+**`TEN_ROADS, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
+
+
 **`TEN_SALT_FIELDS`**
 > I Campi di Sale
 
@@ -867,6 +3219,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 
 **`TEN_SALT_FIELDS, presagio al 5`**
 > Il sale ha superato il grano nei registri del porto. Quando lo sapranno i campi, vorranno la loro parte.
+
+
+**`TEN_SALT_FIELDS, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_SALT_FIELDS, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_SALT_FIELDS, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Canale.
+
+
+**`TEN_SALT_FIELDS, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_SALT_FIELDS, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_SALT_FIELDS, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: i conti sono stati chiusi.
+
+
+**`TEN_SALT_FIELDS, si paga — C_CONDITION`**
+> Al luogo si aggiunge #sfruttato.
+
+
+**`TEN_SALT_FIELDS, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_SALT_FIELDS, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_SALT_FIELDS, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_SALT_FIELDS, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_SALT_FIELDS, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_SALT_FIELDS, se cade — F_CONDITION`**
+> Al luogo si aggiunge #conteso.
+
+
+**`TEN_SALT_FIELDS, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_SANCTUARY`**
@@ -879,6 +3287,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 > Dentro il tempio adesso sono in tre. Fuori, il doppio di ieri.
 
 
+**`TEN_SANCTUARY, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_SANCTUARY, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_SANCTUARY, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Torre di veglia.
+
+
+**`TEN_SANCTUARY, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_SANCTUARY, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_SANCTUARY, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: la Carta e' stata scritta.
+
+
+**`TEN_SANCTUARY, si paga — C_CONDITION`**
+> Al luogo si aggiunge #sorvegliata.
+
+
+**`TEN_SANCTUARY, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_SANCTUARY, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_SANCTUARY, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_SANCTUARY, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_SANCTUARY, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_SANCTUARY, se cade — F_CONDITION`**
+> Al luogo si aggiunge #conteso.
+
+
+**`TEN_SANCTUARY, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
+
+
 **`TEN_SEALS`**
 > I Sigilli Falsi
 
@@ -887,6 +3351,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 
 **`TEN_SEALS, presagio al 5`**
 > Due ordini con lo stesso sigillo si contraddicono. Uno dei due e' falso. Forse tutti e due.
+
+
+**`TEN_SEALS, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_SEALS, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_SEALS, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Pedaggio.
+
+
+**`TEN_SEALS, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_SEALS, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_SEALS, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.
+
+
+**`TEN_SEALS, si paga — C_CONDITION`**
+> Al luogo si aggiunge #sorvegliata.
+
+
+**`TEN_SEALS, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_SEALS, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_SEALS, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_SEALS, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_SEALS, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_SEALS, se cade — F_CONDITION`**
+> Al luogo si aggiunge #conteso.
+
+
+**`TEN_SEALS, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_SILENT_BELLS`**
@@ -899,6 +3419,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 > Un bambino ha chiesto a cosa servono le torri. Nessuno dei presenti ha saputo rispondere subito.
 
 
+**`TEN_SILENT_BELLS, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_SILENT_BELLS, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_SILENT_BELLS, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Torre di veglia.
+
+
+**`TEN_SILENT_BELLS, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_SILENT_BELLS, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_SILENT_BELLS, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: la fede ha una casa riconosciuta.
+
+
+**`TEN_SILENT_BELLS, si paga — C_CONDITION`**
+> Al luogo si aggiunge #sorvegliata.
+
+
+**`TEN_SILENT_BELLS, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_SILENT_BELLS, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_SILENT_BELLS, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_SILENT_BELLS, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_SILENT_BELLS, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: la domanda sul muro.
+
+
+**`TEN_SILENT_BELLS, se cade — F_CONDITION`**
+> Al luogo si aggiunge #malcontento.
+
+
+**`TEN_SILENT_BELLS, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
+
+
 **`TEN_SILTED_CANALS`**
 > I Canali Interrati
 
@@ -907,6 +3483,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 
 **`TEN_SILTED_CANALS, presagio al 5`**
 > Un barcaiolo ha passato il tratto vecchio con l'acqua alta, per scommessa. Ha vinto, e adesso tutti conoscono la strada.
+
+
+**`TEN_SILTED_CANALS, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_SILTED_CANALS, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_SILTED_CANALS, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Canale.
+
+
+**`TEN_SILTED_CANALS, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_SILTED_CANALS, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_SILTED_CANALS, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: l'acqua torna a muoversi.
+
+
+**`TEN_SILTED_CANALS, si paga — C_CONDITION`**
+> Al luogo si aggiunge #razionato.
+
+
+**`TEN_SILTED_CANALS, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_SILTED_CANALS, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_SILTED_CANALS, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_SILTED_CANALS, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_SILTED_CANALS, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: l'abbandono.
+
+
+**`TEN_SILTED_CANALS, se cade — F_CONDITION`**
+> Al luogo si aggiunge #abbandonato.
+
+
+**`TEN_SILTED_CANALS, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_SLEEPERS`**
@@ -919,6 +3551,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 > Il piu' vecchio del villaggio ha rifatto lo stesso sogno tre notti. Non lo racconta, ma ha smesso di dormire.
 
 
+**`TEN_SLEEPERS, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_SLEEPERS, si ottiene — B_CLEAR`**
+> Il luogo torna raggiungibile.
+
+
+**`TEN_SLEEPERS, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Archivio.
+
+
+**`TEN_SLEEPERS, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_SLEEPERS, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_SLEEPERS, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: la miniera e' stata chiusa.
+
+
+**`TEN_SLEEPERS, si paga — C_CONDITION`**
+> Il luogo viene murato: quello che sta sotto resta sotto.
+
+
+**`TEN_SLEEPERS, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_SLEEPERS, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_SLEEPERS, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_SLEEPERS, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_SLEEPERS, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: la domanda sul muro.
+
+
+**`TEN_SLEEPERS, se cade — F_CONDITION`**
+> Al luogo si aggiunge #malcontento.
+
+
+**`TEN_SLEEPERS, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
+
+
 **`TEN_SMUGGLING`**
 > Il Contrabbando
 
@@ -927,6 +3615,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 
 **`TEN_SMUGGLING, presagio al 5`**
 > Il prezzo del sale di contrabbando e' sceso sotto quello del sale col dazio. Il mercato l'ha capito prima della dogana.
+
+
+**`TEN_SMUGGLING, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_SMUGGLING, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_SMUGGLING, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Pedaggio.
+
+
+**`TEN_SMUGGLING, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_SMUGGLING, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_SMUGGLING, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.
+
+
+**`TEN_SMUGGLING, si paga — C_CONDITION`**
+> Al luogo si aggiunge #sorvegliata.
+
+
+**`TEN_SMUGGLING, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_SMUGGLING, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_SMUGGLING, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_SMUGGLING, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_SMUGGLING, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_SMUGGLING, se cade — F_CONDITION`**
+> Al luogo si aggiunge #conteso.
+
+
+**`TEN_SMUGGLING, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_SUCCESSION`**
@@ -943,6 +3687,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 > I capitani smettono di giurare sul nome del re e giurano sul proprio.
 
 
+**`TEN_SUCCESSION, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_SUCCESSION, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_SUCCESSION, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Torre di veglia.
+
+
+**`TEN_SUCCESSION, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_SUCCESSION, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_SUCCESSION, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: la successione e' scritta in una legge.
+
+
+**`TEN_SUCCESSION, si paga — C_CONDITION`**
+> Al luogo si aggiunge #sorvegliata.
+
+
+**`TEN_SUCCESSION, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_SUCCESSION, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_SUCCESSION, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_SUCCESSION, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_SUCCESSION, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_SUCCESSION, se cade — F_CONDITION`**
+> Al luogo si aggiunge #conteso.
+
+
+**`TEN_SUCCESSION, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
+
+
 **`TEN_THIRST`**
 > I Pozzi Bassi
 
@@ -957,6 +3757,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 > Due villaggi si accordano per attingere a ore diverse, e non lo scrivono da nessuna parte.
 
 
+**`TEN_THIRST, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_THIRST, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_THIRST, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Granaio.
+
+
+**`TEN_THIRST, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_THIRST, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_THIRST, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: l'acqua torna a muoversi.
+
+
+**`TEN_THIRST, si paga — C_CONDITION`**
+> Al luogo si aggiunge #razionato.
+
+
+**`TEN_THIRST, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_THIRST, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_THIRST, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_THIRST, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_THIRST, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_THIRST, se cade — F_CONDITION`**
+> Al luogo si aggiunge #magra.
+
+
+**`TEN_THIRST, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
+
+
 **`TEN_TITHE`**
 > La Decima
 
@@ -965,6 +3821,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 
 **`TEN_TITHE, presagio al 5`**
 > L'esattore della decima ha comprato la casa grande sulla piazza. I fedeli l'hanno notato.
+
+
+**`TEN_TITHE, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_TITHE, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_TITHE, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Granaio.
+
+
+**`TEN_TITHE, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_TITHE, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_TITHE, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.
+
+
+**`TEN_TITHE, si paga — C_CONDITION`**
+> Al luogo si aggiunge #razionato.
+
+
+**`TEN_TITHE, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_TITHE, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_TITHE, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_TITHE, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_TITHE, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: la razzia.
+
+
+**`TEN_TITHE, se cade — F_CONDITION`**
+> Al luogo si aggiunge #saccheggiato.
+
+
+**`TEN_TITHE, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_TRIBUTE`**
@@ -977,6 +3889,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 > Il porto ha pagato per ultimo, e ha pagato con una lettera di conteggio allegata. La lettera e' gia' famosa.
 
 
+**`TEN_TRIBUTE, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_TRIBUTE, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_TRIBUTE, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Pedaggio.
+
+
+**`TEN_TRIBUTE, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_TRIBUTE, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_TRIBUTE, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: i conti sono stati chiusi.
+
+
+**`TEN_TRIBUTE, si paga — C_CONDITION`**
+> Al luogo si aggiunge #svuotato.
+
+
+**`TEN_TRIBUTE, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_TRIBUTE, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_TRIBUTE, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_TRIBUTE, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_TRIBUTE, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: la domanda sul muro.
+
+
+**`TEN_TRIBUTE, se cade — F_CONDITION`**
+> Al luogo si aggiunge #malcontento.
+
+
+**`TEN_TRIBUTE, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
+
+
 **`TEN_UNEARTHED`**
 > Il Dissotterrato
 
@@ -985,6 +3953,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 
 **`TEN_UNEARTHED, presagio al 5`**
 > L'oggetto e' piu' freddo della stanza in cui sta. Chi lo sorveglia ha chiesto il cambio in anticipo.
+
+
+**`TEN_UNEARTHED, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_UNEARTHED, si ottiene — B_CLEAR`**
+> Il luogo torna raggiungibile.
+
+
+**`TEN_UNEARTHED, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Sito dormiente.
+
+
+**`TEN_UNEARTHED, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_UNEARTHED, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_UNEARTHED, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: il Cristallo e' stato misurato.
+
+
+**`TEN_UNEARTHED, si paga — C_CONDITION`**
+> Il luogo viene murato: quello che sta sotto resta sotto.
+
+
+**`TEN_UNEARTHED, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_UNEARTHED, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_UNEARTHED, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_UNEARTHED, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_UNEARTHED, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_UNEARTHED, se cade — F_CONDITION`**
+> Al luogo si aggiunge #conteso.
+
+
+**`TEN_UNEARTHED, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_VOWS`**
@@ -997,6 +4021,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 > La lista dei voti in sospeso e' piu' lunga della lista dei battesimi. Qualcuno ha cominciato a dirlo forte.
 
 
+**`TEN_VOWS, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_VOWS, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_VOWS, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Archivio.
+
+
+**`TEN_VOWS, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_VOWS, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_VOWS, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: quello che si e' capito resta scritto.
+
+
+**`TEN_VOWS, si paga — C_CONDITION`**
+> Al luogo si aggiunge #lutto.
+
+
+**`TEN_VOWS, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_VOWS, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_VOWS, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_VOWS, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_VOWS, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: la domanda sul muro.
+
+
+**`TEN_VOWS, se cade — F_CONDITION`**
+> Al luogo si aggiunge #malcontento.
+
+
+**`TEN_VOWS, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
+
+
 **`TEN_WARD_STONES`**
 > Le Pietre di Guardia
 
@@ -1005,6 +4085,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 
 **`TEN_WARD_STONES, presagio al 5`**
 > Gli animali grossi non passano piu' dal varco della pietra caduta. Gli animali lo sanno prima di noi.
+
+
+**`TEN_WARD_STONES, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_WARD_STONES, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_WARD_STONES, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Foresta.
+
+
+**`TEN_WARD_STONES, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_WARD_STONES, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_WARD_STONES, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: la reliquia e' tornata sottoterra.
+
+
+**`TEN_WARD_STONES, si paga — C_CONDITION`**
+> Al luogo si aggiunge #lutto.
+
+
+**`TEN_WARD_STONES, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_WARD_STONES, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_WARD_STONES, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_WARD_STONES, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_WARD_STONES, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: l'abbandono.
+
+
+**`TEN_WARD_STONES, se cade — F_CONDITION`**
+> Al luogo si aggiunge #abbandonato.
+
+
+**`TEN_WARD_STONES, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_WATER`**
@@ -1017,6 +4153,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 > Nella Valle si scava di notte, e nessuno dice cosa cerca. Di giorno i canali sono gli stessi di prima.
 
 
+**`TEN_WATER, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_WATER, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_WATER, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Granaio.
+
+
+**`TEN_WATER, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_WATER, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_WATER, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: l'acqua torna a muoversi.
+
+
+**`TEN_WATER, si paga — C_CONDITION`**
+> Al luogo si aggiunge #razionato.
+
+
+**`TEN_WATER, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_WATER, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_WATER, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_WATER, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_WATER, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: l'abbandono.
+
+
+**`TEN_WATER, se cade — F_CONDITION`**
+> Al luogo si aggiunge #abbandonato.
+
+
+**`TEN_WATER, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
+
+
 **`TEN_WEIGHTS`**
 > I Pesi e le Misure
 
@@ -1025,6 +4217,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 
 **`TEN_WEIGHTS, presagio al 5`**
 > Al mercato e' comparsa una bilancia doppia: pesa la merce e il peso del venditore. La folla paga per guardare.
+
+
+**`TEN_WEIGHTS, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_WEIGHTS, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_WEIGHTS, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Pedaggio.
+
+
+**`TEN_WEIGHTS, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_WEIGHTS, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_WEIGHTS, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.
+
+
+**`TEN_WEIGHTS, si paga — C_CONDITION`**
+> Al luogo si aggiunge #sorvegliata.
+
+
+**`TEN_WEIGHTS, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_WEIGHTS, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_WEIGHTS, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_WEIGHTS, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_WEIGHTS, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_WEIGHTS, se cade — F_CONDITION`**
+> Al luogo si aggiunge #conteso.
+
+
+**`TEN_WEIGHTS, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_WINTER`**
@@ -1037,6 +4285,66 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 > Il fiume ha ghiacciato dove non ghiaccia mai. I vecchi hanno smesso di fare paragoni.
 
 
+**`TEN_WINTER, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_WINTER, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_WINTER, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Granaio.
+
+
+**`TEN_WINTER, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_WINTER, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_WINTER, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: il debito e' stato rimesso.
+
+
+**`TEN_WINTER, si paga — C_CONDITION`**
+> Al luogo si aggiunge #razionato.
+
+
+**`TEN_WINTER, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_WINTER, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_WINTER, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_WINTER, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_WINTER, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: il confine sigillato.
+
+
+**`TEN_WINTER, se cade — F_CONDITION`**
+> Il luogo resta tagliato fuori.
+
+
+**`TEN_WINTER, se cade — F_LEAN`**
+> Al luogo si aggiunge #magra.
+
+
+**`TEN_WINTER, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
+
+
 **`TEN_WOLVES`**
 > I Lupi al Limitare
 
@@ -1045,6 +4353,62 @@ possono spostare nella frase, non togliere. 1298 testi in lettura.
 
 **`TEN_WOLVES, presagio al 5`**
 > Un lupo e' stato visto di giorno, fermo, a guardare il villaggio. Non e' scappato per primo.
+
+
+**`TEN_WOLVES, si ottiene — B_REOPEN`**
+> Riapri l'accesso: il luogo torna raggiungibile.
+
+
+**`TEN_WOLVES, si ottiene — B_CLEAR`**
+> Rimuovi 1 condizione dal luogo scelto.
+
+
+**`TEN_WOLVES, si ottiene — B_STONE`**
+> Costruisci 1 Pietra nel luogo: Foresta.
+
+
+**`TEN_WOLVES, si ottiene — B_CONTROL`**
+> Assegna o trasferisci il controllo del luogo.
+
+
+**`TEN_WOLVES, si ottiene — B_COOL`**
+> Raffredda il Tema di 1 (minimo 0).
+
+
+**`TEN_WOLVES, si ottiene — B_REMEMBER`**
+> Il mondo ricorda: i Nahr hanno un posto dove fermarsi.
+
+
+**`TEN_WOLVES, si paga — C_CONDITION`**
+> Al luogo si aggiunge #sorvegliata.
+
+
+**`TEN_WOLVES, si paga — C_TOLL`**
+> Il luogo ottiene #pedaggio.
+
+
+**`TEN_WOLVES, si paga — C_YIELD`**
+> Cedi il controllo del luogo.
+
+
+**`TEN_WOLVES, si paga — C_HEAT`**
+> Scalda il Tema di 1.
+
+
+**`TEN_WOLVES, si paga — C_DEBT`**
+> Al luogo si aggiunge #indebitata.
+
+
+**`TEN_WOLVES, si paga — C_SCAR`**
+> Accetta 1 Cicatrice permanente: la razzia.
+
+
+**`TEN_WOLVES, se cade — F_CONDITION`**
+> Al luogo si aggiunge #saccheggiato.
+
+
+**`TEN_WOLVES, se cade — F_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 ## 5. I Consigli — domande ai voti e proposte

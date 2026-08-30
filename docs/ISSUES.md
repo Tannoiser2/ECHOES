@@ -5761,7 +5761,19 @@ perche' non ce l'ha, e il conto dei segni di Pietra combacia con le Pietre alzat
 
 ### 103. `REVISIONE_TESTI` non contiene le 841 caselle di costo e beneficio
 
-`strumenti` · `misura` · aperta in 0.1.305
+`strumenti` · `misura` · aperta in 0.1.305 · **chiusa in 0.1.306**
+([D-341](DECISIONS.md#d-341))
+
+> **Chiusa.** Le 841 caselle entrano nel documento, ognuna col suo id —
+> `TEN_FAMINE, se cade — F_CONDITION` — insieme alle 288 stringhe della faccia
+> Asset entrate in D-340. `REVISIONE_TESTI` cresce di 3.635 righe, e le
+> sessantacinque caselle riscritte in D-341 si rileggono con una riga.
+>
+> **Quello che la voce chiedeva in piu' resta aperto**: il «fatto quando»
+> parlava di *una prova che parte dai dati* e prende ogni stringa stampabile su
+> una faccia. Le due sezioni sono state aggiunte a mano, e un blocco nuovo
+> domani sarebbe di nuovo fuori senza che niente fallisca. E' la stessa forma di
+> `components_survey` in D-338, ed e' **ISSUES 105**.
 
 `docs/REVISIONE_TESTI.md` dice di se' stesso: *«ogni testo che un giocatore puo'
 leggere, nell'ordine in cui lo incontra, con il suo identificativo»*. E' il
@@ -5794,6 +5806,65 @@ compaia nel documento, cosi' che un blocco nuovo sia coperto il giorno che entra
 
 **Fatto quando** nessuna stringa stampabile su una faccia manca dal documento, e
 lo tiene una prova che pianta un blocco nuovo e la vede cadere.
+
+---
+
+### 104. Tre proposte su quarantanove fanno la stessa identica cosa
+
+`contenuto` · `consigli` · aperta in 0.1.306
+
+Misurate le 49 proposte dei 12 Consigli contro la **catena di effetti** che
+applicano davvero — non contro la frase: **tre ripetono una proposta gia'
+presente sulla stessa scheda**, parole diverse ed effetto identico.
+
+| Consiglio | domande | proposte | catene diverse |
+|---|---|---|---|
+| La Carestia | 2 | 4 | **3** |
+| L'Acqua | 2 | 3 | **2** |
+| La Carta | 2 | 4 | **3** |
+
+Su La Carestia le due gemelle sono *«Chi propone apra la Regione a chi giunge da
+levante»* e *«La terra appartenga a chi la lavora»*: due frasi che al voto
+sembrano due strade e sono la stessa. **La prosa lo nascondeva** — e finche' le
+proposte erano stampate sulla scheda, il difetto arrivava fino al tavolo.
+
+Da [D-341](DECISIONS.md#d-341) le proposte non sono piu' su una faccia stampata,
+quindi il difetto e' **solo digitale**: nell'app, due opzioni di voto che portano
+allo stesso mondo. Non e' stato riparato qui perche' cambiare a cosa punta una
+proposta cambia il gioco, e va misurato sui 100 semi.
+
+**Nessun cancello lo sorveglia.** Il validatore controlla che le carte Tensione
+non abbiano scelte finte; questa regola non e' mai stata portata sui Consigli.
+
+**Fatto quando** due proposte della stessa scheda non hanno mai la stessa catena
+di effetti, e lo tiene una prova che pianta un doppione.
+
+---
+
+### 105. Le sezioni di `REVISIONE_TESTI` si aggiungono a mano
+
+`strumenti` · `misura` · aperta in 0.1.306
+
+`build_review.py` compone il documento **sezione per sezione, scritte a mano**.
+Ha funzionato finche' i blocchi di testo erano quelli del 2024; poi sono
+arrivati il blocco `physical` delle carte Asset (288 stringhe) e le caselle delle
+Tensioni (841), e il documento che dice *«ogni testo che un giocatore puo'
+leggere»* ne mancava **1.128** senza fallire. Aggiunte in
+[D-340](DECISIONS.md#d-340) e [D-341](DECISIONS.md#d-341), a mano tutte e due.
+
+Il cancello confronta il documento con quello che il **generatore** produce, non
+il generatore con quello che il **gioco** stampa: un blocco nuovo domani e'
+fuori, in silenzio.
+
+E' la stessa forma di `components_survey.py` in [D-338](DECISIONS.md#d-338), che
+costruiva la tabella dei mazzi da righe scritte a mano e non si accorse di un
+mazzo nuovo. E la stessa di D-329, D-333, D-334 e D-336.
+
+**Fatto quando** una prova parte dai dati — ogni stringa che una faccia di
+`CardFace` puo' stampare, piu' i blocchi che lo schema dichiara come testo da
+giocatore — e chiede che compaia nel documento; e la prova pianta un blocco nuovo
+e la vede cadere.
+
 
 Ogni voce qui sopra è già un'issue: il titolo dopo il numero, le etichette e la
 milestone dalla riga sotto, il resto come corpo. Chi le apre segna il numero

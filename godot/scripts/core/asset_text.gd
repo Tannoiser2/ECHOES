@@ -274,6 +274,18 @@ static func tooltip(asset: Dictionary, data = null) -> String:
 ## Le altre due — il bersaglio e le due Azioni — hanno un testo d'autore, ed e'
 ## quello che va scritto in imperativo, come lo schema gia' chiede.
 
+## Il nome stampato di un segno, per chi disegna una faccia. Pubblico perche' la
+## scheda del Consiglio deve dire una Cicatrice **col suo segno e il suo posto**
+## e non con la frase d'autore che le sta accanto (D-341).
+static func sign_word(tag: String, data = null) -> String:
+	return _sign(tag, data)
+
+
+## Il posto, per chi disegna una faccia.
+static func place_word(id: String, data = null) -> String:
+	return _place(id, data)
+
+
 ## Un segno come si legge sulla carta: col cancelletto davanti, che al tavolo e'
 ## il modo in cui si distingue «una cosa che si posa» da una parola qualunque.
 static func _hash(tag: String, data = null) -> String:

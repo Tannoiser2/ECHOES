@@ -48,7 +48,7 @@ Qualcosa si è mosso sotto le Miniere, e nessuno sa dire quanto manca. Si vedono
 
 > Che cosa si fa del Cristallo Rosso che esce nella Regione di cui si discute?
 
-- **Se passa — La Miniera Aperta:** in una Regione con cristallo diventa sfruttata · il mondo registra: il Cristallo e' stato sfruttato · Il Risveglio si apre a tutti · chi propone porta addosso: scoperta: il cristallo · Sito antico dove si discute va al grado 3 · e resta una cicatrice: La galleria maestra non si richiude più, e la roccia intorno resta tiepida.
+- **Se passa — La Miniera Aperta:** in una Regione con cristallo diventa sfruttata · il mondo registra: il Cristallo e' stato sfruttato · Il Risveglio si apre a tutti · chi propone porta addosso: scoperta: il cristallo · Sito antico dove si discute va al grado 3 · e resta una Cicatrice: la ferita aperta in una Regione con cristallo
 - **Se passa — La Miniera di Stato:** il mondo registra: lo studio e' sotto sorveglianza
 
 ### Si sigillino le gallerie nella Regione di cui si discute: ciò che dorme resti addormentato.
@@ -75,7 +75,7 @@ Qualcosa si è mosso sotto le Miniere, e nessuno sa dire quanto manca. Si vedono
 > A chi appartiene ciò che dorme sotto la Regione di cui si discute?
 
 - **Si puo' proporre solo se:** Solo cio' che una Rivelazione ha gia' mostrato si puo' cacciare
-- **Se passa — Il Drago Abbattuto:** la casa che porta dormiente esce dal tavolo, o ci rientra · Il Risveglio scende di 6 · il mondo registra: il drago e' stato abbattuto · e resta una cicatrice: Il punto dove la montagna smise di respirare. Nessuno ci costruisce sopra.
+- **Se passa — Il Drago Abbattuto:** la casa che porta dormiente esce dal tavolo, o ci rientra · Il Risveglio scende di 6 · il mondo registra: il drago e' stato abbattuto · e resta una Cicatrice: la caduta del drago in una Regione con selvaggio
 
 **Le clausole che si possono attaccare:**
 
@@ -160,7 +160,7 @@ Le pietre che dicono dove finisce il mio e comincia il tuo si sono mosse. Le pie
 
 > Nella Regione di cui si discute, chi tiene il posto quando la voce si spegne?
 
-- **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa inquieta · La Carta sale · e resta una cicatrice: Nella sala del consiglio c'è una sedia più alta delle altre, e nessuno l'ha più tolta.
+- **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa inquieta · La Carta sale · e resta una Cicatrice: il seggio vuoto dove si discute
 
 ### Si divida l'uso, non il titolo: ognuno il suo pezzo, e i conti a fine anno.
 
@@ -172,7 +172,7 @@ Le pietre che dicono dove finisce il mio e comincia il tuo si sono mosse. Le pie
 
 > Quale legge vale nella Regione di cui si discute: quella scritta, o quella di chi c'e'?
 
-- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 3 · e resta una cicatrice: Le case in piedi e le porte aperte, e dentro niente che valga la pena portare via.
+- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 3 · e resta una Cicatrice: l'abbandono dove si discute
 
 **Le clausole che si possono attaccare:**
 
@@ -228,7 +228,7 @@ Otto secoli senza corona hanno funzionato benissimo finché nessuno ha avuto bis
 
 > E chi si siede, quando non si è d'accordo?
 
-- **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa inquieta · La Carta sale · e resta una cicatrice: Nella sala del consiglio c'è una sedia più alta delle altre, e nessuno l'ha più tolta.
+- **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa inquieta · La Carta sale · e resta una Cicatrice: il seggio vuoto dove si discute
 
 ### Quando l'accordo manca, si tiri a sorte; e la sorte sia scritta.
 
@@ -286,7 +286,7 @@ Chi siede decide. Percio' la prima decisione e' sempre chi siede.
 
 > Chi si siede al tavolo, e chi lo decide?
 
-- **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa inquieta · La Carta sale · e resta una cicatrice: Nella sala del consiglio c'è una sedia più alta delle altre, e nessuno l'ha più tolta.
+- **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa inquieta · La Carta sale · e resta una Cicatrice: il seggio vuoto dove si discute
 
 ### Il tavolo resta quello: chi non c'era, non c'e'.
 
@@ -323,7 +323,7 @@ Le notizie viaggiano a cavallo di chi le porta. Chi paga le staffette sceglie co
 
 > Chi paga le staffette, e cosa compra davvero?
 
-- **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa inquieta · La Carta sale · e resta una cicatrice: Nella sala del consiglio c'è una sedia più alta delle altre, e nessuno l'ha più tolta.
+- **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa inquieta · La Carta sale · e resta una Cicatrice: il seggio vuoto dove si discute
 
 ### Chi ha rotto un sigillo lo dica davanti a chi aspettava quella lettera, e paghi.
 
@@ -374,7 +374,7 @@ Nessuno ha mai dichiarato guerra alla Gilda del Sale. Le devono tutti dei soldi:
 > E se lo chiamano tutto insieme, nella Regione di cui si discute cosa succede?
 
 - **Se passa — Il Debito Chiamato:** il mondo registra: il debito e' stato chiamato · il rapporto fra chi propone e il rivale cambia · dove si discute diventa indebitata
-- **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa inquieta · La Carta sale · e resta una cicatrice: Nella sala del consiglio c'è una sedia più alta delle altre, e nessuno l'ha più tolta.
+- **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa inquieta · La Carta sale · e resta una Cicatrice: il seggio vuoto dove si discute
 
 **Le clausole che si possono attaccare:**
 
@@ -457,7 +457,7 @@ Il mare ha smesso di dare. Nessuno sa a chi chiedere il perche', e intanto le ba
 
 > E le barche ferme, di chi restano?
 
-- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 3 · e resta una cicatrice: Le case in piedi e le porte aperte, e dentro niente che valga la pena portare via.
+- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 3 · e resta una Cicatrice: l'abbandono dove si discute
 
 **Le clausole che si possono attaccare:**
 
@@ -478,7 +478,7 @@ I pali nuovi spuntano di notte. La terra che era di tutti, al mattino, ha un pad
 
 > Nella Regione di cui si discute, chi tiene il posto quando la voce si spegne?
 
-- **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa inquieta · La Carta sale · e resta una cicatrice: Nella sala del consiglio c'è una sedia più alta delle altre, e nessuno l'ha più tolta.
+- **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa inquieta · La Carta sale · e resta una Cicatrice: il seggio vuoto dove si discute
 
 ### Si divida l'uso, non il titolo: ognuno il suo pezzo, e i conti a fine anno.
 
@@ -490,7 +490,7 @@ I pali nuovi spuntano di notte. La terra che era di tutti, al mattino, ha un pad
 
 > Quale legge vale nella Regione di cui si discute: quella scritta, o quella di chi c'e'?
 
-- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 3 · e resta una cicatrice: Le case in piedi e le porte aperte, e dentro niente che valga la pena portare via.
+- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 3 · e resta una Cicatrice: l'abbandono dove si discute
 
 **Le clausole che si possono attaccare:**
 
@@ -528,7 +528,7 @@ I campi rendono meno ogni anno, e nessuno vuole essere il primo a lasciarli ripo
 
 > Chi ha ancora motivo di restare nella Regione di cui si discute?
 
-- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 3 · e resta una cicatrice: Le case in piedi e le porte aperte, e dentro niente che valga la pena portare via.
+- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 3 · e resta una Cicatrice: l'abbandono dove si discute
 
 **Le clausole che si possono attaccare:**
 
@@ -551,7 +551,7 @@ Non è ancora fame. È il calcolo, fatto a voce bassa, di quanto manchi alla fam
 
 - **Si puo' proporre solo se:** Solo chi porta la corona può requisire
 - **Se passa — Il Granaio del Trono:** si alza Granaio in una Regione con granaio · Le Vie Interrotte sale · il mondo registra: il grano e' stato requisito
-- **Se passa — La Valle Sgomberata:** il rivale se ne va dove si discute · dove si discute diventa requisita · Foresta dove si discute va al grado 2 · il rivale entra in una Regione confinante · e resta una cicatrice: Le piste dei carri incise nel terreno basso, e nessuno che le ripercorra.
+- **Se passa — La Valle Sgomberata:** il rivale se ne va dove si discute · dove si discute diventa requisita · Foresta dove si discute va al grado 2 · il rivale entra in una Regione confinante · e resta una Cicatrice: lo sgombero dove si discute
 
 ### Chi propone apra la Regione di cui si discute a chi giunge da levante: chi ne lavora la terra, ne mangi.
 
@@ -565,7 +565,7 @@ Non è ancora fame. È il calcolo, fatto a voce bassa, di quanto manchi alla fam
 > Nella Regione di cui si discute, a chi appartiene la terra che ancora produce?
 
 - **Si puo' proporre solo se:** Solo il trono può chiudere i confini del regno
-- **Se passa — La Valle Chiusa:** il mondo registra: la Valle e' stata chiusa · nella sede del rivale diventa affamata · il rivale se ne va in una Regione con pascolo · il rapporto fra chi propone e il rivale cambia · e resta una cicatrice: Il vallo di pietra a secco tirato su in un inverno: nessuno lo ha più smontato.
+- **Se passa — La Valle Chiusa:** il mondo registra: la Valle e' stata chiusa · nella sede del rivale diventa affamata · il rivale se ne va in una Regione con pascolo · il rapporto fra chi propone e il rivale cambia · e resta una Cicatrice: il confine sigillato dove si discute
 
 ### La terra della Regione di cui si discute appartenga a chi la lavora - e quest'anno la lavora chi è arrivato.
 
@@ -643,7 +643,7 @@ Gli argini vecchi tengono per abitudine. L'acqua non ha abitudini.
 
 > Chi ha ancora motivo di restare nella Regione di cui si discute?
 
-- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 3 · e resta una cicatrice: Le case in piedi e le porte aperte, e dentro niente che valga la pena portare via.
+- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 3 · e resta una Cicatrice: l'abbandono dove si discute
 
 **Le clausole che si possono attaccare:**
 
@@ -670,7 +670,7 @@ Due gilde si contendono le stesse strade. Per ora si rubano i clienti. Le vie so
 
 > Le vie sono strette: di chi sono?
 
-- **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa inquieta · La Carta sale · e resta una cicatrice: Nella sala del consiglio c'è una sedia più alta delle altre, e nessuno l'ha più tolta.
+- **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa inquieta · La Carta sale · e resta una Cicatrice: il seggio vuoto dove si discute
 
 ### Chi ha acceso paghi davanti a chi ha perso il magazzino, e si chiuda qui.
 
@@ -695,7 +695,7 @@ Qualcuno predica una fede quasi uguale. Il quasi e' il problema.
 
 > Nella Regione di cui si discute, chi tiene il posto quando la voce si spegne?
 
-- **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa inquieta · La Carta sale · e resta una cicatrice: Nella sala del consiglio c'è una sedia più alta delle altre, e nessuno l'ha più tolta.
+- **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa inquieta · La Carta sale · e resta una Cicatrice: il seggio vuoto dove si discute
 
 ### Si divida l'uso, non il titolo: ognuno il suo pezzo, e i conti a fine anno.
 
@@ -707,7 +707,7 @@ Qualcuno predica una fede quasi uguale. Il quasi e' il problema.
 
 > Quale legge vale nella Regione di cui si discute: quella scritta, o quella di chi c'e'?
 
-- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 3 · e resta una cicatrice: Le case in piedi e le porte aperte, e dentro niente che valga la pena portare via.
+- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 3 · e resta una Cicatrice: l'abbandono dove si discute
 
 **Le clausole che si possono attaccare:**
 
@@ -726,7 +726,7 @@ Si chiamano ospiti. Mangiano a corte, dormono a corte, e non possono andarsene.
 
 > E chi risponde di loro?
 
-- **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa inquieta · La Carta sale · e resta una cicatrice: Nella sala del consiglio c'è una sedia più alta delle altre, e nessuno l'ha più tolta.
+- **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa inquieta · La Carta sale · e resta una Cicatrice: il seggio vuoto dove si discute
 
 ### Tornino a casa tutti, e ogni casa si fidi di quello che ha promesso.
 
@@ -826,7 +826,7 @@ Braccia senza terra, terra senza braccia: il conto non torna, e chi lavora comin
 
 > Chi ha ancora motivo di restare nella Regione di cui si discute?
 
-- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 3 · e resta una cicatrice: Le case in piedi e le porte aperte, e dentro niente che valga la pena portare via.
+- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 3 · e resta una Cicatrice: l'abbandono dove si discute
 
 **Le clausole che si possono attaccare:**
 
@@ -847,7 +847,7 @@ Scrivere di chi e' la terra e' un modo di prendersela. Non scriverlo e' un altro
 
 > Nella Regione di cui si discute, chi tiene il posto quando la voce si spegne?
 
-- **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa inquieta · La Carta sale · e resta una cicatrice: Nella sala del consiglio c'è una sedia più alta delle altre, e nessuno l'ha più tolta.
+- **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa inquieta · La Carta sale · e resta una Cicatrice: il seggio vuoto dove si discute
 
 ### Si divida l'uso, non il titolo: ognuno il suo pezzo, e i conti a fine anno.
 
@@ -859,7 +859,7 @@ Scrivere di chi e' la terra e' un modo di prendersela. Non scriverlo e' un altro
 
 > Quale legge vale nella Regione di cui si discute: quella scritta, o quella di chi c'e'?
 
-- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 3 · e resta una cicatrice: Le case in piedi e le porte aperte, e dentro niente che valga la pena portare via.
+- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 3 · e resta una Cicatrice: l'abbandono dove si discute
 
 **Le clausole che si possono attaccare:**
 
@@ -911,7 +911,7 @@ Ai margini il potere arriva stanco. Chi vive sul confine obbedisce a chi e' piu'
 
 > E i titoli che si danno da soli, valgono?
 
-- **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa inquieta · La Carta sale · e resta una cicatrice: Nella sala del consiglio c'è una sedia più alta delle altre, e nessuno l'ha più tolta.
+- **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa inquieta · La Carta sale · e resta una Cicatrice: il seggio vuoto dove si discute
 
 ### Nessun titolo. Si richiamino i capibanda, e chi non torna e' fuori legge.
 
@@ -923,7 +923,7 @@ Ai margini il potere arriva stanco. Chi vive sul confine obbedisce a chi e' piu'
 
 > Ai margini della Regione di cui si discute, a chi si obbedisce davvero?
 
-- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 3 · e resta una cicatrice: Le case in piedi e le porte aperte, e dentro niente che valga la pena portare via.
+- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 3 · e resta una Cicatrice: l'abbandono dove si discute
 
 **Le clausole che si possono attaccare:**
 
@@ -942,7 +942,7 @@ Dalla palude sale una febbre lenta che non uccide subito. Prima toglie le forze,
 
 > Nella Regione di cui si discute, chi manda gli uomini a prosciugare?
 
-- **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa inquieta · La Carta sale · e resta una cicatrice: Nella sala del consiglio c'è una sedia più alta delle altre, e nessuno l'ha più tolta.
+- **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa inquieta · La Carta sale · e resta una Cicatrice: il seggio vuoto dove si discute
 
 ### Ogni casa ne prenda la sua parte, e nessuno ne esca pulito.
 
@@ -994,7 +994,7 @@ Non sono nemici e non sono poveri: sono persone che non risultano da nessuna par
 
 > Chi ha ancora motivo di restare nella Regione di cui si discute?
 
-- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 3 · e resta una cicatrice: Le case in piedi e le porte aperte, e dentro niente che valga la pena portare via.
+- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 3 · e resta una Cicatrice: l'abbandono dove si discute
 
 **Le clausole che si possono attaccare:**
 
@@ -1040,7 +1040,7 @@ Hanno servito il potere di prima. Il potere di adesso non si fida, e non puo' co
 
 > E chi comanda i veterani?
 
-- **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa inquieta · La Carta sale · e resta una cicatrice: Nella sala del consiglio c'è una sedia più alta delle altre, e nessuno l'ha più tolta.
+- **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa inquieta · La Carta sale · e resta una Cicatrice: il seggio vuoto dove si discute
 
 ### Si congedino con onore, e il costo lo divida il tavolo.
 
@@ -1096,7 +1096,7 @@ Le greggi non leggono i confini. I pastori si', e li leggono diversi.
 
 > Nella Regione di cui si discute, chi tiene il posto quando la voce si spegne?
 
-- **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa inquieta · La Carta sale · e resta una cicatrice: Nella sala del consiglio c'è una sedia più alta delle altre, e nessuno l'ha più tolta.
+- **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa inquieta · La Carta sale · e resta una Cicatrice: il seggio vuoto dove si discute
 
 ### Si divida l'uso, non il titolo: ognuno il suo pezzo, e i conti a fine anno.
 
@@ -1108,7 +1108,7 @@ Le greggi non leggono i confini. I pastori si', e li leggono diversi.
 
 > Quale legge vale nella Regione di cui si discute: quella scritta, o quella di chi c'e'?
 
-- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 3 · e resta una cicatrice: Le case in piedi e le porte aperte, e dentro niente che valga la pena portare via.
+- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 3 · e resta una Cicatrice: l'abbandono dove si discute
 
 **Le clausole che si possono attaccare:**
 
@@ -1146,7 +1146,7 @@ Arrivano a piedi, mangiano poco, pregano molto. Sono tanti, e continuano ad arri
 
 > Chi ha ancora motivo di restare nella Regione di cui si discute?
 
-- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 3 · e resta una cicatrice: Le case in piedi e le porte aperte, e dentro niente che valga la pena portare via.
+- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 3 · e resta una Cicatrice: l'abbandono dove si discute
 
 **Le clausole che si possono attaccare:**
 
@@ -1225,7 +1225,7 @@ Fermare i malanni vuol dire fermare le strade. Le strade sono quelle che danno d
 
 > Chi traccia il cordone nella Regione di cui si discute, e dove passa?
 
-- **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa inquieta · La Carta sale · e resta una cicatrice: Nella sala del consiglio c'è una sedia più alta delle altre, e nessuno l'ha più tolta.
+- **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa inquieta · La Carta sale · e resta una Cicatrice: il seggio vuoto dove si discute
 
 ### Si passa pagando: chi ha di che, esce.
 
@@ -1237,7 +1237,7 @@ Fermare i malanni vuol dire fermare le strade. Le strade sono quelle che danno d
 
 > E chi resta fuori, dove va?
 
-- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 3 · e resta una cicatrice: Le case in piedi e le porte aperte, e dentro niente che valga la pena portare via.
+- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 3 · e resta una Cicatrice: l'abbandono dove si discute
 
 **Le clausole che si possono attaccare:**
 
@@ -1258,7 +1258,7 @@ Arrivano con quello che portano addosso. Da qualcosa scappano, e nessuno chiede 
 
 > Nella Regione di cui si discute, chi decide dove si fermano quelli che arrivano?
 
-- **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa inquieta · La Carta sale · e resta una cicatrice: Nella sala del consiglio c'è una sedia più alta delle altre, e nessuno l'ha più tolta.
+- **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa inquieta · La Carta sale · e resta una Cicatrice: il seggio vuoto dove si discute
 
 ### Il pane in piu' lo mette ogni casa, in parti uguali.
 
@@ -1270,7 +1270,7 @@ Arrivano con quello che portano addosso. Da qualcosa scappano, e nessuno chiede 
 
 > Nella Regione di cui si discute, chi decide dove si fermano quelli che arrivano?
 
-- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 3 · e resta una cicatrice: Le case in piedi e le porte aperte, e dentro niente che valga la pena portare via.
+- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 3 · e resta una Cicatrice: l'abbandono dove si discute
 
 **Le clausole che si possono attaccare:**
 
@@ -1297,7 +1297,7 @@ Chi governa in nome di un altro governa comunque. E ci prende gusto.
 
 > Il sigillo, fino a quando lo tiene il reggente?
 
-- **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa inquieta · La Carta sale · e resta una cicatrice: Nella sala del consiglio c'è una sedia più alta delle altre, e nessuno l'ha più tolta.
+- **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa inquieta · La Carta sale · e resta una Cicatrice: il seggio vuoto dove si discute
 
 ### Si divida: due mani sul sigillo, e nessuna che lo alzi da sola.
 
@@ -1341,8 +1341,8 @@ Un frammento del Cristallo Rosso, dentro una teca, dentro una regola: si custodi
 > Chi risponde di quello che c'è nella teca?
 
 - **Se passa — Le Gallerie Lasciate:** in una Regione con miniera diventa svuotata · il rivale se ne va in una Regione con miniera · La Cenere che Sale scende di 2 · Il Debito sale · Foresta dove si discute va al grado 3 · il rivale entra in una Regione confinante
-- **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa inquieta · La Carta sale · e resta una cicatrice: Nella sala del consiglio c'è una sedia più alta delle altre, e nessuno l'ha più tolta.
-- **Se passa — La Roccia che Cede:** in una Regione con miniera diventa sfruttata · e resta una cicatrice: La galleria maestra non si richiude più, e la roccia intorno resta tiepida.
+- **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa inquieta · La Carta sale · e resta una Cicatrice: il seggio vuoto dove si discute
+- **Se passa — La Roccia che Cede:** in una Regione con miniera diventa sfruttata · e resta una Cicatrice: la ferita aperta in una Regione con miniera
 
 ### La teca resti dov'è. Ciò che va guardato è la montagna, e la guardi chi propone.
 
@@ -1388,8 +1388,8 @@ Si vede il prezzo del sale, non chi lo fa salire.
 
 > Chi risponde di un carico che non arriva?
 
-- **Se passa — La Strada Spogliata:** dove si discute diventa depredata · in una Regione confinante diventa tagliata fuori · La Carestia sale · e resta una cicatrice: Quello che restava dei carri, lasciato dov'era perché si vedesse.
-- **Se passa — La Via delle Miniere Tagliata:** in una Regione confinante diventa tagliata fuori · Il Risveglio sale · Passo in una Regione con selvaggio va al grado 2 · si chiude la strada in una Regione con pascolo · e resta una cicatrice: Le due teste del ponte, ancora in piedi, con niente in mezzo.
+- **Se passa — La Strada Spogliata:** dove si discute diventa depredata · in una Regione confinante diventa tagliata fuori · La Carestia sale · e resta una Cicatrice: la razzia dove si discute
+- **Se passa — La Via delle Miniere Tagliata:** in una Regione confinante diventa tagliata fuori · Il Risveglio sale · Passo in una Regione con selvaggio va al grado 2 · si chiude la strada in una Regione con pascolo · e resta una Cicatrice: il ponte rotto in una Regione confinante
 
 **Le clausole che si possono attaccare:**
 
@@ -1441,7 +1441,7 @@ Chi tocca l'altare non si tocca. Era una regola comoda finche' non ci si e' aggr
 
 > Nella Regione di cui si discute, chi tiene il posto quando la voce si spegne?
 
-- **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa inquieta · La Carta sale · e resta una cicatrice: Nella sala del consiglio c'è una sedia più alta delle altre, e nessuno l'ha più tolta.
+- **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa inquieta · La Carta sale · e resta una Cicatrice: il seggio vuoto dove si discute
 
 ### Si divida l'uso, non il titolo: ognuno il suo pezzo, e i conti a fine anno.
 
@@ -1453,7 +1453,7 @@ Chi tocca l'altare non si tocca. Era una regola comoda finche' non ci si e' aggr
 
 > Quale legge vale nella Regione di cui si discute: quella scritta, o quella di chi c'e'?
 
-- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 3 · e resta una cicatrice: Le case in piedi e le porte aperte, e dentro niente che valga la pena portare via.
+- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 3 · e resta una Cicatrice: l'abbandono dove si discute
 
 **Le clausole che si possono attaccare:**
 
@@ -1478,7 +1478,7 @@ Un sigillo vale quanto la cera se nessuno controlla la mano che lo preme.
 
 > Chi controlla la mano che preme il sigillo?
 
-- **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa inquieta · La Carta sale · e resta una cicatrice: Nella sala del consiglio c'è una sedia più alta delle altre, e nessuno l'ha più tolta.
+- **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa inquieta · La Carta sale · e resta una Cicatrice: il seggio vuoto dove si discute
 
 ### Si annulli tutto quello che e' partito quest'anno, e si ricominci.
 
@@ -1503,7 +1503,7 @@ Le campane non suonano da tre lune. Nessuno ha deciso il silenzio, e nessuno osa
 
 > Nella Regione di cui si discute, chi tiene il posto quando la voce si spegne?
 
-- **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa inquieta · La Carta sale · e resta una cicatrice: Nella sala del consiglio c'è una sedia più alta delle altre, e nessuno l'ha più tolta.
+- **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa inquieta · La Carta sale · e resta una Cicatrice: il seggio vuoto dove si discute
 
 ### Si divida l'uso, non il titolo: ognuno il suo pezzo, e i conti a fine anno.
 
@@ -1515,7 +1515,7 @@ Le campane non suonano da tre lune. Nessuno ha deciso il silenzio, e nessuno osa
 
 > Quale legge vale nella Regione di cui si discute: quella scritta, o quella di chi c'e'?
 
-- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 3 · e resta una cicatrice: Le case in piedi e le porte aperte, e dentro niente che valga la pena portare via.
+- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 3 · e resta una Cicatrice: l'abbandono dove si discute
 
 **Le clausole che si possono attaccare:**
 
@@ -1636,7 +1636,7 @@ Aperta: tutti sanno che Aldric non ha erede. Nessuno sa ancora chi lo dirà per 
 
 > Chi siede sul trono quando questo si alza?
 
-- **Se passa — La Corona Divisa:** nella sede del rivale cambia padrone · nella capitale diventa contesa · il mondo registra: la corona e' stata divisa · e resta una cicatrice: Il sigillo spezzato in due metà, e nessuna delle due restituita.
+- **Se passa — La Corona Divisa:** nella sede del rivale cambia padrone · nella capitale diventa contesa · il mondo registra: la corona e' stata divisa · e resta una Cicatrice: il sigillo diviso nella capitale
 - **Se passa — La Marca Concessa:** nella sede del rivale cambia padrone · nella sede del rivale diventa la marca · si alza Presidio nella sede del rivale
 
 ### Due titoli sono due guerre che aspettano. Si conti chi tiene cosa, e il titolo torni uno.
@@ -1658,7 +1658,7 @@ Aperta: tutti sanno che Aldric non ha erede. Nessuno sa ancora chi lo dirà per 
 > Nella Regione di cui si discute, che cosa vale più di un nome: la legge o le spade?
 
 - **Si puo' proporre solo se:** Solo un trono al limite si prende così
-- **Se passa — La Capitale Presa:** nella capitale cambia padrone · il rivale se ne va nella capitale · nella capitale diventa inquieta · il rivale perde: la corona · e resta una cicatrice: Sulla porta nord il nome vecchio si legge ancora sotto quello nuovo.
+- **Se passa — La Capitale Presa:** nella capitale cambia padrone · il rivale se ne va nella capitale · nella capitale diventa inquieta · il rivale perde: la corona · e resta una Cicatrice: passata di mano nella capitale
 
 ### Si riprenda la domanda che un consiglio lasciò cadere, e stavolta la risposta si scriva nel registro.
 

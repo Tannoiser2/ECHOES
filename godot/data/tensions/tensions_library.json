@@ -97,7 +97,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e i campi restano di due padroni, cioe' di nessuno. Al luogo si aggiunge #conteso.",
+            "text": "Al luogo si aggiunge #conteso.",
             "tag": "condition:contested"
           },
           {
@@ -319,7 +319,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e la terra continua a rendere corto: si litiga sui confini buoni. Al luogo si aggiunge #conteso.",
+            "text": "Al luogo si aggiunge #conteso.",
             "tag": "condition:contested"
           },
           {
@@ -540,7 +540,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e i braccianti si contano fra loro: la piazza non si svuota. Al luogo si aggiunge #conteso.",
+            "text": "Al luogo si aggiunge #conteso.",
             "tag": "condition:contested"
           },
           {
@@ -742,7 +742,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e l'acqua prende il posto accanto, che resta tagliato fuori. Il luogo resta tagliato fuori.",
+            "text": "Il luogo resta tagliato fuori.",
             "tag": "condition:cut_off"
           },
           {
@@ -956,7 +956,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e le asce entrano lo stesso, senza che nessuno le conti. Al luogo si aggiunge #saccheggiato.",
+            "text": "Al luogo si aggiunge #saccheggiato.",
             "tag": "condition:plundered"
           },
           {
@@ -1145,7 +1145,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e il confine resta dove ognuno dice che sia. Al luogo si aggiunge #conteso.",
+            "text": "Al luogo si aggiunge #conteso.",
             "tag": "condition:contested"
           },
           {
@@ -1326,7 +1326,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e i due greggi restano sullo stesso pascolo. Al luogo si aggiunge #conteso.",
+            "text": "Al luogo si aggiunge #conteso.",
             "tag": "condition:contested"
           },
           {
@@ -1526,7 +1526,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e le vasche restano di chi ci mette gli uomini. Al luogo si aggiunge #conteso.",
+            "text": "Al luogo si aggiunge #conteso.",
             "tag": "condition:contested"
           },
           {
@@ -1717,7 +1717,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e la terra resta di chi la dice sua piu' forte. Al luogo si aggiunge #conteso.",
+            "text": "Al luogo si aggiunge #conteso.",
             "tag": "condition:contested"
           },
           {
@@ -1910,7 +1910,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e l'accampamento fuori porta diventa piu' grande del paese. Al luogo si aggiunge #conteso.",
+            "text": "Al luogo si aggiunge #conteso.",
             "tag": "condition:contested"
           },
           {
@@ -2112,7 +2112,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e la parola nuova passa dalle piazze alle case. Al luogo si aggiunge #malcontento.",
+            "text": "Al luogo si aggiunge #malcontento.",
             "tag": "condition:unrest"
           },
           {
@@ -2304,7 +2304,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e la lista dei voti in sospeso si allunga di un anno. Al luogo si aggiunge #malcontento.",
+            "text": "Al luogo si aggiunge #malcontento.",
             "tag": "condition:unrest"
           },
           {
@@ -2456,7 +2456,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e il silenzio continua: ognuno gli da' il significato che teme. Al luogo si aggiunge #malcontento.",
+            "text": "Al luogo si aggiunge #malcontento.",
             "tag": "condition:unrest"
           },
           {
@@ -2655,7 +2655,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e le barche partono lo stesso, piu' piene di prima. Al luogo si aggiunge #malcontento.",
+            "text": "Al luogo si aggiunge #malcontento.",
             "tag": "condition:unrest"
           },
           {
@@ -2819,7 +2819,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e meta' della decima continua a perdersi per strada. Al luogo si aggiunge #saccheggiato.",
+            "text": "Al luogo si aggiunge #saccheggiato.",
             "tag": "condition:plundered"
           },
           {
@@ -3009,7 +3009,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e i morti senza nome restano dove l'acqua li ha lasciati. Al luogo si aggiunge #abbandonato.",
+            "text": "Al luogo si aggiunge #abbandonato.",
             "tag": "condition:abandoned"
           },
           {
@@ -3179,7 +3179,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e il numero della profezia continua a girare, piu' vicino. Al luogo si aggiunge #malcontento.",
+            "text": "Al luogo si aggiunge #malcontento.",
             "tag": "condition:unrest"
           },
           {
@@ -3343,7 +3343,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e dentro il tempio adesso sono in tre, e fuori il doppio di ieri. Al luogo si aggiunge #conteso.",
+            "text": "Al luogo si aggiunge #conteso.",
             "tag": "condition:contested"
           },
           {
@@ -3524,7 +3524,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e il reggente trova un'altra ragione per tenere il sigillo. Al luogo si aggiunge #conteso.",
+            "text": "Al luogo si aggiunge #conteso.",
             "tag": "condition:contested"
           },
           {
@@ -3691,7 +3691,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e l'ospite piu' giovane smette di scrivere a casa. Al luogo si aggiunge #malcontento.",
+            "text": "Al luogo si aggiunge #malcontento.",
             "tag": "condition:unrest"
           },
           {
@@ -3870,7 +3870,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e ogni villaggio manda chi gli pare: nessuno risponde di niente. Al luogo si aggiunge #malcontento.",
+            "text": "Al luogo si aggiunge #malcontento.",
             "tag": "condition:unrest"
           },
           {
@@ -4037,7 +4037,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e restano due ordini opposti con lo stesso sigillo. Al luogo si aggiunge #conteso.",
+            "text": "Al luogo si aggiunge #conteso.",
             "tag": "condition:contested"
           },
           {
@@ -4218,7 +4218,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e sul confine risponde chi e' piu' vicino, cioe' nessuno di noi. Al luogo si aggiunge #conteso.",
+            "text": "Al luogo si aggiunge #conteso.",
             "tag": "condition:contested"
           },
           {
@@ -4404,7 +4404,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e le case minori continuano a riunirsi nella loro sala. Al luogo si aggiunge #conteso.",
+            "text": "Al luogo si aggiunge #conteso.",
             "tag": "condition:contested"
           },
           {
@@ -4583,7 +4583,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e alla settima sera la taverna e' piu' piena di prima. Al luogo si aggiunge #malcontento.",
+            "text": "Al luogo si aggiunge #malcontento.",
             "tag": "condition:unrest"
           },
           {
@@ -4750,7 +4750,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e la lettera di conteggio del porto diventa famosa. Al luogo si aggiunge #malcontento.",
+            "text": "Al luogo si aggiunge #malcontento.",
             "tag": "condition:unrest"
           },
           {
@@ -4867,7 +4867,7 @@
           {
             "id": "B_CLEAR",
             "verb": "CLEAR_CONDITION",
-            "text": "Cade il sigillo: quello che era murato torna raggiungibile.",
+            "text": "Il luogo torna raggiungibile.",
             "tag": "structure:sealed"
           },
           {
@@ -4931,7 +4931,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e i tre colpi continuano, e adesso arrivano per primi. Al luogo si aggiunge #malcontento.",
+            "text": "Al luogo si aggiunge #malcontento.",
             "tag": "condition:unrest"
           },
           {
@@ -5094,7 +5094,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e chi conosce la via la usa per conto proprio. Al luogo si aggiunge #saccheggiato.",
+            "text": "Al luogo si aggiunge #saccheggiato.",
             "tag": "condition:plundered"
           },
           {
@@ -5196,7 +5196,7 @@
           {
             "id": "B_CLEAR",
             "verb": "CLEAR_CONDITION",
-            "text": "Cade il sigillo: quello che era murato torna raggiungibile.",
+            "text": "Il luogo torna raggiungibile.",
             "tag": "structure:sealed"
           },
           {
@@ -5260,7 +5260,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e i racconti dei vecchi smettono di sembrare racconti. Al luogo si aggiunge #malcontento.",
+            "text": "Al luogo si aggiunge #malcontento.",
             "tag": "condition:unrest"
           },
           {
@@ -5411,7 +5411,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e il faro spento continua ad accendersi, e lo vedono in tanti. Al luogo si aggiunge #malcontento.",
+            "text": "Al luogo si aggiunge #malcontento.",
             "tag": "condition:unrest"
           },
           {
@@ -5511,7 +5511,7 @@
           {
             "id": "B_CLEAR",
             "verb": "CLEAR_CONDITION",
-            "text": "Cade il sigillo: quello che era murato torna raggiungibile.",
+            "text": "Il luogo torna raggiungibile.",
             "tag": "structure:sealed"
           },
           {
@@ -5575,7 +5575,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e lo tiene chi ce l'ha in mano adesso. Al luogo si aggiunge #conteso.",
+            "text": "Al luogo si aggiunge #conteso.",
             "tag": "condition:contested"
           },
           {
@@ -5740,7 +5740,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e la mano che scrive i nomi vecchi continua, notte dopo notte. Al luogo si aggiunge #malcontento.",
+            "text": "Al luogo si aggiunge #malcontento.",
             "tag": "condition:unrest"
           },
           {
@@ -5891,7 +5891,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e il varco resta aperto: nessuno vuole quel margine. Al luogo si aggiunge #abbandonato.",
+            "text": "Al luogo si aggiunge #abbandonato.",
             "tag": "condition:abandoned"
           },
           {
@@ -6056,7 +6056,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e le reti continuano a tornare strappate. Al luogo si aggiunge #saccheggiato.",
+            "text": "Al luogo si aggiunge #saccheggiato.",
             "tag": "condition:plundered"
           },
           {
@@ -6222,14 +6222,14 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e la neve chiude la strada al posto accanto. Il luogo resta tagliato fuori.",
+            "text": "Il luogo resta tagliato fuori.",
             "tag": "condition:cut_off"
           },
           {
             "id": "F_LEAN",
             "verb": "ADD_CONDITION",
             "tag": "condition:lean",
-            "text": "E l'inverno si mangia le scorte prima della primavera: al luogo si aggiunge #magra."
+            "text": "Al luogo si aggiunge #magra."
           },
           {
             "id": "F_HEAT",
@@ -6395,7 +6395,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e i villaggi bassi si spopolano senza che nessuno lo scriva. Al luogo si aggiunge #abbandonato.",
+            "text": "Al luogo si aggiunge #abbandonato.",
             "tag": "condition:abandoned"
           },
           {
@@ -6574,7 +6574,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e le barche escono lo stesso, e tornano vuote lo stesso. Al luogo si aggiunge #fame.",
+            "text": "Al luogo si aggiunge #fame.",
             "tag": "condition:starving"
           },
           {
@@ -6753,7 +6753,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e i fuochi fuori dalle mura restano accesi: la terra intorno si contende. Al luogo si aggiunge #conteso.",
+            "text": "Al luogo si aggiunge #conteso.",
             "tag": "condition:contested"
           },
           {
@@ -6920,7 +6920,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e i branchi entrano nei recinti: si prende quello che c'e'. Al luogo si aggiunge #saccheggiato.",
+            "text": "Al luogo si aggiunge #saccheggiato.",
             "tag": "condition:plundered"
           },
           {
@@ -7101,7 +7101,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e il grano guasto resta nei sacchi finche' non lo mangia qualcuno che non ha altro. Al luogo si aggiunge #fame.",
+            "text": "Al luogo si aggiunge #fame.",
             "tag": "condition:starving"
           },
           {
@@ -7280,7 +7280,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e i mercanti evitano la rotta: il posto accanto resta tagliato fuori. Il luogo resta tagliato fuori.",
+            "text": "Il luogo resta tagliato fuori.",
             "tag": "condition:cut_off"
           },
           {
@@ -7461,7 +7461,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e il traghettatore continua a farsi pagare in favori. Al luogo si aggiunge #conteso.",
+            "text": "Al luogo si aggiunge #conteso.",
             "tag": "condition:contested"
           },
           {
@@ -7645,7 +7645,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e i pedaggeri neri aggiornano il listino. Al luogo si aggiunge #saccheggiato.",
+            "text": "Al luogo si aggiunge #saccheggiato.",
             "tag": "condition:plundered"
           },
           {
@@ -7829,7 +7829,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e ogni mercato continua a pesare col suo peso. Al luogo si aggiunge #conteso.",
+            "text": "Al luogo si aggiunge #conteso.",
             "tag": "condition:contested"
           },
           {
@@ -8008,7 +8008,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e le staffette continuano a servire due padroni. Al luogo si aggiunge #malcontento.",
+            "text": "Al luogo si aggiunge #malcontento.",
             "tag": "condition:unrest"
           },
           {
@@ -8175,7 +8175,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e la via d'acqua resta sotto il fango. Al luogo si aggiunge #abbandonato.",
+            "text": "Al luogo si aggiunge #abbandonato.",
             "tag": "condition:abandoned"
           },
           {
@@ -8357,7 +8357,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e la notte dopo brucia un altro magazzino. Al luogo si aggiunge #saccheggiato.",
+            "text": "Al luogo si aggiunge #saccheggiato.",
             "tag": "condition:plundered"
           },
           {
@@ -8538,7 +8538,7 @@
           {
             "id": "F_CONDITION",
             "verb": "ADD_CONDITION",
-            "text": "Cade, e il porto continua a vivere due volte, di giorno e di notte. Al luogo si aggiunge #conteso.",
+            "text": "Al luogo si aggiunge #conteso.",
             "tag": "condition:contested"
           },
           {
