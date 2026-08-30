@@ -10,6 +10,112 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-343 — La prima casella: il Consiglio sa muovere una domanda
+
+**implemented** — 0.1.308
+
+### La casella
+
+D-342 ha contato nove caselle mancanti e ne ha nominata una che vale da sola
+**90 applicazioni su 336**: quella che il committente non riusciva a leggere
+sulla scheda — *«La Carestia +1 non so cosa intende»*. Scritta.
+
+| | |
+|---|---|
+| **ABBASSA LA DOMANDA** | beneficio · sposta di 1 indietro il segnalino |
+| **ALZA LA DOMANDA** | costo · sposta di 1 avanti il segnalino |
+
+Le due caselle stanno su tutte e 60 le carte Domanda, e la loro riga dice quale
+segnalino si muove: *«Sposta di 1 indietro il segnalino di La Carestia.»*
+
+**RAFFREDDA TEMA non era questa casella.** Quella muove il Calore di un **Tema**
+(`ADJUST_THEME_HEAT`); questa muove la traccia di una **domanda**
+(`ADJUST_TENSION`). Sul tavolo sono due piste diverse, e il Consiglio sapeva
+muovere solo la prima.
+
+E come SCALDA TEMA si ferma al tetto del Calore, queste si fermano ai capi della
+traccia: una domanda a zero non si abbassa, una in cima alla sua soglia non si
+alza. Una casella su cui la pedina non farebbe niente non si offre (D-306).
+
+### Quanta strada fa, sulla carta
+
+| `docs/MISURA_CASELLE.md` | prima | dopo |
+|---|---|---|
+| una casella lo sa dire | 4 distinti · 121 usi | **5 · 151** |
+| verbo giusto, posto sbagliato | 15 · 44 | **25 · 104** |
+| **verbo che manca** | **27 · 171** | **16 · 81** |
+
+Gli Effetti che nessuna casella sa dire scendono **da 171 applicazioni a 81**, e
+le caselle che restano da scrivere da nove a otto.
+
+### E quanta ne fa al tavolo: una volta su settantadue
+
+Questo e' il numero che conta, ed e' peggiore di quello sopra. Una sonda nuova —
+`cli/run_boxes_probe.gd`, il «fatto quando» che ISSUES 72 chiedeva da sempre —
+si siede fra il cervello e il Consiglio e conta. Venti partite:
+
+| casella | offerta | comprata |
+|---|---|---|
+| CAMBIA CONTROLLO | 32 | **32** |
+| COSTRUISCI PIETRA | 49 | 27 |
+| RIMUOVI CONDIZIONE | 51 | 20 |
+| IL MONDO RICORDA | 56 | 11 |
+| RAFFREDDA TEMA | 72 | 6 |
+| **ABBASSA LA DOMANDA** | **72** | **1** |
+| **ALZA LA DOMANDA** | **5** | **0** |
+
+**La casella c'e', si gioca, e il cervello quasi non la vuole.** Vale 1 in
+`intrinsic_value`, come RAFFREDDA TEMA; la policy preferisce le caselle che
+cambiano la mappa. Non l'ho ritoccata: alzare il valore di una casella e'
+equilibrio, e l'equilibrio si decide misurandolo, non scrivendolo.
+
+E' anche la ragione per cui il playtest non si muove: **una casella che nessuno
+compra e', per il gioco, identica a una casella che non esiste**. La differenza
+fra le due si vede solo con questa sonda, e prima non si vedeva.
+
+### Il costo, dichiarato
+
+**Sul vincolo, niente.** Playtest 100 semi: Verita' 159/143 al tavolo misto,
+149/125 all'uniforme, **0 seggi bloccati su un solo livello su 8**, identico.
+
+**Sul mondo, poco e in meglio**: `MISURA_VITE` dice **208 trasformazioni sedute
+invece di 204**, e `MISURA_SEGNI` si sposta di una manciata di occorrenze. Sono
+le partite in cui quell'unica compera e' successa.
+
+Suite da 648 a **650 prove**.
+
+### Tre copie della stessa lista, e la terza si e' vista adesso
+
+I verbi del Consiglio stavano scritti in tre posti: `schema/tension.schema.json`
+(gli enum), `council_economy.gd` (che li esegue) e `tools/validate_physical.py`
+(che li sorveglia). La terza si e' fatta vedere il giorno in cui una casella
+nuova e' entrata nelle altre due: **il validatore ha bocciato dati validi**.
+
+Adesso il validatore **legge l'enum dallo schema**. Restano due posti, e sono
+due cose diverse: lo schema dice quali parole sono legali, il modulo cosa
+succede quando le pronunci.
+
+### Un difetto della sonda di D-342, trovato subito
+
+`run_box_survey` costruiva un contesto finto **senza la domanda in discussione**,
+e le due caselle nuove uscivano vuote: il documento avrebbe detto che nessuna
+casella sa muovere una domanda mentre due lo facevano. Riparato, e la sonda
+adesso **dichiara** una casella che non produce niente invece di saltarla —
+perche' in questo progetto uno zero e' quasi sempre la sonda cieca.
+
+### E una correzione a D-342
+
+I numeri della tabella «Il conto» in [D-342](#d-342), nel CHANGELOG 0.1.307 e in
+ISSUES 89 erano **64 / 41 / 231**: sono di una misura precedente, fatta prima
+che la sonda guardasse anche i tre pool e le clausole. Il documento che quelle
+righe citano diceva gia' **121 / 44 / 171**. Corretti tutti e tre.
+
+E' esattamente il difetto contro cui D-342 e' stata scritta — un numero
+ricopiato a mano accanto a uno generato — commesso nella decisione che lo
+denuncia.
+
+---
+
 ## D-342 — Il «65% non traducibile» era un elenco di nove caselle
 
 **implemented** — 0.1.307
@@ -67,9 +173,9 @@ D-338; qui non c'e'.
 
 | | distinti | applicazioni |
 |---|---|---|
-| una casella di oggi lo sa dire | 4 | 64 |
-| verbo giusto, posto che la casella non sa dire | 15 | 41 |
-| **verbo che manca** | **27** | **231** |
+| una casella di oggi lo sa dire | 4 | 121 |
+| verbo giusto, posto che la casella non sa dire | 15 | 44 |
+| **verbo che manca** | **27** | **171** |
 | | **46** | **336** |
 
 E i 27 si raggruppano in **nove caselle**, non in un muro:

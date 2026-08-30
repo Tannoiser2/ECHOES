@@ -159,7 +159,8 @@
                       "BUILD_STONE",
                       "TAKE_CONTROL",
                       "COOL_THEME",
-                      "REMEMBER"
+                      "REMEMBER",
+                      "COOL_QUESTION"
                     ],
                     "description": "Il verbo del vocabolario chiuso (D-280): e' il motore a eseguirlo. Agisce sul luogo di cui si discute, tranne IL MONDO RICORDA (D-308), che posa una memoria sul mondo intero: e' il verbo con cui il Consiglio decide cosa il mondo ricordera'."
                   },
@@ -206,7 +207,8 @@
                       "YIELD_CONTROL",
                       "HEAT_THEME",
                       "TAKE_DEBT",
-                      "SCAR"
+                      "SCAR",
+                      "HEAT_QUESTION"
                     ],
                     "description": "Il verbo del vocabolario chiuso (D-280): e' il motore a eseguirlo. Agisce sul luogo di cui si discute."
                   },

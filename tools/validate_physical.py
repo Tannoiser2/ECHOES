@@ -88,6 +88,36 @@ LIVELLI = {"ENEMY", "HOSTILE", "NEUTRAL", "ALLY", "BOUND", "BLOOD", "PACT"}
 CANCELLETTO = re.compile(r"#([a-zàèéìòù][a-zàèéìòù_]*)")
 
 
+def _verbi_dello_schema(lista: str) -> set[str]:
+    """L'enum dei verbi di una lista, preso dallo schema della Tensione."""
+    schema = json.loads(
+        (REPO_ROOT / "schema" / "tension.schema.json").read_text(encoding="utf-8")
+    )
+
+    def cerca(nodo: object) -> dict | None:
+        if isinstance(nodo, dict):
+            if lista in nodo.get("properties", {}):
+                return nodo["properties"][lista]
+            for figlio in nodo.values():
+                trovato = cerca(figlio)
+                if trovato is not None:
+                    return trovato
+        if isinstance(nodo, list):
+            for figlio in nodo:
+                trovato = cerca(figlio)
+                if trovato is not None:
+                    return trovato
+        return None
+
+    blocco = cerca(schema)
+    if blocco is None:
+        raise SystemExit("lo schema della Tensione non ha piu' la lista «%s»" % lista)
+    verbi = set(blocco["items"]["properties"]["verb"]["enum"])
+    if not verbi:
+        raise SystemExit("l'enum dei verbi di «%s» e' vuoto" % lista)
+    return verbi
+
+
 def _righe_di_regione(carta: Dict[str, Any]) -> List[Dict[str, Any]]:
     """Ogni clausola di un Destino o di un Obiettivo che punta a un luogo."""
     out: List[Dict[str, Any]] = []
@@ -726,10 +756,14 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
     # cade. I verbi sono un vocabolario chiuso — quello che il motore sa
     # eseguire — e ognuno chiede i suoi parametri: una voce che ne salta uno
     # e' una casella su cui si posa una pedina che non fa niente.
-    BENEFIT_VERBS = {"REOPEN", "CLEAR_CONDITION", "BUILD_STONE",
-                     "TAKE_CONTROL", "COOL_THEME", "REMEMBER"}
-    COST_VERBS = {"ADD_CONDITION", "TOLL", "YIELD_CONTROL", "HEAT_THEME",
-                  "TAKE_DEBT", "SCAR"}
+    # **Il vocabolario si legge dallo schema, non si ricopia qui** (D-343).
+    # Fino alla 0.1.307 questi due insiemi erano scritti a mano accanto a
+    # `schema/tension.schema.json`, che porta gli stessi enum, e accanto a
+    # `council_economy.gd`, che li esegue: tre copie della stessa lista. La
+    # terza copia si e' vista il giorno che una casella nuova e' entrata nelle
+    # altre due — e la guardia ha bocciato dati validi.
+    BENEFIT_VERBS = _verbi_dello_schema("benefits")
+    COST_VERBS = _verbi_dello_schema("costs")
     NEEDS = {"BUILD_STONE": "structure", "ADD_CONDITION": "tag", "SCAR": "tag",
              "REMEMBER": "tag"}
     pietre = {str(s.get("id")) for s in documenti.get("structure_type", [])}

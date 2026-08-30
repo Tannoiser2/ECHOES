@@ -59,6 +59,18 @@ const BENEFIT_VERBS: Dictionary = {
 	# Cioe': il Consiglio sapeva **infliggere** quello che le case temono e
 	# non sapeva **dare** quello che vogliono.
 	"REMEMBER": {"label": "IL MONDO RICORDA", "needs": ["tag"]},
+	# **La casella che muove una domanda** (D-343, ISSUES 89).
+	#
+	# La misura di D-342: dei 27 Effetti che nessuna casella sapeva dire,
+	# `ADJUST_TENSION` da solo vale **90 applicazioni su 336** — un quarto di
+	# tutto quello che un Consiglio fa. Ed e' l'Effetto che il committente non
+	# riusciva a leggere sulla scheda: *«La Carestia +1 non so cosa intende»*.
+	#
+	# **RAFFREDDA TEMA non e' questa casella.** Quella muove il Calore di un
+	# **Tema** (`ADJUST_THEME_HEAT`); questa muove la traccia di una **domanda**
+	# (`ADJUST_TENSION`). Sul tavolo sono due piste diverse, e fino a qui il
+	# Consiglio sapeva muovere solo la prima.
+	"COOL_QUESTION": {"label": "ABBASSA LA DOMANDA", "needs": []},
 }
 const COST_VERBS: Dictionary = {
 	"ADD_CONDITION": {"label": "AGGIUNGI CONDIZIONE", "needs": ["tag"]},
@@ -67,6 +79,10 @@ const COST_VERBS: Dictionary = {
 	"HEAT_THEME": {"label": "SCALDA TEMA", "needs": []},
 	"TAKE_DEBT": {"label": "PRENDI DEBITO", "needs": []},
 	"SCAR": {"label": "CICATRICE", "needs": ["tag"]},
+	# Il rovescio di ABBASSA LA DOMANDA (D-343): 41 delle 90 applicazioni
+	# **alzano** una domanda, ed erano il prezzo che una proposta faceva pagare
+	# al mondo senza che nessuna casella lo sapesse dire.
+	"HEAT_QUESTION": {"label": "ALZA LA DOMANDA", "needs": []},
 }
 
 ## Il segno che il pedaggio lascia sulla tessera, e quello del debito: due
@@ -134,6 +150,20 @@ static func voice_bites(
 			return region != "" and _control_of(world, region) != proponent
 		"COOL_THEME":
 			return _heat_of(world, theme_id) > 0
+		# Una domanda gia' a zero non si abbassa, e una gia' al limite non si
+		# alza: al tavolo il segnalino e' in fondo alla traccia e si vede.
+		"COOL_QUESTION":
+			return _question_value(world, str(context.get("tension", ""))) > 0
+		"HEAT_QUESTION":
+			# E una domanda gia' in cima alla sua traccia non si alza: e' la
+			# stessa regola di SCALDA TEMA, che si ferma al tetto del Calore.
+			# La cima e' la soglia stampata sulla carta, cioe' l'ultima tacca
+			# della traccia dei valori (D-097).
+			var asked: String = str(context.get("tension", ""))
+			var now: int = _question_value(world, asked)
+			if now < 0:
+				return false
+			return now < _question_top(asked, data)
 		"REMEMBER":
 			# Un fatto che il mondo ricorda gia' non si ricorda due volte.
 			var fact: String = str(voice.get("tag", ""))
@@ -293,6 +323,20 @@ static func effects_for(
 			if theme_id == "":
 				return out
 			out.append(Effect.make("ADJUST_THEME_HEAT", "theme", theme_id, {"delta": -1}, source))
+		"COOL_QUESTION", "HEAT_QUESTION":
+			# **Quale domanda.** Oggi: quella di cui si sta discutendo, che e' il
+			# segnalino che tutti hanno davanti. Il committente ne ha decisa
+			# un'altra — *«la sceglie chi propone»* — e quella chiede che la
+			# pedina posata porti con se' il nome della domanda: e' ISSUES 106,
+			# perche' tocca l'API con cui si comprano i benefici, i due cervelli
+			# e il tabellone.
+			var asked: String = str(context.get("tension", ""))
+			if asked == "":
+				return out
+			out.append(Effect.make(
+				"ADJUST_TENSION", "tension", asked,
+				{"delta": -1 if verb == "COOL_QUESTION" else 1}, source
+			))
 		"REMEMBER":
 			# La memoria si posa sul **mondo**, non sul luogo: e' un fatto che
 			# dura, e il dizionario lo dichiara di ambito GLOBAL. Il validatore
@@ -383,6 +427,10 @@ static func intrinsic_value(
 			return 2 if tags.has(CLOSED_TAG) else 0
 		"COOL_THEME":
 			return 1
+		"COOL_QUESTION":
+			return 1
+		"HEAT_QUESTION":
+			return -1
 		"YIELD_CONTROL":
 			return -3 if mine else -1
 		"ADD_CONDITION":
@@ -425,3 +473,27 @@ static func missing_parameters(voice: Dictionary, kind: String) -> Array:
 		if str(voice.get(str(needed), "")) == "":
 			missing.append(str(needed))
 	return missing
+
+
+## Dov'e' il segnalino di una domanda sulla sua traccia; -1 se quella domanda
+## non e' al tavolo in questa Cronaca (D-028: la libreria ne nomina piu' di
+## quante ne escono).
+static func _question_value(world: Dictionary, tension_id: String) -> int:
+	if tension_id == "":
+		return -1
+	var asked: Variant = (world.get("tensions", {}) as Dictionary).get(tension_id)
+	if asked == null:
+		return -1
+	return int((asked as Dictionary).get("current_value", 0))
+
+
+## L'ultima tacca della traccia di una domanda: la soglia stampata sulla carta.
+## Senza il set dei dati non si sa, e allora la casella morde — meglio offrire
+## una casella che non si sarebbe potuta offrire che tacere su una che si puo'.
+static func _question_top(tension_id: String, data) -> int:
+	if data == null or tension_id == "":
+		return 99
+	var card: Variant = (data.tensions as Dictionary).get(tension_id)
+	if card == null:
+		return 99
+	return int((card as Dictionary).get("threshold", 99))

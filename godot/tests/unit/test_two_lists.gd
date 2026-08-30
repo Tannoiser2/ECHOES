@@ -128,3 +128,81 @@ func _text_of(node: Node) -> String:
 	for child in node.get_children():
 		out += _text_of(child)
 	return out
+
+
+## **La casella che muove una domanda** (D-343, ISSUES 89).
+##
+## Fino alla 0.1.307 il vocabolario del Consiglio sapeva muovere il Calore di un
+## **Tema** e non la traccia di una **domanda**: sul tavolo sono due piste
+## diverse, e `ADJUST_TENSION` — 90 applicazioni su 336, un quarto di tutto
+## quello che un Consiglio fa — non lo diceva nessuna casella.
+##
+## La prova parte dai dati: ogni Tensione dev'essere la carta di una domanda che
+## si puo' abbassare e alzare, e la casella deve produrre l'Effetto giusto sulla
+## domanda in discussione — non su un'altra, non su un Tema.
+func test_a_question_can_be_moved_by_a_box() -> void:
+	var loaded: RefCounted = data()
+	var con_casella: int = 0
+	for tension_id in loaded.tensions:
+		var physical: Dictionary = (loaded.tensions[str(tension_id)] as Dictionary).get(
+			"physical", {}
+		)
+		if physical.is_empty():
+			continue
+		con_casella += 1
+		var verbi: Array = []
+		for voice in physical["benefits"] as Array:
+			verbi.append(str((voice as Dictionary)["verb"]))
+		assert_true(verbi.has("COOL_QUESTION"),
+			"%s non offre di abbassare la propria domanda" % str(tension_id))
+		verbi = []
+		for voice in physical["costs"] as Array:
+			verbi.append(str((voice as Dictionary)["verb"]))
+		assert_true(verbi.has("HEAT_QUESTION"),
+			"%s non fa pagare alzando la propria domanda" % str(tension_id))
+	assert_eq(con_casella, 60, "le carte Domanda con la casella")
+
+	# E la casella produce l'Effetto giusto, sulla domanda che si discute.
+	var context: Dictionary = {"tension": "TEN_FAMINE", "proponent": "ENT_ALDRIC"}
+	var world: Dictionary = {"tensions": {"TEN_FAMINE": {"current_value": 3}}}
+	for pair in [["COOL_QUESTION", "benefits", -1], ["HEAT_QUESTION", "costs", 1]]:
+		var effects: Array = CouncilEconomy.effects_for(
+			{"id": "V", "verb": str(pair[0]), "text": ""}, str(pair[1]),
+			context, world, "THM_SOPRAVVIVENZA", {}
+		)
+		assert_eq(effects.size(), 1, "%s produce un Effetto solo" % str(pair[0]))
+		var effect: Dictionary = effects[0]
+		assert_eq(str(effect["type"]), "ADJUST_TENSION", "%s muove una domanda" % str(pair[0]))
+		assert_eq(str((effect["target"] as Dictionary)["id"]), "TEN_FAMINE",
+			"%s muove la domanda in discussione" % str(pair[0]))
+		assert_eq(int((effect["payload"] as Dictionary)["delta"]), int(pair[2]),
+			"%s muove di un passo" % str(pair[0]))
+
+
+## **E non si posa una pedina su una traccia che non si puo' muovere** (D-306).
+##
+## Una domanda gia' a zero non si abbassa: al tavolo il segnalino e' in fondo e
+## si vede. Senza questa prova la casella sarebbe una scelta finta nel caso in
+## cui serve di piu' — quando la domanda e' gia' risolta.
+func test_a_question_at_zero_is_not_offered() -> void:
+	var context: Dictionary = {"tension": "TEN_FAMINE", "proponent": "ENT_ALDRIC"}
+	for pair in [[3, true], [0, false]]:
+		var world: Dictionary = {"tensions": {"TEN_FAMINE": {"current_value": int(pair[0])}}}
+		assert_eq(
+			CouncilEconomy.voice_bites(
+				{"id": "V", "verb": "COOL_QUESTION", "text": ""}, "benefits",
+				context, world, "THM_SOPRAVVIVENZA", null
+			),
+			bool(pair[1]),
+			"con la traccia a %d, abbassare %s" % [
+				int(pair[0]), "morde" if bool(pair[1]) else "non morde",
+			]
+		)
+	# E una domanda che questa Cronaca non ha pescata non si muove affatto.
+	assert_false(
+		CouncilEconomy.voice_bites(
+			{"id": "V", "verb": "COOL_QUESTION", "text": ""}, "benefits",
+			{"tension": "TEN_CHE_NON_CE"}, {"tensions": {}}, "THM_SOPRAVVIVENZA", null
+		),
+		"una domanda che non e al tavolo non si abbassa"
+	)

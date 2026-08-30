@@ -57,6 +57,11 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: la Carta e' stata scritta.",
             "tag": "charter_written"
+          },
+          {
+            "id": "B_COOL_QUESTION",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di I Recinti."
           }
         ],
         "costs": [
@@ -91,6 +96,11 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: passata di mano.",
             "tag": "scar:changed_hands"
+          },
+          {
+            "id": "C_HEAT_QUESTION",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di I Recinti."
           }
         ],
         "failure": [
@@ -279,6 +289,11 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: il debito e' stato rimesso.",
             "tag": "debt_forgiven"
+          },
+          {
+            "id": "B_COOL_QUESTION",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di La Terra Stanca."
           }
         ],
         "costs": [
@@ -313,6 +328,11 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: passata di mano.",
             "tag": "scar:changed_hands"
+          },
+          {
+            "id": "C_HEAT_QUESTION",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di La Terra Stanca."
           }
         ],
         "failure": [
@@ -500,6 +520,11 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: la Carta e' stata scritta.",
             "tag": "charter_written"
+          },
+          {
+            "id": "B_COOL_QUESTION",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di I Braccianti."
           }
         ],
         "costs": [
@@ -534,6 +559,11 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: passata di mano.",
             "tag": "scar:changed_hands"
+          },
+          {
+            "id": "C_HEAT_QUESTION",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di I Braccianti."
           }
         ],
         "failure": [
@@ -702,6 +732,11 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: l'acqua torna a muoversi.",
             "tag": "water_moves"
+          },
+          {
+            "id": "B_COOL_QUESTION",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di L'Acqua Alta."
           }
         ],
         "costs": [
@@ -736,6 +771,11 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: il confine sigillato.",
             "tag": "scar:sealed_border"
+          },
+          {
+            "id": "C_HEAT_QUESTION",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di L'Acqua Alta."
           }
         ],
         "failure": [
@@ -916,6 +956,11 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: il Cristallo e' stato messo a rendere.",
             "tag": "crystal_exploited"
+          },
+          {
+            "id": "B_COOL_QUESTION",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di Il Disboscamento."
           }
         ],
         "costs": [
@@ -950,6 +995,11 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: la razzia.",
             "tag": "scar:plundered"
+          },
+          {
+            "id": "C_HEAT_QUESTION",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di Il Disboscamento."
           }
         ],
         "failure": [
@@ -1105,6 +1155,11 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: i Nahr hanno un posto dove fermarsi.",
             "tag": "nahr_settled"
+          },
+          {
+            "id": "B_COOL_QUESTION",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di Le Pietre di Confine."
           }
         ],
         "costs": [
@@ -1139,6 +1194,11 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: passata di mano.",
             "tag": "scar:changed_hands"
+          },
+          {
+            "id": "C_HEAT_QUESTION",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di Le Pietre di Confine."
           }
         ],
         "failure": [
@@ -1286,6 +1346,11 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: i Nahr hanno un posto dove fermarsi.",
             "tag": "nahr_settled"
+          },
+          {
+            "id": "B_COOL_QUESTION",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di Il Pascolo Conteso."
           }
         ],
         "costs": [
@@ -1320,6 +1385,11 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: passata di mano.",
             "tag": "scar:changed_hands"
+          },
+          {
+            "id": "C_HEAT_QUESTION",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di Il Pascolo Conteso."
           }
         ],
         "failure": [
@@ -1486,6 +1556,11 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: i conti sono stati chiusi.",
             "tag": "account_settled"
+          },
+          {
+            "id": "B_COOL_QUESTION",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di I Campi di Sale."
           }
         ],
         "costs": [
@@ -1520,6 +1595,11 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: passata di mano.",
             "tag": "scar:changed_hands"
+          },
+          {
+            "id": "C_HEAT_QUESTION",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di I Campi di Sale."
           }
         ],
         "failure": [
@@ -1677,6 +1757,11 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.",
             "tag": "ledger_public"
+          },
+          {
+            "id": "B_COOL_QUESTION",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di Il Catasto."
           }
         ],
         "costs": [
@@ -1711,6 +1796,11 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: passata di mano.",
             "tag": "scar:changed_hands"
+          },
+          {
+            "id": "C_HEAT_QUESTION",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di Il Catasto."
           }
         ],
         "failure": [
@@ -1870,6 +1960,11 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: la reliquia e' tornata sottoterra.",
             "tag": "relic_buried"
+          },
+          {
+            "id": "B_COOL_QUESTION",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di I Pellegrini."
           }
         ],
         "costs": [
@@ -1904,6 +1999,11 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: passata di mano.",
             "tag": "scar:changed_hands"
+          },
+          {
+            "id": "C_HEAT_QUESTION",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di I Pellegrini."
           }
         ],
         "failure": [
@@ -2072,6 +2172,11 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: la fede ha una casa riconosciuta.",
             "tag": "faith_established"
+          },
+          {
+            "id": "B_COOL_QUESTION",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di La Parola Storta."
           }
         ],
         "costs": [
@@ -2106,6 +2211,11 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: la domanda sul muro.",
             "tag": "scar:unanswered"
+          },
+          {
+            "id": "C_HEAT_QUESTION",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di La Parola Storta."
           }
         ],
         "failure": [
@@ -2264,6 +2374,11 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: quello che si e' capito resta scritto.",
             "tag": "knowledge_shared"
+          },
+          {
+            "id": "B_COOL_QUESTION",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di I Voti Non Sciolti."
           }
         ],
         "costs": [
@@ -2298,6 +2413,11 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: la domanda sul muro.",
             "tag": "scar:unanswered"
+          },
+          {
+            "id": "C_HEAT_QUESTION",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di I Voti Non Sciolti."
           }
         ],
         "failure": [
@@ -2416,6 +2536,11 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: la fede ha una casa riconosciuta.",
             "tag": "faith_established"
+          },
+          {
+            "id": "B_COOL_QUESTION",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di Le Campane Mute."
           }
         ],
         "costs": [
@@ -2450,6 +2575,11 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: la domanda sul muro.",
             "tag": "scar:unanswered"
+          },
+          {
+            "id": "C_HEAT_QUESTION",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di Le Campane Mute."
           }
         ],
         "failure": [
@@ -2615,6 +2745,11 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: la fede ha una casa riconosciuta.",
             "tag": "faith_established"
+          },
+          {
+            "id": "B_COOL_QUESTION",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di Il Santuario dell'Isola."
           }
         ],
         "costs": [
@@ -2649,6 +2784,11 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: la domanda sul muro.",
             "tag": "scar:unanswered"
+          },
+          {
+            "id": "C_HEAT_QUESTION",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di Il Santuario dell'Isola."
           }
         ],
         "failure": [
@@ -2779,6 +2919,11 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.",
             "tag": "ledger_public"
+          },
+          {
+            "id": "B_COOL_QUESTION",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di La Decima."
           }
         ],
         "costs": [
@@ -2813,6 +2958,11 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: la razzia.",
             "tag": "scar:plundered"
+          },
+          {
+            "id": "C_HEAT_QUESTION",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di La Decima."
           }
         ],
         "failure": [
@@ -2969,6 +3119,11 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: la reliquia e' tornata sottoterra.",
             "tag": "relic_buried"
+          },
+          {
+            "id": "B_COOL_QUESTION",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di I Sepolti Senza Nome."
           }
         ],
         "costs": [
@@ -3003,6 +3158,11 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: l'abbandono.",
             "tag": "scar:abandoned"
+          },
+          {
+            "id": "C_HEAT_QUESTION",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di I Sepolti Senza Nome."
           }
         ],
         "failure": [
@@ -3139,6 +3299,11 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: il Cristallo e' stato misurato.",
             "tag": "crystal_measured"
+          },
+          {
+            "id": "B_COOL_QUESTION",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di La Profezia Contata."
           }
         ],
         "costs": [
@@ -3173,6 +3338,11 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: la domanda sul muro.",
             "tag": "scar:unanswered"
+          },
+          {
+            "id": "C_HEAT_QUESTION",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di La Profezia Contata."
           }
         ],
         "failure": [
@@ -3303,6 +3473,11 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: la Carta e' stata scritta.",
             "tag": "charter_written"
+          },
+          {
+            "id": "B_COOL_QUESTION",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di Il Diritto d'Asilo."
           }
         ],
         "costs": [
@@ -3337,6 +3512,11 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: passata di mano.",
             "tag": "scar:changed_hands"
+          },
+          {
+            "id": "C_HEAT_QUESTION",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di Il Diritto d'Asilo."
           }
         ],
         "failure": [
@@ -3484,6 +3664,11 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: la corona e' stata divisa.",
             "tag": "crown_divided"
+          },
+          {
+            "id": "B_COOL_QUESTION",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di La Reggenza."
           }
         ],
         "costs": [
@@ -3518,6 +3703,11 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: passata di mano.",
             "tag": "scar:changed_hands"
+          },
+          {
+            "id": "C_HEAT_QUESTION",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di La Reggenza."
           }
         ],
         "failure": [
@@ -3651,6 +3841,11 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: l'ordine e' stato rimesso in piedi.",
             "tag": "order_restored"
+          },
+          {
+            "id": "B_COOL_QUESTION",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di Gli Ostaggi di Corte."
           }
         ],
         "costs": [
@@ -3685,6 +3880,11 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: la domanda sul muro.",
             "tag": "scar:unanswered"
+          },
+          {
+            "id": "C_HEAT_QUESTION",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di Gli Ostaggi di Corte."
           }
         ],
         "failure": [
@@ -3830,6 +4030,11 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: l'ordine e' stato rimesso in piedi.",
             "tag": "order_restored"
+          },
+          {
+            "id": "B_COOL_QUESTION",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di La Leva."
           }
         ],
         "costs": [
@@ -3864,6 +4069,11 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: la domanda sul muro.",
             "tag": "scar:unanswered"
+          },
+          {
+            "id": "C_HEAT_QUESTION",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di La Leva."
           }
         ],
         "failure": [
@@ -3997,6 +4207,11 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.",
             "tag": "ledger_public"
+          },
+          {
+            "id": "B_COOL_QUESTION",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di I Sigilli Falsi."
           }
         ],
         "costs": [
@@ -4031,6 +4246,11 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: passata di mano.",
             "tag": "scar:changed_hands"
+          },
+          {
+            "id": "C_HEAT_QUESTION",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di I Sigilli Falsi."
           }
         ],
         "failure": [
@@ -4178,6 +4398,11 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: la corona e' stata divisa.",
             "tag": "crown_divided"
+          },
+          {
+            "id": "B_COOL_QUESTION",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di Le Marche di Confine."
           }
         ],
         "costs": [
@@ -4212,6 +4437,11 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: passata di mano.",
             "tag": "scar:changed_hands"
+          },
+          {
+            "id": "C_HEAT_QUESTION",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di Le Marche di Confine."
           }
         ],
         "failure": [
@@ -4364,6 +4594,11 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: la Carta vale anche per chi non siede.",
             "tag": "charter_for_all"
+          },
+          {
+            "id": "B_COOL_QUESTION",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di I Seggi del Consiglio."
           }
         ],
         "costs": [
@@ -4398,6 +4633,11 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: passata di mano.",
             "tag": "scar:changed_hands"
+          },
+          {
+            "id": "C_HEAT_QUESTION",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di I Seggi del Consiglio."
           }
         ],
         "failure": [
@@ -4543,6 +4783,11 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: la successione e' scritta in una legge.",
             "tag": "succession_by_law"
+          },
+          {
+            "id": "B_COOL_QUESTION",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di La Vecchia Guardia."
           }
         ],
         "costs": [
@@ -4577,6 +4822,11 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: la domanda sul muro.",
             "tag": "scar:unanswered"
+          },
+          {
+            "id": "C_HEAT_QUESTION",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di La Vecchia Guardia."
           }
         ],
         "failure": [
@@ -4710,6 +4960,11 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: i conti sono stati chiusi.",
             "tag": "account_settled"
+          },
+          {
+            "id": "B_COOL_QUESTION",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di Il Tributo."
           }
         ],
         "costs": [
@@ -4744,6 +4999,11 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: la domanda sul muro.",
             "tag": "scar:unanswered"
+          },
+          {
+            "id": "C_HEAT_QUESTION",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di Il Tributo."
           }
         ],
         "failure": [
@@ -4891,6 +5151,11 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: la miniera e' stata chiusa.",
             "tag": "mine_sealed"
+          },
+          {
+            "id": "B_COOL_QUESTION",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di Gli Echi nel Fondo."
           }
         ],
         "costs": [
@@ -4925,6 +5190,11 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: la domanda sul muro.",
             "tag": "scar:unanswered"
+          },
+          {
+            "id": "C_HEAT_QUESTION",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di Gli Echi nel Fondo."
           }
         ],
         "failure": [
@@ -5054,6 +5324,11 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: l'acqua torna a muoversi.",
             "tag": "water_moves"
+          },
+          {
+            "id": "B_COOL_QUESTION",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di Le Vie di Prima."
           }
         ],
         "costs": [
@@ -5088,6 +5363,11 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: la razzia.",
             "tag": "scar:plundered"
+          },
+          {
+            "id": "C_HEAT_QUESTION",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di Le Vie di Prima."
           }
         ],
         "failure": [
@@ -5220,6 +5500,11 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: la miniera e' stata chiusa.",
             "tag": "mine_sealed"
+          },
+          {
+            "id": "B_COOL_QUESTION",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di I Dormienti."
           }
         ],
         "costs": [
@@ -5254,6 +5539,11 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: la domanda sul muro.",
             "tag": "scar:unanswered"
+          },
+          {
+            "id": "C_HEAT_QUESTION",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di I Dormienti."
           }
         ],
         "failure": [
@@ -5371,6 +5661,11 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: della montagna si e' smesso di parlare.",
             "tag": "mountain_forgotten"
+          },
+          {
+            "id": "B_COOL_QUESTION",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di Il Silenzio dell'Isola."
           }
         ],
         "costs": [
@@ -5405,6 +5700,11 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: la domanda sul muro.",
             "tag": "scar:unanswered"
+          },
+          {
+            "id": "C_HEAT_QUESTION",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di Il Silenzio dell'Isola."
           }
         ],
         "failure": [
@@ -5535,6 +5835,11 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: il Cristallo e' stato misurato.",
             "tag": "crystal_measured"
+          },
+          {
+            "id": "B_COOL_QUESTION",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di Il Dissotterrato."
           }
         ],
         "costs": [
@@ -5569,6 +5874,11 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: passata di mano.",
             "tag": "scar:changed_hands"
+          },
+          {
+            "id": "C_HEAT_QUESTION",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di Il Dissotterrato."
           }
         ],
         "failure": [
@@ -5700,6 +6010,11 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: quello che si e' capito resta scritto.",
             "tag": "knowledge_shared"
+          },
+          {
+            "id": "B_COOL_QUESTION",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di I Nomi Vecchi."
           }
         ],
         "costs": [
@@ -5734,6 +6049,11 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: la domanda sul muro.",
             "tag": "scar:unanswered"
+          },
+          {
+            "id": "C_HEAT_QUESTION",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di I Nomi Vecchi."
           }
         ],
         "failure": [
@@ -5851,6 +6171,11 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: la reliquia e' tornata sottoterra.",
             "tag": "relic_buried"
+          },
+          {
+            "id": "B_COOL_QUESTION",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di Le Pietre di Guardia."
           }
         ],
         "costs": [
@@ -5885,6 +6210,11 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: l'abbandono.",
             "tag": "scar:abandoned"
+          },
+          {
+            "id": "C_HEAT_QUESTION",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di Le Pietre di Guardia."
           }
         ],
         "failure": [
@@ -6016,6 +6346,11 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: l'acqua torna a muoversi.",
             "tag": "water_moves"
+          },
+          {
+            "id": "B_COOL_QUESTION",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di L'Acqua Fonda."
           }
         ],
         "costs": [
@@ -6050,6 +6385,11 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: la razzia.",
             "tag": "scar:plundered"
+          },
+          {
+            "id": "C_HEAT_QUESTION",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di L'Acqua Fonda."
           }
         ],
         "failure": [
@@ -6182,6 +6522,11 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: il debito e' stato rimesso.",
             "tag": "debt_forgiven"
+          },
+          {
+            "id": "B_COOL_QUESTION",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di L'Inverno Lungo."
           }
         ],
         "costs": [
@@ -6216,6 +6561,11 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: il confine sigillato.",
             "tag": "scar:sealed_border"
+          },
+          {
+            "id": "C_HEAT_QUESTION",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di L'Inverno Lungo."
           }
         ],
         "failure": [
@@ -6355,6 +6705,11 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: l'acqua torna a muoversi.",
             "tag": "water_moves"
+          },
+          {
+            "id": "B_COOL_QUESTION",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di La Febbre delle Paludi."
           }
         ],
         "costs": [
@@ -6389,6 +6744,11 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: l'abbandono.",
             "tag": "scar:abandoned"
+          },
+          {
+            "id": "C_HEAT_QUESTION",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di La Febbre delle Paludi."
           }
         ],
         "failure": [
@@ -6534,6 +6894,11 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: il debito e' stato rimesso.",
             "tag": "debt_forgiven"
+          },
+          {
+            "id": "B_COOL_QUESTION",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di Le Reti Vuote."
           }
         ],
         "costs": [
@@ -6568,6 +6933,11 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: passata di mano.",
             "tag": "scar:changed_hands"
+          },
+          {
+            "id": "C_HEAT_QUESTION",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di Le Reti Vuote."
           }
         ],
         "failure": [
@@ -6713,6 +7083,11 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: i Nahr hanno un posto dove fermarsi.",
             "tag": "nahr_settled"
+          },
+          {
+            "id": "B_COOL_QUESTION",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di Chi Arriva da Fuori."
           }
         ],
         "costs": [
@@ -6747,6 +7122,11 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: passata di mano.",
             "tag": "scar:changed_hands"
+          },
+          {
+            "id": "C_HEAT_QUESTION",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di Chi Arriva da Fuori."
           }
         ],
         "failure": [
@@ -6880,6 +7260,11 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: i Nahr hanno un posto dove fermarsi.",
             "tag": "nahr_settled"
+          },
+          {
+            "id": "B_COOL_QUESTION",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di I Lupi al Limitare."
           }
         ],
         "costs": [
@@ -6914,6 +7299,11 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: la razzia.",
             "tag": "scar:plundered"
+          },
+          {
+            "id": "C_HEAT_QUESTION",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di I Lupi al Limitare."
           }
         ],
         "failure": [
@@ -7061,6 +7451,11 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.",
             "tag": "ledger_public"
+          },
+          {
+            "id": "B_COOL_QUESTION",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di Il Grano Guasto."
           }
         ],
         "costs": [
@@ -7095,6 +7490,11 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: passata di mano.",
             "tag": "scar:changed_hands"
+          },
+          {
+            "id": "C_HEAT_QUESTION",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di Il Grano Guasto."
           }
         ],
         "failure": [
@@ -7240,6 +7640,11 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: i Nahr hanno un posto dove fermarsi.",
             "tag": "nahr_settled"
+          },
+          {
+            "id": "B_COOL_QUESTION",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di Il Cordone."
           }
         ],
         "costs": [
@@ -7274,6 +7679,11 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: il confine sigillato.",
             "tag": "scar:sealed_border"
+          },
+          {
+            "id": "C_HEAT_QUESTION",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di Il Cordone."
           }
         ],
         "failure": [
@@ -7421,6 +7831,11 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: l'acqua torna a muoversi.",
             "tag": "water_moves"
+          },
+          {
+            "id": "B_COOL_QUESTION",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di Il Traghetto."
           }
         ],
         "costs": [
@@ -7455,6 +7870,11 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: passata di mano.",
             "tag": "scar:changed_hands"
+          },
+          {
+            "id": "C_HEAT_QUESTION",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di Il Traghetto."
           }
         ],
         "failure": [
@@ -7605,6 +8025,11 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: il debito e' stato chiamato.",
             "tag": "debt_called"
+          },
+          {
+            "id": "B_COOL_QUESTION",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di I Pedaggi Neri."
           }
         ],
         "costs": [
@@ -7639,6 +8064,11 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: la razzia.",
             "tag": "scar:plundered"
+          },
+          {
+            "id": "C_HEAT_QUESTION",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di I Pedaggi Neri."
           }
         ],
         "failure": [
@@ -7789,6 +8219,11 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.",
             "tag": "ledger_public"
+          },
+          {
+            "id": "B_COOL_QUESTION",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di I Pesi e le Misure."
           }
         ],
         "costs": [
@@ -7823,6 +8258,11 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: passata di mano.",
             "tag": "scar:changed_hands"
+          },
+          {
+            "id": "C_HEAT_QUESTION",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di I Pesi e le Misure."
           }
         ],
         "failure": [
@@ -7968,6 +8408,11 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: quello che si e' capito resta scritto.",
             "tag": "knowledge_shared"
+          },
+          {
+            "id": "B_COOL_QUESTION",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di Le Staffette."
           }
         ],
         "costs": [
@@ -8002,6 +8447,11 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: la domanda sul muro.",
             "tag": "scar:unanswered"
+          },
+          {
+            "id": "C_HEAT_QUESTION",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di Le Staffette."
           }
         ],
         "failure": [
@@ -8135,6 +8585,11 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: l'acqua torna a muoversi.",
             "tag": "water_moves"
+          },
+          {
+            "id": "B_COOL_QUESTION",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di I Canali Interrati."
           }
         ],
         "costs": [
@@ -8169,6 +8624,11 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: l'abbandono.",
             "tag": "scar:abandoned"
+          },
+          {
+            "id": "C_HEAT_QUESTION",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di I Canali Interrati."
           }
         ],
         "failure": [
@@ -8317,6 +8777,11 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.",
             "tag": "ledger_public"
+          },
+          {
+            "id": "B_COOL_QUESTION",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di La Guerra delle Gilde."
           }
         ],
         "costs": [
@@ -8351,6 +8816,11 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: la razzia.",
             "tag": "scar:plundered"
+          },
+          {
+            "id": "C_HEAT_QUESTION",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di La Guerra delle Gilde."
           }
         ],
         "failure": [
@@ -8498,6 +8968,11 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.",
             "tag": "ledger_public"
+          },
+          {
+            "id": "B_COOL_QUESTION",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di Il Contrabbando."
           }
         ],
         "costs": [
@@ -8532,6 +9007,11 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: passata di mano.",
             "tag": "scar:changed_hands"
+          },
+          {
+            "id": "C_HEAT_QUESTION",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di Il Contrabbando."
           }
         ],
         "failure": [
