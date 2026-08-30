@@ -14,6 +14,7 @@ extends "res://tests/test_case.gd"
 ## prova che dipendesse dal caso o dai segni di partenza smetterebbe di provare
 ## senza dirlo.
 
+const CouncilEconomy := preload("res://scripts/confluence/council_economy.gd")
 const ConfluenceResolution := preload("res://scripts/confluence/confluence_resolution.gd")
 const TagRules := preload("res://scripts/world/tag_rules.gd")
 
@@ -352,9 +353,13 @@ func test_you_cannot_buy_more_than_you_can_pay_for() -> void:
 		session.confluence.benefit_menu().size() >= 3,
 		"il tavolo fabbricato offre almeno tre benefici vivi"
 	)
+	# **Sette da D-343**: ALZA LA DOMANDA e' entrata nel vocabolario. Il numero
+	# si legge dal vocabolario che esegue, non si riscrive qui: una casella
+	# nuova domani non deve far fallire questa prova per il motivo sbagliato.
 	assert_eq(
-		(session.confluence.price_menu()["cost"] as Array).size(), 6,
-		"e tutti e sei i costi mordono"
+		(session.confluence.price_menu()["cost"] as Array).size(),
+		CouncilEconomy.COST_VERBS.size(),
+		"tutti i costi del vocabolario mordono"
 	)
 
 	var tags: Array = region["tags"] as Array
@@ -363,6 +368,11 @@ func test_you_cannot_buy_more_than_you_can_pay_for() -> void:
 			tags.append(tag)
 	var theme_id: String = str(data().tensions[TENSION].get("theme", ""))
 	(session.world["theme_heat"] as Dictionary)[theme_id] = 6
+	# E la domanda in cima alla sua traccia: ALZA LA DOMANDA non ha piu' dove
+	# andare, come SCALDA TEMA col Calore al tetto.
+	(session.world["tensions"][TENSION] as Dictionary)["current_value"] = int(
+		(data().tensions[TENSION] as Dictionary)["threshold"]
+	)
 	# CEDI CONTROLLO cede al rivale: se il luogo e' gia' suo non toglie niente,
 	# e se la questione non ha un rivale cede alla terra — allora non morde su
 	# un luogo che gia' non e' di nessuno.

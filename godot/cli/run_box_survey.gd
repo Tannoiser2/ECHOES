@@ -199,10 +199,19 @@ static func _count(effect: Dictionary, seen: Dictionary, uses: Dictionary, order
 
 ## Cosa esce davvero da ogni casella, chiedendoglielo.
 static func _what_the_boxes_emit() -> Dictionary:
+	# **Il contesto finto deve avere tutto quello che una casella guarda.** La
+	# prima versione non passava `tension`, e le due caselle che muovono una
+	# domanda (D-343) uscivano vuote: il documento diceva che nessuna casella sa
+	# muovere una domanda mentre due lo facevano. Uno zero e' quasi sempre la
+	# sonda cieca, e qui lo era.
 	var context: Dictionary = {
 		"region_focus": "REG_PROVA", "proponent": "ENT_UNO", "rival": "ENT_DUE",
+		"tension": "TEN_PROVA",
 	}
-	var world: Dictionary = {"regions": {"REG_PROVA": {"tags": ["condition:cut_off"]}}}
+	var world: Dictionary = {
+		"regions": {"REG_PROVA": {"tags": ["condition:cut_off"]}},
+		"tensions": {"TEN_PROVA": {"current_value": 3}},
+	}
 	var out: Dictionary = {}
 	for pair in [[CouncilEconomy.BENEFIT_VERBS, "benefits"], [CouncilEconomy.COST_VERBS, "costs"]]:
 		var table: Dictionary = pair[0]
@@ -218,8 +227,13 @@ static func _what_the_boxes_emit() -> Dictionary:
 				var kind: String = str((effect_v as Dictionary)["type"])
 				if not types.has(kind):
 					types.append(kind)
-			if not types.is_empty():
-				out[str(verb)] = types
+			if types.is_empty():
+				# Una casella che con un contesto pieno non produce niente e'
+				# una casella muta, o una sonda che non le ha dato quello che
+				# guarda. In tutti e due i casi si dichiara, non si salta.
+				printerr("la casella «%s» non produce alcun Effetto: sonda cieca o casella muta" % str(verb))
+				continue
+			out[str(verb)] = types
 	return out
 
 

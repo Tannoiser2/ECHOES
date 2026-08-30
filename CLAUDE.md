@@ -68,7 +68,9 @@ fallire il caricamento dei dati **in silenzio**, e i test vanno rossi altrove.
 
 Le sonde stanno in `godot/cli/`. Le più usate: `run_playtest.gd` (il cancello),
 `run_pass_probe.gd` (perché un seggio passa), `run_asking_probe.gd` (quanto rende
-giocare), `run_resonance_probe.gd` (quante volte il mondo risponde).
+giocare), `run_resonance_probe.gd` (quante volte il mondo risponde),
+`run_boxes_probe.gd` (quante volte una casella del Consiglio viene offerta e
+quante viene presa).
 
 ---
 

@@ -16,7 +16,7 @@ caratteri misti, come al cancello — e dopo quanto tempo.
 | vite scritte oltre la prima | 18 |
 | **vite che non si sono mai sedute** | **7** |
 | salti d'era giocati | 168 |
-| trasformazioni sedute | 204 |
+| trasformazioni sedute | 208 |
 | salti brevi (sotto 50 anni) / medi / lunghi (oltre 150) | 36 / 84 / 48 |
 
 ## Le vite, una per una
@@ -24,15 +24,15 @@ caratteri misti, come al cancello — e dopo quanto tempo.
 | uniforme | misto | vita | casa | porta | segno atteso | anni (mediana) |
 |---|---|---|---|---|---|---|
 | 16 | 16 | Le Custodi della Cenere | ENT_CENERE | LINE_EXHAUSTED | — | 476 |
-| 13 | 14 | La Repubblica della Valle | ENT_ALDRIC | LINE_EXHAUSTED | — | 494 |
+| 14 | 14 | La Repubblica della Valle | ENT_ALDRIC | LINE_EXHAUSTED | — | 495 |
 | 13 | 13 | I Frati del Vetro | ENT_VETRO | LINE_EXHAUSTED | — | 235 |
 | 13 | 12 | Il Culto della Misura | ENT_LYRA | LINE_EXHAUSTED | — | 494 |
-| 10 | 10 | Vaerax Ridestato | ENT_VAERAX | ON_TAG | `crystal_exploited` | 323 |
+| 11 | 11 | Vaerax Ridestato | ENT_VAERAX | ON_TAG | `crystal_exploited` | 323 |
 | 11 | 8 | L'Egemonia di Eredan | ENT_LIBERE | ON_TAG | `scar:emptied@REG_VALLE_VERDE` | 604 |
 | 7 | 7 | La Compagnia del Sale | ENT_SALE | LINE_EXHAUSTED | — | 474 |
 | 7 | 6 | La Lega delle Sette | ENT_LIBERE | ON_TAG | `charter_written` | 404 |
 | 6 | 5 | La Diaspora di Nahr | ENT_NAHR | ON_TAG | `twice_uprooted` | 235 |
-| 3 | 6 | La Corona Restaurata | ENT_ALDRIC | ON_TAG | `heir_named` | 521 |
+| 4 | 6 | La Corona Restaurata | ENT_ALDRIC | ON_TAG | `heir_named` | 521 |
 | 5 | 3 | Il Regno di Nahr | ENT_NAHR | ON_TAG | `nahr_settled` | 737 |
 | **0** | **0** | La Reggenza del Granaio | ENT_ALDRIC | ON_TAG | `grain_requisitioned` | — |
 | **0** | **0** | I Forni Riaccesi | ENT_CENERE | ON_TAG | `scar:open_wound` | — |
@@ -49,12 +49,12 @@ Il conto e' mutazioni su 168 salti giocati.
 
 | casa | mutazioni | ogni quanti salti |
 |---|---|---|
-| ENT_ALDRIC | 36 | 1 ogni 4.7 |
+| ENT_ALDRIC | 38 | 1 ogni 4.4 |
 | ENT_CENERE | 32 | 1 ogni 5.2 |
 | ENT_LIBERE | 32 | 1 ogni 5.2 |
 | ENT_LYRA | 25 | 1 ogni 6.7 |
 | ENT_NAHR | 19 | 1 ogni 8.8 |
 | ENT_SALE | 14 | 1 ogni 12.0 |
-| ENT_VAERAX | 20 | 1 ogni 8.4 |
+| ENT_VAERAX | 22 | 1 ogni 7.6 |
 | ENT_VETRO | 26 | 1 ogni 6.5 |
 

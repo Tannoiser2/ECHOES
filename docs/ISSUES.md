@@ -3594,9 +3594,9 @@ arrivano da un'altra parte.
 >
 > | | distinti | applicazioni |
 > |---|---|---|
-> | una casella di oggi lo sa dire | 4 | 64 |
-> | verbo giusto, posto che la casella non sa dire | 15 | 41 |
-> | **verbo che manca** | **27** | **231** |
+> | una casella di oggi lo sa dire | 4 | 121 |
+> | verbo giusto, posto che la casella non sa dire | 15 | 44 |
+> | **verbo che manca** | **27** | **171** |
 > | | **46** | **336** |
 >
 > #### Le nove caselle
@@ -3624,8 +3624,25 @@ arrivano da un'altra parte.
 > `ADJUST_TENSION` su una **domanda**. Sono due tracce diverse, e nessuna
 > casella sa muovere la seconda.
 >
-> **Le nove caselle non sono scritte.** Il passo dopo e' scriverne una — la
-> prima — e misurarla sui 100 semi.
+> ### Fatto in 0.1.308: la prima casella e' scritta, e misurata
+>
+> **ABBASSA LA DOMANDA** (beneficio) e **ALZA LA DOMANDA** (costo), su tutte e
+> 60 le carte ([D-343](DECISIONS.md#d-343)). Gli Effetti che nessuna casella sa
+> dire scendono **da 171 applicazioni a 81**, e le caselle che restano da
+> scrivere da nove a otto.
+>
+> **Ma al tavolo la comprano una volta su settantadue.** La sonda nuova
+> `run_boxes_probe.gd` conta offerte e acquisti: in venti partite CAMBIA
+> CONTROLLO 32 su 32, RAFFREDDA TEMA 6 su 72, **ABBASSA LA DOMANDA 1 su 72**.
+> Vale 1 in `intrinsic_value` come RAFFREDDA TEMA, e la policy preferisce le
+> caselle che cambiano la mappa. Non e' stata ritoccata: alzare il valore di una
+> casella e' equilibrio, e va misurato.
+>
+> Ed e' la ragione per cui il playtest non si muove: **una casella che nessuno
+> compra e', per il gioco, identica a una che non esiste.**
+>
+> Restano otto caselle, e la piu' grossa e' ora POSA UN SEGNO SU UNA CASATA (4
+> distinti, 44 applicazioni).
 
 
 > ### Rimisurata in 0.1.300, e i due numeri in cima erano sbagliati
@@ -4447,8 +4464,9 @@ schermo — e nessuna di quelle prove passa costruendosi il carico da sé.
 
 ### 72. Il cuore del Consiglio: le due liste sulla carta Tensione
 
-`regole` · `contenuto` · `da-misurare` · **aperta in 0.1.240**
-([D-278](DECISIONS.md#d-278)) · **Fase A chiusa in 0.1.240**
+`regole` · `contenuto` · **aperta in 0.1.240**
+([D-278](DECISIONS.md#d-278)) · **Fase A chiusa in 0.1.240** · **chiusa in 0.1.308**
+([D-343](DECISIONS.md#d-343))
 
 > **Richiamo del committente:** *«nelle tensioni ci dovrebbero essere anche i
 > vantaggi e gli svantaggi che possono essere scelti e proposti durante il
@@ -4492,8 +4510,17 @@ vivo (TRAMARE scopre) e resta stampato.
 > controller li applica. Nessuno aveva riportato la voce indietro
 > ([D-342](DECISIONS.md#d-342)).
 >
-> Quello che resta di questa voce è **una sola riga del suo «fatto quando»**: la
-> sonda che dice quanta scelta arriva davvero al tavolo. Il resto vive.
+> Quello che restava di questa voce era **una sola riga del suo «fatto
+> quando»**: la sonda che dice quanta scelta arriva davvero al tavolo.
+>
+> **Scritta in 0.1.308** ([D-343](DECISIONS.md#d-343)): `run_boxes_probe.gd` si
+> siede fra il cervello e il Consiglio e conta quante volte ogni casella e'
+> offerta e quante e' presa. La prima misura, venti partite: CAMBIA CONTROLLO
+> 32 su 32, COSTRUISCI PIETRA 27 su 49, RAFFREDDA TEMA 6 su 72, ABBASSA LA
+> DOMANDA **1 su 72**, PEDAGGIO e PRENDI DEBITO **0**.
+>
+> **La voce si chiude qui.** Quello che la misura ha trovato — caselle offerte e
+> mai prese — non e' questa voce: e' equilibrio, e vive nei numeri della sonda.
 
 **Fatto quando** ogni carta Tensione porta i suoi verbi di beneficio e di
 costo, il Consiglio si gioca posando pedine dentro l'economia dichiarata, la
@@ -5934,6 +5961,50 @@ mazzo nuovo. E la stessa di D-329, D-333, D-334 e D-336.
 `CardFace` puo' stampare, piu' i blocchi che lo schema dichiara come testo da
 giocatore — e chiede che compaia nel documento; e la prova pianta un blocco nuovo
 e la vede cadere.
+
+
+---
+
+### 106. «La sceglie chi propone»: la pedina non porta con sé il nome della domanda
+
+`regole` · `motore` · aperta in 0.1.308
+
+Il committente, sulla casella che muove una domanda: **«la sceglie chi
+propone»** — non la domanda stampata sulla scheda dall'autore, ma quella che il
+proponente indica col dito, fra i segnalini che stanno tutti sul tavolo.
+
+In 0.1.308 ([D-343](DECISIONS.md#d-343)) la casella e' scritta e muove **la
+domanda di cui si sta discutendo**. E' quello che copre 59 delle 90
+applicazioni; le altre 31 nominano un'altra domanda, e quelle non si possono
+ancora fare.
+
+#### Perche' non e' stato fatto subito
+
+Perche' non e' una riga: **una pedina posata si identifica col solo id della
+voce**, per tutta la lunghezza della catena.
+
+| dove | cosa cambia |
+|---|---|
+| `set_benefits(chosen)` / `place_costs` | accettano id; devono accettare anche «questa voce, su questa domanda» |
+| `current["benefits"]` | quello che si salva, e quindi il verbale |
+| `CouncilEconomy.effects_for` | legge la domanda scelta invece di quella in discussione |
+| `PolicyDecider` | deve **sapere quale domanda conviene muovere**: e' equilibrio, non plumbing |
+| `SeatDecider` (hotseat) | una seconda domanda a chi gioca: «quale?» |
+| `confluence_board` | la pedina si posa su due cose, non su una |
+
+Il pezzo che pesa e' il quarto: un cervello che sceglie quale domanda alzare o
+abbassare cambia il gioco, e va misurato sui 100 semi come tutto il resto.
+
+#### Perche' conta comunque
+
+Oggi la casella e' comprata **una volta su settantadue**
+(`cli/run_boxes_probe.gd`). Una parte della ragione e' che muove solo la domanda
+in discussione: e' il beneficio meno interessante che si possa offrire. La
+scelta libera e' anche la cosa che potrebbe renderla viva.
+
+**Fatto quando** un proponente puo' posare la pedina su una domanda che nomina,
+il verbale dice quale, e la sonda delle caselle mostra se la casella smette di
+essere quella che nessuno compra.
 
 
 Ogni voce qui sopra è già un'issue: il titolo dopo il numero, le etichette e la

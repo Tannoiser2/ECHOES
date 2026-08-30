@@ -5,6 +5,76 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.308 — La prima casella: il Consiglio sa muovere una domanda (D-343)
+
+D-342 ha nominato nove caselle mancanti; questa è la prima, e vale da sola **90
+applicazioni su 336**. È quella che il committente non riusciva a leggere sulla
+scheda — *«La Carestia +1 non so cosa intende»*.
+
+| | |
+|---|---|
+| **ABBASSA LA DOMANDA** | beneficio · sposta di 1 indietro il segnalino |
+| **ALZA LA DOMANDA** | costo · sposta di 1 avanti il segnalino |
+
+Su tutte e 60 le carte, con la riga che dice quale segnalino si muove. E come
+SCALDA TEMA si ferma al tetto del Calore, queste si fermano ai capi della
+traccia: una domanda a zero non si abbassa, una in cima non si alza.
+
+### Sulla carta, molta strada
+
+| `MISURA_CASELLE` | prima | dopo |
+|---|---|---|
+| **verbo che manca** | 27 distinti · 171 usi | **16 · 81** |
+
+### Al tavolo, una volta su settantadue
+
+Una sonda nuova — `run_boxes_probe.gd`, il «fatto quando» che ISSUES 72 chiedeva
+— conta quante volte una casella è offerta e quante è presa. Venti partite:
+
+| casella | offerta | comprata |
+|---|---|---|
+| CAMBIA CONTROLLO | 32 | **32** |
+| RAFFREDDA TEMA | 72 | 6 |
+| **ABBASSA LA DOMANDA** | **72** | **1** |
+
+**La casella c'è, si gioca, e il cervello quasi non la vuole.** Non ho ritoccato
+il suo valore: alzarlo è equilibrio, e l'equilibrio si misura. Ed è la ragione
+per cui il playtest non si muove — una casella che nessuno compra è, per il
+gioco, identica a una che non esiste, e la differenza si vede solo con questa
+sonda.
+
+### Il costo
+
+**Sul vincolo niente**: 100 semi identici, **0 seggi bloccati su un solo livello
+su 8**. Sul mondo poco e in meglio: `MISURA_VITE` dice **208 trasformazioni
+sedute invece di 204**. Suite da 648 a **650 prove**.
+
+### Tre copie della stessa lista
+
+I verbi stavano in tre posti — lo schema, il modulo che li esegue, il validatore
+— e la terza si è vista quando una casella nuova è entrata nelle altre due: **il
+validatore ha bocciato dati validi**. Ora legge l'enum dallo schema.
+
+### Due correzioni
+
+La sonda di D-342 costruiva un contesto finto **senza la domanda in
+discussione**, e le caselle nuove uscivano vuote: avrebbe detto che nessuna
+casella sa muovere una domanda mentre due lo facevano.
+
+E i numeri di «Il conto» in D-342, in 0.1.307 e in ISSUES 89 erano **64/41/231**
+— di una misura precedente ai pool. Il documento che citano diceva già
+**121/44/171**. Corretti: è il difetto contro cui D-342 è stata scritta,
+commesso nella decisione che lo denuncia.
+
+### Verbali
+
+**D-343** in `DECISIONS.md`, **ISSUES 89** aggiornata, **ISSUES 72** chiusa (la
+sonda che mancava c'è), **ISSUES 106** aperta: *«la sceglie chi propone»* chiede
+che la pedina porti con sé il nome della domanda, e quello tocca l'API dei
+benefici, i due cervelli e il tabellone.
+
+---
+
 ## 0.1.307 — Il «65% non traducibile» era un elenco di nove caselle (D-342)
 
 Nessun verbo del gioco toccato: una sonda, un cancello e un documento. Ma la
@@ -42,9 +112,9 @@ vocabolario non è ricopiato**: la sonda chiama `effects_for` e guarda cosa esce
 
 | | distinti | applicazioni |
 |---|---|---|
-| una casella di oggi lo sa dire | 4 | 64 |
-| verbo giusto, posto che la casella non sa dire | 15 | 41 |
-| **verbo che manca** | **27** | **231** |
+| una casella di oggi lo sa dire | 4 | 121 |
+| verbo giusto, posto che la casella non sa dire | 15 | 44 |
+| **verbo che manca** | **27** | **171** |
 
 E i 27 si raggruppano in **nove caselle**. La più pesante vale da sola **90
 applicazioni su 336**, ed è quella che il committente non riusciva a leggere
