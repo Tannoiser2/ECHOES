@@ -10,6 +10,103 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-345 — Lo scheletro delle carte, e le righe che non dicevano cosa erano
+
+**implemented** — 0.1.310
+
+### La richiesta
+
+> *«Voglio la struttura e lo scheletro di tutte le carte, poi devi chiarire bene
+> cosa sono le carte eco (carte di propp?), quale e' la differenza con carte
+> azione?»*
+
+### Lo scheletro non si scrive: si ricava
+
+`docs/SCHELETRO_CARTE.md`, generato da `cli/run_card_skeleton.gd` e sorvegliato
+da un cancello. Per ogni mazzo guarda **tutte le facce vere**, raccoglie i
+blocchi che portano — titolo, sottotitolo, cifra d'angolo, e l'intestazione di
+ogni riga meccanica — e conta su quante carte ognuno compare. Un blocco che
+sparisce da una carta sparisce dal documento; uno nuovo entra il giorno che
+entra.
+
+Le sole righe scritte a mano sono **il mestiere di ogni mazzo**: cosa quel pezzo
+fa al tavolo e come arriva in mano. Non e' un fatto che il codice possa
+smentire, ed e' quello che un elenco di blocchi da solo non direbbe.
+
+| mazzo | formato | facce | pezzi |
+|---|---|---|---|
+| Asset | 63x88 | 48 | 132 |
+| Eco | 63x88 | 39 | 39 |
+| Domanda | 44x68 | 60 | 60 |
+| Consiglio | 70x120 | 60 | 60 |
+| Destino | 70x120 | 23 | 23 |
+| Casata | 70x120 | 26 | 26 |
+| Regione | 80x80 | 10 | 10 |
+
+### E ricavarlo ha trovato due difetti
+
+**Quattro mazzi avevano righe senza intestazione**: 180 righe sulle carte
+Domanda, 64 sulle Casate, 27 sulle Asset, 20 sulle tessere. Una riga senza
+intestazione e' una riga che al tavolo si legge per ultima, e quando si legge
+non si sa cos'e'. Adesso ognuna ha la sua: `SI ACCENDE QUANDO`, `SI RAFFREDDA`,
+`AL CONSIGLIO VALGONO`, `SEGNI`, `FONTI`, `SA FARE`, `VUOI LASCIARE`, `SE NON
+CE LA FAI`, `IMPEGNI`, `PRENDI`.
+
+**E il Destino stampava tre parole inglesi**: `MINIMUM`, `VICTORY`, `TRIUMPH`,
+sul tarocco che una casa guarda per contare quanto le manca. Sono le chiavi
+interne dei tre gradini, e la prova di D-339 non le prendeva perche' non sono
+enum dei dati. Adesso: **SOGLIA**, **VITTORIA**, **TRIONFO**.
+
+### La guardia
+
+Non guarda un elenco di intestazioni buone, che invecchierebbe: chiede che
+**ogni riga cominci con parole tutte maiuscole**, o col numero di un'Azione, o
+col punto di una casella. E' la forma, non il vocabolario. Morde: tolta
+l'intestazione ai segni della tessera, cade.
+
+### Carte Eco e carte Azione: cosa sono davvero
+
+La domanda del committente ha una risposta misurabile, e il codice la da'.
+
+**Sono tutte e due carte che si calano da una mano, e costano tutte e due
+un'Occasione.** Quello che cambia e' **quanto scegli**.
+
+| | carta **Azione** (Asset) | carta **Eco** (Narratore) |
+|---|---|---|
+| quante | 48 facce, **132 copie** | 39 facce, **una copia ciascuna** |
+| come arriva | ACQUISIRE, o la mappa a inizio Atto | **due a testa a inizio Atto**, dal sacchetto dell'Atto |
+| limite di mano | 7 | 2 per Atto |
+| costo | 1 Occasione | 1 Occasione |
+| **scegli il bersaglio** | **si**, fra i luoghi coi segni della carta | **no**: lo decide il mondo |
+| **scegli cosa fa** | **si**, fra due Azioni | **no**: la carta fa quello che dice |
+| Risonanza | **sempre**, e non si sceglie | mai |
+| al Consiglio | vale forza, se la impegni invece di calarla | non si impegna |
+| lascia nel mondo | i segni delle sue Azioni | **`function:<Propp>`**, il fatto che quella cosa e' successa |
+
+**Si', le carte Eco sono le carte di Propp.** Ognuna porta una funzione della
+morfologia — mancanza, tradimento, scoperta, liberazione — e calarla scrive
+quella funzione **sul mondo** come un segno. E' quello che le rende un motore e
+non un evento: altre carte chiedono che una funzione sia gia' successa
+(*«QUANDO ESCE il mondo porta #usurpazione oppure #divieto»*), e la catena si
+apre da sola.
+
+**La differenza in una riga:** con una carta Azione scegli **dove** e **cosa**;
+con una carta Eco scegli **solo quando**. E' per questo che una carta Eco non ha
+due Azioni e non ha una Risonanza: non c'e' una scelta da pagare.
+
+**E questo e' anche il suo punto debole, dichiarato.** Una carta senza scelta
+non e' una decisione: e' un evento che il giocatore decide di far accadere.
+Se sia il pezzo giusto — o se debba avere un bersaglio come le altre — non lo
+decide una misura. E' **ISSUES 107**.
+
+### Il costo, dichiarato
+
+**Niente sul gioco**: playtest 100 semi identico — **0 seggi bloccati su un
+solo livello su 8**. Sei documenti generati rigenerati, e le derive sono tutte
+intestazioni. Suite da 653 a **654 prove**, e il ventunesimo cancello.
+
+---
+
 ## D-344 — Il 100% delle carte si legge: via il racconto, sulla faccia gli Effetti
 
 **implemented** — 0.1.309

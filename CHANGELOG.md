@@ -5,6 +5,74 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.310 — Lo scheletro delle carte, e le righe che non dicevano cosa erano (D-345)
+
+Il committente: *«voglio la struttura e lo scheletro di tutte le carte, poi devi
+chiarire bene cosa sono le carte eco (carte di propp?), quale è la differenza
+con carte azione?»*
+
+### Lo scheletro non si scrive: si ricava
+
+`docs/SCHELETRO_CARTE.md`, generato e sorvegliato da un cancello — il
+ventunesimo. Per ogni mazzo guarda **tutte le facce vere** e raccoglie i blocchi
+che portano, contando su quante carte ognuno compare.
+
+| mazzo | formato | facce | pezzi |
+|---|---|---|---|
+| Asset | 63×88 | 48 | 132 |
+| Eco | 63×88 | 39 | 39 |
+| Domanda | 44×68 | 60 | 60 |
+| Consiglio | 70×120 | 60 | 60 |
+| Destino | 70×120 | 23 | 23 |
+| Casata | 70×120 | 26 | 26 |
+| Regione | 80×80 | 10 | 10 |
+
+### E ricavarlo ha trovato due difetti
+
+**Quattro mazzi avevano righe senza intestazione**: 180 sulle Domande, 64 sulle
+Casate, 27 sulle Asset, 20 sulle tessere. Adesso ognuna ha la sua — `SI ACCENDE
+QUANDO`, `SI RAFFREDDA`, `SEGNI`, `FONTI`, `SA FARE`, `VUOI LASCIARE`, `IMPEGNI`.
+
+**E il Destino stampava tre parole inglesi** — `MINIMUM`, `VICTORY`, `TRIUMPH` —
+sul tarocco che una casa guarda per contare quanto le manca. La prova di D-339
+non le prendeva perché non sono enum dei dati. Adesso **SOGLIA**, **VITTORIA**,
+**TRIONFO**.
+
+### Carte Eco e carte Azione
+
+Sono tutte e due carte che si calano da una mano e costano un'Occasione. Quello
+che cambia è **quanto scegli**.
+
+| | carta **Azione** | carta **Eco** |
+|---|---|---|
+| quante | 48 facce, 132 copie | 39 facce, una copia ciascuna |
+| come arriva | ACQUISIRE, o la mappa | due a testa a inizio Atto |
+| **scegli il bersaglio** | **sì** | **no**: lo decide il mondo |
+| **scegli cosa fa** | **sì**, fra due Azioni | **no** |
+| Risonanza | sempre | mai |
+| lascia nel mondo | i segni delle sue Azioni | `function:<Propp>` |
+
+**Sì, sono le carte di Propp**: ognuna porta una funzione della morfologia, e
+calarla scrive quella funzione **sul mondo** come un segno — che è quello che le
+rende un motore e non un evento, perché altre carte chiedono che una funzione
+sia già successa.
+
+**In una riga:** con una carta Azione scegli *dove* e *cosa*; con una carta Eco
+scegli *solo quando*. Ed è anche il suo punto debole, dichiarato: una carta
+senza scelta non è una decisione. È **ISSUES 107**.
+
+### Il costo
+
+Niente sul gioco: 100 semi identici, **0 seggi bloccati su un solo livello su
+8**. Suite da 653 a **654 prove**.
+
+### Verbali
+
+**D-345** in `DECISIONS.md`, **ISSUES 107** aperta, `docs/SCHELETRO_CARTE.md` col
+suo cancello.
+
+---
+
 ## 0.1.309 — Il 100% delle carte si legge: via il racconto, sulla faccia gli Effetti (D-344)
 
 Il committente: *«ogni azione, effetto e #tag deve essere visibile sulla carta,

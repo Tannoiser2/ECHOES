@@ -232,9 +232,13 @@ static func _asset(asset: Dictionary, data: RefCounted) -> Dictionary:
 		]
 	else:
 		face["body"] = []
+		# **Ogni riga ha la sua intestazione** (D-345): lo scheletro delle carte
+		# ha trovato 27 facce su 48 con una riga meccanica senza etichetta —
+		# «+1 sul suo tema · si scarta se la impegni · costa: …» — e una riga
+		# senza intestazione e' una riga che al tavolo si legge per ultima.
 		face["notes"] = physical + [
-			AssetText.note(asset, data),
-			str(asset.get("acquisition_rule", "")),
+			"IMPEGNI  %s" % AssetText.note(asset, data),
+			"PRENDI  %s" % str(asset.get("acquisition_rule", "")),
 		]
 	face["family"] = family
 	face["art_prompt_key"] = str(asset["art_prompt_key"])
@@ -375,16 +379,16 @@ static func _tension(tension: Dictionary) -> Dictionary:
 	var rules: Array = tension.get("heats_when", []) as Array
 	var rise: String = ""
 	if rules.is_empty():
-		rise = "sale: %s" % " ".join(PackedStringArray(tension.get("triggers", [])))
+		rise = "SI ACCENDE QUANDO  %s" % " ".join(PackedStringArray(tension.get("triggers", [])))
 	else:
 		var said: Array = []
 		for rule in rules:
 			said.append(str((rule as Dictionary).get("text", "")))
-		rise = "si accende quando: %s" % " · ".join(PackedStringArray(said))
+		rise = "SI ACCENDE QUANDO  %s" % " · ".join(PackedStringArray(said))
 	face["notes"] = [
 		rise,
-		"scende: %s" % " ".join(PackedStringArray(tension.get("decrease_rules", []))),
-		"al Consiglio valgono: %s" % ", ".join(PackedStringArray(
+		"SI RAFFREDDA  %s" % " ".join(PackedStringArray(tension.get("decrease_rules", []))),
+		"AL CONSIGLIO VALGONO  %s" % ", ".join(PackedStringArray(
 			(tension["relevant_asset_families"] as Array).map(
 				func(f: Variant) -> String: return SignLabels.family(str(f))
 			)
@@ -468,13 +472,20 @@ static func _destiny(destiny: Dictionary, data: RefCounted) -> Dictionary:
 	# La scala per intero, clausola per clausola: e' la carta che un giocatore
 	# guarda piu' di ogni altra, e la guarda per contare quanto gli manca.
 	var rungs: Array = []
+	# **I tre gradini in italiano** (D-345): si leggeva «MINIMUM», «VICTORY»,
+	# «TRIUMPH» sul tarocco che una casa guarda per contare quanto le manca —
+	# tre parole interne su una carta da giocatore, la stessa cosa che D-339 ha
+	# tolto da tutte le altre facce.
+	const STEPS: Dictionary = {
+		"minimum": "SOGLIA", "victory": "VITTORIA", "triumph": "TRIONFO",
+	}
 	for level in ["minimum", "victory", "triumph"]:
 		var rung: Dictionary = destiny[level]
 		var clauses: Array = []
 		for condition in rung["conditions"]:
 			clauses.append(str((condition as Dictionary).get("label", condition["type"])))
-		rungs.append("%s — %s: %s" % [
-			level.to_upper(), str(rung["label"]), " · ".join(PackedStringArray(clauses)),
+		rungs.append("%s  %s: %s" % [
+			str(STEPS[level]), str(rung["label"]), " · ".join(PackedStringArray(clauses)),
 		])
 	face["notes"] = rungs
 	face["footer"] = str(destiny["id"])
@@ -504,7 +515,7 @@ static func _entity(entity: Dictionary, data: RefCounted) -> Dictionary:
 	for action in names:
 		# I verbi, non i loro nomi interni: si leggeva «acquire 3 · claim 1».
 		values.append("%s %d" % [SignLabels.action(str(action)), int(actions[action])])
-	face["notes"] = [" · ".join(PackedStringArray(values))]
+	face["notes"] = ["SA FARE  %s" % " · ".join(PackedStringArray(values))]
 	# **Cosa questa casa vuole lasciare, e cosa diventa se non ce la fa**
 	# (D-288 e D-290). La strategia dichiarata stava in un file che leggevano il
 	# cervello e lo schermo; sul tavolo fisico non stava da nessuna parte, e una
@@ -551,12 +562,12 @@ static func _house_promise(entity: Dictionary, data: RefCounted) -> Array:
 	for voice in (profile as Dictionary).get("wants", []) as Array:
 		wanted.append(SignLabels.label(str((voice as Dictionary).get("tag", "")), data))
 	if not wanted.is_empty():
-		out.append("vuoi lasciare: %s" % " · ".join(wanted))
+		out.append("VUOI LASCIARE  %s" % " · ".join(wanted))
 	for index in range(now + 1, lives.size()):
 		var door: Dictionary = (lives[index] as Dictionary).get("also_enters", {}) as Dictionary
 		if door.is_empty():
 			continue
-		out.append("dopo %d anni con meno di %d di questi segni: %s" % [
+		out.append("SE NON CE LA FAI  dopo %d anni con meno di %d di questi segni: %s" % [
 			int(door.get("after_years", 0)), int(door.get("holds_at_least", 1)),
 			str((lives[index] as Dictionary).get("name", "")),
 		])
@@ -583,9 +594,9 @@ static func _region(region: Dictionary, data: RefCounted) -> Dictionary:
 			segni.append(word)
 	face["notes"] = []
 	if not segni.is_empty():
-		face["notes"].append(" · ".join(PackedStringArray(segni)))
+		face["notes"].append("SEGNI  %s" % " · ".join(PackedStringArray(segni)))
 	# Le famiglie in italiano (D-339): la tessera diceva «fonti: authority, force».
-	face["notes"].append("fonti: %s" % ", ".join(PackedStringArray(
+	face["notes"].append("FONTI  %s" % ", ".join(PackedStringArray(
 		(region.get("asset_sources", []) as Array).map(
 			func(f: Variant) -> String: return SignLabels.family(str(f))
 		)

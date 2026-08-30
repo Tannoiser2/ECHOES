@@ -6007,6 +6007,51 @@ il verbale dice quale, e la sonda delle caselle mostra se la casella smette di
 essere quella che nessuno compra.
 
 
+---
+
+### 107. Una carta Eco non ha una scelta: e' un evento che decidi di far accadere
+
+`regole` · `direzione` · aperta in 0.1.310
+
+Chiarendo cosa sono le carte Eco per il committente
+([D-345](DECISIONS.md#d-345)) la differenza con le carte Azione e' venuta fuori
+netta, e con lei una domanda che nessuno aveva posto.
+
+| | carta **Azione** | carta **Eco** |
+|---|---|---|
+| scegli il bersaglio | **si** | **no** |
+| scegli cosa fa | **si**, fra due Azioni | **no** |
+| Risonanza | sempre | mai |
+
+Una carta Eco si cala e succede. Il posto lo decide `card_bindings`, che prende
+la Regione a fuoco della domanda che la carta nomina; le due Azioni non ci sono;
+la Risonanza nemmeno. **L'unica scelta e' quando calarla**, e con quale delle
+due che hai in mano.
+
+#### Perche' e' una domanda e non un difetto
+
+Puo' essere giusto: una funzione di Propp e' una cosa che **succede al mondo**,
+non una mossa. La carta e' il momento in cui un giocatore decide che quella cosa
+succede adesso, e questo e' gia' un potere.
+
+Ma la domanda di casa — *«questa cosa esisterebbe e sarebbe comprensibile sul
+tavolo fisico?»* — su una carta senza scelta ha una risposta scomoda: **al
+tavolo si cala e si legge cosa e' successo**. Sedici carte su trentanove non
+hanno nemmeno una condizione stampata, quindi si calano quando si vuole.
+
+#### Le tre strade, e nessuna e' misurata
+
+1. **Resta com'e'**, e la si dichiara: l'Eco e' l'orologio del mondo in mano ai
+   giocatori, e il suo peso e' il tempismo.
+2. **Le si da' un bersaglio**, come alle Azioni: chi la cala sceglie dove cade,
+   fra i luoghi coi segni che la carta nomina. E' la grammatica di D-262, gia'
+   costruita.
+3. **Le si danno due strade**, come alle Azioni: la stessa funzione di Propp con
+   due esiti fra cui scegliere.
+
+**Fatto quando** il committente sceglie, e la scelta e' misurata sui 100 semi.
+
+
 Ogni voce qui sopra è già un'issue: il titolo dopo il numero, le etichette e la
 milestone dalla riga sotto, il resto come corpo. Chi le apre segna il numero
 GitHub accanto al titolo, così questo documento resta l'indice e non una seconda

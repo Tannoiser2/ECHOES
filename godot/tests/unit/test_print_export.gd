@@ -305,7 +305,7 @@ func test_the_tension_card_prints_the_rule_not_the_prose() -> void:
 			col_prosa += 1
 			continue
 		col_regola += 1
-		assert_true(notes.contains("si accende quando:"),
+		assert_true(notes.contains("SI ACCENDE QUANDO"),
 			"%s ha la casella e la carta non la stampa" % str(card["id"]))
 		for rule in tension["heats_when"] as Array:
 			var line: String = str((rule as Dictionary).get("text", ""))
@@ -632,3 +632,38 @@ func test_no_face_prints_its_prose() -> void:
 		assert_false(whole.contains(prose),
 			"%s/%s stampa ancora il racconto" % [deck, str(card["id"])])
 	assert_true(guardate > 150, "guardate %d facce con un testo d'autore" % guardate)
+
+
+## **Ogni riga meccanica porta la sua intestazione** (D-345).
+##
+## Il committente ha chiesto lo scheletro di tutte le carte, e ricavarlo dalle
+## facce vere ha trovato **quattro mazzi con righe senza etichetta**: 180 righe
+## sulle carte Domanda, 64 sulle Casate, 27 sulle Asset, 20 sulle tessere. Una
+## riga senza intestazione e' una riga che al tavolo si legge per ultima — e
+## quando si legge non si sa cos'e'.
+##
+## La prova non guarda un elenco di intestazioni buone, che invecchierebbe:
+## chiede che **ogni riga cominci con parole tutte maiuscole**, o con il numero
+## di un'Azione, o col punto di una casella. E' la forma, non il vocabolario.
+func test_every_mechanical_line_has_a_headword() -> void:
+	var mute: Array = []
+	var guardate: int = 0
+	for face in CardFace.every(data()):
+		var card: Dictionary = face as Dictionary
+		for note in card.get("notes", []) as Array:
+			var line: String = str(note)
+			if line == "":
+				continue
+			guardate += 1
+			if line.begins_with("①") or line.begins_with("②") or line.begins_with("· "):
+				continue
+			var first: String = line.split(" ")[0]
+			var shouted: bool = first.length() >= 2 and first == first.to_upper()
+			if not shouted:
+				mute.append("%s/%s: «%s»" % [
+					str(card["deck"]), str(card["id"]), line.substr(0, 40),
+				])
+	assert_true(guardate > 400, "guardate %d righe" % guardate)
+	assert_eq(mute.size(), 0, "righe senza intestazione: %s" % " | ".join(
+		PackedStringArray(mute.slice(0, 3))
+	))
