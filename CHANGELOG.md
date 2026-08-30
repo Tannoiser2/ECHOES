@@ -5,6 +5,73 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.307 — Il «65% non traducibile» era un elenco di nove caselle (D-342)
+
+Nessun verbo del gioco toccato: una sonda, un cancello e un documento. Ma la
+voce più pesante aperta cambia forma.
+
+### La correzione viene dal committente
+
+ISSUES 89 diceva che **il 65% di quello che una proposta fa non è traducibile in
+casella**. Portato un esempio vero, il committente:
+
+> *«La casella dice: chiudi una strada tra una tessera #pascolo e #selvaggio, se
+> c'è si può usare quella casella altrimenti no. Non vedo perché non potrebbe
+> essere scritta su una casella.»*
+
+Aveva ragione su tutti e tre i punti che avevo chiamato ostacoli. Il 65% contava
+contro le **dodici caselle di adesso**, non contro quello che una casella può
+dire: era una misura giusta presentata come una conclusione sbagliata.
+
+### E l'economia era già costruita
+
+`council_economy.gd` **esiste, esegue e ha già la sua idoneità**: dodici verbi,
+l'economia di D-280, il prezzo scelto dagli avversari. ISSUES 72 la dava da
+costruire.
+
+Quindi il quadro vero, che nessun documento diceva: **il Consiglio cambia il
+mondo in due modi che girano insieme** — le caselle, e le Conseguenze d'autore
+che la proposta porta con sé. Il controller applica tutte e due. Da D-341 la
+scheda ne stampa solo le prime.
+
+### La misura
+
+`cli/run_box_survey.gd` prende ogni Effetto che un Consiglio può applicare — le
+proposte, i tre pool e le clausole — e lo confronta col vocabolario. **Il
+vocabolario non è ricopiato**: la sonda chiama `effects_for` e guarda cosa esce.
+
+| | distinti | applicazioni |
+|---|---|---|
+| una casella di oggi lo sa dire | 4 | 64 |
+| verbo giusto, posto che la casella non sa dire | 15 | 41 |
+| **verbo che manca** | **27** | **231** |
+
+E i 27 si raggruppano in **nove caselle**. La più pesante vale da sola **90
+applicazioni su 336**, ed è quella che il committente non riusciva a leggere
+sulla scheda — *«La Carestia +1 non so cosa intende»*: l'effetto sposta la
+traccia di un'altra domanda, e non c'era scritto. Scelta presa: **la sceglie chi
+propone**.
+
+Una differenza strutturale emersa misurando: **le caselle di oggi non toccano le
+domande.** RAFFREDDA e SCALDA TEMA muovono un *Tema*; tutte e 90 quelle
+applicazioni muovono una *domanda*. Due tracce diverse, e nessuna casella sa
+muovere la seconda.
+
+### Il costo
+
+Nessuno: playtest 100 semi identico, **0 seggi bloccati su un solo livello su
+8**, suite invariata a 648 prove. Il cancello morde — piantato un
+`CLOSE_PASSAGE` in una Conseguenza, `--check` esce 1 — e la sonda si rifiuta di
+scrivere se dalle caselle non esce un solo Effetto.
+
+### Verbali
+
+**D-342** in `DECISIONS.md`, **ISSUES 89** riscritta col conto nuovo, **ISSUES
+72** corretta (diceva «da costruire» una cosa costruita), `docs/MISURA_CASELLE.md`
+e il suo cancello — il ventesimo.
+
+---
+
 ## 0.1.306 — Due grammatiche sulla stessa scheda, e le caselle stavano in fondo (D-341)
 
 Le tre domande del committente sulla scheda de La Carestia: *«due domande? Perché

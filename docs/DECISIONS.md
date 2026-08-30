@@ -10,6 +10,120 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-342 — Il «65% non traducibile» era un elenco di nove caselle
+
+**implemented** — 0.1.307
+
+### La correzione, e viene dal committente
+
+ISSUES 89 diceva, dalla rimisura di 0.1.300, che **il 65% di quello che una
+proposta fa non e' traducibile in casella**. Portato al committente con un
+esempio — *«Le Vie Interrotte»*, la proposta che lascia marcire la strada — ho
+sostenuto che tre suoi effetti non potevano stare su una casella.
+
+Aveva ragione lui su tutti e tre:
+
+> *«La casella dice: chiudi una strada tra una tessera #pascolo e #selvaggio, se
+> c'e' si puo' usare quella casella altrimenti no. Non vedo perche' non potrebbe
+> essere scritta su una casella.»*
+
+- **`CLOSE_PASSAGE`**: la sua formulazione e' quella giusta, ed e' il modello di
+  `eligibility` che le proposte gia' usano. La regola anti-isolamento che avevo
+  chiamato ostacolo e' **una riga stampabile**, verificabile a occhio su dieci
+  tessere.
+- **`#tagliato_fuori`**: e' AGGIUNGI CONDIZIONE, casella che esiste. L'unico
+  problema era il *dove*, e la grammatica a segni per dirlo esiste da D-262.
+- **il grado di una Pietra**: manca il verbo, e un verbo si aggiunge. Che oggi
+  nessuna Pietra scenda mai (ISSUES 39) e' un difetto del gioco, non un
+  argomento contro la casella.
+
+**Il 65% era una misura giusta presentata come una conclusione sbagliata**:
+contava contro le **dodici caselle di adesso**, non contro quello che una
+casella puo' dire. Non e' un muro, e' un elenco.
+
+### E l'economia era gia' costruita
+
+Andando a scriverla si e' scoperto che `scripts/confluence/council_economy.gd`
+**esiste, esegue e ha gia' la sua idoneita'** (`voice_bites`, D-306): dodici
+verbi, l'economia di D-280, il prezzo scelto dagli avversari. ISSUES 72 la
+dava da costruire.
+
+Quindi il quadro vero e' un altro, e nessun documento lo diceva: **il Consiglio
+cambia il mondo in due modi che girano insieme.** Le caselle, che il tavolo posa
+con le pedine, e le Conseguenze d'autore che la proposta porta con se'. Non sono
+alternative: `confluence_controller` applica **tutte e due** nello stesso
+Consiglio. Da D-341 la scheda stampa solo le prime.
+
+### La misura, e chi la scrive
+
+`cli/run_box_survey.gd` prende ogni Effetto che un Consiglio puo' applicare — le
+proposte, i tre pool (il prezzo, se cade, il di piu' di una vittoria netta) e le
+clausole — e lo confronta col vocabolario delle caselle.
+
+**Il vocabolario non e' ricopiato**: la sonda chiama `CouncilEconomy.effects_for`
+con un contesto finto e guarda *cosa esce*. Una tabella scritta accanto a una
+che esegue e' la trappola che questo progetto ha pagato in D-329, D-333, D-336 e
+D-338; qui non c'e'.
+
+| | distinti | applicazioni |
+|---|---|---|
+| una casella di oggi lo sa dire | 4 | 64 |
+| verbo giusto, posto che la casella non sa dire | 15 | 41 |
+| **verbo che manca** | **27** | **231** |
+| | **46** | **336** |
+
+E i 27 si raggruppano in **nove caselle**, non in un muro:
+
+| casella da scrivere | distinti | applicazioni |
+|---|---|---|
+| **SPOSTA UNA DOMANDA — chi propone nomina quale** | 11 | **90** |
+| POSA UN SEGNO SU UNA CASATA | 4 | 44 |
+| MUOVI UN RAPPORTO | 1 | 11 |
+| UNA PRESENZA ENTRA O SE NE VA | 4 | 10 |
+| UNA PIETRA SALE O SCENDE | 2 | 9 |
+| IL MONDO DIMENTICA | 1 | 3 |
+| UNA DOMANDA VELATA SI SCOPRE | 2 | 2 |
+| UNA CASATA LASCIA IL TAVOLO | 1 | 1 |
+| CHIUDI LA STRADA FRA DUE SEGNI | 1 | 1 |
+
+### La prima casella, e la scelta del committente
+
+La piu' pesante e' la prima, da sola **90 applicazioni su 336**. E' l'effetto
+che il committente non riusciva a leggere sulla scheda:
+
+> *«La Carestia +1 non so cosa intende.»*
+
+Non lo si capiva perche' non c'era scritto: l'effetto sposta la traccia di
+**un'altra domanda**. C'era una scelta da fare — la domanda stampata sulla
+scheda dall'autore, oppure scelta al tavolo — e il committente ha preso la
+seconda: **«la sceglie chi propone»**.
+
+E c'e' una differenza strutturale che la misura ha portato a galla e che vale la
+pena scrivere: **le caselle di oggi non toccano le domande**. RAFFREDDA TEMA e
+SCALDA TEMA producono `ADJUST_THEME_HEAT` su un **Tema**; tutte le 90
+applicazioni qui sopra sono `ADJUST_TENSION` su una **domanda**. Sono due
+tracce diverse, e nessuna casella sa muovere la seconda.
+
+### Il costo, dichiarato
+
+**Niente**: non e' stato cambiato un verbo del gioco. Una sonda, un cancello e un
+documento. Playtest 100 semi identico — Verita' 159/143 al tavolo misto, 149/125
+all'uniforme, **0 seggi bloccati su un solo livello su 8**. Suite invariata a
+648 prove.
+
+Il cancello morde: piantato un `CLOSE_PASSAGE` in una Conseguenza, `--check`
+esce 1. E la sonda si rifiuta di scrivere se dalle caselle non esce un solo
+Effetto — perche' in questo progetto uno zero e' quattro volte su cinque la
+sonda cieca, non il gioco.
+
+### Quello che resta
+
+Le nove caselle **non sono scritte**: questa decisione le conta e le nomina. Il
+passo dopo e' scriverne una — la prima, che vale 90 applicazioni — e misurarla
+sui 100 semi. Resta la voce ISSUES 89.
+
+---
+
 ## D-341 — Due grammatiche sulla stessa scheda, e le caselle stavano in fondo
 
 **implemented** — 0.1.306
